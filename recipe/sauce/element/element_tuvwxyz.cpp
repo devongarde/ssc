@@ -90,7 +90,7 @@ void element::examine_textarea ()
     int max = 0, min = 1;
     if (a_.good (a_maxlength)) max = a_.get_int (a_maxlength);
     if (a_.good (a_minlength)) min = a_.get_int (a_minlength);
-    int len = ::gsl::narrow_cast < int > (text ().length ());
+    int len = GSL_NARROW_CAST < int > (text ().length ());
     if ((max > 0) && (min > max)) pick (nit_bad_textarea, ed_50, "4.10.11 The textarea element", es_error, ec_element, "<TEXTAREA> MINLENGTH is greater than MAXLENGTH");
     if (len > 0)
     {   if (len < min) pick (nit_bad_textarea, ed_50, "4.10.11 The textarea element", es_warning, ec_element, "<TEXTAREA> content is short than MINLENGTH");
@@ -129,7 +129,7 @@ void element::examine_title ()
     page_ -> title (ttl);
     if (is_whitespace (ttl))
         pick (nit_text_content, es_warning, ec_element, "<TITLE> text should be more than whitespace");
-    else if (ttl.length () > ::gsl::narrow_cast < unsigned int > (context.title ()))
+    else if (ttl.length () > GSL_NARROW_CAST < unsigned int > (context.title ()))
         pick (nit_long_title, ed_tags, "TITLE section", es_warning, ec_element, "the TITLE text (", quote (ttl.substr (0, context.title ())), "...) is too long");
     page_ -> confirm_title (); }
 

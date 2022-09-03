@@ -79,14 +79,14 @@ bool is_local (const ::std::string& authority, const ::std::string& ipv4, const 
 bool equivalent_rfc3986 (const vc_t& lhs, const vc_t& rhs)
 {   PRESUME (lhs.size () > last_component, __FILE__, __LINE__);
     PRESUME (rhs.size () > last_component, __FILE__, __LINE__);
-    if (::gsl::at (lhs, es_authority) != ::gsl::at (rhs, es_authority)) return false;
-    if (::gsl::at (lhs, es_server) != ::gsl::at (rhs, es_server)) return false;
-    if (::gsl::at (lhs, es_path) != ::gsl::at (rhs, es_path))
-    if (::gsl::at (lhs, es_file) != ::gsl::at (rhs, es_file))
-    {   if (::gsl::at (lhs, es_file).empty ()) { if (::gsl::at (rhs, es_file) != context.index ()) return false; }
-        else if (::gsl::at (rhs, es_file).empty ()) { if (::gsl::at (lhs, es_file) != context.index ()) return false; }
+    if (GSL_AT (lhs, es_authority) != GSL_AT (rhs, es_authority)) return false;
+    if (GSL_AT (lhs, es_server) != GSL_AT (rhs, es_server)) return false;
+    if (GSL_AT (lhs, es_path) != GSL_AT (rhs, es_path))
+    if (GSL_AT (lhs, es_file) != GSL_AT (rhs, es_file))
+    {   if (GSL_AT (lhs, es_file).empty ()) { if (GSL_AT (rhs, es_file) != context.index ()) return false; }
+        else if (GSL_AT (rhs, es_file).empty ()) { if (GSL_AT (lhs, es_file) != context.index ()) return false; }
         else return false; }
-    return (::gsl::at (lhs, es_fragment) == ::gsl::at (rhs, es_fragment) ); }
+    return (GSL_AT (lhs, es_fragment) == GSL_AT (rhs, es_fragment) ); }
 
 ::std::string get_rfc3986 (const vc_t& component, bool defaulted)
 {   ::std::string res;
@@ -104,12 +104,12 @@ bool equivalent_rfc3986 (const vc_t& lhs, const vc_t& rhs)
     if (! component.at (es_authority).empty ())
     {   res += component.at (es_authority);
         if (! component.at (es_path).empty ())
-            if (::gsl::at (component.at (es_path), 0) != SLASH)
+            if (GSL_AT (component.at (es_path), 0) != SLASH)
                 res += SLASH; }
     if (! component.at (es_path).empty ())
     {   res += component.at (es_path);
         const ::std::string::size_type len = component.at (es_path).length () - 1;
-        if (::gsl::at (component.at (es_path), len) != SLASH)
+        if (GSL_AT (component.at (es_path), len) != SLASH)
             res += SLASH; }
     res += component.at (es_file);
     if (! component.at (es_query).empty ())
@@ -143,17 +143,17 @@ bool equivalent_rfc3986 (const vc_t& lhs, const vc_t& rhs)
             if (res.at (res.size () - 1) != SLASH)
                 res += SLASH;
     if (! component.at (es_path).empty ())
-    {   if ((::gsl::at (component.at (es_path), 0) == SLASH) && ! res.empty ())
+    {   if ((GSL_AT (component.at (es_path), 0) == SLASH) && ! res.empty ())
             res += component.at (es_path).substr (1);
         else res += component.at (es_path);
         ::std::string::size_type len = component.at (es_path).length () - 1;
-        if (::gsl::at (component.at (es_path), len) != SLASH)
+        if (GSL_AT (component.at (es_path), len) != SLASH)
             res += SLASH;
         if (! component.at (es_file).empty ())
             res += component.at (es_file);
         else if (can_use_index)
         {   len = component.at (es_path).length () - 1;
-            if (::gsl::at (component.at (es_path), len) != SLASH)
+            if (GSL_AT (component.at (es_path), len) != SLASH)
                 res += SLASH;
             res += context.index (); } }
     else if (! component.at (es_file).empty ())

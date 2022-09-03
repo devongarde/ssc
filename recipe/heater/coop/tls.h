@@ -21,15 +21,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 
 struct fred_tls  // thread local storage, not sorted ssl
-{   const e_fred fred_ = fred_bloggs;
-    ::std::atomic_int lox_ = lox_none;
-    ::std::atomic_bool empty_ = true;
-    ::std::atomic_bool flox_ = false;
-    ::std::atomic_bool dear_ = false;
-    fred_tls () = default;
+{   const e_fred fred_;
+    ::std::atomic_int lox_;
+    ::std::atomic_bool empty_;
+    ::std::atomic_bool flox_;
+    ::std::atomic_bool dear_;
+    fred_tls () : fred_ (fred_bloggs), lox_ (lox_none), empty_ (true), flox_ (false), dear_ (false) { }
+    explicit fred_tls (const e_fred f) noexcept : fred_ (f), lox_ (lox_none), empty_ (true), flox_ (false), dear_ (false) { }
     fred_tls (const fred_tls& ) = delete;
     fred_tls (fred_tls&& ) = delete;
-    explicit fred_tls (const e_fred f) noexcept : fred_ (f) { }
     ~fred_tls () = default;
     fred_tls& operator = (const fred_tls& ) = delete;
     fred_tls& operator = (fred_tls&& ) = delete; };

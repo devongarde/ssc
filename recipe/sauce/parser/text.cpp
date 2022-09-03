@@ -203,7 +203,7 @@ void examine_character_code (const html_version& v, const ::std::string& text, b
         if ((ch >= '0') && (ch <= '9')) n += ch - '0';
         else return text;
         if (n > UINT_MAX / 4) return text; }
-    return ::std::string (1, ::gsl::narrow_cast <char> (n)); }
+    return ::std::string (1, GSL_NARROW_CAST <char> (n)); }
 
 bool is_naughty_number (nitpick& nits, const ::std::string& s, const int n)
 {   if (n < 32)
@@ -231,7 +231,7 @@ bool is_naughty_number (nitpick& nits, const ::std::string& s, const int n)
         {   nits.pick (nit_denary_too_long, ed_41, "24.2 Character entity references for ISO 8859-1 characters", es_error, ec_parser, text, " is too big");
             return res; } }
     if (is_naughty_number (nits, res, n)) return res;
-    return ::std::string (1, ::gsl::narrow_cast <char> (n)); }
+    return ::std::string (1, GSL_NARROW_CAST <char> (n)); }
 
 ::std::string interpret_character_hex (const ::std::string& text)
 {   PRESUME (! text.empty (), __FILE__, __LINE__);
@@ -243,7 +243,7 @@ bool is_naughty_number (nitpick& nits, const ::std::string& s, const int n)
         else if ((ch >= 'a') && (ch <= 'f')) n += ch - 'a' + 10;
         else return text;
         if (n > UINT_MAX / 4) return text; }
-    return ::std::string (1, ::gsl::narrow_cast <char> (n)); }
+    return ::std::string (1, GSL_NARROW_CAST <char> (n)); }
 
 ::std::string interpret_character_hex (nitpick& nits, const ::std::string& text)
 {   PRESUME (! text.empty (), __FILE__, __LINE__);
@@ -263,7 +263,7 @@ bool is_naughty_number (nitpick& nits, const ::std::string& s, const int n)
         {   nits.pick (nit_hex_too_long, es_error, ec_parser, text, " is too big");
             break; } }
     if (is_naughty_number (nits, res, n)) return res;
-    return ::std::string (1, ::gsl::narrow_cast <char> (n)); }
+    return ::std::string (1, GSL_NARROW_CAST <char> (n)); }
 
 ::std::string get_character_code (const ::std::string& text)
 {  VERIFY_NOT_NULL (tb.get (), __FILE__, __LINE__);

@@ -141,9 +141,15 @@ template < e_type TYPE, class SZ > struct strings_vector : public string_vector_
         ss << '"'; } };
 
 template < e_type TYPE, typename NUMERIC_TYPE, NUMERIC_TYPE def = 0 > struct numeric_value : public type_base < NUMERIC_TYPE, TYPE >
-{   NUMERIC_TYPE value_ = def;
+{   NUMERIC_TYPE value_;
     using type_base < NUMERIC_TYPE, TYPE > :: type_base;
-    explicit numeric_value (element* box) noexcept : type_base < NUMERIC_TYPE, TYPE > (box) { }
+    numeric_value () : value_ (def) { }
+    numeric_value (const numeric_value& ) = default;
+    numeric_value (numeric_value&& ) = default;
+    explicit numeric_value (element* box) noexcept : type_base < NUMERIC_TYPE, TYPE > (box), value_ (def) { }
+    ~numeric_value () = default;
+    numeric_value& operator = (const numeric_value& ) = default;
+    numeric_value& operator = (numeric_value&& ) = default;
     static NUMERIC_TYPE default_value () { return def; }
     void swap (numeric_value& t) noexcept
     {   ::std::swap (value_, t.value_);
@@ -158,7 +164,7 @@ template < e_type TYPE, typename NUMERIC_TYPE, NUMERIC_TYPE def = 0 > struct num
         type_base < NUMERIC_TYPE, TYPE > :: status (s_good); }
     ::std::string get_string () const
     {   return ::boost::lexical_cast < ::std::string > (value_); }
-    int get_int () const noexcept { return ::gsl::narrow_cast < int > (value_); }
+    int get_int () const noexcept { return GSL_NARROW_CAST < int > (value_); }
     bool has_value (const NUMERIC_TYPE& n) const { return type_base < NUMERIC_TYPE, TYPE > :: good () && (value_ == n); }
     void set_value (nitpick& nits, const html_version& , const ::std::string& s)
     {   bool b = false;

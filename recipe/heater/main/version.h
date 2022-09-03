@@ -126,6 +126,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MINOR_X1_1   3
 #define MINOR_X2_0   4
 
+#define HTML_NULL   0, 0
 #define HTML_TAGS   MAJOR_TAGS, MINOR_TAGS
 #define HTML_1_0    MAJOR_1_0, MINOR_1_0
 #define HTML_PLUS   MAJOR_PLUS, MINOR_PLUS
@@ -472,7 +473,7 @@ class version
 {   unsigned short mjr_ = 0, mnr_ = 0;
     flags_t flags_ = NOFLAGS;
 public:
-    version () = default;
+    version () : mjr_ (0), mnr_ (0), flags_ (NOFLAGS) { }
     version (const unsigned short mjr, const unsigned short mnr, const flags_t flags = NOFLAGS) noexcept
         :   mjr_ (mjr), mnr_ (mnr), flags_ (flags) { }
 	version (const version& ) = default;

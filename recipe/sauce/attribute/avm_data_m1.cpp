@@ -29,6 +29,7 @@ hav_t havt_maction [] =
 {   { { XHTML_1_0 }, { HTML_UNDEF }, elem_maction, a_actiontype },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_maction, a_selection },
     MATH4_PRES_ATTRIBUTES (elem_maction),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_maction),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_maligngroup [] =
@@ -107,7 +108,8 @@ hav_t havt_math [] =
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_math, a_baseline },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_math, a_cdgroup },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_math, a_definitionurl },
-    { { HTML_MATH2, 0, 0, H2_MATH_2 }, { HTML_UNDEF }, elem_math, a_display },
+    { { HTML_MATH2, 0, 0, H2_MATH_2 }, { HTML_MATH4_C }, elem_math, a_display },
+    { { HTML_MATH4_C, 0, 0 }, { HTML_UNDEF }, elem_math, a_display },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_math, a_height },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_math, a_macros },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_math, a_maxwidth },
@@ -121,6 +123,7 @@ hav_t havt_math [] =
     MATH4_PRES_ATTRIBUTES (elem_math),
     HTML3_CLID_ATTRIBUTES (elem_math),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_math),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_math),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_matrix [] =
@@ -184,6 +187,7 @@ hav_t havt_menulabel [] =
 
 hav_t havt_merror [] =
 {   MATH4_PRES_ATTRIBUTES (elem_merror),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_merror),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_meta [] =
@@ -236,6 +240,7 @@ hav_t havt_mfrac [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_mfrac, a_linethickness },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_mfrac, a_numalign },
     MATH4_PRES_ATTRIBUTES (elem_mfrac),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_mfrac),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_mglyph [] =
@@ -255,8 +260,8 @@ hav_t havt_mh [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_mi [] =
-{   MATH3_FONT_ATTRIBUTES (elem_mi),
-    MATH4_PRES_ATTRIBUTES (elem_mi),
+{   MATH4_PRES_ATTRIBUTES (elem_mi),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_mi),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_min [] =
@@ -297,19 +302,20 @@ hav_t havt_mmultiscripts [] =
 {   { { XHTML_1_0 }, { HTML_UNDEF }, elem_mmultiscripts, a_subscriptshift },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_mmultiscripts, a_superscriptshift },
     MATH4_PRES_ATTRIBUTES (elem_mmultiscripts),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_mmultiscripts),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_mn [] =
 {   MATH3_LINEINDENT_ATTRIBUTES (elem_mn),
-    MATH3_FONT_ATTRIBUTES (elem_mn),
     MATH4_PRES_ATTRIBUTES (elem_mn),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_mn),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_mo [] =
 {   MATH3_LINEINDENT_ATTRIBUTES (elem_mo),
-    MATH3_FONT_ATTRIBUTES (elem_mo),
     MATH_OPINFO_ATTRIBUTES (elem_mo),
     MATH4_PRES_ATTRIBUTES (elem_mo),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_mo),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_mode [] =
@@ -328,4 +334,5 @@ hav_t havt_mover [] =
 {   { { HTML_MATH1 }, { HTML_UNDEF }, elem_mover, a_accent },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_mover, a_align },
     MATH4_PRES_ATTRIBUTES (elem_mover),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_mover),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };

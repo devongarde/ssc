@@ -40,7 +40,7 @@ html_version::html_version (const boost::gregorian::date& d, const flags_t flags
     else if ((y > HTML_LATEST_YEAR) || ((y == HTML_LATEST_YEAR) && (m > HTML_LATEST_MONTH)))
     {   y = HTML_LATEST_YEAR; m = HTML_LATEST_MONTH; }
     PRESUME ((m > 0) && (m < 13), __FILE__, __LINE__);
-    set_mjr (::gsl::narrow_cast <unsigned short> (y), ::gsl::narrow_cast <unsigned short> (m * 16));
+    set_mjr (GSL_NARROW_CAST <unsigned short> (y), GSL_NARROW_CAST <unsigned short> (m * 16));
     if (no_ext2 (MATH_MASK))
         if (mjr () >= 4)
             if (mjr () <= HTML_2010) set_ext2 (H2_MATH_1);
@@ -86,19 +86,19 @@ void html_version::init (const unsigned short mjr)
     ::std::string res ("5/20");
     if (v.mjr () < 10)
     {   res += "0";
-        res += ::gsl::narrow_cast <char> (v.mjr () + '0'); }
+        res += GSL_NARROW_CAST <char> (v.mjr () + '0'); }
     else res += ::boost::lexical_cast < ::std::string > (static_cast < int > (v.mjr ()));
     const int mon = v.mnr () / 16;
     if (mon <= 9)
     {   res += "0";
-        res += ::gsl::narrow_cast <char> (mon + '0'); }
+        res += GSL_NARROW_CAST <char> (mon + '0'); }
     else res += ::boost::lexical_cast < ::std::string > (mon);
     int day = v.mnr () % 16;
     day *= 2;
     day += 1;
     if (day <= 9)
     {   res += "0";
-        res += ::gsl::narrow_cast <char> (day + '0'); }
+        res += GSL_NARROW_CAST <char> (day + '0'); }
     else res += ::boost::lexical_cast < ::std::string > (day);
     return res; }
 
@@ -127,7 +127,7 @@ void html_version::init (const unsigned short mjr)
                     if (level () > 0) res << "/" << level ();
                     break;
                 case 3 :
-                    res << "3." << ::gsl::narrow_cast <char> (mnr () + '0');
+                    res << "3." << GSL_NARROW_CAST <char> (mnr () + '0');
                     break;
                 case 4 :
                     res << "4.0";
@@ -302,21 +302,21 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                     break;
                 case doc_xhtml10_strict_superseded :
                     nits.pick (nit_xhtml_superseded, ed_x1, "W3C Recommendation 26 January 2000, revised 1 August 2002", es_warning, ec_parser, "that strict XHTML 1.0 declaration was withdrawn before XHTML 1.0 was published");
-                    [[fallthrough]];
+                    FALLTHROUGH;
                 case doc_xhtml10_strict :
                     if (note_parsed_version (nits, nit_xhtml_1_0, xhtml_1_0, "XHTML 1.0 Strict")) set_flags (HV_STRICT);
                     if (::boost::algorithm::starts_with (s, "http")) set_flags (HV_XHTML_DTD);
                     break;
                 case doc_xhtml10_loose_superseded :
                     nits.pick (nit_xhtml_superseded, ed_x1, "W3C Recommendation 26 January 2000, revised 1 August 2002", es_warning, ec_parser, "that transitional XHTML 1.0 declaration was withdrawn before XHTML 1.0 was published");
-                    [[fallthrough]];
+                    FALLTHROUGH;
                 case doc_xhtml10_loose :
                     if (note_parsed_version (nits, nit_xhtml_1_0, xhtml_1_0, "XHTML 1.0 Transitional")) set_flags (HV_TRANSITIONAL);
                     if (::boost::algorithm::starts_with (s, "http")) set_flags (HV_XHTML_DTD);
                     break;
                 case doc_xhtml10_frameset_superseded :
                     nits.pick (nit_xhtml_superseded, ed_x1, "W3C Recommendation 26 January 2000, revised 1 August 2002", es_warning, ec_parser, "that XHTML 1.0 frameset declaration was withdrawn before XHTML 1.0 was published");
-                    [[fallthrough]];
+                    FALLTHROUGH;
                 case doc_xhtml10_frameset :
                     if (note_parsed_version (nits, nit_xhtml_1_0, xhtml_1_0, "XHTML 1.0 Frameset")) set_flags (HV_FRAMESET);
                     if (::boost::algorithm::starts_with (s, "http")) set_flags (HV_XHTML_DTD);
@@ -355,19 +355,19 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                     break;
                 case doc_html401_strict_superseded :
                     nits.pick (nit_html_superseded, ed_41, "21 Document Type Definition", es_warning, ec_parser, "that strict HTML .dtd was withdrawn");
-                    [[fallthrough]];
+                    FALLTHROUGH;
                 case doc_html401_strict :
                     if (note_parsed_version (nits, nit_html_4_01s, html_4_1, "HTML 4.01 Strict")) set_flags (HV_STRICT);
                     break;
                 case doc_html401_loose_superseded :
                     nits.pick (nit_html_superseded, ed_41, "21 Document Type Definition", es_warning, ec_parser, "that transitional HTML .dtd was withdrawn");
-                    [[fallthrough]];
+                    FALLTHROUGH;
                 case doc_html401_loose :
                     if (note_parsed_version (nits, nit_html_4_01, html_4_1, "HTML 4.01 Transitional")) set_flags (HV_TRANSITIONAL);
                     break;
                 case doc_html401_frameset_superseded :
                     nits.pick (nit_html_superseded, ed_41, "21 Document Type Definition", es_warning, ec_parser, "that HTML frameset .dtd was withdrawn");
-                    [[fallthrough]];
+                    FALLTHROUGH;
                 case doc_html401_frameset :
                     if (note_parsed_version (nits, nit_html_4_01f, html_4_1, "HTML 4.01 Frameset")) set_flags (HV_FRAMESET);
                     break;
@@ -638,6 +638,9 @@ void html_version::svg_version (const e_svg_version v) noexcept
         case sv_2_1 : set_ext (HE_SVG_21); break;
         default : break; } }
 
+bool html_version::math_4_core () const noexcept
+{   return (any_ext2 (H2_MATH_C)); }
+
 e_math_version html_version::math_version () const noexcept
 {   if (all_ext2 (H2_MATH_4_22)) return math_4_22;
     if (all_ext2 (H2_MATH_C)) return math_core;
@@ -650,8 +653,7 @@ e_math_version html_version::math_version () const noexcept
 ::std::string html_version::math_version_name () const
 {
     if (all_ext2 (H2_MATH_4_22)) return "4(Aug22)";
-    if (all_ext2 (H2_MATH_C))
-        return "core";
+    if (all_ext2 (H2_MATH_C)) return "core";
     if (all_ext2 (H2_MATH_4_20)) return "4(Dec20)";
     if (all_ext2 (H2_MATH_3)) return "3";
     if (all_ext2 (H2_MATH_2)) return "2";

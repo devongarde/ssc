@@ -717,16 +717,16 @@ void add_elements (const vstr_t& v)
         switch (x)
         {   case 4 :
                 flags2 = lexical < flags_t > :: cast (args.at (3));
-                [[fallthrough]];
+                FALLTHROUGH;
             case 3 :
                 flags = lexical < flags_t > :: cast (args.at (2));
-                [[fallthrough]];
+                FALLTHROUGH;
             case 2 :
                 ns = examine_value < t_namespace > (nuts, context.html_ver (), args.at (1));
-                [[fallthrough]];
+                FALLTHROUGH;
             case 1 :
                 elem::extend (::boost::to_lower_copy (args.at (0)), elem_custom, ns, context.html_ver (), html_0, flags, flags2);
-                [[fallthrough]];
+                FALLTHROUGH;
             default : break; } } }
 
 bool elem::fits_link_category (const html_version& v, const e_element e, const e_sought_category cat)

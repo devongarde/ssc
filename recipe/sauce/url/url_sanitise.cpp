@@ -57,12 +57,12 @@ encode_map_t encode_map;
 void code_map_init (nitpick& nits)
 {   constexpr ::std::size_t max = sizeof (encoded) / sizeof (escape_t);
     for (::std::size_t i = 0; i < max; i++)
-    {   if (decode_map.find (::gsl::at (encoded, i).encoding_) != decode_map.cend ())
-            nits.pick (nit_symbol_aleady_defined, es_error, ec_program,  "Program error: decoder ", ::gsl::at (encoded, i).encoding_, " already defined");
-        else decode_map.insert (decode_map_t::value_type (::gsl::at (encoded, i).encoding_, ::gsl::at (encoded, i).ch_));
-        if (encode_map.find (::gsl::at (encoded, i).ch_) != encode_map.cend ())
-            nits.pick (nit_symbol_aleady_defined, es_error, ec_program,  "Program error: encoder ", ::gsl::at (encoded, i).ch_, " already defined");
-        else encode_map.insert (encode_map_t::value_type (::gsl::at (encoded, i).ch_, ::gsl::at (encoded, i).encoding_)); } }
+    {   if (decode_map.find (GSL_AT (encoded, i).encoding_) != decode_map.cend ())
+            nits.pick (nit_symbol_aleady_defined, es_error, ec_program,  "Program error: decoder ", GSL_AT (encoded, i).encoding_, " already defined");
+        else decode_map.insert (decode_map_t::value_type (GSL_AT (encoded, i).encoding_, GSL_AT (encoded, i).ch_));
+        if (encode_map.find (GSL_AT (encoded, i).ch_) != encode_map.cend ())
+            nits.pick (nit_symbol_aleady_defined, es_error, ec_program,  "Program error: encoder ", GSL_AT (encoded, i).ch_, " already defined");
+        else encode_map.insert (encode_map_t::value_type (GSL_AT (encoded, i).ch_, GSL_AT (encoded, i).encoding_)); } }
 
 ::std::string unescape (const ::std::string& s)
 {   const ::std::size_t len = s.length ();
@@ -166,7 +166,7 @@ bool is_hex (const char ch) noexcept
                 else
                 {   val *= 16;
                     val += char2hex (ch);
-                    res += ::gsl::narrow_cast < char > (val); }
+                    res += GSL_NARROW_CAST < char > (val); }
                 val = 0;
                 first = true;
                 percent = false; }
@@ -177,5 +177,5 @@ bool is_hex (const char ch) noexcept
 
 ::std::string tolower (const ::std::string& s)
 {   ::std::string res;
-    for (auto ch : s) res += ::gsl::narrow_cast < char > (tolower (ch));
+    for (auto ch : s) res += GSL_NARROW_CAST < char > (tolower (ch));
     return res; }

@@ -42,6 +42,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
                     a_onplaying, a_onprogress, a_onratechange, a_onreadystatechange, a_onreset, a_onresize, a_onscroll, a_onsought, \
                     a_onseeking, a_onselect, a_onshow, a_onstalled, a_onstorage, a_onsubmit, a_onunload
 
+#define ALIGNCHAR   a_align, a_char, a_charoff, a_valign
+#define BLUR        a_onfocus, a_onblur
+#define DINGBAT     a_dingbat, a_md, a_seqnum, a_skip, a_align, a_clear, a_nowrap
+#define KEYMOUSE    a_onclick, a_ondblclick, a_onkeydown, a_onkeypress, a_onkeyup, a_onmousedown, a_onmousemove, a_onmouseout, a_onmouseover, a_onmouseup
+#define RESERVED4   a_datafld, a_dataformatas, a_datasrc
+#define XHTML       a_role, a_xmlbase, a_xmlns, a_xmllang, a_xmlspace, RDFa
+
 #define MATH1UNIQUE a_other
 #define MATH1SHARED a_class, a_id, a_style
 #define MATH1COMMON MATH1SHARED, MATH1UNIQUE
@@ -74,11 +81,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MATH3UNIPR  a_mathbackground, a_mathcolour
 #define MATH3PRES   MATH3UNIPR, MATH3COMMON
 
-#define MATH4PRES   a_arg, a_intent, MATH3PRES
+#define MATH4PRBASE a_arg, a_intent
+#define MATH4PRES   MATH4PRBASE, MATH3PRES
 
+#define MATH4CBASE  a_datawild, a_dir, a_mathbackground, a_mathcolour, a_mathsize, a_mathvariant, a_numberonce, a_onautocomplete, a_onautocompleteerror, \
+                    a_onauxclick, a_onblur, a_oncancel, a_oncanplay, a_oncanplaythrough, a_onchange, a_onclose, a_oncontextmenu, a_oncopy, a_oncuechange, a_oncut, a_ondrag, \
+                    a_ondragend, a_ondragenter, a_ondragleave, a_ondragover, a_ondragstart, a_ondrop, a_ondurationchange, a_onemptied, a_onended, a_onerror, a_onfocus, a_onformdata, \
+                    a_oninput, a_oninvalid, a_onload, a_onloadeddata, a_onloadedmetadata, a_onloadstart, a_onmouseenter, a_onmouseleave, a_onpaste, a_onpause, a_onplay, a_onplaying, \
+                    a_onprogress, a_onratechange, a_onreset, a_onresize, a_onscroll, a_onsecuritypolicyviolation, a_onseeking, a_onselect, a_onslotchange, a_onsort, a_onsought, \
+                    a_onstalled, a_onsubmit, a_onsuspend, a_ontimeupdate, a_onwaiting, a_onwheel, a_scriptlevel, a_tabindex, KEYMOUSE
 
-//#define M4CORESHARED a_datawild, a_displaystyle, a_numberonce, a_scriptlevel, a_tabindex, MATH3TOKEN, MATH3UNIPR
-//#define M4CORECOMMON M4CORESHARED, MATH3COMMON, ON
+#define MATH4CCOMMON a_displaystyle, MATH4CBASE
+
+#define MATH4CDEFCOM MATH3DEFCOM, MATH4CCOMMON
+#define MATH4CPRES  MATH4PRBASE, MATH3COMMON, MATH4CCOMMON
+#define MATH4CFONT  MATH1FONT, MATH4CPRES
+#define MATH4CTABLE MATH3TABLE, MATH4PRES, MATH4CBASE
+#define MATH4CSTYLE MATH1FONT, MATH4PRES, MATH4CBASE
+#define MATH4CORE   MATH1SHARED, MATH4CCOMMON
 
 #define RDFa        a_about, a_content, a_datatype, a_inlist, a_prefix, a_property, a_rel, a_resource, a_rev, a_src, a_typeof, a_vocab
 
@@ -127,13 +147,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define RDF_METADATA a_rdf_about, a_rdf_datatype, a_rdf_id, a_rdf_nodeid, a_rdf_parsetype, a_rdf_resource
 
 #define METADATA    RDF_METADATA
-
-#define ALIGNCHAR   a_align, a_char, a_charoff, a_valign
-#define BLUR        a_onfocus, a_onblur
-#define DINGBAT     a_dingbat, a_md, a_seqnum, a_skip, a_align, a_clear, a_nowrap
-#define KEYMOUSE    a_onclick, a_ondblclick, a_onkeydown, a_onkeypress, a_onkeyup, a_onmousedown, a_onmousemove, a_onmouseout, a_onmouseover, a_onmouseup
-#define RESERVED4   a_datafld, a_dataformatas, a_datasrc
-#define XHTML       a_role, a_xmlbase, a_xmlns, a_xmllang, a_xmlspace, RDFa
 
 #define LANGDIR     a_dir, a_lang
 #define CLID        a_class, a_id
@@ -202,8 +215,8 @@ element_init_t ei [] =
     { elem_animatetransform, {  a_externalresourcesrequired, a_type, SVG_ANAT, SVG_ANTIME, SVG_ANIM, SVG_ANVAL, SVG_ANADD, SVG_XLINK, SVG_COND,
                                 SVG_PRES, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_animation, { a_initialvisibility, SVG_BOX, SVG_COND, SVG_XLINK, SVG_ANTIME, SVG_PRES, SVG_SYNC, METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_annotation, { a_cd, a_name, a_src, MATH3DEFCOM, a_unknown } },
-    { elem_annotation_xml, { a_cd, a_name, a_src, MATH3DEFCOM, a_unknown } },
+    { elem_annotation, { a_cd, a_name, a_src, MATH4CDEFCOM, a_unknown } },
+    { elem_annotation_xml, { a_cd, a_name, a_src, MATH4CDEFCOM, a_unknown } },
     { elem_applet, { a_align, a_alt, a_archive, a_code, a_codebase, a_hspace, a_name, a_object, a_vspace, WIDEHIGH, CLID, TIPSY, a_unknown } },
     { elem_approx, { MATH3DEFCOM, a_unknown } },
     { elem_apply, { MATH3COMMON, a_unknown } },
@@ -514,7 +527,7 @@ element_init_t ei [] =
     { elem_lowlimit, { MATH3COMMON, a_unknown } },
     { elem_lt, { MATH3DEFCOM, a_unknown } },
     { elem_m, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_maction, { a_actiontype, a_selection, MATH4PRES, a_unknown } },
+    { elem_maction, { a_actiontype, a_selection, MATH4CPRES, a_unknown } },
     { elem_main, { METADATA, LIVING_STANDARD, a_unknown } },
     { elem_maligngroup, { a_groupalign, MATH4PRES, a_unknown } },
     { elem_malignmark, { a_edge, a_unknown } },
@@ -527,14 +540,13 @@ element_init_t ei [] =
     { elem_mask, { a_externalresourcesrequired, a_maskcontentunits, a_maskunits, SVG_COND, SVG_PRES, SVG_BOX, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_math, {  a_accentunder, a_altimg, a_altimg_height, a_altimg_width, a_altimg_valign, a_alttext, a_background, a_baseline,
                     a_bevelled, a_box, a_cdgroup, a_charalign, a_charspacing, a_close, a_columnspan, a_crossout, a_decimalpoint,
-                    a_display, a_denomalign, a_depth, a_edge, a_infixlinebreakstyle, a_leftoverhang, a_length,
+                    a_display, a_denomalign, a_depth, a_edge, a_infixlinebreakstyle, a_lang, a_leftoverhang, a_length,
                     a_linethickness, a_location, a_longdivstyle, a_lquote, a_macros, a_maxwidth, a_mediummathspace, a_mode,
                     a_mslinethickness, a_name, a_notation, a_numalign, a_open, a_overflow, a_position, a_rightoverhang, a_rowspan,
                     a_rquote, a_scriptlevel, a_scriptminsize, a_scriptsizemultiplier, a_selection, a_separators, a_shift,
                     a_stackalign, a_subscriptshift, a_superscriptshift, a_thickmathspace, a_thinmathspace, a_valign,
                     a_verythickmathspace, a_verythinmathspace, a_veryverythickmathspace, a_veryverythinmathspace,
-                    a_style, a_type, MATH3BREAK, MATH3INDENT, MATH3TOKEN, MATH3SHARED,
-                    MATH3UNIQUE, MATH3UNIPR, WIDEHIGH, LANGCLASS3, a_unknown } },
+                    a_style, a_type, MATH3BREAK, MATH3INDENT, MATH3SHARED, MATH3UNIQUE, WIDEHIGH, MATH4CPRES, a_unknown } },
     { elem_matrix, { MATH3COMMON, a_unknown } },
     { elem_matrixrow, { MATH3COMMON, a_unknown } },
     { elem_max, { MATH3DEFCOM, a_unknown } },
@@ -545,40 +557,40 @@ element_init_t ei [] =
     { elem_menubar, { METADATA, COMMON5, a_unknown } },
     { elem_menuitem, { a_checked, a_default, a_disabled, a_icon, a_label, a_radiogroup, a_type, METADATA, COMMON51, a_unknown } },
     { elem_menulabel, { a_label, METADATA, COMMON5, a_unknown } },
-    { elem_merror, { MATH4PRES, a_unknown } },
+    { elem_merror, { MATH4CPRES, a_unknown } },
     { elem_meta, { a_charset, a_httpequiv, a_name, a_scheme, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_metadata, { SVG_COND, SVG_PRES, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_meter, { a_form, a_high, a_low, a_max, a_min, a_optimum, a_value, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_mfenced, { a_close, a_open, a_separators, MATH4PRES, a_unknown } },
-    { elem_mfrac, { a_bevelled, a_denomalign, a_linethickness, a_numalign, MATH4PRES, a_unknown } },
+    { elem_mfrac, { a_bevelled, a_denomalign, a_linethickness, a_numalign, MATH4CPRES, a_unknown } },
     { elem_mglyph, { a_alt, a_fontfamily, a_height, a_index, a_mathvariant, a_mathsize, a_other, a_src, a_width, a_unknown, MATH4PRES } },
     { elem_mh, { a_action, a_hidden, a_method, HTMLPLUS, a_unknown } },
-    { elem_mi, { MATH3FONT, MATH4PRES, a_unknown } },
+    { elem_mi, { MATH4CFONT, a_unknown } },
     { elem_min, { MATH3DEFCOM, a_unknown } },
     { elem_minus, { MATH3DEFCOM, a_unknown } },
     { elem_missingglyph, { a_d, a_horiz_adv_x, a_vert_adv_y, a_vert_origin_x, a_vert_origin_y, SVG_PRES, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_mlabeledtr, { a_columnalign, a_groupalign, a_rowalign, MATH4PRES, a_unknown } },
     { elem_mlongdiv, { a_align, a_charalign, a_charspacing, a_longdivstyle, a_stackalign, MATH4PRES, a_unknown } },
-    { elem_mn, { MATH3FONT, MATH4PRES, a_unknown } },
-    { elem_mmultiscripts, { a_subscriptshift, a_superscriptshift, MATH4PRES, a_unknown } },
-    { elem_mo, { MATH3BREAK, MATH3INDENT, MATH3FONT, MATHOPINFO, MATH4PRES, a_unknown } },
+    { elem_mmultiscripts, { a_subscriptshift, a_superscriptshift, MATH4CPRES, a_unknown } },
+    { elem_mn, { MATH4CFONT, a_unknown } },
+    { elem_mo, { MATH3BREAK, MATH3INDENT, MATHOPINFO, MATH4CFONT, a_unknown } },
     { elem_mode, { MATH3DEFCOM, a_unknown } },
     { elem_moment, { MATH3DEFCOM, a_unknown } },
     { elem_momentabout, { MATH3DEFCOM, a_unknown } },
-    { elem_mover, { a_accent, a_align, MATH4PRES, a_unknown } },
-    { elem_mpadded, { a_lspace, a_voffset, MATHSIZE, MATH4PRES, a_unknown } },
+    { elem_mover, { a_accent, a_align, MATH4CPRES, a_unknown } },
+    { elem_mpadded, { a_lspace, a_voffset, MATHSIZE, MATH4CPRES, a_unknown } },
     { elem_mpath, { a_externalresourcesrequired, SVG_XLINK, METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_mphantom, { MATH4PRES, a_unknown } },
-    { elem_mprescripts, { a_xmlns, a_unknown } },
-    { elem_mroot, { MATH4PRES, a_unknown } },
-    { elem_mrow, { MATH4PRES, a_unknown } },
-    { elem_ms, { a_lquote, a_rquote, MATH3FONT, MATH4PRES, a_unknown } },
+    { elem_mphantom, { MATH4CPRES, a_unknown } },
+    { elem_mprescripts, { a_xmlns, MATH4CPRES, a_unknown } },
+    { elem_mroot, { MATH4CPRES, a_unknown } },
+    { elem_mrow, { MATH4CPRES, a_unknown } },
+    { elem_ms, { a_lquote, a_rquote, MATH4CFONT, a_unknown } },
     { elem_mscarries, { a_crossout, a_location, a_scriptsizemultiplier, a_position, MATH4PRES, a_unknown } },
     { elem_mscarry, { a_crossout, a_location, MATH4PRES, a_unknown } },
     { elem_msgroup, { a_position, a_shift, MATH4PRES, a_unknown } },
     { elem_msline, { a_leftoverhang, a_length, a_mslinethickness, a_position, a_rightoverhang, MATH4PRES, a_unknown } },
-    { elem_mspace, { a_linebreak, MATH3INDENT, MATHSIZE, MATH3TOKEN, MATH4PRES, a_unknown } },
-    { elem_msqrt, { MATH4PRES, a_unknown } },
+    { elem_mspace, { a_linebreak, MATH3INDENT, MATHSIZE, MATH3TOKEN, MATH4CPRES, a_unknown } },
+    { elem_msqrt, { MATH4CPRES, a_unknown } },
     { elem_msrow, { a_position, MATH4PRES, a_unknown } },
     { elem_mstack, { a_align, a_charalign, a_charspacing, a_stackalign, MATH4PRES, a_unknown } },
     { elem_mstyle, {    a_accentunder, a_background, a_bevelled, a_charalign, a_charspacing, a_close, a_columnspan, a_crossout,
@@ -588,17 +600,17 @@ element_init_t ei [] =
                         a_scriptsizemultiplier, a_selection, a_separators, a_shift, a_stackalign, a_subscriptshift,
                         a_superscriptshift, a_thickmathspace, a_thinmathspace, a_valign, a_verythickmathspace,
                         a_verythinmathspace, a_veryverythickmathspace, a_veryverythinmathspace, MATH3BREAK, MATH3INDENT,
-                        MATH3TABLE, MATH3FONT, MATHOPINFO, MATH4PRES, a_unknown } },
-    { elem_msub, { a_subscriptshift, MATH4PRES, a_unknown } },
-    { elem_msubsup, { a_subscriptshift, a_superscriptshift, MATH4PRES, a_unknown } },
-    { elem_msup, { a_superscriptshift, MATH4PRES, a_unknown } },
-    { elem_mtable, { MATH3TABLE, MATH4PRES, a_unknown } },
-    { elem_mtd, { a_columnalign, a_columnspan, a_groupalign, a_rowalign, a_rowspan, MATH4PRES, a_unknown } },
-    { elem_mtext, { MATH3FONT, MATH4PRES, a_unknown } },
-    { elem_mtr, { a_columnalign, a_groupalign, a_rowalign, MATH4PRES, a_unknown } },
+                        MATH3TABLE, MATHOPINFO, MATH4CSTYLE, a_unknown } },
+    { elem_msub, { a_subscriptshift, MATH4CPRES, a_unknown } },
+    { elem_msubsup, { a_subscriptshift, a_superscriptshift, MATH4CPRES, a_unknown } },
+    { elem_msup, { a_superscriptshift, MATH4CPRES, a_unknown } },
+    { elem_mtable, { MATH4CTABLE, a_unknown } },
+    { elem_mtd, { a_columnalign, a_columnspan, a_groupalign, a_rowalign, a_rowspan, MATH4CPRES, a_unknown } },
+    { elem_mtext, { MATH4CFONT, a_unknown } },
+    { elem_mtr, { a_columnalign, a_groupalign, a_rowalign, MATH4CPRES, a_unknown } },
     { elem_multicol, { a_class, a_cols, a_gutter, a_id, a_style, a_width, a_unknown } },
-    { elem_munder, { a_accentunder, a_align, MATH4PRES, a_unknown } },
-    { elem_munderover, { a_accent, a_accentunder, a_align, MATH4PRES, a_unknown } },
+    { elem_munder, { a_accentunder, a_align, MATH4CPRES, a_unknown } },
+    { elem_munderover, { a_accent, a_accentunder, a_align, MATH4CPRES, a_unknown } },
     { elem_naturalnumbers, { MATH3DEFCOM, a_unknown } },
     { elem_nav, { a_active, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_navigation, { a_active, METADATA, COMMON5, a_unknown } },
@@ -609,7 +621,7 @@ element_init_t ei [] =
     { elem_nobr, { a_unknown } },
     { elem_noembed, { a_unknown } },
     { elem_noframes, { COMMON4, a_unknown } },
-    { elem_none, { a_xmlns, a_unknown } },
+    { elem_none, { a_xmlns, MATH4CORE, a_unknown } },
     { elem_noscript, { METADATA, LIVING_STANDARD, a_unknown } },
     { elem_not, { MATH3DEFCOM, a_unknown } },
     { elem_notanumber, { MATH3DEFCOM, a_unknown } },
@@ -722,7 +734,7 @@ element_init_t ei [] =
     { elem_select, {    a_align, a_autocomplete, a_disabled, a_error, a_form, a_md, a_multiple, a_name, a_required, a_several, a_size, a_units, WIDEHIGH, RESERVED4,
                         METADATA, LIVING_STANDARD, a_unknown } },
     { elem_selector, { MATH3DEFCOM, a_unknown } },
-    { elem_semantics, { a_cd, a_name, a_src, MATH3DEFCOM, a_unknown } },
+    { elem_semantics, { a_cd, a_name, a_src, MATH4CDEFCOM, a_unknown } },
     { elem_sep, { a_xmlns, a_unknown } },
     { elem_separator, { METADATA, XHTML2, a_unknown } },
     { elem_set, { a_externalresourcesrequired, a_to, a_type, MATH2UNIQUE, SVG_ANAT, SVG_ANTIME, SVG_ANIM, SVG_XLINK, SVG_COND, SVG_PRES, METADATA, LIVING_STANDARD, a_unknown } },
@@ -842,23 +854,23 @@ void elements_init (nitpick& nits)
     int n = 0;
     e_element e = elem_error;
 #endif // DEBUG
-    for (int i = 0; ::gsl::at (ei, i).tag_ != elem_error; ++i)
-    {   if (vebs.at (::gsl::at (ei, i).tag_).any ())
-            nits.pick (nit_repeated_attribute, es_warning, ec_program, elem::name (::gsl::at (ei, i).tag_), " repeated in bitset init");
-        for (int j = 0; ::gsl::at (::gsl::at (ei, i).a_, j) != a_unknown; ++j)
+    for (int i = 0; GSL_AT (ei, i).tag_ != elem_error; ++i)
+    {   if (vebs.at (GSL_AT (ei, i).tag_).any ())
+            nits.pick (nit_repeated_attribute, es_warning, ec_program, elem::name (GSL_AT (ei, i).tag_), " repeated in bitset init");
+        for (int j = 0; GSL_AT (GSL_AT (ei, i).a_, j) != a_unknown; ++j)
         {   if (static_cast < ::std::size_t > (j) >= max_attrib)
-            {   nits.pick (nit_internal_parsing_error, es_catastrophic, ec_program, elem::name (::gsl::at (ei, i).tag_), " has more attributes than allocated");
+            {   nits.pick (nit_internal_parsing_error, es_catastrophic, ec_program, elem::name (GSL_AT (ei, i).tag_), " has more attributes than allocated");
                 break; }
 #ifdef DEBUG
             if (j > n) { n = j; e = i; }
+            if (vebs.at (GSL_AT (ei, i).tag_).test (GSL_AT (GSL_AT (ei, i).a_, j)))
+                nits.pick (nit_repeated_attribute, es_comment, ec_program, "attribute ", attr::name (GSL_AT (GSL_AT (ei, i).a_, j)), " repeated in ", elem::name (GSL_AT (ei, i).tag_), " bitset init");
+            else vebs.at (GSL_AT (ei, i).tag_).set (GSL_AT (GSL_AT (ei, i).a_, j)); } }
+    nits.pick (nit_note, es_splurge, ec_program, "<", elem::name (e), "> has ", n, " attributes"); }
+#else // DEBUG
+            if (! vebs.at (GSL_AT (ei, i).tag_).test (GSL_AT (GSL_AT (ei, i).a_, j)))
+                vebs.at (GSL_AT (ei, i).tag_).set (GSL_AT (GSL_AT (ei, i).a_, j)); } } }
 #endif // DEBUG
-            if (vebs.at (::gsl::at (ei, i).tag_).test (::gsl::at (::gsl::at (ei, i).a_, j)))
-                nits.pick (nit_repeated_attribute, es_warning, ec_program, "attribute ", attr::name (::gsl::at (::gsl::at (ei, i).a_, j)), " repeated in ", elem::name (::gsl::at (ei, i).tag_), " bitset init");
-            else vebs.at (::gsl::at (ei, i).tag_).set (::gsl::at (::gsl::at (ei, i).a_, j)); } }
-#ifdef DEBUG
-    nits.pick (nit_note, es_splurge, ec_program, "<", elem::name (e), "> has ", n, " attributes");
-#endif // DEBUG
-}
 
 void element_add_attribute (const e_element e, const e_attribute a)
 {   PRESUME (e < elem_error, __FILE__, __LINE__);

@@ -81,7 +81,8 @@ CURL* curly::c_ = nullptr;
 ::std::size_t curly::pos_ = 0;
 
 void curl_init ()
-{   curly::init (); }
+{   PRESUME (! fred.started (), __FILE__, __LINE__);
+    curly::init (); }
 
 void curl_done ()
 {   curly::done (); }
@@ -94,48 +95,49 @@ void curl_done ()
     curly::pos (offset + r);  
     return r; }
 
+int curl_do (curly& c, nitpick& nits, const url&u, bool verify_ssl, ::std::string* content = nullptr)
+{   if (verify_ssl || (c.opt (CURLOPT_SSL_OPTIONS, CURLSSLOPT_NO_REVOKE) == CURLE_OK))
+    {   const CURLcode res = c.engage ();
+        switch (c.engage ())
+        {   case CURLE_OK :
+                if ((content != nullptr) && (c.pos () > 0))
+                {   VERIFY_NOT_NULL (content, __FILE__, __LINE__);
+                    *content = ::std::string (c.buf ().get (), c.pos ()); }
+                return 0;
+            case CURLE_HTTP_RETURNED_ERROR :
+                return c.status ();
+            default :
+                {   const char *msg = curl_easy_strerror (res);
+                    if (msg == nullptr) nits.pick (nit_http_error, es_error, ec_crc, "unknown error accessing ", u.original ());
+                    else nits.pick (nit_http_error, es_error, ec_crc, "error accessing ", u.original (), ": ", msg);
+                    break; } } }
+    return -1; }
+
 int curl_test (nitpick& nits, const url& u, bool verify_ssl)
-{   lox l (lox_curl); // yup, locked whilst doing internet I/O. Horrible. Must move to the curl share interface
-    curly c;
+{   curly c;
+#ifdef CURL_SSL_NOT_THREADSAFE
+    lox l (lox_curl);
+#endif // CURL_SSL_NOT_THREADSAFE
     if (c.valid ())
         if ((c.opt (CURLOPT_URL, u.original ()) == CURLE_OK) &&
             (c.opt (CURLOPT_FOLLOWLOCATION, 0) == CURLE_OK) &&
             (c.opt (CURLOPT_NOBODY, 1) == CURLE_OK) &&
             (c.opt (CURLOPT_FAILONERROR, 1) == CURLE_OK) &&
             (c.opt (CURLOPT_NOPROGRESS, 1) == CURLE_OK))
-                if (verify_ssl || (c.opt (CURLOPT_SSL_OPTIONS, CURLSSLOPT_NO_REVOKE) == CURLE_OK))
-                {   CURLcode res = c.engage ();
-                    switch (res)
-                    {   case CURLE_OK :
-                            return 0;
-                        case CURLE_HTTP_RETURNED_ERROR :
-                            return c.status ();
-                        default :
-                            {   const char *msg = curl_easy_strerror (res);
-                                if (msg == nullptr) nits.pick (nit_http_error, es_error, ec_crc, "unknown error accessing ", u.original ());
-                                else nits.pick (nit_http_error, es_error, ec_crc, "error accessing ", u.original (), ": ", msg);
-                                break; } } }
+                return curl_do (c, nits, u, verify_ssl);
     return -1; }
 
-int curl_fetch (nitpick& , const url& u, bool verify_ssl, ::std::string& content)
-{   lox l (lox_curl);
-    curly c;
+int curl_fetch (nitpick& nits, const url& u, bool verify_ssl, ::std::string& content)
+{   curly c;
+#ifdef CURL_SSL_NOT_THREADSAFE
+    lox l (lox_curl);
+#endif // CURL_SSL_NOT_THREADSAFE
     if (c.valid ())
         if ((c.opt (CURLOPT_URL, u.original ()) == CURLE_OK) &&
             (c.opt (CURLOPT_FOLLOWLOCATION, 1) == CURLE_OK) &&
             (c.opt (CURLOPT_FAILONERROR, 1) == CURLE_OK) &&
             (c.opt (CURLOPT_NOPROGRESS, 1) == CURLE_OK) &&
             (c.opt (CURLOPT_INFILESIZE, context.max_file_size ()) == CURLE_OK))
-                if (verify_ssl || (c.opt (CURLOPT_SSL_OPTIONS, CURLSSLOPT_NO_REVOKE) == CURLE_OK))
-                    if (c.set_write_buffer ())
-                    {   CURLcode res = c.engage ();
-                        switch (res)
-                        {   case CURLE_OK :
-                                if (c.pos () > 0)
-                                    content = ::std::string (c.buf ().get (), c.pos ());
-                                return 0;
-                            case CURLE_HTTP_RETURNED_ERROR :
-                                return c.status ();
-                            default : break; } }
+                return curl_do (c, nits, u, verify_ssl, &content);
     return -1; }
 #endif //NOCURL

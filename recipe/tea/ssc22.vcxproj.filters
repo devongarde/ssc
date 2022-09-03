@@ -25971,6 +25971,12 @@
     <None Include="..\toast\link\link\subdir\target.html">
       <Filter>Toast\Link\link\subdir</Filter>
     </None>
+    <None Include="..\toast\math\4-core\core-2.html">
+      <Filter>Toast\Math\4-core</Filter>
+    </None>
+    <None Include="..\toast\math\4-core\core-3.html">
+      <Filter>Toast\Math\4-core</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">

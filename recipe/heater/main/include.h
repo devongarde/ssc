@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
-#define VERSION_RELEASE 4
-#define VERSION_STRING "0.1.4"
+#define VERSION_RELEASE 5
+#define VERSION_STRING "0.1.5"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -60,8 +60,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define DBG_ASSERT(x)
 #endif // debug
 
-#if defined (SSC_TEST)
+#ifdef SSC_TEST
 #define NOICU
+#define NO_GSL
 #elif ! defined (NOSPELL) && ! defined (HUNSPELL) && ! defined (WINSPELL)
 #define NOSPELL
 #endif // SSC_TEST
@@ -72,7 +73,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define BOOST_HAS_ICU
 #endif // NOICU
 
-#if defined (NOSPELL)
+#ifdef NOSPELL
 #if defined (WINSPELL) || defined (HUNSPELL)
 #error Define only one of NOICU, NOSPELL, WINSPELL, or HUNSPELL
 #endif // ...SPELL
@@ -180,7 +181,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #ifndef SSC_TEST
 #include <string>
-#include <string_view>
 #include <sstream>
 #include <algorithm>
 #include <tuple>
@@ -371,7 +371,25 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #include <boost/filesystem.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/algorithm/string.hpp>
+
+#ifndef NO_GSL
 #include <gsl/gsl>
+#define GSL_SPAN(ARRAY, MAXLEN) ::gsl::span (ARRAY, MAXLEN)
+#define GSL_NARROW_CAST ::gsl::narrow_cast
+#define GSL_AT(ARRAY, ENTRY) ::gsl::at (ARRAY, ENTRY)
+#define GSL_NOT_NULL(TYPE) ::gsl::not_null < TYPE >
+#else // NO_GSL
+#define GSL_SPAN(ARRAY, MAXLEN) ARRAY
+#define GSL_NARROW_CAST static_cast
+#define GSL_AT(ARRAY, ENTRY) ARRAY [ENTRY]
+#define GSL_NOT_NULL(TYPE) TYPE
+#endif // NO_GSL
+
+#ifndef NO_FALLTHROUGH
+#define FALLTHROUGH [[fallthrough]]
+#else // NO_FALLTHROUGH
+#define FALLTHROUGH
+#endif // NO_FALLTHROUGH
 
 #ifdef __clang__
 #pragma clang diagnostic pop
@@ -513,49 +531,15 @@ typedef uint64_t flags_t; // at least 64 bits
 #define JSNIC "j"
 #endif // NO_JSONIC
 
-#if defined (MONETERY)
-#define OS_VER "MM"
-#elif defined (BIG_SUR)
-#define OS_VER "MB"
-#elif defined (CATALINA)
-#define OS_VER "MC"
-#elif defined (MOJAVE)
-#define OS_VER "Mm"
-#elif defined (HIGH_SIERRA)
-#define OS_VER "MH"
-#elif defined (MACOS)
-#define OS_VER "M"
-#endif // MONETERY
-
-#ifdef O71
-#define OS_VER "O71"
-#elif defined (O70)
-#define OS_VER "O70"
-#elif defined (O69)
-#define OS_VER "O69"
-elif defined (O68)
-#define OS_VER "O68"
-#elif defined (OPENBSD)
-#define OS_VER "O"
-#endif // O71
-
-#ifdef F131
-#define OS_VER "F131"
-#elif defined (FREEBSD)
-#define OS_VER "F"
-#endif // O71
-
 #ifdef _MSC_VER
-#define OS_VER "W"
-#endif // _MSC_VER
-
-#ifdef LINUX
-#define OS_VER "L"
-#endif // LINUX
-
+#define OS "Windows_x64"
+#else
 #ifndef OS_VER
-#define OS_VER "?"
+#define OS "???"
+#else // OS_VER
+#define OS OS_VER
 #endif // OS_VER
+#endif // _MSC_VER
 
 #ifdef NOICU
 #define ICU_VER
@@ -572,14 +556,6 @@ elif defined (O68)
 // Enable this to see full messages that would otherwise be generated when using -T switch, roughly speaking
 // #define EXPAND_TEST
 
-#define BUILD_INFO   DBG_STATUS FUDDY CURLY JSNIC NPS_GEN SPELT ":" OS_VER ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER
-#define BASE_TITLE   FULLNAME " v" VERSION_STRING " (" WEBADDR ")\n"
-#define SIMPLE_TITLE BASE_TITLE COPYRIGHT_TEXT "\n"
-#define FULL_TITLE   BASE_TITLE COPYRIGHT "\n" "[" __DATE__ " " __TIME__  "] [" BUILD_INFO "]" "\n"
-#define TEST_TITLE   FULLNAME " v" VERSION_STRING "\n" "(" __DATE__ " " __TIME__ ")\n" WEBADDR "\n" COPYRIGHT "\n\n"
-
 #define TYPE_HELP "Type '" PROG " -h' for help."
 
-extern const char* szSimpleTitle;
-extern const char* szFullTitle;
-extern const char* szTestTitle;
+extern ::std::string build_info, test_title, simple_title, full_title;

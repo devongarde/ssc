@@ -524,14 +524,14 @@ schema_version::schema_version (const html_version& v) noexcept
 
 void schema_version::init (nitpick& DEBUGONLY (nits))
 {   PRESUME (mss.empty (), __FILE__, __LINE__);
-    for (int i = 0; gsl::at (sh, i).schema_.root () != s_error; ++i)
-        mss.insert (mss_t::value_type (gsl::at (sh, i).schema_.root (), &gsl::at (sh, i)));
+    for (int i = 0; GSL_AT (sh, i).schema_.root () != s_error; ++i)
+        mss.insert (mss_t::value_type (GSL_AT (sh, i).schema_.root (), &GSL_AT (sh, i)));
 #ifdef _DEBUG
     for (int i = 1; i < s_error; ++i)
         if (mss.find (static_cast < e_schema > (i)) == mss.cend ())
             nits.pick (nit_missing_schema, es_catastrophic, ec_schema, "Corresponding HTML version for schema ", i, " missing");
 #endif
-    for (int i = 0; i < s_error; ++i) gsl::at (va, i) = error_schema; }
+    for (int i = 0; i < s_error; ++i) GSL_AT (va, i) = error_schema; }
 
 ::std::string schema_version::name (const e_schema es)
 {   if (is_faux_schema (es)) return "";

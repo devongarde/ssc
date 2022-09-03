@@ -39,7 +39,7 @@ class replies;
 class corpus;
 
 class context_t
-{   bool            article_ = false, body_ = true, case_ = true, cgi_ = false, classic_ = false, clear_ = false, crosslinks_ = true, example_ = true,
+{   bool            article_ = false, body_ = true, case_ = false, cgi_ = false, classic_ = false, clear_ = false, crosslinks_ = true, example_ = true,
                     external_ = false, forwarded_ = true, icu_ = true, info_ = false, jsonld_ = false, local_ = true, load_css_ = true, links_ = true, main_ = false,
                     md_export_ = false, meta_ = false, mf_export_ = false, mf_verify_ = true, microdata_ = true, nids_ = false, nits_ = false, nits_nits_nits_ = false,
                     not_root_ = false, once_ = true, presume_tags_ = false, progress_ = false, rdfa_ = true, rel_ = false,
@@ -298,7 +298,7 @@ public:
     const ::std::string macro_start () const { return macro_start_; }
     bool main () const noexcept { return main_; }
     e_math_version math_version () const noexcept { return version_.math_version (); }
-    unsigned long max_file_size () const noexcept { return ::gsl::narrow_cast < unsigned long > (max_file_size_); }
+    unsigned long max_file_size () const noexcept { return GSL_NARROW_CAST < unsigned long > (max_file_size_); }
     bool md_export () const noexcept { return md_export_; }
     bool meta () const noexcept { return meta_; }
     bool mf_export () const noexcept { return mf_export_; }

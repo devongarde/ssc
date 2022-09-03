@@ -31,6 +31,7 @@ bool dont_bother ()
     return ! fred.started (); }
 
 lox::lox (const e_lox l)
+    : l_ (lox_none), un_ (false)
 {   if (dont_bother ()) return;
     PRESUME (l < lox_error, __FILE__, __LINE__);
     PRESUME (l != lox_flox, __FILE__, __LINE__);

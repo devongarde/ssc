@@ -152,18 +152,18 @@ struct hav_t
     { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_fontweight }
 
 #define MATH_OPINFO_ATTRIBUTES(ELEM) \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_accent }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_form }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_fence }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_largeop }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_lspace }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_maxsize }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_minsize }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_movablelimits }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_rspace }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_separator }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_stretchy }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_symmetric }
+    { { XHTML_1_0, 0, 0, H2_MATHML }, { HTML_UNDEF }, ELEM, a_accent }, \
+    { { XHTML_1_0, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_form }, \
+    { { XHTML_1_0, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_fence }, \
+    { { XHTML_1_0, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_largeop }, \
+    { { XHTML_1_0, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_lspace }, \
+    { { XHTML_1_0, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_maxsize }, \
+    { { XHTML_1_0, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_minsize }, \
+    { { XHTML_1_0, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_movablelimits }, \
+    { { XHTML_1_0, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_rspace }, \
+    { { XHTML_1_0, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_separator }, \
+    { { XHTML_1_0, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_stretchy }, \
+    { { XHTML_1_0, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_symmetric }
 
 #define MATH_SIZEINFO_ATTRIBUTES(ELEM) \
     { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_depth }, \
@@ -278,6 +278,9 @@ struct hav_t
 
 #define MATH4_PRES_ATTRIBUTES(ELEM) \
     MATH4_PRES_ATTRIBUTES_EX (ELEM, 0)
+
+#define MATH_CORE_PRE_ATTRIBUTES(ELEM) \
+    MATH3_FONT_ATTRIBUTES (ELEM)
 
 #define RDF_ATTRIBUTES(ELEM) \
     { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, ELEM, a_rdf_about }, \
@@ -1044,6 +1047,86 @@ struct hav_t
     { { HTML_5_3, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_xmlns }, \
     { { HTML_SVG11, 0, HE_NOT_SVG_10 }, { HTML_UNDEF }, ELEM, a_xmlspace }
 
+#define EXTRA_MATH_CORE_ATTRIBUTES(ELEM) \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_class }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_datawild }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_dir }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_displaystyle }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_id }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_mathbackground }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_mathcolour }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_mathsize }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_mathvariant }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_numberonce }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onautocomplete }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onautocompleteerror }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onauxclick }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onblur }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_oncancel }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_oncanplay }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_oncanplaythrough }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onchange }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onclick },\
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onclose }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_oncontextmenu }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_oncopy }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_oncuechange }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_oncut }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_ondblclick }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_ondrag }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_ondragend }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_ondragenter }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_ondragleave }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_ondragover }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_ondragstart }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_ondrop }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_ondurationchange }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onemptied }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onended }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onerror }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onfocus }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onformdata }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_oninput }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_oninvalid }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onkeydown }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onkeypress }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onkeyup }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onload }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onloadeddata }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onloadedmetadata }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onloadstart }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onmousedown }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onmouseenter }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onmouseleave }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onmousemove }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onmouseout }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onmouseover }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onmouseup }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onpaste }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onpause }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onplay }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onplaying }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onprogress }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onratechange }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onreset }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onresize }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onscroll }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onsecuritypolicyviolation }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onseeking }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onselect }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onslotchange }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onsort }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onsought }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onstalled }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onsubmit }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onsuspend }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_ontimeupdate }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onwaiting }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onwheel }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_scriptlevel }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_style }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_tabindex }
+
 #define STANDARD_HTML5_ATTRIBUTES(ELEM) \
     EXTRA_HTML5_ATTRIBUTES (ELEM), \
     HTML4_ATTRIBUTES_BASE (ELEM), \
@@ -1059,6 +1142,10 @@ struct hav_t
     HTMLPLUS_ATTRIBUTES (ELEM), \
     STANDARD_HTML_23_H_ATTRIBUTES (ELEM), \
     STANDARD_HTMLS_4_5_ATTRIBUTES (ELEM)
+
+#define STANDARD_MATH_CORE_ATTRIBUTES(ELEM) \
+    MATH_CORE_PRE_ATTRIBUTES (ELEM), \
+    EXTRA_MATH_CORE_ATTRIBUTES (ELEM)
 
 #define SVG_HTML_ATTRIBUTES(ELEM) \
     SVG_BASE_ATTRIBUTES (ELEM), \

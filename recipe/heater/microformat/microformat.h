@@ -272,21 +272,21 @@ template < > struct verify_mf < html_class, h1_card >
             VERIFY_NOT_NULL (family_name, __FILE__, __LINE__);
             VERIFY_NOT_NULL (given_name, __FILE__, __LINE__);
             if (! n -> good () && (components.size () == 2))
-            {   const ::std::string::size_type len = ::gsl::at (components, 0).length ();
-                if (::gsl::at (components, 0).at (len - 1) == ',')
-                {   family_name -> set_value (nits, v, ::gsl::at (components, 0).substr (0, len - 1));
-                    given_name -> set_value (nits, v, ::gsl::at (components, 1)); }
+            {   const ::std::string::size_type len = GSL_AT (components, 0).length ();
+                if (GSL_AT (components, 0).at (len - 1) == ',')
+                {   family_name -> set_value (nits, v, GSL_AT (components, 0).substr (0, len - 1));
+                    given_name -> set_value (nits, v, GSL_AT (components, 1)); }
                 else
-                {   family_name -> set_value (nits, v, ::gsl::at (components, 1));
-                    given_name -> set_value (nits, v, ::gsl::at (components, 0)); }
+                {   family_name -> set_value (nits, v, GSL_AT (components, 1));
+                    given_name -> set_value (nits, v, GSL_AT (components, 0)); }
                 ::std::string naam = given_name -> get_string () + " " + family_name -> get_string ();
                 n -> set_value (nits, v, naam);
                 if (context.tell (es_info)) nits.pick (nit_hcard_infer, ed_microformats, "http://" MICROFORMATS_ORG "g/wiki/hCard", es_info, ec_microformat, "hcard n set to ", quote (naam));
                 return; }
             VERIFY_NOT_NULL (nickname, __FILE__, __LINE__);
-            if (! nickname -> good () && (components.size () == 1) && ! ::gsl::at (components, 0).empty ())
-            {   nickname -> set_value (nits, v, ::gsl::at (components, 0));
-                nits.pick (nit_hcard_infer, ed_microformats, "http://" MICROFORMATS_ORG "/wiki/hCard", es_info, ec_microformat, "hcard nickname set to ", quote (::gsl::at (components, 0))); } }
+            if (! nickname -> good () && (components.size () == 1) && ! GSL_AT (components, 0).empty ())
+            {   nickname -> set_value (nits, v, GSL_AT (components, 0));
+                nits.pick (nit_hcard_infer, ed_microformats, "http://" MICROFORMATS_ORG "/wiki/hCard", es_info, ec_microformat, "hcard nickname set to ", quote (GSL_AT (components, 0))); } }
         if (! n -> good () && ! non)
             if (! s.empty ())
             {   nits.pick (nit_hcard_infer, es_info, ec_microformat, "hcard property n set to ", enquote (s));

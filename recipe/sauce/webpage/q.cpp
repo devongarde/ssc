@@ -35,8 +35,10 @@ bool d_q (q_entry& qe)
     nitpick nits;
     knickers k (nits, qe.ticks_);
     if (context.progress ())
-    {   ::std::string msg (::gsl::at (stage_name, qe.stage_));
-        msg += qe.dir_ -> get_disk_path ().string () + "\n";
+    {   ::std::string msg (GSL_AT (stage_name, qe.stage_));
+        ::boost::filesystem::path p (qe.dir_ -> get_disk_path ());
+        if (! qe.page_.empty ()) p /= qe.page_;
+        msg += p.string () + "\n";
         ::std::cout << msg; }
     try
     {   switch (qe.stage_)

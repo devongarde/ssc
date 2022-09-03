@@ -22,9 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type.h"
 
 constexpr e_property first_class = static_cast < e_property > (c_context);
-constexpr e_property first_rel = first_class + ::gsl::narrow_cast < e_property > (class_size);
+constexpr e_property first_rel = first_class + GSL_NARROW_CAST < e_property > (class_size);
 constexpr e_property last_class = first_rel - 1;
-constexpr e_property first_illegal = first_rel + ::gsl::narrow_cast < e_property > (rel_size);
+constexpr e_property first_illegal = first_rel + GSL_NARROW_CAST < e_property > (rel_size);
 constexpr e_property last_rel = first_illegal - 1;
 
 constexpr inline bool is_vocabulary (const e_property p) noexcept { return ((p >= h1_aggregate) && (p <= h_aggregate)); }

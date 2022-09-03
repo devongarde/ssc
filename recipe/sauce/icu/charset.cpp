@@ -32,7 +32,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     if (context.icu ()) try
     {   charset_detector detector;
         if (detector.valid ())
-            if (detector.set_text (static_cast < const char * > (vp), ::gsl::narrow_cast < int32_t > (sz)))
+            if (detector.set_text (static_cast < const char * > (vp), GSL_NARROW_CAST < int32_t > (sz)))
             {   const charset_detector_matches matched (detector.match_all ());
                 if (detector.valid () && (matched.count () > 0) && matched.content ())
                     return matched.at (0).name (); } }
@@ -50,7 +50,7 @@ void verify_file_charset (nitpick& nits, const html_version& v, const ::std::str
     errmsg += "'";
     try
     {   charset_detector detector;
-        const int32_t input_length = ::gsl::narrow_cast < int32_t > (sz);
+        const int32_t input_length = GSL_NARROW_CAST < int32_t > (sz);
         if (! detector.valid ())
            nits.pick (nit_icu, es_catastrophic, ec_icu, errmsg, ": ICU ucsdet_open error ", static_cast < int > (detector.error ()));
         else

@@ -84,11 +84,11 @@ public:
 #endif // _MSC_VER
 template < class VOCAB > VOCAB& microformats::get ()
 {   PRESUME (allocated (VOCAB::whoami ()), __FILE__, __LINE__);
-    return * (reinterpret_cast < VOCAB* > (::gsl::at (mf_, VOCAB::whoami ()).get ())); }
+    return * (reinterpret_cast < VOCAB* > (GSL_AT (mf_, VOCAB::whoami ()).get ())); }
 
 template < class VOCAB > const VOCAB& microformats::get () const
 {   PRESUME (allocated (VOCAB::whoami ()), __FILE__, __LINE__);
-    return * (reinterpret_cast < const VOCAB* > (::gsl::at (mf_, VOCAB::whoami ()).get ())); }
+    return * (reinterpret_cast < const VOCAB* > (GSL_AT (mf_, VOCAB::whoami ()).get ())); }
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif // _MSC_VER

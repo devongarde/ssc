@@ -1,0 +1,85 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 4 (july 2022 core draft) index</title>
+</head>
+
+<body>
+
+<svg style="font-size: 20px" width="400px" height="220px" viewBox="0 0 200 110">
+<g transform="translate(10,80)">
+<path d="M 0 0 L 150 0 A 75 75 0 0 0 0 0 M 30 0 L 30 -60 M 30 -10 L 40 -10 L 40 0"
+fill="none" stroke="black"></path>
+<text transform="translate(10,20)">1</text>
+<switch transform="translate(35,-40)">
+<foreignObject width="200" height="50"
+requiredExtensions="http://www.w3.org/1998/Math/MathML">
+<math>
+<msqrt>
+<mn>2</mn>
+<mi>r</mi>
+<mo>−</mo>
+<mn>1</mn>
+</msqrt>
+</math>
+</foreignObject>
+<text>\sqrt{2r - 1}</text>
+</switch>
+</g>
+</svg>
+
+<p>
+ Fill the blank:
+<math>
+<msqrt>
+<mn>2</mn>
+<mtext><input onchange="..." size="2" type="text"></mtext>
+<mo>−</mo>
+<mn>1</mn>
+</msqrt>
+<mo>=</mo>
+<mn>3</mn>
+</math>
+</p>
+
+<div style="width: 15em; color: blue">
+ This mathematical formula with a big summation and the number pi
+<math display="block" style="font-family: STIX Two Math">
+<mrow>
+<munderover>
+<mo>∑</mo>
+<mrow><mi>n</mi><mo>=</mo><mn>1</mn></mrow>
+<mrow><mo>+</mo><mn>∞</mn></mrow>
+</munderover>
+<mfrac>
+<mn>1</mn>
+<msup><mi>n</mi><mn>2</mn></msup>
+</mfrac>
+</mrow>
+<mo>=</mo>
+<mfrac>
+<msup><mi>π</mi><mn>2</mn></msup>
+<mn>6</mn>
+</mfrac>
+</math>
+ is easy to prove.
+</div>
+
+<script>
+function ModifyMath(mi) {
+ mi.style.color = 'blue';
+ mi.textContent = 'β';
+ }
+</script>
+<math>
+<mrow>
+<mfrac>
+<mi style="color: red" onclick="ModifyMath(this)">α</mi>
+<mn>2</mn>
+</mfrac>
+</mrow>
+</math>
+
+</body>
+</html>
+

@@ -60,12 +60,12 @@ bool charset_detector::set_text (const char *in, int32_t len)
 void_ptr converter::convert_to (void* vp, const uintmax_t sz)
 {   PRESUME (context.icu (), __FILE__, __LINE__);
     const char* const from = static_cast <char*> (vp);
-    const int32_t len = ucnv_toUChars (conv_, nullptr, 0, from, gsl::narrow_cast < int32_t > (sz), &err_);
+    const int32_t len = ucnv_toUChars (conv_, nullptr, 0, from, GSL_NARROW_CAST < int32_t > (sz), &err_);
     if (err_ <= 0)
     {   const ::std::size_t buflen = static_cast < ::std::size_t > (len) * sizeof (UChar);
         void_ptr res (alloc_void_ptr (buflen));
         UChar* to_uc = static_cast <UChar*> (res.get ());
         if (res.get () != nullptr)
-        {   const int32_t l2 = ucnv_toUChars (conv_, to_uc, len, from, gsl::narrow_cast < int32_t > (sz), &err_);
+        {   const int32_t l2 = ucnv_toUChars (conv_, to_uc, len, from, GSL_NARROW_CAST < int32_t > (sz), &err_);
             if ((l2 <= len) && (err_ <= 0)) return res; } }
     return void_ptr (); }

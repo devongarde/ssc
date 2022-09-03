@@ -58,7 +58,6 @@ bool fred_t::dqe ()
         faffing f;
         while (q.empty ())
         {   if (abandon_) return false;
-//            if (! q.activity ()) return false;
             ::std::this_thread::yield (); } }
     if (t.valid ())
     {   if (context.tell (es_detail))

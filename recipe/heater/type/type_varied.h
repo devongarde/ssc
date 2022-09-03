@@ -28,7 +28,7 @@ template < class T, class V > struct basic_value
 {   static int get_int (const T& ) noexcept { return 0; } };
 
 template < class T > struct basic_value < T, true_type >
-{   static int get_int (const T& t) noexcept { return ::gsl::narrow_cast < int > (t.get ()); } };
+{   static int get_int (const T& t) noexcept { return GSL_NARROW_CAST < int > (t.get ()); } };
 
 template < e_type BASE > struct varied : tidy_string < BASE >
 {   ::std::size_t type_ = 0;
@@ -74,7 +74,7 @@ template < > struct type_master < t_accept > : varied < t_accept >
             {   case elem_input :
                     if (v == html_2)
                     {   validate_type < type_master < t_mimelist > > (nits, v); return; }
-                    [[fallthrough]];
+                    FALLTHROUGH;
                 default :
                     validate_type < type_master < t_generic > > (nits, v); } } };
 
@@ -593,7 +593,7 @@ template < > struct type_master < t_rap > : varied < t_rap >
                 case elem_menu :
                     if ((v == html_plus) || (v == html_3_0))
                     {   validate_type < type_master < t_wrap3 > > (nits, v);  return; }
-                    [[fallthrough]];
+                    FALLTHROUGH;
                 default :
                     validate_type < type_master < t_integer > > (nits, v); break; } } };
 
@@ -908,7 +908,7 @@ template < > struct type_master < t_height > : varied < t_height >
                 case elem_textarea :
                     if (v.is_svg_12 ())
                     {   validate_type < type_master < t_measure_a > > (nits, v); break; }
-                    [[fallthrough]];
+                    FALLTHROUGH;
                 default :
                     validate_type < type_master < t_measure > > (nits, v); } } };
 
@@ -958,7 +958,7 @@ template < > struct type_master < t_width > : varied < t_width >
                 case elem_textarea :
                     if (v.is_svg_12 ())
                     {   validate_type < type_master < t_measure_a > > (nits, v); break; }
-                    [[fallthrough]];
+                    FALLTHROUGH;
                 default :
                     validate_type < type_master < t_measure > > (nits, v); } } };
 

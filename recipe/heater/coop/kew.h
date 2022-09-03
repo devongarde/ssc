@@ -25,9 +25,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 class kew
 {   typedef ::std::deque < q_entry > d_kew;
     d_kew kew_;
-    ::std::atomic_bool empty_ = true;
+    ::std::atomic_bool empty_;
 public:
-    typedef ::std::vector < q_entry > v_t;
+    kew () : empty_ (true) { }
+    kew (const kew& ) = default;
+    kew (kew&& ) = default;
+    ~kew () = default;
+    kew& operator = (const kew& ) = default;
+    kew& operator = (kew&& ) = default;
     void push (const q_entry& t)
     {   lox l (lox_q);
         empty_ = false;

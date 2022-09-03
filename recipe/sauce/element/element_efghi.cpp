@@ -122,13 +122,13 @@ void element::examine_fecolourmatrix ()
         return; }
     switch (mt)
     {   case mt_matrix :
-            test_value < t_matrix_values > (node_.nits (), page_ -> version (), a_.get_string (a_values));
+            test_value < t_matrix_values > (node_.nits (), node_.version (), a_.get_string (a_values));
             break;
         case mt_saturate :
-            test_value < t_zero_to_one > (node_.nits (), page_ -> version (), a_.get_string (a_values));
+            test_value < t_zero_to_one > (node_.nits (), node_.version (), a_.get_string (a_values));
             break;
         case mt_huerotate :
-            test_value < t_angle > (node_.nits (), page_ -> version (), a_.get_string (a_values));
+            test_value < t_angle > (node_.nits (), node_.version (), a_.get_string (a_values));
             break;
         default :
             GRACEFUL_CRASH (__FILE__, __LINE__); } }
@@ -233,7 +233,7 @@ void element::examine_font ()
 
 void element::examine_fn ()
 {   e_math_version mv = node_.version ().math_version ();
-    if (mv == math_none) mv = page_ -> version ().math_version ();
+    if (mv == math_none) mv = node_.version ().math_version ();
     if (mv < math_3) return;
     pick (nit_no_fn, ed_math_3, "F.2 Changes between MathML 2.0 Second Edition and MathML 3.0", es_error, ec_element, "<FN> is not part of MathML 3 or greater."); }
 
@@ -441,7 +441,7 @@ void element::examine_img ()
                     if (! alt_known)
                     {   complained = true; pick (nit_naughty_alt, ed_50, "4.7.1 The img element", es_error, ec_element, "here, ALT is required on <IMG>"); } }
         if (! complained)
-            if (page_ -> version () < html_feb21)
+            if (node_.version () < html_feb21)
                 if ((! ancestor_figure) || (node_.version () == html_5_0))
                     if (! alt_known)
                         pick (nit_naughty_alt, ed_50, "4.7.1 The img element", es_warning, ec_element, "with exceptions, ALT is required on <IMG>");

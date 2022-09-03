@@ -6548,6 +6548,8 @@
     <None Include="..\toast\math\4-22\math6-example.html" />
     <None Include="..\toast\math\4-22\math7-example.html" />
     <None Include="..\toast\math\4-core\core-1.html" />
+    <None Include="..\toast\math\4-core\core-2.html" />
+    <None Include="..\toast\math\4-core\core-3.html" />
     <None Include="..\toast\math\4-core\index.html" />
     <None Include="..\toast\math\4-core\math.conf" />
     <None Include="..\toast\math\4-core\math.spec" />
@@ -8606,7 +8608,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WINSPELL;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WINSPELL;OS="win x64";_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -8637,7 +8639,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WINSPELL;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WINSPELL;OS="win x64";NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>

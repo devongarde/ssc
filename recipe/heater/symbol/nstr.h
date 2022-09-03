@@ -79,7 +79,7 @@ public:
     {   PRESUME (n < N, __FILE__, __LINE__);
         const data_t *pd = piece (id);
         VERIFY_NOT_NULL (pd, __FILE__, __LINE__);
-        return ::gsl::at (pd -> sz_, n); }
+        return GSL_AT (pd -> sz_, n); }
     html_version from (const ENUM id) const
     {   const data_t *pd = piece (id);
         VERIFY_NOT_NULL (pd, __FILE__, __LINE__);
@@ -99,7 +99,7 @@ public:
     ENUM find_mixed (const html_version& v, const ::std::size_t n, const ::std::string& s) const
     {   PRESUME (n < INDICES, __FILE__, __LINE__);
         ENUM id = ERROR_VALUE;
-        for (typename mnse_t::const_iterator pos = ::gsl::at (mixed_, n).find (s.c_str ()); pos != ::gsl::at (mixed_, n).cend (); ++pos)
+        for (typename mnse_t::const_iterator pos = GSL_AT (mixed_, n).find (s.c_str ()); pos != GSL_AT (mixed_, n).cend (); ++pos)
         {   PRESUME (pos -> second < max_, __FILE__, __LINE__);
             const data_t& d = data_ [pos -> second];
             if (id == ERROR_VALUE) id = d.id_;
@@ -110,7 +110,7 @@ public:
     {   PRESUME (n < INDICES, __FILE__, __LINE__);
         ::std::string ss (::boost::to_lower_copy (s));
         ENUM id = ERROR_VALUE;
-        for (typename mnse_t::const_iterator pos = ::gsl::at (lower_, n).find (ss.c_str ()); pos != ::gsl::at (lower_, n).cend (); ++pos)
+        for (typename mnse_t::const_iterator pos = GSL_AT (lower_, n).find (ss.c_str ()); pos != GSL_AT (lower_, n).cend (); ++pos)
         {   PRESUME (pos -> second < max_, __FILE__, __LINE__);
             const data_t& d = data_ [pos -> second];
             if (id == ERROR_VALUE) id = d.id_;
@@ -127,7 +127,7 @@ public:
     {   ::std::string ss (::boost::to_lower_copy (s));
         const ::std::size_t len = ss.length ();
         if (len > 0)
-            for (typename mnse_t::const_iterator i = ::gsl::at (lower_, n).cbegin (); i != ::gsl::at (lower_, n).cend (); ++i)
+            for (typename mnse_t::const_iterator i = GSL_AT (lower_, n).cbegin (); i != GSL_AT (lower_, n).cend (); ++i)
             {   ::std::string::size_type max = i -> first.length ();
                 if ((max > 0) && (max <= len))
                     if (ss.substr (0, max) == i -> first)
@@ -145,7 +145,7 @@ public:
     ENUM starts_with_mixed (const ::std::size_t n, const ::std::string& s, ::std::string::size_type* ends_at = nullptr) const
     {   const ::std::size_t len = s.length ();
         if (len > 0)
-            for (typename mnse_t::const_iterator i = ::gsl::at (mixed_, n).cbegin (); i != ::gsl::at (mixed_, n).cend (); ++i)
+            for (typename mnse_t::const_iterator i = GSL_AT (mixed_, n).cbegin (); i != GSL_AT (mixed_, n).cend (); ++i)
             {   ::std::string::size_type max = i -> first.length ();
                 if ((max > 0) && (max <= len))
                     if (s.substr (0, max) == i -> first)

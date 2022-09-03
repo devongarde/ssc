@@ -95,7 +95,7 @@ void attributes_node::parse (nitpick& nits, const html_version& v, const ::std::
             case '\f' :
             case '\v' :
                 newline = true;
-                [[fallthrough]];
+                FALLTHROUGH;
             case '\r' :
             case '\t' :
                 ch = ' ';
@@ -258,7 +258,7 @@ void attributes_node::manage_xmlns (nitpick& nits, html_version& v)
                 case x_xlink : if (! v.xlink ()) v.set_ext (HE_XLINK_1_0); break;
                 case x_xhtml_1_superseded :
                     nits.pick (nit_xhtml_superseded, ed_x1, "W3C Recommendation 26 January 2000, revised 1 August 2002", es_warning, ec_parser, quote (ver), " is non-standard (it was withdrawn before XHTML 1.0 was published)");
-                    [[fallthrough]];
+                    FALLTHROUGH;
                 case x_xhtml_1 : if (v.unknown ()) v = xhtml_1_0; break;
                 case x_xhtml_11 : if (v.unknown ()) v = xhtml_1_1; break;
                 case x_xhtml_2 : if (v.unknown ()) v = xhtml_2; break;

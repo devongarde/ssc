@@ -282,7 +282,7 @@ template < > struct type_master < t_target > : public tidy_string < t_target >
         if (tidy_string < t_target > :: empty ())
             nits.pick (nit_empty, es_error, ec_type, "TARGET requires a value");
         else
-        {   if (::gsl::at (val, 0) != '_') return;
+        {   if (GSL_AT (val, 0) != '_') return;
             if ((v.svg_version () >= sv_1_1) && (val == "_replace")) return;
             if ((val == "_blank") || (val == "_self") || (val == "_parent") || (val == "_top")) return;
             nits.pick (nit_badtarget, es_error, ec_type, quote (s), " starts with '_', but is not a standard target"); }

@@ -27,7 +27,7 @@ template < typename TYPE, e_type E > struct enum_base : public type_base < TYPE,
 {   typedef typename type_base < TYPE, E > :: value_type value_type;
     typedef typename type_base < TYPE, E > :: base_type base_type;
     typedef true_type has_int_type;
-    value_type value_ = ::gsl::narrow_cast < value_type > (0);
+    value_type value_ = GSL_NARROW_CAST < value_type > (0);
     ::std::string original_;
     enum_base () = default;
     enum_base (const enum_base& ) = default;

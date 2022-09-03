@@ -271,7 +271,7 @@ template < e_type T, class SZ, e_type P, int FROM, int TO > struct type_range : 
         if (string_vector < T, SZ > :: empty ()) return;
         else if (string_vector < T, SZ > :: good ())
         {   bool ok = true;
-            const int n = ::gsl::narrow_cast < int > (string_vector < T, SZ > :: size ());
+            const int n = GSL_NARROW_CAST < int > (string_vector < T, SZ > :: size ());
             if ((n < FROM) || (n > TO))
                 nits.pick (nit_not_n, es_error, ec_type, quote (s), ": between ", FROM, " and ", TO, " values expected");
             for (auto arg : string_vector < T, SZ > :: get ())

@@ -21,9 +21,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "feedback/nitnames.h"
 
-const char* szSimpleTitle = SIMPLE_TITLE;
-const char* szFullTitle = FULL_TITLE;
-const char* szTestTitle = TEST_TITLE;
+const char* szSimpleTitle = nullptr;
+const char* szFullTitle = nullptr;
+const char* szTestTitle = nullptr;
 
 
 typedef struct {
@@ -766,10 +766,10 @@ void nits_init ()
     ::std::size_t i;
     ::std::vector < bool > bitten;
     bitten.resize (nit_off);
-    for (i = 0; gsl::at (nitnames, i).nit_ != nit_off; ++i)
-    {   quick_nit.insert (::nitmap::value_type (gsl::at (nitnames, i).sz_, gsl::at (nitnames, i).nit_));
-        quick_tim.insert (::timmap::value_type (gsl::at (nitnames, i).nit_, gsl::at (nitnames, i).sz_));
-        bitten.at (gsl::at (nitnames, i).nit_) = true; }
+    for (i = 0; GSL_AT (nitnames, i).nit_ != nit_off; ++i)
+    {   quick_nit.insert (::nitmap::value_type (GSL_AT (nitnames, i).sz_, GSL_AT (nitnames, i).nit_));
+        quick_tim.insert (::timmap::value_type (GSL_AT (nitnames, i).nit_, GSL_AT (nitnames, i).sz_));
+        bitten.at (GSL_AT (nitnames, i).nit_) = true; }
     if (i < static_cast <::std::size_t> (nit_off))
     {   ::std::cerr << "WARNING: Only " << i << " of " << static_cast < ::std::size_t > (nit_off) << " feedback identifiers defined\nUndefined:";
         for (int x = 0; x < nit_off; ++x)

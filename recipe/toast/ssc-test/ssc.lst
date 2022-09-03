@@ -63,6 +63,7 @@
 ../toast/math/1/math.spec
 ../toast/math/2/math.spec
 ../toast/math/3/math.spec
+../toast/math/4-core/math.spec
 ../toast/math/4-20/math.spec
 ../toast/math/4-22/math.spec
 ../toast/microdata/12/schema.spec

@@ -65,20 +65,20 @@ bool path_root::set_export (nitpick& nits, const ::boost::filesystem::path& ex)
 ::std::size_t paths_root::get_xxx (const ::std::string& f) const
 {   PRESUME (root_.size () > 0, __FILE__, __LINE__);
     for (::std::size_t i = root_.size () - 1; i > 0; --i)
-        if (::gsl::at (root_, i) -> applicable (f)) return i;
+        if (GSL_AT (root_, i) -> applicable (f)) return i;
     return 0; }
 
 ::boost::filesystem::path paths_root::get_filename (const ::std::string& filename)
-{   VERIFY_NOT_NULL (::gsl::at (root_, get_xxx (filename)), __FILE__, __LINE__);
-    return ::gsl::at (root_, get_xxx (filename)) -> get_disk_filename (local_path_to_nix (filename)); }
+{   VERIFY_NOT_NULL (GSL_AT (root_, get_xxx (filename)), __FILE__, __LINE__);
+    return GSL_AT (root_, get_xxx (filename)) -> get_disk_filename (local_path_to_nix (filename)); }
 
 ::boost::filesystem::path paths_root::get_shadow (const ::std::string& filename)
-{   VERIFY_NOT_NULL (::gsl::at (root_, get_xxx (filename)), __FILE__, __LINE__);
-    return ::gsl::at (root_, get_xxx (filename)) -> get_shadow_filename (local_path_to_nix (filename)); }
+{   VERIFY_NOT_NULL (GSL_AT (root_, get_xxx (filename)), __FILE__, __LINE__);
+    return GSL_AT (root_, get_xxx (filename)) -> get_shadow_filename (local_path_to_nix (filename)); }
 
 ::boost::filesystem::path paths_root::get_export (const ::std::string& filename)
-{   VERIFY_NOT_NULL (::gsl::at (root_, get_xxx (filename)), __FILE__, __LINE__);
-    return ::gsl::at (root_, get_xxx (filename)) -> get_export_filename (local_path_to_nix (filename)); }
+{   VERIFY_NOT_NULL (GSL_AT (root_, get_xxx (filename)), __FILE__, __LINE__);
+    return GSL_AT (root_, get_xxx (filename)) -> get_export_filename (local_path_to_nix (filename)); }
 
 bool paths_root::prep_xxx (nitpick& nits, const ::std::string& assignment, ::std::string& virt, ::boost::filesystem::path& p) const
 {   const ::std::size_t len = assignment.length ();

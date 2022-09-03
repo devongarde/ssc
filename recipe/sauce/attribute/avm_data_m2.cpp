@@ -26,6 +26,7 @@ hav_t havt_mpadded [] =
     { { HTML_5_2 }, { HTML_UNDEF }, elem_mpadded, a_voffset },
     MATH_SIZEINFO_ATTRIBUTES (elem_mpadded),
     MATH4_PRES_ATTRIBUTES (elem_mpadded),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_mpadded),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_mpath [] =
@@ -38,25 +39,29 @@ hav_t havt_mpath [] =
 
 hav_t havt_mphantom [] =
 {   MATH4_PRES_ATTRIBUTES (elem_mphantom),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_mphantom),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_mprescripts [] =
 {   { { XHTML_1_0 }, { HTML_UNDEF }, elem_mprescripts, a_xmlns },
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_mprescripts),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_mroot [] =
 {   MATH4_PRES_ATTRIBUTES (elem_mroot),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_mroot),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_mrow [] =
 {   MATH4_PRES_ATTRIBUTES (elem_mrow),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_mrow),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_ms [] =
 {   { { XHTML_1_0 }, { HTML_UNDEF }, elem_ms, a_lquote },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_ms, a_rquote },
-    MATH3_FONT_ATTRIBUTES (elem_ms),
     MATH4_PRES_ATTRIBUTES (elem_ms),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_ms),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_mscarries [] =
@@ -94,10 +99,12 @@ hav_t havt_mspace [] =
     MATH3_LINEINDENT_ATTRIBUTES (elem_mspace),
     MATH_SIZEINFO_ATTRIBUTES (elem_mspace),
     MATH4_PRES_ATTRIBUTES (elem_mspace),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_mspace),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_msqrt [] =
 {   MATH4_PRES_ATTRIBUTES (elem_msqrt),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_msqrt),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_msrow [] =
@@ -160,31 +167,36 @@ hav_t havt_mstyle [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_mstyle, a_veryverythickmathspace },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_mstyle, a_veryverythinmathspace },
     MATH3_LINEINDENT_ATTRIBUTES (elem_mstyle),
-    MATH3_FONT_ATTRIBUTES (elem_mstyle),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_mstyle),
     MATH_OPINFO_ATTRIBUTES (elem_mstyle),
     MATH3_TABLE_ATTRIBUTES (elem_mstyle),
     MATH4_PRES_ATTRIBUTES (elem_mstyle),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_mstyle),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_msub [] =
 {   { { HTML_MATH1 }, { HTML_UNDEF }, elem_msub, a_subscriptshift },
     MATH4_PRES_ATTRIBUTES (elem_msub),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_msub),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_msubsup [] =
 {   { { HTML_MATH1 }, { HTML_UNDEF }, elem_msubsup, a_subscriptshift },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_msubsup, a_superscriptshift },
     MATH4_PRES_ATTRIBUTES (elem_msubsup),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_msubsup),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_msup [] =
 {   { { HTML_MATH1 }, { HTML_UNDEF }, elem_msup, a_superscriptshift },
     MATH4_PRES_ATTRIBUTES (elem_msup),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_msup),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_mtable [] =
 {   MATH3_TABLE_ATTRIBUTES (elem_mtable),
     MATH4_PRES_ATTRIBUTES (elem_mtable),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_mtable),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_mtd [] =
@@ -194,11 +206,12 @@ hav_t havt_mtd [] =
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_mtd, a_rowalign },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_mtd, a_rowspan },
     MATH4_PRES_ATTRIBUTES (elem_mtd),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_mtd),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_mtext [] =
-{   MATH3_FONT_ATTRIBUTES (elem_mtext),
-    MATH4_PRES_ATTRIBUTES (elem_mtext),
+{   MATH4_PRES_ATTRIBUTES (elem_mtext),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_mtext),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_mtr [] =
@@ -206,12 +219,14 @@ hav_t havt_mtr [] =
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_mtr, a_groupalign },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_mtr, a_rowalign },
     MATH4_PRES_ATTRIBUTES (elem_mtr),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_mtr),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_munder [] =
 {   { { HTML_MATH1 }, { HTML_UNDEF }, elem_munder, a_accentunder },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_munder, a_align },
     MATH4_PRES_ATTRIBUTES (elem_munder),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_munder),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_munderover [] =
@@ -219,4 +234,5 @@ hav_t havt_munderover [] =
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_munderover, a_accentunder },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_munderover, a_align },
     MATH4_PRES_ATTRIBUTES (elem_munderover),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_munderover),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };

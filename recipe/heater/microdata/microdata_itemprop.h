@@ -34,7 +34,7 @@ itemprop_index make_itemprop_index (const e_property p);
 itemprop_indices make_itemprop_indices (const e_property p);
 
 constexpr inline e_itemprop_category prop_category (const itemprop_index ii) noexcept
-{   return static_cast < e_itemprop_category> (::gsl::narrow_cast < uint32_t > (ii) >> uint32_category_shift); }
+{   return static_cast < e_itemprop_category> (GSL_NARROW_CAST < uint32_t > (ii) >> uint32_category_shift); }
 
 ::std::string bespoke_itemprop_name (const itemprop_index ii);
 itemprop_index find_itemprop_index (nitpick& nits, const html_version& v, const ::std::string& name, bool bespoke_permitted);

@@ -390,7 +390,7 @@ html_version bras_ket::parse (const ::std::string& content)
                     case 'X' :  if (res.xhtml ())
                                 {   nits.pick (nit_xhtml_hex_lc, ed_x1, "4.12. Entity references as hex value", es_warning, ec_parser, "in ", res.report (), ", hex character codes must start with lower-case 'x'");
                                     status = s_dull; break; }
-                                [[fallthrough]];
+                                FALLTHROUGH;
                     case 'x' :  if (res < html_4_0)
                                 {   nits.pick (nit_hex_code_version, ed_4, "5.3.1 Numeric character references", es_warning, ec_parser, "hex character codes require HTML 4.0 or later");
                                     status = s_dull; }
@@ -781,7 +781,7 @@ html_version bras_ket::parse (const ::std::string& content)
                     case ' ' :  if (res < html_2) break;
                                 // HTML 1 permits white space here!
                                 // otherwise drop thru'
-                                [[fallthrough]];
+                                FALLTHROUGH;
                     default :   if (! doubledashed)
                                 {   nits.set_context (line_, b, e, i);
                                     if (res.xhtml ())

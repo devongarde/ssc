@@ -119,6 +119,7 @@ hav_t havt_semantics [] =
     { { HTML_MATH3, 0, 0, H2_MATH_3_4_20 }, { HTML_UNDEF }, elem_semantics, a_encoding },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_semantics, a_name },
     MATH3_DEFS_ATTRIBUTES (elem_semantics),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_semantics),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_sep [] =

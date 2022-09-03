@@ -61,7 +61,7 @@ int32_t from_utf8 (const ::std::string& s, UChar *sz, const int32_t len)
     VERIFY_NOT_NULL (sz, __FILE__, __LINE__);
     UErrorCode err = U_ZERO_ERROR;
     int32_t actual = 0;
-    u_strFromUTF8 (sz, len, &actual, s.c_str (), ::gsl::narrow_cast < int32_t > (s.length ()), &err);
+    u_strFromUTF8 (sz, len, &actual, s.c_str (), GSL_NARROW_CAST < int32_t > (s.length ()), &err);
     if (U_SUCCESS (err))
     {   sz [len-1] = 0;
         if (actual < len) return actual; }
@@ -73,7 +73,7 @@ int32_t to_utf8 (UChar *sz, const int32_t len, ::std::string& s)
     UErrorCode err = U_ZERO_ERROR;
     int32_t actual = 0;
     char res [arbitrary_max] = { 0 };
-    u_strToUTF8 (&::gsl::at (res, 0), arbitrary_max, &actual, sz, len, &err);
+    u_strToUTF8 (&GSL_AT (res, 0), arbitrary_max, &actual, sz, len, &err);
     if (U_SUCCESS (err))
         if (actual < arbitrary_max)
         {   s = res; return actual; }
@@ -98,18 +98,18 @@ lingo::lingo (nitpick& nits, const ::std::string& lang) : orig_ (lang)
         if ((actual == 0) || (actual >= arbitrary_max) || U_FAILURE (err))
             nits.pick (nit_locale, es_warning, ec_spell, "Unknown or unsupported dialect ", quote (lang));
         else
-        {   locale_id_ = ::std::string (&::gsl::at (locale_id, 0));
+        {   locale_id_ = ::std::string (&GSL_AT (locale_id, 0));
             nits.pick (nit_locale, es_comment, ec_icu, "Half recognised ", lang);
             uloc_ = uloc; } } }
 
 void lingo::init (nitpick& )
-{   for (int i = 0; ::gsl::at (ab, i).a_ != nullptr; ++i)
+{   for (int i = 0; GSL_AT (ab, i).a_ != nullptr; ++i)
 #ifdef DEBUG
-        if (mab.find (::std::string (::gsl::at (ab, i).a_)) != mab.cend ())
-            outstr.err (::std::string (::gsl::at (ab, i).a_) + " repeated in standard language table.\n");
+        if (mab.find (::std::string (GSL_AT (ab, i).a_)) != mab.cend ())
+            outstr.err (::std::string (GSL_AT (ab, i).a_) + " repeated in standard language table.\n");
         else
 #endif // DEBUG
-            mab.insert (::std::pair (::std::string (::gsl::at (ab, i).a_), ::std::string (ab [i].b_))); }
+            mab.insert (::std::pair < ::std::string, ::std::string > (::std::string (GSL_AT (ab, i).a_), ::std::string (ab [i].b_))); }
 
 void lingo::identify_dialects (nitpick& nits)
 {   if (context.spell ()) dicts_ = load_dictionaries (nits); }
@@ -123,7 +123,7 @@ void lingo::identify_dialects (nitpick& nits)
 
 bool lingo::is_upper (const ::std::string& s) const
 {   if (invalid () || ! context.icu ()) return iswupper (s.at (0));
-    const int32_t len = ::gsl::narrow_cast < int32_t > (s.length ());
+    const int32_t len = GSL_NARROW_CAST < int32_t > (s.length ());
     const uint8_t* psz = reinterpret_cast <const uint8_t*> (s.c_str ());
     for (int32_t pos = 0; pos < len; )
     {   UChar32 ch;
@@ -133,7 +133,7 @@ bool lingo::is_upper (const ::std::string& s) const
 
 bool lingo::is_lower (const ::std::string& s) const
 {   if (invalid () || ! context.icu ()) return iswlower (s.at (0));
-    const int32_t len = ::gsl::narrow_cast < int32_t > (s.length ());
+    const int32_t len = GSL_NARROW_CAST < int32_t > (s.length ());
     const uint8_t* psz = reinterpret_cast <const uint8_t*> (s.c_str ());
     for (int32_t pos = 0; pos < len; )
     {   UChar32 ch;
@@ -143,7 +143,7 @@ bool lingo::is_lower (const ::std::string& s) const
 
 bool lingo::is_alpha (const ::std::string& s) const
 {   if (invalid () || ! context.icu ()) return iswalpha (s.at (0));
-    const int32_t len = ::gsl::narrow_cast < int32_t > (s.length ());
+    const int32_t len = GSL_NARROW_CAST < int32_t > (s.length ());
     const uint8_t* psz = reinterpret_cast <const uint8_t*> (s.c_str ());
     for (int32_t pos = 0; pos < len; )
     {   UChar32 ch;
@@ -153,7 +153,7 @@ bool lingo::is_alpha (const ::std::string& s) const
 
 bool lingo::is_space (const ::std::string& s) const
 {   if (invalid () || ! context.icu ()) return iswspace (s.at (0));
-    const int32_t len = ::gsl::narrow_cast < int32_t > (s.length ());
+    const int32_t len = GSL_NARROW_CAST < int32_t > (s.length ());
     const uint8_t* psz = reinterpret_cast <const uint8_t*> (s.c_str ());
     for (int32_t pos = 0; pos < len; )
     {   UChar32 ch;
@@ -164,14 +164,14 @@ bool lingo::is_space (const ::std::string& s) const
 ::std::string lingo::to_upper (const ::std::string& s) const
 {   if (invalid () || ! context.icu ()) return ::boost::to_upper_copy (s);
     UChar tmp [arbitrary_max] = { 0 };
-    int32_t len = from_utf8 (s, &::gsl::at (tmp, 0), arbitrary_max);
+    int32_t len = from_utf8 (s, &GSL_AT (tmp, 0), arbitrary_max);
     if (len > 0)
     {   UErrorCode err = U_ZERO_ERROR;
         UChar upc [arbitrary_max] = { 0 };
-        const int32_t actual = u_strToUpper (&::gsl::at (upc, 0), arbitrary_max, tmp, len, locale_id_.c_str (), &err);
+        const int32_t actual = u_strToUpper (&GSL_AT (upc, 0), arbitrary_max, tmp, len, locale_id_.c_str (), &err);
         if (U_SUCCESS (err))
         {   if (actual < arbitrary_max)
-            {   ::gsl::at (upc, arbitrary_max - 1) = 0;
+            {   GSL_AT (upc, arbitrary_max - 1) = 0;
                 ::std::string res;
                 len = to_utf8 (upc, actual, res);
                 if (len > 0) return res; } } }
@@ -180,14 +180,14 @@ bool lingo::is_space (const ::std::string& s) const
 ::std::string lingo::to_lower (const ::std::string& s) const
 {   if (invalid () || ! context.icu ()) return ::boost::to_lower_copy (s);
     UChar tmp [arbitrary_max] = { 0 };
-    int32_t len = from_utf8 (s, &::gsl::at (tmp, 0), arbitrary_max);
+    int32_t len = from_utf8 (s, &GSL_AT (tmp, 0), arbitrary_max);
     if (len > 0)
     {   UErrorCode err = U_ZERO_ERROR;
         UChar upc [arbitrary_max] = { 0 };
-        const int32_t actual = u_strToLower (&::gsl::at (upc, 0), arbitrary_max, tmp, len, locale_id_.c_str (), &err);
+        const int32_t actual = u_strToLower (&GSL_AT (upc, 0), arbitrary_max, tmp, len, locale_id_.c_str (), &err);
         if (U_SUCCESS (err))
         {   if (actual < arbitrary_max)
-            {   ::gsl::at (upc, arbitrary_max - 1) = 0;
+            {   GSL_AT (upc, arbitrary_max - 1) = 0;
                 ::std::string res;
                 len = to_utf8 (upc, actual, res);
                 if (len > 0) return res; } } }
@@ -196,14 +196,14 @@ bool lingo::is_space (const ::std::string& s) const
 ::std::string lingo::to_fold (const ::std::string& s) const
 {   if (invalid () || ! context.icu ()) return s;
     UChar tmp [arbitrary_max] = { 0 };
-    int32_t len = from_utf8 (s, &::gsl::at (tmp, 0), arbitrary_max);
+    int32_t len = from_utf8 (s, &GSL_AT (tmp, 0), arbitrary_max);
     if (len > 0)
     {   UErrorCode err = U_ZERO_ERROR;
         UChar upc [arbitrary_max] = { 0 };
-        const int32_t actual = u_strFoldCase (&::gsl::at (upc, 0), arbitrary_max, tmp, len, U_FOLD_CASE_DEFAULT, &err);
+        const int32_t actual = u_strFoldCase (&GSL_AT (upc, 0), arbitrary_max, tmp, len, U_FOLD_CASE_DEFAULT, &err);
         if (U_SUCCESS (err))
         {   if (actual < arbitrary_max)
-            {   ::gsl::at (upc, arbitrary_max - 1) = 0;
+            {   GSL_AT (upc, arbitrary_max - 1) = 0;
                 ::std::string res;
                 len = to_utf8 (upc, actual, res);
                 if (len > 0) return res; } } }
@@ -212,16 +212,16 @@ bool lingo::is_space (const ::std::string& s) const
 ::std::string lingo::to_title (const ::std::string& s) const
 {   if (invalid () || ! context.icu ()) return s;
     UChar tmp [arbitrary_max] = { 0 };
-    int32_t len = from_utf8 (s, &::gsl::at (tmp, 0), arbitrary_max);
+    int32_t len = from_utf8 (s, &GSL_AT (tmp, 0), arbitrary_max);
     if (len > 0)
     {   UErrorCode err = U_ZERO_ERROR;
         UChar ttl [arbitrary_max] = { 0 };
-        UBreakIterator* pb = ubrk_open (UBRK_WORD, locale_id_.c_str (), &::gsl::at (tmp, 0), len, &err);
+        UBreakIterator* pb = ubrk_open (UBRK_WORD, locale_id_.c_str (), &GSL_AT (tmp, 0), len, &err);
         if (U_SUCCESS (err) && (pb != nullptr)) try
-        {   const int32_t actual = u_strToTitle (&::gsl::at (ttl, 0), arbitrary_max, tmp, len, pb, locale_id_.c_str (), &err);
+        {   const int32_t actual = u_strToTitle (&GSL_AT (ttl, 0), arbitrary_max, tmp, len, pb, locale_id_.c_str (), &err);
             if (U_SUCCESS (err))
                 if (actual < arbitrary_max)
-                {   ::gsl::at (ttl, arbitrary_max - 1) = 0;
+                {   GSL_AT (ttl, arbitrary_max - 1) = 0;
                     ::std::string res;
                     len = to_utf8 (ttl, actual, res);
                     if (len > 0)
@@ -238,11 +238,11 @@ bool lingo::compare (const ::std::string& lhs, const ::std::string& rhs) const
 {   if (invalid () || ! context.icu ()) return lhs == rhs;
     UChar l [arbitrary_max] = { 0 };
     UChar r [arbitrary_max] = { 0 };
-    const int32_t llen = from_utf8 (lhs, &::gsl::at (l, 0), arbitrary_max);
-    const int32_t rlen = from_utf8 (rhs, &::gsl::at (r, 0), arbitrary_max);
+    const int32_t llen = from_utf8 (lhs, &GSL_AT (l, 0), arbitrary_max);
+    const int32_t rlen = from_utf8 (rhs, &GSL_AT (r, 0), arbitrary_max);
     if (llen != rlen) return false;
     for (int32_t n = 0; n < llen; ++n)
-        if (::gsl::at (l, n) != ::gsl::at (r, n)) return false;
+        if (GSL_AT (l, n) != GSL_AT (r, n)) return false;
     return true; }
 
 bool lingo::no_case_compare (const ::std::string& lhs, const ::std::string& rhs) const
@@ -250,17 +250,17 @@ bool lingo::no_case_compare (const ::std::string& lhs, const ::std::string& rhs)
     UChar tmp [arbitrary_max] = { 0 };
     UChar l [arbitrary_max] = { 0 };
     UChar r [arbitrary_max] = { 0 };
-    int32_t len = from_utf8 (lhs, &::gsl::at (tmp, 0), arbitrary_max);
+    int32_t len = from_utf8 (lhs, &GSL_AT (tmp, 0), arbitrary_max);
     UErrorCode err = U_ZERO_ERROR;
-    const int32_t llen = u_strToUpper (&::gsl::at (l, 0), arbitrary_max, tmp, len, locale_id_.c_str (), &err);
+    const int32_t llen = u_strToUpper (&GSL_AT (l, 0), arbitrary_max, tmp, len, locale_id_.c_str (), &err);
     if (U_FAILURE (err)) return compare_no_case (lhs, rhs);
-    len = from_utf8 (rhs, &::gsl::at (tmp, 0), arbitrary_max);
+    len = from_utf8 (rhs, &GSL_AT (tmp, 0), arbitrary_max);
     err = U_ZERO_ERROR;
-    const int32_t rlen = u_strToUpper (&::gsl::at (r, 0), arbitrary_max, tmp, len, locale_id_.c_str (), &err);
+    const int32_t rlen = u_strToUpper (&GSL_AT (r, 0), arbitrary_max, tmp, len, locale_id_.c_str (), &err);
     if (U_FAILURE (err)) return compare_no_case (lhs, rhs);
     if (llen != rlen) return false;
     for (int32_t n = 0; n < llen; ++n)
-        if (::gsl::at (l, n) != ::gsl::at (r, n)) return false;
+        if (GSL_AT (l, n) != GSL_AT (r, n)) return false;
     return true; }
 
 vstr_t lingo::to_words (const ::std::string& s) const
@@ -278,10 +278,10 @@ vstr_t lingo::to_words (const ::std::string& s) const
                 {   bool ws = true;
                     UChar word [arbitrary_max] = { 0 };
                     for (int32_t i = prev; i < pos; ++i)
-                    {   ::gsl::at (word, i - prev) = ::gsl::at (tmp, i);
-                        if (ws) ws = u_isUWhiteSpace (::gsl::at (tmp, i)) || u_isspace (::gsl::at (tmp, i)); }
+                    {   GSL_AT (word, i - prev) = GSL_AT (tmp, i);
+                        if (ws) ws = u_isUWhiteSpace (GSL_AT (tmp, i)) || u_isspace (GSL_AT (tmp, i)); }
                     if (! ws)
-                    {   ::gsl::at (word, pos - prev) = 0;
+                    {   GSL_AT (word, pos - prev) = 0;
                         ::std::string ss;
                         len = to_utf8 (word, pos - prev, ss);
                         if (len > 0) res.emplace_back (ss); }

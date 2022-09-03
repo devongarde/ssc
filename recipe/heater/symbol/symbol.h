@@ -30,7 +30,7 @@ template < class V, typename VALUE, typename CATEGORY = ident_t, CATEGORY INIT =
     typedef ::std::shared_ptr < table_t > table_ptr;
     static table_ptr table_;
     V first_, last_;
-    VALUE value_ = ::gsl::narrow_cast < VALUE > (0);
+    VALUE value_ = GSL_NARROW_CAST < VALUE > (0);
     CATEGORY ns_ = INIT;
     bool unknown_ = true;
     flags_t flags_ = NOFLAGS, flags2_ = NOFLAGS;
@@ -113,7 +113,7 @@ public:
         table_ -> extend (key, symbol, value, ns, first, last, flags, flags2); }
     static void extend (const ::std::string& symbol, const ::std::size_t value, const CATEGORY ns = INIT, const V& first = html_0, const V& last = html_0, const flags_t flags = 0, const flags_t flags2 = 0)
     {   extend (enlc < LC > :: to (symbol), symbol, value, ns, first, last, flags, flags2); }
-    VALUE get () const noexcept { if (unknown_) return ::gsl::narrow_cast <VALUE> (0); return value_; }
+    VALUE get () const noexcept { if (unknown_) return GSL_NARROW_CAST <VALUE> (0); return value_; }
     V first () const noexcept { return first_; }
     V last () const noexcept { return last_; }
     CATEGORY ns () const noexcept { return ns_; }

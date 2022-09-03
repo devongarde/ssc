@@ -129,7 +129,7 @@ bool parse_transform (nitpick& nits, const html_version& v, const ::std::string&
                 {   nits.pick (nit_transform, ed_svg_1_0, "8.5 Modifying the User Coordinate System: the transform attribute", es_error, ec_type, "unexpected ',' in TRANSFORM value");
                     res = false; }
                 had_comma = true;
-                [[fallthrough]];
+                FALLTHROUGH;
             case ' ' :
                 switch (state)
                 {   case es_arg :

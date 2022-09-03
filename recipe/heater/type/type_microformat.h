@@ -64,12 +64,12 @@ template < > struct type_master < t_sex > : tidy_string < t_sex >
                 gender_ = s.substr (1);
                 return true;
             case 1 :
-                sex_ = ::gsl::at (s, 0);
+                sex_ = GSL_AT (s, 0);
                 gender_ = s.substr (2);
                 break;
             case ::std::string::npos :
                 if (s.length () != 1) return false;
-                sex_ = ::gsl::at (s, 0);
+                sex_ = GSL_AT (s, 0);
                 break;
             default:
                 return false; }
