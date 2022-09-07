@@ -20,6 +20,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 
+#ifndef NO_FRED
+
 struct fred_tls  // thread local storage, not sorted ssl
 {   const e_fred fred_;
     ::std::atomic_int lox_;
@@ -38,3 +40,4 @@ typedef ::std::shared_ptr < fred_tls > tls_ptr;
 typedef ssc_map < ::std::thread::id, int > mid_t;
 typedef ::std::vector < ::std::thread > vth_t;
 typedef ::std::vector < tls_ptr > vtls_t;
+#endif // NO_FRED

@@ -155,7 +155,7 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT >
 {   enum_vec < E, ENUM, CATEGORY, INIT > :: set_value (nits, v, s);
     bool first = true;
     bool ok = true;
-    constexpr ::std::size_t max_combinable_enum = 32;
+    CONSTEXPR ::std::size_t max_combinable_enum = 32;
     ::std::bitset < max_combinable_enum > bs, gs, said;
     if (enum_vec < E, ENUM, CATEGORY, INIT > :: good ())
     {   for (auto val : enum_vec < E, ENUM, CATEGORY, INIT > :: value_)

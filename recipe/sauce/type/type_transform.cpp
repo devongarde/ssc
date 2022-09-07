@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "type/type.h"
 
-constexpr ::std::size_t maxfnargs = 6;
+CONSTEXPR ::std::size_t maxfnargs = 6;
 
 struct fnarg_t {
     typedef ::std::array < e_type, maxfnargs > vet_t;

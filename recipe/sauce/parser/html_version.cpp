@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type.h"
 
 const char* doctype = "DOCTYPE";
-constexpr ::std::size_t doctype_len = 7;
+CONSTEXPR ::std::size_t doctype_len = 7;
 const char* docdot = "<!DOCTYPE ...>";
 
 html_version::html_version (const boost::gregorian::date& d, const flags_t flags, const flags_t extensions, const flags_t e2)
@@ -731,7 +731,7 @@ const char *html_version::alternative_charset () const  noexcept
 
 bool html_version::test_extension () const noexcept
 {   if (is_b4_4 ()) return false;
-    return (has_svg () || has_math () || has_rdfa ()); }
+    return (has_svg () || has_math_not_core () || has_rdfa ()); }
 
 bool html_version::is_plain_html () const noexcept
 {   if (xhtml ()) return false;

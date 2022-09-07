@@ -19,6 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "main/standard.h"
+
+#ifndef NO_FRED
 #include "type/enum.h"
 #include "main/context.h"
 #include "coop/tls.h"
@@ -150,3 +152,5 @@ int fred_t::suggested ()
 
 int fred_t::no_more_than ()
 {   return ::std::thread::hardware_concurrency () * 2; }
+
+#endif // NO_FRED

@@ -31,9 +31,9 @@ const e_class first_mf2_property = dt_accessed;
 const e_class last_mf2_property = u_search;
 const e_class first_jun07_class = h5d_copyright;
 const e_class last_jun07_class = h5d_warning;
-inline constexpr bool is_whatwg_class (const e_class c) { return (c >= first_jun07_class) && (c <= last_jun07_class); }
-constexpr ::std::size_t class_size = static_cast < ::std::size_t > (c_error + 1);
-constexpr ::std::size_t vocab_size = static_cast < ::std::size_t > (h_aggregate + 1);  // not last minus first because of c_context etc.
+inline CONSTEXPR bool is_whatwg_class (const e_class c) { return (c >= first_jun07_class) && (c <= last_jun07_class); }
+CONSTEXPR ::std::size_t class_size = static_cast < ::std::size_t > (c_error + 1);
+CONSTEXPR ::std::size_t vocab_size = static_cast < ::std::size_t > (h_aggregate + 1);  // not last minus first because of c_context etc.
 
 bool check_class_spelling (nitpick& nits, const html_version& v, const ::std::string& original);
 bool note_class_usage (element* p, const ::std::string& s);
@@ -74,19 +74,19 @@ struct html_class : enum_n < t_class, e_class >
     typedef enum_n < t_class, e_class > :: value_type value_type;
     explicit html_class (nitpick& nits, const html_version& v, const ::std::string& s)
     {   enum_n < t_class, e_class > :: set_value (nits, v, s); }
-    constexpr static bool is_microformat_property (const e_class value) noexcept
+    CONSTEXPR static bool is_microformat_property (const e_class value) noexcept
     {   return value >= first_mf1_property && value <= last_mf2_property; }
-    constexpr static bool is_microformat_vocabulary (const e_class value) noexcept
+    CONSTEXPR static bool is_microformat_vocabulary (const e_class value) noexcept
     {   return value >= first_mf1_vocab && value <= last_mf2_vocab; }
-    constexpr static bool is_microformat (const e_class value) noexcept
+    CONSTEXPR static bool is_microformat (const e_class value) noexcept
     {   return value >= first_mf1_vocab && value <= last_mf2_property; }
-    constexpr static bool is_microformat_v1 (const e_class value) noexcept
+    CONSTEXPR static bool is_microformat_v1 (const e_class value) noexcept
     {   return (value >= first_mf1_vocab && value <= last_mf1_vocab) || (value >= first_mf1_property && value <= last_mf1_property); }
-    constexpr static bool is_microformat_v2 (const e_class value) noexcept
+    CONSTEXPR static bool is_microformat_v2 (const e_class value) noexcept
     {   return (value >= first_mf2_vocab && value <= last_mf2_vocab) || (value >= first_mf2_property && value <= last_mf2_property); }
-    constexpr static bool is_whatwg_draft (const e_class value)
+    CONSTEXPR static bool is_whatwg_draft (const e_class value)
     {   return is_whatwg_class (value); }
-    constexpr static bool is_rel () { return false; }
+    CONSTEXPR static bool is_rel () { return false; }
     bool is_microformat_property () const noexcept { return is_microformat_property (enum_base < e_class, t_class >  :: value_); }
     bool is_microformat_vocabulary () const noexcept { return is_microformat_vocabulary (enum_base < e_class, t_class > :: value_); }
     bool is_microformat () const noexcept { return is_microformat (enum_base < e_class, t_class > :: value_); }

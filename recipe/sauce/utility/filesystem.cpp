@@ -134,6 +134,7 @@ bool file_exists (const ::boost::filesystem::path& name)
         {   return ::boost::filesystem::file_status (); } }
     return res; }
 
+#ifndef NO_PERMS
 bool file_permissions (const ::boost::filesystem::path& name, ::boost::filesystem::perms p)
 #ifndef FS_THROWS
     noexcept
@@ -150,6 +151,7 @@ bool file_permissions (const ::boost::filesystem::path& name, ::boost::filesyste
 #endif // FS_THROWS
         {   return false; } }
     return true; }
+#endif // NO_PERMS
 
 ::boost::filesystem::path absolute_name (const ::boost::filesystem::path& name)
 {   ::boost::filesystem::path res;

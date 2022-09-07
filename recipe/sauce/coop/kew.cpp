@@ -19,6 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "main/standard.h"
+
+#ifndef NO_FRED
 #include "type/enum.h"
 #include "main/context.h"
 #include "webpage/q.h"
@@ -37,3 +39,5 @@ bool kew::pop (q_entry& t)
     kew_.pop_front ();
     empty_ = kew_.empty ();
     return true; }
+
+#endif // NO_FRED

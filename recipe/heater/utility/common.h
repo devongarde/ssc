@@ -27,7 +27,7 @@ struct false_type { };
 
 typedef uint64_t ident_t;
 typedef uint32_t uid_t;
-constexpr uid_t uid_max = UINT32_MAX;
+CONSTEXPR uid_t uid_max = UINT32_MAX;
 
 typedef ::std::vector < int > vint_t;
 typedef ::std::vector < double > vdbl_t;
@@ -56,9 +56,9 @@ inline void_ptr alloc_void_ptr (const ::std::size_t sz) { return void_ptr (mallo
 #pragma warning (pop)
 #endif // _MSC_VER
 
-constexpr uint32_t uint32_category_shift =  28;
-constexpr uint32_t uint32_item_mask =       0x0FFFFFFF;
-constexpr uint32_t uint32_category_mask =   0xF0000000;
+CONSTEXPR uint32_t uint32_category_shift =  28;
+CONSTEXPR uint32_t uint32_item_mask =       0x0FFFFFFF;
+CONSTEXPR uint32_t uint32_category_mask =   0xF0000000;
 
 #define TALLY_TO_MAX(tot,inc,mx) \
     {   if (tot < mx) \
@@ -77,8 +77,8 @@ public:
     reverter& operator = (reverter&& ) = delete;
     ~reverter () { if (p_ != t_) p_ = t_; } };
 
-constexpr inline uint32_t ndx_category (const uint32_t x) noexcept { return (x & uint32_category_mask) >> uint32_category_shift; }
-constexpr inline uint32_t ndx_item (const uint32_t x) noexcept { return (x & uint32_item_mask); }
+CONSTEXPR inline uint32_t ndx_category (const uint32_t x) noexcept { return (x & uint32_category_mask) >> uint32_category_shift; }
+CONSTEXPR inline uint32_t ndx_item (const uint32_t x) noexcept { return (x & uint32_item_mask); }
 
 ::std::string trim_the_lot_off (const ::std::string& s);
 bool remove_tail (::std::string& s, ::std::string& tail, const char ch);

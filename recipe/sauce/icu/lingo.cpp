@@ -27,6 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 const int32_t arbitrary_max = 2048;
 vstr_t lingo::dicts_;
+bool lingo::borked_ = false;
 
 // for example http://www.lingoes.net/en/translator/langcode.htm , https://www.andiamo.co.uk/resources/iso-language-codes/
 struct ab_t
@@ -263,7 +264,7 @@ bool lingo::no_case_compare (const ::std::string& lhs, const ::std::string& rhs)
         if (GSL_AT (l, n) != GSL_AT (r, n)) return false;
     return true; }
 
-vstr_t lingo::to_words (const ::std::string& s) const
+vstr_t lingo::to_words (nitpick& nits, const ::std::string& s) const
 {   if (invalid () || ! context.icu ()) return split_by_whitespace_and (s);
     vstr_t res;
     if (! s.empty ())
@@ -272,7 +273,24 @@ vstr_t lingo::to_words (const ::std::string& s) const
         if (len > 0)
         {   UErrorCode err = U_ZERO_ERROR;
             UBreakIterator* pb = ubrk_open (UBRK_WORD, locale_id_.c_str (), &tmp [0], len, &err);
-            if (U_SUCCESS (err) && (pb != nullptr)) try
+            if ((pb == nullptr) || ! U_SUCCESS (err))
+            {   if (! borked_)
+                    switch (err)
+                    {   case U_MISSING_RESOURCE_ERROR :
+                        case U_INTERNAL_PROGRAM_ERROR :
+                        case U_MEMORY_ALLOCATION_ERROR :
+                        case U_INVALID_TABLE_FORMAT :
+                        case U_INVALID_TABLE_FILE :
+                        case U_NO_SPACE_AVAILABLE :
+                        case U_TOO_MANY_ALIASES_ERROR :
+                        case U_COLLATOR_VERSION_MISMATCH :
+                        case U_USELESS_COLLATOR_ERROR :
+                            if (! context.test ()) nits.pick (nit_icu_installation, es_warning, ec_spell, "ICU error ", err, ": reverting to non-ICU processing");
+                            borked_ = true;
+                            break;
+                        default : break; }
+                return split_by_whitespace_and (s); }
+            try
             {   int32_t prev = 0;
                 for (int32_t pos = ubrk_first (pb); pos != UBRK_DONE; pos = ubrk_next (pb))
                 {   bool ws = true;

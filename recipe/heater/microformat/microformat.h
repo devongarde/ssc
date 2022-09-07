@@ -24,27 +24,27 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "element/elem.h"
 
 // categories
-constexpr int c_generic = 0;
-constexpr int c_html3 = 0x00000001;
-constexpr int c_microformat = 0x00000002;
-constexpr int c_html4 = 0x00000004;
-constexpr int c_xfn = 0x00000008;
-constexpr int c_its = 0x00000010;
-constexpr int c_grddl = 0x00000020;
-constexpr int c_vcs = 0x00000040;
-constexpr int c_atom = 0x00000080;  // RFC 4287
-constexpr int c_amp_html = 0x00000100;
-constexpr int c_safari = 0x00000200;
-constexpr int c_indieauth = 0x00000400;
-constexpr int c_dcterms = 0x00000800;
-constexpr int c_lightbox = 0x00001000;
-constexpr int c_openid = 0x00002000;
-constexpr int c_hcal = 0x00004000;
-constexpr int c_cc = 0x00008000;
-constexpr int c_mf1 = 0x00010000;
-constexpr int c_rejected = 0x10000000;
-constexpr int c_dropped = 0x20000000;
-constexpr int c_draft = 0x40000000;
+CONSTEXPR int c_generic = 0;
+CONSTEXPR int c_html3 = 0x00000001;
+CONSTEXPR int c_microformat = 0x00000002;
+CONSTEXPR int c_html4 = 0x00000004;
+CONSTEXPR int c_xfn = 0x00000008;
+CONSTEXPR int c_its = 0x00000010;
+CONSTEXPR int c_grddl = 0x00000020;
+CONSTEXPR int c_vcs = 0x00000040;
+CONSTEXPR int c_atom = 0x00000080;  // RFC 4287
+CONSTEXPR int c_amp_html = 0x00000100;
+CONSTEXPR int c_safari = 0x00000200;
+CONSTEXPR int c_indieauth = 0x00000400;
+CONSTEXPR int c_dcterms = 0x00000800;
+CONSTEXPR int c_lightbox = 0x00001000;
+CONSTEXPR int c_openid = 0x00002000;
+CONSTEXPR int c_hcal = 0x00004000;
+CONSTEXPR int c_cc = 0x00008000;
+CONSTEXPR int c_mf1 = 0x00010000;
+CONSTEXPR int c_rejected = 0x10000000;
+CONSTEXPR int c_dropped = 0x20000000;
+CONSTEXPR int c_draft = 0x40000000;
 
 // effects on link, a, area
 typedef enum
@@ -109,8 +109,8 @@ public:
     explicit microformat (bool b) : microformat_base (b) {}
     virtual void reset ();
     void swap (microformat& mf);
-    constexpr static typename ENUM :: value_type whoami () { return VOCAB; }
-    constexpr static typename ENUM :: value_type html_class () { return VOCAB; }
+    CONSTEXPR static typename ENUM :: value_type whoami () { return VOCAB; }
+    CONSTEXPR static typename ENUM :: value_type html_class () { return VOCAB; }
     template < class PROPERTY > bool has () const
     {   return has_property < PROPERTY, PROPERTIES... > (); }
     template < class PROPERTY > void get (PROPERTY** p)

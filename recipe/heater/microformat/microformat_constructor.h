@@ -47,9 +47,9 @@ public:
     ~microformat_pv () = default;
 
     static const ::std::size_t first_rel_ = static_cast < ::std::size_t > (r_entry_category);
-    constexpr static ::std::size_t index (const e_class v) noexcept
+    CONSTEXPR static ::std::size_t index (const e_class v) noexcept
     {   return static_cast < ::std::size_t > (v); }
-    constexpr static ::std::size_t index (const e_rel r) noexcept
+    CONSTEXPR static ::std::size_t index (const e_rel r) noexcept
     {    return static_cast < ::std::size_t > (r) /* + first_rel_ */ ; }
 
     static microformat_pv alloc_microformat_pv (const ::std::size_t v);

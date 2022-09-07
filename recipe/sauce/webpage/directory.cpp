@@ -204,8 +204,12 @@ bool directory::add_to_content (nitpick* ticks, const ::boost::filesystem::direc
     if (is_directory (qp))
     {   dir_ptr dp (new directory (ticks, f, ndx, this, p, false)); 
         if (content_.insert (value_t (f, dp)).second)
+#ifndef NO_FRED
         {   q.push (q_entry (ticks, dp, st_scan));
             return true; } }
+#else // NO_FRED
+        return dp -> scan (ticks, p); }
+#endif // NO_FRED
     set_flag (ndx, FX_BORKED);
     nitpick nits;
     knickers k (nits, ticks);
@@ -271,11 +275,20 @@ void directory::examine (nitpick* ticks, dir_ptr me_me_me) const
     if (context.shadow_any ()) shadow_folder (nits);
     sstr_t shadowed;
     for (auto i : content_)
-        if (i.second != nullptr) q.push (q_entry (ticks, i.second, st_folder));
+        if (i.second != nullptr) 
+#ifndef NO_FRED
+            q.push (q_entry (ticks, i.second, st_folder));
+#else // NO_FRED
+            examine (ticks, i.second);
+#endif // NO_FRED
         else
         {   shadowed.emplace ((get_shadow_path () / i.first).string ());
             if (context.shadow_files () || is_webpage (i.first, context.extensions ()))
+#ifndef NO_FRED
                 q.push (q_entry (ticks, me_me_me, st_file, i.first)); }
+#else // NO_FRED
+                examine_file (ticks, i.first)); }
+#endif // NO_FRED
     ::std::this_thread::yield ();
     if (context.shadow_files ())
     {   sstr_t delete_me;
@@ -500,9 +513,12 @@ bool directory::shadow_file (nitpick& nits, const ::std::string& name) const
                 if ((copywrite >= origwrite) && context.update ()) return true; } }
         if (todo >= c_copy)
         {   stat = file_data (imitation);
+#ifndef NO_PERMS
             if ((stat.permissions () & ::boost::filesystem::perms::owner_write) == 0)
             {   file_permissions (imitation, ::boost::filesystem::perms::owner_write | ::boost::filesystem::perms::add_perms);
-                changed = true; } }
+                changed = true; }
+#endif // NO_PERMS
+        }
         else if (! delete_file (imitation))
         {   nits.pick (nit_shadow_failed, es_error, ec_shadow, "cannot remove previous ", imitation.string ());
             return true; } }
@@ -528,10 +544,12 @@ bool directory::shadow_file (nitpick& nits, const ::std::string& name) const
                                 nits.pick (nit_shadow_copy, es_debug, ec_shadow, "copied ", original, " to ", imitation);
                             else nits.pick (nit_shadow_copy, es_catastrophic, ec_shadow, "cannot copy ", original, " to ", imitation);
                             break; }
+#ifndef NO_PERMS
     if (changed)
         if (! file_permissions (imitation, ::boost::filesystem::perms::owner_write | ::boost::filesystem::perms::remove_perms))
         {   nits.pick (nit_shadow_failed, es_error, ec_shadow, "cannot upright ", imitation.string ());
             return false; }
+#endif // NO_PERMS
 return true; }
 
 bool directory::avoid_update (const ::boost::filesystem::path& original, const ::boost::filesystem::path& shadow, const bool page) const

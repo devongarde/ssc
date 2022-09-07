@@ -60,25 +60,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "coop/kew.h"
 #include "coop/knickers.h"
 
-::std::string build_info, test_title, simple_title, full_title;
+const char* build_info = BUILD_INFO;
+const char* test_title = TEST_TITLE;
+const char* simple_title = SIMPLE_TITLE;
+const char* full_title = FULL_TITLE;
 
 void init (nitpick& nits)
-{   
-//#define BUILD_INFO   DBG_STATUS FUDDY CURLY JSNIC NPS_GEN SPELT ":" OS ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER
-//#define BASE_TITLE   FULLNAME " v" VERSION_STRING " (" WEBADDR ")\n"
-//#define SIMPLE_TITLE BASE_TITLE COPYRIGHT_TEXT "\n"
-//#define FULL_TITLE   BASE_TITLE COPYRIGHT "\n" "[" __DATE__ " " __TIME__  "] [" BUILD_INFO "]" "\n"
-//#define TEST_TITLE   FULLNAME " v" VERSION_STRING "\n" "(" __DATE__ " " __TIME__ ")\n" WEBADDR "\n" COPYRIGHT "\n\n"
-
-    build_info = DBG_STATUS FUDDY CURLY JSNIC NPS_GEN SPELT ":";
-    build_info += OS;
-    build_info += ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER;
-    simple_title = FULLNAME " v" VERSION_STRING " (" WEBADDR ")\n" COPYRIGHT_TEXT "\n";
-    full_title = FULLNAME " v" VERSION_STRING " (" WEBADDR ")\n" COPYRIGHT "\n[" __DATE__ " " __TIME__ "] [" DBG_STATUS FUDDY CURLY JSNIC NPS_GEN SPELT ":";
-    full_title += build_info + COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER "]" "\n";
-    test_title = FULLNAME " v" VERSION_STRING "\n" "(" __DATE__ " " __TIME__ ")\n" WEBADDR "\n" COPYRIGHT "\n\n";
-
-    init_cache ();
+{   init_cache ();
     init_css ();
     init_macro ();
     init_itemid ();
@@ -140,6 +128,7 @@ int ciao ()
     if (overall.severity_exceeded ()) return ERROR_STATE;
     return VALID_RESULT; }
 
+#ifndef NO_FRED
 void trundle ()
 {   if (context.fred () == 1)
         while (fred.dqe ());
@@ -147,6 +136,7 @@ void trundle ()
     {   ::std::this_thread::yield ();
         while (fred.dqe () || q.activity ())
             ::std::this_thread::yield (); } }
+#endif // NO_FRED
 
 int examine (nitpick& nits)
 {   int res = VALID_RESULT;
@@ -194,7 +184,9 @@ int examine (nitpick& nits)
             vd.emplace_back (new directory (virt.at (n)));
         nitpick nuts;
         knickers k (nuts, &nits);
+#ifndef NO_FRED
         if (! fred.init (nits)) res = ERROR_STATE;
+#endif // NO_FRED
         else try
         {   for (::std::size_t x = 0; (res != ERROR_STATE) && (x < vmax); ++x)
             {   VERIFY_NOT_NULL (vd.at (x), __FILE__, __LINE__);
@@ -202,10 +194,15 @@ int examine (nitpick& nits)
                 if (! vd.at (x) -> scan (&nits, virt.at (x) -> get_site_path ()))
                 {   nuts.pick (nit_scan_failed, es_catastrophic, ec_init, "scan of ", virt.at (x) -> get_disk_path (), " failed");
                     res = ERROR_STATE; } }
+#ifndef NO_FRED
             if (res != VALID_RESULT) fred.abandon ();
             else
-            {   PRESUME (vd.size () > 0, __FILE__, __LINE__);
-                trundle ();
+            {   trundle ();
+#else // NO_FRED
+            if (res == VALID_RESULT)
+            {
+#endif // NO_FRED
+                PRESUME (vd.size () > 0, __FILE__, __LINE__);
                 ::std::size_t n = integrate_virtuals (virt, vd);
                 if (n != 0)
                 {   nuts.pick (nit_bad_path, es_catastrophic, ec_init, "cannot integrate ", virt.at (n) -> get_disk_path ());
@@ -215,9 +212,14 @@ int examine (nitpick& nits)
                     for (n = 0; n < vmax; ++n)
                         if (vd.at (n) -> empty ())
                             nuts.pick (nit_no_content, es_comment, ec_init, virt.at (n) -> get_disk_path (), " has no content.");
+#ifndef NO_FRED
                         else q.push (q_entry (&nits, vd.at (n), st_folder));
                     trundle (); } }
             fred.await ();
+#else // NO_FRED
+                        examine (&nits, vd.at (n));
+                    trundle (); } }
+#endif // NO_FRED
             spell_free ();
             close_corpus (nuts);
             fileindex_save_and_close (nuts); }

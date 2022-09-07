@@ -85,8 +85,8 @@ template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public a
 {   typed_attribute () = default;
     explicit typed_attribute (element* box) noexcept : typed_value < e_attribute, TYPE, IDENTITY > (box) { }
     static ::std::string name () { return attr :: name (IDENTITY); }
-    constexpr static e_attribute whoami () { return IDENTITY; }
-    constexpr static e_type whatami () { return TYPE; }
+    CONSTEXPR static e_attribute whoami () { return IDENTITY; }
+    CONSTEXPR static e_type whatami () { return TYPE; }
     void swap (typed_attribute& t) noexcept
     {   attribute_base :: swap (t);
         typed_value < e_attribute, TYPE, IDENTITY > :: swap (t); }
@@ -175,7 +175,7 @@ typedef ::std::shared_ptr < attribute_base > attribute_v_ptr;
 attribute_v_ptr make_attribute_v_ptr (nitpick& nits, const html_version& v, element* box, const attribute_node& node);
 e_animation_type get_animation_type (const e_attribute ea);
 
-constexpr size_t aar_size = last_attribute + 1;
+CONSTEXPR size_t aar_size = last_attribute + 1;
 typedef ::std::array < attribute_v_ptr, aar_size > aar_t;
 
 #ifdef _MSC_VER

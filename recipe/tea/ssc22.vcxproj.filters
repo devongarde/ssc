@@ -960,6 +960,30 @@
     <Filter Include="Sauce\microformat\microdata">
       <UniqueIdentifier>{6128eee8-2f45-409f-b2b9-f1ab3573dcf5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\Spell\nospell">
+      <UniqueIdentifier>{28a0eb54-16e7-429f-90f1-63176cb7cb38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\RDFa\vcard-2">
+      <UniqueIdentifier>{5ba92964-aa63-4aad-8ccf-1f752d1b9f90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\RDFa\vcard-3">
+      <UniqueIdentifier>{3031b482-698f-47c5-a628-dba2eaf5bfb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\RDFa\vcard-4">
+      <UniqueIdentifier>{cbf45337-2aa8-4f64-9589-f4efb58f90b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\RDFa\imported">
+      <UniqueIdentifier>{06f3b9bb-679a-46ee-9276-c9b8408ec692}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\RDFa\lrdw">
+      <UniqueIdentifier>{eb02e8f6-1ffb-4a17-a33f-d2b0a27d2fbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\RDFa\role">
+      <UniqueIdentifier>{9658aab9-bc09-486f-93b3-a74034aa30be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\RDFa\rs">
+      <UniqueIdentifier>{6964ad69-6d17-48a7-ab6c-756cc58cfa34}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -25976,6 +26000,111 @@
     </None>
     <None Include="..\toast\math\4-core\core-3.html">
       <Filter>Toast\Math\4-core</Filter>
+    </None>
+    <None Include="..\toast\spell\nospell\index.html">
+      <Filter>Toast\Spell\nospell</Filter>
+    </None>
+    <None Include="..\toast\spell\nospell\spell.conf">
+      <Filter>Toast\Spell\nospell</Filter>
+    </None>
+    <None Include="..\toast\spell\nospell\spell.spec">
+      <Filter>Toast\Spell\nospell</Filter>
+    </None>
+    <None Include="..\toast\math\4-core\core-4.html">
+      <Filter>Toast\Math\4-core</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-2\index.html">
+      <Filter>Toast\RDFa\vcard-2</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-2\ontology.html">
+      <Filter>Toast\RDFa\vcard-2</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-2\rdfa.conf">
+      <Filter>Toast\RDFa\vcard-2</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-2\rdfa.spec">
+      <Filter>Toast\RDFa\vcard-2</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-2\vcard.html">
+      <Filter>Toast\RDFa\vcard-2</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-3\index.html">
+      <Filter>Toast\RDFa\vcard-3</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-3\ontology.html">
+      <Filter>Toast\RDFa\vcard-3</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-3\rdfa.conf">
+      <Filter>Toast\RDFa\vcard-3</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-3\rdfa.spec">
+      <Filter>Toast\RDFa\vcard-3</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-3\vcard.html">
+      <Filter>Toast\RDFa\vcard-3</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-4\index.html">
+      <Filter>Toast\RDFa\vcard-4</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-4\ontology.html">
+      <Filter>Toast\RDFa\vcard-4</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-4\rdfa.conf">
+      <Filter>Toast\RDFa\vcard-4</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-4\rdfa.spec">
+      <Filter>Toast\RDFa\vcard-4</Filter>
+    </None>
+    <None Include="..\toast\RDFa\vcard-4\vcard.html">
+      <Filter>Toast\RDFa\vcard-4</Filter>
+    </None>
+    <None Include="..\toast\RDFa\imported\dokieli.html">
+      <Filter>Toast\RDFa\imported</Filter>
+    </None>
+    <None Include="..\toast\RDFa\imported\index.html">
+      <Filter>Toast\RDFa\imported</Filter>
+    </None>
+    <None Include="..\toast\RDFa\imported\linkedresearch.html">
+      <Filter>Toast\RDFa\imported</Filter>
+    </None>
+    <None Include="..\toast\RDFa\imported\rdfa.conf">
+      <Filter>Toast\RDFa\imported</Filter>
+    </None>
+    <None Include="..\toast\RDFa\imported\rdfa.spec">
+      <Filter>Toast\RDFa\imported</Filter>
+    </None>
+    <None Include="..\toast\RDFa\rs\index.html">
+      <Filter>Toast\RDFa\rs</Filter>
+    </None>
+    <None Include="..\toast\RDFa\rs\rdfa.conf">
+      <Filter>Toast\RDFa\rs</Filter>
+    </None>
+    <None Include="..\toast\RDFa\rs\rdfa.spec">
+      <Filter>Toast\RDFa\rs</Filter>
+    </None>
+    <None Include="..\toast\RDFa\rs\rs.html">
+      <Filter>Toast\RDFa\rs</Filter>
+    </None>
+    <None Include="..\toast\RDFa\role\index.xhtml">
+      <Filter>Toast\RDFa\role</Filter>
+    </None>
+    <None Include="..\toast\RDFa\role\rdfa.conf">
+      <Filter>Toast\RDFa\role</Filter>
+    </None>
+    <None Include="..\toast\RDFa\role\rdfa.spec">
+      <Filter>Toast\RDFa\role</Filter>
+    </None>
+    <None Include="..\toast\RDFa\lrdw\index.html">
+      <Filter>Toast\RDFa\lrdw</Filter>
+    </None>
+    <None Include="..\toast\RDFa\lrdw\lrdw.html">
+      <Filter>Toast\RDFa\lrdw</Filter>
+    </None>
+    <None Include="..\toast\RDFa\lrdw\rdfa.conf">
+      <Filter>Toast\RDFa\lrdw</Filter>
+    </None>
+    <None Include="..\toast\RDFa\lrdw\rdfa.spec">
+      <Filter>Toast\RDFa\lrdw</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

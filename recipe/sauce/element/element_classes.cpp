@@ -182,7 +182,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define X5          LIVING_STANDARD
 #define LIVING_STANDARD_PLUS a_index, LIVING_STANDARD
 
-constexpr ::std::size_t max_attrib = last_attribute + 1;
+CONSTEXPR ::std::size_t max_attrib = last_attribute + 1;
 
 struct element_init_t
 {   e_element tag_;
@@ -844,7 +844,7 @@ element_init_t ei [] =
     { elem_xor, { MATH3DEFCOM, a_unknown } },
     { elem_error, { a_unknown } } };
 
-constexpr size_t vebs_size = last_element_tag + 1;
+CONSTEXPR size_t vebs_size = last_element_tag + 1;
 typedef ::std::array < attribute_bitset, vebs_size > vebs_t;
 vebs_t vebs;
 

@@ -32,6 +32,7 @@ class lingo
 {   ::std::string locale_id_, orig_;
     int32_t uloc_ = 0;
     ::std::locale locale_;
+    static bool borked_;
     static vstr_t dicts_;
 public:
     lingo () = default;
@@ -39,7 +40,7 @@ public:
     static void init (nitpick& nits);
     static void identify_dialects (nitpick& nits);
     static ::std::string standard_dialect (const ::std::string& l);
-    bool invalid () const { return (uloc_ == 0); }
+    bool invalid () const { return borked_ || (uloc_ == 0); }
     const ::std::string& original () const { return orig_; }
     ::std::locale& locale () { return locale_; }
     const ::std::locale& locale () const { return locale_; }
@@ -56,5 +57,5 @@ public:
     ::std::string to_fold (const ::std::string& s) const;
     bool compare (const ::std::string& lhs, const ::std::string& rhs) const;
     bool no_case_compare (const ::std::string& lhs, const ::std::string& rhs) const;
-    vstr_t to_words (const ::std::string& s) const; };
+    vstr_t to_words (nitpick& nits, const ::std::string& s) const; };
 #endif // NOICU

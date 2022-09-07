@@ -22,8 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "symbol/symbol.h"
 #include "coop/lox.h"
 
-constexpr ::std::size_t last_component = static_cast <::std::size_t> (es_extension);
-constexpr ::std::size_t component_count = last_component + 1;
+CONSTEXPR ::std::size_t last_component = static_cast <::std::size_t> (es_extension);
+CONSTEXPR ::std::size_t component_count = last_component + 1;
 
 typedef vstr_t vc_t;
 

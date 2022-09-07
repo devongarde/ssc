@@ -32,7 +32,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "coop/lox.h"
 #include "utility/cache.h"
 
-constexpr ::std::size_t max_separation = 30;
+CONSTEXPR ::std::size_t max_separation = 30;
 
 ssi_compedium::ssi_compedium ()
     :   echomsg_ ("[Value Undefined]"), errmsg_ ("[Oops, something broke.]"), timefmt_ ("%Y %b %d %R"),
@@ -264,10 +264,10 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
     if (! c.sizefmt_abbrev_)
         return ::boost :: lexical_cast < ::std::string > (size);
 
-    constexpr uint64_t k = 1024;
-    constexpr uint64_t m = k * 1024;
-    constexpr uint64_t g = m * 1024;
-    constexpr uint64_t t = g * 1024;
+    CONSTEXPR uint64_t k = 1024;
+    CONSTEXPR uint64_t m = k * 1024;
+    CONSTEXPR uint64_t g = m * 1024;
+    CONSTEXPR uint64_t t = g * 1024;
     if (size > t) return ::boost::lexical_cast < ::std::string > (size / t) + "T";
     if (size > g) return ::boost::lexical_cast < ::std::string > (size / g) + "G";
     if (size > m) return ::boost::lexical_cast < ::std::string > (size / m) + "M";

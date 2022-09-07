@@ -70,7 +70,7 @@ vstr_t readlines (const ::std::string& name)
     if (ifs.bad ())
     {   ::std::cerr << "cannot open " << name << "\n"; return res; }
     else
-    {   constexpr int maxlen = 8191;
+    {   CONSTEXPR int maxlen = 8191;
         char sz [maxlen+1] = { 0 };
         while (! ifs.fail ())
         {   ifs.getline (sz, maxlen);
@@ -701,6 +701,7 @@ int run_test (const ::boost::filesystem::path& f, const ::boost::filesystem::pat
 #if defined (UNIX)
         prepare /= "pre.sh";
         clean /= "post.sh";
+#ifndef NO_PERMS
         ::boost::filesystem::file_status stat;
         if (::boost::filesystem::exists (prepare))
         {   stat = ::boost::filesystem::status (prepare);
@@ -710,6 +711,7 @@ int run_test (const ::boost::filesystem::path& f, const ::boost::filesystem::pat
         {   stat = ::boost::filesystem::status (clean);
             if ((stat.permissions () & ::boost::filesystem::perms::owner_exe) == 0)
                 ::boost::filesystem::permissions (clean, ::boost::filesystem::perms::owner_exe | ::boost::filesystem::perms::add_perms); }
+#endif // NO_PERMS
 #else // UNIX
         prepare /= "pre.bat";
         clean /= "post.bat";

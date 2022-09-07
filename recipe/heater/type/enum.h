@@ -527,7 +527,7 @@ typedef enum { ekh_done, ekh_enter, ekh_go, ekh_next, ekh_previous, ekh_search, 
 typedef enum {  env_args, env_auth_type, env_config, env_content_length, env_content_type, env_gateway_interface, env_http_accept, env_path_info,
                 env_path_translated, env_query_string, env_remote_addr, env_remote_host, env_remote_user, env_request_method, env_script_name, env_server_name,
                 env_server_port, env_server_protocol, env_server_software } e_environment;
-constexpr ::std::size_t env_max = static_cast < ::std::size_t > (env_server_software) + 1;
+CONSTEXPR ::std::size_t env_max = static_cast < ::std::size_t > (env_server_software) + 1;
 typedef enum { fa_bleedleft, fa_left, fa_centre, fa_right, fa_bleedright, fa_justify } e_figalign;
 typedef enum { fa_freeze, fa_remove } e_fillanim;
 typedef enum { fr_nonzero, fr_evenodd, fr_inherit } e_fill_rule;
@@ -1568,7 +1568,7 @@ typedef enum
     ns_xalan, ns_xf, ns_xhv, ns_xi, ns_xlink, ns_xhtml, ns_xmlevents, ns_xmlns, ns_xs, ns_xsi, ns_xslt, ns_xtm,
     ns_error } e_namespace;
 
-constexpr ::std::size_t first_runtime_namespace = static_cast < ::std::size_t > (ns_error) + 1;
+CONSTEXPR ::std::size_t first_runtime_namespace = static_cast < ::std::size_t > (ns_error) + 1;
 
 typedef enum
 {   nit_free,
@@ -1675,7 +1675,7 @@ typedef enum
     nit_mf_version, nit_not_directory, nit_endpoint, nit_header_empty, nit_header_malformed, nit_http_error, nit_header_no_data,
     nit_json_version, nit_json_corrupt, nit_json_domain, nit_dialect, nit_country, nit_languages, nit_hidden, nit_bespoke_obsolete,
     nit_regex, nit_fred_borked, nit_kew_borked, nit_internal_cache_error, nit_mtr_required, nit_mtd_required, nit_bad_intent,
-    nit_cannot_scan, nit_thread,
+    nit_cannot_scan, nit_thread, nit_icu_installation,
     nit_context,
 
     // eon
@@ -1922,7 +1922,7 @@ typedef enum { scei_after, scei_before, scei_centre, scei_end, scei_start, scei_
     s_error
 
 typedef enum { SCHEMAS } e_schema;
-constexpr ::std::size_t schema_size = s_error;
+CONSTEXPR ::std::size_t schema_size = s_error;
 typedef ::std::size_t schema_id;
 
 typedef enum
@@ -3943,7 +3943,7 @@ typedef enum { tfu_false, tfu_true, tfu_undefined } e_tfu;
 typedef enum { ta_translate, ta_scale, ta_rotate, ta_skewx, ta_skewy } e_transform_anim;
 typedef enum { tb_geometric, tb_pinned, tb_pinned90, tb_pinned180, tb_pinned270 } e_transformbehaviour;
 typedef enum { tr_nowt, tr_matrix, tr_ref, tr_translate, tr_translatex, tr_translatey, tr_scale, tr_scalex, tr_scaley, tr_rotate, tr_skew, tr_skewx, tr_skewy } e_transform_fn;
-constexpr ::std::size_t max_transform_fn = static_cast < ::std::size_t > (tr_skewy);
+CONSTEXPR ::std::size_t max_transform_fn = static_cast < ::std::size_t > (tr_skewy);
 typedef enum { tp_opaque, tp_transparent } e_transp;
 typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 

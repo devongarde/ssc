@@ -19,6 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
+#ifndef NO_FRED
+
 #include "coop/tls.h"
 
 class fred_t
@@ -33,11 +35,11 @@ class fred_t
     void fred_minion (nitpick* ticks);
 public:
     fred_t () : count_ (0), inactive_ (0), started_ (false), abandon_ (false) { }
-    fred_t (const fred_t& ) = default;
-    fred_t (fred_t&& ) = default;
+    fred_t (const fred_t& ) = delete;
+    fred_t (fred_t&& ) = delete;
     ~fred_t () = default;
-    fred_t& operator = (const fred_t& ) = default;
-    fred_t& operator = (fred_t&& ) = default;
+    fred_t& operator = (const fred_t& ) = delete;
+    fred_t& operator = (fred_t&& ) = delete;
     bool init (nitpick& nits);
     void await ();
     void done ();
@@ -92,5 +94,5 @@ struct counting
     counting (const counting& ) = delete;
     counting (counting&& ) = delete;
     ~counting () { fred.one_less (); }
-    counting operator = (const counting& ) = delete;
-    counting operator = (counting&& ) = delete; };
+    counting operator = (const counting& ) = delete; };
+#endif // NO_FRED

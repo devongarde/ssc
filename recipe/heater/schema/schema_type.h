@@ -48,17 +48,17 @@ struct sch : symbol < schema_version, e_schema_type, e_schema, s_schema, sz_true
     static e_schema root (const e_schema_type st);
     e_type get_simple_type () const noexcept; };
 
-constexpr inline bool enumerated_schema_type (const flags_t flags) noexcept
+CONSTEXPR inline bool enumerated_schema_type (const flags_t flags) noexcept
 { return (flags & SF_ENUMERATION) == SF_ENUMERATION; }
 
-constexpr inline bool has_simple_schema_type (const flags_t flags) noexcept
+CONSTEXPR inline bool has_simple_schema_type (const flags_t flags) noexcept
 { return (flags & SF_SIMPLE_MASK) != 0; }
 
-constexpr inline bool external_enumerated_schema_type (const flags_t flags) noexcept
+CONSTEXPR inline bool external_enumerated_schema_type (const flags_t flags) noexcept
 { return (flags & SF_EXTERNAL_ENUMERATION) == SF_EXTERNAL_ENUMERATION; }
 
-constexpr inline e_type get_simple_schema_type (const flags_t flags) noexcept
+CONSTEXPR inline e_type get_simple_schema_type (const flags_t flags) noexcept
 { return static_cast < e_type > (flags & SF_SIMPLE_MASK); }
 
-constexpr inline bool is_itemid_ok (const flags_t flags) noexcept
+CONSTEXPR inline bool is_itemid_ok (const flags_t flags) noexcept
 { return (flags & SF_NO_ITEMID) == 0; }

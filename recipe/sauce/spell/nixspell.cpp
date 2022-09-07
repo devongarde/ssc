@@ -207,7 +207,7 @@ void check_spelling (nitpick& nits, const html_version& v, const lingo& lang, co
         return; }
     PRESUME (! text.empty (), __FILE__, __LINE__);
     ::std::string i (interpret_string (nits, v, text));
-    vstr_t tx (lang.to_words (i));
+    vstr_t tx (lang.to_words (nits, i));
     for (auto t : tx)
     {   if (t.empty ()) continue;
 //        if (! lang.is_alpha (t.substr (0, 1))) continue;

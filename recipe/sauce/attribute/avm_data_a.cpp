@@ -230,7 +230,7 @@ hav_t havt_animation [] =
 hav_t havt_annotation [] =
 {   { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_annotation, a_cd },
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, elem_annotation, a_definitionurl },
-    { { XHTML_1_0, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_annotation, a_encoding },
+    { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, elem_annotation, a_encoding },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_annotation, a_name },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_annotation, a_src },
     MATH3_STANDARD_ATTRIBUTES (elem_annotation),
@@ -240,7 +240,7 @@ hav_t havt_annotation [] =
 hav_t havt_annotation_xml [] =
 {   { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_annotation_xml, a_cd },
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, elem_annotation_xml, a_definitionurl },
-    { { XHTML_1_0, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_annotation_xml, a_encoding },
+    { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, elem_annotation_xml, a_encoding },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_annotation_xml, a_name },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_annotation_xml, a_src },
     MATH3_STANDARD_ATTRIBUTES (elem_annotation_xml),

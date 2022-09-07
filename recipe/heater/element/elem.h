@@ -230,10 +230,10 @@ inline bool operator <= (const elem& lhs, const elem& rhs) noexcept { return lhs
 inline bool operator > (const elem& lhs, const elem& rhs) noexcept { return lhs.get () > rhs.get (); }
 inline bool operator >= (const elem& lhs, const elem& rhs) noexcept { return lhs.get () >= rhs.get (); }
 
-constexpr inline bool is_faux_element (const e_element e) noexcept { return (e >= elem_faux_document) && (e <= elem_faux_whitespace); }
-constexpr inline bool is_custom_element (const e_element e) noexcept { return (e == elem_custom); }
-constexpr inline bool is_error_element (const e_element e) noexcept { return (e == elem_error); }
-constexpr inline bool is_undefined_element (const e_element e) noexcept { return (e == elem_undefined); }
-constexpr inline bool is_standard_element (const e_element e) noexcept { return (e >= elem_custom) && (e < elem_error); }
+CONSTEXPR inline bool is_faux_element (const e_element e) noexcept { return (e >= elem_faux_document) && (e <= elem_faux_whitespace); }
+CONSTEXPR inline bool is_custom_element (const e_element e) noexcept { return (e == elem_custom); }
+CONSTEXPR inline bool is_error_element (const e_element e) noexcept { return (e == elem_error); }
+CONSTEXPR inline bool is_undefined_element (const e_element e) noexcept { return (e == elem_undefined); }
+CONSTEXPR inline bool is_standard_element (const e_element e) noexcept { return (e >= elem_custom) && (e < elem_error); }
 
 void add_elements (const vstr_t& v);

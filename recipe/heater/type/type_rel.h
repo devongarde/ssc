@@ -26,7 +26,7 @@ const e_rel first_mf1_rel = r_entry_category;
 const e_rel last_mf1_rel = r_tag;
 const e_rel first_mf2_rel = r_acquaintance;
 const e_rel last_mf2_rel = r_accessibility;
-constexpr ::std::size_t rel_size = static_cast < ::std::size_t > (r_illegal + 1);
+CONSTEXPR ::std::size_t rel_size = static_cast < ::std::size_t > (r_illegal + 1);
 
 void check_rel_spelling (nitpick& nits, const html_version& v, const ::std::string& original);
 
@@ -74,17 +74,17 @@ struct rel : enum_n < t_rel, e_rel >
     ~rel () = default;
     rel& operator = (const rel& ) = default;
     rel& operator = (rel&& ) = default;
-    constexpr static bool is_microformat (const e_rel value) noexcept
+    CONSTEXPR static bool is_microformat (const e_rel value) noexcept
     {   return value >= first_mf1_rel && value <= last_mf2_rel; }
-    constexpr static bool is_microformat_vocabulary (const e_rel ) noexcept
+    CONSTEXPR static bool is_microformat_vocabulary (const e_rel ) noexcept
     {   return false; }
-    constexpr static bool is_microformat_property (const e_rel value) noexcept
+    CONSTEXPR static bool is_microformat_property (const e_rel value) noexcept
     {   return is_microformat (value); }
-    constexpr static bool is_microformat_v1 (const e_rel value) noexcept
+    CONSTEXPR static bool is_microformat_v1 (const e_rel value) noexcept
     {   return (value >= first_mf1_rel && value <= last_mf1_rel); }
-    constexpr static bool is_microformat_v2 (const e_rel value) noexcept
+    CONSTEXPR static bool is_microformat_v2 (const e_rel value) noexcept
     {   return (value >= first_mf2_rel && value <= last_mf2_rel); }
-    constexpr static bool is_rel () { return true; }
+    CONSTEXPR static bool is_rel () { return true; }
     bool is_microformat () const noexcept { return good () && is_microformat (enum_base < e_rel, t_rel > :: value_); }
     bool is_microformat_property () const noexcept { return is_microformat_property (enum_base < e_rel, t_rel > :: value_); }
     bool is_microformat_vocabulary () const noexcept { return is_microformat_vocabulary (enum_base < e_rel, t_rel > :: value_); }

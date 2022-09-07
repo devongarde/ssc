@@ -171,6 +171,9 @@ PASS ../toast/math/4-20/math14-example.html
 PASS ../toast/math/4-20/math15-example.html
 2 naughty_lang
 27 unrecognised_value
+194 inserted_missing_closure missing_open 
+195 inserted_missing_closure missing_open 
+200 inserted_missing_closure missing_open 
 
 PASS ../toast/math/4-20/math16-example.html
 2 naughty_lang

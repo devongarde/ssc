@@ -34,7 +34,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define DEFAULT_MAX_FILE_SIZE 4
 #define DMFS_BYTES (DEFAULT_MAX_FILE_SIZE * 1024 * 1024)
 
-constexpr e_severity default_output = es_warning;
+CONSTEXPR e_severity default_output = es_warning;
 class replies;
 class corpus;
 

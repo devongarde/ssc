@@ -14,3 +14,9 @@ PASS ../toast/math/4-core/core-2.html
 PASS ../toast/math/4-core/core-3.html
 2 naughty_lang
 4 long_title
+129 bad_vunit
+134 bad_vunit
+142 use_double_quote_code
+
+PASS ../toast/math/4-core/core-4.html
+2 naughty_lang

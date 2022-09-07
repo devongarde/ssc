@@ -36,7 +36,6 @@ class page;
 class element;
 typedef ::std::vector < element* > velptr_t;
 typedef ::std::pair < element*, e_class > found_farm;
-//typedef ::std::shared_ptr < element > element_ptr;
 
 #define EF_NULL_DATATYPE    0x00000001
 #define EF_XL_DATATYPE      0x00000002
@@ -257,7 +256,12 @@ class element
     ::std::string term () const;
 public:
     element (const ::std::string& name, element_node& en, element* parent, page* p);
+//    element () = default;
+//    element (const element& ) = default;
+//    element (element&& ) = default;
     ~element () { cleanup (); }
+//    element& operator = (const element& ) = default;
+//    element& operator = (element&& ) = default;
     void swap (element& e) noexcept;
     void cleanup ();
 
