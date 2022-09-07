@@ -452,7 +452,7 @@ bool fileindex_load_internal (nitpick& nits, bool& ok)
 #if BUFLEN < 255
 #error fileindex BUFLEN is too short 
 #endif
-    constexpr size_t buflen = BUFLEN;
+    CONSTEXPR size_t buflen = BUFLEN;
 #undef BUFLEN
     auto up = ::std::unique_ptr <char []> (new char [buflen]);
     char* buf = up.get ();

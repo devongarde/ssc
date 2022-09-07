@@ -69,7 +69,7 @@ hav_t havt_changed [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_ci [] =
-{   { { XHTML_1_0 }, { HTML_UNDEF }, elem_ci, a_type },
+{   { { HTML_MATH1 }, { HTML_UNDEF }, elem_ci, a_type },
     MATH3_DEFS_ATTRIBUTES (elem_ci),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
@@ -109,8 +109,8 @@ hav_t havt_cmd [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_cn [] =
-{   { { XHTML_1_0 }, { HTML_UNDEF }, elem_cn, a_base },
-    { { XHTML_1_0 }, { HTML_UNDEF }, elem_cn, a_type },
+{   { { HTML_MATH1 }, { HTML_UNDEF }, elem_cn, a_base },
+    { { HTML_MATH1 }, { HTML_UNDEF }, elem_cn, a_type },
     MATH3_DEFS_ATTRIBUTES (elem_cn),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
@@ -232,8 +232,8 @@ hav_t havt_csch [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_csymbol [] =
-{   { { HTML_5_2 }, { HTML_UNDEF }, elem_csymbol, a_cd },
-    { { XHTML_1_0 }, { HTML_UNDEF }, elem_csymbol, a_type },
+{   { { HTML_MATH3 }, { HTML_UNDEF }, elem_csymbol, a_cd },
+    { { HTML_MATH1 }, { HTML_UNDEF }, elem_csymbol, a_type },
     MATH3_DEFS_ATTRIBUTES (elem_csymbol),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 

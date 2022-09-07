@@ -61,21 +61,21 @@ e_inputtype5 element::get_input_type () const
 void element::examine_input ()
 {   if (node_.version ().mjr () < 5) return;
     element* form_daddy = get_ancestor (elem_form);
-    constexpr unsigned it_text_search = (1 << static_cast < unsigned > (i5_search)) + (1 << static_cast < unsigned > (i5_text));
-    constexpr unsigned it_url_tel = (1 << static_cast < unsigned > (i5_tel)) + (1 << static_cast < unsigned > (i5_url));
-    constexpr unsigned it_hidden = 1 << static_cast < unsigned > (i5_hidden);
-    constexpr unsigned it_url = 1 << static_cast < unsigned > (i5_url);
-    constexpr unsigned it_email = 1 << static_cast < unsigned > (i5_email);
-    constexpr unsigned it_password = 1 << static_cast < unsigned > (i5_password);
-    constexpr unsigned it_date_time = (1 << static_cast < unsigned > (i5_date)) + (1 << static_cast < unsigned > (i5_datetime)) + (1 << static_cast < unsigned > (i5_datetime_local)) +
+    CONSTEXPR unsigned it_text_search = (1 << static_cast < unsigned > (i5_search)) + (1 << static_cast < unsigned > (i5_text));
+    CONSTEXPR unsigned it_url_tel = (1 << static_cast < unsigned > (i5_tel)) + (1 << static_cast < unsigned > (i5_url));
+    CONSTEXPR unsigned it_hidden = 1 << static_cast < unsigned > (i5_hidden);
+    CONSTEXPR unsigned it_url = 1 << static_cast < unsigned > (i5_url);
+    CONSTEXPR unsigned it_email = 1 << static_cast < unsigned > (i5_email);
+    CONSTEXPR unsigned it_password = 1 << static_cast < unsigned > (i5_password);
+    CONSTEXPR unsigned it_date_time = (1 << static_cast < unsigned > (i5_date)) + (1 << static_cast < unsigned > (i5_datetime)) + (1 << static_cast < unsigned > (i5_datetime_local)) +
                                       (1 << static_cast < unsigned > (i5_month)) + (1 << static_cast < unsigned > (i5_time)) + (1 << static_cast < unsigned > (i5_week));
-    constexpr unsigned it_number = 1 << static_cast < unsigned > (i5_number);
-    constexpr unsigned it_range = 1 << static_cast < unsigned > (i5_range);
-    constexpr unsigned it_colour = 1 << static_cast < unsigned > (i5_colour);
-    constexpr unsigned it_check_radio = (1 << static_cast < unsigned > (i5_checkbox)) + (1 << static_cast < unsigned > (i5_radio));
-    constexpr unsigned it_file = 1 << static_cast < unsigned > (i5_file);
-    constexpr unsigned it_submit = 1 << static_cast < unsigned > (i5_submit);
-    constexpr unsigned it_image = 1 << static_cast < unsigned > (i5_image);
+    CONSTEXPR unsigned it_number = 1 << static_cast < unsigned > (i5_number);
+    CONSTEXPR unsigned it_range = 1 << static_cast < unsigned > (i5_range);
+    CONSTEXPR unsigned it_colour = 1 << static_cast < unsigned > (i5_colour);
+    CONSTEXPR unsigned it_check_radio = (1 << static_cast < unsigned > (i5_checkbox)) + (1 << static_cast < unsigned > (i5_radio));
+    CONSTEXPR unsigned it_file = 1 << static_cast < unsigned > (i5_file);
+    CONSTEXPR unsigned it_submit = 1 << static_cast < unsigned > (i5_submit);
+    CONSTEXPR unsigned it_image = 1 << static_cast < unsigned > (i5_image);
     const e_inputtype5 i5 = get_input_type ();
     const bool alt_known = a_.known (a_alt);
     const bool alt_empty = trim_the_lot_off (a_.get_string (a_alt)).empty ();

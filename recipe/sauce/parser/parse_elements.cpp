@@ -193,7 +193,7 @@ element_node* elements_node::insert_non_closure (const html_version& v, element_
             ven_.push_back (element_node (ket.nits_, this, ket.line_, false, parent, id, false, ket.arg ())); break;
         case elem_error :
             ket.nits_.pick (nit_internal_parsing_error, es_error, ec_element, "internal program error: invalid parse token status (", ::boost::lexical_cast < ::std::string > (ket.status_), ")");
-            // drip (!) thru'
+            FALLTHROUGH;
         default :
             ven_.push_back (element_node (ket.nits_, this, ket.line_, false, parent, id, false, ::std::string (ket.start_, ket.end_))); }
     current = & ven_.back ();

@@ -1,4 +1,4 @@
--f ../toast/RDFa/lrdw/rdfa.conf
+-N 1 -f ../toast/RDFa/lrdw/rdfa.conf
 
 PASS ../toast/RDFa/lrdw/lrdw.html
 7 reputation

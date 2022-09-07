@@ -24,10 +24,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "schema/schema_version.h"
 
 typedef uint32_t type_index;
-constexpr type_index invalid_type = 0;
+CONSTEXPR type_index invalid_type = 0;
 typedef ::std::vector < type_index > vty_t;
 
-inline constexpr type_index make_type_index (const e_schema_type p) noexcept
+inline CONSTEXPR type_index make_type_index (const e_schema_type p) noexcept
 {   return static_cast < uint32_t > (p); }
 
 inline e_schema_type type_schema (const type_index ii) noexcept

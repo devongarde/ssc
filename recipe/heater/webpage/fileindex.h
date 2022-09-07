@@ -32,8 +32,8 @@ class directory;
 
 typedef ::boost::crc_32_type crc_calc;
 typedef crc_calc::value_type crc_t;
-constexpr crc_t crc_initrem = 0xFFFFFFFF; // CRC 32 initial remainder; see boost docs
-constexpr fileindex_t nullfileindex = SIZE_MAX;
+CONSTEXPR crc_t crc_initrem = 0xFFFFFFFF; // CRC 32 initial remainder; see boost docs
+CONSTEXPR fileindex_t nullfileindex = SIZE_MAX;
 
 #define FX_SCANNED  0x00000001
 #define FX_EXISTS   0x00000002

@@ -23,8 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 typedef uint32_t itemprop_index;
 typedef ::std::vector < itemprop_index > itemprop_indices;
-constexpr itemprop_index illegal_itemprop = 0xFFFFFFFF;
-constexpr itemprop_index null_itemprop = 0;
+CONSTEXPR itemprop_index illegal_itemprop = 0xFFFFFFFF;
+CONSTEXPR itemprop_index null_itemprop = 0;
 
 void init_itemprop ();
 itemprop_index make_itemprop_index (const e_schema_property p);
@@ -33,7 +33,7 @@ itemprop_indices make_itemprop_indices (const vsp_t& vsp);
 itemprop_index make_itemprop_index (const e_property p);
 itemprop_indices make_itemprop_indices (const e_property p);
 
-constexpr inline e_itemprop_category prop_category (const itemprop_index ii) noexcept
+CONSTEXPR inline e_itemprop_category prop_category (const itemprop_index ii) noexcept
 {   return static_cast < e_itemprop_category> (GSL_NARROW_CAST < uint32_t > (ii) >> uint32_category_shift); }
 
 ::std::string bespoke_itemprop_name (const itemprop_index ii);

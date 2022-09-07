@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/context.h"
 #include "type/type.h"
 
-constexpr int max_wotsit_len = 32;
+CONSTEXPR int max_wotsit_len = 32;
 
 void wotsit_init (nitpick& nits);
 void text_check (nitpick& nits, const html_version& v, const ::std::string& text);

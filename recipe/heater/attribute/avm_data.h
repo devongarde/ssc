@@ -145,46 +145,46 @@ struct hav_t
     MATH1_STANDARD_ATTRIBUTES_EX (ELEM, 0, 0)
 
 #define MATH1_FONT_ATTRIBUTES(ELEM) \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_colour }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_fontfamily }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_fontsize }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_fontstyle }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_fontweight }
+    { { HTML_MATH1 }, { HTML_UNDEF }, ELEM, a_colour }, \
+    { { HTML_MATH1 }, { HTML_UNDEF }, ELEM, a_fontfamily }, \
+    { { HTML_MATH1 }, { HTML_UNDEF }, ELEM, a_fontsize }, \
+    { { HTML_MATH1 }, { HTML_UNDEF }, ELEM, a_fontstyle }, \
+    { { HTML_MATH1 }, { HTML_UNDEF }, ELEM, a_fontweight }
 
 #define MATH_OPINFO_ATTRIBUTES(ELEM) \
-    { { XHTML_1_0, 0, 0, H2_MATHML }, { HTML_UNDEF }, ELEM, a_accent }, \
-    { { XHTML_1_0, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_form }, \
-    { { XHTML_1_0, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_fence }, \
-    { { XHTML_1_0, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_largeop }, \
-    { { XHTML_1_0, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_lspace }, \
-    { { XHTML_1_0, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_maxsize }, \
-    { { XHTML_1_0, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_minsize }, \
-    { { XHTML_1_0, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_movablelimits }, \
-    { { XHTML_1_0, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_rspace }, \
-    { { XHTML_1_0, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_separator }, \
-    { { XHTML_1_0, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_stretchy }, \
-    { { XHTML_1_0, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_symmetric }
+    { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, ELEM, a_accent }, \
+    { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_form }, \
+    { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_fence }, \
+    { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_largeop }, \
+    { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_lspace }, \
+    { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_maxsize }, \
+    { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_minsize }, \
+    { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_movablelimits }, \
+    { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_rspace }, \
+    { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_separator }, \
+    { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_stretchy }, \
+    { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_symmetric }
 
 #define MATH_SIZEINFO_ATTRIBUTES(ELEM) \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_depth }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_height }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_width }
+    { { HTML_MATH1 }, { HTML_UNDEF }, ELEM, a_depth }, \
+    { { HTML_MATH1 }, { HTML_UNDEF }, ELEM, a_height }, \
+    { { HTML_MATH1 }, { HTML_UNDEF }, ELEM, a_width }
 
 #define MATH1_TABLE_ATTRIBUTES(ELEM) \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_align }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_alignmentscope }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_columnalign }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_columnlines }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_columnspacing }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_displaystyle }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_equalcolumns }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_equalrows }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_frame }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_framespacing }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_groupalign }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_rowalign }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_rowlines }, \
-    { { XHTML_1_0 }, { HTML_UNDEF }, ELEM, a_rowspacing }
+    { { HTML_MATH1 }, { HTML_UNDEF }, ELEM, a_align }, \
+    { { HTML_MATH1 }, { HTML_UNDEF }, ELEM, a_alignmentscope }, \
+    { { HTML_MATH1 }, { HTML_UNDEF }, ELEM, a_columnalign }, \
+    { { HTML_MATH1 }, { HTML_UNDEF }, ELEM, a_columnlines }, \
+    { { HTML_MATH1 }, { HTML_UNDEF }, ELEM, a_columnspacing }, \
+    { { HTML_MATH1 }, { HTML_UNDEF }, ELEM, a_displaystyle }, \
+    { { HTML_MATH1 }, { HTML_UNDEF }, ELEM, a_equalcolumns }, \
+    { { HTML_MATH1 }, { HTML_UNDEF }, ELEM, a_equalrows }, \
+    { { HTML_MATH1 }, { HTML_UNDEF }, ELEM, a_frame }, \
+    { { HTML_MATH1 }, { HTML_UNDEF }, ELEM, a_framespacing }, \
+    { { HTML_MATH1 }, { HTML_UNDEF }, ELEM, a_groupalign }, \
+    { { HTML_MATH1 }, { HTML_UNDEF }, ELEM, a_rowalign }, \
+    { { HTML_MATH1 }, { HTML_UNDEF }, ELEM, a_rowlines }, \
+    { { HTML_MATH1 }, { HTML_UNDEF }, ELEM, a_rowspacing }
 
 #define MATH2_STANDARD_ATTRIBUTES_EX(ELEM, FLAGS, MF) \
     MATH1_STANDARD_ATTRIBUTES_EX (ELEM, FLAGS, ( H2_MATH_2 | MF ) ), \
@@ -259,17 +259,17 @@ struct hav_t
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_mathvariant }
 
 #define MATH3_LINEINDENT_ATTRIBUTES(ELEM) \
-    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_indentalign }, \
-    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_indentalignfirst }, \
-    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_indentalignlast }, \
-    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_indentshift }, \
-    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_indentshiftfirst }, \
-    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_indentshiftlast }, \
-    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_indenttarget }, \
-    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_linebreak }, \
-    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_linebreakmultichar }, \
-    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_linebreakstyle }, \
-    { { HTML_5_2 }, { HTML_UNDEF }, ELEM, a_lineleading }
+    { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_indentalign }, \
+    { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_indentalignfirst }, \
+    { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_indentalignlast }, \
+    { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_indentshift }, \
+    { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_indentshiftfirst }, \
+    { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_indentshiftlast }, \
+    { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_indenttarget }, \
+    { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_linebreak }, \
+    { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_linebreakmultichar }, \
+    { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_linebreakstyle }, \
+    { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, ELEM, a_lineleading }
 
 #define MATH4_PRES_ATTRIBUTES_EX(ELEM, FLAGS) \
     { { HTML_MATH4_22, 0, FLAGS, H2_MATH_4_22 }, { HTML_UNDEF }, ELEM, a_arg }, \

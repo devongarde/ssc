@@ -59,7 +59,7 @@ hav_t havt_noframes [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_none [] =
-{   { { XHTML_1_0 }, { HTML_UNDEF }, elem_none, a_xmlns },
+{   { { HTML_MATH1 }, { HTML_UNDEF }, elem_none, a_xmlns },
     STANDARD_MATH_CORE_ATTRIBUTES (elem_none),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 

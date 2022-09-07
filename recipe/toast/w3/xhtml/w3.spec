@@ -6,6 +6,9 @@ PASS ../toast/w3/xhtml/index.html
 PASS ../toast/w3/xhtml/xhtml-mathml2-fpi.html
 2 unexpected_doctype_content
 6 use_quote_code
+15 math_kids
+17 inserted_missing_closure
+22 missing_open
 
 PASS ../toast/w3/xhtml/xhtml-mathml2.html
 1 presume_html_1 attribute_unrecognised_here attribute_unrecognised_here attribute_unrecognised unrecognised_attribute unrecognised_attribute unrecognised_attribute

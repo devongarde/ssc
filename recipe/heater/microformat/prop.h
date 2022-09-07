@@ -21,18 +21,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "type/type.h"
 
-constexpr e_property first_class = static_cast < e_property > (c_context);
-constexpr e_property first_rel = first_class + GSL_NARROW_CAST < e_property > (class_size);
-constexpr e_property last_class = first_rel - 1;
-constexpr e_property first_illegal = first_rel + GSL_NARROW_CAST < e_property > (rel_size);
-constexpr e_property last_rel = first_illegal - 1;
+CONSTEXPR e_property first_class = static_cast < e_property > (c_context);
+CONSTEXPR e_property first_rel = first_class + GSL_NARROW_CAST < e_property > (class_size);
+CONSTEXPR e_property last_class = first_rel - 1;
+CONSTEXPR e_property first_illegal = first_rel + GSL_NARROW_CAST < e_property > (rel_size);
+CONSTEXPR e_property last_rel = first_illegal - 1;
 
-constexpr inline bool is_vocabulary (const e_property p) noexcept { return ((p >= h1_aggregate) && (p <= h_aggregate)); }
-constexpr inline bool is_property (const e_property p) noexcept { return ((p >= mf1_additional_name) && (p <= u_search)); }
-constexpr inline bool is_mf1 (const e_property p) noexcept { return ((p >= h1_aggregate) && (p <= h1_xoxo)) || ((p >= h1_aggregate) && (p <= mf1_website)) ; }
-constexpr inline bool is_mf2 (const e_property p) noexcept { return ((p >= h_adr) && (p <= h_aggregate)) || ((p >= dt_accessed) && (p <= u_search)) ; }
-constexpr inline bool is_mf_class (const e_property p) noexcept { return (p >= first_class) && (p <= last_class); }
-constexpr inline bool is_mf_rel (const e_property p) noexcept { return (p >= first_rel) && (p <= last_rel); }
+CONSTEXPR inline bool is_vocabulary (const e_property p) noexcept { return ((p >= h1_aggregate) && (p <= h_aggregate)); }
+CONSTEXPR inline bool is_property (const e_property p) noexcept { return ((p >= mf1_additional_name) && (p <= u_search)); }
+CONSTEXPR inline bool is_mf1 (const e_property p) noexcept { return ((p >= h1_aggregate) && (p <= h1_xoxo)) || ((p >= h1_aggregate) && (p <= mf1_website)) ; }
+CONSTEXPR inline bool is_mf2 (const e_property p) noexcept { return ((p >= h_adr) && (p <= h_aggregate)) || ((p >= dt_accessed) && (p <= u_search)) ; }
+CONSTEXPR inline bool is_mf_class (const e_property p) noexcept { return (p >= first_class) && (p <= last_class); }
+CONSTEXPR inline bool is_mf_rel (const e_property p) noexcept { return (p >= first_rel) && (p <= last_rel); }
 
 class prop  // would probably be better templated
 {   e_property value_ = 0;

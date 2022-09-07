@@ -752,6 +752,7 @@ const nitname nitnames [] =
     { nit_bad_intent, "bad_intent" },
     { nit_cannot_scan, "cannot_scan" },
     { nit_thread, "thread" },
+    { nit_icu_installation, "icu_installation" },
 
     { nit_off, "" } };
 

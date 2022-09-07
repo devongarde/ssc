@@ -295,6 +295,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_MATH_2_3_4_C ( H2_MATH_2_3_4 | H2_MATH_C )
 #define H2_MATH_3_4_20  ( H2_MATH_3 | H2_MATH_4_20 )
 #define H2_MATH_3_4     ( H2_MATH_3 | H2_MATH_4 )
+#define H2_MATH_3_4_C   ( H2_MATH_3_4 | H2_MATH_C )
 #define H2_MATH_2_C     ( H2_MATH_2 | H2_MATH_C )
 #define H2_MATH_4_22_C  ( H2_MATH_4_22 | H2_MATH_C )
 #define H2_MATHML       ( H2_MATH_1_2 | H2_MATH_3_4 )
@@ -376,6 +377,8 @@ public:
     bool ie () const noexcept { return all_ext (HE_IE); }
     bool has_jsonld () const noexcept { return any_ext2 (JSONLD_MASK); }
     bool has_math () const noexcept { return any_ext2 (MATH_MASK); }
+    bool has_math_core () const noexcept { return any_ext2 (H2_MATH_C); }
+    bool has_math_not_core () const noexcept { return any_ext2 (H2_MATHML) && ! has_math_core (); }
     bool has_rdfa () const noexcept { return any_ext (HE_RDFA); }
     bool has_svg () const noexcept { return any_ext (SVG_MASK); }
     bool has_xlink () const  noexcept{ return any_ext (XLINK_MASK); }

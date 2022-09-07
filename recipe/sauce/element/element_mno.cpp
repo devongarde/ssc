@@ -368,12 +368,12 @@ void element::examine_mstyle ()
         pick (nit_deprecated_attribute, es_warning, ec_attribute, "the ...MATHSPACE attributes are deprecated in MathML 3"); }
 
 void element::examine_mtable ()
-{   if (node_.version ().math_version () < math_4_22) return;
+{   if (node_.version ().math_version () != math_4_22) return;
     if (! descendant_elements_.test (elem_mtr))
         pick (nit_mtr_required, ed_math_4_22, "3 Presentation Markup", es_error, ec_attribute, "<MTABLE> requires <MTR> children"); }
 
 void element::examine_mtr ()
-{   if (node_.version ().math_version () < math_4_22) return;
+{   if (node_.version ().math_version () != math_4_22) return;
     if (! descendant_elements_.test (elem_mtd))
         pick (nit_mtd_required, ed_math_4_22, "3 Presentation Markup", es_error, ec_attribute, "<MTR> requires <MTD> children"); }
 

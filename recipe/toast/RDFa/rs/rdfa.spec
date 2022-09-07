@@ -1,4 +1,4 @@
--f ../toast/RDFa/rs/rdfa.conf
+-N 1 -f ../toast/RDFa/rs/rdfa.conf
 
 PASS ../toast/RDFa/rs/rs.html
 11 data_vocabulary data_vocabulary

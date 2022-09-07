@@ -241,6 +241,12 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (ENV_ARGS, ::boost::program_options::value < ::std::string > (), "alternative command line parameters.")
         ;
     hidden.add_options ()
+#ifdef NO_BOOST_REGEX
+        (GENERAL EXCLUDE, ::boost::program_options::value < vstr_t > () -> composing (), "Ignore files that match this posix regular expression; may be repeated.")
+#endif // NO_BOOST_REGEX
+#ifdef NO_FRED
+        (GENERAL THREAD ",n", ::boost::program_options::value < int > (), "Number of threads (default appropriate for the hardware).")
+#endif // NO_FRED
         (GENERAL MACROSTART, ::boost::program_options::value < ::std::string > () -> default_value ("{{"), "Start of template macro (by default, the '{{' in '{{macro}}').")
         (GENERAL MACROEND, ::boost::program_options::value < ::std::string > () -> default_value ("}}"), "End of template macro (by default, the '}}' in '{{macro}}').")
 
@@ -251,7 +257,21 @@ void options::process (nitpick& nits, int argc, char* const * argv)
 
         (NITS SPEC, ::boost::program_options::bool_switch (), "Output nits in test spec format (requires -T).")
         (NITS DONT SPEC, ::boost::program_options::bool_switch (), "Do not output nits in test spec format.")
+
+#ifdef NOSPELL
+        (SPELL ACCEPT, ::boost::program_options::value < vstr_t > () -> composing (), "Ignore this word in spell checks; may be repeated.")
+        (SPELL CASED, ::boost::program_options::bool_switch (), "Nitpick wrongly cased but correctly spelt words.")
+        (SPELL DONT CASED, ::boost::program_options::bool_switch (), "Ignore case when checking spelling.")
+        (SPELL CHECK ",G", ::boost::program_options::bool_switch (), "Check spelling (see also --" GENERAL LANG ").")
+        (SPELL DONT CHECK, ::boost::program_options::bool_switch (), "Do not check spelling.")
+        (SPELL DICT, ::boost::program_options::value < vstr_t > () -> composing (), "LANG,DICT: associate (hunspell) dictionary with language, e.g. 'en-US,en_US-large'; may be repeated (ignored in Windows).")
+        (SPELL ICU, ::boost::program_options::bool_switch (), "Use the International Components for Unicode (ICU) text libraries (high quality but slow).")
+        (SPELL DONT ICU, ::boost::program_options::bool_switch (), "Use standard text libraries (fast but inaccurate).")
+        (SPELL LIST, ::boost::program_options::value < vstr_t > () -> composing (), "FILE,LANG: FILE contains additional valid spellings in LANG; may be repeated.")
+        (SPELL PATH, ::boost::program_options::value < ::std::string > (), "Path to (hunspell) dictionaries (ignored in Windows).")
+#endif // NOSPELL
     ;
+
     primary.add_options ()
         (GENERAL CLASS, ::boost::program_options::bool_switch (), "Report unrecognised classes (consider --" GENERAL CSS ".")
         (GENERAL DONT CLASS, ::boost::program_options::bool_switch (), "Do not report unrecognised classes.")
@@ -266,7 +286,9 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (GENERAL DATAPATH ",p", ::boost::program_options::value < ::std::string > () -> default_value ("." PROG), "Root directory for most " PROG " files.")
         (GENERAL ERR ",E", ::boost::program_options::value < ::std::string > () -> composing (), "Exit with an error if nits of this severity or worse are generated. Values: '"
             CATASTROPHE "', '" ERR "' (default), '" WARNING "', '" INFO  "', or '" COMMENT  "'.")
+#ifndef NO_BOOST_REGEX
         (GENERAL EXCLUDE, ::boost::program_options::value < vstr_t > () -> composing (), "Ignore files that match this posix regular expression; may be repeated.")
+#endif // NO_BOOST_REGEX
         (GENERAL FICHIER ",c", ::boost::program_options::value < ::std::string > () -> default_value (PROG EXT), "File for persistent data, requires -N (note --" GENERAL DATAPATH ").")
         (GENERAL GIT, ::boost::program_options::value < vstr_t > () -> composing (), "Ignore git internal files.")
         (GENERAL IGNORED, ::boost::program_options::value < vstr_t > () -> composing (), "Ignore attributes and content of specified element; may be repeated.")
@@ -289,7 +311,9 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (GENERAL DONT SSI, ::boost::program_options::bool_switch (), "Do not process Server Side Includes.")
         (GENERAL TEST ",T", ::boost::program_options::bool_switch (), "Output in format useful for automated tests.")
         (GENERAL DONT TEST, ::boost::program_options::bool_switch (), "Output in format specified by other switches.")
+#ifndef NO_FRED
         (GENERAL THREAD ",n", ::boost::program_options::value < int > (), "Number of threads (default appropriate for the hardware).")
+#endif // NO_FRED
         (GENERAL VERBOSE ",v", ::boost::program_options::value < ::std::string > (), "Output these nits and worse. Values: '"
             CATASTROPHE "', '" ERR "', '" WARNING "' (default), '" INFO  "', '" COMMENT  "', or 0 for silence.")
 
@@ -415,6 +439,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (WEBSITE SITE ",s", ::boost::program_options::value < vstr_t > () -> composing (), "Domain name(s) for local site (default none); may be repeated.")
         (WEBSITE VIRTUAL ",L", ::boost::program_options::value < vstr_t > () -> composing (), "Define virtual directory, arg syntax virtual=physical; may be repeated.")
 
+#ifndef NOSPELL
         (SPELL ACCEPT, ::boost::program_options::value < vstr_t > () -> composing (), "Ignore this word in spell checks; may be repeated.")
         (SPELL CASED, ::boost::program_options::bool_switch (), "Nitpick wrongly cased but correctly spelt words.")
         (SPELL DONT CASED, ::boost::program_options::bool_switch (), "Ignore case when checking spelling.")
@@ -425,6 +450,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (SPELL DONT ICU, ::boost::program_options::bool_switch (), "Use standard text libraries (fast but inaccurate).")
         (SPELL LIST, ::boost::program_options::value < vstr_t > () -> composing (), "FILE,LANG: FILE contains additional valid spellings in LANG; may be repeated.")
         (SPELL PATH, ::boost::program_options::value < ::std::string > (), "Path to (hunspell) dictionaries (ignored in Windows).")
+#endif // NOSPELL
 
         (STATS EXPORT, ::boost::program_options::value < ::std::string > (), "Export collected statistical data here.")
         (STATS META, ::boost::program_options::bool_switch (), "Report on <META> data.")
@@ -708,9 +734,11 @@ void options::contextualise (nitpick& nits)
             .shadow_changed (false).shadow_comment (false).shadow_enable (false).shadow_space (false).shadow_ssi (false).spell (false).ssi (false)
             .stats_page (false).stats_summary (false).unknown_class (false).update (false);
 
+#ifndef NO_FRED
     if (var_.count (GENERAL THREAD)) context.fred (var_ [GENERAL THREAD].as < int > ());
     else if (var_.count (GENERAL DEFTHRD)) context.fred (var_ [GENERAL DEFTHRD].as < int > ());
     else context.fred (0);
+#endif // NO_FRED
 
     if (! context.cgi ())
     {   if (var_.count (NITS FORMAT)) context.nit_format (var_ [NITS FORMAT].as < ::std::string > ());
@@ -870,7 +898,7 @@ void options::contextualise (nitpick& nits)
         yea_nay (&context_t::ssi, nits, GENERAL SSI, GENERAL DONT SSI);
         context.persisted (path_in_context (nix_path_to_local (var_ [GENERAL FICHIER].as < ::std::string > ())));
 
-        constexpr long meg = 1024*1024;
+        CONSTEXPR long meg = 1024*1024;
 
         if (! var_.count (GENERAL MAXFILESIZE))
             context.max_file_size (4 * meg);
@@ -883,7 +911,9 @@ void options::contextualise (nitpick& nits)
         if (var_.count (GENERAL ERR))
         {   e_severity sev = decode_severity (nits, var_ [GENERAL ERR].as < ::std::string > ());
             if (sev != es_undefined) context.report_error (sev); }
+#ifndef NO_BOOST_REGEX
         if (var_.count (GENERAL EXCLUDE)) context.exclude (nits, var_ [GENERAL EXCLUDE].as < vstr_t > ());
+#endif // NO_BOOST_REGEX
         if (var_.count (GENERAL GIT)) context.exclude (nits, ".git");
         if (var_.count (GENERAL IGNORED)) context.ignore (nits, var_ [GENERAL IGNORED].as < vstr_t > ());
         if (var_.count (GENERAL LANG)) context.lang (var_ [GENERAL LANG].as < ::std::string > ());
@@ -1338,7 +1368,9 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (GENERAL DEFTHRD)) res << GENERAL DEFTHRD ": " << var_ [GENERAL DEFTHRD].as < int > () << "\n";
     if (var_.count (GENERAL ERR)) res << GENERAL ERR ": " << var_ [GENERAL ERR].as < ::std::string > () << "\n";
     if (var_.count (GENERAL ENVIRONMENT)) { res << GENERAL ENVIRONMENT ": "; pvs (res, var_ [GENERAL ENVIRONMENT].as < vstr_t > ()); res << "\n"; }
+#ifndef NO_BOOST_REGEX
     if (var_.count (GENERAL EXCLUDE)) { res << GENERAL EXCLUDE ": "; pvs (res, var_ [GENERAL EXCLUDE].as < vstr_t > ()); res << "\n"; }
+#endif // NO_BOOST_REGEX
     if (var_.count (GENERAL FICHIER)) res << GENERAL FICHIER ": " << var_ [GENERAL FICHIER].as < ::std::string > () << "\n";
     if (var_ [GENERAL INFO].as < bool > ()) res << GENERAL INFO "\n";
     if (var_.count (GENERAL IGNORED)) { res << GENERAL IGNORED ": "; pvs (res, var_ [GENERAL IGNORED].as < vstr_t > ()); res << "\n"; }
@@ -1361,7 +1393,9 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_ [GENERAL DONT SSI].as < bool > ()) res << GENERAL DONT SSI "\n";
     if (var_ [GENERAL TEST].as < bool > ()) res << GENERAL TEST "\n";
     if (var_ [GENERAL DONT TEST].as < bool > ()) res << GENERAL DONT TEST "\n";
+#ifndef NO_FRED
     if (var_.count (GENERAL THREAD)) res << GENERAL THREAD ": " << var_ [GENERAL THREAD].as < int > () << "\n";
+#endif // NO_FRED
     if (var_.count (GENERAL VERBOSE)) res << GENERAL VERBOSE ": " << var_ [GENERAL VERBOSE].as < ::std::string > () << "\n";
 
     if (var_.count (HTML RFC1867)) res << HTML RFC1867 "\n";
@@ -1481,6 +1515,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (WEBSITE ROOT)) res << WEBSITE ROOT ": " << var_ [WEBSITE ROOT].as < ::std::string > () << "\n";
     if (var_.count (WEBSITE VIRTUAL)) { res << WEBSITE VIRTUAL ": "; pvs (res, var_ [WEBSITE VIRTUAL].as < vstr_t > ()); res << "\n"; }
 
+#ifndef NOSPELL
     if (var_.count (SPELL ACCEPT)) { res << SPELL ACCEPT ": "; pvs (res, var_ [SPELL ACCEPT].as < vstr_t > ()); res << "\n"; }
     if (var_ [SPELL CASED].as < bool > ()) res << SPELL CASED "\n";
     if (var_ [SPELL DONT CASED].as < bool > ()) res << SPELL DONT CASED "\n";
@@ -1491,6 +1526,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_ [SPELL DONT ICU].as < bool > ()) res << SPELL DONT ICU "\n";
     if (var_.count (SPELL LIST)) { res << SPELL LIST ": "; pvs (res, var_ [SPELL LIST].as < vstr_t > ()); res << "\n"; }
     if (var_.count (SPELL PATH)) res << SPELL PATH ": " << var_ [SPELL PATH].as < ::std::string > () << "\n";
+#endif // NOSPELL
 
     if (var_.count (STATS EXPORT)) res << STATS EXPORT ": " << var_ [STATS EXPORT].as < ::std::string > () << "\n";
     if (var_ [STATS META].as < bool > ()) res << STATS META "\n";

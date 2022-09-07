@@ -1,4 +1,4 @@
--f ../toast/RDFa/imported/rdfa.conf
+-N 1 -f ../toast/RDFa/imported/rdfa.conf
 
 PASS ../toast/RDFa/imported/dokieli.html
 7 no_such_folder url_not_found

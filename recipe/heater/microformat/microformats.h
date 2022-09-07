@@ -30,8 +30,8 @@ class element;
 
 class microformats
 {   microformat_vpv mf_;
-    constexpr static ::std::size_t index (const e_class v) noexcept { return microformat_pv::index (v); }
-    constexpr static ::std::size_t index (const e_rel r) noexcept { return microformat_pv::index (r); }
+    CONSTEXPR static ::std::size_t index (const e_class v) noexcept { return microformat_pv::index (v); }
+    CONSTEXPR static ::std::size_t index (const e_rel r) noexcept { return microformat_pv::index (r); }
     bool allocated (const ::std::size_t ndx) const noexcept;
     void alloc (const ::std::size_t ndx);
     bool has (const ::std::size_t ndx, const e_property p) const;

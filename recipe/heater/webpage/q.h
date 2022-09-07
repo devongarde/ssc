@@ -19,6 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
+
+#ifndef NO_FRED
 #include "webpage/directory.h"
 
 struct q_entry
@@ -42,3 +44,4 @@ struct q_entry
     void swap (q_entry& qe) noexcept; };
 
 bool d_q (q_entry& qe);
+#endif // NO_FRED

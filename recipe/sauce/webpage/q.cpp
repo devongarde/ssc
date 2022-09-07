@@ -19,6 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "main/standard.h"
+
+#ifndef NO_FRED
 #include "main/abort.h"
 #include "main/context.h"
 #include "coop/lox.h"
@@ -84,3 +86,5 @@ void q_entry::swap (q_entry& qe) noexcept
     page_.swap (qe.page_);
     ::std::swap (ticks_, qe.ticks_);
     ::std::swap (stage_, qe.stage_); }
+
+#endif // NO_FRED

@@ -43,14 +43,14 @@ struct attr : symbol < html_version, e_attribute >
     static void init (nitpick& nits);
     static bool is_versioner (const e_attribute a) { return (symbol < html_version, e_attribute > :: flags (a) & AF_REVERSIONER) == AF_REVERSIONER; }
     static bool spellcheck (const e_attribute a) { return (symbol < html_version, e_attribute > :: flags (a) & AF_SPELT) == AF_SPELT; }
-    constexpr static e_sought_category link_category_sought (const flags_t f) noexcept
+    CONSTEXPR static e_sought_category link_category_sought (const flags_t f) noexcept
     {   return static_cast < e_sought_category > (AP_GET_XLINKCAT (f)); }
     e_sought_category link_category_sought () const noexcept
     {   return static_cast < e_sought_category > (AP_GET_XLINKCAT (flags ())); }
     bool spellcheck () const noexcept { return (symbol < html_version, e_attribute > :: flags () & AF_SPELT) == AF_SPELT; }
     bool is_versioner () const noexcept { return (symbol < html_version, e_attribute > :: flags () & AF_REVERSIONER) == AF_REVERSIONER; } };
 
-constexpr inline bool is_custom_attribute (const e_attribute a) noexcept { return (a == a_custom); }
-constexpr inline bool is_error_attribute (const e_attribute a) noexcept { return (a == a_illegal); }
-constexpr inline bool is_unknown_attribute (const e_attribute a) noexcept { return (a == a_unknown); }
+CONSTEXPR inline bool is_custom_attribute (const e_attribute a) noexcept { return (a == a_custom); }
+CONSTEXPR inline bool is_error_attribute (const e_attribute a) noexcept { return (a == a_illegal); }
+CONSTEXPR inline bool is_unknown_attribute (const e_attribute a) noexcept { return (a == a_unknown); }
 void add_attributes (const vstr_t& v);

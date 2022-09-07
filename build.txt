@@ -69,7 +69,7 @@ Unii & mock Unii
 ----------------
 You will need CMake 3.19 or better. On Linux, you will also need
 lsb-release. These can be found in most distributions' standard
-packages.
+packages. (For macos, I used macports.)
 From the home ssc directory, compile a normal build thus:
 cmake .
 make
@@ -97,8 +97,11 @@ FreeBSD:  12.3 / 13.1
 Linux:    Alma Linux 9, AOSC, Centos 8 / 9*, SUSE Tumbleweed,
           Ubuntu 20.04 / 22.04
 MacOS:    Monterey, Big Sur, Catalina, Mojave, High Sierra, Sierra,
-          and El Capitan
+          El Capitan, and Yosemite
 OpenBSD:  7.1 / 7.0 / 6.9
+
+A build on an older operating system may result in some features being
+unavailable.
 
 * Because Centos 9 doesn't offer lsb-release, the appropriate CMake
 command is:
@@ -133,6 +136,8 @@ Dimitude
 The testing utility is rather stupid; it will test features that are
 not built, causing failures.
 
+Spelling test results depend on the dictionaries installed.
+
 
 Supporting libraries
 ====================
@@ -141,25 +146,22 @@ GSL
 ---
 If you can't find a copy of Microsoft's GSL in your system's standard
 package suite, then grab a current copy from its github repository
-(https://github.com/Microsoft/GSL) and unpack it. In Windows, add the
-root directory to your local path. In Unii, do the following:
-    cmake .
-    make
-    sudo make install
+(https://github.com/Microsoft/GSL), then unpack, build and install it.
+In Windows, remember to add the root directory to your local path.
 
 Curl
 ----
 This is in every standard unix flavour repository that I've met, but
 not so easy for Windows. I suggest the following:
 
-  Install the Microsoft repository vcpkg (https://vcpkg.org)
-  Run up the visual studio 64bit native command prompt
-  Run the vcpkg bootstrap batch file, noting the comments
-  Enter "vcpkg install curl:x64-windows"
-  Add an environment variable to your account for CURL, perhaps:
+1  Install the Microsoft repository vcpkg (https://vcpkg.io)
+2  Run up the visual studio 64bit native command prompt
+3  Run the vcpkg bootstrap batch file, noting the comments
+4  Enter "vcpkg install curl:x64-windows"
+5  Add an environment variable to your account for CURL, perhaps:
     CURL=****\project\lib\vcpkg\installed\x64-windows
-  Add the installation bin directory to your local path
+6  Add the installation bin directory to your local path, perhaps:
     ****\project\lib\vcpkg\installed\x64-windows\bin
-  If you plan to debug, also add debug\bin
+7  If you plan to debug, also add debug\bin, perhaps:
     ****\project\lib\vcpkg\installed\x64-windows\debug\bin
   

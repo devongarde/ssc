@@ -478,7 +478,7 @@ bool ends_with_letters (const html_version& v, const ::std::string& s, const ::s
 
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to)
 {   BOOST_STATIC_ASSERT (DEFAULT_LINE_LENGTH - 16 <= INT8_MAX);
-    constexpr int maxish = DEFAULT_LINE_LENGTH - 16;
+    CONSTEXPR int maxish = DEFAULT_LINE_LENGTH - 16;
     if ((to - from) > INT8_MAX) return ::std::string (from, to);
     const int len = GSL_NARROW_CAST < int > (to - from);
     if (len >= maxish) return ::std::string (from, to);

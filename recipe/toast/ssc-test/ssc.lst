@@ -63,9 +63,9 @@
 ../toast/math/1/math.spec
 ../toast/math/2/math.spec
 ../toast/math/3/math.spec
-../toast/math/4-core/math.spec
 ../toast/math/4-20/math.spec
 ../toast/math/4-22/math.spec
+../toast/math/4-core/math.spec
 ../toast/microdata/12/schema.spec
 ../toast/microdata/addendum/add.spec
 ../toast/microdata/basic/basic.spec
@@ -130,6 +130,10 @@
 ../toast/shadow/update/update.spec
 ../toast/snippet/conf/snippet.spec
 ../toast/snippet/kiwi/snippet.spec
+../toast/spell/case/spell.spec
+../toast/spell/noicu/spell.spec
+../toast/spell/nospell/spell.spec
+../toast/spell/spell/spell.spec
 ../toast/stats/detail/stats.spec
 ../toast/stats/single/stats.spec
 ../toast/stats/summary/stats.spec

@@ -146,7 +146,7 @@ void element::examine_fecomposite ()
                 pick (nit_fecomposite, es_info, ec_attribute, "K1, K2, K3 and K4 are ignored unless OPERATOR=arithmetic"); }
 
 void element::examine_feconvolvematrix ()
-{   constexpr unsigned max_safe_count = 16;
+{   CONSTEXPR unsigned max_safe_count = 16;
     unsigned ordered = 9;
     if (a_.good (a_order))
     {   vstr_t dim (split_by_space (trim_the_lot_off (a_.get_string (a_order))));

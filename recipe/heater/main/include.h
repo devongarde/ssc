@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
-#define VERSION_RELEASE 5
-#define VERSION_STRING "0.1.5"
+#define VERSION_RELEASE 6
+#define VERSION_STRING "0.1.6"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -85,6 +85,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #else // NOSPELL
 #define SPELT "s"
 #endif // NOSPELL
+
+#ifdef NOCONSTEXPR
+#define CONSTEXPR const
+#else // NOCONSTEXPR
+#define CONSTEXPR constexpr
+#endif // NOCONSTEXPR
 
 #ifdef __clang__
 #pragma clang diagnostic push
@@ -198,9 +204,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include <array>
 #include <codecvt>
 #include <locale>
+#ifndef NO_FRED
 #include <shared_mutex>
 #include <thread>
 #include <atomic>
+#endif // NO_FRED
 
 #ifndef NOICU
 #include <unicode/ucsdet.h>
@@ -245,12 +253,6 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 
 #if BOOST_MINOR < 72
 #define NO_DIROPTS
-//#ifdef HUNSPELL
-//#undef HUNSPELL
-//#endif // HUNSPELL
-//#ifndef NOSPELL
-//#define NOSPELL
-//#endif // HUNSPELL
 #endif // 1.72
 
 #if BOOST_MINOR < 73
@@ -532,7 +534,9 @@ typedef uint64_t flags_t; // at least 64 bits
 #endif // NO_JSONIC
 
 #ifdef _MSC_VER
-#define OS "Windows_x64"
+#ifndef OS
+#define OS "Windows x64"
+#endif // OS
 #else
 #ifndef OS_VER
 #define OS "???"
@@ -553,9 +557,18 @@ typedef uint64_t flags_t; // at least 64 bits
 #define DBG_STATUS
 #endif // DEBUG
 
+#define BUILD_INFO   DBG_STATUS FUDDY CURLY JSNIC NPS_GEN SPELT ":" OS ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER
+#define BASE_TITLE   FULLNAME " v" VERSION_STRING " (" WEBADDR ")\n"
+#define SIMPLE_TITLE BASE_TITLE COPYRIGHT_TEXT "\n"
+#define FULL_TITLE   BASE_TITLE COPYRIGHT "\n" "[" __DATE__ " " __TIME__  "] [" BUILD_INFO "]" "\n"
+#define TEST_TITLE   FULLNAME " v" VERSION_STRING "\n" "(" __DATE__ " " __TIME__ ")\n" WEBADDR "\n" COPYRIGHT "\n\n"
+
 // Enable this to see full messages that would otherwise be generated when using -T switch, roughly speaking
 // #define EXPAND_TEST
 
 #define TYPE_HELP "Type '" PROG " -h' for help."
 
-extern ::std::string build_info, test_title, simple_title, full_title;
+extern const char* build_info;
+extern const char* test_title;
+extern const char* simple_title;
+extern const char* full_title;

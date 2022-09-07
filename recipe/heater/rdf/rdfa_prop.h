@@ -23,8 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 typedef uint32_t prop_index;
 typedef ::std::vector < prop_index > prop_indices;
-constexpr prop_index illegal_prop = 0xFFFFFFFF;
-constexpr prop_index null_prop = 0;
+CONSTEXPR prop_index illegal_prop = 0xFFFFFFFF;
+CONSTEXPR prop_index null_prop = 0;
 
 void init_rdfa_prop ();
 

@@ -38,7 +38,9 @@ bool is_folder (const ::boost::filesystem::path& name);
 bool is_file (const ::boost::filesystem::path& name);
 bool file_exists (const ::boost::filesystem::path& name);
 ::boost::filesystem::file_status file_data (const ::boost::filesystem::path& name);
+#ifndef NO_PERMS
 bool file_permissions (const ::boost::filesystem::path& name, ::boost::filesystem::perms prms);
+#endif // NO_PERMS
 ::boost::filesystem::path absolute_name (const ::boost::filesystem::path& name);
 ::boost::filesystem::path canonical_name (const ::boost::filesystem::path& name);
 bool make_directories (const ::boost::filesystem::path& name);
@@ -54,7 +56,9 @@ bool is_folder (const ::boost::filesystem::path& name);
 bool is_file (const ::boost::filesystem::path& name);
 bool file_exists (const ::boost::filesystem::path& name);
 ::boost::filesystem::file_status file_data (const ::boost::filesystem::path& name);
+#ifndef NO_PERMS
 bool file_permissions (const ::boost::filesystem::path& name, ::boost::filesystem::perms prms) noexcept;
+#endif // NO_PERMS
 ::boost::filesystem::path absolute_name (const ::boost::filesystem::path& name);
 ::boost::filesystem::path canonical_name (const ::boost::filesystem::path& name);
 bool make_directories (const ::boost::filesystem::path& name) noexcept;

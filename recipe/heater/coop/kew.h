@@ -19,6 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
+#ifndef NO_FRED
+
 #include "coop/lox.h"
 #include "coop/fred.h"
 
@@ -28,11 +30,11 @@ class kew
     ::std::atomic_bool empty_;
 public:
     kew () : empty_ (true) { }
-    kew (const kew& ) = default;
-    kew (kew&& ) = default;
+    kew (const kew& ) = delete;
+    kew (kew&& ) = delete;
     ~kew () = default;
-    kew& operator = (const kew& ) = default;
-    kew& operator = (kew&& ) = default;
+    kew& operator = (const kew& ) = delete;
+    kew& operator = (kew&& ) = delete;
     void push (const q_entry& t)
     {   lox l (lox_q);
         empty_ = false;
@@ -48,3 +50,4 @@ public:
     bool pop (q_entry& t); };
 
 extern kew q;
+#endif // NO_FRED

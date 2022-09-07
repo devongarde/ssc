@@ -19,6 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "main/standard.h"
+
+#ifndef NO_FRED
 #include "type/enum.h"
 #include "main/context.h"
 #include "coop/lox.h"
@@ -141,10 +143,11 @@ dear::~dear ()
     {   fprintf (stderr, "unknown dear mutex exception; aborting."); }
     GRACELESS_CRASH (__FILE__, __LINE__); }
 
-::std::mutex& lox::mx (const e_lox l)
-{   PRESUME (fred.started (), __FILE__, __LINE__);
-    return vmx.at (l); }
+//::std::mutex& lox::mx (const e_lox l)
+//{   PRESUME (fred.started (), __FILE__, __LINE__);
+//    return vmx.at (l); }
 
-::std::mutex& flox::mx ()
-{   PRESUME (fred.started (), __FILE__, __LINE__);
-    return vmx.at (lox_flox); }
+//::std::mutex& flox::mx ()
+//{   PRESUME (fred.started (), __FILE__, __LINE__);
+//    return vmx.at (lox_flox); }
+#endif // NO_FRED

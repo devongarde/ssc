@@ -134,7 +134,7 @@ hav_t havt_set [] =
 {   { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_set, a_externalresourcesrequired },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_set, a_href },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_set, a_to },
-    { { XHTML_1_0, 0, 0, H2_MATH_2 }, { HTML_UNDEF }, elem_set, a_type },
+    { { HTML_MATH2, 0, 0, H2_MATH_2 }, { HTML_UNDEF }, elem_set, a_type },
     MATH3_STANDARD_ATTRIBUTES (elem_set),
     SVG_ANIMATION_ATTRIBUTE_ATTRIBUTES (elem_set),
     SVG_ANIMATION_EVENT_ATTRIBUTES (elem_set),

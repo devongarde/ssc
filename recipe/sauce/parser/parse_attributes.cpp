@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type.h"
 #include "attribute/namespace.h"
 
-constexpr ::std::size_t max_attrib = static_cast <::std::size_t> (a_y) + 1;
+CONSTEXPR ::std::size_t max_attrib = static_cast <::std::size_t> (a_y) + 1;
 
 attributes_node :: attributes_node (element_node* box)
     :   box_ (box)

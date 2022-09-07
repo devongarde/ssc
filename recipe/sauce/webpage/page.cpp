@@ -241,9 +241,12 @@ void page::shadow (nitpick& nits, const ::boost::filesystem::path& s)
                 if (context.tell (es_debug)) nits.pick (nit_debug, es_debug, ec_shadow, get_disk_path (), " last updated ", updated_, ", ", s, " last updated ", target);
                 if (target >= updated_) return; }
             const ::boost::filesystem::file_status stat = file_data (s);
+#ifndef NO_PERMS
             if ((stat.permissions () & ::boost::filesystem::perms::owner_write) == 0)
             {   file_permissions (s, ::boost::filesystem::perms::owner_write | ::boost::filesystem::perms::add_perms);
-                changed = true; } }
+                changed = true; } 
+#endif // NO_PERMS
+        }
         BOOST_FSTREAM_CNSTRO (f, s, ::std::ios_base::trunc | ::std::ios_base::out);
         if (f.fail ())
             nits.pick (nit_cannot_create_file, es_catastrophic, ec_shadow, "cannot create ", s.string ());
@@ -251,7 +254,10 @@ void page::shadow (nitpick& nits, const ::boost::filesystem::path& s)
         {   if (document_ != nullptr) document_ -> shadow (ss, version ());
             f << ss.str ();
             f.close ();
-            if (changed) file_permissions (s, ::boost::filesystem::perms::owner_write | ::boost::filesystem::perms::remove_perms); } }
+#ifndef NO_PERMS
+            if (changed) file_permissions (s, ::boost::filesystem::perms::owner_write | ::boost::filesystem::perms::remove_perms);
+#endif // NO_PERMS
+        } }
     catch (...)
     {   nits.pick (nit_shadow_failed, es_catastrophic, ec_shadow, "error writing ", s.string ());
         throw; } }

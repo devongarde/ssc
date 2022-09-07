@@ -51,10 +51,10 @@ hav_t havt_ddot [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_declare [] =
-{   { { XHTML_1_0 }, { HTML_UNDEF }, elem_declare, a_nargs },
-    { { XHTML_1_0 }, { HTML_UNDEF }, elem_declare, a_occurrence },
-    { { XHTML_1_0 }, { HTML_UNDEF }, elem_declare, a_scope },
-    { { XHTML_1_0 }, { HTML_UNDEF }, elem_declare, a_type },
+{   { { HTML_MATH1 }, { HTML_UNDEF }, elem_declare, a_nargs },
+    { { HTML_MATH1 }, { HTML_UNDEF }, elem_declare, a_occurrence },
+    { { HTML_MATH1 }, { HTML_UNDEF }, elem_declare, a_scope },
+    { { HTML_MATH1 }, { HTML_UNDEF }, elem_declare, a_type },
     MATH3_DEFS_ATTRIBUTES (elem_declare),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 

@@ -20,10 +20,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 
-// knickers: a gentle curse
-//           something essential
-//           can be rather smelly
-//           beauty is better knickerless
+// knickers: - a gentle curse
+//           - something essential
+//           - can be rather smelly
 
 class knickers
 {   nitpick& nits_;

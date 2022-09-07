@@ -23,37 +23,53 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 // no locks are recursive
 
 #pragma once
+
+#ifndef NO_FRED
 #include "coop/fred.h"
+#endif // NO_FRED
 
 class lox
+#ifndef NO_FRED
 {   e_lox l_;
     ::std::atomic_bool un_;
+#else // NO_FRED
+{
+#endif // NO_FRED
 public:
     lox () = delete;
     lox (const lox& ) = delete;
     lox (lox&& ) = delete;
+#ifndef NO_FRED
     explicit lox (const e_lox l);
+#else // NO_FRED
+    explicit lox (const e_lox ) { }
+#endif // NO_FRED
     lox& operator = (const lox& ) = delete;
     lox& operator = (lox&& ) = delete;
-    ~lox ();
-    static ::std::mutex& mx (const e_lox l); };
+    ~lox (); };
 
 struct flox
 {   flox () = delete;
     flox (const flox& ) = delete;
     flox (lox&& ) = delete;
+#ifndef NO_FRED
     explicit flox (const e_lox l);
+#else // NO_FRED
+    explicit flox (const e_lox ) { }
+#endif // NO_FRED
     flox& operator = (const flox& ) = delete;
     flox& operator = (flox&& ) = delete;
-    ~flox ();
-    static ::std::mutex& mx (); };
+    ~flox (); };
 
 struct dear
 {   dear () = delete;
     dear (const dear& ) = delete;
     dear (lox&& ) = delete;
+#ifndef NO_FRED
     explicit dear (const e_lox l);
+#else // NO_FRED
+    explicit dear (const e_lox ) { }
+#endif // NO_FRED
     dear& operator = (const dear& ) = delete;
     dear& operator = (dear&& ) = delete;
-    ~dear ();
-    static ::std::mutex& mx (); };
+    ~dear (); };

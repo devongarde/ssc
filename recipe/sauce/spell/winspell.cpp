@@ -38,7 +38,7 @@ typedef struct IUnknown IUnknown;
 typedef ssc_map < ::std::string, ISpellChecker* > mlf_t;
 mlf_t mlf;
 ISpellCheckerFactory* scf = nullptr;
-constexpr int sweetmax = 8192;
+CONSTEXPR int sweetmax = 8192;
 bool com = false;
 
 void spell_init (nitpick& nits)
@@ -133,7 +133,7 @@ void check_spelling (nitpick& nits, const html_version& v, const lingo& lang, co
     else if (i -> second == nullptr) return;
     else isp = i -> second;
     PRESUME (! text.empty (), __FILE__, __LINE__);
-    vstr_t tx (lang.to_words (interpret_string (nits, v, text)));
+    vstr_t tx (lang.to_words (nits, interpret_string (nits, v, text)));
     for (auto t : tx)
     {   if (t.empty ()) continue;
         if (! islower (t.at (0), lang.locale ()) && ! isupper (t.at (0), lang.locale ())) continue;

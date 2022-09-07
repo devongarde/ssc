@@ -159,7 +159,7 @@ html_version bras_ket::parse (const ::std::string& content)
     ::std::string::const_iterator soe = b;
     ::std::string::const_iterator i = b;
     ::std::string::const_iterator bol = e;
-    constexpr ::std::size_t ket_alloc = 8192;
+    CONSTEXPR ::std::size_t ket_alloc = 8192;
     ::std::size_t ket_reserve = ket_alloc;
     ::std::size_t ll = 0;
     bool ll_warned = false;
