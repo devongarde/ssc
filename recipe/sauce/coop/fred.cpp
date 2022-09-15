@@ -82,7 +82,8 @@ void fred_t::fred_minion (nitpick* ticks)
     knickers k (nits, ticks);
     if (context.tell (es_debug)) nits.pick (nit_debug, es_debug, ec_fred, "Starting fred ", i);
     try
-    {   while (dqe ()); }
+    {   while (dqe ());
+        if (context.tell (es_debug)) nits.pick (nit_detail, es_debug, ec_fred, "Minion fred ", i, ", dqe returned false"); }
     catch (const ::std::system_error& e)
     {   nits.pick (nit_fred_borked, es_catastrophic, ec_fred, "minion system error ", e.what ()); }
     catch (const ::std::exception& e)
@@ -100,7 +101,7 @@ bool fred_t::init (nitpick& nits)
     PRESUME (qu > 0, __FILE__, __LINE__);
     nits.pick (nit_thread, es_comment, ec_fred, qu, " threads");
     const ::std::thread::id f = ::std::this_thread::get_id ();
-    if (context.tell (es_detail)) nits.pick (nit_detail, es_detail, ec_fred, "Maestro fred: ", f);
+    if (context.tell (es_debug)) nits.pick (nit_debug, es_debug, ec_fred, "Maestro fred: ", f);
     vtls_.resize (qu);
     tls_ptr ptr (new fred_tls (fred_maestro));
     vtls_.at (0) = ptr;
@@ -117,7 +118,7 @@ bool fred_t::init (nitpick& nits)
                 const ::std::thread::id d = vt_.at (vt_.size () - 1).get_id ();
                 insert_tls (i, d);
                 ::std::this_thread::yield ();
-                if (context.tell (es_detail)) nuts.pick (nit_detail, es_detail, ec_fred, "Minion fred ", i, ": ", d); }
+                if (context.tell (es_debug)) nuts.pick (nit_debug, es_debug, ec_fred, "Minion fred ", i, ": ", d); }
             catch (const ::std::system_error& e)
             {   nuts.pick (nit_fred_borked, es_catastrophic, ec_fred, "cannot create fred, system error: ", e.what ()); return false; }
             catch (const ::std::exception& e)
@@ -146,11 +147,9 @@ void fred_t::onexit ()
 {   fred.done (); }
 
 int fred_t::suggested ()
-{   const int hc = ::std::thread::hardware_concurrency ();
-    if (hc > 2) return hc - 1;
-    return hc; }
+{   return ::std::thread::hardware_concurrency () * 2; }
 
 int fred_t::no_more_than ()
-{   return ::std::thread::hardware_concurrency () * 2; }
+{   return ::std::thread::hardware_concurrency () * 16; }
 
 #endif // NO_FRED

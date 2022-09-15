@@ -9,7 +9,7 @@
 <H1 class="nit-title">ssc report for ..\toast\output\html</H1>
 </HEADER>
 <MAIN>
-<H2 class="nit-section">../toast/output/html/index.html</H2>
+<H2 class="nit-section">/index.html</H2>
 <H3><SPAN class="nit-line">2</SPAN> <SPAN class="nit-mote">&lt;html&gt;</SPAN></H3>
 <P>
 <SPAN class="nit-level">&nbsp;--&gt;&nbsp;</SPAN> <SPAN class="nit-explanation">use&nbsp;LANG&nbsp;to&nbsp;specify&nbsp;a&nbsp;default&nbsp;language</SPAN> <SPAN class="nit-id">[naughty_lang]</SPAN><BR>
@@ -17,7 +17,7 @@
 <BR><BR>
 </MAIN>
 <FOOTER>
-<A href="https://ssc.lu/" class="ssc-name">Static&nbsp;Site&nbsp;Checker</A> version 0.1.6<BR>
+<A href="https://ssc.lu/" class="ssc-name">Static&nbsp;Site&nbsp;Checker</A> version 0.1.7<BR>
 <A href="https://dylanharris.org/" class="ssc-copyright">(c)&nbsp;2020-2022&nbsp;Dylan&nbsp;Harris</A>
 </FOOTER>
 </BODY>

@@ -80,7 +80,7 @@ Root: {{context-root}}
 [page-head]
 
 
-*** {{page-path}}
+*** {{page-site-path}}
 
 [page-foot]
 

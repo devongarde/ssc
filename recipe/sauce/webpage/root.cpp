@@ -29,8 +29,14 @@ bool make_export_directory (nitpick& nits, const ::boost::filesystem::path& p);
 bool make_shadow_directory (nitpick& nits, const ::boost::filesystem::path& p);
 
 path_root::path_root (const ::boost::filesystem::path& disk, const ::std::string& site)
-    : disk_path_ (disk), site_path_ (local_path_to_nix (site))
-{   add_site_path (site, insert_directory_path (disk)); }
+    : site_path_ (local_path_to_nix (site))
+{   try
+    {   disk_path_ = canonical_name (absolute_name (disk)); }
+    catch (...)
+    {   try
+        {   disk_path_ = absolute_name (disk); }
+        catch (...)
+        {   disk_path_ = disk; } } }
 
 bool path_root::applicable (const ::std::string& path) const
 {   if (path.length () < site_path_.length ()) return false;

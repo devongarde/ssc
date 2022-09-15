@@ -29,4 +29,4 @@ PASS ../toast/RDFa/imported/linkedresearch.html
 209 schema_domain
 226 no_such_folder url_not_found
 230 schema_domain
-248 url_not_found url_not_found url_not_found
+248 url_not_found

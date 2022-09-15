@@ -102,7 +102,7 @@
 </p>
 
 [page-head]
-<h2 class="nit-section">{{page-path}}</h2>
+<h2 class="nit-section">{{page-site-path}}</h2>
 
 [page-foot]
 <br/><br/>

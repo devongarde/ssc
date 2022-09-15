@@ -73,7 +73,7 @@ public:
     int count () const noexcept { return count_; }
     void one_more () noexcept { ++count_; }
     void one_less () noexcept { if (count_ > 0) --count_; }
-    void yield ()
+    void yield () noexcept
     {   if (count_ > 0) ::std::this_thread::yield (); }
     static void onexit ();
     static int suggested ();
@@ -94,5 +94,6 @@ struct counting
     counting (const counting& ) = delete;
     counting (counting&& ) = delete;
     ~counting () { fred.one_less (); }
-    counting operator = (const counting& ) = delete; };
+    counting operator = (const counting& ) = delete;
+    counting operator = (counting&& ) = delete; };
 #endif // NO_FRED

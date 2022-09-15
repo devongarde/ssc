@@ -6,7 +6,7 @@ PASS ../toast/type/custom/index.html
 13 attribute_unrecognised unrecognised_attribute
 
 PASS ../toast/type/custom/custom-1.html
-8 unrecognised_value url_not_found
+8 url_not_found unrecognised_value
 
 PASS ../toast/type/custom/custom-2.html
 2 missing_close

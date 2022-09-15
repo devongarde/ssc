@@ -7,7 +7,6 @@ PASS ../toast/type/url/bad.html
 2 naughty_lang
 12 url_id_unfound
 15 unknown_protocol
-16 bad_char
 17 bad_char
 18 invalid_protocol
 19 invalid_ipv4

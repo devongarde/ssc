@@ -185,8 +185,8 @@ bool parse_rfc3986 (nitpick& nits, const html_version& v, const e_protocol prot,
         {   if ((bang == 0) || (bang == url.size () - 1))
                 nits.pick (nit_bang_path, es_warning, ec_type, "if ", quote (url), " is a bang path, it's broken");
             else nits.pick (nit_bang_path, es_comment, ec_type, PROG " cannot verify bang paths"); }
-        else if (s.find ('!') != ::std::string::npos)
-            nits.pick (nit_bad_char, ed_rfc_3986, "2. Characters", es_error, ec_url, "bad bang ('!')");
+//        else if (s.find ('!') != ::std::string::npos)
+//            nits.pick (nit_bad_char, ed_rfc_3986, "2. Characters", es_error, ec_url, "bad bang ('!')");
         return false; }
 
     ::std::string fore, queries;
@@ -278,6 +278,8 @@ bool parse_rfc3986 (nitpick& nits, const html_version& v, const e_protocol prot,
     {   ::std::string pp (path);
         path.clear ();
         bool slashed = false;
+        if (pp.find ("...") != ::std::string::npos)
+        {   nits.pick (nit_url_not_found, es_error, ec_url, "url", quote (s), " contains invalid path (\"...\")"); return false; }
         for (auto ch : pp)  // replaces repeated slashes with singletons
         {   if (ch != SLASH) slashed = false;
             else if (slashed) continue;

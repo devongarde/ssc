@@ -797,7 +797,7 @@ PASS ../toast/living/jul19/links-noopener.html
 
 PASS ../toast/living/jul19/links-noreferrer.html
 10 missing_close url_not_found
-11 missing_close wrong_parent wrong_parent url_not_found interactive
+11 missing_close url_not_found wrong_parent wrong_parent interactive
 13 inserted_missing_closure inserted_missing_closure
 
 PASS ../toast/living/jul19/links-tag2.html

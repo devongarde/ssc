@@ -81,7 +81,7 @@ Duration: come on, be honest, you hardly noticed
 [page-head]
 
 
-*** {{page-path}}
+*** {{page-site-path}}
 
 [page-foot]
 

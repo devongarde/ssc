@@ -218,7 +218,7 @@ PASS ../toast/coop/oct21/c/conformance.html
 PASS ../toast/coop/oct21/c/custom-1.html
 6 unknown_element attribute_unrecognised
 6 unknown_element
-8 unrecognised_value url_not_found
+8 url_not_found unrecognised_value url_not_found
 9 unknown_element
 9 unknown_element
 13 nuts
@@ -1195,8 +1195,8 @@ PASS ../toast/coop/oct21/l/links-noopener.html
 12 url_not_found
 
 PASS ../toast/coop/oct21/l/links-noreferrer.html
-10 missing_close url_not_found
-10 missing_close wrong_parent wrong_parent url_not_found interactive
+10 missing_close url_not_found url_not_found
+10 missing_close url_not_found wrong_parent wrong_parent interactive
 10 wrong_parent wrong_parent interactive
 12 inserted_missing_closure inserted_missing_closure
 

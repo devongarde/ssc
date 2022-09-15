@@ -241,6 +241,10 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
                     if (spaced == ::std::string::npos)
                     {   ::std::cerr << "missing filename " << s << " at line "<< line << " of " << f.string () << "\n"; return false; }
                     ::std::string fn (::boost::trim_copy (s.substr (spaced)));
+                    try
+                    {   fn = ::boost::filesystem::canonical (::boost::filesystem::absolute (fn)).string (); }
+                    catch (...)
+                    {   ::std::cerr << "cannot canonise " << s.substr (spaced) << "; will proceed without\n"; }
                     if (! testfile (fn)) return false;
                     expect.flags_ = (s.at (0) == 'F') ? NW_FAIL : 0;
                     expect.flags_ += (s.at (0) == 'I') ? NW_IGNORE : 0;
@@ -681,7 +685,7 @@ int run_test (const ::boost::filesystem::path& f, const ::boost::filesystem::pat
     {   ::std::cerr << "cannot interpret " << f << "\n";
         return ERROR_EXIT; }
     if ((cmdline == FAUX_CMD) && pre.empty ())
-    {   ::std::cerr << f << " is intended for " << TESTPROG << " testing, and requires a previously prepared input file (e.g. use -i switch)";
+    {   ::std::cerr << f << " is intended for " << TESTPROG << " testing, and requires a previously prepared input file (e.g. use -i switch)\n";
         return false; }
     ::boost::filesystem::path tmp;
     int post_res = 0, pre_res = 0;
@@ -691,7 +695,12 @@ int run_test (const ::boost::filesystem::path& f, const ::boost::filesystem::pat
         else tmp = tmppath;
         tmp /= ::boost::filesystem::unique_path ();
         tmp += "." PROG;
-        ::boost::filesystem::path prepare = canonical (absolute (f));
+        ::boost::filesystem::path prepare;
+        try
+        {   prepare = canonical (absolute (f)); }
+        catch (...)
+        {   ::std::cerr << "error canonising " << f << "; will proceed uncanonised.\n";
+            prepare = f; }
         prepare.remove_filename ();
         ::boost::filesystem::path clean = prepare;
         ::std::string switched = xeq.string () + ::std::string (" -T ");

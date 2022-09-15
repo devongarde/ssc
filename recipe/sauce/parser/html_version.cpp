@@ -244,10 +244,6 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                     nits.pick (nit_html_unrecognised, es_info, ec_parser, "bespoke SGML specification encountered; am pretending it's HTML 5");
                     note_parsed_version (nits, nit_html_5_0, html_5_0, "HTML 5");
                     break;
-                case doc_htmlplus :
-                    if (note_parsed_version (nits, nit_html_plus, html_plus, "HTML+"))
-                        found_html = true;
-                    break;
                 case doc_math :
                 case doc_svg :
                 case doc_rdf :
@@ -387,19 +383,32 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                     if (! context.rfc_2070 ())
                     {   nits.pick (nit_rfc_2070, es_error, ec_parser, "HTML 2.0 International (RFC 2070), which is disabled: abandoning verification");
                         return false; }
-                    if (note_parsed_version (nits, nit_html_2_0i, html_2, "HTML 2.0 International")) set_flags (HV_INT);
+                    if (note_parsed_version (nits, nit_html_2_0i, html_2, "HTML 2.0 International"))
+                    {   set_flags (HV_INT); found_html = true; }
                     break;
                 case doc_html21 :
-                    if (note_parsed_version (nits, nit_html_2_0l1, html_2_level_1, "HTML 2.0 Level 1")) set_flags (HV_LEVEL1);
+                    if (note_parsed_version (nits, nit_html_2_0l1, html_2_level_1, "HTML 2.0 Level 1")) 
+                    {   set_flags (HV_LEVEL1); found_html = true; }
                     break;
                 case doc_html21_strict :
-                    if (note_parsed_version (nits, nit_html_2_0l1s, html_2, "HTML 2.0 Level 1 Strict")) set_flags (HV_STRICT | HV_LEVEL1);
+                    if (note_parsed_version (nits, nit_html_2_0l1s, html_2, "HTML 2.0 Level 1 Strict")) 
+                    {   set_flags (HV_STRICT | HV_LEVEL1); found_html = true; }
                     break;
                 case doc_html22 :
-                    if (note_parsed_version (nits, nit_html_2_0l2, html_2_level_2, "HTML 2.0 Level 2")) set_flags (HV_LEVEL2);
+                    if (note_parsed_version (nits, nit_html_2_0l2, html_2_level_2, "HTML 2.0 Level 2")) 
+                    {   set_flags (HV_LEVEL2); found_html = true; }
+                    break;
+                case doc_htmlplus :
+                    if (note_parsed_version (nits, nit_html_plus, html_plus, "HTML+"))
+                        found_html = true;
                     break;
                 case doc_html1 :
-                    note_parsed_version (nits, nit_html_tags, html_tags, "HTML 1.0");
+                    if (note_parsed_version (nits, nit_html_1_0, html_1, "HTML 1.0"))
+                        found_html = true;
+                    break;
+                case doc_html_tags :
+                    note_parsed_version (nits, nit_html_tags, html_tags, "HTML Tags");
+                        found_html = true;
                     break;
                 case doc_sqclose :
                     break;
@@ -408,12 +417,12 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                     sq_bra_ket = true;
                     break;
                default :
-                    nits.pick (nit_internal_parsing_error, es_catastrophic, ec_parser, "bork! bork! bork! when parsing html_version. Abandoning hope");
+                    nits.pick (nit_internal_parsing_error, es_catastrophic, ec_parser, "bork! bork! bork! when parsing html_version: abandoning hope");
                     return false; } }
     if (found_html)
     {   if (unknown ())
         {   if (found_unknown)
-            {   nits.pick (nit_html_unknown_sgml, es_warning, ec_parser, "The HTML declaration in <!DOCTYPE ...> contains unrecognised content (", quote (wtf), "). Abandoning verification");
+            {   nits.pick (nit_html_unknown_sgml, es_warning, ec_parser, "The HTML declaration in <!DOCTYPE ...> contains unrecognised content (", quote (wtf), "): abandoning verification");
                 return false; }
             html_version vvv;
             ::std::string ver;

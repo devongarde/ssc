@@ -1703,7 +1703,7 @@ typedef enum
     nm_level_name, nm_level_symbol,
     nm_nit_after, nm_nit_before, nm_nit_code, nm_nit_doc, nm_nit_doc_long, nm_nit_explanation, nm_nit_id, nm_nit_line, nm_nit_mote, nm_nit_ns, nm_nit_ref,
         mn_nits_format,
-    nm_page_error, nm_page_name, nm_page_path, nm_prog_abbrev, nm_prog_build, nm_prog_fullname, nm_prog_version, nm_prog_webaddr,
+    nm_page_error, nm_page_name, nm_page_disk_path, nm_page_site_path, nm_prog_abbrev, nm_prog_build, nm_prog_fullname, nm_prog_version, nm_prog_webaddr,
     nm_query,
     nm_run_args, nm_run_catastrophe, nm_run_environment,
     nm_stat_count, nm_stat_detail, nm_stat_int, nm_stat_name, nm_stat_subname, nm_stat_subcount, nm_stat_subdetail, nm_stat_subint, nm_stats_subtitle,

@@ -13,7 +13,7 @@ Duration: {{time-duration}} seconds
 [page-head]
 
 
-*** {{page-path}}
+*** {{page-site-path}}
 
 [page-foot]
 

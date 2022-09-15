@@ -609,7 +609,11 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         macro -> set (nm_config, file.string ());
         if (file_exists (file))
         {   nits.pick (nit_configuration, es_debug, ec_init, ::std::string ("Loading configuration ") + file.string () + "...");
-            context.config (canonical (file)); }
+            try
+            {   context.config (canonical_name (absolute_name (file))); }
+            catch (...)
+            {   nits.pick (nit_configuration, es_error, ec_init, ::std::string ("Cannot canonise ") + file.string ());
+                return; } }
         else
         {   nits.pick (nit_configuration, es_error, ec_init, ::std::string ("Cannot find ") + file.string ());
             return; }
@@ -1058,7 +1062,7 @@ void options::contextualise (nitpick& nits)
         yea_nay (&context_t::shadow_space, nits, SHADOW SPACING, SHADOW DONT SPACING);
         yea_nay (&context_t::shadow_ssi, nits, SHADOW SSI, SHADOW DONT SSI);
         yea_nay (&context_t::update, nits, SHADOW UPDATE, SHADOW DONT UPDATE);
-        if (var_.count (SHADOW VIRTUAL)) context.virtuals (var_ [SHADOW VIRTUAL].as < vstr_t > ());
+        if (var_.count (SHADOW VIRTUAL)) context.shadows (var_ [SHADOW VIRTUAL].as < vstr_t > ());
 
         if (var_.count (WEBSITE INDEX)) context.index (var_ [WEBSITE INDEX].as < ::std::string > ());
         if (var_.count (WEBSITE EXTENSION)) context.extensions (var_ [WEBSITE EXTENSION].as < vstr_t > ());
