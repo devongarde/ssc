@@ -78,7 +78,7 @@ test output
 [page-head]
 
 
-*** {{page-path}}
+*** {{page-site-path}}
 
 [page-foot]
 

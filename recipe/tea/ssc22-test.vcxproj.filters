@@ -56,6 +56,12 @@
     <None Include="..\sauce\test\test.sh">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="..\toast\ssc-test\complete.lst">
+      <Filter>toasty-toast</Filter>
+    </None>
+    <None Include="..\toast\ssc-test\dependencies.lst">
+      <Filter>toasty-toast</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource1.h">

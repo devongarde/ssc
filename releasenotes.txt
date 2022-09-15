@@ -3,6 +3,10 @@ static site checker
 https://ssc.lu/
 (c) 2020-2022 Dylan Harris
 
+ 0.1.7
+- reduced memory footprint
+- underlying work
+
  0.1.6
 - partial MathML 4 core (21 July 2022 draft)
 - backport to Yosemite

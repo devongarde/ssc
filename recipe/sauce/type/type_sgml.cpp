@@ -91,7 +91,7 @@ struct symbol_entry < html_version, e_sgml > doctype_symbol_table [] =
 
     { { HTML_4_0 }, { HTML_UNDEF },  "ISO 8879-1986//ENTITIES Added Latin 1//EN//HTML", doc_latin },
 
-    { { HTML_2_0 }, { HTML_UNDEF },  "-//IETF//DTD HTML//EN", doc_html1 }, // https://www.w3.org/MarkUp/html-spec/html.dtd
+    { { HTML_1_0 }, { HTML_UNDEF },  "-//IETF//DTD HTML//EN", doc_html1 }, // https://www.w3.org/MarkUp/html-spec/html.dtd
 
     { { HTML_PLUS }, { HTML_UNDEF }, "-//Internet/RFC xxxx//EN", doc_htmlplus },
     { { HTML_PLUS }, { HTML_UNDEF }, "HTMLPLUS.DTD", doc_htmlplus },

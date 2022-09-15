@@ -41,14 +41,14 @@ directory::directory (nitpick* ticks, const ::std::string& name, const fileindex
 {   PRESUME (mummy_ != nullptr, __FILE__, __LINE__);
     if (check) scan (ticks, site); }
 
-directory::directory (const path_root_ptr& root)
+directory::directory (const path_root_ptr& root, const short v)
     : name_ (root -> get_site_path ()), offsite_ (false), mummy_ (nullptr), root_ (root)
 {   VERIFY_NOT_NULL (root, __FILE__, __LINE__);
-    ndx_ = get_fileindex (root -> get_disk_path ()); }
+    ndx_ = insert_root_path (root -> get_disk_path (), v); }
 
-directory::directory (const ::std::string& name, const bool offsite)
+directory::directory (const fileindex_t parent_ndx, const ::std::string& name, const bool offsite)
     : name_ (name), offsite_ (offsite), mummy_ (nullptr)
-{   if (! offsite) ndx_ = insert_directory_path (get_disk_path ()); }
+{   if (! offsite) ndx_ = insert_directory_path (parent_ndx, get_disk_path ()); }
 
 void directory::swap (directory& d) noexcept
 {   name_.swap (d.name_);
@@ -189,14 +189,14 @@ bool directory::add_to_content (nitpick* ticks, const ::boost::filesystem::direc
 {   VERIFY_NOT_NULL (ticks, __FILE__, __LINE__);
     ::boost::filesystem::path qp (i.path ());
     fileindex_t ndx = nullfileindex;
-    if (is_folder (qp)) ndx = insert_directory_path (qp);
-    else ndx = insert_disk_path (qp, 0);
+    if (is_folder (qp)) ndx = insert_directory_path (ndx_, qp);
+    else ndx = insert_disk_path (ndx_, qp, 0);
     ::std::string p;
     if (site.empty ()) p = get_site_path ();
     else p = site;
     ::std::string f (local_path_to_nix (qp.filename ().string ()));
     p = join_site_paths (p, f);
-    add_site_path (p, ndx);
+//    add_site_path (p, ndx);
     if (is_regular_file (qp))
     {   if (context.dodedu ())
             get_crc (*ticks, ndx);
@@ -225,15 +225,16 @@ void directory::examine_page (nitpick* ticks, const ::std::string& file) const
     else
     {   ::std::ostringstream ss;
         const ::boost::filesystem::path p (get_disk_path () / file);
-        const fileindex_t ndx (get_fileindex (p));
+        const fileindex_t ndx (get_fileindex (ndx_, p));
         if (! get_any_flag (ndx, FX_SCANNED))
         {   ::std::string sp (get_site_path () + file);
-            if (avoid_update (sp, true))
+            if (avoid_update (file, true))
             {   if (context.tell (es_comment)) nits.pick (nit_shadow_unnecessary, es_comment, ec_directory, quote (p.string ()), " is up-to-date"); }
             else
             {   mmac_t mac;
                 mac.emplace (nm_page_name, file);
-                mac.emplace (nm_page_path, local_path_to_nix (p.string ()));
+                mac.emplace (nm_page_disk_path, p.string ());
+                mac.emplace (nm_page_site_path, sp);
                 try
                 {   ::std::string content (read_text_file (nits, p));
                     const bool jld = is_one_of (::boost::filesystem::path (p).extension ().string ().substr (1), context.jsonld_extension ());
@@ -342,9 +343,10 @@ uint64_t directory::url_size (nitpick& nits, const url& u) const
 
 void directory::maintain_fileindex (nitpick& nits, const ::boost::filesystem::path& p, const ::std::string& up, fileindex_t ndx, const fileindex_flags flags) const
 {   if (ndx == nullfileindex)
-    {   ndx = insert_disk_path (p, flags);
-        ::std::string sp = get_site_path (nits, up);
-        add_site_path (sp, ndx); }
+        ndx = insert_disk_path (ndx_, p, flags);
+//    {   ndx = insert_disk_path (ndx_, p, flags);
+//        ::std::string sp = get_site_path (nits, up);
+//        add_site_path (sp, ndx); }
     else set_flag (ndx, flags); }
 
 bool directory::verify_local (nitpick& nits, const html_version& , const url& u, const bool fancy) const
@@ -354,7 +356,7 @@ bool directory::verify_local (nitpick& nits, const html_version& , const url& u,
         if (u.has_query () || u.is_simple_id ())
             return fancy;
     dear d (lox_dear);
-    const fileindex_t ndx (get_fileindex (p));
+    const fileindex_t ndx (get_fileindex (ndx_, p));
     if (ndx != nullfileindex)
         if (get_any_flag (ndx, FX_BORKED)) return false;
         else if ((! fancy) && get_any_flag (ndx, FX_DIR)) return false;
@@ -557,6 +559,7 @@ bool directory::avoid_update (const ::boost::filesystem::path& original, const :
     ::std::time_t ot = 0, st = 0;
     if (! file_exists (original) || ! file_exists (shadow)) return false;
     const fileindex_t ndx (get_fileindex (original));
+    if (ndx == nullfileindex) return false;
     ot = last_write (ndx);
     if (ot == 0) return false;
     st = get_last_write_time (shadow);

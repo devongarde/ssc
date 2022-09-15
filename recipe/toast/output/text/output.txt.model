@@ -1,8 +1,8 @@
-Static Site Checker version 0.1.6
+Static Site Checker version 0.1.7
 (c) 2020-2022 Dylan Harris
 
 
-*** ../toast/output/text/index.html
+*** /index.html
 
 2  ** <html> ** 
  -->  use LANG to specify a default language [naughty_lang]

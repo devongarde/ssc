@@ -20,10 +20,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "feedback/nitpick.h"
+#include "webpage/fileindex.h"
 
 class path_root
 {   ::boost::filesystem::path disk_path_, shadow_, export_;
     ::std::string site_path_;
+    fileindex_t ndx_ = nullfileindex;
     ::boost::filesystem::path get_xxx_filename (const ::std::string& path, const ::boost::filesystem::path& p) const;
 public:
     path_root (const ::boost::filesystem::path& disk, const ::std::string& site);
@@ -34,6 +36,8 @@ public:
     bool shadow_root (nitpick& nits, const ::boost::filesystem::path& shadow);
     ::boost::filesystem::path get_export () const { return export_; }
     bool set_export (nitpick& nits, const ::boost::filesystem::path& ex);
+    fileindex_t fileindex () const noexcept { return ndx_; }
+    void fileindex (const fileindex_t ndx) noexcept { ndx_ = ndx; }
     ::boost::filesystem::path get_disk_filename (const ::std::string& path) const;
     ::boost::filesystem::path get_export_filename (const ::std::string& path) const;
     ::boost::filesystem::path get_shadow_filename (const ::std::string& path) const; };

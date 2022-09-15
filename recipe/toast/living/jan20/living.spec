@@ -801,7 +801,7 @@ PASS ../toast/living/jan20/links-noopener.html
 
 PASS ../toast/living/jan20/links-noreferrer.html
 10 missing_close url_not_found
-10 missing_close wrong_parent wrong_parent url_not_found interactive
+10 missing_close url_not_found wrong_parent wrong_parent interactive
 10 wrong_parent wrong_parent interactive
 12 inserted_missing_closure inserted_missing_closure
 

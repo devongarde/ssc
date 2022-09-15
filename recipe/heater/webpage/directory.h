@@ -31,8 +31,7 @@ typedef ::std::shared_ptr < directory > dir_ptr;
 typedef ::std::vector < dir_ptr > vd_t;
 
 class directory
-{   typedef dir_ptr self_ptr;
-    typedef ::std::map < ::std::string, self_ptr > map_t;
+{   typedef ::std::map < ::std::string, dir_ptr > map_t;
     typedef map_t::value_type value_t;
     ::std::string name_;
     map_t content_;
@@ -56,8 +55,8 @@ class directory
 protected:
     directory (nitpick* ticks, const ::std::string& name, const fileindex_t ndx, directory* mummy, const ::std::string& site, const bool check = true);
 public:
-    explicit directory (const path_root_ptr& root);
-    directory (const ::std::string& name, const bool offsite);
+    explicit directory (const path_root_ptr& root, const short v);
+    directory (const fileindex_t parent_ndx, const ::std::string& name, const bool offsite);
     void swap (directory& d) noexcept;
     bool is_root () const noexcept { return root_.get () != nullptr; }
     bool empty () const noexcept { return content_.empty (); }
@@ -72,6 +71,7 @@ public:
     bool integrate_virtual (const ::std::string& v, path_root_ptr& r, dir_ptr p);
     ::std::string get_site_path () const;
     ::std::string get_site_path (nitpick& nits, const ::std::string& item) const;
+    fileindex_t get_ndx () const { return ndx_; }
     ::boost::filesystem::path get_disk_path (nitpick& nits, const url& u) const;
     ::boost::filesystem::path get_disk_path () const;
     ::boost::filesystem::path get_disk_path (nitpick& nits, const ::std::string& item) const;

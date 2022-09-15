@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "stats/stats.h"
 #include "element/elem.h"
 #include "utility/quote.h"
+#include "utility/filesystem.h"
 #include "parser/text.h"
 #include "coop/fred.h"
 
@@ -200,3 +201,8 @@ context_t& context_t::fred (const int i)
     else fred_ = fred_t::suggested ();
     mac (nm_context_info, fred_);
     return *this; }
+
+context_t& context_t::root (const ::std::string& s)
+{   root_ = s;
+    mac (nm_context_root, s);
+    proot_ = canonical_name (absolute_name (::boost::filesystem::path (s))); return *this; }

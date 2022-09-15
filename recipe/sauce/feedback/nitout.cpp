@@ -109,7 +109,7 @@ vstr_t sections;
     "\n" \
     "[page-head]\n" \
     "\n" \
-    "PASS {{page-path}}\n" \
+    "PASS {{page-disk-path}}\n" \
     "\n" \
     "[page-foot]\n" \
     "\n" \
@@ -230,7 +230,7 @@ vstr_t sections;
     "[page-head]\n" \
     "\n" \
     "\n" \
-    START_OF_SECTION " {{page-path}}\n" \
+    START_OF_SECTION " {{page-disk-path}}\n" \
     "\n" \
     "[page-foot]\n" \
     "\n" \
@@ -352,7 +352,7 @@ vstr_t sections;
     "[page-head]\n" \
     "\n" \
     "\n" \
-    START_OF_SECTION " {{page-path}}\n" \
+    START_OF_SECTION " {{page-disk-path}}\n" \
     "\n" \
     "[page-foot]\n" \
     "\n" \
@@ -514,7 +514,7 @@ vstr_t sections;
     "</P>\n" \
     "\n" \
     "[page-head]\n" \
-    "<H2 class=\"nit-section\">{{page-path}}</H2>\n" \
+    "<H2 class=\"nit-section\">{{page-site-path}}</H2>\n" \
     "\n" \
     "[page-foot]\n" \
     "<BR><BR>\n" \

@@ -65,6 +65,7 @@ class context_t
     e_svg_processing_mode svg_mode_ = spm_none;
     e_quote_style   quote_style_ = qs_none;
     e_do            do_ = do_booboo;
+    ::boost::filesystem::path proot_;
     friend class options;
     template < typename T > void mac (const e_nit_macro ns, const T n)
     {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
@@ -200,7 +201,7 @@ class context_t
     context_t& rfc_1942 (const bool b) { rfc_1942_ = b; mac (nm_context_rfc_1942, b); return *this; }
     context_t& rfc_1980 (const bool b) { rfc_1980_ = b; mac (nm_context_rfc_1980, b); return *this; }
     context_t& rfc_2070 (const bool b) { rfc_2070_ = b; mac (nm_context_rfc_2070, b); return *this; }
-    context_t& root (const ::std::string& s) { root_ = s; mac (nm_context_root, s); return *this; }
+    context_t& root (const ::std::string& s);
     context_t& rpt_opens (const bool b) noexcept { rpt_opens_ = b; return *this; }
     context_t& schema (const bool b)
     {   schema_ = b;
@@ -334,6 +335,7 @@ public:
     bool rfc_2070 () const noexcept { return rfc_2070_; }
     bool rpt_opens () const noexcept { return rpt_opens_; }
     const ::std::string root () const { return root_; }
+    const ::boost::filesystem::path rootp () const { return proot_; }
     bool schema () const noexcept { return schema_; }
     schema_version schema_ver (const e_schema es = s_schema) const
     {   return get_default_schema_version (es); }

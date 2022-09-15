@@ -452,7 +452,7 @@ bool ends_with_letters (const html_version& v, const ::std::string& s, const ::s
     ::std::string res (test_template_path (nits, p));
     if (abs || ! res.empty ()) return res;
     if (! context.not_root ())
-    {   p = ::boost::filesystem::absolute (fn, ::boost::filesystem::path (context.root ()));
+    {   p = ::boost::filesystem::absolute (fn, context.rootp ());
         res = test_template_path (nits, p);
         if (! res.empty ()) return res; }
     p = ::boost::filesystem::absolute (fn, ::boost::filesystem::path (context.path ()));

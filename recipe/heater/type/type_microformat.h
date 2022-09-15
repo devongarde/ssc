@@ -106,5 +106,5 @@ template < > struct type_master < t_tel_format > : public tidy_string < t_tel_fo
         {   const ::std::string::size_type pos = val.find (';');
             if (pos != ::std::string::npos) val = val.substr (0, pos);
             if (val.find_first_not_of (TEL) != ::std::string::npos)
-            {   nits.pick (nit_phone, es_error, ec_type, quote (s), " does not appear to be a phone number");
+            {   nits.pick (nit_phone, ed_rfc_3966, "3. URI Syntax", es_error, ec_type, quote (s), " does not appear to be a phone number");
                 tidy_string < t_tel_format > :: status (s_invalid); } } } };
