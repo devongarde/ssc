@@ -516,8 +516,7 @@ struct symbol_entry < html_version, e_fontname > fontname_symbol_table [] =
     { { HTML_2_0 }, { HTML_UNDEF }, "Verdana", fn_verdana } };
 
 struct symbol_entry < html_version, e_font_variant_2 > font_variant_2_symbol_table [] =
-{   // { { HTML_SVG20 }, { HTML_UNDEF }, "normal", fv2_normal },
-    { { HTML_SVG20 }, { HTML_UNDEF }, "none", fv2_none },
+{   { { HTML_SVG20 }, { HTML_UNDEF }, "none", fv2_none },
     { { HTML_SVG20, 0, HE_COMBINES | HE_GROUP (1) }, { HTML_UNDEF }, "common", fv2_common },
     { { HTML_SVG20, 0, HE_COMBINES | HE_GROUP (1) }, { HTML_UNDEF }, "no_common-ligatures", fv2_no_common },
     { { HTML_SVG20, 0, HE_COMBINES | HE_GROUP (2) }, { HTML_UNDEF }, "discretionary-ligatures", fv2_discretionary },

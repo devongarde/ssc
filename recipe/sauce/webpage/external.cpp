@@ -101,7 +101,6 @@ int test_hypertext (nitpick& nits, const html_version& , const url& u)
 
 int test_connection (nitpick& nits, const html_version& v, const url& u)
 {   if (u.is_usable ()) return test_hypertext (nits, v, u);
-//    nits.pick (nit_protocol, es_info, ec_link, "unable to verify ", u.get_component (es_scheme));
     return 0; }
 
 bool external::verify (nitpick& nits, const html_version& v, const url& u, int& code, bool& repeated)

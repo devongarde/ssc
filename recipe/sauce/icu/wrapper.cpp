@@ -34,7 +34,7 @@ charset_detector_match charset_detector_matches::at (const int32_t i) const
 #ifdef __GNUC__
         // GCC won't let me pass a constant C string to a function that requires a constant C string.
         // GCC insist this is because the standard, but mysteriously neither clang nor msvc do the same.
-        // I don't know whether GCC is right, but I do know it's annoying. If GCC can't be bothered to behave,
+        // I don't know whether GCC is right, but I do know it's annoying. If GCC can't be bothered to cooperate,
         // then neither shall I. Code on well-behaved compilers is well-behaved.
     {   ::std::cerr << "Charset_detector_matchm:at out of bounds error. Exception specification blocked by GCC's C++ compiler. Aborting.\n";
         ::std::exit (3); }
@@ -57,9 +57,9 @@ bool charset_detector::set_text (const char *in, int32_t len)
     ucsdet_setText (detector_, in, len, &err_);
     return valid (); }
 
-void_ptr converter::convert_to (void* vp, const uintmax_t sz)
+void_ptr converter::convert_to (const void_ptr& vp, const uintmax_t sz)
 {   PRESUME (context.icu (), __FILE__, __LINE__);
-    const char* const from = static_cast <char*> (vp);
+    const char* const from = static_cast <char*> (vp.get ());
     const int32_t len = ucnv_toUChars (conv_, nullptr, 0, from, GSL_NARROW_CAST < int32_t > (sz), &err_);
     if (err_ <= 0)
     {   const ::std::size_t buflen = static_cast < ::std::size_t > (len) * sizeof (UChar);

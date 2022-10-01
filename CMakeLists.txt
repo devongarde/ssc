@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.19)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.1.7 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
+project (ssc VERSION 0.1.8 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
 
 set (CMAKE_CXX_STANDARD 17)
 
@@ -23,6 +23,9 @@ set (CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configs" FORCE)
 if (DEFINED CMAKE_BUILD_TYPE)
   set_property (CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS ${CMAKE_CONFIGURATION_TYPES})
 endif ()
+
+# Sometimes the old advice remains absolutely right: disable optimisation
+STRING(REPLACE "-O2" "-O0" CMAKE_CXX_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE})
 
 set (${PROJ_NAME}_PATH_INSTALL ${D} CACHE PATH "This directory contains an installation path")
 set (CMAKE_DEBUG_POSTFIX "d")
@@ -107,7 +110,7 @@ endif ()
         OUTPUT_VARIABLE LSB_RELEASE_VER_SHORT OUTPUT_STRIP_TRAILING_WHITESPACE)
     endif ()
     if ("${LSB_RELEASE_ID_SHORT}" STREQUAL "")
-      set (OS "Linux??")
+      set (OS "Linux")
       message (WARNING "Unknown flavour of Linux; please install lsb_release or specify FLAVOUR and FLAVOUR_VER")
       target_compile_definitions (ssc PRIVATE UNIX OS_VER="${OS}" OMG NO_JSONIC HUNSPELL BOOST_BIND_GLOBAL_PLACEHOLDERS)
       target_compile_definitions (ssc-test PRIVATE UNIX)
@@ -227,8 +230,8 @@ target_sources (ssc PRIVATE
             ${H}/element/state.h
         ${H}/feedback/nit.h ${H}/feedback/nitnames.h ${H}/feedback/nitout.h ${H}/feedback/nitpick.h
         ${H}/icu/charset.h ${H}/icu/converter.h ${H}/icu/lingo.h ${H}/icu/wrapper.h
-        ${H}/main/abort.h ${H}/main/args.h ${H}/main/context.h ${H}/main/include.h ${H}/main/options.h ${H}/main/output.h ${H}/main/standard.h
-            ${H}/main/version.h
+        ${H}/main/abort.h ${H}/main/args.h ${H}/main/balloon.h ${H}/main/context.h ${H}/main/include.h ${H}/main/options.h ${H}/main/output.h
+            ${H}/main/standard.h ${H}/main/version.h
         ${H}/microdata/microdata_export.h ${H}/microdata/microdata_itemid.h ${H}/microdata/microdata_itemprop.h ${H}/microdata/microdata_itemscope.h
             ${H}/microdata/microdata_itemtype.h
         ${H}/microformat/connection.h ${H}/microformat/family.h ${H}/microformat/field.h ${H}/microformat/microformat.h

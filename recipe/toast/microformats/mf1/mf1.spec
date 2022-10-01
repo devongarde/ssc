@@ -20,14 +20,14 @@ PASS ../toast/microformats/mf1/index.html
 PASS ../toast/microformats/mf1/mf1-example.html
 12 hcard_infer
 20 hcard_infer hcard_infer
-21 phone
+21 no_tel phone
 27 hcard_infer
-29 phone
+29 no_tel phone
 34 hcard_infer hcard_infer
-35 phone
+35 no_tel phone
 38 missing_open
-51 phone
-54 phone
+51 no_tel phone
+54 no_tel phone
 64 hcard_infer
 67 inserted_missing_closure
 95 bad_datetime
@@ -40,6 +40,7 @@ PASS ../toast/microformats/mf1/mf1-example.html
 127 bad_money
 129 hcard_infer
 128 missing_open
+131 no_tel
 140 unrecognised_value bad_money
 145 unrecognised_value
 147 unrecognised_value
@@ -68,6 +69,7 @@ PASS ../toast/microformats/mf1/mf1-example.html
 323 unrecognised_value
 339 hcard_infer hcard_infer
 349 use_quote_code
+363 no_tel
 397 hcard_infer hcard_infer
 412 use_double_quote_code use_quote_code
 414 use_double_quote_code
@@ -75,5 +77,6 @@ PASS ../toast/microformats/mf1/mf1-example.html
 418 bad_datetime
 423 hcard_infer hcard_infer
 449 hcard_infer
+454 no_tel
 497 unrecognised_value
 500 unrecognised_value

@@ -957,9 +957,6 @@
     <Filter Include="Heater\attribute">
       <UniqueIdentifier>{19ea1061-547d-4eed-8370-9cddf950002a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sauce\microformat\microdata">
-      <UniqueIdentifier>{6128eee8-2f45-409f-b2b9-f1ab3573dcf5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Toast\Spell\nospell">
       <UniqueIdentifier>{28a0eb54-16e7-429f-90f1-63176cb7cb38}</UniqueIdentifier>
     </Filter>
@@ -983,6 +980,9 @@
     </Filter>
     <Filter Include="Toast\RDFa\rs">
       <UniqueIdentifier>{6964ad69-6d17-48a7-ab6c-756cc58cfa34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\microdata">
+      <UniqueIdentifier>{6128eee8-2f45-409f-b2b9-f1ab3573dcf5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1502,6 +1502,9 @@
     <ClInclude Include="..\heater\url\curl.h">
       <Filter>Heater\url</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\main\balloon.h">
+      <Filter>Heater\main</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1589,19 +1592,19 @@
       <Filter>Sauce\main</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\microdata\microdata_export.cpp">
-      <Filter>Sauce\microformat\microdata</Filter>
+      <Filter>Sauce\microdata</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\microdata\microdata_itemid.cpp">
-      <Filter>Sauce\microformat\microdata</Filter>
+      <Filter>Sauce\microdata</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\microdata\microdata_itemprop.cpp">
-      <Filter>Sauce\microformat\microdata</Filter>
+      <Filter>Sauce\microdata</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\microdata\microdata_itemscope.cpp">
-      <Filter>Sauce\microformat\microdata</Filter>
+      <Filter>Sauce\microdata</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\microdata\microdata_itemtype.cpp">
-      <Filter>Sauce\microformat\microdata</Filter>
+      <Filter>Sauce\microdata</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\microformat\microformat_constructor.cpp">
       <Filter>Sauce\microformat</Filter>

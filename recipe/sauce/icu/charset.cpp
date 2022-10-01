@@ -27,22 +27,22 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/context.h"
 #include "feedback/nitpick.h"
 
-::std::string identify_probable_charset (const void* vp, const uintmax_t sz)
+::std::string identify_probable_charset (const void_ptr& vp, const uintmax_t sz)
 {   VERIFY_NOT_NULL (vp, __FILE__, __LINE__);
     if (context.icu ()) try
     {   charset_detector detector;
         if (detector.valid ())
-            if (detector.set_text (static_cast < const char * > (vp), GSL_NARROW_CAST < int32_t > (sz)))
+            if (detector.set_text (static_cast < const char * > (vp.get ()), GSL_NARROW_CAST < int32_t > (sz)))
             {   const charset_detector_matches matched (detector.match_all ());
                 if (detector.valid () && (matched.count () > 0) && matched.content ())
                     return matched.at (0).name (); } }
     catch (...) { }
     return ::std::string (); }
 
-void verify_file_charset (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& charset, const void* vp, const uintmax_t sz)
+void verify_file_charset (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& charset, const void_ptr& vp, const uintmax_t sz)
 {   if (! context.icu ()) return;
     if (v.mjr () < 2) return;
-    VERIFY_NOT_NULL (vp, __FILE__, __LINE__);
+    VERIFY_NOT_NULL (vp.get (), __FILE__, __LINE__);
     ::std::string dcs (v.default_charset ());
     ::std::string acs (v.alternative_charset ());
     ::std::string errmsg ("cannot determine character format of '");
@@ -54,7 +54,7 @@ void verify_file_charset (nitpick& nits, const html_version& v, const ::std::str
         if (! detector.valid ())
            nits.pick (nit_icu, es_catastrophic, ec_icu, errmsg, ": ICU ucsdet_open error ", static_cast < int > (detector.error ()));
         else
-        {   const char* pch = static_cast < const char * > (vp);
+        {   const char* pch = static_cast < const char * > (vp.get ());
             if (! detector.set_text (pch, input_length))
                 nits.pick (nit_icu, es_catastrophic, ec_icu, errmsg, ": ICU ucsdet_setText error ", static_cast < int > (detector.error ()));
             else
@@ -102,5 +102,5 @@ void verify_file_charset (nitpick& nits, const html_version& v, const ::boost::f
     uintmax_t sz = 0;
     void_ptr vp (read_binary_file (nits, p, sz));
     if (sz == 0) return;
-    verify_file_charset (nits, v, p.string (), charset, vp.get (), sz); }
+    verify_file_charset (nits, v, p.string (), charset, vp, sz); }
 #endif // NOICU

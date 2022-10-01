@@ -58,6 +58,7 @@ fileindex_t get_fileindex (const ::boost::filesystem::path& name);
 fileindex_t get_fileindex (const ::std::string& name);
 ::boost::filesystem::path get_disk_path (const fileindex_t ndx);
 ::std::string get_site_path (const fileindex_t ndx);
+::std::string get_name (const fileindex_t ndx);
 fileindex_flags get_flags (const fileindex_t ndx);
 bool get_any_flag (const fileindex_t ndx, const fileindex_flags flag);
 bool get_every_flag (const fileindex_t ndx, const fileindex_flags flag);

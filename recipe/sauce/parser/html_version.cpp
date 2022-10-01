@@ -174,6 +174,7 @@ bool html_version::note_parsed_version (nitpick& nits, const e_nit n, const html
                 case 4 :
                     minor = (((*this == xhtml_1_0) && (got == xhtml_1_1)) || ((*this == html_4_0) && (got == html_4_1)));
                     break;
+                case 1 :
                 case 5 :
                     minor = (got.mjr () == this -> mjr ());
                     break;
@@ -222,7 +223,7 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
     ::std::string wtf;
     vstr_t keywords = split_quoted_by_space (trim_the_lot_off (content.substr (pos)));
     if (keywords.empty ())
-    {   nits.pick (nit_html_unrecognised, es_error, ec_parser, "Document type not specified. This is not an HTML file. Abandoning verification");
+    {   nits.pick (nit_html_unrecognised, es_error, ec_parser, "Document type not specified. This does not appear to be an HTML file. Abandoning verification");
         return false; }
     for (auto s : keywords)
         if (! s.empty ())  // should never happen, but ...
@@ -404,7 +405,8 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                     break;
                 case doc_html1 :
                     if (note_parsed_version (nits, nit_html_1_0, html_1, "HTML 1.0"))
-                        found_html = true;
+                    {   found_html = true;
+                        nits.pick (nit_html_1_0, es_info, ec_parser, "Really? HTML 1.0? Ok."); }
                     break;
                 case doc_html_tags :
                     note_parsed_version (nits, nit_html_tags, html_tags, "HTML Tags");

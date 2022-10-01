@@ -264,7 +264,7 @@ void element::examine_input ()
         pick (nit_input_bad_mix, ed_50, "4.10.5 The input element", es_warning, ec_element, "WIDTH is ignored by type ", quote (n));
     if (a_.known (a_role))
     {   const e_aria_role r = static_cast < e_aria_role > (a_.get_int (a_role));
-        // I considered using bitsets here, but decided they'd be a bugger to maintain. Having said that, I'm not sure this approach is that much better.
+        // I considered using bitsets here, but decided they'd be a bugger (just in case, that's the British English) to maintain. Having said that, I'm not sure this approach is that much better.
         switch (i5)
         {   case i5_button :
                 switch (r)

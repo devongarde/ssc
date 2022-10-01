@@ -268,7 +268,7 @@ public:
     const ::std::string domsg () const { return domsg_; }
     const ::std::string environment (const e_environment e) const { return environment_.at (e); }
     bool example () const noexcept { return example_; }
-    bool excluded (const ::boost::filesystem::path& p) const;
+    bool excluded (nitpick& nits, const ::boost::filesystem::path& p) const;
     bool export_defined () const noexcept { return ! export_root_.empty (); }
     const ::std::string export_root () const { return export_root_; }
     const vstr_t exports () const { return exports_; }

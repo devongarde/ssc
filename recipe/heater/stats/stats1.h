@@ -28,7 +28,7 @@ public:
     stats1 ()
     {   count_.resize (static_cast <::std::size_t> (max_enum + 1), 0); }
     static unsigned size () { return max_enum + 1; }
-    void swap (stats1& s1)
+    void swap (stats1& s1) noexcept
     {   count_.swap (s1.count_); }
     unsigned at (const ENUM e) const
     {   return count_.at (e); }

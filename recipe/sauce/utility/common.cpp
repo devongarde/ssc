@@ -86,7 +86,7 @@ bool test_file (nitpick& nits, const ::boost::filesystem::path& name, uintmax_t&
                             void_ptr vp (read_binary_file (nits, p, sz));
                             if (sz != 0)
                             {   VERIFY_NOT_NULL (vp.get (), __FILE__, __LINE__);
-                                res = convert_to_utf8 (nits, p.string (), vp.get (), sz);
+                                res = convert_to_utf8 (nits, p.string (), vp, sz);
                                 if (res.empty ())
                                     nits.pick (nit_convert, es_error, ec_file, PROG " cannot analyse ", p.string (), " because it's in a weird format; " PROG " likes ASCII, ANSI, UTF-8, & UTF-16");
                                 else

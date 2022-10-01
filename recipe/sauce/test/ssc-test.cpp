@@ -244,7 +244,7 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
                     try
                     {   fn = ::boost::filesystem::canonical (::boost::filesystem::absolute (fn)).string (); }
                     catch (...)
-                    {   ::std::cerr << "cannot canonise " << s.substr (spaced) << "; will proceed without\n"; }
+                    {   ::std::cerr << "cannot canonise " << fn << "; will proceed sans\n"; }
                     if (! testfile (fn)) return false;
                     expect.flags_ = (s.at (0) == 'F') ? NW_FAIL : 0;
                     expect.flags_ += (s.at (0) == 'I') ? NW_IGNORE : 0;

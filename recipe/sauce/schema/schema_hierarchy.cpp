@@ -1718,6 +1718,11 @@ microdata_hierachy schema_hierarchy [] =
 
     // poetry
     { { s_poetry, 1, 0 }, { 0, 0 }, poetry_poem, poetry_stanza },
+    { { s_poetry, 1, 0 }, { 0, 0 }, sch_creativework, poetry_form },
+    { { s_poetry, 1, 0 }, { 0, 0 }, sch_creativework, poetry_poem },
+    { { s_poetry, 1, 0 }, { 0, 0 }, sch_creativework, poetry_stanza },
+    { { s_poetry, 1, 0 }, { 0, 0 }, sch_intangible, poetry_period },
+    { { s_poetry, 1, 0 }, { 0, 0 }, sch_language, poetry_dialect },
 
     // prov
     { { s_prov, 1, 0 }, { 0, 0 }, prov_activity, org_changeevent },
@@ -2120,7 +2125,6 @@ microdata_hierachy schema_hierarchy [] =
     { { 1, 90 }, { 0, 0 }, sch_creativework, sch_periodical },
     { { 0, 10 }, { 0, 0 }, sch_creativework, sch_photograph },
     { { 3, 5 }, { 0, 0 }, sch_creativework, sch_play },
-    { { 13, 0 }, { 0, 0 }, sch_creativework, poetry_poem },
     { { 3, 5 }, { 0, 0 }, sch_creativework, sch_poster },
     { { 1, 90 }, { 0, 0 }, sch_creativework, sch_publicationissue },
     { { 1, 90 }, { 0, 0 }, sch_creativework, sch_publicationvolume },
@@ -2510,7 +2514,6 @@ microdata_hierachy schema_hierarchy [] =
     { { 1, 4 }, { 0, 0 }, sch_intangible, sch_order },
     { { 2, 0 }, { 0, 0 }, sch_intangible, sch_orderitem },
     { { 1, 4 }, { 0, 0 }, sch_intangible, sch_parceldelivery },
-    { { 13, 0 }, { 0, 0 }, sch_intangible, poetry_period },
     { { 1, 4 }, { 0, 0 }, sch_intangible, sch_permit },
     { { 3, 8 }, { 5, 0 }, sch_intangible, sch_productreturnpolicy },
     { { 1, 20 }, { 0, 0 }, sch_intangible, sch_programmemembership },
@@ -2566,7 +2569,6 @@ microdata_hierachy schema_hierarchy [] =
     { { 0, 10 }, { 0, 0 }, sch_landform, sch_continent },
     { { 0, 10 }, { 0, 0 }, sch_landform, sch_mountain },
     { { 0, 10 }, { 0, 0 }, sch_landform, sch_volcano },
-    { { 13, 0 }, { 0, 0 }, sch_language, poetry_dialect },
     { { 9, 0 }, { 0, 0 }, sch_learningresource, sch_course },
     { { 9, 0 }, { 0, 0 }, sch_learningresource, sch_quiz },
     { { 3, 5 }, { 0, 0 }, sch_legalforcestatus, sch_inforce },

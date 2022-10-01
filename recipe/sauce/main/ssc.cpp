@@ -59,6 +59,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/q.h"
 #include "coop/kew.h"
 #include "coop/knickers.h"
+#include "main/balloon.h"
 
 const char* build_info = BUILD_INFO;
 const char* test_title = TEST_TITLE;
@@ -245,10 +246,7 @@ int main (int argc, char** argv)
     PRESUME (argc > 0, __FILE__, __LINE__);
     VERIFY_NOT_NULL (argv, __FILE__, __LINE__);
     try
-    {   const auto start = ::std::chrono::system_clock::now ();
-        const std::time_t start_time = ::std::chrono::system_clock::to_time_t (start);
-        ::std::string t (::std::ctime (&start_time));
-        t = t.substr (0, t.length () - 1);
+    {   time_balloon balloon;
         vstr_t v (split_by_charset (VERSION_STRING, "."));
         PRESUME (v.size () == 3, __FILE__, __LINE__);
         PRESUME (lexical < int > :: cast (v.at (0)) == VERSION_MAJOR, __FILE__, __LINE__);
@@ -256,7 +254,7 @@ int main (int argc, char** argv)
         PRESUME (lexical < int > :: cast (v.at (2)) == VERSION_RELEASE, __FILE__, __LINE__);
         nitpick nits, nuts;
         init (nits);
-        context.started (t);
+        context.started (balloon.inflate_time ());
         context.build (__DATE__ " " __TIME__);
 #ifdef _MSC_VER
 #pragma warning (push, 3)
@@ -297,13 +295,9 @@ int main (int argc, char** argv)
             nits.accumulate (&overall);
             const int cr = ciao ();
             if (cr > res) res = cr; }
-        const auto fin = std::chrono :: system_clock :: now ();
-        const std::chrono::duration <double> elapsed_seconds = fin - start;
-        const std::time_t end_time = std::chrono::system_clock::to_time_t (fin);
-        t = ::std::ctime (&end_time);
-        t = t.substr (0, t.length () - 1);
-        macro -> set (nm_time_finish, t);
-        macro -> set (nm_time_duration, ::boost::lexical_cast < ::std::string > (floor ((elapsed_seconds.count () * 1000.0) + 0.5) / 1000.0)); }
+        balloon.pop ();
+        macro -> set (nm_time_finish, balloon.pop_time ());
+        macro -> set (nm_time_duration, balloon.duration ()); }
     catch (const ::std::system_error& e)
     {   msg = "catastrophic exit with system error: ";
         msg += e.what ();

@@ -42,7 +42,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
         nits.pick (nit_icu, es_catastrophic, ec_icu, "ICU ucnv_getStandardName error ", static_cast < int > (err)); }
     return ::std::string (); }
 
-::std::string convert_to_utf8 (nitpick& nits, const ::std::string& name, void* vp, uintmax_t& sz)
+::std::string convert_to_utf8 (nitpick& nits, const ::std::string& name, void_ptr& vp, uintmax_t& sz)
 {   PRESUME (context.icu (), __FILE__, __LINE__);
     PRESUME (sz > 0, __FILE__, __LINE__);
     PRESUME (vp != nullptr, __FILE__, __LINE__);

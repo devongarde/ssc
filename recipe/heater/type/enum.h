@@ -1542,7 +1542,8 @@ typedef enum { mo_display, mo_inline } e_mode;
 
 // for foaf
 // Note: Myers Briggs Type Indicator and MBTI are registered trademarks of Consulting Psychologists Press Inc. Oxford Psychologists Press Ltd has exclusive rights to the trademark in the UK.
-// Note: it's pseudoscience
+// Note: it's pseudoscience. See the Skeptics' Guide for more info.
+// IMHO, if a prospective employer/client/partner etc. wants to use them, them, at the very least, their HR department has problems: I would suggest looking elsewhere. 
 typedef enum { mb_ESTJ, mb_INFP, mb_ESFP, mb_INTJ, mb_ESFJ, mb_INTP, mb_ENFP, mb_ISTJ, mb_ESTP, mb_INFJ, mb_ENFJ, mb_ISTP, mb_ENTJ, mb_ISFP, mb_ENTP, mb_ISFJ } e_myersbriggs;
 
 typedef enum
@@ -1675,7 +1676,7 @@ typedef enum
     nit_mf_version, nit_not_directory, nit_endpoint, nit_header_empty, nit_header_malformed, nit_http_error, nit_header_no_data,
     nit_json_version, nit_json_corrupt, nit_json_domain, nit_dialect, nit_country, nit_languages, nit_hidden, nit_bespoke_obsolete,
     nit_regex, nit_fred_borked, nit_kew_borked, nit_internal_cache_error, nit_mtr_required, nit_mtd_required, nit_bad_intent,
-    nit_cannot_scan, nit_thread, nit_icu_installation,
+    nit_cannot_scan, nit_thread, nit_icu_installation, nit_os_file,
     nit_context,
 
     // eon
@@ -3417,8 +3418,8 @@ typedef enum
     owl_withrestrictions,
 
     // poetry
-    poetry_age, poetry_containedinpoem, poetry_containspoem, poetry_hasform, poetry_hasstanza, poetry_indialect, poetry_ischorus, poetry_islaidout, poetry_keepsstrictform, poetry_lines, poetry_medium, poetry_metre,
-        poetry_poet, poetry_region, poetry_rhymingscheme, poetry_subform,
+    poetry_age, poetry_containedinpoem, poetry_containspoem, poetry_content, poetry_hasform, poetry_hasstanza, poetry_indialect, poetry_ischorus, poetry_islaidout, poetry_keepsstrictform,
+        poetry_lines, poetry_medium, poetry_metre, poetry_poet, poetry_region, poetry_rhymingscheme, poetry_subform,
 
     // provincial
     pp_actedonbehalfof, pp_activity, pp_agent, pp_alternativeto, pp_atlocation, pp_attime,
@@ -4016,7 +4017,7 @@ typedef enum {
         t_svg_shapefn, t_svg_side, t_svg_svg, t_svg_time, t_svg_time_default, t_svg_time_inherit, t_svg_time_none, t_svg_timelinebegin, t_svg_transform,
         t_svg_type, t_svg_units, t_svg_values, t_svg_version, t_svg_version_grand, t_svg_viewbox, t_svg_viewboxrect, t_sym, t_syncbehaviour,
         t_syncbehaviourdefault,
-    t_tableframe, t_tablevalues, t_target, t_tbalign, t_tdscope, t_tel, t_tel_format, t_tendstotype, t_text, t_text_decoration, t_textoverflow, t_text_rendering,
+    t_tableframe, t_tablevalues, t_target, t_tbalign, t_tdscope, t_tel, t_tendstotype, t_text, t_text_decoration, t_textoverflow, t_text_rendering,
         t_tfmu, t_tfa, t_tfi, t_tfn, t_tfu, t_tokens, t_transform, t_transform_anim, t_transformbehaviour, t_transform_fn, t_transition_subtype, t_transition_type,
         t_transp, t_truefalseempty, t_turbulence_type, t_type, t_typeof, t_tz,
     t_ugeo, t_uid, t_unicode_bidi, t_unit, t_units, t_unsigned, t_unsigned_byte, t_unsigned_short, t_unsigned_1_or_2, t_un_ex, t_unsigned_dosh, t_uplr, t_urange, t_urifn,

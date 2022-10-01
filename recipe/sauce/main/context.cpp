@@ -29,6 +29,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "coop/fred.h"
 
 context_t context;
+ssc_set < ::std::string > excludable_filenames;
 
 context_t::context_t ()
     :   validation_ ("Additional attribute values (check " PROG "'s source code for context)", DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH)
@@ -38,6 +39,8 @@ int context_t::parameters (nitpick& nits, int argc, char** argv)
 {   options o (nits, argc, argv);
     if (context.todo () == do_booboo) return ERROR_STATE;
     if ((context.todo () != do_examine) && (context.todo () != do_cgi)) return STOP_OK;
+    excludable_filenames.insert (".git"); // should logically be in constructor but MSVC throws a wobbly
+    excludable_filenames.insert (".DS_Store");
     o.contextualise (nits);
     if (! test () && tell (es_debug))
     {   ::std::string s (o.report ());
@@ -183,14 +186,17 @@ context_t& context_t::exclude (nitpick& nits, const vstr_t& s)
         exclude (nits, ss);
     return *this; }
 
+
 #ifdef NO_BOOST_REGEX   
-bool context_t::excluded (const ::boost::filesystem::path& ) const
+bool context_t::excluded (nitpick& , const ::boost::filesystem::path& ) const
 {   return false; }
 #else // NO_BOOST_REGEX
-bool context_t::excluded (const ::boost::filesystem::path& p) const
+bool context_t::excluded (nitpick& nits, const ::boost::filesystem::path& p) const
 {   for (auto w : exclude_)
         if (::boost::regex_search (p.string (), w))
             return true;
+    if (excludable_filenames.find (p.filename ().string ()) != excludable_filenames.cend ())
+        nits.pick (nit_os_file, es_warning, ec_schema, "System file ", p.string (), " found but not excluded");
     return false; }
 #endif // NO_BOOST_REGEX
 

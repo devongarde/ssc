@@ -753,6 +753,7 @@ const nitname nitnames [] =
     { nit_cannot_scan, "cannot_scan" },
     { nit_thread, "thread" },
     { nit_icu_installation, "icu_installation" },
+    { nit_os_file, "os_file" },
 
     { nit_off, "" } };
 

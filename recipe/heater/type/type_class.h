@@ -45,7 +45,7 @@ template < > inline void enum_n < t_class, e_class > :: set_value (nitpick& nits
 
 template < > inline void enum_vec < t_class, e_class > :: set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
 {   enum_vec_base < e_class, t_class > :: original_ = ss;
-    bool res = true; vstr_t strs;
+    vstr_t strs;
     ::std::string sss (trim_the_lot_off (ss));
     ::boost::algorithm::split (strs, sss, ::boost::algorithm::is_any_of (" "), ::boost::algorithm::token_compress_on);
     if (strs.size () == 0)
@@ -53,21 +53,18 @@ template < > inline void enum_vec < t_class, e_class > :: set_value (nitpick& ni
     for (auto s : strs)
     {   enum_vec_base < e_class, t_class > :: base_t t;
         t.set_value (nits, v, s);
+        VERIFY_NOT_NULL (box (), __FILE__, __LINE__);
         if (is_whatwg_class (t.get ()))
         {   nits.pick (nit_whatwg_class, ed_jan07, "3.4.5. Classes", es_comment, ec_attribute, "FYI, ", quote (s), " was a draft HTML 5 standard class name.");
             if ((v.mjr () != HTML_2007) || (v.mnr () >= HTML_JUL)) t.status (s_invalid); }
-        VERIFY_NOT_NULL (box (), __FILE__, __LINE__);
         if (t.invalid ())
-            if (note_class_usage (box (), s))
-            {   nits.pick (nit_spotted_css_class, es_comment, ec_css, "CSS class ", quote (s), " recognised");
-                t.status (s_good); }
-            else
-            {   res = false;
-                if (! check_class_spelling (nits, v, s))
-                    nits.pick (nit_unrecognised_value, es_warning, ec_type, quote (s), " is unknown"); }
+        {   if (note_class_usage (box (), s))
+                nits.pick (nit_spotted_css_class, es_comment, ec_css, "CSS class ", quote (s), " recognised");
+            else if (! check_class_spelling (nits, v, s))
+                nits.pick (nit_unrecognised_value, es_warning, ec_type, quote (s), " is unknown");
+            t.status (s_good); }
         enum_vec_base < e_class, t_class > :: value_.push_back (t); }
-    if (res) type_base < e_class, t_class > :: status (s_good);
-    else type_base < e_class, t_class > :: status (s_invalid); }
+    type_base < e_class, t_class > :: status (s_good); }
 
 struct html_class : enum_n < t_class, e_class >
 {   using enum_n < t_class, e_class > :: enum_n;
