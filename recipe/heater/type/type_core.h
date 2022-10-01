@@ -45,7 +45,7 @@ template < e_type TYPE > struct string_value : public type_base < ::std::string,
     bool has_value (const ::std::string& s) const { return type_base < ::std::string, TYPE > :: good () && (value_ == s); }
     int get_int () const { return lexical < int > :: cast (value_); }
     void shadow (::std::stringstream& ss, const html_version& v, element* )
-    {   if (! v.xhtml () && (value_.find_first_not_of (ALPHANUMERIC "+") == ::std::string::npos)) ss << '=' << value_;
+    {   if (! v.xhtml () && (! value_.empty ()) && (value_.find_first_not_of (ALPHANUMERIC "+") == ::std::string::npos)) ss << '=' << value_;
         else if (value_.find_first_of ('\"') == ::std::string::npos) ss << '=' << '"' << value_ << '"';
         else if (value_.find_first_of ("'") == ::std::string::npos) ss << "='" << value_ << "'";
         else ss << '=' << enquote (value_); }

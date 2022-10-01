@@ -110,7 +110,7 @@ public:
         conv_ = c.conv_;
         c.conv_ = tmp; }
     void reset () noexcept { if (context.icu ()) ucnv_reset (conv_); }
-    void_ptr convert_to (void* vp, const uintmax_t sz);
+    void_ptr convert_to (const void_ptr& vp, const uintmax_t sz);
     UErrorCode error () const noexcept { return err_; }
     bool valid () const noexcept
     {   if (! context.icu ()) return false;

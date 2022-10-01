@@ -38,7 +38,9 @@ external directory::external_;
 
 directory::directory (nitpick* ticks, const ::std::string& name, const fileindex_t ndx, directory* mummy, const ::std::string& site, const bool check)
     : name_ (name), offsite_ (false), mummy_ (mummy), ndx_ (ndx)
-{   PRESUME (mummy_ != nullptr, __FILE__, __LINE__);
+{   PRESUME (ndx_ != nullfileindex, __FILE__, __LINE__);
+    PRESUME (mummy_ != nullptr, __FILE__, __LINE__);
+    PRESUME (name_ == get_name (ndx), __FILE__, __LINE__);
     if (check) scan (ticks, site); }
 
 directory::directory (const path_root_ptr& root, const short v)
@@ -181,7 +183,7 @@ bool directory::scan (nitpick* ticks, const ::std::string& site)
 {   PRESUME (! offsite_, __FILE__, __LINE__);
     const ::boost::filesystem::path disk (get_disk_path ());
     for (const ::boost::filesystem::directory_entry& x : ::boost::filesystem::directory_iterator (disk))
-        if (! context.excluded (x.path ()))
+        if (! context.excluded (*ticks, x.path ()))
             add_to_content (ticks, x, site);
     return true; }
 
@@ -196,7 +198,6 @@ bool directory::add_to_content (nitpick* ticks, const ::boost::filesystem::direc
     else p = site;
     ::std::string f (local_path_to_nix (qp.filename ().string ()));
     p = join_site_paths (p, f);
-//    add_site_path (p, ndx);
     if (is_regular_file (qp))
     {   if (context.dodedu ())
             get_crc (*ticks, ndx);
@@ -288,7 +289,7 @@ void directory::examine (nitpick* ticks, dir_ptr me_me_me) const
 #ifndef NO_FRED
                 q.push (q_entry (ticks, me_me_me, st_file, i.first)); }
 #else // NO_FRED
-                examine_file (ticks, i.first)); }
+                examine_page (ticks, i.first)); }
 #endif // NO_FRED
     ::std::this_thread::yield ();
     if (context.shadow_files ())
@@ -341,12 +342,9 @@ uint64_t directory::url_size (nitpick& nits, const url& u) const
     catch (...) { }
     return ::std::string (); }
 
-void directory::maintain_fileindex (nitpick& nits, const ::boost::filesystem::path& p, const ::std::string& up, fileindex_t ndx, const fileindex_flags flags) const
+void directory::maintain_fileindex (nitpick& , const ::boost::filesystem::path& p, const ::std::string& , fileindex_t ndx, const fileindex_flags flags) const
 {   if (ndx == nullfileindex)
         ndx = insert_disk_path (ndx_, p, flags);
-//    {   ndx = insert_disk_path (ndx_, p, flags);
-//        ::std::string sp = get_site_path (nits, up);
-//        add_site_path (sp, ndx); }
     else set_flag (ndx, flags); }
 
 bool directory::verify_local (nitpick& nits, const html_version& , const url& u, const bool fancy) const

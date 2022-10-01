@@ -3541,6 +3541,29 @@ microdata_structure schema_structure [] =
     { { s_gs1, 1, 3 }, { 0, 0 }, owl_thing, gs1p_verificationservice },
     { { s_gs1, 1, 3 }, { 0, 0 }, owl_thing, gs1p_whatsinthebox },
 
+    // poetry
+    { { s_poetry, 1, 0 }, { 0, 0 }, poetry_dialect, poetry_region },
+    { { s_poetry, 1, 0 }, { 0, 0 }, poetry_dialect, poetry_age },
+
+    { { s_poetry, 1, 0 }, { 0, 0 }, poetry_form, poetry_indialect },
+    { { s_poetry, 1, 0 }, { 0, 0 }, poetry_form, poetry_lines },
+    { { s_poetry, 1, 0 }, { 0, 0 }, poetry_form, poetry_metre },
+    { { s_poetry, 1, 0 }, { 0, 0 }, poetry_form, poetry_rhymingscheme },
+    { { s_poetry, 1, 0 }, { 0, 0 }, poetry_form, poetry_subform },
+
+    { { s_poetry, 1, 0 }, { 0, 0 }, poetry_poem, poetry_containedinpoem },
+    { { s_poetry, 1, 0 }, { 0, 0 }, poetry_poem, poetry_containspoem },
+    { { s_poetry, 1, 0 }, { 0, 0 }, poetry_poem, poetry_content },
+    { { s_poetry, 1, 0 }, { 0, 0 }, poetry_poem, poetry_hasform },
+    { { s_poetry, 1, 0 }, { 0, 0 }, poetry_poem, poetry_hasstanza },
+    { { s_poetry, 1, 0 }, { 0, 0 }, poetry_poem, poetry_indialect },
+    { { s_poetry, 1, 0 }, { 0, 0 }, poetry_poem, poetry_islaidout },
+    { { s_poetry, 1, 0 }, { 0, 0 }, poetry_poem, poetry_keepsstrictform },
+    { { s_poetry, 1, 0 }, { 0, 0 }, poetry_poem, poetry_medium },
+    { { s_poetry, 1, 0 }, { 0, 0 }, poetry_poem, poetry_poet },
+
+    { { s_poetry, 1, 0 }, { 0, 0 }, poetry_stanza, poetry_ischorus },
+
     // provincial
     { { s_prov, 1, 0 }, { 0, 0 }, prov_activity, pp_atlocation },
     { { s_prov, 1, 0 }, { 0, 0 }, prov_activity, pp_endedattime },

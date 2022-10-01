@@ -155,14 +155,7 @@ public:
     {   nits_.pick (code, severity, category, msg...); }
 
     void merge (const nitpick& np) { nits_.merge (np); }
-#ifdef _MSC_VER
-#pragma warning (push, 3)
-#pragma warning ( disable : 26460 )
-#endif // _MSC_VER
-//    void merge (nitpick&& np) { nits_.merge (np); }
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif // _MSC_VER
+
     elem& id () noexcept { return elem_; }
     const elem& id () const noexcept { return elem_; }
     const elements_node* box () const noexcept { return box_; }

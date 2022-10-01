@@ -279,6 +279,11 @@ fileindex_flags get_flags (const fileindex_t ndx)
     lox l (lox_fileindex);
     return GSL_AT (vx, ndx).flags_; }
 
+::std::string get_name (const fileindex_t ndx)
+{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
+    lox l (lox_fileindex);
+    return GSL_AT (vx, ndx).name_; }
+
 bool inner_get_any_flag (const fileindex_t ndx, const fileindex_flags flag)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     return (GSL_AT (vx, ndx).flags_ & flag) != 0; }
@@ -632,8 +637,9 @@ bool fileindex_load_internal (nitpick& nits, bool& ok)
                             if (most >= sdx.size ()) most = sdx.size ()-1;
                             for (::std::size_t i = 0; i < most; ++i)
                                 lx.emplace (lexical < fileindex_t > :: cast (sdx.at (i+1))); } }
-                    fileindex_t mummy = nullfileindex;
-                    if (v < 0) mummy = get_fileindex (disk.parent_path ());
+//                    fileindex_t mummy = nullfileindex;
+//                    if (v < 0) mummy = get_fileindex (disk.parent_path ());
+                    fileindex_t mummy = get_fileindex (disk.parent_path ());
                     vx.emplace_back (mummy, site, flags, size, last_write, crc, dx, lx);
                     fileindex_t moi = vx.size () - 1;
                     PRESUME (GSL_AT (vx, moi).name_ == site, __FILE__, __LINE__);
@@ -673,7 +679,7 @@ bool fileindex_load (nitpick& nits)
             else nits.pick (nit_cannot_delete, es_error, ec_crc, "cannot delete bad file ", p.string ()); }
     return false; }
 
-bool write_fileindex_record (nitpick& nits, BOOST_FSTREAM& f, ::boost::filesystem::path& name, ::std::size_t n, const mndx_t& mndx)
+bool write_fileindex_record (nitpick& nits, BOOST_FSTREAM& f, const ::boost::filesystem::path& name, const ::std::size_t n, const mndx_t& mndx)
 {   index_t& v = GSL_AT (vx, n);
     ::std::string ln;
     ln = ::boost::lexical_cast < ::std::string > (v.name_);

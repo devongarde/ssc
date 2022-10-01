@@ -36,7 +36,7 @@ public:
     typedef typename counter_t :: const_iterator cit;
     stats3 ()
     {   count_.resize (static_cast <::std::size_t> (max_enum + 1), base_t ()); }
-    void swap (stats3& s3)
+    void swap (stats3& s3) noexcept
     {   count_.swap (s3.count_); }
     const base_t& at (const ENUM& e) const { return count_.at (e); }
     void mark (const ENUM& e, const VALUE& k, const unsigned u = 1)

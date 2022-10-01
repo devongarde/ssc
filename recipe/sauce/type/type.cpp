@@ -682,7 +682,6 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_tbalign);
         TEST_VALUE (t_tdscope);
         TEST_VALUE (t_tel);
-        TEST_VALUE (t_tel_format);
         TEST_VALUE (t_tendstotype);
         TEST_VALUE (t_text);
         TEST_VALUE (t_text_decoration);

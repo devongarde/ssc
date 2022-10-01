@@ -64,15 +64,17 @@ void element::swap (element& e) noexcept
     ::std::swap (access_, e.access_);
     ::std::swap (vit_, e.vit_); }
 
-void element::cleanup ()
-{   if (child_ != nullptr)
-    {   child_ -> cleanup ();
-        delete child_;
-        child_ = nullptr; }
-    if (sibling_ != nullptr)
-    {   sibling_ -> cleanup ();
-        delete sibling_;
-        sibling_ = nullptr; } }
+void element::cleanup () noexcept
+{   try
+    {   if (child_ != nullptr)
+        {   child_ -> cleanup ();
+            delete child_;
+            child_ = nullptr; }
+        if (sibling_ != nullptr)
+        {   sibling_ -> cleanup ();
+            delete sibling_;
+            sibling_ = nullptr; } }
+    catch (...) { } }
 
 ids_t& element::get_ids () noexcept
 {   return page_ -> get_ids (); }

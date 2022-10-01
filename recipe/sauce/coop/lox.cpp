@@ -142,12 +142,4 @@ dear::~dear ()
     catch (...)
     {   fprintf (stderr, "unknown dear mutex exception; aborting."); }
     GRACELESS_CRASH (__FILE__, __LINE__); }
-
-//::std::mutex& lox::mx (const e_lox l)
-//{   PRESUME (fred.started (), __FILE__, __LINE__);
-//    return vmx.at (l); }
-
-//::std::mutex& flox::mx ()
-//{   PRESUME (fred.started (), __FILE__, __LINE__);
-//    return vmx.at (lox_flox); }
 #endif // NO_FRED

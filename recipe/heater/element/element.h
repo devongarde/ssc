@@ -44,14 +44,14 @@ class element
 {   element_node& node_;
     attributes a_;
     bool examined_ = false, icarus_ = false, reconstructed_ = false;
-    page* page_ = nullptr;
-    element* parent_ = nullptr;
-    element* sibling_ = nullptr;
-    element* child_ = nullptr;
-    element* autofocus_ = nullptr;
+    page* page_ = nullptr; // NOT owned
+    element* parent_ = nullptr; // NOT owned
+    element* sibling_ = nullptr; // owned by element
+    element* child_ = nullptr; // owned by element
+    element* autofocus_ = nullptr; // NOT owned
     microformats_ptr mf_;
     ::std::string name_;
-    sstr_t* access_ = nullptr;
+    sstr_t* access_ = nullptr; // NOT owned
     element_bitset ancestral_elements_, sibling_elements_, descendant_elements_;
     attribute_bitset ancestral_attributes_, own_attributes_, sibling_attributes_, descendant_attributes_;
     uid_t uid_ = 0, closure_uid_ = 0;
@@ -256,14 +256,9 @@ class element
     ::std::string term () const;
 public:
     element (const ::std::string& name, element_node& en, element* parent, page* p);
-//    element () = default;
-//    element (const element& ) = default;
-//    element (element&& ) = default;
     ~element () { cleanup (); }
-//    element& operator = (const element& ) = default;
-//    element& operator = (element&& ) = default;
     void swap (element& e) noexcept;
-    void cleanup ();
+    void cleanup () noexcept;
 
     void reconstruct (sstr_t* access);
     const element_node& node () const noexcept
