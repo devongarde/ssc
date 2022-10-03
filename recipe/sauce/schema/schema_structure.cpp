@@ -3551,6 +3551,7 @@ microdata_structure schema_structure [] =
     { { s_poetry, 1, 0 }, { 0, 0 }, poetry_form, poetry_rhymingscheme },
     { { s_poetry, 1, 0 }, { 0, 0 }, poetry_form, poetry_subform },
 
+    { { s_poetry, 1, 1 }, { 0, 0 }, poetry_poem, poetry_allusion },
     { { s_poetry, 1, 0 }, { 0, 0 }, poetry_poem, poetry_containedinpoem },
     { { s_poetry, 1, 0 }, { 0, 0 }, poetry_poem, poetry_containspoem },
     { { s_poetry, 1, 0 }, { 0, 0 }, poetry_poem, poetry_content },

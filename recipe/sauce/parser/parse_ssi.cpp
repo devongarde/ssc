@@ -99,16 +99,24 @@ bool encoding (::std::string& ln, nitpick& nits, const html_version& v, e_ssi_en
             else switch (env)
             {   case ssi_DATE_GMT :
                     {   ::std::ostringstream ss;
+#ifndef NO_BOOST_DATE_FACET
                         GSL_OWNER (::boost::gregorian::date_input_facet) facet (new ::boost::gregorian::date_input_facet ("%D %T %Z"));
                         ss.imbue (::std::locale (::std::locale (), facet));
                         ss << ::boost::posix_time::second_clock::universal_time ();
+#else // NO_BOOST_DATE_FACET
+                        ss << ::boost::gregorian::to_iso_extended_string (::boost::gregorian::day_clock::universal_day ());
+#endif // NO_BOOST_DATE_FACET
                         arg = ss.str (); }
                     break;
                 case ssi_DATE_LOCAL :
                     {   ::std::ostringstream ss;
+#ifndef NO_BOOST_DATE_FACET
                         GSL_OWNER (::boost::gregorian::date_input_facet) facet (new ::boost::gregorian::date_input_facet ("%D %T %Z"));
                         ss.imbue (::std::locale (::std::locale (), facet));
                         ss << ::boost::posix_time::second_clock::local_time ();
+#else // NO_BOOST_DATE_FACET
+                        ss << ::boost::gregorian::to_iso_extended_string (::boost::gregorian::day_clock::local_day ());
+#endif // NO_BOOST_DATE_FACET
                         arg = ss.str (); }
                     break;
                 case ssi_DOCUMENT_NAME :
@@ -127,9 +135,13 @@ bool encoding (::std::string& ln, nitpick& nits, const html_version& v, e_ssi_en
                         x /= c.filename_;
                         t = get_last_write_time (x);
                         ::std::ostringstream ss;
+#ifndef NO_BOOST_DATE_FACET
                         GSL_OWNER (::boost::gregorian::date_input_facet) facet (new ::boost::gregorian::date_input_facet ("%D %T %Z"));
                         ss.imbue (::std::locale (::std::locale (), facet));
                         ss << ::boost::posix_time::from_time_t (t);
+#else // NO_BOOST_DATE_FACET
+                        ss << ::boost::posix_time::to_iso_extended_string (::boost::posix_time::from_time_t (t));
+#endif // NO_BOOST_DATE_FACET
                         arg = ss.str (); }
                     break;
                 case ssi_error :
@@ -232,9 +244,13 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
         return c.errmsg_; }
 
     ::std::ostringstream ss;
+#ifndef NO_BOOST_DATE_FACET
     GSL_OWNER (::boost::gregorian::date_input_facet) facet (new ::boost::gregorian::date_input_facet ("%D %T %Z"));
     ss.imbue (::std::locale (::std::locale (), facet));
     ss << ::boost::posix_time::from_time_t (lwt);
+#else // NO_BOOST_DATE_FACET
+    ss << ::boost::posix_time::to_iso_extended_string (::boost::posix_time::from_time_t (lwt));
+#endif // NO_BOOST_DATE_FACET
     return ss.str (); }
 
 ::std::string fsize_command (::std::string& ln, nitpick& nits, const html_version& v, const page& p, const ssi_compedium& c, const vstr_t& args)

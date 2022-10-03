@@ -406,7 +406,7 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                 case doc_html1 :
                     if (note_parsed_version (nits, nit_html_1_0, html_1, "HTML 1.0"))
                     {   found_html = true;
-                        nits.pick (nit_html_1_0, es_info, ec_parser, "Really? HTML 1.0? Ok."); }
+                        nits.pick (nit_html_1_0, es_info, ec_parser, "Really? HTML 1.0?"); }
                     break;
                 case doc_html_tags :
                     note_parsed_version (nits, nit_html_tags, html_tags, "HTML Tags");

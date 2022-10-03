@@ -64,9 +64,9 @@ called doris
 </tbody>
 </table>
 <h1>HTML 4.01 Good</h1>
-<p><span id=msg1 lang=fr>Variable d&eacute;clar&eacute;e deux fois</span></p>
-<p><span id=msg2 lang=fr>Variable ind&eacute;finie</span></p>
-<p><span id=msg3 lang=fr>Erreur de syntaxe pour variable</span></p>
+<p><span class="info" id=msg1 lang=fr>Variable d&eacute;clar&eacute;e deux fois</span></p>
+<p><span class="warning" id=msg2 lang=fr>Variable ind&eacute;finie</span></p>
+<p><span class="error" id=msg3 lang=fr>Erreur de syntaxe pour variable</span></p>
 <p dir=ltr lang=lb>LTR</p>
 <p dir=rtl lang=ar>LTR</p>
 <dl>

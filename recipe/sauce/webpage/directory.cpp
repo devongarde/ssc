@@ -353,7 +353,7 @@ bool directory::verify_local (nitpick& nits, const html_version& , const url& u,
     if (p.empty ())
         if (u.has_query () || u.is_simple_id ())
             return fancy;
-    dear d (lox_dear);
+//    dear d (lox_dear);
     const fileindex_t ndx (get_fileindex (ndx_, p));
     if (ndx != nullfileindex)
         if (get_any_flag (ndx, FX_BORKED)) return false;

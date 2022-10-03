@@ -397,7 +397,14 @@ void element::examine_noscript ()
         {   element_bitset bs (descendant_elements_);
             bs &= ~(non_standard_bitset | elem_link | elem_style | elem_meta);
             if (bs.any ())
-                pick (nit_bad_noscript, ed_50, "4.11.2 The noscript element", es_error, ec_element, "in <HEAD>, <NOSCRIPT> can only have <LINK>, <STYLE>, or <META> descendants"); } } }
+                pick (nit_bad_noscript, ed_50, "4.11.2 The noscript element", es_error, ec_element, "in <HEAD>, <NOSCRIPT> can only have <LINK>, <STYLE>, or <META> descendants"); }
+        else if (node_.version () >= html_oct22)
+            if ((parent_ != nullptr) && (parent_ -> node ().id () == elem_body) && (parent_ -> node ().presumed ()))
+            {   bool naughty = true;
+                for (auto sibling = parent_ -> child_; naughty && (sibling != nullptr) && (sibling != this); sibling = sibling -> sibling_)
+                    naughty = ! is_faux_element (sibling -> node_.id ());
+                if (naughty)
+                    pick (nit_bad_noscript, ed_oct22, "4.11.2 The noscript element", es_error, ec_element, "the parental <BODY> must be specified if its first element is <NOSCRIPT>"); } } }
 
 void element::examine_object ()
 {   const bool has_type = a_.known (a_type);

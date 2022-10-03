@@ -1,0 +1,451 @@
+﻿<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> img </title> </head>
+ <body>
+
+<img src="1.jpeg" alt="1">
+<img src="2.jpeg" loading=eager alt="2">
+<img src="3.jpeg" loading=lazy alt="3">
+<div id=very-large></div> <!-- Everything after this div is below the viewport -->
+<img src="4.jpeg" alt="4">
+<img src="5.jpeg" loading=lazy alt="5">
+
+<p>I lived in <img src="carouge.svg" alt=""> Carouge.</p>
+
+<p>Home town: <img src="carouge.svg" alt="Carouge"></p>
+
+<p>Carouge has a coat of arms.</p>
+<p><img src="carouge.svg" alt="The coat of arms depicts a lion, sitting in front of a tree."></p>
+<p>It is used as decoration all over the town.</p>
+
+<p>Carouge has a coat of arms.</p>
+<p><img src="carouge.svg" alt=""></p>
+<p>The coat of arms depicts a lion, sitting in front of a tree.
+It is used as decoration all over the town.</p>
+
+<p>She picked up the folder and a piece of paper fell out.</p>
+<p><img src="carouge.svg" alt="Shaped like a shield, the paper had a
+red background, a green tree, and a yellow lion with its tongue
+hanging out and whose tail was shaped like an S."></p>
+<p>She stared at the folder. S! The answer she had been looking for all
+this time was simply the letter S! How had she not seen that before? It all
+came together now. The phone call where Hector had referred to a lion's tail,
+the time Maria had stuck her tongue out...</p>
+
+<p>The last user to have uploaded a coat of arms uploaded this one:</p>
+<p><img src="last-uploaded-coat-of-arms.cgi" title="User-uploaded coat of arms."></p>
+<article>
+<h1>My cats</h1>
+<h2>Fluffy</h2>
+<p>Fluffy is my favorite.</p>
+<img src="fluffy.jpg" alt="She likes playing with a ball of yarn.">
+<p>She's just too cute.</p>
+<h2>Miles</h2>
+<p>My other cat, Miles just eats and sleeps.</p>
+</article>
+
+<article>
+<h1>Photography</h1>
+<h2>Shooting moving targets indoors</h2>
+<p>The trick here is to know how to anticipate; to know at what speed and
+what distance the subject will pass by.</p>
+<img src="fluffy.jpg" alt="A cat flying by, chasing a ball of yarn, can be
+photographed quite nicely using this technique.">
+<h2>Nature by night</h2>
+<p>To achieve this, you'll need either an extremely sensitive film, or
+immense flash lights.</p>
+</article>
+<article>
+<h1>About me</h1>
+<h2>My pets</h2>
+<p>I've got a cat named Fluffy and a dog named Miles.</p>
+<img src="fluffy.jpg" alt="Fluffy, my cat, tends to keep itself busy.">
+<p>My dog Miles and I like go on long walks together.</p>
+<h2>music</h2>
+<p>After our walks, having emptied my mind, I like listening to Bach.</p>
+</article>
+<article>
+<h1>Fluffy and the Yarn</h1>
+<p>Fluffy was a cat who liked to play with yarn. She also liked to jump.</p>
+<aside><img src="fluffy.jpg" alt="" title="Fluffy"></aside>
+<p>She would play in the morning, she would play in the evening.</p>
+</article>
+
+<h2>From today's featured article</h2>
+<img src="/uploads/100-marie-lloyd.jpg" alt="" width="100" height="150">
+<p><b><a href="/wiki/Marie_Lloyd">Marie Lloyd</a></b> (1870–1922)
+was an English <a href="/wiki/Music_hall">music hall</a> singer, ...
+
+<h2>From today's featured article</h2>
+<img src="/uploads/100-marie-lloyd.jpg"
+srcset="/uploads/150-marie-lloyd.jpg 1.5x, /uploads/200-marie-lloyd.jpg 2x"
+alt="" width="100" height="150">
+<p><b><a href="/wiki/Marie_Lloyd">Marie Lloyd</a></b> (1870–1922)
+was an English <a href="/wiki/Music_hall">music hall</a> singer, ...
+<h1><img sizes="100vw" srcset="wolf-400.jpg 400w, wolf-800.jpg 800w, wolf-1600.jpg 1600w"
+src="wolf-400.jpg" alt="The rad wolf"></h1>
+<img sizes="(max-width: 30em) 100vw, (max-width: 50em) 50vw, calc(33vw - 100px)"
+srcset="swing-200.jpg 200w, swing-400.jpg 400w, swing-800.jpg 800w, swing-1600.jpg 1600w"
+src="swing-400.jpg" alt="Kettlebell Swing">
+
+<picture>
+<source media="(min-width: 45em)" srcset="large.jpg">
+<source media="(min-width: 32em)" srcset="med.jpg">
+<img src="small.jpg" alt="The wolf runs through the snow.">
+</picture>
+
+<h1>
+<picture>
+<source media="(max-width: 500px)" srcset="banner-phone.jpeg, banner-phone-HD.jpeg 2x">
+<img src="banner.jpeg" srcset="banner-HD.jpeg 2x" alt="The Breakfast Combo">
+</picture>
+</h1>
+
+<h2>From today's featured article</h2>
+<picture>
+<source srcset="/uploads/100-marie-lloyd.webp" type="image/webp">
+<source srcset="/uploads/100-marie-lloyd.jxr" type="image/vnd.ms-photo">
+<img src="/uploads/100-marie-lloyd.jpg" alt="" width="100" height="150">
+</picture>
+<p><b><a href="/wiki/Marie_Lloyd">Marie Lloyd</a></b> (1870–1922)
+was an English <a href="/wiki/Music_hall">music hall</a> singer, ...
+<figure>
+<picture>
+<source srcset="a-square.png" media="(max-width: 600px)">
+<img src="a-rectangle.png" alt="Barney Frank wears a suit and glasses.">
+</picture>
+<figcaption>Barney Frank, 2011</figcaption>
+</figure>
+
+<style>
+#a { width: 300px; height: 150px; }
+@media (max-width: 600px) { #a { width: 100px; height: 100px; } }
+</style>
+<figure>
+<picture>
+<source srcset="a-square.png" media="(max-width: 600px)">
+<img src="a-rectangle.png" alt="Barney Frank wears a suit and glasses." id="a">
+</picture>
+<figcaption>Barney Frank, 2011</figcaption>
+</figure>
+
+<style media="(max-width: 600px)">
+#a { width: 100px; height: 100px; }
+</style>
+<figure>
+<picture>
+<source srcset="a-square.png" media="(max-width: 600px)">
+<img src="a-rectangle.png" width="300" height="150"
+alt="Barney Frank wears a suit and glasses." id="a">
+</picture>
+<figcaption>Barney Frank, 2011</figcaption>
+</figure>
+
+<picture>
+<source srcset="pear-mobile.jpeg" media="(max-width: 720px)">
+<source srcset="pear-tablet.jpeg" media="(max-width: 1280px)">
+<img src="pear-desktop.jpeg" alt="The pear is juicy.">
+</picture>
+<picture>
+<source srcset="pear-mobile.jpeg" media="(max-width: 720px)">
+<source srcset="pear-tablet.jpeg" media="(max-width: 1280px)">
+<source srcset="pear-desktop.jpeg">
+<img src="pear-mobile.jpeg" alt="The pear is juicy.">
+</picture>
+<picture>
+<source srcset="pear-mobile.jpeg" media="(max-width: 720px)">
+<source srcset="pear-tablet.jpeg" media="(max-width: 1280px)">
+<source srcset="pear-desktop.jpeg">
+<img src="pear-tablet.jpeg" alt="The pear is juicy.">
+</picture>
+<picture>
+<source srcset="pear-desktop.jpeg" media="(min-width: 1281px)">
+<source srcset="pear-tablet.jpeg" media="(min-width: 721px)">
+<img src="pear-mobile.jpeg" alt="The pear is juicy.">
+</picture>
+
+<h1>Pick your color</h1>
+<ul>
+<li><a href="green.html"><img src="green.jpeg" alt="Green"></a></li>
+<li><a href="blue.html"><img src="blue.jpeg" alt="Blue"></a></li>
+<li><a href="red.html"><img src="red.jpeg" alt="Red"></a></li>
+</ul>
+
+<button name="rgb"><img src="red" alt="RGB"><img src="green" alt=""><img src="blue" alt=""></button>
+<button name="cmyk"><img src="cyan" alt="CMYK"><img src="magenta" alt=""><img src="yellow" alt=""><img src="black" alt=""></button>
+<button name="rgb"><img src="red" alt="R"><img src="green" alt="G"><img src="blue" alt="B"></button>
+<button name="cmyk"><img src="cyan" alt="C"><img src="magenta" alt="M"><img src="yellow" alt="Y"><img src="black" alt="K"></button>
+
+<button name="rgb"><img src="red" alt="sRGB profile"><img src="green" alt=""><img src="blue" alt=""></button>
+<button name="cmyk"><img src="cyan" alt="CMYK profile"><img src="magenta" alt=""><img src="yellow" alt=""><img src="black" alt=""></button>
+
+<p>In the common case, the data handled by the tokenization stage
+comes from the network, but it can also come from script.</p>
+<p><img src="images/parsing-model-overview.svg" alt="The Network
+passes data to the Input Stream Preprocessor, which passes it to the
+Tokenizer, which passes it to the Tree Construction stage. From there,
+data goes to both the DOM and to Script Execution. Script Execution is
+linked to the DOM, and, using document.write(), passes data to the
+Tokenizer."></p>
+
+<!-- This is the correct way to do things. -->
+<p>
+You are standing in an open field west of a house.
+<img src="house.jpeg" alt="The house is white, with a boarded front door.">
+There is a small mailbox here.
+</p>
+
+<!-- This is the wrong way to do things. -->
+<p>
+You are standing in an open field west of a house.
+<img src="house.jpeg" alt="A white house, with a boarded front door.">
+There is a small mailbox here.
+</p>
+
+<nav>
+<p><a href="/help/"><img src="/icons/help.png" alt=""> Help</a></p>
+<p><a href="/configure/"><img src="/icons/configuration.png" alt="">
+Configuration Tools</a></p>
+</nav>
+
+<article>
+<header>
+<h1>Ratatouille wins <i>Best Movie of the Year</i> award</h1>
+<p><img src="movies.png" alt="Movies"></p>
+</header>
+<p>Pixar has won yet another <i>Best Movie of the Year</i> award,
+making this its 8th win in the last 12 years.</p>
+</article>
+<article>
+<header>
+<h1>Latest TWiT episode is online</h1>
+<p><img src="podcasts.png" alt="Podcasts"></p>
+</header>
+<p>The latest TWiT episode has been posted, in which we hear
+several tech news stories as well as learning much more about the
+iPhone. This week, the panelists compare how reflective their
+iPhones' Apple logos are.</p>
+</article>
+
+<h1><img src="XYZ.gif" alt="The XYZ company"></h1>
+
+<article>
+<h2>News</h2>
+<p>We have recently been looking at buying the <img src="alpha.gif"
+alt=""> ΑΒΓ company, a small Greek company
+specializing in our type of product.</p>
+
+<aside><p><img src="alpha-large.gif" alt=""></p></aside>
+<p>The ΑΒΓ company has had a good quarter, and our
+pie chart studies of their accounts suggest a much bigger blue slice
+than its green and orange slices, which is always a good sign.</p>
+</article>
+
+<p>Consider for a moment their logo:</p>
+<p><img src="/images/logo" alt="It consists of a green circle with a
+green question mark centered inside it."></p>
+<p>How unoriginal can you get? I mean, oooooh, a question mark, how
+<em>revolutionary</em>, how utterly <em>ground-breaking</em>, I'm
+sure everyone will rush to adopt those specifications now! They could
+at least have tried for some sort of, I don't know, sequence of
+rounded squares with varying shades of green and bold white outlines,
+at least that would look good on the cover of a blue book.</p>
+<h1><img src="earthdayheading.png" alt="Earth Day"></h1>
+
+<h1><img src="earthdayheading.png" alt="Earth Day"></h1>
+
+<p><img src="initials/o.svg" alt="O">nce upon a time and a long long time ago, late at
+night, when it was dark, over the hills, through the woods, across a great ocean, in a land far
+away, in a small house, on a hill, under a full moon...
+<p>Only <img src="euro.png" alt="euro ">5.99!
+<p>The Network passes data to the Input Stream Preprocessor, which
+passes it to the Tokenizer, which passes it to the Tree Construction
+stage. From there, data goes to both the DOM and to Script Execution.
+Script Execution is linked to the DOM, and, using document.write(),
+passes data to the Tokenizer.</p>
+<p><img src="images/parsing-model-overview.svg" alt=""></p>
+
+<!-- Using the title="" attribute -->
+<p>The Network passes data to the Input Stream Preprocessor, which
+passes it to the Tokenizer, which passes it to the Tree Construction
+stage. From there, data goes to both the DOM and to Script Execution.
+Script Execution is linked to the DOM, and, using document.write(),
+passes data to the Tokenizer.</p>
+<p><img src="images/parsing-model-overview.svg" alt=""
+title="Flowchart representation of the parsing model."></p>
+
+<!-- Using <figure> and <figcaption> -->
+<p>The Network passes data to the Input Stream Preprocessor, which
+passes it to the Tokenizer, which passes it to the Tree Construction
+stage. From there, data goes to both the DOM and to Script Execution.
+Script Execution is linked to the DOM, and, using document.write(),
+passes data to the Tokenizer.</p>
+<figure>
+<img src="images/parsing-model-overview.svg" alt="The Network leads to
+the Input Stream Preprocessor, which leads to the Tokenizer, which
+leads to the Tree Construction stage. The Tree Construction stage
+leads to two items. The first is Script Execution, which leads via
+document.write() back to the Tokenizer. The second item from which
+Tree Construction leads is the DOM. The DOM is related to the Script
+Execution.">
+<figcaption>Flowchart representation of the parsing model.</figcaption>
+</figure>
+
+<!-- This is WRONG. Do not do this. Instead, do what the above examples do. -->
+<p>The Network passes data to the Input Stream Preprocessor, which
+passes it to the Tokenizer, which passes it to the Tree Construction
+stage. From there, data goes to both the DOM and to Script Execution.
+Script Execution is linked to the DOM, and, using document.write(),
+passes data to the Tokenizer.</p>
+<p><img src="images/parsing-model-overview.svg"
+alt="Flowchart representation of the parsing model."></p>
+<!-- Never put the image's caption in the alt="" attribute! --><p>According to a study covering several billion pages,
+about 62% of documents on the web in 2007 triggered the Quirks
+rendering mode of web browsers, about 30% triggered the Almost
+Standards mode, and about 9% triggered the Standards mode.</p><p><img src="rendering-mode-pie-chart.png" alt=""></p>
+
+<p><img src="alexsalmond.jpeg" alt=""> Ahead of today's referendum,
+the First Minister of Scotland, Alex Salmond, wrote an open letter to all
+registered voters. In it, he admitted that all countries make mistakes.</p>
+
+<p><img src="alexsalmond.jpeg" alt="Alex Salmond is sad.">
+Ahead of today's referendum, the First Minister of Scotland, Alex Salmond,
+wrote an open letter to all registered voters. In it, he admitted that all
+countries make mistakes.</p>
+
+<p><img src="alexsalmond.jpeg" alt="Alex Salmond is ecstatic!">
+Ahead of today's referendum, the First Minister of Scotland, Alex Salmond,
+wrote an open letter to all registered voters. In it, he admitted that all
+countries make mistakes.</p>
+
+<p>Ahead of today's referendum, the First Minister of Scotland, Alex Salmond,
+wrote an open letter to all registered voters. In it, he admitted that all
+countries make mistakes.</p>
+<figure>
+<img src="alexsalmond.jpeg"
+alt="A high forehead, cheerful disposition, and dark hair round out Alex Salmond's face.">
+<figcaption> Alex Salmond, SNP. Photo © 2014 PolitiPhoto. </figcaption>
+</figure>
+<h1>The Lady of Shalott</h1>
+<p><img src="shalott.jpeg" alt=""></p>
+<p>On either side the river lie<br>
+Long fields of barley and of rye,<br>
+That clothe the wold and meet the sky;<br>
+And through the field the road run by<br>
+To many-tower'd Camelot;<br>
+And up and down the people go,<br>
+Gazing where the lilies blow<br>
+Round an island there below,<br>
+The island of Shalott.</p>
+
+<h1><img src="logo1.png" alt="XYZ Corp"><img src="logo2.png" alt=""></h1>
+
+<p>Rating: <meter max=5 value=3><img src="1" alt="3 out of 5"
+><img src="1" alt=""><img src="1" alt=""><img src="0" alt=""
+><img src="0" alt=""></meter></p><h1>The Church</h1>
+<p>You come across a flying spaghetti monster. Which side of His
+Noodliness do you wish to reach out for?</p>
+<p><a href="?go=left" ><img src="fsm-left.png" alt="Left side. "></a
+><img src="fsm-middle.png" alt=""
+><a href="?go=right"><img src="fsm-right.png" alt="Right side."></a></p>
+<figure>
+<img src="KDE%20Light%20desktop.png"
+alt="The desktop is blue, with icons along the left hand side in
+two columns, reading System, Home, K-Mail, etc. A window is
+open showing that menus wrap to a second line if they
+cannot fit in the window. The window has a list of icons
+along the top, with an address bar below it, a list of
+icons for tabs along the left edge, a status bar on the
+bottom, and two panes in the middle. The desktop has a bar
+at the bottom of the screen with a few buttons, a pager, a
+list of open applications, and a clock.">
+<figcaption>Screenshot of a KDE desktop.</figcaption>
+</figure>
+
+<img src="sales.gif"
+title="Sales graph"
+alt="From 1998 to 2005, sales increased by the following percentages
+with each year: 624%, 75%, 138%, 40%, 35%, 9%, 21%">
+
+<figure>
+<img src="/commons/a/a7/Rorschach1.jpg" alt="A shape with left-right
+symmetry with indistinct edges, with a small gap in the center, two
+larger gaps offset slightly from the center, with two similar gaps
+under them. The outline is wider in the top half than the bottom
+half, with the sides extending upwards higher than the center, and
+the center extending below the sides.">
+<figcaption>A black outline of the first of the ten cards
+in the Rorschach inkblot test.</figcaption>
+</figure>
+
+<!-- This example is wrong. Do not copy it. -->
+<figure>
+<img src="/commons/a/a7/Rorschach1.jpg" alt="A black outline
+of the first of the ten cards in the Rorschach inkblot test.">
+<figcaption>A black outline of the first of the ten cards
+in the Rorschach inkblot test.</figcaption>
+</figure>
+
+<img src="ms1.jpeg" alt="The Mandelbrot set appears as a cardioid with
+its cusp on the real axis in the positive direction, with a smaller
+bulb aligned along the same center line, touching it in the negative
+direction, and with these two shapes being surrounded by smaller bulbs
+of various sizes.">
+
+<section class="bio">
+<h1>A Biography of Isaac Asimov</h1>
+<p>Born <b>Isaak Yudovich Ozimov</b> in 1920, Isaac was a prolific author.</p>
+<p><img src="headpics/asimov.jpeg" alt="Isaac Asimov had dark hair, a tall forehead, and wore
+glasses.
+Later in life, he wore long white sideburns.">
+<p>Asimov was born in Russia, and moved to the US when he was three years old.</p>
+<p>...
+</section>
+
+<figure>
+<img src="1100670787_6a7c664aef.jpg">
+<figcaption>Bubbles traveled everywhere with us.</figcaption>
+</figure>
+
+<article>
+<h1>I took a photo</h1>
+<p>I went out today and took a photo!</p>
+<figure>
+<img src="photo2.jpeg">
+<figcaption>A photograph taken blindly from my front porch.</figcaption>
+</figure>
+</article>
+
+<article>
+<h1>I took a photo</h1>
+<p>I went out today and took a photo!</p>
+<figure>
+<img src="photo2.jpeg" alt="The photograph shows my squirrel
+feeder hanging from the edge of my roof. It is half full, but there
+are no squirrels around. In the background, out-of-focus trees fill the
+shot. The feeder is made of wood with a metal grate, and it contains
+peanuts. The edge of the roof is wooden too, and is painted white
+with light blue streaks.">
+<figcaption>A photograph taken blindly from my front porch.</figcaption>
+</figure>
+</article>
+
+<p><label>What does this image say?
+<img src="captcha.cgi?id=8934" title="CAPTCHA">
+<input type=text name=captcha></label>
+(If you cannot see the image, you can use an <a
+href="?audio">audio</a> test instead.)</p>
+
+<table>
+<thead>
+<tr> <th> Image <th> Description
+<tbody>
+<tr>
+<td> <img src="2421.png" title="Image 640 by 100, filename 'banner.gif'">
+<td> <input name="alt2421">
+<tr>
+<td> <img src="2422.png" title="Image 200 by 480, filename 'ad3.gif'">
+<td> <input name="alt2422">
+</table>
+ </body>
+</html>

@@ -60,6 +60,7 @@ ssc.exe -f ../toast/living/oct21/living.conf
 ssc.exe -f ../toast/living/jan22/living.conf
 ssc.exe -f ../toast/living/apr22/living.conf
 ssc.exe -f ../toast/living/jul22/living.conf
+ssc.exe -f ../toast/living/oct22/living.conf
 ssc.exe -f ../toast/math/1/math.conf
 ssc.exe -f ../toast/math/2/math.conf
 ssc.exe -f ../toast/math/3/math.conf

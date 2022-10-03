@@ -185,7 +185,7 @@ element_node* elements_node::insert_non_closure (const html_version& v, element_
         VERIFY_NOT_NULL (parent, __FILE__, __LINE__);
         previous = parent -> last_; }
     else
-        insert_family_tree (v, previous, parent, ket, id, false);
+        insert_family_tree (v, previous, parent, ket, id, true);
     switch (id.get ())
     {   case elem_faux_whitespace :
             ven_.push_back (element_node (ket.nits_, this, ket.line_, false, parent, id, false)); break;
