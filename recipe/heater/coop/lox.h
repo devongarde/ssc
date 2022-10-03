@@ -40,7 +40,7 @@ public:
     lox (const lox& ) = delete;
     lox (lox&& ) = delete;
 #ifndef NO_FRED
-    explicit lox (const e_lox l);
+    explicit lox (const e_lox l, const bool not_really = false);
 #else // NO_FRED
     explicit lox (const e_lox ) { }
 #endif // NO_FRED

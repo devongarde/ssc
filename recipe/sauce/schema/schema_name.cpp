@@ -1784,6 +1784,7 @@ property_name namtab [] =
 
     // poetry
     { "age", s_poetry, poetry_age },
+    { "allusion", s_poetry, poetry_allusion },
     { "containedinPoem", s_poetry, poetry_containedinpoem },
     { "containsPoem", s_poetry, poetry_containspoem },
     { "content", s_poetry, poetry_content },

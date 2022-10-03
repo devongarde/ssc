@@ -28,13 +28,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 typedef ::std::array < ::std::mutex, lox_error > vmx_t;
 vmx_t vmx;
 
-bool dont_bother ()
+bool dont_bother () noexcept
 {   if (context.fred () == 1) return true;
     return ! fred.started (); }
 
-lox::lox (const e_lox l)
+lox::lox (const e_lox l, const bool not_really)
     : l_ (lox_none), un_ (false)
-{   if (dont_bother ()) return;
+{   if (not_really || dont_bother ()) return;
     PRESUME (l < lox_error, __FILE__, __LINE__);
     PRESUME (l != lox_flox, __FILE__, __LINE__);
     PRESUME (l != lox_dear, __FILE__, __LINE__);
@@ -87,7 +87,7 @@ void whoopsie (const e_lox l, const char * sz, const ::std::exception& e) noexce
     {   fprintf (stderr, "exception in mutex exception processing; aborting."); } }
 
 lox::~lox ()
-{   if (dont_bother ()) return;
+{   if (dont_bother () || (l_ == lox_none)) return;
     if (un_) return;
     const e_lox l = l_;
     try
@@ -95,7 +95,7 @@ lox::~lox ()
 #ifdef RPT_LOX
         ::std::cout << ::std::this_thread::get_id () << " unlocking " << l_ << ::std::endl;
 #endif // RPT_LOX
-       l_ = lox_none;
+        l_ = lox_none;
         vmx.at (l).unlock (); // hey, mr. vc, have you spotted that try ... catch construction??
         fred.set_lox (lox_none);
         return; }

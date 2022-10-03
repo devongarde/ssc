@@ -219,7 +219,8 @@ const schema_version org_schema (s_org, 1, 0);
 const schema_version owl_1 (s_owl, 1, 0);
 const schema_version owl_2 (s_owl, 2, 0);
 
-const schema_version poetry_schema (s_poetry, 1, 0);
+const schema_version poetry_schema_1_0 (s_poetry, 1, 0);
+const schema_version poetry_schema_1_1 (s_poetry, 1, 1);
 
 const schema_version profile_2012 (s_profile, HTML_2012, 0);
 const schema_version profile_2014 (s_profile, HTML_2014, 0);

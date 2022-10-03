@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<title> extra tests </title>
+<link blocking=render href="living.conf">
+<link blocking=render href="living.conf" rel="preload" as="document">
+<link blocking=render href="living.conf" rel="noopener">
+<link blocking=no href="living.conf" rel="stylesheet">
+<link blocking=render href="living.conf" rel="modulepreload" as="fetch">
+ </head>
+
+ <body>
+
+<p inert>
+inert was reintroduced after january 2022
+</p>
+
+<p hidden>
+hidden may be ancient
+</p>
+
+<p hidden=hidden>
+and i&rsquo;m pretty sure xhtml wants a value specified
+</p>
+
+<p hidden=until-found>
+but until-found was introduced after january 2022
+</p>
+
+<style blocking="render">
+</style>
+
+<script blocking>
+</script>
+
+ </body>
+</html>

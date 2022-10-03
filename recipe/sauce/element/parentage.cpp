@@ -2115,6 +2115,10 @@ e_element default_parent (const html_version& v, const elem& self) noexcept
             return elem_rule;
         case elem_noframes :
             return elem_frameset;
+        case elem_noscript :
+        case elem_script :
+            if (v.is_5 ()) return elem_body;
+            return elem_head;
         case elem_page :
             return elem_pageset;
         case elem_param :
@@ -2152,9 +2156,6 @@ e_element default_parent (const html_version& v, const elem& self) noexcept
             return elem_array;
         case elem_rule :
             return elem_datatemplate;
-        case elem_script :
-            if (v.is_5 ()) return elem_body;
-            return elem_head;
         case elem_source :
             return elem_video;
         case elem_t :

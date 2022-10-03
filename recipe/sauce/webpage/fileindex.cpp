@@ -161,16 +161,18 @@ void note_deleted (const fileindex_t ndx)
     {   inner_set_flag (ndx, FX_DELETED);
         unindex (ndx); } }
 
-void update_fileindex (const fileindex_t ndx, const fileindex_flags ff)
+void update_fileindex (const fileindex_t ndx, const fileindex_flags ff, const bool locked = false)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     ::boost::filesystem::path name;
-    const index_t& xx = GSL_AT (vx, ndx);
-    name = xx.disk_path ();
+    {   lox l (lox_fileindex, locked);
+        const index_t& xx = GSL_AT (vx, ndx);
+        name = xx.disk_path (); }
     fileindex_flags f (ff);
     uintmax_t s = 0;
     ::std::time_t lw = 0;
     if (((f & FX_DELETED) == FX_DELETED) || ! file_exists (name))
-    {   f |= FX_DELETED;
+    {   lox l (lox_fileindex, locked);
+        f |= FX_DELETED;
         note_deleted (ndx); }
     else if (is_folder (name)) f |= FX_DIR;
 #ifndef NOLYNX
@@ -180,6 +182,7 @@ void update_fileindex (const fileindex_t ndx, const fileindex_flags ff)
     else
     {   s = get_file_size (name);
         lw = get_last_write_time (name); }
+    lox l (lox_fileindex, locked);
     index_t& x = GSL_AT (vx, ndx);
     x.flags_ = f;
     if ((x.size_ != s) || (GSL_AT (vx, ndx).last_write_ != lw))
@@ -190,46 +193,47 @@ void update_fileindex (const fileindex_t ndx, const fileindex_flags ff)
     x.size_ = s;
     x.last_write_ = lw; }
 
-fileindex_t inner_insert_disk_path (const fileindex_t mummy, const ::boost::filesystem::path& name, const fileindex_flags flags)
+fileindex_t inner_insert_disk_path (const fileindex_t mummy, const ::boost::filesystem::path& name, const fileindex_flags flags, const bool locked = false)
 {   if (name.empty ()) return nullfileindex;
-    ::boost::filesystem::path canon (canonical_name (name));
     fileindex_t xin = nullfileindex;
-    mxp_t::iterator i = disk_x.find (canon.string ());
-    if (i != disk_x.cend ()) xin = i -> second;
-    else
-    {   if (mummy == nullfileindex)
-            vx.emplace_back (mummy, canon.string (), flags);
+    {   ::boost::filesystem::path canon (canonical_name (name));
+        lox l (lox_fileindex, locked);
+        mxp_t::iterator i = disk_x.find (canon.string ());
+        if (i != disk_x.cend ()) xin = i -> second;
         else
-        {   const ::boost::filesystem::path dp = GSL_AT (vx, mummy).disk_path ();
-            const ::boost::filesystem::path pp = canon.parent_path ();
-#ifdef _MSC_VER
-            if (pp.size () <= 2) return nullfileindex;
-#endif // WINDOWS
-            PRESUME (pp.size () < canon.size (), __FILE__, __LINE__);
-            if (dp == pp)
-                vx.emplace_back (mummy, canon.filename ().string (), flags);
+        {   if (mummy == nullfileindex)
+                vx.emplace_back (mummy, canon.string (), flags);
             else
-            {   const mxp_t :: const_iterator ii = disk_x.find (pp.string ());
-                if (ii != disk_x.cend ()) vx.emplace_back (ii -> second, canon.filename ().string (), flags);
+            {   const ::boost::filesystem::path dp = GSL_AT (vx, mummy).disk_path ();
+                const ::boost::filesystem::path pp = canon.parent_path ();
+    #ifdef _MSC_VER
+                if (pp.size () <= 2) return nullfileindex;
+    #endif // WINDOWS
+                PRESUME (pp.size () < canon.size (), __FILE__, __LINE__);
+                if (dp == pp)
+                    vx.emplace_back (mummy, canon.filename ().string (), flags);
                 else
-                {   const fileindex_t ndx = inner_insert_disk_path (mummy, pp, FX_DIR | FX_EXISTS);
-                    if (ndx == nullfileindex) return ndx;
-                    vx.emplace_back (ndx, canon.filename ().string (), flags); } } }
-        PRESUME (vx.size () > 0, __FILE__, __LINE__);
-        xin = vx.size () - 1;
-        PRESUME ((xin != 0) && (xin >= context.virtuals ().size ()), __FILE__, __LINE__); }
-    update_fileindex (xin, flags);
-    reindex (xin);
+                {   const mxp_t :: const_iterator ii = disk_x.find (pp.string ());
+                    if (ii != disk_x.cend ()) vx.emplace_back (ii -> second, canon.filename ().string (), flags);
+                    else
+                    {   const fileindex_t ndx = inner_insert_disk_path (mummy, pp, FX_DIR | FX_EXISTS, true);
+                        if (ndx == nullfileindex) return ndx;
+                        vx.emplace_back (ndx, canon.filename ().string (), flags); } } }
+            PRESUME (vx.size () > 0, __FILE__, __LINE__);
+            xin = vx.size () - 1;
+            PRESUME ((xin != 0) && (xin >= context.virtuals ().size ()), __FILE__, __LINE__); } }
+    update_fileindex (xin, flags, locked);
+    {   lox l (lox_fileindex, locked);
+        reindex (xin); }
     return xin; }
 
 fileindex_t insert_disk_path (const fileindex_t mummy, const ::boost::filesystem::path& name, const fileindex_flags flags)
-{   lox l (lox_fileindex);
-    fileindex_t ndx = inner_insert_disk_path (mummy, name, flags);
+{   fileindex_t ndx = inner_insert_disk_path (mummy, name, flags);
     if (ndx == nullfileindex) ndx = inner_insert_disk_path (nullfileindex, name, flags);
     return ndx; }
 
 fileindex_t insert_directory_path (const fileindex_t mummy, const ::boost::filesystem::path& name)
-{   lox l (lox_fileindex);
+{   // lox l (lox_fileindex);
     fileindex_t ndx = inner_insert_disk_path (mummy, name, FX_DIR);
     if (ndx == nullfileindex) ndx = inner_insert_disk_path (nullfileindex, name, FX_DIR);
     return ndx; }
@@ -237,9 +241,13 @@ fileindex_t insert_directory_path (const fileindex_t mummy, const ::boost::files
 fileindex_t insert_root_path (const ::boost::filesystem::path& name, const short v)
 {   PRESUME (! fred.started (), __FILE__, __LINE__);
     ::boost::filesystem::path canon (canonical_name (absolute_name (name)));
-    vx.emplace_back (canon.string (), v);
-    PRESUME (vx.size () > 0, __FILE__, __LINE__);
-    const fileindex_t xin = vx.size () - 1;
+    fileindex_t xin = get_fileindex (canon);
+    if (xin != nullfileindex)
+        GSL_AT (vx, xin).v_ = v;
+    else
+    {   vx.emplace_back (canon.string (), v);
+        PRESUME (vx.size () > 0, __FILE__, __LINE__);
+        xin = vx.size () - 1; }
     update_fileindex (xin, FX_DIR | FX_EXISTS);
     reindex (xin);
     PRESUME ((v >= 0) && (static_cast < ::std::size_t > (v) < paths_root::virtual_roots ().size ()), __FILE__, __LINE__);
@@ -247,9 +255,9 @@ fileindex_t insert_root_path (const ::boost::filesystem::path& name, const short
     return xin; }
 
 fileindex_t get_fileindex (const fileindex_t mummy, const ::boost::filesystem::path& name)
-{   lox l (lox_fileindex);
-    mxp_t :: const_iterator i = disk_x.find (name.string ());
-    if (i != disk_x.cend ()) return i -> second;
+{   {   lox l (lox_fileindex);
+        mxp_t :: const_iterator i = disk_x.find (name.string ());
+        if (i != disk_x.cend ()) return i -> second; }
     return inner_insert_disk_path (mummy, name, 0); }
 
 fileindex_t get_fileindex (const ::boost::filesystem::path& name)
@@ -371,7 +379,7 @@ crc_t calc_crc (nitpick& nits, const ::boost::filesystem::path& dp)
 
 crc_t get_crc (nitpick& nits, const fileindex_t ndx)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    if (! inner_get_any_flag (ndx, FX_CRC))
+    if (! inner_get_any_flag (ndx, FX_CRC)) // only one thread looks at a file, once in scanning once in examining; so this shouldn't need locking
     {   crc_t crc = calc_crc (nits, GSL_AT (vx, ndx).disk_path ());
         set_crc (ndx, crc);
         return crc; }
@@ -394,6 +402,16 @@ void set_crc (const fileindex_t ndx, const crc_t& crc)
         res += ": ";
         res += GSL_AT (vx, i).name_;
         res += " (";
+        if (GSL_AT (vx, i).mummy_ == nullfileindex) res += "-";
+        else res += ::boost::lexical_cast < ::std::string > (GSL_AT (vx, i).mummy_);
+        res += ",";
+        if (GSL_AT (vx, i).v_ < 0) res += "-";
+        else res += ::boost::lexical_cast < ::std::string > (GSL_AT (vx, i).v_);
+        res += ",";
+        res += ::boost::lexical_cast < ::std::string > (GSL_AT (vx, i).size_);
+        res += ",";
+        res += ::boost::lexical_cast < ::std::string > (GSL_AT (vx, i).last_write_);
+        res += ",";
         ::std::string flg;
         if ((GSL_AT (vx, i).flags_ & FX_SCANNED) == FX_SCANNED) flg += "S";
         if ((GSL_AT (vx, i).flags_ & FX_EXISTS) == FX_EXISTS) flg += "E";
@@ -405,8 +423,6 @@ void set_crc (const fileindex_t ndx, const crc_t& crc)
         if ((GSL_AT (vx, i).flags_ & FX_DELETED) == FX_DELETED) flg += "d";
         if ((GSL_AT (vx, i).flags_ & FX_LINKED) == FX_LINKED) flg += "L";
         if (flg.empty ()) res += "-"; else res += flg;
-        res += ",";
-        res += ::boost::lexical_cast < ::std::string > (GSL_AT (vx, i).size_);
         res += ",";
         res += ::boost::lexical_cast < ::std::string > (GSL_AT (vx, i).crc_);
         res += ",";
@@ -501,7 +517,7 @@ bool fileindex_load_internal (nitpick& nits, bool& ok)
 {   PRESUME (! fred.inited (), __FILE__, __LINE__);
     ::boost::filesystem::path p (persist_path ());
     if (! file_exists (p)) return true;
-    if (context.progress ()) outstr.out ("Loading " , p.string (), " ...\n");
+    if (context.progress ()) ::std::cout << "loading " << p.string () << " ...\n";
     BOOST_FSTREAM_CNSTRO (f, p, ::std::ios::in);
     if (f.fail ())
     {   nits.pick (nit_cannot_read, es_error, ec_crc, "cannot open ", p.string ());
@@ -637,8 +653,6 @@ bool fileindex_load_internal (nitpick& nits, bool& ok)
                             if (most >= sdx.size ()) most = sdx.size ()-1;
                             for (::std::size_t i = 0; i < most; ++i)
                                 lx.emplace (lexical < fileindex_t > :: cast (sdx.at (i+1))); } }
-//                    fileindex_t mummy = nullfileindex;
-//                    if (v < 0) mummy = get_fileindex (disk.parent_path ());
                     fileindex_t mummy = get_fileindex (disk.parent_path ());
                     vx.emplace_back (mummy, site, flags, size, last_write, crc, dx, lx);
                     fileindex_t moi = vx.size () - 1;

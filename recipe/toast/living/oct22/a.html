@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> a </title> </head>
+ <body>
+
+<nav>
+ <ul>
+ <li> <a href="/">Home</a> </li>
+ <li> <a href="/news">News</a> </li>
+ <li> <a>Examples</a> </li>
+ <li> <a href="/legal">Legal</a> </li>
+ </ul>
+</nav>
+
+<aside class="advertising">
+ <h1>Advertising</h1>
+ <a href="http://ad.example.com/?adid=1929&amp;pubid=1422">
+ <section>
+ <h1>Mellblomatic 9000!</h1>
+ <p>Turn all your widgets into mellbloms!</p>
+ <p>Only $9.99 plus shipping and handling.</p>
+ </section>
+ </a>
+ <a href="http://ad.example.com/?adid=375&amp;pubid=1422">
+ <section>
+ <h1>The Mellblom Browser</h1>
+ <p>Web browsing at the speed of light.</p>
+ <p>No other browser goes faster!</p>
+ </section>
+ </a>
+</aside>
+
+<table>
+<tr>
+<th>Position
+<th>Team
+<th>Location
+<tr>
+<td><a href="/jobs/manager">Manager</a>
+<td>Remotees
+<td>Remote
+<tr>
+<td><a href="/jobs/director">Director</a>
+<td>Remotees
+<td>Remote
+<tr>
+<td><a href="/jobs/astronaut">Astronaut</a>
+<td>Architecture
+<td>Remote
+</table>
+<script>
+document.querySelector("table").onclick = ({ target }) => {
+if (target.parentElement.localName === "tr") {
+const link = target.parentElement.querySelector("a");
+if (link) {
+link.click();
+}
+}
+}
+</script>
+
+ </body>
+</html>

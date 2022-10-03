@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> forms examples </title> </head>
+ <body>
+
+<form>
+ <p><label>Customer name: <input></label></p>
+</form>
+
+<form>
+ <p><label>Customer name: <input></label></p>
+ <fieldset>
+ <legend> Pizza Size </legend>
+ <p><label> <input type=radio name=size> Small </label></p>
+ <p><label> <input type=radio name=size> Medium </label></p>
+ <p><label> <input type=radio name=size> Large </label></p>
+ </fieldset>
+</form>
+
+<form>
+ <p><label>Customer name: <input></label></p>
+ <fieldset>
+ <legend> Pizza Size </legend>
+ <p><label> <input type=radio name=size> Small </label></p>
+ <p><label> <input type=radio name=size> Medium </label></p>
+ <p><label> <input type=radio name=size> Large </label></p>
+ </fieldset>
+ <fieldset>
+ <legend> Pizza Toppings </legend>
+ <p><label> <input type=checkbox> Bacon </label></p>
+ <p><label> <input type=checkbox> Extra Cheese </label></p>
+<p><label> <input type=checkbox> Onion </label></p>
+ <p><label> <input type=checkbox> Mushroom </label></p>
+ </fieldset>
+</form>
+
+<form>
+ <p><label>Customer name: <input></label></p>
+ <p><label>Telephone: <input type=tel></label></p>
+ <p><label>E-mail address: <input type=email></label></p>
+ <fieldset>
+ <legend> Pizza Size </legend>
+ <p><label> <input type=radio name=size> Small </label></p>
+ <p><label> <input type=radio name=size> Medium </label></p>
+ <p><label> <input type=radio name=size> Large </label></p>
+ </fieldset>
+ <fieldset>
+ <legend> Pizza Toppings </legend>
+ <p><label> <input type=checkbox> Bacon </label></p>
+ <p><label> <input type=checkbox> Extra Cheese </label></p>
+ <p><label> <input type=checkbox> Onion </label></p>
+ <p><label> <input type=checkbox> Mushroom </label></p>
+ </fieldset>
+</form>
+
+<form>
+ <p><label>Customer name: <input></label></p>
+ <p><label>Telephone: <input type=tel></label></p>
+ <p><label>E-mail address: <input type=email></label></p>
+ <fieldset>
+ <legend> Pizza Size </legend>
+ <p><label> <input type=radio name=size> Small </label></p>
+ <p><label> <input type=radio name=size> Medium </label></p>
+ <p><label> <input type=radio name=size> Large </label></p>
+ </fieldset>
+ <fieldset>
+ <legend> Pizza Toppings </legend>
+ <p><label> <input type=checkbox> Bacon </label></p>
+ <p><label> <input type=checkbox> Extra Cheese </label></p>
+ <p><label> <input type=checkbox> Onion </label></p>
+ <p><label> <input type=checkbox> Mushroom </label></p>
+ </fieldset>
+ <p><label>Preferred delivery time: <input type=time min="11:00" max="21:00" step="900"></label>
+</p>
+</form>
+
+<form>
+ <p><label>Customer name: <input></label></p>
+ <p><label>Telephone: <input type=tel></label></p>
+ <p><label>E-mail address: <input type=email></label></p>
+ <fieldset>
+ <legend> Pizza Size </legend>
+ <p><label> <input type=radio name=size> Small </label></p>
+ <p><label> <input type=radio name=size> Medium </label></p>
+ <p><label> <input type=radio name=size> Large </label></p>
+ </fieldset>
+ <fieldset>
+ <legend> Pizza Toppings </legend>
+ <p><label> <input type=checkbox> Bacon </label></p>
+ <p><label> <input type=checkbox> Extra Cheese </label></p>
+ <p><label> <input type=checkbox> Onion </label></p>
+ <p><label> <input type=checkbox> Mushroom </label></p>
+ </fieldset>
+ <p><label>Preferred delivery time: <input type=time min="11:00" max="21:00" step="900">
+</label></p>
+ <p><label>Delivery instructions: <textarea></textarea></label></p>
+</form>
+Finally, to make the form submittable we use the button element:
+<form>
+ <p><label>Customer name: <input></label></p>
+ <p><label>Telephone: <input type=tel></label></p>
+ <p><label>E-mail address: <input type=email></label></p>
+ <fieldset>
+ <legend> Pizza Size </legend>
+ <p><label> <input type=radio name=size> Small </label></p>
+ <p><label> <input type=radio name=size> Medium </label></p>
+ <p><label> <input type=radio name=size> Large </label></p>
+ </fieldset>
+ <fieldset>
+ <legend> Pizza Toppings </legend>
+ <p><label> <input type=checkbox> Bacon </label></p>
+ <p><label> <input type=checkbox> Extra Cheese </label></p>
+ <p><label> <input type=checkbox> Onion </label></p>
+ <p><label> <input type=checkbox> Mushroom </label></p>
+ </fieldset>
+ <p><label>Preferred delivery time: <input type=time min="11:00" max="21:00" step="900">
+</label></p>
+ <p><label>Delivery instructions: <textarea></textarea></label></p>
+ <p><button>Submit order</button><p>
+</form>
+
+<form method="post"
+ enctype="application/x-www-form-urlencoded"
+ action="https://pizza.example.com/order.cgi">
+ <p><label>Customer name: <input name="custname"></label></p>
+ <p><label>Telephone: <input type=tel name="custtel"></label></p>
+ <p><label>E-mail address: <input type=email name="custemail"></label></p>
+ <fieldset>
+ <legend> Pizza Size </legend>
+ <p><label> <input type=radio name=size value="small"> Small </label></p>
+ <p><label> <input type=radio name=size value="medium"> Medium </label></p>
+ <p><label> <input type=radio name=size value="large"> Large </label></p>
+ </fieldset>
+ <fieldset>
+ <legend> Pizza Toppings </legend>
+ <p><label> <input type=checkbox name="topping" value="bacon"> Bacon </label></p>
+ <p><label> <input type=checkbox name="topping" value="cheese"> Extra Cheese </label></p>
+ <p><label> <input type=checkbox name="topping" value="onion"> Onion </label></p>
+ <p><label> <input type=checkbox name="topping" value="mushroom"> Mushroom </label></p>
+ </fieldset>
+ <p><label>Preferred delivery time: <input type=time min="11:00" max="21:00" step="900"
+name="delivery"></label></p>
+ <p><label>Delivery instructions: <textarea name="comments"></textarea></label></p>
+ <p><button>Submit order</button><p>
+</form>
+
+<form method="post"
+ enctype="application/x-www-form-urlencoded"
+ action="https://pizza.example.com/order.cgi">
+ <p><label>Customer name: <input name="custname" required></label></p>
+ <p><label>Telephone: <input type=tel name="custtel"></label></p>
+ <p><label>E-mail address: <input type=email name="custemail"></label></p>
+ <fieldset>
+ <legend> Pizza Size </legend>
+ <p><label> <input type=radio name=size value="small"> Small </label></p>
+ <p><label> <input type=radio name=size value="medium"> Medium </label></p>
+ <p><label> <input type=radio name=size value="large"> Large </label></p>
+ </fieldset>
+ <fieldset>
+ <legend> Pizza Toppings </legend>
+ <p><label> <input type=checkbox name="topping" value="bacon"> Bacon </label></p>
+ <p><label> <input type=checkbox name="topping" value="cheese"> Extra Cheese </label></p>
+ <p><label> <input type=checkbox name="topping" value="onion"> Onion </label></p>
+ <p><label> <input type=checkbox name="topping" value="mushroom"> Mushroom </label></p>
+ </fieldset>
+ <p><label>Preferred delivery time: <input type=time min="11:00" max="21:00" step="900"
+name="delivery" required></label></p>
+ <p><label>Delivery instructions: <textarea name="comments"></textarea></label></p>
+ <p><button>Submit order</button><p>
+</form>
+
+<form method="post"
+ enctype="application/x-www-form-urlencoded"
+ action="https://pizza.example.com/order.cgi">
+ <p><label>Customer name: <input name="custname" required></label></p>
+ <p><label>Telephone: <input type=tel name="custtel"></label></p>
+ <p><label>E-mail address: <input type=email name="custemail"></label></p>
+ <fieldset>
+ <legend> Pizza Size </legend>
+ <p><label> <input type=radio name=size value="small"> Small </label></p>
+ <p><label> <input type=radio name=size value="medium"> Medium </label></p>
+ <p><label> <input type=radio name=size value="large"> Large </label></p>
+ </fieldset>
+ <fieldset>
+ <legend> Pizza Toppings </legend>
+ <p><label> <input type=checkbox name="topping" value="bacon"> Bacon </label></p>
+ <p><label> <input type=checkbox name="topping" value="cheese"> Extra Cheese </label></p>
+ <p><label> <input type=checkbox name="topping" value="onion"> Onion </label></p>
+ <p><label> <input type=checkbox name="topping" value="mushroom"> Mushroom </label></p>
+ </fieldset>
+ <p><label>Preferred delivery time: <input type=time min="11:00" max="21:00" step="900"
+name="delivery" required></label></p>
+ <p><label>Delivery instructions: <textarea name="comments" maxlength=1000></textarea>
+</label></p>
+ <p><button>Submit order</button><p>
+</form>
+
+<form method="post"
+ enctype="application/x-www-form-urlencoded"
+ action="https://pizza.example.com/order.cgi">
+ <p><label>Customer name: <input name="custname" required autocomplete="shipping name">
+</label></p>
+ <p><label>Telephone: <input type=tel name="custtel" autocomplete="shipping tel"></label></p>
+ <p><label>E-mail address: <input type=email name="custemail" autocomplete="shipping email">
+</label></p>
+ <fieldset>
+ <legend> Pizza Size </legend>
+ <p><label> <input type=radio name=size required value="small"> Small </label></p>
+ <p><label> <input type=radio name=size required value="medium"> Medium </label></p>
+ <p><label> <input type=radio name=size required value="large"> Large </label></p>
+ </fieldset>
+ <fieldset>
+ <legend> Pizza Toppings </legend>
+ <p><label> <input type=checkbox name="topping" value="bacon"> Bacon </label></p>
+ <p><label> <input type=checkbox name="topping" value="cheese"> Extra Cheese </label></p>
+ <p><label> <input type=checkbox name="topping" value="onion"> Onion </label></p>
+ <p><label> <input type=checkbox name="topping" value="mushroom"> Mushroom </label></p>
+ </fieldset>
+ <p><label>Preferred delivery time: <input type=time min="11:00" max="21:00" step="900"
+name="delivery" required></label></p>
+ <p><label>Delivery instructions: <textarea name="comments" maxlength=1000></textarea>
+</label></p>
+ <p><button>Submit order</button></p>
+</form>
+
+<form method="post"
+ enctype="application/x-www-form-urlencoded"
+ action="https://pizza.example.com/order.cgi">
+ <p><label>Customer name: <input name="custname" required></label></p>
+ <p><label>Telephone: <input type=tel name="custtel"></label></p>
+ <p><label>E-mail address: <input type=email name="custemail"></label></p>
+ <fieldset>
+ <legend> Pizza Size </legend>
+ <p><label> <input type=radio name=size required value="small"> Small </label></p>
+ <p><label> <input type=radio name=size required value="medium"> Medium </label></p>
+ <p><label> <input type=radio name=size required value="large"> Large </label></p>
+ </fieldset>
+ <fieldset>
+ <legend> Pizza Toppings </legend>
+ <p><label> <input type=checkbox name="topping" value="bacon"> Bacon </label></p>
+ <p><label> <input type=checkbox name="topping" value="cheese"> Extra Cheese </label></p>
+ <p><label> <input type=checkbox name="topping" value="onion"> Onion </label></p>
+ <p><label> <input type=checkbox name="topping" value="mushroom"> Mushroom </label></p>
+ </fieldset>
+ <p><label>Preferred delivery time: <input type=time min="11:00" max="21:00" step="900" name="delivery"
+required></label></p>
+ <p><label>Delivery instructions: <textarea name="comments"></textarea></label></p>
+ <p><button>Submit order</button></p>
+</form>
+
+<form method="post"
+ enctype="application/x-www-form-urlencoded"
+ action="https://pizza.example.com/order.cgi">
+ <p><label>Customer name: <input name="custname" required></label></p>
+ <p><label>Telephone: <input type=tel name="custtel"></label></p>
+ <p><label>E-mail address: <input type=email name="custemail"></label></p>
+ <fieldset>
+ <legend> Pizza Size </legend>
+ <p><label> <input type=radio name=size required value="small"> Small </label></p>
+ <p><label> <input type=radio name=size required value="medium"> Medium </label></p>
+ <p><label> <input type=radio name=size required value="large"> Large </label></p>
+ </fieldset>
+ <fieldset>
+ <legend> Pizza Toppings </legend>
+ <p><label> <input type=checkbox name="topping" value="bacon"> Bacon </label></p>
+ <p><label> <input type=checkbox name="topping" value="cheese"> Extra Cheese </label></p>
+ <p><label> <input type=checkbox name="topping" value="onion"> Onion </label></p>
+ <p><label> <input type=checkbox name="topping" value="mushroom"> Mushroom </label></p>
+ </fieldset>
+ <p><label>Preferred delivery time: <input type=time min="11:00" max="21:00" step="900" name="delivery"
+required></label></p>
+ <p><label>Delivery instructions: <textarea name="comments" maxlength=1000></textarea></label></p>
+ <p><button>Submit order</button></p>
+</form>
+
+<form method="post"
+ enctype="application/x-www-form-urlencoded"
+ action="https://pizza.example.com/order.cgi">
+ <p><label>Customer name: <input name="custname" required autocomplete="shipping name"></label></p>
+ <p><label>Telephone: <input type=tel name="custtel" autocomplete="shipping tel"></label></p>
+ <p><label>E-mail address: <input type=email name="custemail" autocomplete="shipping email"></label></p>
+ <fieldset>
+ <legend> Pizza Size </legend>
+ <p><label> <input type=radio name=size required value="small"> Small </label></p>
+ <p><label> <input type=radio name=size required value="medium"> Medium </label></p>
+ <p><label> <input type=radio name=size required value="large"> Large </label></p>
+ </fieldset>
+ <fieldset>
+ <legend> Pizza Toppings </legend>
+ <p><label> <input type=checkbox name="topping" value="bacon"> Bacon </label></p>
+ <p><label> <input type=checkbox name="topping" value="cheese"> Extra Cheese </label></p>
+ <p><label> <input type=checkbox name="topping" value="onion"> Onion </label></p>
+ <p><label> <input type=checkbox name="topping" value="mushroom"> Mushroom </label></p>
+ </fieldset>
+ <p><label>Preferred delivery time: <input type=time min="11:00" max="21:00" step="900" name="delivery"
+required></label></p>
+ <p><label>Delivery instructions: <textarea name="comments" maxlength=1000></textarea></label></p>
+ <p><button>Submit order</button></p>
+</form>
+
+<form method="post"
+ enctype="application/x-www-form-urlencoded"
+ action="https://pizza.example.com/order.cgi">
+ <p><label>Customer name: <input name="custname" required autocomplete="shipping name"></label></p>
+ <p><label>Telephone: <input type=tel name="custtel" autocomplete="shipping tel"></label></p>
+ <p><label>Buzzer code: <input name="custbuzz" inputmode="number"></label></p>
+ <p><label>E-mail address: <input type=email name="custemail" autocomplete="shipping email"></label></p>
+ <fieldset>
+ <legend> Pizza Size </legend>
+ <p><label> <input type=radio name=size required value="small"> Small </label></p>
+ <p><label> <input type=radio name=size required value="medium"> Medium </label></p>
+ <p><label> <input type=radio name=size required value="large"> Large </label></p>
+ <fieldset>
+ <legend> Pizza Toppings </legend>
+ <p><label> <input type=checkbox name="topping" value="bacon"> Bacon </label></p>
+ <p><label> <input type=checkbox name="topping" value="cheese"> Extra Cheese </label></p>
+ <p><label> <input type=checkbox name="topping" value="onion"> Onion </label></p>
+ <p><label> <input type=checkbox name="topping" value="mushroom"> Mushroom </label></p>
+ </fieldset>
+ <p><label>Preferred delivery time: <input type=time min="11:00" max="21:00" step="900" name="delivery"
+required></label></p>
+ <p><label>Delivery instructions: <textarea name="comments" maxlength=1000></textarea></label></p>
+ <p><button>Submit order</button></p>
+</form>
+
+<p><label>Your phone number: <input type=tel name=custtel autocomplete="billing tel"></label>
+<p><label>Recipient's phone number: <input type=tel name=shiptel autocomplete="shipping tel"></label>
+<p>Please enter complete phone numbers including the country code prefix, as in "+1 555 123 4567".
+
+<p><label>Your phone number: <input type=tel name=custtel autocomplete="billing tel-national"></label>
+<p><label>Recipient's phone number: <input type=tel name=shiptel autocomplete="shipping tel-national"></label>
+<p>Please enter complete UK phone numbers, as in "(01632) 960 123".
+
+<p><label>Japanese name: <input name="j" type="text" autocomplete="section-jp name"></label>
+<label>Romanized name: <input name="e" type="text" autocomplete="section-en name"></label>
+
+<p><label>Credit card number:
+ <input name="cc" type="text" inputmode="numeric" pattern="[0-9]{8,19}" autocomplete="cc-number">
+</label></p>
+
+ </body>
+</html>

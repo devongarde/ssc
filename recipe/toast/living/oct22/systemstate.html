@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>Online status</title>
+<script>
+function updateIndicator() {
+document.getElementById('indicator').textContent = navigator.onLine ? 'online' : 'offline';
+}
+</script>
+</head>
+<body onload="updateIndicator()" ononline="updateIndicator()" onoffline="updateIndicator()">
+<p>The network is: <span id="indicator">(state unknown)</span>
+</body>
+</html>

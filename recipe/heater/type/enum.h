@@ -423,7 +423,7 @@ typedef enum { do_booboo, do_cgi, do_examine, do_simple } e_do;
 typedef enum {  ed_mishmash, ed_dict, ed_tags, ed_1, ed_plus, ed_2, ed_3, ed_32, ed_4, ed_41, ed_x1, ed_x11, ed_x2,
                 ed_50, ed_51, ed_52, ed_53,
                 ed_jan05, ed_jan06, ed_jan07, ed_jan08, ed_jan10, ed_jul10, ed_jan12, ed_jan13, ed_jan14, ed_jul17, ed_may20, ed_jul20, ed_jan21,
-                ed_apr21, ed_jul21, ed_apr22,
+                ed_apr21, ed_jul21, ed_apr22, ed_oct22,
                 ed_svg_1_0, ed_svg_1_1, ed_svg_1_2_tiny, ed_svg_1_2_full, ed_svg_2_0, ed_svg_2_anim,
                 ed_math_1, ed_math_2, ed_math_3, ed_math_4_20, ed_math_4_22,
                 ed_iso_8859_1, ed_csp,
@@ -3418,8 +3418,8 @@ typedef enum
     owl_withrestrictions,
 
     // poetry
-    poetry_age, poetry_containedinpoem, poetry_containspoem, poetry_content, poetry_hasform, poetry_hasstanza, poetry_indialect, poetry_ischorus, poetry_islaidout, poetry_keepsstrictform,
-        poetry_lines, poetry_medium, poetry_metre, poetry_poet, poetry_region, poetry_rhymingscheme, poetry_subform,
+    poetry_age, poetry_allusion, poetry_containedinpoem, poetry_containspoem, poetry_content, poetry_hasform, poetry_hasstanza, poetry_indialect, poetry_ischorus, poetry_islaidout,
+        poetry_keepsstrictform, poetry_lines, poetry_medium, poetry_metre, poetry_poet, poetry_region, poetry_rhymingscheme, poetry_subform,
 
     // provincial
     pp_actedonbehalfof, pp_activity, pp_agent, pp_alternativeto, pp_atlocation, pp_attime,

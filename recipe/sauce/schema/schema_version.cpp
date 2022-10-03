@@ -101,7 +101,8 @@ sh_t sh [] =  // latest first
     { profile_2014, html_jan14 },
     { profile_2012, html_jan12 },
     { provincial, html_rdf_1_0_con },
-    { poetry_schema, html_jan18 },
+    { poetry_schema_1_0, html_jan18 },
+    { poetry_schema_1_1, html_oct22 },
     { ptr_schema, html_rdf_1_0_con },
     { data_cube, html_rdf_1_0_con },
     { rdf_1_1_3_schema, html_rdf_1_1_3 },
@@ -363,6 +364,13 @@ template < > schema_version schema_detail < s_owl > :: from () noexcept { return
 template < > int schema_detail < s_owl > :: count () noexcept { return 2; }
 template < > schema_version schema_detail < s_owl > :: to () noexcept { return schema_version (s_owl, 2, 0); }
 
+template < > bool schema_detail < s_poetry > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+{   if (mjr != 1) return false;
+    return (mnr == 0) || (mnr == 1); }
+template < > schema_version schema_detail < s_poetry > :: from () noexcept { return schema_version (s_poetry, 1, 0); }
+template < > int schema_detail < s_poetry > :: count () noexcept { return 2; }
+template < > schema_version schema_detail < s_poetry > :: to () noexcept { return schema_version (s_poetry, 1, 1); }
+
 template < > bool schema_detail < s_profile > :: is_this_valid (const unsigned short mjr, const unsigned short , const flags_t ) noexcept
 {   return (mjr >= HTML_2012) && (mjr <= HTML_LATEST_YEAR); }
 template < > schema_version schema_detail < s_profile > :: from () noexcept { return schema_version (s_profile, HTML_2012, 0); }
@@ -566,4 +574,5 @@ bool is_schema_deprecated (const e_schema root, const unsigned short mjr, const 
 
 bool does_schema_apply (const schema_version& v, const schema_version& from, const schema_version& to) MSVC_NOEXCEPT
 {   if (v.any_flags (SV_WILDCARD)) return true;
+    if (v.root () != from.root ()) return true;
     return does_apply < version > (v, from, to); }

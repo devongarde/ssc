@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
-#define VERSION_RELEASE 8
-#define VERSION_STRING "0.1.8"
+#define VERSION_RELEASE 9
+#define VERSION_STRING "0.1.9"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -99,7 +99,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define COMPILER "c"
 #define MSVC_NOEXCEPT
 #define PROCSIZE "64"
-#define CLEAN_SHAREDPTR_ARRAY
 #elif ! defined (_MSC_VER)
 #define COMPILER "g"
 #define MSVC_NOEXCEPT
@@ -264,6 +263,10 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define NO_BOOST_REGEX
 #endif // 1.75
 
+#if BOOST_MINOR < 77
+#define NO_BOOST_DATE_FACET
+#endif
+
 #if BOOST_MINOR > 78
 #define BOOST_FILESYSTEM_VERSION 4
 #endif // BOOST_MINOR
@@ -380,13 +383,13 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define GSL_SPAN(ARRAY, MAXLEN) ::gsl::span (ARRAY, MAXLEN)
 #define GSL_NARROW_CAST ::gsl::narrow_cast
 #define GSL_AT(ARRAY, ENTRY) ::gsl::at (ARRAY, ENTRY)
-#define GSL_NOT_NULL(TYPE) ::gsl::not_null < TYPE >
 #define GSL_OWNER(TYPE) ::gsl::owner < TYPE * >
+#define GSL_NOT_NULL(TYPE) ::gsl::not_null < TYPE >
 #else // NO_GSL
 #define GSL_SPAN(ARRAY, MAXLEN) ARRAY
 #define GSL_NARROW_CAST static_cast
 #define GSL_AT(ARRAY, ENTRY) ARRAY [ENTRY]
-#define GSL_NOT_NULL(TYPE) TYPE *
+#define GSL_NOT_NULL(TYPE) TYPE
 #define GSL_OWNER(TYPE) TYPE
 #endif // NO_GSL
 

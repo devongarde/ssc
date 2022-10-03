@@ -41,9 +41,9 @@ or other elements <span> are treated as plain text, instead of markup.
 <label>Carpet: <input name=c></label>
 <input name="_charset_" type=hidden value=binary>
 </span></form>
-<div lang=en>...</div>
+<div class="example" lang=en>...</div>
 <section id=example>...</section>
-<div lang=en>...</div>
+<div class="example" lang=en>...</div>
 <img height=200 src="example.png" width=300>
 <img src="image.png">
 <img src="example.jpg" title="An example photograph">
