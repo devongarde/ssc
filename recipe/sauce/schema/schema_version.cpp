@@ -119,6 +119,7 @@ sh_t sh [] =  // latest first
     { rif_schema, html_rif },
     { role_schema, html_role },
     { rr_schema, html_rr },
+    { schema_15, html_schema_15 },
     { schema_14, html_schema_14 },
     { schema_13, html_schema_13 },
     { schema_12, html_schema_12 },

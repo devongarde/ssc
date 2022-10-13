@@ -159,9 +159,9 @@ not so easy for Windows. I suggest the following:
 3  Run the vcpkg bootstrap batch file, noting the comments
 4  Enter "vcpkg install curl:x64-windows"
 5  Add an environment variable to your account for CURL, perhaps:
-    CURL=****\project\lib\vcpkg\installed\x64-windows
+    CURL=****\vcpkg\installed\x64-windows
 6  Add the installation bin directory to your local path, perhaps:
-    ****\project\lib\vcpkg\installed\x64-windows\bin
+    ****\vcpkg\installed\x64-windows\bin
 7  If you plan to debug, also add debug\bin, perhaps:
-    ****\project\lib\vcpkg\installed\x64-windows\debug\bin
+    ****\vcpkg\installed\x64-windows\debug\bin
   

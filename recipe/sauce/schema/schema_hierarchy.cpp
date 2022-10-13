@@ -3036,6 +3036,8 @@ microdata_hierachy schema_hierarchy [] =
     { { 0, 99 }, { 0, 0 }, sch_pricespecification, sch_deliverychargespecification },
     { { 0, 99 }, { 0, 0 }, sch_pricespecification, sch_paymentchargespecification },
     { { 0, 99 }, { 0, 0 }, sch_pricespecification, sch_unitpricespecification },
+    { { 15, 0 }, { 0, 0 }, sch_product, sch_dietarysupplement },
+    { { 15, 0 }, { 0, 0 }, sch_product, sch_drug },
     { { 0, 99 }, { 0, 0 }, sch_product, sch_individualproduct },
     { { 9, 0 }, { 0, 0 }, sch_product, sch_productcollection },
     { { 9, 0 }, { 0, 0 }, sch_product, sch_productgroup },

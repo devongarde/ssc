@@ -624,6 +624,7 @@ const html_version html_schema_11 (HTML_SCHEMA_11);
 const html_version html_schema_12 (HTML_SCHEMA_12);
 const html_version html_schema_13 (HTML_SCHEMA_13);
 const html_version html_schema_14 (HTML_SCHEMA_14);
+const html_version html_schema_15 (HTML_SCHEMA_15);
 const html_version html_sd (HTML_SD);
 const html_version html_sioc (HTML_SIOC);
 const html_version html_sioc_s (HTML_SIOC);

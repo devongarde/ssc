@@ -487,7 +487,7 @@ line, the "no-" switch always applies.
                                 rif 1.0
                                 role 1.0
                                 rr 1.0
-                                schema 0.10-14.0 (see below)
+                                schema 0.10-15.0 (see below)
                                 sd 1.0
                                 sioc 1.0
                                 sioc_s 1.0
@@ -780,6 +780,7 @@ content is optional.
 
 Section and option names are derived from the long form switch name, which
 consists of SECTION.OPTION, laid out in the format:
+
 [SECTION]
 OPTION=yes
 OPTION=123456
@@ -856,6 +857,7 @@ To check a static web site using a configuration file:
 ssc -f config.file
 
 A simple configuration file might contain:
+
 [general]
 verbose=4
 output=simple.out
@@ -867,6 +869,7 @@ root=simple
 
 A configuration file to check a site against HTML 5.2 and SVG 1.1 might
 contain:
+
 [general]
 output=site.out
 class=yes
@@ -883,8 +886,8 @@ version=5.2
 version=1.1
 
 A configuration file to check against a particular WhatWG living
-standard,
-gathering statistics:
+standard, gathering statistics:
+
 [general]
 output=jan21.out
 [html]
@@ -904,6 +907,7 @@ meta=yes
 
 A configuration file to shadow copy and deduplicate a site might
 contain:
+
 [general]
 output=dedu.out
 class=yes
@@ -919,6 +923,7 @@ file=dedu.ndx
 
 A configuration file to export microdata preparing against schema.org
 version 7.2 might contain:
+
 [general]
 output=export.out
 class=yes
