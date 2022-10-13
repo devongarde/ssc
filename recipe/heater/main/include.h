@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
-#define VERSION_RELEASE 9
-#define VERSION_STRING "0.1.9"
+#define VERSION_RELEASE 10
+#define VERSION_STRING "0.1.10"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
