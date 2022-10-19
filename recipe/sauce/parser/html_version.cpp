@@ -351,13 +351,13 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                 case doc_symbols :
                     break;
                 case doc_html401_strict_superseded :
-                    nits.pick (nit_html_superseded, ed_41, "21 Document Type Definition", es_warning, ec_parser, "that strict HTML .dtd was withdrawn");
+                    nits.pick (nit_html_superseded, ed_41, "21 Document Type Definition", es_warning, ec_parser, "that strict HTML .dtd was withdrawn (consider /html40/, not /html4/)");
                     FALLTHROUGH;
                 case doc_html401_strict :
                     if (note_parsed_version (nits, nit_html_4_01s, html_4_1, "HTML 4.01 Strict")) set_flags (HV_STRICT);
                     break;
                 case doc_html401_loose_superseded :
-                    nits.pick (nit_html_superseded, ed_41, "21 Document Type Definition", es_warning, ec_parser, "that transitional HTML .dtd was withdrawn");
+                    nits.pick (nit_html_superseded, ed_41, "21 Document Type Definition", es_warning, ec_parser, "that transitional HTML .dtd was withdrawn (consider /html40/, not /html4/)");
                     FALLTHROUGH;
                 case doc_html401_loose :
                     if (note_parsed_version (nits, nit_html_4_01, html_4_1, "HTML 4.01 Transitional")) set_flags (HV_TRANSITIONAL);

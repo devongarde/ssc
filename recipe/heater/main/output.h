@@ -32,7 +32,7 @@ class output_streams_t
     ::std::ostream& err () const noexcept { if (fos_) return *fos_; return ::std::cerr; }
 public:
     void init (nitpick& nits, const ::std::string& s);
-    const ::std::string& name () const { return name_; }
+    const ::std::string& name () const noexcept { return name_; }
     void out (const ::std::string& s) const
     {   lox l (lox_out);
         out () << s; }

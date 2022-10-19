@@ -33,12 +33,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 bool css::parse (nitpick& nits, const html_version& v, const ::std::string& content, const e_charcode encoding)
 {   if (invalid ()) return false;
     if (content.empty ()) return true;
-    parse_css (nits, v, ids_, content, encoding);
+    parse_css (nits, v, classes_, content, encoding);
     check_for_standard_classes (nits, v);
     return true; }
 
 void css::check_for_standard_classes (nitpick& nits, const html_version& v)
-{   for (auto id : ids_)
+{   for (auto id : classes_)
     {   html_class c (nits, v, id.first);
         if (c.is_microformat_property ())
             nits.pick (nit_class_microformat_property, es_warning, ec_css, "CSS identifier ", quote (id.first), " is a microformat property");
@@ -47,14 +47,14 @@ void css::check_for_standard_classes (nitpick& nits, const html_version& v)
 
 bool css::note_usage (const ::std::string& id, const unsigned int n)
 {   PRESUME (n > 0, __FILE__, __LINE__);
-    smsid_t::iterator i = ids_.find (id);
-    if (i == ids_.end ()) return false;
+    smsid_t::iterator i = classes_.find (id);
+    if (i == classes_.end ()) return false;
     TALLY_TO_MAX (i -> second, n, SIZE_MAX);
     return true; }
 
 void css::tally (smsid_t& ids) const
 {   if (context.classic () || ! snippet_)
-        for (auto local : ids_)
+        for (auto local : classes_)
             if (local.second > 0)
             {   smsid_t::iterator sum = ids.find (local.first);
                 if (sum == ids.end ()) ids.insert (local);

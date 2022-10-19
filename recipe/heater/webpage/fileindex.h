@@ -45,6 +45,7 @@ CONSTEXPR fileindex_t nullfileindex = SIZE_MAX;
 #define FX_DELETED  0x00000080
 #define FX_LINKED   0x00000100
 #define FX_WAITAMO  0x00000200
+#define FX_PRETEND  0x00000400
 
 void fileindex_init ();
 ::boost::filesystem::path persist_path ();

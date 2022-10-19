@@ -6193,7 +6193,7 @@ microdata_structure schema_structure [] =
     { { 2, 0 }, { 0, 0 }, sch_softwaresourcecode, sp_codesampletype },
     { { 2, 0 }, { 0, 0 }, sch_softwaresourcecode, sp_programminglanguage },
     { { 2, 0 }, { 0, 0 }, sch_softwaresourcecode, sp_runtimeplatform },
-    { { 2, 0 }, { 0, 0 }, sch_softwaresourcecode, sp_targetplatform },
+    { { 2, 0 }, { 0, 0 }, sch_softwaresourcecode, sp_targetproduct },
 
     { { 0, 99 }, { 0, 0 }, sch_someproducts, sp_inventorylevel },
 
