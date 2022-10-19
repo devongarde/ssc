@@ -47,7 +47,7 @@ bool css_group_t::parse_file (nitpick& nits, const page& p, const url& u)
 bool css_group_t::has_id (const ::std::string& id) const
 {   for (csss_cit i = csss_.cbegin (); i != csss_.cend (); ++i)
     {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
-        if (i -> second -> has_id (id)) return true; }
+        if (i -> second -> has_class (id)) return true; }
     return false; }
 
 bool css_group_t::note_usage (const ::std::string& id)

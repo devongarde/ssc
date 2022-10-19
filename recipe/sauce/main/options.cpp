@@ -88,11 +88,11 @@ void options::help (const ::boost::program_options::options_description& aid) co
     res +=  waste_of_space.str ();
     res +=  "\n\n"
             "Configuration file section names precede each switch dot above (e.g.\n"
-            GENERAL_ ", " LINKS_ "," WEBSITE_ "\n"
+            GENERAL_ ", " LINK_ "," WEBSITE_ "\n"
             ", etc.). Option names follow them. For example:\n\n"
             "[" GENERAL_ "]\n"
             VERBOSE "=2\n\n"
-            "[" LINKS_ "]\n"
+            "[" LINK_ "]\n"
             CHECK "=1\n\n"
             "[" WEBSITE_ "]\n"
             EXTENSION "=html\n"
@@ -255,6 +255,10 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (JSONLD DONT VERIFY, ::boost::program_options::bool_switch (), "Do not verify JSON-LD.")
         (JSONLD VERSION, ::boost::program_options::value < ::std::string > (), "Presume this version of JSON-LD (1.0 or 1.1, default 1.0).")
 
+#ifdef NO_BOOST_REGEX
+        (LINKS PRETEND, ::boost::program_options::value < vstr_t > () -> composing (), "Pretend files that match this posix regular expression exist; may be repeated")
+#endif // NO_BOOST_REGEX
+
         (NITS SPEC, ::boost::program_options::bool_switch (), "Output nits in test spec format (requires -T).")
         (NITS DONT SPEC, ::boost::program_options::bool_switch (), "Do not output nits in test spec format.")
 
@@ -273,17 +277,17 @@ void options::process (nitpick& nits, int argc, char* const * argv)
     ;
 
     primary.add_options ()
-        (GENERAL CLASS, ::boost::program_options::bool_switch (), "Report unrecognised classes (consider --" GENERAL CSS ".")
+        (GENERAL CLASS, ::boost::program_options::bool_switch (), "Report unrecognised classes (consider --" GENERAL CSS_OPTION ".")
         (GENERAL DONT CLASS, ::boost::program_options::bool_switch (), "Do not report unrecognised classes.")
-        (GENERAL CLASSIC, ::boost::program_options::bool_switch (), "Report all classes used, not just those in .CSS files (requires --" GENERAL CLASS ".")
+        (GENERAL CLASSIC, ::boost::program_options::bool_switch (), "Report all classes used, not just those in .CSS files (requires --" GENERAL CLASS ").")
         (GENERAL DONT CLASSIC, ::boost::program_options::bool_switch (), "Do not report all classes used.")
         (GENERAL CGI ",W", ::boost::program_options::bool_switch (), "Process HTML snippets (for OpenBSD's httpd <FORM METHOD=GET ...>; disables most features).")
         (GENERAL DONT CGI, ::boost::program_options::bool_switch (), "Process a local static website.")
         (GENERAL CSS_OPTION, ::boost::program_options::bool_switch (), "Process .css files (for class names only).")
-        (GENERAL DEFTHRD ",N", ::boost::program_options::value < int > (), "If no setting specifies the thread count, set it to this.")
         (GENERAL DONT CSS_OPTION, ::boost::program_options::bool_switch (), "Do not process .css files.")
         (GENERAL CUSTOM, ::boost::program_options::value < vstr_t > () -> composing (), "Define a custom element for checking the 'is' attribute; may be repeated.")
         (GENERAL DATAPATH ",p", ::boost::program_options::value < ::std::string > () -> default_value ("." PROG), "Root directory for most " PROG " files.")
+        (GENERAL DEFTHRD ",N", ::boost::program_options::value < int > (), "If no setting specifies the thread count, set it to this.")
         (GENERAL ERR ",E", ::boost::program_options::value < ::std::string > () -> composing (), "Exit with an error if nits of this severity or worse are generated. Values: '"
             CATASTROPHE "', '" ERR "' (default), '" WARNING "', '" INFO  "', or '" COMMENT  "'.")
 #ifndef NO_BOOST_REGEX
@@ -354,6 +358,9 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (LINKS IGNORED, ::boost::program_options::value < vstr_t > () -> composing (), "When checking external links, ignore this domain; may be repeated.")
         (LINKS LOCAL, ::boost::program_options::bool_switch (), "Issue warning if link to local domain, such as ???.lan or ???.corp, found.")
         (LINKS DONT LOCAL, ::boost::program_options::bool_switch (), "Don't mention links to local domains.")
+#ifndef NO_BOOST_REGEX
+        (LINKS PRETEND, ::boost::program_options::value < vstr_t > () -> composing (), "Pretend files that match this posix regular expression exist; may be repeated")
+#endif // NO_BOOST_REGEX
         (LINKS ONCE ",O", ::boost::program_options::bool_switch (), "Report each broken external link once (sets --" LINKS EXTERNAL ").")
         (LINKS DONT ONCE, ::boost::program_options::bool_switch (), "Report broken links whenever they are found.")
         (LINKS REPORT, ::boost::program_options::value < vstr_t > () -> composing (), "Report links to this domain and its descendants; may be repeated.")
@@ -955,6 +962,9 @@ void options::contextualise (nitpick& nits)
         if (var_.count (LINKS IGNORED)) context.no_ex_check (var_ [LINKS IGNORED].as < vstr_t > ());
         yea_nay (&context_t::local, nits, LINKS LOCAL, LINKS DONT LOCAL);
         yea_nay (&context_t::once, nits, LINKS ONCE, LINKS DONT ONCE);
+#ifndef NO_BOOST_REGEX
+        if (var_.count (LINKS PRETEND)) context.pretend (nits, var_ [LINKS PRETEND].as < vstr_t > ());
+#endif // NO_BOOST_REGEX
         if (var_.count (LINKS REPORT)) context.report (var_ [LINKS REPORT].as < vstr_t > ());
         yea_nay (&context_t::revoke, nits, LINKS REVOKE, LINKS DONT REVOKE);
         yea_nay (&context_t::crosslinks, nits, LINKS XLINK, LINKS DONT XLINK);
@@ -1434,6 +1444,9 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_ [LINKS DONT LOCAL].as < bool > ()) res << LINKS DONT LOCAL "\n";
     if (var_ [LINKS ONCE].as < bool > ()) res << LINKS ONCE "\n";
     if (var_ [LINKS DONT ONCE].as < bool > ()) res << LINKS DONT ONCE "\n";
+#ifndef NO_BOOST_REGEX
+    if (var_.count (LINKS PRETEND)) { res << LINKS PRETEND ": "; pvs (res, var_ [LINKS PRETEND].as < vstr_t > ()); res << "\n"; }
+#endif // NO_BOOST_REGEX
     if (var_.count (LINKS REPORT)) { res << LINKS REPORT ": "; pvs (res, var_ [LINKS REPORT].as < vstr_t > ()); res << "\n"; }
     if (var_ [LINKS REVOKE].as < bool > ()) res << LINKS REVOKE "\n";
     if (var_ [LINKS DONT REVOKE].as < bool > ()) res << LINKS DONT REVOKE "\n";

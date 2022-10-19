@@ -754,6 +754,7 @@ const nitname nitnames [] =
     { nit_thread, "thread" },
     { nit_icu_installation, "icu_installation" },
     { nit_os_file, "os_file" },
+    { nit_found_css_id, "found_css_id" },
 
     { nit_off, "" } };
 

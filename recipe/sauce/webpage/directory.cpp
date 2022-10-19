@@ -85,7 +85,8 @@ void directory::swap (directory& d) noexcept
     auto i = content_.find (lhs);
     if (i != content_.end ())
         if (i -> second != nullptr) return i -> second -> internal_get_site_path (nits, rhs);
-    if (sep) nits.pick (nit_no_such_folder, es_error, ec_directory, quote (lhs), " is no child of ", quote (name_));
+    if (sep && ! context.pretended (item))
+        nits.pick (nit_no_such_folder, es_error, ec_directory, quote (lhs), " is no child of ", quote (name_));
     return join_site_paths (get_site_path (), item); }
 
 ::std::string directory::get_site_path (nitpick& nits, const ::std::string& item) const
@@ -356,7 +357,8 @@ bool directory::verify_local (nitpick& nits, const html_version& , const url& u,
 //    dear d (lox_dear);
     const fileindex_t ndx (get_fileindex (ndx_, p));
     if (ndx != nullfileindex)
-        if (get_any_flag (ndx, FX_BORKED)) return false;
+        if (get_any_flag (ndx, FX_PRETEND)) return true;
+        else if (get_any_flag (ndx, FX_BORKED)) return false;
         else if ((! fancy) && get_any_flag (ndx, FX_DIR)) return false;
         else if (get_any_flag (ndx, FX_TESTED))
             return (get_any_flag (ndx, (FX_SCANNED | FX_EXISTS)));
@@ -373,6 +375,9 @@ bool directory::verify_local (nitpick& nits, const html_version& , const url& u,
             maintain_fileindex (nits, p, u.absolute (), ndx, FX_TESTED | FX_EXISTS | FX_DIR);
             maintain_fileindex (nits, p2, sanitise (u.absolute () + "/" + context.index ()), ndx, FX_TESTED);
             return false; }
+    if (u.is_local () && context.pretended (u.original ()))
+    {   maintain_fileindex (nits, p, u.absolute (), ndx, FX_TESTED | FX_PRETEND);
+        return true; }
     maintain_fileindex (nits, p, u.absolute (), ndx, FX_TESTED);
     return false; }
 

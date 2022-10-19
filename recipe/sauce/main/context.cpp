@@ -171,11 +171,20 @@ bool context_t::rdfa () const noexcept
 #ifdef NO_BOOST_REGEX
 context_t& context_t::exclude (nitpick& , const ::std::string& )
 {  return *this; }
+context_t& context_t::pretend (nitpick& , const ::std::string& )
+{  return *this; }
 #else // NO_BOOST_REGEX
 context_t& context_t::exclude (nitpick& nits, const ::std::string& s)
 {   try
     {   wild_t w (s, ::boost::regex::basic_regex::extended);
         exclude_.push_back (w); }
+    catch (...)
+    {   nits.pick (nit_regex, es_error, ec_init, "ignoring the invalid regular expression ", quote (s)); }
+    return *this; }
+context_t& context_t::pretend (nitpick& nits, const ::std::string& s)
+{   try
+    {   wild_t w (s, ::boost::regex::basic_regex::extended);
+        pretend_.push_back (w); }
     catch (...)
     {   nits.pick (nit_regex, es_error, ec_init, "ignoring the invalid regular expression ", quote (s)); }
     return *this; }
@@ -186,22 +195,37 @@ context_t& context_t::exclude (nitpick& nits, const vstr_t& s)
         exclude (nits, ss);
     return *this; }
 
+context_t& context_t::pretend (nitpick& nits, const vstr_t& s)
+{   for (auto ss : s)
+        pretend (nits, ss);
+    return *this; }
+
 
 #ifdef NO_BOOST_REGEX   
 bool context_t::excluded (nitpick& , const ::boost::filesystem::path& ) const
 {   return false; }
+
+bool context_t::pretended (const ::boost::filesystem::path& ) const
+{   return false; }
 #else // NO_BOOST_REGEX
 bool context_t::excluded (nitpick& nits, const ::boost::filesystem::path& p) const
 {   for (auto w : exclude_)
-        if (::boost::regex_search (p.string (), w))
+        if (::boost::regex_search (p.string (), w, ::boost::regex_constants::match_any))
             return true;
     if (excludable_filenames.find (p.filename ().string ()) != excludable_filenames.cend ())
         nits.pick (nit_os_file, es_warning, ec_schema, "System file ", p.string (), " found but not excluded");
     return false; }
+
+bool context_t::pretended (const ::std::string& s) const
+{   if (! s.empty ())
+        for (auto w : pretend_)
+            if (::boost::regex_search (s, w, ::boost::regex_constants::match_any))
+                return true;
+    return false; }
 #endif // NO_BOOST_REGEX
 
 context_t& context_t::fred (const int i)
-{   int nmt = fred_t::no_more_than (); // <=> :-(
+{   const int nmt = fred_t::no_more_than (); // <=> :-(
     if (i > nmt) fred_ = nmt;
     else if (i > 0) fred_ = i;
     else fred_ = fred_t::suggested ();

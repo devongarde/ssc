@@ -304,6 +304,9 @@ line, the "no-" switch always applies.
                         time it's encountered (requires
                         --link.external).
 
+--link.pretend FILE     When checking local files, pretend this file
+                        exists.
+
 --link.report DOMAIN    Report links to domain and its descendents. May
                         be repeated.
 
@@ -474,7 +477,7 @@ line, the "no-" switch always applies.
                                 og 10,12,14,18,22 (see below)
                                 org 1.0
                                 owl 1.0,2.0
-                                poetry 1.0
+                                poetry 1.0,1.1
                                 profile 12,14,18,22
                                 prov 1.0
                                 ptr 1.0

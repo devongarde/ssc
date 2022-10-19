@@ -1676,7 +1676,7 @@ typedef enum
     nit_mf_version, nit_not_directory, nit_endpoint, nit_header_empty, nit_header_malformed, nit_http_error, nit_header_no_data,
     nit_json_version, nit_json_corrupt, nit_json_domain, nit_dialect, nit_country, nit_languages, nit_hidden, nit_bespoke_obsolete,
     nit_regex, nit_fred_borked, nit_kew_borked, nit_internal_cache_error, nit_mtr_required, nit_mtd_required, nit_bad_intent,
-    nit_cannot_scan, nit_thread, nit_icu_installation, nit_os_file,
+    nit_cannot_scan, nit_thread, nit_icu_installation, nit_os_file, nit_found_css_id,
     nit_context,
 
     // eon

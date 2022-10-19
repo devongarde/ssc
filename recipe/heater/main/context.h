@@ -60,7 +60,7 @@ class context_t
     vstr_t          custom_elements_, environment_, exports_, extensions_, jsonld_ext_, no_ex_check_, report_, shadow_ignore_, shadows_, site_, spellings_, virtuals_;
     ::boost::program_options::options_description validation_;
 #ifndef NO_BOOST_REGEX
-    vwild_t         exclude_;
+    vwild_t         exclude_, pretend_;
 #endif // NO_BOOST_REGEX
     e_svg_processing_mode svg_mode_ = spm_none;
     e_quote_style   quote_style_ = qs_none;
@@ -186,6 +186,8 @@ class context_t
         return *this; }
     context_t& persisted (const ::std::string& s) { persisted_ = s; mac (nm_context_persisted, s); return *this; }
     context_t& presume_tags (const bool b) { presume_tags_ = b; mac (nm_context_tags, b); return *this; }
+    context_t& pretend (nitpick& nits, const vstr_t& s);
+    context_t& pretend (nitpick& nits, const ::std::string& s);
     context_t& progress (const bool b) noexcept { progress_ = b; return *this; }
     context_t& quote_style (const e_quote_style qs) noexcept { quote_style_ = qs; return *this; }
     context_t& rdfa (const bool b) { rdfa_ = b; mac (nm_context_rdfa, b); return *this; }
@@ -318,9 +320,10 @@ public:
     const vstr_t no_ex_check () const { return no_ex_check_; }
     bool not_root () const noexcept { return not_root_; }
     bool once () const noexcept { return once_; }
-    bool presume_tags () const noexcept { return presume_tags_; }
     ::std::string path () const { return path_; }
     const ::std::string persisted () const { return persisted_; }
+    bool presume_tags () const noexcept { return presume_tags_; }
+    bool pretended (const ::std::string& s) const;
     bool progress () const noexcept { return progress_; }
     e_quote_style quote_style () const noexcept { return quote_style_; }
     bool rdfa () const noexcept;

@@ -1720,7 +1720,6 @@ microdata_hierachy schema_hierarchy [] =
     { { s_poetry, 1, 0 }, { 0, 0 }, poetry_poem, poetry_stanza },
     { { s_poetry, 1, 0 }, { 0, 0 }, sch_creativework, poetry_form },
     { { s_poetry, 1, 0 }, { 0, 0 }, sch_creativework, poetry_poem },
-    { { s_poetry, 1, 0 }, { 0, 0 }, sch_creativework, poetry_stanza },
     { { s_poetry, 1, 0 }, { 0, 0 }, sch_intangible, poetry_period },
     { { s_poetry, 1, 0 }, { 0, 0 }, sch_language, poetry_dialect },
 
