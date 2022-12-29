@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -52,12 +52,12 @@ bool note_itemid (nitpick& nits, const html_version& , const ::std::string& id, 
         lox l (lox_itemid);
         for (auto i : *miid)
         {   mmac_t mac;
-            mac.emplace (nm_id_name, i.first);
-            mac.emplace (nm_id_page, i.second.path_);
-            mac.emplace (nm_id_line, ::boost::lexical_cast < ::std::string > (i.second.line_));
+            mac.emplace (nm_itemid_name, i.first);
+            mac.emplace (nm_itemid_page, i.second.path_);
+            mac.emplace (nm_itemid_line, ::boost::lexical_cast < ::std::string > (i.second.line_));
             res += macro -> apply (ns_itemid, mac); }
         if (! res.empty ())
-            res = macro -> apply (ns_id_head) + res + macro -> apply (ns_id_foot); }
+            res = macro -> apply (ns_itemid_head) + res + macro -> apply (ns_itemid_foot); }
     return res; }
 
 bool empty_itemid ()

@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/q.h"
 
 const char* stage_name [] =
-{   "initialising ", "scanning ", "processing ", "reviewing ", "max " };
+{   "initialising ", "scanning ", "prioritising ", "processing ", "reviewing ", "max " };
 
 bool d_q (q_entry& qe)
 {   VERIFY_NOT_NULL (qe.ticks_, __FILE__, __LINE__);
@@ -46,6 +46,9 @@ bool d_q (q_entry& qe)
     {   switch (qe.stage_)
         {   case st_scan :
                 qe.dir_ -> scan (qe.ticks_, qe.dir_ -> get_site_path ());
+                break;
+            case st_priority :
+                qe.dir_ -> examine_page (qe.ticks_, qe.page_);
                 break;
             case st_file :
                 qe.dir_ -> examine_page (qe.ticks_, qe.page_);
@@ -74,6 +77,7 @@ bool d_q (q_entry& qe)
     switch (stage_)
     {   case st_init : ss << "init "; break;
         case st_scan : ss << "scan "; break;
+        case st_priority : ss << "prioritise "; break;
         case st_file : ss << "file "; break;
         case st_folder : ss << "folder "; break;
         default : ss << "?? "; break; }

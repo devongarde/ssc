@@ -1,11 +1,21 @@
-[class]
-{{class-name}} {{class-int}}
+[tally]
+  {{tally-name}} {{tally-int}}{{tally-use-int:/:}}
 
-[class-head]
+[tally-head]
 
-*** classes
+{{tally-title:: CSS/HTML:}}
 
-[class-foot]
+[tally-foot]
+  {{tally-count}}x {{tally-title}}: {{tally-total}}{{tally-use-total:/:}}
+
+[itemid]
+{{itemid-name}} {{itemid-int}}
+
+[itemid-head]
+
+*** ItemIDs
+
+[itemid-foot]
 
 [config]
 

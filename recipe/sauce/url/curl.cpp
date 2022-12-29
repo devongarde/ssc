@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -34,11 +34,8 @@ class curly  // presumes lox_curl surrounding the whole thing / must move to cur
 public:
     curly ()
     {   pos_ = 0;
-        PRESUME (valid (), __FILE__, __LINE__); } 
-    curly (const curly& ) = delete;
-    curly (curly&& ) = delete;
-    curly& operator = (const curly& ) = delete;
-    curly& operator = (curly&& ) = delete;
+        PRESUME (valid (), __FILE__, __LINE__); }
+    NO_COPY_CONSTRUCTORS (curly); 
     ~curly ()
     {   if (c_ != nullptr) curl_easy_reset (c_); }
     static void init ()

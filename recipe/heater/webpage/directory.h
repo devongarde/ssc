@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -34,7 +34,7 @@ class directory
 {   typedef ::std::map < ::std::string, dir_ptr > map_t;
     typedef map_t::value_type value_t;
     ::std::string name_;
-    map_t content_;
+    map_t content_, priority_;
     bool offsite_ = false;
     directory* mummy_ = nullptr;
     path_root_ptr root_;
@@ -80,5 +80,9 @@ public:
     ::boost::filesystem::path get_export_path (nitpick& nits, const ::std::string& item) const;
     ::boost::filesystem::path get_shadow_path () const; };
 
-bool is_webpage (const ::std::string& name, const vstr_t& extensions);
+bool has_extension (const ::std::string& name, const vstr_t& extensions);
+bool is_css (const ::std::string& name);
+bool is_jsonld (const ::std::string& name);
+bool is_webpage (const ::std::string& name);
+bool is_verifiable_file (const ::std::string& name);
 ::std::size_t integrate_virtuals (paths_root& virt, vd_t& dirs);

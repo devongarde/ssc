@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -266,6 +266,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define HTML_UNDEF  0, 0
 
+#define HTML_CSS_1      HTML_2_0
+#define HTML_CSS_2_0    HTML_4_0
+#define HTML_CSS_2_1    HTML_2007, HTML_JUL
+#define HTML_CSS_2_2    HTML_2016, HTML_APR
+#define HTML_CSS_3      HTML_2007, HTML_JUL
+
+#define HTML_CSS_3_SEL    HTML_2018, HTML_NOV
+#define HTML_CSS_4_SEL    HTML_2022, HTML_MAY
+
 #define HTML_MATH1      HTML_4_0
 #define HTML_MATH2      XHTML_1_0
 #define HTML_MATH3      HTML_5_2
@@ -479,11 +488,8 @@ public:
     version () : mjr_ (0), mnr_ (0), flags_ (NOFLAGS) { }
     version (const unsigned short mjr, const unsigned short mnr, const flags_t flags = NOFLAGS) noexcept
         :   mjr_ (mjr), mnr_ (mnr), flags_ (flags) { }
-	version (const version& ) = default;
-	version (version&& ) = default;
+    DEFAULT_COPY_CONSTRUCTORS (version);
 	~version () = default;
-    version& operator = (const version& ) = default;
-	version& operator = (version&& ) = default;
     void swap (version& v) noexcept
     {   ::std::swap (mjr_, v.mjr_);
         ::std::swap (mnr_, v.mnr_);

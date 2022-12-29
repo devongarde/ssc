@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "type/type_master.h"
 bool invalid_id_result (nitpick& nits, const html_version& v, const ::std::string& s, const element* const e);
+bool note_id_usage (element* p, const ::std::string& s);
 
 template < > struct type_master < t_id > : tidy_string < t_id >
 {   bool tested_ = false, predefined_ = false;
@@ -35,6 +36,8 @@ template < > struct type_master < t_id > : tidy_string < t_id >
         if (s.empty ())
         {   nits.pick (nit_bad_id, es_error, ec_type, "an ID cannot be empty");
             tidy_string < t_id > :: status (s_invalid); }
+        else if (note_id_usage (box (), s))
+            nits.pick (nit_spotted_css_id, es_comment, ec_css, "CSS id ", quote (s), " recognised");
         switch (v.mjr ())
         {   case 3 :
                 if (v.mnr () == 2)

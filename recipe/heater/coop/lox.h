@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -37,39 +37,30 @@ class lox
 #endif // NO_FRED
 public:
     lox () = delete;
-    lox (const lox& ) = delete;
-    lox (lox&& ) = delete;
+    NO_COPY_CONSTRUCTORS (lox);
 #ifndef NO_FRED
     explicit lox (const e_lox l, const bool not_really = false);
 #else // NO_FRED
     explicit lox (const e_lox ) { }
 #endif // NO_FRED
-    lox& operator = (const lox& ) = delete;
-    lox& operator = (lox&& ) = delete;
     ~lox (); };
 
 struct flox
 {   flox () = delete;
-    flox (const flox& ) = delete;
-    flox (lox&& ) = delete;
+    NO_COPY_CONSTRUCTORS (flox);
 #ifndef NO_FRED
     explicit flox (const e_lox l);
 #else // NO_FRED
     explicit flox (const e_lox ) { }
 #endif // NO_FRED
-    flox& operator = (const flox& ) = delete;
-    flox& operator = (flox&& ) = delete;
     ~flox (); };
 
 struct dear
 {   dear () = delete;
-    dear (const dear& ) = delete;
-    dear (lox&& ) = delete;
+    NO_COPY_CONSTRUCTORS (dear);
 #ifndef NO_FRED
     explicit dear (const e_lox l);
 #else // NO_FRED
     explicit dear (const e_lox ) { }
 #endif // NO_FRED
-    dear& operator = (const dear& ) = delete;
-    dear& operator = (dear&& ) = delete;
     ~dear (); };

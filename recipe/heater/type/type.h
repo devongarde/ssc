@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -45,6 +45,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type_colour.h"
 #include "type/type_cookie.h"
 #include "type/type_country.h"
+#include "type/type_css.h"
 #include "type/type_currency.h"
 #include "type/type_httpequiv.h"
 #include "type/type_lang.h"

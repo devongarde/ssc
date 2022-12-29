@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -48,7 +48,7 @@ int context_t::parameters (nitpick& nits, int argc, char** argv)
         mac (nm_context_output, s); }
 
     for (const ::std::string& name : site_)
-        if (name.find_first_not_of (ALPHANUMERIC) != ::std::string::npos)
+        if (name.find_first_not_of (DOMAINNAME) != ::std::string::npos)
         {   valid_ = false;
             nits.pick (nit_invalid_domain, es_error, ec_init, quote (name), " is not a valid domain name (do not include protocols)");
             return ERROR_STATE; }
@@ -82,6 +82,28 @@ context_t& context_t::shadow_ignore (const vstr_t& s)
             if (ss.at (0) == '.') shadow_ignore_.emplace_back (ss);
             else shadow_ignore_.emplace_back (::std::string (1, '.') + ss);
     mac (nm_context_shadow_ignore, shadow_ignore_);
+    return *this; }
+
+context_t& context_t::css_version (const int mjr, const int mnr) noexcept
+{   switch (mjr)
+    {   case 1 :
+            if (mnr == 0) css_version (css_1);
+            else css_version (css_none);
+            break;
+        case 2 :
+            switch (mnr)
+            {   case 0 : css_version (css_2_0); break;
+                case 1 : css_version (css_2_1); break;
+                case 2 : css_version (css_2_2); break;
+                default : css_version (css_none); break; }
+            break;
+        case 3 :
+            if (mnr == 0) css_version (css_3);
+            else css_version (css_none);
+            break;
+        default :
+            version_.css_version (css_none);
+            break; }
     return *this; }
 
 context_t& context_t::svg_version (const int mjr, const int mnr) noexcept
@@ -205,7 +227,7 @@ context_t& context_t::pretend (nitpick& nits, const vstr_t& s)
 bool context_t::excluded (nitpick& , const ::boost::filesystem::path& ) const
 {   return false; }
 
-bool context_t::pretended (const ::boost::filesystem::path& ) const
+bool context_t::pretended (const ::std::string& ) const
 {   return false; }
 #else // NO_BOOST_REGEX
 bool context_t::excluded (nitpick& nits, const ::boost::filesystem::path& p) const

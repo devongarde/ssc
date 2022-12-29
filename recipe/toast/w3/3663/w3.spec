@@ -1,5 +1,8 @@
 -N 1 -f ../toast/w3/3663/w3.conf
 
+PASS ../toast/w3/3663/index.html
+2 naughty_lang
+
 PASS ../toast/w3/3663/3663-svg-10-doctype.svg
 0 title_required
 1 xhtml_1_1

@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -24,7 +24,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/directory.h"
 #include "attribute/attr.h"
 #include "attribute/avm.h"
-#include "css/css_global.h"
 #include "element/elem.h"
 #include "element/element_classes.h"
 #include "microformat/family.h"
@@ -68,7 +67,7 @@ const char* full_title = FULL_TITLE;
 
 void init (nitpick& nits)
 {   init_cache ();
-    init_css ();
+    state_init ();
     init_macro ();
     init_itemid ();
     init_itemprop ();
@@ -79,7 +78,6 @@ void init (nitpick& nits)
     types_init (nits);
     spell_init (nits);
     lingo::init (nits);
-    state_init ();
     attr::init (nits);
     avm_init (nits);
     code_map_init (nits);
@@ -107,10 +105,8 @@ void init (nitpick& nits)
 
 int ciao ()
 {   curl_done ();
-    if (context.unknown_class () && context.tell (es_warning))
+    if (context.tell (es_warning))
     {   ::std::ostringstream ss;
-        VERIFY_NOT_NULL (css_global.get (), __FILE__, __LINE__);
-        css_global -> report_usage (ss);
         if (context.crosslinks ())
         {   nitpick nits;
             reconcile_crosslinks (nits);
@@ -284,7 +280,7 @@ int main (int argc, char** argv)
         outstr.out (macro -> apply (ns_doc_head));
         enfooten = true;
         macro -> dump_nits (nits, ns_init, ns_init_head, ns_init_foot);
-        if (context.invalid () || (context.todo () == do_booboo) || (res == ERROR_STATE))
+        if (context.invalid () || (context.todo () == do_booboo) || (res == ERROR_STATE) || (nuts.worst () <= es_error))
         {   macro -> dump_nits (nuts, ns_config, ns_config_head, ns_config_foot);
             if (msg.empty ()) msg = "\n" TYPE_HELP "\n";
             res = ERROR_STATE; }

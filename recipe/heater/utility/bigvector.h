@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -41,12 +41,7 @@ template < class MEMBER, size_t CHUNK > class big_vector
             PRESUME (data_.at (c) != nullptr, __FILE__, __LINE__);
             data_.at (c) -> reserve (CHUNK); } }
 public:
-	big_vector() = default;
-    big_vector (const big_vector& bv) = default;
-    big_vector (big_vector&& bv) = default;
-    big_vector& operator = (const big_vector& bv) = default;
-    big_vector& operator = (big_vector&& bv) = default;
-    ~big_vector () = default;
+    DEFAULT_CONSTRUCTORS (big_vector);
     void swap (big_vector& bv) noexcept
     {   data_.swap (bv.data_);
         ::std::swap (size_, bv.size_); }

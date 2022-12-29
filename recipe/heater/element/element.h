@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -333,6 +333,8 @@ public:
     const attribute_bitset& ancestral_attributes () const noexcept { return ancestral_attributes_; }
     const vit_t vit () const { return vit_; }
     ns_id verify_namespace (::std::string& s, ::std::string n);
+    const elem& id () const noexcept { return node_.id (); }
+    namespaces_ptr namespaces () const noexcept { return node_.namespaces (); }
     ::std::string report (); };
 
 template < class PROPERTY > void element::note_reply ()

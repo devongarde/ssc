@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -26,9 +26,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 template < > struct type_master < t_1_more_i > : type_or_string < t_1_more_i, t_1_more, sz_inherit >
 { using type_or_string < t_1_more_i, t_1_more, sz_inherit > :: type_or_string; };
 
-template < > struct type_master < t_animate > : type_or_either_string < t_animate, t_url, sz_none, sz_inherit >
-{ using type_or_either_string < t_animate, t_url, sz_none, sz_inherit > :: type_or_either_string; };
-
 template < > struct type_master < t_bandwidth > : type_or_string < t_bandwidth, t_real, sz_auto >
 { using type_or_string < t_bandwidth, t_real, sz_auto > :: type_or_string; };
 
@@ -49,14 +46,14 @@ template < > struct type_master < t_clear30 > : tidy_string < t_clear30 >
             PRESUME (args.size () > 0, __FILE__, __LINE__);
             ::std::string::size_type start = 0;
             if ((arg.at (0) < '0') || (arg.at (0) > '9'))
-            {   type_master < t_lraalign > lra;
+            {   type_master < t_lraalign > lra (box ());
                 lra.set_value (nits, v, args.at (0));
                 if (! lra.good ())
                 {   tidy_string < t_clear30 > :: status (s_invalid);
                     return; }
                 if (args.size () == 1) return;
                 start = arg.find (GSL_AT (args, 1)); }
-            type_master < t_measure > m;
+            type_master < t_measure > m (box ());
             m.set_value (nits, v, arg.substr (0, start));
             if (m.good ()) return; }
         tidy_string < t_clear30 > :: status (s_invalid); } };
@@ -73,6 +70,9 @@ template < > struct type_master < t_colour_cii > : type_or_either_string < t_col
 template < > struct type_master < t_colour_ni > : type_or_any_string < t_colour_ni, t_colour, sz_none, sz_inherit, sz_currentcolour >
 { using type_or_any_string < t_colour_ni, t_colour, sz_none, sz_inherit, sz_currentcolour > :: type_or_any_string; };
 
+template < > struct type_master < t_colour_trans > : type_or_string < t_colour_trans, t_colour, sz_transparent >
+{ using type_or_string < t_colour_trans, t_colour, sz_transparent > :: type_or_string; };
+
 template < > struct type_master < t_context_menu > : tidy_string < t_context_menu >
 {   using tidy_string < t_context_menu > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -81,7 +81,7 @@ template < > struct type_master < t_context_menu > : tidy_string < t_context_men
         {   nits.pick (nit_bad_contextmenu, ed_51, "4.11.5. Context menus", es_error, ec_attribute, "CONTEXTMENU cannot be empty");
             tidy_string < t_context_menu > :: status (s_invalid); } }
     bool invalid_id (nitpick& nits, const html_version& v, ids_t& ids, element* pe)
-    {   type_master < t_idref > t;
+    {   type_master < t_idref > t (box ());
         ::std::string s (tidy_string < t_context_menu > :: get_string ());
         t.set_value (nits, v, s);
         if (t.invalid_id (nits, v, ids, pe)) return true;
@@ -140,7 +140,7 @@ template < > struct type_master < t_hidden_ex > : public tidy_string < t_hidden_
         if (tidy_string < t_hidden_ex > :: empty ())
             tidy_string < t_hidden_ex > :: status (s_good);
         else
-        {   type_master < t_hidden > hh;
+        {   type_master < t_hidden > hh (box ());
             hh.set_value (nits, v, s);
             if (hh.good ())
             {   if ((hh.get_int () == eh_hidden) || (v >= html_apr22))
@@ -315,7 +315,7 @@ template < > struct type_master < t_inputaccept > : tidy_string < t_inputaccept 
                         case 'v' :  if (compare_complain (nits, v, sss, "video/*")) continue;
                                     break;
                         default: break; }
-                    type_master < t_mime > m;
+                    type_master < t_mime > m (box ());
                     m.set_value (nits, v, sss);
                     if (! m.good ()) ok = false; }
                 if (ok) return; } }
@@ -338,7 +338,7 @@ template < > struct type_master < t_roles > : string_vector < t_roles, sz_space 
         else if (string_vector < t_roles, sz_space > :: good ())
         {   bool allgood = true;
             for (auto arg : string_vector < t_roles, sz_space > :: get ())
-            {   type_master < t_role > ar;
+            {   type_master < t_role > ar (box ());
                 ar.set_value (nits, v, arg);
                 if (! ar.good ()) allgood = false; }
             if (allgood) return; }
@@ -351,7 +351,7 @@ template < > struct type_master < t_sandboxen > : string_vector < t_sandboxen, s
         if (string_vector < t_sandboxen, sz_space > :: good ())
         {   bool allgood = true, script = false, origin = false, topnav = false, topnavuser = false, topnavprot = false;
             for (auto arg : string_vector < t_sandboxen, sz_space > :: get ())
-            {   type_master < t_sandbox > sb;
+            {   type_master < t_sandbox > sb (box ());
                 sb.set_value (nits, v, arg);
                 if (! sb.good ()) allgood = false;
                 else switch (sb.get ())
@@ -426,11 +426,11 @@ template < > struct type_master < t_roman_dsc > : tidy_string < t_roman_dsc >
             tidy_string < t_roman_dsc > :: status (s_invalid); }
         else if (good ())
         {   if (arg.length () == 1)
-            {   type_master < t_listtype > tst;
+            {   type_master < t_listtype > tst (box ());
                 tst.set_value (nits, v, arg);
                 if (tst.good ()) return; }
             else
-            {   type_master < t_dsc > tst;
+            {   type_master < t_dsc > tst (box ());
                 tst.set_value (nits, v, arg);
                 if (tst.good ()) return; }
             tidy_string < t_roman_dsc > :: status (s_invalid); } } };
@@ -457,7 +457,7 @@ template < > struct type_master < t_imcastr > : tidy_string < t_imcastr >
         {   nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_attribute,
                 "one SRCSET entry is a URL optionally followed by a width (integer 'w') or a density descriptor (x.y 'x')");
             return false; }
-        type_master < t_url > u;
+        type_master < t_url > u (box ());
         u.set_value (nits, v, args.at (0));
         if (u.invalid ()) return false;
         if (args.size () == 1) return true;

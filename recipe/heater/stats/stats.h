@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -31,10 +31,7 @@ class stats_t
     stats_ptr p_;
 public:
     stats_t ();
-    stats_t (const stats_t& ) = default;
-    stats_t (stats_t&& ) = default;
-    stats_t& operator = (const stats_t& ) = default;
-    stats_t& operator = (stats_t&& ) = default;
+    DEFAULT_COPY_CONSTRUCTORS (stats_t);
     ~stats_t () = default;
     void swap (stats_t& s) noexcept
     {   p_.swap (s.p_); }
@@ -50,14 +47,32 @@ public:
     void mark (const e_element f, const e_attribute m);
     void mark (const e_schema_type s);
     void mark (const e_schema_type s, const e_schema_property p);
+    void mark (const e_css_property p);
+    void mark (const e_css_statement s);
     void mark_meta (const e_httpequiv he);
     void mark_meta (const e_metaname mn);
     void mark_meta (const e_metaname mn, const ::std::string& val);
     void mark_file (const unsigned size);
+    void dcl_class (const ::std::string& s, const ::std::size_t n = 1);
+    void dcl_id (const ::std::string& s, const ::std::size_t n = 1);
+    void dcl_element_class (const ::std::string& s, const ::std::size_t n = 1);
+    void dcl_element_id (const ::std::string& s, const ::std::size_t n = 1);
+    void mark_font (const ::std::string& s, const ::std::size_t n = 1);
+    void use_class (const ::std::string& s, const ::std::size_t n = 1);
+    void use_id (const ::std::string& s, const ::std::size_t n = 1);
+    void use_element_class (const ::std::string& s, const ::std::size_t n = 1);
+    void use_element_id (const ::std::string& s, const ::std::size_t n = 1);
+    bool has_class (const ::std::string& s) const;
+    bool has_id (const ::std::string& s) const;
+    void merge_class (const smsid_t& s);
+    void merge_id (const smsid_t& s);
+    void merge_element_class (const smsid_t& s);
+    void merge_element_id (const smsid_t& s);
     uint64_t file_count () const;
     unsigned count (const e_element e) const;
     unsigned count (const e_severity s) const;
     unsigned visible_count (const e_element e) const;
+    void check_for_standard_classes (nitpick& nits, const html_version& v) const;
     bool severity_exceeded () const;
     void accumulate () const;
     void accumulate (stats_t& s) const;

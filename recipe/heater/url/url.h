@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -42,14 +42,11 @@ class url
     {   parse (nits, v, u, current); }
 public:
     url () noexcept : valid_ (true), current_ (pr_https) { }
+    DEFAULT_COPY_CONSTRUCTORS (url);
     url (nitpick& nits, const html_version& v, const ::std::string& u, const e_protocol current = pr_https)
         :   valid_ (true), current_ (current), v_ (v)
     {   set (nits, v, u, current); }
-	url (const url&) = default;
-	url (url&&) = default;
     ~url () = default;
-	url& operator = (const url&) = default;
-	url& operator = (url&&) = default;
 	bool operator == (const url& rhs) const;
     void reset (const url& u)
     {   url f (u);
@@ -114,9 +111,12 @@ public:
     ::std::string extension () const { return get_component (es_extension); }
     ::std::string original () const { return protocol_.original (); }
     ::std::string get () const
-    {   if (invalid ()) return ::std::string (); return protocol_.get (); }
+    {   if (invalid ()) return ::std::string ();
+        return protocol_.get (); }
     ::std::string absolute (const bool can_use_index = false, const bool force = false) const
-    {   if (invalid ()) return ::std::string (); return protocol_.absolute (can_use_index, force); }
+    {   if (invalid ()) return ::std::string ();
+        if (! is_local ()) return protocol_.original ();
+        return protocol_.absolute (can_use_index, force); }
     ::std::string webpage () const { return get_component (es_authority); }
     ::std::string path () const { return get_component (es_path); }
     ::std::string password () const { return get_component (es_password); }

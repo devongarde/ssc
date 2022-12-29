@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -41,6 +41,13 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "(whitespace)", elem_faux_whitespace, ns_default, EP_CLOSED | EP_IGNORE, EF_FAUX | EF_5_FLOW | EF_5_PHRASE },
     { { XHTML_1_0 }, { HTML_UNDEF }, "(xml)", elem_faux_xml, ns_default, EP_CLOSED | EP_IGNORE | EP_TOP, EF_FAUX },
     { { HTML_TAGS }, { HTML_UNDEF }, "(custom)", elem_custom, ns_default, EP_5_TRANSPARENT, EF_CUSTOM },
+
+    { { HTML_CSS_2_0 }, { HTML_UNDEF }, "*", elem_css_all, ns_default, EP_IGNORE, EF_FAUX | EF_CSS },
+    { { HTML_CSS_3_SEL }, { HTML_UNDEF }, "||", elem_css_cell, ns_default, EP_IGNORE, EF_FAUX | EF_CSS },
+    { { HTML_CSS_2_0 }, { HTML_UNDEF }, ">", elem_css_child, ns_default, EP_IGNORE, EF_FAUX | EF_CSS },
+    { { HTML_CSS_3_SEL }, { HTML_UNDEF }, "~", elem_css_precede, ns_default, EP_IGNORE, EF_FAUX | EF_CSS },
+    { { HTML_CSS_2_0 }, { HTML_UNDEF }, "+", elem_css_precede_immediate, ns_default, EP_IGNORE, EF_FAUX | EF_CSS },
+
     { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, "_1", elem_rdf_1, ns_rdf, 0, EF_RDF },
     { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, "_2", elem_rdf_2, ns_rdf, 0, EF_RDF },
     { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, "_3", elem_rdf_3, ns_rdf, 0, EF_RDF },

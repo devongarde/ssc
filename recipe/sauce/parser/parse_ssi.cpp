@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -122,7 +122,10 @@ bool encoding (::std::string& ln, nitpick& nits, const html_version& v, e_ssi_en
                 case ssi_DOCUMENT_NAME :
                     arg = c.filename_;
                     break;
-                case ssi_DOCUMENT_PATH_INFO : arg = p.get_directory () -> get_site_path (); break;
+                case ssi_DOCUMENT_PATH_INFO :
+                    VERIFY_NOT_NULL (p.get_directory (), __FILE__, __LINE__);
+                    arg = p.get_directory () -> get_site_path ();
+                    break;
                 case ssi_DOCUMENT_URI :
                     {   arg = p.get_directory () -> get_site_path ();
                         if ((c.filename_.length () > 0) && (c.filename_.at (0) != '/'))
@@ -232,10 +235,12 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
     {   set_ssi_context (ln, nits, es_error);
         nits.pick (nit_invalid_flastmod, es_error, ec_ssi, "<!--#FLASTMOD ... --> requires one of 'file' or 'virtual'"); }
     else if (validate_file (ln, nits, p, file)) try
-        {   lwt = get_last_write_time (p.get_directory () -> get_disk_path (nits, file)); }
+        {       VERIFY_NOT_NULL (p.get_directory (), __FILE__, __LINE__);
+                lwt = get_last_write_time (p.get_directory () -> get_disk_path (nits, file)); }
         catch (...) { }
     else if (validate_virtual (ln, nits, v, vrt, u))
-        lwt = p.get_directory () -> url_last_write_time (nits, u);
+    {   VERIFY_NOT_NULL (p.get_directory (), __FILE__, __LINE__);
+        lwt = p.get_directory () -> url_last_write_time (nits, u); }
     else return c.errmsg_;
 
     if (lwt == 0)
@@ -267,10 +272,12 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
     {   set_ssi_context (ln, nits, es_error);
         nits.pick (nit_invalid_fsize, es_error, ec_ssi, "<!--#FSIZE ... --> requires one of 'file' or 'virtual'"); }
     else if (validate_file (ln, nits, p, file)) try
-        {   size = get_file_size (p.get_directory () -> get_disk_path (nits, file)); }
+        {   VERIFY_NOT_NULL (p.get_directory (), __FILE__, __LINE__);
+            size = get_file_size (p.get_directory () -> get_disk_path (nits, file)); }
         catch (...) { }
     else if (validate_virtual (ln, nits, v, vrt, u))
-        size = p.get_directory () -> url_size (nits, u);
+    {   VERIFY_NOT_NULL (p.get_directory (), __FILE__, __LINE__);
+        size = p.get_directory () -> url_size (nits, u); }
     else return c.echomsg_;
 
     if (! c.sizefmt_abbrev_)
@@ -303,12 +310,14 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
         nits.pick (nit_ssi_include_error, es_error, ec_ssi, "<!--#INCLUDE ... --> requires one of 'file' or 'virtual'"); }
     else
     {   if (validate_file (ln, nits, p, file))
-        {   ::boost::filesystem::path pt (p.get_directory () -> get_disk_path (nits, file));
+        {   VERIFY_NOT_NULL (p.get_directory (), __FILE__, __LINE__);
+            ::boost::filesystem::path pt (p.get_directory () -> get_disk_path (nits, file));
             if (cached_file (nits, pt, content))
                 return parse_ssi (nits, v, p, c, content, updated); }
         else if (validate_virtual (ln, nits, v, vrt, u))
             if (! u.invalid ())
             {   ::std::time_t when = updated;
+                VERIFY_NOT_NULL (p.get_directory (), __FILE__, __LINE__);
                 if (cached_url (nits, v, p.get_directory (), u, content, when))
                 {   if (context.shadow_changed ())
                     {   nitpick knots;

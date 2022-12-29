@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -28,14 +28,9 @@ struct q_entry
     dir_ptr dir_;
     ::std::string page_;
     e_stage stage_ = st_init;
-    q_entry () = delete;
-    q_entry (const q_entry& ) = default;
-    q_entry (q_entry&& ) = default;
+    DEFAULT_CONSTRUCTORS_NO_EMPTY (q_entry);
     explicit q_entry (nitpick* ticks, dir_ptr dir, const e_stage s, const ::std::string& p = ::std::string ()) : ticks_ (ticks), dir_ (dir), page_ (p), stage_ (s) { }
     explicit q_entry (const e_stage s) : ticks_ (nullptr), dir_ (), stage_ (s) { }
-    q_entry& operator = (const q_entry& ) = default;
-    q_entry& operator = (q_entry&& ) = default;
-    ~q_entry () = default;
     bool empty () const
     {   return (ticks_ == nullptr) || (dir_.get () == nullptr); }
     bool valid () const

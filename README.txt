@@ -1,7 +1,7 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.1.11
-(c) 2020-2022 dylan harris
+version 0.1.12
+(c) 2020-2023 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notice
 https://ssc.lu/
 https://github.com/devongarde/ssc
@@ -14,9 +14,10 @@ ssc analyses static X/HTML snippets, files and sites:
 - SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x draft Apr 2021
 - MathML 1/2/3/4 draft Jul 2022
 - XHTML 1.0/1.1/2.0/5.x
+- CSS 1
 - finds broken links
 - server side includes, mostly
-- common microdata & RDFa ontologies
+- many microdata & RDFa ontologies
 
 with opinions on:
 - standard english where dialect is required
@@ -68,7 +69,7 @@ ssc by collecting the following information (where relevant):
 - configuration file(s) used, if any;
 - any ndx file or other pre-existing file used during the run;
 - any known workarounds or solutions;
-- a blues or dance interpretation of the 'feature';
+- a dance interpretation of the 'feature';
 and emailing everything to mail@ssc.lu (if the collected files are more
 than small, please use a public fileserver and email the link). Do NOT
 send anything confidential. Furthermore, unless you request otherwise,
@@ -82,8 +83,7 @@ Github address: https://github.com/devongarde/ssc
 SSC can be run in a CGI environment. This is intended for use with
 OpenBSD's native httpd web server (https://man.openbsd.org/httpd.8).
 You are reminded that SSC is pre-production software. Do NOT expose it
-to untrusted data sources, such as the open web, without taking
-precautions.
+to untrusted data sources, such as the open web.
 
 
 
@@ -94,7 +94,7 @@ Notes on names:
 - toast: toasts code; i like burnt toast;
 - heater: i'm not stopping now;
 - unii: my preferred plural of unix: to my ears, both unixes and unices
-  sound like they sing castrato.
+        sound like they sing castrato.
 
 
 
@@ -134,4 +134,4 @@ GNU General Public License for more details.
 
 dylan harris
 mail@ssc.lu
-October 2022
+December 2022

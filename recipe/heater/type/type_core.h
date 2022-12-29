@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -34,7 +34,7 @@ template < e_type TYPE > struct string_value : public type_base < ::std::string,
     void swap (string_value& t) noexcept
     {   value_.swap (t.value_);
         type_base < ::std::string, TYPE >::swap (t); }
-    ::std::string get_string () const
+    ::std::string get_string () const noexcept
     {   return value_; }
     ::std::string get () const
     {   return value_; }
@@ -45,7 +45,7 @@ template < e_type TYPE > struct string_value : public type_base < ::std::string,
     bool has_value (const ::std::string& s) const { return type_base < ::std::string, TYPE > :: good () && (value_ == s); }
     int get_int () const { return lexical < int > :: cast (value_); }
     void shadow (::std::stringstream& ss, const html_version& v, element* )
-    {   if (! v.xhtml () && (! value_.empty ()) && (value_.find_first_not_of (ALPHANUMERIC "+") == ::std::string::npos)) ss << '=' << value_;
+    {   if (! v.xhtml () && (! value_.empty ()) && (value_.find_first_not_of (ALPHADDD "+") == ::std::string::npos)) ss << '=' << value_;
         else if (value_.find_first_of ('\"') == ::std::string::npos) ss << '=' << '"' << value_ << '"';
         else if (value_.find_first_of ("'") == ::std::string::npos) ss << "='" << value_ << "'";
         else ss << '=' << enquote (value_); }
@@ -144,12 +144,9 @@ template < e_type TYPE, typename NUMERIC_TYPE, NUMERIC_TYPE def = 0 > struct num
 {   NUMERIC_TYPE value_;
     using type_base < NUMERIC_TYPE, TYPE > :: type_base;
     numeric_value () : value_ (def) { }
-    numeric_value (const numeric_value& ) = default;
-    numeric_value (numeric_value&& ) = default;
+    DEFAULT_COPY_CONSTRUCTORS (numeric_value);
     explicit numeric_value (element* box) noexcept : type_base < NUMERIC_TYPE, TYPE > (box), value_ (def) { }
     ~numeric_value () = default;
-    numeric_value& operator = (const numeric_value& ) = default;
-    numeric_value& operator = (numeric_value&& ) = default;
     static NUMERIC_TYPE default_value () { return def; }
     void swap (numeric_value& t) noexcept
     {   ::std::swap (value_, t.value_);

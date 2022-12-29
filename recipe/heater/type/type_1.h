@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -36,8 +36,17 @@ template < e_type TYPE, class SZ > struct one_value : public type_base < mono, T
     int get_int () const { return 0; }
     mono get () const { return static_cast <mono> (0); } };
 
-template < > struct type_master < t_1 > : one_value < t_1, sz_1 >
-{ using one_value < t_1, sz_1 > :: one_value; };
+template < e_type TYPE, class SZ > void one_value < TYPE, SZ > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   ::std::string t (trim_the_lot_off (s));
+    if (t.empty ()) type_base < mono, TYPE > :: status (s_empty);
+    else
+    {   if (v.xhtml () && ! v.svg () && (t.find_first_of (UPPERCASE) != ::std::string::npos))
+            nits.pick (nit_xhtml_enum_lc, ed_x1, "4.11. Attributes with pre-defined value sets", es_warning, ec_type, "enumerations must be lower cased in ", v.report ());
+        ::boost::to_lower (t);
+        if ((t == SZ::sz ())) type_base < mono, TYPE > :: status (s_good);
+        else
+        {   type_base < mono, TYPE > :: status (s_invalid);
+            nits.pick (nit_unrecognised_value, es_error, ec_type, quote (t), " is invalid here; the only valid value is ", quote (SZ::sz ())); } } }
 
 template < > struct type_master < t_bb > : one_value < t_bb, sz_makeapp >
 { using one_value < t_bb, sz_makeapp > :: one_value; };
@@ -47,6 +56,9 @@ template < > struct type_master < t_blocking > : one_value < t_blocking, sz_rend
 
 template < > struct type_master < t_cc_prohibits > : one_value < t_cc_prohibits, sz_cc_commercialuse >
 { using one_value < t_cc_prohibits, sz_cc_commercialuse > :: one_value; };
+
+template < > struct type_master < t_css_earnest > : one_value < t_css_earnest, sz_important >
+{ using one_value < t_css_earnest, sz_important > :: one_value; };
 
 template < > struct type_master < t_html_boolean > : one_value < t_html_boolean, sz_true >
 { using one_value < t_html_boolean, sz_true > :: one_value; };
@@ -62,15 +74,3 @@ template < > struct type_master < t_svg_phase > : one_value < t_svg_phase, sz_de
 
 template < > struct type_master < t_xmllink > : one_value < t_xmllink, sz_simple >
 { using one_value < t_xmllink, sz_simple > :: one_value; };
-
-template < e_type TYPE, class SZ > void one_value < TYPE, SZ > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-{   ::std::string t (trim_the_lot_off (s));
-    if (t.empty ()) type_base < mono, TYPE > :: status (s_empty);
-    else
-    {   if (v.xhtml () && ! v.svg () && (t.find_first_of (UPPERCASE) != ::std::string::npos))
-            nits.pick (nit_xhtml_enum_lc, ed_x1, "4.11. Attributes with pre-defined value sets", es_warning, ec_type, "enumerations must be lower cased in ", v.report ());
-        ::boost::to_lower (t);
-        if ((t == SZ::sz ())) type_base < mono, TYPE > :: status (s_good);
-        else
-        {   type_base < mono, TYPE > :: status (s_invalid);
-            nits.pick (nit_unrecognised_value, es_error, ec_type, quote (t), " is invalid here; the only valid value is ", quote (SZ::sz ())); } } }

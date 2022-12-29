@@ -1,0 +1,36 @@
+﻿/*
+Example taken from CSS 2.0 specification. Its (c) notice states:
+
+Permission to use, copy, and distribute the contents of this document, or the
+W3C document from which this statement is linked, in any medium for any
+purpose and without fee or royalty is hereby granted, provided that you include
+the following on ALL copies of the document, or portions thereof, that you use: 
+1. A link or URI to the original W3C document. 
+2. The pre-existing copyright notice of the original author, if it doesn’t exist, a
+notice of the form: "Copyright © World Wide Web Consortium, 
+(Massachusetts Institute of Technology, Institut National de Recherche en 
+Informatique et en Automatique, Keio University). All Rights Reserved." 
+3. If it exists, the STATUS of the W3C document
+
+https://www.w3.org/TR/1998/REC-CSS2-19980512/
+Copyright [p. 18] © 1998 W3C (MIT, INRIA, Keio ), All Rights Reserved.
+W3C Recommendation
+*/
+
+/* From the user’s style sheet */
+P { text-indent: 1em ! important }
+P { font-style: italic ! important }
+P { font-size: 18pt }
+/* From the author’s style sheet */
+P { text-indent: 1.5em !important }
+P { font: 12pt sans-serif !important }
+P { font-size: 24pt }
+
+* {} /* a=0 b=0 c=0 -> specificity = 0 */
+LI {} /* a=0 b=0 c=1 -> specificity = 1 */
+UL LI {} /* a=0 b=0 c=2 -> specificity = 2 */
+UL OL+LI {} /* a=0 b=0 c=3 -> specificity = 3 */
+H1 + *[REL=up]{} /* a=0 b=1 c=1 -> specificity = 11 */
+UL OL LI.red {} /* a=0 b=1 c=3 -> specificity = 13 */ 
+LI.red.level {} /* a=0 b=2 c=1 -> specificity = 21 */
+#x34y {} /* a=1 b=0 c=0 -> specificity = 100 */

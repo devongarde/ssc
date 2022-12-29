@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -259,9 +259,6 @@ template < e_type T, long FROM, long TO > struct type_integer_between : numeric_
             if ((n >= FROM) && (n <= TO)) return;
             nits.pick (nit_not_n, es_error, ec_type, quote (s), ": ", FROM, " <= value <= ", TO, " expected"); }
         numeric_value < T, long > :: status (s_invalid); } };
-
-template < > struct type_master < t_byte > : type_integer_between < t_byte, -128, 127 >
-{ using type_integer_between < t_byte, -128, 127 > :: type_integer_between; };
 
 template < > struct type_master < t_not_neg > : type_integer_between < t_not_neg, 0, INT_MAX >
 { using  type_integer_between < t_not_neg, 0, INT_MAX > :: type_integer_between; };

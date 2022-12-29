@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -48,3 +48,5 @@ typedef stats1 < e_doc, last_doc, ed_mishmash > ref_stats;
 typedef stats1 < e_schema_type, sty_illegal, sty_context > schema_stats;
 typedef stats1 < e_httpequiv, he_error, he_context > httpequiv_stats;
 typedef stats1 < e_metaname, mn_illegal, mn_context > metaname_stats;
+typedef stats1 < e_css_property, ec_error, ec_context > css_property_stats;
+typedef stats1 < e_css_statement, css_error, css_context > css_statement_stats;

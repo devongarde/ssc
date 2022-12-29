@@ -1,0 +1,67 @@
+<!--
+Example taken from CSS 2.0 specification. Its (c) notice states:
+
+Permission to use, copy, and distribute the contents of this document, or the
+W3C document from which this statement is linked, in any medium for any
+purpose and without fee or royalty is hereby granted, provided that you include
+the following on ALL copies of the document, or portions thereof, that you use: 
+1. A link or URI to the original W3C document. 
+2. The pre-existing copyright notice of the original author, if it doesn’t exist, a
+notice of the form: "Copyright © World Wide Web Consortium, 
+(Massachusetts Institute of Technology, Institut National de Recherche en 
+Informatique et en Automatique, Keio University). All Rights Reserved." 
+3. If it exists, the STATUS of the W3C document
+
+https://www.w3.org/TR/1998/REC-CSS2-19980512/
+Copyright [p. 18] © 1998 W3C (MIT, INRIA, Keio ), All Rights Reserved.
+W3C Recommendation
+-->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<HTML>
+ <HEAD>
+ <LINK REL=STYLESHEET TYPE="text/css" HREF="css-17-6.css">
+ <TITLE>CSS 2.0 Chapter 17.6 example</TITLE>
+ </HEAD>
+ <BODY>
+<TABLE>
+
+<P>
+<TABLE>
+<COL id="col1"><COL id="col2"><COL id="col3">
+<TR id="row1">
+ <TD> 1
+ <TD> 2
+ <TD> 3
+</TR>
+<TR id="row2">
+ <TD> 4 
+ <TD class="solid-blue"> 5
+ <TD class="solid-green"> 6
+</TR>
+<TR id="row3">
+ <TD> 7
+ <TD> 8
+ <TD> 9
+</TR>
+<TR id="row4">
+ <TD> 10
+ <TD> 11
+ <TD> 12
+</TR>
+<TR id="row5">
+ <TD> 13
+ <TD> 14
+ <TD> 15
+</TR>
+</TABLE>
+
+<TABLE style="border-collapse: collapse; border: solid;">
+<TR><TD style="border-right: hidden; border-bottom: hidden">foo</TD>
+ <TD style="border: solid">bar</TD></TR>
+<TR><TD style="border: none">foo</TD>
+ <TD style="border: solid">bar</TD></TR>
+</TABLE>
+
+ </BODY>
+</HTML>

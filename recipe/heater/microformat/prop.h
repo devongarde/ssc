@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -54,12 +54,7 @@ class prop  // would probably be better templated
         PRESUME (value_ <= last_rel, __FILE__, __LINE__); }
 public:
     typedef e_property value_type;
-    prop () = default;
-    prop (const prop& ) = default;
-    prop (prop&& ) = default;
-    ~prop () = default;
-    prop& operator = (const prop& ) = default;
-    prop& operator = (prop&& ) = default;
+    DEFAULT_CONSTRUCTORS (prop);
     explicit prop (const html_class& c) { reset (c); }
     explicit prop (const rel& r) { reset (r); }
     explicit prop (const e_class c) { reset (c); }

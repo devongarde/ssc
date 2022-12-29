@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -76,6 +76,14 @@ void stats_t::mark (const e_schema_type s, const e_schema_property p)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     p_ -> mark (s, p); }
 
+void stats_t::mark (const e_css_property p)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    p_ -> mark (p); }
+
+void stats_t::mark (const e_css_statement s)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    p_ -> mark (s); }
+
 void stats_t::mark_file (const unsigned size)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     p_ -> mark_file (size); }
@@ -91,6 +99,66 @@ void stats_t::mark_meta (const e_metaname mn)
 void stats_t::mark_meta (const e_metaname mn, const ::std::string& val)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     p_ -> mark_meta (mn, val); }
+
+void stats_t::dcl_class (const ::std::string& s, const ::std::size_t n)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> dcl_class (s, n); }
+
+void stats_t::dcl_id (const ::std::string& s, const ::std::size_t n)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> dcl_id (s, n); }
+
+void stats_t::dcl_element_class (const ::std::string& s, const ::std::size_t n)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> dcl_element_class (s, n); }
+
+void stats_t::dcl_element_id (const ::std::string& s, const ::std::size_t n)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> dcl_element_id (s, n); }
+
+void stats_t::mark_font (const ::std::string& s, const ::std::size_t n)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> mark_font (s, n); }
+
+void stats_t::merge_class (const smsid_t& s)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> merge_class (s); }
+
+void stats_t::merge_id (const smsid_t& s)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> merge_id (s); }
+
+void stats_t::merge_element_class (const smsid_t& s)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> merge_element_class (s); }
+
+void stats_t::merge_element_id (const smsid_t& s)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> merge_element_id (s); }
+
+void stats_t::use_class (const ::std::string& s, const ::std::size_t n)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> use_class (s, n); }
+
+void stats_t::use_id (const ::std::string& s, const ::std::size_t n)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> use_id (s, n); }
+
+void stats_t::use_element_class (const ::std::string& s, const ::std::size_t n)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> use_element_class (s, n); }
+
+void stats_t::use_element_id (const ::std::string& s, const ::std::size_t n)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> use_element_id (s, n); }
+
+bool stats_t::has_class (const ::std::string& s) const
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> has_class (s); }
+
+bool stats_t::has_id (const ::std::string& s) const
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> has_id (s); }
 
 ::std::string stats_t::report (const bool grand) const
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
@@ -115,6 +183,10 @@ unsigned stats_t::visible_count (const e_element e) const
 bool stats_t::severity_exceeded () const
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     return p_ -> severity_exceeded (); }
+
+void stats_t::check_for_standard_classes (nitpick& nits, const html_version& v) const
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    p_ -> check_for_standard_classes (nits, v); }
 
 void stats_t::accumulate () const
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);

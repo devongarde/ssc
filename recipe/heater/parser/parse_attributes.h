@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -36,16 +36,11 @@ class attributes_node
     void push_back_and_report ( nitpick& nits, const html_version& v, sstr_t& keyed, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end,
                                 const elem& el, const bool normal);
 public:
-    attributes_node () = default;
+    DEFAULT_CONSTRUCTORS (attributes_node);
     explicit attributes_node (element_node* box);
-    attributes_node (const attributes_node& an) = default;
-    attributes_node (attributes_node&& an) = default;
     attributes_node (element_node* box, const attributes_node& an)
         :   box_ (box)
     {   va_ = an.va_; }
-	~attributes_node () = default;
-    attributes_node& operator = (const attributes_node& ) = default;
-    attributes_node& operator = (attributes_node&& ) = default;
 	void swap (attributes_node& an) noexcept
     {   va_.swap (an.va_);
         ::std::swap (box_, an.box_); }

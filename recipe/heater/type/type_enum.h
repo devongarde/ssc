@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -29,14 +29,9 @@ template < typename TYPE, e_type E > struct enum_base : public type_base < TYPE,
     typedef true_type has_int_type;
     value_type value_ = GSL_NARROW_CAST < value_type > (0);
     ::std::string original_;
-    enum_base () = default;
-    enum_base (const enum_base& ) = default;
-	enum_base(enum_base&&) = default;
+    DEFAULT_CONSTRUCTORS (enum_base);
 	explicit enum_base (const html_version& v, const ::std::string& s);
     explicit enum_base (element* box) noexcept : type_base < TYPE, E > (box) { }
-    enum_base& operator = (const enum_base&) = default;
-	enum_base& operator = (enum_base&&) = default;
-	~enum_base () = default;
     static ::std::string values (const html_version& ) { return ::std::string (); }
     static ::std::size_t value_count () { return 0; }
     void swap (enum_base& t) noexcept;
@@ -68,7 +63,7 @@ template < typename TYPE, e_type E > void enum_base < TYPE, E > :: swap (enum_ba
 template < typename TYPE, e_type E > void enum_base < TYPE, E > :: set_value (nitpick& nits, const html_version& , const ::std::string& s)
 {   original_ = s;
     value_ = default_value ();
-    nits.pick (nit_missing_set_value, es_catastrophic, ec_type, "Internal error: an enum is missing its setvalue");
+    nits.pick (nit_missing_set_value, es_catastrophic, ec_type, "Internal error: an enum is missing its setvalue (", static_cast < int > (E), ")");
     type_base < TYPE, E > :: status (s_invalid); }
 
 template < typename TYPE, e_type E > void enum_base < TYPE, E > :: verify_attribute (nitpick& , const html_version& , const elem& , element* , const ::std::string& ) { }
@@ -107,15 +102,8 @@ template < > inline void enum_base < e_linebreak, t_linebreak > :: verify_attrib
 template < e_type E, typename ENUM, typename CATEGORY = ident_t, CATEGORY INIT = ns_default, class LC = sz_true > struct enum_n :
     public symbol < html_version, ENUM, CATEGORY, INIT, LC >, public enum_base < ENUM, E >
 {   typedef typename enum_base < ENUM, E > :: value_type value_type;
-    enum_n () = default;
-    enum_n (const enum_n& ) = default;
-	enum_n (enum_n&&) = default;
+    DEFAULT_CONSTRUCTORS (enum_n);
     explicit enum_n (element* box) noexcept : enum_base < ENUM, E > (box) { }
-	~enum_n() = default;
-    enum_n& operator = (const enum_n& ) = default;
-#ifndef NO_MOVE_CONSTRUCTOR
-	enum_n& operator = (enum_n&&) = default;
-#endif
     static void init (nitpick& nits, const symbol_entry < html_version, ENUM, CATEGORY, INIT > table [], const ::std::size_t size, const bool wildcards = false)
     {   symbol < html_version, ENUM, CATEGORY, INIT, LC > :: init (nits, table, size, wildcards); }
     static void extend (const ::std::string& extension, const ::std::size_t e = 0)
@@ -232,9 +220,6 @@ template < > struct type_master < t_autocomplete > : enum_n < t_autocomplete, e_
 template < > struct type_master < t_baselineshift > : enum_n < t_baselineshift, e_baselineshift >
 { using enum_n < t_baselineshift, e_baselineshift > :: enum_n; };
 
-template < > struct type_master < t_beginfn > : enum_n < t_beginfn, e_beginfn >
-{ using enum_n < t_beginfn, e_beginfn > :: enum_n; };
-
 template < > struct type_master < t_cachekey > : enum_n < t_cachekey, e_cachekey >
 { using enum_n < t_cachekey, e_cachekey > :: enum_n; };
 
@@ -277,14 +262,65 @@ template < > struct type_master < t_csp_directive > : enum_n < t_csp_directive, 
 template < > struct type_master < t_csp_keyword > : enum_n < t_csp_keyword, e_csp_keyword >
 { using enum_n < t_csp_keyword, e_csp_keyword > :: enum_n; };
 
+template < > struct type_master < t_css_absolute_size > : enum_n < t_css_absolute_size, e_css_absolute_size >
+{ using enum_n < t_css_absolute_size, e_css_absolute_size > :: enum_n; };
+
+template < > struct type_master < t_css_background_attachment > : enum_n < t_css_background_attachment, e_css_background_attachment >
+{ using enum_n < t_css_background_attachment, e_css_background_attachment > :: enum_n; };
+
+template < > struct type_master < t_css_background_repeat > : enum_n < t_css_background_repeat, e_css_background_repeat >
+{ using enum_n < t_css_background_repeat, e_css_background_repeat > :: enum_n; };
+
+template < > struct type_master < t_css_border_style > : enum_n < t_css_border_style, e_css_border_style >
+{ using enum_n < t_css_border_style, e_css_border_style > :: enum_n; };
+
+template < > struct type_master < t_css_border_width > : enum_n < t_css_border_width, e_css_border_width >
+{ using enum_n < t_css_border_width, e_css_border_width > :: enum_n; };
+
+template < > struct type_master < t_css_clear > : enum_n < t_css_clear, e_css_clear >
+{ using enum_n < t_css_clear, e_css_clear > :: enum_n; };
+
+template < > struct type_master < t_css_colour > : enum_n < t_css_colour, e_fixedcolour >
+{ using enum_n < t_css_colour, e_fixedcolour > :: enum_n; };
+
+template < > struct type_master < t_css_display > : enum_n < t_css_display, e_css_display >
+{ using enum_n < t_css_display, e_css_display > :: enum_n; };
+
+template < > struct type_master < t_css_fn > : enum_n < t_css_fn, e_css_fn >
+{ using enum_n < t_css_fn, e_css_fn > :: enum_n; };
+
+template < > struct type_master < t_css_list_style_position > : enum_n < t_css_list_style_position, e_css_list_style_position >
+{ using enum_n < t_css_list_style_position, e_css_list_style_position > :: enum_n; };
+
+template < > struct type_master < t_css_list_style_type > : enum_n < t_css_list_style_type, e_css_list_style_type >
+{ using enum_n < t_css_list_style_type, e_css_list_style_type > :: enum_n; };
+
+template < > struct type_master < t_css_property > : enum_n < t_css_property, e_css_property >
+{ using enum_n < t_css_property, e_css_property > :: enum_n; };
+
+template < > struct type_master < t_css_relative_size > : enum_n < t_css_relative_size, e_css_relative_size >
+{ using enum_n < t_css_relative_size, e_css_relative_size > :: enum_n; };
+
+template < > struct type_master < t_css_statement > : enum_n < t_css_statement, e_css_statement >
+{ using enum_n < t_css_statement, e_css_statement > :: enum_n; };
+
+template < > struct type_master < t_css_text_decoration > : enum_n < t_css_text_decoration, e_css_text_decoration >
+{ using enum_n < t_css_text_decoration, e_css_text_decoration > :: enum_n; };
+
+template < > struct type_master < t_css_text_transform > : enum_n < t_css_text_transform, e_css_text_transform >
+{ using enum_n < t_css_text_transform, e_css_text_transform > :: enum_n; };
+
+template < > struct type_master < t_css_vertical_align > : enum_n < t_css_vertical_align, e_css_vertical_align >
+{ using enum_n < t_css_vertical_align, e_css_vertical_align > :: enum_n; };
+
+template < > struct type_master < t_css_whitespace > : enum_n < t_css_whitespace, e_css_whitespace >
+{ using enum_n < t_css_whitespace, e_css_whitespace > :: enum_n; };
+
 template < > struct type_master < t_currency > : enum_n < t_currency, e_currency >
 { using enum_n < t_currency, e_currency > :: enum_n; };
 
 template < > struct type_master < t_cursor > : enum_n < t_cursor, e_cursor >
 { using enum_n < t_cursor, e_cursor > :: enum_n; };
-
-template < > class type_master < t_dcmitype > : public enum_n < t_dcmitype, e_dcmitype >
-{ using enum_n < t_dcmitype, e_dcmitype > :: enum_n; };
 
 template < > struct type_master < t_decalign > : enum_n < t_decalign, e_decalign >
 { using enum_n < t_decalign, e_decalign > :: enum_n; };

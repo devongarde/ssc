@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -28,6 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ::std::string get_standard_converter_name (nitpick& nits, const ::std::string& name);
 ::std::string convert_to_utf8 (nitpick& nits, const ::std::string& name, void_ptr& vp, uintmax_t& sz);
 ::std::string normalise_utf8 (nitpick& nits, const ::std::string& s);
+::std::string convert_to_utf8 (const unsigned int n);
 
 #ifdef _MSC_VER
 ::std::wstring convert_to_wstring (nitpick& nits, const ::icu::UnicodeString& us);

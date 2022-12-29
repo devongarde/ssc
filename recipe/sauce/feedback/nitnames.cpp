@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -74,7 +74,6 @@ const nitname nitnames [] =
     { nit_code_unrecognised_here, "code_unrecognised_here" },
     { nit_confusion, "confusion" },
     { nit_correct_spelling, "correct_spelling" },
-    { nit_correctly_spelt, "correctly_spelt" },
     { nit_debug, "debug" },
     { nit_denary_too_long, "denary_too_long" },
     { nit_deprecated_attribute, "deprecated_attribute" },
@@ -755,6 +754,24 @@ const nitname nitnames [] =
     { nit_icu_installation, "icu_installation" },
     { nit_os_file, "os_file" },
     { nit_found_css_id, "found_css_id" },
+    { nit_bad_classname, "bad_classname" },
+    { nit_css_syntax, "css_syntax" },
+    { nit_nan, "nan" },
+    { nit_css_a_expected, "css_a_expected" },
+    { nit_css_block_expected, "css_block_expected" },
+    { nit_css_elements_repeated, "css_elements_repeated" },
+    { nit_css_bad_background, "css_bad_background" },
+    { nit_css_url, "css_url" },
+    { nit_css_dubious, "css_dubious" },
+    { nit_bad_import, "bad_import" },
+    { nit_spotted_css_id, "spotted_css_id" },
+    { nit_css_version, "css_version" },
+    { nit_bad_units, "bad_units" },
+    { nit_css_charset, "css_charset" },
+    { nit_reckless_rect, "reckless_rect" },
+    { nit_unknown_operator, "unknown_operator" },
+    { nit_unexpected, "unexpected" },
+    { nit_incompatible, "incompatible" },
 
     { nit_off, "" } };
 

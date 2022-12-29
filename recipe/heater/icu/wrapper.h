@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -65,10 +65,7 @@ class charset_detector
 public:
     charset_detector ()
     {   if (context.icu ()) detector_ = ucsdet_open (&err_); }
-    charset_detector (const charset_detector& cd) = default;
-    charset_detector (charset_detector&& cd) = default;
-    charset_detector& operator = (const charset_detector& cd) = default;
-    charset_detector& operator = (charset_detector&& cd) = default;
+    DEFAULT_COPY_CONSTRUCTORS (charset_detector);
     ~charset_detector ()
     {   if (detector_ != nullptr) ucsdet_close (detector_); }
     void swap (charset_detector& cd) noexcept
@@ -97,12 +94,9 @@ class converter
     UErrorCode err_ = U_ZERO_ERROR;
 public:
     converter () = delete;
+    NO_COPY_CONSTRUCTORS (converter);
     explicit converter (const ::std::string& name) noexcept
     {   if (context.icu ()) conv_ = ucnv_open (name.c_str (), &err_); }
-    converter (const converter& c) = delete;
-    converter (converter&& c) = default;
-    converter& operator = (const converter& c) = delete;
-    converter& operator = (converter&& c) = default;
     ~converter ()
     {   if (context.icu ()) ucnv_close (conv_); }
     void swap (converter& c) noexcept

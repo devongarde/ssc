@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -32,6 +32,7 @@ CONSTEXPR uid_t uid_max = UINT32_MAX;
 typedef ::std::vector < int > vint_t;
 typedef ::std::vector < double > vdbl_t;
 typedef ::std::vector < ::std::string > vstr_t;
+typedef ::std::vector < vstr_t > vvstr_t;
 typedef ssc_set < ::std::string > sstr_t;
 typedef ssc_map < ::std::string, ::std::string > ustr_t;
 typedef ssc_map < ::std::string, ::std::size_t > msid_t;
@@ -70,11 +71,8 @@ template < class T > class reverter
     const T t_;
 public:
     reverter () = delete;
-    reverter (const reverter& ) = delete;
-    reverter (reverter&& ) = delete;
+    NO_COPY_CONSTRUCTORS (reverter);
     explicit reverter (T& t) : p_ (t), t_ (t) { }
-    reverter& operator = (const reverter& ) = delete;
-    reverter& operator = (reverter&& ) = delete;
     ~reverter () { if (p_ != t_) p_ = t_; } };
 
 CONSTEXPR inline uint32_t ndx_category (const uint32_t x) noexcept { return (x & uint32_category_mask) >> uint32_category_shift; }
@@ -195,7 +193,14 @@ inline ::std::string decolonise (::std::string& sauce)
 ::std::string template_path (nitpick& nits, const ::std::string& fn);
 ::std::string template_path (nitpick& nits, const ::std::string& def, const ::std::string& arg);
 
-::std::string once_twice_thrice (const ::std::size_t x);
+template < class T, T MAX = UINT_MAX > ::std::string once_twice_thrice (const T x)
+{   switch (x)
+    {   case 1 : return "once";
+        case 2 : return "twice";
+        case 3 : return "thrice";
+        default :
+            if (x >= MAX) return "many times";
+            return ::boost::lexical_cast < ::std::string > (x) + " times"; } }
 
 inline ::std::string x_dot_y (int x, int y)
 {   ::std::string res;
@@ -228,3 +233,8 @@ template < class T > inline void merge_stuff (T& o, const T& s)
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i);
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to);
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const ::std::string& msg, const e_severity level = es_comment);
+
+void merge_smsid (smsid_t& a, const smsid_t& b, bool sum = true);
+void merge_smsid (smsid_t& a, const sstr_t& b, const ::std::size_t n = 0);
+void insert_smsid (smsid_t& a, const ::std::string& s, const ::std::size_t n = 0);
+sstr_t smsid_set (const smsid_t& s);

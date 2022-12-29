@@ -24,23 +24,24 @@ Duration: {{time-duration}} seconds
 
 [nits-foot]
 
-[class]
-{{class-name}} {{class-int}}
+[tally]
+{{tally-name}} {{tally-int}}
 
-[class-head]
+[tally-head]
 
-*** classes
+*** {{tally-title}}
 
-[class-foot]
+[tally-foot]
+{{tally-count}}x {{tally-title}} {{tally-total}}
 
-[id]
-{{id-name}} ({{id-page}}:{{id-line}})
+[itemid]
+{{itemid-name}} ({{itemid-page}}:{{itemid-line}})
 
-[id-head]
+[itemid-head]
 
 *** itemids
 
-[id-foot]
+[itemid-foot]
 
 [stat]
 {{stat-name}} {{stat-count}} {{stat-detail}}

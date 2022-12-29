@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -36,9 +36,7 @@ template < class V, typename VALUE, typename CATEGORY = ident_t, CATEGORY INIT =
     flags_t flags_ = NOFLAGS, flags2_ = NOFLAGS;
 public:
     typedef VALUE value_type;
-	symbol () = default;
-    symbol (const symbol& s) = default;
-	symbol (symbol&&) = default;
+	DEFAULT_CONSTRUCTORS (symbol);
     explicit symbol (const VALUE& value, const CATEGORY ns = INIT) : value_ (value), ns_ (ns), unknown_ (false)
     {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
         first_ = table_ -> first_version (value);
@@ -47,8 +45,6 @@ public:
         flags2_ = table_ -> flags2 (value); }
     explicit symbol (const V& v, const ::std::string& x, const CATEGORY ns = INIT) : ns_ (ns)
     {   unknown_ = ! find (v, x, value_, ns, &first_, &last_, &flags_, &flags2_); }
-	symbol& operator = (const symbol&) = default;
-	symbol& operator = (symbol&&) = default;
     void swap (symbol& s) noexcept
     {   ::std::swap (unknown_, s.unknown_);
         ::std::swap (value_, s.value_);

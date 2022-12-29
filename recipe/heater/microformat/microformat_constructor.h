@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -27,23 +27,11 @@ class microformat_pv
 public:
     ::std::size_t           index_ = 0;
     microformat_base_ptr    microformat_ = nullptr;
-    microformat_pv () noexcept
-        :   index_ (c_error)
-    { }
-    explicit microformat_pv (const ::std::size_t v) noexcept
-        :   index_ (v)
-    { }
-    explicit microformat_pv (const e_class v) noexcept
-        :   index_ (index (v))
-    { }
-    explicit microformat_pv (const e_rel v) noexcept
-        :   index_ (index (v))
-    { }
-
-    microformat_pv (const microformat_pv& mf) = default;
-    microformat_pv (microformat_pv&& mf) = default;
-    microformat_pv& operator = (const microformat_pv& mf) = default;
-    microformat_pv& operator = (microformat_pv&& mf) = default;
+    microformat_pv () noexcept : index_ (c_error) { }
+    explicit microformat_pv (const ::std::size_t v) noexcept : index_ (v) { }
+    explicit microformat_pv (const e_class v) noexcept : index_ (index (v)) { }
+    explicit microformat_pv (const e_rel v) noexcept : index_ (index (v)) { }
+    DEFAULT_COPY_CONSTRUCTORS (microformat_pv);
     ~microformat_pv () = default;
 
     static const ::std::size_t first_rel_ = static_cast < ::std::size_t > (r_entry_category);

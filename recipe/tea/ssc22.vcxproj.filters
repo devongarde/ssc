@@ -69,9 +69,6 @@
     <Filter Include="Heater\microformat">
       <UniqueIdentifier>{176089fe-c2a3-43e3-be30-88d2e473d542}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Heater\parser">
-      <UniqueIdentifier>{5eadd391-6a7f-42b3-b559-f7b7e6a9532b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Heater\stats">
       <UniqueIdentifier>{1ae820a1-efcf-4b25-8671-5e2f5ee62fff}</UniqueIdentifier>
     </Filter>
@@ -684,9 +681,6 @@
     <Filter Include="Toast\RDFa\vcard">
       <UniqueIdentifier>{4895ad03-5333-435f-b810-9fc846f722ce}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Tea\templates">
-      <UniqueIdentifier>{15bc2191-bcf8-4d36-bfc6-4feeb51fd3c3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Toast\Output">
       <UniqueIdentifier>{130f6b98-3fd8-4a89-bd86-78b1561b8d68}</UniqueIdentifier>
     </Filter>
@@ -987,6 +981,18 @@
     <Filter Include="Toast\Living\oct22">
       <UniqueIdentifier>{3d595478-206c-4e5a-bf56-29321a145d16}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\CSS">
+      <UniqueIdentifier>{fa4ea3c6-dadf-45dd-91d1-2f5bf9ac7b0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\1">
+      <UniqueIdentifier>{c7731b44-e5c8-40ad-8554-8986d30c55f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\2.0">
+      <UniqueIdentifier>{7656cd43-fc10-4aea-8c64-6e4238092771}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heater\parser">
+      <UniqueIdentifier>{5eadd391-6a7f-42b3-b559-f7b7e6a9532b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -1125,9 +1131,6 @@
       <Filter>Heater\parser</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\parser\parse_bras_ket.h">
-      <Filter>Heater\parser</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\parser\parse_css.h">
       <Filter>Heater\parser</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\parser\parse_element.h">
@@ -1496,10 +1499,7 @@
     <ClInclude Include="..\heater\coop\tls.h">
       <Filter>Heater\coop</Filter>
     </ClInclude>
-    <ClInclude Include="..\heater\css\css_global.h">
-      <Filter>Heater\css</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\css\css_group.h">
+    <ClInclude Include="..\heater\css\group.h">
       <Filter>Heater\css</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\url\curl.h">
@@ -1507,6 +1507,72 @@
     </ClInclude>
     <ClInclude Include="..\heater\main\balloon.h">
       <Filter>Heater\main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\stats\stats5.h">
+      <Filter>Heater\stats</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\global.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\distilled.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\type\type_css.h">
+      <Filter>Heater\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\selector.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\selectors.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\css_element.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\css_attribute.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\decoration.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\fn.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\css_class.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\id.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\rule.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\properties.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\property.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\statement.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\rules.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\weight.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\typed_property.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\property_classes.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\arguments.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\statements.h">
+      <Filter>Heater\css</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1634,9 +1700,6 @@
       <Filter>Sauce\parser</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\parser\parse_bras_ket.cpp">
-      <Filter>Sauce\parser</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\parser\parse_css.cpp">
       <Filter>Sauce\parser</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\parser\parse_element.cpp">
@@ -2002,14 +2065,77 @@
     <ClCompile Include="..\sauce\type\type_intent.cpp">
       <Filter>Sauce\type</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\css_global.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\css_group.cpp">
+    <ClCompile Include="..\sauce\css\group.cpp">
       <Filter>Sauce\css</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\url\curl.cpp">
       <Filter>Sauce\url</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\type\type_id.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\global.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\distilled.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\css_attribute.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\css_element.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\decoration.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\fn.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\selector.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\selectors.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\rule.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\properties.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\property.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\statement.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\rules.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\weight.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\property_constructor.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\css_class.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\css_id.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\statements.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\type\type_misc.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\type\type_css.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\type\type_master.cpp">
+      <Filter>Sauce\type</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -20715,18 +20841,6 @@
     <None Include="..\toast\RDFa\vcard\vcard.html">
       <Filter>Toast\RDFa\vcard</Filter>
     </None>
-    <None Include=".ssc\delete.tpl">
-      <Filter>Tea\templates</Filter>
-    </None>
-    <None Include=".ssc\new.tpl">
-      <Filter>Tea\templates</Filter>
-    </None>
-    <None Include=".ssc\static.tpl">
-      <Filter>Tea\templates</Filter>
-    </None>
-    <None Include=".ssc\change.tpl">
-      <Filter>Tea\templates</Filter>
-    </None>
     <None Include="..\toast\output\html\index.html">
       <Filter>Toast\Output\html</Filter>
     </None>
@@ -26853,6 +26967,438 @@
     <None Include="..\toast\living\oct22\noscript-3.html">
       <Filter>Toast\Living\oct22</Filter>
     </None>
+    <None Include="..\toast\css\1\css.conf">
+      <Filter>Toast\CSS\1</Filter>
+    </None>
+    <None Include="..\toast\css\1\css.spec">
+      <Filter>Toast\CSS\1</Filter>
+    </None>
+    <None Include="..\toast\css\1\index.html">
+      <Filter>Toast\CSS\1</Filter>
+    </None>
+    <None Include="..\toast\css\1\css-1.css">
+      <Filter>Toast\CSS\1</Filter>
+    </None>
+    <None Include="..\toast\css\1\css-1.html">
+      <Filter>Toast\CSS\1</Filter>
+    </None>
+    <None Include="..\toast\css\1\css-2.html">
+      <Filter>Toast\CSS\1</Filter>
+    </None>
+    <None Include="..\toast\css\1\css-3.html">
+      <Filter>Toast\CSS\1</Filter>
+    </None>
+    <None Include="..\toast\css\1\css-4.html">
+      <Filter>Toast\CSS\1</Filter>
+    </None>
+    <None Include="..\toast\css\1\basic.css">
+      <Filter>Toast\CSS\1</Filter>
+    </None>
+    <None Include="..\toast\css\1\cool.css">
+      <Filter>Toast\CSS\1</Filter>
+    </None>
+    <None Include="..\toast\css\1\css-2.css">
+      <Filter>Toast\CSS\1</Filter>
+    </None>
+    <None Include="..\toast\css\1\css-3.css">
+      <Filter>Toast\CSS\1</Filter>
+    </None>
+    <None Include="..\toast\css\1\css-5.css">
+      <Filter>Toast\CSS\1</Filter>
+    </None>
+    <None Include="..\toast\css\1\css-5.html">
+      <Filter>Toast\CSS\1</Filter>
+    </None>
+    <None Include="..\toast\css\1\css-6.css">
+      <Filter>Toast\CSS\1</Filter>
+    </None>
+    <None Include="..\toast\css\1\css-6.html">
+      <Filter>Toast\CSS\1</Filter>
+    </None>
+    <None Include="..\toast\css\1\css-7.css">
+      <Filter>Toast\CSS\1</Filter>
+    </None>
+    <None Include="..\toast\css\1\html2.css">
+      <Filter>Toast\CSS\1</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css.conf">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css.spec">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\index.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-1.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-2-1.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-2-2.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-2-3.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-2-4.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-2-5.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-4-1.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-4-4.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-3-1.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-4-2.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-4-3.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-5-2.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-5-3.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-5-4.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-5-5.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-5-6.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-5-7.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-5-8.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-5-5.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-5-8.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-5-9.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-5-9-1.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-5-9-2.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-5-11.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-5-11.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-5-12.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-5-12-1.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-5-12-2.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-6-2.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-6-2.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-6-3.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-6-4.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-6-4.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-7.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-7.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-8-2.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-8-3.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-8-4.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-8-5.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-9-2.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-9-2-1.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-9-2-2.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-9-2-3.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-9-2-4.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-9-3.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-9-4-1.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-9-4-2.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-9-5.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-9-5-1.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-9-5-2.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-9-6.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-9-8.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-9-8-1.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-9-8-2.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-9-8-3.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-9-9.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-9-10.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-10-1.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-10-1.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-10-2.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-10-5.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-10-8.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-11-1.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-11-1.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-11-2.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-12-1.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-12-2.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-12-3.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-12-3.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-12-4.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-12-4-1.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-12-4-2.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-12-5.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-12-5.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-12-6.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-12-6-1.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-12-6-2.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-12-6-3.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-12-6-4.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-12-6-5.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-12-6-6.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-12-6-7.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-12-6-8.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-13-2.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-13-3.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-13-4.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-14-1.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-14-2.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-14-2.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-15-2.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-15-2.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-15-3.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-15-3.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-15-5.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-16-1.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-16-2.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-16-3.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-16-4.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-16-5.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-16-6.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-17-1.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-17-1.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-17-2.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-17-2.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-17-3.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-17-4.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-17-5.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-17-5-1.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-17-5-2.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-17-6.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-17-6.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-17-7.html">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-18-1.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-18-2.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-18-4.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-19-1.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-19-4.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-19-5.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-19-6.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-19-7.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\css-19-8.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\css\2.0\html4.css">
+      <Filter>Toast\CSS\2.0</Filter>
+    </None>
+    <None Include="..\toast\HTML\5.4\naughty.html">
+      <Filter>Toast\HTML\2020-07</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
@@ -27339,9 +27885,6 @@
     </Text>
     <Text Include="..\toast\shadow\update\README.txt">
       <Filter>Toast\Shadow\Update</Filter>
-    </Text>
-    <Text Include=".ssc\README.txt">
-      <Filter>Tea\templates</Filter>
     </Text>
     <Text Include="..\toast\spell\spell\list.txt">
       <Filter>Toast\Spell\spell</Filter>

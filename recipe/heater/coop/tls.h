@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -30,11 +30,8 @@ struct fred_tls  // thread local storage, not sorted ssl
     ::std::atomic_bool dear_;
     fred_tls () : fred_ (fred_bloggs), lox_ (lox_none), empty_ (true), flox_ (false), dear_ (false) { }
     explicit fred_tls (const e_fred f) noexcept : fred_ (f), lox_ (lox_none), empty_ (true), flox_ (false), dear_ (false) { }
-    fred_tls (const fred_tls& ) = delete;
-    fred_tls (fred_tls&& ) = delete;
-    ~fred_tls () = default;
-    fred_tls& operator = (const fred_tls& ) = delete;
-    fred_tls& operator = (fred_tls&& ) = delete; };
+    NO_COPY_CONSTRUCTORS (fred_tls);
+    ~fred_tls () = default; };
 
 typedef ::std::shared_ptr < fred_tls > tls_ptr;
 typedef ssc_map < ::std::thread::id, int > mid_t;

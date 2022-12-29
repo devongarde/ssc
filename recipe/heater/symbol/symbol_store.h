@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -27,18 +27,13 @@ template < class V, typename CATEGORY, CATEGORY INIT > struct symbol_store
     ::std::size_t   v_ = 0;
     CATEGORY        ns_ = INIT;
     flags_t         flags_ = 0, flags2_ = 0;
-	symbol_store () = default;
-    symbol_store (const symbol_store& ss) = default;
-	symbol_store (symbol_store&& ss) = default;
-	~symbol_store () = default;
+	DEFAULT_CONSTRUCTORS (symbol_store);
     symbol_store (const V& first, const V& last, const ::std::string& str, const ::std::size_t v, const CATEGORY ns = INIT, const flags_t flags = NOFLAGS, const flags_t flags2 = NOFLAGS)
         : first_ (first), last_ (last), sz_ (str), v_ (v), ns_ (ns), flags_ (flags), flags2_ (flags2) { }
     symbol_store (const V& first, const V& last, const char* sz, const ::std::size_t v, const CATEGORY ns = INIT, const flags_t flags = NOFLAGS, const flags_t flags2 = NOFLAGS)
         : first_ (first), last_ (last), sz_ (sz), v_ (v), ns_ (ns), flags_ (flags), flags2_ (flags2) { }
     symbol_store (const symbol_entry_t < V >& se)
         : first_ (se.first_), last_ (se.last_), sz_ (se.sz_), v_ (se.v_), ns_ (se.ns_), flags_ (se.flags_), flags2_ (se.flags2_) { }
-    symbol_store& operator = (const symbol_store& ss) = default;
-	symbol_store& operator = (symbol_store&& ss) = default;
     void swap (symbol_store& ss) noexcept
     {   first_.swap (ss.first_);
         last_.swap (ss.last_);

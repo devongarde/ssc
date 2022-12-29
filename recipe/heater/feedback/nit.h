@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -35,13 +35,10 @@ class nit
     ::std::string level_symbol () const;
 public:
     nit ();
+    DEFAULT_COPY_CONSTRUCTORS (nit);
     nit (const e_nit code, const e_doc doc, const ::std::string& ref, const e_severity severity, const e_category category, const ::std::string& msg);
     nit (const e_nit code, const e_severity severity, const e_category category, const ::std::string& msg);
-    nit (const nit& n) = default;
-	nit (nit&& n) = default;
 	~nit() = default;
-    nit& operator = (const nit& n) = default;
-	nit& operator = (nit&& n) = default;
     void swap (nit& n) noexcept;
     void reset ();
     void reset (const nit& n);

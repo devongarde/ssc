@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -32,12 +32,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 struct attribute_base
 {   bool deprecated_ = false;
     bool excluded_ = false;
-    attribute_base () = default;
-    attribute_base (const attribute_base& ) = default;
-    attribute_base (attribute_base&& ) = default;
-    attribute_base& operator = (const attribute_base& ) = default;
-    attribute_base& operator = (attribute_base&& ) = default;
-    virtual ~attribute_base () = default;
+    DEFAULT_CONSTRUCTORS_VIRTUAL_DESTRUCTOR (attribute_base);
     void swap (attribute_base& b) noexcept
     {   ::std::swap (deprecated_, b.deprecated_);
         ::std::swap (excluded_, b.excluded_); }

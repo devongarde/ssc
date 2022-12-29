@@ -2,3 +2,4 @@
 /* CSS test file for css-dubious.html */
 
 .footnote, .h-card, .boing, .vcard, .p-adr, .bday { min-width: 250px; margin: 0 auto; position: relative; }
+.--fred, -0hBert { weather: bad; }

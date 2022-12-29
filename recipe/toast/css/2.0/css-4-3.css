@@ -1,0 +1,74 @@
+﻿/*
+Example taken from CSS 2.0 specification. Its (c) notice states:
+
+Permission to use, copy, and distribute the contents of this document, or the
+W3C document from which this statement is linked, in any medium for any
+purpose and without fee or royalty is hereby granted, provided that you include
+the following on ALL copies of the document, or portions thereof, that you use: 
+1. A link or URI to the original W3C document. 
+2. The pre-existing copyright notice of the original author, if it doesn’t exist, a
+notice of the form: "Copyright © World Wide Web Consortium, 
+(Massachusetts Institute of Technology, Institut National de Recherche en 
+Informatique et en Automatique, Keio University). All Rights Reserved." 
+3. If it exists, the STATUS of the W3C document
+
+https://www.w3.org/TR/1998/REC-CSS2-19980512/
+Copyright [p. 18] © 1998 W3C (MIT, INRIA, Keio ), All Rights Reserved.
+W3C Recommendation
+*/
+
+H1 { margin: 0.5em } /* em */
+H1 { margin: 1ex } /* ex */
+P { font-size: 12px } /* px */
+
+H1 { line-height: 1.2em }
+
+H1 { font-size: 1.2em }
+
+BODY {
+ font-size: 12pt;
+ text-indent: 3em; /* i.e., 36pt */
+}
+H1 { font-size: 15pt }
+
+H1 { margin: 0.5in } /* inches */
+H2 { line-height: 3cm } /* centimeters */
+H3 { word-spacing: 4mm } /* millimeters */
+H4 { font-size: 12pt } /* points */
+H4 { font-size: 1pc } /* picas */
+
+P { font-size: 10pt }
+P { line-height: 120% } /* 120% of ’font-size’ */
+
+BODY { background: url("http://www.bg.com/pinkish.gif") }
+
+LI { list-style: url(http://www.redballs.com/redball.png) disc }
+
+BODY { background: url("yellow") }
+
+P {counter-increment: par-num}
+H1 {counter-reset: par-num}
+P:before {content: counter(par-num, upper-roman) ". "}
+
+BODY {color: black; background: white }
+H1 { color: maroon }
+H2 { color: olive }
+
+EM { color: #f00 } /* #rgb */
+EM { color: #ff0000 } /* #rrggbb */
+EM { color: rgb(255,0,0) } /* integer range 0 - 255 */
+EM { color: rgb(100%, 0%, 0%) } /* float range 0.0% - 100.0% */
+
+EM { color: rgb(255,0,0) } /* integer range 0 - 255 */
+EM { color: rgb(300,0,0) } /* clipped to rgb(255,0,0) */
+EM { color: rgb(255,-10,0) } /* clipped to rgb(255,0,0) */
+EM { color: rgb(110%, 0%, 0%) } /* clipped to rgb(100%,0%,0%) */
+
+"this is a ’string’"
+"this is a \"string\""
+’this is a "string"’
+’this is a \’string\’’
+
+A[TITLE="a not s\
+o very long title"] {/*...*/}
+A[TITLE="a not so very long title"] {/*...*/}

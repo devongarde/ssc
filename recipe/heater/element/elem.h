@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -144,6 +144,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define EF_5_SECTION        0x2000000000000000
 #define EF_5_FORM           0x4000000000000000
 
+#define EF_CSS              0x8000000000000000
+
 #define EF_CUSTOM           0xFFF0FFFFFFFFFFF4
 
 #define EF_3_NOTMATH        ( EF_3_FONT | EF_PHRASE | EF_SPECIAL | EF_3_MISC )
@@ -175,9 +177,8 @@ class elem : public symbol < html_version, e_element >
     bool under_parse (nitpick& nits, const html_version& v, const ::std::string& el, const ident_t n);
     bool parse (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& x);
 public:
-    elem () noexcept {}
+    DEFAULT_CONSTRUCTORS (elem);
     elem (const html_version& v, const ::std::string& x) : symbol < html_version, e_element > (v, x) { }
-    elem (const elem& e) = default;
     explicit elem (const e_element e) : symbol < html_version, e_element > (e) { }
     elem (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& x);
     static void init (nitpick& nits);
@@ -185,6 +186,8 @@ public:
     static bool ignored (const e_element e) { return ignored_.test (e); }
     bool is_unclosed (const html_version& v) const noexcept;
     bool is_closed (const html_version& v) const noexcept;
+    bool is_css () const noexcept
+    {   return ((categories () & EF_CSS) != 0); }
     bool is_math () const noexcept
     {   return ((categories () & (EF_MATH | EF_X_MATH)) != 0); }
     bool is_svg () const noexcept
@@ -237,3 +240,5 @@ CONSTEXPR inline bool is_undefined_element (const e_element e) noexcept { return
 CONSTEXPR inline bool is_standard_element (const e_element e) noexcept { return (e >= elem_custom) && (e < elem_error); }
 
 void add_elements (const vstr_t& v);
+
+typedef ::std::vector < elem > vel_t;

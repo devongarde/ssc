@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -232,6 +232,11 @@ void element::do_shadow (::std::stringstream& ss, const html_version& v, bool& w
             else { was_nl = false; ss << " "; }
             was_closure = false; break;
         case elem_faux_xml : ss << "<?xml" << node_.raw () << "?>"; was_nl = false; break;
+        case elem_css_all : ss << "*"; was_nl = false; break;
+        case elem_css_cell : ss << "||"; was_nl = false; break;
+        case elem_css_child : ss << ">"; was_nl = false; break;
+        case elem_css_precede : ss << "~"; was_nl = false; break;
+        case elem_css_precede_immediate : ss << "+"; was_nl = false; break;
         case elem_annotation :
         case elem_annotation_xml :
         case elem_comment :

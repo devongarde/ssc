@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -195,8 +195,8 @@ template < > struct type_master < t_stitchtiles > : two_value < t_stitchtiles, e
 template < > struct type_master < t_streamedcontents > : two_value < t_streamedcontents, e_streamedcontents, sz_keep, sz_discard, false >
 { using two_value < t_streamedcontents, e_streamedcontents, sz_keep, sz_discard, false > :: two_value; };
 
-template < > struct type_master < t_svg_direction2 > : two_value < t_svg_direction2, e_svg_direction2, sz_ltr, sz_rtl, false >
-{ using two_value < t_svg_direction2, e_svg_direction2, sz_ltr, sz_rtl, false > :: two_value; };
+template < > struct type_master < t_ltr_rtl > : two_value < t_ltr_rtl, e_svg_direction2, sz_ltr, sz_rtl, false >
+{ using two_value < t_ltr_rtl, e_svg_direction2, sz_ltr, sz_rtl, false > :: two_value; };
 
 template < > struct type_master < t_svg_fontvariant_ff > : two_value < t_svg_fontvariant_ff, e_svg_fontvariant_ff, sz_normal, sz_smallcaps, false >
 { using two_value < t_svg_fontvariant_ff, e_svg_fontvariant_ff, sz_normal, sz_smallcaps, false > :: two_value; };

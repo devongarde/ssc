@@ -1,11 +1,12 @@
-[class]
-class "{{class-name}}" is used {{class-count}}
+[tally]
+  "{{tally-name}}": {{tally-count}}{{tally-use-count:/:}}
 
-[class-head]
+[tally-head]
 
-*** classes
+{{tally-title:: CSS/HTML:}}
 
-[class-foot]
+[tally-foot]
+  {{tally-count}}x {{tally-title}}: {{tally-total}} {{tally-use-total:/:}}
 
 [config]
 {{nit-explanation}}
@@ -39,14 +40,14 @@ Root: {{context-root}}
 
 [grand-foot]
 
-[id]
-{{id-name}} ({{id-page}}:{{id-line}})
+[itemid]
+{{itemid-name}} ({{itemid-page}}:{{itemid-line}})
 
-[id-head]
+[itemid-head]
 
 *** itemids
 
-[id-foot]
+[itemid-foot]
 
 [init]
 {{nit-explanation}} [{{nit-id}}]

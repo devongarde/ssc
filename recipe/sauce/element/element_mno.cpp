@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -280,7 +280,7 @@ void element::examine_meta ()
 
 void element::examine_meter ()
 {   if (node_.version ().is_5 ())
-    {   check_ancestors (elem_meter, element_bit_set (elem_meter));
+    {   check_ancestors (elem_meter, element_bitset (elem_meter));
         double min = 0.0, max = 1.0, low = 0.0, high = 0.0, optimum = 0.0, value = 0.0;
         const bool kx = a_.known (a_max);
         const bool kn = a_.known (a_min);
@@ -392,7 +392,7 @@ void element::examine_noscript ()
         pick (nit_bad_noscript, ed_50, "4.11.2 The noscript element", es_error, ec_element, "<NOSCRIPT> is illegal in XHTML");
     else
     {   if (node_.version ().mjr () < 5) return;
-        check_ancestors (elem_noscript, element_bit_set (elem_noscript));
+        check_ancestors (elem_noscript, element_bitset (elem_noscript));
         if (ancestral_elements_.test (elem_head))
         {   element_bitset bs (descendant_elements_);
             bs &= ~(non_standard_bitset | elem_link | elem_style | elem_meta);

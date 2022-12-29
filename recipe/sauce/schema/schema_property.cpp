@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -484,7 +484,7 @@ property_gen gentab [] =
     { { s_csvw, 1, 0 }, { 0, 0 }, csvw_targetformat, t_url },
     { { s_csvw, 1, 0 }, { 0, 0 }, csvw_transformations, t_schema_type, csv_transformation },
     { { s_csvw, 1, 0 }, { 0, 0 }, csvw_textdirection, t_schema_type, csv_direction },
-    { { s_csvw, 1, 0 }, { 0, 0 }, csvw_textdirection, t_svg_direction2 },
+    { { s_csvw, 1, 0 }, { 0, 0 }, csvw_textdirection, t_ltr_rtl },
     { { s_csvw, 1, 0 }, { 0, 0 }, csvw_title, t_schema_type, anything },
     { { s_csvw, 1, 0 }, { 0, 0 }, csvw_title, t_generic },
     { { s_csvw, 1, 0 }, { 0, 0 }, csvw_trim, t_schema_type, xsd_boolean },
@@ -1958,7 +1958,7 @@ property_gen gentab [] =
     { { s_jsonld, 1, 0 }, { 0, 0 }, jsonld_context, t_url },
     { { s_jsonld, 1, 0 }, { 0, 0 }, jsonld_definition, t_schema_type, json_prefixdefinition },
     { { s_jsonld, 1, 0 }, { 0, 0 }, jsonld_definition, t_schema_type, json_termdefinition },
-    { { s_jsonld, 1, 0 }, { 0, 0 }, jsonld_direction, t_svg_direction2 },
+    { { s_jsonld, 1, 0 }, { 0, 0 }, jsonld_direction, t_ltr_rtl },
     { { s_jsonld, 1, 0 }, { 0, 0 }, jsonld_id, t_schema_type, xsd_anyuri },
     { { s_jsonld, 1, 0 }, { 0, 0 }, jsonld_id, t_url },
     { { s_jsonld, 1, 0 }, { 0, 0 }, jsonld_import, t_schema_type, xsd_anyuri },

@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -41,14 +41,9 @@ class elements_node
     element_node* insert_open (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id);
     element_node* insert (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& idz);
 public:
-    elements_node () = default;
-    elements_node (const elements_node& en) = default;
-	elements_node(elements_node&& en) = default;
+    DEFAULT_CONSTRUCTORS (elements_node);
 	elements_node (nitpick& nits, const ::std::string& content)
     {   invalid_ = ! parse (nits, content); }
-    ~elements_node () = default;
-    elements_node& operator = (const elements_node& en) = default;
-	elements_node& operator = (elements_node&& en) = default;
 	void swap (elements_node& en) noexcept;
     void reset () noexcept;
     void reset (const elements_node& en);

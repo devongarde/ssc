@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -186,7 +186,7 @@ void element::examine_base ()
     {   if (a_.known (a_target))
         {   pick (nit_target, es_warning, ec_element, "TARGET forces " PROG " to abandon local link checks");
             page_ -> check_links (false); }
-        else if (node_.version ()  >= html_jul07)
+        else if (node_.version () >= html_jul07)
            pick (nit_base, ed_50, "4.2.3 The base element", es_error, ec_element, "<BASE> must have an HREF or a TARGET attribute");
         return; }
     check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_href), MIME_PAGE);
@@ -237,7 +237,7 @@ void element::examine_button ()
                 pick (nit_bad_form, ed_50, "", es_error, ec_attribute, "FORM... attributes require <BUTTON> TYPE='submit'"); } }
 
 void element::examine_caption ()
-{   if (node_.version ().is_5 ()) check_descendants (elem_caption, element_bit_set (elem_table)); }
+{   if (node_.version ().is_5 ()) check_descendants (elem_caption, element_bitset (elem_table)); }
 
 void element::examine_card ()
 {   if ((node_.version () < html_jan05) || (node_.version () >= html_jan07))
@@ -377,7 +377,7 @@ void element::examine_dfn ()
             if (page_ -> dfns ().find (t) != page_ -> dfns ().cend ())
                 pick (nit_repeated_definition, ed_jan07, "3.12.8. The dfn element", es_error, ec_element, quote (t), " has already been defined");
             else page_ -> dfns ().insert (t);
-        check_ancestors (elem_dfn, element_bit_set (elem_dfn)); } }
+        check_ancestors (elem_dfn, element_bitset (elem_dfn)); } }
 
 void element::examine_dialogue ()
 {   if (node_.version () >= html_jan10)

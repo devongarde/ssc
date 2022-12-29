@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -364,12 +364,12 @@ template < > struct type_master < t_origin > : tidy_string < t_origin >
         nits.pick (nit_origin, ed_svg_1_1, "19.2.14 The 'animateMotion' element", es_error, ec_attribute, "ORIGIN must be set to 'default'");
         tidy_string < t_origin > :: status (s_invalid); } };
 
-template < > struct type_master < t_marker > : id_or_either_string < t_marker, t_hash_fn, sz_none, sz_inherit >
-{   using id_or_either_string < t_marker, t_hash_fn, sz_none, sz_inherit > :: id_or_either_string;
+template < > struct type_master < t_marker > : type_id_or_either_string < t_marker, t_hash_fn, sz_none, sz_inherit >
+{   using type_id_or_either_string < t_marker, t_hash_fn, sz_none, sz_inherit > :: type_id_or_either_string;
     static e_animation_type animation_type () noexcept { return at_other; } };
 
-template < > struct type_master < t_navigation > : id_or_either_string < t_navigation, t_hash_fn, sz_auto, sz_self >
-{   using id_or_either_string < t_navigation, t_hash_fn, sz_auto, sz_self > :: id_or_either_string;
+template < > struct type_master < t_navigation > : type_id_or_either_string < t_navigation, t_hash_fn, sz_auto, sz_self >
+{   using type_id_or_either_string < t_navigation, t_hash_fn, sz_auto, sz_self > :: type_id_or_either_string;
     static e_animation_type animation_type () noexcept { return at_other; } };
 
 template < > struct type_master < t_opacity > : type_or_string < t_opacity, t_zero_to_one, sz_inherit >
@@ -513,8 +513,8 @@ template < > struct type_master < t_svg_shape > : type_function < t_svg_shape, t
 {   using type_function < t_svg_shape, t_svg_shapefn, t_real > :: type_function;
     static e_animation_type animation_type () noexcept { return at_number; } };
 
-template < > struct type_master < t_svg_host > : either_string < t_svg_host, sz_svg, sz_host >
-{ using either_string < t_svg_host, sz_svg, sz_host > :: either_string; };
+template < > struct type_master < t_svg_host > : type_either_string < t_svg_host, sz_svg, sz_host >
+{ using type_either_string < t_svg_host, sz_svg, sz_host > :: type_either_string; };
 
 template < > struct type_master < t_svg_svg > : type_must_be < t_svg_svg, sz_svg >
 { using type_must_be < t_svg_svg, sz_svg > :: type_must_be; };
@@ -604,8 +604,8 @@ template < > struct type_master < t_urifn > : type_function < t_urifn, t_urisz, 
 {   using type_function < t_urifn, t_urisz, t_url > :: type_function;
     static e_animation_type animation_type () noexcept { return at_url; } };
 
-template < > struct type_master < t_urifn_ni > : id_or_either_string < t_urifn_ni, t_urifn, sz_none, sz_inherit >
-{ using id_or_either_string < t_urifn_ni, t_urifn, sz_none, sz_inherit > :: id_or_either_string; };
+template < > struct type_master < t_urifn_ni > : type_id_or_either_string < t_urifn_ni, t_urifn, sz_none, sz_inherit >
+{ using type_id_or_either_string < t_urifn_ni, t_urifn, sz_none, sz_inherit > :: type_id_or_either_string; };
 
 template < > struct type_master < t_urisz > : type_must_be < t_urisz, sz_url >
 {   using type_must_be < t_urisz, sz_url > :: type_must_be;

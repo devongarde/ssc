@@ -1,6 +1,6 @@
 ﻿/*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -41,7 +41,7 @@ void nitpick::swap (nitpick& np) noexcept
     doc_.swap (np.doc_);
     ::std::swap (stats_, np.stats_); }
 
-void nitpick::reset ()
+void nitpick::reset () noexcept
 {   nitpick np;
     swap (np); }
 
@@ -90,7 +90,7 @@ template < class T > ::std::string nitpick::inner_review (const e_nit_section& e
 ::std::string nitpick::review (const mmac_t& mac, const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot, const e_nit_section& page_head, const bool unfiltered) const
 {   bool quote = false, dq = false, infoed = false, eol = false, hasns = false;
     ::std::string res;
-    if (! empty ())
+    if (! empty () || stuffed_)
     {   mmac_t inner;
         inner.emplace (nm_nit_line, ::boost::lexical_cast < ::std::string > (line_));
         if (mote_.empty () || is_whitespace (mote_))
@@ -102,6 +102,8 @@ template < class T > ::std::string nitpick::inner_review (const e_nit_section& e
         {   inner.emplace (nm_nit_before, before_);
             inner.emplace (nm_nit_mote, mote_);
             inner.emplace (nm_nit_after, after_); }
+        if (stuffed_) inner.emplace (mn_nits_lost, "some nits were lost");
+        else inner.emplace (mn_nits_lost, "");
         ::std::string nitbit;
         if (context.nits_nits_nits ())
             nitbit = inner_review (entry, nits_, mac, inner, quote, dq, infoed, eol, hasns, unfiltered);
@@ -131,11 +133,11 @@ nitpick nitpick::nick ()
     swap (tmp);
     return tmp; }
 
-void nitpick::pick (const nit& n)
-{   nits_.emplace_back (n); }
+void nitpick::pick (const nit& n) noexcept
+{   try { nits_.emplace_back (n); } catch (...) { stuffed_ = true; } }
 
-void nitpick::pick (nit&& n)
-{   nits_.emplace_back (n); }
+void nitpick::pick (nit&& n) noexcept
+{   try { nits_.emplace_back (n); } catch (...) { stuffed_ = true; } }
 
 bool nitpick::modify_severity (const ::std::string& name, const e_severity s)
 {   const e_nit code = lookup_code (name);
@@ -143,23 +145,30 @@ bool nitpick::modify_severity (const ::std::string& name, const e_severity s)
     modify_severity (code, s);
     return true; }
 
-e_severity nitpick::worst () const
-{   e_severity res = es_illegal;
-    for (auto n : nits_)
-        if (n.severity () < res)
-            res = n.severity ();
-    return res; }
+e_severity nitpick::worst () const noexcept
+{   if (! stuffed_) try
+    {   e_severity res = es_illegal;
+        for (auto n : nits_)
+            if (n.severity () < res)
+                res = n.severity ();
+        return res; }
+    catch (...)
+    { }
+    return es_catastrophic; }
+
+void nitpick::reset_context (const int line, const ::std::string& c)
+{   ::std::string r (tart (c));
+    if (context.nits ())
+    {   ::std::ostringstream ss;
+        ss << "set context to " << r << " (line " << line << ")\n";
+        outstr.out (ss.str ()); }
+    line_ = line;
+    stuffed_ = false;
+    before_.clear (); after_.clear ();
+    mote_.assign (r); }
 
 void nitpick::set_context (const int line, const ::std::string& c)
-{   ::std::string r (trim_the_lot_off (unify_whitespace (c)));
-    if (mote_.empty ())
-    {   if (context.nits ())
-        {   ::std::ostringstream ss;
-            ss << "set context to " << r << " (line " << line << ")\n";
-            outstr.out (ss.str ()); }
-        line_ = line;
-        before_.clear (); after_.clear ();
-        mote_.assign (r); }
+{   if (mote_.empty ()) reset_context (line, c);
     else if (line_ == 0) line_ = line; }
 
 void nitpick::set_context (const int line, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to)

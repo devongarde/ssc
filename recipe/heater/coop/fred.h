@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -35,11 +35,8 @@ class fred_t
     void fred_minion (nitpick* ticks);
 public:
     fred_t () : count_ (0), inactive_ (0), started_ (false), abandon_ (false) { }
-    fred_t (const fred_t& ) = delete;
-    fred_t (fred_t&& ) = delete;
+    NO_COPY_CONSTRUCTORS (fred_t);
     ~fred_t () = default;
-    fred_t& operator = (const fred_t& ) = delete;
-    fred_t& operator = (fred_t&& ) = delete;
     bool init (nitpick& nits);
     void await ();
     void done ();
@@ -83,17 +80,11 @@ extern fred_t fred;
 
 struct faffing
 {   faffing () { fred.inactive (); }
-    faffing (const faffing& ) = delete;
-    faffing (faffing&& ) = delete;
-    ~faffing () { fred.active (); }
-    faffing operator = (const faffing& ) = delete;
-    faffing operator = (faffing&& ) = delete; };
+    NO_COPY_CONSTRUCTORS (faffing);
+    ~faffing () { fred.active (); } };
 
 struct counting
 {   counting () { fred.one_more (); }
-    counting (const counting& ) = delete;
-    counting (counting&& ) = delete;
-    ~counting () { fred.one_less (); }
-    counting operator = (const counting& ) = delete;
-    counting operator = (counting&& ) = delete; };
+    NO_COPY_CONSTRUCTORS (counting);
+    ~counting () { fred.one_less (); } };
 #endif // NO_FRED

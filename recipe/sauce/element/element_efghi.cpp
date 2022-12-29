@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -269,7 +269,7 @@ void element::examine_form ()
                 pick (nit_no_form, es_error, ec_element, "<FORM> should not appear in ", node_.version ().report (), " documents");
             break;
         default :
-        {   check_ancestors (elem_form, element_bit_set (elem_form));
+        {   check_ancestors (elem_form, element_bitset (elem_form));
             if ((node_.version () >= html_jan19) && a_.good (a_accept_charset))
             {   auto v = a_.get_x < attr_acceptcharset > ();
                 if (v.size () != 1) pick (nit_form_charset, ed_jul20, "4.10.3 The form element", es_error, ec_attribute, "ACCEPT-CHARSET, if present, must be set to 'utf-8' only");

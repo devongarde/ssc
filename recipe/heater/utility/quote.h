@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -50,3 +50,43 @@ inline ::std::ostringstream& quote (::std::ostringstream& ss, const vstr_t vs, c
 
 inline ::std::string uq (const ::std::string& str, const ::std::string& qs = ::std::string (QUOTESEP))
 { return unquote (str.cbegin (), str.cend (), qs); }
+
+#define UQ_DQ       0x00000001
+#define UQ_SQ       0x00000002
+#define UQ_BS       0x00000004
+#define UQ_REPEATQ  0x00000008
+#define UQ_SEP      0x00000010
+
+#define UQ_ROUND    0x00000040
+#define UQ_SQUARE   0x00000080
+#define UQ_BRACE    0x00000100
+#define UQ_ANGULAR  0x00000200
+#define UQ_8        0x00000400
+#define UQ_10       0x00000800
+#define UQ_16       0x00001000
+#define UQ_36       0x00002000
+#define UQ_TRIM     0x00004000
+
+#define UQ_C_CMT    0x00010000
+#define UQ_CPP_CMT  0x00020000
+#define UQ_UNIFY    0x00040000
+
+#define BS_NUMERIC  ( UQ_8 | UQ_10 | UQ_16 | UQ_36 )
+#define BS_MASK     ( UQ_BS | BS_NUMERIC )
+
+vstr_t uq2 (const ::std::string& s, const unsigned int flags = UQ_DQ | UQ_SQ | UQ_BS, const vstr_t& sep = vstr_t (), vint_t* lines = nullptr, v_np* ticks = nullptr);
+
+inline vstr_t uq2 (const ::std::string& s, const unsigned int flags, const ::std::string& sep, vint_t* lines = nullptr, v_np* ticks = nullptr)
+{   vstr_t v;
+    for (auto ch : sep)
+        v.push_back (::std::string (1, ch));
+    return uq2 (s, flags, v, lines, ticks); }
+
+inline vstr_t uq2_sep (const ::std::string& s, const unsigned int flags = UQ_DQ | UQ_SQ | UQ_BS, const ::std::string& sep = ::std::string (QUOTESEP), vint_t* lines = nullptr, v_np* ticks = nullptr)
+{   vstr_t v;
+    v.push_back (sep);
+    return uq2 (s, flags, v, lines, ticks); }
+
+//inline vstr_t uq2_any (const ::std::string& s, const unsigned int flags = UQ_DQ | UQ_SQ | UQ_BS, const ::std::string& sep = ::std::string (QUOTESEP), vint_t* lines = nullptr, v_np* ticks = nullptr)
+//{   return uq2 (s, flags, sep, lines, ticks); }
+ 

@@ -56,10 +56,7 @@
     <None Include="..\sauce\test\test.sh">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="..\toast\ssc-test\complete.lst">
-      <Filter>toasty-toast</Filter>
-    </None>
-    <None Include="..\toast\ssc-test\dependencies.lst">
+    <None Include="..\toast\ssc-test\simple.lst">
       <Filter>toasty-toast</Filter>
     </None>
   </ItemGroup>

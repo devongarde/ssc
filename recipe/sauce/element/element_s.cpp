@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -30,7 +30,7 @@ void element::examine_sarcasm ()
 
 void element::examine_script ()
 {   if (! node_.version ().is_5 ()) return;
-    check_ancestors (elem_script, element_bit_set (elem_script));
+    check_ancestors (elem_script, element_bitset (elem_script));
     bool datablock = false, module = false, jsld = false;
     if (! a_.known (a_type) || a_.empty (a_type))
         pick (nit_script, ed_50, "4.11.1 The script element", es_comment, ec_element, "this should be treated as ECMAscript / Javascript");
@@ -301,5 +301,6 @@ void element::examine_switch ()
 void element::examine_style ()
 {   if (node_.version () > html_plus)
         if (! a_.known (a_type) || (a_.get_string (a_type) == CSS_TYPE))
-        {   //VERIFY_NOT_NULL (css_cache.get (), __FILE__, __LINE__);
-            page_ -> css ().parse (nits (), node_.version (), text ()); } }
+            if (context.load_css () && (context.css_version () == css_1))
+            {   arguments args (node_.version (), node_.namespaces (), page_, false, true);
+                page_ -> css ().parse (nits (), args, text (), node_.line ()); } }

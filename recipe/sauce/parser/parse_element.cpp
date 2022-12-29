@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -156,6 +156,16 @@ void element_node::parse_attributes (const html_version& , const ::std::string::
             res += ln (line_) + "<!DOCTYPE>\n"; break;
         case elem_faux_xml :
             res += ln (line_) + "<?xml...?>\n"; break;
+        case elem_css_all :
+            res += ln (line_) + "{*}\n"; break;
+        case elem_css_cell :
+            res += ln (line_) + "{||}\n"; break;
+        case elem_css_child :
+            res += ln (line_) + "{>}\n"; break;
+        case elem_css_precede :
+            res += ln (line_) + "{~}\n"; break;
+        case elem_css_precede_immediate :
+            res += ln (line_) + "{+}\n"; break;
         default :
             if (closure_) res += ln (line_) + "/" + elem_.name () + va_.rpt () + "\n";
             else res += ln (line_) + elem_.name () + va_.rpt () + "\n"; }

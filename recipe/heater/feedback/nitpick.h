@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -32,6 +32,7 @@ class nitpick
     static mns_t mns_;
     ::std::string before_, mote_, after_;
     int line_ = 0;
+    bool stuffed_ = false;
     static bool fe_, sarcasm_;
     mutable severity_stats severity_;
     mutable category_stats category_;
@@ -43,34 +44,30 @@ class nitpick
         return s; }
     template < class T > ::std::string inner_review (const e_nit_section& entry, const T& t, const mmac_t& mac, mmac_t& outer, bool& quote, bool& dq, bool& infoed, bool& eol, bool& hasns, const bool unfiltered) const;
 public:
-    nitpick () = default;
-    nitpick (const nitpick& np) = default;
-	nitpick (nitpick&& np) = default;
+    DEFAULT_CONSTRUCTORS (nitpick);
 	explicit nitpick (const ::std::string& c) : mote_ (c) { }
     explicit nitpick (const int line, const ::std::string& c) : mote_ (c), line_ (line) { }
     explicit nitpick (const int line, const ::std::string& b, const ::std::string& m, const ::std::string& a)
         :   before_ (b), mote_ (m), after_ (a), line_ (line) { }
-	~nitpick () = default;
-    nitpick& operator = (const nitpick& np) = default;
-	nitpick& operator = (nitpick&& np) = default;
     static void modify_severity (const e_nit code, const e_severity s)
     {   mns_.emplace (mns_t::value_type (code, s)); }
     static bool modify_severity (const ::std::string& name, const e_severity s);
     void swap (nitpick& np) noexcept;
-    void reset ();
+    void reset () noexcept;
     void reset (const nitpick& np);
     void merge (const nitpick& np);
     nitpick nick ();
 
-    template < typename... Ts > void pick (const e_nit code, const e_doc doc, const ::std::string& ref, const e_severity severity, const e_category category, Ts... msg)
-    {   nits_.emplace_back (code, doc, ref, user_severity (code, severity), category, com < Ts... > :: bine (msg...)); }
-    template < typename... Ts > void pick (const e_nit code, const e_doc doc, const e_severity severity, const e_category category, Ts... msg)
-    {   nits_.emplace_back (code, doc, ::std::string (), user_severity (code, severity), category, com < Ts... > :: bine (msg...)); }
-    template < typename... Ts > void pick (const e_nit code, const e_severity severity, const e_category category, Ts... msg)
-    {   nits_.emplace_back (code, user_severity (code, severity), category, com < Ts... > :: bine (msg...)); }
+    template < typename... Ts > void pick (const e_nit code, const e_doc doc, const ::std::string& ref, const e_severity severity, const e_category category, Ts... msg) noexcept
+    {   try { nits_.emplace_back (code, doc, ref, user_severity (code, severity), category, com < Ts... > :: bine (msg...)); } catch (...) { stuffed_ = true; } }
+    template < typename... Ts > void pick (const e_nit code, const e_doc doc, const e_severity severity, const e_category category, Ts... msg) noexcept
+    {   try { nits_.emplace_back (code, doc, ::std::string (), user_severity (code, severity), category, com < Ts... > :: bine (msg...)); } catch (...) { stuffed_ = true; } }
+    template < typename... Ts > void pick (const e_nit code, const e_severity severity, const e_category category, Ts... msg) noexcept
+    {   try { nits_.emplace_back (code, user_severity (code, severity), category, com < Ts... > :: bine (msg...)); } catch (...) { stuffed_ = true; } }
 
-    void pick (const nit& n);
-    void pick (nit&& n);
+    void pick (const nit& n) noexcept;
+    void pick (nit&& n) noexcept;
+    void reset_context (const int line, const ::std::string& c);
     void set_context (const int line, const ::std::string& c);
     void set_context (const int line, const ::std::string::const_iterator b, ::std::string::const_iterator e);
     void set_context (const int line, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i);
@@ -81,7 +78,7 @@ public:
     ::std::string review (const mmac_t& mac, const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot, const e_nit_section& page_head = ns_none, const bool unfiltered = false) const;
     ::std::string review (const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot, const e_nit_section& page_head = ns_none) const;
     ::std::string unfiltered (const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot, const e_nit_section& page_head = ns_none) const;
-    e_severity worst () const;
+    e_severity worst () const noexcept;
     ::std::size_t size () const noexcept { return nits_.size (); }
     bool empty () const noexcept { return nits_.empty (); }
 
@@ -92,3 +89,5 @@ public:
     void accumulate (nitpick& n) const;
     void accumulate (stats_t* s) const;
     void notify (const nit& n) const; };
+
+typedef ::std::vector < nitpick > v_np;

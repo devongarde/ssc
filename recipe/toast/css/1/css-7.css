@@ -1,0 +1,39 @@
+﻿H1 { color: red; rotation: 70deg }
+
+H1 { color: red; }
+
+IMG { float: left } /* CSS1 */
+IMG { float: left top } /* "top" is not a value of 'float' */
+IMG { background: "red" } /* keywords cannot be quoted in CSS1 */
+IMG { border-width: 3 } /* a unit must be specified for length values */
+
+IMG { float: left }
+IMG { }
+IMG { }
+IMG { }
+
+@three-dee {
+ @background-lighting {
+ azimuth: 30deg;
+ elevation: 190deg;
+ }
+ H1 { color: red }
+}
+H1 {color: blue}
+
+H1 {color: blue}
+
+H1 { color: blue }
+P[align], UL { color: red; font-size: large }
+P EM { font-weight: bold }
+
+H1 { color: blue }
+P EM { font-weight: bold }
+
+H1 { color: red; font-style: 12pt }
+P { color: blue; font-vendor: any; font-variant: small-caps }
+EM EM { font-style: normal }
+
+H1 { color: red; }
+P { color: blue; font-variant: small-caps }
+EM EM { font-style: normal }

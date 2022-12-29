@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -366,7 +366,7 @@ typedef typed_attribute < t_url, a_icon > attr_icon;
 typedef typed_attribute < t_id, a_id > attr_id;
 typedef typed_attribute < t_real, a_ideographic > attr_ideographic;
 typedef typed_attribute < t_idref, a_idref > attr_idref;
-typedef typed_attribute < t_conditional, a_if > attr_if;
+typedef typed_attribute < t_generic, a_if > attr_if;
 typedef typed_attribute < t_image_rendering, a_image_rendering > attr_image_rendering;
 typedef typed_attribute < t_url, a_imagemap > attr_imagemap;
 typedef typed_attribute < t_sizes, a_imagesizes > attr_imagesizes;
@@ -934,7 +934,7 @@ typedef typed_attribute < t_pseudonamedspace, a_voffset > attr_voffset;
 typedef typed_attribute < t_negative, a_volume > attr_volume;
 typedef typed_attribute < t_integer, a_vspace > attr_vspace;
 typedef typed_attribute < t_html_boolean, a_webkitdirectory > attr_webkitdirectory;
-typedef typed_attribute < t_conditional, a_while > attr_while;
+typedef typed_attribute < t_generic, a_while > attr_while;
 typedef typed_attribute < t_whitespace, a_white_space > attr_whitespace;
 typedef typed_attribute < t_width, a_width > attr_width;
 typedef typed_attribute < t_text, a_widths > attr_widths;

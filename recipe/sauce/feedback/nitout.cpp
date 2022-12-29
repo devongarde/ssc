@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -32,14 +32,14 @@ vstr_t sections;
 #define MACID ALPHANUMERIC "-_"
 
 #define SPEC_NIT \
-    "[class]\n" \
-    "{{class-name}} {{class-int}}\n" \
+    "[tally]\n" \
+    "  {{tally-name}} {{tally-int}}{{tally-use-int:/:}}\n" \
     "\n" \
-    "[class-head]\n" \
+    "[tally-head]\n" \
+    "{{tally-title:CSS ::}}\n" \
     "\n" \
-    START_OF_SECTION " classes\n" \
-    "\n" \
-    "[class-foot]\n" \
+    "[tally-foot]\n" \
+    "  {{tally-count}}x {{tally-title}} {{tally-total}}{{tally-use-total:/:}}\n" \
     "\n" \
     "[config]\n" \
     "\n" \
@@ -70,14 +70,14 @@ vstr_t sections;
     "[grand-foot]\n" \
     END_OF_STATS "\n" \
     "\n" \
-    "[id]\n" \
-    "{{id-name}} ({{id-page}}:{{id-line}})\n" \
+    "[itemid]\n" \
+    "{{itemid-name}} ({{itemid-page}}:{{itemid-line}})\n" \
     "\n" \
-    "[id-head]\n" \
+    "[itemid-head]\n" \
     "\n" \
     START_OF_SECTION " itemids\n" \
     "\n" \
-    "[id-foot]\n" \
+    "[itemid-foot]\n" \
     "\n" \
     "[init]\n" \
     "{{nit-explanation}} [{{nit-id}}]\n" \
@@ -106,6 +106,7 @@ vstr_t sections;
     "{{nit-line}} {{nit-ns}}\n" \
     "\n" \
     "[nits-foot]\n" \
+    "{{nits-lost:(:)\n}}" \
     "\n" \
     "[page-head]\n" \
     "\n" \
@@ -150,14 +151,14 @@ vstr_t sections;
     "\n"
 
 #define TEST_NIT \
-    "[class]\n" \
-    "{{class-name}} {{class-int}}\n" \
+    "[tally]\n" \
+    "  {{tally-name}} {{tally-int}}{{tally-use-int:/:}}\n" \
     "\n" \
-    "[class-head]\n" \
+    "[tally-head]\n" \
+    "{{tally-title:CSS ::}}\n" \
     "\n" \
-    START_OF_SECTION " classes\n" \
-    "\n" \
-    "[class-foot]\n" \
+    "[tally-foot]\n" \
+    "  {{tally-count}}x {{tally-title}} {{tally-total}}{{tally-use-total:/:}}\n" \
     "\n" \
     "[config]\n" \
     "\n" \
@@ -190,14 +191,14 @@ vstr_t sections;
     "[grand-foot]\n" \
     END_OF_STATS "\n" \
     "\n" \
-    "[id]\n" \
-    "{{id-name}} ({{id-page}}:{{id-line}})\n" \
+    "[itemid]\n" \
+    "{{itemid-name}} ({{id-page}}:{{itemid-line}})\n" \
     "\n" \
-    "[id-head]\n" \
+    "[itemid-head]\n" \
     "\n" \
     START_OF_SECTION " itemids\n" \
     "\n" \
-    "[id-foot]\n" \
+    "[itemid-foot]\n" \
     "\n" \
     "[init]\n" \
     "{{nit-explanation}} [{{nit-id}}]\n" \
@@ -226,6 +227,7 @@ vstr_t sections;
     "{{nit-line}} {{nit-ns}}\n" \
     "\n" \
     "[nits-foot]\n" \
+    "{{nits-lost:(:)\n}}" \
     "\n" \
     "[page-head]\n" \
     "\n" \
@@ -271,14 +273,14 @@ vstr_t sections;
     "\n"
 
 #define TEXT_NIT \
-    "[class]\n" \
-    "class \"{{class-name}}\" is used {{class-count}}\n" \
+    "[tally]\n" \
+    "  \"{{tally-name}}\": {{tally-int}}{{tally-use-int:/:}}\n" \
     "\n" \
-    "[class-head]\n" \
+    "[tally-head]\n" \
+    "{{tally-title:CSS ::}}\n" \
     "\n" \
-    START_OF_SECTION " classes\n" \
-    "\n" \
-    "[class-foot]\n" \
+    "[tally-foot]\n" \
+    "  {{tally-count}}x {{tally-title}}: {{tally-sum}}{{tally-use-sum:/:}}\n" \
     "\n" \
     "[config]\n" \
     "{{nit-explanation}}\n" \
@@ -311,14 +313,14 @@ vstr_t sections;
     "\n" \
     "[grand-foot]\n" \
     "\n" \
-    "[id]\n" \
-    "{{id-name}} ({{id-page}}:{{id-line}})\n" \
+    "[itemid]\n" \
+    "{{itemid-name}} ({{itemid-page}}:{{itemid-line}})\n" \
     "\n" \
-    "[id-head]\n" \
+    "[itemid-head]\n" \
     "\n" \
     START_OF_SECTION " itemids\n" \
     "\n" \
-    "[id-foot]\n" \
+    "[itemid-foot]\n" \
     "\n" \
     "[init]\n" \
     "{{nit-explanation}} [{{nit-id}}]\n" \
@@ -348,6 +350,7 @@ vstr_t sections;
     "[nits-page]\n" \
     "\n" \
     "[nits-foot]\n" \
+    "{{nits-lost:(:)\n}}" \
     "\n" \
     "[page-head]\n" \
     "\n" \
@@ -390,14 +393,15 @@ vstr_t sections;
     "\n"
 
 #define HTML_NIT \
-    "[class]\n" \
-    "<SPAN class=\"nit-name\">{{class-name}}</SPAN> <SPAN class=\"nit-count\">{{class-count}}</SPAN><BR>\n" \
+    "[tally]\n" \
+    "<SPAN class=\"nit-name\">{{tally-name}}</SPAN> <SPAN class=\"nit-count\">{{tally-count}}{{tally-use-count:/:}}</SPAN><BR>\n" \
     "\n" \
-    "[class-head]\n" \
-    "<H2 class=\"nit-section\">classes</H2>\n" \
+    "[tally-head]\n" \
+    "{{tally-title:<H2 class=\"nit-section\">: CSS/HTML:</H2>\n}}" \
     "<P>\n" \
     "\n" \
-    "[class-foot]\n" \
+    "[tally-foot]\n" \
+    "<SPAN class=\"nit-name\">{{tally-count}}x {{tally-title}}:</SPAN> <SPAN class=\"nit-count\">{{tally-total}}{{tally-use-total:/:)}}</SPAN>\n" \
     "</P>\n" \
     "\n" \
     "[config]\n" \
@@ -470,14 +474,14 @@ vstr_t sections;
     "[grand-foot]\n" \
     "</P>\n" \
     "\n" \
-    "[id]\n" \
-    "<SPAN class=\"nit-name\">{{id-name}}</SPAN> <SPAN class=\"nit-id\">({{id-page}}:{{id-line}})</SPAN><BR>\n" \
+    "[itemid]\n" \
+    "<SPAN class=\"nit-name\">{{itemid-name}}</SPAN> <SPAN class=\"nit-id\">({{itemid-page}}:{{itemid-line}})</SPAN><BR>\n" \
     "\n" \
-    "[id-head]\n" \
+    "[itemid-head]\n" \
     "<H2 class=\"nit-section\">Item IDs</H2>\n" \
     "<P>\n" \
     "\n" \
-    "[id-foot]\n" \
+    "[itemid-foot]\n" \
     "</P>\n" \
     "\n" \
     "[init]\n" \
@@ -511,6 +515,7 @@ vstr_t sections;
     "<P>\n" \
     "\n" \
     "[nits-foot]\n" \
+    "{{nits-lost:<BR><SPAN class=\"nit-error\">(:)</SPAN>}}" \
     "</P>\n" \
     "\n" \
     "[page-head]\n" \

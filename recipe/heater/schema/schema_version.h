@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -70,19 +70,14 @@ bool is_valid_schema_version (const e_schema root, const unsigned short mjr, con
 bool is_schema_deprecated (const e_schema root, const unsigned short mjr, const unsigned short mnr, const flags_t flags) noexcept;
 
 struct schema_version : public version
-{   schema_version () = default;
+{   DEFAULT_CONSTRUCTORS (schema_version);
     schema_version (const unsigned short mjr, const unsigned short mnr, const flags_t sf = NOFLAGS) noexcept
         :   version (mjr, mnr, (static_cast < flags_t > (s_schema) << SV_ROOT_SHIFT) | (sf & SV_FLAG_MASK))
     { }
     schema_version (const e_schema root, const unsigned short mjr, const unsigned short mnr, const flags_t sf = NOFLAGS) noexcept
         :   version (mjr, mnr, (static_cast < flags_t > (root) << SV_ROOT_SHIFT) | (sf & SV_FLAG_MASK))
     { }
-    schema_version (const schema_version& ) = default;
     schema_version (const html_version& v) noexcept;
-	schema_version (schema_version&& ) = default;
-	~schema_version () = default;
-    schema_version& operator = (const schema_version& ) = default;
-	schema_version& operator = (schema_version&&) = default;
     static void init (nitpick& nits);
     void reset () noexcept
     {   schema_version v; swap (v); }
