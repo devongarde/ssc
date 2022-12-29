@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -112,6 +112,9 @@ template < > struct type_master < t_keytype > : three_value < t_keytype, e_keyty
 
 template < > struct type_master < t_lcralign > : three_value < t_lcralign, e_lcralign, sz_left, sz_centre, sz_right >
 { using three_value < t_lcralign, e_lcralign, sz_left, sz_centre, sz_right > :: three_value; };
+
+template < > struct type_master < t_lrnalign > : three_value < t_lrnalign, e_lrnalign, sz_left, sz_right, sz_none >
+{ using three_value < t_lrnalign, e_lrnalign, sz_left, sz_right, sz_none > :: three_value; };
 
 template < > struct type_master < t_lraalign > : three_value < t_lraalign, e_lraalign, sz_left, sz_right, sz_all >
 { using three_value < t_lraalign, e_lraalign, sz_left, sz_right, sz_all > :: three_value; };

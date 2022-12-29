@@ -466,6 +466,9 @@ PASS ../toast/HTML/5.4/html5-good.html
 PASS ../toast/HTML/5.4/html5-legacy.html
 2 naughty_lang
 
+PASS ../toast/HTML/5.4/naughty.html
+2 naughty_lang
+
 PASS ../toast/HTML/5.4/template-1.html
 2 naughty_lang
 

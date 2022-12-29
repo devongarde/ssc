@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -196,6 +196,13 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_so_11 : return SCHEMA_ORG " 11.0";
         case ed_css_transform : return "CSS Transforms";
         case ed_mql : return "Media Queries";
+        case ed_css_1 : return "CSS Level 1";
+        case ed_css_20 : return "CSS Level 2";
+        case ed_css_21 : return "CSS Level 2.1";
+        case ed_css_22 : return "CSS Level 2.2";
+        case ed_css_syntax : return "CSS Syntax Module";
+        case ed_css_selectors_3 : return "CSS Selectors 3";
+        case ed_css_selectors_4 : return "CSS Selectors 4";
         case ed_json : return "JSON";
         case ed_jsonld_1_0 : return "JSON-LD 1.0";
         case ed_jsonld_1_1 : return "JSON-LD 1.1"; }
@@ -273,6 +280,13 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_mozilla : return "moz://a, May 2020";
         case ed_microdata : return "HTML 5 living standard, WhatWG, July 2020";
         case ed_microformats : return "Microformats (" MICROFORMATS_ORG "), May 2020";
+        case ed_css_1 : return "CSS Level 1 (April 2008)";
+        case ed_css_20 : return "CSS Level 2 (May 1998)";
+        case ed_css_21 : return "CSS Level 2.1 (April 2016)";
+        case ed_css_22 : return "CSS Level 2.2 (November 2020 draft)";
+        case ed_css_syntax : return "CSS Syntax Module Level 3 (December 2021 draft)";
+        case ed_css_selectors_3 : return "CSS Selectors Level 3 (November 2018)";
+        case ed_css_selectors_4 : return "CSS Selectors Level 4 (May 2022 draft)";
         case ed_json : return "RFC 4627, JSON";
         case ed_jsonld_1_0 : return "JSON-LD 1.0, January 2014";
         case ed_jsonld_1_1 : return "JSON-LD 1.1, July 2020"; }

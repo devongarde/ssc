@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -29,14 +29,9 @@ template < typename TYPE, e_type E, typename CATEGORY = ident_t, CATEGORY INIT =
     typedef vec_t value_type;
     vec_t value_;
     ::std::string original_;
-    enum_vec_base () = default;
-    enum_vec_base (const enum_vec_base& s) = default;
-    enum_vec_base (enum_vec_base&&) = default;
+    DEFAULT_CONSTRUCTORS (enum_vec_base);
     explicit enum_vec_base (const html_version& v, const ::std::string& s);
     explicit enum_vec_base (element* box) noexcept : type_base < TYPE, E > (box) { }
-    enum_vec_base& operator = (const enum_vec_base&) = default;
-    enum_vec_base& operator = (enum_vec_base&&) = default;
-    ~enum_vec_base () = default;
     static ::std::string values (const html_version& ) { return ::std::string (); }
     static ::std::size_t value_count () { return 0; }
     void swap (enum_vec_base& t) noexcept;

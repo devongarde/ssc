@@ -1,0 +1,6 @@
+﻿@import url(http://www.example.org/pastoral);
+@import url(http://www.example.org/marine);
+H1 { color: red } /* override imported sheets */
+
+H1 { color: black ! important; background: white ! important }
+P { font-size: 12pt ! important; font-style: italic }

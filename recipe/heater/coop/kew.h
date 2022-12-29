@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -30,11 +30,8 @@ class kew
     ::std::atomic_bool empty_;
 public:
     kew () : empty_ (true) { }
-    kew (const kew& ) = delete;
-    kew (kew&& ) = delete;
+    NO_COPY_CONSTRUCTORS (kew);
     ~kew () = default;
-    kew& operator = (const kew& ) = delete;
-    kew& operator = (kew&& ) = delete;
     void push (const q_entry& t)
     {   lox l (lox_q);
         empty_ = false;

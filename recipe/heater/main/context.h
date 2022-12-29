@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -40,13 +40,13 @@ class corpus;
 
 class context_t
 {   bool            article_ = false, body_ = true, case_ = false, cgi_ = false, classic_ = false, clear_ = false, crosslinks_ = true, example_ = true,
-                    external_ = false, forwarded_ = true, icu_ = true, info_ = false, jsonld_ = false, local_ = true, load_css_ = true, links_ = true, main_ = false,
-                    md_export_ = false, meta_ = false, mf_export_ = false, mf_verify_ = true, microdata_ = true, nids_ = false, nits_ = false, nits_nits_nits_ = false,
-                    not_root_ = false, once_ = true, presume_tags_ = false, progress_ = false, rdfa_ = true, rel_ = false,
-                    revoke_ = false, rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false,
-                    schema_ = true, shadow_comment_ = true, shadow_changed_ = false, shadow_enable_ = false, shadow_ssi_ = true, shadow_space_ = true, slob_ = false,
-                    spec_ = false, spell_ = true, spell_deduced_ = false, ssi_ = true, stats_page_ = false, stats_summary_ = false, test_ = false, unknown_class_ = true,
-                    update_ = false, valid_ = false, versioned_ = false;
+                    external_ = false, forwarded_ = true, icu_ = true, info_ = false, jsonld_ = false, local_ = true, load_css_ = true, links_ = true,
+                    main_ = false, md_export_ = false, meta_ = false, mf_export_ = false, mf_verify_ = true, microdata_ = true, nids_ = false, nits_ = false,
+                    nits_nits_nits_ = false, not_root_ = false, once_ = true, presume_tags_ = false, progress_ = false, rdfa_ = true, rel_ = false,
+                    revoke_ = false, rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, schema_ = true,
+                    shadow_comment_ = true, shadow_changed_ = false, shadow_enable_ = false, shadow_ssi_ = true, shadow_space_ = true, slob_ = false,
+                    spec_ = false, spell_ = true, spell_deduced_ = false, ssi_ = true, stats_page_ = false, stats_summary_ = false, test_ = false,
+                    unknown_class_ = true, update_ = false, valid_ = false, versioned_ = false;
     int             fred_ = 0, title_ = MAX_IDEAL_TITLE_LENGTH;
     e_copy          copy_ = c_none;
     unsigned char   mf_version_ = 3;
@@ -57,7 +57,8 @@ class context_t
     ::std::string   build_, domsg_, export_root_, general_info_, index_, lang_, macro_end_ = "}}", macro_start_ = "{{", msg_, nit_format_,
                     nit_override_, path_, persisted_, root_, secret_, shadow_, shadow_persist_, snippet_, started_, stats_;
     ::boost::filesystem::path config_, corpus_, spell_path_;
-    vstr_t          custom_elements_, environment_, exports_, extensions_, jsonld_ext_, no_ex_check_, report_, shadow_ignore_, shadows_, site_, spellings_, virtuals_;
+    vstr_t          css_ext_, custom_elements_, environment_, exports_, extensions_, jsonld_ext_, no_ex_check_, report_, shadow_ignore_, shadows_, site_,
+                    spellings_, virtuals_;
     ::boost::program_options::options_description validation_;
 #ifndef NO_BOOST_REGEX
     vwild_t         exclude_, pretend_;
@@ -101,6 +102,9 @@ class context_t
         return *this; }
     context_t& corpus (const ::boost::filesystem::path& f) { corpus_ = f; mac (nm_context_corpus, f.string ()); return *this; }
     context_t& crosslinks (const bool b) { crosslinks_ = b; mac (nm_context_crosslinks, b); return *this; }
+    context_t& css_extension (const vstr_t& s) { css_ext_ = s; mac (nm_context_css_extension, s); return *this; }
+    context_t& css_version (const int mjr, const int mnr) noexcept;
+    context_t& css_version (const e_css_version v) noexcept { version_.css_version (v); mac < int > (nm_context_css_version, v); return *this; }
     context_t& custom_elements (const vstr_t& s) { custom_elements_ = s; mac (nm_context_custom_elements, s); return *this; }
     context_t& domsg (const ::std::string& s) { domsg_ = s; return *this; }
     context_t& environment (const e_environment e, const ::std::string& s);
@@ -265,6 +269,8 @@ public:
     e_copy copy () const noexcept { return copy_; }
     ::boost::filesystem::path corpus () const { return corpus_; }
     bool crosslinks () const noexcept { return crosslinks_; }
+    const vstr_t css_extension () const { return css_ext_; }
+    e_css_version css_version () const noexcept { return version_.css_version (); }
     const vstr_t custom_elements () const { return custom_elements_; }
     bool dodedu () const noexcept { return (copy_ >= c_deduplicate); }
     const ::std::string domsg () const { return domsg_; }

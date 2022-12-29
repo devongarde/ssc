@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -25,14 +25,9 @@ class parameters
 {   ustr_t key_value_;
     void parse (const html_version& v, const ::std::string& url_args);
 public:
-	parameters () = default;
-    parameters (const parameters&) = default;
-	parameters (parameters&&) = default;
+    DEFAULT_CONSTRUCTORS (parameters);
 	explicit parameters (const html_version& v, const ::std::string& url_args) { parse (v, url_args); }
-	parameters& operator = (const parameters&) = default;
-	parameters& operator = (parameters&&) = default;
     bool operator == (const parameters& rhs) const;
-    ~parameters () = default;
     void swap (parameters& p) noexcept
     {   key_value_.swap (p.key_value_); }
     bool empty () const noexcept { return key_value_.empty (); }

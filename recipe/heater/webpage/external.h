@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -35,10 +35,7 @@ class external
     map_t url_;
 public:
     external () = default;
-    external (const external& ) = delete;
-    external (external&& ) = delete;
+    NO_COPY_CONSTRUCTORS (external);
     ~external () = default;
-    external& operator = (const external& ) = delete;
-    external& operator = (external&& ) = delete;
     bool verify (nitpick& nits, const html_version& v, const url& u, int& code, bool& repeated);
    ::std::string load (nitpick& nits, const url& u); };

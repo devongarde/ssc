@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -35,7 +35,7 @@ class bra_element_ket
     nitpick nits_;
     void test_specific ();
 public:
-    bra_element_ket () = delete;
+    DEFAULT_CONSTRUCTORS_NO_EMPTY (bra_element_ket);
     bra_element_ket (nitpick& nits, const int line, const ::std::string::const_iterator s, const ::std::string::const_iterator eofe, const ::std::string::const_iterator e, const bool closure, const bool closed)
         : start_ (s), eofe_ (eofe), end_ (e), line_ (line), status_ (bk_node), closure_ (closure), closed_ (closed), tested_ (false), nits_ (nits.nick ())
     { }
@@ -48,11 +48,6 @@ public:
     bra_element_ket (nitpick& nits, const int line, const ::std::string::const_iterator s, const ::std::string::const_iterator e)
         : start_ (s), eofe_ (e), end_ (e), line_ (line), status_ (bk_text), closure_ (false), closed_ (true), tested_ (false), nits_ (nits.nick ())
     { }
-    bra_element_ket (const bra_element_ket& bek) = default;
-	bra_element_ket (bra_element_ket&& bek) = default;
-	~bra_element_ket () = default;
-    bra_element_ket& operator = (const bra_element_ket& bek) = default;
-	bra_element_ket& operator = (bra_element_ket&& bek) = default;
     e_element suspender ();
     void swap (bra_element_ket& bek);
     bool is_xmp ();

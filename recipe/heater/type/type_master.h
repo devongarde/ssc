@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -26,6 +26,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/args.h"
 
 class element;
+
+bool test_many (const vtype_t& vty, nitpick& nits, const html_version& v, const vstr_t& vs); 
 
 template < e_type TYPE > struct type_master : public string_value < TYPE >
 {   using string_value < TYPE > :: string_value; };
@@ -62,6 +64,8 @@ template < e_type T > e_animation_type grab_animation_type () noexcept
 template < e_type T, e_type P, class SZ > struct string_then_type : tidy_string < T >
 {   using tidy_string < T > :: tidy_string;
     static e_animation_type animation_type () noexcept { return grab_animation_type < P > (); }
+    void accumulate (stats_t* s) const
+    {   if (tidy_string < T > :: good ()) type_master < P > :: accumulate (s, tidy_string < T > :: get_string ()); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
         if (tidy_string < T > :: good () || tidy_string < T > :: empty ())
@@ -149,7 +153,7 @@ template < e_type T, class SZ > struct type_must_be : tidy_string < T >
             nits.pick (nit_isnt, es_error, ec_type, quote (SZ :: sz ()), " expected, not ", quote (ss)); }
         tidy_string < T > :: status (s_invalid); } };
 
-template < e_type T, class SZ1, class SZ2 > struct either_string : tidy_string < T >
+template < e_type T, class SZ1, class SZ2 > struct type_either_string : tidy_string < T >
 {   using tidy_string < T > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
@@ -169,11 +173,13 @@ template < e_type T, e_type A, e_type B > struct type_either_or : tidy_string < 
         if (tidy_string < T > :: good () || tidy_string < T > :: empty ())
         {   nitpick nuts, knots;
             const ::std::string ss (tidy_string < T > :: get_string ());
-            if (test_value < A > (nuts, v, ss, tidy_string < T > :: id ())) nits.merge (nuts);
-            else if (test_value < B > (knots, v, ss, tidy_string < T > :: id ())) nits.merge (knots);
-            else
-            {   nits.merge (nuts); nits.merge (knots); }
-        tidy_string < T > :: status (s_invalid); } } };
+            if (test_value < A > (nuts, v, ss, tidy_string < T > :: id ()))
+            {   nits.merge (nuts); return; }
+            if (test_value < B > (knots, v, ss, tidy_string < T > :: id ()))
+            {   nits.merge (knots); return; }
+            nits.merge (nuts);
+            nits.merge (knots); }
+        tidy_string < T > :: status (s_invalid); } };
 
 template < e_type T, e_type A, e_type B > struct type_either_neither : tidy_string < T >
 {   using tidy_string < T > :: tidy_string;
@@ -220,9 +226,73 @@ template < e_type T, e_type A, e_type B, e_type C, e_type D > struct type_one_of
             {   nits.merge (nuts); nits.merge (knots); nits.merge (knits); nits.merge (knats); }
         tidy_string < T > :: status (s_invalid); } } };
 
+template < e_type T, e_type A, e_type B, e_type C, e_type D, e_type E > struct type_one_of_five : tidy_string < T >
+{   using tidy_string < T > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < T > :: set_value (nits, v, s);
+        if (tidy_string < T > :: good () || tidy_string < T > :: empty ())
+        {   nitpick nuts, knots, knits, knats, nets;
+            const ::std::string ss (tidy_string < T > :: get_string ());
+            if (test_value < A > (nuts, v, ss, tidy_string < T > :: id ())) nits.merge (nuts);
+            else if (test_value < B > (knots, v, ss, tidy_string < T > :: id ())) nits.merge (knots);
+            else if (test_value < C > (knits, v, ss, tidy_string < T > :: id ())) nits.merge (knits);
+            else if (test_value < D > (knats, v, ss, tidy_string < T > :: id ())) nits.merge (knats);
+            else if (test_value < E > (nets, v, ss, tidy_string < T > :: id ())) nits.merge (nets);
+            else
+            {   nits.merge (nuts); nits.merge (knots); nits.merge (knits); nits.merge (knats); nits.merge (nets); }
+        tidy_string < T > :: status (s_invalid); } } };
+
+template < e_type T, e_type A, e_type B, class SZ > struct type_one_two : string_vector < T, SZ >
+{   using string_vector < T, SZ > :: string_vector;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   string_vector < T, SZ > :: set_value (nits, v, s);
+        if (string_vector < T, SZ > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "values expected");
+        else if (string_vector < T, SZ > :: good ())
+        {   vtype_t vty = { A, B };
+            if (test_many (vty, nits, v, string_vector < T, SZ > :: get ())) return; }
+        string_vector < T, SZ > :: status (s_invalid); } };
+
+template < e_type T, e_type A, e_type B, e_type C, class SZ > struct type_one_two_three : string_vector < T, SZ >
+{   using string_vector < T, SZ > :: string_vector;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   string_vector < T, SZ > :: set_value (nits, v, s);
+        if (string_vector < T, SZ > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "values expected");
+        else if (string_vector < T, SZ > :: good ())
+        {   vtype_t vty = { A, B, C };
+            if (test_many (vty, nits, v, string_vector < T, SZ > :: get ())) return; }
+        string_vector < T, SZ > :: status (s_invalid); } };
+
+template < e_type T, e_type A, e_type B, e_type C, e_type D, class SZ > struct type_one_two_three_four : string_vector < T, SZ >
+{   using string_vector < T, SZ > :: string_vector;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   string_vector < T, SZ > :: set_value (nits, v, s);
+        if (string_vector < T, SZ > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "values expected");
+        else if (string_vector < T, SZ > :: good ())
+        {   vtype_t vty = { A, B, C, D };
+            if (test_many (vty, nits, v, string_vector < T, SZ > :: get ())) return; }
+        string_vector < T, SZ > :: status (s_invalid); } };
+
+template < e_type T, e_type A, e_type B, e_type C, e_type D, e_type E, class SZ > struct type_one_two_three_four_five : string_vector < T, SZ >
+{   using string_vector < T, SZ > :: string_vector;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   string_vector < T, SZ > :: set_value (nits, v, s);
+        if (string_vector < T, SZ > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "values expected");
+        else if (string_vector < T, SZ > :: good ())
+        {   vtype_t vty = { A, B, C, D, E };
+            if (test_many (vty, nits, v, string_vector < T, SZ > :: get ())) return; }
+        string_vector < T, SZ > :: status (s_invalid); } };
+
 template < e_type T, class SZ, e_type P > struct type_at_least_one : string_vector < T, SZ >
 {   using string_vector < T, SZ > :: string_vector;
     static e_animation_type animation_type () noexcept { return grab_animation_type < P > (); }
+    void accumulate (stats_t* s) const
+    {   if (string_vector < T, SZ > :: good ())
+        {   for (auto arg : string_vector < T, SZ > :: get ())
+                type_master < P > :: accumulate (s, arg); } }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector < T, SZ > :: set_value (nits, v, s);
         if (string_vector < T, SZ > :: empty ())
@@ -417,7 +487,7 @@ template < e_type T, e_type U, class SZ, e_type P > struct type_many_then_maybe 
         tidy_string < T > :: status (s_invalid); }
     ::std::size_t size () const { return size_; } };
 
-template < e_type T, e_type P, class SZ1, class SZ2 > struct id_or_either_string : type_or_either_string < T, P, SZ1, SZ2 >
+template < e_type T, e_type P, class SZ1, class SZ2 > struct type_id_or_either_string : type_or_either_string < T, P, SZ1, SZ2 >
 {   using type_or_either_string < T, P, SZ1, SZ2 > :: type_or_either_string;
     static e_animation_type animation_type () noexcept { return grab_animation_type < P > (); }
     void verify_id (element& e)
@@ -428,6 +498,10 @@ template < e_type T, e_type P, class SZ1, class SZ2 > struct id_or_either_string
 
 template < e_type T, e_type P > struct type_or_null : tidy_string < T >
 {   using tidy_string < T > :: tidy_string;
+    void accumulate (stats_t* s) const
+    {   if (tidy_string < T > :: good ())
+        {   const ::std::string ss (tidy_string < T > :: get_string ());
+            if (! ss.empty ()) type_master < P > :: accumulate (s, ss); } }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
         if (tidy_string < T > :: empty ())
@@ -438,3 +512,47 @@ template < e_type T, e_type P > struct type_or_null : tidy_string < T >
             if (test_value < P > (nits, v, ss, tidy_string < T > :: id ())) return; }
         tidy_string < T > :: status (s_invalid); } };
 
+// would be better with various unit types and a concatenated type
+template < e_type T, e_type N, class SZ1, class SZ2 > struct type_number_unit_2 : type_master < N >
+{   using type_master < N > :: type_master;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   ::std::string ss (trim_the_lot_off (s));
+        if (ss.empty ())
+            nits.pick (nit_empty, es_error, ec_type, "a number with units expected");
+        else
+        {   vstr_t sz = { SZ1::sz (), SZ2::sz () };
+            bool found = false;
+            for (auto sss : sz)
+            {   if (sss.length () >= ss.length ()) continue;
+                if (compare_complain (nits, v, ss.substr (ss.length () - sss.length () - 1), sss.c_str ()))
+                {   found = true;
+                    ss = ss.substr (0, ss.length () - sss.length ());
+                    break; } }
+            if (! found)
+                nits.pick (nit_bad_units, es_error, ec_type, "Units expected: '", SZ1::sz (), "' or '", SZ2::sz (), "'");
+            else
+            {   type_master < N > :: set_value (nits, v, ss);  
+                return; } }
+        type_master < N > :: status (s_invalid); } };
+
+template < e_type T, e_type N, class SZ1, class SZ2, class SZ3 > struct type_number_unit_3 : type_master < N >
+{   using type_master < N > :: type_master;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   ::std::string ss (trim_the_lot_off (s));
+        if (ss.empty ())
+            nits.pick (nit_empty, es_error, ec_type, "a number with units expected");
+        else
+        {   vstr_t sz = { SZ1::sz (), SZ2::sz (), SZ3::sz () };
+            bool found = false;
+            for (auto sss : sz)
+            {   if (sss.length () >= ss.length ()) continue;
+                if (compare_complain (nits, v, ss.substr (ss.length () - sss.length () - 1), sss.c_str ()))
+                {   found = true;
+                    ss = ss.substr (0, ss.length () - sss.length ());
+                    break; } }
+            if (! found)
+                nits.pick (nit_bad_units, es_error, ec_type, "Units expected: '", SZ1::sz (), "', '", SZ2::sz (), "' or '", SZ3::sz (), "'");
+            else
+            {   type_master < N > :: set_value (nits, v, ss);  
+                return; } }
+        type_master < N > :: status (s_invalid); } };

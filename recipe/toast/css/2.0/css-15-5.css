@@ -1,0 +1,75 @@
+﻿/*
+Example taken from CSS 2.0 specification. Its (c) notice states:
+
+Permission to use, copy, and distribute the contents of this document, or the
+W3C document from which this statement is linked, in any medium for any
+purpose and without fee or royalty is hereby granted, provided that you include
+the following on ALL copies of the document, or portions thereof, that you use: 
+1. A link or URI to the original W3C document. 
+2. The pre-existing copyright notice of the original author, if it doesn’t exist, a
+notice of the form: "Copyright © World Wide Web Consortium, 
+(Massachusetts Institute of Technology, Institut National de Recherche en 
+Informatique et en Automatique, Keio University). All Rights Reserved." 
+3. If it exists, the STATUS of the W3C document
+
+https://www.w3.org/TR/1998/REC-CSS2-19980512/
+Copyright [p. 18] © 1998 W3C (MIT, INRIA, Keio ), All Rights Reserved.
+W3C Recommendation
+*/
+
+@font-face {
+ src: local("Alabama Italic"),
+ url(http://www.fonts.org/A/alabama-italic) format("truetype");
+ panose-1: 2 4 5 2 5 4 5 9 3 3;
+ font-family: Alabama, serif;
+ font-weight: 300, 400, 500;
+ font-style: italic, oblique;
+}
+
+@font-face {
+ src: local("Helvetica Medium"),
+ url(http://www.fonts.org/sans/Helvetica_family) format("truedoc");
+ font-family: "Helvetica";
+ font-style: normal
+}
+@font-face {
+ src: local("Helvetica Oblique"),
+ url("http://www.fonts.org/sans/Helvetica_family") format("truedoc");
+ font-family: "Helvetica";
+ font-style: oblique;
+ slope: -18
+}
+
+@font-face {
+ font-family: Excelsior;
+ src: local("Excelsior Roman"), url("http://site/er") format("intellifont");
+ unicode-range: U+??; /* Latin-1 */
+}
+@font-face {
+ font-family: Excelsior;
+ src: local("Excelsior EastA Roman"), url("http://site/ear") format("intellifont");
+ unicode-range: U+100-220; /* Latin Extended A and B */
+}
+@font-face {
+ font-family: Excelsior;
+ src: local("Excelsior Cyrillic Upright"), url("http://site/ecr") format("intellifont");
+ unicode-range: U+4??; /* Cyrillic */
+}
+@font-face {
+ font-family: Excelsior;
+ src: url("http://site/excels") format("truedoc");
+ unicode-range: U+??,U+100-220,U+4??;
+}
+
+@font-face {
+ src: local("Palatino"),
+ local("Times New Roman"),
+ local("New York"),
+ local("Utopia"),
+ url("http://somewhere/free/font");
+ font-family: serif;
+ font-weight: 100, 200, 300, 400, 500;
+ font-style: normal;
+ font-variant: normal;
+ font-size: all
+}

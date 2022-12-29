@@ -1,1 +1,0 @@
-Directory used for templates and persistence.

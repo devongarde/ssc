@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "utility/common.h"
-#include "css/css.h"
 #include "url/url.h"
 #include "feedback/nitpick.h"
 
@@ -28,6 +27,7 @@ class directory;
 class html_version;
 class elem;
 class element;
+class stats_t;
 
 typedef bool mono;
 
@@ -84,6 +84,8 @@ public:
     element* box () noexcept { return box_; }
     element* box () const noexcept { return box_; }
     void box (element* b) noexcept { box_ = b; }
+    void accumulate (stats_t* ) const { }
+    static void accumulate (stats_t* , const ::std::string& ) { }
     ::std::string report () const
     {   ::std::string s;
         if (status_ == s_invalid) s = "x";

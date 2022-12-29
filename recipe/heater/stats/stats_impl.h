@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "stats/stats2.h"
 #include "stats/stats3.h"
 #include "stats/stats4.h"
+#include "stats/stats5.h"
 #include "parser/html_version.h"
 
 typedef stats0 < html_version > version_stats;
@@ -41,10 +42,17 @@ class stats
     httpequiv_stats httpequiv_;
     metaname_stats metaname_;
     meta_value_stats meta_value_;
+    css_property_stats css_property_;
+    css_statement_stats css_statement_;
+    smsid_stats dcl_class_, dcl_id_, dcl_element_class_, dcl_element_id_, font_,
+                use_class_, use_id_, use_element_class_, use_element_id_;
     uint64_t file_count_ = 0;
     unsigned smallest_ = UINT_MAX;
     unsigned biggest_ = 0;
     double file_size_ = 0.0;
+    ::std::string single_usage (const ::std::string name, const ::std::size_t dn, const ::std::size_t un) const;
+    ::std::string report_usage (const ::std::string& category, const smsid_stats& sum) const;
+    ::std::string report_usage (const ::std::string& category, const smsid_stats& dcl, const smsid_stats& used) const;
     ::std::string ontology_report () const;
     ::std::string element_report () const;
     ::std::string version_report () const;
@@ -56,6 +64,11 @@ class stats
     ::std::string file_report () const;
     ::std::string reference_report () const;
     ::std::string meta_report () const;
+    ::std::string css_property_report () const;
+    ::std::string css_statement_report () const;
+    ::std::string font_report () const;
+    ::std::string class_report () const;
+    ::std::string id_report () const;
 public:
     void mark (const e_element e)
     {   element_.mark (e); }
@@ -81,6 +94,10 @@ public:
     {   schema_.mark (s); }
     void mark (const e_schema_type s, const e_schema_property p)
     {   schema_property_.mark (s, p); }
+    void mark (const e_css_property p)
+    {   css_property_.mark (p); }
+    void mark (const e_css_statement s)
+    {   css_statement_.mark (s); }
     void mark_meta (const e_httpequiv he)
     {   httpequiv_.mark (he); }
     void mark_meta (const e_metaname mn)
@@ -88,6 +105,32 @@ public:
     void mark_meta (const e_metaname mn, const ::std::string& val)
     {   meta_value_.mark (mn, tart (val)); }
     void mark_file (const unsigned size) noexcept;
+    void dcl_class (const ::std::string& s, const ::std::size_t n = 1)
+    {   dcl_class_.mark (s, n); }
+    void dcl_id (const ::std::string& s, const ::std::size_t n = 1)
+    {   dcl_id_.mark (s, n); }
+    void dcl_element_class (const ::std::string& s, const ::std::size_t n = 1)
+    {   dcl_element_class_.mark (s, n); }
+    void dcl_element_id (const ::std::string& s, const ::std::size_t n = 1)
+    {   dcl_element_id_.mark (s, n); }
+    void mark_font (const ::std::string& s, const ::std::size_t n = 1)
+    {   font_.mark (s, n); }
+    void use_class (const ::std::string& s, const ::std::size_t n = 1)
+    {   use_class_.mark (s, n); }
+    void use_id (const ::std::string& s, const ::std::size_t n = 1)
+    {   use_id_.mark (s, n); }
+    void use_element_class (const ::std::string& s, const ::std::size_t n = 1)
+    {   use_element_class_.mark (s, n); }
+    void use_element_id (const ::std::string& s, const ::std::size_t n = 1)
+    {   use_element_id_.mark (s, n); }
+    bool has_class (const ::std::string& s) const
+    {   return dcl_class_.at (s) > 0; }
+    bool has_id (const ::std::string& s) const
+    {   return dcl_id_.at (s) > 0; }
+    void merge_class (const smsid_t& s) { dcl_class_.merge (s); }
+    void merge_id (const smsid_t& s) { dcl_id_.merge (s); }
+    void merge_element_class (const smsid_t& s) { dcl_element_class_.merge (s); }
+    void merge_element_id (const smsid_t& s) { dcl_element_id_.merge (s); }
     uint64_t file_count () const noexcept
     {   return file_count_; }
     unsigned element_count (const e_element e) const
@@ -96,7 +139,7 @@ public:
     {   return severity_.at (s); }
     unsigned visible_count (const e_element e) const
     {   return visible_.at (e); }
+    void check_for_standard_classes (nitpick& nits, const html_version& v) const;
     bool severity_exceeded () const;
     void accumulate (stats& o) const;
     ::std::string report (const bool grand) const; };
-

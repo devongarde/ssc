@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -35,15 +35,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 struct url_export
 {   ::std::string hreflang_, media_, text_, title_, type_;
     vstr_t rels_;
-    url_export () = default;
+    DEFAULT_CONSTRUCTORS (url_export);
     url_export (const ::std::string& hreflang, const ::std::string& media, const vstr_t& rels, const ::std::string& text, const ::std::string& title, const ::std::string& type)
         : hreflang_ (hreflang), media_ (media), text_ (text), title_ (title), type_ (type), rels_ (rels) {}
-    url_export (const ::std::string& str) { reset (str); }
-    url_export (const url_export& ) = default;
-    url_export (url_export&& ) = default;
-    ~url_export () = default;
-    url_export& operator = (const url_export& ) = default;
-    url_export& operator = (url_export&& ) = default;
+    explicit url_export (const ::std::string& str) { reset (str); }
     bool operator == (const url_export& u) const { return rels_ == u.rels_; }
     bool operator != (const url_export& u) const { return rels_ != u.rels_; }
     bool operator < (const url_export& u) const { return rels_ < u.rels_; }

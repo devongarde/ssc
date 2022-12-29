@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -59,7 +59,6 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
     switch (t)
     {   TEST_VALUE (t_unknown);
         TEST_VALUE (t_0_more);
-        TEST_VALUE (t_1);
         TEST_VALUE (t_10);
         TEST_VALUE (t_1_to_7);
         TEST_VALUE (t_1_to_20);
@@ -67,11 +66,9 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_1_more);
         TEST_VALUE (t_1_more_i);
         TEST_VALUE (t_2pt);
-        TEST_VALUE (t_abbreviated);
         TEST_VALUE (t_about);
         TEST_VALUE (t_absolute_url);
         TEST_VALUE (t_accept);
-        TEST_VALUE (t_accesskey);
         TEST_VALUE (t_accrual_method);
         TEST_VALUE (t_accrual_periodicity);
         TEST_VALUE (t_accrual_policy);
@@ -94,13 +91,11 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_angle_a);
         TEST_VALUE (t_angle_ai);
         TEST_VALUE (t_angle_i);
-        TEST_VALUE (t_animate);
         TEST_VALUE (t_arabicenum);
         TEST_VALUE (t_arabic_form);
         TEST_VALUE (t_aria_autocomplete);
         TEST_VALUE (t_aria_invalidity);
         TEST_VALUE (t_aria_live);
-        TEST_VALUE (t_aria_pressed);
         TEST_VALUE (t_aria_sort);
         TEST_VALUE (t_as);
         TEST_VALUE (t_as_units);
@@ -117,8 +112,6 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_base);
         TEST_VALUE (t_baselineshift);
         TEST_VALUE (t_bb);
-        TEST_VALUE (t_beginarg);
-        TEST_VALUE (t_beginfn);
         TEST_VALUE (t_beginvalue);
         TEST_VALUE (t_beginvalues);
         TEST_VALUE (t_beginvaluelist);
@@ -129,10 +122,8 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_bools);
         TEST_VALUE (t_buffered_rendering);
         TEST_VALUE (t_button);
-        TEST_VALUE (t_byte);
         TEST_VALUE (t_cache);
         TEST_VALUE (t_cachekey);
-        TEST_VALUE (t_caches);
         TEST_VALUE (t_calcmode);
         TEST_VALUE (t_captionalign);
         TEST_VALUE (t_capture);
@@ -161,13 +152,13 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_colour_profile_name);
         TEST_VALUE (t_colour_profile_name_or_uri);
         TEST_VALUE (t_colour_rendering);
+        TEST_VALUE (t_colour_trans);
         TEST_VALUE (t_colour_v);
         TEST_VALUE (t_command);
         TEST_VALUE (t_compact);
         TEST_VALUE (t_comp_op);
         TEST_VALUE (t_composite_operator);
         TEST_VALUE (t_compositing);
-        TEST_VALUE (t_conditional);
         TEST_VALUE (t_conlit);
         TEST_VALUE (t_connect);
         TEST_VALUE (t_content_encoding);
@@ -187,6 +178,42 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_crossout);
         TEST_VALUE (t_csp);
         TEST_VALUE (t_css);
+        TEST_VALUE (t_css_absolute_size);
+        TEST_VALUE (t_css_background);
+        TEST_VALUE (t_css_background_attachment);
+        TEST_VALUE (t_css_background_position);
+        TEST_VALUE (t_css_background_repeat);
+        TEST_VALUE (t_css_backval);
+        TEST_VALUE (t_css_border_measure);
+        TEST_VALUE (t_css_borders_measure);
+        TEST_VALUE (t_css_border_style);
+        TEST_VALUE (t_css_border_styles);
+        TEST_VALUE (t_css_border_width);
+        TEST_VALUE (t_css_border_wsc);
+        TEST_VALUE (t_css_clear);
+        TEST_VALUE (t_css_colour);
+        TEST_VALUE (t_css_display);
+        TEST_VALUE (t_css_earnest);
+        TEST_VALUE (t_css_font_size);
+        TEST_VALUE (t_css_fn);
+        TEST_VALUE (t_css_image);
+        TEST_VALUE (t_css_length);
+        TEST_VALUE (t_css_length_auto);
+        TEST_VALUE (t_css_line_height);
+        TEST_VALUE (t_css_list_style);
+        TEST_VALUE (t_css_list_style_position);
+        TEST_VALUE (t_css_list_style_type);
+        TEST_VALUE (t_css_ls_val);
+        TEST_VALUE (t_css_margins);
+        TEST_VALUE (t_css_property);
+        TEST_VALUE (t_css_relative_size);
+        TEST_VALUE (t_css_spacing);
+        TEST_VALUE (t_css_statement);
+        TEST_VALUE (t_css_text_transform);
+        TEST_VALUE (t_css_vertical_align);
+        TEST_VALUE (t_css_whitespace);
+        TEST_VALUE (t_css_wsc_val);
+        TEST_VALUE (t_css_url);
         TEST_VALUE (t_csvw_direction);
         TEST_VALUE (t_csp_ancestor);
         TEST_VALUE (t_csp_directive);
@@ -210,7 +237,6 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_datetime_4);
         TEST_VALUE (t_datetime_5);
         TEST_VALUE (t_day);
-        TEST_VALUE (t_dcmitype);
         TEST_VALUE (t_decalign);
         TEST_VALUE (t_decoding);
         TEST_VALUE (t_defaultaction);
@@ -224,7 +250,6 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_dominantbaseline);
         TEST_VALUE (t_dosh);
         TEST_VALUE (t_dsc);
-        TEST_VALUE (t_dsctv);
         TEST_VALUE (t_dur);
         TEST_VALUE (t_dur_repeat);
         TEST_VALUE (t_duration);
@@ -404,6 +429,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_loopie);
         TEST_VALUE (t_lraalign);
         TEST_VALUE (t_lralign);
+        TEST_VALUE (t_lrnalign);
         TEST_VALUE (t_lspace);
         TEST_VALUE (t_mah);
         TEST_VALUE (t_marked_up);
@@ -636,7 +662,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_svg_clip);
         TEST_VALUE (t_svg_content);
         TEST_VALUE (t_svg_direction);
-        TEST_VALUE (t_svg_direction2);
+        TEST_VALUE (t_ltr_rtl);
         TEST_VALUE (t_svg_display);
         TEST_VALUE (t_svg_duration);
         TEST_VALUE (t_svg_feature);

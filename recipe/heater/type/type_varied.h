@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -41,7 +41,7 @@ template < e_type BASE > struct varied : tidy_string < BASE >
     ::std::size_t type () const noexcept { return type_; }
     int get_int () const noexcept { return int_; }
     template < class T > void validate_type (nitpick& nits, const html_version& v)
-    {   T t;
+    {   T t (tidy_string < BASE > :: box ());
         t.set_value (nits, v, tidy_string < BASE > :: get_string ());
         if (t.good ())
         {   type_ = t.type ();
@@ -49,12 +49,12 @@ template < e_type BASE > struct varied : tidy_string < BASE >
         else tidy_string < BASE > :: status (s_invalid); }
    template < class T > void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* pe, const ::std::string& )
     {   if (tidy_string < BASE > :: good ())
-        {   T t;
+        {   T t (tidy_string < BASE > :: box ());
             t.set_value (nits, v, tidy_string < BASE > :: get_string ());
             t.verify_attribute (nits, v, e, pe);
             if (! t.good ()) tidy_string < BASE > :: status (s_invalid); } }
     template < class T > bool check_id_defined (nitpick& nits, const html_version& v, ids_t& ids, element* pe)
-    {   T t;
+    {   T t (tidy_string < BASE > :: box ());
         t.set_value (nits, v, tidy_string < BASE > :: get_string ());
         if (t.good ()) return t.invalid_id (nits, v, ids, pe);
         return false; } };
@@ -245,7 +245,7 @@ template < > struct type_master < t_direction > : varied < t_direction >
                     break;
                 case sv_2_0 :
                 case sv_2_1 :
-                    validate_type < type_master < t_svg_direction2 > > (nits, v);
+                    validate_type < type_master < t_ltr_rtl > > (nits, v);
                     break;
                 default :
                     validate_type < type_master < t_uplr > > (nits, v); } } };

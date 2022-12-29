@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "microdata/microdata_export.h"
 #include "microformat/microformat_export.h"
 #include "css/css.h"
-#include "css/css_group.h"
+#include "css/group.h"
 #include "parser/parse_elements.h"
 #include "stats/stats.h"
 #include "parser/parse_ssi.h"
@@ -62,7 +62,7 @@ class page
     url base_;
     ustr_t abbrs_;
     ::std::time_t updated_ = 0;
-    css_group_t css_;
+    css_group css_;
     friend class tag;
 public:
     page (nitpick& nits, const ::std::string& name, const ::std::time_t updated, ::std::string& content, const directory* d = nullptr);
@@ -70,7 +70,7 @@ public:
     explicit page (const ::std::string& content, const bool outsider = false);
     ~page () { cleanup (); }
     void swap (page& p);
-    void cleanup ();
+    void cleanup () noexcept;
     nitpick& nits () noexcept { return nits_; }
     const nitpick& nits () const noexcept { return nits_; }
     bool parse (::std::string& content);
@@ -101,8 +101,8 @@ public:
     void confirm_title () noexcept { has_title_ = true; }
     void style_css (const bool b) noexcept { style_css_ = b; }
     bool style_css () const noexcept { return style_css_; }
-    css_group_t& css () { return css_; }
-    const css_group_t& css () const { return css_; }
+    css_group& css () { return css_; }
+    const css_group& css () const { return css_; }
     bool charset_defined () const noexcept { return ! charset_.empty (); }
     const ::std::string& lang () const noexcept { return lang_; }
     void lang (nitpick& nits, const html_version& v, const ::std::string& l);
@@ -124,12 +124,46 @@ public:
     {   stats_.mark (s); }
     void mark (const e_schema_type s, const e_schema_property p)
     {   stats_.mark (s, p); }
+    void mark (const e_css_property s)
+    {   stats_.mark (s); }
     void mark_meta (const e_httpequiv he)
     {   stats_.mark_meta (he); }
     void mark_meta (const e_metaname mn)
     {   stats_.mark_meta (mn); }
     void mark_meta (const e_metaname mn, const ::std::string& val)
     {   stats_.mark_meta (mn, val); }
+    void dcl_class (const ::std::string& s, const ::std::size_t n = 1)
+    {   stats_.dcl_class (s, n); }
+    void dcl_id (const ::std::string& s, const ::std::size_t n = 1)
+    {   stats_.dcl_id (s, n); }
+    void dcl_element_class (const ::std::string& s, const ::std::size_t n = 1)
+    {   stats_.dcl_element_class (s, n); }
+    void dcl_element_id (const ::std::string& s, const ::std::size_t n = 1)
+    {   stats_.dcl_element_id (s, n); }
+    void mark_font (const ::std::string& s, const ::std::size_t n = 1)
+    {   stats_.mark_font (s, n); }
+    void merge_class (const smsid_t& s)
+    {   stats_.merge_class (s); }
+    void merge_id (const smsid_t& s)
+    {   stats_.merge_id (s); }
+    void merge_element_class (const smsid_t& s)
+    {   stats_.merge_element_class (s); }
+    void merge_element_id (const smsid_t& s)
+    {   stats_.merge_element_id (s); }
+    void use_class (const ::std::string& s, const ::std::size_t n = 1)
+    {   stats_.use_class (s, n); }
+    void use_id (const ::std::string& s, const ::std::size_t n = 1)
+    {   stats_.use_id (s, n); }
+    void use_element_class (const ::std::string& s, const ::std::size_t n = 1)
+    {   stats_.use_element_class (s, n); }
+    void use_element_id (const ::std::string& s, const ::std::size_t n = 1)
+    {   stats_.use_element_id (s, n); }
+    bool has_class (const ::std::string& s) const
+    {   return stats_.has_class (s); }
+    bool has_id (const ::std::string& s) const
+    {   return stats_.has_id (s); }
+    void check_for_standard_classes (nitpick& nits, const html_version& v) const
+    {   stats_.check_for_standard_classes (nits, v); }
     unsigned count (const e_element e) const
     {   return stats_.count (e); }
     unsigned visible_count (const e_element e) const

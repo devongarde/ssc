@@ -1,5 +1,8 @@
 -N 1 -f ../toast/w3/rddl/w3.conf
 
+PASS ../toast/w3/rddl/index.html
+2 naughty_lang
+
 PASS ../toast/w3/rddl/rddl_fpi.html
 1 xhtml_1_1
 2 unexpected_doctype_content

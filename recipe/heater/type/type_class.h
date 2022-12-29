@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -51,17 +51,18 @@ template < > inline void enum_vec < t_class, e_class > :: set_value (nitpick& ni
     if (strs.size () == 0)
     {   enum_vec_base < e_class, t_class > :: status (s_empty); return; }
     for (auto s : strs)
-    {   enum_vec_base < e_class, t_class > :: base_t t;
+    {   enum_vec_base < e_class, t_class > :: base_t t (enum_vec_base < e_class, t_class > :: box ());
         t.set_value (nits, v, s);
         VERIFY_NOT_NULL (box (), __FILE__, __LINE__);
         if (is_whatwg_class (t.get ()))
         {   nits.pick (nit_whatwg_class, ed_jan07, "3.4.5. Classes", es_comment, ec_attribute, "FYI, ", quote (s), " was a draft HTML 5 standard class name.");
             if ((v.mjr () != HTML_2007) || (v.mnr () >= HTML_JUL)) t.status (s_invalid); }
         if (t.invalid ())
-        {   if (note_class_usage (box (), s))
-                nits.pick (nit_spotted_css_class, es_comment, ec_css, "CSS class ", quote (s), " recognised");
-            else if (! check_class_spelling (nits, v, s))
-                nits.pick (nit_unrecognised_value, es_warning, ec_type, quote (s), " is unknown");
+        {   if (context.load_css () && (context.css_version () == css_1))
+                if (note_class_usage (box (), s))
+                    nits.pick (nit_spotted_css_class, es_comment, ec_css, "CSS class ", quote (s), " recognised");
+                else if (! check_class_spelling (nits, v, s))
+                    nits.pick (nit_unrecognised_value, es_warning, ec_type, quote (s), " is unknown");
             t.status (s_good); }
         enum_vec_base < e_class, t_class > :: value_.push_back (t); }
     type_base < e_class, t_class > :: status (s_good); }

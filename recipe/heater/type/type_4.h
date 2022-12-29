@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -65,6 +65,9 @@ template < > struct type_master < t_aria_autocomplete > : four_value < t_aria_au
 template < > struct type_master < t_aria_invalidity > : four_value < t_aria_invalidity, e_aria_invalidity, sz_false, sz_grammar, sz_spelling, sz_true >
 { using four_value < t_aria_invalidity, e_aria_invalidity, sz_false, sz_grammar, sz_spelling, sz_true > :: four_value; };
 
+template < > struct type_master < t_aria_sort > : four_value < t_aria_sort, e_aria_sort, sz_ascending, sz_descending, sz_none, sz_other >
+{ using four_value < t_aria_sort, e_aria_sort, sz_ascending, sz_descending, sz_none, sz_other> :: four_value; };
+
 template < > struct type_master < t_buffered_rendering > : four_value < t_buffered_rendering, e_buffered_rendering, sz_auto, sz_dynamic, sz_static, sz_inherit >
 { using four_value < t_buffered_rendering, e_buffered_rendering, sz_auto, sz_dynamic, sz_static, sz_inherit > :: four_value; };
 
@@ -82,9 +85,6 @@ template < > struct type_master < t_channelselector > : four_value < t_channelse
 
 template < > struct type_master < t_content_encoding > : four_value < t_content_encoding, e_content_encoding, sz_gzip, sz_compress, sz_deflate, sz_identity >
 { using four_value < t_content_encoding, e_content_encoding, sz_gzip, sz_compress, sz_deflate, sz_identity > :: four_value; };
-
-template < > struct type_master < t_dsctv > : four_value < t_dsctv, e_dsctv, sz_disc, sz_square, sz_circle, sz_triangle >
-{ using four_value < t_dsctv, e_dsctv, sz_disc, sz_square, sz_circle, sz_triangle > :: four_value; };
 
 template < > struct type_master < t_device > : four_value < t_device, e_device, sz_media, sz_fs, sz_rs232, sz_usb >
 { using four_value < t_device, e_device, sz_media, sz_fs, sz_rs232, sz_usb > :: four_value; };

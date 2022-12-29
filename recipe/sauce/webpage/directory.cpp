@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -182,6 +182,7 @@ void directory::internal_get_export_path (const ::std::string& item, ::boost::fi
 
 bool directory::scan (nitpick* ticks, const ::std::string& site)
 {   PRESUME (! offsite_, __FILE__, __LINE__);
+    VERIFY_NOT_NULL (ticks, __FILE__, __LINE__);
     const ::boost::filesystem::path disk (get_disk_path ());
     for (const ::boost::filesystem::directory_entry& x : ::boost::filesystem::directory_iterator (disk))
         if (! context.excluded (*ticks, x.path ()))
@@ -202,7 +203,8 @@ bool directory::add_to_content (nitpick* ticks, const ::boost::filesystem::direc
     if (is_regular_file (qp))
     {   if (context.dodedu ())
             get_crc (*ticks, ndx);
-        return content_.insert (value_t (f, nullptr)).second; }
+        if (is_css (f)) return priority_.insert (value_t (f, nullptr)).second;
+        else return content_.insert (value_t (f, nullptr)).second; }
     if (is_directory (qp))
     {   dir_ptr dp (new directory (ticks, f, ndx, this, p, false)); 
         if (content_.insert (value_t (f, dp)).second)
@@ -221,7 +223,7 @@ bool directory::add_to_content (nitpick* ticks, const ::boost::filesystem::direc
 void directory::examine_page (nitpick* ticks, const ::std::string& file) const
 {   nitpick nits;
     knickers k (nits, ticks);
-    if (! is_webpage (file, context.extensions ()))
+    if (! is_verifiable_file (file))
     {   PRESUME (context.shadow_files (), __FILE__, __LINE__);
         shadow_file (nits, file); }
     else
@@ -239,7 +241,7 @@ void directory::examine_page (nitpick* ticks, const ::std::string& file) const
                 mac.emplace (nm_page_site_path, sp);
                 try
                 {   ::std::string content (read_text_file (nits, p));
-                    const bool jld = is_one_of (::boost::filesystem::path (p).extension ().string ().substr (1), context.jsonld_extension ());
+                    const bool jld = is_jsonld (p.string ());
                     if (jld) parse_json_ld (nits, context.html_ver (), content);
                     ss << nits.review (mac);
                     if (! jld)
@@ -251,11 +253,12 @@ void directory::examine_page (nitpick* ticks, const ::std::string& file) const
                                 web.verify_locale (p);
                                 web.mf_write (p);
                                 web.lynx ();
-                                web.css ().accumulate ();
                                 if (context.shadow_pages ()) web.shadow (nits, get_shadow_path () / file);
                                 ss << web.nits ().review (mac);
+                                ss << web.css ().review (mac);
                                 ss << web.report (); }
                             web.nits ().accumulate (nits);
+                            web.css ().accumulate (nits);
                             web.cleanup (); }
                         catch (...)
                         {   web.cleanup (); throw; } } }
@@ -277,6 +280,16 @@ void directory::examine (nitpick* ticks, dir_ptr me_me_me) const
     knickers k (nits, ticks);
     if (context.shadow_any ()) shadow_folder (nits);
     sstr_t shadowed;
+    for (auto i : priority_)
+    {   PRESUME (i.second == nullptr, __FILE__, __LINE__);
+        shadowed.emplace ((get_shadow_path () / i.first).string ());
+        if (context.shadow_files () || is_verifiable_file (i.first))
+#ifdef NO_FRED
+            examine_page (ticks, i.first)); }
+#else // NO_FRED
+            q.push (q_entry (ticks, me_me_me, st_priority, i.first)); }
+    ::std::this_thread::yield ();
+#endif // NO_FRED
     for (auto i : content_)
         if (i.second != nullptr) 
 #ifndef NO_FRED
@@ -286,7 +299,7 @@ void directory::examine (nitpick* ticks, dir_ptr me_me_me) const
 #endif // NO_FRED
         else
         {   shadowed.emplace ((get_shadow_path () / i.first).string ());
-            if (context.shadow_files () || is_webpage (i.first, context.extensions ()))
+            if (context.shadow_files () || is_verifiable_file (i.first))
 #ifndef NO_FRED
                 q.push (q_entry (ticks, me_me_me, st_file, i.first)); }
 #else // NO_FRED
@@ -463,10 +476,22 @@ bool directory::integrate_virtual (const ::std::string& site, path_root_ptr& dis
             return n; }
     return 0; }
 
-bool is_webpage (const ::std::string& name, const vstr_t& extensions)
+bool has_extension (const ::std::string& name, const vstr_t& extensions)
 {   ::std::string ext (::boost::filesystem::path (name).extension ().string ());
     if (ext.empty ()) return false;
     return is_one_of (ext.substr (1), extensions); }
+
+bool is_css (const ::std::string& name)
+{   return has_extension (name, context.css_extension ()); }
+
+bool is_jsonld (const ::std::string& name)
+{   return has_extension (name, context.jsonld_extension ()); }
+
+bool is_webpage (const ::std::string& name)
+{   return has_extension (name, context.extensions ()); }
+
+bool is_verifiable_file (const ::std::string& name)
+{   return is_webpage (name) || is_css (name) || is_jsonld (name); }
 
 bool directory::shadow_folder (nitpick& nits) const
 {   PRESUME (context.shadow_any (), __FILE__, __LINE__);

@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -21,6 +21,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "type/type_master.h"
 #include "parser/pattern.h"
+
+// types that need fleshing out
+// t_featurepolicy (ALLOW for <IFRAME>)
+
+// unspecified attributes that will not be detailed
+// WHILE and IF appear in the XHTML2 spec in the technical docs, not in the discussion
+
+void mark_font (stats_t* s, const ::std::string& font);
 
 template < > struct type_master < t_b64 > : public tidy_string < t_b64 >
 {   using tidy_string < t_b64 > :: tidy_string;
@@ -79,8 +87,24 @@ template < > struct type_master < t_coords > : tidy_string < t_coords >
     static vint_t default_value () noexcept { return vint_t (); }
     vint_t get () const { return value_; } };
 
+template < > struct type_master < t_filename > : public tidy_string < t_filename >
+{   using tidy_string < t_filename > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_filename > :: set_value (nits, v, s);
+        if (tidy_string < t_filename > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "a filename is expected");
+        if (tidy_string < t_filename > :: good ())
+        {   if (tidy_string < t_filename > :: get_string ().find_first_of (":\\#%&{}<>*? $!'\"@+,;=[]|") == ::std::string::npos) return;
+                // https://www.mtu.edu/umc/services/websites/writing/characters-avoid/
+                // https://superuser.com/questions/1362080/which-characters-are-invalid-for-an-ms-dos-filename
+            nits.pick (nit_incompatible, es_warning, ec_type, quote (s), " might be unsuitable for some systems"); } } };
+
 template < > struct type_master < t_font_family > : tidy_string < t_font_family >
 {   using tidy_string < t_font_family > :: tidy_string;
+    void accumulate (stats_t* s) const
+    {   if (tidy_string < t_font_family > :: good ()) mark_font (s, tidy_string < t_font_family > :: get_string ()); }
+    static void accumulate (stats_t* st, const ::std::string& ss)
+    {   mark_font (st, ss); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_font_family > :: set_value (nits, v, s);
         const ::std::string& ss = tidy_string < t_font_family > :: get_string ();

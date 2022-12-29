@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -462,20 +462,6 @@ bool ends_with_letters (const html_version& v, const ::std::string& s, const ::s
 {   if (arg.empty ()) return template_path (nits, def);
     return template_path (nits, arg); }
 
-::std::string once_twice_thrice (const ::std::size_t x)
-{   switch (x)
-    {   case 0 :
-            return "unused";
-        case 1 :
-            return "once";
-        case 2 :
-            return "twice";
-        case 3 :
-            return "thrice";
-        default :
-            if (x >= UINT_MAX) return "many";
-            return ::boost::lexical_cast < ::std::string > (x); } }
-
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to)
 {   BOOST_STATIC_ASSERT (DEFAULT_LINE_LENGTH - 16 <= INT8_MAX);
     CONSTEXPR int maxish = DEFAULT_LINE_LENGTH - 16;
@@ -501,3 +487,25 @@ bool ends_with_letters (const html_version& v, const ::std::string& s, const ::s
     res += fyi () + msg + "\n";
     return res; }
 
+void merge_smsid (smsid_t& a, const smsid_t& b, bool sum)
+{   for (auto id : b)
+    {   auto i = a.find (id.first);
+        if (sum && (i != a.cend ())) i -> second += id.second;
+        else a.insert (id); } }
+
+void merge_smsid (smsid_t& a, const sstr_t& b, const ::std::size_t n)
+{   for (auto id : b)
+    {   auto i = a.find (id);
+        if (i != a.cend ()) i -> second += n;
+        else a.insert (smsid_t::value_type (id, n)); } }
+
+void insert_smsid (smsid_t& a, const ::std::string& s, const ::std::size_t n)
+{   auto i = a.find (s);
+    if (i != a.cend ()) i -> second += n;
+    else a.insert (smsid_t::value_type (s, n)); }
+
+sstr_t smsid_set (const smsid_t& s)
+{   sstr_t res;
+    for (auto i : s)
+        res.emplace (i.first);
+    return res; }

@@ -1,11 +1,12 @@
-[class]
-<SPAN class="nit-name">{{class-name}}</SPAN> <SPAN class="nit-count">{{class-count}}</SPAN><BR>
+[tally]
+<SPAN class="nit-name">{{tally-name}}</SPAN> <SPAN class="nit-count">{{tally-count}}{{tally-use-count:/:)}}</SPAN><BR>
 
-[class-head]
-<H2 class="nit-section">classes</H2>
+[tally-head]
+{{tally-title:<H2 class="nit-section">: CSS/HTML:</H2>}}
 <P>
 
-[class-foot]
+[tally-foot]
+<SPAN class="nit-name">{{tally-count}}x {{tally-title}}:</SPAN> <SPAN class="nit-count">{{tally-total}}{{tally-use-total:/:</SPAN>
 </P>
 
 [config]
@@ -57,14 +58,14 @@
 [grand-foot]
 </P>
 
-[id]
-<SPAN class="nit-name">{{id-name}}</SPAN> <SPAN class="nit-id">({{id-page}}:{{id-line}})</SPAN><BR>
+[itemid]
+<SPAN class="nit-name">{{itemid-name}}</SPAN> <SPAN class="nit-id">({{itemid-page}}:{{itemid-line}})</SPAN><BR>
 
-[id-head]
+[itemid-head]
 <H2 class="nit-section">Item IDs</H2>
 <P>
 
-[id-foot]
+[itemid-foot]
 </P>
 
 [init]

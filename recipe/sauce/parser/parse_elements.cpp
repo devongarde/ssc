@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -221,6 +221,11 @@ element_node* elements_node::insert_closed (const html_version& v, element_node*
                 case elem_faux_text :
                 case elem_faux_whitespace :
                 case elem_faux_xml :
+                case elem_css_all :
+                case elem_css_cell :
+                case elem_css_child :
+                case elem_css_precede :
+                case elem_css_precede_immediate :
                     current -> set_raw (::std::string (ket.start_, ket.end_));
                     break;
                 default : break; } }

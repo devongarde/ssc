@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -61,11 +61,8 @@ class microformat_base
 protected:
     bool declared_ = false;
 public:
-    microformat_base () : declared_ (false) {}
-    microformat_base (const microformat_base&) = default;
-    microformat_base (microformat_base&&) = default;
-    microformat_base& operator = (const microformat_base&) = default;
-    microformat_base& operator = (microformat_base&&) = default;
+    microformat_base () : declared_ (false) { }
+    DEFAULT_COPY_CONSTRUCTORS (microformat_base);
     virtual ~microformat_base () = default;
     explicit microformat_base (bool b) noexcept : declared_ (b) {}
 
@@ -100,12 +97,7 @@ template < class ENUM, typename ENUM :: value_type VOCAB, int CATEGORY, e_linkaa
 {   typedef ::std::tuple < PROPERTIES... > property_t;
     property_t p_;
 public:
-    microformat () = default;
-    microformat (const microformat&) = default;
-    microformat (microformat&&) = default;
-    microformat& operator = (const microformat&) = default;
-    microformat& operator = (microformat&&) = default;
-    virtual ~microformat () = default;
+    DEFAULT_CONSTRUCTORS_VIRTUAL_DESTRUCTOR (microformat);
     explicit microformat (bool b) : microformat_base (b) {}
     virtual void reset ();
     void swap (microformat& mf);

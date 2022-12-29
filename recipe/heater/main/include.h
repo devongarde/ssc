@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -30,14 +30,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
-#define VERSION_RELEASE 11
-#define VERSION_STRING "0.1.11"
+#define VERSION_RELEASE 12
+#define VERSION_STRING "0.1.12"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
 #define COPYRIGHT_FORENAME "Dylan"
 #define COPYRIGHT_SURNAME "Harris"
-#define COPYRIGHT_YEAR "2020-2022"
+#define COPYRIGHT_YEAR "2020-2023"
 #define COPYRIGHT_TEXT COPYRIGHT_SYMBOL " " COPYRIGHT_YEAR " " COPYRIGHT_FORENAME " " COPYRIGHT_SURNAME
 #define COPYRIGHT_HTML "&copy;" NBSP COPYRIGHT_YEAR NBSP COPYRIGHT_FORENAME NBSP COPYRIGHT_SURNAME
 #define COPYRIGHT_WEBADDR "https://" DYLANHARRIS_ORG "/"
@@ -106,6 +106,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #else
 #define COMPILER "m"
 #define NOLYNX
+#define BORKED_BITSET_OPS
 #define MSVC_NOEXCEPT noexcept
 #define CLEAN_SHAREDPTR_ARRAY
 #include <codeanalysis\warnings.h>
@@ -142,7 +143,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #if _MSC_VER >= 1930
 #pragma warning (disable : 26812)
 #define _WIN32_WINNT 0x0A00 // 10
-#define STRINGPIECE_BIZARRO
 #elif _MSC_VER >= 1920
 #define _WIN32_WINNT 0x0A00 // 10
 #elif _MSC_VER >= 1910
@@ -434,9 +434,9 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define WEBMENTION "webmention"
 #define SEP "."
 
-#define CSS "://"
-#define HTTP PR_HTTP CSS
-#define HTTPS PR_HTTPS CSS
+#define COLON_SLASH_SLASH "://"
+#define HTTP PR_HTTP COLON_SLASH_SLASH
+#define HTTPS PR_HTTPS COLON_SLASH_SLASH
 #define SPACE ' '
 #define COLON ':'
 #define DOT '.'
@@ -456,16 +456,19 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define DENARY "0123456789"
 #define DDD DENARY "-."
 #define SIGNEDDECIMAL DDD "+"
+#define EXPONENTIAL SIGNEDDECIMAL "Ee"
 #define POSITIVE DENARY "+."
 #define OCTAL "01234567"
 #define HEX DENARY "abcdefABCDEF"
 #define UPPERCASE "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 #define LOWERCASE "abcdefghijklmnopqrstuvwxyz"
 #define ALPHABET UPPERCASE LOWERCASE
-#define ALPHANUMERIC ALPHABET DDD
-#define B64BIN ALPHANUMERIC "+/= "
-#define IDS ALPHANUMERIC "_:"
+#define ALPHANUMERIC ALPHABET DENARY
+#define ALPHADDD ALPHABET DDD
+#define B64BIN ALPHADDD "+/= "
+#define IDS ALPHADDD "_:"
 #define HYPHENATED ALPHANUMERIC "-"
+#define DOMAINNAME ALPHANUMERIC ".-_"
 #define TEL HEX "+*()-.#*_!~'[]/ "
 #define REAL SIGNEDDECIMAL "Ee"
 #define LINE_SEPARATORS "\n\r\f\v"
@@ -578,3 +581,32 @@ extern const char* build_info;
 extern const char* test_title;
 extern const char* simple_title;
 extern const char* full_title;
+
+// I can't remember where these are! These macros do seem to confuse VC++, which is not useful.
+
+#define DEFAULT_COPY(XXX, DDD) \
+    XXX (const XXX & xxx) = DDD; \
+    XXX (XXX && xxx) = DDD; \
+    XXX& operator = (const XXX & xxx) = DDD; \
+    XXX& operator = (XXX && xxx) = DDD
+
+#define CONSTRUCT_ALL(XXX, DD) \
+    XXX () = DD; \
+    DEFAULT_COPY (XXX, DD); \
+    ~XXX () = default
+
+#define DEFAULT_CONSTRUCTORS(XXX) CONSTRUCT_ALL (XXX, default)
+#define DEFAULT_COPY_CONSTRUCTORS(XXX) DEFAULT_COPY (XXX, default)
+
+#define DEFAULT_CONSTRUCTORS_NO_EMPTY(XXX) \
+    XXX () = delete; \
+    DEFAULT_COPY (XXX, default); \
+    ~XXX () = default
+
+#define DEFAULT_CONSTRUCTORS_VIRTUAL_DESTRUCTOR(XXX) \
+    XXX () = default; \
+    DEFAULT_COPY (XXX, default); \
+    virtual ~XXX () = default
+
+#define NO_COPY_CONSTRUCTORS(XXX) DEFAULT_COPY (XXX, delete)
+#define DELETE_CONSTRUCTORS(XXX) CONSTRUCT_ALL (XXX, delete)

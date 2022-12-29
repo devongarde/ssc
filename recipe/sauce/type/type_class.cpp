@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -322,4 +322,4 @@ bool check_class_spelling (nitpick& nits, const html_version& , const ::std::str
 
 bool note_class_usage (element* p, const ::std::string& s)
 {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
-    return p -> get_page ().css ().note_usage (s); }
+    return p -> get_page ().css ().note_class (p -> id ().get (), s); }

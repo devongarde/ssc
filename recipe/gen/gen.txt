@@ -23,7 +23,7 @@ warnings, comments, and other hints of imperfection. Once complete, it
 summarises internal site inconsistencies, and can produce some simple
 statistics.
 
-Scripts are ignored. CSS is only processed for class declarations.
+Scripts are ignored.
 
 
 
@@ -85,6 +85,21 @@ line, the "no-" switch always applies.
                         content. This is incompatible with
                         --shadow.update.
 
+--css.version ext       CSS files can have this extension (repeatable)
+
+--css.verify            Verify CSS files (replaces --general.css)
+
+--css.version X         Presume version X of CSS, where X is one of:
+                            1   CSS 1.0
+                            2.0 CSS 2.0
+                            2.1 CSS 2.1
+                            2.2 draft CSS 2.2
+                            3   CSS 3 onwards. Which version of which
+                                component applies is determined by
+                                the date of publication of the HTML
+                                version.
+                        Currently, only CSS 1.0 is processed.
+
 --general.class         Report unrecognised classes.
 
 --general.classic       Report all classes used, not just those in
@@ -101,8 +116,6 @@ line, the "no-" switch always applies.
                         pre-alpha nature and its corresponding myriad
                         flaws). Ignores many options including
                         shadowing.
-
---general.css           Do NOT process .css files (for class names).
 
 --general.custom EL     Define a custom element <EL> for verifying the
                         IS attribute. May be repeated.
@@ -143,8 +156,8 @@ line, the "no-" switch always applies.
                         bytes in size (default: 4M). Specify 0 for
                         unlimited, although be warned that ssc is
                         stunningly stupid in such circumstances and may
-                        even attempt to load files bigger than availabl
-                       e memory.
+                        even attempt to load files bigger than
+                        available memory.
 
 --general.output        Output to the specified file. If this switch is
 -o file                 not used, standard output is used.
@@ -218,16 +231,21 @@ line, the "no-" switch always applies.
 --html.version X        If no doctype (or xml header) is specified,
                         presume version X of HTML. X can be:
                             tags  HTML tags (1991, informal),
+                            1     HTML 1.0 (June 1993 draft),
                             1.0   HTML 1.0 (June 1993 draft),
                             +     HTML Plus (November 1993 draft),
+                            2     HTML 2.0,
                             2.0   HTML 2.0,
+                            3     HTML 3.2,
                             3.0   HTML 3.0 (March 1995 draft),
                             3.2   HTML 3.2,
+                            4     HTML 4.01,
                             4.0   HTML 4.0,
                             4.1   HTML 4.01,
                             4.2   XHTML 1.0,
                             4.3   XHTML 1.1 core,
                             4.4   XHTML 2.0 (December 2010 draft),
+                            5     recent WhatWG HTML 5,
                             5.0   W3 HTML 5.0,
                             5.1   W3 HTML 5.1,
                             5.2   W3 HTML 5.2,
@@ -240,7 +258,7 @@ line, the "no-" switch always applies.
                             ...         (halfly)
                             2021/1/1    WhatWG HTML 5 (Jan 2021),
                             ...         (quarterly)
-                            2022/7/1    WhatWG HTML 5 (Jul 2022),
+                            2022/10/1   WhatWG HTML 5 (Oct 2022),
 
                             XHTML 1.0   XHTML 1.0,
                             XHTML 1.1   XHTML 1.1 core,

@@ -1,0 +1,70 @@
+<!--
+Example taken from CSS 2.0 specification. Its (c) notice states:
+
+Permission to use, copy, and distribute the contents of this document, or the
+W3C document from which this statement is linked, in any medium for any
+purpose and without fee or royalty is hereby granted, provided that you include
+the following on ALL copies of the document, or portions thereof, that you use: 
+1. A link or URI to the original W3C document. 
+2. The pre-existing copyright notice of the original author, if it doesn’t exist, a
+notice of the form: "Copyright © World Wide Web Consortium, 
+(Massachusetts Institute of Technology, Institut National de Recherche en 
+Informatique et en Automatique, Keio University). All Rights Reserved." 
+3. If it exists, the STATUS of the W3C document
+
+https://www.w3.org/TR/1998/REC-CSS2-19980512/
+Copyright [p. 18] © 1998 W3C (MIT, INRIA, Keio ), All Rights Reserved.
+W3C Recommendation
+-->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<HTML>
+ <HEAD>
+ <TITLE>A frame document with CSS2</TITLE>
+ <STYLE type="text/css">
+ BODY { height: 8.5in } /* Required for percentage heights below */
+ #header {
+ position: fixed;
+ width: 100%;
+ height: 15%;
+ top: 0;
+ right: 0;
+ bottom: auto;
+ left: 0;
+ }
+ #sidebar {
+ position: fixed;
+ width: 10em;
+ height: auto;
+ top: 15%;
+ right: auto;
+ bottom: 100px;
+ left: 0;
+ }
+ #main {
+ position: fixed;
+ width: auto;
+ height: auto;
+ top: 15%;
+ right: 0;
+ bottom: 100px;
+ left: 10em;
+ }
+ #footer {
+ position: fixed;
+ width: 100%;
+ height: 100px;
+ top: auto;
+ right: 0;
+ bottom: 0;
+ left: 0;
+ }
+ </STYLE>
+ </HEAD>
+ <BODY>
+ <DIV id="header"> ... </DIV>
+ <DIV id="sidebar"> ... </DIV>
+ <DIV id="main"> ... </DIV>
+ <DIV id="footer"> ... </DIV>
+ </BODY>
+</HTML>

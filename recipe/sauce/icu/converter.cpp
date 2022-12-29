@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -61,6 +61,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
                 return s; }
             nits.pick (nit_icu, es_catastrophic, ec_icu, "ICU error ", static_cast < int > (conv.error ()), " converting ", name); } }
     return ::std::string (); }
+
+::std::string convert_to_utf8 (const unsigned int n)
+// https://stackoverflow.com/questions/23322438/how-to-convert-a-unicode-code-point-to-characters-in-c-using-icu
+{   ::icu::UnicodeString s (static_cast < UChar32 > (n));
+    ::std::string res;
+    s.toUTF8String (res);
+    return res; }
 
 ::std::string normalise_utf8 (nitpick& nits, const ::std::string& s)
 {   if (! context.icu ()) return s;

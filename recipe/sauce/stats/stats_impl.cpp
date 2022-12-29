@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -28,6 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "schema/schema_name.h"
 #include "type/type_httpequiv.h"
 #include "type/type_metaname.h"
+#include "type/type_class.h"
 
 void stats::mark_file (const unsigned size) noexcept
 {   ++file_count_;
@@ -35,17 +36,9 @@ void stats::mark_file (const unsigned size) noexcept
     if (size > biggest_) biggest_ = size;
     file_size_ += size; }
 
-::std::string times (const uint64_t n)
-{   switch (n)
-    {   case 0: return "none";
-        case 1: return "once";
-        case 2: return "twice";
-        case 3: return "thrice";
-        default: return ::boost::lexical_cast < ::std::string > (n) + " times"; } }
-
 ::std::string saybe (const unsigned n, const ::std::string& msg)
 {   if (n == 0) return ::std::string ();
-    return msg + ": " + times (n) + "\n"; }
+    return msg + ": " + once_twice_thrice (n) + "\n"; }
 
 mmac_t mac_init (const ::std::string& naam, const ::std::string& detail = ::std::string ())
 {   mmac_t mac;
@@ -58,7 +51,7 @@ mmac_t mac_init (const ::std::string& naam, const ::std::string& detail = ::std:
 mmac_t mac_init (const ::std::string& naam, const int n, const ::std::string& detail = ::std::string ())
 {   mmac_t mac;
     mac.emplace (nm_stat_name, naam);
-    mac.emplace (nm_stat_count, times (n));
+    mac.emplace (nm_stat_count, once_twice_thrice < int, INT_MAX > (n));
     mac.emplace (nm_stat_int, ::boost::lexical_cast < ::std::string > (n));
     mac.emplace (nm_stat_detail, detail);
     return mac; }
@@ -74,7 +67,7 @@ mmac_t mac_subinit (const ::std::string& naam, const ::std::string& detail = ::s
 mmac_t mac_subinit (const ::std::string& naam, const int n, const ::std::string& detail = ::std::string ())
 {   mmac_t mac;
     mac.emplace (nm_stat_subname, naam);
-    mac.emplace (nm_stat_subcount, times (n));
+    mac.emplace (nm_stat_subcount, once_twice_thrice < int, INT_MAX > (n));
     mac.emplace (nm_stat_subint, ::boost::lexical_cast < ::std::string > (n));
     mac.emplace (nm_stat_subdetail, detail);
     return mac; }
@@ -132,7 +125,7 @@ mmac_t mac_subtitle (const ::std::string& title)
     mmac_t finish;
     ::std::string sum (::boost::lexical_cast < ::std::string > (total) + " itemtype");
     if (total != 1) sum += "s";
-    sum += " used " + times (count);
+    sum += " used " + once_twice_thrice < unsigned > (count);
     finish.emplace (nm_stats_total, sum);
     if (! res.empty ()) res = macro -> apply (ns_stats_head, finish, table) + res + macro -> apply (ns_stats_foot, finish, table);
     return res; }
@@ -176,7 +169,7 @@ mmac_t mac_subtitle (const ::std::string& title)
                 att += macro -> apply (ns_stat, table, stat, item); } }
         if (! att.empty ()) res += macro -> apply (ns_stats_subhead, table, stat) + att + macro -> apply (ns_stats_subfoot, table, stat); }
     mmac_t finish;
-    ::std::string sum = ::boost::lexical_cast < ::std::string > (total) + " elements used " + times (count);
+    ::std::string sum = ::boost::lexical_cast < ::std::string > (total) + " elements used " + once_twice_thrice < uint64_t > (count);
     finish.emplace (nm_stats_total, sum);
     if (! res.empty ()) res = macro -> apply (ns_stats_head, finish, table) + res + macro -> apply (ns_stats_foot, finish, table);
     return res; }
@@ -242,6 +235,40 @@ mmac_t mac_subtitle (const ::std::string& title)
     if (! res.empty ())
     {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
         res = macro -> apply (ns_stats_head, table) + res + macro -> apply (ns_stats_foot, table); }
+    return res; }
+
+::std::string stats::css_property_report () const
+{   mmac_t table = mac_title ("CSS properties");
+    ::std::string res;
+    unsigned count = 0, total = 0;
+    for (unsigned int d = 1; d <= ec_error; ++d)
+    {   const int x = css_property_.at (static_cast <e_css_property> (d));
+        if (x > 0)
+        {   ++total;
+            count += x;
+            mmac_t stat = mac_init (enum_n < t_css_property, e_css_property > :: name (static_cast < e_css_property > (d)), x);
+            res += macro -> apply (ns_stat, macro -> macros (), table, stat); } }
+    mmac_t finish;
+    ::std::string sum = ::boost::lexical_cast < ::std::string > (total) + " properties used " + once_twice_thrice < uint64_t > (count);
+    finish.emplace (nm_stats_total, sum);
+    if (! res.empty ()) res = macro -> apply (ns_stats_head, finish, table) + res + macro -> apply (ns_stats_foot, finish, table);
+    return res; }
+
+::std::string stats::css_statement_report () const
+{   mmac_t table = mac_title ("CSS statements");
+    ::std::string res;
+    unsigned count = 0, total = 0;
+    for (unsigned int d = 1; d <= css_error; ++d)
+    {   const int x = css_statement_.at (static_cast <e_css_statement> (d));
+        if (x > 0)
+        {   ++total;
+            count += x;
+            mmac_t stat = mac_init (enum_n < t_css_statement, e_css_statement > :: name (static_cast < e_css_statement > (d)), x);
+            res += macro -> apply (ns_stat, macro -> macros (), table, stat); } }
+    mmac_t finish;
+    ::std::string sum = ::boost::lexical_cast < ::std::string > (total) + " statements used " + once_twice_thrice < uint64_t > (count);
+    finish.emplace (nm_stats_total, sum);
+    if (! res.empty ()) res = macro -> apply (ns_stats_head, finish, table) + res +macro -> apply (ns_stats_foot, finish, table);
     return res; }
 
 ::std::string stats::category_report () const
@@ -358,6 +385,95 @@ mmac_t mac_subtitle (const ::std::string& title)
     if (! res.empty ()) res = macro -> apply (ns_stats_head, table) + res + macro -> apply (ns_stats_foot, table);
     return res; }
 
+::std::string stats::report_usage (const ::std::string& category, const smsid_stats& sum) const
+{   ::std::string s;
+    VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+    ::std::size_t count = 0, grand = 0;
+    for (smsid_t::const_iterator i = sum.cbegin (); i != sum.cend (); ++i)
+    {   mmac_t mac;
+        ::std::string lex (::boost::lexical_cast < ::std::string > (i -> second));
+        mac.emplace (nm_tally_name, i -> first);
+        mac.emplace (nm_tally_int, lex);
+        mac.emplace (nm_tally_use_int, "");
+        mac.emplace (nm_tally_count, once_twice_thrice < ::std::size_t > (i -> second));
+        mac.emplace (nm_tally_use_count, "");
+        ++count; grand += i -> second;
+        s += macro -> apply (ns_tally, mac); }
+    if (! s.empty ())
+    {   mmac_t mac = mac_title (category);
+        ::std::string lex (::boost::lexical_cast < ::std::string > (grand));
+        mac.emplace (nm_tally_count, ::boost::lexical_cast < ::std::string > (count));
+        mac.emplace (nm_tally_title, category);
+        mac.emplace (nm_tally_title, "");
+        mac.emplace (nm_tally_sum, lex);
+        mac.emplace (nm_tally_total, once_twice_thrice < ::std::size_t > (grand));
+        mac.emplace (nm_tally_use_sum, "");
+        mac.emplace (nm_tally_use_total, "");
+        s = macro -> apply (ns_tally_head, mac) + s + macro -> apply (ns_tally_foot, mac); }
+    return s; }
+
+::std::string stats::single_usage (const ::std::string name, const ::std::size_t dn, const ::std::size_t un) const
+{   ::std::string ds (::boost::lexical_cast < ::std::string > (dn));
+    ::std::string us (::boost::lexical_cast < ::std::string > (un));
+    mmac_t mac;
+    mac.emplace (nm_tally_name, name);
+    mac.emplace (nm_tally_int, ds);
+    mac.emplace (nm_tally_use_int, us);
+    mac.emplace (nm_tally_count, once_twice_thrice < ::std::size_t > (dn));
+    mac.emplace (nm_tally_use_count, once_twice_thrice < ::std::size_t > (un));
+    return macro -> apply (ns_tally, mac); }
+
+::std::string stats::report_usage (const ::std::string& category, const smsid_stats& dcl, const smsid_stats& used) const
+{   ::std::string s;
+    ::smsid_t::const_iterator di = dcl.cbegin ();
+    ::smsid_t::const_iterator ui = used.cbegin ();
+    ::std::size_t count = 0, gd = 0, gu = 0;
+    for (;;)
+    {   if (di == dcl.cend ())
+        {   if (ui == used.cend ()) break; 
+            s += single_usage (ui -> first, 0, ui -> second);
+            gu += ui -> second; 
+            ++ui; }
+        else if (ui == used.cend ())
+        {   s += single_usage (di -> first, di -> second, 0);
+            gd += di -> second; 
+            ++di; }
+        else if (di -> first < ui -> first)
+        {   s += single_usage (ui -> first, 0, ui -> second);
+            gu += ui -> second; 
+            ++ui; }
+        else if (ui -> first < di -> first)
+        {   s += single_usage (ui -> first, 0, ui -> second);
+            gd += di -> second; 
+            ++ui; }
+        else
+        {   s += single_usage (ui -> first, di -> second, ui -> second);
+            gu += ui -> second; 
+            gd += di -> second; 
+            ++ui; ++di; }
+        ++count; }
+    if (! s.empty ())
+    {   mmac_t mac = mac_title (category);
+        mac.emplace (nm_tally_count, ::boost::lexical_cast < ::std::string > (count));
+        mac.emplace (nm_tally_sum, ::boost::lexical_cast < ::std::string > (gd));
+        mac.emplace (nm_tally_title, category);
+        mac.emplace (nm_tally_total, once_twice_thrice < ::std::size_t > (gd));
+        mac.emplace (nm_tally_use_sum, ::boost::lexical_cast < ::std::string > (gu));
+        mac.emplace (nm_tally_use_total, once_twice_thrice < ::std::size_t > (gu));
+        s = macro -> apply (ns_tally_head, mac) + s + macro -> apply (ns_tally_foot, mac); }
+    return s; }
+
+::std::string stats::font_report () const
+{   return report_usage ("font(s)", font_); }
+
+::std::string stats::class_report () const
+{   return  report_usage ("class(es)", dcl_class_, use_class_) +
+            report_usage ("element.class(es)", dcl_element_class_, use_element_class_); }
+
+::std::string stats::id_report () const
+{   return  report_usage ("id(s)", dcl_id_, use_id_) +
+            report_usage ("element#id(s)", dcl_element_id_, use_element_id_); }
+
 ::std::string stats::report (const bool grand) const
 {   ::std::string res;
     if ((context.verbose () == es_undefined) || (context.verbose () == es_illegal)) return res;
@@ -372,6 +488,11 @@ mmac_t mac_subtitle (const ::std::string& title)
     res += abbr_report ();
     res += dfn_report ();
     res += dtdd_report ();
+    res += css_property_report ();
+    res += css_statement_report ();
+    res += font_report ();
+    res += class_report ();
+    res += id_report ();
     if (grand)
     {   res += error_report ();
         if (file_count_ > 1)
@@ -386,6 +507,14 @@ bool stats::severity_exceeded () const
 {   for (int x = 1; x <= static_cast < int > (context.report_error ()); ++x)
         if (element_count (static_cast < e_severity> (x))) return true;
     return false; }
+
+void stats::check_for_standard_classes (nitpick& nits, const html_version& v) const
+{   for (auto id = dcl_class_.cbegin (); id != dcl_class_.cend (); ++id)
+    {   html_class c (nits, v, id -> first);
+        if (c.is_microformat_property ())
+            nits.pick (nit_class_microformat_property, es_warning, ec_css, "CSS identifier ", quote (id -> first), " is a microformat property");
+        else if (c.is_microformat_vocabulary ())
+            nits.pick (nit_class_microformat_vocabulary, es_warning, ec_css, "CSS identifier ", quote (id -> first), " is a microformat vocabulary"); } }
 
 void stats::accumulate (stats& o) const
 {   element_.accumulate (o.element_);
@@ -403,6 +532,17 @@ void stats::accumulate (stats& o) const
     httpequiv_.accumulate (o.httpequiv_);
     metaname_.accumulate (o.metaname_);
     meta_value_.accumulate (o.meta_value_);
+    dcl_class_.accumulate (o.dcl_class_);
+    dcl_id_.accumulate (o.dcl_id_);
+    dcl_element_class_.accumulate (o.dcl_element_class_);
+    dcl_element_id_.accumulate (o.dcl_element_id_);
+    css_property_.accumulate (o.css_property_);
+    css_statement_.accumulate (o.css_statement_);
+    font_.accumulate (o.font_);
+    use_class_.accumulate (o.use_class_);
+    use_id_.accumulate (o.use_id_);
+    use_element_class_.accumulate (o.use_element_class_);
+    use_element_id_.accumulate (o.use_element_id_);
     if (smallest_ < o.smallest_) o.smallest_ = smallest_;
     if (biggest_ > o.biggest_) o.biggest_ = biggest_;
     o.file_size_ += file_size_;

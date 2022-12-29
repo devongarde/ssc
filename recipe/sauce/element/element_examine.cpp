@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -272,10 +272,14 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
     bool postprocess = false, post_examine = false;
     switch (tag)
     {   case elem_faux_stylesheet :
+            if (context.load_css () && (context.css_version () == css_1))
             {   url u (node_.nits (), node_.version (), node_.text ());
                 if (! u.invalid ())
-                {   pick (nit_gather, es_comment, ec_css, "gathering CSS identifiers from ", u.original ());
-                    page_ -> css ().parse_file (node_.nits (), *page_, u); } }
+                {   nitpick nuts;
+                    if (! u.is_local ())
+                        pick (nit_gather, es_comment, ec_css, "gathering CSS information from ", u.original ());
+                    page_ -> css ().parse_file (nuts, node_.namespaces (), *page_, u, false);
+                    if (! u.is_local ()) node_.nits ().merge (nuts); } }
             break;
         case elem_faux_cdata :
             if ((flags & EP_NOSPELL) == 0)
@@ -302,6 +306,13 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
                         page_ -> phrasal (lang, t);
                         if (t.at (t.size () - 1) == ' ') page_ -> phrasal (nits (), node_.version ()); } }
             break;
+        case elem_css_all :
+        case elem_css_cell :
+        case elem_css_child :
+        case elem_css_precede :
+        case elem_css_precede_immediate :
+            GRACEFUL_CRASH (__FILE__, __LINE__);
+            break;
         default :
             if (is_standard_element (tag) && ! node_.is_closure ())
             {   if (elem :: is_invalid_version (node_.version (), tag))
@@ -321,7 +332,8 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
                 if ((node_.version ().w3 ()) && hv.whatwg ()) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), "> is only defined by WhatWG");
                 else if ((node_.version ().whatwg ()) && hv.w3 ()) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), "> is element only defined by W3");
 
-                if (hv.deprecated (node_.version ())) pick (nit_deprecated_element, es_warning, ec_element, "<", elem :: name (tag), "> is deprecated in ", node_.version ().report ());
+                if (hv.deprecated (node_.version ()))
+                    pick (nit_deprecated_element, es_warning, ec_element, "<", elem :: name (tag), "> is deprecated in ", node_.version ().report ());
                 if (hv.experimental ()) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), "> is experimental; it will probably change, it may be withdrawn");
 
                 if (node_.version ().is_5 ())

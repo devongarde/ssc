@@ -1,11 +1,21 @@
 RELEASE NOTES
 static site checker
 https://ssc.lu/
-(c) 2020-2022 Dylan Harris
+(c) 2020-2023 Dylan Harris
+
+ 0.1.12
+NOTE: many tests fail in this version; they need CSS 3 which isn't there yet
+- CSS 1 verification
+- expanded stats for CSS
+- output id-* renamed as itemid-*, class-* generalised to tally-*
+- macOS Ventura
+- OpenBSD 7.2
+- underlying work
 
  0.1.11
-- added --link.pretend REGEX which pretends regex exists
+- added --link.pretend REGEX which pretends file regex exists
 - tighten poetry ontology
+- various bug fixes
 - underlying work
 
  0.1.10

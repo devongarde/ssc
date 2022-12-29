@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -241,6 +241,8 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (ENV_ARGS, ::boost::program_options::value < ::std::string > (), "alternative command line parameters.")
         ;
     hidden.add_options ()
+        (GENERAL CSS_OPTION, ::boost::program_options::bool_switch (), "Process .css files.")
+        (GENERAL DONT CSS_OPTION, ::boost::program_options::bool_switch (), "Do not process .css files.")
 #ifdef NO_BOOST_REGEX
         (GENERAL EXCLUDE, ::boost::program_options::value < vstr_t > () -> composing (), "Ignore files that match this posix regular expression; may be repeated.")
 #endif // NO_BOOST_REGEX
@@ -283,8 +285,6 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (GENERAL DONT CLASSIC, ::boost::program_options::bool_switch (), "Do not report all classes used.")
         (GENERAL CGI ",W", ::boost::program_options::bool_switch (), "Process HTML snippets (for OpenBSD's httpd <FORM METHOD=GET ...>; disables most features).")
         (GENERAL DONT CGI, ::boost::program_options::bool_switch (), "Process a local static website.")
-        (GENERAL CSS_OPTION, ::boost::program_options::bool_switch (), "Process .css files (for class names only).")
-        (GENERAL DONT CSS_OPTION, ::boost::program_options::bool_switch (), "Do not process .css files.")
         (GENERAL CUSTOM, ::boost::program_options::value < vstr_t > () -> composing (), "Define a custom element for checking the 'is' attribute; may be repeated.")
         (GENERAL DATAPATH ",p", ::boost::program_options::value < ::std::string > () -> default_value ("." PROG), "Root directory for most " PROG " files.")
         (GENERAL DEFTHRD ",N", ::boost::program_options::value < int > (), "If no setting specifies the thread count, set it to this.")
@@ -328,6 +328,11 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (CORPUS MAIN, ::boost::program_options::bool_switch (), "Prefer the content of <MAIN> when gather page corpus.")
         (CORPUS DONT MAIN, ::boost::program_options::bool_switch (), "Avoid the content of <MAIN> when gather page corpus.")
         (CORPUS OUTPUT ",d", ::boost::program_options::value < ::std::string > (), "Dump corpus of site content to specified file.")
+
+        (CSS EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "CSS files have this extension (default css); may be repeated.")
+        (CSS VERIFY, ::boost::program_options::bool_switch (), "Process .css files.")
+        (CSS DONT VERIFY, ::boost::program_options::bool_switch (), "Do not process .css files.")
+        (CSS VERSION, ::boost::program_options::value < ::std::string > (),  "Presume this version of CSS (default appropriate for HTML version).")
 
         (HTML RFC1867, ::boost::program_options::bool_switch (), "Consider RFC 1867 (INPUT=FILE) when processing HTML 2.0.")
         (HTML DONT RFC1867, ::boost::program_options::bool_switch (), "Ignore RFC 1867 (INPUT=FILE) when processing HTML 2.0.")
@@ -850,11 +855,17 @@ void options::contextualise (nitpick& nits)
                         else context.html_ver (d);
                         if (xhtml)
                             context.html_ver ().set_flags (HV_XHTML); } }
-            else if (ver == "+") context.html_ver (html_plus);
-            else if (compare_no_case (ver, "plus")) context.html_ver (html_plus);
-            else if (compare_no_case (ver, "tags")) context.html_ver (html_tags);
-            else nits.pick (nit_config_version, es_warning, ec_init, "bad version ", quote (ver)," ignored"); } }
-
+            else switch (lexical < int > :: cast (ver))
+            {   case 1 : context.html_ver (html_1); break;
+                case 2 : context.html_ver (html_2); break;
+                case 3 : context.html_ver (html_3_2); break;
+                case 4 : context.html_ver (html_4_1); break;
+                case 5 : context.html_ver (html_default); break;
+                default : 
+                    if (ver == "+") context.html_ver (html_plus);
+                    else if (compare_no_case (ver, "plus")) context.html_ver (html_plus);
+                    else if (compare_no_case (ver, "tags")) context.html_ver (html_tags);
+                    else nits.pick (nit_config_version, es_error, ec_init, quote (ver), ": bad HTML version"); } } }
     if (! context.cgi ())
     {   PRESUME (var_.count (WEBSITE ROOT) > 0, __FILE__, __LINE__);
         const ::std::string arg = trim_the_lot_off (var_ [WEBSITE ROOT].as < ::std::string > ());
@@ -935,6 +946,42 @@ void options::contextualise (nitpick& nits)
         yea_nay (&context_t::article, nits, CORPUS ARTICLE, CORPUS DONT ARTICLE);
         yea_nay (&context_t::body, nits, CORPUS BODY, CORPUS DONT BODY);
         yea_nay (&context_t::main, nits, CORPUS MAIN, CORPUS DONT MAIN);
+
+        if (var_.count (CSS EXTENSION)) context.css_extension (var_ [CSS EXTENSION].as < vstr_t > ());
+        else { vstr_t ex; ex.push_back ("css"); context.css_extension (ex); }
+        yea_nay (&context_t::load_css, nits, CSS VERIFY, CSS DONT VERIFY);
+        
+        if (var_.count (CSS VERSION) == 0)
+            switch (context.html_ver ().mjr ())
+            {   case 0 :
+                case 1 :
+                    context.css_version (css_none);
+                    break;
+                case 2 :
+                case 3 :
+                    context.css_version (css_1);
+                    break;
+                case 4 :
+                    if (context.html_ver ().mnr () < 4) context.css_version (css_2_0);
+                    else context.css_version (css_2_1);
+                    break;
+                default :
+                    context.css_version (css_3);
+                    break; }
+        else
+        {   ::std::string ver (var_ [CSS VERSION].as < ::std::string > ());
+            if (ver.empty ())
+                nits.pick (nit_config_version, es_warning, ec_init, "missing CSS version");
+            else
+            {   const ::std::string::size_type pos = ver.find ('.');
+                if (pos == ::std::string::npos)
+                    if (ver.at (0) == '2') context.css_version (lexical < int > :: cast (ver), 1);
+                    else context.css_version (lexical < int > :: cast (ver), 0);
+                else if (pos == ver.length () - 1) context.css_version (lexical < int > :: cast (ver.substr (0, pos)), 0);
+                else if (pos == 0) context.css_version (css_none);
+                else context.css_version (lexical < int > :: cast (ver.substr (0, pos)), lexical < int > :: cast (ver.substr (pos+1)));
+                if (context.css_version () == css_none)
+                    nits.pick (nit_config_version, es_warning, ec_init, "ignoring invalid CSS version"); } }
 
         yea_nay (&context_t::rfc_1867, nits, HTML RFC1867, HTML DONT RFC1867);
         yea_nay (&context_t::rfc_1942, nits, HTML RFC1942, HTML DONT RFC1942);
@@ -1172,13 +1219,13 @@ void options::contextualise (nitpick& nits)
                 {   ps = ver.substr (slash+1);
                     ver = ver.substr (0, slash); }
                 const ::std::string::size_type pos = ver.find ('.');
-                if (pos == ::std::string::npos)
-                    if (ver.length () == 1) context.svg_version (sv_none);
-                    else context.svg_version (lexical < int > :: cast (ver.substr (0, pos)), 0);
+                if (pos == ::std::string::npos) context.svg_version (lexical < int > :: cast (ver), 0);
                 else if (pos == ver.length () - 1) context.svg_version (lexical < int > :: cast (ver.substr (0, pos)), 0);
                 else if (pos == 0) context.svg_version (sv_none);
                 else context.svg_version (lexical < int > :: cast (ver.substr (0, pos)), lexical < int > :: cast (ver.substr (pos+1)));
-                if ((slash != ::std::string::npos) && (context.svg_version () == sv_1_2_tiny) && compare_no_case (ps, "full")) context.svg_version (sv_1_2_full); } }
+                if ((slash != ::std::string::npos) && (context.svg_version () == sv_1_2_tiny) && compare_no_case (ps, "full")) context.svg_version (sv_1_2_full);
+                if (context.svg_version () == sv_none)
+                    nits.pick (nit_config_version, es_warning, ec_init, "ignoring invalid SVG version"); } }
 
         if (var_.count (VALIDATION ATTRIB)) add_attributes (var_ [VALIDATION ATTRIB].as < vstr_t > ());
         if (var_.count (VALIDATION CHARSET)) type_master < t_charset > :: extend (var_ [VALIDATION CHARSET].as < vstr_t > ());
@@ -1209,12 +1256,10 @@ void options::contextualise (nitpick& nits)
         TEST_VAR (as_units);
         TEST_VAR (autocapitalise);
         TEST_VAR (autocomplete);
-        TEST_VAR (beginfn);
         TEST_VAR (baselineshift);
         TEST_VAR (citype);
         TEST_VAR (cntype);
         TEST_VAR (composite_operator);
-        TEST_VAR (dcmitype);
         TEST_VAR (decalign);
         TEST_VAR (dingbat);
         TEST_VAR (dir);
@@ -1347,6 +1392,8 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_ [CORPUS MAIN].as < bool > ()) res << CORPUS MAIN "\n";
     if (var_ [CORPUS DONT MAIN].as < bool > ()) res << CORPUS DONT MAIN "\n";
     if (var_.count (CORPUS OUTPUT)) res << CORPUS OUTPUT ": " << var_ [CORPUS OUTPUT].as < ::std::string > () << "\n";
+
+    if (var_.count (CSS VERSION)) res << CSS VERSION ": " << var_ [CSS VERSION].as < ::std::string > () << "\n";
 
     if (var_.count (ENVIRONMENT QUERY_STRING))
     {   if (var_.count (ENVIRONMENT SERVER_SOFTWARE)) res << ENVIRONMENT SERVER_SOFTWARE ": " << var_ [ENVIRONMENT SERVER_SOFTWARE].as < ::std::string > () << "\n";
@@ -1587,7 +1634,6 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     RPT_VAR (autocapitalise);
     RPT_VAR (autocomplete);
     RPT_VAR (baselineshift);
-    RPT_VAR (beginfn);
     RPT_VAR (citype);
     RPT_VAR (cntype);
     RPT_VAR (composite_operator);

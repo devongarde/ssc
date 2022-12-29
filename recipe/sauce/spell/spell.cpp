@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -72,17 +72,17 @@ bool check_identifier_spelling (nitpick& nits, const html_version& , const ::std
         { "theatre", d_johnson, "2042" },
         { "tyre", d_none, nullptr },
         { nullptr, d_none, nullptr } };
-    typedef ssc_map < ::std::string, spellings > msp_t;
-    static msp_t ms;
+    typedef ssc_map < ::std::string, spellings > mdst_t;
+    static mdst_t ms;
 #ifdef _MSC_VER
 #pragma warning (push, 3)
 #pragma warning (disable : 26446 26482)
 #endif // _MSC_VER
     if (ms.empty ())
         for (::std::size_t i = 0; word [i].spell_ != nullptr; ++i)
-            ms.insert (msp_t::value_type (word [i].spell_, word [i]));
+            ms.insert (mdst_t::value_type (word [i].spell_, word [i]));
     ::std::string ss (::boost::algorithm::to_lower_copy (trim_the_lot_off (s)));
-    msp_t::const_iterator i = ms.find (ss);
+    mdst_t::const_iterator i = ms.find (ss);
     if (i != ms.cend ())
     {   if (i -> second.dict_ != d_none)
             if (dictionary [i -> second.dict_] != nullptr)
@@ -91,14 +91,14 @@ bool check_identifier_spelling (nitpick& nits, const html_version& , const ::std
                 {   ref += ", page ";
                     ref += i -> second.ref_; }
                 if (i -> second.dialect_)
-                    nits.pick (nit_dialect, ed_dict, ref, es_comment, ec_incorrectness, quote (i -> second.spell_), " is unrecognised, and dialect: is standard english required?");
+                    nits.pick (nit_dialect, ed_dict, ref, es_comment, ec_incorrectness, quote (i -> second.spell_), " is unrecognised, and dialect: is standard English required?");
                 else
-                    nits.pick (nit_correct_spelling, ed_dict, ref, es_info, ec_incorrectness, quote (i -> second.spell_), " is spelt correctly");
+                    nits.pick (nit_correct_spelling, ed_dict, ref, es_info, ec_incorrectness, quote (i -> second.spell_), " is standard English, not US English");
                 return true; }
         if (i -> second.dialect_)
-            nits.pick (nit_dialect, es_comment, ec_incorrectness, quote (i -> second.spell_), " is unrecognised, and dialect: is standard english required?");
+            nits.pick (nit_dialect, es_comment, ec_incorrectness, quote (i -> second.spell_), " is unrecognised, and dialect: is standard English required?");
         else
-            nits.pick (nit_correct_spelling, es_info, ec_incorrectness, quote (i -> second.spell_), " is spelt correctly");
+            nits.pick (nit_correct_spelling, es_info, ec_incorrectness, quote (i -> second.spell_), " is standard English, not US English");
         return true; }
 #ifdef _MSC_VER
 #pragma warning (pop)
@@ -121,13 +121,13 @@ bool check_identifier_spelling (nitpick& nits, const html_version& , const ::std
                 {   ref += ", page ";
                     ref += GSL_AT (word, x).ref_; }
                 if (GSL_AT (word, x).dialect_)
-                    nits.pick (nit_dialect, ed_dict, ref, es_comment, ec_incorrectness, sss, " contains ", quote (GSL_AT (word, x).spell_), ", which is unrecognised, and dialect: is standard english required?");
+                    nits.pick (nit_dialect, ed_dict, ref, es_comment, ec_incorrectness, sss, " contains ", quote (GSL_AT (word, x).spell_), ", which is unrecognised, and dialect: is standard English required?");
                 else
-                    nits.pick (nit_correct_spelling, ed_dict, ref, es_info, ec_incorrectness, sss, " contains ", quote (GSL_AT (word, x).spell_), ", which is spelt correctly"); }
+                    nits.pick (nit_correct_spelling, ed_dict, ref, es_info, ec_incorrectness, sss, " contains ", quote (GSL_AT (word, x).spell_), ", which is standard English, not US English"); }
             else if (GSL_AT (word, x).dialect_)
-                nits.pick (nit_dialect, es_comment, ec_incorrectness, sss, " contains ", quote (GSL_AT (word, x).spell_), ", which is unrecognised, and dialect: is standard english required?");
+                nits.pick (nit_dialect, es_comment, ec_incorrectness, sss, " contains ", quote (GSL_AT (word, x).spell_), ", which is unrecognised, and dialect: is standard English required?");
             else
-                nits.pick (nit_correct_spelling, es_info, ec_incorrectness, sss, " contains ", quote (GSL_AT (word, x).spell_), ", which is spelt correctly");
+                nits.pick (nit_correct_spelling, es_info, ec_incorrectness, sss, " contains ", quote (GSL_AT (word, x).spell_), ", which is standard English, not US English");
             return true; }
     return false; }
 

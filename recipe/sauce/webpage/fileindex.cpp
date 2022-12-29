@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -59,12 +59,7 @@ struct index_t
     fileindex_t dedu_ = nullfileindex;
     ::std::time_t last_write_ = 0;
     sndx_t dx_, lx_;
-    index_t () = default;
-    index_t (const index_t& i) = default;
-    index_t (index_t&& i) noexcept = default;
-    ~index_t () = default;
-    index_t& operator = (const index_t& ) = default;
-    index_t& operator = (index_t&& ) = default;
+    DEFAULT_CONSTRUCTORS (index_t);
     explicit index_t (const fileindex_t mummy, const ::std::string& name)
         :   mummy_ (mummy), name_ (name) { }
     explicit index_t (const fileindex_t mummy, const ::std::string& name, const fileindex_flags flags)
@@ -772,7 +767,7 @@ void dedu (nitpick& nits) // presumes run between scan and examine phases
     for (fileindex_t i = 0; i < vx.size (); ++i)
     {   index_t& x = vx.at (i);
         if ((x.flags_ & (FX_DIR | FX_BORKED | FX_SCANNED)) == 0)
-            if (! is_webpage (x.site_path (), context.extensions ()))
+            if (! is_verifiable_file (x.site_path ()))
             {   crc_t crc = get_crc (nits, i);
                 if (crc == crc_initrem) continue;
                 lox l (lox_fileindex);

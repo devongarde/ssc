@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -41,22 +41,30 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define DOCDOT DOCTYPE " ... >"
 
 page::page (const ::std::string& name, const ::std::time_t updated, ::std::string& content, const fileindex_t x, const directory* d)
-    :   name_ (name), directory_ (d), updated_ (updated)
+    :   name_ (name), directory_ (d), updated_ (updated), css_ (*this)
 {   VERIFY_NOT_NULL (d, __FILE__, __LINE__);
     ids_.ndx (x);
     names_.ndx (x, false);
-    parse (content); }
+    if (is_css (name))
+    {   if (context.load_css () && (context.css_version () == css_1))
+            css_.parse_file (nits_, namespaces_ptr (), *this, url (nits (), context.html_ver (), get_site_path ()), true);
+        stats_.mark_file (GSL_NARROW_CAST < unsigned > (content.size ())); }
+    else parse (content); }
 
 page::page (nitpick& nits, const ::std::string& name, const ::std::time_t updated, ::std::string& content, const directory* d)
-    :   name_ (name), directory_ (d), updated_ (updated)
+    :   name_ (name), directory_ (d), updated_ (updated), css_ (*this)
 {   VERIFY_NOT_NULL (d, __FILE__, __LINE__);
     fileindex_t x (get_fileindex (d -> get_disk_path (nits, name)));
     ids_.ndx (x);
     names_.ndx (x, false);
     directory_ = d;
-    parse (content); }
+    if (is_css (name))
+    {   if (context.load_css () && (context.css_version () == css_1))
+            css_.parse_file (nits_, namespaces_ptr (), *this, url (nits_, context.html_ver (), get_site_path ()), true);
+        stats_.mark_file (GSL_NARROW_CAST < unsigned > (content.size ())); }
+    else parse (content); }
 
-page::page (const ::std::string& content, const bool outsider)
+page::page (const ::std::string& content, const bool outsider) : css_ (*this)
 {   if (outsider) outsider_ = true;
     else snippet_ = true;
     ::std::string x (content);
@@ -70,7 +78,6 @@ void page::swap (page& p)
     charset_.swap (p.charset_);
     ::std::swap (check_links_, p.check_links_);
     corpus_.swap (p.corpus_);
-    css_.swap (p.css_);
     description_.swap (p.description_);
     dfns_.swap (p.dfns_);
     ::std::swap (directory_, p.directory_);
@@ -99,7 +106,7 @@ void page::swap (page& p)
     title_.swap (p.title_);
     ::std::swap (updated_, p.updated_); }
 
-void page::cleanup ()
+void page::cleanup () noexcept
 {   if (document_ != nullptr)
     {   document_ -> cleanup ();
         delete document_;
@@ -185,9 +192,11 @@ void page::itemscope (const itemscope_ptr itemscope)
 {   ::std::ostringstream res;
     if (document_ != nullptr) res << document_ -> report ();
     nits_.accumulate (&stats_);
+    css ().accumulate (&stats_);
     {   lox curly (lox_stats);
         stats_.accumulate (); }
-    if (context.stats_page ()) res << stats_.report (false);
+    if (context.stats_page ())
+        res << stats_.report (false);
     return res.str (); }
 
 ::std::string get_page_url (const ::std::string& url)
@@ -273,7 +282,9 @@ void page::base (const url& s)
     PRESUME ((s.find (':') == ::std::string::npos), __FILE__, __LINE__);
     ::std::string arg;
     if (! base_.empty ()) arg = base_.absolute ();
-    else arg = context.make_absolute_url (get_directory () -> get_site_path ());
+    else
+    {   VERIFY_NOT_NULL (get_directory (), __FILE__, __LINE__);
+        arg = context.make_absolute_url (get_directory () -> get_site_path ()); }
     if ((s.length () > 0) && (s.at (0) != '/'))
         if (arg.length () == 0) arg = "/";
         else if (arg.at (arg.length () - 1) != '/') arg += '/';

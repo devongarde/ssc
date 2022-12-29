@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -65,9 +65,6 @@ template < > struct type_master < t_cache > : public tidy_string < t_cache >
                     default : break; }
             if (! booboo) return; }
         tidy_string < t_cache > :: status (s_invalid); } };
-
-template < > struct type_master < t_caches > : type_at_least_one < t_caches, sz_comma, t_cache >
-{ using type_at_least_one < t_caches, sz_comma, t_cache > :: type_at_least_one; };
 
 
 template < > struct type_master < t_content_type > : tidy_string < t_content_type >

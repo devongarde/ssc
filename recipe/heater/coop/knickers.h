@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -29,10 +29,7 @@ class knickers
     nitpick* ticks_ = nullptr;
 public:
     knickers () = delete;
-    knickers (const knickers& ) = delete;
-    knickers (knickers&& ) = delete;
-    knickers& operator = (const knickers& ) = delete; 
-    knickers& operator = (knickers&& ) = delete; 
+    NO_COPY_CONSTRUCTORS (knickers);
     explicit knickers (nitpick& nits, nitpick* ticks)
             : nits_ (nits), ticks_ (ticks)
     {   VERIFY_NOT_NULL (ticks, __FILE__, __LINE__); }

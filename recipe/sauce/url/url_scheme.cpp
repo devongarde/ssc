@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -25,6 +25,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/quote.h"
 #include "utility/lexical.h"
 #include "type/type_mime.h"
+
+#define COLON_SLASH_SLASH "://"
 
 bool is_authority_local (const ::std::string& authority)
 {   if (authority.empty ()) return true;
@@ -93,7 +95,7 @@ bool equivalent_rfc3986 (const vc_t& lhs, const vc_t& rhs)
     PRESUME (component.size () > last_component, __FILE__, __LINE__);
     if (! defaulted)
     {   res += component.at (es_scheme);
-        if (! component.at (es_path).empty () || ! component.at (es_file).empty ()) res += CSS;
+        if (! component.at (es_path).empty () || ! component.at (es_file).empty ()) res += COLON_SLASH_SLASH;
         else res += COLON; }
     if (! component.at (es_user).empty ())
     {   res += component.at (es_user);
@@ -125,7 +127,7 @@ bool equivalent_rfc3986 (const vc_t& lhs, const vc_t& rhs)
     PRESUME (component.size () > last_component, __FILE__, __LINE__);
     if (! defaulted)  // perhaps rewrite with boost path??
     {   res += component.at (es_scheme);
-        if (! component.at (es_path).empty () || ! component.at (es_file).empty ()) res += CSS;
+        if (! component.at (es_path).empty () || ! component.at (es_file).empty ()) res += COLON_SLASH_SLASH;
         else res += COLON; }
     if (! component.at (es_user).empty ())
     {   res += component.at (es_user);
@@ -267,7 +269,7 @@ bool parse_rfc3986 (nitpick& nits, const html_version& v, const e_protocol prot,
                 {   nits.pick (nit_invalid_ipv4, ed_rfc_3986, "3.2.2. Host", es_error, ec_url, "incomplete ipv4 address"); return false; }
                 ipv4 = host; }
             else
-            {   if (host.find_first_not_of (ALPHANUMERIC) != host.npos)
+            {   if (host.find_first_not_of (DOMAINNAME) != host.npos)
                 {   nits.pick (nit_invalid_domain, ed_rfc_3986, "3.2.2. Host", es_error, ec_url, "illegal character in domain"); return false; }
                 domain = host; } }
 

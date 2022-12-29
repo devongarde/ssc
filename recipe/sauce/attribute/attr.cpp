@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -109,6 +109,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_SVG20, HV_ARIA, HE_ANIM_2 }, { HTML_UNDEF }, "aria-rowspan", a_aria_rowspan },
     { { HTML_4_01, HV_ARIA, HE_ANIM_2 }, { HTML_UNDEF }, "aria-selected", a_aria_selected },
     { { HTML_4_01, HV_ARIA, HE_ANIM_2 }, { HTML_UNDEF }, "aria-setsize", a_aria_setsize },
+    { { HTML_4_01, HV_ARIA, HE_ANIM_2 }, { HTML_UNDEF }, "aria-sort", a_aria_sort },
     { { HTML_4_01, HV_ARIA, HE_ANIM_2 }, { HTML_UNDEF }, "aria-valuemax", a_aria_valuemax },
     { { HTML_4_01, HV_ARIA, HE_ANIM_2 }, { HTML_UNDEF }, "aria-valuemin", a_aria_valuemin },
     { { HTML_4_01, HV_ARIA, HE_ANIM_2 }, { HTML_UNDEF }, "aria-valuenow", a_aria_valuenow },

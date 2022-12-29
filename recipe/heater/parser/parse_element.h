@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -80,17 +80,12 @@ class element_node
     ::std::string word (bool simplify) const;
     ::std::string word (nitpick& nits, const html_version& v) const;
 public:
-    element_node () = default;
+    DEFAULT_CONSTRUCTORS (element_node);
     element_node (nitpick& nits, elements_node* box, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const e_element tag, const bool presumed);
     element_node (nitpick& nits, elements_node* box, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const elem& el, const bool presumed);
     element_node (nitpick& nits, elements_node* box, const int line, const bool closure, element_node* parent, const e_element tag, const bool presumed, const ::std::string str = ::std::string ());
     element_node (nitpick& nits, elements_node* box, const int line, const bool closure, element_node* parent, const elem& el, const bool presumed, const ::std::string str = ::std::string ());
-    element_node (const element_node& en) = default;
     explicit element_node (elements_node* box);
-	element_node (element_node&& en) noexcept = default;
-	~element_node () = default;
-    element_node& operator = (const element_node& ) = default;
-    element_node& operator = (element_node&& ) = default;
 	void swap (element_node& en) noexcept;
     void reset ();
     void reset (const element_node& en);

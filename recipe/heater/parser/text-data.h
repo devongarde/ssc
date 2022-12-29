@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -28,14 +28,9 @@ struct wotsit_t
     const char* wotsit_ = nullptr;
     flags_t flags_ = NOFLAGS;
     const char* simple_ = nullptr;
-    wotsit_t () = default;
+    DEFAULT_CONSTRUCTORS (wotsit_t);
     wotsit_t (html_version first, html_version last, const char* wotsit, const flags_t f = NOFLAGS, const char* simple = nullptr) noexcept
-        :   first_ (first), last_ (last), wotsit_ (wotsit), flags_ (f), simple_ (simple) { }
-    wotsit_t (const wotsit_t& w) = default;
-    wotsit_t (wotsit_t&& w) = default;
-    wotsit_t& operator = (wotsit_t&& w) = default;
-    ~wotsit_t () = default;
-    wotsit_t& operator = (const wotsit_t& w) = default; };
+        :   first_ (first), last_ (last), wotsit_ (wotsit), flags_ (f), simple_ (simple) { } };
 
 struct extra_t
 {   const char* symbol_ = nullptr;

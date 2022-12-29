@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -433,6 +433,7 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
             const e_svg_version sv = context.svg_version ();
             if (context.versioned ())
             {   vvv = context.html_ver ();
+                if (vvv.mjr () < 5) vvv = html_default;
                 wit = nit_overriding_html;
                 ver = vvv.name (); }
             else
@@ -614,6 +615,32 @@ bool html_version::check_math_svg (nitpick& nits, const html_version& a, const :
         default : break; }
     return true; }
 
+e_css_version html_version::css_version () const noexcept
+{   if (any_ext2 (H2_CSS_1)) return css_1;
+    if (any_ext2 (H2_CSS_2_0)) return css_2_0;
+    if (any_ext2 (H2_CSS_2_1)) return css_2_1;
+    if (any_ext2 (H2_CSS_2_2)) return css_2_2;
+    if (any_ext2 (H2_CSS_3)) return css_3;
+    return css_none; }
+
+::std::string html_version::css_version_name () const
+{   if (any_ext2 (H2_CSS_1)) return "1";
+    if (any_ext2 (H2_CSS_2_0)) return "2.0";
+    if (any_ext2 (H2_CSS_2_1)) return "2.1";
+    if (any_ext2 (H2_CSS_2_2)) return "2.2 draft";
+    if (any_ext2 (H2_CSS_3)) return "3";
+    return ""; }
+
+void html_version::css_version (const e_css_version v) noexcept
+{   reset_ext2 (H2_CSS_MASK);
+    switch (v)
+    {   case css_1 : set_ext2 (H2_CSS_1); break;
+        case css_2_0 : set_ext2 (H2_CSS_2_0); break;
+        case css_2_1 : set_ext2 (H2_CSS_2_1); break;
+        case css_2_2 : set_ext2 (H2_CSS_2_2); break;
+        case css_3 : set_ext2 (H2_CSS_3); break;
+        default : break; } }
+
 e_rdf_version html_version::rdf_version () const noexcept
 {   if (all_ext (HE_RDFA)) return rdf_a;
     if (all_ext (HE_RDF)) return rdf_1_0;
@@ -662,8 +689,7 @@ e_math_version html_version::math_version () const noexcept
     return math_none; }
 
 ::std::string html_version::math_version_name () const
-{
-    if (all_ext2 (H2_MATH_4_22)) return "4(Aug22)";
+{   if (all_ext2 (H2_MATH_4_22)) return "4(Aug22)";
     if (all_ext2 (H2_MATH_C)) return "core";
     if (all_ext2 (H2_MATH_4_20)) return "4(Dec20)";
     if (all_ext2 (H2_MATH_3)) return "3";

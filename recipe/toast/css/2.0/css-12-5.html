@@ -1,0 +1,50 @@
+<!--
+Example taken from CSS 2.0 specification. Its (c) notice states:
+
+Permission to use, copy, and distribute the contents of this document, or the
+W3C document from which this statement is linked, in any medium for any
+purpose and without fee or royalty is hereby granted, provided that you include
+the following on ALL copies of the document, or portions thereof, that you use: 
+1. A link or URI to the original W3C document. 
+2. The pre-existing copyright notice of the original author, if it doesn’t exist, a
+notice of the form: "Copyright © World Wide Web Consortium, 
+(Massachusetts Institute of Technology, Institut National de Recherche en 
+Informatique et en Automatique, Keio University). All Rights Reserved." 
+3. If it exists, the STATUS of the W3C document
+
+https://www.w3.org/TR/1998/REC-CSS2-19980512/
+Copyright [p. 18] © 1998 W3C (MIT, INRIA, Keio ), All Rights Reserved.
+W3C Recommendation
+-->
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<HTML>
+ <HEAD>
+ <LINK REL=STYLESHEET TYPE="text/css" HREF="css-12-5.css">
+ <TITLE>CSS 2.0 Chapter 12.5 example</TITLE>
+ </HEAD>
+ <BODY>
+<OL> <!-- (set item[0] to 0 -->
+ <LI>item <!-- increment item[0] (= 1) -->
+ <LI>item <!-- increment item[0] (= 2) -->
+ <OL> <!-- (set item[1] to 0 -->
+ <LI>item <!-- increment item[1] (= 1) -->
+ <LI>item <!-- increment item[1] (= 2) -->
+ <LI>item <!-- increment item[1] (= 3) -->
+ <OL> <!-- (set item[2] to 0 -->
+ <LI>item <!-- increment item[2] (= 1) -->
+ </OL> <!-- ) -->
+ <OL> <!-- (set item[3] to 0 -->
+ <LI> <!-- increment item[3] (= 1) -->
+ </OL> <!-- ) -->
+ <LI>item <!-- increment item[1] (= 4) -->
+ </OL> <!-- ) -->
+ <LI>item <!-- increment item[0] (= 3) -->
+ <LI>item <!-- increment item[0] (= 4) -->
+</OL> <!-- ) -->
+<OL> <!-- (reset item[4] to 0 -->
+ <LI>item <!-- increment item[4] (= 1) -->
+ <LI>item <!-- increment item[4] (= 2) -->
+</OL> <!-- ) -->
+ </BODY>
+</HTML>

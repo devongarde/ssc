@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -40,7 +40,7 @@ bool element::naughty_label_descendents (const element* e, const uid_t uid, bool
 
 void element::examine_label ()
 {   if (node_.version ().is_5 ())
-    {   check_ancestors (elem_label, element_bit_set (elem_label));
+    {   check_ancestors (elem_label, element_bitset (elem_label));
         no_anchor_daddy ();
         uid_t uid = 0;
         if (a_.good (a_for))
@@ -252,12 +252,14 @@ void element::examine_link ()
             if (bad)
             {   pick (nit_style_not_css, ed_50, "4.2.4 The link element", es_warning, ec_css, "REL=\"stylesheet\" requires TYPE=\"text/css\"; ignoring non-CSS stylesheet");
                 return; } }
-        if (context.unknown_class () && context.load_css ())
+        if (context.unknown_class () && context.load_css () && (context.css_version () == css_1))
             if (has_href && a_.good (a_href))
                 if (is_css || page_ -> style_css ())
                 {   vurl_t v (a_.get_urls (a_href));
                     for (auto u : v)
                         if (! u.invalid ())
-                        {   pick (nit_gather, es_comment, ec_css, "gathering CSS identifiers from ", u.original ());
-                            //VERIFY_NOT_NULL (css_cache.get (), __FILE__, __LINE__);
-                            page_ -> css ().parse_file (nits (), *page_, u); } } } }
+                        {   nitpick nuts;
+                            if (! u.is_local ())
+                                pick (nit_gather, es_comment, ec_css, "gathering ", u.original ());
+                            page_ -> css ().parse_file (nuts, node_.namespaces (), *page_, u, false);
+                            if (! u.is_local ()) nits ().merge (nuts); } } } }

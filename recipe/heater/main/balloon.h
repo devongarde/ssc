@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -28,11 +28,8 @@ public:
     time_balloon ()
     {   start_ = ::std::chrono::system_clock::now ();
         start_time_ = ::std::chrono::system_clock::to_time_t (start_); }
-    ~time_balloon () { }
-    time_balloon (const time_balloon& ) = delete;
-    time_balloon (time_balloon&& ) = delete;
-    time_balloon& operator = (const time_balloon& ) = delete;
-    time_balloon& operator = (time_balloon&& ) = delete;
+    NO_COPY_CONSTRUCTORS (time_balloon);
+    ~time_balloon () = default;
 
     void pop ()
     {   const ::std::chrono::system_clock::time_point fin = ::std::chrono::system_clock::now ();

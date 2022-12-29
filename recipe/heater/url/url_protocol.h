@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2022 Dylan Harris
+Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -32,14 +32,11 @@ class protocol : public symbol < html_version, e_protocol >
     vc_t component_;
 public:
     protocol () { component_.resize (component_count); }
-    protocol (const protocol& rhs) = default;
-    protocol (protocol&& rhs) = default;
+    DEFAULT_COPY_CONSTRUCTORS (protocol);
     ~protocol () = default;
     protocol (nitpick& nits, const html_version& v, const ::std::string& x, const e_protocol current = pr_https)
     {   component_.resize (component_count);
         parse (nits, v, x, current); }
-    protocol& operator = (const protocol& rhs) = default;
-    protocol& operator = (protocol&& rhs) = default;
     bool operator == (const protocol& rhs) const;
     bool parse (nitpick& nits, const html_version& v, const ::std::string& x, e_protocol current = pr_https);
     void swap (protocol& p) noexcept

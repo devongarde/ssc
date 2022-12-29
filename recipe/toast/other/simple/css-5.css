@@ -1,0 +1,176 @@
+﻿BODY { font-family: gill, helvetica, sans-serif }
+BODY { font-family: "new century schoolbook", serif }
+
+H1, H2, H3 { font-style: italic }
+H1 EM { font-style: normal }
+
+H3 { font-variant: small-caps }
+EM { font-style: oblique }
+
+P { font-weight: normal } /* 400 */
+H1 { font-weight: 700 } /* bold */
+STRONG { font-weight: bolder }
+
+P { font-size: 12pt; }
+BLOCKQUOTE { font-size: larger }
+EM { font-size: 150% }
+EM { font-size: 1.5em }
+
+P { font: 12pt/14pt sans-serif }
+P { font: 80% sans-serif }
+P { font: x-large/110% "new century schoolbook", serif }
+P { font: bold italic large Palatino, serif }
+P { font: normal small-caps 120%/120% fantasy }
+
+EM { color: red } /* natural language */
+EM { color: rgb(255,0,0) } /* RGB range 0-255 */
+
+H1 { background-color: #F00 }
+
+BODY { background-image: url(marble.gif) }
+P { background-image: none }
+
+BODY {
+ background: red url(pendant.gif);
+ background-repeat: repeat-y;
+}
+
+BODY {
+ background: red url(pendant.gif);
+ background-repeat: repeat-y;
+ background-attachment: fixed;
+}
+
+BODY { background: url(banner.jpeg) right top } /* 100% 0% */
+BODY { background: url(banner.jpeg) top center } /* 50% 0% */
+BODY { background: url(banner.jpeg) center } /* 50% 50% */
+BODY { background: url(banner.jpeg) bottom } /* 50% 100% */
+
+BODY {
+ background-image: url(logo.png);
+ background-attachment: fixed;
+ background-position: 100% 100%;
+}
+
+H1 { word-spacing: 1em }
+
+BLOCKQUOTE { letter-spacing: 0.1em }
+
+BLOCKQUOTE { letter-spacing: 0 }
+BLOCKQUOTE { letter-spacing: 0cm }
+
+A:link, A:visited, A:active { text-decoration: underline }
+
+H1 { text-transform: uppercase }
+
+DIV.centre { text-align: center }
+
+P { text-indent: 3em }
+
+DIV { line-height: 1.2; font-size: 10pt } /* number */
+DIV { line-height: 1.2em; font-size: 10pt } /* length */
+DIV { line-height: 120%; font-size: 10pt } /* percentage */
+
+H1 { margin-top: 2em }
+
+H1 { margin-right: 12.3% }
+
+H1 { margin-bottom: 3px }
+
+H1 { margin-left: 2em }
+
+BODY { margin: 2em } /* all margins set to 2em */
+BODY { margin: 1em 2em } /* top & bottom = 1em, right & left = 2em */
+BODY { margin: 1em 2em 3em } /* top=1em, right=2em, bottom=3em, left=2em */
+
+BODY {
+ margin-top: 1em;
+ margin-right: 2em;
+ margin-bottom: 3em;
+ margin-left: 2em; /* copied from opposite side (right) */
+}
+
+BLOCKQUOTE { padding-top: 0.3em }
+
+BLOCKQUOTE { padding-right: 10px }
+
+BLOCKQUOTE { padding-bottom: 2em }
+
+BLOCKQUOTE { padding-left: 20% }
+
+H1 {
+ background: white;
+ padding: 1em 2em;
+}
+
+H1 {
+ background: white;
+ padding: 1em 2em;
+}
+
+H1 { border: solid thick red }
+P { border: solid thick blue }
+
+H1 { border: solid 0.5em }
+
+H1 { border-width: thin } /* thin thin thin thin */
+H1 { border-width: thin thick } /* thin thick thin thick */
+H1 { border-width: thin thick medium } /* thin thick medium thin */
+H1 { border-width: thin thick medium thin } /* thin thick medium thin */
+
+P {
+ color: black;
+ background: white;
+ border: solid;
+}
+
+#xy34 { border-style: solid dotted }
+
+H1 { border-bottom: thick solid red }
+
+H1 { border-bottom: thick solid }
+
+P { border: solid red }
+P {
+ border-top: solid red;
+ border-right: solid red;
+ border-bottom: solid red;
+ border-left: solid red
+}
+
+BLOCKQUOTE {
+ border-color: red;
+ border-left: double
+ color: black;
+}
+
+IMG.icon { width: 100px }
+
+IMG.icon { height: 100px }
+
+IMG.icon {
+ float: left;
+ margin-left: 0;
+}
+
+H1 { clear: left }
+
+P { display: block }
+EM { display: inline }
+LI { display: list-item }
+IMG { display: none }
+
+PRE { white-space: pre }
+P { white-space: normal }
+
+OL { list-style-type: decimal } /* 1 2 3 4 5 etc. */
+OL { list-style-type: lower-alpha } /* a b c d e etc. */
+OL { list-style-type: lower-roman } /* i ii iii iv v etc. */
+
+UL { list-style-image: url(http://example.com/ellipse.png) }
+
+UL { list-style: upper-roman inside }
+UL UL { list-style: circle outside }
+LI.square { list-style: square }
+
+UL { list-style: url(http://png.com/ellipse.png) disc }
