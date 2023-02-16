@@ -625,6 +625,7 @@ typedef typed_attribute < t_script, a_onrepeat > attr_onrepeat;
 typedef typed_attribute < t_script, a_onreset > attr_onreset;
 typedef typed_attribute < t_script, a_onresize > attr_onresize;
 typedef typed_attribute < t_script, a_onscroll > attr_onscroll;
+typedef typed_attribute < t_script, a_onscrollend > attr_onscrollend;
 typedef typed_attribute < t_script, a_onsecuritypolicyviolation > attr_onsecuritypolicyviolation;
 typedef typed_attribute < t_script, a_onseeking > attr_onseeking;
 typedef typed_attribute < t_script, a_onselect > attr_onselect;
@@ -1578,6 +1579,7 @@ const e_attribute last_1 = a_glyph_orientation_horizontal;
     attr_onreset, \
     attr_onresize, \
     attr_onscroll, \
+    attr_onscrollend, \
     attr_onsecuritypolicyviolation, \
     attr_onseeking, \
     attr_onselect, \

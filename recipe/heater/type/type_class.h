@@ -55,10 +55,10 @@ template < > inline void enum_vec < t_class, e_class > :: set_value (nitpick& ni
         t.set_value (nits, v, s);
         VERIFY_NOT_NULL (box (), __FILE__, __LINE__);
         if (is_whatwg_class (t.get ()))
-        {   nits.pick (nit_whatwg_class, ed_jan07, "3.4.5. Classes", es_comment, ec_attribute, "FYI, ", quote (s), " was a draft HTML 5 standard class name.");
+        {   nits.pick (nit_whatwg_class, ed_jan07, "3.4.5. Classes", es_comment, ec_attribute, "FYI, ", quote (s), " was a standard class name in some early drafts of HTML 5.");
             if ((v.mjr () != HTML_2007) || (v.mnr () >= HTML_JUL)) t.status (s_invalid); }
         if (t.invalid ())
-        {   if (context.load_css () && (context.css_version () == css_1))
+        {   if (context.unknown_class ())
                 if (note_class_usage (box (), s))
                     nits.pick (nit_spotted_css_class, es_comment, ec_css, "CSS class ", quote (s), " recognised");
                 else if (! check_class_spelling (nits, v, s))

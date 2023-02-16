@@ -149,9 +149,6 @@
     <ClInclude Include="..\heater\attribute\avm.h">
       <Filter>Heater\attribute</Filter>
     </ClInclude>
-    <ClInclude Include="..\heater\css\css.h">
-      <Filter>Heater\css</Filter>
-    </ClInclude>
     <ClInclude Include="..\heater\element\element_attribute.h">
       <Filter>Heater\element</Filter>
     </ClInclude>
@@ -267,12 +264,6 @@
       <Filter>Heater\parser</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\parser\parse_attributes.h">
-      <Filter>Heater\parser</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\parser\parse_bra_ket.h">
-      <Filter>Heater\parser</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\parser\parse_bras_ket.h">
       <Filter>Heater\parser</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\parser\parse_css.h">
@@ -635,17 +626,95 @@
     <ClInclude Include="..\heater\webpage\q.h">
       <Filter>Heater\webpage</Filter>
     </ClInclude>
-    <ClInclude Include="..\heater\css\css_global.h">
-      <Filter>Heater\css</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\css\css_group.h">
-      <Filter>Heater\css</Filter>
-    </ClInclude>
     <ClInclude Include="..\heater\utility\cache.h">
       <Filter>Heater\utility</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\url\curl.h">
       <Filter>Heater\url</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\attribute\attr_state.h">
+      <Filter>Heater\attribute</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\arguments.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\css.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\css_attribute.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\css_class.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\css_element.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\css_parse.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\css_state.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\decoration.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\distilled.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\flags.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\fn.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\global.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\group.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\id.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\properties.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\property.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\property_classes.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\rule.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\rules.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\selector.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\selectors.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\statement.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\statements.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\typed_property.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\weight.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\parser\parse_brac_ket.h">
+      <Filter>Heater\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\parser\parse_bracs_ket.h">
+      <Filter>Heater\parser</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -660,9 +729,6 @@
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\avm.cpp">
       <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\css.cpp">
-      <Filter>Sauce\css</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\element\element_attributes.cpp">
       <Filter>Sauce\element</Filter>
@@ -769,15 +835,6 @@
     <ClCompile Include="..\sauce\microformat\field.cpp">
       <Filter>Sauce\microformat</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\parser\parse_bra_ket.cpp">
-      <Filter>Sauce\parser</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\parser\parse_bras_ket.cpp">
-      <Filter>Sauce\parser</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\parser\parse_css.cpp">
-      <Filter>Sauce\parser</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\parser\parse_element.cpp">
       <Filter>Sauce\parser</Filter>
     </ClCompile>
@@ -839,9 +896,6 @@
       <Filter>Sauce\type</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\type\type_class.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_colour.cpp">
       <Filter>Sauce\type</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\type\type_core.cpp">
@@ -1135,12 +1189,6 @@
     <ClCompile Include="..\sauce\webpage\q.cpp">
       <Filter>Sauce\webpage</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\css_global.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\css_group.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\type\type_intent.cpp">
       <Filter>Sauce\type</Filter>
     </ClCompile>
@@ -1149,6 +1197,93 @@
     </ClCompile>
     <ClCompile Include="..\sauce\url\curl.cpp">
       <Filter>Sauce\url</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\attr_state.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\selectors.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\statement.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\statements.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\weight.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\arguments.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\css.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\css_attribute.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\css_class.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\css_element.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\css_id.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\css_parse.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\css_state.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\decoration.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\distilled.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\fn.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\global.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\group.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\properties.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\property.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\property_constructor.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\rule.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\rules.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\selector.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\parser\parse_brac_ket.cpp">
+      <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\parser\parse_bracs_ket.cpp">
+      <Filter>Sauce\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\type\type_base.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\type\type_id.cpp">
+      <Filter>Sauce\type</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\type\type_master.cpp">
+      <Filter>Sauce\type</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

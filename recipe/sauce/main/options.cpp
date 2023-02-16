@@ -196,7 +196,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (DEFCONF ",F", ::boost::program_options::bool_switch (), "Load configuration from " CONFIGURATION ".")
         (HELP ",h", ::boost::program_options::bool_switch (), "Output this information and exit.")
         (HTML SNIPPET ",H", ::boost::program_options::value < ::std::string > (), "Only nitpick the given snippet of HTML.")
-        (ONTOLOGY LIST, ::boost::program_options::bool_switch (), "List known ontology schema for microdata and/or RDFa, then exit.")
+        (ONTOLOGY LIST, ::boost::program_options::bool_switch (), "List known ontology schema for microdata andor RDFa, then exit.")
         (VALIDATION_, ::boost::program_options::bool_switch (), "List attribute types that can be given additional 'valid' values, then exit.")
         (VERSION ",V", ::boost::program_options::bool_switch (), "Display version and copyright gen, then exit.")
         ;
@@ -251,6 +251,9 @@ void options::process (nitpick& nits, int argc, char* const * argv)
 #endif // NO_FRED
         (GENERAL MACROSTART, ::boost::program_options::value < ::std::string > () -> default_value ("{{"), "Start of template macro (by default, the '{{' in '{{macro}}').")
         (GENERAL MACROEND, ::boost::program_options::value < ::std::string > () -> default_value ("}}"), "End of template macro (by default, the '}}' in '{{macro}}').")
+
+        (CSS EXTERNAL, ::boost::program_options::bool_switch (), "Nitpick css files imported from external sites.")
+        (CSS DONT EXTERNAL, ::boost::program_options::bool_switch (), "Do not nitpick imported css CSS files.")
 
         (JSONLD EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "Extension for JSON-LD files; may be repeated.")
         (JSONLD VERIFY, ::boost::program_options::bool_switch (), "Experimental: Verify JSON-LD.")
@@ -329,6 +332,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (CORPUS DONT MAIN, ::boost::program_options::bool_switch (), "Avoid the content of <MAIN> when gather page corpus.")
         (CORPUS OUTPUT ",d", ::boost::program_options::value < ::std::string > (), "Dump corpus of site content to specified file.")
 
+        (CSS CASCADE, ::boost::program_options::value < int > (), "Version of CSS Cascade & Inheritance (0, 3,4,5 or 6).")
         (CSS EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "CSS files have this extension (default css); may be repeated.")
         (CSS VERIFY, ::boost::program_options::bool_switch (), "Process .css files.")
         (CSS DONT VERIFY, ::boost::program_options::bool_switch (), "Do not process .css files.")
@@ -395,12 +399,12 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (NITS COMMENT, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as a comment; may be repeated.")
         (NITS DBG, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as a debug message; may be repeated.")
         (NITS ERR, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as an error; may be repeated.")
-        (NITS FORMAT, ::boost::program_options::value < ::std::string > (), "Output nits in this format (\"html\" or \"text\", default text).")
+        (NITS FORMAT, ::boost::program_options::value < ::std::string > (), "Output nits in this format: \"html\", \"text\" (default), or a filename (see docs for format).")
         (NITS INFO, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as info; may be repeated.")
         (NITS NIDS, ::boost::program_options::bool_switch (), "Output nit identifiers (used to recategorise nits).")
         (NITS DONT NIDS, ::boost::program_options::bool_switch (), "Do not output nit identifiers.")
         (NITS OVERRIDE ",P", ::boost::program_options::value < ::std::string > (), "Output nits in this format (overrides " NITS FORMAT "; for automation).")
-        (NITS QUOTE, ::boost::program_options::value < ::std::string > (), "Quote nits in this format (\"html\" or \"text\", default text).")
+        (NITS QUOTE, ::boost::program_options::value < ::std::string > (), "Quote nits in this format: \"c\", \"csv\", \"double\", \"html\", \"none\" (default), or \"single\".")
         (NITS ROOT, ::boost::program_options::bool_switch (), "By default, seek nit output template files in --" WEBSITE ROOT ".")
         (NITS DONT ROOT, ::boost::program_options::bool_switch (), "Do not seek nit output template files in --" WEBSITE ROOT ", unless explicitly specified.")
         (NITS SILENCE, ::boost::program_options::value < vstr_t > () -> composing (), "Silence nit; may be repeated.")
@@ -554,7 +558,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
     {   ::std::string qu (env_ [QUERY_STRING].as < ::std::string > ());
         context.environment (env_query_string, qu);
         if (! context.environment (env_query_string).empty ()) try
-        {   context.cgi (true).article (false).body (false).cased (false).classic (false).crosslinks (false).example (false)
+        {   context.cgi (true).article (false).body (false).cased (false).classic (false).crosslinks (false).example (false).ext_css (false)
                 .external (false).forwarded (false).icu (true).info (true).jsonld (false).links (false).load_css (false).main (false)
                 .md_export (false).meta (true).mf_verify (true).microdata (true).not_root (false).once (true).presume_tags (false).progress (false)
                 .rdfa (false).rel (true).revoke (false).rfc_1867 (true).rfc_1942 (true).rfc_1980 (true).rfc_2070 (true).rpt_opens (false).schema (true)
@@ -743,10 +747,10 @@ void options::contextualise (nitpick& nits)
     yea_nay (&context_t::spec, nits, NITS SPEC, NITS DONT SPEC);
 
     if (context.test () || var_ [GENERAL SPEC].as <bool> ())
-        context.article (false).body (false).cased (false).classic (false).crosslinks (false).example (false).external (false).forwarded (false)
+        context.article (false).body (false).cased (false).classic (false).crosslinks (false).example (false).external (false).ext_css (false).forwarded (false)
             .icu (true).info (false).jsonld (false).links (false).load_css (true).main (false).md_export (false).meta (false).mf_verify (false)
-            .microdata (false).nids (true).nits (false) .nits_nits_nits (true).not_root (false).once (false).presume_tags (false).progress (false)
-            .rdfa (false) .rel (false).revoke (false).rfc_1867 (true).rfc_1942 (true).rfc_1980 (true).rfc_2070 (true).rpt_opens (false).schema (true)
+            .microdata (false).nids (true).nits (false).nits_nits_nits (true).not_root (false).once (false).presume_tags (false).progress (false)
+            .rdfa (false).rel (false).revoke (false).rfc_1867 (true).rfc_1942 (true).rfc_1980 (true).rfc_2070 (true).rpt_opens (false).schema (true)
             .shadow_changed (false).shadow_comment (false).shadow_enable (false).shadow_space (false).shadow_ssi (false).spell (false).ssi (false)
             .stats_page (false).stats_summary (false).unknown_class (false).update (false);
 
@@ -790,7 +794,7 @@ void options::contextualise (nitpick& nits)
             n = 2; }
         context.mf_version (GSL_NARROW_CAST < unsigned char > (n)); }
 
-    if (var_.count (HTML VERSION) > 0)
+    if (var_.count (HTML VERSION) != 0)
     {   ::std::string ver (var_ [HTML VERSION].as < ::std::string > ());
         if (! ver.empty ())
         {   bool xhtml = false;
@@ -950,6 +954,7 @@ void options::contextualise (nitpick& nits)
         if (var_.count (CSS EXTENSION)) context.css_extension (var_ [CSS EXTENSION].as < vstr_t > ());
         else { vstr_t ex; ex.push_back ("css"); context.css_extension (ex); }
         yea_nay (&context_t::load_css, nits, CSS VERIFY, CSS DONT VERIFY);
+        yea_nay (&context_t::ext_css, nits, CSS EXTERNAL, CSS DONT EXTERNAL);
         
         if (var_.count (CSS VERSION) == 0)
             switch (context.html_ver ().mjr ())
@@ -982,6 +987,23 @@ void options::contextualise (nitpick& nits)
                 else context.css_version (lexical < int > :: cast (ver.substr (0, pos)), lexical < int > :: cast (ver.substr (pos+1)));
                 if (context.css_version () == css_none)
                     nits.pick (nit_config_version, es_warning, ec_init, "ignoring invalid CSS version"); } }
+
+        if (var_.count (CSS CASCADE))
+            if (context.css_version () < 3)
+                nits.pick (nit_config_version, es_error, ec_init, "--" CSS CASCADE " requires --" CSS VERSION " 3");
+            else
+            {   int n (var_ [CSS CASCADE].as < int > ());
+                switch (n)
+                {   case 0 :
+                    case 3 :
+                    case 4 :
+                    case 5 :
+                    case 6 :
+                        context.css_cascade (n);
+                        break;
+                    default :
+                        nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Cascade & Inheritance value");
+                        break; } }
 
         yea_nay (&context_t::rfc_1867, nits, HTML RFC1867, HTML DONT RFC1867);
         yea_nay (&context_t::rfc_1942, nits, HTML RFC1942, HTML DONT RFC1942);
@@ -1393,6 +1415,10 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_ [CORPUS DONT MAIN].as < bool > ()) res << CORPUS DONT MAIN "\n";
     if (var_.count (CORPUS OUTPUT)) res << CORPUS OUTPUT ": " << var_ [CORPUS OUTPUT].as < ::std::string > () << "\n";
 
+    if (var_.count (CSS CASCADE)) res << CSS CASCADE ": " << var_ [CSS CASCADE].as < int > () << "\n";
+    if (var_.count (CSS EXTENSION)) res << CSS EXTENSION ": "; pvs (res, var_ [CSS EXTENSION].as < vstr_t > ()); res << "\n";
+    if (var_.count (CSS VERIFY)) res << CSS VERIFY ": " << var_ [CSS VERIFY].as < bool > () << "\n";
+    if (var_.count (CSS DONT VERIFY)) res << CSS DONT VERIFY ": " << var_ [CSS DONT VERIFY].as < bool > () << "\n";
     if (var_.count (CSS VERSION)) res << CSS VERSION ": " << var_ [CSS VERSION].as < ::std::string > () << "\n";
 
     if (var_.count (ENVIRONMENT QUERY_STRING))

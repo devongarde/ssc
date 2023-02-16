@@ -20,6 +20,7 @@ W3C Recommendation
 @import url("loudvoice.css") aural;
 @media print {
  /* style sheet for print goes here */
+}
 
  @media print {
  BODY { font-size: 10pt }

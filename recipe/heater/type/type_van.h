@@ -26,6 +26,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 template < > struct type_master < t_1_more_i > : type_or_string < t_1_more_i, t_1_more, sz_inherit >
 { using type_or_string < t_1_more_i, t_1_more, sz_inherit > :: type_or_string; };
 
+template < > struct type_master < t_10_int > : type_exactly_n < t_10_int, sz_space, t_integer, 10 >
+{ using type_exactly_n < t_10_int, sz_space, t_integer, 10 > :: type_exactly_n; };
+
+template < > struct type_master < t_2string > : type_exactly_n < t_2string, sz_space, t_text, 2 >
+{ using type_exactly_n < t_2string, sz_space, t_text, 2 > :: type_exactly_n; };
+
+template < > struct type_master < t_4string > : type_exactly_n < t_4string, sz_space, t_text, 4 >
+{ using type_exactly_n < t_4string, sz_space, t_text, 4 > :: type_exactly_n; };
+
+template < > struct type_master < t_4string_ni > : one_of_three_or_string < t_4string_ni, t_4string, t_2string, t_css_inherit, sz_none >
+{ using one_of_three_or_string < t_4string_ni, t_4string, t_2string, t_css_inherit, sz_none > :: one_of_three_or_string; };
+
 template < > struct type_master < t_bandwidth > : type_or_string < t_bandwidth, t_real, sz_auto >
 { using type_or_string < t_bandwidth, t_real, sz_auto > :: type_or_string; };
 
@@ -70,8 +82,14 @@ template < > struct type_master < t_colour_cii > : type_or_either_string < t_col
 template < > struct type_master < t_colour_ni > : type_or_any_string < t_colour_ni, t_colour, sz_none, sz_inherit, sz_currentcolour >
 { using type_or_any_string < t_colour_ni, t_colour, sz_none, sz_inherit, sz_currentcolour > :: type_or_any_string; };
 
-template < > struct type_master < t_colour_trans > : type_or_string < t_colour_trans, t_colour, sz_transparent >
-{ using type_or_string < t_colour_trans, t_colour, sz_transparent > :: type_or_string; };
+template < > struct type_master < t_colour_trans > : either_type_or_string < t_colour_trans, t_css_colour, t_colour, sz_transparent >
+{ using either_type_or_string < t_colour_trans, t_css_colour, t_colour, sz_transparent > :: either_type_or_string; };
+
+template < > struct type_master < t_colour_trans_i > : type_or_string < t_colour_trans_i, t_colour_trans, sz_inherit >
+{ using type_or_string < t_colour_trans_i, t_colour_trans, sz_inherit > :: type_or_string; };
+
+template < > struct type_master < t_colour_ii > : type_or_either_string < t_colour_ii, t_colour, sz_invert, sz_inherit >
+{ using type_or_either_string < t_colour_ii, t_colour, sz_invert, sz_inherit > :: type_or_either_string; };
 
 template < > struct type_master < t_context_menu > : tidy_string < t_context_menu >
 {   using tidy_string < t_context_menu > :: tidy_string;
@@ -132,6 +150,9 @@ template < > struct type_master < t_enable_background > : tidy_string < t_enable
 
 template < > struct type_master < t_font_families > : type_at_least_one < t_font_families, sz_comma, t_font_family >
 { using type_at_least_one < t_font_families, sz_comma, t_font_family > :: type_at_least_one; };
+
+template < > struct type_master < t_css_font_families > : type_either_or < t_css_font_families, t_css_inherit, t_font_families >
+{ using type_either_or < t_css_font_families, t_css_inherit, t_font_families > :: type_either_or; };
 
 template < > struct type_master < t_hidden_ex > : public tidy_string < t_hidden_ex >
 {   using tidy_string < t_hidden_ex > :: tidy_string;

@@ -1,0 +1,20 @@
+﻿P { content: "sucks"; }
+
+SID BERT { wombats: purr; cats: cool }
+
+P Q SPAN, P I, P BR, P I { color : lime; page: bert }
+
+H1 { color: black ! dull; background: white ! sausages; page: fred }
+
+h1 +:before h2 { color: purple } 
+h1 >:before h2 { color: puce } 
+h1 ~:before h2 { color: vomit }
+
+h1 { size: landscape; } 
+h2 { size: A6; }
+
+p:left { color: black; }
+
+a % b xy_zzy x&&_ { } 
+
+@page bert { size: 9cm 18cm }

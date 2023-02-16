@@ -283,7 +283,7 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_css_1 : return "CSS Level 1 (April 2008)";
         case ed_css_20 : return "CSS Level 2 (May 1998)";
         case ed_css_21 : return "CSS Level 2.1 (April 2016)";
-        case ed_css_22 : return "CSS Level 2.2 (November 2020 draft)";
+        case ed_css_22 : return "CSS Level 2.2 (February 2022 draft)";
         case ed_css_syntax : return "CSS Syntax Module Level 3 (December 2021 draft)";
         case ed_css_selectors_3 : return "CSS Selectors Level 3 (November 2018)";
         case ed_css_selectors_4 : return "CSS Selectors Level 4 (May 2022 draft)";

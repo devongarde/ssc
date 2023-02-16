@@ -131,6 +131,7 @@ public:
     void merge_id (const smsid_t& s) { dcl_id_.merge (s); }
     void merge_element_class (const smsid_t& s) { dcl_element_class_.merge (s); }
     void merge_element_id (const smsid_t& s) { dcl_element_id_.merge (s); }
+    void merge_font (const smsid_t& s) { font_.merge (s); }
     uint64_t file_count () const noexcept
     {   return file_count_; }
     unsigned element_count (const e_element e) const

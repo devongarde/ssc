@@ -1,0 +1,3 @@
+﻿BLOCKQUOTE.sad { play-during: url("violins.aiff") }
+BLOCKQUOTE Q { play-during: url("harp.wav") mix }
+SPAN.quiet { play-during: none }

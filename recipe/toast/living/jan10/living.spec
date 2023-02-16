@@ -72,6 +72,9 @@ PASS ../toast/living/jan10/caption.html
 9 inserted_missing_closure missing_close
 13 inserted_missing_closure
 
+PASS ../toast/living/jan10/clock.css
+0 html
+
 PASS ../toast/living/jan10/command.html
 7 no_such_folder url_not_found unknown
 8 no_such_folder url_not_found unknown
@@ -544,6 +547,7 @@ PASS ../toast/living/jan10/meter.html
 PASS ../toast/living/jan10/microdata.html
 20 url_not_found
 34 missing_itemtype
+49 dialect
 53 attribute_required url_not_found
 54 inserted_missing_closure missing_close
 55 inserted_missing_closure
@@ -841,3 +845,9 @@ PASS ../toast/living/jan10/vevent.html
 
 PASS ../toast/living/jan10/wbr.html
 7 use_double_quote_code use_double_quote_code
+
+itemids
+http://purl.oreilly.com/products/9780596007683.BOOK
+http://purl.oreilly.com/products/9780596802189.EBOOK
+http://purl.oreilly.com/works/45U8QJGZSQKDH8N
+urn:isbn:0-330-34032-8

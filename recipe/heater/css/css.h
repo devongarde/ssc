@@ -24,49 +24,49 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/fileindex.h"
 #include "css/distilled.h"
 #include "css/statements.h"
+#include "css/arguments.h"
 
 class url;
 class page;
+class css_group;
 
 class css
-{   bool snippet_ = false, state_version_ = false;
-    mutable bool reviewed_ = false, gathered_ = false;
+{   friend struct arguments;
+    arguments args_;
+    mutable bool reviewed_ = false;
     statements st_;
-    page* page_ = nullptr;
+    page& page_;
     fileindex_t ndx_ = nullfileindex;
     ::std::string abs_;
-    nitpick nits_;
+    v_np ticks_;
     int line_ = 0;
-    dst_ptr dst_;
     void check_for_standard_classes (const html_version& v);
 public:
-    explicit css (const html_version& v, dst_ptr cp, page* p, const ::std::string& abs, bool state_version, bool snippet, int line);
-    explicit css (arguments& args, dst_ptr cp, const ::std::string& content, int line);
-    DEFAULT_CONSTRUCTORS_NO_EMPTY (css);
-    void swap (css& c) noexcept;
-    void reset () noexcept { st_.clear (); }
+    explicit css (const html_version& v, const namespaces_ptr& namespaces, dst_ptr dst, page& p, const ::std::string& abs, bool state_version, bool snippet, int line);
+    explicit css (const html_version& v, const ::std::string& content, const namespaces_ptr& namespaces, dst_ptr dst, page& p, const ::std::string& abs, bool state_version, bool snippet, int line);
+    DELETE_CONSTRUCTORS (css);
     bool invalid () const noexcept { return false; }
-    bool snippet () const noexcept { return snippet_; }
-    void snippet (const bool b)  noexcept{ snippet_ = b; }
+    bool snippet () const noexcept { return args_.snippet_; }
+    void snippet (const bool b)  noexcept{ args_.snippet_ = b; }
     bool has_class (const ::std::string& s) const
-    {   VERIFY_NOT_NULL (dst_.get (), __FILE__, __LINE__);
-        return dst_ -> has_class (s); }
+    {   VERIFY_NOT_NULL (args_.dst_.get (), __FILE__, __LINE__);
+        return args_.dst_ -> has_class (s); }
     bool has_id (const ::std::string& s) const
-    {   VERIFY_NOT_NULL (dst_.get (), __FILE__, __LINE__);
-        return dst_ -> has_id (s); }
+    {   VERIFY_NOT_NULL (args_.dst_.get (), __FILE__, __LINE__);
+        return args_.dst_ -> has_id (s); }
     bool has_element_class (const ::std::string& s) const
-    {   VERIFY_NOT_NULL (dst_.get (), __FILE__, __LINE__);
-        return dst_ -> has_element_class (s); }
+    {   VERIFY_NOT_NULL (args_.dst_.get (), __FILE__, __LINE__);
+        return args_.dst_ -> has_element_class (s); }
     bool has_element_id (const ::std::string& s) const
-    {   VERIFY_NOT_NULL (dst_.get (), __FILE__, __LINE__);
-        return dst_ -> has_element_id (s); }
+    {   VERIFY_NOT_NULL (args_.dst_.get (), __FILE__, __LINE__);
+        return args_.dst_ -> has_element_id (s); }
     bool has_namespace (const ::std::string& ) const
     {   return false; }
-    bool parse (arguments& args, const ::std::string& content);
+    bool parse (const ::std::string& content, const bool x); // in css_parse.cpp
     ::std::string review (mmac_t& mac, const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot, const e_nit_section& page_head = ns_none, const bool unfiltered = false) const;
     void accumulate (nitpick& accumulator) const;
-    void accumulate (stats_t* s) const;
-    void merge (nitpick& nits); 
+    void accumulate (stats_t* s);
+    void validate ();
     const element_bitset get_elements () const { return st_.get_elements (); } };
 
 typedef ::std::shared_ptr < css > css_ptr;

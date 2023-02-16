@@ -201,8 +201,7 @@ bool directory::add_to_content (nitpick* ticks, const ::boost::filesystem::direc
     ::std::string f (local_path_to_nix (qp.filename ().string ()));
     p = join_site_paths (p, f);
     if (is_regular_file (qp))
-    {   if (context.dodedu ())
-            get_crc (*ticks, ndx);
+    {   if (context.dodedu ()) get_crc (*ticks, ndx);
         if (is_css (f)) return priority_.insert (value_t (f, nullptr)).second;
         else return content_.insert (value_t (f, nullptr)).second; }
     if (is_directory (qp))
@@ -251,11 +250,12 @@ void directory::examine_page (nitpick* ticks, const ::std::string& file) const
                             else
                             {   web.examine ();
                                 web.verify_locale (p);
+                                web.validate ();
                                 web.mf_write (p);
                                 web.lynx ();
                                 if (context.shadow_pages ()) web.shadow (nits, get_shadow_path () / file);
                                 ss << web.nits ().review (mac);
-                                ss << web.css ().review (mac);
+                                ss << web.css_review (mac);
                                 ss << web.report (); }
                             web.nits ().accumulate (nits);
                             web.css ().accumulate (nits);
@@ -285,7 +285,7 @@ void directory::examine (nitpick* ticks, dir_ptr me_me_me) const
         shadowed.emplace ((get_shadow_path () / i.first).string ());
         if (context.shadow_files () || is_verifiable_file (i.first))
 #ifdef NO_FRED
-            examine_page (ticks, i.first)); }
+            examine_page (ticks, i.first); }
 #else // NO_FRED
             q.push (q_entry (ticks, me_me_me, st_priority, i.first)); }
     ::std::this_thread::yield ();
@@ -367,7 +367,6 @@ bool directory::verify_local (nitpick& nits, const html_version& , const url& u,
     if (p.empty ())
         if (u.has_query () || u.is_simple_id ())
             return fancy;
-//    dear d (lox_dear);
     const fileindex_t ndx (get_fileindex (ndx_, p));
     if (ndx != nullfileindex)
         if (get_any_flag (ndx, FX_PRETEND)) return true;

@@ -32,14 +32,13 @@ bool process_css (nitpick& nits, const html_version& v, const ::std::string& s, 
         else
         {   page& p = e -> get_page ();
             if (! p.style_css ())
-                nits.pick (nit_css_syntax, es_comment, ec_type, PROG " can only check style type text/css");
-            else if (context.load_css () && (context.css_version () == css_1))
-            {   arguments args (v, e -> namespaces (), &p, false, true);
-                p.css ().parse (nits, args, s, e -> line ()); } } }
+                nits.pick (nit_style_not_css, es_comment, ec_type, PROG " can only check style type text/css");
+            else if (context.load_css () && (context.css_version () >= css_1))
+                p.css ().parse (s, v, e -> namespaces (), false, e -> line ()); } }
     catch (const ::std::system_error& ex)
-    {   nits.pick (nit_css_syntax, es_catastrophic, ec_type, "system exception processing STYLE: ", ex.what ()); }
+    {   nits.pick (nit_internal_parsing_error, es_catastrophic, ec_type, "system exception processing STYLE: ", ex.what ()); }
     catch (const ::std::exception& ex)
-    {   nits.pick (nit_css_syntax, es_catastrophic, ec_type, "exception processing STYLE: ", ex.what ()); }
+    {   nits.pick (nit_internal_parsing_error, es_catastrophic, ec_type, "exception processing STYLE: ", ex.what ()); }
     catch (...)
-    {   nits.pick (nit_css_syntax, es_catastrophic, ec_type, "unknown exception processing STYLE"); }
+    {   nits.pick (nit_internal_parsing_error, es_catastrophic, ec_type, "unknown exception processing STYLE"); }
     return nits.worst () < es_warning; }

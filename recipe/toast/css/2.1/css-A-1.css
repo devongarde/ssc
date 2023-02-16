@@ -1,0 +1,7 @@
+﻿@media speech {
+body { voice-family: Paul }
+}
+
+@media aural {
+body { voice-family: Paul }
+}

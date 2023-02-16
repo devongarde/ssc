@@ -488,7 +488,7 @@ PASS ../toast/SVG/1.2/dom_animate.svg
 5 svg_version
 
 PASS ../toast/SVG/1.2/entity.svg
-0 sq_bra_ket doctype_incomprehensible
+0 sq_brac_ket doctype_incomprehensible
 
 PASS ../toast/SVG/1.2/focushighlight.svg
 0 title_required

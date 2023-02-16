@@ -32,14 +32,23 @@ vstr_t sections;
 #define MACID ALPHANUMERIC "-_"
 
 #define SPEC_NIT \
+    "[class]\n" \
+    "{{class-name}} {{class-int}}\n" \
+    "\n" \
+    "[class-head]\n" \
+    "\n" \
+    START_OF_SECTION " classes\n" \
+    "\n" \
+    "[class-foot]\n" \
+    "\n" \
     "[tally]\n" \
-    "  {{tally-name}} {{tally-int}}{{tally-use-int:/:}}\n" \
+    "    {{tally-name}}: {{tally-int}}\n" \
     "\n" \
     "[tally-head]\n" \
     "{{tally-title:CSS ::}}\n" \
     "\n" \
     "[tally-foot]\n" \
-    "  {{tally-count}}x {{tally-title}} {{tally-total}}{{tally-use-total:/:}}\n" \
+    "  {{tally-count}} {{tally-title}} used {{tally-total}}\n" \
     "\n" \
     "[config]\n" \
     "\n" \
@@ -151,14 +160,23 @@ vstr_t sections;
     "\n"
 
 #define TEST_NIT \
+    "[class]\n" \
+    "{{class-name}} {{class-int}}\n" \
+    "\n" \
+    "[class-head]\n" \
+    "\n" \
+    START_OF_SECTION " classes\n" \
+    "\n" \
+    "[class-foot]\n" \
+    "\n" \
     "[tally]\n" \
-    "  {{tally-name}} {{tally-int}}{{tally-use-int:/:}}\n" \
+    "    {{tally-name}}: {{tally-int}}\n" \
     "\n" \
     "[tally-head]\n" \
     "{{tally-title:CSS ::}}\n" \
     "\n" \
     "[tally-foot]\n" \
-    "  {{tally-count}}x {{tally-title}} {{tally-total}}{{tally-use-total:/:}}\n" \
+    "  {{tally-count}} {{tally-title}} used {{tally-total}}\n" \
     "\n" \
     "[config]\n" \
     "\n" \
@@ -273,14 +291,23 @@ vstr_t sections;
     "\n"
 
 #define TEXT_NIT \
+    "[class]\n" \
+    "class \"{{class-name}}\" is used {{class-count}}\n" \
+    "\n" \
+    "[class-head]\n" \
+    "\n" \
+    START_OF_SECTION " classes\n" \
+    "\n" \
+    "[class-foot]\n" \
+    "\n" \
     "[tally]\n" \
-    "  \"{{tally-name}}\": {{tally-int}}{{tally-use-int:/:}}\n" \
+    "    {{tally-name}}: {{tally-int}}\n" \
     "\n" \
     "[tally-head]\n" \
     "{{tally-title:CSS ::}}\n" \
     "\n" \
     "[tally-foot]\n" \
-    "  {{tally-count}}x {{tally-title}}: {{tally-sum}}{{tally-use-sum:/:}}\n" \
+    "  {{tally-count}} {{tally-title}} used {{tally-sum}}\n" \
     "\n" \
     "[config]\n" \
     "{{nit-explanation}}\n" \
@@ -345,7 +372,7 @@ vstr_t sections;
     "\n" \
     "[nits-head]\n" \
     "\n" \
-    "{{nit-line}} {{nit-before}} " BEFORE_MOTE " {{nit-mote}} " AFTER_MOTE " {{nit-after}}\n" \
+    "{{nit-line}} {{nit-before}} {{nit-mote}} {{nit-after}}\n" \
     "\n" \
     "[nits-page]\n" \
     "\n" \
@@ -393,15 +420,25 @@ vstr_t sections;
     "\n"
 
 #define HTML_NIT \
+    "[class]\n" \
+    "<SPAN class=\"nit-name\">{{class-name}}</SPAN> <SPAN class=\"nit-count\">{{class-count}}</SPAN><BR>\n" \
+    "\n" \
+    "[class-head]\n" \
+    "<H2 class=\"nit-section\">classes</H2>\n" \
+    "<P>\n" \
+    "\n" \
+    "[class-foot]\n" \
+    "</P>\n" \
+    "\n" \
     "[tally]\n" \
-    "<SPAN class=\"nit-name\">{{tally-name}}</SPAN> <SPAN class=\"nit-count\">{{tally-count}}{{tally-use-count:/:}}</SPAN><BR>\n" \
+    "<SPAN class=\"nit-name\">{{tally-name}}</SPAN> <SPAN class=\"nit-count\">{{tally-count}}</SPAN><BR>\n" \
     "\n" \
     "[tally-head]\n" \
     "{{tally-title:<H2 class=\"nit-section\">: CSS/HTML:</H2>\n}}" \
     "<P>\n" \
     "\n" \
     "[tally-foot]\n" \
-    "<SPAN class=\"nit-name\">{{tally-count}}x {{tally-title}}:</SPAN> <SPAN class=\"nit-count\">{{tally-total}}{{tally-use-total:/:)}}</SPAN>\n" \
+    "<SPAN class=\"nit-name\">{{tally-count}} {{tally-title}}:</SPAN> <SPAN class=\"nit-count\">{{tally-total}}</SPAN>\n" \
     "</P>\n" \
     "\n" \
     "[config]\n" \
@@ -585,7 +622,7 @@ void init_macro ()
                             if (*i == '\"') res += "\\\"";
                             else res += *i;
                         break; }
-    res += '\"';
+    res += '"';
     return res; }
 
 ::std::string encsv (const ::std::string& s)
@@ -595,7 +632,7 @@ void init_macro ()
         if (*i == '\"') res += "\"\"";
         else if (*i == '\\') res += "\\\\";
         else res += *i;
-    res += '\"';
+    res += '"';
     return res; }
 
 ::std::string endouble (const ::std::string& s, const char q)
@@ -740,7 +777,7 @@ bool macro_t::load_template (nitpick& nits, const html_version& v)
         if (epos == ::std::string::npos) break;
         ::std::string m = tpl.substr (pos+len, epos-pos-len);
         if (! m.empty ())
-        {   ::std::string b,a;
+        {   ::std::string b, a;
             const ::std::string::size_type bp = m.find_first_not_of (MACID);
             if (bp != ::std::string::npos)
             {   const char ch = m.at (bp);

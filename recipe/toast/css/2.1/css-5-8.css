@@ -1,0 +1,32 @@
+﻿h1[title] { color: blue; }
+
+span[class=example] { color: blue; }
+
+span[hello="Cleveland"][goodbye="Columbus"] { color: blue; }
+
+a[rel~="copyright"] { }
+a[href="http://www.example.org/"] { }
+
+*[lang=fr] { display : none }
+
+*[lang|="en"] { color : red }
+
+DIALOGUE[character=romeo] 
+ { voice-family: "Lawrence Olivier", charles, male }
+ 
+DIALOGUE[character=juliet] 
+ { voice-family: "Vivien Leigh", victoria, female }
+
+EXAMPLE[notation=decimal] { /*... default property settings ...*/ }
+EXAMPLE[notation=octal] { /*... other settings...*/ }
+
+EXAMPLE { /*... default property settings ...*/ }
+EXAMPLE[notation=octal] { /*... other settings...*/ }
+
+*.pastoral { color: green } /* all elements with class~=pastoral */
+
+.pastoral { color: green } /* all elements with class~=pastoral */
+
+H1.pastoral { color: green } /* H1 elements with class~=pastoral */
+
+p.pastoral.marine { color: green }

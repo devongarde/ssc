@@ -132,6 +132,7 @@ PASS ../toast/SVG/1.0/font-2.svg
 PASS ../toast/SVG/1.0/font-3.svg
 0 title_required
 1 xhtml_1_0
+4 fontname
 17 newline_in_string newline_in_string
 
 PASS ../toast/SVG/1.0/g-1.xhtml
@@ -191,6 +192,11 @@ PASS ../toast/SVG/1.0/metadata.svg
 24 unknown_element
 29 unknown_element
 
+PASS ../toast/SVG/1.0/mystyle.css
+2 unrecognised_value
+3 unrecognised_value
+4 unrecognised_value
+
 PASS ../toast/SVG/1.0/opacity.svg
 0 title_required
 1 xhtml_1_0
@@ -202,7 +208,7 @@ PASS ../toast/SVG/1.0/path-1.xhtml
 PASS ../toast/SVG/1.0/path-2.xhtml
 1 xhtml_1_0
 10 use_double_quote_code
-11 class_microformat_property
+11 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value class_microformat_property
 26 newline_in_string newline_in_string
 
 PASS ../toast/SVG/1.0/path-3.xhtml
@@ -237,7 +243,7 @@ PASS ../toast/SVG/1.0/polyline.xhtml
 PASS ../toast/SVG/1.0/preserveaspectratio.xhtml
 0 title_required
 1 xhtml_1_0
-17 sq_bra_ket
+17 sq_brac_ket
 25 bizarre_character_code invalid_character_code
 27 bizarre_character_code invalid_character_code
 29 bizarre_character_code invalid_character_code
@@ -415,6 +421,7 @@ PASS ../toast/SVG/1.0/use-7.svg
 1 xhtml_1_0
 6 use_quote_code
 10 unrecognised_value
+12 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value
 
 PASS ../toast/SVG/1.0/use-8.svg
 0 title_required
@@ -438,7 +445,7 @@ PASS ../toast/SVG/1.0/viewbox-3.xhtml
 PASS ../toast/SVG/1.0/viewext.xhtml
 0 title_required
 1 xhtml_1_0
-13 sq_bra_ket
+13 sq_brac_ket
 16 use_quote_code
 18 bad_namespace attribute_unrecognised unrecognised_attribute
 19 bad_namespace unknown_element attribute_unrecognised

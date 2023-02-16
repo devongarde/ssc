@@ -86,6 +86,15 @@ template < > struct type_master < t_channelselector > : four_value < t_channelse
 template < > struct type_master < t_content_encoding > : four_value < t_content_encoding, e_content_encoding, sz_gzip, sz_compress, sz_deflate, sz_identity >
 { using four_value < t_content_encoding, e_content_encoding, sz_gzip, sz_compress, sz_deflate, sz_identity > :: four_value; };
 
+template < > struct type_master < t_css_font_style_e > : four_value < t_css_font_style_e, e_css_font_style_e, sz_normal, sz_italic, sz_oblique, sz_inherit >
+{ using four_value < t_css_font_style_e, e_css_font_style_e, sz_normal, sz_italic, sz_oblique, sz_inherit > :: four_value; };
+
+template < > struct type_master < t_css_orientation > : four_value < t_css_orientation, e_css_orientation, sz_auto, sz_inherit, sz_landscape, sz_portrait >
+{ using four_value < t_css_orientation, e_css_orientation, sz_auto, sz_inherit, sz_landscape, sz_portrait > :: four_value; };
+
+template < > struct type_master < t_css_speak > : four_value < t_css_speak, e_css_speak, sz_inherit, sz_none, sz_normal, sz_spell_out >
+{ using four_value < t_css_speak, e_css_speak, sz_inherit, sz_none, sz_normal, sz_spell_out > :: four_value; };
+
 template < > struct type_master < t_device > : four_value < t_device, e_device, sz_media, sz_fs, sz_rs232, sz_usb >
 { using four_value < t_device, e_device, sz_media, sz_fs, sz_rs232, sz_usb > :: four_value; };
 
@@ -118,6 +127,9 @@ template < > struct type_master < t_linecap > : four_value < t_linecap, e_lineca
 
 template < > struct type_master < t_linejoin > : four_value < t_linejoin, e_linejoin, sz_miter, sz_round, sz_bevel, sz_inherit >
 { using four_value < t_linejoin, e_linejoin, sz_miter, sz_round, sz_bevel, sz_inherit > :: four_value; };
+
+template < > struct type_master < t_lrnialign > : four_value < t_lrnialign, e_lrnialign, sz_left, sz_right, sz_none, sz_inherit >
+{ using four_value < t_lrnialign, e_lrnialign, sz_left, sz_right, sz_none, sz_inherit > :: four_value; };
 
 template < > struct type_master < t_mathclosure > : four_value < t_mathclosure, e_mathclosure, sz_open, sz_closed, sz_openclosed, sz_closedopen >
 { using four_value < t_mathclosure, e_mathclosure, sz_open, sz_closed, sz_openclosed, sz_closedopen > :: four_value; };
@@ -215,7 +227,7 @@ template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, cla
     else if (t == c_) value_ = static_cast <base_type> (2);
     else if (t == d_) value_ = static_cast <base_type> (3);
     else
-    {   if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "attribute cannot have an empty value");
+    {   if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "attribute cannot have an empty value (", type_name (TYPE), ")");
         else if (! check_identifier_spelling (nits, v, t))
             nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid; it can be ", quote (SZ0::sz ()), ", ", quote (SZ1::sz ()), ", ", quote (SZ2::sz ()), ", or ", quote (SZ3::sz ()));
         type_base < base_type, TYPE > :: status (s_invalid);

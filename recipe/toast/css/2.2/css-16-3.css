@@ -1,0 +1,5 @@
+﻿a:visited,a:link { text-decoration: underline }
+
+blockquote { text-decoration: underline; color: blue; }
+em { display: block; }
+cite { color: fuchsia; }

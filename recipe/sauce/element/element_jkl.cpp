@@ -252,14 +252,14 @@ void element::examine_link ()
             if (bad)
             {   pick (nit_style_not_css, ed_50, "4.2.4 The link element", es_warning, ec_css, "REL=\"stylesheet\" requires TYPE=\"text/css\"; ignoring non-CSS stylesheet");
                 return; } }
-        if (context.unknown_class () && context.load_css () && (context.css_version () == css_1))
+        if (context.unknown_class () && context.load_css () && (node_.version ().css_version () >= css_1))
             if (has_href && a_.good (a_href))
                 if (is_css || page_ -> style_css ())
                 {   vurl_t v (a_.get_urls (a_href));
                     for (auto u : v)
                         if (! u.invalid ())
                         {   nitpick nuts;
-                            if (! u.is_local ())
-                                pick (nit_gather, es_comment, ec_css, "gathering ", u.original ());
-                            page_ -> css ().parse_file (nuts, node_.namespaces (), *page_, u, false);
-                            if (! u.is_local ()) nits ().merge (nuts); } } } }
+                            const bool local = u.is_local ();
+                            if (! local) pick (nit_gather, es_comment, ec_css, "gathering ", u.original ());
+                            page_ -> css ().parse_file (nuts, node_.namespaces (), u, false, local);
+                            if (! local) nits ().merge (nuts); } } } }

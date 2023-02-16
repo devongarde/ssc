@@ -47,14 +47,14 @@ bool parse_paint (nitpick& nits, const html_version& v, const ::std::string& d, 
             break; }
     if (test_value < t_colour > (knits, v, d))
     {   nits.merge (knits); return true; }
-    ::std::string::size_type bra = d.find_first_of ("(");
+    ::std::string::size_type brac = d.find_first_of ("(");
     const ::std::string::size_type ket = d.find_last_of (")");
-    if ((bra != ::std::string::npos) && (ket != ::std::string::npos))
-        if (++bra < ket)
+    if ((brac != ::std::string::npos) && (ket != ::std::string::npos))
+        if (++brac < ket)
             if (test_value < t_colour > (knits, v, args.at (0)))
             {   if (args.at (1).size () >= 9)
                 if (compare_complain (nits, v, args.at (1).substr (0, 9), "icc-color"))
-                {   ::std::string tmp = trim_the_lot_off (d.substr (bra, ket-bra));
+                {   ::std::string tmp = trim_the_lot_off (d.substr (brac, ket-brac));
                     if (tmp.at (0) == '#')
                     {   const ::std::string::size_type cwsp = tmp.find_first_of (", ");
                         ::std::string n;
@@ -66,9 +66,9 @@ bool parse_paint (nitpick& nits, const html_version& v, const ::std::string& d, 
                             {   nits.merge (knits); return true; } } } }
     if ((! recheck) && (d.size () > 2))
         if (compare_complain (nits, v, d.substr (0, 3), "url"))
-            if ((bra != ::std::string::npos) && (ket != ::std::string::npos))
-                if (++bra < ket)
-                {   if (! test_value < t_url > (nits, v, d.substr (bra, ket-bra))) return false;
+            if ((brac != ::std::string::npos) && (ket != ::std::string::npos))
+                if (++brac < ket)
+                {   if (! test_value < t_url > (nits, v, d.substr (brac, ket-brac))) return false;
                     if ((ket + 1 >= d.length ()) || trim_the_lot_off (d.substr (ket + 1)).empty ()) return true;
                     return parse_paint (nits, v, d.substr (ket + 1), true); }
     nits.merge (nuts);

@@ -39,9 +39,11 @@ template < > struct type_master < t_colour > : tidy_string < t_colour >
                     vstr_t nums (split_by_charset (x, ","));
                     if (nums.size () == 3)
                     {   int perky = 0, jollybon = 0;
-                        for (auto ss : nums)
-                        {   const ::std::string::size_type ssl = ss.length ();
-                            if (! ss.empty ()) if (ss.at (ssl - 1) == '%') ++perky; }
+                        for (::std::size_t i = 0; i < nums.size (); ++i)
+                        {   const ::std::string::size_type ssl = nums.at (i).length ();
+                            if (! nums.at (i).empty ()) if (nums.at (i).at (ssl - 1) == '%')
+                            {   ++perky;
+                                nums.at (i) = nums.at (i).substr (0, nums.at (i).length () - 1); } }
                         if ((perky != 0) && (perky != 3))
                             nits.pick (nit_bad_rgb, ed_svg_1_1, "4.2 Basic data types", es_error, ec_type, quote (val), ": rgb colours must be all relative or all absolute, the two cannot be mixed");
                         else for (auto ss : nums)
@@ -63,6 +65,6 @@ template < > struct type_master < t_colour > : tidy_string < t_colour >
                 fix.set_value (nits, v, val);
                 if (fix.good ()) return; } }
         if ((v.svg () >= sv_1_0) || (v.css_version () != css_none))
-            nits.pick (nit_bad_colour, es_error, ec_type, quote (s), " is not '#' followed by 3 or 6 hexadecimal digits, nor a valid rgb, nor a standard colour name");
+            nits.pick (nit_bad_colour, es_error, ec_type, quote (s), " is neither '#' followed by 3 or 6 hexadecimal digits, nor a valid rgb, nor a standard colour name");
         else nits.pick (nit_bad_colour, es_error, ec_type, quote (s), " is neither '#' followed by 6 hexadecimal digits, nor a valid rgb, nor a standard colour name");
         tidy_string < t_colour > :: status (s_invalid); } };

@@ -104,9 +104,11 @@ void init (nitpick& nits)
     curl_init (); }
 
 int ciao ()
-{   curl_done ();
+{   ::std::ostringstream ss;
+    global_css.report_stragglers (ss);
+    curl_done ();
     if (context.tell (es_warning))
-    {   ::std::ostringstream ss;
+    {   if (context.classic ()) global_css.report_usage (ss);
         if (context.crosslinks ())
         {   nitpick nits;
             reconcile_crosslinks (nits);
@@ -114,11 +116,12 @@ int ciao ()
             {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
                 macro -> dump_nits (nits, ns_link, ns_link_head, ns_link_foot); }
             nits.accumulate (&overall);
-            outstr.out ("\n"); }
-        if (! ss.str ().empty ())
-            outstr.out (ss.str ());
+            outstr.out ("\n"); } }
+    if (! ss.str ().empty ())
+        outstr.out (ss.str ());
+    if (context.tell (es_warning))
         if (! empty_itemid ())
-            outstr.out (report_itemids ()); }
+            outstr.out (report_itemids ());
     if (context.stats_summary ()) report_global_stats (true);
     if (context.tell (es_debug)) outstr.out (fileindex_report ());
     spell_terminate ();

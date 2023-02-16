@@ -28,21 +28,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 class css_element
 {   elem e_;
     vcd_t decore_;
-    explicit css_element (nitpick& nits, const html_version& v, const namespaces_ptr& ns, const ::std::string& x) : e_ (nits, v, ns, x) { }
 public:
     DEFAULT_CONSTRUCTORS (css_element);
     explicit css_element (const elem& e) : e_ (e) { }
     explicit css_element (const e_element e) : e_ (e) { }
-    css_element (nitpick& nits, arguments& args, const ::std::string& s)
-    {   parse (nits, args, s); }
-    void swap (css_element& e) noexcept
-    {   e_.swap (e.e_);
-        decore_.swap (e.decore_); }
-    void reset ()
-    {   css_element st;
-        swap (st); }
-    void parse (nitpick& nits, arguments& args, const ::std::string& sss);
+    explicit css_element (nitpick& nits, const html_version& v, const namespaces_ptr& ns, const ::std::string& x) : e_ (nits, v, ns, x) { }
+    css_element (arguments& args, const int from, const int to)
+    {   parse (args, from, to); }
+    void parse (arguments& args, const int from, const int to);
+    bool bef_aft () const;
     const element_bitset get_elements () const { return element_bitset (e_.get ()); }
+    void validate (arguments& args);
     void accumulate (stats_t* s) const;
     ::std::string rpt () const; };
 

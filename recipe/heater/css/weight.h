@@ -24,13 +24,9 @@ class weight
 {   bool valid_ = false;
 public:
     DEFAULT_CONSTRUCTORS (weight);
-    weight (nitpick& nits, arguments& args, const ::std::string& s)
+    weight (nitpick& nits, const arguments& args, const ::std::string& s)
     {   parse (nits, args, s); }
-    void swap (weight& w) noexcept
-    {  ::std::swap (valid_, w.valid_); }
-    void reset ()
-    {   weight w;
-        swap (w); }
-    void parse (nitpick& nits, arguments& args, const ::std::string& s);
-    void accumulate (stats_t* s) const;
+    void parse (nitpick& nits, const arguments& args, const ::std::string& s);
+    void validate (arguments& ) const { }
+    void accumulate (stats_t* ) const { }
     ::std::string rpt () const; };

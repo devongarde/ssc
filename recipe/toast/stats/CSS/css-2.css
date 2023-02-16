@@ -1,0 +1,20 @@
+﻿A:link { color: red } /* unvisited link */
+A:visited { color: blue } /* visited links */
+A:active { color: lime } /* active links */
+
+A:link { color: red }
+
+A:link { color: red }
+:link { color: red }
+
+A:link IMG { border: solid blue }
+
+A.external:visited { color: blue }
+
+BODY P:first-letter { color: purple }
+
+P.initial:first-letter { color: red }
+
+P { color: red; font-size: 12pt }
+P:first-letter { color: green; font-size: 200% }
+P:first-line { color: blue }

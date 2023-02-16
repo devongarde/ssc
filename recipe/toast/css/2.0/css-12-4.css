@@ -18,8 +18,9 @@ W3C Recommendation
 */
 
 /* Specify pairs of quotes for two levels in two languages */
-Q:lang(en) { quotes: ’"’ ’"’ "’" "’" }
-Q:lang(no) { quotes: "«" "»" "<" ">" }
+Q:lang(en) { quotes: '“' '”' "‘" "’" }
+Q:lang(no) { quotes: "«" "»" "‹" "›" }
+
 /* Insert quotes before and after Q element content */
 Q:before { content: open-quote }
 Q:after { content: close-quote }

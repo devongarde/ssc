@@ -101,6 +101,18 @@ context_t& context_t::css_version (const int mjr, const int mnr) noexcept
             if (mnr == 0) css_version (css_3);
             else css_version (css_none);
             break;
+        case 4 :
+            if (mnr == 0) css_version (css_4);
+            else css_version (css_none);
+            break;
+        case 5 :
+            if (mnr == 0) css_version (css_5);
+            else css_version (css_none);
+            break;
+        case 6 :
+            if (mnr == 0) css_version (css_6);
+            else css_version (css_none);
+            break;
         default :
             version_.css_version (css_none);
             break; }

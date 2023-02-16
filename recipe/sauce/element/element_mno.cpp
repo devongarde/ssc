@@ -431,7 +431,7 @@ void element::examine_object ()
                         if ((em != mime_context) && (em != mime_bork))
                             if ((flags & MIME_IMAGE) == MIME_IMAGE)
                             {   piccy = true; break; } } } }
-        if (! piccy) pick (nit_bad_usemap, ed_jan07, "3.14.4. The object element", es_warning, ec_attribute, "USEMAP requires TYPE and/or DATA to refer to an image"); }
+        if (! piccy) pick (nit_bad_usemap, ed_jan07, "3.14.4. The object element", es_warning, ec_attribute, "USEMAP requires TYPE andor DATA to refer to an image"); }
     if (node_.version ().is_5 ())
     {   if ((! has_data) && (! has_type))
             pick (nit_data_type, ed_50, "4.7.4 The object element", es_error, ec_element, "either DATA or TYPE must be present");
@@ -454,7 +454,6 @@ void element::examine_object ()
                 case elem_standby :
                 case elem_caption :
                     if (node_.version () == xhtml_2) break;
-                    // drop thru'
                     FALLTHROUGH;
                 default :
                     if ((node_.version ().mjr () < 5) || ((node_.id ().categories () & EF_5_FLOW) == EF_5_FLOW)) had_flow = true; } }

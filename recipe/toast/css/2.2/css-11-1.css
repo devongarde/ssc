@@ -1,0 +1,11 @@
+﻿DIV { width : 100px; height: 100px;
+ border: thin solid red;
+ }
+BLOCKQUOTE { width : 125px; height : 100px;
+ margin-top: 50px; margin-left: 50px; 
+ border: thin dashed black
+ }
+DIV.attributed-to { text-align : right; }
+
+P { clip: rect(5px, 10px, 10px, 5px); }
+P { clip: rect(5px, -5px, 10px, 5px); }

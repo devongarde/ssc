@@ -64,11 +64,7 @@ EM { color: rgb(300,0,0) } /* clipped to rgb(255,0,0) */
 EM { color: rgb(255,-10,0) } /* clipped to rgb(255,0,0) */
 EM { color: rgb(110%, 0%, 0%) } /* clipped to rgb(100%,0%,0%) */
 
-"this is a ’string’"
-"this is a \"string\""
-’this is a "string"’
-’this is a \’string\’’
-
-A[TITLE="a not s\
-o very long title"] {/*...*/}
-A[TITLE="a not so very long title"] {/*...*/}
+h3 {
+ display: inline;
+ display: run-in;
+ }

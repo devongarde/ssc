@@ -40,7 +40,7 @@ class corpus;
 
 class context_t
 {   bool            article_ = false, body_ = true, case_ = false, cgi_ = false, classic_ = false, clear_ = false, crosslinks_ = true, example_ = true,
-                    external_ = false, forwarded_ = true, icu_ = true, info_ = false, jsonld_ = false, local_ = true, load_css_ = true, links_ = true,
+                    external_ = false, ext_css_ = false, forwarded_ = true, icu_ = true, info_ = false, jsonld_ = false, local_ = true, load_css_ = true, links_ = true,
                     main_ = false, md_export_ = false, meta_ = false, mf_export_ = false, mf_verify_ = true, microdata_ = true, nids_ = false, nits_ = false,
                     nits_nits_nits_ = false, not_root_ = false, once_ = true, presume_tags_ = false, progress_ = false, rdfa_ = true, rel_ = false,
                     revoke_ = false, rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, schema_ = true,
@@ -102,6 +102,7 @@ class context_t
         return *this; }
     context_t& corpus (const ::boost::filesystem::path& f) { corpus_ = f; mac (nm_context_corpus, f.string ()); return *this; }
     context_t& crosslinks (const bool b) { crosslinks_ = b; mac (nm_context_crosslinks, b); return *this; }
+    context_t& css_cascade (const int n) { version_.css_cascade (n); mac (nm_context_css_cascade, n); return *this; }
     context_t& css_extension (const vstr_t& s) { css_ext_ = s; mac (nm_context_css_extension, s); return *this; }
     context_t& css_version (const int mjr, const int mnr) noexcept;
     context_t& css_version (const e_css_version v) noexcept { version_.css_version (v); mac < int > (nm_context_css_version, v); return *this; }
@@ -119,6 +120,7 @@ class context_t
         if (b) links (b);
         else { forwarded (false); once (false); revoke (false); microdata (false); }
         return *this; }
+    context_t& ext_css (const bool b) { ext_css_ = b; mac (nm_context_ext_css, b); return *this; }
     context_t& forwarded (const bool b)
     {   forwarded_ = b;
         if (b) external (b);
@@ -269,6 +271,7 @@ public:
     e_copy copy () const noexcept { return copy_; }
     ::boost::filesystem::path corpus () const { return corpus_; }
     bool crosslinks () const noexcept { return crosslinks_; }
+    int css_cascade () { return version_.css_cascade (); }
     const vstr_t css_extension () const { return css_ext_; }
     e_css_version css_version () const noexcept { return version_.css_version (); }
     const vstr_t custom_elements () const { return custom_elements_; }
@@ -282,6 +285,7 @@ public:
     const vstr_t exports () const { return exports_; }
     const vstr_t extensions () const { return extensions_; }
     bool external () const noexcept { return external_; }
+    bool ext_css () const noexcept { return ext_css_; }
     bool forwarded () const noexcept{ return forwarded_; }
     int fred () const noexcept{ return fred_; }
     const ::std::string general_info () const { return general_info_; }

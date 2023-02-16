@@ -58,7 +58,7 @@ void url::parse (nitpick& nits, const html_version& v, const ::std::string& url,
     else
     {   protocol pr;
         pr.set_component (es_original, url);
-        if (pr.parse (nits, v, decode (trim_the_lot_off (url)), current))
+        if (pr.parse (nits, v, decode (trim_the_lot_off (uq3 (url))), current))
         {   if (has_component (es_query))
             {   parameters pa (v, pr.get_component (es_query));
                 params_.swap (pa); } }

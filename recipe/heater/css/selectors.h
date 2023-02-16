@@ -23,21 +23,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 class selectors
 {   vsel_t sel_;
+    mutable element_bitset ebs_;
 public:
     DEFAULT_CONSTRUCTORS (selectors);
     explicit selectors (const e_element e) { sel_.emplace_back (e); }
-    selectors (nitpick& nits, arguments& args, const ::std::string& s)
-    {   parse (nits, args, s); }
-    void swap (selectors& r) noexcept
-    {  sel_.swap (r.sel_); }
-    void reset ()
-    {   selectors s;
-        swap (s); }
-    void parse (nitpick& nits, arguments& args, const ::std::string& s);
+    selectors (arguments& args, const int from, const int to)
+    {   parse (args, from, to); }
+    void parse (arguments& args, const int from, const int to);
     void init (const e_element e) { sel_.clear (); sel_.emplace_back (e); }
     const element_bitset get_elements () const
-    {   element_bitset res;
-        for (auto r : sel_) res |= r.get_elements ();
-        return res; }
+    {   if ((ebs_ == empty_element_bitset) && (sel_.size () > 0))
+            for (auto r : sel_) ebs_ |= r.get_elements ();
+        return ebs_; }
+    bool bef_aft () const;
+    void validate (arguments& args);
     void accumulate (stats_t* s) const;
     ::std::string rpt () const; };

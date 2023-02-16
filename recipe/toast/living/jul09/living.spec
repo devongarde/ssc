@@ -59,6 +59,9 @@ PASS ../toast/living/jul09/caption.html
 9 inserted_missing_closure missing_close
 13 inserted_missing_closure
 
+PASS ../toast/living/jul09/clock.css
+0 html
+
 PASS ../toast/living/jul09/dataset.html
 8 unrecognised_value no_such_folder url_not_found
 

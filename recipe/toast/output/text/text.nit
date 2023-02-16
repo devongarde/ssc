@@ -1,12 +1,12 @@
 [tally]
-  "{{tally-name}}": {{tally-count}}{{tally-use-count:/:}}
+  {{tally-name}}: {{tally-count}}
 
 [tally-head]
 
 {{tally-title:: CSS/HTML:}}
 
 [tally-foot]
-  {{tally-count}}x {{tally-title}}: {{tally-total}}{{tally-use-total:/:}}
+  {{tally-count}} {{tally-title}}: {{tally-total}}
 
 [config]
 {{nit-explanation}}

@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<HTML>
+<HEAD>
+<STYLE type="text/css">
+<!--
+ #container1 { position: absolute; 
+ top: 2in; left: 2in; width: 2in }
+ #container2 { position: absolute; 
+ top: 2in; left: 2in; width: 2in;
+ visibility: hidden; }
+-->
+</STYLE>
+</HEAD>
+<BODY>
+<P>Choose a suspect:</P>
+<DIV id="container1">
+ <IMG alt="Al Capone" 
+ width="100" height="100" 
+ src="suspect1.jpg">
+ <P>Name: Al Capone</P>
+ <P>Residence: Chicago</P>
+</DIV>
+<DIV id="container2">
+ <IMG alt="Lucky Luciano" 
+ width="100" height="100" 
+ src="suspect2.jpg">
+ <P>Name: Lucky Luciano</P>
+ <P>Residence: New York</P>
+</DIV>
+<FORM method="post" 
+ action="http://www.example.org/process-bums">
+ <P>
+ <INPUT name="Capone" type="button" 
+ value="Capone" 
+ onclick='show("container1");hide("container2")'>
+ <INPUT name="Luciano" type="button" 
+ value="Luciano" 
+ onclick='show("container2");hide("container1")'>
+</FORM>
+</BODY>
+</HTML>

@@ -52,6 +52,7 @@ class page
     bool check_links_ = true;
     bool snippet_ = false;
     bool outsider_ = false;
+    bool dot_css_ = false;
     stats_t stats_;
     ssi_compedium ssi_;
     nitpick nits_;
@@ -64,7 +65,9 @@ class page
     ::std::time_t updated_ = 0;
     css_group css_;
     friend class tag;
+    void init (const ::std::string& name, ::std::string& content, const fileindex_t x);
 public:
+    DEFAULT_NO_COPY_NO_MOVE_CONSTRUCTORS (page);
     page (nitpick& nits, const ::std::string& name, const ::std::time_t updated, ::std::string& content, const directory* d = nullptr);
     page (const ::std::string& name, const ::std::time_t updated, ::std::string& content, const fileindex_t ndx, const directory* d = nullptr);
     explicit page (const ::std::string& content, const bool outsider = false);
@@ -101,8 +104,10 @@ public:
     void confirm_title () noexcept { has_title_ = true; }
     void style_css (const bool b) noexcept { style_css_ = b; }
     bool style_css () const noexcept { return style_css_; }
+    bool dot_css () const noexcept { return dot_css_; }
     css_group& css () { return css_; }
     const css_group& css () const { return css_; }
+    ::std::string css_review (mmac_t& mac) const;
     bool charset_defined () const noexcept { return ! charset_.empty (); }
     const ::std::string& lang () const noexcept { return lang_; }
     void lang (nitpick& nits, const html_version& v, const ::std::string& l);
@@ -150,6 +155,8 @@ public:
     {   stats_.merge_element_class (s); }
     void merge_element_id (const smsid_t& s)
     {   stats_.merge_element_id (s); }
+    void merge_font (const smsid_t& s)
+    {   stats_.merge_font (s); }
     void use_class (const ::std::string& s, const ::std::size_t n = 1)
     {   stats_.use_class (s, n); }
     void use_id (const ::std::string& s, const ::std::size_t n = 1)
@@ -178,6 +185,7 @@ public:
     ::std::string get_export_root () const;
     const directory* get_directory () const noexcept { return directory_; }
     void verify_locale (const ::boost::filesystem::path& p);
+    void validate () { css_.validate (); }
     const ustr_t& abbrs () const noexcept { return abbrs_; }
     ustr_t& abbrs () noexcept { return abbrs_; }
     const sstr_t& dfns () const noexcept { return dfns_; }

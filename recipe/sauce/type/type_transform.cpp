@@ -110,7 +110,7 @@ bool checkargs (nitpick& nits, const html_version& v, const e_transform_fn cmd, 
 
 bool parse_transform (nitpick& nits, const html_version& v, const ::std::string& d)
 {   e_transform_fn cmd = tr_nowt;
-    typedef enum { es_dull, es_bra, es_ket, es_fn, es_out, es_in, es_arg } et_state;
+    typedef enum { es_dull, es_brac, es_ket, es_fn, es_out, es_in, es_arg } et_state;
     et_state state = es_dull;
     bool had_comma = false;
     bool res = true;
@@ -125,7 +125,7 @@ bool parse_transform (nitpick& nits, const html_version& v, const ::std::string&
         if (::std::iswcntrl (ch)) continue;
         switch (ch)
         {   case ',' :
-                if (had_comma || (state == es_dull) || (state == es_bra))
+                if (had_comma || (state == es_dull) || (state == es_brac))
                 {   nits.pick (nit_transform, ed_svg_1_0, "8.5 Modifying the User Coordinate System: the transform attribute", es_error, ec_type, "unexpected ',' in TRANSFORM value");
                     res = false; }
                 had_comma = true;
@@ -137,7 +137,7 @@ bool parse_transform (nitpick& nits, const html_version& v, const ::std::string&
                         arg.clear ();
                         state = es_in;
                         break;
-                    case es_bra :
+                    case es_brac :
                         state = es_in;
                         break;
                     case es_fn :
@@ -165,11 +165,11 @@ bool parse_transform (nitpick& nits, const html_version& v, const ::std::string&
                     default :
                         nits.pick (nit_transform, ed_svg_1_0, "8.5 Modifying the User Coordinate System: the transform attribute", es_error, ec_type, "unexpected '(' in TRANSFORM value");
                         res = false; }
-                state = es_bra;
+                state = es_brac;
                 break;
             case ')' :
                 switch (state)
-                {   case es_bra :
+                {   case es_brac :
                         nits.pick (nit_transform, ed_svg_1_0, "8.5 Modifying the User Coordinate System: the transform attribute", es_error, ec_type, "empty brackets in TRANSFORM value");
                         arg.clear ();
                         args.clear ();
@@ -203,7 +203,7 @@ bool parse_transform (nitpick& nits, const html_version& v, const ::std::string&
                         continue;
                     case es_in :
                     case es_arg :
-                    case es_bra :
+                    case es_brac :
                         arg += ch;
                         state = es_arg;
                         continue;

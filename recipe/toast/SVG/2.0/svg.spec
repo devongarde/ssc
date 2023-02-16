@@ -78,7 +78,7 @@ PASS ../toast/SVG/2.0/fedropshadow.html
 2 naughty_lang
 13 sunk unrecognised_value bad_result
 14 unrecognised_value immeasurable unrecognised_value immeasurable
-15 unrecognised_value bad_colour sunk
+15 dialect unrecognised_value dialect unrecognised_value bad_colour sunk
 19 unrecognised_value bad_result
 
 PASS ../toast/SVG/2.0/feimage.html
@@ -135,6 +135,7 @@ PASS ../toast/SVG/2.0/image-1.svg
 
 PASS ../toast/SVG/2.0/image-2.svg
 1 xhtml_5_0
+16 unrecognised_value
 25 url_not_found
 
 PASS ../toast/SVG/2.0/index.html
@@ -200,7 +201,7 @@ PASS ../toast/SVG/2.0/path-2.xhtml
 0 charset_mismatch charset_used charset_invalid
 1 xhtml_5_0
 8 use_double_quote_code
-9 class_microformat_property
+9 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value class_microformat_property
 24 newline_in_string newline_in_string
 
 PASS ../toast/SVG/2.0/path-3.xhtml
@@ -235,6 +236,7 @@ PASS ../toast/SVG/2.0/polyline.xhtml
 PASS ../toast/SVG/2.0/preserveaspectratio.xhtml
 0 title_required
 1 xhtml_5_0
+4 unrecognised_value unrecognised_value
 
 PASS ../toast/SVG/2.0/privatedata.svg
 0 title_required
@@ -267,11 +269,12 @@ PASS ../toast/SVG/2.0/shape.html
 PASS ../toast/SVG/2.0/styling-1.svg
 0 title_required
 1 xhtml_5_0
+3 url_not_found
 
 PASS ../toast/SVG/2.0/styling-2.svg
 0 title_required
 1 xhtml_5_0
-3 url_not_found rel_head url_not_found
+3 url_not_found rel_head
 
 PASS ../toast/SVG/2.0/styling-3.html
 0 charset_mismatch charset_used charset_invalid
@@ -327,6 +330,7 @@ PASS ../toast/SVG/2.0/text-decoration.svg
 
 PASS ../toast/SVG/2.0/text-overflow.html
 2 naughty_lang
+13 unrecognised_value unrecognised_value
 19 is_property
 20 is_property
 21 is_property
@@ -385,6 +389,7 @@ PASS ../toast/SVG/2.0/units.xhtml
 
 PASS ../toast/SVG/2.0/use.svg
 1 xhtml_5_0
+24 unrecognised_value unrecognised_value unrecognised_value unrecognised_value
 
 PASS ../toast/SVG/2.0/vectoreffects-1.svg
 0 title_required
@@ -423,6 +428,7 @@ PASS ../toast/SVG/2.0/white-space.html
 
 PASS ../toast/SVG/2.0/will-change.html
 2 naughty_lang
+12 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value
 29 newline_in_string newline_in_string
 
 PASS ../toast/SVG/2.0/xhtml.xhtml

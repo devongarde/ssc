@@ -1,10 +1,10 @@
 -N 1 -f ../toast/HTML/3.0/html3.conf
 
 PASS ../toast/HTML/3.0/html3-deprecated.html
-1 sq_bra_ket
+1 sq_brac_ket
 
 PASS ../toast/HTML/3.0/html3-recommended.html
-1 sq_bra_ket
+1 sq_brac_ket
 
 PASS ../toast/HTML/3.0/html3-math.html
 60 inserted_missing_closure

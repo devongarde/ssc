@@ -1,5 +1,9 @@
 -N 1 -f ../toast/HTML/5.2/html5.conf
 
+PASS ../toast/HTML/5.2/css-good.css
+0 html
+4 whatwg_class whatwg_class
+
 PASS ../toast/HTML/5.2/example-1.html
 2 naughty_lang
 6 unrecognised_value
@@ -114,9 +118,9 @@ PASS ../toast/HTML/5.2/html5-bad.html
 142 minmax minmax minmax
 143 sunk minmax
 144 minmax minmax minmax
-145 unrecognised_value bad_colour
-147 unrecognised_value bad_colour
-149 unrecognised_value bad_colour
+145 unrecognised_value unrecognised_value bad_colour
+147 unrecognised_value unrecognised_value bad_colour
+149 unrecognised_value unrecognised_value bad_colour
 150 minmax minmax minmax
 152 minmax
 153 minmax
@@ -151,8 +155,8 @@ PASS ../toast/HTML/5.2/html5-bad-2.html
 
 PASS ../toast/HTML/5.2/html5-example.html
 2 naughty_lang
-8 url_not_found url_not_found
-9 url_not_found url_not_found
+8 url_not_found
+9 url_not_found
 10 url_not_found
 85 unrecognised_value
 88 data_type attribute_required attribute_required attribute_required
@@ -444,6 +448,8 @@ PASS ../toast/HTML/5.2/math-example-1.html
 3 naughty_lang
 
 CLASS
+doris 1
+error 1
+h1class 1
 info 1
 warning 1
-error 1

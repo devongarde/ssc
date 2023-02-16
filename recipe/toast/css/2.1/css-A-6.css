@@ -1,0 +1,5 @@
+﻿A {cue-before: url("bell.aiff"); cue-after: url("dong.wav") }
+H1 {cue-before: url("pop.au"); cue-after: url("pop.au") }
+
+H1 {cue-before: url("pop.au"); cue-after: url("pop.au") }
+H1 {cue: url("pop.au") }

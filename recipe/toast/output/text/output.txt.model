@@ -1,10 +1,10 @@
-Static Site Checker version 0.1.12
+Static Site Checker version 0.1.13
 (c) 2020-2023 Dylan Harris
 
 
 *** /index.html
 
-2  ** <html> ** 
+2 <!DOCTYPE html>  ** <html> **  <head> <title>text outpu...
  -->  use LANG to specify a default language [naughty_lang]
 
 ---

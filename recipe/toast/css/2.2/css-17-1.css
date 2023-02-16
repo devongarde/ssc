@@ -1,0 +1,14 @@
+﻿TH { text-align: center; font-weight: bold }
+
+TH { vertical-align: baseline }
+TD { vertical-align: middle }
+
+TABLE { border-collapse: collapse }
+TR#row1 { border-top: 3px solid blue }
+TR#row2 { border-top: 1px solid black }
+TR#row3 { border-top: 1px solid black }
+
+CAPTION { caption-side: top }
+
+FOO { display : table }
+BAR { display : table-caption }

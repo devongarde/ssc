@@ -1,0 +1,6 @@
+﻿*[LANG=fr] { }
+[LANG=fr] { } 
+*.warning { }
+.warning { }
+*#myid { }
+#myid { }

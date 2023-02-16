@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "feedback/nitpick.h"
 #include "element/state.h"
+#include "attribute/attr_state.h"
 
 void elements_init (nitpick& nits);
 attribute_bitset element_attributes (const e_element e);

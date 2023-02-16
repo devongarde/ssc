@@ -1,0 +1,4 @@
+﻿button { outline : thick solid}
+
+:focus { outline: thick solid black }
+:active { outline: thick solid red }

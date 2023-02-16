@@ -1,0 +1,34 @@
+﻿H1 { margin: 0.5em } /* ems, the height of the element's font */
+H1 { margin: 1ex } /* x-height, ~ the height of the letter 'x' */
+P { font-size: 12px } /* pixels, relative to canvas */
+
+BODY {
+ font-size: 12pt;
+ text-indent: 3em; /* i.e. 36pt */
+}
+H1 { font-size: 15pt }
+
+H1 { margin: 0.5in } /* inches, 1in = 2.54cm */
+H2 { line-height: 3cm } /* centimeters */
+H3 { word-spacing: 4mm } /* millimeters */
+H4 { font-size: 12pt } /* points, 1pt = 1/72 in */
+H4 { font-size: 1pc } /* picas, 1pc = 12pt */
+
+P { line-height: 120% } /* 120% of the element's 'font-size' */
+
+BODY {color: black; background: white }
+H1 { color: maroon }
+H2 { color: olive }
+
+EM { color: #f00 } /* #rgb */
+EM { color: #ff0000 } /* #rrggbb */
+EM { color: rgb(255,0,0) } /* integer range 0 - 255 */
+EM { color: rgb(100%, 0%, 0%) } /* float range 0.0% - 100.0% */
+
+EM { color: rgb(255,0,0) } /* integer range 0 - 255 */
+EM { color: rgb(300,0,0) } /* clipped to 255 */
+EM { color: rgb(110%, 0%, 0%) } /* clipped to 100% */
+
+BODY { background: url(http://www.example.com/pinkish.gif) }
+
+BODY { background: url(yellow) }

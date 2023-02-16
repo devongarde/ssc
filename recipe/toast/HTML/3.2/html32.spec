@@ -30,17 +30,13 @@ PASS ../toast/HTML/3.2/html32.html
 89 url_not_found
 92 reputation url_not_found
 
-PASS ../toast/HTML/3.2/html32-good.html
-68 attribute_required
-80 deprecated_element
-
 PASS ../toast/HTML/3.2/html32-bad.html
 11 1_to_7
-13 unrecognised_value bad_colour not_an_integer unsigned
-15 correct_spelling unrecognised_value bad_colour
-16 unrecognised_value bad_colour
-17 unrecognised_value bad_colour
-18 unrecognised_value bad_colour
+13 unrecognised_value unrecognised_value bad_colour not_an_integer unsigned
+15 correct_spelling unrecognised_value correct_spelling unrecognised_value bad_colour
+16 unrecognised_value unrecognised_value bad_colour
+17 unrecognised_value unrecognised_value bad_colour
+18 unrecognised_value unrecognised_value bad_colour
 21 correct_spelling
 23 correct_spelling
 25 url_not_found
@@ -55,3 +51,7 @@ PASS ../toast/HTML/3.2/html32-bad.html
 44 unrecognised_value
 45 correct_spelling unrecognised_value unrecognised_value unrecognised_value
 48 attribute_unrecognised_here unrecognised_attribute
+
+PASS ../toast/HTML/3.2/html32-good.html
+68 attribute_required
+80 deprecated_element

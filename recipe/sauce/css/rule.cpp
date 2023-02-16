@@ -21,32 +21,36 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "css/rule.h"
 
-void rule::parse (v_np& ticks, const int loc, arguments& args, const ::std::string& s)
-{   nitpick nits, knots;
-    PRESUME (! s.empty (), __FILE__, __LINE__);
-    PRESUME (s.at (0) != '@', __FILE__, __LINE__);
-    const ::std::string::size_type pos = s.find ("{");
-    if (pos == ::std::string::npos)
-    {   nits.set_context (loc, s);
-        nits.pick (nit_css_syntax, es_error, ec_css, "Expecting {");
-        ticks.push_back (nits); }
-    else
-    {   const ::std::string sels (trim_the_lot_off (s.substr (0, pos)));
-        const ::std::string props = trim_the_lot_off (s.substr (pos+1));
-        knots.set_context (loc, sels);
-        if (sels.empty ()) sel_.init (elem_css_all);
-        else sel_.parse (knots, args, sels);
-        if (! knots.empty ()) ticks.push_back (knots);
-        if (props.empty ())
-        {   nits.pick (nit_css_syntax, es_error, ec_css, "missing properties");
-            ticks.push_back (nits); }
-        else prop_.parse (ticks, loc, args, props); } }
+void rule::parse (arguments& args, const int from, const int to)
+{   PRESUME ((to < 0) || (from <= to), __FILE__, __LINE__);
+    const int len = GSL_NARROW_CAST < int > (args.t_.size ());
+    PRESUME (from < len, __FILE__, __LINE__);
+    PRESUME ((to < 0) || (to < len), __FILE__, __LINE__);
+    int b = first_non_whitespace (args.t_, from, to);
+    if (b < 0) return;
+    nitpick nits = args.t_.at (b).nits_;
+    int prev = -1;
+    int p = token_find (args.t_, ct_curly_brac, b, to, &prev);
+    int q = p;
+    if (p < 0) nits.pick (nit_rule, es_error, ec_css, "properties expected");
+    else p = prev;
+    if ((p >= 0) && (b >= p))    
+        nits.pick (nit_rule, es_error, ec_css, "selector(s) expected");
+    else sel_.parse (args, b, p);
+    if (q > 0)
+    {   PRESUME (args.t_.at (q).child_ > 0, __FILE__, __LINE__);
+        fiddlesticks < selectors > f (&args.ss_, &sel_);
+        prop_.parse (args, args.t_.at (q).child_);
+        args.had_rule_ = true; } }
 
 void rule::accumulate (stats_t* s) const
-{   VERIFY_NOT_NULL (s, __FILE__, __LINE__);
-    sel_.accumulate (s);
+{   sel_.accumulate (s);
     prop_.accumulate (s); }
 
 ::std::string rule::rpt () const
 {   ::std::string res (sel_.rpt ());
     return res; }  
+
+void rule::validate (arguments& args)
+{   sel_.validate (args);
+    prop_.validate (args); }

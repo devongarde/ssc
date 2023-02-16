@@ -222,6 +222,12 @@ void element::examine_source ()
                 if (ancestral_elements_.test (elem_video) && ((f & MIME_VIDEO) == 0))
                     pick (nit_mime, es_warning, ec_attribute, "expecting a video mimetype"); } } } }
 
+void element::examine_style ()
+{   if (node_.version () > html_plus)
+        if (! a_.known (a_type) || (a_.get_string (a_type) == CSS_TYPE))
+            if (context.load_css () && (node_.version ().css_version () >= css_1))
+                page_ -> css ().parse (text (), node_.version (), node_.namespaces (), false, node_.line ()); }
+
 void element::examine_summary ()
 {   if ((node_.version () < html_5_1) || (node_.version () >= html_jul20)) return;
     bool heading = false;
@@ -297,10 +303,3 @@ void element::examine_switch ()
         if ((kitten & cat) == 0)
         {   pick (nit_switch, es_comment, ec_element, "the <SWITCH> beneath <", elem::name (parent_ -> tag ()), "> has an outside context problem with <", elem::name (ct), ">"); return; } }
     if (! nofaux) pick (nit_switch, es_comment, ec_element, "bit of a useless <SWITCH>, that"); }
-
-void element::examine_style ()
-{   if (node_.version () > html_plus)
-        if (! a_.known (a_type) || (a_.get_string (a_type) == CSS_TYPE))
-            if (context.load_css () && (context.css_version () == css_1))
-            {   arguments args (node_.version (), node_.namespaces (), page_, false, true);
-                page_ -> css ().parse (nits (), args, text (), node_.line ()); } }

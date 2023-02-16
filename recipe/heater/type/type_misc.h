@@ -35,7 +35,7 @@ template < > struct type_master < t_b64 > : public tidy_string < t_b64 >
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_b64 > :: set_value (nits, v, s);
         if (tidy_string < t_b64 > :: empty ())
-            nits.pick (nit_empty, es_error, ec_type, "a hexadecimal value expected");
+            nits.pick (nit_empty, es_error, ec_type, "a hexadecimal value expected (", type_name (t_b64), ")");
         else if (tidy_string < t_b64 > :: get_string ().find_first_not_of (HEX) == ::std::string::npos) return;
         else nits.pick (nit_b64, es_error, ec_type, "invalid character in base 64 binary string");
         string_value < t_b64 > :: status (s_invalid); } };
@@ -122,7 +122,7 @@ template < > struct type_master < t_hex > : public tidy_string < t_hex >
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_hex > :: set_value (nits, v, s);
         if (tidy_string < t_hex > :: empty ())
-            nits.pick (nit_empty_hex_code, es_error, ec_type, "a hexadecimal value expected");
+            nits.pick (nit_empty_hex_code, es_error, ec_type, "a hexadecimal value expected (", type_name (t_hex), ")");
         else if (tidy_string < t_hex > :: get_string ().find_first_not_of (HEX) == ::std::string::npos) return;
         else nits.pick (nit_invalid_character_hex, es_error, ec_type, "invalid hexadecimal value");
         string_value < t_hex > :: status (s_invalid); } };
@@ -250,7 +250,7 @@ template < > struct type_master < t_q > : public tidy_string < t_q >
     {   tidy_string < t_q > :: set_value (nits, v, ss);
         const ::std::string& s = tidy_string < t_q > :: get_string ();
         if (s.empty ())
-        {   nits.pick (nit_empty, es_error, ec_type, "value required");
+        {   nits.pick (nit_empty, es_error, ec_type, "value required (", type_name (t_q), ")");
             tidy_string < t_q > :: status (s_invalid); }
         else if (good ())
         {   if ((s.length () >= 3) && (s.length () <= 7))

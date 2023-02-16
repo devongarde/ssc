@@ -1,12 +1,12 @@
 [tally]
-  {{tally-name}} {{tally-int}}{{tally-use-int:/:}}
+  {{tally-name}} {{tally-int}}
 
 [tally-head]
 
 {{tally-title:: CSS/HTML:}}
 
 [tally-foot]
-  {{tally-count}}x {{tally-title}}: {{tally-total}}{{tally-use-total:/:}}
+  {{tally-count}} {{tally-title}}: {{tally-total}}
 
 [itemid]
 {{itemid-name}} {{itemid-int}}
@@ -47,15 +47,6 @@ test output
 
 [grand-foot]
 ===
-
-[id]
-{{id-name}} ({{id-page}}:{{id-line}})
-
-[id-head]
-
-*** itemids
-
-[id-foot]
 
 [init]
 {{nit-explanation}} [{{nit-id}}]

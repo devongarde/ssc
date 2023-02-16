@@ -32,7 +32,7 @@ template < > struct type_master < t_angle > : type_master < t_real >
     static e_animation_type animation_type () noexcept { return at_angle; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string ss (trim_the_lot_off (s));
-        if (compare_complain (nits, v, "auto", ss))
+        if (v.has_svg () && compare_complain (nits, v, "auto", ss))
             type_master < t_real > :: status (s_good);
         else
         {   float max = 360.0; ::std::string::size_type len = ss.length ();
@@ -42,14 +42,19 @@ template < > struct type_master < t_angle > : type_master < t_real >
                 if (compare_complain (nits, v, ssss, "grad")) { max = 400.0; len -= 4; }
                 else if (v.is_svg_2 () && compare_complain (nits, v, ssss, "turn")) { max = 1.0; len -= 4; }
                 else if (compare_complain (nits, v, sss, "rad")) { max = static_cast < float > (3.141592653589*2); len -= 3; }
-                else if (compare_complain (nits, v, sss, "deg")) len -= 3; }
+                else if (compare_complain (nits, v, sss, "deg")) len -= 3;
+                ss = ss.substr (0, len); }
             if (ss.substr (0, len).find_first_not_of (SIGNEDDECIMAL) != ::std::string::npos)
-                nits.pick (nit_angle, es_error, ec_type, quote (s), " contains unexpected characters (units are 'deg', 'grad', or 'rad')");
+                if (v.has_svg ()) nits.pick (nit_angle, ed_svg_1_1, "4.2 Basic data types", es_error, ec_type, quote (s), " contains unexpected characters (units are 'deg', 'grad', or 'rad')");
+                else if (v.has_css ()) nits.pick (nit_angle, ed_css_20, "4.3.7 Angles", es_error, ec_type, quote (s), " contains unexpected characters (units are 'deg', 'grad', or 'rad')");
+                else nits.pick (nit_angle, es_error, ec_type, quote (s), " contains unexpected characters (units are 'deg', 'grad', or 'rad')");
             else
-            {   type_master < t_real > :: set_value (nits, v, s);
+            {   type_master < t_real > :: set_value (nits, v, ss);
                 if (good ())
                     if ((value_ >= max) || (value_ <= (-1 * static_cast < double> (max))))
-                        nits.pick (nit_angle, ed_svg_1_1, "4.2 Basic data types", es_error, ec_type, quote (s), " should be less that ", ::boost::lexical_cast < ::std::string > (max));
+                        if (v.has_svg ()) nits.pick (nit_angle, ed_svg_1_1, "4.2 Basic data types", es_error, ec_type, quote (s), " should closer to zero than +- ", ::boost::lexical_cast < ::std::string > (max));
+                        else if (v.has_css ()) nits.pick (nit_angle, ed_css_20, "4.3.7 Angles", es_error, ec_type, quote (s), " should be closer to zero than +- ", ::boost::lexical_cast < ::std::string > (max));
+                        else nits.pick (nit_angle,es_error, ec_type, quote (s), " should be closer to zero than +- ", ::boost::lexical_cast < ::std::string > (max));
                     else return; }
             type_master < t_real > :: status (s_invalid); } } };
 
@@ -204,14 +209,23 @@ template < > struct type_master < t_font > : tidy_string < t_font >
                         pos = s.find ('/');
                         if (pos == ::std::string::npos)
                         {   if (test_value < t_fontsize > (knits, v, s))
+                            {   state = fs_family; break; }
+                            if (v.has_css () && test_value < t_css_font_size > (knits, v, s))
                             {   state = fs_family; break; } }
                         else if (test_value < t_fontsize > (knits, v, s.substr (0, pos)) &&
+                                 test_value < t_measure > (knits, v, s.substr (pos)))
+                        {   state = fs_family; break; }
+                        else if (v.has_css () && 
+                                 test_value < t_css_font_size > (knits, v, s.substr (0, pos)) &&
                                  test_value < t_measure > (knits, v, s.substr (pos)))
                         {   state = fs_family; break; }
                         FALLTHROUGH;
                     case fs_family :
                         if (test_value < t_font_family > (knits, v, s))
-                        {   state = fs_done; break; }
+                        {   if (! v.has_css ()) state = fs_done;
+                            break; }
+                        if (v.has_css () && test_value < t_css_generic_family > (knits, v, s))
+                            break;
                         FALLTHROUGH;
                     default :
                         nits.pick (nit_font_enum, es_error, ec_type, quote (s), " is not a known FONT property");
@@ -248,7 +262,7 @@ template < > struct type_master < t_fontstretches > : public tidy_string < t_fon
                     for (auto sss : fs)
                         if (! test_value < t_svg_fontstretch_ff > (nits, v, sss)) bad = true;
                     if (! bad) return; } } }
-        nits.pick (nit_fontstyle, ed_svg_1_1, "20.8.3 The 'font-face' element", es_info, ec_type, "an SVG font stretch can be 'all', or one or more condensed and/or expanded values");
+        nits.pick (nit_fontstyle, ed_svg_1_1, "20.8.3 The 'font-face' element", es_info, ec_type, "an SVG font stretch can be 'all', or one or more condensed andor expanded values");
         tidy_string < t_fontstretches > :: status (s_invalid); } };
 
 template < > struct type_master < t_fontvariants > : public tidy_string < t_fontvariants >

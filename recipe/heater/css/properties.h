@@ -20,18 +20,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "css/property.h"
+#include "css/css_state.h"
 
 class properties
 {   vpr_t prop_;
+    property_bitset state_;
 public:
     DEFAULT_CONSTRUCTORS (properties);
-    properties (v_np& ticks, const int loc, arguments& args, const ::std::string& s)
-    {   parse (ticks, loc, args, s); }
-    void swap (properties& r) noexcept
-    {   prop_.swap (r.prop_); }
-    void reset ()
-    {   properties p;
-        swap (p); }
-    void parse (v_np& ticks, const int loc, arguments& args, const ::std::string& s);
-     void accumulate (stats_t* s) const;
+    properties (arguments& args, const int from, const int to = -1)
+    {   parse (args, from ,to); }
+    void parse (arguments& args, const int from, const int to = -1);
+    void validate (arguments& args);
+    void accumulate (stats_t* s) const;
+    property_bitset& state () { return state_; }
+    const property_bitset& state () const { return state_; }
    ::std::string rpt () const; };

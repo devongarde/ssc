@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "element/state.h"
+#include "attribute/attr_state.h"
 #include "webpage/id.h"
 #include "microformat/microformats_ptr.h"
 #include "attribute/attributes.h"

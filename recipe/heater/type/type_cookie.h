@@ -28,7 +28,7 @@ template < > struct type_master < t_cookie > : public tidy_string < t_cookie >
     {   tidy_string < t_cookie > :: set_value (nits, v, trim_the_lot_off (s));
         const ::std::string& ss = tidy_string < t_cookie > :: get_string ();
         if (s.empty ())
-        {   nits.pick (nit_empty, es_error, ec_type, "value required");
+        {   nits.pick (nit_empty, es_error, ec_type, "cookie value required");
             tidy_string < t_cookie > :: status (s_invalid); }
         else if (good ())
         {   const ::std::string::size_type pos = ss.find ('=');

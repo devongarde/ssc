@@ -10,14 +10,14 @@
 </HEADER>
 <MAIN>
 <H2 class="nit-section">/index.html</H2>
-<H3><SPAN class="nit-line">2</SPAN> <SPAN class="nit-mote">&lt;html&gt;</SPAN></H3>
+<H3><SPAN class="nit-line">2</SPAN> <SPAN class="nit-before">&lt;!DOCTYPE&nbsp;html&gt;&nbsp;</SPAN> <SPAN class="nit-mote">&lt;html&gt;</SPAN> <SPAN class="nit-after">&nbsp;&lt;head&gt;&nbsp;&lt;title&gt;HTML&nbsp;outpu...</SPAN</H3>
 <P>
 <SPAN class="nit-level">&nbsp;--&gt;&nbsp;</SPAN> <SPAN class="nit-explanation">use&nbsp;LANG&nbsp;to&nbsp;specify&nbsp;a&nbsp;default&nbsp;language</SPAN> <SPAN class="nit-id">[naughty_lang]</SPAN><BR>
 </P>
 <BR><BR>
 </MAIN>
 <FOOTER>
-<A href="https://ssc.lu/" class="ssc-name">Static&nbsp;Site&nbsp;Checker</A> version 0.1.12<BR>
+<A href="https://ssc.lu/" class="ssc-name">Static&nbsp;Site&nbsp;Checker</A> version 0.1.13<BR>
 <A href="https://dylanharris.org/" class="ssc-copyright">(c)&nbsp;2020-2023&nbsp;Dylan&nbsp;Harris</A>
 </FOOTER>
 </BODY>

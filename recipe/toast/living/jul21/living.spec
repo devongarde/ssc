@@ -291,6 +291,7 @@ PASS ../toast/living/jul21/details.html
 7 use_double_quote_code
 25 inserted_missing_closure missing_close
 26 inserted_missing_closure
+28 unrecognised_value
 
 PASS ../toast/living/jul21/dfn.html
 9 use_quote_code
@@ -845,6 +846,7 @@ PASS ../toast/living/jul21/img.html
 111 no_such_folder url_not_found
 112 inserted_missing_closure
 115 url_not_found
+120 bad_media unrecognised_value bad_media unrecognised_value bad_media
 127 url_not_found
 139 url_not_found id_exists
 147 url_not_found
@@ -1211,6 +1213,7 @@ PASS ../toast/living/jul21/lwp.html
 
 PASS ../toast/living/jul21/main-1.html
 3 inserted_missing_parent missing_close
+4 unrecognised_value
 14 inserted_missing_parent inserted_missing_closure missing_close
 18 attempted_escape no_such_folder url_not_found
 19 attempted_escape no_such_folder url_not_found
@@ -1302,6 +1305,7 @@ PASS ../toast/living/jul21/microdata-1.html
 30 url_not_found
 39 url_not_found
 58 missing_itemtype
+73 dialect
 77 url_not_found naughty_alt
 82 url_not_found naughty_alt
 86 schema_domain
@@ -2266,3 +2270,6 @@ PASS ../toast/living/jul21/ww-8.html
 
 PASS ../toast/living/jul21/ww-9.html
 5 long_title
+
+itemids
+urn:isbn:0-330-34032-8

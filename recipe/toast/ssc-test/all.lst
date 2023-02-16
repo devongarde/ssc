@@ -1,9 +1,17 @@
 ../toast/conf/html/conf.spec
 ../toast/conf/xhtml/conf.spec
+../toast/coop/corrupt/corrupt.spec
+../toast/coop/corrupt/corrupt2.spec
+../toast/coop/corrupt/corrupt512.spec
+../toast/coop/oct21/living.spec
+../toast/coop/schema-abc/abc.spec
 ../toast/csp/1/csp.spec
 ../toast/csp/2/csp.spec
 ../toast/csp/3/csp.spec
 ../toast/css/1/css.spec
+../toast/css/2.0/css.spec
+../toast/css/2.1/css.spec
+../toast/css/2.2/css.spec
 ../toast/HTML/1.0/html1.spec
 ../toast/HTML/2.0/html2.spec
 ../toast/HTML/3.0/html3.spec
@@ -56,6 +64,7 @@
 ../toast/living/jan22/living.spec
 ../toast/living/apr22/living.spec
 ../toast/living/oct22/living.spec
+../toast/living/jan23/living.spec
 ../toast/math/1/math.spec
 ../toast/math/2/math.spec
 ../toast/math/3/math.spec
@@ -126,6 +135,7 @@
 ../toast/spell/case/spell.spec
 ../toast/spell/noicu/spell.spec
 ../toast/spell/spell/spell.spec
+../toast/stats/CSS/stats.spec
 ../toast/stats/detail/stats.spec
 ../toast/stats/single/stats.spec
 ../toast/stats/summary/stats.spec

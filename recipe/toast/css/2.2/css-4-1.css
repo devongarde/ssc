@@ -1,0 +1,74 @@
+﻿@import "subs.css";
+H1 { color: blue }
+@import "list.css";
+
+@media print {
+ @import "print-main.css";
+ BODY { font-size: 10pt }
+}
+
+H1 {color: blue }
+
+@import "subs.css";
+@import "print-main.css" print;
+@media print {
+body { font-size: 10pt }
+}
+h1 {color: blue }
+
+P { width: "auto";
+    border: "none";
+    background: "red"; }
+
+{ causta: "}" + ({7} * '\'') }
+
+H1, H2 {color: green }
+H3, H4 & H5 {color: red }
+H6 {color: black }
+
+P[example="public class foo\
+{\
+ private int x;\
+\
+ foo(int x) {\
+ this.x = x;\
+ }\
+\
+}"] { color: red }
+
+H1 { font-weight: bold }
+H1 { font-size: 12pt }
+H1 { line-height: 14pt }
+H1 { font-family: Helvetica }
+H1 { font-variant: normal }
+H1 { font-style: normal }
+
+H1 {
+ font-weight: bold;
+ font-size: 12pt;
+ line-height: 14pt;
+ font-family: Helvetica;
+ font-variant: normal;
+ font-style: normal
+}
+
+h1 { color: red; rotation: 70minutes }
+
+img { float: left } /* correct CSS 2.1 */
+img { float: left here } /* "here" is not a value of 'float' */
+img { background: "red" } /* keywords cannot be quoted */
+img { border-width: 3 } /* a unit must be specified for length values */
+
+H1 { color: red; font-style: 12pt } /* Invalid value: 12pt */
+P { color: blue; font-vendor: any; /* Invalid prop.: font-vendor */
+ font-variant: small-caps }
+EM EM { font-style: normal }
+
+/* this is not a comment */
+
+ p {
+ color: green;
+ font-family: 'Courier New Times
+ color: red;
+ color: green;
+ }

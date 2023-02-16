@@ -68,6 +68,7 @@ public:
     void merge_id (const smsid_t& s);
     void merge_element_class (const smsid_t& s);
     void merge_element_id (const smsid_t& s);
+    void merge_font (const smsid_t& s);
     uint64_t file_count () const;
     unsigned count (const e_element e) const;
     unsigned count (const e_severity s) const;

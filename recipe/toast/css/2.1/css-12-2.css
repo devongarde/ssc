@@ -1,0 +1,11 @@
+﻿H1:before {
+content: "Chapter: ";
+display: inline;
+}
+
+H1:before {
+ display: block;
+ text-align: center;
+ white-space: pre;
+ content: "chapter\A hoofdstuk\A chapitre"
+}

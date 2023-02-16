@@ -272,13 +272,13 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
     bool postprocess = false, post_examine = false;
     switch (tag)
     {   case elem_faux_stylesheet :
-            if (context.load_css () && (context.css_version () == css_1))
+            if (context.load_css () && (node_.version ().css_version () >= css_1))
             {   url u (node_.nits (), node_.version (), node_.text ());
                 if (! u.invalid ())
                 {   nitpick nuts;
                     if (! u.is_local ())
                         pick (nit_gather, es_comment, ec_css, "gathering CSS information from ", u.original ());
-                    page_ -> css ().parse_file (nuts, node_.namespaces (), *page_, u, false);
+                    page_ -> css ().parse_file (nuts, node_.namespaces (), u, false);
                     if (! u.is_local ()) node_.nits ().merge (nuts); } }
             break;
         case elem_faux_cdata :

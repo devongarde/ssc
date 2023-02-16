@@ -1,0 +1,17 @@
+﻿@page {
+margin: 3cm;
+}
+
+@page :left {
+ margin-left: 4cm;
+ margin-right: 3cm;
+}
+@page :right {
+ margin-left: 3cm;
+ margin-right: 4cm;
+}
+
+@page { margin: 2cm } /* All margins set to 2cm */
+@page :first {
+ margin-top: 10cm /* Top margin on first page 10cm */
+}

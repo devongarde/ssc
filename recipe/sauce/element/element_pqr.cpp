@@ -125,7 +125,7 @@ void element::examine_ruby ()
                 {   case elem_rt :
                     case elem_rtc :
                         if (had_rt)
-                            pick (nit_no_rp, ed_51, "4.5.10 The ruby element", es_error, ec_element, "<RP> should immediately precede OR follow <RT> and/or <RTC>");
+                            pick (nit_no_rp, ed_51, "4.5.10 The ruby element", es_error, ec_element, "<RP> should immediately precede OR follow <RT> andor <RTC>");
                         else had_rt = true;
                         break;
                     case elem_rp :
@@ -138,4 +138,4 @@ void element::examine_ruby ()
                         break; } }
     if (! is_whatwg)
         if (had_rt != had_rp)
-            pick (nit_no_rp, ed_51, "4.5.10 The ruby element", es_error, ec_element, "<RP> should immediately precede OR follow <RT> and/or <RTC>"); }
+            pick (nit_no_rp, ed_51, "4.5.10 The ruby element", es_error, ec_element, "<RP> should immediately precede OR follow <RT> andor <RTC>"); }

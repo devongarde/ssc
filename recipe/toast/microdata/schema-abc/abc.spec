@@ -234,9 +234,11 @@ PASS ../toast/microdata/schema-abc/collegeoruniversity-2.html
 17 no_such_folder url_not_found
 
 PASS ../toast/microdata/schema-abc/comiccoverart.html
+33 dialect
 46 use_quote_code
 
 PASS ../toast/microdata/schema-abc/comicissue.html
+33 dialect
 46 use_quote_code
 
 PASS ../toast/microdata/schema-abc/corporation.html
@@ -253,6 +255,7 @@ PASS ../toast/microdata/schema-abc/corporation.html
 33 use_quote_code
 
 PASS ../toast/microdata/schema-abc/coverart.html
+33 dialect
 46 use_quote_code
 
 PASS ../toast/microdata/schema-abc/creativework-1.html

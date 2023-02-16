@@ -125,8 +125,7 @@ void pushpush (vstr_t& res, vint_t* lines, const ::std::string& s, const int lin
         if (lines != nullptr) lines -> push_back (line); } }
 
 vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep, vint_t* lines, v_np* ticks)
-{   PRESUME (sep.size () > 0, __FILE__, __LINE__);
-    for (auto p : sep)
+{   for (auto p : sep)
     {   PRESUME (! p.empty (), __FILE__, __LINE__);
         PRESUME (p.find ("\\") == ::std::string::npos, __FILE__, __LINE__);
         if ((flags & UQ_SQ) == UQ_SQ) PRESUME (p.find ("'") == ::std::string::npos, __FILE__, __LINE__);
@@ -138,8 +137,6 @@ vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep,
         if ((flags & UQ_ANGULAR) == UQ_ANGULAR) PRESUME (p.find ("<") == ::std::string::npos, __FILE__, __LINE__); }
     vstr_t res;
     ::std::string o;
-//    typedef enum { uq_round, uq_square, uq_brace, uq_angular } e_uq_bracket;
-//    typedef ::std::vector < e_uq_bracket > bracket_stack;
     int br = 0, sq = 0, an = 0, ro = 0;
     typedef enum { uq_dull, uq_bracket, uq_expect_sep, uq_es2, uq_sq, uq_dq, uq_bs, uq_repsq, uq_repdq, uq_borked } e_uq_status;
     const e_uq_status breakage = uq_sq;
@@ -158,12 +155,14 @@ vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep,
     else if ((flags & UQ_10) == UQ_10) bst = DENARY;
     else if ((flags & UQ_8) == UQ_8) bst = OCTAL;
     bool had_whitespace = false;
+    bool had_content = false;
     bool newline = false;
     int line = 0;
     nitpick nits;
     for (::std::string::const_iterator i = sb; i != se; ++i)
     {   bool extend = true;
         bool consider = true;
+        bool is_q = false;
         if ((ticks != nullptr) || (lines != nullptr))
             switch (*i)
             {   case '\r' :
@@ -177,7 +176,7 @@ vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep,
                     break;
                 default :
                     if (ticks != nullptr)
-                        if (! ::std::iscntrl (*i))
+                        if ((*i < 0) || (*i >= 32) || (! ::std::iscntrl (*i)))
                         {   if (newline)
                             {   newline = false;
                                 bol = i; }
@@ -247,6 +246,11 @@ vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep,
                                 continue; }
                             cmt_state = cq_dull;
                             break;
+                        case cq_cpp :
+                            continue;
+                        case cq_pos_c_end :
+                            cmt_state = cq_c;
+                            continue;
                         default :
                             break; }
                     break;
@@ -266,6 +270,9 @@ vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep,
                         case cq_dull :
                             cmt_state = cq_pos_cmt;
                             break;
+                        case cq_c :
+                        case cq_cpp :
+                            continue;
                         default :
                             break; }
                     break;
@@ -288,13 +295,17 @@ vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep,
                 consider = false;
                 if (state == uq_sq)
                 {   if ((flags & UQ_REPEATQ) == UQ_REPEATQ) state = uq_repsq;
-                    else if (os.size () > 0)
-                    {   state = os.back ();
-                        os.pop_back ();
-                        if (state == uq_dull) state = uq_expect_sep; }
-                    else state = uq_expect_sep; }
+                    else
+                    {   is_q = true;
+                        if (os.size () > 0)
+                        {   state = os.back ();
+                            os.pop_back ();
+                            if (state == uq_dull) state = uq_expect_sep; }
+                        else state = uq_expect_sep; } }
                 else
                 {   if ((flags & UQ_SQ) != UQ_SQ) break;
+                    if (had_content) break;
+                    is_q = true;
                     if (state >= breakage) break;
                     os.push_back (state);
                     state = uq_sq; }
@@ -303,13 +314,16 @@ vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep,
                 consider = false;
                 if (state == uq_dq)
                 {   if ((flags & UQ_REPEATQ) == UQ_REPEATQ) state = uq_repdq;
-                    else if (os.size () > 0)
-                    {   state = os.back ();
-                        os.pop_back ();
-                        if (state == uq_dull) state = uq_expect_sep; }
-                    else state = uq_expect_sep; }
+                    {   is_q = true;
+                        if (os.size () > 0)
+                        {   state = os.back ();
+                            os.pop_back ();
+                            if (state == uq_dull) state = uq_expect_sep; }
+                        else state = uq_expect_sep; } }
                 else
                 {   if ((flags & UQ_DQ) != UQ_DQ) break;
+                    if (had_content) break;
+                    is_q = true;
                     if (state >= breakage) break;
                     os.push_back (state);
                     state = uq_dq; }
@@ -327,7 +341,6 @@ vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep,
                 state = uq_bracket;
                 ++ro;
                 consider = false;
-//                extend = (flags & UQ_SEP) == UQ_SEP;
                 break;
             case ')' :
                 if (state != uq_bracket) break;
@@ -335,7 +348,6 @@ vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep,
                 if (os.size () > 0)
                 {   state = os.back (); os.pop_back (); }
                 else state = uq_dull;
-//                extend = false;
                 break;
             case '[' :
                 if (state >= breakage) break;
@@ -344,7 +356,6 @@ vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep,
                 state = uq_bracket;
                 ++sq;
                 consider = false;
-//                extend = (flags & UQ_SEP) == UQ_SEP;
                 break;
             case ']' :
                 if (state != uq_bracket) break;
@@ -352,7 +363,6 @@ vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep,
                 if (os.size () > 0)
                 {   state = os.back (); os.pop_back (); }
                 else state = uq_dull;
-//                extend = false;
                 break;
             case '{' :
                 if (state >= breakage) break;
@@ -361,7 +371,6 @@ vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep,
                 state = uq_bracket;
                 ++br;
                 consider = false;
-//                extend = (flags & UQ_SEP) == UQ_SEP;
                 break;
             case '}' :
                 if (state != uq_bracket) break;
@@ -369,7 +378,6 @@ vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep,
                 if (os.size () > 0)
                 {   state = os.back (); os.pop_back (); }
                 else state = uq_dull;
-//                extend = false;
                 break;
             case '<' :
                 if (state >= breakage) break;
@@ -378,7 +386,6 @@ vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep,
                 state = uq_bracket;
                 ++an;
                 consider = false;
-//                extend = (flags & UQ_SEP) == UQ_SEP;
                 break;
             case '>' :
                 if (state != uq_bracket) break;
@@ -386,13 +393,12 @@ vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep,
                 if (os.size () > 0)
                 {   state = os.back (); os.pop_back (); }
                 else state = uq_dull;
-//                extend = false;
                 break;
             default : break; }
         if (consider && (state != uq_bracket))
             for (auto p : sep)
                 if (p.at (0) == *i)
-                    if (::gsl::narrow_cast < ::std::size_t > (se - i) >= p.length ())
+                    if (GSL_NARROW_CAST < ::std::size_t > (se - i) >= p.length ())
                     {   bool matches = true;
                         for (auto n = 0; matches && (static_cast < ::std::size_t > (n) < p.length ()); ++n)
                             if (p.at (n) != ' ') matches = p.at (n) == *(i + n);
@@ -404,8 +410,7 @@ vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep,
                                 if (((flags & UQ_UNIFY) == 0) || (res.size () == 0) || (res.at (res.size () - 1) != p))
                                     pushpush (res, lines, p, line);
                             o.clear ();
-//                            state = uq_dull;
-                            extend = false;
+                            extend = had_content = false;
                             break; } }
         if (extend)
         {   if ((flags & UQ_UNIFY) == UQ_UNIFY)
@@ -422,7 +427,10 @@ vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep,
                             continue; }
                         had_whitespace = false;
                         break; }
-            o += *i; } }
+            if (! is_q)
+            {   o += *i;
+                if (! ::std::iswspace (*i))
+                    had_content = true; } } }
     if (cmt_state == cq_c)
         if (ticks != nullptr)
         {   nits.set_context (line, sb, se, se);

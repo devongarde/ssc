@@ -40,31 +40,30 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define DOCTYPE_LC "<!doctype"
 #define DOCDOT DOCTYPE " ... >"
 
+void page::init (const ::std::string& name, ::std::string& content, const fileindex_t x)
+{   ids_.ndx (x);
+    names_.ndx (x, false);
+    if (is_css (name))
+    {   dot_css_ = true;
+        if (context.load_css () && (context.css_version () >= css_1))
+            css_.parse_file (nits_, namespaces_ptr (), url (nits (), context.html_ver (), get_site_path ()), true);
+        stats_.mark_file (GSL_NARROW_CAST < unsigned > (content.size ())); }
+    else parse (content); }
+
 page::page (const ::std::string& name, const ::std::time_t updated, ::std::string& content, const fileindex_t x, const directory* d)
     :   name_ (name), directory_ (d), updated_ (updated), css_ (*this)
 {   VERIFY_NOT_NULL (d, __FILE__, __LINE__);
-    ids_.ndx (x);
-    names_.ndx (x, false);
-    if (is_css (name))
-    {   if (context.load_css () && (context.css_version () == css_1))
-            css_.parse_file (nits_, namespaces_ptr (), *this, url (nits (), context.html_ver (), get_site_path ()), true);
-        stats_.mark_file (GSL_NARROW_CAST < unsigned > (content.size ())); }
-    else parse (content); }
+    init (name, content, x); }
 
 page::page (nitpick& nits, const ::std::string& name, const ::std::time_t updated, ::std::string& content, const directory* d)
     :   name_ (name), directory_ (d), updated_ (updated), css_ (*this)
 {   VERIFY_NOT_NULL (d, __FILE__, __LINE__);
     fileindex_t x (get_fileindex (d -> get_disk_path (nits, name)));
-    ids_.ndx (x);
-    names_.ndx (x, false);
     directory_ = d;
-    if (is_css (name))
-    {   if (context.load_css () && (context.css_version () == css_1))
-            css_.parse_file (nits_, namespaces_ptr (), *this, url (nits_, context.html_ver (), get_site_path ()), true);
-        stats_.mark_file (GSL_NARROW_CAST < unsigned > (content.size ())); }
-    else parse (content); }
+    init (name, content, x); }
 
-page::page (const ::std::string& content, const bool outsider) : css_ (*this)
+page::page (const ::std::string& content, const bool outsider)
+    :   css_ (*this)
 {   if (outsider) outsider_ = true;
     else snippet_ = true;
     ::std::string x (content);
@@ -292,3 +291,8 @@ void page::base (const url& s)
 
 void page::append_jsonld (const ::std::string& j)
 {   jsonld_ += j + "\n"; }
+
+::std::string page::css_review (mmac_t& mac) const
+{   nitpick gnats;
+    url u (gnats, context.html_ver (), get_site_path ());
+    return css ().review (mac, u.absolute ()); }

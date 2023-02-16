@@ -38,3 +38,8 @@ PASS ../toast/RDFa/gr/example-1.html
 481 missing_close
 492 missing_close
 494 inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure
+
+itemids
+#offer
+#product
+#product_data

@@ -79,7 +79,7 @@ element_node* elements_node::find_permitted_parent (const html_version& v, const
         parent = parent -> parent_; }
     return nullptr; }
 
-void elements_node::repair_invalid_parents (nitpick& nits, const html_version& v, const elem& id, element_node* parent, const element_node* ancestor, const bra_element_ket& ket, const bool closing)
+void elements_node::repair_invalid_parents (nitpick& nits, const html_version& v, const elem& id, element_node* parent, const element_node* ancestor, const brac_element_ket& ket, const bool closing)
 {   VERIFY_NOT_NULL (parent, __FILE__, __LINE__);
     VERIFY_NOT_NULL (ancestor, __FILE__, __LINE__);
     if (does_apply < html_version > (v, id.first (), id.last ()))
@@ -130,7 +130,7 @@ void elements_node::hook_up (element_node* current, element_node*& previous, ele
         previous = current; }
     else previous = current; }
 
-element_node* elements_node::insert_closure (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id, const bool presumed)
+element_node* elements_node::insert_closure (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id, const bool presumed)
 {   PRESUME (parent != nullptr, __FILE__, __LINE__);
     if (ket.eofe_ != ket.end_)
         if (! is_whitespace (ket.eofe_, ket.end_))
@@ -153,7 +153,7 @@ element_node* elements_node::insert_closure (const html_version& v, element_node
     PRESUME (current -> box () == this, __FILE__, __LINE__);
     return current; }
 
-element_node* elements_node::insert_family_tree (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id, const bool presumed)
+element_node* elements_node::insert_family_tree (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id, const bool presumed)
 {   PRESUME (id != elem_faux_document, __FILE__, __LINE__);
     const elem def (default_parent (v, id));
     element_node* ancestor = find_permitted_parent (v, def, parent);
@@ -175,7 +175,7 @@ element_node* elements_node::insert_family_tree (const html_version& v, element_
     PRESUME (current -> box () == this, __FILE__, __LINE__);
     return current; }
 
-element_node* elements_node::insert_non_closure (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id, const bool open)
+element_node* elements_node::insert_non_closure (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id, const bool open)
 {   PRESUME (parent != nullptr, __FILE__, __LINE__);
     element_node* current = nullptr;
     element_node* ancestor = find_permitted_parent (v, id, parent);
@@ -204,7 +204,7 @@ element_node* elements_node::insert_non_closure (const html_version& v, element_
     PRESUME (current -> attributes ().box () == current, __FILE__, __LINE__);
     return current; }
 
-element_node* elements_node::insert_closed (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id)
+element_node* elements_node::insert_closed (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id)
 {   element_node* current = insert_non_closure (v, previous, parent, ket, id, false);
     if (current != nullptr)
     {   current -> closed_ = true;
@@ -231,10 +231,10 @@ element_node* elements_node::insert_closed (const html_version& v, element_node*
                 default : break; } }
     return current; }
 
-element_node* elements_node::insert_open (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id)
+element_node* elements_node::insert_open (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id)
 {   return insert_non_closure (v, previous, parent, ket, id, true); }
 
-element_node* elements_node::insert  (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id)
+element_node* elements_node::insert  (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id)
 {   if (ket.closed_ || id.is_unclosed (v)) return insert_closed (v, previous, parent, ket, id);
     if (id.is_closed (v))
     {   if (v.xhtml ()) ket.nits_.pick (nit_xhtml_missing_slash, es_error, ec_element, "in ", v.report (), ", closed elements must use the <... /> syntax");
@@ -242,7 +242,7 @@ element_node* elements_node::insert  (const html_version& v, element_node*& prev
     if (ket.closure_) return insert_closure (v, previous, parent, ket, id, false);
     return insert_open (v, previous, parent, ket, id); }
 
-void elements_node::parse (const html_version& v, bras_ket& elements)
+void elements_node::parse (const html_version& v, bracs_ket& elements)
 {   ven_.clear ();
     ven_.push_back (element_node (elements.form_, this, 1, false, nullptr, elem_faux_document, false, ::std::string ()));
     element_node* document = & ven_.back ();
@@ -299,7 +299,7 @@ void elements_node::parse (const html_version& v, bras_ket& elements)
         ::std::cerr << document -> rpt (0); } }
 
 bool elements_node::parse (nitpick& nits, const ::std::string& content)
-{   bras_ket elements;
+{   bracs_ket elements;
     version_ = elements.parse (nits, content);
     invalid_ = version_.unknown ();
     if (invalid_) nits.merge (elements.form_);

@@ -28,9 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/fn.h"
 #include "css/weight.h"
 
-class unset
-{
-};
+class unset { };
 
 class decoration
 {   typedef enum { dt_unset, dt_attribute, dt_class, dt_fn, dt_id } e_dec;
@@ -39,15 +37,12 @@ class decoration
 public:
     decoration () : sparkle_ (unset ()) { }
     DEFAULT_COPY_CONSTRUCTORS (decoration);
-    decoration (nitpick& nits, arguments& args, const ::std::string& sep, const ::std::string& s)
-    {   parse (nits, args, sep, s); }
+    decoration (arguments& args, const int from, const int to = -1)
+    {   parse (args, from, to); }
     ~decoration () = default;
-    void swap (decoration& d)
-    {   sparkle_.swap (d.sparkle_); }
-    void reset ()
-    {   decoration d;
-        swap (d); }
-    void parse (nitpick& nits, arguments& args, const ::std::string& sep, const ::std::string& s);
+    void parse (arguments& args, const int from, const int to = -1);
+    bool bef_aft () const;
+    void validate (arguments& args);
     void accumulate (stats_t* s, const e_element e) const;
     ::std::string rpt () const; };
 

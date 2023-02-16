@@ -1,0 +1,5 @@
+﻿pre { white-space: pre }
+p { white-space: normal }
+td[nowrap] { white-space: nowrap }
+
+pre[wrap] { white-space: pre-wrap }

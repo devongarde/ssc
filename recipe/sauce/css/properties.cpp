@@ -24,20 +24,23 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/properties.h"
 #include "utility/quote.h"
 
-void properties::parse (v_np& ticks, const int loc, arguments& args, const ::std::string& s)
-{   vstr_t ss (uq2 (s, UQ_C_CMT | UQ_DQ | UQ_SQ | UQ_BS | UQ_ROUND | UQ_SQUARE | UQ_BRACE | UQ_TRIM, ";"));
-    for (auto sss : ss)
-        if (! sss.empty ())
-        {   nitpick nits;
-            nits.set_context (loc, sss);
-            property p;
-            p.parse (nits, args, sss);
-            prop_.push_back (p);
-            if (! nits.empty ()) ticks.push_back (nits); } }
+void properties::parse (arguments& args, const int from, const int to)
+{   PRESUME ((from <= to) || (to < 0), __FILE__, __LINE__);
+    const int len = GSL_NARROW_CAST <int> (args.t_.size ());
+    PRESUME (from < len, __FILE__, __LINE__);
+    PRESUME ((to < len) || (to < 0), __FILE__, __LINE__);
+    int b = -1; int prev = -1;
+    fiddlesticks < properties > f (&args.ps_, this);
+    for (int i = from; i > 0; i = next_token_at (args.t_, i, to))
+    {   if (b == -1) b = i;
+        if (args.t_.at (i).t_ == ct_semicolon)
+        {   if (b != i) prop_.emplace_back (args, b, prev);
+            b = -1; }
+        prev = i; }
+    if (b != -1) prop_.emplace_back (args, b, to); }
 
 void properties::accumulate (stats_t* s) const
-{  VERIFY_NOT_NULL (s, __FILE__, __LINE__);
-    for (auto p : prop_)
+{   for (auto p : prop_)
         p.accumulate (s); }
 
 ::std::string properties::rpt () const
@@ -46,4 +49,9 @@ void properties::accumulate (stats_t* s) const
     {   if (! res.empty ()) res += "; ";
         res += s.rpt (); }
     res += " }";
-    return res; }  
+    return res; }
+  
+void properties::validate (arguments& args)
+{   fiddlesticks < properties > f (&args.ps_, this);
+    for (auto i : prop_)
+        i.validate (args); }

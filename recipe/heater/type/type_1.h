@@ -57,6 +57,9 @@ template < > struct type_master < t_blocking > : one_value < t_blocking, sz_rend
 template < > struct type_master < t_cc_prohibits > : one_value < t_cc_prohibits, sz_cc_commercialuse >
 { using one_value < t_cc_prohibits, sz_cc_commercialuse > :: one_value; };
 
+template < > struct type_master < t_css_azimuth_be > : one_value < t_css_azimuth_be, sz_behind >
+{ using one_value < t_css_azimuth_be, sz_behind > :: one_value; };
+
 template < > struct type_master < t_css_earnest > : one_value < t_css_earnest, sz_important >
 { using one_value < t_css_earnest, sz_important > :: one_value; };
 

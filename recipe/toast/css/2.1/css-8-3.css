@@ -1,0 +1,12 @@
+﻿H1 { margin-top: 2em }
+
+BODY { margin: 2em } /* all margins set to 2em */
+BODY { margin: 1em 2em } /* top & bottom = 1em, right & left = 2em */
+BODY { margin: 1em 2em 3em } /* top=1em, right=2em, bottom=3em, left=2em */
+
+BODY {
+ margin-top: 1em;
+ margin-right: 2em;
+ margin-bottom: 3em;
+ margin-left: 2em; /* copied from opposite side (right) */
+}

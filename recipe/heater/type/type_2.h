@@ -87,6 +87,9 @@ template < > struct type_master < t_coordinatesystem > : two_value < t_coordinat
 template < > struct type_master < t_cors > : two_value < t_cors, ev_cors, sz_anonymous, sz_use_credentials, false >
 { using two_value < t_cors, ev_cors, sz_anonymous, sz_use_credentials, false > :: two_value; };
 
+template < > struct type_master < t_css_mark > : two_value < t_css_mark, e_css_mark, sz_crop, sz_cross, false >
+{ using two_value < t_css_mark, e_css_mark, sz_crop, sz_cross, false > :: two_value; };
+
 template < > struct type_master < t_dataformatas > : two_value < t_dataformatas, e_dataformatas, sz_html, sz_plaintext, false >
 { using two_value < t_dataformatas, e_dataformatas, sz_html, sz_plaintext, false > :: two_value; };
 
@@ -276,7 +279,7 @@ template < e_type TYPE, typename base_type, class OFF, class ON, bool EMPTY >
     if (t == off_) true_ = false;
     else if (t == on_) true_ = true;
     else
-    {   if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "attribute cannot have an empty value");
+    {   if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "attribute cannot have an empty value (", type_name (TYPE), ")");
         else if (! check_identifier_spelling (nits, v, t))
             nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid; it can be ", quote (OFF::sz ()), " or ", quote (ON::sz ()));
         type_base < base_type, TYPE > :: status (s_invalid);

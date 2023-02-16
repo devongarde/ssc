@@ -20,19 +20,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "type/type.h"
+#include "css/properties.h"
+#include "css/rules.h"
+
+class statements;
+typedef ::std::shared_ptr < statements > pst_t;
+typedef ::std::vector < pst_t > vpst_t;
 
 class statement
 {   type_master < t_css_statement > st_;
+    properties prop_;
+    rules rules_;
+    vpst_t vst_;
 public:
     DEFAULT_CONSTRUCTORS (statement);
-    statement (nitpick& nits, arguments& args, const ::std::string& s)
-    {   parse (nits, args, s); }
-    void swap (statement& st)
-    {   st_.swap (st.st_); }
-    void reset ()
-    {   statement st;
-        swap (st); }
-    void parse (nitpick& nits, arguments& args, const ::std::string& s);
+    statement (arguments& args, const int from, const int to)
+    {   parse (args, from, to); }
+    e_css_statement get () const;
+    void parse (arguments& args, const int from, const int to);
+    void validate (arguments& args);
     void accumulate (stats_t* s) const;
     ::std::string rpt () const; };
 

@@ -626,6 +626,11 @@ bool examine_results (knotted& expected, vstr_t& results, unsigned& passed, unsi
                 if (fn.empty ())
                 {   if (verbose) ::std::cout << "missing filename in output\n"; res =  false; ++failed; }
                 knotted::const_iterator i = expected.find (fn);
+                if (i == expected.end ()) try
+                {   ::std::string xfn (::boost::filesystem::canonical (::boost::filesystem::absolute (fn)).string ());
+                    i = expected.find (xfn);
+                    if (i != expected.end ()) fn = xfn; }
+                catch (...) { }
                 if (i == expected.end ())
                 {   if (fn == "classes") classes = true;
                     else if (fn == "link") lynx = true;

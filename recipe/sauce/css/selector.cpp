@@ -23,15 +23,28 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/arguments.h"
 #include "utility/quote.h"
 
-void selector::parse (nitpick& nits, arguments& args, const ::std::string& s)
-{   vstr_t ss (uq2 (s, UQ_C_CMT | UQ_DQ | UQ_SQ | UQ_BS | UQ_ROUND | UQ_SQUARE | UQ_TRIM, " "));
-    for (auto sss : ss)
-        if (! sss.empty ())
-            ve_.emplace_back (nits, args, sss); }
+void selector::parse (arguments& args, const int from, const int to)
+{   PRESUME ((to < 0) || (from <= to), __FILE__, __LINE__);
+    const int len = GSL_NARROW_CAST < int > (args.t_.size ());
+    PRESUME (from < len, __FILE__, __LINE__);
+    PRESUME (to < len, __FILE__, __LINE__);
+    int b = -1; int prev = -1;
+    for (int i = from; i > 0; i = next_token_at (args.t_, i, to))
+    {   if (b == -1) b = i;
+        if ((args.t_.at (i).t_ == ct_whitespace) || (args.t_.at (i).t_ == ct_comment))
+        {   if (b != i) ve_.emplace_back (args, b, prev);
+            b = -1; }
+        prev = i; }
+    if (b != -1)
+        ve_.emplace_back (args, b, to); }
+
+bool selector::bef_aft () const
+{   for (auto e : ve_)
+        if (e.bef_aft ()) return true;
+    return false; }
 
 void selector::accumulate (stats_t* s) const
-{   VERIFY_NOT_NULL (s, __FILE__, __LINE__);
-    for (auto e : ve_)
+{   for (auto e : ve_)
         e.accumulate (s); }
 
 ::std::string selector::rpt () const
@@ -40,3 +53,7 @@ void selector::accumulate (stats_t* s) const
     {   if (! res.empty ()) res += " ";
         res += el.rpt (); }
     return res; }  
+
+void selector::validate (arguments& args)
+{   for (auto i : ve_)
+        i.validate (args); }

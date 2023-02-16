@@ -641,6 +641,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, "onreset", a_onreset },
     { { HTML_SVG10 }, { HTML_UNDEF }, "onresize", a_onresize },
     { { HTML_SVG10 }, { HTML_UNDEF }, "onscroll", a_onscroll },
+    { { HTML_JAN23 }, { HTML_UNDEF }, "onscrollend", a_onscrollend },
     { { HTML_JAN18 }, { HTML_UNDEF }, "onsecuritypolicyviolation", a_onsecuritypolicyviolation },
     { { HTML_JUL09 }, { HTML_UNDEF }, "onseeked", a_onsought },
     { { HTML_JUL09 }, { HTML_UNDEF }, "onseeking", a_onseeking },

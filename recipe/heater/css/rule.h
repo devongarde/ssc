@@ -27,17 +27,12 @@ class rule
     properties prop_;
 public:
     DEFAULT_CONSTRUCTORS (rule);
-    rule (v_np& ticks, const int loc, arguments& args, const ::std::string& s)
-    {   parse (ticks, loc, args, s); }
-    void swap (rule& r) noexcept
-    {   prop_.swap (r.prop_);
-        sel_.swap (r.sel_); }
-    void reset ()
-    {   rule r;
-        swap (r); }
-    void parse (v_np& ticks, const int loc, arguments& args, const ::std::string& s);
+    rule (arguments& args, const int from, const int to)
+    {   parse (args, from, to); }
+    void parse (arguments& args, const int from, const int to);
     const element_bitset get_elements () const
     {   return sel_.get_elements (); }
+    void validate (arguments& args);
     void accumulate (stats_t* s) const;
     ::std::string rpt () const; };
 

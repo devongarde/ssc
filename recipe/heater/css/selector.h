@@ -27,19 +27,16 @@ class selector
 public:
     DEFAULT_CONSTRUCTORS (selector);
     explicit selector (const e_element e) { ve_.emplace_back (e); }
-    selector (nitpick& nits, arguments& args, const ::std::string& s)
-    {   parse (nits, args, s); }
-    void swap (selector& st)
-    {   ve_.swap (st.ve_); }
-    void reset ()
-    {   selector st;
-        swap (st); }
-    void parse (nitpick& nits, arguments& args, const ::std::string& s);
+    selector (arguments& args, const int from, const int to)
+    {   parse (args, from, to); }
+    void parse (arguments& args, const int from, const int to);
     void accumulate (stats_t* s) const;
     const element_bitset get_elements () const
     {   element_bitset res;
         for (auto r : ve_) res |= r.get_elements ();
         return res; }
+    void validate (arguments& args);
+    bool bef_aft () const;
     ::std::string rpt () const; };
 
 typedef ::std::vector < selector > vsel_t;

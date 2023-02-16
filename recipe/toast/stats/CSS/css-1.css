@@ -1,0 +1,44 @@
+﻿H1, H2, H3 { font-family: helvetica }
+
+H1 {
+ font-weight: bold;
+ font-size: 12pt;
+ line-height: 14pt;
+ font-family: helvetica;
+ font-variant: normal;
+ font-style: normal;
+}
+
+H1 { font: bold 12pt/14pt helvetica }
+
+BODY {
+ color: black;
+ background: url(texture.gif) white;
+}
+
+P { font-size: 10pt }
+P { line-height: 120% } /* relative to 'font-size', i.e. 12pt */
+
+.pastoral { color: green } /* all elements with CLASS pastoral */
+
+#z98y { letter-spacing: 0.3em }
+H1#z98y { letter-spacing: 0.5em }
+
+H1 { color: blue }
+EM { color: red }
+
+H1 EM { color: red }
+
+DIV P { font: small sans-serif }
+.reddish H1 { color: red }
+#x78y CODE { background: blue }
+DIV.sidenote H1 { font-size: large }
+
+H1 B, H2 B, H1 EM, H2 EM { color: red }
+
+H1 B { color: red }
+H2 B { color: red }
+H1 EM { color: red }
+H2 EM { color: red }
+
+EM { color: red } /* red, really red!! */

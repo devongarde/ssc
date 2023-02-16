@@ -34,13 +34,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
                     a_aria_required, a_aria_roledescription, a_aria_rowcount, a_aria_rowindex, a_aria_rowspan, a_aria_selected, a_aria_setsize, \
                     a_aria_sort, a_aria_valuemax, a_aria_valuemin, a_aria_valuenow, a_aria_valuetext
 
-#define ON          a_onabort, a_onautocomplete, a_onautocompleteerror, a_onbeforeunload,  a_oncancel, a_oncanplay, a_oncanplaythrough, \
+#define ON          a_onabort, a_onautocomplete, a_onautocompleteerror, a_onbeforeunload, a_oncancel, a_oncanplay, a_oncanplaythrough, \
                     a_onchange, a_onclose, a_oncontextmenu, a_oncuechange, a_ondrag, a_ondragend,  a_ondragenter, a_ondragexit, \
                     a_ondragleave, a_ondragover, a_ondragstart, a_ondrop, a_dropzone, a_ondurationchange, a_onemptied, a_onended, \
                     a_onerror, a_onformchange, a_onforminput, a_onhashchange, a_oninput, a_oninvalid, a_is, a_onload, a_onloadeddata, \
                     a_onloadedmetadata, a_onloadstart, a_onmessage, a_onmouseenter, a_onmouseleave, a_onmousewheel, a_onpause, a_onplay, \
-                    a_onplaying, a_onprogress, a_onratechange, a_onreadystatechange, a_onreset, a_onresize, a_onscroll, a_onsought, \
-                    a_onseeking, a_onselect, a_onshow, a_onstalled, a_onstorage, a_onsubmit, a_onunload
+                    a_onplaying, a_onprogress, a_onratechange, a_onreadystatechange, a_onreset, a_onresize, a_onscroll, a_onscrollend, \
+                    a_onsought, a_onseeking, a_onselect, a_onshow, a_onstalled, a_onstorage, a_onsubmit, a_onunload
 
 #define ALIGNCHAR   a_align, a_char, a_charoff, a_valign
 #define BLUR        a_onfocus, a_onblur

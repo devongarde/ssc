@@ -24,4 +24,6 @@ struct css_id
 {   ::std::string s_;
     DEFAULT_CONSTRUCTORS (css_id);
     explicit css_id (arguments& args, const ::std::string& s);
+    void validate (arguments& ) const { }
+    void accumulate (stats_t* s, const e_element e) const;
     ::std::string rpt () const { return ::std::string ("#") + s_; } };
