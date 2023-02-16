@@ -56,6 +56,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_2020   20
 #define HTML_2021   21
 #define HTML_2022   22
+#define HTML_2023   23
 
 #define MAJOR_TAGS   0
 #define MAJOR_1_0    1
@@ -216,6 +217,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_JAN17  HTML_2017, HTML_JAN
 #define HTML_JUN17  HTML_2017, (HTML_JUN + HTML_30TH)
 #define HTML_JUL17  HTML_2017, HTML_JUL
+#define HTML_OCT17  HTML_2017, HTML_OCT
 #define HTML_NOV17  HTML_2017, HTML_NOV
 #define HTML_DEC17  HTML_2017, (HTML_DEC + HTML_31ST)
 #define HTML_JAN18  HTML_2018, HTML_JAN
@@ -255,25 +257,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_AUG22  HTML_2022, HTML_AUG
 #define HTML_OCT22  HTML_2022, HTML_OCT
 #define HTML_NOV22  HTML_2022, HTML_NOV
+#define HTML_JAN23  HTML_2023, HTML_JAN
 
 #define HTML_5_EARLIEST_YEAR    HTML_2005
 #define HTML_5_EARLIEST_MONTH   1
 
-#define HTML_LATEST_YEAR    HTML_2022
+#define HTML_LATEST_YEAR    HTML_2023
 #define HTML_LATEST_MONTH   10
 
 #define HTML_CURRENT        HTML_OCT22
 
 #define HTML_UNDEF  0, 0
 
-#define HTML_CSS_1      HTML_2_0
-#define HTML_CSS_2_0    HTML_4_0
-#define HTML_CSS_2_1    HTML_2007, HTML_JUL
-#define HTML_CSS_2_2    HTML_2016, HTML_APR
-#define HTML_CSS_3      HTML_2007, HTML_JUL
-
-#define HTML_CSS_3_SEL    HTML_2018, HTML_NOV
-#define HTML_CSS_4_SEL    HTML_2022, HTML_MAY
+#define HTML_CSS        HTML_2_0
 
 #define HTML_MATH1      HTML_4_0
 #define HTML_MATH2      XHTML_1_0

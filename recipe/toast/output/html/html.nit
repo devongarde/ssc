@@ -1,12 +1,12 @@
 [tally]
-<SPAN class="nit-name">{{tally-name}}</SPAN> <SPAN class="nit-count">{{tally-count}}{{tally-use-count:/:)}}</SPAN><BR>
+<SPAN class="nit-name">{{tally-name}}</SPAN> <SPAN class="nit-count">{{tally-count}}</SPAN><BR>
 
 [tally-head]
 {{tally-title:<H2 class="nit-section">: CSS/HTML:</H2>}}
 <P>
 
 [tally-foot]
-<SPAN class="nit-name">{{tally-count}}x {{tally-title}}:</SPAN> <SPAN class="nit-count">{{tally-total}}{{tally-use-total:/:</SPAN>
+<SPAN class="nit-name">{{tally-count}} {{tally-title}}:</SPAN> <SPAN class="nit-count">{{tally-total}}</SPAN>
 </P>
 
 [config]

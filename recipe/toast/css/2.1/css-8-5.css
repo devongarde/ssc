@@ -1,0 +1,30 @@
+﻿H1 { border-width: thin } /* thin thin thin thin */
+H1 { border-width: thin thick } /* thin thick thin thick */
+H1 { border-width: thin thick medium } /* thin thick medium thick */
+
+P { 
+ color: black; 
+ background: white; 
+ border: solid;
+}
+
+#xy34 { border-style: solid dotted }
+
+H1 { border-bottom: thick solid red }
+
+H1 { border-bottom: thick solid }
+
+P { border: solid red }
+
+P {
+ border-top: solid red;
+ border-right: solid red;
+ border-bottom: solid red;
+ border-left: solid red
+}
+
+BLOCKQUOTE {
+ border-color: red;
+ border-left: double;
+ color: black
+}

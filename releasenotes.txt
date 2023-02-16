@@ -3,6 +3,13 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.13
+- Living Standad for January 2023
+- CSS 2.0 verification
+- CSS 2.1 verification
+- CSS 2.2 (February 2022 draft) verification
+- underlying work
+
  0.1.12
 NOTE: many tests fail in this version; they need CSS 3 which isn't there yet
 - CSS 1 verification

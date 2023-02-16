@@ -1,0 +1,3 @@
+﻿H1 { pause: 20ms } /* pause-before: 20ms; pause-after: 20ms */
+H2 { pause: 30ms 40ms } /* pause-before: 30ms; pause-after: 40ms */
+H3 { pause-after: 10ms } /* pause-before: ?; pause-after: 10ms */

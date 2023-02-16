@@ -31,6 +31,8 @@ class stats_t;
 
 typedef bool mono;
 
+::std::string type_name (const e_type e);
+
 template < typename VALUE_TYPE, e_type E > class type_base
 {   ::std::string id_;
     e_status status_ = s_unset;
@@ -84,6 +86,7 @@ public:
     element* box () noexcept { return box_; }
     element* box () const noexcept { return box_; }
     void box (element* b) noexcept { box_ = b; }
+    void validate () { }
     void accumulate (stats_t* ) const { }
     static void accumulate (stats_t* , const ::std::string& ) { }
     ::std::string report () const

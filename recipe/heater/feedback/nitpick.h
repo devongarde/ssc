@@ -37,7 +37,6 @@ class nitpick
     mutable severity_stats severity_;
     mutable category_stats category_;
     mutable ref_stats doc_;
-    mutable bool stats_ = false;
     static e_severity user_severity (const e_nit code, const e_severity s)
     {   mns_t::const_iterator i = mns_.find (code);
         if (i != mns_.cend ()) return i -> second;

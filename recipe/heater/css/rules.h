@@ -27,22 +27,18 @@ class page;
 
 class rules
 {   friend class statements;
-    vrule_t rules_;
+    vrule_t rule_;
 public:
     DEFAULT_CONSTRUCTORS (rules);
-    rules (v_np& ticks, arguments& args, const ::std::string& s, const int line)
-    {   parse (ticks, args, s, line); }
-    void reset ()
-    {   rules st;
-        swap (st); }
-    void parse (v_np& ticks, arguments& args, const ::std::string& s, const int line);
-    void swap (rules& r) noexcept
-    {   rules_.swap (r.rules_); }
-    void clear () noexcept { rules_.clear (); }
+    rules (arguments& args, const int from, const int to)
+    {   parse (args, from, to); }
+    void parse (arguments& args, const int from, const int to);
+    void clear () noexcept { rule_.clear (); }
     const element_bitset get_elements () const
     {   element_bitset res;
-        for (auto r : rules_) res |= r.get_elements ();
+        for (auto r : rule_) res |= r.get_elements ();
         return res; }
+    void validate (arguments& args);
     void accumulate (stats_t* s) const;
     ::std::string rpt () const; };
 

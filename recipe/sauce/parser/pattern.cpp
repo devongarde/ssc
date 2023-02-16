@@ -98,7 +98,7 @@ bool test_character_class (nitpick& nits, const html_version& , const ::std::str
     i = x;
     return res; }
 
-bool test_bra (nitpick& nits, const html_version& , const ::std::string::const_iterator , const ::std::string::const_iterator e, ::std::string::const_iterator& i)
+bool test_brac (nitpick& nits, const html_version& , const ::std::string::const_iterator , const ::std::string::const_iterator e, ::std::string::const_iterator& i)
 {   PRESUME (*i == '(', __FILE__, __LINE__);
     ::std::string::const_iterator x = i;
     bool res = true, tmp = false;
@@ -163,7 +163,7 @@ bool test_squ (nitpick& nits, const html_version& , const ::std::string::const_i
     i = x;
     return res; }
 
-bool test_brace (nitpick& nits, const html_version& , const ::std::string::const_iterator , const ::std::string::const_iterator e, ::std::string::const_iterator& i)
+bool test_curly (nitpick& nits, const html_version& , const ::std::string::const_iterator , const ::std::string::const_iterator e, ::std::string::const_iterator& i)
 {   PRESUME (*i == '{', __FILE__, __LINE__);
     ::std::string::const_iterator x = i;
     bool res = true, tmp = false, had_comma = false;
@@ -205,9 +205,9 @@ bool verify_pattern (nitpick& nits, const html_version& v, const ::std::string& 
     for (::std::string::const_iterator i = b; res && (i != e); ++i)
     {   switch (*i)
         {   case '\\' : res = test_character_class (nits, v, b, e, i); break;
-            case '(' : res = test_bra (nits, v, b, e, i); break;
+            case '(' : res = test_brac (nits, v, b, e, i); break;
             case '[' : res = test_squ (nits, v, b, e, i); break;
-            case '{' : res = test_brace (nits, v, b, e, i); break;
+            case '{' : res = test_curly (nits, v, b, e, i); break;
             default : break; }
         if (i == e) { res = false; break; } }
     return res; }

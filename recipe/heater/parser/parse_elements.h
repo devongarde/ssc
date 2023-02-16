@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "parser/parse_element.h"
-#include "parser/parse_bras_ket.h"
+#include "parser/parse_bracs_ket.h"
 #include "utility/bigvector.h"
 
 class elements_node
@@ -28,18 +28,18 @@ class elements_node
     ven_t ven_;
     bool invalid_ = true;
     html_version version_;
-    void parse (const html_version& v, bras_ket& elements);
+    void parse (const html_version& v, bracs_ket& elements);
     element_node* find_corresponding_open (const elem& id, element_node* parent);
     void report_missing_closures (const html_version& v, element_node* parent, element_node* ancestor);
-    element_node* insert_family_tree (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id, const bool presumed);
+    element_node* insert_family_tree (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id, const bool presumed);
     element_node* find_permitted_parent (const html_version& v, const elem& id, element_node* parent);
-    void repair_invalid_parents (nitpick& nits, const html_version& v, const elem& id, element_node* parent, const element_node* ancestor, const bra_element_ket& ket, const bool closing);
+    void repair_invalid_parents (nitpick& nits, const html_version& v, const elem& id, element_node* parent, const element_node* ancestor, const brac_element_ket& ket, const bool closing);
     void hook_up (element_node* current, element_node*& previous, element_node*& parent, const bool closure, const bool open);
-    element_node* insert_closure (const html_version& v,  element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id, const bool presumed);
-    element_node* insert_non_closure (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id, const bool open);
-    element_node* insert_closed (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id);
-    element_node* insert_open (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& id);
-    element_node* insert (const html_version& v, element_node*& previous, element_node*& parent, bra_element_ket& ket, const elem& idz);
+    element_node* insert_closure (const html_version& v,  element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id, const bool presumed);
+    element_node* insert_non_closure (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id, const bool open);
+    element_node* insert_closed (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id);
+    element_node* insert_open (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id);
+    element_node* insert (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& idz);
 public:
     DEFAULT_CONSTRUCTORS (elements_node);
 	elements_node (nitpick& nits, const ::std::string& content)

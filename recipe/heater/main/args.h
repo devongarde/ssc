@@ -73,6 +73,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define BODY        "body"
 #define BUILD       "build"
 #define CASED       "case"
+#define CASCADE     "cascade"
 #define CATASTROPHE "catastrophe"
 #define CGI         "cgi"
 #define CHARSET     "charset"

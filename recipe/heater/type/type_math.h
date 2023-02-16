@@ -136,7 +136,7 @@ template < > struct type_master < t_pseudo > : string_vector < t_pseudo, sz_spac
                     default : break; }
                 good = false; break; }
         if (good) return;
-        nits.pick (nit_bad_vunit, es_error, ec_type, quote (s), ": expecting a measurement, and/or maybe 'depth', 'height', 'lspace' or 'width'");
+        nits.pick (nit_bad_vunit, es_error, ec_type, quote (s), ": expecting a measurement, andor maybe 'depth', 'height', 'lspace' or 'width'");
         string_vector < t_pseudo, sz_space > :: status (s_invalid); } };
 
 template < > struct type_master < t_intent > : type_one_of_four < t_intent, t_intent_conlit, t_real, t_intent_ref, t_intent_app >

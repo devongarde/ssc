@@ -32,7 +32,7 @@ template < > struct type_master < t_base > : public numeric_value < t_base, unsi
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   numeric_value < t_base, unsigned int > :: set_value (nits, v, s);
         if (numeric_value < t_base, unsigned int > :: empty ())
-            nits.pick (nit_empty, es_error, ec_attribute, "value expected");
+            nits.pick (nit_empty, es_error, ec_attribute, "value expected (", type_name (t_base), ")");
         else if (numeric_value < t_base, unsigned int > :: good ())
         {   if (v.math_version () < math_2) return;
             if ((value_ >= 2) && (value_ <= 36)) return;
@@ -53,11 +53,12 @@ template < > struct type_master < t_fixedpoint > : type_base < double, t_fixedpo
     void shadow (::std::stringstream& ss, const html_version& , element* )
     {   ss << '=' << get_string (); }
     void set_value (nitpick& nits, const html_version& , const ::std::string& s)
-    {   value_ = lexical < double > :: cast (trim_the_lot_off (s), 0.0);
-        if ((s.find_first_not_of (SIGNEDDECIMAL) == ::std::string::npos) && (lexical < double > :: test (s)))
+    {   ::std::string ss (trim_the_lot_off (s));
+        value_ = lexical < double > :: cast (ss, 0.0);
+        if ((ss.find_first_not_of (SIGNEDDECIMAL) == ::std::string::npos) && (lexical < double > :: test (ss)))
             type_base < double, t_fixedpoint > :: status (s_good);
         else
-        {   nits.pick (nit_sunk, ed_so_11 , "Number (https://" SCHEMA_ORG "/Number)", es_error, ec_type, quote (s), " contains unexpected characters, not just denary digit(s) and maybe a decimal point");
+        {   nits.pick (nit_sunk, ed_so_11 , "Number (https://" SCHEMA_ORG "/Number)", es_error, ec_type, quote (ss), " contains unexpected characters, not just denary digit(s) and maybe a decimal point");
             type_base < double, t_fixedpoint > :: status (s_invalid); } }
     static double default_value () noexcept { return 0.0; }
     bool has_value (const double& b) const noexcept { return good () && (value_ == b); }
@@ -126,12 +127,13 @@ template < > struct type_master < t_real > : type_base < double, t_real >
     void shadow (::std::stringstream& ss, const html_version& , element* )
     {   ss << '=' << get_string (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   value_ = lexical < double > :: cast (trim_the_lot_off (s), 0.0);
-        if ((s.find_first_not_of (REAL) == ::std::string::npos) && (lexical < double > :: test (s)))
+    {   ::std::string ss (trim_the_lot_off (s));
+        value_ = lexical < double > :: cast (ss, 0.0);
+        if ((ss.find_first_not_of (REAL) == ::std::string::npos) && (lexical < double > :: test (ss)))
         {   if (within_real_limits (nits, v, value_))
             {   type_base < double, t_real > :: status (s_good);
                 return; } }
-        else nits.pick (nit_sunk, ed_50, "2.4.4.3 Floating-point numbers", es_error, ec_type, quote (s), " is not a floating point number");
+        else nits.pick (nit_sunk, ed_50, "2.4.4.3 Floating-point numbers", es_error, ec_type, quote (ss), " is not a floating point number");
         type_base < double, t_real > :: status (s_invalid); }
     static double default_value () noexcept { return 0.0; }
     bool has_value (const double& b) const noexcept { return good () && (value_ == b); }
@@ -231,6 +233,12 @@ template < > struct type_master < t_0_more > : n_or_more < 0 >
 template < > struct type_master < t_1_more > : n_or_more < 1 >
 { using n_or_more < 1 > :: n_or_more; };
 
+template < > struct type_master < t_integer_ai > : type_or_either_string < t_integer_ai, t_integer, sz_auto, sz_inherit >
+{ using type_or_either_string < t_integer_ai, t_integer, sz_auto, sz_inherit > :: type_or_either_string; };
+
+template < > struct type_master < t_integer_i > : type_or_string < t_integer_i, t_integer, sz_inherit >
+{ using type_or_string < t_integer_i, t_integer, sz_inherit > :: type_or_string; };
+
 template < > struct type_master < t_positive_1_2 > : type_range < t_positive_1_2, sz_commaspace, t_0_more, 1, 2 >
 { using type_range < t_positive_1_2, sz_commaspace, t_0_more, 1, 2 > :: type_range; };
 
@@ -239,6 +247,9 @@ template < > struct type_master < t_real_i > : type_or_string < t_real_i, t_real
 
 template < > struct type_master < t_real_ai > : type_or_either_string < t_real_ai, t_real, sz_auto, sz_inherit >
 { using type_or_either_string < t_real_ai, t_real, sz_auto, sz_inherit > :: type_or_either_string; };
+
+template < > struct type_master < t_real_ni > : type_or_either_string < t_real_ni, t_real, sz_none, sz_inherit >
+{ using type_or_either_string < t_real_ni, t_real, sz_none, sz_inherit > :: type_or_either_string; };
 
 template < > struct type_master < t_reals > : type_at_least_one < t_reals, sz_commaspace, t_real >
 { using type_at_least_one < t_reals, sz_commaspace, t_real > :: type_at_least_one; };

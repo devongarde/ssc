@@ -31,7 +31,6 @@ UL LI { list-style: disc }
 OL.alpha { list-style: lower-alpha }
 UL { list-style: disc }
 
-A URI value may be combined with any other value, as in: 
-UL { list-style: url("http://png.com/ellipse.png") disc }
+UL { list-style: url("http://example.com/ellipse.png") disc }
 
 UL { list-style: none }

@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.1.12
+version 0.1.13
 (c) 2020-2023 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notice
 https://ssc.lu/
@@ -95,6 +95,7 @@ Notes on names:
 - heater: i'm not stopping now;
 - unii: my preferred plural of unix: to my ears, both unixes and unices
         sound like they sing castrato.
+- andor: and/or sans obsolescence
 
 
 

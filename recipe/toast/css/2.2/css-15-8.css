@@ -1,0 +1,20 @@
+﻿p { font: 12px/14px sans-serif }
+p { font: 80% sans-serif }
+p { font: x-large/110% "New Century Schoolbook", serif }
+p { font: bold italic large Palatino, serif }
+p { font: normal small-caps 120%/120% fantasy }
+
+button { font: 300 italic 1.3em/1.7em "FB Armada", sans-serif }
+button p { font: menu }
+button p em { font-weight: bolder }
+
+button p { font: 600 9px Charcoal }
+
+button p {
+font-family: Charcoal;
+font-style: normal;
+font-variant: normal;
+font-weight: 600;
+font-size: 9px;
+line-height: normal;
+}

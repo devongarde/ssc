@@ -87,6 +87,9 @@ inline vstr_t uq2_sep (const ::std::string& s, const unsigned int flags = UQ_DQ 
     v.push_back (sep);
     return uq2 (s, flags, v, lines, ticks); }
 
-//inline vstr_t uq2_any (const ::std::string& s, const unsigned int flags = UQ_DQ | UQ_SQ | UQ_BS, const ::std::string& sep = ::std::string (QUOTESEP), vint_t* lines = nullptr, v_np* ticks = nullptr)
-//{   return uq2 (s, flags, sep, lines, ticks); }
+inline ::std::string uq3 (const ::std::string& s)
+{   vstr_t v = uq2 (s);
+    if (v.size () > 0) return v.at (0);
+    return ::std::string (); }
+
  

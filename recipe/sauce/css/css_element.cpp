@@ -27,31 +27,116 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define SEL_SEPS ":.#["
 
-void css_element::parse (nitpick& nits, arguments& args, const ::std::string& s)
-{   PRESUME (! s.empty (), __FILE__, __LINE__);
-    const ::std::string sep = SEL_SEPS;
-    const vstr_t argles (uq2 (s, UQ_C_CMT | UQ_DQ | UQ_SQ | UQ_BS | UQ_SEP | UQ_ROUND | UQ_TRIM, sep));
-    const ::std::size_t len = argles.size ();
-    PRESUME (len > 0, __FILE__, __LINE__);
-    const bool all = (argles.at (0).length () == 1) && (sep.find_first_of (argles.at (0).at (0)) != ::std::string::npos);
-    if (all)
-    {   css_element e (elem_css_all);
-        swap (e); }
-    else
-    {   css_element e (nits, args.v_, args.ns_, argles.at (0));
-        swap (e); }
-    const unsigned ko = (all ? 0 : 1);
-    if (len > ko)
-        if (faux_bitset.test (e_.get ()) && (e_.get () != elem_css_all))
-            nits.pick (nit_css_syntax, ed_css_20, "5 Selectors", es_error, ec_css, e_.name (), " cannot be decorated");
-        else
-        {   ::std::string ss;
-            for (vstr_t::size_type x = ko; x < len; ++x)
-            {   const ::std::string ssss (argles.at (x));
-                if (! ssss.empty ())
-                    if ((ssss.length () == 1) && (sep.find_first_of (ssss.at (0)) != ::std::string::npos)) ss = ssss;
+void css_element::parse (arguments& args, const int from, const int to)
+{   PRESUME ((to < 0) || (from <= to), __FILE__, __LINE__);
+    const int len = GSL_NARROW_CAST < int > (args.t_.size ());
+    PRESUME (from < len, __FILE__, __LINE__);
+    PRESUME (to < len, __FILE__, __LINE__);
+    nitpick& nits = args.t_.at (from).nits_;
+    int b = first_non_whitespace (args.t_, from, to);
+    if (b == -1) return;
+    bool pseudo = true;
+    switch (args.t_.at (from).t_)
+    {   case ct_splat :
+            if (context.html_ver ().css_version () == css_1)
+                nits.pick (nit_css_version, es_error, ec_css, "* requires CSS 2.0 or better");
+            else
+            {   css_element e (elem_css_all);
+                ::std::swap (*this, e);
+                b = next_non_whitespace (args.t_, b, to); }
+            break;
+        case ct_hash :
+        case ct_dot :
+        case ct_colon :
+        case ct_square_brac :
+            {   css_element e (elem_css_all);
+                ::std::swap (*this, e); }
+            break;
+        case ct_gt :
+            pseudo = false;
+            if (context.html_ver ().css_version () == css_1)
+                nits.pick (nit_css_version, es_error, ec_css, "> requires CSS 2.0 or better");
+            else
+            {   css_element e (elem_css_child);
+                ::std::swap (*this, e); }
+            break;
+        case ct_plus :
+            pseudo = false;
+            if (context.html_ver ().css_version () == css_1)
+                nits.pick (nit_css_version, es_error, ec_css, "+ requires CSS 2.0 or better");
+            else
+            {   css_element e (elem_css_precede_immediate);
+                ::std::swap (*this, e); }
+            break;
+        case ct_squiggle :
+            pseudo = false;
+            if (context.html_ver ().css_version () < css_3)
+                nits.pick (nit_css_version, es_error, ec_css, "~ requires CSS 3 selectors or better");
+            else
+            {   css_element e (elem_css_precede);
+                ::std::swap (*this, e); }
+            break;
+        case ct_keyword :
+            {   css_element e (nits, args.v_, args.ns_, args.t_.at (from).val_);
+                ::std::swap (*this, e);
+                b = next_non_whitespace (args.t_, b, to); }
+            break;
+        default :
+            nits.pick (nit_css_element, es_error, ec_css, quote (tkn_rpt (args.t_.at (from))), ": element expected");
+            return; }
+    if (! pseudo)
+    {   if ((b > 0) && (b < to))
+        {   b = next_non_whitespace (args.t_, b, to);
+            switch (args.t_.at (b).t_)
+            {   case ct_hash :
+                case ct_dot :
+                case ct_colon :
+                case ct_square_brac :
+                    nits.pick (nit_naughty_decoration, es_error, ec_css, quote (tkn_rpt (args.t_.at (from))), " cannot be decorated");
+                    break;
+                default:
+                    parse (args, b, to);
+                    break; } }
+        return; }
+    for (int i = b; (i >= 0) && (i < to); )
+        switch (args.t_.at (i).t_)
+        {   case ct_square_brac :
+                if (context.html_ver ().css_version () == css_1)
+                    nits.pick (nit_css_version, es_error, ec_css, "[...] requires CSS 2.0 or better");
+                else
+                {   decore_.emplace_back (args, b);
+                    i =  next_non_whitespace (args.t_, i, to); }
+                break;
+            case ct_dot :
+            case ct_hash :
+                {   int j = next_non_whitespace (args.t_, i, to);
+                    if (j < 0) nits.pick (nit_css_syntax, es_error, ec_css, "missing class or ID");
+                    else decore_.emplace_back (args, i, j);
+                    i = next_non_whitespace (args.t_, j, to); }
+                break;
+            case ct_colon :
+                {   int brac = token_find (args.t_, ct_round_brac, i, to);
+                    if (brac < 0) brac = next_non_whitespace (args.t_, i, to);
                     else
-                        decore_.emplace_back (nits, args, ss, ssss); } } }
+                    {   brac = token_find (args.t_, ct_round_ket, i, to);
+                        if (brac < 0) nits.pick (nit_css_syntax, es_error, ec_css, "missing close bracket"); }
+                    if (brac > 0) decore_.emplace_back (args, i, brac);
+                    i = next_non_whitespace (args.t_, brac, to); }
+                break;
+            case ct_plus :
+            case ct_gt :
+            case ct_squiggle :
+                parse (args, i, to);
+                return;
+            default :
+                nits.pick (nit_css_syntax, es_error, ec_css, quote (tkn_rpt (args.t_.at (i))), ": unexpected");
+                return; } }
+
+bool css_element::bef_aft () const
+{   for (auto d : decore_)
+        if (d.bef_aft ())
+            return true;
+    return false; }
 
 void css_element::accumulate (stats_t* s) const
 {   VERIFY_NOT_NULL (s, __FILE__, __LINE__);
@@ -64,3 +149,7 @@ void css_element::accumulate (stats_t* s) const
     for (auto d : decore_)
         res += d.rpt ();
     return res; }
+
+void css_element::validate (arguments& args)
+{   for (auto i : decore_)
+        i.validate (args); }

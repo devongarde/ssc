@@ -21,10 +21,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "element/state.h"
 #include "element/elem.h"
-#include "attribute/attr.h"
 
 const element_bitset empty_element_bitset;
-const attribute_bitset empty_attribute_bitset;
 element_bitset autocapitalise_bitset = empty_element_bitset;
 element_bitset faux_bitset = empty_element_bitset;
 element_bitset form_bitset = empty_element_bitset;
@@ -72,14 +70,6 @@ void state_init ()
             res += "<";
             res += elem::name (GSL_NARROW_CAST < e_element > (i));
             res += ">";}
-    return res; }
-
-::std::string nameset (const attribute_bitset& bs)
-{   ::std::string res;
-    for (::std::size_t i = 0; i < last_attribute; ++i)
-        if (bs.test (i))
-        {   if (! res.empty ()) res += ", ";
-            res += attr::name (static_cast < e_attribute > (i)); }
     return res; }
 
 void merge_smsid (smsid_t& a, const element_bitset& b, const int n)

@@ -52,7 +52,6 @@ template < > struct type_master < t_compact > : tidy_string < t_compact >
 template < > struct type_master < t_existential > : type_base < mono, t_existential >
 {   using type_base < mono, t_existential > :: type_base;
     static bool is_existential () noexcept { return true; }
-//    void shadow (::std::stringstream& , const html_version& , element* ) noexcept { }
     void set_value (nitpick& , const html_version& , const ::std::string& ) noexcept
     {   type_base < mono, t_existential > :: status (s_good); } };
 

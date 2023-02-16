@@ -1019,6 +1019,7 @@ struct hav_t
     { { HTML_JUL07, 0, HE_NOT_SVG_1 }, { HTML_JUN09 }, ELEM, a_onresize }, \
     { { HTML_JAN14, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_onresize }, \
     { { HTML_JUL07, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_onscroll }, \
+    { { HTML_JAN23, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_onscrollend }, \
     { { HTML_JAN18, HV_NOT53, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_onsecuritypolicyviolation }, \
     { { HTML_JUL09, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_onseeking }, \
     { { HTML_JUL07, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_onselect }, \

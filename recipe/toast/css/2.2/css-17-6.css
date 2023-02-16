@@ -1,0 +1,14 @@
+﻿ TABLE { border: outset 10pt; 
+ border-collapse: separate;
+ border-spacing: 15pt }
+ TD { border: inset 5pt }
+ TD.special { border: inset 10pt } /* The top-left cell */
+
+TABLE { empty-cells: show }
+
+table { border-collapse: collapse;
+border: 5px solid yellow; }
+*#col1 { border: 3px solid black; }
+td { border: 1px solid red; padding: 1em; }
+td.cell5 { border: 5px dashed blue; }
+td.cell6 { border: 5px solid green; }

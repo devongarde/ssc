@@ -23,78 +23,107 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/css_attribute.h"
 #include "css/arguments.h"
 
-void css_attribute::swap (css_attribute& a) noexcept
-{   a_.swap (a.a_);
-    ::std::swap (has_value_, a.has_value_);
-    name_.swap (a.name_);
-    value_.swap (a.value_);
-    ::std::swap (eat_, a.eat_); }
-
-void css_attribute::parse (nitpick& nits, arguments& args, const ::std::string& s)
-{   PRESUME (! s.empty (), __FILE__, __LINE__);
-    ::std::string ss (s);
-    const ::std::string::size_type pos = ss.find_first_of ("=~^$*|");
-    if (pos != ::std::string::npos)
-    {   ::std::string ssss (trim_the_lot_off (ss.substr (0, pos)));
-        if (ssss.empty ())
-            nits.pick (nit_css_syntax, ed_css_20, "5 Selectors", es_error, ec_css, quote (s), ": missing attribute name");
-        else ss = ssss; }
-    css_attribute a (nits, args.v_, args.ns_, ss);
-    swap (a);
-    if (pos != ::std::string::npos)
-    {   const ::std::string::size_type fin = s.length ();
-        if (s.at (pos) == '=')
-        {   has_value_ = true;
-            if (fin <= pos + 1) nits.pick (nit_value_expected, ed_css_20, "5.1 Pattern matching", es_error, ec_css, "missing value (for an empty value, use \"\")");
-            else
-            {   value_ = s.substr (pos+1);
-                if (fin > pos + 2)
-                    if ((s.at (fin - 1) != '"') && (s.at (fin - 2) == ' '))
-                        if (args.v_ < html_css_selectors_4)
-                            nits.pick (nit_css_version, ed_css_selectors_4, "2 Selectors Overview", es_error, ec_css, "case sensitivity selectors require CSS Selectors Level 4");
-                        else switch (s.at (fin - 1))
-                            {   case 'i' :
-                                    value_ = value_.substr (0, value_.length () - 2);
-                                    eat_ = eat_uncased;
-                                    break;
-                                case 's' :
-                                    value_ = value_.substr (0, value_.length () - 2);
-                                    eat_ = eat_identical;
-                                    break;
-                                default :
-                                    nits.pick (nit_unexpected, ed_css_selectors_4, "2 Selectors", es_error, ec_css, quote (s.at (fin - 1)), " is unexpected");
-                                    break; } } }
-        else if (fin <= pos + 2)
-            nits.pick (nit_value_expected, ed_css_20, "5.1 Pattern matching", es_error, ec_css, "value expected (for an empty value, use \"\")");
-        else if (s.at (pos+1) != '=')
-            nits.pick (nit_unknown_operator, ed_css_selectors_3, "2 Selectors", es_error, ec_css, quote (s.substr (pos, 2)), ": unknown operator");
-        else
-        {   value_ = trim_the_lot_off (s.substr (pos+2));
-            has_value_ = true;
-            switch (s.at (pos))
-            {   case '~' :
-                    eat_ = eat_in_list;
+void css_attribute::parse (arguments& args, const int from, const int to)
+{   PRESUME ((to < 0) || (from <= to), __FILE__, __LINE__);
+    const int len = GSL_NARROW_CAST <int> (args.t_.size ());
+    PRESUME (from < len, __FILE__, __LINE__);
+    PRESUME (to < len, __FILE__, __LINE__);
+    int b = first_non_whitespace (args.t_, from, to);
+    if ((b == -1) || (args.t_.at (b).t_ != ct_keyword))
+        args.t_.at (from).nits_.pick (nit_css_attribute, es_error, ec_css, "missing attribute name");
+    else
+    {   nitpick& nits = args.t_.at (b).nits_;
+        const int at = b;
+        css_attribute a (nits, args.v_, args.ns_, args.t_.at (at).val_);
+        ::std::swap (*this, a);
+        b = next_non_whitespace (args.t_, b, to);
+        if ((b == -1) || (args.t_.at (b).t_ == ct_square_ket)) return;
+        switch (args.t_.at (b).t_)
+        {   case ct_eq :
+                b = next_non_whitespace (args.t_, b, to);
+                break;
+            case ct_bar :
+                b = next_non_whitespace (args.t_, b, to);
+                if (args.t_.at (b).t_ != ct_eq)
+                    nits.pick (nit_css_attribute, es_error, ec_css, "missing = following |");
+                else next_non_whitespace (args.t_, b, to);
+                eat_ = eat_lang;
+                break; 
+            case ct_hat :
+                b = next_non_whitespace (args.t_, b, to);
+                if (args.t_.at (b).t_ != ct_eq)
+                    nits.pick (nit_css_attribute, es_error, ec_css, "missing = following ^");
+                else next_non_whitespace (args.t_, b+1, to);
+                if (context.html_ver ().css_version () < css_3) nits.pick (nit_css_version, ed_css_selectors_3, "2 Selectors", es_error, ec_css, "^= requires CSS 3 or later");
+                else eat_ = eat_begins;
+                break; 
+            case ct_dollar :
+                b = next_non_whitespace (args.t_, b, to);
+                if (args.t_.at (b).t_ != ct_eq)
+                    nits.pick (nit_css_attribute, es_error, ec_css, "missing = following $");
+                else next_non_whitespace (args.t_, b+1, to);
+                if (context.html_ver ().css_version () < css_3) nits.pick (nit_css_version, ed_css_selectors_3, "2 Selectors", es_error, ec_css, "$= requires CSS 3 or later");
+                else eat_ = eat_ends;
+                break; 
+            case ct_splat :
+                b = next_non_whitespace (args.t_, b, to);
+                if (args.t_.at (b).t_ != ct_eq)
+                    nits.pick (nit_css_attribute, es_error, ec_css, "missing = following *");
+                else next_non_whitespace (args.t_, b+1, to);
+                eat_ = eat_contains;
+                break; 
+            case ct_squiggle :
+                b = next_non_whitespace (args.t_, b, to);
+                if (args.t_.at (b).t_ != ct_eq)
+                    nits.pick (nit_css_attribute, es_error, ec_css, "missing = following ~");
+                else next_non_whitespace (args.t_, b, to);
+                eat_ = eat_in_list;
+                break; 
+            default :
+                nits.pick (nit_css_syntax, es_error, ec_css, tkn_rpt (args.t_.at (b)), ": unexpected");
+                return; }
+        if ((b == -1) || (args.t_.at (b).t_ == ct_square_ket))
+        {   nits.pick (nit_css_syntax, es_error, ec_css, args.t_.at (b).val_, ": missing value (for an empty string, use \"\")");
+            return; }
+        switch (args.t_.at (b).t_)
+        {   case ct_string :
+                break;
+            case ct_identifier :
+            case ct_keyword :
+                if (context.html_ver ().css_version () >= css_3)
+                    nits.pick (nit_enquote_value, ed_css_selectors_3, "2 Selectors", es_warning, ec_css, "attribute values should be quoted");
+                break;
+            default :
+                nits.pick (nit_css_attribute, es_error, ec_css, args.t_.at (b).val_, ": an attribute value should be a quoted string");
+                return; }
+        // TODO validate attribute value
+        b = next_non_whitespace (args.t_, b, to);
+        if ((b == -1) || (args.t_.at (b).t_ == ct_square_ket)) return;
+        if (args.t_.at (b).t_ != ct_keyword)
+        {   nits.pick (nit_css_syntax, es_error, ec_css, tkn_rpt (args.t_.at (b)), ": unexpected");
+            return; }
+        if ((context.html_ver ().css_version () < css_4) || (context.html_ver () < html_css_selectors_4))
+        {   nits.pick (nit_css_version, ed_css_selectors_4, "2 Selectors Overview", es_error, ec_css, "case sensitivity selectors require CSS Selectors Level 4");
+            return; }
+        bool ok = false;
+        if (args.t_.at (b).val_.size () == 1)
+            switch (args.t_.at (b).val_.at (0))
+            {   case 'i' :
+                case 'I' :
+                    eat_ = eat_uncased;
+                    ok = true;
                     break;
-                case '^' :
-                    if (args.v_.css_version () < css_3) nits.pick (nit_css_version, ed_css_selectors_3, "2 Selectors", es_error, ec_css, "^= requires CSS 3 or later");
-                    else eat_ = eat_begins;
-                    break;
-                case '$' :
-                    if (args.v_.css_version () < css_3) nits.pick (nit_css_version, ed_css_selectors_3, "2 Selectors", es_error, ec_css, "$= requires CSS 3 or later");
-                    else eat_ = eat_ends;
-                    break;
-                case '*' :
-                    eat_ = eat_contains;
-                    break;
-                case '|' :
-                    eat_ = eat_lang;
+                case 's' :
+                case 'S' :
+                    eat_ = eat_identical;
+                    ok = true;
                     break;
                 default :
-                    nits.pick (nit_unknown_operator, ed_css_selectors_3, "2 Selectors", es_error, ec_css, quote (s.substr (pos, 2)), ": unknown operator");
-                    break; } }
-        if (! value_.empty ())
-            if ((value_.at (0) != '"') && (value_.at (0) != '\''))
-                nits.pick (nit_enquote_value, ed_css_selectors_3, "2 Selectors", es_warning, ec_css, "attribute values should be quoted"); } }
+                    break; }
+        if (! ok) nits.pick (nit_css_attribute, es_error, ec_css, quote (args.t_.at (b).val_), ": invalid case sensitivity selector (expecting 'i' or 's')");
+        b = next_non_whitespace (args.t_, b, to);
+        if ((b != -1) && (args.t_.at (b).t_ != ct_square_ket)) return;
+            nits.pick (nit_css_syntax, es_error, ec_css, "unexpected junk at end of attribute description"); } }
 
 void css_attribute::accumulate (stats_t* s, const e_element e) const
 {   VERIFY_NOT_NULL (s, __FILE__, __LINE__);

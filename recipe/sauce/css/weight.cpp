@@ -23,11 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/arguments.h"
 #include "css/weight.h"
 
-void weight::parse (nitpick& nits, arguments& a, const ::std::string& s)
+void weight::parse (nitpick& nits, const arguments& a, const ::std::string& s)
 {   valid_ = test_value < t_css_earnest > (nits, a.v_, s); }
-
-void weight::accumulate (stats_t* ) const
-{   }
 
 ::std::string weight::rpt () const
 {   if (! valid_) return "";

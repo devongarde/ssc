@@ -1,0 +1,16 @@
+﻿TABLE { display: table }
+TR { display: table-row }
+THEAD { display: table-header-group }
+TBODY { display: table-row-group }
+TFOOT { display: table-footer-group }
+COL { display: table-column }
+COLGROUP { display: table-column-group }
+TD, TH { display: table-cell }
+CAPTION { display: table-caption }
+
+HBOX { display: table-row }
+VBOX { display: table-cell }
+
+STACK { display: inline-table }
+ROW { display: table-row }
+D { display: inline; font-weight: bolder }

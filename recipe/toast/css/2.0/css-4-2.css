@@ -30,3 +30,23 @@ IMG { float: left }
 IMG { }
 IMG { }
 IMG { }
+
+p { color:green }
+p { color:green; color } /* malformed declaration missing ’:’, value */
+p { color:red; color; color:green } /* same with expected recovery */
+p { color:green; color: } /* malformed declaration missing value */
+p { color:red; color:; color:green } /* same with expected recovery */
+p { color:green; color{;color:maroon} } /* unexpected tokens { } */
+p { color:red; color{;color:maroon}; color:green } /* same with recovery */
+
+@three-dee {
+ @background-lighting {
+ azimuth: 30deg;
+ elevation: 190deg;
+ }
+ h1 { color: red }
+}
+h1 { color: blue }
+
+ @media screen {
+ p:before { content: 'Hello

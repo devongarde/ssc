@@ -1,0 +1,9 @@
+﻿H1, H2, H3, H4, H5, H6 {
+ voice-family: paul;
+ stress: 20;
+ richness: 90;
+ cue-before: url("ping.au")
+}
+P.heidi { azimuth: center-left }
+P.peter { azimuth: right }
+P.goat { volume: x-soft }

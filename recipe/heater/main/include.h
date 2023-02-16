@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
-#define VERSION_RELEASE 12
-#define VERSION_STRING "0.1.12"
+#define VERSION_RELEASE 13
+#define VERSION_STRING "0.1.13"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -45,8 +45,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define COPYRIGHT COPYRIGHT_TEXT COPYRIGHT_BRADDR
 #define COPYRIGHT_HTML_FULL "&copy;" NBSP COPYRIGHT_YEAR NBSP COPYRIGHT_FORENAME NBSP COPYRIGHT_SURNAME COPYRIGHT_BRADDR
 
-#define DEFAULT_LINE_LENGTH 120
-#define DESCRIPTION_LENGTH 80
+#define DEFAULT_LINE_LENGTH 72
+#define DESCRIPTION_LENGTH 60
 
 #if defined (DEBUG) || defined (_DEBUG) || defined (SSC_ASSERTS)
 #  ifndef DEBUG
@@ -99,10 +99,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define COMPILER "c"
 #define MSVC_NOEXCEPT
 #define PROCSIZE "64"
+#define STR_IT_BYTE
 #elif ! defined (_MSC_VER)
 #define COMPILER "g"
 #define MSVC_NOEXCEPT
 #define PROCSIZE "64"
+#define STR_IT_BYTE
 #else
 #define COMPILER "m"
 #define NOLYNX
@@ -477,7 +479,6 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define CSS_TYPE "text/css"
 #define HTML_TYPE "text/html"
 
-#define NOFLAGS 0
 #define EXPORT_EXTENSION ".json"
 #define QNONE "'none'"
 
@@ -515,6 +516,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define HTTP_MF HTTP MICROFORMATS_ORG
 #define HTTPS_MF HTTPS MICROFORMATS_ORG
 
+#define NOFLAGS 0
 typedef uint64_t flags_t; // at least 64 bits
 
 #include "main/abort.h"
@@ -586,27 +588,54 @@ extern const char* full_title;
 
 #define DEFAULT_COPY(XXX, DDD) \
     XXX (const XXX & xxx) = DDD; \
-    XXX (XXX && xxx) = DDD; \
     XXX& operator = (const XXX & xxx) = DDD; \
+
+#define DEFAULT_MOVE(XXX, DDD) \
+    XXX (XXX && xxx) = DDD; \
     XXX& operator = (XXX && xxx) = DDD
 
-#define CONSTRUCT_ALL(XXX, DD) \
-    XXX () = DD; \
-    DEFAULT_COPY (XXX, DD); \
+#define DEFAULT_COPY_MOVE(XXX) \
+    DEFAULT_COPY (XXX, default) \
+    DEFAULT_MOVE (XXX, default)
+
+#define DEFAULT_COPY_NO_MOVE(XXX) \
+    DEFAULT_COPY (XXX, default) \
+    DEFAULT_MOVE (XXX, delete)
+
+#define DEFAULT_NO_COPY_NO_MOVE(XXX) \
+    DEFAULT_COPY (XXX, delete) \
+    DEFAULT_MOVE (XXX, delete)
+
+#define CONSTRUCT_DEFAULT(XXX) \
+    XXX () = default; \
+    DEFAULT_COPY_MOVE (XXX); \
     ~XXX () = default
 
-#define DEFAULT_CONSTRUCTORS(XXX) CONSTRUCT_ALL (XXX, default)
-#define DEFAULT_COPY_CONSTRUCTORS(XXX) DEFAULT_COPY (XXX, default)
+#define CONSTRUCT_NO_COPY(XXX) \
+    XXX () = default; \
+    DEFAULT_NO_COPY_NO_MOVE (XXX); \
+    ~XXX () = default
+
+#define CONSTRUCT_DELETE(XXX) \
+    XXX () = delete; \
+    DEFAULT_NO_COPY_NO_MOVE (XXX); \
+    ~XXX () = default
+
+#define DEFAULT_CONSTRUCTORS(XXX) CONSTRUCT_DEFAULT (XXX)
+#define DEFAULT_COPY_CONSTRUCTORS(XXX) DEFAULT_COPY_MOVE (XXX)
+#define DEFAULT_NO_MOVE_CONSTRUCTORS(XXX) DEFAULT_COPY_NO_MOVE (XXX)
+#define DEFAULT_NO_COPY_NO_MOVE_CONSTRUCTORS(XXX) DEFAULT_NO_COPY_NO_MOVE (XXX)
+#define DEFAULT_NO_COPY_CONSTRUCTORS(XXX) CONSTRUCT_NO_COPY (XXX)
 
 #define DEFAULT_CONSTRUCTORS_NO_EMPTY(XXX) \
     XXX () = delete; \
-    DEFAULT_COPY (XXX, default); \
+    DEFAULT_COPY_MOVE (XXX); \
     ~XXX () = default
 
 #define DEFAULT_CONSTRUCTORS_VIRTUAL_DESTRUCTOR(XXX) \
     XXX () = default; \
-    DEFAULT_COPY (XXX, default); \
+    DEFAULT_COPY_MOVE (XXX); \
     virtual ~XXX () = default
 
-#define NO_COPY_CONSTRUCTORS(XXX) DEFAULT_COPY (XXX, delete)
-#define DELETE_CONSTRUCTORS(XXX) CONSTRUCT_ALL (XXX, delete)
+#define NO_COPY_CONSTRUCTORS(XXX) DEFAULT_NO_COPY_NO_MOVE (XXX)
+#define DELETE_CONSTRUCTORS(XXX) CONSTRUCT_DELETE (XXX)

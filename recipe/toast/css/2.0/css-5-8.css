@@ -24,7 +24,7 @@ SPAN[class=example] { color: blue; }
 SPAN[hello="Cleveland"][goodbye="Columbus"] { color: blue; }
 
 A[rel~="copyright"] { }
-A[href="http://www.w3.org/"] { }
+A[href="http://www.example.org/"] { }
 
 *[LANG=fr] { display : none }
 

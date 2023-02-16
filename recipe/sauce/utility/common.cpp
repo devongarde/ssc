@@ -462,6 +462,21 @@ bool ends_with_letters (const html_version& v, const ::std::string& s, const ::s
 {   if (arg.empty ()) return template_path (nits, def);
     return template_path (nits, arg); }
 
+::std::string delined (::std::string::const_iterator b, ::std::string::const_iterator e)
+{   ::std::string res;
+    for (auto i = b; i < e; ++i)
+        switch (*i)
+        {   case '\n' :
+            case ' ' :
+            case '\t' :
+            case '\v' : res += ' '; break;
+            case '\a' :
+            case '\b' :
+            case '\r' : break;
+            default :
+                if ((*i < 0) || ::std::isgraph (*i) || ! ::std::iscntrl (*i)) res += *i; }
+    return res; }
+
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to)
 {   BOOST_STATIC_ASSERT (DEFAULT_LINE_LENGTH - 16 <= INT8_MAX);
     CONSTEXPR int maxish = DEFAULT_LINE_LENGTH - 16;
@@ -475,7 +490,8 @@ bool ends_with_letters (const html_version& v, const ::std::string& s, const ::s
     else
     {   if ((b + halfish) >= from) mb = b; else { mb = from - halfish; pre = "..."; }
         if ((e - halfish) <= to) me = e; else { me = to + halfish; post = "..."; } }
-    return pre + ::std::string (mb, from) + " " BEFORE_MOTE " " + ::std::string (from, to) + " " AFTER_MOTE " " + ::std::string (to, me) + post; }
+    if (from == to) return pre + delined (mb, me) + post;
+    return pre + delined (mb, from) + " " BEFORE_MOTE " " + delined (from, to) + " " AFTER_MOTE " " + delined (to, me) + post; }
 
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i)
 {   return near_here (b, e, i, i); }

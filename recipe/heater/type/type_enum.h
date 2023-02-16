@@ -155,7 +155,7 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT, class LC >
     ::std::string pret (trim_the_lot_off (s));
     ::std::string t (careless_case < LC >::lower (pret));
     nitpick knots;
-    if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "empty value");
+    if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "empty value (", type_name (E), ")");
     else
     {   const bool parsed = symbol < html_version, ENUM, CATEGORY, INIT, LC > :: parse (nits, v, t);
         if (parsed)
@@ -175,13 +175,13 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT, class LC >
                 if ((f.ext () & HE_M3_NONSTAND) != 0)
                     nits.pick (nit_non_standard_value, es_warning, ec_type, quote (s), " is non-standard in ", v.report (), ", and unlikely to be supported by many browsers");
                 else if (f.bespoke ())
-                    nits.pick (nit_bespoke_obsolete, es_warning, ec_type, quote (s), " is bespoke and/or obsolete, so unlikely to be supported by many browsers.");
+                    nits.pick (nit_bespoke_obsolete, es_warning, ec_type, quote (s), " is bespoke andor obsolete, so unlikely to be supported by many browsers.");
                 enum_base < ENUM, E > :: status (s_good);
                 enum_base < ENUM, E > :: post_set_value (nits, v);
                 return; } }
         else
         {   check_identifier_spelling (nits, v, t);
-            nits.pick (nit_unrecognised_value, es_error, ec_type, quote (s), " is invalid here (", static_cast < int> (E), ")"); } }
+            nits.pick (nit_unrecognised_value, es_error, ec_type, quote (s), " is not a valid ", type_name (E), " value"); } }
     enum_base < ENUM, E > :: status (s_invalid); }
 
 template < > class type_master < t_accrual_method > : public enum_n < t_accrual_method, e_accrual_method >
@@ -262,8 +262,14 @@ template < > struct type_master < t_csp_directive > : enum_n < t_csp_directive, 
 template < > struct type_master < t_csp_keyword > : enum_n < t_csp_keyword, e_csp_keyword >
 { using enum_n < t_csp_keyword, e_csp_keyword > :: enum_n; };
 
+template < > struct type_master < t_css_aaalri > : enum_n < t_css_aaalri, e_css_aaalri >
+{ using enum_n < t_css_aaalri, e_css_aaalri > :: enum_n; };
+
 template < > struct type_master < t_css_absolute_size > : enum_n < t_css_absolute_size, e_css_absolute_size >
 { using enum_n < t_css_absolute_size, e_css_absolute_size > :: enum_n; };
+
+template < > struct type_master < t_css_azimuth_e > : enum_n < t_css_azimuth_e, e_css_azimuth_e >
+{ using enum_n < t_css_azimuth_e, e_css_azimuth_e > :: enum_n; };
 
 template < > struct type_master < t_css_background_attachment > : enum_n < t_css_background_attachment, e_css_background_attachment >
 { using enum_n < t_css_background_attachment, e_css_background_attachment > :: enum_n; };
@@ -280,14 +286,29 @@ template < > struct type_master < t_css_border_width > : enum_n < t_css_border_w
 template < > struct type_master < t_css_clear > : enum_n < t_css_clear, e_css_clear >
 { using enum_n < t_css_clear, e_css_clear > :: enum_n; };
 
-template < > struct type_master < t_css_colour > : enum_n < t_css_colour, e_fixedcolour >
-{ using enum_n < t_css_colour, e_fixedcolour > :: enum_n; };
+template < > struct type_master < t_css_cursor_e > : enum_n < t_css_cursor_e, e_css_cursor_e >
+{ using enum_n < t_css_cursor_e, e_css_cursor_e > :: enum_n; };
+
+template < > struct type_master < t_css_colour > : enum_n < t_css_colour, e_css_colour >
+{ using enum_n < t_css_colour, e_css_colour > :: enum_n; };
+
+template < > struct type_master < t_css_content_enum > : enum_n < t_css_content_enum, e_css_content_enum >
+{ using enum_n < t_css_content_enum, e_css_content_enum > :: enum_n; };
 
 template < > struct type_master < t_css_display > : enum_n < t_css_display, e_css_display >
 { using enum_n < t_css_display, e_css_display > :: enum_n; };
 
+template < > struct type_master < t_css_elevation_e > : enum_n < t_css_elevation_e, e_css_elevation_e >
+{ using enum_n < t_css_elevation_e, e_css_elevation_e > :: enum_n; };
+
+template < > struct type_master < t_css_font_weight > : enum_n < t_css_font_weight, e_css_font_weight >
+{ using enum_n < t_css_font_weight, e_css_font_weight > :: enum_n; };
+
 template < > struct type_master < t_css_fn > : enum_n < t_css_fn, e_css_fn >
 { using enum_n < t_css_fn, e_css_fn > :: enum_n; };
+
+template < > struct type_master < t_css_generic_family > : enum_n < t_css_generic_family, e_css_generic_family >
+{ using enum_n < t_css_generic_family, e_css_generic_family > :: enum_n; };
 
 template < > struct type_master < t_css_list_style_position > : enum_n < t_css_list_style_position, e_css_list_style_position >
 { using enum_n < t_css_list_style_position, e_css_list_style_position > :: enum_n; };
@@ -295,14 +316,29 @@ template < > struct type_master < t_css_list_style_position > : enum_n < t_css_l
 template < > struct type_master < t_css_list_style_type > : enum_n < t_css_list_style_type, e_css_list_style_type >
 { using enum_n < t_css_list_style_type, e_css_list_style_type > :: enum_n; };
 
+template < > struct type_master < t_css_overflow > : enum_n < t_css_overflow, e_css_overflow >
+{ using enum_n < t_css_overflow, e_css_overflow > :: enum_n; };
+
+template < > struct type_master < t_css_pitch_e > : enum_n < t_css_pitch_e, e_css_pitch_e >
+{ using enum_n < t_css_pitch_e, e_css_pitch_e > :: enum_n; };
+
+template < > struct type_master < t_css_position > : enum_n < t_css_position, e_css_position >
+{ using enum_n < t_css_position, e_css_position > :: enum_n; };
+
 template < > struct type_master < t_css_property > : enum_n < t_css_property, e_css_property >
 { using enum_n < t_css_property, e_css_property > :: enum_n; };
 
 template < > struct type_master < t_css_relative_size > : enum_n < t_css_relative_size, e_css_relative_size >
 { using enum_n < t_css_relative_size, e_css_relative_size > :: enum_n; };
 
+template < > struct type_master < t_css_speech_rate_e > : enum_n < t_css_speech_rate_e, e_css_speech_rate_e >
+{ using enum_n < t_css_speech_rate_e, e_css_speech_rate_e > :: enum_n; };
+
 template < > struct type_master < t_css_statement > : enum_n < t_css_statement, e_css_statement >
 { using enum_n < t_css_statement, e_css_statement > :: enum_n; };
+
+template < > struct type_master < t_css_text_align > : enum_n < t_css_text_align, e_css_text_align >
+{ using enum_n < t_css_text_align, e_css_text_align > :: enum_n; };
 
 template < > struct type_master < t_css_text_decoration > : enum_n < t_css_text_decoration, e_css_text_decoration >
 { using enum_n < t_css_text_decoration, e_css_text_decoration > :: enum_n; };
@@ -312,6 +348,9 @@ template < > struct type_master < t_css_text_transform > : enum_n < t_css_text_t
 
 template < > struct type_master < t_css_vertical_align > : enum_n < t_css_vertical_align, e_css_vertical_align >
 { using enum_n < t_css_vertical_align, e_css_vertical_align > :: enum_n; };
+
+template < > struct type_master < t_css_volume_e > : enum_n < t_css_volume_e, e_css_volume_e >
+{ using enum_n < t_css_volume_e, e_css_volume_e > :: enum_n; };
 
 template < > struct type_master < t_css_whitespace > : enum_n < t_css_whitespace, e_css_whitespace >
 { using enum_n < t_css_whitespace, e_css_whitespace > :: enum_n; };
@@ -621,6 +660,9 @@ template < > struct type_master < t_svg_version_grand > : enum_n < t_svg_version
 
 template < > struct type_master < t_tableframe > : enum_n < t_tableframe, e_tableframe >
 { using enum_n < t_tableframe, e_tableframe > :: enum_n; };
+
+template < > struct type_master < t_tblri > : enum_n < t_tblri, e_tblri >
+{ using enum_n < t_tblri, e_tblri > :: enum_n; };
 
 template < > struct type_master < t_text_decoration > : enum_n < t_text_decoration, e_text_decoration >
 { using enum_n < t_text_decoration, e_text_decoration > :: enum_n; };

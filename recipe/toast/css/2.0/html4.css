@@ -65,7 +65,6 @@ KBD, SAMP { font-family: monospace }
 PRE { white-space: pre }
 BIG { font-size: 1.17em }
 SMALL, SUB, SUP { font-size: .83em }
-291
 SUB { vertical-align: sub }
 SUP { vertical-align: super }
 S, STRIKE, DEL { text-decoration: line-through }

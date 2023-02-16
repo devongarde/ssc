@@ -23,22 +23,36 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/arguments.h"
 #include "utility/quote.h"
 
-void selectors::parse (nitpick& nits, arguments& args, const ::std::string& s)
-{   vstr_t ss (uq2 (trim_the_lot_off (s), UQ_C_CMT | UQ_DQ | UQ_SQ | UQ_BS | UQ_ROUND | UQ_SQUARE | UQ_TRIM, ","));
-    for (auto sss : ss)
-        if (! sss.empty ())
-        {   sel_.emplace_back (nits, args, sss);
-            const ::std::size_t len = sel_.size ();
-            PRESUME (len > 0, __FILE__, __LINE__);
-            const ::std::string r (sel_.at (len - 1).rpt ());
-            if (! r.empty () && (len > 1))
-                for (::std::size_t n = 0; n < len - 2; ++n)
-                    if (sel_.at (n).rpt () == r)
-                        nits.pick (nit_css_syntax, es_warning, ec_css, quote (sss), " is repeated"); } }
+void selectors::parse (arguments& args, const int from, const int to)
+{   PRESUME ((to < 0) || (from <= to), __FILE__, __LINE__);
+    int len = GSL_NARROW_CAST < int > (args.t_.size ());
+    PRESUME (from < len, __FILE__, __LINE__);
+    PRESUME (to < len, __FILE__, __LINE__);
+    int b = -1; int prev = -1;
+    for (int i = from; i > 0; i = next_token_at (args.t_, i, to))
+    {   if (b == -1) b = i;
+        if (args.t_.at (i).t_ == ct_comma)
+        {   if (b != i) sel_.emplace_back (args, b, prev);
+            b = -1; }
+        prev = i; }
+    if (b != -1)
+        sel_.emplace_back (args, b, to);
+    if (! sel_.empty ())
+    {   nitpick& nits = args.t_.at (from).nits_;
+        len = GSL_NARROW_CAST < int > (sel_.size ());
+        const ::std::string r (sel_.at (len - 1).rpt ());
+        if (! r.empty () && (len > 1))
+            for (int n = 0; n < len - 2; ++n)
+                if (sel_.at (n).rpt () == r)
+                    nits.pick (nit_selector, es_warning, ec_css, quote (r), " is repeated"); } }
+
+bool selectors::bef_aft () const
+{   for (auto se : sel_)
+        if (se.bef_aft ()) return true;
+    return false; }
 
 void selectors::accumulate (stats_t* s) const
-{   VERIFY_NOT_NULL (s, __FILE__, __LINE__);
-    for (auto se : sel_)
+{   for (auto se : sel_)
         se.accumulate (s); }
 
 ::std::string selectors::rpt () const
@@ -47,3 +61,7 @@ void selectors::accumulate (stats_t* s) const
     {   if (! res.empty ()) res += ",";
         res += s.rpt (); }
     return res; }  
+
+void selectors::validate (arguments& args)
+{   for (auto i : sel_)
+        i.validate (args); }

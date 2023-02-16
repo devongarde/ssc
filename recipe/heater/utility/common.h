@@ -230,6 +230,10 @@ template < class T > inline void merge_stuff (T& o, const T& s)
 {   for (auto a : s)  o.insert (a); }
 #endif // NOMERGE
 
+::std::string delined (::std::string::const_iterator b, ::std::string::const_iterator e);
+inline ::std::string delined (const ::std::string& s)
+{   return delined (s.cbegin (), s.cend ()); }
+
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i);
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to);
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const ::std::string& msg, const e_severity level = es_comment);
@@ -238,3 +242,12 @@ void merge_smsid (smsid_t& a, const smsid_t& b, bool sum = true);
 void merge_smsid (smsid_t& a, const sstr_t& b, const ::std::size_t n = 0);
 void insert_smsid (smsid_t& a, const ::std::string& s, const ::std::size_t n = 0);
 sstr_t smsid_set (const smsid_t& s);
+
+template < class P > struct fiddlesticks
+{   P** p_ = nullptr;
+    P* twas_ = nullptr;
+    explicit fiddlesticks (P** p, P* x) : p_ (p)
+    {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
+        twas_ = *p_;
+        *p_ = x; }
+    ~fiddlesticks () { *p_ = twas_; } };

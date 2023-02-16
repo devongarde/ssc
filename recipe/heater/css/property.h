@@ -26,17 +26,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 class property
 {   property_v_ptr prop_;
     weight w_;
+    ::std::string val_;
+    flags_t flags_ = NOFLAGS;
+    int from_ = 0;
 public:
     DEFAULT_CONSTRUCTORS (property);
-    property (nitpick& nits, arguments& args, const ::std::string& s)
-    {   parse (nits, args, s); }
-    void swap (property& p) noexcept
-    {   prop_.swap (p.prop_);
-        w_.swap (p.w_); }
-    void reset ()
-    {   property p;
-        swap (p); }
-    void parse (nitpick& nits, arguments& args, const ::std::string& s);
+    property (arguments& args, const int from, const int to)
+    {   parse (args, from, to); }
+    void parse (arguments& args, const int from, const int to);
+    void validate (arguments& args);
     void accumulate (stats_t* s) const;
     ::std::string rpt () const; };
 

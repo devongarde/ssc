@@ -1,0 +1,36 @@
+﻿H1 { background-color: #F00 }
+
+BODY { background-image: url("marble.png") }
+P { background-image: none }
+
+BODY { 
+ background: white url("pendant.png");
+ background-repeat: repeat-y;
+ background-position: center;
+}
+
+BODY { 
+ background: red url("pendant.png");
+ background-repeat: repeat-y;
+ background-attachment: fixed;
+}
+
+body {
+background: white url(paper.png) scroll; /* for all UAs */
+background: white url(ledger.png) fixed; /* for UAs that do fixed backgrounds */
+}
+
+BODY { background: url("banner.jpeg") right top } /* 100% 0% */
+BODY { background: url("banner.jpeg") top center } /* 50% 0% */
+BODY { background: url("banner.jpeg") center } /* 50% 50% */
+BODY { background: url("banner.jpeg") bottom } /* 50% 100% */
+
+BODY { 
+ background-image: url("logo.png");
+ background-attachment: fixed;
+ background-position: 100% 100%;
+ background-repeat: no-repeat;
+}
+
+BODY { background: red }
+P { background: url("chess.png") gray 50% repeat fixed }

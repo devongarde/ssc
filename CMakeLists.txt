@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.19)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.1.12 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
+project (ssc VERSION 0.1.13 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
 
 set (CMAKE_CXX_STANDARD 17)
 
@@ -68,7 +68,8 @@ endif ()
     elseif (${CMAKE_SYSTEM} MATCHES "OpenBSD-7.1")
       target_compile_definitions (ssc PRIVATE UNIX OS_VER="${OS}" NO_PCF_STR HUNSPELL)
     elseif (${CMAKE_SYSTEM} MATCHES "OpenBSD-7.2")
-      target_compile_definitions (ssc PRIVATE UNIX OS_VER="${OS}" NO_PCF_STR HUNSPELL)
+      set (NO_CURL "1")
+      target_compile_definitions (ssc PRIVATE UNIX OS_VER="${OS}" NO_PCF_STR NOCURL HUNSPELL)
     else ()
       message (WARNING "untested version of OpenBSD")
       set (OS "OpenBSD?")
@@ -224,13 +225,13 @@ find_package (Iconv REQUIRED)
 # better to list the build files in one place (here) rather than litter all the source directories with a gadzillion untidy wee files
 target_sources (ssc-test PRIVATE ${S}/test/ssc-test.cpp ${H}/main/version.h ${H}/feedback/nitnames.h ${S}/feedback/nitnames.cpp)
 target_sources (ssc PRIVATE
-        ${H}/attribute/attr.h ${H}/attribute/attribute.h ${H}/attribute/attribute_classes.h ${H}/attribute/attributes.h ${H}/attribute/avm.h
-            ${H}/attribute/avm_data.h ${H}/attribute/namespace.h
+        ${H}/attribute/attr.h ${H}/attribute/attr_state.h ${H}/attribute/attribute.h ${H}/attribute/attribute_classes.h ${H}/attribute/attributes.h
+            ${H}/attribute/avm.h ${H}/attribute/avm_data.h ${H}/attribute/namespace.h
         ${H}/coop/fred.h ${H}/coop/kew.h ${H}/coop/knickers.h ${H}/coop/lox.h ${H}/coop/tls.h
-        ${H}/css/arguments.h ${H}/css/css.h ${H}/css/css_attribute.h ${H}/css/css_class.h ${H}/css/css_element.h ${H}/css/decoration.h ${H}/css/distilled.h
-            ${H}/css/fn.h ${H}/css/global.h ${H}/css/group.h ${H}/css/id.h ${H}/css/property.h ${H}/css/properties.h ${H}/css/property_classes.h
-            ${H}/css/rule.h ${H}/css/rules.h ${H}/css/selector.h ${H}/css/selectors.h ${H}/css/statement.h ${H}/css/statements.h ${H}/css/typed_property.h
-            ${H}/css/weight.h  
+        ${H}/css/arguments.h ${H}/css/css.h ${H}/css/css_attribute.h ${H}/css/css_class.h ${H}/css/css_element.h ${H}/css/css_parse.h
+            ${H}/css/css_state.h ${H}/css/decoration.h ${H}/css/distilled.h ${H}/css/flags.h ${H}/css/fn.h ${H}/css/global.h ${H}/css/group.h
+            ${H}/css/id.h ${H}/css/property.h ${H}/css/properties.h ${H}/css/property_classes.h ${H}/css/rule.h ${H}/css/rules.h ${H}/css/selector.h
+            ${H}/css/selectors.h ${H}/css/statement.h ${H}/css/statements.h ${H}/css/typed_property.h ${H}/css/weight.h  
         ${H}/element/elem.h ${H}/element/element.h ${H}/element/element_attribute.h ${H}/element/element_classes.h ${H}/element/parentage.h
             ${H}/element/state.h
         ${H}/feedback/nit.h ${H}/feedback/nitnames.h ${H}/feedback/nitout.h ${H}/feedback/nitpick.h
@@ -245,7 +246,7 @@ target_sources (ssc PRIVATE
             ${H}/microformat/microformats_ptr.h ${H}/microformat/prop.h ${H}/microformat/property.h ${H}/microformat/property_classes.h
             ${H}/microformat/property_value.h ${H}/microformat/sibling.h
         ${H}/parser/html_version.h ${H}/parser/jsonic.h ${H}/parser/parse_abb.h ${H}/parser/parse_attribute.h ${H}/parser/parse_attributes.h
-            ${H}/parser/parse_bra_ket.h ${H}/parser/parse_bras_ket.h ${H}/parser/parse_element.h ${H}/parser/parse_elements.h ${H}/parser/parse_ssi.h
+            ${H}/parser/parse_brac_ket.h ${H}/parser/parse_bracs_ket.h ${H}/parser/parse_element.h ${H}/parser/parse_elements.h ${H}/parser/parse_ssi.h
             ${H}/parser/pattern.h ${H}/parser/text.h ${H}/parser/text-data.h ${H}/parser/xhtml_xml.h
         ${H}/rdf/rdf.h ${H}/rdf/rdfa_prop.h ${H}/rdf/rdfa_type.h
         ${H}/schema/jsonld.h ${H}/schema/schema_hierarchy.h ${H}/schema/schema_name.h ${H}/schema/schema_property.h ${H}/schema/schema_structure.h
@@ -264,23 +265,24 @@ target_sources (ssc PRIVATE
             ${H}/type/type_microformat.h ${H}/type/type_misc.h ${H}/type/type_numeric.h ${H}/type/type_svg.h ${H}/type/type_varied.h ${H}/type/type_xmlns.h
         ${H}/url/curl.h ${H}/url/url.h ${H}/url/url_parameters.h ${H}/url/url_protocol.h ${H}/url/url_sanitise.h ${H}/url/url_scheme.h
             ${H}/url/url_schemes.h
-        ${H}/utility/bigvector.h ${H}/utility/byteorder.h ${H}/utility/cache.h ${H}/utility/common.h ${H}/utility/filesystem.h ${H}/utility/lexical.h
-            ${H}/utility/quote.h ${H}/utility/tuple.h
+        ${H}/utility/bigvector.h ${H}/utility/bitset.h ${H}/utility/byteorder.h ${H}/utility/cache.h ${H}/utility/common.h ${H}/utility/filesystem.h
+            ${H}/utility/lexical.h ${H}/utility/quote.h ${H}/utility/tuple.h
         ${H}/webpage/corpus.h ${H}/webpage/crosslink.h ${H}/webpage/directory.h ${H}/webpage/external.h ${H}/webpage/fileindex.h ${H}/webpage/headers.h
             ${H}/webpage/id.h ${H}/webpage/page.h ${H}/webpage/q.h ${H}/webpage/root.h
-        ${S}/attribute/attr.cpp ${S}/attribute/attribute_constructor.cpp ${S}/attribute/attributes.cpp ${S}/attribute/avm.cpp ${S}/attribute/avm_data_a.cpp
-             ${S}/attribute/avm_data_b.cpp ${S}/attribute/avm_data_c.cpp ${S}/attribute/avm_data_d.cpp ${S}/attribute/avm_data_e.cpp
-             ${S}/attribute/avm_data_f1.cpp ${S}/attribute/avm_data_f2.cpp ${S}/attribute/avm_data_g.cpp ${S}/attribute/avm_data_h.cpp
-             ${S}/attribute/avm_data_i.cpp ${S}/attribute/avm_data_k.cpp ${S}/attribute/avm_data_l.cpp ${S}/attribute/avm_data_m1.cpp
-             ${S}/attribute/avm_data_m2.cpp ${S}/attribute/avm_data_n.cpp ${S}/attribute/avm_data_o.cpp ${S}/attribute/avm_data_p.cpp
-             ${S}/attribute/avm_data_q.cpp ${S}/attribute/avm_data_r.cpp ${S}/attribute/avm_data_s.cpp ${S}/attribute/avm_data_t1.cpp
-             ${S}/attribute/avm_data_t2.cpp ${S}/attribute/avm_data_u.cpp ${S}/attribute/avm_data_v.cpp ${S}/attribute/avm_data_w.cpp
-             ${S}/attribute/avm_data_x.cpp ${S}/attribute/avm_data_rdf.cpp ${S}/attribute/namespace.cpp
+        ${S}/attribute/attr.cpp ${S}/attribute/attr_state.cpp ${S}/attribute/attribute_constructor.cpp ${S}/attribute/attributes.cpp ${S}/attribute/avm.cpp
+            ${S}/attribute/avm_data_a.cpp
+            ${S}/attribute/avm_data_b.cpp ${S}/attribute/avm_data_c.cpp ${S}/attribute/avm_data_d.cpp ${S}/attribute/avm_data_e.cpp
+            ${S}/attribute/avm_data_f1.cpp ${S}/attribute/avm_data_f2.cpp ${S}/attribute/avm_data_g.cpp ${S}/attribute/avm_data_h.cpp
+            ${S}/attribute/avm_data_i.cpp ${S}/attribute/avm_data_k.cpp ${S}/attribute/avm_data_l.cpp ${S}/attribute/avm_data_m1.cpp
+            ${S}/attribute/avm_data_m2.cpp ${S}/attribute/avm_data_n.cpp ${S}/attribute/avm_data_o.cpp ${S}/attribute/avm_data_p.cpp
+            ${S}/attribute/avm_data_q.cpp ${S}/attribute/avm_data_r.cpp ${S}/attribute/avm_data_s.cpp ${S}/attribute/avm_data_t1.cpp
+            ${S}/attribute/avm_data_t2.cpp ${S}/attribute/avm_data_u.cpp ${S}/attribute/avm_data_v.cpp ${S}/attribute/avm_data_w.cpp
+            ${S}/attribute/avm_data_x.cpp ${S}/attribute/avm_data_rdf.cpp ${S}/attribute/namespace.cpp
         ${S}/coop/fred.cpp ${S}/coop/kew.cpp ${S}/coop/knickers.cpp ${S}/coop/lox.cpp
-        ${S}/css/css.cpp ${S}/css/css_attribute.cpp ${S}/css/css_class.cpp ${S}/css/css_element.cpp ${S}/css/css_id.cpp ${S}/css/decoration.cpp
-            ${S}/css/distilled.cpp ${S}/css/fn.cpp ${S}/css/global.cpp ${S}/css/group.cpp ${S}/css/property.cpp ${S}/css/properties.cpp
-            ${S}/css/property_constructor.cpp ${S}/css/rule.cpp ${S}/css/rules.cpp ${S}/css/selector.cpp ${S}/css/selectors.cpp ${S}/css/statement.cpp
-            ${S}/css/statements.cpp ${S}/css/weight.cpp 
+        ${S}/css/arguments.cpp ${S}/css/css.cpp ${S}/css/css_attribute.cpp ${S}/css/css_class.cpp ${S}/css/css_element.cpp ${S}/css/css_id.cpp
+            ${S}/css/css_parse.cpp ${S}/css/css_state.cpp ${S}/css/decoration.cpp ${S}/css/distilled.cpp ${S}/css/fn.cpp ${S}/css/global.cpp ${S}/css/group.cpp
+            ${S}/css/property.cpp ${S}/css/properties.cpp ${S}/css/property_constructor.cpp ${S}/css/rule.cpp ${S}/css/rules.cpp ${S}/css/selector.cpp
+            ${S}/css/selectors.cpp ${S}/css/statement.cpp ${S}/css/statements.cpp ${S}/css/weight.cpp 
         ${S}/element/elem.cpp ${S}/element/element.cpp ${S}/element/element_abcd.cpp ${S}/element/element_aria.cpp ${S}/element/element_attributes.cpp
             ${S}/element/element_classes.cpp ${S}/element/element_efghi.cpp ${S}/element/element_examine.cpp ${S}/element/element_input.cpp
             ${S}/element/element_jkl.cpp ${S}/element/element_microdata.cpp ${S}/element/element_microformats.cpp ${S}/element/element_mno.cpp
@@ -293,8 +295,8 @@ target_sources (ssc PRIVATE
             ${S}/microdata/microdata_itemtype.cpp
         ${S}/microformat/family.cpp ${S}/microformat/field.cpp ${S}/microformat/microformat_constructor.cpp ${S}/microformat/microformat_export.cpp
             ${S}/microformat/microformats.cpp ${S}/microformat/property_value.cpp ${S}/microformat/sibling.cpp
-        ${S}/parser/html_version.cpp ${S}/parser/jsonic.cpp ${S}/parser/parse_attribute.cpp ${S}/parser/parse_attributes.cpp ${S}/parser/parse_bra_ket.cpp
-            ${S}/parser/parse_bras_ket.cpp ${S}/parser/parse_element.cpp ${S}/parser/parse_elements.cpp ${S}/parser/parse_ssi.cpp ${S}/parser/pattern.cpp
+        ${S}/parser/html_version.cpp ${S}/parser/jsonic.cpp ${S}/parser/parse_attribute.cpp ${S}/parser/parse_attributes.cpp ${S}/parser/parse_brac_ket.cpp
+            ${S}/parser/parse_bracs_ket.cpp ${S}/parser/parse_element.cpp ${S}/parser/parse_elements.cpp ${S}/parser/parse_ssi.cpp ${S}/parser/pattern.cpp
             ${S}/parser/text.cpp ${S}/parser/text-data.cpp ${S}/parser/xhtml_xml.cpp
         ${S}/rdf/rdf.cpp ${S}/rdf/rdfa_prop.cpp ${S}/rdf/rdfa_type.cpp
         ${S}/schema/jsonld.cpp ${S}/schema/schema_hierarchy.cpp ${S}/schema/schema_name.cpp ${S}/schema/schema_property.cpp ${S}/schema/schema_structure.cpp
@@ -302,8 +304,8 @@ target_sources (ssc PRIVATE
         ${S}/spell/spell.cpp ${S}/spell/nixspell.cpp ${S}/spell/winspell.cpp
         ${S}/stats/stats.cpp ${S}/stats/stats_impl.cpp
         ${S}/symbol/nstr.cpp ${S}/symbol/symbol.cpp
-        ${S}/type/type.cpp ${S}/type/type_aria.cpp ${S}/type/type_autocomplete.cpp ${S}/type/type_charset.cpp ${S}/type/type_class.cpp
-            ${S}/type/type_colour.cpp ${S}/type/type_core.cpp ${S}/type/type_country.cpp ${S}/type/type_csp.cpp ${S}/type/type_css.cpp
+        ${S}/type/type.cpp ${S}/type/type_aria.cpp ${S}/type/type_autocomplete.cpp ${S}/type/type_base.cpp ${S}/type/type_charset.cpp
+            ${S}/type/type_class.cpp ${S}/type/type_core.cpp ${S}/type/type_country.cpp ${S}/type/type_csp.cpp ${S}/type/type_css.cpp
             ${S}/type/type_currency.cpp ${S}/type/type_d.cpp ${S}/type/type_enum.cpp ${S}/type/type_httpequiv.cpp ${S}/type/type_id.cpp
             ${S}/type/type_intent.cpp ${S}/type/type_lang.cpp ${S}/type/type_master.cpp ${S}/type/type_media.cpp ${S}/type/type_metaname.cpp
             ${S}/type/type_mime.cpp ${S}/type/type_misc.cpp ${S}/type/type_numeric.cpp ${S}/type/type_paint.cpp ${S}/type/type_rdf.cpp

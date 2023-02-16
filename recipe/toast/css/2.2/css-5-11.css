@@ -1,0 +1,24 @@
+﻿div > p:first-child { text-indent: 0 }
+
+p:first-child em { font-weight : bold }
+
+* > a:first-child { } /* A is first child of any element */
+a:first-child { } /* Same */
+
+a:link { color: red }
+:link { color: red }
+
+a.external:visited { color: blue }
+
+a:link { color: red } /* unvisited links */
+a:visited { color: blue } /* visited links */
+a:hover { color: yellow } /* user hovers */
+a:active { color: lime } /* active links */
+
+a:focus { background: yellow }
+a:focus:hover { background: white }
+
+html:lang(fr-ca) { quotes: '« ' ' »' }
+html:lang(de) { quotes: '»' '«' '\2039' '\203A' }
+:lang(fr) > Q { quotes: '« ' ' »' }
+:lang(de) > Q { quotes: '»' '«' '\2039' '\203A' }

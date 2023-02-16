@@ -823,7 +823,7 @@ template < > struct type_master < t_value > : varied < t_value >
 {   using varied < t_value > :: varied;
     void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* , const ::std::string& )
     {   if (e.get () == elem_li)
-            if (empty ()) nits.pick (nit_empty, es_error, ec_attribute, "value expected");
+            if (empty ()) nits.pick (nit_empty, es_error, ec_attribute, "value expected (", type_name (t_value), ")");
             else validate_type < type_master < t_integer > > (nits, v); } };
 
 template < > struct type_master < t_values > : varied < t_values >

@@ -859,6 +859,7 @@ PASS ../toast/living/jan16/ls9.html
 PASS ../toast/living/jan16/main.html
 2 inserted_missing_parent missing_close naughty_lang
 2 inserted_missing_parent missing_close
+3 unrecognised_value
 13 inserted_missing_parent inserted_missing_closure missing_close
 17 attempted_escape no_such_folder url_not_found
 18 attempted_escape no_such_folder url_not_found
@@ -900,6 +901,7 @@ PASS ../toast/living/jan16/mark.html
 
 PASS ../toast/living/jan16/me.html
 7 url_not_found
+57 css_syntax property css_syntax property
 57 invalid_attribute_version wrong_version
 65 url_not_found autoplay
 66 url_not_found autoplay

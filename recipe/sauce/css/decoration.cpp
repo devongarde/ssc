@@ -22,62 +22,68 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/decoration.h"
 #include "type/type_enum.h"
 
-void decoration::parse (nitpick& nits, arguments& args, const ::std::string& sep, const ::std::string& s)
-{   if (sep.empty ())
-        nits.pick (nit_css_syntax, ed_css_20, "5 Selectors", es_error, ec_css, quote (s), ": missing selector");
-    else if (sep.length () != 1)
-        nits.pick (nit_css_syntax, ed_css_20, "5 Selectors", es_error, ec_css, quote (s), ": a single selector expected");
-    else switch (sep.at (0))
-    {   case '.' :
-            if (s.empty ())
-                nits.pick (nit_css_syntax, ed_css_20, "5 Selectors", es_error, ec_css, quote (s), ": empty class");
-            else sparkle_ = css_class (args, s); 
+void decoration::parse (arguments& args, const int from, const int to)
+{   PRESUME ((from <= to) || (to < 0), __FILE__, __LINE__);
+    const int len = GSL_NARROW_CAST < int > (args.t_.size ());
+    PRESUME (from < len, __FILE__, __LINE__);
+    PRESUME ((to < len) || (to < 0), __FILE__, __LINE__);
+    int b = first_non_whitespace (args.t_, from, to);
+    if (b == -1) return;
+    nitpick& nits = args.t_.at (b).nits_;
+    switch (args.t_.at (b).t_)
+    {   case ct_square_brac :
+            if (args.t_.at (from).child_ < 0)
+                nits.pick (nit_selector, ed_css_20, "5 Selectors", es_error, ec_css, ": [...] is incomplete");
+            else sparkle_ = css_attribute (args, args.t_.at (from).child_);
             break;
-        case '#' :
-            if (s.empty ())
-                nits.pick (nit_css_syntax, ed_css_20, "5 Selectors", es_error, ec_css, quote (s), ": empty id");
-            else sparkle_ = css_id (args, s); 
-            break;
-        case ':' :
-            if (s.empty ())
-                nits.pick (nit_css_syntax, ed_css_20, "5 Selectors", es_error, ec_css, quote (s), ": empty pseudo");
-            else sparkle_ = css_fn (nits, args, s);
-            break;
-        case '[' :
-            if (s.length () < 2)
-                nits.pick (nit_css_syntax, ed_css_20, "5 Selectors", es_error, ec_css, quote (s), ": incomplete attribute decoration: [ is alone");
-            else if (s.at (s.length () - 1) != ']')
-                nits.pick (nit_css_syntax, ed_css_20, "5 Selectors", es_error, ec_css, quote (s), ": borked attribute decoration: missing ]");
-            else
-            {   ::std::string ssss (trim_the_lot_off (s.substr (0, s.length () - 1)));
-                if (ssss.empty ())
-                    nits.pick (nit_css_syntax, ed_css_20, "5 Selectors", es_error, ec_css, quote (s), ": empty attribute decoration; nothing inside []");
-                else
-                    sparkle_ = css_attribute (nits, args, ssss); }
+        case ct_dot :
+            b = next_non_whitespace (args.t_, b, to);
+            if ((b < 0) || ((args.t_.at (b).t_ != ct_keyword) && (args.t_.at (b).t_ != ct_identifier)))
+                nits.pick (nit_selector, ed_css_20, "5 Selectors", es_error, ec_css, "missing or invalid class name");
+            else sparkle_ = css_class (args, b, args.t_.at (b).val_);
+            break; 
+        case ct_hash :
+            b = next_non_whitespace (args.t_, b, to);
+            if ((b < 0) || ((args.t_.at (b).t_ != ct_keyword) && (args.t_.at (b).t_ != ct_identifier)))
+                nits.pick (nit_selector, ed_css_20, "5 Selectors", es_error, ec_css, "missing or invalid id");
+            else sparkle_ = css_id (args, args.t_.at (b).val_);
+            break; 
+        case ct_colon :
+            b = next_non_whitespace (args.t_, b, to);
+            if ((b < 0) || ((args.t_.at (b).t_ != ct_keyword) && (args.t_.at (b).t_ != ct_identifier)))
+                nits.pick (nit_selector, ed_css_20, "5 Selectors", es_error, ec_css, "missing or invalid pseudo element");
+            else sparkle_ = css_fn (args, b, to);
             break;
         default :
+            ::std::cout << "decoration " << args.t_.at (b).t_ << " unexpected.\n";
             GRACEFUL_CRASH (__FILE__, __LINE__); } }
+
+bool decoration::bef_aft () const
+{   if (sparkle_.index () != dt_fn) return false;
+    switch (ssc_get < css_fn > (sparkle_).get ())
+    {   case efn_after :
+        case efn_before : return true;
+        default : return false; } }
 
 void decoration::accumulate (stats_t* s, const e_element e) const
 {   VERIFY_NOT_NULL (s, __FILE__, __LINE__);
-    switch (sparkle_.index ())
-    {   case dt_unset :
-            break;
-        case dt_attribute :
-            ssc_get < css_attribute > (sparkle_).accumulate (s, e);
-            break;
-        case dt_class :
-            s -> dcl_class (ssc_get < css_class > (sparkle_).s_);
-            s -> dcl_element_class (elem::name (e) + "." + ssc_get < css_class > (sparkle_).s_);
-            break;
-        case dt_fn :
-            ssc_get < css_fn > (sparkle_).accumulate (s);
-            break;
-        case dt_id :
-            s -> dcl_id (ssc_get < css_id > (sparkle_).s_);
-            s -> dcl_element_id (elem::name (e) + "#" + ssc_get < css_id > (sparkle_).s_);
-            break;
-        default : GRACEFUL_CRASH (__FILE__, __LINE__); } }
+    if (! sparkle_.valueless_by_exception ())
+        switch (sparkle_.index ())
+        {   case dt_unset :
+                break;
+            case dt_attribute :
+                ssc_get < css_attribute > (sparkle_).accumulate (s, e);
+                break;
+            case dt_class :
+                ssc_get < css_class > (sparkle_).accumulate (s, e);
+                break;
+            case dt_fn :
+                ssc_get < css_fn > (sparkle_).accumulate (s);
+                break;
+            case dt_id :
+                ssc_get < css_id > (sparkle_).accumulate (s, e);
+                break;
+            default : GRACEFUL_CRASH (__FILE__, __LINE__); } }
 
 ::std::string decoration::rpt () const
 {   if (! sparkle_.valueless_by_exception ())
@@ -89,3 +95,21 @@ void decoration::accumulate (stats_t* s, const e_element e) const
             case dt_unset : break;
             default : GRACEFUL_CRASH (__FILE__, __LINE__); break; }
     return ::std::string (); } 
+
+void decoration::validate (arguments& args)
+{   switch (sparkle_.index ())
+    {   case dt_unset :
+            return;
+        case dt_attribute :
+            ssc_get < css_attribute > (sparkle_).validate (args);
+            break;
+        case dt_class :
+            ssc_get < css_class > (sparkle_).validate (args);
+            break;
+        case dt_fn :
+            ssc_get < css_fn > (sparkle_).validate (args);
+            break;
+        case dt_id :
+            ssc_get < css_id > (sparkle_).validate (args);
+            break;
+        default : GRACEFUL_CRASH (__FILE__, __LINE__); } }

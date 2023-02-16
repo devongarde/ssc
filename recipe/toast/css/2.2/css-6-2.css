@@ -1,0 +1,12 @@
+﻿BODY { font-size: 10pt }
+H1 { font-size: 130% }
+
+BODY { 
+ color: black !important; 
+ background: white !important;
+}
+
+* { 
+ color: inherit !important; 
+ background: transparent;
+}

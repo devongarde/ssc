@@ -1,0 +1,20 @@
+﻿P.center {
+  text-align: center;
+  font-variant: normal;
+  color: grey;
+}
+
+BODY color
+{   font: fantasy;
+    font-variant: naughty-donkeys;
+    font-size: small if not titchy;
+    background-color: spotty;
+    weather: rain; }
+
+p:link {
+    letter-spacing: 200%
+}
+
+@page ;
+
+BODY { font-family: Baskerville, Mincho, Symbol, serif }

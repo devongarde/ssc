@@ -22,7 +22,7 @@ PASS ../toast/SVG/1.2-full/hint.svg
 2 svg_version
 
 PASS ../toast/SVG/1.2-full/index.html
-2 rdfa_version
+2 naughty_lang
 
 PASS ../toast/SVG/1.2-full/metadata.svg
 0 title_required

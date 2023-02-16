@@ -22,8 +22,23 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "parser/parse_abb.h"
 #include "css/arguments.h"
 #include "css/css_class.h"
+#include "stats/stats.h"
+#include "type/type_class.h"
 
-css_class::css_class (arguments& args, const ::std::string& s)
+css_class::css_class (arguments& args, const int i, const ::std::string& s)
     : s_ (s)
-{   if (args.dst_.get () != nullptr)
+{   nitpick& nits = args.t_.at (i).nits_;
+    html_class c (nits, args.v_, s);
+    if (c.is_whatwg_draft ())
+        nits.pick (nit_whatwg_class, ed_jan07, "3.4.5. Classes", es_info, ec_css, "FYI, ", quote (c.name ()), " was once a draft HTML 5 standard class name.");
+    if (c.is_microformat_vocabulary ())
+        nits.pick (nit_class_microformat_vocabulary, ed_microformats, "https://microformats.org/", es_warning, ec_css, quote (c.name ()), " is a microformats vocabulary class name.");
+    if (c.is_microformat_property ())
+        nits.pick (nit_class_microformat_property, ed_microformats, "https://microformats.org/", es_warning, ec_css, quote (c.name ()), " is a microformats property class name.");
+    if (args.dst_.get () != nullptr)
         args.dst_ -> insert_class (s); }
+
+void css_class::accumulate (stats_t* s, const e_element e) const
+{   VERIFY_NOT_NULL (s, __FILE__, __LINE__);
+    s -> dcl_class (s_);
+    s -> dcl_element_class (elem::name (e) + "." + s_); }

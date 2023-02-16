@@ -38,8 +38,7 @@ void nitpick::swap (nitpick& np) noexcept
     mote_.swap (np.mote_);
     severity_.swap (np.severity_);
     category_.swap (np.category_);
-    doc_.swap (np.doc_);
-    ::std::swap (stats_, np.stats_); }
+    doc_.swap (np.doc_); }
 
 void nitpick::reset () noexcept
 {   nitpick np;
@@ -168,7 +167,7 @@ void nitpick::reset_context (const int line, const ::std::string& c)
     mote_.assign (r); }
 
 void nitpick::set_context (const int line, const ::std::string& c)
-{   if (mote_.empty ()) reset_context (line, c);
+{   if (mote_.empty ()) reset_context (line, delined (c));
     else if (line_ == 0) line_ = line; }
 
 void nitpick::set_context (const int line, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to)
@@ -180,14 +179,14 @@ void nitpick::set_context (const int line, ::std::string::const_iterator b, ::st
     if (maxlen == 0)
         mote_.clear ();
     else
-    {   if (len >= maxish) mote_ = ::std::string (from, from+maxish) + "...";
+    {   if (len >= maxish) mote_ = ::std::string (from, from + maxish) + "...";
         else
         {   const int halfish = (maxish - len) / 2;
             if (len == 0)
             {   int last = halfish, x = 0;
                 bool hell = true;
                 const ::std::string ls (LINE_SEPARATORS);
-                while ((::std::iswspace (*(from + x)) || ::std::iswcntrl (*(from + x)) || (ls.find (*(from + x)) != ::std::string::npos)) && (x < maxlen)) ++x;
+                while ((from + x < to) && (::std::iswspace (*(from + x)) || ::std::iswcntrl (*(from + x)) || (ls.find (*(from + x)) != ::std::string::npos)) && (x < maxlen)) ++x;
                 if (x >= maxlen-1) x = 0;
                 if (x + last > maxlen)
                 {   last = maxlen;
@@ -197,10 +196,10 @@ void nitpick::set_context (const int line, ::std::string::const_iterator b, ::st
                     {   last = i - 1;
                         hell = false;
                         break; }
-                mote_ = ::std::string (from + x, from + last);
+                mote_ = delined (from + x, from + last);
                 if (hell) mote_ += "..."; }
             else
-            {   mote_ = ::std::string (from, to);
+            {   mote_ = delined (from, to);
                 ::std::string::const_iterator mb, me;
                 if ((e - b) <= maxish) { me = e; mb = b; }
                 else
@@ -208,8 +207,8 @@ void nitpick::set_context (const int line, ::std::string::const_iterator b, ::st
                     else { mb = from - halfish; before_ = "..."; }
                     if ((e - halfish) <= to) me = e;
                     else { me = to + halfish; after_ = "..."; } }
-                before_ += ::std::string (mb, from);
-                after_ = ::std::string (to, me) + after_;
+                before_ += delined (mb, from);
+                after_ = delined (to, me) + after_;
                 ::std::string::size_type pos = before_.find_last_of (LINE_SEPARATORS);
                 if (pos != ::std::string::npos) before_ = before_.substr (pos+1);
                 pos = after_.find_first_of (LINE_SEPARATORS);
@@ -226,15 +225,12 @@ void nitpick::set_context (const int , ::std::string::const_iterator , ::std::st
 {   GRACEFUL_CRASH (__FILE__, __LINE__); }
 
 void nitpick::accumulate (nitpick& n) const
-{   if (! stats_) return;
-    n.stats_ = true;
-    for (unsigned i = 0; i < severity_.size (); ++i) n.severity_.mark (static_cast < e_severity > (i), severity_.at (static_cast < e_severity > (i)));
+{   for (unsigned i = 0; i < severity_.size (); ++i) n.severity_.mark (static_cast < e_severity > (i), severity_.at (static_cast < e_severity > (i)));
     for (unsigned i = 0; i < category_.size (); ++i) n.category_.mark (static_cast < e_category > (i), category_.at (static_cast < e_category > (i)));
     for (unsigned i = 0; i < doc_.size (); ++i) n.doc_.mark (static_cast < e_doc > (i), doc_.at (static_cast < e_doc > (i))); }
 
 void nitpick::accumulate (stats_t* s) const
 {   VERIFY_NOT_NULL (s, __FILE__, __LINE__);
-    if (! stats_) return;
     for (unsigned i = 0; i < severity_.size (); ++i)
         if (severity_.at (static_cast < e_severity > (i)) > 0)
             s -> mark (static_cast < e_severity > (i), severity_.at (static_cast < e_severity > (i)));
@@ -246,7 +242,6 @@ void nitpick::accumulate (stats_t* s) const
             s -> mark (static_cast < e_doc > (i), doc_.at (static_cast < e_doc > (i))); }
 
 void nitpick::notify (const nit& n) const
-{   stats_ = true;
-    severity_.mark (n.severity ());
+{   severity_.mark (n.severity ());
     category_.mark (n.category ());
     doc_.mark (n.doc ()); }

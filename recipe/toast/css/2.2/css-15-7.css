@@ -1,0 +1,7 @@
+﻿p { font-size: 16px; }
+@media print {
+p { font-size: 12pt; }
+}
+blockquote { font-size: larger }
+em { font-size: 150% }
+em { font-size: 1.5em }

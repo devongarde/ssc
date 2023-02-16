@@ -8,6 +8,7 @@ PASS ../toast/microdata/basic/examples.html
 38 url_not_found
 47 url_not_found naughty_alt
 67 missing_itemtype
+82 dialect
 86 attribute_required url_not_found naughty_alt
 92 attribute_required url_not_found naughty_alt
 96 schema_domain
@@ -55,7 +56,7 @@ PASS ../toast/microdata/basic/itemprop.html
 34 url_not_found
 45 url_not_found naughty_alt
 78 missing_itemtype
-97 newline_in_string newline_in_string
+97 newline_in_string newline_in_string dialect
 101 attribute_required url_not_found naughty_alt
 112 attribute_required url_not_found naughty_alt
 119 schema_domain bad_itemid

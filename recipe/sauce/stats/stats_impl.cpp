@@ -391,7 +391,7 @@ mmac_t mac_subtitle (const ::std::string& title)
     ::std::size_t count = 0, grand = 0;
     for (smsid_t::const_iterator i = sum.cbegin (); i != sum.cend (); ++i)
     {   mmac_t mac;
-        ::std::string lex (::boost::lexical_cast < ::std::string > (i -> second));
+        ::std::string lex (once_twice_thrice < ::std::size_t > (i -> second));
         mac.emplace (nm_tally_name, i -> first);
         mac.emplace (nm_tally_int, lex);
         mac.emplace (nm_tally_use_int, "");
@@ -401,7 +401,7 @@ mmac_t mac_subtitle (const ::std::string& title)
         s += macro -> apply (ns_tally, mac); }
     if (! s.empty ())
     {   mmac_t mac = mac_title (category);
-        ::std::string lex (::boost::lexical_cast < ::std::string > (grand));
+        ::std::string lex (once_twice_thrice < ::std::size_t > (grand));
         mac.emplace (nm_tally_count, ::boost::lexical_cast < ::std::string > (count));
         mac.emplace (nm_tally_title, category);
         mac.emplace (nm_tally_title, "");
@@ -413,14 +413,14 @@ mmac_t mac_subtitle (const ::std::string& title)
     return s; }
 
 ::std::string stats::single_usage (const ::std::string name, const ::std::size_t dn, const ::std::size_t un) const
-{   ::std::string ds (::boost::lexical_cast < ::std::string > (dn));
-    ::std::string us (::boost::lexical_cast < ::std::string > (un));
+{   ::std::string ds (once_twice_thrice < ::std::size_t > (dn));
+    ::std::string us (once_twice_thrice < ::std::size_t > (un));
     mmac_t mac;
     mac.emplace (nm_tally_name, name);
     mac.emplace (nm_tally_int, ds);
     mac.emplace (nm_tally_use_int, us);
-    mac.emplace (nm_tally_count, once_twice_thrice < ::std::size_t > (dn));
-    mac.emplace (nm_tally_use_count, once_twice_thrice < ::std::size_t > (un));
+    mac.emplace (nm_tally_count, ::boost::lexical_cast < ::std::string > (dn));
+    mac.emplace (nm_tally_use_count, us);
     return macro -> apply (ns_tally, mac); }
 
 ::std::string stats::report_usage (const ::std::string& category, const smsid_stats& dcl, const smsid_stats& used) const
@@ -455,10 +455,10 @@ mmac_t mac_subtitle (const ::std::string& title)
     if (! s.empty ())
     {   mmac_t mac = mac_title (category);
         mac.emplace (nm_tally_count, ::boost::lexical_cast < ::std::string > (count));
-        mac.emplace (nm_tally_sum, ::boost::lexical_cast < ::std::string > (gd));
+        mac.emplace (nm_tally_sum, once_twice_thrice < ::std::size_t > (gd));
         mac.emplace (nm_tally_title, category);
         mac.emplace (nm_tally_total, once_twice_thrice < ::std::size_t > (gd));
-        mac.emplace (nm_tally_use_sum, ::boost::lexical_cast < ::std::string > (gu));
+        mac.emplace (nm_tally_use_sum, once_twice_thrice < ::std::size_t > (gu));
         mac.emplace (nm_tally_use_total, once_twice_thrice < ::std::size_t > (gu));
         s = macro -> apply (ns_tally_head, mac) + s + macro -> apply (ns_tally_foot, mac); }
     return s; }

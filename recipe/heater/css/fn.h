@@ -33,15 +33,10 @@ class css_fn
     ::std::vector < csp_t > ve_;
 public:
     DEFAULT_CONSTRUCTORS (css_fn);
-    css_fn (nitpick& nits, arguments& args, const ::std::string& s)
-    {   parse (nits, args, s); }
-    void swap (css_fn& f) noexcept
-    {   ::std::swap (fn_, f.fn_);
-        params_.swap (f.params_);
-        ve_.swap (f.ve_); }
-    void reset ()
-    {   css_fn f;
-        swap (f); }
-    void parse (nitpick& nits, arguments& args, const ::std::string& s);
+    css_fn (arguments& args, const int from, const int to)
+    {   parse (args, from, to); }
+    e_css_fn get () const { return fn_; }
+    void parse (arguments& args, const int from, const int to);
+    void validate (arguments& args);
     void accumulate (stats_t* s) const;
     ::std::string rpt () const; };

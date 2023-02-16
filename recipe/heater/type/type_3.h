@@ -74,6 +74,30 @@ template < > struct type_master < t_controlslist > : three_value < t_controlslis
 template < > struct type_master < t_corp > : three_value < t_corp, e_corp, sz_same_origin, sz_same_site, sz_cross_origin, true >
 { using three_value < t_corp, e_corp, sz_same_origin, sz_same_site, sz_cross_origin, true > :: three_value; };
 
+template < > struct type_master < t_css_aai > : three_value < t_css_aai, e_css_aai, sz_auto, sz_avoid, sz_inherit >
+{ using three_value < t_css_aai, e_css_aai, sz_auto, sz_avoid, sz_inherit > :: three_value; };
+
+template < > struct type_master < t_css_azimuth_lri > : three_value < t_css_azimuth_lri, e_css_azimuth_lri, sz_leftwards, sz_inherit, sz_rightwards >
+{ using three_value < t_css_azimuth_lri, e_css_azimuth_lri, sz_leftwards, sz_inherit, sz_rightwards > :: three_value; };
+
+template < > struct type_master < t_css_border_collapse > : three_value < t_css_border_collapse, e_css_border_collapse, sz_collapse, sz_inherit, sz_separate >
+{ using three_value < t_css_border_collapse, e_css_border_collapse, sz_collapse, sz_inherit, sz_separate > :: three_value; };
+
+template < > struct type_master < t_css_empty_cells > : three_value < t_css_empty_cells, e_css_empty_cells, sz_hide, sz_inherit, sz_show >
+{ using three_value < t_css_empty_cells, e_css_empty_cells, sz_hide, sz_inherit, sz_show > :: three_value; };
+
+template < > struct type_master < t_css_speak_header > : three_value < t_css_speak_header, e_css_speak_header, sz_always, sz_inherit, sz_once >
+{ using three_value < t_css_speak_header, e_css_speak_header, sz_always, sz_inherit, sz_once > :: three_value; };
+
+template < > struct type_master < t_css_speak_numeral > : three_value < t_css_speak_numeral, e_css_speak_numeral, sz_continuous, sz_digits, sz_inherit >
+{ using three_value < t_css_speak_numeral, e_css_speak_numeral, sz_continuous, sz_digits, sz_inherit > :: three_value; };
+
+template < > struct type_master < t_css_speak_punctuation > : three_value < t_css_speak_punctuation, e_css_speak_punctuation, sz_code, sz_inherit, sz_none >
+{ using three_value < t_css_speak_punctuation, e_css_speak_punctuation, sz_code, sz_inherit, sz_none > :: three_value; };
+
+template < > struct type_master < t_css_table_layout > : three_value < t_css_table_layout, e_css_table_layout, sz_auto, sz_fixed, sz_inherit >
+{ using three_value < t_css_table_layout, e_css_table_layout, sz_auto, sz_fixed, sz_inherit > :: three_value; };
+
 template < > struct type_master < t_csvw_direction > : three_value < t_csvw_direction, e_csvw_direction, sz_ltr, sz_rtl, sz_auto >
 { using three_value < t_csvw_direction, e_csvw_direction, sz_ltr, sz_rtl, sz_auto > :: three_value; };
 
@@ -230,7 +254,7 @@ template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, boo
     else if (t == b_) value_ = static_cast <base_type> (1);
     else if (t == c_) value_ = static_cast <base_type> (2);
     else
-    {   if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "attribute cannot have an empty value");
+    {   if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "attribute cannot have an empty value (", type_name (TYPE), ")");
         else if (! check_identifier_spelling (nits, v, t))
             nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid; it can be ", quote (SZ0::sz ()), ", ", quote (SZ1::sz ()), ", or ", quote (SZ2::sz ()));
         type_base < base_type, TYPE > :: status (s_invalid);

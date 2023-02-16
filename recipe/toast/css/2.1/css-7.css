@@ -1,0 +1,18 @@
+﻿@import url("fancyfonts.css") screen;
+@media print {
+/* style sheet for print goes here */
+}
+
+ @media print {
+ BODY { font-size: 10pt }
+ }
+ @media screen {
+ BODY { font-size: 12pt }
+ }
+ @media screen, print {
+ BODY { line-height: 1.2 }
+ }
+
+@media screen, 3D {
+P { color: green; }
+}

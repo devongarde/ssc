@@ -467,7 +467,8 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
                     if (::std::iswspace (*(i-1))) return;
                     msg = "space missing before attempted end of SSI"; severity = es_warning;
                     break;
-        default :   if (((*i >= 'A') && (*i <= 'Z')) || ((*i >= 'a') && (*i <= 'z')) || ((*i >= '0') && (*i <= '9')) || (*i == '=') || ::std::iswspace (*i) || ::std::iscntrl (*i)) return; }
+        default :   if (((*i >= 'A') && (*i <= 'Z')) || ((*i >= 'a') && (*i <= 'z')) || ((*i >= '0') && (*i <= '9')) || (*i == '=') || ::std::iswspace (*i)) return;
+                    if ((*i >= 0) && (*i < 32) && ::std::iscntrl (*i)) return; }
     if (msg.empty ())
     {   if (warned) return;
         msg = "is '";

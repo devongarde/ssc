@@ -33,14 +33,11 @@ class css_attribute
         : a_ (nits, v, ns, s, name_) { }
 public:
     DEFAULT_CONSTRUCTORS (css_attribute);
-    css_attribute (nitpick& nits, arguments& args, const ::std::string& s)
-    {   parse (nits, args, s); }
-    void swap (css_attribute& a) noexcept;
-    void reset ()
-    {   css_attribute a;
-        swap (a); }
-    void parse (nitpick& nits, arguments& args, const ::std::string& sss);
-     void accumulate (stats_t* s, const e_element e) const;
+    css_attribute (arguments& args, const int from, const int to = -1)
+    {   parse (args, from, to); }
+    void parse (arguments& args, const int from, const int to = -1);
+    void validate (arguments& ) const { }
+    void accumulate (stats_t* s, const e_element e) const;
    ::std::string rpt () const; };
 
 typedef ::std::shared_ptr < css_attribute > pcs_t;

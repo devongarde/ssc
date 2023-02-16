@@ -136,6 +136,10 @@ void stats_t::merge_element_id (const smsid_t& s)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     return p_ -> merge_element_id (s); }
 
+void stats_t::merge_font (const smsid_t& s)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> merge_font (s); }
+
 void stats_t::use_class (const ::std::string& s, const ::std::size_t n)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     return p_ -> use_class (s, n); }

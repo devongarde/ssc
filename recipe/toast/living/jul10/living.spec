@@ -695,6 +695,7 @@ PASS ../toast/living/jul10/microdata.html
 4 missing_close
 20 url_not_found
 34 missing_itemtype
+49 dialect
 52 missing_close
 53 inserted_missing_parent inserted_missing_closure inserted_missing_closure missing_close only_once
 53 missing_close dl_ancestor
@@ -1308,3 +1309,6 @@ PASS ../toast/living/jul10/ww-2.html
 11 inserted_missing_closure
 12 inserted_missing_closure missing_close
 13 inserted_missing_closure
+
+itemids
+urn:isbn:0-330-34032-8

@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html lang=en>
+<title>eHome Portal</title>
+<script src="/scripts/widgets.js"></script>
+<link rel=stylesheet href="/styles/main.css">
+<article is="stock-widget">
+<h1>Stocks</h1>
+<table>
+<thead> <tr> <th> Stock <th> Value <th> Delta
+<tbody> <template> <tr> <td> <td> <td> </template>
+</table>
+<p> <input type=button value="Refresh" onclick="this.parentElement.refresh()">
+</article>
+<article is="news-widget">
+<h1>News</h1>
+<ul>
+<template>
+<li>
+<p><img> <strong></strong>
+<p>
+</template>
+</ul>
+<p> <input type=button value="Refresh" onclick="this.parentElement.refresh()">
+</article>

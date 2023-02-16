@@ -1,0 +1,26 @@
+﻿P.note:before { content: "Note: " }
+
+P.note:before { content: "Note: " }
+P.note { border: solid green }
+
+Q:before {
+ content: open-quote;
+ color: red
+}
+
+BODY:after {
+ content: "The End";
+ display: block;
+ margin-top: 2em;
+ text-align: center;
+}
+
+p:before { display: block; content: 'Some'; }
+
+span { display: block }
+
+h2:after { display: block; content: 'Thing'; }
+
+h2 { display: block; }
+span { display: block; }
+

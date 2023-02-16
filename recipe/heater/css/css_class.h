@@ -24,5 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 struct css_class
 {   ::std::string s_;
     DEFAULT_CONSTRUCTORS (css_class);
-    explicit css_class (arguments& args, const ::std::string& s);
+    explicit css_class (arguments& args, const int i, const ::std::string& s);
+    void accumulate (stats_t* s, const e_element e) const;
+    void validate (arguments& ) const { }
     ::std::string rpt () const { return ::std::string (".") + s_; } };

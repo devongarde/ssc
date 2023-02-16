@@ -37,7 +37,7 @@ template < > struct type_master < t_id > : tidy_string < t_id >
         {   nits.pick (nit_bad_id, es_error, ec_type, "an ID cannot be empty");
             tidy_string < t_id > :: status (s_invalid); }
         else if (note_id_usage (box (), s))
-            nits.pick (nit_spotted_css_id, es_comment, ec_css, "CSS id ", quote (s), " recognised");
+            nits.pick (nit_spotted_id, es_comment, ec_css, "CSS id ", quote (s), " recognised");
         switch (v.mjr ())
         {   case 3 :
                 if (v.mnr () == 2)
@@ -49,12 +49,8 @@ template < > struct type_master < t_id > : tidy_string < t_id >
                 if (::std::string (ALPHABET).find (s.at (0)) == ::std::string::npos)
                 {   nits.pick (nit_bad_id, es_error, ec_type, quote (s), " does not start with a letter");
                     tidy_string < t_id > :: status (s_invalid); }
-                else if (v.mnr () == 0)
-                {   if (s.find_first_not_of (ALPHANUMERIC) != ::std::string::npos)
-                    {   nits.pick (nit_bad_id, es_error, ec_type, quote (s), " may only contain letters or digits");
-                        tidy_string < t_id > :: status (s_invalid); } }
                 else if (s.find_first_not_of (IDS) != ::std::string::npos)
-                {   nits.pick (nit_bad_id, es_error, ec_type, quote (s), " may only contain letters, digits, '_', and ':'");
+                {   nits.pick (nit_bad_id, ed_4, "6.2 SGML basic types", es_error, ec_type, quote (s), " may only contain letters, digits, '-', '_', ':', and '.'");
                     tidy_string < t_id > :: status (s_invalid); }
                 break;
             case 5 :

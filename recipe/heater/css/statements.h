@@ -28,32 +28,16 @@ class page;
 class statements
 {   vrs_t rules_;
     vst_t statements_;
-    v_np ticks_;
 public:
     DEFAULT_CONSTRUCTORS (statements);
-    statements (arguments& args, const ::std::string& s)
-    {   parse (args, s); }
-    void parse (arguments& args, const ::std::string& s);
-    void swap (statements& r) noexcept
-    {   rules_.swap (r.rules_); }
-    void reset ()
-    {   statements st;
-        swap (st); }
+    explicit statements (arguments& args, const int start = 1, const int finish = -1)
+    {   parse (args, start, finish); }
+    void parse (arguments& args, const int start = 1, const int finish = -1);
     void clear () noexcept { rules_.clear (); }
     const element_bitset get_elements () const
     {   element_bitset res;
         for (auto r : rules_) res |= r.get_elements ();
         return res; }
-    void merge (nitpick& nits) const
-    {   for (auto n : ticks_)
-            nits.merge (n); } 
-    bool nitted () const
-    {   return ! ticks_.empty (); }
-    void accumulate (nitpick& nits) const;
     void accumulate (stats_t* s) const;
-    ::std::string review (const mmac_t& mac, const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot, const e_nit_section& page_head, const bool unfiltered) const
-    {   ::std::string res;
-        for (auto n : ticks_)
-            res += n.review (mac, entry, head, foot, page_head, unfiltered);
-        return res; }
+    void validate (arguments& args);
     ::std::string rpt () const; };

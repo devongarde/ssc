@@ -672,6 +672,8 @@ PASS ../toast/living/jul12/mark.html
 
 PASS ../toast/living/jul12/me.html
 7 url_not_found
+57 css_syntax property
+57 css_syntax property
 65 url_not_found autoplay
 66 url_not_found autoplay
 88 url_not_found autoplay

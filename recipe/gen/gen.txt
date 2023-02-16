@@ -93,14 +93,9 @@ line, the "no-" switch always applies.
                             1   CSS 1.0
                             2.0 CSS 2.0
                             2.1 CSS 2.1
-                            2.2 draft CSS 2.2
-                            3   CSS 3 onwards. Which version of which
-                                component applies is determined by
-                                the date of publication of the HTML
-                                version.
-                        Currently, only CSS 1.0 is processed.
+                            2.2 CSS 2.2 (Feb 2022 draft)
 
---general.class         Report unrecognised classes.
+--general.class         Nitpick class values
 
 --general.classic       Report all classes used, not just those in
                         CSS files.

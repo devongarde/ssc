@@ -22,60 +22,55 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/statements.h"
 #include "utility/quote.h"
 
-void statements::parse (arguments& args, const ::std::string& s)
-{    vint_t lines;
-    ::std::string twas;
-    reset ();
-    ::std::size_t count = 0;
-    vstr_t ss (uq2 (s, UQ_C_CMT | UQ_DQ | UQ_SQ | UQ_BS | UQ_ROUND | UQ_SQUARE | UQ_BRACE | UQ_TRIM | UQ_16 | UQ_UNIFY | UQ_SEP, "@;", &lines, &ticks_));
-    if (args.sv_ && (args.v_ != html_default))
-    {   nitpick gnats;
-        gnats.set_context (0, "(*content)");
-        gnats.pick (nit_html, es_info, ec_css, "Presuming CSS intended for use with ", args.v_.name ());
-        ticks_.push_back (gnats); }
-    bool at = false, expect_semi = false;
-    for (auto sss : ss)
-    {   PRESUME (count < lines.size (), __FILE__, __LINE__); 
-        nitpick gnats;
-        if (sss == ";")
-            if (expect_semi)
-                expect_semi = false;
-            else
-            {   if (twas.length () >= DEFAULT_LINE_LENGTH / 2)
-                    twas += twas.substr (twas.length () - (DEFAULT_LINE_LENGTH / 2)) + " ...";
-                gnats.set_context (lines.at (count), twas);
-                gnats.pick (nit_css_syntax, es_comment, ec_css, "unexpected semicolon follows here");
-                ticks_.push_back (gnats); }
-        else
-        {   if (expect_semi)
-            {   gnats.set_context (lines.at (count), sss);
-                gnats.pick (nit_css_syntax, es_error, ec_css, "missing semicolon here");
-                ticks_.push_back (gnats); }
-            expect_semi = false;
-            twas = sss;
-            if (sss == "@") at = true;
-            else
-            {   if (at)
-                {   gnats.set_context (lines.at (count), sss);
-                    statements_.push_back (statement (gnats, args, sss));
-                    ticks_.push_back (gnats);
-                    at = false;
-                    expect_semi = true; }
-                else
-                {   v_np vgn;
-                    rules r;
-                    r.parse (vgn, args, sss, lines.at (count));
-                    rules_.push_back (r);
-                    for (auto gn : vgn) ticks_.push_back (gn); } } }
-        ++count; } }
+void statements::parse (arguments& args, const int start, const int finish)
+{   PRESUME (args.t_.at (0).t_ == ct_root, __FILE__, __LINE__);
+    int from = -1, at = -1;
+    const int last = (finish >= 0) ? finish : GSL_NARROW_CAST < int > (args.t_.size ());
+    int prev = -1;
 
-void statements::accumulate (nitpick& accumulator) const
-{   for (auto n : ticks_)
-        n.accumulate (accumulator);  }
+    for (int i = start; (i > 0) && (i < last); prev = i, i = next_token_at (args.t_, i, last))
+        switch (args.t_.at (i).t_)
+        {   case ct_at :
+                if (from > 0)
+                {   args.t_.at (i).nits_.pick (nit_css_syntax, es_error, ec_css, "unexpected ", tkn_rpt (args.t_.at (i)));
+                    rules_.emplace_back (args, from, prev);
+                    from = -1; }
+                at = i;
+                break;
+            case ct_semicolon :
+                if (at > 0)
+                {   statements_.emplace_back (args, at, prev);
+                    at = -1; }
+                else
+                {   args.t_.at (i).nits_.pick (nit_css_syntax, es_error, ec_css, "unexpected ", tkn_rpt (args.t_.at (i)));
+                    if (from > 0)
+                    {   rules_.emplace_back (args, from, prev);
+                        from = -1; } }
+                break;
+            case ct_curly_brac :
+            case ct_curly_ket :
+                if (at > 0)
+                {   statements_.emplace_back (args, at, i);
+                    at = -1; }
+                else if (from > 0)
+                {   rules_.emplace_back (args, from, i);
+                    from = -1; }
+                break;
+            case ct_whitespace :
+            case ct_comment :
+                break;
+            default :
+                if ((at < 0) && (from < 0)) from = i;
+                break; }
+    if (at > 0)
+    {   args.t_.at (last - 1).nits_.pick (nit_css_unfinished, es_error, ec_css, "incomplete");
+        rules_.emplace_back (args, from, last - 1); }
+    else if ((from > 0) && (args.t_.at (from).t_ != ct_eof))
+    {   args.t_.at (last - 1).nits_.pick (nit_css_unfinished, es_error, ec_css, "incomplete");
+        rules_.emplace_back (args, from, last - 1); } }
 
 void statements::accumulate (stats_t* s) const
-{   VERIFY_NOT_NULL (s, __FILE__, __LINE__);
-    for (auto r : rules_)
+{   for (auto r : rules_)
         r.accumulate (s);
     for (auto st : statements_)
         st.accumulate (s); } 
@@ -85,3 +80,9 @@ void statements::accumulate (stats_t* s) const
     for (auto r : rules_)
         res += r.rpt () + "\n";
     return res; }  
+
+void statements::validate (arguments& args)
+{   for (auto i : statements_)
+        i.validate (args);
+    for (auto i : rules_)
+        i.validate (args); }

@@ -24,18 +24,28 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/property_classes.h"
 
 template < class PROPERTY, class ... X > struct property_constructor : public property_constructor < X ... >
-{   static property_v_ptr make (nitpick& nits, const html_version& v, e_css_property p, const ::std::string& s)
-    {   if (p != PROPERTY :: whoami ()) return property_constructor < X... > :: make (nits, v, p, s);
+{   static property_v_ptr make (nitpick& nits, e_css_property p, const ::std::string& s, const css_token t)
+    {   if (p != PROPERTY :: whoami ()) return property_constructor < X... > :: make (nits, p, s, t);
         auto ptr = property_v_ptr (new PROPERTY ());
-        ptr -> set_value (nits, v, s);
+        ptr -> set_value (nits, s);
+        return ptr; } };
+
+template < class ... X > struct property_constructor < prop_text_align, X ... > : public property_constructor < X ... >
+{   static property_v_ptr make (nitpick& nits, e_css_property p, const ::std::string& s, const css_token t)
+    {   if (p != prop_text_align :: whoami ()) return property_constructor < X... > :: make (nits, p, s, t);
+        if ((context.html_ver ().is_css_2_0 ()) && (t == ct_string))
+        {   auto ptr = property_v_ptr (new prop_context ());
+            ptr -> set_value (nits, s);
+            return ptr; } 
+        auto ptr = property_v_ptr (new prop_text_align ());
+        ptr -> set_value (nits, s);
         return ptr; } };
 
 template < > struct property_constructor < prop_unknown >
-{   static property_v_ptr make (nitpick& nits, const html_version& v, e_css_property p, const ::std::string& s)
+{   static property_v_ptr make (nitpick& nits, e_css_property p, const ::std::string& s, const css_token t)
     {   auto ptr = property_v_ptr (new prop_unknown ());
-        ptr -> set_value (nits, v, s);
+        ptr -> set_value (nits, s);
         return ptr; } };
 
-property_v_ptr make_property_v_ptr (nitpick& nits, const html_version& v, e_css_property p, const ::std::string& s)
-{   PRESUME (! s.empty (), __FILE__, __LINE__);
-    return property_constructor < PROPERTIES > :: make (nits, v, p, s); }
+property_v_ptr make_property_v_ptr (nitpick& nits, e_css_property p, const ::std::string& s, const css_token t)
+{   return property_constructor < PROPERTIES > :: make (nits, p, s, t); }

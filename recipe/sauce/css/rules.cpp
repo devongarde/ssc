@@ -22,23 +22,28 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/rules.h"
 #include "utility/quote.h"
 
-void rules::parse (v_np& ticks, arguments& args, const ::std::string& s, const int line)
-{   vint_t lines;
-    vstr_t ss (uq2 (s, UQ_C_CMT | UQ_DQ | UQ_SQ | UQ_BS | UQ_ROUND | UQ_SQUARE | UQ_BRACE | UQ_TRIM | UQ_16 | UQ_UNIFY, "}", &lines, &ticks));
-    unsigned count = 0;
-    for (auto sss : ss)
-    {   PRESUME (count < lines.size (), __FILE__, __LINE__);
-        rule r;
-        r.parse (ticks, lines.at (count++) + line, args, sss);
-        rules_.push_back (r); } }
+void rules::parse (arguments& args, const int from, const int to)
+{   PRESUME ((to < 0) || (from <= to), __FILE__, __LINE__);
+    const int len = GSL_NARROW_CAST < int > (args.t_.size ());
+    PRESUME (from < len, __FILE__, __LINE__);
+    PRESUME ((to < 0) || (to < len), __FILE__, __LINE__);
+    int i = first_non_whitespace (args.t_, from, to);
+    while (i >= 0)
+    {   const int brac = token_find (args.t_, ct_curly_brac, i, to);
+        rule_.emplace_back (args, i, brac);
+        if (brac < 0) break;
+        i = next_non_whitespace (args.t_, brac, to); } }
 
 void rules::accumulate (stats_t* s) const
-{   VERIFY_NOT_NULL (s, __FILE__, __LINE__);
-    for (auto r : rules_)
+{   for (auto r : rule_)
         r.accumulate (s); }
 
 ::std::string rules::rpt () const
 {   ::std::string res;
-    for (auto r : rules_)
+    for (auto r : rule_)
         res += r.rpt () + "\n";
     return res; }  
+
+void rules::validate (arguments& args)
+{   for (auto i : rule_)
+        i.validate (args); }

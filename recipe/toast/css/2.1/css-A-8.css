@@ -1,0 +1,9 @@
+﻿H1 { azimuth: 30deg }
+TD.a { azimuth: far-right } /* 60deg */
+#12 { azimuth: behind far-right } /* 120deg */
+P.comment { azimuth: behind } /* 180deg */
+
+H1 { elevation: above }
+TR.a { elevation: 60deg }
+TR.b { elevation: 30deg }
+TR.c { elevation: level }

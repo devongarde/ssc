@@ -31,7 +31,7 @@ template < > struct type_master < t_cache > : public tidy_string < t_cache >
     {   tidy_string < t_cache > :: set_value (nits, v, ss);
         ::std::string s = tidy_string < t_cache > :: get_string ();
         if (s.empty ())
-        {   nits.pick (nit_empty, es_error, ec_type, "value required");
+        {   nits.pick (nit_empty, es_error, ec_type, "cache value required");
             tidy_string < t_cache > :: status (s_invalid); }
         else if (good ())
         {   const ::std::string::size_type pos = s.find ('=');
@@ -192,7 +192,7 @@ template < > struct type_master < t_linkarg > : public tidy_string < t_linkarg >
     {   tidy_string < t_linkarg > :: set_value (nits, v, ss);
         ::std::string s = tidy_string < t_linkarg > :: get_string ();
         if (s.empty ())
-        {   nits.pick (nit_empty, es_error, ec_type, "value required");
+        {   nits.pick (nit_empty, es_error, ec_type, "value required (", type_name (t_linkarg), ")");
             tidy_string < t_linkarg > :: status (s_invalid); }
         else if (good ())
             if (! linkarg_set_value (nits, v, s))

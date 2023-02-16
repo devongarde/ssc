@@ -33,6 +33,8 @@ P { width: "auto";
     font-family: "serif";
     background: "red"; }
 
+{ causta: "}" + ({7} * '\'') }
+
 H1, H2 {color: green }
 H3, H4 & H5 {color: red }
 H6 {color: black }
@@ -73,3 +75,10 @@ P { color: blue; font-variant: small-caps }
 EM EM { font-style: normal }
 
 /* this is not a comment */
+
+ p {
+ color: green;
+ font-family: 'Courier New Times
+ color: red;
+ color: green;
+ }

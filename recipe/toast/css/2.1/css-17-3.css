@@ -1,0 +1,5 @@
+﻿COL { border-style: none solid }
+TABLE { border-style: hidden }
+COL.totals { background: blue }
+TABLE { table-layout: fixed }
+COL.totals { width: 5em }

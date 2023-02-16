@@ -1,0 +1,14 @@
+﻿p:first-line { text-transform: uppercase }
+
+p { line-height: 1.1 }
+p:first-letter { font-size: 3em; font-weight: normal }
+span { font-weight: bold }
+
+p { color: red; font-size: 12pt }
+p:first-letter { color: green; font-size: 200% }
+p:first-line { color: blue }
+
+h1:before {content: counter(chapno, upper-roman) ". "}
+
+p.special:before {content: "Special! "}
+p.special:first-letter {color: #ffd800}

@@ -91,14 +91,14 @@ bool check_identifier_spelling (nitpick& nits, const html_version& , const ::std
                 {   ref += ", page ";
                     ref += i -> second.ref_; }
                 if (i -> second.dialect_)
-                    nits.pick (nit_dialect, ed_dict, ref, es_comment, ec_incorrectness, quote (i -> second.spell_), " is unrecognised, and dialect: is standard English required?");
+                    nits.pick (nit_dialect, ed_dict, ref, es_info, ec_incorrectness, quote (i -> second.spell_), ", which is unrecognised, is US dialect: is standard English required?");
                 else
-                    nits.pick (nit_correct_spelling, ed_dict, ref, es_info, ec_incorrectness, quote (i -> second.spell_), " is standard English, not US English");
+                    nits.pick (nit_correct_spelling, ed_dict, ref, es_info, ec_incorrectness, quote (i -> second.spell_), " is standard English, not US dialect");
                 return true; }
         if (i -> second.dialect_)
-            nits.pick (nit_dialect, es_comment, ec_incorrectness, quote (i -> second.spell_), " is unrecognised, and dialect: is standard English required?");
+            nits.pick (nit_dialect, es_info, ec_incorrectness, quote (i -> second.spell_), ", which is unrecognised, is US dialect: is standard English required?");
         else
-            nits.pick (nit_correct_spelling, es_info, ec_incorrectness, quote (i -> second.spell_), " is standard English, not US English");
+            nits.pick (nit_correct_spelling, es_info, ec_incorrectness, quote (i -> second.spell_), " is standard English, not US dialect");
         return true; }
 #ifdef _MSC_VER
 #pragma warning (pop)
@@ -121,13 +121,13 @@ bool check_identifier_spelling (nitpick& nits, const html_version& , const ::std
                 {   ref += ", page ";
                     ref += GSL_AT (word, x).ref_; }
                 if (GSL_AT (word, x).dialect_)
-                    nits.pick (nit_dialect, ed_dict, ref, es_comment, ec_incorrectness, sss, " contains ", quote (GSL_AT (word, x).spell_), ", which is unrecognised, and dialect: is standard English required?");
+                    nits.pick (nit_dialect, ed_dict, ref, es_info, ec_incorrectness, quote (sss), " is unrecognised. It contains ", quote (GSL_AT (word, x).spell_), " which is US dialect. Is standard English required?");
                 else
-                    nits.pick (nit_correct_spelling, ed_dict, ref, es_info, ec_incorrectness, sss, " contains ", quote (GSL_AT (word, x).spell_), ", which is standard English, not US English"); }
+                    nits.pick (nit_correct_spelling, ed_dict, ref, es_info, ec_incorrectness, quote (sss), " is unrecognised. It contains ", quote (GSL_AT (word, x).spell_), ", which is standard English. Is US dialect required?"); }
             else if (GSL_AT (word, x).dialect_)
-                nits.pick (nit_dialect, es_comment, ec_incorrectness, sss, " contains ", quote (GSL_AT (word, x).spell_), ", which is unrecognised, and dialect: is standard English required?");
+                nits.pick (nit_dialect, es_info, ec_incorrectness, quote (sss), " is unrecognised. It contains ", quote (GSL_AT (word, x).spell_), ", which is US dialect. Is standard English required?");
             else
-                nits.pick (nit_correct_spelling, es_info, ec_incorrectness, sss, " contains ", quote (GSL_AT (word, x).spell_), ", which is standard English, not US English");
+                nits.pick (nit_correct_spelling, es_info, ec_incorrectness, quote (sss), " is unrecognised. It contains ", quote (GSL_AT (word, x).spell_), ", which is standard English. Is US dialect required?");
             return true; }
     return false; }
 

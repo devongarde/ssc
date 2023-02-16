@@ -12,13 +12,12 @@ PASS ../toast/shadow/dedu/b/index.html
 PASS ../toast/shadow/dedu/c/index.html
 2 naughty_lang
 
+PASS ../toast/shadow/dedu/test.css
+4 whatwg_class
+4 whatwg_class
+
 shadow
 0 shadow duplicate duplicate duplicate duplicate
 
 update
 0 shadow_copy shadow_copy shadow_copy shadow_copy
-
-CLASS
-doris 4
-info 4
-warning 4

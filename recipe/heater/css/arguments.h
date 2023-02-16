@@ -20,22 +20,32 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "css/distilled.h"
+#include "css/css_parse.h"
 
 class page;
+class selectors;
+class statement;
+class css_group;
+class properties;
 
 struct arguments
-{   html_version v_;
+{   css_group& g_;
+    html_version v_;
     namespaces_ptr ns_;
-    page* p_ = nullptr;
     bool sv_ = true;
     bool snippet_ = false;
     bool had_rule_ = false;
     ::std::string abs_;
     dst_ptr dst_;
-    arguments (const html_version& v, const namespaces_ptr& namespaces, page* p)
-        : v_ (v), ns_ (namespaces), p_ (p) { }
-    arguments (const html_version& v, const namespaces_ptr& namespaces, page* p, bool sv, bool snippet)
-        : v_ (v), ns_ (namespaces), p_ (p), sv_ (sv), snippet_ (snippet) { }
-    arguments (const html_version& v, const namespaces_ptr& namespaces, page* p, bool sv, bool snippet, const ::std::string& abs, dst_ptr dst)
-        : v_ (v), ns_ (namespaces), p_ (p), sv_ (sv), snippet_ (snippet), abs_ (abs), dst_ (dst)
-    { } };
+    vtt_t t_;
+    selectors* ss_ = nullptr;
+    statement* st_ = nullptr;
+    properties* ps_ = nullptr;
+    arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g)
+        : g_ (g), v_ (v), ns_ (namespaces) { }
+    arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet)
+        : g_ (g), v_ (v), ns_ (namespaces), sv_ (sv), snippet_ (snippet) { }
+    arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet, const ::std::string& abs, dst_ptr dst)
+        : g_ (g), v_ (v), ns_ (namespaces), sv_ (sv), snippet_ (snippet), abs_ (abs), dst_ (dst) { }
+    void check_flags (nitpick& nits, const flags_t f, const ::std::string& s) const;
+    void validate (nitpick& nits, const flags_t f, const ::std::string& p, const ::std::string& v) const; };

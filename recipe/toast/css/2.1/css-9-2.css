@@ -1,0 +1,8 @@
+﻿/* Note: HTML UAs may not respect these rules */
+BODY { display: inline }
+P { display: block }
+
+P { display: block }
+EM { display: inline }
+LI { display: list-item } 
+IMG { display: none } /* Don’t display images */

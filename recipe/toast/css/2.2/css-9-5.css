@@ -1,0 +1,9 @@
+﻿p { width: 10em; border: solid aqua; }
+span { float: left; width: 5em; height: 5em; border: solid blue; }
+
+IMG.icon { 
+ float: left;
+ margin-left: 0;
+}
+
+P { clear: left }

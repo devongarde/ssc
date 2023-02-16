@@ -42,22 +42,22 @@ W3C Recommendation
 
 @font-face {
  font-family: Excelsior;
- src: local("Excelsior Roman"), url("http://site/er") format("intellifont");
+ src: local("Excelsior Roman"), url("http://example.com/er") format("intellifont");
  unicode-range: U+??; /* Latin-1 */
 }
 @font-face {
  font-family: Excelsior;
- src: local("Excelsior EastA Roman"), url("http://site/ear") format("intellifont");
+ src: local("Excelsior EastA Roman"), url("http://example.com/ear") format("intellifont");
  unicode-range: U+100-220; /* Latin Extended A and B */
 }
 @font-face {
  font-family: Excelsior;
- src: local("Excelsior Cyrillic Upright"), url("http://site/ecr") format("intellifont");
+ src: local("Excelsior Cyrillic Upright"), url("http://example.com/ecr") format("intellifont");
  unicode-range: U+4??; /* Cyrillic */
 }
 @font-face {
  font-family: Excelsior;
- src: url("http://site/excels") format("truedoc");
+ src: url("http://example.com/excels") format("truedoc");
  unicode-range: U+??,U+100-220,U+4??;
 }
 
@@ -66,7 +66,7 @@ W3C Recommendation
  local("Times New Roman"),
  local("New York"),
  local("Utopia"),
- url("http://somewhere/free/font");
+ url("http://example.net/free/font");
  font-family: serif;
  font-weight: 100, 200, 300, 400, 500;
  font-style: normal;
