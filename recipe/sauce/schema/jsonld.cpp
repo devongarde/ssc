@@ -23,8 +23,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #ifndef NO_JSONIC
 #include "main/context.h"
 #include "symbol/nstr.h"
-#include "type/type_enum.h"
-#include "type/type_rdf.h"
 #include "type/type.h"
 #include "microdata/microdata_itemtype.h"
 #include "microdata/microdata_itemprop.h"
@@ -32,7 +30,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "parser/parse_abb.h"
 #include "url/url.h"
 #include "url/url_sanitise.h"
-#include "type/type_jsonic.h"
 #include "schema/jsonld.h"
 #include "schema/schema_type.h"
 #include "schema/schema_property.h"

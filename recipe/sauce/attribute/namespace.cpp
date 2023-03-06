@@ -20,9 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "symbol/nstr.h"
-#include "type/type_enum.h"
-#include "type/type_case.h"
-#include "type/type_xmlns.h"
+#include "type/type.h"
 #include "attribute/namespace.h"
 
 ns_id examine_namespace (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, ::std::string& s, ::std::string& n)

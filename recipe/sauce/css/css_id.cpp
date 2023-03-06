@@ -33,3 +33,6 @@ void css_id::accumulate (stats_t* s, const e_element e) const
 {   VERIFY_NOT_NULL (s, __FILE__, __LINE__);
     s -> dcl_id (s_);
     s -> dcl_element_id (elem::name (e) + "#" + s_); }
+
+void css_id::shadow (::std::stringstream& ss, arguments& )
+{   if (! s_.empty ()) ss << "#" << s_;   }

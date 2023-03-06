@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "main/standard.h"
-#include "type/type_enum.h"
+#include "type/type.h"
 #include "css/arguments.h"
 #include "css/properties.h"
 #include "utility/quote.h"
@@ -39,9 +39,9 @@ void properties::parse (arguments& args, const int from, const int to)
         prev = i; }
     if (b != -1) prop_.emplace_back (args, b, to); }
 
-void properties::accumulate (stats_t* s) const
+void properties::accumulate (stats_t* s, const element_bitset& e) const
 {   for (auto p : prop_)
-        p.accumulate (s); }
+        p.accumulate (s, e); }
 
 ::std::string properties::rpt () const
 {   ::std::string res ("{ ");
@@ -55,3 +55,6 @@ void properties::validate (arguments& args)
 {   fiddlesticks < properties > f (&args.ps_, this);
     for (auto i : prop_)
         i.validate (args); }
+
+void properties::shadow (::std::stringstream& ss, arguments& )
+{   ss << rpt (); }

@@ -30,7 +30,7 @@ PASS ../toast/RDFa/lrdw/lrdw.html
 1451 not_schema_property bad_property
 1553 not_schema_property bad_property
 1601 not_schema_property bad_property
-1848 invalid_ipv4
+1848 invalid_ipv4 rel_requires_href chocolate_teapot
 1851 invalid_ipv4
 1924 no_such_folder url_not_found
 2017 not_schema_property bad_property not_schema_property bad_property
@@ -43,7 +43,7 @@ PASS ../toast/RDFa/lrdw/lrdw.html
 2164 schema_domain
 2200 contradictory_expansion
 2314 no_such_folder url_not_found
-3572 invalid_ipv4
+3572 invalid_ipv4 rel_requires_href chocolate_teapot
 3611 schema_domain
 3779 no_such_folder url_not_found
 3803 no_such_folder url_not_found
@@ -85,9 +85,9 @@ PASS ../toast/RDFa/lrdw/lrdw.html
 5380 rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine svg_version
 5396 immeasurable
 5397 immeasurable
-5870 invalid_ipv4
+5870 invalid_ipv4 rel_requires_href chocolate_teapot
 5985 not_schema_property bad_property
-6068 invalid_ipv4
+6068 invalid_ipv4 rel_requires_href chocolate_teapot
 6085 schema_domain
 6087 schema_domain
 6089 schema_domain

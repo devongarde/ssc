@@ -27,4 +27,5 @@ struct css_class
     explicit css_class (arguments& args, const int i, const ::std::string& s);
     void accumulate (stats_t* s, const e_element e) const;
     void validate (arguments& ) const { }
+    void shadow (::std::stringstream& ss, arguments& args);
     ::std::string rpt () const { return ::std::string (".") + s_; } };

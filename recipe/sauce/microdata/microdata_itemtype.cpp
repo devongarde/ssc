@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "microdata/microdata_itemtype.h"
 #include "schema/schema_type.h"
 #include "microformat/prop.h"
-#include "type/type_enum_vec.h"
+#include "type/type.h"
 
 itemtype_index make_itemtype_index (const e_schema_type p)
 {   PRESUME (p <= sty_illegal, __FILE__, __LINE__);

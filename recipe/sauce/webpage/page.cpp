@@ -46,7 +46,8 @@ void page::init (const ::std::string& name, ::std::string& content, const filein
     if (is_css (name))
     {   dot_css_ = true;
         if (context.load_css () && (context.css_version () >= css_1))
-            css_.parse_file (nits_, namespaces_ptr (), url (nits (), context.html_ver (), get_site_path ()), true);
+        {   css_.parse_file (nits_, namespaces_ptr (), url (nits (), context.html_ver (), get_site_path ()), true);
+            stats_.mark (context.html_ver ()); }
         stats_.mark_file (GSL_NARROW_CAST < unsigned > (content.size ())); }
     else parse (content); }
 
@@ -155,7 +156,8 @@ void page::examine ()
                     extend_corpus (nits_, title_, get_site_path (), corpus_, author_, keywords_, description_);
                 if (context.md_export ()) md_export_.write (nits_, get_export_path ()); }
             if (! jsonld_.empty ()) parse_json_ld (nits_, version (), jsonld_);
-            ids_.cover_arse (); }
+            ids_.cover_arse ();
+            document_ -> accumulate (&stats_); }
         catch (...)
         {   cleanup ();
             throw; } } }
@@ -189,7 +191,8 @@ void page::itemscope (const itemscope_ptr itemscope)
 
 ::std::string page::report ()
 {   ::std::ostringstream res;
-    if (document_ != nullptr) res << document_ -> report ();
+    if (document_ != nullptr)
+        res << document_ -> report ();
     nits_.accumulate (&stats_);
     css ().accumulate (&stats_);
     {   lox curly (lox_stats);
@@ -259,7 +262,8 @@ void page::shadow (nitpick& nits, const ::boost::filesystem::path& s)
         if (f.fail ())
             nits.pick (nit_cannot_create_file, es_catastrophic, ec_shadow, "cannot create ", s.string ());
         else
-        {   if (document_ != nullptr) document_ -> shadow (ss, version ());
+        {   PRESUME (! dot_css_, __FILE__, __LINE__);
+            if (document_ != nullptr) document_ -> shadow (ss, version ());
             f << ss.str ();
             f.close ();
 #ifndef NO_PERMS

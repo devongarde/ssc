@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "microdata/microdata_itemid.h"
 #include "element/element.h"
 #include "utility/quote.h"
+#include "webpage/page.h"
 
 struct itemid
 {   ::std::string path_;
@@ -66,4 +67,4 @@ bool empty_itemid ()
 
 bool invalid_itemid (nitpick& nits, const html_version& v, const ::std::string& id, const element* const e)
 {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
-    return ! note_itemid (nits, v, id, e -> name (), e -> line ()); }
+    return ! note_itemid (nits, v, id, e -> get_page ().get_site_path (), e -> line ()); }

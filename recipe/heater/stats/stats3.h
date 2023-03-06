@@ -34,17 +34,21 @@ private:
     counter_t count_;
 public:
     typedef typename counter_t :: const_iterator cit;
-    stats3 ()
-    {   count_.resize (static_cast <::std::size_t> (max_enum + 1), base_t ()); }
     void swap (stats3& s3) noexcept
     {   count_.swap (s3.count_); }
-    const base_t& at (const ENUM& e) const { return count_.at (e); }
+    const base_t& at (const ENUM& e) const
+    {   if (count_.size () == 0)
+        {   static base_t b;
+            return b; }
+        return count_.at (e); }
     void mark (const ENUM& e, const VALUE& k, const unsigned u = 1)
-    {   if (e <= max_enum) count_.at (e).mark (k, u);
+    {   if (count_.size () == 0)
+            count_.resize (static_cast <::std::size_t> (max_enum + 1), base_t ());
+        if (e <= max_enum) count_.at (e).mark (k, u);
         else count_.at (undefined_enum).mark (k, u); }
     void accumulate (stats3 < VALUE, ENUM, max_enum, undefined_enum >& o) const
-    {   PRESUME (o.count_.size () >= count_.size (), __FILE__, __LINE__);
-        for (unsigned u = 0; u < count_.size (); ++u)
+    {   if (o.count_.size () == 0) o.count_ = count_;
+        else for (unsigned u = 0; u < count_.size (); ++u)
             count_.at (u).accumulate (o.count_.at (u)); } };
 
 typedef stats3 < ::std::string, e_metaname, mn_illegal, mn_context > meta_value_stats;

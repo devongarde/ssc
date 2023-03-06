@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "utility/common.h"
-#include "type/enum.h"
+#include "main/enum.h"
 #include "parser/parse_abb.h"
 #include "rdf/rdfa_type.h"
 #include "rdf/rdfa_prop.h"

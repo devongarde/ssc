@@ -1208,8 +1208,8 @@ PASS ../toast/living/jan22/links-noopener.html
 12 url_not_found
 
 PASS ../toast/living/jan22/links-noreferrer.html
-10 missing_close url_not_found
-10 missing_close url_not_found wrong_parent wrong_parent interactive
+10 missing_close url_not_found rel_requires_href chocolate_teapot
+10 missing_close url_not_found wrong_parent wrong_parent rel_requires_href chocolate_teapot
 10 wrong_parent wrong_parent interactive
 12 inserted_missing_closure inserted_missing_closure
 
@@ -1289,6 +1289,7 @@ PASS ../toast/living/jan22/menu.html
 9 url_not_found
 
 PASS ../toast/living/jan22/meta-2.html
+6 unrecognised_value immeasurable
 8 refresh_zero url_not_found
 
 PASS ../toast/living/jan22/meter.html

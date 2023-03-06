@@ -35,7 +35,8 @@ public:
     {   parse (args, from, to); }
     void parse (arguments& args, const int from, const int to);
     void validate (arguments& args);
-    void accumulate (stats_t* s) const;
+    void accumulate (stats_t* s, const element_bitset& e) const;
+    void shadow (::std::stringstream& ss, arguments& args);
     ::std::string rpt () const; };
 
 typedef ::std::vector < property > vpr_t;

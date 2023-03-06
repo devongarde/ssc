@@ -28,7 +28,7 @@
 ../toast/HTML/tags/tags.spec
 ../toast/json-ld/as/jsonld.spec
 ../toast/json-ld/schemaorg/jsonld.spec
-../toast/link/example/link.spec
+../toast/link/external/link.spec
 ../toast/link/link/link.spec
 ../toast/living/jul07/living.spec
 ../toast/living/jan08/living.spec
@@ -63,12 +63,15 @@
 ../toast/living/oct21/living.spec
 ../toast/living/jan22/living.spec
 ../toast/living/apr22/living.spec
+../toast/living/jul22/living.spec
 ../toast/living/oct22/living.spec
 ../toast/living/jan23/living.spec
 ../toast/math/1/math.spec
 ../toast/math/2/math.spec
 ../toast/math/3/math.spec
-../toast/math/4/math.spec
+../toast/math/4-20/math.spec
+../toast/math/4-22/math.spec
+../toast/math/4-core/math.spec
 ../toast/microdata/12/schema.spec
 ../toast/microdata/addendum/add.spec
 ../toast/microdata/basic/basic.spec
@@ -120,6 +123,7 @@
 ../toast/shadow/copy/copy.spec
 ../toast/shadow/copydiff/copydiff.spec
 ../toast/shadow/copyover/copyover.spec
+../toast/shadow/css/css.spec
 ../toast/shadow/dedu/dedu.spec
 ../toast/shadow/dedudiff/dedudiff.spec
 ../toast/shadow/deduover/deduover.spec

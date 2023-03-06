@@ -77,6 +77,8 @@ void statements::accumulate (stats_t* s) const
 
 ::std::string statements::rpt () const
 {   ::std::string res;
+    for (auto i : statements_)
+        res += i.rpt () + "\n";
     for (auto r : rules_)
         res += r.rpt () + "\n";
     return res; }  
@@ -86,3 +88,9 @@ void statements::validate (arguments& args)
         i.validate (args);
     for (auto i : rules_)
         i.validate (args); }
+
+void statements::shadow (::std::stringstream& ss, arguments& args)
+{   for (auto i : statements_)
+        i.shadow (ss, args);
+    for (auto i : rules_)
+        i.shadow (ss, args); }

@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/page.h"
 #include "schema/schema_type.h"
 #include "schema/schema_property.h"
-#include "type/type_master.h"
+#include "type/type.h"
 #include "element/element.h"
 
 typedef enum { pm_scope, pm_string } prop_member;

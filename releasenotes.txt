@@ -3,6 +3,10 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.14
+- generate .dSYMs under macos
+- underlying work
+
 0.1.13
 - Living Standad for January 2023
 - CSS 2.0 verification

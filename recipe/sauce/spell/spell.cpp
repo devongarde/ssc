@@ -134,7 +134,7 @@ bool check_identifier_spelling (nitpick& nits, const html_version& , const ::std
 mssfl_uptr mssfl;
 
 #ifndef NOSPELL
-#include "type/type_master.h"
+#include "base/type_master.h"
 #include "utility/filesystem.h"
 #include "parser/text.h"
 #include "icu/lingo.h"

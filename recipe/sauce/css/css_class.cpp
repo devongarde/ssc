@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/arguments.h"
 #include "css/css_class.h"
 #include "stats/stats.h"
-#include "type/type_class.h"
+#include "type/type.h"
 
 css_class::css_class (arguments& args, const int i, const ::std::string& s)
     : s_ (s)
@@ -42,3 +42,6 @@ void css_class::accumulate (stats_t* s, const e_element e) const
 {   VERIFY_NOT_NULL (s, __FILE__, __LINE__);
     s -> dcl_class (s_);
     s -> dcl_element_class (elem::name (e) + "." + s_); }
+
+void css_class::shadow (::std::stringstream& ss, arguments& )
+{   if (! s_.empty ()) ss << "." << s_;   }

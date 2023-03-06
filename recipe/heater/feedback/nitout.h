@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
-#include "type/enum.h"
+#include "main/enum.h"
 
 typedef ssc_map < e_nit_macro, ::std::string > mmac_t;
 

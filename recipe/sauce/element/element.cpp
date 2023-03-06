@@ -273,3 +273,10 @@ void element::add_glyph (const ::std::string& s)
 
 ns_id element::verify_namespace (::std::string& s, ::std::string n)
 {   return examine_namespace (nits (), node ().version (), node_.namespaces (), s, n); }
+
+void element::accumulate (stats_t* st) const
+{   a_.accumulate (st, tag ());
+    if (has_child ())
+        for (element* c = child_; c != nullptr; c = c -> sibling_)
+        {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
+            c -> accumulate (st); } }

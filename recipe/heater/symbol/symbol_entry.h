@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "utility/common.h"
-#include "type/sz.h"
+#include "base/sz.h"
 
 template < class LC > struct enlc
 {   static ::std::string to (const ::std::string& from) { return ::boost::to_lower_copy (from); } };

@@ -38,4 +38,5 @@ public:
     bool bef_aft () const;
     void validate (arguments& args);
     void accumulate (stats_t* s) const;
+    void shadow (::std::stringstream& ss, arguments& args);
     ::std::string rpt () const; };

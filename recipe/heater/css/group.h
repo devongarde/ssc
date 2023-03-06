@@ -51,6 +51,7 @@ public:
     void validate ();
     void accumulate (nitpick& nits) const;
     void accumulate (stats_t* s) const;
+    void shadow (::std::stringstream& ss, arguments& args);
     const page& get_page () const { return page_; }
     page& get_page () { return page_; }
     const sstr_t& page_name () const { return page_name_; }

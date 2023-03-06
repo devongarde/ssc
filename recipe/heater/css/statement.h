@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
-#include "type/type.h"
+//#include "type/type.h"
 #include "css/properties.h"
 #include "css/rules.h"
 
@@ -40,6 +40,7 @@ public:
     void parse (arguments& args, const int from, const int to);
     void validate (arguments& args);
     void accumulate (stats_t* s) const;
+    void shadow (::std::stringstream& ss, arguments& args);
     ::std::string rpt () const; };
 
 typedef ::std::vector < statement > vst_t;

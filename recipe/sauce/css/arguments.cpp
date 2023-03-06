@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "main/standard.h"
-#include "type/type_enum.h"
+#include "type/type.h"
 #include "css/flags.h"
 #include "css/arguments.h"
 #include "css/selectors.h"

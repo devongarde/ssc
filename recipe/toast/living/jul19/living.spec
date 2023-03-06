@@ -796,8 +796,8 @@ PASS ../toast/living/jul19/links-noopener.html
 12 url_not_found
 
 PASS ../toast/living/jul19/links-noreferrer.html
-10 missing_close url_not_found
-11 missing_close url_not_found wrong_parent wrong_parent interactive
+10 missing_close url_not_found rel_requires_href chocolate_teapot
+11 missing_close url_not_found wrong_parent wrong_parent rel_requires_href chocolate_teapot
 13 inserted_missing_closure inserted_missing_closure
 
 PASS ../toast/living/jul19/links-tag2.html

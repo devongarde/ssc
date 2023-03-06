@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "feedback/nitpick.h"
-#include "type/enum.h"
+#include "main/enum.h"
 #include "element/elem.h"
 #include "css/decoration.h"
 #include "css/arguments.h"
@@ -40,6 +40,7 @@ public:
     const element_bitset get_elements () const { return element_bitset (e_.get ()); }
     void validate (arguments& args);
     void accumulate (stats_t* s) const;
+    void shadow (::std::stringstream& ss, arguments& args);
     ::std::string rpt () const; };
 
 typedef ::std::vector < css_element > vcel_t;

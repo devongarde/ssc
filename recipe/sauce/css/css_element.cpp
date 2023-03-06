@@ -21,8 +21,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "css/css_element.h"
 #include "css/arguments.h"
-#include "type/enum.h"
-#include "type/type_enum.h"
+#include "main/enum.h"
+#include "type/type.h"
 #include "element/state.h"
 
 #define SEL_SEPS ":.#["
@@ -153,3 +153,7 @@ void css_element::accumulate (stats_t* s) const
 void css_element::validate (arguments& args)
 {   for (auto i : decore_)
         i.validate (args); }
+
+void css_element::shadow (::std::stringstream& ss, arguments& args)
+{   for (auto i : decore_)
+        i.shadow (ss, args); }

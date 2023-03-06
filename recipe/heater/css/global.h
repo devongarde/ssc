@@ -32,6 +32,7 @@ public:
     void release (dst_ptr cp);
     dst_ptr get (const ::std::string& s) const;
     css_ptr get_cp (const ::std::string& s) const;
+    void accumulate (stats_t* s) const;
     void report_usage (::std::ostringstream& ss) const;
     void report_stragglers (::std::ostringstream& ss, const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot, const e_nit_section& page_head = ns_none, const bool unfiltered = false) const; };
 

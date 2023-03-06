@@ -98,6 +98,7 @@ copy $(TargetPath) $(ProjectDir)..\..</Command>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateMapFile>true</GenerateMapFile>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..
@@ -123,8 +124,9 @@ $(TargetPath) -d -i $(ProjectDir)..\toast\ssc-test\output.txt $(ProjectDir)..\to
     <None Include="..\toast\ssc-test\all.lst" />
     <None Include="..\toast\ssc-test\input.spec" />
     <None Include="..\toast\ssc-test\simple.lst" />
-    <None Include="..\toast\ssc-test\ssc.lst" />
+    <None Include="..\toast\ssc-test\nix.lst" />
     <None Include="..\toast\ssc-test\test.nit" />
+    <None Include="..\toast\ssc-test\win.lst" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource1.h" />

@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
-#define VERSION_RELEASE 13
-#define VERSION_STRING "0.1.13"
+#define VERSION_RELEASE 14
+#define VERSION_STRING "0.1.14"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -166,7 +166,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #ifdef FUDDYDUDDY
 #define BOOVAR 2
-#define ORDERED
 #define FUDDY "f"
 #else // FUDDYDUDDY
 #define FUDDY

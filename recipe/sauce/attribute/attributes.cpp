@@ -152,6 +152,11 @@ void attributes :: shadow (::std::stringstream& ss, const html_version& v, eleme
         if (a.get () != nullptr)
             a -> shadow (ss, v, e); }
 
+void attributes :: accumulate (stats_t* st, const e_element e) const
+{   for (auto a : aar_)
+        if (a.get () != nullptr)
+            a -> accumulate (st, e); }
+
 ::std::string attributes :: report () const
 {   if (! context.tell (es_debug)) return ::std::string ();
     if (box_.tag () == elem_undefined)

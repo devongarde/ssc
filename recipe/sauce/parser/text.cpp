@@ -267,7 +267,7 @@ bool is_naughty_number (nitpick& nits, const ::std::string& s, const int n)
 
 ::std::string get_character_code (const ::std::string& text)
 {  VERIFY_NOT_NULL (tb.get (), __FILE__, __LINE__);
-     auto ci = tb -> symbol_code_.find (text);
+    auto ci = tb -> symbol_code_.find (text);
     if (ci != tb -> symbol_code_.cend ()) return ci -> second;
     return ::std::string (); }
 

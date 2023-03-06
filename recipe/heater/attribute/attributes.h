@@ -122,4 +122,5 @@ public:
     void shadow (::std::stringstream& ss, const html_version& v, element* e);
     element& box () noexcept { return box_; }
     const element& box () const noexcept { return box_; }
+    void accumulate (stats_t* st, const e_element e) const;
     ::std::string report () const; };

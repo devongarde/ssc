@@ -23,8 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "parser/parse_attributes.h"
 #include "parser/parse_element.h"
 #include "utility/quote.h"
-#include "type/type_rdf.h"
-#include "type/type_master.h"
+#include "type/type.h"
 
 attribute_node::attribute_node (nitpick& nits, const html_version& v, attributes_node* box, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end,
                                 const ::std::string::const_iterator value_start, const ::std::string::const_iterator value_end, const bool normal)

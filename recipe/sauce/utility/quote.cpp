@@ -119,6 +119,14 @@ vstr_t unquote (const ::std::string& str, const ::std::size_t len, const ::std::
     else if (s.length () > max) res += " ...";
     return res; }
 
+::std::string maybe_enquote (const ::std::string& s, const ::std::string& qs)
+{   PRESUME (! qs.empty (), __FILE__, __LINE__);
+    if (s.empty ()) return enquote (s, ' ', qs);
+    for (auto q : qs)
+        if (s.find (q) != ::std::string::npos)
+            return enquote (s, ' ', ::std::string (1, q));
+    return s; }
+
 void pushpush (vstr_t& res, vint_t* lines, const ::std::string& s, const int line)
 {   if (! s.empty ())
     {   res.push_back (s);
@@ -292,6 +300,7 @@ vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep,
                     break; } }
         switch (*i)
         {   case '\'' :
+                if (state == uq_dq) break;
                 consider = false;
                 if (state == uq_sq)
                 {   if ((flags & UQ_REPEATQ) == UQ_REPEATQ) state = uq_repsq;
@@ -311,6 +320,7 @@ vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep,
                     state = uq_sq; }
                 break;
             case '"' :
+                if (state == uq_sq) break;
                 consider = false;
                 if (state == uq_dq)
                 {   if ((flags & UQ_REPEATQ) == UQ_REPEATQ) state = uq_repdq;

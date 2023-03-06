@@ -65,3 +65,7 @@ void selectors::accumulate (stats_t* s) const
 void selectors::validate (arguments& args)
 {   for (auto i : sel_)
         i.validate (args); }
+
+void selectors::shadow (::std::stringstream& ss, arguments& args)
+{   for (auto i : sel_)
+        i.shadow (ss, args); }

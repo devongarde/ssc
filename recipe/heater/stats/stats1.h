@@ -19,25 +19,32 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
-#include "type/enum.h"
+#include "main/enum.h"
 
 template < class ENUM, ENUM max_enum, ENUM undefined_enum > class stats1
 {   typedef ::std::vector < unsigned > counter_t;
     counter_t count_;
 public:
-    stats1 ()
-    {   count_.resize (static_cast <::std::size_t> (max_enum + 1), 0); }
     static unsigned size () { return max_enum + 1; }
-    void swap (stats1& s1) noexcept
+    void swap (stats1 < ENUM, max_enum, undefined_enum >& s1) noexcept
     {   count_.swap (s1.count_); }
+    void reset ()
+    {   stats1 < ENUM, max_enum, undefined_enum > tmp;
+        swap (tmp); }
     unsigned at (const ENUM e) const
-    {   return count_.at (e); }
+    {   if (count_.size () == 0) return 0;
+        PRESUME (e < count_.size (), __FILE__, __LINE__);
+        return count_.at (e); }
     void mark (const ENUM e, const unsigned u = 1)
-    {   if (e <= max_enum) count_.at (e) += u;
+    {   if (u == 0) return;
+        if (count_.size () == 0)
+            count_.resize (static_cast < ::std::size_t > (max_enum + 1), 0);
+        if (e < count_.size ())
+            count_.at (e) += u;
         else count_.at (undefined_enum) += u; }
     void accumulate (stats1 < ENUM, max_enum, undefined_enum >& o) const
-    {   PRESUME (o.count_.size () >= count_.size (), __FILE__, __LINE__);
-        for (unsigned i = 0; i < count_.size (); ++i)
+    {   if (o.count_.size () == 0) o.count_ = count_;
+        else for (unsigned i = 0; i < count_.size (); ++i)
             if (count_.at (i) > 0)
                 o.mark (static_cast < ENUM > (i), count_.at (i)); } };
 

@@ -201,3 +201,7 @@ void stats_t::accumulate (stats_t& s) const
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     VERIFY_NOT_NULL (s.p_, __FILE__, __LINE__);
     p_ -> accumulate (*s.p_); }
+
+::std::string stats_t::class_and_id_report () const
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> class_and_id_report (); }

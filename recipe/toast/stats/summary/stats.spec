@@ -140,6 +140,14 @@ Name/Value pairs:
     sausage: once in English breakfast
     sausage: once in Irish breakfast
   
+CSS itemid(s):
+    a: 0
+    amanda: 0
+    b: 0
+    c: 0
+    comments: 0
+    tid: 0
+  6 itemid(s) used 0 times
 Nits Reported:
     Errors: 4 times 
     Warnings: 5 times 
@@ -159,5 +167,6 @@ Versions:
     HTML5/20210101/SVG-2.0/MathML-4(Dec20)/CSS-2.1/WhatWG: 5 times 
   
 File info:
-     3783 bytes read in 5 HTML files, with an average of roughly 757 bytes per file
+     3783 bytes read in 5 files, with an average of roughly 757 bytes per file
      smallest file: 269 bytes, largest file: 1019 bytes
+===

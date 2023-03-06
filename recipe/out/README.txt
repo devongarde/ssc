@@ -1,1 +1,1 @@
-Many tests .conf files specify output here.
+This directory is used to output test results.

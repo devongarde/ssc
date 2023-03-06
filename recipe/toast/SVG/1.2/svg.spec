@@ -437,7 +437,7 @@ PASS ../toast/SVG/1.2/animation.svg
 PASS ../toast/SVG/1.2/animation-1.html
 2 naughty_lang
 11 svg_version
-14 not_n sunk sunk sunk keytimes
+14 sunk sunk sunk precisely keytimes
 
 PASS ../toast/SVG/1.2/animation-2.html
 2 naughty_lang
@@ -588,7 +588,7 @@ PASS ../toast/SVG/1.2/iar-4.svg
 PASS ../toast/SVG/1.2/image-use-base.svg
 0 title_required
 1 xhtml_1_1
-3 not_n viewbox svg_version
+3 precisely viewbox svg_version
 5 no_such_folder url_not_found
 6 attempted_escape no_such_folder url_not_found
 7 url_not_found

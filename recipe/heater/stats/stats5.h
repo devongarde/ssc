@@ -39,7 +39,8 @@ public:
         if (i == count_.end ()) count_.insert (smsid_t::value_type (s, u));
         else i -> second += u; }
     void accumulate (stats5& o) const
-    {   for (auto item : count_)
+    {   if (o.count_.size () == 0) o.count_ = count_;
+        else for (auto item : count_)
             o.mark (item.first, item.second); } };
 
 typedef stats5 smsid_stats;

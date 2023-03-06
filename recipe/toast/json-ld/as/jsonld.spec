@@ -4,7 +4,7 @@ PASS ../toast/json-ld/as/balderdash.jld
 0 unrecognised_schema lingo
 
 PASS ../toast/json-ld/as/ex-23.jld
-0 unrecognised_schema bang_path
+0 unrecognised_schema
 
 PASS ../toast/json-ld/as/ex-28.jld
 0 unrecognised_schema

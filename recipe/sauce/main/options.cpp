@@ -30,7 +30,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "element/elem.h"
 #include "element/element_classes.h"
 #include "url/url_sanitise.h"
-#include "type/type_master.h"
 #include "parser/html_version.h"
 #include "spell/spell.h"
 

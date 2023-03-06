@@ -336,6 +336,7 @@ public:
     ns_id verify_namespace (::std::string& s, ::std::string n);
     const elem& id () const noexcept { return node_.id (); }
     namespaces_ptr namespaces () const noexcept { return node_.namespaces (); }
+    void accumulate (stats_t* st) const;
     ::std::string report (); };
 
 template < class PROPERTY > void element::note_reply ()
