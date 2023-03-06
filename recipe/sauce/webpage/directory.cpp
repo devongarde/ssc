@@ -253,7 +253,9 @@ void directory::examine_page (nitpick* ticks, const ::std::string& file) const
                                 web.validate ();
                                 web.mf_write (p);
                                 web.lynx ();
-                                if (context.shadow_pages ()) web.shadow (nits, get_shadow_path () / file);
+                                if (context.shadow_pages ())
+                                    if (web.dot_css ()) shadow_file (nits, file);
+                                    else web.shadow (nits, get_shadow_path () / file);
                                 ss << web.nits ().review (mac);
                                 ss << web.css_review (mac);
                                 ss << web.report (); }

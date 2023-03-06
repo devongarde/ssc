@@ -31,15 +31,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define GRACELESS_CRASH(FILE,LINE) { graceless_crash (FILE, LINE); }
 
 #ifdef _MSC_VER
-#define UNREACHABLE(x)
+#define UNREACHABLE(xxx)
 #define UNBREAKABLE
 #else
-#define UNREACHABLE(x) x
+#define UNREACHABLE(xxx) xxx
 #define UNBREAKABLE break
 #endif
 
 #ifdef _DEBUG
-#define DEBUGONLY(x) x
+#define DEBUGONLY(xxx) xxx
 #else
-#define DEBUGONLY(x)
+#define DEBUGONLY(xxx)
 #endif

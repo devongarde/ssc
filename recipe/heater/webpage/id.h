@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "utility/common.h"
 #include "webpage/fileindex.h"
-#include "type/enum.h"
+#include "main/enum.h"
 #include "microdata/microdata_itemtype.h"
 
 class element;

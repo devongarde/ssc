@@ -91,7 +91,7 @@ void css_fn::accumulate (stats_t* ) const { }
 
 ::std::string css_fn::rpt () const
 {   ::std::string res (":");
-    res += type_master < t_css_fn > ::name (fn_);
+    res += type_master < t_css_fn > :: name (fn_);
     if (params_.size () > 0)
     {   res += "(";
         bool extra = false;
@@ -105,3 +105,6 @@ void css_fn::accumulate (stats_t* ) const { }
 void css_fn::validate (arguments& args)
 {   for (auto e : ve_)
         e -> validate (args); }
+
+void css_fn::shadow (::std::stringstream& ss, arguments& )
+{   ss << rpt (); }

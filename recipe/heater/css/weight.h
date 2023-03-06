@@ -29,4 +29,5 @@ public:
     void parse (nitpick& nits, const arguments& args, const ::std::string& s);
     void validate (arguments& ) const { }
     void accumulate (stats_t* ) const { }
+    void shadow (::std::stringstream& ss, arguments& args);
     ::std::string rpt () const; };

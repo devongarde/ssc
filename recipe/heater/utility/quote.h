@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "utility/common.h"
+
 #define QUOTESEP "\","
 
 CONSTEXPR ::std::size_t def_quote_cut = 60;
@@ -47,6 +48,8 @@ inline ::std::string quote (const vstr_t vs, const ::std::string& quotesep = ::s
 { return enquote (vs, quotesep); }
 inline ::std::ostringstream& quote (::std::ostringstream& ss, const vstr_t vs, const ::std::string& quotesep = ::std::string (QUOTESEP))
 { return enquote (ss, vs, quotesep); }
+
+::std::string maybe_enquote (const ::std::string& s, const ::std::string& qs = ::std::string ("\"'"));
 
 inline ::std::string uq (const ::std::string& str, const ::std::string& qs = ::std::string (QUOTESEP))
 { return unquote (str.cbegin (), str.cend (), qs); }

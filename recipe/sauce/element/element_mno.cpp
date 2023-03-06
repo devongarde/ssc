@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "element/element.h"
 #include "webpage/page.h"
 #include "attribute/attribute_classes.h"
-#include "type/type_metaname.h"
+#include "simple/type_metaname.h"
 
 void element::examine_main ()
 {   if (! context.corpus ().empty ()) if (context.main ()) page_ -> corpus (text ());

@@ -31,7 +31,8 @@ public:
     {   parse (args, from ,to); }
     void parse (arguments& args, const int from, const int to = -1);
     void validate (arguments& args);
-    void accumulate (stats_t* s) const;
+    void accumulate (stats_t* s, const element_bitset& e) const;
+    void shadow (::std::stringstream& ss, arguments& args);
     property_bitset& state () { return state_; }
     const property_bitset& state () const { return state_; }
    ::std::string rpt () const; };

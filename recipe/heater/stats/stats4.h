@@ -61,7 +61,8 @@ public:
     void mark (const T& a, const T& b, const unsigned u = 1)
     {   mark (ab_t (a, b), u); }
     void accumulate (stats4 < T >& o) const
-    {   for (auto item : count_)
+    {   if (o.count_.size () == 0) o.count_ = count_;
+        else for (auto item : count_)
             o.mark (item.first, item.second); } };
 
 typedef stats4 < ::std::string > term_stats;

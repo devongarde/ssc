@@ -34,6 +34,7 @@ public:
     {   return sel_.get_elements (); }
     void validate (arguments& args);
     void accumulate (stats_t* s) const;
+    void shadow (::std::stringstream& ss, arguments& args);
     ::std::string rpt () const; };
 
 typedef ::std::vector < rule > vrule_t;

@@ -241,7 +241,7 @@ PASS ../toast/living/jul10/example.html
 122 inserted_missing_closure
 126 use_quote_code
 136 url_not_found
-142 unknown_protocol
+142 unknown_protocol chocolate_teapot
 
 PASS ../toast/living/jul10/fieldset.html
 12 pattern

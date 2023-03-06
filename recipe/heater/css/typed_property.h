@@ -20,7 +20,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "type/type.h"
-#include "type/type_master.h"
 #include "css/arguments.h"
 
 #ifdef _MSC_VER
@@ -34,7 +33,8 @@ struct property_base
     virtual e_css_property get () const { return ec_unknown; }
     virtual void verify (nitpick& nits, const elem& e) { }
     virtual void validate (arguments& ) { }
-    virtual void accumulate (stats_t* ) const { }
+    virtual void accumulate (stats_t* , const element_bitset& ) const { }
+    virtual void shadow (::std::stringstream& , arguments&, element* ) { }
     virtual ::std::string rpt () const { return ::std::string (); } };
 
 #ifdef _MSC_VER
@@ -55,7 +55,10 @@ template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public
     virtual void verify (nitpick& nits, const elem& e) override
     {   type_master < TYPE > :: verify_attribute (nits, context.html_ver (), e, nullptr, name ()); }
     virtual void validate (arguments& ) override { type_master < TYPE > :: validate (); }
-    virtual void accumulate (stats_t* s) const override { type_master < TYPE > :: accumulate (s); }
+    virtual void accumulate (stats_t* s, const element_bitset& e) const override
+    {   type_master < TYPE > :: accumulate (s, e); }
+    virtual void shadow (::std::stringstream& ss, arguments& args, element* e) override
+    {   type_master < TYPE > ::shadow (ss, args.v_, e); }
     virtual void set_value (nitpick& nits, const ::std::string& s) override
     {   type_master < TYPE > :: set_value (nits, context.html_ver (), s); }
     virtual ::std::string rpt () const override

@@ -33,13 +33,18 @@ public:
     {   typename counter_t::const_iterator i = count_.find (e);
         if (i == count_.cend ()) return 0;
         return i -> second; }
-    cit cbegin () const noexcept { return count_.cbegin (); }
-    cit cend () const noexcept { return count_.cend (); }
+    cit cbegin () const noexcept
+    {   return count_.cbegin (); }
+    cit cend () const noexcept
+    {   return count_.cend (); }
     void mark (const T& e, const unsigned u = 1)
     {   typename counter_t::iterator i = count_.find (e);
         if (i == count_.end ()) count_.insert (typename counter_t::value_type (e, u));
         else i -> second += u; }
     void accumulate (stats0 < T >& o) const
-    {   for (auto item : count_)
+    {   if (o.count_.size () == 0) o.count_ = count_;
+        else for (auto item : count_)
             if (item.second > 0)
                 o.mark (item.first, item.second); } };
+
+typedef stats0 < html_version > version_stats;

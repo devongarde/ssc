@@ -15,7 +15,7 @@ PASS ../toast/css/2.0/aargh.css
 11 css_version naughty_decoration
 11 unrecognised_value unrecognised_value bad_colour
 13 naughty_page
-14 unrecognised_value missing_value unrecognised_value immeasurable missing_value unrecognised_value immeasurable css_syntax naughty_page
+14 unrecognised_value missing_value unrecognised_value immeasurable precisely naughty_page
 18 css_element css_element css_element
 
 PASS ../toast/css/2.0/css-1.css
@@ -334,6 +334,7 @@ PASS ../toast/css/2.0/css-12-1.css
 
 PASS ../toast/css/2.0/css-12-2.css
 0 html
+24 isnt
 
 PASS ../toast/css/2.0/css-12-3.css
 0 html
@@ -361,6 +362,9 @@ PASS ../toast/css/2.0/css-12-4-2.html
 
 PASS ../toast/css/2.0/css-12-5.css
 0 html
+21 isnt
+26 isnt isnt
+37 isnt
 46 class_microformat_property
 
 PASS ../toast/css/2.0/css-12-5-1.html
@@ -392,6 +396,7 @@ PASS ../toast/css/2.0/css-12-6-1.html
 PASS ../toast/css/2.0/css-12-6-2.html
 0 charset_mismatch charset_used
 23 long_title
+24 isnt
 37 inserted_missing_closure
 38 inserted_missing_closure missing_close
 39 inserted_missing_closure
@@ -407,7 +412,7 @@ PASS ../toast/css/2.0/css-12-6-3.html
 PASS ../toast/css/2.0/css-12-6-4.html
 0 charset_mismatch charset_used
 23 long_title
-24 class_microformat_property inserted_missing_closure
+24 class_microformat_property isnt inserted_missing_closure
 
 PASS ../toast/css/2.0/css-12-6-5.html
 0 charset_mismatch charset_used
@@ -457,6 +462,7 @@ PASS ../toast/css/2.0/css-14-1.css
 
 PASS ../toast/css/2.0/css-14-2.css
 0 html
+28 precisely
 
 PASS ../toast/css/2.0/css-14-2.html
 0 charset_mismatch charset_used

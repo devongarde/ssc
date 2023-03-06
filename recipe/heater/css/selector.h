@@ -31,6 +31,7 @@ public:
     {   parse (args, from, to); }
     void parse (arguments& args, const int from, const int to);
     void accumulate (stats_t* s) const;
+    void shadow (::std::stringstream& ss, arguments& args);
     const element_bitset get_elements () const
     {   element_bitset res;
         for (auto r : ve_) res |= r.get_elements ();

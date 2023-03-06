@@ -84,3 +84,6 @@ void css::validate ()
     for (auto t : args_.t_)
         if (! t.nits_.empty ())
             ticks_.push_back (t.nits_); }
+
+void css::shadow (::std::stringstream& ss)
+{   st_.shadow (ss, args_); }

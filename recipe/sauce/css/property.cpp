@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "main/standard.h"
-#include "type/type_enum.h"
+#include "type/type.h"
 #include "css/property.h"
 #include "css/arguments.h"
 #include "css/selectors.h"
@@ -104,11 +104,11 @@ void property::parse (arguments& args, const int from, const int to)
                     nits.pick (nit_weight, ed_css_20, "5 Selectors", es_error, ec_css, "keyword expected after !");
                 else w_ = weight (args.t_.at (b).nits_, args, args.t_.at (b).val_); } } } }
     
-void property::accumulate (stats_t* s) const
+void property::accumulate (stats_t* s, const element_bitset& e) const
 {   VERIFY_NOT_NULL (s, __FILE__, __LINE__);
     if (prop_.get () != nullptr)
     {   s -> mark (prop_ -> get ());
-        prop_ -> accumulate (s); }
+        prop_ -> accumulate (s, e); }
     w_.accumulate (s); }
 
 ::std::string property::rpt () const
@@ -121,3 +121,7 @@ void property::validate (arguments& args)
         args.validate (nits, flags_, type_master < t_css_property >::name (static_cast < e_css_property > (prop_ -> get ())), val_); }
     w_.validate (args);
     if (prop_.get () != nullptr) prop_ -> validate (args); }
+
+void property::shadow (::std::stringstream& ss, arguments& args)
+{   if (prop_.get () != nullptr) prop_ -> shadow (ss, args, nullptr);
+    w_.shadow (ss, args); }

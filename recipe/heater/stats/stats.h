@@ -77,6 +77,7 @@ public:
     bool severity_exceeded () const;
     void accumulate () const;
     void accumulate (stats_t& s) const;
+    ::std::string class_and_id_report () const;
     ::std::string report (const bool grand) const; };
 
 extern stats_t overall;

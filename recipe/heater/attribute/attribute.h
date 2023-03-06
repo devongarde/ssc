@@ -68,6 +68,7 @@ struct attribute_base
     element* box () const noexcept { return nullptr; }
     void box (const element* ) noexcept { }
     virtual void shadow (::std::stringstream& , const html_version& , element* ) { }
+    virtual void accumulate (stats_t* , const e_element ) const { }
     virtual ::std::string report () const { return ::std::string (); } };
 
 
@@ -162,7 +163,10 @@ template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public a
     {   if (typed_value < e_attribute, TYPE, IDENTITY > :: unknown () || typed_value < e_attribute, TYPE, IDENTITY > :: invalid ()) return;
         ss << " " << name ();
         typed_value < e_attribute, TYPE, IDENTITY > :: shadow (ss, v, e); }
-    static e_animation_type animation_type () noexcept { return typed_value < e_attribute, TYPE, IDENTITY > :: animation_type (); }
+    static e_animation_type animation_type () noexcept
+    {   return typed_value < e_attribute, TYPE, IDENTITY > :: animation_type (); }
+    virtual void accumulate (stats_t* st, const e_element e) const override
+    {   typed_value < e_attribute, TYPE, IDENTITY > :: accumulate (st, e); }
     virtual ::std::string report () const override
     {   return typed_value < e_attribute, TYPE, IDENTITY > :: report (name ()); } };
 

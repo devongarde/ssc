@@ -801,6 +801,30 @@
     <Filter Include="Sauce\coop">
       <UniqueIdentifier>{ad64ca33-1ed8-453e-b264-b143f1bc433f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Heater\base">
+      <UniqueIdentifier>{72a87591-bd51-4a35-98cb-3c364c52284a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heater\compound">
+      <UniqueIdentifier>{00229518-5639-4c95-b361-31d0598ef477}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heater\enum">
+      <UniqueIdentifier>{5aa2bd50-eb2c-4eaa-b640-93b971fea579}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heater\simple">
+      <UniqueIdentifier>{c020dbaa-53ed-46cb-aaee-a0b5790babb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\base">
+      <UniqueIdentifier>{7f2efba4-74d8-4ede-9230-d831eb1dd959}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\compound">
+      <UniqueIdentifier>{0a71f9b6-9931-475d-8aea-ce0528ab3bf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\enum">
+      <UniqueIdentifier>{d791cde1-30f4-4985-95bc-031a92b5871e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\simple">
+      <UniqueIdentifier>{e90e5f87-d0cb-4743-9800-95fe0bee258e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -992,97 +1016,7 @@
     <ClInclude Include="..\heater\symbol\symbol_table.h">
       <Filter>Heater\symbol</Filter>
     </ClInclude>
-    <ClInclude Include="..\heater\type\enum.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\reldef.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\sz.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
     <ClInclude Include="..\heater\type\type.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_1.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_2.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_3.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_4.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_aria.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_autocomplete.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_base.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_class.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_colour.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_core.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_currency.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_enum.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_enum_vec.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_httpequiv.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_lang.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_master.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_media.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_mime.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_rdf.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_reals.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_rel.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_relational.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_time.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_url.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_van.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_varied.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_xmlns.h">
       <Filter>Heater\type</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\url\url.h">
@@ -1142,36 +1076,6 @@
     <ClInclude Include="..\heater\webpage\root.h">
       <Filter>Heater\webpage</Filter>
     </ClInclude>
-    <ClInclude Include="..\heater\type\type_basic.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_id.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_layout.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_math.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_measure.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_microdata.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_microformat.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_misc.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_numeric.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_svg.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Resources</Filter>
     </ClInclude>
@@ -1187,19 +1091,10 @@
     <ClInclude Include="..\heater\icu\converter.h">
       <Filter>Heater\icu</Filter>
     </ClInclude>
-    <ClInclude Include="..\heater\type\type_charset.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_metaname.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
     <ClInclude Include="..\heater\stats\stats3.h">
       <Filter>Heater\stats</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\type\type_csp.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_cookie.h">
       <Filter>Heater\type</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\stats\stats4.h">
@@ -1231,9 +1126,6 @@
     </ClInclude>
     <ClInclude Include="..\heater\attribute\avm_data.h">
       <Filter>Heater\attribute</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_case.h">
-      <Filter>Heater\type</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\attribute\namespace.h">
       <Filter>Heater\attribute</Filter>
@@ -1268,9 +1160,6 @@
     <ClInclude Include="..\heater\parser\jsonic.h">
       <Filter>Heater\parser</Filter>
     </ClInclude>
-    <ClInclude Include="..\heater\type\type_jsonic.h">
-      <Filter>Heater\type</Filter>
-    </ClInclude>
     <ClInclude Include="..\heater\spell\spell.h">
       <Filter>Heater\spell</Filter>
     </ClInclude>
@@ -1282,9 +1171,6 @@
     </ClInclude>
     <ClInclude Include="..\heater\schema\jsonld.h">
       <Filter>Heater\schema</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\type\type_country.h">
-      <Filter>Heater\type</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\coop\fred.h">
       <Filter>Heater\coop</Filter>
@@ -1382,8 +1268,200 @@
     <ClInclude Include="..\heater\stats\stats5.h">
       <Filter>Heater\stats</Filter>
     </ClInclude>
-    <ClInclude Include="..\heater\type\type_css.h">
-      <Filter>Heater\type</Filter>
+    <ClInclude Include="..\heater\base\base.h">
+      <Filter>Heater\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\base\reldef.h">
+      <Filter>Heater\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\base\sz.h">
+      <Filter>Heater\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\base\type_base.h">
+      <Filter>Heater\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\base\type_case.h">
+      <Filter>Heater\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\base\type_core.h">
+      <Filter>Heater\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\base\type_master.h">
+      <Filter>Heater\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\compound\compound.h">
+      <Filter>Heater\compound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\compound\type_all_of.h">
+      <Filter>Heater\compound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\compound\type_compound.h">
+      <Filter>Heater\compound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\compound\type_compounded.h">
+      <Filter>Heater\compound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\compound\type_csses.h">
+      <Filter>Heater\compound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\compound\type_httpequivs.h">
+      <Filter>Heater\compound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\compound\type_jsonics.h">
+      <Filter>Heater\compound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\compound\type_langs.h">
+      <Filter>Heater\compound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\compound\type_maths.h">
+      <Filter>Heater\compound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\compound\type_measures.h">
+      <Filter>Heater\compound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\compound\type_microdatas.h">
+      <Filter>Heater\compound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\compound\type_microformats.h">
+      <Filter>Heater\compound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\compound\type_mimes.h">
+      <Filter>Heater\compound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\compound\type_numerics.h">
+      <Filter>Heater\compound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\compound\type_one_of.h">
+      <Filter>Heater\compound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\compound\type_some_of.h">
+      <Filter>Heater\compound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\compound\type_svgs.h">
+      <Filter>Heater\compound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\compound\type_van.h">
+      <Filter>Heater\compound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\compound\type_varied.h">
+      <Filter>Heater\compound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\enum\enumerated.h">
+      <Filter>Heater\enum</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\enum\type_1.h">
+      <Filter>Heater\enum</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\enum\type_2.h">
+      <Filter>Heater\enum</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\enum\type_3.h">
+      <Filter>Heater\enum</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\enum\type_4.h">
+      <Filter>Heater\enum</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\enum\type_aria.h">
+      <Filter>Heater\enum</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\enum\type_class.h">
+      <Filter>Heater\enum</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\enum\type_colour.h">
+      <Filter>Heater\enum</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\enum\type_country.h">
+      <Filter>Heater\enum</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\enum\type_enum.h">
+      <Filter>Heater\enum</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\enum\type_enum_vec.h">
+      <Filter>Heater\enum</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\enum\type_lang.h">
+      <Filter>Heater\enum</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\enum\type_mime.h">
+      <Filter>Heater\enum</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\enum\type_rel.h">
+      <Filter>Heater\enum</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\enum\type_xmlns.h">
+      <Filter>Heater\enum</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\simple\simple.h">
+      <Filter>Heater\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\simple\type_autocomplete.h">
+      <Filter>Heater\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\simple\type_basic.h">
+      <Filter>Heater\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\simple\type_cookie.h">
+      <Filter>Heater\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\simple\type_css.h">
+      <Filter>Heater\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\simple\type_currency.h">
+      <Filter>Heater\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\simple\type_httpequiv.h">
+      <Filter>Heater\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\simple\type_id.h">
+      <Filter>Heater\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\simple\type_jsonic.h">
+      <Filter>Heater\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\simple\type_layout.h">
+      <Filter>Heater\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\simple\type_math.h">
+      <Filter>Heater\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\simple\type_measure.h">
+      <Filter>Heater\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\simple\type_media.h">
+      <Filter>Heater\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\simple\type_metaname.h">
+      <Filter>Heater\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\simple\type_microdata.h">
+      <Filter>Heater\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\simple\type_microformat.h">
+      <Filter>Heater\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\simple\type_misc.h">
+      <Filter>Heater\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\simple\type_numeric.h">
+      <Filter>Heater\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\simple\type_rdf.h">
+      <Filter>Heater\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\simple\type_reals.h">
+      <Filter>Heater\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\simple\type_relational.h">
+      <Filter>Heater\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\simple\type_svg.h">
+      <Filter>Heater\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\simple\type_time.h">
+      <Filter>Heater\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\simple\type_url.h">
+      <Filter>Heater\simple</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1558,72 +1636,6 @@
     <ClCompile Include="..\sauce\type\type.cpp">
       <Filter>Sauce\type</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\type\type_aria.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_autocomplete.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_charset.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_class.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_core.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_currency.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_d.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_enum.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_httpequiv.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_lang.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_media.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_metaname.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_mime.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_paint.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_reals.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_rel.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_sgml.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_svg_feature.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_time.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_transform.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_url.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_xmlns.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\url\url.cpp">
       <Filter>Sauce\url</Filter>
     </ClCompile>
@@ -1693,9 +1705,6 @@
     <ClCompile Include="..\sauce\parser\pattern.cpp">
       <Filter>Sauce\parser</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\type\type_varied.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\main\version.cpp">
       <Filter>Sauce\main</Filter>
     </ClCompile>
@@ -1725,9 +1734,6 @@
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\namespace.cpp">
       <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_numeric.cpp">
-      <Filter>Sauce\type</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\main\abort.cpp">
       <Filter>Sauce\main</Filter>
@@ -1798,9 +1804,6 @@
     <ClCompile Include="..\sauce\attribute\avm_data_rdf.cpp">
       <Filter>Sauce\attribute</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\type\type_rdf.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\rdf\rdf.cpp">
       <Filter>Sauce\rdf</Filter>
     </ClCompile>
@@ -1840,9 +1843,6 @@
     <ClCompile Include="..\sauce\schema\jsonld.cpp">
       <Filter>Sauce\schema</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\type\type_country.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\coop\fred.cpp">
       <Filter>Sauce\coop</Filter>
     </ClCompile>
@@ -1863,9 +1863,6 @@
     </ClCompile>
     <ClCompile Include="..\sauce\utility\cache.cpp">
       <Filter>Sauce\utility</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_intent.cpp">
-      <Filter>Sauce\type</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\url\curl.cpp">
       <Filter>Sauce\url</Filter>
@@ -1927,26 +1924,11 @@
     <ClCompile Include="..\sauce\css\weight.cpp">
       <Filter>Sauce\css</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\type\type_css.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_misc.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_id.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_master.cpp">
-      <Filter>Sauce\type</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\parser\parse_brac_ket.cpp">
       <Filter>Sauce\parser</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\parser\parse_bracs_ket.cpp">
       <Filter>Sauce\parser</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\type\type_base.cpp">
-      <Filter>Sauce\type</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\arguments.cpp">
       <Filter>Sauce\css</Filter>
@@ -1956,6 +1938,102 @@
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\attr_state.cpp">
       <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\base\type_base.cpp">
+      <Filter>Sauce\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\base\type_core.cpp">
+      <Filter>Sauce\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\base\type_master.cpp">
+      <Filter>Sauce\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\compound\type_varied.cpp">
+      <Filter>Sauce\compound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\enum\type_aria.cpp">
+      <Filter>Sauce\enum</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\enum\type_charset.cpp">
+      <Filter>Sauce\enum</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\enum\type_class.cpp">
+      <Filter>Sauce\enum</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\enum\type_country.cpp">
+      <Filter>Sauce\enum</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\enum\type_enum.cpp">
+      <Filter>Sauce\enum</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\enum\type_lang.cpp">
+      <Filter>Sauce\enum</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\enum\type_mime.cpp">
+      <Filter>Sauce\enum</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\enum\type_rel.cpp">
+      <Filter>Sauce\enum</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\enum\type_xmlns.cpp">
+      <Filter>Sauce\enum</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\simple\type_autocomplete.cpp">
+      <Filter>Sauce\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\simple\type_css.cpp">
+      <Filter>Sauce\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\simple\type_currency.cpp">
+      <Filter>Sauce\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\simple\type_d.cpp">
+      <Filter>Sauce\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\simple\type_httpequiv.cpp">
+      <Filter>Sauce\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\simple\type_id.cpp">
+      <Filter>Sauce\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\simple\type_intent.cpp">
+      <Filter>Sauce\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\simple\type_media.cpp">
+      <Filter>Sauce\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\simple\type_metaname.cpp">
+      <Filter>Sauce\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\simple\type_misc.cpp">
+      <Filter>Sauce\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\simple\type_numeric.cpp">
+      <Filter>Sauce\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\simple\type_paint.cpp">
+      <Filter>Sauce\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\simple\type_rdf.cpp">
+      <Filter>Sauce\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\simple\type_reals.cpp">
+      <Filter>Sauce\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\simple\type_sgml.cpp">
+      <Filter>Sauce\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\simple\type_svg_feature.cpp">
+      <Filter>Sauce\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\simple\type_time.cpp">
+      <Filter>Sauce\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\simple\type_transform.cpp">
+      <Filter>Sauce\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\simple\type_url.cpp">
+      <Filter>Sauce\simple</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -33,7 +33,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "microformat/property.h"
 #include "schema/schema_hierarchy.h"
 #include "microdata/microdata_itemid.h"
-#include "type/type_csp.h"
+#include "type/type.h"
 #include "schema/schema_version.h"
 #include "schema/schema_structure.h"
 #include "schema/schema_property.h"
@@ -46,7 +46,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/page.h"
 #include "parser/text.h"
 #include "parser/parse_ssi.h"
-#include "type/type.h"
 #include "url/curl.h"
 #include "url/url.h"
 #include "url/url_sanitise.h"
@@ -107,8 +106,10 @@ int ciao ()
 {   ::std::ostringstream ss;
     global_css.report_stragglers (ss);
     curl_done ();
+    global_css.accumulate (&overall);
     if (context.tell (es_warning))
-    {   if (context.classic ()) global_css.report_usage (ss);
+    {   if (context.classic () && ! context.stats_summary ())
+            ss << overall.class_and_id_report ();
         if (context.crosslinks ())
         {   nitpick nits;
             reconcile_crosslinks (nits);

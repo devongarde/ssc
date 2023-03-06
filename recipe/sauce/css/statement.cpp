@@ -162,7 +162,7 @@ void statement::accumulate (stats_t* s) const
 {   VERIFY_NOT_NULL (s, __FILE__, __LINE__);
     s -> mark (st_.get ());
     rules_.accumulate (s);
-    prop_.accumulate (s);
+    prop_.accumulate (s, rules_.get_elements ());
     for (auto pst : vst_)
         if (pst.get () != nullptr)
             pst -> accumulate (s); }
@@ -199,3 +199,6 @@ void statement::validate (arguments& args)
     rules_.validate (args);
     for (auto i : vst_)
         i -> validate (args); }
+
+void statement::shadow (::std::stringstream& ss, arguments& )
+{   ss << rpt (); }

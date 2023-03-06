@@ -32,7 +32,7 @@ PASS ../toast/w3/xhtml/xhtml-print_1_0.html
 3 unexpected_doctype_content
 9 unrecognised_value
 12 url_not_found
-13 unknown_protocol mime reputation
+13 unknown_protocol mime
 
 PASS ../toast/w3/xhtml/xhtml1-appc-empty.html
 16 xhtml_missing_slash xhtml_missing_slash

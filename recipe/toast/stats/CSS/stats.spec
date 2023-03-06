@@ -38,10 +38,10 @@ CSS font(s):
     serif: once
   4 font(s) used 4 times
 CSS class(es):
-    center: once
+    center: 1
   1 class(es) used once
 CSS element.class(es):
-    p.center: once
+    p.center: 1
   1 element.class(es) used once
 ===
 
@@ -99,25 +99,20 @@ CSS font(s):
     helvetica: twice
   1 font(s) used twice
 CSS class(es):
-    pastoral: once
-    reddish: once
-    sidenote: once
+    pastoral: 1
+    reddish: 1
+    sidenote: 1
   3 class(es) used thrice
 CSS element.class(es):
-    *.pastoral: once
-    *.reddish: once
-    div.sidenote: once
+    *.pastoral: 1
+    *.reddish: 1
+    div.sidenote: 1
   3 element.class(es) used thrice
-CSS id(s):
-    x78y: once
-    z98y: twice
-  2 id(s) used thrice
-CSS element#id(s):
-    *#x78y: once
-    *#z98y: once
-    h1#z98y: once
-  3 element#id(s) used thrice
-===
+CSS itemid(s):
+    x78y: 1
+    z98y: 2
+  2 itemid(s) used thrice
+  ===
 
 PASS ../toast/stats/CSS/css-2.css
 0 html
@@ -135,12 +130,12 @@ CSS properties:
     font-size: twice 
   3 properties used 15 times
 CSS class(es):
-    external: once
-    initial: once
+    external: 1
+    initial: 1
   2 class(es) used twice
 CSS element.class(es):
-    a.external: once
-    p.initial: once
+    a.external: 1
+    p.initial: 1
   2 element.class(es) used twice
 ===
 
@@ -246,21 +241,18 @@ CSS font(s):
     serif: once
   5 font(s) used 5 times
 CSS class(es):
-    centre: once
-    icon: thrice
-    square: once
+    centre: 1
+    icon: 3
+    square: 1
   3 class(es) used 5 times
 CSS element.class(es):
-    div.centre: once
-    img.icon: thrice
-    li.square: once
+    div.centre: 1
+    img.icon: 3
+    li.square: 1
   3 element.class(es) used 5 times
-CSS id(s):
-    xy34: once
-  1 id(s) used once
-CSS element#id(s):
-    *#xy34: once
-  1 element#id(s) used once
+CSS itemid(s):
+    xy34: 1
+  1 itemid(s) used once
 ===
 
 PASS ../toast/stats/CSS/css-6.css
@@ -425,7 +417,7 @@ CSS statements:
     import: once 
   1 statements used once
 CSS class(es):
-    center: once
+    center: 1
   1 class(es) used once 
 ===
 
@@ -473,9 +465,16 @@ CSS properties:
     font-variant: once 
   1 properties used once
 CSS class(es):
-    external: once
-    initial: once
-  2 class(es) used twice 
+    external: 1
+    initial: 1
+  2 class(es) used twice
+CSS element.class(es):
+    a.external: 0
+    p.initial: 0
+  2 element.class(es) used 0 times
+CSS itemid(s):
+    z98y: 0
+  1 itemid(s) used 0 times 
 ===
 
 PASS ../toast/stats/CSS/css-3.html
@@ -513,17 +512,14 @@ CSS properties:
     color: twice 
   1 properties used twice
 CSS class(es):
-    pastoral: twice
+    pastoral: 2
   1 class(es) used twice
 CSS element.class(es):
-    h1.pastoral: once
+    h1.pastoral: 1
   1 element.class(es) used once
-CSS id(s):
-    x97z: twice
-  1 id(s) used twice
-CSS element#id(s):
-    *#x97z: once
-  1 element#id(s) used once
+CSS itemid(s):
+    x97z: 2
+  1 itemid(s) used twice
 ===
 
 PASS ../toast/stats/CSS/css-4.html
@@ -575,11 +571,13 @@ CSS properties:
     text-transform: once 
   9 properties used 16 times
 CSS class(es):
-    compact: twice
-  1 class(es) used twice
+    COMPACT: 0
+    compact: 2
+  2 class(es) used twice
 CSS element.class(es):
-    ul.compact: once
-  1 element.class(es) used once
+    ul.COMPACT: 0
+    ul.compact: 1
+  2 element.class(es) used once
 ===
 
 PASS ../toast/stats/CSS/css-5.html
@@ -618,17 +616,17 @@ CSS properties:
     list-style: twice 
   1 properties used twice
 CSS class(es):
-    alpha: twice
-    centre: once
-    icon: thrice
-    square: once
+    alpha: 2
+    centre: 1
+    icon: 3
+    square: 1
   4 class(es) used 7 times
 CSS element.class(es):
-    ol.alpha: once
+    ol.alpha: 1
   1 element.class(es) used once
-CSS id(s):
-    xy34: once
-  1 id(s) used once
+CSS itemid(s):
+    xy34: 1
+  1 itemid(s) used once
 ===
 
 PASS ../toast/stats/CSS/css-6.html
@@ -661,7 +659,7 @@ CSS statements:
     import: thrice 
   1 statements used thrice
 CSS class(es):
-    center: once
+    center: 1
   1 class(es) used once
 ===
 
@@ -815,49 +813,40 @@ CSS font(s):
     serif: thrice
   9 font(s) used 13 times
 CSS class(es):
-    alpha: twice
-    external: 0 times
-    initial: 0 times
-    pastoral: 0 times
-    center: thrice
-    centre: twice
-    compact: twice
-    external: twice
-    icon: 6 times
-    initial: twice
-    pastoral: thrice
-    reddish: once
-    sidenote: once
-    square: twice
-  14 class(es) used 26 times
+    COMPACT: 0
+    alpha: 2
+    center: 4
+    centre: 3
+    compact: 2
+    external: 3
+    icon: 9
+    initial: 3
+    pastoral: 4
+    reddish: 2
+    sidenote: 2
+    square: 3
+  12 class(es) used 37 times
 CSS element.class(es):
-    *.pastoral: once
-    *.reddish: once
-    a.external: once
-    div.centre: once
-    div.sidenote: once
-    h1.pastoral: once
-    img.icon: thrice
-    li.square: once
-    ol.alpha: once
-    p.center: once
-    p.initial: once
-    ul.compact: once
-  12 element.class(es) used 14 times
-CSS id(s):
-    x97z: 0 times
-    x78y: once
-    x97z: twice
-    xy34: twice
-    z98y: twice
-  5 id(s) used 7 times
-CSS element#id(s):
-    *#x78y: once
-    *#x97z: once
-    *#xy34: once
-    *#z98y: once
-    h1#z98y: once
-  5 element#id(s) used 5 times
+    *.pastoral: 1
+    *.reddish: 1
+    a.external: 1
+    div.centre: 1
+    div.sidenote: 1
+    h1.pastoral: 1
+    img.icon: 3
+    li.square: 1
+    ol.alpha: 1
+    p.center: 1
+    p.initial: 1
+    ul.COMPACT: 0
+    ul.compact: 1
+  13 element.class(es) used 14 times
+CSS itemid(s):
+    x78y: 2
+    x97z: 2
+    xy34: 3
+    z98y: 4
+  4 itemid(s) used 11 times
 Nits Reported:
     Errors: 15 times 
     Warnings: 26 times 
@@ -876,9 +865,10 @@ References:
     HTML 5.0: 8 times 
   
 Versions:
-    HTML5/20221001/SVG-2.1/MathML-core/css/WhatWG: 7 times 
+    HTML3.2/CSS-1: 10 times 
+    HTML5/20221001/SVG-2.1/MathML-core/CSS-3/WhatWG: 7 times 
   
 File info:
-     12551 bytes read in 17 HTML files, with an average of roughly 738 bytes per file
+     12551 bytes read in 17 files, with an average of roughly 738 bytes per file
      smallest file: 64 bytes, largest file: 3882 bytes
 ===

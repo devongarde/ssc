@@ -10,9 +10,9 @@ PASS ../toast/RDFa/gr/example-1.html
 158 invalid_attribute_version wrong_version
 163 missing_close
 164 use_quote_code
-167 no_itemscope
-168 no_itemscope
-169 no_itemscope
+167 unknown_protocol no_itemscope
+168 unknown_protocol no_itemscope
+169 unknown_protocol no_itemscope
 173 unrecognised_value unknown_rel
 206 data_vocabulary data_vocabulary
 221 use_quote_code
@@ -24,7 +24,7 @@ PASS ../toast/RDFa/gr/example-1.html
 315 requires_itemscope
 348 schema_domain
 352 schema_domain
-360 no_itemscope
+360 unknown_protocol no_itemscope
 362 not_schema_property bad_property
 405 requires_itemscope
 408 use_quote_code

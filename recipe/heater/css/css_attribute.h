@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "feedback/nitpick.h"
-#include "type/enum.h"
+#include "main/enum.h"
 #include "attribute/attr.h"
 #include "css/arguments.h"
 
@@ -38,6 +38,7 @@ public:
     void parse (arguments& args, const int from, const int to = -1);
     void validate (arguments& ) const { }
     void accumulate (stats_t* s, const e_element e) const;
+    void shadow (::std::stringstream& ss, arguments& args);
    ::std::string rpt () const; };
 
 typedef ::std::shared_ptr < css_attribute > pcs_t;

@@ -47,3 +47,7 @@ void rules::accumulate (stats_t* s) const
 void rules::validate (arguments& args)
 {   for (auto i : rule_)
         i.validate (args); }
+
+void rules::shadow (::std::stringstream& ss, arguments& args)
+{   for (auto i : rule_)
+        i.shadow (ss, args); }

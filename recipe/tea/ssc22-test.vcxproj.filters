@@ -44,7 +44,7 @@
     <None Include="..\toast\ssc-test\input.spec">
       <Filter>toasty-toast</Filter>
     </None>
-    <None Include="..\toast\ssc-test\ssc.lst">
+    <None Include="..\toast\ssc-test\nix.lst">
       <Filter>toasty-toast</Filter>
     </None>
     <None Include="..\toast\ssc-test\test.nit">
@@ -57,6 +57,9 @@
       <Filter>Source Files</Filter>
     </None>
     <None Include="..\toast\ssc-test\simple.lst">
+      <Filter>toasty-toast</Filter>
+    </None>
+    <None Include="..\toast\ssc-test\win.lst">
       <Filter>toasty-toast</Filter>
     </None>
   </ItemGroup>

@@ -37,20 +37,24 @@ void rule::parse (arguments& args, const int from, const int to)
     if ((p >= 0) && (b >= p))    
         nits.pick (nit_rule, es_error, ec_css, "selector(s) expected");
     else sel_.parse (args, b, p);
-    if (q > 0)
-    {   PRESUME (args.t_.at (q).child_ > 0, __FILE__, __LINE__);
-        fiddlesticks < selectors > f (&args.ss_, &sel_);
+    if ((q > 0) && (args.t_.at (q).child_ > 0))
+    {   fiddlesticks < selectors > f (&args.ss_, &sel_);
         prop_.parse (args, args.t_.at (q).child_);
         args.had_rule_ = true; } }
 
 void rule::accumulate (stats_t* s) const
 {   sel_.accumulate (s);
-    prop_.accumulate (s); }
+    prop_.accumulate (s, sel_.get_elements ()); }
 
 ::std::string rule::rpt () const
 {   ::std::string res (sel_.rpt ());
+    res += prop_.rpt ();
     return res; }  
 
 void rule::validate (arguments& args)
 {   sel_.validate (args);
     prop_.validate (args); }
+
+void rule::shadow (::std::stringstream& ss, arguments& args)
+{   sel_.shadow (ss, args);
+    prop_.shadow (ss, args); }

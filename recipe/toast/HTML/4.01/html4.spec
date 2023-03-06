@@ -340,11 +340,11 @@ PASS ../toast/HTML/4.01/html4-example.html
 772 inserted_missing_closure missing_close
 773 inserted_missing_closure
 775 inserted_missing_closure
-787 url_not_found
-792 url_not_found
-805 url_not_found
+787 url_not_found attribute_required
+792 url_not_found attribute_required
+805 url_not_found attribute_required
 807 inserted_missing_closure
-854 inserted_missing_closure url_not_found
+854 inserted_missing_closure url_not_found attribute_required
 882 inserted_missing_closure
 883 missing_close
 884 inserted_missing_closure

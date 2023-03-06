@@ -1,6 +1,0 @@
-/opt/local/bin/ssc
-/opt/local/share/doc/README.txt
-/opt/local/share/doc/gen.txt
-/opt/local/share/doc/LICENCE.txt
-/opt/local/share/doc/LICENSE.txt
-/opt/local/share/doc/usage.txt

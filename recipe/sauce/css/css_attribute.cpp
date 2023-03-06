@@ -142,6 +142,21 @@ void css_attribute::accumulate (stats_t* s, const e_element e) const
             case eat_is : res += "="; res += quote (value_); break;
             case eat_lang : res += "|="; res += quote (value_); break;
             case eat_uncased : res += "="; res += quote (value_) + " i"; break;
-           default : break; }
+            default : break; }
     res += "]";
     return res; }
+
+void css_attribute::shadow (::std::stringstream& ss, arguments& )
+{   ss << "[" << attr::name (a_);
+    if (has_value_)
+        switch (eat_)
+        {   case eat_any : break;
+            case eat_begins : ss << "^=" << value_; break;
+            case eat_ends : ss << "$=" << value_; break;
+            case eat_identical : ss << "=" << value_ << " s"; break;
+            case eat_in_list : ss << "~=" << value_; break;
+            case eat_is : ss << "=" << value_; break;
+            case eat_lang : ss << "|=" << value_; break;
+            case eat_uncased : ss << "=" << value_ << " i"; break;
+            default : break; }
+    ss << "]"; }

@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "url/url_sanitise.h"
 #include "utility/quote.h"
 #include "utility/lexical.h"
-#include "type/type_mime.h"
+#include "type/type.h"
 
 #define COLON_SLASH_SLASH "://"
 

@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "css/typed_property.h"
-#include "type/enum.h"
+#include "main/enum.h"
 
 typedef typed_property < t_unknown, ec_unknown > prop_unknown;
 typedef typed_property < t_generic, ec_context > prop_context;

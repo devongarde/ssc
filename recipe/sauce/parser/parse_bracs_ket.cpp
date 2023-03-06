@@ -124,8 +124,8 @@ void check_character (nitpick& nits, const html_version& v, const ::std::string:
             default :
                 {   ::std::string cc = get_character_code (::std::string (1, *i));
                     if (! cc.empty ())
-                    {   if (isprint (*i) && (*i < 127))
-                            nits.pick (nit_character_code, ed_4, "24 Character entity references in HTML 4.0", es_comment, ec_parser, "consider using '&", cc, ";' instead of '", *i, "'");
+                    {   if (::std::isprint (*i) && (*i < 127))
+                            nits.pick (nit_character_code, ed_4, "24 Character entity references in HTML 4.0", es_comment, ec_parser, "consider using '&", cc, ";' instead of ", quote (*i));
                         else nits.pick (nit_character_code, ed_4, "24 Character entity references in HTML 4.0", es_comment, ec_parser, "consider using '&", cc, ";'");
                         return; } } }
         // presumes i will be incremented by the caller
@@ -133,14 +133,14 @@ void check_character (nitpick& nits, const html_version& v, const ::std::string:
         {   ::std::string t (i, i + 3);
             ::std::string cc = get_extra (t);
             if (! cc.empty ())
-            {   nits.pick (nit_character_code, ed_4, "24 Character entity references in HTML 4.0", es_comment, ec_parser, "consider using '&", cc, ";' instead of '", t, "'");
+            {   nits.pick (nit_character_code, ed_4, "24 Character entity references in HTML 4.0", es_comment, ec_parser, "consider using '&", cc, ";' instead of ", quote (t));
                 ++i; ++i;
                 return; } }
         if (e - i > 1)
         {   ::std::string t (i, i + 2);
             ::std::string cc = get_extra (t);
             if (! cc.empty ())
-            {   nits.pick (nit_character_code, ed_4, "24 Character entity references in HTML 4.0", es_comment, ec_parser, "consider using '&", cc, ";' instead of '", t, "'");
+            {   nits.pick (nit_character_code, ed_4, "24 Character entity references in HTML 4.0", es_comment, ec_parser, "consider using '&", cc, ";' instead of ", quote (t));
                 ++i;
                 return; } }
         if (static_cast < unsigned int > (*i) > 127)

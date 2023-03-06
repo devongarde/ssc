@@ -27,6 +27,6 @@ PASS ../toast/RDFa/imported/linkedresearch.html
 68 id_exists
 189 schema_domain
 209 schema_domain
-226 no_such_folder url_not_found
+226 chocolate_teapot
 230 schema_domain
 248 url_not_found

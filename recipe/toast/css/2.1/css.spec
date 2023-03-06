@@ -305,6 +305,9 @@ PASS ../toast/css/2.1/css-12-3-2.html
 
 PASS ../toast/css/2.1/css-12-4.css
 0 html
+5 isnt
+12 isnt isnt
+27 isnt
 36 class_microformat_property
 41 selector
 42 naughty_content
@@ -351,6 +354,7 @@ PASS ../toast/css/2.1/css-14-1.css
 
 PASS ../toast/css/2.1/css-14-2.css
 0 html
+9 precisely
 
 PASS ../toast/css/2.1/css-14-2.html
 10 missing_close

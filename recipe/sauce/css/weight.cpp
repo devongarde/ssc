@@ -29,3 +29,6 @@ void weight::parse (nitpick& nits, const arguments& a, const ::std::string& s)
 ::std::string weight::rpt () const
 {   if (! valid_) return "";
     return "! important"; }  
+
+void weight::shadow (::std::stringstream& ss, arguments& )
+{   if (valid_) ss << " ! important";  }

@@ -26,4 +26,5 @@ struct css_id
     explicit css_id (arguments& args, const ::std::string& s);
     void validate (arguments& ) const { }
     void accumulate (stats_t* s, const e_element e) const;
+    void shadow (::std::stringstream& ss, arguments& args);
     ::std::string rpt () const { return ::std::string ("#") + s_; } };

@@ -180,7 +180,8 @@ PASS ../toast/coop/schema-abc/c/cableorsatelliteservice.html
 
 PASS ../toast/coop/schema-abc/c/categorycode.html
 0 charset_mismatch charset_used charset_invalid
-26 requires_itemscope
+21 bad_itemid
+26 requires_itemscope bad_itemid
 30 bad_itemid
 35 no_xmllang invalid_attribute_version wrong_version svg_rdf
 36 no_xmllang invalid_attribute_version wrong_version svg_rdf
@@ -188,8 +189,6 @@ PASS ../toast/coop/schema-abc/c/categorycode.html
 
 PASS ../toast/coop/schema-abc/c/categorycodeset.html
 0 charset_mismatch charset_used charset_invalid
-21 bad_itemid
-26 requires_itemscope bad_itemid
 30 bad_itemid
 35 no_xmllang invalid_attribute_version wrong_version svg_rdf
 36 no_xmllang invalid_attribute_version wrong_version svg_rdf
@@ -330,3 +329,27 @@ http://www.worldcat.org/oclc/68043906
 http://www.worldcat.org/oclc/751835184
 https://archive.org/details/alices_adventures_1005_librivox#work
 https://schema.org/AudioBook
+
+CLASS
+bookReviewScore 0 2
+bookReviews 0 2
+description 0 1
+footer 0 1
+label 0 20
+val 0 22
+
+DCLASS
+div.bookReviewScore 0 2
+div.bookReviews 0 2
+h4.footer 0 1
+span.description 0 1
+span.label 0 20
+span.val 0 22
+
+jID
+C1 0 2
+product 0 1
+
+kID
+div#C1 0 2
+div#product 0 1

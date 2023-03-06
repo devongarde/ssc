@@ -64,10 +64,10 @@ void element::examine_anchor ()
     {   no_anchor_daddy ();
         if (type_known) check_extension_compatibility (nits (), node_.version (), a_.get_string (a_type), a_.get_urls (a_href), false); }
     else if (rel_known || rev_known)
-        pick (nit_rel_requires_href, ed_1, "Anchors", es_error, ec_element, "REL and REV both require HREF");
-    else if (five) pick (nit_chocolate_teapot, es_warning, ec_element, "An <A> with no HREF is not useful");
+        pick (nit_rel_requires_href, ed_1, "Anchors", es_error, ec_element, "REL and REV both require a valid HREF");
+    else if (five) pick (nit_chocolate_teapot, es_warning, ec_element, "An <A> with no HREF, or an invalid HREF, is not useful");
     else if (! a_.known (a_name))
-        pick (nit_chocolate_teapot, ed_tags, "Anchors", es_warning, ec_element, "An <A> with neither an HREF nor a NAME is not useful");
+        pick (nit_chocolate_teapot, ed_tags, "Anchors", es_warning, ec_element, "An <A> with neither a valid HREF nor a NAME is not useful");
     if (a_.known (a_urn))
         pick (nit_urn_undefined, ed_1, "Anchors", es_info, ec_element, PROG " cannot verify URN values");
     if (a_.known (a_methods))
@@ -75,13 +75,13 @@ void element::examine_anchor ()
     if (five)
     {   if (! href_known)
         {   if (a_.known (a_target) || a_.known (a_download) || a_.known (a_ping) || a_.known (a_referrerpolicy) || rel_known || rev_known || a_.known (a_hreflang) || type_known)
-                pick (nit_chocolate_teapot, ed_50, "4.5.1 The a element", es_error, ec_element, "An <A> with no HREF can have no DOWNLOAD, HREFLANG, REL, REV, REFERRERPOLICY, PING, TARGET or TYPE attributes.");
+                pick (nit_chocolate_teapot, ed_50, "4.5.1 The a element", es_error, ec_element, "An <A> with no HREF can have no DOWNLOAD, HREFLANG, REL, REV, REFERRERPOLICY, PING, TARGET or TYPE attributes");
             if (a_.known (a_itemprop))
-                pick (nit_chocolate_teapot, ed_jul20, "4.5.1 The a element", es_error, ec_element, "An <A> with an ITEMPROP requires an HREF."); }
+                pick (nit_chocolate_teapot, ed_jul20, "4.5.1 The a element", es_error, ec_element, "An <A> with an ITEMPROP requires an HREF"); }
         if (w3_minor_5 (node_.version ()) >= 4)
         {   const attribute_bitset as (descendant_attributes_);
             if (as.test (a_tabindex))
-                pick (nit_tabindex, ed_jul20, "4.5.1 The a element", es_error, ec_element, "An <A> cannot have a descendant with TABINDEX."); } } }
+                pick (nit_tabindex, ed_jul20, "4.5.1 The a element", es_error, ec_element, "An <A> cannot have a descendant with TABINDEX"); } } }
 
 void element::examine_animatemotion ()
 {   bool had = false;
@@ -135,13 +135,13 @@ void element::examine_area ()
             vint_t c = a_.get_x < attr_coords > ();
             switch (s7.get ())
             {   case s7_circ :
-                    if (c.size () != 3) pick (nit_bad_coords, ed_rfc_1980, "2.1 Syntax", es_error, ec_attribute, "When SHAPE is circle, COORDS should contain three values.");
+                    if (c.size () != 3) pick (nit_bad_coords, ed_rfc_1980, "2.1 Syntax", es_error, ec_attribute, "When SHAPE is circle, COORDS should contain three values");
                     break;
                 case s7_poly :
-                    if (c.size () % 2 != 0) pick (nit_bad_coords, ed_rfc_1980, "2.1 Syntax", es_error, ec_attribute, "When SHAPE is polygon, COORDS should contain a sequence of coordinates (an even number of values).");
+                    if (c.size () % 2 != 0) pick (nit_bad_coords, ed_rfc_1980, "2.1 Syntax", es_error, ec_attribute, "When SHAPE is polygon, COORDS should contain a sequence of coordinates (an even number of values)");
                     break;
                 case s7_rect :
-                    if (c.size () != 4) pick (nit_bad_coords, ed_rfc_1980, "2.1 Syntax", es_error, ec_attribute, "When SHAPE is rectangle (the default value), COORDS should contain two coordinates.");
+                    if (c.size () != 4) pick (nit_bad_coords, ed_rfc_1980, "2.1 Syntax", es_error, ec_attribute, "When SHAPE is rectangle (the default value), COORDS should contain two coordinates");
                     break;
                 default : break; } } } }
 
@@ -264,8 +264,8 @@ void element::examine_colgroup ()
         {   element_bitset bs (descendant_elements_);
             bs &= ~ ( non_standard_bitset | elem_col | elem_template );
             if (bs.any ())
-                if (node_.version () < html_jul13) pick (nit_colgroup_children, ed_jan13, "4.9.3 The colgroup element", es_error, ec_element, "<COLGROUP> with SPAN can only have <COL> descendants.");
-                else pick (nit_colgroup_children, ed_50, "4.9.3 The colgroup element", es_error, ec_element, "<COLGROUP> with SPAN can only have <COL> and <TEMPLATE> descendants.");
+                if (node_.version () < html_jul13) pick (nit_colgroup_children, ed_jan13, "4.9.3 The colgroup element", es_error, ec_element, "<COLGROUP> with SPAN can only have <COL> descendants");
+                else pick (nit_colgroup_children, ed_50, "4.9.3 The colgroup element", es_error, ec_element, "<COLGROUP> with SPAN can only have <COL> and <TEMPLATE> descendants");
             if (a_.get_int (a_span) > 1000) pick (nit_1000, ed_50, "4.9.3 The colgroup element", es_error, ec_element, "SPAN cannot exceed 1000"); } }
 
 void element::examine_colour_profile ()
@@ -358,11 +358,11 @@ void element::dddt (const char* ref1, const char* ref2, const char* el)
     {   if (! ancestral_elements_.test (elem_dl))
             if (node_.version () < html_jan10)
             {   if (! ancestral_elements_.test (elem_dialogue))
-                    pick (nit_dl_ancestor, ed_jan07, ref1, es_error, ec_element, "<", el, "> must have a <DL> or <DIALOG> ancestor."); }
+                    pick (nit_dl_ancestor, ed_jan07, ref1, es_error, ec_element, "<", el, "> must have a <DL> or <DIALOG> ancestor"); }
             else if (node_.version () < html_jul10)
             {   if (! ancestral_elements_.test (elem_figure) && ! ancestral_elements_.test (elem_details))
-                    pick (nit_dl_ancestor, ed_jan10, ref1, es_error, ec_element, "<", el, "> must have a <DETAILS>, <DL> or <FIGURE> ancestor."); }
-            else pick (nit_dl_ancestor, ed_52, ref2, es_error, ec_element, "<", el, "> must have a <DL> ancestor.");
+                    pick (nit_dl_ancestor, ed_jan10, ref1, es_error, ec_element, "<", el, "> must have a <DETAILS>, <DL> or <FIGURE> ancestor"); }
+            else pick (nit_dl_ancestor, ed_52, ref2, es_error, ec_element, "<", el, "> must have a <DL> ancestor");
         check_descendants (elem_dt, header_bitset | sectioning_bitset | elem_header | elem_footer); } }
 
 void element::examine_dd ()

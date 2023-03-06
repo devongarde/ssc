@@ -27,8 +27,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "stats/stats5.h"
 #include "parser/html_version.h"
 
-typedef stats0 < html_version > version_stats;
-
 class stats
 {   element_stats element_, visible_;
     term_stats dfn_, abbr_, dtdd_;
@@ -50,9 +48,16 @@ class stats
     unsigned smallest_ = UINT_MAX;
     unsigned biggest_ = 0;
     double file_size_ = 0.0;
-    ::std::string single_usage (const ::std::string name, const ::std::size_t dn, const ::std::size_t un) const;
+    ::std::string single_usage (const ::std::string name, const ::std::size_t dn, const ::std::size_t un,
+        e_nit_section sc = ns_tally, e_nit_macro n = nm_tally_name, e_nit_macro i1 = nm_tally_int,
+        e_nit_macro i2 = nm_tally_use_int, e_nit_macro c1 = nm_tally_count, e_nit_macro c2 = nm_tally_use_count) const;
     ::std::string report_usage (const ::std::string& category, const smsid_stats& sum) const;
-    ::std::string report_usage (const ::std::string& category, const smsid_stats& dcl, const smsid_stats& used) const;
+    ::std::string report_usage (const ::std::string& category, const smsid_stats& dcl, const smsid_stats& used,
+        e_nit_section sc = ns_tally, e_nit_section h = ns_tally_head, e_nit_section f = ns_tally_foot,
+        e_nit_macro n = nm_tally_name, e_nit_macro i1 = nm_tally_int,
+        e_nit_macro i2 = nm_tally_use_int, e_nit_macro c1 = nm_tally_count, e_nit_macro c2 = nm_tally_use_count,
+        e_nit_macro ttl = nm_tally_title, e_nit_macro t1 = nm_tally_total, e_nit_macro t2 = nm_tally_use_total,
+        e_nit_macro sum1 = nm_tally_sum, e_nit_macro sum2 = nm_tally_use_sum) const;
     ::std::string ontology_report () const;
     ::std::string element_report () const;
     ::std::string version_report () const;
@@ -68,7 +73,9 @@ class stats
     ::std::string css_statement_report () const;
     ::std::string font_report () const;
     ::std::string class_report () const;
-    ::std::string id_report () const;
+    ::std::string class_report2 () const;
+    ::std::string itemid_report () const;
+    ::std::string id_report2 () const;
 public:
     void mark (const e_element e)
     {   element_.mark (e); }
@@ -143,4 +150,5 @@ public:
     void check_for_standard_classes (nitpick& nits, const html_version& v) const;
     bool severity_exceeded () const;
     void accumulate (stats& o) const;
+    ::std::string class_and_id_report () const;
     ::std::string report (const bool grand) const; };

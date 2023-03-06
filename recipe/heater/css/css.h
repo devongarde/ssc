@@ -67,6 +67,7 @@ public:
     void accumulate (nitpick& accumulator) const;
     void accumulate (stats_t* s);
     void validate ();
+    void shadow (::std::stringstream& ss);
     const element_bitset get_elements () const { return st_.get_elements (); } };
 
 typedef ::std::shared_ptr < css > css_ptr;

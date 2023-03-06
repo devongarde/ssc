@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "microformat/family.h"
 #include "microformat/field.h"
 #include "microformat/sibling.h"
-#include "type/reldef.h"
+#include "type/type.h"
 #include "attribute/attribute_classes.h"
 
 void element::span_check ()

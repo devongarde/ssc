@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "main/standard.h"
-#include "type/enum.h"
+#include "main/enum.h"
 #include "feedback/nitpick.h"
 
 void schema_name_init (nitpick& nits);

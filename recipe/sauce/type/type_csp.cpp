@@ -19,8 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "main/standard.h"
-#include "type/type_csp.h"
-#include "type/type_httpequiv.h"
+#include "type/type.h"
 #include "webpage/page.h"
 
 struct symbol_entry < html_version, e_csp_directive > csp_directive_symbol_table [] =

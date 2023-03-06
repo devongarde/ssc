@@ -26,9 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "microdata/microdata_itemprop.h"
 #include "microdata/microdata_itemtype.h"
 #include "schema/schema_name.h"
-#include "type/type_httpequiv.h"
-#include "type/type_metaname.h"
-#include "type/type_class.h"
+#include "type/type.h"
 
 void stats::mark_file (const unsigned size) noexcept
 {   ++file_count_;
@@ -316,14 +314,17 @@ mmac_t mac_subtitle (const ::std::string& title)
 ::std::string stats::file_report () const
 {   ::std::string res;
     if (context.tell (es_warning)) res = ::boost::lexical_cast < ::std::string > (file_size_) + " bytes read in ";
-    res += ::boost::lexical_cast < ::std::string > (file_count_) + " HTML files, with an average of roughly ";
-    res += ::boost::lexical_cast < ::std::string > (static_cast < int > (floor (file_size_ / file_count_ + 0.5)));
-    res += " bytes per file";
+    if (file_count_ == 1)
+        res += ::boost::lexical_cast < ::std::string > (file_count_) + " file";
+    else
+    {   res += ::boost::lexical_cast < ::std::string > (file_count_) + " files, with an average of roughly ";
+        res += ::boost::lexical_cast < ::std::string > (static_cast < int > (floor (file_size_ / file_count_ + 0.5)));
+        res += " bytes per file"; }
     mmac_t table = mac_title ("File info");
     mmac_t stat = mac_init ("", res);
     res = macro -> apply (ns_stat, table, stat);
     VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
-    if (context.tell (es_error))
+    if (context.tell (es_error) && (file_count_ > 1))
     {   ::std::string app = "smallest file: " + ::boost::lexical_cast < ::std::string > (smallest_) + " bytes, ";
         app += "largest file: " + ::boost::lexical_cast < ::std::string > (biggest_) + " bytes";
         mmac_t x = mac_init ("", app);
@@ -412,18 +413,20 @@ mmac_t mac_subtitle (const ::std::string& title)
         s = macro -> apply (ns_tally_head, mac) + s + macro -> apply (ns_tally_foot, mac); }
     return s; }
 
-::std::string stats::single_usage (const ::std::string name, const ::std::size_t dn, const ::std::size_t un) const
-{   ::std::string ds (once_twice_thrice < ::std::size_t > (dn));
-    ::std::string us (once_twice_thrice < ::std::size_t > (un));
-    mmac_t mac;
-    mac.emplace (nm_tally_name, name);
-    mac.emplace (nm_tally_int, ds);
-    mac.emplace (nm_tally_use_int, us);
-    mac.emplace (nm_tally_count, ::boost::lexical_cast < ::std::string > (dn));
-    mac.emplace (nm_tally_use_count, us);
-    return macro -> apply (ns_tally, mac); }
+::std::string stats::single_usage (const ::std::string name, const ::std::size_t dn, const ::std::size_t un,
+        e_nit_section sc, e_nit_macro n, e_nit_macro i1, e_nit_macro i2, e_nit_macro c1, e_nit_macro c2) const
+{   mmac_t mac;
+    mac.emplace (n, name);
+    mac.emplace (i1, ::boost::lexical_cast < ::std::string > (dn));
+    mac.emplace (i2, ::boost::lexical_cast < ::std::string > (un));
+    mac.emplace (c1, once_twice_thrice < ::std::size_t > (dn));
+    mac.emplace (c2, once_twice_thrice < ::std::size_t > (un));
+    return macro -> apply (sc, mac); }
 
-::std::string stats::report_usage (const ::std::string& category, const smsid_stats& dcl, const smsid_stats& used) const
+::std::string stats::report_usage (const ::std::string& category, const smsid_stats& dcl, const smsid_stats& used,
+        e_nit_section sc, e_nit_section h, e_nit_section f, e_nit_macro n,
+        e_nit_macro i1, e_nit_macro i2, e_nit_macro c1, e_nit_macro c2,
+        e_nit_macro ttl, e_nit_macro t1, e_nit_macro t2, e_nit_macro sum1, e_nit_macro sum2) const
 {   ::std::string s;
     ::smsid_t::const_iterator di = dcl.cbegin ();
     ::smsid_t::const_iterator ui = used.cbegin ();
@@ -431,36 +434,37 @@ mmac_t mac_subtitle (const ::std::string& title)
     for (;;)
     {   if (di == dcl.cend ())
         {   if (ui == used.cend ()) break; 
-            s += single_usage (ui -> first, 0, ui -> second);
+            s += single_usage (ui -> first, 0, ui -> second, sc, n, i1, i2, c1, c2);
             gu += ui -> second; 
             ++ui; }
         else if (ui == used.cend ())
-        {   s += single_usage (di -> first, di -> second, 0);
+        {   s += single_usage (di -> first, di -> second, 0, sc, n, i1, i2, c1, c2);
             gd += di -> second; 
             ++di; }
         else if (di -> first < ui -> first)
-        {   s += single_usage (ui -> first, 0, ui -> second);
+        {   s += single_usage (di -> first, di -> second, 0, sc, n, i1, i2, c1, c2);
+            gd += di -> second; 
+            ++di; }
+        else if (ui -> first < di -> first)
+        {   s += single_usage (ui -> first, 0, ui -> second, sc, n, i1, i2, c1, c2);
             gu += ui -> second; 
             ++ui; }
-        else if (ui -> first < di -> first)
-        {   s += single_usage (ui -> first, 0, ui -> second);
-            gd += di -> second; 
-            ++ui; }
         else
-        {   s += single_usage (ui -> first, di -> second, ui -> second);
+        {   PRESUME (ui -> first == di -> first, __FILE__, __LINE__);
+            s += single_usage (ui -> first, di -> second, ui -> second, sc, n, i1, i2, c1, c2);
             gu += ui -> second; 
             gd += di -> second; 
             ++ui; ++di; }
         ++count; }
     if (! s.empty ())
     {   mmac_t mac = mac_title (category);
-        mac.emplace (nm_tally_count, ::boost::lexical_cast < ::std::string > (count));
-        mac.emplace (nm_tally_sum, once_twice_thrice < ::std::size_t > (gd));
-        mac.emplace (nm_tally_title, category);
-        mac.emplace (nm_tally_total, once_twice_thrice < ::std::size_t > (gd));
-        mac.emplace (nm_tally_use_sum, once_twice_thrice < ::std::size_t > (gu));
-        mac.emplace (nm_tally_use_total, once_twice_thrice < ::std::size_t > (gu));
-        s = macro -> apply (ns_tally_head, mac) + s + macro -> apply (ns_tally_foot, mac); }
+        mac.emplace (c1, ::boost::lexical_cast < ::std::string > (count));
+        mac.emplace (sum1, once_twice_thrice < ::std::size_t > (gd));
+        mac.emplace (ttl, category);
+        mac.emplace (t1, once_twice_thrice < ::std::size_t > (gd));
+        mac.emplace (sum2, once_twice_thrice < ::std::size_t > (gu));
+        mac.emplace (t2, once_twice_thrice < ::std::size_t > (gu));
+        s = macro -> apply (h, mac) + s + macro -> apply (f, mac); }
     return s; }
 
 ::std::string stats::font_report () const
@@ -470,9 +474,20 @@ mmac_t mac_subtitle (const ::std::string& title)
 {   return  report_usage ("class(es)", dcl_class_, use_class_) +
             report_usage ("element.class(es)", dcl_element_class_, use_element_class_); }
 
-::std::string stats::id_report () const
-{   return  report_usage ("id(s)", dcl_id_, use_id_) +
-            report_usage ("element#id(s)", dcl_element_id_, use_element_id_); }
+::std::string stats::class_report2 () const
+{   return  report_usage ("class(es)", dcl_class_, use_class_, ns_class, ns_class_head, ns_class_foot,
+                nm_class_name, nm_class_decl_int, nm_class_int, nm_class_decl_count, nm_class_count, nm_class_title) +
+            report_usage ("element.class(es)", dcl_element_class_, use_element_class_, ns_class, ns_class_head, ns_class_foot,
+                nm_class_name, nm_class_decl_int, nm_class_int, nm_class_decl_count, nm_class_count, nm_class_title); }
+
+::std::string stats::itemid_report () const
+{   return  report_usage ("itemid(s)", dcl_id_, use_id_); }
+
+::std::string stats::id_report2 () const
+{   return  report_usage ("id(s)", dcl_id_, use_id_, ns_nsid, ns_id_head, ns_id_foot,
+                nm_id_name, nm_id_decl_int, nm_id_int, nm_id_decl_count, nm_id_count, nm_id_title) +
+            report_usage ("element#id(s)", dcl_element_id_, use_element_id_, ns_nsid, ns_id_head, ns_id_foot,
+                nm_id_name, nm_id_decl_int, nm_id_int, nm_id_decl_count, nm_id_count, nm_id_title); }
 
 ::std::string stats::report (const bool grand) const
 {   ::std::string res;
@@ -492,7 +507,7 @@ mmac_t mac_subtitle (const ::std::string& title)
     res += css_statement_report ();
     res += font_report ();
     res += class_report ();
-    res += id_report ();
+    res += itemid_report ();
     if (grand)
     {   res += error_report ();
         if (file_count_ > 1)
@@ -547,3 +562,6 @@ void stats::accumulate (stats& o) const
     if (biggest_ > o.biggest_) o.biggest_ = biggest_;
     o.file_size_ += file_size_;
     o.file_count_ += file_count_; }
+
+::std::string stats::class_and_id_report () const
+{   return class_report2 () + id_report2 (); }

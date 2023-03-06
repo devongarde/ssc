@@ -790,6 +790,10 @@ const nitname nitnames [] =
     { nit_no_such_page, "no_such_page" },
     { nit_bespoke_property, "bespoke_property" },
     { nit_missing_value, "missing_value" },
+    { nit_at_least, "at_least" },
+    { nit_at_most, "at_most" },
+    { nit_range, "range" },
+    { nit_precisely, "precisely" },
 
     { nit_incompatible, "incompatible" },
 

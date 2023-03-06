@@ -40,6 +40,7 @@ public:
         return res; }
     void validate (arguments& args);
     void accumulate (stats_t* s) const;
+    void shadow (::std::stringstream& ss, arguments& args);
     ::std::string rpt () const; };
 
 typedef ::std::vector < rules > vrs_t;

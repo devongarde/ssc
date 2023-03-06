@@ -27,32 +27,40 @@ template < class FAMILY, class MEMBER, FAMILY max_family, MEMBER max_member > cl
     partial_t family_, member_;
     uint64_t index (const FAMILY f, const MEMBER m) const noexcept
     {   return (static_cast < uint64_t > (f) << 32) + static_cast < uint64_t > (m); }
-public:
-    stats2 ()
+    void resize ()
     {   family_.resize (static_cast <::std::size_t> (max_family + 1), 0);
         member_.resize (static_cast <::std::size_t> (max_member + 1), 0); }
+public:
     void swap (stats2& s2) noexcept
     {   count_.swap (s2.count_);
         family_.swap (s2.family_);
         member_.swap (s2.member_); }
     unsigned at (const FAMILY f, const MEMBER m) const
-    {   counter_t::const_iterator i = count_.find (index (f, m));
+    {   if ((f >= family_.size ()) || (m >= member_.size ())) return 0;
+        counter_t::const_iterator i = count_.find (index (f, m));
         if (i == count_.cend ()) return 0;
         return i -> second; }
-    unsigned family (const FAMILY e) const
-    {   return family_.at (e); }
+    unsigned family (const FAMILY f) const
+    {   if (f >= family_.size ()) return 0;
+        return family_.at (f); }
     unsigned member (const MEMBER m) const
-    {   return member_.at (m); }
+    {   if (m >= member_.size ()) return 0;
+        return member_.at (m); }
     void mark (const FAMILY f, const MEMBER m, const unsigned u = 1)
-    {   PRESUME (m <= max_member, __FILE__, __LINE__);
+    {   PRESUME (f <= max_family, __FILE__, __LINE__);
+        PRESUME (m <= max_member, __FILE__, __LINE__);
+        if (u == 0) return;
+        if ((f >= family_.size ()) || (m >= member_.size ()))
+            resize ();
         family_.at (f) += u;
         member_.at (m) += u;
         uint64_t i = index (f, m);
         if (count_.find (i) != count_.cend ()) count_.at (i) += u;
         else count_.insert (counter_t :: value_type (i, u)); }
     void accumulate (stats2 < FAMILY, MEMBER, max_family, max_member >& o) const
-    {   PRESUME (o.family_.size () >= family_.size (), __FILE__, __LINE__);
-        PRESUME (o.member_.size () >= member_.size (), __FILE__, __LINE__);
+    {   if (o.family_.size () == 0)
+        {   PRESUME (o.member_.size () == 0, __FILE__, __LINE__);
+            o.resize (); }
         for (unsigned i = 0; i < family_.size (); ++i)
             o.family_.at (i) += family_.at (i);
         for (unsigned i = 0; i < member_.size (); ++i)

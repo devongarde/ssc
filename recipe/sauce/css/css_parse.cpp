@@ -30,7 +30,7 @@ void bonk (vtt_t& vt, css_token t, const int line, ::std::string& s, const ::std
 {   if (t == ct_root) commented = sgml_cmt = xml_cmt = false;
     bool shush = false;
     if (! s.empty ())
-    {   if ((s.at (0) == '"') || (s.at (0) == '\''))
+    {   if ((s.length () > 1) && ((s.at (0) == '"') || (s.at (0) == '\'')) && (s.at (s.length () - 1) == s.at (0)))
         {   vt.emplace_back (ct_string, line, x, uq3 (s)); shush = true; }
         else if ((s.substr (0, 1).find_first_not_of (SIGNEDDECIMAL) == ::std::string::npos) &&
                     (s.substr (1).find_first_of (EXPONENTIAL) == ::std::string::npos))
@@ -196,28 +196,28 @@ bool css::parse (const ::std::string& content, const bool x)
         else
         {   const ::std::string c (near_here (b, e, i));
             if (sq || dq)
-            {   PRESUME (! commented, __FILE__, __LINE__);
-                switch (*i)
-                {   case '\\' : backslash = true; break;
-                    case '\v' :
-                    case '\n' : bonk (args_.t_, ct_string, line_++, v, c);
-                                if (args_.t_.size () > 0)
-                                    args_.t_.at (args_.t_.size () - 1).nits_.pick (nit_css_syntax, es_warning, ec_css, "end of line in string");
-                                sq = dq = false;
-                                break;
-                    case '"' :  v += *i;
-                                if (sq) break;
-                                PRESUME (dq, __FILE__, __LINE__);
-                                dq = false;
-                                bonk (args_.t_, ct_string, line_, v, c);
-                                break;
-                    case '\'' : v += *i;
-                                if (dq) break;
-                                PRESUME (sq, __FILE__, __LINE__);
-                                sq = false;
-                                bonk (args_.t_, ct_string, line_, v, c);
-                                break;
-                    default :   v += *i; break; } }
+            {   if (! commented)
+                    switch (*i)
+                    {   case '\\' : backslash = true; break;
+                        case '\v' :
+                        case '\n' : bonk (args_.t_, ct_string, line_++, v, c);
+                                    if (args_.t_.size () > 0)
+                                        args_.t_.at (args_.t_.size () - 1).nits_.pick (nit_css_syntax, es_warning, ec_css, "end of line in string");
+                                    sq = dq = false;
+                                    break;
+                        case '"' :  v += *i;
+                                    if (sq) break;
+                                    PRESUME (dq, __FILE__, __LINE__);
+                                    dq = false;
+                                    bonk (args_.t_, ct_string, line_, v, c);
+                                    break;
+                        case '\'' : v += *i;
+                                    if (dq) break;
+                                    PRESUME (sq, __FILE__, __LINE__);
+                                    sq = false;
+                                    bonk (args_.t_, ct_string, line_, v, c);
+                                    break;
+                        default :   v += *i; break; } }
             else switch (*i)
             {   case '\t' :
                 case '\r' :

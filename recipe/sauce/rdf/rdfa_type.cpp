@@ -20,9 +20,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "rdf/rdfa_type.h"
-#include "type/type_enum_vec.h"
+#include "type/type.h"
 #include "schema/schema_type.h"
-#include "type/type_van.h"
 
 ::std::string type_index_name (const type_index ndx)
 {   if (ndx != invalid_type) return sch :: name (static_cast < e_schema_type > (ndx), true);

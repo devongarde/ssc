@@ -43,7 +43,17 @@ class nitpick
         return s; }
     template < class T > ::std::string inner_review (const e_nit_section& entry, const T& t, const mmac_t& mac, mmac_t& outer, bool& quote, bool& dq, bool& infoed, bool& eol, bool& hasns, const bool unfiltered) const;
 public:
-    DEFAULT_CONSTRUCTORS (nitpick);
+//    DEFAULT_CONSTRUCTORS (nitpick);
+    nitpick () = default;
+    DEFAULT_COPY_MOVE (nitpick);
+    ~nitpick ()
+    {   nits_.clear ();
+        before_.clear ();
+        mote_.clear ();
+        after_.clear ();
+        severity_.reset ();
+        category_.reset ();
+        doc_.reset (); }
 	explicit nitpick (const ::std::string& c) : mote_ (c) { }
     explicit nitpick (const int line, const ::std::string& c) : mote_ (c), line_ (line) { }
     explicit nitpick (const int line, const ::std::string& b, const ::std::string& m, const ::std::string& a)

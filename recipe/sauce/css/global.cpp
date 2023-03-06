@@ -81,12 +81,12 @@ void css_global::report_usage (::std::ostringstream& ss) const
 {   PRESUME (! fred.activity (), __FILE__, __LINE__);
     if (context.tell (es_warning))
     {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
-        smsid_t sum_;
+        smsid_t sum;
         for (auto i : mdst_)
             if (i.second != nullptr)
-                merge_smsid (sum_, i.second -> class_);
+                merge_smsid (sum, i.second -> class_);
         ::std::string cls;
-        for (auto i : sum_)
+        for (auto i : sum)
         {   mmac_t mac;
             ::std::string lex (::boost::lexical_cast < ::std::string > (i.second));
             mac.emplace (nm_class_name, i.first);
@@ -95,3 +95,8 @@ void css_global::report_usage (::std::ostringstream& ss) const
             cls += macro -> apply (ns_class, mac); }
         if (! cls.empty ())
             ss << macro -> apply (ns_class_head) << cls << macro -> apply (ns_class_foot); } }
+
+void css_global::accumulate (stats_t* s) const
+{   for (auto i : mdst_)
+        if (i.second != nullptr)
+            i.second -> accumulate (s); }

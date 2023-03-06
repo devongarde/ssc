@@ -21,8 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "feedback/nitout.h"
 #include "main/context.h"
-#include "type/type_enum.h"
-#include "type/type_master.h"
+#include "type/type.h"
 #include "coop/lox.h"
 
 macro_uptr macro;
@@ -33,13 +32,22 @@ vstr_t sections;
 
 #define SPEC_NIT \
     "[class]\n" \
-    "{{class-name}} {{class-int}}\n" \
+    "{{class-name}} {{class-decl-int}} {{class-int}}\n" \
     "\n" \
     "[class-head]\n" \
     "\n" \
-    START_OF_SECTION " classes\n" \
+    START_OF_SECTION " {{class-title}}\n" \
     "\n" \
     "[class-foot]\n" \
+    "\n" \
+    "[id]\n" \
+    "{{id-name}} {{id-decl-int}} {{id-int}}\n" \
+    "\n" \
+    "[id-head]\n" \
+    "\n" \
+    START_OF_SECTION " {{id-title}}\n" \
+    "\n" \
+    "[id-foot]\n" \
     "\n" \
     "[tally]\n" \
     "    {{tally-name}}: {{tally-int}}\n" \
@@ -161,13 +169,22 @@ vstr_t sections;
 
 #define TEST_NIT \
     "[class]\n" \
-    "{{class-name}} {{class-int}}\n" \
+    "{{class-name}} {{class-decl-int}} {{class-int}}\n" \
     "\n" \
     "[class-head]\n" \
     "\n" \
-    START_OF_SECTION " classes\n" \
+    START_OF_SECTION " {{class-title}}\n" \
     "\n" \
     "[class-foot]\n" \
+    "\n" \
+    "[id]\n" \
+    "{{id-name}} {{id-decl-int}} {{id-int}}\n" \
+    "\n" \
+    "[id-head]\n" \
+    "\n" \
+    START_OF_SECTION " {{id-title}}\n" \
+    "\n" \
+    "[id-foot]\n" \
     "\n" \
     "[tally]\n" \
     "    {{tally-name}}: {{tally-int}}\n" \
@@ -210,7 +227,7 @@ vstr_t sections;
     END_OF_STATS "\n" \
     "\n" \
     "[itemid]\n" \
-    "{{itemid-name}} ({{id-page}}:{{itemid-line}})\n" \
+    "{{itemid-name}} ({{itemid-page}}:{{itemid-line}})\n" \
     "\n" \
     "[itemid-head]\n" \
     "\n" \
@@ -292,13 +309,22 @@ vstr_t sections;
 
 #define TEXT_NIT \
     "[class]\n" \
-    "class \"{{class-name}}\" is used {{class-count}}\n" \
+    "{{class-name}}: style {{class-decl-int}}, class {{class-int}}\n" \
     "\n" \
     "[class-head]\n" \
     "\n" \
-    START_OF_SECTION " classes\n" \
+    START_OF_SECTION " {{class-title}}\n" \
     "\n" \
     "[class-foot]\n" \
+    "\n" \
+    "[id]\n" \
+    "{{id-name}}: style {{id-decl-int}}, id {{id-int}}\n" \
+    "\n" \
+    "[id-head]\n" \
+    "\n" \
+    START_OF_SECTION " {{id-title}}\n" \
+    "\n" \
+    "[id-foot]\n" \
     "\n" \
     "[tally]\n" \
     "    {{tally-name}}: {{tally-int}}\n" \
@@ -421,13 +447,23 @@ vstr_t sections;
 
 #define HTML_NIT \
     "[class]\n" \
-    "<SPAN class=\"nit-name\">{{class-name}}</SPAN> <SPAN class=\"nit-count\">{{class-count}}</SPAN><BR>\n" \
+    "<SPAN class=\"nit-name\">{{class-name}}:</SPAN> <SPAN class=\"nit-count\">style {{class-decl-count}},</SPAN> <SPAN class=\"nit-count\">class {{class-count}}</SPAN><BR>\n" \
     "\n" \
     "[class-head]\n" \
-    "<H2 class=\"nit-section\">classes</H2>\n" \
+    "<H2 class=\"nit-section\">{{class-title}}</H2>\n" \
     "<P>\n" \
     "\n" \
     "[class-foot]\n" \
+    "</P>\n" \
+    "\n" \
+    "[id]\n" \
+    "<SPAN class=\"nit-name\">{{id-name}}:</SPAN> <SPAN class=\"nit-count\">style {{id-decl-count}},</SPAN> <SPAN class=\"nit-count\">id {{id-count}}</SPAN><BR>\n" \
+    "\n" \
+    "[id-head]\n" \
+    "<H2 class=\"nit-section\">{{id-title}}</H2>\n" \
+    "<P>\n" \
+    "\n" \
+    "[id-foot]\n" \
     "</P>\n" \
     "\n" \
     "[tally]\n" \
@@ -667,7 +703,7 @@ void macro_t::set (const e_nit_macro m, ::std::string&& s)
     {   case qs_c : return enc (s);
         case qs_csv : return encsv (s);
         case qs_double : return endouble (s, '"');
-        case qs_html : return enhtml (s);
+        case qs_html : if (context.test ()) return s; return enhtml (s);
         case qs_single : return endouble (s, '\'');
         default : return s; } }
 
@@ -764,7 +800,7 @@ bool macro_t::load_template (nitpick& nits, const html_version& v)
 {   if (tpl.empty ()) return ::std::string ();
     bool subbed = false;
     ::std::string res;
-    ::std::string::size_type len = context.macro_start ().size ();
+    const ::std::string::size_type len = context.macro_start ().size ();
     PRESUME (len == context.macro_end ().size (), __FILE__, __LINE__);
     ::std::string::size_type prepos = 0;
     nitpick nuts;

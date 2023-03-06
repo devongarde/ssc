@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "css/decoration.h"
-#include "type/type_enum.h"
+#include "type/type.h"
 
 void decoration::parse (arguments& args, const int from, const int to)
 {   PRESUME ((from <= to) || (to < 0), __FILE__, __LINE__);
@@ -99,7 +99,7 @@ void decoration::accumulate (stats_t* s, const e_element e) const
 void decoration::validate (arguments& args)
 {   switch (sparkle_.index ())
     {   case dt_unset :
-            return;
+            break;
         case dt_attribute :
             ssc_get < css_attribute > (sparkle_).validate (args);
             break;
@@ -111,5 +111,23 @@ void decoration::validate (arguments& args)
             break;
         case dt_id :
             ssc_get < css_id > (sparkle_).validate (args);
+            break;
+        default : GRACEFUL_CRASH (__FILE__, __LINE__); } }
+
+void decoration::shadow (::std::stringstream& ss, arguments& args)
+{   switch (sparkle_.index ())
+    {   case dt_unset :
+            break;
+        case dt_attribute :
+            ssc_get < css_attribute > (sparkle_).shadow (ss, args);
+            break;
+        case dt_class :
+            ssc_get < css_class > (sparkle_).shadow (ss, args);
+            break;
+        case dt_fn :
+            ssc_get < css_fn > (sparkle_).shadow (ss, args);
+            break;
+        case dt_id :
+            ssc_get < css_id > (sparkle_).shadow (ss, args);
             break;
         default : GRACEFUL_CRASH (__FILE__, __LINE__); } }
