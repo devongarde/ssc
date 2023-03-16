@@ -36,6 +36,14 @@ template < > struct type_master < t_css > : public tidy_string < t_css >
     {   if (! tidy_string < t_css > :: good ()) return true;
         return ! process_css (nits, v, tidy_string < t_css > :: get_string (), e); } };
 
+template < > struct type_master < t_css_bespoke > : public tidy_string < t_css_bespoke >
+{   using tidy_string < t_css_bespoke > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_bespoke > :: set_value (nits, v, s);
+        tidy_string < t_css_bespoke > :: status (s_invalid); }
+    void verify_attribute (nitpick& nits, const html_version& , const elem& , element* , const ::std::string& attnam)
+    {   nits.pick (nit_css_bespoke, es_warning, ec_type, "bespoke properties, such as ", attnam, ", are processed neither by " PROG " nor all browsers"); } };
+
 template < > struct type_master < t_css_all > : public tidy_string < t_css_all >
 {   using tidy_string < t_css_all > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -129,3 +137,17 @@ template < > struct type_master < t_css_font > : tidy_string < t_css_font >
                 if (! res) break; }
             if (res) return; }
         tidy_string < t_css_font > :: status (s_invalid); } };
+
+template < > struct type_master < t_css_nth > : public tidy_string < t_css_nth >
+{   using tidy_string < t_css_nth > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_nth > :: set_value (nits, v, s);
+        ::std::string ss (tidy_string < t_css_nth > :: get_string ());
+        if (tidy_string < t_css_nth > :: empty () || ss.empty ())
+            nits.pick (nit_empty, ed_css_selectors_3, "6.6.5.2. :nth-child() pseudo-class", es_error, ec_type, "pseudo class children specification cannot be empty");
+        else if (tidy_string < t_css_nth > :: good ())
+            if (ss.find_first_not_of (DENARY "+-nN ") != ::std::string::npos)
+                nits.pick (nit_css_syntax, ed_css_selectors_3, "6.6.5.2. :nth-child() pseudo-class", es_error, ec_type, quote (ss), " contains invalid characters");
+            else return; // maybe do more checking!
+        tidy_string < t_css_nth > :: status (s_invalid); } };
+

@@ -1,0 +1,134 @@
+﻿@namespace foo url(http://www.example.com);
+ foo|h1 { color: blue } /* first rule */
+ foo|* { color: yellow } /* second rule */
+ |h1 { color: red } /* ...*/
+ *|h1 { color: green }
+ h1 { color: green }
+
+ h1[title] { }
+
+ span[class="example"] { }
+
+ span[hello="Cleveland"][goodbye="Columbus"] { }
+
+a[rel~="copyright"] { }
+a[href="http://www.example.org/"] { }
+
+a[hreflang=fr] { }
+
+a[hreflang|="en"] { }
+
+DIALOGUE[character=romeo] { }
+DIALOGUE[character=juliet] { }
+
+object[type^="image/"] { }
+
+a[href$=".html"] { }
+
+p[title*="hello"] { }
+
+@namespace foo "http://www.example.com";
+[foo|att=val] { color: blue }
+[*|att] { color: yellow }
+[|att] { color: green }
+[att] { color: green }
+
+EXAMPLE[radix=decimal] { /*... default property settings ...*/ }
+EXAMPLE[radix=octal] { /*... other settings...*/ }
+
+EXAMPLE { /*... default property settings ...*/ }
+EXAMPLE[radix=octal] { /*... other settings...*/ }
+
+*.pastoral { color: green } /* all elements with class~=pastoral */
+
+.pastoral { color: green } /* all elements with class~=pastoral */
+
+H1.pastoral { color: green } /* H1 elements with class~=pastoral */
+
+p.pastoral.marine { color: green }
+
+h1#chapter1 { }
+
+#chapter1 { }
+
+*#z98y { }
+
+a:link /* unvisited links */ { }
+a:visited /* visited links */ { }
+a:hover /* user hovers */ { }
+a:active /* active links */ { }
+
+a:focus { }
+a:focus:hover { }
+
+*:target { color : red }
+*:target::before { content : url(target.png) }
+
+html:lang(fr-be) { }
+html:lang(de) { }
+:lang(fr-be) > q { }
+:lang(de) > q { }
+
+tr:nth-child(2n+1) /* represents every odd row of an HTML table */ { }
+tr:nth-child(odd) /* same */ { }
+tr:nth-child(2n+0) /* represents every even row of an HTML table */ { }
+tr:nth-child(even) /* same */ { }
+
+/* Alternate paragraph colours in CSS */
+p:nth-child(4n+1) { color: navy; }
+p:nth-child(4n+2) { color: green; }
+p:nth-child(4n+3) { color: maroon; }
+p:nth-child(4n+4) { color: purple; }
+
+:nth-child(10n-1) /* represents the 9th, 19th, 29th, etc, element */ { }
+:nth-child(10n+9) /* Same */ { }
+:nth-child(10n+-1) /* Syntactically invalid, and would be ignored */ { }
+
+foo:nth-child(0n+5) /* represents an element foo that is the 5th child of its parent element */ { }
+foo:nth-child(5) /* same */ { }
+bar:nth-child(1n+0) /* represents all bar elements, specificity (0,1,1) */ { }
+bar:nth-child(n+0) /* same */ { }
+bar:nth-child(n) /* same */ { }
+bar /* same but lower specificity (0,0,1) */ { }
+
+tr:nth-child(2n+0) /* represents every even row of an HTML table */ { }
+tr:nth-child(2n) /* same */ { }
+
+:nth-child( 3n + 1 ) { }
+:nth-child( +3n - 2 ) { }
+:nth-child( -n+ 6) { }
+:nth-child( +6 ) { }
+
+:nth-child(3 n) { }
+:nth-child(+ 2n) { }
+:nth-child(+ 2) { }
+
+html|tr:nth-child(-n+6) /* represents the 6 first rows of XHTML tables */ { }
+
+tr:nth-last-child(-n+2) /* represents the two last rows of an HTML table */ { }
+foo:nth-last-child(odd) /* represents all odd foo elements in their parent element,
+ counting from the last one */ { }
+
+img:nth-of-type(2n+1) { float: right; }
+img:nth-of-type(2n) { float: left; }
+
+body > h2:nth-of-type(n+2):nth-last-of-type(n+2) { }
+
+body > h2:not(:first-of-type):not(:last-of-type) { }
+
+div > p:first-child { }
+
+* > a:first-child /* a is first child of any element */ { }
+a:first-child /* Same (assuming a is not the root element) */ { }
+
+tr > td:last-of-type { }
+
+button:not([DISABLED]) { }
+
+*:not(FOO) { }
+
+html|*:not(:link):not(:visited) { }
+
+*|*:not(*) { }
+
+*|*:not(:hover) { }

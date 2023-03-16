@@ -30,7 +30,8 @@ class distilled
 {   friend class css_global;
     smsid_t class_, id_, element_class_, element_id_, font_;
     css_ptr cp_;
-    bool in_progress_ = false;
+    v_np ticks_;
+    bool in_progress_ = false, file_ = false;
 public:
     DEFAULT_CONSTRUCTORS_NO_EMPTY (distilled);
     explicit distilled (bool b) : in_progress_ (b) { } // set to false for a snippet
@@ -41,6 +42,7 @@ public:
     bool sort_it_out () const noexcept { return in_progress_; }
     css_ptr css () const { return cp_; }
     void css (const css_ptr cp) { cp_ = cp; }
+    void reset ();
     css_ptr expel () { css_ptr res (cp_); cp_.reset (); return res; }
     smsid_t& cl () { return class_; }
     smsid_t& id () { return id_; }
@@ -74,7 +76,10 @@ public:
     bool has_element_id (const ::std::string& s) const
     {   return (element_id_.find (s) != element_id_.cend ()); }
     bool has_font (const ::std::string& s) const
-    {   return (font_.find (s) != font_.cend ()); } };
+    {   return (font_.find (s) != font_.cend ()); }
+    void merge (const nitpick& ticks)
+    {   ticks_.push_back (ticks); }
+    ::std::string review (mmac_t& mac, const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot, const e_nit_section& page_head = ns_none, const bool unfiltered = false); };
 
 typedef ::std::shared_ptr < distilled > dst_ptr;
 typedef ssc_map < ::std::string, dst_ptr > mdst_t;

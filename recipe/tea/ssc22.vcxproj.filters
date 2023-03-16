@@ -759,18 +759,6 @@
     <Filter Include="Toast\coop\oct21">
       <UniqueIdentifier>{5caed077-e0a9-4433-ac02-b2093a58845c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Toast\coop\schema-abc">
-      <UniqueIdentifier>{28b94ae4-6eb1-41da-b1e7-57e2c4704d92}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Toast\coop\schema-abc\a">
-      <UniqueIdentifier>{abad5c77-6ce1-412f-b696-94910e6b1a4b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Toast\coop\schema-abc\b">
-      <UniqueIdentifier>{805d2b5b-9d8a-48b0-854b-e280b3f75ae2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Toast\coop\schema-abc\c">
-      <UniqueIdentifier>{0086432d-52c2-4cbb-9f4b-889b0aeaac77}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Toast\coop\corrupt\a">
       <UniqueIdentifier>{49dea9f7-085c-4f50-a10f-70d71b65499c}</UniqueIdentifier>
     </Filter>
@@ -881,9 +869,6 @@
     </Filter>
     <Filter Include="Toast\coop\oct21\o">
       <UniqueIdentifier>{7f61ef6b-b480-4185-ba02-e1b02d0638e9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Toast\coop\schema-abc\empty">
-      <UniqueIdentifier>{36ccb947-2d78-4613-9bf5-d32b41ac9c03}</UniqueIdentifier>
     </Filter>
     <Filter Include="Toast\coop\oct21\p">
       <UniqueIdentifier>{e8b12aef-10d9-48b6-a8a1-213f7abd9d70}</UniqueIdentifier>
@@ -1031,6 +1016,27 @@
     </Filter>
     <Filter Include="Toast\Shadow\CSS">
       <UniqueIdentifier>{c88ee29b-a509-4926-9838-bba707f785f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-sel">
+      <UniqueIdentifier>{ad8e18e8-4188-422c-90a6-49c345cc5405}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\songlight">
+      <UniqueIdentifier>{6a8e1463-5b34-4a1f-9aaa-3fda37e3b76c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\schema-abc">
+      <UniqueIdentifier>{8d8b5dda-473b-4182-8940-ba4909ad4266}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\schema-abc\a">
+      <UniqueIdentifier>{bd4afeec-1f05-4ecf-8e7b-cc15a49a63be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\schema-abc\b">
+      <UniqueIdentifier>{0f4d3a92-eefe-4ef3-afe9-781ed0754c80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\coop\schema-abc\c">
+      <UniqueIdentifier>{d6219a9e-4a09-4a42-b192-fcde42a65d82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-ns">
+      <UniqueIdentifier>{1ee61289-a6ae-45c3-a712-1dfa715dd0ad}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1686,6 +1692,9 @@
       <Filter>Heater\compound</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\compound\type_all_of.h">
+      <Filter>Heater\compound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\compound\type_sz.h">
       <Filter>Heater\compound</Filter>
     </ClInclude>
   </ItemGroup>
@@ -24174,150 +24183,6 @@
     <None Include="..\toast\type\httpequiv\bad.html">
       <Filter>Toast\Type\httpequiv</Filter>
     </None>
-    <None Include="..\toast\coop\schema-abc\abc.conf">
-      <Filter>Toast\coop\schema-abc</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\abc.spec">
-      <Filter>Toast\coop\schema-abc</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\index.html">
-      <Filter>Toast\coop\schema-abc</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\a\administrativearea.html">
-      <Filter>Toast\coop\schema-abc\a</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\a\aggregateoffer.html">
-      <Filter>Toast\coop\schema-abc\a</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\a\aggregaterating-1.html">
-      <Filter>Toast\coop\schema-abc\a</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\a\aggregaterating-2.html">
-      <Filter>Toast\coop\schema-abc\a</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\a\alignmentobject.html">
-      <Filter>Toast\coop\schema-abc\a</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\a\amusementpark.html">
-      <Filter>Toast\coop\schema-abc\a</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\a\answer.html">
-      <Filter>Toast\coop\schema-abc\a</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\a\archivecomponent.html">
-      <Filter>Toast\coop\schema-abc\a</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\a\archiveorganisation.html">
-      <Filter>Toast\coop\schema-abc\a</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\a\article.html">
-      <Filter>Toast\coop\schema-abc\a</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\a\atlas.html">
-      <Filter>Toast\coop\schema-abc\a</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\a\audiobook.html">
-      <Filter>Toast\coop\schema-abc\a</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\a\audioobject.html">
-      <Filter>Toast\coop\schema-abc\a</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\b\blogposting.html">
-      <Filter>Toast\coop\schema-abc\b</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\b\book-1.html">
-      <Filter>Toast\coop\schema-abc\b</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\b\book-2.html">
-      <Filter>Toast\coop\schema-abc\b</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\b\book-3.html">
-      <Filter>Toast\coop\schema-abc\b</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\b\breadcrumblist.html">
-      <Filter>Toast\coop\schema-abc\b</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\b\broadcastevent.html">
-      <Filter>Toast\coop\schema-abc\b</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\b\broadcastfrequencyspecification.html">
-      <Filter>Toast\coop\schema-abc\b</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\b\broadcastservice.html">
-      <Filter>Toast\coop\schema-abc\b</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\b\brokerageaccount.html">
-      <Filter>Toast\coop\schema-abc\b</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\b\bankaccount.html">
-      <Filter>Toast\coop\schema-abc\b</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\b\bankorcreditunion.html">
-      <Filter>Toast\coop\schema-abc\b</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\c\cableorsatelliteservice.html">
-      <Filter>Toast\coop\schema-abc\c</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\c\car.html">
-      <Filter>Toast\coop\schema-abc\c</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\c\categorycode.html">
-      <Filter>Toast\coop\schema-abc\c</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\c\categorycodeset.html">
-      <Filter>Toast\coop\schema-abc\c</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\c\cemetery.html">
-      <Filter>Toast\coop\schema-abc\c</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\c\chapter.html">
-      <Filter>Toast\coop\schema-abc\c</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\c\civicstructure.html">
-      <Filter>Toast\coop\schema-abc\c</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\c\claimreview.html">
-      <Filter>Toast\coop\schema-abc\c</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\c\collection.html">
-      <Filter>Toast\coop\schema-abc\c</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\c\collegeoruniversity-1.html">
-      <Filter>Toast\coop\schema-abc\c</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\c\collegeoruniversity-2.html">
-      <Filter>Toast\coop\schema-abc\c</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\c\comiccoverart.html">
-      <Filter>Toast\coop\schema-abc\c</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\c\comicissue.html">
-      <Filter>Toast\coop\schema-abc\c</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\c\conversation.html">
-      <Filter>Toast\coop\schema-abc\c</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\c\corporation.html">
-      <Filter>Toast\coop\schema-abc\c</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\c\course.html">
-      <Filter>Toast\coop\schema-abc\c</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\c\courseinstance.html">
-      <Filter>Toast\coop\schema-abc\c</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\c\coverart.html">
-      <Filter>Toast\coop\schema-abc\c</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\c\creativework-1.html">
-      <Filter>Toast\coop\schema-abc\c</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\c\creativework-2.html">
-      <Filter>Toast\coop\schema-abc\c</Filter>
-    </None>
-    <None Include="..\toast\coop\schema-abc\c\creditcard.html">
-      <Filter>Toast\coop\schema-abc\c</Filter>
-    </None>
     <None Include="..\toast\coop\corrupt\a\ant.shtml">
       <Filter>Toast\coop\corrupt\a</Filter>
     </None>
@@ -29061,7 +28926,6 @@
     <None Include="..\toast\other\CSS\index.html">
       <Filter>Toast\Other\CSS</Filter>
     </None>
-    <None Include="packages.config" />
     <None Include="..\toast\shadow\css\css.conf">
       <Filter>Toast\Shadow\CSS</Filter>
     </None>
@@ -29088,6 +28952,237 @@
     </None>
     <None Include="..\toast\coop\corrupt\corrupt1.spec">
       <Filter>Toast\coop\corrupt</Filter>
+    </None>
+    <None Include="..\toast\css\3-sel\css.conf">
+      <Filter>Toast\CSS\3-sel</Filter>
+    </None>
+    <None Include="..\toast\css\3-sel\css.spec">
+      <Filter>Toast\CSS\3-sel</Filter>
+    </None>
+    <None Include="..\toast\css\3-sel\css-5.css">
+      <Filter>Toast\CSS\3-sel</Filter>
+    </None>
+    <None Include="..\toast\css\3-sel\index.html">
+      <Filter>Toast\CSS\3-sel</Filter>
+    </None>
+    <None Include="..\toast\css\3-sel\css-6.css">
+      <Filter>Toast\CSS\3-sel</Filter>
+    </None>
+    <None Include="..\toast\css\3-sel\css-6.html">
+      <Filter>Toast\CSS\3-sel</Filter>
+    </None>
+    <None Include="..\toast\css\songlight\css.conf">
+      <Filter>Toast\CSS\songlight</Filter>
+    </None>
+    <None Include="..\toast\css\songlight\css.spec">
+      <Filter>Toast\CSS\songlight</Filter>
+    </None>
+    <None Include="..\toast\css\songlight\index.html">
+      <Filter>Toast\CSS\songlight</Filter>
+    </None>
+    <None Include="..\toast\css\songlight\songlight.css">
+      <Filter>Toast\CSS\songlight</Filter>
+    </None>
+    <None Include="..\toast\css\songlight\yukontoast.css">
+      <Filter>Toast\CSS\songlight</Filter>
+    </None>
+    <None Include="..\toast\living\oct22\html4.css">
+      <Filter>Toast\Living\oct22</Filter>
+    </None>
+    <None Include="..\toast\living\jul22\html4.css">
+      <Filter>Toast\Living\jul22</Filter>
+    </None>
+    <None Include="..\toast\living\jan22\html4.css">
+      <Filter>Toast\Living\jan22</Filter>
+    </None>
+    <None Include="..\toast\living\apr22\html4.css">
+      <Filter>Toast\Living\apr22</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\a\administrativearea.html">
+      <Filter>Toast\coop\schema-abc\a</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\a\aggregateoffer.html">
+      <Filter>Toast\coop\schema-abc\a</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\a\aggregaterating-1.html">
+      <Filter>Toast\coop\schema-abc\a</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\a\aggregaterating-2.html">
+      <Filter>Toast\coop\schema-abc\a</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\a\alignmentobject.html">
+      <Filter>Toast\coop\schema-abc\a</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\a\amusementpark.html">
+      <Filter>Toast\coop\schema-abc\a</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\a\answer.html">
+      <Filter>Toast\coop\schema-abc\a</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\a\archivecomponent.html">
+      <Filter>Toast\coop\schema-abc\a</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\a\archiveorganisation.html">
+      <Filter>Toast\coop\schema-abc\a</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\a\article.html">
+      <Filter>Toast\coop\schema-abc\a</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\a\atlas.html">
+      <Filter>Toast\coop\schema-abc\a</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\a\audiobook.html">
+      <Filter>Toast\coop\schema-abc\a</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\a\audioobject.html">
+      <Filter>Toast\coop\schema-abc\a</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\b\bankaccount.html">
+      <Filter>Toast\coop\schema-abc\b</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\b\bankorcreditunion.html">
+      <Filter>Toast\coop\schema-abc\b</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\b\blogposting.html">
+      <Filter>Toast\coop\schema-abc\b</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\b\book-1.html">
+      <Filter>Toast\coop\schema-abc\b</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\b\book-2.html">
+      <Filter>Toast\coop\schema-abc\b</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\b\book-3.html">
+      <Filter>Toast\coop\schema-abc\b</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\b\breadcrumblist.html">
+      <Filter>Toast\coop\schema-abc\b</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\b\broadcastevent.html">
+      <Filter>Toast\coop\schema-abc\b</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\b\broadcastfrequencyspecification.html">
+      <Filter>Toast\coop\schema-abc\b</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\b\broadcastservice.html">
+      <Filter>Toast\coop\schema-abc\b</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\b\brokerageaccount.html">
+      <Filter>Toast\coop\schema-abc\b</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\cableorsatelliteservice.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\car.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\categorycode.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\categorycodeset.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\cemetery.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\chapter.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\civicstructure.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\claimreview.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\collection.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\collegeoruniversity-1.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\collegeoruniversity-2.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\comiccoverart.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\comicissue.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\conversation.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\corporation.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\course.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\courseinstance.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\coverart.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\creativework-1.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\creativework-2.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\c\creditcard.html">
+      <Filter>Toast\coop\schema-abc\c</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\abc.conf">
+      <Filter>Toast\coop\schema-abc</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\abc.spec">
+      <Filter>Toast\coop\schema-abc</Filter>
+    </None>
+    <None Include="..\toast\coop\schema-abc\index.html">
+      <Filter>Toast\coop\schema-abc</Filter>
+    </None>
+    <None Include="..\toast\css\3-sel\bad.css">
+      <Filter>Toast\CSS\3-sel</Filter>
+    </None>
+    <None Include="..\toast\css\3-sel\css-7.css">
+      <Filter>Toast\CSS\3-sel</Filter>
+    </None>
+    <None Include="..\toast\css\3-sel\css-7-1.html">
+      <Filter>Toast\CSS\3-sel</Filter>
+    </None>
+    <None Include="..\toast\css\3-sel\css-7-2.html">
+      <Filter>Toast\CSS\3-sel</Filter>
+    </None>
+    <None Include="..\toast\css\3-sel\css-8.css">
+      <Filter>Toast\CSS\3-sel</Filter>
+    </None>
+    <None Include="..\toast\css\3-sel\css-8.html">
+      <Filter>Toast\CSS\3-sel</Filter>
+    </None>
+    <None Include="..\toast\css\3-sel\css-9.css">
+      <Filter>Toast\CSS\3-sel</Filter>
+    </None>
+    <None Include="..\toast\css\3-ns\css.conf">
+      <Filter>Toast\CSS\3-ns</Filter>
+    </None>
+    <None Include="..\toast\css\3-ns\css.spec">
+      <Filter>Toast\CSS\3-ns</Filter>
+    </None>
+    <None Include="..\toast\css\3-ns\index.html">
+      <Filter>Toast\CSS\3-ns</Filter>
+    </None>
+    <None Include="..\toast\css\3-ns\css-3.css">
+      <Filter>Toast\CSS\3-ns</Filter>
+    </None>
+    <None Include="..\toast\css\3-ns\css-4.css">
+      <Filter>Toast\CSS\3-ns</Filter>
+    </None>
+    <None Include="..\toast\css\3-ns\bad.css">
+      <Filter>Toast\CSS\3-ns</Filter>
+    </None>
+    <None Include="..\toast\css\3-ns\css-2.css">
+      <Filter>Toast\CSS\3-ns</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

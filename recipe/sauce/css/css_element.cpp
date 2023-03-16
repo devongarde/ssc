@@ -27,19 +27,48 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define SEL_SEPS ":.#["
 
-void css_element::parse (arguments& args, const int from, const int to)
+void css_element::parse (arguments& args, const int from, const int to, const bool knotted)
 {   PRESUME ((to < 0) || (from <= to), __FILE__, __LINE__);
     const int len = GSL_NARROW_CAST < int > (args.t_.size ());
     PRESUME (from < len, __FILE__, __LINE__);
     PRESUME (to < len, __FILE__, __LINE__);
     nitpick& nits = args.t_.at (from).nits_;
     int b = first_non_whitespace (args.t_, from, to);
-    if (b == -1) return;
+    if (b < 0) return;
+    ::std::string ns, wo (assemble_string (args.t_, b, to));
+    bool no_ns = true, all_ns = false;
+    int b4 = -1;
+    const int n = token_find (args.t_, ct_bar, b, to, &b4);
+    if (n > 0)
+    {   b = next_non_whitespace (args.t_, n, to);
+        if (args.v_.css_selector () < 3)
+            nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": namespaces requires CSS Selectors 3 or better");
+        else if ((b < 0) && (b4 < 0))
+            nits.pick (nit_css_syntax, es_error, ec_css, quote (wo), ": a namespace andor an element must be given");
+        else if (b4 > 0)
+        {   no_ns = false;
+            PRESUME (b4 < n, __FILE__, __LINE__);
+            switch (args.t_.at (b4).t_)
+            {   case ct_splat :
+                    ns = "*"; all_ns = true; break;
+                case ct_keyword :
+                case ct_identifier :
+                    ns = args.t_.at (b4).val_; break;
+                default :
+                    nits.pick (nit_css_namespace, es_error, ec_css, tkn_rpt (args.t_.at (b4)), ": namespace name expected"); } } }
+    if (b < 0)
+    {   if (ns.empty ())
+        {   css_element e (elem_css_all);
+            ::std::swap (*this, e); }
+        else
+        {   css_element e (nits, args.v_, args.ns_, ns + ":*");
+            ::std::swap (*this, e); }
+        return; }
     bool pseudo = true;
-    switch (args.t_.at (from).t_)
+    switch (args.t_.at (b).t_)
     {   case ct_splat :
             if (context.html_ver ().css_version () == css_1)
-                nits.pick (nit_css_version, es_error, ec_css, "* requires CSS 2.0 or better");
+                nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": * requires CSS 2.0 or better");
             else
             {   css_element e (elem_css_all);
                 ::std::swap (*this, e);
@@ -47,6 +76,7 @@ void css_element::parse (arguments& args, const int from, const int to)
             break;
         case ct_hash :
         case ct_dot :
+        case ct_coco :
         case ct_colon :
         case ct_square_brac :
             {   css_element e (elem_css_all);
@@ -55,7 +85,7 @@ void css_element::parse (arguments& args, const int from, const int to)
         case ct_gt :
             pseudo = false;
             if (context.html_ver ().css_version () == css_1)
-                nits.pick (nit_css_version, es_error, ec_css, "> requires CSS 2.0 or better");
+                nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": > requires CSS 2.0 or better");
             else
             {   css_element e (elem_css_child);
                 ::std::swap (*this, e); }
@@ -63,7 +93,7 @@ void css_element::parse (arguments& args, const int from, const int to)
         case ct_plus :
             pseudo = false;
             if (context.html_ver ().css_version () == css_1)
-                nits.pick (nit_css_version, es_error, ec_css, "+ requires CSS 2.0 or better");
+                nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": + requires CSS 2.0 or better");
             else
             {   css_element e (elem_css_precede_immediate);
                 ::std::swap (*this, e); }
@@ -71,14 +101,21 @@ void css_element::parse (arguments& args, const int from, const int to)
         case ct_squiggle :
             pseudo = false;
             if (context.html_ver ().css_version () < css_3)
-                nits.pick (nit_css_version, es_error, ec_css, "~ requires CSS 3 selectors or better");
+                nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": ~ requires CSS 3 selectors or better");
             else
             {   css_element e (elem_css_precede);
                 ::std::swap (*this, e); }
             break;
         case ct_keyword :
-            {   css_element e (nits, args.v_, args.ns_, args.t_.at (from).val_);
-                ::std::swap (*this, e);
+            {   if (no_ns || (! args.snippet_))
+                {   css_element e (nits, args.v_, namespaces_ptr (), args.t_.at (b).val_);
+                    ::std::swap (*this, e); }
+                else
+                {   ::std::string el;
+                    if (! all_ns) el = ns + ":" + args.t_.at (b).val_;
+                    else el = args.t_.at (b).val_;
+                    css_element e (nits, args.v_, args.ns_, el);
+                    ::std::swap (*this, e); }
                 b = next_non_whitespace (args.t_, b, to); }
             break;
         default :
@@ -90,6 +127,7 @@ void css_element::parse (arguments& args, const int from, const int to)
             switch (args.t_.at (b).t_)
             {   case ct_hash :
                 case ct_dot :
+                case ct_coco :
                 case ct_colon :
                 case ct_square_brac :
                     nits.pick (nit_naughty_decoration, es_error, ec_css, quote (tkn_rpt (args.t_.at (from))), " cannot be decorated");
@@ -98,11 +136,12 @@ void css_element::parse (arguments& args, const int from, const int to)
                     parse (args, b, to);
                     break; } }
         return; }
+    if (b < 0) return;
     for (int i = b; (i >= 0) && (i < to); )
         switch (args.t_.at (i).t_)
         {   case ct_square_brac :
                 if (context.html_ver ().css_version () == css_1)
-                    nits.pick (nit_css_version, es_error, ec_css, "[...] requires CSS 2.0 or better");
+                    nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": [...] requires CSS 2.0 or better");
                 else
                 {   decore_.emplace_back (args, b);
                     i =  next_non_whitespace (args.t_, i, to); }
@@ -110,17 +149,18 @@ void css_element::parse (arguments& args, const int from, const int to)
             case ct_dot :
             case ct_hash :
                 {   int j = next_non_whitespace (args.t_, i, to);
-                    if (j < 0) nits.pick (nit_css_syntax, es_error, ec_css, "missing class or ID");
+                    if (j < 0) nits.pick (nit_css_syntax, es_error, ec_css, quote (wo), ": missing class or ID");
                     else decore_.emplace_back (args, i, j);
                     i = next_non_whitespace (args.t_, j, to); }
                 break;
+            case ct_coco :
             case ct_colon :
                 {   int brac = token_find (args.t_, ct_round_brac, i, to);
                     if (brac < 0) brac = next_non_whitespace (args.t_, i, to);
                     else
                     {   brac = token_find (args.t_, ct_round_ket, i, to);
-                        if (brac < 0) nits.pick (nit_css_syntax, es_error, ec_css, "missing close bracket"); }
-                    if (brac > 0) decore_.emplace_back (args, i, brac);
+                        if (brac < 0) nits.pick (nit_css_syntax, es_error, ec_css, quote (wo), ": missing close bracket"); }
+                    if (brac > 0) decore_.emplace_back (args, i, brac, knotted);
                     i = next_non_whitespace (args.t_, brac, to); }
                 break;
             case ct_plus :
@@ -129,7 +169,7 @@ void css_element::parse (arguments& args, const int from, const int to)
                 parse (args, i, to);
                 return;
             default :
-                nits.pick (nit_css_syntax, es_error, ec_css, quote (tkn_rpt (args.t_.at (i))), ": unexpected");
+                nits.pick (nit_css_syntax, es_error, ec_css, quote (tkn_rpt (args.t_.at (i))), ": unexpected (4)");
                 return; } }
 
 bool css_element::bef_aft () const

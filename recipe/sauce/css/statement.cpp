@@ -27,6 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/directory.h"
 #include "utility/cache.h"
 #include "utility/quote.h"
+#include "parser/parse_abb.h"
 
 void statement::parse (arguments& args, const int from, const int to)
 {   PRESUME (from <= to, __FILE__, __LINE__);
@@ -152,6 +153,39 @@ void statement::parse (arguments& args, const int from, const int to)
                         fiddlesticks < statement > f (&args.st_, this);
                         prop_.parse (args, args.t_.at (to).child_); } }
                 break;
+            case css_namespace :
+                if (context.html_ver ().css_version () < css_3)
+                    nits.pick (nit_css_version, ed_css_namespaces_3, "CSS Namespaces 3, September 2011", es_error, ec_css, "@namespace requires CSS 3 or later");
+                else
+                if (args.had_rule_)
+                    nits.pick (nit_css_namespace, ed_css_namespaces_3, "3 Declaring namespaces", es_error, ec_css, "@namespace must follow @import and @charset, and precede all rules");
+                else
+                {   int i = next_non_whitespace (args.t_, b, to);
+                    if (i < 0) // nit_css_namespace
+                    {   nits.pick (nit_css_namespace, ed_css_namespaces_3, "3 Declaring namespaces", es_error, ec_css, "@namespace requires a namespace name");
+                        break; }
+                    ::std::string prefix, name;
+                    if ((args.t_.at (i).t_ == ct_identifier) || (args.t_.at (i).t_ == ct_keyword))
+                    {   prefix = args.t_.at (i).val_;
+                        i = next_non_whitespace (args.t_, i, to); }
+                    if (i < 0) // nit_css_namespace
+                    {   nits.pick (nit_css_namespace, ed_css_namespaces_3, "3 Declaring namespaces", es_error, ec_css, "@namespace requires a string after the prefix");
+                        break; }
+                    if ((args.t_.at (i).t_ != ct_string))
+                    {   nits.pick (nit_css_namespace, ed_css_namespaces_3, "3 Declaring namespaces", es_error, ec_css, "@namespace name expected (it should be a string)");
+                        break; }
+                    name = args.t_.at (i).val_;
+//                    if (args.ns_.get () == nullptr)
+//                        args.ns_.reset (new namespaces_t ());
+                    if (prefix.empty () && name.empty ())
+                        nits.pick (nit_empty, ed_css_namespaces_3, "2 Terminology", es_warning, ec_css, "Ignoring @namespace with empty short and long form");
+                    else
+                    {   if (name.empty ())
+                            nits.pick (nit_empty, es_warning, ec_css, quote (prefix), ": the @namespace long form is empty");
+                        VERIFY_NOT_NULL (args.ns_, __FILE__, __LINE__);
+                        args.ns_ -> declare (nits, args.v_, empty_namespace_names, prefix, name); } }
+                break;
+// css_document,css_keyframes, css_namespace, css_supports, css_scope, css_viewport
             default :
                 break; } } }
 
@@ -184,6 +218,24 @@ void statement::accumulate (stats_t* s) const
             break;
         case css_page :
             res = "@page ();";
+            break;
+        case css_document :
+            res = "@document;";
+            break;
+        case css_keyframes :
+            res = "@keyframes;";
+            break;
+        case css_namespace :
+            res = "@namespace;";
+            break;
+        case css_supports :
+            res = "@supports;";
+            break;
+        case css_scope :
+            res = "@scope;";
+            break;
+        case css_viewport :
+            res = "@viewport;";
             break;
         case css_error :
             res = "@??? ();";

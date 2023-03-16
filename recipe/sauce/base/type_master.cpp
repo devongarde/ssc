@@ -27,7 +27,7 @@ bool test_many (const vtype_t& vty, v_np& bad, v_np& good, const nitpick& model,
     if (vty.size () == 0)
     {   nitpick gnits (model.get_line (), model.get_context ());
         for (::std::size_t i = 0; i < vs.size (); ++i)
-            gnits.pick (nit_css_syntax, es_error, ec_type, quote (vs.at (i)), " is unexpected");
+            gnits.pick (nit_css_syntax, es_error, ec_type, quote (vs.at (i)), ": unexpected (1)");
         bad.push_back (gnits);
         return false; }
     nitpick nits (model.get_line (), model.get_context ());

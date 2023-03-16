@@ -291,7 +291,6 @@ PASS ../toast/coop/oct21/d/details.html
 7 use_double_quote_code
 25 inserted_missing_closure missing_close
 26 inserted_missing_closure
-28 unrecognised_value
 
 PASS ../toast/coop/oct21/d/dfn.html
 9 use_quote_code

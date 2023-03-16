@@ -29,13 +29,49 @@ void css_attribute::parse (arguments& args, const int from, const int to)
     PRESUME (from < len, __FILE__, __LINE__);
     PRESUME (to < len, __FILE__, __LINE__);
     int b = first_non_whitespace (args.t_, from, to);
+    const int k = token_find (args.t_, ct_keyword, b, to);
+    ::std::string ns, wo (assemble_string (args.t_, b, to));
+    if (k < 0)
+    {   nitpick& nits = args.t_.at (b).nits_;
+        nits.pick (nit_css_syntax, es_error, ec_css, quote (wo), ": missing attribute name");
+        return; }
+    bool no_ns = true, all_ns = false;
+    int b4 = -1;
+    const int n = token_find (args.t_, ct_bar, b, to, &b4);
+    if ((n > 0) && (n < k))
+    {   nitpick& nits = args.t_.at (n).nits_;
+        b = next_non_whitespace (args.t_, n, to);
+        if (args.v_.css_selector () < 3)
+            nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": namespaces requires CSS Selectors 3 or better");
+        else if ((b < 0) && (b4 < 0))
+            nits.pick (nit_css_syntax, es_error, ec_css, quote (wo), ": a namespace andor an attribute must be given");
+        else if (b4 > 0)
+        {   no_ns = false;
+            PRESUME (b4 < n, __FILE__, __LINE__);
+            switch (args.t_.at (b4).t_)
+            {   case ct_splat :
+                    ns = "*"; all_ns = true; break;
+                case ct_keyword :
+                case ct_identifier :
+                    ns = args.t_.at (b4).val_; break;
+                default :
+                    nits.pick (nit_css_namespace, es_error, ec_css, tkn_rpt (args.t_.at (b4)), ": namespace name expected"); } } }
+    nitpick& nits = args.t_.at (b).nits_;
     if ((b == -1) || (args.t_.at (b).t_ != ct_keyword))
         args.t_.at (from).nits_.pick (nit_css_attribute, es_error, ec_css, "missing attribute name");
     else
-    {   nitpick& nits = args.t_.at (b).nits_;
-        const int at = b;
-        css_attribute a (nits, args.v_, args.ns_, args.t_.at (at).val_);
-        ::std::swap (*this, a);
+    {   const int at = b;
+        if (no_ns || (! args.snippet_))
+        {   css_attribute a (nits, args.v_, args.ns_, args.t_.at (at).val_);
+            ::std::swap (*this, a); }
+        else
+        {   ::std::string att;
+            if (! all_ns) att = ns + ":" + args.t_.at (at).val_;
+            else att = args.t_.at (at).val_;
+            css_attribute a (nits, args.v_, args.ns_, att);
+            ::std::swap (*this, a); }
+//        css_attribute a (nits, args.v_, args.ns_, args.t_.at (at).val_);
+//        ::std::swap (*this, a);
         b = next_non_whitespace (args.t_, b, to);
         if ((b == -1) || (args.t_.at (b).t_ == ct_square_ket)) return;
         switch (args.t_.at (b).t_)
@@ -54,7 +90,7 @@ void css_attribute::parse (arguments& args, const int from, const int to)
                 if (args.t_.at (b).t_ != ct_eq)
                     nits.pick (nit_css_attribute, es_error, ec_css, "missing = following ^");
                 else next_non_whitespace (args.t_, b+1, to);
-                if (context.html_ver ().css_version () < css_3) nits.pick (nit_css_version, ed_css_selectors_3, "2 Selectors", es_error, ec_css, "^= requires CSS 3 or later");
+                if (context.html_ver ().css_selector () < 3) nits.pick (nit_css_version, ed_css_selectors_3, "2 Selectors", es_error, ec_css, "^= requires CSS 3 or later");
                 else eat_ = eat_begins;
                 break; 
             case ct_dollar :
@@ -62,7 +98,7 @@ void css_attribute::parse (arguments& args, const int from, const int to)
                 if (args.t_.at (b).t_ != ct_eq)
                     nits.pick (nit_css_attribute, es_error, ec_css, "missing = following $");
                 else next_non_whitespace (args.t_, b+1, to);
-                if (context.html_ver ().css_version () < css_3) nits.pick (nit_css_version, ed_css_selectors_3, "2 Selectors", es_error, ec_css, "$= requires CSS 3 or later");
+                if (context.html_ver ().css_selector () < 3) nits.pick (nit_css_version, ed_css_selectors_3, "2 Selectors", es_error, ec_css, "$= requires CSS 3 or later");
                 else eat_ = eat_ends;
                 break; 
             case ct_splat :
@@ -70,7 +106,8 @@ void css_attribute::parse (arguments& args, const int from, const int to)
                 if (args.t_.at (b).t_ != ct_eq)
                     nits.pick (nit_css_attribute, es_error, ec_css, "missing = following *");
                 else next_non_whitespace (args.t_, b+1, to);
-                eat_ = eat_contains;
+                if (context.html_ver ().css_selector () < 3) nits.pick (nit_css_version, ed_css_selectors_3, "2 Selectors", es_error, ec_css, "*= requires CSS 3 or later");
+                else eat_ = eat_contains;
                 break; 
             case ct_squiggle :
                 b = next_non_whitespace (args.t_, b, to);
@@ -80,7 +117,7 @@ void css_attribute::parse (arguments& args, const int from, const int to)
                 eat_ = eat_in_list;
                 break; 
             default :
-                nits.pick (nit_css_syntax, es_error, ec_css, tkn_rpt (args.t_.at (b)), ": unexpected");
+                nits.pick (nit_css_syntax, es_error, ec_css, tkn_rpt (args.t_.at (b)), ": unexpected (2)");
                 return; }
         if ((b == -1) || (args.t_.at (b).t_ == ct_square_ket))
         {   nits.pick (nit_css_syntax, es_error, ec_css, args.t_.at (b).val_, ": missing value (for an empty string, use \"\")");
@@ -100,7 +137,7 @@ void css_attribute::parse (arguments& args, const int from, const int to)
         b = next_non_whitespace (args.t_, b, to);
         if ((b == -1) || (args.t_.at (b).t_ == ct_square_ket)) return;
         if (args.t_.at (b).t_ != ct_keyword)
-        {   nits.pick (nit_css_syntax, es_error, ec_css, tkn_rpt (args.t_.at (b)), ": unexpected");
+        {   nits.pick (nit_css_syntax, es_error, ec_css, tkn_rpt (args.t_.at (b)), ": ubexpected (3)");
             return; }
         if ((context.html_ver ().css_version () < css_4) || (context.html_ver () < html_css_selectors_4))
         {   nits.pick (nit_css_version, ed_css_selectors_4, "2 Selectors Overview", es_error, ec_css, "case sensitivity selectors require CSS Selectors Level 4");

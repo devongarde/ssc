@@ -58,18 +58,7 @@ template < e_type TYPE > struct tidy_string : public string_value < TYPE >
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   if (s.empty ()) string_value < TYPE > :: status (s_empty);
         else string_value < TYPE > :: set_value (nits, v, make_tidy (nits, v, s)); } };
-/*
-template < e_type T, class SZ > struct type_string : public tidy_string < T >
-{   using tidy_string < T > :: tidy_string;
-    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < T > :: set_value (nits, v, s);
-        if (tidy_string < T > :: empty ())
-            nits.pick (nit_empty, es_error, ec_type, quote (SZ::sz ()), " expected (", type_name (T), ")");
-        else if (tidy_string < T > :: good ())
-        {   if (compare_no_case (tidy_string < T > :: get_string (), SZ::sz ())) return;
-            nits.pick (nit_unrecognised_value, es_error, ec_type, quote (SZ::sz ()), " expected"); }
-        tidy_string < T > :: status (s_invalid); } };
-*/
+
 template < e_type T, class SZ > struct type_string : tidy_string < T >
 {   using tidy_string < T > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)

@@ -37,10 +37,10 @@ class decoration
 public:
     decoration () : sparkle_ (unset ()) { }
     DEFAULT_COPY_CONSTRUCTORS (decoration);
-    decoration (arguments& args, const int from, const int to = -1)
-    {   parse (args, from, to); }
+    decoration (arguments& args, const int from, const int to = -1, const bool knotted = false)
+    {   parse (args, from, to, knotted); }
     ~decoration () = default;
-    void parse (arguments& args, const int from, const int to = -1);
+    void parse (arguments& args, const int from, const int to = -1, const bool knotted = false);
     bool bef_aft () const;
     void validate (arguments& args);
     void accumulate (stats_t* s, const e_element e) const;

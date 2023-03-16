@@ -1,0 +1,6 @@
+@import "songlight.css";
+
+body
+{   background-color: white; border-color: white; }
+
+.biggerscreen,.mediumscreen,.weescreen { background-color: white; }

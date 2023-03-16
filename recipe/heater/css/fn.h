@@ -25,18 +25,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/css_attribute.h"
 
 class css_element;
+class selector;
 typedef ::std::shared_ptr < css_element > csp_t;
+typedef ::std::shared_ptr < selector > csl_t;
 
 class css_fn
 {   e_css_fn fn_ = efn_none;
     vstr_t params_;
     ::std::vector < csp_t > ve_;
+    ::std::vector < csl_t > vsl_;
 public:
     DEFAULT_CONSTRUCTORS (css_fn);
-    css_fn (arguments& args, const int from, const int to)
-    {   parse (args, from, to); }
+    css_fn (arguments& args, const int from, const int to, const bool coco = false, const bool knotted = false)
+    {   parse (args, from, to, coco, knotted); }
     e_css_fn get () const { return fn_; }
-    void parse (arguments& args, const int from, const int to);
+    void parse (arguments& args, const int from, const int to, const bool coco = false, const bool knotted = false);
     void validate (arguments& args);
     void accumulate (stats_t* s) const;
     void shadow (::std::stringstream& ss, arguments& args);

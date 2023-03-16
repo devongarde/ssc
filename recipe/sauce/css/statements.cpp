@@ -32,7 +32,7 @@ void statements::parse (arguments& args, const int start, const int finish)
         switch (args.t_.at (i).t_)
         {   case ct_at :
                 if (from > 0)
-                {   args.t_.at (i).nits_.pick (nit_css_syntax, es_error, ec_css, "unexpected ", tkn_rpt (args.t_.at (i)));
+                {   args.t_.at (i).nits_.pick (nit_css_syntax, es_error, ec_css, "unexpected ", tkn_rpt (args.t_.at (i)), " (5)");
                     rules_.emplace_back (args, from, prev);
                     from = -1; }
                 at = i;
@@ -42,7 +42,7 @@ void statements::parse (arguments& args, const int start, const int finish)
                 {   statements_.emplace_back (args, at, prev);
                     at = -1; }
                 else
-                {   args.t_.at (i).nits_.pick (nit_css_syntax, es_error, ec_css, "unexpected ", tkn_rpt (args.t_.at (i)));
+                {   args.t_.at (i).nits_.pick (nit_css_syntax, es_error, ec_css, "unexpected ", tkn_rpt (args.t_.at (i)), " (6)");
                     if (from > 0)
                     {   rules_.emplace_back (args, from, prev);
                         from = -1; } }

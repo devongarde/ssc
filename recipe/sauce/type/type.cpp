@@ -249,10 +249,13 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_css_list_style);
         TEST_VALUE (t_css_list_style_position);
         TEST_VALUE (t_css_list_style_type);
+        TEST_VALUE (t_css_local_url);
         TEST_VALUE (t_css_ls_val);
         TEST_VALUE (t_css_margins);
         TEST_VALUE (t_css_mark);
         TEST_VALUE (t_css_marks);
+        TEST_VALUE (t_css_nth);
+        TEST_VALUE (t_css_nth_oe);
         TEST_VALUE (t_css_orientation);
         TEST_VALUE (t_css_outline);
         TEST_VALUE (t_css_outline_i);
@@ -493,6 +496,8 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_listtype);
         TEST_VALUE (t_literal);
         TEST_VALUE (t_loading);
+        TEST_VALUE (t_localfn);
+        TEST_VALUE (t_localsz);
         TEST_VALUE (t_local_url);
         TEST_VALUE (t_location);
         TEST_VALUE (t_longdivstyle);

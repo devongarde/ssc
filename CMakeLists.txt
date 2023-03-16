@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.19)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.1.14 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
+project (ssc VERSION 0.1.15 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
 
 set (CMAKE_CXX_STANDARD 17)
 
@@ -239,7 +239,8 @@ target_sources (ssc PRIVATE
         ${H}/compound/compound.h ${H}/compound/type_all_of.h ${H}/compound/type_one_of.h ${H}/compound/type_some_of.h ${H}/compound/type_compound.h
             ${H}/compound/type_compounded.h ${H}/compound/type_csses.h ${H}/compound/type_httpequivs.h ${H}/compound/type_jsonics.h ${H}/compound/type_langs.h
             ${H}/compound/type_maths.h ${H}/compound/type_measures.h ${H}/compound/type_microdatas.h ${H}/compound/type_microformats.h
-            ${H}/compound/type_mimes.h ${H}/compound/type_numerics.h ${H}/compound/type_svgs.h ${H}/compound/type_van.h ${H}/compound/type_varied.h
+            ${H}/compound/type_mimes.h ${H}/compound/type_numerics.h ${H}/compound/type_svgs.h ${H}/compound/type_sz.h ${H}/compound/type_van.h
+            ${H}/compound/type_varied.h
         ${H}/coop/fred.h ${H}/coop/kew.h ${H}/coop/knickers.h ${H}/coop/lox.h ${H}/coop/tls.h
         ${H}/css/arguments.h ${H}/css/css.h ${H}/css/css_attribute.h ${H}/css/css_class.h ${H}/css/css_element.h ${H}/css/css_parse.h
             ${H}/css/css_state.h ${H}/css/decoration.h ${H}/css/distilled.h ${H}/css/flags.h ${H}/css/fn.h ${H}/css/global.h ${H}/css/group.h
@@ -353,7 +354,7 @@ else ()
   target_compile_definitions (ssc-test PRIVATE NDEBUG)
   target_compile_definitions (ssc PRIVATE NDEBUG)
   target_compile_options (ssc-test PRIVATE "-g;-O0;-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-unused-result;-Wno-unused-parameter;-Wno-deprecated-declarations" ${IMPLICITFALL} ${NOINDENTLIE})
-  target_compile_options (ssc PRIVATE "-g;-O1;-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-unused-parameter;-Wno-deprecated-declarations" ${IMPLICITFALL} ${NOINDENTLIE} ${TEMPLATEDEPTH})
+  target_compile_options (ssc PRIVATE "-g;-O2;-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-unused-parameter;-Wno-deprecated-declarations" ${IMPLICITFALL} ${NOINDENTLIE} ${TEMPLATEDEPTH})
 endif ()
 
 target_link_libraries (ssc-test PRIVATE Boost::filesystem)

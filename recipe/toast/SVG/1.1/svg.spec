@@ -296,8 +296,6 @@ PASS ../toast/SVG/1.1/metadata.svg
 
 PASS ../toast/SVG/1.1/mystyle.css
 2 unrecognised_value
-3 unrecognised_value
-4 unrecognised_value
 
 PASS ../toast/SVG/1.1/opacity.svg
 0 title_required
@@ -313,7 +311,7 @@ PASS ../toast/SVG/1.1/path-2.xhtml
 1 xhtml_1_1
 5 svg_version
 10 use_double_quote_code
-11 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value class_microformat_property
+11 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value class_microformat_property
 26 newline_in_string newline_in_string
 
 PASS ../toast/SVG/1.1/path-3.xhtml
@@ -427,7 +425,7 @@ PASS ../toast/SVG/1.1/styling-3.svg
 0 title_required
 1 xhtml_1_1
 5 svg_version
-7 unrecognised_value unrecognised_value unrecognised_value
+7 unrecognised_value
 
 PASS ../toast/SVG/1.1/styling-4.svg
 0 title_required
@@ -583,7 +581,7 @@ PASS ../toast/SVG/1.1/svg11.html
 60 id_exists
 68 svg_version
 79 svg_version
-99 unrecognised_value unrecognised_value unrecognised_value unrecognised_value
+99 unrecognised_value
 109 bad_namespace attribute_unrecognised unrecognised_attribute
 112 svg_version
 113 use_quote_code
@@ -605,14 +603,14 @@ PASS ../toast/SVG/1.1/svg11.html
 213 svg_version
 214 use_quote_code
 217 unrecognised_value
-219 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value
+219 unrecognised_value unrecognised_value unrecognised_value
 236 svg_version
 237 use_quote_code
 250 svg_version
 252 url_not_found
 257 svg_version
 261 svg_version
-263 unrecognised_value unrecognised_value unrecognised_value
+263 unrecognised_value
 268 svg_version
 273 inserted_missing_parent missing_close unrecognised_value
 274 unrecognised_value
@@ -745,7 +743,7 @@ PASS ../toast/SVG/1.1/svg11.html
 579 use_quote_code
 585 svg_version
 587 use_double_quote_code
-588 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value class_microformat_property
+588 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value class_microformat_property
 606 svg_version
 608 use_double_quote_code
 624 svg_version
@@ -843,7 +841,7 @@ PASS ../toast/SVG/1.1/svg11.xhtml
 15 svg_version
 32 svg_version
 50 svg_version
-70 unrecognised_value unrecognised_value unrecognised_value unrecognised_value
+70 unrecognised_value
 
 PASS ../toast/SVG/1.1/text.xhtml
 0 title_required
@@ -979,7 +977,7 @@ PASS ../toast/SVG/1.1/use-7.svg
 5 svg_version
 6 use_quote_code
 10 unrecognised_value
-12 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value
+12 unrecognised_value unrecognised_value unrecognised_value
 
 PASS ../toast/SVG/1.1/use-8.svg
 0 title_required

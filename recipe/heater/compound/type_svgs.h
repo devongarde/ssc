@@ -83,6 +83,14 @@ template < > struct type_master < t_keytimes > : type_at_least_one < t_keytimes,
 template < > struct type_master < t_line_height > : either_type_or_string < t_line_height, t_measure, t_real, sz_normal >
 { using either_type_or_string < t_line_height, t_measure, t_real, sz_normal > :: either_type_or_string; };
 
+template < > struct type_master < t_localfn > : type_function < t_localfn, t_localsz, t_text >
+{   using type_function < t_localfn, t_localsz, t_text > :: type_function;
+    static e_animation_type animation_type () noexcept { return at_other; } };
+
+template < > struct type_master < t_localsz > : type_string < t_localsz, sz_local >
+{   using type_string < t_localsz, sz_local > :: type_string;
+    static e_animation_type animation_type () noexcept { return at_other; } };
+
 template < > struct type_master < t_marker > : type_id_or_either_string < t_marker, t_hash_fn, sz_none, sz_inherit >
 {   using type_id_or_either_string < t_marker, t_hash_fn, sz_none, sz_inherit > :: type_id_or_either_string;
     static e_animation_type animation_type () noexcept { return at_other; } };
@@ -137,8 +145,8 @@ template < > struct type_master < t_shape_fn_polygon > : type_function < t_shape
 {   using type_function < t_shape_fn_polygon, t_shape_fn_polygonsz, t_text > :: type_function;
     static e_animation_type animation_type () noexcept { return at_other; } };
 
-template < > struct type_master < t_shape_fn > : type_one_of_three < t_shape_fn, t_shape_fn_circle, t_shape_fn_ellipse, t_shape_fn_polygon >
-{   using type_one_of_three < t_shape_fn, t_shape_fn_circle, t_shape_fn_ellipse, t_shape_fn_polygon > :: type_one_of_three;
+template < > struct type_master < t_shape_fn > : type_one_of < t_shape_fn, false, t_shape_fn_circle, t_shape_fn_ellipse, t_shape_fn_polygon >
+{   using type_one_of < t_shape_fn, false, t_shape_fn_circle, t_shape_fn_ellipse, t_shape_fn_polygon > :: type_one_of;
     static e_animation_type animation_type () noexcept { return at_other; } };
 
 template < > struct type_master < t_shape_none_uri > : type_or_string < t_shape_none_uri, t_shape_uri, sz_none >
@@ -235,8 +243,8 @@ template < > struct type_master < t_svg_viewbox > : tidy_string < t_svg_viewbox 
 template < > struct type_master < t_clip_path_rule > : type_or_either_string < t_clip_path_rule, t_urifn, sz_none, sz_inherit >
 { using type_or_either_string < t_clip_path_rule, t_urifn, sz_none, sz_inherit > :: type_or_either_string; };
 
-template < > struct type_master < t_rendering_colour_space > : type_one_of_three < t_rendering_colour_space, t_colour_interpolation, t_colour_profile_name, t_urifn >
-{ using type_one_of_three < t_rendering_colour_space, t_colour_interpolation, t_colour_profile_name, t_urifn > :: type_one_of_three; };
+template < > struct type_master < t_rendering_colour_space > : type_one_of < t_rendering_colour_space, false, t_colour_interpolation, t_colour_profile_name, t_urifn >
+{ using type_one_of < t_rendering_colour_space, false, t_colour_interpolation, t_colour_profile_name, t_urifn > :: type_one_of; };
 
 template < > struct type_master < t_colour_profile_name_or_uri > : type_either_or < t_colour_profile_name_or_uri, t_urifn, t_colour_profile_name >
 {   using type_either_or < t_colour_profile_name_or_uri, t_urifn, t_colour_profile_name > :: type_either_or;

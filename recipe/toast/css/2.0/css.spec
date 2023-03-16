@@ -78,7 +78,7 @@ PASS ../toast/css/2.0/css-4-2.css
 20 unrecognised_value
 25 unrecognised_value
 26 css_syntax
-27 missing_units
+27 unrecognised_value unrecognised_value missing_units unrecognised_value
 35 css_syntax property
 36 css_syntax property
 37 property
@@ -334,7 +334,6 @@ PASS ../toast/css/2.0/css-12-1.css
 
 PASS ../toast/css/2.0/css-12-2.css
 0 html
-24 isnt
 
 PASS ../toast/css/2.0/css-12-3.css
 0 html
@@ -362,9 +361,6 @@ PASS ../toast/css/2.0/css-12-4-2.html
 
 PASS ../toast/css/2.0/css-12-5.css
 0 html
-21 isnt
-26 isnt isnt
-37 isnt
 46 class_microformat_property
 
 PASS ../toast/css/2.0/css-12-5-1.html
@@ -396,7 +392,6 @@ PASS ../toast/css/2.0/css-12-6-1.html
 PASS ../toast/css/2.0/css-12-6-2.html
 0 charset_mismatch charset_used
 23 long_title
-24 isnt
 37 inserted_missing_closure
 38 inserted_missing_closure missing_close
 39 inserted_missing_closure
@@ -412,7 +407,7 @@ PASS ../toast/css/2.0/css-12-6-3.html
 PASS ../toast/css/2.0/css-12-6-4.html
 0 charset_mismatch charset_used
 23 long_title
-24 class_microformat_property isnt inserted_missing_closure
+24 class_microformat_property inserted_missing_closure
 
 PASS ../toast/css/2.0/css-12-6-5.html
 0 charset_mismatch charset_used
@@ -502,6 +497,7 @@ PASS ../toast/css/2.0/css-15-5.css
 49 fontname
 54 fontname
 59 fontname
+60 bad_char function isnt
 
 PASS ../toast/css/2.0/css-16-1.css
 0 html

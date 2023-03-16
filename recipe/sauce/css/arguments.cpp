@@ -27,6 +27,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/group.h"
 #include "webpage/page.h"
 
+arguments::arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g)
+    : g_ (g), v_ (v)
+{   ns_.reset (new namespaces_t ());
+    ns_ -> up (namespaces.get ()); }
+
+arguments::arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet)
+    : g_ (g), v_ (v), sv_ (sv), snippet_ (snippet)
+{   ns_.reset (new namespaces_t ());
+    ns_ -> up (namespaces.get ()); }
+
+arguments::arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet, const ::std::string& abs, dst_ptr dst)
+    : g_ (g), v_ (v), sv_ (sv), snippet_ (snippet), abs_ (abs), dst_ (dst)
+{   ns_.reset (new namespaces_t ());
+    ns_ -> up (namespaces.get ()); }
+
 void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string& s) const
 {   if ((f & CF_MUST_FONT_FACE) == CF_MUST_FONT_FACE)
         if ((st_ == nullptr) || (st_ -> get () != css_font_face))

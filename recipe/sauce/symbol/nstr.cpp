@@ -520,7 +520,7 @@ n_string_entry < e_schema, 3 > schema_name_entries [] =
     { { HTML_XSD }, { HTML_UNDEF }, s_xsd, 0, { "xsd", HTTPS_W3 "/2001/XMLSchema#", "XML schema" } },
     { { HTML_RDF10_CON }, { HTML_UNDEF }, s_error, 0, { nullptr, nullptr, nullptr } } };
 
-namespace_names_t namespace_names;
+namespace_names_t namespace_names, empty_namespace_names;
 protocol_names_t protocol_names;
 schema_names_t schema_names;
 vsh_t rdfa_context;

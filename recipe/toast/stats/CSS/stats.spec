@@ -286,7 +286,7 @@ PASS ../toast/stats/CSS/css-7.css
 1 unrecognised_value
 6 unrecognised_value
 7 css_syntax
-8 missing_units
+8 unrecognised_value missing_units
 15 unrecognised_value
 33 unrecognised_value
 34 unrecognised_value
@@ -866,7 +866,7 @@ References:
   
 Versions:
     HTML3.2/CSS-1: 10 times 
-    HTML5/20221001/SVG-2.1/MathML-core/CSS-3/WhatWG: 7 times 
+    HTML5/20221001/SVG-2.1/MathML-core/CSS-1/WhatWG: 7 times 
   
 File info:
      12551 bytes read in 17 files, with an average of roughly 738 bytes per file

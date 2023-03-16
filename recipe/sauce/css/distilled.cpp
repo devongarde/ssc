@@ -25,6 +25,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "stats/stats.h"
 #include "css/arguments.h"
 
+void distilled::reset ()
+{   class_.clear ();
+    id_.clear ();
+    element_class_.clear ();
+    element_id_.clear ();
+    font_.clear ();
+    ticks_.clear ();
+    cp_.reset ();
+    in_progress_ = false; }
+
 bool distilled::has_element_class (const e_element e, const ::std::string& s) const
 {   ::std::string l (elem::name (e) + "." + s);
     return (element_class_.find (l) != element_class_.cend ()); }
@@ -45,3 +55,11 @@ void distilled::accumulate (stats_t* s) const
         s -> dcl_element_id (c.first, c.second);
     for (auto c : font_)
         s -> mark_font (c.first, c.second); }
+
+::std::string distilled::review (mmac_t& mac, const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot, const e_nit_section& page_head, const bool unfiltered)
+{   // here, cp_ is borked
+    ::std::string res;
+    for (auto n : ticks_)
+        res += n.review (mac, entry, head, foot, page_head, unfiltered);
+    ticks_.clear ();
+    return res; }

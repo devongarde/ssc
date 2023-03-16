@@ -214,7 +214,7 @@ public:
 typedef n_string_table < e_namespace, ns_error, NAMESPACE_COUNT, 2 > namespace_names_t;
 typedef n_string_table < e_protocol, pr_error, PROTOCOL_COUNT, 1 > protocol_names_t;
 typedef n_string_table < e_schema, s_error, SCHEMA_COUNT, 2 > schema_names_t;
-extern namespace_names_t namespace_names;
+extern namespace_names_t namespace_names, empty_namespace_names;
 extern protocol_names_t protocol_names;
 extern schema_names_t schema_names;
 

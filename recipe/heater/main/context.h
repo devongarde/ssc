@@ -104,6 +104,7 @@ class context_t
     context_t& crosslinks (const bool b) { crosslinks_ = b; mac (nm_context_crosslinks, b); return *this; }
     context_t& css_cascade (const int n) { version_.css_cascade (n); mac (nm_context_css_cascade, n); return *this; }
     context_t& css_extension (const vstr_t& s) { css_ext_ = s; mac (nm_context_css_extension, s); return *this; }
+    context_t& css_selector (const int n) { version_.css_selector (n); mac (nm_context_css_selector, n); return *this; }
     context_t& css_version (const int mjr, const int mnr) noexcept;
     context_t& css_version (const e_css_version v) noexcept { version_.css_version (v); mac < int > (nm_context_css_version, v); return *this; }
     context_t& custom_elements (const vstr_t& s) { custom_elements_ = s; mac (nm_context_custom_elements, s); return *this; }
@@ -273,6 +274,7 @@ public:
     bool crosslinks () const noexcept { return crosslinks_; }
     int css_cascade () { return version_.css_cascade (); }
     const vstr_t css_extension () const { return css_ext_; }
+    int css_selector () { return version_.css_selector (); }
     e_css_version css_version () const noexcept { return version_.css_version (); }
     const vstr_t custom_elements () const { return custom_elements_; }
     bool dodedu () const noexcept { return (copy_ >= c_deduplicate); }

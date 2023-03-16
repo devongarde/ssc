@@ -47,7 +47,7 @@ public:
     DELETE_CONSTRUCTORS (css);
     bool invalid () const noexcept { return false; }
     bool snippet () const noexcept { return args_.snippet_; }
-    void snippet (const bool b)  noexcept{ args_.snippet_ = b; }
+    void snippet (const bool b)  noexcept { args_.snippet_ = b; }
     bool has_class (const ::std::string& s) const
     {   VERIFY_NOT_NULL (args_.dst_.get (), __FILE__, __LINE__);
         return args_.dst_ -> has_class (s); }

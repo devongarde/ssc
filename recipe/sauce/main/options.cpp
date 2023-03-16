@@ -331,8 +331,10 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (CORPUS DONT MAIN, ::boost::program_options::bool_switch (), "Avoid the content of <MAIN> when gather page corpus.")
         (CORPUS OUTPUT ",d", ::boost::program_options::value < ::std::string > (), "Dump corpus of site content to specified file.")
 
-        (CSS CASCADE, ::boost::program_options::value < int > (), "Version of CSS Cascade & Inheritance (0, 3,4,5 or 6).")
+        (CSS CASCADE, ::boost::program_options::value < int > (), "Version of CSS Cascade & Inheritance (0, 3, 4, 5 or 6).")
         (CSS EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "CSS files have this extension (default css); may be repeated.")
+        (CSS NAMESPACE, ::boost::program_options::value < int > (), "Version of CSS Namespace (0 or 3).")
+        (CSS SELECTOR, ::boost::program_options::value < int > (), "Version of CSS Selector (0, 3, or 4).")
         (CSS VERIFY, ::boost::program_options::bool_switch (), "Process .css files.")
         (CSS DONT VERIFY, ::boost::program_options::bool_switch (), "Do not process .css files.")
         (CSS VERSION, ::boost::program_options::value < ::std::string > (),  "Presume this version of CSS (default appropriate for HTML version).")
@@ -955,24 +957,7 @@ void options::contextualise (nitpick& nits)
         yea_nay (&context_t::load_css, nits, CSS VERIFY, CSS DONT VERIFY);
         yea_nay (&context_t::ext_css, nits, CSS EXTERNAL, CSS DONT EXTERNAL);
         
-        if (var_.count (CSS VERSION) == 0)
-            switch (context.html_ver ().mjr ())
-            {   case 0 :
-                case 1 :
-                    context.css_version (css_none);
-                    break;
-                case 2 :
-                case 3 :
-                    context.css_version (css_1);
-                    break;
-                case 4 :
-                    if (context.html_ver ().mnr () < 4) context.css_version (css_2_0);
-                    else context.css_version (css_2_1);
-                    break;
-                default :
-                    context.css_version (css_3);
-                    break; }
-        else
+        if (var_.count (CSS VERSION) != 0)
         {   ::std::string ver (var_ [CSS VERSION].as < ::std::string > ());
             if (ver.empty ())
                 nits.pick (nit_config_version, es_warning, ec_init, "missing CSS version");
@@ -991,7 +976,7 @@ void options::contextualise (nitpick& nits)
             if (context.css_version () < 3)
                 nits.pick (nit_config_version, es_error, ec_init, "--" CSS CASCADE " requires --" CSS VERSION " 3");
             else
-            {   int n (var_ [CSS CASCADE].as < int > ());
+            {   const int n (var_ [CSS CASCADE].as < int > ());
                 switch (n)
                 {   case 0 :
                     case 3 :
@@ -1002,6 +987,35 @@ void options::contextualise (nitpick& nits)
                         break;
                     default :
                         nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Cascade & Inheritance value");
+                        break; } }
+
+        if (var_.count (CSS NAMESPACE))
+            if (context.css_version () < 3)
+                nits.pick (nit_config_version, es_error, ec_init, "--" CSS NAMESPACE " requires --" CSS VERSION " 3");
+            else
+            {   const int n (var_ [CSS NAMESPACE].as < int > ());
+                switch (n)
+                {   case 0 :
+                    case 3 :
+                        context.css_cascade (n);
+                        break;
+                    default :
+                        nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Namespace value");
+                        break; } }
+
+        if (var_.count (CSS SELECTOR))
+            if (context.css_version () < 3)
+                nits.pick (nit_config_version, es_error, ec_init, "--" CSS SELECTOR " requires --" CSS VERSION " 3");
+            else
+            {   const int n (var_ [CSS SELECTOR].as < int > ());
+                switch (n)
+                {   case 0 :
+                    case 3 :
+                    case 4 :
+                        context.css_selector (n);
+                        break;
+                    default :
+                        nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Selector value");
                         break; } }
 
         yea_nay (&context_t::rfc_1867, nits, HTML RFC1867, HTML DONT RFC1867);
@@ -1416,6 +1430,8 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
 
     if (var_.count (CSS CASCADE)) res << CSS CASCADE ": " << var_ [CSS CASCADE].as < int > () << "\n";
     if (var_.count (CSS EXTENSION)) res << CSS EXTENSION ": "; pvs (res, var_ [CSS EXTENSION].as < vstr_t > ()); res << "\n";
+    if (var_.count (CSS NAMESPACE)) res << CSS NAMESPACE ": " << var_ [CSS NAMESPACE].as < int > () << "\n";
+    if (var_.count (CSS SELECTOR)) res << CSS SELECTOR ": " << var_ [CSS SELECTOR].as < int > () << "\n";
     if (var_.count (CSS VERIFY)) res << CSS VERIFY ": " << var_ [CSS VERIFY].as < bool > () << "\n";
     if (var_.count (CSS DONT VERIFY)) res << CSS DONT VERIFY ": " << var_ [CSS DONT VERIFY].as < bool > () << "\n";
     if (var_.count (CSS VERSION)) res << CSS VERSION ": " << var_ [CSS VERSION].as < ::std::string > () << "\n";

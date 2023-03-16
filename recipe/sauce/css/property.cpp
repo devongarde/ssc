@@ -35,12 +35,7 @@ void property::parse (arguments& args, const int from, const int to)
     if ((b < 0) || (args.t_.at (b).t_ == ct_curly_ket)) return;
     from_ = b;
     nitpick& nits = args.t_.at (b).nits_;
-    if (args.t_.at (b).t_ == ct_dash)
-    {   ::std::string pn ("-");
-        const int k = next_non_whitespace (args.t_, b, to);
-        if (k > 0) pn += assemble_string (args.t_, k, to);
-        nits.pick (nit_bespoke_property, es_warning, ec_css, quote (pn), ": apologies, but " PROG " cannot verify bespoke properties."); }
-    else if (args.t_.at (b).t_ != ct_keyword)
+    if (args.t_.at (b).t_ != ct_keyword)
         nits.pick (nit_property, es_error, ec_css, quote (tkn_rpt (args.t_.at (b))), ": property name expected");
     else
     {   const int k = b;
@@ -71,6 +66,12 @@ void property::parse (arguments& args, const int from, const int to)
                 if (clean) val_ += tkn_rpt (args.t_.at (b));
                 b = next_token_at (args.t_, b, pre);
                 ++kc; }
+            if (val_.length () >= 5)
+                if (val_.at (0) == '-')
+                    if (    ((val_.length () >= 6) && (val_.substr (1, 5) == "khtml")) ||
+                            ((val_.length () >= 5) && (val_.substr (1, 4) == "atsc")))
+                    {   nits.pick (nit_bespoke_property, es_warning, ec_css, quote (val_), ": apologies, but " PROG " cannot verify bespoke properties.");
+                        return; }
             prop_ = make_property_v_ptr (nits, args.t_.at (k).val_, val_, p);
             if (prop_.get () != nullptr)
             {   const e_css_property pr (prop_ -> get ());
