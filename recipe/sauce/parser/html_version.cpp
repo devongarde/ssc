@@ -173,7 +173,11 @@ void html_version::init (const unsigned short mjr)
     return res.str (); }
 
 bool html_version::note_parsed_version (nitpick& nits, const e_nit n, const html_version& got, const ::std::string& gen)
-{   if (is_not (got))
+{   const e_css_version cv = context.css_version ();
+    const e_jsonld_version jv = context.jsonld_version ();
+    const e_rdf_version rv = context.rdf_version ();
+    const uint64_t cm = (context.html_ver ().ext2 () & H2_FULL_CSS_MASK);
+    if (is_not (got))
     {   if (got > *this)
         {   bool minor = false;
             switch (this -> mjr ())
@@ -191,6 +195,9 @@ bool html_version::note_parsed_version (nitpick& nits, const e_nit n, const html
             if (minor) nits.pick (nit_html_contradictory, es_comment, ec_parser, report (), " changed to ", got.report ());
             else nits.pick (nit_html_contradictory, es_warning, ec_parser, report (), " changed to ", got.report ());
             reset (got);
+            if (cv > css_none) set_ext2 (H2_FULL_CSS_MASK, cm);
+            if (jv > jsonld_none) jsonld_version (jv);
+            if (rv > rdf_none) rdf_version (rv);
             return true; }
         if (got.has_svg ())
             if (! has_svg () || (got.svg_version () >= svg_version ()))
@@ -206,7 +213,10 @@ bool html_version::note_parsed_version (nitpick& nits, const e_nit n, const html
         return true; }
     if (unknown ())
     {   nits.pick (n, es_comment, ec_parser, gen, " recognised");
-        reset (got); }
+        reset (got);
+        if (cv > css_none) set_ext2 (H2_FULL_CSS_MASK, cm);
+        if (jv > jsonld_none) jsonld_version (jv);
+        if (rv > rdf_none) rdf_version (rv); }
     return true; }
 
 bool html_version::invalid_addendum (const html_version& v) const noexcept
@@ -636,15 +646,22 @@ e_css_version html_version::css_version () const noexcept
     return css_none; }
 
 ::std::string html_version::css_version_name () const
-{   if (any_ext2 (H2_CSS_6)) return "6 draft";
-    if (any_ext2 (H2_CSS_5)) return "5";
-    if (any_ext2 (H2_CSS_4)) return "4";
-    if (any_ext2 (H2_CSS_3)) return "3";
-    if (any_ext2 (H2_CSS_2_2)) return "2.2 draft";
-    if (any_ext2 (H2_CSS_2_1)) return "2.1";
-    if (any_ext2 (H2_CSS_2_0)) return "2.0";
-    if (any_ext2 (H2_CSS_1)) return "1";
-    return ""; }
+{   ::std::string res;
+    if (any_ext2 (H2_CSS_6)) res = "6-draft";
+    else if (any_ext2 (H2_CSS_5)) res = "5";
+    else if (any_ext2 (H2_CSS_4)) res = "4";
+    else if (any_ext2 (H2_CSS_3)) res = "3";
+    else
+    {   if (any_ext2 (H2_CSS_2_2)) return "2.2-draft";
+        if (any_ext2 (H2_CSS_2_1)) return "2.1";
+        if (any_ext2 (H2_CSS_2_0)) return "2.0";
+        if (any_ext2 (H2_CSS_1)) return "1";
+        return ""; }
+    switch (css_selector ())
+    {   case 3 : res += "-Sel3"; break;
+        case 4 : res += "-Sel4 draft"; break;
+        default : break; }
+    return res; }
 
 void html_version::css_version (const e_css_version v) noexcept
 {   reset_ext2 (H2_CSS_MASK);
@@ -819,20 +836,45 @@ bool html_version::svg_limited (const e_svg_version v) const noexcept
 
 int html_version::css_cascade () const
 {   const int c = GSL_NARROW_CAST < int > (ext2 (H2_CSS_CASCADE_MASK, H2_CSS_CASCADE_ROTATE));
-    if (c > 0)   
-        switch (css_version ())
-        {   case css_3 : return 3;
-            case css_4 : if (c < 5) return c;
-                         return 4;   
-            case css_5 : if (c < 6) return c;
-                         return 5;
-            case css_6 : return c;   
-            default : break; }
+    if (c > 0) return c;   
+    switch (css_version ())
+    {   case css_3 : return 3;
+        case css_4 : if (c < 5) return c;
+                        return 4;   
+        case css_5 : if (c < 6) return c;
+                        return 5;
+        case css_6 : return c;   
+        default : break; }
     return 0; }
 
 void html_version::css_cascade (const int n)
 {   if ((n >= 3) && (n <= 6)) set_ext2 (H2_CSS_CASCADE_MASK, n-2, H2_CSS_CASCADE_ROTATE);
     else reset_ext2 (H2_CSS_CASCADE_MASK); }
+
+int html_version::css_namespace () const
+{   if (any_ext2 (H2_CSS_NAMESPACE)) return 3;
+    if (css_version () >= 3) return 3;
+    return 0; }
+
+void html_version::css_namespace (const int n)
+{   if (n >= 3) set_ext2 (H2_CSS_NAMESPACE);
+    else reset_ext2 (H2_CSS_NAMESPACE); }
+
+int html_version::css_selector () const
+{   const uint64_t e2 = ext2 (H2_CSS_SELECTOR_MASK, H2_CSS_SELECTOR_ROTATE);
+    PRESUME (e2 < INT_MAX, __FILE__, __LINE__);
+    const int c = GSL_NARROW_CAST < int > (e2);
+    if (c > 0) return c;
+    switch (css_version ())
+    {   case css_3 : return 3;
+        case css_4 : if (c < 5) return c;
+                     return 4;   
+        default : break; }
+    return 0; }
+
+void html_version::css_selector (const int n)
+{   if ((n >= 3) && (n <= 4)) set_ext2 (H2_CSS_SELECTOR_MASK, n-2, H2_CSS_SELECTOR_ROTATE);
+    else reset_ext2 (H2_CSS_SELECTOR_MASK); }
 
 
 bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e)

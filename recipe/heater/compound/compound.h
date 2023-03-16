@@ -19,6 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
+#include "compound/type_sz.h"
 #include "compound/type_one_of.h"
 #include "compound/type_some_of.h"
 #include "compound/type_all_of.h"

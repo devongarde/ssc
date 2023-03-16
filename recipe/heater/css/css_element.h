@@ -33,9 +33,9 @@ public:
     explicit css_element (const elem& e) : e_ (e) { }
     explicit css_element (const e_element e) : e_ (e) { }
     explicit css_element (nitpick& nits, const html_version& v, const namespaces_ptr& ns, const ::std::string& x) : e_ (nits, v, ns, x) { }
-    css_element (arguments& args, const int from, const int to)
-    {   parse (args, from, to); }
-    void parse (arguments& args, const int from, const int to);
+    css_element (arguments& args, const int from, const int to, const bool knotted = false)
+    {   parse (args, from, to, knotted); }
+    void parse (arguments& args, const int from, const int to, const bool knotted = false);
     bool bef_aft () const;
     const element_bitset get_elements () const { return element_bitset (e_.get ()); }
     void validate (arguments& args);

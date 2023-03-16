@@ -85,7 +85,16 @@ line, the "no-" switch always applies.
                         content. This is incompatible with
                         --shadow.update.
 
---css.version ext       CSS files can have this extension (repeatable)
+--css.extension ext     Presume files with extension '.ext' are CSS
+                        files.
+
+--css.selector X        Use CSS Selectors level X, where X is 0, 3 or 4
+                        (0, the default, for adapt --css.version value
+                        as appropriate)
+
+--css.namespace X       Use CSS Namespaces level X, where X is 0 or 3
+                        (0, the default, for adapt --css.version value
+                        as appropriate)
 
 --css.verify            Verify CSS files (replaces --general.css)
 
@@ -94,6 +103,7 @@ line, the "no-" switch always applies.
                             2.0 CSS 2.0
                             2.1 CSS 2.1
                             2.2 CSS 2.2 (Feb 2022 draft)
+                            3   CSS 3
 
 --general.class         Nitpick class values
 

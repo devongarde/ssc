@@ -329,8 +329,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_CASCADE_4 0x0000000020000000  
 #define H2_CSS_CASCADE_5 0x0000000030000000  
 #define H2_CSS_CASCADE_6 0x0000000040000000  
-#define H2_CSS_CASCADE_MASK 0x0000000070000000  
+#define H2_CSS_CASCADE_MASK 0x00000000F0000000  
 #define H2_CSS_CASCADE_ROTATE 32
+
+#define H2_CSS_SELECTOR_3 0x0000000100000000  
+#define H2_CSS_SELECTOR_4 0x0000000200000000  
+#define H2_CSS_SELECTOR_MASK 0x0000000300000000  
+#define H2_CSS_SELECTOR_ROTATE 36
+
+#define H2_CSS_COCO       0x0000000400000000
+#define H2_CSS_NAMESPACE  0x0000000800000000
+
+#define H2_FULL_CSS_MASK  0x0000000FFFFF8000  
+
 
 class html_version : public version
 {   flags_t ext_ = NOFLAGS, ext2_ = NOFLAGS;
@@ -524,6 +535,10 @@ public:
     const char *alternative_charset () const noexcept;
     int css_cascade () const;
     void css_cascade (const int n);
+    int css_namespace () const;
+    void css_namespace (const int n);
+    int css_selector () const;
+    void css_selector (const int n);
     ::std::string get_doctype () const;
     ::std::string name () const;
     ::std::string report () const; };

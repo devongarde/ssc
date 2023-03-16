@@ -27,9 +27,9 @@ class selector
 public:
     DEFAULT_CONSTRUCTORS (selector);
     explicit selector (const e_element e) { ve_.emplace_back (e); }
-    selector (arguments& args, const int from, const int to)
-    {   parse (args, from, to); }
-    void parse (arguments& args, const int from, const int to);
+    selector (arguments& args, const int from, const int to, const bool knotted = false)
+    {   parse (args, from, to, knotted); }
+    void parse (arguments& args, const int from, const int to, const bool knotted = false);
     void accumulate (stats_t* s) const;
     void shadow (::std::stringstream& ss, arguments& args);
     const element_bitset get_elements () const

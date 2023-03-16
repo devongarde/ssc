@@ -652,7 +652,7 @@ const nitname nitnames [] =
     { nit_deleted_bad_file, "deleted_bad_file" },
     { nit_abandon, "abandon" },
     { nit_prefix_again, "prefix_again" },
-    { nit_prefix_unknown, "prefix_unknown" },
+    { nit_namespace_unknown, "namespace_unknown" },
     { nit_missing_id, "missing_id" },
     { nit_namespace_confusion, "namespace_confusion" },
     { nit_namespace_redefine, "namespace_redefine" },
@@ -794,6 +794,9 @@ const nitname nitnames [] =
     { nit_at_most, "at_most" },
     { nit_range, "range" },
     { nit_precisely, "precisely" },
+    { nit_css_namespace, "css_namespace" },
+    { nit_css_bespoke, "css_bespoke" },
+    { nit_not_not, "not_not" },
 
     { nit_incompatible, "incompatible" },
 

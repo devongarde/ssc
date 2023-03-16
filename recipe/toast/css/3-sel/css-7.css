@@ -1,0 +1,11 @@
+﻿
+p::first-line { text-transform: uppercase }
+
+p { color: red; font-size: 12pt }
+p::first-letter { color: green; font-size: 200% }
+p::first-line { color: blue }
+
+p { line-height: 1.1 }
+p::first-letter { font-size: 3em; font-weight: normal }
+span { font-weight: bold }
+

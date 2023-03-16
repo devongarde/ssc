@@ -291,7 +291,6 @@ PASS ../toast/living/jul21/details.html
 7 use_double_quote_code
 25 inserted_missing_closure missing_close
 26 inserted_missing_closure
-28 unrecognised_value
 
 PASS ../toast/living/jul21/dfn.html
 9 use_quote_code

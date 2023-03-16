@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/decoration.h"
 #include "type/type.h"
 
-void decoration::parse (arguments& args, const int from, const int to)
+void decoration::parse (arguments& args, const int from, const int to, const bool knotted)
 {   PRESUME ((from <= to) || (to < 0), __FILE__, __LINE__);
     const int len = GSL_NARROW_CAST < int > (args.t_.size ());
     PRESUME (from < len, __FILE__, __LINE__);
@@ -48,11 +48,22 @@ void decoration::parse (arguments& args, const int from, const int to)
                 nits.pick (nit_selector, ed_css_20, "5 Selectors", es_error, ec_css, "missing or invalid id");
             else sparkle_ = css_id (args, args.t_.at (b).val_);
             break; 
-        case ct_colon :
+        case ct_coco :
+            PRESUME (args.v_.css_selector () >= 3, __FILE__, __LINE__);
             b = next_non_whitespace (args.t_, b, to);
             if ((b < 0) || ((args.t_.at (b).t_ != ct_keyword) && (args.t_.at (b).t_ != ct_identifier)))
-                nits.pick (nit_selector, ed_css_20, "5 Selectors", es_error, ec_css, "missing or invalid pseudo element");
-            else sparkle_ = css_fn (args, b, to);
+                nits.pick (nit_selector, ed_css_selectors_3, "2 Selectors", es_error, ec_css, "missing or invalid pseudo element");
+            else sparkle_ = css_fn (args, b, to, true, knotted);
+            break;
+        case ct_colon :
+            b = next_non_whitespace (args.t_, b, to);
+            if (b < 0)
+                if (args.v_.css_selector () < 3) nits.pick (nit_selector, ed_css_20, "5 Selectors", es_error, ec_css, "missing  pseudo element");
+                else nits.pick (nit_selector, ed_css_selectors_3, "2 Selectors", es_error, ec_css, "missing pseudo class");
+            else if ((args.t_.at (b).t_ != ct_keyword) && (args.t_.at (b).t_ != ct_identifier) && (args.t_.at (b).t_ != ct_colon))
+                if (args.v_.css_selector () < 3) nits.pick (nit_selector, ed_css_20, "5 Selectors", es_error, ec_css, "invalid pseudo element");
+                else nits.pick (nit_selector, ed_css_selectors_3, "2 Selectors", es_error, ec_css, "invalid pseudo class");
+            else sparkle_ = css_fn (args, b, to, false, knotted);
             break;
         default :
             ::std::cout << "decoration " << args.t_.at (b).t_ << " unexpected.\n";

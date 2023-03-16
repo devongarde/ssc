@@ -67,6 +67,7 @@ css_ptr css_global::get_cp (const ::std::string& s) const
 
 void css_global::report_stragglers (::std::ostringstream& ss, const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot, const e_nit_section& page_head, const bool unfiltered) const
 {   PRESUME (! fred.activity (), __FILE__, __LINE__);
+    VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
     for (auto i : mdst_)
         if (i.second != nullptr)
             if (i.second -> css ().get () != nullptr)
@@ -74,8 +75,7 @@ void css_global::report_stragglers (::std::ostringstream& ss, const e_nit_sectio
                 mac.emplace (nm_page_name, i.first);
                 mac.emplace (nm_page_disk_path, i.first);
                 mac.emplace (nm_page_site_path, i.first);
-                ss << i.second -> css () -> review (mac, entry, head, foot, page_head, unfiltered); 
-                i.second -> expel (); } }
+                ss << macro -> apply (ns_page_head) << i.second -> review (mac, entry, head, foot, page_head, unfiltered) << macro -> apply (ns_page_foot) ; } }
 
 void css_global::report_usage (::std::ostringstream& ss) const
 {   PRESUME (! fred.activity (), __FILE__, __LINE__);

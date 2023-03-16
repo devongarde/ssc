@@ -41,11 +41,8 @@ struct arguments
     selectors* ss_ = nullptr;
     statement* st_ = nullptr;
     properties* ps_ = nullptr;
-    arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g)
-        : g_ (g), v_ (v), ns_ (namespaces) { }
-    arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet)
-        : g_ (g), v_ (v), ns_ (namespaces), sv_ (sv), snippet_ (snippet) { }
-    arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet, const ::std::string& abs, dst_ptr dst)
-        : g_ (g), v_ (v), ns_ (namespaces), sv_ (sv), snippet_ (snippet), abs_ (abs), dst_ (dst) { }
+    arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g);
+    arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet);
+    arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet, const ::std::string& abs, dst_ptr dst);
     void check_flags (nitpick& nits, const flags_t f, const ::std::string& s) const;
     void validate (nitpick& nits, const flags_t f, const ::std::string& p, const ::std::string& v) const; };

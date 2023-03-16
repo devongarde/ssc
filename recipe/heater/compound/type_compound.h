@@ -63,23 +63,26 @@ template < e_type T, e_type F, e_type P > struct type_function : tidy_string < T
                 nits.pick (nit_function, es_error, ec_type, "'(' expected in ", quote (ss));
             else
             {   ::std::string fn (trim_the_lot_off (ss.substr (0, brac)));
-                test_value < F > (nits, v, fn);
-                const ::std::string::size_type ket = ss.find (')');
-                if (ket == ::std::string::npos)
-                    nits.pick (nit_function, es_error, ec_type, "')' expected in ", quote (ss));
+                nitpick nuts;
+                if (! test_value < F > (nuts, v, fn))
+                    nits.merge (nuts);
                 else
-                {   bool ok = true;
-                    ::std::string args (trim_the_lot_off (ss.substr (brac+1, ket-brac-1)));
-                    if (ket < ss.length () - 1)
-                    {   ::std::string post (trim_the_lot_off (ss.substr (ket+1)));
-                        if (! post.empty ())
-                        {   nits.pick (nit_function, es_error, ec_type, "unexpected characters '", post, "' after ')' in ", quote (ss));
-                            ok = false; } }
-                    if (! args.empty ())
-                    {   vstr_t params (split_by_charset (args, ","));
-                        for (auto arg : params)
-                            if (! test_value < P > (nits, v, uq3 (arg))) ok = false; }
-                    if (ok) return; } } }
+                {   const ::std::string::size_type ket = ss.find (')');
+                    if (ket == ::std::string::npos)
+                        nits.pick (nit_function, es_error, ec_type, "')' expected in ", quote (ss));
+                    else
+                    {   bool ok = true;
+                        ::std::string args (trim_the_lot_off (ss.substr (brac+1, ket-brac-1)));
+                        if (ket < ss.length () - 1)
+                        {   ::std::string post (trim_the_lot_off (ss.substr (ket+1)));
+                            if (! post.empty ())
+                            {   nits.pick (nit_function, es_error, ec_type, "unexpected characters '", post, "' after ')' in ", quote (ss));
+                                ok = false; } }
+                        if (! args.empty ())
+                        {   vstr_t params (split_by_charset (args, ","));
+                            for (auto arg : params)
+                                if (! test_value < P > (nits, v, uq3 (arg))) ok = false; }
+                        if (ok) return; } } } }
         tidy_string < T > :: status (s_invalid); } };
 
 template < e_type T, e_type P, class NAME, int N > struct type_function_n : tidy_string < T >
@@ -186,43 +189,17 @@ template < e_type T, class NAME, e_type P, e_type Q, e_type R > struct type_func
                         if (ok) return; } } } }
         tidy_string < T > :: status (s_invalid); } };
 
-template < e_type T, class SZ1, class SZ2 > struct type_either_string : tidy_string < T >
-{   using tidy_string < T > :: tidy_string;
-    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < T > :: set_value (nits, v, s);
-        if (tidy_string < T > :: empty ())
-            nits.pick (nit_empty, es_error, ec_type, "value expected (", type_name (T), ")");
-        else if (tidy_string < T > :: good ())
-        {   ::std::string ss (tidy_string < T > :: get_string ());
-            if (compare_complain (nits, v, SZ1 :: sz (), ss)) return;
-            if (compare_complain (nits, v, SZ2 :: sz (), ss)) return;
-            nits.pick (nit_isnt, es_error, ec_type, quote (SZ1 :: sz ()), " or ", quote (SZ2 :: sz ()), "expected, not ", quote (ss)); }
-        tidy_string < T > :: status (s_invalid); } };
+template < e_type T, class SZ1, class SZ2 > struct type_either_string : type_sz < T, SZ1, SZ2 >
+{   using type_sz < T, SZ1, SZ2 > :: type_sz; };
 
 template < e_type T, e_type A, e_type B > struct type_either_or : type_one_of < T, false, A, B >
 {   using type_one_of < T, false, A, B > :: type_one_of; };
 
 template < e_type T, e_type A, e_type B > struct type_either_neither : type_one_of < T, true, A, B >
 {   using type_one_of < T, true, A, B > :: type_one_of; };
-/*
-template < e_type T, e_type A, e_type B > struct type_either_neither : tidy_string < T >
-{   using tidy_string < T > :: tidy_string;
-    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < T > :: set_value (nits, v, s);
-        if (tidy_string < T > :: empty ())
-        {   tidy_string < T > :: status (s_good);
-            return; }
-        if (tidy_string < T > :: good ())
-        {   nitpick nuts, knots;
-            const ::std::string ss (tidy_string < T > :: get_string ());
-            if (test_value < A > (nuts, v, ss, tidy_string < T > :: id ())) { nits.merge (nuts); return; }
-            else if (test_value < B > (knots, v, ss, tidy_string < T > :: id ())) { nits.merge (knots); return; }
-            else
-            {   nits.merge (nuts); nits.merge (knots); }
-        tidy_string < T > :: status (s_invalid); } } };
-*/
-template < e_type T, e_type A, e_type B, e_type C > struct type_one_of_three : type_one_of < T, false, A, B, C >
-{   using type_one_of < T, false, A, B, C > :: type_one_of; };
+
+//template < e_type T, e_type A, e_type B, e_type C > struct type_one_of_three : type_one_of < T, false, A, B, C >
+//{   using type_one_of < T, false, A, B, C > :: type_one_of; };
 
 template < e_type T, e_type A, e_type B, e_type C, e_type D > struct type_one_of_four : type_one_of < T, false, A, B, C, D >
 {   using type_one_of < T, false, A, B, C, D > :: type_one_of; };

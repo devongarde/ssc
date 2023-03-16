@@ -54,8 +54,11 @@ template < e_type T, bool EMPTY, e_type A, e_type... B > struct type_one_of : ty
         if (type_one_of < T, EMPTY, B... > :: inner_set_value (nuts, v, s)) 
         {   nits.merge (nuts); return true; }
         val_.set_value (nits, v, s);
-        if (val_.good () || emptiness < T, EMPTY > :: could_be_empty (val_.status ()))
-        {   type_one_of < T, EMPTY, B... > :: status (val_.status ());
+        if (val_.good ())
+        {   type_one_of < T, EMPTY, B... > :: status (s_good);
+            return true; }
+        if (emptiness < T, EMPTY > :: could_be_empty (val_.status ()))
+        {   type_one_of < T, EMPTY, B... > :: status (s_empty);
             return true; }
         nits.merge (nuts);
         return false; }
@@ -146,15 +149,9 @@ template < e_type T, bool EMPTY, e_type A, e_type... B > struct type_one_of : ty
         return type_one_of < T, EMPTY, B... > :: get_urls (); }
     template < e_type X > static type_master < X > default_value ()
     {   GRACEFUL_CRASH (__FILE__, __LINE__); }
-//    template < e_type X > type_master < X > get () const
-//    {   if (val_.has_value < X > (X ())) return val_.get < X > ();
-//        return type_one_of < T, EMPTY, B... > :: get < X > (); }
     int get_int () const noexcept
     {   if (! val_.unknown ()) return val_.get_int ();
         return type_one_of < T, EMPTY, B... > :: get_int (); }
-//    template < e_type X > bool has_value (const X x) const
-//    {   if (val_.has_value < X > (x)) return true;
-//        return type_one_of < T, EMPTY, B... > :: has_value < X > (x); }
     ::std::size_t size () const noexcept
     {   if (! val_.unknown ()) return val_.size ();
         return type_one_of < T, EMPTY, B... > :: size (); }
@@ -284,13 +281,9 @@ template < e_type T, bool EMPTY, e_type A > struct type_one_of < T, EMPTY, A > :
         return tidy_string < T > :: get_urls (); }
     template < e_type X > static type_master < X > default_value ()
     {   GRACEFUL_CRASH (__FILE__, __LINE__); }
-//    template < typename X > type_master < X > get () const
-//    {   GRACEFUL_CRASH (__FILE__, __LINE__); }
     int get_int () const noexcept
     {   if (! val_.unknown ()) return val_.get_int ();
         return tidy_string < T > :: get_int (); }
-//    template < typename X > bool has_value (const X x) const
-//    {   return tidy_string < T > :: has_value (x); }
     ::std::size_t size () const noexcept
     {   if (! val_.unknown ()) return val_.size ();
         return tidy_string < T > :: size (); }

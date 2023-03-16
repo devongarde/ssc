@@ -1,0 +1,7 @@
+﻿@namespace toto "http://toto.example.org";
+@namespace "http://example.com/foo";
+
+toto|A { }
+|B { }
+*|C { }
+D { }

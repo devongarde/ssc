@@ -55,7 +55,7 @@ PASS ../toast/css/2.2/css-4-1.css
 55 unrecognised_value
 58 unrecognised_value
 59 css_syntax
-60 missing_units
+60 unrecognised_value unrecognised_value missing_units unrecognised_value
 62 unrecognised_value
 63 unrecognised_value
 71 fontname css_syntax
@@ -65,7 +65,7 @@ PASS ../toast/css/2.2/css-4-2.css
 1 unrecognised_value
 6 unrecognised_value
 7 css_syntax
-8 missing_units
+8 unrecognised_value unrecognised_value missing_units unrecognised_value
 16 css_syntax property
 17 css_syntax property
 18 property
@@ -306,11 +306,8 @@ PASS ../toast/css/2.2/css-12-3-2.html
 
 PASS ../toast/css/2.2/css-12-4.css
 0 html
-5 isnt
-12 isnt isnt
-27 isnt
 36 class_microformat_property
-41 selector
+40 css_version
 42 naughty_content
 
 PASS ../toast/css/2.2/css-12-4-1.html

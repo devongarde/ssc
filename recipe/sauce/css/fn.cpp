@@ -23,8 +23,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/arguments.h"
 #include "css/decoration.h"
 #include "css/css_element.h"
+#include "css/selector.h"
 
-void css_fn::parse (arguments& args, const int from, const int to)
+void css_fn::parse (arguments& args, const int from, const int to, const bool coco, const bool knotted)
 {   PRESUME (from <= to, __FILE__, __LINE__);
     const int len = GSL_NARROW_CAST <int> (args.t_.size ());
     PRESUME (from < len, __FILE__, __LINE__);
@@ -39,6 +40,13 @@ void css_fn::parse (arguments& args, const int from, const int to)
         args.check_flags (nits, fn.flags (), fn.name ());
         fn_ = fn.get ();
         const flags_t cats (fn.first ().ext2 ());
+        if (args.v_.css_selector () >= 3)
+        {   if ((cats & H2_CSS_COCO) == H2_CSS_COCO)
+            {   if (! coco)
+                    nits.pick (nit_pseud, ed_css_selectors_3, "2 Selectors", es_warning, ec_css, fn.name (), " is a pseudo element, not a pseudo class: use '::', not ':'"); }  
+            else
+            {   if (coco)
+                    nits.pick (nit_pseud, ed_css_selectors_3, "2 Selectors", es_error, ec_css, fn.name (), " is a pseudo class, not a pseudo element: use ':', not '::'"); } }
         b = next_non_whitespace (args.t_, b, to);
         if ((b == -1) || (args.t_.at (b).t_ != ct_round_brac))
         {   if ((cats & H2_CSS_ARG_MASK) != 0)
@@ -48,44 +56,76 @@ void css_fn::parse (arguments& args, const int from, const int to)
         {   nits.pick (nit_pseud, es_error, ec_css, fn.name (), ": takes no arguments");
             return; }
         b = next_non_whitespace (args.t_, b, to);
+        const int ket = token_find (args.t_, ct_round_ket, b, to);
+        if (ket < 0)
+        {   nits.pick (nit_pseud, es_error, ec_css, fn.name (), ": where's the ket?");
+            return; }
+        ::std::string param (assemble_string (args.t_, b, ket));
         params_.clear ();
-        bool tock = false;
+        params_.push_back (param);
+        switch (fn_)
+        {   case efn_lang :
+                test_value < t_lang > (nits, context.html_ver (), param);
+                return;
+            case efn_dir :
+                test_value < t_ltr_rtl > (nits, context.html_ver (), param);
+                return;
+            case efn_nth_child :
+            case efn_nth_col :
+            case efn_nth_last_child :
+            case efn_nth_last_col :
+            case efn_nth_last_of_type :
+            case efn_nth_of_type :
+                test_value < t_css_nth_oe > (nits, context.html_ver (), param);
+                return;
+            case efn_not :
+                if (knotted)
+                {   nits.pick (nit_not_not, ed_css_selectors_3, "6.6.7. The negation pseudo-class", es_error, ec_css, ":not(:not) is not permitted");
+                    return; }
+                break;
+            case efn_current :
+            case efn_has :
+            case efn_is :
+            case efn_where :
+                break;
+            default : return; }
+        params_.clear ();
+        bool tock = false, pf = false;
+        ::std::vector < int > f;
         while ((b > 0) && (b <= to) && (args.t_.at (b).t_ != ct_round_ket))
         {   if (args.t_.at (b).t_ == ct_comma)
             {   if (! tock) params_.emplace_back ("");
                 tock = false; }
+            else if (args.t_.at (b).t_ == ct_colon)
+                pf = true;
             else
             {   if (tock) nits.pick (nit_css_syntax, es_error, ec_css, fn.name (), ": missing comma between arguments");
                 params_.emplace_back (tkn_rpt (args.t_.at (b)));
+                if (pf) f.emplace_back (b); else f.emplace_back (-1);
+                pf = false;
                 tock = true; }
             b = args.t_.at (b).next_; }
         if (params_.size () > 0)
             switch (fn_)
-            {   case efn_lang :
-                    test_value < t_lang > (nits, context.html_ver (), params_.at (0));
-                    if (params_.size () != 1) nits.pick (nit_pseud, es_error, ec_css, fn.name (), ": too many arguments");
-                    break;
-                case efn_dir :
-                    test_value < t_ltr_rtl > (nits, context.html_ver (), params_.at (0));
-                    if (params_.size () != 1) nits.pick (nit_pseud, es_error, ec_css, fn.name (), ": too many arguments");
-                    break;
-                case efn_current :
+            {   case efn_current :
                 case efn_has :
                 case efn_is :
-                case efn_not :
                 case efn_where :
-                    for (auto a : params_) ve_.emplace_back (new css_element (nits, args.v_, args.ns_, a));
+                    PRESUME (f.size () == params_.size (), __FILE__, __LINE__);
+                    for (::std::size_t n = 0; n < params_.size (); ++n)
+                        if (f.at (n) > 0) vsl_.emplace_back (new selector (args, f.at (n), ket, true)); 
+                        else ve_.emplace_back (new css_element (nits, args.v_, args.ns_, params_.at (n)));
                     break;
-                case efn_nth_child :
-                case efn_nth_col :
-                case efn_nth_last_child :
-                case efn_nth_last_col :
-                case efn_nth_last_of_type :
-                case efn_nth_of_type :
-                    test_value < t_unsigned > (nits, context.html_ver (), params_.at (0));
-                    if (params_.size () != 1) nits.pick (nit_pseud, es_error, ec_css, fn.name (), ": too many arguments");
+                case efn_not :
+                    PRESUME (f.size () == params_.size (), __FILE__, __LINE__);
+                    if (params_.size () != 1)
+                        nits.pick (nit_not_not, ed_css_selectors_3, "6.6.7. The negation pseudo-class", es_error, ec_css, ":not only accepts one parameter");
+                    if (f.at (0) > 0) vsl_.emplace_back (new selector (args, f.at (0), ket, true)); 
+                    else ve_.emplace_back (new css_element (nits, args.v_, args.ns_, params_.at (0)));
                     break;
-                default : break; } } }
+                default :
+                    GRACEFUL_CRASH (__FILE__, __LINE__);
+                    break; } } }
 
 void css_fn::accumulate (stats_t* ) const { }
 

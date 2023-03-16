@@ -1,0 +1,15 @@
+﻿h1 em { }
+
+div * p { }
+
+div p *[href] { }
+
+body > p { }
+
+div ol>li p { }
+
+math + p { }
+
+h1.opener + h2 { }
+
+h1 ~ pre { }

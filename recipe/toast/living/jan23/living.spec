@@ -291,7 +291,6 @@ PASS ../toast/living/jan23/details.html
 7 use_double_quote_code
 25 inserted_missing_closure missing_close
 26 inserted_missing_closure
-28 unrecognised_value
 
 PASS ../toast/living/jan23/dfn.html
 9 use_quote_code
@@ -618,6 +617,10 @@ PASS ../toast/living/jan23/hs-9.html
 2 missing_close
 3 inserted_missing_parent missing_close
 4 inserted_missing_parent inserted_missing_closure missing_close
+
+PASS ../toast/living/jan23/html4.css
+0 html
+61 pseud
 
 PASS ../toast/living/jan23/i.html
 0 charset_mismatch charset_used charset_invalid

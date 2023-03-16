@@ -48,4 +48,6 @@ template < > struct property_constructor < prop_unknown >
         return ptr; } };
 
 property_v_ptr make_property_v_ptr (nitpick& nits, e_css_property p, const ::std::string& s, const css_token t)
-{   return property_constructor < PROPERTIES > :: make (nits, p, s, t); }
+{   if (p < LAST_CSS_1_PROP) return property_constructor < CSS_PROPERTIES_1 > :: make (nits, p, s, t);
+    if (p < LAST_CSS_2_PROP) return property_constructor < CSS_PROPERTIES_2 > :: make (nits, p, s, t);
+    return property_constructor < CSS_PROPERTIES_3 > :: make (nits, p, s, t); }

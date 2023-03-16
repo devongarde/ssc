@@ -40,33 +40,18 @@ void bonk (vtt_t& vt, css_token t, const int line, ::std::string& s, const ::std
                 if (s.find_first_not_of (HYPHENATED) == ::std::string::npos)
                     vt.emplace_back (ct_keyword, line, x, s);
                 else vt.emplace_back (ct_identifier, line, x, s);
-            else if (s.substr (0, 1).find_first_of (DENARY "-") != ::std::string::npos)   
+            else if (s.substr (0, 1).find_first_of (POSITIVE) != ::std::string::npos)   
                 vt.emplace_back (ct_identifier, line, x, s);
             else
             {   char ch = 0;
                 for (auto ss : s)
-//                        if ((ss < 161) && (ss != '-') && ((ss < 'a') || (ss > 'z')) && ((ss < 'A') || (ss > 'Z')) && ((ss < '0') || (ss > '9'))) 
                     if ((ss != '-') && ((ss < 'a') || (ss > 'z')) && ((ss < 'A') || (ss > 'Z')) && ((ss < '0') || (ss > '9')))
-                        // want to avoid locale dependent letters and digits, thus can't use ::std::isalnum
                     {   ch = ss;
                         break; }
                 if (ch == 0)
                     vt.emplace_back (ct_keyword, line, x, s);
                 else
                     vt.emplace_back (ct_identifier, line, x, s); } }
-//                vt.emplace_back (ct_keyword, line, x, s);
-//                nitpick& nits = vt.at (vt.size () - 1).nits_;
-//                if (v.css_version () == css_1)
-//                {   if (s.find_first_not_of (HYPHENATED) != ::std::string::npos)
-//                        nits.pick (nit_css_syntax, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, quote (s), ": 'an identifier consists of letters, digits, dashes ...'"); }
-//                else
-//                if (v.css_version () != css_1)
-//                {   //if (s.substr (0, 1).find_first_of (DENARY "-") != ::std::string::npos)
-//                    //    nits.pick (nit_css_syntax, ed_css_20, "4.1.3 Characters and case", es_error, ec_css, quote (s), ": identifiers cannot start with a hyphen or a digit");
-//                    for (auto ss : s)
-//                        if ((ss < 161) && (ss != '-') && ((ss < 'a') || (ss > 'z')) && ((ss < 'A') || (ss > 'Z')) && ((ss < '0') || (ss > '9'))) 
-//                        {   nits.pick (nit_css_syntax, ed_css_20, "4.1.3 Characters and case", es_error, ec_css, quote (s), ": illegal character (", quote (ss), ") in identifier");
-//                            break; } }
         s.clear (); }
     if (! shush && ! commented)
         vt.emplace_back (t, line, x); }
@@ -143,6 +128,7 @@ void boast (vtt_t& t)
                 case ct_dollar : ::std::cout << "dollar"; break;
                 case ct_semicolon : ::std::cout << "semicolon"; break;
                 case ct_slash : ::std::cout << "slash"; break;
+                case ct_coco : ::std::cout << "coco"; break;
                 case ct_colon : ::std::cout << "colon"; break;
                 case ct_hash : ::std::cout << "hash"; break;
                 case ct_hat : ::std::cout << "hat"; break;
@@ -244,7 +230,10 @@ bool css::parse (const ::std::string& content, const bool x)
                 case '@' : bonk (args_.t_, ct_at, line_, v, c); break;
                 case '.' : bonk (args_.t_, ct_dot, line_, v, c); break;
                 case ',' : bonk (args_.t_, ct_comma, line_, v, c); break;
-                case ':' : bonk (args_.t_, ct_colon, line_, v, c); break;
+                case ':' : if (! anticipate (i, e, "::")) bonk (args_.t_, ct_colon, line_, v, c);
+                           else if (args_.v_.css_selector () >= 3) bonk (args_.t_, ct_coco, line_, v, c);
+                           else args_.t_.at (args_.t_.size () - 1).nits_.pick (nit_css_version, ed_css_selectors_3, "2. Selectors", es_error, ec_css, ":: requires CSS Selector 3 or better");
+                           break;
                 case ';' : bonk (args_.t_, ct_semicolon, line_, v, c); break;
                 case '!' : bonk (args_.t_, ct_bang, line_, v, c); break;
                 case '#' : bonk (args_.t_, ct_hash, line_, v, c); break;
@@ -278,9 +267,6 @@ bool css::parse (const ::std::string& content, const bool x)
                 case '-' :
                     if (sgml_cmt && (! commented) && anticipate (i, e, "-->"))
                     {   sgml_cmt = false;
-                        break; }
-                    else if (v.empty ())
-                    {   bonk (args_.t_, ct_dash, line_, v, c);
                         break; }
                     FALLTHROUGH;
                 default :
@@ -316,6 +302,11 @@ bool css::parse (const ::std::string& content, const bool x)
     st_.parse (args_);
     check_for_standard_classes (context.html_ver ());
 
+    if (! snippet ())
+        for (auto t : args_.t_)
+            if (args_.dst_.get () != nullptr)
+                args_.dst_ -> merge (t.nits_);
+
     return true; }
 
 ::std::string tkn_rpt (const token_t& t)
@@ -336,6 +327,7 @@ bool css::parse (const ::std::string& content, const bool x)
         case ct_dot : return ".";
         case ct_dash : return "-";
         case ct_comma : return ",";
+        case ct_coco : return "::";
         case ct_colon : return ":";
         case ct_semicolon : return ";";
         case ct_bang : return "!";

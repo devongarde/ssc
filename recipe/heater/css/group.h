@@ -33,6 +33,7 @@ class css_group
     mcss_t mcss_;
     dst_ptr snippets_;
     sstr_t page_name_;
+    namespaces_ptr ns_;
     bool note_class (const ::std::string& s);
     bool note_element_class (const ::std::string& s);
     bool note_element_id (const ::std::string& s);

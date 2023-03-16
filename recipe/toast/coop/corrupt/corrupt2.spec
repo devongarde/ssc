@@ -11,33 +11,23 @@ PASS ../toast/coop/corrupt/search.shtml
 
 PASS ../toast/coop/corrupt/plumbing/songshade.css
 0 html
-5 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value bad_colour
-9 empty
-19 bespoke_property
-21 unrecognised_value
-21 unrecognised_value
-22 unrecognised_value
-22 unrecognised_value
-22 unrecognised_value
+19 css_bespoke
+21 css_bespoke
 26 bad_media bad_media unrecognised_value bad_media unrecognised_value bad_media
 28 bad_media bad_media unrecognised_value bad_media unrecognised_value bad_media
 30 bad_media bad_media unrecognised_value bad_media unrecognised_value bad_media
 32 bad_media bad_media unrecognised_value bad_media unrecognised_value bad_media
 34 bad_media bad_media unrecognised_value bad_media unrecognised_value bad_media
 36 bad_media bad_media unrecognised_value bad_media unrecognised_value bad_media
-41 bespoke_property
-42 bespoke_property
-43 bespoke_property
-44 unrecognised_value
+41 css_bespoke
+42 css_bespoke
+43 css_bespoke
 54 not_n unrecognised_value unrecognised_value missing_value unrecognised_value immeasurable unrecognised_value unrecognised_value unrecognised_value bad_colour unrecognised_value unrecognised_value unrecognised_value immeasurable unrecognised_value unrecognised_value unrecognised_value bad_colour unrecognised_value unrecognised_value unrecognised_value immeasurable unrecognised_value unrecognised_value unrecognised_value bad_colour unrecognised_value unrecognised_value unrecognised_value immeasurable unrecognised_value unrecognised_value unrecognised_value bad_colour unrecognised_value
-67 unrecognised_value
 95 bad_media bad_media unrecognised_value bad_media unrecognised_value bad_media
 98 bad_media bad_media unrecognised_value bad_media unrecognised_value bad_media
-104 bespoke_property
-104 bespoke_property
-104 bespoke_property
-104 unrecognised_value
-157 unrecognised_value
+104 css_bespoke
+104 css_bespoke
+104 css_bespoke
 
 itemids
 #adams

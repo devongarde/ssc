@@ -79,7 +79,6 @@ PASS ../toast/coop/schema-abc/a/article.html
 0 charset_mismatch charset_used charset_invalid
 33 inserted_missing_closure
 67 url_id_unfound
-86 bad_itemid
 
 PASS ../toast/coop/schema-abc/a/audiobook.html
 12 not_schema_property use_quote_code
@@ -117,9 +116,6 @@ PASS ../toast/coop/schema-abc/b/book-1.html
 PASS ../toast/coop/schema-abc/b/book-2.html
 71 unrecognised_value
 73 unrecognised_value
-86 bad_itemid
-88 bad_itemid
-91 bad_itemid
 122 url_id_unfound
 140 url_id_unfound
 141 url_id_unfound
@@ -180,16 +176,14 @@ PASS ../toast/coop/schema-abc/c/cableorsatelliteservice.html
 
 PASS ../toast/coop/schema-abc/c/categorycode.html
 0 charset_mismatch charset_used charset_invalid
-21 bad_itemid
-26 requires_itemscope bad_itemid
-30 bad_itemid
+26 requires_itemscope
 35 no_xmllang invalid_attribute_version wrong_version svg_rdf
 36 no_xmllang invalid_attribute_version wrong_version svg_rdf
 37 no_xmllang invalid_attribute_version wrong_version svg_rdf
 
 PASS ../toast/coop/schema-abc/c/categorycodeset.html
 0 charset_mismatch charset_used charset_invalid
-30 bad_itemid
+26 requires_itemscope
 35 no_xmllang invalid_attribute_version wrong_version svg_rdf
 36 no_xmllang invalid_attribute_version wrong_version svg_rdf
 37 no_xmllang invalid_attribute_version wrong_version svg_rdf
@@ -199,7 +193,6 @@ PASS ../toast/coop/schema-abc/c/cemetery.html
 
 PASS ../toast/coop/schema-abc/c/chapter.html
 14 requires_itemscope
-21 bad_itemid
 
 PASS ../toast/coop/schema-abc/c/claimreview.html
 30 use_quote_code
@@ -212,17 +205,11 @@ PASS ../toast/coop/schema-abc/c/claimreview.html
 49 use_double_quote_code
 
 PASS ../toast/coop/schema-abc/c/collection.html
-19 bad_itemid
 20 use_quote_code
 21 requires_itemscope
 23 requires_itemscope
-24 bad_itemid
-26 bad_itemid
 28 requires_itemscope
-29 bad_itemid
-32 bad_itemid
 36 missing_close schema_url requires_itemscope missing_itemtype inserted_missing_closure
-37 bad_itemid
 
 PASS ../toast/coop/schema-abc/c/collegeoruniversity-1.html
 14 bad_property
@@ -283,13 +270,6 @@ PASS ../toast/coop/schema-abc/c/creativework-2.html
 190 use_quote_code
 199 use_quote_code
 211 use_quote_code
-230 bad_itemid
-232 bad_itemid
-234 bad_itemid
-236 bad_itemid
-238 bad_itemid
-241 bad_itemid
-242 bad_itemid
 
 PASS ../toast/coop/schema-abc/c/creditcard.html
 0 charset_mismatch charset_used charset_invalid
@@ -329,27 +309,3 @@ http://www.worldcat.org/oclc/68043906
 http://www.worldcat.org/oclc/751835184
 https://archive.org/details/alices_adventures_1005_librivox#work
 https://schema.org/AudioBook
-
-CLASS
-bookReviewScore 0 2
-bookReviews 0 2
-description 0 1
-footer 0 1
-label 0 20
-val 0 22
-
-DCLASS
-div.bookReviewScore 0 2
-div.bookReviews 0 2
-h4.footer 0 1
-span.description 0 1
-span.label 0 20
-span.val 0 22
-
-jID
-C1 0 2
-product 0 1
-
-kID
-div#C1 0 2
-div#product 0 1

@@ -28,3 +28,6 @@ template < > struct type_master < t_cookies > : type_at_least_one < t_cookies, s
 
 template < > struct type_master < t_xlinktype > : type_string < t_xlinktype, sz_simple >
 { using type_string < t_xlinktype, sz_simple > :: type_string; };
+
+template < > struct type_master < t_css_all_2 > : public type_sz < t_css_all_2, sz_initial, sz_inherit, sz_unset >
+{   using type_sz < t_css_all_2, sz_initial, sz_inherit, sz_unset > :: type_sz; };

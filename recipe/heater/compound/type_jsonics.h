@@ -28,5 +28,5 @@ template < > struct type_master < t_js_lang > : type_or_null < t_js_lang, t_lang
 template < > struct type_master < t_js_type > : type_either_neither < t_js_type, t_text, t_url >
 { using type_either_neither < t_js_type, t_text, t_url > :: type_either_neither; };
 
-template < > struct type_master < t_js_value > : type_one_of_three < t_js_value, t_text, t_tfn, t_fixedpoint >
-{ using type_one_of_three < t_js_value, t_text, t_tfn, t_fixedpoint > :: type_one_of_three; };
+template < > struct type_master < t_js_value > : type_one_of < t_js_value, false, t_text, t_tfn, t_fixedpoint >
+{ using type_one_of < t_js_value, false, t_text, t_tfn, t_fixedpoint > :: type_one_of; };
