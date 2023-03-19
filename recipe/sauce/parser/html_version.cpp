@@ -876,6 +876,15 @@ void html_version::css_selector (const int n)
 {   if ((n >= 3) && (n <= 4)) set_ext2 (H2_CSS_SELECTOR_MASK, n-2, H2_CSS_SELECTOR_ROTATE);
     else reset_ext2 (H2_CSS_SELECTOR_MASK); }
 
+int html_version::css_style () const
+{   if (any_ext2 (H2_CSS_STYLE)) return 3;
+    if (css_version () >= 3) return 3;
+    return 0; }
+
+void html_version::css_style (const int n)
+{   if (n >= 3) set_ext2 (H2_CSS_STYLE);
+    else reset_ext2 (H2_CSS_STYLE); }
+
 
 bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e)
 {   bool res = version.parse_doctype (nits, ::std::string (b, e));

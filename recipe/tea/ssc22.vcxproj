@@ -1263,6 +1263,15 @@
     <None Include="..\toast\css\3-sel\css.conf" />
     <None Include="..\toast\css\3-sel\css.spec" />
     <None Include="..\toast\css\3-sel\index.html" />
+    <None Include="..\toast\css\3-style\css-1.html" />
+    <None Include="..\toast\css\3-style\css-3.html" />
+    <None Include="..\toast\css\3-style\css.conf" />
+    <None Include="..\toast\css\3-style\css.spec" />
+    <None Include="..\toast\css\3-style\index.html" />
+    <None Include="..\toast\css\accessibility\css.conf" />
+    <None Include="..\toast\css\accessibility\css.css" />
+    <None Include="..\toast\css\accessibility\css.spec" />
+    <None Include="..\toast\css\accessibility\index.html" />
     <None Include="..\toast\css\songlight\css.conf" />
     <None Include="..\toast\css\songlight\css.spec" />
     <None Include="..\toast\css\songlight\index.html" />

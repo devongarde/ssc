@@ -43,10 +43,10 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
         if (args.v_.css_selector () >= 3)
         {   if ((cats & H2_CSS_COCO) == H2_CSS_COCO)
             {   if (! coco)
-                    nits.pick (nit_pseud, ed_css_selectors_3, "2 Selectors", es_warning, ec_css, fn.name (), " is a pseudo element, not a pseudo class: use '::', not ':'"); }  
+                    nits.pick (nit_pseud, ed_css_selectors_3, "2 Selectors", es_warning, ec_css, fn.name (), " is a pseudo element, use '::', not ':'"); }  
             else
             {   if (coco)
-                    nits.pick (nit_pseud, ed_css_selectors_3, "2 Selectors", es_error, ec_css, fn.name (), " is a pseudo class, not a pseudo element: use ':', not '::'"); } }
+                    nits.pick (nit_pseud, ed_css_selectors_3, "2 Selectors", es_error, ec_css, fn.name (), " is a pseudo class, use ':', not '::'"); } }
         b = next_non_whitespace (args.t_, b, to);
         if ((b == -1) || (args.t_.at (b).t_ != ct_round_brac))
         {   if ((cats & H2_CSS_ARG_MASK) != 0)

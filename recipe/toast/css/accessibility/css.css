@@ -1,0 +1,48 @@
+﻿P { font-size: 24pt ! important }
+
+/* 
+ Sets the text color to black 
+ and the background color to 
+ white for the document body.
+ */
+
+BODY { 
+   color: black ! important ;  
+   background: white ! important 
+}
+
+ /* 
+ Causes the values of 'color' and 'background'
+ to be inherited by all other elements, 
+ strengthened by !important. Note that this 
+ may be overridden by other, more specific, 
+ user styles.
+ */
+
+* { 
+ color: inherit ! important ; 
+ background: inherit ! important 
+}
+
+ :focus  { outline: thick solid black }
+ :active { outline: thick solid red }
+
+
+
+DIV.example:after { 
+   content: End Example 
+}
+
+P:before { 
+   content: counter(paragraph) ". " ;
+   counter-increment: paragraph 
+}
+
+H1 {
+    voice-family: paul;
+    stress: 20;
+    richness: 90;
+    cue-before: url("ping.au")
+    }
+
+IMG:after { content: attr(alt) }

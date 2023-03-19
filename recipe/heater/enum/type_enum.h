@@ -656,6 +656,9 @@ template < > struct type_master < t_svg_mode > : enum_n < t_svg_mode, e_svg_mode
 template < > struct type_master < t_svg_overflow > : enum_n < t_svg_overflow, e_svg_overflow >
 { using enum_n < t_svg_overflow, e_svg_overflow > :: enum_n; };
 
+template < > struct type_master < t_svg_rendering_intent > : enum_n < t_svg_rendering_intent, e_svg_rendering_intent >
+{ using enum_n < t_svg_rendering_intent, e_svg_rendering_intent > :: enum_n; };
+
 template < > struct type_master < t_svg_type > : enum_n < t_svg_type, e_svg_type >
 { using enum_n < t_svg_type, e_svg_type > :: enum_n; };
 

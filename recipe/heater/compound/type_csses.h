@@ -208,3 +208,23 @@ template < > struct type_master < t_css_backval > : type_one_of_five < t_css_bac
 
 template < > struct type_master < t_css_play_during_mr > : type_and_maybe_strings < t_css_play_during_mr, t_css_url, sz_space, sz_mix, sz_repeat >
 { using type_and_maybe_strings < t_css_play_during_mr, t_css_url, sz_space, sz_mix, sz_repeat > :: type_and_maybe_strings; };
+
+
+template < > struct type_master < t_css_src > : tidy_string < t_css_src >
+{   using tidy_string < t_css_src > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_src > :: set_value (nits, v, s);
+        const ::std::string& arg = tidy_string < t_css_src > :: get_string ();
+        if (s.empty ())
+        {   nits.pick (nit_empty, es_error, ec_type, "must be empty ... NOT");
+            tidy_string < t_css_src > :: status (s_invalid); }
+        else if (good ())
+        {   if (v.svg_version () > sv_none)
+            {   type_master < t_css_local_url > tst (box ());
+                tst.set_value (nits, v, arg);
+                if (tst.good ()) return; }
+            else
+            {   type_master < t_svg_src > tst (box ());
+                tst.set_value (nits, v, arg);
+                if (tst.good ()) return; }
+            tidy_string < t_css_src > :: status (s_invalid); } } };

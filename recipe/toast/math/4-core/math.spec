@@ -10,6 +10,7 @@ PASS ../toast/math/4-core/core-1.html
 PASS ../toast/math/4-core/core-2.html
 2 naughty_lang
 4 long_title
+47 fontname
 
 PASS ../toast/math/4-core/core-3.html
 2 naughty_lang
@@ -20,3 +21,4 @@ PASS ../toast/math/4-core/core-3.html
 
 PASS ../toast/math/4-core/core-4.html
 2 naughty_lang
+14 unrecognised_value

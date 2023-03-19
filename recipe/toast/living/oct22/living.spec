@@ -619,7 +619,6 @@ PASS ../toast/living/oct22/hs-9.html
 4 inserted_missing_parent inserted_missing_closure missing_close
 
 PASS ../toast/living/oct22/html4.css
-0 html
 61 pseud
 
 PASS ../toast/living/oct22/i.html

@@ -61,6 +61,7 @@ void css_attribute::parse (arguments& args, const int from, const int to)
         args.t_.at (from).nits_.pick (nit_css_attribute, es_error, ec_css, "missing attribute name");
     else
     {   const int at = b;
+        PRESUME (! args.style_att_, __FILE__, __LINE__);
         if (no_ns || (! args.snippet_))
         {   css_attribute a (nits, args.v_, args.ns_, args.t_.at (at).val_);
             ::std::swap (*this, a); }

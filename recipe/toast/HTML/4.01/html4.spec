@@ -1,5 +1,8 @@
 -N 1 -f ../toast/HTML/4.01/html4.conf
 
+PASS ../toast/HTML/4.01/css-good.css
+4 whatwg_class whatwg_class
+
 PASS ../toast/HTML/4.01/html4-bad.html
 5 bespoke_obsolete mime
 12 deprecated_element unrecognised_value unrecognised_value bad_colour deprecated_attribute
@@ -129,36 +132,29 @@ PASS ../toast/HTML/4.01/html4-example.html
 0 charset_mismatch charset_used
 10 bespoke_obsolete
 15 bad_datetime
+62 unrecognised_value unrecognised_value missing_units unrecognised_value isnt unrecognised_value isnt unrecognised_value
 96 inserted_missing_closure inserted_missing_closure missing_close missing_close
 97 inserted_missing_closure inserted_missing_closure
 107 missing_close
 108 inserted_missing_closure
-118 unrecognised_value
 119 inserted_missing_closure
-119 unrecognised_value
 120 inserted_missing_closure
-120 unrecognised_value
-122 inserted_missing_closure unrecognised_value
+122 inserted_missing_closure
 124 use_double_quote_code
-129 unrecognised_value
-130 unrecognised_value
-131 inserted_missing_closure unrecognised_value
+131 inserted_missing_closure
 132 inserted_missing_parent missing_close inserted_missing_closure missing_close inserted_missing_closure
 133 inserted_missing_closure missing_close inserted_missing_closure
 134 inserted_missing_closure missing_close inserted_missing_closure
 135 inserted_missing_closure missing_close inserted_missing_closure
 136 inserted_missing_closure
-139 unrecognised_value
-140 unrecognised_value
-141 inserted_missing_closure unrecognised_value
+141 inserted_missing_closure
 142 inserted_missing_parent missing_close inserted_missing_closure missing_close inserted_missing_closure
 143 inserted_missing_closure missing_close inserted_missing_closure
 144 inserted_missing_closure missing_close inserted_missing_closure
 145 inserted_missing_closure missing_close inserted_missing_closure
 146 inserted_missing_closure
 149 inserted_missing_closure missing_close inserted_missing_closure
-151 unrecognised_value
-155 inserted_missing_closure unrecognised_value
+155 inserted_missing_closure
 157 missing_close
 159 inserted_missing_closure
 228 inserted_missing_closure
@@ -188,7 +184,6 @@ PASS ../toast/HTML/4.01/html4-example.html
 286 inserted_missing_closure
 288 inserted_missing_closure missing_close
 291 inserted_missing_closure
-293 unrecognised_value
 295 inserted_missing_closure missing_close
 296 inserted_missing_closure
 301 newline_in_string newline_in_string deprecated_attribute
@@ -325,7 +320,6 @@ PASS ../toast/HTML/4.01/html4-example.html
 697 url_not_found
 700 inserted_missing_closure
 703 inserted_missing_closure unrecognised_value
-707 unrecognised_value
 711 inserted_missing_closure missing_close
 713 inserted_missing_closure
 720 use_quote_code
@@ -359,11 +353,8 @@ PASS ../toast/HTML/4.01/html4-frameset-bad.html
 0 frameset_body
 
 PASS ../toast/HTML/4.01/html4-good.html
-85 unrecognised_value
 86 inserted_missing_closure
-86 unrecognised_value
 87 inserted_missing_closure
-87 unrecognised_value
 89 inserted_missing_closure
 
 PASS ../toast/HTML/4.01/html4-lang.html

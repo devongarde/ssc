@@ -401,3 +401,48 @@ template < > struct type_master < t_transform > : tidy_string < t_transform >
         else if (tidy_string < t_transform > :: good ())
             if (parse_transform (nits, v, tidy_string < t_transform > :: get_string ())) return;
         tidy_string < t_transform > :: status (s_invalid); } };
+
+// t_svg_two_profile
+template < > struct type_master < t_svg_two_profile > : tidy_string < t_svg_two_profile >
+{   using tidy_string < t_svg_two_profile > :: tidy_string;
+    vurl_t val_;
+    static e_animation_type animation_type () noexcept { return at_url; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_svg_two_profile > :: set_value (nits, v, s);
+        if (s.empty ())
+            nits.pick (nit_empty, es_error, ec_type, "IRI or (local IRI) expected");
+        else
+        {   ::std::string id;
+            const ::std::string ss (tidy_string < t_svg_two_profile > :: get_string ());
+            if (ss.at (0) != '(')
+            {   if (test_value < t_css_local_url > (nits, v, ss, id))
+                {   val_.emplace_back (nits, v, id);
+                    return; }
+            else if (ss.at (ss.length () - 1) != ')')
+                nits.pick (nit_empty, es_error, ec_type, "malformed IRI pair; missing close bracket");
+            else if (ss.length () == 2)
+                nits.pick (nit_empty, es_error, ec_type, "that IRI pair appears to be slightly empty");
+            else
+            {   const ::std::string sss (trim_the_lot_off (ss.substr (s.at (1), s.length () - 2)));
+                if (sss.empty ()) nits.pick (nit_empty, es_error, ec_type, "that IRI pair appears to be slightly empty");
+                else
+                {   vstr_t vu (split_quoted_by_space (sss));
+                    if (vu.size () != 2)
+                        nits.pick (nit_empty, es_error, ec_type, "that IRI pair isn't a pair");
+                    else
+                    {   bool ok = true;
+                        if (test_value < t_css_local_url > (nits, v, ss, vu.at (0)))
+                            val_.emplace_back (nits, v, id);
+                        else ok = false;
+                        if (test_value < t_url > (nits, v, ss, vu.at (1)))
+                            val_.emplace_back (nits, v, id);
+                        else ok = false;
+                        if (ok) return; } } } } }
+        string_value < t_svg_two_profile > :: status (s_invalid); }
+    bool verify_url (nitpick& nits, const html_version& v, element& e)
+    {   bool ok = true;
+        for (auto u : val_)
+            if (u.valid ())
+                if (! u.verify (nits, v, e)) ok = false;
+        return ok; }    
+    vurl_t get_urls () const noexcept { return val_; } };
