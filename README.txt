@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.1.15
+version 0.1.16
 (c) 2020-2023 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notice
 https://ssc.lu/
@@ -15,7 +15,7 @@ ssc analyses static X/HTML snippets, files and sites:
 - SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x draft Apr 2021
 - MathML 1/2/3/4 draft Jul 2022
 - XHTML 1.0/1.1/2.0/5.x
-- CSS 1
+- CSS 1/2.0/2.1/2.2 draft Feb 2022
 - finds broken links
 - server side includes, mostly
 - many microdata & RDFa ontologies

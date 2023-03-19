@@ -14,6 +14,8 @@
 ../toast/css/2.2/css.spec
 ../toast/css/3-ns/css.spec
 ../toast/css/3-sel/css.spec
+../toast/css/3-style/css.spec
+../toast/css/accessibility/css.spec
 ../toast/css/songlight/css.spec
 ../toast/HTML/1.0/html1.spec
 ../toast/HTML/2.0/html2.spec

@@ -919,6 +919,16 @@ struct symbol_entry < html_version, e_css_property > css_property_symbol_table [
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "dominant-baseline", ec_dominant_baseline },
     { { HTML_CSS, 0, 0, H2_CSS_2_0_1 }, { HTML_UNDEF }, "elevation", ec_elevation, ns_default, CF_NOT_STRING },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "empty-cells", ec_empty_cells, ns_default, CF_EXPECT_KEYWORDS },
+    { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "fill", ec_fill },
+    { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "fill-break", ec_fill_break },
+    { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "fill-color", ec_fill_colour },
+    { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "fill-image", ec_fill_image },
+    { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "fill-opacity", ec_fill_opacity },
+    { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "fill-origin", ec_fill_origin },
+    { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "fill-position", ec_fill_position },
+    { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "fill-repeat", ec_fill_repeat },
+    { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "fill-rule", ec_fill_rule },
+    { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "fill-size", ec_fill_size },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "filter", ec_filter },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "flex", ec_flex },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "flex-basis", ec_flex_basis },
@@ -964,6 +974,7 @@ struct symbol_entry < html_version, e_css_property > css_property_symbol_table [
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "for", ec_for },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "forced-color-adjust", ec_forced_colour_adjust },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "gap", ec_gap },
+    { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "glyph-orientation-horizontal", ec_glyph_orientation_horizontal },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "glyph-orientation-vertical", ec_glyph_orientation_vertical },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "grid", ec_grid },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "grid-area", ec_grid_area },
@@ -994,6 +1005,7 @@ struct symbol_entry < html_version, e_css_property > css_property_symbol_table [
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "initial-letter", ec_initial_letter },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "initial-letter-align", ec_initial_letter_align },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "initial-letter-wrap", ec_initial_letter_wrap },
+    { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "inline-size", ec_inline_size },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "inline-sizing", ec_inline_sizing },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "inset", ec_inset },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "inset-block", ec_inset_block },
@@ -1036,6 +1048,10 @@ struct symbol_entry < html_version, e_css_property > css_property_symbol_table [
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "marker-segment", ec_marker_segment },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "marker-start", ec_marker_start },
     { { HTML_CSS, 0, 0, H2_CSS_2_0 }, { HTML_UNDEF }, "marks", ec_marks, ns_default, CF_PAGE },
+    { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "marquee-direction", ec_marquee_direction },
+    { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "marquee-loop", ec_marquee_loop },
+    { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "marquee-speed", ec_marquee_speed },
+    { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "marquee-style", ec_marquee_style },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "mask", ec_mask },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "mask-border", ec_mask_border },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "mask-border-mode", ec_mask_border_mode },
@@ -1095,6 +1111,7 @@ struct symbol_entry < html_version, e_css_property > css_property_symbol_table [
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "overflow-clip-margin-right", ec_overflow_clip_margin_right },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "overflow-clip-margin-top", ec_overflow_clip_margin_top },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "overflow-inline", ec_overflow_inline },
+    { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "overflow-style", ec_overflow_style },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "overflow-wrap", ec_overflow_wrap },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "overflow-x", ec_overflow_x },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "overflow-y", ec_overflow_y },
@@ -1293,7 +1310,33 @@ struct symbol_entry < html_version, e_css_property > css_property_symbol_table [
     { { HTML_CSS, 0, 0, H2_CSS_2_0 }, { HTML_UNDEF }, "x-height", ec_x_height, ns_default, CF_NOT_STRING | CF_MUST_FONT_FACE },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "z-index", ec_z_index, ns_default, CF_NOT_STRING },
 
-    { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "text-rendering", ec_text_rendering },
+    { { HTML_CSS, 0, 0, H2_CSS_SVG }, { HTML_UNDEF }, "color-interpolation", ec_colour_interpolation },
+    { { HTML_CSS, 0, 0, H2_CSS_SVG }, { HTML_UNDEF }, "color-profile", ec_colour_profile },
+    { { HTML_CSS, 0, 0, H2_CSS_SVG }, { HTML_UNDEF }, "color-rendering", ec_colour_rendering },
+    { { HTML_CSS, 0, 0, H2_CSS_SVG }, { HTML_UNDEF }, "cx", ec_cx },
+    { { HTML_CSS, 0, 0, H2_CSS_SVG }, { HTML_UNDEF }, "cy", ec_cy },
+    { { HTML_CSS, 0, 0, H2_CSS_SVG }, { HTML_UNDEF }, "d", ec_d },
+    { { HTML_CSS, 0, 0, H2_CSS_SVG }, { HTML_UNDEF }, "enable-background", ec_enable_background },
+    { { HTML_CSS, 0, 0, H2_CSS_SVG }, { HTML_UNDEF }, "kerning", ec_kerning },
+    { { HTML_CSS, 0, 0, H2_CSS_SVG }, { HTML_UNDEF }, "name", ec_name },
+    { { HTML_CSS, 0, 0, H2_CSS_SVG_2 }, { HTML_UNDEF }, "paint-order", ec_paint_order },
+    { { HTML_CSS, 0, 0, H2_CSS_SVG }, { HTML_UNDEF }, "pointer-events", ec_pointer_events },
+    { { HTML_CSS, 0, 0, H2_CSS_SVG }, { HTML_UNDEF }, "r", ec_r },
+    { { HTML_CSS, 0, 0, H2_CSS_SVG }, { HTML_UNDEF }, "rendering-intent", ec_rendering_intent },
+    { { HTML_CSS, 0, 0, H2_CSS_SVG }, { HTML_UNDEF }, "rx", ec_rx },
+    { { HTML_CSS, 0, 0, H2_CSS_SVG }, { HTML_UNDEF }, "ry", ec_ry },
+    { { HTML_CSS, 0, 0, H2_CSS_SVG }, { HTML_UNDEF }, "shape-padding", ec_shape_padding },
+    { { HTML_CSS, 0, 0, H2_CSS_SVG }, { HTML_UNDEF }, "shape-rendering", ec_shape_rendering },
+    { { HTML_CSS, 0, 0, H2_CSS_SVG }, { HTML_UNDEF }, "shape-subtract", ec_shape_subtract },
+    { { HTML_CSS, 0, 0, H2_CSS_SVG }, { HTML_UNDEF }, "stop-color", ec_stop_colour },
+    { { HTML_CSS, 0, 0, H2_CSS_SVG }, { HTML_UNDEF }, "stop-opacity", ec_stop_opacity },
+    { { HTML_CSS, 0, 0, H2_CSS_SVG }, { HTML_UNDEF }, "text-anchor", ec_text_anchor },
+    { { HTML_CSS, 0, 0, H2_CSS_SVG }, { HTML_UNDEF }, "text-definition", ec_text_definition },
+    { { HTML_CSS, 0, 0, H2_CSS_SVG }, { HTML_UNDEF }, "text-rendering", ec_text_rendering },
+// 
+    { { HTML_CSS, 0, 0, H2_CSS_SVG_2 }, { HTML_UNDEF }, "vector-effect", ec_vector_effect },
+    { { HTML_CSS, 0, 0, H2_CSS_SVG }, { HTML_UNDEF }, "x", ec_x },
+    { { HTML_CSS, 0, 0, H2_CSS_SVG }, { HTML_UNDEF }, "y", ec_y },
 
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "-apple-dashboard-region", ec_apple_dashboard_region },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "-epub-caption-side", ec_epub_caption_side },
@@ -1935,8 +1978,7 @@ struct symbol_entry < html_version, e_css_property > css_property_symbol_table [
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "mso-yfti-tbllook", ec_mso_yfti_tbllook },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "overflow-clip-box", ec_overflow_clip_box },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "overflow-clip-box-block", ec_overflow_clip_box_block },
-    { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "overflow-clip-box-inline", ec_overflow_clip_box_inline },
-    { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "pointer-events", ec_pointer_events } };
+    { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "overflow-clip-box-inline", ec_overflow_clip_box_inline } };
 
 struct symbol_entry < html_version, e_css_speech_rate_e > css_speech_rate_e_symbol_table [] =
 {   { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "fast", esr_fast },
@@ -1955,6 +1997,7 @@ struct symbol_entry < html_version, e_css_relative_size > css_relative_size_symb
 
 struct symbol_entry < html_version, e_css_statement > css_statement_symbol_table [] =
 {   { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "charset", css_charset },
+    { { HTML_SVG11, 0, HE_SVG }, { HTML_UNDEF }, "color-profile", css_colour_profile },
     { { HTML_CSS, 0, 0, H2_CSS_3 }, { HTML_UNDEF }, "document", css_document },
     { { HTML_CSS, 0, 0, H2_CSS_2 }, { HTML_UNDEF }, "font-face", css_font_face },
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "import", css_import },
@@ -2901,7 +2944,9 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css", nm_context_css },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-cascade", nm_context_css_cascade },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-extension", nm_context_css_extension },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-namespace", nm_context_css_namespace },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-selector", nm_context_css_selector },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-style", nm_context_css_style },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-version", nm_context_css_version },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-custom-elements", nm_context_custom_elements },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-dc", nm_context_dc },
@@ -3459,6 +3504,13 @@ struct symbol_entry < html_version, e_svg_overflow > svg_overflow_symbol_table [
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "scroll", sov_scroll },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "auto", sov_auto },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "inherit", sov_inherit } };
+
+struct symbol_entry < html_version, e_svg_rendering_intent > svg_rendering_intent_symbol_table [] =
+{   { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, "absolute-colormetric", sri_absolute_colourmetric },
+    { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, "auto", sri_auto },
+    { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, "perceptual", sri_perceptual },
+    { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, "relative-colormetric", sri_relative_colourmetric },
+    { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, "saturation", sri_saturation } };
 
 struct symbol_entry < html_version, e_svg_type > svg_type_symbol_table [] =
 {   { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "discrete", tsz_discrete },
@@ -4144,6 +4196,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (svg_fontweight_ff);
     INIT_ENUM (svg_mode);
     INIT_ENUM (svg_overflow);
+    INIT_ENUM (svg_rendering_intent);
     INIT_ENUM (svg_type);
     INIT_ENUM (svg_version);
     INIT_ENUM (svg_version_grand);

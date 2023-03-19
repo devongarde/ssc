@@ -41,11 +41,12 @@ void statements::parse (arguments& args, const int start, const int finish)
                 if (at > 0)
                 {   statements_.emplace_back (args, at, prev);
                     at = -1; }
-                else
-                {   args.t_.at (i).nits_.pick (nit_css_syntax, es_error, ec_css, "unexpected ", tkn_rpt (args.t_.at (i)), " (6)");
-                    if (from > 0)
-                    {   rules_.emplace_back (args, from, prev);
-                        from = -1; } }
+                else if (from > 0)
+                {   if (args.style_att_) props_.parse (args, from, prev);
+                    else
+                    {   args.t_.at (i).nits_.pick (nit_css_syntax, es_error, ec_css, "unexpected ", tkn_rpt (args.t_.at (i)), " (6)");
+                        rules_.emplace_back (args, from, prev); }
+                    from = -1; }
                 break;
             case ct_curly_brac :
             case ct_curly_ket :
@@ -53,7 +54,8 @@ void statements::parse (arguments& args, const int start, const int finish)
                 {   statements_.emplace_back (args, at, i);
                     at = -1; }
                 else if (from > 0)
-                {   rules_.emplace_back (args, from, i);
+                {   if (args.style_att_) props_.parse (args, from, prev);
+                    else rules_.emplace_back (args, from, i);
                     from = -1; }
                 break;
             case ct_whitespace :
@@ -63,14 +65,19 @@ void statements::parse (arguments& args, const int start, const int finish)
                 if ((at < 0) && (from < 0)) from = i;
                 break; }
     if (at > 0)
-    {   args.t_.at (last - 1).nits_.pick (nit_css_unfinished, es_error, ec_css, "incomplete");
-        rules_.emplace_back (args, from, last - 1); }
+        if (args.style_att_) props_.parse (args, from, prev);
+        else
+        {   args.t_.at (last - 1).nits_.pick (nit_css_unfinished, es_error, ec_css, "incomplete");
+            rules_.emplace_back (args, from, last - 1); }
     else if ((from > 0) && (args.t_.at (from).t_ != ct_eof))
-    {   args.t_.at (last - 1).nits_.pick (nit_css_unfinished, es_error, ec_css, "incomplete");
-        rules_.emplace_back (args, from, last - 1); } }
+        if (args.style_att_) props_.parse (args, from, prev);
+        else
+        {   args.t_.at (last - 1).nits_.pick (nit_css_unfinished, es_error, ec_css, "incomplete");
+            rules_.emplace_back (args, from, last - 1); } }
 
 void statements::accumulate (stats_t* s) const
-{   for (auto r : rules_)
+{   props_.accumulate (s, get_elements ());
+    for (auto r : rules_)
         r.accumulate (s);
     for (auto st : statements_)
         st.accumulate (s); } 
@@ -81,16 +88,19 @@ void statements::accumulate (stats_t* s) const
         res += i.rpt () + "\n";
     for (auto r : rules_)
         res += r.rpt () + "\n";
+    res += props_.rpt () + "\n";
     return res; }  
 
 void statements::validate (arguments& args)
 {   for (auto i : statements_)
         i.validate (args);
     for (auto i : rules_)
-        i.validate (args); }
+        i.validate (args);
+    props_.validate (args); }
 
 void statements::shadow (::std::stringstream& ss, arguments& args)
 {   for (auto i : statements_)
         i.shadow (ss, args);
     for (auto i : rules_)
-        i.shadow (ss, args); }
+        i.shadow (ss, args);
+    props_.shadow (ss, args); }

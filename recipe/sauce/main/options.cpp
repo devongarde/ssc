@@ -34,7 +34,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "spell/spell.h"
 
 #define GOTCHA  "WARNING: The examination of RDFa and ontologies (but for schema.org &\n" \
-                "the living standard), is experimental and even less trustworthy than\n" \
+                "the living standard) is experimental, and even less trustworthy than\n" \
                 PROG " per se."
 
 ::std::string env_mapper (::std::string env)
@@ -335,6 +335,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (CSS EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "CSS files have this extension (default css); may be repeated.")
         (CSS NAMESPACE, ::boost::program_options::value < int > (), "Version of CSS Namespace (0 or 3).")
         (CSS SELECTOR, ::boost::program_options::value < int > (), "Version of CSS Selector (0, 3, or 4).")
+        (CSS STYLE, ::boost::program_options::value < int > (), "Version of CSS Style (0, 3).")
         (CSS VERIFY, ::boost::program_options::bool_switch (), "Process .css files.")
         (CSS DONT VERIFY, ::boost::program_options::bool_switch (), "Do not process .css files.")
         (CSS VERSION, ::boost::program_options::value < ::std::string > (),  "Presume this version of CSS (default appropriate for HTML version).")
@@ -997,7 +998,7 @@ void options::contextualise (nitpick& nits)
                 switch (n)
                 {   case 0 :
                     case 3 :
-                        context.css_cascade (n);
+                        context.css_namespace (n);
                         break;
                     default :
                         nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Namespace value");
@@ -1016,6 +1017,20 @@ void options::contextualise (nitpick& nits)
                         break;
                     default :
                         nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Selector value");
+                        break; } }
+
+        if (var_.count (CSS STYLE))
+            if (context.css_version () < 3)
+                nits.pick (nit_config_version, es_error, ec_init, "--" CSS STYLE " requires --" CSS VERSION " 3");
+            else
+            {   const int n (var_ [CSS STYLE].as < int > ());
+                switch (n)
+                {   case 0 :
+                    case 3 :
+                        context.css_style (n);
+                        break;
+                    default :
+                        nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Style value");
                         break; } }
 
         yea_nay (&context_t::rfc_1867, nits, HTML RFC1867, HTML DONT RFC1867);
@@ -1432,6 +1447,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (CSS EXTENSION)) res << CSS EXTENSION ": "; pvs (res, var_ [CSS EXTENSION].as < vstr_t > ()); res << "\n";
     if (var_.count (CSS NAMESPACE)) res << CSS NAMESPACE ": " << var_ [CSS NAMESPACE].as < int > () << "\n";
     if (var_.count (CSS SELECTOR)) res << CSS SELECTOR ": " << var_ [CSS SELECTOR].as < int > () << "\n";
+    if (var_.count (CSS STYLE)) res << CSS STYLE ": " << var_ [CSS STYLE].as < int > () << "\n";
     if (var_.count (CSS VERIFY)) res << CSS VERIFY ": " << var_ [CSS VERIFY].as < bool > () << "\n";
     if (var_.count (CSS DONT VERIFY)) res << CSS DONT VERIFY ": " << var_ [CSS DONT VERIFY].as < bool > () << "\n";
     if (var_.count (CSS VERSION)) res << CSS VERSION ": " << var_ [CSS VERSION].as < ::std::string > () << "\n";

@@ -32,13 +32,13 @@ arguments::arguments (const html_version& v, const namespaces_ptr& namespaces, c
 {   ns_.reset (new namespaces_t ());
     ns_ -> up (namespaces.get ()); }
 
-arguments::arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet)
-    : g_ (g), v_ (v), sv_ (sv), snippet_ (snippet)
+arguments::arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet, bool style_att)
+    : g_ (g), v_ (v), sv_ (sv), snippet_ (snippet), style_att_ (style_att)
 {   ns_.reset (new namespaces_t ());
     ns_ -> up (namespaces.get ()); }
 
-arguments::arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet, const ::std::string& abs, dst_ptr dst)
-    : g_ (g), v_ (v), sv_ (sv), snippet_ (snippet), abs_ (abs), dst_ (dst)
+arguments::arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet, const ::std::string& abs, dst_ptr dst, bool style_att)
+    : g_ (g), v_ (v), sv_ (sv), snippet_ (snippet), style_att_ (style_att), abs_ (abs), dst_ (dst)
 {   ns_.reset (new namespaces_t ());
     ns_ -> up (namespaces.get ()); }
 

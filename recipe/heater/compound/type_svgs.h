@@ -257,3 +257,15 @@ template < > struct type_master < t_shape_uri > : type_either_or < t_shape_uri, 
 template < > struct type_master < t_cursor_f > : type_many_then_must < t_cursor_f, t_urifn, sz_comma, t_cursor >
 {   using type_many_then_must < t_cursor_f, t_urifn, sz_comma, t_cursor > :: type_many_then_must;
     static e_animation_type animation_type () noexcept { return at_other; } };
+
+template < > struct type_master < t_svg_profile_name > : tidy_string < t_svg_profile_name > // check against SVG colour profile statements
+{   using tidy_string < t_svg_profile_name > :: tidy_string;
+    static e_animation_type animation_type () noexcept { return at_other; } };
+
+template < > struct type_master < t_svg_name_iri > : type_either_or < t_svg_name_iri, t_url, t_svg_profile_name >
+{   using type_either_or < t_svg_name_iri, t_url, t_svg_profile_name > :: type_either_or;
+    static e_animation_type animation_type () noexcept { return at_other; } };
+
+template < > struct type_master < t_svg_colour_profile > : type_or_any_string < t_svg_colour_profile, t_svg_name_iri, sz_auto, sz_inherit, sz_srgb >
+{   using type_or_any_string < t_svg_colour_profile, t_svg_name_iri, sz_auto, sz_inherit, sz_srgb > :: type_or_any_string;
+    static e_animation_type animation_type () noexcept { return at_other; } };

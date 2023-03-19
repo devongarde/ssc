@@ -371,6 +371,7 @@ PASS ../toast/css/2.2/css-15-3.css
 
 PASS ../toast/css/2.2/css-15-3.html
 6 missing_open
+8 fontname
 
 PASS ../toast/css/2.2/css-15-4.css
 0 html

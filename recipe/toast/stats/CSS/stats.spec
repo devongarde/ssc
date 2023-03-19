@@ -411,15 +411,15 @@ Elements:
     type: twice 
   13 elements used 27 times
 CSS properties:
-    color: once 
-  1 properties used once
+    color: twice 
+  1 properties used twice
 CSS statements:
     import: once 
   1 statements used once
 CSS class(es):
     center: 1
-  1 class(es) used once 
-===
+  1 class(es) used once
+  ===
 
 PASS ../toast/stats/CSS/css-2.html
 2 naughty_lang
@@ -509,8 +509,8 @@ Elements:
     type: thrice 
   13 elements used 29 times
 CSS properties:
-    color: twice 
-  1 properties used twice
+    color: thrice 
+  1 properties used thrice
 CSS class(es):
     pastoral: 2
   1 class(es) used twice
@@ -560,7 +560,7 @@ Elements:
     type: 4 times 
   16 elements used 83 times
 CSS properties:
-    background: twice 
+    background: 4 times 
     color: once 
     float: twice 
     font-size: twice 
@@ -569,7 +569,7 @@ CSS properties:
     margin: thrice 
     padding: twice 
     text-transform: once 
-  9 properties used 16 times
+  9 properties used 18 times
 CSS class(es):
     COMPACT: 0
     compact: 2
@@ -582,6 +582,7 @@ CSS element.class(es):
 
 PASS ../toast/stats/CSS/css-5.html
 2 naughty_lang
+11 fontname
 13 missing_close
 15 missing_close
 16 inserted_missing_closure
@@ -613,8 +614,13 @@ Elements:
     type: twice 
   13 elements used 33 times
 CSS properties:
+    font-family: once 
     list-style: twice 
-  1 properties used twice
+  2 properties used thrice
+CSS font(s):
+    My own font: once
+    fantasy: once
+  2 font(s) used twice
 CSS class(es):
     alpha: 2
     centre: 1
@@ -749,7 +755,7 @@ Elements:
     type: 14 times 
   47 elements used 562 times
 CSS properties:
-    background: 20 times 
+    background: 22 times 
     background-attachment: twice 
     background-color: twice 
     background-image: thrice 
@@ -764,11 +770,11 @@ CSS properties:
     border-top: twice 
     border-width: 5 times 
     clear: once 
-    color: 62 times 
+    color: 64 times 
     display: 7 times 
     float: 6 times 
     font: 8 times 
-    font-family: 7 times 
+    font-family: 8 times 
     font-size: 25 times 
     font-style: 10 times 
     font-variant: 7 times 
@@ -796,7 +802,7 @@ CSS properties:
     white-space: thrice 
     width: once 
     word-spacing: twice 
-  47 properties used 278 times
+  47 properties used 283 times
 CSS statements:
     import: 6 times 
     page: once 
@@ -804,14 +810,16 @@ CSS statements:
 CSS font(s):
     Baskerville: once
     Mincho: once
+    My own font: once
     Symbol: once
+    fantasy: once
     gill: once
     helvetica: thrice
     monospace: once
     new century schoolbook: once
     sans-serif: once
     serif: thrice
-  9 font(s) used 13 times
+  11 font(s) used 15 times
 CSS class(es):
     COMPACT: 0
     alpha: 2

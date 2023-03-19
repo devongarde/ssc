@@ -168,7 +168,7 @@ bool css::parse (const ::std::string& content, const bool x)
     bool dq = false;
 
     if (! args_.g_.told ())
-    {   if (args_.snippet_)
+    {   if (args_.snippet_ || args_.style_att_)
             args_.t_.at (0).nits_.pick (nit_css_version, es_comment, ec_css, "Presuming CSS version ", args_.v_.css_version_name ());
         else if (context.html_ver () != html_default)
             args_.t_.at (0).nits_.pick (nit_html, es_info, ec_css, "Presuming CSS intended for use with ", context.html_ver ().name ());

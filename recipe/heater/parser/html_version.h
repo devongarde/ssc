@@ -339,8 +339,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define H2_CSS_COCO       0x0000000400000000
 #define H2_CSS_NAMESPACE  0x0000000800000000
+#define H2_CSS_STYLE      0x0000001000000000
 
-#define H2_FULL_CSS_MASK  0x0000000FFFFF8000  
+#define H2_CSS_SVG_10     0x0000002000000000
+#define H2_CSS_SVG_11     0x0000004000000000
+#define H2_CSS_SVG_12     0x0000008000000000
+#define H2_CSS_SVG_1      ( H2_CSS_SVG_10 | H2_CSS_SVG_11 | H2_CSS_SVG_12 )
+#define H2_CSS_SVG_20     0x0000010000000000
+#define H2_CSS_SVG_21     0x0000020000000000
+#define H2_CSS_SVG_2      ( H2_CSS_SVG_20 | H2_CSS_SVG_21 )
+#define H2_CSS_SVG        ( H2_CSS_SVG_1 | H2_CSS_SVG_2 )
+#define H2_CSS_SVG_MASK   H2_CSS_SVG  
+
+#define H2_FULL_CSS_MASK  0x000003FFFFFF8000  
 
 
 class html_version : public version
@@ -539,6 +550,8 @@ public:
     void css_namespace (const int n);
     int css_selector () const;
     void css_selector (const int n);
+    int css_style () const;
+    void css_style (const int n);
     ::std::string get_doctype () const;
     ::std::string name () const;
     ::std::string report () const; };

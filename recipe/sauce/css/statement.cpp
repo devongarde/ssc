@@ -161,22 +161,20 @@ void statement::parse (arguments& args, const int from, const int to)
                     nits.pick (nit_css_namespace, ed_css_namespaces_3, "3 Declaring namespaces", es_error, ec_css, "@namespace must follow @import and @charset, and precede all rules");
                 else
                 {   int i = next_non_whitespace (args.t_, b, to);
-                    if (i < 0) // nit_css_namespace
+                    if (i < 0)
                     {   nits.pick (nit_css_namespace, ed_css_namespaces_3, "3 Declaring namespaces", es_error, ec_css, "@namespace requires a namespace name");
                         break; }
                     ::std::string prefix, name;
                     if ((args.t_.at (i).t_ == ct_identifier) || (args.t_.at (i).t_ == ct_keyword))
                     {   prefix = args.t_.at (i).val_;
                         i = next_non_whitespace (args.t_, i, to); }
-                    if (i < 0) // nit_css_namespace
+                    if (i < 0)
                     {   nits.pick (nit_css_namespace, ed_css_namespaces_3, "3 Declaring namespaces", es_error, ec_css, "@namespace requires a string after the prefix");
                         break; }
                     if ((args.t_.at (i).t_ != ct_string))
                     {   nits.pick (nit_css_namespace, ed_css_namespaces_3, "3 Declaring namespaces", es_error, ec_css, "@namespace name expected (it should be a string)");
                         break; }
                     name = args.t_.at (i).val_;
-//                    if (args.ns_.get () == nullptr)
-//                        args.ns_.reset (new namespaces_t ());
                     if (prefix.empty () && name.empty ())
                         nits.pick (nit_empty, ed_css_namespaces_3, "2 Terminology", es_warning, ec_css, "Ignoring @namespace with empty short and long form");
                     else
@@ -185,7 +183,13 @@ void statement::parse (arguments& args, const int from, const int to)
                         VERIFY_NOT_NULL (args.ns_, __FILE__, __LINE__);
                         args.ns_ -> declare (nits, args.v_, empty_namespace_names, prefix, name); } }
                 break;
-// css_document,css_keyframes, css_namespace, css_supports, css_scope, css_viewport
+            case css_colour_profile :
+            case css_document :
+            case css_keyframes :
+            case css_supports :
+            case css_scope :
+            case css_viewport :
+                break;
             default :
                 break; } } }
 
@@ -218,6 +222,9 @@ void statement::accumulate (stats_t* s) const
             break;
         case css_page :
             res = "@page ();";
+            break;
+        case css_colour_profile :
+            res = "@color-profile;";
             break;
         case css_document :
             res = "@document;";

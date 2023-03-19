@@ -40,14 +40,16 @@ class css
     ::std::string abs_;
     v_np ticks_;
     int line_ = 0;
+    bool style_att_ = false;
     void check_for_standard_classes (const html_version& v);
 public:
-    explicit css (const html_version& v, const namespaces_ptr& namespaces, dst_ptr dst, page& p, const ::std::string& abs, bool state_version, bool snippet, int line);
-    explicit css (const html_version& v, const ::std::string& content, const namespaces_ptr& namespaces, dst_ptr dst, page& p, const ::std::string& abs, bool state_version, bool snippet, int line);
+    explicit css (const html_version& v, const namespaces_ptr& namespaces, dst_ptr dst, page& p, const ::std::string& abs, bool state_version, bool snippet, int line, const bool style_att);
+    explicit css (const html_version& v, const ::std::string& content, const namespaces_ptr& namespaces, dst_ptr dst, page& p, const ::std::string& abs, bool state_version, bool snippet, int line, const bool style_att);
     DELETE_CONSTRUCTORS (css);
     bool invalid () const noexcept { return false; }
     bool snippet () const noexcept { return args_.snippet_; }
     void snippet (const bool b)  noexcept { args_.snippet_ = b; }
+    bool style_att () const noexcept { return args_.style_att_; }
     bool has_class (const ::std::string& s) const
     {   VERIFY_NOT_NULL (args_.dst_.get (), __FILE__, __LINE__);
         return args_.dst_ -> has_class (s); }

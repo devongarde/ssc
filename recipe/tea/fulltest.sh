@@ -11,6 +11,15 @@
 ./ssc -f ../toast/csp/1/csp.conf
 ./ssc -f ../toast/csp/2/csp.conf
 ./ssc -f ../toast/csp/3/csp.conf
+./ssc -f ../toast/css/1/csp.conf
+./ssc -f ../toast/css/2.0/css.conf
+./ssc -f ../toast/css/2.1/css.conf
+./ssc -f ../toast/css/2.2/css.conf
+./ssc -f ../toast/css/3-ns/css.conf
+./ssc -f ../toast/css/3-sel/css.conf
+./ssc -f ../toast/css/3-style/css.conf
+./ssc -f ../toast/css/accessibility/css.conf
+./ssc -f ../toast/css/songlight/css.conf
 ./ssc -f ../toast/HTML/1.0/html1.conf
 ./ssc -f ../toast/HTML/2.0/html2.conf
 ./ssc -f ../toast/HTML/3.0/html3.conf

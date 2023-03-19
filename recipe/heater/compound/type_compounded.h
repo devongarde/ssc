@@ -31,3 +31,6 @@ template < > struct type_master < t_xlinktype > : type_string < t_xlinktype, sz_
 
 template < > struct type_master < t_css_all_2 > : public type_sz < t_css_all_2, sz_initial, sz_inherit, sz_unset >
 {   using type_sz < t_css_all_2, sz_initial, sz_inherit, sz_unset > :: type_sz; };
+
+template < > struct type_master < t_svg_src > : public either_type_or_either_string < t_svg_src, t_css_local_url, t_svg_two_profile, sz_srgb, sz_inherit >
+{   using either_type_or_either_string < t_svg_src, t_css_local_url, t_svg_two_profile, sz_srgb, sz_inherit > :: either_type_or_either_string; };

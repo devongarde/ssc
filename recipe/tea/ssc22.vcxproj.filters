@@ -1038,6 +1038,12 @@
     <Filter Include="Toast\CSS\3-ns">
       <UniqueIdentifier>{1ee61289-a6ae-45c3-a712-1dfa715dd0ad}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\CSS\3-style">
+      <UniqueIdentifier>{ed94fe92-3126-4c2f-b1d8-36baa75f805b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\accessibility">
+      <UniqueIdentifier>{c3433970-6ca8-467f-aa88-efa26c8cb569}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -29183,6 +29189,33 @@
     </None>
     <None Include="..\toast\css\3-ns\css-2.css">
       <Filter>Toast\CSS\3-ns</Filter>
+    </None>
+    <None Include="..\toast\css\3-style\css.conf">
+      <Filter>Toast\CSS\3-style</Filter>
+    </None>
+    <None Include="..\toast\css\3-style\css.spec">
+      <Filter>Toast\CSS\3-style</Filter>
+    </None>
+    <None Include="..\toast\css\3-style\css-1.html">
+      <Filter>Toast\CSS\3-style</Filter>
+    </None>
+    <None Include="..\toast\css\3-style\css-3.html">
+      <Filter>Toast\CSS\3-style</Filter>
+    </None>
+    <None Include="..\toast\css\3-style\index.html">
+      <Filter>Toast\CSS\3-style</Filter>
+    </None>
+    <None Include="..\toast\css\accessibility\css.conf">
+      <Filter>Toast\CSS\accessibility</Filter>
+    </None>
+    <None Include="..\toast\css\accessibility\css.css">
+      <Filter>Toast\CSS\accessibility</Filter>
+    </None>
+    <None Include="..\toast\css\accessibility\css.spec">
+      <Filter>Toast\CSS\accessibility</Filter>
+    </None>
+    <None Include="..\toast\css\accessibility\index.html">
+      <Filter>Toast\CSS\accessibility</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

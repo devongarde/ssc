@@ -107,7 +107,8 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
                 ::std::swap (*this, e); }
             break;
         case ct_keyword :
-            {   if (no_ns || (! args.snippet_))
+            {   PRESUME (! args.style_att_, __FILE__, __LINE__);
+                if (no_ns || (! args.snippet_))
                 {   css_element e (nits, args.v_, namespaces_ptr (), args.t_.at (b).val_);
                     ::std::swap (*this, e); }
                 else

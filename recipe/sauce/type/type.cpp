@@ -742,6 +742,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_svg_align);
         TEST_VALUE (t_svg_baselineshift);
         TEST_VALUE (t_svg_baseprofile);
+        TEST_VALUE (t_svg_colour_profile);
         TEST_VALUE (t_svg_clip);
         TEST_VALUE (t_svg_content);
         TEST_VALUE (t_svg_direction);
@@ -761,9 +762,12 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_svg_host);
         TEST_VALUE (t_svg_method);
         TEST_VALUE (t_svg_mode);
+        TEST_VALUE (t_svg_name_iri);
         TEST_VALUE (t_svg_overflow);
         TEST_VALUE (t_svg_phase);
         TEST_VALUE (t_svg_playbackorder);
+        TEST_VALUE (t_svg_profile_name);
+        TEST_VALUE (t_svg_rendering_intent);
         TEST_VALUE (t_svg_shape);
         TEST_VALUE (t_svg_shapefn);
         TEST_VALUE (t_svg_side);

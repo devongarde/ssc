@@ -31,13 +31,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 css_group::css_group (page& p) : page_ (p)
 {   snippets_ = dst_ptr (new distilled (false)); }
 
-css_ptr css_group::parse (dst_ptr dsp, const ::std::string& content, const html_version& v, const namespaces_ptr& ns, bool sv, bool snippet, const ::std::string& abs, int line)
+css_ptr css_group::parse (dst_ptr dsp, const ::std::string& content, const html_version& v, const namespaces_ptr& ns, bool state_version, bool snippet, const ::std::string& abs, int line, const e_element e)
 {   VERIFY_NOT_NULL (dsp.get (), __FILE__, __LINE__);
     css_ptr res;
     if (! context.load_css () || (context.css_version () == css_none)) return res;
+    const bool att = ((e > elem_undefined) && (e < elem_error));
+    if (att) bs_.set (e);
     mcss_t::iterator cc = mcss_.find (content);
     if (cc == mcss_.cend ())
-    {   res = css_ptr (new css (v, content, ns, dsp, page_, abs, sv, snippet, line));
+    {   res = css_ptr (new css (v, content, ns, dsp, page_, abs, state_version, snippet, line, att));
         if (! mcss_.insert (mcss_t::value_type (content, res)).second) return css_ptr ();
         bs_ |= res -> get_elements ();
         merged_ = false;
@@ -46,8 +48,8 @@ css_ptr css_group::parse (dst_ptr dsp, const ::std::string& content, const html_
     if (cc -> second -> invalid ()) return css_ptr ();
     return res; }
 
-bool css_group::parse (const ::std::string& content, const html_version& v, const namespaces_ptr& , bool sv, int line)
-{   return parse (snippets_, content, v, ns_, sv, true, ::std::string (), line) != css_ptr (); }
+bool css_group::parse (const ::std::string& content, const html_version& v, const namespaces_ptr& , bool state_version, int line, const e_element e)
+{   return parse (snippets_, content, v, ns_, state_version, true, ::std::string (), line, e) != css_ptr (); }
 
 bool css_group::parse_file (nitpick& nits, const namespaces_ptr& n, const url& u, bool state_versions, bool local)
 {   if (! context.load_css () || (context.css_version () == css_none)) return true;
@@ -70,7 +72,7 @@ bool css_group::parse_file (nitpick& nits, const namespaces_ptr& n, const url& u
                 if (content.empty ()) res = true;
                 else
                 {   namespaces_ptr ns; // don't optimise this away, mr. optimiser!
-                    css_ptr cp = parse (dsp, content, context.html_ver (), ns, state_versions, false, abs, 0);
+                    css_ptr cp = parse (dsp, content, context.html_ver (), ns, state_versions, false, abs, 0, false);
                     res = (cp != css_ptr ());
                     if (res && (local || context.ext_css ())) dsp -> css (cp); }
             global_css.release (dsp);

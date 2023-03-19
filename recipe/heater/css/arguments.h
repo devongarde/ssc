@@ -35,6 +35,7 @@ struct arguments
     bool sv_ = true;
     bool snippet_ = false;
     bool had_rule_ = false;
+    bool style_att_ = false;
     ::std::string abs_;
     dst_ptr dst_;
     vtt_t t_;
@@ -42,7 +43,7 @@ struct arguments
     statement* st_ = nullptr;
     properties* ps_ = nullptr;
     arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g);
-    arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet);
-    arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet, const ::std::string& abs, dst_ptr dst);
+    arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet, bool style_att);
+    arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet, const ::std::string& abs, dst_ptr dst, bool style_att);
     void check_flags (nitpick& nits, const flags_t f, const ::std::string& s) const;
     void validate (nitpick& nits, const flags_t f, const ::std::string& p, const ::std::string& v) const; };

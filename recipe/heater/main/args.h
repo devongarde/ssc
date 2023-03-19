@@ -172,6 +172,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SPLURGE     "splurge"
 #define SSI         "ssi"
 #define STRUCTURE   "struct"
+#define STYLE       "style"
 #define SUBSTITUTE  "substitute"
 #define SUMMARY     "summary"
 #define TAGS        "tags"

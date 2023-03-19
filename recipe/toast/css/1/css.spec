@@ -89,6 +89,7 @@ PASS ../toast/css/1/css-4.html
 
 PASS ../toast/css/1/css-5.html
 2 naughty_lang
+11 fontname
 13 missing_close
 15 missing_close
 16 inserted_missing_closure

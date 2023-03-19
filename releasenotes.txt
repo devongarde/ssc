@@ -3,6 +3,11 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.16
+- CSS 3 Style
+- CSS accessibility
+- underlying work
+
 0.1.15
 - CSS 3 Namespaces
 - CSS 3 Selectors

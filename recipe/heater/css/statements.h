@@ -22,11 +22,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/rules.h"
 #include "css/statement.h"
 #include "css/arguments.h"
+#include "css/properties.h"
 
 class page;
 
 class statements
 {   vrs_t rules_;
+    properties props_;
     vst_t statements_;
 public:
     DEFAULT_CONSTRUCTORS (statements);
