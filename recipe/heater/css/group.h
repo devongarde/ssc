@@ -38,11 +38,11 @@ class css_group
     bool note_element_class (const ::std::string& s);
     bool note_element_id (const ::std::string& s);
     bool note_id (const ::std::string& s);
-    css_ptr parse (dst_ptr dst, const ::std::string& content, const html_version& v, const namespaces_ptr& namespaces, bool sv, bool snippet, const ::std::string& abs, int line = 0, const e_element e = elem_undefined);
+    css_ptr parse (dst_ptr dst, const ::std::string& content, const html_version& v, const namespaces_ptr& namespaces, bool sv, bool snippet, const ::std::string& abs, const element_bitset eb, int line = 0, const e_element e = elem_undefined);
 public:
     DELETE_CONSTRUCTORS (css_group);
     explicit css_group (page& p);
-    bool parse (const ::std::string& content, const html_version& v, const namespaces_ptr& namespaces, bool sv, int line = 0, const e_element e = elem_undefined);
+    bool parse (const ::std::string& content, const html_version& v, const namespaces_ptr& namespaces, const element_bitset eb, bool sv, int line = 0, const e_element e = elem_undefined);
     bool parse_file (nitpick& nits, const namespaces_ptr& ns, const url& u, bool state_version = false, bool local = true);
     bool note_class (const e_element e, const ::std::string& s);
     bool note_id (const e_element e, const ::std::string& s);

@@ -34,7 +34,7 @@ bool process_css (nitpick& nits, const html_version& v, const ::std::string& s, 
             if (! p.style_css ())
                 nits.pick (nit_style_not_css, es_comment, ec_type, PROG " can only check style type text/css");
             else if (context.load_css () && (context.css_version () >= css_1))
-                p.css ().parse (s, v, e -> namespaces (), false, e -> line ()); } }
+                p.css ().parse (s, v, e -> namespaces (), e -> ancestral_elements (), false, e -> line (), e -> tag ()); } }
     catch (const ::std::system_error& ex)
     {   nits.pick (nit_internal_parsing_error, es_catastrophic, ec_type, "system exception processing STYLE: ", ex.what ()); }
     catch (const ::std::exception& ex)

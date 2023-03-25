@@ -227,7 +227,7 @@ void element::examine_style ()
 {   if (node_.version () > html_plus)
         if (! a_.known (a_type) || (a_.get_string (a_type) == CSS_TYPE))
             if (context.load_css () && (node_.version ().css_version () >= css_1))
-                page_ -> css ().parse (interpret_string (node_.nits (), node_.version (), text ()), node_.version (), node_.namespaces (), false, node_.line ()); }
+                page_ -> css ().parse (interpret_string (node_.nits (), node_.version (), text ()), node_.version (), node_.namespaces (), (ancestral_elements_ | tag ()), false, node_.line ()); }
 
 void element::examine_summary ()
 {   if ((node_.version () < html_5_1) || (node_.version () >= html_jul20)) return;

@@ -332,10 +332,13 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (CORPUS OUTPUT ",d", ::boost::program_options::value < ::std::string > (), "Dump corpus of site content to specified file.")
 
         (CSS CASCADE, ::boost::program_options::value < int > (), "Version of CSS Cascade & Inheritance (0, 3, 4, 5 or 6).")
+        (CSS COLOUR, ::boost::program_options::value < int > (), "Version of CSS Colour (0, 3, 4, or 5).")
         (CSS EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "CSS files have this extension (default css); may be repeated.")
+        (CSS MEDIA, ::boost::program_options::value < int > (), "Version of CSS Media (0, 3, 4, or 5).")
         (CSS NAMESPACE, ::boost::program_options::value < int > (), "Version of CSS Namespace (0 or 3).")
         (CSS SELECTOR, ::boost::program_options::value < int > (), "Version of CSS Selector (0, 3, or 4).")
         (CSS STYLE, ::boost::program_options::value < int > (), "Version of CSS Style (0, 3).")
+        (CSS UI, ::boost::program_options::value < int > (), "Version of CSS UI (0, 3, 4).")
         (CSS VERIFY, ::boost::program_options::bool_switch (), "Process .css files.")
         (CSS DONT VERIFY, ::boost::program_options::bool_switch (), "Do not process .css files.")
         (CSS VERSION, ::boost::program_options::value < ::std::string > (),  "Presume this version of CSS (default appropriate for HTML version).")
@@ -937,7 +940,7 @@ void options::contextualise (nitpick& nits)
 
         if (var_.count (GENERAL CUSTOM)) context.custom_elements ( var_ [GENERAL CUSTOM].as < vstr_t > ());
         if (var_.count (GENERAL ERR))
-        {   e_severity sev = decode_severity (nits, var_ [GENERAL ERR].as < ::std::string > ());
+        {   const e_severity sev = decode_severity (nits, var_ [GENERAL ERR].as < ::std::string > ());
             if (sev != es_undefined) context.report_error (sev); }
 #ifndef NO_BOOST_REGEX
         if (var_.count (GENERAL EXCLUDE)) context.exclude (nits, var_ [GENERAL EXCLUDE].as < vstr_t > ());
@@ -990,6 +993,38 @@ void options::contextualise (nitpick& nits)
                         nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Cascade & Inheritance value");
                         break; } }
 
+        if (var_.count (CSS COLOUR))
+            if (context.css_version () < 3)
+                nits.pick (nit_config_version, es_error, ec_init, "--" CSS COLOUR " requires --" CSS VERSION " 3");
+            else
+            {   const int n (var_ [CSS COLOUR].as < int > ());
+                switch (n)
+                {   case 0 :
+                    case 3 :
+                    case 4 :
+                    case 5 :
+                        context.css_colour (n);
+                        break;
+                    default :
+                        nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Colour value");
+                        break; } }
+
+        if (var_.count (CSS MEDIA))
+            if (context.css_version () < 3)
+                nits.pick (nit_config_version, es_error, ec_init, "--" CSS MEDIA " requires --" CSS VERSION " 3");
+            else
+            {   const int n (var_ [CSS MEDIA].as < int > ());
+                switch (n)
+                {   case 0 :
+                    case 3 :
+                    case 4 :
+                    case 5 :
+                        context.css_media (n);
+                        break;
+                    default :
+                        nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Media value");
+                        break; } }
+
         if (var_.count (CSS NAMESPACE))
             if (context.css_version () < 3)
                 nits.pick (nit_config_version, es_error, ec_init, "--" CSS NAMESPACE " requires --" CSS VERSION " 3");
@@ -1031,6 +1066,21 @@ void options::contextualise (nitpick& nits)
                         break;
                     default :
                         nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Style value");
+                        break; } }
+
+        if (var_.count (CSS UI))
+            if (context.css_version () < 3)
+                nits.pick (nit_config_version, es_error, ec_init, "--" CSS UI " requires --" CSS VERSION " 3");
+            else
+            {   const int n (var_ [CSS UI].as < int > ());
+                switch (n)
+                {   case 0 :
+                    case 3 :
+                    case 4 :
+                        context.css_ui (n);
+                        break;
+                    default :
+                        nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS UI value");
                         break; } }
 
         yea_nay (&context_t::rfc_1867, nits, HTML RFC1867, HTML DONT RFC1867);
@@ -1444,10 +1494,13 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (CORPUS OUTPUT)) res << CORPUS OUTPUT ": " << var_ [CORPUS OUTPUT].as < ::std::string > () << "\n";
 
     if (var_.count (CSS CASCADE)) res << CSS CASCADE ": " << var_ [CSS CASCADE].as < int > () << "\n";
+    if (var_.count (CSS COLOUR)) res << CSS COLOUR ": " << var_ [CSS COLOUR].as < int > () << "\n";
     if (var_.count (CSS EXTENSION)) res << CSS EXTENSION ": "; pvs (res, var_ [CSS EXTENSION].as < vstr_t > ()); res << "\n";
+    if (var_.count (CSS MEDIA)) res << CSS MEDIA ": " << var_ [CSS MEDIA].as < int > () << "\n";
     if (var_.count (CSS NAMESPACE)) res << CSS NAMESPACE ": " << var_ [CSS NAMESPACE].as < int > () << "\n";
     if (var_.count (CSS SELECTOR)) res << CSS SELECTOR ": " << var_ [CSS SELECTOR].as < int > () << "\n";
     if (var_.count (CSS STYLE)) res << CSS STYLE ": " << var_ [CSS STYLE].as < int > () << "\n";
+    if (var_.count (CSS UI)) res << CSS UI ": " << var_ [CSS UI].as < int > () << "\n";
     if (var_.count (CSS VERIFY)) res << CSS VERIFY ": " << var_ [CSS VERIFY].as < bool > () << "\n";
     if (var_.count (CSS DONT VERIFY)) res << CSS DONT VERIFY ": " << var_ [CSS DONT VERIFY].as < bool > () << "\n";
     if (var_.count (CSS VERSION)) res << CSS VERSION ": " << var_ [CSS VERSION].as < ::std::string > () << "\n";

@@ -32,12 +32,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 // css::parse () is in css_parse.cpp
 
-css::css (const html_version& v, const namespaces_ptr& namespaces, dst_ptr dst, page& p, const ::std::string& abs, bool state_version, bool snippet, int line, const bool style_att)
-    :   args_ (v, namespaces, p.css (), state_version, snippet, abs, dst, style_att), page_ (p), abs_ (abs), line_ (line)
+css::css (const html_version& v, const namespaces_ptr& namespaces, dst_ptr dst, page& p, const ::std::string& abs, bool state_version, bool snippet, int line, const e_element styled, const element_bitset eb)
+    :   args_ (v, namespaces, p.css (), state_version, snippet, abs, dst, styled, eb), page_ (p), abs_ (abs), line_ (line)
 {   if (abs.find (':') == ::std::string::npos) ndx_ = get_fileindex (abs); }
 
-css::css (const html_version& v, const ::std::string& content, const namespaces_ptr& namespaces, dst_ptr dst, page& p, const ::std::string& abs, bool state_version, bool snippet, int line, const bool style_att)
-    :   args_ (v, namespaces, p.css (), state_version, snippet, abs, dst, style_att), page_ (p), abs_ (abs), line_ (line)
+css::css (const html_version& v, const ::std::string& content, const namespaces_ptr& namespaces, dst_ptr dst, page& p, const ::std::string& abs, bool state_version, bool snippet, int line, const e_element styled, const element_bitset eb)
+    :   args_ (v, namespaces, p.css (), state_version, snippet, abs, dst, styled, eb), page_ (p), abs_ (abs), line_ (line)
 {   if (args_.abs_.find (':') == ::std::string::npos) ndx_ = get_fileindex (args_.abs_);
     parse (content, true); }
 

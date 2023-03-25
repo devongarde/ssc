@@ -13,10 +13,15 @@
 ../toast/css/2.0/css.spec
 ../toast/css/2.1/css.spec
 ../toast/css/2.2/css.spec
+../toast/css/3-colour/css.spec
+../toast/css/3-media/css.spec
 ../toast/css/3-ns/css.spec
 ../toast/css/3-sel/css.spec
 ../toast/css/3-style/css.spec
+../toast/css/3-ui/css.spec
+../toast/css/4-ui/css.spec
 ../toast/css/accessibility/css.spec
+../toast/css/songlight/css.spec
 ../toast/HTML/1.0/html1.spec
 ../toast/HTML/2.0/html2.spec
 ../toast/HTML/3.0/html3.spec

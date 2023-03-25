@@ -26,6 +26,7 @@ extern void type_name_init ();
 void types_init (nitpick& nits)
 {   void charset_init (nitpick& nits);
     void class_init (nitpick& nits);
+    void colour_init (nitpick& nits);
     void conlit_init (nitpick& nits);
     void country_init (nitpick& nits);
     void currency_init (nitpick& nits);
@@ -33,6 +34,7 @@ void types_init (nitpick& nits)
     void lang_init (nitpick& nits);
     void metaname_init (nitpick& nits);
     void mime_init (nitpick& nits);
+    void property_init (nitpick& nits);
     void rel_init (nitpick& nits);
     void role_init (nitpick& nits);
     void sgml_init (nitpick& nits);
@@ -42,6 +44,7 @@ void types_init (nitpick& nits)
 
     charset_init (nits);
     class_init (nits);
+    colour_init (nits);
     conlit_init (nits);
     country_init (nits);
     currency_init (nits);
@@ -49,6 +52,7 @@ void types_init (nitpick& nits)
     lang_init (nits);
     metaname_init (nits);
     mime_init (nits);
+    property_init (nits);
     rel_init (nits);
     role_init (nits);
     sgml_init (nits);
@@ -61,6 +65,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
     switch (t)
     {   TEST_VALUE (t_unknown);
         TEST_VALUE (t_0_more);
+        TEST_VALUE (t_0_to_255);
         TEST_VALUE (t_10);
         TEST_VALUE (t_1_to_7);
         TEST_VALUE (t_1_to_20);
@@ -149,6 +154,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_clip_path_rule);
         TEST_VALUE (t_closure);
         TEST_VALUE (t_colour);
+        TEST_VALUE (t_colour_a);
         TEST_VALUE (t_colour_ci);
         TEST_VALUE (t_colour_cii);
         TEST_VALUE (t_colour_i);
@@ -212,8 +218,13 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_css_border_width_i);
         TEST_VALUE (t_css_border_wsc);
         TEST_VALUE (t_css_border_wsc_i);
+        TEST_VALUE (t_css_box_sizing);
+        TEST_VALUE (t_css_caret);
+        TEST_VALUE (t_css_caret_shape);
         TEST_VALUE (t_css_clear);
         TEST_VALUE (t_css_colour);
+        TEST_VALUE (t_css_colour_3);
+        TEST_VALUE (t_css_colour_a);
         TEST_VALUE (t_css_content);
         TEST_VALUE (t_css_content_base);
         TEST_VALUE (t_css_content_enum);
@@ -238,9 +249,14 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_css_font_style_e);
         TEST_VALUE (t_css_font_weight);
         TEST_VALUE (t_css_fn);
+        TEST_VALUE (t_css_frame);
         TEST_VALUE (t_css_generic_family);
+        TEST_VALUE (t_css_id);
         TEST_VALUE (t_css_image);
         TEST_VALUE (t_css_inherit);
+        TEST_VALUE (t_css_kbd_lhs);
+        TEST_VALUE (t_css_kdb_nav);
+        TEST_VALUE (t_css_kbd_rhs);
         TEST_VALUE (t_css_length);
         TEST_VALUE (t_css_length_a);
         TEST_VALUE (t_css_length_ai);
@@ -259,6 +275,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_css_orientation);
         TEST_VALUE (t_css_outline);
         TEST_VALUE (t_css_outline_i);
+        TEST_VALUE (t_css_outline_style);
         TEST_VALUE (t_css_outlines);
         TEST_VALUE (t_css_overflow);
         TEST_VALUE (t_css_pitch_e);
@@ -267,6 +284,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_css_rect_ai);
         TEST_VALUE (t_css_rect_fn);
         TEST_VALUE (t_css_relative_size);
+        TEST_VALUE (t_css_resize);
         TEST_VALUE (t_css_size);
         TEST_VALUE (t_css_spacing);
         TEST_VALUE (t_css_speak);
@@ -278,6 +296,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_css_speech_rate_e);
         TEST_VALUE (t_css_text_align);
         TEST_VALUE (t_css_text_decoration);
+        TEST_VALUE (t_css_text_resize);
         TEST_VALUE (t_css_text_shadow);
         TEST_VALUE (t_css_text_transform);
         TEST_VALUE (t_css_vertical_align);
@@ -286,6 +305,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_css_whitespace);
         TEST_VALUE (t_css_wsc_val);
         TEST_VALUE (t_css_url);
+        TEST_VALUE (t_css_user_select);
         TEST_VALUE (t_csvw_direction);
         TEST_VALUE (t_csp_ancestor);
         TEST_VALUE (t_csp_directive);
@@ -295,6 +315,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_curie);
         TEST_VALUE (t_curie_safe);
         TEST_VALUE (t_curies);
+        TEST_VALUE (t_current_colour_sz);
         TEST_VALUE (t_currency);
         TEST_VALUE (t_cursor);
         TEST_VALUE (t_cursor_f);
@@ -399,9 +420,12 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_hidden);
         TEST_VALUE (t_hidden_ex);
         TEST_VALUE (t_hour);
+        TEST_VALUE (t_hslafn);
+        TEST_VALUE (t_hslfn);
         TEST_VALUE (t_html);
         TEST_VALUE (t_html_boolean);
         TEST_VALUE (t_httpequiv);
+        TEST_VALUE (t_hue);
         TEST_VALUE (t_hv);
         TEST_VALUE (t_hunit);
         TEST_VALUE (t_icc);
@@ -435,6 +459,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_integer);
         TEST_VALUE (t_integer_ai);
         TEST_VALUE (t_integer_i);
+        TEST_VALUE (t_integer_or_percent);
         TEST_VALUE (t_intent);
         TEST_VALUE (t_intent_app);
         TEST_VALUE (t_intent_args);
@@ -497,7 +522,6 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_literal);
         TEST_VALUE (t_loading);
         TEST_VALUE (t_localfn);
-        TEST_VALUE (t_localsz);
         TEST_VALUE (t_local_url);
         TEST_VALUE (t_location);
         TEST_VALUE (t_longdivstyle);
@@ -672,6 +696,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_restart);
         TEST_VALUE (t_result);
         TEST_VALUE (t_reveal_trans);
+        TEST_VALUE (t_rgbafn);
         TEST_VALUE (t_role);
         TEST_VALUE (t_roles);
         TEST_VALUE (t_roman_dsc);
@@ -702,12 +727,6 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_shape7);
         TEST_VALUE (t_shape_none_uri);
         TEST_VALUE (t_shape_fn);
-        TEST_VALUE (t_shape_fn_circle);
-        TEST_VALUE (t_shape_fn_ellipse);
-        TEST_VALUE (t_shape_fn_polygon);
-        TEST_VALUE (t_shape_fn_circlesz);
-        TEST_VALUE (t_shape_fn_ellipsesz);
-        TEST_VALUE (t_shape_fn_polygonsz);
         TEST_VALUE (t_shape_uri);
         TEST_VALUE (t_shape_rendering);
         TEST_VALUE (t_shape_rcp);
@@ -813,6 +832,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_transition_subtype);
         TEST_VALUE (t_transition_type);
         TEST_VALUE (t_transp);
+        TEST_VALUE (t_transparentsz);
         TEST_VALUE (t_truefalseempty);
         TEST_VALUE (t_turbulence_type);
         TEST_VALUE (t_type);
@@ -833,7 +853,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_urange);
         TEST_VALUE (t_urifn);
         TEST_VALUE (t_urifn_ni);
-        TEST_VALUE (t_urisz);
+        TEST_VALUE (t_urifn_xy);
         TEST_VALUE (t_url);
         TEST_VALUE (t_urls);
         TEST_VALUE (t_urltemplate);

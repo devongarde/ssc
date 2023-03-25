@@ -99,7 +99,8 @@ template < e_type TYPE, class SZ > struct string_vector : public string_vector_b
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector_base < TYPE > :: set_value (nits, v, s);
         if (string_vector_base < TYPE > :: good ())
-        {   vstr_t tmp = split_by_charset (string_vector_base < TYPE > :: get_string (), SZ :: sz ());
+        {   vstr_t tmp = uq2 (string_vector_base < TYPE > :: get_string (), BS_FN, SZ :: sz ());
+//        {   vstr_t tmp = split_by_charset (string_vector_base < TYPE > :: get_string (), SZ :: sz ());
 #ifndef FUDDYDUDDY
             string_vector_base < TYPE > :: value_.reserve (tmp.size ());
 #endif // FUDDYDUDDY
@@ -125,7 +126,7 @@ template < e_type TYPE > struct string_vector < TYPE, sz_space > : public string
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector_base < TYPE > :: set_value (nits, v, s);
         if (string_vector_base < TYPE > :: good ())
-            string_vector_base < TYPE > :: value_ = split_by_space (string_vector_base < TYPE > :: get_string ()); }
+            string_vector_base < TYPE > :: value_ = uq2 (string_vector_base < TYPE > :: get_string (), BS_FN, " "); }
     void shadow (::std::stringstream& ss, const html_version& , element* )
     {   ss << "=\""; bool first = true;
         for (auto s : string_vector_base < TYPE > :: value_)

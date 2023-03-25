@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/typed_property.h"
 #include "main/enum.h"
 
-typedef typed_property < t_generic, ec_accent_colour > prop_accent_colour;
+typedef typed_property < t_css_colour_a, ec_accent_colour > prop_accent_colour;
 typedef typed_property < t_generic, ec_align_content > prop_align_content;
 typedef typed_property < t_generic, ec_align_items > prop_align_items;
 typedef typed_property < t_generic, ec_align_self > prop_align_self;
@@ -42,7 +42,7 @@ typedef typed_property < t_generic, ec_animation_play_state > prop_animation_pla
 typedef typed_property < t_generic, ec_animation_range > prop_animation_range;
 typedef typed_property < t_generic, ec_animation_timeline > prop_animation_timeline;
 typedef typed_property < t_generic, ec_animation_timing_function > prop_animation_timing_function;
-typedef typed_property < t_generic, ec_appearance > prop_appearance;
+typedef typed_property < t_css_appearance, ec_appearance > prop_appearance;
 typedef typed_property < t_real, ec_ascent > prop_ascent;
 typedef typed_property < t_generic, ec_aspect_ratio > prop_aspect_ratio;
 typedef typed_property < t_css_azimuth, ec_azimuth > prop_azimuth;
@@ -136,16 +136,16 @@ typedef typed_property < t_css_borders_measure_i, ec_border_width > prop_border_
 typedef typed_property < t_css_length_ai, ec_bottom > prop_bottom;
 typedef typed_property < t_generic, ec_box_decoration_break > prop_box_decoration_break;
 typedef typed_property < t_generic, ec_box_shadow > prop_box_shadow;
-typedef typed_property < t_generic, ec_box_sizing > prop_box_sizing;
+typedef typed_property < t_css_box_sizing, ec_box_sizing > prop_box_sizing;
 typedef typed_property < t_generic, ec_box_snap > prop_box_snap;
 typedef typed_property < t_generic, ec_break_after > prop_break_after;
 typedef typed_property < t_generic, ec_break_before > prop_break_before;
 typedef typed_property < t_generic, ec_break_inside > prop_break_inside;
 typedef typed_property < t_real, ec_cap_height > prop_cap_height;
 typedef typed_property < t_tblri, ec_caption_side > prop_caption_side;
-typedef typed_property < t_generic, ec_caret > prop_caret;
-typedef typed_property < t_generic, ec_caret_colour > prop_caret_colour;
-typedef typed_property < t_generic, ec_caret_shape > prop_caret_shape;
+typedef typed_property < t_css_caret, ec_caret > prop_caret;
+typedef typed_property < t_css_colour_a, ec_caret_colour > prop_caret_colour;
+typedef typed_property < t_css_caret_shape, ec_caret_shape > prop_caret_shape;
 typedef typed_property < t_real, ec_centre_line > prop_centre_line;
 typedef typed_property < t_generic, ec_chains > prop_chains;
 typedef typed_property < t_css_clear, ec_clear > prop_clear;
@@ -154,7 +154,7 @@ typedef typed_property < t_fill_rule, ec_clip_rule > prop_clip_rule;
 typedef typed_property < t_generic, ec_colour_adjust > prop_colour_adjust;
 typedef typed_property < t_colour_interpolation, ec_colour_interpolation_filters > prop_colour_interpolation_filters;
 typedef typed_property < t_generic, ec_colour_scheme > prop_colour_scheme;
-typedef typed_property < t_colour_i, ec_colour > prop_colour;
+typedef typed_property < t_css_colour_3, ec_colour > prop_colour;
 typedef typed_property < t_generic, ec_column_count > prop_column_count;
 typedef typed_property < t_generic, ec_column_fill > prop_column_fill;
 typedef typed_property < t_generic, ec_column_gap > prop_column_gap;
@@ -275,6 +275,7 @@ typedef typed_property < t_generic, ec_hyphens > prop_hyphens;
 typedef typed_property < t_generic, ec_image_orientation > prop_image_orientation;
 typedef typed_property < t_image_rendering, ec_image_rendering > prop_image_rendering;
 typedef typed_property < t_generic, ec_image_resolution > prop_image_resolution;
+typedef typed_property < t_generic, ec_ime_mode > prop_ime_mode;
 typedef typed_property < t_generic, ec_inherit > prop_inherit;
 typedef typed_property < t_generic, ec_initial_letter > prop_initial_letter;
 typedef typed_property < t_generic, ec_initial_letter_align > prop_initial_letter_align;
@@ -363,10 +364,10 @@ typedef typed_property < t_generic, ec_min_inline_size > prop_min_inline_size;
 typedef typed_property < t_generic, ec_min_intrinsic_sizing > prop_min_intrinsic_sizing;
 typedef typed_property < t_measure_i, ec_min_width > prop_min_width;
 typedef typed_property < t_generic, ec_mix_blend_mode > prop_mix_blend_mode;
-typedef typed_property < t_generic, ec_nav_down > prop_nav_down;
-typedef typed_property < t_generic, ec_nav_left > prop_nav_left;
-typedef typed_property < t_generic, ec_nav_right > prop_nav_right;
-typedef typed_property < t_generic, ec_nav_up > prop_nav_up;
+typedef typed_property < t_css_kdb_nav, ec_nav_down > prop_nav_down;
+typedef typed_property < t_css_kdb_nav, ec_nav_left > prop_nav_left;
+typedef typed_property < t_css_kdb_nav, ec_nav_right > prop_nav_right;
+typedef typed_property < t_css_kdb_nav, ec_nav_up > prop_nav_up;
 typedef typed_property < t_generic, ec_object_fit > prop_object_fit;
 typedef typed_property < t_generic, ec_object_position > prop_object_position;
 typedef typed_property < t_generic, ec_offset > prop_offset;
@@ -380,8 +381,8 @@ typedef typed_property < t_generic, ec_order > prop_order;
 typedef typed_property < t_integer_i, ec_orphans > prop_orphans;
 typedef typed_property < t_css_outline_i, ec_outline > prop_outline;
 typedef typed_property < t_colour_ii, ec_outline_colour > prop_outline_colour;
-typedef typed_property < t_generic, ec_outline_offset > prop_outline_offset;
-typedef typed_property < t_css_border_style_i, ec_outline_style > prop_outline_style;
+typedef typed_property < t_measure_i, ec_outline_offset > prop_outline_offset;
+typedef typed_property < t_css_outline_style, ec_outline_style > prop_outline_style;
 typedef typed_property < t_css_border_width_i, ec_outline_width > prop_outline_width;
 typedef typed_property < t_css_overflow, ec_overflow > prop_overflow;
 typedef typed_property < t_generic, ec_overflow_anchor > prop_overflow_anchor;
@@ -438,7 +439,7 @@ typedef typed_property < t_css_position, ec_position > prop_position;
 typedef typed_property < t_generic, ec_print_colour_adjust > prop_print_colour_adjust;
 typedef typed_property < t_4string_ni, ec_quotes > prop_quotes;
 typedef typed_property < t_generic, ec_region_fragment > prop_region_fragment;
-typedef typed_property < t_generic, ec_resize > prop_resize;
+typedef typed_property < t_css_resize, ec_resize > prop_resize;
 typedef typed_property < t_generic, ec_rest > prop_rest;
 typedef typed_property < t_generic, ec_rest_after > prop_rest_after;
 typedef typed_property < t_generic, ec_rest_before > prop_rest_before;
@@ -554,6 +555,7 @@ typedef typed_property < t_measure_i, ec_text_indent > prop_text_indent;
 typedef typed_property < t_generic, ec_text_justify > prop_text_justify;
 typedef typed_property < t_generic, ec_text_orientation > prop_text_orientation;
 typedef typed_property < t_generic, ec_text_overflow > prop_text_overflow;
+typedef typed_property < t_css_text_resize, ec_text_resize > prop_text_resize;
 typedef typed_property < t_css_text_shadow, ec_text_shadow > prop_text_shadow;
 typedef typed_property < t_generic, ec_text_space_trim > prop_text_space_trim;
 typedef typed_property < t_generic, ec_text_spacing > prop_text_spacing;
@@ -577,7 +579,7 @@ typedef typed_property < t_generic, ec_translate > prop_translate;
 typedef typed_property < t_unicode_bidi, ec_unicode_bidi > prop_unicode_bidi;
 typedef typed_property < t_generic, ec_unicode_range > prop_unicode_range;
 typedef typed_property < t_real, ec_units_per_em > prop_units_per_em;
-typedef typed_property < t_generic, ec_user_select > prop_user_select;
+typedef typed_property < t_css_user_select, ec_user_select > prop_user_select;
 typedef typed_property < t_css_vertical_align, ec_vertical_align > prop_vertical_align;
 typedef typed_property < t_generic, ec_view_timeline > prop_view_timeline;
 typedef typed_property < t_generic, ec_view_timeline_axis > prop_view_timeline_axis;
@@ -1562,6 +1564,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_image_orientation, \
     prop_image_rendering, \
     prop_image_resolution, \
+    prop_ime_mode, \
     prop_inherit, \
     prop_initial_letter, \
     prop_initial_letter_align, \
@@ -1875,6 +1878,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_text_justify, \
     prop_text_orientation, \
     prop_text_overflow, \
+    prop_text_resize, \
     prop_text_shadow, \
     prop_text_space_trim, \
     prop_text_spacing, \

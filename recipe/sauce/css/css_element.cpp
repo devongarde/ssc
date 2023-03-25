@@ -107,7 +107,7 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
                 ::std::swap (*this, e); }
             break;
         case ct_keyword :
-            {   PRESUME (! args.style_att_, __FILE__, __LINE__);
+            {   PRESUME (! args.styled (), __FILE__, __LINE__);
                 if (no_ns || (! args.snippet_))
                 {   css_element e (nits, args.v_, namespaces_ptr (), args.t_.at (b).val_);
                     ::std::swap (*this, e); }
@@ -138,14 +138,13 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
                     break; } }
         return; }
     if (b < 0) return;
-    for (int i = b; (i >= 0) && (i < to); )
+    for (int i = b; (i >= 0) && (i <= to); )
         switch (args.t_.at (i).t_)
         {   case ct_square_brac :
                 if (context.html_ver ().css_version () == css_1)
                     nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": [...] requires CSS 2.0 or better");
-                else
-                {   decore_.emplace_back (args, b);
-                    i =  next_non_whitespace (args.t_, i, to); }
+                else decore_.emplace_back (args, b);
+                i =  next_non_whitespace (args.t_, i, to);
                 break;
             case ct_dot :
             case ct_hash :
@@ -168,6 +167,8 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
             case ct_gt :
             case ct_squiggle :
                 parse (args, i, to);
+                return;
+            case ct_round_ket :
                 return;
             default :
                 nits.pick (nit_css_syntax, es_error, ec_css, quote (tkn_rpt (args.t_.at (i))), ": unexpected (4)");

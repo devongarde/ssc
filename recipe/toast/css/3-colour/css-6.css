@@ -1,0 +1,13 @@
+﻿html {
+color: black;
+background: white;
+}
+
+/* traditional desktop user agent colors for hyperlinks */
+:link { color: blue; }
+:visited { color: purple; }
+
+/* default focus outline */
+:focus {
+outline: 1px dotted; /* or 1px dotted invert */
+}

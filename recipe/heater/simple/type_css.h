@@ -31,7 +31,7 @@ template < > struct type_master < t_css > : public tidy_string < t_css >
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_css > :: set_value (nits, v, s);
         if (tidy_string < t_css > :: empty ())
-            nits.pick (nit_empty, es_warning, ec_type, "rather a minimalistic style"); }
+            nits.pick (nit_empty, es_warning, ec_type, "rather a minimalistic STYLE"); }
     bool invalid_id (nitpick& nits, const html_version& v, ids_t& , element* e) noexcept
     {   if (! tidy_string < t_css > :: good ()) return true;
         return ! process_css (nits, v, tidy_string < t_css > :: get_string (), e); } };
@@ -151,3 +151,27 @@ template < > struct type_master < t_css_nth > : public tidy_string < t_css_nth >
             else return; // maybe do more checking!
         tidy_string < t_css_nth > :: status (s_invalid); } };
 
+template < > struct type_master < t_css_frame > : public tidy_string < t_css_frame >
+{   using tidy_string < t_css_frame > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_frame > :: set_value (nits, v, s);
+        if (tidy_string < t_css_frame > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "a frame name cannot be empty");
+        else if (tidy_string < t_css_frame > :: good ())
+        {   ::std::string n (tidy_string < t_css_frame > :: get_string ());
+            if (n.at (0) != '_') return;
+            if (compare_no_case (n, "_parent") || compare_no_case (n, "_root")) return;
+            nits.pick (nit_empty, ed_css_ui_4, "5.3. Keyboard control", es_error, ec_type, "to quote, a frame name 'MUST NOT start with the underscore \"_\" character'"); }
+        tidy_string < t_css_frame > :: status (s_invalid); } };
+
+template < > struct type_master < t_css_id > : public tidy_string < t_css_id >
+{   using tidy_string < t_css_id > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_id > :: set_value (nits, v, s);
+        if (tidy_string < t_css_id > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "a id cannot be empty");
+        else if (tidy_string < t_css_id > :: good ())
+        {   ::std::string n (tidy_string < t_css_id > :: get_string ());
+            if (n.at (0) == '#') return;
+            nits.pick (nit_empty, ed_css_ui_4, "5.3. Keyboard control", es_error, ec_type, "An id selector is expected, which starts with '#'"); }
+        tidy_string < t_css_id > :: status (s_invalid); } };

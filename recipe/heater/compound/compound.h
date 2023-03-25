@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "compound/type_one_of.h"
 #include "compound/type_some_of.h"
 #include "compound/type_all_of.h"
+#include "compound/type_fn.h"
 #include "compound/type_compound.h"
 #include "compound/type_compounded.h"
 #include "compound/type_httpequivs.h"

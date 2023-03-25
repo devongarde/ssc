@@ -32,6 +32,13 @@ class statement
     properties prop_;
     rules rules_;
     vpst_t vst_;
+    void parse_charset (arguments& args, nitpick& nits, const int from, const int to);
+    void parse_colour_profile (arguments& args, nitpick& nits, const int to);
+    void parse_font_face (arguments& args, nitpick& nits, const int to);
+    void parse_import (arguments& args, nitpick& nits, const int from, const int to);
+    void parse_media (arguments& args, nitpick& nits, const int from, const int to);
+    void parse_namespace (arguments& args, nitpick& nits, const int from, const int to);
+    void parse_page (arguments& args, nitpick& nits, const int from, const int to);
 public:
     DEFAULT_CONSTRUCTORS (statement);
     statement (arguments& args, const int from, const int to)

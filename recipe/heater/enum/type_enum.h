@@ -275,6 +275,9 @@ template < > struct type_master < t_css_aaalri > : enum_n < t_css_aaalri, e_css_
 template < > struct type_master < t_css_absolute_size > : enum_n < t_css_absolute_size, e_css_absolute_size >
 { using enum_n < t_css_absolute_size, e_css_absolute_size > :: enum_n; };
 
+template < > struct type_master < t_css_appearance > : enum_n < t_css_appearance, e_css_appearance >
+{ using enum_n < t_css_appearance, e_css_appearance > :: enum_n; };
+
 template < > struct type_master < t_css_azimuth_e > : enum_n < t_css_azimuth_e, e_css_azimuth_e >
 { using enum_n < t_css_azimuth_e, e_css_azimuth_e > :: enum_n; };
 
@@ -289,6 +292,9 @@ template < > struct type_master < t_css_border_style > : enum_n < t_css_border_s
 
 template < > struct type_master < t_css_border_width > : enum_n < t_css_border_width, e_css_border_width >
 { using enum_n < t_css_border_width, e_css_border_width > :: enum_n; };
+
+template < > struct type_master < t_css_caret_shape > : enum_n < t_css_caret_shape, e_css_caret_shape >
+{ using enum_n < t_css_caret_shape, e_css_caret_shape > :: enum_n; };
 
 template < > struct type_master < t_css_clear > : enum_n < t_css_clear, e_css_clear >
 { using enum_n < t_css_clear, e_css_clear > :: enum_n; };
@@ -338,6 +344,9 @@ template < > struct type_master < t_css_property > : enum_n < t_css_property, e_
 template < > struct type_master < t_css_relative_size > : enum_n < t_css_relative_size, e_css_relative_size >
 { using enum_n < t_css_relative_size, e_css_relative_size > :: enum_n; };
 
+template < > struct type_master < t_css_resize > : enum_n < t_css_resize, e_css_resize >
+{ using enum_n < t_css_resize, e_css_resize > :: enum_n; };
+
 template < > struct type_master < t_css_speech_rate_e > : enum_n < t_css_speech_rate_e, e_css_speech_rate_e >
 { using enum_n < t_css_speech_rate_e, e_css_speech_rate_e > :: enum_n; };
 
@@ -352,6 +361,9 @@ template < > struct type_master < t_css_text_decoration > : enum_n < t_css_text_
 
 template < > struct type_master < t_css_text_transform > : enum_n < t_css_text_transform, e_css_text_transform >
 { using enum_n < t_css_text_transform, e_css_text_transform > :: enum_n; };
+
+template < > struct type_master < t_css_user_select > : enum_n < t_css_user_select, e_css_user_select >
+{ using enum_n < t_css_user_select, e_css_user_select > :: enum_n; };
 
 template < > struct type_master < t_css_vertical_align > : enum_n < t_css_vertical_align, e_css_vertical_align >
 { using enum_n < t_css_vertical_align, e_css_vertical_align > :: enum_n; };

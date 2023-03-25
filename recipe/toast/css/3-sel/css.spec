@@ -7,12 +7,12 @@ PASS ../toast/css/3-sel/bad.css
 
 PASS ../toast/css/3-sel/css-5.css
 0 html
-8 selector
-11 selector
+8 css_syntax selector
+11 css_syntax selector
 
 PASS ../toast/css/3-sel/css-6.css
 0 html
-1 css_namespace
+1 namespace_unknown
 21 correct_spelling
 22 correct_spelling
 30 css_namespace

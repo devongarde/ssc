@@ -1,0 +1,28 @@
+﻿iframe,object[type^="text/"],
+object[type$="+xml"],object[type="application/xml"]
+{
+  overflow:auto;
+  resize:both;
+}
+
+div {
+  font-family: monospace;
+  white-space: pre;
+  overflow: hidden;
+  width: 9ch;
+  text-overflow: ellipsis;
+}
+
+div {  font-family:Helvetica,sans-serif; line-height:1.1;
+  width:3.1em; padding:.2em; border:solid .1em black; margin:1em 0;
+}
+
+div.crawlbar {
+  text-overflow: ellipsis;
+  height: 2em;
+  overflow: scroll;
+  white-space: nowrap;
+  width: 15em;
+  border:1em solid black;
+}
+

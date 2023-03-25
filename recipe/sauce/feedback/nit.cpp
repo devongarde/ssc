@@ -204,6 +204,8 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_css_syntax : return "CSS Syntax Module";
         case ed_css_selectors_3 : return "CSS Selectors 3";
         case ed_css_selectors_4 : return "CSS Selectors 4";
+        case ed_css_ui_3 : return "CSS UI 3";
+        case ed_css_ui_4 : return "CSS UI 4";
         case ed_json : return "JSON";
         case ed_jsonld_1_0 : return "JSON-LD 1.0";
         case ed_jsonld_1_1 : return "JSON-LD 1.1"; }
@@ -289,6 +291,8 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_css_syntax : return "CSS Syntax Module Level 3 (December 2021 draft)";
         case ed_css_selectors_3 : return "CSS Selectors Level 3, November 2018";
         case ed_css_selectors_4 : return "CSS Selectors Level 4 (May 2022 draft)";
+        case ed_css_ui_3 : return "CSS Basic User Interface Level 3, June 2018";
+        case ed_css_ui_4 : return "CSS Basic User Interface Level 4 (March 2021 draft)";
         case ed_json : return "RFC 4627, JSON";
         case ed_jsonld_1_0 : return "JSON-LD 1.0, January 2014";
         case ed_jsonld_1_1 : return "JSON-LD 1.1, July 2020"; }

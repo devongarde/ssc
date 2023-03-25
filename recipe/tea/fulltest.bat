@@ -12,9 +12,13 @@ ssc.exe -f ../toast/css/1/css.conf
 ssc.exe -f ../toast/css/2.0/css.conf
 ssc.exe -f ../toast/css/2.1/css.conf
 ssc.exe -f ../toast/css/2.2/css.conf
+ssc.exe -f ../toast/css/3-colour/css.conf
+ssc.exe -f ../toast/css/3-media/css.conf
 ssc.exe -f ../toast/css/3-ns/css.conf
 ssc.exe -f ../toast/css/3-sel/css.conf
 ssc.exe -f ../toast/css/3-style/css.conf
+ssc.exe -f ../toast/css/3-ui/css.conf
+ssc.exe -f ../toast/css/4-ui/css.conf
 ssc.exe -f ../toast/css/accessibility/css.conf
 ssc.exe -f ../toast/css/songlight/css.conf
 ssc.exe -f ../toast/HTML/1.0/html1.conf

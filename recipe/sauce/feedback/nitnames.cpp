@@ -797,6 +797,7 @@ const nitname nitnames [] =
     { nit_css_namespace, "css_namespace" },
     { nit_css_bespoke, "css_bespoke" },
     { nit_not_not, "not_not" },
+    { nit_css_svg, "css_svg" },
 
     { nit_incompatible, "incompatible" },
 

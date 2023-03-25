@@ -25,6 +25,17 @@ bool within_integer_limits (nitpick& nits, const html_version& v, const int val)
 bool within_unsigned_limits (nitpick& nits, const html_version& v, const int val);
 bool within_real_limits (nitpick& nits, const html_version& , const double val);
 
+template < e_type T, typename BASE, BASE FROM, BASE TO > struct type_integer_between : numeric_value < T, BASE >
+{   BOOST_STATIC_ASSERT (FROM < TO);
+    using numeric_value < T, BASE > :: numeric_value;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   numeric_value < T, BASE > :: set_value (nits, v, s);
+        if (numeric_value < T, BASE > :: good ())
+        {   const long n = numeric_value < T, BASE > :: get ();
+            if ((n >= FROM) && (n <= TO)) return;
+            nits.pick (nit_not_n, es_error, ec_type, quote (s), ": ", FROM, " <= value <= ", TO, " expected"); }
+        numeric_value < T, BASE > :: status (s_invalid); } };
+
 template < > struct type_master < t_base > : public numeric_value < t_base, unsigned int >
 {   typedef true_type has_int_type;
     using numeric_value < t_base, unsigned int > :: numeric_value;
@@ -161,7 +172,7 @@ template < > struct type_master < t_un_ex > : public type_master < t_unsigned >
             if (! type_master < t_unsigned > :: good ())
             {   nits.pick (nit_unsigned, es_error, ec_type, quote (s), " is neither an unsigned integer nor completely omitted");
                 type_master < t_unsigned > :: status (s_invalid); } } } };
-
+/*
 template < > struct type_master < t_1_to_7 > : public type_master < t_unsigned >
 {   typedef true_type has_int_type;
     using type_master < t_unsigned > :: type_master;
@@ -177,7 +188,7 @@ template < > struct type_master < t_1_to_20 > : public type_master < t_unsigned 
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   type_master < t_unsigned > :: set_value (nits, v, s);
         if (! type_master < t_unsigned > :: good () || (value_ < 1) || (value_ > 20))
-        {   nits.pick (nit_1_to_7, es_error, ec_type, quote (s), " does not lie between 1 and 20 (inclusive)");
+        {   nits.pick (nit_out_of_range, es_error, ec_type, quote (s), " does not lie between 1 and 20 (inclusive)");
             type_master < t_unsigned > :: status (s_invalid); } } };
 
 template < > struct type_master < t_1_to_99 > : public type_master < t_unsigned >
@@ -186,18 +197,18 @@ template < > struct type_master < t_1_to_99 > : public type_master < t_unsigned 
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   type_master < t_unsigned > :: set_value (nits, v, s);
         if (! type_master < t_unsigned > :: good () || (value_ < 1) || (value_ > 99))
-        {   nits.pick (nit_1_to_7, es_error, ec_type, quote (s), " does not lie between 1 and 99 (inclusive)");
+        {   nits.pick (nit_out_of_range, es_error, ec_type, quote (s), " does not lie between 1 and 99 (inclusive)");
             type_master < t_unsigned > :: status (s_invalid); } } };
-
+*/
 template < > struct type_master < t_plus_1_7 > : public type_master < t_unsigned >
 {   typedef true_type has_int_type;
     using type_master < t_unsigned > :: type_master;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string arg (trim_the_lot_off (s));
         type_master < t_unsigned > :: set_value (nits, v, arg);
-        if (! type_master < t_unsigned > :: good () || (value_ < 1) || (value_ > 99))
+        if (! type_master < t_unsigned > :: good () || (value_ < 1) || (value_ > 7))
         if (type_master < t_unsigned > :: good ())
-        {   nits.pick (nit_plus_1_7, es_error, ec_type, quote (s), " does not lie between 1 and 99 (inclusive)");
+        {   nits.pick (nit_plus_1_7, es_error, ec_type, quote (s), " does not lie between 1 and 7 (inclusive)");
             type_master < t_unsigned > :: status (s_invalid); } } };
 
 template < > struct type_master < t_not_0 > : type_master < t_real >
@@ -227,28 +238,32 @@ template < int N > struct n_or_more : type_master < t_real >
             nits.pick (nit_1_more, es_error, ec_type, quote (s), " must equal or exceed ", N, ".0");
             type_master < t_real > :: status (s_invalid); } } };
 
-template < e_type T, long FROM, long TO > struct type_integer_between : numeric_value < T, long >
-{   BOOST_STATIC_ASSERT (FROM < TO);
-    using numeric_value < T, long > :: numeric_value;
-    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   numeric_value < T, long > :: set_value (nits, v, s);
-        if (numeric_value < T, long > :: good ())
-        {   const long n = numeric_value < T, long > :: get ();
-            if ((n >= FROM) && (n <= TO)) return;
-            nits.pick (nit_not_n, es_error, ec_type, quote (s), ": ", FROM, " <= value <= ", TO, " expected"); }
-        numeric_value < T, long > :: status (s_invalid); } };
+template < > struct type_master < t_not_neg > : type_integer_between < t_not_neg, long, 0, INT_MAX >
+{ using  type_integer_between < t_not_neg, long, 0, INT_MAX > :: type_integer_between; };
 
-template < > struct type_master < t_not_neg > : type_integer_between < t_not_neg, 0, INT_MAX >
-{ using  type_integer_between < t_not_neg, 0, INT_MAX > :: type_integer_between; };
+template < > struct type_master < t_not_pos > : type_integer_between < t_not_pos, long, INT_MIN, 0 >
+{ using  type_integer_between < t_not_pos, long, INT_MIN, 0 > :: type_integer_between; };
 
-template < > struct type_master < t_not_pos > : type_integer_between < t_not_pos, INT_MIN, 0 >
-{ using  type_integer_between < t_not_pos, INT_MIN, 0 > :: type_integer_between; };
+template < > struct type_master < t_short > : type_integer_between < t_short, int, -32768, 32767 >
+{ using type_integer_between < t_short, int, -32768, 32767 > :: type_integer_between; };
 
-template < > struct type_master < t_short > : type_integer_between < t_short, -32768, 32767 >
-{ using type_integer_between < t_short, -32768, 32767 > :: type_integer_between; };
+template < > struct type_master < t_unsigned_byte > : type_integer_between < t_unsigned_byte, short, 0, 255 >
+{ using type_integer_between < t_unsigned_byte, short, 0, 255 > :: type_integer_between; };
 
-template < > struct type_master < t_unsigned_byte > : type_integer_between < t_unsigned_byte, 0, 255 >
-{ using type_integer_between < t_unsigned_byte, 0, 255 > :: type_integer_between; };
+template < > struct type_master < t_unsigned_short > : type_integer_between < t_unsigned_short, int, 0, 65535 >
+{ using type_integer_between < t_unsigned_short, int, 0, 65535 > :: type_integer_between; };
 
-template < > struct type_master < t_unsigned_short > : type_integer_between < t_unsigned_short, 0, 65535 >
-{ using type_integer_between < t_unsigned_short, 0, 65535 > :: type_integer_between; };
+template < > struct type_master < t_1_to_7 > : type_integer_between < t_1_to_7, short, 1, 7 >
+{ using  type_integer_between < t_1_to_7, short, 1, 7 > :: type_integer_between; };
+
+template < > struct type_master < t_1_to_20 > : type_integer_between < t_1_to_20, short, 1, 20 >
+{ using  type_integer_between < t_1_to_20, short, 1, 20 > :: type_integer_between; };
+
+template < > struct type_master < t_1_to_99 > : type_integer_between < t_1_to_99, short, 1, 99 >
+{ using  type_integer_between < t_1_to_99, short, 1, 99 > :: type_integer_between; };
+
+template < > struct type_master < t_0_to_255 > : type_integer_between < t_0_to_255, short, 0, 255 >
+{ using  type_integer_between < t_0_to_255, short, 0, 255 > :: type_integer_between; };
+
+template < > struct type_master < t_hue > : type_integer_between < t_hue, short, 0, 360 >
+{ using  type_integer_between < t_hue, short, 0, 360 > :: type_integer_between; };

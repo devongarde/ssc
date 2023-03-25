@@ -66,8 +66,8 @@ template < > struct type_master < t_hash_ref > : string_then_type < t_hash_ref, 
 {   using string_then_type < t_hash_ref, t_idref, sz_hash > :: string_then_type;
     static e_animation_type animation_type () noexcept { return at_other; } };
 
-template < > struct type_master < t_hash_fn > : type_function < t_hash_fn, t_urisz, t_hash_ref >
-{   using type_function < t_hash_fn, t_urisz, t_hash_ref > :: type_function;
+template < > struct type_master < t_hash_fn > : type_function < t_hash_fn, sz_url, t_hash_ref >
+{   using type_function < t_hash_fn, sz_url, t_hash_ref > :: type_function;
     static e_animation_type animation_type () noexcept { return at_other; } };
 
 template < > struct type_master < t_keyspline > : type_exactly_n < t_keyspline, sz_commaspace, t_real, 4 >
@@ -83,12 +83,8 @@ template < > struct type_master < t_keytimes > : type_at_least_one < t_keytimes,
 template < > struct type_master < t_line_height > : either_type_or_string < t_line_height, t_measure, t_real, sz_normal >
 { using either_type_or_string < t_line_height, t_measure, t_real, sz_normal > :: either_type_or_string; };
 
-template < > struct type_master < t_localfn > : type_function < t_localfn, t_localsz, t_text >
-{   using type_function < t_localfn, t_localsz, t_text > :: type_function;
-    static e_animation_type animation_type () noexcept { return at_other; } };
-
-template < > struct type_master < t_localsz > : type_string < t_localsz, sz_local >
-{   using type_string < t_localsz, sz_local > :: type_string;
+template < > struct type_master < t_localfn > : type_function < t_localfn, sz_local, t_text >
+{   using type_function < t_localfn, sz_local, t_text > :: type_function;
     static e_animation_type animation_type () noexcept { return at_other; } };
 
 template < > struct type_master < t_marker > : type_id_or_either_string < t_marker, t_hash_fn, sz_none, sz_inherit >
@@ -121,28 +117,16 @@ template < > struct type_master < t_rotate_anim > : type_or_either_string < t_ro
 template < > struct type_master < t_setback_offset > : type_range < t_setback_offset, sz_commaspace, t_measure, 1, 4 >
 { using type_range < t_setback_offset, sz_commaspace, t_measure, 1, 4 > :: type_range; };
 
-template < > struct type_master < t_shape_fn_circlesz > : type_string < t_shape_fn_circlesz, sz_circle >
-{   using type_string < t_shape_fn_circlesz, sz_circle > :: type_string;
+template < > struct type_master < t_shape_fn_circle > : type_function < t_shape_fn_circle, sz_circle, t_text >
+{   using type_function < t_shape_fn_circle, sz_circle, t_text > :: type_function;
     static e_animation_type animation_type () noexcept { return at_other; } };
 
-template < > struct type_master < t_shape_fn_circle > : type_function < t_shape_fn_circle, t_shape_fn_circlesz, t_text >
-{   using type_function < t_shape_fn_circle, t_shape_fn_circlesz, t_text > :: type_function;
+template < > struct type_master < t_shape_fn_ellipse > : type_function < t_shape_fn_ellipse, sz_ellipse, t_text >
+{   using type_function < t_shape_fn_ellipse, sz_ellipse, t_text > :: type_function;
     static e_animation_type animation_type () noexcept { return at_other; } };
 
-template < > struct type_master < t_shape_fn_ellipsesz > : type_string < t_shape_fn_ellipsesz, sz_ellipse >
-{   using type_string < t_shape_fn_ellipsesz, sz_ellipse > :: type_string;
-    static e_animation_type animation_type () noexcept { return at_other; } };
-
-template < > struct type_master < t_shape_fn_ellipse > : type_function < t_shape_fn_ellipse, t_shape_fn_ellipsesz, t_text >
-{   using type_function < t_shape_fn_ellipse, t_shape_fn_ellipsesz, t_text > :: type_function;
-    static e_animation_type animation_type () noexcept { return at_other; } };
-
-template < > struct type_master < t_shape_fn_polygonsz > : type_string < t_shape_fn_circle, sz_polygon >
-{   using type_string < t_shape_fn_circle, sz_polygon > :: type_string;
-    static e_animation_type animation_type () noexcept { return at_other; } };
-
-template < > struct type_master < t_shape_fn_polygon > : type_function < t_shape_fn_polygon, t_shape_fn_polygonsz, t_text >
-{   using type_function < t_shape_fn_polygon, t_shape_fn_polygonsz, t_text > :: type_function;
+template < > struct type_master < t_shape_fn_polygon > : type_function < t_shape_fn_polygon, sz_polygon, t_text >
+{   using type_function < t_shape_fn_polygon, sz_polygon, t_text > :: type_function;
     static e_animation_type animation_type () noexcept { return at_other; } };
 
 template < > struct type_master < t_shape_fn > : type_one_of < t_shape_fn, false, t_shape_fn_circle, t_shape_fn_ellipse, t_shape_fn_polygon >
@@ -159,8 +143,8 @@ template < > struct type_master < t_svg_baselineshift > : type_either_or < t_svg
 template < > struct type_master < t_svg_clip > : type_or_either_string < t_svg_clip, t_svg_shape, sz_auto, sz_inherit >
 { using type_or_either_string < t_svg_clip, t_svg_shape, sz_auto, sz_inherit > :: type_or_either_string; };
 
-template < > struct type_master < t_svg_shape > : type_function < t_svg_shape, t_svg_shapefn, t_real >
-{   using type_function < t_svg_shape, t_svg_shapefn, t_real > :: type_function;
+template < > struct type_master < t_svg_shape > : type_function < t_svg_shape, sz_rect, t_real >
+{   using type_function < t_svg_shape, sz_rect, t_real > :: type_function;
     static e_animation_type animation_type () noexcept { return at_number; } };
 
 template < > struct type_master < t_svg_host > : type_either_string < t_svg_host, sz_svg, sz_host >
@@ -199,17 +183,13 @@ template < > struct type_master < t_urange > : type_at_least_one < t_urange, sz_
 {   using type_at_least_one < t_urange, sz_comma, t_text > :: type_at_least_one;
     static e_animation_type animation_type () noexcept { return at_other; } };
 
-template < > struct type_master < t_urifn > : type_function < t_urifn, t_urisz, t_url >
-{   using type_function < t_urifn, t_urisz, t_url > :: type_function;
+template < > struct type_master < t_urifn > : type_function < t_urifn, sz_url, t_url >
+{   using type_function < t_urifn, sz_url, t_url > :: type_function;
     static e_animation_type animation_type () noexcept { return at_url; } };
 
 template < > struct type_master < t_urifn_ni > : type_id_or_either_string < t_urifn_ni, t_urifn, sz_none, sz_inherit >
 {   using type_id_or_either_string < t_urifn_ni, t_urifn, sz_none, sz_inherit > :: type_id_or_either_string;
     static e_animation_type animation_type () noexcept { return at_url; } };
-
-template < > struct type_master < t_urisz > : type_string < t_urisz, sz_url >
-{   using type_string < t_urisz, sz_url > :: type_string;
-    static e_animation_type animation_type () noexcept { return at_other; } };
 
 template < > struct type_master < t_vertical_align > : type_either_or < t_vertical_align, t_vertical_align_enum, t_measure >
 {   using type_either_or < t_vertical_align, t_vertical_align_enum, t_measure > :: type_either_or;

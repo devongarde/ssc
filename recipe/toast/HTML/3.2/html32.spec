@@ -4,7 +4,7 @@ PASS ../toast/HTML/3.2/html32.html
 7 bad_datetime
 11 unrecognised_value unknown_rel
 27 inserted_missing_closure
-29 correct_spelling attribute_unrecognised unrecognised_attribute
+29 correct_spelling attribute_unrecognised unrecognised_attribute plus_1_7
 31 inserted_missing_closure
 33 inserted_missing_closure
 34 inserted_missing_closure missing_close
@@ -31,7 +31,7 @@ PASS ../toast/HTML/3.2/html32.html
 92 reputation url_not_found
 
 PASS ../toast/HTML/3.2/html32-bad.html
-11 1_to_7
+11 not_n
 13 unrecognised_value unrecognised_value bad_colour not_an_integer unsigned
 15 correct_spelling unrecognised_value correct_spelling unrecognised_value bad_colour
 16 unrecognised_value unrecognised_value bad_colour

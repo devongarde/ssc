@@ -117,14 +117,8 @@ template < e_type T, class SZ, e_type A, e_type... B > struct type_all_of : type
         return vu; }
     template < e_type X > static type_master < X > default_value ()
     {   GRACEFUL_CRASH (__FILE__, __LINE__); }
-//    template < e_type X > type_master < X > get () const
-//    {   if (val_.has_value < X > (X ())) return val_.get < X > ();
-//        return type_all_of < T, SZ, B... > :: get < X > (); }
     int get_int () const noexcept
     {   return type_all_of < T, SZ, B... > :: get_int (); }
-//    template < e_type X > bool has_value (const X x) const
-//    {   if (val_.has_value < X > (x)) return true;
-//        return type_all_of < T, SZ, B... > :: has_value < X > (x); }
     ::std::size_t size () const noexcept
     {   return type_all_of < T, SZ, B... > :: size (); }
     void shadow (::std::stringstream& ss, const html_version& v, element* e)
@@ -244,21 +238,20 @@ template < e_type T, class SZ, e_type A > struct type_all_of < T, SZ, A > : stri
     ::std::size_t type () const noexcept
     {   return string_vector < T, SZ > :: type (); }
     void get_urls (vurl_t& vu) const noexcept
-    {   const vurl_t& vv (val_.get_urls ());
-        for (auto u : vv) vu.push_back (u);
-        string_vector < T, SZ >  :: get_urls (vu); }
+    {   vu = val_.get_urls ();
+        for (auto ou : string_vector < T, SZ > :: get_urls ())
+            vu.emplace_back (ou);
+        //const vurl_t& vv (val_.get_urls ());
+        //for (auto u : vv) vu.push_back (u);
+        /* string_vector < T, SZ >  :: get_urls (vu); */ }
     vurl_t get_urls () const noexcept
     {   vurl_t vu;
         get_urls (vu);
         return vu; }
     template < e_type X > static type_master < X > default_value ()
     {   GRACEFUL_CRASH (__FILE__, __LINE__); }
-//    template < typename X > type_master < X > get () const
-//    {   GRACEFUL_CRASH (__FILE__, __LINE__); }
     int get_int () const noexcept
     {   return string_vector < T, SZ > :: get_int (); }
-//    template < typename X > bool has_value (const X x) const
-//    {   return string_vector < T, SZ > :: has_value (x); }
     ::std::size_t size () const noexcept
     {   return string_vector < T, SZ > :: size (); }
     void shadow (::std::stringstream& ss, const html_version& v, element* e)
@@ -287,4 +280,3 @@ template < e_type T, class SZ, e_type A > struct type_all_of < T, SZ, A > : stri
     ::std::string report () const
     {   if (! val_.unknown ()) val_.report ();
         else string_vector < T, SZ > :: report (); } };
- 

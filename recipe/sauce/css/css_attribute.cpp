@@ -38,30 +38,32 @@ void css_attribute::parse (arguments& args, const int from, const int to)
     bool no_ns = true, all_ns = false;
     int b4 = -1;
     const int n = token_find (args.t_, ct_bar, b, to, &b4);
-    if ((n > 0) && (n < k))
-    {   nitpick& nits = args.t_.at (n).nits_;
-        b = next_non_whitespace (args.t_, n, to);
-        if (args.v_.css_selector () < 3)
-            nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": namespaces requires CSS Selectors 3 or better");
-        else if ((b < 0) && (b4 < 0))
-            nits.pick (nit_css_syntax, es_error, ec_css, quote (wo), ": a namespace andor an attribute must be given");
-        else if (b4 > 0)
-        {   no_ns = false;
-            PRESUME (b4 < n, __FILE__, __LINE__);
-            switch (args.t_.at (b4).t_)
-            {   case ct_splat :
-                    ns = "*"; all_ns = true; break;
-                case ct_keyword :
-                case ct_identifier :
-                    ns = args.t_.at (b4).val_; break;
-                default :
-                    nits.pick (nit_css_namespace, es_error, ec_css, tkn_rpt (args.t_.at (b4)), ": namespace name expected"); } } }
+    if ((n > 0) && ((n < to) || (to < 0)))
+    {   const int p = next_non_whitespace (args.t_, n, to);
+        if ((p > 0) && ((args.t_.at (p).t_ == ct_identifier) || (args.t_.at (p).t_ == ct_keyword) || (args.t_.at (p).t_ == ct_splat)))
+        {   nitpick& nits = args.t_.at (n).nits_;
+            b = p;
+            if (args.v_.css_selector () < 3)
+                nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": namespaces requires CSS Selectors 3 or better");
+            else if ((b < 0) && (b4 < 0))
+                nits.pick (nit_css_syntax, es_error, ec_css, quote (wo), ": a namespace andor an attribute must be given");
+            else if (b4 > 0)
+            {   no_ns = false;
+                PRESUME (b4 < n, __FILE__, __LINE__);
+                switch (args.t_.at (b4).t_)
+                {   case ct_splat :
+                        ns = "*"; all_ns = true; break;
+                    case ct_keyword :
+                    case ct_identifier :
+                        ns = args.t_.at (b4).val_; break;
+                    default :
+                        nits.pick (nit_css_namespace, es_error, ec_css, tkn_rpt (args.t_.at (b4)), ": namespace name expected"); } } } }
     nitpick& nits = args.t_.at (b).nits_;
     if ((b == -1) || (args.t_.at (b).t_ != ct_keyword))
         args.t_.at (from).nits_.pick (nit_css_attribute, es_error, ec_css, "missing attribute name");
     else
     {   const int at = b;
-        PRESUME (! args.style_att_, __FILE__, __LINE__);
+        PRESUME (! args.styled (), __FILE__, __LINE__);
         if (no_ns || (! args.snippet_))
         {   css_attribute a (nits, args.v_, args.ns_, args.t_.at (at).val_);
             ::std::swap (*this, a); }
@@ -71,26 +73,25 @@ void css_attribute::parse (arguments& args, const int from, const int to)
             else att = args.t_.at (at).val_;
             css_attribute a (nits, args.v_, args.ns_, att);
             ::std::swap (*this, a); }
-//        css_attribute a (nits, args.v_, args.ns_, args.t_.at (at).val_);
-//        ::std::swap (*this, a);
         b = next_non_whitespace (args.t_, b, to);
         if ((b == -1) || (args.t_.at (b).t_ == ct_square_ket)) return;
         switch (args.t_.at (b).t_)
         {   case ct_eq :
                 b = next_non_whitespace (args.t_, b, to);
+                eat_ = eat_is;
                 break;
             case ct_bar :
                 b = next_non_whitespace (args.t_, b, to);
                 if (args.t_.at (b).t_ != ct_eq)
                     nits.pick (nit_css_attribute, es_error, ec_css, "missing = following |");
-                else next_non_whitespace (args.t_, b, to);
+                else b = next_non_whitespace (args.t_, b, to);
                 eat_ = eat_lang;
                 break; 
             case ct_hat :
                 b = next_non_whitespace (args.t_, b, to);
                 if (args.t_.at (b).t_ != ct_eq)
                     nits.pick (nit_css_attribute, es_error, ec_css, "missing = following ^");
-                else next_non_whitespace (args.t_, b+1, to);
+                else b = next_non_whitespace (args.t_, b, to);
                 if (context.html_ver ().css_selector () < 3) nits.pick (nit_css_version, ed_css_selectors_3, "2 Selectors", es_error, ec_css, "^= requires CSS 3 or later");
                 else eat_ = eat_begins;
                 break; 
@@ -98,7 +99,7 @@ void css_attribute::parse (arguments& args, const int from, const int to)
                 b = next_non_whitespace (args.t_, b, to);
                 if (args.t_.at (b).t_ != ct_eq)
                     nits.pick (nit_css_attribute, es_error, ec_css, "missing = following $");
-                else next_non_whitespace (args.t_, b+1, to);
+                else b = next_non_whitespace (args.t_, b, to);
                 if (context.html_ver ().css_selector () < 3) nits.pick (nit_css_version, ed_css_selectors_3, "2 Selectors", es_error, ec_css, "$= requires CSS 3 or later");
                 else eat_ = eat_ends;
                 break; 
@@ -106,7 +107,7 @@ void css_attribute::parse (arguments& args, const int from, const int to)
                 b = next_non_whitespace (args.t_, b, to);
                 if (args.t_.at (b).t_ != ct_eq)
                     nits.pick (nit_css_attribute, es_error, ec_css, "missing = following *");
-                else next_non_whitespace (args.t_, b+1, to);
+                else b = next_non_whitespace (args.t_, b, to);
                 if (context.html_ver ().css_selector () < 3) nits.pick (nit_css_version, ed_css_selectors_3, "2 Selectors", es_error, ec_css, "*= requires CSS 3 or later");
                 else eat_ = eat_contains;
                 break; 
@@ -114,7 +115,7 @@ void css_attribute::parse (arguments& args, const int from, const int to)
                 b = next_non_whitespace (args.t_, b, to);
                 if (args.t_.at (b).t_ != ct_eq)
                     nits.pick (nit_css_attribute, es_error, ec_css, "missing = following ~");
-                else next_non_whitespace (args.t_, b, to);
+                else b = next_non_whitespace (args.t_, b, to);
                 eat_ = eat_in_list;
                 break; 
             default :
@@ -125,11 +126,10 @@ void css_attribute::parse (arguments& args, const int from, const int to)
             return; }
         switch (args.t_.at (b).t_)
         {   case ct_string :
-                break;
             case ct_identifier :
             case ct_keyword :
-                if (context.html_ver ().css_version () >= css_3)
-                    nits.pick (nit_enquote_value, ed_css_selectors_3, "2 Selectors", es_warning, ec_css, "attribute values should be quoted");
+            case ct_number :
+                value_ = args.t_.at (b).val_;
                 break;
             default :
                 nits.pick (nit_css_attribute, es_error, ec_css, args.t_.at (b).val_, ": an attribute value should be a quoted string");
@@ -138,7 +138,7 @@ void css_attribute::parse (arguments& args, const int from, const int to)
         b = next_non_whitespace (args.t_, b, to);
         if ((b == -1) || (args.t_.at (b).t_ == ct_square_ket)) return;
         if (args.t_.at (b).t_ != ct_keyword)
-        {   nits.pick (nit_css_syntax, es_error, ec_css, tkn_rpt (args.t_.at (b)), ": ubexpected (3)");
+        {   nits.pick (nit_css_syntax, es_error, ec_css, tkn_rpt (args.t_.at (b)), ": unexpected (3)");
             return; }
         if ((context.html_ver ().css_version () < css_4) || (context.html_ver () < html_css_selectors_4))
         {   nits.pick (nit_css_version, ed_css_selectors_4, "2 Selectors Overview", es_error, ec_css, "case sensitivity selectors require CSS Selectors Level 4");
@@ -170,7 +170,6 @@ void css_attribute::accumulate (stats_t* s, const e_element e) const
 ::std::string css_attribute::rpt () const
 {   ::std::string res ("[");
     res += attr::name (a_);
-    if (has_value_)
         switch (eat_)
         {   case eat_any : break;
             case eat_begins : res += "^="; res += quote (value_); break;
@@ -186,7 +185,6 @@ void css_attribute::accumulate (stats_t* s, const e_element e) const
 
 void css_attribute::shadow (::std::stringstream& ss, arguments& )
 {   ss << "[" << attr::name (a_);
-    if (has_value_)
         switch (eat_)
         {   case eat_any : break;
             case eat_begins : ss << "^=" << value_; break;

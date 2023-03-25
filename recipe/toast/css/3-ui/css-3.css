@@ -1,0 +1,11 @@
+﻿div.container {
+  width:38em;
+  border:1em solid black;
+}
+
+div.split {
+  box-sizing:border-box;
+  width:50%;
+  border:1em silver ridge;
+  float:left;
+}

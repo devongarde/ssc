@@ -106,9 +106,6 @@ template < e_type T, class SZ, int MIN, int MAX, e_type... A > struct type_some_
         if (string_vector < T, SZ > :: empty ())
         {   string_vector < T, SZ > :: status (emptiness < T, MIN==0 > :: content_status (nits, string_vector < T, SZ > :: get ()));
             return; }
-//        {   if (emptiness < T, MIN==0 > :: could_be_empty (string_vector < T, SZ > :: status ()))
-//            {   string_vector < T, SZ > :: status (s_empty);
-//                return; } }
         bool ok = true;
         for (::std::string ss : string_vector < T, SZ > :: value_)
         {   type_one_of < T, MIN==0, A... > one;
@@ -185,14 +182,8 @@ template < e_type T, class SZ, int MIN, int MAX, e_type... A > struct type_some_
         return res; }
     template < e_type X > static type_master < X > default_value ()
     {   GRACEFUL_CRASH (__FILE__, __LINE__); }
-//    template < e_type X > type_master < X > get () const
-//    {   if (voo_.has_value < X > (X ())) return voo_.get < X > ();
-//        return string_vector < T, SZ > :: get < X > (); }
     int get_int () const noexcept
     {   return string_vector < T, SZ > :: get_int (); }
-//    template < e_type X > bool has_value (const X x) const
-//    {   if (voo_.has_value < X > (x)) return true;
-//        return string_vector < T, SZ > :: has_value < X > (x); }
     ::std::size_t size () const noexcept
     {   return voo_.size (); }
     void shadow (::std::stringstream& ss, const html_version& v, element* e)

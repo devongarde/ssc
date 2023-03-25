@@ -87,8 +87,14 @@ template < > struct type_master < t_coordinatesystem > : two_value < t_coordinat
 template < > struct type_master < t_cors > : two_value < t_cors, ev_cors, sz_anonymous, sz_use_credentials, false >
 { using two_value < t_cors, ev_cors, sz_anonymous, sz_use_credentials, false > :: two_value; };
 
+template < > struct type_master < t_css_box_sizing > : two_value < t_css_box_sizing, e_css_box_sizing, sz_border_box, sz_content_box, false >
+{ using two_value < t_css_box_sizing, e_css_box_sizing, sz_border_box, sz_content_box, false > :: two_value; };
+
 template < > struct type_master < t_css_mark > : two_value < t_css_mark, e_css_mark, sz_crop, sz_cross, false >
 { using two_value < t_css_mark, e_css_mark, sz_crop, sz_cross, false > :: two_value; };
+
+template < > struct type_master < t_css_text_resize > : two_value < t_css_text_resize, e_css_text_resize, sz_clip, sz_ellipsis, false >
+{ using two_value < t_css_text_resize, e_css_text_resize, sz_clip, sz_ellipsis, false > :: two_value; };
 
 template < > struct type_master < t_dataformatas > : two_value < t_dataformatas, e_dataformatas, sz_html, sz_plaintext, false >
 { using two_value < t_dataformatas, e_dataformatas, sz_html, sz_plaintext, false > :: two_value; };

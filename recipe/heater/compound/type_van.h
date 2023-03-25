@@ -71,6 +71,9 @@ template < > struct type_master < t_clear30 > : tidy_string < t_clear30 >
             if (m.good ()) return; }
         tidy_string < t_clear30 > :: status (s_invalid); } };
 
+template < > struct type_master < t_colour_a > : type_or_string < t_colour_a, t_colour, sz_auto >
+{ using type_or_string < t_colour_a, t_colour, sz_auto > :: type_or_string; };
+
 template < > struct type_master < t_colour_i > : type_or_string < t_colour_i, t_colour, sz_inherit >
 { using type_or_string < t_colour_i, t_colour, sz_inherit > :: type_or_string; };
 

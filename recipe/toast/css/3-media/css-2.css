@@ -1,0 +1,16 @@
+﻿@import url(color.css) screen and (color);
+
+@media all and (min-width:500px) {  }
+@media (min-width:500px) {  }
+
+@media (orientation: portrait) {  }
+@media all and (orientation: portrait) {  }
+
+@media screen and (color), projection and (color) {  }
+
+@media all {  }
+@media {  }
+
+@import url(example.css) screen and (color), projection and (color);
+
+@media screen and (color), projection and (color) {  }
