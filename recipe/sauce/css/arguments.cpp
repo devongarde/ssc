@@ -32,23 +32,25 @@ arguments::arguments (const html_version& v, const namespaces_ptr& namespaces, c
 {   ns_.reset (new namespaces_t ());
     ns_ -> up (namespaces.get ()); }
 
-arguments::arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet, bool style_att)
-    : g_ (g), v_ (v), sv_ (sv), snippet_ (snippet), style_att_ (style_att)
+arguments::arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet, const e_element styled, const element_bitset eb)
+    : g_ (g), v_ (v), sv_ (sv), snippet_ (snippet), styled_ (styled), eb_ (eb)
 {   ns_.reset (new namespaces_t ());
     ns_ -> up (namespaces.get ()); }
 
-arguments::arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet, const ::std::string& abs, dst_ptr dst, bool style_att)
-    : g_ (g), v_ (v), sv_ (sv), snippet_ (snippet), style_att_ (style_att), abs_ (abs), dst_ (dst)
+arguments::arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet, const ::std::string& abs, dst_ptr dst, const e_element styled, const element_bitset eb)
+    : g_ (g), v_ (v), sv_ (sv), snippet_ (snippet), styled_ (styled), abs_ (abs), dst_ (dst), eb_ (eb)
 {   ns_.reset (new namespaces_t ());
     ns_ -> up (namespaces.get ()); }
 
 void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string& s) const
-{   if ((f & CF_MUST_FONT_FACE) == CF_MUST_FONT_FACE)
+{   if ((f & CF_DEPRECATED) == CF_DEPRECATED)
+        nits.pick (nit_deprecated, es_warning, ec_css, s, " is deprecated, so unlikely to be supported by many browsers");
+    if ((f & CF_MUST_FONT_FACE) == CF_MUST_FONT_FACE)
         if ((st_ == nullptr) || (st_ -> get () != css_font_face))
             nits.pick (nit_naughty_page, es_error, ec_css, s, " requires @font-face");
     if ((f & CF_BEF_AFT) == CF_BEF_AFT)
         if ((ss_ == nullptr) || (! ss_ -> bef_aft ()))
-            nits.pick (nit_naughty_content, es_error, ec_css, s, " requires an element with :before andor :after"); }
+            nits.pick (nit_naughty_content, ed_css_21, "12.2 The 'content' p. 182 property", es_error, ec_css, s, " requires an element with :before andor :after"); }
 
 void arguments::validate (nitpick& nits, const flags_t f, const ::std::string& p, const ::std::string& vl) const
 {   if ((f & CF_PAGE) == CF_PAGE)

@@ -1,0 +1,47 @@
+﻿:link,:visited {
+    cursor: url(example.svg#linkcursor),
+      url(hyper.cur),
+      url(hyper.png) 2 3,
+      pointer
+}
+
+textarea
+{ caret-color:#00aacc; }
+
+.console {
+  caret-shape: underscore;
+  background: black;
+  color: white;
+  font-family: monospace;
+  padding: 1ex;
+}
+
+button { position:absolute }
+
+button#b1 {
+  top:0; left:50%;
+  nav-right:#b2; nav-left:#b4;
+  nav-down:#b2; nav-up:#b4;
+}
+
+button#b2 {
+  top:50%; left:100%;
+  nav-right:#b3; nav-left:#b1;
+  nav-down:#b3; nav-up:#b1;
+}
+
+button#b3 {
+  top:100%; left:50%;
+  nav-right:#b4; nav-left:#b2;
+  nav-down:#b4; nav-up:#b2;
+}
+
+button#b4 {
+  top:50%; left:0;
+  nav-right:#b1; nav-left:#b3;
+  nav-down:#b1; nav-up:#b3;
+}
+
+button#foo { nav-left: #bar "sidebar"; }
+
+input[type=password] {  ime-mode: auto !important; }

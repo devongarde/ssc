@@ -1,0 +1,15 @@
+﻿@media all { body { background:lime } }
+@media example { body { background:red } }
+
+@media only and or {  }
+
+@media (min-orientation:portrait) {  }
+
+@media (min-width: -100px) {  }
+
+@media (example, all,), speech { /* only applicable to speech devices */ }
+@media &test, screen           { /* only applicable to screen devices */ }
+
+@media all and(color) {  }
+
+@media test;,all { body { background:lime } }

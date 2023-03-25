@@ -356,7 +356,7 @@ void element::examine_style_attr ()
         else if (a_.good (a_style) && ! a_.empty (a_style))
         {   ::std::string content = interpret_string (node_.nits (), node_.version (), a_.get_string (a_style));
             VERIFY_NOT_NULL (page_, __FILE__, __LINE__);
-            page_ -> css ().parse (content, node_.version (), node_.namespaces (), true, node_.line (), node_.id ()); } }
+            page_ -> css ().parse (content, node_.version (), node_.namespaces (), ancestral_elements_, true, node_.line (), tag ()); } }
 
 void element::examine_xlinkhref ()
 {   if (node_.id ().is_math ())

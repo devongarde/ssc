@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "css/distilled.h"
 #include "css/css_parse.h"
+#include "element/state.h"
 
 class page;
 class selectors;
@@ -35,15 +36,17 @@ struct arguments
     bool sv_ = true;
     bool snippet_ = false;
     bool had_rule_ = false;
-    bool style_att_ = false;
+    e_element styled_ = elem_undefined;
     ::std::string abs_;
     dst_ptr dst_;
     vtt_t t_;
     selectors* ss_ = nullptr;
     statement* st_ = nullptr;
     properties* ps_ = nullptr;
+    element_bitset eb_; 
     arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g);
-    arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet, bool style_att);
-    arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet, const ::std::string& abs, dst_ptr dst, bool style_att);
+    arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet, const e_element styled, const element_bitset eb);
+    arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet, const ::std::string& abs, dst_ptr dst, const e_element styled, const element_bitset eb);
     void check_flags (nitpick& nits, const flags_t f, const ::std::string& s) const;
+    bool styled () const noexcept { return styled_ != elem_undefined; }
     void validate (nitpick& nits, const flags_t f, const ::std::string& p, const ::std::string& v) const; };

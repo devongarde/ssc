@@ -5,7 +5,7 @@ PASS ../toast/HTML/4.01/css-good.css
 
 PASS ../toast/HTML/4.01/html4-bad.html
 5 bespoke_obsolete mime
-12 deprecated_element unrecognised_value unrecognised_value bad_colour deprecated_attribute
+12 deprecated_element deprecated_attribute
 15 inserted_missing_closure
 16 missing_open
 19 inserted_missing_closure
@@ -344,6 +344,8 @@ PASS ../toast/HTML/4.01/html4-example.html
 884 inserted_missing_closure
 
 PASS ../toast/HTML/4.01/html4-frameset.html
+6 unrecognised_value immeasurable
+7 unrecognised_value immeasurable
 14 inserted_missing_closure
 16 inserted_missing_closure
 17 inserted_missing_closure missing_close
@@ -351,6 +353,7 @@ PASS ../toast/HTML/4.01/html4-frameset.html
 
 PASS ../toast/HTML/4.01/html4-frameset-bad.html
 0 frameset_body
+6 unrecognised_value immeasurable
 
 PASS ../toast/HTML/4.01/html4-good.html
 86 inserted_missing_closure

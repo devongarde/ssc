@@ -26,7 +26,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 class css_attribute
 {   attr a_;
-    bool has_value_ = false;
     ::std::string name_, value_;
     e_css_attribute_value eat_ = eat_any;
     explicit css_attribute (nitpick& nits, const html_version& v, const namespaces_ptr& ns, const ::std::string& s)

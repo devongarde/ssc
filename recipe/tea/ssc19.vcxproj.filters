@@ -1463,6 +1463,9 @@
     <ClInclude Include="..\heater\simple\type_url.h">
       <Filter>Heater\simple</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\compound\type_fn.h">
+      <Filter>Heater\compound</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -2034,6 +2037,12 @@
     </ClCompile>
     <ClCompile Include="..\sauce\simple\type_url.cpp">
       <Filter>Sauce\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\enum\type_colour.cpp">
+      <Filter>Sauce\enum</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\enum\type_property.cpp">
+      <Filter>Sauce\enum</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

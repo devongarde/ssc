@@ -70,8 +70,8 @@ PASS ../toast/css/2.1/css-4-2.css
 17 css_syntax property
 18 property
 19 property
-20 css_syntax unrecognised_value unrecognised_value bad_colour
-21 css_syntax unrecognised_value unrecognised_value bad_colour
+20 css_syntax unrecognised_value unrecognised_value unrecognised_value bad_colour isnt isnt function function function
+21 css_syntax unrecognised_value unrecognised_value unrecognised_value bad_colour isnt isnt function function function
 23 css_syntax css_element unrecognised_value
 24 unrecognised_value
 25 css_syntax
@@ -84,9 +84,9 @@ PASS ../toast/css/2.1/css-4-2.css
 
 PASS ../toast/css/2.1/css-4-3.css
 0 html
-44 bad_rgb bad_colour
-45 bad_rgb bad_colour
-46 bad_rgb bad_colour
+44 unrecognised_value bad_rgb bad_colour isnt isnt isnt isnt isnt
+45 unrecognised_value bad_rgb bad_colour isnt isnt isnt isnt isnt
+46 unrecognised_value bad_rgb bad_colour isnt isnt isnt isnt isnt
 48 css_element
 49 css_element
 50 css_element
@@ -158,8 +158,6 @@ PASS ../toast/css/2.1/css-6-3.css
 PASS ../toast/css/2.1/css-6-4.css
 0 html
 20 css_syntax
-23 unrecognised_value unrecognised_value bad_colour
-25 unrecognised_value unrecognised_value bad_colour
 
 PASS ../toast/css/2.1/css-6-4.html
 10 missing_close
@@ -292,6 +290,7 @@ PASS ../toast/css/2.1/css-12-2.css
 
 PASS ../toast/css/2.1/css-12-3.css
 0 html
+2 precisely precisely unrecognised_value
 
 PASS ../toast/css/2.1/css-12-3-1.html
 6 only_once

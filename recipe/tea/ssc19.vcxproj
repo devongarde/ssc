@@ -34,6 +34,7 @@
     <ClInclude Include="..\heater\compound\type_compound.h" />
     <ClInclude Include="..\heater\compound\type_compounded.h" />
     <ClInclude Include="..\heater\compound\type_csses.h" />
+    <ClInclude Include="..\heater\compound\type_fn.h" />
     <ClInclude Include="..\heater\compound\type_httpequivs.h" />
     <ClInclude Include="..\heater\compound\type_jsonics.h" />
     <ClInclude Include="..\heater\compound\type_langs.h" />
@@ -314,10 +315,12 @@
     <ClCompile Include="..\sauce\enum\type_aria.cpp" />
     <ClCompile Include="..\sauce\enum\type_charset.cpp" />
     <ClCompile Include="..\sauce\enum\type_class.cpp" />
+    <ClCompile Include="..\sauce\enum\type_colour.cpp" />
     <ClCompile Include="..\sauce\enum\type_country.cpp" />
     <ClCompile Include="..\sauce\enum\type_enum.cpp" />
     <ClCompile Include="..\sauce\enum\type_lang.cpp" />
     <ClCompile Include="..\sauce\enum\type_mime.cpp" />
+    <ClCompile Include="..\sauce\enum\type_property.cpp" />
     <ClCompile Include="..\sauce\enum\type_rel.cpp" />
     <ClCompile Include="..\sauce\enum\type_xmlns.cpp" />
     <ClCompile Include="..\sauce\feedback\nit.cpp" />

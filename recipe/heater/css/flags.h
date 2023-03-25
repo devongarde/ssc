@@ -30,3 +30,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define CF_NOT_STRING       0x0000000000000100
 #define CF_MUST_FONT_FACE   0x0000000000000200
 #define CF_MAY_FONT_FACE    0x0000000000000400
+#define CF_SVG              0x0000000000000800
+
+#define CF_PRINT            0x0000000000001000
+#define CF_TV               0x0000000000002000
+#define CF_HANDHELD         0x0000000000004000
+#define CF_MEDIA            0x0000000000007000
+
+#define CF_DEPRECATED       0x0000000000008000

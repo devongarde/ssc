@@ -85,14 +85,21 @@ line, the "no-" switch always applies.
                         content. This is incompatible with
                         --shadow.update.
 
+--css.colour X          Use CSS Colour level X, where X is 0 or 3
+
 --css.extension ext     Presume files with extension '.ext' are CSS
-                        files.
+                        files
+
+--css.media X           Use CSS Media level X, where X is 0, 3 or 4
 
 --css.namespace X       Use CSS Namespaces level X, where X is 0 or 3
 
 --css.selector X        Use CSS Selectors level X, where X is 0, 3 or 4
 
 --css.style X           Use CSS Style level X, where X is 0 or 3
+
+--css.ui X              Use CSS Basic User Interface level X, where X
+                        is 0, 3 or 4
 
 --css.verify            Verify CSS files (replaces --general.css)
 
@@ -101,7 +108,8 @@ line, the "no-" switch always applies.
                             2.0 CSS 2.0
                             2.1 CSS 2.1
                             2.2 CSS 2.2 (Feb 2022 draft)
-                            3   CSS 3 (implementation unfinished)
+                            3   CSS level 3 (unfinished)
+                            4   CSS level 4 (unfinished)
 
 --general.class         Nitpick class values
 

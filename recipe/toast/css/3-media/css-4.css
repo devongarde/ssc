@@ -1,0 +1,36 @@
+﻿@media screen and (min-width: 400px) and (max-width: 700px) {  }
+
+@media handheld and (min-width: 20em),
+  screen and (min-width: 20em) {  }
+
+@media screen and (device-width: 800px) {  }
+
+@media all and (orientation:portrait) {  }
+@media all and (orientation:landscape) {  }
+
+@media screen and (device-aspect-ratio: 16/9) {  }
+@media screen and (device-aspect-ratio: 32/18) {  }
+@media screen and (device-aspect-ratio: 1280/720) {  }
+@media screen and (device-aspect-ratio: 2560/1440) {  }
+
+@media all and (color) {  }
+@media all and (min-color: 1) {  }
+
+@media all and (min-color: 2) {  }
+
+@media all and (color-index) {  }
+@media all and (min-color-index: 1) {  }
+
+@media all and (monochrome) {  }
+@media all and (min-monochrome: 1) {  }
+
+@media all and (min-monochrome: 2) {  }
+
+@media print and (min-resolution: 300dpi) {  }
+
+@media print and (min-resolution: 118dpcm) {  }
+
+@media tv and (scan: progressive) {  }
+
+@media handheld and (grid) and (max-width: 15em) {  }
+@media handheld and (grid) and (max-device-height: 7em) {  }

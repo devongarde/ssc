@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.19)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.1.16 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
+project (ssc VERSION 0.1.17 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
 
 set (CMAKE_CXX_STANDARD 17)
 
@@ -237,10 +237,10 @@ target_sources (ssc PRIVATE
             ${H}/attribute/avm.h ${H}/attribute/avm_data.h ${H}/attribute/namespace.h
         ${H}/base/base.h ${H}/base/reldef.h ${H}/base/sz.h ${H}/base/type_base.h ${H}/base/type_case.h ${H}/base/type_core.h ${H}/base/type_master.h
         ${H}/compound/compound.h ${H}/compound/type_all_of.h ${H}/compound/type_one_of.h ${H}/compound/type_some_of.h ${H}/compound/type_compound.h
-            ${H}/compound/type_compounded.h ${H}/compound/type_csses.h ${H}/compound/type_httpequivs.h ${H}/compound/type_jsonics.h ${H}/compound/type_langs.h
-            ${H}/compound/type_maths.h ${H}/compound/type_measures.h ${H}/compound/type_microdatas.h ${H}/compound/type_microformats.h
-            ${H}/compound/type_mimes.h ${H}/compound/type_numerics.h ${H}/compound/type_svgs.h ${H}/compound/type_sz.h ${H}/compound/type_van.h
-            ${H}/compound/type_varied.h
+            ${H}/compound/type_compounded.h ${H}/compound/type_csses.h ${H}/compound/type_fn.h ${H}/compound/type_httpequivs.h
+            ${H}/compound/type_jsonics.h ${H}/compound/type_langs.h ${H}/compound/type_maths.h ${H}/compound/type_measures.h
+            ${H}/compound/type_microdatas.h ${H}/compound/type_microformats.h ${H}/compound/type_mimes.h ${H}/compound/type_numerics.h
+            ${H}/compound/type_svgs.h ${H}/compound/type_sz.h ${H}/compound/type_van.h ${H}/compound/type_varied.h
         ${H}/coop/fred.h ${H}/coop/kew.h ${H}/coop/knickers.h ${H}/coop/lox.h ${H}/coop/tls.h
         ${H}/css/arguments.h ${H}/css/css.h ${H}/css/css_attribute.h ${H}/css/css_class.h ${H}/css/css_element.h ${H}/css/css_parse.h
             ${H}/css/css_state.h ${H}/css/decoration.h ${H}/css/distilled.h ${H}/css/flags.h ${H}/css/fn.h ${H}/css/global.h ${H}/css/group.h
@@ -305,8 +305,9 @@ target_sources (ssc PRIVATE
             ${S}/element/element_jkl.cpp ${S}/element/element_microdata.cpp ${S}/element/element_microformats.cpp ${S}/element/element_mno.cpp
             ${S}/element/element_pqr.cpp ${S}/element/element_rdfa.cpp ${S}/element/element_s.cpp ${S}/element/element_tuvwxyz.cpp
             ${S}/element/parentage.cpp ${S}/element/state.cpp
-        ${S}/enum/type_aria.cpp ${S}/enum/type_charset.cpp ${S}/enum/type_class.cpp ${S}/enum/type_country.cpp ${S}/enum/type_enum.cpp ${S}/enum/type_mime.cpp
-            ${S}/enum/type_lang.cpp ${S}/enum/type_rel.cpp ${S}/enum/type_xmlns.cpp
+        ${S}/enum/type_aria.cpp ${S}/enum/type_charset.cpp ${S}/enum/type_class.cpp ${S}/enum/type_colour.cpp ${S}/enum/type_country.cpp
+            ${S}/enum/type_enum.cpp ${S}/enum/type_mime.cpp ${S}/enum/type_lang.cpp ${S}/enum/type_property.cpp ${S}/enum/type_rel.cpp
+            ${S}/enum/type_xmlns.cpp
         ${S}/feedback/nit.cpp ${S}/feedback/nitnames.cpp ${S}/feedback/nitout.cpp ${S}/feedback/nitpick.cpp
         ${S}/icu/charset.cpp ${S}/icu/converter.cpp ${S}/icu/lingo.cpp ${S}/icu/wrapper.cpp
         ${S}/main/abort.cpp ${S}/main/context.cpp ${S}/main/options.cpp ${S}/main/output.cpp ${S}/main/ssc.cpp ${S}/main/standard.cpp ${S}/main/version.cpp

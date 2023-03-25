@@ -851,6 +851,42 @@ void html_version::css_cascade (const int n)
 {   if ((n >= 3) && (n <= 6)) set_ext2 (H2_CSS_CASCADE_MASK, n-2, H2_CSS_CASCADE_ROTATE);
     else reset_ext2 (H2_CSS_CASCADE_MASK); }
 
+int html_version::css_colour () const
+{   if ((ext2 () & H2_CSS_COLOUR_5) == H2_CSS_COLOUR_5) return 5;   
+    if ((ext2 () & H2_CSS_COLOUR_4) == H2_CSS_COLOUR_4) return 4;   
+    if ((ext2 () & H2_CSS_COLOUR_3) == H2_CSS_COLOUR_3) return 3;   
+    if (css_version () >= css_5) return 5;
+    if ((ext2 () & (H2_CSS_6 | H2_CSS_5)) != 0) return 5;
+    if ((ext2 () & H2_CSS_4) == H2_CSS_4) return 4;
+    if ((ext2 () & H2_CSS_3) == H2_CSS_3) return 3;
+    return 0; }
+
+void html_version::css_colour (const int n)
+{   reset_ext2 (H2_CSS_COLOUR_MASK);
+    switch (n)
+    {   case 5 : set_ext2 (H2_CSS_COLOUR_5); break;
+        case 4 : set_ext2 (H2_CSS_COLOUR_4); break;
+        case 3 : set_ext2 (H2_CSS_COLOUR_3); break;
+        default : break; } }
+
+int html_version::css_media () const
+{   if ((ext2 () & H2_CSS_MEDIA_5) == H2_CSS_MEDIA_5) return 5;   
+    if ((ext2 () & H2_CSS_MEDIA_4) == H2_CSS_MEDIA_4) return 4;   
+    if ((ext2 () & H2_CSS_MEDIA_3) == H2_CSS_MEDIA_3) return 3;   
+    if (css_version () >= css_5) return 5;
+    if ((ext2 () & (H2_CSS_6 | H2_CSS_5)) != 0) return 5;
+    if ((ext2 () & H2_CSS_4) == H2_CSS_4) return 4;
+    if ((ext2 () & H2_CSS_3) == H2_CSS_3) return 3;
+    return 0; }
+
+void html_version::css_media (const int n)
+{   reset_ext2 (H2_CSS_MEDIA_MASK);
+    switch (n)
+    {   case 5 : set_ext2 (H2_CSS_MEDIA_5); break;
+        case 4 : set_ext2 (H2_CSS_MEDIA_4); break;
+        case 3 : set_ext2 (H2_CSS_MEDIA_3); break;
+        default : break; } }
+
 int html_version::css_namespace () const
 {   if (any_ext2 (H2_CSS_NAMESPACE)) return 3;
     if (css_version () >= 3) return 3;
@@ -861,20 +897,17 @@ void html_version::css_namespace (const int n)
     else reset_ext2 (H2_CSS_NAMESPACE); }
 
 int html_version::css_selector () const
-{   const uint64_t e2 = ext2 (H2_CSS_SELECTOR_MASK, H2_CSS_SELECTOR_ROTATE);
-    PRESUME (e2 < INT_MAX, __FILE__, __LINE__);
-    const int c = GSL_NARROW_CAST < int > (e2);
-    if (c > 0) return c;
-    switch (css_version ())
-    {   case css_3 : return 3;
-        case css_4 : if (c < 5) return c;
-                     return 4;   
-        default : break; }
+{   if ((ext2 () & H2_CSS_SELECTOR_4) == H2_CSS_SELECTOR_4) return 4;   
+    if ((ext2 () & H2_CSS_SELECTOR_3) == H2_CSS_SELECTOR_3) return 3;   
+    if (css_version () >= css_4) return 4;
+    if ((ext2 () & (H2_CSS_6 | H2_CSS_5 | H2_CSS_4)) != 0) return 4;
+    if ((ext2 () & H2_CSS_3) == H2_CSS_3) return 3;
     return 0; }
 
 void html_version::css_selector (const int n)
-{   if ((n >= 3) && (n <= 4)) set_ext2 (H2_CSS_SELECTOR_MASK, n-2, H2_CSS_SELECTOR_ROTATE);
-    else reset_ext2 (H2_CSS_SELECTOR_MASK); }
+{   reset_ext2 (H2_CSS_SELECTOR_MASK);
+    if (n == 3) set_ext2 (H2_CSS_SELECTOR_3);
+    else if (n == 4) set_ext2 (H2_CSS_SELECTOR_4); }
 
 int html_version::css_style () const
 {   if (any_ext2 (H2_CSS_STYLE)) return 3;
@@ -884,6 +917,19 @@ int html_version::css_style () const
 void html_version::css_style (const int n)
 {   if (n >= 3) set_ext2 (H2_CSS_STYLE);
     else reset_ext2 (H2_CSS_STYLE); }
+
+int html_version::css_ui () const
+{   if ((ext2 () & H2_CSS_UI_4) == H2_CSS_UI_4) return 4;   
+    if ((ext2 () & H2_CSS_UI_3) == H2_CSS_UI_3) return 3;   
+    if (css_version () >= css_4) return 4;
+    if ((ext2 () & (H2_CSS_6 | H2_CSS_5 | H2_CSS_4)) != 0) return 4;
+    if ((ext2 () & H2_CSS_3) == H2_CSS_3) return 3;
+    return 0; }
+
+void html_version::css_ui (const int n)
+{   reset_ext2 (H2_CSS_UI_MASK);
+    if (n == 3) set_ext2 (H2_CSS_UI_3);
+    else if (n == 4) set_ext2 (H2_CSS_UI_4); }
 
 
 bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e)

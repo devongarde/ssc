@@ -95,6 +95,11 @@ void property::parse (arguments& args, const int from, const int to)
                         nits.pick (nit_css_syntax, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, quote (val_), ": should be a string");
                     if (! xn) if ((flags_ & CF_EXPECT_NUMBER) == CF_EXPECT_NUMBER)
                         nits.pick (nit_css_syntax, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, quote (val_), ": should be a number"); }
+                if (args.snippet_ && ((flags_ & CF_SVG) == CF_SVG))
+                    if (! args.eb_.test (elem_svg))
+                        nits.pick (nit_svg_version, ed_svg_1_1, "Appendix N: Property Index", es_warning, ec_css, quote (args.t_.at (k).val_), " is an SVG property, which requires at least an ancestral <SVG> element");
+                if (pp.first ().css_ui () > args.v_.css_ui ())
+                    nits.pick (nit_css_version, ed_css_ui_3, "3.1. Changing the Box Model: the box-sizing property", es_error, ec_css, quote (args.t_.at (k).val_), " requires CSS Basic User Interface level 3");
                 static elem eca (elem_css_all);
                 prop_ -> verify (nits, eca); }
             if (bang > 0)

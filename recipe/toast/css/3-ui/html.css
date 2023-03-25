@@ -1,0 +1,126 @@
+﻿:enabled:focus {
+ outline: 2px inset;
+}
+
+button,
+input[type=button],
+input[type=reset],
+input[type=submit],
+input[type=checkbox],
+input[type=radio],
+textarea,
+input,
+input[type=text],
+input[type=password],
+input[type=image]
+{
+ display: inline-block;
+}
+
+input[type=button],
+input[type=reset],
+input[type=submit],
+input[type=checkbox],
+input[type=radio],
+input,
+input[type=text],
+input[type=password],
+input[type=image]
+{
+ white-space: nowrap;
+}
+
+button
+{
+/* white space handling of BUTTON tags in particular */
+ white-space:normal;
+}
+
+input[type=reset]:lang(en)
+{
+/* default content of HTML input type=reset button, per language */
+ content: "Reset";
+}
+
+input[type=submit]:lang(en)
+{
+/* default content of HTML input type=submit button, per language */
+ content: "Submit";
+}
+
+/* UAs should use language-specific Reset/Submit rules for others. */
+
+input[type=button],
+input[type=reset][value],
+input[type=submit][value]
+{
+/* text content/labels of HTML "input" buttons */
+ content: attr(value);
+}
+
+textarea
+{
+/* white space handling of TEXTAREA tags in particular */
+ white-space:pre-wrap;
+ resize: both;
+}
+
+input[type=hidden]
+{
+/* appearance of the HTML hidden text field in particular */
+ display: none !important;
+}
+
+input[type=image]
+{
+ content: attr(src,url);
+ border: none;
+}
+
+select[size]
+{
+/* HTML4/XHTML1 <select> w/ size more than 1 - appearance of list */
+ display: inline-block;
+ height: attr(size,em);
+}
+
+select,select[size=1]
+{
+/* HTML4/XHTML1 <select> without size, or size=1 - popup-menu */
+ display: inline-block;
+ height: 1em;
+ overflow: hidden;
+}
+
+select[size]:active
+{
+/* active HTML <select> w/ size more than 1 - appearance of active list */
+ display: inline-block;
+}
+
+optgroup,option
+{
+ display: block;
+ white-space: nowrap;
+}
+
+optgroup[label],option[label]
+{
+ content: attr(label);
+}
+
+option[selected]::before
+{
+ display: inline;
+ content: check;
+}
+
+/* Though FRAME resizing is not directly addressed by this specification,
+   the following rules may provide an approximation of reasonable behavior. */
+
+/*
+
+frame { resize:both }
+frame[noresize] { resize:none }
+
+*/

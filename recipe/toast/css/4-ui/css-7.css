@@ -1,0 +1,14 @@
+﻿input[type=checkbox] {
+  all: unset; /* this shorthand includes resetting appearance to none */
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  background: red;
+}
+input[type=checkbox]:checked {
+  border-radius: 50%;
+  background: green;
+}
+input[type=checkbox]:focus-visible {
+  outline: auto;
+}

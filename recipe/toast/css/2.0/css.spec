@@ -11,9 +11,9 @@ PASS ../toast/css/2.0/aargh.css
 7 no_such_page
 9 naughty_decoration
 10 naughty_decoration
-10 unrecognised_value unrecognised_value bad_colour
+10 unrecognised_value unrecognised_value unrecognised_value bad_colour isnt isnt function function function
 11 css_version naughty_decoration
-11 unrecognised_value unrecognised_value bad_colour
+11 unrecognised_value unrecognised_value unrecognised_value bad_colour isnt isnt function function function
 13 naughty_page
 14 unrecognised_value missing_value unrecognised_value immeasurable precisely naughty_page
 18 css_element css_element css_element
@@ -83,16 +83,16 @@ PASS ../toast/css/2.0/css-4-2.css
 36 css_syntax property
 37 property
 38 property
-39 css_syntax unrecognised_value unrecognised_value bad_colour
-40 css_syntax unrecognised_value unrecognised_value bad_colour
+39 css_syntax unrecognised_value unrecognised_value unrecognised_value bad_colour isnt isnt function function function
+40 css_syntax unrecognised_value unrecognised_value unrecognised_value bad_colour isnt isnt function function function
 42 unrecognised_value
 52 css_syntax
 
 PASS ../toast/css/2.0/css-4-3.css
 0 html
-63 bad_rgb bad_colour
-64 bad_rgb bad_colour
-65 bad_rgb bad_colour
+63 unrecognised_value bad_rgb bad_colour isnt isnt isnt isnt isnt
+64 unrecognised_value bad_rgb bad_colour isnt isnt isnt isnt isnt
+65 unrecognised_value bad_rgb bad_colour isnt isnt isnt isnt isnt
 
 PASS ../toast/css/2.0/css-4-4.css
 0 html

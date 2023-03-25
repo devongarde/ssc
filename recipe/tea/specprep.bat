@@ -12,9 +12,13 @@ ssc.exe -T --nits.spec -o ../out/1css.tst -f ../toast/csp/1/css.conf
 ssc.exe -T --nits.spec -o ../out/20css.tst -f ../toast/css/2.0/css.conf
 ssc.exe -T --nits.spec -o ../out/21css.tst -f ../toast/css/2.1/css.conf
 ssc.exe -T --nits.spec -o ../out/22css.tst -f ../toast/css/2.2/css.conf
+ssc.exe -T --nits.spec -o ../out/3col.tst -f ../toast/css/3-colour/css.conf
+ssc.exe -T --nits.spec -o ../out/3media.tst -f ../toast/css/3-media/css.conf
 ssc.exe -T --nits.spec -o ../out/3ns.tst -f ../toast/css/3-ns/css.conf
 ssc.exe -T --nits.spec -o ../out/3sel.tst -f ../toast/css/3-sel/css.conf
 ssc.exe -T --nits.spec -o ../out/3style.tst -f ../toast/css/3-style/css.conf
+ssc.exe -T --nits.spec -o ../out/3ui.tst -f ../toast/css/3-ui/css.conf
+ssc.exe -T --nits.spec -o ../out/4ui.tst -f ../toast/css/4-ui/css.conf
 ssc.exe -T --nits.spec -o ../out/accessibility.tst -f ../toast/css/accessibility/css.conf
 ssc.exe -T --nits.spec -o ../out/songlight.tst -f ../toast/css/songlight/css.conf
 ssc.exe -T --nits.spec -o ../out/1.0html1.tst -f ../toast/HTML/1.0/html1.conf

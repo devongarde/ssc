@@ -76,6 +76,7 @@ inline ::std::string uq (const ::std::string& str, const ::std::string& qs = ::s
 
 #define BS_NUMERIC  ( UQ_8 | UQ_10 | UQ_16 | UQ_36 )
 #define BS_MASK     ( UQ_BS | BS_NUMERIC )
+#define BS_FN       ( UQ_BS | UQ_SQ | UQ_DQ | UQ_ROUND | UQ_TRIM )
 
 vstr_t uq2 (const ::std::string& s, const unsigned int flags = UQ_DQ | UQ_SQ | UQ_BS, const vstr_t& sep = vstr_t (), vint_t* lines = nullptr, v_np* ticks = nullptr);
 

@@ -83,6 +83,10 @@ bool parse_media_query (nitpick& nits, const html_version& v, const ::std::strin
                         case 'I' :
                             if (compare_complain (nits, v, s, "interlace")) continue;
                             break;
+                        case 'l' :
+                        case 'L' :
+                            if (compare_complain (nits, v, s, "landscape")) continue;
+                            break;
                         case 'n' :
                         case 'N' :
                             if (compare_complain (nits, v, s, "none")) continue;
@@ -91,6 +95,7 @@ bool parse_media_query (nitpick& nits, const html_version& v, const ::std::strin
                         case 'P' :
                             if (compare_complain (nits, v, s, "p3") ||
                                 compare_complain (nits, v, s, "progressive") ||
+                                compare_complain (nits, v, s, "portrait") ||
                                 compare_complain (nits, v, s, "paged")) continue;
                             break;
                         case 'r' :
