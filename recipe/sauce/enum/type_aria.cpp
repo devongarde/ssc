@@ -460,6 +460,7 @@ elem_role permitted_role [] =
     { { HTML_JUL08 }, { HTML_UNDEF }, elem_ruby, role_any },
     { { HTML_JAN11 }, { HTML_UNDEF }, elem_s, role_any },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_samp, role_any },
+    { { HTML_APR23 }, { HTML_UNDEF }, elem_search, role_any },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_section, role_alert },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_section, role_alertdialogue },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_section, role_application },

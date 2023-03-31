@@ -691,6 +691,7 @@ struct symbol_entry < html_version, e_css_statement > css_statement_symbol_table
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "bottom-right-corner", css_bottom_right_corner, ns_default, CF_PRINT },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "charset", css_charset },
     { { HTML_SVG11, 0, HE_SVG }, { HTML_UNDEF }, "color-profile", css_colour_profile },
+    { { HTML_CSS, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "custom-media", css_custom_media },
     { { HTML_CSS, 0, 0, H2_CSS_3 }, { HTML_UNDEF }, "document", css_document },
     { { HTML_CSS, 0, 0, H2_CSS_2 }, { HTML_UNDEF }, "font-face", css_font_face },
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "import", css_import },
@@ -1397,70 +1398,7 @@ struct symbol_entry < html_version, e_matrixtype > matrixtype_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "hueRotate", mt_huerotate },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "luminanceToAlpha", mt_luminancetoalpha } };
 
-struct symbol_entry < html_version, e_media > media_symbol_table [] =
-{   { { HTML_4_0, 0, 0 }, { HTML_UNDEF }, "all", md_all },
-    { { HTML_4_0, 0, 0, H2_CSS_2_0 }, { HTML_UNDEF }, "aural", md_aural },
-    { { HTML_4_0, 0, 0 }, { HTML_UNDEF }, "braille", md_braille },
-    { { HTML_4_0, 0, 0 }, { HTML_UNDEF }, "embossed", md_embossed },
-    { { HTML_4_0, 0, 0 }, { HTML_UNDEF }, "handheld", md_handheld },
-    { { HTML_4_0, 0, 0 }, { HTML_UNDEF }, "print", md_print },
-    { { HTML_4_0, 0, 0 }, { HTML_UNDEF }, "projection", md_projection },
-    { { HTML_4_0, 0, 0 }, { HTML_UNDEF }, "screen", md_screen },
-    { { HTML_4_0, 0, 0, H2_CSS_21_PLUS }, { HTML_UNDEF }, "speech", md_speech },
-    { { HTML_4_0, 0, 0 }, { HTML_UNDEF }, "tty", md_tty },
-    { { HTML_4_0, 0, 0 }, { HTML_UNDEF }, "tv", md_tv } };
-
-struct symbol_entry < html_version, e_mediafeature > mediafeature_symbol_table [] =
-{   { { HTML_4_0 }, { HTML_UNDEF }, "any-hover", mef_any_hover },
-    { { HTML_4_0 }, { HTML_UNDEF }, "any-pointer", mef_any_pointer },
-    { { HTML_4_0 }, { HTML_UNDEF }, "aspect-ratio", mef_aspect_ratio },
-    { { HTML_4_0 }, { HTML_UNDEF }, "color", mef_colour },
-    { { HTML_4_0 }, { HTML_UNDEF }, "color-gamut", mef_colour_gamut },
-    { { HTML_4_0 }, { HTML_UNDEF }, "color-index", mef_colour_index },
-    { { HTML_4_0 }, { HTML_UNDEF }, "device-aspect-ratio", mef_device_aspect_ratio },
-    { { HTML_4_0 }, { HTML_UNDEF }, "device-height", mef_device_height },
-    { { HTML_4_0 }, { HTML_UNDEF }, "device-width", mef_device_width },
-    { { HTML_JUL21 }, { HTML_UNDEF }, "display-mode", mef_display_mode },
-    { { HTML_JUL21 }, { HTML_UNDEF }, "forced-colors", mef_forced_colours },
-    { { HTML_4_0 }, { HTML_UNDEF }, "grid", mef_grid },
-    { { HTML_4_0 }, { HTML_UNDEF }, "height", mef_height },
-    { { HTML_4_0 }, { HTML_UNDEF }, "hover", mef_hover },
-    { { HTML_JUL21 }, { HTML_UNDEF }, "inverted-colors", mef_inverted_colours },
-    { { HTML_4_0 }, { HTML_UNDEF }, "max-aspect-ratio", mef_max_aspect_ratio },
-    { { HTML_4_0 }, { HTML_UNDEF }, "max-color", mef_max_colour },
-    { { HTML_4_0 }, { HTML_UNDEF }, "max-color-index", mef_max_colour_index },
-    { { HTML_4_0 }, { HTML_UNDEF }, "max-device-aspect-ratio", mef_max_device_aspect_ratio },
-    { { HTML_4_0 }, { HTML_UNDEF }, "max-device-height", mef_max_device_height },
-    { { HTML_4_0 }, { HTML_UNDEF }, "max-device-width", mef_max_device_width },
-    { { HTML_4_0 }, { HTML_UNDEF }, "max-height", mef_max_height },
-    { { HTML_4_0 }, { HTML_UNDEF }, "max-monochrome", mef_max_monochrome },
-    { { HTML_4_0 }, { HTML_UNDEF }, "max-resolution", mef_max_resolution },
-    { { HTML_4_0 }, { HTML_UNDEF }, "max-width", mef_max_width },
-    { { HTML_4_0 }, { HTML_UNDEF }, "min-aspect-ratio", mef_min_aspect_ratio },
-    { { HTML_4_0 }, { HTML_UNDEF }, "min-color", mef_min_colour },
-    { { HTML_4_0 }, { HTML_UNDEF }, "min-color-index", mef_min_colour_index },
-    { { HTML_4_0 }, { HTML_UNDEF }, "min-device-aspect-ratio", mef_min_device_aspect_ratio },
-    { { HTML_4_0 }, { HTML_UNDEF }, "min-device-height", mef_min_device_height },
-    { { HTML_4_0 }, { HTML_UNDEF }, "min-device-width", mef_min_device_width },
-    { { HTML_4_0 }, { HTML_UNDEF }, "min-height", mef_min_height },
-    { { HTML_4_0 }, { HTML_UNDEF }, "min-monochrome", mef_min_monochrome },
-    { { HTML_4_0 }, { HTML_UNDEF }, "min-resolution", mef_min_resolution },
-    { { HTML_4_0 }, { HTML_UNDEF }, "min-width", mef_min_width },
-    { { HTML_4_0 }, { HTML_UNDEF }, "monochrome", mef_monochrome },
-    { { HTML_4_0 }, { HTML_UNDEF }, "orientation", mef_orientation },
-    { { HTML_4_0 }, { HTML_UNDEF }, "overflow-block", mef_overflow_block },
-    { { HTML_4_0 }, { HTML_UNDEF }, "overflow-inline", mef_overflow_inline },
-    { { HTML_4_0 }, { HTML_UNDEF }, "pointer", mef_pointer },
-    { { HTML_JUL21 }, { HTML_UNDEF }, "prefers-color-scheme", mef_prefers_colour_scheme },
-    { { HTML_JUL21 }, { HTML_UNDEF }, "prefers-contrast", mef_prefers_contrast },
-    { { HTML_JUL21 }, { HTML_UNDEF }, "prefers-reduced-motio", mef_prefers_reduced_motion },
-    { { HTML_4_0 }, { HTML_UNDEF }, "resolution", mef_resolution },
-    { { HTML_4_0 }, { HTML_UNDEF }, "scan", mef_scan },
-    { { HTML_4_0 }, { HTML_UNDEF }, "scripting", mef_scripting },
-    { { HTML_4_0 }, { HTML_UNDEF }, "update", mef_update },
-    { { HTML_4_0 }, { HTML_UNDEF }, "width", mef_width } };
-
-struct symbol_entry < html_version, e_mediakeyword > mediakeyword_symbol_table [] =
+struct symbol_entry < html_version, e_media_keyword > mediakeyword_symbol_table [] =
 {   { { HTML_4_0 }, { HTML_UNDEF }, "and", mk_and },
     { { HTML_JAN05 }, { HTML_UNDEF }, "=", mk_eq },
     { { HTML_JAN05 }, { HTML_UNDEF }, ">=", mk_ge },
@@ -2577,6 +2515,7 @@ void init_2 ()
     type_master < t_additive > :: init ();
     type_master < t_bool > :: init ();
     type_master < t_capture > :: init ();
+    type_master < t_colour_scheme > :: init ();
     type_master < t_compositing > :: init ();
     type_master < t_connect > :: init ();
     type_master < t_coordinatesystem > :: init ();
@@ -2586,19 +2525,23 @@ void init_2 ()
     type_master < t_css_text_resize > :: init ();
     type_master < t_dataformatas > :: init ();
     type_master < t_defaultaction > :: init ();
+    type_master < t_dynamic_range > :: init ();
     type_master < t_editable > :: init ();
     type_master < t_fill_ve > :: init ();
     type_master < t_fillanim > :: init ();
+    type_master < t_forced_colours > :: init ();
     type_master < t_focushighlight > :: init ();
     type_master < t_gender > :: init ();
     type_master < t_hidden > :: init ();
     type_master < t_hv > :: init ();
     type_master < t_initialvisibility > :: init ();
+    type_master < t_inverted_colours > :: init ();
     type_master < t_js_version > :: init ();
     type_master < t_layout > :: init ();
     type_master < t_lengthadjust > :: init ();
     type_master < t_loading > :: init ();
     type_master < t_lralign > :: init ();
+    type_master < t_ltr_rtl > :: init ();
     type_master < t_markerunits > :: init ();
     type_master < t_mathdisplay > :: init ();
     type_master < t_mathfontstyle > :: init ();
@@ -2606,13 +2549,19 @@ void init_2 ()
     type_master < t_mathmode > :: init ();
     type_master < t_mathorder > :: init ();
     type_master < t_mathscope > :: init ();
+    type_master < t_media_hover > :: init ();
+    type_master < t_media_inline > :: init ();
+    type_master < t_media_orientation > :: init ();
+    type_master < t_media_prefers > :: init ();
     type_master < t_meetslice > :: init ();
     type_master < t_morphology_operator > :: init ();
+    type_master < t_nav_controls > :: init ();
     type_master < t_notations > :: init ();
     type_master < t_onoff > :: init ();
     type_master < t_orientation > :: init ();
     type_master < t_overlay > :: init ();
     type_master < t_propagate > :: init ();
+    type_master < t_scan > :: init ();
     type_master < t_settype > :: init ();
     type_master < t_spacing > :: init ();
     type_master < t_ssi_f > :: init ();
@@ -2620,7 +2569,6 @@ void init_2 ()
     type_master < t_startend > :: init ();
     type_master < t_stitchtiles > :: init ();
     type_master < t_streamedcontents > :: init ();
-    type_master < t_ltr_rtl > :: init ();
     type_master < t_svg_fontvariant_ff > :: init ();
     type_master < t_svg_method > :: init ();
     type_master < t_svg_playbackorder > :: init ();
@@ -2666,9 +2614,11 @@ void init_3 ()
     type_master < t_edgemode > :: init ();
     type_master < t_edi > :: init ();
     type_master < t_enctype > :: init ();
+    type_master < t_environment_blending > :: init ();
     type_master < t_fill_rule > :: init ();
     type_master < t_font_variant_position > :: init ();
     type_master < t_fontnia > :: init ();
+    type_master < t_gamut > :: init ();
     type_master < t_importance > :: init ();
     type_master < t_infixlinebreakstyle > :: init ();
     type_master < t_keytype > :: init ();
@@ -2678,6 +2628,10 @@ void init_3 ()
     type_master < t_mathform > :: init ();
     type_master < t_mathframe > :: init ();
     type_master < t_mathoccurence > :: init ();
+    type_master < t_media_overflow > :: init ();
+    type_master < t_media_pointer > :: init ();
+    type_master < t_media_scripting > :: init ();
+    type_master < t_media_update > :: init ();
     type_master < t_menuitem > :: init ();
     type_master < t_menutype > :: init ();
     type_master < t_mf_class > :: init ();
@@ -2736,6 +2690,8 @@ void init_4 ()
     type_master < t_lrnialign > :: init ();
     type_master < t_mathclosure > :: init ();
     type_master < t_mathside > :: init ();
+    type_master < t_media_display_mode > :: init ();
+    type_master < t_media_prefers_2 > :: init ();
     type_master < t_mf_availability > :: init ();
     type_master < t_mf_category > :: init ();
     type_master < t_paint_order > :: init ();
@@ -2866,9 +2822,6 @@ void enum_init (nitpick& nits)
     INIT_ENUM (mathoverflow);
     INIT_ENUM (mathvariant);
     INIT_ENUM (matrixtype);
-    INIT_ENUM (media);
-    INIT_ENUM (mediafeature);
-    INIT_ENUM (mediakeyword);
     INIT_ENUM (method);
     INIT_ENUM (mf_identifier);
     INIT_ENUM (mf_itemtype);

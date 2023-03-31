@@ -34,6 +34,7 @@ class css_group
     dst_ptr snippets_;
     sstr_t page_name_;
     namespaces_ptr ns_;
+    ustr_t custom_media_; 
     bool note_class (const ::std::string& s);
     bool note_element_class (const ::std::string& s);
     bool note_element_id (const ::std::string& s);

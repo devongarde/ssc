@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<x-foo id="a"></x-foo>
+<x-foo id="b"></x-foo>
+<script>
+// Defining enqueues upgrade reactions for both "a" and "b"
+customElements.define("x-foo", class extends HTMLElement {
+constructor() {
+super();
+const b = document.querySelector("#b");
+b.remove();
+// While this constructor is running for "a", "b" is still
+// undefined, and so inserting it into the document will enqueue a
+// second upgrade reaction for "b" in addition to the one enqueued
+// by defining x-foo.
+        document.body.appendChild(b);
+}
+})
+</script>

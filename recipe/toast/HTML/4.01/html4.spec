@@ -344,8 +344,6 @@ PASS ../toast/HTML/4.01/html4-example.html
 884 inserted_missing_closure
 
 PASS ../toast/HTML/4.01/html4-frameset.html
-6 unrecognised_value immeasurable
-7 unrecognised_value immeasurable
 14 inserted_missing_closure
 16 inserted_missing_closure
 17 inserted_missing_closure missing_close
@@ -353,7 +351,6 @@ PASS ../toast/HTML/4.01/html4-frameset.html
 
 PASS ../toast/HTML/4.01/html4-frameset-bad.html
 0 frameset_body
-6 unrecognised_value immeasurable
 
 PASS ../toast/HTML/4.01/html4-good.html
 86 inserted_missing_closure

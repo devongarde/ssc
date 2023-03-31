@@ -1,0 +1,8 @@
+﻿@media (example, all,), speech { /* only applicable to speech devices */ }
+@media &test, speech           { /* only applicable to speech devices */ }
+
+@media (example, speech { /* rules for speech devices */ }
+
+@media (min-orientation:portrait) { }
+
+@media test;,all { body { background:lime } }

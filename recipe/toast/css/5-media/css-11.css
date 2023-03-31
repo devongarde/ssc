@@ -1,0 +1,10 @@
+﻿.image {
+  background-image: url("images/heavy.jpg");
+}
+
+@media (prefers-reduced-data: reduce) {
+  /* Save-Data: On */
+  .image {
+    background-image: url("images/light.jpg");
+  }
+}

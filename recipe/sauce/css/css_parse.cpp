@@ -346,13 +346,15 @@ bool css::parse (const ::std::string& content, const bool x)
         case ct_eof : return "";
         default : GRACEFUL_CRASH (__FILE__, __LINE__); } }
 
-::std::string assemble_string (vtt_t& vt, const int from, const int to)
+::std::string assemble_string (vtt_t& vt, const int from, const int to, const bool inclusive)
 {   PRESUME (from > 0, __FILE__, __LINE__);
     PRESUME (((to == -1) || (from <= to)), __FILE__, __LINE__);
     const int len = GSL_NARROW_CAST < int > (vt.size ());
     PRESUME (to < len, __FILE__, __LINE__);
     ::std::string res;
-    for (int i = from; ((to < 0) || (i < to)) && (i < len) && (vt.at (i).next_ == (i+1)); ++i)
+    int t = to;
+    if (inclusive && (t > 0)) ++t; 
+    for (int i = from; ((t < 0) || (i < t)) && (i < len) && (vt.at (i).next_ == (i+1)); ++i)
         res += tkn_rpt (vt.at (i));
     return res; }
 

@@ -43,10 +43,12 @@ struct arguments
     selectors* ss_ = nullptr;
     statement* st_ = nullptr;
     properties* ps_ = nullptr;
-    element_bitset eb_; 
+    element_bitset eb_;
     arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g);
     arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet, const e_element styled, const element_bitset eb);
     arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet, const ::std::string& abs, dst_ptr dst, const e_element styled, const element_bitset eb);
     void check_flags (nitpick& nits, const flags_t f, const ::std::string& s) const;
+    const ustr_t& custom_media () const; 
+    ustr_t& custom_media ();
     bool styled () const noexcept { return styled_ != elem_undefined; }
     void validate (nitpick& nits, const flags_t f, const ::std::string& p, const ::std::string& v) const; };

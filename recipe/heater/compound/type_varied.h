@@ -111,6 +111,7 @@ template < > struct type_master < t_align > : varied < t_align >
                 case elem_div :
                 case elem_hr :
                 case elem_p :
+                case elem_search :
                     if (v >= html_3_2) { validate_type < type_master < t_lcralign > > (nits, v); return; }
                     else if (v == html_plus) { validate_type < type_master < t_alignplus > > (nits, v); return; }
                     break;

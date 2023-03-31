@@ -84,58 +84,55 @@ context_t& context_t::shadow_ignore (const vstr_t& s)
     mac (nm_context_shadow_ignore, shadow_ignore_);
     return *this; }
 
-context_t& context_t::css_version (const int mjr, const int mnr) noexcept
-{   switch (mjr)
+context_t& context_t::css_version (const int mjr, const int mnr)
+{   e_css_version v = css_none;
+    switch (mjr)
     {   case 1 :
-            if (mnr == 0) css_version (css_1);
-            else css_version (css_none);
+            if (mnr == 0) v = css_1;
             break;
         case 2 :
             switch (mnr)
-            {   case 0 : css_version (css_2_0); break;
-                case 1 : css_version (css_2_1); break;
-                case 2 : css_version (css_2_2); break;
-                default : css_version (css_none); break; }
+            {   case 0 : v = css_2_0; break;
+                case 1 : v = css_2_1; break;
+                case 2 : v = css_2_2; break;
+                default : break; }
             break;
         case 3 :
-            if (mnr == 0) css_version (css_3);
-            else css_version (css_none);
+            if (mnr == 0) v = css_3;
             break;
         case 4 :
-            if (mnr == 0) css_version (css_4);
-            else css_version (css_none);
+            if (mnr == 0) v = css_4;
             break;
         case 5 :
-            if (mnr == 0) css_version (css_5);
-            else css_version (css_none);
+            v = css_5;
             break;
         case 6 :
-            if (mnr == 0) css_version (css_6);
-            else css_version (css_none);
+            v = css_6;
             break;
         default :
-            version_.css_version (css_none);
             break; }
+    css_version (v);
     return *this; }
 
-context_t& context_t::svg_version (const int mjr, const int mnr) noexcept
-{   switch (mjr)
+context_t& context_t::svg_version (const int mjr, const int mnr)
+{   e_svg_version v = sv_none;
+    switch (mjr)
     {   case 2 :
             switch (mnr)
-            {   case 0 : version_.svg_version (sv_2_0); return *this;
-                case 1 : version_.svg_version (sv_2_1); return *this;
+            {   case 0 : v = sv_2_0; break;
+                case 1 : v = sv_2_1; break;
                 default : break; }
             break;
         case 1 :
             switch (mnr)
-            {   case 0 : version_.svg_version (sv_1_0); return *this;
-                case 1 : version_.svg_version (sv_1_1); return *this;
-                case 2 : version_.svg_version (sv_1_2_tiny); return *this;
-                case 3 : version_.svg_version (sv_1_2_full); return *this;
+            {   case 0 : v = sv_1_0; break;
+                case 1 : v = sv_1_1; break;
+                case 2 : v = sv_1_2_tiny; break;
+                case 3 : v = sv_1_2_full; break;
                 default : break; }
             break;
         default : break; }
-    version_.svg_version (sv_none);
+    svg_version (v);
     return *this; }
 
 context_t& context_t::math_version (const int v)

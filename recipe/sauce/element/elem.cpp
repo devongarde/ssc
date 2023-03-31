@@ -524,6 +524,7 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "scalarproduct", elem_scalarproduct, ns_default, EP_CLOSED | EP_ARGS_2, EF_M_CONTENT },
     { { HTML_3_2 }, { HTML_UNDEF }, "script", elem_script, ns_default, EP_SET_XLINKCAT (se_script), EF_METADATA | EF_SPECIAL | EF_4_SPECIAL | EF_X2_STRUCT | EF_5_FLOW | EF_5_PHRASE | EF_5_SCRIPT },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "sdev", elem_sdev, ns_default, EP_CLOSED | EP_ARGS_1 | EP_ARGS_MORE, EF_M_CONTENT },
+    { { HTML_APR23 }, { HTML_UNDEF }, "search", elem_search, ns_default, 0, EF_5_FLOW | EF_5_PALPABLE },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "sec", elem_sec, ns_default, EP_CLOSED | EP_ARGS_1, EF_M_CONTENT },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "sech", elem_sech, ns_default, EP_CLOSED | EP_ARGS_1, EF_M_CONTENT },
     { { XHTML_2_0 }, { HTML_UNDEF }, "section", elem_section, ns_default, 0, EF_X2_STRUCT | EF_5_FLOW | EF_5_SECTION | EF_5_PALPABLE },

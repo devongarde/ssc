@@ -977,111 +977,90 @@ void options::contextualise (nitpick& nits)
                     nits.pick (nit_config_version, es_warning, ec_init, "ignoring invalid CSS version"); } }
 
         if (var_.count (CSS CASCADE))
-            if (context.css_version () < 3)
-                nits.pick (nit_config_version, es_error, ec_init, "--" CSS CASCADE " requires --" CSS VERSION " 3");
-            else
-            {   const int n (var_ [CSS CASCADE].as < int > ());
-                switch (n)
-                {   case 0 :
-                    case 3 :
-                    case 4 :
-                    case 5 :
-                    case 6 :
-                        context.css_cascade (n);
-                        break;
-                    default :
-                        nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Cascade & Inheritance value");
-                        break; } }
+        {   const int n (var_ [CSS CASCADE].as < int > ());
+            switch (n)
+            {   case 0 :
+                case 3 :
+                case 4 :
+                case 5 :
+                case 6 :
+                    context.css_cascade (n);
+                    break;
+                default :
+                    nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Cascade & Inheritance value");
+                    break; } }
 
         if (var_.count (CSS COLOUR))
-            if (context.css_version () < 3)
-                nits.pick (nit_config_version, es_error, ec_init, "--" CSS COLOUR " requires --" CSS VERSION " 3");
-            else
-            {   const int n (var_ [CSS COLOUR].as < int > ());
-                switch (n)
-                {   case 0 :
-                    case 3 :
-                    case 4 :
-                    case 5 :
-                        context.css_colour (n);
-                        break;
-                    default :
-                        nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Colour value");
-                        break; } }
+        {   const int n (var_ [CSS COLOUR].as < int > ());
+            switch (n)
+            {   case 0 :
+                case 3 :
+                case 4 :
+                case 5 :
+                    context.css_colour (n);
+                    break;
+                default :
+                    nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Colour value");
+                    break; } }
 
         if (var_.count (CSS MEDIA))
-            if (context.css_version () < 3)
-                nits.pick (nit_config_version, es_error, ec_init, "--" CSS MEDIA " requires --" CSS VERSION " 3");
-            else
-            {   const int n (var_ [CSS MEDIA].as < int > ());
-                switch (n)
-                {   case 0 :
-                    case 3 :
-                    case 4 :
-                    case 5 :
-                        context.css_media (n);
-                        break;
-                    default :
-                        nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Media value");
-                        break; } }
+        {   const int n (var_ [CSS MEDIA].as < int > ());
+            switch (n)
+            {   case 0 :
+                case 3 :
+                case 4 :
+                case 5 :
+                    context.css_media (n);
+                    break;
+                default :
+                    nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Media value");
+                    break; } }
 
         if (var_.count (CSS NAMESPACE))
-            if (context.css_version () < 3)
-                nits.pick (nit_config_version, es_error, ec_init, "--" CSS NAMESPACE " requires --" CSS VERSION " 3");
-            else
-            {   const int n (var_ [CSS NAMESPACE].as < int > ());
-                switch (n)
-                {   case 0 :
-                    case 3 :
-                        context.css_namespace (n);
-                        break;
-                    default :
-                        nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Namespace value");
-                        break; } }
+        {   const int n (var_ [CSS NAMESPACE].as < int > ());
+            switch (n)
+            {   case 0 :
+                case 3 :
+                    context.css_namespace (n);
+                    break;
+                default :
+                    nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Namespace value");
+                    break; } }
 
         if (var_.count (CSS SELECTOR))
-            if (context.css_version () < 3)
-                nits.pick (nit_config_version, es_error, ec_init, "--" CSS SELECTOR " requires --" CSS VERSION " 3");
-            else
-            {   const int n (var_ [CSS SELECTOR].as < int > ());
-                switch (n)
-                {   case 0 :
-                    case 3 :
-                    case 4 :
-                        context.css_selector (n);
-                        break;
-                    default :
-                        nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Selector value");
-                        break; } }
+        {   const int n (var_ [CSS SELECTOR].as < int > ());
+            switch (n)
+            {   case 0 :
+                case 3 :
+                case 4 :
+                    context.css_selector (n);
+                    break;
+                default :
+                    nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Selector value");
+                    break; } }
 
         if (var_.count (CSS STYLE))
-            if (context.css_version () < 3)
-                nits.pick (nit_config_version, es_error, ec_init, "--" CSS STYLE " requires --" CSS VERSION " 3");
-            else
-            {   const int n (var_ [CSS STYLE].as < int > ());
-                switch (n)
-                {   case 0 :
-                    case 3 :
-                        context.css_style (n);
-                        break;
-                    default :
-                        nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Style value");
-                        break; } }
+        {   const int n (var_ [CSS STYLE].as < int > ());
+            switch (n)
+            {   case 0 :
+                case 3 :
+                    context.css_style (n);
+                    break;
+                default :
+                    nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Style value");
+                    break; } }
 
         if (var_.count (CSS UI))
-            if (context.css_version () < 3)
-                nits.pick (nit_config_version, es_error, ec_init, "--" CSS UI " requires --" CSS VERSION " 3");
-            else
-            {   const int n (var_ [CSS UI].as < int > ());
-                switch (n)
-                {   case 0 :
-                    case 3 :
-                    case 4 :
-                        context.css_ui (n);
-                        break;
-                    default :
-                        nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS UI value");
-                        break; } }
+        {   const int n (var_ [CSS UI].as < int > ());
+            switch (n)
+            {   case 0 :
+                case 3 :
+                case 4 :
+                    context.css_ui (n);
+                    break;
+                default :
+                    nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS UI value");
+                    break; } }
 
         yea_nay (&context_t::rfc_1867, nits, HTML RFC1867, HTML DONT RFC1867);
         yea_nay (&context_t::rfc_1942, nits, HTML RFC1942, HTML DONT RFC1942);
@@ -1385,8 +1364,6 @@ void options::contextualise (nitpick& nits)
         TEST_VAR (mathvariant);
         TEST_VAR (matrixtype);
         TEST_VAR (media);
-        TEST_VAR (mediafeature);
-        TEST_VAR (mediakeyword);
         TEST_VAR (method);
         TEST_VAR (mf_identifier);
         TEST_VAR (mf_itemtype);

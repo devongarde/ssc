@@ -32,6 +32,7 @@ void types_init (nitpick& nits)
     void currency_init (nitpick& nits);
     void httpequiv_init (nitpick& nits);
     void lang_init (nitpick& nits);
+    void media_init (nitpick& nits);
     void metaname_init (nitpick& nits);
     void mime_init (nitpick& nits);
     void property_init (nitpick& nits);
@@ -50,6 +51,7 @@ void types_init (nitpick& nits)
     currency_init (nits);
     httpequiv_init (nits);
     lang_init (nits);
+    media_init (nits);
     metaname_init (nits);
     mime_init (nits);
     property_init (nits);
@@ -165,6 +167,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_colour_profile_name);
         TEST_VALUE (t_colour_profile_name_or_uri);
         TEST_VALUE (t_colour_rendering);
+        TEST_VALUE (t_colour_scheme);
         TEST_VALUE (t_colour_trans);
         TEST_VALUE (t_colour_trans_i);
         TEST_VALUE (t_colour_v);
@@ -347,6 +350,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_dur_repeat);
         TEST_VALUE (t_duration);
         TEST_VALUE (t_duration_media);
+        TEST_VALUE (t_dynamic_range);
         TEST_VALUE (t_edgemode);
         TEST_VALUE (t_edi);
         TEST_VALUE (t_edit);
@@ -359,6 +363,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_end);
         TEST_VALUE (t_endvaluelist);
         TEST_VALUE (t_enterkeyhint);
+        TEST_VALUE (t_environment_blending);
         TEST_VALUE (t_existential);
         TEST_VALUE (t_expected);
         TEST_VALUE (t_featurepolicy);
@@ -400,6 +405,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_font_variant_numeric);
         TEST_VALUE (t_font_variant_numerics);
         TEST_VALUE (t_font_variant_position);
+        TEST_VALUE (t_forced_colours);
         TEST_VALUE (t_form);
         TEST_VALUE (t_format);
         TEST_VALUE (t_formaturi);
@@ -407,6 +413,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_frame4);
         TEST_VALUE (t_framespacing);
         TEST_VALUE (t_frequency);
+        TEST_VALUE (t_gamut);
         TEST_VALUE (t_gender);
         TEST_VALUE (t_generic);
         TEST_VALUE (t_glyphname);
@@ -466,6 +473,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_intent_conlit);
         TEST_VALUE (t_intent_hint);
         TEST_VALUE (t_intent_ref);
+        TEST_VALUE (t_inverted_colours);
         TEST_VALUE (t_is);
         TEST_VALUE (t_isbn);
         TEST_VALUE (t_issn);
@@ -577,8 +585,16 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_measures_a);
         TEST_VALUE (t_measures_i);
         TEST_VALUE (t_media);
-        TEST_VALUE (t_mediafeature);
-        TEST_VALUE (t_mediakeyword);
+        TEST_VALUE (t_media_display_mode);
+        TEST_VALUE (t_media_hover);
+        TEST_VALUE (t_media_inline);
+        TEST_VALUE (t_media_orientation);
+        TEST_VALUE (t_media_overflow);
+        TEST_VALUE (t_media_pointer);
+        TEST_VALUE (t_media_prefers);
+        TEST_VALUE (t_media_prefers_2);
+        TEST_VALUE (t_media_scripting);
+        TEST_VALUE (t_media_update);
         TEST_VALUE (t_meetslice);
         TEST_VALUE (t_menuitem);
         TEST_VALUE (t_menutype);
@@ -627,6 +643,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_nsds);
         TEST_VALUE (t_nuf);
         TEST_VALUE (t_num);
+        TEST_VALUE (t_nav_controls);
         TEST_VALUE (t_occurence);
         TEST_VALUE (t_og);
         TEST_VALUE (t_ogtype);
@@ -708,6 +725,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_rules);
         TEST_VALUE (t_sandbox);
         TEST_VALUE (t_sandboxen);
+        TEST_VALUE (t_scan);
         TEST_VALUE (t_scei);
         TEST_VALUE (t_schema_type);
         TEST_VALUE (t_scope);

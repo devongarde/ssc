@@ -15,6 +15,8 @@
 ../toast/css/2.2/css.spec
 ../toast/css/3-colour/css.spec
 ../toast/css/3-media/css.spec
+../toast/css/4-media/css.spec
+../toast/css/5-media/css.spec
 ../toast/css/3-ns/css.spec
 ../toast/css/3-sel/css.spec
 ../toast/css/3-style/css.spec
@@ -76,6 +78,7 @@
 ../toast/living/jul22/living.spec
 ../toast/living/oct22/living.spec
 ../toast/living/jan23/living.spec
+../toast/living/apr23/living.spec
 ../toast/math/1/math.spec
 ../toast/math/2/math.spec
 ../toast/math/3/math.spec

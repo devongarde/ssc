@@ -40,7 +40,6 @@ class css
     ::std::string abs_;
     v_np ticks_;
     int line_ = 0;
-//    e_element styled_ = elem_undefined;
     void check_for_standard_classes (const html_version& v);
 public:
     explicit css (const html_version& v, const namespaces_ptr& namespaces, dst_ptr dst, page& p, const ::std::string& abs, bool state_version, bool snippet, int line, const e_element styled, const element_bitset eb);

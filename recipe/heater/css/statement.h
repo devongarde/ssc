@@ -34,6 +34,7 @@ class statement
     vpst_t vst_;
     void parse_charset (arguments& args, nitpick& nits, const int from, const int to);
     void parse_colour_profile (arguments& args, nitpick& nits, const int to);
+    void parse_custom_media (arguments& args, nitpick& nits, const int from, const int to);
     void parse_font_face (arguments& args, nitpick& nits, const int to);
     void parse_import (arguments& args, nitpick& nits, const int from, const int to);
     void parse_media (arguments& args, nitpick& nits, const int from, const int to);

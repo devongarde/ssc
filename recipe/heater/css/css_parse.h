@@ -35,7 +35,7 @@ struct token_t
 typedef ::std::vector < token_t > vtt_t;
 
 ::std::string tkn_rpt (const token_t& t);
-::std::string assemble_string (vtt_t& vt, const int from, const int to = -1);
+::std::string assemble_string (vtt_t& vt, const int from, const int to = -1, const bool inclusive = false);
 int token_find (const vtt_t& vt, const css_token t, const int from = 0, const int to = -1, int* prev = nullptr);
 int first_non_whitespace (const vtt_t& vt, int from, const int to = -1);
 int next_non_whitespace (const vtt_t& vt, const int from, const int to = -1);

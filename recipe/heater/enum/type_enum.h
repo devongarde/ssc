@@ -147,6 +147,14 @@ template < e_type E, typename ENUM, typename CATEGORY = ident_t, CATEGORY INIT =
     {   return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: flags (enum_base < ENUM, E > :: value_); }
     static flags_t flags (const ENUM e)
     {   return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: flags (e); }
+    flags_t ext2 ()
+    {   return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: flags2 (enum_base < ENUM, E > :: value_); }
+    static flags_t ext2 (const ENUM x)
+    {   return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: flags2 (x); }
+    static html_version first_version (const ENUM x)
+    {   return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: first_version (x); }
+    static html_version final_version (const ENUM x)
+    {   return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: final_version (x); }
     void accumulate (stats_t* st, const e_element e) const
     {   enum_base < ENUM, E > :: accumulate (st, e); }
     void accumulate (stats_t* st, const element_bitset& e) const
@@ -526,12 +534,6 @@ template < > struct type_master < t_matrixtype > : enum_n < t_matrixtype, e_matr
 
 template < > struct type_master < t_media > : enum_n < t_media, e_media >
 { using enum_n < t_media, e_media > :: enum_n; };
-
-template < > struct type_master < t_mediafeature > : enum_n < t_mediafeature, e_mediafeature >
-{ using enum_n < t_mediafeature, e_mediafeature > :: enum_n; };
-
-template < > struct type_master < t_mediakeyword > : enum_n < t_mediakeyword, e_mediakeyword >
-{ using enum_n < t_mediakeyword, e_mediakeyword > :: enum_n; };
 
 template < > struct type_master < t_metaname > : enum_n < t_metaname, e_metaname >
 { using enum_n < t_metaname, e_metaname > :: enum_n; };

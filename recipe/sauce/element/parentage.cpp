@@ -1283,6 +1283,7 @@ parentage parent_table [] =
     { { HTML_4_0 }, { XHTML_1_1 }, elem_samp, elem_undefined, 0, EF_4_INLINE },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_samp, elem_undefined, 0, EF_X2_TEXT },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_samp, elem_undefined, 0, EF_5_PHRASE },
+    { { HTML_APR23 }, { HTML_UNDEF }, elem_search, elem_undefined, 0, EF_5_FLOW },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_script, elem_undefined, 0, EF_SVG_DESC },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_section, elem_undefined, 0, EF_X2_FLOW },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_section, elem_undefined, 0, EF_5_FLOW },

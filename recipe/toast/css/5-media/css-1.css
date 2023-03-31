@@ -1,0 +1,9 @@
+﻿@import "print-styles.css" print;
+
+@import url(example.css) screen and (color), projection and (color);
+
+@media screen {
+  * { font-family: sans-serif }
+}
+
+@media screen and (color), projection and (color) { }

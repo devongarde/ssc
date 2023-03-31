@@ -1,0 +1,23 @@
+﻿@media (resolution >= 2dppx) { }
+
+@media print and (min-resolution: 300dpi) { }
+
+@media print and (min-resolution: 118dpcm) { }
+
+@media (scan: interlace) { body { font-family: sans-serif; } }
+
+@media (grid) and (max-width: 15em) { }
+
+@media (update) {
+  a { text-decoration: none; }
+  a:hover, a:focus { text-decoration: underline; }
+}
+/* In non-updating UAs, the links get their default underline at all times. */
+
+body { background-color: white; }
+p { color: black; }
+
+@media(environment-blending: additive) {
+    body { background-color: black; }
+    p { color: white; font-size: 16px; font-weight: 1000; }
+}

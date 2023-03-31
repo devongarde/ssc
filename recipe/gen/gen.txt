@@ -90,7 +90,7 @@ line, the "no-" switch always applies.
 --css.extension ext     Presume files with extension '.ext' are CSS
                         files
 
---css.media X           Use CSS Media level X, where X is 0, 3 or 4
+--css.media X           Use CSS Media level X, where X is 0, 3, 4 or 5
 
 --css.namespace X       Use CSS Namespaces level X, where X is 0 or 3
 
@@ -110,6 +110,7 @@ line, the "no-" switch always applies.
                             2.2 CSS 2.2 (Feb 2022 draft)
                             3   CSS level 3 (unfinished)
                             4   CSS level 4 (unfinished)
+                            5   CSS level 5 (unfinished)
 
 --general.class         Nitpick class values
 
@@ -269,7 +270,7 @@ line, the "no-" switch always applies.
                             ...         (halfly)
                             2021/1/1    WhatWG HTML 5 (Jan 2021)
                             ...         (quarterly)
-                            2023/1/1    WhatWG HTML 5 Jan 2023)
+                            2023/4/1    WhatWG HTML 5 (Apr 2023)
 
                             XHTML 1.0   XHTML 1.0
                             XHTML 1.1   XHTML 1.1 core

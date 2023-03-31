@@ -116,6 +116,9 @@ template < > struct type_master < t_edi > : three_value < t_edi, e_edi, sz_enabl
 template < > struct type_master < t_enctype > : three_value < t_enctype, e_enctype, sz_app_urlencoded, sz_multipart_form_data, sz_text_plain >
 { using three_value < t_enctype, e_enctype, sz_app_urlencoded, sz_multipart_form_data, sz_text_plain > :: three_value; };
 
+template < > struct type_master < t_environment_blending > : three_value < t_environment_blending, e_environment_blending, sz_additive, sz_opaque, sz_subtractive >
+{ using three_value < t_environment_blending, e_environment_blending, sz_additive, sz_opaque, sz_subtractive > :: three_value; };
+
 template < > struct type_master < t_fill_rule > : three_value < t_fill_rule, e_fill_rule, sz_nonzero, sz_evenodd, sz_inherit >
 { using three_value < t_fill_rule, e_fill_rule, sz_nonzero, sz_evenodd, sz_inherit > :: three_value; };
 
@@ -124,6 +127,9 @@ template < > struct type_master < t_fontnia > : three_value < t_fontnia, e_fontn
 
 template < > struct type_master < t_font_variant_position > : three_value < t_font_variant_position, e_font_variant_position, sz_normal, sz_sub, sz_super >
 { using three_value < t_font_variant_position, e_font_variant_position, sz_normal, sz_sub, sz_super > :: three_value; };
+
+template < > struct type_master < t_gamut > : three_value < t_gamut, e_gamut, sz_p3, sz_rec2020, sz_srgb >
+{ using three_value < t_gamut, e_gamut, sz_p3, sz_rec2020, sz_srgb > :: three_value; };
 
 template < > struct type_master < t_importance > : three_value < t_importance, e_importance, sz_auto, sz_high, sz_low >
 { using three_value < t_importance, e_importance, sz_auto, sz_high, sz_low > :: three_value; };
@@ -151,6 +157,18 @@ template < > struct type_master < t_mathframe > : three_value < t_mathframe, e_m
 
 template < > struct type_master < t_mathoccurence > : three_value < t_mathoccurence, e_mathoccurence, sz_prefix, sz_infix, sz_functionmodel >
 { using three_value < t_mathoccurence, e_mathoccurence, sz_prefix, sz_infix, sz_functionmodel > :: three_value; };
+
+template < > struct type_master < t_media_overflow > : three_value < t_media_overflow, e_media_overflow, sz_none, sz_scroll, sz_paged >
+{ using three_value < t_media_overflow, e_media_overflow, sz_none, sz_scroll, sz_paged > :: three_value; };
+
+template < > struct type_master < t_media_pointer > : three_value < t_media_pointer, e_media_pointer, sz_coarse, sz_fine, sz_none >
+{ using three_value < t_media_pointer, e_media_pointer, sz_coarse, sz_fine, sz_none > :: three_value; };
+
+template < > struct type_master < t_media_scripting > : three_value < t_media_scripting, e_media_scripting, sz_enabled, sz_initial_only, sz_none >
+{ using three_value < t_media_scripting, e_media_scripting, sz_enabled, sz_initial_only, sz_none > :: three_value; };
+
+template < > struct type_master < t_media_update > : three_value < t_media_update, e_media_update, sz_fast, sz_none, sz_slow >
+{ using three_value < t_media_update, e_media_update, sz_fast, sz_none, sz_slow > :: three_value; };
 
 template < > struct type_master < t_menuitem > : three_value < t_menuitem, e_menuitem, sz_command, sz_checkbox, sz_radio >
 { using three_value < t_menuitem, e_menuitem, sz_command, sz_checkbox, sz_radio > :: three_value; };

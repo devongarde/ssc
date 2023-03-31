@@ -41,8 +41,8 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
     const int n = token_find (args.t_, ct_bar, b, to, &b4);
     if (n > 0)
     {   b = next_non_whitespace (args.t_, n, to);
-        if (args.v_.css_selector () < 3)
-            nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": namespaces requires CSS Selectors 3 or better");
+        if (args.v_.css_namespace () < 3)
+            nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": namespaces requires CSS Namespace 3 or better");
         else if ((b < 0) && (b4 < 0))
             nits.pick (nit_css_syntax, es_error, ec_css, quote (wo), ": a namespace andor an element must be given");
         else if (b4 > 0)
@@ -100,7 +100,7 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
             break;
         case ct_squiggle :
             pseudo = false;
-            if (context.html_ver ().css_version () < css_3)
+            if (context.html_ver ().css_selector () < 3)
                 nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": ~ requires CSS 3 selectors or better");
             else
             {   css_element e (elem_css_precede);

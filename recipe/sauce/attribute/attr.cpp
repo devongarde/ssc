@@ -296,6 +296,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, "feGaussianblur", a_fegaussianblur },
     { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, "feMorphology", a_femorphology },
     { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, "fence", a_fence },
+    { { HTML_APR23 }, { HTML_UNDEF }, "fetchpriority", a_fetchpriority },
     { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, "feTile", a_fetile },
     { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "fill", a_fill, ns_default, AF_SVG2_PROPERTY | AP_SET_XLINKCAT (se_paint_server) },
     { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "fill-opacity", a_fill_opacity, ns_default, AF_SVG2_PROPERTY },

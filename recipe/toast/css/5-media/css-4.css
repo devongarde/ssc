@@ -1,0 +1,15 @@
+﻿@media (400px <= width <= 700px) { }
+
+@media (min-width: 20em) { }
+
+@media (orientation:portrait) { }
+
+@media (horizontal-viewport-segments: 2) and (vertical-viewport-segments: 1) { }
+
+/* applies when the viewport is fullscreen */
+@media (display-mode: fullscreen) {
+}
+
+/* applies when an element is fullscreen */
+#game:fullscreen {
+}

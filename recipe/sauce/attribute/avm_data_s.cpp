@@ -66,6 +66,10 @@ hav_t havt_sdev [] =
 {   MATH3_DEFS_ATTRIBUTES (elem_sdev),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
+hav_t havt_search [] =
+{   STANDARD_HTML5_ATTRIBUTES (elem_search),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
 hav_t havt_sec [] =
 {   MATH3_DEFS_ATTRIBUTES (elem_sec),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };

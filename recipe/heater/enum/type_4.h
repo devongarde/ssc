@@ -137,6 +137,12 @@ template < > struct type_master < t_mathclosure > : four_value < t_mathclosure, 
 template < > struct type_master < t_mathside > : four_value < t_mathside, e_mathside, sz_left, sz_right, sz_leftoverlap, sz_rightoverlap >
 { using four_value < t_mathside, e_mathside, sz_left, sz_right, sz_leftoverlap, sz_rightoverlap > :: four_value; };
 
+template < > struct type_master < t_media_display_mode > : four_value < t_media_display_mode, e_media_display_mode, sz_browser, sz_fullscreen, sz_minimal_ui, sz_standalone >
+{ using four_value < t_media_display_mode, e_media_display_mode, sz_browser, sz_fullscreen, sz_minimal_ui, sz_standalone > :: four_value; };
+
+template < > struct type_master < t_media_prefers_2 > : four_value < t_media_prefers_2, e_media_prefers_2, sz_custom, sz_less, sz_no_preference, sz_more >
+{ using four_value < t_media_prefers_2, e_media_prefers_2, sz_custom, sz_less, sz_no_preference, sz_more > :: four_value; };
+
 template < > struct type_master < t_mf_availability > : four_value < t_mf_availability, e_mf_availability, sz_out_of_stock, sz_in_stock, sz_instore_only, sz_preorder >
 { using four_value < t_mf_availability, e_mf_availability, sz_out_of_stock, sz_in_stock, sz_instore_only, sz_preorder > :: four_value; };
 
