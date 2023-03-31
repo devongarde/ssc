@@ -200,10 +200,11 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_css_20 : return "CSS Level 2";
         case ed_css_21 : return "CSS Level 2.1";
         case ed_css_22 : return "CSS Level 2.2";
+        case ed_css_media_4 : return "CSS Media 4"; 
         case ed_css_namespaces_3 : return "CSS Namespaces 3";
-        case ed_css_syntax : return "CSS Syntax Module";
         case ed_css_selectors_3 : return "CSS Selectors 3";
         case ed_css_selectors_4 : return "CSS Selectors 4";
+        case ed_css_syntax : return "CSS Syntax Module";
         case ed_css_ui_3 : return "CSS UI 3";
         case ed_css_ui_4 : return "CSS UI 4";
         case ed_json : return "JSON";
@@ -287,10 +288,11 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_css_20 : return "CSS Level 2 (May 1998)";
         case ed_css_21 : return "CSS Level 2.1 (April 2016)";
         case ed_css_22 : return "CSS Level 2.2 (February 2022 draft)";
+        case ed_css_media_4 : return "CSS Media Queries Level 4, July 2020"; 
         case ed_css_namespaces_3 : return "CSS Namespaces 3, September 2011";
-        case ed_css_syntax : return "CSS Syntax Module Level 3 (December 2021 draft)";
         case ed_css_selectors_3 : return "CSS Selectors Level 3, November 2018";
         case ed_css_selectors_4 : return "CSS Selectors Level 4 (May 2022 draft)";
+        case ed_css_syntax : return "CSS Syntax Module Level 3 (December 2021 draft)";
         case ed_css_ui_3 : return "CSS Basic User Interface Level 3, June 2018";
         case ed_css_ui_4 : return "CSS Basic User Interface Level 4 (March 2021 draft)";
         case ed_json : return "RFC 4627, JSON";

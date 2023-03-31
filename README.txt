@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.1.17
+version 0.1.18
 (c) 2020-2023 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notice
 https://ssc.lu/
@@ -10,7 +10,7 @@ https://github.com/devongarde/ssc
 
 ssc analyses static X/HTML snippets, files and sites:
 - HTML 1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3-draft
-- HTML living standard, Jan 2005 to Jan 2023
+- HTML living standard, Jan 2005 to Apr 2023
 - CSS 1/2.0/2.1/2.2 draft Feb 2022
 - SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x draft Apr 2021
 - MathML 1/2/3/4 draft Jul 2022

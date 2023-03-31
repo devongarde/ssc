@@ -11,18 +11,12 @@ PASS ../toast/coop/corrupt/search.shtml
 
 PASS ../toast/coop/corrupt/plumbing/songshade.css
 0 html
+9 pseud pseud pseud pseud
+16 pseud pseud
 19 css_bespoke
-26 bad_media bad_media unrecognised_value bad_media unrecognised_value bad_media
-28 bad_media bad_media unrecognised_value bad_media unrecognised_value bad_media
-30 bad_media bad_media unrecognised_value bad_media unrecognised_value bad_media
-32 bad_media bad_media unrecognised_value bad_media unrecognised_value bad_media
-34 bad_media bad_media unrecognised_value bad_media unrecognised_value bad_media
-36 bad_media bad_media unrecognised_value bad_media unrecognised_value bad_media
 41 css_bespoke
 42 css_bespoke
 43 css_bespoke
-95 bad_media bad_media unrecognised_value bad_media unrecognised_value bad_media
-98 bad_media bad_media unrecognised_value bad_media unrecognised_value bad_media
 104 css_bespoke
 104 css_bespoke
 104 css_bespoke

@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "base/type_master.h"
 
-bool parse_media_query (nitpick& nits, const html_version& v, const ::std::string& s);
+bool parse_media_query (nitpick& nits, const html_version& v, const ::std::string& s, const ustr_t& custom_media = ustr_t ());
 
 template < > struct type_master < t_mql > : tidy_string < t_mql >
 {   using tidy_string < t_mql > :: tidy_string;

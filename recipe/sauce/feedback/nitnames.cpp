@@ -798,6 +798,9 @@ const nitname nitnames [] =
     { nit_css_bespoke, "css_bespoke" },
     { nit_not_not, "not_not" },
     { nit_css_svg, "css_svg" },
+    { nit_deprecated_media, "deprecated_media" },
+    { nit_media_version, "media_version" },
+    { nit_media_ignored, "media_ignored" },
 
     { nit_incompatible, "incompatible" },
 

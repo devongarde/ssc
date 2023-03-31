@@ -619,6 +619,7 @@ PASS ../toast/living/oct22/hs-9.html
 4 inserted_missing_parent inserted_missing_closure missing_close
 
 PASS ../toast/living/oct22/html4.css
+0 html
 61 pseud
 
 PASS ../toast/living/oct22/i.html
@@ -1280,7 +1281,7 @@ PASS ../toast/living/oct22/menu.html
 9 url_not_found
 
 PASS ../toast/living/oct22/meta-2.html
-6 unrecognised_value immeasurable
+6 media_ignored
 8 refresh_zero url_not_found
 
 PASS ../toast/living/oct22/meter.html

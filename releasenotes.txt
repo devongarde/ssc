@@ -3,10 +3,17 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.18
+- Living Standard Apr 23
+- CSS 4 Media
+- CSS 5 Media
+- underlying work
+
 0.1.17
-- CSS 3 Colour
 - CSS 3 Basic User Interface
 - CSS 4 Basic User Interface (March 2021 draft)
+- CSS 3 Colour
+- CSS 3 Media
 - underlying work
 
 0.1.16

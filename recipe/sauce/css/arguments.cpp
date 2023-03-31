@@ -52,6 +52,12 @@ void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string
         if ((ss_ == nullptr) || (! ss_ -> bef_aft ()))
             nits.pick (nit_naughty_content, ed_css_21, "12.2 The 'content' p. 182 property", es_error, ec_css, s, " requires an element with :before andor :after"); }
 
+const ustr_t& arguments::custom_media () const
+{ return g_.custom_media_; }
+ 
+ustr_t& arguments::custom_media ()
+{ return g_.custom_media_; } 
+
 void arguments::validate (nitpick& nits, const flags_t f, const ::std::string& p, const ::std::string& vl) const
 {   if ((f & CF_PAGE) == CF_PAGE)
         if (! ps_ -> state ().test (ec_page_property))

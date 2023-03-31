@@ -43,8 +43,8 @@ void css_attribute::parse (arguments& args, const int from, const int to)
         if ((p > 0) && ((args.t_.at (p).t_ == ct_identifier) || (args.t_.at (p).t_ == ct_keyword) || (args.t_.at (p).t_ == ct_splat)))
         {   nitpick& nits = args.t_.at (n).nits_;
             b = p;
-            if (args.v_.css_selector () < 3)
-                nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": namespaces requires CSS Selectors 3 or better");
+            if (args.v_.css_namespace () < 3)
+                nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": namespaces requires CSS Namespace 3 or better");
             else if ((b < 0) && (b4 < 0))
                 nits.pick (nit_css_syntax, es_error, ec_css, quote (wo), ": a namespace andor an attribute must be given");
             else if (b4 > 0)

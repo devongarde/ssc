@@ -1,0 +1,28 @@
+﻿/* Make radio buttons and check boxes larger if we have an inaccurate primary pointing device */
+@media (pointer:coarse) {
+  input[type="checkbox"], input[type="radio"] {
+    min-width:30px;
+    min-height:40px;
+    background:transparent;
+  }
+}
+
+/* Only use a hover-activated drop down menu on devices that can conveniently hover. */
+@media (hover) {
+  .menu > li        {display:inline-block;}
+  .menu ul          {display:none; position:absolute;}
+  .menu li:hover ul {display:block; list-style:none; padding:0;}
+  /* ... */
+}
+
+@media (nav-controls: back) {
+  #back-button {
+    display: none;
+  }
+}
+
+@media (nav-controls) {
+  #back-button {
+    display: none;
+  }
+}

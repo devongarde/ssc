@@ -240,7 +240,7 @@ struct symbol_entry < html_version, e_rel > rel_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, R_PREDECESSOR_VERSION, r_predecessor_version },
     { { HTML_4_0, HR_EXTERNAL | HR_LINK | HV_NOT51 | HV_NOT52 }, { HTML_UNDEF }, R_PREFETCH, r_prefetch },
     { { HTML_JUL16, HR_LINK | HR_EXTERNAL | HV_NOT50 | HV_NOT51 | HV_NOT52 }, { HTML_UNDEF }, R_PRELOAD, r_preload },
-    { { HTML_JUL16, HR_LINK | HR_EXTERNAL | HV_NOT50 | HV_NOT51 | HV_NOT52 }, { HTML_UNDEF }, R_PRERENDER, r_prerender },
+    { { HTML_JUL16, HR_LINK | HR_EXTERNAL | HV_NOT50 | HV_NOT51 | HV_NOT52 }, { HTML_MAR23 }, R_PRERENDER, r_prerender },
     { { HTML_4_0, HR_A_AREA | HR_LINK | HR_MF }, { HTML_UNDEF }, R_PREV, r_prev },
     { { HTML_4_0 }, { HTML_UNDEF }, R_PREVIEW, r_preview },
     { { HTML_PLUS, HR_MF }, { HTML_UNDEF }, R_PREVIOUS, r_prev },

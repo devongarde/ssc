@@ -51,6 +51,20 @@ void statement::parse_colour_profile (arguments& args, nitpick& nits, const int 
         fiddlesticks < statement > f (&args.st_, this);
         prop_.parse (args, args.t_.at (to).child_); } }
 
+void statement::parse_custom_media (arguments& args, nitpick& nits, const int from, const int to)
+{   int i = next_non_whitespace (args.t_, from, to); 
+    if (context.html_ver ().css_media () < 5)
+        nits.pick (nit_css_version, es_error, ec_css, "@custom-media requires CSS Media 5");
+    else if ((i < 0) || ((args.t_.at (i).t_ != ct_string) && (args.t_.at (i).t_ != ct_identifier) && (args.t_.at (i).t_ != ct_number) && (args.t_.at (i).t_ != ct_keyword)))
+        nits.pick (nit_css_syntax, es_error, ec_css, "expecting an identifier after @custom-media");
+    else
+    {   ::std::string name (args.t_.at (i).val_);
+        i = next_non_whitespace (args.t_, i, to);
+        if (i < 0) nits.pick (nit_css_syntax, es_error, ec_css, "missing @custom-media definition after ", quote (i));
+        else
+        {   ::std::string def (assemble_string (args.t_, i, to, true));
+            args.custom_media ().insert (::std::pair (name, def)); } } }
+
 void statement::parse_font_face (arguments& args, nitpick& nits, const int to)
 {   if (context.html_ver ().css_version () != css_2_0)
         nits.pick (nit_css_version, es_error, ec_css, "@font-face requires CSS 2.0 (only)");
@@ -63,7 +77,8 @@ void statement::parse_font_face (arguments& args, nitpick& nits, const int to)
 
 void statement::parse_import (arguments& args, nitpick& nits, const int from, const int to)
 {   url u;
-    const int i = next_non_whitespace (args.t_, from, to); 
+    const int i = next_non_whitespace (args.t_, from, to);
+    int mql = -1; 
     if (args.had_rule_)
         nits.pick (nit_bad_import, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, "@import must precede all rules");
     if (args.st_ != nullptr)
@@ -86,6 +101,8 @@ void statement::parse_import (arguments& args, nitpick& nits, const int from, co
             {   ::std::string wot (args.t_.at (child).val_);
                 if ((args.t_.at (child).t_ == ct_keyword) || (args.t_.at (child).t_ == ct_identifier))
                 {   const int ket = token_find (args.t_, ct_round_ket, child, to);
+                    if (ket < 0) nits.pick (nit_bad_import, es_error, ec_css, "missing ket following @import url(");
+                    else mql = next_non_whitespace (args.t_, ket, to); 
                     wot = assemble_string (args.t_, child, (ket < 0) ? to : ket); }
                 u = examine_value < t_url > (nits, context.html_ver (), wot); } } }
     if (! u.invalid ())
@@ -100,7 +117,10 @@ void statement::parse_import (arguments& args, nitpick& nits, const int from, co
         else
         {   nitpick knots;
             args.g_.get_page ().css ().parse_file (knots, args.ns_, u, true);
-            nits.merge (knots); } } }
+            nits.merge (knots); } }
+    if (mql > 0)
+    {   ::std::string s (assemble_string (args.t_, mql, to, true));
+        parse_media_query (nits, args.v_, s, args.custom_media ()); } }
 
 void statement::parse_media (arguments& args, nitpick& nits, const int from, const int to)
 {   if (context.html_ver ().css_version () == css_1)
@@ -113,7 +133,7 @@ void statement::parse_media (arguments& args, nitpick& nits, const int from, con
             const int i = next_non_whitespace (args.t_, from, to);
             token_find (args.t_, ct_curly_brac, i, to, &prev);
             twas = assemble_string (args.t_, i, prev);
-            parse_media_query (nits, args.v_, twas); } 
+            parse_media_query (nits, args.v_, twas, args.custom_media ()); } 
         else for (int i = from; i != to; )
         {   i = next_non_whitespace (args.t_, i, to);
             if ((i < 0) || (i >= to)) break;
@@ -135,7 +155,7 @@ void statement::parse_media (arguments& args, nitpick& nits, const int from, con
             vst_.emplace_back (pst_t (new statements (args, args.t_.at (to).child_))); } } }
 
 void statement::parse_namespace (arguments& args, nitpick& nits, const int from, const int to)
-{   if (context.html_ver ().css_version () < css_3)
+{   if (context.html_ver ().css_namespace () < 3)
         nits.pick (nit_css_version, ed_css_namespaces_3, "CSS Namespaces 3, September 2011", es_error, ec_css, "@namespace requires CSS 3 or later");
     else
     if (args.had_rule_)
@@ -221,6 +241,9 @@ void statement::parse (arguments& args, const int from, const int to)
             case css_colour_profile :
                 parse_colour_profile (args, nits, to);
                 break;
+            case css_custom_media :
+                parse_custom_media (args, nits, b, to);
+                break;
             case css_font_face :
                 parse_font_face (args, nits, to);
                 break;
@@ -288,6 +311,9 @@ void statement::accumulate (stats_t* s) const
             break;
         case css_colour_profile :
             res = "@color-profile;";
+            break;
+        case css_custom_media :
+            res = "@custom-media;";
             break;
         case css_document :
             res = "@document;";

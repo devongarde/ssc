@@ -1,0 +1,13 @@
+﻿@media (color) { }
+@media (min-color: 1) { }
+
+@media (color >= 8) { }
+
+@media (color-index) { }
+@media (color-index >= 1) { }
+
+@media (monochrome) {  }
+
+@media (monochrome >= 2) {  }
+
+@media (color-gamut: p3) {  }

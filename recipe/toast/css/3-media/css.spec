@@ -25,21 +25,23 @@ PASS ../toast/css/3-media/css-2.html
 PASS ../toast/css/3-media/css-3.css
 0 html
 2 unrecognised_value
-6 unrecognised_value
-10 unrecognised_value
+4 media_ignored
+6 unrecognised_value bad_media bad_media
+8 illegal_value
+10 unrecognised_value bad_media bad_media bad_media
 11 unrecognised_value
 15 bad_media
 15 css_syntax unrecognised_value
 
 PASS ../toast/css/3-media/css-3.html
-4 unrecognised_value url_not_found
+4 unrecognised_value unrecognised_value bad_media url_not_found
 
 PASS ../toast/css/3-media/css-4.css
 0 html
 
 PASS ../toast/css/3-media/css-4.html
 0 charset_mismatch charset_used
-4 attribute_required
+4 bad_media attribute_required
 5 attribute_required
 6 attribute_required
 7 attribute_required

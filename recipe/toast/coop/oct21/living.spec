@@ -845,7 +845,6 @@ PASS ../toast/coop/oct21/i/img.html
 111 no_such_folder url_not_found
 112 inserted_missing_closure
 115 url_not_found
-120 bad_media unrecognised_value bad_media unrecognised_value bad_media
 127 url_not_found
 139 url_not_found id_exists
 147 url_not_found
@@ -1277,7 +1276,7 @@ PASS ../toast/coop/oct21/m/menu.html
 9 url_not_found
 
 PASS ../toast/coop/oct21/m/meta-2.html
-6 unrecognised_value immeasurable
+6 media_ignored
 8 refresh_zero url_not_found
 
 PASS ../toast/coop/oct21/m/meter.html

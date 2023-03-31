@@ -110,8 +110,8 @@ class context_t
     context_t& css_selector (const int n) { version_.css_selector (n); mac (nm_context_css_selector, n); return *this; }
     context_t& css_style (const int n) { version_.css_style (n); mac (nm_context_css_style, n); return *this; }
     context_t& css_ui (const int n) { version_.css_ui (n); mac (nm_context_css_ui, n); return *this; }
-    context_t& css_version (const int mjr, const int mnr) noexcept;
-    context_t& css_version (const e_css_version v) noexcept { version_.css_version (v); mac < int > (nm_context_css_version, v); return *this; }
+    context_t& css_version (const int mjr, const int mnr);
+    context_t& css_version (const e_css_version v) { version_.css_version (v); mac < int > (nm_context_css_version, v); return *this; }
     context_t& custom_elements (const vstr_t& s) { custom_elements_ = s; mac (nm_context_custom_elements, s); return *this; }
     context_t& domsg (const ::std::string& s) { domsg_ = s; return *this; }
     context_t& environment (const e_environment e, const ::std::string& s);
@@ -249,7 +249,7 @@ class context_t
     context_t& stats_page (const bool b) { stats_page_ = b; mac (nm_context_stats_page, b); return *this; }
     context_t& stats_summary (const bool b) { stats_summary_ = b; mac (nm_context_stats_summary, b); return *this; }
     context_t& svg_mode (const e_svg_processing_mode m) noexcept { svg_mode_ = m; return *this; }
-    context_t& svg_version (const int mjr, const int mnr) noexcept;
+    context_t& svg_version (const int mjr, const int mnr);
     context_t& svg_version (const e_svg_version v) { version_.svg_version (v); mac < int > (nm_context_svg_version, v); return *this; }
     context_t& test (const bool b) { test_ = b; mac (nm_context_test, b); return *this; }
     context_t& title (const int n)

@@ -75,6 +75,10 @@ template < > struct type_master < t_bool > : two_value < t_bool, e_bool, sz_fals
 template < > struct type_master < t_capture > : two_value < t_capture, ev_capture, sz_user, sz_environment, false >
 { using two_value < t_capture, ev_capture, sz_user, sz_environment, false > :: two_value; };
 
+// typedef enum { ecs_dark, ecs_light } e_colour_scheme;
+template < > struct type_master < t_colour_scheme > : two_value < t_colour_scheme, e_colour_scheme, sz_dark, sz_light, false >
+{ using two_value < t_colour_scheme, e_colour_scheme, sz_dark, sz_light, false > :: two_value; };
+
 template < > struct type_master < t_compositing > : two_value < t_compositing, e_compositing, sz_normal, sz_knockout, false >
 { using two_value < t_compositing, e_compositing, sz_normal, sz_knockout, false > :: two_value; };
 
@@ -102,6 +106,9 @@ template < > struct type_master < t_dataformatas > : two_value < t_dataformatas,
 template < > struct type_master < t_defaultaction > : two_value < t_defaultaction, e_defaultaction, sz_cancel, sz_perform, false >
 { using two_value < t_defaultaction, e_defaultaction, sz_cancel, sz_perform, false > :: two_value; };
 
+template < > struct type_master < t_dynamic_range > : two_value < t_dynamic_range, e_dynamic_range, sz_high, sz_standard, false >
+{ using two_value < t_dynamic_range, e_dynamic_range, sz_high, sz_standard, false > :: two_value; };
+
 template < > struct type_master < t_editable > : two_value < t_editable, e_editable, sz_none, sz_simple, false >
 { using two_value < t_editable, e_editable, sz_none, sz_simple, false > :: two_value; };
 
@@ -114,6 +121,9 @@ template < > struct type_master < t_fill_ve > : two_value < t_fill_ve, e_fill_ve
 template < > struct type_master < t_focushighlight > : two_value < t_focushighlight, e_focushighlight, sz_auto, sz_none, false >
 { using two_value < t_focushighlight, e_focushighlight, sz_auto, sz_none, false > :: two_value; };
 
+template < > struct type_master < t_forced_colours > : two_value < t_forced_colours, e_forced_colours, sz_active, sz_none, false >
+{ using two_value < t_forced_colours, e_forced_colours, sz_active, sz_none, false > :: two_value; };
+
 template < > struct type_master < t_gender > : two_value < t_gender, e_gender, sz_female, sz_male, false >
 { using two_value < t_gender, e_gender, sz_female, sz_male, false > :: two_value; };
 
@@ -125,6 +135,9 @@ template < > struct type_master < t_hv > : two_value < t_hv, e_hv, sz_horizontal
 
 template < > struct type_master < t_initialvisibility > : two_value < t_initialvisibility, e_initialvisibility, sz_whenstarted, sz_always, false >
 { using two_value < t_initialvisibility, e_initialvisibility, sz_whenstarted, sz_always, false > :: two_value; };
+
+template < > struct type_master < t_inverted_colours > : two_value < t_inverted_colours, e_inverted_colours, sz_inverted, sz_none, false >
+{ using two_value < t_inverted_colours, e_inverted_colours, sz_inverted, sz_none, false > :: two_value; };
 
 template < > struct type_master < t_js_version > : two_value < t_js_version, e_jsonld_version, sz_1_0, sz_1_1, false >
 { using two_value < t_js_version, e_jsonld_version, sz_1_0, sz_1_1, false > :: two_value; };
@@ -141,6 +154,12 @@ template < > struct type_master < t_loading > : two_value < t_loading, e_loading
 template < > struct type_master < t_lralign > : two_value < t_lralign, e_lralign, sz_left, sz_right, false >
 { using two_value < t_lralign, e_lralign, sz_left, sz_right, false > :: two_value; };
 
+template < > struct type_master < t_media_hover > : two_value < t_media_hover, e_media_hover, sz_hover, sz_none, false >
+{ using two_value < t_media_hover, e_media_hover, sz_hover, sz_none, false > :: two_value; };
+
+template < > struct type_master < t_media_inline > : two_value < t_media_inline, e_media_inline, sz_none, sz_scroll, false >
+{ using two_value < t_media_inline, e_media_inline, sz_none, sz_scroll, false > :: two_value; };
+
 template < > struct type_master < t_meetslice > : two_value < t_meetslice, e_meetslice, sz_meet, sz_slice, false >
 { using two_value < t_meetslice, e_meetslice, sz_meet, sz_slice, false > :: two_value; };
 
@@ -152,6 +171,9 @@ template < > struct type_master < t_mathfontstyle > : two_value < t_mathfontstyl
 
 template < > struct type_master < t_mathfontweight > : two_value < t_mathfontweight, e_math_fontweight, sz_bold, sz_normal, false >
 { using two_value < t_mathfontweight, e_math_fontweight, sz_bold, sz_normal, false > :: two_value; };
+
+template < > struct type_master < t_media_orientation > : two_value < t_media_orientation, e_media_orientation, sz_landscape, sz_portrait, false >
+{ using two_value < t_media_orientation, e_media_orientation, sz_landscape, sz_portrait, false > :: two_value; };
 
 template < > struct type_master < t_morphology_operator > : two_value < t_morphology_operator, e_morphology_operator, sz_dilate, sz_erode, false >
 { using two_value < t_morphology_operator, e_morphology_operator, sz_dilate, sz_erode, false > :: two_value; };
@@ -167,6 +189,12 @@ template < > struct type_master < t_mathorder > : two_value < t_mathorder, m_mat
 
 template < > struct type_master < t_mathscope > : two_value < t_mathscope, e_mathscope, sz_global, sz_local, false >
 { using two_value < t_mathscope, e_mathscope, sz_global, sz_local, false > :: two_value; };
+
+template < > struct type_master < t_media_prefers > : two_value < t_media_prefers, e_media_prefers, sz_no_preference, sz_reduce, false >
+{ using two_value < t_media_prefers, e_media_prefers, sz_no_preference, sz_reduce, false > :: two_value; };
+
+template < > struct type_master < t_nav_controls > : two_value < t_nav_controls, e_nav_controls, sz_back, sz_none, false >
+{ using two_value < t_nav_controls, e_nav_controls, sz_back, sz_none, false > :: two_value; };
 
 template < > struct type_master < t_notations > : two_value < t_notations, e_notations, sz_dsssl, sz_w3c, false >
 { using two_value < t_notations, e_notations, sz_dsssl, sz_w3c, false > :: two_value; };
@@ -206,6 +234,9 @@ template < > struct type_master < t_streamedcontents > : two_value < t_streamedc
 
 template < > struct type_master < t_ltr_rtl > : two_value < t_ltr_rtl, e_svg_direction2, sz_ltr, sz_rtl, false >
 { using two_value < t_ltr_rtl, e_svg_direction2, sz_ltr, sz_rtl, false > :: two_value; };
+
+template < > struct type_master < t_scan > : two_value < t_scan, e_scan, sz_interlace, sz_progressive, false >
+{ using two_value < t_scan, e_scan, sz_interlace, sz_progressive, false > :: two_value; };
 
 template < > struct type_master < t_svg_fontvariant_ff > : two_value < t_svg_fontvariant_ff, e_svg_fontvariant_ff, sz_normal, sz_smallcaps, false >
 { using two_value < t_svg_fontvariant_ff, e_svg_fontvariant_ff, sz_normal, sz_smallcaps, false > :: two_value; };

@@ -1,0 +1,27 @@
+﻿@import url(example.css) screen and (color);
+
+@media screen and (color), projection and (color) { }
+
+@media all { }
+@media { }
+
+@media not (width <= -100px) {
+  body { background: green; }
+}
+
+@media (height > -100px) {
+  body { background: green; }
+}
+
+@media not (resolution: -300dpi) {
+  body { background: green; }
+}
+
+@media (max-width: 320px) { /* styles for viewports <= 320px */ }
+@media (min-width: 321px) { /* styles for viewports >= 321px */ }
+
+@media (max-width: 320px) { /* styles for viewports <= 320px */ }
+@media (min-width: 320.01px) { /* styles for viewports >= 320.01px */ }
+
+@media (width <= 320px) { /* styles for viewports <= 320px */ }
+@media (width > 320px) { /* styles for viewports > 320px */ }

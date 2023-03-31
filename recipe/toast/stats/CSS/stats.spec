@@ -875,7 +875,7 @@ References:
   
 Versions:
     HTML3.2/CSS-1: 10 times 
-    HTML5/20221001/SVG-2.1/MathML-core/CSS-1/WhatWG: 7 times 
+    HTML5/20230401/SVG-2.1/MathML-core/CSS-1/WhatWG: 7 times 
   
 File info:
      12551 bytes read in 17 files, with an average of roughly 738 bytes per file

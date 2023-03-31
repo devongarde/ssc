@@ -1291,7 +1291,7 @@ PASS ../toast/living/jan22/menu.html
 9 url_not_found
 
 PASS ../toast/living/jan22/meta-2.html
-6 unrecognised_value immeasurable
+6 media_ignored
 8 refresh_zero url_not_found
 
 PASS ../toast/living/jan22/meter.html

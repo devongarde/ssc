@@ -40,8 +40,8 @@ public:
                     const V& first = html_0, const V& last = html_0, const flags_t flags = NOFLAGS, const flags_t flags2 = NOFLAGS)
     {
     #ifdef DEBUG
-        if (key.find (",") != ::std::string::npos) ::std::cerr << "key '" << key << "' contains a comma\n";
-        if (symbol.find (",") != ::std::string::npos) ::std::cerr << "symbol '" << symbol << "' contains a comma\n";
+        if ((key.length () > 1) && (key.find (",") != ::std::string::npos)) ::std::cerr << "key '" << key << "' contains a comma\n";
+        if ((symbol.length () > 1) && (symbol.find (",") != ::std::string::npos)) ::std::cerr << "symbol '" << symbol << "' contains a comma\n";
     #endif // DEBUG
         symbol_.insert (typename symbol_t::value_type (symbol_key (key, ns), symbol_store < V, CATEGORY, INIT > (first, last, symbol, value, ns, flags, flags2)));
         reverse_.insert (typename reverse_t::value_type (value, symbol_store < V, CATEGORY, INIT > (first, last, symbol, value, ns, flags, flags2))); }

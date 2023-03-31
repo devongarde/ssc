@@ -283,8 +283,9 @@ typedef typed_attribute < t_existential, a_fecolourmatrix > attr_fecolourmatrix;
 typedef typed_attribute < t_existential, a_fecomposite > attr_fecomposite;
 typedef typed_attribute < t_existential, a_fegaussianblur > attr_fegaussianblur;
 typedef typed_attribute < t_existential, a_femorphology > attr_femorphology;
-typedef typed_attribute < t_existential, a_fetile > attr_fetile;
 typedef typed_attribute < t_bool, a_fence > attr_fence;
+typedef typed_attribute < t_existential, a_fetile > attr_fetile;
+typedef typed_attribute < t_importance, a_fetchpriority > attr_fetchpriority;
 typedef typed_attribute < t_fill, a_fill > attr_fill;
 typedef typed_attribute < t_fill_opacity, a_fill_opacity > attr_fill_opacity;
 typedef typed_attribute < t_fill_rule, a_fill_rule > attr_fill_rule;
@@ -1232,6 +1233,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_fecomposite, \
     attr_fegaussianblur, \
     attr_femorphology, \
+    attr_fetchpriority, \
     attr_fetile, \
     attr_fence, \
     attr_fill, \

@@ -1,0 +1,11 @@
+<!-- inner.html -->
+<!DOCTYPE html>
+<html lang="en">
+<title>Relevant Realm demo: inner page</title>
+<script>
+function hello() {
+const promise = navigator.getBattery();
+console.log(promise instanceof Promise); // logs true
+console.log(promise instanceof parent.Promise); // logs false
+}
+</script>

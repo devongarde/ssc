@@ -14,6 +14,8 @@ ssc.exe -T --nits.spec -o ../out/21css.tst -f ../toast/css/2.1/css.conf
 ssc.exe -T --nits.spec -o ../out/22css.tst -f ../toast/css/2.2/css.conf
 ssc.exe -T --nits.spec -o ../out/3col.tst -f ../toast/css/3-colour/css.conf
 ssc.exe -T --nits.spec -o ../out/3media.tst -f ../toast/css/3-media/css.conf
+ssc.exe -T --nits.spec -o ../out/4media.tst -f ../toast/css/4-media/css.conf
+ssc.exe -T --nits.spec -o ../out/5media.tst -f ../toast/css/5-media/css.conf
 ssc.exe -T --nits.spec -o ../out/3ns.tst -f ../toast/css/3-ns/css.conf
 ssc.exe -T --nits.spec -o ../out/3sel.tst -f ../toast/css/3-sel/css.conf
 ssc.exe -T --nits.spec -o ../out/3style.tst -f ../toast/css/3-style/css.conf
@@ -74,6 +76,8 @@ ssc.exe -T --nits.spec -o ../out/jan22living.tst -f ../toast/living/jan22/living
 ssc.exe -T --nits.spec -o ../out/apr22living.tst -f ../toast/living/apr22/living.conf
 ssc.exe -T --nits.spec -o ../out/jul22living.tst -f ../toast/living/jul22/living.conf
 ssc.exe -T --nits.spec -o ../out/oct22living.tst -f ../toast/living/oct22/living.conf
+ssc.exe -T --nits.spec -o ../out/jan23living.tst -f ../toast/living/jan23/living.conf
+ssc.exe -T --nits.spec -o ../out/apr23living.tst -f ../toast/living/apr23/living.conf
 ssc.exe -T --nits.spec -o ../out/1math.tst -f ../toast/math/1/math.conf
 ssc.exe -T --nits.spec -o ../out/2math.tst -f ../toast/math/2/math.conf
 ssc.exe -T --nits.spec -o ../out/3math.tst -f ../toast/math/3/math.conf
