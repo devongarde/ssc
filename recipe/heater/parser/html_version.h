@@ -311,12 +311,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_2_1_FULL ( H2_CSS_2_1 | H2_CSS_2_0_FULL )
 #define H2_CSS_2_2_FULL ( H2_CSS_2_2 | H2_CSS_2_1_FULL )
 
-//#define H2_CSS_3            0x0000000000080000
-//#define H2_CSS_4            0x0000000000100000
-//#define H2_CSS_5            0x0000000000200000
-//#define H2_CSS_6            0x0000000000400000
+#define H2_CSS_COCO         0x0000000000080000
 
-#define H2_CSS_COCO         0x0000000000800000
+#define H2_CSS_SYNTAX       0x0000000000100000
+#define H2_CSS_CUSTOM       0x0000000000200000
+#define H2_CSS_VALUE_3      0x0000000000400000
+#define H2_CSS_VALUE_4      0x0000000000800000
 
 #define H2_CSS_1_ARG        0x0000000001000000
 #define H2_CSS_2_ARGS       0x0000000002000000
@@ -367,8 +367,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define H2_CSS_NAMESPACE    0x0000800000000000
 
-#define H2_CSS_3        ( H2_CSS_CASCADE_3 | H2_CSS_COLOUR_3 | H2_CSS_MEDIA_3 | H2_CSS_NAMESPACE | H2_CSS_SELECTOR_3 | H2_CSS_STYLE | H2_CSS_UI_3 )
-#define H2_CSS_4        ( H2_CSS_CASCADE_4 | H2_CSS_COLOUR_4 | H2_CSS_MEDIA_4 | H2_CSS_SELECTOR_4 | H2_CSS_UI_4 )
+#define H2_CSS_3        ( H2_CSS_CASCADE_3 | H2_CSS_COLOUR_3 | H2_CSS_CUSTOM | H2_CSS_MEDIA_3 | H2_CSS_NAMESPACE | H2_CSS_SELECTOR_3 | H2_CSS_STYLE | H2_CSS_SYNTAX | H2_CSS_UI_3 | H2_CSS_VALUE_3 )
+#define H2_CSS_4        ( H2_CSS_CASCADE_4 | H2_CSS_COLOUR_4 | H2_CSS_MEDIA_4 | H2_CSS_SELECTOR_4 | H2_CSS_UI_4 | H2_CSS_VALUE_4 )
 #define H2_CSS_5        ( H2_CSS_CASCADE_5 | H2_CSS_COLOUR_5 | H2_CSS_MEDIA_5 )
 #define H2_CSS_6        H2_CSS_CASCADE_6
 
@@ -583,10 +583,12 @@ public:
     bool restricted_charset () const noexcept;
     const char *default_charset () const noexcept;
     const char *alternative_charset () const noexcept;
-    int css_colour () const;
-    void css_colour (const int n);
     int css_cascade () const;
     void css_cascade (const int n);
+    int css_colour () const;
+    void css_colour (const int n);
+    int css_custom () const;
+    void css_custom (const int n);
     int css_media () const;
     void css_media (const int n);
     int css_namespace () const;
@@ -595,8 +597,12 @@ public:
     void css_selector (const int n);
     int css_style () const;
     void css_style (const int n);
+    int css_syntax () const;
+    void css_syntax (const int n);
     int css_ui () const;
     void css_ui (const int n);
+    int css_value () const;
+    void css_value (const int n);
     ::std::string get_doctype () const;
     ::std::string name () const;
     ::std::string report () const; };

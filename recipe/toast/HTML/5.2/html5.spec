@@ -2,6 +2,7 @@
 
 PASS ../toast/HTML/5.2/css-good.css
 0 html
+1 css_version
 4 whatwg_class whatwg_class
 
 PASS ../toast/HTML/5.2/example-1.html
@@ -119,8 +120,8 @@ PASS ../toast/HTML/5.2/html5-bad.html
 143 sunk minmax
 144 minmax minmax minmax
 145 unrecognised_value unrecognised_value bad_colour
-147 unrecognised_value unrecognised_value bad_colour
-149 unrecognised_value unrecognised_value bad_colour
+147 bad_colour
+149 bad_colour
 150 minmax minmax minmax
 152 minmax
 153 minmax

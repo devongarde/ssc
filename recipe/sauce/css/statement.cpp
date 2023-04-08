@@ -31,12 +31,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "simple/type_media.h"
 
 void statement::parse_charset (arguments& args, nitpick& nits, const int from, const int to)
-{   const int i = next_non_whitespace (args.t_, from, to); 
-    if (context.html_ver ().css_version () == css_1)
-        nits.pick (nit_css_version, es_error, ec_css, "@charset requires CSS 2.0 or later");
-    else if ((i < 0) || (args.t_.at (i).t_ != ct_string))
-        nits.pick (nit_charset, es_error, ec_css, "expecting string after @charset");
-    else test_value < t_charset > (nits, context.html_ver (), args.t_.at (i).val_); }
+{   if ((args.v_.css_version () == css_1) || (args.v_.css_syntax () > 0))
+        nits.pick (nit_css_version, ed_css_syntax, "9.3. The '@charset' Rule", es_error, ec_css, "@charset requires CSS 2");
+    else
+    {   const int i = next_non_whitespace (args.t_, from, to); 
+        if ((i < 0) || (args.t_.at (i).t_ != ct_string))
+            nits.pick (nit_charset, es_error, ec_css, "expecting string after @charset");
+        else test_value < t_charset > (nits, context.html_ver (), args.t_.at (i).val_); } }
 
 void statement::parse_colour_profile (arguments& args, nitpick& nits, const int to)
 {   if (args.snippet_)
@@ -77,7 +78,7 @@ void statement::parse_font_face (arguments& args, nitpick& nits, const int to)
 
 void statement::parse_import (arguments& args, nitpick& nits, const int from, const int to)
 {   url u;
-    const int i = next_non_whitespace (args.t_, from, to);
+    int i = next_non_whitespace (args.t_, from, to);
     int mql = -1; 
     if (args.had_rule_)
         nits.pick (nit_bad_import, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, "@import must precede all rules");
@@ -87,24 +88,62 @@ void statement::parse_import (arguments& args, nitpick& nits, const int from, co
         nits.pick (nit_bad_import, es_error, ec_css, "expecting string or url () after @import");
     else if ((args.t_.at (i).t_ == ct_string) || (args.t_.at (i).t_ == ct_identifier))
         u = examine_value < t_url > (nits, context.html_ver (), args.t_.at (i).val_);
-    else if ((args.t_.at (i).t_ != ct_keyword) || ! compare_no_case (args.t_.at (i).val_, "url"))
+    else if (args.t_.at (i).t_ != ct_keyword)
         nits.pick (nit_bad_import, es_error, ec_css, "expecting a string or a url (...) after @import");
     else
-    {   const int j = next_non_whitespace (args.t_, i, to);
-        if ((j < 0) || (args.t_.at (j).t_ != ct_round_brac))
-            nits.pick (nit_bad_import, es_error, ec_css, "expecting an argument after @import url");
-        else
-        {   const int child = next_non_whitespace (args.t_, j, to);
+    {   if (compare_no_case (args.t_.at (i).val_, "url"))
+        {   i = next_non_whitespace (args.t_, i, to);
+            if ((i < 0) || (args.t_.at (i).t_ != ct_round_brac))
+            {   nits.pick (nit_bad_import, es_error, ec_css, "expecting an argument after @import url");
+                return; }
+            const int child = next_non_whitespace (args.t_, i, to);
             if ((child < 0) || ((args.t_.at (child).t_ != ct_keyword) && (args.t_.at (child).t_ != ct_string) && (args.t_.at (child).t_ != ct_identifier)))
-                nits.pick (nit_bad_import, es_error, ec_css, "the argument given to @import url (...) should be a URL");
+            {   nits.pick (nit_bad_import, es_error, ec_css, "the argument given to @import url (...) should be a URL");
+                return; }
+            ::std::string wot (args.t_.at (child).val_);
+            if ((args.t_.at (child).t_ == ct_keyword) || (args.t_.at (child).t_ == ct_identifier) || (args.t_.at (child).t_ == ct_string))
+            {   const int ket = token_find (args.t_, ct_round_ket, child, to);
+                if (ket < 0)
+                {   nits.pick (nit_bad_import, es_error, ec_css, "missing ket following @import url(");
+                    return; }
+                wot = assemble_string (args.t_, child, (ket < 0) ? to : ket);
+                i = next_non_whitespace (args.t_, ket, to); }
+            else i = next_non_whitespace (args.t_, child, to);
+            u = examine_value < t_url > (nits, context.html_ver (), wot); }
+        if ((i > 0) && (compare_no_case (args.t_.at (i).val_, "layer")))
+        {   if (args.v_.css_cascade () < 5)
+            {   nits.pick (nit_css_version, es_error, ec_css, "supports requires CSS Cascade 5 or later");
+                return; }
+            const int j = next_non_whitespace (args.t_, i, to);
+            if (j < 0) return;
+            if (args.t_.at (j).t_ != ct_round_brac)
+                i = j;
             else
-            {   ::std::string wot (args.t_.at (child).val_);
-                if ((args.t_.at (child).t_ == ct_keyword) || (args.t_.at (child).t_ == ct_identifier))
+            {   const int child = next_non_whitespace (args.t_, j, to);
+                if ((child < 0) || ((args.t_.at (child).t_ != ct_round_ket) && (args.t_.at (child).t_ != ct_keyword) && (args.t_.at (child).t_ != ct_identifier)))
+                {   nits.pick (nit_bad_import, es_error, ec_css, "the argument given to @import layer (...) should be a layer name");
+                    return; }
+                if (args.t_.at (child).t_ == ct_round_ket)
+                {   nits.pick (nit_empty, es_comment, ec_css, "empty layer name");
+                    i = next_non_whitespace (args.t_, child, to); }
+                else
                 {   const int ket = token_find (args.t_, ct_round_ket, child, to);
-                    if (ket < 0) nits.pick (nit_bad_import, es_error, ec_css, "missing ket following @import url(");
-                    else mql = next_non_whitespace (args.t_, ket, to); 
-                    wot = assemble_string (args.t_, child, (ket < 0) ? to : ket); }
-                u = examine_value < t_url > (nits, context.html_ver (), wot); } } }
+                    if (ket < 0)
+                    {   nits.pick (nit_bad_import, es_error, ec_css, "missing ket following @import layer(");
+                        return; }
+                    i = next_non_whitespace (args.t_, ket, to); } } }
+        if ((i > 0) && (compare_no_case (args.t_.at (i).val_, "supports")))
+        {   if (args.v_.css_cascade () < 4)
+            {   nits.pick (nit_css_version, es_error, ec_css, "supports requires CSS Cascade 4 or later");
+                return; }
+            const int j = next_non_whitespace (args.t_, i, to);
+            if ((j < 0) || (args.t_.at (j).t_ != ct_round_brac))
+            {   nits.pick (nit_bad_import, es_error, ec_css, "expecting an argument after @import supports");
+                return; }
+            i = parse_supports_content (args, nits, j, to);
+            while ((i > 0) && (args.t_.at (i).t_ == ct_round_ket)) // kludge
+                i = next_non_whitespace (args.t_, i, to); }
+        mql = i; }
     if (! u.invalid ())
     {   ::std::string content;
         ::std::time_t when;
@@ -121,6 +160,31 @@ void statement::parse_import (arguments& args, nitpick& nits, const int from, co
     if (mql > 0)
     {   ::std::string s (assemble_string (args.t_, mql, to, true));
         parse_media_query (nits, args.v_, s, args.custom_media ()); } }
+
+void statement::parse_layer (arguments& args, nitpick& nits, const int from, const int to)
+{   if (context.html_ver ().css_cascade () < 5)
+        nits.pick (nit_css_version, es_error, ec_css, "@layer requires CSS cascade 5 or later");
+    else 
+    {   int i = from;
+        bool got = false;
+        do
+        {   ::std::string name;
+            i = next_non_whitespace (args.t_, i, to);
+            if ((i < 0) || ((args.t_.at (i).t_ != ct_identifier) && (args.t_.at (i).t_ != ct_keyword))) break;
+            got = true;
+            name = args.t_.at (i).val_;
+            if (args.g_.layer ().find (name) != args.g_.layer ().cend ())
+                nits.pick (nit_css_layer, es_info, ec_css, "layer ", name, " previously mentioned");
+            else args.g_.layer ().insert (name);
+            i = next_non_whitespace (args.t_, i, to);
+            if ((i <= 0) || (args.t_.at (i).t_ != ct_comma)) break;
+            i = next_non_whitespace (args.t_, i, to); }
+        while (i > 0);
+        if ((i > 0) && (args.t_.at (i).t_ == ct_curly_brac))
+        {   PRESUME (args.t_.at (i).child_ > 0, __FILE__, __LINE__);
+            fiddlesticks < statement > f (&args.st_, this);
+            vst_.emplace_back (pst_t (new statements (args, args.t_.at (to).child_))); }
+        else if (! got) nits.pick (nit_css_layer, es_error, ec_css, "neither @layer name nor { ... } defined"); } }
 
 void statement::parse_media (arguments& args, nitpick& nits, const int from, const int to)
 {   if (context.html_ver ().css_version () == css_1)
@@ -220,6 +284,78 @@ void statement::parse_page (arguments& args, nitpick& nits, const int from, cons
             fiddlesticks < statement > f (&args.st_, this);
             prop_.parse (args, args.t_.at (to).child_); } } }
 
+void statement::parse_scope (arguments& args, nitpick& nits, const int from, const int to)
+{   if (context.html_ver ().css_cascade () < 6)
+        nits.pick (nit_css_version, es_error, ec_css, "@scope requires CSS cascade 6");
+    else
+    {   int i = next_non_whitespace (args.t_, from, to);
+        if (i < 0)
+            nits.pick (nit_css_scope, ed_css_cascade_6, "2.5.2. Syntax of @scope", es_error, ec_css, "@scope: scope missing");
+        else
+        {   if (args.t_.at (i).t_ == ct_round_brac)
+            {   i = next_non_whitespace (args.t_, i, to);
+                const int z = token_find (args.t_, ct_round_ket, i, to);
+                if (z < 0)
+                {   nits.pick (nit_css_scope, ed_css_cascade_6, "2.5.2. Syntax of @scope", es_error, ec_css, "@scope found '(' but not ')'");
+                    return; }
+                PRESUME (args.t_.at (to).child_ > 0, __FILE__, __LINE__);
+                fiddlesticks < statement > f (&args.st_, this);
+                sel_.parse (args, i, z);
+                i = next_non_whitespace (args.t_, z, to);
+                if (i < 0)
+                {   nits.pick (nit_css_scope, ed_css_cascade_6, "2.5.2. Syntax of @scope", es_error, ec_css, "@scope expects {...} after any selectors");
+                    return; } }
+            if ((args.t_.at (i).t_ == ct_keyword) || (args.t_.at (i).t_ == ct_identifier))
+                if (compare_no_case (args.t_.at (i).val_, "to")) 
+                {   i = next_non_whitespace (args.t_, i, to);
+                    if (args.t_.at (i).t_ != ct_round_brac)
+                    {   nits.pick (nit_css_scope, ed_css_cascade_6, "2.5.2. Syntax of @scope", es_error, ec_css, "@scope expects ( selectors ) after 'to'");
+                        return; }
+                    i = next_non_whitespace (args.t_, i, to);
+                    const int z = token_find (args.t_, ct_round_ket, i, to);
+                    if (z < 0)
+                    {   nits.pick (nit_css_scope, ed_css_cascade_6, "2.5.2. Syntax of @scope", es_error, ec_css, "@scope found 'to (' but not a subsequent ')'");
+                        return; }
+                    PRESUME (args.t_.at (to).child_ > 0, __FILE__, __LINE__);
+                    fiddlesticks < statement > f (&args.st_, this);
+                    sel_.parse (args, i, z);
+                    i = next_non_whitespace (args.t_, z, to);
+                    if (i < 0)
+                    {   nits.pick (nit_css_scope, ed_css_cascade_6, "2.5.2. Syntax of @scope", es_error, ec_css, "@scope expects {...} after any selectors");
+                        return; } }
+            if (args.t_.at (i).t_ != ct_curly_brac)
+                nits.pick (nit_css_scope, ed_css_cascade_6, "2.5.2. Syntax of @scope", es_error, ec_css, "@scope requires {...}");
+            else
+            {   PRESUME (args.t_.at (i).child_ > 0, __FILE__, __LINE__);
+                fiddlesticks < statement > f (&args.st_, this);
+                vst_.emplace_back (pst_t (new statements (args, args.t_.at (i).child_))); } } } }
+
+int statement::parse_supports_content (arguments& args, nitpick& nits, const int from, const int to)
+{   const int child = next_non_whitespace (args.t_, from, to);
+    if ((child < 0) || ((args.t_.at (child).t_ != ct_keyword) && (args.t_.at (child).t_ != ct_identifier) && (args.t_.at (child).t_ != ct_round_brac)))
+        nits.pick (nit_bad_import, es_error, ec_css, "expecting a bracketed media condition");
+    else
+    {   ::std::string wot (args.t_.at (child).val_);
+        const int ket = token_find (args.t_, ct_round_ket, child, to);
+        if (ket < 0) nits.pick (nit_bad_import, es_error, ec_css, "missing ket following supports");
+        else
+        {   /* write media condition code ! */
+            return ket; } }
+    return -1; }
+
+void statement::parse_supports (arguments& args, nitpick& nits, const int from, const int to)
+{   if (args.v_.css_cascade () < 4)
+        nits.pick (nit_css_version, es_error, ec_css, "@supports requires CSS Cascade 4 or later");
+    else
+    {   const int i = next_non_whitespace (args.t_, from, to);
+        if (args.st_ != nullptr)
+            nits.pick (nit_bad_import, ed_css_20, "4.1.5 At-rules", es_error, ec_css, "@supports cannot appear inside blocks");
+        if (i < 0)
+            nits.pick (nit_bad_import, es_error, ec_css, "expecting a media condition after @supports");
+        if (args.t_.at (i).t_ != ct_round_brac)
+            nits.pick (nit_bad_import, es_error, ec_css, "expecting a bracketed media condition after @supports");
+        else parse_supports_content (args, nits, i, to); } }
+
 void statement::parse (arguments& args, const int from, const int to)
 {   PRESUME (from <= to, __FILE__, __LINE__);
     PRESUME (from + 1 < GSL_NARROW_CAST < int > (args.t_.size ()), __FILE__, __LINE__);
@@ -250,6 +386,9 @@ void statement::parse (arguments& args, const int from, const int to)
             case css_import :
                 parse_import (args, nits, b, to);
                 break;
+            case css_layer :
+                parse_layer (args, nits, b, to);
+                break;
             case css_media :
                 parse_media (args, nits, b, to);
                 break;
@@ -258,6 +397,12 @@ void statement::parse (arguments& args, const int from, const int to)
                 break;
             case css_page :
                 parse_page (args, nits, b, to);
+                break;
+            case css_scope :
+                parse_scope (args, nits, b, to);
+                break;
+            case css_supports :
+                parse_supports (args, nits, b, to);
                 break;
             case css_bottom_centre :
             case css_bottom_left :
@@ -272,8 +417,6 @@ void statement::parse (arguments& args, const int from, const int to)
                 break;
             case css_document :
             case css_keyframes :
-            case css_supports :
-            case css_scope :
             case css_viewport :
                 break;
             default :

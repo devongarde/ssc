@@ -32,8 +32,8 @@ template < e_type T, typename BASE, BASE FROM, BASE TO > struct type_integer_bet
     {   numeric_value < T, BASE > :: set_value (nits, v, s);
         if (numeric_value < T, BASE > :: good ())
         {   const long n = numeric_value < T, BASE > :: get ();
-            if ((n >= FROM) && (n <= TO)) return;
-            nits.pick (nit_not_n, es_error, ec_type, quote (s), ": ", FROM, " <= value <= ", TO, " expected"); }
+            if ((n >= FROM) && (n <= TO)) return; }
+        nits.pick (nit_not_n, es_error, ec_type, quote (s), ": an integer betwee ", FROM, " and ", TO, " expected");
         numeric_value < T, BASE > :: status (s_invalid); } };
 
 template < > struct type_master < t_base > : public numeric_value < t_base, unsigned int >
@@ -49,8 +49,8 @@ template < > struct type_master < t_base > : public numeric_value < t_base, unsi
             if ((value_ >= 2) && (value_ <= 36)) return;
             if (v.math_version () >= math_4_22)
             {   nits.pick (nit_base, ed_math_4_22, "4.2.1.3 Non-Strict uses of <cn>", es_warning, ec_type, "rendering of a value of BASE greater than 36 is browser dependent");
-                return; }
-            nits.pick (nit_base, ed_math_2, "4.4.1.1 Number (cn)", es_error, ec_type, quote (s), " is not between 2 and 36 (inclusive)"); }
+                return; } }
+        nits.pick (nit_base, ed_math_2, "4.4.1.1 Number (cn)", es_error, ec_type, quote (s), " is not between 2 and 36 (inclusive)");
         numeric_value < t_base, unsigned int > :: status (s_invalid); } };
 
 template < > struct type_master < t_fixedpoint > : type_base < double, t_fixedpoint >
@@ -88,6 +88,26 @@ template < > struct type_master < t_percent > : type_master < t_fixedpoint >
                 if (type_master < t_fixedpoint > :: good ())
                     if ((type_master < t_fixedpoint > :: value_ >= 0.0) && (type_master < t_fixedpoint > :: value_ <= 100.0)) return; }
         nits.pick (nit_percent, es_error, ec_type, "expecting a value between 0.0 and 100.0, followed by '%'");
+        type_base < double, t_fixedpoint > :: status (s_invalid); }
+    ::std::string get_string () const
+    {   return ::boost::lexical_cast < ::std::string > (value_) + "%"; }
+    void shadow (::std::stringstream& ss, const html_version& , element* )
+    {   ss << '=' << get_string (); } };
+
+template < > struct type_master < t_percent_flexible > : type_master < t_fixedpoint >
+{   using type_master < t_fixedpoint > :: type_master;
+    static e_animation_type animation_type () noexcept { return at_percentage; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   ::std::string ss (trim_the_lot_off (s));
+        if (compare_no_case (ss, "none"))
+        {   type_master < t_fixedpoint > :: status (s_good);
+            return; }
+        const ::std::string::size_type len (ss.length ());
+        if (len > 1)
+            if (ss.at (len - 1) == '%')
+            {   type_master < t_fixedpoint > :: set_value (nits, v, ss.substr (0, len - 2));
+                if (type_master < t_fixedpoint > :: good ()) return; }
+        nits.pick (nit_percent, es_error, ec_type, "expecting a number followed by '%'");
         type_base < double, t_fixedpoint > :: status (s_invalid); }
     ::std::string get_string () const
     {   return ::boost::lexical_cast < ::std::string > (value_) + "%"; }
@@ -150,6 +170,19 @@ template < > struct type_master < t_real > : type_base < double, t_real >
     bool has_value (const double& b) const noexcept { return good () && (value_ == b); }
     int get_int () const noexcept { return static_cast < int > (value_ + 0.5); }
     double get () const noexcept { return value_; } };
+
+template < e_type T, long FROM, long TO > struct type_number_between : type_master < t_real >
+{   BOOST_STATIC_ASSERT (FROM < TO);
+    const double from = static_cast < double > (FROM);
+    const double to = static_cast < double > (TO);
+    using type_master < t_real > :: type_master;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   type_master < t_real > :: set_value (nits, v, s);
+        if (type_master < t_real > :: good ())
+        {   double d = type_master < t_real > :: get ();
+            if ((d >= from) && (d <= to)) return; }
+        nits.pick (nit_not_n, es_error, ec_type, quote (s), ": a number between ", FROM, " and ", TO, " expected");
+        type_master < t_real > :: status (s_invalid); } };
 
 template < > struct type_master < t_unsigned > : public numeric_value < t_unsigned, unsigned int >
 {   typedef true_type has_int_type;
@@ -238,8 +271,8 @@ template < > struct type_master < t_1_to_99 > : type_integer_between < t_1_to_99
 template < > struct type_master < t_0_to_255 > : type_integer_between < t_0_to_255, short, 0, 255 >
 { using  type_integer_between < t_0_to_255, short, 0, 255 > :: type_integer_between; };
 
-template < > struct type_master < t_hue > : type_integer_between < t_hue, short, 0, 360 >
-{ using  type_integer_between < t_hue, short, 0, 360 > :: type_integer_between; };
+template < > struct type_master < t_hue > : type_number_between < t_hue, 0, 360 >
+{ using  type_number_between < t_hue, 0, 360 > :: type_number_between; };
 
 template < > struct type_master < t_zero_or_one > : type_integer_between < t_zero_or_one, short, 0, 1 >
 { using  type_integer_between < t_zero_or_one, short, 0, 1 > :: type_integer_between; };

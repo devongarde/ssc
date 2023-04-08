@@ -311,6 +311,8 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
         case elem_css_child :
         case elem_css_precede :
         case elem_css_precede_immediate :
+        case elem_css_scope_descendent :
+        case elem_css_scope_root :
             GRACEFUL_CRASH (__FILE__, __LINE__);
             break;
         default :

@@ -801,6 +801,10 @@ const nitname nitnames [] =
     { nit_deprecated_media, "deprecated_media" },
     { nit_media_version, "media_version" },
     { nit_media_ignored, "media_ignored" },
+    { nit_css_layer, "css_layer" },
+    { nit_css_scope, "css_scope" },
+    { nit_css_custom, "css_custom" },
+    { nit_css_colour, "css_colour" },
 
     { nit_incompatible, "incompatible" },
 

@@ -2,6 +2,7 @@
 
 PASS ../toast/HTML/5.4/css-good.css
 0 html
+1 css_version
 4 whatwg_class whatwg_class
 
 PASS ../toast/HTML/5.4/example-1.html
@@ -117,7 +118,7 @@ PASS ../toast/HTML/5.4/html5-bad.html
 112 bad_autocomplete bad_datetime
 113 solo sunk minmax
 114 minmax minmax
-116 unrecognised_value unrecognised_value bad_colour
+116 bad_colour
 119 solo
 120 bad_autocomplete
 121 relative_path

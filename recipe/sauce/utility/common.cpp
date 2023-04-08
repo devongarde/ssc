@@ -525,3 +525,15 @@ sstr_t smsid_set (const smsid_t& s)
     for (auto i : s)
         res.emplace (i.first);
     return res; }
+
+// next two from https://stackoverflow.com/questions/55271662/c11-how-to-convert-a-hex-string-into-unicode-string
+int hex_value (const ::std::string_view str) {
+    ::std::stringstream stream{};
+    stream << ::std::hex << str;
+    int res;
+    stream >> res;
+    return res; }
+
+::std::string map_to_utf8 (const int val)
+{   ::std::wstring_convert < ::std::codecvt_utf8 <char32_t>, char32_t > converter;
+    return converter.to_bytes (static_cast <char32_t> (val)); }

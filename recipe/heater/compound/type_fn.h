@@ -59,6 +59,16 @@ template < e_type T, class NAME, e_type... P > struct type_function_all : type_a
                 return; }
         type_all_of < T, sz_comma, P... > :: status (s_invalid); } };
 
+template < e_type T, class NAME, e_type... P > struct type_4_function_all : type_all_of < T, sz_space, P... >
+{   using type_all_of < T, sz_space, P... > :: type_all_of;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   ::std::string args;
+        if (function_name < NAME > (nits, v, trim_the_lot_off (s), args))
+        {   type_all_of < T, sz_space, P... > :: set_value (nits, v, args);
+            if (type_all_of < T, sz_space, P... > :: good ())
+                return; }
+        type_all_of < T, sz_space, P... > :: status (s_invalid); } };
+
 template < e_type T, class NAME, int MIN, int MAX, e_type... P > struct type_function_some : type_some_of < T, sz_comma, MIN, MAX, P... >
 {   using type_some_of < T, sz_comma, MIN, MAX, P... > :: type_some_of;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -69,6 +79,57 @@ template < e_type T, class NAME, int MIN, int MAX, e_type... P > struct type_fun
                 return; }
         type_some_of < T, sz_comma, MIN, MAX, P... > :: status (s_invalid); } };
 
+template < e_type T, class NAME, class S, int MIN, int MAX, e_type... P > struct type_function_m_n : string_value < T >
+{   using string_value < T > :: string_value;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   string_value < T > :: value_ = s;
+        ::std::string args;
+        if (function_name < NAME > (nits, v, trim_the_lot_off (s), args))
+        {   nitpick nets, nuts;
+            bool res = true;
+            type_some_of < T, S, MIN, MIN, P... > a;
+            type_some_of < T, S, MAX, MAX, P... > b;
+            a.set_value (nets, v, args);
+            if (a.good ()) nits.merge (nets);
+            else
+            {    b.set_value (nuts, v, args);
+                if (b.good ()) nits.merge (nuts);
+                else res = false; }
+            if (res)
+            {   string_value < T > :: status (s_good);
+                return; }
+            nits.merge (nets);
+            nits.merge (nuts); }
+        string_value < T > :: status (s_invalid); } };
+
+template < e_type T, class NAME, class S, int A, int B, int C, e_type... P > struct type_function_m_n_o : string_value < T >
+{   using string_value < T > :: string_value;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   string_value < T > :: value_ = s;
+        ::std::string args;
+        if (function_name < NAME > (nits, v, trim_the_lot_off (s), args))
+        {   nitpick nets, nuts, nats;
+            bool res = true;
+            type_some_of < T, S, A, A, P... > a;
+            type_some_of < T, S, B, B, P... > b;
+            type_some_of < T, S, C, C, P... > c;
+            a.set_value (nets, v, args);
+            if (a.good ()) nits.merge (nets);
+            else
+            {   b.set_value (nuts, v, args);
+                if (b.good ()) nits.merge (nuts);
+                else
+                {   c.set_value (nats, v, args);
+                    if (c.good ()) nits.merge (nats);
+                    else res = false; } }
+            if (res)
+            {   string_value < T > :: status (s_good);
+                return; }
+            nits.merge (nets);
+            nits.merge (nuts);
+            nits.merge (nats); }
+        string_value < T > :: status (s_invalid); } };
+
 template < e_type T, class NAME, e_type P > struct type_function : type_function_all < T, NAME, P >
 {   using type_function_all < T, NAME, P > :: type_function_all; };
 
@@ -77,3 +138,10 @@ template < e_type T, class NAME, e_type P, e_type Q > struct type_function_2_opt
 
 template < e_type T, class NAME, e_type P, e_type Q, e_type R > struct type_function_3_opt : type_function_some < T, NAME, 0, 3, P, Q, R >
 {   using type_function_some < T, NAME, 0, 3, P, Q, R > :: type_function_some; };
+
+template < e_type T, class NAME, e_type A, e_type B, e_type C, e_type D > struct type_function_3_4 : type_function_m_n < T, NAME, sz_space_slash, 3, 4, A, B, C, D >
+{   using type_function_m_n < T, NAME, sz_space_slash, 3, 4, A, B, C, D > :: type_function_m_n; };
+
+template < e_type T, class NAME, e_type A, e_type B, e_type C, e_type D, e_type E >
+        struct type_function_1_4_5 : type_function_m_n_o < T, NAME, sz_space_slash, 1, 4, 5, A, B, C, D, E >
+{   using type_function_m_n_o < T, NAME, sz_space_slash, 1, 4, 5, A, B, C, D, E > :: type_function_m_n_o; };

@@ -35,8 +35,11 @@ public:
     ~stats_t () = default;
     void swap (stats_t& s) noexcept
     {   p_.swap (s.p_); }
+    void dcl_class (const ::std::string& s, const ::std::size_t n = 1);
+    void dcl_id (const ::std::string& s, const ::std::size_t n = 1);
+    void dcl_element_class (const ::std::string& s, const ::std::size_t n = 1);
+    void dcl_element_id (const ::std::string& s, const ::std::size_t n = 1);
     void mark (const e_element e);
-    void visible (const e_element e);
     void mark_abbr (const ::std::string& a, const ::std::string& b);
     void mark_dfn (const ::std::string& a, const ::std::string& b);
     void mark_dtdd (const ::std::string& a, const ::std::string& b);
@@ -49,19 +52,17 @@ public:
     void mark (const e_schema_type s, const e_schema_property p);
     void mark (const e_css_property p);
     void mark (const e_css_statement s);
+    void mark_custom_prop (const ::std::string& s, const ::std::size_t n = 1);
+    void mark_file (const unsigned size);
+    void mark_font (const ::std::string& s, const ::std::size_t n = 1);
     void mark_meta (const e_httpequiv he);
     void mark_meta (const e_metaname mn);
     void mark_meta (const e_metaname mn, const ::std::string& val);
-    void mark_file (const unsigned size);
-    void dcl_class (const ::std::string& s, const ::std::size_t n = 1);
-    void dcl_id (const ::std::string& s, const ::std::size_t n = 1);
-    void dcl_element_class (const ::std::string& s, const ::std::size_t n = 1);
-    void dcl_element_id (const ::std::string& s, const ::std::size_t n = 1);
-    void mark_font (const ::std::string& s, const ::std::size_t n = 1);
     void use_class (const ::std::string& s, const ::std::size_t n = 1);
     void use_id (const ::std::string& s, const ::std::size_t n = 1);
     void use_element_class (const ::std::string& s, const ::std::size_t n = 1);
     void use_element_id (const ::std::string& s, const ::std::size_t n = 1);
+    void visible (const e_element e);
     bool has_class (const ::std::string& s) const;
     bool has_id (const ::std::string& s) const;
     void merge_class (const smsid_t& s);

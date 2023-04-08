@@ -11,6 +11,7 @@ PASS ../toast/coop/corrupt/search.shtml
 
 PASS ../toast/coop/corrupt/plumbing/songshade.css
 0 html
+1 css_version
 9 pseud pseud pseud pseud
 16 pseud pseud
 19 css_bespoke

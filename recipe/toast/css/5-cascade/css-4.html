@@ -1,0 +1,17 @@
+﻿<!DOCTYPE HTML>
+<HTML>
+ <HEAD>
+<TITLE>CSS 5 cascade chapter 5 example</TITLE>
+ </HEAD>
+
+ <BODY>
+<div><span>First line<br />Second line</span></div>
+<div><span>First line</span></div>
+<div>First line<br><span>Second line</span></div>
+<style>
+div { color: blue; }
+div::first-line { color: yellow; }
+span { border: thin solid currentcolor; }
+</style></BODY>
+
+</HTML>

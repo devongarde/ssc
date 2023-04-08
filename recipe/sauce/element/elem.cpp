@@ -47,6 +47,8 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_CSS }, { HTML_UNDEF }, ">", elem_css_child, ns_default, EP_IGNORE, EF_FAUX | EF_CSS },
     { { HTML_CSS }, { HTML_UNDEF }, "~", elem_css_precede, ns_default, EP_IGNORE, EF_FAUX | EF_CSS },
     { { HTML_CSS }, { HTML_UNDEF }, "+", elem_css_precede_immediate, ns_default, EP_IGNORE, EF_FAUX | EF_CSS },
+    { { HTML_CSS }, { HTML_UNDEF }, ">>", elem_css_scope_descendent, ns_default, EP_IGNORE, EF_FAUX | EF_CSS },
+    { { HTML_CSS }, { HTML_UNDEF }, "&", elem_css_scope_root, ns_default, EP_IGNORE, EF_FAUX | EF_CSS },
 
     { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, "_1", elem_rdf_1, ns_rdf, 0, EF_RDF },
     { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, "_2", elem_rdf_2, ns_rdf, 0, EF_RDF },

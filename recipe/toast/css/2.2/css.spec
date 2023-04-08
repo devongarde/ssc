@@ -51,7 +51,7 @@ PASS ../toast/css/2.2/css-4-1.css
 19 css_syntax
 20 css_syntax
 21 css_syntax
-26 css_element
+26 css_version
 55 unrecognised_value
 58 unrecognised_value
 59 css_syntax
@@ -70,8 +70,8 @@ PASS ../toast/css/2.2/css-4-2.css
 17 css_syntax property
 18 property
 19 property
-20 css_syntax unrecognised_value unrecognised_value unrecognised_value bad_colour isnt isnt function function function
-21 css_syntax unrecognised_value unrecognised_value unrecognised_value bad_colour isnt isnt function function function
+20 css_syntax css_colour
+21 css_syntax css_colour
 23 css_syntax css_element unrecognised_value
 24 unrecognised_value
 25 css_syntax
@@ -84,9 +84,9 @@ PASS ../toast/css/2.2/css-4-2.css
 
 PASS ../toast/css/2.2/css-4-3.css
 0 html
-44 unrecognised_value bad_rgb bad_colour isnt isnt isnt isnt isnt
-45 unrecognised_value bad_rgb bad_colour isnt isnt isnt isnt isnt
-46 unrecognised_value bad_rgb bad_colour isnt isnt isnt isnt isnt
+44 css_colour
+45 css_colour
+46 css_colour
 48 css_element
 49 css_element
 50 css_element

@@ -5,9 +5,9 @@ PASS ../toast/css/3-colour/css-3.css
 
 PASS ../toast/css/3-colour/css-4.css
 0 html
-11 unrecognised_value bad_rgb bad_colour isnt isnt isnt isnt isnt
-12 unrecognised_value bad_rgb bad_colour isnt isnt isnt isnt isnt
-13 unrecognised_value bad_rgb bad_colour isnt isnt isnt isnt isnt
+11 css_colour
+12 css_colour
+13 css_colour
 
 PASS ../toast/css/3-colour/css-6.css
 0 html

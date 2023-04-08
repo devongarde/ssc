@@ -580,8 +580,8 @@ bool token_flow (nitpick& nits, const html_version& v, const vm_t& vm, const ::s
         if ((mv & mv2) == 0)
         {   ::std::string mm (enum_n < t_media, e_media > :: name (m.m_));
             if (commas.at (comma) != enum_n < t_media, e_media > :: name (m.m_))
-                nits.pick (nit_media_ignored, es_warning, ec_mql, mm, ", and so ", quote (commas.at (comma)), ", is ignored in ", ver_name);
-            else nits.pick (nit_media_ignored, es_warning, ec_mql, mm, " is ignored in ", ver_name);
+                nits.pick (nit_media_ignored, es_warning, ec_mql, quote (mm), ", and so ", quote (commas.at (comma)), ", is ignored in ", ver_name);
+            else nits.pick (nit_media_ignored, es_warning, ec_mql, quote (mm), " is ignored in ", ver_name);
             ignore = true;
             continue; }
         if (! validate_version (nits, v.css_media (), m.m_, commas, comma, ver_name))

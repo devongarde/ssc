@@ -349,6 +349,12 @@ template < > struct type_master < t_css_position > : enum_n < t_css_position, e_
 template < > struct type_master < t_css_property > : enum_n < t_css_property, e_css_property >
 { using enum_n < t_css_property, e_css_property > :: enum_n; };
 
+template < > struct type_master < t_css_rect > : enum_n < t_css_rect, e_css_rect >
+{ using enum_n < t_css_rect, e_css_rect > :: enum_n; };
+
+template < > struct type_master < t_css_rgb_xyz > : enum_n < t_css_rgb_xyz, e_css_rgb_xyz >
+{ using enum_n < t_css_rgb_xyz, e_css_rgb_xyz > :: enum_n; };
+
 template < > struct type_master < t_css_relative_size > : enum_n < t_css_relative_size, e_css_relative_size >
 { using enum_n < t_css_relative_size, e_css_relative_size > :: enum_n; };
 

@@ -1,0 +1,14 @@
+﻿@namespace foo url(http://www.example.com);
+@namespace foo url("http://www.example.com/foo");
+foo|h1 { color: blue } /* first rule */
+foo|* { color: yellow } /* second rule */
+|h1 { color: red } /* ...*/
+*|h1 { color: green }
+h1 { color: green }
+
+.special { }
+
+p:defined {  }
+
+custom-element { visibility: hidden }
+custom-element:defined { visibility: visible }

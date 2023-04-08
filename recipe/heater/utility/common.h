@@ -251,3 +251,6 @@ template < class P > struct fiddlesticks
         twas_ = *p_;
         *p_ = x; }
     ~fiddlesticks () { *p_ = twas_; } };
+
+int hex_value (const ::std::string_view str);
+::std::string map_to_utf8 (const int val);

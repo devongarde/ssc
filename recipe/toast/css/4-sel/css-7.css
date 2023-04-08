@@ -1,0 +1,8 @@
+﻿html:lang(fr-be) { }
+html:lang(de) { }
+:lang(fr-be) > q { }
+:lang(de) > q { }
+
+:lang(\*-Latn) { }
+:lang("*-Latn") { }
+:lang("*-CH") { }

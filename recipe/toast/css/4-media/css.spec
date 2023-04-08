@@ -31,6 +31,7 @@ PASS ../toast/css/4-media/css-2.html
 PASS ../toast/css/4-media/css-3.css
 0 html
 1 unrecognised_value bad_media bad_media bad_media
+2 unrecognised_value deprecated_media css_version
 
 2 unrecognised_value deprecated_media
 4 unrecognised_value bad_media

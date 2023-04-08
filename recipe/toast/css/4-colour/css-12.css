@@ -1,0 +1,19 @@
+﻿.foo {
+  color: lch(50% 0.02 none);
+  background-color: color(display-p3 0.7 0.5 none);
+}
+
+.foo {
+  color: oklch(56.897% 0.0001 0);
+  background-color: oklch(63.612% 0.1522 78.748);
+}
+
+.foo {
+  color: oklch(56.897% 0.0001 none);
+  background-color: oklch(56.897% 0.0001 none);
+}
+
+.foo {
+  color: oklch(0.783 0.108 326.5 / 0.5);
+  background-color: oklch(0.392 0.4 0 / none);
+}

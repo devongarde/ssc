@@ -1,0 +1,152 @@
+﻿@import url(headings.css) layer(default);
+@import url(links.css) layer(default);
+
+[hidden] { display: none !important; }
+
+/* From the user’s style sheet */
+p { text-indent: 1em !important }
+p { font-style: italic !important }
+p { font-size: 18pt }
+
+/* From the author’s style sheet */
+p { text-indent: 1.5em !important }
+p { font: normal 12pt sans-serif !important }
+p { font-size: 24pt }
+
+audio {
+/* specificity of 0,0,1 - implicit (final) layer */
+ display: flex;
+}
+@layer reset {
+ audio[controls] {
+/* specificity of 0,1,1 - explicit "reset" layer */
+ display: block;
+}
+}
+
+@layer framework, override;
+@layer override {
+@keyframes slide-left {
+ from { translate: 0; }
+ to { translate: -100% 0; }
+}
+}
+@layer framework {
+@keyframes slide-left {
+ from { margin-left: 0; }
+ to { margin-left: -100%; }
+}
+}
+.sidebar { animation: slide-left 300ms; }
+
+@layer default {
+ audio[controls] {
+display: block;
+}
+}
+
+@layer base {
+ p { max-width: 70ch; }
+}
+@layer framework {
+@layer base {
+ p { margin-block: 0.75em; }
+}
+@layer theme {
+ p { color: #222; }
+}
+}
+
+@layer framework {
+@layer default {
+ p { margin-block: 0.75em; }
+}
+@layer theme {
+ p { color: #222; }
+}
+}
+@layer framework.theme {
+/* These styles will be added to the theme layer inside the framework layer */
+ blockquote { color: rebeccapurple; }
+}
+
+@layer { /* layer 1 */ }
+@layer { /* layer 2 */ }
+
+@layer {
+@layer foo { /* layer 1 */ }
+@layer foo { /* also layer 1 */ }
+}
+
+@layer {
+@layer foo { /* layer 1 */ }
+}
+@layer {
+@layer foo { /* layer 2 */ }
+}
+
+/* author.css */
+/* author has access to bootstrap.base layer, but not into unnamed layers */
+@import url(bootstrap.css) layer(bootstrap);
+/* Adds additional styles to the bootstrap layer: */
+@layer bootstrap {...}
+
+/* unlayered styles come last in the layer order */
+h1 { color: darkslateblue; }
+@layer reset.type {
+ strong { font-weight: bold; }
+}
+@layer framework {
+ .title { font-weight: 100; }
+@layer theme {
+ h1, h2 { color: maroon; }
+}
+}
+@layer reset {
+[hidden] { display: none; }
+}
+
+@media (min-width: 30em) {
+@layer layout {
+ .title { font-size: x-large; }
+}
+}
+@media (prefers-color-scheme: dark) {
+@layer theme {
+ .title { color: white; }
+}
+}
+@layer theme, layout;
+
+@layer framework {
+ h1, h2 { color: maroon; background: white;}
+@media (prefers-color-scheme: dark) {
+ h1, h2 { color: red; background: black; }
+}
+}
+
+@layer default, theme, components;
+@import url(theme.css) layer(theme);
+@layer default {
+ audio[controls] {
+display: block;
+}
+}
+
+@layer default;
+@import url(theme.css) layer(theme);
+@layer components;
+@layer default {
+ audio[controls] {
+display: block;
+}
+}
+
+@import url(default.css) layer(default);
+@layer theme;
+@import url(components.css) layer(components);
+@layer theme {
+ audio[controls] {
+display: block;
+}
+}

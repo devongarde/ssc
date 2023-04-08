@@ -876,6 +876,14 @@ void html_version::css_colour (const int n)
         case 3 : set_ext2 (H2_CSS_COLOUR_3); break;
         default : break; } }
 
+int html_version::css_custom () const
+{   if (any_ext2 (H2_CSS_CUSTOM)) return 3;
+    return 0; }
+
+void html_version::css_custom (const int n)
+{   if (n > 0) set_ext2 (H2_CSS_CUSTOM);
+    else reset_ext2 (H2_CSS_CUSTOM); }
+
 int html_version::css_media () const
 {   if ((ext2 () & H2_CSS_MEDIA_5) == H2_CSS_MEDIA_5) return 5;   
     if ((ext2 () & H2_CSS_MEDIA_4) == H2_CSS_MEDIA_4) return 4;   
@@ -916,6 +924,14 @@ void html_version::css_style (const int n)
 {   if (n >= 3) set_ext2 (H2_CSS_STYLE);
     else reset_ext2 (H2_CSS_STYLE); }
 
+int html_version::css_syntax () const
+{   if (any_ext2 (H2_CSS_SYNTAX)) return 3;
+    return 0; }
+
+void html_version::css_syntax (const int n)
+{   if (n == 3) set_ext2 (H2_CSS_SYNTAX);
+    else reset_ext2 (H2_CSS_SYNTAX); }
+
 int html_version::css_ui () const
 {   if ((ext2 () & H2_CSS_UI_4) == H2_CSS_UI_4) return 4;   
     if ((ext2 () & H2_CSS_UI_3) == H2_CSS_UI_3) return 3;   
@@ -925,6 +941,16 @@ void html_version::css_ui (const int n)
 {   reset_ext2 (H2_CSS_UI_MASK);
     if (n == 3) set_ext2 (H2_CSS_UI_3);
     else if (n == 4) set_ext2 (H2_CSS_UI_3 | H2_CSS_UI_4); }
+
+int html_version::css_value () const
+{   if ((ext2 () & H2_CSS_VALUE_4) == H2_CSS_VALUE_4) return 4;   
+    if ((ext2 () & H2_CSS_VALUE_3) == H2_CSS_VALUE_3) return 3;   
+    return 0; }
+
+void html_version::css_value (const int n)
+{   reset_ext2 (H2_CSS_UI_MASK);
+    if (n == 3) set_ext2 (H2_CSS_VALUE_3);
+    else if (n == 4) set_ext2 (H2_CSS_VALUE_3 | H2_CSS_VALUE_4); }
 
 
 bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e)

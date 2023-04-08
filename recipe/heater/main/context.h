@@ -40,10 +40,10 @@ class corpus;
 
 class context_t
 {   bool            article_ = false, body_ = true, case_ = false, cgi_ = false, classic_ = false, clear_ = false, crosslinks_ = true, example_ = true,
-                    external_ = false, ext_css_ = false, forwarded_ = true, icu_ = true, info_ = false, jsonld_ = false, local_ = true, load_css_ = true, links_ = true,
-                    main_ = false, md_export_ = false, meta_ = false, mf_export_ = false, mf_verify_ = true, microdata_ = true, nids_ = false, nits_ = false,
-                    nits_nits_nits_ = false, not_root_ = false, once_ = true, presume_tags_ = false, progress_ = false, rdfa_ = true, rel_ = false,
-                    revoke_ = false, rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, schema_ = true,
+                    external_ = false, ext_css_ = false, forwarded_ = true, icu_ = true, info_ = false, jsonld_ = false, local_ = true, load_css_ = true,
+                    links_ = true, main_ = false, md_export_ = false, meta_ = false, mf_export_ = false, mf_verify_ = true, microdata_ = true, nids_ = false,
+                    nits_ = false, nits_nits_nits_ = false, not_root_ = false, once_ = true, presume_tags_ = false, progress_ = false, rdfa_ = true,
+                    rel_ = false, revoke_ = false, rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, schema_ = true,
                     shadow_comment_ = true, shadow_changed_ = false, shadow_enable_ = false, shadow_ssi_ = true, shadow_space_ = true, slob_ = false,
                     spec_ = false, spell_ = true, spell_deduced_ = false, ssi_ = true, stats_page_ = false, stats_summary_ = false, test_ = false,
                     unknown_class_ = true, update_ = false, valid_ = false, versioned_ = false;
@@ -104,12 +104,15 @@ class context_t
     context_t& crosslinks (const bool b) { crosslinks_ = b; mac (nm_context_crosslinks, b); return *this; }
     context_t& css_cascade (const int n) { version_.css_cascade (n); mac (nm_context_css_cascade, n); return *this; }
     context_t& css_colour (const int n) { version_.css_colour (n); mac (nm_context_css_colour, n); return *this; }
+    context_t& css_custom (const int n) { version_.css_custom (n); mac (nm_context_css_custom, n); return *this; }
     context_t& css_extension (const vstr_t& s) { css_ext_ = s; mac (nm_context_css_extension, s); return *this; }
     context_t& css_media (const int n) { version_.css_media (n); mac (nm_context_css_media, n); return *this; }
     context_t& css_namespace (const int n) { version_.css_namespace (n); mac (nm_context_css_namespace, n); return *this; }
     context_t& css_selector (const int n) { version_.css_selector (n); mac (nm_context_css_selector, n); return *this; }
     context_t& css_style (const int n) { version_.css_style (n); mac (nm_context_css_style, n); return *this; }
+    context_t& css_syntax (const int n) { version_.css_syntax (n); mac (nm_context_css_syntax, n); return *this; }
     context_t& css_ui (const int n) { version_.css_ui (n); mac (nm_context_css_ui, n); return *this; }
+    context_t& css_value (const int n) { version_.css_value (n); mac (nm_context_css_value, n); return *this; }
     context_t& css_version (const int mjr, const int mnr);
     context_t& css_version (const e_css_version v) { version_.css_version (v); mac < int > (nm_context_css_version, v); return *this; }
     context_t& custom_elements (const vstr_t& s) { custom_elements_ = s; mac (nm_context_custom_elements, s); return *this; }
@@ -279,12 +282,15 @@ public:
     bool crosslinks () const noexcept { return crosslinks_; }
     int css_cascade () { return version_.css_cascade (); }
     int css_colour () { return version_.css_colour (); }
+    int css_custom () { return version_.css_custom (); }
     const vstr_t css_extension () const { return css_ext_; }
     int css_media () { return version_.css_media (); }
     int css_namespace () { return version_.css_namespace (); }
     int css_selector () { return version_.css_selector (); }
     int css_style () { return version_.css_style (); }
+    int css_syntax () { return version_.css_syntax (); }
     int css_ui () { return version_.css_ui (); }
+    int css_value () { return version_.css_value (); }
     e_css_version css_version () const noexcept { return version_.css_version (); }
     const vstr_t custom_elements () const { return custom_elements_; }
     bool dodedu () const noexcept { return (copy_ >= c_deduplicate); }

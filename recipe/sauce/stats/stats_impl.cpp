@@ -217,6 +217,7 @@ mmac_t mac_subtitle (const ::std::string& title)
 {   mmac_t table = mac_title ("Nits Reported");
     ::std::string res;
     res += saybe (table, severity_.at (es_catastrophic), "Catastrophes");
+    if (context.tell (es_abhorrent)) { res += saybe (table, severity_.at (es_abhorrent), "Abhorrences");
     if (context.tell (es_error)) { res += saybe (table, severity_.at (es_error), "Errors");
     if (context.tell (es_warning)) { res += saybe (table, severity_.at (es_warning), "Warnings");
     if (context.tell (es_info)) { res += saybe (table, severity_.at (es_info), "Info");
@@ -229,7 +230,7 @@ mmac_t mac_subtitle (const ::std::string& title)
     if (context.tell (es_splurge)) { res += saybe (table, severity_.at (es_splurge), "Splurge");
     if (context.tell (es_all)) res += saybe (table, severity_.at (es_all), "All"); } } } } }
 #endif // _DEBUG
-                                                                                             } } } }
+                                                                                             } } } } }
     if (! res.empty ())
     {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
         res = macro -> apply (ns_stats_head, table) + res + macro -> apply (ns_stats_foot, table); }
@@ -489,6 +490,9 @@ mmac_t mac_subtitle (const ::std::string& title)
             report_usage ("element#id(s)", dcl_element_id_, use_element_id_, ns_nsid, ns_id_head, ns_id_foot,
                 nm_id_name, nm_id_decl_int, nm_id_int, nm_id_decl_count, nm_id_count, nm_id_title); }
 
+::std::string stats::custom_property_report () const
+{   return report_usage ("custom properties", custom_prop_); }
+
 ::std::string stats::report (const bool grand) const
 {   ::std::string res;
     if ((context.verbose () == es_undefined) || (context.verbose () == es_illegal)) return res;
@@ -508,6 +512,7 @@ mmac_t mac_subtitle (const ::std::string& title)
     res += font_report ();
     res += class_report ();
     res += itemid_report ();
+    res += custom_property_report ();
     if (grand)
     {   res += error_report ();
         if (file_count_ > 1)
@@ -565,3 +570,5 @@ void stats::accumulate (stats& o) const
 
 ::std::string stats::class_and_id_report () const
 {   return class_report2 () + id_report2 (); }
+
+

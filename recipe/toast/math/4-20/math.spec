@@ -52,9 +52,9 @@ PASS ../toast/math/4-20/math6-example.html
 
 PASS ../toast/math/4-20/math7-example.html
 2 naughty_lang
-59 not_an_integer
-64 not_an_integer
-65 not_an_integer
+59 not_an_integer base
+64 not_an_integer base
+65 not_an_integer base
 114 unrecognised_value
 238 math_kids
 246 math_kids

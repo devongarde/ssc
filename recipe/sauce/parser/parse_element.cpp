@@ -166,6 +166,10 @@ void element_node::parse_attributes (const html_version& , const ::std::string::
             res += ln (line_) + "{~}\n"; break;
         case elem_css_precede_immediate :
             res += ln (line_) + "{+}\n"; break;
+        case elem_css_scope_descendent :
+            res += ln (line_) + "{>>}\n"; break;
+        case elem_css_scope_root :
+            res += ln (line_) + "{&}\n"; break;
         default :
             if (closure_) res += ln (line_) + "/" + elem_.name () + va_.rpt () + "\n";
             else res += ln (line_) + elem_.name () + va_.rpt () + "\n"; }

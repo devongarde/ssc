@@ -27,11 +27,29 @@ template < > inline void enum_n < t_lang, e_lang > :: set_value (nitpick& nits, 
     {   enum_base < e_lang, t_lang > :: status (s_invalid); return; }
     original_ = s;
     ::std::string lang (s);
-    const ::std::string::size_type pos = s.find ('-');
+    const ::std::string::size_type pos = lang.find ('-');
     if (pos != ::std::string::npos) lang = lang.substr (0, pos);
     if ((lang.length () >= 1) && (lang.length () <= 3))
-        if (symbol < html_version, e_lang >  :: parse (nits, v, lang, enum_base < e_lang, t_lang > :: value_))
-        {   enum_base < e_lang, t_lang > :: status (s_good);
-            return; }
-    nits.pick (nit_lingo, es_warning, ec_type, quote (s), " is a rare or invalid language code");
+    {   if (! symbol < html_version, e_lang >  :: parse (nits, v, lang, enum_base < e_lang, t_lang > :: value_))
+            nits.pick (nit_lingo, es_warning, ec_type, quote (lang), " is not a language code known to " PROG);
+        enum_base < e_lang, t_lang > :: status (s_good);
+        return; }
+    nits.pick (nit_lingo, es_error, ec_type, quote (s), " appears to be an invalid language code");
     enum_base < e_lang, t_lang > :: status (s_invalid); };
+
+template < > struct type_master < t_css_lang > : public tidy_string < t_css_lang >
+{   using tidy_string < t_css_lang > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_lang > :: set_value (nits, v, s);
+        if (tidy_string < t_css_lang > :: good ())
+        {   ::std::string lang (tidy_string < t_css_lang > :: get_string ());
+            if (lang.length () <= 8)
+            {   ::std::string stub (lang);
+                const ::std::string::size_type pos = stub.find ('-');
+                if (pos != ::std::string::npos) stub = stub.substr (0, pos);
+                if ((stub != "*") && ! test_value < t_lang > (nits, v, lang))
+                    nits.pick (nit_lingo, es_warning, ec_type, quote (stub), " is not a language code known to " PROG);
+                tidy_string < t_css_lang > :: status (s_good);
+                return; } }
+        nits.pick (nit_lingo, es_error, ec_type, quote (s), " appears to be an invalid language code");
+        tidy_string < t_css_lang > :: status (s_invalid); } };

@@ -1,0 +1,44 @@
+﻿:nth-child(even) /* represents the 2nd, 4th, 6th, etc elements */ { }
+:nth-child(10n-1) /* represents the 9th, 19th, 29th, etc elements */ { }
+:nth-child(10n+9) /* Same */  { }
+:nth-child(10n+-1) /* Syntactically invalid, and would be ignored */ { }
+
+:nth-child(-n+3 of li.important) { }
+
+li.important:nth-child(-n+3) { }
+
+tr {
+ background: white;
+}
+tr:nth-child(even) {
+ background: silver;
+}
+
+tr {
+ background: white;
+}
+tr:nth-child(even of :not([hidden])) {
+ background: silver;
+}
+
+tr:nth-last-child(-n+2) /* represents the two last rows of an HTML table */ { }
+foo:nth-last-child(odd) /* represents all odd foo elements in their parent element,
+ counting from the last one */ { }
+
+div > p:first-child { }
+
+* > a:first-child /* a is first child of any element */ { }
+a:first-child /* Same (assuming a is not the root element) */ { }
+
+ol > li:last-child { }
+
+img:nth-of-type(2n+1) { float: right; }
+img:nth-of-type(2n) { float: left; }
+
+body > h2:nth-of-type(n+2):nth-last-of-type(n+2) 
+
+body > h2:not(:first-of-type):not(:last-of-type)
+
+dl dt:first-of-type { }
+
+tr > td:last-of-type { }

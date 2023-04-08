@@ -66,18 +66,18 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
         return; }
     bool pseudo = true;
     switch (args.t_.at (b).t_)
-    {   case ct_splat :
-            if (context.html_ver ().css_version () == css_1)
-                nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": * requires CSS 2.0 or better");
+    {   case ct_barbar :
+            pseudo = false;
+            if (context.html_ver ().css_selector () < 4)
+                nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": || requires CSS Selector 4");
             else
-            {   css_element e (elem_css_all);
-                ::std::swap (*this, e);
-                b = next_non_whitespace (args.t_, b, to); }
+            {   css_element e (elem_css_cell);
+                ::std::swap (*this, e); }
             break;
-        case ct_hash :
-        case ct_dot :
         case ct_coco :
         case ct_colon :
+        case ct_dot :
+        case ct_hash :
         case ct_square_brac :
             {   css_element e (elem_css_all);
                 ::std::swap (*this, e); }
@@ -90,20 +90,10 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
             {   css_element e (elem_css_child);
                 ::std::swap (*this, e); }
             break;
-        case ct_plus :
+        case ct_gtgt :
             pseudo = false;
-            if (context.html_ver ().css_version () == css_1)
-                nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": + requires CSS 2.0 or better");
-            else
-            {   css_element e (elem_css_precede_immediate);
-                ::std::swap (*this, e); }
-            break;
-        case ct_squiggle :
-            pseudo = false;
-            if (context.html_ver ().css_selector () < 3)
-                nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": ~ requires CSS 3 selectors or better");
-            else
-            {   css_element e (elem_css_precede);
+            if (context.html_ver ().css_cascade () >= 6)
+            {   css_element e (elem_css_child);
                 ::std::swap (*this, e); }
             break;
         case ct_keyword :
@@ -118,6 +108,30 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
                     css_element e (nits, args.v_, args.ns_, el);
                     ::std::swap (*this, e); }
                 b = next_non_whitespace (args.t_, b, to); }
+            break;
+        case ct_plus :
+            pseudo = false;
+            if (context.html_ver ().css_version () == css_1)
+                nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": + requires CSS 2.0 or better");
+            else
+            {   css_element e (elem_css_precede_immediate);
+                ::std::swap (*this, e); }
+            break;
+        case ct_splat :
+            if (context.html_ver ().css_version () == css_1)
+                nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": * requires CSS 2.0 or better");
+            else
+            {   css_element e (elem_css_all);
+                ::std::swap (*this, e);
+                b = next_non_whitespace (args.t_, b, to); }
+            break;
+        case ct_squiggle :
+            pseudo = false;
+            if (context.html_ver ().css_selector () < 3)
+                nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": ~ requires CSS 3 selectors or better");
+            else
+            {   css_element e (elem_css_precede);
+                ::std::swap (*this, e); }
             break;
         default :
             nits.pick (nit_css_element, es_error, ec_css, quote (tkn_rpt (args.t_.at (from))), ": element expected");
@@ -158,8 +172,9 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
                 {   int brac = token_find (args.t_, ct_round_brac, i, to);
                     if (brac < 0) brac = next_non_whitespace (args.t_, i, to);
                     else
-                    {   brac = token_find (args.t_, ct_round_ket, i, to);
-                        if (brac < 0) nits.pick (nit_css_syntax, es_error, ec_css, quote (wo), ": missing close bracket"); }
+                    {   const int ket = token_find (args.t_, ct_round_ket, brac, to);
+                        if (ket > 0) brac = ket;
+                        else nits.pick (nit_css_syntax, es_error, ec_css, quote (wo), ": missing close bracket"); }
                     if (brac > 0) decore_.emplace_back (args, i, brac, knotted);
                     i = next_non_whitespace (args.t_, brac, to); }
                 break;
@@ -168,6 +183,7 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
             case ct_squiggle :
                 parse (args, i, to);
                 return;
+            case ct_comma :
             case ct_round_ket :
                 return;
             default :

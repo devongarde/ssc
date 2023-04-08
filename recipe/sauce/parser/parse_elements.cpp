@@ -226,6 +226,8 @@ element_node* elements_node::insert_closed (const html_version& v, element_node*
                 case elem_css_child :
                 case elem_css_precede :
                 case elem_css_precede_immediate :
+                case elem_css_scope_descendent :
+                case elem_css_scope_root :
                     current -> set_raw (::std::string (ket.start_, ket.end_));
                     break;
                 default : break; } }

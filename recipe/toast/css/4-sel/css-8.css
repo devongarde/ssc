@@ -1,0 +1,8 @@
+﻿.footnote:visited { }
+
+nav :local-link { text-decoration: none; }
+
+.note:target { }
+
+:target { color : red }
+:target::before { content : url(target.png) }

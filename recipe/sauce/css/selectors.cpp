@@ -28,12 +28,20 @@ void selectors::parse (arguments& args, const int from, const int to)
     int len = GSL_NARROW_CAST < int > (args.t_.size ());
     PRESUME (from < len, __FILE__, __LINE__);
     PRESUME (to < len, __FILE__, __LINE__);
-    int b = -1; int prev = -1;
+    int b = -1; int prev = -1; int bracstac = 0;
     for (int i = from; i > 0; i = next_token_at (args.t_, i, to))
     {   if (b == -1) b = i;
-        if (args.t_.at (i).t_ == ct_comma)
-        {   if (b != i) sel_.emplace_back (args, b, prev);
-            b = -1; }
+        switch (args.t_.at (i).t_)
+        {   case ct_round_brac :
+                ++bracstac; break;
+            case ct_round_ket :
+               if (bracstac > 0) --bracstac; break;
+            case ct_comma :
+                if (bracstac == 0)
+                {   if (b != i) sel_.emplace_back (args, b, prev);
+                    b = -1; }
+                break;
+            default : break; }
         prev = i; }
     if (b != -1)
         sel_.emplace_back (args, b, to);

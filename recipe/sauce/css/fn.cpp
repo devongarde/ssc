@@ -65,7 +65,9 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
         params_.push_back (param);
         switch (fn_)
         {   case efn_lang :
-                test_value < t_lang > (nits, context.html_ver (), param);
+                if (args.v_.css_selector () >= 4)
+                    test_value < t_css_langs > (nits, context.html_ver (), param);
+                else test_value < t_lang > (nits, context.html_ver (), param);
                 return;
             case efn_dir :
                 test_value < t_ltr_rtl > (nits, context.html_ver (), param);
@@ -76,11 +78,18 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
             case efn_nth_last_col :
             case efn_nth_last_of_type :
             case efn_nth_of_type :
-                test_value < t_css_nth_oe > (nits, context.html_ver (), param);
+                {   if (args.v_.css_selector () >= 4)
+                    {   int prev = -1;
+                        int of = ident_find (args.t_, "of", b, to, &prev);
+                        if (of != -1)
+                        {   of = next_non_whitespace (args.t_, of, to);
+                            vsl_.emplace_back (new selector (args, of, ket, true));
+                            param = assemble_string (args.t_, b, prev); } }
+                    test_value < t_css_nth_oe > (nits, context.html_ver (), param); }
                 return;
             case efn_not :
                 if (knotted)
-                {   nits.pick (nit_not_not, ed_css_selectors_3, "6.6.7. The negation pseudo-class", es_error, ec_css, ":not(:not) is not permitted");
+                {   nits.pick (nit_not_not, ed_css_selectors_3, "6.6.7. The negation pseudo-class", es_error, ec_css, ":not(:not) is not nice");
                     return; }
                 break;
             case efn_current :
@@ -90,24 +99,33 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
                 break;
             default : return; }
         params_.clear ();
-        bool tock = false, pf = false;
         ::std::vector < int > f;
+        int start = b;
+        bool pf = false;
         while ((b > 0) && (b <= to) && (args.t_.at (b).t_ != ct_round_ket))
-        {   if (args.t_.at (b).t_ == ct_comma)
-            {   if (! tock) params_.emplace_back ("");
-                tock = false; }
-            else if (args.t_.at (b).t_ == ct_colon)
-                pf = true;
-            else
-            {   if (tock) nits.pick (nit_css_syntax, es_error, ec_css, fn.name (), ": missing comma between arguments");
-                params_.emplace_back (tkn_rpt (args.t_.at (b)));
-                if (pf) f.emplace_back (b); else f.emplace_back (-1);
-                pf = false;
-                tock = true; }
-            b = args.t_.at (b).next_; }
+        {   switch (args.t_.at (b).t_)
+            {   case ct_comma:
+                    {   PRESUME (start > 0, __FILE__, __LINE__);
+                        const ::std::string p (assemble_string (args.t_, start, b));
+                        params_.emplace_back (p);
+                        if (pf) f.emplace_back (start);
+                        else f.emplace_back (-1);
+                        start = -1; }
+                    break;
+                case ct_colon :
+                    pf = true;
+                    break;
+                default :
+                    break; }
+            b = args.t_.at (b).next_;
+            if (start == -1) start = b; }
         if (params_.size () > 0)
             switch (fn_)
-            {   case efn_current :
+            {   case efn_not :
+                    if ((params_.size () != 1) && (args.v_.css_selector () < 4))
+                        nits.pick (nit_not_not, ed_css_selectors_3, "6.6.7. The negation pseudo-class", es_error, ec_css, ":not with multiple arguments requires CSS Selector 4");
+                    FALLTHROUGH;
+                case efn_current :
                 case efn_has :
                 case efn_is :
                 case efn_where :
@@ -115,13 +133,6 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
                     for (::std::size_t n = 0; n < params_.size (); ++n)
                         if (f.at (n) > 0) vsl_.emplace_back (new selector (args, f.at (n), ket, true)); 
                         else ve_.emplace_back (new css_element (nits, args.v_, args.ns_, params_.at (n)));
-                    break;
-                case efn_not :
-                    PRESUME (f.size () == params_.size (), __FILE__, __LINE__);
-                    if (params_.size () != 1)
-                        nits.pick (nit_not_not, ed_css_selectors_3, "6.6.7. The negation pseudo-class", es_error, ec_css, ":not only accepts one parameter");
-                    if (f.at (0) > 0) vsl_.emplace_back (new selector (args, f.at (0), ket, true)); 
-                    else ve_.emplace_back (new css_element (nits, args.v_, args.ns_, params_.at (0)));
                     break;
                 default :
                     GRACEFUL_CRASH (__FILE__, __LINE__);
