@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/selectors.h"
 #include "css/statement.h"
 #include "css/flags.h"
+#include "css/group.h"
 
 void property::parse (arguments& args, const int from, const int to)
 {   PRESUME ((to < 0) || (from <= to), __FILE__, __LINE__);
@@ -48,6 +49,7 @@ void property::parse (arguments& args, const int from, const int to)
         else
         {   val_.clear ();
             int pre = to; css_token p = ct_error;
+            const int var = b;
             const int bang = token_find (args.t_, ct_bang, b, to, &pre);
             if (bang < 0) pre = to;
             bool xs = false, xk = false, xn = false, xi = false, fn = false, clean = true;
@@ -72,13 +74,22 @@ void property::parse (arguments& args, const int from, const int to)
                             ((val_.length () >= 5) && (val_.substr (1, 4) == "atsc")))
                     {   nits.pick (nit_bespoke_property, es_warning, ec_css, quote (val_), ": apologies, but " PROG " cannot verify bespoke properties.");
                         return; }
-            prop_ = make_property_v_ptr (nits, args.t_.at (k).val_, val_, p);
+            prop_ = make_property_v_ptr (args, var, to, nits, k, val_, p);
             if (prop_.get () != nullptr)
             {   const e_css_property pr (prop_ -> get ());
                 enum_n < t_css_property, e_css_property > pp;
                 pp.set (pr);
                 VERIFY_NOT_NULL (args.ps_, __FILE__, __LINE__);
                 args.ps_ -> state () |= pr;
+                if (pr == ec_custom)
+                {   name_ = args.t_.at (k).val_;
+                    auto cp = args.g_.custom_prop ().find (name_);
+                    if (cp == args.g_.custom_prop ().cend ())
+                    {   args.g_.custom_prop ().emplace (name_, 1);
+                        nits.pick (nit_css_custom, es_info, ec_css, quote (name_), " noted"); }
+                    else
+                    {   cp -> second += 1;
+                        nits.pick (nit_css_custom, es_comment, ec_css, quote (name_), " referenced again"); } }
                 flags_ = pp.flags ();
                 args.check_flags (nits, flags_, pp.name ());
                 if (! fn)
@@ -115,7 +126,9 @@ void property::accumulate (stats_t* s, const element_bitset& e) const
     if (prop_.get () != nullptr)
     {   s -> mark (prop_ -> get ());
         prop_ -> accumulate (s, e); }
-    w_.accumulate (s); }
+    w_.accumulate (s);
+    if (! name_.empty ())
+        s -> mark_custom_prop (name_); }
 
 ::std::string property::rpt () const
 {   if (prop_.get () == nullptr) return ::std::string ();
@@ -131,3 +144,7 @@ void property::validate (arguments& args)
 void property::shadow (::std::stringstream& ss, arguments& args)
 {   if (prop_.get () != nullptr) prop_ -> shadow (ss, args, nullptr);
     w_.shadow (ss, args); }
+
+void property::name (arguments& args, const ::std::string& n)
+{
+    name_ = n; } 

@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 class property
 {   property_v_ptr prop_;
     weight w_;
-    ::std::string val_;
+    ::std::string name_, val_;
     flags_t flags_ = NOFLAGS;
     int from_ = 0;
 public:
@@ -37,6 +37,8 @@ public:
     void validate (arguments& args);
     void accumulate (stats_t* s, const element_bitset& e) const;
     void shadow (::std::stringstream& ss, arguments& args);
+    const ::std::string name () const { return name_; } 
+    void name (arguments& args, const ::std::string& n);
     ::std::string rpt () const; };
 
 typedef ::std::vector < property > vpr_t;

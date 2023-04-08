@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<HTML>
+ <HEAD>
+<link rel="stylesheet" type="text/css" media="screen" href="css-2.css">
+<TITLE>CSS custom properties chapter 2 example</TITLE>
+</HEAD>
+
+<BODY>
+
+<p>I inherited blue from the root element!</p>
+<div>I got green set directly on me!</div>
+<div id='alert'>
+While I got red set directly on me!
+ <p>I’m red too, because of inheritance!</p>
+</div>
+
+<one><two><three /></two></one>
+<style>
+one { --foo: 10px; }
+two { --bar: calc(var(--foo) + 10px); }
+three { --foo: calc(var(--bar) + 10px); }
+</style>
+
+</BODY>
+
+</HTML>

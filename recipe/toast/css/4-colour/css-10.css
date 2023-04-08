@@ -1,0 +1,28 @@
+﻿.foo {
+  color: color(rec2020 0.42053 0.979780 0.00579);
+  background-color: lch(86.6146% 160.0000 136.0088);
+}
+
+.foo {
+  color: color(display-p3 -0.6112 1.0079 -0.2192);
+  background-color: color(profoto-rgb 0.4835 0.9167 0.2188)
+}
+
+.foo {
+  color: color(srgb 0.691 0.139 0.259);
+  background-color: color(srgb-linear 0.435 0.017 0.055);
+}
+
+.foo {
+  color: #7654CD;
+  background-color: rgb(46.27% 32.94% 80.39%);
+}
+
+.foo {
+  color: lab(44.36% 36.05 -58.99);
+  background-color: color(xyz-d50 0.2005 0.14089 0.4472);
+}
+
+.foo {
+  color: color(xyz-d65 0.21661 0.14602 0.59452);
+}

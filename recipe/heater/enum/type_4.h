@@ -89,8 +89,14 @@ template < > struct type_master < t_content_encoding > : four_value < t_content_
 template < > struct type_master < t_css_font_style_e > : four_value < t_css_font_style_e, e_css_font_style_e, sz_normal, sz_italic, sz_oblique, sz_inherit >
 { using four_value < t_css_font_style_e, e_css_font_style_e, sz_normal, sz_italic, sz_oblique, sz_inherit > :: four_value; };
 
+template < > struct type_master < t_css_hue_interpolation > : four_value < t_css_hue_interpolation, e_css_hue_interpolation, sz_decreasing, sz_increasing, sz_longer, sz_shorter >
+{ using four_value < t_css_hue_interpolation, e_css_hue_interpolation, sz_decreasing, sz_increasing, sz_longer, sz_shorter > :: four_value; };
+
 template < > struct type_master < t_css_orientation > : four_value < t_css_orientation, e_css_orientation, sz_auto, sz_inherit, sz_landscape, sz_portrait >
 { using four_value < t_css_orientation, e_css_orientation, sz_auto, sz_inherit, sz_landscape, sz_portrait > :: four_value; };
+
+template < > struct type_master < t_css_polar > : four_value < t_css_polar, e_css_polar, sz_hsl, sz_hwb, sz_lch, sz_oklch >
+{ using four_value < t_css_polar, e_css_polar, sz_hsl, sz_hwb, sz_lch, sz_oklch > :: four_value; };
 
 template < > struct type_master < t_css_speak > : four_value < t_css_speak, e_css_speak, sz_inherit, sz_none, sz_normal, sz_spell_out >
 { using four_value < t_css_speak, e_css_speak, sz_inherit, sz_none, sz_normal, sz_spell_out > :: four_value; };

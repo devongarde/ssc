@@ -15,7 +15,7 @@ ssc (the Static Site Checker) is an opinionated HTML nit-picker,
 intended for people, such as its author, who hand code websites. It
 doesn't just check static websites for broken links, dubious syntax,
 and bad semantic data, it will actively complain about things that are
-perfectly legal but just a little bit untidy, like its author.
+perfectly legal but rather untidy, like its author.
 
 Except when serving CGI queries, it recursively scans the directory
 looking for HTML source files to analyse. It produces a list of errors,
@@ -85,6 +85,9 @@ line, the "no-" switch always applies.
                         content. This is incompatible with
                         --shadow.update.
 
+--css.cascade X         Use CSS Cascade level X, where X is 0, 3, 4, 5
+                        or 6
+
 --css.colour X          Use CSS Colour level X, where X is 0 or 3
 
 --css.extension ext     Presume files with extension '.ext' are CSS
@@ -98,19 +101,22 @@ line, the "no-" switch always applies.
 
 --css.style X           Use CSS Style level X, where X is 0 or 3
 
+--css.syntax X          Use CSS Syntex level X, where X is 0 or 3
+
 --css.ui X              Use CSS Basic User Interface level X, where X
                         is 0, 3 or 4
 
 --css.verify            Verify CSS files (replaces --general.css)
 
 --css.version X         Presume version X of CSS, where X is one of:
-                            1   CSS 1.0
-                            2.0 CSS 2.0
-                            2.1 CSS 2.1
-                            2.2 CSS 2.2 (Feb 2022 draft)
-                            3   CSS level 3 (unfinished)
-                            4   CSS level 4 (unfinished)
-                            5   CSS level 5 (unfinished)
+                            1     CSS 1.0
+                            2.0   CSS 2.0
+                            2.1   CSS 2.1
+                            2.2   CSS 2.2 (Feb 2022 draft)
+                            3     CSS level 3 (unfinished)
+                            4     CSS level 4 (unfinished)
+                            5     CSS level 5 (unfinished)
+                            6     CSS level 6 (unfinished)
 
 --general.class         Nitpick class values
 
@@ -118,16 +124,11 @@ line, the "no-" switch always applies.
                         CSS files.
 
 --general.cgi           Check environment variables for snippets of
--W                      HTML. Expects environment variables as produced
-                        by OpenBSD's native web server, httpd, produced
+-W                      HTML. SSC expects environment variables as
+                        produced by OpenBSD's native httpd, produced
                         using <FORM METHOD=GET ...>. Do NOT let ssc
-                        anywhere near untrusted data should you do so,
-                        unless you are very confident about your system
-                        configuration (because it'll defend you against
-                        naughty people who may take advantage of ssc's
-                        pre-alpha nature and its corresponding myriad
-                        flaws). Ignores many options including
-                        shadowing.
+                        anywhere near untrusted data. Ignores many
+                        options such as shadowing.
 
 --general.custom EL     Define a custom element <EL> for verifying the
                         IS attribute. May be repeated.
@@ -135,13 +136,13 @@ line, the "no-" switch always applies.
 --general.datapath dir  Look for any configuration, caches, and other
 -p dir                  useful files, in this directory.
 
---general.defthrd N     If --general.thread is not goiven, then set the
+--general.defthrd N     If --general.thread is not given, then set the
 -N N                    number of threads to N.
 
 --general.error x       If nits of the specified category or worse are
--E                      generated, then exit with an error code. Values
-                        are: 'catastrophe', 'error' (the default),
-                        'warning', 'info', or 'comment'.
+-E                      generated, then, on exit, return an error code.
+                        Values are: 'catastrophe', 'error' (the
+                        default), 'warning', 'info', or 'comment'.
 
 --general.exclude REG   Ignore all files that match the posix regular
                         expression REG. May be repeated.
@@ -149,20 +150,20 @@ line, the "no-" switch always applies.
 --general.file XXX      File for persistent data. Requires -N. See also
                         --general.datapath. Default extension: .ndx.
 
---general.git           Ignore internal git files
+--general.git           Ignore git's internal files.
 
 --general.ignore EL     ignore attributes and content of the element
                         <EL>. May  be repeated.
 
---general.info          Report launch context when starting
+--general.info          Report launch context when starting.
 
 --general.lang LA       If an X/HTML file does not have a language /
                         dialect specified (e.g. "en" for generic
                         English, "en-IE" for Irish English, "lb-LU"
-                        for Luxembourgish, etc.), default to 'LA'. If
-                        not given, the default is your system default,
-                        or, if none, then "en-US" (standard American
-                        English).
+                        for Luxembourgish, "ma" for Marain, etc.),
+                        default to 'LA'. If not given, the default is
+                        your system default, or, if none, then "en-US"
+                        (the standard American dialect of English).
 
 --general.maxfilesize n Do not process HTML source files that exceed n
                         bytes in size (default: 4M). Specify 0 for
@@ -183,20 +184,19 @@ line, the "no-" switch always applies.
                         in the living standard nor at microformats.org,
                         in debug output.
 
---general.rpt           Report CSS files that are opened. ssc opens CSS
-                        files to verify classes; it does not verify CSS.
+--general.rpt           Report CSS files that are opened.
 
---general.slob          Ignore perfectly legal but inefficient, indeed
+--general.slob          Ignore perfectly legal yet inefficient, indeed
                         thoroughly slobby, HTML, such as being far too
-                        lazy to get round to bothering to close elements.
+                        lazy to get round to bothering to close
+                        elements.
 
 --general.spec          Reset the values of most switches to false.
 -j
 
---general.ssi           Process Server Side Includes. Although ssc can
--I                      process many server side includes, it cannot
-                        process those containing formulae. Note that
-                        processing SSIs may cause incorrect line
+--general.ssi           Process Server Side Includes (SSIs). Note ssc
+-I                      cannot process SSIs directives with formulae.
+                        Processing SSIs may cause incorrect line
                         numbers to be mentioned when an issue is
                         reported.
 
@@ -229,11 +229,10 @@ line, the "no-" switch always applies.
                         extension when processing HTML 2.0.
 
 --html.tags             When an HTML file is loaded that contains no
-                        DOCTYPE, ssc normally presumes it's an HTML 1
-                        file. This switch tells it to presume the file
-                        follows an earlier HTML Tags specification
-                        (the one at CERN). This is overridden by
-                        --html.version.
+                        DOCTYPE, ssc normally presumes HTML 1. This
+                        switch tells it to presume the file conforms
+                        to an earlier HTML Tags specification (the one
+                        at CERN). This is overridden by --html.version.
 
 --html.title n          If <TITLE> text is longer than n characters,
 -z n                    say so. This applies to text enclosed by a
@@ -348,6 +347,8 @@ line, the "no-" switch always applies.
                         then, when this switch is set, ssc will verify
                         that the id exists and that it is not hidden.
 
+--math.core             Presume Math 4 core (May 2022 draft).
+
 --math.draft D          Presume this draft of MathML 4. The following
                         drafts supported:
                                 2020    December 2020 draft
@@ -355,8 +356,8 @@ line, the "no-" switch always applies.
 
 --math.version N        Presume version N of MathML (1, 2, 3 pr 4). The
                         following versions are supported:
-                                0   work it out from the (HTML) version
-                                    of the file being analysed
+                                0   try to work it out from the (HTML)
+                                    version of the file being analysed
                                 1   MathML 1
                                 2   MathML 2
                                 3   MathML 3
@@ -428,7 +429,7 @@ line, the "no-" switch always applies.
                         to aid automation.
 
 --nits.quote X          Specify quote style when using nit.format. X
-                        can be one of 'text' or 'html'.
+                        can be 'text' or 'html'.
 
 --nits.root             By default, seek nit output template files in
                         the website root.
@@ -584,7 +585,9 @@ line, the "no-" switch always applies.
                                 1.70        1.7
                                 1.80        1.8
                                 1.90        1.9
-                                1.91...     as version number
+                                1.91        as version number
+                                ...               -to-
+                                15          as version number
 
 --shadow.changed        When shadowing a site that has been previously
                         shadowed, only copy/link files that have
@@ -602,19 +605,20 @@ line, the "no-" switch always applies.
                                 hard   set up hard links to non-source
                                        files (requires source and
                                        shadow directories to be on the
-                                       same disk)
+                                       same disk) (see below)
                                 soft   set up soft links to non-source
-                                       files
+                                       files (see below)
                                 all    copy non HTML files too
                                 dedu   copy non HTML files too, but
                                        deduplicate them, changing links
-                                       in HTML source if necessary
+                                       in HTML source if necessary (see
+                                       below)
                                 report report duplicates (no
                                        shadowing)
                         ssc cannot convert between versions of HTML,
-                        nor between HTML and XHTML. The soft and hard
-                        link options are only available on systems
-                        that support them.
+                        nor between HTML and XHTML.
+                        Link options are only available on systems that
+                        support links.
 
 --shadow.enable         Enable shadowing (set by other shadow options).
                         If shadowing is enabled, but shadow.root is not
@@ -623,7 +627,7 @@ line, the "no-" switch always applies.
 
 --shadow.file f         Write ssc's shadow cache to file f, to
                         accelerate future shadowing of the same
-                        content.
+                        content updated.
 
 --shadow.ignore ext     When shadowing, ignore files with this
                         extension (may be repeated).
@@ -631,11 +635,11 @@ line, the "no-" switch always applies.
 --shadow.info           Add a comment at or near the top of each
                         shadowed HTML file noting its generation time.
 
---shadow.msg text       Insert a comment containing the text at the top
-                        of every generated page. Note that, if any SSI
-                        included file is updated, the comment will
-                        appear whether or not the original page is
-                        updated.
+--shadow.msg text       Insert a comment containing text at the top of
+                        each generated page. Note that, if any SSI
+                        include file is updated, the comment will
+                        appear whether or not the original page has
+                        changed.
 
 --shadow.root dir       Where to write the shadowed site.
 
@@ -665,13 +669,13 @@ line, the "no-" switch always applies.
 -x ext                  source files. This may be repeated. Files with
                         extension .html are always checked.
 
---site.index file       This is the name of the index file in a
+--site.index file       This is the name of the default file in a
 -i file                 directory. This can be repeated. This is used
                         for checking internal links.
 
 --site.root dir         This is the root of the website to analyse. ssc
--g dir                  will recursively scan the directory analysin
-                       g any HTML files it finds. The default is the
+-g dir                  will recursively scan the directory analysing
+                        any HTML files it finds. The default is the
                         current directory.
 
 --site.virtual v=d      The virtual directory 'v' is located in actual
@@ -679,14 +683,15 @@ line, the "no-" switch always applies.
                         example:
                             --site.virtual virtual=D:\actual
 
---spell.accept XXX      XXX is a correct spelling or a word (or a list
+--spell.accept XXX      XXX is a correct spelling of a word (or a list
                         of words) in all languages.
 
 --spell.cased           Nitpick correctly spelt but wrongly cased
                         words.
 
 --spell.check           Check text spelling. Uses external spelling
-                        checkers, so results may be inconsistent between systems.
+                        checkers, so results will be inconsistent
+                        between systems.
 
 --spell.dict LANG,DICT  Unix only. Associate dictionary DICT with LANG.
                         For example, if the standard English dictionary
@@ -731,11 +736,11 @@ line, the "no-" switch always applies.
                         version. Versions recognised:
                             1.0
                             1.1
-                            1.2 (really 1.2/tiny)
+                            1.2      (really 1.2/tiny)
                             1.2/tiny
                             1.2/full (May 2004 draft, incomplete, any
-                                      conflict with tiny always
-                                      resolved in favour of tiny)
+                                      conflict with 1.2/tiny always
+                                      resolves in favour of 1.2/tiny)
                             2.0
                             2.1 (april 2021 draft)
                         If this switch is not used, and some SVG code
@@ -787,7 +792,8 @@ line, the "no-" switch always applies.
                         are 0, 1, 2, and 3 (draft). WhatWG versions are
                         determined by date, corresponding roughly to
                         the date of the (online) publication of the
-                        specific version. See the --html.version switch.
+                        specific version. See the --html.version
+                        switch.
 
 --validation.metaname M
                         Accept M as valid for the NAME attribute of the
@@ -814,8 +820,8 @@ CONFIGURATION FILE FORMAT
 If a configuration file is used, it should be in INI file format. All
 content is optional.
 
-Section and option names are derived from the long form switch name, which
-consists of SECTION.OPTION, laid out in the format:
+Section and option names are derived from the long form switch name,
+which consists of --SECTION.OPTION, laid out in the format:
 
 [SECTION]
 OPTION=yes
@@ -824,8 +830,8 @@ OPTION=123456
 Switches that do not have a long form version cannot be used in a
 configuration file.
 
-Each ssc test (in the toast folder) has a configuration file; browse
-them for examples.
+Each ssc test (in the recipe/toast folder) has a configuration file;
+browse them for examples.
 
 
 
@@ -847,8 +853,9 @@ parameters are processed, including general.verbose and html.version.
 
 
 EXIT STATUS
+
 If no significant nits are found, ssc exits with 0, otherwise it exits
-with a value > 0.
+with a value > 0. See the --general.error switch.
 
 
 
@@ -880,9 +887,9 @@ ssc -V
 To check the static web side source directory /home/site/wwwroot:
 ssc /home/site/wwwroot
 
-To check a static website for example.com which uses server side
-includes, that lies in the current directory, with verification of
-external links, giving rather verbose output:
+To check a static HTML/XHTML website for example.com, that uses server
+side includes, in the current directory, with verification of external
+links, with rather verbose output:
 ssc -e -I -x html -x shtml -s example.com -v 5 -i index.shtml
 
 To check a static web side in the current directory, with a virtual
@@ -1036,10 +1043,12 @@ info=yes
 
 
 SEE ALSO
+
 tidy
 linkchecker
 
 
 
 HISTORY
+
 ssc is written by Dylan Harris, https://ssc.lu/.

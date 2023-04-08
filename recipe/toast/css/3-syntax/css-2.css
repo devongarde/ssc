@@ -1,0 +1,16 @@
+﻿@import "my-styles.css";
+@\000063harset "Ma";
+
+@page :left {
+  margin-left: 4cm;
+  margin-right: 3cm;
+}
+
+@media print {
+  body { font-size: 10pt }
+}
+
+p > a {
+  color: blue;
+  text-decoration: underline;
+}

@@ -1,0 +1,44 @@
+﻿:root {
+--main-color: #06c;
+--accent-color: #006;
+}
+
+/* The rest of the CSS file */
+#foo h1 {
+color: var(--main-color);
+}
+
+--fijord: red;
+--fĳord: green;
+--fijord: blue;
+
+.test {
+background-color: var(--fijord);
+}
+
+:root {
+--header-color: #06c;
+}
+
+h1 { background-color: var(--header-color); }
+
+:root { --color: blue; }
+div { --color: green; }
+#alert { --color: red; }
+* { color: var(--color); }
+
+:root,
+:root:lang(en) {--external-link: "external link";}
+:root:lang(el) {--external-link: "εξωτερικός σύνδεσμος";}
+a[href^="http"]::after {content: " (" var(--external-link) ")"}
+
+:root {
+--main-color: #c06;
+--accent-background: linear-gradient(to top, var(--main-color), white);
+}
+
+:root {
+--one: calc(var(--two) + 20px);
+--two: calc(var(--one) - 20px);
+}
+

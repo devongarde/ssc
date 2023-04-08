@@ -34,7 +34,7 @@ template < > struct type_master < t_itemprop > : string_vector < t_itemprop, sz_
     {   string_vector < t_itemprop, sz_space > :: set_value (nits, v, s);
         if (string_vector < t_itemprop, sz_space > :: empty ())
         {   nits.pick (nit_bad_itemprop, ed_jul20, "5.2.2 Items", es_error, ec_type, "ITEMPROP requires a value");
-            string_value < t_itemprop > :: status (s_invalid); }
+            tidy_string < t_itemprop > :: status (s_invalid); }
         else if (string_vector < t_itemprop, sz_space > :: good ())
             if (v.mjr () >= 10)
                 for (auto t : string_vector < t_itemprop, sz_space > :: get ())

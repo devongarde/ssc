@@ -28,6 +28,12 @@ template < > struct type_master < t_css_url > : type_either_or < t_css_url, t_ur
 template < > struct type_master < t_css_local_url > : type_one_of < t_css_local_url, false, t_url, t_urifn, t_localfn >
 { using type_one_of < t_css_local_url, false, t_url, t_urifn, t_localfn > :: type_one_of; };
 
+template < > struct type_master < t_css_alpha > : type_either_or < t_css_alpha, t_zero_to_one, t_percent >
+{ using type_either_or < t_css_alpha, t_zero_to_one, t_percent > :: type_either_or; };
+
+template < > struct type_master < t_css_alpha_n > : type_or_string < t_css_alpha_n, t_css_alpha, sz_none >
+{ using type_or_string < t_css_alpha_n, t_css_alpha, sz_none > :: type_or_string; };
+
 template < > struct type_master < t_css_attr > : type_function_all < t_css_attr, sz_attr, t_text >
 { using type_function_all < t_css_attr, sz_attr, t_text > :: type_function_all; };
 
@@ -73,8 +79,25 @@ template < > struct type_master < t_css_border_width_i > : type_either_or < t_cs
 template < > struct type_master < t_css_colour_3 > : type_one_of < t_css_colour_3, false, t_css_colour, t_colour_i, t_transparentsz, t_current_colour_sz, t_hslfn, t_hslafn, t_rgbafn >
 { using type_one_of < t_css_colour_3, false, t_css_colour, t_colour_i, t_transparentsz, t_current_colour_sz, t_hslfn, t_hslafn, t_rgbafn > :: type_one_of; };
 
-template < > struct type_master < t_css_colour_a > : type_or_string < t_css_colour_a, t_css_colour_3, sz_auto >
-{ using type_or_string < t_css_colour_a, t_css_colour_3, sz_auto > :: type_or_string; };
+template < > struct type_master < t_css_colour_4 > : type_one_of < t_css_colour_4, false, t_css_colour, t_colour, t_transparentsz, t_current_colour_sz,
+    t_colourfn, t_hslfn4, t_hwbfn, t_labfn, t_lchfn, t_oklabfn, t_oklchfn, t_rgbfn, t_hslfn, t_hslafn, t_rgbafn >
+{ using type_one_of < t_css_colour_4, false, t_css_colour, t_colour, t_transparentsz, t_current_colour_sz,
+    t_colourfn, t_hslfn4, t_hwbfn, t_labfn, t_lchfn, t_oklabfn, t_oklchfn, t_rgbfn, t_hslfn, t_hslafn, t_rgbafn > :: type_one_of; };
+
+template < > struct type_master < t_css_colour_a > : type_or_string < t_css_colour_a, t_css_col, sz_auto >
+{ using type_or_string < t_css_colour_a, t_css_col, sz_auto > :: type_or_string; };
+
+template < > struct type_master < t_css_coin3 > : type_opt_then_must < t_css_coin3, t_css_hue_interpolation, sz_space, t_css_hue >
+{ using type_opt_then_must < t_css_coin3, t_css_hue_interpolation, sz_space, t_css_hue > :: type_opt_then_must; };
+
+template < > struct type_master < t_css_coin2 > : type_one_two < t_css_coin2, t_css_polar, t_css_coin3, sz_space >
+{ using type_one_two < t_css_coin2, t_css_polar, t_css_coin3, sz_space > :: type_one_two; };
+
+template < > struct type_master < t_css_coin1 > : type_either_or < t_css_coin1, t_css_rect, t_css_coin2 >
+{ using type_either_or < t_css_coin1, t_css_rect, t_css_coin2 > :: type_either_or; };
+
+template < > struct type_master < t_css_colour_interpolation > : string_then_type < t_css_colour_interpolation, t_css_coin1, sz_in >
+{ using string_then_type < t_css_colour_interpolation, t_css_coin1, sz_in > :: string_then_type; };
 
 template < > struct type_master < t_css_counter > : type_function_2_opt < t_css_counter, sz_counter, t_text, t_css_list_style_type >
 { using type_function_2_opt < t_css_counter, sz_counter, t_text, t_css_list_style_type > :: type_function_2_opt; };
@@ -127,6 +150,12 @@ template < > struct type_master < t_css_font_size > : type_one_of_five < t_css_f
 
 template < > struct type_master < t_css_font_style > : type_either_or < t_css_font_style, t_css_all, t_css_font_style_e >
 { using type_either_or < t_css_font_style, t_css_all, t_css_font_style_e > :: type_either_or; };
+
+template < > struct type_master < t_css_hue > : type_either_or < t_css_hue, t_angle, t_real >
+{ using type_either_or < t_css_hue, t_angle, t_real > :: type_either_or; };
+
+template < > struct type_master < t_css_hue_n > : type_or_string < t_css_hue_n, t_css_hue, sz_none >
+{ using type_or_string < t_css_hue_n, t_css_hue, sz_none > :: type_or_string; };
 
 template < > struct type_master < t_css_image > : type_or_string < t_css_image, t_css_url, sz_none >
 { using type_or_string < t_css_image, t_css_url, sz_none > :: type_or_string; };
@@ -230,7 +259,6 @@ template < > struct type_master < t_css_backval > : type_one_of_five < t_css_bac
 template < > struct type_master < t_css_play_during_mr > : type_and_maybe_strings < t_css_play_during_mr, t_css_url, sz_space, sz_mix, sz_repeat >
 { using type_and_maybe_strings < t_css_play_during_mr, t_css_url, sz_space, sz_mix, sz_repeat > :: type_and_maybe_strings; };
 
-
 template < > struct type_master < t_css_src > : tidy_string < t_css_src >
 {   using tidy_string < t_css_src > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -249,3 +277,65 @@ template < > struct type_master < t_css_src > : tidy_string < t_css_src >
                 tst.set_value (nits, v, arg);
                 if (tst.good ()) return; }
             tidy_string < t_css_src > :: status (s_invalid); } } };
+
+template < > struct type_master < t_css_langs > : string_vector < t_css_langs, sz_comma >
+{   using string_vector < t_css_langs, sz_comma > :: string_vector;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   string_vector < t_css_langs, sz_comma > :: set_value (nits, v, s);
+        if (string_vector < t_css_langs, sz_comma > :: empty ())
+            nits.pick (nit_bad_itemprop, es_error, ec_type, "lang() requires a parameter");
+        else if (string_vector < t_css_langs, sz_comma > :: good ())
+        {   bool ok = true;
+            for (auto t : string_vector < t_css_langs, sz_comma > :: get ())
+                if (! test_value < t_css_lang > (nits, v, t))
+                    ok = false;
+            if (ok) return; }
+       tidy_string < t_css_langs > :: status (s_invalid); } };
+
+template < > struct type_master < t_css_col > : tidy_string < t_css_col >
+{   using tidy_string < t_css_col > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_col > :: set_value (nits, v, s);
+        const ::std::string& arg = tidy_string < t_css_col > :: get_string ();
+        if (s.empty ())
+            nits.pick (nit_empty, es_error, ec_type, "a colour expected");
+        else if (good ())
+        {   nitpick nuts, nets, nots, nats, gnats;
+            const ::std::string ss (tidy_string < t_css_col > :: get_string ());
+            switch (v.css_colour ())
+            {   case 5 :
+                case 4 :
+                    if (test_value < t_css_colour_4 > (nuts, v, arg))
+                    {   nits.merge (nuts);
+                        tidy_string < t_css_col > :: status (s_good);
+                        return; }
+                    gnats.pick (nit_css_colour, ed_css_colour_4, "10.1. Specifying Predefined Colors: the color() function", es_error, ec_css, quote (ss), ": is invalid in CSS Colour 4 or earlier");
+                    FALLTHROUGH;
+                case 3 :
+                    if (test_value < t_css_colour_3 > (nets, v, arg))
+                    {   nits.merge (nets);
+                        tidy_string < t_css_col > :: status (s_good);
+                        return; }
+                    if (gnats.empty ()) gnats.pick (nit_css_colour, ed_css_colour_3, "3.1 Foreground color: the 'color' property", es_error, ec_css, quote (ss), " is invalid in CSS Colour 3 or earlier");
+                    FALLTHROUGH;
+                default :
+                    if (test_value < t_css_colour > (nots, v, arg))
+                    {   nits.merge (nots);
+                        tidy_string < t_css_col > :: status (s_good);
+                        return; }
+                    if (test_value < t_colour > (nats, v, arg))
+                    {   nits.merge (nats);
+                        tidy_string < t_css_col > :: status (s_good);
+                        return; }
+                    if (compare_no_case (ss, "inherit"))
+                    {   tidy_string < t_css_col > :: status (s_good);
+                        return; }
+                    if (gnats.empty ()) gnats.pick (nit_css_colour, ed_css_21, "14.1 Foreground color: the 'color' property", es_error, ec_css, quote (ss), " is no CSS colour");
+                    break; }
+            nits.merge (gnats);
+            if (context.tell (es_debug))
+            {   nits.merge (nuts);
+                nits.merge (nets);
+                nits.merge (nots);
+                nits.merge (nats); } }
+        tidy_string < t_css_col > :: status (s_invalid); } };

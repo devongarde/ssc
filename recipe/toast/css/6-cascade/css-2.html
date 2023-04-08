@@ -1,0 +1,47 @@
+﻿<!DOCTYPE HTML>
+<HTML>
+ <HEAD>
+<TITLE>CSS 6 cascade chapter 2 example</TITLE>
+ </HEAD>
+
+ <BODY>
+<section data-scope="main-component">
+  <p data-scope="main-component">...</p>
+
+  <!-- sub-component root is in both scopes -->
+  <section data-scope="main-component sub-component">
+    <!-- children are only in the inner scope -->
+    <p data-scope="sub-component">...</p>
+  </section>
+</section>
+
+<section data-scope="main-component">
+  <p>...</p>
+  <section data-scope="sub-component">
+    <p>...</p>
+  </section>
+</section>
+
+<div>
+  <style>
+    @scope {
+      p { color: red; }
+    }
+  </style>
+  <p>this is red</p>
+</div>
+<p>not red</p>
+
+<div id="foo">
+  <style>
+    @scope (#foo) {
+      p { color: red; }
+    }
+  </style>
+  <p>this is red</p>
+</div>
+<p>not red</p>
+
+
+</BODY>
+</HTML>

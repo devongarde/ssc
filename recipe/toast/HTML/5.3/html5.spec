@@ -2,6 +2,7 @@
 
 PASS ../toast/HTML/5.3/css-good.css
 0 html
+1 css_version
 4 whatwg_class whatwg_class
 
 PASS ../toast/HTML/5.3/example-1.html

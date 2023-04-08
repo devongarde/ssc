@@ -28,7 +28,7 @@ PASS ../toast/css/5-media/css-2.html
 PASS ../toast/css/5-media/css-3.css
 0 html
 1 unrecognised_value bad_media bad_media bad_media
-2 unrecognised_value deprecated_media
+2 unrecognised_value deprecated_media css_version
 4 unrecognised_value bad_media
 6 unrecognised_value bad_media bad_media
 8 bad_media
@@ -51,7 +51,6 @@ PASS ../toast/css/5-media/css-5.css
 
 PASS ../toast/css/5-media/css-6.css
 0 html
-16 css_syntax css_syntax not_not
 16 isnt
 22 unrecognised_value
 

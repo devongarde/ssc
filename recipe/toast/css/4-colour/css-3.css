@@ -1,0 +1,4 @@
+﻿em { color:  lime; }   /* color keyword  */
+em { color:  rgb(0 255 0); } /* RGB range 0-255   */
+em { color:  rgb(0% 100% 0%); } /* RGB range 0%-100% */
+em { color:  color(sRGB 0 1 0); } /* sRGB range 0.0-1.0 */

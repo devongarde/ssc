@@ -237,6 +237,8 @@ void element::do_shadow (::std::stringstream& ss, const html_version& v, bool& w
         case elem_css_child : ss << ">"; was_nl = false; break;
         case elem_css_precede : ss << "~"; was_nl = false; break;
         case elem_css_precede_immediate : ss << "+"; was_nl = false; break;
+        case elem_css_scope_descendent : ss << ">>"; was_nl = false; break;
+        case elem_css_scope_root : ss << "&"; was_nl = false; break;
         case elem_annotation :
         case elem_annotation_xml :
         case elem_comment :

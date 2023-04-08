@@ -36,14 +36,6 @@ template < > struct type_master < t_css > : public tidy_string < t_css >
     {   if (! tidy_string < t_css > :: good ()) return true;
         return ! process_css (nits, v, tidy_string < t_css > :: get_string (), e); } };
 
-template < > struct type_master < t_css_bespoke > : public tidy_string < t_css_bespoke >
-{   using tidy_string < t_css_bespoke > :: tidy_string;
-    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_css_bespoke > :: set_value (nits, v, s);
-        tidy_string < t_css_bespoke > :: status (s_invalid); }
-    void verify_attribute (nitpick& nits, const html_version& , const elem& , element* , const ::std::string& attnam)
-    {   nits.pick (nit_css_bespoke, es_warning, ec_type, "bespoke properties, such as ", attnam, ", are processed neither by " PROG " nor all browsers"); } };
-
 template < > struct type_master < t_css_all > : public tidy_string < t_css_all >
 {   using tidy_string < t_css_all > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -57,18 +49,13 @@ template < > struct type_master < t_css_all > : public tidy_string < t_css_all >
             else return;
         tidy_string < t_css_all > :: status (s_invalid); } };
 
-template < > struct type_master < t_css_inherit > : public tidy_string < t_css_inherit >
-{   using tidy_string < t_css_inherit > :: tidy_string;
+template < > struct type_master < t_css_bespoke > : public tidy_string < t_css_bespoke >
+{   using tidy_string < t_css_bespoke > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_css_inherit > :: set_value (nits, v, s);
-        if (tidy_string < t_css_inherit > :: good ())
-            if (! compare_no_case (tidy_string < t_css_inherit > :: get_string (), "inherit"))
-            {   if (v.css_version () >= css_2_0)
-                    nits.pick (nit_unrecognised_value, es_error, ec_type, quote (s), ": is not 'inherit'"); }
-            else if (v.css_version () < css_2_0)
-                nits.pick (nit_css_version, ed_css_20, "2.4 CSS design principles, Accessibility", es_warning, ec_type, quote (s), ": 'inherit' requires CSS 2.0 or later");
-            else return;
-        tidy_string < t_css_inherit > :: status (s_invalid); } };
+    {   tidy_string < t_css_bespoke > :: set_value (nits, v, s);
+        tidy_string < t_css_bespoke > :: status (s_invalid); }
+    void verify_attribute (nitpick& nits, const html_version& , const elem& , element* , const ::std::string& attnam)
+    {   nits.pick (nit_css_bespoke, es_warning, ec_type, "bespoke properties, such as ", attnam, ", are processed neither by " PROG " nor all browsers"); } };
 
 template < > struct type_master < t_css_font > : tidy_string < t_css_font >
 {   using tidy_string < t_css_font > :: tidy_string;
@@ -138,19 +125,6 @@ template < > struct type_master < t_css_font > : tidy_string < t_css_font >
             if (res) return; }
         tidy_string < t_css_font > :: status (s_invalid); } };
 
-template < > struct type_master < t_css_nth > : public tidy_string < t_css_nth >
-{   using tidy_string < t_css_nth > :: tidy_string;
-    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_css_nth > :: set_value (nits, v, s);
-        ::std::string ss (tidy_string < t_css_nth > :: get_string ());
-        if (tidy_string < t_css_nth > :: empty () || ss.empty ())
-            nits.pick (nit_empty, ed_css_selectors_3, "6.6.5.2. :nth-child() pseudo-class", es_error, ec_type, "pseudo class children specification cannot be empty");
-        else if (tidy_string < t_css_nth > :: good ())
-            if (ss.find_first_not_of (DENARY "+-nN ") != ::std::string::npos)
-                nits.pick (nit_css_syntax, ed_css_selectors_3, "6.6.5.2. :nth-child() pseudo-class", es_error, ec_type, quote (ss), " contains invalid characters");
-            else return; // maybe do more checking!
-        tidy_string < t_css_nth > :: status (s_invalid); } };
-
 template < > struct type_master < t_css_frame > : public tidy_string < t_css_frame >
 {   using tidy_string < t_css_frame > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -175,3 +149,29 @@ template < > struct type_master < t_css_id > : public tidy_string < t_css_id >
             if (n.at (0) == '#') return;
             nits.pick (nit_empty, ed_css_ui_4, "5.3. Keyboard control", es_error, ec_type, "An id selector is expected, which starts with '#'"); }
         tidy_string < t_css_id > :: status (s_invalid); } };
+
+template < > struct type_master < t_css_inherit > : public tidy_string < t_css_inherit >
+{   using tidy_string < t_css_inherit > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_inherit > :: set_value (nits, v, s);
+        if (tidy_string < t_css_inherit > :: good ())
+            if (! compare_no_case (tidy_string < t_css_inherit > :: get_string (), "inherit"))
+            {   if (v.css_version () >= css_2_0)
+                    nits.pick (nit_unrecognised_value, es_error, ec_type, quote (s), ": is not 'inherit'"); }
+            else if (v.css_version () < css_2_0)
+                nits.pick (nit_css_version, ed_css_20, "2.4 CSS design principles, Accessibility", es_warning, ec_type, quote (s), ": 'inherit' requires CSS 2.0 or later");
+            else return;
+        tidy_string < t_css_inherit > :: status (s_invalid); } };
+
+template < > struct type_master < t_css_nth > : public tidy_string < t_css_nth >
+{   using tidy_string < t_css_nth > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_nth > :: set_value (nits, v, s);
+        ::std::string ss (tidy_string < t_css_nth > :: get_string ());
+        if (tidy_string < t_css_nth > :: empty () || ss.empty ())
+            nits.pick (nit_empty, ed_css_selectors_3, "6.6.5.2. :nth-child() pseudo-class", es_error, ec_type, "pseudo class children specification cannot be empty");
+        else if (tidy_string < t_css_nth > :: good ())
+            if (ss.find_first_not_of (DENARY "+-nN ") != ::std::string::npos)
+                nits.pick (nit_css_syntax, ed_css_selectors_3, "6.6.5.2. :nth-child() pseudo-class", es_error, ec_type, quote (ss), " contains invalid characters");
+            else return; // maybe do more checking!
+        tidy_string < t_css_nth > :: status (s_invalid); } };

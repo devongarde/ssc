@@ -2,11 +2,11 @@
 
 PASS ../toast/stats/CSS/basic.css
 0 html
-4 correct_spelling unrecognised_value correct_spelling unrecognised_value correct_spelling unrecognised_value bad_colour isnt isnt function function function
+4 css_colour
 7 dialect
 9 unrecognised_value
 10 unrecognised_value unrecognised_value unrecognised_value immeasurable
-11 unrecognised_value unrecognised_value unrecognised_value bad_colour
+11 css_colour
 12 unrecognised_value
 15 unrecognised_value immeasurable
 18 css_dubious
@@ -164,7 +164,7 @@ PASS ../toast/stats/CSS/css-5.css
 0 html
 1 fontname
 2 fontname
-143 dialect unrecognised_value missing_value dialect unrecognised_value immeasurable dialect unrecognised_value dialect unrecognised_value dialect unrecognised_value dialect unrecognised_value bad_colour isnt isnt function function function
+143 css_colour
 
 STATS
 Elements:
@@ -257,8 +257,8 @@ CSS itemid(s):
 
 PASS ../toast/stats/CSS/css-6.css
 0 html
-29 unrecognised_value bad_rgb bad_colour isnt isnt isnt isnt isnt
-30 unrecognised_value bad_rgb bad_colour isnt isnt isnt isnt isnt
+29 css_colour
+30 css_colour
 
 STATS
 Elements:

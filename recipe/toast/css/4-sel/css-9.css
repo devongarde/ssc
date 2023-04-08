@@ -1,0 +1,17 @@
+﻿a:link /* unvisited links */ { }
+a:visited /* visited links */ { }
+a:hover /* user hovers */ { }
+a:active /* active links */ { }
+
+a:focus { }
+a:focus:hover { }
+
+:root {
+--focus-gold: #ffbf47;
+}
+:focus-visible {
+outline: 3px solid var(--focus-gold);
+}
+a:focus-visible {
+background-color: var(--focus-gold);
+}

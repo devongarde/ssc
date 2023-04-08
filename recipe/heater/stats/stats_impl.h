@@ -42,7 +42,7 @@ class stats
     meta_value_stats meta_value_;
     css_property_stats css_property_;
     css_statement_stats css_statement_;
-    smsid_stats dcl_class_, dcl_id_, dcl_element_class_, dcl_element_id_, font_,
+    smsid_stats custom_prop_, dcl_class_, dcl_id_, dcl_element_class_, dcl_element_id_, font_,
                 use_class_, use_id_, use_element_class_, use_element_id_;
     uint64_t file_count_ = 0;
     unsigned smallest_ = UINT_MAX;
@@ -58,29 +58,36 @@ class stats
         e_nit_macro i2 = nm_tally_use_int, e_nit_macro c1 = nm_tally_count, e_nit_macro c2 = nm_tally_use_count,
         e_nit_macro ttl = nm_tally_title, e_nit_macro t1 = nm_tally_total, e_nit_macro t2 = nm_tally_use_total,
         e_nit_macro sum1 = nm_tally_sum, e_nit_macro sum2 = nm_tally_use_sum) const;
-    ::std::string ontology_report () const;
-    ::std::string element_report () const;
-    ::std::string version_report () const;
     ::std::string abbr_report () const;
-    ::std::string dfn_report () const;
-    ::std::string dtdd_report () const;
-    ::std::string error_report () const;
     ::std::string category_report () const;
-    ::std::string file_report () const;
-    ::std::string reference_report () const;
-    ::std::string meta_report () const;
-    ::std::string css_property_report () const;
-    ::std::string css_statement_report () const;
-    ::std::string font_report () const;
     ::std::string class_report () const;
     ::std::string class_report2 () const;
-    ::std::string itemid_report () const;
+    ::std::string css_property_report () const;
+    ::std::string css_statement_report () const;
+    ::std::string custom_property_report () const;
+    ::std::string dfn_report () const;
+    ::std::string dtdd_report () const;
+    ::std::string element_report () const;
+    ::std::string error_report () const;
+    ::std::string file_report () const;
+    ::std::string font_report () const;
     ::std::string id_report2 () const;
+    ::std::string itemid_report () const;
+    ::std::string meta_report () const;
+    ::std::string ontology_report () const;
+    ::std::string reference_report () const;
+    ::std::string version_report () const;
 public:
+    void dcl_class (const ::std::string& s, const ::std::size_t n = 1)
+    {   dcl_class_.mark (s, n); }
+    void dcl_id (const ::std::string& s, const ::std::size_t n = 1)
+    {   dcl_id_.mark (s, n); }
+    void dcl_element_class (const ::std::string& s, const ::std::size_t n = 1)
+    {   dcl_element_class_.mark (s, n); }
+    void dcl_element_id (const ::std::string& s, const ::std::size_t n = 1)
+    {   dcl_element_id_.mark (s, n); }
     void mark (const e_element e)
     {   element_.mark (e); }
-    void visible (const e_element e)
-    {   visible_.mark (e); }
     void mark_abbr (const ::std::string& a, const ::std::string& b)
     {   abbr_.mark (tart (a), tart (b)); }
     void mark_dfn (const ::std::string& a, const ::std::string& b)
@@ -105,23 +112,17 @@ public:
     {   css_property_.mark (p); }
     void mark (const e_css_statement s)
     {   css_statement_.mark (s); }
+    void mark_meta (const e_metaname mn, const ::std::string& val)
+    {   meta_value_.mark (mn, tart (val)); }
+    void mark_file (const unsigned size) noexcept;
+    void mark_custom_prop (const ::std::string& s, const ::std::size_t n = 1)
+    {   custom_prop_.mark (s, n); }
+    void mark_font (const ::std::string& s, const ::std::size_t n = 1)
+    {   font_.mark (s, n); }
     void mark_meta (const e_httpequiv he)
     {   httpequiv_.mark (he); }
     void mark_meta (const e_metaname mn)
     {   metaname_.mark (mn); }
-    void mark_meta (const e_metaname mn, const ::std::string& val)
-    {   meta_value_.mark (mn, tart (val)); }
-    void mark_file (const unsigned size) noexcept;
-    void dcl_class (const ::std::string& s, const ::std::size_t n = 1)
-    {   dcl_class_.mark (s, n); }
-    void dcl_id (const ::std::string& s, const ::std::size_t n = 1)
-    {   dcl_id_.mark (s, n); }
-    void dcl_element_class (const ::std::string& s, const ::std::size_t n = 1)
-    {   dcl_element_class_.mark (s, n); }
-    void dcl_element_id (const ::std::string& s, const ::std::size_t n = 1)
-    {   dcl_element_id_.mark (s, n); }
-    void mark_font (const ::std::string& s, const ::std::size_t n = 1)
-    {   font_.mark (s, n); }
     void use_class (const ::std::string& s, const ::std::size_t n = 1)
     {   use_class_.mark (s, n); }
     void use_id (const ::std::string& s, const ::std::size_t n = 1)
@@ -130,6 +131,8 @@ public:
     {   use_element_class_.mark (s, n); }
     void use_element_id (const ::std::string& s, const ::std::size_t n = 1)
     {   use_element_id_.mark (s, n); }
+    void visible (const e_element e)
+    {   visible_.mark (e); }
     bool has_class (const ::std::string& s) const
     {   return dcl_class_.at (s) > 0; }
     bool has_id (const ::std::string& s) const

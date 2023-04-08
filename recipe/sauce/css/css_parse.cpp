@@ -26,8 +26,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 typedef ::std::vector < css_token > vct_t;
 bool commented = false, sgml_cmt = false, xml_cmt = false;
 
-void bonk (vtt_t& vt, css_token t, const int line, ::std::string& s, const ::std::string& x)
-{   if (t == ct_root) commented = sgml_cmt = xml_cmt = false;
+bool hexen (::std::string& s, ::std::string& hex)
+{   if (hex.empty ()) return false;
+    const int ch = hex_value (hex);
+    s += ch; 
+    hex.clear ();
+    return true; }
+
+void bonk (vtt_t& vt, css_token t, const int line, ::std::string& s, ::std::string& hex, const ::std::string& x)
+{   hexen (s, hex);
+    if (t == ct_root) commented = sgml_cmt = xml_cmt = false;
     bool shush = false;
     if (! s.empty ())
     {   if ((s.length () > 1) && ((s.at (0) == '"') || (s.at (0) == '\'')) && (s.at (s.length () - 1) == s.at (0)))
@@ -122,6 +130,7 @@ void boast (vtt_t& t)
                 case ct_identifier : ::std::cout << "identifier"; break;
                 case ct_keyword : ::std::cout << "keyword"; break;
                 case ct_number : ::std::cout << "number"; break;
+                case ct_ampersand : ::std::cout << "ampersand"; break;
                 case ct_at : ::std::cout << "at"; break;
                 case ct_comma : ::std::cout << "comma"; break;
                 case ct_bang : ::std::cout << "bang"; break;
@@ -137,8 +146,10 @@ void boast (vtt_t& t)
                 case ct_splat : ::std::cout << "splat"; break;
                 case ct_eq : ::std::cout << "eq"; break;
                 case ct_gt : ::std::cout << "gt"; break;
+                case ct_gtgt : ::std::cout << "gtgt"; break;
                 case ct_lt : ::std::cout << "lt"; break;
                 case ct_bar : ::std::cout << "bar"; break;
+                case ct_barbar : ::std::cout << "barbar"; break;
                 case ct_plus : ::std::cout << "plus"; break;
                 case ct_squiggle : ::std::cout << "squiggle"; break;
                 case ct_curly_brac : ::std::cout << "curly_brac"; break;
@@ -157,7 +168,7 @@ bool css::parse (const ::std::string& content, const bool x)
     if (args_.abs_.empty ()) args_.abs_ = abs_;
 
     if (line_ == 0) line_ = 1;
-    ::std::string v;
+    ::std::string v, hex;
     const ::std::string::const_iterator b (content.cbegin ());
     const ::std::string::const_iterator e (content.cend ());
     PRESUME (args_.t_.empty (), __FILE__, __LINE__);
@@ -166,7 +177,7 @@ bool css::parse (const ::std::string& content, const bool x)
     bool controlled = false;
     bool sq = false;
     bool dq = false;
-
+   
     if (! args_.g_.told ())
     {   if (args_.snippet_ || args_.styled ())
             args_.t_.at (0).nits_.pick (nit_css_version, es_comment, ec_css, "Presuming CSS version ", args_.v_.css_version_name ());
@@ -176,102 +187,156 @@ bool css::parse (const ::std::string& content, const bool x)
 
     for (::std::string::const_iterator i = b; i != e; ++i)
         if (backslash)
-        {   if (! commented) v += *i;
-            if ((*i == '\n') || (*i == '\v')) ++line_;
+        {   if (! commented) 
+            {   const ::std::string h (HEX);
+                if (h.find (*i) == ::std::string::npos)
+                {   v += *i;
+                    if ((*i == '\n') || (*i == '\v')) ++line_; }
+                else
+                {   hexen (v, hex);
+                    hex = *i; } }
             backslash = false; }
         else
         {   const ::std::string c (near_here (b, e, i));
-            if (sq || dq)
-            {   if (! commented)
-                    switch (*i)
-                    {   case '\\' : backslash = true; break;
-                        case '\v' :
-                        case '\n' : bonk (args_.t_, ct_string, line_++, v, c);
-                                    if (args_.t_.size () > 0)
-                                        args_.t_.at (args_.t_.size () - 1).nits_.pick (nit_css_syntax, es_warning, ec_css, "end of line in string");
-                                    sq = dq = false;
-                                    break;
-                        case '"' :  v += *i;
-                                    if (sq) break;
-                                    PRESUME (dq, __FILE__, __LINE__);
-                                    dq = false;
-                                    bonk (args_.t_, ct_string, line_, v, c);
-                                    break;
-                        case '\'' : v += *i;
-                                    if (dq) break;
-                                    PRESUME (sq, __FILE__, __LINE__);
-                                    sq = false;
-                                    bonk (args_.t_, ct_string, line_, v, c);
-                                    break;
-                        default :   v += *i; break; } }
+            if (commented) switch (*i)
+            {   case '\v' :
+                case '\n' :++line_; break;
+                case '*' : if (anticipate (i, e, "*/")) commented = false;
+                           break;
+                default  : break; }
+            else if (sq || dq) switch (*i)
+            {   case '\\' : backslash = true; break;
+                case '\v' :
+                case '\n' : bonk (args_.t_, ct_string, line_++, v, hex, c);
+                            if (args_.t_.size () > 0)
+                                args_.t_.at (args_.t_.size () - 1).nits_.pick (nit_css_syntax, es_warning, ec_css, "end of line in string");
+                            sq = dq = false;
+                            break;
+                case '"' :  v += *i;
+                            if (sq) break;
+                            PRESUME (dq, __FILE__, __LINE__);
+                            dq = false;
+                            bonk (args_.t_, ct_string, line_, v, hex, c);
+                            break;
+                case '\'' : v += *i;
+                            if (dq) break;
+                            PRESUME (sq, __FILE__, __LINE__);
+                            sq = false;
+                            bonk (args_.t_, ct_string, line_, v, hex, c);
+                            break;
+                default :   v += *i; break; }
             else switch (*i)
             {   case '\t' :
                 case '\r' :
-                case ' ' : bonk (args_.t_, ct_whitespace, line_, v, c); break;
+                case ' ' : bonk (args_.t_, ct_whitespace, line_, v, hex, c); break;
                 case '\v' :
-                case '\n' :bonk (args_.t_, ct_whitespace, line_++, v, c); break;
-                case '\\' : if (! commented) backslash = true; break;
-                case '/' : if ((! commented) && anticipate (i, e, "/*"))
-                           {    bonk (args_.t_, ct_comment, line_, v, c);
+                case '\n' :bonk (args_.t_, ct_whitespace, line_++, v, hex, c); break;
+                case '\\' :backslash = true; break;
+                case '/' : if (anticipate (i, e, "/*"))
+                           {    bonk (args_.t_, ct_comment, line_, v, hex, c);
                                 commented = true; }
-                           else bonk (args_.t_, ct_slash, line_, v, c);
+                           else bonk (args_.t_, ct_slash, line_, v, hex, c);
                            break;
-                case '*' : if (commented && anticipate (i, e, "*/")) commented = false;
-                           else bonk (args_.t_, ct_splat, line_, v, c);
+                case '*' : if (anticipate (i, e, "*/")) commented = false;
+                           else bonk (args_.t_, ct_splat, line_, v, hex, c);
                            break;
-                case '{' : bonk (args_.t_, ct_curly_brac, line_, v, c); break;
-                case '}' : bonk (args_.t_, ct_curly_ket, line_, v, c); break;
-                case '[' : bonk (args_.t_, ct_square_brac, line_, v, c); break;
-                case ']' : if (xml_cmt && (! commented) && anticipate (i, e, "]]>")) xml_cmt = false;
-                           else bonk (args_.t_, ct_square_ket, line_, v, c);
+                case '{' : bonk (args_.t_, ct_curly_brac, line_, v, hex, c); break;
+                case '}' : bonk (args_.t_, ct_curly_ket, line_, v, hex, c); break;
+                case '[' : bonk (args_.t_, ct_square_brac, line_, v, hex, c); break;
+                case ']' : if (xml_cmt && anticipate (i, e, "]]>")) xml_cmt = false;
+                           else bonk (args_.t_, ct_square_ket, line_, v, hex, c);
                            break;
-                case '(' : bonk (args_.t_, ct_round_brac, line_, v, c); break;
-                case ')' : bonk (args_.t_, ct_round_ket, line_, v, c); break;
-                case '@' : bonk (args_.t_, ct_at, line_, v, c); break;
-                case '.' : bonk (args_.t_, ct_dot, line_, v, c); break;
-                case ',' : bonk (args_.t_, ct_comma, line_, v, c); break;
-                case ':' : if (! anticipate (i, e, "::")) bonk (args_.t_, ct_colon, line_, v, c);
-                           else if (args_.v_.css_selector () >= 3) bonk (args_.t_, ct_coco, line_, v, c);
+                case '(' : bonk (args_.t_, ct_round_brac, line_, v, hex, c); break;
+                case ')' : bonk (args_.t_, ct_round_ket, line_, v, hex, c); break;
+                case '@' : bonk (args_.t_, ct_at, line_, v, hex, c); break;
+                case '.' : bonk (args_.t_, ct_dot, line_, v, hex, c); break;
+                case ',' : bonk (args_.t_, ct_comma, line_, v, hex, c); break;
+                case ':' : if (! anticipate (i, e, "::")) bonk (args_.t_, ct_colon, line_, v, hex, c);
+                           else if (args_.v_.css_selector () >= 3) bonk (args_.t_, ct_coco, line_, v, hex, c);
                            else args_.t_.at (args_.t_.size () - 1).nits_.pick (nit_css_version, ed_css_selectors_3, "2. Selectors", es_error, ec_css, ":: requires CSS Selector 3 or better");
                            break;
-                case ';' : bonk (args_.t_, ct_semicolon, line_, v, c); break;
-                case '!' : bonk (args_.t_, ct_bang, line_, v, c); break;
-                case '#' : bonk (args_.t_, ct_hash, line_, v, c); break;
-                case '^' : bonk (args_.t_, ct_hat, line_, v, c); break;
-                case '$' : bonk (args_.t_, ct_dollar, line_, v, c); break;
-                case '>' : bonk (args_.t_, ct_gt, line_, v, c); break;
-                case '<' : if (x && (! xml_cmt) && (! commented) && anticipate (i, e, "<![CDATA["))
-                           { bonk (args_.t_, ct_whitespace, line_, v, c); xml_cmt = true; }
-                           else if ((! sgml_cmt) && (! commented) && anticipate (i, e, "<!--"))
-                           { bonk (args_.t_, ct_whitespace, line_, v, c); sgml_cmt = true; }
-                           else bonk (args_.t_, ct_lt, line_, v, c);
+                case ';' : bonk (args_.t_, ct_semicolon, line_, v, hex, c); break;
+                case '!' : bonk (args_.t_, ct_bang, line_, v, hex, c); break;
+                case '#' : bonk (args_.t_, ct_hash, line_, v, hex, c); break;
+                case '^' : bonk (args_.t_, ct_hat, line_, v, hex, c); break;
+                case '$' : bonk (args_.t_, ct_dollar, line_, v, hex, c); break;
+                case '>' : if (! anticipate (i, e, ">>"))
+                               bonk (args_.t_, ct_gt, line_, v, hex, c);
+                           else if (context.html_ver ().css_cascade () >= 6)
+                               bonk (args_.t_, ct_gtgt, line_, v, hex, c);
+                           else args_.t_.at (args_.t_.size () - 1).nits_.pick (nit_css_version, ed_css_cascade_6, "2.6. Scoped Descendant Combinator", es_error, ec_css, ">> requires CSS Cascade 6");
                            break;
-                case '=' : bonk (args_.t_, ct_eq, line_, v, c); break;
-                case '~' : bonk (args_.t_, ct_squiggle, line_, v, c); break;
-                case '|' : bonk (args_.t_, ct_bar, line_, v, c); break;
-                case '+' : bonk (args_.t_, ct_plus, line_, v, c); break;
+                case '<' : if (x && (! xml_cmt) && anticipate (i, e, "<![CDATA["))
+                           { bonk (args_.t_, ct_whitespace, line_, v, hex, c); xml_cmt = true; }
+                           else if ((! sgml_cmt) && anticipate (i, e, "<!--"))
+                           { bonk (args_.t_, ct_whitespace, line_, v, hex, c); sgml_cmt = true; }
+                           else bonk (args_.t_, ct_lt, line_, v, hex, c);
+                           break;
+                case '=' : bonk (args_.t_, ct_eq, line_, v, hex, c); break;
+                case '~' : bonk (args_.t_, ct_squiggle, line_, v, hex, c); break;
+                case '|' : if (! anticipate (i, e, "||"))
+                               bonk (args_.t_, ct_bar, line_, v, hex, c);
+                           else if (context.html_ver ().css_selector () >= 4)
+                               bonk (args_.t_, ct_barbar, line_, v, hex, c);
+                           else args_.t_.at (args_.t_.size () - 1).nits_.pick (nit_css_version, ed_css_selectors_4, "2. Selectors Overview", es_error, ec_css, "|| requires CSS Selector 4");
+                           break;
+                case '&' : if (context.html_ver ().css_cascade () >= 6)
+                               bonk (args_.t_, ct_ampersand, line_, v, hex, c);
+                           else args_.t_.at (args_.t_.size () - 1).nits_.pick (nit_css_version, ed_css_cascade_6, "2.5.3. Scoped Style Rules", es_error, ec_css, "& requires CSS Cascade 6");
+                           break;
+                case '+' : bonk (args_.t_, ct_plus, line_, v, hex, c); break;
                 case '"' :
-                    if (commented) break;
                     v += *i;
                     if (v.size () == 1)
                     {   dq = true;
                         PRESUME (! sq, __FILE__, __LINE__); }
                     break;
                 case '\'' :
-                    if (commented) break;
                     v += *i;
                     if (v.size () == 1)
                     {   sq = true;
                         PRESUME (! dq, __FILE__, __LINE__); }
                     break;
+                case '0' :
+                case '1' :
+                case '2' :
+                case '3' :
+                case '4' :
+                case '5' :
+                case '6' :
+                case '7' :
+                case '8' :
+                case '9' :
+                case 'A' :
+                case 'a' :
+                case 'B' :
+                case 'b' :
+                case 'C' :
+                case 'c' :
+                case 'D' :
+                case 'd' :
+                case 'E' :
+                case 'e' :
+                case 'F' :
+                case 'f' :
+                    if (! hex.empty ())
+                    {   unsigned int max = 6;
+                        if (args_.v_.css_version () == css_1) max = 4; // CSS 1 Appendix B grammar
+                        if (hex.length () < max) hex += *i;
+                        else
+                        {   hexen (v, hex);
+                            v += *i; } }
+                    else v += *i;
+                    break;
                 case '-' :
-                    if (sgml_cmt && (! commented) && anticipate (i, e, "-->"))
+                    if (sgml_cmt && anticipate (i, e, "-->"))
                     {   sgml_cmt = false;
                         break; }
                     FALLTHROUGH;
                 default :
                     if (::std::iswspace (*i) || ::std::iswblank (*i))
-                        bonk (args_.t_, ct_whitespace, line_, v, c);
+                    {   if (! hexen (v, hex))
+                            bonk (args_.t_, ct_whitespace, line_, v, hex, c); }
 #ifdef STR_IT_BYTE
                     else if (::std::iscntrl (*i))
 #else // STR_IT_BYTE
@@ -280,8 +345,10 @@ bool css::parse (const ::std::string& content, const bool x)
                     {   if (! controlled)
                         {   args_.t_.at (0).nits_.pick (nit_css_syntax, es_warning, ec_css, "Unexpected control characters ignored.");
                             controlled = true; }
-                        bonk (args_.t_, ct_whitespace, line_, v, c); }
-                    else if (! commented) v += *i;
+                        if (! hexen (v, hex))
+                            bonk (args_.t_, ct_whitespace, line_, v, hex, c); }
+                    else
+                    {   hexen (v, hex); v += *i; }
                     break; } }
 
     if (xml_cmt || sgml_cmt || commented)
@@ -295,7 +362,7 @@ bool css::parse (const ::std::string& content, const bool x)
                 nits.pick (nit_eof_in_comment, es_warning, ec_css, "CSS ends in a comment"); }
 
     // these function calls are dedicated to my younger brother-in-law!!
-    bonk (args_.t_, ct_eof, line_, v, near_here (b, e, e));
+    bonk (args_.t_, ct_eof, line_, v, hex, near_here (b, e, e));
     breed (ticks_, args_.t_, b, e);
     boast (args_.t_);
 
@@ -330,15 +397,18 @@ bool css::parse (const ::std::string& content, const bool x)
         case ct_coco : return "::";
         case ct_colon : return ":";
         case ct_semicolon : return ";";
+        case ct_ampersand : return "&";
         case ct_bang : return "!";
         case ct_hash : return "#";
         case ct_hat : return "^";
         case ct_dollar : return "$";
         case ct_gt : return ">";
+        case ct_gtgt : return ">>";
         case ct_lt : return "<";
         case ct_eq : return "=";
         case ct_squiggle : return "~";
         case ct_bar : return "|";
+        case ct_barbar : return "||";
         case ct_plus : return "+";
         case ct_whitespace : return " ";
         case ct_comment : return " ";
@@ -365,6 +435,16 @@ int token_find (const vtt_t& vt, const css_token t, const int from, const int to
     for (int i = from; (i >= 0) && (i < GSL_NARROW_CAST < int > (vt.size ())); i = next_token_at (vt, i, to))
     {   if ((to >= 0) && (i > to)) break;
         else if (vt.at (i).t_ == t) return i;
+        if (prev != nullptr) *prev = i; }
+    return -1; }
+ 
+int ident_find (const vtt_t& vt, const ::std::string& kw, const int from, const int to, int* prev)
+{   PRESUME ((from >= 0) && (from < GSL_NARROW_CAST < int > (vt.size ())), __FILE__, __LINE__);
+    PRESUME ((from <= to) || (to < 0), __FILE__, __LINE__);
+    if (prev != nullptr) *prev = -1;
+    for (int i = from; (i >= 0) && (i < GSL_NARROW_CAST < int > (vt.size ())); i = next_token_at (vt, i, to))
+    {   if ((to >= 0) && (i > to)) break;
+        else if (((vt.at (i).t_ == ct_identifier) || (vt.at (i).t_ == ct_keyword)) && compare_no_case (kw, vt.at (i).val_)) return i;
         if (prev != nullptr) *prev = i; }
     return -1; }
  

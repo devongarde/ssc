@@ -32,11 +32,11 @@ PASS ../toast/HTML/3.2/html32.html
 
 PASS ../toast/HTML/3.2/html32-bad.html
 11 not_n
-13 unrecognised_value unrecognised_value bad_colour not_an_integer unsigned
+13 bad_colour not_an_integer unsigned
 15 correct_spelling unrecognised_value correct_spelling unrecognised_value bad_colour
 16 unrecognised_value unrecognised_value bad_colour
-17 unrecognised_value unrecognised_value bad_colour
-18 unrecognised_value unrecognised_value bad_colour
+17 bad_colour
+18 bad_colour
 21 correct_spelling
 23 correct_spelling
 25 url_not_found

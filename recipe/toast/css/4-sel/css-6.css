@@ -1,0 +1,47 @@
+﻿@namespace foo "http://www.example.com";
+
+h1[title] { }
+
+span[class="example"] { }
+
+span[hello="Cleveland"][goodbye="Columbus"] { }
+
+a[rel~="copyright"] { }
+a[href="http://www.w3.org/"] { }
+
+a[hreflang=fr] { }
+
+a[hreflang|="en"] { }
+
+DIALOGUE[character=romeo] { }
+DIALOGUE[character=juliet] { }
+
+object[type^="image/"] { } 
+
+a[href$=".html"]  { }
+
+p[title*="hello"] { }
+
+[frame=hsides i] { border-style: solid none; } 
+
+[type="a" s] { list-style: lower-alpha; }
+[type="A" s] { list-style: upper-alpha; }
+
+[foo|att=val] { color: blue }
+[*|att] { color: yellow }
+[|att] { color: green }
+[att] { color: green }
+
+*.pastoral { color: green } /* all elements with class~=pastoral */ 
+
+.pastoral { color: green } /* all elements with class~=pastoral */ 
+
+H1.pastoral { color: green } /* H1 elements with class~=pastoral */ 
+
+p.pastoral.marine { color: green } 
+
+h1#chapter1 { }
+
+#chapter1 { }
+
+*#z98y { }

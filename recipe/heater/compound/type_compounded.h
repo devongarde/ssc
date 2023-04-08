@@ -23,6 +23,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "simple/type_misc.h"
 #include "compound/type_compound.h"
 
+template < > struct type_master < t_slash > : type_string < t_slash, sz_slash >
+{ using type_string < t_slash, sz_slash > :: type_string; };
+
+template < > struct type_master < t_angle_n > : type_or_string < t_angle_n, t_angle, sz_none >
+{ using  type_or_string < t_angle_n, t_angle, sz_none > :: type_or_string; };
+
+template < > struct type_master < t_hue_n > : either_type_or_string < t_hue_n, t_angle, t_hue, sz_none >
+{ using  either_type_or_string < t_hue_n, t_angle, t_hue, sz_none > :: either_type_or_string; };
+
+template < > struct type_master < t_real_percent_n > : public either_type_or_string < t_real_percent_n, t_percent, t_real, sz_none >
+{   using either_type_or_string < t_real_percent_n, t_percent, t_real, sz_none > :: either_type_or_string; };
+
+template < > struct type_master < t_colourfn > : type_function_1_4_5 < t_colourfn, sz_color, t_css_rgb_xyz, t_percent_flexible, t_percent_flexible, t_percent_flexible, t_zero_to_one >
+{ using type_function_1_4_5 < t_colourfn, sz_color, t_css_rgb_xyz, t_percent_flexible, t_percent_flexible, t_percent_flexible, t_zero_to_one > :: type_function_1_4_5; };
+
 template < > struct type_master < t_cookies > : type_at_least_one < t_cookies, sz_semicolon, t_cookie >
 { using type_at_least_one < t_cookies, sz_semicolon, t_cookie > :: type_at_least_one; };
 
@@ -41,8 +56,32 @@ template < > struct type_master < t_hslafn > : type_function_all < t_hslafn, sz_
 template < > struct type_master < t_hslfn > : type_function_all < t_hslfn, sz_hsl, t_hue, t_percent, t_percent >
 { using type_function_all < t_hslfn, sz_hsl, t_hue, t_percent, t_percent > :: type_function_all; };
 
+template < > struct type_master < t_hslfn4 > : type_function_3_4 < t_hslfn4, sz_hsl, t_hue_n, t_percent_n, t_percent_n, t_css_alpha >
+{ using type_function_3_4 < t_hslfn4, sz_hsl, t_hue_n, t_percent_n, t_percent_n, t_css_alpha > :: type_function_3_4; };
+
+template < > struct type_master < t_hwbfn > : type_function_3_4 < t_hwbfn, sz_hwb, t_hue_n, t_percent_n, t_percent_n, t_css_alpha >
+{ using type_function_3_4 < t_hwbfn, sz_hwb, t_hue_n, t_percent_n, t_percent_n, t_css_alpha > :: type_function_3_4; };
+
 template < > struct type_master < t_integer_or_percent > : type_either_or < t_integer_or_percent, t_percent, t_0_to_255 >
 { using type_either_or < t_integer_or_percent, t_percent, t_0_to_255 > :: type_either_or; };
+
+template < > struct type_master < t_labfn > : type_function_3_4 < t_labfn, sz_lab, t_real_percent_n, t_percent_flexible, t_percent_flexible, t_css_alpha >
+{ using type_function_3_4 < t_labfn, sz_lab, t_real_percent_n, t_percent_flexible, t_percent_flexible, t_css_alpha > :: type_function_3_4; };
+
+template < > struct type_master < t_lchfn > : type_function_3_4 < t_lchfn, sz_lch, t_real_percent_n, t_percent_flexible, t_hue_n, t_css_alpha >
+{ using type_function_3_4 < t_lchfn, sz_lch, t_real_percent_n, t_percent_flexible, t_hue_n, t_css_alpha > :: type_function_3_4; };
+
+template < > struct type_master < t_oklabfn > : type_function_3_4 < t_oklabfn, sz_oklab, t_real_percent_n, t_percent_flexible, t_percent_flexible, t_css_alpha >
+{ using type_function_3_4 < t_oklabfn, sz_oklab, t_real_percent_n, t_percent_flexible, t_percent_flexible, t_css_alpha > :: type_function_3_4; };
+
+template < > struct type_master < t_oklchfn > : type_function_3_4 < t_oklchfn, sz_oklch, t_real_percent_n, t_percent_flexible, t_hue_n, t_css_alpha >
+{ using type_function_3_4 < t_oklchfn, sz_oklch, t_real_percent_n, t_percent_flexible, t_hue_n, t_css_alpha > :: type_function_3_4; };
+
+template < > struct type_master < t_percent_n > : type_or_string < t_percent_n, t_percent, sz_none >
+{ using type_or_string < t_percent_n, t_percent, sz_none > :: type_or_string; };
+
+template < > struct type_master < t_rgbfn > : type_function_3_4 < t_rgbfn, sz_rgb, t_real_percent_n, t_real_percent_n, t_real_percent_n, t_zero_to_one >
+{ using type_function_3_4 < t_rgbfn, sz_rgb, t_real_percent_n, t_real_percent_n, t_real_percent_n, t_zero_to_one > :: type_function_3_4; };
 
 template < > struct type_master < t_rgbafn > : type_function_all < t_rgbafn, sz_rgba, t_integer_or_percent, t_integer_or_percent, t_integer_or_percent, t_zero_to_one >
 { using type_function_all < t_rgbafn, sz_rgba, t_integer_or_percent, t_integer_or_percent, t_integer_or_percent, t_zero_to_one > :: type_function_all; };

@@ -29,7 +29,7 @@ PASS ../toast/css/3-media/css-3.css
 6 unrecognised_value bad_media bad_media
 8 illegal_value
 10 unrecognised_value bad_media bad_media bad_media
-11 unrecognised_value
+11 unrecognised_value css_version
 15 bad_media
 15 css_syntax unrecognised_value
 

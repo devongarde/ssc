@@ -44,7 +44,7 @@ element_bitset css_noninline_bitset = empty_element_bitset;
 void state_init ()
 {   faux_bitset = empty_element_bitset | elem_faux_document | elem_faux_asp | elem_faux_cdata | elem_faux_char | elem_faux_code | elem_faux_comment |
             elem_faux_doctype | elem_faux_php | elem_faux_ssi | elem_faux_stylesheet | elem_faux_text | elem_faux_xml | elem_faux_whitespace |
-            elem_css_all | elem_css_cell | elem_css_child | elem_css_precede | elem_css_precede_immediate;
+            elem_css_all | elem_css_cell | elem_css_child | elem_css_precede | elem_css_precede_immediate | elem_css_scope_descendent | elem_css_scope_root;
     form_bitset = empty_element_bitset | elem_button | elem_fieldset | elem_input | elem_object | elem_output | elem_select | elem_textarea | elem_img;
     header_bitset = empty_element_bitset | elem_h1 | elem_h2 | elem_h3 | elem_h4 | elem_h5 | elem_h6 | elem_hgroup;
     interactive_bitset = empty_element_bitset | elem_a | elem_audio | elem_button | elem_details | elem_embed | elem_iframe |

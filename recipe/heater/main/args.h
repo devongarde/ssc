@@ -66,6 +66,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define WEBSITE     WEBSITE_ JOIN
 #define MENTION     MENTION_ JOIN
 
+#define ABHORRENT   "abhorrent"
 #define ACCEPT      "accept"
 #define ALL         "all"
 #define ARTICLE     "article"
@@ -176,6 +177,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define STYLE       "style"
 #define SUBSTITUTE  "substitute"
 #define SUMMARY     "summary"
+#define SYNTAX      "syntax"
 #define TAGS        "tags"
 #define TARGET      "target"
 #define TEST        "test"
@@ -185,6 +187,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define UPDATE      "update"
 #define UI          "ui"
 #define USER        "user"
+#define VALUE       "value"
 #define VARIABLE    "variable"
 #define VERBOSE     "verbose"
 #define VERIFY      "verify"

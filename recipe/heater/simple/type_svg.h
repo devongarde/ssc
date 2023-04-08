@@ -41,7 +41,7 @@ template < > struct type_master < t_angle > : type_master < t_real >
             {   ::std::string sss (ss.substr (len - 3));
                 ::std::string ssss (ss.substr (len - 4));
                 if (compare_complain (nits, v, ssss, "grad")) { max = 400.0; len -= 4; }
-                else if (v.is_svg_2 () && compare_complain (nits, v, ssss, "turn")) { max = 1.0; len -= 4; }
+                else if ((v.is_svg_2 () || (v.css_value () >= 3)) && compare_complain (nits, v, ssss, "turn")) { max = 1.0; len -= 4; }
                 else if (compare_complain (nits, v, sss, "rad")) { max = static_cast < float > (3.141592653589*2); len -= 3; }
                 else if (compare_complain (nits, v, sss, "deg")) len -= 3;
                 ss = ss.substr (0, len); }

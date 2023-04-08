@@ -3,6 +3,18 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.19
+- CSS 3 Cascade
+- CSS 4 Cascade
+- CSS 5 Cascade
+- CSS 6 Cascade (March 2023 draft)
+- CSS 4 Colour
+- CSS Custom Properties
+- CSS 4 Selectors (November 2022 draft)
+- CSS 3 Syntax
+- Abhorrent nits for markup that disgusts
+- underlying work
+
 0.1.18
 - Living Standard Apr 23
 - CSS 4 Media

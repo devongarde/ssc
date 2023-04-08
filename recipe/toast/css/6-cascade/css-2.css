@@ -1,0 +1,98 @@
+﻿@scope (.light-scheme) {
+  /* Only match links inside a light-scheme */
+  a { color: darkmagenta; }
+}
+
+@scope (.dark-scheme) {
+  /* Only match links inside a dark-scheme */
+  a { color: plum; }
+}
+
+@scope (.media-object) {
+  /* Only match author images inside a media-object */
+  .author-image { border-radius: 50%; }
+}
+
+@scope (.media-object) to (.content > *) {
+  img { border-radius: 50%; }
+  .content { padding: 1em; }
+}
+
+@scope (#hero) {
+  img { border-radius: 50%; }
+}
+
+:where(#hero) img { border-radius: 50%; }
+
+p[data-scope~='main-component'] { color: red; }
+p[data-scope~='sub-component'] { color: blue; }
+
+/* both sections are part of the outer scope */
+section[data-scope~='main-component'] { background: snow; }
+
+/* the inner section is also part of the inner scope */
+section[data-scope~='sub-component'] { color: ghostwhite; }
+
+@scope ([data-scope='main-component']) to ([data-scope]) {
+  p { color: red; }
+
+  /* only the outer section is part of the outer scope */
+  section { background: snow; }
+}
+
+@scope ([data-scope='sub-component']) to ([data-scope]) {
+  p { color: blue; }
+
+  /* the inner section is only part of the inner scope */
+  section { color: ghostwhite; }
+}
+
+@scope ([data-scope='main-component']) to ([data-scope] > *) {
+  p { color: red; }
+
+  /* both sections are part of the outer scope */
+  section { background: snow; }
+}
+
+@scope (#my-component) {
+  p { color: green; }
+  :scope p { color: green; }
+}
+
+@scope (#my-component) {
+  > p { color: green; }
+  :scope > p { color: green; }
+}
+
+@scope (#my-component) {
+  :scope { border: thin solid; }
+  & { border: thin solid; }
+
+  main :scope p { color: green; }
+  main & p { color: green; }
+}
+
+/* .content is only a limit when it is a direct child of the :scope */
+@scope (.media-object) to (:scope > .content) { }
+
+/* .content is only a limit when the :scope is inside .sidebar */
+@scope (.media-object) to (.sidebar :scope .content) { }
+
+@scope (.parent-scope) {
+  @scope (:scope > .child-scope) to (:scope .limit) {
+    :scope .content {
+      color: red;
+    }
+  }
+}
+
+@scope (.parent-scope > .child-scope) to (.parent-scope > .child-scope .limit) {
+  .parent-scope > .child-scope .content {
+    color: red;
+  }
+}
+
+.light-scheme >> a { color: darkmagenta; }
+.dark-scheme >> a { color: plum; }
+
+.light-scheme >> a:focus { color: teal; }

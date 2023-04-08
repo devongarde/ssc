@@ -32,9 +32,21 @@ void stats_t::mark (const e_element e)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     p_ -> mark (e); }
 
-void stats_t::visible (const e_element e)
+void stats_t::dcl_class (const ::std::string& s, const ::std::size_t n)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
-    p_ -> visible (e); }
+    return p_ -> dcl_class (s, n); }
+
+void stats_t::dcl_id (const ::std::string& s, const ::std::size_t n)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> dcl_id (s, n); }
+
+void stats_t::dcl_element_class (const ::std::string& s, const ::std::size_t n)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> dcl_element_class (s, n); }
+
+void stats_t::dcl_element_id (const ::std::string& s, const ::std::size_t n)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> dcl_element_id (s, n); }
 
 void stats_t::mark_abbr (const ::std::string& a, const ::std::string& b)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
@@ -84,9 +96,17 @@ void stats_t::mark (const e_css_statement s)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     p_ -> mark (s); }
 
+void stats_t::mark_custom_prop (const ::std::string& s, const ::std::size_t n)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    p_ -> mark_custom_prop (s, n); }
+
 void stats_t::mark_file (const unsigned size)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     p_ -> mark_file (size); }
+
+void stats_t::mark_font (const ::std::string& s, const ::std::size_t n)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> mark_font (s, n); }
 
 void stats_t::mark_meta (const e_httpequiv he)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
@@ -99,26 +119,6 @@ void stats_t::mark_meta (const e_metaname mn)
 void stats_t::mark_meta (const e_metaname mn, const ::std::string& val)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     p_ -> mark_meta (mn, val); }
-
-void stats_t::dcl_class (const ::std::string& s, const ::std::size_t n)
-{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
-    return p_ -> dcl_class (s, n); }
-
-void stats_t::dcl_id (const ::std::string& s, const ::std::size_t n)
-{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
-    return p_ -> dcl_id (s, n); }
-
-void stats_t::dcl_element_class (const ::std::string& s, const ::std::size_t n)
-{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
-    return p_ -> dcl_element_class (s, n); }
-
-void stats_t::dcl_element_id (const ::std::string& s, const ::std::size_t n)
-{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
-    return p_ -> dcl_element_id (s, n); }
-
-void stats_t::mark_font (const ::std::string& s, const ::std::size_t n)
-{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
-    return p_ -> mark_font (s, n); }
 
 void stats_t::merge_class (const smsid_t& s)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
@@ -155,6 +155,10 @@ void stats_t::use_element_class (const ::std::string& s, const ::std::size_t n)
 void stats_t::use_element_id (const ::std::string& s, const ::std::size_t n)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     return p_ -> use_element_id (s, n); }
+
+void stats_t::visible (const e_element e)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    p_ -> visible (e); }
 
 bool stats_t::has_class (const ::std::string& s) const
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);

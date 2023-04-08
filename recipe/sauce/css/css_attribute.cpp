@@ -134,13 +134,12 @@ void css_attribute::parse (arguments& args, const int from, const int to)
             default :
                 nits.pick (nit_css_attribute, es_error, ec_css, args.t_.at (b).val_, ": an attribute value should be a quoted string");
                 return; }
-        // TODO validate attribute value
         b = next_non_whitespace (args.t_, b, to);
         if ((b == -1) || (args.t_.at (b).t_ == ct_square_ket)) return;
         if (args.t_.at (b).t_ != ct_keyword)
         {   nits.pick (nit_css_syntax, es_error, ec_css, tkn_rpt (args.t_.at (b)), ": unexpected (3)");
             return; }
-        if ((context.html_ver ().css_version () < css_4) || (context.html_ver () < html_css_selectors_4))
+        if (context.css_selector () < 4)
         {   nits.pick (nit_css_version, ed_css_selectors_4, "2 Selectors Overview", es_error, ec_css, "case sensitivity selectors require CSS Selectors Level 4");
             return; }
         bool ok = false;
@@ -160,7 +159,7 @@ void css_attribute::parse (arguments& args, const int from, const int to)
                     break; }
         if (! ok) nits.pick (nit_css_attribute, es_error, ec_css, quote (args.t_.at (b).val_), ": invalid case sensitivity selector (expecting 'i' or 's')");
         b = next_non_whitespace (args.t_, b, to);
-        if ((b != -1) && (args.t_.at (b).t_ != ct_square_ket)) return;
+        if ((b != -1) && (args.t_.at (b).t_ != ct_square_ket))
             nits.pick (nit_css_syntax, es_error, ec_css, "unexpected junk at end of attribute description"); } }
 
 void css_attribute::accumulate (stats_t* s, const e_element e) const

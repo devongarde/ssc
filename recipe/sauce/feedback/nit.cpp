@@ -66,6 +66,7 @@ void nit::reset (const nit& n)
     {   case es_illegal :
         case es_undefined : m = 110000; res << "?"; break;
         case es_catastrophic : res << "F"; break;  // F failure
+        case es_abhorrent : res << "A"; break;
         case es_error : m = 10000; res << "E"; break;
         case es_warning : m = 20000; res << "W"; break;
         case es_info : m = 30000; res << "I"; break;
@@ -100,6 +101,7 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
 ::std::string nit::level_symbol () const
 {   switch (severity_)
     {   case es_catastrophic : return " >>> ";
+        case es_abhorrent : return " **> ";
         case es_error : return " ==> ";
         case es_warning : return " --> ";
         case es_info : return " ..> ";
@@ -200,6 +202,13 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_css_20 : return "CSS Level 2";
         case ed_css_21 : return "CSS Level 2.1";
         case ed_css_22 : return "CSS Level 2.2";
+        case ed_css_cascade_4 : return "CSS Cascade 4"; 
+        case ed_css_cascade_5 : return "CSS Cascade 5"; 
+        case ed_css_cascade_6 : return "CSS Cascade 6";
+        case ed_css_colour_3 : return "CSS Colour 3";
+        case ed_css_colour_4 : return "CSS Colour 4";
+        case ed_css_colour_5 : return "CSS Colour 5";
+        case ed_css_custom : return "CSS Custom Properties"; 
         case ed_css_media_4 : return "CSS Media 4"; 
         case ed_css_namespaces_3 : return "CSS Namespaces 3";
         case ed_css_selectors_3 : return "CSS Selectors 3";
@@ -288,10 +297,17 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_css_20 : return "CSS Level 2 (May 1998)";
         case ed_css_21 : return "CSS Level 2.1 (April 2016)";
         case ed_css_22 : return "CSS Level 2.2 (February 2022 draft)";
+        case ed_css_cascade_4 : return "CSS Cascade Level 4, January 2022"; 
+        case ed_css_cascade_5 : return "CSS Cascade Level 5, January 2022"; 
+        case ed_css_cascade_6 : return "CSS Cascade Level 6, March 2023"; 
+        case ed_css_colour_3 : return "CSS Colour 3, January 2022";
+        case ed_css_colour_4 : return "CSS Colour 4, November 2022";
+        case ed_css_colour_5 : return "CSS Colour 5 (June 2022 draft)";
+        case ed_css_custom : return "CSS Custom Properties for Cascading Variables Level 1 (June 2022)"; 
         case ed_css_media_4 : return "CSS Media Queries Level 4, July 2020"; 
         case ed_css_namespaces_3 : return "CSS Namespaces 3, September 2011";
         case ed_css_selectors_3 : return "CSS Selectors Level 3, November 2018";
-        case ed_css_selectors_4 : return "CSS Selectors Level 4 (May 2022 draft)";
+        case ed_css_selectors_4 : return "CSS Selectors Level 4 (November 2022 draft)";
         case ed_css_syntax : return "CSS Syntax Module Level 3 (December 2021 draft)";
         case ed_css_ui_3 : return "CSS Basic User Interface Level 3, June 2018";
         case ed_css_ui_4 : return "CSS Basic User Interface Level 4 (March 2021 draft)";

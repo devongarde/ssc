@@ -36,11 +36,11 @@ void distilled::reset ()
     in_progress_ = false; }
 
 bool distilled::has_element_class (const e_element e, const ::std::string& s) const
-{   ::std::string l (elem::name (e) + "." + s);
+{   const ::std::string l (elem::name (e) + "." + s);
     return (element_class_.find (l) != element_class_.cend ()); }
 
 bool distilled::has_element_id (const e_element e, const ::std::string& s) const
-{   ::std::string l (elem::name (e) + "#" + s);
+{   const ::std::string l (elem::name (e) + "#" + s);
     return (element_id_.find (l) != element_id_.cend ()); }
 
 void distilled::accumulate (stats_t* s) const

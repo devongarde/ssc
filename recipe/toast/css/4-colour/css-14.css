@@ -1,0 +1,9 @@
+﻿.fup {
+  color: HsL(39 100% 50%);
+  color: hsl(39 100% 50%);
+  color: lch(52.2345% 72.2 56.2 / 1);
+  color: oklch(42.1% 0.192 328.6 / 1);
+  color: color(display-p3 0.823 0.6554 0.2537 /1);
+  color: color(xyz 0.472 0.372 0.131);
+  color: color(xyz-d65 0.472 0.372 0.131);
+}
