@@ -612,9 +612,6 @@
     <Filter Include="Toast\SVG\1.2-full">
       <UniqueIdentifier>{f802ce02-2b44-4094-a225-b0a21f1c8433}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Toast\Conf\xhtml">
-      <UniqueIdentifier>{dfae0333-d38c-4d2f-b373-d3e56abb7f63}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Toast\Conf\html">
       <UniqueIdentifier>{af4a0683-44d9-4bb0-af5e-16755be1edd3}</UniqueIdentifier>
     </Filter>
@@ -1088,6 +1085,24 @@
     </Filter>
     <Filter Include="Toast\CSS\4-colour">
       <UniqueIdentifier>{db07d8a9-acc7-49aa-b6a2-6e73104a7406}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-value">
+      <UniqueIdentifier>{35c73d52-8270-4c35-910e-5a35f83a1d9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Other\live">
+      <UniqueIdentifier>{59f40c38-4408-48f5-b94f-43026861d7c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Other\live\plumbing">
+      <UniqueIdentifier>{4d42f14e-a9c9-48ad-8c28-f98259d59f4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Conf\sole">
+      <UniqueIdentifier>{3842c03c-4fc8-42b8-97b5-e4ac1559e1c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Conf\ssc">
+      <UniqueIdentifier>{c10ae172-33bc-4be7-b35f-d5a350c04338}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Conf\xhtml">
+      <UniqueIdentifier>{aa98e859-0090-4a53-8150-710ddc886353}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -2331,6 +2346,9 @@
     </ClCompile>
     <ClCompile Include="..\sauce\enum\type_colour.cpp">
       <Filter>Sauce\enum</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\typed_property.cpp">
+      <Filter>Sauce\css</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -19830,15 +19848,6 @@
     <None Include="..\toast\SVG\1.2-full\progress.svg">
       <Filter>Toast\SVG\1.2-full</Filter>
     </None>
-    <None Include="..\toast\conf\xhtml\conf.conf">
-      <Filter>Toast\Conf\xhtml</Filter>
-    </None>
-    <None Include="..\toast\conf\xhtml\conf.spec">
-      <Filter>Toast\Conf\xhtml</Filter>
-    </None>
-    <None Include="..\toast\conf\xhtml\index.xhtml">
-      <Filter>Toast\Conf\xhtml</Filter>
-    </None>
     <None Include="..\toast\conf\html\conf.conf">
       <Filter>Toast\Conf\html</Filter>
     </None>
@@ -19854,17 +19863,11 @@
     <None Include="..\toast\conf\corrupt\corrupt.conf">
       <Filter>Toast\Conf\corrupt</Filter>
     </None>
-    <None Include="..\toast\conf\live\betsy-live.conf">
-      <Filter>Toast\Conf\live</Filter>
-    </None>
     <None Include="..\toast\conf\live\corona-live.conf">
       <Filter>Toast\Conf\live</Filter>
     </None>
     <None Include="..\toast\conf\live\live.conf">
       <Filter>Toast\Conf\live</Filter>
-    </None>
-    <None Include="..\toast\conf\upload.sh">
-      <Filter>Toast\Conf</Filter>
     </None>
     <None Include="..\toast\shadow\delete\delete.conf">
       <Filter>Toast\Shadow\Delete</Filter>
@@ -30465,6 +30468,72 @@
     <None Include="..\toast\css\4-colour\css-16.css">
       <Filter>Toast\CSS\4-colour</Filter>
     </None>
+    <None Include="..\toast\css\3-value\css.conf">
+      <Filter>Toast\CSS\3-value</Filter>
+    </None>
+    <None Include="..\toast\css\3-value\css.spec">
+      <Filter>Toast\CSS\3-value</Filter>
+    </None>
+    <None Include="..\toast\css\3-value\index.html">
+      <Filter>Toast\CSS\3-value</Filter>
+    </None>
+    <None Include="..\toast\css\3-value\css-3.css">
+      <Filter>Toast\CSS\3-value</Filter>
+    </None>
+    <None Include="..\toast\css\3-value\css-5.css">
+      <Filter>Toast\CSS\3-value</Filter>
+    </None>
+    <None Include="..\toast\css\3-value\css-6.css">
+      <Filter>Toast\CSS\3-value</Filter>
+    </None>
+    <None Include="..\toast\css\3-value\css-8.css">
+      <Filter>Toast\CSS\3-value</Filter>
+    </None>
+    <None Include="..\toast\other\live\404.shtml">
+      <Filter>Toast\Other\live</Filter>
+    </None>
+    <None Include="..\toast\other\live\index.html">
+      <Filter>Toast\Other\live</Filter>
+    </None>
+    <None Include="..\toast\other\live\live.conf">
+      <Filter>Toast\Other\live</Filter>
+    </None>
+    <None Include="..\toast\other\live\live.spec">
+      <Filter>Toast\Other\live</Filter>
+    </None>
+    <None Include="..\toast\other\live\plumbing\songlight.css">
+      <Filter>Toast\Other\live\plumbing</Filter>
+    </None>
+    <None Include="..\toast\other\live\feed-me.rss">
+      <Filter>Toast\Other\live</Filter>
+    </None>
+    <None Include="..\toast\other\live\index.shtml">
+      <Filter>Toast\Other\live</Filter>
+    </None>
+    <None Include="..\toast\conf\live\simple.conf">
+      <Filter>Toast\Conf\live</Filter>
+    </None>
+    <None Include="..\toast\conf\sole\rose.conf">
+      <Filter>Toast\Conf\sole</Filter>
+    </None>
+    <None Include="..\toast\conf\sole\corona.conf">
+      <Filter>Toast\Conf\sole</Filter>
+    </None>
+    <None Include="..\toast\conf\ssc\corona.conf">
+      <Filter>Toast\Conf\ssc</Filter>
+    </None>
+    <None Include="..\toast\conf\ssc\rose.conf">
+      <Filter>Toast\Conf\ssc</Filter>
+    </None>
+    <None Include="..\toast\conf\xhtml\conf.conf">
+      <Filter>Toast\Conf\xhtml</Filter>
+    </None>
+    <None Include="..\toast\conf\xhtml\conf.spec">
+      <Filter>Toast\Conf\xhtml</Filter>
+    </None>
+    <None Include="..\toast\conf\xhtml\index.xhtml">
+      <Filter>Toast\Conf\xhtml</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
@@ -30969,6 +31038,9 @@
     </Text>
     <Text Include="..\toast\link\virtual\README.txt">
       <Filter>Toast\Link\virtual</Filter>
+    </Text>
+    <Text Include="..\toast\conf\live\wordlist.txt">
+      <Filter>Toast\Conf\live</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>

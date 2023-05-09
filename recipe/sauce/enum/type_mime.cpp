@@ -1748,7 +1748,7 @@ struct symbol_entry < html_version, e_mimetype > mimetype_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, "text/1d-interleaved-parityfec", mime_text_1d_interleaved_parityfec, ns_default, MIME_TEXT },
     { { HTML_4_0 }, { HTML_UNDEF }, "text/cache-manifest", mime_text_cache_manifest, ns_default, MIME_TEXT },
     { { HTML_4_0 }, { HTML_UNDEF }, "text/calendar", mime_text_calendar, ns_default, MIME_TEXT },
-    { { HTML_4_0 }, { HTML_UNDEF }, CSS_TYPE, mime_text_css, ns_default, MIME_STYLE | MIME_TEXT },
+    { { HTML_3_0 }, { HTML_UNDEF }, CSS_TYPE, mime_text_css, ns_default, MIME_STYLE | MIME_TEXT },
     { { HTML_4_0 }, { HTML_UNDEF }, "text/csv", mime_text_csv, ns_default, MIME_TEXT },
     { { HTML_4_0 }, { HTML_UNDEF }, "text/csv-schema", mime_text_csv_schema, ns_default, MIME_TEXT },
     { { HTML_4_0 }, { HTML_UNDEF }, "text/directory", mime_text_directory, ns_default, MIME_TEXT },
@@ -1780,7 +1780,7 @@ struct symbol_entry < html_version, e_mimetype > mimetype_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, "text/n3", mime_text_n3, ns_default, MIME_TEXT },
     { { HTML_4_0 }, { HTML_UNDEF }, "text/parameters", mime_text_parameters, ns_default, MIME_TEXT },
     { { HTML_4_0 }, { HTML_UNDEF }, "text/parityfec", mime_text_parityfec, ns_default, MIME_TEXT },
-    { { HTML_2_0 }, { HTML_UNDEF }, "text/plain", mime_text_plain, ns_default, NOT_SCRIPT | MIME_TEXT },
+    { { HTML_2_0 }, { HTML_UNDEF }, PLAIN_TYPE, mime_text_plain, ns_default, NOT_SCRIPT | MIME_TEXT | MIME_UNOFFICIAL }, // it's not in the IANA list of mime types!
     { { HTML_4_0 }, { HTML_UNDEF }, "text/provenance-notation", mime_text_provenance_notation, ns_default, MIME_TEXT },
     { { HTML_4_0 }, { HTML_UNDEF }, "text/prs.fallenstein.rst", mime_text_prs_fallenstein_rst, ns_default, MIME_TEXT },
     { { HTML_4_0 }, { HTML_UNDEF }, "text/prs.lines.tag", mime_text_prs_lines_tag, ns_default, MIME_TEXT },

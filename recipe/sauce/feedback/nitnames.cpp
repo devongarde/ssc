@@ -805,6 +805,8 @@ const nitname nitnames [] =
     { nit_css_scope, "css_scope" },
     { nit_css_custom, "css_custom" },
     { nit_css_colour, "css_colour" },
+    { nit_bad_number, "bad_number" },
+    { nit_css_value, "css_value" },
 
     { nit_incompatible, "incompatible" },
 

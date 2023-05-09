@@ -48,7 +48,7 @@ BODY { background: url("yellow") }
 
 P {counter-increment: par-num}
 H1 {counter-reset: par-num}
-P:before {content: counter(par-num, upper-roman) ". "}
+P::before {content: counter(par-num, upper-roman) ". "}
 
 BODY {color: black; background: white }
 H1 { color: maroon }

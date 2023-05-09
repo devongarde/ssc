@@ -250,7 +250,7 @@ void element::examine_link ()
                 if (compare_no_case (ty, CSS_TYPE)) is_css = true;
                 else bad = true; }
             if (bad)
-            {   pick (nit_style_not_css, ed_50, "4.2.4 The link element", es_warning, ec_css, "REL=\"stylesheet\" requires TYPE=\"text/css\"; ignoring non-CSS stylesheet");
+            {   pick (nit_style_not_css, ed_50, "4.2.4 The link element", es_warning, ec_css, "REL=\"stylesheet\" requires TYPE=\"" CSS_TYPE "\"; ignoring non-CSS stylesheet");
                 return; } }
         if (context.unknown_class () && context.load_css () && (node_.version ().css_version () >= css_1))
             if (has_href && a_.good (a_href))

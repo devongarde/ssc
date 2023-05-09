@@ -30,6 +30,7 @@
 ./ssc -f ../toast/css/3-syntax/css.conf
 ./ssc -f ../toast/css/3-ui/css.conf
 ./ssc -f ../toast/css/4-ui/css.conf
+./ssc -f ../toast/css/3-value/css.conf
 ./ssc -f ../toast/css/accessibility/css.conf
 ./ssc -f ../toast/css/custom/css.conf
 ./ssc -f ../toast/css/songlight/css.conf

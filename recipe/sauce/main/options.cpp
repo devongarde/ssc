@@ -281,7 +281,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
     ;
 
     primary.add_options ()
-        (GENERAL CLASS, ::boost::program_options::bool_switch (), "Report unrecognised classes (consider --" GENERAL CSS_OPTION ".")
+        (GENERAL CLASS, ::boost::program_options::bool_switch (), "Report unrecognised classes (requires CSS).")
         (GENERAL DONT CLASS, ::boost::program_options::bool_switch (), "Do not report unrecognised classes.")
         (GENERAL CLASSIC, ::boost::program_options::bool_switch (), "Report all classes used, not just those in .CSS files (requires --" GENERAL CLASS ").")
         (GENERAL DONT CLASSIC, ::boost::program_options::bool_switch (), "Do not report all classes used.")

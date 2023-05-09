@@ -18,12 +18,12 @@ W3C Recommendation
 */
 
 @media aural {
- BLOCKQUOTE:after { content: url("beautiful-music.wav") }
+ BLOCKQUOTE::after { content: url("beautiful-music.wav") }
  }
 
-IMG:before { content: attr(alt) }
+IMG::before { content: attr(alt) }
 
-H1:before {
+H1::before {
  display: block;
  text-align: center;
  content: "chapter\A hoofdstuk\A chapitre"

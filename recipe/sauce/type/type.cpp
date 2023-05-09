@@ -138,6 +138,7 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_button);
         TEST_VALUE (t_cache);
         TEST_VALUE (t_cachekey);
+        TEST_VALUE (t_calcfn);
         TEST_VALUE (t_calcmode);
         TEST_VALUE (t_captionalign);
         TEST_VALUE (t_capture);
@@ -321,6 +322,8 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_css_text_resize);
         TEST_VALUE (t_css_text_shadow);
         TEST_VALUE (t_css_text_transform);
+        TEST_VALUE (t_css_val_con);
+        TEST_VALUE (t_css_val_fn);
         TEST_VALUE (t_css_vertical_align);
         TEST_VALUE (t_css_volume);
         TEST_VALUE (t_css_volume_e);
@@ -891,6 +894,18 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
         TEST_VALUE (t_uid);
         TEST_VALUE (t_unicode_bidi);
         TEST_VALUE (t_unit);
+        TEST_VALUE (t_unit_abs_len);
+        TEST_VALUE (t_unit_abs_per);
+        TEST_VALUE (t_unit_angle);
+        TEST_VALUE (t_unit_angle_per);
+        TEST_VALUE (t_unit_freq);
+        TEST_VALUE (t_unit_freq_per);
+        TEST_VALUE (t_unit_rel_len);
+        TEST_VALUE (t_unit_rel_per);
+        TEST_VALUE (t_unit_res);
+        TEST_VALUE (t_unit_res_per);
+        TEST_VALUE (t_unit_time);
+        TEST_VALUE (t_unit_time_per);
         TEST_VALUE (t_units);
         TEST_VALUE (t_unsigned);
         TEST_VALUE (t_unsigned_byte);

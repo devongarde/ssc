@@ -39,8 +39,8 @@ PASS ../toast/type/httpequiv/link.html
 6 empty
 8 nocando
 11 nocando
-15 unrecognised_value unknown_rel
-16 bad_link_pragma unknown_protocol
+15 unrecognised_value
+16 unrecognised_value bad_link_pragma
 
 PASS ../toast/type/httpequiv/origin.html
 2 naughty_lang

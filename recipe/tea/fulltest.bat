@@ -27,6 +27,7 @@ ssc.exe -f ../toast/css/3-style/css.conf
 ssc.exe -f ../toast/css/3-syntax/css.conf
 ssc.exe -f ../toast/css/3-ui/css.conf
 ssc.exe -f ../toast/css/4-ui/css.conf
+ssc.exe -f ../toast/css/4-value/css.conf
 ssc.exe -f ../toast/css/accessibility/css.conf
 ssc.exe -f ../toast/css/custom/css.conf
 ssc.exe -f ../toast/css/songlight/css.conf

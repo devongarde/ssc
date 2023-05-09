@@ -23,7 +23,7 @@ P { color: red; font-size: 12pt }
 P:first-letter { color: green; font-size: 200% }
 P:first-line { color: blue }
 
-H1:before {content: counter(chapno, upper-roman) ". "}
+H1::before {content: counter(chapno, upper-roman) ". "}
 
-P.special:before {content: "Special! "}
+P.special::before {content: "Special! "}
 P.special:first-letter {color: #ffd800}

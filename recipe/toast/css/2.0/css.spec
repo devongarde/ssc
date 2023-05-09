@@ -15,7 +15,7 @@ PASS ../toast/css/2.0/aargh.css
 11 css_version naughty_decoration
 11 css_colour
 13 naughty_page
-14 unrecognised_value missing_value unrecognised_value immeasurable precisely naughty_page
+14 unrecognised_value naughty_page
 18 css_element css_element css_version css_version css_element
 
 PASS ../toast/css/2.0/css-1.css
@@ -78,7 +78,7 @@ PASS ../toast/css/2.0/css-4-2.css
 20 unrecognised_value
 25 unrecognised_value
 26 css_syntax
-27 unrecognised_value unrecognised_value missing_units unrecognised_value
+27 unrecognised_value
 35 css_syntax property
 36 css_syntax property
 37 property
@@ -498,7 +498,7 @@ PASS ../toast/css/2.0/css-15-5.css
 49 fontname
 54 fontname
 59 fontname
-60 bad_char function isnt
+60 unrecognised_value
 
 PASS ../toast/css/2.0/css-16-1.css
 0 html

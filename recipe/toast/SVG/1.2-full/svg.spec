@@ -60,7 +60,7 @@ PASS ../toast/SVG/1.2-full/prefetch.svg
 0 title_required
 1 xhtml_1_1
 4 svg_version
-22 newline_in_string newline_in_string sunk sunk sunk
+22 newline_in_string newline_in_string unrecognised_value unrecognised_value unrecognised_value
 
 PASS ../toast/SVG/1.2-full/progress.svg
 0 title_required
@@ -126,7 +126,7 @@ PASS ../toast/SVG/1.2-full/transition.svg
 0 title_required
 1 xhtml_1_1
 4 svg_version
-19 sunk sunk sunk sunk
+19 unrecognised_value unrecognised_value unrecognised_value unrecognised_value
 
 PASS ../toast/SVG/1.2-full/vectoreffects.svg
 0 title_required

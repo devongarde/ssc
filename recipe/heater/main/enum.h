@@ -697,6 +697,19 @@ typedef enum {  ct_root, ct_whitespace, ct_comment, // root must be zero, all em
                 ct_eof,
                 ct_error } css_token;
 typedef enum { ecu_all, ecu_auto, ecu_contain, ecu_inherit, ecu_none, ecu_text } e_css_user_select;
+typedef enum { cvc_e, cvc_infinity, cvc_nan, cvc_pi } e_css_val_con;
+#define CSS_VAL_FN \
+                cvf_none, \
+                cvf_abs, cvf_acos, cvf_asin, cvf_atan, cvf_atan2, \
+                cvf_calc, cvf_clamp, cvf_cos, \
+                cvf_exp, \
+                cvf_hypot, \
+                cvf_log, \
+                cvf_max, cvf_min, cvf_mod, \
+                cvf_pow, cvf_rem, cvf_round, \
+                cvf_sign, cvf_sin, cvf_sqrt, \
+                cvf_tan
+typedef enum {  CSS_VAL_FN } e_css_val_fn;
 typedef enum { css_none, css_1, css_2_0, css_2_1, css_2_2, css_3, css_4, css_5, css_6 } e_css_version;
 typedef enum { ecva_inherit, ecv_baseline, ecv_bottom, ecv_middle, ecv_sub, ecv_super, ecv_text_bottom, ecv_text_top, ecv_top } e_css_vertical_align;
 typedef enum { evs_collapse, evs_hidden, evs_inherit, evs_visible } e_css_visibility;
@@ -757,7 +770,7 @@ typedef enum {  ed_mishmash, ed_dict, ed_tags, ed_1, ed_plus, ed_2, ed_3, ed_32,
                 ed_css_1, ed_css_20, ed_css_21, ed_css_22, ed_css_cascade_4, ed_css_cascade_5, ed_css_cascade_6,
                 ed_css_colour_3, ed_css_colour_4, ed_css_colour_5, ed_css_custom,
                 ed_css_media_4, ed_css_namespaces_3, ed_css_selectors_3, ed_css_selectors_4, ed_css_syntax,
-                ed_css_ui_3, ed_css_ui_4,
+                ed_css_ui_3, ed_css_ui_4, ed_css_value_3, ed_css_value_4,
                 ed_json, ed_jsonld_1_0, ed_jsonld_1_1,
                 ed_imaginary } e_doc;
 const e_doc last_doc = ed_imaginary;
@@ -2044,8 +2057,7 @@ typedef enum
     nit_naughty_page, nit_page_name_again, nit_css_unfinished, nit_missing_units, nit_no_such_page, nit_bespoke_property,
     nit_missing_value, nit_at_least, nit_at_most, nit_range, nit_precisely, nit_css_namespace, nit_css_bespoke,
     nit_not_not, nit_css_svg, nit_deprecated_media, nit_media_version, nit_media_ignored, nit_css_layer, nit_css_scope,
-    nit_css_custom, nit_css_colour,
-
+    nit_css_custom, nit_css_colour, nit_bad_number, nit_css_value,
     nit_incompatible,
 
     // eon
@@ -4340,7 +4352,7 @@ typedef enum {
         t_autocomplete, t_autocompletes, t_autocompletevaried,
     t_b64, t_background, t_bandwidth, t_base, t_baselineshift, t_bb, t_beginvalue, t_beginvalues, t_beginvaluelist, t_behaviour, t_blocking,
         t_border, t_bool, t_bools, t_buffered_rendering, t_button,
-    t_cache, t_cachekey, t_calcmode, t_captionalign, t_capture, t_cc_permits, t_cc_prohibits, t_cc_requires, t_channelselector, t_char,
+    t_cache, t_cachekey, t_calcfn, t_calcmode, t_captionalign, t_capture, t_cc_permits, t_cc_prohibits, t_cc_requires, t_channelselector, t_char,
         t_charset, t_charsets, t_charspacing, t_citype, t_class, t_clear, t_clear30, t_clip, t_clip_path_rule, t_closure, t_colour, t_colour_a, t_colour_ci,
         t_colour_cii, t_colour_i, t_colour_ii, t_colour_interpolation, t_colour_ni, t_colour_profile, t_colour_profile_name, t_colour_profile_name_or_uri,
         t_colour_rendering, t_colour_scheme, t_colour_trans, t_colour_trans_i, t_colour_v, t_colourfn, t_command, t_compact, t_comp_op, t_composite_operator,
@@ -4377,9 +4389,8 @@ typedef enum {
                 t_css_speech_rate, t_css_speech_rate_e, t_css_src, t_css_statement,
             t_css_table_layout, t_css_text_align, t_css_text_decoration, t_css_text_resize, t_css_text_shadow, t_css_text_transform,
             t_css_url, t_css_user_select,
-            t_css_voice_family,
+            t_css_val_con, t_css_val_fn, t_css_vertical_align, t_css_voice_family, t_css_volume, t_css_volume_e,
             t_css_wsc_val,
-            t_css_vertical_align, t_css_volume, t_css_volume_e,
             t_css_whitespace,
         t_csvw_direction, t_curie, t_curie_safe, t_curies, t_currency, t_current_colour_sz, t_cursor, t_cursor_f, t_cursor_i,
     t_d, t_dashes, t_data, t_dataformatas, t_datetime, t_datetime_absolute, t_datetime_local, t_datetime_4, t_datetime_5, t_day, t_decalign,
@@ -4444,7 +4455,10 @@ typedef enum {
     t_tableframe, t_tablevalues, t_target, t_tbalign, t_tblri, t_tdscope, t_tel, t_tendstotype, t_text, t_text_decoration, t_textoverflow, t_text_rendering,
         t_tfmu, t_tfa, t_tfi, t_tfn, t_tfu, t_tokens, t_transform, t_transform_anim, t_transformbehaviour, t_transform_fn, t_transition_subtype,
         t_transition_type, t_transp, t_transparentsz, t_truefalseempty, t_turbulence_type, t_type, t_typeof, t_tz,
-    t_ugeo, t_uid, t_unicode_bidi, t_unit, t_units, t_unsigned, t_unsigned_byte, t_unsigned_short, t_unsigned_1_or_2, t_un_ex, t_unsigned_dosh, t_uplr,
+    t_ugeo, t_uid, t_unicode_bidi, t_unit,
+        t_unit_abs_len, t_unit_abs_per, t_unit_angle, t_unit_angle_per, t_unit_freq, t_unit_freq_per, t_unit_rel_len,
+        t_unit_rel_per, t_unit_res, t_unit_res_per, t_unit_time, t_unit_time_per,
+        t_units, t_unsigned, t_unsigned_byte, t_unsigned_short, t_unsigned_1_or_2, t_un_ex, t_unsigned_dosh, t_uplr,
         t_urange, t_urifn, t_urifn_ni, t_urifn_xy, t_url, t_urls, t_urltemplate,
     t_valign, t_valign3, t_valign_tmb, t_value, t_values, t_valuetype, t_valuetype2, t_vector_effect, t_vector_effect_12, t_vector_effect_2,
         t_vector_effect_20, t_vector_effect_2s, t_version, t_vertical_align, t_vertical_align_enum, t_vgender, t_vid, t_viewportscreen, t_visibility,
@@ -4461,6 +4475,12 @@ typedef ::std::vector < e_type > vtype_t;
 
 typedef enum { ub_bidioverride, ub_embed, ub_inherit, ub_isolate, ub_normal, ub_plaintext } e_unicode_bidi;
 typedef enum { eu_cap, eu_ch, eu_cm, eu_dpcm, eu_dpi, eu_em, eu_ex, eu_ic, eu_in, eu_lh, eu_mm, eu_pc, eu_pt, eu_px, eu_q, eu_rem, eu_rlh, eu_vb, eu_vh, eu_vi, eu_vmin, eu_vmax, eu_vw } e_unit;
+typedef enum { eua_cm, eus_in, eua_mm, eua_pc, eua_pt, eua_px, eua_q } e_unit_abs_len;
+typedef enum { ean_deg, ean_grad, ean_rad, ean_turn } e_unit_angle;
+typedef enum { euf_hz, euf_khz } e_unit_freq;
+typedef enum { eur_em, eur_ex, eur_ch, eur_rem, eur_vh, eur_vmax, eur_vmin, eur_vw } e_unit_rel_len;
+typedef enum { eur_dpcm, eur_dpi, eur_dppx } e_unit_res;
+typedef enum { eut_ms, eur_s } e_unit_time;
 typedef enum { w_en, w_pixels, w_relative } e_units;
 typedef enum { di_down, di_left, di_right, di_up } e_uplr;
 typedef enum { va32_top, va32_middle, va32_bottom } e_valign_tmb;

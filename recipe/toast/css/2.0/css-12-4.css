@@ -22,12 +22,12 @@ Q:lang(en) { quotes: '“' '”' "‘" "’" }
 Q:lang(no) { quotes: "«" "»" "‹" "›" }
 
 /* Insert quotes before and after Q element content */
-Q:before { content: open-quote }
-Q:after { content: close-quote }
+Q::before { content: open-quote }
+Q::after { content: close-quote }
 
-BLOCKQUOTE P:before { content: open-quote }
-BLOCKQUOTE P:after { content: no-close-quote }
-BLOCKQUOTE P.last:after { content: close-quote }
+BLOCKQUOTE P::before { content: open-quote }
+BLOCKQUOTE P::after { content: no-close-quote }
+BLOCKQUOTE P.last::after { content: close-quote }
 
 [LANG|=fr] > * { quotes: "«" "»" "\2039" "\203A" }
 [LANG|=en] > * { quotes: "\201C" "\201D" "\2018" "\2019" }

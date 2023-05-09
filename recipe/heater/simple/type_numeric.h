@@ -179,7 +179,7 @@ template < e_type T, long FROM, long TO > struct type_number_between : type_mast
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   type_master < t_real > :: set_value (nits, v, s);
         if (type_master < t_real > :: good ())
-        {   double d = type_master < t_real > :: get ();
+        {   const double d = type_master < t_real > :: get ();
             if ((d >= from) && (d <= to)) return; }
         nits.pick (nit_not_n, es_error, ec_type, quote (s), ": a number between ", FROM, " and ", TO, " expected");
         type_master < t_real > :: status (s_invalid); } };

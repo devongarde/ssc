@@ -132,7 +132,9 @@ PASS ../toast/HTML/4.01/html4-example.html
 0 charset_mismatch charset_used
 10 bespoke_obsolete
 15 bad_datetime
-62 unrecognised_value unrecognised_value missing_units unrecognised_value isnt unrecognised_value isnt unrecognised_value
+62 unrecognised_value
+62 isnt unrecognised_value
+62 isnt unrecognised_value
 96 inserted_missing_closure inserted_missing_closure missing_close missing_close
 97 inserted_missing_closure inserted_missing_closure
 107 missing_close

@@ -4,7 +4,7 @@ PASS ../toast/type/colour/index.html
 2 naughty_lang
 
 PASS ../toast/type/colour/bad.html
-8 unrecognised_value bad_colour unrecognised_value bad_colour  unrecognised_value bad_colour unrecognised_value bad_colour bad_colour
+8 bad_colour bad_colour unrecognised_value unrecognised_value bad_colour unrecognised_value unrecognised_value bad_colour bad_colour
 13 correct_spelling attribute_unrecognised unrecognised_attribute
 17 unrecognised_value
 21 unrecognised_value

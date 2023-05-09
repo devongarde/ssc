@@ -50,7 +50,9 @@ void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string
             nits.pick (nit_naughty_page, es_error, ec_css, s, " requires @font-face");
     if ((f & CF_BEF_AFT) == CF_BEF_AFT)
         if ((ss_ == nullptr) || (! ss_ -> bef_aft ()))
-            nits.pick (nit_naughty_content, ed_css_21, "12.2 The 'content' p. 182 property", es_error, ec_css, s, " requires an element with :before andor :after"); }
+            if (context.css_version () > css_2_2)
+                nits.pick (nit_naughty_content, ed_css_21, "12.2 The 'content' p. 182 property", es_error, ec_css, s, " requires an element with ::before andor ::after");
+                else nits.pick (nit_naughty_content, ed_css_21, "12.2 The 'content' p. 182 property", es_error, ec_css, s, " requires an element with :before andor :after"); }
 
 const ustr_t& arguments::custom_media () const
 { return g_.custom_media_; }

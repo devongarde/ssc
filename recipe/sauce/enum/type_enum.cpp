@@ -767,6 +767,29 @@ struct symbol_entry < html_version, e_css_user_select > css_user_select_symbol_t
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "none", ecu_none },
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "text", ecu_text } };
 
+struct symbol_entry < html_version, e_css_val_fn > css_val_fn_symbol_table [] =
+{   { { HTML_CSS, 0, 0, H2_CSS_VALUE }, { HTML_UNDEF }, "abs", cvf_abs },
+    { { HTML_CSS, 0, 0, H2_CSS_VALUE }, { HTML_UNDEF }, "acos", cvf_acos },
+    { { HTML_CSS, 0, 0, H2_CSS_VALUE }, { HTML_UNDEF }, "asin", cvf_asin },
+    { { HTML_CSS, 0, 0, H2_CSS_VALUE }, { HTML_UNDEF }, "atan", cvf_atan },
+    { { HTML_CSS, 0, 0, H2_CSS_VALUE }, { HTML_UNDEF }, "atan2", cvf_atan2 },
+    { { HTML_CSS, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "calc", cvf_calc },
+    { { HTML_CSS, 0, 0, H2_CSS_VALUE }, { HTML_UNDEF }, "clamp", cvf_clamp },
+    { { HTML_CSS, 0, 0, H2_CSS_VALUE }, { HTML_UNDEF }, "cos", cvf_cos },
+    { { HTML_CSS, 0, 0, H2_CSS_VALUE }, { HTML_UNDEF }, "exp", cvf_exp },
+    { { HTML_CSS, 0, 0, H2_CSS_VALUE }, { HTML_UNDEF }, "hypot", cvf_hypot },
+    { { HTML_CSS, 0, 0, H2_CSS_VALUE }, { HTML_UNDEF }, "log", cvf_log },
+    { { HTML_CSS, 0, 0, H2_CSS_VALUE }, { HTML_UNDEF }, "max", cvf_max },
+    { { HTML_CSS, 0, 0, H2_CSS_VALUE }, { HTML_UNDEF }, "min", cvf_min },
+    { { HTML_CSS, 0, 0, H2_CSS_VALUE }, { HTML_UNDEF }, "mod", cvf_mod },
+    { { HTML_CSS, 0, 0, H2_CSS_VALUE }, { HTML_UNDEF }, "pow", cvf_pow },
+    { { HTML_CSS, 0, 0, H2_CSS_VALUE }, { HTML_UNDEF }, "rem", cvf_rem },
+    { { HTML_CSS, 0, 0, H2_CSS_VALUE }, { HTML_UNDEF }, "round", cvf_round },
+    { { HTML_CSS, 0, 0, H2_CSS_VALUE }, { HTML_UNDEF }, "sign", cvf_sign },
+    { { HTML_CSS, 0, 0, H2_CSS_VALUE }, { HTML_UNDEF }, "sin", cvf_sin },
+    { { HTML_CSS, 0, 0, H2_CSS_VALUE }, { HTML_UNDEF }, "sqrt", cvf_sqrt },
+    { { HTML_CSS, 0, 0, H2_CSS_VALUE }, { HTML_UNDEF }, "tan", cvf_tan } };
+
 struct symbol_entry < html_version, e_css_vertical_align > css_vertical_align_symbol_table [] =
 {   { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "inherit", ecva_inherit },
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "baseline", ecv_baseline },
@@ -1279,7 +1302,7 @@ struct symbol_entry < html_version, e_kind > kind_symbol_table [] =
 struct symbol_entry < html_version, e_length_absolute > length_absolute_symbol_table [] =
 {   { { HTML_4_0, 0, 0, H2_CSS_ALL }, { HTML_UNDEF }, "cm", l_cm },
     { { HTML_4_0, 0, 0, H2_CSS_ALL }, { HTML_UNDEF }, "mm", l_mm },
-    { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "q", l_q }, // with CSS 3
+    { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "q", l_q },
     { { HTML_4_0, 0, 0, H2_CSS_ALL }, { HTML_UNDEF }, "in", l_in },
     { { HTML_4_0, 0, 0, H2_CSS_ALL }, { HTML_UNDEF }, "pc", l_pc },
     { { HTML_4_0, 0, 0, H2_CSS_ALL }, { HTML_UNDEF }, "pt", l_pt },
@@ -2314,6 +2337,44 @@ struct symbol_entry < html_version, e_unit > unit_symbol_table [] =
     { { HTML_JUN19 }, { HTML_UNDEF }, "vmax", eu_vmax },
     { { HTML_JUN19 }, { HTML_UNDEF }, "vw", eu_vw } };
 
+struct symbol_entry < html_version, e_unit_abs_len > unit_abs_len_symbol_table [] =
+{   { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "cm", eua_cm },
+    { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "in", eus_in },
+    { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "mm", eua_mm },
+    { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "pc", eua_mm },
+    { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "pt", eua_pt },
+    { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "px", eua_px },
+    { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "Q", eua_q } };
+
+struct symbol_entry < html_version, e_unit_angle > unit_angle_symbol_table [] =
+{   { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "deg", ean_deg },
+    { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "grad", ean_grad },
+    { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "rad", ean_rad },
+    { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "turn", ean_turn } };
+
+struct symbol_entry < html_version, e_unit_freq > unit_freq_symbol_table [] =
+{   { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "Hz", euf_hz },
+    { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "kHz", euf_khz } };
+
+struct symbol_entry < html_version, e_unit_rel_len > unit_rel_len_symbol_table [] =
+{   { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "em", eur_em },
+    { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "ex", eur_ex },
+    { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "ch", eur_ch },
+    { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "rem", eur_rem },
+    { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "vh", eur_vh },
+    { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "vmax", eur_vmax },
+    { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "vmin", eur_vmin },
+    { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "vw", eur_vw } };
+
+struct symbol_entry < html_version, e_unit_res > unit_res_symbol_table [] =
+{   { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "dpcm", eur_dpcm },
+    { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "dpi", eur_dpi },
+    { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "dppx", eur_dppx } };
+
+struct symbol_entry < html_version, e_unit_time > unit_time_symbol_table [] =
+{   { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "ms", eut_ms  },
+    { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "s", eur_s } };
+
 struct symbol_entry < html_version, e_vector_effect_2 > vector_effect_2_symbol_table [] =
 {   { { HTML_SVG20 }, { HTML_UNDEF }, "fixed-position", v2_fixedposition },
     { { HTML_SVG20 }, { HTML_UNDEF }, "none", v2_none },
@@ -2710,6 +2771,7 @@ void init_4 ()
     type_master < t_css_orientation > :: init ();
     type_master < t_css_polar > :: init ();
     type_master < t_css_speak > :: init ();
+    type_master < t_css_val_con > :: init ();
     type_master < t_device > :: init ();
     type_master < t_edit > :: init ();
     type_master < t_effect > :: init ();
@@ -2805,6 +2867,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (css_text_decoration);
     INIT_ENUM (css_text_transform);
     INIT_ENUM (css_user_select);
+    INIT_ENUM (css_val_fn);
     INIT_ENUM (css_vertical_align);
     INIT_ENUM (css_volume_e);
     INIT_ENUM (css_whitespace);
@@ -2910,6 +2973,12 @@ void enum_init (nitpick& nits)
     INIT_ENUM (transform_fn);
     INIT_ENUM (turbulence_type);
     INIT_ENUM (unit);
+    INIT_ENUM (unit_abs_len);
+    INIT_ENUM (unit_angle);
+    INIT_ENUM (unit_freq);
+    INIT_ENUM (unit_rel_len);
+    INIT_ENUM (unit_res);
+    INIT_ENUM (unit_time);
     INIT_ENUM (unicode_bidi);
     INIT_ENUM (vector_effect_2);
     INIT_ENUM (vertical_align_enum);

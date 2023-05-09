@@ -27,6 +27,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 css_global global_css;
 
+css_global::css_global ()
+{   mdst_.clear (); } // it looks like some stuff was optimised away that shouldn't have been, so ...
+
 dst_ptr css_global::get_or_preinsert (const ::std::string& s)
 {   dst_ptr dsp = get (s);
     if (dsp.get () == nullptr)

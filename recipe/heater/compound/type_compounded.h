@@ -92,5 +92,58 @@ template < > struct type_master < t_transparentsz > : type_string < t_transparen
 template < > struct type_master < t_svg_src > : public either_type_or_either_string < t_svg_src, t_css_local_url, t_svg_two_profile, sz_srgb, sz_inherit >
 {   using either_type_or_either_string < t_svg_src, t_css_local_url, t_svg_two_profile, sz_srgb, sz_inherit > :: either_type_or_either_string; };
 
+template < > struct type_master < t_unit_abs_per > : type_or_string < t_unit_abs_per, t_unit_abs_len, sz_per_cent >
+{ using type_or_string < t_unit_abs_per, t_unit_abs_len, sz_per_cent > :: type_or_string; };
+
+template < > struct type_master < t_unit_angle_per > : type_or_string < t_unit_angle_per, t_unit_angle, sz_per_cent >
+{ using type_or_string < t_unit_angle_per, t_unit_angle, sz_per_cent > :: type_or_string; };
+
+template < > struct type_master < t_unit_freq_per > : type_or_string < t_unit_freq_per, t_unit_freq, sz_per_cent >
+{ using type_or_string < t_unit_freq_per, t_unit_freq, sz_per_cent > :: type_or_string; };
+
+template < > struct type_master < t_unit_rel_per > : type_or_string < t_unit_rel_per, t_unit_rel_len, sz_per_cent >
+{ using type_or_string < t_unit_rel_per, t_unit_rel_len, sz_per_cent > :: type_or_string; };
+
+template < > struct type_master < t_unit_res_per > : type_or_string < t_unit_res_per, t_unit_res, sz_per_cent >
+{ using type_or_string < t_unit_res_per, t_unit_res, sz_per_cent > :: type_or_string; };
+
+template < > struct type_master < t_unit_time_per > : type_or_string < t_unit_time_per, t_unit_time, sz_per_cent >
+{ using type_or_string < t_unit_time_per, t_unit_time, sz_per_cent > :: type_or_string; };
+
 template < > struct type_master < t_xlinktype > : type_string < t_xlinktype, sz_simple >
 { using type_string < t_xlinktype, sz_simple > :: type_string; };
+
+template < bool REQ > struct tnu_properties
+{   static bool required (nitpick& , const ::std::string& )
+    { return false; } }; 
+
+template < > struct tnu_properties < true >
+{   static bool required (nitpick& nits, const ::std::string& ss)
+    {   nits.pick (nit_bad_units, es_error, ec_type, quote (ss), ": units required");
+        return true; } }; 
+
+template < e_type T, e_type N, class SZ, e_type U, bool REQ > struct type_number_unit : type_master < N >
+{   using type_master < N > :: type_master;
+    type_master < U > units;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   const ::std::string ss (trim_the_lot_off (s));
+        if (ss.empty ())
+            nits.pick (nit_empty, es_error, ec_type, "a number with units expected (", type_name (T), ")");
+        else
+        {   ::std::string::size_type pos = ss.find_last_of (SZ::sz ());
+            if (pos == ::std::string::npos)
+                nits.pick (nit_bad_number, es_error, ec_type, quote (ss), ": a number with units expected");
+            else if (pos == ss.length () - 1)
+            {   type_master < N > :: set_value (nits, v, ss);
+                if (! tnu_properties < REQ > :: required (nits, ss)) return; }
+            else
+            {   const ::std::string lhs (ss.substr (0, pos+1));
+                const ::std::string rhs (ss.substr (pos+1));
+                type_master < N > :: set_value (nits, v, lhs);
+                nitpick nuts;
+                units.set_value (nuts, v, rhs);
+                if (units.good ())
+                {   nits.merge (nuts); return; } 
+                nits.pick (nit_bad_units, es_error, ec_type, quote (ss), ": bad units");
+                if (context.tell (es_debug)) nits.merge (nuts); } }
+        type_master < N > :: status (s_invalid); } };

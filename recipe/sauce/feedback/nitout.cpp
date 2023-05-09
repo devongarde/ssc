@@ -492,7 +492,7 @@ vstr_t sections;
     "<HTML lang=en>\n" \
     "<HEAD>\n" \
     "<TITLE>{{prog-abbrev}} report{{context-root: for :}}</TITLE>\n" \
-    "<STYLE TYPE=\"text/css\">\n" \
+    "<STYLE TYPE=\"" CSS_TYPE "\">\n" \
     "A { color:#9999BB }\n" \
     "H1,H2,H3,H4,H5,H6 { margin-bottom: 0; padding-bottom: 0; }\n" \
     "H1 { color:#66BB66; font-size: 140%; }\n" \

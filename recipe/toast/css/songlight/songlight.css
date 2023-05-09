@@ -5,14 +5,14 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
 body { line-height:1; }
 ol,ul { list-style:none; }
 blockquote,q { quotes:none; }
-blockquote:before,blockquote:after,q:before,q:after { content:'';content:none; }
+blockquote::before,blockquote::after,q::before,q::after { content:'';content:none; }
 ins { text-decoration:none; }
 del { text-decoration:line-through; }
 table { border-collapse:collapse;border-spacing:0; }
 table, tr, td, thead, tbody { border-width:0; }
 tr, td { vertical-align:top; }
 
-.mod:after,.sector:after,.section:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.mod::after,.sector::after,.section::after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
 
 body
 {   font: lighter 100%/1.25 Verdana, sans-serif; -webkit-hyphens: none; hyphens: none;
@@ -156,7 +156,7 @@ sup { font-size: 60%; }
 .blog td p { margin: 0; text-align: left; margin-left: 1.5em; text-indent: -1.5em; }
 
 .poem { max-width: 1000px; min-width: 250px; margin: 0 auto; position: relative; display: table; }
-.poem:after { margin-bottom: 5em; }
+.poem::after { margin-bottom: 5em; }
 .poem h1 { margin-bottom: 1.75em; font-size: 100%; font-weight: normal; }
 .poem h3 { font-size: 107%; }
 .poem h3,.poem h4,.poem h6 { margin: 2% 0 0 0; font-style: italic; color: #555555; }

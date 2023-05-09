@@ -28,6 +28,7 @@ class css_global
 {   mdst_t mdst_;
     dst_ptr inner_get (const ::std::string& s) const;
 public:
+    css_global ();
     dst_ptr get_or_preinsert (const ::std::string& s);
     void release (dst_ptr cp);
     dst_ptr get (const ::std::string& s) const;
