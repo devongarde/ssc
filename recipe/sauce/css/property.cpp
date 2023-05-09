@@ -146,5 +146,4 @@ void property::shadow (::std::stringstream& ss, arguments& args)
     w_.shadow (ss, args); }
 
 void property::name (arguments& args, const ::std::string& n)
-{
-    name_ = n; } 
+{   name_ = n; } 

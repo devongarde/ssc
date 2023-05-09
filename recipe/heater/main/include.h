@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
-#define VERSION_RELEASE 19
-#define VERSION_STRING "0.1.19"
+#define VERSION_RELEASE 20
+#define VERSION_STRING "0.1.20"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -477,6 +477,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define DEFAULT_DOMAIN "example.org"
 #define CSS_TYPE "text/css"
 #define HTML_TYPE "text/html"
+#define PLAIN_TYPE "text/plain"
 
 #define EXPORT_EXTENSION ".json"
 #define QNONE "'none'"

@@ -1,0 +1,20 @@
+﻿@import url("base-theme.css");
+@import "base-theme.css";
+
+table { border-collapse: separate }
+
+.fup
+{   content: "this is a 'string'.";
+    content: "this is a \"string\".";
+    content: 'this is a "string".';
+    content: 'this is a \'string\'.' }
+
+body
+{   background: url("http://www.example.com/pinkish.gif") }
+
+.fud
+{   background: url("http://www.example.com/pinkish.gif");
+    background: url(http://www.example.com/pinkish.gif); }
+
+body
+{   background: url("tile.png") }

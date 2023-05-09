@@ -5,7 +5,7 @@ PASS ../toast/stats/CSS/basic.css
 4 css_colour
 7 dialect
 9 unrecognised_value
-10 unrecognised_value unrecognised_value unrecognised_value immeasurable
+10 unrecognised_value
 11 css_colour
 12 unrecognised_value
 15 unrecognised_value immeasurable
@@ -164,7 +164,7 @@ PASS ../toast/stats/CSS/css-5.css
 0 html
 1 fontname
 2 fontname
-143 css_colour
+143 unrecognised_value
 
 STATS
 Elements:
@@ -286,7 +286,7 @@ PASS ../toast/stats/CSS/css-7.css
 1 unrecognised_value
 6 unrecognised_value
 7 css_syntax
-8 unrecognised_value missing_units
+8 unrecognised_value
 15 unrecognised_value
 27 css_version
 33 unrecognised_value

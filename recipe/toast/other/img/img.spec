@@ -9,4 +9,4 @@ PASS ../toast/other/img/index.html
 22 bad_srcset
 23 attribute_required
 24 alt_title
-27 unrecognised_value unrecognised_value
+27 unrecognised_value

@@ -27,6 +27,7 @@ ssc.exe -T --nits.spec -o ../out/3style.tst -f ../toast/css/3-style/css.conf
 ssc.exe -T --nits.spec -o ../out/3syntax.tst -f ../toast/css/3-syntax/css.conf
 ssc.exe -T --nits.spec -o ../out/3ui.tst -f ../toast/css/3-ui/css.conf
 ssc.exe -T --nits.spec -o ../out/4ui.tst -f ../toast/css/4-ui/css.conf
+ssc.exe -T --nits.spec -o ../out/3value.tst -f ../toast/css/3-value/css.conf
 ssc.exe -T --nits.spec -o ../out/accessibility.tst -f ../toast/css/accessibility/css.conf
 ssc.exe -T --nits.spec -o ../out/csscustom.tst -f ../toast/css/custom/css.conf
 ssc.exe -T --nits.spec -o ../out/songlight.tst -f ../toast/css/songlight/css.conf

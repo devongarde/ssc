@@ -43,8 +43,17 @@ struct property_base
 #endif // _MSC_VER
 
 bool examine_custom_property (arguments& args, nitpick& nits, const int from, const int to);
+int check_formula (arguments& args, const int start, const int to, nitpick& nits, const e_css_val_fn c, const bool percent);
 
-template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public property_base, public type_master < TYPE >
+//template < e_type TYPE, e_css_property IDENTITY, e_css_val_fn CALC > struct formulaic
+//{   static int check (arguments& , const int i, const int , nitpick& )
+//    {    return i; } };
+
+//template < e_type TYPE, e_css_property IDENTITY > struct formulaic < TYPE, IDENTITY, cvf_calc >
+//{   static int check (arguments& args, const int start, const int to, nitpick& nits)
+//    {   return check_formula (args, start, to, nits, cvf_calc, true); } }; 
+
+template < e_type TYPE, e_css_property IDENTITY, e_css_val_fn FN = cvf_none > struct typed_property : public property_base, public type_master < TYPE >
 {   typedef type_master < TYPE > base_type;
     typedef enum { iiu_none, iiu_inherit, iiu_initial, iiu_revert, iiu_revert_layer, iiu_unset } t_iiu;
     t_iiu iiu_ = iiu_none;
@@ -56,6 +65,8 @@ template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public
     bool good () const noexcept { return type_master < TYPE > :: good (); }
     bool bad () const noexcept { return type_master < TYPE > :: bad (); }
     bool invalid () const noexcept { return type_master < TYPE > :: invalid (); }
+    bool check_calc (arguments& args, const int start, const int to, nitpick& nits)
+    {    return check_formula (args, start, to, nits, FN, false); }
     virtual void verify (nitpick& nits, const elem& e) override
     {   if (iiu_ == iiu_none) type_master < TYPE > :: verify_attribute (nits, context.html_ver (), e, nullptr, name ()); }
     virtual void validate (arguments& ) override
@@ -135,7 +146,32 @@ template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public
                         {   base_type :: status (s_good);
                             iiu_ = iiu_inherit;
                             return; }
-                    break; } }
+                    break; }
+            for (auto i = start ; (i > 0) && (i < to); i = next_non_whitespace (args.t_, i, to))
+                if ((args.t_.at (i).t_ == ct_keyword) || (args.t_.at (i).t_ == ct_identifier))
+                {   nitpick nets, nuts;
+                    if (test_value < t_css_val_con > (nets, args.v_, args.t_.at (i).val_))
+                    {   nits.merge (nuts);
+                        if (args.v_.css_value () < 4)
+                            nits.pick (nit_css_value, ed_css_value_4, "10.7 Numeric Constants", es_error, ec_css,
+                                quote (args.t_.at (i).val_), " requires CSS Values 4");
+                        continue; }
+                    type_master < t_css_val_fn > cvf;
+                    cvf.set_value (nuts, args.v_, args.t_.at (i).val_);
+                    if (cvf.good ())
+                    {   nits.merge (nuts);
+                        switch (context.css_value ())
+                        {   case 4 :
+                                i = check_formula (args, i, to, nits, cvf.get (), false);
+                                break;
+                            case 3 :
+                                if (cvf.get () == cvf_calc) i = check_formula (args, i, to, nits, cvf_calc, false);
+                                else nits.pick (nit_css_value, es_error, ec_css, quote (args.t_.at (i).val_), " requires CSS Values 4");
+                                break;
+                            default :
+                                nits.pick (nit_css_value, es_error, ec_css, quote (args.t_.at (i).val_), " requires CSS Values");
+                                break; }
+                        continue; } } }
         type_master < TYPE > :: set_value (nits, context.html_ver (), s); }
     virtual ::std::string rpt () const override
     {   const ::std::string res (name () + ": ");

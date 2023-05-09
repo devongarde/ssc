@@ -3,6 +3,10 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.20
+- OpenBSD 7.3
+- underlying work
+
 0.1.19
 - CSS 3 Cascade
 - CSS 4 Cascade
@@ -12,7 +16,7 @@ https://ssc.lu/
 - CSS Custom Properties
 - CSS 4 Selectors (November 2022 draft)
 - CSS 3 Syntax
-- Abhorrent nits for markup that disgusts
+- Abhorrent markup explicitly nitted
 - underlying work
 
 0.1.18

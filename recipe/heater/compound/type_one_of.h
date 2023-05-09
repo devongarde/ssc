@@ -98,9 +98,13 @@ template < e_type T, bool EMPTY, e_type A, e_type... B > struct type_one_of : ty
     ::std::string original () const
     {   return type_one_of < T, EMPTY, B... > :: original (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   ::std::string ss (tart (s));   
+    {   ::std::string ss (tart (s));
         if (content_status (nits, ss) != s_invalid)
-            inner_set_value (nits, v, ss); }
+        {   nitpick nuts;
+            if (inner_set_value (nuts, v, ss)) nits.merge (nuts);
+            else
+            {   nits.pick (nit_unrecognised_value, es_error, ec_type, quote (ss), " is invalid for all possible values (", type_name (T), ")");
+                if (context.tell (es_debug)) nits.merge (nuts); } } }
     void set_id (const ::std::string& s)
     {   type_one_of < T, EMPTY, B... > :: set_id (s); }
     ::std::string& id () noexcept
@@ -220,7 +224,7 @@ template < e_type T, bool EMPTY, e_type A > struct type_one_of < T, EMPTY, A > :
     {   e_animation_type a = type_master < A > :: animation_type ();
         if (a != at_none) return a;
         return tidy_string < T > :: animation_type (); }
-     void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* p, const ::std::string& s)
+    void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* p, const ::std::string& s)
     {   if (! val_.unknown ()) val_.verify_attribute (nits, v, e, p, s);
         else tidy_string < T > ::verify_attribute (nits, v, e, p, s); }
     bool verify_url (nitpick& nits, const html_version& v, element& e)
@@ -234,7 +238,13 @@ template < e_type T, bool EMPTY, e_type A > struct type_one_of < T, EMPTY, A > :
    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string ss (tart (s));   
         if (content_status (nits, s) != s_invalid)
-            inner_set_value (nits, v, ss); }
+        {   nitpick nuts;
+            if (inner_set_value (nuts, v, ss)) nits.merge (nuts);
+            else
+            {   nits.pick (nit_unrecognised_value, es_error, ec_type, quote (ss), " is invalid for all possible values (", type_name (T), ")");
+                if (context.tell (es_debug)) nits.merge (nuts); } } }
+    void set_id (const ::std::string& s)
+    {   tidy_string < T > :: set_id (s); }
     ::std::string& id () noexcept
     {   return tidy_string < T > :: id (); }
     const ::std::string& id () const

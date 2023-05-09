@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.19)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.1.19 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
+project (ssc VERSION 0.1.20 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
 
 set (CMAKE_CXX_STANDARD 17)
 
@@ -68,6 +68,9 @@ endif ()
     elseif (${CMAKE_SYSTEM} MATCHES "OpenBSD-7.1")
       target_compile_definitions (ssc PRIVATE UNIX OS_VER="${OS}" NO_PCF_STR HUNSPELL)
     elseif (${CMAKE_SYSTEM} MATCHES "OpenBSD-7.2")
+      set (NO_CURL "1")
+      target_compile_definitions (ssc PRIVATE UNIX OS_VER="${OS}" NO_PCF_STR NOCURL HUNSPELL)
+    elseif (${CMAKE_SYSTEM} MATCHES "OpenBSD-7.3")
       set (NO_CURL "1")
       target_compile_definitions (ssc PRIVATE UNIX OS_VER="${OS}" NO_PCF_STR NOCURL HUNSPELL)
     else ()
@@ -299,7 +302,7 @@ target_sources (ssc PRIVATE
         ${S}/css/arguments.cpp ${S}/css/css.cpp ${S}/css/css_attribute.cpp ${S}/css/css_class.cpp ${S}/css/css_element.cpp ${S}/css/css_id.cpp
             ${S}/css/css_parse.cpp ${S}/css/css_state.cpp ${S}/css/decoration.cpp ${S}/css/distilled.cpp ${S}/css/fn.cpp ${S}/css/global.cpp ${S}/css/group.cpp
             ${S}/css/property.cpp ${S}/css/properties.cpp ${S}/css/property_constructor.cpp ${S}/css/rule.cpp ${S}/css/rules.cpp ${S}/css/selector.cpp
-            ${S}/css/selectors.cpp ${S}/css/statement.cpp ${S}/css/statements.cpp ${S}/css/weight.cpp 
+            ${S}/css/selectors.cpp ${S}/css/statement.cpp ${S}/css/statements.cpp ${S}/css/typed_property.cpp ${S}/css/weight.cpp 
         ${S}/element/elem.cpp ${S}/element/element.cpp ${S}/element/element_abcd.cpp ${S}/element/element_aria.cpp ${S}/element/element_attributes.cpp
             ${S}/element/element_classes.cpp ${S}/element/element_efghi.cpp ${S}/element/element_examine.cpp ${S}/element/element_input.cpp
             ${S}/element/element_jkl.cpp ${S}/element/element_microdata.cpp ${S}/element/element_microformats.cpp ${S}/element/element_mno.cpp

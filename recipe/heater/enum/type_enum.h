@@ -379,6 +379,9 @@ template < > struct type_master < t_css_text_transform > : enum_n < t_css_text_t
 template < > struct type_master < t_css_user_select > : enum_n < t_css_user_select, e_css_user_select >
 { using enum_n < t_css_user_select, e_css_user_select > :: enum_n; };
 
+template < > struct type_master < t_css_val_fn > : enum_n < t_css_val_fn, e_css_val_fn >
+{ using enum_n < t_css_val_fn, e_css_val_fn > :: enum_n; };
+
 template < > struct type_master < t_css_vertical_align > : enum_n < t_css_vertical_align, e_css_vertical_align >
 { using enum_n < t_css_vertical_align, e_css_vertical_align > :: enum_n; };
 
@@ -714,6 +717,24 @@ template < > struct type_master < t_turbulence_type > : enum_n < t_turbulence_ty
 
 template < > struct type_master < t_unit > : enum_n < t_unit, e_unit >
 { using enum_n < t_unit, e_unit > :: enum_n; };
+
+template < > struct type_master < t_unit_abs_len > : enum_n < t_unit_abs_len, e_unit_abs_len >
+{ using enum_n < t_unit_abs_len, e_unit_abs_len > :: enum_n; };
+
+template < > struct type_master < t_unit_angle > : enum_n < t_unit_angle, e_unit_angle >
+{ using enum_n < t_unit_angle, e_unit_angle > :: enum_n; };
+
+template < > struct type_master < t_unit_freq > : enum_n < t_unit_freq, e_unit_freq >
+{ using enum_n < t_unit_freq, e_unit_freq > :: enum_n; };
+
+template < > struct type_master < t_unit_rel_len > : enum_n < t_unit_rel_len, e_unit_rel_len >
+{ using enum_n < t_unit_rel_len, e_unit_rel_len > :: enum_n; };
+
+template < > struct type_master < t_unit_res > : enum_n < t_unit_res, e_unit_res >
+{ using enum_n < t_unit_res, e_unit_res > :: enum_n; };
+
+template < > struct type_master < t_unit_time > : enum_n < t_unit_time, e_unit_time >
+{ using enum_n < t_unit_time, e_unit_time > :: enum_n; };
 
 template < > struct type_master < t_unicode_bidi > : enum_n < t_unicode_bidi, e_unicode_bidi >
 { using enum_n < t_unicode_bidi, e_unicode_bidi > :: enum_n; };

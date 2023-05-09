@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+ <copyright>copyright 1979-2023 dylan harris</copyright>
+ <title>arts &amp; ego</title>
+ <link>https://dylanharris.org/</link>
+ <description>arts &amp; ego is dylan harris&apos;s identity website</description>
+ <docs>http://www.rssboard.org/rss-specification</docs>
+ <ttl>1440</ttl>
+ <image>
+   <url>https://dylanharris.org/ae.jpg</url>
+   <title>arts &amp; ego</title>
+   <link>https://dylanharris.org/</link>
+   <width>100</width>
+   <height>100</height>
+ </image>
+   
+<item>
+ <title>more NMS bases</title>
+ <link>https://dylanharris.org/blog/2023/2023z.shtml</link>
+ <guid isPermaLink="true">https://dylanharris.org/blog/2023/2023z.shtml</guid>
+ <description>
+    lots of my No Man&apos;s Sky bases; i seem to be on a roll
+ </description>
+ <source url="https://dylanharris.org/feed-me.rss">arts &amp; ego</source>
+ <pubDate>Mon, 20 March 2023 00:00:01 CET</pubDate>
+</item>
+
+<item>
+ <title>filthy goals</title>
+ <link>https://dylanharris.org/blog/2023/b7.shtml</link>
+ <guid isPermaLink="true">https://dylanharris.org/blog/2023/b7.shtml</guid>
+ <description>
+    a no man&apos;s sky base to slaughter sentinals
+ </description>
+ <source url="https://dylanharris.org/feed-me.rss">arts &amp; ego</source>
+ <pubDate>Tue, 14 March 2023 00:00:01 CET</pubDate>
+</item>
+
+<item>
+ <title>euclid</title>
+ <link>https://dylanharris.org/blog/2023/b6.shtml</link>
+ <guid isPermaLink="true">https://dylanharris.org/blog/2023/b6.shtml</guid>
+ <description>
+    my no man&apos;s sky old euclid base
+ </description>
+ <source url="https://dylanharris.org/feed-me.rss">arts &amp; ego</source>
+ <pubDate>Tue, 14 March 2023 00:00:00 CET</pubDate>
+</item>
+
+<item>
+ <title>unclean</title>
+ <link>https://dylanharris.org/blog/2023/b5.shtml</link>
+ <guid isPermaLink="true">https://dylanharris.org/blog/2023/b5.shtml</guid>
+ <description>
+    i&apos;m not the cleanest cleaning person and here&apos; why
+ </description>
+ <source url="https://dylanharris.org/feed-me.rss">arts &amp; ego</source>
+ <pubDate>Sat, 11 March 2023 00:00:01 CET</pubDate>
+</item>
+
+<item>
+ <title>freedom vs freedom</title>
+ <link>https://dylanharris.org/blog/2023/b4.shtml</link>
+ <guid isPermaLink="true">https://dylanharris.org/blog/2023/b4.shtml</guid>
+ <description>
+    the freedom to live versus the freedom to kill
+ </description>
+ <source url="https://dylanharris.org/feed-me.rss">arts &amp; ego</source>
+ <pubDate>Sat, 11 March 2023 00:00:00 CET</pubDate>
+</item>
+
+<item>
+ <title>nuit de la culture</title>
+ <link>https://dylanharris.org/event/2023/nuit.shtml</link>
+ <guid isPermaLink="true">https://dylanharris.org/event/2023/nuit.shtml</guid>
+ <description>
+    i will be exhibiting some photographs in esch-sur-alzette&apos;s spring 2023 nuit de la culture,
+    on 22nd april.
+ </description>
+ <source url="https://dylanharris.org/feed-me.rss">arts &amp; ego</source>
+ <pubDate>Wed, 9 March 00:00:00 CET</pubDate>
+</item>
+
+<item>
+ <title>flowers of esch</title>
+ <link>https://dylanharris.org/goodies/foe/foe.shtml</link>
+ <guid isPermaLink="true">https://dylanharris.org/goodies/foe/foe.shtml</guid>
+ <description>
+    my new poetry / photography chapbook, flowers of esch, will be published in april
+ </description>
+ <source url="https://dylanharris.org/feed-me.rss">arts &amp; ego</source>
+ <pubDate>Wed, 8 March 00:00:00 CET</pubDate>
+</item>
+
+<item>
+ <title>cavalcade</title>
+ <link>https://dylanharris.org/ffoto/2023/230305c/index.shtml</link>
+ <guid isPermaLink="true">https://dylanharris.org/ffoto/2023/230305c/index.shtml</guid>
+ <description>
+    the escher cavalcade from the rear, photoset 3
+ </description>
+ <source url="https://dylanharris.org/feed-me.rss">arts &amp; ego</source>
+ <pubDate>Tue, 7 March 00:00:02 CET</pubDate>
+</item>
+
+<item>
+ <title>cavalcade</title>
+ <link>https://dylanharris.org/ffoto/2023/230305b/index.shtml</link>
+ <guid isPermaLink="true">https://dylanharris.org/ffoto/2023/230305b/index.shtml</guid>
+ <description>
+    the escher cavalcade from the rear, photoset 2
+ </description>
+ <source url="https://dylanharris.org/feed-me.rss">arts &amp; ego</source>
+ <pubDate>Tue, 7 March 00:00:01 CET</pubDate>
+</item>
+
+<item>
+ <title>cavalcade</title>
+ <link>https://dylanharris.org/ffoto/2023/230305a/index.shtml</link>
+ <guid isPermaLink="true">https://dylanharris.org/ffoto/2023/230305a/index.shtml</guid>
+ <description>
+    the escher cavalcade from the rear, photoset 1
+ </description>
+ <source url="https://dylanharris.org/feed-me.rss">arts &amp; ego</source>
+ <pubDate>Tue, 7 March 00:00:00 CET</pubDate>
+</item>
+
+<item>
+ <title>dance</title>
+ <link>https://dylanharris.org/blog/2023/b3.shtml</link>
+ <guid isPermaLink="true">https://dylanharris.org/blog/2023/b3.shtml</guid>
+ <description>
+    dance should be on the school curriculum
+ </description>
+ <source url="https://dylanharris.org/feed-me.rss">arts &amp; ego</source>
+ <pubDate>Tue, 28 February 2023 00:00:00 CET</pubDate>
+</item>
+
+<item>
+ <title>le bordel grand fromage</title>
+ <link>https://dylanharris.org/blog/2023/b2.shtml</link>
+ <guid isPermaLink="true">https://dylanharris.org/blog/2023/b2.shtml</guid>
+ <description>
+    i&apos;m still play no man&apos;s sky, despite its problems.
+    here are some screenshots of my latest base, of which i&apos;m a bit proud.
+    it&apos;s a gallery and café by a portal in an unclaimed system at the centre of euclid.
+ </description>
+ <source url="https://dylanharris.org/feed-me.rss">arts &amp; ego</source>
+ <pubDate>Wed, 22 February 2023 00:00:00 CET</pubDate>
+</item>
+
+<item>
+ <title>brood pain</title>
+ <link>https://dylanharris.org/blog/2023/b1.shtml</link>
+ <guid isPermaLink="true">https://dylanharris.org/blog/2023/b1.shtml</guid>
+ <description>
+    a photograph
+ </description>
+ <source url="https://dylanharris.org/feed-me.rss">arts &amp; ego</source>
+ <pubDate>Tue, 31 January 2023 00:00:00 CET</pubDate>
+</item>
+
+<item>
+ <title>L</title>
+ <link>https://dylanharris.org/ffoto/2023/230107.shtml</link>
+ <guid isPermaLink="true">https://dylanharris.org/ffoto/2023/230107.shtml</guid>
+ <description>
+    a walk on the new bridge to belval
+ </description>
+ <source url="https://dylanharris.org/feed-me.rss">arts &amp; ego</source>
+ <pubDate>Sat, 7 January 2023 00:00:00 CET</pubDate>
+</item>
+
+<item>
+ <title>trail</title>
+ <link>https://dylanharris.org/and/trail/trail.shtml</link>
+ <guid isPermaLink="true">https://dylanharris.org/and/trail/trail.shtml</guid>
+ <description>
+    reorganised trail access (that&apos;s a list of additions to the site)
+    to make it far more visual --- please do have a shufti!
+ </description>
+ <source url="https://dylanharris.org/feed-me.rss">arts &amp; ego</source>
+ <pubDate>Wed, 1 January 2023 00:00:00 CET</pubDate>
+</item>
+
+<item>
+ <title>annual news majig</title>
+ <link>https://dylanharris.org/blog/2022/b29.shtml</link>
+ <guid isPermaLink="true">https://dylanharris.org/blog/2022/b29.shtml</guid>
+ <description>
+    great, an RSS ping about a blog entry that says there&apos;s nothing to say
+ </description>
+ <source url="https://dylanharris.org/feed-me.rss">arts &amp; ego</source>
+ <pubDate>Wed, 28 December 2022 00:00:00 CET</pubDate>
+</item>
+
+<item>
+ <title>beware the cute girls</title>
+ <link>https://dylanharris.org/ffoto/2022/221010a/index.shtml</link>
+ <guid isPermaLink="true">https://dylanharris.org/ffoto/2022/221010a/index.shtml</guid>
+ <description>
+    i actually really like these photos of my youngest great niece, she&apos;s a cute wee thing.
+    but of course i can&apos;t just take family photos so here&apos;s an utterly inconsequential vispo!
+    my faceboot page suggests other people do find the photos cute too but of course there must be an instinctive
+    factor in play here, she&apos;s my family so i perhaps I find the wee thing more cute and fun than others would
+ </description>
+ <source url="https://dylanharris.org/feed-me.rss">arts &amp; ego</source>
+ <pubDate>Wed, 12 October 2022 00:00:00 CET</pubDate>
+</item>
+
+<item>
+ <title>front redesign</title>
+ <link>https://dylanharris.org/index.shtml</link>
+ <guid isPermaLink="true">https://dylanharris.org/index.shtml-redesign</guid>
+ <description>
+     major front redesign: i won&apos;t bore you with the details, but please do have a look
+ </description>
+ <source url="https://dylanharris.org/feed-me.rss">arts &amp; ego</source>
+ <pubDate>Tue, 8 October 2022 00:00:00 CET</pubDate>
+</item>
+
+<item>
+ <title>weby</title>
+ <link>https://dylanharris.org/blog/2022/b19.shtml</link>
+ <guid isPermaLink="true">https://dylanharris.org/blog/2022/b19.shtml</guid>
+ <description>
+     oh what fun there is to have surfing the uncastrated internet
+ </description>
+ <source url="https://dylanharris.org/feed-me.rss">arts &amp; ego</source>
+ <pubDate>Tue, 8 September 2022 00:00:00 CET</pubDate>
+</item>
+
+<item>
+ <title.bittiness</title>
+ <link>https://dylanharris.org/blog/2022/b18.shtml</link>
+ <guid isPermaLink="true">https://dylanharris.org/blog/2022/b18.shtml</guid>
+ <description>
+     all the things i didn&apos;t write while i was writing <a href="https://ssc.lu">ssc</a>
+ </description>
+ <source url="https://dylanharris.org/feed-me.rss">arts &amp; ego</source>
+ <pubDate>Tue, 7 September 2022 00:00:00 CET</pubDate>
+</item>
+
+<item>
+ <title>team building</title>
+ <link>https://dylanharris.org/blog/2022/b17.shtml</link>
+ <guid isPermaLink="true">https://dylanharris.org/blog/2022/b17.shtml</guid>
+ <description>
+     i&apos;ve finally worked out what it is i hate about teambuilding events.
+     ignoring the detail that they have the same goal as orgies (bonding), but without the fun.
+     It&apos;s that all such events produce something that is completely pointless,
+     teaching people that teambuilding is a waste of effort, that it has no utility,
+     as though their initiator is secretly working for the other side.
+ </description>
+ <source url="https://dylanharris.org/feed-me.rss">arts &amp; ego</source>
+ <pubDate>Tue, 6 September 2022 00:00:00 CET</pubDate>
+</item>
+
+<item>
+ <title>mail fail</title>
+ <link>https://dylanharris.org/blog/2022/b16.shtml</link>
+ <guid isPermaLink="true">https://dylanharris.org/blog/2022/b16.shtml</guid>
+ <description>
+     in the interests of increasing security, apple mail blocked me from getting my mail,
+     which contained notification of a security breach, thus apple mail&apos;s arrogant attempt
+     to increase security actually reduced it. I&apos;m going back to outlook while i search
+     for a mail product that has this weird propely called &apos;it works&apos;.
+ </description>
+ <source url="https://dylanharris.org/feed-me.rss">arts &amp; ego</source>
+ <pubDate>Tue, 6 September 2022 00:00:00 CET</pubDate>
+</item>
+
+<item>
+ <title>blogroll</title>
+ <link>https://dylanharris.org/blog/2022/b15.shtml</link>
+ <guid isPermaLink="true">https://dylanharris.org/blog/2022/b15.shtml</guid>
+ <description>
+     blogroll.org - what a damned good idea. It&apos;s a personally curated list of links to favourite blogs. 
+ </description>
+ <source url="https://dylanharris.org/feed-me.rss">arts &amp; ego</source>
+ <pubDate>Mon, 5 September 2022 00:00:00 CET</pubDate>
+</item>
+
+<item>
+ <title>links and heroes</title>
+ <link>https://dylanharris.org/and/link/index.shtml</link>
+ <guid isPermaLink="true">https://dylanharris.org/and/link/index.shtml</guid>
+ <description>
+     The oldest page on arts &amp; ego, nearly, returns after a four year absence. I was prompted to bring it back by blogroll.org.
+ </description>
+ <source url="https://dylanharris.org/feed-me.rss">arts &amp; ego</source>
+ <pubDate>Mon, 5 September 2022 00:00:00 CET</pubDate>
+</item>
+
+<item>
+ <title>ssc</title>
+ <link>https://ssc.lu/</link>
+ <guid isPermaLink="true">https://ssc.lu/</guid>
+ <description>
+     The static site checker has reached alpha, and I think is pretty neat now, so it has it&apos;s own site.
+ </description>
+ <source url="https://dylanharris.org/feed-me.rss">arts &amp; ego</source>
+ <pubDate>Sun, 4 September 2022 00:00:00 CET</pubDate>
+</item>
+
+<item>
+ <title>site search</title>
+ <link>https://dylanharris.org/and/and/search.shtml</link>
+ <guid isPermaLink="true">https://dylanharris.org/and/and/search.shtml</guid>
+ <description>
+     A find page has been introduced.
+ </description>
+ <source url="https://dylanharris.org/feed-me.rss">arts &amp; ego</source>
+ <pubDate>Wed, 12 June 2021 00:00:00 CET</pubDate>
+</item>
+
+ </item>
+
+</channel>
+</rss>

@@ -35,4 +35,4 @@ p @here {color: red} /* ruleset with unexpected at-keyword "@here" */
 h1 { color: blue }
 
  @media screen {
- p:before { content: 'Hello
+ p::before { content: 'Hello

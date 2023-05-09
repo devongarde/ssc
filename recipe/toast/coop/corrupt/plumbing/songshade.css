@@ -6,14 +6,14 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
 body { line-height:1; }
 ol,ul { list-style:none; }
 blockquote,q { quotes:none; }
-blockquote:before,blockquote:after,q:before,q:after { content:'';content:none; }
+blockquote::before,blockquote::after,q::before,q::after { content:'';content:none; }
 ins { text-decoration:none; }
 del { text-decoration:line-through; }
 table { border-collapse:collapse;border-spacing:0; }
 table, tr, td, thead, tbody { border-width:0; }
 tr, td { vertical-align:top; }
 
-.mod:after, .section:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.mod::after, .section::after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
 
 body
 {   font: lighter 100%/1.25 Verdana, sans-serif; -webkit-hyphens: none;

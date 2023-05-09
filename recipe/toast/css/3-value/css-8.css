@@ -1,0 +1,37 @@
+﻿.fup
+{   background: url(http://www.example.org/image);
+    color: rgb(100, 200, 50 );
+    content: counter(list-item) ". ";
+    width: calc(50% - 2em); }
+
+section {
+float: left;
+margin: 1em; border: solid 1px;
+width: calc(100%/3 - 2*1em - 2*1px);
+}
+
+p {
+margin: calc(1rem - 2px) calc(1rem - 1px);
+}
+
+:root {
+font-size: calc(100vw / 40);
+}
+
+.foo {
+background: url(top.png), url(bottom.png);
+background-repeat: no-repeat;
+background-position: 50% 50%, calc(50% + 20px) calc(50% + 20px);
+}
+
+.foo {
+background-image: linear-gradient(to right, silver,
+ white 50px,
+ white calc(100% - 50px),
+ silver);
+}
+
+.fup
+{   width: calc(5px - 10px);
+    width: calc(-5px);
+    width: 0px; }

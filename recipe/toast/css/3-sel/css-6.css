@@ -62,7 +62,7 @@ a:focus { }
 a:focus:hover { }
 
 *:target { color : red }
-*:target::before { content : url(target.png) }
+*:target:::before { content : url(target.png) }
 
 html:lang(fr-be) { }
 html:lang(de) { }

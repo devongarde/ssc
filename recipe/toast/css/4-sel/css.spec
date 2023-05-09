@@ -39,7 +39,7 @@ PASS ../toast/css/4-sel/css-8.css
 PASS ../toast/css/4-sel/css-9.css
 0 html
 10 css_custom
-13 unrecognised_value unrecognised_value unrecognised_value missing_value unrecognised_value immeasurable unrecognised_value unrecognised_value unrecognised_value unrecognised_value bad_colour
+13 unrecognised_value
 
 PASS ../toast/css/4-sel/css-10.css
 0 html

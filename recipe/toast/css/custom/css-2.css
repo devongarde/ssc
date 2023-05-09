@@ -30,7 +30,7 @@ div { --color: green; }
 :root,
 :root:lang(en) {--external-link: "external link";}
 :root:lang(el) {--external-link: "εξωτερικός σύνδεσμος";}
-a[href^="http"]::after {content: " (" var(--external-link) ")"}
+a[href^="http"]:::after {content: " (" var(--external-link) ")"}
 
 :root {
 --main-color: #c06;

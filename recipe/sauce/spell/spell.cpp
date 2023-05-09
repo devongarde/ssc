@@ -91,14 +91,14 @@ bool check_identifier_spelling (nitpick& nits, const html_version& , const ::std
                 {   ref += ", page ";
                     ref += i -> second.ref_; }
                 if (i -> second.dialect_)
-                    nits.pick (nit_dialect, ed_dict, ref, es_info, ec_incorrectness, quote (i -> second.spell_), ", which is unrecognised, is US dialect: is standard English required?");
+                    nits.pick (nit_dialect, ed_dict, ref, es_info, ec_incorrectness, quote (i -> second.spell_), ", which is unrecognised, is American English: is standard English required?");
                 else
-                    nits.pick (nit_correct_spelling, ed_dict, ref, es_info, ec_incorrectness, quote (i -> second.spell_), " is standard English, not US dialect");
+                    nits.pick (nit_correct_spelling, ed_dict, ref, es_info, ec_incorrectness, quote (i -> second.spell_), " is standard English, not American English");
                 return true; }
         if (i -> second.dialect_)
-            nits.pick (nit_dialect, es_info, ec_incorrectness, quote (i -> second.spell_), ", which is unrecognised, is US dialect: is standard English required?");
+            nits.pick (nit_dialect, es_info, ec_incorrectness, quote (i -> second.spell_), ", which is unrecognised, is American English: is standard English required?");
         else
-            nits.pick (nit_correct_spelling, es_info, ec_incorrectness, quote (i -> second.spell_), " is standard English, not US dialect");
+            nits.pick (nit_correct_spelling, es_info, ec_incorrectness, quote (i -> second.spell_), " is standard English, not American English");
         return true; }
 #ifdef _MSC_VER
 #pragma warning (pop)
@@ -121,13 +121,13 @@ bool check_identifier_spelling (nitpick& nits, const html_version& , const ::std
                 {   ref += ", page ";
                     ref += GSL_AT (word, x).ref_; }
                 if (GSL_AT (word, x).dialect_)
-                    nits.pick (nit_dialect, ed_dict, ref, es_info, ec_incorrectness, quote (sss), " is unrecognised. It contains ", quote (GSL_AT (word, x).spell_), " which is US dialect. Is standard English required?");
+                    nits.pick (nit_dialect, ed_dict, ref, es_info, ec_incorrectness, quote (sss), " is unrecognised. It contains ", quote (GSL_AT (word, x).spell_), " which is American English. Is standard English required?");
                 else
-                    nits.pick (nit_correct_spelling, ed_dict, ref, es_info, ec_incorrectness, quote (sss), " is unrecognised. It contains ", quote (GSL_AT (word, x).spell_), ", which is standard English. Is US dialect required?"); }
+                    nits.pick (nit_correct_spelling, ed_dict, ref, es_info, ec_incorrectness, quote (sss), " is unrecognised. It contains ", quote (GSL_AT (word, x).spell_), ", which is standard English. Is American English required?"); }
             else if (GSL_AT (word, x).dialect_)
-                nits.pick (nit_dialect, es_info, ec_incorrectness, quote (sss), " is unrecognised. It contains ", quote (GSL_AT (word, x).spell_), ", which is US dialect. Is standard English required?");
+                nits.pick (nit_dialect, es_info, ec_incorrectness, quote (sss), " is unrecognised. It contains ", quote (GSL_AT (word, x).spell_), ", which is American English. Is standard English required?");
             else
-                nits.pick (nit_correct_spelling, es_info, ec_incorrectness, quote (sss), " is unrecognised. It contains ", quote (GSL_AT (word, x).spell_), ", which is standard English. Is US dialect required?");
+                nits.pick (nit_correct_spelling, es_info, ec_incorrectness, quote (sss), " is unrecognised. It contains ", quote (GSL_AT (word, x).spell_), ", which is standard English. Is American English required?");
             return true; }
     return false; }
 
@@ -167,7 +167,8 @@ void add_dict (const ::std::string& lang, const ::std::string& dict)
     return i -> second; }
 
 void spell_tell (nitpick& nits, const lingo& lang, const ::std::string& word, const vstr_t& alt)
-{   for (auto a : alt)
+{   PRESUME (context.spell (), __FILE__, __LINE__);
+    for (auto a : alt)
         if (lang.no_case_compare (a, word))
         {   if (context.cased ()) nits.pick (nit_case, es_error, ec_spell, "should ", quote (word), " be ", quote (a), "?");
             return; }

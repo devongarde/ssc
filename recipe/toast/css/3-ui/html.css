@@ -109,7 +109,7 @@ optgroup[label],option[label]
  content: attr(label);
 }
 
-option[selected]::before
+option[selected]:::before
 {
  display: inline;
  content: check;

@@ -437,7 +437,7 @@ PASS ../toast/SVG/1.2/animation.svg
 PASS ../toast/SVG/1.2/animation-1.html
 2 naughty_lang
 11 svg_version
-14 sunk sunk sunk precisely keytimes
+14 unrecognised_value keytimes
 
 PASS ../toast/SVG/1.2/animation-2.html
 2 naughty_lang
@@ -700,7 +700,7 @@ PASS ../toast/SVG/1.2/prefetch01.svg
 0 title_required
 1 xhtml_1_1
 4 svg_version
-22 newline_in_string newline_in_string sunk sunk sunk
+22 newline_in_string newline_in_string unrecognised_value unrecognised_value unrecognised_value
 
 PASS ../toast/SVG/1.2/prefetch02.svg
 0 title_required
@@ -750,13 +750,13 @@ PASS ../toast/SVG/1.2/referencedrect-1.svg
 0 title_required
 1 xhtml_1_1
 4 svg_version
-7 sunk sunk
+7 unrecognised_value unrecognised_value
 
 PASS ../toast/SVG/1.2/referencedrect-2.svg
 0 title_required
 1 xhtml_1_1
 4 svg_version
-8 sunk sunk
+8 unrecognised_value unrecognised_value
 
 PASS ../toast/SVG/1.2/reft-1.svg
 0 title_required
@@ -902,7 +902,7 @@ PASS ../toast/SVG/1.2/use.svg
 0 title_required
 1 xhtml_1_1
 3 svg_version
-9 sunk sunk
+9 unrecognised_value unrecognised_value
 16 url_not_found
 17 url_not_found
 

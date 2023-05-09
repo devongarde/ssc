@@ -29,11 +29,11 @@ BODY {
 
 
 
-DIV.example:after { 
+DIV.example::after { 
    content: End Example 
 }
 
-P:before { 
+P::before { 
    content: counter(paragraph) ". " ;
    counter-increment: paragraph 
 }
@@ -45,4 +45,4 @@ H1 {
     cue-before: url("ping.au")
     }
 
-IMG:after { content: attr(alt) }
+IMG::after { content: attr(alt) }

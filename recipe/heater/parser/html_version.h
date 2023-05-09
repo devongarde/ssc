@@ -317,6 +317,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_CUSTOM       0x0000000000200000
 #define H2_CSS_VALUE_3      0x0000000000400000
 #define H2_CSS_VALUE_4      0x0000000000800000
+#define H2_CSS_VALUE        ( H2_CSS_VALUE_3 | H2_CSS_VALUE_4 )
 
 #define H2_CSS_1_ARG        0x0000000001000000
 #define H2_CSS_2_ARGS       0x0000000002000000

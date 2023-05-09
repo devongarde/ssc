@@ -1,14 +1,14 @@
 ﻿BODY {
 counter-reset: chapter; /* Create a chapter counter scope */
 }
-H1:before {
+H1::before {
 content: "Chapter " counter(chapter) ". ";
 counter-increment: chapter; /* Add 1 to chapter */
 }
 H1 {
 counter-reset: section; /* Set section to 0 */
 }
-H2:before {
+H2::before {
 content: counter(chapter) "." counter(section) " ";
 counter-increment: section;
 }
@@ -24,21 +24,21 @@ H1 { counter-reset: section -1 imagenum 99 }
 
 OL { counter-reset: item }
 LI { display: block }
-LI:before { content: counter(item) ". "; counter-increment: item }
+LI::before { content: counter(item) ". "; counter-increment: item }
 
 OL { counter-reset: item }
 LI { display: block }
-LI:before { content: counters(item, ".") " "; counter-increment: item }
+LI::before { content: counters(item, ".") " "; counter-increment: item }
 
-H1:before { content: counter(chno, upper-latin) ". " }
-H2:before { content: counter(section, upper-roman) " - " }
-BLOCKQUOTE:after { content: " [" counter(bq, lower-greek) "]" }
-DIV.note:before { content: counter(notecntr, disc) " " }
-P:before { content: counter(p, none) }
+H1::before { content: counter(chno, upper-latin) ". " }
+H2::before { content: counter(section, upper-roman) " - " }
+BLOCKQUOTE::after { content: " [" counter(bq, lower-greek) "]" }
+DIV.note::before { content: counter(notecntr, disc) " " }
+P::before { content: counter(p, none) }
 
 H2.secret {counter-increment: count2; display: none}
 
-h1::before {
+h1:::before {
 content: normal;
 counter-increment: heading;
 }

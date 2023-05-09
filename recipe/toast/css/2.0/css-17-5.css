@@ -18,4 +18,4 @@ W3C Recommendation
 */
 
  TD { text-align: "." }
- TD:before { content: "$" }
+ TD::before { content: "$" }

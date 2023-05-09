@@ -18,11 +18,11 @@ PASS ../toast/csp/2/3.html
 16 unrecognised_value
 17 unrecognised_value
 18 unrecognised_value
-21 unrecognised_value invalid_algorithm
+21 unrecognised_value
 
 PASS ../toast/csp/2/bad.html
 2 naughty_lang
-5 unrecognised_value bad_csp_source
+5 unrecognised_value
 6 unrecognised_value
 7 unrecognised_value
 8 unrecognised_value

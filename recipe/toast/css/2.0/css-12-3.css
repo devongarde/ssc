@@ -18,5 +18,5 @@ W3C Recommendation
 */
 
 H3 { display: run-in }
-H3:after { content: ": " }
-P:before { content: "... " }
+H3::after { content: ": " }
+P::before { content: "... " }

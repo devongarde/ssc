@@ -14,7 +14,7 @@ PASS ../toast/csp/3/3.html
 
 PASS ../toast/csp/3/bad.html
 2 naughty_lang
-5 unrecognised_value bad_csp_source
+5 unrecognised_value
 6 unrecognised_value
 7 unrecognised_value
 8 unrecognised_value
