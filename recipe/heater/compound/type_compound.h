@@ -284,8 +284,7 @@ template < e_type T, e_type U, class SZ, e_type P, int MN, int MX > struct type_
     ::std::size_t size_ = 0;
     static e_animation_type animation_type () noexcept { return grab_animation_type < U > (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   // PRESUME (MX >= MN, __FILE__, __LINE__);
-        tidy_string < T > :: set_value (nits, v, s);
+    {   tidy_string < T > :: set_value (nits, v, s);
         if (tidy_string < T > :: empty ())
             nits.pick (nit_empty, es_error, ec_type, "value expected (", type_name (T), ")");
         else if (tidy_string < T > :: good ())

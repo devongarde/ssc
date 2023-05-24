@@ -100,7 +100,6 @@ template < e_type TYPE, class SZ > struct string_vector : public string_vector_b
     {   string_vector_base < TYPE > :: set_value (nits, v, s);
         if (string_vector_base < TYPE > :: good ())
         {   vstr_t tmp = uq2 (string_vector_base < TYPE > :: get_string (), BS_FN, SZ :: sz ());
-//        {   vstr_t tmp = split_by_charset (string_vector_base < TYPE > :: get_string (), SZ :: sz ());
 #ifndef FUDDYDUDDY
             string_vector_base < TYPE > :: value_.reserve (tmp.size ());
 #endif // FUDDYDUDDY

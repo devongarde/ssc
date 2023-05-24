@@ -3867,6 +3867,7 @@ microdata_structure schema_structure [] =
     { { 5, 0 }, { 0, 0 }, sch_accommodation, sp_accommodationcategory },
     { { 6, 0 }, { 0, 0 }, sch_accommodation, sp_accommodationfloorplan },
     { { 3, 1 }, { 0, 0 }, sch_accommodation, sp_amenityfeature },
+    { { 16, 0 }, { 0, 0 }, sch_accommodation, sp_bed },
     { { 5, 0 }, { 0, 0 }, sch_accommodation, sp_floorlevel },
     { { 3, 1 }, { 0, 0 }, sch_accommodation, sp_floorsize },
     { { 5, 0 }, { 0, 0 }, sch_accommodation, sp_leaselength },
@@ -3875,6 +3876,7 @@ microdata_structure schema_structure [] =
     { { 5, 0 }, { 0, 0 }, sch_accommodation, sp_numberoffullbathrooms },
     { { 6, 0 }, { 0, 0 }, sch_accommodation, sp_numberofpartialbathrooms },
     { { 3, 1 }, { 0, 0 }, sch_accommodation, sp_numberofrooms },
+    { { 16, 0 }, { 0, 0 }, sch_accommodation, sp_occupancy },
     { { 3, 1 }, { 0, 0 }, sch_accommodation, sp_permittedusage },
     { { 3, 1 }, { 0, 0 }, sch_accommodation, sp_petsallowed },
     { { 7, 0 }, { 0, 0 }, sch_accommodation, sp_tourbookingpage },
@@ -4174,6 +4176,9 @@ microdata_structure schema_structure [] =
     { { 3, 0 }, { 0, 0 }, sch_compoundpricespecification, sp_pricecomponent },
     { { 11, 0 }, { 0, 0 }, sch_compoundpricespecification, sp_pricetype },
 
+    { { 16, 0 }, { 0, 0 }, sch_constraintnode, sp_constraintproperty },
+    { { 16, 0 }, { 0, 0 }, sch_constraintnode, sp_numconstraints },
+
     { { 3, 5 }, { 0, 0 }, sch_consumeaction, sp_actionaccessibilityrequirement },
     { { 2, 0 }, { 0, 0 }, sch_consumeaction, sp_expectsacceptanceof },
 
@@ -4195,10 +4200,15 @@ microdata_structure schema_structure [] =
 
     { { 3, 4 }, { 0, 0 }, sch_course, sp_coursecode },
     { { 3, 4 }, { 0, 0 }, sch_course, sp_coursepresequisites },
+    { { 16, 0 }, { 16, 0 }, sch_course, sp_courselength },
+    { { 17, 0 }, { 0, 0 }, sch_course, sp_courseschedule },
     { { 3, 5 }, { 0, 0 }, sch_course, sp_educationcredentialawarded },
+    { { 16, 0 }, { 0, 0 }, sch_course, sp_financialaideligible },
     { { 3, 4 }, { 0, 0 }, sch_course, sp_hascourseinstance },
     { { 6, 0 }, { 0, 0 }, sch_course, sp_numberofcredits },
     { { 3, 9 }, { 0, 0 }, sch_course, sp_occupationalcredentialawarded },
+    { { 16, 0 }, { 0, 0 }, sch_course, sp_syllabussections },
+    { { 16, 0 }, { 0, 0 }, sch_course, sp_totalhistoricalenrollment },
 
     { { 3, 4 }, { 0, 0 }, sch_courseinstance, sp_coursemode },
     { { 3, 6 }, { 0, 0 }, sch_courseinstance, sp_courseworkload },
@@ -4307,6 +4317,7 @@ microdata_structure schema_structure [] =
     { { 3, 5 }, { 0, 0 }, sch_creativework, sp_temporal },
     { { 3, 1 }, { 0, 0 }, sch_creativework, sp_temporalcoverage },
     { { 0, 93 }, { 0, 0 }, sch_creativework, sp_text },
+    { { 18, 0 }, { 0, 0 }, sch_creativework, sp_thumbnail },
     { { 0, 30 }, { 0, 0 }, sch_creativework, sp_thumbnailurl },
     { { 1, 0 }, { 0, 0 }, sch_creativework, sp_timerequired },
     { { 2, 0 }, { 0, 0 }, sch_creativework, sp_translationofwork },
@@ -4834,7 +4845,7 @@ microdata_structure schema_structure [] =
     { { 13, 0 }, { 0, 0 }, sch_imageobject, sp_embeddedtextcaption },
     { { 0, 10 }, { 0, 0 }, sch_imageobject, sp_exifdata },
     { { 0, 10 }, { 0, 0 }, sch_imageobject, sp_representativeofpage },
-    { { 0, 10 }, { 0, 0 }, sch_imageobject, sp_thumbnail },
+    { { 0, 10 }, { 17, 0 }, sch_imageobject, sp_thumbnail },
 
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, sch_imagingtest, sp_imagingtechnique },
 
@@ -5346,6 +5357,7 @@ microdata_structure schema_structure [] =
     { { 3, 9 }, { 0, 0 }, sch_observation, sp_measuredproperty },
     { { 3, 9 }, { 0, 0 }, sch_observation, sp_measuredvalue },
     { { 3, 9 }, { 0, 0 }, sch_observation, sp_observationdate },
+    { { 17, 0 }, { 0, 0 }, sch_observation, sp_observationperiod },
     { { 3, 9 }, { 0, 0 }, sch_observation, sp_observednode },
 
     { { 3, 5 }, { 0, 0 }, sch_occupation, sp_educationrequirements },
@@ -6231,6 +6243,14 @@ microdata_structure schema_structure [] =
     { { 3, 9 }, { 0, 0 }, sch_statisticalpopulation, sp_numconstraints },
     { { 3, 9 }, { 0, 0 }, sch_statisticalpopulation, sp_populationtype },
 
+    { { 16, 0 }, { 0, 0 }, sch_statisticalvariable, sp_measuredproperty },
+    { { 16, 0 }, { 0, 0 }, sch_statisticalvariable, sp_measurementdenominator },
+    { { 16, 0 }, { 0, 0 }, sch_statisticalvariable, sp_measurementmethod },
+    { { 16, 0 }, { 0, 0 }, sch_statisticalvariable, sp_measurementqualifier },
+    { { 16, 0 }, { 0, 0 }, sch_statisticalvariable, sp_measurementtechnique },
+    { { 16, 0 }, { 0, 0 }, sch_statisticalvariable, sp_populationtype },
+    { { 16, 0 }, { 0, 0 }, sch_statisticalvariable, sp_stattype },
+
     { { 3, 5 }, { 0, 0 }, sch_stupidtype, sp_stupidproperty },
 
     { { 3, 5 }, { 0, 0 }, sch_substance, sp_activeingredient },
@@ -6352,6 +6372,7 @@ microdata_structure schema_structure [] =
     { { 0, 10 }, { 1, 93 }, sch_tvseason, sp_partoftvseries },
     { { 0, 10 }, { 1, 93 }, sch_tvseason, sp_seasonnumber },
     { { 0, 10 }, { 1, 93 }, sch_tvseason, sp_startdate },
+    { { 16, 0 }, { 0, 0 }, sch_tvseason, sp_titleeidr },
     { { 0, 10 }, { 1, 93 }, sch_tvseason, sp_trailer },
 
     { { 1, 3 }, { 0, 0 }, sch_tvseries, sp_actor },
@@ -6371,6 +6392,7 @@ microdata_structure schema_structure [] =
     { { 1, 3 }, { 1, 93 }, sch_tvseries, sp_season },
     { { 1, 3 }, { 1, 90 }, sch_tvseries, sp_seasons },
     { { 0, 10 }, { 1, 10 }, sch_tvseries, sp_startdate },
+    { { 16, 0 }, { 0, 0 }, sch_tvseries, sp_titleeidr },
     { { 0, 10 }, { 0, 0 }, sch_tvseries, sp_trailer },
 
     { { 0, 99 }, { 0, 0 }, sch_typeandquantitynode, sp_amountofthisgood },
@@ -6482,7 +6504,7 @@ microdata_structure schema_structure [] =
     { { 13, 0 }, { 0, 0 }, sch_videoobject, sp_embeddedtextcaption },
     { { 2, 0 }, { 0, 0 }, sch_videoobject, sp_musicby },
     { { 0, 15 }, { 1, 93 }, sch_videoobject, sp_productioncompany },
-    { { 0, 10 }, { 0, 0 }, sch_videoobject, sp_thumbnail },
+    { { 0, 10 }, { 17, 0 }, sch_videoobject, sp_thumbnail },
     { { 0, 30 }, { 0, 0 }, sch_videoobject, sp_transcript },
     { { 0, 15 }, { 0, 0 }, sch_videoobject, sp_videoframesize },
     { { 0, 15 }, { 0, 0 }, sch_videoobject, sp_videoquality },

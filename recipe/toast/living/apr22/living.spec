@@ -625,7 +625,6 @@ PASS ../toast/living/apr22/hs-9.html
 
 PASS ../toast/living/apr22/html4.css
 0 html
-61 pseud
 
 PASS ../toast/living/apr22/i.html
 0 charset_mismatch charset_used charset_invalid

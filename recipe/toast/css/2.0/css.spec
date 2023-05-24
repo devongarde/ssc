@@ -9,10 +9,10 @@ PASS ../toast/css/2.0/aargh.css
 7 unrecognised_value
 7 unrecognised_value
 7 no_such_page
-9 naughty_decoration
-10 naughty_decoration
+9 css_version
+10 css_version
 10 css_colour
-11 css_version naughty_decoration
+11 css_version css_version
 11 css_colour
 13 naughty_page
 14 unrecognised_value naughty_page
@@ -86,10 +86,12 @@ PASS ../toast/css/2.0/css-4-2.css
 39 css_syntax css_colour
 40 css_syntax css_colour
 42 unrecognised_value
-52 css_syntax
+52 css_version naughty_content css_syntax
 
 PASS ../toast/css/2.0/css-4-3.css
 0 html
+50 css_version
+51 naughty_content
 63 css_colour
 64 css_colour
 65 css_colour
@@ -156,6 +158,9 @@ PASS ../toast/css/2.0/css-5-11.html
 
 PASS ../toast/css/2.0/css-5-12.css
 0 html
+25 css_version
+26 naughty_content
+28 css_version naughty_content
 
 PASS ../toast/css/2.0/css-5-12-1.html
 0 charset_mismatch charset_used
@@ -328,15 +333,28 @@ PASS ../toast/css/2.0/css-11-2.html
 
 PASS ../toast/css/2.0/css-12-1.css
 0 html
-20 class_microformat_property
-22 class_microformat_property
+20 css_version naughty_content
+22 css_version naughty_content
 23 class_microformat_property
+24 css_version
+26 naughty_content
+29 css_version
+31 naughty_content
 
 PASS ../toast/css/2.0/css-12-2.css
 0 html
+21 css_version naughty_content
+23 css_version
+24 naughty_content
+25 css_version
+29 naughty_content
 
 PASS ../toast/css/2.0/css-12-3.css
 0 html
+20 css_version
+21 naughty_content
+21 css_version
+22 naughty_content
 
 PASS ../toast/css/2.0/css-12-3.html
 0 charset_mismatch charset_used
@@ -346,6 +364,13 @@ PASS ../toast/css/2.0/css-12-3.html
 
 PASS ../toast/css/2.0/css-12-4.css
 0 html
+24 css_version
+25 naughty_content
+25 css_version
+26 naughty_content
+28 css_version naughty_content
+29 css_version naughty_content
+30 css_version naughty_content
 
 PASS ../toast/css/2.0/css-12-4-1.html
 0 charset_mismatch charset_used
@@ -361,7 +386,24 @@ PASS ../toast/css/2.0/css-12-4-2.html
 
 PASS ../toast/css/2.0/css-12-5.css
 0 html
-46 class_microformat_property
+19 css_version
+21 naughty_content
+24 css_version
+26 naughty_content
+36 css_version
+37 naughty_content
+40 css_version
+41 naughty_content
+42 css_version
+43 naughty_content
+43 css_version
+44 naughty_content
+44 css_version
+45 naughty_content
+46 css_version
+46 naughty_content
+46 css_version
+47 naughty_content
 
 PASS ../toast/css/2.0/css-12-5-1.html
 0 charset_mismatch charset_used
@@ -385,13 +427,17 @@ PASS ../toast/css/2.0/css-12-6.css
 
 PASS ../toast/css/2.0/css-12-6-1.html
 0 charset_mismatch charset_used
+0 css_version
+24 naughty_content
 35 inserted_missing_closure
 36 inserted_missing_closure missing_close
 37 inserted_missing_closure
 
 PASS ../toast/css/2.0/css-12-6-2.html
 0 charset_mismatch charset_used
+0 css_version
 23 long_title
+24 naughty_content
 37 inserted_missing_closure
 38 inserted_missing_closure missing_close
 39 inserted_missing_closure
@@ -399,19 +445,18 @@ PASS ../toast/css/2.0/css-12-6-2.html
 PASS ../toast/css/2.0/css-12-6-3.html
 0 charset_mismatch charset_used
 23 long_title
-24 unrecognised_value
-24 css_syntax
+24 css_version naughty_content css_version css_syntax unrecognised_value css_syntax
 39 inserted_missing_closure missing_close
 40 inserted_missing_closure
 
 PASS ../toast/css/2.0/css-12-6-4.html
 0 charset_mismatch charset_used
 23 long_title
-24 class_microformat_property inserted_missing_closure
+24 css_version naughty_content inserted_missing_closure
 
 PASS ../toast/css/2.0/css-12-6-5.html
 0 charset_mismatch charset_used
-24 unrecognised_value
+24 css_version unrecognised_value naughty_content
 36 inserted_missing_closure
 38 inserted_missing_closure
 39 inserted_missing_closure missing_close
@@ -545,6 +590,7 @@ PASS ../toast/css/2.0/css-17-4.css
 
 PASS ../toast/css/2.0/css-17-5.css
 0 html
+21 css_version naughty_content
 
 PASS ../toast/css/2.0/css-17-5-1.html
 0 charset_mismatch charset_used
@@ -647,6 +693,8 @@ PASS ../toast/css/2.0/css-19-8.css
 
 PASS ../toast/css/2.0/html4.css
 0 html
+78 css_version
+79 naughty_content
 
 PASS ../toast/css/2.0/index.html
 2 naughty_lang

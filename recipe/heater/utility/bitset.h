@@ -26,7 +26,7 @@ void state_init ();
 
 // I got fed up working around borked bitset implementations. This is extremely
 // inefficient compared to a decent working implementation, but at least it
-// appears to work. :-(
+// pretends to work. :-(
 template < typename T, T SIZE > class ssc_bitset
 {   typedef ::std::vector < bool > base_t;
     base_t bs_;

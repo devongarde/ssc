@@ -75,7 +75,6 @@ template < > struct type_master < t_bool > : two_value < t_bool, e_bool, sz_fals
 template < > struct type_master < t_capture > : two_value < t_capture, ev_capture, sz_user, sz_environment, false >
 { using two_value < t_capture, ev_capture, sz_user, sz_environment, false > :: two_value; };
 
-// typedef enum { ecs_dark, ecs_light } e_colour_scheme;
 template < > struct type_master < t_colour_scheme > : two_value < t_colour_scheme, e_colour_scheme, sz_dark, sz_light, false >
 { using two_value < t_colour_scheme, e_colour_scheme, sz_dark, sz_light, false > :: two_value; };
 

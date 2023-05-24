@@ -87,7 +87,6 @@ public:
         return ::std::string (); }
     ident_t declare (const html_version& v, const STANDARD& predefined, const ::std::string& shortform, const ::std::string& longform)
     {   PRESUME (offset_ > 0, __FILE__, __LINE__);
-//        PRESUME (! longform.empty (), __FILE__, __LINE__);
         ident_t id = predefined.find (v, ABB_LONGFORM, longform, lower_);
         if (id == ERR) id = vabb_.size () + offset_;
         try
@@ -110,8 +109,6 @@ public:
             if (! longform.empty ())
                 if (find_longform (v, predefined, longform, standard) != DEFAULT)
                     nits.pick (nit_prefix_again, es_error, ec_rdfa, "repeated definition of ", quote (longform));
-//                else
-//                    nits.pick (nit_namespace_unknown, es_info, ec_rdfa, PROG " does not know about ", quote (longform), ", so cannot verify its usage");
             lower_ = ! v.xhtml ();
             return declare (v, predefined, shortform, longform); }
         return 0; }

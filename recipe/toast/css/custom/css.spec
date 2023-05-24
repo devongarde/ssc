@@ -14,17 +14,17 @@ PASS ../toast/css/custom/css-2.css
 20 css_custom
 25 css_custom
 31 css_custom
-33 css_syntax css_version css_version naughty_content
+33 css_version css_version
 37 css_custom
-41 css_custom
-42 css_custom
+41 css_value css_custom
+42 css_value css_custom
 
 PASS ../toast/css/custom/css-2.html
 0 charset_mismatch charset_used charset_invalid
 2 naughty_lang
 5 long_title
 17 unknown_element unknown_element unknown_element unknown_element unknown_element
-18 css_custom css_custom
+18 css_custom css_value css_custom css_value
 
 PASS ../toast/css/custom/css-3.css
 0 html
@@ -33,7 +33,7 @@ PASS ../toast/css/custom/css-3.css
 8 css_custom
 11 css_custom
 23 css_custom
-29 unrecognised_value immeasurable unrecognised_value
+29 css_value unrecognised_value immeasurable unrecognised_value
 32 css_custom
 35 css_custom
 40 css_custom

@@ -103,6 +103,7 @@ PASS ../toast/microdata/schema-abc/blogposting.html
 30 attribute_required naughty_alt
 34 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
 35 use_quote_code
+68 use_quote_code
 
 PASS ../toast/microdata/schema-abc/book-1.html
 10 no_such_folder url_not_found
@@ -330,3 +331,4 @@ http://www.worldcat.org/oclc/68043906
 http://www.worldcat.org/oclc/751835184
 https://archive.org/details/alices_adventures_1005_librivox#work
 https://schema.org/AudioBook
+https://www.dataliberate.com/2019/05/14/library-metadata-evolution-final-mile/

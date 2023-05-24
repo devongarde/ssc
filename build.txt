@@ -9,7 +9,8 @@ Introduction
 SSC can be built on various unii with CMake and gcc or clang,
 supporting C++ 17 or better, or with Visual Studios 2017 / 2019 / 2022
 under Windows. I have built & tested a 64-bit version in selected OSs
-on intel/amd architecture.
+on intel/amd & arm64 (m2) architecture. For now, the arm solution
+should be seen as particularly hopeless.
 
 Although ssc builds and runs with older compilers on older systems, not
 all features are available on them.
@@ -51,8 +52,8 @@ Windows
 -------
 To build from Visual Studio, navigate to recipe/tea, open the
 appropriate .sln file, then build. Only Visual Studios 2017 / 2019 /
-2022, 64 bit, have been built & tested, for intel Windows 10 & 11.
-I've not built ssc using CMake under Windows.
+2022, 64 bit, have been built & tested, for intel Windows 10 & 11 and
+arm64. I've not built ssc using CMake under Windows.
 
 Note the included solutions presume Microsoft's VCPKG manager. There
 are alternatives.
@@ -98,7 +99,10 @@ Linux:    Alma Linux 9, AOSC, Centos 8 / 9*, SUSE Tumbleweed,
           Ubuntu 20.04 / 22.04
 MacOS:    Ventura, Monterey, Big Sur, Catalina, Mojave, High Sierra,
           Sierra, El Capitan, and Yosemite
-OpenBSD:  7.2 / 7.1 / 7.0 / 6.9 / 6.8
+OpenBSD:  7.3 / 7.2 / 7.1 / 7.0 / 6.9 / 6.8
+
+The following have been successfully built as arm64:
+MacOS:    Ventura
 
 A build on an older operating system may result in some features being
 unavailable.
@@ -109,8 +113,8 @@ command is:
 
 OpenBSD
 -------
-You will need to increase significantly the available memory setting
-for your build account in login.conf, if you have not done so already.
+You may need to increase significantly the available memory setting
+for your build account in login.conf.
 
 
 Testing
@@ -133,8 +137,8 @@ Under CMake, run ctest:
 
 Dimitude
 --------
-The testing utility is rather stupid; it will test features that are
-not built, causing failures.
+The testing utility is rather dim; it will test features that are not
+built, causing failures.
 
 Spelling test results depend on the dictionaries installed.
 
@@ -164,4 +168,13 @@ not so easy for Windows. I suggest the following:
     ****\vcpkg\installed\x64-windows\bin
 7  If you plan to debug, also add debug\bin, perhaps:
     ****\vcpkg\installed\x64-windows\debug\bin
-  
+
+Adapt the architecture as necessary. If you omit it, vcpkg might
+carefully ignore your hardware and install x86.
+
+Boost
+-----
+Boost is to C++ as breakfast is to the working day.
+
+Most package managers support it, including vcpkg. Many people build
+their own versions using the sources found at boost.org.

@@ -618,9 +618,6 @@ PASS ../toast/living/apr23/hs-9.html
 3 inserted_missing_parent missing_close
 4 inserted_missing_parent inserted_missing_closure missing_close
 
-PASS ../toast/living/apr23/html4.css
-61 pseud
-
 PASS ../toast/living/apr23/i.html
 0 charset_mismatch charset_used charset_invalid
 

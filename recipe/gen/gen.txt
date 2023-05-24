@@ -521,7 +521,7 @@ line, the "no-" switch always applies.
                                 rif 1.0
                                 role 1.0
                                 rr 1.0
-                                schema 0.10-15.0 (see below)
+                                schema 0.10-... (see below)
                                 sd 1.0
                                 sioc 1.0
                                 sioc_s 1.0
@@ -552,6 +552,12 @@ line, the "no-" switch always applies.
 
                         Open Graph versions correspond to snapshots of
                         the specs from 2010, 2012, 2014, 2018 & 2022.
+
+                        Schema.org is sometimes updated frequently.
+                        SSC is not updated as frequently. Quarterly SSC
+                        updates re the living standard will contain
+                        schema.org updates. More frequent updates are
+                        uncertain.
 
                         Most versions of schema (schema.org) should be
                         specified by their version number, but this
@@ -586,8 +592,7 @@ line, the "no-" switch always applies.
                                 1.80        1.8
                                 1.90        1.9
                                 1.91        as version number
-                                ...               -to-
-                                15          as version number
+                                ...
 
 --shadow.changed        When shadowing a site that has been previously
                         shadowed, only copy/link files that have

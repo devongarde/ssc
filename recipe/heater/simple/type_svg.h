@@ -402,7 +402,6 @@ template < > struct type_master < t_transform > : tidy_string < t_transform >
             if (parse_transform (nits, v, tidy_string < t_transform > :: get_string ())) return;
         tidy_string < t_transform > :: status (s_invalid); } };
 
-// t_svg_two_profile
 template < > struct type_master < t_svg_two_profile > : tidy_string < t_svg_two_profile >
 {   using tidy_string < t_svg_two_profile > :: tidy_string;
     vurl_t val_;

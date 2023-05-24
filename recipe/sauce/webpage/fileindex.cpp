@@ -228,8 +228,7 @@ fileindex_t insert_disk_path (const fileindex_t mummy, const ::boost::filesystem
     return ndx; }
 
 fileindex_t insert_directory_path (const fileindex_t mummy, const ::boost::filesystem::path& name)
-{   // lox l (lox_fileindex);
-    fileindex_t ndx = inner_insert_disk_path (mummy, name, FX_DIR);
+{   fileindex_t ndx = inner_insert_disk_path (mummy, name, FX_DIR);
     if (ndx == nullfileindex) ndx = inner_insert_disk_path (nullfileindex, name, FX_DIR);
     return ndx; }
 
@@ -824,7 +823,6 @@ sndx_t get_lynx (const fileindex_t ndx)
 
 bool needs_update (const fileindex_t ndx, const ::std::time_t& st)
 {   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-//    lox l (lox_fileindex);
     return GSL_AT (vx, ndx).needs_update (st); }
 
 fileindex_t get_fileindex_count ()
