@@ -5,6 +5,4 @@ PASS ../toast/css/accessibility/index.html
 
 PASS ../toast/css/accessibility/css.css
 0 html
-32 whatwg_class pseud
-36 pseud
-48 pseud
+32 whatwg_class

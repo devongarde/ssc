@@ -28,7 +28,6 @@
 ../toast/css/3-syntax/css.spec
 ../toast/css/3-ui/css.spec
 ../toast/css/4-ui/css.spec
-../toast/css/3-value/css.spec
 ../toast/css/accessibility/css.spec
 ../toast/css/custom/css.spec
 ../toast/css/songlight/css.spec

@@ -3,6 +3,11 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.21
+- schema.org updated (default still 15.0)
+- ARM64 builds for macos and Visual Studio
+- underlying work
+
 0.1.20
 - OpenBSD 7.3
 - underlying work

@@ -45,14 +45,6 @@ struct property_base
 bool examine_custom_property (arguments& args, nitpick& nits, const int from, const int to);
 int check_formula (arguments& args, const int start, const int to, nitpick& nits, const e_css_val_fn c, const bool percent);
 
-//template < e_type TYPE, e_css_property IDENTITY, e_css_val_fn CALC > struct formulaic
-//{   static int check (arguments& , const int i, const int , nitpick& )
-//    {    return i; } };
-
-//template < e_type TYPE, e_css_property IDENTITY > struct formulaic < TYPE, IDENTITY, cvf_calc >
-//{   static int check (arguments& args, const int start, const int to, nitpick& nits)
-//    {   return check_formula (args, start, to, nits, cvf_calc, true); } }; 
-
 template < e_type TYPE, e_css_property IDENTITY, e_css_val_fn FN = cvf_none > struct typed_property : public property_base, public type_master < TYPE >
 {   typedef type_master < TYPE > base_type;
     typedef enum { iiu_none, iiu_inherit, iiu_initial, iiu_revert, iiu_revert_layer, iiu_unset } t_iiu;

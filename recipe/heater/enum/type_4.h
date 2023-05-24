@@ -101,7 +101,6 @@ template < > struct type_master < t_css_polar > : four_value < t_css_polar, e_cs
 template < > struct type_master < t_css_speak > : four_value < t_css_speak, e_css_speak, sz_inherit, sz_none, sz_normal, sz_spell_out >
 { using four_value < t_css_speak, e_css_speak, sz_inherit, sz_none, sz_normal, sz_spell_out > :: four_value; };
 
-// typedef enum { cvc_e, cvc_infinity, cvc_nan, cvc_pi } e_css_val_con;
 template < > struct type_master < t_css_val_con > : four_value < t_css_val_con, e_css_val_con, sz_e, sz_infinity, sz_nan, sz_pi >
 { using four_value < t_css_val_con, e_css_val_con, sz_e, sz_infinity, sz_nan, sz_pi > :: four_value; };
 

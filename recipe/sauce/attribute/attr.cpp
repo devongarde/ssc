@@ -954,7 +954,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_JAN05, 0, HE_BESPOKE }, { HTML_UNDEF }, "webkitdirectory", a_webkitdirectory },
     { { XHTML_2_0 }, { XHTML_2_0 }, "while", a_while },
     { { HTML_JAN19 }, { HTML_UNDEF }, "white-space", a_white_space, ns_default, AF_SVG2_PROPERTY },
-    { { HTML_1_0, 0, HE_ANIM }, { HTML_UNDEF }, "width", a_width }, // a_will_change
+    { { HTML_1_0, 0, HE_ANIM }, { HTML_UNDEF }, "width", a_width },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "will-change", a_will_change, ns_default, AF_PROPERTY },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "word-break", a_word_break, ns_default, AF_PROPERTY },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "word-spacing", a_word_spacing, ns_default, AF_SVG2_PROPERTY },

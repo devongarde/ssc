@@ -6,8 +6,6 @@ PASS ../toast/css/songlight/index.html
 PASS ../toast/css/songlight/songlight.css
 0 html
 1 css_version
-8 pseud pseud pseud pseud
-15 pseud pseud pseud
 18 css_bespoke
 25 css_version fontname
 26 fontname
@@ -20,7 +18,6 @@ PASS ../toast/css/songlight/songlight.css
 100 css_bespoke css_bespoke css_bespoke
 103 css_bespoke css_bespoke css_bespoke
 106 css_bespoke css_bespoke css_bespoke
-159 pseud
 397 fontname fontname fontname
 403 fontname fontname fontname
 

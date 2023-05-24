@@ -80,10 +80,12 @@ PASS ../toast/css/2.2/css-4-2.css
 26 css_element
 26 css_element
 28 unrecognised_value
-38 css_syntax
+38 css_version naughty_content css_syntax
 
 PASS ../toast/css/2.2/css-4-3.css
 0 html
+31 css_version
+32 naughty_content
 44 css_colour
 45 css_colour
 46 css_colour
@@ -142,6 +144,9 @@ PASS ../toast/css/2.2/css-5-11.html
 
 PASS ../toast/css/2.2/css-5-12.css
 0 html
+10 css_version
+11 naughty_content
+13 css_version naughty_content
 
 PASS ../toast/css/2.2/css-5-12-1.html
 5 long_title
@@ -284,16 +289,37 @@ PASS ../toast/css/2.2/css-11-2.html
 
 PASS ../toast/css/2.2/css-12-1.css
 0 html
-1 class_microformat_property
-3 class_microformat_property
+1 css_version naughty_content
+3 css_version naughty_content
 4 class_microformat_property
+5 css_version
+7 naughty_content
+10 css_version
+12 naughty_content
+17 css_version
+18 naughty_content
+21 css_version
+22 naughty_content
 
 PASS ../toast/css/2.2/css-12-2.css
-0 html
+0 html css_version
+2 naughty_content
+5 css_version
+10 naughty_content
 
 PASS ../toast/css/2.2/css-12-3.css
 0 html
 2 precisely precisely unrecognised_value
+4 css_version
+5 naughty_content
+5 css_version
+6 naughty_content
+8 css_version
+8 naughty_content
+9 css_version
+9 naughty_content
+10 css_version
+10 naughty_content
 
 PASS ../toast/css/2.2/css-12-3-1.html
 6 only_once
@@ -307,9 +333,23 @@ PASS ../toast/css/2.2/css-12-3-2.html
 
 PASS ../toast/css/2.2/css-12-4.css
 0 html
-36 class_microformat_property
+3 css_version
+5 naughty_content
+10 css_version
+12 naughty_content
+26 css_version
+27 naughty_content
+30 css_version
+31 naughty_content
+32 css_version
+33 naughty_content
+33 css_version
+34 naughty_content
+34 css_version
+35 naughty_content
+36 css_version naughty_content css_version
+37 naughty_content
 40 css_version
-42 naughty_content
 
 PASS ../toast/css/2.2/css-12-4-1.html
 6 only_once
@@ -505,6 +545,8 @@ PASS ../toast/css/2.2/css-18-4.css
 
 PASS ../toast/css/2.2/html4.css
 0 html
+60 css_version
+61 naughty_content
 
 PASS ../toast/css/2.2/index.html
 2 naughty_lang

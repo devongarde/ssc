@@ -43,7 +43,6 @@ class nitpick
         return s; }
     template < class T > ::std::string inner_review (const e_nit_section& entry, const T& t, const mmac_t& mac, mmac_t& outer, bool& quote, bool& dq, bool& infoed, bool& eol, bool& hasns, const bool unfiltered) const;
 public:
-//    DEFAULT_CONSTRUCTORS (nitpick);
     nitpick () = default;
     DEFAULT_COPY_MOVE (nitpick);
     ~nitpick ()

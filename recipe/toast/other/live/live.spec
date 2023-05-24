@@ -10,10 +10,11 @@ PASS ../toast/other/live/plumbing/songlight.css
 399 fontname fontname fontname
 
 PASS ../toast/other/live/404.shtml
-281 lingo
+282 lingo
 
 PASS ../toast/other/live/index.html
 2 naughty_lang
 
 PASS ../toast/other/live/index.shtml
-281 lingo
+315 alt_title
+494 lingo

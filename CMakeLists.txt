@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.19)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.1.20 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
+project (ssc VERSION 0.1.21 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
 
 set (CMAKE_CXX_STANDARD 17)
 
@@ -151,7 +151,7 @@ endif ()
     if (${CMAKE_SYSTEM} MATCHES "Darwin-22")
       set (OS "Ventura")
       set (LIB "/opt/local/lib/libhunspell-1.7.a")
-      target_compile_definitions (ssc PRIVATE OS_VER="${OS}" UNIX HUNSPELL CLEAN_SHAREDPTR_ARRAY)
+      target_compile_definitions (ssc PRIVATE OS_VER="${OS}" UNIX HUNSPELL CLEAN_SHAREDPTR_ARRAY ORDERED)
     elseif (${CMAKE_SYSTEM} MATCHES "Darwin-21")
       set (OS "Monterey")
       set (LIB "/opt/local/lib/libhunspell-1.7.a")
