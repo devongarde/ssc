@@ -423,5 +423,4 @@ PASS ../toast/SVG/2.1/white-space.html
 
 PASS ../toast/SVG/2.1/will-change.html
 2 naughty_lang
-12 unrecognised_value
 29 newline_in_string newline_in_string

@@ -57,21 +57,3 @@ bool check_custom_property (arguments& args, const ::std::string& s)
     if (i == args.g_.custom_prop ().cend ()) return false;
     i -> second += 1;
     return true; }
-
-template < e_css_val_fn T > struct toast
-{   static int cheese (arguments& args, const int start, const int to, nitpick& nits, const bool percent)
-    {   return start; } };
-
-template < e_css_val_fn T, e_css_val_fn ... U > struct wimple : public wimple < U... >
-{   static int cheese_on_toast (arguments& args, const int start, const int to, nitpick& nits, const e_css_val_fn c, const bool percent)
-    {   if (c == T) return toast < T > :: cheese (args, start, to, nits, percent);
-        return wimple < U... > :: cheese_on_toast (args, start, to, nits, c, percent); } };  
-
-template < e_css_val_fn T > struct wimple < T >
-{   static int cheese_on_toast (arguments& args, const int start, const int to, nitpick& nits, const e_css_val_fn c, const bool percent)
-    {   PRESUME (c == T, __FILE__, __LINE__);
-        return toast < T > :: cheese (args, start, to, nits, percent); } };  
-
-int check_formula (arguments& args, const int start, const int to, nitpick& nits, const e_css_val_fn c, const bool percent)
-{   return wimple < CSS_VAL_FN > :: cheese_on_toast (args, start, to, nits, c, percent); }
-

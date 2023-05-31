@@ -40,11 +40,23 @@ template < > struct attribute_constructor < attr_unknown >
     static e_animation_type animation_type (const e_attribute ) noexcept { return at_none; } };
 
 attribute_v_ptr make_attribute_v_ptr (nitpick& nits, const html_version& v, element* box, const attribute_node& node)
-{   if (node.id () <= last_1) return attribute_constructor < ATTRIBUTES_1 > :: make (nits, v, box, node);
-    else if (node.id () <= last_2) return attribute_constructor < ATTRIBUTES_2 > :: make (nits, v, box, node);
-    else return attribute_constructor < ATTRIBUTES_3 > :: make (nits, v, box, node); }
+{   
+#ifdef LIMITED_META_COMPLEXITY
+    if (node.id () <= last_1) return attribute_constructor < ATTRIBUTES_1, attr_unknown > :: make (nits, v, box, node);
+    if (node.id () <= last_2) return attribute_constructor < ATTRIBUTES_2, attr_unknown > :: make (nits, v, box, node);
+    return attribute_constructor < ATTRIBUTES_3, attr_unknown > :: make (nits, v, box, node); 
+#else // LIMITED_META_COMPLEXITY
+    return attribute_constructor < ATTRIBUTES_1, ATTRIBUTES_2, ATTRIBUTES_3, attr_unknown > :: make (nits, v, box, node); 
+#endif // LIMITED_META_COMPLEXITY
+}
 
 e_animation_type get_animation_type (const e_attribute ea)
-{   if (ea <= last_1) return attribute_constructor < ATTRIBUTES_1 > :: animation_type (ea);
-    else if (ea <= last_2) return attribute_constructor < ATTRIBUTES_2 > :: animation_type (ea);
-    else return attribute_constructor < ATTRIBUTES_3 > :: animation_type (ea); }
+{   
+#ifdef LIMITED_META_COMPLEXITY
+    if (ea <= last_1) return attribute_constructor < ATTRIBUTES_1, attr_unknown > :: animation_type (ea);
+    if (ea <= last_2) return attribute_constructor < ATTRIBUTES_2, attr_unknown > :: animation_type (ea);
+    return attribute_constructor < ATTRIBUTES_3, attr_unknown > :: animation_type (ea); 
+#else // LIMITED_META_COMPLEXITY
+    return attribute_constructor < ATTRIBUTES_1, ATTRIBUTES_2, ATTRIBUTES_3, attr_unknown > :: animation_type (ea); 
+#endif // LIMITED_META_COMPLEXITY
+}

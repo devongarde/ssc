@@ -1292,16 +1292,16 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_glyph_orientation_vertical, \
     attr_glyphname, \
     attr_glyph_orientation_horizontal, \
-    attr_unknown
-
-const e_attribute last_1 = a_glyph_orientation_horizontal;
-
-#define ATTRIBUTES_2 \
     attr_glyphref, \
     attr_gradienttransform, \
     attr_gradientunits, \
     attr_groupalign, \
     attr_gutter, \
+    attr_unknown
+
+const e_attribute last_1 = a_gutter;
+
+#define ATTRIBUTES_2 \
     attr_handler, \
     attr_hanging, \
     attr_headers, \
@@ -1616,6 +1616,11 @@ const e_attribute last_1 = a_glyph_orientation_horizontal;
     attr_overlay_host, \
     attr_overlineposition, \
     attr_overlinethickness, \
+    attr_unknown
+
+const e_attribute last_2 = a_overline_thickness;
+
+#define ATTRIBUTES_3 \
     attr_page_orientation, \
     attr_pagex, \
     attr_pagey, \
@@ -1681,11 +1686,6 @@ const e_attribute last_1 = a_glyph_orientation_horizontal;
     attr_requiredextensions, \
     attr_requiredfeatures, \
     attr_requiredfonts, \
-    attr_unknown
-
-const e_attribute last_2 = a_requiredfonts;
-
-#define ATTRIBUTES_3 \
     attr_requiredformats, \
     attr_resource, \
     attr_restart, \
@@ -1932,5 +1932,4 @@ const e_attribute last_2 = a_requiredfonts;
     attr_ychannelselector, \
     attr_z, \
     attr_zindex, \
-    attr_zoomandpan, \
-    attr_unknown
+    attr_zoomandpan

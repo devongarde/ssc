@@ -1,6 +1,7 @@
 ../toast/conf/html/conf.spec
 ../toast/conf/xhtml/conf.spec
 ../toast/coop/corrupt/corrupt.spec
+../toast/coop/corrupt/corrupt1.spec
 ../toast/coop/corrupt/corrupt2.spec
 ../toast/coop/corrupt/corrupt512.spec
 ../toast/coop/schema-abc/abc.spec

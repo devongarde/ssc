@@ -184,7 +184,7 @@ vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep,
                     break;
                 default :
                     if (ticks != nullptr)
-                        if ((*i < 0) || (*i >= 32) || (! ::std::iscntrl (*i)))
+                        if ((*i >= 32) || (! ::std::iscntrl (*i)))
                         {   if (newline)
                             {   newline = false;
                                 bol = i; }
