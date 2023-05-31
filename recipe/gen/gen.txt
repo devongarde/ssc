@@ -88,7 +88,7 @@ line, the "no-" switch always applies.
 --css.cascade X         Use CSS Cascade level X, where X is 0, 3, 4, 5
                         or 6
 
---css.colour X          Use CSS Colour level X, where X is 0 or 3
+--css.colour X          Use CSS Colour level X, where X is 0, 3 or 4
 
 --css.extension ext     Presume files with extension '.ext' are CSS
                         files
@@ -105,6 +105,9 @@ line, the "no-" switch always applies.
 
 --css.ui X              Use CSS Basic User Interface level X, where X
                         is 0, 3 or 4
+
+--css.value X           Use CSS Values and Units level X, where X is 0
+                        or 3
 
 --css.verify            Verify CSS files (replaces --general.css)
 
@@ -521,7 +524,7 @@ line, the "no-" switch always applies.
                                 rif 1.0
                                 role 1.0
                                 rr 1.0
-                                schema 0.10-... (see below)
+                                schema 0.10-21.0 (see below)
                                 sd 1.0
                                 sioc 1.0
                                 sioc_s 1.0
@@ -593,6 +596,7 @@ line, the "no-" switch always applies.
                                 1.90        1.9
                                 1.91        as version number
                                 ...
+                                21.0        as version number
 
 --shadow.changed        When shadowing a site that has been previously
                         shadowed, only copy/link files that have

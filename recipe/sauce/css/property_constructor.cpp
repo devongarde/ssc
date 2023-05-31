@@ -50,9 +50,17 @@ template < > struct property_constructor < prop_unknown >
         return ptr; } };
 
 property_v_ptr make_property_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const css_token t)
-{   if (p < LAST_CSS_1_PROP) return property_constructor < CSS_PROPERTIES_1 > :: make (args, start, to, nits, p, s, t);
-    if (p < LAST_CSS_2_PROP) return property_constructor < CSS_PROPERTIES_2 > :: make (args, start, to, nits, p, s, t);
-    return property_constructor < CSS_PROPERTIES_3 > :: make (args, start, to, nits, p, s, t); }
+{   
+#ifdef LIMITED_META_COMPLEXITY
+    if (p < LAST_CSS_1_PROP) return property_constructor < CSS_PROPERTIES_1, prop_unknown > :: make (args, start, to, nits, p, s, t);
+    if (p < LAST_CSS_2_PROP) return property_constructor < CSS_PROPERTIES_2, prop_unknown > :: make (args, start, to, nits, p, s, t);
+    if (p < LAST_CSS_3_PROP) return property_constructor < CSS_PROPERTIES_3, prop_unknown > :: make (args, start, to, nits, p, s, t);
+    if (p < LAST_CSS_4_PROP) return property_constructor < CSS_PROPERTIES_4, prop_unknown > :: make (args, start, to, nits, p, s, t);
+    return property_constructor < CSS_PROPERTIES_5, prop_unknown > :: make (args, start, to, nits, p, s, t); 
+#else // LIMITED_META_COMPLEXITY
+    return property_constructor < CSS_PROPERTIES_1, CSS_PROPERTIES_2, CSS_PROPERTIES_3, CSS_PROPERTIES_4, CSS_PROPERTIES_5, prop_unknown > :: make (args, start, to, nits, p, s, t); 
+#endif // LIMITED_META_COMPLEXITY
+}
 
 property_v_ptr make_property_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const css_token t)
 {   PRESUME ((i >= 0) && (i < GSL_NARROW_CAST < int > (args.t_.size ())), __FILE__, __LINE__);

@@ -698,6 +698,7 @@ typedef enum {  ct_root, ct_whitespace, ct_comment, // root must be zero, all em
                 ct_error } css_token;
 typedef enum { ecu_all, ecu_auto, ecu_contain, ecu_inherit, ecu_none, ecu_text } e_css_user_select;
 typedef enum { cvc_e, cvc_infinity, cvc_nan, cvc_pi } e_css_val_con;
+// note: if adding more functions, amend value.h too (for weak compilers)
 #define CSS_VAL_FN \
                 cvf_none, \
                 cvf_abs, cvf_acos, cvf_asin, cvf_atan, cvf_atan2, \

@@ -3,8 +3,14 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.22
+- linux ARM64 (centos 9 tested)
+- schema.org default now version 21
+- CSS Values 3
+- underlying work
+
 0.1.21
-- schema.org updated (default still 15.0)
+- schema.org to version 21 (default 15)
 - ARM64 builds for macos and Visual Studio
 - underlying work
 

@@ -214,7 +214,6 @@ CSS properties:
     line-height: thrice 
     list-style: 4 times 
     list-style-image: once 
-    list-style-type: thrice 
     margin: thrice 
     margin-bottom: twice 
     margin-left: thrice 
@@ -232,7 +231,7 @@ CSS properties:
     white-space: twice 
     width: once 
     word-spacing: once 
-  47 properties used 107 times
+  46 properties used 104 times
 CSS font(s):
     gill: once
     helvetica: once
@@ -785,7 +784,6 @@ CSS properties:
     line-height: 9 times 
     list-style: 10 times 
     list-style-image: once 
-    list-style-type: thrice 
     margin: 11 times 
     margin-bottom: 4 times 
     margin-left: 7 times 
@@ -803,7 +801,7 @@ CSS properties:
     white-space: thrice 
     width: once 
     word-spacing: twice 
-  47 properties used 283 times
+  46 properties used 280 times
 CSS statements:
     import: 6 times 
     page: once 
@@ -878,6 +876,6 @@ Versions:
     HTML5/20230401/SVG-2.1/MathML-core/CSS-1/WhatWG: 7 times 
   
 File info:
-     12551 bytes read in 17 files, with an average of roughly 738 bytes per file
+     12523 bytes read in 17 files, with an average of roughly 737 bytes per file
      smallest file: 64 bytes, largest file: 3882 bytes
-===
+  ===

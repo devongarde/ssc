@@ -1602,7 +1602,11 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_list_style, \
     prop_list_style_image, \
     prop_list_style_position, \
-    prop_list_style_type, \
+    prop_list_style_type
+
+#define LAST_CSS_1_PROP ec_list_style_type
+
+#define CSS_PROPERTIES_2 \
     prop_margin, \
     prop_margin_block, \
     prop_margin_block_end, \
@@ -1801,11 +1805,6 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_stemv, \
     prop_stress, \
     prop_string_set, \
-    prop_unknown
-
-#define LAST_CSS_1_PROP ec_string_set
-
-#define CSS_PROPERTIES_2 \
     prop_colour_interpolation, \
     prop_colour_profile, \
     prop_colour_rendering, \
@@ -1904,7 +1903,11 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_transition_duration, \
     prop_transition_property, \
     prop_transition_timing_function, \
-    prop_translate, \
+    prop_translate
+
+#define LAST_CSS_2_PROP ec_translate
+
+#define CSS_PROPERTIES_3 \
     prop_unicode_bidi, \
     prop_unicode_range, \
     prop_units_per_em, \
@@ -1945,7 +1948,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_writing_mode, \
     prop_x_height, \
     prop_z_index, \
-prop_moz_animation, \
+    prop_moz_animation, \
     prop_moz_animation_delay, \
     prop_moz_animation_direction, \
     prop_moz_animation_duration, \
@@ -2212,7 +2215,11 @@ prop_moz_animation, \
     prop_webkit_max_logical_width, \
     prop_webkit_media_text_track_container, \
     prop_webkit_min_logical_height, \
-    prop_webkit_min_logical_width, \
+    prop_webkit_min_logical_width
+
+#define LAST_CSS_3_PROP ec_webkit_min_logical_width
+
+#define CSS_PROPERTIES_4 \
     prop_webkit_nbsp_mode, \
     prop_webkit_opacity, \
     prop_webkit_order, \
@@ -2282,11 +2289,6 @@ prop_moz_animation, \
     prop_overflow_clip_box, \
     prop_overflow_clip_box_block, \
     prop_overflow_clip_box_inline, \
-    prop_unknown
-
-#define LAST_CSS_2_PROP ec_overflow_clip_box_inline
-
-#define CSS_PROPERTIES_3 \
     prop_mso_ansi_font_size, \
     prop_mso_ansi_font_style, \
     prop_mso_ansi_font_weight, \
@@ -2490,7 +2492,11 @@ prop_moz_animation, \
     prop_mso_yfti_lastrow, \
     prop_mso_yfti_tbllook, \
     prop_o_table_baseline, \
-    prop_o_text_overflow, \
+    prop_o_text_overflow
+
+#define LAST_CSS_4_PROP ec_o_text_overflow
+
+#define CSS_PROPERTIES_5 \
     prop_o_transform, \
     prop_o_transform_origin, \
     prop_o_transition, \
@@ -2594,5 +2600,4 @@ prop_moz_animation, \
     prop_xv_voice_pitch_range, \
     prop_xv_voice_rate, \
     prop_xv_voice_stress, \
-    prop_xv_voice_volume, \
-    prop_unknown
+    prop_xv_voice_volume

@@ -1766,6 +1766,9 @@
     <ClInclude Include="..\heater\compound\type_fn.h">
       <Filter>Heater\compound</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\css\value.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">

@@ -162,7 +162,8 @@ template < e_type T, class SZ, e_type A > struct type_all_of < T, SZ, A > : stri
     bool inner_set_value (nitpick& nits, const html_version& v, const ::std::size_t i)
     {   const vstr_t& vv = get_vv (); 
         if (i >= vv.size ())
-        {   nits.pick (nit_precisely, es_error, ec_type, "too few (", vv.size (), ") values provided, but ", i+1, " expected (", type_name (T), ")");
+        {   if (vv.size () == 0) nits.pick (nit_precisely, es_error, ec_type, "no values provided when ", i+1, " expected (", type_name (T), ")");
+            else nits.pick (nit_precisely, es_warning, ec_type, "possibly only ", vv.size (), " values provided (such as ", quote (vv.at (0)), ") when ", i+1, " expected (", type_name (T), ")");
             string_vector < T, SZ > :: status (s_invalid);
             return false; }
         if (i + 1 < vv.size ())
@@ -278,5 +279,5 @@ template < e_type T, class SZ, e_type A > struct type_all_of < T, SZ, A > : stri
     static void accumulate (stats_t* st, const ::std::string& s)
     {   GRACEFUL_CRASH (__FILE__, __LINE__); }
     ::std::string report () const
-    {   if (! val_.unknown ()) val_.report ();
-        else string_vector < T, SZ > :: report (); } };
+    {   if (! val_.unknown ()) return val_.report ();
+        return string_vector < T, SZ > :: report (); } };

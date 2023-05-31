@@ -186,8 +186,8 @@ template < e_type T, bool EMPTY, e_type A, e_type... B > struct type_one_of : ty
     static void accumulate (stats_t* , const ::std::string& )
     {   GRACEFUL_CRASH (__FILE__, __LINE__); }
     ::std::string report () const
-    {   if (! val_.unknown ()) val_.report ();
-        else type_one_of < T, EMPTY, B... > :: report (); } };
+    {   if (! val_.unknown ()) return val_.report ();
+        return type_one_of < T, EMPTY, B... > :: report (); } };
 
 template < e_type T, bool EMPTY, e_type A > struct type_one_of < T, EMPTY, A > : tidy_string < T >
 {   using tidy_string < T > :: tidy_string;
@@ -324,6 +324,6 @@ template < e_type T, bool EMPTY, e_type A > struct type_one_of < T, EMPTY, A > :
     static void accumulate (stats_t* st, const ::std::string& s)
     {   GRACEFUL_CRASH (__FILE__, __LINE__); }
     ::std::string report () const
-    {   if (! val_.unknown ()) val_.report ();
-        else tidy_string < T > :: report (); } };
+    {   if (! val_.unknown ()) return val_.report ();
+        return tidy_string < T > :: report (); } };
  

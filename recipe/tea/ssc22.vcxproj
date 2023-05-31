@@ -85,6 +85,7 @@
     <ClInclude Include="..\heater\css\statement.h" />
     <ClInclude Include="..\heater\css\statements.h" />
     <ClInclude Include="..\heater\css\typed_property.h" />
+    <ClInclude Include="..\heater\css\value.h" />
     <ClInclude Include="..\heater\css\weight.h" />
     <ClInclude Include="..\heater\element\elem.h" />
     <ClInclude Include="..\heater\element\element.h" />

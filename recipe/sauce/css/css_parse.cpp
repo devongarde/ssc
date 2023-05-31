@@ -376,12 +376,12 @@ bool css::parse (const ::std::string& content, const bool x)
 
     return true; }
 
-::std::string tkn_rpt (const token_t& t)
-{   switch (t.t_)
+::std::string tkn_rpt (const css_token t, const ::std::string& s)
+{   switch (t)
     {   case ct_keyword :
         case ct_identifier :
         case ct_number :
-        case ct_string : return t.val_; break;
+        case ct_string : return s; break;
         case ct_slash : return "/";
         case ct_splat : return "*";
         case ct_curly_brac : return "{";
