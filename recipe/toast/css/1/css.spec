@@ -5,10 +5,9 @@ PASS ../toast/css/1/basic.css
 4 css_colour
 7 dialect
 9 unrecognised_value
-10 unrecognised_value
+10 unrecognised_value unrecognised_value unrecognised_value
 11 css_colour
 12 unrecognised_value
-15 unrecognised_value immeasurable
 18 css_dubious
 20 fontname fontname fontname
 
@@ -35,22 +34,22 @@ PASS ../toast/css/1/css-5.css
 0 html
 1 fontname
 2 fontname
-143 unrecognised_value
+143 unrecognised_value unrecognised_value
 
 PASS ../toast/css/1/css-6.css
 0 html
-29 css_colour
-30 css_colour
+29 css_colour css_colour css_colour
+30 css_colour css_colour css_colour
 
 PASS ../toast/css/1/css-7.css
 0 html
 1 unrecognised_value
-6 unrecognised_value
+6 unrecognised_value unrecognised_value
 7 css_syntax
 8 unrecognised_value
 15 unrecognised_value
 27 css_version
-33 unrecognised_value
+33 unrecognised_value unrecognised_value
 34 unrecognised_value
 
 PASS ../toast/css/1/html2.css

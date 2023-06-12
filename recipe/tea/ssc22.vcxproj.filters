@@ -1104,6 +1104,15 @@
     <Filter Include="Toast\Conf\xhtml">
       <UniqueIdentifier>{aa98e859-0090-4a53-8150-710ddc886353}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\CSS\4-value">
+      <UniqueIdentifier>{b8cda25f-9062-4a1e-b2f3-4954388e656f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-animation">
+      <UniqueIdentifier>{27d6962c-112a-4c69-887c-8f7a93b0ed1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\4-animation">
+      <UniqueIdentifier>{37c12d6e-d62b-404a-bf9c-e71b84ab48a0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -2352,6 +2361,12 @@
     </ClCompile>
     <ClCompile Include="..\sauce\css\typed_property.cpp">
       <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\attribute.cpp">
+      <Filter>Sauce\attribute</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -30536,6 +30551,63 @@
     </None>
     <None Include="..\toast\conf\xhtml\index.xhtml">
       <Filter>Toast\Conf\xhtml</Filter>
+    </None>
+    <None Include="..\toast\css\4-value\css.conf">
+      <Filter>Toast\CSS\4-value</Filter>
+    </None>
+    <None Include="..\toast\css\4-value\css.spec">
+      <Filter>Toast\CSS\4-value</Filter>
+    </None>
+    <None Include="..\toast\css\4-value\css-3.css">
+      <Filter>Toast\CSS\4-value</Filter>
+    </None>
+    <None Include="..\toast\css\4-value\css-6.css">
+      <Filter>Toast\CSS\4-value</Filter>
+    </None>
+    <None Include="..\toast\css\4-value\css-9.css">
+      <Filter>Toast\CSS\4-value</Filter>
+    </None>
+    <None Include="..\toast\css\4-value\index.html">
+      <Filter>Toast\CSS\4-value</Filter>
+    </None>
+    <None Include="..\toast\css\3-animation\css.conf">
+      <Filter>Toast\CSS\3-animation</Filter>
+    </None>
+    <None Include="..\toast\css\3-animation\css.spec">
+      <Filter>Toast\CSS\3-animation</Filter>
+    </None>
+    <None Include="..\toast\css\3-animation\css-2.css">
+      <Filter>Toast\CSS\3-animation</Filter>
+    </None>
+    <None Include="..\toast\css\3-animation\css-3.css">
+      <Filter>Toast\CSS\3-animation</Filter>
+    </None>
+    <None Include="..\toast\css\3-animation\index.html">
+      <Filter>Toast\CSS\3-animation</Filter>
+    </None>
+    <None Include="..\toast\css\3-animation\css-5.css">
+      <Filter>Toast\CSS\3-animation</Filter>
+    </None>
+    <None Include="..\toast\css\4-value\css-4.css">
+      <Filter>Toast\CSS\4-value</Filter>
+    </None>
+    <None Include="..\toast\css\4-value\css-7.css">
+      <Filter>Toast\CSS\4-value</Filter>
+    </None>
+    <None Include="..\toast\css\4-value\css-10.css">
+      <Filter>Toast\CSS\4-value</Filter>
+    </None>
+    <None Include="..\toast\css\4-animation\css.conf">
+      <Filter>Toast\CSS\4-animation</Filter>
+    </None>
+    <None Include="..\toast\css\4-animation\css.spec">
+      <Filter>Toast\CSS\4-animation</Filter>
+    </None>
+    <None Include="..\toast\css\4-animation\css-4.css">
+      <Filter>Toast\CSS\4-animation</Filter>
+    </None>
+    <None Include="..\toast\css\4-animation\index.html">
+      <Filter>Toast\CSS\4-animation</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

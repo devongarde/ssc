@@ -25,42 +25,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "simple/simple.h"
 #include "compound/compound.h"
 
+::std::string status_rpt (const e_status status, const bool existential, const ::std::string& s, const bool has_id, const ::std::string& id, const e_type e);
+
 template < class CATEGORY, e_type TYPE, CATEGORY IDENTITY > struct typed_value : public type_master < TYPE >
 {   using type_master < TYPE > :: type_master;
     CONSTEXPR static CATEGORY whoami () { return IDENTITY; }
     ::std::string report (const ::std::string& name) const; };
 
 template < class CATEGORY, e_type TYPE, CATEGORY IDENTITY > ::std::string typed_value < CATEGORY, TYPE, IDENTITY > :: report (const ::std::string& name) const
-{   ::std::string res (name);
-    switch (type_master < TYPE > :: status ())
-    {   case s_unset:
-            res += ": (unknown)";
-            return res;
-        case s_empty:
-            res += ": (empty)";
-            return res;
-        case s_invalid:
-            res += ": (invalid)";
-            return res;
-        case s_good:
-            break;
-        default:
-            res += ": (internal error: " PROG " shouldn't get here)";
-            return res; }
-    if (! type_master < TYPE > :: is_existential ())
-    {   res += ": ";
-        ::std::string gv (type_master < TYPE > :: get_string ());
-        res += quote (gv);
-        if (context.tell (es_comment) && (gv.length () >= def_quote_cut))
-            res += ::std::string (" [") + ::boost::lexical_cast < ::std::string > (gv.length ()) + "]"; }
-    if (type_master < TYPE > :: has_id ())
-    {   res += " #";
-        res += type_master < TYPE > :: get_id (); }
-    if (context.tell (es_variable))
-    {   res += " (";
-        res += ::boost::lexical_cast < ::std::string > (static_cast <int> (type_master < TYPE > :: get_type ()));
-        res += ")"; }
-    return res; }
+{   return  name +
+            status_rpt (type_master < TYPE > :: status (), type_master < TYPE > :: is_existential (), type_master < TYPE > :: get_string (),
+            type_master < TYPE > :: has_id (), type_master < TYPE > :: get_id (), type_master < TYPE > :: get_type ()); }
 
 void types_init (nitpick& nits);
 bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::std::string& s);

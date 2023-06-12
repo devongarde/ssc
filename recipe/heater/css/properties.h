@@ -28,7 +28,7 @@ class properties
 public:
     DEFAULT_CONSTRUCTORS (properties);
     properties (arguments& args, const int from, const int to = -1)
-    {   parse (args, from ,to); }
+    {   parse (args, from, to); }
     void parse (arguments& args, const int from, const int to = -1);
     void validate (arguments& args);
     void accumulate (stats_t* s, const element_bitset& e) const;

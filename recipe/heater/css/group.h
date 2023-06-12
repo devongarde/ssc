@@ -32,7 +32,7 @@ class css_group
     page& page_;
     mcss_t mcss_;
     dst_ptr snippets_;
-    sstr_t page_name_, layer_;
+    sstr_t page_name_, layer_, keyframe_;
     namespaces_ptr ns_;
     ustr_t custom_media_;
     smsid_t custom_prop_; 
@@ -54,14 +54,16 @@ public:
     void validate ();
     void accumulate (nitpick& nits) const;
     void accumulate (stats_t* s) const;
+    const smsid_t& custom_prop () const { return custom_prop_; }
+    smsid_t& custom_prop () { return custom_prop_; }
     const page& get_page () const { return page_; }
     page& get_page () { return page_; }
     const sstr_t& page_name () const { return page_name_; }
     sstr_t& page_name () { return page_name_; }
+    const sstr_t& keyframe () const { return keyframe_; }
+    sstr_t& keyframe () { return keyframe_; }
     const sstr_t& layer () const { return layer_; }
     sstr_t& layer () { return layer_; }
-    const smsid_t& custom_prop () const { return custom_prop_; }
-    smsid_t& custom_prop () { return custom_prop_; }
     bool told () const { return told_; }
     void told (const bool b) { told_ = b; }
     const smsid_t& get_elements () const noexcept { return elements_; }

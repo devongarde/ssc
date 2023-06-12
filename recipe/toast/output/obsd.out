@@ -1,0 +1,10 @@
+Static Site Checker version 0.1.23
+(c) 2020-2023 Dylan Harris
+Mon Jun 12 15:27:29 2023
+
+*** configuration
+ssc cannot access ../toast/conf/live/wordlist.txt
+"../toast/conf/live/wordlist.txt" is missing, is inaccessible, is not text, is too big, or is empty
+
+Type 'ssc -h' for help.
+

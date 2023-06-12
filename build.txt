@@ -47,6 +47,8 @@ multilingual contexts.
 
 Building
 ========
+Note: at the moment, ssc takes forever and a day to compile. I will
+address this in forthcoming versions.
 
 Windows
 -------
@@ -102,6 +104,7 @@ MacOS:    Ventura, Monterey, Big Sur, Catalina, Mojave, High Sierra,
 OpenBSD:  7.3 / 7.2 / 7.1 / 7.0 / 6.9 / 6.8
 
 The following have been successfully built as arm64:
+Linux:    Centos 9*
 MacOS:    Ventura
 
 A build on an older operating system may result in some features being

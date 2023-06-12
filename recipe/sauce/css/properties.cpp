@@ -29,13 +29,28 @@ void properties::parse (arguments& args, const int from, const int to)
     const int len = GSL_NARROW_CAST <int> (args.t_.size ());
     PRESUME (from < len, __FILE__, __LINE__);
     PRESUME ((to < len) || (to < 0), __FILE__, __LINE__);
-    int b = -1; int prev = -1;
+    int b = -1; int prev = -1, brack = 0;
     fiddlesticks < properties > f (&args.ps_, this);
     for (int i = from; i > 0; i = next_token_at (args.t_, i, to))
     {   if (b == -1) b = i;
-        if (args.t_.at (i).t_ == ct_semicolon)
-        {   if (b != i) prop_.emplace_back (args, b, prev);
-            b = -1; }
+        switch (args.t_.at (i).t_)
+        {   case ct_semicolon :
+                if (brack == 0)
+                {   if (b != i) prop_.emplace_back (args, b, prev);
+                    b = -1; }
+                break;
+            case ct_round_brac :
+            case ct_square_brac :
+            case ct_curly_brac :
+                ++brack;
+                break;
+            case ct_round_ket :
+            case ct_square_ket :
+            case ct_curly_ket :
+                if (brack > 0) --brack;
+                break;
+            default :
+                break; }
         prev = i; }
     if (b != -1) prop_.emplace_back (args, b, to); }
 

@@ -331,17 +331,18 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (CORPUS DONT MAIN, ::boost::program_options::bool_switch (), "Avoid the content of <MAIN> when gather page corpus.")
         (CORPUS OUTPUT ",d", ::boost::program_options::value < ::std::string > (), "Dump corpus of site content to specified file.")
 
-        (CSS CASCADE, ::boost::program_options::value < int > (), "Version of CSS Cascade & Inheritance (0, 3, 4, 5 or 6).")
-        (CSS COLOUR, ::boost::program_options::value < int > (), "Version of CSS Colour (0, 3, 4, or 5).")
-        (CSS CUSTOM, ::boost::program_options::value < int > (), "Version of CSS Custom (0 or 3).")
+        (CSS ANIMATION, ::boost::program_options::value < int > (), "CSS Animation level (0 or 3).")
+        (CSS CASCADE, ::boost::program_options::value < int > (), "CSS Cascade & Inheritance level (0, 3, 4, 5 or 6).")
+        (CSS COLOUR, ::boost::program_options::value < int > (), "CSS Colour level (0, 3, 4, or 5).")
+        (CSS CUSTOM, ::boost::program_options::value < int > (), "CSS Custom level (0 or 3).")
         (CSS EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "CSS files have this extension (default css); may be repeated.")
-        (CSS MEDIA, ::boost::program_options::value < int > (), "Version of CSS Media (0, 3, 4, or 5).")
-        (CSS NAMESPACE, ::boost::program_options::value < int > (), "Version of CSS Namespace (0 or 3).")
-        (CSS SELECTOR, ::boost::program_options::value < int > (), "Version of CSS Selector (0, 3, or 4).")
-        (CSS STYLE, ::boost::program_options::value < int > (), "Version of CSS Style (0, 3).")
-        (CSS SYNTAX, ::boost::program_options::value < int > (), "Version of CSS Syntax (0, 3).")
-        (CSS UI, ::boost::program_options::value < int > (), "Version of CSS UI (0, 3, 4).")
-        (CSS VALUE, ::boost::program_options::value < int > (), "Version of CSS Values and Units (0, 3, 4).")
+        (CSS MEDIA, ::boost::program_options::value < int > (), "CSS Media level (0, 3, 4, or 5).")
+        (CSS NAMESPACE, ::boost::program_options::value < int > (), "CSS Namespace level (0 or 3).")
+        (CSS SELECTOR, ::boost::program_options::value < int > (), "CSS Selector level (0, 3, or 4).")
+        (CSS STYLE, ::boost::program_options::value < int > (), "CSS Style level (0 or 3).")
+        (CSS SYNTAX, ::boost::program_options::value < int > (), "CSS Syntax level (0 or 3).")
+        (CSS UI, ::boost::program_options::value < int > (), " CSS UI level (0, 3, or 4).")
+        (CSS VALUE, ::boost::program_options::value < int > (), "CSS Values and Units level (0, 3, or 4).")
         (CSS VERIFY, ::boost::program_options::bool_switch (), "Process .css files.")
         (CSS DONT VERIFY, ::boost::program_options::bool_switch (), "Do not process .css files.")
         (CSS VERSION, ::boost::program_options::value < ::std::string > (),  "Presume this version of CSS (default appropriate for HTML version).")
@@ -980,6 +981,17 @@ void options::contextualise (nitpick& nits)
                 if (context.css_version () == css_none)
                     nits.pick (nit_config_version, es_warning, ec_init, "ignoring invalid CSS version"); } }
 
+        if (var_.count (CSS ANIMATION))
+        {   const int n (var_ [CSS ANIMATION].as < int > ());
+            switch (n)
+            {   case 0 :
+                case 3 :
+                    context.css_animation (n);
+                    break;
+                default :
+                    nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Animation value");
+                    break; } }
+
         if (var_.count (CSS CASCADE))
         {   const int n (var_ [CSS CASCADE].as < int > ());
             switch (n)
@@ -1513,6 +1525,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_ [CORPUS DONT MAIN].as < bool > ()) res << CORPUS DONT MAIN "\n";
     if (var_.count (CORPUS OUTPUT)) res << CORPUS OUTPUT ": " << var_ [CORPUS OUTPUT].as < ::std::string > () << "\n";
 
+    if (var_.count (CSS ANIMATION)) res << CSS ANIMATION ": " << var_ [CSS ANIMATION].as < int > () << "\n";
     if (var_.count (CSS CASCADE)) res << CSS CASCADE ": " << var_ [CSS CASCADE].as < int > () << "\n";
     if (var_.count (CSS COLOUR)) res << CSS COLOUR ": " << var_ [CSS COLOUR].as < int > () << "\n";
     if (var_.count (CSS CUSTOM)) res << CSS CUSTOM ": " << var_ [CSS CUSTOM].as < int > () << "\n";

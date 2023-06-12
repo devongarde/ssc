@@ -38,6 +38,7 @@ class statement
     void parse_custom_media (arguments& args, nitpick& nits, const int from, const int to);
     void parse_font_face (arguments& args, nitpick& nits, const int to);
     void parse_import (arguments& args, nitpick& nits, const int from, const int to);
+    void parse_keyframes (arguments& args, nitpick& nits, const int from, const int to);
     void parse_layer (arguments& args, nitpick& nits, const int from, const int to);
     void parse_media (arguments& args, nitpick& nits, const int from, const int to);
     void parse_namespace (arguments& args, nitpick& nits, const int from, const int to);

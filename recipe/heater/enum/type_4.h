@@ -86,6 +86,15 @@ template < > struct type_master < t_channelselector > : four_value < t_channelse
 template < > struct type_master < t_content_encoding > : four_value < t_content_encoding, e_content_encoding, sz_gzip, sz_compress, sz_deflate, sz_identity >
 { using four_value < t_content_encoding, e_content_encoding, sz_gzip, sz_compress, sz_deflate, sz_identity > :: four_value; };
 
+template < > struct type_master < t_css_anim_dir > : four_value < t_css_anim_dir, e_css_anim_dir, sz_alternate, sz_alternate_reverse, sz_normal, sz_reverse >
+{ using four_value < t_css_anim_dir, e_css_anim_dir, sz_alternate, sz_alternate_reverse, sz_normal, sz_reverse > :: four_value; };
+
+template < > struct type_master < t_css_anim_fill_mode > : four_value < t_css_anim_fill_mode, e_anim_fill_mode, sz_backwards, sz_both, sz_forwards, sz_none >
+{ using four_value < t_css_anim_fill_mode, e_anim_fill_mode, sz_backwards, sz_both, sz_forwards, sz_none > :: four_value; };
+
+template < > struct type_master < t_css_fn_round_t > : four_value < t_css_fn_round_t, e_css_fn_round_t, sz_down, sz_nearest, sz_to_zero, sz_up >
+{ using four_value < t_css_fn_round_t, e_css_fn_round_t, sz_down, sz_nearest, sz_to_zero, sz_up > :: four_value; };
+
 template < > struct type_master < t_css_font_style_e > : four_value < t_css_font_style_e, e_css_font_style_e, sz_normal, sz_italic, sz_oblique, sz_inherit >
 { using four_value < t_css_font_style_e, e_css_font_style_e, sz_normal, sz_italic, sz_oblique, sz_inherit > :: four_value; };
 

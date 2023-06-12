@@ -460,3 +460,16 @@ int first_non_whitespace (const vtt_t& vt, int from, const int to)
 
 int next_non_whitespace (const vtt_t& vt, const int from, const int to)
 {   return first_non_whitespace (vt, next_token_at (vt, from, to), to); }
+
+::std::string assemble_unit (vtt_t& vt, int& i, const int to)
+{   ::std::string s;
+    if ((i >= 0) && ((to < 0) || (i <= to)))
+        if ((static_cast < ::std::size_t > (i + 1) < vt.size ()) && (vt.at (i).t_ == ct_number))
+        {   PRESUME (! vt.at (i).val_.empty (), __FILE__, __LINE__);
+            ::std::string s;
+            if ((vt.at (i+1).t_ == ct_keyword) || (vt.at (i+1).t_ == ct_identifier))
+            {   s = vt.at (i).val_ + vt.at (i+1).val_;
+                i += 2; }
+            else s = vt.at (i++).val_; }
+        else s = tkn_rpt (vt.at (i++));
+    return s; }

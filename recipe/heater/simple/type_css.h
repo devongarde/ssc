@@ -49,8 +49,24 @@ template < > struct type_master < t_css_all > : public tidy_string < t_css_all >
             else return;
         tidy_string < t_css_all > :: status (s_invalid); } };
 
+template < > struct type_master < t_css_anim_base > : public tidy_string < t_css_anim_base >
+{   using tidy_string < t_css_anim_base > :: tidy_string;
+	static e_animation_type animation_type () noexcept { return at_none; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_anim_base > :: set_value (nits, v, s);
+        if (tidy_string < t_css_anim_base > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "missing @keyframes name"); }
+    bool invalid_access (nitpick& nits, const html_version& , sstr_t* s)
+    {   VERIFY_NOT_NULL (s, __FILE__, __LINE__);
+        if (! tidy_string < t_css_anim_base > :: good ()) return true;
+        const ::std::string& x = tidy_string < t_css_anim_base > :: get_string ();
+        if (s -> find (x) != s -> cend ()) return false;
+        nits.pick (nit_css_keyframes, es_error, ec_css, "@keyframes ", quote (x), " is referenced but not defined");
+        return true; } };
+
 template < > struct type_master < t_css_bespoke > : public tidy_string < t_css_bespoke >
 {   using tidy_string < t_css_bespoke > :: tidy_string;
+	static e_animation_type animation_type () noexcept { return at_other; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_css_bespoke > :: set_value (nits, v, s);
         tidy_string < t_css_bespoke > :: status (s_invalid); }

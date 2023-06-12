@@ -666,13 +666,17 @@ e_css_version html_version::css_version () const noexcept
     else if (all_ext2 (H2_CSS_1)) { res = "1"; b = 1; }
     else return "";
     PRESUME (b < 7, __FILE__, __LINE__);
+    res += subver (b, css_animation (), "Ani");
     res += subver (b, css_cascade (), "Cas");
     res += subver (b, css_colour (), "Col");
+    res += subver (b, css_custom (), "Cus");
     res += subver (b, css_media (), "Med");
     res += subver (b, css_namespace (), "Ns");
     res += subver (b, css_selector (), "Sel");
     res += subver (b, css_style (), "Sty");
+    res += subver (b, css_syntax (), "Syn");
     res += subver (b, css_ui (), "UI");
+    res += subver (b, css_value (), "Val");
     return res; }
 
 void html_version::css_version (const e_css_version v) noexcept
@@ -845,6 +849,14 @@ bool html_version::svg_limited (const e_svg_version v) const noexcept
         case sv_2_1 : return svg_limited_21 ();
         default : break; }
     return false; }
+
+int html_version::css_animation () const
+{   if (any_ext2 (H2_CSS_ANIM_3)) return 3;
+    return 0; }
+
+void html_version::css_animation (const int n)
+{   if (n == 3) set_ext2 (H2_CSS_ANIM_3);
+    else reset_ext2 (H2_CSS_ANIM_3); }
 
 int html_version::css_cascade () const
 {   if ((ext2 () & H2_CSS_CASCADE_6) == H2_CSS_CASCADE_6) return 6;   

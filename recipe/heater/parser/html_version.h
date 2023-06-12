@@ -332,6 +332,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_CASCADE_4    0x0000000020000000  
 #define H2_CSS_CASCADE_5    0x0000000040000000  
 #define H2_CSS_CASCADE_6    0x0000000080000000  
+#define H2_CSS_CASCADE_56   ( H2_CSS_CASCADE_5 | H2_CSS_CASCADE_6 )  
+#define H2_CSS_CASCADE_456  ( H2_CSS_CASCADE_4 | H2_CSS_CASCADE_56 )  
+#define H2_CSS_CASCADE      0x00000000F0000000  
 #define H2_CSS_CASCADE_MASK 0x00000000F0000000  
 
 #define H2_CSS_SELECTOR_3   0x0000000100000000  
@@ -364,12 +367,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_MEDIA_5      0x0000400000000000  
 #define H2_CSS_MEDIA_45   ( H2_CSS_MEDIA_4 | H2_CSS_MEDIA_5 ) 
 #define H2_CSS_MEDIA      ( H2_CSS_MEDIA_34 | H2_CSS_MEDIA_5 )   
-#define H2_CSS_MEDIA_MASK H2_CSS_MEDIA
+#define H2_CSS_MEDIA_MASK   H2_CSS_MEDIA
 
 #define H2_CSS_NAMESPACE    0x0000800000000000
 
-#define H2_CSS_3        ( H2_CSS_CASCADE_3 | H2_CSS_COLOUR_3 | H2_CSS_CUSTOM | H2_CSS_MEDIA_3 | H2_CSS_NAMESPACE | H2_CSS_SELECTOR_3 | H2_CSS_STYLE | H2_CSS_SYNTAX | H2_CSS_UI_3 | H2_CSS_VALUE_3 )
-#define H2_CSS_4        ( H2_CSS_CASCADE_4 | H2_CSS_COLOUR_4 | H2_CSS_MEDIA_4 | H2_CSS_SELECTOR_4 | H2_CSS_UI_4 | H2_CSS_VALUE_4 )
+#define H2_CSS_ANIM_3       0x0001000000000000
+#define H2_CSS_ANIM_4       0x0002000000000000
+#define H2_CSS_ANIM_34    ( H2_CSS_ANIM_3 | H2_CSS_ANIM_4 )  
+#define H2_CSS_ANIM         H2_CSS_ANIM_34  
+#define H2_CSS_ANIM_MASK   H2_CSS_ANIM
+
+#define H2_CSS_3        ( H2_CSS_ANIM_3 | H2_CSS_CASCADE_3 | H2_CSS_COLOUR_3 | H2_CSS_CUSTOM | H2_CSS_MEDIA_3 | H2_CSS_NAMESPACE | H2_CSS_SELECTOR_3 | H2_CSS_STYLE | H2_CSS_SYNTAX | H2_CSS_UI_3 | H2_CSS_VALUE_3 )
+#define H2_CSS_4        ( H2_CSS_ANIM_4 | H2_CSS_CASCADE_4 | H2_CSS_COLOUR_4 | H2_CSS_MEDIA_4 | H2_CSS_SELECTOR_4 | H2_CSS_UI_4 | H2_CSS_VALUE_4 )
 #define H2_CSS_5        ( H2_CSS_CASCADE_5 | H2_CSS_COLOUR_5 | H2_CSS_MEDIA_5 )
 #define H2_CSS_6        H2_CSS_CASCADE_6
 
@@ -390,7 +399,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_MASK     H2_CSS_ALL
 #define H2_CSS          H2_CSS_ALL
 
-#define H2_FULL_CSS_MASK    0x0000FFFFFFFF8000  
+#define H2_FULL_CSS_MASK    0x0001FFFFFFFF8000  
 
 class html_version : public version
 {   flags_t ext_ = NOFLAGS, ext2_ = NOFLAGS;
@@ -584,6 +593,8 @@ public:
     bool restricted_charset () const noexcept;
     const char *default_charset () const noexcept;
     const char *alternative_charset () const noexcept;
+    int css_animation () const;
+    void css_animation (const int n);
     int css_cascade () const;
     void css_cascade (const int n);
     int css_colour () const;

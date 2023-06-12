@@ -56,7 +56,8 @@ template < e_type T > struct min_max_ok < T, 0, 0 >
 
  
 template < e_type T, class SZ, int MIN, int MAX, e_type... A > struct type_some_of : string_vector < T, SZ > 
-{   using string_vector < T, SZ > :: string_vector;
+{   BOOST_STATIC_ASSERT ((MAX == 0) || (MIN <= MAX));
+    using string_vector < T, SZ > :: string_vector;
     typedef ::std::vector < type_one_of < T, MIN==0, A... > > voo;
     voo voo_;
     void reset () noexcept

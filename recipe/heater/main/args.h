@@ -69,6 +69,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define ABHORRENT   "abhorrent"
 #define ACCEPT      "accept"
 #define ALL         "all"
+#define ANIMATION   "animation"
 #define ARTICLE     "article"
 #define ATTRIB      "attribute"
 #define BODY        "body"

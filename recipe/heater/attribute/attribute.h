@@ -77,6 +77,8 @@ struct attribute_base
 #pragma warning (disable : 26435) // For VS2019, the linter wants override on a member function which already has override (I've since taken them out to avoid confusion)
 #endif // _MSC_VER
 
+bool verify_attribute_version (nitpick& nits, const html_version& v, const e_element tag, const e_attribute id, const ::std::string& name, bool& excluded, bool& deprecated);
+
 template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public attribute_base, public typed_value < e_attribute, TYPE, IDENTITY >
 {   typed_attribute () = default;
     explicit typed_attribute (element* box) noexcept : typed_value < e_attribute, TYPE, IDENTITY > (box) { }
@@ -93,18 +95,7 @@ template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public a
     {   set_value (nits, v, node.get_string ()); }
     bool verify_version (nitpick& nits, const html_version& v, const e_element tag) override
     {   if (typed_value < e_attribute, TYPE, IDENTITY > :: unknown ()) return true;
-        if (! v.check_math_svg (nits, attr :: first_version (IDENTITY), name ())) excluded_ = true;
-        if (is_invalid_attribute_version (v, tag, IDENTITY))
-        {   nits.pick (nit_invalid_attribute_version, es_error, ec_attribute, quote (name ()), " is invalid in ", v.report ());
-            return false; }
-        if (! excluded_)
-        {   excluded_ = attr :: first_version (IDENTITY).invalid_addendum (v);
-            if (excluded_) nits.pick (nit_excluded_attribute, es_warning, ec_attribute, "the attribute ", quote (name ()), " is invalid in pure ", v.report ()); }
-        deprecated_ = is_deprecated_attribute_version (v, tag, IDENTITY);
-        if (deprecated_) nits.pick (nit_deprecated_attribute, es_warning, ec_attribute, name (), " is deprecated in ", v.report ());
-        else if (not_production_attribute (v, tag, IDENTITY))
-            nits.pick (nit_prototype, ed_jan21, "1.11.1 Presentational markup", es_comment, ec_attribute, name (), " is best not used in production in ", v.report ());
-        return true; }
+        return verify_attribute_version (nits, v, tag, IDENTITY, name (), excluded_, deprecated_); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s) override
     {   typed_value < e_attribute, TYPE, IDENTITY > :: set_value (nits, v, s);
         if (! typed_value < e_attribute, TYPE, IDENTITY > :: is_existential ()) return;

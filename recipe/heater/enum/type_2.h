@@ -90,6 +90,9 @@ template < > struct type_master < t_coordinatesystem > : two_value < t_coordinat
 template < > struct type_master < t_cors > : two_value < t_cors, ev_cors, sz_anonymous, sz_use_credentials, false >
 { using two_value < t_cors, ev_cors, sz_anonymous, sz_use_credentials, false > :: two_value; };
 
+template < > struct type_master < t_css_anim_play_state > : two_value < t_css_anim_play_state, e_css_anim_play_state, sz_paused, sz_running, false >
+{ using two_value < t_css_anim_play_state, e_css_anim_play_state, sz_paused, sz_running, false > :: two_value; };
+
 template < > struct type_master < t_css_box_sizing > : two_value < t_css_box_sizing, e_css_box_sizing, sz_border_box, sz_content_box, false >
 { using two_value < t_css_box_sizing, e_css_box_sizing, sz_border_box, sz_content_box, false > :: two_value; };
 

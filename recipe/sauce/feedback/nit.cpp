@@ -202,13 +202,14 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_css_20 : return "CSS Level 2";
         case ed_css_21 : return "CSS Level 2.1";
         case ed_css_22 : return "CSS Level 2.2";
+        case ed_css_animation_3 : return "CSS Animation 3"; 
         case ed_css_cascade_4 : return "CSS Cascade 4"; 
         case ed_css_cascade_5 : return "CSS Cascade 5"; 
         case ed_css_cascade_6 : return "CSS Cascade 6";
         case ed_css_colour_3 : return "CSS Colour 3";
         case ed_css_colour_4 : return "CSS Colour 4";
         case ed_css_colour_5 : return "CSS Colour 5";
-        case ed_css_custom : return "CSS Custom Properties"; 
+        case ed_css_custom : return "CSS Custom Properties";
         case ed_css_media_4 : return "CSS Media 4"; 
         case ed_css_namespaces_3 : return "CSS Namespaces 3";
         case ed_css_selectors_3 : return "CSS Selectors 3";
@@ -299,6 +300,7 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_css_20 : return "CSS Level 2 (May 1998)";
         case ed_css_21 : return "CSS Level 2.1 (April 2016)";
         case ed_css_22 : return "CSS Level 2.2 (February 2022 draft)";
+        case ed_css_animation_3 : return "CSS Animation Level '1', March 2023"; 
         case ed_css_cascade_4 : return "CSS Cascade Level 4, January 2022"; 
         case ed_css_cascade_5 : return "CSS Cascade Level 5, January 2022"; 
         case ed_css_cascade_6 : return "CSS Cascade Level 6, March 2023"; 

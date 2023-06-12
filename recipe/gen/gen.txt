@@ -85,6 +85,8 @@ line, the "no-" switch always applies.
                         content. This is incompatible with
                         --shadow.update.
 
+--css.animation X       Use CSS Animation level X, where X is 0, 3 or 4
+
 --css.cascade X         Use CSS Cascade level X, where X is 0, 3, 4, 5
                         or 6
 
@@ -106,8 +108,8 @@ line, the "no-" switch always applies.
 --css.ui X              Use CSS Basic User Interface level X, where X
                         is 0, 3 or 4
 
---css.value X           Use CSS Values and Units level X, where X is 0
-                        or 3
+--css.value X           Use CSS Values and Units level X, where X is 0,
+                        3 or 4
 
 --css.verify            Verify CSS files (replaces --general.css)
 

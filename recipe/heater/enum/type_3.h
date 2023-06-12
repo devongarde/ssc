@@ -77,6 +77,9 @@ template < > struct type_master < t_corp > : three_value < t_corp, e_corp, sz_sa
 template < > struct type_master < t_css_aai > : three_value < t_css_aai, e_css_aai, sz_auto, sz_avoid, sz_inherit >
 { using three_value < t_css_aai, e_css_aai, sz_auto, sz_avoid, sz_inherit > :: three_value; };
 
+template < > struct type_master < t_css_anim_comp > : three_value < t_css_anim_comp, e_css_anim_comp, sz_accumulate, sz_add, sz_replace >
+{ using three_value < t_css_anim_comp, e_css_anim_comp, sz_accumulate, sz_add, sz_replace > :: three_value; };
+
 template < > struct type_master < t_css_azimuth_lri > : three_value < t_css_azimuth_lri, e_css_azimuth_lri, sz_leftwards, sz_inherit, sz_rightwards >
 { using three_value < t_css_azimuth_lri, e_css_azimuth_lri, sz_leftwards, sz_inherit, sz_rightwards > :: three_value; };
 

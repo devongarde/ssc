@@ -1,0 +1,11 @@
+﻿.fud
+{   
+    /* Invalid start value */
+    color: mix(90% ; #invalid ; #F00);
+
+    /* Function is mixed with other values */
+    background: url(ocean) mix(10% ; blue ; yellow);
+
+    /* 'display' is not animatable */
+    display: mix(0% ; inline ; block);
+}
