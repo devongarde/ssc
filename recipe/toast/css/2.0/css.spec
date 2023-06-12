@@ -11,9 +11,9 @@ PASS ../toast/css/2.0/aargh.css
 7 no_such_page
 9 css_version
 10 css_version
-10 css_colour
+10 css_colour css_colour
 11 css_version css_version
-11 css_colour
+11 css_colour css_colour
 13 naughty_page
 14 unrecognised_value naughty_page
 18 css_element css_element css_version css_version css_element
@@ -69,14 +69,14 @@ PASS ../toast/css/2.0/css-4-1.css
 32 css_syntax
 34 css_syntax
 39 css_version
-68 unrecognised_value
+68 unrecognised_value unrecognised_value
 69 unrecognised_value
 81 fontname css_syntax
 
 PASS ../toast/css/2.0/css-4-2.css
 0 html
 20 unrecognised_value
-25 unrecognised_value
+25 unrecognised_value unrecognised_value
 26 css_syntax
 27 unrecognised_value
 35 css_syntax property
@@ -84,7 +84,7 @@ PASS ../toast/css/2.0/css-4-2.css
 37 property
 38 property
 39 css_syntax css_colour
-40 css_syntax css_colour
+40 css_syntax css_colour css_colour
 42 unrecognised_value
 52 css_version naughty_content css_syntax
 
@@ -92,9 +92,9 @@ PASS ../toast/css/2.0/css-4-3.css
 0 html
 50 css_version
 51 naughty_content
-63 css_colour
-64 css_colour
-65 css_colour
+63 css_colour css_colour css_colour
+64 css_colour css_colour css_colour css_colour
+65 css_colour css_colour css_colour
 
 PASS ../toast/css/2.0/css-4-4.css
 0 html
@@ -271,11 +271,6 @@ PASS ../toast/css/2.0/css-9-5-2.html
 
 PASS ../toast/css/2.0/css-9-6.html
 0 charset_mismatch charset_used
-24 unrecognised_value unrecognised_value immeasurable
-24 unrecognised_value unrecognised_value immeasurable
-24 unrecognised_value unrecognised_value immeasurable
-24 unrecognised_value unrecognised_value immeasurable
-24 unrecognised_value unrecognised_value immeasurable
 
 PASS ../toast/css/2.0/css-9-8.css
 0 html
@@ -543,7 +538,6 @@ PASS ../toast/css/2.0/css-15-5.css
 49 fontname
 54 fontname
 59 fontname
-60 unrecognised_value
 
 PASS ../toast/css/2.0/css-16-1.css
 0 html

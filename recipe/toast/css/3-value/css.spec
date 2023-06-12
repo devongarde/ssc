@@ -22,4 +22,4 @@ PASS ../toast/css/3-value/css-6.css
 PASS ../toast/css/3-value/css-8.css
 0 html
 4 naughty_content
-24 precisely precisely precisely precisely
+24 precisely precisely

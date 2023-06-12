@@ -102,6 +102,7 @@ class context_t
         return *this; }
     context_t& corpus (const ::boost::filesystem::path& f) { corpus_ = f; mac (nm_context_corpus, f.string ()); return *this; }
     context_t& crosslinks (const bool b) { crosslinks_ = b; mac (nm_context_crosslinks, b); return *this; }
+    context_t& css_animation (const int n) { version_.css_animation (n); mac (nm_context_css_animation, n); return *this; }
     context_t& css_cascade (const int n) { version_.css_cascade (n); mac (nm_context_css_cascade, n); return *this; }
     context_t& css_colour (const int n) { version_.css_colour (n); mac (nm_context_css_colour, n); return *this; }
     context_t& css_custom (const int n) { version_.css_custom (n); mac (nm_context_css_custom, n); return *this; }
@@ -280,6 +281,7 @@ public:
     e_copy copy () const noexcept { return copy_; }
     ::boost::filesystem::path corpus () const { return corpus_; }
     bool crosslinks () const noexcept { return crosslinks_; }
+    int css_animation () { return version_.css_animation (); }
     int css_cascade () { return version_.css_cascade (); }
     int css_colour () { return version_.css_colour (); }
     int css_custom () { return version_.css_custom (); }

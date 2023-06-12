@@ -13,6 +13,7 @@
 ../toast/css/2.0/css.spec
 ../toast/css/2.1/css.spec
 ../toast/css/2.2/css.spec
+../toast/css/3-animation/css.spec
 ../toast/css/3-cascade/css.spec
 ../toast/css/4-cascade/css.spec
 ../toast/css/5-cascade/css.spec
@@ -29,6 +30,7 @@
 ../toast/css/3-ui/css.spec
 ../toast/css/4-ui/css.spec
 ../toast/css/3-value/css.spec
+../toast/css/4-value/css.spec
 ../toast/css/accessibility/css.spec
 ../toast/css/custom/css.spec
 ../toast/css/songlight/css.spec

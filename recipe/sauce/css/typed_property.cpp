@@ -57,3 +57,93 @@ bool check_custom_property (arguments& args, const ::std::string& s)
     if (i == args.g_.custom_prop ().cend ()) return false;
     i -> second += 1;
     return true; }
+
+void validate_animation_name (type_master < t_css_anim_base >& cab, arguments& args)
+{   cab.invalid_access (args.t_.at (0).nits_, args.v_, &args.g_.keyframe ()); }
+
+bool check_constants (arguments& args, nitpick& nits, const int i)
+{   nitpick nets;
+    if (! test_value < t_css_val_con > (nets, args.v_, args.t_.at (i).val_)) return false;
+    nits.merge (nets);
+    if (args.v_.css_value () < 4)
+        nits.pick (nit_css_value, ed_css_value_4, "10.7 Numeric Constants", es_error, ec_css, quote (args.t_.at (i).val_), " requires CSS Values 4");
+    return true; }
+
+bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e_css_val_fn& e)
+{   nitpick nuts;
+    type_master < t_css_val_fn > cvf;
+    e = cvf_none;
+    cvf.set_value (nuts, args.v_, args.t_.at (i).val_);
+    if (! cvf.good ()) return false;
+    nits.merge (nuts);
+    i = next_non_whitespace (args.t_, i, to);
+    if ((i < 0) || (args.t_.at (i).t_ != ct_round_brac))
+        nits.pick (nit_css_syntax, es_error, ec_css, "expecting '(' after ", quote (cvf.name ()));
+    else
+    {   i = next_non_whitespace (args.t_, i, to);
+        if (i > 0)
+        {   res = true;
+            switch (context.css_value ())
+            {   case 4 :
+                    e = cvf.get ();
+                    break;
+                case 3 :
+                    switch (cvf.get ())
+                    {   case cvf_calc :
+                            e = cvf_calc; break;
+                        case cvf_url:
+                            e = cvf_url; break;
+                        default :
+                            nits.pick (nit_css_value, es_error, ec_css, quote (cvf.name ()), " requires CSS Values 4"); }
+                    break;
+                default :
+                    if (cvf.get () == cvf_url) e = cvf_url;
+                    else nits.pick (nit_css_value, es_error, ec_css, quote (cvf.name ()), " requires CSS Values");
+                    break; } } }
+    return true; }
+
+bool test_cascade (const ::std::string& s, e_iiu& iiu)
+{   switch (context.css_cascade ())
+    {   case 6 :
+        case 5 :
+            switch (s.at (0))
+            {   case 'r' :
+                case 'R' :
+                    if (compare_no_case (s, "revert-layer"))
+                        {   iiu = iiu_revert_layer;
+                            return true; } }
+            FALLTHROUGH;   
+        case 4 :
+            switch (s.at (0))
+            {   case 'r' :
+                case 'R' :
+                    if (compare_no_case (s, "revert"))
+                        {   iiu = iiu_revert;
+                            return true; } }
+            FALLTHROUGH;   
+        case 3 :
+            switch (s.at (0))
+            {   case 'i' :
+                case 'I' :
+                    if (s.length () == 7)
+                        if (compare_no_case (s, "inherit"))
+                        {   iiu = iiu_inherit;
+                            return true; }
+                        if (compare_no_case (s, "initial"))
+                        {   iiu = iiu_initial;
+                            return true; }
+                    break;
+                case 'u' :
+                case 'U' :
+                    if (compare_no_case (s, "unset"))
+                    {   iiu = iiu_unset;
+                        return true; } }
+            break;
+        default :
+            PRESUME (context.css_version () < css_3, __FILE__, __LINE__);
+            if (context.css_version () != css_1)
+                if (compare_no_case (s, "inherit"))
+                {   iiu = iiu_inherit;
+                    return true; }
+            break; }
+    return false; }

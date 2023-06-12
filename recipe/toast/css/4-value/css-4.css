@@ -1,0 +1,44 @@
+﻿@import url("base-theme.css");
+@import "base-theme.css";
+
+table { border-collapse: separate }
+
+.foo {
+  --fg-color: blue;
+}
+
+@color-profile --foo { src: url(https://example.com/foo.icc); }
+.foo {
+  color: color(--foo 1 0 .5 / .2);
+}
+
+.fup
+{   content: "this is a 'string'.";
+    content: "this is a \"string\".";
+    content: 'this is a "string".';
+    content: 'this is a \'string\'.' }
+
+
+a[title="a not s\
+o very long title"] {/*...*/}
+
+a[title="a not so very long title"] {/*...*/}
+
+body
+{   background: url("http://www.example.com/pinkish.gif") }
+
+.fud
+{   background: url("http://www.example.com/pinkish.gif");
+    background: url(http://www.example.com/pinkish.gif); }
+
+.fek
+{   background: src("http://www.example.com/pinkish.gif");
+    --foo: "http://www.example.com/pinkish.gif";
+    background: src(var(--foo)); }
+
+.fudge
+{   --foo: "http://www.example.com/pinkish.gif";
+    background: url(var(--foo)); }
+
+body
+{   background: url("tile.png") }

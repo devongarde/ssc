@@ -53,17 +53,17 @@ PASS ../toast/css/2.1/css-4-1.css
 21 css_syntax
 26 css_version
 55 unrecognised_value
-58 unrecognised_value
+58 unrecognised_value unrecognised_value
 59 css_syntax
 60 unrecognised_value
-62 unrecognised_value
+62 unrecognised_value unrecognised_value
 63 unrecognised_value
 71 fontname css_syntax
 
 PASS ../toast/css/2.1/css-4-2.css
 0 html
 1 unrecognised_value
-6 unrecognised_value
+6 unrecognised_value unrecognised_value
 7 css_syntax
 8 unrecognised_value
 16 css_syntax property
@@ -71,7 +71,7 @@ PASS ../toast/css/2.1/css-4-2.css
 18 property
 19 property
 20 css_syntax css_colour
-21 css_syntax css_colour
+21 css_syntax css_colour css_colour
 23 css_syntax css_element unrecognised_value
 24 unrecognised_value
 25 css_syntax
@@ -86,9 +86,9 @@ PASS ../toast/css/2.1/css-4-3.css
 0 html
 31 css_version
 32 naughty_content
-44 css_colour
-45 css_colour
-46 css_colour
+44 css_colour css_colour css_colour
+45 css_colour css_colour css_colour css_colour
+46 css_colour css_colour css_colour
 48 css_element
 49 css_element
 50 css_element

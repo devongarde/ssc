@@ -35,3 +35,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
         nits.pick (nit_untidy_string, es_comment, ec_attribute, quote (s), " ends with one or more spaces");
     else return s;
     return trim_the_lot_off (s); }
+
+void shadow_core (::std::stringstream& ss, const html_version& v, const ::std::string& s)
+{   if (! v.xhtml () && (! s.empty ()) && (s.find_first_not_of (ALPHADDD "+") == ::std::string::npos)) ss << '=' << s;
+    else if (s.find_first_of ('\"') == ::std::string::npos) ss << '=' << '"' << s << '"';
+    else if (s.find_first_of ("'") == ::std::string::npos) ss << "='" << s << "'";
+    else ss << '=' << enquote (s); }

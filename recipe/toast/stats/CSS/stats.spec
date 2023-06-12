@@ -5,10 +5,9 @@ PASS ../toast/stats/CSS/basic.css
 4 css_colour
 7 dialect
 9 unrecognised_value
-10 unrecognised_value
+10 unrecognised_value unrecognised_value unrecognised_value
 11 css_colour
 12 unrecognised_value
-15 unrecognised_value immeasurable
 18 css_dubious
 20 fontname fontname fontname
 
@@ -164,7 +163,7 @@ PASS ../toast/stats/CSS/css-5.css
 0 html
 1 fontname
 2 fontname
-143 unrecognised_value
+143 unrecognised_value unrecognised_value
 
 STATS
 Elements:
@@ -256,8 +255,8 @@ CSS itemid(s):
 
 PASS ../toast/stats/CSS/css-6.css
 0 html
-29 css_colour
-30 css_colour
+29 css_colour css_colour css_colour
+30 css_colour css_colour css_colour
 
 STATS
 Elements:
@@ -283,12 +282,12 @@ CSS properties:
 PASS ../toast/stats/CSS/css-7.css
 0 html
 1 unrecognised_value
-6 unrecognised_value
+6 unrecognised_value unrecognised_value
 7 css_syntax
 8 unrecognised_value
 15 unrecognised_value
 27 css_version
-33 unrecognised_value
+33 unrecognised_value unrecognised_value
 34 unrecognised_value
 
 STATS
@@ -876,6 +875,6 @@ Versions:
     HTML5/20230401/SVG-2.1/MathML-core/CSS-1/WhatWG: 7 times 
   
 File info:
-     12523 bytes read in 17 files, with an average of roughly 737 bytes per file
+     12551 bytes read in 17 files, with an average of roughly 738 bytes per file
      smallest file: 64 bytes, largest file: 3882 bytes
   ===

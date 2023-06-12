@@ -781,6 +781,7 @@ struct symbol_entry < html_version, e_css_val_fn > css_val_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_VALUE_4 }, { HTML_UNDEF }, "log", cvf_log },
     { { HTML_CSS, 0, 0, H2_CSS_VALUE_4 }, { HTML_UNDEF }, "max", cvf_max },
     { { HTML_CSS, 0, 0, H2_CSS_VALUE_4 }, { HTML_UNDEF }, "min", cvf_min },
+    { { HTML_CSS, 0, 0, H2_CSS_VALUE_4 }, { HTML_UNDEF }, "mix", cvf_mix },
     { { HTML_CSS, 0, 0, H2_CSS_VALUE_4 }, { HTML_UNDEF }, "mod", cvf_mod },
     { { HTML_CSS, 0, 0, H2_CSS_VALUE_4 }, { HTML_UNDEF }, "pow", cvf_pow },
     { { HTML_CSS, 0, 0, H2_CSS_VALUE_4 }, { HTML_UNDEF }, "rem", cvf_rem },
@@ -788,7 +789,9 @@ struct symbol_entry < html_version, e_css_val_fn > css_val_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_VALUE_4 }, { HTML_UNDEF }, "sign", cvf_sign },
     { { HTML_CSS, 0, 0, H2_CSS_VALUE_4 }, { HTML_UNDEF }, "sin", cvf_sin },
     { { HTML_CSS, 0, 0, H2_CSS_VALUE_4 }, { HTML_UNDEF }, "sqrt", cvf_sqrt },
-    { { HTML_CSS, 0, 0, H2_CSS_VALUE_4 }, { HTML_UNDEF }, "tan", cvf_tan } };
+    { { HTML_CSS, 0, 0, H2_CSS_VALUE_4 }, { HTML_UNDEF }, "src", cvf_src },
+    { { HTML_CSS, 0, 0, H2_CSS_VALUE_4 }, { HTML_UNDEF }, "tan", cvf_tan },
+    { { HTML_CSS }, { HTML_UNDEF }, "url", cvf_url } };
 
 struct symbol_entry < html_version, e_css_vertical_align > css_vertical_align_symbol_table [] =
 {   { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "inherit", ecva_inherit },
@@ -817,6 +820,14 @@ struct symbol_entry < html_version, e_css_whitespace > css_whitespace_symbol_tab
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "pre", ecwh_pre },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "pre-line", ecwh_preline },
     { { HTML_CSS, 0, 0 }, { HTML_UNDEF }, "pre-wrap", ecwh_prewrap } };
+
+struct symbol_entry < html_version, e_css_wide > css_wide_symbol_table [] =
+{   { { HTML_CSS, 0, 0, H2_CSS_2 | H2_CSS_CASCADE }, { HTML_UNDEF }, "default", cw_default },
+    { { HTML_CSS, 0, 0, H2_CSS_2 | H2_CSS_CASCADE }, { HTML_UNDEF }, "inherit", cw_inherit },
+    { { HTML_CSS, 0, 0, H2_CSS_CASCADE }, { HTML_UNDEF }, "initial", cw_initial },
+    { { HTML_CSS, 0, 0, H2_CSS_CASCADE_456 }, { HTML_UNDEF }, "revert", cw_revert },
+    { { HTML_CSS, 0, 0, H2_CSS_CASCADE_56 }, { HTML_UNDEF }, "revert-layer", cw_revert_layer },
+    { { HTML_CSS, 0, 0, H2_CSS_CASCADE }, { HTML_UNDEF }, "unset", cw_unset } };
 
 struct symbol_entry < html_version, e_cursor > cursor_symbol_table [] =
 {   { { HTML_SVG10, 0, HE_SVG_10_11_FULL }, { HTML_UNDEF }, "auto",  cu_auto },
@@ -1635,6 +1646,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-corpus", nm_context_corpus },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-crosslinks", nm_context_crosslinks },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css", nm_context_css },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-animation", nm_context_css_animation },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-cascade", nm_context_css_cascade },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-colour", nm_context_css_colour },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-custom", nm_context_css_custom },
@@ -2318,6 +2330,7 @@ struct symbol_entry < html_version, e_unit > unit_symbol_table [] =
     { { HTML_2_0, 0, 0, H2_CSS }, { HTML_UNDEF }, "cm", eu_cm },
     { { HTML_2_0, 0, 0, H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "dpcm", eu_dpcm },
     { { HTML_2_0, 0, 0, H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "dpi", eu_dpi },
+    { { HTML_2_0, 0, 0, H2_CSS_MEDIA_4 }, { HTML_UNDEF }, "dppx", eu_dppx },
     { { HTML_2_0, 0, 0, H2_CSS }, { HTML_UNDEF }, "em", eu_em },
     { { HTML_2_0, 0, 0, H2_CSS }, { HTML_UNDEF }, "ex", eu_ex },
     { { HTML_JAN21 }, { HTML_UNDEF }, "ic", eu_ic },
@@ -2613,6 +2626,7 @@ void init_2 ()
     type_master < t_connect > :: init ();
     type_master < t_coordinatesystem > :: init ();
     type_master < t_cors > :: init ();
+    type_master < t_css_anim_play_state > :: init ();
     type_master < t_css_box_sizing > :: init ();
     type_master < t_css_mark > :: init ();
     type_master < t_css_text_resize > :: init ();
@@ -2694,6 +2708,7 @@ void init_3 ()
     type_master < t_controlslist > :: init ();
     type_master < t_corp > :: init ();
     type_master < t_css_aai > :: init ();
+    type_master < t_css_anim_comp > :: init ();
     type_master < t_css_azimuth_lri > :: init ();
     type_master < t_css_border_collapse > :: init ();
     type_master < t_css_empty_cells > :: init ();
@@ -2766,6 +2781,9 @@ void init_4 ()
     type_master < t_cc_requires > :: init ();
     type_master < t_channelselector > :: init ();
     type_master < t_content_encoding > :: init ();
+    type_master < t_css_anim_dir > :: init ();
+    type_master < t_css_anim_fill_mode > :: init ();
+    type_master < t_css_fn_round_t > :: init ();
     type_master < t_css_font_style_e > :: init ();
     type_master < t_css_hue_interpolation > :: init ();
     type_master < t_css_orientation > :: init ();
@@ -2871,6 +2889,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (css_vertical_align);
     INIT_ENUM (css_volume_e);
     INIT_ENUM (css_whitespace);
+    INIT_ENUM (css_wide);
     INIT_ENUM (crossout);
     INIT_ENUM (cursor);
     INIT_ENUM (decalign);
@@ -2882,7 +2901,6 @@ void enum_init (nitpick& nits)
     INIT_ENUM (enterkeyhint);
     INIT_ENUM (figalign);
     INIT_ENUM (filter_in);
-//    INIT_ENUM (fixedcolour);
     INIT_ENUM (fontname);
     INIT_ENUM (font_enum);
     INIT_ENUM (font_variant_2);

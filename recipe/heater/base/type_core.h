@@ -26,6 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "base/sz.h"
 
 ::std::string make_tidy (nitpick& nits, const html_version& v, const ::std::string& s);
+void shadow_core (::std::stringstream& ss, const html_version& v, const ::std::string& s);
 
 template < e_type TYPE > struct string_value : public type_base < ::std::string, TYPE >
 {   ::std::string value_;
@@ -45,10 +46,7 @@ template < e_type TYPE > struct string_value : public type_base < ::std::string,
     bool has_value (const ::std::string& s) const { return type_base < ::std::string, TYPE > :: good () && (value_ == s); }
     int get_int () const { return lexical < int > :: cast (value_); }
     void shadow (::std::stringstream& ss, const html_version& v, element* )
-    {   if (! v.xhtml () && (! value_.empty ()) && (value_.find_first_not_of (ALPHADDD "+") == ::std::string::npos)) ss << '=' << value_;
-        else if (value_.find_first_of ('\"') == ::std::string::npos) ss << '=' << '"' << value_ << '"';
-        else if (value_.find_first_of ("'") == ::std::string::npos) ss << "='" << value_ << "'";
-        else ss << '=' << enquote (value_); }
+    {   shadow_core (ss, v, value_); }
     void reset () noexcept
     {   value_.clear ();
         type_base < ::std::string, TYPE > :: reset (); } };

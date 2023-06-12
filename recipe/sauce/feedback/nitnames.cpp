@@ -807,6 +807,9 @@ const nitname nitnames [] =
     { nit_css_colour, "css_colour" },
     { nit_bad_number, "bad_number" },
     { nit_css_value, "css_value" },
+    { nit_css_keyframes, "css_keyframes" },
+    { nit_css_value_fn, "css_value_fn" },
+    { nit_css_value_param, "css_value_param" },
 
     { nit_incompatible, "incompatible" },
 

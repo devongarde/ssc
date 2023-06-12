@@ -50,6 +50,7 @@ template < > struct type_master < t_charspacing > : type_or_any_string < t_chars
 
 template < > struct type_master < t_clear30 > : tidy_string < t_clear30 >
 {   using tidy_string < t_clear30 > :: tidy_string;
+	static e_animation_type animation_type () noexcept { return at_colour; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_clear30 > :: set_value (nits, v, s);
         ::std::string arg (tidy_string < t_clear30 > :: get_string ());
@@ -97,6 +98,7 @@ template < > struct type_master < t_colour_ii > : type_or_either_string < t_colo
 
 template < > struct type_master < t_context_menu > : tidy_string < t_context_menu >
 {   using tidy_string < t_context_menu > :: tidy_string;
+	static e_animation_type animation_type () noexcept { return at_other; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_context_menu > :: set_value (nits, v, s);
         if (tidy_string < t_context_menu > :: empty ())
@@ -117,6 +119,7 @@ template < > struct type_master < t_context_menu > : tidy_string < t_context_men
 
 template < > struct type_master < t_duration_media > : tidy_string < t_duration_media >
 {   using tidy_string < t_duration_media > :: tidy_string;
+	static e_animation_type animation_type () noexcept { return at_none; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_duration_media > :: set_value (nits, v, s);
         if (tidy_string < t_duration_media > :: good ())
@@ -128,6 +131,7 @@ template < > struct type_master < t_duration_media > : tidy_string < t_duration_
 
 template < > struct type_master < t_enable_background > : tidy_string < t_enable_background >
 {   using tidy_string < t_enable_background > :: tidy_string;
+	static e_animation_type animation_type () noexcept { return at_paint; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_enable_background > :: set_value (nits, v, s);
         if (tidy_string < t_enable_background > :: empty ())
@@ -200,6 +204,7 @@ template < > struct type_master < t_length > : type_either_or < t_length, t_leng
 
 template < > struct type_master < t_linethickness > : tidy_string < t_linethickness >
 {   using tidy_string < t_linethickness > :: tidy_string;
+	static e_animation_type animation_type () noexcept { return at_paint; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_linethickness > :: set_value (nits, v, s);
         if (v.math () >= math_2)
@@ -287,6 +292,7 @@ template < > struct type_master < t_ogdet > : type_or_null < t_ogdet, t_determin
 
 template < > struct type_master < t_pseudonamedspace > : tidy_string < t_pseudonamedspace >
 {   using tidy_string < t_pseudonamedspace > :: tidy_string;
+	static e_animation_type animation_type () noexcept { return at_none; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_pseudonamedspace > :: set_value (nits, v, s);
         if (tidy_string < t_pseudonamedspace > :: empty ())
@@ -429,6 +435,7 @@ template < > struct type_master < t_schema_type > : tidy_string < t_schema_type 
 
 template < > struct type_master < t_shape3 > : tidy_string < t_shape3 >
 {   using tidy_string < t_shape3 > :: tidy_string;
+	static e_animation_type animation_type () noexcept { return at_paint; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_shape3 > :: set_value (nits, v, s);
         const ::std::string& ss = tidy_string < t_shape3 > :: get_string ();

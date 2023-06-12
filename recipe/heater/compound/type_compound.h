@@ -34,11 +34,11 @@ template < e_type T, e_type P, class SZ > struct string_then_type : tidy_string 
 {   using tidy_string < T > :: tidy_string;
     static e_animation_type animation_type () noexcept { return grab_animation_type < P > (); }
     void accumulate (stats_t* s) const
-    {   if (tidy_string < T > :: good ()) type_master < P > :: accumulate (s, tidy_string < T > :: get_string ()); }
+    {   if (tidy_string < T > :: good ()) tidy_string < T > :: accumulate (s); }
     void accumulate (stats_t* s, const e_element e) const
-    {   if (tidy_string < T > :: good ()) type_master < P > :: accumulate (s, tidy_string < T > :: get_string (), e); }
+    {   if (tidy_string < T > :: good ()) tidy_string < T > :: accumulate (s, e); }
     void accumulate (stats_t* s, const element_bitset& e) const
-    {   if (tidy_string < T > :: good ()) type_master < P > :: accumulate (s, tidy_string < T > :: get_string (), e); }
+    {   if (tidy_string < T > :: good ()) tidy_string < T > :: accumulate (s, e); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
         if (tidy_string < T > :: good () || tidy_string < T > :: empty ())
@@ -106,14 +106,20 @@ template < e_type T, class SZ, e_type P, int FROM, int TO > struct type_range : 
 
 template < e_type T, e_type P, class SZ > struct type_or_string : tidy_string < T >
 {   using tidy_string < T > :: tidy_string;
+    bool str_ = false;
     static e_animation_type animation_type () noexcept { return grab_animation_type < P > (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
         if (tidy_string < T > :: good () || tidy_string < T > :: empty ())
         {   const ::std::string ss (tidy_string < T > :: get_string ());
-            if (compare_complain (nits, v, SZ :: sz (), ss)) return;
+            if (compare_complain (nits, v, SZ :: sz (), ss)) { str_ = true; return; }
             if (test_value < P > (nits, v, ss, tidy_string < T > :: id ())) return; }
-        tidy_string < T > :: status (s_invalid); } };
+        tidy_string < T > :: status (s_invalid); }
+    bool invalid_access (nitpick& nits, const html_version& v, sstr_t* s)
+    {   if (str_) return false;
+        type_master < P > pt;
+        pt.set_value (nits, v, tidy_string < T > :: get_string ());
+        return pt.invalid_access (nits, v, s); } };
 
 template < e_type T, e_type P, e_type Q, class SZ > struct either_type_or_string : tidy_string < T >
 {   using tidy_string < T > :: tidy_string;
@@ -345,15 +351,13 @@ template < e_type T, e_type P > struct type_or_null : tidy_string < T >
     void accumulate (stats_t* s) const
     {   if (tidy_string < T > :: good ())
         {   const ::std::string ss (tidy_string < T > :: get_string ());
-            if (! ss.empty ()) type_master < P > :: accumulate (s, ss); } }
+            if (! ss.empty ()) tidy_string < T > :: accumulate (s, ss); } }
     void accumulate (stats_t* s, const element_bitset& e) const
     {   if (tidy_string < T > :: good ())
-        {   const ::std::string ss (tidy_string < T > :: get_string (), e);
-            if (! ss.empty ()) type_master < P > :: accumulate (s, ss); } }
+            tidy_string < T > :: accumulate (s, e); }
     void accumulate (stats_t* s, const e_element e) const
     {   if (tidy_string < T > :: good ())
-        {   const ::std::string ss (tidy_string < T > :: get_string (), e);
-            if (! ss.empty ()) type_master < P > :: accumulate (s, ss); } }
+            tidy_string < T > :: accumulate (s, e); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
         if (tidy_string < T > :: empty ())

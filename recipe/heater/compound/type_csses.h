@@ -34,6 +34,12 @@ template < > struct type_master < t_css_alpha > : type_either_or < t_css_alpha, 
 template < > struct type_master < t_css_alpha_n > : type_or_string < t_css_alpha_n, t_css_alpha, sz_none >
 { using type_or_string < t_css_alpha_n, t_css_alpha, sz_none > :: type_or_string; };
 
+template < > struct type_master < t_css_animation > : type_some_of < t_css_animation, sz_space, 1, 9, t_datetime, t_css_easing_fn, t_datetime, t_unsigned, t_css_anim_dir, t_css_anim_fill_mode, t_css_anim_play_state, t_css_anim_name, t_css_anim_timeline >
+{ using type_some_of < t_css_animation, sz_space, 1, 9, t_datetime, t_css_easing_fn, t_datetime, t_unsigned, t_css_anim_dir, t_css_anim_fill_mode, t_css_anim_play_state, t_css_anim_name, t_css_anim_timeline > :: type_some_of; };
+
+template < > struct type_master < t_css_anim_name > : type_or_string < t_css_anim_name, t_css_anim_base, sz_none >
+{ using type_or_string < t_css_anim_name, t_css_anim_base, sz_none > :: type_or_string; };
+
 template < > struct type_master < t_css_attr > : type_function_all < t_css_attr, sz_attr, t_text >
 { using type_function_all < t_css_attr, sz_attr, t_text > :: type_function_all; };
 
@@ -261,6 +267,7 @@ template < > struct type_master < t_css_play_during_mr > : type_and_maybe_string
 
 template < > struct type_master < t_css_src > : tidy_string < t_css_src >
 {   using tidy_string < t_css_src > :: tidy_string;
+	static e_animation_type animation_type () noexcept { return at_url; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_css_src > :: set_value (nits, v, s);
         const ::std::string& arg = tidy_string < t_css_src > :: get_string ();
@@ -294,6 +301,7 @@ template < > struct type_master < t_css_langs > : string_vector < t_css_langs, s
 
 template < > struct type_master < t_css_col > : tidy_string < t_css_col >
 {   using tidy_string < t_css_col > :: tidy_string;
+	static e_animation_type animation_type () noexcept { return at_colour; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_css_col > :: set_value (nits, v, s);
         const ::std::string& arg = tidy_string < t_css_col > :: get_string ();

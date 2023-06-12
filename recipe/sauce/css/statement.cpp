@@ -161,6 +161,81 @@ void statement::parse_import (arguments& args, nitpick& nits, const int from, co
     {   ::std::string s (assemble_string (args.t_, mql, to, true));
         parse_media_query (nits, args.v_, s, args.custom_media ()); } }
 
+void statement::parse_keyframes (arguments& args, nitpick& nits, const int from, const int to)
+{   if (context.html_ver ().css_animation () < 3)
+        nits.pick (nit_css_version, ed_css_animation_3, "3. Keyframes", es_error, ec_css, "@keyframes requires CSS Animation level 3 or higher");
+    int i = next_non_whitespace (args.t_, from, to); 
+    if ((i < 0) || ((args.t_.at (i).t_ != ct_string) && (args.t_.at (i).t_ != ct_identifier) && (args.t_.at (i).t_ != ct_keyword)))
+        nits.pick (nit_css_syntax, ed_css_animation_3, "3. Keyframes", es_error, ec_css, "expecting an identifier after @keyframes");
+    else
+    {   ::std::string name (args.t_.at (i).val_);
+        nitpick nuts;
+        if (test_value < t_css_wide > (nuts, args.v_, name))
+            nits.pick (nit_css_keyframes, ed_css_animation_3, "3. Keyframes", es_error, ec_css, quote (name), " is a CSS wide keyword, so cannot be used as a @keyframes name");
+        else if (args.g_.keyframe ().find (name) == args.g_.keyframe ().cend ()) args.g_.keyframe ().insert (name);
+        else nits.pick (nit_css_keyframes, ed_css_animation_3, "3. Keyframes", es_warning, ec_css, "@keyframes ", quote (name), " previously defined");
+        i = next_non_whitespace (args.t_, i, to);
+        int num = 0;
+        sstr_t pcnts;
+        if (i < 0) nits.pick (nit_css_keyframes, ed_css_animation_3, "3. Keyframes", es_error, ec_css, "missing @keyframes definition after ", quote (name));
+        else if (args.t_.at (i).t_ != ct_curly_brac)
+            nits.pick (nit_css_syntax, ed_css_animation_3, "3. Keyframes", es_error, ec_css, "expecting '{' after ", quote (name));
+        else
+        {   PRESUME (args.t_.at (i).child_ > 0, __FILE__, __LINE__);
+            const int mx = args.t_.at (i).next_;
+            i = first_non_whitespace (args.t_, args.t_.at (i).child_, mx);
+            for (; i > 0; i = next_non_whitespace (args.t_, i, mx))
+            {   if (args.t_.at (i).t_ == ct_curly_ket)
+                {   if (num == 0) nits.pick (nit_css_keyframes, ed_css_animation_3, "3. Keyframes", es_warning, ec_css, quote (name), " appears a little minimalistic");
+                    break; }
+                else if (args.t_.at (i).t_ == ct_curly_brac)
+                    nits.pick (nit_css_syntax, ed_css_animation_3, "3. Keyframes", es_error, ec_css, "missing keyframe selector(s) after ", quote (name));
+                else
+                {   bool more = true;
+                    for (; more && (i > 0); i = next_non_whitespace (args.t_, i, mx))
+                        switch (args.t_.at (i).t_)
+                        {   case ct_identifier:
+                            case ct_keyword :
+                            case ct_number :
+                                {   const ::std::string& x = args.t_.at (i).val_;
+                                    if (compare_no_case (x, "from"))
+                                    {   if (pcnts.find ("from") == pcnts.cend ()) pcnts.insert ("from");
+                                        else nits.pick (nit_css_keyframes, ed_css_animation_3, "3. Keyframes", es_warning, ec_css, "'from' repeated"); }
+                                    else if (compare_no_case (x, "to"))
+                                    {   if (pcnts.find ("to") == pcnts.cend ()) pcnts.insert ("to");
+                                        else nits.pick (nit_css_keyframes, ed_css_animation_3, "3. Keyframes", es_warning, ec_css, "'to' repeated"); }
+                                    else if ((x.length () < 2) || (x.at (x.length () - 1) != '%'))
+                                        nits.pick (nit_css_keyframes, ed_css_animation_3, "3. Keyframes", es_error, ec_css, "Expecting a percentage, 'from', or 'to', not ", quote (x));
+                                    else
+                                    {   const int n = lexical < int > :: cast (x.substr (0, x.length () - 1));
+                                        if ((n < 0) || (n > 100))
+                                            nits.pick (nit_css_keyframes, ed_css_animation_3, "3. Keyframes", es_warning, ec_css, quote (x), " will be ignored"); } }
+                                break;
+                            case ct_comma : 
+//                                nits.pick (nit_css_syntax, ed_css_animation_3, "3. Keyframes", es_error, ec_css, "out of place ','");
+                                break;
+                            case ct_curly_brac :
+                                {   PRESUME (args.t_.at (i).child_ > 0, __FILE__, __LINE__);
+                                    fiddlesticks < statement > f (&args.st_, this);
+                                    prop_.parse (args, args.t_.at (i).child_, mx);
+                                    ++num; }
+                                break;
+                            case ct_curly_ket :
+                                more = false;
+                                break;
+                            default :
+                                nits.pick (nit_css_syntax, ed_css_animation_3, "3. Keyframes", es_error, ec_css, "unexpected ", quote (args.t_.at (i).val_));
+                                break; }
+                    switch (num)
+                    {   case 0 :
+                            nits.pick (nit_css_syntax, ed_css_animation_3, "3. Keyframes", es_warning, ec_css, "an unexpected slight absence of @keyframes content");
+                            break;
+                        case 1 :
+                            nits.pick (nit_css_syntax, ed_css_animation_3, "3. Keyframes", es_comment, ec_css, "that's rather minimalistic, given it's @keyframes with an 's'");
+                            break;
+                        default :
+                            break; } } } } } }
+
 void statement::parse_layer (arguments& args, nitpick& nits, const int from, const int to)
 {   if (context.html_ver ().css_cascade () < 5)
         nits.pick (nit_css_version, es_error, ec_css, "@layer requires CSS cascade 5 or later");
@@ -386,6 +461,9 @@ void statement::parse (arguments& args, const int from, const int to)
             case css_import :
                 parse_import (args, nits, b, to);
                 break;
+            case css_keyframes :
+                parse_keyframes (args, nits, b, to);
+                break;
             case css_layer :
                 parse_layer (args, nits, b, to);
                 break;
@@ -416,7 +494,6 @@ void statement::parse (arguments& args, const int from, const int to)
             case css_top_right_corner :
                 break;
             case css_document :
-            case css_keyframes :
             case css_viewport :
                 break;
             default :

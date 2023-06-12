@@ -31,6 +31,7 @@ PASS ../toast/css/5-cascade/css-6.css
 2  url_not_found
 18 unrecognised_value
 34 css_layer
+35 css_keyframes
 51 css_layer
 52 css_layer
 53 unrecognised_value

@@ -66,7 +66,7 @@ template < > struct type_master < t_css_length > : tidy_string < t_css_length >
                     tidy_string < t_css_length > :: status (s_invalid); }
                 if (test_value < t_fixedpoint > (nits, v, ss))
                 {   if (units.empty ()) return;
-                    if ((v.css_version () >= css_2_1) && (units == "%")) return;
+                    if (units == "%") return;
                     if (v.svg () || v.is_5 () || v.has_css ()) if (test_value < t_unit > (nits, v, units)) return; } } }
         nits.pick (nit_immeasurable, es_error, ec_type, quote (s), ": a length is a number immediately followed a standard unit of measurement");
         tidy_string < t_css_length > :: status (s_invalid); } };

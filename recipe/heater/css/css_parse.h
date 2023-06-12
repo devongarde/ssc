@@ -43,3 +43,4 @@ int ident_find (const vtt_t& vt, const ::std::string& kw, const int from = 0, co
 int first_non_whitespace (const vtt_t& vt, int from, const int to = -1);
 int next_non_whitespace (const vtt_t& vt, const int from, const int to = -1);
 int next_token_at (const vtt_t& vt, const int from, const int to = -1);
+::std::string assemble_unit (vtt_t& vt, int& i, const int to = -1);

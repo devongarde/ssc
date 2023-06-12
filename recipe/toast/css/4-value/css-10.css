@@ -1,0 +1,47 @@
+﻿section {
+  float: left;
+  margin: 1em; border: solid 1px;
+  width: calc(100% / 3 - 2 * 1em - 2 * 1px);
+}
+
+.fade {
+  background-image: linear-gradient(silver 0%, white 20px,
+                                    white calc(100% - 20px), silver 100%);
+}
+
+:root {
+  font-size: calc(100vw / 35);
+}
+
+.aspect-ratio-box {
+  --ar: calc(16 / 9);
+  --w: calc(100% / 3);
+  --h: calc(var(--w) / var(--ar));
+  width: var(--w);
+  height: var(--h);
+}
+
+.type {
+  /* Set font-size to 10x the average of vw and vh,
+     but don’t let it go below 12px. */
+  font-size: max(10 * (1vw + 1vh) / 2, 12px);
+}
+
+.type {
+  /* Force the font-size to stay between 12px and 100px */
+  font-size: clamp(12px, 10 * (1vw + 1vh) / 2, 100px);
+}
+
+:root {
+  --h6: calc(1rem * pow(1.5, -1));
+  --h5: calc(1rem * pow(1.5, 0));
+  --h4: calc(1rem * pow(1.5, 1));
+  --h3: calc(1rem * pow(1.5, 2));
+  --h2: calc(1rem * pow(1.5, 3));
+  --h1: calc(1rem * pow(1.5, 4));
+}
+
+.fud
+{   width: calc(5px - 10px);
+    width: calc(-5px);
+    width: 0px; }

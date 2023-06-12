@@ -386,6 +386,10 @@ typedef enum { eat_any, eat_begins, eat_identical, eat_contains, eat_ends, eat_i
 typedef enum { ecas_inherit, eca_xx_small, eca_x_small, eca_small, eca_medium, eca_large, eca_x_large, eca_xx_large } e_css_absolute_size;
 typedef enum {  eca_auto, eca_button, eca_checkbox, eca_inherit, eca_listbox, eca_menulist, eca_menulist_button, eca_meter, eca_none, eca_progress_bar,
                 eca_push_button, eca_radio, eca_searchfield, eca_slider_horizontal, eca_square_button, eca_textarea, eca_textfield,} e_css_appearance;
+typedef enum { ecc_accumulate, ecc_add, ecc_replace } e_css_anim_comp;
+typedef enum { ecd_alternative, scd_alternative_reverse, ecd_normal, ecd_reverse } e_css_anim_dir;
+typedef enum { ecfm_backwards, ecfm_both, ecfm_forwards, ecfm_none } e_anim_fill_mode;
+typedef enum { ecps_paused, ecps_running } e_css_anim_play_state;
 typedef enum { cae_centre, cae_centre_left, cae_centre_right, cae_far_left, cae_far_right, cae_left, cae_left_side, cae_right, cae_right_side } e_css_azimuth_e;
 typedef enum { cab_behind } e_css_azimuth_be;
 typedef enum { lri_leftwards, lri_inherit, lri_rightwards } e_css_azimuth_lri;
@@ -445,6 +449,7 @@ typedef enum { ece_important } e_css_earnest;
 typedef enum { cee_above, cee_below, cee_higher, cee_inherit, cee_level, cee_lower } e_css_elevation_e;
 typedef enum { cec_hide, cec_inherit, cec_show } e_css_empty_cells;
 typedef enum { ecf_inherit, ecf_left, ecf_none, ecf_right } e_css_float;
+typedef enum { ecfn_down, ecfn_nearest, ecfn_to_zero, ecfn_up } e_css_fn_round_t;
 typedef enum { ecfs_normal, ecfs_italic, ecfs_oblique, ecfs_inherit } e_css_font_style_e;
 typedef enum { ecfw_all, ecfw_normal, ecfw_bold, ecfw_bolder, ecfw_lighter, ecfw_100, ecfw_200, ecfw_300, ecfw_400, ecfw_500, ecfw_600, ecfw_700, ecfw_800, ecfw_900, ecfw_inherit } e_css_font_weight;
 typedef enum {  efn_none,
@@ -698,7 +703,6 @@ typedef enum {  ct_root, ct_whitespace, ct_comment, // root must be zero, all em
                 ct_error } css_token;
 typedef enum { ecu_all, ecu_auto, ecu_contain, ecu_inherit, ecu_none, ecu_text } e_css_user_select;
 typedef enum { cvc_e, cvc_infinity, cvc_nan, cvc_pi } e_css_val_con;
-// note: if adding more functions, amend value.h too (for weak compilers)
 #define CSS_VAL_FN \
                 cvf_none, \
                 cvf_abs, cvf_acos, cvf_asin, cvf_atan, cvf_atan2, \
@@ -706,15 +710,17 @@ typedef enum { cvc_e, cvc_infinity, cvc_nan, cvc_pi } e_css_val_con;
                 cvf_exp, \
                 cvf_hypot, \
                 cvf_log, \
-                cvf_max, cvf_min, cvf_mod, \
+                cvf_max, cvf_min, cvf_mix, cvf_mod, \
                 cvf_pow, cvf_rem, cvf_round, \
-                cvf_sign, cvf_sin, cvf_sqrt, \
-                cvf_tan
+                cvf_sign, cvf_sin, cvf_sqrt, cvf_src, \
+                cvf_tan, \
+                cvf_url
 typedef enum {  CSS_VAL_FN } e_css_val_fn;
 typedef enum { css_none, css_1, css_2_0, css_2_1, css_2_2, css_3, css_4, css_5, css_6 } e_css_version;
 typedef enum { ecva_inherit, ecv_baseline, ecv_bottom, ecv_middle, ecv_sub, ecv_super, ecv_text_bottom, ecv_text_top, ecv_top } e_css_vertical_align;
 typedef enum { evs_collapse, evs_hidden, evs_inherit, evs_visible } e_css_visibility;
 typedef enum { cve_inherit, cve_loud, cve_medium, cve_silent, cve_soft, cve_x_loud, cve_x_soft } e_css_volume_e;
+typedef enum { cw_default, cw_inherit, cw_initial, cw_revert, cw_revert_layer, cw_unset } e_css_wide;
 typedef enum { ecwh_inherit, ecwh_normal, ecwh_nowrap, ecwh_pre, ecwh_preline, ecwh_prewrap } e_css_whitespace;
 
 typedef enum { cd_ltr, cd_rtl, cd_auto } e_csvw_direction;
@@ -768,7 +774,9 @@ typedef enum {  ed_mishmash, ed_dict, ed_tags, ed_1, ed_plus, ed_2, ed_3, ed_32,
                 ed_rfc_1867, ed_rfc_1980, ed_rfc_3986, ed_rfc_3966, ed_rfc_6265, ed_rfc_7231, ed_rfc_7234, ed_rfc_8288,
                 ed_w3, ed_mql, ed_ariaAug2020, ed_ariaApr2021, ed_mozilla, ed_ecma,
                 ed_microdata, ed_microformats, ed_mimetype, ed_rdfa, ed_rdfa_c, ed_apache, ed_so_11, ed_css_transform,
-                ed_css_1, ed_css_20, ed_css_21, ed_css_22, ed_css_cascade_4, ed_css_cascade_5, ed_css_cascade_6,
+                ed_css_1, ed_css_20, ed_css_21, ed_css_22,
+                ed_css_animation_3,
+                ed_css_cascade_4, ed_css_cascade_5, ed_css_cascade_6,
                 ed_css_colour_3, ed_css_colour_4, ed_css_colour_5, ed_css_custom,
                 ed_css_media_4, ed_css_namespaces_3, ed_css_selectors_3, ed_css_selectors_4, ed_css_syntax,
                 ed_css_ui_3, ed_css_ui_4, ed_css_value_3, ed_css_value_4,
@@ -1018,6 +1026,7 @@ typedef enum { if_sec, ical_min, ical_hour, ical_day, ical_week, ical_month, ica
 typedef enum {  icc_CGATS21_2_CRPC1, icc_CGATS21_2_CRPC2, icc_CGATS21_2_CRPC3, icc_CGATS21_2_CRPC4, icc_CGATS21_2_CRPC5, icc_CGATS21_2_CRPC6, icc_CGATS21_2_CRPC7,
                 icc_CGATS_GRACoL_TR006_2007, icc_CGATS_SNAP_TR002_2007, icc_CGATS_SWOP_TR003_2007, icc_CGATS_SWOP_TR005_2007, icc_FOGRA39, icc_FOGRA40, icc_FOGRA47,
                 icc_FOGRA51, icc_FOGRA52, icc_FOGRA54, icc_Japan_Color_2011 } e_icc;
+typedef enum { iiu_none, iiu_inherit, iiu_initial, iiu_revert, iiu_revert_layer, iiu_unset } e_iiu;
 typedef enum { ir_auto, ir_optimisespeed, ir_optimisequality, ir_inherit } e_image_rendering;
 typedef enum { ei_auto, ei_high, ei_low } e_importance;
 typedef enum { ia_left, ia_centre, ia_right, ia_auto, ia_id } e_indentalign;
@@ -2058,7 +2067,7 @@ typedef enum
     nit_naughty_page, nit_page_name_again, nit_css_unfinished, nit_missing_units, nit_no_such_page, nit_bespoke_property,
     nit_missing_value, nit_at_least, nit_at_most, nit_range, nit_precisely, nit_css_namespace, nit_css_bespoke,
     nit_not_not, nit_css_svg, nit_deprecated_media, nit_media_version, nit_media_ignored, nit_css_layer, nit_css_scope,
-    nit_css_custom, nit_css_colour, nit_bad_number, nit_css_value,
+    nit_css_custom, nit_css_colour, nit_bad_number, nit_css_value, nit_css_keyframes, nit_css_value_fn, nit_css_value_param,
     nit_incompatible,
 
     // eon
@@ -2069,7 +2078,7 @@ typedef enum
     nm_class_count, nm_class_decl_count, nm_class_decl_int, nm_class_int, nm_class_name, nm_class_title,
         nm_compile_time, nm_config,
         nm_context_article, nm_context_body, nm_context_build, nm_context_case, nm_context_cgi, nm_context_classic, nm_context_clear,
-        nm_context_config, nm_context_copy, nm_context_corpus, nm_context_crosslinks, nm_context_css, nm_context_css_cascade, nm_context_css_colour,
+        nm_context_config, nm_context_copy, nm_context_corpus, nm_context_crosslinks, nm_context_css, nm_context_css_animation, nm_context_css_cascade, nm_context_css_colour,
         nm_context_css_custom, nm_context_css_extension, nm_context_css_media, nm_context_css_namespace, nm_context_css_selector, nm_context_css_style,
         nm_context_css_syntax, nm_context_css_ui, nm_context_css_value, nm_context_css_version, nm_context_custom_elements, nm_context_dc, nm_context_example,
         nm_context_export_root, nm_context_exports, nm_context_extensions, nm_context_ext_css, nm_context_foaf, nm_context_forward, nm_context_fred,
@@ -4348,140 +4357,155 @@ CONSTEXPR ::std::size_t max_transform_fn = static_cast < ::std::size_t > (tr_ske
 typedef enum { tp_opaque, tp_transparent } e_transp;
 typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
+#define SSC_TYPES_1 \
+    t_0_more, t_0_to_255, t_10, t_1_to_7, t_1_to_20, t_1_to_99, t_1_more, t_1_more_i, t_10_int, t_2pt, t_2string, t_4string, t_4string_ni, \
+    t_about, t_absolute_url, t_accept, t_accrual_method, t_accrual_periodicity, t_accrual_policy, t_accumulate, t_accumulate0, t_accumulate1, \
+        t_accumulate2, t_action, t_actiontype, t_actiontype2, t_additive, t_align, t_align2070, t_align3, t_aligndec, t_alignfig, \
+        t_alignment_baseline, t_alignplus, t_angle, t_angle_a, t_angle_ai, t_angle_i, t_angle_n, t_arabicenum, t_arabic_form, t_aria_autocomplete, \
+        t_aria_invalidity, t_aria_live, t_aria_sort, t_as, t_as_units, t_attributename, t_attributetype, t_audio_level, t_autocapitalise, \
+        t_autocomplete, t_autocompletes, t_autocompletevaried, \
+    t_b64, t_background, t_bandwidth, t_base, t_baselineshift, t_bb, t_beginvalue, t_beginvalues, t_beginvaluelist, t_behaviour, t_blocking, \
+        t_border, t_bool, t_bools, t_buffered_rendering, t_button,  \
+    t_cache, t_cachekey, t_calcfn, t_calcmode, t_captionalign, t_capture, t_cc_permits, t_cc_prohibits, t_cc_requires, t_channelselector, t_char, \
+        t_charset, t_charsets, t_charspacing, t_citype, t_class, t_clear, t_clear30, t_clip, t_clip_path_rule, t_closure, t_colour, t_colour_a, t_colour_ci, \
+        t_colour_cii, t_colour_i, t_colour_ii, t_colour_interpolation, t_colour_ni, t_colour_profile, t_colour_profile_name, t_colour_profile_name_or_uri, \
+        t_colour_rendering, t_colour_scheme, t_colour_trans, t_colour_trans_i, t_colour_v, t_colourfn, t_command, t_compact, t_comp_op, t_composite_operator, \
+        t_compositing, t_conlit, t_connect, t_content_encoding, t_content_encodings, t_content_type, t_context_menu, t_controlslist, t_cookie, t_cookieid, \
+        t_cookies, t_coordinatesystem, t_coords, t_corp, t_cors, t_country, t_cntype, t_crossout, t_csp, t_csp_ancestor, t_csp_directive, t_csp_keyword, \
+        t_csp_sauce, t_csp_source
+#define SSC_TYPE_1_MAX t_csp_source
+
+#define SSC_TYPES_2 \
+        t_css, \
+            t_css_aaalri, t_css_aai, t_css_absolute_size, t_css_all, t_css_all_2, t_css_alpha, t_css_alpha_n, t_css_animation, t_css_anim_base, \
+                t_css_anim_comp, t_css_anim_dir, t_css_anim_fill_mode, t_css_anim_name, t_css_anim_play_state, t_css_anim_timeline, \
+                t_css_appearance, t_css_attr, t_css_azimuth, t_css_azimuth_be, t_css_azimuth_e, t_css_azimuth_eb, t_css_azimuth_es, t_css_azimuth_lri, \
+            t_css_background, t_css_background_attachment, t_css_background_position, t_css_background_repeat, t_css_backval, t_css_bespoke, \
+                t_css_border_collapse, t_css_border_measure, t_css_border_spacing, t_css_border_spacing_2, t_css_border_style, t_css_border_style_i, \
+                t_css_border_styles, t_css_border_width, t_css_border_width_i, t_css_border_wsc, t_css_border_wsc_i, t_css_borders_measure, \
+                t_css_borders_measure_i, t_css_box_sizing, \
+            t_css_caret, t_css_caret_shape, t_css_clear, t_css_colour, t_css_colour_3, t_css_colour_4, t_css_col, t_css_colour_a, t_css_colour_interpolation, \
+                t_css_coin1, t_css_coin2, t_css_coin3, t_css_content, t_css_content_base, t_css_content_enum, t_css_content_fn, t_css_content_twice, \
+                t_css_counter, t_css_counter_ii, t_css_counter_iin, t_css_counter_set, t_css_counters, t_css_cue, t_css_cues, t_css_cursor, \
+                t_css_cursor_e, t_css_cursor_url, \
+            t_css_display, \
+            t_css_earnest, t_css_easing_fn, t_css_elevation, t_css_elevation_e, t_css_empty_cells, \
+            t_css_fn_round_t, t_css_font, t_css_font_families, t_css_font_size, t_css_font_style, t_css_font_style_e, t_css_font_weight, t_css_fn, t_css_frame, \
+            t_css_generic_family, \
+            t_css_hue, t_css_hue_interpolation, t_css_hue_n, \
+            t_css_id, t_css_image, t_css_inherit, \
+            t_css_kbd_lhs, t_css_kdb_nav, t_css_kbd_rhs, \
+            t_css_lang, t_css_langs, t_css_length, t_css_length_twice, t_css_length_a, t_css_length_ai, t_css_line_height, t_css_list_style, \
+                t_css_list_style_position, t_css_list_style_type, t_css_local_url, t_css_ls_val, \
+            t_css_margins, t_css_mark, t_css_marks, t_css_marx, \
+            t_css_nth, t_css_nth_oe, \
+            t_css_orientation, t_css_outline, t_css_outline_i, t_css_outline_style, t_css_outlines, t_css_overflow, \
+            t_css_pause, t_css_pause_i, t_css_pauses, t_css_pitch, t_css_pitch_e, t_css_play_during, t_css_play_during_mr, t_css_polar, t_css_position, \
+                t_css_property, \
+            t_css_rect, t_css_rect_ai, t_css_rect_fn, t_css_relative_size, t_css_resize, t_css_rgb_xyz, \
+            t_css_size, t_css_spacing, t_css_speak, t_css_speak_header, t_css_speak_numeral, t_css_speak_punctuation, \
+                t_css_speech_rate, t_css_speech_rate_e, t_css_src, t_css_statement, \
+            t_css_table_layout, t_css_text_align, t_css_text_decoration, t_css_text_resize, t_css_text_shadow, t_css_text_transform, \
+            t_css_url, t_css_user_select, \
+            t_css_val_con, t_css_val_fn, t_css_vertical_align, t_css_voice_family, t_css_volume, t_css_volume_e, \
+            t_css_wide, t_css_wsc_val, \
+            t_css_whitespace
+#define SSC_TYPE_2_MAX t_css_whitespace
+
+#define SSC_TYPES_3 \
+        t_csvw_direction, t_curie, t_curie_safe, t_curies, t_currency, t_current_colour_sz, t_cursor, t_cursor_f, t_cursor_i, \
+    t_d, t_dashes, t_data, t_dataformatas, t_datetime, t_datetime_absolute, t_datetime_local, t_datetime_4, t_datetime_5, t_day, t_decalign, \
+        t_decoding, t_defaultaction, t_depth, t_determiner, t_device, t_dingbat, t_dir, t_direction, t_display, t_display_align, t_dominantbaseline, \
+        t_dosh, t_dsc, t_dur, t_dur_repeat, t_duration, t_duration_media, t_dynamic_range, \
+    t_edgemode, t_edi, t_edit, t_editable, t_effect, t_email, t_emails, t_enable_background, t_enctype, t_end, t_endvaluelist, t_enterkeyhint, \
+        t_environment_blending, t_existential, t_expected, \
+    t_featurepolicy, t_figalign, t_filename, t_filesize, t_fill, t_fillanim, t_fill_opacity, t_fill_rule, t_fill_ve, t_filter_in, t_filterres, \
+        t_fixedcolour, t_fixedpoint, t_focushighlight, t_font, t_font_enum, t_font_family, t_font_families, t_fontname, t_fontnia, t_fontsize, \
+        t_fontsizeadjust, t_fontstretch, t_fontstretches, t_fontstyle, t_fontweight, t_fontvariant, t_fontvariants, t_font_variant, t_font_variant_2, \
+        t_font_variant_2s, t_font_variant_caps, t_font_variant_east_asians, t_font_variant_east_asian, t_font_variant_ligature, t_font_variant_ligatures, \
+        t_font_variant_numeric, t_font_variant_numerics, t_font_variant_position, t_forced_colours, t_form, t_format, t_formaturi, t_frame, t_frame4, \
+        t_framespacing, t_frequency, \
+    t_gamut, t_gender, t_generic, t_glyphname, t_glyphnames, t_groupalign, \
+    t_halign, t_hash_ref, t_hash_fn, t_height, t_hex, t_hidden, t_hidden_ex, t_hour, t_hslafn, t_hslfn, t_hslfn4, t_html, t_html_boolean, \
+        t_httpequiv, t_hue, t_hue_n, t_hunit, t_hv, t_hwbfn, \
+    t_icalfreq, t_icc, t_icccolour, t_id, t_identifier_url, t_idref, t_idrefs, t_illegal, t_image_rendering, t_imcastr, t_imgsizes, t_importance, t_in, t_index, \
+        t_indentalign, t_indentalign2, t_indentshift2, t_infixlinebreakstyle, t_initialvisibility, t_inky, t_inlist, t_inputaccept, t_inputmode, t_inputplus, \
+        t_inputtype, t_inputtype3, t_inputtype32, t_inputtype4, t_inputtype5, t_integer, t_integer_ai, t_integer_i, t_intent, t_intent_app, t_intent_args, \
+        t_intent_conlit, t_intent_hint, t_intent_ref, t_inverted_colours, t_ip_address, t_is, t_isbn, t_issn, t_itemid, t_itemprop, t_itemtype, t_itemref, \
+    t_js_lang, t_js_lang_map, t_js_map, t_js_term, t_js_type, t_js_value, t_js_version, t_jtoken, t_just_date, t_just_time, \
+    t_key, t_keygentype, t_keyspline, t_keysplines, t_keytimes, t_keytype, t_kind, \
+    t_labfn, t_lang, t_langq, t_langs, t_langqs, t_larnalign, t_layout, t_lchfn, t_lcralign, t_lcraligns, t_lcrnalign, t_lcrd, t_lcrds, t_lcrdss, t_length, \
+        t_length_absolute, t_length_relative, t_lengthadjust, t_linebreak, t_linebreakstyle, t_linecap, t_line_height, t_linejoin, t_linethickness, t_link, \
+        t_linkarg, t_linkargs, t_linkitself, t_linkparam, t_links, t_listtype, t_literal, t_loading, t_localfn, t_local_url, t_location, t_longdivstyle, \
+        t_loop, t_loopie, t_lraalign, t_lralign, t_lrnalign, t_lrnialign, t_lspace
+#define SSC_TYPE_3_MAX t_lspace
+
+#define SSC_TYPES_4 \
+    t_mah, t_marked_up, t_marker, t_markerunits, t_mathalign, t_mathalign_n, t_mathaligns, t_mathclosure, t_mathdisplay, t_mathfontstyle, t_mathfontweight, \
+        t_mathform, t_mathframe, t_mathlocation, t_mathmode, t_mathnotation, t_mathnotations, t_mathoccurence, t_mathorder, t_mathoverflow, t_mathscope, \
+        t_mathside, t_mathsize, t_mathspace, t_mathspaceauto, t_mathspacefit, t_mathspaceinfinity, t_mathvariant, t_mathvertauto, t_matrixtype, t_matrix_values, \
+        t_mb, t_measure, t_measure_4, t_measure_a, t_measure_ai, t_measure_i, t_measure_in, t_measure_ni, t_measure_or_more, t_measures, t_measures_a, \
+        t_measures_i, t_media, t_media_display_mode, t_media_hover, t_media_inline, t_media_orientation, t_media_overflow, t_media_pointer, t_media_prefers, \
+        t_media_prefers_2, t_media_scripting, t_media_update, t_meetslice, t_menuitem, t_menutype, t_metaname, t_method, t_methodological, t_mf_availability, \
+        t_mf_category, t_mf_class, t_mf_identifier, t_mf_itemtype, t_mf_listing_action, t_mf_listing_actions, t_mf_method, t_mf_reviewtype, t_mf_status, \
+        t_mime, t_mimelist, t_mimemodule, t_mimeq, t_mimeqs, t_mimestar, t_minute, t_mode, t_month, t_monthday, t_morphology_operator, t_mql, t_mqls, \
+        t_myersbriggs, \
+    t_name, t_nameref, t_namespace, t_namedspace, t_nav_controls, t_navigation, t_negative, t_nit_macro, t_nit_section, t_not_0, t_not_empty, t_not_neg, \
+        t_not_pos, t_notation, t_notations, t_nsd, t_nsds, t_nuf, t_num, t_integer_or_percent, \
+    t_occurence, t_og, t_ogdet, t_ogtype, t_oklabfn, t_oklchfn, t_onoff, t_opacity, t_open, t_operator, t_order, t_orientation, t_origin, t_overflow, \
+        t_overlay, \
+    t_page_orientation, t_paint, t_paintkeyword, t_paint_order, t_panose1, t_percent, t_percent_flexible, t_percent_n, t_percent_or_not, \
+        t_phase, t_phase_x, t_pics, \
+        t_plus_1_7, t_plusstyle, t_pointer_events, t_points, t_positive, t_positive_1_2, t_pragma, t_prefix, t_preload, t_preload5, t_preserveaspectratio, \
+        t_preserveaspectratio10, t_preserveaspectratio12, t_print, t_propagate, t_pseudo, t_pseudonamedspace, t_pt, \
+    t_q, t_quote_style, \
+    t_rap, t_rating, t_rdf_parsetype, t_rdfa_typeof, t_real, t_real_1_2, t_real_ai, t_real_i, t_real_ni, t_reals, t_real_percent_n, \
+        t_referrer, t_refresh, t_refx, t_refy, \
+        t_regex, t_rel, t_rel_a, t_rel_avoid, t_rel_css, t_rel_illegal, t_rel_link, t_rel_obsolete, t_rendering_colour_space, t_rendering_in_tents, \
+        t_repeatcount, t_restart, t_result, t_reveal_trans, t_rgbafn, t_rgbfn, t_role, t_roles, t_roman_dsc, t_root_url, t_rotate, t_rotate_anim, \
+        t_rowscols, t_rsvp, t_rules
+#define SSC_TYPE_4_MAX t_rules
+
+#define SSC_TYPES_5 \
+    t_sandbox, t_sandboxen, t_scan, t_scei, t_schema_type, t_scope, t_script, t_scrolling, t_second, t_setback_offset, t_settype, t_severity, t_sex, t_sgml, \
+        t_sha1, t_sha256, t_shadow, t_shape, t_shape3, t_shape4, t_shape7, t_shape_none_uri, t_shape_fn, t_shape_fn_circle, t_shape_fn_ellipse, \
+        t_shape_fn_polygon, t_shape_uri, t_shape_rendering, t_shape_rcp, t_shadowinherit, t_short, t_side, t_size, t_size3, t_sizes, t_sizex, t_slash, \
+        t_smei, t_spacer, t_spacing, t_spreadmethod, t_srcset, t_ssi, t_ssi_comparison, t_ssi_config, t_ssi_echo, t_ssi_encoding, t_ssi_env, t_ssi_f, \
+        t_start, t_startend, t_stitchtiles, t_streamedcontents, t_ssi_include, t_ssi_set, t_ssi_sizefmt, t_step, t_style, \
+        t_svg_align, t_svg_baselineshift, t_svg_baseprofile, t_svg_clip, t_svg_colour_profile, t_svg_content, t_svg_direction, t_ltr_rtl, t_svg_display, \
+            t_svg_duration, t_svg_feature, t_svg_features, t_svg_fontstretch, t_svg_fontstretch_ff, t_svg_fontstyle, t_svg_fontstyle_ff, t_svg_fontvariant, \
+            t_svg_fontvariant_ff, t_svg_fontweight, t_svg_fontweight_ff, t_svg_fontweights, t_svg_host, t_svg_method, t_svg_mode, t_svg_name_iri, \
+            t_svg_overflow, t_svg_phase, t_svg_playbackorder, t_svg_profile_name, t_svg_rendering_intent, t_svg_shape, t_svg_shapefn, t_svg_side, t_svg_src, \
+            t_svg_svg, t_svg_time, t_svg_time_default, t_svg_time_inherit, t_svg_time_none, t_svg_timelinebegin, t_svg_transform, t_svg_two_profile, \
+            t_svg_type, t_svg_units, t_svg_values, t_svg_version, t_svg_version_grand, t_svg_viewbox, t_svg_viewboxrect, \
+        t_sym, t_syncbehaviour, t_syncbehaviourdefault, \
+    t_tableframe, t_tablevalues, t_target, t_tbalign, t_tblri, t_tdscope, t_tel, t_tendstotype, t_text, t_text_decoration, t_textoverflow, t_text_rendering, \
+        t_tfmu, t_tfa, t_tfi, t_tfn, t_tfu, t_tokens, t_transform, t_transform_anim, t_transformbehaviour, t_transform_fn, t_transition_subtype, \
+        t_transition_type, t_transp, t_transparentsz, t_truefalseempty, t_turbulence_type, t_type, t_typeof, t_tz, \
+    t_ugeo, t_uid, t_unicode_bidi, t_unit, \
+        t_unit_abs_len, t_unit_abs_per, t_unit_angle, t_unit_angle_per, t_unit_freq, t_unit_freq_per, t_unit_rel_len, \
+        t_unit_rel_per, t_unit_res, t_unit_res_per, t_unit_time, t_unit_time_per, \
+        t_units, t_unsigned, t_unsigned_byte, t_unsigned_short, t_unsigned_1_or_2, t_un_ex, t_unsigned_dosh, t_uplr, \
+        t_urange, t_urifn, t_urifn_ni, t_urifn_xy, t_url, t_urls, t_urltemplate, \
+    t_valign, t_valign3, t_valign_tmb, t_value, t_values, t_valuetype, t_valuetype2, t_vector_effect, t_vector_effect_12, t_vector_effect_2, \
+        t_vector_effect_20, t_vector_effect_2s, t_version, t_vertical_align, t_vertical_align_enum, t_vgender, t_vid, t_viewportscreen, t_visibility, \
+        t_visibility10, t_visibility11, t_vkind, t_vocab, t_vrel, t_vtt, t_vtype, t_vunit, t_vunits, \
+    t_wanted, t_wallclock, t_week, t_whitespace, t_width, t_workertype, t_wrap, t_wrap3, t_writingmode, t_wxhs, \
+    t_x_content_type_options, t_x_ua_compatible, t_xlinkactuate, t_xlinkactuate_onrequest, t_xlinkactuate_onload, t_xlinkshow, t_xlinkshow_a, t_xlinkshow_e, \
+        t_xlinkshow_o, t_xlinktype, t_xmllink, t_xmlliteral, t_xmlns, t_xmlspace, t_xmlurl, t_xorder, t_xsdbool, \
+    t_year, t_yearmonth, t_yesno, t_yesnoempty, \
+    t_zero_or_one, t_zero_to_one, t_zero_to_ones, t_zoompan
+#define SSC_TYPE_5_MAX t_zoompan
+
 typedef enum {
     t_unknown,
-
-    t_0_more, t_0_to_255, t_10, t_1_to_7, t_1_to_20, t_1_to_99, t_1_more, t_1_more_i, t_10_int, t_2pt, t_2string, t_4string, t_4string_ni,
-    t_about, t_absolute_url, t_accept, t_accrual_method, t_accrual_periodicity, t_accrual_policy, t_accumulate, t_accumulate0, t_accumulate1,
-        t_accumulate2, t_action, t_actiontype, t_actiontype2, t_additive, t_align, t_align2070, t_align3, t_aligndec, t_alignfig,
-        t_alignment_baseline, t_alignplus, t_angle, t_angle_a, t_angle_ai, t_angle_i, t_angle_n, t_arabicenum, t_arabic_form, t_aria_autocomplete,
-        t_aria_invalidity, t_aria_live, t_aria_sort, t_as, t_as_units, t_attributename, t_attributetype, t_audio_level, t_autocapitalise,
-        t_autocomplete, t_autocompletes, t_autocompletevaried,
-    t_b64, t_background, t_bandwidth, t_base, t_baselineshift, t_bb, t_beginvalue, t_beginvalues, t_beginvaluelist, t_behaviour, t_blocking,
-        t_border, t_bool, t_bools, t_buffered_rendering, t_button,
-    t_cache, t_cachekey, t_calcfn, t_calcmode, t_captionalign, t_capture, t_cc_permits, t_cc_prohibits, t_cc_requires, t_channelselector, t_char,
-        t_charset, t_charsets, t_charspacing, t_citype, t_class, t_clear, t_clear30, t_clip, t_clip_path_rule, t_closure, t_colour, t_colour_a, t_colour_ci,
-        t_colour_cii, t_colour_i, t_colour_ii, t_colour_interpolation, t_colour_ni, t_colour_profile, t_colour_profile_name, t_colour_profile_name_or_uri,
-        t_colour_rendering, t_colour_scheme, t_colour_trans, t_colour_trans_i, t_colour_v, t_colourfn, t_command, t_compact, t_comp_op, t_composite_operator,
-        t_compositing, t_conlit, t_connect, t_content_encoding, t_content_encodings, t_content_type, t_context_menu, t_controlslist, t_cookie, t_cookieid,
-        t_cookies, t_coordinatesystem, t_coords, t_corp, t_cors, t_country, t_cntype, t_crossout, t_csp, t_csp_ancestor, t_csp_directive, t_csp_keyword,
-        t_csp_sauce, t_csp_source,
-        t_css,
-            t_css_aaalri, t_css_aai, t_css_absolute_size, t_css_all, t_css_all_2, t_css_alpha, t_css_alpha_n, t_css_appearance, t_css_attr,
-                t_css_azimuth, t_css_azimuth_be, t_css_azimuth_e, t_css_azimuth_eb, t_css_azimuth_es, t_css_azimuth_lri,
-            t_css_background, t_css_background_attachment, t_css_background_position, t_css_background_repeat, t_css_backval, t_css_bespoke,
-                t_css_border_collapse, t_css_border_measure, t_css_border_spacing, t_css_border_spacing_2, t_css_border_style, t_css_border_style_i,
-                t_css_border_styles, t_css_border_width, t_css_border_width_i, t_css_border_wsc, t_css_border_wsc_i, t_css_borders_measure,
-                t_css_borders_measure_i, t_css_box_sizing,
-            t_css_caret, t_css_caret_shape, t_css_clear, t_css_colour, t_css_colour_3, t_css_colour_4, t_css_col, t_css_colour_a, t_css_colour_interpolation,
-                t_css_coin1, t_css_coin2, t_css_coin3, t_css_content, t_css_content_base, t_css_content_enum, t_css_content_fn, t_css_content_twice,
-                t_css_counter, t_css_counter_ii, t_css_counter_iin, t_css_counter_set, t_css_counters, t_css_cue, t_css_cues, t_css_cursor,
-                t_css_cursor_e, t_css_cursor_url,
-            t_css_display,
-            t_css_earnest, t_css_elevation, t_css_elevation_e, t_css_empty_cells,
-            t_css_font, t_css_font_families, t_css_font_size, t_css_font_style, t_css_font_style_e, t_css_font_weight, t_css_fn, t_css_frame,
-            t_css_generic_family,
-            t_css_hue, t_css_hue_interpolation, t_css_hue_n,
-            t_css_id, t_css_image, t_css_inherit,
-            t_css_kbd_lhs, t_css_kdb_nav, t_css_kbd_rhs,
-            t_css_lang, t_css_langs, t_css_length, t_css_length_twice, t_css_length_a, t_css_length_ai, t_css_line_height, t_css_list_style,
-                t_css_list_style_position, t_css_list_style_type, t_css_local_url, t_css_ls_val,
-            t_css_margins, t_css_mark, t_css_marks, t_css_marx,
-            t_css_nth, t_css_nth_oe,
-            t_css_orientation, t_css_outline, t_css_outline_i, t_css_outline_style, t_css_outlines, t_css_overflow,
-            t_css_pause, t_css_pause_i, t_css_pauses, t_css_pitch, t_css_pitch_e, t_css_play_during, t_css_play_during_mr, t_css_polar, t_css_position,
-                t_css_property,
-            t_css_rect, t_css_rect_ai, t_css_rect_fn, t_css_relative_size, t_css_resize, t_css_rgb_xyz,
-            t_css_size, t_css_spacing, t_css_speak, t_css_speak_header, t_css_speak_numeral, t_css_speak_punctuation,
-                t_css_speech_rate, t_css_speech_rate_e, t_css_src, t_css_statement,
-            t_css_table_layout, t_css_text_align, t_css_text_decoration, t_css_text_resize, t_css_text_shadow, t_css_text_transform,
-            t_css_url, t_css_user_select,
-            t_css_val_con, t_css_val_fn, t_css_vertical_align, t_css_voice_family, t_css_volume, t_css_volume_e,
-            t_css_wsc_val,
-            t_css_whitespace,
-        t_csvw_direction, t_curie, t_curie_safe, t_curies, t_currency, t_current_colour_sz, t_cursor, t_cursor_f, t_cursor_i,
-    t_d, t_dashes, t_data, t_dataformatas, t_datetime, t_datetime_absolute, t_datetime_local, t_datetime_4, t_datetime_5, t_day, t_decalign,
-        t_decoding, t_defaultaction, t_depth, t_determiner, t_device, t_dingbat, t_dir, t_direction, t_display, t_display_align, t_dominantbaseline,
-        t_dosh, t_dsc, t_dur, t_dur_repeat, t_duration, t_duration_media, t_dynamic_range,
-    t_edgemode, t_edi, t_edit, t_editable, t_effect, t_email, t_emails, t_enable_background, t_enctype, t_end, t_endvaluelist, t_enterkeyhint,
-        t_environment_blending, t_existential, t_expected,
-    t_featurepolicy, t_figalign, t_filename, t_filesize, t_fill, t_fillanim, t_fill_opacity, t_fill_rule, t_fill_ve, t_filter_in, t_filterres,
-        t_fixedcolour, t_fixedpoint, t_focushighlight, t_font, t_font_enum, t_font_family, t_font_families, t_fontname, t_fontnia, t_fontsize,
-        t_fontsizeadjust, t_fontstretch, t_fontstretches, t_fontstyle, t_fontweight, t_fontvariant, t_fontvariants, t_font_variant, t_font_variant_2,
-        t_font_variant_2s, t_font_variant_caps, t_font_variant_east_asians, t_font_variant_east_asian, t_font_variant_ligature, t_font_variant_ligatures,
-        t_font_variant_numeric, t_font_variant_numerics, t_font_variant_position, t_forced_colours, t_form, t_format, t_formaturi, t_frame, t_frame4,
-        t_framespacing, t_frequency,
-    t_gamut, t_gender, t_generic, t_glyphname, t_glyphnames, t_groupalign,
-    t_halign, t_hash_ref, t_hash_fn, t_height, t_hex, t_hidden, t_hidden_ex, t_hour, t_hslafn, t_hslfn, t_hslfn4, t_html, t_html_boolean,
-        t_httpequiv, t_hue, t_hue_n, t_hunit, t_hv, t_hwbfn,
-    t_icalfreq, t_icc, t_icccolour, t_id, t_identifier_url, t_idref, t_idrefs, t_illegal, t_image_rendering, t_imcastr, t_imgsizes, t_importance, t_in, t_index,
-        t_indentalign, t_indentalign2, t_indentshift2, t_infixlinebreakstyle, t_initialvisibility, t_inky, t_inlist, t_inputaccept, t_inputmode, t_inputplus,
-        t_inputtype, t_inputtype3, t_inputtype32, t_inputtype4, t_inputtype5, t_integer, t_integer_ai, t_integer_i, t_intent, t_intent_app, t_intent_args,
-        t_intent_conlit, t_intent_hint, t_intent_ref, t_inverted_colours, t_ip_address, t_is, t_isbn, t_issn, t_itemid, t_itemprop, t_itemtype, t_itemref,
-    t_js_lang, t_js_lang_map, t_js_map, t_js_term, t_js_type, t_js_value, t_js_version, t_jtoken, t_just_date, t_just_time,
-    t_key, t_keygentype, t_keyspline, t_keysplines, t_keytimes, t_keytype, t_kind,
-    t_labfn, t_lang, t_langq, t_langs, t_langqs, t_larnalign, t_layout, t_lchfn, t_lcralign, t_lcraligns, t_lcrnalign, t_lcrd, t_lcrds, t_lcrdss, t_length,
-        t_length_absolute, t_length_relative, t_lengthadjust, t_linebreak, t_linebreakstyle, t_linecap, t_line_height, t_linejoin, t_linethickness, t_link,
-        t_linkarg, t_linkargs, t_linkitself, t_linkparam, t_links, t_listtype, t_literal, t_loading, t_localfn, t_local_url, t_location, t_longdivstyle,
-        t_loop, t_loopie, t_lraalign, t_lralign, t_lrnalign, t_lrnialign, t_lspace,
-    t_mah, t_marked_up, t_marker, t_markerunits, t_mathalign, t_mathalign_n, t_mathaligns, t_mathclosure, t_mathdisplay, t_mathfontstyle, t_mathfontweight,
-        t_mathform, t_mathframe, t_mathlocation, t_mathmode, t_mathnotation, t_mathnotations, t_mathoccurence, t_mathorder, t_mathoverflow, t_mathscope,
-        t_mathside, t_mathsize, t_mathspace, t_mathspaceauto, t_mathspacefit, t_mathspaceinfinity, t_mathvariant, t_mathvertauto, t_matrixtype, t_matrix_values,
-        t_mb, t_measure, t_measure_4, t_measure_a, t_measure_ai, t_measure_i, t_measure_in, t_measure_ni, t_measure_or_more, t_measures, t_measures_a,
-        t_measures_i, t_media, t_media_display_mode, t_media_hover, t_media_inline, t_media_orientation, t_media_overflow, t_media_pointer, t_media_prefers,
-        t_media_prefers_2, t_media_scripting, t_media_update, t_meetslice, t_menuitem, t_menutype, t_metaname, t_method, t_methodological, t_mf_availability,
-        t_mf_category, t_mf_class, t_mf_identifier, t_mf_itemtype, t_mf_listing_action, t_mf_listing_actions, t_mf_method, t_mf_reviewtype, t_mf_status,
-        t_mime, t_mimelist, t_mimemodule, t_mimeq, t_mimeqs, t_mimestar, t_minute, t_mode, t_month, t_monthday, t_morphology_operator, t_mql, t_mqls,
-        t_myersbriggs,
-    t_name, t_nameref, t_namespace, t_namedspace, t_nav_controls, t_navigation, t_negative, t_nit_macro, t_nit_section, t_not_0, t_not_empty, t_not_neg,
-        t_not_pos, t_notation, t_notations, t_nsd, t_nsds, t_nuf, t_num, t_integer_or_percent,
-    t_occurence, t_og, t_ogdet, t_ogtype, t_oklabfn, t_oklchfn, t_onoff, t_opacity, t_open, t_operator, t_order, t_orientation, t_origin, t_overflow,
-        t_overlay,
-    t_page_orientation, t_paint, t_paintkeyword, t_paint_order, t_panose1, t_percent, t_percent_flexible, t_percent_n, t_percent_or_not,
-        t_phase, t_phase_x, t_pics,
-        t_plus_1_7, t_plusstyle, t_pointer_events, t_points, t_positive, t_positive_1_2, t_pragma, t_prefix, t_preload, t_preload5, t_preserveaspectratio,
-        t_preserveaspectratio10, t_preserveaspectratio12, t_print, t_propagate, t_pseudo, t_pseudonamedspace, t_pt,
-    t_q, t_quote_style,
-    t_rap, t_rating, t_rdf_parsetype, t_rdfa_typeof, t_real, t_real_1_2, t_real_ai, t_real_i, t_real_ni, t_reals, t_real_percent_n,
-        t_referrer, t_refresh, t_refx, t_refy,
-        t_regex, t_rel, t_rel_a, t_rel_avoid, t_rel_css, t_rel_illegal, t_rel_link, t_rel_obsolete, t_rendering_colour_space, t_rendering_in_tents,
-        t_repeatcount, t_restart, t_result, t_reveal_trans, t_rgbafn, t_rgbfn, t_role, t_roles, t_roman_dsc, t_root_url, t_rotate, t_rotate_anim,
-        t_rowscols, t_rsvp, t_rules,
-    t_sandbox, t_sandboxen, t_scan, t_scei, t_schema_type, t_scope, t_script, t_scrolling, t_second, t_setback_offset, t_settype, t_severity, t_sex, t_sgml,
-        t_sha1, t_sha256, t_shadow, t_shape, t_shape3, t_shape4, t_shape7, t_shape_none_uri, t_shape_fn, t_shape_fn_circle, t_shape_fn_ellipse,
-        t_shape_fn_polygon, t_shape_uri, t_shape_rendering, t_shape_rcp, t_shadowinherit, t_short, t_side, t_size, t_size3, t_sizes, t_sizex, t_slash,
-        t_smei, t_spacer, t_spacing, t_spreadmethod, t_srcset, t_ssi, t_ssi_comparison, t_ssi_config, t_ssi_echo, t_ssi_encoding, t_ssi_env, t_ssi_f,
-        t_start, t_startend, t_stitchtiles, t_streamedcontents, t_ssi_include, t_ssi_set, t_ssi_sizefmt, t_step, t_style,
-        t_svg_align, t_svg_baselineshift, t_svg_baseprofile, t_svg_clip, t_svg_colour_profile, t_svg_content, t_svg_direction, t_ltr_rtl, t_svg_display,
-            t_svg_duration, t_svg_feature, t_svg_features, t_svg_fontstretch, t_svg_fontstretch_ff, t_svg_fontstyle, t_svg_fontstyle_ff, t_svg_fontvariant,
-            t_svg_fontvariant_ff, t_svg_fontweight, t_svg_fontweight_ff, t_svg_fontweights, t_svg_host, t_svg_method, t_svg_mode, t_svg_name_iri,
-            t_svg_overflow, t_svg_phase, t_svg_playbackorder, t_svg_profile_name, t_svg_rendering_intent, t_svg_shape, t_svg_shapefn, t_svg_side, t_svg_src,
-            t_svg_svg, t_svg_time, t_svg_time_default, t_svg_time_inherit, t_svg_time_none, t_svg_timelinebegin, t_svg_transform, t_svg_two_profile,
-            t_svg_type, t_svg_units, t_svg_values, t_svg_version, t_svg_version_grand, t_svg_viewbox, t_svg_viewboxrect,
-        t_sym, t_syncbehaviour, t_syncbehaviourdefault,
-    t_tableframe, t_tablevalues, t_target, t_tbalign, t_tblri, t_tdscope, t_tel, t_tendstotype, t_text, t_text_decoration, t_textoverflow, t_text_rendering,
-        t_tfmu, t_tfa, t_tfi, t_tfn, t_tfu, t_tokens, t_transform, t_transform_anim, t_transformbehaviour, t_transform_fn, t_transition_subtype,
-        t_transition_type, t_transp, t_transparentsz, t_truefalseempty, t_turbulence_type, t_type, t_typeof, t_tz,
-    t_ugeo, t_uid, t_unicode_bidi, t_unit,
-        t_unit_abs_len, t_unit_abs_per, t_unit_angle, t_unit_angle_per, t_unit_freq, t_unit_freq_per, t_unit_rel_len,
-        t_unit_rel_per, t_unit_res, t_unit_res_per, t_unit_time, t_unit_time_per,
-        t_units, t_unsigned, t_unsigned_byte, t_unsigned_short, t_unsigned_1_or_2, t_un_ex, t_unsigned_dosh, t_uplr,
-        t_urange, t_urifn, t_urifn_ni, t_urifn_xy, t_url, t_urls, t_urltemplate,
-    t_valign, t_valign3, t_valign_tmb, t_value, t_values, t_valuetype, t_valuetype2, t_vector_effect, t_vector_effect_12, t_vector_effect_2,
-        t_vector_effect_20, t_vector_effect_2s, t_version, t_vertical_align, t_vertical_align_enum, t_vgender, t_vid, t_viewportscreen, t_visibility,
-        t_visibility10, t_visibility11, t_vkind, t_vocab, t_vrel, t_vtt, t_vtype, t_vunit, t_vunits,
-    t_wanted, t_wallclock, t_week, t_whitespace, t_width, t_workertype, t_wrap, t_wrap3, t_writingmode, t_wxhs,
-    t_x_content_type_options, t_x_ua_compatible, t_xlinkactuate, t_xlinkactuate_onrequest, t_xlinkactuate_onload, t_xlinkshow, t_xlinkshow_a, t_xlinkshow_e,
-        t_xlinkshow_o, t_xlinktype, t_xmllink, t_xmlliteral, t_xmlns, t_xmlspace, t_xmlurl, t_xorder, t_xsdbool,
-    t_year, t_yearmonth, t_yesno, t_yesnoempty,
-    t_zero_or_one, t_zero_to_one, t_zero_to_ones, t_zoompan,
-
+    SSC_TYPES_1, SSC_TYPES_2, SSC_TYPES_3, SSC_TYPES_4, SSC_TYPES_5,
     t_error } e_type;
 
 typedef ::std::vector < e_type > vtype_t;
 
 typedef enum { ub_bidioverride, ub_embed, ub_inherit, ub_isolate, ub_normal, ub_plaintext } e_unicode_bidi;
-typedef enum { eu_cap, eu_ch, eu_cm, eu_dpcm, eu_dpi, eu_em, eu_ex, eu_ic, eu_in, eu_lh, eu_mm, eu_pc, eu_pt, eu_px, eu_q, eu_rem, eu_rlh, eu_vb, eu_vh, eu_vi, eu_vmin, eu_vmax, eu_vw } e_unit;
+typedef enum { eu_cap, eu_ch, eu_cm, eu_dpcm, eu_dpi, eu_dppx, eu_em, eu_ex, eu_ic, eu_in, eu_lh, eu_mm, eu_pc, eu_pt, eu_px, eu_q, eu_rem, eu_rlh, eu_vb, eu_vh, eu_vi, eu_vmin, eu_vmax, eu_vw } e_unit;
 typedef enum { eua_cm, eus_in, eua_mm, eua_pc, eua_pt, eua_px, eua_q } e_unit_abs_len;
 typedef enum { ean_deg, ean_grad, ean_rad, ean_turn } e_unit_angle;
 typedef enum { euf_hz, euf_khz } e_unit_freq;

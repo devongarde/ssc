@@ -391,6 +391,9 @@ template < > struct type_master < t_css_volume_e > : enum_n < t_css_volume_e, e_
 template < > struct type_master < t_css_whitespace > : enum_n < t_css_whitespace, e_css_whitespace >
 { using enum_n < t_css_whitespace, e_css_whitespace > :: enum_n; };
 
+template < > struct type_master < t_css_wide > : enum_n < t_css_wide, e_css_wide >
+{ using enum_n < t_css_wide, e_css_wide > :: enum_n; };
+
 template < > struct type_master < t_currency > : enum_n < t_currency, e_currency >
 { using enum_n < t_currency, e_currency > :: enum_n; };
 
