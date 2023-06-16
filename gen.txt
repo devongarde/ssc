@@ -221,6 +221,9 @@ line, the "no-" switch always applies.
                         for example, 'warning' will also output
                         'catastrophe' and 'error' nits.
 
+--html.force            If <!DOCTYPE...> is missing, force presumption
+                        of --html.version value, not HTML 1/tags
+
 --html.rfc1867          Ignore the RFC 1867 (INPUT=FILE) extension when
                         processing HTML 2.0
 

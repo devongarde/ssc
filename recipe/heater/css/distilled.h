@@ -79,7 +79,7 @@ public:
     {   return (font_.find (s) != font_.cend ()); }
     void merge (const nitpick& ticks)
     {   ticks_.push_back (ticks); }
-    ::std::string review (mmac_t& mac, const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot, const e_nit_section& page_head = ns_none, const bool unfiltered = false); };
+    ::std::string review (const mmac_t& mac, const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot, const e_nit_section& page_head = ns_none, const bool unfiltered = false); };
 
 typedef ::std::shared_ptr < distilled > dst_ptr;
 typedef ssc_map < ::std::string, dst_ptr > mdst_t;

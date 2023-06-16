@@ -40,9 +40,9 @@ class corpus;
 
 class context_t
 {   bool            article_ = false, body_ = true, case_ = false, cgi_ = false, classic_ = false, clear_ = false, crosslinks_ = true, example_ = true,
-                    external_ = false, ext_css_ = false, forwarded_ = true, icu_ = true, info_ = false, jsonld_ = false, local_ = true, load_css_ = true,
-                    links_ = true, main_ = false, md_export_ = false, meta_ = false, mf_export_ = false, mf_verify_ = true, microdata_ = true, nids_ = false,
-                    nits_ = false, nits_nits_nits_ = false, not_root_ = false, once_ = true, presume_tags_ = false, progress_ = false, rdfa_ = true,
+                    external_ = false, ext_css_ = false, force_version_ = false, forwarded_ = true, icu_ = true, info_ = false, jsonld_ = false, local_ = true,
+                    load_css_ = true, links_ = true, main_ = false, md_export_ = false, meta_ = false, mf_export_ = false, mf_verify_ = true, microdata_ = true,
+                    nids_ = false, nits_ = false, nits_nits_nits_ = false, not_root_ = false, once_ = true, presume_tags_ = false, progress_ = false, rdfa_ = true,
                     rel_ = false, revoke_ = false, rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, schema_ = true,
                     shadow_comment_ = true, shadow_changed_ = false, shadow_enable_ = false, shadow_ssi_ = true, shadow_space_ = true, slob_ = false,
                     spec_ = false, spell_ = true, spell_deduced_ = false, ssi_ = true, stats_page_ = false, stats_summary_ = false, test_ = false,
@@ -131,6 +131,7 @@ class context_t
         else { forwarded (false); once (false); revoke (false); microdata (false); }
         return *this; }
     context_t& ext_css (const bool b) { ext_css_ = b; mac (nm_context_ext_css, b); return *this; }
+    context_t& force_version (const bool b) { force_version_ = b; mac (nm_context_force_version, b); return *this; }
     context_t& forwarded (const bool b)
     {   forwarded_ = b;
         if (b) external (b);
@@ -306,6 +307,7 @@ public:
     const vstr_t extensions () const { return extensions_; }
     bool external () const noexcept { return external_; }
     bool ext_css () const noexcept { return ext_css_; }
+    bool force_version () const noexcept { return force_version_; }
     bool forwarded () const noexcept{ return forwarded_; }
     int fred () const noexcept{ return fred_; }
     const ::std::string general_info () const { return general_info_; }

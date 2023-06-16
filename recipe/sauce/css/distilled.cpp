@@ -56,7 +56,7 @@ void distilled::accumulate (stats_t* s) const
     for (auto c : font_)
         s -> mark_font (c.first, c.second); }
 
-::std::string distilled::review (mmac_t& mac, const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot, const e_nit_section& page_head, const bool unfiltered)
+::std::string distilled::review (const mmac_t& mac, const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot, const e_nit_section& page_head, const bool unfiltered)
 {   // here, cp_ is borked
     ::std::string res;
     for (auto n : ticks_)

@@ -809,7 +809,7 @@ bool macro_t::load_template (nitpick& nits, const html_version& v)
             pos = tpl.find (context.macro_start (), pos+len))
     {   res += tpl.substr (prepos, pos-prepos);
         prepos = pos;
-        ::std::string::size_type epos = tpl.find (context.macro_end (), pos+len);
+        const ::std::string::size_type epos = tpl.find (context.macro_end (), pos+len);
         if (epos == ::std::string::npos) break;
         ::std::string m = tpl.substr (pos+len, epos-pos-len);
         if (! m.empty ())

@@ -28,6 +28,7 @@ PASS ../toast/microformats/mf1/mf1-example.html
 38 missing_open
 51 no_tel phone
 54 no_tel phone
+58 protocol
 64 hcard_infer
 67 inserted_missing_closure
 95 bad_datetime

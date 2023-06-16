@@ -154,7 +154,7 @@ bool microdata_itemscope::write (nitpick& nits, const ::boost::filesystem::path&
 vit_t microdata_itemscope::sought_itemtypes (const html_version& v, const ::std::string& name) const
 {   nitpick nits;
     vit_t res;
-    itemprop_index prop = find_itemprop_index (nits, v, name, type ().empty ());
+    const itemprop_index prop = find_itemprop_index (nits, v, name, type ().empty ());
     if (prop != illegal_itemprop)
         if (prop_category (prop) == itemprop_schema)
             for (auto i : sought_schema_types (static_cast < e_schema_property > (ndx_item (prop))))

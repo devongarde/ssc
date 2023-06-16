@@ -1,0 +1,25 @@
+﻿.we { background-color: color-mix(in lch, purple 50%, plum 50%); }
+.like { background-color: color-mix(in lch, purple 50%, plum); }
+.wombats { background-color: color-mix(in lch, purple, plum 50%); }
+.on { background-color: color-mix(in lch, purple, plum); }
+.toast { background-color: color-mix(in lch, plum, purple); }
+.for { background-color: color-mix(in lch, purple 80%, plum 80%); }
+
+.brekkie { background-color: color-mix(in lch, purple 30%, plum 30%); }
+
+.signed { background-color: color-mix(in lch, peru 40%, palegoldenrod); }
+
+.mr { background-color: color-mix(in lch, teal 65%, olive); }
+
+.and { background-color: color-mix(in lch, white, black); }
+.mrs { background-color: color-mix(in xyz, white, black); }
+.lying { background-color: color-mix(in srgb, white, black); }
+.b-stard { background-color: color-mix(in xyz, rgb(82.02% 30.21% 35.02%) 75.23%, rgb(5.64% 55.94% 85.31%)); }
+
+.anyway { color: color-mix(in lch, white, blue);
+          color: color-mix(in oklch, white, blue);
+          color: color-mix(in srgb, white, blue); }
+
+.time { color: color-mix(in hsl, color(display-p3 0 1 0) 80%, yellow);
+        color: color-mix(in srgb, rgb(100% 0% 0% / 0.7) 25%, rgb(0% 100% 0% / 0.2));
+        color: color-mix(in srgb, rgb(100% 0% 0% / 0.7) 20%, rgb(0% 100% 0% / 0.2) 60%); }

@@ -1,0 +1,9 @@
+﻿.foo {
+  color:  red;
+  background-color:  currentcolor;
+}
+
+.foo {
+  color:  red;
+  background-color:  red;
+}

@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "element/element_classes.h"
 #include "spell/spell.h"
 
-void attributes :: swap (attributes& w) noexcept
+void attributes :: swap (attributes& w)
 {   aar_.swap (w.aar_);
     unrecognised_.swap (w.unrecognised_);
     box_.swap (w.box_);

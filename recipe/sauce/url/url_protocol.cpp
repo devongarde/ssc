@@ -531,7 +531,12 @@ bool protocol::parse (nitpick& nits, const html_version& v, const ::std::string&
     else
     {   const ::std::string::size_type colon = lc.find (COLON);
         default_ = (colon == ::std::string::npos);
-        if (default_) set (v, current);
+        if (default_)
+        {   if (lc.find (AT) != ::std::string::npos)
+                nits.pick (nit_protocol, es_warning, ec_url, "if ", lc, " is to link an email address, use ", quote (::std::string (PR_MAILTO ":") + lc));
+            if ((lc.at (0) == '+') && (lc.find_first_not_of (TEL) == ::std::string::npos))
+                nits.pick (nit_protocol, es_warning, ec_url, "if ", lc, " is to link a phone number, use ", quote (::std::string (PR_TEL ":") + lc));
+            set (v, current); }
         else if (colon == 0 || colon == lc.length () - 1)
         {   nits.pick (nit_invalid_protocol, ed_rfc_3986, "3.1. Scheme", es_error, ec_url, quote (lc) + ": invalid protocol andor missing address");
             return false; }

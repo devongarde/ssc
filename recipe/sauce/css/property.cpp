@@ -145,5 +145,5 @@ void property::shadow (::std::stringstream& ss, arguments& args)
 {   if (prop_.get () != nullptr) prop_ -> shadow (ss, args, nullptr);
     w_.shadow (ss, args); }
 
-void property::name (arguments& args, const ::std::string& n)
+void property::name (arguments& , const ::std::string& n)
 {   name_ = n; } 

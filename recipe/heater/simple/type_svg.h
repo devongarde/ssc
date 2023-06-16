@@ -444,4 +444,4 @@ template < > struct type_master < t_svg_two_profile > : tidy_string < t_svg_two_
             if (u.valid ())
                 if (! u.verify (nits, v, e)) ok = false;
         return ok; }    
-    vurl_t get_urls () const noexcept { return val_; } };
+    vurl_t get_urls () const { return val_; } };

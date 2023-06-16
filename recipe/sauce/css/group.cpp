@@ -53,13 +53,15 @@ css_ptr css_group::parse (dst_ptr dsp, const ::std::string& content, const html_
 bool css_group::parse (const ::std::string& content, const html_version& v, const namespaces_ptr& , const element_bitset eb, bool state_version, int line, const e_element e)
 {   return parse (snippets_, content, v, ns_, state_version, true, ::std::string (), eb, line, e) != css_ptr (); }
 
-bool css_group::parse_file (nitpick& nits, const namespaces_ptr& n, const url& u, bool state_versions, bool local)
+bool css_group::parse_file (nitpick& nits, const namespaces_ptr& , const url& u, bool state_versions, bool local)
 {   if (! context.load_css () || (context.css_version () == css_none)) return true;
     if (! u.valid ()) return false;
     nits.set_context (0, u.original ());
     ::std::string abs = u.absolute ();
     ::std::string::size_type pos = abs.find_last_of ("/");
-    PRESUME (pos != ::std::string::npos, __FILE__, __LINE__);
+    if (pos == ::std::string::npos)
+    {   nits.pick (nit_internal_parsing_error, es_catastrophic, ec_css, "read beyond end of url (", quote (u.original ()), ") file name ", quote (abs));
+        return false; }
     abs = abs.substr (0, pos+1);
     pos = abs.find ('/');
     if (pos != ::std::string::npos) abs = abs.substr (pos);
@@ -68,7 +70,8 @@ bool css_group::parse_file (nitpick& nits, const namespaces_ptr& n, const url& u
     if (dsp -> sort_it_out ())
     {   try
         {   bool res = false;
-            ::std::string content; ::std::time_t when;
+            ::std::string content;
+            ::std::time_t when = 0;
             VERIFY_NOT_NULL (page_.get_directory (), __FILE__, __LINE__);
             if (cached_url (nits, page_.version (), page_.get_directory (), u, content, when))
                 if (content.empty ()) res = true;

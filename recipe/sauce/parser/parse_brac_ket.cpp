@@ -77,7 +77,7 @@ void brac_element_ket::swap (brac_element_ket& bek)
 void brac_element_ket::test_specific ()
 {   if (! tested_)
     {   if ((status_ == bk_node) && (start_ != eofe_) && ! closure_ && ! closed_)
-        {   e_element el = elem::find (html_0, ::std::string (start_, eofe_));
+        {   const e_element el = elem::find (html_0, ::std::string (start_, eofe_));
             switch (el)
             {   case elem_comment :
                 case elem_plaintext :

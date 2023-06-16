@@ -22,11 +22,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 [[noreturn]] void throw_bad_dereference (const char* const var, const char* const fn, const ::std::size_t line);
 [[noreturn]] void throw_bad_presumption (const char* const var, const char* const fn, const ::std::size_t line);
+[[noreturn]] void ugly_presumption (const char* const var, const char* const fn, const ::std::size_t line) noexcept;
 [[noreturn]] void graceful_crash (const char* const fn, const ::std::size_t line);
 [[noreturn]] void graceless_crash (const char* const fn, const ::std::size_t line) noexcept;
 
 #define VERIFY_NOT_NULL(PTR,FILE,LINE) { if (nullptr == PTR) throw_bad_dereference (#PTR, FILE, LINE); }
 #define PRESUME(WOT,FILE,LINE) { if (! (WOT)) throw_bad_presumption (#WOT, FILE, LINE); }
+#define UGLY_PRESUME(WOT,FILE,LINE) { if (! (WOT)) ugly_presumption (#WOT, FILE, LINE); }
 #define GRACEFUL_CRASH(FILE,LINE) { graceful_crash (FILE, LINE); }
 #define GRACELESS_CRASH(FILE,LINE) { graceless_crash (FILE, LINE); }
 

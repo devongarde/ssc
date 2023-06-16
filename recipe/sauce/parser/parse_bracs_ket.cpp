@@ -81,7 +81,10 @@ typedef enum
 void bracs_ket::nodoctype (nitpick& nits, html_version& v, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i)
 {   if (! v.unknown ()) return;
     nits.set_context (line_, b, e, i);
-    if (context.presume_tags ())
+    if (context.force_version ()) 
+    {   v.reset (context.html_ver ());
+        nits.pick (nit_html, es_error, ec_parser, "Missing <!DOCTYPE ... > at beginning of content; incorrectly presuming ", context.html_ver ().name ()); }
+    else if (context.presume_tags ())
     {   v.reset (html_tags);
         nits.pick (nit_presume_html_tags, ed_tags, "", es_warning, ec_parser, "No <!DOCTYPE ... > found at beginning of content; presuming HTML Tags"); }
     else

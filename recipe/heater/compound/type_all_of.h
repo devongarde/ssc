@@ -53,7 +53,7 @@ template < e_type T, class SZ, e_type A, e_type... B > struct type_all_of : type
     static bool is_existential () noexcept
     {   return false; }
     static e_animation_type animation_type () noexcept
-    {   e_animation_type a = type_master < A > :: animation_type ();
+    {   const e_animation_type a = type_master < A > :: animation_type ();
         if (a != at_none) return a;
         return type_all_of < T, SZ, B... > :: animation_type (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -111,7 +111,7 @@ template < e_type T, class SZ, e_type A, e_type... B > struct type_all_of : type
     {   const vurl_t& vv (val_.get_urls ());
         for (auto u : vv) vu.push_back (u);
         type_all_of < T, SZ, B... > :: get_urls (vu); }
-    vurl_t get_urls () const noexcept
+    vurl_t get_urls () const
     {   vurl_t vu;
         get_urls (vu);
         return vu; }
@@ -187,7 +187,7 @@ template < e_type T, class SZ, e_type A > struct type_all_of < T, SZ, A > : stri
     static bool is_existential () noexcept
     {   return false; }
     static e_animation_type animation_type () noexcept
-    {   e_animation_type a = type_master < A > :: animation_type ();
+    {  const e_animation_type a = type_master < A > :: animation_type ();
         if (a != at_none) return a;
         return string_vector < T, SZ > :: animation_type (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -238,20 +238,17 @@ template < e_type T, class SZ, e_type A > struct type_all_of < T, SZ, A > : stri
         return string_vector < T, SZ > :: unknown (); }
     ::std::size_t type () const noexcept
     {   return string_vector < T, SZ > :: type (); }
-    void get_urls (vurl_t& vu) const noexcept
+    void get_urls (vurl_t& vu) const
     {   vu = val_.get_urls ();
         for (auto ou : string_vector < T, SZ > :: get_urls ())
-            vu.emplace_back (ou);
-        //const vurl_t& vv (val_.get_urls ());
-        //for (auto u : vv) vu.push_back (u);
-        /* string_vector < T, SZ >  :: get_urls (vu); */ }
-    vurl_t get_urls () const noexcept
+            vu.emplace_back (ou); }
+    vurl_t get_urls () const
     {   vurl_t vu;
         get_urls (vu);
         return vu; }
     template < e_type X > static type_master < X > default_value ()
     {   GRACEFUL_CRASH (__FILE__, __LINE__); }
-    int get_int () const noexcept
+    int get_int () const
     {   return string_vector < T, SZ > :: get_int (); }
     ::std::size_t size () const noexcept
     {   return string_vector < T, SZ > :: size (); }
@@ -276,7 +273,7 @@ template < e_type T, class SZ, e_type A > struct type_all_of < T, SZ, A > : stri
     void accumulate (stats_t* st, const element_bitset& e) const
     {   if (! val_.unknown ()) val_.accumulate (st);
         string_vector < T, SZ > :: accumulate (st, e); }
-    static void accumulate (stats_t* st, const ::std::string& s)
+    static void accumulate (stats_t* , const ::std::string& )
     {   GRACEFUL_CRASH (__FILE__, __LINE__); }
     ::std::string report () const
     {   if (! val_.unknown ()) return val_.report ();

@@ -706,7 +706,7 @@ typedef enum { cvc_e, cvc_infinity, cvc_nan, cvc_pi } e_css_val_con;
 #define CSS_VAL_FN \
                 cvf_none, \
                 cvf_abs, cvf_acos, cvf_asin, cvf_atan, cvf_atan2, \
-                cvf_calc, cvf_clamp, cvf_cos, \
+                cvf_calc, cvf_clamp, cvf_colour_mix, cvf_cos, \
                 cvf_exp, \
                 cvf_hypot, \
                 cvf_log, \
@@ -2081,7 +2081,7 @@ typedef enum
         nm_context_config, nm_context_copy, nm_context_corpus, nm_context_crosslinks, nm_context_css, nm_context_css_animation, nm_context_css_cascade, nm_context_css_colour,
         nm_context_css_custom, nm_context_css_extension, nm_context_css_media, nm_context_css_namespace, nm_context_css_selector, nm_context_css_style,
         nm_context_css_syntax, nm_context_css_ui, nm_context_css_value, nm_context_css_version, nm_context_custom_elements, nm_context_dc, nm_context_example,
-        nm_context_export_root, nm_context_exports, nm_context_extensions, nm_context_ext_css, nm_context_foaf, nm_context_forward, nm_context_fred,
+        nm_context_export_root, nm_context_exports, nm_context_extensions, nm_context_ext_css, nm_context_force_version, nm_context_foaf, nm_context_forward, nm_context_fred,
         nm_context_icu, nm_context_ignore, nm_context_info, nm_context_index, nm_context_jsonld, nm_context_jsonld_extension, nm_context_jsonld_version,
         nm_context_lang, nm_context_links, nm_context_local, nm_context_math, nm_context_main, nm_context_max_file_size, nm_context_md_export,
         nm_context_meta, nm_context_mf_export, nm_context_mf_verify, nm_context_mf_version, nm_context_microdata, nm_context_msg,
@@ -4384,8 +4384,9 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
                 t_css_border_collapse, t_css_border_measure, t_css_border_spacing, t_css_border_spacing_2, t_css_border_style, t_css_border_style_i, \
                 t_css_border_styles, t_css_border_width, t_css_border_width_i, t_css_border_wsc, t_css_border_wsc_i, t_css_borders_measure, \
                 t_css_borders_measure_i, t_css_box_sizing, \
-            t_css_caret, t_css_caret_shape, t_css_clear, t_css_colour, t_css_colour_3, t_css_colour_4, t_css_col, t_css_colour_a, t_css_colour_interpolation, \
-                t_css_coin1, t_css_coin2, t_css_coin3, t_css_content, t_css_content_base, t_css_content_enum, t_css_content_fn, t_css_content_twice, \
+            t_css_caret, t_css_caret_shape, t_css_clear, t_css_coin1, t_css_coin2, t_css_coin3, t_css_colour, t_css_colour_3, t_css_colour_4, \
+                t_css_col, t_css_colour_a, t_css_colour_interpolation, t_css_colour_percent, \
+                t_css_content, t_css_content_base, t_css_content_enum, t_css_content_fn, t_css_content_twice, \
                 t_css_counter, t_css_counter_ii, t_css_counter_iin, t_css_counter_set, t_css_counters, t_css_cue, t_css_cues, t_css_cursor, \
                 t_css_cursor_e, t_css_cursor_url, \
             t_css_display, \

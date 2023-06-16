@@ -191,7 +191,7 @@ void element::examine_input ()
     if (maxlen_known || minlen_known)
     {   const ::std::size_t x = maxlen_known ? a_.get_int (a_maxlength) : 0;
         const ::std::size_t n = minlen_known ? a_.get_int (a_minlength) : 0;
-        ::std::size_t v = val_known ? a_.get_string (a_value).length () : 0;
+        const ::std::size_t v = val_known ? a_.get_string (a_value).length () : 0;
         if (maxlen_known && minlen_known) if (n > x) pick (nit_minmax, ed_50, "4.10.5.3.1 The maxlength and minlength attributes", es_error, ec_attribute, "MINLENGTH (", n, ") should not exceed MAXLENGTH (", x, ")");
         if (maxlen_known && val_known) if (v > x) pick (nit_minmax, ed_50, "4.10.5.3.1 The maxlength and minlength attributes", es_error, ec_attribute, "VALUE length (", v, ") should not exceed MAXLENGTH (", x, ")");
         if (val_known && minlen_known) if (n > v) pick (nit_minmax, ed_50, "4.10.5.3.1 The maxlength and minlength attributes", es_error, ec_attribute, "MINLENGTH (", n, ") should not exceed VALUE length (", v, ")"); }

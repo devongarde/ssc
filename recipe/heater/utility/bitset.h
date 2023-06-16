@@ -54,15 +54,20 @@ public:
     void reset (ssc_bitset& bs)
     {   swap (bs); }
     bool operator [] (const ::std::size_t x) const
-    {   return bs_.at (x); }
+    {   PRESUME (x < SIZE, __FILE__, __LINE__);
+        return bs_.at (x); }
     bool test (const ::std::size_t x) const
-    {   return bs_.at (x); }
+    {   PRESUME (x < SIZE, __FILE__, __LINE__);
+        return bs_.at (x); }
     void set (const ::std::size_t x, const bool b = true)
-    {   bs_.at (x) = b; }
+    {   PRESUME (x < SIZE, __FILE__, __LINE__);
+        bs_.at (x) = b; }
     void reset (const ::std::size_t x)
-    {   bs_.at (x) = false; }
+    {   PRESUME (x < SIZE, __FILE__, __LINE__);
+        bs_.at (x) = false; }
     void flip (const ::std::size_t x)
-    {   bs_.at (x) = ! bs_.at (x); }
+    {   PRESUME (x < SIZE, __FILE__, __LINE__);
+        bs_.at (x) = ! bs_.at (x); }
     void flip ()
     {   PRESUME (bs_.size () == SIZE, __FILE__, __LINE__);
         for (::std::size_t x = 0; x < SIZE; ++x)

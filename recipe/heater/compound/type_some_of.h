@@ -78,7 +78,7 @@ template < e_type T, class SZ, int MIN, int MAX, e_type... A > struct type_some_
     static typename string_vector < T, SZ > :: value_type default_value ()
     {   return string_vector < T, SZ > :: default_value (); }
     static e_animation_type animation_type () noexcept
-    {   e_animation_type a = type_one_of < T, MIN==0, A... > :: animation_type ();
+    {   const e_animation_type a = type_one_of < T, MIN==0, A... > :: animation_type ();
         if (a != at_none) return a;
         return string_vector < T, SZ > :: animation_type (); }
     void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* p, const ::std::string& s)
@@ -172,7 +172,7 @@ template < e_type T, class SZ, int MIN, int MAX, e_type... A > struct type_some_
         return string_vector < T, SZ > :: unknown (); }
     ::std::size_t type () const noexcept
     {   return T; }
-    vurl_t get_urls () const noexcept
+    vurl_t get_urls () const
     {   vurl_t res;
         for (auto oo : voo_)
             if (! oo.unknown ())
@@ -183,7 +183,7 @@ template < e_type T, class SZ, int MIN, int MAX, e_type... A > struct type_some_
         return res; }
     template < e_type X > static type_master < X > default_value ()
     {   GRACEFUL_CRASH (__FILE__, __LINE__); }
-    int get_int () const noexcept
+    int get_int () const
     {   return string_vector < T, SZ > :: get_int (); }
     ::std::size_t size () const noexcept
     {   return voo_.size (); }

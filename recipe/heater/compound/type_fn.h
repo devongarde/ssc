@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "compound/type_all_of.h"
 
 template < class NAME > bool function_name (nitpick& nits, const html_version& v, const ::std::string& ss, ::std::string& p)
-{   ::std::string::size_type brac = ss.find ('(');
+{   const ::std::string::size_type brac = ss.find ('(');
     if (brac == ::std::string::npos)
         nits.pick (nit_function, es_error, ec_type, "'(' expected in ", quote (ss));
     else
@@ -35,7 +35,7 @@ template < class NAME > bool function_name (nitpick& nits, const html_version& v
         if (! compare_complain (nits, v, NAME :: sz (), fn))
             nits.pick (nit_isnt, es_error, ec_type, quote (NAME :: sz ()), "() sought, not ", quote (fn));
         else
-        {   ::std::string::size_type ket = ss.find (')');
+        {   const ::std::string::size_type ket = ss.find (')');
             if (ket == ::std::string::npos)
                 nits.pick (nit_function, es_error, ec_type, "')' expected in ", quote (ss));
             else

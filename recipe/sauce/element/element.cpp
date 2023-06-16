@@ -27,6 +27,9 @@ element::element (const ::std::string& name, element_node& en, element* parent, 
 {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
     uid_ = page_ -> euid (); }
 
+element::~element ()
+{   cleanup (); }
+
 void element::reconstruct (sstr_t* access)
 {   if (reconstructed_) return;
     access_ = access;
@@ -37,7 +40,7 @@ void element::reconstruct (sstr_t* access)
 {   if (! node_.invalid ()) return text ();
     return ::std::string ("empty base"); }
 
-void element::swap (element& e) noexcept
+void element::swap (element& e)
 {   a_.swap (e.a_);
     mf_.swap (e.mf_);
     name_.swap (e.name_);
@@ -67,14 +70,16 @@ void element::swap (element& e) noexcept
 void element::cleanup () noexcept
 {   try
     {   if (child_ != nullptr)
-        {   child_ -> cleanup ();
-            delete child_;
-            child_ = nullptr; }
+        {   delete child_;
+            child_ = nullptr; } }
+    catch (...)
+    {   child_ = nullptr; }
+    try {
         if (sibling_ != nullptr)
-        {   sibling_ -> cleanup ();
-            delete sibling_;
+        {   delete sibling_;
             sibling_ = nullptr; } }
-    catch (...) { } }
+    catch (...)
+    {    sibling_ = nullptr; } }
 
 ids_t& element::get_ids () noexcept
 {   return page_ -> get_ids (); }

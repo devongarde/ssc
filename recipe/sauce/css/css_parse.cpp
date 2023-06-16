@@ -72,7 +72,7 @@ bool anticipate (::std::string::const_iterator& from, ::std::string::const_itera
     from += len - 1;
     return true; }   
 
-void breed (v_np& ticks, vtt_t& t, const ::std::string::const_iterator b, const ::std::string::const_iterator e)
+void breed (v_np& , vtt_t& t, const ::std::string::const_iterator , const ::std::string::const_iterator )
 {   int mum = 0;
     PRESUME (t.size () > 0, __FILE__, __LINE__);
     const int last = ::gsl::narrow_cast < int > (t.size () - 1);
@@ -159,7 +159,8 @@ void boast (vtt_t& t)
                 case ct_round_brac : ::std::cout << "round_brac"; break;
                 case ct_round_ket : ::std::cout << "round_ket"; break;
                 case ct_eof : ::std::cout << "eof"; break;
-                case ct_error : ::std::cout << "error"; break; }
+                case ct_error : ::std::cout << "error"; break;
+                default: ::std::cout << "unexpected " << t.at (i).t_; break; }
             ::std::cout << " " << t.at (i).mum_ << "/" << t.at (i).next_ << "/" << t.at (i).child_ << " " << quote (t.at (i).val_) << "\n"; } } }
 
 bool css::parse (const ::std::string& content, const bool x)
@@ -464,11 +465,10 @@ int next_non_whitespace (const vtt_t& vt, const int from, const int to)
 ::std::string assemble_unit (vtt_t& vt, int& i, const int to)
 {   ::std::string s;
     if ((i >= 0) && ((to < 0) || (i <= to)))
-        if ((static_cast < ::std::size_t > (i + 1) < vt.size ()) && (vt.at (i).t_ == ct_number))
+        if ((static_cast < ::std::size_t > (i) + 1 < vt.size ()) && (vt.at (i).t_ == ct_number))
         {   PRESUME (! vt.at (i).val_.empty (), __FILE__, __LINE__);
-            ::std::string s;
-            if ((vt.at (i+1).t_ == ct_keyword) || (vt.at (i+1).t_ == ct_identifier))
-            {   s = vt.at (i).val_ + vt.at (i+1).val_;
+            if ((vt.at (stp (i)).t_ == ct_keyword) || (vt.at (stp (i)).t_ == ct_identifier))
+            {   s = vt.at (i).val_ + vt.at (stp (i)).val_;
                 i += 2; }
             else s = vt.at (i++).val_; }
         else s = tkn_rpt (vt.at (i++));

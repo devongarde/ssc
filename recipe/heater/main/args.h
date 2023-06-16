@@ -117,6 +117,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define EXTERNAL    "external"
 #define FICHIER     "file"
 #define FOAF        "foaf"
+#define FORCE       "force"
 #define FORWARD     "301"
 #define FORMAT      "format"
 #define GIT         "git"

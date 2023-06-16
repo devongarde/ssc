@@ -77,7 +77,7 @@ public:
     void check_for_standard_classes (nitpick& nits, const html_version& v) const;
     bool severity_exceeded () const;
     void accumulate () const;
-    void accumulate (stats_t& s) const;
+    void accumulate (const stats_t& s) const;
     ::std::string class_and_id_report () const;
     ::std::string report (const bool grand) const; };
 

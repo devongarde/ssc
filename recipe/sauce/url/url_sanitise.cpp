@@ -113,7 +113,7 @@ void code_map_init (nitpick& nits)
     {   ds = res.find ("/..", ds);
         if (ds == ::std::string::npos) break;
         if (ds > 0)
-        {   ::std::size_t prev = res.substr (0, ds).rfind ('/');
+        {   const ::std::size_t prev = res.substr (0, ds).rfind ('/');
             if (prev != ::std::string::npos)
                 if ((prev == 0) || (res.at (prev - 1) != COLON))
                 {   PRESUME (prev < ds, __FILE__, __LINE__);

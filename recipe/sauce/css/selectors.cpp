@@ -48,7 +48,7 @@ void selectors::parse (arguments& args, const int from, const int to)
     if (! sel_.empty ())
     {   nitpick& nits = args.t_.at (from).nits_;
         len = GSL_NARROW_CAST < int > (sel_.size ());
-        const ::std::string r (sel_.at (len - 1).rpt ());
+        const ::std::string r (sel_.at (stm (len)).rpt ());
         if (! r.empty () && (len > 1))
             for (int n = 0; n < len - 2; ++n)
                 if (sel_.at (n).rpt () == r)
