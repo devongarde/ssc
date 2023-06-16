@@ -3,6 +3,10 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.24
+- improve build time
+- underlying work
+
 0.1.23
 - CSS Animation 3 (called 1, but not part of CSS 1 spec)
 - CSS Animation 4 (called 2, but not part of any CSS 2 spec)

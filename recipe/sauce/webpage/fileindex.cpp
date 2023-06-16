@@ -494,7 +494,7 @@ void set_crc (const fileindex_t ndx, const crc_t& crc)
             pos != ::std::string::npos;
             pos = crap_find_last_of_that_works (res, "/.."))
     {   if (pos == 0) break;
-        ::std::string::size_type prepos = res.substr (0, pos).find_last_of ('/');
+        const ::std::string::size_type prepos = res.substr (0, pos).find_last_of ('/');
         if (prepos == ::std::string::npos) res = res.substr (pos);
         else res = res.substr (0, prepos) + res.substr (pos + 3);
         if (++paranoia == 10) break; }

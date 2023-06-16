@@ -83,9 +83,10 @@ void nit::reset (const nit& n)
 bool ignore_this_slob_stuff (const e_nit code) noexcept
 {   if (! context.slob ()) return false;
     switch (code)
-    {   case nit_missing_close :
-        case nit_inserted_missing_closure :
-        case nit_inserted_missing_parent : return true;
+    {   case nit_inserted_missing_closure :
+        case nit_inserted_missing_parent :
+        case nit_missing_close :
+        case nit_missing_open : return true;
         default : return false; } }
 
 ::std::string nit_ref (const ::std::string& doc, const ::std::string& ref)

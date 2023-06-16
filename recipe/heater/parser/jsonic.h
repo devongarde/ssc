@@ -19,6 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
+#include "utility/common.h"
 #include "feedback/nitpick.h"
 
 #ifndef NO_JSONIC
@@ -36,5 +37,5 @@ public:
     ::boost::json::value& val () noexcept { return value_; }
     bool parse (nitpick& nits, const ::std::string& s, const e_charcode encoding);
     static ::std::string rpt (const ::boost::json::value& val, const int indent = 0)
-    {   return ::std::string (indent*2, ' ') + rpt_base (val, indent); } };
+    {   return ::std::string (stt (indent), ' ') + rpt_base (val, indent); } };
 #endif // NO_JSONIC

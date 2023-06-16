@@ -966,7 +966,7 @@ void html_version::css_value (const int n)
 
 
 bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e)
-{   bool res = version.parse_doctype (nits, ::std::string (b, e));
+{   const bool res = version.parse_doctype (nits, ::std::string (b, e));
     if (! res) version.reset (html_0);
     return res; }
 

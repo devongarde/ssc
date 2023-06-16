@@ -309,6 +309,7 @@
     <ClCompile Include="..\sauce\css\statements.cpp" />
     <ClCompile Include="..\sauce\css\typed_property.cpp" />
     <ClCompile Include="..\sauce\css\value.cpp" />
+    <ClCompile Include="..\sauce\css\value2.cpp" />
     <ClCompile Include="..\sauce\css\weight.cpp" />
     <ClCompile Include="..\sauce\element\elem.cpp" />
     <ClCompile Include="..\sauce\element\element.cpp" />
@@ -457,6 +458,9 @@
     <None Include="..\toast\conf\live\corona-live.conf" />
     <None Include="..\toast\conf\live\live.conf" />
     <None Include="..\toast\conf\live\simple.conf" />
+    <None Include="..\toast\conf\other\nancy-wpt.conf" />
+    <None Include="..\toast\conf\other\obsd.conf" />
+    <None Include="..\toast\conf\other\wpt.conf" />
     <None Include="..\toast\conf\sole\corona.conf" />
     <None Include="..\toast\conf\sole\rose.conf" />
     <None Include="..\toast\conf\ssc\corona.conf" />
@@ -1429,6 +1433,16 @@
     <None Include="..\toast\css\5-cascade\css.conf" />
     <None Include="..\toast\css\5-cascade\css.spec" />
     <None Include="..\toast\css\5-cascade\index.html" />
+    <None Include="..\toast\css\5-colour\css-2.css" />
+    <None Include="..\toast\css\5-colour\css-3.css" />
+    <None Include="..\toast\css\5-colour\css-4.css" />
+    <None Include="..\toast\css\5-colour\css-5.css" />
+    <None Include="..\toast\css\5-colour\css-6.css" />
+    <None Include="..\toast\css\5-colour\css-7.css" />
+    <None Include="..\toast\css\5-colour\css-8.css" />
+    <None Include="..\toast\css\5-colour\css.conf" />
+    <None Include="..\toast\css\5-colour\css.spec" />
+    <None Include="..\toast\css\5-colour\index.html" />
     <None Include="..\toast\css\5-media\css-1.css" />
     <None Include="..\toast\css\5-media\css-1.html" />
     <None Include="..\toast\css\5-media\css-10.css" />
@@ -10011,12 +10025,12 @@
   <ItemGroup>
     <Text Include="..\..\build.txt" />
     <Text Include="..\..\CMakeLists.txt" />
+    <Text Include="..\..\gen.txt" />
     <Text Include="..\..\LICENCE.txt" />
     <Text Include="..\..\LICENSE.txt" />
     <Text Include="..\..\README.txt" />
     <Text Include="..\..\releasenotes.txt" />
     <Text Include="..\..\usage.txt" />
-    <Text Include="..\gen\gen.txt" />
     <Text Include="..\port\openbsd\README.txt" />
     <Text Include="..\toast\conf\live\wordlist.txt" />
     <Text Include="..\toast\coop\corrupt\README.txt" />

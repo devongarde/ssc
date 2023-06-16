@@ -106,7 +106,7 @@ template < e_type T, class SZ > struct type_sz < T, SZ > : tidy_string < T >
     static e_animation_type animation_type () noexcept
     {   return at_none; }
     void verify_attribute (nitpick& , const html_version& , const elem& , element* , const ::std::string& ) { }
-    bool verify_url (nitpick& nits, const html_version& v, element& e)
+    bool verify_url (nitpick& , const html_version& , element& )
     {   return true; }
     ::std::string get_string () const
     {   if (val_) return SZ::sz ();

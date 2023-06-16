@@ -104,7 +104,10 @@ bool checkargs (nitpick& nits, const html_version& v, const e_transform_fn cmd, 
     bool res = true;
     const ::std::size_t loopto = (high < args.size ()) ? high : args.size ();
     for (::std::size_t i = 0; i < loopto; ++i)
-    {   PRESUME (va.at (cmd).args_.at (i) != t_unknown, __FILE__, __LINE__);
+    {   if (va.at (cmd).args_.at (i) == t_unknown)
+        {   nits.pick (nit_transform, es_catastrophic, ec_type, "Unknown type encountered in transform ",
+                type_master < t_transform_fn > :: name (cmd), " at ", i, ", with ", low, " to ", high, " and ", loopto);
+            return false; }
         if (! test_value (nits, v, va.at (cmd).args_.at (i), args.at (i))) res = false; }
     return res; }
 

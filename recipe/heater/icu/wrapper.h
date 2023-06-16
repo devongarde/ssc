@@ -84,7 +84,7 @@ public:
     bool valid () const noexcept { return error () <= U_ZERO_ERROR; }
     bool set_text (const char *in, int32_t len);
     charset_detector_matches match_all () noexcept
-    {   PRESUME (context.icu (), __FILE__, __LINE__);
+    {   UGLY_PRESUME (context.icu (), __FILE__, __LINE__);
         charset_match_ = ucsdet_detectAll (detector_, &charset_match_count_, &err_);
         return charset_detector_matches (charset_match_, charset_match_count_); }
     int32_t match_count () const noexcept {  return charset_match_count_; } };

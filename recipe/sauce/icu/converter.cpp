@@ -42,7 +42,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
         nits.pick (nit_icu, es_catastrophic, ec_icu, "ICU ucnv_getStandardName error ", static_cast < int > (err)); }
     return ::std::string (); }
 
-::std::string convert_to_utf8 (nitpick& nits, const ::std::string& name, void_ptr& vp, uintmax_t& sz)
+::std::string convert_to_utf8 (nitpick& nits, const ::std::string& name, const void_ptr& vp, const uintmax_t& sz)
 {   PRESUME (context.icu (), __FILE__, __LINE__);
     PRESUME (sz > 0, __FILE__, __LINE__);
     PRESUME (vp != nullptr, __FILE__, __LINE__);
@@ -64,7 +64,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 ::std::string convert_to_utf8 (const unsigned int n)
 // https://stackoverflow.com/questions/23322438/how-to-convert-a-unicode-code-point-to-characters-in-c-using-icu
-{   ::icu::UnicodeString s (static_cast < UChar32 > (n));
+{   ::icu::UnicodeString s (::gsl::narrow_cast < UChar32 > (n));
     ::std::string res;
     s.toUTF8String (res);
     return res; }

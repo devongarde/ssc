@@ -38,7 +38,7 @@ template < e_type T, bool EMPTY > struct emptiness
         return s_invalid; } };
 
 template < e_type T > struct emptiness < T, true > 
-{   static bool could_be_empty (const e_status s) { return s == s_empty; }
+{   constexpr static bool could_be_empty (const e_status s) { return s == s_empty; }
     static e_status content_status (nitpick& , const ::std::string& s)
     {   if (! s.empty ()) return s_good;
         return s_empty; }
@@ -69,7 +69,7 @@ template < e_type T, bool EMPTY, e_type A, e_type... B > struct type_one_of : ty
     {   return type_one_of < T, EMPTY, B... > :: content_status (nits, s); }
     ::std::string entart (nitpick& nits, const html_version& v, const ::std::string& s)
     {   return type_one_of < T, EMPTY, B... > :: entart (nits, v, s); }
-    void reset () noexcept
+    void reset ()
     {   val_.reset ();
         type_one_of < T, EMPTY, B... > :: reset (); }
     void swap (type_one_of < T, EMPTY, A, B... >& t) noexcept
@@ -86,7 +86,7 @@ template < e_type T, bool EMPTY, e_type A, e_type... B > struct type_one_of : ty
     static bool is_existential () noexcept
     {   return false; }
     static e_animation_type animation_type () noexcept
-    {   e_animation_type a = type_master < A > :: animation_type ();
+    {   const e_animation_type a = type_master < A > :: animation_type ();
         if (a != at_none) return a;
         return type_one_of < T, EMPTY, B... > :: animation_type (); }
     void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* p, const ::std::string& s)
@@ -154,12 +154,12 @@ template < e_type T, bool EMPTY, e_type A, e_type... B > struct type_one_of : ty
     ::std::size_t type () const noexcept
     {   if (! val_.unknown ()) return val_.type ();
         return tidy_string < T > :: type (); }
-    vurl_t get_urls () const noexcept
+    vurl_t get_urls () const
     {   if (! val_.unknown ()) return val_.get_urls ();
         return type_one_of < T, EMPTY, B... > :: get_urls (); }
     template < e_type X > static type_master < X > default_value ()
     {   GRACEFUL_CRASH (__FILE__, __LINE__); }
-    int get_int () const noexcept
+    int get_int () const
     {   if (! val_.unknown ()) return val_.get_int ();
         return type_one_of < T, EMPTY, B... > :: get_int (); }
     ::std::size_t size () const noexcept
@@ -210,7 +210,7 @@ template < e_type T, bool EMPTY, e_type A > struct type_one_of < T, EMPTY, A > :
     ::std::string entart (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
         return tidy_string < T > :: get_string (); }
-    void reset () noexcept
+    void reset ()
     {   val_.reset ();
         tidy_string < T > :: reset (); }
     void swap (type_one_of < T, EMPTY, A >& t) noexcept
@@ -227,7 +227,7 @@ template < e_type T, bool EMPTY, e_type A > struct type_one_of < T, EMPTY, A > :
     static bool is_existential () noexcept
     {   return false; }
     static e_animation_type animation_type () noexcept
-    {   e_animation_type a = type_master < A > :: animation_type ();
+    {   const e_animation_type a = type_master < A > :: animation_type ();
         if (a != at_none) return a;
         return tidy_string < T > :: animation_type (); }
     void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* p, const ::std::string& s)
@@ -292,12 +292,12 @@ template < e_type T, bool EMPTY, e_type A > struct type_one_of < T, EMPTY, A > :
     ::std::size_t type () const noexcept
     {   if (! val_.unknown ()) return val_.type ();
         return tidy_string < T > :: type (); }
-    vurl_t get_urls () const noexcept
+    vurl_t get_urls () const
     {   if (! val_.unknown ()) return val_.get_urls ();
         return tidy_string < T > :: get_urls (); }
     template < e_type X > static type_master < X > default_value ()
     {   GRACEFUL_CRASH (__FILE__, __LINE__); }
-    int get_int () const noexcept
+    int get_int () const
     {   if (! val_.unknown ()) return val_.get_int ();
         return tidy_string < T > :: get_int (); }
     ::std::size_t size () const noexcept
@@ -327,7 +327,7 @@ template < e_type T, bool EMPTY, e_type A > struct type_one_of < T, EMPTY, A > :
     void accumulate (stats_t* st, const element_bitset& e) const
     {   if (! val_.unknown ()) val_.accumulate (st, e);
         else tidy_string < T > :: accumulate (st, e); }
-    static void accumulate (stats_t* st, const ::std::string& s)
+    static void accumulate (stats_t* , const ::std::string& )
     {   GRACEFUL_CRASH (__FILE__, __LINE__); }
     ::std::string report () const
     {   if (! val_.unknown ()) return val_.report ();

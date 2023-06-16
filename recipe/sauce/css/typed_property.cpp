@@ -85,7 +85,9 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
         {   res = true;
             switch (context.css_value ())
             {   case 4 :
-                    e = cvf.get ();
+                    if ((cvf.get () == cvf_colour_mix) && (context.css_colour () < 5))
+                        nits.pick (nit_css_colour, es_error, ec_css, quote (cvf.name ()), " requires CSS Colour 5 (1)");
+                    else e = cvf.get ();
                     break;
                 case 3 :
                     switch (cvf.get ())
@@ -93,6 +95,11 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
                             e = cvf_calc; break;
                         case cvf_url:
                             e = cvf_url; break;
+                        case cvf_colour_mix :
+                            if (context.css_colour () < 5)
+                                nits.pick (nit_css_colour, es_error, ec_css, quote (cvf.name ()), " requires CSS Colour 5 (2)");
+                            else e = cvf_colour_mix;
+                            break;
                         default :
                             nits.pick (nit_css_value, es_error, ec_css, quote (cvf.name ()), " requires CSS Values 4"); }
                     break;
@@ -111,7 +118,9 @@ bool test_cascade (const ::std::string& s, e_iiu& iiu)
                 case 'R' :
                     if (compare_no_case (s, "revert-layer"))
                         {   iiu = iiu_revert_layer;
-                            return true; } }
+                            return true; }
+                    break;
+                default: break; }
             FALLTHROUGH;   
         case 4 :
             switch (s.at (0))
@@ -119,7 +128,9 @@ bool test_cascade (const ::std::string& s, e_iiu& iiu)
                 case 'R' :
                     if (compare_no_case (s, "revert"))
                         {   iiu = iiu_revert;
-                            return true; } }
+                            return true; }
+                    break;
+                default: break; }
             FALLTHROUGH;   
         case 3 :
             switch (s.at (0))
@@ -137,7 +148,9 @@ bool test_cascade (const ::std::string& s, e_iiu& iiu)
                 case 'U' :
                     if (compare_no_case (s, "unset"))
                     {   iiu = iiu_unset;
-                        return true; } }
+                        return true; }
+                    break;
+                default: break; }
             break;
         default :
             PRESUME (context.css_version () < css_3, __FILE__, __LINE__);

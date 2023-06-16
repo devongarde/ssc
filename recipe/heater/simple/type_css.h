@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 // t_css_font
 
-bool process_css (nitpick& nits, const html_version& v, const ::std::string& s, element* e) noexcept;
+bool process_css (nitpick& nits, const html_version& v, const ::std::string& s, element* e);
 
 template < > struct type_master < t_css > : public tidy_string < t_css >
 {   using tidy_string < t_css > :: tidy_string;
@@ -32,7 +32,7 @@ template < > struct type_master < t_css > : public tidy_string < t_css >
     {   tidy_string < t_css > :: set_value (nits, v, s);
         if (tidy_string < t_css > :: empty ())
             nits.pick (nit_empty, es_warning, ec_type, "rather a minimalistic STYLE"); }
-    bool invalid_id (nitpick& nits, const html_version& v, ids_t& , element* e) noexcept
+    bool invalid_id (nitpick& nits, const html_version& v, ids_t& , element* e)
     {   if (! tidy_string < t_css > :: good ()) return true;
         return ! process_css (nits, v, tidy_string < t_css > :: get_string (), e); } };
 

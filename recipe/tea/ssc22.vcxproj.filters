@@ -1113,6 +1113,12 @@
     <Filter Include="Toast\CSS\4-animation">
       <UniqueIdentifier>{37c12d6e-d62b-404a-bf9c-e71b84ab48a0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\CSS\5-colour">
+      <UniqueIdentifier>{7960e729-1f9b-4211-a0c0-c835798410a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Conf\other">
+      <UniqueIdentifier>{542149d5-ce16-4bb9-85d0-d41d03aa8355}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -2367,6 +2373,9 @@
     </ClCompile>
     <ClCompile Include="..\sauce\attribute\attribute.cpp">
       <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value2.cpp">
+      <Filter>Sauce\css</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -30609,6 +30618,45 @@
     <None Include="..\toast\css\4-animation\index.html">
       <Filter>Toast\CSS\4-animation</Filter>
     </None>
+    <None Include="..\toast\css\5-colour\css.conf">
+      <Filter>Toast\CSS\5-colour</Filter>
+    </None>
+    <None Include="..\toast\css\5-colour\css.spec">
+      <Filter>Toast\CSS\5-colour</Filter>
+    </None>
+    <None Include="..\toast\css\5-colour\css-2.css">
+      <Filter>Toast\CSS\5-colour</Filter>
+    </None>
+    <None Include="..\toast\css\5-colour\css-3.css">
+      <Filter>Toast\CSS\5-colour</Filter>
+    </None>
+    <None Include="..\toast\css\5-colour\css-4.css">
+      <Filter>Toast\CSS\5-colour</Filter>
+    </None>
+    <None Include="..\toast\css\5-colour\css-6.css">
+      <Filter>Toast\CSS\5-colour</Filter>
+    </None>
+    <None Include="..\toast\css\5-colour\css-7.css">
+      <Filter>Toast\CSS\5-colour</Filter>
+    </None>
+    <None Include="..\toast\css\5-colour\css-8.css">
+      <Filter>Toast\CSS\5-colour</Filter>
+    </None>
+    <None Include="..\toast\css\5-colour\index.html">
+      <Filter>Toast\CSS\5-colour</Filter>
+    </None>
+    <None Include="..\toast\css\5-colour\css-5.css">
+      <Filter>Toast\CSS\5-colour</Filter>
+    </None>
+    <None Include="..\toast\conf\other\nancy-wpt.conf">
+      <Filter>Toast\Conf\other</Filter>
+    </None>
+    <None Include="..\toast\conf\other\obsd.conf">
+      <Filter>Toast\Conf\other</Filter>
+    </None>
+    <None Include="..\toast\conf\other\wpt.conf">
+      <Filter>Toast\Conf\other</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
@@ -31084,9 +31132,6 @@
     <Text Include="..\..\usage.txt">
       <Filter>Info</Filter>
     </Text>
-    <Text Include="..\gen\gen.txt">
-      <Filter>Info</Filter>
-    </Text>
     <Text Include="..\toast\snippet\README.txt">
       <Filter>Toast\Snippet</Filter>
     </Text>
@@ -31116,6 +31161,9 @@
     </Text>
     <Text Include="..\toast\conf\live\wordlist.txt">
       <Filter>Toast\Conf\live</Filter>
+    </Text>
+    <Text Include="..\..\gen.txt">
+      <Filter>Info</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>

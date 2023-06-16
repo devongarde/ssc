@@ -59,7 +59,7 @@ page::page (const ::std::string& name, const ::std::time_t updated, ::std::strin
 page::page (nitpick& nits, const ::std::string& name, const ::std::time_t updated, ::std::string& content, const directory* d)
     :   name_ (name), directory_ (d), updated_ (updated), css_ (*this)
 {   VERIFY_NOT_NULL (d, __FILE__, __LINE__);
-    fileindex_t x (get_fileindex (d -> get_disk_path (nits, name)));
+    const fileindex_t x (get_fileindex (d -> get_disk_path (nits, name)));
     directory_ = d;
     init (name, content, x); }
 

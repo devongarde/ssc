@@ -246,6 +246,8 @@ sstr_t smsid_set (const smsid_t& s);
 template < class P > struct fiddlesticks
 {   P** p_ = nullptr;
     P* twas_ = nullptr;
+    fiddlesticks () = delete;
+    DEFAULT_NO_COPY_NO_MOVE (fiddlesticks);
     explicit fiddlesticks (P** p, P* x) : p_ (p)
     {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
         twas_ = *p_;
@@ -254,3 +256,15 @@ template < class P > struct fiddlesticks
 
 int hex_value (const ::std::string_view str);
 ::std::string map_to_utf8 (const int val);
+
+inline constexpr ::std::size_t stp (const int i, const int n = 1)
+{   const ::std::size_t res (i);
+    return res + n; }
+
+inline constexpr ::std::size_t stm (const int i, const int n = 1)
+{   const ::std::size_t res (i);
+    return res - n; }
+
+inline constexpr ::std::size_t stt (const int i, const int n = 2)
+{   const ::std::size_t res (i);
+    return res * n; }

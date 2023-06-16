@@ -105,7 +105,7 @@ bool microdata_export::write (nitpick& nits, const ::boost::filesystem::path& fi
 
 ::std::string microdata_export::rpt (const ::boost::property_tree::ptree& tree, const int dent) const
 {   ::std::string res;
-    ::std::string indent (dent*2, ' ');
+    ::std::string indent (stt (dent), ' ');
     for (auto sub : tree)
     {   res += indent + sub.first;
         if (sub.second.size () > 0)

@@ -26,12 +26,12 @@ void rule::parse (arguments& args, const int from, const int to)
     const int len = GSL_NARROW_CAST < int > (args.t_.size ());
     PRESUME (from < len, __FILE__, __LINE__);
     PRESUME ((to < 0) || (to < len), __FILE__, __LINE__);
-    int b = first_non_whitespace (args.t_, from, to);
+    const int b = first_non_whitespace (args.t_, from, to);
     if (b < 0) return;
     nitpick nits = args.t_.at (b).nits_;
     int prev = -1;
     int p = token_find (args.t_, ct_curly_brac, b, to, &prev);
-    int q = p;
+    const int q = p;
     if (p < 0) nits.pick (nit_rule, es_error, ec_css, "properties expected");
     else p = prev;
     if ((p >= 0) && (b >= p))    

@@ -329,11 +329,11 @@ void element::examine_html ()
                 if (! a_.known (a_version))
                     pick (nit_rdfa_version, ed_rdfa, "RDFa in XHTML: Syntax and Processing", es_warning, ec_attribute, "when using RDFa, <HTML> should have a version attribute set to \"" RDFA_VERSION "\"");
                 else if (a_.get_string (a_version) != RDFA_VERSION)
-                    pick (nit_rdfa_version, ed_rdfa, "RDFa in XHTML: Syntax and Processing", es_warning, ec_attribute, "here, VERSION should be \"" RDFA_VERSION "\""); }
+                    pick (nit_rdfa_version, ed_rdfa, "RDFa in XHTML: Syntax and Processing", es_warning, ec_attribute, "here, <HTML> VERSION should be set to \"" RDFA_VERSION "\""); }
         else
         {   if (node_.version () >= html_jan13)
                 if (! a_.known (a_lang) && ! a_.known (a_xmllang))
-                    pick (nit_naughty_lang, ed_50, "4.1.1 The html element", es_warning, ec_attribute, "use LANG to specify a default language");
+                    pick (nit_naughty_lang, ed_50, "4.1.1 The html element", es_warning, ec_attribute, "use LANG on <HTML> to specify a default language");
             if (node_.version () >= html_jan17)
                 if (a_.known (a_manifest))
                     pick (nit_avoid_manifest, ed_52, "4.1.1 The html element", es_warning, ec_attribute, "MANIFEST is deprecated & should be avoided because application caches are doomed"); } } }
@@ -402,17 +402,17 @@ void element::examine_img ()
                     {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
                         if (p -> tag () == elem_figure)
                         {   bool alone = true;
-                            for (element* p = child_; p != nullptr; p = p -> sibling_)
-                                if (is_standard_element (p -> tag ()))
-                                    if (! p -> node_.is_closure ())
-                                        switch (p -> tag ())
+                            for (element* c = child_; c != nullptr; c = c -> sibling_)
+                                if (is_standard_element (c -> tag ()))
+                                    if (! c -> node_.is_closure ())
+                                        switch (c -> tag ())
                                         {   case elem_img :
                                                 continue;
                                             case elem_figcaption :
-                                                if ((! p -> text ().empty ()) && (! is_whitespace (p -> text ()))) figured = true;
+                                                if ((! c -> text ().empty ()) && (! is_whitespace (c -> text ()))) figured = true;
                                                 break;
                                             default :
-                                                if (((p -> node_.id ().flags ()) & EF_5_FLOW) == EF_5_FLOW)
+                                                if (((c -> node_.id ().flags ()) & EF_5_FLOW) == EF_5_FLOW)
                                                     figured = alone = false;
                                                 break; }
                             break; } }
@@ -423,10 +423,10 @@ void element::examine_img ()
                     {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
                         if (p -> tag () == elem_a)
                         {   if (! p -> text ().empty ()) alt_required = false;
-                            else for (element* p = child_; p != nullptr; p = p -> sibling_)
-                                if (! p -> node_.is_closure ())
-                                    if (is_standard_element (p -> tag ()))
-                                        if (p != this)
+                            else for (element* c = child_; c != nullptr; c = c -> sibling_)
+                                if (! c -> node_.is_closure ())
+                                    if (is_standard_element (c -> tag ()))
+                                        if (c != this)
                                         {   alone = false; break; }
                             break; } }
                     if (alt_required)

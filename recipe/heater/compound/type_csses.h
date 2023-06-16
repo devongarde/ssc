@@ -105,6 +105,9 @@ template < > struct type_master < t_css_coin1 > : type_either_or < t_css_coin1, 
 template < > struct type_master < t_css_colour_interpolation > : string_then_type < t_css_colour_interpolation, t_css_coin1, sz_in >
 { using string_then_type < t_css_colour_interpolation, t_css_coin1, sz_in > :: string_then_type; };
 
+template < > struct type_master < t_css_colour_percent > : type_one_or_both < t_css_colour_percent, t_css_colour, sz_space, t_percent >
+{ using type_one_or_both < t_css_colour_percent, t_css_colour, sz_space, t_percent > :: type_one_or_both; };
+
 template < > struct type_master < t_css_counter > : type_function_2_opt < t_css_counter, sz_counter, t_text, t_css_list_style_type >
 { using type_function_2_opt < t_css_counter, sz_counter, t_text, t_css_list_style_type > :: type_function_2_opt; };
 

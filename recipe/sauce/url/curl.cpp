@@ -51,10 +51,10 @@ public:
         return curl_easy_setopt (c_, option, s.c_str ()); }
     CURLcode opt (CURLoption option, int i)
     {   PRESUME (valid (), __FILE__, __LINE__);
-        return curl_easy_setopt (c_, option, static_cast < long > (i)); }
+        return curl_easy_setopt (c_, option, ::gsl::narrow_cast < long > (i)); }
     bool set_write_buffer ()
     {   PRESUME (valid (), __FILE__, __LINE__);
-        PRESUME (buf_.get () == nullptr, __FILE__, __LINE__);
+        if (buf_.get () != nullptr) return true;
         const long size = context.max_file_size ();
         buf_ = curl_buf_t (new char [size]);
         pos_ = 0;
@@ -66,12 +66,13 @@ public:
     static void pos (const ::std::size_t p) { pos_ = p; }
     CURLcode engage ()
     {   PRESUME (valid (), __FILE__, __LINE__);
+        set_write_buffer ();
         return curl_easy_perform (c_); }
     int status ()
     {   PRESUME (valid (), __FILE__, __LINE__);
         long status = 0;
         curl_easy_getinfo (c_, CURLINFO_RESPONSE_CODE, &status);
-        return static_cast <int > (status); }
+        return ::gsl::narrow_cast <int > (status); }
     bool valid () const { return c_ != nullptr; } };
 
 CURL* curly::c_ = nullptr;

@@ -532,7 +532,7 @@ int get_schema_version_count (const e_schema es) noexcept
 bool is_faux_schema (const e_schema es) noexcept
 {   return schemas < SCHEMAS > :: faux (es); }
 
-schema_version::schema_version (const html_version& v) noexcept
+schema_version::schema_version (const html_version& v)
 {   schema_version sv = corresponding_schema_version (s_schema, v);
     schema_version err (s_error, 0, 0);
     if (! sv.invalid ()) swap (sv); else swap (err); }

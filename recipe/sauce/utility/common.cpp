@@ -536,4 +536,4 @@ int hex_value (const ::std::string_view str) {
 
 ::std::string map_to_utf8 (const int val)
 {   ::std::wstring_convert < ::std::codecvt_utf8 <char32_t>, char32_t > converter;
-    return converter.to_bytes (static_cast <char32_t> (val)); }
+    return converter.to_bytes (::gsl::narrow_cast <char32_t> (val)); }

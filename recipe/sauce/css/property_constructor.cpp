@@ -44,7 +44,7 @@ template < class ... X > struct property_constructor < prop_text_align, X ... > 
         return ptr; } };
 
 template < > struct property_constructor < prop_unknown >
-{   static property_v_ptr make (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const css_token t)
+{   static property_v_ptr make (arguments& args, const int start, const int to, nitpick& nits, e_css_property , const ::std::string& s, const css_token )
     {   auto ptr = property_v_ptr (new prop_unknown ());
         ptr -> set_value (args, start, to, nits, s);
         return ptr; } };

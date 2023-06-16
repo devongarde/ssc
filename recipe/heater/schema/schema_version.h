@@ -77,7 +77,7 @@ struct schema_version : public version
     schema_version (const e_schema root, const unsigned short mjr, const unsigned short mnr, const flags_t sf = NOFLAGS) noexcept
         :   version (mjr, mnr, (static_cast < flags_t > (root) << SV_ROOT_SHIFT) | (sf & SV_FLAG_MASK))
     { }
-    schema_version (const html_version& v) noexcept;
+    schema_version (const html_version& v);
     static void init (nitpick& nits);
     void reset () noexcept
     {   schema_version v; swap (v); }

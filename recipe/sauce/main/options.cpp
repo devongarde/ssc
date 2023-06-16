@@ -131,7 +131,8 @@ e_severity decode_severity (nitpick& nits, const ::std::string& s)
     return sev; }
 
 void options::yea_nay (context_t& (context_t::*fn) (const bool ), nitpick& nits, const char* yea, const char* nay)
-{   const bool on = var_ [yea].as <bool> ();
+{   VERIFY_NOT_NULL (fn, __FILE__, __LINE__);
+    const bool on = var_ [yea].as <bool> ();
     const bool off = var_ [nay].as <bool> ();
     if (off)
     {   if (on) nits.pick (nit_yea_nay, es_info, ec_init, "when both ", nay, " and ", yea, " are used, ", nay, " applies");
@@ -251,9 +252,6 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (GENERAL MACROSTART, ::boost::program_options::value < ::std::string > () -> default_value ("{{"), "Start of template macro (by default, the '{{' in '{{macro}}').")
         (GENERAL MACROEND, ::boost::program_options::value < ::std::string > () -> default_value ("}}"), "End of template macro (by default, the '}}' in '{{macro}}').")
 
-        (CSS EXTERNAL, ::boost::program_options::bool_switch (), "Nitpick css files imported from external sites.")
-        (CSS DONT EXTERNAL, ::boost::program_options::bool_switch (), "Do not nitpick imported css CSS files.")
-
         (JSONLD EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "Extension for JSON-LD files; may be repeated.")
         (JSONLD VERIFY, ::boost::program_options::bool_switch (), "Experimental: Verify JSON-LD.")
         (JSONLD DONT VERIFY, ::boost::program_options::bool_switch (), "Do not verify JSON-LD.")
@@ -336,6 +334,8 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (CSS COLOUR, ::boost::program_options::value < int > (), "CSS Colour level (0, 3, 4, or 5).")
         (CSS CUSTOM, ::boost::program_options::value < int > (), "CSS Custom level (0 or 3).")
         (CSS EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "CSS files have this extension (default css); may be repeated.")
+        (CSS EXTERNAL, ::boost::program_options::bool_switch (), "Nitpick css files imported from external sites.")
+        (CSS DONT EXTERNAL, ::boost::program_options::bool_switch (), "Do not nitpick imported CSS files.")
         (CSS MEDIA, ::boost::program_options::value < int > (), "CSS Media level (0, 3, 4, or 5).")
         (CSS NAMESPACE, ::boost::program_options::value < int > (), "CSS Namespace level (0 or 3).")
         (CSS SELECTOR, ::boost::program_options::value < int > (), "CSS Selector level (0, 3, or 4).")
@@ -347,6 +347,8 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (CSS DONT VERIFY, ::boost::program_options::bool_switch (), "Do not process .css files.")
         (CSS VERSION, ::boost::program_options::value < ::std::string > (),  "Presume this version of CSS (default appropriate for HTML version).")
 
+        (HTML FORCE, ::boost::program_options::bool_switch (), "When <!DOCTYPE...> is missing, forcibly presume HTML version as per --html.version.")
+        (HTML DONT FORCE, ::boost::program_options::bool_switch (), "When <!DOCTYPE...> is missing, correctly presume HTML 1 or HTML tags, as per --html.tags.")
         (HTML RFC1867, ::boost::program_options::bool_switch (), "Consider RFC 1867 (INPUT=FILE) when processing HTML 2.0.")
         (HTML DONT RFC1867, ::boost::program_options::bool_switch (), "Ignore RFC 1867 (INPUT=FILE) when processing HTML 2.0.")
         (HTML RFC1942, ::boost::program_options::bool_switch (), "Consider RFC 1867 RFC 1942 (tables) when processing HTML 2.0.")
@@ -359,7 +361,7 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (HTML DONT TAGS, ::boost::program_options::bool_switch (), "Presume HTML with no DOCTYPE is HTML 1.0.")
         (HTML TITLE ",z", ::boost::program_options::value < int > () -> default_value (MAX_IDEAL_TITLE_LENGTH), "Maximum advisable length of <TITLE> text.")
         (HTML VERSION, ::boost::program_options::value < ::std::string > (),
-            "Set the specific version of HTML with DOCTYPE (default '2022/7/1'), or if no DOCTYPE found (default '1.0'). "
+            "Set the specific version of HTML with DOCTYPE (default '2022/7/1'). "
             "For a W3 standard, give its version (e.g. '5.2'). "
             "For a WhatWG living standard, give its date (e.g. '2015/7/1'). "
             "For XHTML, use XHTML plus version, e.g. 'XHTML 1.0'. "
@@ -1147,7 +1149,7 @@ void options::contextualise (nitpick& nits)
         yea_nay (&context_t::crosslinks, nits, LINKS XLINK, LINKS DONT XLINK);
 
         if (var_.count (MATH VERSION))
-        {   int n = var_ [MATH VERSION].as < int > ();
+        {   const int n = var_ [MATH VERSION].as < int > ();
             switch (n)
             {   case 0 : break;
                 case 1 : context.math_version (math_1); break;
@@ -1159,7 +1161,7 @@ void options::contextualise (nitpick& nits)
         if (var_ [MATH CORE].as < bool > ()) context.math_version (math_core);
 
         if (var_.count (MATH DRAFT))
-        {   int n = var_ [MATH DRAFT].as < int > ();
+        {   const int n = var_ [MATH DRAFT].as < int > ();
             switch (n)
             {   case 0 : break;
                 case 2020: case 20 : if (context.math_version () > math_3) context.math_version (math_4_20); break;
@@ -1176,7 +1178,7 @@ void options::contextualise (nitpick& nits)
         yea_nay (&context_t::nids, nits, NITS NIDS, NITS DONT NIDS);
         if (var_.count (NITS FORMAT)) context.nit_format (var_ [NITS FORMAT].as < ::std::string > ());
         if (var_.count (NITS QUOTE))
-        {   e_quote_style qs = examine_value < t_quote_style > (nits, html_default, var_ [NITS QUOTE].as < ::std::string > ());
+        {   const e_quote_style qs = examine_value < t_quote_style > (nits, html_default, var_ [NITS QUOTE].as < ::std::string > ());
             context.quote_style (qs); }
         yea_nay (&context_t::nits_nits_nits, nits, NITS UNIQUE, NITS DONT UNIQUE);
         yea_nay (&context_t::not_root, nits, NITS DONT ROOT, NITS ROOT); // note reversal

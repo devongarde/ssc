@@ -106,7 +106,7 @@ void check_spelling (nitpick& nits, const html_version& v, const lingo& lang, co
             if (blangs)
             {   blangs = false;
                 IEnumString* es = nullptr;
-                HRESULT hr2 = scf -> get_SupportedLanguages (&es);
+                const HRESULT hr2 = scf -> get_SupportedLanguages (&es);
                 if (! FAILED (hr2))
                     if (es != nullptr)
                     {   LPOLESTR pole = nullptr;
@@ -131,7 +131,9 @@ void check_spelling (nitpick& nits, const html_version& v, const lingo& lang, co
         apply_wordlist (isp, context.spellings ());
         mlf.insert (mlf_t::value_type (l, isp)); }
     else if (i -> second == nullptr) return;
-    else isp = i -> second;
+    else
+    {   isp = i -> second;
+        VERIFY_NOT_NULL (isp, __FILE__, __LINE__); }
     PRESUME (! text.empty (), __FILE__, __LINE__);
     vstr_t tx (lang.to_words (nits, interpret_string (nits, v, text)));
     for (auto t : tx)
@@ -141,6 +143,7 @@ void check_spelling (nitpick& nits, const html_version& v, const lingo& lang, co
         ::std::wstring w = convert_to_wstring (t);
         hr = isp -> ComprehensiveCheck (w.c_str (), &whoopsie);
         if (FAILED (hr)) continue;
+        VERIFY_NOT_NULL (whoopsie, __FILE__, __LINE__);
         ISpellingError* typo = nullptr;
         IEnumString* suggested = nullptr;
         LPOLESTR word = nullptr;

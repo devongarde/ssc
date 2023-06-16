@@ -201,7 +201,7 @@ void stats_t::accumulate () const
     VERIFY_NOT_NULL (overall.p_, __FILE__, __LINE__);
     p_ -> accumulate (*overall.p_); }
 
-void stats_t::accumulate (stats_t& s) const
+void stats_t::accumulate (const stats_t& s) const
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     VERIFY_NOT_NULL (s.p_, __FILE__, __LINE__);
     p_ -> accumulate (*s.p_); }

@@ -71,12 +71,12 @@ It should not be used on untrusted content; its parsers are holier than <A href=
 
 <P>
 If you want to try it, play with the form below, or, if you&rsquo;re really enthusiastic,
-<a href="src/ssc-v0.1.17.tgz" type="application/gzip">here&rsquo;s the current source</a>.
+<a href="src/ssc-v0.1.24.tgz" type="application/gzip">here&rsquo;s the current source</a>.
 </P>
 
 <P>
 <A href="https://harris.eu.com/">Dylan Harris</A><BR>
-March 2023
+June 2023
 </P>
 
 </section>
@@ -148,7 +148,8 @@ March 2023
 <option value="2022/04/01">Living Standard April 2022</option>
 <option value="2022/07/01">Living Standard July 2022</option>
 <option value="2022/10/01">Living Standard October 2022</option>
-<option value="2023/01/01" selected>Living Standard January 2023</option>
+<option value="2023/01/01">Living Standard January 2023</option>
+<option value="2023/01/01" selected>Living Standard April 2023</option>
 <option value="2005/07/01">WebApps January 2005</option>
 <option value="2005/01/01">WebApps July 2005</option>
 <option value="2006/07/01">WebApps January 2006</option>
@@ -321,7 +322,7 @@ October 2022
 <pre>
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.1.20
+version 0.1.22
 (c) 2020-2023 dylan harris
 see LICENCE.txt &amp; LICENSE.txt for copyright &amp; licence notice
 <a href="https://ssc.lu/">https://ssc.lu/</a>
@@ -332,13 +333,14 @@ see LICENCE.txt &amp; LICENSE.txt for copyright &amp; licence notice
 ssc analyses static HTML snippets, files and sites:
 &mdash; HTML 1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3&ndash;draft
 &mdash; HTML living standard, Jan 2005 to Apr 2023
+&mdash; CSS 1/2.0/2.1/2.2&ndash;draft Feb 2022, some 3/4/5/6
 &mdash; SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x&ndash;draft Apr 2021
 &mdash; MathML 1/2/3/4&ndash;draft Jul 2022
 &mdash; XHTML 1.0/1.1/2.0/5.x
-&mdash; CSS 1/2.0/2.1/2.2&ndash;draft Feb 2022
 &mdash; finds broken links
 &mdash; server side includes, mostly
-&mdash; common microdata &amp; RDFa ontologies
+&mdash; common microdata &amp; RDFa ontologies, including
+&mdash; schema.org from 0.10 to 21.0
 
 with opinions on:
 &mdash; standard english where dialect is required
@@ -444,7 +446,7 @@ Then came the cow flu<sup>*</sup>.
 
 written by dylan harris
 mail@ssc.lu
-March 2023
+May 2023
 </pre>
 </section>
 
@@ -537,17 +539,23 @@ line, the "no-" switch always applies.
                         intended for use by a local search engine. If
                         none of --corpus.article, --corpus.body, or
                         --corpus.main are specified, the content of
-                        &lt;BODY&gt; is used. If more than one are specified,
-                        then the text collected depends on a page's
-                        content. This is incompatible with
+                        &lt;BODY&gt; is used. If more than one are
+                        specified, then the text collected depends on a
+                        page's content. This is incompatible with
                         --shadow.update.
 
---css.colour X          Use CSS Colour level X, where X is 0 or 3
+--css.animation X       Use CSS Animations level X, where X is 0, 3 or
+                        4
+
+--css.cascade X         Use CSS Cascade level X, where X is 0, 3, 4, 5,
+                        or 6
+
+--css.colour X          Use CSS Colour level X, where X is 0, 3 or 4
 
 --css.extension ext     Presume files with extension '.ext' are CSS
                         files
 
---css.media X           Use CSS Media level X, where X is 0, 3 or 4
+--css.media X           Use CSS Media level X, where X is 0, 3, 4 or 5
 
 --css.namespace X       Use CSS Namespaces level X, where X is 0 or 3
 
@@ -558,6 +566,9 @@ line, the "no-" switch always applies.
 --css.ui X              Use CSS Basic User Interface level X, where X
                         is 0, 3 or 4
 
+--css.value X           Use CSS Values and Units level X, where X is 0,
+                        3 or 4
+
 --css.verify            Verify CSS files (replaces --general.css)
 
 --css.version X         Presume version X of CSS, where X is one of:
@@ -567,6 +578,8 @@ line, the "no-" switch always applies.
                             2.2 CSS 2.2 (Feb 2022 draft)
                             3   CSS level 3 (unfinished)
                             4   CSS level 4 (unfinished)
+                            5   CSS level 5 (unfinished)
+                            6   CSS level 6 (unfinished)
 
 --general.class         Report unrecognised classes.
 
@@ -671,6 +684,9 @@ line, the "no-" switch always applies.
                         for example, 'warning' will also output
                         'catastrophe' and 'error' nits.
 
+--html.force            If &lt;!DOCTYPE...&gt; is missing, force presumption
+                        of --html.version value, not HTML 1/tags
+
 --html.rfc1867          Ignore the RFC 1867 (INPUT=FILE) extension when
                         processing HTML 2.0
 
@@ -721,7 +737,7 @@ line, the "no-" switch always applies.
                             ...         (halfly)
                             2021/1/1    WhatWG HTML 5 (January 2021),
                             ...         (quarterly)
-                            2022/10/1    WhatWG HTML 5 (October 2022),
+                            2023/4/1    WhatWG HTML 5 (April 2023),
 
                             XHTML 1.0   XHTML 1.0,
                             XHTML 1.1   XHTML 1.1 core,
@@ -968,7 +984,7 @@ line, the "no-" switch always applies.
                                 rif 1.0
                                 role 1.0
                                 rr 1.0
-                                schema 0.10-14.0 (see below)
+                                schema 0.10-21.0 (see below)
                                 sd 1.0
                                 sioc 1.0
                                 sioc_s 1.0
@@ -1029,7 +1045,9 @@ line, the "no-" switch always applies.
                                 1.70        1.7
                                 1.80        1.8
                                 1.90        1.9
-                                1.91...     as version number
+                                1.91       as version number
+                                ...
+                                21.0       as version number
 
 --shadow.changed        When shadowing a site that has been previously
                         shadowed, only copy/link files that have
@@ -1586,7 +1604,7 @@ Introduction
 SSC can be built on various unii with CMake and gcc or clang,
 supporting C++ 17 or better, or with Visual Studios 2017 / 2019 / 2022
 under Windows. I have built & tested a 64-bit version in selected OSs
-on intel/amd architecture.
+on intel/amd architecture. A test arm64 version is also available.
 
 Although ssc builds and runs with older compilers on older systems, not
 all features are available on them.
@@ -1624,6 +1642,8 @@ multilingual contexts.
 
 Building
 ========
+Note: at the moment, ssc takes forever and a day to compile. I will
+address this in forthcoming versions.
 
 Windows
 -------
@@ -1674,9 +1694,12 @@ The following have been successfully built as x64 amd/intel:
 FreeBSD:  12.3 / 13.1
 Linux:    Alma Linux 9, AOSC, Centos 8 / 9<sup>*</sup>, SUSE Tumbleweed,
           Ubuntu 20.04 / 22.04
-MacOS:    Monterey, Big Sur, Catalina, Mojave, High Sierra, Sierra,
-          El Capitan, and Yosemite
-OpenBSD:  7.2 / 7.1 
+MacOS:    Ventura, Monterey, Big Sur, Catalina, Mojave, High Sierra,
+          Sierra, El Capitan, and Yosemite
+OpenBSD:  7.3 / 7.2 / 7.1 / 7.0 / 6.9 / 6.8 
+
+The following have been successfully built as arm64:
+MacOS:    Ventura
 
 A build on an older operating system may result in some features being
 unavailable.
@@ -1711,7 +1734,7 @@ Under CMake, run ctest:
 
 Dimitude
 --------
-The testing utility is rather stupid; it will test features that are
+The testing utility is rather dim; it will test features that are
 not built, causing failures.
 
 Spelling test results depend on the dictionaries installed.
@@ -1742,6 +1765,16 @@ not so easy for Windows. I suggest the following:
     ****\vcpkg\installed\x64-windows\bin
 7  If you plan to debug, also add debug\bin, perhaps:
     ****\vcpkg\installed\x64-windows\debug\bin
+
+Adapt the architecture as necessary. If you omit it, vcpkg might
+carefully ignore your hardware and install x86.
+
+Boost
+-----
+Boost is to C++ as breakfast is to the working day.
+
+Most package managers support it, including vcpkg. Many people build
+their own versions using the sources found at boost.org.
 </pre>
 
 <h3>notes</h3>
@@ -1758,6 +1791,171 @@ dependencies that are vary across systems, which can cause spurious test failues
 
 <section id="sauce">
 <h2>source</h2>
+
+<h3>0.1.24</h3>
+
+<ul>
+<li>
+improved build time
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.24.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-06-17">23 6 17</time>
+</li>
+</ul>
+
+<h3>0.1.23</h3>
+
+<ul>
+<li>
+CSS Animation 3 (called 1, but not part of CSS 1 spec)
+</li>
+<li>
+CSS Animation 4 (called 2, but not part of any CSS 2 spec)
+</li>
+<li>
+CSS Values 4
+</li>
+<li>
+various bug fixes
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.23.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-06-13">23 6 13</time>
+</li>
+</ul>
+
+<h3>0.1.22</h3>
+
+<ul>
+<li>
+linux ARM64 (centos 9 tested)
+</li>
+<li>
+schema.org default now version 21
+</li>
+<li>
+CSS Values 3
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.22.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-06-01">23 6 1</time>
+</li>
+</ul>
+
+<h3>0.1.21</h3>
+
+<ul>
+<li>
+schema.org updated (default still 15.0)
+</li>
+<li>
+ARM64 builds for macos and windows
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.21.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-05-09">23 5 24</time>
+</li>
+</ul>
+
+<ul>
+<li>
+OpenBSD 7.3
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.20.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-05-09">23 5 9</time>
+</li>
+</ul>
+
+<h3>0.1.19</h3>
+
+<ul>
+<li>
+CSS 3 Cascade
+</li>
+<li>
+CSS 4 Cascade
+</li>
+<li>
+CSS 5 Cascade
+</li>
+<li>
+CSS 6 Cascade (March 2023 draft)
+</li>
+<li>
+CSS 4 Colour
+</li>
+<li>
+CSS Custom Properties
+</li>
+<li>
+CSS 4 Selectors (November 2022 draft)
+</li>
+<li>
+CSS 3 Syntax
+</li>
+<li>
+Abhorrent nits for markup that disgusts
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.19.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-04-08">23 4 8</time>
+</li>
+</ul>
+
+<h3>0.1.18</h3>
+
+<ul>
+<li>
+WhatWG Living Standard (April 2023)
+</li>
+<li>
+CSS 5 Media
+</li>
+<li>
+CSS 4 Media
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.18.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-04-01">23 4 1</time>
+</li>
+</ul>
 
 <h3>0.1.17</h3>
 
@@ -1784,7 +1982,6 @@ underlying work
 released <time itemprop="datePublished" class="dt-published" datetime="2023-03-25">23 3 25</time>
 </li>
 </ul>
-
 
 <h3>0.1.16</h3>
 

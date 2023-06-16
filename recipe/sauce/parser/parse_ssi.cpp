@@ -250,7 +250,7 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
 
     ::std::ostringstream ss;
 #ifndef NO_BOOST_DATE_FACET
-    GSL_OWNER (::boost::gregorian::date_input_facet) facet (new ::boost::gregorian::date_input_facet ("%D %T %Z"));
+    const GSL_OWNER (::boost::gregorian::date_input_facet) facet (new ::boost::gregorian::date_input_facet ("%D %T %Z"));
     ss.imbue (::std::locale (::std::locale (), facet));
     ss << ::boost::posix_time::from_time_t (lwt);
 #else // NO_BOOST_DATE_FACET

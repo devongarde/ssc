@@ -146,7 +146,7 @@ void statement::parse_import (arguments& args, nitpick& nits, const int from, co
         mql = i; }
     if (! u.invalid ())
     {   ::std::string content;
-        ::std::time_t when;
+        ::std::time_t when = 0;
         if (! u.is_local ())
             nits.pick (nit_reputation, es_warning, ec_css, "the security, integrity, presentation and reputation of your site is dependent on that of ", quote (u.get ()));
         if (! cached_url (nits, context.html_ver (), args.g_.get_page ().get_directory (), u, content, when))

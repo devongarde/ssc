@@ -65,14 +65,6 @@ void url::parse (nitpick& nits, const html_version& v, const ::std::string& url,
                 params_.swap (pa); }
         protocol_.swap (pr);
         valid_ = valid_ && protocol_.is_valid (); } }
-/*
-        if (pr.parse (nits, v, decode (trim_the_lot_off (uq3 (url))), current))
-        {   if (has_component (es_query))
-            {   parameters pa (v, pr.get_component (es_query));
-                params_.swap (pa); } }
-        protocol_.swap (pr);
-        valid_ = protocol_.is_valid (); } }
-*/
 
 vurl_t split_urls_by_space (nitpick& nits, const html_version& ver, const ::std::string& s)
 {   vstr_t v (split_by_space (s));
@@ -82,8 +74,7 @@ vurl_t split_urls_by_space (nitpick& nits, const html_version& ver, const ::std:
     return res; }
 
 bool url::sanity_test () const
-{   // only http: & https: processed for now
-    if (empty ()) return false;
+{   if (empty ()) return false;
     if (! has_protocol ()) return true; // presume internal link.
     return is_usable (); }
 

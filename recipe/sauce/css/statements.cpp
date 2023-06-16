@@ -67,12 +67,12 @@ void statements::parse (arguments& args, const int start, const int finish)
     if (at > 0)
         if (args.styled ()) props_.parse (args, from, prev);
         else
-        {   args.t_.at (last - 1).nits_.pick (nit_css_unfinished, es_error, ec_css, "incomplete");
+        {   args.t_.at (stm (last)).nits_.pick (nit_css_unfinished, es_error, ec_css, "incomplete");
             rules_.emplace_back (args, from, last - 1); }
     else if ((from > 0) && (args.t_.at (from).t_ != ct_eof))
         if (args.styled ()) props_.parse (args, from, prev);
         else
-        {   args.t_.at (last - 1).nits_.pick (nit_css_unfinished, es_error, ec_css, "incomplete");
+        {   args.t_.at (stm (last)).nits_.pick (nit_css_unfinished, es_error, ec_css, "incomplete");
             rules_.emplace_back (args, from, last - 1); } }
 
 void statements::accumulate (stats_t* s) const

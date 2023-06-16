@@ -225,7 +225,7 @@ template < e_type T, e_type A, class SZ, e_type B > struct type_opt_then_must : 
         else if (tidy_string < T > :: good ())
         {   ::std::string ss (tidy_string < T > :: get_string ());
             PRESUME (SZ :: sz () != nullptr, __FILE__, __LINE__);
-            ::std::string::size_type pos = ss.find_first_of (SZ :: sz ());
+            const ::std::string::size_type pos = ss.find_first_of (SZ :: sz ());
             if (pos != ::std::string::npos)
             {   if (! test_value < A > (nits, v, ss.substr (0, pos), tidy_string < T > :: id ())) tidy_string < T > :: status (s_invalid);
                 else both_ = true;

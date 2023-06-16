@@ -217,6 +217,7 @@ enum_name_t enum_name [] =
     { t_css_colour_4, "CSS colour 4" },
     { t_css_colour_a, "CSS colour auto" },
     { t_css_colour_interpolation, "CSS colour interpolation" },
+    { t_css_colour_percent, "CSS colour percent" },
     { t_css_content, "CSS content" },
     { t_css_content_base, "CSS content base" },
     { t_css_content_enum, "CSS content enum" },

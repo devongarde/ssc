@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "element/element.h"
 #include "css/arguments.h"
 
-bool process_css (nitpick& nits, const html_version& v, const ::std::string& s, element* e) noexcept
+bool process_css (nitpick& nits, const html_version& v, const ::std::string& s, element* e)
 {   try
     {   if (e == nullptr)
             nits.pick (nit_css_syntax, es_catastrophic, ec_type, "null element processing STYLE");

@@ -22,12 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type.h"
 #include "css/arguments.h"
 #include "css/flags.h"
-
-struct property_base;
-typedef ::std::shared_ptr < property_base > property_v_ptr;
-property_v_ptr make_property_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const css_token t);
-property_v_ptr make_property_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const css_token t);
-
 #include "css/value.h"
 
 #ifdef _MSC_VER
@@ -43,7 +37,7 @@ struct property_base
     virtual bool good () const noexcept { return false; }
     virtual bool bad () const noexcept { return true; }
     virtual bool invalid () const noexcept { return true; }
-    virtual void verify (nitpick& nits, const elem& e) { }
+    virtual void verify (nitpick& , const elem& ) { }
     virtual void validate (arguments& ) { }
     virtual void accumulate (stats_t* , const element_bitset& ) const { }
     virtual void shadow (::std::stringstream& , arguments&, element* ) { }
@@ -82,7 +76,7 @@ template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public
                     if (! call_fn (args, nits, i, to, res, e))
                         test_value < TYPE > (nits, args.v_, args.t_.at (i).val_);
                     else if (e != cvf_none)
-                        start = i = value_fns < TYPE, CSS_VAL_FN > :: check (args, start, to, nits, e, IDENTITY);
+                        start = i = test_value_fns (args, start, to, nits, TYPE, e, IDENTITY);
         return res; }
     virtual void verify (nitpick& nits, const elem& e) override
     {   if (iiu_ == iiu_none) type_master < TYPE > :: verify_attribute (nits, context.html_ver (), e, nullptr, name ()); }
@@ -134,6 +128,10 @@ template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public
 template < > inline void typed_property < t_css_anim_base, ec_animation_name > :: validate (arguments& args)
 {   void validate_animation_name (type_master < t_css_anim_base >& cab, arguments& args);
     if (iiu_ == iiu_none) validate_animation_name (*this, args); }
+
+typedef ::std::shared_ptr < property_base > property_v_ptr;
+property_v_ptr make_property_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const css_token t);
+property_v_ptr make_property_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const css_token t);
 
 #ifdef _MSC_VER
 #pragma warning (pop)

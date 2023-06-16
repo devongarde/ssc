@@ -256,9 +256,11 @@ class element
     ::std::string text (const bool simplify = false) const { return node_.text (simplify); }
     ::std::string term () const;
 public:
+    element () = delete;
+    DEFAULT_NO_COPY_NO_MOVE (element);
     element (const ::std::string& name, element_node& en, element* parent, page* p);
-    ~element () { cleanup (); }
-    void swap (element& e) noexcept;
+    ~element ();
+    void swap (element& e);
     void cleanup () noexcept;
 
     void reconstruct (sstr_t* access);

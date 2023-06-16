@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "icu/charset.h"
 #include "spell/spell.h"
 
-const int32_t arbitrary_max = 2048;
+constexpr int32_t arbitrary_max = 2048;
 vstr_t lingo::dicts_;
 bool lingo::borked_ = false;
 
@@ -110,7 +110,7 @@ void lingo::init (nitpick& )
             outstr.err (::std::string (GSL_AT (ab, i).a_) + " repeated in standard language table.\n");
         else
 #endif // DEBUG
-            mab.insert (::std::pair < ::std::string, ::std::string > (::std::string (GSL_AT (ab, i).a_), ::std::string (ab [i].b_))); }
+            mab.insert (::std::pair < ::std::string, ::std::string > (::std::string (GSL_AT (ab, i).a_), ::std::string (GSL_AT (ab, i).b_))); }
 
 void lingo::identify_dialects (nitpick& nits)
 {   if (context.spell ()) dicts_ = load_dictionaries (nits); }
@@ -126,6 +126,7 @@ bool lingo::is_upper (const ::std::string& s) const
 {   if (invalid () || ! context.icu ()) return iswupper (s.at (0));
     const int32_t len = GSL_NARROW_CAST < int32_t > (s.length ());
     const uint8_t* psz = reinterpret_cast <const uint8_t*> (s.c_str ());
+    VERIFY_NOT_NULL (psz, __FILE__, __LINE__);
     for (int32_t pos = 0; pos < len; )
     {   UChar32 ch;
         U8_NEXT_OR_FFFD (psz, pos, len, ch);
@@ -136,6 +137,7 @@ bool lingo::is_lower (const ::std::string& s) const
 {   if (invalid () || ! context.icu ()) return iswlower (s.at (0));
     const int32_t len = GSL_NARROW_CAST < int32_t > (s.length ());
     const uint8_t* psz = reinterpret_cast <const uint8_t*> (s.c_str ());
+    VERIFY_NOT_NULL (psz, __FILE__, __LINE__);
     for (int32_t pos = 0; pos < len; )
     {   UChar32 ch;
         U8_NEXT_OR_FFFD (psz, pos, len, ch);
@@ -146,6 +148,7 @@ bool lingo::is_alpha (const ::std::string& s) const
 {   if (invalid () || ! context.icu ()) return iswalpha (s.at (0));
     const int32_t len = GSL_NARROW_CAST < int32_t > (s.length ());
     const uint8_t* psz = reinterpret_cast <const uint8_t*> (s.c_str ());
+    VERIFY_NOT_NULL (psz, __FILE__, __LINE__);
     for (int32_t pos = 0; pos < len; )
     {   UChar32 ch;
         U8_NEXT_OR_FFFD (psz, pos, len, ch);
@@ -156,6 +159,7 @@ bool lingo::is_space (const ::std::string& s) const
 {   if (invalid () || ! context.icu ()) return iswspace (s.at (0));
     const int32_t len = GSL_NARROW_CAST < int32_t > (s.length ());
     const uint8_t* psz = reinterpret_cast <const uint8_t*> (s.c_str ());
+    VERIFY_NOT_NULL (psz, __FILE__, __LINE__);
     for (int32_t pos = 0; pos < len; )
     {   UChar32 ch;
         U8_NEXT_OR_FFFD (psz, pos, len, ch);
@@ -296,10 +300,10 @@ vstr_t lingo::to_words (nitpick& nits, const ::std::string& s) const
                 {   bool ws = true;
                     UChar word [arbitrary_max] = { 0 };
                     for (int32_t i = prev; i < pos; ++i)
-                    {   GSL_AT (word, i - prev) = GSL_AT (tmp, i);
+                    {   GSL_AT (word, stm (i, prev)) = GSL_AT (tmp, i);
                         if (ws) ws = u_isUWhiteSpace (GSL_AT (tmp, i)) || u_isspace (GSL_AT (tmp, i)); }
                     if (! ws)
-                    {   GSL_AT (word, pos - prev) = 0;
+                    {   GSL_AT (word, stm (pos, prev)) = 0;
                         ::std::string ss;
                         len = to_utf8 (word, pos - prev, ss);
                         if (len > 0) res.emplace_back (ss); }
@@ -312,7 +316,7 @@ vstr_t lingo::to_words (nitpick& nits, const ::std::string& s) const
 
 ::std::string lingo::language () const
 {   if (invalid () || ! context.icu ())
-    {   ::std::string::size_type pos = orig_.find_first_of ("_-");
+    {   const ::std::string::size_type pos = orig_.find_first_of ("_-");
         if (pos == ::std::string::npos) return orig_;
         return orig_.substr (0, pos); }
     ::std::string res;
@@ -325,9 +329,9 @@ vstr_t lingo::to_words (nitpick& nits, const ::std::string& s) const
 
 ::std::string lingo::region () const
 {   if (invalid () || ! context.icu ())
-    {   ::std::string::size_type pos = orig_.find_first_of ("_-");
+    {   const ::std::string::size_type pos = orig_.find_first_of ("_-");
         if (pos == ::std::string::npos) return ::std::string ();
-        ::std::string::size_type pos2 = orig_.find_first_not_of (ALPHANUMERIC, pos);
+        const ::std::string::size_type pos2 = orig_.find_first_not_of (ALPHANUMERIC, pos);
         if (pos2 == ::std::string::npos) return orig_.substr (pos+1);
         return orig_.substr (pos+1, pos2-pos); }
     ::std::string res;

@@ -25,10 +25,10 @@ template < class ENUM, ENUM max_enum, ENUM undefined_enum > class stats1
 {   typedef ::std::vector < unsigned > counter_t;
     counter_t count_;
 public:
-    static unsigned size () { return max_enum + 1; }
+    static unsigned size () noexcept { return max_enum + 1; }
     void swap (stats1 < ENUM, max_enum, undefined_enum >& s1) noexcept
     {   count_.swap (s1.count_); }
-    void reset ()
+    void reset () noexcept
     {   stats1 < ENUM, max_enum, undefined_enum > tmp;
         swap (tmp); }
     unsigned at (const ENUM e) const
@@ -46,7 +46,7 @@ public:
     {   if (o.count_.size () == 0) o.count_ = count_;
         else for (unsigned i = 0; i < count_.size (); ++i)
             if (count_.at (i) > 0)
-                o.mark (static_cast < ENUM > (i), count_.at (i)); } };
+                o.mark (::gsl::narrow_cast < ENUM > (i), count_.at (i)); } };
 
 typedef stats1 < e_element, last_element_tag, elem_undefined > element_stats;
 typedef stats1 < e_category, last_category, ec_undefined > category_stats;

@@ -38,7 +38,7 @@ public:
     void reset ()
     {   aar_.fill (attribute_v_ptr ());
         unrecognised_.clear (); }
-    void swap (attributes& w) noexcept;
+    void swap (attributes& w);
     void reconstruct (element_node& en)
     {   parse (en.nits (), en.version (), en.attributes ()); }
     e_element tag () const noexcept;
@@ -95,7 +95,7 @@ public:
         return aar_.at (a) -> size (); }
     template < class ATTRIBUTE > typename ATTRIBUTE::value_type get_x () const
     {   if (! has (ATTRIBUTE::whoami ())) return ATTRIBUTE::default_value ();
-        ATTRIBUTE* ap = dynamic_cast < ATTRIBUTE* > (aar_.at (ATTRIBUTE::whoami ()).get ());
+        const ATTRIBUTE* ap = dynamic_cast < ATTRIBUTE* > (aar_.at (ATTRIBUTE::whoami ()).get ());
         VERIFY_NOT_NULL (ap, __FILE__, __LINE__);
         return ap -> get (); }
     const attribute_v_ptr get (const e_attribute a) const

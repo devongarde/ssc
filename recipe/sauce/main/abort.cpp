@@ -46,6 +46,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     ::std::cerr << "\n" << msg << "\n";
     throw ::std::runtime_error (msg); }
 
+[[noreturn]] void ugly_presumption (const char* const x, const char* const fn, const ::std::size_t line) noexcept
+{   try
+    {   ::boost::filesystem::path p (fn);
+        ::std::string msg ("presumption " );
+        msg += quote (x);
+        msg += ::std::string (" failed");
+        msg += file_line (fn, line);
+        ::std::cerr << "\n" << msg << "\n"; }
+    catch (...)
+    {   ::std::printf ("\nugly presumption cannot state its origin\n"); }
+    ::std::terminate (); }
+
 [[noreturn]] void graceful_crash (const char* const fn, const ::std::size_t line)
 {   ::std::string msg ("inconsistent internal state");
     msg += file_line (fn, line);
@@ -58,5 +70,5 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
         msg += file_line (fn, line);
         ::std::cerr << "\n" << msg << "\n"; }
     catch (...)
-    {   ::std::printf ("\ngraceless crash cannot even state origin\n"); }
+    {   ::std::printf ("\ngraceless crash cannot state its origin\n"); }
     ::std::terminate (); }

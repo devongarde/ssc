@@ -29,14 +29,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 knickers::~knickers ()
 {   if (! nits_.empty ())
-    {   lox l (lox_nits);
-        try { ticks_ -> merge (nits_); } catch (...) { } } }
+    try {
+        lox l (lox_nits);
+        ticks_ -> merge (nits_); }
+    catch (...) { } }
 
 void knickers::accumulate_and_clear ()
 {   if (! nits_.empty ())
-    {   lox l (lox_nits);
-        try {
-            nits_.accumulate (*ticks_);
-            nits_.reset (); }
-        catch (...) { } } }
-
+    try {
+        lox l (lox_nits);
+        nits_.accumulate (*ticks_);
+        nits_.reset (); }
+    catch (...) { } }

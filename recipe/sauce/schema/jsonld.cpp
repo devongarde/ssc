@@ -78,7 +78,7 @@ e_schema_property get_schema_property (nitpick& nits, const html_version& v, con
     {   nits.pick (nit_jsonld_type, es_error, ec_json, "schema type ", quote (s), " is incomplete");
         return sp_illegal; }
     const schema_version sv (v);
-    e_schema_property sp = identify_schema_property (s.substr (after));
+    const e_schema_property sp = identify_schema_property (s.substr (after));
     if (sp == sp_illegal)
         nits.pick (nit_not_schema_property, es_error, ec_schema, quote (s.substr (after)), " is not a recognised ", sv.report (), " property");
     const sch sc (nits, v, s.substr (after), es);
