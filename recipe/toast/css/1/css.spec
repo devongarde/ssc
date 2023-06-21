@@ -77,7 +77,7 @@ PASS ../toast/css/1/css-3.html
 16 inserted_missing_closure
 
 PASS ../toast/css/1/css-4.html
-2 invalid_attribute_version wrong_version naughty_lang
+2 naughty_lang
 28 inserted_missing_closure missing_close
 29 inserted_missing_closure
 36 inserted_missing_closure missing_close

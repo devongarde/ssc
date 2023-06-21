@@ -145,6 +145,9 @@ PASS ../toast/living/jul11/example.html
 27 inserted_missing_closure inserted_missing_closure
 28 inserted_missing_closure inserted_missing_closure
 29 inserted_missing_closure inserted_missing_closure
+30 character_code
+32 character_code
+34 character_code
 38 inserted_missing_closure inserted_missing_closure unrecognised_value
 39 input_bad_aria
 43 attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_unrecognised unrecognised_attribute unrecognised_attribute unrecognised_attribute unrecognised_attribute

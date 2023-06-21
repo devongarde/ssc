@@ -211,6 +211,9 @@ PASS ../toast/living/apr21/conformance.html
 32 inserted_missing_closure inserted_missing_closure
 33 inserted_missing_closure inserted_missing_closure
 34 inserted_missing_closure inserted_missing_closure
+36 character_code
+38 character_code
+40 character_code
 44 inserted_missing_closure inserted_missing_closure unrecognised_value
 45 input_bad_aria
 47 inserted_missing_closure
@@ -1059,6 +1062,9 @@ PASS ../toast/living/apr21/intro-2.html
 53 inserted_missing_closure inserted_missing_closure
 54 inserted_missing_closure inserted_missing_closure
 55 inserted_missing_closure inserted_missing_closure
+57 character_code
+59 character_code
+61 character_code
 65 inserted_missing_closure inserted_missing_closure unrecognised_value
 66 input_bad_aria
 68 inserted_missing_closure

@@ -1,9 +1,9 @@
 Static Site Checker
-0.1.24
+0.1.25
 ../toast/shadow/comment
 0
 -
-7
+8
 /Users/dylan/project/app/ssc/recipe/toast/shadow/comment
 /Users/dylan/project/app/ssc/recipe/toast/shadow/comment
 0,0,0,18,0,0,0
@@ -24,4 +24,7 @@ comment.spec
 -1,0,0,256,0,0,0
 index.html.model
 /Users/dylan/project/app/ssc/recipe/toast/shadow/comment/index.html.model
+-1,0,0,256,0,0,0
+comment.ndx
+/Users/dylan/project/app/ssc/recipe/toast/shadow/comment/comment.ndx
 -1,0,0,256,0,0,0

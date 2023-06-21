@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
-#define VERSION_RELEASE 24
-#define VERSION_STRING "0.1.24"
+#define VERSION_RELEASE 25
+#define VERSION_STRING "0.1.25"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -441,7 +441,9 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define HTTP PR_HTTP COLON_SLASH_SLASH
 #define HTTPS PR_HTTPS COLON_SLASH_SLASH
 #define SPACE ' '
+#define AMPERSAND '&'
 #define COLON ':'
+#define SEMICOLON ';'
 #define DOT '.'
 #define SLASH '/'
 #define HASH '#'

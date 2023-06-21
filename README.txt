@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.1.24
+version 0.1.25
 (c) 2020-2023 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notice
 https://ssc.lu/
@@ -10,7 +10,7 @@ https://github.com/devongarde/ssc
 
 ssc analyses static X/HTML snippets, files and sites:
 - HTML 1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3-draft
-- HTML living standard, Jan 2005 to Apr 2023
+- HTML living standard, Jan 2005 to Jul 2023
 - CSS 1/2.0/2.1/2.2 draft Feb 2022, some 3/4/5/6
 - SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x draft Apr 2021
 - MathML 1/2/3/4 draft Jul 2022
@@ -22,7 +22,7 @@ ssc analyses static X/HTML snippets, files and sites:
 with opinions on:
 - standard english where dialect is required
 - perfectly legal but sloppy HTML
-- abhorrent rudeness such as autoplay on videos
+- abhorrent rudeness such as autoplay on video
 
 It does NOT:
 - analyse or understand scripts
@@ -62,20 +62,20 @@ ssc by collecting the following information (where relevant):
 - precise version of the operating system;
 - hardware architecture and system information;
 - detailed description of the error and how to cause it;
-- copy of output file showing the error;
+- copy of output file/s showing the error;
 - copy of pages/website being analysed;
 - precise command used;
-- configuration file(s) used, if any;
+- configuration file/s used, if any;
 - any ndx file or other pre-existing file used during the run;
 - any known workarounds or solutions;
-- a dance interpretation of the 'feature';
-and emailing everything to mail@ssc.lu (if the collected files are more
-than small, please use a public fileserver and email the link). Do NOT
-send anything confidential. Furthermore, unless you request otherwise,
-we reserve the right to publish some or all of the information sent in
+- a dance interpretation of the 'feature'.
+Email everything to mail@ssc.lu (if the collected files are more than
+small, please use a public fileserver and email the link). Do NOT send
+anything confidential. Furthermore, unless you request otherwise, we
+reserve the right to publish some or all of the information sent in
 future versions of ssc, usually in the test suite. If you have a fix,
-you are invited to submit a pull request on github. Thank you.
-Github address: https://github.com/devongarde/ssc
+you are invited to submit a pull request on github, at
+https://github.com/devongarde/ssc . Thank you.
 
 
 
@@ -111,16 +111,16 @@ more licences    licences for borrowed external content
 
 Background
 I have a website, arts & ego, at https://dylanharris.org/. It has
-approaching 60G of original content. It contains hand coded HTMLs 2,
-3, 4 & 5. It is a complete mess. Despite a long search, I could not
-find any tools to properly diagnose its flaws. Anything I did find
-was at most cursory.
+approaching 60G of original content. It contains hand coded HTMLs 2
+to 5. It is a complete mess. Despite a long search, I could not find
+any tools to properly diagnose its flaws. Anything I did find was at
+most cursory.
 
 Then came the cow flu*.
 
 * corvid means crow, thus covid means cow**.
 
-** by the rules of sympathetic spelling.
+** by the long derided laws of sympathetic spelling.
 
 
 

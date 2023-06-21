@@ -810,6 +810,8 @@ const nitname nitnames [] =
     { nit_css_keyframes, "css_keyframes" },
     { nit_css_value_fn, "css_value_fn" },
     { nit_css_value_param, "css_value_param" },
+    { nit_css_living_standard, "css_living_standard" },
+    { nit_popover, "popover" },
 
     { nit_incompatible, "incompatible" },
 

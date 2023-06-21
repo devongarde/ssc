@@ -27,6 +27,7 @@ PASS ../toast/RDFa/cc/cc.html
 212 mixed_mess
 227 missing_open
 231 attribute_required
+235 character_code
 236 bad_border invalid_attribute_version wrong_version attribute_required
 242 unrecognised_value
 246 invalid_attribute_version wrong_version

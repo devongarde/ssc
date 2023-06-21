@@ -133,13 +133,13 @@ void reset_fileindices () noexcept
     mcrc.clear (); }
 
 void unindex (const fileindex_t ndx)
-{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
+{   //PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     site_x.erase (GSL_AT (vx, ndx).site_path ());
     disk_x.erase (GSL_AT (vx, ndx).disk_path ().string ());
     if (GSL_AT (vx, ndx).crc_ != crc_initrem) mcrc.erase (GSL_AT (vx, ndx).crc_); }
 
 void reindex (const fileindex_t ndx)
-{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
+{   //PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     unindex (ndx);
     site_x.emplace (mxp_t::value_type (GSL_AT (vx, ndx).site_path (), ndx));
     disk_x.emplace (mxp_t::value_type (GSL_AT (vx, ndx).disk_path ().string (), ndx));
@@ -150,16 +150,16 @@ void reindex (const fileindex_t ndx)
     inner_reset_flag (ndx, FX_CRC); }
 
 void note_deleted (const fileindex_t ndx)
-{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
+{   //PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     inner_reset_flag (ndx, FX_STALE);
     if (! inner_get_any_flag (ndx, FX_DELETED))
     {   inner_set_flag (ndx, FX_DELETED);
         unindex (ndx); } }
 
 void update_fileindex (const fileindex_t ndx, const fileindex_flags ff, const bool locked = false)
-{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    ::boost::filesystem::path name;
+{   ::boost::filesystem::path name;
     {   lox l (lox_fileindex, locked);
+        PRESUME (ndx < vx.size (), __FILE__, __LINE__);
         const index_t& xx = GSL_AT (vx, ndx);
         name = xx.disk_path (); }
     fileindex_flags f (ff);
@@ -267,23 +267,23 @@ fileindex_t get_fileindex (const ::std::string& name)
     return nullfileindex; }
 
 ::boost::filesystem::path get_disk_path (const fileindex_t ndx)
-{   if (ndx >= vx.size ()) return ::boost::filesystem::path ();
-    lox l (lox_fileindex);
+{   lox l (lox_fileindex);
+    if (ndx >= vx.size ()) return ::boost::filesystem::path ();
     return GSL_AT (vx, ndx).disk_path (); }
 
 ::std::string get_site_path (const fileindex_t ndx)
-{   if (ndx >= vx.size ()) return ::std::string ();
-    lox l (lox_fileindex);
+{   lox l (lox_fileindex);
+    if (ndx >= vx.size ()) return ::std::string ();
     return GSL_AT (vx, ndx).site_path (); }
 
 fileindex_flags get_flags (const fileindex_t ndx)
-{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    lox l (lox_fileindex);
+{   lox l (lox_fileindex);
+    PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     return GSL_AT (vx, ndx).flags_; }
 
 ::std::string get_name (const fileindex_t ndx)
-{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    lox l (lox_fileindex);
+{   lox l (lox_fileindex);
+    PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     return GSL_AT (vx, ndx).name_; }
 
 bool inner_get_any_flag (const fileindex_t ndx, const fileindex_flags flag)
@@ -318,13 +318,13 @@ void reset_flag (const fileindex_t ndx, const fileindex_flags flag)
     inner_reset_flag (ndx, flag); }
 
 uintmax_t get_size (const fileindex_t ndx)
-{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    lox l (lox_fileindex);
+{   lox l (lox_fileindex);
+    PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     return GSL_AT (vx, ndx).size_; }
 
 ::std::time_t last_write (const fileindex_t ndx)
-{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    lox l (lox_fileindex);
+{   lox l (lox_fileindex);
+    PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     return GSL_AT (vx, ndx).last_write_; }
 
 crc_t calc_crc (nitpick& nits, const ::boost::filesystem::path& dp)
@@ -372,8 +372,8 @@ crc_t calc_crc (nitpick& nits, const ::boost::filesystem::path& dp)
     return crc.checksum (); }
 
 crc_t get_crc (nitpick& nits, const fileindex_t ndx)
-{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    if (! inner_get_any_flag (ndx, FX_CRC)) // only one thread looks at a file, once in scanning once in examining; so this shouldn't need locking
+{   //PRESUME (ndx < vx.size (), __FILE__, __LINE__);
+    if (! inner_get_any_flag (ndx, FX_CRC)) // only one thread looks at a file, once in scanning, once in examining; so this shouldn't need locking
     {   crc_t crc = calc_crc (nits, GSL_AT (vx, ndx).disk_path ());
         set_crc (ndx, crc);
         return crc; }
@@ -381,8 +381,8 @@ crc_t get_crc (nitpick& nits, const fileindex_t ndx)
     return GSL_AT (vx, ndx).crc_; }
 
 void set_crc (const fileindex_t ndx, const crc_t& crc)
-{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    lox l (lox_fileindex);
+{   lox l (lox_fileindex);
+    PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     GSL_AT (vx, ndx).crc_ = crc;
     inner_set_flag (ndx, FX_CRC); }
 
@@ -782,47 +782,48 @@ void dedu (nitpick& nits) // presumes run between scan and examine phases
                 mcrc.emplace (crc, i); } } }
 
 bool isdu (const fileindex_t ndx)
-{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    lox l (lox_fileindex);
+{   lox l (lox_fileindex);
+    PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     return GSL_AT (vx, ndx).dedu_ != nullfileindex; }
 
 fileindex_t du (const fileindex_t ndx)
-{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    lox l (lox_fileindex);
+{   lox l (lox_fileindex);
+    PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     return GSL_AT (vx, ndx).dedu_; }
 
 void add_dependency (const fileindex_t ndx, const fileindex_t dependency)
-{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    lox l (lox_fileindex);
+{   lox l (lox_fileindex);
+    PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     GSL_AT (vx, ndx).dx_.emplace (dependency); }
 
 void clear_dependencies (const fileindex_t ndx)
-{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    lox l (lox_fileindex);
+{   lox l (lox_fileindex);
+    PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     GSL_AT (vx, ndx).dx_.clear (); }
 
 sndx_t get_dependencies (const fileindex_t ndx)
-{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    lox l (lox_fileindex);
+{   lox l (lox_fileindex);
+    PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     return GSL_AT (vx, ndx).dx_; }
 
 void set_lynx (const fileindex_t ndx, const fileindex_t l)
-{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    lox lx (lox_fileindex);
+{   lox lx (lox_fileindex);
+    PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     GSL_AT (vx, ndx).lx_.emplace (l); }
 
 void clear_lynx (const fileindex_t ndx)
-{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    lox l (lox_fileindex);
+{   lox l (lox_fileindex);
+    PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     GSL_AT (vx, ndx).lx_.clear (); }
 
 sndx_t get_lynx (const fileindex_t ndx)
-{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
-    lox l (lox_fileindex);
+{   lox l (lox_fileindex);
+    PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     return GSL_AT (vx, ndx).lx_; }
 
 bool needs_update (const fileindex_t ndx, const ::std::time_t& st)
-{   PRESUME (ndx < vx.size (), __FILE__, __LINE__);
+{   lox l (lox_fileindex);
+    PRESUME (ndx < vx.size (), __FILE__, __LINE__);
     return GSL_AT (vx, ndx).needs_update (st); }
 
 fileindex_t get_fileindex_count ()

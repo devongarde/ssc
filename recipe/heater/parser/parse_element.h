@@ -50,33 +50,11 @@ class element_node
     void init ();
     void manage_reversioner ();
 
-    // yeah, yeah, yeah, I know
-    namespaces_ptr find_namespace_parent () const noexcept
-    {   for (element_node* mummy = parent_; mummy != nullptr; mummy = mummy -> parent_)
-            if (mummy -> namespaces_.get () != nullptr)
-                return mummy -> namespaces_;
-        return namespaces_ptr (); }
-    prefixes_ptr find_prefixes_parent () const noexcept
-    {   for (element_node* mummy = parent_; mummy != nullptr; mummy = mummy -> parent_)
-            if (mummy -> prefixes_.get () != nullptr)
-                return mummy -> prefixes_;
-        return prefixes_ptr (); }
-    prefixes_ptr find_rdf_schemas_parent () const noexcept
-    {   for (element_node* mummy = parent_; mummy != nullptr; mummy = mummy -> parent_)
-            if (mummy -> rdf_schemas_.get () != nullptr)
-                return mummy -> rdf_schemas_;
-        return prefixes_ptr (); }
-    rdf_ptr find_rdf_parent () const noexcept
-    {   for (element_node* mummy = parent_; mummy != nullptr; mummy = mummy -> parent_)
-            if (mummy -> rdf_.get () != nullptr)
-                return mummy -> rdf_;
-        return rdf_ptr (); }
-    rdf_ptr find_rdfa_parent () const noexcept
-    {   for (element_node* mummy = parent_; mummy != nullptr; mummy = mummy -> parent_)
-            if (mummy -> rdfa_.get () != nullptr)
-                return mummy -> rdfa_;
-        return rdf_ptr (); }
-
+    namespaces_ptr find_namespace_parent () const noexcept;
+    prefixes_ptr find_prefixes_parent () const noexcept;
+    prefixes_ptr find_rdf_schemas_parent () const noexcept;
+    rdf_ptr find_rdf_parent () const noexcept;
+    rdf_ptr find_rdfa_parent () const noexcept;
     ::std::string word (bool simplify) const;
     ::std::string word (nitpick& nits, const html_version& v) const;
 public:
@@ -104,6 +82,7 @@ public:
     bool has_previous () const noexcept { return previous_ != nullptr; }
     bool has_parent () const noexcept { return parent_ != nullptr; }
     bool presumed () const noexcept { return presumed_; }
+
     const element_node& child () const
     {   PRESUME (has_child (), __FILE__, __LINE__);
         return *child_; }
@@ -155,65 +134,17 @@ public:
     const elem& id () const noexcept { return elem_; }
     const elements_node* box () const noexcept { return box_; }
 
-#ifdef _MSC_VER
-#pragma warning (push, 3)
-#pragma warning (disable : 26409) // erm, look at the code, mr. linter. It's resetting a SHARED ptr. The suggestion of using unique_ptr would break the code, badly.
-#endif // _MSC_VER
+    void prepare_namespaces ();
+    namespaces_ptr namespaces () const noexcept;
+    void prepare_prefixes ();
+    prefixes_ptr prefixes () const noexcept;
+    void prepare_rdf_schemas ();
+    prefixes_ptr rdf_schemas () const noexcept;
+    void prepare_rdf ();
+    rdf_ptr rdf () const noexcept;
+    void prepare_rdfa ();
+    rdf_ptr rdfa () const noexcept;
 
-    void prepare_namespaces ()
-    {   if (namespaces_.get () == nullptr)
-        {   namespaces_.reset (new namespaces_t);
-            VERIFY_NOT_NULL (namespaces_.get (), __FILE__, __LINE__);
-            namespaces_ -> up (find_namespace_parent ().get ()); } }
-    namespaces_ptr namespaces () const noexcept
-    {   if (namespaces_.get () != nullptr) return namespaces_;
-        return find_namespace_parent (); }
-
-    void prepare_prefixes ()
-    {   if (prefixes_.get () == nullptr)
-        {   prefixes_.reset (new prefixes_t);
-            VERIFY_NOT_NULL (prefixes_.get (), __FILE__, __LINE__);
-            prefixes_ -> up (find_prefixes_parent ().get ()); } }
-    prefixes_ptr prefixes () const noexcept
-    {   if (prefixes_.get () != nullptr) return prefixes_;
-        return find_prefixes_parent (); }
-
-    void prepare_rdf_schemas ()
-    {   if (rdf_schemas_.get () == nullptr)
-        {   rdf_schemas_.reset (new prefixes_t);
-            VERIFY_NOT_NULL (rdf_schemas_.get (), __FILE__, __LINE__);
-            rdf_schemas_ -> up (find_rdf_schemas_parent ().get ()); } }
-    prefixes_ptr rdf_schemas () const noexcept
-    {   if (rdf_schemas_.get () != nullptr) return rdf_schemas_;
-        return find_rdf_schemas_parent (); }
-
-    // yeah, yeah, yeah, I still know
-    void prepare_rdf ()
-    {   if (rdf_.get () == nullptr)
-        {   rdf_.reset (new rdf_t);
-            VERIFY_NOT_NULL (rdf_.get (), __FILE__, __LINE__);
-            rdf_ -> up (find_rdf_parent ().get ());
-            rdf_ -> prefixes (rdf_schemas ().get ()); } }
-    rdf_ptr rdf () const noexcept
-    {   if (rdf_.get () != nullptr) return rdf_;
-        return find_rdf_parent (); }
-
-    void prepare_rdfa ()
-    {   if (rdfa_.get () == nullptr)
-        {   rdfa_.reset (new rdf_t);
-            VERIFY_NOT_NULL (rdfa_.get (), __FILE__, __LINE__);
-            rdfa_ -> up (find_rdfa_parent ().get ());
-            rdfa_ -> prefixes (prefixes ().get ()); } }
-    rdf_ptr rdfa () const noexcept
-    {   if (rdfa_.get () != nullptr) return rdfa_;
-        return find_rdfa_parent (); }
-
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif // _MSC_VER
-
-    e_element tag () const noexcept
-    {   return elem_.get (); }
-    vstr_t words (nitpick& nits, const html_version& v) const
-    {   return split_by_space (inner_text (nits, v)); }
+    e_element tag () const noexcept;
+    vstr_t words (nitpick& nits, const html_version& v) const;
     ::std::string rpt (const int level = 0); };

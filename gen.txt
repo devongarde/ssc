@@ -33,7 +33,7 @@ These options are only available on the command line:
 
 -f file                 Load configuration from file, which should be
                         in .INI file format. See CONFIGURATION FILE
-                        FORMAT below.
+                        FORMAT below. This should be an absolute path.
 
 -F                      Load the configuration file .ssc/config in the
                         current directory.
@@ -250,25 +250,25 @@ line, the "no-" switch always applies.
 --html.version X        If no doctype (or xml header) is specified,
                         presume version X of HTML. X can be:
                             tags  HTML tags (1991, informal)
-                            1     HTML 1.0 (June 1993 draft)
-                            1.0   HTML 1.0 (June 1993 draft)
-                            +     HTML Plus (November 1993 draft)
+                            1     HTML 1.0 (Jun 1993 draft)
+                            1.0   HTML 1.0 (Jun 1993 draft)
+                            +     HTML Plus (Nov 1993 draft)
                             2     HTML 2.0
                             2.0   HTML 2.0
                             3     HTML 3.2
-                            3.0   HTML 3.0 (March 1995 draft)
+                            3.0   HTML 3.0 (Mar 1995 draft)
                             3.2   HTML 3.2
                             4     HTML 4.01
                             4.0   HTML 4.0
                             4.1   HTML 4.01
                             4.2   XHTML 1.0
                             4.3   XHTML 1.1 core
-                            4.4   XHTML 2.0 (December 2010 draft)
+                            4.4   XHTML 2.0 (Dec 2010 draft)
                             5     recent WhatWG HTML 5
                             5.0   W3 HTML 5.0
                             5.1   W3 HTML 5.1
                             5.2   W3 HTML 5.2
-                            5.3   W3 HTML 5.3 (October 2018 draft)
+                            5.3   W3 HTML 5.3 (Oct 2018 draft)
 
                             2005/1/1    WhatWG WebApps draft (Jan 2005)
                             ...         (halfly)
@@ -277,11 +277,11 @@ line, the "no-" switch always applies.
                             ...         (halfly)
                             2021/1/1    WhatWG HTML 5 (Jan 2021)
                             ...         (quarterly)
-                            2023/4/1    WhatWG HTML 5 (Apr 2023)
+                            2023/7/1    WhatWG HTML 5 (Jul 2023)
 
                             XHTML 1.0   XHTML 1.0
                             XHTML 1.1   XHTML 1.1 core
-                            XHTML 2.0   (December 2010 draft)
+                            XHTML 2.0   (Dec 2010 draft)
                             XHTML 5.x   XHTML corresponding to
                                         equivalent W3 HTML
 
@@ -756,7 +756,7 @@ line, the "no-" switch always applies.
                                       conflict with 1.2/tiny always
                                       resolves in favour of 1.2/tiny)
                             2.0
-                            2.1 (april 2021 draft)
+                            2.1 (April 2021 draft)
                         If this switch is not used, and some SVG code
                         does not identify its version, the version is
                         derived from the version of the host X/HTML
@@ -1065,4 +1065,4 @@ linkchecker
 
 HISTORY
 
-ssc is written by Dylan Harris, https://ssc.lu/.
+ssc (ssc.lu) is written by Dylan Harris (dylanharris.org)

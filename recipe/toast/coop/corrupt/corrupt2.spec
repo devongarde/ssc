@@ -20,6 +20,9 @@ PASS ../toast/coop/corrupt/plumbing/songshade.css
 104 css_bespoke
 104 css_bespoke
 
+PASS ../toast/coop/corrupt/w/weak.shtml
+171 character_code
+
 itemids
 #adams
 #allen

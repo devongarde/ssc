@@ -49,6 +49,7 @@ PASS ../toast/microformats/mf1/mf1-example.html
 175 use_quote_code
 176 use_quote_code
 183 incompatible_mime
+185 character_code character_code 
 187 use_quote_code
 188 hcard_infer hcard_infer
 196 reputation
@@ -58,7 +59,7 @@ PASS ../toast/microformats/mf1/mf1-example.html
 218 hcard_infer hcard_infer
 220 use_quote_code
 221 reputation
-241 newline_in_string newline_in_string reputation reputation reputation
+241 newline_in_string newline_in_string character_code reputation reputation reputation
 246 newline_in_string newline_in_string
 269 hcard_infer hcard_infer
 275 hcard_infer

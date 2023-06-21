@@ -206,6 +206,8 @@ hav_t havt_input [] =
     { { HTML_JAN05, 0, HE_MOZILLA }, { HTML_UNDEF }, elem_input, a_orient },
     { { HTML_JAN09 }, { HTML_UNDEF }, elem_input, a_pattern },
     { { HTML_JAN09 }, { HTML_UNDEF }, elem_input, a_placeholder },
+    { { HTML_APR23 }, { HTML_UNDEF }, elem_input, a_popovertarget },
+    { { HTML_APR23 }, { HTML_UNDEF }, elem_input, a_popovertargetaction },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_input, a_readonly },
     { { HTML_JAN09 }, { HTML_UNDEF }, elem_input, a_required },
     { { HTML_JAN20, 0, HE_SAFARI }, { HTML_UNDEF }, elem_input, a_results },

@@ -304,6 +304,17 @@ void element::examine_other ()
         if (context.math_version () > math_1)
             pick (nit_deprecated_attribute, ed_math_3, "2.1.6 Attributes Shared by all MathML Elements", es_warning, ec_attribute, "except in MathML 1, OTHER is deprecated"); }
 
+void element::examine_popovertarget ()
+{   if (! a_.known (a_popovertargetaction)) return;
+    if (node_.version ().mjr () < 5) return;
+    if (! a_.good (a_popovertargetaction)) return;
+    ::std::string id (a_.get_string (a_popovertargetaction));
+    if (get_ids ().has_id (id))
+    {   const element* pel = get_ids ().get_element (id);
+        if (pel != nullptr)
+            if (! pel -> a_.known (a_popover))
+                pick (nit_bad_header_id, ed_apr23, "6.11.1 The popover target attributes", es_error, ec_attribute, "id ", quote (id), " must reference an element with a POPOVER attribute"); } }
+
 bool element::examine_rel (const ::std::string& content, const lingo& lang)
 {   PRESUME (context.microformats (), __FILE__, __LINE__);
     if (content.empty ()) return false;

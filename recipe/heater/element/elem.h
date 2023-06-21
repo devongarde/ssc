@@ -240,5 +240,3 @@ CONSTEXPR inline bool is_undefined_element (const e_element e) noexcept { return
 CONSTEXPR inline bool is_standard_element (const e_element e) noexcept { return (e >= elem_custom) && (e < elem_error); }
 
 void add_elements (const vstr_t& v);
-
-typedef ::std::vector < elem > vel_t;

@@ -39,10 +39,14 @@ void init_itemid ()
 
 bool note_itemid (nitpick& nits, const html_version& , const ::std::string& id, const ::std::string& path, const int line)
 {   VERIFY_NOT_NULL (miid.get (), __FILE__, __LINE__);
-    lox l (lox_itemid);
-    auto i = miid -> emplace (id, itemid (path, line));
-    if (i.second) return true;
-    nits.pick (nit_bad_itemid, ed_microdata, "5.1.4 Global identifiers for items", es_warning, ec_microdata, quote (id), " is not unique; see line ", i.first -> second.line_, " of ", i.first -> second.path_);
+    int l2 = 0;
+    ::std::string p2;
+    {   lox l (lox_itemid);
+        auto i = miid -> emplace (id, itemid (path, line));
+        if (i.second) return true;
+        l2 = i.first -> second.line_;
+        p2 = i.first -> second.path_; }
+    nits.pick (nit_bad_itemid, ed_microdata, "5.1.4 Global identifiers for items", es_warning, ec_microdata, quote (id), " is not unique; see line ", l2, " of ", p2);
     return false; }
 
 ::std::string report_itemids ()

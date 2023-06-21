@@ -54,17 +54,17 @@ Windows
 -------
 To build from Visual Studio, navigate to recipe/tea, open the
 appropriate .sln file, then build. Only Visual Studios 2017 / 2019 /
-2022, 64 bit, have been built & tested, for intel Windows 10 & 11 and
-arm64. I've not built ssc using CMake under Windows.
+2022, 64 bit, have been built & tested, for intel and arm64, under
+Windows 10 & 11. I've not built ssc using CMake under Windows.
 
 Note the included solutions presume Microsoft's VCPKG manager. There
 are alternatives.
 
 You may need to set these environment variables:
-- BOOST: if you're not using your operating system's packaged flavour of boost,
-  then set BOOST to your boost source root directory;
-- ICU_ROOT: similarly, if you're not using your operating system's packaged
-  ICU, set ICU_ROOT to your ICU library source root directory;
+- BOOST: if you're not using your operating system's packaged flavour
+  of boost, then set BOOST to your boost source root directory;
+- ICU_ROOT: if you're not using your operating system's packaged ICU,
+  set ICU_ROOT to your ICU source root directory;
 - GSL: set it to your GSL root directory.
 
 
@@ -72,7 +72,7 @@ Unii & mock Unii
 ----------------
 You will need CMake 3.19 or better. On Linux, you will also need
 lsb-release. These can be found in most distributions' standard
-packages. (For macos, I used macports.)
+packages. (For macos, I used macports, but brew is good too.)
 From the home ssc directory, compile a normal build thus:
 cmake .
 make
@@ -113,11 +113,25 @@ unavailable.
 * Because Centos 9 doesn't offer lsb-release, the appropriate CMake
 command is:
   cmake . -DFLAVOUR=CentosOSStream -DFLAVOUR_VER=9
+(note the standard English spelling of flavour.)
 
 OpenBSD
 -------
 You may need to increase significantly the available memory setting
 for your build account in login.conf.
+
+clang
+-----
+The environment variable SANITY can be used to apply one of clang's
+sanitiser tests. Details of those tests can be found at
+https://clang.llvm.org/docs/index.html
+
+At the time of writing (summer solstice 2023), there is a crash in
+clang-built versions of ssc that is not exhibited by gcc or msvc built
+binaries. I have yet to find it, so do not know whether this is a bug
+in the compiler, or a bug in ssc that is only exposed by clang. To see
+the problem, run ssc against the corresponding wpt test-suite, found at
+https://github.com/web-platform-tests/wpt
 
 
 Testing
@@ -154,7 +168,7 @@ GSL
 If you can't find a copy of Microsoft's GSL in your system's standard
 package suite, then grab a current copy from its github repository
 (https://github.com/Microsoft/GSL), then unpack, build and install it.
-In Windows, remember to add the root directory to your local path.
+In Windows, remember to add its root directory to your local path.
 
 Curl
 ----

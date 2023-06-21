@@ -62,7 +62,7 @@ void elements_node::report_missing_closures (const html_version& v, element_node
             if (does_apply < html_version > (v, ancestor -> id ().first (), ancestor -> id ().last ()))
             {   const bool is_lazy = parent -> id ().is_lazy (v);
                 const ::std::string n (parent -> id ().name ());
-                parent -> nits_.pick (nit_missing_close, is_lazy ? es_warning : es_error, ec_element, "<", n, "> has no matching </", n, ">"); }
+                parent -> nits_.pick (nit_missing_close, ed_jul23, "1.11.2: Errors that result in disproportionately poor performance", is_lazy ? es_warning : es_error, ec_element, "<", n, "> has no matching </", n, ">"); }
         parent = parent -> parent_; } }
 
 element_node* elements_node::find_permitted_parent (const html_version& v, const elem& id, element_node* parent)
@@ -87,7 +87,7 @@ void elements_node::repair_invalid_parents (nitpick& nits, const html_version& v
         {   if (does_apply < html_version > (v, parent -> id ().first (), parent -> id ().last ()))
             {   if (closing) is_permitted_parent (v, id, parent -> id ());
                 else is_permitted_parent (nits, v, id, parent -> id ());
-                nits.pick (nit_inserted_missing_closure, es_warning, ec_element, "inserted missing </", elem :: name (parent -> tag ()), ">");
+                nits.pick (nit_inserted_missing_closure, ed_jul23, "1.11.2: Errors that result in disproportionately poor performance", es_warning, ec_element, "inserted missing </", elem :: name (parent -> tag ()), ">");
                 const elem def (parent -> tag ());
                 nitpick defnits (ket.line_, ket.nits_.get_context ());
                 ven_.push_back (element_node (defnits, this, ket.line_, true, parent, def, true, def.name ()));
@@ -134,13 +134,13 @@ element_node* elements_node::insert_closure (const html_version& v, element_node
 {   PRESUME (parent != nullptr, __FILE__, __LINE__);
     if (ket.eofe_ != ket.end_)
         if (! is_whitespace (ket.eofe_, ket.end_))
-            ket.nits_.pick (nit_attributes_on_closure, es_error, ec_element, "attributes not expected on a closure");
+            ket.nits_.pick (nit_attributes_on_closure, ed_jul23, "1.11.2: Errors that could interfere with new syntax in the future", es_error, ec_element, "closures have no attributes");
     bool matched = false;
     if (does_apply < html_version > (v, id.first (), id.last ()))
     {   element_node* ancestor = find_corresponding_open (id, parent);
         matched = (ancestor != nullptr);
         if (! matched)
-            ket.nits_.pick (nit_missing_open, es_warning, ec_element, "no corresponding <", id.name (), "> found");
+            ket.nits_.pick (nit_missing_open, ed_jul23, "1.11.2: Cases where the author's intent is unclear", es_warning, ec_element, "no corresponding <", id.name (), "> found");
         else
         {   report_missing_closures (v, parent, ancestor);
             repair_invalid_parents (ket.nits_, v, id, parent, ancestor, ket, true);
@@ -162,7 +162,8 @@ element_node* elements_node::insert_family_tree (const html_version& v, element_
         PRESUME (ancestor != nullptr, __FILE__, __LINE__); }
     nitpick defnits (ket.line_, ket.nits_.get_context ());
     VERIFY_NOT_NULL (parent, __FILE__, __LINE__);
-    defnits.pick (nit_inserted_missing_parent, es_info, ec_element, "<", parent -> id ().name (), "> cannot have <", id.name (), "> children; inserting intermediate <", def.name (), ">");
+    defnits.pick (nit_inserted_missing_parent, ed_jul23, "1.11.2: Cases where the author's intent is unclear", es_info, ec_element,
+        "<", parent -> id ().name (), "> cannot have <", id.name (), "> children; inserting intermediate <", def.name (), ">");
     report_missing_closures (v, parent, ancestor);
     repair_invalid_parents (defnits, v, def, parent, ancestor, ket, false);
     parent = ancestor;
@@ -289,8 +290,8 @@ void elements_node::parse (const html_version& v, bracs_ket& elements)
         if (id.unknown ())
         {   ::std::string s (e.start_, e.eofe_);
             if (GSL_NARROW_CAST < size_t > (id.ns ()) < first_runtime_namespace)
-                e.nits_.pick (nit_unknown_element, es_warning, ec_element, PROG " does not know the element <", ::std::string (s), ">, so cannot verify it");
-            else e.nits_.pick (nit_unknown_element, es_comment, ec_element, PROG " does not know <", ::std::string (s), ">, so cannot verify it");
+                e.nits_.pick (nit_unknown_element, ed_jul23, "1.11.2: Cases that are likely to be typos", es_warning, ec_element, PROG " does not know the element <", ::std::string (s), ">, so cannot verify it");
+            else e.nits_.pick (nit_unknown_element, ed_jul23, "1.11.2: Cases that are likely to be typos", es_comment, ec_element, PROG " does not know <", ::std::string (s), ">, so cannot verify it");
             if (v.xhtml () && (s == "base"))
                 e.nits_.pick (nit_unknown_element, es_comment, ec_element, "in XHTML, use <xml:base>, not <base>"); }
 

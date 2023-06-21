@@ -249,6 +249,9 @@ PASS ../toast/living/jan14/example.html
 50 inserted_missing_closure inserted_missing_closure
 51 inserted_missing_closure inserted_missing_closure
 52 inserted_missing_closure inserted_missing_closure
+54 character_code
+56 character_code
+58 character_code
 63 inserted_missing_closure inserted_missing_closure
 63 missing_open
 65 inserted_missing_closure unrecognised_value

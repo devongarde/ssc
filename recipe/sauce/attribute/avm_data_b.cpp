@@ -187,6 +187,8 @@ hav_t havt_button [] =
     { { HTML_JAN09 }, { HTML_JUN09 }, elem_button, a_novalidate },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_button, a_onblur },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_button, a_onfocus },
+    { { HTML_APR23 }, { HTML_UNDEF }, elem_button, a_popovertarget },
+    { { HTML_APR23 }, { HTML_UNDEF }, elem_button, a_popovertargetaction },
     { { HTML_JAN09 }, { HTML_JUN09 }, elem_button, a_target },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_button, a_type },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_button, a_value },

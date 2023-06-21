@@ -241,3 +241,97 @@ void element_node::parse_attributes (const html_version& , const ::std::string::
     {   VERIFY_NOT_NULL (kids, __FILE__, __LINE__);
         res += kids -> inner_text (nits, v); }
     return res; }
+
+// yeah, yeah, yeah, I know
+namespaces_ptr element_node::find_namespace_parent () const noexcept
+{   for (element_node* mummy = parent_; mummy != nullptr; mummy = mummy -> parent_)
+        if (mummy -> namespaces_.get () != nullptr)
+            return mummy -> namespaces_;
+    return namespaces_ptr (); }
+
+prefixes_ptr element_node::find_prefixes_parent () const noexcept
+{   for (element_node* mummy = parent_; mummy != nullptr; mummy = mummy -> parent_)
+        if (mummy -> prefixes_.get () != nullptr)
+            return mummy -> prefixes_;
+    return prefixes_ptr (); }
+
+prefixes_ptr element_node::find_rdf_schemas_parent () const noexcept
+{   for (element_node* mummy = parent_; mummy != nullptr; mummy = mummy -> parent_)
+        if (mummy -> rdf_schemas_.get () != nullptr)
+            return mummy -> rdf_schemas_;
+    return prefixes_ptr (); }
+
+rdf_ptr element_node::find_rdf_parent () const noexcept
+{   for (element_node* mummy = parent_; mummy != nullptr; mummy = mummy -> parent_)
+        if (mummy -> rdf_.get () != nullptr)
+            return mummy -> rdf_;
+    return rdf_ptr (); }
+
+rdf_ptr element_node::find_rdfa_parent () const noexcept
+{   for (element_node* mummy = parent_; mummy != nullptr; mummy = mummy -> parent_)
+        if (mummy -> rdfa_.get () != nullptr)
+            return mummy -> rdfa_;
+    return rdf_ptr (); }
+
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 26409) // erm, look at the code, mr. linter. It's resetting a SHARED ptr. The suggestion of using unique_ptr would break the code, badly.
+#endif // _MSC_VER
+
+void element_node::prepare_namespaces ()
+{   if (namespaces_.get () == nullptr)
+    {   namespaces_.reset (new namespaces_t);
+        VERIFY_NOT_NULL (namespaces_.get (), __FILE__, __LINE__);
+        namespaces_ -> up (find_namespace_parent ().get ()); } }
+namespaces_ptr element_node::namespaces () const noexcept
+{   if (namespaces_.get () != nullptr) return namespaces_;
+    return find_namespace_parent (); }
+
+void element_node::prepare_prefixes ()
+{   if (prefixes_.get () == nullptr)
+    {   prefixes_.reset (new prefixes_t);
+        VERIFY_NOT_NULL (prefixes_.get (), __FILE__, __LINE__);
+        prefixes_ -> up (find_prefixes_parent ().get ()); } }
+prefixes_ptr element_node::prefixes () const noexcept
+{   if (prefixes_.get () != nullptr) return prefixes_;
+    return find_prefixes_parent (); }
+
+void element_node::prepare_rdf_schemas ()
+{   if (rdf_schemas_.get () == nullptr)
+    {   rdf_schemas_.reset (new prefixes_t);
+        VERIFY_NOT_NULL (rdf_schemas_.get (), __FILE__, __LINE__);
+        rdf_schemas_ -> up (find_rdf_schemas_parent ().get ()); } }
+prefixes_ptr element_node::rdf_schemas () const noexcept
+{   if (rdf_schemas_.get () != nullptr) return rdf_schemas_;
+    return find_rdf_schemas_parent (); }
+
+// yeah, yeah, yeah, I still know
+void element_node::prepare_rdf ()
+{   if (rdf_.get () == nullptr)
+    {   rdf_.reset (new rdf_t);
+        VERIFY_NOT_NULL (rdf_.get (), __FILE__, __LINE__);
+        rdf_ -> up (find_rdf_parent ().get ());
+        rdf_ -> prefixes (rdf_schemas ().get ()); } }
+rdf_ptr element_node::rdf () const noexcept
+{   if (rdf_.get () != nullptr) return rdf_;
+    return find_rdf_parent (); }
+
+void element_node::prepare_rdfa ()
+{   if (rdfa_.get () == nullptr)
+    {   rdfa_.reset (new rdf_t);
+        VERIFY_NOT_NULL (rdfa_.get (), __FILE__, __LINE__);
+        rdfa_ -> up (find_rdfa_parent ().get ());
+        rdfa_ -> prefixes (prefixes ().get ()); } }
+rdf_ptr element_node::rdfa () const noexcept
+{   if (rdfa_.get () != nullptr) return rdfa_;
+        return find_rdfa_parent (); }
+
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
+
+e_element element_node::tag () const noexcept
+{   return elem_.get (); }
+
+vstr_t element_node::words (nitpick& nits, const html_version& v) const
+{   return split_by_space (inner_text (nits, v)); }

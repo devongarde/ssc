@@ -99,7 +99,8 @@ hav_t havt_html [] =
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_html, a_xsischemaloc },
     HTML2_CLID_ATTRIBUTES (elem_html),
     XHTML1_STANDARD_ATTRIBUTES (elem_html),
-    EXTRA_HTML5_ATTRIBUTES (elem_html),
+//    EXTRA_HTML5_ATTRIBUTES (elem_html),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_html),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_htmlplus [] =

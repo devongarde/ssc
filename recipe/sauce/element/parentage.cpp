@@ -1291,6 +1291,7 @@ parentage parent_table [] =
     { { HTML_1_0 }, { HTML_UNDEF }, elem_select, elem_option },
     { { HTML_2_0 }, { HTML_2_0 }, elem_select, elem_textarea, DENY },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_select, elem_optgroup },
+    { { HTML_JUL23 }, { HTML_UNDEF }, elem_select, elem_hr },
     { { HTML_JUL13 }, { HTML_UNDEF }, elem_select, elem_undefined, 0, EF_5_SCRIPT },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_semantics, elem_annotation },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_semantics, elem_annotation_xml },
@@ -1638,7 +1639,8 @@ parentage parent_table [] =
     { { HTML_1_0 }, { HTML_UNDEF }, elem_undefined, elem_faux_char, EP_SIMPLE },
     { { HTML_1_0 }, { HTML_UNDEF }, elem_undefined, elem_faux_code, EP_SIMPLE },
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_undefined, elem_faux_text, EP_SIMPLE },
-    { { HTML_TAGS }, { HTML_UNDEF }, elem_undefined, elem_html } };
+    { { HTML_TAGS }, { HTML_UNDEF }, elem_undefined, elem_html },
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_undefined, elem_undefined } };
 
 typedef ::std::multimap < uint64_t, parentage > parentage_t;
 parentage_t parents;

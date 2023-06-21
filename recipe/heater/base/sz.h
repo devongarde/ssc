@@ -278,6 +278,7 @@ struct sz_lro { CONSTEXPR static char const* sz () { return "lro"; } };
 struct sz_magnify { CONSTEXPR static char const* sz () { return "magnify"; } };
 struct sz_makeapp { CONSTEXPR static char const* sz () { return "makeapp"; } };
 struct sz_male { CONSTEXPR static char const* sz () { return "male"; } };
+struct sz_manual { CONSTEXPR static char const* sz () { return "manual"; } };
 struct sz_markers { CONSTEXPR static char const* sz () { return "markers"; } };
 struct sz_maybe { CONSTEXPR static char const* sz () { return "maybe"; } };
 struct sz_media { CONSTEXPR static char const* sz () { return "media"; } };

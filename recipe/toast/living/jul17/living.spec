@@ -252,6 +252,9 @@ PASS ../toast/living/jul17/example.html
 54 inserted_missing_closure inserted_missing_closure
 55 inserted_missing_closure inserted_missing_closure
 56 inserted_missing_closure inserted_missing_closure
+58 character_code
+60 character_code
+62 character_code
 66 inserted_missing_closure inserted_missing_closure unrecognised_value
 68 input_bad_aria
 70 inserted_missing_closure

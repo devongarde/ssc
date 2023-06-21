@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "url/url_protocol.h"
 #include "url/url_schemes.h"
 #include "utility/quote.h"
+#include "parser/text.h"
 
 // RFC 3986
 
@@ -529,7 +530,16 @@ bool protocol::parse (nitpick& nits, const html_version& v, const ::std::string&
     ::std::string lc (::boost::algorithm::to_lower_copy (trim_the_lot_off (x)));
     if (lc.empty ()) set (v, current);
     else
-    {   const ::std::string::size_type colon = lc.find (COLON);
+    {   const ::std::string& o = original ();
+        const ::std::string::size_type hamper = o.find (AMPERSAND);
+        if ((hamper != ::std::string::npos) && (hamper < o.size () - 1))
+        {   const ::std::string::size_type sc = o.find (SEMICOLON, hamper);
+            if (sc == ::std::string::npos)
+            {   ::std::string sub (o.substr (hamper));
+                if (sub.size () > 6) sub = sub.substr (0, 6) + "...";
+                nits.pick (nit_character_code, ed_jul23, "1.11.2: Errors involving fragile syntax constructs", es_warning, ec_url,
+                    "if a semicolon isn't missing, consider encoding '&' as '&amp;' or '%26', depending on intent"); } }
+        const ::std::string::size_type colon = lc.find (COLON);
         default_ = (colon == ::std::string::npos);
         if (default_)
         {   if (lc.find (AT) != ::std::string::npos)

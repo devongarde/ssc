@@ -49,7 +49,8 @@ void nitpick::reset (const nitpick& np)
     swap (tmp); }
 
 void nitpick::merge (const nitpick& np)
-{   if (mote_.empty ())
+{   lox l (lox_nits);
+    if (mote_.empty ())
     {   before_ = np.before_; after_ = np.after_; mote_ = np.mote_; }
     nits_.insert (nits_.end (), np.nits_.cbegin (), np.nits_.cend ());
     np.accumulate (*this); }
@@ -133,10 +134,18 @@ nitpick nitpick::nick ()
     return tmp; }
 
 void nitpick::pick (const nit& n) noexcept
-{   try { nits_.emplace_back (n); } catch (...) { stuffed_ = true; } }
+{   try
+    {   lox l (lox_nits);
+        nits_.emplace_back (n); }
+    catch (...)
+    {   stuffed_ = true; } }
 
 void nitpick::pick (nit&& n) noexcept
-{   try { nits_.emplace_back (n); } catch (...) { stuffed_ = true; } }
+{   try
+    {   lox l (lox_nits);
+        nits_.emplace_back (n); }
+    catch (...)
+    {   stuffed_ = true; } }
 
 bool nitpick::modify_severity (const ::std::string& name, const e_severity s)
 {   const e_nit code = lookup_code (name);
@@ -147,6 +156,7 @@ bool nitpick::modify_severity (const ::std::string& name, const e_severity s)
 e_severity nitpick::worst () const noexcept
 {   if (! stuffed_) try
     {   e_severity res = es_illegal;
+        lox l (lox_nits);
         for (auto n : nits_)
             if (n.severity () < res)
                 res = n.severity ();

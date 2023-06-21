@@ -343,10 +343,11 @@ void element::examine_iframe ()
     const bool has_src = a_.known (a_src);
     no_anchor_daddy ();
     if (has_src) check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_src), MIME_PAGE);
-    if (a_.known (a_itemprop) && ! a_.known (a_src))
-        pick (nit_bad_iframe, ed_jul20, "4.8.5 The iframe element", es_error, ec_attribute, "SRC is required when ITEMPROP is used with <IFRAME>");
-    if (! a_.known (a_srcdoc) && ! a_.known (a_src))
-        pick (nit_chocolate_teapot, es_info, ec_attribute, "Not sure what use <IFRAME> is without SRC or SRCDOC"); }
+    else
+    {   if (a_.known (a_itemprop))
+            pick (nit_bad_iframe, ed_jul20, "4.8.5 The iframe element", es_error, ec_attribute, "a valid SRC is required when ITEMPROP is used with <IFRAME>");
+        if (! a_.known (a_srcdoc))
+            pick (nit_chocolate_teapot, es_info, ec_attribute, "Not sure what use <IFRAME> is without a valid SRC or SRCDOC"); } }
 
 void element::examine_image ()
 {   if (a_.known (a_name))

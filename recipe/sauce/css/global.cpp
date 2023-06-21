@@ -34,6 +34,7 @@ dst_ptr css_global::get_or_preinsert (const ::std::string& s)
 {   dst_ptr dsp = get (s);
     if (dsp.get () == nullptr)
     {   dsp = dst_ptr (new distilled (true));
+        lox l (lox_css);
         mdst_.emplace (mdst_t::value_type (s, dsp)); }
     return dsp; }
 
