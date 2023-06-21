@@ -522,7 +522,7 @@ CSS itemid(s):
 ===
 
 PASS ../toast/stats/CSS/css-4.html
-2 invalid_attribute_version wrong_version naughty_lang
+2 naughty_lang
 28 inserted_missing_closure missing_close
 29 inserted_missing_closure
 36 inserted_missing_closure missing_close
@@ -854,13 +854,13 @@ CSS itemid(s):
     z98y: 4
   4 itemid(s) used 11 times
 Nits Reported:
-    Errors: 15 times 
+    Errors: 13 times 
     Warnings: 26 times 
     Info: once 
   
 Nit Categories:
-    Attribute: 8 times 
-    Element: 29 times 
+    Attribute: 7 times 
+    Element: 28 times 
     Namespace: twice 
     Parser: once 
     Type: once 
@@ -868,11 +868,12 @@ Nit Categories:
   
 References:
     HTML 4.0: once 
-    HTML 5.0: 8 times 
+    HTML 5.0: 8 times
+    HTML 5 Jul 23: 27 times
   
 Versions:
     HTML3.2/CSS-1: 10 times 
-    HTML5/20230401/SVG-2.1/MathML-core/CSS-1/WhatWG: 7 times 
+    HTML5/20230701/SVG-2.1/MathML-core/CSS-1/WhatWG: 7 times 
   
 File info:
      12551 bytes read in 17 files, with an average of roughly 738 bytes per file

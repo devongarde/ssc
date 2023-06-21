@@ -3,8 +3,14 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.25
+- Living Standard July 2023
+- output nit references, where applicable
+- various bug fixes
+- underlying work
+
 0.1.24
-- improve build time
+- improve build time (even so, building is slow, & gcc is *very* slow)
 - underlying work
 
 0.1.23

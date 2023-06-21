@@ -208,6 +208,9 @@ PASS ../toast/living/jul10/example.html
 26 missing_close
 26 missing_close
 26 inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure
+28 character_code
+30 character_code
+32 character_code
 37 inserted_missing_closure missing_close
 37 missing_open
 39 inserted_missing_parent inserted_missing_closure

@@ -178,7 +178,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define COMMON52    a_onauxclick, a_onloadend, COMMON51
 #define COMMON53    COMMON52
 #define LIVING_STANDARD    a_autocapitalise, a_enterkeyhint, a_exportparts, a_inputmode, a_onformdata, a_onsecuritypolicyviolation, \
-                    a_onslotchange, a_part, a_slot, COMMON53
+                    a_onslotchange, a_part, a_popover, a_slot, COMMON53
 #define X5          LIVING_STANDARD
 #define LIVING_STANDARD_PLUS a_index, LIVING_STANDARD
 
@@ -265,7 +265,7 @@ element_init_t ei [] =
     { elem_br, { a_clear, LIVING_STANDARD_PLUS, a_unknown } },
     { elem_bt, { a_class, a_unknown } },
     { elem_button, {    a_action, a_autocomplete, a_command, a_disabled, a_enctype, a_form, a_formaction, a_formenctype, a_formmethod, a_formnovalidate, a_formtarget,
-                        a_menu, a_method, a_name, a_novalidate, a_type, a_value, RESERVED4, METADATA, LIVING_STANDARD, a_unknown } },
+                        a_menu, a_method, a_name, a_novalidate, a_popovertarget, a_popovertargetaction, a_type, a_value, RESERVED4, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_bvar, { MATH3COMMON, a_unknown } },
     { elem_byline, { HTMLPLUS, a_unknown } },
     { elem_calendar, { a_active, METADATA, COMMON5, a_unknown } },
@@ -483,10 +483,10 @@ element_init_t ei [] =
     { elem_implies, { MATH3DEFCOM, a_unknown } },
     { elem_in, { MATH3DEFCOM, a_unknown } },
     { elem_infinity, { MATH3DEFCOM, a_unknown } },
-    { elem_input, { a_accept, a_action, a_align, a_alt, a_autocorrect, a_autocomplete, a_capture, a_checked, a_command, a_dirname,
-                    a_disabled, a_enctype, a_error, a_form, a_formaction, a_formenctype, a_formmethod, a_formnovalidate, a_formtarget, a_incremental,
-                    a_list, a_max, a_maxlength, a_md, a_method, a_min, a_minlength, a_mozactionhint, a_multiple, a_name, a_novalidate, a_orient, a_pattern, a_placeholder,
-                    a_readonly, a_required, a_results, a_size, a_step, a_type, a_value, a_webkitdirectory, WIDEHIGH, RESERVED4, METADATA, LIVING_STANDARD, a_unknown } },
+    { elem_input, { a_accept, a_action, a_align, a_alt, a_autocorrect, a_autocomplete, a_capture, a_checked, a_command, a_dirname, a_disabled, a_enctype, a_error, a_form,
+                    a_formaction, a_formenctype, a_formmethod, a_formnovalidate, a_formtarget, a_incremental, a_list, a_max, a_maxlength, a_md, a_method, a_min, a_minlength,
+                    a_mozactionhint, a_multiple, a_name, a_novalidate, a_orient, a_pattern, a_placeholder, a_popovertarget, a_popovertargetaction, a_readonly, a_required,
+                    a_results, a_size, a_step, a_type, a_value, a_webkitdirectory, WIDEHIGH, RESERVED4, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_ins, { a_datetime, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_int, { MATH3DEFCOM, a_unknown } },
     { elem_interval, { a_closure, MATH3COMMON, a_unknown } },

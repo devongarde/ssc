@@ -210,6 +210,9 @@ template < > struct type_master < t_orientation > : two_value < t_orientation, e
 template < > struct type_master < t_overlay > : two_value < t_overlay, e_overlay, sz_none, sz_top, false >
 { using two_value < t_overlay, e_overlay, sz_none, sz_top, false > :: two_value; };
 
+template < > struct type_master < t_popover > : two_value < t_popover, e_popover, sz_auto, sz_manual, true >
+{ using two_value < t_popover, e_popover, sz_auto, sz_manual, true > :: two_value; };
+
 template < > struct type_master < t_propagate > : two_value < t_propagate, e_propagate, sz_stop, sz_continue, false >
 { using two_value < t_propagate, e_propagate, sz_stop, sz_continue, false > :: two_value; };
 

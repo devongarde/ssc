@@ -76,6 +76,7 @@ void element::examine_input ()
     CONSTEXPR unsigned it_file = 1 << static_cast < unsigned > (i5_file);
     CONSTEXPR unsigned it_submit = 1 << static_cast < unsigned > (i5_submit);
     CONSTEXPR unsigned it_image = 1 << static_cast < unsigned > (i5_image);
+    CONSTEXPR unsigned it_button = 1 << static_cast < unsigned > (i5_button);
     const e_inputtype5 i5 = get_input_type ();
     const bool alt_known = a_.known (a_alt);
     const bool alt_empty = trim_the_lot_off (a_.get_string (a_alt)).empty ();
@@ -250,6 +251,8 @@ void element::examine_input ()
         pick (nit_input_bad_mix, ed_50, "4.10.5 The input element", es_warning, ec_element, "PATTERN is ignored by type ", quote (n));
     if (a_.known (a_placeholder) && ((t & (it_text_search | it_url_tel | it_email | it_password | it_number)) == 0))
         pick (nit_input_bad_mix, ed_50, "4.10.5 The input element", es_warning, ec_element, "PLACEHOLDER is ignored by type ", quote (n));
+    if ((a_.known (a_popovertarget) || a_.known (a_popovertargetaction)) && ((t & it_button) == 0))
+        pick (nit_input_bad_mix, ed_53, "4.10.5 The input element", es_warning, ec_element, "POPOVERTARGET and POPOVERTARGETACTION are both ignored by type ", quote (n));
     if (a_.known (a_readonly) && ((t & (it_text_search | it_url_tel | it_email | it_password | it_date_time | it_number)) == 0))
         pick (nit_input_bad_mix, ed_50, "4.10.5 The input element", es_warning, ec_element, "READONLY is ignored by type ", quote (n));
     if (a_.known (a_required) && ((t & (it_text_search | it_url_tel | it_email | it_password | it_date_time | it_number | it_check_radio | it_file)) == 0))

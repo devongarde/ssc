@@ -1,9 +1,9 @@
 Static Site Checker
-0.1.24
+0.1.25
 ../toast/shadow/delete
 0
 -
-9
+10
 /Users/dylan/project/app/ssc/recipe/toast/shadow/delete
 /Users/dylan/project/app/ssc/recipe/toast/shadow/delete
 0,0,0,18,0,0,0
@@ -30,4 +30,7 @@ delete.spec
 -1,0,0,256,0,0,0
 index.html.model
 /Users/dylan/project/app/ssc/recipe/toast/shadow/delete/index.html.model
+-1,0,0,256,0,0,0
+delete.ndx
+/Users/dylan/project/app/ssc/recipe/toast/shadow/delete/delete.ndx
 -1,0,0,256,0,0,0

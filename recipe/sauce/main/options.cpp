@@ -1115,6 +1115,7 @@ void options::contextualise (nitpick& nits)
                     nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS VALUE value");
                     break; } }
 
+        yea_nay (&context_t::force_version, nits, HTML FORCE, HTML DONT FORCE);
         yea_nay (&context_t::rfc_1867, nits, HTML RFC1867, HTML DONT RFC1867);
         yea_nay (&context_t::rfc_1942, nits, HTML RFC1942, HTML DONT RFC1942);
         yea_nay (&context_t::rfc_1980, nits, HTML RFC1980, HTML DONT RFC1980);
@@ -1607,6 +1608,8 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
 #endif // NO_FRED
     if (var_.count (GENERAL VERBOSE)) res << GENERAL VERBOSE ": " << var_ [GENERAL VERBOSE].as < ::std::string > () << "\n";
 
+    if (var_.count (HTML FORCE)) res << HTML FORCE "\n";
+    if (var_.count (HTML DONT FORCE)) res << HTML DONT FORCE "\n";
     if (var_.count (HTML RFC1867)) res << HTML RFC1867 "\n";
     if (var_.count (HTML DONT RFC1867)) res << HTML DONT RFC1867 "\n";
     if (var_.count (HTML RFC1942)) res << HTML RFC1942 "\n";

@@ -1,9 +1,9 @@
 Static Site Checker
-0.1.24
+0.1.25
 ../toast/shadow/softover
 0
 -
-10
+11
 /Users/dylan/project/app/ssc/recipe/toast/shadow/softover
 /Users/dylan/project/app/ssc/recipe/toast/shadow/softover
 0,0,0,18,0,0,0
@@ -33,4 +33,7 @@ softover.conf
 -1,0,0,256,0,0,0
 index.html.model
 /Users/dylan/project/app/ssc/recipe/toast/shadow/softover/index.html.model
+-1,0,0,256,0,0,0
+softover.ndx
+/Users/dylan/project/app/ssc/recipe/toast/shadow/softover/softover.ndx
 -1,0,0,256,0,0,0

@@ -153,7 +153,7 @@ PASS ../toast/microdata/schema-defg/foodestablishment.html
 
 PASS ../toast/microdata/schema-defg/game.html
 0 charset_mismatch charset_used charset_invalid
-15 no_such_folder url_not_found
+15 character_code character_code no_such_folder url_not_found
 22 inserted_missing_closure
 
 PASS ../toast/microdata/schema-defg/geocircle.html

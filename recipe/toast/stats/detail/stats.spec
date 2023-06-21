@@ -400,8 +400,9 @@ Nit Categories:
   
 References:
     HTML 5.0: thrice 
-    HTML 5 living standard (July 2020): thrice 
-  
+    WhatWG HTML 5 Jul 20: thrice 
+    HTML 5 Jul 23: twice
+    
 Versions:
     HTML5/20210101/SVG-2.0/MathML-4(Dec20)/CSS-2.1/WhatWG: 5 times 
   

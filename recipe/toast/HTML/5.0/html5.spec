@@ -299,6 +299,7 @@ PASS ../toast/HTML/5.0/html5-example.html
 825 inserted_missing_closure
 836 use_double_quote_code
 851 unrecognised_value
+852 character_code
 865 use_quote_code
 868 use_quote_code
 887 use_quote_code

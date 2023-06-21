@@ -65,6 +65,12 @@ void arguments::validate (nitpick& nits, const flags_t f, const ::std::string& p
         if (! ps_ -> state ().test (ec_page_property))
             if ((st_ == nullptr) || ((st_ -> get () != css_page) && (st_ -> get () != css_media)))
                 nits.pick (nit_naughty_page, es_error, ec_css, p, " requires @page, @media, or the page property");
+    if ((f & CF_NOT_LV_STD_JUL23) == CF_NOT_LV_STD_JUL23)
+        if (v_ >= html_jul23)
+            nits.pick (nit_css_living_standard, es_warning, ec_css, p, " is incompatible with the living standard after April 2023");
+    if ((f & CF_LV_STD_JUL23) == CF_LV_STD_JUL23)
+        if (v_ < html_jul23)
+            nits.pick (nit_css_living_standard, es_warning, ec_css, p, " requires the living standard mid-2023 or later");
     if ((f & CF_PAGE_NAME) == CF_PAGE_NAME)
     {   const sstr_t& pn (g_.page_name ());
         ::std::string vll (trim_the_lot_off (vl));

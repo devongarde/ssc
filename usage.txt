@@ -334,3 +334,16 @@ All this is why that, if you want to be precise about document
 verification, specify versions, either with a switch or an entry in a
 configuration file. If your HTML contains MathML/SVG/etc. snippets,
 then specify those versions too.
+
+
+More info
+=========
+
+The ssc source root includes some text files with more information.
+
+gen.text			Command line man page
+build.txt			How to make your own copy of ssc
+releasenotes.txt	A history of features and featurettes
+README.txt			An introduction to ssc
+LICENCE.txt			Component licences
+LICENSE.txt			The GNU General Licence Version 3

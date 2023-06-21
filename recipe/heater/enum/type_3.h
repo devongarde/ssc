@@ -191,6 +191,9 @@ template < > struct type_master < t_nsd > : three_value < t_nsd, e_nsd, sz_none,
 template < > struct type_master < t_nuf > : three_value < t_nuf, e_nuf, sz_refurbished, sz_new, sz_used >
 { using three_value < t_nuf, e_nuf, sz_refurbished, sz_new, sz_used > :: three_value; };
 
+template < > struct type_master < t_popovertargetaction > : three_value < t_popovertargetaction, e_popovertargetaction, sz_hide, sz_show, sz_toggle >
+{ using three_value < t_popovertargetaction, e_popovertargetaction, sz_hide, sz_show, sz_toggle > :: three_value; };
+
 template < > struct type_master < t_preload5 > : three_value < t_preload5, e_preload, sz_auto, sz_metadata, sz_none >
 { using three_value < t_preload5, e_preload, sz_auto, sz_metadata, sz_none > :: three_value; };
 

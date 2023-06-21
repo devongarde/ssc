@@ -130,7 +130,8 @@ typedef enum
         a_orientation, a_origin, a_other, a_overflow, a_overflow_wrap, a_overlay, a_overlay_host, a_overline_position, a_overline_thickness,
     a_pagex, a_pagey, a_page_orientation, a_paint_order, a_panose_1, a_part, a_path, a_pathlength, a_pattern, a_patterncontentunits,
         a_patterntransform, a_patternunits, a_phase, a_ping, a_placeholder, a_plain, a_playbackorder, a_playcount, a_playsinline, a_pointer_events,
-        a_points, a_pointsatx, a_pointsaty, a_pointsatz, a_position, a_poster, a_prefetch, a_prefix, a_preload, a_preservealpha,
+        a_points, a_pointsatx, a_pointsaty, a_pointsatz, a_popover, a_popovertarget, a_popovertargetaction,
+        a_position, a_poster, a_prefetch, a_prefix, a_preload, a_preservealpha,
         a_preserveaspectratio, a_prevfocus, a_primitiveunits, a_print, a_profile, a_prompt, a_propagate, a_property, a_pubdate, a_public,
     a_r, a_radiogroup, a_radius, a_rdelim, a_rdf_about, a_rdf_datatype, a_rdf_id, a_rdf_nodeid, a_rdf_parsetype, a_rdf_resource, a_readonly, a_ref,
         a_referrerpolicy, a_refx, a_refy, a_registrationmark, a_rel, a_rendering_colour_space, a_rendering_in_tents, a_repeatcount, a_repeatdur,
@@ -466,7 +467,7 @@ typedef enum {  efn_none,
                 efn_marker, efn_modal, efn_muted,
                 efn_not, efn_nth_child, efn_nth_col, efn_nth_last_child, efn_nth_last_col, efn_nth_last_of_type, efn_nth_of_type,
                 efn_only_child, efn_only_of_type, efn_open, efn_optional, efn_out_of_range,
-                efn_part, efn_past, efn_paused, efn_picture_in_picture, efn_placeholder, efn_placeholder_shown, efn_playing,
+                efn_part, efn_past, efn_paused, efn_picture_in_picture, efn_placeholder, efn_placeholder_shown, efn_playing, efn_popover_open,
                 efn_read_only, efn_read_write, efn_required, efn_right, efn_root,
                 efn_scope, efn_seeking, efn_selection, efn_slotted, efn_spelling_error, efn_stalled, efn_state,
                 efn_target, efn_target_text, efn_target_within,
@@ -767,7 +768,7 @@ typedef enum { do_booboo, do_cgi, do_examine, do_simple } e_do;
 typedef enum {  ed_mishmash, ed_dict, ed_tags, ed_1, ed_plus, ed_2, ed_3, ed_32, ed_4, ed_41, ed_x1, ed_x11, ed_x2,
                 ed_50, ed_51, ed_52, ed_53,
                 ed_jan05, ed_jan06, ed_jan07, ed_jan08, ed_jan10, ed_jul10, ed_jan12, ed_jan13, ed_jan14, ed_jul17, ed_may20, ed_jul20, ed_jan21,
-                ed_apr21, ed_jul21, ed_apr22, ed_oct22,
+                ed_apr21, ed_jul21, ed_apr22, ed_oct22, ed_apr23, ed_jul23,
                 ed_svg_1_0, ed_svg_1_1, ed_svg_1_2_tiny, ed_svg_1_2_full, ed_svg_2_0, ed_svg_2_anim,
                 ed_math_1, ed_math_2, ed_math_3, ed_math_4_20, ed_math_4_22,
                 ed_iso_8859_1, ed_csp,
@@ -2068,6 +2069,7 @@ typedef enum
     nit_missing_value, nit_at_least, nit_at_most, nit_range, nit_precisely, nit_css_namespace, nit_css_bespoke,
     nit_not_not, nit_css_svg, nit_deprecated_media, nit_media_version, nit_media_ignored, nit_css_layer, nit_css_scope,
     nit_css_custom, nit_css_colour, nit_bad_number, nit_css_value, nit_css_keyframes, nit_css_value_fn, nit_css_value_param,
+    nit_css_living_standard, nit_popover,
     nit_incompatible,
 
     // eon
@@ -2161,6 +2163,8 @@ typedef enum { po_normal, po_fill, po_stroke, po_markers } e_paint_order;
 typedef enum { ph_bubble, ph_capture, ph_default, ph_target } e_phase_x;
 typedef enum { ps_b, ps_i, ps_p, ps_s, ps_sub, ps_sup, ps_tt, ps_u } e_plusstyle;
 typedef enum { pe_auto, pe_boundingbox, pe_bounding_box, pe_visiblepainted, pe_visiblefill, pe_visiblestroke, pe_visible, pe_painted, pe_fill, pe_stroke, pe_all, pe_none, pe_inherit } e_pointer_events;
+typedef enum { pop_auto, pop_manual } e_popover;
+typedef enum { pta_hide, pta_show, pta_toggle } e_popovertargetaction;
 typedef enum { pr_auto, pr_metadata, pr_none } e_preload;
 typedef enum { pt_footnote, pt_reference, pt_section, pt_sidebar, pt_silent } e_print;
 typedef enum { pr_stop, pr_continue } e_propagate;
@@ -4429,10 +4433,11 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
     t_gamut, t_gender, t_generic, t_glyphname, t_glyphnames, t_groupalign, \
     t_halign, t_hash_ref, t_hash_fn, t_height, t_hex, t_hidden, t_hidden_ex, t_hour, t_hslafn, t_hslfn, t_hslfn4, t_html, t_html_boolean, \
         t_httpequiv, t_hue, t_hue_n, t_hunit, t_hv, t_hwbfn, \
-    t_icalfreq, t_icc, t_icccolour, t_id, t_identifier_url, t_idref, t_idrefs, t_illegal, t_image_rendering, t_imcastr, t_imgsizes, t_importance, t_in, t_index, \
-        t_indentalign, t_indentalign2, t_indentshift2, t_infixlinebreakstyle, t_initialvisibility, t_inky, t_inlist, t_inputaccept, t_inputmode, t_inputplus, \
-        t_inputtype, t_inputtype3, t_inputtype32, t_inputtype4, t_inputtype5, t_integer, t_integer_ai, t_integer_i, t_intent, t_intent_app, t_intent_args, \
-        t_intent_conlit, t_intent_hint, t_intent_ref, t_inverted_colours, t_ip_address, t_is, t_isbn, t_issn, t_itemid, t_itemprop, t_itemtype, t_itemref, \
+    t_icalfreq, t_icc, t_icccolour, t_id, t_identifier_url, t_idref, t_idrefs, t_illegal, t_image_rendering, t_imcastr, t_imgsizes, t_imgsizes_a, t_importance, \
+        t_in, t_index, t_indentalign, t_indentalign2, t_indentshift2, t_infixlinebreakstyle, t_initialvisibility, t_inky, t_inlist, t_inputaccept, t_inputmode, \
+        t_inputplus, t_inputtype, t_inputtype3, t_inputtype32, t_inputtype4, t_inputtype5, t_integer, t_integer_ai, t_integer_i, t_intent, t_intent_app, \
+        t_intent_args, t_intent_conlit, t_intent_hint, t_intent_ref, t_inverted_colours, t_ip_address, t_is, t_isbn, t_issn, t_itemid, t_itemprop, t_itemtype, \
+        t_itemref, \
     t_js_lang, t_js_lang_map, t_js_map, t_js_term, t_js_type, t_js_value, t_js_version, t_jtoken, t_just_date, t_just_time, \
     t_key, t_keygentype, t_keyspline, t_keysplines, t_keytimes, t_keytype, t_kind, \
     t_labfn, t_lang, t_langq, t_langs, t_langqs, t_larnalign, t_layout, t_lchfn, t_lcralign, t_lcraligns, t_lcrnalign, t_lcrd, t_lcrds, t_lcrdss, t_length, \
@@ -4455,10 +4460,10 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
         t_not_pos, t_notation, t_notations, t_nsd, t_nsds, t_nuf, t_num, t_integer_or_percent, \
     t_occurence, t_og, t_ogdet, t_ogtype, t_oklabfn, t_oklchfn, t_onoff, t_opacity, t_open, t_operator, t_order, t_orientation, t_origin, t_overflow, \
         t_overlay, \
-    t_page_orientation, t_paint, t_paintkeyword, t_paint_order, t_panose1, t_percent, t_percent_flexible, t_percent_n, t_percent_or_not, \
-        t_phase, t_phase_x, t_pics, \
-        t_plus_1_7, t_plusstyle, t_pointer_events, t_points, t_positive, t_positive_1_2, t_pragma, t_prefix, t_preload, t_preload5, t_preserveaspectratio, \
-        t_preserveaspectratio10, t_preserveaspectratio12, t_print, t_propagate, t_pseudo, t_pseudonamedspace, t_pt, \
+    t_page_orientation, t_paint, t_paintkeyword, t_paint_order, t_panose1, t_percent, t_percent_flexible, t_percent_n, t_percent_or_not,  t_phase, t_phase_x, \
+        t_pics, t_plus_1_7, t_plusstyle, t_pointer_events, t_points, t_popover, t_popovertargetaction, t_positive, t_positive_1_2, t_pragma, t_prefix, \
+        t_preload, t_preload5, t_preserveaspectratio, t_preserveaspectratio10, t_preserveaspectratio12, t_print, t_propagate, t_pseudo, t_pseudonamedspace, \
+        t_pt, \
     t_q, t_quote_style, \
     t_rap, t_rating, t_rdf_parsetype, t_rdfa_typeof, t_real, t_real_1_2, t_real_ai, t_real_i, t_real_ni, t_reals, t_real_percent_n, \
         t_referrer, t_refresh, t_refx, t_refy, \

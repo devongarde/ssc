@@ -803,12 +803,12 @@ html_version bracs_ket::parse (const ::std::string& content)
                                     ::std::string n (elem::name (xmp_tag));
                                     if (! compare_no_case (n, ::std::string (collect, i)))
                                     {   PRESUME (collect - b > 2, __FILE__, __LINE__);
-                                        PRESUME (e - 1 > i, __FILE__, __LINE__);
-                                        if (xmp_tag == elem_xmp)
-                                        {   nits.set_context (line_, b, e, collect-2, i+1);
-                                            nits.pick (nit_closure_not_xmp, ed_1, "ELEMENT XMP", es_error, ec_element, "a closure started inside <", n, "> must be </", n, ">");
-                                            ve_.emplace_back (nits, line_, collect, i, i, true, false);
-                                            nits.reset (); }
+                                        if (e - 1 > i)
+                                            if (xmp_tag == elem_xmp)
+                                            {   nits.set_context (line_, b, e, collect-2, i+1);
+                                                nits.pick (nit_closure_not_xmp, ed_1, "ELEMENT XMP", es_error, ec_element, "a closure started inside <", n, "> must be </", n, ">");
+                                                ve_.emplace_back (nits, line_, collect, i, i, true, false);
+                                                nits.reset (); }
                                         break; }
                                     nits.set_context (line_, b, e, x, collect-2);
                                     xmp_mode = false;

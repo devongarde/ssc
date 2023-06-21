@@ -146,6 +146,9 @@ PASS ../toast/living/jan11/example.html
 26 inserted_missing_closure inserted_missing_closure
 27 inserted_missing_closure inserted_missing_closure
 28 inserted_missing_closure inserted_missing_closure
+30 character_code
+32 character_code
+34 character_code
 39 inserted_missing_closure inserted_missing_closure missing_close
 39 missing_open
 40 inserted_missing_parent inserted_missing_closure

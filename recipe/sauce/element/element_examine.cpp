@@ -439,7 +439,8 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
 
     if (post_examine)
     {   post_examine_element ();
-        if (a_.known (a_itemref)) examine_itemref (itemscope_); }
+        if (a_.known (a_itemref)) examine_itemref (itemscope_);
+        if (a_.known (a_popovertarget)) examine_popovertarget (); }
     if (postprocess)
         if (mf_)
         {   if (mf_ -> allocated (h_entry))

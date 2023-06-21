@@ -394,7 +394,7 @@ vstr_t sections;
     "[link-foot]\n" \
     "\n" \
     "[nit]\n" \
-    "{{level-symbol}} {{nit-explanation}} [{{nit-id}}]\n" \
+    "{{level-symbol}} {{nit-explanation}}{{nit-ref: (:}}{{nit-doc:, :)}}{{nit-id: [:]}}\n" \
     "\n" \
     "[nits-head]\n" \
     "\n" \

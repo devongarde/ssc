@@ -42,24 +42,24 @@ typedef ::std::pair < element*, e_class > found_farm;
 #define EF_XL_DATATYPE      0x00000002
 
 class element
-{   element_node& node_;
-    attributes a_;
-    bool examined_ = false, icarus_ = false, reconstructed_ = false;
-    page* page_ = nullptr; // NOT owned
+{   page* page_ = nullptr; // NOT owned
     element* parent_ = nullptr; // NOT owned
     element* sibling_ = nullptr; // owned by element
     element* child_ = nullptr; // owned by element
     element* autofocus_ = nullptr; // NOT owned
+    sstr_t* access_ = nullptr; // NOT owned
+    bool examined_ = false, icarus_ = false, reconstructed_ = false;
+    uid_t uid_ = 0, closure_uid_ = 0;
+    element_node& node_;
     microformats_ptr mf_;
     ::std::string name_;
-    sstr_t* access_ = nullptr; // NOT owned
     element_bitset ancestral_elements_, sibling_elements_, descendant_elements_;
     attribute_bitset ancestral_attributes_, own_attributes_, sibling_attributes_, descendant_attributes_;
-    uid_t uid_ = 0, closure_uid_ = 0;
     velptr_t radio_kids_;
     itemscope_ptr itemscope_;
     vit_t vit_;
     sstr_t results_;
+    attributes a_;
     nitpick& nits () noexcept { return node_.nits (); }
     nitpick& nits () const noexcept { return node_.nits (); }
     found_farm find_farm (const e_property prop, element* starter = nullptr);
@@ -148,6 +148,7 @@ class element
     void examine_langs (lingo& lang);
     void examine_line_increment ();
     void examine_other ();
+    void examine_popovertarget ();
     void examine_ref ();
     void examine_registrationmark ();
     bool examine_rel (const ::std::string& content, const lingo& lang);

@@ -63,12 +63,10 @@ bool fred_t::dqe ()
             ::std::this_thread::yield (); } }
     if (t.valid ())
     {   if (context.tell (es_detail))
-        {   lox l (lox_nits);
-            t.ticks_ -> pick (nit_detail, es_detail, ec_fred, "Fred ", ::std::this_thread::get_id (), " stage ", t.stage_, " processing ", t.dir_ -> get_site_path ()); }
+            t.ticks_ -> pick (nit_detail, es_detail, ec_fred, "Fred ", ::std::this_thread::get_id (), " stage ", t.stage_, " processing ", t.dir_ -> get_site_path ());
         d_q (t); }
     else if (t.ticks_ != nullptr)
-    {   lox l (lox_nits);
-        t.ticks_ -> pick (nit_kew_borked, es_error, ec_fred, "Fred ", ::std::this_thread::get_id (), " stage ", t.stage_, ", got borked directory"); }
+        t.ticks_ -> pick (nit_kew_borked, es_error, ec_fred, "Fred ", ::std::this_thread::get_id (), " stage ", t.stage_, ", got borked directory");
     return true; }
 
 void fred_t::fred_minion (nitpick* ticks)

@@ -6,6 +6,7 @@ PASS ../toast/type/url/index.html
 PASS ../toast/type/url/bad.html
 2 naughty_lang
 12 url_id_unfound
+13 character_code
 15 unknown_protocol chocolate_teapot
 16 chocolate_teapot
 17 bad_char chocolate_teapot
@@ -34,5 +35,6 @@ PASS ../toast/type/url/dubious.html
 
 PASS ../toast/type/url/good.html
 2 naughty_lang
+19 character_code
 28 protocol
 29 protocol

@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/page.h"
 
 element::element (const ::std::string& name, element_node& en, element* parent, page* p)
-    :   node_ (en), a_ (*this), examined_ (false), page_ (p), parent_ (parent), name_ (name), uid_ (0)
+    :   page_ (p), parent_ (parent), examined_ (false), uid_ (0), node_ (en), name_ (name), a_ (*this)
 {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
     uid_ = page_ -> euid (); }
 

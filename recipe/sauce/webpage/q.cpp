@@ -41,6 +41,7 @@ bool d_q (q_entry& qe)
         ::boost::filesystem::path p (qe.dir_ -> get_disk_path ());
         if (! qe.page_.empty ()) p /= qe.page_;
         msg += p.string () + "\n";
+        lox l (lox_out);
         ::std::cout << msg; }
     try
     {   switch (qe.stage_)

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Upgrade edge-cases example</title>
+<example-element></example-element>
+<script>
+"use strict";
+const inDocument = document.querySelector("example-element");
+const outOfDocument = document.createElement("example-element");
+// Before the element definition, both are HTMLElement:
+console.assert(inDocument instanceof HTMLElement);
+console.assert(outOfDocument instanceof HTMLElement);
+class ExampleElement extends HTMLElement {}
+customElements.define("example-element", ExampleElement);
+// After element definition, the in-document element was upgraded:console.assert(inDocument instanceof ExampleElement);
+console.assert(!(outOfDocument instanceof ExampleElement));
+document.body.appendChild(outOfDocument);
+// Now that we've moved the element into the document, it too was upgraded:
+console.assert(outOfDocument instanceof ExampleElement);
+</script>

@@ -30,7 +30,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 knickers::~knickers ()
 {   if (! nits_.empty ())
     try {
-        lox l (lox_nits);
         ticks_ -> merge (nits_); }
     catch (...) { } }
 

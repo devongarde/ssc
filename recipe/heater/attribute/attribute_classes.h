@@ -685,6 +685,9 @@ typedef typed_attribute < t_points, a_points > attr_points;
 typedef typed_attribute < t_points, a_pointsatx > attr_pointsatx;
 typedef typed_attribute < t_points, a_pointsaty > attr_pointsaty;
 typedef typed_attribute < t_points, a_pointsatz > attr_pointsatz;
+typedef typed_attribute < t_popover, a_popover > attr_popover;
+typedef typed_attribute < t_idref, a_popovertarget > attr_popovertarget;
+typedef typed_attribute < t_popovertargetaction, a_popovertargetaction > attr_popovertargetaction;
 typedef typed_attribute < t_integer, a_position > attr_position;
 typedef typed_attribute < t_generic, a_poster > attr_poster;
 typedef typed_attribute < t_url, a_prefetch > attr_prefetch;
@@ -1645,6 +1648,9 @@ const e_attribute last_2 = a_overline_thickness;
     attr_pointsatx, \
     attr_pointsaty, \
     attr_pointsatz, \
+    attr_popover, \
+    attr_popovertarget, \
+    attr_popovertargetaction, \
     attr_position, \
     attr_poster, \
     attr_prefetch, \

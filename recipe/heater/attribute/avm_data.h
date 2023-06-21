@@ -1037,6 +1037,7 @@ struct hav_t
     { { HTML_JUL09, 0, HE_NOT_SVG_1 }, { HTML_JUN13 }, ELEM, a_onvolumechange }, \
     { { HTML_JUL09, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_onwaiting }, \
     { { HTML_JUL15, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_onwheel }, \
+    { { HTML_APR23, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_popover }, \
     { { HTML_JAN08, 0, HE_NOT_SVG }, { HTML_DEC08 }, ELEM, a_ref }, \
     { { HTML_JAN08, 0, HE_NOT_SVG }, { HTML_DEC08 }, ELEM, a_registrationmark }, \
     { { HTML_JAN10, 0, HE_NOT_SVG_10_11_20 }, { HTML_UNDEF }, ELEM, a_role }, \
