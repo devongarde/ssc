@@ -16,7 +16,6 @@ PASS ../toast/css/4-ui/css-6.css
 PASS ../toast/css/4-ui/css-7.css
 0 html
 2 unrecognised_value
-9 unrecognised_value
 
 PASS ../toast/css/4-ui/index.html
 2 naughty_lang

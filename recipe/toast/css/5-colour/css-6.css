@@ -1,9 +1,4 @@
-﻿.foo {
-  color:  red;
-  background-color:  currentcolor;
-}
-
-.foo {
-  color:  red;
-  background-color:  red;
-}
+﻿.floo {
+    color:  device-cmyk(0% 70% 20% 0%);
+    background-color:  device-cmyk(0 0.7 0.2 0);
+    color: lab(63.673% 51.577 5.811); }

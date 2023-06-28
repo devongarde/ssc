@@ -14,11 +14,14 @@
 ../toast/css/2.1/css.spec
 ../toast/css/2.2/css.spec
 ../toast/css/3-animation/css.spec
+../toast/css/3-background/css.spec
 ../toast/css/3-cascade/css.spec
 ../toast/css/4-cascade/css.spec
 ../toast/css/5-cascade/css.spec
 ../toast/css/6-cascade/css.spec
 ../toast/css/3-colour/css.spec
+../toast/css/4-colour/css.spec
+../toast/css/5-colour/css.spec
 ../toast/css/3-media/css.spec
 ../toast/css/4-media/css.spec
 ../toast/css/5-media/css.spec
@@ -32,6 +35,7 @@
 ../toast/css/3-value/css.spec
 ../toast/css/4-value/css.spec
 ../toast/css/accessibility/css.spec
+../toast/css/ease/css.spec
 ../toast/css/custom/css.spec
 ../toast/css/songlight/css.spec
 ../toast/HTML/1.0/html1.spec

@@ -52,7 +52,6 @@ PASS ../toast/css/5-media/css-5.css
 PASS ../toast/css/5-media/css-6.css
 0 html
 16 function function isnt
-22 unrecognised_value
 
 PASS ../toast/css/5-media/css-6.html
 0 charset_mismatch charset_used

@@ -81,7 +81,7 @@ void options::help (const ::boost::program_options::options_description& aid) co
 {   ::std::string res;
     res =   PROG " [switch...] path.\n\n"
             PROG " is an opinionated HTML nit-picker. It notes broken links, dubious syntax,\n"
-            "bad semantics, odd ontology, etc.. It highlights legal but untidy code.\n";
+            "bad semantics, odd ontologies, slobby stuff, abhorant rudeness, etc..\n";
     ::std::ostringstream waste_of_space;
     waste_of_space << aid;
     res +=  waste_of_space.str ();
@@ -139,7 +139,7 @@ void options::yea_nay (context_t& (context_t::*fn) (const bool ), nitpick& nits,
         (context.*fn) (false); }
     else if (on) (context.*fn) (true); }
 
-void options::process (nitpick& nits, int argc, char* const * argv)
+void options::parse (nitpick& nits, int argc, char* const * argv)
 {   /*  a
         b
         c persist file
@@ -330,9 +330,11 @@ void options::process (nitpick& nits, int argc, char* const * argv)
         (CORPUS OUTPUT ",d", ::boost::program_options::value < ::std::string > (), "Dump corpus of site content to specified file.")
 
         (CSS ANIMATION, ::boost::program_options::value < int > (), "CSS Animation level (0 or 3).")
+        (CSS BACKGROUND, ::boost::program_options::value < int > (), "CSS Background Borders level (0 or 3).")
         (CSS CASCADE, ::boost::program_options::value < int > (), "CSS Cascade & Inheritance level (0, 3, 4, 5 or 6).")
         (CSS COLOUR, ::boost::program_options::value < int > (), "CSS Colour level (0, 3, 4, or 5).")
         (CSS CUSTOM, ::boost::program_options::value < int > (), "CSS Custom level (0 or 3).")
+        (CSS EASE, ::boost::program_options::value < int > (), "CSS Ease level (0 or 3).")
         (CSS EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "CSS files have this extension (default css); may be repeated.")
         (CSS EXTERNAL, ::boost::program_options::bool_switch (), "Nitpick css files imported from external sites.")
         (CSS DONT EXTERNAL, ::boost::program_options::bool_switch (), "Do not nitpick imported CSS files.")
@@ -994,6 +996,18 @@ void options::contextualise (nitpick& nits)
                     nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Animation value");
                     break; } }
 
+        if (var_.count (CSS BACKGROUND))
+        {   const int n (var_ [CSS BACKGROUND].as < int > ());
+            switch (n)
+            {   case 0 :
+                case 1 :
+                case 3 :
+                    context.css_background (n);
+                    break;
+                default :
+                    nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Bavkground Border value");
+                    break; } }
+
         if (var_.count (CSS CASCADE))
         {   const int n (var_ [CSS CASCADE].as < int > ());
             switch (n)
@@ -1031,6 +1045,19 @@ void options::contextualise (nitpick& nits)
                     break;
                 default :
                     nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Custom value");
+                    break; } }
+
+        if (var_.count (CSS EASE))
+        {   const int n (var_ [CSS EASE].as < int > ());
+            switch (n)
+            {   case 0 :
+                case 1 :
+                case 3 :
+                case 4 :
+                    context.css_ease (n);
+                    break;
+                default :
+                    nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Ease value");
                     break; } }
 
         if (var_.count (CSS MEDIA))
@@ -1529,9 +1556,11 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (CORPUS OUTPUT)) res << CORPUS OUTPUT ": " << var_ [CORPUS OUTPUT].as < ::std::string > () << "\n";
 
     if (var_.count (CSS ANIMATION)) res << CSS ANIMATION ": " << var_ [CSS ANIMATION].as < int > () << "\n";
+    if (var_.count (CSS BACKGROUND)) res << CSS BACKGROUND ": " << var_ [CSS BACKGROUND].as < int > () << "\n";
     if (var_.count (CSS CASCADE)) res << CSS CASCADE ": " << var_ [CSS CASCADE].as < int > () << "\n";
     if (var_.count (CSS COLOUR)) res << CSS COLOUR ": " << var_ [CSS COLOUR].as < int > () << "\n";
     if (var_.count (CSS CUSTOM)) res << CSS CUSTOM ": " << var_ [CSS CUSTOM].as < int > () << "\n";
+    if (var_.count (CSS EASE)) res << CSS EASE ": " << var_ [CSS EASE].as < int > () << "\n";
     if (var_.count (CSS EXTENSION)) res << CSS EXTENSION ": "; pvs (res, var_ [CSS EXTENSION].as < vstr_t > ()); res << "\n";
     if (var_.count (CSS MEDIA)) res << CSS MEDIA ": " << var_ [CSS MEDIA].as < int > () << "\n";
     if (var_.count (CSS NAMESPACE)) res << CSS NAMESPACE ": " << var_ [CSS NAMESPACE].as < int > () << "\n";

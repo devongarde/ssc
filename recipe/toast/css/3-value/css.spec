@@ -17,9 +17,8 @@ PASS ../toast/css/3-value/css-5.css
 
 PASS ../toast/css/3-value/css-6.css
 0 html
-1 bad_media bad_media bad_media bad_media
+1 bad_media bad_media unrecognised_value bad_media
 
 PASS ../toast/css/3-value/css-8.css
 0 html
 4 naughty_content
-24 precisely precisely

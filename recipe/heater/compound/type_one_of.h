@@ -62,8 +62,6 @@ template < e_type T, bool EMPTY, e_type A, e_type... B > struct type_one_of : ty
         {   type_one_of < T, EMPTY, B... > :: status (s_empty);
             nits.merge (nets);
             return true; }
-//        nits.merge (nuts);
-//        nits.merge (nets);
         return false; }
     e_status content_status (nitpick& nits, const ::std::string& s)
     {   return type_one_of < T, EMPTY, B... > :: content_status (nits, s); }
@@ -85,6 +83,9 @@ template < e_type T, bool EMPTY, e_type A, e_type... B > struct type_one_of : ty
         return type_one_of < T, EMPTY, B... > :: is_url (); }
     static bool is_existential () noexcept
     {   return false; }
+    static bool is_numeric () noexcept
+    {   if ( type_master < A > :: is_numeric ()) return true;
+        return type_one_of < T, EMPTY, B... > :: is_numeric (); }
     static e_animation_type animation_type () noexcept
     {   const e_animation_type a = type_master < A > :: animation_type ();
         if (a != at_none) return a;
@@ -105,12 +106,9 @@ template < e_type T, bool EMPTY, e_type A, e_type... B > struct type_one_of : ty
         nitpick nuts;
         if (content_status (nits, ss) != s_invalid)
             if (inner_set_value (nuts, v, ss)) nits.merge (nuts);
-            else nits.pick (nit_unrecognised_value, es_error, ec_type, quote (ss), " is invalid for all possible values (", type_name (T), ")"); }
-//        {   nitpick nuts;
-//            if (inner_set_value (nuts, v, ss)) nits.merge (nuts);
-//            else
-//            {   nits.pick (nit_unrecognised_value, es_error, ec_type, quote (ss), " is invalid for all possible values (", type_name (T), ")");
-//                if (context.tell (es_debug)) nits.merge (nuts); } } }
+            else
+            {   nits.pick (nit_unrecognised_value, es_error, ec_type, quote (ss), " is invalid for all possible values (", type_name (T), ")");
+                if (context.tell (es_debug)) nits.merge (nuts); } }
     void set_id (const ::std::string& s)
     {   type_one_of < T, EMPTY, B... > :: set_id (s); }
     ::std::string& id () noexcept

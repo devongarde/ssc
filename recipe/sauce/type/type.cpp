@@ -107,7 +107,11 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
     if (t <= SSC_TYPE_2_MAX) return test_typed_value < SSC_TYPES_2, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPE_3_MAX) return test_typed_value < SSC_TYPES_3, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPE_4_MAX) return test_typed_value < SSC_TYPES_4, t_unknown > :: test (nits, v, t, s);
-    return test_typed_value < SSC_TYPES_5, t_unknown > :: test (nits, v, t, s); }
+    if (t <= SSC_TYPE_5_MAX) return test_typed_value < SSC_TYPES_5, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPE_6_MAX) return test_typed_value < SSC_TYPES_6, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPE_7_MAX) return test_typed_value < SSC_TYPES_7, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPE_8_MAX) return test_typed_value < SSC_TYPES_8, t_unknown > :: test (nits, v, t, s);
+    return test_typed_value < SSC_TYPES_9, t_unknown > :: test (nits, v, t, s); }
 #else // LIMITED_META_COMPLEXITY
-{   return test_typed_value < SSC_TYPES_1, SSC_TYPES_2, SSC_TYPES_3, SSC_TYPES_4, SSC_TYPES_5, t_unknown > :: test (nits, v, t, s); }
+{   return test_typed_value < SSC_TYPES_1, SSC_TYPES_2, SSC_TYPES_3, SSC_TYPES_4, SSC_TYPES_5, SSC_TYPES_6, SSC_TYPES_7, SSC_TYPES_8, SSC_TYPES_9, t_unknown > :: test (nits, v, t, s); }
 #endif // LIMITED_META_COMPLEXITY

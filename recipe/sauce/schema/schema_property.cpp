@@ -5759,6 +5759,7 @@ property_gen gentab [] =
     { { 7, 0 }, { 0, 0 }, sp_travelbans, t_url },
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, sp_trialdesign, t_schema_type, sch_medicaltrialdesign },
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, sp_tributary, t_schema_type, sch_anatomicalstructure },
+    { { 22, 0 }, { 0, 0 }, sp_triporigin, t_schema_type, sch_place },
     { { 3, 5 }, { 0, 0 }, sp_typeofbed, t_schema_type, sch_bedtype },
     { { 3, 1 }, { 0, 0 }, sp_typeofbed, t_schema_type, sch_text },
     { { 3, 1 }, { 0, 0 }, sp_typeofbed, t_text },

@@ -47,7 +47,7 @@ template < e_type T, e_type P, class SZ > struct string_then_type : tidy_string 
             if (! compare_complain (nits, v, SZ :: sz (), ss.substr (0, len)))
                 nits.pick (nit_syntax, es_error, ec_type, "here, ", quote (ss), " should start with ", quote (SZ :: sz ()));
             nitpick nuts;
-            if (test_value < P > (nuts, v, ss, tidy_string < T > :: id ())) return;
+            if (test_value < P > (nuts, v, ss.substr (len), tidy_string < T > :: id ())) return;
             nits.merge (nuts); }
         tidy_string < T > :: status (s_invalid); } };
 
@@ -196,78 +196,77 @@ template < e_type T, e_type P, class SZ1, class SZ2, class SZ3 > struct type_or_
             nits.merge (nits); }
         tidy_string < T > :: status (s_invalid); } };
 
-template < e_type T, e_type U, class SZ, e_type P > struct type_one_or_both : tidy_string < T >
-{   bool both_ = false;
-    using tidy_string < T > :: tidy_string;
+template < e_type T, e_type P, class SZ1, class SZ2, class SZ3, class SZ4, class SZ5 > struct type_or_any_string_5 : tidy_string < T >
+{   using tidy_string < T > :: tidy_string;
+    static e_animation_type animation_type () noexcept { return grab_animation_type < P > (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
-        if (tidy_string < T > :: empty ())
-            nits.pick (nit_empty, es_error, ec_type, "value expected (", type_name (T), ")");
-        else if (tidy_string < T > :: good ())
-        {   ::std::string ss (tidy_string < T > :: get_string ());
-            PRESUME (SZ :: sz () != nullptr, __FILE__, __LINE__);
-            const ::std::string::size_type pos = ss.find_first_of (SZ :: sz ());
-            if (pos != ::std::string::npos)
-            {   if (! test_value < P > (nits, v, ss.substr (pos+1), tidy_string < T > :: id ())) tidy_string < T > :: status (s_invalid);
-                else both_ = true;
-                ss = ss.substr (0, pos); }
-            if (test_value < U > (nits, v, ss, tidy_string < T > :: id ())) return; }
-        tidy_string < T > :: status (s_invalid); }
+        if (tidy_string < T > :: good () || tidy_string < T > :: empty ())
+        {   const ::std::string ss (tidy_string < T > :: get_string ());
+            if (compare_complain (nits, v, SZ1 :: sz (), ss)) return;
+            if (compare_complain (nits, v, SZ2 :: sz (), ss)) return;
+            if (compare_complain (nits, v, SZ3 :: sz (), ss)) return;
+            if (compare_complain (nits, v, SZ4 :: sz (), ss)) return;
+            if (compare_complain (nits, v, SZ5 :: sz (), ss)) return;
+            if (test_value < P > (nits, v, ss, tidy_string < T > :: id ())) return;
+            nits.merge (nits); }
+        tidy_string < T > :: status (s_invalid); } };
+
+template < e_type T, e_type U, class SZ, e_type P, int F = 0 > struct type_one_or_both : uq4 < T, SZ, F >
+{   bool both_ = false;
+    using uq4 < T, SZ, F > :: uq4;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   vstr_t vs (uq4 < T, SZ, F > :: set_value (nits, v, s));
+        if ((vs.size () > 0) && uq4 < T, SZ, F > :: good ())
+        {   bool res = test_value < U > (nits, v, vs.at (0), tidy_string < T > :: id ());
+            if ((vs.size () > 1) && (! test_value < P > (nits, v, vs.at (1), tidy_string < T > :: id ()))) res = false;
+            if (vs.size () > 2) nits.pick (nit_too_many, es_warning, ec_type, "one or two values expected; ignoring additional values (", type_name (T), ")");
+            if (res) return; }
+        uq4 < T, SZ, F > :: status (s_invalid); }
     ::std::size_t size () const noexcept { return both_ ? 2 : 1; } };
 
-template < e_type T, e_type A, class SZ, e_type B > struct type_opt_then_must : tidy_string < T >
+template < e_type T, e_type A, class SZ, e_type B, int F = 0 > struct type_opt_then_must : uq4 < T, SZ, F >
 {   bool both_ = false;
-    using tidy_string < T > :: tidy_string;
+    using uq4 < T, SZ, F > :: uq4;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < T > :: set_value (nits, v, s);
-        if (tidy_string < T > :: empty ())
-            nits.pick (nit_empty, es_error, ec_type, "value expected (", type_name (T), ")");
-        else if (tidy_string < T > :: good ())
-        {   ::std::string ss (tidy_string < T > :: get_string ());
-            PRESUME (SZ :: sz () != nullptr, __FILE__, __LINE__);
-            const ::std::string::size_type pos = ss.find_first_of (SZ :: sz ());
-            if (pos != ::std::string::npos)
-            {   if (! test_value < A > (nits, v, ss.substr (0, pos), tidy_string < T > :: id ())) tidy_string < T > :: status (s_invalid);
-                else both_ = true;
-                ss = ss.substr (pos+1); }
-            if (test_value < B > (nits, v, ss, tidy_string < T > :: id ())) return; }
-        tidy_string < T > :: status (s_invalid); }
+    {   vstr_t vs (uq4 < T, SZ, F > :: set_value (nits, v, s));
+        if ((vs.size () > 0) && uq4 < T, SZ, F > :: good ())
+        {   both_ = (vs.size () > 1);
+            bool res = false;
+            if (! both_) res = test_value < A > (nits, v, vs.at (0), uq4 < T, SZ, F > :: id ());
+            else
+            {   res = test_value < B > (nits, v, vs.at (0), uq4 < T, SZ, F > :: id ());
+                if (! test_value < A > (nits, v, vs.at (1), uq4 < T, SZ, F > :: id ())) res = false;
+                if (vs.size () > 2) nits.pick (nit_too_many, es_warning, ec_type, "one or two values expected; ignoring additional values (", type_name (T), ")"); }
+            if (res) return; }
+        uq4 < T, SZ, F > :: status (s_invalid); }
     ::std::size_t size () const { return both_ ? 2 : 1; } };
 
-template < e_type T, e_type A, class SZ, e_type B > struct type_many_then_must : tidy_string < T >
+template < e_type T, e_type A, class SZ, e_type B, int F = 0 > struct type_many_then_must : uq4 < T, SZ, F >
 {   ::std::size_t count_ = 1;
+    using uq4 < T, SZ, F > :: uq4;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < T > :: set_value (nits, v, s);
-        if (tidy_string < T > :: empty ())
-            nits.pick (nit_empty, es_error, ec_type, "value expected (", type_name (T), ")");
-        else if (tidy_string < T > :: good ())
-        {   ::std::string ss (tidy_string < T > :: get_string ());
-            PRESUME (SZ :: sz () != nullptr, __FILE__, __LINE__);
-            ::std::string::size_type pos = ss.find_first_of (SZ :: sz ());
-            while (pos != ::std::string::npos)
-            {   if (! test_value < A > (nits, v, ss.substr (0, pos), tidy_string < T > :: id ())) tidy_string < T > :: status (s_invalid);
-                else ++count_;
-                ss = ss.substr (pos+1);
-                pos = ss.find_first_of (SZ :: sz ()); }
-            if (test_value < B > (nits, v, ss, tidy_string < T > :: id ())) return; }
-        tidy_string < T > :: status (s_invalid); }
+    {   vstr_t vs (uq4 < T, SZ, F > :: set_value (nits, v, s));
+        count_ = vs.size ();
+        if ((count_ > 0) && uq4 < T, SZ, F > :: good ())
+        {   bool res = true;
+            for (::std::size_t x = 0; x < count_ - 1; ++x)
+                if (! test_value < A > (nits, v, vs.at (x), uq4 < T, SZ, F > :: id ())) res = false;
+            if (! test_value < B > (nits, v, vs.at (count_ - 1), uq4 < T, SZ, F > :: id ())) res = false;
+            if (res) return; }
+        uq4 < T, SZ, F > :: status (s_invalid); }
     ::std::size_t size () const { return count_; } };
 
-template < e_type T, e_type U, class SZ, e_type P > struct type_many_then_maybe : tidy_string < T >
+template < e_type T, e_type U, class SZ, e_type P, int F = 0 > struct type_many_then_maybe : uq4 < T, SZ, F >
 {   ::std::size_t size_ = 0;
-    using tidy_string < T > :: tidy_string;
+    using uq4 < T, SZ, F > :: uq4;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < T > :: set_value (nits, v, s);
-        if (tidy_string < T > :: empty ())
-            nits.pick (nit_empty, es_error, ec_type, "value expected (", type_name (T), ")");
-        else if (tidy_string < T > :: good ())
-        {   PRESUME (SZ :: sz () != nullptr, __FILE__, __LINE__);
-            vstr_t ss (split_by_charset (tidy_string < T > :: get_string (), SZ::sz ()));
-            PRESUME (! ss.empty (), __FILE__, __LINE__);
-            size_ = ss.size ();
-            bool res = true;
+    {   vstr_t vs (uq4 < T, SZ, F > :: set_value (nits, v, s));
+        size_ = vs.size ();
+        if ((size_ > 0) && uq4 < T, SZ, F > :: good ())
+        {   bool res = true;
             ::std::string peed;
-            for (auto sss : ss)
+            for (auto sss : vs)
             {   nitpick nuts;
                 if (! peed.empty ())
                 {   nits.pick (nit_many_maybe, es_error, ec_type, quote (sss), " follows ", quote (peed), ", which should be the final value");
@@ -282,7 +281,7 @@ template < e_type T, e_type U, class SZ, e_type P > struct type_many_then_maybe 
                     {   nits.merge (knits);
                         peed = sss; } } }
             if (res) return; }
-        tidy_string < T > :: status (s_invalid); }
+        uq4 < T, SZ, F > :: status (s_invalid); }
     ::std::size_t size () const { return size_; } };
 
 template < e_type T, e_type U, class SZ, e_type P, int MN, int MX > struct type_must_then_opt : tidy_string < T >
@@ -325,6 +324,25 @@ template < e_type T, e_type P, class SZ1, class SZ2 > struct type_id_or_either_s
         if (! type_or_either_string < T, P, SZ1, SZ2 > :: has_id ()) return;
         if (! ids_t::is_good_id (e, type_or_either_string < T, P, SZ1, SZ2 > :: get_id (), ec_type, nit_unknown, true))
             type_or_either_string < T, P, SZ1, SZ2 > :: status (s_invalid); } };
+
+template < e_type T, e_type P, class SZSEP, class SZ1 > struct type_and_maybe_string : tidy_string < T >
+{   using tidy_string < T > :: tidy_string;
+    static e_animation_type animation_type () noexcept { return grab_animation_type < P > (); }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < T > :: set_value (nits, v, s);
+        if (tidy_string < T > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "a value is expected (", type_name (T), ")");
+        else if (tidy_string < T > :: good ())
+        {   vstr_t params (uq2_sep (tidy_string < T > :: get_string (), UQ_TRIM | UQ_ROUND | UQ_DQ | UQ_SQ, SZSEP :: sz ()));
+            PRESUME (params.size () > 0, __FILE__, __LINE__);
+            bool nice = test_value < P > (nits, v, params.at (0));
+            nitpick nuts;
+            for (::std::size_t i = 1; i < params.size (); ++i)
+                if (! compare_complain (nuts, v, SZ1 :: sz (), params.at (i)))
+                    nice = false;
+            if (nice) return;
+            nits.merge (nuts); }
+        tidy_string < T > :: status (s_invalid); } };
 
 template < e_type T, e_type P, class SZSEP, class SZ1, class SZ2 > struct type_and_maybe_strings : tidy_string < T >
 {   using tidy_string < T > :: tidy_string;

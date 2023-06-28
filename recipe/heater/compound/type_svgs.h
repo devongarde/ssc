@@ -98,14 +98,14 @@ template < > struct type_master < t_navigation > : type_id_or_either_string < t_
 template < > struct type_master < t_opacity > : type_or_string < t_opacity, t_zero_to_one, sz_inherit >
 { using type_or_string < t_opacity, t_zero_to_one, sz_inherit > :: type_or_string; };
 
-template < > struct type_master < t_panose1 > : type_exactly_n < t_panose1, sz_space, t_integer, 10 >
-{ using type_exactly_n < t_panose1, sz_space, t_integer, 10 > :: type_exactly_n; };
+template < > struct type_master < t_panose1 > : type_exactly_n < t_panose1, sz_space_char, t_integer, 10 >
+{ using type_exactly_n < t_panose1, sz_space_char, t_integer, 10 > :: type_exactly_n; };
 
 template < > struct type_master < t_repeatcount > : type_or_string < t_repeatcount, t_0_more, sz_indefinite >
 { using type_or_string < t_repeatcount, t_0_more, sz_indefinite > :: type_or_string; };
 
-template < > struct type_master < t_preserveaspectratio10 > : type_one_or_both < t_preserveaspectratio10, t_svg_align, sz_space, t_meetslice >
-{   using type_one_or_both < t_preserveaspectratio10, t_svg_align, sz_space, t_meetslice > :: type_one_or_both;
+template < > struct type_master < t_preserveaspectratio10 > : type_one_or_both < t_preserveaspectratio10, t_svg_align, sz_space_char, t_meetslice >
+{   using type_one_or_both < t_preserveaspectratio10, t_svg_align, sz_space_char, t_meetslice > :: type_one_or_both;
     static e_animation_type animation_type () noexcept { return at_other; } };
 
 template < > struct type_master < t_preserveaspectratio12 > : type_or_string < t_preserveaspectratio12, t_preserveaspectratio10, sz_defer >
@@ -168,11 +168,11 @@ template < > struct type_master < t_svg_time_none > : type_or_string < t_svg_tim
 template < > struct type_master < t_svg_values > : type_at_least_one < t_svg_values, sz_semicolon, t_real >
 { using type_at_least_one < t_svg_values, sz_semicolon, t_real > :: type_at_least_one; };
 
-template < > struct type_master < t_vector_effect_2s > : type_at_least_one < t_vector_effect_2s, sz_space, t_vector_effect_2 >
-{ using type_at_least_one < t_vector_effect_2s, sz_space, t_vector_effect_2 > :: type_at_least_one; };
+template < > struct type_master < t_vector_effect_2s > : type_at_least_one < t_vector_effect_2s, sz_space_char, t_vector_effect_2 >
+{ using type_at_least_one < t_vector_effect_2s, sz_space_char, t_vector_effect_2 > :: type_at_least_one; };
 
-template < > struct type_master < t_vector_effect_20 > : type_many_then_maybe < t_vector_effect_20, t_vector_effect_2, sz_space, t_viewportscreen >
-{   using type_many_then_maybe < t_vector_effect_20, t_vector_effect_2, sz_space, t_viewportscreen > :: type_many_then_maybe;
+template < > struct type_master < t_vector_effect_20 > : type_many_then_maybe < t_vector_effect_20, t_vector_effect_2, sz_space_char, t_viewportscreen >
+{   using type_many_then_maybe < t_vector_effect_20, t_vector_effect_2, sz_space_char, t_viewportscreen > :: type_many_then_maybe;
     static e_animation_type animation_type () noexcept { return at_list; } };
 
 template < > struct type_master < t_svg_viewboxrect > : type_exactly_n < t_svg_viewboxrect, sz_commaspace, t_real, 4 >

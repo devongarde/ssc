@@ -31,12 +31,13 @@ bool examine_custom_property (arguments& args, nitpick& nits, const int from, co
     {   ::std::string prop;
         const int comma = token_find (args.t_, ct_comma, from, to);
         const int ket = token_find (args.t_, ct_round_ket, from, to);
-        int next = ket;
-        if ((comma > 0) && (comma < ket)) next = comma;
-        if (args.t_.at (from).t_ == ct_string)
+        int next = to;
+        if ((comma > 0) && ((comma < ket) || (ket <= 0))) next = comma;
+        else if (ket > 0) next = ket;
+        if ((args.t_.at (from).t_ == ct_identifier) || (args.t_.at (from).t_ == ct_string) || (args.t_.at (from).t_ == ct_keyword))
         {   prop = args.t_.at (from).val_;
             const int k = next_non_whitespace (args.t_, from, to);
-            if (k != next)
+            if ((k > 0) && (k != next))
             {   nits.pick (nit_css_custom, ed_css_custom, "2. Defining Custom Properties", es_error, ec_css, "Junk found after ", quote (prop));
                 res = false; } }
         else prop = assemble_string (args.t_, from, next, false);
@@ -76,37 +77,64 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
     cvf.set_value (nuts, args.v_, args.t_.at (i).val_);
     if (! cvf.good ()) return false;
     nits.merge (nuts);
+    if ((cvf.flags () & CF_NO_PARAMS) == CF_NO_PARAMS)
+    {   i = next_non_whitespace (args.t_, i, to);
+        if (context.css_ease ())
+        {   e = cvf.get (); return true; }
+        nits.pick (nit_css_ease, ed_css_ease, "", es_error, ec_css, quote (cvf.name ()), " requires CSS Easing Functions");
+        return false; }
     i = next_non_whitespace (args.t_, i, to);
     if ((i < 0) || (args.t_.at (i).t_ != ct_round_brac))
         nits.pick (nit_css_syntax, es_error, ec_css, "expecting '(' after ", quote (cvf.name ()));
     else
     {   i = next_non_whitespace (args.t_, i, to);
         if (i > 0)
-        {   res = true;
-            switch (context.css_value ())
-            {   case 4 :
-                    if ((cvf.get () == cvf_colour_mix) && (context.css_colour () < 5))
-                        nits.pick (nit_css_colour, es_error, ec_css, quote (cvf.name ()), " requires CSS Colour 5 (1)");
+        {   switch (cvf.get ())
+            {   case cvf_var :
+                    if (context.css_custom () < 3)
+                        nits.pick (nit_css_custom, es_error, ec_css, quote (cvf.name ()), " requires CSS Custom");
+                    else e = cvf_var;
+                    break;
+                case cvf_colour :
+                case cvf_hwb :
+                case cvf_lab :
+                case cvf_lch :
+                case cvf_oklab :
+                case cvf_oklch :
+                    if (context.css_colour () < 4)
+                        nits.pick (nit_css_colour, es_error, ec_css, quote (cvf.name ()), " requires CSS Colour 4");
                     else e = cvf.get ();
                     break;
-                case 3 :
-                    switch (cvf.get ())
-                    {   case cvf_calc :
-                            e = cvf_calc; break;
-                        case cvf_url:
-                            e = cvf_url; break;
-                        case cvf_colour_mix :
-                            if (context.css_colour () < 5)
-                                nits.pick (nit_css_colour, es_error, ec_css, quote (cvf.name ()), " requires CSS Colour 5 (2)");
-                            else e = cvf_colour_mix;
-                            break;
-                        default :
-                            nits.pick (nit_css_value, es_error, ec_css, quote (cvf.name ()), " requires CSS Values 4"); }
+                case cvf_colour_mix :
+                case cvf_device_cmyk :
+                    if (context.css_colour () < 5)
+                        nits.pick (nit_css_colour, es_error, ec_css, quote (cvf.name ()), " requires CSS Colour 5");
+                    else e = cvf.get ();
+                    break;
+                case cvf_hsl :
+                case cvf_hsla :
+                case cvf_rgba :
+                    if (context.css_colour () < 3)
+                        nits.pick (nit_css_colour, es_error, ec_css, quote (cvf.name ()), " requires CSS Colour 3");
+                    else e = cvf.get ();
+                    break;
+                case cvf_rgb :
+                case cvf_url :
+                    e = cvf.get ();
                     break;
                 default :
-                    if (cvf.get () == cvf_url) e = cvf_url;
-                    else nits.pick (nit_css_value, es_error, ec_css, quote (cvf.name ()), " requires CSS Values");
-                    break; } } }
+                    switch (context.css_value ())
+                    {   case 4 :
+                            e = cvf.get ();
+                            break;
+                        case 3 :
+                            if (cvf.get () == cvf_calc) e = cvf_calc;
+                            else nits.pick (nit_css_value, es_error, ec_css, quote (cvf.name ()), " requires CSS Values 4");
+                            break;
+                        default :
+                            nits.pick (nit_css_value, es_error, ec_css, quote (cvf.name ()), " requires CSS Values");
+                            break; } } }
+        res = (e != cvf_none); }
     return true; }
 
 bool test_cascade (const ::std::string& s, e_iiu& iiu)

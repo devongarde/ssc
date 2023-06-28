@@ -59,15 +59,15 @@ template < e_type T, class NAME, e_type... P > struct type_function_all : type_a
                 return; }
         type_all_of < T, sz_comma, P... > :: status (s_invalid); } };
 
-template < e_type T, class NAME, e_type... P > struct type_4_function_all : type_all_of < T, sz_space, P... >
-{   using type_all_of < T, sz_space, P... > :: type_all_of;
+template < e_type T, class NAME, e_type... P > struct type_4_function_all : type_all_of < T, sz_space_char, P... >
+{   using type_all_of < T, sz_space_char, P... > :: type_all_of;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string args;
         if (function_name < NAME > (nits, v, trim_the_lot_off (s), args))
-        {   type_all_of < T, sz_space, P... > :: set_value (nits, v, args);
-            if (type_all_of < T, sz_space, P... > :: good ())
+        {   type_all_of < T, sz_space_char, P... > :: set_value (nits, v, args);
+            if (type_all_of < T, sz_space_char, P... > :: good ())
                 return; }
-        type_all_of < T, sz_space, P... > :: status (s_invalid); } };
+        type_all_of < T, sz_space_char, P... > :: status (s_invalid); } };
 
 template < e_type T, class NAME, int MIN, int MAX, e_type... P > struct type_function_some : type_some_of < T, sz_comma, MIN, MAX, P... >
 {   using type_some_of < T, sz_comma, MIN, MAX, P... > :: type_some_of;

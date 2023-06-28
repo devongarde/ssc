@@ -69,7 +69,7 @@ template < > struct type_master < t_css_bespoke > : public tidy_string < t_css_b
 	static e_animation_type animation_type () noexcept { return at_other; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_css_bespoke > :: set_value (nits, v, s);
-        tidy_string < t_css_bespoke > :: status (s_invalid); }
+        tidy_string < t_css_bespoke > :: status (s_good); }
     void verify_attribute (nitpick& nits, const html_version& , const elem& , element* , const ::std::string& attnam)
     {   nits.pick (nit_css_bespoke, es_warning, ec_type, "bespoke properties, such as ", attnam, ", are processed neither by " PROG " nor all browsers"); } };
 

@@ -39,8 +39,10 @@ void bonk (vtt_t& vt, css_token t, const int line, ::std::string& s, ::std::stri
     if (! s.empty ())
     {   if ((s.length () > 1) && ((s.at (0) == '"') || (s.at (0) == '\'')) && (s.at (s.length () - 1) == s.at (0)))
         {   vt.emplace_back (ct_string, line, x, uq3 (s)); shush = true; }
+        else if ((s.length () == 1) && (s.at (0) == '-'))
+            vt.emplace_back (ct_dash, line, x);
         else if ((s.substr (0, 1).find_first_not_of (SIGNEDDECIMAL) == ::std::string::npos) &&
-                    (s.substr (1).find_first_of (EXPONENTIAL) == ::std::string::npos))
+                    (s.substr (1).find_first_not_of (EXPONENTIAL) == ::std::string::npos))
             vt.emplace_back (ct_number, line, x, s);
         else
         {   if (context.html_ver ().css_version () == css_1)
@@ -69,7 +71,7 @@ bool anticipate (::std::string::const_iterator& from, ::std::string::const_itera
     if (to - from < GSL_NARROW_CAST < int > (len)) return false;
     if (::std::string (from, from + len) != super) return false;
     from += len - 1;
-    return true; }   
+    return true; }
 
 void breed (v_np& , vtt_t& t, const ::std::string::const_iterator , const ::std::string::const_iterator )
 {   int mum = 0;
@@ -250,7 +252,10 @@ bool css::parse (const ::std::string& content, const bool x)
                 case '(' : bonk (args_.t_, ct_round_brac, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
                 case ')' : bonk (args_.t_, ct_round_ket, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
                 case '@' : bonk (args_.t_, ct_at, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
-                case '.' : bonk (args_.t_, ct_dot, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
+                case '.' : if ((! v.empty ()) && (v.find_first_not_of (EXPONENTIAL) == ::std::string::npos)) v += '.';
+                           else if (v.empty () && (i+1 < e) && ((*(i+1) >= '-') && (*(i+1) <= '9'))) v = '.'; 
+                           else bonk (args_.t_, ct_dot, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
+                           break;
                 case ',' : bonk (args_.t_, ct_comma, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
                 case ':' : if (! anticipate (i, e, "::")) bonk (args_.t_, ct_colon, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                            else if (args_.v_.css_selector () >= 3) bonk (args_.t_, ct_coco, line_, v, hex, c, commented, sgml_cmt, xml_cmt);

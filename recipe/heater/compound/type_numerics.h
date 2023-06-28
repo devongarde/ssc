@@ -23,34 +23,49 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "compound/type_compound.h"
 
 template < > struct type_master < t_0_more > : n_or_more < 0 >
-{ using n_or_more < 0 > :: n_or_more; };
+{   static bool is_numeric () { return true; }
+    using n_or_more < 0 > :: n_or_more; };
 
 template < > struct type_master < t_1_more > : n_or_more < 1 >
-{ using n_or_more < 1 > :: n_or_more; };
+{   static bool is_numeric () { return true; }
+    using n_or_more < 1 > :: n_or_more; };
 
 template < > struct type_master < t_integer_ai > : type_or_either_string < t_integer_ai, t_integer, sz_auto, sz_inherit >
-{ using type_or_either_string < t_integer_ai, t_integer, sz_auto, sz_inherit > :: type_or_either_string; };
+{   static bool is_numeric () { return true; }
+    using type_or_either_string < t_integer_ai, t_integer, sz_auto, sz_inherit > :: type_or_either_string; };
 
 template < > struct type_master < t_integer_i > : type_or_string < t_integer_i, t_integer, sz_inherit >
-{ using type_or_string < t_integer_i, t_integer, sz_inherit > :: type_or_string; };
+{    static bool is_numeric () { return true; }
+    using type_or_string < t_integer_i, t_integer, sz_inherit > :: type_or_string; };
 
 template < > struct type_master < t_positive_1_2 > : type_range < t_positive_1_2, sz_commaspace, t_0_more, 1, 2 >
-{ using type_range < t_positive_1_2, sz_commaspace, t_0_more, 1, 2 > :: type_range; };
+{   static bool is_numeric () { return true; }
+    using type_range < t_positive_1_2, sz_commaspace, t_0_more, 1, 2 > :: type_range; };
 
 template < > struct type_master < t_real_i > : type_or_string < t_real_i, t_real, sz_inherit >
-{ using type_or_string < t_real_i, t_real, sz_inherit > :: type_or_string; };
+{   static bool is_numeric () { return true; }
+    using type_or_string < t_real_i, t_real, sz_inherit > :: type_or_string; };
 
 template < > struct type_master < t_real_ai > : type_or_either_string < t_real_ai, t_real, sz_auto, sz_inherit >
-{ using type_or_either_string < t_real_ai, t_real, sz_auto, sz_inherit > :: type_or_either_string; };
+{   static bool is_numeric () { return true; }
+    using type_or_either_string < t_real_ai, t_real, sz_auto, sz_inherit > :: type_or_either_string; };
+
+template < > struct type_master < t_real_n > : type_or_string < t_real_n, t_real, sz_none >
+{   static bool is_numeric () { return true; }
+    using type_or_string < t_real_n, t_real, sz_none > :: type_or_string; };
 
 template < > struct type_master < t_real_ni > : type_or_either_string < t_real_ni, t_real, sz_none, sz_inherit >
-{ using type_or_either_string < t_real_ni, t_real, sz_none, sz_inherit > :: type_or_either_string; };
+{   static bool is_numeric () { return true; }
+    using type_or_either_string < t_real_ni, t_real, sz_none, sz_inherit > :: type_or_either_string; };
 
 template < > struct type_master < t_reals > : type_at_least_one < t_reals, sz_commaspace, t_real >
-{ using type_at_least_one < t_reals, sz_commaspace, t_real > :: type_at_least_one; };
+{   static bool is_numeric () { return true; }
+    using type_at_least_one < t_reals, sz_commaspace, t_real > :: type_at_least_one; };
 
 template < > struct type_master < t_unsigned_1_or_2 > : type_range < t_unsigned_1_or_2, sz_commaspace, t_unsigned, 1, 2 >
-{ using type_range < t_unsigned_1_or_2, sz_commaspace, t_unsigned, 1, 2 > :: type_range; };
+{   static bool is_numeric () { return true; }
+    using type_range < t_unsigned_1_or_2, sz_commaspace, t_unsigned, 1, 2 > :: type_range; };
 
 template < > struct type_master < t_zero_to_ones > : type_at_least_one < t_zero_to_ones, sz_commaspace, t_zero_to_one >
-{ using type_at_least_one < t_zero_to_ones, sz_commaspace, t_zero_to_one > :: type_at_least_one; };
+{    static bool is_numeric () { return true; }
+    using type_at_least_one < t_zero_to_ones, sz_commaspace, t_zero_to_one > :: type_at_least_one; };

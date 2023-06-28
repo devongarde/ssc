@@ -97,17 +97,17 @@ template < > struct type_master < t_idref > : tidy_string < t_idref >
         if (! ids_t::is_good_id (e, tidy_string < t_idref > :: get_string (), ec_type, nit_unknown, true))
             tidy_string < t_idref > :: status (s_invalid); } };
 
-template < bool HIDES > struct many_ids : string_vector < t_idrefs, sz_space >
-{   using string_vector < t_idrefs, sz_space > :: string_vector;
+template < bool HIDES > struct many_ids : string_vector < t_idrefs, sz_space_char >
+{   using string_vector < t_idrefs, sz_space_char > :: string_vector;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   string_vector < t_idrefs, sz_space > :: set_value (nits, v, s);
-        if (string_vector < t_idrefs, sz_space > :: empty ())
+    {   string_vector < t_idrefs, sz_space_char > :: set_value (nits, v, s);
+        if (string_vector < t_idrefs, sz_space_char > :: empty ())
         {   nits.pick (nit_bad_id, es_error, ec_type, "the identifier list is empty");
-            string_vector < t_idrefs, sz_space > :: status (s_invalid); } }
+            string_vector < t_idrefs, sz_space_char > :: status (s_invalid); } }
     void verify_id (element& e)
-    {   if (! string_vector < t_idrefs, sz_space > :: good ()) return;
+    {   if (! string_vector < t_idrefs, sz_space_char > :: good ()) return;
         bool allgood = true;
-        for (auto m : string_vector < t_idrefs, sz_space > :: get ())
+        for (auto m : string_vector < t_idrefs, sz_space_char > :: get ())
             if (! ids_t::is_good_id (e, m, ec_type, nit_bad_id, HIDES)) allgood = false;
         if (! allgood)
         {   tidy_string < t_idrefs > :: status (s_invalid);

@@ -268,3 +268,24 @@ inline constexpr ::std::size_t stm (const int i, const int n = 1)
 inline constexpr ::std::size_t stt (const int i, const int n = 2)
 {   const ::std::size_t res (i);
     return res * n; }
+
+template < e_css_val_fn K, e_css_val_fn T, e_css_val_fn... TS > struct in_list
+{   static bool yes ()
+    {   return in_list < K, T > :: yes () || in_list < K, TS... > :: yes (); } }; 
+
+template < e_css_val_fn K, e_css_val_fn T > struct in_list < K, T >
+{   static bool yes ()
+    {   return false; } };
+
+template < e_css_val_fn K > struct in_list < K, K >
+{   static bool yes ()
+    {   return true; } };
+
+template < e_css_val_fn T, e_css_val_fn... TS > struct listed
+{   static bool yes (const e_css_val_fn t)
+    {   if (T == t) return true;
+        return listed < TS... > :: yes (t); } };
+
+template < e_css_val_fn T > struct listed < T >
+{   static bool yes (e_css_val_fn t)
+    {   return T == t; } };

@@ -91,13 +91,13 @@ template < > struct type_master < t_vunit > : tidy_string < t_vunit > // verify 
         nits.pick (nit_bad_vunit, es_error, ec_type, quote (s), ": a vertical length is an integer or a real, optionally followed immediately by one of '%', 'cm', 'ex', 'in', 'mm', 'pc', 'pt', or 'px'");
         tidy_string < t_vunit > :: status (s_invalid); } };
 
-template < > struct type_master < t_pseudo > : string_vector < t_pseudo, sz_space > // verify against HTML 5.0, 2.4.4.4
-{   using string_vector < t_pseudo, sz_space > :: string_vector;
+template < > struct type_master < t_pseudo > : string_vector < t_pseudo, sz_space_char > // verify against HTML 5.0, 2.4.4.4
+{   using string_vector < t_pseudo, sz_space_char > :: string_vector;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   string_vector < t_pseudo, sz_space > :: set_value (nits, v, s);
+    {   string_vector < t_pseudo, sz_space_char > :: set_value (nits, v, s);
         bool good = true;
-        if (string_vector < t_pseudo, sz_space > :: good ())
-            for (auto ss : string_vector < t_pseudo, sz_space > :: get ())
+        if (string_vector < t_pseudo, sz_space_char > :: good ())
+            for (auto ss : string_vector < t_pseudo, sz_space_char > :: get ())
             {   const ::std::string::size_type pos = ss.find_first_not_of (SIGNEDDECIMAL " ");
                 if (pos == ::std::string::npos) continue;
                 if (compare_complain (nits, v, "depth", ss)) continue;
@@ -131,4 +131,4 @@ template < > struct type_master < t_pseudo > : string_vector < t_pseudo, sz_spac
                 good = false; break; }
         if (good) return;
         nits.pick (nit_bad_vunit, es_error, ec_type, quote (s), ": expecting a measurement, andor maybe 'depth', 'height', 'lspace' or 'width'");
-        string_vector < t_pseudo, sz_space > :: status (s_invalid); } };
+        string_vector < t_pseudo, sz_space_char > :: status (s_invalid); } };

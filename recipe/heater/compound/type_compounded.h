@@ -23,14 +23,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "simple/type_misc.h"
 #include "compound/type_compound.h"
 
-template < > struct type_master < t_slash > : type_string < t_slash, sz_slash >
-{ using type_string < t_slash, sz_slash > :: type_string; };
-
 template < > struct type_master < t_angle_n > : type_or_string < t_angle_n, t_angle, sz_none >
 { using  type_or_string < t_angle_n, t_angle, sz_none > :: type_or_string; };
 
 template < > struct type_master < t_hue_n > : either_type_or_string < t_hue_n, t_angle, t_hue, sz_none >
 { using  either_type_or_string < t_hue_n, t_angle, t_hue, sz_none > :: either_type_or_string; };
+
+template < > struct type_master < t_real_percent > : public type_either_or < t_real_percent, t_percent, t_real >
+{   using type_either_or < t_real_percent, t_percent, t_real > :: type_either_or; };
 
 template < > struct type_master < t_real_percent_n > : public either_type_or_string < t_real_percent_n, t_percent, t_real, sz_none >
 {   using either_type_or_string < t_real_percent_n, t_percent, t_real, sz_none > :: either_type_or_string; };
@@ -44,8 +44,8 @@ template < > struct type_master < t_cookies > : type_at_least_one < t_cookies, s
 template < > struct type_master < t_css_all_2 > : public type_sz < t_css_all_2, sz_initial, sz_inherit, sz_unset >
 {   using type_sz < t_css_all_2, sz_initial, sz_inherit, sz_unset > :: type_sz; };
 
-template < > struct type_master < t_css_caret > : type_some_of < t_css_caret, sz_space, 0, 2, t_css_colour_a, t_css_caret_shape >
-{ using type_some_of < t_css_caret, sz_space, 0, 2, t_css_colour_a, t_css_caret_shape > :: type_some_of; };
+template < > struct type_master < t_css_caret > : type_some_of < t_css_caret, sz_space_char, 0, 2, t_css_colour_a, t_css_caret_shape >
+{ using type_some_of < t_css_caret, sz_space_char, 0, 2, t_css_colour_a, t_css_caret_shape > :: type_some_of; };
 
 template < > struct type_master < t_current_colour_sz > : type_string < t_current_colour_sz, sz_currentcolour >
 { using type_string < t_current_colour_sz, sz_currentcolour > :: type_string; };

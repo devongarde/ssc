@@ -12,3 +12,29 @@ html { --color: green; }
                     calc(r * .3 + g * .59 + b * .11)
                     calc(r * .3 + g * .59 + b * .11)
                     calc(r * .3 + g * .59 + b * .11)); }
+
+.bleugh {
+    background: rgb(from  indianred 255 g b);
+    background: rgba(from  16 32 b / 0.5 );
+    background: rgb(from  16 32 b / 0.5 ); }
+
+.blop {
+    --accent:  lightseagreen;
+    --complement:   hsl(from var(--accent) calc(h + 180deg) s l); }
+
+.blawk {
+    --mycolor:  orchid;
+    --mygray:  lab(from var(--mycolor) l 0 0); }
+
+.bloop {
+    --accent:  lightseagreen;
+    --complement:   LCH(from var(--accent) l c calc(h + 180deg));
+    --mycolor:  orchid;
+    --mygray:  lch(from var(--mycolor) l 0 h)
+    --mymuted:  lch(from var(--mygray) l 30 h);
+    --mycolor:  lch(60% 90 320);
+    background: lch(from var(--mycolor) l c calc(h - 120)); }
+
+.blop {
+    --mycolor:  lch(60% 90 320);
+    background: oklch(from var(--mycolor) l c calc(h - 120)); }

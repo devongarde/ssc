@@ -84,7 +84,7 @@ PASS ../toast/css/2.0/css-4-2.css
 37 property
 38 property
 39 css_syntax css_colour
-40 css_syntax css_colour css_colour
+40 css_syntax css_colour
 42 unrecognised_value
 52 css_version naughty_content css_syntax
 
@@ -92,9 +92,9 @@ PASS ../toast/css/2.0/css-4-3.css
 0 html
 50 css_version
 51 naughty_content
-63 css_colour css_colour css_colour
-64 css_colour css_colour css_colour css_colour
-65 css_colour css_colour css_colour
+63 bad_rgb
+64 bad_rgb
+65 bad_rgb
 
 PASS ../toast/css/2.0/css-4-4.css
 0 html
@@ -497,7 +497,6 @@ PASS ../toast/css/2.0/css-14-1.css
 
 PASS ../toast/css/2.0/css-14-2.css
 0 html
-28 precisely
 
 PASS ../toast/css/2.0/css-14-2.html
 0 charset_mismatch charset_used

@@ -79,6 +79,9 @@ template < > struct type_master < t_illegal > : type_base < mono, t_illegal >
     {   GRACEFUL_CRASH (__FILE__, __LINE__);
         UNREACHABLE (return GSL_NARROW_CAST <mono> (0)); } };
 
+template < > struct type_master < t_inset > : type_string < t_inset, sz_inset >
+{ using type_string < t_inset, sz_inset > :: type_string; };
+
 template < > struct type_master < t_loopie > : tidy_string < t_loopie >
 {   using tidy_string < t_loopie > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -100,6 +103,10 @@ template < > struct type_master < t_not_empty > : string_value < t_not_empty >
         if (s.empty ())
         {   nits.pick (nit_empty, es_error, ec_type, "value should not be empty");
             string_value < t_not_empty > :: status (s_invalid); } } };
+
+
+template < > struct type_master < t_slash > : type_string < t_slash, sz_slash >
+{ using type_string < t_slash, sz_slash > :: type_string; };
 
 template < > struct type_master < t_wanted > : public tidy_string < t_wanted >
 {   using tidy_string < t_wanted > :: tidy_string;

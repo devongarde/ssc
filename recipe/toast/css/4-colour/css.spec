@@ -11,7 +11,7 @@ PASS ../toast/css/4-colour/css-6.css
 
 PASS ../toast/css/4-colour/css-6.html
 2 naughty_lang
-4 long_title
+12 inserted_missing_closure
 
 PASS ../toast/css/4-colour/css-7.css
 0 html
@@ -42,4 +42,3 @@ PASS ../toast/css/4-colour/css-16.css
 
 PASS ../toast/css/4-colour/index.html
 2 naughty_lang
-4 long_title

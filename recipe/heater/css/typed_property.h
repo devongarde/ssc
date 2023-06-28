@@ -67,16 +67,21 @@ template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public
     virtual bool bad () const noexcept override { return type_master < TYPE > :: bad (); }
     virtual bool invalid () const noexcept override { return type_master < TYPE > :: invalid (); }
     virtual int fin () const noexcept override { return fin_; } 
-    static bool check_fn (arguments& args, int& start, const int to, nitpick& nits)
-    {   bool res = false;
+    static bool check_fn (arguments& args, int& start, const int to, nitpick& nits, const bool ok)
+    {   bool res = ok;
         e_css_val_fn e = cvf_none;
-        for (auto i = start ; (i > 0) && ((i < to) || (to < 0)); start = i = next_non_whitespace (args.t_, i, to))
+        for (auto i = start ; (i > 0) && ((i < to) || (to < 0)); i = next_non_whitespace (args.t_, i, to))
             if ((args.t_.at (i).t_ == ct_keyword) || (args.t_.at (i).t_ == ct_identifier))
                 if (! check_constants (args, nits, i))
-                    if (! call_fn (args, nits, i, to, res, e))
-                        test_value < TYPE > (nits, args.v_, args.t_.at (i).val_);
+                {   nitpick nuts;
+                    if (! call_fn (args, nuts, i, to, res, e))
+                    {   if (! ok)
+                        {   nits.merge (nuts);
+                            test_value < TYPE > (nits, args.v_, args.t_.at (i).val_); } }
                     else if (e != cvf_none)
-                        start = i = test_value_fns (args, start, to, nits, TYPE, e, IDENTITY);
+                    {   if (ok && listed < cvf_url, cvf_colour, cvf_hsl, cvf_hsla, cvf_hwb, cvf_lab, cvf_lch, cvf_oklab, cvf_oklch, cvf_rgb, cvf_rgba > :: yes (e)) return res;
+                        nits.merge (nuts);
+                        start = i = test_value_fns (args, i, to, nits, TYPE, e, IDENTITY); } }
         return res; }
     virtual void verify (nitpick& nits, const elem& e) override
     {   if (iiu_ == iiu_none) type_master < TYPE > :: verify_attribute (nits, context.html_ver (), e, nullptr, name ()); }
@@ -96,27 +101,21 @@ template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public
     {   if (iiu_ == iiu_none) type_master < TYPE > ::shadow (ss, args.v_, e);
         else ss << iiu (); }
     int set_value_ex (arguments& args, const int start, const int to, nitpick& nits, const ::std::string& s)
-    {   nitpick nuts;
+    {   nitpick nuts, nets;
         type_master < TYPE > :: set_value (nuts, args.v_, s);
-        if ((! type_master < TYPE > :: good ()) && (s.length () >= 3))
+        const bool ok = type_master < TYPE> :: good ();
+        if (ok) nits.merge (nuts);
+        else if (s.length () >= 3)
         {   PRESUME ((start > 0) && (start < GSL_NARROW_CAST < int > (args.t_.size ())), __FILE__, __LINE__);
             if ((args.t_.at (start).t_ == ct_keyword) || (args.t_.at (start).t_ == ct_identifier))
-            {   if (compare_no_case (args.t_.at (start).val_, "var"))
-                {   const int b = next_non_whitespace (args.t_, start, to);
-                    if ((b > 0) && (args.t_.at (b).t_ == ct_round_brac))
-                    {   if (context.css_custom () != 3)
-                            nits.pick (nit_css_custom, es_error, ec_css, "'var (...)' requires CSS Custom");
-                        else if (examine_custom_property (args, nits, next_non_whitespace (args.t_, b, to), to))
-                        {   type_master < TYPE > :: status (s_good);
-                            return start; }
-                        type_master < TYPE > :: status (s_invalid);
-                        return start; } }
                 if (test_cascade (s, iiu_))
                 {   base_type :: status (s_good);
                     return start; } }
-            int i = start;
-            if (check_fn (args, i, to, nits)) return i; }
-        nits.merge (nuts);
+        int i = start;
+        if (check_fn (args, i, to, nits, ok))
+        {   base_type :: status (s_good);
+            return i; }
+        if (! ok) nits.merge (nuts);
         return start; }
     virtual void set_value (arguments& args, const int start, const int to, nitpick& nits, const ::std::string& s) override
     {   fin_ = set_value_ex (args, start, to, nits, s); }

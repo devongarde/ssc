@@ -52,6 +52,9 @@ template < e_type T, class SZ, e_type A, e_type... B > struct type_all_of : type
         return type_all_of < T, SZ, B... > :: is_url (); }
     static bool is_existential () noexcept
     {   return false; }
+    static bool is_numeric () noexcept
+    {   if ( type_master < A > :: is_numeric ()) return true;
+        return type_all_of < T, SZ, B... > :: is_numeric (); }
     static e_animation_type animation_type () noexcept
     {   const e_animation_type a = type_master < A > :: animation_type ();
         if (a != at_none) return a;

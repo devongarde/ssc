@@ -63,7 +63,7 @@ template < > struct type_master < t_about > : varied < t_about >
 {   using varied < t_about > :: varied;
     void verify_attribute (nitpick& nits, const html_version& v, const elem& , element* , const ::std::string& )
     {   if (good () || empty ())
-            if (v.svg ()) validate_type < string_vector < t_text, sz_space > > (nits, v);
+            if (v.svg ()) validate_type < string_vector < t_text, sz_space_char > > (nits, v);
             else validate_type < type_master < t_curie_safe > > (nits, v); } };
 
 template < > struct type_master < t_accept > : varied < t_accept >

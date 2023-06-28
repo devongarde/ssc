@@ -103,9 +103,12 @@ class context_t
     context_t& corpus (const ::boost::filesystem::path& f) { corpus_ = f; mac (nm_context_corpus, f.string ()); return *this; }
     context_t& crosslinks (const bool b) { crosslinks_ = b; mac (nm_context_crosslinks, b); return *this; }
     context_t& css_animation (const int n) { version_.css_animation (n); mac (nm_context_css_animation, n); return *this; }
+    context_t& css_background (const int n) { version_.css_background (n); mac (nm_context_css_background, n); return *this; }
+// css_background
     context_t& css_cascade (const int n) { version_.css_cascade (n); mac (nm_context_css_cascade, n); return *this; }
     context_t& css_colour (const int n) { version_.css_colour (n); mac (nm_context_css_colour, n); return *this; }
     context_t& css_custom (const int n) { version_.css_custom (n); mac (nm_context_css_custom, n); return *this; }
+    context_t& css_ease (const int n) { version_.css_ease (n); mac (nm_context_css_ease, n); return *this; }
     context_t& css_extension (const vstr_t& s) { css_ext_ = s; mac (nm_context_css_extension, s); return *this; }
     context_t& css_media (const int n) { version_.css_media (n); mac (nm_context_css_media, n); return *this; }
     context_t& css_namespace (const int n) { version_.css_namespace (n); mac (nm_context_css_namespace, n); return *this; }
@@ -283,9 +286,11 @@ public:
     ::boost::filesystem::path corpus () const { return corpus_; }
     bool crosslinks () const noexcept { return crosslinks_; }
     int css_animation () { return version_.css_animation (); }
+    int css_background () { return version_.css_background (); }
     int css_cascade () { return version_.css_cascade (); }
     int css_colour () { return version_.css_colour (); }
     int css_custom () { return version_.css_custom (); }
+    int css_ease () { return version_.css_ease (); }
     const vstr_t css_extension () const { return css_ext_; }
     int css_media () { return version_.css_media (); }
     int css_namespace () { return version_.css_namespace (); }

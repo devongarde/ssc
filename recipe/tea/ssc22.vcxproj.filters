@@ -1122,6 +1122,15 @@
     <Filter Include="Toast\Living\jul23">
       <UniqueIdentifier>{2e3978ec-95dd-4ddf-862a-b60c537aaa18}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Port\MacPorts">
+      <UniqueIdentifier>{f042c463-2b18-4e3f-bd5b-b4ef99140a3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\ease">
+      <UniqueIdentifier>{4d34548a-3cd1-482e-b6c8-f5c143b39fe5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-background">
+      <UniqueIdentifier>{e09ae4ef-58d5-48b1-894e-4507dc76d012}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -1787,6 +1796,9 @@
     <ClInclude Include="..\heater\css\value.h">
       <Filter>Heater\css</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\css\value_types.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -2378,6 +2390,33 @@
       <Filter>Sauce\attribute</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value2.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_1.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_2.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_3.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_4.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_5.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_6.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_7.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_8.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_9.cpp">
       <Filter>Sauce\css</Filter>
     </ClCompile>
   </ItemGroup>
@@ -30648,9 +30687,6 @@
     <None Include="..\toast\css\5-colour\index.html">
       <Filter>Toast\CSS\5-colour</Filter>
     </None>
-    <None Include="..\toast\css\5-colour\css-5.css">
-      <Filter>Toast\CSS\5-colour</Filter>
-    </None>
     <None Include="..\toast\conf\other\nancy-wpt.conf">
       <Filter>Toast\Conf\other</Filter>
     </None>
@@ -31421,6 +31457,48 @@
     </None>
     <None Include="..\toast\living\jul23\popover.html">
       <Filter>Toast\Living\jul23</Filter>
+    </None>
+    <None Include="..\port\macports\portfile">
+      <Filter>Port\MacPorts</Filter>
+    </None>
+    <None Include="..\toast\css\ease\css.conf">
+      <Filter>Toast\CSS\ease</Filter>
+    </None>
+    <None Include="..\toast\css\ease\css.spec">
+      <Filter>Toast\CSS\ease</Filter>
+    </None>
+    <None Include="..\toast\css\ease\css-2.css">
+      <Filter>Toast\CSS\ease</Filter>
+    </None>
+    <None Include="..\toast\css\ease\index.html">
+      <Filter>Toast\CSS\ease</Filter>
+    </None>
+    <None Include="..\toast\css\3-background\css.spec">
+      <Filter>Toast\CSS\3-background</Filter>
+    </None>
+    <None Include="..\toast\css\3-background\css-2.css">
+      <Filter>Toast\CSS\3-background</Filter>
+    </None>
+    <None Include="..\toast\css\3-background\index.html">
+      <Filter>Toast\CSS\3-background</Filter>
+    </None>
+    <None Include="..\toast\css\3-background\css.conf">
+      <Filter>Toast\CSS\3-background</Filter>
+    </None>
+    <None Include="..\toast\css\3-background\css-2.html">
+      <Filter>Toast\CSS\3-background</Filter>
+    </None>
+    <None Include="..\toast\css\3-background\css-3.css">
+      <Filter>Toast\CSS\3-background</Filter>
+    </None>
+    <None Include="..\toast\css\3-background\css-4.css">
+      <Filter>Toast\CSS\3-background</Filter>
+    </None>
+    <None Include="..\toast\css\3-background\css-5.css">
+      <Filter>Toast\CSS\3-background</Filter>
+    </None>
+    <None Include="..\toast\css\3-background\css-6.css">
+      <Filter>Toast\CSS\3-background</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

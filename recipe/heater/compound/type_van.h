@@ -27,14 +27,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 template < > struct type_master < t_1_more_i > : type_or_string < t_1_more_i, t_1_more, sz_inherit >
 { using type_or_string < t_1_more_i, t_1_more, sz_inherit > :: type_or_string; };
 
-template < > struct type_master < t_10_int > : type_exactly_n < t_10_int, sz_space, t_integer, 10 >
-{ using type_exactly_n < t_10_int, sz_space, t_integer, 10 > :: type_exactly_n; };
+template < > struct type_master < t_10_int > : type_exactly_n < t_10_int, sz_space_char, t_integer, 10 >
+{ using type_exactly_n < t_10_int, sz_space_char, t_integer, 10 > :: type_exactly_n; };
 
-template < > struct type_master < t_2string > : type_exactly_n < t_2string, sz_space, t_text, 2 >
-{ using type_exactly_n < t_2string, sz_space, t_text, 2 > :: type_exactly_n; };
+template < > struct type_master < t_2string > : type_exactly_n < t_2string, sz_space_char, t_text, 2 >
+{ using type_exactly_n < t_2string, sz_space_char, t_text, 2 > :: type_exactly_n; };
 
-template < > struct type_master < t_4string > : type_exactly_n < t_4string, sz_space, t_text, 4 >
-{ using type_exactly_n < t_4string, sz_space, t_text, 4 > :: type_exactly_n; };
+template < > struct type_master < t_4string > : type_exactly_n < t_4string, sz_space_char, t_text, 4 >
+{ using type_exactly_n < t_4string, sz_space_char, t_text, 4 > :: type_exactly_n; };
 
 template < > struct type_master < t_4string_ni > : one_of_three_or_string < t_4string_ni, t_4string, t_2string, t_css_inherit, sz_none >
 { using one_of_three_or_string < t_4string_ni, t_4string, t_2string, t_css_inherit, sz_none > :: one_of_three_or_string; };
@@ -42,8 +42,8 @@ template < > struct type_master < t_4string_ni > : one_of_three_or_string < t_4s
 template < > struct type_master < t_bandwidth > : type_or_string < t_bandwidth, t_real, sz_auto >
 { using type_or_string < t_bandwidth, t_real, sz_auto > :: type_or_string; };
 
-template < > struct type_master < t_bools > : type_at_least_one < t_bools, sz_space, t_bool >
-{ using type_at_least_one < t_bools, sz_space, t_bool > :: type_at_least_one; };
+template < > struct type_master < t_bools > : type_at_least_one < t_bools, sz_space_char, t_bool >
+{ using type_at_least_one < t_bools, sz_space_char, t_bool > :: type_at_least_one; };
 
 template < > struct type_master < t_charspacing > : type_or_any_string < t_charspacing, t_measure, sz_loose, sz_medium, sz_tight >
 { using type_or_any_string < t_charspacing, t_measure, sz_loose, sz_medium, sz_tight > :: type_or_any_string; };
@@ -184,20 +184,20 @@ template < > struct type_master < t_indentalign2 > : type_or_string < t_indental
 template < > struct type_master < t_indentshift2 > : type_or_string < t_indentshift2, t_measure, sz_indentshift >
 { using type_or_string < t_indentshift2, t_measure, sz_indentshift > :: type_or_string; };
 
-template < > struct type_master < t_lcraligns > : type_at_least_one < t_lcraligns, sz_space, t_lcralign >
-{ using type_at_least_one < t_lcraligns, sz_space, t_lcralign > :: type_at_least_one; };
+template < > struct type_master < t_lcraligns > : type_at_least_one < t_lcraligns, sz_space_char, t_lcralign >
+{ using type_at_least_one < t_lcraligns, sz_space_char, t_lcralign > :: type_at_least_one; };
 
-template < > struct type_master < t_lcrds > : type_at_least_one < t_lcrds, sz_space, t_lcrd >
-{ using type_at_least_one < t_lcrds, sz_space, t_lcrd > :: type_at_least_one; };
+template < > struct type_master < t_lcrds > : type_at_least_one < t_lcrds, sz_space_char, t_lcrd >
+{ using type_at_least_one < t_lcrds, sz_space_char, t_lcrd > :: type_at_least_one; };
 
-template < > struct type_master < t_lcrdss > : string_vector < t_lcrdss, sz_space >
-{   using string_vector < t_lcrdss, sz_space > :: string_vector;
+template < > struct type_master < t_lcrdss > : string_vector < t_lcrdss, sz_space_char >
+{   using string_vector < t_lcrdss, sz_space_char > :: string_vector;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string ss (trim_the_lot_off (s));
         ::boost::replace_all (ss, "{", " ");
         ::boost::replace_all (ss, "}", " ");
         if (test_value < t_lcrds > (nits, v, trim_the_lot_off (ss))) return;
-        string_vector < t_lcrdss, sz_space > :: status (s_invalid); } };
+        string_vector < t_lcrdss, sz_space_char > :: status (s_invalid); } };
 
 template < > struct type_master < t_length > : type_either_or < t_length, t_length_absolute, t_length_relative >
 { using type_either_or < t_length, t_length_absolute, t_length_relative > :: type_either_or; };
@@ -226,26 +226,26 @@ template < > struct type_master < t_linethickness > : tidy_string < t_linethickn
         if (test_value < t_vunit > (nits, v, s)) return;
         tidy_string < t_linethickness > :: status (s_invalid); } };
 
-template < > struct type_master < t_mathalign_n > : string_vector < t_mathalign_n, sz_space >
-{   using string_vector < t_mathalign_n, sz_space > :: string_vector;
+template < > struct type_master < t_mathalign_n > : string_vector < t_mathalign_n, sz_space_char >
+{   using string_vector < t_mathalign_n, sz_space_char > :: string_vector;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   string_vector < t_mathalign_n, sz_space > :: set_value (nits, v, s);
-        if (string_vector < t_mathalign_n, sz_space > :: empty ())
+    {   string_vector < t_mathalign_n, sz_space_char > :: set_value (nits, v, s);
+        if (string_vector < t_mathalign_n, sz_space_char > :: empty ())
             nits.pick (nit_empty, es_error, ec_type, "TYPE requires a value");
-        else if (string_vector < t_mathalign_n, sz_space > :: good ())
-        {   vstr_t args (string_vector < t_mathalign_n, sz_space > :: get ());
+        else if (string_vector < t_mathalign_n, sz_space_char > :: good ())
+        {   vstr_t args (string_vector < t_mathalign_n, sz_space_char > :: get ());
             if (test_value < t_mathalign > (nits, v, args.at (0)))
                 if (args.size () == 1) return;
                 else if (test_value < t_integer > (nits, v, args.at (1)))
                     if (args.size () == 2) return;
                     else nits.pick (nit_too_many, ed_math_2, "3.5.1 Table or Matrix (mtable)", es_error, ec_type, "expecting one position and, optionally one number"); }
-        string_vector < t_mathalign_n, sz_space > :: status (s_invalid); } };
+        string_vector < t_mathalign_n, sz_space_char > :: status (s_invalid); } };
 
-template < > struct type_master < t_mathaligns > : type_at_least_one < t_mathaligns, sz_space, t_mathalign >
-{ using type_at_least_one < t_mathaligns, sz_space, t_mathalign > :: type_at_least_one; };
+template < > struct type_master < t_mathaligns > : type_at_least_one < t_mathaligns, sz_space_char, t_mathalign >
+{ using type_at_least_one < t_mathaligns, sz_space_char, t_mathalign > :: type_at_least_one; };
 
-template < > struct type_master < t_mathnotations > : type_at_least_one < t_mathnotations, sz_space, t_mathnotation >
-{ using type_at_least_one < t_mathnotations, sz_space, t_mathnotation > :: type_at_least_one; };
+template < > struct type_master < t_mathnotations > : type_at_least_one < t_mathnotations, sz_space_char, t_mathnotation >
+{ using type_at_least_one < t_mathnotations, sz_space_char, t_mathnotation > :: type_at_least_one; };
 
 template < > struct type_master < t_mathsize > : tidy_string < t_mathsize >
 {   using tidy_string < t_mathsize > :: tidy_string;
@@ -352,36 +352,36 @@ template < > struct type_master < t_inputaccept > : tidy_string < t_inputaccept 
                 if (ok) return; } }
         tidy_string < t_inputaccept > :: status (s_invalid); } };
 
-template < > struct type_master < t_nsds > : type_at_least_one < t_nsds, sz_space, t_nsd >
-{ using type_at_least_one < t_nsds, sz_space, t_nsd > :: type_at_least_one; };
+template < > struct type_master < t_nsds > : type_at_least_one < t_nsds, sz_space_char, t_nsd >
+{ using type_at_least_one < t_nsds, sz_space_char, t_nsd > :: type_at_least_one; };
 
 template < > struct type_master < t_real_1_2 > : type_one_or_both < t_real_1_2, t_real, sz_commaspace, t_real >
 {   using type_one_or_both < t_real_1_2, t_real, sz_commaspace, t_real > :: type_one_or_both;
     static e_animation_type animation_type () noexcept { return at_number; } };
 
-template < > struct type_master < t_roles > : string_vector < t_roles, sz_space >
-{   using string_vector < t_roles, sz_space > :: string_vector;
+template < > struct type_master < t_roles > : string_vector < t_roles, sz_space_char >
+{   using string_vector < t_roles, sz_space_char > :: string_vector;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   string_vector < t_roles, sz_space > :: set_value (nits, v, s);
-        if (string_vector < t_roles, sz_space > :: empty ())
+    {   string_vector < t_roles, sz_space_char > :: set_value (nits, v, s);
+        if (string_vector < t_roles, sz_space_char > :: empty ())
         {   nits.pick (nit_empty, es_error, ec_type, "TYPE requires a value");
-            string_vector < t_roles, sz_space > :: status (s_invalid); }
-        else if (string_vector < t_roles, sz_space > :: good ())
+            string_vector < t_roles, sz_space_char > :: status (s_invalid); }
+        else if (string_vector < t_roles, sz_space_char > :: good ())
         {   bool allgood = true;
-            for (auto arg : string_vector < t_roles, sz_space > :: get ())
+            for (auto arg : string_vector < t_roles, sz_space_char > :: get ())
             {   type_master < t_role > ar (box ());
                 ar.set_value (nits, v, arg);
                 if (! ar.good ()) allgood = false; }
             if (allgood) return; }
-        string_vector < t_roles, sz_space > :: status (s_invalid); } };
+        string_vector < t_roles, sz_space_char > :: status (s_invalid); } };
 
-template < > struct type_master < t_sandboxen > : string_vector < t_sandboxen, sz_space >
-{   using string_vector < t_sandboxen, sz_space > :: string_vector;
+template < > struct type_master < t_sandboxen > : string_vector < t_sandboxen, sz_space_char >
+{   using string_vector < t_sandboxen, sz_space_char > :: string_vector;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   string_vector < t_sandboxen, sz_space > :: set_value (nits, v, s);
-        if (string_vector < t_sandboxen, sz_space > :: good ())
+    {   string_vector < t_sandboxen, sz_space_char > :: set_value (nits, v, s);
+        if (string_vector < t_sandboxen, sz_space_char > :: good ())
         {   bool allgood = true, script = false, origin = false, topnav = false, topnavuser = false, topnavprot = false;
-            for (auto arg : string_vector < t_sandboxen, sz_space > :: get ())
+            for (auto arg : string_vector < t_sandboxen, sz_space_char > :: get ())
             {   type_master < t_sandbox > sb (box ());
                 sb.set_value (nits, v, arg);
                 if (! sb.good ()) allgood = false;
@@ -399,7 +399,7 @@ template < > struct type_master < t_sandboxen > : string_vector < t_sandboxen, s
             if (topnavprot && (topnavuser || topnav))
                 nits.pick (nit_overallowed, ed_apr22, "4.8.5 The iframe element", es_error, ec_attribute, "'allow-top-navigation-to-custom-protocols' can be combined with neither 'allow-top-navigation' nor 'allow-top-navigation-by-user-activation' in SANDBOX");
             if (allgood) return; }
-        string_vector < t_sandboxen, sz_space > :: status (s_invalid); } };
+        string_vector < t_sandboxen, sz_space_char > :: status (s_invalid); } };
 
 template < > struct type_master < t_schema_type > : tidy_string < t_schema_type >
 {   e_schema mdr_ = s_none;

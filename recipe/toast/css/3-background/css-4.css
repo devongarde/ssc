@@ -1,0 +1,45 @@
+﻿DIV.standout {
+    width: 13em;
+    height: 8em;
+    border: solid black 1em;
+    border-radius: 7.5em 5em }
+
+.urk
+{   border-radius: 4em; }
+
+.ook
+{   border-top-left-radius:     4em;
+    border-top-right-radius:    4em;
+    border-bottom-right-radius: 4em;
+    border-bottom-left-radius:  4em; }
+
+.awk
+{   border-radius: 2em 1em 4em / 0.5em 3em; }
+
+.ok
+{   border-top-left-radius:     2em 0.5em;
+    border-top-right-radius:    1em 3em;
+    border-bottom-right-radius: 4em 0.5em;
+    border-bottom-left-radius:  1em 3em; }
+
+p { width: 70px; height: 70px; border: solid 30px;
+    border-color: orange orange silver silver;
+    border-top-right-radius: 100%; }
+
+DIV {
+    background: black;
+    color: white;
+    border-radius: 1em;
+    padding: 1em }
+
+.overlap
+{   box-sizing: border-box;
+    width: 6em;
+    height: 2.5em;
+    border-radius: 0.5em 2em 0.5em 2em; }
+
+.kitty
+{   box-sizing: border-box;
+    width: 6em;
+    height: 2em;
+    border-radius: 0.5em 2em 0.5em 2em; }

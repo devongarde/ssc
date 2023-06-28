@@ -1231,7 +1231,6 @@ PASS ../toast/living/jan22/lwp.html
 
 PASS ../toast/living/jan22/main-1.html
 3 inserted_missing_parent missing_close
-4 unrecognised_value
 14 inserted_missing_parent inserted_missing_closure missing_close
 18 attempted_escape no_such_folder url_not_found
 19 attempted_escape no_such_folder url_not_found

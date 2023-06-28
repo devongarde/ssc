@@ -1,0 +1,18 @@
+﻿.test {
+animation: moveRight 5s 1s steps(5, start);
+}
+.toast {
+animation: moveRight 5s 1s steps(5, flibbit);
+}
+.teezle {
+animation: moveRight 5s 1s linear;
+}
+.ta {
+animation: moveRight 5s 1s cubic-bezier(0.5,1.0,0.6,1.0);
+}
+.tishoo {
+animation: moveRight 5s 1s cubic-bezier(1.5,1.0,2.6,1.0);
+}
+.tripe {
+animation: moveRight 5s 1s linier;
+}
