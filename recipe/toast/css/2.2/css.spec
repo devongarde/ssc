@@ -71,7 +71,7 @@ PASS ../toast/css/2.2/css-4-2.css
 18 property
 19 property
 20 css_syntax css_colour
-21 css_syntax css_colour css_colour
+21 css_syntax css_colour
 23 css_syntax css_element unrecognised_value
 24 unrecognised_value
 25 css_syntax
@@ -86,9 +86,9 @@ PASS ../toast/css/2.2/css-4-3.css
 0 html
 31 css_version
 32 naughty_content
-44 css_colour css_colour css_colour
-45 css_colour css_colour css_colour css_colour
-46 css_colour css_colour css_colour
+44 bad_rgb
+45 bad_rgb
+46 bad_rgb
 48 css_element
 49 css_element
 50 css_element
@@ -174,7 +174,7 @@ PASS ../toast/css/2.2/css-6-4.html
 PASS ../toast/css/2.2/css-7.css
 0 html
 1 url_not_found
-16 bad_media
+16 unrecognised_value
 
 PASS ../toast/css/2.2/css-7.html
 9 missing_close
@@ -393,7 +393,6 @@ PASS ../toast/css/2.2/css-14-1.css
 
 PASS ../toast/css/2.2/css-14-2.css
 0 html
-9 precisely
 
 PASS ../toast/css/2.2/css-14-2.html
 10 missing_close

@@ -25,8 +25,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 template < > struct type_master < t_mathvertauto > : type_or_string < t_mathvertauto, t_vunit, sz_auto >
 { using type_or_string < t_mathvertauto, t_vunit, sz_auto > :: type_or_string; };
 
-template < > struct type_master < t_vunits > : type_at_least_none < t_vunits, sz_space, t_vunit >
-{ using type_at_least_none < t_vunits, sz_space, t_vunit > :: type_at_least_none; };
+template < > struct type_master < t_vunits > : type_at_least_none < t_vunits, sz_space_char, t_vunit >
+{ using type_at_least_none < t_vunits, sz_space_char, t_vunit > :: type_at_least_none; };
 
 template < > struct type_master < t_intent > : type_one_of_four < t_intent, t_intent_conlit, t_real, t_intent_ref, t_intent_app >
 { using type_one_of_four < t_intent, t_intent_conlit, t_real, t_intent_ref, t_intent_app > :: type_one_of_four; };

@@ -1,0 +1,14 @@
+﻿p { border: solid red }
+p {
+  border-top: solid red;
+  border-right: solid red;
+  border-bottom: solid red;
+  border-left: solid red;
+  border-image: none;
+}
+
+blockquote {
+  border-color: red;
+  border-left: double;
+  color: black
+}

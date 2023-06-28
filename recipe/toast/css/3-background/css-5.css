@@ -1,0 +1,14 @@
+﻿.notebox {
+  border: double orange;
+  /* must set 'border' shorthand first, otherwise it erases 'border-image' */
+  border-image: url("border.png") 30 round;
+  /* but other 'border' properties can be set after */
+  border-width: thin thick;
+}
+
+.sidebar .notebox {
+  box-shadow: 0 0 5px gray;
+  border-radius: 5px;
+  border: none; /* turn off all borders */
+  /* 'border' shorthand resets 'border-image' */
+}

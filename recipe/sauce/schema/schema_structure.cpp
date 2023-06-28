@@ -6345,6 +6345,7 @@ microdata_structure schema_structure [] =
     { { 3, 5 }, { 0, 0 }, sch_trip, sp_partoftrip },
     { { 3, 4 }, { 0, 0 }, sch_trip, sp_provider },
     { { 3, 5 }, { 0, 0 }, sch_trip, sp_subtrip },
+    { { 22, 0 }, { 0, 0 }, sch_trip, sp_triporigin },
 
     { { 1, 3 }, { 1, 93 }, sch_tvclip, sp_partoftvseries },
 

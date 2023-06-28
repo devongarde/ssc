@@ -86,6 +86,7 @@
     <ClInclude Include="..\heater\css\statements.h" />
     <ClInclude Include="..\heater\css\typed_property.h" />
     <ClInclude Include="..\heater\css\value.h" />
+    <ClInclude Include="..\heater\css\value_types.h" />
     <ClInclude Include="..\heater\css\weight.h" />
     <ClInclude Include="..\heater\element\elem.h" />
     <ClInclude Include="..\heater\element\element.h" />
@@ -310,6 +311,15 @@
     <ClCompile Include="..\sauce\css\typed_property.cpp" />
     <ClCompile Include="..\sauce\css\value.cpp" />
     <ClCompile Include="..\sauce\css\value2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_3.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_4.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_5.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_6.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_7.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_8.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_9.cpp" />
     <ClCompile Include="..\sauce\css\weight.cpp" />
     <ClCompile Include="..\sauce\element\elem.cpp" />
     <ClCompile Include="..\sauce\element\element.cpp" />
@@ -447,6 +457,7 @@
     <ClCompile Include="..\sauce\webpage\root.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\port\macports\portfile" />
     <None Include="..\port\openbsd\Makefile" />
     <None Include="..\port\openbsd\pkg\DESCR" />
     <None Include="..\port\openbsd\pkg\PLIST" />
@@ -1271,6 +1282,15 @@
     <None Include="..\toast\css\3-animation\css.conf" />
     <None Include="..\toast\css\3-animation\css.spec" />
     <None Include="..\toast\css\3-animation\index.html" />
+    <None Include="..\toast\css\3-background\css-2.css" />
+    <None Include="..\toast\css\3-background\css-2.html" />
+    <None Include="..\toast\css\3-background\css-3.css" />
+    <None Include="..\toast\css\3-background\css-4.css" />
+    <None Include="..\toast\css\3-background\css-5.css" />
+    <None Include="..\toast\css\3-background\css-6.css" />
+    <None Include="..\toast\css\3-background\css.conf" />
+    <None Include="..\toast\css\3-background\css.spec" />
+    <None Include="..\toast\css\3-background\index.html" />
     <None Include="..\toast\css\3-cascade\css-2.css" />
     <None Include="..\toast\css\3-cascade\css-3.css" />
     <None Include="..\toast\css\3-cascade\css-6.css" />
@@ -1436,7 +1456,6 @@
     <None Include="..\toast\css\5-colour\css-2.css" />
     <None Include="..\toast\css\5-colour\css-3.css" />
     <None Include="..\toast\css\5-colour\css-4.css" />
-    <None Include="..\toast\css\5-colour\css-5.css" />
     <None Include="..\toast\css\5-colour\css-6.css" />
     <None Include="..\toast\css\5-colour\css-7.css" />
     <None Include="..\toast\css\5-colour\css-8.css" />
@@ -1478,6 +1497,10 @@
     <None Include="..\toast\css\custom\css.conf" />
     <None Include="..\toast\css\custom\css.spec" />
     <None Include="..\toast\css\custom\index.html" />
+    <None Include="..\toast\css\ease\css-2.css" />
+    <None Include="..\toast\css\ease\css.conf" />
+    <None Include="..\toast\css\ease\css.spec" />
+    <None Include="..\toast\css\ease\index.html" />
     <None Include="..\toast\css\songlight\css.conf" />
     <None Include="..\toast\css\songlight\css.spec" />
     <None Include="..\toast\css\songlight\index.html" />
@@ -10461,7 +10484,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <ControlFlowGuard>false</ControlFlowGuard>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
@@ -10489,7 +10512,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <Optimization>MinSpace</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>

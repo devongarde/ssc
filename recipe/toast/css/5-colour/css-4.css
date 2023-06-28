@@ -1,2 +1,78 @@
-﻿em { color:  rgb(100% 0% 0% / 50%); }
-em { color:  rgba(100%, 0%, 0%, 0.5); }
+﻿em { color:  color(rec2020 0.42053 0.979780 0.00579); }
+em { color:  lch(86.6146% 160.0000 136.0088); }
+em { color:  color(display-p3 -0.6112 1.0079 -0.2192); }
+em { color:  color(profoto-rgb 0.4835 0.9167 0.2188); }
+
+.floop {
+    color: color(--swopc 0.0134 0.8078 0.7451 0.3019);
+    color: color(--indigo 0.0941 0.6274 0.3372 0.1647 0 0.0706 0.1216);
+    color: color(prophoto-rgb 0.9137 0.5882 0.4784);
+    color: color(display-p3 0.3804 0.9921 0.1412); }
+
+@color-profile --swopc {
+  src: url('http://example.org/swop-coated.icc'); }
+@color-profile --indigo {
+  src: url('http://example.org/indigo-seven.icc'); }
+
+@color-profile --unwise {
+  src: url(https://example.com/unwise);
+  components: mi, pi, ni;
+}
+
+.flug {
+    --base: color(--unwise 35% 20% 8%);
+    --accent: color(from var(--base) mi calc(pi * 2) calc(ni / 2)); }
+
+@color-profile --fogra39 {
+    src: url('https://example.org/Coated_Fogra39L_VIGC_300.icc');
+}
+.header {
+    background-color:   color(--fogra39 0% 70% 20% 0%);
+}
+
+@color-profile --swop5c {
+  src: url('https://example.org/SWOP2006_Coated5v2.icc');
+}
+.header {
+  background-color:   color(--swop5c 0% 70% 20% 0%);
+}
+
+@media (color-gamut: srgb) {
+  .header {
+    background-color:  rgb(8.154% 60.9704% 37.184%);
+    }
+}
+@media print, (color-gamut: p3){
+  .header {
+    background-color:  color(--fogra39 90% 0% 90% 0%);
+    }
+}
+
+@color-profile --fogra55beta {
+  src: url('https://example.org/2020_13.003_FOGRA55beta_CL_Profile.icc');
+}
+.dark_skin {
+  background-color: 
+  color(--fogra55beta 0.183596 0.464444 0.461729 0.612490 0.156903 0.000000 0.000000);
+}
+.light_skin {
+  background-color: 
+  color(--fogra55beta 0.070804 0.334971 0.321802 0.215606 0.103107 0.000000 0.000000);
+}
+.blue_sky {
+  background-color: 
+  color(--fogra55beta 0.572088 0.229346 0.081708 0.282044 0.000000 0.000000 0.168260);
+}
+.foliage {
+  background-color: 
+  color(--fogra55beta 0.314566 0.145687 0.661941 0.582879 0.000000 0.234362 0.000000);
+}
+.blue_flower {
+  background-color: 
+  color(--fogra55beta 0.375515 0.259934 0.034849 0.107161 0.000000 0.000000 0.308200);
+}
+.bluish_green {
+  background-color: 
+  color(--fogra55beta 0.397575 0.010047 0.223682 0.031140 0.000000 0.317066 0.000000);
+}
+

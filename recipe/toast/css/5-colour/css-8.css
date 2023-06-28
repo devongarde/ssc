@@ -1,48 +1,9 @@
-﻿.foo {
-  color:  lab(29.2345% 39.3825 20.0664);
-  background-color:  lab(52.2345% 40.1645 59.9971);
-}
+﻿/* traditional desktop user agent colors for hyperlinks */
+:link { color: LinkText; }
+:visited { color: VisitedText; }
+:active { color: ActiveText; }
 
-.foo {
-  color:  lab(60.2345 -5.3654 58.956);
-  background-color:  lab(62.2345% -34.9638 47.7721);
-}
-
-.foo {
-  color:  lab(67.5345% -8.6911 -41.6019);
-  background-color:  lab(29.69% 44.888% -29.04%);
-}
-
-.foo {
-  color:  lch(29.2345% 44.2 27);
-  background-color:  lch(52.2345% 72.2 56.2);
-}
-
-.foo {
-  color:  lch(60.2345 59.2 95.2);
-  background-color:  lch(62.2345% 59.2 126.2);
-}
-
-.foo {
-  color: lch(52.2345% 72.2 56.2);
-  background-color: lch(29.69% 45.553% 327.1);
-}
-
-.foo {
-  color:  lch(60.2345 59.2 95.2);
-  background-color:  lch(62.2345% 59.2 126.2);
-}
-
-.foo {
-  color: lch(52.2345% 72.2 56.2);
-  background-color: lch(29.69% 45.553% 327.1);
-}
-
-.fup {
- color: oklch(40.101% 0.12332 21.555);
- color: oklch(59.686% 0.15619 49.7694);
- color: oklch(0.65125 0.13138 104.097);
- color: oklch(0.66016 0.15546 134.231);
- color: oklch(72.322% 0.12403 247.996);
- color: oklch(42.1% 48.25% 328.4);
+/* a reasonable, conservative default for device-cmyk */
+@color-profile device-cmyk {
+  src: url('https://drafts.csswg.org/css-color-4/ICCprofiles/Coated_Fogra39L_VIGC_300.icc');
 }

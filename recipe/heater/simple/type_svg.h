@@ -416,7 +416,7 @@ template < > struct type_master < t_svg_two_profile > : tidy_string < t_svg_two_
             if (ss.at (0) != '(')
             {   if (test_value < t_css_local_url > (nits, v, ss, id))
                 {   val_.emplace_back (nits, v, id);
-                    return; }
+                    return; } }
             else if (ss.at (ss.length () - 1) != ')')
                 nits.pick (nit_empty, es_error, ec_type, "malformed IRI pair; missing close bracket");
             else if (ss.length () == 2)
@@ -436,7 +436,7 @@ template < > struct type_master < t_svg_two_profile > : tidy_string < t_svg_two_
                         if (test_value < t_url > (nits, v, ss, vu.at (1)))
                             val_.emplace_back (nits, v, id);
                         else ok = false;
-                        if (ok) return; } } } } }
+                        if (ok) return; } } } }
         string_value < t_svg_two_profile > :: status (s_invalid); }
     bool verify_url (nitpick& nits, const html_version& v, element& e)
     {   bool ok = true;

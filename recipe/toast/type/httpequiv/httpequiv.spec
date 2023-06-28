@@ -37,7 +37,10 @@ PASS ../toast/type/httpequiv/link.html
 2 naughty_lang
 5 empty
 6 empty
+7 too_many
 8 nocando
+9 too_many
+10 too_many too_many
 11 nocando
 15 unrecognised_value
 16 bad_link_pragma unrecognised_value

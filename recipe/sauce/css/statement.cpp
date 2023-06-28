@@ -39,16 +39,30 @@ void statement::parse_charset (arguments& args, nitpick& nits, const int from, c
             nits.pick (nit_charset, es_error, ec_css, "expecting string after @charset");
         else test_value < t_charset > (nits, context.html_ver (), args.t_.at (i).val_); } }
 
-void statement::parse_colour_profile (arguments& args, nitpick& nits, const int to)
-{   if (args.snippet_)
-        if (! args.eb_.test (elem_svg))
-            nits.pick (nit_css_svg, ed_svg_1_1, "12.3.4 The CSS @color-profile rule", es_warning, ec_css, "@color-profile expects an ancestral <SVG>");
-    if ((args.v_.svg_version () != sv_none) && (args.v_.svg_version () != sv_1_1))
-        nits.pick (nit_svg_version, ed_svg_1_1, "12.3.4 The CSS @color-profile rule", es_warning, ec_css, "@color-profile requires SVG 1.1");
+void statement::parse_colour_profile (arguments& args, nitpick& nits, const int from, const int to)
+{   if (args.v_.css_colour () < 5)
+    {   if (args.snippet_)
+            if (! args.eb_.test (elem_svg))
+            {   nits.pick (nit_css_svg, ed_svg_1_1, "12.3.4 The CSS @color-profile rule", es_warning, ec_css, "@color-profile expects an ancestral <SVG>, or CSS Colour 5");
+                return; }
+        if ((args.v_.svg_version () != sv_none) && (args.v_.svg_version () != sv_1_1))
+        {   nits.pick (nit_svg_version, ed_svg_1_1, "12.3.4 The CSS @color-profile rule", es_warning, ec_css, "@color-profile requires SVG 1.1 or CSS Colour 5");
+            return; } }
     if ((to < 0) || (args.t_.at (to).t_ != ct_curly_brac))
         nits.pick (nit_css_syntax, es_error, ec_css, "expecting { property... } after @color-profile");
     else
     {   PRESUME (args.t_.at (to).child_ > 0, __FILE__, __LINE__);
+        if ((from != to) && (from > 0))
+        {   const int i = next_non_whitespace (args.t_, from, to);
+            if ((i > 0) && (i < to))
+                if ((args.t_.at (i).t_ == ct_identifier) || (args.t_.at (i).t_ == ct_keyword))
+                {   ::std::string s (args.t_.at (i).val_);
+                    if ((s.size () > 2) && (s.substr (0, 2) == "--"))
+                        if (args.g_.custom_prop ().find (s) != args.g_.custom_prop ().cend ())
+                            nits.pick (nit_css_custom, es_warning, ec_css, "@color-profile identifier ", s, " previously encountered");
+                        else
+                        {   nits.pick (nit_css_custom, es_info, ec_css, "noting @color-profile ", s);
+                            args.g_.custom_prop ().emplace (s, 1); } } }
         fiddlesticks < statement > f (&args.st_, this);
         prop_.parse (args, args.t_.at (to).child_); } }
 
@@ -450,7 +464,7 @@ void statement::parse (arguments& args, const int from, const int to)
                 parse_charset (args, nits, b, to);
                 break;
             case css_colour_profile :
-                parse_colour_profile (args, nits, to);
+                parse_colour_profile (args, nits, b, to);
                 break;
             case css_custom_media :
                 parse_custom_media (args, nits, b, to);

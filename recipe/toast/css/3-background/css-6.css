@@ -1,0 +1,36 @@
+﻿.splat
+{   width: 100px; height: 100px;
+    border: 12px solid blue; background-color: orange;
+    border-top-left-radius: 60px 90px;
+    border-bottom-right-radius: 60px 90px;
+    box-shadow: 64px 64px 12px 40px rgba(0,0,0,0.4),
+                12px 12px 0px 8px rgba(0,0,0,0.4) inset; }
+
+.splot
+{   border:5px solid blue;
+    background-color:orange;
+    width: 144px;
+    height: 144px;
+
+    border-radius: 20px;
+    border-radius: 0;
+
+    box-shadow:
+      rgba(0,0,0,0.4)
+      10px 10px;
+
+    box-shadow:
+      rgba(0,0,0,0.4)
+      10px 10px
+      inset;
+
+    box-shadow:
+      rgba(0,0,0,0.4)
+      10px 10px 0
+      10px; /* spread */
+
+    box-shadow:
+      rgba(0,0,0,0.4)
+      10px 10px 0
+      10px /* spread */
+      inset; }

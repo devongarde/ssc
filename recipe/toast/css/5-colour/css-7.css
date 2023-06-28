@@ -1,9 +1,13 @@
-﻿.foo {
-  color:  hsl(120deg 100% 50%);
-  background-color:  hsl(120deg 100% 25%);
+﻿.froo {
+    color:  color-mix(in lch, peru 40%, palegoldenrod);
+    background-color:  color-mix(in srgb, peru 40%, palegoldenrod);
+    color: lch(from peru calc(l * 0.8) calc(c * 0.7) calc(h + 180)); }
+
+@color-profile --swop5c {src: url('https://example.org/SWOP2006_Coated5v2.icc');
+}
+.header {
+background-color:    color(--swop5c  0% 70.0% 20.00% .0%);
 }
 
-.foo {
-  color:  hsl(120deg 100% 75%);
-  background-color:  hsl(120deg 75% 85%);
-}
+.frup {
+    color: device-cmyk(0 81% 81% 30%); }

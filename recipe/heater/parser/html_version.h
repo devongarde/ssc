@@ -377,7 +377,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_ANIM         H2_CSS_ANIM_34  
 #define H2_CSS_ANIM_MASK   H2_CSS_ANIM
 
-#define H2_CSS_3        ( H2_CSS_ANIM_3 | H2_CSS_CASCADE_3 | H2_CSS_COLOUR_3 | H2_CSS_CUSTOM | H2_CSS_MEDIA_3 | H2_CSS_NAMESPACE | H2_CSS_SELECTOR_3 | H2_CSS_STYLE | H2_CSS_SYNTAX | H2_CSS_UI_3 | H2_CSS_VALUE_3 )
+#define H2_CSS_EASE         0x0004000000000000
+#define H2_CSS_BACKGROUND   0x0008000000000000
+
+#define H2_CSS_3        ( H2_CSS_ANIM_3 | H2_CSS_BACKGROUND | H2_CSS_CASCADE_3 | H2_CSS_COLOUR_3 | H2_CSS_CUSTOM | H2_CSS_EASE | H2_CSS_MEDIA_3 | H2_CSS_NAMESPACE | H2_CSS_SELECTOR_3 | H2_CSS_STYLE | H2_CSS_SYNTAX | H2_CSS_UI_3 | H2_CSS_VALUE_3 )
 #define H2_CSS_4        ( H2_CSS_ANIM_4 | H2_CSS_CASCADE_4 | H2_CSS_COLOUR_4 | H2_CSS_MEDIA_4 | H2_CSS_SELECTOR_4 | H2_CSS_UI_4 | H2_CSS_VALUE_4 )
 #define H2_CSS_5        ( H2_CSS_CASCADE_5 | H2_CSS_COLOUR_5 | H2_CSS_MEDIA_5 )
 #define H2_CSS_6        H2_CSS_CASCADE_6
@@ -399,13 +402,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_MASK     H2_CSS_ALL
 #define H2_CSS          H2_CSS_ALL
 
-#define H2_FULL_CSS_MASK    0x0001FFFFFFFF8000  
+#define H2_FULL_CSS_MASK    0x000FFFFFFFFF8000  
 
 class html_version : public version
 {   flags_t ext_ = NOFLAGS, ext2_ = NOFLAGS;
     bool note_parsed_version (nitpick& nits, const e_nit n, const html_version& got, const ::std::string& gen);
     void init (const unsigned short mjr);
     bool test_extension () const noexcept;
+    ::std::string long_level (const ::std::string& s, const flags_t l3, const flags_t l4, const flags_t l5 = 0, const flags_t l6 = 0) const;
 public:
     html_version () : ext_ (NOFLAGS), ext2_ (NOFLAGS) { }
     explicit html_version (const unsigned short mjr) { init (mjr); }
@@ -432,8 +436,7 @@ public:
     void set_ext2 (const flags_t m, const flags_t u, int r) noexcept { reset_ext2 (m); set_ext2 ((u << r) & m); }
     void reset_ext2 (const flags_t u) noexcept { ext2_ &= ~u; }
     bool all_ext2 (const flags_t u) const noexcept
-    {
-        return ((ext2_ & u) == u); }
+    {   return ((ext2_ & u) == u); }
     bool any_ext2 (const flags_t u) const noexcept { return ((ext2_ & u) != 0); }
     bool no_ext2 (const flags_t u) const noexcept { return ((ext2_ & u) == 0); }
     flags_t ext2 () const noexcept { return ext2_; }
@@ -511,6 +514,7 @@ public:
     bool not_svg_21 () const noexcept { return (ext () & HE_NOT_SVG_21) != 0; }
     e_css_version css_version () const noexcept;
     ::std::string css_version_name () const;
+    ::std::string long_css_version_name () const;
     void css_version (const e_css_version v) noexcept;
     e_jsonld_version jsonld_version () const noexcept;
     void jsonld_version (const e_jsonld_version v) noexcept;
@@ -595,12 +599,16 @@ public:
     const char *alternative_charset () const noexcept;
     int css_animation () const;
     void css_animation (const int n);
+    int css_background () const;
+    void css_background (const int n);
     int css_cascade () const;
     void css_cascade (const int n);
     int css_colour () const;
     void css_colour (const int n);
     int css_custom () const;
     void css_custom (const int n);
+    int css_ease () const;
+    void css_ease (const int n);
     int css_media () const;
     void css_media (const int n);
     int css_namespace () const;
@@ -615,6 +623,12 @@ public:
     void css_ui (const int n);
     int css_value () const;
     void css_value (const int n);
+    bool is_css_compatible (const flags_t& f) const;
+    bool is_css_compatible (nitpick& nits, const flags_t& f) const;
+    bool is_css_compatible (const html_version& v) const
+    {   return is_css_compatible (v.ext2_); }
+    bool is_css_compatible (nitpick& nits, const html_version& v) const
+    {   return is_css_compatible (nits, v.ext2_); }
     ::std::string get_doctype () const;
     ::std::string name () const;
     ::std::string report () const; };
@@ -776,6 +790,7 @@ const html_version html_schema_18 (HTML_SCHEMA_18);
 const html_version html_schema_19 (HTML_SCHEMA_19);
 const html_version html_schema_20 (HTML_SCHEMA_20);
 const html_version html_schema_21 (HTML_SCHEMA_21);
+const html_version html_schema_22 (HTML_SCHEMA_22);
 const html_version html_sd (HTML_SD);
 const html_version html_sioc (HTML_SIOC);
 const html_version html_sioc_s (HTML_SIOC);

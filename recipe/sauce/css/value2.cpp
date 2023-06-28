@@ -32,7 +32,7 @@ template < e_type TYPE, e_type... TYPES > struct property_by_type : public prope
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, e_type e)
     {   if (e != TYPE) return property_by_type < TYPES... > :: check (args, start, to, nits, e);
         int i = start;
-        if (typed_property < TYPE, ec_unknown > :: check_fn (args, i, to, nits)) return i;
+        if (typed_property < TYPE, ec_unknown > :: check_fn (args, i, to, nits, true)) return to;
         return start; } };
 
 template < e_type TYPE > struct property_by_type < TYPE >
@@ -40,13 +40,17 @@ template < e_type TYPE > struct property_by_type < TYPE >
     {   GRACEFUL_CRASH ( __FILE__, __LINE__); } };
 
 int check_typed_identifier (arguments& args, nitpick& nits, const int start, const int to, const e_type t)
-{   PRESUME ((args.t_.at (start).t_ == ct_keyword) || (args.t_.at (start).t_ == ct_identifier), __FILE__, __LINE__);
+{   PRESUME ((args.t_.at (start).t_ == ct_keyword) || (args.t_.at (start).t_ == ct_identifier) || (args.t_.at (start).t_ == ct_number), __FILE__, __LINE__);
 #ifdef LIMITED_META_COMPLEXITY
     if (t <= SSC_TYPE_1_MAX) return property_by_type < SSC_TYPES_1, t_unknown > :: check (args, start, to, nits, t);
     if (t <= SSC_TYPE_2_MAX) return property_by_type < SSC_TYPES_2, t_unknown > :: check (args, start, to, nits, t);
     if (t <= SSC_TYPE_3_MAX) return property_by_type < SSC_TYPES_3, t_unknown > :: check (args, start, to, nits, t);
     if (t <= SSC_TYPE_4_MAX) return property_by_type < SSC_TYPES_4, t_unknown > :: check (args, start, to, nits, t);
-    return property_by_type < SSC_TYPES_5, t_unknown > :: check (args, start, to, nits, t); }
+    if (t <= SSC_TYPE_5_MAX) return property_by_type < SSC_TYPES_5, t_unknown > :: check (args, start, to, nits, t);
+    if (t <= SSC_TYPE_6_MAX) return property_by_type < SSC_TYPES_6, t_unknown > :: check (args, start, to, nits, t);
+    if (t <= SSC_TYPE_7_MAX) return property_by_type < SSC_TYPES_7, t_unknown > :: check (args, start, to, nits, t);
+    if (t <= SSC_TYPE_8_MAX) return property_by_type < SSC_TYPES_8, t_unknown > :: check (args, start, to, nits, t);
+    return property_by_type < SSC_TYPES_9, t_unknown > :: check (args, start, to, nits, t); }
 #else // LIMITED_META_COMPLEXITY
-    return property_by_type < SSC_TYPES_1, SSC_TYPES_2, SSC_TYPES_3, SSC_TYPES_4, SSC_TYPES_5, t_unknown > :: check (args, start, to, nits, t); }
+    return property_by_type < SSC_TYPES_1, SSC_TYPES_2, SSC_TYPES_3, SSC_TYPES_4, SSC_TYPES_5, SSC_TYPES_6, SSC_TYPES_7, SSC_TYPES_8, SSC_TYPES_9, t_unknown > :: check (args, start, to, nits, t); }
 #endif // LIMITED_META_COMPLEXITY 

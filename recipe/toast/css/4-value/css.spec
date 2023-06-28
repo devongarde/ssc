@@ -6,15 +6,15 @@ PASS ../toast/css/4-value/index.html
 
 PASS ../toast/css/4-value/css-3.css
 0 html
-4 css_value_fn css_value_fn css_value_param
+4 css_value_fn css_value_fn css_colour
 10 css_value_fn
 
 PASS ../toast/css/4-value/css-4.css
 0 html
 1 url_not_found
 7 css_custom
-10 svg_version naughty_page
-12 css_colour css_colour css_colour
+10 svg_version
+12 css_colour
 16 naughty_content
 17 naughty_content
 18 naughty_content
@@ -39,7 +39,6 @@ PASS ../toast/css/4-value/css-10.css
 19 css_custom
 24 class_microformat_property
 30 class_microformat_property
-32 css_value_param
 36 css_custom
 37 css_custom
 38 css_custom

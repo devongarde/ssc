@@ -69,6 +69,24 @@ template < e_type T, class SZ > struct type_string : tidy_string < T >
             nits.pick (nit_isnt, es_error, ec_type, quote (SZ :: sz ()), " expected, not ", quote (ss)); }
         tidy_string < T > :: status (s_invalid); } };
 
+template < e_type T, bool CONTENT > struct if_empty
+{   static void whinge (nitpick& nits)
+    {   nits.pick (nit_empty, es_error, ec_type, "value expected (", type_name (T), ")"); } };   
+
+template < e_type T > struct if_empty < T, false >
+{   static void whinge (nitpick& ) { } };   
+
+template < e_type T, class SZ, int F, bool CONTENT = true > struct uq4 : tidy_string < T >
+{   using tidy_string < T > :: tidy_string;
+    vstr_t set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < T > :: set_value (nits, v, s);
+        PRESUME (SZ :: sz () != nullptr, __FILE__, __LINE__);
+        if (! tidy_string < T > :: empty ())
+        {   vstr_t vs (uq2 (tidy_string < T > :: get_string (), F, SZ :: sz ()));
+            if (vs.size () > 0) return vs; }
+        if_empty < T, CONTENT > :: whinge (nits);
+        return vstr_t (); } };
+
 template < e_type TYPE > struct string_vector_base : public tidy_string < TYPE >
 {   typedef vstr_t value_type;
     value_type value_;
@@ -92,12 +110,12 @@ template < e_type TYPE > struct string_vector_base : public tidy_string < TYPE >
     value_type get () const
     {   return value_; } };
 
-template < e_type TYPE, class SZ > struct string_vector : public string_vector_base < TYPE >
+template < e_type TYPE, class SZ, int F = BS_FN > struct string_vector : public string_vector_base < TYPE >
 {   using string_vector_base < TYPE > :: string_vector_base;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector_base < TYPE > :: set_value (nits, v, s);
         if (string_vector_base < TYPE > :: good ())
-        {   vstr_t tmp = uq2 (string_vector_base < TYPE > :: get_string (), BS_FN, SZ :: sz ());
+        {   vstr_t tmp = uq2 (string_vector_base < TYPE > :: get_string (), F, SZ :: sz ());
 #ifndef FUDDYDUDDY
             string_vector_base < TYPE > :: value_.reserve (tmp.size ());
 #endif // FUDDYDUDDY
@@ -118,7 +136,7 @@ template < e_type TYPE, class SZ > struct string_vector : public string_vector_b
             ss << s; }
         ss << '"'; } };
 
-template < e_type TYPE > struct string_vector < TYPE, sz_space > : public string_vector_base < TYPE >
+template < e_type TYPE > struct string_vector < TYPE, sz_space_char > : public string_vector_base < TYPE >
 {   using string_vector_base < TYPE > :: string_vector_base;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector_base < TYPE > :: set_value (nits, v, s);

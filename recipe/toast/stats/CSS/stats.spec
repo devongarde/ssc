@@ -163,7 +163,7 @@ PASS ../toast/stats/CSS/css-5.css
 0 html
 1 fontname
 2 fontname
-143 unrecognised_value unrecognised_value
+143 unrecognised_value
 
 STATS
 Elements:
@@ -255,8 +255,8 @@ CSS itemid(s):
 
 PASS ../toast/stats/CSS/css-6.css
 0 html
-29 css_colour css_colour css_colour
-30 css_colour css_colour css_colour
+29 bad_rgb
+30 bad_rgb
 
 STATS
 Elements:

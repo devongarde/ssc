@@ -26,6 +26,7 @@ bool test_reals (nitpick& nits, const html_version& v, const ::std::string& s, c
 template < > struct type_master < t_pt > : tidy_string < t_pt >
 {   using tidy_string < t_pt > :: tidy_string;
     static e_animation_type animation_type () noexcept { return at_coordinate; }
+    static bool is_numeric () { return true; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_pt > :: set_value (nits, v, s);
         if (tidy_string < t_pt >  :: good ())
@@ -36,6 +37,7 @@ template < > struct type_master < t_pt > : tidy_string < t_pt >
 template < > struct type_master < t_2pt > : tidy_string < t_2pt >
 {   using tidy_string < t_2pt > :: tidy_string;
     static e_animation_type animation_type () noexcept { return at_coordinate; }
+    static bool is_numeric () { return true; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_2pt > :: set_value (nits, v, s);
         if (tidy_string < t_2pt >  :: good ())
@@ -45,6 +47,7 @@ template < > struct type_master < t_2pt > : tidy_string < t_2pt >
 
 template < > struct type_master < t_matrix_values > : tidy_string < t_matrix_values >
 {   using tidy_string < t_matrix_values > :: tidy_string;
+    static bool is_numeric () { return true; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_matrix_values > :: set_value (nits, v, s);
         if (tidy_string < t_matrix_values >  :: good ())
@@ -54,6 +57,7 @@ template < > struct type_master < t_matrix_values > : tidy_string < t_matrix_val
 
 template < > struct type_master < t_filterres > : tidy_string < t_filterres >
 {   using tidy_string < t_filterres > :: tidy_string;
+    static bool is_numeric () { return true; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_filterres > :: set_value (nits, v, s);
         const ::std::string& ss = tidy_string < t_filterres > :: get_string ();
@@ -65,6 +69,7 @@ template < > struct type_master < t_filterres > : tidy_string < t_filterres >
 template < > struct type_master < t_points > : tidy_string < t_points >
 {   using tidy_string < t_points > :: tidy_string;
     static e_animation_type animation_type () noexcept { return at_coordinate; }
+    static bool is_numeric () { return true; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_points > :: set_value (nits, v, s);
         if (tidy_string < t_points >  :: good ())
@@ -74,6 +79,7 @@ template < > struct type_master < t_points > : tidy_string < t_points >
 
 template < > struct type_master < t_tablevalues > : tidy_string < t_tablevalues >
 {   using tidy_string < t_tablevalues > :: tidy_string;
+    static bool is_numeric () { return true; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_tablevalues > :: set_value (nits, v, s);
         if (tidy_string < t_tablevalues >  :: good ())

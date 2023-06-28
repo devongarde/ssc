@@ -878,7 +878,6 @@ PASS ../toast/living/jul15/ls9.html
 PASS ../toast/living/jul15/main.html
 2 inserted_missing_parent missing_close naughty_lang
 2 inserted_missing_parent missing_close
-3 unrecognised_value
 13 inserted_missing_parent inserted_missing_closure missing_close
 17 attempted_escape no_such_folder url_not_found
 18 attempted_escape no_such_folder url_not_found

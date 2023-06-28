@@ -45,7 +45,10 @@ arguments::arguments (const html_version& v, const namespaces_ptr& namespaces, c
 void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string& s) const
 {   if ((f & CF_DEPRECATED) == CF_DEPRECATED)
         nits.pick (nit_deprecated, es_warning, ec_css, s, " is deprecated, so unlikely to be supported by many browsers");
-    if ((f & CF_MUST_FONT_FACE) == CF_MUST_FONT_FACE)
+    if ((f & CF_FACE_OR_PROFILE) == CF_FACE_OR_PROFILE)
+    {   if ((st_ == nullptr) || ((st_ -> get () != css_font_face) && (st_ -> get () != css_colour_profile)))
+            nits.pick (nit_naughty_page, es_error, ec_css, s, " requires @colour-profile or @font-face"); }
+    else if ((f & CF_MUST_FONT_FACE) == CF_MUST_FONT_FACE)
         if ((st_ == nullptr) || (st_ -> get () != css_font_face))
             nits.pick (nit_naughty_page, es_error, ec_css, s, " requires @font-face");
     if ((f & CF_BEF_AFT) == CF_BEF_AFT)

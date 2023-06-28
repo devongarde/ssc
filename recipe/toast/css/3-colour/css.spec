@@ -5,9 +5,9 @@ PASS ../toast/css/3-colour/css-3.css
 
 PASS ../toast/css/3-colour/css-4.css
 0 html
-11 css_colour css_colour css_colour
-12 css_colour css_colour css_colour css_colour
-13 css_colour css_colour css_colour
+11 bad_rgb
+12 bad_rgb
+13 bad_rgb
 
 PASS ../toast/css/3-colour/css-6.css
 0 html

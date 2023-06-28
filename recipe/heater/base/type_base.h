@@ -47,6 +47,7 @@ public:
     static bool is_relational () noexcept { return false; }
     static bool is_url () noexcept { return false; }
     static bool is_existential () noexcept { return false; }
+    static bool is_numeric () noexcept { return false; }
     static e_animation_type animation_type () noexcept { return at_none; }
     void swap (type_base& t) noexcept
     {   id_.swap (t.id_);

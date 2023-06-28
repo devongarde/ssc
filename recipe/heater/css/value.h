@@ -22,5 +22,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type.h"
 #include "css/arguments.h"
 
+typedef ::std::pair < int, int > t_param;
+typedef ::std::vector < t_param > t_params;
+
+void add_param (const arguments& args, t_params& params, int& from, const int i);
+bool maybe_math (nitpick& nits, const e_css_property id);
 int test_value_fns (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
 int check_typed_identifier (arguments& args, nitpick& nits, const int start, const int to, const e_type t);

@@ -3356,6 +3356,7 @@ property_name namtab [] =
     { "travelBans", s_schema, sp_travelbans },
     { "trialDesign", s_schema, sp_trialdesign },
     { "tributary", s_schema, sp_tributary },
+    { "tripOrigin", s_schema, sp_triporigin },
     { "typeOfBed", s_schema, sp_typeofbed },
     { "typeOfGood", s_schema, sp_typeofgood },
     { "typicalAgeRange", s_schema, sp_typicalagerange },

@@ -22,5 +22,5 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "simple/type_microdata.h"
 #include "compound/type_compound.h"
 
-template < > struct type_master < t_mf_listing_actions > : type_at_least_one < t_mf_listing_actions, sz_space, t_mf_listing_action >
-{ using type_at_least_one < t_mf_listing_actions, sz_space, t_mf_listing_action > :: type_at_least_one; };
+template < > struct type_master < t_mf_listing_actions > : type_at_least_one < t_mf_listing_actions, sz_space_char, t_mf_listing_action >
+{ using type_at_least_one < t_mf_listing_actions, sz_space_char, t_mf_listing_action > :: type_at_least_one; };

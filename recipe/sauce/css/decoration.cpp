@@ -44,7 +44,7 @@ void decoration::parse (arguments& args, const int from, const int to, const boo
             break; 
         case ct_hash :
             b = next_non_whitespace (args.t_, b, to);
-            if ((b < 0) || ((args.t_.at (b).t_ != ct_keyword) && (args.t_.at (b).t_ != ct_identifier)))
+            if ((b < 0) || ((args.t_.at (b).t_ != ct_keyword) && (args.t_.at (b).t_ != ct_identifier) && (args.t_.at (b).t_ != ct_number)))
                 nits.pick (nit_selector, ed_css_20, "5 Selectors", es_error, ec_css, "missing or invalid id");
             else sparkle_ = css_id (args, args.t_.at (b).val_);
             break; 

@@ -77,7 +77,7 @@ PASS ../toast/SVG/2.1/fecomposite.svg
 PASS ../toast/SVG/2.1/fedropshadow.html
 2 naughty_lang
 13 sunk unrecognised_value bad_result
-14 unrecognised_value immeasurable unrecognised_value immeasurable
+14 sunk immeasurable sunk immeasurable
 15 dialect unrecognised_value dialect unrecognised_value bad_colour sunk sunk
 19 unrecognised_value bad_result
 

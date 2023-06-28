@@ -51,8 +51,10 @@ template < > struct type_master < t_colour > : tidy_string < t_colour >
                 else
                 {   const ::std::string x (val.substr (0, val.length () - 1).substr (4));
                     vstr_t nums (split_by_charset (x, ","));
-                    if (nums.size () == 3)
-                    {   int perky = 0, jollybon = 0;
+                    if (nums.size () != 3)
+                        nits.pick (nit_bad_rgb, ed_svg_1_1, "4.2 Basic data types", es_error, ec_type, quote (val), ": rgb (...) has three comma-separated parameters");
+                    else
+                    {   int perky = 0;
                         for (::std::size_t i = 0; i < nums.size (); ++i)
                         {   const ::std::string::size_type ssl = nums.at (i).length ();
                             if (! nums.at (i).empty ()) if (nums.at (i).at (ssl - 1) == '%')
@@ -63,13 +65,12 @@ template < > struct type_master < t_colour > : tidy_string < t_colour >
                         else for (auto ss : nums)
                         {   const double d = lexical < double > :: cast (ss);
                             if (d < 0.0)
-                                nits.pick (nit_bad_rgb, ed_svg_1_1, "4.2 Basic data types", es_error, ec_type, quote (ss), ": rgb colours cannot be negative");
+                                nits.pick (nit_bad_rgb, ed_svg_1_1, "4.2 Basic data types", es_warning, ec_type, quote (ss), " will be clipped, rgb colours cannot be negative");
                             else if ((perky > 0) && (d > 100.0))
-                                nits.pick (nit_bad_rgb, ed_svg_1_1, "4.2 Basic data types", es_error, ec_type, quote (ss), ": percentages must lie between 0 and 100");
+                                nits.pick (nit_bad_rgb, ed_svg_1_1, "4.2 Basic data types", es_warning, ec_type, quote (ss), " will be clipped, percentages must lie between 0 and 100");
                             else if ((perky == 0) && (d > 255))
-                                nits.pick (nit_bad_rgb, ed_svg_1_1, "4.2 Basic data types", es_error, ec_type, quote (ss), ": absolute values must lie between 0 and 255");
-                            else ++jollybon; }
-                        if (jollybon == 3) return; } } }
+                                nits.pick (nit_bad_rgb, ed_svg_1_1, "4.2 Basic data types", es_warning, ec_type, quote (ss), " will be clipped, absolute values must lie between 0 and 255"); }
+                        return; } } }
             else
             {   if (v.css_version () >= css_1)
                 {   type_master < t_css_colour > cc;

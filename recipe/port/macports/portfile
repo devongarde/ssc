@@ -1,0 +1,25 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+
+name                ssc
+version             0.1.26
+categories          web
+platforms           darwin
+license             GPL-3
+maintainers         devongarde
+description         Static Site Checker
+long_description    an opinionated static (web)site nitpicker
+homepage            https://ssc.lu/
+master_sites        https://github.com/devongarde/ssc
+
+checksums           rmd160  7bbfce4fecc2a8e1ca081169e70c1a298ab1b75a \
+                    sha256  2829fcb7393bac85925090b286b1f9c3cd3fbbf8e7f35796ef4131322509aa53 \
+                    size    1061530
+
+depends_lib         port:cmake \
+                    port:boost \
+                    port:hunspell \
+                    port:libcurl
+
+configure.args      --mandir=${prefix}/share/man

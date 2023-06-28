@@ -124,6 +124,17 @@ template < > struct type_master < t_font_family > : tidy_string < t_font_family 
             return; }
         tidy_string < t_font_family > :: status (s_invalid); } };
 
+// t_from
+template < > struct type_master < t_from > : public tidy_string < t_from >
+{   using tidy_string < t_from > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_from > :: set_value (nits, v, s);
+        if (tidy_string < t_from > :: good ())
+            if (compare_complain (nits, v, "from", tidy_string < t_from > :: get_string ()))
+                return;
+        nits.pick (nit_nuts, es_error, ec_type, "from expected");
+        string_value < t_from > :: status (s_invalid); } };
+
 template < > struct type_master < t_hex > : public tidy_string < t_hex >
 {   using tidy_string < t_hex > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -191,35 +202,35 @@ template < > struct type_master < t_is > : tidy_string < t_is >
                             quote (ss), " is not specified as a customised built-in element (see the --" GENERAL CUSTOM " switch, '" PROG " --" HELP " for gen')");
                 tidy_string < t_is > :: status (s_invalid); } } } };
 
-template < > struct type_master < t_key > : string_vector < t_key, sz_space >
+template < > struct type_master < t_key > : string_vector < t_key, sz_space_char >
 {   bool tested_ = false, predefined_ = false;
-    using string_vector < t_key, sz_space > :: string_vector;
+    using string_vector < t_key, sz_space_char > :: string_vector;
     void swap (type_master < t_key >& t) noexcept
     {   ::std::swap (tested_, t.tested_);
         ::std::swap (predefined_, t.predefined_);
-        string_vector < t_key, sz_space > :: swap (t); }
+        string_vector < t_key, sz_space_char > :: swap (t); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   string_vector < t_key, sz_space > :: set_value (nits, v, s);
-        if (string_vector < t_key, sz_space > :: empty ())
+    {   string_vector < t_key, sz_space_char > :: set_value (nits, v, s);
+        if (string_vector < t_key, sz_space_char > :: empty ())
             nits.pick (nit_key, es_error, ec_type, "a key cannot be empty");
-        else if (string_vector < t_key, sz_space > :: good ())
+        else if (string_vector < t_key, sz_space_char > :: good ())
             if (v.is_5 ())
             {   sstr_t check;
-                for (auto k : string_vector < t_key, sz_space > :: get ())
+                for (auto k : string_vector < t_key, sz_space_char > :: get ())
                     if (k.length () != 1)
                         nits.pick (nit_key, ed_41, "17.11.2 Access keys", es_error, ec_type, quote (k), " is not a single character");
                     else if (check.find (k) != check.cend ())
                         nits.pick (nit_key, ed_jul20, "6.6.2 The accesskey attribute", es_error, ec_type, "access keys must be unique, yet ", quote (k), " is repeated");
                     else check.insert (k);
-                if (string_vector < t_key, sz_space > :: size () == check.size ()) return; }
+                if (string_vector < t_key, sz_space_char > :: size () == check.size ()) return; }
             else if ((s.length () == 1) || (! ::std::iswspace (s.at (0)) && ! ::std::iswcntrl (s.at (0)))) return;
             else nits.pick (nit_single_character, ed_41, "17.11.2 Access keys", es_error, ec_type, quote (tidy_string < t_key > :: get_string ()), " is not a single character (which cannot be a space)");
-        string_vector < t_key, sz_space > :: status (s_invalid); }
+        string_vector < t_key, sz_space_char > :: status (s_invalid); }
    bool invalid_access (nitpick& nits, const html_version& , sstr_t* keys)
    {    VERIFY_NOT_NULL (keys, __FILE__, __LINE__);
         if (! good ()) return false;
         if (! tested_)
-        {   for (auto k : string_vector < t_key, sz_space > :: get ())
+        {   for (auto k : string_vector < t_key, sz_space_char > :: get ())
             {   predefined_ = (keys -> find (k) != keys -> cend ());
                 if (! predefined_) keys -> insert (k);
                 else

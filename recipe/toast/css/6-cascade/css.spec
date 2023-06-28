@@ -5,10 +5,6 @@ PASS ../toast/css/6-cascade/index.html
 
 PASS ../toast/css/6-cascade/css-2.css
 0 html
-13 unrecognised_value
-17 unrecognised_value
-22 unrecognised_value
-25 unrecognised_value
 69 css_element
 72 css_element
 

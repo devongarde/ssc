@@ -87,10 +87,16 @@ line, the "no-" switch always applies.
 
 --css.animation X       Use CSS Animation level X, where X is 0, 3 or 4
 
+--css.background X      Use CSS Backgrounds and Borders level X, where
+                        X is 0 or 3
+
 --css.cascade X         Use CSS Cascade level X, where X is 0, 3, 4, 5
                         or 6
 
 --css.colour X          Use CSS Colour level X, where X is 0, 3 or 4
+
+--css.ease X            Use CSS Easing Functions level X, where X is 0
+                        or 3
 
 --css.extension ext     Presume files with extension '.ext' are CSS
                         files
@@ -244,8 +250,8 @@ line, the "no-" switch always applies.
 
 --html.title n          If <TITLE> text is longer than n characters,
 -z n                    say so. This applies to text enclosed by a
-                        <TITLE> element in under <HEAD>, not the value
-                        of TITLE attributes.
+                        <TITLE> element under <HEAD>, not the value of
+                        TITLE attributes.
 
 --html.version X        If no doctype (or xml header) is specified,
                         presume version X of HTML. X can be:
@@ -529,7 +535,7 @@ line, the "no-" switch always applies.
                                 rif 1.0
                                 role 1.0
                                 rr 1.0
-                                schema 0.10-21.0 (see below)
+                                schema 0.10-22.0 (see below)
                                 sd 1.0
                                 sioc 1.0
                                 sioc_s 1.0
@@ -601,7 +607,7 @@ line, the "no-" switch always applies.
                                 1.90        1.9
                                 1.91        as version number
                                 ...
-                                21.0        as version number
+                                22.0        as version number
 
 --shadow.changed        When shadowing a site that has been previously
                         shadowed, only copy/link files that have

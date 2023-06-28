@@ -292,6 +292,9 @@ template < > struct type_master < t_css_azimuth_e > : enum_n < t_css_azimuth_e, 
 template < > struct type_master < t_css_background_attachment > : enum_n < t_css_background_attachment, e_css_background_attachment >
 { using enum_n < t_css_background_attachment, e_css_background_attachment > :: enum_n; };
 
+template < > struct type_master < t_css_background_box > : enum_n < t_css_background_box, e_css_background_box >
+{ using enum_n < t_css_background_box, e_css_background_box > :: enum_n; };
+
 template < > struct type_master < t_css_background_repeat > : enum_n < t_css_background_repeat, e_css_background_repeat >
 { using enum_n < t_css_background_repeat, e_css_background_repeat > :: enum_n; };
 
@@ -639,6 +642,9 @@ template < > struct type_master < t_shape_rendering > : enum_n < t_shape_renderi
 
 template < > struct type_master < t_smei > : enum_n < t_smei, e_smei >
 { using enum_n < t_smei, e_smei > :: enum_n; };
+
+template < > struct type_master < t_step_position > : enum_n < t_step_position, e_step_position >
+{ using enum_n < t_step_position, e_step_position > :: enum_n; };
 
 template < > struct type_master < t_ssi > : enum_n < t_ssi, e_ssi >
 { using enum_n < t_ssi, e_ssi > :: enum_n; };

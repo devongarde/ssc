@@ -667,9 +667,11 @@ e_css_version html_version::css_version () const noexcept
     else return "";
     PRESUME (b < 7, __FILE__, __LINE__);
     res += subver (b, css_animation (), "Ani");
+    res += subver (b, css_background (), "Bac");
     res += subver (b, css_cascade (), "Cas");
     res += subver (b, css_colour (), "Col");
     res += subver (b, css_custom (), "Cus");
+    res += subver (b, css_ease (), "Eas");
     res += subver (b, css_media (), "Med");
     res += subver (b, css_namespace (), "Ns");
     res += subver (b, css_selector (), "Sel");
@@ -858,6 +860,14 @@ void html_version::css_animation (const int n)
 {   if (n == 3) set_ext2 (H2_CSS_ANIM_3);
     else reset_ext2 (H2_CSS_ANIM_3); }
 
+int html_version::css_background () const
+{   if (any_ext2 (H2_CSS_BACKGROUND)) return 3;
+    return 0; }
+
+void html_version::css_background (const int n)
+{   if (n == 3) set_ext2 (H2_CSS_BACKGROUND);
+    else reset_ext2 (H2_CSS_BACKGROUND); }
+
 int html_version::css_cascade () const
 {   if ((ext2 () & H2_CSS_CASCADE_6) == H2_CSS_CASCADE_6) return 6;   
     if ((ext2 () & H2_CSS_CASCADE_5) == H2_CSS_CASCADE_5) return 5;   
@@ -895,6 +905,14 @@ int html_version::css_custom () const
 void html_version::css_custom (const int n)
 {   if (n > 0) set_ext2 (H2_CSS_CUSTOM);
     else reset_ext2 (H2_CSS_CUSTOM); }
+
+int html_version::css_ease () const
+{   if (any_ext2 (H2_CSS_EASE)) return 3;
+    return 0; }
+
+void html_version::css_ease (const int n)
+{   if (n > 0) set_ext2 (H2_CSS_EASE);
+    else reset_ext2 (H2_CSS_EASE); }
 
 int html_version::css_media () const
 {   if ((ext2 () & H2_CSS_MEDIA_5) == H2_CSS_MEDIA_5) return 5;   
@@ -964,6 +982,48 @@ void html_version::css_value (const int n)
     if (n == 3) set_ext2 (H2_CSS_VALUE_3);
     else if (n == 4) set_ext2 (H2_CSS_VALUE_3 | H2_CSS_VALUE_4); }
 
+bool html_version::is_css_compatible (const flags_t& f) const
+{   if ((ext2_ & H2_FULL_CSS_MASK) == 0) return true;
+    if ((f & H2_FULL_CSS_MASK) == 0) return true;
+    return ((ext2_ & f) != 0); }
+
+bool html_version::is_css_compatible (nitpick& nits, const flags_t& f) const
+{   if (is_css_compatible (f)) return true;
+    nits.pick (nit_css_version, es_error, ec_css, "CSS ", long_css_version_name (), " required");   
+    return false; }
+
+::std::string html_version::long_level (const ::std::string& s, const flags_t l3, const flags_t l4, const flags_t l5, const flags_t l6) const
+{   if ((ext2_ & l3) != 0) return s + " level 3";
+    if ((ext2_ & l4) != 0) return s + " level 4";
+    if ((ext2_ & l5) != 0) return s + " level 5";
+    if ((ext2_ & l6) != 0) return s + " level 6";
+    GRACEFUL_CRASH (__FILE__, __LINE__); }
+
+::std::string html_version::long_css_version_name () const
+{   ::std::string res;
+    if (all_ext2 (H2_CSS_1)) res = "1";
+    if (all_ext2 (H2_CSS_2_0)) append (res, ", ", "2.0");
+    if (all_ext2 (H2_CSS_2_1)) append (res, ", ", "2.1");
+    if (all_ext2 (H2_CSS_2_2)) append (res, ", ", "2.2");
+    if (all_ext2 (H2_CSS_3)) append (res, ", ", "3");
+    if (all_ext2 (H2_CSS_4)) append (res, ", ", "4");
+    if (all_ext2 (H2_CSS_5)) append (res, ", ", "5");
+    if (all_ext2 (H2_CSS_6)) append (res, ", ", "6");
+    if (res.empty ())
+    {   if (css_animation () > 0) append (res, ", ", ::std::string ("CSS Animation"));
+        if (css_background () > 0) append (res, ", ", ::std::string ("CSS Backgrounds and Borders"));
+        if (css_cascade () > 0) append (res, ", ", long_level ("CSS Cascade", H2_CSS_CASCADE_3, H2_CSS_CASCADE_4, H2_CSS_CASCADE_5, H2_CSS_CASCADE_6));
+        if (css_colour () > 0) append (res, ", ", long_level ("CSS Colour", H2_CSS_COLOUR_3, H2_CSS_COLOUR_4, H2_CSS_COLOUR_5));
+        if (css_custom () > 0) append (res, ", ", ::std::string ("CSS Custom Properties for Cascading Variables"));
+        if (css_ease () > 0) append (res, ", ", ::std::string ("CSS Easing Functions"));
+        if (css_media () > 0) append (res, ", ", long_level ("CSS Media Queries", H2_CSS_MEDIA_3, H2_CSS_MEDIA_4, H2_CSS_MEDIA_5));
+        if (css_namespace () > 0) append (res, ", ", ::std::string ("CSS Namespaces"));
+        if (css_selector () > 0) append (res, ", ", long_level ("CSS Selectors", H2_CSS_SELECTOR_3, H2_CSS_SELECTOR_4));
+        if (css_style () > 0) append (res, ", ", ::std::string ("CSS Style"));
+        if (css_syntax () > 0) append (res, ", ", ::std::string ("CSS Syntax Module"));
+        if (css_ui () > 0) append (res, ", ", long_level ("CSS Basic User Interface", H2_CSS_UI_3, H2_CSS_UI_4));
+        if (css_value () > 0) append (res, ", ", long_level ("CSS Values and Units", H2_CSS_VALUE_3, H2_CSS_VALUE_4)); }
+    return res; }
 
 bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e)
 {   const bool res = version.parse_doctype (nits, ::std::string (b, e));

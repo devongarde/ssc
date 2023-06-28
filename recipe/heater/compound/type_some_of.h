@@ -23,13 +23,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 template < e_type T, ::std::size_t MAX, ::std::size_t MIN > struct range_ok
 {   static bool ok (nitpick& nits, const ::std::size_t vs)
-    {   if ((vs >= MIN) && (vs <= MAX)) return true;
+    {   if ((vs >= MIN) && ((MAX == 0) || (vs <= MAX))) return true;
         nits.pick (nit_range, es_error, ec_type, vs, " values found, but between ", MIN, " and ", MAX, " value expected (", type_name (T), ")");
         return false; } };
 
 template < e_type T, ::std::size_t MAX > struct range_ok < T, MAX, 0 >
 {   static bool ok (nitpick& nits, const ::std::size_t vs)
-    {   if (vs <= MAX) return true;
+    {   if ((MAX == 0) || (vs <= MAX)) return true;
         nits.pick (nit_at_most, es_error, ec_type, vs, " values found, but at most ", MAX, " value(s) expected (", type_name (T), ")");
         return false; } };
  
@@ -75,6 +75,9 @@ template < e_type T, class SZ, int MIN, int MAX, e_type... A > struct type_some_
         return string_vector < T, SZ > :: is_url (); }
     static bool is_existential () noexcept
     {   return false; }
+    static bool is_numeric () noexcept
+    {   if (type_one_of < T, MIN==0, A... > :: is_numeric ()) return true;
+        return string_vector < T, SZ > :: is_numeric (); }
     static typename string_vector < T, SZ > :: value_type default_value ()
     {   return string_vector < T, SZ > :: default_value (); }
     static e_animation_type animation_type () noexcept
