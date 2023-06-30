@@ -89,6 +89,9 @@ template < > struct type_master < t_css_border_collapse > : three_value < t_css_
 template < > struct type_master < t_css_empty_cells > : three_value < t_css_empty_cells, e_css_empty_cells, sz_hide, sz_inherit, sz_show >
 { using three_value < t_css_empty_cells, e_css_empty_cells, sz_hide, sz_inherit, sz_show > :: three_value; };
 
+template < > struct type_master < t_css_margin_break > : three_value < t_css_margin_break, e_css_margin_break, sz_auto, sz_discard, sz_keep >
+{ using three_value < t_css_margin_break, e_css_margin_break, sz_auto, sz_discard, sz_keep > :: three_value; };
+
 template < > struct type_master < t_css_speak_header > : three_value < t_css_speak_header, e_css_speak_header, sz_always, sz_inherit, sz_once >
 { using three_value < t_css_speak_header, e_css_speak_header, sz_always, sz_inherit, sz_once > :: three_value; };
 

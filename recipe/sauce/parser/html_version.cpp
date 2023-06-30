@@ -672,6 +672,8 @@ e_css_version html_version::css_version () const noexcept
     res += subver (b, css_colour (), "Col");
     res += subver (b, css_custom (), "Cus");
     res += subver (b, css_ease (), "Eas");
+    res += subver (b, css_font (), "Fon");
+    res += subver (b, css_fragmentation (), "Fra");
     res += subver (b, css_media (), "Med");
     res += subver (b, css_namespace (), "Ns");
     res += subver (b, css_selector (), "Sel");
@@ -853,12 +855,14 @@ bool html_version::svg_limited (const e_svg_version v) const noexcept
     return false; }
 
 int html_version::css_animation () const
-{   if (any_ext2 (H2_CSS_ANIM_3)) return 3;
+{   if ((ext2 () & H2_CSS_ANIM_4) == H2_CSS_ANIM_4) return 4;   
+    if ((ext2 () & H2_CSS_ANIM_3) == H2_CSS_ANIM_3) return 3;   
     return 0; }
 
 void html_version::css_animation (const int n)
-{   if (n == 3) set_ext2 (H2_CSS_ANIM_3);
-    else reset_ext2 (H2_CSS_ANIM_3); }
+{   reset_ext2 (H2_CSS_ANIM_MASK);
+    if (n == 4) set_ext2 (H2_CSS_ANIM_4);
+    else if (n == 3) set_ext2 (H2_CSS_ANIM_3); }
 
 int html_version::css_background () const
 {   if (any_ext2 (H2_CSS_BACKGROUND)) return 3;
@@ -898,6 +902,14 @@ void html_version::css_colour (const int n)
         case 3 : set_ext2 (H2_CSS_COLOUR_3); break;
         default : break; } }
 
+int html_version::css_compositing () const
+{   if (any_ext2 (H2_CSS_COMPOSITING)) return 3;
+    return 0; }
+
+void html_version::css_compositing (const int n)
+{   if (n > 0) set_ext2 (H2_CSS_COMPOSITING);
+    else reset_ext2 (H2_CSS_COMPOSITING); }
+
 int html_version::css_custom () const
 {   if (any_ext2 (H2_CSS_CUSTOM)) return 3;
     return 0; }
@@ -913,6 +925,30 @@ int html_version::css_ease () const
 void html_version::css_ease (const int n)
 {   if (n > 0) set_ext2 (H2_CSS_EASE);
     else reset_ext2 (H2_CSS_EASE); }
+
+int html_version::css_font () const
+{   if ((ext2 () & H2_CSS_FONT_5) == H2_CSS_FONT_5) return 5;   
+    if ((ext2 () & H2_CSS_FONT_4) == H2_CSS_FONT_4) return 4;   
+    if ((ext2 () & H2_CSS_FONT_3) == H2_CSS_FONT_3) return 3;   
+    return 0; }
+
+void html_version::css_font (const int n)
+{   reset_ext2 (H2_CSS_FONT_MASK);
+    switch (n)
+    {   case 5 : set_ext2 (H2_CSS_FONT_5 | H2_CSS_FONT_4 | H2_CSS_FONT_3); break;
+        case 4 : set_ext2 (H2_CSS_FONT_4 | H2_CSS_FONT_3); break;
+        case 3 : set_ext2 (H2_CSS_FONT_3); break;
+        default : break; } }
+
+int html_version::css_fragmentation () const
+{   if ((ext2 () & H2_CSS_FRAG_4) == H2_CSS_FRAG_4) return 4;   
+    if ((ext2 () & H2_CSS_FRAG_3) == H2_CSS_FRAG_3) return 3;   
+    return 0; }
+
+void html_version::css_fragmentation (const int n)
+{   reset_ext2 (H2_CSS_FRAG_MASK);
+    if (n == 4) set_ext2 (H2_CSS_FRAG_3 | H2_CSS_FRAG_4);
+    else if (n == 3) set_ext2 (H2_CSS_FRAG_3); }
 
 int html_version::css_media () const
 {   if ((ext2 () & H2_CSS_MEDIA_5) == H2_CSS_MEDIA_5) return 5;   
@@ -1005,24 +1041,26 @@ bool html_version::is_css_compatible (nitpick& nits, const flags_t& f) const
     if (all_ext2 (H2_CSS_2_0)) append (res, ", ", "2.0");
     if (all_ext2 (H2_CSS_2_1)) append (res, ", ", "2.1");
     if (all_ext2 (H2_CSS_2_2)) append (res, ", ", "2.2");
-    if (all_ext2 (H2_CSS_3)) append (res, ", ", "3");
-    if (all_ext2 (H2_CSS_4)) append (res, ", ", "4");
-    if (all_ext2 (H2_CSS_5)) append (res, ", ", "5");
-    if (all_ext2 (H2_CSS_6)) append (res, ", ", "6");
-    if (res.empty ())
-    {   if (css_animation () > 0) append (res, ", ", ::std::string ("CSS Animation"));
-        if (css_background () > 0) append (res, ", ", ::std::string ("CSS Backgrounds and Borders"));
-        if (css_cascade () > 0) append (res, ", ", long_level ("CSS Cascade", H2_CSS_CASCADE_3, H2_CSS_CASCADE_4, H2_CSS_CASCADE_5, H2_CSS_CASCADE_6));
-        if (css_colour () > 0) append (res, ", ", long_level ("CSS Colour", H2_CSS_COLOUR_3, H2_CSS_COLOUR_4, H2_CSS_COLOUR_5));
-        if (css_custom () > 0) append (res, ", ", ::std::string ("CSS Custom Properties for Cascading Variables"));
-        if (css_ease () > 0) append (res, ", ", ::std::string ("CSS Easing Functions"));
-        if (css_media () > 0) append (res, ", ", long_level ("CSS Media Queries", H2_CSS_MEDIA_3, H2_CSS_MEDIA_4, H2_CSS_MEDIA_5));
-        if (css_namespace () > 0) append (res, ", ", ::std::string ("CSS Namespaces"));
-        if (css_selector () > 0) append (res, ", ", long_level ("CSS Selectors", H2_CSS_SELECTOR_3, H2_CSS_SELECTOR_4));
-        if (css_style () > 0) append (res, ", ", ::std::string ("CSS Style"));
-        if (css_syntax () > 0) append (res, ", ", ::std::string ("CSS Syntax Module"));
-        if (css_ui () > 0) append (res, ", ", long_level ("CSS Basic User Interface", H2_CSS_UI_3, H2_CSS_UI_4));
-        if (css_value () > 0) append (res, ", ", long_level ("CSS Values and Units", H2_CSS_VALUE_3, H2_CSS_VALUE_4)); }
+    if (all_ext2 (H2_CSS_6)) append (res, ", ", "3, 4, 5, 6");
+    else if (all_ext2 (H2_CSS_5)) append (res, ", ", "3, 4, 5");
+    else if (all_ext2 (H2_CSS_4)) append (res, ", ", "3, 4");
+    else if (all_ext2 (H2_CSS_3)) append (res, ", ", "3");
+    else
+    {   if (css_animation () > 0) append (res, ", ", ::std::string ("Animation"));
+        if (css_background () > 0) append (res, ", ", ::std::string ("Backgrounds and Borders"));
+        if (css_cascade () > 0) append (res, ", ", long_level ("Cascade", H2_CSS_CASCADE_3, H2_CSS_CASCADE_4, H2_CSS_CASCADE_5, H2_CSS_CASCADE_6));
+        if (css_colour () > 0) append (res, ", ", long_level ("Colour", H2_CSS_COLOUR_3, H2_CSS_COLOUR_4, H2_CSS_COLOUR_5));
+        if (css_compositing () > 0) append (res, ", ", ::std::string ("Compositing and Blending"));
+        if (css_custom () > 0) append (res, ", ", ::std::string ("Custom Properties for Cascading Variables"));
+        if (css_ease () > 0) append (res, ", ", ::std::string ("Easing Functions"));
+        if (css_fragmentation () > 0) append (res, ", ", long_level ("Fragmentation", H2_CSS_FRAG_3, H2_CSS_FRAG_4));
+        if (css_media () > 0) append (res, ", ", long_level ("Media Queries", H2_CSS_MEDIA_3, H2_CSS_MEDIA_4, H2_CSS_MEDIA_5));
+        if (css_namespace () > 0) append (res, ", ", ::std::string ("Namespaces"));
+        if (css_selector () > 0) append (res, ", ", long_level ("Selectors", H2_CSS_SELECTOR_3, H2_CSS_SELECTOR_4));
+        if (css_style () > 0) append (res, ", ", ::std::string ("Style Attributes"));
+        if (css_syntax () > 0) append (res, ", ", ::std::string ("Syntax Module"));
+        if (css_ui () > 0) append (res, ", ", long_level ("Basic User Interface", H2_CSS_UI_3, H2_CSS_UI_4));
+        if (css_value () > 0) append (res, ", ", long_level ("Values and Units", H2_CSS_VALUE_3, H2_CSS_VALUE_4)); }
     return res; }
 
 bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e)

@@ -234,6 +234,12 @@ template < > struct type_master < t_css_font_size > : type_one_of_five < t_css_f
 template < > struct type_master < t_css_font_style > : type_either_or < t_css_font_style, t_css_all, t_css_font_style_e >
 { using type_either_or < t_css_font_style, t_css_all, t_css_font_style_e > :: type_either_or; };
 
+template < > struct type_master < t_font_synthesis > : either_string_or_both < t_font_synthesis, sz_style, sz_weight, sz_space_char >
+{ using either_string_or_both < t_font_synthesis, sz_style, sz_weight, sz_space_char > :: either_string_or_both; };
+
+template < > struct type_master < t_font_synthesis_n > : type_or_string < t_font_synthesis_n, t_font_synthesis, sz_none >
+{ using type_or_string < t_font_synthesis_n, t_font_synthesis, sz_none > :: type_or_string; };
+
 template < > struct type_master < t_css_hue > : type_either_or < t_css_hue, t_angle, t_real >
 { using type_either_or < t_css_hue, t_angle, t_real > :: type_either_or; };
 

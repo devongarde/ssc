@@ -12,11 +12,18 @@ ssc.exe -f ../toast/css/1/css.conf
 ssc.exe -f ../toast/css/2.0/css.conf
 ssc.exe -f ../toast/css/2.1/css.conf
 ssc.exe -f ../toast/css/2.2/css.conf
+ssc.exe -f ../toast/css/3-animation/css.conf
+ssc.exe -f ../toast/css/4-animation/css.conf
+ssc.exe -f ../toast/css/3-background/css.conf
 ssc.exe -f ../toast/css/3-cascade/css.conf
 ssc.exe -f ../toast/css/4-cascade/css.conf
 ssc.exe -f ../toast/css/5-cascade/css.conf
 ssc.exe -f ../toast/css/6-cascade/css.conf
 ssc.exe -f ../toast/css/3-colour/css.conf
+ssc.exe -f ../toast/css/4-colour/css.conf
+ssc.exe -f ../toast/css/5-colour/css.conf
+ssc.exe -f ../toast/css/3-compositing/css.conf
+ssc.exe -f ../toast/css/4-frag/css.conf
 ssc.exe -f ../toast/css/3-media/css.conf
 ssc.exe -f ../toast/css/4-media/css.conf
 ssc.exe -f ../toast/css/5-media/css.conf
@@ -28,8 +35,10 @@ ssc.exe -f ../toast/css/3-syntax/css.conf
 ssc.exe -f ../toast/css/3-ui/css.conf
 ssc.exe -f ../toast/css/4-ui/css.conf
 ssc.exe -f ../toast/css/3-value/css.conf
+ssc.exe -f ../toast/css/4-value/css.conf
 ssc.exe -f ../toast/css/accessibility/css.conf
 ssc.exe -f ../toast/css/custom/css.conf
+ssc.exe -f ../toast/css/ease/css.conf
 ssc.exe -f ../toast/css/songlight/css.conf
 ssc.exe -f ../toast/HTML/1.0/html1.conf
 ssc.exe -f ../toast/HTML/2.0/html2.conf
@@ -86,6 +95,7 @@ ssc.exe -f ../toast/living/jul22/living.conf
 ssc.exe -f ../toast/living/oct22/living.conf
 ssc.exe -f ../toast/living/jan23/living.conf
 ssc.exe -f ../toast/living/apr23/living.conf
+ssc.exe -f ../toast/living/jul23/living.conf
 ssc.exe -f ../toast/math/1/math.conf
 ssc.exe -f ../toast/math/2/math.conf
 ssc.exe -f ../toast/math/3/math.conf

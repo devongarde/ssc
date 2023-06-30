@@ -93,13 +93,21 @@ line, the "no-" switch always applies.
 --css.cascade X         Use CSS Cascade level X, where X is 0, 3, 4, 5
                         or 6
 
---css.colour X          Use CSS Colour level X, where X is 0, 3 or 4
+--css.colour X          Use CSS Colour level X, where X is 0, 3, 4 or 5
 
 --css.ease X            Use CSS Easing Functions level X, where X is 0
                         or 3
 
+--css.compositing X     Use CSS Compositing and Blending level X, where
+                        X is 0 or 3
+
 --css.extension ext     Presume files with extension '.ext' are CSS
                         files
+
+--css.font X            Use CSS Fonts level X, where X is 0, 3, 4 or 5
+
+--css.frag X            Use CSS Fragmentation level X, where X is 0, 3
+                        or 4
 
 --css.media X           Use CSS Media level X, where X is 0, 3, 4 or 5
 

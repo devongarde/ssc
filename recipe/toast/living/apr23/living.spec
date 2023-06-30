@@ -563,9 +563,6 @@ PASS ../toast/living/apr23/history-3.html
 3 inserted_missing_parent
 16 inserted_missing_closure missing_close
 
-PASS ../toast/living/apr23/html4.css
-0 html
-
 PASS ../toast/living/apr23/hr.html
 17 use_quote_code
 47 use_quote_code
@@ -623,6 +620,12 @@ PASS ../toast/living/apr23/hs-9.html
 2 missing_close
 3 inserted_missing_parent missing_close
 4 inserted_missing_parent inserted_missing_closure missing_close
+
+PASS ../toast/living/apr23/html4.css
+0 html
+71 css_version
+73 css_version
+74 css_version
 
 PASS ../toast/living/apr23/i.html
 0 charset_mismatch charset_used charset_invalid

@@ -298,11 +298,20 @@ template < > struct type_master < t_css_background_box > : enum_n < t_css_backgr
 template < > struct type_master < t_css_background_repeat > : enum_n < t_css_background_repeat, e_css_background_repeat >
 { using enum_n < t_css_background_repeat, e_css_background_repeat > :: enum_n; };
 
+template < > struct type_master < t_css_blend_mode > : enum_n < t_css_blend_mode, e_css_blend_mode >
+{ using enum_n < t_css_blend_mode, e_css_blend_mode > :: enum_n; };
+
 template < > struct type_master < t_css_border_style > : enum_n < t_css_border_style, e_css_border_style >
 { using enum_n < t_css_border_style, e_css_border_style > :: enum_n; };
 
 template < > struct type_master < t_css_border_width > : enum_n < t_css_border_width, e_css_border_width >
 { using enum_n < t_css_border_width, e_css_border_width > :: enum_n; };
+
+template < > struct type_master < t_css_break > : enum_n < t_css_break, e_css_break >
+{ using enum_n < t_css_break, e_css_break > :: enum_n; };
+
+template < > struct type_master < t_css_break_inside > : enum_n < t_css_break_inside, e_css_break_inside >
+{ using enum_n < t_css_break_inside, e_css_break_inside > :: enum_n; };
 
 template < > struct type_master < t_css_caret_shape > : enum_n < t_css_caret_shape, e_css_caret_shape >
 { using enum_n < t_css_caret_shape, e_css_caret_shape > :: enum_n; };

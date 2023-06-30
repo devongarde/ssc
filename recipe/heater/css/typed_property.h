@@ -102,20 +102,24 @@ template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public
         else ss << iiu (); }
     int set_value_ex (arguments& args, const int start, const int to, nitpick& nits, const ::std::string& s)
     {   nitpick nuts, nets;
-        type_master < TYPE > :: set_value (nuts, args.v_, s);
-        const bool ok = type_master < TYPE> :: good ();
-        if (ok) nits.merge (nuts);
-        else if (s.length () >= 3)
-        {   PRESUME ((start > 0) && (start < GSL_NARROW_CAST < int > (args.t_.size ())), __FILE__, __LINE__);
-            if ((args.t_.at (start).t_ == ct_keyword) || (args.t_.at (start).t_ == ct_identifier))
-                if (test_cascade (s, iiu_))
-                {   base_type :: status (s_good);
-                    return start; } }
-        int i = start;
-        if (check_fn (args, i, to, nits, ok))
-        {   base_type :: status (s_good);
-            return i; }
-        if (! ok) nits.merge (nuts);
+        if (! args.v_.is_css_compatible (type_master < t_css_property > :: first_version (IDENTITY)))
+        {   nits.pick (nit_css_version, es_error, ec_css, type_master < t_css_property > :: name (IDENTITY), " requires CSS ", type_master < t_css_property > :: first_version (IDENTITY).long_css_version_name ());
+            base_type :: status (s_invalid); }
+        else
+        {   type_master < TYPE > :: set_value (nuts, args.v_, s);
+            const bool ok = type_master < TYPE> :: good ();
+            if (ok) nits.merge (nuts);
+            else if (s.length () >= 3)
+            {   PRESUME ((start > 0) && (start < GSL_NARROW_CAST < int > (args.t_.size ())), __FILE__, __LINE__);
+                if ((args.t_.at (start).t_ == ct_keyword) || (args.t_.at (start).t_ == ct_identifier))
+                    if (test_cascade (s, iiu_))
+                    {   base_type :: status (s_good);
+                        return start; } }
+            int i = start;
+            if (check_fn (args, i, to, nits, ok))
+            {   base_type :: status (s_good);
+                return i; }
+            if (! ok) nits.merge (nuts); }
         return start; }
     virtual void set_value (arguments& args, const int start, const int to, nitpick& nits, const ::std::string& s) override
     {   fin_ = set_value_ex (args, start, to, nits, s); }

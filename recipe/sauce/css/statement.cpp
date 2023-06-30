@@ -81,8 +81,8 @@ void statement::parse_custom_media (arguments& args, nitpick& nits, const int fr
             args.custom_media ().insert (::std::pair (name, def)); } } }
 
 void statement::parse_font_face (arguments& args, nitpick& nits, const int to)
-{   if (context.html_ver ().css_version () != css_2_0)
-        nits.pick (nit_css_version, es_error, ec_css, "@font-face requires CSS 2.0 (only)");
+{   if ((context.html_ver ().css_version () != css_2_0) && (context.css_font () < 3))
+        nits.pick (nit_css_version, es_error, ec_css, "@font-face requires CSS 2.0, or CSS Font 3 or higher");
     if ((to < 0) || (args.t_.at (to).t_ != ct_curly_brac))
         nits.pick (nit_css_syntax, es_error, ec_css, "expecting { property... } after @font-face");
     else
@@ -226,7 +226,6 @@ void statement::parse_keyframes (arguments& args, nitpick& nits, const int from,
                                             nits.pick (nit_css_keyframes, ed_css_animation_3, "3. Keyframes", es_warning, ec_css, quote (x), " will be ignored"); } }
                                 break;
                             case ct_comma : 
-//                                nits.pick (nit_css_syntax, ed_css_animation_3, "3. Keyframes", es_error, ec_css, "out of place ','");
                                 break;
                             case ct_curly_brac :
                                 {   PRESUME (args.t_.at (i).child_ > 0, __FILE__, __LINE__);
@@ -457,8 +456,10 @@ void statement::parse (arguments& args, const int from, const int to)
     b = next_non_whitespace (args.t_, b, to);
     if ((b < 0) || (args.t_.at (b).t_ != ct_keyword))
         nits.pick (nit_statement, es_error, ec_css, "expecting keyword after '@'");
+    else if (! args.v_.is_css_compatible (st_.first ()))
+        nits.pick (nit_css_version, es_error, ec_css, st_.name (), " requires CSS ", st_.first ().long_css_version_name ());
     else
-    {   st_.set_value (nits, context.html_ver (), args.t_.at (b).val_);
+    {   st_.set_value (nits, args.v_, args.t_.at (b).val_);
         switch (st_.get_int ())
         {   case css_charset :
                 parse_charset (args, nits, b, to);

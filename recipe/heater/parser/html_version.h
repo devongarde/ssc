@@ -64,7 +64,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HV_DEPRECATEDX2 0x0000000400000000
 #define HV_DEPRECATEDX5 0x0000000800000000
 
-
 #define HV_DEPRECATED123 ( HV_DEPRECATEDX10 | HV_DEPRECATED2 | HV_DEPRECATED30 | HV_DEPRECATED32 )
 #define HV_DEPRECATED23  ( HV_DEPRECATED2 | HV_DEPRECATED30 | HV_DEPRECATED32 )
 #define HV_DEPRECATED234 ( HV_DEPRECATED23 | HV_DEPRECATED4 )
@@ -375,15 +374,33 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_ANIM_4       0x0002000000000000
 #define H2_CSS_ANIM_34    ( H2_CSS_ANIM_3 | H2_CSS_ANIM_4 )  
 #define H2_CSS_ANIM         H2_CSS_ANIM_34  
-#define H2_CSS_ANIM_MASK   H2_CSS_ANIM
+#define H2_CSS_ANIM_MASK    H2_CSS_ANIM
 
 #define H2_CSS_EASE         0x0004000000000000
+
 #define H2_CSS_BACKGROUND   0x0008000000000000
 
-#define H2_CSS_3        ( H2_CSS_ANIM_3 | H2_CSS_BACKGROUND | H2_CSS_CASCADE_3 | H2_CSS_COLOUR_3 | H2_CSS_CUSTOM | H2_CSS_EASE | H2_CSS_MEDIA_3 | H2_CSS_NAMESPACE | H2_CSS_SELECTOR_3 | H2_CSS_STYLE | H2_CSS_SYNTAX | H2_CSS_UI_3 | H2_CSS_VALUE_3 )
-#define H2_CSS_4        ( H2_CSS_ANIM_4 | H2_CSS_CASCADE_4 | H2_CSS_COLOUR_4 | H2_CSS_MEDIA_4 | H2_CSS_SELECTOR_4 | H2_CSS_UI_4 | H2_CSS_VALUE_4 )
-#define H2_CSS_5        ( H2_CSS_CASCADE_5 | H2_CSS_COLOUR_5 | H2_CSS_MEDIA_5 )
-#define H2_CSS_6        H2_CSS_CASCADE_6
+#define H2_CSS_FRAG_3       0x0010000000000000
+#define H2_CSS_FRAG_4       0x0020000000000000
+#define H2_CSS_FRAG_34    ( H2_CSS_FRAG_3 | H2_CSS_FRAG_4 )  
+#define H2_CSS_FRAG         H2_CSS_FRAG_34  
+#define H2_CSS_FRAG_MASK    H2_CSS_FRAG
+
+#define H2_CSS_COMPOSITING  0x0040000000000000
+
+#define H2_CSS_FONT_3       0x0080000000000000  
+#define H2_CSS_FONT_4       0x0100000000000000  
+#define H2_CSS_FONT_34    ( H2_CSS_FONT_3 | H2_CSS_FONT_4 )  
+#define H2_CSS_FONT_5       0x0200000000000000  
+#define H2_CSS_FONT_45    ( H2_CSS_FONT_4 | H2_CSS_FONT_5 ) 
+#define H2_CSS_FONT       ( H2_CSS_FONT_34 | H2_CSS_FONT_5 )   
+#define H2_CSS_FONT_MASK    H2_CSS_FONT
+
+#define H2_CSS_3        ( H2_CSS_ANIM_3 | H2_CSS_BACKGROUND | H2_CSS_CASCADE_3 | H2_CSS_COLOUR_3 | H2_CSS_COMPOSITING | H2_CSS_CUSTOM | H2_CSS_EASE | H2_CSS_FONT_3 | \
+                          H2_CSS_FRAG_3 | H2_CSS_MEDIA_3 | H2_CSS_NAMESPACE | H2_CSS_SELECTOR_3 | H2_CSS_STYLE | H2_CSS_SYNTAX | H2_CSS_UI_3 | H2_CSS_VALUE_3 )
+#define H2_CSS_4        ( H2_CSS_ANIM_4 | H2_CSS_CASCADE_4 | H2_CSS_COLOUR_4 | H2_CSS_FONT_4 | H2_CSS_FRAG_4 | H2_CSS_MEDIA_4 | H2_CSS_SELECTOR_4 | H2_CSS_UI_4 | H2_CSS_VALUE_4 )
+#define H2_CSS_5        ( H2_CSS_CASCADE_5 | H2_CSS_COLOUR_5 | H2_CSS_FONT_5 | H2_CSS_MEDIA_5 )
+#define H2_CSS_6          H2_CSS_CASCADE_6
 
 #define H2_CSS_3_FULL   ( H2_CSS_3 | H2_CSS_2_2_FULL )
 #define H2_CSS_4_FULL   ( H2_CSS_4 | H2_CSS_3_FULL )
@@ -399,10 +416,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_2_PLUS   ( H2_CSS_2 | H2_CSS_3_PLUS )
 #define H2_CSS_21_PLUS  ( H2_CSS_2_1 | H2_CSS_2_2 | H2_CSS_3_PLUS )
 #define H2_CSS_ALL      ( H2_CSS_1 | H2_CSS_2_PLUS )
-#define H2_CSS_MASK     H2_CSS_ALL
-#define H2_CSS          H2_CSS_ALL
+#define H2_CSS_MASK       H2_CSS_ALL
+#define H2_CSS            H2_CSS_ALL
 
-#define H2_FULL_CSS_MASK    0x000FFFFFFFFF8000  
+#define H2_FULL_CSS_MASK    0x03FFFFFFFFFF8000  
 
 class html_version : public version
 {   flags_t ext_ = NOFLAGS, ext2_ = NOFLAGS;
@@ -605,10 +622,16 @@ public:
     void css_cascade (const int n);
     int css_colour () const;
     void css_colour (const int n);
+    int css_compositing () const;
+    void css_compositing (const int n);
     int css_custom () const;
     void css_custom (const int n);
     int css_ease () const;
     void css_ease (const int n);
+    int css_font () const;
+    void css_font (const int n);
+    int css_fragmentation () const;
+    void css_fragmentation (const int n);
     int css_media () const;
     void css_media (const int n);
     int css_namespace () const;

@@ -487,6 +487,7 @@ PASS ../toast/css/2.0/css-13-2.css
 
 PASS ../toast/css/2.0/css-13-3.css
 0 html
+21 css_version
 24 page_name_again
 
 PASS ../toast/css/2.0/css-13-4.css
@@ -688,6 +689,9 @@ PASS ../toast/css/2.0/html4.css
 0 html
 78 css_version
 79 naughty_content
+100 css_version css_version
+102 css_version
+103 css_version
 
 PASS ../toast/css/2.0/index.html
 2 naughty_lang

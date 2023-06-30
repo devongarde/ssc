@@ -1,0 +1,62 @@
+﻿body {
+    font-family: Helvetica, Verdana, sans-serif;
+}
+
+.glop
+{   font-family: Red/Black, sans-serif;
+    font-family: "Lucida" Grande, sans-serif;
+    font-family: Ahem!, sans-serif;
+    font-family: test@foo, sans-serif;
+    font-family: #POUND, sans-serif;
+    font-family: Hawaii 5-0, sans-serif; }
+
+body { font-family: "New Century Schoolbook", serif }
+
+p { font-size: 12pt; }
+blockquote { font-size: larger }
+em { font-size: 150% }
+em { font-size: 1.5em }
+
+p {
+    font-family: Verdana, Futura, Times;
+}
+
+p {
+    font-family: Futura;
+    font-size: 500px;
+}
+
+span {
+    border: solid 1px red;
+}
+
+.adjust {
+    font-size-adjust: 0.5;
+}
+
+p { font: 12pt/14pt sans-serif }
+p { font: 80% sans-serif }
+p { font: x-large/110% "new century schoolbook", serif }
+p { font: bold italic large Palatino, serif }
+p { font: normal small-caps 120%/120% fantasy }
+p { font: condensed oblique 12pt "Helvetica Neue", serif; }
+
+p {
+  font: 80% sans-serif;   /* for older user agents */
+  font: condensed 80% sans-serif;
+}
+
+button { font: 300 italic 1.3em/1.7em "FB Armada", sans-serif }
+button p { font: menu }
+button p em { font-weight: bolder }
+
+button p { font: 600 9pt Charcoal }
+
+button p {
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 600;
+  font-size: 9pt;
+  line-height: normal;
+  font-family: Charcoal
+}

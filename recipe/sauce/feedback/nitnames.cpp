@@ -814,6 +814,7 @@ const nitname nitnames [] =
     { nit_popover, "popover" },
     { nit_css_ease, "css_ease" },
     { nit_multiple_spaces, "multiple_spaces" },
+    { nit_repeated_value, "repeated_value" },
 
     { nit_incompatible, "incompatible" },
 

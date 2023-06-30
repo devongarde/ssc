@@ -1,0 +1,19 @@
+﻿@font-face {
+  font-family: Gentium;
+  src: url(http://example.com/fonts/Gentium.woff);
+src: url(fonts/simple.woff);       /* load simple.woff relative to stylesheet location */
+src: url(/fonts/simple.woff);      /* load simple.woff from absolute location */
+src: url(fonts/coll.otc#foo);      /* load font foo from collection coll.otc */
+src: url(fonts/coll.woff2#foo);    /* load font foo from woff2 collection coll.woff2 */
+src: url(fonts.svg#simple);        /* load SVG font with id 'simple' */
+}
+
+p { font-family: Gentium, serif; }
+
+/* load WOFF2 font if possible, otherwise WOFF, else use OpenType font */
+@font-face {
+  font-family: bodytext;
+  src: url(ideal-sans-serif.woff2) format("woff2"),
+       url(good-sans-serif.woff) format("woff"),
+       url(basic-sans-serif.ttf) format("opentype");
+}

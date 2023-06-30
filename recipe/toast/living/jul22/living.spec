@@ -623,6 +623,9 @@ PASS ../toast/living/jul22/hs-9.html
 
 PASS ../toast/living/jul22/html4.css
 0 html
+71 css_version
+73 css_version
+74 css_version
 
 PASS ../toast/living/jul22/i.html
 0 charset_mismatch charset_used charset_invalid

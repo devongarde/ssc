@@ -87,6 +87,28 @@ template < e_type T, class SZ, e_type P > struct type_at_least_none : type_some_
 template < e_type T, class SZ, e_type P, int N > struct type_exactly_n : type_some_of < T, SZ, N, N, P >
 {   using type_some_of < T, SZ, N, N, P > :: type_some_of; };
 
+template < e_type T, class SZ1, class SZ2, class SZSEP > struct either_string_or_both : string_vector < T, SZSEP >
+{   using string_vector < T, SZSEP > :: string_vector;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   string_vector < T, SZSEP > :: set_value (nits, v, s);
+        if (string_vector < T, SZSEP > :: empty ()) return;
+        else if (string_vector < T, SZSEP > :: good ())
+        {   bool ok = true;
+            int h1 = 0, h2 = 0;
+            const int n = GSL_NARROW_CAST < int > (string_vector < T, SZSEP > :: size ());
+            if ((n < 1) || (n > 2))
+                nits.pick (nit_not_n, es_error, ec_type, quote (s), ": between ", 1, " and ", 2, " values expected");
+            for (auto arg : string_vector < T, SZSEP > :: get ())
+                if (compare_no_case (arg, SZ1 :: sz ())) ++h1;
+                else if (compare_no_case (arg, SZ2 :: sz ())) ++h2;
+                else
+                {   nits.pick (nit_illegal_value, es_error, ec_type, quote (arg), " is neither ", SZ1::sz (), " or ", SZ2::sz ());
+                    ok = false; }
+            if (h1 > 1) nits.pick (nit_repeated_value, es_warning, ec_type, SZ1::sz (), " repeated");
+            if (h2 > 1) nits.pick (nit_repeated_value, es_warning, ec_type, SZ2::sz (), " repeated");
+            if (ok) return; }
+        string_vector < T, SZSEP > :: status (s_invalid); } };
+
 template < e_type T, class SZ, e_type P, int FROM, int TO > struct type_range : string_vector < T, SZ >
 {   BOOST_STATIC_ASSERT (FROM < TO);
     using string_vector < T, SZ > :: string_vector;
