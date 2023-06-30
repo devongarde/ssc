@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                ssc
-version             0.1.26
+version             0.1.27
 categories          web
 platforms           darwin
 license             GPL-3

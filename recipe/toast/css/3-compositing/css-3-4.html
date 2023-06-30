@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>compositing 3 example</title>
+    <style>
+        body { background-color: green; }
+        div { 
+          width: 200px;
+          height: 200px;
+          background-size: 200px 200px;
+          background-repeat:no-repeat;
+          background-image: linear-gradient(to right, #000000 0%,#ffffff 100%), url('ducky.png');
+          background-blend-mode: difference, normal; }
+    </style>
+  </head>
+<body>
+   <div></div>
+</body>
+</html>

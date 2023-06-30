@@ -396,6 +396,24 @@ struct symbol_entry < html_version, e_css_background_repeat > css_background_rep
     { { HTML_CSS, 0, 0, H2_CSS_BACKGROUND }, { HTML_UNDEF }, "round", ecbr_round },
     { { HTML_CSS, 0, 0, H2_CSS_BACKGROUND }, { HTML_UNDEF }, "space", ecbr_space } };
 
+struct symbol_entry < html_version, e_css_blend_mode > css_blend_mode_symbol_table [] =
+{   { { HTML_CSS, 0, 0, H2_CSS_COMPOSITING }, { HTML_UNDEF }, "colour", ecbm_colour },
+    { { HTML_CSS, 0, 0, H2_CSS_COMPOSITING }, { HTML_UNDEF }, "colour-burn", ecbm_colour_burn },
+    { { HTML_CSS, 0, 0, H2_CSS_COMPOSITING }, { HTML_UNDEF }, "colour-dodge", ecbm_colour_dodge },
+    { { HTML_CSS, 0, 0, H2_CSS_COMPOSITING }, { HTML_UNDEF }, "darken", ecbm_darken },
+    { { HTML_CSS, 0, 0, H2_CSS_COMPOSITING }, { HTML_UNDEF }, "difference", ecbm_difference },
+    { { HTML_CSS, 0, 0, H2_CSS_COMPOSITING }, { HTML_UNDEF }, "exclusion", ecbm_exclusion },
+    { { HTML_CSS, 0, 0, H2_CSS_COMPOSITING }, { HTML_UNDEF }, "hard-light", ecbm_hard_light },
+    { { HTML_CSS, 0, 0, H2_CSS_COMPOSITING }, { HTML_UNDEF }, "hue", ecbm_hue },
+    { { HTML_CSS, 0, 0, H2_CSS_COMPOSITING }, { HTML_UNDEF }, "lighten", ecbm_lighten },
+    { { HTML_CSS, 0, 0, H2_CSS_COMPOSITING }, { HTML_UNDEF }, "luminosity", ecbm_luminosity },
+    { { HTML_CSS, 0, 0, H2_CSS_COMPOSITING }, { HTML_UNDEF }, "multiply", ecbm_multiply },
+    { { HTML_CSS, 0, 0, H2_CSS_COMPOSITING }, { HTML_UNDEF }, "normal", ecbm_normal },
+    { { HTML_CSS, 0, 0, H2_CSS_COMPOSITING }, { HTML_UNDEF }, "overlay", ecbm_overlay },
+    { { HTML_CSS, 0, 0, H2_CSS_COMPOSITING }, { HTML_UNDEF }, "saturation", ecbm_saturation },
+    { { HTML_CSS, 0, 0, H2_CSS_COMPOSITING }, { HTML_UNDEF }, "screen", ecbm_screen },
+    { { HTML_CSS, 0, 0, H2_CSS_COMPOSITING }, { HTML_UNDEF }, "soft-light", ecbm_soft_light } };
+
 struct symbol_entry < html_version, e_css_border_style > css_border_style_symbol_table [] =
 {   { { HTML_CSS }, { HTML_UNDEF }, "inherit", ecbs_inherit },
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "dashed", ecb_dashed },
@@ -414,6 +432,28 @@ struct symbol_entry < html_version, e_css_border_width > css_border_width_symbol
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "medium", ecb_medium },
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "thick", ecb_thick },
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "thin", ecb_thin } };
+
+struct symbol_entry < html_version, e_css_break > css_break_symbol_table [] =
+{   { { HTML_CSS, 0, 0, H2_CSS_FRAG_4 }, { HTML_UNDEF }, "all", ecb_all },
+    { { HTML_CSS, 0, 0, H2_CSS_FRAG_4 }, { HTML_UNDEF }, "always", ecb_always },
+    { { HTML_CSS }, { HTML_UNDEF }, "auto", ecb_auto },
+    { { HTML_CSS, 0, 0, H2_CSS_FRAG_3 }, { HTML_UNDEF }, "avoid-column", ecb_avoid_column },
+    { { HTML_CSS, 0, 0, H2_CSS_FRAG_3 }, { HTML_UNDEF }, "avoid-page", ecb_avoid_page },
+    { { HTML_CSS, 0, 0, H2_CSS_FRAG_3 }, { HTML_UNDEF }, "avoid-region", ecb_avoid_region },
+    { { HTML_CSS, 0, 0, H2_CSS_FRAG_3 }, { HTML_UNDEF }, "column", ecb_column },
+    { { HTML_CSS, 0, 0, H2_CSS_FRAG_3 }, { HTML_UNDEF }, "left", ecb_left },
+    { { HTML_CSS, 0, 0, H2_CSS_FRAG_3 }, { HTML_UNDEF }, "page", ecb_page },
+    { { HTML_CSS, 0, 0, H2_CSS_FRAG_3 }, { HTML_UNDEF }, "region", ecb_region },
+    { { HTML_CSS, 0, 0, H2_CSS_FRAG_4 }, { HTML_UNDEF }, "recto", ecb_recto },
+    { { HTML_CSS, 0, 0, H2_CSS_FRAG_3 }, { HTML_UNDEF }, "right", ecb_right },
+    { { HTML_CSS, 0, 0, H2_CSS_FRAG_3 }, { HTML_UNDEF }, "verso", ecb_verso } };
+
+struct symbol_entry < html_version, e_css_break_inside > css_break_inside_symbol_table [] =
+{   { { HTML_CSS }, { HTML_UNDEF }, "auto", ecbi_auto },
+    { { HTML_CSS, 0, 0, H2_CSS_FRAG_3 }, { HTML_UNDEF }, "avoid", ecbi_avoid },
+    { { HTML_CSS, 0, 0, H2_CSS_FRAG_3 }, { HTML_UNDEF }, "avoid-column", ecbi_avoid_column },
+    { { HTML_CSS, 0, 0, H2_CSS_FRAG_3 }, { HTML_UNDEF }, "avoid-page", ecbi_avoid_page },
+    { { HTML_CSS, 0, 0, H2_CSS_FRAG_3 }, { HTML_UNDEF }, "avoid-region", ecbi_avoid_region } };
 
 struct symbol_entry < html_version, e_css_caret_shape > css_caret_shape_symbol_table [] =
 {   { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "auto", ecsc_auto },
@@ -1017,13 +1057,13 @@ struct symbol_entry < html_version, e_filter_in > filter_in_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "StrokePaint", fi_strokepaint } };
 
 struct symbol_entry < html_version, e_font_enum > font_enum_symbol_table [] =
-{   { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "caption",  fe_caption },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "icon",  fe_icon },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "menu", fe_menu },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "message-box", fe_message_box },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "small-caption", fe_small_caption },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "status-bar", fe_status_bar },
-    { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "inherit", fe_inherit } };
+{   { { HTML_SVG10, 0, HE_SVG, H2_CSS_2 | H2_CSS_FONT_3 }, { HTML_UNDEF }, "caption",  fe_caption },
+    { { HTML_SVG10, 0, HE_SVG, H2_CSS_2 | H2_CSS_FONT_3 }, { HTML_UNDEF }, "icon",  fe_icon },
+    { { HTML_SVG10, 0, HE_SVG, H2_CSS_2 | H2_CSS_FONT_3 }, { HTML_UNDEF }, "menu", fe_menu },
+    { { HTML_SVG10, 0, HE_SVG, H2_CSS_2 | H2_CSS_FONT_3 }, { HTML_UNDEF }, "message-box", fe_message_box },
+    { { HTML_SVG10, 0, HE_SVG, H2_CSS_2 | H2_CSS_FONT_3 }, { HTML_UNDEF }, "small-caption", fe_small_caption },
+    { { HTML_SVG10, 0, HE_SVG, H2_CSS_2 | H2_CSS_FONT_3 }, { HTML_UNDEF }, "status-bar", fe_status_bar },
+    { { HTML_SVG10, 0, HE_SVG_1, H2_CSS_2 | H2_CSS_FONT_3 }, { HTML_UNDEF }, "inherit", fe_inherit } };
 
 struct symbol_entry < html_version, e_fontname > fontname_symbol_table [] =
 {   { { HTML_2_0 }, { HTML_UNDEF }, "serif", fn_serif },
@@ -1681,9 +1721,12 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-background", nm_context_css_background },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-cascade", nm_context_css_cascade },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-colour", nm_context_css_colour },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-compositing", nm_context_css_compositing },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-custom", nm_context_css_custom },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-ease", nm_context_css_ease },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-extension", nm_context_css_extension },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-font", nm_context_css_font },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-fragmentation", nm_context_css_fragmentation },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-media", nm_context_css_media },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-namespace", nm_context_css_namespace },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-selector", nm_context_css_selector },
@@ -2175,17 +2218,17 @@ struct symbol_entry < html_version, e_svg_display > svg_display_symbol_table [] 
 
 struct symbol_entry < html_version, e_svg_fontstretch > svg_fontstretch_symbol_table [] =
 {   { { HTML_CSS, 0, 0, H2_CSS_2_0 }, { HTML_UNDEF }, "all",  fst_all },
-    { { HTML_4_0, 0, HE_SVG }, { HTML_UNDEF }, "normal",  fst_normal },
-    { { HTML_4_0, 0, HE_SVG }, { HTML_UNDEF }, "wider",  fst_wider },
-    { { HTML_4_0, 0, HE_SVG }, { HTML_UNDEF }, "narrower",  fst_narrower },
-    { { HTML_4_0, 0, HE_SVG }, { HTML_UNDEF }, "ultra-condensed", fst_ultracondensed },
-    { { HTML_4_0, 0, HE_SVG }, { HTML_UNDEF }, "extra-condensed", fst_extracondensed },
-    { { HTML_4_0, 0, HE_SVG }, { HTML_UNDEF }, "condensed", fst_condensed },
-    { { HTML_4_0, 0, HE_SVG }, { HTML_UNDEF }, "semi-condensed", fst_semicondensed },
-    { { HTML_4_0, 0, HE_SVG }, { HTML_UNDEF }, "semi-expanded", fst_semiexpanded },
-    { { HTML_4_0, 0, HE_SVG }, { HTML_UNDEF }, "expanded", fst_expanded },
-    { { HTML_4_0, 0, HE_SVG }, { HTML_UNDEF }, "extra-expanded", fst_extraexpanded },
-    { { HTML_4_0, 0, HE_SVG }, { HTML_UNDEF }, "ultra-expanded", fst_ultraexpanded },
+    { { HTML_4_0, 0, HE_SVG, H2_CSS_2_0 | H2_CSS_FONT_3 }, { HTML_UNDEF }, "normal",  fst_normal },
+    { { HTML_4_0, 0, HE_SVG, H2_CSS_2_0 | H2_CSS_FONT_3 }, { HTML_UNDEF }, "wider",  fst_wider },
+    { { HTML_4_0, 0, HE_SVG, H2_CSS_2_0 | H2_CSS_FONT_3 }, { HTML_UNDEF }, "narrower",  fst_narrower },
+    { { HTML_4_0, 0, HE_SVG, H2_CSS_2_0 | H2_CSS_FONT_3 }, { HTML_UNDEF }, "ultra-condensed", fst_ultracondensed },
+    { { HTML_4_0, 0, HE_SVG, H2_CSS_2_0 | H2_CSS_FONT_3 }, { HTML_UNDEF }, "extra-condensed", fst_extracondensed },
+    { { HTML_4_0, 0, HE_SVG, H2_CSS_2_0 | H2_CSS_FONT_3 }, { HTML_UNDEF }, "condensed", fst_condensed },
+    { { HTML_4_0, 0, HE_SVG, H2_CSS_2_0 | H2_CSS_FONT_3 }, { HTML_UNDEF }, "semi-condensed", fst_semicondensed },
+    { { HTML_4_0, 0, HE_SVG, H2_CSS_2_0 | H2_CSS_FONT_3 }, { HTML_UNDEF }, "semi-expanded", fst_semiexpanded },
+    { { HTML_4_0, 0, HE_SVG, H2_CSS_2_0 | H2_CSS_FONT_3 }, { HTML_UNDEF }, "expanded", fst_expanded },
+    { { HTML_4_0, 0, HE_SVG, H2_CSS_2_0 | H2_CSS_FONT_3 }, { HTML_UNDEF }, "extra-expanded", fst_extraexpanded },
+    { { HTML_4_0, 0, HE_SVG, H2_CSS_2_0 | H2_CSS_FONT_3 }, { HTML_UNDEF }, "ultra-expanded", fst_ultraexpanded },
     { { HTML_4_0, 0, HE_SVG_1 }, { HTML_UNDEF }, "inherit", fst_inherit } };
 
 struct symbol_entry < html_version, e_svg_fontstretch_ff > svg_fontstretch_ff_symbol_table [] =
@@ -2670,6 +2713,8 @@ void init_2 ()
     type_master < t_cors > :: init ();
     type_master < t_css_anim_play_state > :: init ();
     type_master < t_css_box_sizing > :: init ();
+    type_master < t_css_break_box > :: init ();
+    type_master < t_css_isolation > :: init ();
     type_master < t_css_mark > :: init ();
     type_master < t_css_text_resize > :: init ();
     type_master < t_dataformatas > :: init ();
@@ -2905,8 +2950,11 @@ void enum_init (nitpick& nits)
     INIT_ENUM (css_background_attachment);
     INIT_ENUM (css_background_box);
     INIT_ENUM (css_background_repeat);
+    INIT_ENUM (css_blend_mode);
     INIT_ENUM (css_border_style);
     INIT_ENUM (css_border_width);
+    INIT_ENUM (css_break);
+    INIT_ENUM (css_break_inside);
     INIT_ENUM (css_caret_shape);
     INIT_ENUM (css_clear);
     INIT_ENUM (css_content_enum);

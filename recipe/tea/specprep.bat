@@ -12,11 +12,18 @@ ssc.exe -T --nits.spec -o ../out/1css.tst -f ../toast/csp/1/css.conf
 ssc.exe -T --nits.spec -o ../out/20css.tst -f ../toast/css/2.0/css.conf
 ssc.exe -T --nits.spec -o ../out/21css.tst -f ../toast/css/2.1/css.conf
 ssc.exe -T --nits.spec -o ../out/22css.tst -f ../toast/css/2.2/css.conf
+ssc.exe -T --nits.spec -o ../out/3animation.tst -f ../toast/css/3-animation/css.conf
+ssc.exe -T --nits.spec -o ../out/4animation.tst -f ../toast/css/4-animation/css.conf
+ssc.exe -T --nits.spec -o ../out/3background.tst -f ../toast/css/3-background/css.conf
 ssc.exe -T --nits.spec -o ../out/3cascade.tst -f ../toast/css/3-cascade/css.conf
 ssc.exe -T --nits.spec -o ../out/4cascade.tst -f ../toast/css/4-cascade/css.conf
 ssc.exe -T --nits.spec -o ../out/5cascade.tst -f ../toast/css/5-cascade/css.conf
 ssc.exe -T --nits.spec -o ../out/6cascade.tst -f ../toast/css/6-cascade/css.conf
 ssc.exe -T --nits.spec -o ../out/3colour.tst -f ../toast/css/3-colour/css.conf
+ssc.exe -T --nits.spec -o ../out/4colour.tst -f ../toast/css/4-colour/css.conf
+ssc.exe -T --nits.spec -o ../out/5colour.tst -f ../toast/css/5-colour/css.conf
+ssc.exe -T --nits.spec -o ../out/3comp.tst -f ../toast/css/3-compositing/css.conf
+ssc.exe -T --nits.spec -o ../out/4frag.tst -f ../toast/css/4-frag/css.conf
 ssc.exe -T --nits.spec -o ../out/3media.tst -f ../toast/css/3-media/css.conf
 ssc.exe -T --nits.spec -o ../out/4media.tst -f ../toast/css/4-media/css.conf
 ssc.exe -T --nits.spec -o ../out/5media.tst -f ../toast/css/5-media/css.conf
@@ -28,8 +35,10 @@ ssc.exe -T --nits.spec -o ../out/3syntax.tst -f ../toast/css/3-syntax/css.conf
 ssc.exe -T --nits.spec -o ../out/3ui.tst -f ../toast/css/3-ui/css.conf
 ssc.exe -T --nits.spec -o ../out/4ui.tst -f ../toast/css/4-ui/css.conf
 ssc.exe -T --nits.spec -o ../out/3value.tst -f ../toast/css/3-value/css.conf
+ssc.exe -T --nits.spec -o ../out/4value.tst -f ../toast/css/4-value/css.conf
 ssc.exe -T --nits.spec -o ../out/accessibility.tst -f ../toast/css/accessibility/css.conf
 ssc.exe -T --nits.spec -o ../out/csscustom.tst -f ../toast/css/custom/css.conf
+ssc.exe -T --nits.spec -o ../out/cssease.tst -f ../toast/css/ease/css.conf
 ssc.exe -T --nits.spec -o ../out/songlight.tst -f ../toast/css/songlight/css.conf
 ssc.exe -T --nits.spec -o ../out/1.0html1.tst -f ../toast/HTML/1.0/html1.conf
 ssc.exe -T --nits.spec -o ../out/2.0html2.tst -f ../toast/HTML/2.0/html2.conf
@@ -86,6 +95,7 @@ ssc.exe -T --nits.spec -o ../out/jul22living.tst -f ../toast/living/jul22/living
 ssc.exe -T --nits.spec -o ../out/oct22living.tst -f ../toast/living/oct22/living.conf
 ssc.exe -T --nits.spec -o ../out/jan23living.tst -f ../toast/living/jan23/living.conf
 ssc.exe -T --nits.spec -o ../out/apr23living.tst -f ../toast/living/apr23/living.conf
+ssc.exe -T --nits.spec -o ../out/jul23living.tst -f ../toast/living/jul23/living.conf
 ssc.exe -T --nits.spec -o ../out/1math.tst -f ../toast/math/1/math.conf
 ssc.exe -T --nits.spec -o ../out/2math.tst -f ../toast/math/2/math.conf
 ssc.exe -T --nits.spec -o ../out/3math.tst -f ../toast/math/3/math.conf

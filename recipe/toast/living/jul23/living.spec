@@ -621,6 +621,11 @@ PASS ../toast/living/jul23/hs-9.html
 3 inserted_missing_parent missing_close
 4 inserted_missing_parent inserted_missing_closure missing_close
 
+PASS ../toast/living/jul23/html4.css
+71 css_version
+73 css_version
+74 css_version
+
 PASS ../toast/living/jul23/i.html
 0 charset_mismatch charset_used charset_invalid
 

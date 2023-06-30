@@ -98,10 +98,10 @@ context_t& context_t::css_version (const int mjr, const int mnr)
                 default : break; }
             break;
         case 3 :
-            if (mnr == 0) v = css_3;
+            v = css_3;
             break;
         case 4 :
-            if (mnr == 0) v = css_4;
+            v = css_4;
             break;
         case 5 :
             v = css_5;

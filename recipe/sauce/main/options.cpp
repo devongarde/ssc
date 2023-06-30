@@ -333,11 +333,14 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (CSS BACKGROUND, ::boost::program_options::value < int > (), "CSS Background Borders level (0 or 3).")
         (CSS CASCADE, ::boost::program_options::value < int > (), "CSS Cascade & Inheritance level (0, 3, 4, 5 or 6).")
         (CSS COLOUR, ::boost::program_options::value < int > (), "CSS Colour level (0, 3, 4, or 5).")
+        (CSS COMPOSITING, ::boost::program_options::value < int > (), "CSS Compositing and Blending level (0 or 3).")
         (CSS CUSTOM, ::boost::program_options::value < int > (), "CSS Custom level (0 or 3).")
         (CSS EASE, ::boost::program_options::value < int > (), "CSS Ease level (0 or 3).")
         (CSS EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "CSS files have this extension (default css); may be repeated.")
         (CSS EXTERNAL, ::boost::program_options::bool_switch (), "Nitpick css files imported from external sites.")
         (CSS DONT EXTERNAL, ::boost::program_options::bool_switch (), "Do not nitpick imported CSS files.")
+        (CSS FONT, ::boost::program_options::value < int > (), "CSS Font level (0, 3, 4, or 5).")
+        (CSS FRAG, ::boost::program_options::value < int > (), "CSS Fragmentation level (0, 3, or 4).")
         (CSS MEDIA, ::boost::program_options::value < int > (), "CSS Media level (0, 3, 4, or 5).")
         (CSS NAMESPACE, ::boost::program_options::value < int > (), "CSS Namespace level (0 or 3).")
         (CSS SELECTOR, ::boost::program_options::value < int > (), "CSS Selector level (0, 3, or 4).")
@@ -990,6 +993,7 @@ void options::contextualise (nitpick& nits)
             switch (n)
             {   case 0 :
                 case 3 :
+                case 4 :
                     context.css_animation (n);
                     break;
                 default :
@@ -1035,6 +1039,18 @@ void options::contextualise (nitpick& nits)
                     nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Colour value");
                     break; } }
 
+        if (var_.count (CSS COMPOSITING))
+        {   const int n (var_ [CSS COMPOSITING].as < int > ());
+            switch (n)
+            {   case 0 :
+                case 1 :
+                case 3 :
+                    context.css_compositing (n);
+                    break;
+                default :
+                    nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Custom value");
+                    break; } }
+
         if (var_.count (CSS CUSTOM))
         {   const int n (var_ [CSS CUSTOM].as < int > ());
             switch (n)
@@ -1058,6 +1074,31 @@ void options::contextualise (nitpick& nits)
                     break;
                 default :
                     nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Ease value");
+                    break; } }
+
+        if (var_.count (CSS FONT))
+        {   const int n (var_ [CSS FONT].as < int > ());
+            switch (n)
+            {   case 0 :
+                case 3 :
+                case 4 :
+                case 5 :
+                    context.css_font (n);
+                    break;
+                default :
+                    nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Font value");
+                    break; } }
+
+        if (var_.count (CSS FRAG))
+        {   const int n (var_ [CSS FRAG].as < int > ());
+            switch (n)
+            {   case 0 :
+                case 3 :
+                case 4 :
+                    context.css_fragmentation (n);
+                    break;
+                default :
+                    nits.pick (nit_config_version, es_warning, ec_init, "ignoring bad CSS Fragmentation value");
                     break; } }
 
         if (var_.count (CSS MEDIA))
@@ -1559,9 +1600,12 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (CSS BACKGROUND)) res << CSS BACKGROUND ": " << var_ [CSS BACKGROUND].as < int > () << "\n";
     if (var_.count (CSS CASCADE)) res << CSS CASCADE ": " << var_ [CSS CASCADE].as < int > () << "\n";
     if (var_.count (CSS COLOUR)) res << CSS COLOUR ": " << var_ [CSS COLOUR].as < int > () << "\n";
+    if (var_.count (CSS COMPOSITING)) res << CSS COMPOSITING ": " << var_ [CSS COMPOSITING].as < int > () << "\n";
     if (var_.count (CSS CUSTOM)) res << CSS CUSTOM ": " << var_ [CSS CUSTOM].as < int > () << "\n";
     if (var_.count (CSS EASE)) res << CSS EASE ": " << var_ [CSS EASE].as < int > () << "\n";
     if (var_.count (CSS EXTENSION)) res << CSS EXTENSION ": "; pvs (res, var_ [CSS EXTENSION].as < vstr_t > ()); res << "\n";
+    if (var_.count (CSS FONT)) res << CSS FONT ": " << var_ [CSS FONT].as < int > () << "\n";
+    if (var_.count (CSS FRAG)) res << CSS FRAG ": " << var_ [CSS FRAG].as < int > () << "\n";
     if (var_.count (CSS MEDIA)) res << CSS MEDIA ": " << var_ [CSS MEDIA].as < int > () << "\n";
     if (var_.count (CSS NAMESPACE)) res << CSS NAMESPACE ": " << var_ [CSS NAMESPACE].as < int > () << "\n";
     if (var_.count (CSS SELECTOR)) res << CSS SELECTOR ": " << var_ [CSS SELECTOR].as < int > () << "\n";

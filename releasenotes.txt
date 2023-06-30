@@ -3,8 +3,16 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.27
+- CSS Compositing
+- CSS Fragmentation 3
+- CSS Fragmentation 4 (December 2018 draft)
+- schema.org 22
+- various bug fixes
+- underlying work
+
 0.1.26
-- CSS Backgrounds and Borders (Feb 2023 version)
+- CSS Backgrounds and Borders (February 2023)
 - CSS Colour 5
 - CSS Easing Functions
 - further improve build time

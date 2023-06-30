@@ -124,16 +124,8 @@ template < > struct type_master < t_font_family > : tidy_string < t_font_family 
             return; }
         tidy_string < t_font_family > :: status (s_invalid); } };
 
-// t_from
-template < > struct type_master < t_from > : public tidy_string < t_from >
-{   using tidy_string < t_from > :: tidy_string;
-    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_from > :: set_value (nits, v, s);
-        if (tidy_string < t_from > :: good ())
-            if (compare_complain (nits, v, "from", tidy_string < t_from > :: get_string ()))
-                return;
-        nits.pick (nit_nuts, es_error, ec_type, "from expected");
-        string_value < t_from > :: status (s_invalid); } };
+template < > struct type_master < t_from > : public type_string < t_from, sz_from >
+{   using type_string < t_from, sz_from > :: type_string; };
 
 template < > struct type_master < t_hex > : public tidy_string < t_hex >
 {   using tidy_string < t_hex > :: tidy_string;

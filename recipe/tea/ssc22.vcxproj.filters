@@ -1131,6 +1131,15 @@
     <Filter Include="Toast\CSS\3-background">
       <UniqueIdentifier>{e09ae4ef-58d5-48b1-894e-4507dc76d012}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\CSS\4-frag">
+      <UniqueIdentifier>{9a3db5f0-df3b-443c-a0ef-13f7cd1146d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-compositing">
+      <UniqueIdentifier>{ce4f86a4-e777-4cbd-a83d-1e14fd0dc4eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-font">
+      <UniqueIdentifier>{decdcc7f-d17b-4f64-85f4-62c4ddc38cbd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -31499,6 +31508,63 @@
     </None>
     <None Include="..\toast\css\3-background\css-6.css">
       <Filter>Toast\CSS\3-background</Filter>
+    </None>
+    <None Include="..\toast\css\4-frag\css.conf">
+      <Filter>Toast\CSS\4-frag</Filter>
+    </None>
+    <None Include="..\toast\css\4-frag\css.spec">
+      <Filter>Toast\CSS\4-frag</Filter>
+    </None>
+    <None Include="..\toast\css\4-frag\css-5.html">
+      <Filter>Toast\CSS\4-frag</Filter>
+    </None>
+    <None Include="..\toast\css\4-frag\index.html">
+      <Filter>Toast\CSS\4-frag</Filter>
+    </None>
+    <None Include="..\toast\css\3-compositing\css.conf">
+      <Filter>Toast\CSS\3-compositing</Filter>
+    </None>
+    <None Include="..\toast\css\3-compositing\css.spec">
+      <Filter>Toast\CSS\3-compositing</Filter>
+    </None>
+    <None Include="..\toast\css\3-compositing\css-3.css">
+      <Filter>Toast\CSS\3-compositing</Filter>
+    </None>
+    <None Include="..\toast\css\3-compositing\css-3-1.html">
+      <Filter>Toast\CSS\3-compositing</Filter>
+    </None>
+    <None Include="..\toast\css\3-compositing\index.html">
+      <Filter>Toast\CSS\3-compositing</Filter>
+    </None>
+    <None Include="..\toast\css\3-compositing\css-3-2.html">
+      <Filter>Toast\CSS\3-compositing</Filter>
+    </None>
+    <None Include="..\toast\css\3-compositing\css-3-3.html">
+      <Filter>Toast\CSS\3-compositing</Filter>
+    </None>
+    <None Include="..\toast\css\3-compositing\css-3-4.html">
+      <Filter>Toast\CSS\3-compositing</Filter>
+    </None>
+    <None Include="..\toast\css\3-font\css.conf">
+      <Filter>Toast\CSS\3-font</Filter>
+    </None>
+    <None Include="..\toast\css\3-font\css.spec">
+      <Filter>Toast\CSS\3-font</Filter>
+    </None>
+    <None Include="..\toast\css\3-font\css-3.css">
+      <Filter>Toast\CSS\3-font</Filter>
+    </None>
+    <None Include="..\toast\css\3-font\index.html">
+      <Filter>Toast\CSS\3-font</Filter>
+    </None>
+    <None Include="..\toast\css\3-font\css-3.html">
+      <Filter>Toast\CSS\3-font</Filter>
+    </None>
+    <None Include="..\toast\css\3-font\css-4.css">
+      <Filter>Toast\CSS\3-font</Filter>
+    </None>
+    <None Include="..\toast\css\3-font\css-4.html">
+      <Filter>Toast\CSS\3-font</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

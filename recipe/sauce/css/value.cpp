@@ -33,7 +33,6 @@ bool maybe_math (nitpick& nits, const e_css_property id)
     nits.pick (nit_css_value_fn, ed_css_value_4, "10 Mathematical Expressions", es_error, ec_css, "not a numeric property");
     return false; }
 
-
 int test_value_fns (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id)
 #ifdef LIMITED_META_COMPLEXITY
 {   int test_value_fns_1 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);

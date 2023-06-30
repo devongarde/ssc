@@ -15,6 +15,7 @@ PASS ../toast/css/3-ui/css-5.html
 
 PASS ../toast/css/3-ui/css-6.css
 0 html
+9 css_version
 12 deprecated
 
 PASS ../toast/css/3-ui/css-6.html

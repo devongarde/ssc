@@ -96,6 +96,12 @@ template < > struct type_master < t_css_anim_play_state > : two_value < t_css_an
 template < > struct type_master < t_css_box_sizing > : two_value < t_css_box_sizing, e_css_box_sizing, sz_border_box, sz_content_box, false >
 { using two_value < t_css_box_sizing, e_css_box_sizing, sz_border_box, sz_content_box, false > :: two_value; };
 
+template < > struct type_master < t_css_break_box > : two_value < t_css_break_box, e_css_break_box, sz_clone, sz_slice, false >
+{ using two_value < t_css_break_box, e_css_break_box, sz_clone, sz_slice, false > :: two_value; };
+
+template < > struct type_master < t_css_isolation > : two_value < t_css_isolation, e_css_isolation, sz_auto, sz_isolate, false >
+{ using two_value < t_css_isolation, e_css_isolation, sz_auto, sz_isolate, false > :: two_value; };
+
 template < > struct type_master < t_css_mark > : two_value < t_css_mark, e_css_mark, sz_crop, sz_cross, false >
 { using two_value < t_css_mark, e_css_mark, sz_crop, sz_cross, false > :: two_value; };
 

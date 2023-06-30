@@ -8,6 +8,7 @@
 ../toast/css/2.1/css.spec
 ../toast/css/2.2/css.spec
 ../toast/css/3-animation/css.spec
+../toast/css/4-animation/css.spec
 ../toast/css/3-background/css.spec
 ../toast/css/3-cascade/css.spec
 ../toast/css/4-cascade/css.spec
@@ -16,6 +17,8 @@
 ../toast/css/3-colour/css.spec
 ../toast/css/4-colour/css.spec
 ../toast/css/5-colour/css.spec
+../toast/css/3-compositing/css.spec
+../toast/css/4-frag/css.spec
 ../toast/css/3-media/css.spec
 ../toast/css/4-media/css.spec
 ../toast/css/5-media/css.spec
