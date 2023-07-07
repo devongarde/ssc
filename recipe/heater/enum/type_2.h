@@ -126,8 +126,8 @@ template < > struct type_master < t_fillanim > : two_value < t_fillanim, e_filla
 template < > struct type_master < t_fill_ve > : two_value < t_fill_ve, e_fill_ve, sz_strokepaint, sz_fillpaint, false >
 { using two_value < t_fill_ve, e_fill_ve, sz_strokepaint, sz_fillpaint, false > :: two_value; };
 
-template < > struct type_master < t_focushighlight > : two_value < t_focushighlight, e_focushighlight, sz_auto, sz_none, false >
-{ using two_value < t_focushighlight, e_focushighlight, sz_auto, sz_none, false > :: two_value; };
+template < > struct type_master < t_auto_none > : two_value < t_auto_none, e_auto_none, sz_auto, sz_none, false >
+{ using two_value < t_auto_none, e_auto_none, sz_auto, sz_none, false > :: two_value; };
 
 template < > struct type_master < t_forced_colours > : two_value < t_forced_colours, e_forced_colours, sz_active, sz_none, false >
 { using two_value < t_forced_colours, e_forced_colours, sz_active, sz_none, false > :: two_value; };

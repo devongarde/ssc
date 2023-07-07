@@ -416,6 +416,8 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (NITS COMMENT, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as a comment; may be repeated.")
         (NITS DBG, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as a debug message; may be repeated.")
         (NITS ERR, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as an error; may be repeated.")
+        (NITS EXTRA, ::boost::program_options::bool_switch (), "Report additional nits.")
+        (NITS DONT EXTRA, ::boost::program_options::bool_switch (), "Do not report additional nits.")
         (NITS FORMAT, ::boost::program_options::value < ::std::string > (), "Output nits in this format: \"html\", \"text\" (default), or a filename (see docs for format).")
         (NITS INFO, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as info; may be repeated.")
         (NITS NIDS, ::boost::program_options::bool_switch (), "Output nit identifiers (used to recategorise nits).")
@@ -533,6 +535,8 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (VALIDATION ELEMENT, ::boost::program_options::value < vstr_t > () -> composing (), "Add a custom element (name namespace flags ext).")
         (VALIDATION ELEMATTR, ::boost::program_options::value < vstr_t > () -> composing (), "Add an attribute to an element (element attribute).")
         (VALIDATION EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "Add a mimetype file extension.")
+        (VALIDATION FF, ::boost::program_options::value < vstr_t > () -> composing (), "Add a font feature extension (CSS).")
+        (VALIDATION FV, ::boost::program_options::value < vstr_t > () -> composing (), "Add a font variation extension (CSS).")
         (VALIDATION HTTPEQUIV, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid meta httpequiv.")
         (VALIDATION LANG, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid language code (such as 'ma' for Marain).")
         (VALIDATION METANAME, ::boost::program_options::value < vstr_t > () -> composing (), "Add a valid meta name.")
@@ -1245,6 +1249,7 @@ void options::contextualise (nitpick& nits)
         if (var_.count (MICRODATA VIRTUAL)) context.exports (var_ [MICRODATA VIRTUAL].as < vstr_t > ());
 
         yea_nay (&context_t::nids, nits, NITS NIDS, NITS DONT NIDS);
+        yea_nay (&context_t::extra, nits, NITS EXTRA, NITS DONT EXTRA);
         if (var_.count (NITS FORMAT)) context.nit_format (var_ [NITS FORMAT].as < ::std::string > ());
         if (var_.count (NITS QUOTE))
         {   const e_quote_style qs = examine_value < t_quote_style > (nits, html_default, var_ [NITS QUOTE].as < ::std::string > ());
@@ -1443,6 +1448,8 @@ void options::contextualise (nitpick& nits)
         if (var_.count (VALIDATION ELEMENT)) add_elements (var_ [VALIDATION ELEMENT].as < vstr_t > ());
         if (var_.count (VALIDATION ELEMATTR)) add_element_attributes (var_ [VALIDATION ELEMATTR].as < vstr_t > ());
         if (var_.count (VALIDATION EXTENSION)) type_master < t_format > :: extend (var_ [VALIDATION EXTENSION].as < vstr_t > ());
+        if (var_.count (VALIDATION FF)) type_master < t_css_font_feature > :: extend (var_ [VALIDATION FF].as < vstr_t > ());
+        if (var_.count (VALIDATION FV)) type_master < t_css_font_variation > :: extend (var_ [VALIDATION FV].as < vstr_t > ());
         if (var_.count (VALIDATION HTTPEQUIV)) type_master < t_httpequiv > :: extend (var_ [VALIDATION HTTPEQUIV].as < vstr_t > ());
         if (var_.count (VALIDATION LANG)) type_master < t_lang > :: extend (var_ [VALIDATION LANG].as < vstr_t > ());
         if (var_.count (VALIDATION REL)) type_master < t_rel > :: extend (var_ [VALIDATION REL].as < vstr_t > ());
@@ -1740,6 +1747,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (NITS COMMENT)) { res << NITS COMMENT ": "; pvs (res, var_ [NITS COMMENT].as < vstr_t > ()); res << "\n"; }
     if (var_.count (NITS DBG)) { res << NITS DBG ": "; pvs (res, var_ [NITS DBG].as < vstr_t > ()); res << "\n"; }
     if (var_.count (NITS ERR)) { res << NITS ERR ": "; pvs (res, var_ [NITS ERR].as < vstr_t > ()); res << "\n"; }
+    if (var_ [NITS EXTRA].as < bool > ()) res << NITS EXTRA "\n";
     if (var_.count (NITS FORMAT)) res << NITS FORMAT ": " << var_ [NITS FORMAT].as < ::std::string > () << "\n";
     if (var_.count (NITS INFO)) { res << NITS INFO ": "; pvs (res, var_ [NITS INFO].as < vstr_t > ()); res << "\n"; }
     if (var_ [NITS NIDS].as < bool > ()) res << NITS NIDS "\n";
@@ -1837,6 +1845,9 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (VALIDATION DINGBATARG)) { res << VALIDATION DINGBATARG ": "; pvs (res, var_ [VALIDATION DINGBATARG].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION ELEMENT)) { res << VALIDATION ELEMENT ": "; pvs (res, var_ [VALIDATION ELEMENT].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION ELEMATTR)) { res << VALIDATION ELEMATTR ": "; pvs (res, var_ [VALIDATION ELEMATTR].as < vstr_t > ()); res << "\n"; }
+    if (var_.count (VALIDATION EXTENSION)) { res << VALIDATION EXTENSION ": "; pvs (res, var_ [VALIDATION EXTENSION].as < vstr_t > ()); res << "\n"; }
+    if (var_.count (VALIDATION FF)) { res << VALIDATION FF ": "; pvs (res, var_ [VALIDATION FF].as < vstr_t > ()); res << "\n"; }
+    if (var_.count (VALIDATION FV)) { res << VALIDATION FV ": "; pvs (res, var_ [VALIDATION FV].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION HTTPEQUIV)) { res << VALIDATION HTTPEQUIV ": "; pvs (res, var_ [VALIDATION HTTPEQUIV].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION LANG)) { res << VALIDATION LANG ": "; pvs (res, var_ [VALIDATION LANG].as < vstr_t > ()); res << "\n"; }
     if (var_.count (VALIDATION MINOR)) res << VALIDATION MINOR ": " << var_ [VALIDATION MINOR].as < int > () << "\n";

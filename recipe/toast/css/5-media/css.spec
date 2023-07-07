@@ -47,7 +47,6 @@ PASS ../toast/css/5-media/css-4.html
 PASS ../toast/css/5-media/css-5.css
 0 html
 1 unrecognised_value
-22 unrecognised_value
 
 PASS ../toast/css/5-media/css-6.css
 0 html

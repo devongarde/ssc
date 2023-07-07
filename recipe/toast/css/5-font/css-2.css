@@ -1,0 +1,19 @@
+﻿p {
+  font-family: Verdana, Futura, Times;
+}
+p.adj {
+  font-size-adjust: 0.545;
+}
+
+p {
+  font-family: Futura;
+  font-size: 500px;
+}
+
+span {
+  border: solid 1px red;
+}
+
+.adjust {
+  font-size-adjust: 0.5;
+}

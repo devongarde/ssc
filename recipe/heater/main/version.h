@@ -57,6 +57,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_2021   21
 #define HTML_2022   22
 #define HTML_2023   23
+#define HTML_2099   99
 
 #define MAJOR_TAGS   0
 #define MAJOR_1_0    1
@@ -261,6 +262,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_MAR23  HTML_2023, (HTML_MAR + HTML_31ST)
 #define HTML_APR23  HTML_2023, HTML_APR
 #define HTML_JUL23  HTML_2023, HTML_JUL
+#define HTML_DEC99  HTML_2099, (HTML_DEC + HTML_31ST)
 
 #define HTML_5_EARLIEST_YEAR    HTML_2005
 #define HTML_5_EARLIEST_MONTH   1

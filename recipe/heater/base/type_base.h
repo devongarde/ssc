@@ -92,6 +92,10 @@ public:
     void accumulate (stats_t* , const element_bitset& ) const { }
     void accumulate (stats_t* , const e_element ) const { }
     static void accumulate (stats_t* , const ::std::string& ) { }
+    html_version first ( ) const noexcept { return html_0; }
+    html_version last ( ) const noexcept { return html_max; }
+    html_version first (const ::std::size_t ) const noexcept { return first (); }
+    html_version last (const ::std::size_t ) const noexcept { return last (); }
     ::std::string report () const
     {   ::std::string s;
         if (status_ == s_invalid) s = "x";

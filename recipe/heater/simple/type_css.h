@@ -101,7 +101,7 @@ template < > struct type_master < t_css_font > : tidy_string < t_css_font >
                         res = false; break; } }
                 else switch (state)
                 {   case fs_style :
-                        if (test_value < t_css_font_style > (knits, v, s))
+                        if (test_value < t_css_font_style_a > (knits, v, s))
                         {   state = fs_variant; break; }
                         FALLTHROUGH;
                     case fs_variant :
@@ -109,7 +109,7 @@ template < > struct type_master < t_css_font > : tidy_string < t_css_font >
                         {   state = fs_weight; break; }
                         FALLTHROUGH;
                     case fs_weight :
-                        if (test_value < t_css_font_weight > (knits, v, s))
+                        if (test_value < t_css_font_weights > (knits, v, s))
                         {   state = fs_size; break; }
                         FALLTHROUGH;
                     case fs_size :
@@ -117,13 +117,13 @@ template < > struct type_master < t_css_font > : tidy_string < t_css_font >
                         if (pos == ::std::string::npos)
                         {   if (test_value < t_fontsize > (knits, v, s))
                             {   state = fs_family; break; }
-                            if (v.has_css () && test_value < t_css_font_size > (knits, v, s))
+                            if (v.has_css () && test_value < t_css_font_size_4 > (knits, v, s))
                             {   state = fs_family; break; } }
                         else if (test_value < t_fontsize > (knits, v, s.substr (0, pos)) &&
                                  test_value < t_measure > (knits, v, s.substr (pos)))
                         {   state = fs_family; break; }
                         else if (v.has_css () && 
-                                 test_value < t_css_font_size > (knits, v, s.substr (0, pos)) &&
+                                 test_value < t_css_font_size_4 > (knits, v, s.substr (0, pos)) &&
                                  test_value < t_measure > (knits, v, s.substr (pos)))
                         {   state = fs_family; break; }
                         FALLTHROUGH;
@@ -140,6 +140,51 @@ template < > struct type_master < t_css_font > : tidy_string < t_css_font >
                 if (! res) break; }
             if (res) return; }
         tidy_string < t_css_font > :: status (s_invalid); } };
+
+template < > struct type_master < t_css_font_stretch > : public tidy_string < t_css_font_stretch >
+{   using tidy_string < t_css_font_stretch > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_font_stretch > :: set_value (nits, v, s);
+        if (tidy_string < t_css_font_stretch > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "font-stretch cannot be empty");
+        else if (tidy_string < t_css_font_stretch > :: good ())
+        {   ::std::string n (tidy_string < t_css_font_stretch > :: get_string ());
+            nitpick nuts;
+            if (context.css_font () >= 4)
+                if (test_value < t_percent > (nuts, v, n))
+                {   nits.merge (nuts);
+                    return; }
+            if (test_value < t_svg_fontstretch > (nits, v, n)) return;
+            nits.merge (nuts); }
+        tidy_string < t_css_font_stretch > :: status (s_invalid); } };
+
+template < > struct type_master < t_css_font_variant > : public tidy_string < t_css_font_variant >
+{   using tidy_string < t_css_font_variant > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_font_variant > :: set_value (nits, v, s);
+        if (tidy_string < t_css_font_variant > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "a font variant cannot be empty");
+        else if (tidy_string < t_css_font_variant > :: good ())
+        {   ::std::string n (tidy_string < t_css_font_variant > :: get_string ());
+            if (context.css_font () >= 4)
+            {   if (test_value < t_css_font_variant_4 > (nits, v, n)) return; }
+            if (context.css_font () == 3)
+            {   if (test_value < t_font_variant_2 > (nits, v, n)) return; }
+            else if (test_value < t_svg_fontvariant > (nits, v, n)) return; }
+        tidy_string < t_css_font_variant > :: status (s_invalid); } };
+
+template < > struct type_master < t_css_font_weights > : public tidy_string < t_css_font_weights >
+{   using tidy_string < t_css_font_weights > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_font_weights > :: set_value (nits, v, s);
+        if (tidy_string < t_css_font_weights > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "a font weight cannot be empty");
+        else if (tidy_string < t_css_font_weights > :: good ())
+        {   ::std::string n (tidy_string < t_css_font_weights > :: get_string ());
+            if (context.css_font () >= 4)
+            {   if (test_value < t_css_font_weight_4 > (nits, v, n)) return; }
+            else if (test_value < t_css_font_weight > (nits, v, n)) return; }
+        tidy_string < t_css_font_weights > :: status (s_invalid); } };
 
 template < > struct type_master < t_css_frame > : public tidy_string < t_css_frame >
 {   using tidy_string < t_css_frame > :: tidy_string;
@@ -191,3 +236,61 @@ template < > struct type_master < t_css_nth > : public tidy_string < t_css_nth >
                 nits.pick (nit_css_syntax, ed_css_selectors_3, "6.6.5.2. :nth-child() pseudo-class", es_error, ec_type, quote (ss), " contains invalid characters");
             else return; // maybe do more checking!
         tidy_string < t_css_nth > :: status (s_invalid); } };
+
+template < > struct type_master < t_css_palette > : public tidy_string < t_css_palette >
+{   using tidy_string < t_css_palette > :: tidy_string;
+	static e_animation_type animation_type () noexcept { return at_none; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_palette > :: set_value (nits, v, s);
+        if (tidy_string < t_css_palette > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "missing @font-palette name"); }
+    bool invalid_access (nitpick& nits, const html_version& , sstr_t* s)
+    {   VERIFY_NOT_NULL (s, __FILE__, __LINE__);
+        if (! tidy_string < t_css_palette > :: good ()) return true;
+        const ::std::string& x = tidy_string < t_css_palette > :: get_string ();
+        if (s -> find (x) != s -> cend ()) return false;
+        nits.pick (nit_css_keyframes, es_error, ec_css, "@font-palette ", quote (x), " is referenced but not defined");
+        return true; } };
+
+
+template < > struct type_master < t_css_unicode_from_to > : public tidy_string < t_css_unicode_from_to >
+{   using tidy_string < t_css_unicode_from_to > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_unicode_from_to > :: set_value (nits, v, s);
+        if (tidy_string < t_css_unicode_from_to > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "a unicode value cannot be empty");
+        else if (tidy_string < t_css_unicode_from_to > :: good ())
+        {   ::std::string n (tidy_string < t_css_unicode_from_to > :: get_string ());
+            const ::std::size_t len = n.length ();
+            if ((len <= 2) || (n.at (1) != '+') || ((n.at (0) != 'U') && (n.at (0) != 'u')))
+                nits.pick (nit_unicode_my_arse, ed_css_20, "15.3.3 Descriptors for Font Data Qualification: 'unicode-range'", es_error, ec_css, quote (n), ": must start with 'U+'");
+            else if (len > 18)
+                nits.pick (nit_unicode_my_arse, ed_css_20, "15.3.3 Descriptors for Font Data Qualification: 'unicode-range'", es_error, ec_css, quote (n), ": too big");
+            else if (n.substr (2).find_first_not_of (HEX "-") != ::std::string::npos) 
+                nits.pick (nit_unicode_my_arse, ed_css_20, "15.3.3 Descriptors for Font Data Qualification: 'unicode-range'", es_error, ec_css, quote (n), ": not hexadecimal");
+            else
+            {   const ::std::string::size_type minus = n.find_first_of ("-");
+                if ((minus < 3) || (minus >= len-1)) 
+                    nits.pick (nit_unicode_my_arse, ed_css_20, "15.3.3 Descriptors for Font Data Qualification: 'unicode-range'", es_error, ec_css, quote (n), ": is not a pair of hexadecimal values"); 
+                else if (n.substr (minus+1).find ('-') != ::std::string::npos)
+                    nits.pick (nit_unicode_my_arse, ed_css_20, "15.3.3 Descriptors for Font Data Qualification: 'unicode-range'", es_error, ec_css, quote (n), ": bad hexadecimal range"); 
+                else return; } }
+        tidy_string < t_css_unicode_from_to > :: status (s_invalid); } };
+
+template < > struct type_master < t_css_unicode_wildcard > : public tidy_string < t_css_unicode_wildcard >
+{   using tidy_string < t_css_unicode_wildcard > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_unicode_wildcard > :: set_value (nits, v, s);
+        if (tidy_string < t_css_unicode_wildcard > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "a unicode value cannot be empty");
+        else if (tidy_string < t_css_unicode_wildcard > :: good ())
+        {   ::std::string n (tidy_string < t_css_unicode_wildcard > :: get_string ());
+            const ::std::size_t len = n.length ();
+            if ((len <= 2) || (n.at (1) != '+') || ((n.at (0) != 'U') && (n.at (0) != 'u')))
+                nits.pick (nit_unicode_my_arse, ed_css_20, "15.3.3 Descriptors for Font Data Qualification: 'unicode-range'", es_error, ec_css, quote (n), ": must start with 'U+'");
+            else if (n.substr (2).find_first_not_of (HEX "?") != ::std::string::npos)
+                nits.pick (nit_unicode_my_arse, ed_css_20, "15.3.3 Descriptors for Font Data Qualification: 'unicode-range'", es_error, ec_css, quote (n), ": not hexadecimal with wildcards");
+            else if (len > 10)
+                nits.pick (nit_unicode_my_arse, ed_css_20, "15.3.3 Descriptors for Font Data Qualification: 'unicode-range'", es_error, ec_css, quote (n), ": too big");
+            else return; }
+        tidy_string < t_css_unicode_wildcard > :: status (s_invalid); } };

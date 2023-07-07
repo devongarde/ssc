@@ -29,3 +29,4 @@ void add_param (const arguments& args, t_params& params, int& from, const int i)
 bool maybe_math (nitpick& nits, const e_css_property id);
 int test_value_fns (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
 int check_typed_identifier (arguments& args, nitpick& nits, const int start, const int to, const e_type t);
+int check_typed_feature (arguments& args, nitpick& nits, const int start, const int to, const e_css_statement cs, const char* const sz);

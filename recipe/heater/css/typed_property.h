@@ -107,8 +107,14 @@ template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public
             base_type :: status (s_invalid); }
         else
         {   type_master < TYPE > :: set_value (nuts, args.v_, s);
-            const bool ok = type_master < TYPE> :: good ();
-            if (ok) nits.merge (nuts);
+            bool ok = type_master < TYPE > :: good ();
+            if (ok)
+            {   const html_version f (type_master < TYPE > :: first (type_master < TYPE > :: get_int ()));
+                if (! args.v_.is_css_compatible (f))
+                {   nits.pick (nit_css_version, es_error, ec_css, quote (s), " requires CSS ", f.long_css_version_name ());
+                    base_type :: status (s_invalid);
+                    ok = false; }
+                else nits.merge (nuts); }
             else if (s.length () >= 3)
             {   PRESUME ((start > 0) && (start < GSL_NARROW_CAST < int > (args.t_.size ())), __FILE__, __LINE__);
                 if ((args.t_.at (start).t_ == ct_keyword) || (args.t_.at (start).t_ == ct_identifier))
@@ -116,9 +122,10 @@ template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public
                     {   base_type :: status (s_good);
                         return start; } }
             int i = start;
-            if (check_fn (args, i, to, nits, ok))
-            {   base_type :: status (s_good);
-                return i; }
+            if ((args.st_ == nullptr) || (args.cs () != css_font_face))
+                if (check_fn (args, i, to, nits, ok))
+                {   base_type :: status (s_good);
+                    return i; }
             if (! ok) nits.merge (nuts); }
         return start; }
     virtual void set_value (arguments& args, const int start, const int to, nitpick& nits, const ::std::string& s) override
@@ -132,9 +139,24 @@ template < > inline void typed_property < t_css_anim_base, ec_animation_name > :
 {   void validate_animation_name (type_master < t_css_anim_base >& cab, arguments& args);
     if (iiu_ == iiu_none) validate_animation_name (*this, args); }
 
+template < > inline void typed_property < t_css_palette, ec_font_palette > :: validate (arguments& args)
+{   void validate_palette (type_master < t_css_palette >& cab, arguments& args);
+    validate_palette (*this, args); }
+
+template < > inline void typed_property < t_css_font_size_4, ec_font_size > :: set_value (arguments& args, const int start, const int to, nitpick& nits, const ::std::string& s)
+{   if ((args.v_.css_version () == css_2_0) && (args.cs () == css_font_face))
+    {   fin_ = to; return; }
+    fin_ = set_value_ex (args, start, to, nits, s); }
+
 typedef ::std::shared_ptr < property_base > property_v_ptr;
 property_v_ptr make_property_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const css_token t);
 property_v_ptr make_property_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const css_token t);
+property_v_ptr make_descriptor_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const css_token t);
+property_v_ptr make_descriptor_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const css_token t);
+property_v_ptr make_feature_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const css_token t);
+property_v_ptr make_feature_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const css_token t);
+property_v_ptr make_palette_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const css_token t);
+property_v_ptr make_palette_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const css_token t);
 
 #ifdef _MSC_VER
 #pragma warning (pop)

@@ -62,6 +62,9 @@ template < e_type T, bool EMPTY, e_type A, e_type... B > struct type_one_of : ty
         {   type_one_of < T, EMPTY, B... > :: status (s_empty);
             nits.merge (nets);
             return true; }
+        if (context.extra () || context.tell (es_debug))
+        {   nits.merge (nuts);
+            nits.merge (nets); }
         return false; }
     e_status content_status (nitpick& nits, const ::std::string& s)
     {   return type_one_of < T, EMPTY, B... > :: content_status (nits, s); }
@@ -103,12 +106,12 @@ template < e_type T, bool EMPTY, e_type A, e_type... B > struct type_one_of : ty
     {   return type_one_of < T, EMPTY, B... > :: original (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string ss (tart (s));
-        nitpick nuts;
         if (content_status (nits, ss) != s_invalid)
+        {   nitpick nuts;
             if (inner_set_value (nuts, v, ss)) nits.merge (nuts);
             else
             {   nits.pick (nit_unrecognised_value, es_error, ec_type, quote (ss), " is invalid for all possible values (", type_name (T), ")");
-                if (context.tell (es_debug)) nits.merge (nuts); } }
+                if (context.extra () || context.tell (es_debug)) nits.merge (nuts); } } }
     void set_id (const ::std::string& s)
     {   type_one_of < T, EMPTY, B... > :: set_id (s); }
     ::std::string& id () noexcept
@@ -246,7 +249,7 @@ template < e_type T, bool EMPTY, e_type A > struct type_one_of < T, EMPTY, A > :
             if (inner_set_value (nuts, v, ss)) nits.merge (nuts);
             else
             {   nits.pick (nit_unrecognised_value, es_error, ec_type, quote (ss), " is invalid for all possible values (", type_name (T), ")");
-                if (context.tell (es_debug)) nits.merge (nuts); } } }
+                if (context.extra () || context.tell (es_debug)) nits.merge (nuts); } } }
     void set_id (const ::std::string& s)
     {   tidy_string < T > :: set_id (s); }
     ::std::string& id () noexcept

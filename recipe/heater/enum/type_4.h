@@ -125,6 +125,9 @@ template < > struct type_master < t_edit > : four_value < t_edit, e_edit, sz_cha
 template < > struct type_master < t_effect > : four_value < t_effect, e_effect, sz_embed, sz_overlay, sz_replace, sz_new >
 { using four_value < t_effect, e_effect, sz_embed, sz_overlay, sz_replace, sz_new > :: four_value; };
 
+template < > struct type_master < t_font_variant_emoji > : four_value < t_font_variant_emoji, e_font_variant_emoji, sz_auto, sz_emoji, sz_text, sz_unicode >
+{ using four_value < t_font_variant_emoji, e_font_variant_emoji, sz_auto, sz_emoji, sz_text, sz_unicode > :: four_value; };
+
 template < > struct type_master < t_frame4 > : four_value < t_frame4, e_frame4, sz__blank, sz__parent, sz__self, sz__top >
 { using four_value < t_frame4, e_frame4, sz__blank, sz__parent, sz__self, sz__top > :: four_value; };
 

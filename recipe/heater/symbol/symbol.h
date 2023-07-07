@@ -112,6 +112,12 @@ public:
     VALUE get () const noexcept { if (unknown_) return GSL_NARROW_CAST <VALUE> (0); return value_; }
     V first () const noexcept { return first_; }
     V last () const noexcept { return last_; }
+    V first (const ::std::size_t v) const
+    {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
+        return table_ -> first_version (v); }
+    V last (const ::std::size_t v) const
+    {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
+        return table_ -> final_version (v); }
     CATEGORY ns () const noexcept { return ns_; }
     void ns (const CATEGORY n) noexcept { ns_ = n; }
     flags_t flags () const noexcept { return flags_; }

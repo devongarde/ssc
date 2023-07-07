@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.19)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.1.27 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
+project (ssc VERSION 0.1.28 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
 
 set (CMAKE_CXX_STANDARD 17)
 
@@ -23,9 +23,6 @@ set (CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configs" FORCE)
 if (DEFINED CMAKE_BUILD_TYPE)
   set_property (CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS ${CMAKE_CONFIGURATION_TYPES})
 endif ()
-
-# Sometimes the old advice remains absolutely right: disable optimisation
-# STRING(REPLACE "-O2" "-O0" CMAKE_CXX_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE})
 
 set (${PROJ_NAME}_PATH_INSTALL ${D} CACHE PATH "This directory contains an installation path")
 set (CMAKE_DEBUG_POSTFIX "d")
@@ -247,10 +244,10 @@ target_sources (ssc PRIVATE
             ${H}/compound/type_svgs.h ${H}/compound/type_sz.h ${H}/compound/type_van.h ${H}/compound/type_varied.h
         ${H}/coop/fred.h ${H}/coop/kew.h ${H}/coop/knickers.h ${H}/coop/lox.h ${H}/coop/tls.h
         ${H}/css/arguments.h ${H}/css/css.h ${H}/css/css_attribute.h ${H}/css/css_class.h ${H}/css/css_element.h ${H}/css/css_parse.h
-            ${H}/css/css_state.h ${H}/css/decoration.h ${H}/css/distilled.h ${H}/css/flags.h ${H}/css/fn.h ${H}/css/global.h ${H}/css/group.h
-            ${H}/css/id.h ${H}/css/property.h ${H}/css/properties.h ${H}/css/property_classes.h ${H}/css/rule.h ${H}/css/rules.h ${H}/css/selector.h
-            ${H}/css/selectors.h ${H}/css/statement.h ${H}/css/statements.h ${H}/css/typed_property.h ${H}/css/value.h ${H}/css/value_types.h
-            ${H}/css/weight.h  
+            ${H}/css/css_state.h ${H}/css/decoration.h ${H}/css/descriptor.h ${H}/css/descriptor_classes.h ${H}/css/descriptors.h ${H}/css/distilled.h ${H}/css/ffv.h
+            ${H}/css/ffvs.h ${H}/css/flags.h ${H}/css/fn.h ${H}/css/global.h ${H}/css/group.h ${H}/css/id.h ${H}/css/property.h ${H}/css/properties.h
+            ${H}/css/property_classes.h ${H}/css/rule.h ${H}/css/rules.h ${H}/css/selector.h ${H}/css/selectors.h ${H}/css/statement.h
+            ${H}/css/statements.h ${H}/css/typed_property.h ${H}/css/value.h ${H}/css/value_types.h ${H}/css/weight.h  
         ${H}/element/elem.h ${H}/element/element.h ${H}/element/element_attribute.h ${H}/element/element_classes.h ${H}/element/parentage.h
             ${H}/element/state.h
         ${H}/enum/enumerated.h ${H}/enum/type_1.h ${H}/enum/type_2.h ${H}/enum/type_3.h ${H}/enum/type_4.h ${H}/enum/type_aria.h
@@ -302,12 +299,12 @@ target_sources (ssc PRIVATE
         ${S}/coop/fred.cpp ${S}/coop/kew.cpp ${S}/coop/knickers.cpp ${S}/coop/lox.cpp
         ${S}/compound/type_varied.cpp
         ${S}/css/arguments.cpp ${S}/css/css.cpp ${S}/css/css_attribute.cpp ${S}/css/css_class.cpp ${S}/css/css_element.cpp ${S}/css/css_id.cpp
-            ${S}/css/css_parse.cpp ${S}/css/css_state.cpp ${S}/css/decoration.cpp ${S}/css/distilled.cpp ${S}/css/fn.cpp ${S}/css/global.cpp
-            ${S}/css/group.cpp ${S}/css/property.cpp ${S}/css/properties.cpp ${S}/css/property_constructor.cpp ${S}/css/rule.cpp ${S}/css/rules.cpp
-            ${S}/css/selector.cpp ${S}/css/selectors.cpp ${S}/css/statement.cpp ${S}/css/statements.cpp ${S}/css/typed_property.cpp ${S}/css/value.cpp
-            ${S}/css/value2.cpp ${S}/css/value_types_1.cpp ${S}/css/value_types_2.cpp ${S}/css/value_types_3.cpp ${S}/css/value_types_4.cpp
-            ${S}/css/value_types_5.cpp ${S}/css/value_types_6.cpp ${S}/css/value_types_7.cpp ${S}/css/value_types_8.cpp ${S}/css/value_types_9.cpp
-            ${S}/css/weight.cpp 
+            ${S}/css/css_parse.cpp ${S}/css/css_state.cpp ${S}/css/decoration.cpp ${S}/css/descriptor.cpp  ${S}/css/descriptor_constructor.cpp ${S}/css/descriptors.cpp ${S}/css/distilled.cpp
+            ${S}/css/ffv.cpp ${S}/css/ffvs.cpp ${S}/css/fn.cpp ${S}/css/global.cpp ${S}/css/group.cpp ${S}/css/property.cpp ${S}/css/properties.cpp
+            ${S}/css/property_constructor.cpp ${S}/css/rule.cpp ${S}/css/rules.cpp ${S}/css/selector.cpp ${S}/css/selectors.cpp ${S}/css/statement.cpp
+            ${S}/css/statements.cpp ${S}/css/typed_property.cpp ${S}/css/value.cpp ${S}/css/value2.cpp ${S}/css/value_types_1.cpp
+            ${S}/css/value_types_2.cpp ${S}/css/value_types_3.cpp ${S}/css/value_types_4.cpp ${S}/css/value_types_5.cpp ${S}/css/value_types_6.cpp
+            ${S}/css/value_types_7.cpp ${S}/css/value_types_8.cpp ${S}/css/value_types_9.cpp ${S}/css/weight.cpp 
         ${S}/element/elem.cpp ${S}/element/element.cpp ${S}/element/element_abcd.cpp ${S}/element/element_aria.cpp ${S}/element/element_attributes.cpp
             ${S}/element/element_classes.cpp ${S}/element/element_efghi.cpp ${S}/element/element_examine.cpp ${S}/element/element_input.cpp
             ${S}/element/element_jkl.cpp ${S}/element/element_microdata.cpp ${S}/element/element_microformats.cpp ${S}/element/element_mno.cpp
@@ -368,7 +365,7 @@ else ()
   target_compile_definitions (ssc-test PRIVATE NDEBUG)
   target_compile_definitions (ssc PRIVATE NDEBUG)
   target_compile_options (ssc-test PRIVATE "-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-unused-result;-Wno-unused-parameter;-Wno-deprecated-declarations" ${IMPLICITFALL} ${NOINDENTLIE})
-  target_compile_options (ssc PRIVATE "-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-unused-parameter;-Wno-deprecated-declarations" ${IMPLICITFALL} ${NOINDENTLIE} ${TEMPLATEDEPTH})
+  target_compile_options (ssc PRIVATE "-Os;-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-unused-parameter;-Wno-deprecated-declarations" ${IMPLICITFALL} ${NOINDENTLIE} ${TEMPLATEDEPTH})
 endif ()
 
 target_link_libraries (ssc-test PRIVATE Boost::filesystem)

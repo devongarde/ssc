@@ -296,7 +296,7 @@ typedef typed_attribute < t_measure, a_flatness > attr_flatness;
 typedef typed_attribute < t_colour_cii, a_flood_colour > attr_flood_colour;
 typedef typed_attribute < t_opacity, a_flood_opacity > attr_flood_opacity;
 typedef typed_attribute < t_tfa, a_focusable > attr_focusable;
-typedef typed_attribute < t_focushighlight, a_focushighlight > attr_focushighlight;
+typedef typed_attribute < t_auto_none, a_focushighlight > attr_focushighlight;
 typedef typed_attribute < t_font, a_font > attr_font;
 typedef typed_attribute < t_font_families, a_font_family > attr_font_family;
 typedef typed_attribute < t_generic, a_font_feature_settings > attr_font_feature_settings;

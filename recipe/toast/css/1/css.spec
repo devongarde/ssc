@@ -9,7 +9,7 @@ PASS ../toast/css/1/basic.css
 11 css_colour
 12 unrecognised_value
 18 css_dubious
-20 fontname fontname fontname
+20 fontname
 
 PASS ../toast/css/1/cool.css
 0 html

@@ -1,0 +1,44 @@
+﻿sub {
+  vertical-align: sub;
+  font-size: smaller;
+  line-height: normal;
+}
+
+@supports ( font-variant-position: sub ) {
+
+  sub {
+    vertical-align: baseline;
+    font-size: 100%;
+    line-height: inherit;
+    font-variant-position: sub;
+  }
+
+}
+
+#example1 { font-variant-caps: small-caps; }
+#example2 { font-variant-caps: small-caps; font-feature-settings: 'smcp' 0; }
+
+blockquote            { font-style: italic; }
+blockquote:first-line { font-variant: small-caps; }
+
+sup { font-variant-position: super; }
+
+.ordinal { font-variant-numeric: ordinal; }
+
+.amount { font-variant-numeric: oldstyle-nums diagonal-fractions; }
+
+.piddle
+/* enable small caps and use second swash alternate */
+{   font-feature-settings: "smcp", "swsh" 2;
+    font-feature-settings: "dlig" 1;       /* dlig=1 enable discretionary ligatures */
+    font-feature-settings: "smcp" on;      /* smcp=1 enable small caps */
+    font-feature-settings: 'c2sc';         /* c2sc=1 enable caps to small caps */
+    font-feature-settings: "liga" off;     /* liga=0 no common ligatures */
+    font-feature-settings: "tnum", 'hist'; /* tnum=1, hist=1 enable tabular numbers and historical forms */
+    font-feature-settings: "tnum" "hist";  /* invalid, need a comma-delimited list */
+    font-feature-settings: "silly" off;    /* invalid, tag too long */
+    font-feature-settings: "PKRN";         /* PKRN=1 enable custom feature */
+    font-feature-settings: dlig;           /* invalid, tag must be a string */
+}
+
+body { font-feature-settings: "hwid"; /* Half-width OpenType feature */ }

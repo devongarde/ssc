@@ -214,6 +214,7 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_css_colour_5 : return "CSS Colour 5";
         case ed_css_custom : return "CSS Custom Properties";
         case ed_css_ease : return "CSS Easing Functions";
+        case ed_css_font_4 : return "CSS Font 4";
         case ed_css_media_4 : return "CSS Media 4"; 
         case ed_css_namespaces_3 : return "CSS Namespaces 3";
         case ed_css_selectors_3 : return "CSS Selectors 3";
@@ -315,6 +316,7 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_css_colour_5 : return "CSS Colour 5 (June 2022 draft)";
         case ed_css_custom : return "CSS Custom Properties for Cascading Variables Level 1, June 2022";
         case ed_css_ease : return "CSS Easing Functions Level 1, February 2023";
+        case ed_css_font_4 : return "CSS Fonts Level 4, December 2021";
         case ed_css_media_4 : return "CSS Media Queries Level 4, July 2020"; 
         case ed_css_namespaces_3 : return "CSS Namespaces 3, September 2011";
         case ed_css_selectors_3 : return "CSS Selectors Level 3, November 2018";

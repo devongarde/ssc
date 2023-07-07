@@ -815,6 +815,12 @@ const nitname nitnames [] =
     { nit_css_ease, "css_ease" },
     { nit_multiple_spaces, "multiple_spaces" },
     { nit_repeated_value, "repeated_value" },
+    { nit_css_font, "css_font" },
+    { nit_unicode_my_arse, "unicode_my_arse" },
+    { nit_css_font_feature, "css_font_feature" },
+    { nit_css_palette, "css_palette" },
+    { nit_descriptor, "descriptor" },
+    { nit_not_here, "not_here" },
 
     { nit_incompatible, "incompatible" },
 

@@ -75,20 +75,79 @@ void statement::parse_custom_media (arguments& args, nitpick& nits, const int fr
     else
     {   ::std::string name (args.t_.at (i).val_);
         i = next_non_whitespace (args.t_, i, to);
-        if (i < 0) nits.pick (nit_css_syntax, es_error, ec_css, "missing @custom-media definition after ", quote (i));
+        if (i < 0) nits.pick (nit_css_syntax, es_error, ec_css, "missing @custom-media definition after ", quote (name));
         else
         {   ::std::string def (assemble_string (args.t_, i, to, true));
             args.custom_media ().insert (::std::pair (name, def)); } } }
 
-void statement::parse_font_face (arguments& args, nitpick& nits, const int to)
-{   if ((context.html_ver ().css_version () != css_2_0) && (context.css_font () < 3))
-        nits.pick (nit_css_version, es_error, ec_css, "@font-face requires CSS 2.0, or CSS Font 3 or higher");
-    if ((to < 0) || (args.t_.at (to).t_ != ct_curly_brac))
-        nits.pick (nit_css_syntax, es_error, ec_css, "expecting { property... } after @font-face");
+void statement::parse_feature_value (arguments& args, nitpick& nits, const int to, const e_css_statement cs, font_features& ffv)
+{   if (context.css_font () < 4)
+        nits.pick (nit_css_version, ed_css_font_4, "6.9.1. Basic syntax", es_error, ec_css, "@", type_master < t_css_statement > :: name (cs), " requires CSS Font 4 or higher");
+    else if ((args.st_ == nullptr) || (args.st_ -> st_.get () != css_font_feature_values))
+        nits.pick (nit_css_font_feature, ed_css_font_4, "6.9.1. Basic syntax", es_error, ec_css, "@", type_master < t_css_statement > :: name (cs), " must be a child of @font-feature-values");
+    else if ((to < 0) || (args.t_.at (to).t_ != ct_curly_brac))
+        nits.pick (nit_css_syntax, es_error, ec_css, "expecting { declaration... } after @", type_master < t_css_statement > :: name (cs));
     else
     {   PRESUME (args.t_.at (to).child_ > 0, __FILE__, __LINE__);
         fiddlesticks < statement > f (&args.st_, this);
-        prop_.parse (args, args.t_.at (to).child_); } }
+        ffv.parse (args, cs, args.t_.at (to).child_); } }
+
+void statement::parse_font_feature_values (arguments& args, nitpick& nits, const int from, const int to)
+{   PRESUME (to > 0, __FILE__, __LINE__);
+    int i = next_non_whitespace (args.t_, from, to); 
+    if (context.html_ver ().css_font () < 4)
+        nits.pick (nit_css_version, es_error, ec_css, "@font-feature-values requires CSS Font 4");
+    else if ((i < 0) || ((args.t_.at (i).t_ != ct_string) && (args.t_.at (i).t_ != ct_identifier) && (args.t_.at (i).t_ != ct_number) && (args.t_.at (i).t_ != ct_keyword)))
+        nits.pick (nit_css_syntax, es_error, ec_css, "expecting a name after @font-feature-values (1)");
+    else
+    {   if (i == to) nits.pick (nit_css_syntax, es_error, ec_css, "expecting a name after @font-feature-values (2)");
+        else
+        {   ::std::string name (assemble_string (args.t_, i, to, false));
+            if (args.font_family ().find (name) != args.font_family ().cend ())
+                nits.pick (nit_css_font_feature, es_comment, ec_css, quote (name), " previously named.");
+            else 
+            {   if (! enum_n < t_fontname, e_fontname > :: exists (name))
+                    enum_n < t_fontname, e_fontname > :: extend (name, fn_bespoke); 
+                args.font_family ().insert (name); }
+            i = next_non_whitespace (args.t_, i, to);
+            if (i < 0) nits.pick (nit_css_font_feature, es_error, ec_css, "missing @font-feature-values properties after ", quote (name)); }
+        if ((to < 0) || (args.t_.at (to).t_ != ct_curly_brac))
+            nits.pick (nit_css_font_feature, es_error, ec_css, "expecting { descriptor... } after @font-feature-values");
+        else if (args.t_.at (to).child_ > 0)
+        {   fiddlesticks < statement > f (&args.st_, this);
+            vst_.emplace_back (pst_t (new statements (args, args.t_.at (to).child_))); } } }
+
+void statement::parse_font_face (arguments& args, nitpick& nits, const int to)
+{   if ((context.html_ver ().css_version () != css_2_0) && (context.css_font () < 3))
+        nits.pick (nit_css_version, es_error, ec_css, "@font-face requires CSS 2.0, or CSS Font 3 or higher");
+    else if ((to < 0) || (args.t_.at (to).t_ != ct_curly_brac))
+        nits.pick (nit_css_syntax, es_error, ec_css, "expecting { descriptor... } after @font-face");
+    else
+    {   PRESUME (args.t_.at (to).child_ > 0, __FILE__, __LINE__);
+        fiddlesticks < statement > f (&args.st_, this);
+        dsc_.parse (args, css_font_face, args.t_.at (to).child_); } }
+
+void statement::parse_font_palette_values (arguments& args, nitpick& nits, const int from, const int to)
+{   PRESUME (to > 0, __FILE__, __LINE__);
+    int i = next_non_whitespace (args.t_, from, to); 
+    if (context.html_ver ().css_font () < 4)
+        nits.pick (nit_css_version, es_error, ec_css, "@font-palette-values requires CSS Font 4");
+    else if ((i < 0) || ((args.t_.at (i).t_ != ct_string) && (args.t_.at (i).t_ != ct_identifier) && (args.t_.at (i).t_ != ct_number) && (args.t_.at (i).t_ != ct_keyword)))
+        nits.pick (nit_css_syntax, es_error, ec_css, "expecting a name after @font-palette-values (1)");
+    else
+    {   if (i == to) nits.pick (nit_css_syntax, es_error, ec_css, "expecting a name after @font-palette-values (2)");
+        else
+        {   ::std::string name (assemble_string (args.t_, i, to, false));
+            if (args.palette ().find (name) != args.palette ().cend ())
+                nits.pick (nit_css_palette, es_comment, ec_css, quote (name), " previously named.");
+            else args.palette ().insert (name);
+            i = next_non_whitespace (args.t_, i, to);
+            if (i < 0) nits.pick (nit_css_palette, es_error, ec_css, "missing @font-palette-values properties after ", quote (name)); }
+        if ((to < 0) || (args.t_.at (to).t_ != ct_curly_brac))
+            nits.pick (nit_css_palette, es_error, ec_css, "expecting { descriptor... } after @font-palette-values");
+        else if (args.t_.at (to).child_ > 0)
+        {   fiddlesticks < statement > f (&args.st_, this);
+            dsc_.parse (args, css_font_palette_values, args.t_.at (to).child_); } } }
 
 void statement::parse_import (arguments& args, nitpick& nits, const int from, const int to)
 {   url u;
@@ -461,7 +520,28 @@ void statement::parse (arguments& args, const int from, const int to)
     else
     {   st_.set_value (nits, args.v_, args.t_.at (b).val_);
         switch (st_.get_int ())
-        {   case css_charset :
+        {   case css_annotation :
+                parse_feature_value (args, nits, to, st_.get (), stylistic_);
+                break;
+            case css_character_variant :
+                parse_feature_value (args, nits, to, st_.get (), character_variant_);
+                break;
+            case css_historical_forms :
+                parse_feature_value (args, nits, to, st_.get (), historical_form_);
+                break;
+            case css_ornaments :
+                parse_feature_value (args, nits, to, st_.get (), ornament_);
+                break;
+            case css_swash :
+                parse_feature_value (args, nits, to, st_.get (), swash_);
+                break;
+            case css_styleset :
+                parse_feature_value (args, nits, to, st_.get (), styleset_);
+                break;
+            case css_stylistic :
+                parse_feature_value (args, nits, to, st_.get (), stylistic_);
+                break;
+            case css_charset :
                 parse_charset (args, nits, b, to);
                 break;
             case css_colour_profile :
@@ -470,8 +550,14 @@ void statement::parse (arguments& args, const int from, const int to)
             case css_custom_media :
                 parse_custom_media (args, nits, b, to);
                 break;
+            case css_font_feature_values :
+                parse_font_feature_values (args, nits, b, to);
+                break;
             case css_font_face :
                 parse_font_face (args, nits, to);
+                break;
+            case css_font_palette_values :
+                parse_font_palette_values (args, nits, b, to);
                 break;
             case css_import :
                 parse_import (args, nits, b, to);
@@ -524,25 +610,35 @@ void statement::accumulate (stats_t* s) const
     prop_.accumulate (s, rules_.get_elements ());
     for (auto pst : vst_)
         if (pst.get () != nullptr)
-            pst -> accumulate (s); }
+            pst -> accumulate (s);
+    dsc_.accumulate (s, rules_.get_elements ()); }
 
 ::std::string statement::rpt () const
 {   ::std::string res;
     switch (st_.get_int ())
-    {   case css_charset :
+    {   case css_annotation :
+            res = "@annotation ();";
+            break;
+        case css_bottom_centre :
+            res = "@bottom-centre ();";
+            break;
+        case css_bottom_left :
+            res = "@bottom-left ();";
+            break;
+        case css_bottom_left_corner :
+            res = "@bottom-left-corner ();";
+            break;
+        case css_bottom_right :
+            res = "@bottom-right ();";
+            break;
+        case css_bottom_right_corner :
+            res = "@bottom-right-corner ();";
+            break;
+        case css_character_variant :
+            res = "@character-variant ();";
+            break;
+        case css_charset :
             res = "@charset ();";
-            break;
-        case css_font_face :
-            res = "@font-face ();";
-            break;
-        case css_import :
-            res = "@import ();";
-            break;
-        case css_media :
-            res = "@media ();";
-            break;
-        case css_page :
-            res = "@page ();";
             break;
         case css_colour_profile :
             res = "@color-profile;";
@@ -553,17 +649,68 @@ void statement::accumulate (stats_t* s) const
         case css_document :
             res = "@document;";
             break;
+        case css_font_feature_values :
+            res = "@font-feature-values ();";
+            break;
+        case css_font_face :
+            res = "@font-face ();";
+            break;
+        case css_font_palette_values :
+            res = "@font-paletteivalues ();";
+            break;
+        case css_historical_forms :
+            res = "@historicaliforms ();";
+            break;
+        case css_import :
+            res = "@import ();";
+            break;
         case css_keyframes :
             res = "@keyframes;";
             break;
+        case css_layer :
+            res = "@layer ();";
+            break;
+        case css_media :
+            res = "@media ();";
+            break;
         case css_namespace :
             res = "@namespace;";
+            break;
+        case css_ornaments :
+            res = "@ornaments ();";
+            break;
+        case css_page :
+            res = "@page ();";
             break;
         case css_supports :
             res = "@supports;";
             break;
         case css_scope :
             res = "@scope;";
+            break;
+        case css_swash :
+            res = "@swash ()";
+            break;
+        case css_styleset :
+            res = "@styleset ()";
+            break;
+        case css_stylistic :
+            res = "@stylistic ()";
+            break;
+        case css_top_centre :
+            res = "@top-center ()";
+            break;
+        case css_top_left :
+            res = "@top-left ()";
+            break;
+        case css_top_left_corner :
+            res = "@top-left-corner ()";
+            break;
+        case css_top_right :
+            res = "@top-right ()";
+            break;
+        case css_top_right_corner :
+            res = "@top-right-corner ()";
             break;
         case css_viewport :
             res = "@viewport;";
@@ -580,6 +727,14 @@ void statement::validate (arguments& args)
 {   fiddlesticks < statement > f (&args.st_, this);
     prop_.validate (args);
     rules_.validate (args);
+    dsc_.validate (args);
+    annotation_.validate (args, args.font_feature (css_annotation), "annotation");
+    character_variant_.validate (args, args.font_feature (css_character_variant), "character variant");
+    historical_form_.validate (args, args.font_feature (css_historical_forms), "historical form");
+    ornament_.validate (args, args.font_feature (css_ornaments), "ornament");
+    swash_.validate (args, args.font_feature (css_swash), "swash");
+    styleset_.validate (args, args.font_feature (css_styleset), "styleset");
+    stylistic_.validate (args, args.font_feature (css_stylistic), "stylistic");
     for (auto i : vst_)
         i -> validate (args); }
 

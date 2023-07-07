@@ -97,7 +97,7 @@ template < e_type T, class SZ1, class SZ2, class SZSEP > struct either_string_or
             int h1 = 0, h2 = 0;
             const int n = GSL_NARROW_CAST < int > (string_vector < T, SZSEP > :: size ());
             if ((n < 1) || (n > 2))
-                nits.pick (nit_not_n, es_error, ec_type, quote (s), ": between ", 1, " and ", 2, " values expected");
+                nits.pick (nit_not_n, es_error, ec_type, quote (s), ": one or two values expected");
             for (auto arg : string_vector < T, SZSEP > :: get ())
                 if (compare_no_case (arg, SZ1 :: sz ())) ++h1;
                 else if (compare_no_case (arg, SZ2 :: sz ())) ++h2;
