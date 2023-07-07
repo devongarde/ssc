@@ -50,6 +50,9 @@ template < > struct type_master < t_css_caret > : type_some_of < t_css_caret, sz
 template < > struct type_master < t_current_colour_sz > : type_string < t_current_colour_sz, sz_currentcolour >
 { using type_string < t_current_colour_sz, sz_currentcolour > :: type_string; };
 
+template < > struct type_master < t_fontnias > : type_one_or_both < t_fontnias, t_fontnia, sz_comma, t_fontnia >
+{ using type_one_or_both < t_fontnias, t_fontnia, sz_comma, t_fontnia > :: type_one_or_both; };
+
 template < > struct type_master < t_hslafn > : type_function_all < t_hslafn, sz_hsla, t_hue, t_percent, t_percent, t_zero_to_one >
 { using type_function_all < t_hslafn, sz_hsla, t_hue, t_percent, t_percent, t_zero_to_one > :: type_function_all; };
 
@@ -79,6 +82,15 @@ template < > struct type_master < t_oklchfn > : type_function_3_4 < t_oklchfn, s
 
 template < > struct type_master < t_percent_n > : type_or_string < t_percent_n, t_percent, sz_none >
 { using type_or_string < t_percent_n, t_percent, sz_none > :: type_or_string; };
+
+template < > struct type_master < t_percents_flexible > : type_one_or_both < t_percents_flexible, t_percent_positive, sz_space_char, t_percent_positive >
+{ using type_one_or_both < t_percents_flexible, t_percent_positive, sz_space_char, t_percent_positive > :: type_one_or_both; };
+
+template < > struct type_master < t_percents_n > : type_or_string < t_percents_n, t_percents_flexible, sz_none >
+{ using type_or_string < t_percents_n, t_percents_flexible, sz_none > :: type_or_string; };
+
+template < > struct type_master < t_percents_nf > : type_or_either_string < t_percents_nf, t_percents_flexible, sz_from_font, sz_normal >
+{ using type_or_either_string < t_percents_nf, t_percents_flexible, sz_from_font, sz_normal > :: type_or_either_string; };
 
 template < > struct type_master < t_rgbfn > : type_function_3_4 < t_rgbfn, sz_rgb, t_real_percent_n, t_real_percent_n, t_real_percent_n, t_zero_to_one >
 { using type_function_3_4 < t_rgbfn, sz_rgb, t_real_percent_n, t_real_percent_n, t_real_percent_n, t_zero_to_one > :: type_function_3_4; };
@@ -145,5 +157,5 @@ template < e_type T, e_type N, class SZ, e_type U, bool REQ > struct type_number
                 if (units.good ())
                 {   nits.merge (nuts); return; } 
                 nits.pick (nit_bad_units, es_error, ec_type, quote (ss), ": bad units");
-                if (context.tell (es_debug)) nits.merge (nuts); } }
+                if (context.extra () || context.tell (es_debug)) nits.merge (nuts); } }
         type_master < N > :: status (s_invalid); } };

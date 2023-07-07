@@ -3,6 +3,12 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.28
+- CSS Fonts 3
+- CSS Fonts 4 (December 2021 draft)
+- CSS Fonts 5 (December 2021 draft)
+- underlying work
+
 0.1.27
 - CSS Compositing
 - CSS Fragmentation 3

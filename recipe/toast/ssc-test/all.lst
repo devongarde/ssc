@@ -4,6 +4,7 @@
 ../toast/coop/corrupt/corrupt1.spec
 ../toast/coop/corrupt/corrupt2.spec
 ../toast/coop/corrupt/corrupt512.spec
+../toast/coop/css/css.spec
 ../toast/coop/schema-abc/abc.spec
 ../toast/coop/oct21/living.spec
 ../toast/csp/1/csp.spec
@@ -24,6 +25,9 @@
 ../toast/css/4-colour/css.spec
 ../toast/css/5-colour/css.spec
 ../toast/css/3-compositing/css.spec
+../toast/css/3-font/css.spec
+../toast/css/4-font/css.spec
+../toast/css/5-font/css.spec
 ../toast/css/4-frag/css.spec
 ../toast/css/3-media/css.spec
 ../toast/css/4-media/css.spec

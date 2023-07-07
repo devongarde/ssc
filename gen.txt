@@ -435,6 +435,8 @@ line, the "no-" switch always applies.
                         (the value of n can be determined using
                         --nits.nids).
 
+--nits.extra            Report additional nits.
+
 --nits.format F         Specify the output format; F is a template
                         file (see OUTPUT TEMPLATE below).
 
@@ -807,6 +809,15 @@ line, the "no-" switch always applies.
 --validation.extension EXT
                         Accept the extension EXT as a mimetype file
                         extension. May be repeated.
+
+--validation.ff FEATURE Accept FEATURE as a CSS font feature. These
+                        should normally be four characters long. May be
+                        repeated.
+
+--validation.ff VARIATION
+                        Accept VARIATION as a CSS font variation. These
+                        should normally be four characters long. May be
+                        repeated.
 
 --validation.httpequiv HEQ
                         Accept HEQ as a valid macro for httpequiv on

@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.1.27
+version 0.1.28
 (c) 2020-2023 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notice
 https://ssc.lu/
@@ -61,17 +61,18 @@ ssc by collecting the following information (where relevant):
 - version of ssc;
 - precise version of the operating system;
 - hardware architecture and system information;
-- detailed description of the error and how to cause it;
-- copy of output file/s showing the error;
+- detailed description of the problem;
+- detailed description of the steps to recreate it;
+- copy of output file/s and any relevant logs;
 - copy of pages/website being analysed;
 - precise command used;
 - configuration file/s used, if any;
 - any ndx file or other pre-existing file used during the run;
 - any known workarounds or solutions;
-- a dance interpretation of the 'feature'.
+- optionally, a dance interpretation of the 'feature'.
 Email everything to mail@ssc.lu (if the collected files are more than
 small, please use a public fileserver and email the link). Do NOT send
-anything confidential. Furthermore, unless you request otherwise, we
+anything confidential. Furthermore, unless you state otherwise, we
 reserve the right to publish some or all of the information sent in
 future versions of ssc, usually in the test suite. If you have a fix,
 you are invited to submit a pull request on github, at
@@ -82,19 +83,19 @@ https://github.com/devongarde/ssc . Thank you.
 SSC can be run in a CGI environment. This is intended for use with
 OpenBSD's native httpd web server (https://man.openbsd.org/httpd.8).
 You are reminded that SSC is pre-production software. Do NOT expose it
-to untrusted data sources, such as the open web.
+to untrusted data sources, such as that found on the open web.
 
 
 
 Notes on names:
 - recipe: a nod to Vernor Vinge's "A Fire Upon the Deep";
 - tea: without tea, nothing works; then there's builders' tea;
-- sauce: identifies those who presume; and anyway, it's obvious;
-- toast: toasts code; i like burnt toast;
+- sauce: makes food tasty; here, identifies presumers;
+- toast: toasts code; i liked burnt toast;
 - heater: i'm not stopping now;
 - unii: my preferred plural of unix: to my ears, both unixes and unices
         sound like they sing castrato.
-- andor: and/or sans obsolescence
+- andor: and/or sans ancienne; land of Gift (dass ist nicht das Gift)
 
 
 

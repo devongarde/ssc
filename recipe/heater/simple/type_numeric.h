@@ -95,7 +95,7 @@ template < > struct type_master < t_fixedpoint > : type_base < double, t_fixedpo
                     {   value_ = lexical < double > :: cast (sss, 0.0);
                         nits.pick (nit_sunk, es_info, ec_type, PROG " presumes ", sss, " was intended where ", ss, " was found");
                         return; } } } }
-        nits.pick (nit_sunk, ed_so_11 , "Number (https://" SCHEMA_ORG "/Number)", es_error, ec_type, quote (ss), " contains unexpected characters");
+        nits.pick (nit_sunk, ed_so_11 , "Number (https://" SCHEMA_ORG "/Number)", es_error, ec_type, quote (s), " contains unexpected characters");
         type_base < double, t_fixedpoint > :: status (s_invalid); }
     static double default_value () noexcept { return 0.0; }
     bool has_value (const double& b) const noexcept { return good () && (value_ == b); }
@@ -114,6 +114,31 @@ template < > struct type_master < t_percent > : type_master < t_fixedpoint >
             {   type_master < t_fixedpoint > :: set_value (nits, v, ss.substr (0, len - 1));
                 if (type_master < t_fixedpoint > :: good ())
                     if ((type_master < t_fixedpoint > :: value_ >= 0.0) && (type_master < t_fixedpoint > :: value_ <= 100.0)) return; }
+        else if (v.is_5 () && (ss == "0"))
+        {   type_master < t_fixedpoint > :: status (s_good);
+            return; }
+        nits.pick (nit_percent, es_error, ec_type, "expecting a value between 0.0 and 100.0, followed by '%'");
+        type_base < double, t_fixedpoint > :: status (s_invalid); }
+    ::std::string get_string () const
+    {   return ::boost::lexical_cast < ::std::string > (value_) + "%"; }
+    void shadow (::std::stringstream& ss, const html_version& , element* )
+    {   ss << '=' << get_string (); } };
+
+template < > struct type_master < t_percent_positive > : type_master < t_fixedpoint >
+{   using type_master < t_fixedpoint > :: type_master;
+    static e_animation_type animation_type () noexcept { return at_percentage; }
+    static bool is_numeric () { return true; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   ::std::string ss (trim_the_lot_off (s));
+        const ::std::string::size_type len (ss.length ());
+        if (len > 1)
+            if (ss.at (len - 1) == '%')
+            {   type_master < t_fixedpoint > :: set_value (nits, v, ss.substr (0, len - 1));
+                if (type_master < t_fixedpoint > :: good ())
+                    if (type_master < t_fixedpoint > :: value_ >= 0.0) return; }
+        else if (v.is_5 () && (ss == "0"))
+        {   type_master < t_fixedpoint > :: status (s_good);
+            return; }
         nits.pick (nit_percent, es_error, ec_type, "expecting a value between 0.0 and 100.0, followed by '%'");
         type_base < double, t_fixedpoint > :: status (s_invalid); }
     ::std::string get_string () const
@@ -127,16 +152,16 @@ template < > struct type_master < t_percent_flexible > : type_master < t_fixedpo
     static bool is_numeric () { return true; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string ss (trim_the_lot_off (s));
-        if (compare_no_case (ss, "none"))
+        if (compare_no_case (ss, "none") || (v.is_5 () && (ss == "0")))
         {   type_master < t_fixedpoint > :: status (s_good);
             return; }
         const ::std::string::size_type len (ss.length ());
         if (len > 1)
             if (ss.at (len - 1) == '%')
-            {   type_master < t_fixedpoint > :: set_value (nits, v, ss.substr (0, len - 2));
+            {   type_master < t_fixedpoint > :: set_value (nits, v, ss.substr (0, len - 1));
                 if (type_master < t_fixedpoint > :: good ()) return; }
         nits.pick (nit_percent, es_error, ec_type, "expecting a number followed by '%'");
-        type_base < double, t_fixedpoint > :: status (s_invalid); }
+        type_master < t_fixedpoint > :: status (s_invalid); }
     ::std::string get_string () const
     {   return ::boost::lexical_cast < ::std::string > (value_) + "%"; }
     void shadow (::std::stringstream& ss, const html_version& , element* )
@@ -309,6 +334,9 @@ template < > struct type_master < t_1_to_99 > : type_integer_between < t_1_to_99
 
 template < > struct type_master < t_0_to_255 > : type_integer_between < t_0_to_255, short, 0, 255 >
 { using  type_integer_between < t_0_to_255, short, 0, 255 > :: type_integer_between; };
+
+template < > struct type_master < t_0_to_1000 > : type_integer_between < t_0_to_1000, short, 0, 1000 >
+{ using  type_integer_between < t_0_to_1000, short, 0, 1000 > :: type_integer_between; };
 
 template < > struct type_master < t_hue > : type_number_between < t_hue, 0, 360 >
 { using  type_number_between < t_hue, 0, 360 > :: type_number_between; };

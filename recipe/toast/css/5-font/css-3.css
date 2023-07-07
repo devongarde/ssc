@@ -1,0 +1,27 @@
+﻿@font-face {
+  font-family: "MyIncrementallyLoadedWebFont";
+  src: url("FallbackURLForBrowsersWhichDontSupportIncrementalLoading.woff2") format("woff2");
+  src: url("MyIncrementallyLoadedWebFont.otf") format(opentype)  tech(incremental);
+}
+
+@font-face {
+  font-family: overridden-font;
+  ascent-override: 50%;
+  ...
+}
+
+
+@font-face {
+  font-family: cool-web-font;
+  src: url("https://example.com/font.woff");
+}
+
+@font-face {
+  font-family: fallback-to-local;
+  src: local(Some Local Font);
+  /* Override metric values to match cool-web-font */
+  ascent-override: 125%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+  size-adjust: 96%;
+}

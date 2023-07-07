@@ -32,7 +32,8 @@ class css_group
     page& page_;
     mcss_t mcss_;
     dst_ptr snippets_;
-    sstr_t page_name_, layer_, keyframe_;
+    sstr_t page_name_, layer_, keyframe_, palette_, font_family_;
+    sstr_t annotation_, character_variant_, historical_form_, ornament_, swash_, styleset_, stylistic_;
     namespaces_ptr ns_;
     ustr_t custom_media_;
     smsid_t custom_prop_; 

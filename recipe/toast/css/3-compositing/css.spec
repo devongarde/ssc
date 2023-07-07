@@ -10,7 +10,7 @@ PASS ../toast/css/3-compositing/css-3-2.html
 
 PASS ../toast/css/3-compositing/css-3-3.html
 2 naughty_lang
-5 css_version fontname fontname
+5 css_version fontname
 
 PASS ../toast/css/3-compositing/css-3-4.html
 2 naughty_lang

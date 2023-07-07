@@ -18,8 +18,8 @@ PASS ../toast/css/songlight/songlight.css
 100 css_bespoke css_bespoke css_bespoke
 103 css_bespoke css_bespoke css_bespoke
 106 css_bespoke css_bespoke css_bespoke
-397 fontname fontname fontname
-403 fontname fontname fontname
+397 fontname
+403 fontname
 
 PASS ../toast/css/songlight/yukontoast.css
 0 html

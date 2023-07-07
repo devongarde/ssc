@@ -6,8 +6,8 @@ PASS ../toast/other/live/plumbing/songlight.css
 26 fontname
 86 unrecognised_value
 87 unrecognised_value
-393 fontname fontname fontname
-399 fontname fontname fontname
+393 fontname
+399 fontname
 
 PASS ../toast/other/live/404.shtml
 282 lingo

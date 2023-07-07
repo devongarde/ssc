@@ -219,7 +219,7 @@ PASS ../toast/HTML/4.01/html4-example.html
 364 inserted_missing_closure missing_close
 365 missing_close missing_close
 367 inserted_missing_closure inserted_missing_closure inserted_missing_closure
-371 inserted_missing_closure sunk immeasurable
+371 inserted_missing_closure immeasurable
 374 inserted_missing_closure missing_close
 375 missing_close missing_close
 377 inserted_missing_closure inserted_missing_closure inserted_missing_closure

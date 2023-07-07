@@ -44,7 +44,7 @@ bool examine_custom_property (arguments& args, nitpick& nits, const int from, co
         auto i = args.g_.custom_prop ().find (prop);
         if (i == args.g_.custom_prop ().cend ())
         {   if (comma < 0)
-            {   nits.pick (nit_css_custom, es_warning, ec_css, quote (prop), " is not a known customer property");
+            {   nits.pick (nit_css_custom, es_warning, ec_css, quote (prop), " is not a known custom property");
                 res = false; }
             else
             {   args.g_.custom_prop ().emplace (prop, 1);
@@ -60,6 +60,9 @@ bool check_custom_property (arguments& args, const ::std::string& s)
     return true; }
 
 void validate_animation_name (type_master < t_css_anim_base >& cab, arguments& args)
+{   cab.invalid_access (args.t_.at (0).nits_, args.v_, &args.g_.keyframe ()); }
+
+void validate_palette (type_master < t_css_palette >& cab, arguments& args)
 {   cab.invalid_access (args.t_.at (0).nits_, args.v_, &args.g_.keyframe ()); }
 
 bool check_constants (arguments& args, nitpick& nits, const int i)
@@ -90,10 +93,15 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
     {   i = next_non_whitespace (args.t_, i, to);
         if (i > 0)
         {   switch (cvf.get ())
-            {   case cvf_var :
-                    if (context.css_custom () < 3)
-                        nits.pick (nit_css_custom, es_error, ec_css, quote (cvf.name ()), " requires CSS Custom");
-                    else e = cvf_var;
+            {   case cvf_annotation :
+                case cvf_character_variant :
+                case cvf_ornaments :
+                case cvf_styleset :
+                case cvf_stylistic :
+                case cvf_swash :
+                    if (context.css_font () < 4)
+                        nits.pick (nit_css_custom, es_error, ec_css, quote (cvf.name ()), " requires CSS Fonts 4");
+                    else e = cvf.get ();
                     break;
                 case cvf_colour :
                 case cvf_hwb :
@@ -111,6 +119,11 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
                         nits.pick (nit_css_colour, es_error, ec_css, quote (cvf.name ()), " requires CSS Colour 5");
                     else e = cvf.get ();
                     break;
+                case cvf_format :
+                    if (context.css_font () < 3)
+                        nits.pick (nit_css_colour, es_error, ec_css, quote (cvf.name ()), " requires CSS Font 3");
+                    else e = cvf.get ();
+                    break;
                 case cvf_hsl :
                 case cvf_hsla :
                 case cvf_rgba :
@@ -121,6 +134,16 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
                 case cvf_rgb :
                 case cvf_url :
                     e = cvf.get ();
+                    break;
+                case cvf_tech :
+                    if (context.css_font () < 4)
+                        nits.pick (nit_css_version, es_error, ec_css, quote (cvf.name ()), " requires CSS Font 4");
+                    else e = cvf.get ();
+                    break;
+                case cvf_var :
+                    if (context.css_custom () < 3)
+                        nits.pick (nit_css_custom, es_error, ec_css, quote (cvf.name ()), " requires CSS Custom");
+                    else e = cvf_var;
                     break;
                 default :
                     switch (context.css_value ())

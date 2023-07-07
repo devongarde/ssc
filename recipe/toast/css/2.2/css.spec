@@ -29,7 +29,6 @@ PASS ../toast/css/2.2/css-2-4.html
 
 PASS ../toast/css/2.2/css-2-5.html
 0 charset_mismatch charset_used
-5 fontname
 15 missing_close
 16 inserted_missing_closure
 
@@ -427,7 +426,6 @@ PASS ../toast/css/2.2/css-15-7.css
 
 PASS ../toast/css/2.2/css-15-8.css
 0 html
-14 fontname
 
 PASS ../toast/css/2.2/css-16-1.css
 0 html

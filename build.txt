@@ -30,6 +30,13 @@ System's package system has an appropriate version ready to install.
 *libcurl requires a thread-safe underlying SSL library: see
 https://curl.se/libcurl/c/threadsafe.html
 
+You may need to set these environment variables:
+- BOOST: if you're not using your operating system's packaged flavour
+  of boost, then set BOOST to your boost source root directory;
+- ICU_ROOT: if you're not using your operating system's packaged ICU,
+  set ICU_ROOT to your ICU source root directory;
+- GSL: set it to your GSL root directory.
+
 hunspell
 --------
 Building SSC under unii, including macos, requires a development
@@ -47,8 +54,6 @@ multilingual contexts.
 
 Building
 ========
-Note: at the moment, ssc takes forever and a day to compile. I will
-address this in forthcoming versions.
 
 Windows
 -------
@@ -59,13 +64,6 @@ Windows 10 & 11. I've not built ssc using CMake under Windows.
 
 Note the included solutions presume Microsoft's VCPKG manager. There
 are alternatives.
-
-You may need to set these environment variables:
-- BOOST: if you're not using your operating system's packaged flavour
-  of boost, then set BOOST to your boost source root directory;
-- ICU_ROOT: if you're not using your operating system's packaged ICU,
-  set ICU_ROOT to your ICU source root directory;
-- GSL: set it to your GSL root directory.
 
 On low memory build machines, disable the /MP switch.
 
@@ -99,23 +97,24 @@ given that means things are already in the desired state.
 
 The following have been successfully built as x64 amd/intel:
 FreeBSD:  12.3 / 13.1
-Linux:    Alma Linux 9, AOSC, Centos 8 / 9*, SUSE Tumbleweed,
+Linux:    Alma Linux 9, AOSC, Centos 8 / 9, SUSE Tumbleweed,
           Ubuntu 20.04 / 22.04
 MacOS:    Ventura, Monterey, Big Sur, Catalina, Mojave, High Sierra,
           Sierra, El Capitan, and Yosemite
 OpenBSD:  7.3 / 7.2 / 7.1 / 7.0 / 6.9 / 6.8
 
 The following have been successfully built as arm64:
-Linux:    Centos 9*
+Linux:    Centos 9
 MacOS:    Ventura
 
 A build on an older operating system may result in some features being
 unavailable.
 
-* Because Centos 9 doesn't offer lsb-release, the appropriate CMake
-command is:
+Centos 9
+--------
+The appropriate CMake command is:
   cmake . -DFLAVOUR=CentosOSStream -DFLAVOUR_VER=9
-(note the standard English spelling of flavour.)
+(beware the standard English spelling of flavour.)
 
 OpenBSD
 -------
@@ -129,7 +128,7 @@ built versions of ssc that is not exhibited by gcc or msvc built
 binaries. I have yet to find it, so do not know whether this is a bug
 in the compiler, or a bug in ssc that is only exposed by clang. To see
 the problem, run ssc against the wpt test-suite from the 2023 summer
-solstice, which can be found at
+solstice, which can be found on archive.org, or at
 https://github.com/web-platform-tests/wpt
 
 If you do use clang, the environment variable SANITY can be used to
@@ -145,7 +144,7 @@ Windows
 Under Visual Studio, run ssc??-test using these arguments:
 
   -v -x $(ProjectDir)..\..\ssc.exe
-    -f $(ProjectDir)..\toast\ssc-test\ssc.lst
+    -f $(ProjectDir)..\toast\ssc-test\win.lst
 (all one line)
 
 Add '-d' if you want the test utility to retain intemediate files.
@@ -154,6 +153,7 @@ CMake
 -----
 Under CMake, run ctest:
   ctest -V
+(which runs ssc-test for you, using ...nix.lst).
 
 Dimitude
 --------

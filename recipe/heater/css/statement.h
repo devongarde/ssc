@@ -22,6 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //#include "type/type.h"
 #include "css/properties.h"
 #include "css/rules.h"
+#include "css/ffvs.h"
+#include "css/descriptors.h"
 
 class statements;
 typedef ::std::shared_ptr < statements > pst_t;
@@ -33,10 +35,15 @@ class statement
     rules rules_;
     vpst_t vst_;
     selectors sel_;
+    descriptors dsc_;
+    font_features annotation_, character_variant_, historical_form_, ornament_, swash_, styleset_, stylistic_;
     void parse_charset (arguments& args, nitpick& nits, const int from, const int to);
     void parse_colour_profile (arguments& args, nitpick& nits, const int from, const int to);
     void parse_custom_media (arguments& args, nitpick& nits, const int from, const int to);
+    void parse_feature_value (arguments& args, nitpick& nits, const int to, const e_css_statement cs, font_features& ffv);
+    void parse_font_feature_values (arguments& args, nitpick& nits, const int from, const int to);
     void parse_font_face (arguments& args, nitpick& nits, const int to);
+    void parse_font_palette_values (arguments& args, nitpick& nits, const int from, const int to);
     void parse_import (arguments& args, nitpick& nits, const int from, const int to);
     void parse_keyframes (arguments& args, nitpick& nits, const int from, const int to);
     void parse_layer (arguments& args, nitpick& nits, const int from, const int to);

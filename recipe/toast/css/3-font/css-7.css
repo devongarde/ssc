@@ -1,0 +1,7 @@
+﻿body {
+  font-variant-numeric: proportional-nums;
+}
+
+table.prices td {
+  font-variant-numeric: tabular-nums;
+}

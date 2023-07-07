@@ -60,7 +60,12 @@
     <ClInclude Include="..\heater\css\css_class.h" />
     <ClInclude Include="..\heater\css\css_element.h" />
     <ClInclude Include="..\heater\css\decoration.h" />
+    <ClInclude Include="..\heater\css\descriptor.h" />
+    <ClInclude Include="..\heater\css\descriptors.h" />
+    <ClInclude Include="..\heater\css\descriptor_classes.h" />
     <ClInclude Include="..\heater\css\distilled.h" />
+    <ClInclude Include="..\heater\css\ffv.h" />
+    <ClInclude Include="..\heater\css\ffvs.h" />
     <ClInclude Include="..\heater\css\fn.h" />
     <ClInclude Include="..\heater\css\global.h" />
     <ClInclude Include="..\heater\css\group.h" />
@@ -75,6 +80,8 @@
     <ClInclude Include="..\heater\css\statement.h" />
     <ClInclude Include="..\heater\css\statements.h" />
     <ClInclude Include="..\heater\css\typed_property.h" />
+    <ClInclude Include="..\heater\css\value.h" />
+    <ClInclude Include="..\heater\css\value_types.h" />
     <ClInclude Include="..\heater\css\weight.h" />
     <ClInclude Include="..\heater\element\elem.h" />
     <ClInclude Include="..\heater\element\element.h" />
@@ -231,6 +238,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp" />
+    <ClCompile Include="..\sauce\attribute\attribute.cpp" />
     <ClCompile Include="..\sauce\attribute\attributes.cpp" />
     <ClCompile Include="..\sauce\attribute\attribute_constructor.cpp" />
     <ClCompile Include="..\sauce\attribute\attr_state.cpp" />
@@ -279,7 +287,12 @@
     <ClCompile Include="..\sauce\css\css_id.cpp" />
     <ClCompile Include="..\sauce\css\css_parse.cpp" />
     <ClCompile Include="..\sauce\css\decoration.cpp" />
+    <ClCompile Include="..\sauce\css\descriptor.cpp" />
+    <ClCompile Include="..\sauce\css\descriptors.cpp" />
+    <ClCompile Include="..\sauce\css\descriptor_constructor.cpp" />
     <ClCompile Include="..\sauce\css\distilled.cpp" />
+    <ClCompile Include="..\sauce\css\ffv.cpp" />
+    <ClCompile Include="..\sauce\css\ffvs.cpp" />
     <ClCompile Include="..\sauce\css\fn.cpp" />
     <ClCompile Include="..\sauce\css\global.cpp" />
     <ClCompile Include="..\sauce\css\group.cpp" />
@@ -292,6 +305,18 @@
     <ClCompile Include="..\sauce\css\selectors.cpp" />
     <ClCompile Include="..\sauce\css\statement.cpp" />
     <ClCompile Include="..\sauce\css\statements.cpp" />
+    <ClCompile Include="..\sauce\css\typed_property.cpp" />
+    <ClCompile Include="..\sauce\css\value.cpp" />
+    <ClCompile Include="..\sauce\css\value2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_3.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_4.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_5.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_6.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_7.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_8.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_9.cpp" />
     <ClCompile Include="..\sauce\css\weight.cpp" />
     <ClCompile Include="..\sauce\element\elem.cpp" />
     <ClCompile Include="..\sauce\element\element.cpp" />

@@ -681,7 +681,7 @@ const html_version html_math_4_20 (HTML_MATH4_20, 0, 0, H2_MATH_4_20 | H2_CSS_2_
 const html_version html_math_core (HTML_MATH4_C, 0, 0, H2_MATH_C | H2_CSS_2_2);
 const html_version html_math_4_22 (HTML_MATH4_22, 0, 0, H2_MATH_4_22 | H2_CSS_2_2);
 
-const html_version xhtml_svg_1_0 (HTML_SVG10, HV_XHTML, HE_SVG_10, H2_CSS_2);
+const html_version xhtml_svg_1_0 (HTML_SVG10, HV_XHTML, HE_SVG_10, H2_CSS_2_0);
 const html_version xhtml_svg_1_1 (HTML_SVG11, HV_XHTML, HE_SVG_11, H2_CSS_2_0);
 const html_version xhtml_svg_1_2_tiny (HTML_SVG12, HV_XHTML, HE_SVG_12_TINY, H2_CSS_2_1);
 const html_version xhtml_svg_1_2_full (HTML_SVG12, HV_XHTML, HE_SVG_12_FULL, H2_CSS_2_1);
@@ -891,6 +891,7 @@ const html_version html_5_2 (HTML_5_2, HV_W3, HE_SVG_11, H2_MATH_3 | H2_CSS_3);
 const html_version html_5_3 (HTML_5_3, HV_W3, HE_SVG_11, H2_MATH_3 | H2_CSS_3);
 const html_version html_current (html_jul23);
 const html_version html_default (html_current);
+const html_version html_max (HTML_DEC99, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_6);
 
 bool does_html_apply (const html_version& v, const html_version& from, const html_version& to);
 bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e);

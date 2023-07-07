@@ -113,6 +113,8 @@ template < e_type E, typename ENUM, typename CATEGORY = ident_t, CATEGORY INIT =
     {   symbol < html_version, ENUM, CATEGORY, INIT, LC > :: extend (extension, e); }
     static void extend (const vstr_t& extension, const ::std::size_t e = 0)
     {   for (auto ext : extension) extend (ext, e); }
+    static bool exists (const ::std::string& x)
+    {   return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: exists (x); }
 	static e_animation_type animation_type () noexcept { return at_other; }
     void swap (enum_n& t) noexcept
     {   type_base < ENUM, E >::swap (t);
@@ -155,12 +157,16 @@ template < e_type E, typename ENUM, typename CATEGORY = ident_t, CATEGORY INIT =
     {   return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: first_version (x); }
     static html_version final_version (const ENUM x)
     {   return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: final_version (x); }
+    void accumulate (stats_t* st) const
+    {   enum_base < ENUM, E > :: accumulate (st); }
     void accumulate (stats_t* st, const e_element e) const
     {   enum_base < ENUM, E > :: accumulate (st, e); }
     void accumulate (stats_t* st, const element_bitset& e) const
     {   enum_base < ENUM, E > :: accumulate (st, e); }
     html_version first () const noexcept { return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: first (); }
     html_version last () const { return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: last (); }
+    html_version first (const ::std::size_t e) { return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: first (e); }
+    html_version last (const ::std::size_t e) { return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: last (e); }
     static ::std::size_t value_count ()
     {   return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: value_count (); } };
 
@@ -334,11 +340,29 @@ template < > struct type_master < t_css_display > : enum_n < t_css_display, e_cs
 template < > struct type_master < t_css_elevation_e > : enum_n < t_css_elevation_e, e_css_elevation_e >
 { using enum_n < t_css_elevation_e, e_css_elevation_e > :: enum_n; };
 
-template < > struct type_master < t_css_font_weight > : enum_n < t_css_font_weight, e_css_font_weight >
-{ using enum_n < t_css_font_weight, e_css_font_weight > :: enum_n; };
-
 template < > struct type_master < t_css_fn > : enum_n < t_css_fn, e_css_fn >
 { using enum_n < t_css_fn, e_css_fn > :: enum_n; };
+
+template < > struct type_master < t_css_font_display > : enum_n < t_css_font_display, e_css_font_display >
+{ using enum_n < t_css_font_display, e_css_font_display > :: enum_n; };
+
+template < > struct type_master < t_css_font_feature > : enum_n < t_css_font_feature, e_css_font_feature >
+{ using enum_n < t_css_font_feature, e_css_font_feature > :: enum_n; };
+
+template < > struct type_master < t_css_font_format > : enum_n < t_css_font_format, e_css_font_format >
+{ using enum_n < t_css_font_format, e_css_font_format > :: enum_n; };
+
+template < > struct type_master < t_css_font_size_adjust_e > : enum_n < t_css_font_size_adjust_e, e_css_font_size_adjust_e >
+{ using enum_n < t_css_font_size_adjust_e, e_css_font_size_adjust_e > :: enum_n; };
+
+template < > struct type_master < t_css_font_tech > : enum_n < t_css_font_tech, e_css_font_tech >
+{ using enum_n < t_css_font_tech, e_css_font_tech > :: enum_n; };
+
+template < > struct type_master < t_css_font_variation > : enum_n < t_css_font_variation, e_css_font_variation >
+{ using enum_n < t_css_font_variation, e_css_font_variation > :: enum_n; };
+
+template < > struct type_master < t_css_font_weight > : enum_n < t_css_font_weight, e_css_font_weight >
+{ using enum_n < t_css_font_weight, e_css_font_weight > :: enum_n; };
 
 template < > struct type_master < t_css_generic_family > : enum_n < t_css_generic_family, e_css_generic_family >
 { using enum_n < t_css_generic_family, e_css_generic_family > :: enum_n; };

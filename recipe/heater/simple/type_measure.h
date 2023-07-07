@@ -34,7 +34,7 @@ template < > struct type_master < t_measure > : tidy_string < t_measure > // ver
                 if (pos != ::std::string::npos)
                 {   units = ss.substr (pos);
                     ss = ss.substr (0, pos); }
-                if (test_value < t_fixedpoint > (nits, v, ss))
+                if ((! ss.empty ()) && test_value < t_fixedpoint > (nits, v, ss))
                 {   if (units.empty ()) return;
                     if ((v >= html_2) && (units == "%")) return;
                     if ((v >= html_4_0) && (units == "*")) return;

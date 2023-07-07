@@ -113,7 +113,7 @@ PASS ../toast/SVG/1.2-full/transformer.svg
 4 unrecognised_value
 8 unrecognised_namespace unknown_element
 10 unknown_element attribute_unrecognised
-13 sunk immeasurable sunk immeasurable sunk immeasurable sunk immeasurable svg_version svg_ancestor
+13 immeasurable immeasurable immeasurable immeasurable svg_version svg_ancestor
 17 transform
 20 unknown_element
 22 unknown_element

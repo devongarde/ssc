@@ -98,6 +98,9 @@ template < > struct type_master < t_css_background_size > : type_or_either_strin
 template < > struct type_master < t_css_background_sizes > : type_at_least_one < t_css_background_sizes, sz_comma, t_css_background_size >
 { using type_at_least_one < t_css_background_sizes, sz_comma, t_css_background_size > :: type_at_least_one; };
 
+template < > struct type_master < t_css_base_palette > : type_or_either_string < t_css_base_palette, t_unsigned, sz_dark, sz_light >
+{ using type_or_either_string < t_css_base_palette, t_unsigned, sz_dark, sz_light > :: type_or_either_string; };
+
 template < > struct type_master < t_css_border_image > : type_some_of < t_css_border_image, sz_space_char, 1, 0,
     t_css_border_image_src, t_css_border_image_slice, t_slash, t_css_lengths_a, t_slash, t_css_lengths_a, t_slash, t_css_length, t_css_border_image_repeat >
 { using type_some_of < t_css_border_image, sz_space_char, 1, 0,
@@ -201,6 +204,9 @@ template < > struct type_master < t_css_counters > : type_function_3_opt < t_css
 template < > struct type_master < t_css_content_fn > : type_one_of < t_css_content_fn, false, t_css_attr, t_css_counter, t_css_counters >
 { using type_one_of < t_css_content_fn, false, t_css_attr, t_css_counter, t_css_counters > :: type_one_of; };
 
+template < > struct type_master < t_css_font_weight_4 > : type_or_any_string_5 < t_css_font_weight_4, t_0_to_1000, sz_bold, sz_bolder, sz_lighter, sz_normal, sz_inherit  >
+{ using type_or_any_string_5 < t_css_font_weight_4, t_0_to_1000, sz_bold, sz_bolder, sz_lighter, sz_normal, sz_inherit > :: type_or_any_string_5; };
+
 template < > struct type_master < t_css_content_base > : type_one_of < t_css_content_base, false, t_text, t_css_content_fn, t_urifn >
 { using type_one_of < t_css_content_base, false, t_text, t_css_content_fn, t_urifn > :: type_one_of; };
 
@@ -228,17 +234,68 @@ template < > struct type_master < t_css_cursor > : type_either_or < t_css_cursor
 template < > struct type_master < t_css_elevation > : type_either_or < t_css_elevation, t_angle, t_css_elevation_e >
 { using type_either_or < t_css_elevation, t_angle, t_css_elevation_e > :: type_either_or; };
 
-template < > struct type_master < t_css_font_size > : type_one_of_five < t_css_font_size, t_css_absolute_size, t_css_relative_size, t_measure, t_css_all, t_css_inherit >
-{ using type_one_of_five < t_css_font_size, t_css_absolute_size, t_css_relative_size, t_measure, t_css_all, t_css_inherit > :: type_one_of_five; };
+template < > struct type_master < t_css_fn_annotation > : type_function < t_css_fn_annotation, sz_annotation, t_css_ffv >
+{ using type_function < t_css_fn_annotation, sz_annotation, t_css_ffv > :: type_function; };
+
+template < > struct type_master < t_css_fn_character_variant > : type_function_some < t_css_fn_character_variant, sz_character_variant, 1, 0, t_css_ffv >
+{ using type_function_some < t_css_fn_character_variant, sz_character_variant, 1, 0, t_css_ffv > :: type_function_some; };
+
+template < > struct type_master < t_css_fn_ornaments > : type_function < t_css_fn_ornaments, sz_ornaments, t_css_ffv >
+{ using type_function < t_css_fn_ornaments, sz_ornaments, t_css_ffv > :: type_function; };
+
+template < > struct type_master < t_css_fn_styleset > : type_function_some < t_css_fn_styleset, sz_styleset, 1, 0, t_css_ffv >
+{ using type_function_some < t_css_fn_styleset, sz_styleset, 1, 0, t_css_ffv > :: type_function_some; };
+
+template < > struct type_master < t_css_fn_stylistic > : type_function < t_css_fn_stylistic, sz_stylistic, t_css_ffv >
+{ using type_function < t_css_fn_stylistic, sz_stylistic, t_css_ffv > :: type_function; };
+
+template < > struct type_master < t_css_fn_swash > : type_function < t_css_fn_swash, sz_swash, t_css_ffv >
+{ using type_function < t_css_fn_swash, sz_swash, t_css_ffv > :: type_function; };
+
+template < > struct type_master < t_css_font_feature_tag > : type_must_then_opt < t_css_font_feature_tag, t_css_font_feature, sz_space_char, t_integer_oo, 0, 1 >
+{ using type_must_then_opt < t_css_font_feature_tag, t_css_font_feature, sz_space_char, t_integer_oo, 0, 1 > :: type_must_then_opt; };
+
+template < > struct type_master < t_css_font_feature_tags > : type_at_least_one < t_css_font_feature_tags, sz_comma, t_css_font_feature_tag >
+{ using type_at_least_one < t_css_font_feature_tags, sz_comma, t_css_font_feature_tag > :: type_at_least_one; };
+
+template < > struct type_master < t_css_font_feature_settings > : type_or_string < t_css_font_feature_settings, t_css_font_feature_tags, sz_normal >
+{ using type_or_string < t_css_font_feature_settings, t_css_font_feature_tags, sz_normal > :: type_or_string; };
+
+template < > struct type_master < t_css_font_size > : type_one_of_four < t_css_font_size, t_css_absolute_size, t_css_relative_size, t_measure, t_css_inherit >
+{ using type_one_of_four < t_css_font_size, t_css_absolute_size, t_css_relative_size, t_measure, t_css_inherit > :: type_one_of_four; };
 
 template < > struct type_master < t_css_font_style > : type_either_or < t_css_font_style, t_css_all, t_css_font_style_e >
 { using type_either_or < t_css_font_style, t_css_all, t_css_font_style_e > :: type_either_or; };
+
+template < > struct type_master < t_css_font_style_2 > : type_or_string < t_css_font_style_2, t_fontnias, sz_all >
+{ using type_or_string < t_css_font_style_2, t_fontnias, sz_all > :: type_or_string; };
+
+template < > struct type_master < t_css_font_synthesis > : type_some_of < t_css_font_synthesis, sz_space_char, 1, 3, t_auto_none >
+{ using type_some_of < t_css_font_synthesis, sz_space_char, 1, 3, t_auto_none > :: type_some_of; };
+
+template < > struct type_master < t_css_font_synthesis_n > : type_or_string < t_css_font_synthesis_n, t_css_font_synthesis, sz_none >
+{ using type_or_string < t_css_font_synthesis_n, t_css_font_synthesis, sz_none > :: type_or_string; };
 
 template < > struct type_master < t_font_synthesis > : either_string_or_both < t_font_synthesis, sz_style, sz_weight, sz_space_char >
 { using either_string_or_both < t_font_synthesis, sz_style, sz_weight, sz_space_char > :: either_string_or_both; };
 
 template < > struct type_master < t_font_synthesis_n > : type_or_string < t_font_synthesis_n, t_font_synthesis, sz_none >
 { using type_or_string < t_font_synthesis_n, t_font_synthesis, sz_none > :: type_or_string; };
+
+template < > struct type_master < t_css_font_techs > : type_at_least_one < t_css_font_techs, sz_comma, t_css_font_tech >
+{ using type_at_least_one < t_css_font_techs, sz_comma, t_css_font_tech > :: type_at_least_one; };
+
+template < > struct type_master < t_css_font_variation_tag > : type_must_then_opt < t_css_font_variation_tag, t_css_font_variation, sz_space_char, t_fixedpoint, 0, 1 >
+{ using type_must_then_opt < t_css_font_variation_tag, t_css_font_variation, sz_space_char, t_fixedpoint, 0, 1 > :: type_must_then_opt; };
+
+template < > struct type_master < t_css_font_variation_tags > : type_at_least_one < t_css_font_variation_tags, sz_comma, t_css_font_variation_tag >
+{ using type_at_least_one < t_css_font_variation_tags, sz_comma, t_css_font_variation_tag > :: type_at_least_one; };
+
+template < > struct type_master < t_css_font_variation_settings > : type_or_string < t_css_font_variation_settings, t_css_font_variation_tags, sz_normal >
+{ using type_or_string < t_css_font_variation_settings, t_css_font_variation_tags, sz_normal > :: type_or_string; };
+
+template < > struct type_master < t_css_format > : type_function_all < t_css_format, sz_format, t_css_font_format >
+{ using type_function_all < t_css_format, sz_format, t_css_font_format > :: type_function_all; };
 
 template < > struct type_master < t_css_hue > : type_either_or < t_css_hue, t_angle, t_real >
 { using type_either_or < t_css_hue, t_angle, t_real > :: type_either_or; };
@@ -297,6 +354,9 @@ template < > struct type_master < t_css_marks > : type_one_two < t_css_marks, t_
 template < > struct type_master < t_css_marx > : either_type_or_string < t_css_marx, t_css_marks, t_css_inherit, sz_none >
 { using either_type_or_string < t_css_marx, t_css_marks, t_css_inherit, sz_none > :: either_type_or_string; };
 
+template < > struct type_master < t_font_named_instance > : type_or_string < t_font_named_instance, t_text, sz_auto >
+{ using type_or_string < t_font_named_instance, t_text, sz_auto > :: type_or_string; };
+
 template < > struct type_master < t_css_nth_oe > : public type_or_any_string < t_css_nth_oe, t_css_nth, sz_even, sz_odd, sz_n >
 { using type_or_any_string < t_css_nth_oe, t_css_nth, sz_even, sz_odd, sz_n > :: type_or_any_string; };
 
@@ -311,6 +371,9 @@ template < > struct type_master < t_css_outlines > : type_range < t_css_outlines
 
 template < > struct type_master < t_css_outline_i > : type_either_or < t_css_outline_i, t_css_inherit, t_css_outlines >
 { using type_either_or < t_css_outline_i, t_css_inherit, t_css_outlines > :: type_either_or; };
+
+template < > struct type_master < t_css_palette_nld > : type_or_any_string < t_css_palette_nld, t_css_palette, sz_dark, sz_light, sz_normal >
+{ using type_or_any_string < t_css_palette_nld, t_css_palette, sz_dark, sz_light, sz_normal > :: type_or_any_string; };
 
 template < > struct type_master < t_css_pause > : type_number_unit_3 < t_css_pause, t_real, sz_ms, sz_s, sz_per_cent >
 { using type_number_unit_3 < t_css_pause, t_real, sz_ms, sz_s, sz_per_cent > :: type_number_unit_3; };
@@ -342,6 +405,9 @@ template < > struct type_master < t_css_spacing > : either_type_or_string < t_cs
 template < > struct type_master < t_css_speech_rate > : type_either_or < t_css_speech_rate, t_real, t_css_speech_rate_e >
 { using type_either_or < t_css_speech_rate, t_real, t_css_speech_rate_e > :: type_either_or; };
 
+template < > struct type_master < t_css_tech > : type_function_all < t_css_tech, sz_format, t_css_font_techs >
+{ using type_function_all < t_css_tech, sz_format, t_css_font_techs > :: type_function_all; };
+
 template < > struct type_master < t_css_volume > : type_one_of < t_css_volume, false, t_css_volume_e, t_percent, t_fixedpoint >
 { using type_one_of < t_css_volume, false, t_css_volume_e, t_percent, t_fixedpoint > :: type_one_of; };
 
@@ -360,25 +426,27 @@ template < > struct type_master < t_css_backval > : type_one_of_five < t_css_bac
 template < > struct type_master < t_css_play_during_mr > : type_and_maybe_strings < t_css_play_during_mr, t_css_url, sz_space_char, sz_mix, sz_repeat >
 { using type_and_maybe_strings < t_css_play_during_mr, t_css_url, sz_space_char, sz_mix, sz_repeat > :: type_and_maybe_strings; };
 
-template < > struct type_master < t_css_src > : tidy_string < t_css_src >
-{   using tidy_string < t_css_src > :: tidy_string;
-	static e_animation_type animation_type () noexcept { return at_url; }
-    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_css_src > :: set_value (nits, v, s);
-        const ::std::string& arg = tidy_string < t_css_src > :: get_string ();
-        if (s.empty ())
-        {   nits.pick (nit_empty, es_error, ec_type, "must be empty ... NOT");
-            tidy_string < t_css_src > :: status (s_invalid); }
-        else if (good ())
-        {   if (v.svg_version () > sv_none)
-            {   type_master < t_css_local_url > tst (box ());
-                tst.set_value (nits, v, arg);
-                if (tst.good ()) return; }
-            else
-            {   type_master < t_svg_src > tst (box ());
-                tst.set_value (nits, v, arg);
-                if (tst.good ()) return; }
-            tidy_string < t_css_src > :: status (s_invalid); } } };
+template < > struct type_master < t_css_src_2 > : type_some_of < t_css_src_2, sz_space_char, 1, 0, t_css_local_url, t_css_format, t_text >
+{   static e_animation_type animation_type () noexcept { return at_url; }
+    using type_some_of < t_css_src_2, sz_space_char, 1, 0, t_css_local_url, t_css_format, t_text > :: type_some_of; };
+
+template < > struct type_master < t_css_src_3 > : type_some_of < t_css_src_3, sz_space_char, 1, 0, t_css_local_url, t_css_format, t_text >
+{   static e_animation_type animation_type () noexcept { return at_url; }
+    using type_some_of < t_css_src_3, sz_space_char, 1, 0, t_css_local_url, t_css_format, t_text > :: type_some_of; };
+
+//template < > struct type_master < t_css_src > : type_must_then_opt < t_css_src, t_css_local_url, sz_space_char, t_css_font_format, 0, 1 >
+//{   static e_animation_type animation_type () noexcept { return at_url; }
+//    using type_must_then_opt < t_css_src, t_css_local_url, sz_space_char, t_css_font_format, 0, 1 > :: type_must_then_opt; };
+
+template < > struct type_master < t_css_src_4 > : type_some_of < t_css_src_4, sz_space_char, 1, 0, t_css_local_url, t_css_format, t_css_tech, t_text >
+{   static e_animation_type animation_type () noexcept { return at_url; }
+    using type_some_of < t_css_src_4, sz_space_char, 1, 0, t_css_local_url, t_css_format, t_css_tech, t_text > :: type_some_of; };
+
+template < > struct type_master < t_css_unicode_range > : type_either_or < t_css_unicode_range, t_css_unicode_from_to, t_css_unicode_wildcard >
+{ using type_either_or < t_css_unicode_range, t_css_unicode_from_to, t_css_unicode_wildcard > :: type_either_or; };
+
+template < > struct type_master < t_css_unicode_ranges > : type_at_least_one < t_css_unicode_ranges, sz_comma, t_css_unicode_range >
+{ using type_at_least_one < t_css_unicode_ranges, sz_comma, t_css_unicode_range > :: type_at_least_one; };
 
 template < > struct type_master < t_css_langs > : string_vector < t_css_langs, sz_comma >
 {   using string_vector < t_css_langs, sz_comma > :: string_vector;
@@ -433,7 +501,7 @@ template < > struct type_master < t_css_col > : tidy_string < t_css_col >
                         return; }
                     break; }
             nits.pick (nit_css_colour, es_error, ec_css, "CSS colour error");
-            if (context.tell (es_debug))
+            if (context.extra () || context.tell (es_debug))
             {   nits.merge (nuts);
                 nits.merge (nets);
                 nits.merge (nots);
@@ -511,3 +579,94 @@ template < > struct type_master < t_css_background_repeat_3 > : tidy_string < t_
                 tst.set_value (nits, v, arg);
                 if (tst.good ()) return; } }
         tidy_string < t_css_background_repeat_3 > :: status (s_invalid); } };
+
+template < > struct type_master < t_css_font_size_4 > : tidy_string < t_css_font_size_4 >
+{   using tidy_string < t_css_font_size_4 > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_font_size_4 > :: set_value (nits, v, s);
+        if (tidy_string < t_css_font_size_4 > :: empty ())
+            nits.pick (nit_key, es_error, ec_type, "font-size cannot be empty");
+        else if (tidy_string < t_css_font_size_4 > :: good ())
+        {   const ::std::string& ss (tidy_string < t_css_font_size_4 > :: get_string ());
+            if ((context.css_font () >= 4) && compare_no_case (ss, "math")) return;
+            if (test_value < t_css_font_size > (nits, v, s)) return; }
+        tidy_string < t_css_font_size_4 > :: status (s_invalid); } };
+
+template < > struct type_master < t_css_font_size_adjust > : string_vector < t_css_font_size_adjust, sz_space_char >
+{   using string_vector < t_css_font_size_adjust, sz_space_char > :: string_vector;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   string_vector < t_css_font_size_adjust, sz_space_char > :: set_value (nits, v, s);
+        if (string_vector < t_css_font_size_adjust, sz_space_char > :: empty ())
+            nits.pick (nit_key, es_error, ec_type, "font-size-adjust cannot be empty");
+        else if (string_vector < t_css_font_size_adjust, sz_space_char > :: good ())
+        {   const vstr_t& vs (string_vector < t_css_font_size_adjust, sz_space_char > :: get ());
+            const ::std::size_t len (vs.size ());
+            PRESUME (len > 0, __FILE__, __LINE__);  
+            if (v.css_font () < 5)
+            {   if (len > 1) nits.pick (nit_css_syntax, es_warning, ec_css, "ignoring unexpected junk following ", quote (vs.at (0))); 
+                if (test_value < t_real_ni > (nits, v, vs.at (0))) return; }
+            else if (compare_no_case (vs.at (0), "none"))
+            {   if (len > 1) nits.pick (nit_css_syntax, es_warning, ec_css, "ignoring unexpected junk following ", quote (vs.at (0))); 
+                return; }
+            else
+            {   ::std::size_t pos = 0;
+                nitpick nuts;
+                if (test_value < t_css_font_size_adjust_e > (nuts, v, vs.at (0)))
+                {   nits.merge (nuts);
+                    ++pos; }
+                if ((vs.size () > pos) && compare_no_case (vs.at (pos), "from-font")) ++pos;
+                if ((vs.size () > pos) && test_value < t_real > (nits, v, vs.at (pos)))
+                {   if (len > pos) nits.pick (nit_css_syntax, es_warning, ec_css, "ignoring unexpected junk following ", quote (vs.at (pos))); 
+                    return; }
+                if (pos >= vs.size ()) nits.pick (nit_css_syntax, es_error, ec_css, "number expected"); } }
+        string_vector < t_css_font_size_adjust, sz_space_char > :: status (s_invalid); } };
+
+template < > struct type_master < t_css_font_style_a > : string_vector < t_css_font_style_a, sz_space_char >
+{   using string_vector < t_css_font_style_a, sz_space_char > :: string_vector;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   string_vector < t_css_font_style_a, sz_space_char > :: set_value (nits, v, s);
+        if (string_vector < t_css_font_style_a, sz_space_char > :: empty ())
+            nits.pick (nit_key, es_error, ec_type, "font-style cannot be empty");
+        else if (string_vector < t_css_font_style_a, sz_space_char > :: good ())
+        {   const vstr_t& vs (string_vector < t_css_font_style_a, sz_space_char > :: get ());
+            type_master < t_css_font_style > cf;
+            cf.set_value (nits, v, vs.at (0));
+            if (cf.good ())
+            {   if (vs.size () == 1) return;
+                if (compare_no_case (cf.original (), "oblique"))
+                {   if (vs.size () > 2) nits.pick (nit_css_syntax, es_warning, ec_css, "junk found after ", quote (vs.at (1)));
+                    if (test_value < t_angle > (nits, v, vs.at (1))) return; }
+                else nits.pick (nit_css_syntax, es_warning, ec_css, "junk found after ", quote (vs.at (0))); } }
+        string_vector < t_css_font_style_a, sz_space_char > :: status (s_invalid); } };
+
+template < > struct type_master < t_css_src > : tidy_string < t_css_src >
+{   using tidy_string < t_css_src > :: tidy_string;
+	static e_animation_type animation_type () noexcept { return at_paint; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_src > :: status (s_good);
+        if (context.css_font () >= 4)
+        {   if (test_value < t_css_src_4 > (nits, v, s)) return; }
+        else if (context.css_font () == 3)  
+        {   if (test_value < t_css_src_3 > (nits, v, s)) return; }
+        else if (context.css_version () == css_2_0)
+        {   if (test_value < t_css_src_2 > (nits, v, s)) return; }
+        else nits.pick (nit_css_version, es_error, ec_css, "@font-face requires CSS Fonts or CSS 2.0"); 
+        tidy_string < t_css_src > :: status (s_invalid); } };
+
+template < > struct type_master < t_css_srcs > : type_at_least_one < t_css_srcs, sz_comma, t_css_src >
+{ using type_at_least_one < t_css_srcs, sz_comma, t_css_src > :: type_at_least_one; };
+
+template < > struct type_master < t_font_variant_4 > : type_some_of < t_font_variant_4, sz_space_char, 1, 0,
+    t_font_variant_2, t_css_fn_annotation, t_css_fn_character_variant, t_css_fn_ornaments, t_css_fn_styleset, t_css_fn_stylistic, t_css_fn_swash >
+{ using type_some_of < t_font_variant_4, sz_space_char, 1, 0,
+    t_font_variant_2, t_css_fn_annotation, t_css_fn_character_variant, t_css_fn_ornaments, t_css_fn_styleset, t_css_fn_stylistic, t_css_fn_swash > :: type_some_of; };
+
+template < > struct type_master < t_css_font_variant_4 > : type_or_either_string < t_css_font_variant_4, t_font_variant_4, sz_none, sz_normal >
+{ using type_or_either_string < t_css_font_variant_4, t_font_variant_4, sz_none, sz_normal > :: type_or_either_string; };
+
+template < > struct type_master < t_css_override_colour > : type_either_or < t_css_override_colour, t_unsigned, t_css_col >
+{ using type_either_or < t_css_override_colour, t_unsigned, t_css_col > :: type_either_or; };
+
+template < > struct type_master < t_css_override_colours > : type_some_of < t_css_override_colours, sz_comma, 1, 0, t_css_override_colour >
+{   static e_animation_type animation_type () noexcept { return at_colour; }
+    using type_some_of < t_css_override_colours, sz_comma, 1, 0, t_css_override_colour > :: type_some_of; };

@@ -9,7 +9,7 @@ PASS ../toast/stats/CSS/basic.css
 11 css_colour
 12 unrecognised_value
 18 css_dubious
-20 fontname fontname fontname
+20 fontname
 
 STATS
 Elements:

@@ -38,6 +38,10 @@ template < > struct type_master < t_integer_i > : type_or_string < t_integer_i, 
 {    static bool is_numeric () { return true; }
     using type_or_string < t_integer_i, t_integer, sz_inherit > :: type_or_string; };
 
+template < > struct type_master < t_integer_oo > : type_or_either_string < t_integer_oo, t_integer, sz_off, sz_on >
+{   static bool is_numeric () { return true; }
+    using type_or_either_string < t_integer_oo, t_integer, sz_off, sz_on > :: type_or_either_string; };
+
 template < > struct type_master < t_positive_1_2 > : type_range < t_positive_1_2, sz_commaspace, t_0_more, 1, 2 >
 {   static bool is_numeric () { return true; }
     using type_range < t_positive_1_2, sz_commaspace, t_0_more, 1, 2 > :: type_range; };

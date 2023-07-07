@@ -490,14 +490,17 @@ PASS ../toast/SVG/1.2/dom_animate.svg
 PASS ../toast/SVG/1.2/entity.svg
 0 sq_brac_ket doctype_incomprehensible
 
+PASS ../toast/SVG/1.2/ets.svg
+0 title_required
+1 xhtml_1_1
+2 svg_version
+
 PASS ../toast/SVG/1.2/focushighlight.svg
 0 title_required
 1 xhtml_1_1
 4 svg_version
 10 url_not_found
-15 fontname
 17 url_not_found
-22 fontname
 
 PASS ../toast/SVG/1.2/font01.svg
 1 xhtml_1_1
@@ -536,22 +539,12 @@ PASS ../toast/SVG/1.2/foreignobject.svg
 22 unknown_element
 33 use_quote_code
 
-PASS ../toast/SVG/1.2/index.html
-2 naughty_lang
-
-PASS ../toast/SVG/1.2/ets.svg
-0 title_required
-1 xhtml_1_1
-2 svg_version
-
 PASS ../toast/SVG/1.2/handler.svg
 0 title_required
 1 xhtml_1_1
 4 svg_version
 10 url_not_found
-15 fontname
 17 url_not_found
-22 fontname
 
 PASS ../toast/SVG/1.2/handler2.svg
 0 title_required
@@ -678,13 +671,6 @@ PASS ../toast/SVG/1.2/navigation.html
 PASS ../toast/SVG/1.2/navigation.svg
 1 xhtml_1_1
 5 svg_version
-11 fontname
-14 fontname
-17 fontname
-25 fontname
-33 fontname
-41 fontname
-50 fontname
 
 PASS ../toast/SVG/1.2/nohandler.svg
 0 title_required

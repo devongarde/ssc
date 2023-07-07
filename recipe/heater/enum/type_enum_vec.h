@@ -230,3 +230,4 @@ template < > struct type_master < t_rel > : enum_vec < t_rel, e_rel >
 template < > struct type_master < t_svg_features > : enum_vec < t_svg_features, e_svg_feature >
 { using enum_vec < t_svg_features, e_svg_feature > :: enum_vec; };
 
+
