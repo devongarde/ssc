@@ -1,0 +1,36 @@
+﻿div { flex-flow: row; }
+/* Initial value. Main-axis is inline, no wrapping.
+   (Items will either shrink to fit or overflow.) */
+
+	
+
+div { flex-flow: column wrap; }
+/* Main-axis is block-direction (top to bottom)
+   and lines wrap in the inline direction (rightwards). */
+
+	
+
+div { flex-flow: row-reverse wrap-reverse; }
+/* Main-axis is the opposite of inline direction
+   (right to left). New lines wrap upwards. */
+
+.tabs {
+  display: flex;
+}
+.tabs > .current {
+  order: -1; /* Lower than the default of 0 */
+}
+
+main { display: flex; }
+main > article { order: 2; min-width: 12em; flex:1; }
+main > nav     { order: 1; width: 200px; }
+main > aside   { order: 3; width: 200px; }
+
+@media all and (max-width: 600px) {
+  /* Too narrow to support three columns */
+  main { flex-flow: column; }
+  main > article, main > nav, main > aside {
+    /* Return them to document order */
+    order: 0; width: auto;
+  }
+}

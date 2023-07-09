@@ -1149,6 +1149,12 @@
     <Filter Include="Toast\coop\css">
       <UniqueIdentifier>{0e604eb5-c15a-4eac-9c4d-7e5c31112b14}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\CSS\3-fbl">
+      <UniqueIdentifier>{37ed20d6-aaec-46fc-9288-428f79c69ac8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-cs">
+      <UniqueIdentifier>{b3256f26-3448-4a71-9660-a64614b7fd3d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -31688,6 +31694,69 @@
     </None>
     <None Include="..\toast\coop\css\css.spec">
       <Filter>Toast\coop\css</Filter>
+    </None>
+    <None Include="..\toast\css\3-fbl\css.conf">
+      <Filter>Toast\CSS\3-fbl</Filter>
+    </None>
+    <None Include="..\toast\css\3-fbl\css.spec">
+      <Filter>Toast\CSS\3-fbl</Filter>
+    </None>
+    <None Include="..\toast\css\3-fbl\css-1.css">
+      <Filter>Toast\CSS\3-fbl</Filter>
+    </None>
+    <None Include="..\toast\css\3-fbl\css-1.html">
+      <Filter>Toast\CSS\3-fbl</Filter>
+    </None>
+    <None Include="..\toast\css\3-fbl\index.html">
+      <Filter>Toast\CSS\3-fbl</Filter>
+    </None>
+    <None Include="..\toast\css\3-fbl\css-4.css">
+      <Filter>Toast\CSS\3-fbl</Filter>
+    </None>
+    <None Include="..\toast\css\3-fbl\css-4.html">
+      <Filter>Toast\CSS\3-fbl</Filter>
+    </None>
+    <None Include="..\toast\css\3-fbl\css-5.css">
+      <Filter>Toast\CSS\3-fbl</Filter>
+    </None>
+    <None Include="..\toast\css\3-fbl\css-6.css">
+      <Filter>Toast\CSS\3-fbl</Filter>
+    </None>
+    <None Include="..\toast\css\3-fbl\css-6.html">
+      <Filter>Toast\CSS\3-fbl</Filter>
+    </None>
+    <None Include="..\toast\css\3-fbl\css-8.css">
+      <Filter>Toast\CSS\3-fbl</Filter>
+    </None>
+    <None Include="..\toast\css\3-fbl\css-8.html">
+      <Filter>Toast\CSS\3-fbl</Filter>
+    </None>
+    <None Include="..\toast\css\3-cs\css.conf">
+      <Filter>Toast\CSS\3-cs</Filter>
+    </None>
+    <None Include="..\toast\css\3-cs\css.spec">
+      <Filter>Toast\CSS\3-cs</Filter>
+    </None>
+    <None Include="..\toast\css\3-cs\css-3.css">
+      <Filter>Toast\CSS\3-cs</Filter>
+    </None>
+    <None Include="..\toast\css\3-cs\index.html">
+      <Filter>Toast\CSS\3-cs</Filter>
+    </None>
+    <None Include="..\toast\css\3-cs\css-4.css">
+      <Filter>Toast\CSS\3-cs</Filter>
+    </None>
+    <None Include="..\toast\css\3-cs\css-6.css">
+      <Filter>Toast\CSS\3-cs</Filter>
+    </None>
+    <None Include="..\toast\css\3-cs\css-7.css">
+      <Filter>Toast\CSS\3-cs</Filter>
+    </None>
+    <None Include="..\toast\css\3-cs\css-10.css">
+      <Filter>Toast\CSS\3-cs</Filter>
+    </None>
+    <None Include="..\toast\css\3-cs\ready-made.css">
+      <Filter>Toast\CSS\3-cs</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -73,6 +73,21 @@ template < > struct type_master < t_css_bespoke > : public tidy_string < t_css_b
     void verify_attribute (nitpick& nits, const html_version& , const elem& , element* , const ::std::string& attnam)
     {   nits.pick (nit_css_bespoke, es_warning, ec_type, "bespoke properties, such as ", attnam, ", are processed neither by " PROG " nor all browsers"); } };
 
+template < > struct type_master < t_css_counter_style_name > : public tidy_string < t_css_counter_style_name >
+{   using tidy_string < t_css_counter_style_name > :: tidy_string;
+	static e_animation_type animation_type () noexcept { return at_none; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_counter_style_name > :: set_value (nits, v, s);
+        if (tidy_string < t_css_counter_style_name > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "missing @counter-style name"); }
+    bool invalid_access (nitpick& nits, const html_version& , sstr_t* s)
+    {   VERIFY_NOT_NULL (s, __FILE__, __LINE__);
+        if (! tidy_string < t_css_counter_style_name > :: good ()) return true;
+        const ::std::string& x = tidy_string < t_css_counter_style_name > :: get_string ();
+        if (s -> find (x) != s -> cend ()) return false;
+        nits.pick (nit_css_keyframes, es_error, ec_css, "@counter-style ", quote (x), " is referenced but not defined");
+        return true; } };
+
 template < > struct type_master < t_css_font > : tidy_string < t_css_font >
 {   using tidy_string < t_css_font > :: tidy_string;
     static e_animation_type animation_type () noexcept { return at_other; }

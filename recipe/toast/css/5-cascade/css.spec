@@ -28,8 +28,7 @@ PASS ../toast/css/5-cascade/css-4.html
 PASS ../toast/css/5-cascade/css-6.css
 0 html
 1 url_not_found
-2  url_not_found
-18 unrecognised_value
+2 url_not_found
 34 css_layer
 35 css_keyframes
 51 css_layer

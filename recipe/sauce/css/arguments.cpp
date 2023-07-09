@@ -77,9 +77,18 @@ void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string
     if ((f & CF_FACE_OR_PROFILE) == CF_FACE_OR_PROFILE)
     {   if ((st_ == nullptr) || ((st_ -> get () != css_font_face) && (st_ -> get () != css_colour_profile)))
             nits.pick (nit_naughty_page, es_error, ec_css, s, " requires @colour-profile or @font-face"); }
+    else if ((f & CF_MUST_COUNTER) == CF_MUST_COUNTER)
+    {   if ((st_ == nullptr) || (st_ -> get () != css_counter_style))
+            nits.pick (nit_naughty_page, es_error, ec_css, s, " requires @counter-style"); }
     else if ((f & CF_MUST_FONT_FACE) == CF_MUST_FONT_FACE)
-        if ((st_ == nullptr) || (st_ -> get () != css_font_face))
-            nits.pick (nit_naughty_page, es_error, ec_css, s, " requires @font-face");
+    {   if ((st_ == nullptr) || (st_ -> get () != css_font_face))
+            nits.pick (nit_naughty_page, es_error, ec_css, s, " requires @font-face"); }
+    else if ((f & CF_MUST_FONT_FV) == CF_MUST_FONT_FV)
+    {   if ((st_ == nullptr) || (st_ -> get () != css_font_feature_values))
+            nits.pick (nit_naughty_page, es_error, ec_css, s, " requires @font-feature-values"); }
+    else if ((f & CF_MUST_PALETTE) == CF_MUST_PALETTE)
+    {   if ((st_ == nullptr) || (st_ -> get () != css_font_palette_values))
+            nits.pick (nit_naughty_page, es_error, ec_css, s, " requires @font-palette-values"); }
     if ((f & CF_BEF_AFT) == CF_BEF_AFT)
         if ((ss_ == nullptr) || (! ss_ -> bef_aft ()))
             if (context.css_version () > css_2_2)
@@ -106,7 +115,11 @@ void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string
             nits.pick (nit_svg_version, ed_svg_1_1, "Appendix N: Property Index", es_warning, ec_css, quote (item), " is an SVG property, which requires at least an ancestral <SVG> element");
     const e_css_statement st = cs ();
     switch (st)
-    {   case css_font_face :
+    {   case css_counter_style :
+            if ((f & (CF_MUST_COUNTER | CF_MAY_COUNTER)) == 0)
+                nits.pick (nit_not_here, es_error, ec_css, quote (item), " cannot be used with @counter-style");
+            break;
+       case css_font_face :
             if ((f & (CF_MUST_FONT_FACE | CF_MAY_FONT_FACE)) == 0)
                 nits.pick (nit_not_here, es_error, ec_css, quote (item), " cannot be used with @font-face");
             break;
@@ -120,7 +133,9 @@ void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string
             break;
         default :
             break; }
-   if (((f & CF_MUST_FONT_FACE) == CF_MUST_FONT_FACE) && (st != css_font_face))
+    if (((f & CF_MUST_COUNTER) == CF_MUST_COUNTER) && (st != css_counter_style))
+        nits.pick (nit_not_here, es_error, ec_css, quote (item), " can only be used with @counter-style");
+    if (((f & CF_MUST_FONT_FACE) == CF_MUST_FONT_FACE) && (st != css_font_face))
         nits.pick (nit_not_here, es_error, ec_css, quote (item), " can only be used with @font-face");
     if (((f & CF_MUST_FONT_FV) == CF_MUST_FONT_FV) && (st != css_font_feature_values))
         nits.pick (nit_not_here, ed_css_font_4, "6. Font Feature Properties", es_error, ec_css, quote (item), " can only be used with @font-feature-values");

@@ -1,0 +1,8 @@
+﻿#flex {
+  display: flex;
+  flex-flow: row wrap;
+  width: 300px;
+}
+.item {
+  width: 80px;
+}

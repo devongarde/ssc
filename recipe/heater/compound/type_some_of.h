@@ -55,46 +55,46 @@ template < e_type T > struct min_max_ok < T, 0, 0 >
 {   static bool ok (nitpick& , const ::std::size_t ) { return true; } };
 
  
-template < e_type T, class SZ, int MIN, int MAX, e_type... A > struct type_some_of : string_vector < T, SZ > 
+template < e_type T, class SZ, int F, int MIN, int MAX, e_type... A > struct type_some_flagged_of : string_vector < T, SZ, F > 
 {   BOOST_STATIC_ASSERT ((MAX == 0) || (MIN <= MAX));
-    using string_vector < T, SZ > :: string_vector;
+    using string_vector < T, SZ, F > :: string_vector;
     typedef ::std::vector < type_one_of < T, MIN==0, A... > > voo;
     voo voo_;
     void reset () noexcept
     {   voo_.clear ();
-        string_vector < T, SZ > :: reset (); }
-    void swap (type_some_of < T, SZ, MIN, MAX, A... >& t) noexcept
+        string_vector < T, SZ, F > :: reset (); }
+    void swap (type_some_flagged_of < T, SZ, F, MIN, MAX, A... >& t) noexcept
     {   voo_.swap (t.voo_);
-        string_vector < T, SZ > :: swap (t); }
+        string_vector < T, SZ, F > :: swap (t); }
     static e_type get_type () noexcept
     {   return T; }
     static bool is_relational () noexcept
     {   return type_one_of < T, MIN==0, A... > :: is_relational (); }   
     static bool is_url () noexcept
     {   if (type_one_of < T, MIN==0, A... > :: is_url ()) return true;
-        return string_vector < T, SZ > :: is_url (); }
+        return string_vector < T, SZ, F > :: is_url (); }
     static bool is_existential () noexcept
     {   return false; }
     static bool is_numeric () noexcept
     {   if (type_one_of < T, MIN==0, A... > :: is_numeric ()) return true;
-        return string_vector < T, SZ > :: is_numeric (); }
-    static typename string_vector < T, SZ > :: value_type default_value ()
-    {   return string_vector < T, SZ > :: default_value (); }
+        return string_vector < T, SZ, F > :: is_numeric (); }
+    static typename string_vector < T, SZ, F > :: value_type default_value ()
+    {   return string_vector < T, SZ, F > :: default_value (); }
     static e_animation_type animation_type () noexcept
     {   const e_animation_type a = type_one_of < T, MIN==0, A... > :: animation_type ();
         if (a != at_none) return a;
-        return string_vector < T, SZ > :: animation_type (); }
+        return string_vector < T, SZ, F > :: animation_type (); }
     void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* p, const ::std::string& s)
     {   for (auto oo : voo_)
             if (! oo.unknown ())
                 oo.verify_attribute (nits, v, e, p, s);
-        string_vector < T, SZ > :: verify_attribute (nits, v, e, p, s); }
+        string_vector < T, SZ, F > :: verify_attribute (nits, v, e, p, s); }
     bool verify_url (nitpick& nits, const html_version& v, element& e)
     {   for (auto oo : voo_)
             if (! oo.unknown ())
                 if (oo.verify_url (nits, v, e))
                     return true;
-        return string_vector < T, SZ > :: verify_url (nits, v, e); }
+        return string_vector < T, SZ, F > :: verify_url (nits, v, e); }
     ::std::string get_string () const
     {   ::std::string res;
         for (auto oo : voo_)
@@ -102,31 +102,31 @@ template < e_type T, class SZ, int MIN, int MAX, e_type... A > struct type_some_
             {   if (! res.empty ()) res += SZ::sz ();
                 res += oo.get_string (); }
         if (! res.empty ()) return res;
-        return string_vector < T, SZ > :: get_string (); }
+        return string_vector < T, SZ, F > :: get_string (); }
     ::std::string original () const
-    {   return string_vector < T, SZ > :: original (); }
+    {   return string_vector < T, SZ, F > :: original (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   string_vector < T, SZ > :: set_value (nits, v, s);
-        if (string_vector < T, SZ > :: empty ())
-        {   string_vector < T, SZ > :: status (emptiness < T, MIN==0 > :: content_status (nits, string_vector < T, SZ > :: get ()));
+    {   string_vector < T, SZ, F > :: set_value (nits, v, s);
+        if (string_vector < T, SZ, F > :: empty ())
+        {   string_vector < T, SZ, F > :: status (emptiness < T, MIN==0 > :: content_status (nits, string_vector < T, SZ, F > :: get ()));
             return; }
-        bool ok = true;
-        for (::std::string ss : string_vector < T, SZ > :: value_)
+        bool good = true;
+        for (::std::string ss : string_vector < T, SZ, F > :: value_)
         {   type_one_of < T, MIN==0, A... > one;
             one.set_value (nits, v, ss);
-            if (! one.good ()) ok = false;
+            if (! one.good ()) good = false;
             voo_.push_back (one); }
-        if (! min_max_ok < T, MIN, MAX > :: ok (nits, voo_.size ())) ok = false;
-        if (ok)
-        {   string_vector < T, SZ > :: status (s_good);
+        if (! min_max_ok < T, MIN, MAX > :: ok (nits, voo_.size ())) good = false;
+        if (good)
+        {   string_vector < T, SZ, F > :: status (s_good);
             return; }
-        string_vector < T, SZ > :: status (s_invalid); }
+        string_vector < T, SZ, F > :: status (s_invalid); }
     void set_id (const ::std::string& s)
-    {   string_vector < T, SZ > :: set_id (s); }
+    {   string_vector < T, SZ, F > :: set_id (s); }
     ::std::string& id () noexcept
-    {   return string_vector < T, SZ > :: id (); }
+    {   return string_vector < T, SZ, F > :: id (); }
     const ::std::string& id () const
-    {   return string_vector < T, SZ > :: id (); }
+    {   return string_vector < T, SZ, F > :: id (); }
     bool invalid_id (nitpick& nits, const html_version& v, ids_t& i, element* e)
     {   bool res = false;
         for (auto oo : voo_)
@@ -146,33 +146,33 @@ template < e_type T, class SZ, int MIN, int MAX, e_type... A > struct type_some_
             if (! oo.unknown ())
                 if (oo.has_id ())
                     return true;
-        return string_vector < T, SZ > :: has_id (); }
+        return string_vector < T, SZ, F > :: has_id (); }
     bool empty () const noexcept
     {   if (voo_.empty ()) return true;
-        return string_vector < T, SZ > :: empty (); }
+        return string_vector < T, SZ, F > :: empty (); }
     bool good () const noexcept
     {   for (auto oo : voo_)
             if (! oo.unknown ())
                 if (! oo.good ()) return false;
-        return string_vector < T, SZ > :: good (); }
+        return string_vector < T, SZ, F > :: good (); }
     bool bad () const noexcept { return ! good (); }
     bool invalid () const noexcept
     {   for (auto oo : voo_)
             if (! oo.unknown ())
                 if (oo.invalid ()) return true;
-        return string_vector < T, SZ > :: invalid (); }
+        return string_vector < T, SZ, F > :: invalid (); }
     void verify_id (element& e)
     {   for (auto oo : voo_)
             if (! oo.unknown ())
                 oo.verify_id (e); }
     e_status status () const noexcept
-    {   return string_vector < T, SZ > :: status (); }
+    {   return string_vector < T, SZ, F > :: status (); }
     void status (const e_status s) noexcept
-    {   string_vector < T, SZ > :: status (s); }
+    {   string_vector < T, SZ, F > :: status (s); }
     bool unknown () const noexcept
     {   for (auto oo : voo_)
             if (! oo.unknown ()) return false;
-        return string_vector < T, SZ > :: unknown (); }
+        return string_vector < T, SZ, F > :: unknown (); }
     ::std::size_t type () const noexcept
     {   return T; }
     vurl_t get_urls () const
@@ -181,46 +181,46 @@ template < e_type T, class SZ, int MIN, int MAX, e_type... A > struct type_some_
             if (! oo.unknown ())
                 for (auto ou : oo.get_urls ())
                     res.emplace_back (ou);
-        for (auto ou : string_vector < T, SZ > :: get_urls ())
+        for (auto ou : string_vector < T, SZ, F > :: get_urls ())
             res.emplace_back (ou);
         return res; }
     template < e_type X > static type_master < X > default_value ()
     {   GRACEFUL_CRASH (__FILE__, __LINE__); }
     int get_int () const
-    {   return string_vector < T, SZ > :: get_int (); }
+    {   return string_vector < T, SZ, F > :: get_int (); }
     ::std::size_t size () const noexcept
     {   return voo_.size (); }
     void shadow (::std::stringstream& ss, const html_version& v, element* e)
     {   for (auto oo : voo_)
             if (! oo.unknown ())
                 oo.shadow (ss, v, e);
-        string_vector < T, SZ > :: shadow (ss, v, e); }
+        string_vector < T, SZ, F > :: shadow (ss, v, e); }
     element* box () noexcept
-    {   return string_vector < T, SZ > :: box (); }
+    {   return string_vector < T, SZ, F > :: box (); }
     element* box () const noexcept
-    {   return string_vector < T, SZ > :: box (); }
+    {   return string_vector < T, SZ, F > :: box (); }
     void box (element* b) noexcept
-    {   string_vector < T, SZ > :: box (b); }
+    {   string_vector < T, SZ, F > :: box (b); }
     void validate ()
     {   for (auto oo : voo_)
             if (! oo.unknown ())
                 oo.validate ();
-        string_vector < T, SZ > :: validate (); }
+        string_vector < T, SZ, F > :: validate (); }
     void accumulate (stats_t* st) const
     {   for (auto oo : voo_)
             if (! oo.unknown ())
                 oo.accumulate (st);
-        string_vector < T, SZ > :: accumulate (st); }
+        string_vector < T, SZ, F > :: accumulate (st); }
     void accumulate (stats_t* st, const e_element e) const
     {   for (auto oo : voo_)
             if (! oo.unknown ())
                 oo.accumulate (st, e);
-        string_vector < T, SZ > :: accumulate (st, e); }
+        string_vector < T, SZ, F > :: accumulate (st, e); }
     void accumulate (stats_t* st, const element_bitset& e) const
     {   for (auto oo : voo_)
             if (! oo.unknown ())
                 oo.accumulate (st, e);
-        string_vector < T, SZ > :: accumulate (st, e); }
+        string_vector < T, SZ, F > :: accumulate (st, e); }
     static void accumulate (stats_t* , const ::std::string& )
     {   GRACEFUL_CRASH (__FILE__, __LINE__); }
     ::std::string report () const
@@ -228,4 +228,7 @@ template < e_type T, class SZ, int MIN, int MAX, e_type... A > struct type_some_
         for (auto oo : voo_)
             if (! oo.unknown ())
                 res += oo.report ();
-        return res + string_vector < T, SZ > :: report (); } };
+        return res + string_vector < T, SZ, F > :: report (); } };
+
+template < e_type T, class SZ, int MIN, int MAX, e_type... A > struct type_some_of : type_some_flagged_of < T, SZ, BS_FN, MIN, MAX, A... >
+{   using type_some_flagged_of < T, SZ, BS_FN, MIN, MAX, A... > :: type_some_flagged_of; };

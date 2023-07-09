@@ -821,6 +821,7 @@ const nitname nitnames [] =
     { nit_css_palette, "css_palette" },
     { nit_descriptor, "descriptor" },
     { nit_not_here, "not_here" },
+    { nit_counter_style, "counter_style" },
 
     { nit_incompatible, "incompatible" },
 

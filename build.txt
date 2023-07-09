@@ -12,8 +12,8 @@ under Windows. I have built & tested a 64-bit version in selected OSs
 on intel/amd & arm64 (m2) architecture. For now, the arm solution
 should be seen as particularly hopeless.
 
-Although ssc builds and runs with older compilers on older systems, not
-all features are available on them.
+Although ssc builds and runs with some older compilers on some older
+systems, not all features are available on them.
 
 
 Libraries
@@ -128,8 +128,10 @@ built versions of ssc that is not exhibited by gcc or msvc built
 binaries. I have yet to find it, so do not know whether this is a bug
 in the compiler, or a bug in ssc that is only exposed by clang. To see
 the problem, run ssc against the wpt test-suite from the 2023 summer
-solstice, which can be found on archive.org, or at
+solstice, which can currently be found at
 https://github.com/web-platform-tests/wpt
+
+The problem is often avoided at runtime with the -N 1 switch.
 
 If you do use clang, the environment variable SANITY can be used to
 apply one of its sanitiser tests. Details of those tests can be found

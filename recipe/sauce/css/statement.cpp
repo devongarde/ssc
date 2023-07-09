@@ -66,6 +66,37 @@ void statement::parse_colour_profile (arguments& args, nitpick& nits, const int 
         fiddlesticks < statement > f (&args.st_, this);
         prop_.parse (args, args.t_.at (to).child_); } }
 
+void statement::parse_counter_style (arguments& args, nitpick& nits, const int from, const int to)
+{   const int i = next_non_whitespace (args.t_, from, to); 
+    if (context.html_ver ().css_counter_style () < 3)
+        nits.pick (nit_css_version, es_error, ec_css, "@counter-style requires CSS Counter Style 3");
+    else if ((i < 0) || ((args.t_.at (i).t_ != ct_string) && (args.t_.at (i).t_ != ct_identifier) && (args.t_.at (i).t_ != ct_number) && (args.t_.at (i).t_ != ct_keyword)))
+        nits.pick (nit_css_syntax, es_error, ec_css, "expecting an identifier after @counter-style");
+    else if ((to < 0) || (args.t_.at (to).t_ != ct_curly_brac))
+        nits.pick (nit_css_syntax, es_error, ec_css, "expecting { descriptor... } after @counter-style");
+    else
+    {   enum_n < t_css_counter_style, e_css_counter_style > cs;
+        nitpick nuts;
+        const ::std::string name (tart (args.t_.at (i).val_));
+        cs.set_value (nuts, args.v_, name);
+        if (cs.empty ()) nits.merge (nuts);
+        else if (cs.good ())
+        {   nits.merge (nuts);
+            if ((cs.get () & CF_CS_NAUGHTY) == CF_CS_NAUGHTY)
+                nits.pick (nit_counter_style, ed_css_cs_3, "3. Defining Custom Counter Styles: the @counter-style rule", es_error, ec_css, quote (args.t_.at (i).val_), " cannot be used with @counter-style");
+            if ((cs.get () & CF_CS_CASCADE) == CF_CS_CASCADE)
+                nits.pick (nit_counter_style, ed_css_cascade_5, "7.3. Explicit Defaulting", es_error, ec_css, quote (args.t_.at (i).val_), ": no CSS wide keyword can be used with @counter-style");
+            if ((cs.get () & CF_CS_PREDEFINED) == CF_CS_PREDEFINED)
+                nits.pick (nit_counter_style, ed_css_cs_3, "6. Simple Predefined Counter Styles", es_warning, ec_css, quote (args.t_.at (i).val_), " is a predefined @counter-style"); }
+        else if (args.g_.counter_style ().find (name) != args.g_.counter_style ().cend ())
+            nits.pick (nit_counter_style, ed_css_cs_3, "3. Defining Custom Counter Styles: the @counter-style rule", es_warning, ec_css, quote (args.t_.at (i).val_), ": defined earlier");
+        else    
+        {   nits.pick (nit_counter_style, es_comment, ec_css, "noted ", quote (name));
+            args.g_.counter_style ().insert (name); }
+        PRESUME (args.t_.at (to).child_ > 0, __FILE__, __LINE__);
+        fiddlesticks < statement > f (&args.st_, this);
+        dsc_.parse (args, css_counter_style, args.t_.at (to).child_); } }
+
 void statement::parse_custom_media (arguments& args, nitpick& nits, const int from, const int to)
 {   int i = next_non_whitespace (args.t_, from, to); 
     if (context.html_ver ().css_media () < 5)
@@ -547,6 +578,9 @@ void statement::parse (arguments& args, const int from, const int to)
             case css_colour_profile :
                 parse_colour_profile (args, nits, b, to);
                 break;
+            case css_counter_style :
+                parse_counter_style (args, nits, b, to);
+                break;
             case css_custom_media :
                 parse_custom_media (args, nits, b, to);
                 break;
@@ -642,6 +676,9 @@ void statement::accumulate (stats_t* s) const
             break;
         case css_colour_profile :
             res = "@color-profile;";
+            break;
+        case css_counter_style :
+            res = "@counter-style;";
             break;
         case css_custom_media :
             res = "@custom-media;";

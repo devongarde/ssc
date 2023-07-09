@@ -98,6 +98,12 @@ template < > struct type_master < t_rgbfn > : type_function_3_4 < t_rgbfn, sz_rg
 template < > struct type_master < t_rgbafn > : type_function_all < t_rgbafn, sz_rgba, t_integer_or_percent, t_integer_or_percent, t_integer_or_percent, t_zero_to_one >
 { using type_function_all < t_rgbafn, sz_rgba, t_integer_or_percent, t_integer_or_percent, t_integer_or_percent, t_zero_to_one > :: type_function_all; };
 
+template < > struct type_master < t_text_2 > : type_one_or_both < t_text_2, t_text, sz_space_char, t_text >
+{ using type_one_or_both < t_text_2, t_text, sz_space_char, t_text > :: type_one_or_both; };
+
+template < > struct type_master < t_texts > : type_at_least_one < t_texts, sz_space_char, t_text >
+{ using type_at_least_one < t_texts, sz_space_char, t_text > :: type_at_least_one; };
+
 template < > struct type_master < t_transparentsz > : type_string < t_transparentsz, sz_transparent >
 { using type_string < t_transparentsz, sz_transparent > :: type_string; };
 

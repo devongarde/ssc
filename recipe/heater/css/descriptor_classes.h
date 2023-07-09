@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/typed_property.h"
 #include "main/enum.h"
 
+typedef typed_property < t_css_addsyms, ec_additive_symbols > desc_additive_symbols;
 typedef typed_property < t_real, ec_ascent > desc_ascent;
 typedef typed_property < t_percent_flexible, ec_ascent_override > desc_ascent_override;
 typedef typed_property < t_percents_n, ec_ascent_override > desc_ascent_override_5;
@@ -34,6 +35,7 @@ typedef typed_property < t_css_url, ec_definition_src > desc_definition_src;
 typedef typed_property < t_real, ec_descent > desc_descent;
 typedef typed_property < t_percent_flexible, ec_descent_override > desc_descent_override;
 typedef typed_property < t_percents_n, ec_descent_override > desc_descent_override_5;
+typedef typed_property < t_css_counter_style_name, ec_fallback > desc_fallback;
 typedef typed_property < t_css_font_display, ec_font_display > desc_font_display;
 typedef typed_property < t_css_font_families, ec_font_family > desc_font_family;
 typedef typed_property < t_css_font_feature_settings, ec_font_feature_settings > desc_font_feature_settings;
@@ -48,13 +50,21 @@ typedef typed_property < t_css_font_weights, ec_font_weight > desc_font_weight;
 typedef typed_property < t_percent_flexible, ec_line_gap_override > desc_line_gap_override;
 typedef typed_property < t_percents_n, ec_line_gap_override > desc_line_gap_override_5;
 typedef typed_property < t_real, ec_mathline > desc_mathline;
+typedef typed_property < t_text_2, ec_negative > desc_negative;
 typedef typed_property < t_css_override_colours, ec_override_colours > desc_override_colours;
+typedef typed_property < t_css_addsym, ec_pad > desc_pad;
 typedef typed_property < t_10_int, ec_panose_1 > desc_panose_1;
+typedef typed_property < t_text, ec_prefix > desc_prefix;
+typedef typed_property < t_css_range_a, ec_range > desc_range;
 typedef typed_property < t_percent, ec_size_adjust > desc_size_adjust;
 typedef typed_property < t_real, ec_slope > desc_slope;
+typedef typed_property < t_css_speak_as, ec_speak_as > desc_speak_as;
 typedef typed_property < t_css_srcs, ec_src > desc_src;
 typedef typed_property < t_real, ec_stemh > desc_stemh;
 typedef typed_property < t_real, ec_stemv > desc_stemv;
+typedef typed_property < t_text, ec_suffix > desc_suffix;
+typedef typed_property < t_texts, ec_symbols > desc_symbols;
+typedef typed_property < t_css_system, ec_system > desc_system;
 typedef typed_property < t_percents_nf, ec_subscript_position_override > desc_subscript_position_override;
 typedef typed_property < t_percents_nf, ec_superscript_position_override > desc_superscript_position_override;
 typedef typed_property < t_percents_nf, ec_subscript_size_override > desc_subscript_size_override;
@@ -65,6 +75,18 @@ typedef typed_property < t_real, ec_units_per_em > desc_units_per_em;
 typedef typed_property < t_generic, ec_widths > desc_widths;
 typedef typed_property < t_real, ec_x_height > desc_x_height;
 typedef typed_property < t_unknown, ec_unknown > desc_unknown;
+
+#define COUNTER_DESCRIPTORS \
+    desc_additive_symbols, \
+    desc_negative, \
+    desc_fallback, \
+    desc_pad, \
+    desc_prefix, \
+    desc_range, \
+    desc_speak_as, \
+    desc_suffix, \
+    desc_symbols, \
+    desc_system
 
 #define DESCRIPTORS_2 \
     desc_baseline, \

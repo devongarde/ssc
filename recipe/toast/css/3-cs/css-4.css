@@ -1,0 +1,3 @@
+﻿ol { list-style: symbols("*" "\2020" "\2021" "\A7"); }
+
+ol { list-style: symbols(cyclic "*" "\2020" "\2021" "\A7"); }

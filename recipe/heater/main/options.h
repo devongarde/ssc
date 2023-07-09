@@ -27,6 +27,7 @@ class options
     void help (const ::boost::program_options::options_description& aid) const;
 	void parse (nitpick& nits, int argc, char* const * argv);
     void yea_nay (context_t& (context_t::*fn) (const bool ), nitpick& nits, const char* yea, const char* nay);
+    bool get_css_level (int& n, nitpick& nits, const char* opt, const char* name, const int maxlevel, const bool accept_1 = false);
 public:
 	options (nitpick& nits, int argc, char** argv)
     {   parse (nits, argc, argv); }

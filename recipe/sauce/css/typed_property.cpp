@@ -62,8 +62,11 @@ bool check_custom_property (arguments& args, const ::std::string& s)
 void validate_animation_name (type_master < t_css_anim_base >& cab, arguments& args)
 {   cab.invalid_access (args.t_.at (0).nits_, args.v_, &args.g_.keyframe ()); }
 
+void validate_counter_style_name (type_master < t_css_counter_style_name >& cab, arguments& args)
+{   cab.invalid_access (args.t_.at (0).nits_, args.v_, &args.g_.counter_style ()); }
+
 void validate_palette (type_master < t_css_palette >& cab, arguments& args)
-{   cab.invalid_access (args.t_.at (0).nits_, args.v_, &args.g_.keyframe ()); }
+{   cab.invalid_access (args.t_.at (0).nits_, args.v_, &args.g_.palette ()); }
 
 bool check_constants (arguments& args, nitpick& nits, const int i)
 {   nitpick nets;

@@ -23,6 +23,8 @@ ssc.exe -T --nits.spec -o ../out/3colour.tst -f ../toast/css/3-colour/css.conf
 ssc.exe -T --nits.spec -o ../out/4colour.tst -f ../toast/css/4-colour/css.conf
 ssc.exe -T --nits.spec -o ../out/5colour.tst -f ../toast/css/5-colour/css.conf
 ssc.exe -T --nits.spec -o ../out/3comp.tst -f ../toast/css/3-compositing/css.conf
+ssc.exe -T --nits.spec -o ../out/3cs.tst -f ../toast/css/3-cs/css.conf
+ssc.exe -T --nits.spec -o ../out/3fbl.tst -f ../toast/css/3-fbl/css.conf
 ssc.exe -T --nits.spec -o ../out/3font.tst -f ../toast/css/3-font/css.conf
 ssc.exe -T --nits.spec -o ../out/4font.tst -f ../toast/css/4-font/css.conf
 ssc.exe -T --nits.spec -o ../out/5font.tst -f ../toast/css/5-font/css.conf

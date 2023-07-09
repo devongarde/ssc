@@ -81,7 +81,7 @@ licenses.
 WhatWG
 ======
 
-Some test files come from whatwg.org (some directly, in WhatWG
+Some test files come from whatwg.org (some directly, some in WhatWG
 documents, etc.), and are licensed under a Creative Commons Attribution
 4.0 International License. See https://whatwg.org/ for details.
 

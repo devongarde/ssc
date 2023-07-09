@@ -104,6 +104,9 @@ line, the "no-" switch always applies.
 --css.extension ext     Presume files with extension '.ext' are CSS
                         files
 
+--css.fbl X             Use CSS Flexible Box Layout level X, where X is
+                        0 or 3
+
 --css.font X            Use CSS Fonts level X, where X is 0, 3, 4 or 5
 
 --css.frag X            Use CSS Fragmentation level X, where X is 0, 3
@@ -132,10 +135,10 @@ line, the "no-" switch always applies.
                             2.0   CSS 2.0
                             2.1   CSS 2.1
                             2.2   CSS 2.2 (Feb 2022 draft)
-                            3     CSS level 3 (unfinished)
-                            4     CSS level 4 (unfinished)
-                            5     CSS level 5 (unfinished)
-                            6     CSS level 6 (unfinished)
+                            3     CSS level 3 (all level 3)
+                            4     CSS level 4 (all level 4)
+                            5     CSS level 5 (all level 5)
+                            6     CSS level 6 (all level 6)
 
 --general.class         Nitpick class values
 
