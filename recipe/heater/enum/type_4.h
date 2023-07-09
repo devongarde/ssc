@@ -95,6 +95,9 @@ template < > struct type_master < t_css_anim_fill_mode > : four_value < t_css_an
 template < > struct type_master < t_css_border_image_repeat > : four_value < t_css_border_image_repeat, e_css_border_image_repeat, sz_repeat, sz_round, sz_space_word, sz_stretch >
 { using four_value < t_css_border_image_repeat, e_css_border_image_repeat, sz_repeat, sz_round, sz_space_word, sz_stretch > :: four_value; };
 
+template < > struct type_master < t_css_flex_direction > : four_value < t_css_flex_direction, e_css_flex_direction, sz_column, sz_column_reverse, sz_row, sz_row_reverse >
+{ using four_value < t_css_flex_direction, e_css_flex_direction, sz_column, sz_column_reverse, sz_row, sz_row_reverse > :: four_value; };
+
 template < > struct type_master < t_css_fn_round_t > : four_value < t_css_fn_round_t, e_css_fn_round_t, sz_down, sz_nearest, sz_to_zero, sz_up >
 { using four_value < t_css_fn_round_t, e_css_fn_round_t, sz_down, sz_nearest, sz_to_zero, sz_up > :: four_value; };
 

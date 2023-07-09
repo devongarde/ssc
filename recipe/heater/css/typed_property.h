@@ -139,6 +139,10 @@ template < > inline void typed_property < t_css_anim_base, ec_animation_name > :
 {   void validate_animation_name (type_master < t_css_anim_base >& cab, arguments& args);
     if (iiu_ == iiu_none) validate_animation_name (*this, args); }
 
+template < > inline void typed_property < t_css_counter_style_name, ec_system > :: validate (arguments& args)
+{   void validate_counter_style_name (type_master < t_css_counter_style_name >& cab, arguments& args);
+    validate_counter_style_name (*this, args); }
+
 template < > inline void typed_property < t_css_palette, ec_font_palette > :: validate (arguments& args)
 {   void validate_palette (type_master < t_css_palette >& cab, arguments& args);
     validate_palette (*this, args); }
@@ -151,6 +155,8 @@ template < > inline void typed_property < t_css_font_size_4, ec_font_size > :: s
 typedef ::std::shared_ptr < property_base > property_v_ptr;
 property_v_ptr make_property_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const css_token t);
 property_v_ptr make_property_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const css_token t);
+property_v_ptr make_counter_style_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const css_token t);
+property_v_ptr make_counter_style_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const css_token t);
 property_v_ptr make_descriptor_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const css_token t);
 property_v_ptr make_descriptor_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const css_token t);
 property_v_ptr make_feature_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const css_token t);

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>fbl 3 example</title>
+    <LINK rel="stylesheet" href="css-4.css" type="text/css">
+  </head>
+<BODY>
+
+<div style="display:flex">
+
+    <!-- flex item: block child -->
+    <div id="item1">block</div>
+
+    <!-- flex item: floated element; floating is ignored -->
+    <div id="item2" style="float: left;">float</div>
+
+    <!-- flex item: anonymous block box around inline content -->
+    anonymous item 3
+
+    <!-- flex item: inline child -->
+    <span>
+        item 4
+        <!-- flex items do not split around blocks -->
+        <q style="display: block" id=not-an-item>item 4</q>
+        item 4
+    </span>
+</div>
+
+<div>
+  <article id="main">
+    Interesting Stuff to Read
+  </article>
+  <nav>
+    <ul>
+      <li id="nav-about"><a href="#nav-about">About</a>
+        …
+      <li id="nav-projects"><a href="#nav-projects">Projects</a>
+        <ul>
+          <li><a href="…">Art</a>
+          <li><a href="…">Architecture</a>
+          <li><a href="…">Music</a>
+        </ul>
+      <li id="nav-interact"><a href="#nav-interact">Interact</a>
+        …
+    </ul>
+  </nav>
+</div>
+<footer>
+…
+</footer>
+
+</body>
+</html>

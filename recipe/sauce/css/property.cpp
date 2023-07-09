@@ -52,34 +52,6 @@ void property::parse (arguments& args, const int from, const int to)
             bool xs = false, xk = false, xn = false, xi = false, fn = false, clean = true;
             int kc = 0, var = b, bang = -1;
             if (! args.prep_for_make (nits, from, b, to, var, bang, p, xs, xk, xn, xi, fn, clean, kc, val_)) return;
-/*
-            int pre = to; css_token p = ct_error;
-            const int var = b;
-            const int bang = token_find (args.t_, ct_bang, b, to, &pre);
-            if (bang < 0) pre = to;
-            bool xs = false, xk = false, xn = false, xi = false, fn = false, clean = true;
-            const bool nff = (args.st_ == nullptr) || (args.st_ -> get () != css_font_face);
-            int kc = 0;
-            while (((to == -1) || (b <= pre)) && (b > 0) && (args.t_.at (b).t_ != ct_curly_ket))
-            {   if ((p == ct_error) || (p <= ct_comment)) p = args.t_.at (b).t_;
-                switch (args.t_.at (b).t_)
-                {   case ct_keyword : xk = true; break;
-                    case ct_identifier : xi = true; break;
-                    case ct_number : xn = true; break;
-                    case ct_string : xs = true; break;
-                    case ct_round_brac : fn = true; break;
-                    case ct_comma: clean = nff; break;
-                    default : break; }                    
-                if (clean) val_ += tkn_rpt (args.t_.at (b));
-                b = next_token_at (args.t_, b, pre);
-                ++kc; }
-            if (val_.length () >= 5)
-                if (val_.at (0) == '-')
-                    if (    ((val_.length () >= 6) && (val_.substr (1, 5) == "khtml")) ||
-                            ((val_.length () >= 5) && (val_.substr (1, 4) == "atsc")))
-                    {   nits.pick (nit_bespoke_property, es_warning, ec_css, quote (val_), ": apologies, but " PROG " cannot verify bespoke properties.");
-                        return; }
-*/
             prop_ = make_property_v_ptr (args, var, to, nits, k, val_, p);
             if (prop_.get () != nullptr)
             {   const e_css_property pr (prop_ -> get ());
@@ -99,46 +71,6 @@ void property::parse (arguments& args, const int from, const int to)
                 flags_ = pp.flags ();
                 args.check_flags (nits, flags_, pp.name ());
                 args.check_flags (nits, flags_, pp.name (), xk, xi, xn, xs, fn, clean, kc, args.t_.at (k).val_, val_);
-/*
-                if (! fn)
-                {   if (xs && ((flags_ & CF_NOT_STRING) == CF_NOT_STRING))
-                        nits.pick (nit_css_syntax, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, quote (val_), ": should not be a string");
-                    if (((flags_ & CF_EXPECT_FN) == CF_EXPECT_FN))
-                        nits.pick (nit_css_syntax, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, quote (val_), ": function expected"); }
-                if (((flags_ & CF_EXPECT_FN) != CF_EXPECT_FN) || ! fn)
-                {   if ((kc > 1) && ((flags_ & (CF_EXPECT_STRING | CF_EXPECT_NUMBER)) != 0))
-                        nits.pick (nit_css_syntax, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, "a single value is sought");
-                    if (xs) if ((flags_ & CF_EXPECT_KEYWORDS) == CF_EXPECT_KEYWORDS)
-                        nits.pick (nit_css_syntax, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, quote (val_), ": should be a keyword");
-                    if (xk || xn || xi) if ((flags_ & CF_EXPECT_STRING) == CF_EXPECT_STRING)
-                        nits.pick (nit_css_syntax, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, quote (val_), ": should be a string");
-                    if (! xn) if ((flags_ & CF_EXPECT_NUMBER) == CF_EXPECT_NUMBER)
-                        nits.pick (nit_css_syntax, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, quote (val_), ": should be a number"); }
-                if (args.snippet_ && ((flags_ & CF_SVG) == CF_SVG))
-                    if (! args.eb_.test (elem_svg))
-                        nits.pick (nit_svg_version, ed_svg_1_1, "Appendix N: Property Index", es_warning, ec_css, quote (args.t_.at (k).val_), " is an SVG property, which requires at least an ancestral <SVG> element");
-                if (args.st_ != nullptr) switch (args.st_ -> get ())
-                {   case css_font_face :
-                        if ((flags_ & (CF_MUST_FONT_FACE | CF_MAY_FONT_FACE)) == 0)
-                            nits.pick (nit_css_syntax, es_error, ec_css, quote (args.t_.at (k).val_), " cannot be used with @font-face");
-                        break;
-                    case css_font_feature_values :
-                        if ((flags_ & (CF_MUST_FONT_FV | CF_MAY_FONT_FV)) == 0)
-                            nits.pick (nit_css_syntax, es_error, ec_css, quote (args.t_.at (k).val_), " cannot be used with @font-feature-values");
-                        break;
-                    case css_font_palette_values :
-                        if ((flags_ & (CF_MUST_PALETTE | CF_MAY_PALETTE)) == 0)
-                            nits.pick (nit_css_syntax, es_error, ec_css, quote (args.t_.at (k).val_), " cannot be used with @font-palette-values");
-                        break;
-                    default :
-                        break; }
-                else if ((flags_ & CF_MUST_FONT_FACE) == CF_MUST_FONT_FACE)
-                    nits.pick (nit_css_syntax, es_error, ec_css, quote (args.t_.at (k).val_), " can only be used with @font-face");
-                else if ((flags_ & CF_MUST_FONT_FV) == CF_MUST_FONT_FV)
-                    nits.pick (nit_css_syntax, ed_css_font_4, "6. Font Feature Properties", es_error, ec_css, quote (args.t_.at (k).val_), " can only be used with @font-feature-values");
-                else if ((flags_ & CF_MUST_PALETTE) == CF_MUST_PALETTE)
-                    nits.pick (nit_css_syntax, ed_css_font_4, "9. Colour Font Support", es_error, ec_css, quote (args.t_.at (k).val_), " can only be used with @font-palette-values");
-*/
                 if (pp.first ().css_ui () > args.v_.css_ui ())
                     nits.pick (nit_css_version, ed_css_ui_3, "3.1. Changing the Box Model: the box-sizing property", es_error, ec_css, quote (args.t_.at (k).val_), " requires CSS Basic User Interface level 3");
                 static elem eca (elem_css_all);

@@ -56,7 +56,10 @@ void descriptor::parse (arguments& args, const e_css_statement cs, const int fro
             if (! args.prep_for_make (nits, from, b, to, var, bang, p, xs, xk, xn, xi, fn, clean, kc, val_)) return;
             if (bang > 0) nits.pick (nit_weight, es_warning, ec_css, "weights cannot be applied to descriptors.");
             switch (args.cs ())
-            {   case css_font_face :
+            {   case css_counter_style :
+                    dsc_ = make_counter_style_v_ptr (args, var, to, nits, k, val_, p);
+                    break;
+                case css_font_face :
                     dsc_ = make_descriptor_v_ptr (args, var, to, nits, k, val_, p);
                     break;
                 case css_font_feature_values :

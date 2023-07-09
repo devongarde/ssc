@@ -32,7 +32,7 @@ class css_group
     page& page_;
     mcss_t mcss_;
     dst_ptr snippets_;
-    sstr_t page_name_, layer_, keyframe_, palette_, font_family_;
+    sstr_t counter_style_, font_family_, keyframe_, layer_, page_name_, palette_;
     sstr_t annotation_, character_variant_, historical_form_, ornament_, swash_, styleset_, stylistic_;
     namespaces_ptr ns_;
     ustr_t custom_media_;
@@ -59,10 +59,14 @@ public:
     smsid_t& custom_prop () { return custom_prop_; }
     const page& get_page () const { return page_; }
     page& get_page () { return page_; }
-    const sstr_t& page_name () const { return page_name_; }
-    sstr_t& page_name () { return page_name_; }
+    const sstr_t& counter_style () const { return counter_style_; }
+    sstr_t& counter_style () { return counter_style_; }
     const sstr_t& keyframe () const { return keyframe_; }
     sstr_t& keyframe () { return keyframe_; }
+    const sstr_t& palette () const { return palette_; }
+    sstr_t& palette () { return palette_; }
+    const sstr_t& page_name () const { return page_name_; }
+    sstr_t& page_name () { return page_name_; }
     const sstr_t& layer () const { return layer_; }
     sstr_t& layer () { return layer_; }
     bool told () const { return told_; }

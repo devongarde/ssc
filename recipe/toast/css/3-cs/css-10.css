@@ -1,0 +1,8 @@
+﻿details > summary {
+  display: list-item;
+  list-style: disclosure-closed inside;
+}
+
+details[open] > summary {
+  list-style: disclosure-open inside;
+}

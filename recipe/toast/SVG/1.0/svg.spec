@@ -416,6 +416,7 @@ PASS ../toast/SVG/1.0/use-7.svg
 1 xhtml_1_0
 6 use_quote_code
 10 unrecognised_value
+12 unrecognised_value unrecognised_value
 
 PASS ../toast/SVG/1.0/use-8.svg
 0 title_required

@@ -136,12 +136,26 @@ template < e_type TYPE, class SZ, int F = BS_FN > struct string_vector : public 
             ss << s; }
         ss << '"'; } };
 
-template < e_type TYPE > struct string_vector < TYPE, sz_space_char > : public string_vector_base < TYPE >
+template < e_type TYPE > struct string_vector < TYPE, sz_space_char, BS_FN > : public string_vector_base < TYPE >
 {   using string_vector_base < TYPE > :: string_vector_base;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector_base < TYPE > :: set_value (nits, v, s);
         if (string_vector_base < TYPE > :: good ())
             string_vector_base < TYPE > :: value_ = uq2 (string_vector_base < TYPE > :: get_string (), BS_FN, " "); }
+    void shadow (::std::stringstream& ss, const html_version& , element* )
+    {   ss << "=\""; bool first = true;
+        for (auto s : string_vector_base < TYPE > :: value_)
+        {   if (! first) ss << ' ';
+            first = false;
+            ss << s; }
+        ss << '"'; } };
+
+template < e_type TYPE > struct string_vector < TYPE, sz_space_char, UQ_TRIM > : public string_vector_base < TYPE >
+{   using string_vector_base < TYPE > :: string_vector_base;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   string_vector_base < TYPE > :: set_value (nits, v, s);
+        if (string_vector_base < TYPE > :: good ())
+            string_vector_base < TYPE > :: value_ = uq2 (string_vector_base < TYPE > :: get_string (), UQ_TRIM, " "); }
     void shadow (::std::stringstream& ss, const html_version& , element* )
     {   ss << "=\""; bool first = true;
         for (auto s : string_vector_base < TYPE > :: value_)

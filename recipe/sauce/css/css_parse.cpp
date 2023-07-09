@@ -37,7 +37,7 @@ void bonk (vtt_t& vt, css_token t, const int line, ::std::string& s, ::std::stri
     if (t == ct_root) commented = sgml_cmt = xml_cmt = false;
     bool shush = false;
     if (! s.empty ())
-    {   if ((s.length () > 1) && ((s.at (0) == '"') || (s.at (0) == '\'')) && (s.at (s.length () - 1) == s.at (0)))
+    {   if ((s.length () > 1) && ((s.at (0) == '"') || (s.at (0) == '\'') || (s.at (0) == '\\')) && (s.at (s.length () - 1) == s.at (0)))
         {   vt.emplace_back (ct_string, line, x, uq3 (s)); shush = true; }
         else if ((s.length () == 1) && (s.at (0) == '-'))
             vt.emplace_back (ct_dash, line, x);
@@ -386,8 +386,8 @@ bool css::parse (const ::std::string& content, const bool x)
 {   switch (t)
     {   case ct_keyword :
         case ct_identifier :
-        case ct_number :
-        case ct_string : return s; break;
+        case ct_number : return s;
+        case ct_string : return s;
         case ct_slash : return "/";
         case ct_splat : return "*";
         case ct_curly_brac : return "{";

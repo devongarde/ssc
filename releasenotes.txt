@@ -3,6 +3,11 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.29
+- CSS Counter Style 3
+- CSS Flexible Box Layout 3
+- underlying work
+
 0.1.28
 - CSS Fonts 3
 - CSS Fonts 4 (December 2021 draft)

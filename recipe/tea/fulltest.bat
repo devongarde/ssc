@@ -23,6 +23,8 @@ ssc.exe -f ../toast/css/3-colour/css.conf
 ssc.exe -f ../toast/css/4-colour/css.conf
 ssc.exe -f ../toast/css/5-colour/css.conf
 ssc.exe -f ../toast/css/3-compositing/css.conf
+ssc.exe -f ../toast/css/3-cs/css.conf
+ssc.exe -f ../toast/css/3-fbl/css.conf
 ssc.exe -f ../toast/css/3-font/css.conf
 ssc.exe -f ../toast/css/4-font/css.conf
 ssc.exe -f ../toast/css/5-font/css.conf

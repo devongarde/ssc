@@ -910,6 +910,14 @@ void html_version::css_compositing (const int n)
 {   if (n > 0) set_ext2 (H2_CSS_COMPOSITING);
     else reset_ext2 (H2_CSS_COMPOSITING); }
 
+int html_version::css_counter_style () const
+{   if (any_ext2 (H2_CSS_CS_3)) return 3;
+    return 0; }
+
+void html_version::css_counter_style (const int n)
+{   if (n > 0) set_ext2 (H2_CSS_CS_3);
+    else reset_ext2 (H2_CSS_CS_3); }
+
 int html_version::css_custom () const
 {   if (any_ext2 (H2_CSS_CUSTOM)) return 3;
     return 0; }
@@ -925,6 +933,14 @@ int html_version::css_ease () const
 void html_version::css_ease (const int n)
 {   if (n > 0) set_ext2 (H2_CSS_EASE);
     else reset_ext2 (H2_CSS_EASE); }
+
+int html_version::css_fbl () const
+{   if (any_ext2 (H2_CSS_FBL_3)) return 3;
+    return 0; }
+
+void html_version::css_fbl (const int n)
+{   if (n > 0) set_ext2 (H2_CSS_FBL_3);
+    else reset_ext2 (H2_CSS_FBL_3); }
 
 int html_version::css_font () const
 {   if ((ext2 () & H2_CSS_FONT_5) == H2_CSS_FONT_5) return 5;   
@@ -1021,7 +1037,8 @@ void html_version::css_value (const int n)
 bool html_version::is_css_compatible (const flags_t& f) const
 {   if ((ext2_ & H2_FULL_CSS_MASK) == 0) return true;
     if ((f & H2_FULL_CSS_MASK) == 0) return true;
-    return ((ext2_ & f) != 0); }
+    if ((ext2_ & f) != 0) return true;
+    return (((f & H2_CSS_SVG) != 0) && has_svg ()); }
 
 bool html_version::is_css_compatible (nitpick& nits, const flags_t& f) const
 {   if (is_css_compatible (f)) return true;
@@ -1051,6 +1068,7 @@ bool html_version::is_css_compatible (nitpick& nits, const flags_t& f) const
         if (css_cascade () > 0) append (res, ", ", long_level ("Cascade", H2_CSS_CASCADE_3, H2_CSS_CASCADE_4, H2_CSS_CASCADE_5, H2_CSS_CASCADE_6));
         if (css_colour () > 0) append (res, ", ", long_level ("Colour", H2_CSS_COLOUR_3, H2_CSS_COLOUR_4, H2_CSS_COLOUR_5));
         if (css_compositing () > 0) append (res, ", ", ::std::string ("Compositing and Blending"));
+        if (css_counter_style () > 0) append (res, ", ", ::std::string ("Counter Style"));
         if (css_custom () > 0) append (res, ", ", ::std::string ("Custom Properties for Cascading Variables"));
         if (css_ease () > 0) append (res, ", ", ::std::string ("Easing Functions"));
         if (css_fragmentation () > 0) append (res, ", ", long_level ("Fragmentation", H2_CSS_FRAG_3, H2_CSS_FRAG_4));
@@ -1060,7 +1078,12 @@ bool html_version::is_css_compatible (nitpick& nits, const flags_t& f) const
         if (css_style () > 0) append (res, ", ", ::std::string ("Style Attributes"));
         if (css_syntax () > 0) append (res, ", ", ::std::string ("Syntax Module"));
         if (css_ui () > 0) append (res, ", ", long_level ("Basic User Interface", H2_CSS_UI_3, H2_CSS_UI_4));
-        if (css_value () > 0) append (res, ", ", long_level ("Values and Units", H2_CSS_VALUE_3, H2_CSS_VALUE_4)); }
+        if (css_value () > 0) append (res, ", ", long_level ("Values and Units", H2_CSS_VALUE_3, H2_CSS_VALUE_4));
+        if (all_ext2 (H2_CSS_SVG_21)) append (res, ", ", "and SVG 2.1"); 
+        else if (all_ext2 (H2_CSS_SVG_20)) append (res, ", ", "and SVG 2.0"); 
+        else if (all_ext2 (H2_CSS_SVG_12)) append (res, ", ", "and SVG 1.2"); 
+        else if (all_ext2 (H2_CSS_SVG_11)) append (res, ", ", "and SVG 1.1"); 
+        else if (all_ext2 (H2_CSS_SVG_10)) append (res, ", ", "and SVG 1.0"); } 
     return res; }
 
 bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e)
