@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/flags.h"
 #include "css/group.h"
 
-void descriptor::parse (arguments& args, const e_css_statement cs, const int from, const int to)
+void descriptor::parse (arguments& args, const e_css_statement , const int from, const int to)
 {   PRESUME ((to < 0) || (from <= to), __FILE__, __LINE__);
     VERIFY_NOT_NULL (args.st_, __FILE__, __LINE__);
     PRESUME (args.cs () != css_error, __FILE__, __LINE__);
@@ -77,7 +77,7 @@ void descriptor::parse (arguments& args, const e_css_statement cs, const int fro
                 pp.set (pr);
                 flags_ = pp.flags ();
                 args.check_flags (nits, flags_, pp.name ());
-                args.check_flags (nits, flags_, pp.name (), xk, xi, xn, xs, fn, clean, kc, args.t_.at (k).val_, val_);
+                args.check_flags (nits, flags_, pp.name (), xk, xi, xn, xs, fn, kc, args.t_.at (k).val_, val_);
                 if (pp.first ().css_ui () > args.v_.css_ui ())
                     nits.pick (nit_css_version, ed_css_ui_3, "3.1. Changing the Box Model: the box-sizing property", es_error, ec_css, quote (args.t_.at (k).val_), " requires CSS Basic User Interface level 3");
                 static elem eca (elem_css_all);

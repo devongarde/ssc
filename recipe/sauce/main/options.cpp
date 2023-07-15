@@ -268,6 +268,8 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (GENERAL MACROSTART, ::boost::program_options::value < ::std::string > () -> default_value ("{{"), "Start of template macro (by default, the '{{' in '{{macro}}').")
         (GENERAL MACROEND, ::boost::program_options::value < ::std::string > () -> default_value ("}}"), "End of template macro (by default, the '}}' in '{{macro}}').")
 
+        (CSS COND_RULE, ::boost::program_options::value < int > (), "CSS Conditional Rule level (0, 3, 4, or 5).")
+
         (JSONLD EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "Extension for JSON-LD files; may be repeated.")
         (JSONLD VERIFY, ::boost::program_options::bool_switch (), "Experimental: Verify JSON-LD.")
         (JSONLD DONT VERIFY, ::boost::program_options::bool_switch (), "Do not verify JSON-LD.")
@@ -347,11 +349,15 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
 
         (CSS ANIMATION, ::boost::program_options::value < int > (), "CSS Animation level (0 or 3).")
         (CSS BACKGROUND, ::boost::program_options::value < int > (), "CSS Background Borders level (0 or 3).")
+        (CSS BOX_ALIGN, ::boost::program_options::value < int > (), "CSS Box Alignment level (0 or 3).")
+        (CSS BOX_MODEL, ::boost::program_options::value < int > (), "CSS Box Model level (0, 3 or 4).")
+        (CSS BOX_SIZING, ::boost::program_options::value < int > (), "CSS Box Sizing level (0 or 3).")
         (CSS CASCADE, ::boost::program_options::value < int > (), "CSS Cascade & Inheritance level (0, 3, 4, 5 or 6).")
         (CSS COLOUR, ::boost::program_options::value < int > (), "CSS Colour level (0, 3, 4, or 5).")
         (CSS COMPOSITING, ::boost::program_options::value < int > (), "CSS Compositing and Blending level (0 or 3).")
         (CSS CS, ::boost::program_options::value < int > (), "CSS Counter Style level (0 or 3).")
         (CSS CUSTOM, ::boost::program_options::value < int > (), "CSS Custom level (0 or 3).")
+        (CSS DISPLAY, ::boost::program_options::value < int > (), "CSS Display level (0 or 3).")
         (CSS EASE, ::boost::program_options::value < int > (), "CSS Ease level (0 or 3).")
         (CSS EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "CSS files have this extension (default css); may be repeated.")
         (CSS EXTERNAL, ::boost::program_options::bool_switch (), "Nitpick css files imported from external sites.")
@@ -360,10 +366,14 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (CSS FONT, ::boost::program_options::value < int > (), "CSS Font level (0, 3, 4, or 5).")
         (CSS FRAG, ::boost::program_options::value < int > (), "CSS Fragmentation level (0, 3, or 4).")
         (CSS MEDIA, ::boost::program_options::value < int > (), "CSS Media level (0, 3, 4, or 5).")
+        (CSS MULTI_COLUMN, ::boost::program_options::value < int > (), "CSS Multi-Column level (0 or 3).")
         (CSS NAMESPACE, ::boost::program_options::value < int > (), "CSS Namespace level (0 or 3).")
+        (CSS OVERFLOH, ::boost::program_options::value < int > (), "CSS Overflow level (0 or 3).")
+        (CSS POSITION, ::boost::program_options::value < int > (), "CSS Positions level (0 or 3).")
         (CSS SELECTOR, ::boost::program_options::value < int > (), "CSS Selector level (0, 3, or 4).")
         (CSS STYLE, ::boost::program_options::value < int > (), "CSS Style level (0 or 3).")
         (CSS SYNTAX, ::boost::program_options::value < int > (), "CSS Syntax level (0 or 3).")
+        (CSS TRANSITION, ::boost::program_options::value < int > (), "CSS Transitions level (0 or 3).")
         (CSS UI, ::boost::program_options::value < int > (), " CSS UI level (0, 3, or 4).")
         (CSS VALUE, ::boost::program_options::value < int > (), "CSS Values and Units level (0, 3, or 4).")
         (CSS VERIFY, ::boost::program_options::bool_switch (), "Process .css files.")
@@ -1013,20 +1023,29 @@ void options::contextualise (nitpick& nits)
         int n = 0;
         if (get_css_level (n, nits, CSS ANIMATION, "Animation", 4)) context.css_animation (n);
         if (get_css_level (n, nits, CSS BACKGROUND, "Background Border", 3, true)) context.css_background (n);
+        if (get_css_level (n, nits, CSS BOX_ALIGN, "Background Alignment", 3)) context.css_box_alignment (n);
+        if (get_css_level (n, nits, CSS BOX_MODEL, "Background Model", 4)) context.css_box_model (n);
+        if (get_css_level (n, nits, CSS BOX_SIZING, "Background Sizing", 3)) context.css_box_sizing (n);
         if (get_css_level (n, nits, CSS CASCADE, "Cascade & Inheritance", 6)) context.css_cascade (n);
         if (get_css_level (n, nits, CSS COLOUR, "Colour", 5)) context.css_colour (n);
         if (get_css_level (n, nits, CSS COMPOSITING, "Compositing", 3, true)) context.css_compositing (n);
+        if (get_css_level (n, nits, CSS COND_RULE, "Conditional Rule", 5)) context.css_conditional_rule (n);
         if (get_css_level (n, nits, CSS CS, "Counter Style", 3)) context.css_counter_style (n);
         if (get_css_level (n, nits, CSS CUSTOM, "Custom", 3, true)) context.css_custom (n);
+        if (get_css_level (n, nits, CSS DISPLAY, "Display", 3)) context.css_display (n);
         if (get_css_level (n, nits, CSS EASE, "Ease", 4, true)) context.css_ease (n);
         if (get_css_level (n, nits, CSS FBL, "Flexible Box Layout", 3)) context.css_fbl (n);
         if (get_css_level (n, nits, CSS FONT, "Font", 5)) context.css_font (n);
         if (get_css_level (n, nits, CSS FRAG, "Fragmentation", 4)) context.css_fragmentation (n);
         if (get_css_level (n, nits, CSS MEDIA, "Media", 5)) context.css_media (n);
+        if (get_css_level (n, nits, CSS MULTI_COLUMN, "Multi-Column", 3, true)) context.css_multi_column (n);
         if (get_css_level (n, nits, CSS NAMESPACE, "Namespace", 3)) context.css_namespace (n);
+        if (get_css_level (n, nits, CSS OVERFLOH, "Overflow", 3)) context.css_overflow (n);
+        if (get_css_level (n, nits, CSS POSITION, "Overflow", 3)) context.css_position (n);
         if (get_css_level (n, nits, CSS SELECTOR, "Selector", 4)) context.css_selector (n);
         if (get_css_level (n, nits, CSS STYLE, "Style", 3)) context.css_style (n);
         if (get_css_level (n, nits, CSS SYNTAX, "Syntax", 3)) context.css_syntax (n);
+        if (get_css_level (n, nits, CSS TRANSITION, "Transition", 3, true)) context.css_transition (n);
         if (get_css_level (n, nits, CSS UI, "UI", 4)) context.css_ui (n);
         if (get_css_level (n, nits, CSS VALUE, "VALUE", 4)) context.css_value (n);
 
@@ -1448,21 +1467,30 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
 
     if (var_.count (CSS ANIMATION)) res << CSS ANIMATION ": " << var_ [CSS ANIMATION].as < int > () << "\n";
     if (var_.count (CSS BACKGROUND)) res << CSS BACKGROUND ": " << var_ [CSS BACKGROUND].as < int > () << "\n";
+    if (var_.count (CSS BOX_ALIGN)) res << CSS BOX_ALIGN ": " << var_ [CSS BOX_ALIGN].as < int > () << "\n";
+    if (var_.count (CSS BOX_MODEL)) res << CSS BOX_MODEL ": " << var_ [CSS BOX_MODEL].as < int > () << "\n";
+    if (var_.count (CSS BOX_SIZING)) res << CSS BOX_SIZING ": " << var_ [CSS BOX_SIZING].as < int > () << "\n";
     if (var_.count (CSS CASCADE)) res << CSS CASCADE ": " << var_ [CSS CASCADE].as < int > () << "\n";
     if (var_.count (CSS COLOUR)) res << CSS COLOUR ": " << var_ [CSS COLOUR].as < int > () << "\n";
     if (var_.count (CSS COMPOSITING)) res << CSS COMPOSITING ": " << var_ [CSS COMPOSITING].as < int > () << "\n";
+    if (var_.count (CSS COND_RULE)) res << CSS COND_RULE ": " << var_ [CSS COND_RULE].as < int > () << "\n";
     if (var_.count (CSS CS)) res << CSS CS ": " << var_ [CSS CS].as < int > () << "\n";
     if (var_.count (CSS CUSTOM)) res << CSS CUSTOM ": " << var_ [CSS CUSTOM].as < int > () << "\n";
+    if (var_.count (CSS DISPLAY)) res << CSS DISPLAY ": " << var_ [CSS DISPLAY].as < int > () << "\n";
     if (var_.count (CSS EASE)) res << CSS EASE ": " << var_ [CSS EASE].as < int > () << "\n";
     if (var_.count (CSS EXTENSION)) res << CSS EXTENSION ": "; pvs (res, var_ [CSS EXTENSION].as < vstr_t > ()); res << "\n";
     if (var_.count (CSS FBL)) res << CSS FBL ": " << var_ [CSS FBL].as < int > () << "\n";
     if (var_.count (CSS FONT)) res << CSS FONT ": " << var_ [CSS FONT].as < int > () << "\n";
     if (var_.count (CSS FRAG)) res << CSS FRAG ": " << var_ [CSS FRAG].as < int > () << "\n";
     if (var_.count (CSS MEDIA)) res << CSS MEDIA ": " << var_ [CSS MEDIA].as < int > () << "\n";
+    if (var_.count (CSS MULTI_COLUMN)) res << CSS MULTI_COLUMN ": " << var_ [CSS MULTI_COLUMN].as < int > () << "\n";
     if (var_.count (CSS NAMESPACE)) res << CSS NAMESPACE ": " << var_ [CSS NAMESPACE].as < int > () << "\n";
+    if (var_.count (CSS OVERFLOH)) res << CSS OVERFLOH ": " << var_ [CSS OVERFLOH].as < int > () << "\n";
+    if (var_.count (CSS POSITION)) res << CSS POSITION ": " << var_ [CSS POSITION].as < int > () << "\n";
     if (var_.count (CSS SELECTOR)) res << CSS SELECTOR ": " << var_ [CSS SELECTOR].as < int > () << "\n";
     if (var_.count (CSS STYLE)) res << CSS STYLE ": " << var_ [CSS STYLE].as < int > () << "\n";
     if (var_.count (CSS SYNTAX)) res << CSS SYNTAX ": " << var_ [CSS SYNTAX].as < int > () << "\n";
+    if (var_.count (CSS TRANSITION)) res << CSS TRANSITION ": " << var_ [CSS TRANSITION].as < int > () << "\n";
     if (var_.count (CSS UI)) res << CSS UI ": " << var_ [CSS UI].as < int > () << "\n";
     if (var_.count (CSS VALUE)) res << CSS VALUE ": " << var_ [CSS VALUE].as < int > () << "\n";
     if (var_.count (CSS VERIFY)) res << CSS VERIFY ": " << var_ [CSS VERIFY].as < bool > () << "\n";

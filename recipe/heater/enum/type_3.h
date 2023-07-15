@@ -86,6 +86,12 @@ template < > struct type_master < t_css_azimuth_lri > : three_value < t_css_azim
 template < > struct type_master < t_css_border_collapse > : three_value < t_css_border_collapse, e_css_border_collapse, sz_collapse, sz_inherit, sz_separate >
 { using three_value < t_css_border_collapse, e_css_border_collapse, sz_collapse, sz_inherit, sz_separate > :: three_value; };
 
+template < > struct type_master < t_css_column_fill > : three_value < t_css_column_fill, e_css_column_fill, sz_auto, sz_balance, sz_balance_all >
+{ using three_value < t_css_column_fill, e_css_column_fill, sz_auto, sz_balance, sz_balance_all > :: three_value; };
+
+template < > struct type_master < t_css_display_outside > : three_value < t_css_display_outside, e_css_display_outside, sz_block, sz_inline, sz_run_in >
+{ using three_value < t_css_display_outside, e_css_display_outside, sz_block, sz_inline, sz_run_in > :: three_value; };
+
 template < > struct type_master < t_css_empty_cells > : three_value < t_css_empty_cells, e_css_empty_cells, sz_hide, sz_inherit, sz_show >
 { using three_value < t_css_empty_cells, e_css_empty_cells, sz_hide, sz_inherit, sz_show > :: three_value; };
 

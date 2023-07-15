@@ -185,6 +185,8 @@ typedef enum {
 
 typedef enum { bsb_baseline, bsb_bottom, bsb_centre, bsb_top, bsb_sub, bsb_super, bsb_inherit } e_baselineshift;
 typedef enum { as_audio, as_document, as_embed, as_fetch, as_font, as_image, as_object, as_script, as_style, as_track, as_video, as_worker } e_as;
+typedef enum { eas_auto, eas_smooth } e_auto_smooth;
+typedef enum { as_auto, as_stable } e_auto_stable;
 typedef enum { be_alternative, be_scroll, be_slide } e_behaviour;
 typedef enum { bk_asp, bk_cdata, bk_code, bk_comment, bk_doctype, bk_node, bk_num, bk_php, bk_ssi, bk_stylesheet, bk_text, bk_xml } bk_status;
 typedef enum { b_true, b_false } e_bool;
@@ -383,7 +385,7 @@ typedef enum {  csk_context,
 
 typedef enum { caa_always, caa_auto, caa_avoid, caa_inherit, caa_left, caa_right } e_css_aaalri;
 typedef enum { cai_auto, cai_avoid, cai_inherit } e_css_aai;
-typedef enum { ecaci_centre, ecac_flex_end, ecac_flex_start, ecac_space_around, ecac_space_between, ecac_stretch } e_css_align_content;
+typedef enum { ecac_baseline, ecac_centre, ecac_flex_end, ecac_flex_start, ecac_space_around, ecac_space_between, ecac_space_evenly, ecac_stretch } e_css_align_content;
 typedef enum { ecai_baseline, ecai_centre, ecai_flex_end, ecai_flex_start, ecai_stretch } e_css_align_items;
 typedef enum { eat_any, eat_begins, eat_identical, eat_contains, eat_ends, eat_in_list, eat_is, eat_lang, eat_uncased } e_css_attribute_value;
 typedef enum { ecas_inherit, eca_xx_small, eca_x_small, eca_small, eca_medium, eca_large, eca_x_large, eca_xx_large, eca_xxx_large } e_css_absolute_size;
@@ -397,7 +399,6 @@ typedef enum { cae_centre, cae_centre_left, cae_centre_right, cae_far_left, cae_
 typedef enum { cab_behind } e_css_azimuth_be;
 typedef enum { lri_leftwards, lri_inherit, lri_rightwards } e_css_azimuth_lri;
 typedef enum { ecba_inherit, ecba_fixed, ecba_local, ecba_scroll } e_css_background_attachment;
-typedef enum { eccl_border_box, eccl_content_box, eccl_padding_box } e_css_background_box;
 typedef enum { ecbr_inherit, ecbr_no_repeat, ecbr_repeat, ecbr_repeat_x, ecbr_repeat_y, ecbr_round, ecbr_space } e_css_background_repeat;
 typedef enum {  ecbm_colour, colour_darken, ecbm_colour_burn, ecbm_colour_dodge, ecbm_darken, ecbm_difference, ecbm_exclusion, ecbm_hard_light, ecbm_hue, ecbm_lighten, ecbm_luminosity,
                 ecbm_multiply, ecbm_normal, ecbm_overlay, ecbm_saturation, ecbm_screen, ecbm_soft_light } e_css_blend_mode;
@@ -438,6 +439,8 @@ typedef enum {  csc_aliceblue, csc_antiquewhite, csc_aqua, csc_aquamarine, csc_a
                 csc_mark, csc_marktext, csc_selecteditem, csc_selecteditemtext, csc_visitedtext,
                 csc_currentcolour } e_css_colour;
 typedef enum { econ_whoopsie, econ_attr, econ_close_quote, econ_counter, econ_counters, econ_inherit, econ_open_quote, econ_no_close_quote, econ_no_open_quote, econ_url } e_css_content_enum;
+typedef enum { eccb_border_box, eccb_content_box, eccb_fill_box, eccb_padding_box, eccb_stroke_box, eccb_view_box } e_css_coord_box;
+typedef enum { eccp_centre, eccp_end, eccp_flex_end, eccp_flex_start, eccp_start } e_css_content_position;
 typedef enum {  eccs_inherit, eccs_initial, eccs_none, eccs_revert, eccs_revert_layer, eccs_unset,
                 eccs_arabic_indic, eccs_armenian, eccs_bengali, eccs_cambodian, eccs_circle, eccs_cjk_decimal, eccs_cjk_earthly_branch, eccs_cjk_heavenly_stem,
                 eccs_decimal, eccs_decimal_leading_zero, eccs_devanagari, eccs_disc, eccs_disclosure_closed, eccs_disclosure_open, eccs_ethiopic_numeric, eccs_georgian,
@@ -461,9 +464,17 @@ typedef enum {  ece_alias, ece_all_scroll, ece_auto,
                 ece_vertical_text,
                 ece_w_resize, ece_wait,
                 ece_zoom_in, ece_zoom_out } e_css_cursor_e;
+typedef enum { ecc_auto, ecc_balance, ecc_balance_all } e_css_column_fill;
 typedef enum {  ecd_inherit, ecd_block, ecd_compact, ecd_flex, ecd_flex_inline, ecd_inline, ecd_inline_block, ecd_inline_table, ecd_list_item, ecd_marker, ecd_none,
                 ecd_run_in, ecd_table, ecd_table_caption, ecd_table_cell, ecd_table_column, ecd_table_column_group, ecd_table_footer_group, ecd_table_header_group,
                 ecd_table_row, ecd_table_row_group, } e_css_display;
+typedef enum { ecdb_contents, ecdb_none } e_css_display_box;
+typedef enum { ecdf_flow, ecdf_flow_root } e_css_display_flow;
+typedef enum { ecdi_flex, ecdi_flex_inline, ecdi_flow, ecdi_flow_root, ecdi_grid, ecdi_ruby, ecdi_table } e_css_display_inside;
+typedef enum {  ecdi_ruby_base, ecdi_ruby_base_container, ecdi_ruby_text, ecdi_text_container, ecdi_table_caption, ecdi_table_cell, ecdi_table_column,
+                ecdi_table_column_group, ecdi_table_footer_group, ecdi_table_header_group, ecdi_table_row, ecdi_table_row_group } e_css_display_internal;
+typedef enum { ecdl_inline_block, ecdl_inline_flex, ecdl_inline_grid, ecdl_inline_table } e_css_display_legacy;
+typedef enum { ecdo_block, ecdo_inline, ecdo_run_in } e_css_display_outside;
 typedef enum { ece_important } e_css_earnest;
 typedef enum { cee_above, cee_below, cee_higher, cee_inherit, cee_level, cee_lower } e_css_elevation_e;
 typedef enum { cec_hide, cec_inherit, cec_show } e_css_empty_cells;
@@ -538,17 +549,20 @@ typedef enum {  ecgf_inherit, ecf_cursive, ecf_emoji, ecf_fangsong, ecf_fantasy,
                 ecf_ui_sans_serif, ecf_ui_serif } e_css_generic_family;
 typedef enum { ehi_decreasing, ehi_increasing, ehi_longer, ehi_shorter } e_css_hue_interpolation;
 typedef enum { eci_auto, eci_isolate } e_css_isolation;
-typedef enum { ejc_centre, ejc_flex_end, ejc_flex_start, ejc_space_around, ejc_space_between } e_css_justify_content;
+typedef enum { ejc_centre, ejc_flex_end, ejc_flex_start, ejc_space_around, ejc_space_between, ejc_space_evenly, ejc_stretch } e_css_justify_content;
+typedef enum { eclb_border_box, eclb_content_box, eclb_margin_box, eclb_padding_box } e_css_layout_box;
 typedef enum {  ecls_inherit, ecl_circle, ecl_decimal, ecl_disc, ecl_lower_alpha, ecl_lower_roman, ecl_none, ecl_square, ecl_upper_alpha, ecl_upper_roman,
                 ecl_hebrew, ecl_armenian, ecl_georgian, ecl_cjk_ideographic, ecl_hiragana, ecl_katakana, ecl_hira_gana_iroha, ecl_katakana_iroha } e_css_list_style_type;
 typedef enum { eclp_inherit, ecp_inside, ecp_outside } e_css_list_style_position;
 typedef enum { ecmb_auto, ecmb_discard, ecmb_keep } e_css_margin_break;
+typedef enum { emti_block_end, emti_block_start, emti_inline_end, emti_inline_start } e_css_margin_trim_inner;
 typedef enum { ecm_crop, ecm_cross } e_css_mark;
 typedef enum { esz_auto, esz_inherit, esz_landscape, esz_portrait } e_css_orientation;
 typedef enum { eco_auto, eco_hidden, eco_inherit, eco_scroll, eco_visible } e_css_overflow;
+typedef enum { ecpb_border_box, ecpb_content_box, ecpb_fill_box, ecpb_padding_box, ecpb_stroke_box } e_css_paint_box;
 typedef enum { epi_high, epi_inherit, epi_low, epi_medium, epi_x_high, epi_x_low } e_css_pitch_e;
 typedef enum { epo_hsl, epo_hwb, epo_lch, epo_oklch } e_css_polar;
-typedef enum { ecp_absolute, ecp_fixed, ecp_inherit, ecp_relative, ecp_static } e_css_position;
+typedef enum { ecp_absolute, ecp_fixed, ecp_inherit, ecp_relative, ecp_static, ecp_sticky } e_css_position;
 typedef enum {  ec_unknown, ec_context, ec_custom, ec_inherit,
                 ec_accent_colour, ec_additive_symbols, ec_align_content, ec_align_items, ec_align_self, ec_alignment_baseline, ec_all, ec_and, ec_animation, ec_animation_composition, ec_animation_delay,
                     ec_animation_delay_end, ec_animation_delay_start, ec_animation_direction, ec_animation_duration, ec_animation_fill_mode, ec_animation_iteration_count, ec_animation_name,
@@ -613,7 +627,7 @@ typedef enum {  ec_unknown, ec_context, ec_custom, ec_inherit,
                 ec_quotes,
                 ec_r, ec_range, ec_region_fragment, ec_rendering_intent, ec_resize, ec_rest, ec_rest_after, ec_rest_before, ec_richness, ec_right, ec_rotate, ec_row_gap, ec_ruby_align,
                     ec_ruby_merge, ec_ruby_overhang, ec_ruby_position, ec_running, ec_rx, ec_ry,
-                ec_scale, ec_scroll_behavior, ec_scroll_margin, ec_scroll_margin_block, ec_scroll_margin_block_end, ec_scroll_margin_block_start, ec_scroll_margin_bottom,
+                ec_scale, ec_scroll_behaviour, ec_scroll_margin, ec_scroll_margin_block, ec_scroll_margin_block_end, ec_scroll_margin_block_start, ec_scroll_margin_bottom,
                     ec_scroll_margin_inline, ec_scroll_margin_inline_end, ec_scroll_margin_inline_start, ec_scroll_margin_left, ec_scroll_margin_right, ec_scroll_margin_top,
                     ec_scroll_padding, ec_scroll_padding_block, ec_scroll_padding_block_end, ec_scroll_padding_block_start, ec_scroll_padding_bottom, ec_scroll_padding_inline,
                     ec_scroll_padding_inline_end, ec_scroll_padding_inline_start, ec_scroll_padding_left, ec_scroll_padding_right, ec_scroll_padding_top, ec_scroll_snap_align,
@@ -733,6 +747,7 @@ typedef enum { crx_a98_rgb, crx_display_p3, crx_prophoto_rgb, crx_rec2020, crx_s
 typedef enum { ec4_lab, ec4_oklab, ec4_srgb, ec4_srgb_linear, ec4_xyz, ec4_xyz_d50, ec4_xyz_d65 } e_css_rect;
 typedef enum { ecr_inherit, ecr_larger, ecr_smaller } e_css_relative_size;
 typedef enum { ecz_block, ecz_both, ecz_horizontal, ecz_inherit, ecz_inline, ecz_none, ecz_vertical } e_css_resize;
+typedef enum { ecsp_centre, ecsp_end, ecsp_flex_end, ecsp_flex_start, ecsp_self_end, ecsp_self_start, ecsp_start } e_css_self_position;
 typedef enum { csp_inherit, csp_none, csp_normal, csp_spell_out } e_css_speak;
 typedef enum { csae_auto, csae_bullets, csae_numbers, csae_spell_out, csae_words } e_css_speak_as_e;
 typedef enum { ecsh_always, ecsh_inherit, ecsh_once } e_css_speak_header;
@@ -744,6 +759,7 @@ typedef enum {  css_context,
                 css_bottom_centre, css_bottom_left, css_bottom_left_corner, css_bottom_right, css_bottom_right_corner,
                 css_character_variant, css_charset, css_colour_profile, css_counter_style, css_custom_media,
                 css_document,
+                css_else,
                 css_font_feature_values, css_font_face, css_font_palette_values,
                 css_historical_forms,
                 css_import,
@@ -756,6 +772,7 @@ typedef enum {  css_context,
                 css_scope, css_swash, css_styleset, css_stylistic, css_supports,
                 css_top_centre, css_top_left, css_top_left_corner, css_top_right, css_top_right_corner,
                 css_viewport,
+                css_when,
                 css_error } e_css_statement;
 typedef enum { cse_additive, cse_alphabetic, cse_cyclic, cse_numeric, cse_symbolic } e_css_system_e;
 typedef enum { ctl_auto, ctl_fixed, ctl_inherit } e_css_table_layout;
@@ -766,7 +783,7 @@ typedef enum { ect_inherit, ect_capitalise, ect_lowercase, ect_none, ect_upperca
 typedef enum {  ct_root, ct_whitespace, ct_comment, // root must be zero, all empty content must precede comment which must precede other values
                 ct_identifier, ct_keyword, ct_number, ct_string, 
                 ct_ampersand, ct_at, ct_bang, ct_bar, ct_barbar, ct_coco, ct_colon, ct_comma, ct_dash, ct_dollar, ct_dot, ct_eq,
-                ct_gt, ct_gtgt, ct_lt, ct_hash, ct_hat, ct_plus, ct_semicolon, ct_slash, ct_splat, ct_squiggle,
+                ct_gt, ct_gteq, ct_gtgt, ct_lt, ct_lteq, ct_hash, ct_hat, ct_plus, ct_semicolon, ct_slash, ct_splat, ct_squiggle,
                 ct_curly_brac, ct_curly_ket, ct_round_brac, ct_round_ket, ct_square_brac, ct_square_ket,
                 ct_eof,
                 ct_error } css_token;
@@ -792,7 +809,7 @@ typedef enum { cvc_e, cvc_infinity, cvc_nan, cvc_pi } e_css_val_con;
 typedef enum {  CSS_VAL_FN } e_css_val_fn;
 typedef enum { css_none, css_1, css_2_0, css_2_1, css_2_2, css_3, css_4, css_5, css_6 } e_css_version;
 typedef enum { ecva_inherit, ecv_baseline, ecv_bottom, ecv_middle, ecv_sub, ecv_super, ecv_text_bottom, ecv_text_top, ecv_top } e_css_vertical_align;
-typedef enum { evs_collapse, evs_hidden, evs_inherit, evs_visible } e_css_visibility;
+typedef enum { eccl_border_box, eccl_content_box, eccl_padding_box } e_css_visual_box;
 typedef enum { cve_inherit, cve_loud, cve_medium, cve_silent, cve_soft, cve_x_loud, cve_x_soft } e_css_volume_e;
 typedef enum { cw_default, cw_inherit, cw_initial, cw_revert, cw_revert_layer, cw_unset } e_css_wide;
 typedef enum { ecwh_inherit, ecwh_normal, ecwh_nowrap, ecwh_pre, ecwh_preline, ecwh_prewrap } e_css_whitespace;
@@ -856,6 +873,7 @@ typedef enum {  ed_mishmash, ed_dict, ed_tags, ed_1, ed_plus, ed_2, ed_3, ed_32,
                 ed_css_media_4, ed_css_namespaces_3, ed_css_selectors_3, ed_css_selectors_4, ed_css_syntax,
                 ed_css_ui_3, ed_css_ui_4, ed_css_value_3, ed_css_value_4,
                 ed_json, ed_jsonld_1_0, ed_jsonld_1_1,
+                ed_clacks,
                 ed_imaginary } e_doc;
 const e_doc last_doc = ed_imaginary;
 typedef enum {  db_auto, db_usescript, db_nochange, db_resetsize, db_ideographic, db_alphabetic, db_hanging, db_mathematical,
@@ -961,6 +979,7 @@ typedef enum { fa_freeze, fa_remove } e_fillanim;
 typedef enum { fr_nonzero, fr_evenodd, fr_inherit } e_fill_rule;
 typedef enum { fv_strokepaint, fv_fillpaint } e_fill_ve;
 typedef enum { fi_sourcegraphic, fi_sourcealpha, fi_backgroundimage, fi_backgroundalpha, fi_fillpaint, fi_strokepaint } e_filter_in;
+typedef enum { fl_first, fl_last } e_first_last;
 
 typedef enum {
     fc_aliceblue, fc_antiquewhite, fc_aqua, fc_aquamarine, fc_azure, fc_beige, fc_bisque, fc_black, fc_blanchedalmond, fc_blue,
@@ -1111,10 +1130,10 @@ typedef enum
     he_upgrade, he_upgrade_insecure_requests, he_urgency, he_uri, he_user_agent,
     he_variant_vary, he_vary, he_vbr_info, he_via, he_viewport_width,
     he_want_digest, he_warning, he_webkit_csp, he_width, he_window_target,
-    he_www_authenticate, he_x400_content_identifier, he_x400_content_return, he_x400_content_type, he_x400_mts_identifier, he_x400_originator, he_x400_received, he_x400_recipients,
-    he_x400_trace, he_x_archived_at, he_x_content_security_policy, he_x_content_type_options, he_x_dns_prefetch_control, he_x_forwarded_for, he_x_forwarded_host, he_x_forwarded_proto,
-    he_x_frame_options, he_x_mittente, he_x_pgp_sig, he_x_ricevuta, he_x_riferimento_message_id, he_x_tiporicevuta, he_x_trasporto, he_x_ua_compatible, he_x_verificasicurezza,
-    he_x_xss_protection, he_xref,
+    he_www_authenticate, he_x400_content_identifier, he_x400_content_return, he_x400_content_type, he_x400_mts_identifier, he_x400_originator, he_x400_received,
+    he_x400_recipients, he_x400_trace, he_x_clacks_overhead, he_x_archived_at, he_x_content_security_policy, he_x_content_type_options, he_x_dns_prefetch_control,
+    he_x_forwarded_for, he_x_forwarded_host, he_x_forwarded_proto, he_x_frame_options, he_x_mittente, he_x_pgp_sig, he_x_ricevuta, he_x_riferimento_message_id,
+    he_x_tiporicevuta, he_x_trasporto, he_x_ua_compatible, he_x_verificasicurezza, he_x_xss_protection, he_xref,
     he_error } e_httpequiv;
 
 typedef enum { ehv_horizontal, ehv_vertical } e_hv;
@@ -1312,7 +1331,7 @@ typedef enum {  md_active, md_additive, md_all, md_and, md_any_hover, md_any_poi
                 md_p3, md_paged, md_pointer, md_portrait, md_positive, md_prefers_colour_scheme, md_prefers_contrast, md_prefers_reduced_data,
                     md_prefers_reduced_motion, md_prefers_reduced_transparency, md_print, md_progressive, md_projection, md_px,
                 md_rec2020, md_reduce, md_resolution,
-                md_scan, md_screen, md_scripting, md_scroll, md_slash, md_slow, md_space, md_speech, md_srgb, md_standalone, md_standard, md_subtractive,
+                md_scan, md_screen, md_scripting, md_scroll, md_selector, md_slash, md_slow, md_space, md_speech, md_srgb, md_standalone, md_standard, md_subtractive,
                 md_tty, md_tv,
                 md_update,
                 md_vertical_viewport_segments, md_video_colour_gamut, md_video_dynamic_range,
@@ -1321,7 +1340,6 @@ typedef enum {  md_active, md_additive, md_all, md_and, md_any_hover, md_any_poi
 typedef enum { mdm_browser, mdm_full_screen, mdm_minimal_ui, mdm_standalone } e_media_display_mode;
 typedef enum { emh_hover, emh_none } e_media_hover;
 typedef enum { emi_none, emi_scroll } e_media_inline;
-typedef enum { mk_and, mk_eq, mk_ge, mk_gt, mk_ident, mk_le, mk_lt, mk_or, mk_not, mk_only } e_media_keyword;
 typedef enum { emo_landscape, emo_portrait } e_media_orientation;
 typedef enum { emo_none, emo_paged, emo_scroll } e_media_overflow;
 typedef enum { emp_coarse, emp_fine, emp_none } e_media_pointer;
@@ -2165,7 +2183,7 @@ typedef enum
     nit_not_not, nit_css_svg, nit_deprecated_media, nit_media_version, nit_media_ignored, nit_css_layer, nit_css_scope,
     nit_css_custom, nit_css_colour, nit_bad_number, nit_css_value, nit_css_keyframes, nit_css_value_fn, nit_css_value_param,
     nit_css_living_standard, nit_popover, nit_css_ease, nit_multiple_spaces, nit_repeated_value, nit_css_font, nit_unicode_my_arse,
-    nit_css_font_feature, nit_css_palette, nit_descriptor, nit_not_here, nit_counter_style,
+    nit_css_font_feature, nit_css_palette, nit_descriptor, nit_not_here, nit_counter_style, nit_clacks, nit_bad_supports,
 
     nit_incompatible,
 
@@ -2178,17 +2196,21 @@ typedef enum
         nm_compile_time, nm_config,
         nm_context_article, nm_context_body, nm_context_build, nm_context_case, nm_context_cgi, nm_context_classic, nm_context_clear,
         nm_context_config, nm_context_copy, nm_context_corpus, nm_context_crosslinks, nm_context_css, nm_context_css_background,
-        nm_context_css_animation, nm_context_css_cascade, nm_context_css_colour, nm_context_css_compositing, nm_context_css_cs, nm_context_css_custom, nm_context_css_ease, nm_context_css_extension,
-        nm_context_css_fbl, nm_context_css_font, nm_context_css_fragmentation, nm_context_css_media, nm_context_css_namespace, nm_context_css_selector, nm_context_css_style,
-        nm_context_css_syntax, nm_context_css_ui, nm_context_css_value, nm_context_css_version, nm_context_custom_elements, nm_context_dc, nm_context_example,
-        nm_context_export_root, nm_context_exports, nm_context_extensions, nm_context_ext_css, nm_context_extra, nm_context_force_version, nm_context_foaf, nm_context_forward, nm_context_fred,
-        nm_context_icu, nm_context_ignore, nm_context_info, nm_context_index, nm_context_jsonld, nm_context_jsonld_extension, nm_context_jsonld_version,
+        nm_context_css_box_align, nm_context_css_box_model, nm_context_css_box_sizing,
+        nm_context_css_animation, nm_context_css_cascade, nm_context_css_colour, nm_context_css_compositing, nm_context_css_cond_rule,
+        nm_context_css_cs, nm_context_css_custom, nm_context_css_display, nm_context_css_ease, nm_context_css_extension, nm_context_css_fbl,
+        nm_context_css_font, nm_context_css_fragmentation, nm_context_css_media, nm_context_css_multi_column, nm_context_css_namespace,
+        nm_context_css_overflow, nm_context_css_position, nm_context_css_selector, nm_context_css_style, nm_context_css_syntax,
+        nm_context_css_transition, nm_context_css_ui, nm_context_css_value, nm_context_css_version, nm_context_custom_elements, nm_context_dc,
+        nm_context_example, nm_context_export_root, nm_context_exports, nm_context_extensions, nm_context_ext_css, nm_context_extra,
+        nm_context_force_version, nm_context_foaf, nm_context_forward, nm_context_fred, nm_context_icu, nm_context_ignore, nm_context_info,
+        nm_context_index, nm_context_jsonld, nm_context_jsonld_extension, nm_context_jsonld_version,
         nm_context_lang, nm_context_links, nm_context_local, nm_context_math, nm_context_main, nm_context_max_file_size, nm_context_md_export,
         nm_context_meta, nm_context_mf_export, nm_context_mf_verify, nm_context_mf_version, nm_context_microdata, nm_context_msg,
         nm_context_no_ex_check, nm_context_once, nm_context_output, nm_context_persisted, nm_context_rdfa, nm_context_rdf_version, nm_context_rel,
-        nm_context_report, nm_context_root, nm_context_rfc_1867, nm_context_rfc_1942, nm_context_rfc_1980,  nm_context_rfc_2070, nm_context_schema,
+        nm_context_report, nm_context_root, nm_context_rfc_1867, nm_context_rfc_1942, nm_context_rfc_1980, nm_context_rfc_2070, nm_context_schema,
         nm_context_schema_version, nm_context_shadow_comment, nm_context_shadow_changed, nm_context_shadow_enable, nm_context_shadow_ignore,
-        nm_context_shadow_persist,nm_context_shadow_root, nm_context_shadow_ssi, nm_context_shadow_space, nm_context_shadows, nm_context_site,
+        nm_context_shadow_persist, nm_context_shadow_root, nm_context_shadow_ssi, nm_context_shadow_space, nm_context_shadows, nm_context_site,
         nm_context_slob, nm_context_spec, nm_context_spell, nm_context_spell_path, nm_context_spellings, nm_context_ssi, nm_context_stats_export,
         nm_context_stats_page, nm_context_stats_summary, nm_context_svg_version, nm_context_tags, nm_context_test, nm_context_title,
         nm_context_version, nm_context_virtuals, nm_context_xsd, nm_copy_addr, nm_copy_html, nm_copy_text,
@@ -2391,6 +2413,7 @@ typedef enum { ri_auto, ri_perceptual, ri_relativecolourimetric, ri_saturation, 
 typedef enum { re_always, re_whennotactive, re_never } e_restart;
 typedef enum { ru_none, ru_groups, ru_rows, ru_cols, ru_all } e_rules;
 typedef enum { rs_yes, rs_no, rs_maybe, rs_interested } e_rsvp;
+typedef enum { su_safe, su_unsafe } e_safe_unsafe;
 typedef enum {  sand_unknown, sand_adwua, sand_asabua, sand_atnbua, sand_atntcp, sand_ad, sand_forms, sand_modals, sand_orientation, sand_pointer,
                 sand_popups, sand_popupescape, sand_presentation, sand_origin, sand_scripts, sand_navigation } e_sandbox;
 typedef enum { sc_interlace, sc_progressive } e_scan;
@@ -4463,10 +4486,10 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_1 \
     t_0_more, t_0_to_255, t_0_to_1000, t_10, t_1_to_7, t_1_to_20, t_1_to_99, t_1_more, t_1_more_i, t_10_int, t_2pt, t_2string, t_4string, t_4string_ni, \
     t_about, t_absolute_url, t_accept, t_accrual_method, t_accrual_periodicity, t_accrual_policy, t_accumulate, t_accumulate0, t_accumulate1, \
-        t_accumulate2, t_action, t_actiontype, t_actiontype2, t_additive, t_align, t_align2070, t_align3, t_aligndec, t_alignfig, \
-        t_alignment_baseline, t_alignplus, t_angle, t_angle_a, t_angle_ai, t_angle_i, t_angle_n, t_arabicenum, t_arabic_form, t_aria_autocomplete, \
+        t_accumulate2, t_action, t_actiontype, t_actiontype2, t_additive, t_align, t_align2070, t_align3, t_aligndec, t_alignfig, t_alignment_baseline, \
+        t_alignplus, t_all_none, t_angle, t_angle_a, t_angle_ai, t_angle_i, t_angle_n, t_arabicenum, t_arabic_form, t_aria_autocomplete, \
         t_aria_invalidity, t_aria_live, t_aria_sort, t_as, t_as_units, t_attributename, t_attributetype, t_audio_level, t_autocapitalise, \
-        t_autocomplete, t_autocompletes, t_autocompletevaried, \
+        t_autocomplete, t_autocompletes, t_autocompletevaried, t_auto_none, t_auto_smooth, t_auto_stable, \
     t_b64, t_background, t_bandwidth, t_base, t_baselineshift, t_bb, t_beginvalue, t_beginvalues, t_beginvaluelist, t_behaviour, t_blocking, \
         t_border, t_bool, t_bools, t_buffered_rendering, t_button,  \
     t_cache, t_cachekey, t_calcfn, t_calcmode, t_captionalign, t_capture, t_cc_permits, t_cc_prohibits, t_cc_requires, t_channelselector, t_char, \
@@ -4485,29 +4508,33 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
                 t_css_anim_play_state, t_css_anim_timeline, t_css_appearance, t_css_attr, t_css_azimuth, t_css_azimuth_be, t_css_azimuth_e, \
                 t_css_azimuth_eb, t_css_azimuth_es, t_css_azimuth_lri, \
             t_css_background, t_css_background_0, t_css_background_1, t_css_background_2, t_css_background_3, t_css_background_attachment, \
-                t_css_background_attachment_3, t_css_background_attachments,  t_css_background_box, t_css_background_boxes, t_css_background_position, \
+                t_css_background_attachment_3, t_css_background_attachments, t_css_background_boxes, t_css_background_position, \
                 t_css_background_position_1, t_css_background_position_2, t_css_background_position_3, t_css_background_positions, t_css_background_repeat, \
                 t_css_background_repeat_2, t_css_background_repeat_3, t_css_background_repeats, t_css_background_size, t_css_background_sizes, \
-                t_css_backval, t_css_base_palette, t_css_bespoke, t_css_blend_mode, t_css_border_collapse, t_css_border_image, t_css_border_radius, \
+                t_css_backval, t_css_base_palette, t_css_baseline_position, t_css_bespoke, t_css_blend_mode, t_css_border_collapse, t_css_border_image, t_css_border_radius, \
                 t_css_border_image_repeat, t_css_border_images_repeat, t_css_border_image_slice,  t_css_border_image_src, t_css_border_measure, \
                 t_css_border_spacing, t_css_border_spacing_2, t_css_border_style, t_css_border_style_i, t_css_border_styles, t_css_border_width, \
-                t_css_border_width_i, t_css_border_wsc, t_css_border_wsc_i, t_css_borders_measure, t_css_borders_measure_i, t_css_box_shadow, \
+                t_css_border_width_i, t_css_border_wsc, t_css_border_wsc_i, t_css_borders_measure, t_css_borders_measure_i, t_css_box_alignitems, t_css_box_alignitems_ns, \
+                t_css_box_alignself, t_css_box_alignself_ans, t_css_box_content, t_css_box_content_n, t_css_box_justify, t_css_box_justify_n, \
+                t_css_box_justitems, t_css_box_justitems_ns, t_css_box_justself, t_css_box_justself_ans, t_css_box_legacy, t_css_box_overflow, t_css_box_shadow, \
                 t_css_box_shadows, t_css_box_shadows_n, t_css_box_sizing, t_css_break, t_css_break_box, t_css_break_inside, \
             t_css_caret, t_css_caret_shape, t_css_clear, t_css_coin1, t_css_coin2, t_css_coin3, t_css_colour, t_css_colour_3, t_css_colour_4, \
                 t_css_col, t_css_colour_a, t_css_colour_interpolation, t_css_colour_percent, t_css_colour_percent_n, t_css_cols, \
-                t_css_content, t_css_content_base, t_css_content_enum, t_css_content_fn, t_css_content_twice, t_css_counter, t_css_counter_ii, \
+                t_css_column_fill, t_css_column_rule, t_css_column_width, t_css_columns,\
+                t_css_content, t_css_content_base, t_css_content_enum, t_css_content_fn, t_css_content_position, t_css_content_twice, t_css_coord_box, t_css_counter, t_css_counter_ii, \
                 t_css_counter_iin, t_css_counter_set, t_css_counter_style, t_css_counter_style_name, t_css_counters, t_css_cue, t_css_cues, \
                 t_css_cursor, t_css_cursor_e, t_css_cursor_url
             
 #define SSC_TYPE_2_MAX t_css_cursor_url
 
 #define SSC_TYPES_3 \
-            t_css_display, \
-            t_css_earnest, t_css_easing_fn, t_css_elevation, t_css_elevation_e, t_css_empty_cells, \
+            t_css_display, t_css_display_1, t_css_display_3, t_css_display_box, t_css_display_flow, t_css_display_inside, t_css_display_internal, t_css_display_legacy, \
+                t_css_display_listitem, t_css_display_outside, t_css_durations, \
+            t_css_earnest, t_css_easing_fn, t_css_easing_fns, t_css_elevation, t_css_elevation_e, t_css_empty_cells, \
             t_css_feature_annotation, t_css_feature_character_variant, t_css_feature_historical_forms, t_css_feature_ornaments, \
                 t_css_feature_swash, t_css_feature_styleset, t_css_feature_stylistic, t_css_ffv, \
                 t_css_flex, t_css_flex_basis, t_css_flex_direction, t_css_flex_flow, t_css_flex_n, t_css_flex_wrap, \
-                t_css_fn, t_css_fn_annotation, t_css_fn_character_variant, t_css_fn_ornaments, t_css_fn_round_t, \
+                t_css_fn, t_css_fn_annotation, t_css_fn_character_variant, t_css_fn_fit_content, t_css_fn_ornaments, t_css_fn_round_t, \
                 t_css_fn_styleset, t_css_fn_stylistic, t_css_fn_swash, t_css_font, t_css_font_display, t_css_font_feature, t_css_font_feature_settings, \
                 t_css_font_feature_tag, t_css_font_feature_tags, t_css_font_families, t_css_font_format, t_css_font_kerning, \
                 t_css_font_named_instance, t_css_font_size, t_css_font_size_4, t_css_font_size_adjust, t_css_font_size_adjust_e, \
@@ -4515,33 +4542,34 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
                 t_css_font_style_e, t_css_font_synthesis, t_css_font_synthesis_n, t_css_font_tech, t_css_font_techs, t_css_font_variation, \
                 t_css_font_variation_settings, t_css_font_variation_tag, t_css_font_variation_tags, t_css_font_variant, \
                 t_css_font_variant_4, t_css_font_weight, t_css_font_weight_4, t_css_font_weights, t_css_format, t_css_frame, \
-            t_css_generic_family, t_css_gradient, \
+            t_css_gap, t_css_generic_family, t_css_gradient, \
             t_css_hue, t_css_hue_interpolation, t_css_hue_n, \
             t_css_id, t_css_image, t_css_inherit, t_css_isolation, \
             t_css_justify_content, \
             t_css_kbd_lhs, t_css_kdb_nav, t_css_kbd_rhs, \
-            t_css_lang, t_css_langs, t_css_length, t_css_length_2, t_css_length_twice, t_css_length_a, t_css_length_a2, t_css_length_ai, \
-                t_css_lengths, t_css_lengths_a, t_css_line_height, t_css_list_style, t_css_list_style_position, t_css_list_style_type, \
-                t_css_list_style_type_cs, t_css_local_url, t_css_ls_val, \
-            t_css_margin_break, t_css_margins, t_css_mark, t_css_marks, t_css_marx, \
+            t_css_lang, t_css_langs, t_css_layout_box, t_css_length, t_css_length_2, t_css_length_3, t_css_length_twice, t_css_length_a, \
+                t_css_length_a2, t_css_length_ai, t_css_length_amm, t_css_lengths, t_css_lengths_a, t_css_line_height, t_css_list_style, \
+                t_css_list_style_position, t_css_list_style_type, t_css_list_style_type_cs, t_css_local_url, t_css_ls_val, \
+            t_css_margin_break, t_css_margin_trim, t_css_margin_trim_inner, t_css_margins_trim_inner, t_css_margins, t_css_mark, t_css_marks, t_css_marx, \
             t_css_nth, t_css_nth_oe
 #define SSC_TYPE_3_MAX t_css_nth_oe
 
 #define SSC_TYPES_4 \
-            t_css_orientation, t_css_outline, t_css_outline_i, t_css_outline_style, t_css_outlines, t_css_overflow, \
+            t_css_orientation, t_css_outline, t_css_outline_i, t_css_outline_style, t_css_outlines, t_css_overflow, t_css_overflows, \
                 t_css_override_colour, t_css_override_colours, \
-            t_css_palette, t_css_palette_nld, t_css_pause, t_css_pause_i, t_css_pauses, t_css_pitch, t_css_pitch_e, t_css_play_during, \
-                t_css_play_during_mr, t_css_polar, t_css_position, t_css_property, \
+            t_css_palette, t_css_palette_nld, t_css_paint_box, t_css_pause, t_css_pause_i, t_css_pauses, t_css_pitch, t_css_pitch_e, \
+                t_css_place_content, t_css_place_items, t_css_place_self, t_css_play_during, t_css_play_during_mr, t_css_polar, t_css_position, t_css_property, \
             t_css_range, t_css_range_a, t_css_ranges, \
             t_css_rect, t_css_rect_ai, t_css_rect_fn, t_css_ref_annotation, t_css_ref_character_variant, t_css_ref_historical_forms, \
                 t_css_ref_ornaments, t_css_ref_swash, t_css_ref_styleset, t_css_ref_stylistic, \
                 t_css_relative_size, t_css_resize, t_css_rgb_xyz, \
-            t_css_size, t_css_spacing, t_css_speak, t_css_speak_as, t_css_speak_as_e, t_css_speak_header, t_css_speak_numeral, t_css_speak_punctuation, \
+            t_css_scrollbar_gutter, t_css_self_position, t_css_size, t_css_spacing, t_css_speak, t_css_speak_as, t_css_speak_as_e, t_css_speak_header, t_css_speak_numeral, t_css_speak_punctuation, \
                 t_css_speech_rate, t_css_speech_rate_e, t_css_src, t_css_src_2, t_css_src_3, t_css_src_4, t_css_srcs, t_css_statement, \
                 t_css_sym, t_css_system, t_css_system_e, t_css_system_fix, t_css_system_ext, \
             t_css_table_layout, t_css_tech, t_css_text_align, t_css_text_decoration, t_css_text_resize, t_css_text_shadow, t_css_text_transform, \
+                t_css_trans_prop, t_css_trans_prop_a, t_css_trans_prop_n, t_css_trans_props, t_css_trans_props_n, t_css_transition, t_css_transitions, \
             t_css_unicode_from_to, t_css_unicode_range, t_css_unicode_ranges, t_css_unicode_wildcard, t_css_url, t_css_user_select, \
-            t_css_val_con, t_css_val_fn, t_css_var, t_css_vertical_align, t_css_voice_family, t_css_volume, t_css_volume_e, \
+            t_css_val_con, t_css_val_fn, t_css_var, t_css_vertical_align,  t_css_visual_box, t_css_voice_family, t_css_volume, t_css_volume_e, \
             t_css_wide, t_css_wsc_val, \
             t_css_whitespace, \
         t_csvw_direction, t_curie, t_curie_safe, t_curies, t_currency, t_current_colour_sz, t_cursor, t_cursor_f, t_cursor_i, \
@@ -4553,8 +4581,8 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPE_4_MAX t_expected
 
 #define SSC_TYPES_5 \
-    t_featurepolicy, t_figalign, t_filename, t_filesize, t_fill, t_fillanim, t_fill_opacity, t_fill_rule, t_fill_ve, t_filter_in, t_filterres, \
-        t_fixedcolour, t_fixedpoint, t_auto_none, t_font, t_font_enum, t_font_family, t_font_families, t_fontname, t_fontnia, t_fontnias, t_fontsize, \
+    t_featurepolicy, t_figalign, t_filename, t_filesize, t_fill, t_fillanim, t_fill_opacity, t_fill_rule, t_fill_ve, t_filter_in, t_filterres, t_first_last, \
+        t_fixedcolour, t_fixedpoint, t_font, t_font_enum, t_font_family, t_font_families, t_fontname, t_fontnia, t_fontnias, t_fontsize, \
         t_fontsizeadjust, t_fontstretch, t_fontstretches, t_fontstyle, t_font_synthesis, t_font_synthesis_n, t_fontweight, \
         t_fontvariant, t_fontvariants, t_font_variant, t_font_variant_2, t_font_variant_2s, t_font_variant_4, t_font_variant_alternatives, \
         t_font_variant_caps, t_font_variant_east_asians, t_font_variant_east_asian, t_font_variant_emoji, t_font_variant_ligature, \
@@ -4607,7 +4635,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPE_7_MAX t_rules
 
 #define SSC_TYPES_8 \
-    t_sandbox, t_sandboxen, t_scan, t_scei, t_schema_type, t_scope, t_script, t_scrolling, t_second, t_setback_offset, t_settype, t_severity, t_sex, t_sgml, \
+    t_safe_unsafe, t_sandbox, t_sandboxen, t_scan, t_scei, t_schema_type, t_scope, t_script, t_scrolling, t_second, t_setback_offset, t_settype, t_severity, t_sex, t_sgml, \
         t_sha1, t_sha256, t_shadow, t_shape, t_shape3, t_shape4, t_shape7, t_shape_none_uri, t_shape_fn, t_shape_fn_circle, t_shape_fn_ellipse, \
         t_shape_fn_polygon, t_shape_uri, t_shape_rendering, t_shape_rcp, t_shadowinherit, t_short, t_side, t_size, t_size3, t_sizes, t_sizex, t_slash, \
         t_smei, t_spacer, t_spacing, t_spreadmethod, t_srcset, t_ssi, t_ssi_comparison, t_ssi_config, t_ssi_echo, t_ssi_encoding, t_ssi_env, t_ssi_f, \
@@ -4628,7 +4656,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
     t_ugeo, t_uid, t_unicode_bidi, t_unit, \
         t_unit_abs_len, t_unit_abs_per, t_unit_angle, t_unit_angle_per, t_unit_freq, t_unit_freq_per, t_unit_rel_len, \
         t_unit_rel_per, t_unit_res, t_unit_res_per, t_unit_time, t_unit_time_per, \
-        t_units, t_unsigned, t_unsigned_byte, t_unsigned_short, t_unsigned_1_or_2, t_un_ex, t_unsigned_dosh, t_uplr, \
+        t_units, t_unsigned, t_unsigned_1_more, t_unsigned_1_more_a, t_unsigned_byte, t_unsigned_short, t_unsigned_1_or_2, t_un_ex, t_unsigned_dosh, t_uplr, \
         t_urange, t_urifn, t_urifn_ni, t_urifn_xy, t_url, t_urls, t_urltemplate, \
     t_valign, t_valign3, t_valign_tmb, t_value, t_values, t_valuetype, t_valuetype2, t_vector_effect, t_vector_effect_12, t_vector_effect_2, \
         t_vector_effect_20, t_vector_effect_2s, t_version, t_vertical_align, t_vertical_align_enum, t_vgender, t_vid, t_viewportscreen, t_visibility, \

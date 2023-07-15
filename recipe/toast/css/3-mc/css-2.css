@@ -1,0 +1,19 @@
+﻿img {
+  display: block;
+  width: 100%;
+}
+
+img {
+  display: block;
+  float: right;
+}
+
+.container {
+  position: relative;
+  column-count: 3;
+}
+img {
+  position: absolute;
+  top: 20px;
+  left: 40px;
+}

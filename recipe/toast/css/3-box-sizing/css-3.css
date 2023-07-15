@@ -1,0 +1,33 @@
+﻿.box {
+  box-sizing:   content-box; /* default */
+  width:        100px;
+  padding-left: 10px;
+  border-left:  10px solid;
+}
+
+.box {
+  box-sizing:   border-box;
+  width:        100px;
+  padding-left: 10px;
+  border-left:  10px solid;
+}
+
+.box {
+  box-sizing:   border-box;
+  width:        100px;
+  padding-left: 60px;
+  border-left:  60px solid;
+  /* padding + border = 120px */
+}
+
+div.container {
+  width:38em;
+  border:1em solid black;
+}
+
+div.split {
+  box-sizing:border-box;
+  width:50%;
+  border:1em silver ridge;
+  float:left;
+}

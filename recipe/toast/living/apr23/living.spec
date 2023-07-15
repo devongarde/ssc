@@ -623,6 +623,7 @@ PASS ../toast/living/apr23/hs-9.html
 
 PASS ../toast/living/apr23/html4.css
 0 html
+10 unrecognised_value unrecognised_value
 71 css_version
 73 css_version
 74 css_version

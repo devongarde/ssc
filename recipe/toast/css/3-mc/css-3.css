@@ -1,0 +1,40 @@
+﻿div {
+  width: 100px;
+  column-width: 45px;
+  column-gap: 0;
+  column-rule: none;
+}
+
+div {
+  width: 40px;
+  column-width: 45px;
+  column-gap: 0;
+  column-rule: none;
+}
+
+.drat
+{   columns: 12em;      /* column-width: 12em; column-count: auto */
+    columns: auto 12em; /* column-width: 12em; column-count: auto */
+    columns: 2;         /* column-width: auto; column-count: 2 */
+    columns: 2 auto;    /* column-width: auto; column-count: 2 */
+    columns: auto;      /* column-width: auto; column-count: auto */
+    columns: auto auto; /* column-width: auto; column-count: auto */
+}
+
+div {
+  width: 40em;
+  columns: 20em;
+  column-gap: 0;
+}
+
+p {
+  break-after: column;
+}
+
+div {
+  width: 80em;
+  height: 10em;
+  columns: 20em;
+  column-gap: 0;
+  column-fill: auto;
+}

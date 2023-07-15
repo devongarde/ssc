@@ -1,0 +1,8 @@
+﻿article.sale-item {
+  display: flex;
+  flex-flow: column;
+}
+article.sale-item > img {
+  order: -1; /* Shift image before other content (in layout order) */
+  align-self: center;
+}

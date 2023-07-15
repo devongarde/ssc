@@ -1,0 +1,8 @@
+﻿li {
+  transition: background-color linear 1s;
+  background: blue;
+}
+li:hover {
+  background-color: green;
+  transition-duration: 2s; /* applies to the transition *to* the :hover state */
+}

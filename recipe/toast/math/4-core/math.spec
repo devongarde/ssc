@@ -21,4 +21,3 @@ PASS ../toast/math/4-core/core-3.html
 
 PASS ../toast/math/4-core/core-4.html
 2 naughty_lang
-14 unrecognised_value

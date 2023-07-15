@@ -1,0 +1,14 @@
+﻿div {
+  transition-property: opacity;
+  transition-duration: 2s;
+}
+
+div {
+  transition-property: opacity, left;
+  transition-duration: 2s, 4s;
+}
+
+div {
+  transition-property: opacity, left, top, width;
+  transition-duration: 2s, 1s;
+}

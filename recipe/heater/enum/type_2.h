@@ -69,6 +69,18 @@ template < > struct type_master < t_accumulate > : two_value < t_accumulate, e_a
 template < > struct type_master < t_additive > : two_value < t_additive, e_additive, sz_replace, sz_sum, false >
 { using two_value < t_additive, e_additive, sz_replace, sz_sum, false > :: two_value; };
 
+template < > struct type_master < t_all_none > : two_value < t_all_none, e_bool, sz_all, sz_none, false >
+{ using two_value < t_all_none, e_bool, sz_all, sz_none, false > :: two_value; };
+
+template < > struct type_master < t_auto_none > : two_value < t_auto_none, e_auto_none, sz_auto, sz_none, false >
+{ using two_value < t_auto_none, e_auto_none, sz_auto, sz_none, false > :: two_value; };
+
+template < > struct type_master < t_auto_smooth > : two_value < t_auto_smooth, e_auto_smooth, sz_all, sz_smooth, false >
+{ using two_value < t_auto_smooth, e_auto_smooth, sz_all, sz_smooth, false > :: two_value; };
+
+template < > struct type_master < t_auto_stable > : two_value < t_auto_stable, e_auto_smooth, sz_all, sz_stable, false >
+{ using two_value < t_auto_stable, e_auto_smooth, sz_all, sz_stable, false > :: two_value; };
+
 template < > struct type_master < t_bool > : two_value < t_bool, e_bool, sz_false, sz_true, false >
 { using two_value < t_bool, e_bool, sz_false, sz_true, false > :: two_value; };
 
@@ -95,6 +107,12 @@ template < > struct type_master < t_css_anim_play_state > : two_value < t_css_an
 
 template < > struct type_master < t_css_box_sizing > : two_value < t_css_box_sizing, e_css_box_sizing, sz_border_box, sz_content_box, false >
 { using two_value < t_css_box_sizing, e_css_box_sizing, sz_border_box, sz_content_box, false > :: two_value; };
+
+template < > struct type_master < t_css_display_box > : two_value < t_css_display_box, e_css_display_box, sz_contents, sz_none, false >
+{ using two_value < t_css_display_box, e_css_display_box, sz_contents, sz_none, false > :: two_value; };
+
+template < > struct type_master < t_css_display_flow > : two_value < t_css_display_flow, e_css_display_flow, sz_flow, sz_flow_root, false >
+{ using two_value < t_css_display_flow, e_css_display_flow, sz_flow, sz_flow_root, false > :: two_value; };
 
 template < > struct type_master < t_css_break_box > : two_value < t_css_break_box, e_css_break_box, sz_clone, sz_slice, false >
 { using two_value < t_css_break_box, e_css_break_box, sz_clone, sz_slice, false > :: two_value; };
@@ -126,8 +144,9 @@ template < > struct type_master < t_fillanim > : two_value < t_fillanim, e_filla
 template < > struct type_master < t_fill_ve > : two_value < t_fill_ve, e_fill_ve, sz_strokepaint, sz_fillpaint, false >
 { using two_value < t_fill_ve, e_fill_ve, sz_strokepaint, sz_fillpaint, false > :: two_value; };
 
-template < > struct type_master < t_auto_none > : two_value < t_auto_none, e_auto_none, sz_auto, sz_none, false >
-{ using two_value < t_auto_none, e_auto_none, sz_auto, sz_none, false > :: two_value; };
+// typedef enum { fl_first, fl_last } e_first_last;
+template < > struct type_master < t_first_last > : two_value < t_first_last, e_first_last, sz_first, sz_last, false >
+{ using two_value < t_first_last, e_first_last, sz_first, sz_last, false > :: two_value; };
 
 template < > struct type_master < t_forced_colours > : two_value < t_forced_colours, e_forced_colours, sz_active, sz_none, false >
 { using two_value < t_forced_colours, e_forced_colours, sz_active, sz_none, false > :: two_value; };
@@ -221,6 +240,9 @@ template < > struct type_master < t_popover > : two_value < t_popover, e_popover
 
 template < > struct type_master < t_propagate > : two_value < t_propagate, e_propagate, sz_stop, sz_continue, false >
 { using two_value < t_propagate, e_propagate, sz_stop, sz_continue, false > :: two_value; };
+
+template < > struct type_master < t_safe_unsafe > : two_value < t_safe_unsafe, e_safe_unsafe, sz_safe, sz_unsafe, false >
+{ using two_value < t_safe_unsafe, e_safe_unsafe, sz_safe, sz_unsafe, false > :: two_value; };
 
 template < > struct type_master < t_settype > : two_value < t_settype, e_settype, sz_normal, sz_multiset, false >
 { using two_value < t_settype, e_settype, sz_normal, sz_multiset, false > :: two_value; };

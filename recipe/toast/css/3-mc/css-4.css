@@ -1,0 +1,6 @@
+﻿body {
+  column-gap: 35px;
+  column-rule-width: 35px;
+  column-rule-style: solid;
+  column-rule-color: black;
+}

@@ -42,7 +42,7 @@ arguments::arguments (const html_version& v, const namespaces_ptr& namespaces, c
 {   ns_.reset (new namespaces_t ());
     ns_ -> up (namespaces.get ()); }
 
-bool arguments::prep_for_make (nitpick& nits, const int from, int& b, const int to, int& var, int& bang, css_token& p, bool& xs, bool& xk, bool& xn, bool& xi, bool& fn, bool& clean, int& kc, ::std::string& val)
+bool arguments::prep_for_make (nitpick& nits, const int , int& b, const int to, int& var, int& bang, css_token& p, bool& xs, bool& xk, bool& xn, bool& xi, bool& fn, bool& clean, int& kc, ::std::string& val)
 {   int pre = to;
     var = b;
     bang = token_find (t_, ct_bang, b, to, &pre);
@@ -95,7 +95,7 @@ void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string
                 nits.pick (nit_naughty_content, ed_css_21, "12.2 The 'content' p. 182 property", es_error, ec_css, s, " requires an element with ::before andor ::after");
             else nits.pick (nit_naughty_content, ed_css_21, "12.2 The 'content' p. 182 property", es_error, ec_css, s, " requires an element with :before andor :after"); }
 
-void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string& s, const bool xk, const bool xi, const bool xn, const bool xs, const bool fn, const bool clean, const int kc, const ::std::string& item, const ::std::string& val) const
+void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string& s, const bool xk, const bool xi, const bool xn, const bool xs, const bool fn, const int kc, const ::std::string& item, const ::std::string& val) const
 {   if (! fn)
     {   if (xs && ((f & CF_NOT_STRING) == CF_NOT_STRING))
             nits.pick (nit_css_syntax, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, quote (val), ": should not be a string");
@@ -103,7 +103,7 @@ void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string
             nits.pick (nit_css_syntax, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, quote (val), ": function expected"); }
     if (((f & CF_EXPECT_FN) != CF_EXPECT_FN) || ! fn)
     {   if ((kc > 1) && ((f & (CF_EXPECT_STRING | CF_EXPECT_NUMBER)) != 0))
-            nits.pick (nit_css_syntax, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, "a single value is sought");
+            nits.pick (nit_css_syntax, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, s, ": a single value is sought");
         if (xs) if ((f & CF_EXPECT_KEYWORDS) == CF_EXPECT_KEYWORDS)
             nits.pick (nit_css_syntax, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, quote (val), ": should be a keyword");
         if (xk || xn || xi) if ((f & CF_EXPECT_STRING) == CF_EXPECT_STRING)

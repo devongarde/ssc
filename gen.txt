@@ -89,17 +89,32 @@ line, the "no-" switch always applies.
 
 --css.background X      Use CSS Backgrounds and Borders level X, where
                         X is 0 or 3
+                        
+--css.box-align X       Use CSS Box Alignment level X, where X is 0 or
+                        3
+
+--css.box-model X       Use CSS Box Model level X, where X is 0, 3 or 4
+                        
+--css.box-sizing X      Use CSS Box Sizing level X, where X is 0 or 3
 
 --css.cascade X         Use CSS Cascade level X, where X is 0, 3, 4, 5
                         or 6
 
 --css.colour X          Use CSS Colour level X, where X is 0, 3, 4 or 5
 
---css.ease X            Use CSS Easing Functions level X, where X is 0
-                        or 3
-
 --css.compositing X     Use CSS Compositing and Blending level X, where
                         X is 0 or 3
+
+--css.cs X              Use CSS Counter Style level X, where X is 0 or
+                        3
+
+--css.custom X          Use CSS Custom Properties for Cascading
+                        Variables level X, where X is 0 or 3
+
+--css.display X         Use CSS Display level X, where X is 0 or 3
+
+--css.ease X            Use CSS Easing Functions level X, where X is 0
+                        or 3
 
 --css.extension ext     Presume files with extension '.ext' are CSS
                         files
@@ -114,13 +129,21 @@ line, the "no-" switch always applies.
 
 --css.media X           Use CSS Media level X, where X is 0, 3, 4 or 5
 
+--css.multi-column X    Use CSS Multi-Column level X, where X is 0 or 3
+
 --css.namespace X       Use CSS Namespaces level X, where X is 0 or 3
+
+--css.overflow X        Use CSS Overflow level X, where X is 0 or 3
+
+--css.position X        Use CSS Positions level X, where X is 0 or 3
 
 --css.selector X        Use CSS Selectors level X, where X is 0, 3 or 4
 
 --css.style X           Use CSS Style level X, where X is 0 or 3
 
 --css.syntax X          Use CSS Syntex level X, where X is 0 or 3
+
+--css.transition X      Use CSS Transitions level X, where X is 0 or 3
 
 --css.ui X              Use CSS Basic User Interface level X, where X
                         is 0, 3 or 4

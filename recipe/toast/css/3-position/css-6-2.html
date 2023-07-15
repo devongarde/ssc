@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Comparison of positioning schemes II</title>
+        <style>
+          #inner { float: right; width: 130px; color: blue }
+          #sibling { color: red }
+        </style>
+    </head>
+    <body>
+    <p>
+        Beginning of p contents.
+        <span id="outer"> Start of outer contents.
+        <span id="inner"> Inner contents.</span>
+        <span id="sibling"> Sibling contents.</span>
+        End of outer contents.</span>
+        End of p contents.
+    </p>
+    </body>
+</html>

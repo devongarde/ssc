@@ -443,7 +443,8 @@ struct symbol_entry < html_version, e_httpequiv > httpequiv_symbol_table [] =
     { { HTML_JAN05, HV_OUTOFSCOPE }, { HTML_UNDEF }, "Width", he_width },
     { { HTML_4_0, 0, HE_BESPOKE }, { HTML_UNDEF }, "Window-Target", he_window_target },
     { { HTML_JAN05 }, { HTML_UNDEF }, "WWW-Authenticate", he_www_authenticate },
-    { { HTML_2_0, HV_OUTOFSCOPE }, { HTML_UNDEF }, "X-Archived-At", he_x_archived_at },
+    { { HTML_2_0, 0, HE_BESPOKE }, { HTML_UNDEF }, "X-Archived-At", he_x_archived_at },
+    { { HTML_2_0, 0, 0, H2_CLACKS,  }, { HTML_UNDEF }, "X-Clacks-Overhead", he_x_clacks_overhead },
     { { HTML_JAN11 }, { HTML_AUG13 }, "X-Content-Security-Policy", he_x_content_security_policy },
     { { HTML_JAN15 }, { HTML_UNDEF }, "X-Content-Type-Options", he_x_content_type_options },
     { { HTML_JAN05, HV_OUTOFSCOPE }, { HTML_UNDEF }, "X-DNS-Prefetch-Control", he_x_dns_prefetch_control },
@@ -552,6 +553,10 @@ template < > ::std::string validate_he_content < t_lang > (nitpick& nits, const 
         case he_window_target : break;
         case he_x_content_type_options : return validate_he_content < t_x_content_type_options > (nits, v, content, p);
         case he_x_ua_compatible : return validate_he_content < t_x_ua_compatible > (nits, v, content, p);
+        case he_x_clacks_overhead :
+            if (! content.empty ()) nits.pick (nit_clacks, es_comment, ec_type, content);
+            else nits.pick (nit_clacks, ed_clacks, "A man is not dead while his name is still spoken", es_comment, ec_type, "GNU Sir Terry Pratchett");
+            break;
         default : break; }
     return ::std::string (); }
 

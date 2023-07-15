@@ -1,0 +1,8 @@
+﻿div {
+  max-height: 5em;
+  overflow: visible;
+}
+
+p {
+  break-after: column;
+}

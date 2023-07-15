@@ -244,7 +244,16 @@ void statement::parse_import (arguments& args, nitpick& nits, const int from, co
             if ((j < 0) || (args.t_.at (j).t_ != ct_round_brac))
             {   nits.pick (nit_bad_import, es_error, ec_css, "expecting an argument after @import supports");
                 return; }
-            i = parse_supports_content (args, nits, j, to);
+            const int child = next_non_whitespace (args.t_, j, to);
+            if ((child < 0) || ((args.t_.at (child).t_ != ct_keyword) && (args.t_.at (child).t_ != ct_identifier) && (args.t_.at (child).t_ != ct_round_brac)))
+            {   nits.pick (nit_bad_import, es_error, ec_css, "expecting a bracketed media condition"); i = -1; }
+            else
+            {   const int ket = token_find (args.t_, ct_round_ket, child, to);
+                if (ket < 0)
+                {   nits.pick (nit_bad_import, es_error, ec_css, "missing ket following import"); i = -1; }
+                else
+                {   ::std::string cond = assemble_string (args.t_, child, ket);
+                    i = parse_media_query (nits, args.v_, cond, args.custom_media ()); } }
             while ((i > 0) && (args.t_.at (i).t_ == ct_round_ket)) // kludge
                 i = next_non_whitespace (args.t_, i, to); }
         mql = i; }
@@ -508,31 +517,37 @@ void statement::parse_scope (arguments& args, nitpick& nits, const int from, con
                 fiddlesticks < statement > f (&args.st_, this);
                 vst_.emplace_back (pst_t (new statements (args, args.t_.at (i).child_))); } } } }
 
-int statement::parse_supports_content (arguments& args, nitpick& nits, const int from, const int to)
+int statement::parse_subsupports_content (arguments& args, nitpick& nits, const int from, const int to)
 {   const int child = next_non_whitespace (args.t_, from, to);
     if ((child < 0) || ((args.t_.at (child).t_ != ct_keyword) && (args.t_.at (child).t_ != ct_identifier) && (args.t_.at (child).t_ != ct_round_brac)))
         nits.pick (nit_bad_import, es_error, ec_css, "expecting a bracketed media condition");
     else
-    {   ::std::string wot (args.t_.at (child).val_);
-        const int ket = token_find (args.t_, ct_round_ket, child, to);
+    {   const int ket = token_find (args.t_, ct_round_ket, child, to);
         if (ket < 0) nits.pick (nit_bad_import, es_error, ec_css, "missing ket following supports");
-        else
-        {   /* write media condition code ! */
-            return ket; } }
+        {   ::std::string cond = assemble_string (args.t_, child, ket);
+            return parse_media_query (nits, args.v_, cond, args.custom_media ()); } }
     return -1; }
 
 void statement::parse_supports (arguments& args, nitpick& nits, const int from, const int to)
-{   if (args.v_.css_cascade () < 4)
-        nits.pick (nit_css_version, es_error, ec_css, "@supports requires CSS Cascade 4 or later");
+{   if ((args.v_.css_cascade () < 4) && (args.v_.css_conditional_rule () < 3))
+        nits.pick (nit_css_version, es_error, ec_css, "@supports requires CSS Cascade 4, or CSS Conditional Rules 3");
     else
     {   const int i = next_non_whitespace (args.t_, from, to);
         if (args.st_ != nullptr)
-            nits.pick (nit_bad_import, ed_css_20, "4.1.5 At-rules", es_error, ec_css, "@supports cannot appear inside blocks");
+            nits.pick (nit_bad_supports, ed_css_20, "4.1.5 At-rules", es_error, ec_css, "@supports cannot appear inside blocks");
         if (i < 0)
-            nits.pick (nit_bad_import, es_error, ec_css, "expecting a media condition after @supports");
-        if (args.t_.at (i).t_ != ct_round_brac)
-            nits.pick (nit_bad_import, es_error, ec_css, "expecting a bracketed media condition after @supports");
-        else parse_supports_content (args, nits, i, to); } }
+            nits.pick (nit_bad_supports, es_error, ec_css, "expecting a media condition after @supports");
+        else if ((args.t_.at (i).t_ != ct_keyword) && (args.t_.at (i).t_ != ct_identifier) && (args.t_.at (i).t_ != ct_round_brac))
+            nits.pick (nit_bad_supports, es_error, ec_css, "expecting a keyword or a bracketed media condition");
+        else
+        {   const int ket = token_find (args.t_, ct_curly_brac, i, to);
+            if (ket < 0)
+                nits.pick (nit_css_scope, es_error, ec_css, "@supports requires { ... }");
+            else
+            {   ::std::string cond = assemble_string (args.t_, i, ket);
+                parse_media_query (nits, args.v_, cond, args.custom_media ());
+                fiddlesticks < statement > f (&args.st_, this);
+                vst_.emplace_back (pst_t (new statements (args, args.t_.at (ket).child_))); } } } }
 
 void statement::parse (arguments& args, const int from, const int to)
 {   PRESUME (from <= to, __FILE__, __LINE__);
@@ -631,6 +646,9 @@ void statement::parse (arguments& args, const int from, const int to)
             case css_document :
             case css_viewport :
                 break;
+            case css_else :
+            case css_when :
+                break;
             default :
                 break; } } }
 
@@ -685,6 +703,9 @@ void statement::accumulate (stats_t* s) const
             break;
         case css_document :
             res = "@document;";
+            break;
+        case css_else :
+            res = "@else;";
             break;
         case css_font_feature_values :
             res = "@font-feature-values ();";
@@ -751,6 +772,9 @@ void statement::accumulate (stats_t* s) const
             break;
         case css_viewport :
             res = "@viewport;";
+            break;
+        case css_when :
+            res = "@when;";
             break;
         case css_error :
             res = "@??? ();";

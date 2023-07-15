@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>overflow 3 example</title>
+    <LINK rel="stylesheet" href="css-5.css" type="text/css">
+  </head>
+<BODY>
+
+<div>
+CSS IS AWESOME, YES
+</div>
+
+	First, a box with text drawing outside of it. 	
+CSS IS AWESOME, YES
+
+<div style="text-overflow:clip; overflow:hidden">
+CSS IS AWESOME, YES
+</div>
+
+	Second, a similar box with the text clipped outside the box. 	
+CSS IS AWESOME, YES
+
+<div style="text-overflow:ellipsis; overflow:hidden">
+CSS IS AWESOME, YES
+</div>
+
+	Third, a similar box with an ellipsis representing the clipped text. 	
+CSS IS AWESOME, YES
+
+<div style="text-overflow:ellipsis; overflow:hidden">
+NESTED
+ <p>PARAGRAPH</p>
+WON’T ELLIPSE.
+</div>
+
+<div class="crawlbar">
+CSS is awesome, especially when you can scroll
+to see extra text instead of just
+having it overlap other text by default.
+</div>
+
+</body>
+</html>

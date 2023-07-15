@@ -62,20 +62,20 @@ template < > struct type_master < t_css_background_1 > : type_many_then_must < t
 { using type_many_then_must < t_css_background_1, t_css_background_2, sz_comma, t_css_background_3 > :: type_many_then_must; };
 
 template < > struct type_master < t_css_background_2 > : type_some_of < t_css_background_2, sz_space_char, 1, 999,
-    t_css_image, t_css_background_positions, t_slash, t_css_background_size, t_css_background_repeat, t_css_background_attachments, t_css_background_box, t_css_background_box >
+    t_css_image, t_css_background_positions, t_slash, t_css_background_size, t_css_background_repeat, t_css_background_attachments, t_css_visual_box, t_css_visual_box >
 { using type_some_of < t_css_background_2, sz_space_char, 1, 999,
-    t_css_image, t_css_background_positions, t_slash, t_css_background_size, t_css_background_repeat, t_css_background_attachments, t_css_background_box, t_css_background_box > :: type_some_of; };
+    t_css_image, t_css_background_positions, t_slash, t_css_background_size, t_css_background_repeat, t_css_background_attachments, t_css_visual_box, t_css_visual_box > :: type_some_of; };
 
 template < > struct type_master < t_css_background_3 > : type_some_of < t_css_background_3, sz_space_char, 1, 999,
-    t_css_colour, t_css_image, t_css_background_positions, t_slash, t_css_background_size, t_css_background_repeat, t_css_background_attachment, t_css_background_box, t_css_background_box >
+    t_css_colour, t_css_image, t_css_background_positions, t_slash, t_css_background_size, t_css_background_repeat, t_css_background_attachment, t_css_visual_box, t_css_visual_box >
 { using type_some_of < t_css_background_3, sz_space_char, 1, 999,
-    t_css_colour, t_css_image, t_css_background_positions, t_slash, t_css_background_size, t_css_background_repeat, t_css_background_attachment, t_css_background_box, t_css_background_box > :: type_some_of; };
+    t_css_colour, t_css_image, t_css_background_positions, t_slash, t_css_background_size, t_css_background_repeat, t_css_background_attachment, t_css_visual_box, t_css_visual_box > :: type_some_of; };
 
 template < > struct type_master < t_css_background_attachment_3 > : type_at_least_one < t_css_background_attachment_3, sz_comma, t_css_background_attachment >
 { using type_at_least_one < t_css_background_attachment_3, sz_comma, t_css_background_attachment > :: type_at_least_one; };
 
-template < > struct type_master < t_css_background_boxes > : type_at_least_one < t_css_background_boxes, sz_comma, t_css_background_box >
-{ using type_at_least_one < t_css_background_boxes, sz_comma, t_css_background_box > :: type_at_least_one; };
+template < > struct type_master < t_css_background_boxes > : type_at_least_one < t_css_background_boxes, sz_comma, t_css_visual_box >
+{ using type_at_least_one < t_css_background_boxes, sz_comma, t_css_visual_box > :: type_at_least_one; };
 
 template < > struct type_master < t_css_background_position > : type_one_or_both < t_css_background_position, t_refy, sz_space_char, t_refx >
 { using type_one_or_both < t_css_background_position, t_refy, sz_space_char, t_refx > :: type_one_or_both; };
@@ -103,6 +103,9 @@ template < > struct type_master < t_css_background_sizes > : type_at_least_one <
 
 template < > struct type_master < t_css_base_palette > : type_or_either_string < t_css_base_palette, t_unsigned, sz_dark, sz_light >
 { using type_or_either_string < t_css_base_palette, t_unsigned, sz_dark, sz_light > :: type_or_either_string; };
+
+template < > struct type_master < t_css_baseline_position > : maybe_type_then_string < t_css_baseline_position, t_first_last, sz_baseline >
+{ using maybe_type_then_string < t_css_baseline_position, t_first_last, sz_baseline > :: maybe_type_then_string; };
 
 template < > struct type_master < t_css_border_image > : type_some_of < t_css_border_image, sz_space_char, 1, 0,
     t_css_border_image_src, t_css_border_image_slice, t_slash, t_css_lengths_a, t_slash, t_css_lengths_a, t_slash, t_css_length, t_css_border_image_repeat >
@@ -147,6 +150,48 @@ template < > struct type_master < t_css_border_style_i > : type_either_or < t_cs
 template < > struct type_master < t_css_border_width_i > : type_either_or < t_css_border_width_i, t_css_border_width, t_css_inherit >
 { using type_either_or < t_css_border_width_i, t_css_border_width, t_css_inherit > :: type_either_or; };
 
+template < > struct type_master < t_css_box_overflow > : type_opt_then_must < t_css_box_overflow, t_safe_unsafe, sz_space_char, t_css_content_position >
+{ using type_opt_then_must < t_css_box_overflow, t_safe_unsafe, sz_space_char, t_css_content_position > :: type_opt_then_must; };
+
+template < > struct type_master < t_css_box_content > : type_one_of < t_css_box_content, false, t_css_baseline_position, t_css_content_position, t_css_align_content, t_css_box_overflow >
+{ using type_one_of < t_css_box_content, false, t_css_baseline_position, t_css_content_position, t_css_align_content, t_css_box_overflow > :: type_one_of; };
+
+template < > struct type_master < t_css_box_content_n > : type_or_string < t_css_box_content_n, t_css_box_content, sz_normal >
+{ using type_or_string < t_css_box_content_n, t_css_box_content, sz_normal > :: type_or_string; };
+
+template < > struct type_master < t_css_box_alignitems > : type_one_of < t_css_box_alignitems, false, t_css_baseline_position, t_css_box_overflow, t_css_self_position >
+{ using type_one_of < t_css_box_alignitems, false, t_css_baseline_position, t_css_box_overflow, t_css_self_position > :: type_one_of; };
+
+template < > struct type_master < t_css_box_alignitems_ns > : type_or_either_string < t_css_box_alignitems_ns, t_css_box_alignitems, sz_normal, sz_stretch >
+{ using type_or_either_string < t_css_box_alignitems_ns, t_css_box_alignitems, sz_normal, sz_stretch > :: type_or_either_string; };
+
+template < > struct type_master < t_css_box_alignself > : type_one_of < t_css_box_alignself, false, t_css_baseline_position, t_css_box_overflow, t_css_self_position >
+{ using type_one_of < t_css_box_alignself, false, t_css_baseline_position, t_css_box_overflow, t_css_self_position > :: type_one_of; };
+
+template < > struct type_master < t_css_box_alignself_ans > : type_or_any_string < t_css_box_alignself_ans, t_css_box_alignself, sz_auto, sz_normal, sz_stretch >
+{ using type_or_any_string < t_css_box_alignself_ans, t_css_box_alignself, sz_auto, sz_normal, sz_stretch > :: type_or_any_string; };
+
+template < > struct type_master < t_css_box_legacy > : string_then_maybe_type < t_css_box_legacy, t_lcralign, sz_space_char, sz_legacy >
+{ using string_then_maybe_type < t_css_box_legacy, t_lcralign, sz_space_char, sz_legacy > :: string_then_maybe_type; };
+
+template < > struct type_master < t_css_box_justify > : type_one_of < t_css_box_justify, false, t_css_content_position, t_css_align_content, t_css_box_overflow, t_lralign >
+{ using type_one_of < t_css_box_justify, false, t_css_content_position, t_css_align_content, t_css_box_overflow, t_lralign > :: type_one_of; };
+
+template < > struct type_master < t_css_box_justify_n > : type_or_string < t_css_box_justify_n, t_css_box_justify, sz_normal >
+{ using type_or_string < t_css_box_justify_n, t_css_box_justify, sz_normal > :: type_or_string; };
+
+template < > struct type_master < t_css_box_justitems > : type_one_of < t_css_box_justitems, false, t_css_baseline_position, t_css_box_overflow, t_css_self_position, t_lralign, t_css_box_legacy >
+{ using type_one_of < t_css_box_justitems, false, t_css_baseline_position, t_css_box_overflow, t_css_self_position, t_lralign, t_css_box_legacy > :: type_one_of; };
+
+template < > struct type_master < t_css_box_justitems_ns > : type_or_either_string < t_css_box_justitems_ns, t_css_box_justitems, sz_normal, sz_stretch >
+{ using type_or_either_string < t_css_box_justitems_ns, t_css_box_justitems, sz_normal, sz_stretch > :: type_or_either_string; };
+
+template < > struct type_master < t_css_box_justself > : type_one_of < t_css_box_justself, false, t_css_baseline_position, t_css_box_overflow, t_css_self_position, t_lralign >
+{ using type_one_of < t_css_box_justself, false, t_css_baseline_position, t_css_box_overflow, t_css_self_position, t_lralign > :: type_one_of; };
+
+template < > struct type_master < t_css_box_justself_ans > : type_or_any_string < t_css_box_justself_ans, t_css_box_justself, sz_auto, sz_normal, sz_stretch >
+{ using type_or_any_string < t_css_box_justself_ans, t_css_box_justself, sz_auto, sz_normal, sz_stretch > :: type_or_any_string; };
+
 template < > struct type_master < t_css_box_shadow > : type_some_of < t_css_box_shadow, sz_space_char, 1, 6, t_css_col, t_css_length, t_css_length, t_css_length, t_css_length, t_inset >
 { using type_some_of < t_css_box_shadow, sz_space_char, 1, 6, t_css_col, t_css_length, t_css_length, t_css_length, t_css_length, t_inset > :: type_some_of; };
 
@@ -155,6 +200,15 @@ template < > struct type_master < t_css_box_shadows > : type_at_least_one < t_cs
 
 template < > struct type_master < t_css_box_shadows_n > : type_or_string < t_css_box_shadows_n, t_css_box_shadows, sz_none >
 { using type_or_string < t_css_box_shadows_n, t_css_box_shadows, sz_none > :: type_or_string; };
+
+template < > struct type_master < t_css_coin3 > : type_opt_then_must < t_css_coin3, t_css_hue_interpolation, sz_space_char, t_css_hue >
+{ using type_opt_then_must < t_css_coin3, t_css_hue_interpolation, sz_space_char, t_css_hue > :: type_opt_then_must; };
+
+template < > struct type_master < t_css_coin2 > : type_must_then_opt < t_css_coin2, t_css_polar, sz_space_char, t_css_coin3, 0, 1 >
+{ using type_must_then_opt < t_css_coin2, t_css_polar, sz_space_char, t_css_coin3, 0, 1 > :: type_must_then_opt; };
+
+template < > struct type_master < t_css_coin1 > : type_either_or < t_css_coin1, t_css_rect, t_css_coin2 >
+{ using type_either_or < t_css_coin1, t_css_rect, t_css_coin2 > :: type_either_or; };
 
 template < > struct type_master < t_css_colour_3 > : type_one_of < t_css_colour_3, false, t_css_colour, t_colour_i, t_transparentsz, t_current_colour_sz, t_hslfn, t_hslafn, t_rgbafn >
 { using type_one_of < t_css_colour_3, false, t_css_colour, t_colour_i, t_transparentsz, t_current_colour_sz, t_hslfn, t_hslafn, t_rgbafn > :: type_one_of; };
@@ -167,15 +221,6 @@ template < > struct type_master < t_css_colour_4 > : type_one_of < t_css_colour_
 template < > struct type_master < t_css_colour_a > : type_or_string < t_css_colour_a, t_css_col, sz_auto >
 { using type_or_string < t_css_colour_a, t_css_col, sz_auto > :: type_or_string; };
 
-template < > struct type_master < t_css_coin3 > : type_opt_then_must < t_css_coin3, t_css_hue_interpolation, sz_space_char, t_css_hue >
-{ using type_opt_then_must < t_css_coin3, t_css_hue_interpolation, sz_space_char, t_css_hue > :: type_opt_then_must; };
-
-template < > struct type_master < t_css_coin2 > : type_must_then_opt < t_css_coin2, t_css_polar, sz_space_char, t_css_coin3, 0, 1 >
-{ using type_must_then_opt < t_css_coin2, t_css_polar, sz_space_char, t_css_coin3, 0, 1 > :: type_must_then_opt; };
-
-template < > struct type_master < t_css_coin1 > : type_either_or < t_css_coin1, t_css_rect, t_css_coin2 >
-{ using type_either_or < t_css_coin1, t_css_rect, t_css_coin2 > :: type_either_or; };
-
 template < > struct type_master < t_css_colour_interpolation > : string_then_type < t_css_colour_interpolation, t_css_coin1, sz_in >
 { using string_then_type < t_css_colour_interpolation, t_css_coin1, sz_in > :: string_then_type; };
 
@@ -187,6 +232,12 @@ template < > struct type_master < t_css_colour_percent_n > : type_or_string < t_
 
 template < > struct type_master < t_css_cols > : type_some_of < t_css_cols, sz_space_char, 1, 4, t_css_col >
 { using type_some_of < t_css_cols, sz_space_char, 1, 4, t_css_col > :: type_some_of; };
+
+template < > struct type_master < t_css_column_rule > : type_some_of < t_css_column_rule, sz_space_char, 1, 3, t_css_border_measure, t_css_border_style, t_css_col >
+{ using type_some_of < t_css_column_rule, sz_space_char, 1, 3, t_css_border_measure, t_css_border_style, t_css_col > :: type_some_of; };
+
+template < > struct type_master < t_css_columns > : type_ab_ba < t_css_columns, sz_space_char, t_measure_a, t_unsigned_1_more_a >
+{ using type_ab_ba < t_css_columns, sz_space_char, t_measure_a, t_unsigned_1_more_a > :: type_ab_ba; };
 
 template < > struct type_master < t_css_counter > : type_function_2_opt < t_css_counter, sz_counter, t_text, t_css_list_style_type >
 { using type_function_2_opt < t_css_counter, sz_counter, t_text, t_css_list_style_type > :: type_function_2_opt; };
@@ -231,6 +282,20 @@ template < > struct type_master < t_css_cursor_url > : type_many_then_must < t_c
 template < > struct type_master < t_css_cursor > : type_either_or < t_css_cursor, t_css_cursor_url, t_css_inherit >
 { using type_either_or < t_css_cursor, t_css_cursor_url, t_css_inherit > :: type_either_or; };
 
+template < > struct type_master < t_css_display_listitem > : both_types_then_string < t_css_display_listitem, t_css_display_outside, t_css_display_flow, sz_list_item >
+{ using both_types_then_string < t_css_display_listitem, t_css_display_outside, t_css_display_flow, sz_list_item > :: both_types_then_string; };
+
+template < > struct type_master < t_css_display_3 > : type_some_of < t_css_display_3, sz_space_char, 1, 6,
+    t_css_display_outside, t_css_display_inside, t_css_display_listitem, t_css_display_internal, t_css_display_box, t_css_display_legacy >
+{ using type_some_of < t_css_display_3, sz_space_char, 1, 6,
+    t_css_display_outside, t_css_display_inside, t_css_display_listitem, t_css_display_internal, t_css_display_box, t_css_display_legacy > :: type_some_of; };
+
+template < > struct type_master < t_css_durations > : type_at_least_one < t_css_durations, sz_comma, t_svg_duration >
+{ using type_at_least_one < t_css_durations, sz_comma, t_svg_duration > :: type_at_least_one; };
+
+template < > struct type_master < t_css_easing_fns > : type_at_least_one < t_css_easing_fns, sz_comma, t_css_easing_fn >
+{ using type_at_least_one < t_css_easing_fns, sz_comma, t_css_easing_fn > :: type_at_least_one; };
+
 template < > struct type_master < t_css_elevation > : type_either_or < t_css_elevation, t_angle, t_css_elevation_e >
 { using type_either_or < t_css_elevation, t_angle, t_css_elevation_e > :: type_either_or; };
 
@@ -252,6 +317,9 @@ template < > struct type_master < t_css_fn_annotation > : type_function < t_css_
 template < > struct type_master < t_css_fn_character_variant > : type_function_some < t_css_fn_character_variant, sz_character_variant, 1, 0, t_css_ffv >
 { using type_function_some < t_css_fn_character_variant, sz_character_variant, 1, 0, t_css_ffv > :: type_function_some; };
 
+template < > struct type_master < t_css_fn_fit_content > : type_function < t_css_fn_fit_content, sz_fit_content, t_css_length >
+{ using type_function < t_css_fn_fit_content, sz_fit_content, t_css_length > :: type_function; };
+
 template < > struct type_master < t_css_fn_ornaments > : type_function < t_css_fn_ornaments, sz_ornaments, t_css_ffv >
 { using type_function < t_css_fn_ornaments, sz_ornaments, t_css_ffv > :: type_function; };
 
@@ -263,6 +331,9 @@ template < > struct type_master < t_css_fn_stylistic > : type_function < t_css_f
 
 template < > struct type_master < t_css_fn_swash > : type_function < t_css_fn_swash, sz_swash, t_css_ffv >
 { using type_function < t_css_fn_swash, sz_swash, t_css_ffv > :: type_function; };
+
+template < > struct type_master < t_css_column_width > : either_type_or_either_string < t_css_column_width, t_measure_a, t_css_fn_fit_content, sz_max_content, sz_min_content >
+{ using either_type_or_either_string < t_css_column_width, t_measure_a, t_css_fn_fit_content, sz_max_content, sz_min_content > :: either_type_or_either_string; };
 
 template < > struct type_master < t_css_font_feature_tag > : type_must_then_opt < t_css_font_feature_tag, t_css_font_feature, sz_space_char, t_integer_oo, 0, 1 >
 { using type_must_then_opt < t_css_font_feature_tag, t_css_font_feature, sz_space_char, t_integer_oo, 0, 1 > :: type_must_then_opt; };
@@ -312,6 +383,9 @@ template < > struct type_master < t_css_font_weight_4 > : type_or_any_string_5 <
 template < > struct type_master < t_css_format > : type_function_all < t_css_format, sz_format, t_css_font_format >
 { using type_function_all < t_css_format, sz_format, t_css_font_format > :: type_function_all; };
 
+template < > struct type_master < t_css_gap > : type_must_then_opt < t_css_gap, t_measure_ni, sz_space_char, t_measure_ni, 0, 1 >
+{ using type_must_then_opt < t_css_gap, t_measure_ni, sz_space_char, t_measure_ni, 0, 1 > :: type_must_then_opt; };
+
 template < > struct type_master < t_css_hue > : type_either_or < t_css_hue, t_angle, t_real >
 { using type_either_or < t_css_hue, t_angle, t_real > :: type_either_or; };
 
@@ -333,11 +407,17 @@ template < > struct type_master < t_css_kdb_nav > : type_one_or_both < t_css_kdb
 template < > struct type_master < t_css_length_2 > : type_one_or_both < t_css_length_2, t_css_length, sz_space_char, t_css_length >
 { using type_one_or_both < t_css_length_2, t_css_length, sz_space_char, t_css_length > :: type_one_or_both; };
 
+template < > struct type_master < t_css_length_3 > : type_either_or < t_css_length_3, t_css_length, t_css_fn_fit_content >
+{ using type_either_or < t_css_length_3, t_css_length, t_css_fn_fit_content > :: type_either_or; };
+
 template < > struct type_master < t_css_length_a > : type_or_string < t_css_length_a, t_css_length, sz_auto >
 { using type_or_string < t_css_length_a, t_css_length, sz_auto > :: type_or_string; };
 
 template < > struct type_master < t_css_length_a2 > : type_one_or_both < t_css_length_a2, t_css_length_a, sz_space_char, t_css_length_a >
 { using type_one_or_both < t_css_length_a2, t_css_length_a, sz_space_char, t_css_length_a > :: type_one_or_both; };
+
+template < > struct type_master < t_css_length_amm > : type_or_any_string < t_css_length_amm, t_css_length_3, sz_auto, sz_max_content, sz_min_content >
+{ using type_or_any_string < t_css_length_amm, t_css_length_3, sz_auto, sz_max_content, sz_min_content > :: type_or_any_string; };
 
 template < > struct type_master < t_css_length_ai > : either_type_or_string < t_css_length_ai, t_css_inherit, t_css_length, sz_auto >
 { using either_type_or_string < t_css_length_ai, t_css_inherit, t_css_length, sz_auto > :: either_type_or_string; };
@@ -359,6 +439,12 @@ template < > struct type_master < t_css_ls_val > : type_one_of < t_css_ls_val, f
 
 template < > struct type_master < t_css_list_style > : type_range < t_css_list_style, sz_space_char, t_css_ls_val, 1, 3 >
 { using type_range < t_css_list_style, sz_space_char, t_css_ls_val, 1, 3 > :: type_range; };
+
+template < > struct type_master < t_css_margins_trim_inner > : type_some_of < t_css_margins_trim_inner, sz_space_char, 1, 4, t_css_margin_trim_inner >
+{ using type_some_of < t_css_margins_trim_inner, sz_space_char, 1, 4, t_css_margin_trim_inner > :: type_some_of; };
+
+template < > struct type_master < t_css_margin_trim > : type_or_any_string < t_css_margin_trim, t_css_margins_trim_inner, sz_block, sz_inline, sz_none >
+{ using type_or_any_string < t_css_margin_trim, t_css_margins_trim_inner, sz_block, sz_inline, sz_none > :: type_or_any_string; };
 
 template < > struct type_master < t_css_margins > : type_either_or < t_css_margins, t_measures_a, t_css_inherit >
 { using type_either_or < t_css_margins, t_measures_a, t_css_inherit > :: type_either_or; };
@@ -387,6 +473,9 @@ template < > struct type_master < t_css_outlines > : type_range < t_css_outlines
 template < > struct type_master < t_css_outline_i > : type_either_or < t_css_outline_i, t_css_inherit, t_css_outlines >
 { using type_either_or < t_css_outline_i, t_css_inherit, t_css_outlines > :: type_either_or; };
 
+template < > struct type_master < t_css_overflows > : type_one_or_both < t_css_overflows, t_css_overflow, sz_space_char, t_css_overflow >
+{ using type_one_or_both < t_css_overflows, t_css_overflow, sz_space_char, t_css_overflow > :: type_one_or_both; };
+
 template < > struct type_master < t_css_palette_nld > : type_or_any_string < t_css_palette_nld, t_css_palette, sz_dark, sz_light, sz_normal >
 { using type_or_any_string < t_css_palette_nld, t_css_palette, sz_dark, sz_light, sz_normal > :: type_or_any_string; };
 
@@ -402,6 +491,15 @@ template < > struct type_master < t_css_pauses > : type_range < t_css_pauses, sz
 template < > struct type_master < t_css_pitch > : type_either_or < t_css_pitch, t_real, t_css_pitch_e >
 { using type_either_or < t_css_pitch, t_real, t_css_pitch_e > :: type_either_or; };
 
+template < > struct type_master < t_css_place_content > : type_must_then_opt < t_css_place_content, t_css_align_content, sz_space_char, t_css_justify_content, 0, 1 >
+{ using type_must_then_opt < t_css_place_content, t_css_align_content, sz_space_char, t_css_justify_content, 0, 1 > :: type_must_then_opt; };
+
+template < > struct type_master < t_css_place_items > : type_must_then_opt < t_css_place_items, t_css_box_alignitems, sz_space_char, t_css_box_justitems, 0, 1 >
+{ using type_must_then_opt < t_css_place_items, t_css_box_alignitems, sz_space_char, t_css_box_justitems, 0, 1 > :: type_must_then_opt; };
+
+template < > struct type_master < t_css_place_self > : type_must_then_opt < t_css_place_self, t_css_box_alignself, sz_space_char, t_css_box_justself, 0, 1 >
+{ using type_must_then_opt < t_css_place_self, t_css_box_alignself, sz_space_char, t_css_box_justself, 0, 1 > :: type_must_then_opt; };
+
 template < > struct type_master < t_css_play_during > : either_type_or_either_string < t_css_play_during, t_css_play_during_mr, t_css_inherit, sz_auto, sz_none >
 { using either_type_or_either_string < t_css_play_during, t_css_play_during_mr, t_css_inherit, sz_auto, sz_none > :: either_type_or_either_string; };
 
@@ -410,6 +508,9 @@ template < > struct type_master < t_css_rect_fn > : type_function_all < t_css_re
 
 template < > struct type_master < t_css_rect_ai > : either_type_or_string < t_css_rect_ai, t_css_rect_fn, t_css_inherit, sz_auto >
 { using either_type_or_string < t_css_rect_ai, t_css_rect_fn, t_css_inherit, sz_auto > :: either_type_or_string; };
+
+template < > struct type_master < t_css_scrollbar_gutter > : type_and_maybe_string < t_css_scrollbar_gutter, t_auto_stable, sz_space_char, sz_both_edges >
+{ using type_and_maybe_string < t_css_scrollbar_gutter, t_auto_stable, sz_space_char, sz_both_edges > :: type_and_maybe_string; };
 
 template < > struct type_master < t_css_size > : type_either_or < t_css_size, t_css_orientation, t_css_length_twice >
 { using type_either_or < t_css_size, t_css_orientation, t_css_length_twice > :: type_either_or; };
@@ -422,6 +523,24 @@ template < > struct type_master < t_css_speech_rate > : type_either_or < t_css_s
 
 template < > struct type_master < t_css_tech > : type_function_all < t_css_tech, sz_format, t_css_font_techs >
 { using type_function_all < t_css_tech, sz_format, t_css_font_techs > :: type_function_all; };
+
+template < > struct type_master < t_css_trans_prop_a > : type_or_string < t_css_trans_prop_a, t_css_property, sz_all >
+{ using type_or_string < t_css_trans_prop_a, t_css_property, sz_all > :: type_or_string; };
+
+template < > struct type_master < t_css_trans_prop_n > : type_or_string < t_css_trans_prop_n, t_css_property, sz_none >
+{ using type_or_string < t_css_trans_prop_n, t_css_property, sz_none > :: type_or_string; };
+
+template < > struct type_master < t_css_trans_props > : type_at_least_one < t_css_trans_props, sz_comma, t_css_trans_prop_a >
+{ using type_at_least_one < t_css_trans_props, sz_comma, t_css_trans_prop_a > :: type_at_least_one; };
+
+template < > struct type_master < t_css_trans_props_n > : type_or_string < t_css_trans_props_n, t_css_trans_props, sz_none >
+{ using type_or_string < t_css_trans_props_n, t_css_trans_props, sz_none > :: type_or_string; };
+
+template < > struct type_master < t_css_transition > : type_some_of < t_css_transition, sz_space_char, 1, 4, t_css_trans_prop_n, t_duration, t_css_easing_fn, t_duration >
+{ using type_some_of < t_css_transition, sz_space_char, 1, 4, t_css_trans_prop_n, t_duration, t_css_easing_fn, t_duration > :: type_some_of; };
+
+template < > struct type_master < t_css_transitions > : type_at_least_one < t_css_transitions, sz_comma, t_css_transition >
+{ using type_at_least_one < t_css_transitions, sz_comma, t_css_transition > :: type_at_least_one; };
 
 template < > struct type_master < t_css_volume > : type_one_of < t_css_volume, false, t_css_volume_e, t_percent, t_fixedpoint >
 { using type_one_of < t_css_volume, false, t_css_volume_e, t_percent, t_fixedpoint > :: type_one_of; };
@@ -611,6 +730,18 @@ template < > struct type_master < t_css_background_repeat_3 > : tidy_string < t_
                 tst.set_value (nits, v, arg);
                 if (tst.good ()) return; } }
         tidy_string < t_css_background_repeat_3 > :: status (s_invalid); } };
+
+template < > struct type_master < t_css_display_1 > : tidy_string < t_css_display_1 >
+{   using tidy_string < t_css_display_1 > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_display_1 > :: set_value (nits, v, s);
+        if (tidy_string < t_css_display_1 > :: empty ())
+            nits.pick (nit_key, es_error, ec_type, "display cannot be empty");
+        else if (tidy_string < t_css_display_1 > :: good ())
+            if (v.css_display () == 0)
+            {   if (test_value < t_css_display > (nits, v, s)) return; }
+            else if (test_value < t_css_display_3 > (nits, v, s)) return;
+        tidy_string < t_css_display_1 > :: status (s_invalid); } };
 
 template < > struct type_master < t_css_font_size_4 > : tidy_string < t_css_font_size_4 >
 {   using tidy_string < t_css_font_size_4 > :: tidy_string;

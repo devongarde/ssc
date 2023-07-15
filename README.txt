@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.1.29
+version 0.1.30
 (c) 2020-2023 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notice
 https://ssc.lu/
@@ -55,9 +55,9 @@ To build & run:
 
 
 
-This is an alpha version of ssc. Despite heavy testing, it may contain
-unexpected features. If you encounter such an bug, please help improve
-ssc by collecting the following information (where relevant):
+This is an alpha version of ssc. It may contain unexpected features.
+If you encounter such a delight, please help improve ssc by collecting
+the following information (where relevant):
 - version of ssc;
 - precise version of the operating system;
 - hardware architecture and system information;
@@ -90,12 +90,12 @@ to untrusted data sources, such as that found on the open web.
 Notes on names:
 - recipe: a nod to Vernor Vinge's "A Fire Upon the Deep";
 - tea: without tea, nothing works; then there's builders' tea;
-- sauce: makes food tasty; here, identifies presumers;
+- sauce: makes the dull tasty; identifies incompetent pedants;
 - toast: toasts code; i liked burnt toast;
 - heater: i'm not stopping now;
 - unii: my preferred plural of unix: to my ears, both unixes and unices
         sound like they sing castrato.
-- andor: and/or sans ancienne; land of Gift (dass ist nicht das Gift)
+- andor: and/or sans ancienne; land of Gift (aber nicht das Gift)
 
 
 
@@ -103,7 +103,7 @@ SEE ALSO
 build.txt        notes on building ssc
 gen.txt          a model man page
 usage.txt        how to use ssc
-releasenotes.txt a slight history of releases
+releasenotes.txt chips
 LICENCE.txt      ssc licence information
 LICENSE.txt      formal GPL 3 licence
 more licences    licences for borrowed external content
@@ -121,7 +121,7 @@ Then came the cow flu*.
 
 * corvid means crow, thus covid means cow**.
 
-** by the long derided laws of sympathetic spelling.
+** by the rules of sympathetic spelling.
 
 
 
@@ -130,6 +130,12 @@ This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
+
+
+
+UNABASHED OPPORTUNISM
+If you appreciate modernist poetry or abstract photography, I've been
+published. Click on books at https://dylanharris.org/ for gen.
 
 
 

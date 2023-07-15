@@ -66,6 +66,14 @@ template < > struct type_master < t_reals > : type_at_least_one < t_reals, sz_co
 {   static bool is_numeric () { return true; }
     using type_at_least_one < t_reals, sz_commaspace, t_real > :: type_at_least_one; };
 
+template < > struct type_master < t_unsigned_1_more > : type_integer_between < t_unsigned_1_more, unsigned, 1, 0 >
+{   static bool is_numeric () { return true; }
+    using type_integer_between < t_unsigned_1_more, unsigned, 1, 0 > :: type_integer_between; };
+
+template < > struct type_master < t_unsigned_1_more_a > : type_or_string < t_unsigned_1_more_a, t_unsigned_1_more, sz_auto >
+{   static bool is_numeric () { return true; }
+    using type_or_string < t_unsigned_1_more_a, t_unsigned_1_more, sz_auto > :: type_or_string; };
+
 template < > struct type_master < t_unsigned_1_or_2 > : type_range < t_unsigned_1_or_2, sz_commaspace, t_unsigned, 1, 2 >
 {   static bool is_numeric () { return true; }
     using type_range < t_unsigned_1_or_2, sz_commaspace, t_unsigned, 1, 2 > :: type_range; };
