@@ -17,7 +17,8 @@ PASS ../toast/css/5-cascade/css-2.css
 7 url_not_found
 8 url_not_found
 9 url_not_found
-11 url_not_found
+11 unrecognised_value unrecognised_value bad_media url_not_found
+12 unrecognised_value unrecognised_value bad_media
 
 PASS ../toast/css/5-cascade/css-3.css
 0 html

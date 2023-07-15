@@ -137,6 +137,10 @@ If you do use clang, the environment variable SANITY can be used to
 apply one of its sanitiser tests. Details of those tests can be found
 at https://clang.llvm.org/docs/index.html
 
+For example, I use this command to persuade cmake to use gcc in macos:
+  CMAKE_C_COMPILER=path CMAKE_CXX_COMPILER=path CXX=xeq CC=xeq cmake .
+where is the c then c++ compiler path, & xeq is similarly a compiler
+executable name. One does need to install gcc beforehand.
 
 Testing
 =======

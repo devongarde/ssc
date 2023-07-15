@@ -95,6 +95,9 @@ template < > struct type_master < t_css_anim_fill_mode > : four_value < t_css_an
 template < > struct type_master < t_css_border_image_repeat > : four_value < t_css_border_image_repeat, e_css_border_image_repeat, sz_repeat, sz_round, sz_space_word, sz_stretch >
 { using four_value < t_css_border_image_repeat, e_css_border_image_repeat, sz_repeat, sz_round, sz_space_word, sz_stretch > :: four_value; };
 
+template < > struct type_master < t_css_display_legacy > : four_value < t_css_display_legacy, e_css_display_legacy, sz_inline_block, sz_inline_flex, sz_inline_grid, sz_inline_table >
+{ using four_value < t_css_display_legacy, e_css_display_legacy, sz_inline_block, sz_inline_flex, sz_inline_grid, sz_inline_table > :: four_value; };
+
 template < > struct type_master < t_css_flex_direction > : four_value < t_css_flex_direction, e_css_flex_direction, sz_column, sz_column_reverse, sz_row, sz_row_reverse >
 { using four_value < t_css_flex_direction, e_css_flex_direction, sz_column, sz_column_reverse, sz_row, sz_row_reverse > :: four_value; };
 
@@ -106,6 +109,9 @@ template < > struct type_master < t_css_font_style_e > : four_value < t_css_font
 
 template < > struct type_master < t_css_hue_interpolation > : four_value < t_css_hue_interpolation, e_css_hue_interpolation, sz_decreasing, sz_increasing, sz_longer, sz_shorter >
 { using four_value < t_css_hue_interpolation, e_css_hue_interpolation, sz_decreasing, sz_increasing, sz_longer, sz_shorter > :: four_value; };
+
+template < > struct type_master < t_css_margin_trim_inner > : four_value < t_css_margin_trim_inner, e_css_margin_trim_inner, sz_block_end, sz_block_start, sz_inline_end, sz_inline_start >
+{ using four_value < t_css_margin_trim_inner, e_css_margin_trim_inner, sz_block_end, sz_block_start, sz_inline_end, sz_inline_start > :: four_value; };
 
 template < > struct type_master < t_css_orientation > : four_value < t_css_orientation, e_css_orientation, sz_auto, sz_inherit, sz_landscape, sz_portrait >
 { using four_value < t_css_orientation, e_css_orientation, sz_auto, sz_inherit, sz_landscape, sz_portrait > :: four_value; };

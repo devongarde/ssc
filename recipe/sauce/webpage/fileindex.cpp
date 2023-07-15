@@ -767,19 +767,21 @@ void dedu (nitpick& nits) // presumes run between scan and examine phases
     {   index_t& x = vx.at (i);
         if ((x.flags_ & (FX_DIR | FX_BORKED | FX_SCANNED)) == 0)
             if (! is_verifiable_file (x.site_path ()))
-            {   crc_t crc = get_crc (nits, i);
+            {   bool dup = false;
+                crc_t crc = get_crc (nits, i);
                 if (crc == crc_initrem) continue;
-                lox l (lox_fileindex);
-                mcrc_t::const_iterator ci = mcrc.find (crc);
-                if (ci != mcrc.cend ())
-                    if (ci -> second != i)
-                    {   const index_t& y = vx.at (ci -> second);
-                        if (x.size_ == y.size_)
-                        {   if (y.dedu_ == nullfileindex) x.dedu_ = ci -> second;
-                            else x.dedu_ = y.dedu_;
-                            nits.pick (nit_duplicate, es_info, ec_crc, x.disk_path (), " duplicates ", vx.at (x.dedu_).disk_path ());
-                            continue; } }
-                mcrc.emplace (crc, i); } } }
+                {   lox l (lox_fileindex);
+                    mcrc_t::const_iterator ci = mcrc.find (crc);
+                    if (ci != mcrc.cend ())
+                        if (ci -> second != i)
+                        {   const index_t& y = vx.at (ci -> second);
+                            if (x.size_ == y.size_)
+                            {   if (y.dedu_ == nullfileindex) x.dedu_ = ci -> second;
+                                else x.dedu_ = y.dedu_;
+                                dup = true; } }
+                    if (! dup) mcrc.emplace (crc, i); }
+                if (dup)
+                    nits.pick (nit_duplicate, es_info, ec_crc, x.disk_path (), " duplicates ", vx.at (x.dedu_).disk_path ()); } } }
 
 bool isdu (const fileindex_t ndx)
 {   lox l (lox_fileindex);

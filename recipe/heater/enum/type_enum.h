@@ -304,9 +304,6 @@ template < > struct type_master < t_css_azimuth_e > : enum_n < t_css_azimuth_e, 
 template < > struct type_master < t_css_background_attachment > : enum_n < t_css_background_attachment, e_css_background_attachment >
 { using enum_n < t_css_background_attachment, e_css_background_attachment > :: enum_n; };
 
-template < > struct type_master < t_css_background_box > : enum_n < t_css_background_box, e_css_background_box >
-{ using enum_n < t_css_background_box, e_css_background_box > :: enum_n; };
-
 template < > struct type_master < t_css_background_repeat > : enum_n < t_css_background_repeat, e_css_background_repeat >
 { using enum_n < t_css_background_repeat, e_css_background_repeat > :: enum_n; };
 
@@ -340,11 +337,23 @@ template < > struct type_master < t_css_colour > : enum_n < t_css_colour, e_css_
 template < > struct type_master < t_css_content_enum > : enum_n < t_css_content_enum, e_css_content_enum >
 { using enum_n < t_css_content_enum, e_css_content_enum > :: enum_n; };
 
+template < > struct type_master < t_css_content_position > : enum_n < t_css_content_position, e_css_content_position >
+{ using enum_n < t_css_content_position, e_css_content_position > :: enum_n; };
+
+template < > struct type_master < t_css_coord_box > : enum_n < t_css_coord_box, e_css_coord_box >
+{ using enum_n < t_css_coord_box, e_css_coord_box > :: enum_n; };
+
 template < > struct type_master < t_css_counter_style > : enum_n < t_css_counter_style, e_css_counter_style >
 { using enum_n < t_css_counter_style, e_css_counter_style > :: enum_n; };
 
 template < > struct type_master < t_css_display > : enum_n < t_css_display, e_css_display >
 { using enum_n < t_css_display, e_css_display > :: enum_n; };
+
+template < > struct type_master < t_css_display_inside > : enum_n < t_css_display_inside, e_css_display_inside >
+{ using enum_n < t_css_display_inside, e_css_display_inside > :: enum_n; };
+
+template < > struct type_master < t_css_display_internal > : enum_n < t_css_display_internal, e_css_display_internal >
+{ using enum_n < t_css_display_internal, e_css_display_internal > :: enum_n; };
 
 template < > struct type_master < t_css_elevation_e > : enum_n < t_css_elevation_e, e_css_elevation_e >
 { using enum_n < t_css_elevation_e, e_css_elevation_e > :: enum_n; };
@@ -379,6 +388,9 @@ template < > struct type_master < t_css_generic_family > : enum_n < t_css_generi
 template < > struct type_master < t_css_justify_content > : enum_n < t_css_justify_content, e_css_justify_content >
 { using enum_n < t_css_justify_content, e_css_justify_content > :: enum_n; };
 
+template < > struct type_master < t_css_layout_box > : enum_n < t_css_layout_box, e_css_layout_box >
+{ using enum_n < t_css_layout_box, e_css_layout_box > :: enum_n; };
+
 template < > struct type_master < t_css_list_style_position > : enum_n < t_css_list_style_position, e_css_list_style_position >
 { using enum_n < t_css_list_style_position, e_css_list_style_position > :: enum_n; };
 
@@ -387,6 +399,9 @@ template < > struct type_master < t_css_list_style_type > : enum_n < t_css_list_
 
 template < > struct type_master < t_css_overflow > : enum_n < t_css_overflow, e_css_overflow >
 { using enum_n < t_css_overflow, e_css_overflow > :: enum_n; };
+
+template < > struct type_master < t_css_paint_box > : enum_n < t_css_paint_box, e_css_paint_box >
+{ using enum_n < t_css_paint_box, e_css_paint_box > :: enum_n; };
 
 template < > struct type_master < t_css_pitch_e > : enum_n < t_css_pitch_e, e_css_pitch_e >
 { using enum_n < t_css_pitch_e, e_css_pitch_e > :: enum_n; };
@@ -408,6 +423,9 @@ template < > struct type_master < t_css_relative_size > : enum_n < t_css_relativ
 
 template < > struct type_master < t_css_resize > : enum_n < t_css_resize, e_css_resize >
 { using enum_n < t_css_resize, e_css_resize > :: enum_n; };
+
+template < > struct type_master < t_css_self_position > : enum_n < t_css_self_position, e_css_self_position >
+{ using enum_n < t_css_self_position, e_css_self_position > :: enum_n; };
 
 template < > struct type_master < t_css_speak_as_e > : enum_n < t_css_speak_as_e, e_css_speak_as_e >
 { using enum_n < t_css_speak_as_e, e_css_speak_as_e > :: enum_n; };
@@ -438,6 +456,9 @@ template < > struct type_master < t_css_val_fn > : enum_n < t_css_val_fn, e_css_
 
 template < > struct type_master < t_css_vertical_align > : enum_n < t_css_vertical_align, e_css_vertical_align >
 { using enum_n < t_css_vertical_align, e_css_vertical_align > :: enum_n; };
+
+template < > struct type_master < t_css_visual_box > : enum_n < t_css_visual_box, e_css_visual_box >
+{ using enum_n < t_css_visual_box, e_css_visual_box > :: enum_n; };
 
 template < > struct type_master < t_css_volume_e > : enum_n < t_css_volume_e, e_css_volume_e >
 { using enum_n < t_css_volume_e, e_css_volume_e > :: enum_n; };

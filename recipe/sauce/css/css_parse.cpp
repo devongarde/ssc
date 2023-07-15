@@ -147,8 +147,10 @@ void boast (vtt_t& t)
                 case ct_splat : ::std::cout << "splat"; break;
                 case ct_eq : ::std::cout << "eq"; break;
                 case ct_gt : ::std::cout << "gt"; break;
+                case ct_gteq : ::std::cout << "gteq"; break;
                 case ct_gtgt : ::std::cout << "gtgt"; break;
                 case ct_lt : ::std::cout << "lt"; break;
+                case ct_lteq : ::std::cout << "lteq"; break;
                 case ct_bar : ::std::cout << "bar"; break;
                 case ct_barbar : ::std::cout << "barbar"; break;
                 case ct_plus : ::std::cout << "plus"; break;
@@ -266,16 +268,20 @@ bool css::parse (const ::std::string& content, const bool x)
                 case '#' : bonk (args_.t_, ct_hash, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
                 case '^' : bonk (args_.t_, ct_hat, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
                 case '$' : bonk (args_.t_, ct_dollar, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
-                case '>' : if (! anticipate (i, e, ">>"))
-                               bonk (args_.t_, ct_gt, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
+                case '>' : if (anticipate (i, e, ">="))
+                                bonk (args_.t_, ct_gteq, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
+                           else if (! anticipate (i, e, ">>"))
+                                bonk (args_.t_, ct_gt, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                            else if (context.html_ver ().css_cascade () >= 6)
-                               bonk (args_.t_, ct_gtgt, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
+                                bonk (args_.t_, ct_gtgt, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                            else args_.t_.at (args_.t_.size () - 1).nits_.pick (nit_css_version, ed_css_cascade_6, "2.6. Scoped Descendant Combinator", es_error, ec_css, ">> requires CSS Cascade 6");
                            break;
-                case '<' : if (x && (! xml_cmt) && anticipate (i, e, "<![CDATA["))
-                           { bonk (args_.t_, ct_whitespace, line_, v, hex, c, commented, sgml_cmt, xml_cmt); xml_cmt = true; }
+                case '<' : if (anticipate (i, e, "<="))
+                                bonk (args_.t_, ct_lteq, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
+                           else if (x && (! xml_cmt) && anticipate (i, e, "<![CDATA["))
+                           {    bonk (args_.t_, ct_whitespace, line_, v, hex, c, commented, sgml_cmt, xml_cmt); xml_cmt = true; }
                            else if ((! sgml_cmt) && anticipate (i, e, "<!--"))
-                           { bonk (args_.t_, ct_whitespace, line_, v, hex, c, commented, sgml_cmt, xml_cmt); sgml_cmt = true; }
+                           {    bonk (args_.t_, ct_whitespace, line_, v, hex, c, commented, sgml_cmt, xml_cmt); sgml_cmt = true; }
                            else bonk (args_.t_, ct_lt, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                            break;
                 case '=' : bonk (args_.t_, ct_eq, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
@@ -409,8 +415,10 @@ bool css::parse (const ::std::string& content, const bool x)
         case ct_hat : return "^";
         case ct_dollar : return "$";
         case ct_gt : return ">";
+        case ct_gteq : return ">=";
         case ct_gtgt : return ">>";
         case ct_lt : return "<";
+        case ct_lteq : return "<=";
         case ct_eq : return "=";
         case ct_squiggle : return "~";
         case ct_bar : return "|";

@@ -38,6 +38,11 @@ lox::lox (const e_lox l, const bool not_really)
     PRESUME (l < lox_error, __FILE__, __LINE__);
     PRESUME (l != lox_flox, __FILE__, __LINE__);
     PRESUME (l != lox_dear, __FILE__, __LINE__);
+#ifdef DEBUG
+    const e_lox fl = fred.get_lox ();
+    if (fl != lox_none)
+        ::std::cerr << "existing lock " << fl << " blocks new lock " << l << ::std::endl;
+#endif // DEBUG
     PRESUME (fred.get_lox () == lox_none, __FILE__, __LINE__);
     PRESUME (! fred.get_flox (), __FILE__, __LINE__);
     fred.set_lox (l);

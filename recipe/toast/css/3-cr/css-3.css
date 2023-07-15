@@ -1,0 +1,7 @@
+﻿
+@namespace x url(http://www.w3.org/1999/xlink);
+@supports (content: attr(x|href)) {
+  /* do something */ }
+
+@supports (content: attr(n|tooltip)) {
+  /* do something */ }

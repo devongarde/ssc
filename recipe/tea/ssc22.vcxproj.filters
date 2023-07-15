@@ -1155,6 +1155,36 @@
     <Filter Include="Toast\CSS\3-cs">
       <UniqueIdentifier>{b3256f26-3448-4a71-9660-a64614b7fd3d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\Other\clacks">
+      <UniqueIdentifier>{fa21cf36-0cc5-49ea-881b-50073ede6298}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-cr">
+      <UniqueIdentifier>{cdc38715-0639-4bbf-a013-84ac504cfa17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-trans">
+      <UniqueIdentifier>{254679e7-710b-4850-8f83-b247a8694288}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-mc">
+      <UniqueIdentifier>{b605019a-89f1-4d47-bbd8-3df5a74eae95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-display">
+      <UniqueIdentifier>{928b0320-256e-4665-8989-23989e4cba08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-overflow">
+      <UniqueIdentifier>{8be25947-762e-478c-b9a3-1125e1ceed9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-box-model">
+      <UniqueIdentifier>{5fcba6be-8892-4ff0-87c7-aba660e7c9ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\4-box-model">
+      <UniqueIdentifier>{52d339e1-7c73-468f-90b4-20a883b4d1d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-box-sizing">
+      <UniqueIdentifier>{e65abfbe-11d8-43db-8443-5957e9bccd5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-position">
+      <UniqueIdentifier>{a6529ff1-396f-4fbf-95ac-49e9b3bbea7c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -31757,6 +31787,216 @@
     </None>
     <None Include="..\toast\css\3-cs\ready-made.css">
       <Filter>Toast\CSS\3-cs</Filter>
+    </None>
+    <None Include="..\toast\other\clacks\index.html">
+      <Filter>Toast\Other\clacks</Filter>
+    </None>
+    <None Include="..\toast\other\clacks\clacks.conf">
+      <Filter>Toast\Other\clacks</Filter>
+    </None>
+    <None Include="..\toast\other\clacks\clacks.spec">
+      <Filter>Toast\Other\clacks</Filter>
+    </None>
+    <None Include="..\toast\css\3-cr\css.conf">
+      <Filter>Toast\CSS\3-cr</Filter>
+    </None>
+    <None Include="..\toast\css\3-cr\css.spec">
+      <Filter>Toast\CSS\3-cr</Filter>
+    </None>
+    <None Include="..\toast\css\3-cr\css-2.css">
+      <Filter>Toast\CSS\3-cr</Filter>
+    </None>
+    <None Include="..\toast\css\3-cr\index.html">
+      <Filter>Toast\CSS\3-cr</Filter>
+    </None>
+    <None Include="..\toast\css\3-cr\css-3.css">
+      <Filter>Toast\CSS\3-cr</Filter>
+    </None>
+    <None Include="..\toast\css\3-cr\css-5.css">
+      <Filter>Toast\CSS\3-cr</Filter>
+    </None>
+    <None Include="..\toast\css\3-cr\css-6.css">
+      <Filter>Toast\CSS\3-cr</Filter>
+    </None>
+    <None Include="..\toast\css\3-trans\css.conf">
+      <Filter>Toast\CSS\3-trans</Filter>
+    </None>
+    <None Include="..\toast\css\3-trans\css.spec">
+      <Filter>Toast\CSS\3-trans</Filter>
+    </None>
+    <None Include="..\toast\css\3-trans\css-2.css">
+      <Filter>Toast\CSS\3-trans</Filter>
+    </None>
+    <None Include="..\toast\css\3-trans\index.html">
+      <Filter>Toast\CSS\3-trans</Filter>
+    </None>
+    <None Include="..\toast\css\3-trans\css-3.css">
+      <Filter>Toast\CSS\3-trans</Filter>
+    </None>
+    <None Include="..\toast\css\3-mc\css.conf">
+      <Filter>Toast\CSS\3-mc</Filter>
+    </None>
+    <None Include="..\toast\css\3-mc\css.spec">
+      <Filter>Toast\CSS\3-mc</Filter>
+    </None>
+    <None Include="..\toast\css\3-mc\css-1.css">
+      <Filter>Toast\CSS\3-mc</Filter>
+    </None>
+    <None Include="..\toast\css\3-mc\css-3.html">
+      <Filter>Toast\CSS\3-mc</Filter>
+    </None>
+    <None Include="..\toast\css\3-mc\index.html">
+      <Filter>Toast\CSS\3-mc</Filter>
+    </None>
+    <None Include="..\toast\css\3-mc\css-2.css">
+      <Filter>Toast\CSS\3-mc</Filter>
+    </None>
+    <None Include="..\toast\css\3-mc\css-3.css">
+      <Filter>Toast\CSS\3-mc</Filter>
+    </None>
+    <None Include="..\toast\css\3-mc\css-4.css">
+      <Filter>Toast\CSS\3-mc</Filter>
+    </None>
+    <None Include="..\toast\css\3-mc\css-6.css">
+      <Filter>Toast\CSS\3-mc</Filter>
+    </None>
+    <None Include="..\toast\css\3-mc\css-6.html">
+      <Filter>Toast\CSS\3-mc</Filter>
+    </None>
+    <None Include="..\toast\css\3-mc\css-7.css">
+      <Filter>Toast\CSS\3-mc</Filter>
+    </None>
+    <None Include="..\toast\css\3-mc\css-8.css">
+      <Filter>Toast\CSS\3-mc</Filter>
+    </None>
+    <None Include="..\toast\css\3-display\css.conf">
+      <Filter>Toast\CSS\3-display</Filter>
+    </None>
+    <None Include="..\toast\css\3-display\css.spec">
+      <Filter>Toast\CSS\3-display</Filter>
+    </None>
+    <None Include="..\toast\css\3-display\css-3.css">
+      <Filter>Toast\CSS\3-display</Filter>
+    </None>
+    <None Include="..\toast\css\3-display\css-2.html">
+      <Filter>Toast\CSS\3-display</Filter>
+    </None>
+    <None Include="..\toast\css\3-display\index.html">
+      <Filter>Toast\CSS\3-display</Filter>
+    </None>
+    <None Include="..\toast\css\3-display\css-3.html">
+      <Filter>Toast\CSS\3-display</Filter>
+    </None>
+    <None Include="..\toast\css\3-display\css-4.html">
+      <Filter>Toast\CSS\3-display</Filter>
+    </None>
+    <None Include="..\toast\css\3-display\css-5.html">
+      <Filter>Toast\CSS\3-display</Filter>
+    </None>
+    <None Include="..\toast\css\3-overflow\css.conf">
+      <Filter>Toast\CSS\3-overflow</Filter>
+    </None>
+    <None Include="..\toast\css\3-overflow\css.spec">
+      <Filter>Toast\CSS\3-overflow</Filter>
+    </None>
+    <None Include="..\toast\css\3-overflow\css-4.html">
+      <Filter>Toast\CSS\3-overflow</Filter>
+    </None>
+    <None Include="..\toast\css\3-overflow\css-5.css">
+      <Filter>Toast\CSS\3-overflow</Filter>
+    </None>
+    <None Include="..\toast\css\3-overflow\css-5.html">
+      <Filter>Toast\CSS\3-overflow</Filter>
+    </None>
+    <None Include="..\toast\css\3-overflow\index.html">
+      <Filter>Toast\CSS\3-overflow</Filter>
+    </None>
+    <None Include="..\toast\css\3-overflow\css-4.css">
+      <Filter>Toast\CSS\3-overflow</Filter>
+    </None>
+    <None Include="..\toast\css\3-box-model\css.conf">
+      <Filter>Toast\CSS\3-box-model</Filter>
+    </None>
+    <None Include="..\toast\css\3-box-model\css.spec">
+      <Filter>Toast\CSS\3-box-model</Filter>
+    </None>
+    <None Include="..\toast\css\3-box-model\css-3.css">
+      <Filter>Toast\CSS\3-box-model</Filter>
+    </None>
+    <None Include="..\toast\css\3-box-model\css-4.css">
+      <Filter>Toast\CSS\3-box-model</Filter>
+    </None>
+    <None Include="..\toast\css\3-box-model\index.html">
+      <Filter>Toast\CSS\3-box-model</Filter>
+    </None>
+    <None Include="..\toast\css\4-box-model\index.html">
+      <Filter>Toast\CSS\4-box-model</Filter>
+    </None>
+    <None Include="..\toast\css\4-box-model\css.conf">
+      <Filter>Toast\CSS\4-box-model</Filter>
+    </None>
+    <None Include="..\toast\css\4-box-model\css.spec">
+      <Filter>Toast\CSS\4-box-model</Filter>
+    </None>
+    <None Include="..\toast\css\4-box-model\css-3.css">
+      <Filter>Toast\CSS\4-box-model</Filter>
+    </None>
+    <None Include="..\toast\css\4-box-model\css-4.css">
+      <Filter>Toast\CSS\4-box-model</Filter>
+    </None>
+    <None Include="..\toast\css\3-box-sizing\css.spec">
+      <Filter>Toast\CSS\3-box-sizing</Filter>
+    </None>
+    <None Include="..\toast\css\3-box-sizing\css-3.css">
+      <Filter>Toast\CSS\3-box-sizing</Filter>
+    </None>
+    <None Include="..\toast\css\3-box-sizing\css-3.html">
+      <Filter>Toast\CSS\3-box-sizing</Filter>
+    </None>
+    <None Include="..\toast\css\3-box-sizing\css-4.html">
+      <Filter>Toast\CSS\3-box-sizing</Filter>
+    </None>
+    <None Include="..\toast\css\3-box-sizing\index.html">
+      <Filter>Toast\CSS\3-box-sizing</Filter>
+    </None>
+    <None Include="..\toast\css\3-box-sizing\css.conf">
+      <Filter>Toast\CSS\3-box-sizing</Filter>
+    </None>
+    <None Include="..\toast\css\3-box-sizing\css-5.html">
+      <Filter>Toast\CSS\3-box-sizing</Filter>
+    </None>
+    <None Include="..\toast\css\3-position\css.conf">
+      <Filter>Toast\CSS\3-position</Filter>
+    </None>
+    <None Include="..\toast\css\3-position\css.spec">
+      <Filter>Toast\CSS\3-position</Filter>
+    </None>
+    <None Include="..\toast\css\3-position\css-1.css">
+      <Filter>Toast\CSS\3-position</Filter>
+    </None>
+    <None Include="..\toast\css\3-position\css-2.css">
+      <Filter>Toast\CSS\3-position</Filter>
+    </None>
+    <None Include="..\toast\css\3-position\css-2.html">
+      <Filter>Toast\CSS\3-position</Filter>
+    </None>
+    <None Include="..\toast\css\3-position\css-3.css">
+      <Filter>Toast\CSS\3-position</Filter>
+    </None>
+    <None Include="..\toast\css\3-position\css-6.css">
+      <Filter>Toast\CSS\3-position</Filter>
+    </None>
+    <None Include="..\toast\css\3-position\css-6-1.html">
+      <Filter>Toast\CSS\3-position</Filter>
+    </None>
+    <None Include="..\toast\css\3-position\index.html">
+      <Filter>Toast\CSS\3-position</Filter>
+    </None>
+    <None Include="..\toast\css\3-position\css-6-2.html">
+      <Filter>Toast\CSS\3-position</Filter>
+    </None>
+    <None Include="..\toast\css\3-position\css-6-3.html">
+      <Filter>Toast\CSS\3-position</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

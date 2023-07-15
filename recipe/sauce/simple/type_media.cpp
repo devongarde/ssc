@@ -22,137 +22,138 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type.h"
 
 struct symbol_entry < html_version, e_media > media_symbol_table [] =
-{   { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "(", md_brac },
+{   { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "(", md_brac },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, ":", md_colon },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 }, { HTML_UNDEF }, "=", md_eq },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 }, { HTML_UNDEF }, ">", md_gt },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 }, { HTML_UNDEF }, ">=", md_gteq },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, ")", md_ket },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 }, { HTML_UNDEF }, "<", md_lt },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 }, { HTML_UNDEF }, "<=", md_lteq },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "/", md_slash },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_2 }, { HTML_UNDEF }, " ", md_space },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_2 }, { HTML_UNDEF }, ",", md_comma },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "=", md_eq },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, ">", md_gt },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, ">=", md_gteq },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, ")", md_ket },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "<", md_lt },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "<=", md_lteq },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "/", md_slash },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_2 | H2_CSS_COND_RULE }, { HTML_UNDEF }, " ", md_space },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_2 | H2_CSS_COND_RULE }, { HTML_UNDEF }, ",", md_comma },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "@custom-media", md_custom_media },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "active", md_active },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "additive", md_additive },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_2 }, { HTML_UNDEF }, "all", md_all },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "and", md_and },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 }, { HTML_UNDEF }, "any-hover", md_any_hover },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 }, { HTML_UNDEF }, "any-pointer", md_any_pointer },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "aspect-ratio", md_aspect_ratio },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_2 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "all", md_all },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "and", md_and },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "any-hover", md_any_hover },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "any-pointer", md_any_pointer },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "aspect-ratio", md_aspect_ratio },
     { { HTML_4_0, 0, 0, H2_CSS_2_0 | H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "aural", md_aural },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "back", md_back },
     { { HTML_4_0, 0, 0, H2_CSS_2 | H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "braille", md_braille },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "browser", md_browser },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "cm", md_cm },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 }, { HTML_UNDEF }, "coarse", md_coarse },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "color", md_colour },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 }, { HTML_UNDEF }, "color-gamut", md_colour_gamut },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "color-index", md_colour_index },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "cm", md_cm },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "coarse", md_coarse },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "color", md_colour },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "color-gamut", md_colour_gamut },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "color-index", md_colour_index },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "custom", md_custom },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "dark", md_dark },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "device-aspect-ratio", md_device_aspect_ratio },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "device-height", md_device_height },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "device-width", md_device_width },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "display-mode", md_display_mode },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "dpcm", md_dpcm },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "dpi", md_dpi },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "dpcm", md_dpcm },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "dpi", md_dpi },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "dynamic-range", md_dynamic_range },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "em", md_em },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "em", md_em },
     { { HTML_4_0, 0, 0, H2_CSS_2 | H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "embossed", md_embossed },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "enabled", md_enabled },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "environment-blending", md_environment_blending },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 }, { HTML_UNDEF }, "fast", md_fast },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 }, { HTML_UNDEF }, "fine", md_fine },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "fast", md_fast },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "fine", md_fine },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "forced-colors", md_forced_colours },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "fullscreen", md_fullscreen },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "grid", md_grid },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "height", md_height },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "grid", md_grid },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "height", md_height },
     { { HTML_4_0, 0, 0, H2_CSS_2 | H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "handheld", md_handheld },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "high", md_high },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "horizontal-viewport-segments", md_horizontal_viewport_segments },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 }, { HTML_UNDEF }, "hover", md_hover },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 }, { HTML_UNDEF }, "infinite", md_infinite },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "hover", md_hover },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "infinite", md_infinite },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "initial-only", md_initial_only },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "interlace", md_interlace },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "interlace", md_interlace },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "inverted", md_inverted },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "inverted-colors", md_inverted_colours },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "landscape", md_landscape },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "landscape", md_landscape },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "less", md_less },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "light", md_light },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "max-aspect-ratio", md_max_aspect_ratio },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "max-color", md_max_colour },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "max-aspect-ratio", md_max_aspect_ratio },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "max-color", md_max_colour },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "max-device-aspect-ratio", md_max_device_aspect_ratio },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "max-device-height", md_max_device_height },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "max-device-width", md_max_device_width },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "max-color-index", md_max_colour_index },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "max-height", md_max_height },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "max-color-index", md_max_colour_index },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "max-height", md_max_height },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "max-horizontal-viewport-segments", md_max_horizontal_viewport_segments },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "max-monochrome", md_max_monochrome },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "max-resolution", md_max_resolution },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "max-monochrome", md_max_monochrome },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "max-resolution", md_max_resolution },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "max-vertical-viewport-segments", md_max_vertical_viewport_segments },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "max-width", md_max_width },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "min-aspect-ratio", md_min_aspect_ratio },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "min-color", md_min_colour },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "max-width", md_max_width },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "min-aspect-ratio", md_min_aspect_ratio },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "min-color", md_min_colour },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "min-device-aspect-ratio", md_min_device_aspect_ratio },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "min-device-height", md_min_device_height },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "min-device-width", md_min_device_width },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "min-color-index", md_min_colour_index },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "min-height", md_min_height },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "min-color-index", md_min_colour_index },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "min-height", md_min_height },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "min-horizontal-viewport-segments", md_min_horizontal_viewport_segments },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "min-monochrome", md_min_monochrome },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "min-resolution", md_min_resolution },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "min-monochrome", md_min_monochrome },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "min-resolution", md_min_resolution },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "min-vertical-viewport-segments", md_min_vertical_viewport_segments },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "min-width", md_min_width },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "min-width", md_min_width },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "minimal-ui", md_minimal_ui },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "monochrome", md_monochrome },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "monochrome", md_monochrome },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "more", md_more },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "nav-controls", md_nav_controls },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "no-preference", md_no_preference },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "(-ve number)", md_negative },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 }, { HTML_UNDEF }, "none", md_none },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "not", md_not },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "only", md_only },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "(-ve number)", md_negative },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "none", md_none },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "not", md_not },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "only", md_only },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "opaque", md_opaque },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 }, { HTML_UNDEF }, "or", md_or },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "orientation", md_orientation },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 }, { HTML_UNDEF }, "overflow-block", md_overflow_block },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 }, { HTML_UNDEF }, "overflow-inline", md_overflow_inline },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 }, { HTML_UNDEF }, "paged", md_paged },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 }, { HTML_UNDEF }, "pointer", md_pointer },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "portrait", md_portrait },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "(+ve number)", md_positive },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "or", md_or },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "orientation", md_orientation },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "overflow-block", md_overflow_block },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "overflow-inline", md_overflow_inline },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "paged", md_paged },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "pointer", md_pointer },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "portrait", md_portrait },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "(+ve number)", md_positive },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "prefers-color-scheme", md_prefers_colour_scheme },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "prefers-contrast", md_prefers_contrast },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "prefers-reduced-data", md_prefers_reduced_data },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "prefers-reduced-motion", md_prefers_reduced_motion },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "prefers-reduced-transparency", md_prefers_reduced_transparency },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_2 }, { HTML_UNDEF }, "print", md_print },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "progressive", md_progressive },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_2 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "print", md_print },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "progressive", md_progressive },
     { { HTML_4_0, 0, 0, H2_CSS_2 | H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "projection", md_projection },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 }, { HTML_UNDEF }, "p3", md_p3 },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "px", md_px },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 }, { HTML_UNDEF }, "rec2020", md_rec2020 },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "p3", md_p3 },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "px", md_px },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "rec2020", md_rec2020 },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "reduce", md_reduce },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "resolution", md_resolution },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "scan", md_scan },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_2 }, { HTML_UNDEF }, "screen", md_screen },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "resolution", md_resolution },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "scan", md_scan },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_2 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "screen", md_screen },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "scripting", md_scripting },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 }, { HTML_UNDEF }, "scroll", md_scroll },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 }, { HTML_UNDEF }, "slow", md_slow },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "scroll", md_scroll },
+    { { HTML_4_0, 0, 0, H2_CSS_COND_RULE_45 }, { HTML_UNDEF }, "selector", md_selector },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "slow", md_slow },
     { { HTML_4_0, 0, 0, H2_CSS_21_22 | H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "speech", md_speech },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 }, { HTML_UNDEF }, "srgb", md_srgb },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "srgb", md_srgb },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "standalone", md_standalone },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "standard", md_standard },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "subtractive", md_subtractive },
     { { HTML_4_0, 0, 0, H2_CSS_2 | H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "tty", md_tty },
     { { HTML_4_0, 0, 0, H2_CSS_2 | H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "tv", md_tv },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 }, { HTML_UNDEF }, "update", md_update },
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "update", md_update },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "vertical-viewport-segments", md_vertical_viewport_segments },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "video-color-gamut", md_video_colour_gamut },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "video-dynamic-range", md_video_dynamic_range },
-    { { HTML_4_0, 0, 0, H2_CSS_MEDIA }, { HTML_UNDEF }, "width", md_width } };
+    { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "width", md_width } };
 
 void media_init (nitpick& nits)
 {   type_master < t_media > :: init (nits, media_symbol_table, sizeof (media_symbol_table) / sizeof (symbol_entry < html_version, e_media >)); }
@@ -461,7 +462,7 @@ void check_feature_compatibility (nitpick& nits, const html_version& , const e_m
             GRACEFUL_CRASH (__FILE__, __LINE__);
             break; } }
 
-bool validate_version (nitpick& nits, const int cv, const e_media media, const vstr_t& commas, const int comma, const ::std::string& ver_name)
+bool validate_version (nitpick& nits, const int cv, const int cr, const e_media media, const vstr_t& commas, const int comma, const ::std::string& ver_name)
 {   switch (media)
     {   case md_active :
         case md_additive :
@@ -521,8 +522,8 @@ bool validate_version (nitpick& nits, const int cv, const e_media media, const v
         case md_scroll :
         case md_slow :
         case md_srgb :
-            if (cv < 4)
-            {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": ", enum_n < t_media, e_media > :: name (media), " requires CSS Media 4 or later");
+            if ((cv < 4) && (cr < 3))
+            {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": ", enum_n < t_media, e_media > :: name (media), " requires CSS Conditional Rules, or CSS Media 4 or later");
                 return false; }
             break;
         case md_device_aspect_ratio :
@@ -550,11 +551,16 @@ bool validate_version (nitpick& nits, const int cv, const e_media media, const v
                 nits.pick (nit_deprecated_media, ed_css_media_4, "2.3. Media Types", es_warning, ec_mql, quote (commas.at (comma)), ": ", enum_n < t_media, e_media > :: name (media),
                     " is deprecated in ", ver_name, ", 'Authors must not use these media types'");
             break;
+        case md_selector :
+            if (cr < 4)
+            {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": ", enum_n < t_media, e_media > :: name (media), " requires CSS Conditional Rules 4");
+                return false; }
+            break;
         default :
             break; }
     return true; }
 
-bool token_flow (nitpick& nits, const html_version& v, const vm_t& vm, const ::std::string& , const vstr_t& commas)
+bool token_flow (nitpick& nits, const html_version& v, const vm_t& vm, const vstr_t& commas)
 {   typedef enum { tf_dull, tf_brac, tf_colonised, tf_silly_brac } tf_state;
     typedef::std::vector < bool > vdv_t;
     int comma = 0;
@@ -565,14 +571,21 @@ bool token_flow (nitpick& nits, const html_version& v, const vm_t& vm, const ::s
             len = false, ratio = false, dpi = false, slashed = false, resolved = false, discrete = false, rator = false, silly = false;
     e_type t = t_error;
     ::std::string ver_name;
-    switch (v.css_media ())
+    const int cv = v.css_media ();
+    const int cr = v.css_conditional_rule ();
+    switch (cv)
     {   case 3 : ver_name = "CSS Media Level 3"; break;
         case 4 : ver_name = "CSS Media Level 4"; break;
         case 5 : ver_name = "CSS Media Level 5 (draft)"; break;
-        default : ver_name = v.name (); break; }
-    constexpr flags_t mask = ( H2_CSS_MEDIA_MASK | H2_CSS_2_PLUS );
+        default : break; }
+    switch (cr)
+    {   case 3 : if (! ver_name.empty ()) ver_name += ", "; ver_name += "CSS Conditional Rules Level 3"; break;
+        case 4 : if (! ver_name.empty ()) ver_name += ", "; ver_name += "CSS Conditional Rules Level 4"; break;
+        case 5 : if (! ver_name.empty ()) ver_name += ", "; ver_name += "CSS Conditional Rules Level 5 (draft)"; break;
+        default : break; }
+    if (ver_name.empty ()) ver_name = v.name ();
+    constexpr flags_t mask = ( H2_CSS_MEDIA_MASK | H2_CSS_2_PLUS | H2_CSS_COND_RULE_MASK );
     const flags_t mv = v.ext2 () & mask;
-    const int cv = v.css_media ();
     for (auto m : vm)
     {   if (ignore && (m.m_ != md_comma)) continue;
         const html_version ver = enum_n < t_media, e_media > :: first_version (m.m_);
@@ -584,7 +597,7 @@ bool token_flow (nitpick& nits, const html_version& v, const vm_t& vm, const ::s
             else nits.pick (nit_media_ignored, es_warning, ec_mql, quote (mm), " is ignored in ", ver_name);
             ignore = true;
             continue; }
-        if (! validate_version (nits, v.css_media (), m.m_, commas, comma, ver_name))
+        if (! validate_version (nits, cv, cr, m.m_, commas, comma, ver_name))
         {   ignore = true;
             continue; }
         if ((status == tf_brac) || (status == tf_silly_brac))
@@ -1186,4 +1199,4 @@ bool parse_media_query (nitpick& nits, const html_version& v, const ::std::strin
     commas.push_back (ss);
     if (! s.empty ()) note_value (nits, v, vm, had, s, custom_media);
     if (context.tell (es_detail)) mtkn_report (vm);
-    return token_flow (nits, v, vm, sss, commas); }
+    return token_flow (nits, v, vm, commas); }

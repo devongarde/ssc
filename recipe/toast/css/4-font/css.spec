@@ -37,7 +37,7 @@ PASS ../toast/css/4-font/css-4.css
 169 fontname
 
 PASS ../toast/css/4-font/css-6.css
-7 css_version
+7 unrecognised_value unrecognised_value bad_media
 18 pseud
 24 class_microformat_property
 29 fontname

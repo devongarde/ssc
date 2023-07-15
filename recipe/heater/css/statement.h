@@ -52,7 +52,7 @@ class statement
     void parse_namespace (arguments& args, nitpick& nits, const int from, const int to);
     void parse_page (arguments& args, nitpick& nits, const int from, const int to);
     void parse_scope (arguments& args, nitpick& nits, const int from, const int to);
-    int parse_supports_content (arguments& args, nitpick& nits, const int from, const int to);
+    int parse_subsupports_content (arguments& args, nitpick& nits, const int from, const int to);
     void parse_supports (arguments& args, nitpick& nits, const int from, const int to);
 public:
     DEFAULT_CONSTRUCTORS (statement);

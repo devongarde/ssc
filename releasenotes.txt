@@ -3,6 +3,19 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.30
+- CSS Box Alignment 3
+- CSS Box Model 3
+- CSS Box Model 4
+- CSS Display 3
+- CSS Multi-Column 3
+- CSS Overflow 3
+- CSS Positions 3
+- CSS Transitions 3
+- X-Clacks-Overhead
+- various bug fixes
+- underlying work
+
 0.1.29
 - CSS Counter Style 3
 - CSS Flexible Box Layout 3

@@ -1,0 +1,6 @@
+﻿@media screen {
+    h1#first { position: fixed }
+}
+@media print {
+    h1#first { position: static }
+}

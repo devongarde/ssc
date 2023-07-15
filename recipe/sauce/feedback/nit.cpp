@@ -227,7 +227,8 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_css_value_4 : return "CSS Value 4";
         case ed_json : return "JSON";
         case ed_jsonld_1_0 : return "JSON-LD 1.0";
-        case ed_jsonld_1_1 : return "JSON-LD 1.1"; }
+        case ed_jsonld_1_1 : return "JSON-LD 1.1";
+        case ed_clacks : return "X-Clacks-Overhead"; }
     return "Unknown reference"; }
 
 ::std::string doc_ref (const e_doc doc)
@@ -330,5 +331,6 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_css_value_4 : return "CSS Values and Units 4, October 2022 draft";
         case ed_json : return "RFC 4627, JSON";
         case ed_jsonld_1_0 : return "JSON-LD 1.0, January 2014";
-        case ed_jsonld_1_1 : return "JSON-LD 1.1, July 2020"; }
+        case ed_jsonld_1_1 : return "JSON-LD 1.1, July 2020";
+        case ed_clacks : return "X-Clacks-Overhead / xclacksoverhead.org"; }
     return "unknown reference"; }

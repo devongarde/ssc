@@ -320,30 +320,33 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define H2_CSS_1_ARG        0x0000000001000000
 #define H2_CSS_2_ARGS       0x0000000002000000
-#define H2_CSS_1_2_ARGS ( H2_CSS_1_ARG | H2_CSS_2_ARGS )
+#define H2_CSS_1_2_ARGS   ( H2_CSS_1_ARG | H2_CSS_2_ARGS )
 #define H2_CSS_MORE_ARGS    0x0000000004000000
-#define H2_CSS_N_ARGS   ( H2_CSS_1_ARG | H2_CSS_MORE_ARGS )
+#define H2_CSS_N_ARGS     ( H2_CSS_1_ARG | H2_CSS_MORE_ARGS )
 #define H2_CSS_ARG_MASK     0x0000000007000000
 
 #define H2_CSS_STYLE        0x0000000008000000
 
 #define H2_CSS_CASCADE_3    0x0000000010000000  
 #define H2_CSS_CASCADE_4    0x0000000020000000  
+#define H2_CSS_CASCADE_34 ( H2_CSS_CASCADE_3 | H2_CSS_CASCADE_4 )  
 #define H2_CSS_CASCADE_5    0x0000000040000000  
+#define H2_CSS_CASCADE_345 ( H2_CSS_CASCADE_34 | H2_CSS_CASCADE_5 )  
 #define H2_CSS_CASCADE_6    0x0000000080000000  
-#define H2_CSS_CASCADE_56   ( H2_CSS_CASCADE_5 | H2_CSS_CASCADE_6 )  
-#define H2_CSS_CASCADE_456  ( H2_CSS_CASCADE_4 | H2_CSS_CASCADE_56 )  
-#define H2_CSS_CASCADE      0x00000000F0000000  
+#define H2_CSS_CASCADE_56 ( H2_CSS_CASCADE_5 | H2_CSS_CASCADE_6 )  
+#define H2_CSS_CASCADE_456 ( H2_CSS_CASCADE_4 | H2_CSS_CASCADE_56 )  
+#define H2_CSS_CASCADE    ( H2_CSS_CASCADE_345 | H2_CSS_CASCADE_6 )  
 #define H2_CSS_CASCADE_MASK 0x00000000F0000000  
 
 #define H2_CSS_SELECTOR_3   0x0000000100000000  
 #define H2_CSS_SELECTOR_4   0x0000000200000000  
-#define H2_CSS_SELECTOR_MASK 0x0000000300000000  
+#define H2_CSS_SELECTOR   ( H2_CSS_SELECTOR_3 | H2_CSS_SELECTOR_4 ) 
+#define H2_CSS_SELECTOR_MASK H2_CSS_SELECTOR  
 
 #define H2_CSS_UI_3         0x0000000400000000  
 #define H2_CSS_UI_4         0x0000000800000000  
 #define H2_CSS_UI         ( H2_CSS_UI_3 | H2_CSS_UI_4 )  
-#define H2_CSS_UI_MASK    H2_CSS_UI 
+#define H2_CSS_UI_MASK      H2_CSS_UI 
 
 #define H2_CSS_SVG_10       0x0000001000000000
 #define H2_CSS_SVG_11       0x0000002000000000
@@ -353,12 +356,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_SVG_21       0x0000010000000000
 #define H2_CSS_SVG_2      ( H2_CSS_SVG_20 | H2_CSS_SVG_21 )
 #define H2_CSS_SVG        ( H2_CSS_SVG_1 | H2_CSS_SVG_2 )
-#define H2_CSS_SVG_MASK   H2_CSS_SVG  
+#define H2_CSS_SVG_MASK     H2_CSS_SVG  
 
 #define H2_CSS_COLOUR_3     0x0000020000000000  
 #define H2_CSS_COLOUR_4     0x0000040000000000  
+#define H2_CSS_COLOUR_34  ( H2_CSS_COLOUR_3 | H2_CSS_COLOUR_4 )  
 #define H2_CSS_COLOUR_5     0x0000080000000000  
-#define H2_CSS_COLOUR_MASK  ( H2_CSS_COLOUR_3 | H2_CSS_COLOUR_4 | H2_CSS_COLOUR_5 )
+#define H2_CSS_COLOUR_45  ( H2_CSS_COLOUR_4 | H2_CSS_COLOUR_5 )  
+#define H2_CSS_COLOUR     ( H2_CSS_COLOUR_34 | H2_CSS_COLOUR_5 )
+#define H2_CSS_COLOUR_MASK  H2_CSS_COLOUR
 
 #define H2_CSS_MEDIA_3      0x0000100000000000  
 #define H2_CSS_MEDIA_4      0x0000200000000000  
@@ -400,10 +406,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define H2_CSS_CS_3         0x0800000000000000
 
-#define H2_CSS_3        ( H2_CSS_ANIM_3 | H2_CSS_BACKGROUND | H2_CSS_CASCADE_3 | H2_CSS_COLOUR_3 | H2_CSS_COMPOSITING | H2_CSS_CS_3 | H2_CSS_CUSTOM | H2_CSS_EASE | H2_CSS_FBL_3 | H2_CSS_FONT_3 | \
-                          H2_CSS_FRAG_3 | H2_CSS_MEDIA_3 | H2_CSS_NAMESPACE | H2_CSS_SELECTOR_3 | H2_CSS_STYLE | H2_CSS_SYNTAX | H2_CSS_UI_3 | H2_CSS_VALUE_3 )
-#define H2_CSS_4        ( H2_CSS_ANIM_4 | H2_CSS_CASCADE_4 | H2_CSS_COLOUR_4 | H2_CSS_FONT_4 | H2_CSS_FRAG_4 | H2_CSS_MEDIA_4 | H2_CSS_SELECTOR_4 | H2_CSS_UI_4 | H2_CSS_VALUE_4 )
-#define H2_CSS_5        ( H2_CSS_CASCADE_5 | H2_CSS_COLOUR_5 | H2_CSS_FONT_5 | H2_CSS_MEDIA_5 )
+#define H2_CSS_COND_RULE_3  0x1000000000000000
+#define H2_CSS_COND_RULE_4  0x1000000000000000
+#define H2_CSS_COND_RULE_34 ( H2_CSS_COND_RULE_3 | H2_CSS_COND_RULE_4 )
+#define H2_CSS_COND_RULE_5  0x1000000000000000
+#define H2_CSS_COND_RULE_45 ( H2_CSS_COND_RULE_4 | H2_CSS_COND_RULE_5 )
+#define H2_CSS_COND_RULE    ( H2_CSS_COND_RULE_34 | H2_CSS_COND_RULE_5 )
+#define H2_CSS_COND_RULE_MASK H2_CSS_COND_RULE
+
+#define H2_CLACKS           0x8000000000000000
+
+#define H2_CSS_3        ( H2_CSS_ANIM_3 | H2_CSS_BACKGROUND | H2_CSS_CASCADE_3 | H2_CSS_COLOUR_3 | H2_CSS_COMPOSITING | H2_CSS_COND_RULE_3 | H2_CSS_CS_3 | H2_CSS_CUSTOM | H2_CSS_EASE | \
+                          H2_CSS_FBL_3 | H2_CSS_FONT_3 | H2_CSS_FRAG_3 | H2_CSS_MEDIA_3 | H2_CSS_NAMESPACE | H2_CSS_SELECTOR_3 | H2_CSS_STYLE | H2_CSS_SYNTAX | H2_CSS_UI_3 | H2_CSS_VALUE_3 )
+#define H2_CSS_4        ( H2_CSS_ANIM_4 | H2_CSS_CASCADE_4 | H2_CSS_COLOUR_4 | H2_CSS_COND_RULE_4 | H2_CSS_FONT_4 | H2_CSS_FRAG_4 | H2_CSS_MEDIA_4 | H2_CSS_SELECTOR_4 | H2_CSS_UI_4 | H2_CSS_VALUE_4 )
+#define H2_CSS_5        ( H2_CSS_CASCADE_5 | H2_CSS_COLOUR_5 | H2_CSS_COND_RULE_5 | H2_CSS_FONT_5 | H2_CSS_MEDIA_5 )
 #define H2_CSS_6          H2_CSS_CASCADE_6
 
 #define H2_CSS_3_FULL   ( H2_CSS_3 | H2_CSS_2_2_FULL )
@@ -423,27 +439,67 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_MASK       H2_CSS_ALL
 #define H2_CSS            H2_CSS_ALL
 
-#define H2_FULL_CSS_MASK    0x0FFFFFFFFFFF8000  
+#define H2_FULL_CSS_MASK    0x7FFFFFFFFFFF8000
+
+#define H3_CSS_TRANSITION   0x0000000000000001
+#define H3_CSS_MULTI_COL    0x0000000000000002
+#define H3_CSS_DISPLAY      0x0000000000000004
+#define H3_CSS_OVERFLOW     0x0000000000000008
+
+#define H3_CSS_BOX_MODEL_3  0x0000000000000010
+#define H3_CSS_BOX_MODEL_4  0x0000000000000020
+#define H3_CSS_BOX_MODEL_34 ( H3_CSS_BOX_MODEL_3 | H3_CSS_BOX_MODEL_4 )  
+#define H3_CSS_BOX_MODEL      H3_CSS_BOX_MODEL_34  
+#define H3_CSS_BOX_MODEL_MASK H3_CSS_BOX_MODEL
+
+#define H3_CSS_BOX_ALIGN    0x0000000000000040
+#define H3_CSS_BOX_SIZING   0x0000000000000080
+
+#define H3_CSS_POSITION     0x0000000000000100
+
+#define H3_CSS_3        ( H3_CSS_BOX_ALIGN | H3_CSS_BOX_MODEL_3 | H3_CSS_BOX_SIZING | H3_CSS_DISPLAY | H3_CSS_MULTI_COL | H3_CSS_POSITION | H3_CSS_TRANSITION )
+#define H3_CSS_4          H3_CSS_BOX_MODEL_4
+#define H3_CSS_5          0
+#define H3_CSS_6          0
+  
+#define H3_CSS_3_FULL   ( H3_CSS_3 )
+#define H3_CSS_4_FULL   ( H3_CSS_4 | H3_CSS_3_FULL )
+#define H3_CSS_5_FULL   ( H3_CSS_5 | H3_CSS_4_FULL )
+#define H3_CSS_6_FULL   ( H3_CSS_6 | H3_CSS_5_FULL )
+
+#define H3_CSS_3_4      ( H3_CSS_3 | H3_CSS_4 )
+#define H3_CSS_3_4_5    ( H3_CSS_3_4 | H3_CSS_5 )
+
+#define H3_CSS_5_PLUS   ( H3_CSS_5 | H3_CSS_6 )
+#define H3_CSS_4_PLUS   ( H3_CSS_4 | H3_CSS_5_PLUS )
+#define H3_CSS_3_PLUS   ( H3_CSS_3 | H3_CSS_4_PLUS )
+#define H3_CSS_ALL        H3_CSS_3_PLUS
+#define H3_CSS_MASK       H3_CSS_ALL
+#define H3_CSS            H3_CSS_ALL
+
+#define H3_FULL_CSS_MASK    0x00000000000001FF
 
 class html_version : public version
-{   flags_t ext_ = NOFLAGS, ext2_ = NOFLAGS;
+{   flags_t ext_ = NOFLAGS, ext2_ = NOFLAGS, ext3_ = NOFLAGS;
     bool note_parsed_version (nitpick& nits, const e_nit n, const html_version& got, const ::std::string& gen);
     void init (const unsigned short mjr);
     bool test_extension () const noexcept;
-    ::std::string long_level (const ::std::string& s, const flags_t l3, const flags_t l4, const flags_t l5 = 0, const flags_t l6 = 0) const;
+    ::std::string long_level_2 (const ::std::string& s, const flags_t l3, const flags_t l4, const flags_t l5 = 0, const flags_t l6 = 0) const;
+    ::std::string long_level_3 (const ::std::string& s, const flags_t l3, const flags_t l4, const flags_t l5 = 0, const flags_t l6 = 0) const;
 public:
-    html_version () : ext_ (NOFLAGS), ext2_ (NOFLAGS) { }
+    html_version ()  { }
     explicit html_version (const unsigned short mjr) { init (mjr); }
-    explicit html_version (const schema_version& sv) noexcept : version (sv.mjr (), sv.mnr ()), ext_ (NOFLAGS), ext2_ (NOFLAGS) { }
-    html_version (const unsigned short mjr, const unsigned short mnr, const flags_t flags = NOFLAGS, const flags_t extensions = NOFLAGS, const flags_t e2 = NOFLAGS) noexcept
-        : version (mjr, mnr, flags), ext_ (extensions), ext2_ (e2) { }
-    html_version (const ::boost::gregorian::date& whatwg, const flags_t flags = NOFLAGS, const flags_t extensions = NOFLAGS, const flags_t e2 = NOFLAGS);
+    explicit html_version (const schema_version& sv) noexcept : version (sv.mjr (), sv.mnr ()) { }
+    html_version (const unsigned short mjr, const unsigned short mnr, const flags_t flags = NOFLAGS, const flags_t extensions = NOFLAGS, const flags_t e2 = NOFLAGS, const flags_t e3 = NOFLAGS) noexcept
+        : version (mjr, mnr, flags), ext_ (extensions), ext2_ (e2), ext3_ (e3) { }
+    html_version (const ::boost::gregorian::date& whatwg, const flags_t flags = NOFLAGS, const flags_t extensions = NOFLAGS, const flags_t e2 = NOFLAGS, const flags_t e3 = NOFLAGS);
     DEFAULT_COPY_CONSTRUCTORS (html_version);
 	~html_version () = default;
     void swap (html_version& v) noexcept
     {   version::swap (v);
         ::std::swap (ext_, v.ext_);
-        ::std::swap (ext2_, v.ext2_); }
+        ::std::swap (ext2_, v.ext2_);
+        ::std::swap (ext3_, v.ext3_); }
     void reset () noexcept { html_version v; swap (v); }
     void reset (const html_version& v) noexcept { html_version vv (v); swap (vv); }
     void set_ext (const flags_t u) noexcept { ext_ |= u; }
@@ -462,6 +518,16 @@ public:
     bool no_ext2 (const flags_t u) const noexcept { return ((ext2_ & u) == 0); }
     flags_t ext2 () const noexcept { return ext2_; }
     flags_t ext2 (const flags_t m, int r) const noexcept { return (ext2 () & m) >> r; }
+    void set_ext3 (const flags_t u) noexcept { ext3_ |= u; }
+    void set_ext3 (const flags_t m, const flags_t u) noexcept { reset_ext3 (m); set_ext3 (u); }
+    void set_ext3 (const flags_t m, const flags_t u, int r) noexcept { reset_ext3 (m); set_ext3 ((u << r) & m); }
+    void reset_ext3 (const flags_t u) noexcept { ext3_ &= ~u; }
+    bool all_ext3 (const flags_t u) const noexcept
+    {   return ((ext3_ & u) == u); }
+    bool any_ext3 (const flags_t u) const noexcept { return ((ext3_ & u) != 0); }
+    bool no_ext3 (const flags_t u) const noexcept { return ((ext3_ & u) == 0); }
+    flags_t ext3 () const noexcept { return ext3_; }
+    flags_t ext3 (const flags_t m, int r) const noexcept { return (ext3 () & m) >> r; }
     bool is_not (const unsigned short j, const unsigned short n = USHRT_MAX) const noexcept
     {   if (unknown ()) return false;
         if (j != mjr ()) return true;
@@ -491,7 +557,7 @@ public:
     bool experimental () const noexcept { return all_ext (HE_EXPERIMENTAL); }
     bool frameset () const noexcept { return all_flags (HV_FRAMESET); }
     bool ie () const noexcept { return all_ext (HE_IE); }
-    bool has_css () const noexcept { return any_ext2 (H2_CSS_ALL); }
+    bool has_css () const noexcept { return any_ext2 (H2_CSS_ALL) || any_ext3 (H3_CSS_ALL); }
     bool has_jsonld () const noexcept { return any_ext2 (JSONLD_MASK); }
     bool has_math () const noexcept { return any_ext2 (MATH_MASK); }
     bool has_math_core () const noexcept { return any_ext2 (H2_MATH_C); }
@@ -511,10 +577,10 @@ public:
     bool is_css_2_0 () const noexcept { return (any_ext2 (H2_CSS_2_0)); }
     bool is_css_2_1 () const noexcept { return (any_ext2 (H2_CSS_2_1)); }
     bool is_css_2_2 () const noexcept { return (any_ext2 (H2_CSS_2_2)); }
-    bool is_css_3 () const noexcept { return (any_ext2 (H2_CSS_3)); }
-    bool is_css_4 () const noexcept { return (any_ext2 (H2_CSS_4)); }
-    bool is_css_5 () const noexcept { return (any_ext2 (H2_CSS_5)); }
-    bool is_css_6 () const noexcept { return (any_ext2 (H2_CSS_6)); }
+    bool is_css_3 () const noexcept { return (any_ext2 (H2_CSS_3) || any_ext3 (H3_CSS_3)); }
+    bool is_css_4 () const noexcept { return (any_ext2 (H2_CSS_4) || any_ext3 (H3_CSS_4)); }
+    bool is_css_5 () const noexcept { return (any_ext2 (H2_CSS_5) || any_ext3 (H3_CSS_5)); }
+    bool is_css_6 () const noexcept { return (any_ext2 (H2_CSS_6) || any_ext3 (H3_CSS_6)); }
     bool is_jsonld_10 () const noexcept { return (ext2 () & H2_JSONLD_1_0) == H2_JSONLD_1_0; }
     bool is_jsonld_11 () const noexcept { return (ext2 () & H2_JSONLD_1_1) == H2_JSONLD_1_1; }
     bool is_rdf () const noexcept { return (ext () & HE_RDF) != 0; }
@@ -572,6 +638,7 @@ public:
     bool opera () const noexcept { return any_ext (HE_OPERA); }
     bool out_of_scope () const noexcept { return all_flags (HV_OUTOFSCOPE); }
     bool reject () const noexcept { return all_flags (REJECT); }
+    bool clacks () const noexcept { return any_ext2 (H2_CLACKS); }
     bool required () const noexcept { return all_flags (REQUIRED); }
     bool rfc_1867 () const noexcept { return all_flags (HV_RFC_1867); }
     bool rfc_1942 () const noexcept { return all_flags (HV_RFC_1942); }
@@ -622,16 +689,26 @@ public:
     void css_animation (const int n);
     int css_background () const;
     void css_background (const int n);
+    int css_box_alignment () const;
+    void css_box_alignment (const int n);
+    int css_box_model () const;
+    void css_box_model (const int n);
+    int css_box_sizing () const;
+    void css_box_sizing (const int n);
     int css_cascade () const;
     void css_cascade (const int n);
     int css_colour () const;
     void css_colour (const int n);
     int css_compositing () const;
     void css_compositing (const int n);
+    int css_conditional_rule () const;
+    void css_conditional_rule (const int n);
     int css_counter_style () const;
     void css_counter_style (const int n);
     int css_custom () const;
     void css_custom (const int n);
+    int css_display () const;
+    void css_display (const int n);
     int css_ease () const;
     void css_ease (const int n);
     int css_fbl () const;
@@ -642,24 +719,32 @@ public:
     void css_fragmentation (const int n);
     int css_media () const;
     void css_media (const int n);
+    int css_multi_column () const;
+    void css_multi_column (const int n);
     int css_namespace () const;
     void css_namespace (const int n);
+    int css_overflow () const;
+    void css_overflow (const int n);
+    int css_position () const;
+    void css_position (const int n);
     int css_selector () const;
     void css_selector (const int n);
     int css_style () const;
     void css_style (const int n);
     int css_syntax () const;
     void css_syntax (const int n);
+    int css_transition () const;
+    void css_transition (const int n);
     int css_ui () const;
     void css_ui (const int n);
     int css_value () const;
     void css_value (const int n);
-    bool is_css_compatible (const flags_t& f) const;
-    bool is_css_compatible (nitpick& nits, const flags_t& f) const;
+    bool is_css_compatible (const flags_t& f, const flags_t& f2) const;
+    bool is_css_compatible (nitpick& nits, const flags_t& f, const flags_t& f2) const;
     bool is_css_compatible (const html_version& v) const
-    {   return is_css_compatible (v.ext2_); }
+    {   return is_css_compatible (v.ext2_, v.ext3_); }
     bool is_css_compatible (nitpick& nits, const html_version& v) const
-    {   return is_css_compatible (nits, v.ext2_); }
+    {   return is_css_compatible (nits, v.ext2_, v.ext3_); }
     ::std::string get_doctype () const;
     ::std::string name () const;
     ::std::string report () const; };
@@ -701,16 +786,16 @@ const html_version html_css_1 (HTML_2_0, 0, 0, H2_CSS_1);
 const html_version html_css_2_0 (HTML_3_2, 0, 0, H2_CSS_2_0);
 const html_version html_css_2_1 (XHTML_1_0, 0, 0, H2_CSS_2_1);
 const html_version html_css_2_2 (HTML_JUL16, 0, 0, H2_CSS_2_2);
-const html_version html_css_3 (HTML_JAN15, 0, 0, H2_CSS_3);
-const html_version html_css_4 (HTML_OCT17, 0, 0, H2_CSS_4);
-const html_version html_css_5 (HTML_JAN22, 0, 0, H2_CSS_5);
-const html_version html_css_6 (HTML_JAN22, 0, 0, H2_CSS_6);
+const html_version html_css_3 (HTML_JAN15, 0, 0, H2_CSS_3, H3_CSS_3);
+const html_version html_css_4 (HTML_OCT17, 0, 0, H2_CSS_4, H3_CSS_4);
+const html_version html_css_5 (HTML_JAN22, 0, 0, H2_CSS_5, H3_CSS_5);
+const html_version html_css_6 (HTML_JAN22, 0, 0, H2_CSS_6, H3_CSS_6);
 
-const html_version html_css_selectors_4 (HTML_JAN21, 0, 0, H2_CSS_4);
-const html_version html_css_selectors_5 (HTML_JAN22, 0, 0, H2_CSS_5);
-const html_version html_css_selectors_6 (HTML_JAN22, 0, 0, H2_CSS_6);
+const html_version html_css_selectors_4 (HTML_JAN21, 0, 0, H2_CSS_4, H3_CSS_4);
+const html_version html_css_selectors_5 (HTML_JAN22, 0, 0, H2_CSS_5, H3_CSS_5);
+const html_version html_css_selectors_6 (HTML_JAN22, 0, 0, H2_CSS_6, H3_CSS_6);
 
-const html_version html_css_media (HTML_4_0, 0, 0, H2_CSS);
+const html_version html_css_media (HTML_4_0, 0, 0, H2_CSS, H3_CSS);
 
 const html_version html_as_1_0 (HTML_AS_1_0);
 const html_version html_as_2_0 (HTML_AS_2_0);
@@ -863,43 +948,43 @@ const html_version html_jan08 (HTML_JAN08, HV_WHATWG, HE_MICRODATA, H2_CSS_2_1);
 const html_version html_jul08 (HTML_JUL08, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2_1);
 const html_version html_jan09 (HTML_JAN09, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2_1);
 const html_version html_jul09 (HTML_JUL09, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2_1);
-const html_version html_jan10 (HTML_JAN10, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_3);
-const html_version html_jul10 (HTML_JUL10, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_3);
-const html_version html_jan12 (HTML_JAN12, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_3);
-const html_version html_jul12 (HTML_JUL12, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_3);
-const html_version html_jan13 (HTML_JAN13, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_3);
-const html_version html_jul13 (HTML_JUL13, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_3);
-const html_version html_jan14 (HTML_JAN14, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_3);
-const html_version html_jan15 (HTML_JAN15, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_3);
-const html_version html_jan16 (HTML_JAN16, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_3);
-const html_version html_jul16 (HTML_JUL16, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_3);
-const html_version html_jan17 (HTML_JAN17, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_3);
-const html_version html_jul17 (HTML_JUL17, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_3);
-const html_version html_jan18 (HTML_JAN18, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_3);
-const html_version html_jul18 (HTML_OCT18, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_3);
-const html_version html_oct18 (HTML_JUL18, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3 | H2_CSS_3);
-const html_version html_jan19 (HTML_JAN19, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3 | H2_CSS_3);
-const html_version html_jul19 (HTML_JUL19, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3 | H2_CSS_3);
-const html_version html_jul20 (HTML_JUL20, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3 | H2_CSS_3);
-const html_version html_jan21 (HTML_JAN21, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3 | H2_CSS_3);
-const html_version html_feb21 (HTML_FEB21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3 | H2_CSS_3);
-const html_version html_apr21 (HTML_APR21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_3);
-const html_version html_jul21 (HTML_JUL21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_3);
-const html_version html_oct21 (HTML_OCT21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_3);
-const html_version html_jan22 (HTML_JAN22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_3);
-const html_version html_apr22 (HTML_APR22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_3);
-const html_version html_jul22 (HTML_JUL22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_3);
-const html_version html_oct22 (HTML_OCT22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_3);
-const html_version html_jan23 (HTML_JAN23, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_3);
-const html_version html_apr23 (HTML_APR23, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_3);
-const html_version html_jul23 (HTML_JUL23, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_6);
-const html_version html_5_0 (HTML_5_0, HV_W3, HE_SVG_11, H2_MATH_2 | H2_CSS_3);
-const html_version html_5_1 (HTML_5_1, HV_W3, HE_SVG_11, H2_MATH_2 | H2_CSS_3);
-const html_version html_5_2 (HTML_5_2, HV_W3, HE_SVG_11, H2_MATH_3 | H2_CSS_3);
-const html_version html_5_3 (HTML_5_3, HV_W3, HE_SVG_11, H2_MATH_3 | H2_CSS_3);
+const html_version html_jan10 (HTML_JAN10, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_3, H3_CSS_3);
+const html_version html_jul10 (HTML_JUL10, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_3, H3_CSS_3);
+const html_version html_jan12 (HTML_JAN12, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_3, H3_CSS_3);
+const html_version html_jul12 (HTML_JUL12, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_3, H3_CSS_3);
+const html_version html_jan13 (HTML_JAN13, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_3, H3_CSS_3);
+const html_version html_jul13 (HTML_JUL13, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_3, H3_CSS_3);
+const html_version html_jan14 (HTML_JAN14, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_3, H3_CSS_3);
+const html_version html_jan15 (HTML_JAN15, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_3, H3_CSS_3);
+const html_version html_jan16 (HTML_JAN16, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_3, H3_CSS_3);
+const html_version html_jul16 (HTML_JUL16, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_3, H3_CSS_3);
+const html_version html_jan17 (HTML_JAN17, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_3, H3_CSS_3);
+const html_version html_jul17 (HTML_JUL17, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_3, H3_CSS_3);
+const html_version html_jan18 (HTML_JAN18, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_3, H3_CSS_3);
+const html_version html_jul18 (HTML_OCT18, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_3, H3_CSS_3);
+const html_version html_oct18 (HTML_JUL18, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3 | H2_CSS_3, H3_CSS_3);
+const html_version html_jan19 (HTML_JAN19, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3 | H2_CSS_3, H3_CSS_3);
+const html_version html_jul19 (HTML_JUL19, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3 | H2_CSS_3, H3_CSS_3);
+const html_version html_jul20 (HTML_JUL20, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3 | H2_CSS_3, H3_CSS_3);
+const html_version html_jan21 (HTML_JAN21, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3 | H2_CSS_3, H3_CSS_3);
+const html_version html_feb21 (HTML_FEB21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3 | H2_CSS_3, H3_CSS_3);
+const html_version html_apr21 (HTML_APR21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_3, H3_CSS_3);
+const html_version html_jul21 (HTML_JUL21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_3, H3_CSS_3);
+const html_version html_oct21 (HTML_OCT21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_3, H3_CSS_3);
+const html_version html_jan22 (HTML_JAN22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_3, H3_CSS_3);
+const html_version html_apr22 (HTML_APR22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_3, H3_CSS_3);
+const html_version html_jul22 (HTML_JUL22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_3, H3_CSS_3);
+const html_version html_oct22 (HTML_OCT22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_3, H3_CSS_3);
+const html_version html_jan23 (HTML_JAN23, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_3, H3_CSS_3);
+const html_version html_apr23 (HTML_APR23, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_3, H3_CSS_3);
+const html_version html_jul23 (HTML_JUL23, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_6, H3_CSS_6);
+const html_version html_5_0 (HTML_5_0, HV_W3, HE_SVG_11, H2_MATH_2 | H2_CSS_3, H3_CSS_3);
+const html_version html_5_1 (HTML_5_1, HV_W3, HE_SVG_11, H2_MATH_2 | H2_CSS_3, H3_CSS_3);
+const html_version html_5_2 (HTML_5_2, HV_W3, HE_SVG_11, H2_MATH_3 | H2_CSS_3, H3_CSS_3);
+const html_version html_5_3 (HTML_5_3, HV_W3, HE_SVG_11, H2_MATH_3 | H2_CSS_3, H3_CSS_3);
 const html_version html_current (html_jul23);
 const html_version html_default (html_current);
-const html_version html_max (HTML_DEC99, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_6);
+const html_version html_max (HTML_DEC99, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_6, H3_CSS_6);
 
 bool does_html_apply (const html_version& v, const html_version& from, const html_version& to);
 bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e);

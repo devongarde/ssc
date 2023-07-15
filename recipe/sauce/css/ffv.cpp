@@ -74,5 +74,5 @@ void font_feature::validate (arguments& args, const sstr_t& valid, const char* c
         if (valid.find (name_) == valid.cend ())
             args.t_.at (n_).nits_.pick (nit_css_font_feature, es_warning, ec_css, quote (name_), ": is not a recognised @", r); }
 
-void font_feature::shadow (::std::stringstream& ss, arguments& args)
+void font_feature::shadow (::std::stringstream& ss, arguments& )
 {   if (! name_.empty ()) ss << name_ << ": " << val_; }

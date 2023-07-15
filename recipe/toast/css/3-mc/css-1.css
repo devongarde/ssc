@@ -1,0 +1,22 @@
+﻿body { column-width: 12em }
+
+body { column-count: 2 }
+
+body { columns: 2 }
+body { columns: 12em }
+body { columns: 2 12em }
+
+body {
+  column-gap: 1em;
+  column-rule: thin solid black;
+}
+
+body {
+  column-gap: 1em;
+  column-rule-width: thin;
+  column-rule-style: solid;
+  column-rule-color: black;
+}
+
+div { column-fill: balance }
+h2 { column-span: all }

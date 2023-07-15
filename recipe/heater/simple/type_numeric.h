@@ -25,16 +25,29 @@ bool within_integer_limits (nitpick& nits, const html_version& v, const int val)
 bool within_unsigned_limits (nitpick& nits, const html_version& v, const int val);
 bool within_real_limits (nitpick& nits, const html_version& , const double val);
 
+template < typename BASE, BASE FROM, BASE TO, bool B > struct check_min_or_min_max
+{   static constexpr bool ok (const BASE n) { return n >= FROM; }  
+    static void bad_count (nitpick& nits, const ::std::string& s)
+    {   nits.pick (nit_not_n, es_error, ec_type, quote (s), ": atl least ", FROM, " items expected"); }     
+    static void bad_value (nitpick& nits, const ::std::string& s)
+    {   nits.pick (nit_not_n, es_error, ec_type, quote (s), ": ", FROM, " is the minimum value"); } };     
+
+template < typename BASE, BASE FROM, BASE TO > struct check_min_or_min_max < BASE, FROM, TO, true >
+{   static constexpr bool ok (const BASE n) { return (n >= FROM) && (n <= TO); }  
+    static void bad_count (nitpick& nits, const ::std::string& s)
+    {   nits.pick (nit_not_n, es_error, ec_type, quote (s), ": between ", FROM, " and ", TO, " items expected"); }   
+    static void bad_value (nitpick& nits, const ::std::string& s)
+    {   nits.pick (nit_not_n, es_error, ec_type, quote (s), ": a value between ", FROM, " and ", TO, " is expected"); } };     
+
 template < e_type T, typename BASE, BASE FROM, BASE TO > struct type_integer_between : numeric_value < T, BASE >
-{   BOOST_STATIC_ASSERT (FROM < TO);
-    using numeric_value < T, BASE > :: numeric_value;
+{   using numeric_value < T, BASE > :: numeric_value;
     static bool is_numeric () { return true; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   numeric_value < T, BASE > :: set_value (nits, v, s);
         if (numeric_value < T, BASE > :: good ())
-        {   const long n = numeric_value < T, BASE > :: get ();
-            if ((n >= FROM) && (n <= TO)) return; }
-        nits.pick (nit_not_n, es_error, ec_type, quote (s), ": an integer betwee ", FROM, " and ", TO, " expected");
+        {   const BASE n = numeric_value < T, BASE > :: get ();
+            if (check_min_or_min_max < BASE, FROM, TO, FROM <= TO > :: ok (n)) return; }
+        check_min_or_min_max < BASE, FROM, TO, FROM <= TO > :: bad_value (nits, s);    
         numeric_value < T, BASE > :: status (s_invalid); } };
 
 template < > struct type_master < t_base > : public numeric_value < t_base, unsigned int >
