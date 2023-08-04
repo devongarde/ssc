@@ -11,7 +11,7 @@ PASS ../toast/css/3-animation/css-3.css
 1 css_keyframes
 2 css_keyframes css_keyframes
 4 css_keyframes
-6 css_keyframes css_keyframes
+6 css_keyframes
 7 css_keyframes
 9 css_keyframes css_keyframes
 10 css_keyframes css_keyframes

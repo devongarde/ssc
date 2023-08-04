@@ -1,8 +1,7 @@
 -N 1 -f ../toast/other/live/live.conf
 
 PASS ../toast/other/live/plumbing/songlight.css
-19 css_version
-24 fontname css_version
+24 css_version fontname css_version not_here
 25 fontname
 26 fontname
 86 unrecognised_value

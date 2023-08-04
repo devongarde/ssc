@@ -1,0 +1,8 @@
+﻿@namespace svg "http://www.w3.org/2000/svg";
+svg|*[writing-mode=lr], svg|*[writing-mode=lr-tb],
+svg|*[writing-mode=rl], svg|*[writing-mode=rl-tb] {
+  writing-mode: horizontal-tb; }
+svg|*[writing-mode=tb], svg|*[writing-mode=tb-rl] {
+  writing-mode: vertical-rl; }
+
+svg { writing-mode: initial; }

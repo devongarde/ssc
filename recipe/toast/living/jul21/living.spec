@@ -1281,7 +1281,7 @@ PASS ../toast/living/jul21/menu.html
 9 url_not_found
 
 PASS ../toast/living/jul21/meta-2.html
-6 media_ignored
+6 css_version css_syntax css_version
 8 refresh_zero url_not_found
 
 PASS ../toast/living/jul21/meter.html

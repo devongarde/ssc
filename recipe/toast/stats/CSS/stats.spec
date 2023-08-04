@@ -163,7 +163,7 @@ PASS ../toast/stats/CSS/css-5.css
 0 html
 1 fontname
 2 fontname
-143 unrecognised_value
+143 unrecognised_value unrecognised_value
 
 STATS
 Elements:
@@ -386,18 +386,20 @@ PASS ../toast/stats/CSS/css-1.html
 
 STATS
 Elements:
-    (undefined): once 
+    (undefined): 6 times 
     !doctype: once 
-    body: once 
-    h1: twice 
+    body: thrice 
+    br: once 
+    h1: thrice 
     head: once 
     html: once 
+    i: twice 
     link: once 
       href: once 
       rel: once 
       title: once 
       type: once 
-    p: once 
+    p: 8 times 
       style: once 
     style: once 
       type: once 
@@ -408,16 +410,34 @@ Elements:
     style: once 
     title: once 
     type: twice 
-  13 elements used 27 times
+  15 elements used 45 times
 CSS properties:
-    color: twice 
-  1 properties used twice
+    background: once 
+    background-color: once 
+    color: 6 times 
+    font: once 
+    font-family: once 
+    font-size: once 
+    font-variant: twice 
+    letter-spacing: once 
+    text-align: twice 
+  9 properties used 16 times
 CSS statements:
     import: once 
-  1 statements used once
+    page: once 
+  2 statements used twice
+CSS font(s):
+    Baskerville: once
+    Mincho: once
+    Symbol: once
+    serif: once
+  4 font(s) used 4 times
 CSS class(es):
     center: 1
   1 class(es) used once
+CSS element.class(es):
+    p.center: 1
+  1 element.class(es) used once
   ===
 
 PASS ../toast/stats/CSS/css-2.html
@@ -434,19 +454,20 @@ STATS
 Elements:
     (undefined): once 
     !doctype: once 
-    a: once 
+    a: 8 times 
       class: once 
       href: once 
-    body: once 
+    body: twice 
     em: once 
     h1: once 
     head: once 
     html: once 
+    img: once 
     link: once 
       href: once 
       rel: once 
       type: once 
-    p: 6 times 
+    p: 11 times 
       class: once 
       id: once 
     span: twice 
@@ -459,22 +480,25 @@ Elements:
     id: once 
     rel: once 
     type: twice 
-  16 elements used 53 times
+  18 elements used 68 times
 CSS properties:
+    border: once 
+    color: 12 times 
+    font-size: twice 
     font-variant: once 
-  1 properties used once
+  4 properties used 16 times
 CSS class(es):
     external: 1
     initial: 1
   2 class(es) used twice
 CSS element.class(es):
-    a.external: 0
-    p.initial: 0
-  2 element.class(es) used 0 times
+    a.external: 1
+    p.initial: 1
+  2 element.class(es) used twice
 CSS itemid(s):
     z98y: 0
-  1 itemid(s) used 0 times 
-===
+  1 itemid(s) used 0 times
+  ===
 
 PASS ../toast/stats/CSS/css-3.html
 2 naughty_lang
@@ -485,7 +509,7 @@ STATS
 Elements:
     !doctype: once 
     body: once 
-    h1: twice 
+    h1: 4 times 
       class: once 
     head: once 
     html: once 
@@ -493,7 +517,7 @@ Elements:
       href: once 
       rel: once 
       type: once 
-    p: once 
+    p: twice 
       id: once 
       style: once 
     style: twice 
@@ -506,10 +530,16 @@ Elements:
     rel: once 
     style: once 
     type: thrice 
-  13 elements used 29 times
+  13 elements used 32 times
 CSS properties:
-    color: thrice 
-  1 properties used thrice
+    background: once 
+    color: 5 times 
+    font-size: once 
+    font-style: once 
+  4 properties used 8 times
+CSS statements:
+    import: twice 
+  1 statements used twice
 CSS class(es):
     pastoral: 2
   1 class(es) used twice
@@ -590,36 +620,96 @@ PASS ../toast/stats/CSS/css-5.html
 STATS
 Elements:
     !doctype: once 
-    body: once 
+    a: thrice 
+    blockquote: 9 times 
+    body: 15 times 
       style: once 
+    div: 4 times 
+    em: 7 times 
+    h1: 21 times 
+    h2: once 
+    h3: twice 
     head: once 
     html: once 
-    li: 4 times 
+    img: 4 times 
+    li: 6 times 
     link: once 
       href: once 
       rel: once 
       type: once 
-    ol: twice 
+    ol: 5 times 
       class: once 
+    p: 15 times 
+    pre: once 
+    strong: once 
     style: once 
       type: once 
     title: once 
-    ul: twice 
+    ul: 7 times 
   Attribute counts:
     class: once 
     href: once 
     rel: once 
     style: once 
     type: twice 
-  13 elements used 33 times
+  25 elements used 126 times
 CSS properties:
-    font-family: once 
-    list-style: twice 
-  2 properties used thrice
+    background: 9 times 
+    background-attachment: twice 
+    background-color: once 
+    background-image: thrice 
+    background-position: once 
+    background-repeat: twice 
+    border: 5 times 
+    border-bottom: thrice 
+    border-color: once 
+    border-left: twice 
+    border-right: once 
+    border-style: once 
+    border-top: once 
+    border-width: 4 times 
+    clear: once 
+    color: thrice 
+    display: 4 times 
+    float: once 
+    font: 5 times 
+    font-family: thrice 
+    font-size: 7 times 
+    font-style: thrice 
+    font-variant: once 
+    font-weight: thrice 
+    height: once 
+    letter-spacing: thrice 
+    line-height: thrice 
+    list-style: 6 times 
+    list-style-image: once 
+    margin: thrice 
+    margin-bottom: twice 
+    margin-left: thrice 
+    margin-right: twice 
+    margin-top: twice 
+    padding: twice 
+    padding-bottom: once 
+    padding-left: once 
+    padding-right: once 
+    padding-top: once 
+    text-align: once 
+    text-decoration: once 
+    text-indent: once 
+    text-transform: once 
+    white-space: twice 
+    width: once 
+    word-spacing: once 
+  46 properties used 107 times
 CSS font(s):
     My own font: once
     fantasy: once
-  2 font(s) used twice
+    gill: once
+    helvetica: once
+    new century schoolbook: once
+    sans-serif: once
+    serif: once
+  7 font(s) used 7 times
 CSS class(es):
     alpha: 2
     centre: 1
@@ -627,8 +717,11 @@ CSS class(es):
     square: 1
   4 class(es) used 7 times
 CSS element.class(es):
+    div.centre: 1
+    img.icon: 3
+    li.square: 1
     ol.alpha: 1
-  1 element.class(es) used once
+  4 element.class(es) used 6 times
 CSS itemid(s):
     xy34: 1
   1 itemid(s) used once
@@ -640,32 +733,86 @@ PASS ../toast/stats/CSS/css-6.html
 STATS
 Elements:
     !doctype: once 
-    body: once 
+    body: 5 times 
+    em: 7 times 
+    h1: 5 times 
+    h2: twice 
+    h3: once 
+    h4: twice 
     head: once 
     html: once 
     link: once 
       href: once 
       rel: once 
       type: once 
+    p: twice 
     title: once 
   Attribute counts:
     href: once 
     rel: once 
     type: once 
-  9 elements used 16 times
+  15 elements used 39 times
+CSS properties:
+    background: thrice 
+    color: 10 times 
+    font-size: 5 times 
+    line-height: twice 
+    margin: thrice 
+    text-indent: once 
+    word-spacing: once 
+  7 properties used 25 times
 ===
 
 PASS ../toast/stats/CSS/import.css
 0 html
 3 url_not_found
+4 css_colour
+6 unrecognised_value unrecognised_value
+7 dialect
+8 selector
+9 unrecognised_value
+10 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value
+11 css_colour
+12 unrecognised_value
+18 css_dubious
+20 fontname
 
 STATS
+Elements:
+    (undefined): 5 times 
+    body: twice 
+    br: once 
+    h1: once 
+    i: twice 
+    p: 7 times 
+  6 elements used 18 times
+CSS properties:
+    background: once 
+    background-color: once 
+    color: 4 times 
+    font: once 
+    font-family: once 
+    font-size: once 
+    font-variant: twice 
+    letter-spacing: once 
+    text-align: twice 
+  9 properties used 14 times
 CSS statements:
     import: thrice 
-  1 statements used thrice
+    page: once 
+  2 statements used 4 times
+CSS font(s):
+    Baskerville: once
+    Mincho: once
+    Symbol: once
+    serif: once
+  4 font(s) used 4 times
 CSS class(es):
     center: 1
   1 class(es) used once
+CSS element.class(es):
+    p.center: 1
+  1 element.class(es) used once
 ===
 
 PASS ../toast/stats/CSS/index.html
@@ -684,63 +831,63 @@ Elements:
 
 GRAND
 Elements:
-    (undefined): 8 times 
+    (undefined): 18 times 
     !doctype: 7 times 
-    a: 17 times 
+    a: 27 times 
       class: once 
       href: once 
     address: thrice 
     b: 6 times 
-    blockquote: 12 times 
-    body: 31 times 
+    blockquote: 21 times 
+    body: 54 times 
       style: twice 
-    br: twice 
+    br: 4 times 
     cite: twice 
     code: thrice 
     dd: twice 
     dir: twice 
-    div: 7 times 
+    div: 11 times 
     dl: once 
     dt: twice 
-    em: 32 times 
+    em: 46 times 
     form: once 
-    h1: 60 times 
+    h1: 90 times 
       class: once 
-    h2: 12 times 
-    h3: 8 times 
-    h4: 5 times 
+    h2: 15 times 
+    h3: 11 times 
+    h4: 7 times 
     h5: thrice 
     h6: thrice 
     head: 7 times 
     hr: twice 
     html: 7 times 
       style: once 
-    i: 4 times 
-    img: 20 times 
+    i: 8 times 
+    img: 25 times 
       src: once 
     kbd: twice 
-    li: 15 times 
+    li: 17 times 
     link: 5 times 
       href: 5 times 
       rel: 5 times 
       title: once 
       type: 5 times 
     menu: twice 
-    ol: 7 times 
+    ol: 10 times 
       class: once 
-    p: 54 times 
+    p: 91 times 
       class: once 
       id: twice 
       style: twice 
-    pre: 4 times 
+    pre: 5 times 
     samp: twice 
     span: 4 times 
-    strong: 4 times 
+    strong: 5 times 
     style: 9 times 
       type: 9 times 
     title: 7 times 
     tt: twice 
-    ul: 16 times 
+    ul: 21 times 
       class: once 
     var: twice 
   Attribute counts:
@@ -752,107 +899,107 @@ Elements:
     style: 5 times 
     title: once 
     type: 14 times 
-  47 elements used 562 times
+  47 elements used 732 times
 CSS properties:
-    background: 22 times 
-    background-attachment: twice 
-    background-color: twice 
-    background-image: thrice 
-    background-position: once 
-    background-repeat: twice 
-    border: 9 times 
-    border-bottom: thrice 
-    border-color: once 
-    border-left: twice 
-    border-right: once 
-    border-style: once 
-    border-top: twice 
-    border-width: 5 times 
-    clear: once 
-    color: 64 times 
-    display: 7 times 
-    float: 6 times 
-    font: 8 times 
-    font-family: 8 times 
-    font-size: 25 times 
-    font-style: 10 times 
-    font-variant: 7 times 
-    font-weight: 8 times 
-    height: once 
-    letter-spacing: 6 times 
-    line-height: 9 times 
-    list-style: 10 times 
-    list-style-image: once 
-    margin: 11 times 
-    margin-bottom: 4 times 
-    margin-left: 7 times 
-    margin-right: thrice 
-    margin-top: 5 times 
-    padding: 4 times 
-    padding-bottom: once 
-    padding-left: once 
-    padding-right: once 
-    padding-top: once 
-    text-align: 4 times 
-    text-decoration: once 
-    text-indent: twice 
-    text-transform: twice 
-    white-space: thrice 
-    width: once 
-    word-spacing: twice 
-  46 properties used 280 times
+    background: 37 times 
+    background-attachment: 4 times 
+    background-color: 5 times 
+    background-image: 6 times 
+    background-position: twice 
+    background-repeat: 4 times 
+    border: 15 times 
+    border-bottom: 6 times 
+    border-color: twice 
+    border-left: 4 times 
+    border-right: twice 
+    border-style: twice 
+    border-top: thrice 
+    border-width: 9 times 
+    clear: twice 
+    color: 99 times 
+    display: 11 times 
+    float: 7 times 
+    font: 15 times 
+    font-family: 12 times 
+    font-size: 42 times 
+    font-style: 14 times 
+    font-variant: 12 times 
+    font-weight: 11 times 
+    height: twice 
+    letter-spacing: 11 times 
+    line-height: 14 times 
+    list-style: 14 times 
+    list-style-image: twice 
+    margin: 17 times 
+    margin-bottom: 6 times 
+    margin-left: 10 times 
+    margin-right: 5 times 
+    margin-top: 7 times 
+    padding: 6 times 
+    padding-bottom: twice 
+    padding-left: twice 
+    padding-right: twice 
+    padding-top: twice 
+    text-align: 9 times 
+    text-decoration: twice 
+    text-indent: 4 times 
+    text-transform: thrice 
+    white-space: 5 times 
+    width: twice 
+    word-spacing: 4 times 
+  46 properties used 457 times
 CSS statements:
-    import: 6 times 
-    page: once 
-  2 statements used 7 times
+    import: 8 times 
+    page: thrice 
+  2 statements used 11 times
 CSS font(s):
-    Baskerville: once
-    Mincho: once
+    Baskerville: thrice
+    Mincho: thrice
     My own font: once
-    Symbol: once
+    Symbol: thrice
     fantasy: once
-    gill: once
-    helvetica: thrice
+    gill: twice
+    helvetica: 4 times
     monospace: once
-    new century schoolbook: once
-    sans-serif: once
-    serif: thrice
-  11 font(s) used 15 times
+    new century schoolbook: twice
+    sans-serif: twice
+    serif: 6 times
+  11 font(s) used 28 times
 CSS class(es):
     COMPACT: 0
     alpha: 2
-    center: 4
-    centre: 3
+    center: 6
+    centre: 4
     compact: 2
-    external: 3
-    icon: 9
-    initial: 3
+    external: 4
+    icon: 12
+    initial: 4
     pastoral: 4
     reddish: 2
     sidenote: 2
-    square: 3
-  12 class(es) used 37 times
+    square: 4
+  12 class(es) used 46 times
 CSS element.class(es):
     *.pastoral: 1
     *.reddish: 1
-    a.external: 1
-    div.centre: 1
+    a.external: 2
+    div.centre: 2
     div.sidenote: 1
     h1.pastoral: 1
-    img.icon: 3
-    li.square: 1
+    img.icon: 6
+    li.square: 2
     ol.alpha: 1
-    p.center: 1
-    p.initial: 1
+    p.center: 3
+    p.initial: 2
     ul.COMPACT: 0
     ul.compact: 1
-  13 element.class(es) used 14 times
+  13 element.class(es) used 23 times
 CSS itemid(s):
     x78y: 2
     x97z: 2
-    xy34: 3
+    xy34: 4
     z98y: 4
-  4 itemid(s) used 11 times
+  4 itemid(s) used 12 times
 Nits Reported:
     Errors: 13 times 
     Warnings: 26 times 
@@ -868,8 +1015,8 @@ Nit Categories:
   
 References:
     HTML 4.0: once 
-    HTML 5.0: 8 times
-    HTML 5 Jul 23: 27 times
+    HTML 5.0: 8 times 
+    HTML 5, Jul 23: 27 times 
   
 Versions:
     HTML3.2/CSS-1: 10 times 

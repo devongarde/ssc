@@ -27,8 +27,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 class directory;
 class url;
 
-::std::string load_reference (nitpick& nits, const directory& d, const url& u);
-
 template < > struct type_master < t_url > : type_base < url, t_url >
 {   typedef url base_type, value_type;
     url value_;

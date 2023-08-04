@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/css_parse.h"
 #include "css/css.h"
 #include "css/group.h"
+#include "webpage/page.h"
 
 typedef ::std::vector < css_token > vct_t;
 
@@ -166,7 +167,7 @@ void boast (vtt_t& t)
                 default: ::std::cout << "unexpected " << t.at (i).t_; break; }
             ::std::cout << " " << t.at (i).mum_ << "/" << t.at (i).next_ << "/" << t.at (i).child_ << " " << quote (t.at (i).val_) << "\n"; } } }
 
-bool css::parse (const ::std::string& content, const bool x)
+bool css::parse (const ::std::string& content, const bool x, const bool mdm)
 {   if (invalid ()) return false;
     if (content.empty ()) return true;
     if (args_.abs_.empty ()) args_.abs_ = abs_;
@@ -378,13 +379,15 @@ bool css::parse (const ::std::string& content, const bool x)
     breed (ticks_, args_.t_, b, e);
     boast (args_.t_);
 
-    st_.parse (args_);
-    check_for_standard_classes (context.html_ver ());
+    if (mdm) page_.css ().media ().parse (args_, css_context, 0, -1);
+    else
+    {   st_.parse (args_);
+        check_for_standard_classes (context.html_ver ());
 
-    if (! snippet ())
-        for (auto t : args_.t_)
-            if (args_.dst_.get () != nullptr)
-                args_.dst_ -> merge (t.nits_);
+        if (! snippet ())
+            for (auto t : args_.t_)
+                if (args_.dst_.get () != nullptr)
+                    args_.dst_ -> merge (t.nits_); }
 
     return true; }
 
@@ -424,10 +427,11 @@ bool css::parse (const ::std::string& content, const bool x)
         case ct_bar : return "|";
         case ct_barbar : return "||";
         case ct_plus : return "+";
+        case ct_comment :
         case ct_whitespace : return " ";
-        case ct_comment : return " ";
         case ct_error : return "???";
-        case ct_eof : return "";
+        case ct_eof :
+        case ct_root : return "";
         default : GRACEFUL_CRASH (__FILE__, __LINE__); } }
 
 ::std::string assemble_string (vtt_t& vt, const int from, const int to, const bool inclusive)
@@ -468,7 +472,8 @@ int next_token_at (const vtt_t& vt, const int from, const int to)
     return vt.at (from).next_; }
 
 int first_non_whitespace (const vtt_t& vt, int from, const int to)
-{   while ((from >= 0) && ((to < 0) || (from <= to)) && ((vt.at (from).t_ == ct_whitespace) || (vt.at (from).t_ == ct_comment)))
+{   if ((from == 0) && (vt.at (0).t_ == ct_root)) from = vt.at (0).child_;
+    while ((from > 0) && ((to < 0) || (from <= to)) && ((vt.at (from).t_ == ct_whitespace) || (vt.at (from).t_ == ct_comment)))
         from = next_token_at (vt, from, to);
     return from; }
 

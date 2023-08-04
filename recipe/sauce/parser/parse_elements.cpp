@@ -87,7 +87,7 @@ void elements_node::repair_invalid_parents (nitpick& nits, const html_version& v
         {   if (does_apply < html_version > (v, parent -> id ().first (), parent -> id ().last ()))
             {   if (closing) is_permitted_parent (v, id, parent -> id ());
                 else is_permitted_parent (nits, v, id, parent -> id ());
-                nits.pick (nit_inserted_missing_closure, ed_jul23, "1.11.2: Errors that result in disproportionately poor performance", es_warning, ec_element, "inserted missing </", elem :: name (parent -> tag ()), ">");
+                nits.pick (nit_inserted_missing_closure, ed_jul23, "1.11.2: Errors that result in disproportionately poor performance", es_warning, ec_element, "</", elem :: name (parent -> tag ()), "> is missing");
                 const elem def (parent -> tag ());
                 nitpick defnits (ket.line_, ket.nits_.get_context ());
                 ven_.push_back (element_node (defnits, this, ket.line_, true, parent, def, true, def.name ()));

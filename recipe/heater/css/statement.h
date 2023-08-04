@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/rules.h"
 #include "css/ffvs.h"
 #include "css/descriptors.h"
+#include "css/media.h"
 
 class statements;
 typedef ::std::shared_ptr < statements > pst_t;
@@ -36,6 +37,7 @@ class statement
     vpst_t vst_;
     selectors sel_;
     descriptors dsc_;
+    media_t media_;
     font_features annotation_, character_variant_, historical_form_, ornament_, swash_, styleset_, stylistic_;
     void parse_charset (arguments& args, nitpick& nits, const int from, const int to);
     void parse_colour_profile (arguments& args, nitpick& nits, const int from, const int to);
@@ -52,8 +54,8 @@ class statement
     void parse_namespace (arguments& args, nitpick& nits, const int from, const int to);
     void parse_page (arguments& args, nitpick& nits, const int from, const int to);
     void parse_scope (arguments& args, nitpick& nits, const int from, const int to);
-    int parse_subsupports_content (arguments& args, nitpick& nits, const int from, const int to);
     void parse_supports (arguments& args, nitpick& nits, const int from, const int to);
+    void bracketed_property (arguments& args, nitpick& nits, const int to, int& i);
 public:
     DEFAULT_CONSTRUCTORS (statement);
     statement (arguments& args, const int from, const int to)

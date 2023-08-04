@@ -269,6 +269,7 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (GENERAL MACROEND, ::boost::program_options::value < ::std::string > () -> default_value ("}}"), "End of template macro (by default, the '}}' in '{{macro}}').")
 
         (CSS COND_RULE, ::boost::program_options::value < int > (), "CSS Conditional Rule level (0, 3, 4, or 5).")
+        (CSS TABLE, ::boost::program_options::value < int > (), "CSS Table level (0 or 3).")
 
         (JSONLD EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "Extension for JSON-LD files; may be repeated.")
         (JSONLD VERIFY, ::boost::program_options::bool_switch (), "Experimental: Verify JSON-LD.")
@@ -379,6 +380,7 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (CSS VERIFY, ::boost::program_options::bool_switch (), "Process .css files.")
         (CSS DONT VERIFY, ::boost::program_options::bool_switch (), "Do not process .css files.")
         (CSS VERSION, ::boost::program_options::value < ::std::string > (),  "Presume this version of CSS (default appropriate for HTML version).")
+        (CSS WRITING, ::boost::program_options::value < int > (), "CSS Writing Mode level (0, 3 or 4).")
 
         (HTML FORCE, ::boost::program_options::bool_switch (), "When <!DOCTYPE...> is missing, forcibly presume HTML version as per --html.version.")
         (HTML DONT FORCE, ::boost::program_options::bool_switch (), "When <!DOCTYPE...> is missing, correctly presume HTML 1 or HTML tags, as per --html.tags.")
@@ -1045,9 +1047,13 @@ void options::contextualise (nitpick& nits)
         if (get_css_level (n, nits, CSS SELECTOR, "Selector", 4)) context.css_selector (n);
         if (get_css_level (n, nits, CSS STYLE, "Style", 3)) context.css_style (n);
         if (get_css_level (n, nits, CSS SYNTAX, "Syntax", 3)) context.css_syntax (n);
+        if (get_css_level (n, nits, CSS TABLE, "Table", 3))
+        {   nits.pick (nit_experimental, ed_css_table, "Preface: \"This spec is not yet ready for implementation\"", es_warning, ec_init, "CSS Tables level 3 is experimental");
+            context.css_table (n); }
         if (get_css_level (n, nits, CSS TRANSITION, "Transition", 3, true)) context.css_transition (n);
         if (get_css_level (n, nits, CSS UI, "UI", 4)) context.css_ui (n);
         if (get_css_level (n, nits, CSS VALUE, "VALUE", 4)) context.css_value (n);
+        if (get_css_level (n, nits, CSS WRITING, "Writing Mode", 4)) context.css_writing_mode (n);
 
         yea_nay (&context_t::force_version, nits, HTML FORCE, HTML DONT FORCE);
         yea_nay (&context_t::rfc_1867, nits, HTML RFC1867, HTML DONT RFC1867);
@@ -1490,12 +1496,14 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (CSS SELECTOR)) res << CSS SELECTOR ": " << var_ [CSS SELECTOR].as < int > () << "\n";
     if (var_.count (CSS STYLE)) res << CSS STYLE ": " << var_ [CSS STYLE].as < int > () << "\n";
     if (var_.count (CSS SYNTAX)) res << CSS SYNTAX ": " << var_ [CSS SYNTAX].as < int > () << "\n";
+    if (var_.count (CSS TABLE)) res << CSS TABLE ": " << var_ [CSS TABLE].as < int > () << "\n";
     if (var_.count (CSS TRANSITION)) res << CSS TRANSITION ": " << var_ [CSS TRANSITION].as < int > () << "\n";
     if (var_.count (CSS UI)) res << CSS UI ": " << var_ [CSS UI].as < int > () << "\n";
     if (var_.count (CSS VALUE)) res << CSS VALUE ": " << var_ [CSS VALUE].as < int > () << "\n";
     if (var_.count (CSS VERIFY)) res << CSS VERIFY ": " << var_ [CSS VERIFY].as < bool > () << "\n";
     if (var_.count (CSS DONT VERIFY)) res << CSS DONT VERIFY ": " << var_ [CSS DONT VERIFY].as < bool > () << "\n";
     if (var_.count (CSS VERSION)) res << CSS VERSION ": " << var_ [CSS VERSION].as < ::std::string > () << "\n";
+    if (var_.count (CSS WRITING)) res << CSS WRITING ": " << var_ [CSS WRITING].as < int > () << "\n";
 
     if (var_.count (ENVIRONMENT QUERY_STRING))
     {   if (var_.count (ENVIRONMENT SERVER_SOFTWARE)) res << ENVIRONMENT SERVER_SOFTWARE ": " << var_ [ENVIRONMENT SERVER_SOFTWARE].as < ::std::string > () << "\n";

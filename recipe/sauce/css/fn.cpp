@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/selector.h"
 
 void css_fn::parse (arguments& args, const int from, const int to, const bool coco, const bool knotted)
-{   PRESUME (from <= to, __FILE__, __LINE__);
+{   PRESUME ((to < 0) || (from <= to), __FILE__, __LINE__);
     const int len = GSL_NARROW_CAST <int> (args.t_.size ());
     PRESUME (from < len, __FILE__, __LINE__);
     PRESUME (to < len, __FILE__, __LINE__);
@@ -102,7 +102,7 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
         ::std::vector < int > f;
         int start = b;
         bool pf = false;
-        while ((b > 0) && (b <= to) && (args.t_.at (b).t_ != ct_round_ket))
+        while ((b > 0) && ((to < 0) || (b <= to)) && (args.t_.at (b).t_ != ct_round_ket))
         {   switch (args.t_.at (b).t_)
             {   case ct_comma:
                     {   PRESUME (start > 0, __FILE__, __LINE__);

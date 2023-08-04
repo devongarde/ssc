@@ -131,21 +131,21 @@ PASS ../toast/microdata/schema-hijkl/legislation.html
 58 url_not_found
 59 url_not_found
 64 use_double_quote_code
-75 url_not_found
-81 url_not_found
+65 bad_itemid
+71 bad_itemid
+75 url_not_found bad_itemid
+81 url_not_found bad_itemid
 88 attribute_unrecognised_here unrecognised_attribute
-92 url_not_found
-98 url_not_found
+92 url_not_found bad_itemid
+98 url_not_found bad_itemid
 
 PASS ../toast/microdata/schema-hijkl/legislationobject.html
 11 use_double_quote_code
-12 bad_itemid
-18 bad_itemid
-22 url_not_found bad_itemid
-28 url_not_found bad_itemid
+22 url_not_found
+28 url_not_found
 35 attribute_unrecognised_here unrecognised_attribute
-39 url_not_found bad_itemid
-45 url_not_found bad_itemid
+39 url_not_found
+45 url_not_found
 
 PASS ../toast/microdata/schema-hijkl/library.html
 19 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf

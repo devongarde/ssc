@@ -21,7 +21,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "css/css.h"
 #include "css/global.h"
+#include "css/media.h"
 
+class page;
 typedef ::std::map < ::std::string, css_ptr > mcss_t;
 
 class css_group
@@ -36,17 +38,23 @@ class css_group
     sstr_t annotation_, character_variant_, historical_form_, ornament_, swash_, styleset_, stylistic_;
     namespaces_ptr ns_;
     ustr_t custom_media_;
-    smsid_t custom_prop_; 
+    smsid_t custom_prop_;
+    media_t media_; 
     bool note_class (const ::std::string& s);
     bool note_element_class (const ::std::string& s);
     bool note_element_id (const ::std::string& s);
     bool note_id (const ::std::string& s);
-    css_ptr parse (dst_ptr dst, const ::std::string& content, const html_version& v, const namespaces_ptr& namespaces, bool sv, bool snippet, const ::std::string& abs, const element_bitset eb, int line = 0, const e_element e = elem_undefined);
+    css_ptr parse ( dst_ptr dst, const ::std::string& content, const html_version& v, const namespaces_ptr& namespaces, bool sv, bool snippet, const ::std::string& abs, const element_bitset eb,
+                    int line = 0, const e_element e = elem_undefined, const ::boost::filesystem::path dp = ::boost::filesystem::path ());
 public:
     DELETE_CONSTRUCTORS (css_group);
     explicit css_group (page& p);
-    bool parse (const ::std::string& content, const html_version& v, const namespaces_ptr& namespaces, const element_bitset eb, bool sv, int line = 0, const e_element e = elem_undefined);
-    bool parse_file (nitpick& nits, const namespaces_ptr& ns, const url& u, bool state_version = false, bool local = true);
+    css_ptr parse (const ::std::string& content, const html_version& v, bool sv, int line = 0, const e_element e = elem_undefined);
+    bool parse (const ::std::string& content, const html_version& v, const namespaces_ptr& namespaces, const element_bitset eb, bool sv,
+                int line = 0, const e_element e = elem_undefined, const ::boost::filesystem::path dp = ::boost::filesystem::path ());
+    bool parse_file (nitpick& nits, const namespaces_ptr& ns, const url& u, const bool state_version = false, const bool local = true, const bool reparse = false);
+    css_ptr parse_media_queries (   const ::std::string& content, const html_version& v, page& p, const namespaces_ptr& namespaces, const element_bitset eb, bool sv,
+                                    int line = 0, const e_element e = elem_undefined);
     bool note_class (const e_element e, const ::std::string& s);
     bool note_id (const e_element e, const ::std::string& s);
     bool note_element (const e_element e);
@@ -57,6 +65,7 @@ public:
     void accumulate (stats_t* s) const;
     const smsid_t& custom_prop () const { return custom_prop_; }
     smsid_t& custom_prop () { return custom_prop_; }
+    const ustr_t& custom_media () const { return custom_media_; }
     const page& get_page () const { return page_; }
     page& get_page () { return page_; }
     const sstr_t& counter_style () const { return counter_style_; }
@@ -69,6 +78,9 @@ public:
     sstr_t& page_name () { return page_name_; }
     const sstr_t& layer () const { return layer_; }
     sstr_t& layer () { return layer_; }
+    const media_t& media () const { return media_; }
+    media_t& media () { return media_; }
+    const namespaces_ptr namespaces () const { return ns_; }
     bool told () const { return told_; }
     void told (const bool b) { told_ = b; }
     const smsid_t& get_elements () const noexcept { return elements_; }

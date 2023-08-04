@@ -13,7 +13,7 @@ PASS ../toast/microdata/basic/examples.html
 92 attribute_required url_not_found naughty_alt
 96 schema_domain
 100 url_not_found naughty_alt
-103 schema_domain
+103 schema_domain bad_itemid
 104 inserted_missing_closure
 105 inserted_missing_closure inserted_missing_closure
 106 inserted_missing_closure
@@ -59,7 +59,7 @@ PASS ../toast/microdata/basic/itemprop.html
 97 newline_in_string newline_in_string dialect
 101 attribute_required url_not_found naughty_alt
 112 attribute_required url_not_found naughty_alt
-119 schema_domain bad_itemid
+119 schema_domain
 122 inserted_missing_closure
 123 inserted_missing_closure
 125 inserted_missing_closure

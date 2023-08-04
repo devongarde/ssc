@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.1.30
+version 0.1.31
 (c) 2020-2023 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notice
 https://ssc.lu/
@@ -114,7 +114,7 @@ Background
 I have a website, arts & ego, at https://dylanharris.org/. It has
 approaching 60G of original content. It contains hand coded HTMLs 2
 to 5. It is a complete mess. Despite a long search, I could not find
-any tools to properly diagnose its flaws. Anything I did find was at
+any tools to properly identify its flaws. Anything I did find was at
 most cursory.
 
 Then came the cow flu*.
@@ -125,17 +125,17 @@ Then came the cow flu*.
 
 
 
+Unabashed Opportunism
+If you appreciate modernist poetry or abstract photography, I've been
+published. Click on books at https://dylanharris.org/ for gen.
+
+
+
 REMINDER
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
-
-
-
-UNABASHED OPPORTUNISM
-If you appreciate modernist poetry or abstract photography, I've been
-published. Click on books at https://dylanharris.org/ for gen.
 
 
 

@@ -1185,6 +1185,18 @@
     <Filter Include="Toast\CSS\3-position">
       <UniqueIdentifier>{a6529ff1-396f-4fbf-95ac-49e9b3bbea7c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\CSS\3-writing">
+      <UniqueIdentifier>{352d5dd9-aeb6-4a54-9911-7d2d836040cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\4-writing">
+      <UniqueIdentifier>{efc7d9bb-44d6-4bda-8fb7-1e8bdc816070}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-table">
+      <UniqueIdentifier>{acaad548-e03b-42f0-87ff-6ab2bbeaa618}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\simple">
+      <UniqueIdentifier>{18fc7d2d-913f-4844-9a04-57152fe23df5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -1868,6 +1880,12 @@
     <ClInclude Include="..\heater\css\descriptor_classes.h">
       <Filter>Heater\css</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\css\media.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\medium.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -2440,9 +2458,6 @@
     <ClCompile Include="..\sauce\simple\type_transform.cpp">
       <Filter>Sauce\simple</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\simple\type_url.cpp">
-      <Filter>Sauce\simple</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\enum\type_property.cpp">
       <Filter>Sauce\enum</Filter>
     </ClCompile>
@@ -2501,6 +2516,12 @@
       <Filter>Sauce\css</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\descriptor_constructor.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\media.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\medium.cpp">
       <Filter>Sauce\css</Filter>
     </ClCompile>
   </ItemGroup>
@@ -31997,6 +32018,120 @@
     </None>
     <None Include="..\toast\css\3-position\css-6-3.html">
       <Filter>Toast\CSS\3-position</Filter>
+    </None>
+    <None Include="..\toast\css\3-writing\css.conf">
+      <Filter>Toast\CSS\3-writing</Filter>
+    </None>
+    <None Include="..\toast\css\3-writing\css.spec">
+      <Filter>Toast\CSS\3-writing</Filter>
+    </None>
+    <None Include="..\toast\css\3-writing\css-2.css">
+      <Filter>Toast\CSS\3-writing</Filter>
+    </None>
+    <None Include="..\toast\css\3-writing\css-2.html">
+      <Filter>Toast\CSS\3-writing</Filter>
+    </None>
+    <None Include="..\toast\css\3-writing\index.html">
+      <Filter>Toast\CSS\3-writing</Filter>
+    </None>
+    <None Include="..\toast\css\3-writing\css-3.html">
+      <Filter>Toast\CSS\3-writing</Filter>
+    </None>
+    <None Include="..\toast\css\3-writing\css-3.css">
+      <Filter>Toast\CSS\3-writing</Filter>
+    </None>
+    <None Include="..\toast\css\3-writing\css-4.css">
+      <Filter>Toast\CSS\3-writing</Filter>
+    </None>
+    <None Include="..\toast\css\3-writing\css-4.html">
+      <Filter>Toast\CSS\3-writing</Filter>
+    </None>
+    <None Include="..\toast\css\3-writing\css-5.css">
+      <Filter>Toast\CSS\3-writing</Filter>
+    </None>
+    <None Include="..\toast\css\3-writing\css-9.css">
+      <Filter>Toast\CSS\3-writing</Filter>
+    </None>
+    <None Include="..\toast\css\3-writing\css-9.html">
+      <Filter>Toast\CSS\3-writing</Filter>
+    </None>
+    <None Include="..\toast\css\4-writing\css-9.css">
+      <Filter>Toast\CSS\4-writing</Filter>
+    </None>
+    <None Include="..\toast\css\4-writing\css-9.html">
+      <Filter>Toast\CSS\4-writing</Filter>
+    </None>
+    <None Include="..\toast\css\4-writing\index.html">
+      <Filter>Toast\CSS\4-writing</Filter>
+    </None>
+    <None Include="..\toast\css\4-writing\css.conf">
+      <Filter>Toast\CSS\4-writing</Filter>
+    </None>
+    <None Include="..\toast\css\4-writing\css.spec">
+      <Filter>Toast\CSS\4-writing</Filter>
+    </None>
+    <None Include="..\toast\css\4-writing\css-2.css">
+      <Filter>Toast\CSS\4-writing</Filter>
+    </None>
+    <None Include="..\toast\css\4-writing\css-2.html">
+      <Filter>Toast\CSS\4-writing</Filter>
+    </None>
+    <None Include="..\toast\css\4-writing\css-3.css">
+      <Filter>Toast\CSS\4-writing</Filter>
+    </None>
+    <None Include="..\toast\css\4-writing\css-3.html">
+      <Filter>Toast\CSS\4-writing</Filter>
+    </None>
+    <None Include="..\toast\css\4-writing\css-4.css">
+      <Filter>Toast\CSS\4-writing</Filter>
+    </None>
+    <None Include="..\toast\css\4-writing\css-4.html">
+      <Filter>Toast\CSS\4-writing</Filter>
+    </None>
+    <None Include="..\toast\css\4-writing\css-5.css">
+      <Filter>Toast\CSS\4-writing</Filter>
+    </None>
+    <None Include="..\toast\css\3-table\css.conf">
+      <Filter>Toast\CSS\3-table</Filter>
+    </None>
+    <None Include="..\toast\css\3-table\css.spec">
+      <Filter>Toast\CSS\3-table</Filter>
+    </None>
+    <None Include="..\toast\css\3-table\css-2.html">
+      <Filter>Toast\CSS\3-table</Filter>
+    </None>
+    <None Include="..\toast\css\3-table\css-3.css">
+      <Filter>Toast\CSS\3-table</Filter>
+    </None>
+    <None Include="..\toast\css\3-table\css-3.html">
+      <Filter>Toast\CSS\3-table</Filter>
+    </None>
+    <None Include="..\toast\css\3-table\css-5.css">
+      <Filter>Toast\CSS\3-table</Filter>
+    </None>
+    <None Include="..\toast\css\3-table\css-5.html">
+      <Filter>Toast\CSS\3-table</Filter>
+    </None>
+    <None Include="..\toast\css\3-table\css-10.css">
+      <Filter>Toast\CSS\3-table</Filter>
+    </None>
+    <None Include="..\toast\css\3-table\index.html">
+      <Filter>Toast\CSS\3-table</Filter>
+    </None>
+    <None Include="..\toast\css\3-table\css-2.css">
+      <Filter>Toast\CSS\3-table</Filter>
+    </None>
+    <None Include="..\toast\css\simple\css-good.css">
+      <Filter>Toast\CSS\simple</Filter>
+    </None>
+    <None Include="..\toast\css\simple\index.html">
+      <Filter>Toast\CSS\simple</Filter>
+    </None>
+    <None Include="..\toast\css\simple\css.conf">
+      <Filter>Toast\CSS\simple</Filter>
+    </None>
+    <None Include="..\toast\css\simple\css.spec">
+      <Filter>Toast\CSS\simple</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

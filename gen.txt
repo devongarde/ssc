@@ -158,10 +158,13 @@ line, the "no-" switch always applies.
                             2.0   CSS 2.0
                             2.1   CSS 2.1
                             2.2   CSS 2.2 (Feb 2022 draft)
-                            3     CSS level 3 (all level 3)
-                            4     CSS level 4 (all level 4)
-                            5     CSS level 5 (all level 5)
-                            6     CSS level 6 (all level 6)
+                            3     all CSS level 3 (unfinished)
+                            4     all CSS level 4 (unfinished)
+                            5     all CSS level 5 (unfinished)
+                            6     all CSS level 6 (unfinished)
+
+--css.writing X         Use CSS Writing Mode level X, where X is 0, 3
+                        or 4
 
 --general.class         Nitpick class values
 
@@ -519,8 +522,10 @@ line, the "no-" switch always applies.
                                 article 12,14,18,22
                                 as 1.0,2.0
                                 bibo 1.3
+                                biro 1.1
                                 book 12,14,18,22
                                 cc 1.0
+                                cito 2.8
                                 content 1.0
                                 csvw 1.0
                                 ctag 1.0

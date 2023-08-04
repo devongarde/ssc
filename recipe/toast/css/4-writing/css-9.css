@@ -1,0 +1,7 @@
+﻿date { text-combine-upright: digits 2; }
+
+tcy { text-combine-upright: digits 4; }
+
+tcy { text-combine-upright: all; }
+
+date { text-combine-upright: digits 2; text-transform: full-width; }

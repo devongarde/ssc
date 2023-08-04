@@ -172,6 +172,22 @@ microdata_hierachy schema_hierarchy [] =
     { { s_bibo, 1, 3 }, { 0, 0 }, bibo_personalcommunicationdocument, bibo_email },
     { { s_bibo, 1, 3 }, { 0, 0 }, bibo_personalcommunicationdocument, bibo_letter },
 
+    // biro
+    { { s_biro, 1, 3 }, { 0, 0 }, biro_bibliographic_collection, biro_library_catalogue },
+
+    { { s_biro, 1, 3 }, { 0, 0 }, biro_bibliographic_list, biro_reference_list },
+
+    // cito
+    { { s_cito, 2, 8 }, { 0, 0 }, cito_citation, cito_distant_citation },
+    { { s_cito, 2, 8 }, { 0, 0 }, cito_citation, cito_journal_cartel_citation },
+    { { s_cito, 2, 8 }, { 0, 0 }, cito_citation, cito_self_citation },
+
+    { { s_cito, 2, 8 }, { 0, 0 }, cito_self_citation, cito_affilation_self_citation },
+    { { s_cito, 2, 8 }, { 0, 0 }, cito_self_citation, cito_author_network_self_citation },
+    { { s_cito, 2, 8 }, { 0, 0 }, cito_self_citation, cito_author_self_citation },
+    { { s_cito, 2, 8 }, { 0, 0 }, cito_self_citation, cito_funder_self_citation },
+    { { s_cito, 2, 8 }, { 0, 0 }, cito_self_citation, cito_journal_self_citation },
+
     // common tag
     { { s_ctag, 1, 0 }, { 0, 0 }, ctag_tag, ctag_author },
     { { s_ctag, 1, 0 }, { 0, 0 }, ctag_tag, ctag_auto },
@@ -282,7 +298,16 @@ microdata_hierachy schema_hierarchy [] =
     { { s_frbr, 1, 0 }, { 0, 0 }, fs_endeavour, fs_person },
     { { s_frbr, 1, 0 }, { 0, 0 }, fs_endeavour, fs_work },
 
+    { { s_biro, 1, 1 }, { 0, 0 }, fs_expression, biro_bibliographic_reference },
+
     { { s_frbr, 1, 0 }, { 0, 0 }, fs_responsibleentity, fs_corporatebody },
+
+    { { s_biro, 1, 1 }, { 0, 0 }, fs_work, biro_bibliographic_collection },
+    { { s_biro, 1, 1 }, { 0, 0 }, fs_work, biro_bibliographic_list },
+    { { s_biro, 1, 1 }, { 0, 0 }, fs_work, biro_bibliographic_record },
+    { { s_biro, 1, 1 }, { 0, 0 }, fs_work, biro_bibliographic_reference },
+    { { s_biro, 1, 1 }, { 0, 0 }, fs_work, biro_library_catalogue },
+    { { s_biro, 1, 1 }, { 0, 0 }, fs_work, biro_library_catalogue },
 
     { { s_frbr, 1, 0 }, { 0, 0 }, fs_subject, fs_event },
     { { s_frbr, 1, 0 }, { 0, 0 }, fs_subject, fs_concept },

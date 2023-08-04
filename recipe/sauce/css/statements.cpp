@@ -76,11 +76,11 @@ void statements::parse (arguments& args, const int start, const int finish)
             rules_.emplace_back (args, from, last - 1); } }
 
 void statements::accumulate (stats_t* s) const
-{   props_.accumulate (s, get_elements ());
-    for (auto r : rules_)
+{   for (auto r : rules_)
         r.accumulate (s);
     for (auto st : statements_)
-        st.accumulate (s); } 
+        st.accumulate (s);
+    props_.accumulate (s, get_elements ()); } 
 
 ::std::string statements::rpt () const
 {   ::std::string res;
@@ -95,7 +95,7 @@ void statements::validate (arguments& args)
 {   for (auto i : statements_)
         i.validate (args);
     for (auto i : rules_)
-        i.validate (args);
+        i.validate (args); 
     props_.validate (args); }
 
 void statements::shadow (::std::stringstream& ss, arguments& args)

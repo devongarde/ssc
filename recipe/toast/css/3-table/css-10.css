@@ -1,0 +1,167 @@
+﻿table    { display: table }
+thead    { display: table-header-group }
+tbody    { display: table-row-group }
+tfoot    { display: table-footer-group }
+tr       { display: table-row }
+td, th   { display: table-cell }
+colgroup { display: table-column-group }
+col      { display: table-column }
+caption  { display: table-caption }
+table, thead, tbody, tfoot, tr, td, th, colgroup, col, caption { box-sizing: border-box; }
+thead, tfoot { break-inside: avoid }
+
+table {
+  box-sizing: border-box;
+  border-spacing: 2px;
+  border-collapse: separate;
+  text-indent: initial;
+}
+
+thead, tbody, tfoot, table > tr { vertical-align: middle; }
+tr, td, th { vertical-align: inherit; }
+
+td, th { padding: 1px; }
+th { font-weight: bold;  }
+
+table, td, th { border-color: gray; }
+thead, tbody, tfoot, tr { border-color: inherit; }
+
+
+
+table[frame=box i], table[frame=border i], table[frame=hsides i], table[frame=above i], table[frame=below i], table[frame=vsides i], table[frame=lhs i], table[frame=rhs i] {
+  border: 1px solid inset;
+}
+
+
+table:matches([rules=all i], [rules=rows i], [rules=cols i], [rules=groups i], [rules=none i]) {
+  border-collapse: collapse;
+  border-style: hidden;
+}
+
+table:matches([rules=all i], [rules=rows i], [rules=cols i], [rules=groups i], [rules=none i]),
+table:matches([rules=all i], [rules=rows i], [rules=cols i], [rules=groups i], [rules=none i]) > :matches(thead,tbody,tfoot) > tr > :matches(th,td) {
+  border-color: black;
+}
+
+table[border=$border] /* if(parseInt($border) > 0) */ {
+  border: /*(parseInt($border) * 1px)*/ outset rgb(128, 128, 128);
+}
+table[border=$border] > :matches(thead,tbody,tfoot) > tr > :matches(th,td) /* if(parseInt($border) > 0) */ {
+  border: 1px inset rgb(128, 128, 128);
+}
+
+table[rules=all i] > :matches(thead,tbody,tfoot) > tr > :matches(th,td) {
+  border: 1px solid grey;
+}
+table[rules=rows i] > :matches(thead,tbody,tfoot) > tr > :matches(th,td) {
+  border: 1px solid grey;
+  border-left: none;
+  border-right: none;
+}
+table[rules=cols i] > :matches(thead,tbody,tfoot) > tr > :matches(th,td) {
+  border: 1px solid grey;
+  border-top: none;
+  border-bottom: none;
+}
+table[rules=none i] > :matches(thead,tbody,tfoot) > tr > :matches(th,td) {
+  border: none;
+}
+
+table[rules=groups i] > :matches(thead,tbody,tfoot) {
+  border-top-width: 1px; border-top-style: solid;
+  border-bottom-width: 1px; border-bottom-style: solid;
+}
+table[rules=groups i] > colgroup {
+  border-left-width: 1px; border-left-style: solid;
+  border-right-width: 1px; border-right-style: solid;
+}
+
+table[frame=box i], table[frame=border i], table[frame=hsides i], table[frame=above i], table[frame=below i], table[frame=vsides i], table[frame=lhs i], table[frame=rhs i] {
+  border-style: outset;
+}
+table[frame=below i], table[frame=vsides i], table[frame=lhs i], table[frame=rhs i] {
+  border-top-style: hidden;
+}
+table[frame=above i], table[frame=vsides i], table[frame=lhs i], table[frame=rhs i] {
+  border-bottom-style: hidden;
+}
+table[frame=hsides i], table[frame=above i], table[frame=below i], table[frame=rhs i] {
+  border-left-style: hidden;
+}
+table[frame=hsides i], table[frame=above i], table[frame=below i], table[frame=rhs i] {
+  border-right-style: hidden;
+}
+
+table[cellpadding=$x] > :matches(thead,tbody,tfoot) > tr > :matches(th,td) /* if(parseInt($x)>0) */ {
+  padding: /*(parseInt($x) * 1px)*/;
+}
+table[cellspacing=$x] /* if(parseInt($x)>0) */ {
+  border-spacing: /*(parseInt($x) * 1px)*/;
+}
+
+
+table[width=$w] /* if(parseInt($w) > 0) */ {
+  width: /*(parseInt($w) * 1px)*/;
+}
+table[width=$w] /* if($w matches /(+|-|)([0-9]+([.][0-9]+|)|([.][0-9]+))[%]/) */ {
+  width: /*(parseInt($w) * 1px)*/;
+}
+table[height=$h] /* if(parseInt($h) > 0) {
+  height: /*(parseInt($h) * 1px)*/;
+}
+table[height=$h] /* if($h matches /(+|-|)([0-9]+([.][0-9]+|)|([.][0-9]+))[%]/) */ {
+  height: /*(parseInt($h) * 1px)*/;
+}
+
+
+table[bordercolor=$color] {
+  border-color: /*parseHTMLColor($color)*/;
+}
+table[bordercolor] > :matches(tbody, thead, tfoot, tr, colgroup, col),
+table[bordercolor] > :matches(tbody, thead, tfoot) > tr,
+table[bordercolor] > :matches(tbody, thead, tfoot) > tr > :matches(td, th),
+table[bordercolor] > tr > :matches(td, th)
+table[bordercolor] > colgroup > col
+) {
+  border-color: inherit;
+}
+table[bgcolor=$color] {
+  background-color: /*parseHTMLColor($color)*/;
+}
+table[align=left i] {
+  float: left;
+}
+table[align=right i] {
+  float: right;
+}
+table[align=center i] {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+caption[align=bottom i] { caption-side: bottom; }
+:matches(thead,tbody,tfoot,tr,td,th)[valign=top i] {
+  vertical-align: top;
+}
+:matches(thead,tbody,tfoot,tr,td,th)[valign=middle i] {
+  vertical-align: middle;
+}
+:matches(thead,tbody,tfoot,tr,td,th)[valign=bottom i] {
+  vertical-align: bottom;
+}
+:matches(thead,tbody,tfoot,tr,td,th)[valign=baseline i] {
+  vertical-align: baseline;
+}
+
+:matches(thead,tbody,tfoot,tr,td,th)[align=absmiddle i] {
+  text-align: center;
+}
+
+:matches(colgroup,col,thead,tbody,tfoot,tr,td,th)[hidden] {
+  visibility: collapse;
+}
+
+:matches(td,th)[nowrap] { white-space: nowrap; }
+:matches(td,th)[nowrap][width=$w] /* if(quirksMode && parseInt($w) > 0) */ {
+  white-space: normal;
+}

@@ -239,31 +239,33 @@ void directory::examine_page (nitpick* ticks, const ::std::string& file) const
                 mac.emplace (nm_page_disk_path, p.string ());
                 mac.emplace (nm_page_site_path, sp);
                 try
-                {   ::std::string content (read_text_file (nits, p));
-                    const bool jld = is_jsonld (p.string ());
-                    if (jld) parse_json_ld (nits, context.html_ver (), content);
-                    ss << nits.review (mac);
-                    if (! jld)
-                    {   page web (file, last_write (ndx), content, ndx, this);
-                        try
-                        {   if (web.invalid ()) ss << web.nits ().review (mac);
-                            else
-                            {   web.examine ();
-                                web.verify_locale (p);
-                                web.validate ();
-                                web.mf_write (p);
-                                web.lynx ();
-                                if (context.shadow_pages ())
-                                    if (web.dot_css ()) shadow_file (nits, file);
-                                    else web.shadow (nits, get_shadow_path () / file);
-                                ss << web.nits ().review (mac);
-                                ss << web.css_review (mac);
-                                ss << web.report (); }
-                            web.nits ().accumulate (nits);
-                            web.css ().accumulate (nits);
-                            web.cleanup (); }
-                        catch (...)
-                        {   web.cleanup (); throw; } } }
+                {   bool borked;
+                    ::std::string content (read_text_file (nits, p, borked));
+                    if (! borked)
+                    {   const bool jld = is_jsonld (p.string ());
+                        if (jld) parse_json_ld (nits, context.html_ver (), content);
+                        ss << nits.review (mac);
+                        if (! jld)
+                        {   page web (file, last_write (ndx), content, ndx, this);
+                            try
+                            {   if (web.invalid ()) ss << web.nits ().review (mac);
+                                else
+                                {   web.examine ();
+                                    web.verify_locale (p);
+                                    web.validate ();
+                                    web.mf_write (p);
+                                    web.lynx ();
+                                    if (context.shadow_pages ())
+                                        if (web.dot_css ()) shadow_file (nits, file);
+                                        else web.shadow (nits, get_shadow_path () / file);
+                                    ss << web.nits ().review (mac);
+                                    ss << web.css_review (mac);
+                                    ss << web.report (); }
+                                web.nits ().accumulate (nits);
+                                web.css ().accumulate (nits);
+                                web.cleanup (); }
+                            catch (...)
+                            {   web.cleanup (); throw; } } } }
                 catch (const ::std::system_error& e)
                 {   if (context.tell (es_error)) mac.emplace (nm_page_error, ::std::string ("System error ") + e.what () + " when parsing " + sp); }
                 catch (const ::std::exception& e)
@@ -303,7 +305,7 @@ void directory::examine (nitpick* ticks, dir_ptr me_me_me) const
         {   shadowed.emplace ((get_shadow_path () / i.first).string ());
             if (context.shadow_files () || is_verifiable_file (i.first))
 #ifndef NO_FRED
-                q.push (q_entry (ticks, me_me_me, st_file, i.first)); }
+                q.rude (q_entry (ticks, me_me_me, st_file, i.first)); }
 #else // NO_FRED
                 examine_page (ticks, i.first)); }
 #endif // NO_FRED
@@ -336,7 +338,7 @@ uint64_t directory::url_size (nitpick& nits, const url& u) const
     catch (...) { }
     return 0; }
 
-::std::string directory::load_url (nitpick& nits, const url& u, ::std::time_t* updated) const
+::std::string directory::load_url (nitpick& nits, const url& u, bool& borked, ::std::time_t* updated) const
 {   try
     {   if (! u.empty ())
             if (! u.has_protocol ())
@@ -344,14 +346,14 @@ uint64_t directory::url_size (nitpick& nits, const url& u) const
                 if (updated != nullptr)
                 {   ::std::time_t when = get_last_write_time (p);
                     if (when > *updated) *updated = when; }
-                return read_text_file (nits, p); }
+                return read_text_file (nits, p, borked); }
             else if (u.get_scheme () == pt_rfc3986)
                 if (u.has_domain () && is_one_of (u.domain (), context.site ()))
                 {   ::boost::filesystem::path p (get_disk_path (nits, u));
                     if (updated != nullptr)
                     {   ::std::time_t when = get_last_write_time (p);
                         if (when > *updated) *updated = when; }
-                    return read_text_file (nits, p); }
+                    return read_text_file (nits, p, borked); }
                 else
                 {   if (updated != nullptr) time (updated);
                     return external_.load (nits, u); } }

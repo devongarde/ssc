@@ -279,7 +279,8 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
                     if (! u.is_local ())
                         pick (nit_gather, es_comment, ec_css, "gathering CSS information from ", u.original ());
                     page_ -> css ().parse_file (nuts, node_.namespaces (), u, false);
-                    if (! u.is_local ()) node_.nits ().merge (nuts); } }
+                    if (context.extra () || ! u.is_local ())
+                        node_.nits ().merge (nuts); } }
             break;
         case elem_faux_cdata :
             if ((flags & EP_NOSPELL) == 0)

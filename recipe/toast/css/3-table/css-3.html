@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>table 3 example</title>
+    <LINK rel="stylesheet" href="css-3.css" type="text/css">
+  </head>
+<BODY>
+
+<ul class="table">
+  <li><b>One</b><i>1</i></li>
+  <li><b>Two</b><i>2</i></li>
+  <li><b>Three</b><i>3</i></li>
+</ul>
+<style>
+  ul.table { display: table; }
+  ul.table > li { display: table-row; }
+  ul.table > li > * { display: table-cell; }
+</style>
+
+<table><tbody>
+  <tr>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+  </tr>
+</tbody></table>
+
+<!-- built using dom api, as this would be fixed by the html parser -->
+
+<grid style="display: table">
+  <row style="display: table-row">
+    <th rowspan="2">1</th>
+    <colgroup style="display: table-cell" span="2" colspan="2">2</colgroup>
+  </row>
+  <tr>
+    <td>A</td>
+    <td>B</td>
+    <td>C</td>
+  </tr>
+</grid>
+
+<table>
+  <tr>
+    <th rowspan="2">1</th>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>A</td>
+    <td>B</td>
+    <td>C</td>
+  </tr>
+</table>
+
+<table><tr>
+  <td>Baseline</td>
+  <td>Baseline<table><tr><td>After</td></tr></table></td>
+  <td><table><tr><td>Baseline</td></tr></table>After</td>
+  <td><table align=right><tr><td>Before</td></tr></table><p>Baseline</p></td>
+  <td><img src="http://w3.org/favicon.ico" /><p>Baseline</p></td>
+  <td><img src="http://w3.org/favicon.ico" title="Baseline"/><br/><img src="http://w3.org/favicon.ico" title="After"/></td>
+  <td><img src="http://w3.org/favicon.ico" /><img src="http://w3.org/favicon.ico" /></td>
+</tr></table>
+
+<table>
+<tr>
+<td>
+<div> Test </div>
+</td>
+</tr>
+</table>
+
+<section style="height: var(--wrapper-height)">
+  <table style="height: var(--table-height)">
+    <tr>
+      <td style="height: var(--table-cell-height)">
+
+        <div style="height:100%; background:yellow">A</div>
+
+      </td>
+      <td style="height: var(--other-table-cell-height)">
+
+        B<br>C
+
+      </td>
+    </tr>
+  </table>
+</section>
+
+</body>
+</html>

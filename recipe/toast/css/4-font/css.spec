@@ -1,7 +1,7 @@
 -N 1 -f ../toast/css/4-font/css.conf
 
 PASS ../toast/css/4-font/css-2.css
-7 unrecognised_value
+7 unrecognised_value unrecognised_value
 
 PASS ../toast/css/4-font/css-4.css
 2 fontname
@@ -37,7 +37,6 @@ PASS ../toast/css/4-font/css-4.css
 169 fontname
 
 PASS ../toast/css/4-font/css-6.css
-7 unrecognised_value unrecognised_value bad_media
 18 pseud
 24 class_microformat_property
 29 fontname
@@ -71,7 +70,7 @@ PASS ../toast/css/4-font/css-7.css
 41 fontname
 
 PASS ../toast/css/4-font/css-9.css
-1 media_ignored
+1 css_version css_syntax css_version
 6 fontname
 8 unrecognised_value
 13 fontname

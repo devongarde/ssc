@@ -29,6 +29,7 @@ class statement;
 class css_group;
 class properties;
 class font_features;
+class media_t;
 
 struct arguments
 {   css_group& g_;
@@ -45,6 +46,7 @@ struct arguments
     statement* st_ = nullptr;
     properties* ps_ = nullptr;
     font_features* ffs_ = nullptr;
+    media_t* media_ = nullptr;
     element_bitset eb_;
     arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g);
     arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet, const e_element styled, const element_bitset eb);

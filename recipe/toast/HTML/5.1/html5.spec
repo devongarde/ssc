@@ -417,15 +417,15 @@ author 0 1
 carpet 0 1
 copyright 0 1
 cursor 0 1
-doris 3 0
+doris 4 0
 dtend 0 1
 dtstart 0 1
-error 3 2
+error 4 2
 example 0 4
 fire 0 1
-h1class 3 0
+h1class 4 0
 ident 0 15
-info 3 2
+info 4 2
 keyword 0 6
 lang-c 0 1
 language-pascal 0 1
@@ -444,15 +444,15 @@ twitter-tweet 0 1
 type 0 1
 url 0 1
 vevent 0 1
-warning 3 2
+warning 4 2
 window 0 1
 
 DCLASS
-*.doris 1 0
-*.error 1 0
-*.h1class 1 0
-*.info 1 0
-*.warning 1 0
+*.doris 2 0
+*.error 2 0
+*.h1class 2 0
+*.info 2 0
+*.warning 2 0
 a.url 0 1
 aside.advertising 0 1
 b.lede 0 1

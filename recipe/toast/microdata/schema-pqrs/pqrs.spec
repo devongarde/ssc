@@ -26,6 +26,11 @@ PASS ../toast/microdata/schema-pqrs/performingartstheatre.html
 PASS ../toast/microdata/schema-pqrs/periodical.html
 0 charset_mismatch charset_used charset_invalid
 16 inserted_missing_closure
+20 bad_itemid
+23 bad_itemid
+28 bad_itemid
+43 bad_itemid
+44 bad_itemid
 50 url_id_unfound
 69 bad_itemid
 
@@ -323,11 +328,6 @@ PASS ../toast/microdata/schema-pqrs/role.html
 PASS ../toast/microdata/schema-pqrs/scholarlyarticle.html
 0 charset_mismatch charset_used charset_invalid
 16 inserted_missing_closure
-20 bad_itemid
-23 bad_itemid
-28 bad_itemid
-43 bad_itemid
-44 bad_itemid
 50 url_id_unfound
 69 bad_itemid
 85 use_double_quote_code

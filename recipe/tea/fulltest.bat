@@ -50,9 +50,12 @@ ssc.exe -f ../toast/css/3-ui/css.conf
 ssc.exe -f ../toast/css/4-ui/css.conf
 ssc.exe -f ../toast/css/3-value/css.conf
 ssc.exe -f ../toast/css/4-value/css.conf
+ssc.exe -f ../toast/css/3-writing/css.conf
+ssc.exe -f ../toast/css/4-writing/css.conf
 ssc.exe -f ../toast/css/accessibility/css.conf
 ssc.exe -f ../toast/css/custom/css.conf
 ssc.exe -f ../toast/css/ease/css.conf
+ssc.exe -f ../toast/css/simple/css.conf
 ssc.exe -f ../toast/css/songlight/css.conf
 ssc.exe -f ../toast/HTML/1.0/html1.conf
 ssc.exe -f ../toast/HTML/2.0/html2.conf

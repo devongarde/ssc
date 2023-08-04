@@ -824,6 +824,7 @@ const nitname nitnames [] =
     { nit_counter_style, "counter_style" },
     { nit_clacks, "clacks" },
     { nit_bad_supports, "bad_supports" },
+    { nit_experimental, "experimental" },
 
     { nit_incompatible, "incompatible" },
 

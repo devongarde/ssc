@@ -50,9 +50,12 @@ ssc.exe -T --nits.spec -o ../out/3ui.tst -f ../toast/css/3-ui/css.conf
 ssc.exe -T --nits.spec -o ../out/4ui.tst -f ../toast/css/4-ui/css.conf
 ssc.exe -T --nits.spec -o ../out/3value.tst -f ../toast/css/3-value/css.conf
 ssc.exe -T --nits.spec -o ../out/4value.tst -f ../toast/css/4-value/css.conf
+ssc.exe -T --nits.spec -o ../out/3writing.tst -f ../toast/css/3-writing/css.conf
+ssc.exe -T --nits.spec -o ../out/4writing.tst -f ../toast/css/4-writing/css.conf
 ssc.exe -T --nits.spec -o ../out/accessibility.tst -f ../toast/css/accessibility/css.conf
 ssc.exe -T --nits.spec -o ../out/csscustom.tst -f ../toast/css/custom/css.conf
 ssc.exe -T --nits.spec -o ../out/cssease.tst -f ../toast/css/ease/css.conf
+ssc.exe -T --nits.spec -o ../out/csssimple.tst -f ../toast/css/simple/css.conf
 ssc.exe -T --nits.spec -o ../out/songlight.tst -f ../toast/css/songlight/css.conf
 ssc.exe -T --nits.spec -o ../out/1.0html1.tst -f ../toast/HTML/1.0/html1.conf
 ssc.exe -T --nits.spec -o ../out/2.0html2.tst -f ../toast/HTML/2.0/html2.conf

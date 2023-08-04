@@ -446,6 +446,15 @@ struct symbol_entry < html_version, e_css_border_width > css_border_width_symbol
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "thick", ecb_thick },
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "thin", ecb_thin } };
 
+struct symbol_entry < html_version, e_css_box_alignself_mess > css_box_alignself_mess_symbol_table [] =
+{   { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_ALIGN }, { HTML_UNDEF }, "auto", ebam_auto },
+    { { HTML_CSS, 0, 0, H2_CSS_FBL_3 }, { HTML_UNDEF }, "baseline", ebam_baseline },
+    { { HTML_CSS, 0, 0, H2_CSS_FBL_3 }, { HTML_UNDEF }, "center", ebam_centre },
+    { { HTML_CSS, 0, 0, H2_CSS_FBL_3 }, { HTML_UNDEF }, "flex-end", ebam_flex_end },
+    { { HTML_CSS, 0, 0, H2_CSS_FBL_3 }, { HTML_UNDEF }, "flex-start", ebam_flex_start },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_ALIGN }, { HTML_UNDEF }, "normal", ebam_normal },
+    { { HTML_CSS, 0, 0, H2_CSS_FBL_3, H3_CSS_BOX_ALIGN }, { HTML_UNDEF }, "stretch", ebam_stretch } };
+
 struct symbol_entry < html_version, e_css_break > css_break_symbol_table [] =
 {   { { HTML_CSS, 0, 0, H2_CSS_FRAG_4 }, { HTML_UNDEF }, "all", ecb_all },
     { { HTML_CSS, 0, 0, H2_CSS_FRAG_4 }, { HTML_UNDEF }, "always", ecb_always },
@@ -2474,10 +2483,12 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-selector", nm_context_css_selector },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-style", nm_context_css_style },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-syntax", nm_context_css_syntax },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-table", nm_context_css_table },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-transition", nm_context_css_transition },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-ui", nm_context_css_ui },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-value", nm_context_css_value },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-version", nm_context_css_version },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-writing-mode", nm_context_css_writing_mode },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-custom-elements", nm_context_custom_elements },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-dc", nm_context_dc },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-example", nm_context_example },
@@ -3146,12 +3157,13 @@ struct symbol_entry < html_version, e_turbulence_type > turbulence_type_symbol_t
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "turbulence", tu_turbulence } };
 
 struct symbol_entry < html_version, e_unicode_bidi > unicode_bidi_symbol_table [] =
- {  { { HTML_4_0, 0, HE_SVG }, { HTML_UNDEF }, "bidi-override", ub_bidioverride },
-    { { HTML_4_0, 0, HE_SVG }, { HTML_UNDEF }, "embed", ub_embed },
-    { { HTML_4_0, 0, HE_SVG }, { HTML_UNDEF }, "inherit", ub_inherit },
-    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "isolate", ub_isolate },
-    { { HTML_4_0, 0, HE_SVG }, { HTML_UNDEF }, "normal", ub_normal },
-    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "plaintext", ub_plaintext } };
+ {  { { HTML_4_0, 0, HE_SVG, H2_CSS_2 | H2_CSS_SVG_2, H3_CSS_WRITING_3 }, { HTML_UNDEF }, "bidi-override", ub_bidioverride },
+    { { HTML_4_0, 0, HE_SVG, H2_CSS_2 | H2_CSS_SVG_2, H3_CSS_WRITING_3 }, { HTML_UNDEF }, "embed", ub_embed },
+    { { HTML_4_0, 0, HE_SVG, H2_CSS_2 | H2_CSS_SVG_2, H3_CSS_WRITING_3 }, { HTML_UNDEF }, "inherit", ub_inherit },
+    { { HTML_SVG20, 0, HE_SVG_2, H2_CSS_2 | H2_CSS_SVG_2, H3_CSS_WRITING_3 }, { HTML_UNDEF }, "isolate", ub_isolate },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_WRITING_3 }, { HTML_UNDEF }, "isolate-override", ub_isolate_override },
+    { { HTML_4_0, 0, HE_SVG, H2_CSS_2 | H2_CSS_SVG_2, H3_CSS_WRITING_3 }, { HTML_UNDEF }, "normal", ub_normal },
+    { { HTML_SVG20, 0, HE_SVG_2, H2_CSS_2 | H2_CSS_SVG_2, H3_CSS_WRITING_3 }, { HTML_UNDEF }, "plaintext", ub_plaintext } };
 
 struct symbol_entry < html_version, e_unit > unit_symbol_table [] =
 {   { { HTML_JAN21 }, { HTML_UNDEF }, "cap", eu_cap },
@@ -3283,16 +3295,18 @@ struct symbol_entry < html_version, e_whitespace > whitespace_symbol_table [] =
     { { HTML_JAN19 }, { HTML_UNDEF }, "pre-line", ws_pre_line } };
 
 struct symbol_entry < html_version, e_writingmode > writingmode_symbol_table [] =
-{   { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "horizontal-tb", wm_htb },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 | HE_SVG_DEPR_20 }, { HTML_UNDEF }, "lr-tb", wm_lrtb },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 | HE_SVG_DEPR_20 }, { HTML_UNDEF }, "rl-tb", wm_rltb },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 | HE_SVG_DEPR_20 }, { HTML_UNDEF }, "tb-rl", wm_tbrl },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 | HE_SVG_DEPR_20 }, { HTML_UNDEF }, "lr", wm_lr },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 | HE_SVG_DEPR_20 }, { HTML_UNDEF }, "rl", wm_rl },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 | HE_SVG_DEPR_20 }, { HTML_UNDEF }, "tb", wm_tb },
-    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "vertical-lr", wm_vlr },
-    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "vertical-rl", wm_vrl },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 | HE_SVG_DEPR_20 }, { HTML_UNDEF }, "inherit", wm_inherit } };
+{   { { HTML_SVG20, 0, HE_SVG_2, H2_CSS_SVG_2, H3_CSS_WRITING }, { HTML_UNDEF }, "horizontal-tb", wm_htb },
+    { { HTML_SVG10, 0, HE_SVG_10_11_20 | HE_SVG_DEPR_20, H2_CSS_SVG_1 }, { HTML_UNDEF }, "lr-tb", wm_lrtb },
+    { { HTML_SVG10, 0, HE_SVG_10_11_20 | HE_SVG_DEPR_20, H2_CSS_SVG_1 }, { HTML_UNDEF }, "rl-tb", wm_rltb },
+    { { HTML_SVG10, 0, HE_SVG_10_11_20 | HE_SVG_DEPR_20, H2_CSS_SVG_1 }, { HTML_UNDEF }, "tb-rl", wm_tbrl },
+    { { HTML_SVG10, 0, HE_SVG_10_11_20 | HE_SVG_DEPR_20, H2_CSS_SVG_1 }, { HTML_UNDEF }, "lr", wm_lr },
+    { { HTML_SVG10, 0, HE_SVG_10_11_20 | HE_SVG_DEPR_20, H2_CSS_SVG_1 }, { HTML_UNDEF }, "rl", wm_rl },
+    { { HTML_SVG10, 0, HE_SVG_10_11_20 | HE_SVG_DEPR_20, H2_CSS_SVG_1 }, { HTML_UNDEF }, "tb", wm_tb },
+    { { HTML_SVG20, 0, 0, 0, H3_CSS_WRITING_4 }, { HTML_UNDEF }, "sideways-lr", wm_sideways_lr },
+    { { HTML_SVG20, 0, 0, 0, H3_CSS_WRITING_4 }, { HTML_UNDEF }, "sideways-rl", wm_sideways_rl },
+    { { HTML_SVG20, 0, HE_SVG_2, H2_CSS_SVG_2, H3_CSS_WRITING }, { HTML_UNDEF }, "vertical-lr", wm_vlr },
+    { { HTML_SVG20, 0, HE_SVG_2, H2_CSS_SVG_2, H3_CSS_WRITING }, { HTML_UNDEF }, "vertical-rl", wm_vrl },
+    { { HTML_SVG10, 0, HE_SVG_10_11_20 | HE_SVG_DEPR_20, H2_CSS_SVG_1 }, { HTML_UNDEF }, "inherit", wm_inherit } };
 
 struct symbol_entry < html_version, e_xmlns > xmlns_symbol_table [] =
 {   { { HTML_4_0 }, { HTML_UNDEF }, HTTP PURL_ORG "g/ontology/bibo/", x_bibo },
@@ -3470,6 +3484,7 @@ void init_2 ()
     type_master < t_editable > :: init ();
     type_master < t_fill_ve > :: init ();
     type_master < t_fillanim > :: init ();
+    type_master < t_first_last > :: init ();
     type_master < t_forced_colours > :: init ();
     type_master < t_auto_none > :: init ();
     type_master < t_gender > :: init ();
@@ -3710,6 +3725,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (css_blend_mode);
     INIT_ENUM (css_border_style);
     INIT_ENUM (css_border_width);
+    INIT_ENUM (css_box_alignself_mess);
     INIT_ENUM (css_break);
     INIT_ENUM (css_break_inside);
     INIT_ENUM (css_caret_shape);

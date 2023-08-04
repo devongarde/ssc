@@ -103,6 +103,8 @@ public:
         return n; }
     bool none () const
     {   return ! any (); }
+    bool empty () const
+    {   return none (); }
     constexpr ::std::size_t size () const noexcept
     {   return SIZE; }
     friend ssc_bitset AND (const ssc_bitset& lhs, const ssc_bitset& rhs)
