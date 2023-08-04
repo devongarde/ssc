@@ -168,8 +168,8 @@ template < > struct type_master < t_css_box_alignitems_ns > : type_or_either_str
 template < > struct type_master < t_css_box_alignself > : type_one_of < t_css_box_alignself, false, t_css_baseline_position, t_css_box_overflow, t_css_self_position >
 { using type_one_of < t_css_box_alignself, false, t_css_baseline_position, t_css_box_overflow, t_css_self_position > :: type_one_of; };
 
-template < > struct type_master < t_css_box_alignself_ans > : type_or_any_string < t_css_box_alignself_ans, t_css_box_alignself, sz_auto, sz_normal, sz_stretch >
-{ using type_or_any_string < t_css_box_alignself_ans, t_css_box_alignself, sz_auto, sz_normal, sz_stretch > :: type_or_any_string; };
+template < > struct type_master < t_css_box_alignself_acs > : type_either_or < t_css_box_alignself_acs, t_css_box_alignself, t_css_box_alignself_mess >
+{ using type_either_or < t_css_box_alignself_acs, t_css_box_alignself, t_css_box_alignself_mess > :: type_either_or; };
 
 template < > struct type_master < t_css_box_legacy > : string_then_maybe_type < t_css_box_legacy, t_lcralign, sz_space_char, sz_legacy >
 { using string_then_maybe_type < t_css_box_legacy, t_lcralign, sz_space_char, sz_legacy > :: string_then_maybe_type; };
@@ -524,6 +524,12 @@ template < > struct type_master < t_css_speech_rate > : type_either_or < t_css_s
 template < > struct type_master < t_css_tech > : type_function_all < t_css_tech, sz_format, t_css_font_techs >
 { using type_function_all < t_css_tech, sz_format, t_css_font_techs > :: type_function_all; };
 
+template < > struct type_master < t_css_text_combine_upright_d > : string_then_maybe_type < t_css_text_combine_upright_d, t_integer, sz_space_char, sz_digits >
+{ using string_then_maybe_type < t_css_text_combine_upright_d, t_integer, sz_space_char, sz_digits > :: string_then_maybe_type; };
+
+template < > struct type_master < t_css_text_combine_upright > : type_or_either_string < t_css_text_combine_upright, t_css_text_combine_upright_d, sz_all, sz_none >
+{ using type_or_either_string < t_css_text_combine_upright, t_css_text_combine_upright_d, sz_all, sz_none > :: type_or_either_string; };
+
 template < > struct type_master < t_css_trans_prop_a > : type_or_string < t_css_trans_prop_a, t_css_property, sz_all >
 { using type_or_string < t_css_trans_prop_a, t_css_property, sz_all > :: type_or_string; };
 
@@ -651,7 +657,7 @@ template < > struct type_master < t_css_col > : tidy_string < t_css_col >
                     {   tidy_string < t_css_col > :: status (s_good);
                         return; }
                     break; }
-            nits.pick (nit_css_colour, es_error, ec_css, "CSS colour error");
+            nits.pick (nit_css_colour, es_error, ec_css, quote (ss), " is invalid in CSS ", v.long_css_version_name ());
             if (context.extra () || context.tell (es_debug))
             {   nits.merge (nuts);
                 nits.merge (nets);

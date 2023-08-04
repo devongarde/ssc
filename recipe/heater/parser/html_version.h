@@ -316,7 +316,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_CUSTOM       0x0000000000200000
 #define H2_CSS_VALUE_3      0x0000000000400000
 #define H2_CSS_VALUE_4      0x0000000000800000
-#define H2_CSS_VALUE        ( H2_CSS_VALUE_3 | H2_CSS_VALUE_4 )
+#define H2_CSS_VALUE      ( H2_CSS_VALUE_3 | H2_CSS_VALUE_4 )
+#define H2_CSS_VALUE_MASK   H2_CSS_VALUE
 
 #define H2_CSS_1_ARG        0x0000000001000000
 #define H2_CSS_2_ARGS       0x0000000002000000
@@ -457,8 +458,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define H3_CSS_POSITION     0x0000000000000100
 
-#define H3_CSS_3        ( H3_CSS_BOX_ALIGN | H3_CSS_BOX_MODEL_3 | H3_CSS_BOX_SIZING | H3_CSS_DISPLAY | H3_CSS_MULTI_COL | H3_CSS_POSITION | H3_CSS_TRANSITION )
-#define H3_CSS_4          H3_CSS_BOX_MODEL_4
+#define H3_CSS_WRITING_3    0x0000000000000200
+#define H3_CSS_WRITING_4    0x0000000000000400
+#define H3_CSS_WRITING_34 ( H3_CSS_WRITING_3 | H3_CSS_WRITING_4 )  
+#define H3_CSS_WRITING      H3_CSS_WRITING_34  
+#define H3_CSS_WRITING_MASK H3_CSS_WRITING
+
+#define H3_CSS_TABLE        0x0000000000000800
+
+#define H3_CSS_3        ( H3_CSS_BOX_ALIGN | H3_CSS_BOX_MODEL_3 | H3_CSS_BOX_SIZING | H3_CSS_DISPLAY | H3_CSS_MULTI_COL | H3_CSS_OVERFLOW | H3_CSS_POSITION | H3_CSS_TABLE | H3_CSS_TRANSITION | H3_CSS_WRITING_3 )
+#define H3_CSS_4        ( H3_CSS_BOX_MODEL_4 | H3_CSS_WRITING_4 )
 #define H3_CSS_5          0
 #define H3_CSS_6          0
   
@@ -477,7 +486,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H3_CSS_MASK       H3_CSS_ALL
 #define H3_CSS            H3_CSS_ALL
 
-#define H3_FULL_CSS_MASK    0x00000000000001FF
+#define H3_FULL_CSS_MASK    0x0000000000000FFF
 
 class html_version : public version
 {   flags_t ext_ = NOFLAGS, ext2_ = NOFLAGS, ext3_ = NOFLAGS;
@@ -733,12 +742,16 @@ public:
     void css_style (const int n);
     int css_syntax () const;
     void css_syntax (const int n);
+    int css_table () const;
+    void css_table (const int n);
     int css_transition () const;
     void css_transition (const int n);
     int css_ui () const;
     void css_ui (const int n);
     int css_value () const;
     void css_value (const int n);
+    int css_writing_mode () const;
+    void css_writing_mode (const int n);
     bool is_css_compatible (const flags_t& f, const flags_t& f2) const;
     bool is_css_compatible (nitpick& nits, const flags_t& f, const flags_t& f2) const;
     bool is_css_compatible (const html_version& v) const
@@ -953,6 +966,7 @@ const html_version html_jul10 (HTML_JUL10, HV_WHATWG, HE_MICRODATA | HE_SVG_11, 
 const html_version html_jan12 (HTML_JAN12, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_3, H3_CSS_3);
 const html_version html_jul12 (HTML_JUL12, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_3, H3_CSS_3);
 const html_version html_jan13 (HTML_JAN13, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_3, H3_CSS_3);
+const html_version html_may13 (HTML_MAY13, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_3, H3_CSS_3);
 const html_version html_jul13 (HTML_JUL13, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_3, H3_CSS_3);
 const html_version html_jan14 (HTML_JAN14, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_3, H3_CSS_3);
 const html_version html_jan15 (HTML_JAN15, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_3, H3_CSS_3);

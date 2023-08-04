@@ -38,12 +38,15 @@ class css
     page& page_;
     fileindex_t ndx_ = nullfileindex;
     ::std::string abs_;
+    const ::boost::filesystem::path dp_ = ::boost::filesystem::path ();
     v_np ticks_;
     int line_ = 0;
     void check_for_standard_classes (const html_version& v);
 public:
-    explicit css (const html_version& v, const namespaces_ptr& namespaces, dst_ptr dst, page& p, const ::std::string& abs, bool state_version, bool snippet, int line, const e_element styled, const element_bitset eb);
-    explicit css (const html_version& v, const ::std::string& content, const namespaces_ptr& namespaces, dst_ptr dst, page& p, const ::std::string& abs, bool state_version, bool snippet, int line, const e_element styled, const element_bitset eb);
+    explicit css (  const html_version& v, const namespaces_ptr& namespaces, dst_ptr dst, page& p, const ::std::string& abs, bool state_version, bool snippet, int line, const e_element styled,
+                    const element_bitset eb, const ::boost::filesystem::path dp = ::boost::filesystem::path ());
+    explicit css (  const html_version& v, const ::std::string& content, const namespaces_ptr& namespaces, dst_ptr dst, page& p, const ::std::string& abs, bool state_version, bool snippet,
+                    int line, const e_element styled, const element_bitset eb, const ::boost::filesystem::path dp = ::boost::filesystem::path (), const bool mdm = false);
     DELETE_CONSTRUCTORS (css);
     bool invalid () const noexcept { return false; }
     bool snippet () const noexcept { return args_.snippet_; }
@@ -63,12 +66,16 @@ public:
         return args_.dst_ -> has_element_id (s); }
     bool has_namespace (const ::std::string& ) const
     {   return false; }
-    bool parse (const ::std::string& content, const bool x); // in css_parse.cpp
+    bool parse (const ::std::string& content, const bool x, const bool mdm = false); // in css_parse.cpp
     ::std::string review (mmac_t& mac, const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot, const e_nit_section& page_head = ns_none, const bool unfiltered = false) const;
     void accumulate (nitpick& accumulator) const;
     void accumulate (stats_t* s);
     void validate ();
     void shadow (::std::stringstream& ss);
+    const ::boost::filesystem::path disk_path () const { return dp_; }
+    void nick_nits (nitpick& nits);
+    const arguments& args () const { return args_; }
+    arguments& args () { return args_; }
     const element_bitset get_elements () const { return st_.get_elements (); } };
 
 typedef ::std::shared_ptr < css > css_ptr;

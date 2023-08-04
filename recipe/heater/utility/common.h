@@ -105,8 +105,8 @@ inline vstr_t split_by_newline (const ::std::string& s)
 vstr_t split_by_string (const ::std::string& s, const ::std::string& splitter);
 vstr_t separate_by_whitespace_and (const ::std::string& s, const char* charset);
 
-::std::string read_text_file (nitpick& nits, const ::boost::filesystem::path& name);
-::std::string read_text_file (nitpick& nits, const ::std::string& name);
+::std::string read_text_file (nitpick& nits, const ::boost::filesystem::path& name, bool& borked);
+::std::string read_text_file (nitpick& nits, const ::std::string& name, bool& borked);
 void_ptr read_binary_file (nitpick& nits, const ::boost::filesystem::path& name, uintmax_t& sz, const bool zero_ok = false);
 bool write_text_file (const ::boost::filesystem::path& n, const ::std::string& content);
 bool write_text_file (const ::std::string& name, const ::std::string& content);

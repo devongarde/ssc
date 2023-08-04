@@ -14,11 +14,13 @@ PASS ../toast/css/5-cascade/css-2.css
 1 url_not_found
 2 url_not_found
 4 url_not_found
+5 url_not_found
 7 url_not_found
 8 url_not_found
 9 url_not_found
-11 unrecognised_value unrecognised_value bad_media url_not_found
-12 unrecognised_value unrecognised_value bad_media
+11 url_not_found
+16 url_not_found
+17 url_not_found
 
 PASS ../toast/css/5-cascade/css-3.css
 0 html
@@ -51,17 +53,17 @@ PASS ../toast/css/5-cascade/css-6.css
 101 css_layer
 105 css_layer
 111 class_microformat_property
-114 media_ignored
+114 css_version css_syntax css_version
 115 css_layer
 116 class_microformat_property
 119 css_layer
 121 css_layer
-123 media_ignored
+123 css_version css_syntax css_version
 128 css_layer
 129 bad_import url_not_found
 130 css_layer
 136 css_layer
-137 bad_import
+137 bad_import url_not_found
 139 css_layer
 145 bad_import url_not_found
 146 css_layer

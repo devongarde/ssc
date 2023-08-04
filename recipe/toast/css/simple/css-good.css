@@ -1,0 +1,8 @@
+﻿IMG { border-width: 3pt }
+
+.h1class, .doris { min-width: 250px; margin: 0 auto; position: relative; }
+p.double-barrel { min-width: 250px; margin: 0 auto; position: relative; }
+
+@page :first {
+ margin-top: 10cm /* Top margin on first page 10cm */
+}

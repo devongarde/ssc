@@ -127,9 +127,12 @@ class context_t
     context_t& css_selector (const int n) { version_.css_selector (n); mac (nm_context_css_selector, n); return *this; }
     context_t& css_style (const int n) { version_.css_style (n); mac (nm_context_css_style, n); return *this; }
     context_t& css_syntax (const int n) { version_.css_syntax (n); mac (nm_context_css_syntax, n); return *this; }
+    context_t& css_table (const int n) { version_.css_table (n); mac (nm_context_css_table, n); return *this; }
+// css_table
     context_t& css_transition (const int n) { version_.css_transition (n); mac (nm_context_css_transition, n); return *this; }
     context_t& css_ui (const int n) { version_.css_ui (n); mac (nm_context_css_ui, n); return *this; }
     context_t& css_value (const int n) { version_.css_value (n); mac (nm_context_css_value, n); return *this; }
+    context_t& css_writing_mode (const int n) { version_.css_writing_mode (n); mac (nm_context_css_writing_mode, n); return *this; }
     context_t& css_version (const int mjr, const int mnr);
     context_t& css_version (const e_css_version v) { version_.css_version (v); mac < int > (nm_context_css_version, v); return *this; }
     context_t& custom_elements (const vstr_t& s) { custom_elements_ = s; mac (nm_context_custom_elements, s); return *this; }
@@ -324,10 +327,12 @@ public:
     int css_selector () { return version_.css_selector (); }
     int css_style () { return version_.css_style (); }
     int css_syntax () { return version_.css_syntax (); }
+    int css_table () { return version_.css_table (); }
     int css_transition () { return version_.css_transition (); }
     int css_ui () { return version_.css_ui (); }
     int css_value () { return version_.css_value (); }
     e_css_version css_version () const noexcept { return version_.css_version (); }
+    int css_writing_mode () { return version_.css_writing_mode (); }
     const vstr_t custom_elements () const { return custom_elements_; }
     bool dodedu () const noexcept { return (copy_ >= c_deduplicate); }
     const ::std::string domsg () const { return domsg_; }

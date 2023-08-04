@@ -20,8 +20,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "base/type_master.h"
+struct arguments;
 
-bool parse_media_query (nitpick& nits, const html_version& v, const ::std::string& s, const ustr_t& custom_media = ustr_t ());
+bool parse_media_query (nitpick& nits, const html_version& v, const ::std::string& s, element* e);
 
 template < > struct type_master < t_mql > : tidy_string < t_mql >
 {   using tidy_string < t_mql > :: tidy_string;
@@ -29,7 +30,8 @@ template < > struct type_master < t_mql > : tidy_string < t_mql >
     {   tidy_string < t_mql > :: set_value (nits, v, s);
         if (tidy_string < t_mql > :: empty ())
             nits.pick (nit_mq_syntax, ed_mql, "3. Syntax", es_warning, ec_mql, "is the empty media value intentional?");
-        else if (tidy_string < t_mql > :: good () && parse_media_query (nits, v, tidy_string < t_mql > :: get_string ())) return;
+        else if (tidy_string < t_mql > :: good ())
+            if (parse_media_query (nits, v, tidy_string < t_mql > :: get_string (), box ())) return;
         tidy_string < t_mql > :: status (s_invalid);
         return; } };
 
@@ -44,7 +46,7 @@ template < > struct type_master < t_mqls > : tidy_string < t_mqls >
         {   vstr_t mql (split_by_charset (s, ";"));
             bool whoops = false;
             for (auto ss : mql)
-                if (! test_value < t_mql > (nits, v, ss))
+                if (! parse_media_query (nits, v, ss, box ()))
                     whoops = true;
             if (! whoops) return; }
         tidy_string < t_mqls > :: status (s_invalid);

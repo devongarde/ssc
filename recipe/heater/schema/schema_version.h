@@ -115,9 +115,14 @@ const schema_version as_2_0 (s_as, 2, 0);
 
 const schema_version bibo_schema (s_bibo, 1, 3);
 
+const schema_version biro_schema (s_biro, 1, 1);
+
 const schema_version book_2012 (s_book, HTML_2012, 0);
 const schema_version book_2014 (s_book, HTML_2014, 0);
 const schema_version book_2018 (s_book, HTML_2018, 0);
+
+// s_cito
+const schema_version cito_schema (s_cito, 2, 8);
 
 const schema_version content_schema (s_content, 1, 0);
 

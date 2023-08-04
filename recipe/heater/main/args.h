@@ -198,6 +198,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SUBSTITUTE  "substitute"
 #define SUMMARY     "summary"
 #define SYNTAX      "syntax"
+#define TABLE       "table"
 #define TAGS        "tags"
 #define TARGET      "target"
 #define TEST        "test"
@@ -217,6 +218,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define VIRTUAL     "virtual"
 #define WARNING     "warning"
 #define WATCH       "watch"
+#define WRITING     "writing"
 #define XSD         "xsd"
 
 #define CLEAR       "clear"

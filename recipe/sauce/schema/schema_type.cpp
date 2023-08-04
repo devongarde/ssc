@@ -164,11 +164,30 @@ struct symbol_entry < schema_version, e_schema_type, e_schema, s_schema > schema
     { { s_bibo, 1, 3 }, { 0, 0 }, "Website", bibo_website, s_bibo },
     { { s_bibo, 1, 3 }, { 0, 0 }, "Workshop", bibo_workshop, s_bibo },
 
+    // biro
+    { { s_biro, 1, 1 }, { 0, 0 }, "BibliographicCollection", biro_bibliographic_collection, s_biro },
+    { { s_biro, 1, 1 }, { 0, 0 }, "BibliographicList", biro_bibliographic_list, s_biro },
+    { { s_biro, 1, 1 }, { 0, 0 }, "BibliographicRecord", biro_bibliographic_record, s_biro },
+    { { s_biro, 1, 1 }, { 0, 0 }, "BibliographicReference", biro_bibliographic_reference, s_biro },
+    { { s_biro, 1, 1 }, { 0, 0 }, "LibraryCatalogue", biro_library_catalogue, s_biro },
+    { { s_biro, 1, 1 }, { 0, 0 }, "ReferenceList", biro_reference_list, s_biro },
+
     // common tag
     { { s_ctag, 1, 0 }, { 0, 0 }, "AuthorTag", ctag_author, s_ctag },
     { { s_ctag, 1, 0 }, { 0, 0 }, "AutoTag", ctag_auto, s_ctag },
     { { s_ctag, 1, 0 }, { 0, 0 }, "ReaderTag", ctag_reader, s_ctag },
     { { s_ctag, 1, 0 }, { 0, 0 }, "Tag", ctag_tag, s_ctag },
+
+    // cito
+    { { s_cito, 2, 8 }, { 0, 0 }, "AffilationSelfCitation", cito_affilation_self_citation, s_cito },
+    { { s_cito, 2, 8 }, { 0, 0 }, "AuthorNetworkSelfCitation", cito_author_network_self_citation, s_cito },
+    { { s_cito, 2, 8 }, { 0, 0 }, "AuthorSelfCitation", cito_author_self_citation, s_cito },
+    { { s_cito, 2, 8 }, { 0, 0 }, "Citation", cito_citation, s_cito },
+    { { s_cito, 2, 8 }, { 0, 0 }, "DistantCitation", cito_distant_citation, s_cito },
+    { { s_cito, 2, 8 }, { 0, 0 }, "FunderSelfCitation", cito_funder_self_citation, s_cito },
+    { { s_cito, 2, 8 }, { 0, 0 }, "JournalCartelCitation", cito_journal_cartel_citation, s_cito },
+    { { s_cito, 2, 8 }, { 0, 0 }, "JournalSelfCitation", cito_journal_self_citation, s_cito },
+    { { s_cito, 2, 8 }, { 0, 0 }, "SelfCitation", cito_self_citation, s_cito },
 
     // contrary sausages
     { { s_csvw, 1, 0 }, { 0, 0 }, "Cell", csv_cell, s_csvw },

@@ -1,0 +1,10 @@
+﻿table {
+  width: 500px; height: 300px;
+  empty-cells: hide;
+}
+
+table { background: black; border: 10px solid black; }
+td { background: white; }
+
+table { border-spacing: 0px; }
+td { padding: 0; }

@@ -295,6 +295,7 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
 
 ::std::string include_command (::std::string& ln, nitpick& nits, const html_version& v, page& p, ssi_compedium& c, const vstr_t& args, ::std::time_t& updated)
 {   ::std::string file, vrt, onerror, arg, content;
+    bool borked = false;
     url u;
     for (auto s : args)
     {   e_ssi_include e = ssi_include_file;
@@ -312,19 +313,20 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
     {   if (validate_file (ln, nits, p, file))
         {   VERIFY_NOT_NULL (p.get_directory (), __FILE__, __LINE__);
             ::boost::filesystem::path pt (p.get_directory () -> get_disk_path (nits, file));
-            if (cached_file (nits, pt, content))
-                return parse_ssi (nits, v, p, c, content, updated); }
+            if (cached_file (nits, pt, content, borked))
+                if (! borked) return parse_ssi (nits, v, p, c, content, updated); }
         else if (validate_virtual (ln, nits, v, vrt, u))
             if (! u.invalid ())
             {   ::std::time_t when = updated;
                 VERIFY_NOT_NULL (p.get_directory (), __FILE__, __LINE__);
-                if (cached_url (nits, v, p.get_directory (), u, content, when))
-                {   if (context.shadow_changed ())
-                    {   nitpick knots;
-                        nits.pick (nit_ssi, es_debug, ec_shadow, "SSI virtual ", p.get_directory () ->get_disk_path (knots, u), " last updated ", when);
-                        if (when > updated) updated = when; }
-                    if (! content.empty ())
-                        return parse_ssi (nits, v, p, c, content, updated); } }
+                if (cached_url (nits, v, p.get_directory (), u, content, when, borked))
+                    if (! borked)
+                    {   if (context.shadow_changed ())
+                        {   nitpick knots;
+                            nits.pick (nit_ssi, es_debug, ec_shadow, "SSI virtual ", p.get_directory () ->get_disk_path (knots, u), " last updated ", when);
+                            if (when > updated) updated = when; }
+                        if (! content.empty ())
+                            return parse_ssi (nits, v, p, c, content, updated); } }
         set_ssi_context (ln, nits, es_error);
         nits.pick (nit_ssi_include_error, es_error, ec_ssi, PROG " cannot verify ", file); }
     return c.errmsg_; }

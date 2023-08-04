@@ -36,11 +36,13 @@ sh_t sh [] =  // latest first
     { as_2_0, html_as_2_0 },
     { as_1_0, html_as_1_0 },
     { bibo_schema, html_rdf_1_0 },
+    { biro_schema, html_may13 },
     { book_2018, html_jan18 },
     { book_2014, html_jan14 },
     { book_2012, html_jan12 },
-    { creative_commons, html_cc },
+    { cito_schema, html_jan18 },
     { content_schema, html_rdf_1_0 },
+    { creative_commons, html_cc },
     { csvw_schema, html_jan16 },
     { common_tag, html_rdf_1_0_con },
     { daq_schema, html_rdf_1_0_con },
@@ -283,11 +285,21 @@ template < > bool schema_detail < s_bibo > :: is_this_valid (const unsigned shor
 template < > schema_version schema_detail < s_bibo > :: from () noexcept { return schema_version (s_bibo, 1, 3); }
 template < > schema_version schema_detail < s_bibo > :: to () noexcept { return schema_version (s_bibo, 1, 3); }
 
+template < > bool schema_detail < s_biro > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+{   return (mjr == 1) && (mnr == 1); }
+template < > schema_version schema_detail < s_biro > :: from () noexcept { return schema_version (s_biro, 1, 1); }
+template < > schema_version schema_detail < s_biro > :: to () noexcept { return schema_version (s_biro, 1, 1); }
+
 template < > bool schema_detail < s_book > :: is_this_valid (const unsigned short mjr, const unsigned short , const flags_t ) noexcept
 {   return (mjr >= HTML_2012) && (mjr <= HTML_LATEST_YEAR); }
 template < > schema_version schema_detail < s_book > :: from () noexcept { return schema_version (s_book, HTML_2012, 0); }
 template < > int schema_detail < s_book > :: count () noexcept { return 4; }
 template < > schema_version schema_detail < s_book > :: to () noexcept { return schema_version (s_book, HTML_LATEST_YEAR, 0); }
+
+template < > bool schema_detail < s_cito > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+{   return (mjr == 2) && (mnr == 8); }
+template < > schema_version schema_detail < s_cito > :: from () noexcept { return schema_version (s_cito, 2, 8); }
+template < > schema_version schema_detail < s_cito > :: to () noexcept { return schema_version (s_cito, 2, 8); }
 
 template < > bool schema_detail < s_dc > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
 {   if (mjr != 1) return false;

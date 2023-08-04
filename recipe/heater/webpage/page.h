@@ -91,6 +91,7 @@ public:
     const ::std::string name () const { return name_; }
     const ::std::string get_site_path () const;
     const ::boost::filesystem::path get_disk_path () const;
+    const ::boost::filesystem::path get_disk_path (nitpick& nits, const url& u) const;
     const ::boost::filesystem::path get_export_path () const;
     void export_rel (const ::std::string& url, const ::std::string& hreflang, const ::std::string& media, const vstr_t& rels, const ::std::string& text, const ::std::string& title, const ::std::string& type)
     {   if (! snippet_) mf_export_.rel (url, hreflang, media, rels, text, title, type); }
@@ -100,7 +101,7 @@ public:
     {   return snippet_ || mf_export_.write (nits_, name); }
     const html_version version () const noexcept { return nodes_.version (); }
     ::boost::filesystem::path absolute_member (nitpick& nits, const ::boost::filesystem::path& file) const;
-    ::std::string load_url (nitpick& nits, const url& u) const;
+    ::std::string load_url (nitpick& nits, const url& u, bool& borked) const;
     void confirm_title () noexcept { has_title_ = true; }
     void style_css (const bool b) noexcept { style_css_ = b; }
     bool style_css () const noexcept { return style_css_; }

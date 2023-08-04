@@ -135,6 +135,7 @@ PASS ../toast/SVG/2.0/image-1.svg
 
 PASS ../toast/SVG/2.0/image-2.svg
 1 xhtml_5_0
+16 css_version
 25 url_not_found
 
 PASS ../toast/SVG/2.0/index.html

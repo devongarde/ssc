@@ -1,0 +1,8 @@
+﻿/* Rules for bidi */
+[dir=rtl] {direction: rtl; unicode-bidi: isolate; }
+[dir=ltr] {direction: ltr; unicode-bidi: isolate; }
+
+/* Rules for presentation */
+section, para  {display: block;}
+emphasis       {font-weight: bold;}
+quote          {font-style: italic;}

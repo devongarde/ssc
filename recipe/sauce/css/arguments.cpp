@@ -74,6 +74,9 @@ bool arguments::prep_for_make (nitpick& nits, const int , int& b, const int to, 
 void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string& s) const
 {   if ((f & CF_DEPRECATED) == CF_DEPRECATED)
         nits.pick (nit_deprecated, es_warning, ec_css, s, " is deprecated, so unlikely to be supported by many browsers");
+    if ((f & CF_DEPRECATED_45) == CF_DEPRECATED_45)
+        if (v_.css_media () > 3)
+            nits.pick (nit_deprecated_media, ed_css_media_4, "Appendix A", es_warning, ec_css, s, " is deprecated in CSS Media levels 4 & 5, 'Authors must not use them'");
     if ((f & CF_FACE_OR_PROFILE) == CF_FACE_OR_PROFILE)
     {   if ((st_ == nullptr) || ((st_ -> get () != css_font_face) && (st_ -> get () != css_colour_profile)))
             nits.pick (nit_naughty_page, es_error, ec_css, s, " requires @colour-profile or @font-face"); }

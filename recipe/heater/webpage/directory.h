@@ -66,7 +66,7 @@ public:
     void examine_page (nitpick* ticks, const ::std::string& file) const;
     uint64_t url_size (nitpick& nits, const url& u) const;
     ::std::time_t url_last_write_time (nitpick& nits, const url& u) const;
-    ::std::string load_url (nitpick& nits, const url& u, ::std::time_t* updated = nullptr) const;
+    ::std::string load_url (nitpick& nits, const url& u, bool& borked, ::std::time_t* updated = nullptr) const;
     bool verify_url (nitpick& nits, const html_version& v, const url& u, const bool fancy = true) const;
     bool integrate_virtual (const ::std::string& v, path_root_ptr& r, dir_ptr p);
     ::std::string get_site_path () const;

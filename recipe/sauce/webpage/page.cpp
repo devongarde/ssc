@@ -46,7 +46,7 @@ void page::init (const ::std::string& name, ::std::string& content, const filein
     if (is_css (name))
     {   dot_css_ = true;
         if (context.load_css () && (context.css_version () >= css_1))
-        {   css_.parse_file (nits_, namespaces_ptr (), url (nits (), context.html_ver (), get_site_path ()), true);
+        {   css_.parse_file (nits_, namespaces_ptr (), url (nits (), context.html_ver (), get_site_path ()), true, true, true);
             stats_.mark (context.html_ver ()); }
         stats_.mark_file (GSL_NARROW_CAST < unsigned > (content.size ())); }
     else parse (content); }
@@ -178,10 +178,10 @@ void page::itemscope (const itemscope_ptr itemscope)
     if (itemscope_ -> export_path ().empty ())
         itemscope_ -> set_exporter (md_export (), md_export_.append_path (get_export_root (), null_itemprop, true)); }
 
-::std::string page::load_url (nitpick& nits, const url& u) const
+::std::string page::load_url (nitpick& nits, const url& u, bool& borked) const
 {   if (snippet_ || outsider_) return ::std::string ();
     VERIFY_NOT_NULL (directory_, __FILE__, __LINE__);
-    return directory_ -> load_url (nits, u); }
+    return directory_ -> load_url (nits, u, borked); }
 
 ::boost::filesystem::path page::absolute_member (nitpick& nits, const ::boost::filesystem::path& file) const
 {   if (snippet_ || outsider_) return ::std::string ();
@@ -217,6 +217,10 @@ const ::boost::filesystem::path page::get_disk_path () const
 {   if (snippet_ || outsider_) return ::std::string ();
     VERIFY_NOT_NULL (directory_, __FILE__, __LINE__);
     return (directory_ -> get_disk_path () / name ()); }
+
+const ::boost::filesystem::path page::get_disk_path (nitpick& nits, const url& u) const
+{   VERIFY_NOT_NULL (directory_, __FILE__, __LINE__);
+    return (directory_ -> get_disk_path (nits, u)); }
 
 const ::boost::filesystem::path page::get_export_path () const
 {   if (snippet_ || outsider_) return ::std::string ();

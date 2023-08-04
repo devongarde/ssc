@@ -51,8 +51,9 @@ bool test_file (nitpick& nits, const ::boost::filesystem::path& name, uintmax_t&
     catch (...) { }
     return false; }
 
-::std::string read_text_file (nitpick& nits, const ::boost::filesystem::path& name)
-{   try
+::std::string read_text_file (nitpick& nits, const ::boost::filesystem::path& name, bool& borked)
+{   borked = false;
+    try
     {   ::boost::filesystem::path p (name);
         uintmax_t mz = 0;
         if (test_file (nits, p, mz))
@@ -72,6 +73,7 @@ bool test_file (nitpick& nits, const ::boost::filesystem::path& name, uintmax_t&
                         {   if (encoding != cc_utf8)
                             {   if (encoding == cc_fkd) nits.pick (nit_convert, es_error, ec_file, p.string (), " is in a strange format, so " PROG " cannot process it; " PROG " likes ASCII, ANSI & UTF-8");
                                 else nits.pick (nit_convert, es_error, ec_file,  PROG " cannot convert ", p.string (), " to UTF-8, so cannot to process it");
+                                borked = true;
                                 res.clear (); } }
 #ifndef NOICU
                         else if (encoding == cc_utf8)
@@ -88,7 +90,8 @@ bool test_file (nitpick& nits, const ::boost::filesystem::path& name, uintmax_t&
                             {   VERIFY_NOT_NULL (vp.get (), __FILE__, __LINE__);
                                 res = convert_to_utf8 (nits, p.string (), vp, sz);
                                 if (res.empty ())
-                                    nits.pick (nit_convert, es_error, ec_file, PROG " cannot analyse ", p.string (), " because it's in a weird format; " PROG " likes ASCII, ANSI, UTF-8, & UTF-16");
+                                {   nits.pick (nit_convert, es_error, ec_file, PROG " cannot analyse ", p.string (), " because it's in a weird format; " PROG " likes ASCII, ANSI, UTF-8, & UTF-16");
+                                    borked = true; }
                                 else
                                     nits.pick (nit_convert, es_comment, ec_page, "Converted ", p.string (), " to UTF-8 internally"); } }
 #endif // NOICU
@@ -97,10 +100,11 @@ bool test_file (nitpick& nits, const ::boost::filesystem::path& name, uintmax_t&
     {   nits.pick (nit_cannot_open, es_catastrophic, ec_io, "exception when reading ", name.string (), ": ", e.what ()); }
     catch (...)
     {   nits.pick (nit_cannot_open, es_catastrophic, ec_io, "unknown exception when reading ", name.string ()); }
+    borked = true;
     return ::std::string (); }
 
-::std::string read_text_file (nitpick& nits, const ::std::string& name)
-{   return read_text_file (nits, ::boost::filesystem::path (name)); }
+::std::string read_text_file (nitpick& nits, const ::std::string& name, bool& borked)
+{   return read_text_file (nits, ::boost::filesystem::path (name), borked); }
 
 void_ptr read_binary_file (nitpick& nits, const ::boost::filesystem::path& name, uintmax_t& sz, const bool zero_ok)
 {   using namespace boost::filesystem;
@@ -442,7 +446,8 @@ bool ends_with_letters (const html_version& v, const ::std::string& s, const ::s
         p.replace_extension ("tpl");
     if (! ::boost::filesystem::is_regular_file (p))
         return "";
-    return read_text_file (nits, p.string ()); }
+    bool borked = false;
+    return read_text_file (nits, p.string (), borked); }
 
 ::std::string template_path (nitpick& nits, const ::std::string& fn)
 {   PRESUME (! fn.empty (), __FILE__, __LINE__);

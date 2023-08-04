@@ -31,7 +31,7 @@ class distilled
     smsid_t class_, id_, element_class_, element_id_, font_;
     css_ptr cp_;
     v_np ticks_;
-    bool in_progress_ = false, file_ = false;
+    bool in_progress_ = false, file_ = false, borked_ = false;
 public:
     DEFAULT_CONSTRUCTORS_NO_EMPTY (distilled);
     explicit distilled (bool b) : in_progress_ (b) { } // set to false for a snippet
@@ -40,6 +40,8 @@ public:
     { }
     bool wait () const noexcept { return in_progress_; }
     bool sort_it_out () const noexcept { return in_progress_; }
+    bool borked () const noexcept { return borked_; }
+    void borked (const bool b) { borked_ = b; }
     css_ptr css () const { return cp_; }
     void css (const css_ptr cp) { cp_ = cp; }
     void reset ();

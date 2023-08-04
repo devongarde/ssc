@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/statement.h"
 #include "css/arguments.h"
 #include "css/properties.h"
+#include "css/media.h"
 
 class page;
 

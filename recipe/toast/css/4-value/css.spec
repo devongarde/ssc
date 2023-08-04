@@ -12,9 +12,10 @@ PASS ../toast/css/4-value/css-3.css
 PASS ../toast/css/4-value/css-4.css
 0 html
 1 url_not_found
+2 url_not_found
 7 css_custom
 10 svg_version
-12 css_colour
+12 css_colour css_colour css_colour
 16 naughty_content
 17 naughty_content
 18 naughty_content
@@ -26,7 +27,7 @@ PASS ../toast/css/4-value/css-6.css
 
 PASS ../toast/css/4-value/css-7.css
 0 html
-1 unrecognised_value
+1 css_version
 
 PASS ../toast/css/4-value/css-9.css
 0 html

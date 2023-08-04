@@ -25,7 +25,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/context.h"
 #include "webpage/q.h"
 #include "coop/kew.h"
-#include "coop/kew.h"
 #include "main/output.h"
 
 kew q;

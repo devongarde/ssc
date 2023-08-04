@@ -144,7 +144,9 @@ mssfl_uptr mssfl;
 
 void add_spell_list (nitpick& nits, const ::std::string& lang, const ::boost::filesystem::path& fn)
 {   ::std::string list;
-    if (! cached_file (nits, fn, list, false) || list.empty ())
+    bool borked = false;
+    const bool res = cached_file (nits, fn, list, borked, false);
+    if (borked || (! res) || list.empty ())
         nits.pick (nit_cannot_open, es_error, ec_init, quote (fn.string ()), " is missing, is inaccessible, is not text, is too big, or is empty");
     else
     {   VERIFY_NOT_NULL (mssfl.get (), __FILE__, __LINE__);

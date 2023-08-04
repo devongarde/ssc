@@ -8,6 +8,8 @@ PASS ../toast/microdata/schema-mno/mediaobject.html
 20 bad_datetime
 
 PASS ../toast/microdata/schema-mno/medicalguideline.html
+31 bad_itemid
+42 bad_itemid
 87 missing_open
 
 PASS ../toast/microdata/schema-mno/medicalguidelinecontraindication.html
@@ -17,10 +19,6 @@ PASS ../toast/microdata/schema-mno/medicalguidelinerecommendation.html
 31 bad_itemid
 42 bad_itemid
 87 missing_open
-
-PASS ../toast/microdata/schema-mno/medicalscholarlyarticle.html
-31 bad_itemid
-42 bad_itemid
 
 PASS ../toast/microdata/schema-mno/medicalwebpage.html
 23 missing_close

@@ -1,0 +1,6 @@
+﻿.vertical-upright-hebrew {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    unicode-bidi: bidi-override;
+    direction: ltr;
+}

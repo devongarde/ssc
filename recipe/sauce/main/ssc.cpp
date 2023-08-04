@@ -104,7 +104,6 @@ void init (nitpick& nits)
 
 int ciao ()
 {   ::std::ostringstream ss;
-    global_css.report_stragglers (ss);
     curl_done ();
     global_css.accumulate (&overall);
     if (context.tell (es_warning))

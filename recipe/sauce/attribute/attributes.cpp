@@ -128,9 +128,12 @@ bool attributes :: verify_url (nitpick& nits, const html_version& v, element& e)
 void attributes :: verify_attributes (nitpick& nits, const html_version& v, element* pe, const lingo& lang)
 {   VERIFY_NOT_NULL (pe, __FILE__, __LINE__);
     for (size_t i = 0; i < aar_.size (); ++i)
-        if ((aar_.at (i).get () == nullptr) || aar_.at (i) -> unknown ())
+        if (aar_.at (i).get () == nullptr)
         {   if (is_attribute_required (v, tag (), static_cast < e_attribute > (i)))
                 nits.pick (nit_attribute_required, es_error, ec_element, "<", ::boost::to_upper_copy (elem::name (box_.tag ())), "> requires ", ::boost::to_upper_copy (attr::name (static_cast < e_attribute > (i))), " in ", v.report ()); }
+        else if (aar_.at (i) -> unknown ())
+        {   if (is_attribute_required (v, tag (), static_cast < e_attribute > (i)))
+                nits.pick (nit_attribute_required, es_warning, ec_element, "<", ::boost::to_upper_copy (elem::name (box_.tag ())), "> requires a valid ", ::boost::to_upper_copy (attr::name (static_cast < e_attribute > (i))), " in ", v.report ()); }
         else
         {   const elem e (tag ());
             if (aar_.at (i) -> good () || aar_.at (i) -> empty ()) aar_.at (i) -> verify_attribute (nits, v, pe -> node ().id (), pe, attr::name (static_cast < e_attribute > (i)));

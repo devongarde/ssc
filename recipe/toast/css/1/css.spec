@@ -34,7 +34,7 @@ PASS ../toast/css/1/css-5.css
 0 html
 1 fontname
 2 fontname
-143 unrecognised_value
+143 unrecognised_value unrecognised_value
 
 PASS ../toast/css/1/css-6.css
 0 html
@@ -101,6 +101,16 @@ PASS ../toast/css/1/css-6.html
 PASS ../toast/css/1/import.css
 0 html
 3 url_not_found
+4 css_colour
+6 unrecognised_value unrecognised_value
+7 dialect
+8 selector
+9 unrecognised_value
+10 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value
+11 css_colour
+12 unrecognised_value
+18 css_dubious
+20 fontname
 
 PASS ../toast/css/1/index.html
 2 naughty_lang

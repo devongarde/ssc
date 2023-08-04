@@ -118,9 +118,13 @@ PASS ../toast/microdata/schema-abc/book-1.html
 PASS ../toast/microdata/schema-abc/book-2.html
 71 unrecognised_value
 73 unrecognised_value
+80 bad_itemid
+82 bad_itemid
+84 bad_itemid
 86 bad_itemid
 88 bad_itemid
 91 bad_itemid
+92 bad_itemid
 122 url_id_unfound
 140 url_id_unfound
 141 url_id_unfound
@@ -181,7 +185,8 @@ PASS ../toast/microdata/schema-abc/cableorsatelliteservice.html
 
 PASS ../toast/microdata/schema-abc/categorycode.html
 0 charset_mismatch charset_used charset_invalid
-26 requires_itemscope
+21 bad_itemid
+26 requires_itemscope bad_itemid
 30 bad_itemid
 35 no_xmllang invalid_attribute_version wrong_version svg_rdf
 36 no_xmllang invalid_attribute_version wrong_version svg_rdf
@@ -189,8 +194,7 @@ PASS ../toast/microdata/schema-abc/categorycode.html
 
 PASS ../toast/microdata/schema-abc/categorycodeset.html
 0 charset_mismatch charset_used charset_invalid
-21 bad_itemid
-26 requires_itemscope bad_itemid
+26 requires_itemscope
 30 bad_itemid
 35 no_xmllang invalid_attribute_version wrong_version svg_rdf
 36 no_xmllang invalid_attribute_version wrong_version svg_rdf
@@ -285,13 +289,9 @@ PASS ../toast/microdata/schema-abc/creativework-2.html
 190 use_quote_code
 199 use_quote_code
 211 use_quote_code
-230 bad_itemid
-232 bad_itemid
-234 bad_itemid
 236 bad_itemid
 238 bad_itemid
 241 bad_itemid
-242 bad_itemid
 
 PASS ../toast/microdata/schema-abc/creditcard.html
 0 charset_mismatch charset_used charset_invalid

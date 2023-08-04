@@ -131,7 +131,7 @@ PASS ../toast/microdata/schema-defg/examples.html
 31 url_not_found
 42 no_itemscope
 59 use_quote_code
-71 bad_property
+71 bad_property bad_property
 72 attribute_required url_not_found naughty_alt
 
 PASS ../toast/microdata/schema-defg/exchangeratespecification.html

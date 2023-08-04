@@ -102,6 +102,7 @@ void element::examine_link ()
     const bool has_itemprop = a_.known (a_itemprop);
     const bool has_imagesrcset = a_.known (a_imagesrcset);
     const bool has_imagesizes = a_.known (a_imagesizes);
+    const bool has_media = a_.known (a_media);
     const bool has_type = a_.known (a_type);
     const bool has_href = a_.known (a_href);
     const bool has_blocking = a_.known (a_blocking);
@@ -241,6 +242,9 @@ void element::examine_link ()
         if (! serviceworker)
             if (a_.known (a_scope) || a_.known (a_updateviacache) || a_.known (a_workertype))
                 pick (nit_no_serviceworker, ed_jul17, "4.2.4 The link element", es_error, ec_attribute, "SCOPE, UPDATEVIACACHE and WORKERTYPE each require REL=\"serviceworker\""); }
+    if (has_media)
+        if (! stylesheet)
+            pick (nit_media_ignored, ed_41, "12.3.2 Links and external style sheets", es_comment, ec_attribute, "MEDIA is for stylesheets, usually");
     if (stylesheet)
     {   bool is_css = false;
         if (a_.known (a_type))
@@ -262,4 +266,5 @@ void element::examine_link ()
                             const bool local = u.is_local ();
                             if (! local) pick (nit_gather, es_comment, ec_css, "gathering ", u.original ());
                             page_ -> css ().parse_file (nuts, node_.namespaces (), u, false, local);
-                            if (! local) nits ().merge (nuts); } } } }
+                            if (context.extra () || ! local)
+                                nits ().merge (nuts); } } } }

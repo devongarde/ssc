@@ -116,6 +116,9 @@ template < > struct type_master < t_css_speak_punctuation > : three_value < t_cs
 template < > struct type_master < t_css_table_layout > : three_value < t_css_table_layout, e_css_table_layout, sz_auto, sz_fixed, sz_inherit >
 { using three_value < t_css_table_layout, e_css_table_layout, sz_auto, sz_fixed, sz_inherit > :: three_value; };
 
+template < > struct type_master < t_css_text_orientation > : three_value < t_css_text_orientation, e_css_text_orientation, sz_mixed, sz_sideways, sz_upright >
+{ using three_value < t_css_text_orientation, e_css_text_orientation, sz_mixed, sz_sideways, sz_upright > :: three_value; };
+
 template < > struct type_master < t_csvw_direction > : three_value < t_csvw_direction, e_csvw_direction, sz_ltr, sz_rtl, sz_auto >
 { using three_value < t_csvw_direction, e_csvw_direction, sz_ltr, sz_rtl, sz_auto > :: three_value; };
 

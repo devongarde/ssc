@@ -27,11 +27,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "coop/lox.h"
 #include "utility/filesystem.h"
 #include "utility/cache.h"
+#include "webpage/page.h"
 
 css_group::css_group (page& p) : page_ (p)
 {   snippets_ = dst_ptr (new distilled (false)); }
 
-css_ptr css_group::parse (dst_ptr dsp, const ::std::string& content, const html_version& v, const namespaces_ptr& ns, bool state_version, bool snippet, const ::std::string& abs, const element_bitset eb, int line, const e_element e)
+css_ptr css_group::parse (  dst_ptr dsp, const ::std::string& content, const html_version& v, const namespaces_ptr& ns, bool state_version, bool snippet, const ::std::string& abs, const element_bitset eb,
+                            int line, const e_element e, const ::boost::filesystem::path dp)
 {   VERIFY_NOT_NULL (dsp.get (), __FILE__, __LINE__);
     css_ptr res;
     if (! context.load_css () || (context.css_version () == css_none)) return res;
@@ -41,7 +43,7 @@ css_ptr css_group::parse (dst_ptr dsp, const ::std::string& content, const html_
         ebc.set (e); }
     mcss_t::iterator cc = mcss_.find (content);
     if (cc == mcss_.cend ())
-    {   res = css_ptr (new css (v, content, ns, dsp, page_, abs, state_version, snippet, line, e, ebc));
+    {   res = css_ptr (new css (v, content, ns, dsp, page_, abs, state_version, snippet, line, e, ebc, dp));
         if (! mcss_.insert (mcss_t::value_type (content, res)).second) return css_ptr ();
         bs_ |= res -> get_elements ();
         merged_ = false;
@@ -50,10 +52,13 @@ css_ptr css_group::parse (dst_ptr dsp, const ::std::string& content, const html_
     if (cc -> second -> invalid ()) return css_ptr ();
     return res; }
 
-bool css_group::parse (const ::std::string& content, const html_version& v, const namespaces_ptr& , const element_bitset eb, bool state_version, int line, const e_element e)
-{   return parse (snippets_, content, v, ns_, state_version, true, ::std::string (), eb, line, e) != css_ptr (); }
+css_ptr css_group::parse (const ::std::string& content, const html_version& v, bool state_version, int line , const e_element e)
+{   return parse (snippets_, content, v, ns_, state_version, true, ::std::string (), bs_, line, e); }
 
-bool css_group::parse_file (nitpick& nits, const namespaces_ptr& , const url& u, bool state_versions, bool local)
+bool css_group::parse (const ::std::string& content, const html_version& v, const namespaces_ptr& ns, const element_bitset eb, bool state_version, int line, const e_element e, const ::boost::filesystem::path dp)
+{   return parse (snippets_, content, v, ns, state_version, true, ::std::string (), eb, line, e, dp) != css_ptr (); }
+
+bool css_group::parse_file (nitpick& nits, const namespaces_ptr& ns, const url& u, const bool state_versions, const bool local, const bool reparse)
 {   if (! context.load_css () || (context.css_version () == css_none)) return true;
     if (! u.valid ()) return false;
     nits.set_context (0, u.original ());
@@ -67,17 +72,21 @@ bool css_group::parse_file (nitpick& nits, const namespaces_ptr& , const url& u,
     if (pos != ::std::string::npos) abs = abs.substr (pos);
     dst_ptr dsp = global_css.get_or_preinsert (u.absolute (true));
     VERIFY_NOT_NULL (dsp.get (), __FILE__, __LINE__);
-    if (dsp -> sort_it_out ())
+    if (dsp -> borked ())
+    {   nits.pick (nit_url_not_found, es_error, ec_css, u.original (), " appears borked");
+        return false; }
+    if (reparse || dsp -> sort_it_out ())
     {   try
         {   bool res = false;
             ::std::string content;
             ::std::time_t when = 0;
+            bool borked = false;
             VERIFY_NOT_NULL (page_.get_directory (), __FILE__, __LINE__);
-            if (cached_url (nits, page_.version (), page_.get_directory (), u, content, when))
-                if (content.empty ()) res = true;
+            if (cached_url (nits, page_.version (), page_.get_directory (), u, content, when, borked))
+                if (borked || content.empty ()) res = true;
                 else
-                {   namespaces_ptr ns; // don't optimise this away, mr. optimiser!
-                    css_ptr cp = parse (dsp, content, context.html_ver (), ns, state_versions, false, abs, empty_element_bitset, 0, elem_undefined);
+                {   // namespaces_ptr ns; // don't optimise this away, mr. optimiser!
+                    css_ptr cp = parse (dsp, content, context.html_ver (), ns, state_versions, false, abs, empty_element_bitset, 0, elem_undefined, page_.get_disk_path (nits, u));
                     res = (cp != css_ptr ());
                     if (res && (local || context.ext_css ())) dsp -> css (cp); }
             global_css.release (dsp);
@@ -88,6 +97,7 @@ bool css_group::parse_file (nitpick& nits, const namespaces_ptr& , const url& u,
         {   nits.pick (nit_cannot_read, es_catastrophic, ec_css, "exception ", e.what (), " (processing ", u.original (), ")"); }
         catch (...)
         {   nits.pick (nit_cannot_read, es_catastrophic, ec_css, "unexpected exception processing ", u.original ()); }
+        dsp -> borked (true);
         global_css.release (dsp);
         return false; }
     page_.merge_class (dsp -> cl ());
@@ -96,6 +106,12 @@ bool css_group::parse_file (nitpick& nits, const namespaces_ptr& , const url& u,
     page_.merge_element_id (dsp -> eid ());
     page_.merge_font (dsp -> f ());
     return true; }
+
+css_ptr css_group::parse_media_queries (const ::std::string& content, const html_version& v, page& p, const namespaces_ptr& namespaces, const element_bitset eb, bool sv,
+                                        int line, const e_element e)
+{   dst_ptr dst;
+    css_ptr cp = css_ptr (new css (v, content, namespaces, dst, p, p.get_site_path (), sv, true, line, e, eb, p.get_disk_path (), true));
+    return cp; }
 
 bool css_group::has_id (const ::std::string& id) const
 {   VERIFY_NOT_NULL (snippets_.get (), __FILE__, __LINE__);
@@ -160,7 +176,7 @@ bool css_group::note_id (const e_element e, const ::std::string& s)
     {   VERIFY_NOT_NULL (i.second, __FILE__, __LINE__);
         const css_ptr& p = i.second;
         res += p -> review (mac, entry, head, foot, page_head, unfiltered); }
-    css_ptr cp = global_css.get_cp (sp);
+    css_ptr cp = global_css.expel_cp (sp);
     if (cp.get () != nullptr)
         res += cp -> review (mac, entry, head, foot, page_head, unfiltered); 
     return res; }

@@ -40,6 +40,14 @@ public:
     {   lox l (lox_q);
         empty_ = false;
         kew_.emplace_back (t); }
+    void rude (const q_entry& t)
+    {   lox l (lox_q);
+        empty_ = false;
+        kew_.push_front (t); }
+    void rude (q_entry&& t)
+    {   lox l (lox_q);
+        empty_ = false;
+        kew_.emplace_front (t); }
     bool empty () const
     {   return empty_; }
     bool activity () const

@@ -497,11 +497,11 @@ PASS ../toast/HTML/5.0/html5-legacy.html
 
 PASS ../toast/HTML/5.0/html5-media.html
 8 mq_syntax
-20 unrecognised_value
+20 unrecognised_value css_syntax css_syntax css_syntax
 21 correct_spelling unrecognised_value
 22 unrecognised_value unrecognised_value
-23 bad_media
-25 bad_media
+23 css_syntax css_syntax unrecognised_value
+25 css_syntax
 
 PASS ../toast/HTML/5.0/template-1.html
 2 naughty_lang
@@ -525,15 +525,15 @@ author 0 1
 carpet 0 1
 copyright 0 1
 cursor 0 1
-doris 13 0
+doris 14 0
 dtend 0 1
 dtstart 0 1
-error 13 2
+error 14 2
 example 0 4
 fire 0 1
-h1class 13 0
+h1class 14 0
 ident 0 15
-info 13 2
+info 14 2
 keyword 0 6
 lang-c 0 1
 language-pascal 0 1
@@ -541,7 +541,7 @@ lede 0 1
 literal 0 1
 location 0 1
 part-of-speech 0 3
-printable 9 0
+printable 10 0
 prompt 0 2
 pronunciation 0 2
 spaceship 0 1
@@ -552,15 +552,15 @@ twitter-tweet 0 1
 type 0 1
 url 0 1
 vevent 0 1
-warning 13 2
+warning 14 2
 
 DCLASS
-*.doris 1 0
-*.error 1 0
-*.h1class 1 0
-*.info 1 0
-*.printable 1 0
-*.warning 1 0
+*.doris 2 0
+*.error 2 0
+*.h1class 2 0
+*.info 2 0
+*.printable 2 0
+*.warning 2 0
 a.url 0 1
 aside.advertising 0 1
 b.lede 0 1

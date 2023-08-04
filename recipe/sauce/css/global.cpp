@@ -57,7 +57,7 @@ dst_ptr css_global::get (const ::std::string& s) const
         ::std::this_thread::yield (); }
     return dst_ptr (); }
 
-css_ptr css_global::get_cp (const ::std::string& s) const
+css_ptr css_global::expel_cp (const ::std::string& s) const
 {   PRESUME (fred.started (), __FILE__, __LINE__);
     css_ptr cp;
     while (! fred.abandoned ())
@@ -68,18 +68,6 @@ css_ptr css_global::get_cp (const ::std::string& s) const
                 return dsp -> expel (); }
         ::std::this_thread::yield (); }
     return css_ptr (); }
-
-void css_global::report_stragglers (::std::ostringstream& ss, const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot, const e_nit_section& page_head, const bool unfiltered) const
-{   PRESUME (! fred.activity (), __FILE__, __LINE__);
-    VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
-    for (auto i : mdst_)
-        if (i.second != nullptr)
-            if (i.second -> css ().get () != nullptr)
-            {   mmac_t mac;
-                mac.emplace (nm_page_name, i.first);
-                mac.emplace (nm_page_disk_path, i.first);
-                mac.emplace (nm_page_site_path, i.first);
-                ss << macro -> apply (ns_page_head) << i.second -> review (mac, entry, head, foot, page_head, unfiltered) << macro -> apply (ns_page_foot) ; } }
 
 void css_global::report_usage (::std::ostringstream& ss) const
 {   PRESUME (! fred.activity (), __FILE__, __LINE__);

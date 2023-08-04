@@ -1,0 +1,11 @@
+﻿caption {
+  caption-side: bottom;
+    width: auto;
+    text-align: left
+}
+
+td { vertical-align: baseline; outline: 3px solid silver; }
+img { float: left; clear: left; width: 32px; height: 32px; }
+img[title] { float: none; }
+
+div { height: 0; overflow: hidden; }

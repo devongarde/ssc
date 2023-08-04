@@ -1,0 +1,4 @@
+-N 1 -f ../toast/css/simple/css.conf
+
+PASS ../toast/css/simple/index.html
+2 naughty_lang

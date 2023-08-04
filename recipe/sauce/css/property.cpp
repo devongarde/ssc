@@ -39,7 +39,13 @@ void property::parse (arguments& args, const int from, const int to)
     if (args.t_.at (b).t_ != ct_keyword)
         nits.pick (nit_property, es_error, ec_css, quote (tkn_rpt (args.t_.at (b))), ": property name expected");
     else
-    {   const int k = b;
+    {   nitpick nuts;
+        enum_n < t_css_property, e_css_property > ppp;
+        ppp.set_value (nuts, args.v_, args.t_.at (b).val_);
+        if (ppp.good ())
+            if ((ppp.flags () & CF_MEDIA_LOGIC) == CF_MEDIA_LOGIC)
+                return;
+        const int k = b;
         b = next_non_whitespace (args.t_, b, to);
         if ((b > 0) && (args.t_.at (b).t_ == ct_colon)) b = next_token_at (args.t_, b, to);
         else nits.pick (nit_css_syntax, es_error, ec_css, "missing colon after property name");
