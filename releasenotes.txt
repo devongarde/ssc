@@ -3,6 +3,13 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.32
+- CSS Grid 3 (partial)
+- CSS Grid 4 (partial)
+- CSS Shapes 3
+- various bug fixes
+- underlying work
+
 0.1.31
 - CSS Writing Mode 3
 - CSS Writing Mode 4

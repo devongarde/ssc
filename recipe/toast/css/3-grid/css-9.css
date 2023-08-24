@@ -1,0 +1,23 @@
+﻿.grid {
+  grid: 1fr 1fr 1fr 1fr / 10rem 10rem 10rem 10rem;
+  /* 4 equal-height rows filling the grid container,
+     4 columns of 10rem each */
+  justify-content: center;
+  /* center the grid horizontally within the grid container */
+  position: relative;
+  /* Establish abspos containing block */
+}
+
+.abspos {
+  grid-row-start: 1;     /* 1st grid row line = top of grid container */
+  grid-row-end: span 2;  /* 3rd grid row line */
+  grid-column-start: 3;  /* 3rd grid col line */
+  grid-column-end: auto; /* right padding edge */
+  /* Containing block covers the top right quadrant of the grid container */
+
+  position: absolute;
+  top: 70px;
+  bottom: 40px;
+  left: 100px;
+  right: 30px;
+}

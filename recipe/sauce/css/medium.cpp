@@ -998,7 +998,7 @@ void medium_t::triple_pong (const arguments& args, nitpick& nits, const int leve
         expecting = expect;
         ss += wot; } }
 
-void medium_t::parse (arguments& args, const e_css_statement cs, const int from, const int to)
+void medium_t::parse (arguments& args , const int from, const int to)
 {   PRESUME ((to < 0) || (from <= to), __FILE__, __LINE__);
     const int final = GSL_NARROW_CAST <int> (args.t_.size ());
     PRESUME (from < final, __FILE__, __LINE__);
@@ -1270,7 +1270,7 @@ void medium_t::parse (arguments& args, const e_css_statement cs, const int from,
 ::std::string medium_t::rpt () const
 {   return ::std::string (); }
 
-void medium_t::validate (arguments& args)
+void medium_t::validate (arguments& )
 {   }
 
 void medium_t::shadow (::std::stringstream& ss, arguments& )

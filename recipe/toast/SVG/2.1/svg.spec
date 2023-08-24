@@ -264,13 +264,16 @@ PASS ../toast/SVG/2.1/script-2.svg
 PASS ../toast/SVG/2.1/shape.html
 2 naughty_lang
 17 newline_in_string newline_in_string
-41 newline_in_string newline_in_string
+19 css_version
+26 css_version
+34 css_version
+41 css_version newline_in_string newline_in_string
 44 fontname
 46 unrecognised_value
-47 newline_in_string newline_in_string
+47 css_version newline_in_string newline_in_string
 49 fontname
 51 unrecognised_value
-57 newline_in_string newline_in_string
+57 css_version newline_in_string newline_in_string
 60 unrecognised_value
 
 PASS ../toast/SVG/2.1/styling-1.svg

@@ -63,3 +63,8 @@ void distilled::accumulate (stats_t* s) const
         res += n.review (mac, entry, head, foot, page_head, unfiltered);
     ticks_.clear ();
     return res; }
+
+::std::string distilled::report () const
+{   ::std::string res;
+
+    return res; }

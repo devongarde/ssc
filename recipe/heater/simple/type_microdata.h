@@ -44,7 +44,7 @@ template < > struct type_master < t_itemprop > : string_vector < t_itemprop, sz_
                         if (u.invalid ())
                         {   nits.merge (nuts);
                             tidy_string < t_itemprop > :: status (s_invalid); }
-                        else if (u.is_local () || ! u.has_absolute_path ())
+                        else if (u.is_local () || ! u.has_absolute_path () || u.deduced_path ())
                         {   nits.pick (nit_bad_itemprop, es_error, ec_type, quote (t), " is neither an absolute url nor an identifier that has no colons, no full stops");
                             tidy_string < t_itemprop > :: status (s_invalid); } } } };
 

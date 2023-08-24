@@ -37,6 +37,8 @@
 ./ssc -f ../toast/css/4-font/css.conf
 ./ssc -f ../toast/css/5-font/css.conf
 ./ssc -f ../toast/css/4-frag/css.conf
+./ssc -f ../toast/css/3-grid/css.conf
+./ssc -f ../toast/css/4-grid/css.conf
 ./ssc -f ../toast/css/3-mc/css.conf
 ./ssc -f ../toast/css/3-media/css.conf
 ./ssc -f ../toast/css/4-media/css.conf
@@ -46,6 +48,7 @@
 ./ssc -f ../toast/css/3-position/css.conf
 ./ssc -f ../toast/css/3-sel/css.conf
 ./ssc -f ../toast/css/4-sel/css.conf
+./ssc -f ../toast/css/3-shape/css.conf
 ./ssc -f ../toast/css/3-style/css.conf
 ./ssc -f ../toast/css/3-syntax/css.conf
 ./ssc -f ../toast/css/3-trans/css.conf
@@ -56,6 +59,7 @@
 ./ssc -f ../toast/css/3-writing/css.conf
 ./ssc -f ../toast/css/4-writing/css.conf
 ./ssc -f ../toast/css/accessibility/css.conf
+./ssc -f ../toast/css/ae/css.conf
 ./ssc -f ../toast/css/custom/css.conf
 ./ssc -f ../toast/css/ease/css.conf
 ./ssc -f ../toast/css/simple/css.conf

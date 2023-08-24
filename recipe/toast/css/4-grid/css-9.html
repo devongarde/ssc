@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>grid 3 example</title>
+    <LINK rel="stylesheet" href="css-7.css" type="text/css">
+  </head>
+
+<BODY>
+
+<style type="css">
+  .outer {
+    display: grid;
+    grid-template-columns:
+      [outer-edge] 20px [main-start] 1fr [center] 1fr max-content [main-end];
+    grid-template-areas:
+      "gutter info info photos";
+  }
+  .middle {
+    grid-column: main-start / main-end;
+    display: grid;
+    grid: subgrid / subgrid;
+  }
+  .inner {
+    grid-column: center / -1;
+    display: grid;
+    grid: subgrid / subgrid;
+  }
+</style>
+
+<div class="outer">
+  <div class="middle">
+    <div class="inner">&hellip;</div>
+  </div>
+</div>
+
+</BODY>
+
+</html>

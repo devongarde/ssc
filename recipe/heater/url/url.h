@@ -28,7 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 class directory;
 
 class url
-{   bool valid_ = false;  // indicates url appears to be correctly formatted, NOT that the target exists
+{   bool valid_ = false, deduced_path_ = false;  // indicates url appears to be correctly formatted, NOT that the target exists
     e_protocol current_ = pr_other;
     protocol protocol_;
     parameters params_;
@@ -124,6 +124,8 @@ public:
     ::std::string get_filepath () const;
     bool sanity_test () const;
     bool standard_extension (const e_mime_category mime = mc_text) const;
+    bool deduced_path () const { return deduced_path_; }
+    void deduced_path (const bool b) { deduced_path_ = b; }
     bool verify (nitpick& nits, const html_version& v, element& e);
     void verify_id (element& e); };
 

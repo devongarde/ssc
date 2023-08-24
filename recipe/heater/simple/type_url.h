@@ -41,7 +41,13 @@ template < > struct type_master < t_url > : type_base < url, t_url >
             type_base < url, t_url > :: status (s_empty); }
         else
         {   value_.reset (nits, ss);
-            if (value_.valid ()) type_base < url, t_url > :: status (s_good); } }
+            if (value_.valid ())
+            {   type_base < url, t_url > :: status (s_good);
+                if (value_.is_local () && (value_.has_file () || value_.has_path ()) && (! value_.has_absolute_path ()) && (type_base < url, t_url > :: box () != nullptr))
+                {   ::boost::filesystem::path c (type_base < url, t_url > :: get_site_path ());
+                    c /= value_.path ();
+                    value_.set_component (es_path, c.string ());
+                    value_.deduced_path (true); } } } }
     void swap (type_master < t_url >& t) noexcept
     {   value_.swap (t.value_);
         type_base < url, t_url >::swap (t); }
@@ -69,15 +75,16 @@ template < > struct type_master < t_local_url > : type_master < t_url >
     {   type_master < t_url > :: set_value (nits, v, s);
         if (type_master < t_url > :: good ())
             if (value_.has_domain () || value_.has_absolute_path ())
-            {   nits.pick (nit_relative_path, es_error, ec_type, quote (s), " must be a relative path to a local file");
-                type_base < url, t_url > :: status (s_invalid); } } };
+                if (! value_.deduced_path ())
+                {   nits.pick (nit_relative_path, es_error, ec_type, quote (s), " must be a relative path to a local file");
+                    type_base < url, t_url > :: status (s_invalid); } } };
 
 template < > struct type_master < t_absolute_url > : type_master < t_url >
 {   using type_master < t_url > :: type_master;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   type_master < t_url > :: set_value (nits, v, s);
         if (type_master < t_url > :: good ())
-            if (! value_.has_domain () || ! value_.has_absolute_path () || ! value_.has_protocol ())
+            if (value_.deduced_path () || ! value_.has_domain () || ! value_.has_absolute_path () || ! value_.has_protocol ())
             {   nits.pick (nit_relative_path, es_error, ec_type, quote (s), " must be an absolute url (including domain and absolute path)");
                 type_base < url, t_url > :: status (s_invalid); } } };
 
@@ -88,7 +95,7 @@ template < > struct type_master < t_root_url > : type_master < t_url >
         if (type_master < t_url > :: good ())
             if (value_.has_file () || value_.has_id () || value_.has_query () || value_.has_args ())
                 nits.pick (nit_bad_root, es_error, ec_type, quote (s), " must only contain protocol, address, and optionally port");
-            else if (value_.has_path () && ((value_.path () != "/") || (s.at (s.length ()-1) == '/')))
+            else if (value_.has_path () && ((value_.path () != "/") || (s.at (s.length ()-1) == '/')) && ! value_.deduced_path ())
                 nits.pick (nit_bad_root, es_error, ec_type, quote (s), " must not contain a path");
             else return;
             type_base < url, t_url > :: status (s_invalid); } };

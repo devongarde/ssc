@@ -46,9 +46,9 @@ class medium_t
                         const char* wot, const e_media e, ::std::string& ss);
 public:
     DEFAULT_CONSTRUCTORS (medium_t);
-    medium_t (arguments& args, const e_css_statement cs, const int from, const int to)
-    {   parse (args, cs, from, to); }
-    void parse (arguments& args, const e_css_statement cs, const int from, const int to);
+    medium_t (arguments& args, const int from, const int to)
+    {   parse (args, from, to); }
+    void parse (arguments& args, const int from, const int to);
     void validate (arguments& args);
     void accumulate (stats_t*  ) const { }
     void shadow (::std::stringstream& ss, arguments& args);

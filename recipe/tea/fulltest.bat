@@ -34,6 +34,8 @@ ssc.exe -f ../toast/css/3-font/css.conf
 ssc.exe -f ../toast/css/4-font/css.conf
 ssc.exe -f ../toast/css/5-font/css.conf
 ssc.exe -f ../toast/css/4-frag/css.conf
+ssc.exe -f ../toast/css/3-grid/css.conf
+ssc.exe -f ../toast/css/4-grid/css.conf
 ssc.exe -f ../toast/css/3-mc/css.conf
 ssc.exe -f ../toast/css/3-media/css.conf
 ssc.exe -f ../toast/css/4-media/css.conf
@@ -43,6 +45,7 @@ ssc.exe -f ../toast/css/3-overflow/css.conf
 ssc.exe -f ../toast/css/3-position/css.conf
 ssc.exe -f ../toast/css/3-sel/css.conf
 ssc.exe -f ../toast/css/4-sel/css.conf
+ssc.exe -f ../toast/css/3-shape/css.conf
 ssc.exe -f ../toast/css/3-style/css.conf
 ssc.exe -f ../toast/css/3-syntax/css.conf
 ssc.exe -f ../toast/css/3-trans/css.conf
@@ -53,6 +56,7 @@ ssc.exe -f ../toast/css/4-value/css.conf
 ssc.exe -f ../toast/css/3-writing/css.conf
 ssc.exe -f ../toast/css/4-writing/css.conf
 ssc.exe -f ../toast/css/accessibility/css.conf
+ssc.exe -f ../toast/css/ae/css.conf
 ssc.exe -f ../toast/css/custom/css.conf
 ssc.exe -f ../toast/css/ease/css.conf
 ssc.exe -f ../toast/css/simple/css.conf

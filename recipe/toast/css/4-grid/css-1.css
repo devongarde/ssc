@@ -1,0 +1,82 @@
+﻿/**
+ * Define the space for each grid item by declaring the grid
+ * on the grid container.
+ */
+#grid {
+  /**
+   * Two columns:
+   *  1. the first sized to content,
+   *  2. the second receives the remaining space
+   *     (but is never smaller than the minimum size of the board
+   *     or the game controls, which occupy this column [Figure 4])
+   *
+   * Three rows:
+   *  3. the first sized to content,
+   *  4. the middle row receives the remaining space
+   *     (but is never smaller than the minimum height
+   *      of the board or stats areas)
+   *  5. the last sized to content.
+   */
+  display: grid;
+  grid-template-columns:
+    /* 1 */ auto
+    /* 2 */ 1fr;
+  grid-template-rows:
+    /* 3 */ auto
+    /* 4 */ 1fr
+    /* 5 */ auto;
+}
+
+/* Specify the position of each grid item using coordinates on
+ * the 'grid-row' and 'grid-column' properties of each grid item.
+ */
+#title    { grid-column: 1; grid-row: 1; }
+#score    { grid-column: 1; grid-row: 3; }
+#stats    { grid-column: 1; grid-row: 2; align-self: start; }
+#board    { grid-column: 2; grid-row: 1 / span 2; }
+#controls { grid-column: 2; grid-row: 3; justify-self: center; }
+
+@media (orientation: portrait) {
+  #grid {
+    display: grid;
+
+    /* The rows, columns and areas of the grid are defined visually
+     * using the grid-template-areas property.  Each string is a row,
+     * and each word an area.  The number of words in a string
+     * determines the number of columns. Note the number of words
+     * in each string must be identical. */
+    grid-template-areas: "title stats"
+                         "score stats"
+                         "board board"
+                         "ctrls ctrls";
+
+    /* The way to size columns and rows can be assigned with the
+     * grid-template-columns and grid-template-rows properties. */
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto 1fr auto;
+  }
+}
+
+@media (orientation: landscape) {
+  #grid {
+    display: grid;
+
+    /* Again the template property defines areas of the same name,
+     * but this time positioned differently to better suit a
+     * landscape orientation. */
+    grid-template-areas: "title board"
+                         "stats board"
+                         "score ctrls";
+
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr auto;
+  }
+}
+
+/* The grid-area property places a grid item into a named
+ * area of the grid. */
+#title    { grid-area: title }
+#score    { grid-area: score }
+#stats    { grid-area: stats }
+#board    { grid-area: board }
+#controls { grid-area: ctrls }

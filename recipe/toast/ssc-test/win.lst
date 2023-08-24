@@ -28,6 +28,8 @@
 ../toast/css/4-font/css.spec
 ../toast/css/5-font/css.spec
 ../toast/css/4-frag/css.spec
+../toast/css/3-grid/css.spec
+../toast/css/4-grid/css.spec
 ../toast/css/3-mc/css.spec
 ../toast/css/3-media/css.spec
 ../toast/css/4-media/css.spec
@@ -37,6 +39,7 @@
 ../toast/css/3-position/css.spec
 ../toast/css/3-sel/css.spec
 ../toast/css/4-sel/css.spec
+../toast/css/3-shape/css.spec
 ../toast/css/3-style/css.spec
 ../toast/css/3-syntax/css.spec
 ../toast/css/3-trans/css.spec
@@ -47,6 +50,7 @@
 ../toast/css/3-writing/css.spec
 ../toast/css/4-writing/css.spec
 ../toast/css/accessibility/css.spec
+../toast/css/ae/css.spec
 ../toast/css/custom/css.spec
 ../toast/css/ease/css.spec
 ../toast/css/simple/css.spec

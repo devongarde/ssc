@@ -92,3 +92,16 @@ void css_global::accumulate (stats_t* s) const
 {   for (auto i : mdst_)
         if (i.second != nullptr)
             i.second -> accumulate (s); }
+
+::std::string css_global::report () const
+{   ::std::string res;
+    if (context.tell (es_detail))
+        if (mdst_.empty ()) res += "No CSSs preloaded\n";
+        else for (auto m : mdst_)
+        {   res += m.first;
+            if (! context.tell (es_detail)) res += "\n";
+            else if (m.second.get () == nullptr) res += ": NULL\n";
+            else
+            {   res += ":\n";
+                res += m.second -> report (); } }
+    return res; }

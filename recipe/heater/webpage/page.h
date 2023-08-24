@@ -47,12 +47,7 @@ class page
     microdata_export md_export_;
     microformat_export mf_export_;
     const directory* directory_ = nullptr;
-    bool has_title_ = false;
-    bool style_css_ = true;
-    bool check_links_ = true;
-    bool snippet_ = false;
-    bool outsider_ = false;
-    bool dot_css_ = false;
+    bool has_title_ = false, style_css_ = true, check_links_ = true, snippet_ = false, outsider_ = false, dot_css_ = false, xxx_ = false;
     stats_t stats_;
     ssi_compedium ssi_;
     nitpick nits_;
@@ -212,6 +207,7 @@ public:
     {   phrase_.extend (lang, s); }
     void phrasal (nitpick& nits, const html_version& v)
     {   phrase_.complete (nits, v); }
+    bool xxx () const { return xxx_; }
     ::std::string report (); };
 
 ::std::string get_page_url (const ::std::string& url);

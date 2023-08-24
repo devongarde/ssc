@@ -34,6 +34,7 @@ public:
     dst_ptr get (const ::std::string& s) const;
     css_ptr expel_cp (const ::std::string& s) const;
     void accumulate (stats_t* s) const;
-    void report_usage (::std::ostringstream& ss) const; };
+    void report_usage (::std::ostringstream& ss) const;
+    ::std::string report () const; };
 
 extern css_global global_css;

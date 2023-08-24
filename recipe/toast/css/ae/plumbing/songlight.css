@@ -1,0 +1,684 @@
+/*
+Songlight
+by Dylan Harris (dylanharris.org)
+Songlight is a CSS ctylesheet
+
+Copyright © 2009 Dylan Harris
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    To obtain a copy of the GNU General Public License, see
+    <http://www.gnu.org/licenses/>.
+
+Advent is copyright Andreas Kalpakidis; I found it at deviant art.
+Thanks to these guys for their fonts.
+*/
+
+@charset "ISO-8859-1";
+@font-face {  
+          font-family: Advent;  
+      font-style: normal;
+      font-weight: normal; 
+      font-stretch: normal; 
+          src: local("advent Regular"), url( /past/ae/2010/plumbing/advent-Re.otf ) format("opentype");  
+        }
+
+html {
+        font-size: 100%;
+    font-stretch: normal;
+}
+font, basefont {
+        font-size: 100%;
+    font-stretch: normal;
+}
+
+body {
+    font-family: "Lucida Bright", Times, "Times New Roman", serif;
+    font-stretch: normal;
+        font-size: 100%;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    overflow: auto;
+        background-color: black;
+    border-color: black;
+        color: gray;
+}
+
+table, tr, td, thead, tbody {
+        border-spacing: 0;
+        border-width: 0px;
+}
+table, thead, tbody {
+    padding: 10px 50px;
+}
+table {
+        margin: 0px;
+}
+tr, td {
+    padding: 0.4em;
+    margin: 1em;
+    vertical-align: top;
+}
+
+img {
+        background-color: black;
+    border-color: black;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-family: "Lucida Sans", Helvetica, Arial, sans-serif;
+  color: silver;
+  font-weight: normal;
+}
+h1 {
+  font-size: 120%;
+  text-align: center;
+  letter-spacing: 0.25em;
+  margin-bottom: 0.8em;
+}
+h2 {
+  font-size: 110%;
+  letter-spacing: 0.2em;
+  margin-top: 0.8em;
+}
+h3 {
+  font-size: 95%; 
+  letter-spacing: 0.1em;
+  margin-top: 0.8em;
+  font-style: italic;
+}
+h4, h5, h6 {
+  font-size: 90%;
+  font-style: italic;
+  margin-top: 0.8em;
+}
+p {
+  margin-top: 0em;
+  margin-bottom: 0.4em;
+}
+em {
+  text-decoration: none;
+  font-weight: normal;
+}
+ul {
+  padding: 0px;
+  padding-left: 25px;
+  margin: 0px;
+  list-style-type: circle;
+  margin-top: 0em;
+  margin-bottom: 0.4em;
+}
+li {
+  padding: 0px;
+  margin: 0px;
+  padding-left: 0;
+}
+
+
+a {
+        text-decoration: none;
+    font-family: "Lucida Fax", Times, "Times New Roman", serif;
+    font-stretch: condensed;
+    color: #989898;
+}
+a:hover {
+    color: silver;
+}
+a:focus {
+        outline: none;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+  color: silver;
+}
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
+  color: white;
+}
+
+
+
+.navigate a {
+  padding: 0;
+  margin: 0;
+  border-width: 0;
+}
+p.navigate {
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  border-width: 0;
+}
+h4.navigate {
+  text-align: center;
+  color: gray;
+  font-style: normal;
+}
+
+
+p.coded {
+    padding: 0 10%;
+}
+
+
+.footnote em {
+    color: #606060;
+}
+.footnote a {
+  color: #606060;
+  padding: 0;
+  margin: 0;
+  border-width: 0;
+}
+.footnote a:hover {
+  color: gray;
+}
+.footnote a:focus {
+  outline: none;
+}
+p.footnote {
+    padding: 10px 0 0 0;
+    font-size: 85%;
+    color: #606060;
+}
+
+
+.topnote em {
+    color: #606060;
+}
+p.topnote {
+    padding: 0 0 10px 50px;
+    font-size: 85%;
+    color: #606060;
+}
+
+
+.sprache {
+  font-style: italic;
+}
+
+.english {
+  font-style: italic;
+}
+.francais {
+  font-style: italic;
+}
+.nederlands {
+  font-style: italic;
+}
+.deutsch {
+  font-style: italic;
+}
+
+p.harmonic {
+    padding: 0 50px;
+    font-style: italic;
+}
+
+
+
+.separator {
+  color: #303030;
+}
+
+
+.quoted_poem {
+  font-style: italic;
+}
+
+
+.illustration {
+  text-align: center;
+  float: none;
+}
+.inline_illustration_left {
+  float: left;
+  padding: 10px;
+}
+.inline_illustration_right {
+  float: right;
+  padding: 10px;
+}
+
+
+.note {
+  font-style: italic;
+  font-size: 90%;
+}
+
+
+p.subtitle {
+  font-size: 80%;
+  font-weight: normal;
+  text-align: center;
+  letter-spacing: 0.1em;
+}
+
+
+.warning {
+  color: red;
+}
+
+
+p.front-top {
+  text-align: center;
+  font-size: 120%;
+  letter-spacing: 0.35em;
+  margin: 0.8em 0;
+}
+.front-top a {
+  font-family: "Lucida Sans", Arial, sans-serif;
+  color: silver
+}
+
+
+td.LHS {
+    text-align: left;
+    vertical-align: top;
+    width: 750px;
+    min-width: 750px;
+}
+td.RHS {
+    text-align: right;
+    width: 250px;
+    min-width: 200px;
+    padding: 10px 50px;
+    margin: 1em;
+    vertical-align: top;
+}
+
+
+td.colleft {
+    text-align: right;
+    width: 100px;
+    min-width: 100px;
+    padding: 0 3%;
+    margin: 0;
+    vertical-align: top;
+}
+td.colright {
+    text-align: left;
+    width: 100px;
+    min-width: 100px;
+    padding: 0 3%;
+    margin: 0;
+    vertical-align: top;
+}
+
+
+td.session {
+    text-align: center;
+    vertical-align: top;
+    width: 225px;
+    min-width: 225px;
+}
+td.tracks {
+    text-align: center;
+    vertical-align: top;
+    width: 175px;
+    min-width: 175px;
+}
+
+
+td.RHS-front {
+    text-align: left;
+}
+p.RHS-front {
+    text-align: left;
+    color: gray;
+        font-size: 90%;
+    vertical-align: middle;
+}
+.RHS-front a {
+    text-align: left;
+}
+
+
+td.LHS-front {
+    text-align: right;
+    vertical-align: middle;
+}
+p.LHS-front {
+    text-align: right;
+}
+
+
+p.base-front {
+    text-align: center;
+        font-size: 90%;
+}
+
+
+.front-body {
+  min-width: 850px;
+}
+
+
+.review {
+  width:90%;
+  margin-left:5%;
+  margin-right:5%;
+}
+
+td.revleft {
+    text-align: left;
+    vertical-align: top;
+    width: 100px;
+    min-width: 100px;
+    font-style: italic;
+}
+td.revright {
+    text-align: left;
+    vertical-align: top;
+    width: 400px;
+    min-width: 400px;
+}
+
+
+
+.base-front a {
+  padding: 0;
+  margin: 0;
+  border-width: 0;
+}
+.base-front a:hover {
+  color: silver;
+}
+.base-front a:focus {
+  outline: none;
+}
+
+
+.front {
+  width:70%;
+  margin-left:15%;
+  margin-right:15%;
+}
+
+
+.music {
+  width:80%;
+  margin-left:10%;
+  margin-right:10%;
+}
+
+
+.old_gallery {
+  width: 100%;
+  margin: 0;
+  text-align: center;
+}
+.new_gallery {
+  width: 100%;
+  margin: 0;
+}
+
+
+a.track-poem {
+  padding: 0;
+  margin: 0;
+  border-width: 0;
+  font-size: 80%;
+}
+
+
+.dated {
+  text-align: right;
+  font-style: italic;
+  font-size: 90%;
+}
+.poem .dated {
+  text-align: left;
+  font-style: italic;
+  font-size: 90%;
+  margin-top: 30px;
+  color: #606060;
+}
+
+.poem p, .poem h1, .poem h2, .poem h3, .poem h4, .poem h5, .poem h6 {
+    text-align: left;
+}
+.poem p, .poem h1, .poem h2  {
+    margin: 2% 10% 2% 25%;
+}
+.poem h3, .poem h4, .poem h5, .poem h6 {
+    margin: 2% 10% 0 25%;
+}
+.poem h3 {
+  font-size: 80%;
+  color: gray;
+}
+.poem h4 {
+  font-size: 70%;
+  color: gray;
+}
+.poem h3 + p, .poem h4 + p {
+    margin: 0 10% 0 25%;
+}
+
+
+.set p, .set h1, .set h2, .set h3, .set h4, .set h5, .set h6 {
+  margin: 2% 20%;
+  text-align: center;
+}
+.set h3 {
+  font-size: 80%;
+  color: gray;
+}
+.set h4 {
+  font-size: 70%;
+  color: gray;
+}
+
+
+.foto p, .foto h1, .foto h2, .foto h3, .foto h4, .foto h5, .foto h6 {
+    margin: 2% 0%;
+    padding: 0 50px;
+}
+.foto p, .foto h1, .foto h2 {
+    text-align: left;
+}
+.foto h3 {
+  text-align: center;
+  font-size: 80%;
+  color: gray;
+}
+.foto h4 {
+  text-align: center;
+  font-size: 70%;
+  color: gray;
+}
+
+
+.foto_essay h1 {
+    text-align: left;
+    margin: 0;
+}
+.foto_essay p {
+    text-align: left;
+    margin: 15em 0 0;
+}
+
+.photo_poem {
+  text-align: left;
+  margin: 0;
+  font-size: 85%;
+}
+
+
+.chewed h1 {
+  text-align: center;
+  margin: 0;
+}
+.chewed p {
+  text-align: center;
+  margin: 15em 0 0;
+}
+
+
+.foto_show h1 {
+  text-align: center;
+  margin: 0;
+}
+.foto_show p {
+  text-align: center;
+  margin: 8em 0 0;
+}
+
+
+.photo p, .photo h1, .photo h2, .photo h3, .photo h4, .photo h5, .photo h6 {
+  margin: 2% 0%;
+  text-align: center;
+  padding: 0 50px;
+}
+.photo h3 {
+  font-size: 80%;
+  color: gray;
+}
+.photo h4 {
+  font-size: 70%;
+  color: gray;
+}
+
+
+.misc p, .misc ul {
+  margin: 0em 20% 0.4em 20%;
+}
+.misc h1 {
+  margin: 0 20%;
+}
+.misc h2, .misc h3, .misc h4, .misc h5, .misc h6 {
+  margin: 0.8em 20% 0 20%;
+}
+.misc table {
+  width:60%;
+  margin-left:20%;
+  margin-right:20%;
+}
+
+
+.tannoy h3 {
+  margin-top: 0;
+  margin-bottom: 0.8em;
+}
+
+
+.index p {
+    margin: 0em 10% 0.4em 10%;
+}
+.index h1 {
+    margin: 0 10%;
+}
+.index h2, .index h3, .index h4, .index h5, .index h6 {
+    margin: 0.8em 10% 0 10%;
+}
+
+
+.sequence, .flow, .first_flow, .first_series {
+  font-size: 95%;
+  color: #606060;
+}
+
+
+.sequence, .flow {
+  font-style: italic;
+}
+
+
+.chapbook {
+    color: #606060;
+}
+
+
+.member {
+  font-size: 90%;
+}
+
+
+.fade1 {
+  color: #CCCCCC;
+}
+.fade2 {
+  color: #999999;
+}
+.fade3 {
+  color: #666666;
+}
+.fade4 {
+  color: #333333;
+}
+
+
+.arsehat
+{
+  font-variant: small-caps;
+}
+
+
+.buy
+{
+  color: #009900;
+}
+
+
+.dejavu
+{
+  font-family: "Lucida Bright", Times, "Times New Roman", serif;
+}
+
+.dejavu a
+{
+  font-family: "Lucida Fax", Arial, sans-serif;
+}
+
+.lucida
+{
+  font-family: "Lucida Bright", Times, "Times New Roman", serif;
+}
+
+.lucida a
+{
+  font-family: "Lucida Fax", Arial, sans-serif;
+}
+
+.vera
+{
+  font-family: "Lucida Bright", Times, "Times New Roman", serif;
+}
+
+.vera a
+{
+  font-family: "Lucida Fax", Arial, sans-serif;
+}
+
+.tnr
+{
+  font-family: "Times New Roman", Times, "Lucida Bright", serif;
+}
+
+.arial
+{
+  font-family: Arial, "Lucida Sans", sans-serif;
+}
+
+.advent
+{
+  font-family: Advent, "Lucida Bright", Times, "Times New Roman", serif;
+}
+
+.photo h1, .foto_essay h1, .chewed h1, .first_flow, .first_series
+{
+  font-family: Advent, "Lucida Sans", Arial, sans-serif;
+}
+
+

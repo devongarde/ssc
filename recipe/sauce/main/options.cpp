@@ -269,6 +269,7 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (GENERAL MACROEND, ::boost::program_options::value < ::std::string > () -> default_value ("}}"), "End of template macro (by default, the '}}' in '{{macro}}').")
 
         (CSS COND_RULE, ::boost::program_options::value < int > (), "CSS Conditional Rule level (0, 3, 4, or 5).")
+        (CSS IMAGE, ::boost::program_options::value < int > (), "CSS Images level (0, 3, or 4).")
         (CSS TABLE, ::boost::program_options::value < int > (), "CSS Table level (0 or 3).")
 
         (JSONLD EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "Extension for JSON-LD files; may be repeated.")
@@ -280,8 +281,10 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (LINKS PRETEND, ::boost::program_options::value < vstr_t > () -> composing (), "Pretend files that match this posix regular expression exist; may be repeated")
 #endif // NO_BOOST_REGEX
 
+        (NITS CACHE, ::boost::program_options::value < ::std::string > (), "Output nits on cache usage of filenames containing argument (no wildcards, except use \"*\" for all; empty for no report).")
         (NITS SPEC, ::boost::program_options::bool_switch (), "Output nits in test spec format (requires -T).")
         (NITS DONT SPEC, ::boost::program_options::bool_switch (), "Do not output nits in test spec format.")
+        (NITS XXX, ::boost::program_options::value < ::std::string > (), "Output nits on cache usage from page names containing argument (empty for no report); may be combined with " NITS CACHE ".")
 
 #ifdef NOSPELL
         (SPELL ACCEPT, ::boost::program_options::value < vstr_t > () -> composing (), "Ignore this word in spell checks; may be repeated.")
@@ -366,12 +369,14 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (CSS FBL, ::boost::program_options::value < int > (), "CSS Flexible Box Layout level (0 or 3).")
         (CSS FONT, ::boost::program_options::value < int > (), "CSS Font level (0, 3, 4, or 5).")
         (CSS FRAG, ::boost::program_options::value < int > (), "CSS Fragmentation level (0, 3, or 4).")
+        (CSS GRID, ::boost::program_options::value < int > (), "CSS Grid level (0, 3, or 4).")
         (CSS MEDIA, ::boost::program_options::value < int > (), "CSS Media level (0, 3, 4, or 5).")
         (CSS MULTI_COLUMN, ::boost::program_options::value < int > (), "CSS Multi-Column level (0 or 3).")
         (CSS NAMESPACE, ::boost::program_options::value < int > (), "CSS Namespace level (0 or 3).")
         (CSS OVERFLOH, ::boost::program_options::value < int > (), "CSS Overflow level (0 or 3).")
         (CSS POSITION, ::boost::program_options::value < int > (), "CSS Positions level (0 or 3).")
         (CSS SELECTOR, ::boost::program_options::value < int > (), "CSS Selector level (0, 3, or 4).")
+        (CSS SHAPE, ::boost::program_options::value < int > (), "CSS Shapes level (0, 3, or 4).")
         (CSS STYLE, ::boost::program_options::value < int > (), "CSS Style level (0 or 3).")
         (CSS SYNTAX, ::boost::program_options::value < int > (), "CSS Syntax level (0 or 3).")
         (CSS TRANSITION, ::boost::program_options::value < int > (), "CSS Transitions level (0 or 3).")
@@ -441,8 +446,8 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (MF EXPORT, ::boost::program_options::bool_switch (), "Export microformat data (requires --" MF VERIFY ").")
         (MF DONT EXPORT, ::boost::program_options::bool_switch (), "Do not export microformat data.")
 
-        (NITS CATASTROPHE, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as a catastrophe; may be repeated.")
         (NITS ABHORRENT, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as an abhorrence; may be repeated.")
+        (NITS CATASTROPHE, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as a catastrophe; may be repeated.")
         (NITS COMMENT, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as a comment; may be repeated.")
         (NITS DBG, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as a debug message; may be repeated.")
         (NITS ERR, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as an error; may be repeated.")
@@ -1039,12 +1044,15 @@ void options::contextualise (nitpick& nits)
         if (get_css_level (n, nits, CSS FBL, "Flexible Box Layout", 3)) context.css_fbl (n);
         if (get_css_level (n, nits, CSS FONT, "Font", 5)) context.css_font (n);
         if (get_css_level (n, nits, CSS FRAG, "Fragmentation", 4)) context.css_fragmentation (n);
+        if (get_css_level (n, nits, CSS GRID, "Grid", 4)) context.css_grid (n);
+        if (get_css_level (n, nits, CSS IMAGE, "Umage", 4)) context.css_image (n);
         if (get_css_level (n, nits, CSS MEDIA, "Media", 5)) context.css_media (n);
         if (get_css_level (n, nits, CSS MULTI_COLUMN, "Multi-Column", 3, true)) context.css_multi_column (n);
         if (get_css_level (n, nits, CSS NAMESPACE, "Namespace", 3)) context.css_namespace (n);
         if (get_css_level (n, nits, CSS OVERFLOH, "Overflow", 3)) context.css_overflow (n);
         if (get_css_level (n, nits, CSS POSITION, "Overflow", 3)) context.css_position (n);
         if (get_css_level (n, nits, CSS SELECTOR, "Selector", 4)) context.css_selector (n);
+        if (get_css_level (n, nits, CSS SHAPE, "Shape", 4)) context.css_shape (n);
         if (get_css_level (n, nits, CSS STYLE, "Style", 3)) context.css_style (n);
         if (get_css_level (n, nits, CSS SYNTAX, "Syntax", 3)) context.css_syntax (n);
         if (get_css_level (n, nits, CSS TABLE, "Table", 3))
@@ -1116,6 +1124,7 @@ void options::contextualise (nitpick& nits)
         if (var_.count (MICRODATA ROOT)) context.export_root (nix_path_to_local (var_ [MICRODATA ROOT].as < ::std::string > ()));
         if (var_.count (MICRODATA VIRTUAL)) context.exports (var_ [MICRODATA VIRTUAL].as < vstr_t > ());
 
+        if (var_.count (NITS CACHE)) context.cache (var_ [NITS CACHE].as < ::std::string > ());
         yea_nay (&context_t::nids, nits, NITS NIDS, NITS DONT NIDS);
         yea_nay (&context_t::extra, nits, NITS EXTRA, NITS DONT EXTRA);
         if (var_.count (NITS FORMAT)) context.nit_format (var_ [NITS FORMAT].as < ::std::string > ());
@@ -1125,6 +1134,7 @@ void options::contextualise (nitpick& nits)
         yea_nay (&context_t::nits_nits_nits, nits, NITS UNIQUE, NITS DONT UNIQUE);
         yea_nay (&context_t::not_root, nits, NITS DONT ROOT, NITS ROOT); // note reversal
         yea_nay (&context_t::nits, nits, NITS WATCH, NITS DONT WATCH);
+        if (var_.count (NITS XXX)) context.x (var_ [NITS XXX].as < ::std::string > ());
 
         if (var_.count (NITS CATASTROPHE))
             for (auto s : var_ [NITS CATASTROPHE].as < vstr_t > ())
@@ -1488,12 +1498,15 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (CSS FBL)) res << CSS FBL ": " << var_ [CSS FBL].as < int > () << "\n";
     if (var_.count (CSS FONT)) res << CSS FONT ": " << var_ [CSS FONT].as < int > () << "\n";
     if (var_.count (CSS FRAG)) res << CSS FRAG ": " << var_ [CSS FRAG].as < int > () << "\n";
+    if (var_.count (CSS GRID)) res << CSS GRID ": " << var_ [CSS GRID].as < int > () << "\n";
+    if (var_.count (CSS IMAGE)) res << CSS IMAGE ": " << var_ [CSS IMAGE].as < int > () << "\n";
     if (var_.count (CSS MEDIA)) res << CSS MEDIA ": " << var_ [CSS MEDIA].as < int > () << "\n";
     if (var_.count (CSS MULTI_COLUMN)) res << CSS MULTI_COLUMN ": " << var_ [CSS MULTI_COLUMN].as < int > () << "\n";
     if (var_.count (CSS NAMESPACE)) res << CSS NAMESPACE ": " << var_ [CSS NAMESPACE].as < int > () << "\n";
     if (var_.count (CSS OVERFLOH)) res << CSS OVERFLOH ": " << var_ [CSS OVERFLOH].as < int > () << "\n";
     if (var_.count (CSS POSITION)) res << CSS POSITION ": " << var_ [CSS POSITION].as < int > () << "\n";
     if (var_.count (CSS SELECTOR)) res << CSS SELECTOR ": " << var_ [CSS SELECTOR].as < int > () << "\n";
+    if (var_.count (CSS SHAPE)) res << CSS SHAPE ": " << var_ [CSS SHAPE].as < int > () << "\n";
     if (var_.count (CSS STYLE)) res << CSS STYLE ": " << var_ [CSS STYLE].as < int > () << "\n";
     if (var_.count (CSS SYNTAX)) res << CSS SYNTAX ": " << var_ [CSS SYNTAX].as < int > () << "\n";
     if (var_.count (CSS TABLE)) res << CSS TABLE ": " << var_ [CSS TABLE].as < int > () << "\n";
@@ -1623,12 +1636,14 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (MICRODATA ROOT)) res << MICRODATA ROOT ": " << var_ [MICRODATA ROOT].as < ::std::string > () << "\n";
     if (var_.count (MICRODATA VIRTUAL)) { res << MICRODATA VIRTUAL ": "; pvs (res, var_ [MICRODATA VIRTUAL].as < vstr_t > ()); res << "\n"; }
 
-    if (var_.count (NITS CATASTROPHE)) { res << NITS CATASTROPHE ": "; pvs (res, var_ [NITS CATASTROPHE].as < vstr_t > ()); res << "\n"; }
     if (var_.count (NITS ABHORRENT)) { res << NITS ABHORRENT ": "; pvs (res, var_ [NITS ABHORRENT].as < vstr_t > ()); res << "\n"; }
+    if (var_.count (NITS CACHE)) res << NITS CACHE ": " << var_ [NITS CACHE].as < ::std::string > () << "\n";
+    if (var_.count (NITS CATASTROPHE)) { res << NITS CATASTROPHE ": "; pvs (res, var_ [NITS CATASTROPHE].as < vstr_t > ()); res << "\n"; }
     if (var_.count (NITS COMMENT)) { res << NITS COMMENT ": "; pvs (res, var_ [NITS COMMENT].as < vstr_t > ()); res << "\n"; }
     if (var_.count (NITS DBG)) { res << NITS DBG ": "; pvs (res, var_ [NITS DBG].as < vstr_t > ()); res << "\n"; }
     if (var_.count (NITS ERR)) { res << NITS ERR ": "; pvs (res, var_ [NITS ERR].as < vstr_t > ()); res << "\n"; }
     if (var_ [NITS EXTRA].as < bool > ()) res << NITS EXTRA "\n";
+    if (var_ [NITS DONT EXTRA].as < bool > ()) res << NITS DONT EXTRA "\n";
     if (var_.count (NITS FORMAT)) res << NITS FORMAT ": " << var_ [NITS FORMAT].as < ::std::string > () << "\n";
     if (var_.count (NITS INFO)) { res << NITS INFO ": "; pvs (res, var_ [NITS INFO].as < vstr_t > ()); res << "\n"; }
     if (var_ [NITS NIDS].as < bool > ()) res << NITS NIDS "\n";
@@ -1642,6 +1657,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (NITS WARNING)) { res << NITS WARNING ": "; pvs (res, var_ [NITS WARNING].as < vstr_t > ()); res << "\n"; }
     if (var_ [NITS WATCH].as < bool > ()) res << NITS WATCH "\n";
     if (var_ [NITS DONT WATCH].as < bool > ()) res << NITS DONT WATCH "\n";
+    if (var_.count (NITS XXX)) res << NITS XXX ": " << var_ [NITS XXX].as < ::std::string > () << "\n";
 
     if (var_ [MF EXPORT].as < bool > ()) res << MF EXPORT "\n";
     if (var_ [MF DONT EXPORT].as < bool > ()) res << MF DONT EXPORT "\n";

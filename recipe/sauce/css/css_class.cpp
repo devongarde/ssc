@@ -26,9 +26,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type.h"
 
 css_class::css_class (arguments& args, const int i, const ::std::string& s)
-    : s_ (s)
+    : s_ (trim_the_lot_off (s))
 {   nitpick& nits = args.t_.at (i).nits_;
-    html_class c (nits, args.v_, s);
+    PRESUME (! s_.empty (), __FILE__, __LINE__);
+    html_class c (nits, args.v_, s_);
     if (c.is_whatwg_draft ())
         nits.pick (nit_whatwg_class, ed_jan07, "3.4.5. Classes", es_info, ec_css, "FYI, ", quote (c.name ()), " was once a draft HTML 5 standard class name.");
     if (c.is_microformat_vocabulary ())
@@ -36,7 +37,7 @@ css_class::css_class (arguments& args, const int i, const ::std::string& s)
     if (c.is_microformat_property ())
         nits.pick (nit_class_microformat_property, ed_microformats, "https://microformats.org/", es_warning, ec_css, quote (c.name ()), " is a microformats property class name.");
     if (args.dst_.get () != nullptr)
-        args.dst_ -> insert_class (s); }
+        args.dst_ -> insert_class (s_); }
 
 void css_class::accumulate (stats_t* s, const e_element e) const
 {   VERIFY_NOT_NULL (s, __FILE__, __LINE__);

@@ -28,8 +28,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/cache.h"
 #include "icu/converter.h"
 
-// #define CACHE_REPORT
-
 struct cache_t
 {   e_cache_state cs_ = cs_loading;
     time_t when_ = 0;
@@ -85,30 +83,24 @@ void post_load (const ::std::string& name, const ::std::string& content, const t
 
 bool cached_file (nitpick& nits, const ::boost::filesystem::path& pt, ::std::string& content, bool& borked, bool store)
 {   bool res = false;
-    ::std::string name (pt.string ());
+    ::std::string name (absolute (pt).string ());
     time_t t;
     if (current_cache (name, content, res, t, store, borked))
-    {   if (context.tell (es_detail)) nits.pick (nit_detail, es_detail, ec_cache, "Found file ", name, " (", content.size (), " bytes)");
-#ifdef CACHE_REPORT
-        ::std::cout << "found file " << name << " (" << content.size () << " bytes).\n";
-#endif // CACHE_REPORT
+    {   if (context.tell (es_detail) || cache_of_interest (name))
+            nits.pick (nit_cache, es_info, ec_cache, "Found file ", name, " (", content.size (), " bytes)");
         if (borked) nits.pick (nit_url_not_found, es_error, ec_cache, name, " was previously found to be borked");
         return res; }
     if (! res)
     {   nits.pick (nit_internal_cache_error, es_error, ec_cache, "Error when seeking file ", name);
         borked = true;
         return false; }
-    if (context.tell (es_detail)) nits.pick (nit_detail, es_detail, ec_cache, "Loading file ", name);
-#ifdef CACHE_REPORT
-        ::std::cout << "loading file " << name << "\n";
-#endif // CACHE_REPORT
+    if (context.tell (es_detail) || cache_of_interest (name))
+        nits.pick (nit_cache, es_info, ec_cache, "Loading file ", name);
     content = normalise_utf8 (nits, read_text_file (nits, pt, borked));
     t = get_last_write_time (pt);
     if (store) post_load (name, content, get_last_write_time (pt), borked);
-    if (context.tell (es_debug)) nits.pick (nit_debug, es_debug, ec_cache, "Loaded file ", name, " (", content.size (), " bytes)");
-#ifdef CACHE_REPORT
-        ::std::cout << "loaded file " << name << " (" << content.size () << " bytes).\n";
-#endif // CACHE_REPORT
+    if (context.tell (es_debug) || cache_of_interest (name))
+        nits.pick (nit_cache, es_info, ec_cache, "Loaded file ", name, " (", content.size (), " bytes)");
     return true; } 
 
 bool cached_url (nitpick& nits, const html_version& v, const directory* d, const url& u, ::std::string& content, ::std::time_t& when, bool& borked) 
@@ -116,26 +108,58 @@ bool cached_url (nitpick& nits, const html_version& v, const directory* d, const
     bool res = false;
     ::std::string name (u.absolute ());
     if (current_cache (name, content, res, when, true, borked))
-    {   if (context.tell (es_detail)) nits.pick (nit_detail, es_detail, ec_cache, "Found url ", name, " (", content.size (), " bytes)");
-#ifdef CACHE_REPORT
-        ::std::cout << "found url " << name << " (" << content.size () << " bytes).\n";
-#endif // CACHE_REPORT
+    {   if (context.tell (es_detail) || cache_of_interest (name))
+            nits.pick (nit_cache, es_info, ec_cache, "Found url ", name, " (", content.size (), " bytes)");
         if (borked) nits.pick (nit_url_not_found, es_error, ec_cache, name, " was previously found to be borked");
         return res; }
     if (! res)
-    {   nits.pick (nit_internal_cache_error, es_error, ec_cache, "Error when seeking url ", name);
+    {   nits.pick (nit_cache, es_error, ec_cache, "Error when seeking url ", name);
         borked = true;
         return false; }
-    if (context.tell (es_detail)) nits.pick (nit_detail, es_detail, ec_cache, "Loading url ", name);
-#ifdef CACHE_REPORT
-        ::std::cout << "loading url " << name << "\n";
-#endif // CACHE_REPORT
+    if (context.tell (es_detail) || cache_of_interest (name))
+    {   nits.pick (nit_cache, es_info, ec_cache, "Loading url ", name);
+        report_cache (nits, name); }
     if (! d -> verify_url (nits, v, u, false)) borked = true;
     else content = normalise_utf8 (nits, d -> load_url (nits, u, borked, &when));
     post_load (name, content, when, borked);
-    if (! borked) if (context.tell (es_debug)) nits.pick (nit_debug, es_debug, ec_cache, "Loaded url ", name, " (", content.size (), " bytes)");
-#ifdef CACHE_REPORT
-    if (borked) ::std::cout << "failed to load url " << name << ".\n";
-    else ::std::cout << "loaded url " << name << " (" << content.size () << " bytes).\n";
-#endif // CACHE_REPORT
-    return true; } 
+    if (context.tell (es_debug) || cache_of_interest (name))
+        if (borked) nits.pick (nit_cache, es_error, ec_cache, "Failed to load url ", name);
+        else nits.pick (nit_cache, es_info, ec_cache, "Loaded url ", name, " (", content.size (), " bytes)");
+    return true; }
+
+void report_cache (nitpick& nits, const ::std::string& intro)
+{   ::std::string res;
+    vstr_t vs;
+    bool started = false;
+    const ::std::size_t len = context.cache ().length ();
+    if (intro.empty ()) nits.pick (nit_cache, es_info, ec_cache, "Cache report: ");
+    else nits.pick (nit_cache, es_info, ec_cache, "Cache report: seeking ", intro);
+    if (mc.get () != nullptr)
+    {   ::std::string::size_type n = 0;
+        lox l (lox_cache);
+        for (auto c : *mc)
+            if (! c.first.empty ())
+                if (c.first.size () >= len)
+                    if ((len == 0) || cache_of_interest (c.first))
+                    {   if (started) res += ", "; else started = true;
+                        const ::std::string::size_type l2 = c.first.length ();
+                        if (l2 >= DEFAULT_LINE_LENGTH) vs.push_back (c.first);
+                        else if (n + l2 >= DEFAULT_LINE_LENGTH)
+                        {   vs.push_back (res);
+                            n = l2;
+                            res = c.first; }
+                        else
+                        {   n += l2;   
+                            res += c.first; } } }
+    if (! res.empty ()) vs.push_back (res);
+    for (auto s : vs) nits.pick (nit_cache, es_info, ec_cache, s);
+    if (! started)
+        if (context.cache () == "*") nits.pick (nit_cache, es_info, ec_cache, "Cache: empty");
+        else nits.pick (nit_cache, es_info, ec_cache, "Cache: no ", context.cache ()); }
+
+bool cache_of_interest (const ::std::string& n)
+{   if (context.tell (es_splurge)) return true;
+    const ::std::string& c = context.cache ();
+    if (c.empty ()) return false;
+    if (c == "*") return true;
+    return (find_no_case (n, c) != ::std::string::npos); }

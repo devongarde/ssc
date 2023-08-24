@@ -289,3 +289,7 @@ template < e_css_val_fn T, e_css_val_fn... TS > struct listed
 template < e_css_val_fn T > struct listed < T >
 {   static bool yes (e_css_val_fn t)
     {   return T == t; } };
+
+inline ::std::string::size_type find_no_case (const ::std::string& s, const ::std::string& x)
+{   if (s.empty () || x.empty ()) return ::std::string::npos;
+    return ::boost::to_lower_copy (s).find (::boost::to_lower_copy (x)); }

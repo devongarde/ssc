@@ -1,0 +1,6 @@
+﻿#parent-grid { grid-template-columns: 300px auto 300px; }
+
+#subgrid { grid-column: 2 / span 2; } /* cover parent’s 2nd and 3rd tracks */
+#subgrid > :first-child { grid-column: 1; } /* subgrid’s 1st track, parent grid’s 2nd track */
+
+#subgrid { padding: 100px; }

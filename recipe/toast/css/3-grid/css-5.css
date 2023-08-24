@@ -1,0 +1,9 @@
+﻿.grid-item {
+  grid-row: 500 / 1500;
+  grid-column: 2000 / 3000;
+}
+
+.grid-item {
+  grid-row: 500 / 1001;
+  grid-column: 1000 / 1001;
+}

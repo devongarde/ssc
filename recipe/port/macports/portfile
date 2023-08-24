@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                ssc
-version             0.1.31
+version             0.1.32
 categories          www
 platforms           darwin openbsd freebsd linux
 supported_archs     x86_64 arm64

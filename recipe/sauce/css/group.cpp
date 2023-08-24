@@ -58,14 +58,21 @@ css_ptr css_group::parse (const ::std::string& content, const html_version& v, b
 bool css_group::parse (const ::std::string& content, const html_version& v, const namespaces_ptr& ns, const element_bitset eb, bool state_version, int line, const e_element e, const ::boost::filesystem::path dp)
 {   return parse (snippets_, content, v, ns, state_version, true, ::std::string (), eb, line, e, dp) != css_ptr (); }
 
-bool css_group::parse_file (nitpick& nits, const namespaces_ptr& ns, const url& u, const bool state_versions, const bool local, const bool reparse)
-{   if (! context.load_css () || (context.css_version () == css_none)) return true;
-    if (! u.valid ()) return false;
+bool css_group::parse_file (nitpick& nits, const namespaces_ptr& ns, const url& u, const bool state_versions, const bool local, const bool reparse, const bool xxx)
+{   const bool interest = xxx || cache_of_interest (u.original ());
     nits.set_context (0, u.original ());
+    if (! context.load_css () || (context.css_version () == css_none))
+    {   if (interest) nits.pick (nit_cache, es_info, ec_cache, "no css, no ", u.absolute ());
+        return true; }
+    if (interest) nits.pick (nit_cache, es_info, ec_cache, "parse_file seeking ", u.absolute ());
+    if (xxx) report_cache (nits);
+    if (! u.valid ())
+    {   if (interest) nits.pick (nit_cache, es_warning, ec_cache, "parse_file, ", u.absolute (), " is invalid.");
+        return false; }
     ::std::string abs = u.absolute ();
     ::std::string::size_type pos = abs.find_last_of ("/");
     if (pos == ::std::string::npos)
-    {   nits.pick (nit_internal_parsing_error, es_catastrophic, ec_css, "read beyond end of url (", quote (u.original ()), ") file name ", quote (abs));
+    {   nits.pick (nit_internal_parsing_error, es_catastrophic, ec_css, "read beyond end of url (", quote (u.absolute ()), ") file name ", quote (abs));
         return false; }
     abs = abs.substr (0, pos+1);
     pos = abs.find ('/');
@@ -82,13 +89,19 @@ bool css_group::parse_file (nitpick& nits, const namespaces_ptr& ns, const url& 
             ::std::time_t when = 0;
             bool borked = false;
             VERIFY_NOT_NULL (page_.get_directory (), __FILE__, __LINE__);
-            if (cached_url (nits, page_.version (), page_.get_directory (), u, content, when, borked))
-                if (borked || content.empty ()) res = true;
-                else
-                {   // namespaces_ptr ns; // don't optimise this away, mr. optimiser!
-                    css_ptr cp = parse (dsp, content, context.html_ver (), ns, state_versions, false, abs, empty_element_bitset, 0, elem_undefined, page_.get_disk_path (nits, u));
-                    res = (cp != css_ptr ());
-                    if (res && (local || context.ext_css ())) dsp -> css (cp); }
+            if (! cached_url (nits, page_.version (), page_.get_directory (), u, content, when, borked))
+            {   if (xxx) nits.pick (nit_cache, es_info, ec_cache, "cached_url failed"); }
+            else if (borked || content.empty ())
+            {   if (xxx) nits.pick (nit_cache, es_info, ec_cache, "unhappy: ", borked, " ", content.empty ());
+                res = true; }
+            else
+            {   // namespaces_ptr ns; // don't optimise this away, mr. optimiser!
+                css_ptr cp = parse (dsp, content, context.html_ver (), ns, state_versions, false, abs, empty_element_bitset, 0, elem_undefined, page_.get_disk_path (nits, u));
+                res = (cp != css_ptr ());
+                if (xxx) nits.pick (nit_cache, es_info, ec_cache, "parsed: ", res); 
+                if (res && (local || context.ext_css ()))
+                {   dsp -> css (cp); 
+                    if (xxx) nits.pick (nit_cache, es_info, ec_cache, u.absolute (), " loaded with ", dsp -> cl ().size (), " classes, ", dsp -> id ().size (), " ids"); } }
             global_css.release (dsp);
             return res; }
         catch (const ::std::system_error& e)
@@ -100,6 +113,7 @@ bool css_group::parse_file (nitpick& nits, const namespaces_ptr& ns, const url& 
         dsp -> borked (true);
         global_css.release (dsp);
         return false; }
+    if (xxx) nits.pick (nit_cache, es_info, ec_cache, u.absolute (), " previously loaded with ", dsp -> cl ().size (), " classes, ", dsp -> id ().size (), " ids");
     page_.merge_class (dsp -> cl ());
     page_.merge_id (dsp -> id ());
     page_.merge_element_class (dsp -> ecl ());
@@ -128,7 +142,10 @@ bool css_group::has_class (const ::std::string& s) const
     return page_.has_class (s); }
 
 bool css_group::note_class (const ::std::string& s)
-{   if (! has_class (s)) return false;
+{   if (! has_class (s))
+    {   if (compare_no_case (s, "LHS-front"))
+            global_css.report ();
+        return false; }
     page_.use_class (s);
     return true; }
 

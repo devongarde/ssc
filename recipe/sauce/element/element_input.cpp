@@ -180,7 +180,7 @@ void element::examine_input ()
                 else
                 {   url u (nits (), node_.version (), val);
                     if (! u.invalid () && ! u.empty ())
-                        if (! u.has_absolute_path ())
+                        if (! u.has_absolute_path () || u.deduced_path ())
                             pick (nit_relative_path, ed_50, "4.10.5.1.4 URL state", es_error, ec_attribute, "when <INPUT> TYPE is 'url', VALUE cannot be a relative URL"); } }
             break;
         case i5_week :

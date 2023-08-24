@@ -4,7 +4,7 @@
             "type": "http:\/\/microformats.org\/profile\/hcard",
             "prop": {
                 "fn": "Jack Bauer",
-                "photo": "jack-bauer.jpg",
+                "photo": "\/jack-bauer.jpg",
                 "geo": "34.052339;-118.410623",
                 "url": "https:\/\/wikipedia.example.org\/wiki\/Jack_Bauer",
                 "url": "http:\/\/www.jackbauerfacts.example.com\/",

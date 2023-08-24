@@ -1,0 +1,95 @@
+﻿article {
+  grid-area: main;
+  /* Places item into the named area "main". */
+}
+
+.one {
+  grid-row-start: main;
+  /* Align the row-start edge to the start edge of the "main" named area. */
+}
+
+.two {
+  grid-row: 2;    /* Place item in the second row. */
+  grid-column: 3; /* Place item in the third column. */
+  /* Equivalent to grid-area: 2 / 3; */
+}
+
+.three {
+  grid-row: 2 / span 5;
+  /* Starts in the 2nd row,
+     spans 5 rows down (ending in the 7th row). */
+}
+
+.four {
+  grid-row: span 5 / 7;
+  /* Ends in the 7th row,
+     spans 5 rows up (starting in the 2nd row). */
+}
+.five {
+  grid-column: first / middle;
+  /* Span from line "first" to line "middle". */
+}
+
+.six {
+  grid-row: text 5 / text 7;
+  /* Span between the 5th and 7th lines named "text". */
+  grid-row: text 5 / span text 2;
+  /* Same as above - start at the 5th line named "text",
+     then span across two more "text" lines, to the 7th. */
+}
+
+.eight {
+  grid-area: auto; /* Initial value */
+}
+
+.nine {
+  grid-area: span 2 / span 3;
+  /* Auto-placed item, covering two rows and three columns. */
+}
+
+.grid { grid-template-columns: 100px; }
+.griditem { grid-column: span foo / 4; }
+
+.eight_half
+{
+    grid-column-start: 4; grid-column-end: auto;
+    /* Line 4 to line 5 */
+
+    grid-column-start: auto; grid-column-end: 6;
+    /* Line 5 to line 6 */
+
+    grid-column-start: C; grid-column-end: C -1;
+    /* Line 3 to line 9 */
+
+    grid-column-start: C; grid-column-end: span C;
+    /* Line 3 to line 6 */
+
+    grid-column-start: span C; grid-column-end: C -1;
+    /* Line 6 to line 9 */
+
+    grid-column-start: span C; grid-column-end: span C;
+    /* Error: The end span is ignored, and an auto-placed
+       item can’t span to a named line.
+       Equivalent to grid-column: span 1;. */
+
+    grid-column-start: 5; grid-column-end: C -1;
+    /* Line 5 to line 9 */
+
+    grid-column-start: 5; grid-column-end: span C;
+    /* Line 5 to line 6 */
+
+    grid-column-start: 8; grid-column-end: 8;
+    /* Error: line 8 to line 9 */
+
+    grid-column-start: B 2; grid-column-end: span 1;
+    /* Line 5 to line 6 */
+}
+
+#grid {
+  display: grid;
+  grid-template-columns: repeat(5, 100px);
+  grid-auto-flow: row;
+}
+#grid-item {
+  grid-column: 4 / span 3;
+}

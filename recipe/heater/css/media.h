@@ -27,9 +27,9 @@ class media_t
 {   vmdm_t mdm_;
 public:
     DEFAULT_CONSTRUCTORS (media_t);
-    media_t (arguments& args, const e_css_statement cs, const int from, const int to = -1)
-    {   parse (args, cs, from, to); }
-    void parse (arguments& args, const e_css_statement cs, const int from, const int to = -1);
+    media_t (arguments& args, const int from, const int to = -1)
+    {   parse (args, from, to); }
+    void parse (arguments& args, const int from, const int to = -1);
     void validate  (arguments& args);
     void accumulate (stats_t* s) const;
     void shadow (::std::stringstream& ss, arguments& args);

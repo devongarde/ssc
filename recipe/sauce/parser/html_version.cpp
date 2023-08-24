@@ -695,6 +695,8 @@ e_css_version html_version::css_version () const noexcept
     res += subver (b, css_fbl (), "FBL");
     res += subver (b, css_font (), "Fon");
     res += subver (b, css_fragmentation (), "Fra");
+    res += subver (b, css_grid (), "Grd");
+    res += subver (b, css_image (), "Img");
     res += subver (b, css_media (), "Med");
     res += subver (b, css_multi_column (), "Mlt");
     res += subver (b, css_namespace (), "Ns");
@@ -702,6 +704,7 @@ e_css_version html_version::css_version () const noexcept
     res += subver (b, css_position (), "Pos");
     res += subver (b, css_selector (), "Sel");
     res += subver (b, css_style (), "Sty");
+    res += subver (b, css_shape (), "Shp");
     res += subver (b, css_syntax (), "Syn");
     res += subver (b, css_table (), "Tab");
     res += subver (b, css_transition (), "Trn");
@@ -1042,6 +1045,26 @@ void html_version::css_fragmentation (const int n)
     if (n == 4) set_ext2 (H2_CSS_FRAG_34);
     else if (n == 3) set_ext2 (H2_CSS_FRAG_3); }
 
+int html_version::css_grid () const
+{   if ((ext3 () & H3_CSS_GRID_4) == H3_CSS_GRID_4) return 4;
+    if ((ext3 () & H3_CSS_GRID_3) == H3_CSS_GRID_3) return 3;
+    return 0; }
+
+void html_version::css_grid (const int n)
+{   reset_ext3 (H3_CSS_GRID_MASK);
+    if ((n == 2) || (n == 4)) set_ext3 (H3_CSS_GRID);
+    else if ((n == 1) || (n == 3)) set_ext3 (H3_CSS_GRID_3); }
+
+int html_version::css_image () const
+{   if ((ext3 () & H3_CSS_IMAGE_4) == H3_CSS_IMAGE_4) return 4;
+    if ((ext3 () & H3_CSS_IMAGE_3) == H3_CSS_IMAGE_3) return 3;
+    return 0; }
+
+void html_version::css_image (const int n)
+{   reset_ext3 (H3_CSS_IMAGE_MASK);
+    if (n == 4) set_ext3 (H3_CSS_IMAGE);
+    else if (n == 3) set_ext3 (H3_CSS_IMAGE_3); }
+
 int html_version::css_media () const
 {   if ((ext2 () & H2_CSS_MEDIA_5) == H2_CSS_MEDIA_5) return 5;   
     if ((ext2 () & H2_CSS_MEDIA_4) == H2_CSS_MEDIA_4) return 4;   
@@ -1097,6 +1120,16 @@ void html_version::css_selector (const int n)
 {   reset_ext2 (H2_CSS_SELECTOR_MASK);
     if (n == 3) set_ext2 (H2_CSS_SELECTOR_3);
     else if (n == 4) set_ext2 (H2_CSS_SELECTOR); }
+
+int html_version::css_shape () const
+{   if ((ext3 () & H3_CSS_SHAPE_4) == H3_CSS_SHAPE_4) return 4;   
+    if ((ext3 () & H3_CSS_SHAPE_3) == H3_CSS_SHAPE_3) return 3;   
+    return 0; }
+
+void html_version::css_shape (const int n)
+{   reset_ext3 (H3_CSS_SHAPE_MASK);
+    if (n == 3) set_ext3 (H3_CSS_SHAPE_3);
+    else if (n == 4) set_ext3 (H3_CSS_SHAPE_4); }
 
 int html_version::css_style () const
 {   if (any_ext2 (H2_CSS_STYLE)) return 3;
@@ -1218,12 +1251,15 @@ bool html_version::is_css_compatible (nitpick& nits, const flags_t& f, const fla
         if (css_fbl () > 0) append (res, " / ", ::std::string ("Flexible Box Layout"));
         if (css_font () > 0) append (res, " / ", long_level_2 ("Fonts", H2_CSS_FONT_3, H2_CSS_FONT_4, H2_CSS_FONT_5));
         if (css_fragmentation () > 0) append (res, " / ", long_level_2 ("Fragmentation", H2_CSS_FRAG_3, H2_CSS_FRAG_4));
+        if (css_grid () > 0) append (res, " / ", long_level_3 ("Grid", H3_CSS_GRID_3, H3_CSS_GRID_4));
+        if (css_image () > 0) append (res, " / ", long_level_3 ("Images", H3_CSS_IMAGE_3, H3_CSS_IMAGE_4));
         if (css_media () > 0) append (res, " / ", long_level_2 ("Media Queries", H2_CSS_MEDIA_3, H2_CSS_MEDIA_4, H2_CSS_MEDIA_5));
         if (css_multi_column () > 0) append (res, " / ", ::std::string ("Multi-Column"));
         if (css_namespace () > 0) append (res, " / ", ::std::string ("Namespaces"));
         if (css_overflow () > 0) append (res, " / ", ::std::string ("Overflow"));
         if (css_position () > 0) append (res, " / ", ::std::string ("Positions"));
         if (css_selector () > 0) append (res, " / ", long_level_2 ("Selectors", H2_CSS_SELECTOR_3, H2_CSS_SELECTOR_4));
+        if (css_shape () > 0) append (res, " / ", long_level_3 ("Shapes", H3_CSS_SHAPE_3, H3_CSS_SHAPE_4));
         if (css_style () > 0) append (res, " / ", ::std::string ("Style Attributes"));
         if (css_syntax () > 0) append (res, " / ", ::std::string ("Syntax Module"));
         if (css_table () > 0) append (res, " / ", ::std::string ("Tables"));

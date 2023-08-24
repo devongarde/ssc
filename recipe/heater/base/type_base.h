@@ -32,6 +32,7 @@ class stats_t;
 typedef bool mono;
 
 ::std::string type_name (const e_type e);
+::std::string get_type_site_path (const element* const box);
 
 template < typename VALUE_TYPE, e_type E > class type_base
 {   ::std::string id_;
@@ -96,6 +97,8 @@ public:
     html_version last ( ) const noexcept { return html_max; }
     html_version first (const ::std::size_t ) const noexcept { return first (); }
     html_version last (const ::std::size_t ) const noexcept { return last (); }
+    ::std::string get_site_path () const
+    {   return get_type_site_path (box_); }
     ::std::string report () const
     {   ::std::string s;
         if (status_ == s_invalid) s = "x";

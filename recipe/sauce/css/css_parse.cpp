@@ -379,7 +379,7 @@ bool css::parse (const ::std::string& content, const bool x, const bool mdm)
     breed (ticks_, args_.t_, b, e);
     boast (args_.t_);
 
-    if (mdm) page_.css ().media ().parse (args_, css_context, 0, -1);
+    if (mdm) page_.css ().media ().parse (args_, 0, -1);
     else
     {   st_.parse (args_);
         check_for_standard_classes (context.html_ver ());

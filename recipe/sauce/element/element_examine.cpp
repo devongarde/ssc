@@ -277,8 +277,9 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
                 if (! u.invalid ())
                 {   nitpick nuts;
                     if (! u.is_local ())
-                        pick (nit_gather, es_comment, ec_css, "gathering CSS information from ", u.original ());
-                    page_ -> css ().parse_file (nuts, node_.namespaces (), u, false);
+                        if (! context.cache ().empty ()) pick (nit_gather, es_info, ec_css, "gathering CSS information from ", u.original ());
+                        else pick (nit_gather, es_comment, ec_css, "gathering CSS information from ", u.original ());
+                    page_ -> css ().parse_file (nuts, node_.namespaces (), u, false, u.is_local (), false, page_ -> xxx ());
                     if (context.extra () || ! u.is_local ())
                         node_.nits ().merge (nuts); } }
             break;

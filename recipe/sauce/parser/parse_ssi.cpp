@@ -323,12 +323,13 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
                     if (! borked)
                     {   if (context.shadow_changed ())
                         {   nitpick knots;
-                            nits.pick (nit_ssi, es_debug, ec_shadow, "SSI virtual ", p.get_directory () ->get_disk_path (knots, u), " last updated ", when);
+                            nits.pick (nit_ssi, es_debug, ec_shadow, "SSI virtual ", p.get_directory () -> get_disk_path (knots, u), " last updated ", when);
                             if (when > updated) updated = when; }
                         if (! content.empty ())
                             return parse_ssi (nits, v, p, c, content, updated); } }
         set_ssi_context (ln, nits, es_error);
-        nits.pick (nit_ssi_include_error, es_error, ec_ssi, PROG " cannot verify ", file); }
+        if (! file.empty ()) nits.pick (nit_ssi_include_error, es_error, ec_ssi, PROG " cannot verify ", file);
+        else if (! vrt.empty ()) nits.pick (nit_ssi_include_error, es_error, ec_ssi, PROG " cannot verify ", vrt); }
     return c.errmsg_; }
 
 ::std::string printenv_command (nitpick& , const ssi_compedium& c, const vstr_t& )

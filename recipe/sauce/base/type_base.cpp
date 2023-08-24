@@ -20,6 +20,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "type/type.h"
+#include "webpage/directory.h"
+#include "webpage/page.h"
+#include "element/element.h"
 
 struct enum_name_t {
     e_type t_;
@@ -376,6 +379,14 @@ enum_name_t enum_name [] =
     { t_css_gap, "CSS gap" },
     { t_css_generic_family, "CSS generic family" },
     { t_css_gradient, "CSS gradient" },
+    { t_css_grid, "CSS grid" },
+    { t_css_grid_line, "CSS grid line" },
+    { t_css_grid_lines, "CSS grid lines" },
+    { t_css_grid_auto_flow, "CSS grid auto flow" },
+    { t_css_grid_template, "CSS grid template" },
+    { t_css_grid_templates, "CSS grid templates" },
+    { t_css_grid_track_size, "CSS grid track size" },
+    { t_css_grid_track_sizes, "CSS grid track sizes" },
     { t_css_hue, "CSS hue" },
     { t_css_hue_interpolation, "CSS hue interpolation" },
     { t_css_hue_n, "CSS hue n" },
@@ -460,6 +471,11 @@ enum_name_t enum_name [] =
     { t_css_rgb_xyz, "CSS rgb xyz" },
     { t_css_scrollbar_gutter, "CSS scrollbar gutter" },
     { t_css_self_position, "CSS self position" },
+    { t_css_shape_box, "CSS shape box" },
+    { t_css_shape_fillrule, "CSS shape fillrule" },
+    { t_css_shape_outside, "CSS shape outside" },
+    { t_css_shape_position, "CSS shape position" },
+    { t_css_shape_radius, "CSS shape radius" },
     { t_css_size, "CSS size" },
     { t_css_spacing, "CSS spacing" },
     { t_css_speak, "CSS speak" },
@@ -491,6 +507,8 @@ enum_name_t enum_name [] =
     { t_css_text_resize, "CSS text resize" },
     { t_css_text_shadow, "CSS text shadow" },
     { t_css_text_transform, "CSS text transform" },
+    { t_css_track_list, "CSS track list" },
+    { t_css_track_list_auto, "CSS track list auto" },
     { t_css_trans_prop, "CSS trans prop" },
     { t_css_trans_prop_a, "CSS trans prop a" },
     { t_css_trans_prop_n, "CSS trans prop n" },
@@ -958,6 +976,7 @@ enum_name_t enum_name [] =
     { t_root_url, "root url" },
     { t_rotate, "rotate" },
     { t_rotate_anim, "rotate anim" },
+    { t_row_column, "row column" },
     { t_rowscols, "rows cols" },
     { t_rsvp, "rsvp" },
     { t_rules, "rules" },
@@ -1086,6 +1105,7 @@ enum_name_t enum_name [] =
     { t_text_rendering, "text rendering" },
     { t_textoverflow, "text overflow" },
     { t_texts, "texts" },
+    { t_texts_n, "texts n" },
     { t_tfa, "tfa" },
     { t_tfi, "tfi" },
     { t_tfmu, "tfmu" },
@@ -1222,3 +1242,8 @@ void type_name_init ()
 {   PRESUME (e <= t_error, __FILE__, __LINE__);
     PRESUME (! vtn.at (e).empty (), __FILE__, __LINE__);
     return vtn.at (e); }
+
+::std::string get_type_site_path (const element* const box)
+{   if (box == nullptr) return ::std::string ();
+    if (box -> get_page ().get_directory () == nullptr) return ::std::string ();
+    return box -> get_page ().get_directory () -> get_site_path (); }

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>grid 3 example</title>
+    <LINK rel="stylesheet" href="css-7.css" type="text/css">
+  </head>
+
+<BODY>
+
+<style>
+#grid {
+  width: 500px;
+  grid-template-columns:
+    [a]     auto
+    [b]     minmax(min-content, 1fr)
+    [b c d] repeat(2, [e] 40px)
+            repeat(5, auto);
+}
+</style>
+<div id="grid">
+  <div style="grid-column-start: 1; width: 50px"></div>
+  <div style="grid-column-start: 9; width: 50px"></div>
+</div>
+<script>
+  var gridElement = document.getElementById("grid");
+  getComputedStyle(gridElement).gridTemplateColumns;
+  // [a] 50px [b] 320px [b c d e] 40px [e] 40px 0px 0px 0px 0px 50px
+</script>
+
+<style>
+  #grid {
+    display: grid;
+    grid-template-columns: 20px;
+    grid-auto-columns: 40px;
+    grid-template-rows: 20px;
+    grid-auto-rows: 40px;
+  }
+  #A { grid-column: 1; grid-row: 1; }
+  #B { grid-column: 2; grid-row: 1; }
+  #C { grid-column: 1; grid-row: 2; }
+  #D { grid-column: 2; grid-row: 2; }
+</style>
+
+<div id="grid">
+  <div id="A">A</div>
+  <div id="B">B</div>
+  <div id="C">C</div>
+  <div id="D">D</div>
+</div>
+
+<style type="text/css">
+form {
+  display: grid;
+  /* Define three columns, all content-sized,
+     and name the corresponding lines. */
+  grid-template-columns: [labels] auto [controls] auto [oversized] auto;
+  grid-auto-flow: row dense;
+}
+form > label {
+  /* Place all labels in the "labels" column and
+     automatically find the next available row. */
+  grid-column: labels;
+  grid-row: auto;
+}
+form > input, form > select {
+  /* Place all controls in the "controls" column and
+     automatically find the next available row. */
+  grid-column: controls;
+  grid-row: auto;
+}
+
+#department-block {
+  /* Auto place this item in the "oversized" column
+     in the first row where an area that spans three rows
+     won’t overlap other explicitly placed items or areas
+     or any items automatically placed prior to this area. */
+  grid-column: oversized;
+  grid-row: span 3;
+}
+
+/* Place all the buttons of the form
+   in the explicitly defined grid area. */
+#buttons {
+  grid-row: auto;
+
+  /* Ensure the button area spans the entire grid element
+     in the inline axis. */
+  grid-column: 1 / -1;
+  text-align: end;
+}
+</style>
+<form>
+  <label for="firstname">First name:</label>
+  <input type="text" id="firstname" name="firstname" />
+  <label for="lastname">Last name:</label>
+  <input type="text" id="lastname" name="lastname" />
+  <label for="address">Address:</label>
+  <input type="text" id="address" name="address" />
+  <label for="address2">Address 2:</label>
+  <input type="text" id="address2" name="address2" />
+  <label for="city">City:</label>
+  <input type="text" id="city" name="city" />
+  <label for="state">State:</label>
+  <select type="text" id="state" name="state">
+    <option value="WA">Washington</option>
+  </select>
+  <label for="zip">Zip:</label>
+  <input type="text" id="zip" name="zip" />
+
+  <div id="department-block">
+    <label for="department">Department:</label>
+    <select id="department" name="department" multiple>
+      <option value="finance">Finance</option>
+      <option value="humanresources">Human Resources</option>
+      <option value="marketing">Marketing</option>
+    </select>
+  </div>
+
+  <div id="buttons">
+    <button id="cancel">Cancel</button>
+    <button id="back">Back</button>
+    <button id="next">Next</button>
+  </div>
+</form>
+
+</BODY>
+
+</html>

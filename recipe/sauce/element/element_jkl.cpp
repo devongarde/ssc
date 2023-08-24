@@ -264,7 +264,7 @@ void element::examine_link ()
                         if (! u.invalid ())
                         {   nitpick nuts;
                             const bool local = u.is_local ();
-                            if (! local) pick (nit_gather, es_comment, ec_css, "gathering ", u.original ());
-                            page_ -> css ().parse_file (nuts, node_.namespaces (), u, false, local);
-                            if (context.extra () || ! local)
+                            if (! context.cache ().empty () || ! local) pick (nit_gather, es_comment, ec_css, "gathering ", u.original ());
+                            page_ -> css ().parse_file (nuts, node_.namespaces (), u, false, local, false, page_ -> xxx ());
+                            if (page_ -> xxx () || context.extra () || ! local)
                                 nits ().merge (nuts); } } } }

@@ -28,7 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/q.h"
 
 const char* stage_name [] =
-{   "initialising ", "scanning ", "prioritising ", "processing ", "reviewing ", "max " };
+{   "initialising ", "scanning ", "considering", "processing ", "reviewing ", "max " };
 
 bool d_q (q_entry& qe)
 {   VERIFY_NOT_NULL (qe.ticks_, __FILE__, __LINE__);
