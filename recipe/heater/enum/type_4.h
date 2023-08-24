@@ -119,6 +119,9 @@ template < > struct type_master < t_css_orientation > : four_value < t_css_orien
 template < > struct type_master < t_css_polar > : four_value < t_css_polar, e_css_polar, sz_hsl, sz_hwb, sz_lch, sz_oklch >
 { using four_value < t_css_polar, e_css_polar, sz_hsl, sz_hwb, sz_lch, sz_oklch > :: four_value; };
 
+template < > struct type_master < t_css_shape_box > : four_value < t_css_shape_box, e_css_shape_box, sz_border_box, sz_content_box, sz_margin_box, sz_padding_box >
+{ using four_value < t_css_shape_box, e_css_shape_box, sz_border_box, sz_content_box, sz_margin_box, sz_padding_box > :: four_value; };
+
 template < > struct type_master < t_css_speak > : four_value < t_css_speak, e_css_speak, sz_inherit, sz_none, sz_normal, sz_spell_out >
 { using four_value < t_css_speak, e_css_speak, sz_inherit, sz_none, sz_normal, sz_spell_out > :: four_value; };
 

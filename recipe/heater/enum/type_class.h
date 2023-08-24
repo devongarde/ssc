@@ -76,7 +76,7 @@ template < > inline void enum_vec < t_class, e_class > :: set_value (nitpick& ni
                 if (note_class_usage (box (), s))
                     nits.pick (nit_spotted_css_class, es_comment, ec_css, "CSS class ", quote (s), " recognised");
                 else if (! check_class_spelling (nits, v, s))
-                    nits.pick (nit_unrecognised_value, es_warning, ec_type, quote (s), " is unknown");
+                    nits.pick (nit_unrecognised_value, es_warning, ec_type, "class ", quote (s), " is not mentioned in any CSS style sheet");
             t.status (s_good); }
         enum_vec_base < e_class, t_class > :: originals_.push_back (s);
         enum_vec_base < e_class, t_class > :: value_.push_back (t); }

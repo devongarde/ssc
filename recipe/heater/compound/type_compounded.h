@@ -104,6 +104,9 @@ template < > struct type_master < t_text_2 > : type_one_or_both < t_text_2, t_te
 template < > struct type_master < t_texts > : type_at_least_one < t_texts, sz_space_char, t_text >
 { using type_at_least_one < t_texts, sz_space_char, t_text > :: type_at_least_one; };
 
+template < > struct type_master < t_texts_n > : type_or_string < t_texts_n, t_texts, sz_none >
+{ using type_or_string < t_texts_n, t_texts, sz_none > :: type_or_string; };
+
 template < > struct type_master < t_transparentsz > : type_string < t_transparentsz, sz_transparent >
 { using type_string < t_transparentsz, sz_transparent > :: type_string; };
 

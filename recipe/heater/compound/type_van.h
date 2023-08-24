@@ -281,7 +281,7 @@ template < > struct type_master < t_og > : type_either_or < t_og, t_url, t_ogtyp
         {   nitpick nuts;
             if (v >= html_jan14)
             {   url u (nuts, v, s, pr_other);
-                if (! u.invalid () && u.has_absolute_path () && u.is_usable ())
+                if (! u.invalid () && u.has_absolute_path () && u.is_usable () && ! u.deduced_path ())
                 {   nits.merge (nuts); return; } }
             if (test_value < t_ogtype > (nits, v, s)) return;
             nits.merge (nuts); }

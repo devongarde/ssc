@@ -825,6 +825,7 @@ const nitname nitnames [] =
     { nit_clacks, "clacks" },
     { nit_bad_supports, "bad_supports" },
     { nit_experimental, "experimental" },
+    { nit_cache, "cache" },
 
     { nit_incompatible, "incompatible" },
 

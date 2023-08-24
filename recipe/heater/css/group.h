@@ -52,7 +52,7 @@ public:
     css_ptr parse (const ::std::string& content, const html_version& v, bool sv, int line = 0, const e_element e = elem_undefined);
     bool parse (const ::std::string& content, const html_version& v, const namespaces_ptr& namespaces, const element_bitset eb, bool sv,
                 int line = 0, const e_element e = elem_undefined, const ::boost::filesystem::path dp = ::boost::filesystem::path ());
-    bool parse_file (nitpick& nits, const namespaces_ptr& ns, const url& u, const bool state_version = false, const bool local = true, const bool reparse = false);
+    bool parse_file (nitpick& nits, const namespaces_ptr& ns, const url& u, const bool state_version = false, const bool local = true, const bool reparse = false, const bool xxx = false);
     css_ptr parse_media_queries (   const ::std::string& content, const html_version& v, page& p, const namespaces_ptr& namespaces, const element_bitset eb, bool sv,
                                     int line = 0, const e_element e = elem_undefined);
     bool note_class (const e_element e, const ::std::string& s);

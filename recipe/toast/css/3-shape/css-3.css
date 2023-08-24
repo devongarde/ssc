@@ -1,0 +1,14 @@
+﻿.wombats-in-space
+{   
+    shape-outside : circle(at left bottom);
+
+    shape-outside : circle(closest-side at center);
+
+    shape-outside : circle(at bottom left);
+
+    shape-outside : circle(at right 5px bottom 10px);
+
+    shape-outside : circle(at right 5px top);
+
+    shape-outside : circle(at right 5% top 0px);
+}

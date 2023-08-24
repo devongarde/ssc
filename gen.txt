@@ -127,6 +127,13 @@ line, the "no-" switch always applies.
 --css.frag X            Use CSS Fragmentation level X, where X is 0, 3
                         or 4
 
+--css.grid X            Use CSS Grid level X, where X is 0, 3 or 4
+                        (since the specs confusingly use levels 1 and 2
+                        for versions of CSS which are not CSS 1 nor
+                        2.x, ssc accepts 1 for 3, and 2 for 4).
+
+--css.image X           Use CSS Images level X, where X is 0, 3 or 4
+
 --css.media X           Use CSS Media level X, where X is 0, 3, 4 or 5
 
 --css.multi-column X    Use CSS Multi-Column level X, where X is 0 or 3
@@ -138,6 +145,8 @@ line, the "no-" switch always applies.
 --css.position X        Use CSS Positions level X, where X is 0 or 3
 
 --css.selector X        Use CSS Selectors level X, where X is 0, 3 or 4
+
+--css.shape X           Use CSS Shapes level X, where X is 0, 3 or 4
 
 --css.style X           Use CSS Style level X, where X is 0 or 3
 

@@ -283,7 +283,7 @@ void statement::parse_import (arguments& args, nitpick& nits, const int from, co
             nits.merge (knots); } }
     if ((mql > 0) && ((to < 0) || (mql < to)))
     {   fiddlesticks < statement > f (&args.st_, this);
-        media_.parse (args, css_media, mql, to); } }
+        media_.parse (args, mql, to); } }
 
 void statement::parse_keyframes (arguments& args, nitpick& nits, const int from, const int to)
 {   if (context.html_ver ().css_animation () < 3)
@@ -401,7 +401,7 @@ void statement::parse_media (arguments& args, nitpick& nits, const int from, con
 #endif // DEBUG
                 fiddlesticks < statement > f (&args.st_, this);
                 if (st == i) nits.pick (nit_css_syntax, es_info, ec_css, "no @media condition, all presumed");
-                else media_.parse (args, css_media, i, prev);
+                else media_.parse (args, i, prev);
                 vst_.emplace_back (pst_t (new statements (args, args.t_.at (st).child_))); } } } }
 
 void statement::parse_namespace (arguments& args, nitpick& nits, const int from, const int to)
@@ -533,7 +533,6 @@ void statement::parse_supports (arguments& args, nitpick& nits, const int from, 
                 nits.pick (nit_css_scope, es_error, ec_css, "@supports requires { ... }");
             else
             {   fiddlesticks < statement > f (&args.st_, this);
-//                media_.parse (args, css_supports, i, ket);
                 if (args.t_.at (i).t_ != ct_round_brac) prop_.parse (args, i, ket);
                 else if (i < ket-1) bracketed_property (args, nits, ket-1, i);
                 vst_.emplace_back (pst_t (new statements (args, args.t_.at (ket).child_))); } } } }

@@ -123,6 +123,9 @@ template < > struct type_master < t_css_isolation > : two_value < t_css_isolatio
 template < > struct type_master < t_css_mark > : two_value < t_css_mark, e_css_mark, sz_crop, sz_cross, false >
 { using two_value < t_css_mark, e_css_mark, sz_crop, sz_cross, false > :: two_value; };
 
+template < > struct type_master < t_css_shape_fillrule > : two_value < t_css_shape_fillrule, e_css_shape_fillrule, sz_evenodd, sz_nonzero, false >
+{ using two_value < t_css_shape_fillrule, e_css_shape_fillrule, sz_evenodd, sz_nonzero, false > :: two_value; };
+
 template < > struct type_master < t_css_text_resize > : two_value < t_css_text_resize, e_css_text_resize, sz_clip, sz_ellipsis, false >
 { using two_value < t_css_text_resize, e_css_text_resize, sz_clip, sz_ellipsis, false > :: two_value; };
 
@@ -240,6 +243,9 @@ template < > struct type_master < t_popover > : two_value < t_popover, e_popover
 
 template < > struct type_master < t_propagate > : two_value < t_propagate, e_propagate, sz_stop, sz_continue, false >
 { using two_value < t_propagate, e_propagate, sz_stop, sz_continue, false > :: two_value; };
+
+template < > struct type_master < t_row_column > : two_value < t_row_column, e_row_column, sz_column, sz_row, false >
+{ using two_value < t_row_column, e_row_column, sz_column, sz_row, false > :: two_value; };
 
 template < > struct type_master < t_safe_unsafe > : two_value < t_safe_unsafe, e_safe_unsafe, sz_safe, sz_unsafe, false >
 { using two_value < t_safe_unsafe, e_safe_unsafe, sz_safe, sz_unsafe, false > :: two_value; };

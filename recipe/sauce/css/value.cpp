@@ -52,6 +52,9 @@ int test_value_fns (arguments& args, int& start, const int to, nitpick& nits, co
     int test_value_fns_7 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_8 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_9 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_10 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_11 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_12 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     
     if (t <= SSC_TYPE_1_MAX) return test_value_fns_1 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPE_2_MAX) return test_value_fns_2 (args, start, to, nits, t, fn, id);
@@ -61,7 +64,11 @@ int test_value_fns (arguments& args, int& start, const int to, nitpick& nits, co
     if (t <= SSC_TYPE_6_MAX) return test_value_fns_6 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPE_7_MAX) return test_value_fns_7 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPE_8_MAX) return test_value_fns_8 (args, start, to, nits, t, fn, id);
-    return test_value_fns_9 (args, start, to, nits, t, fn, id); }
+    if (t <= SSC_TYPE_9_MAX) return test_value_fns_9 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPE_10_MAX) return test_value_fns_10 (args, start, to, nits, t, fn, id);
+    if (t <= SSC_TYPE_11_MAX) return test_value_fns_11 (args, start, to, nits, t, fn, id);
+    return test_value_fns_12 (args, start, to, nits, t, fn, id); }
 #else // LIMITED_META_COMPLEXITY
-{   return value_types < SSC_TYPES_1, SSC_TYPES_2, SSC_TYPES_3, SSC_TYPES_4, SSC_TYPES_5, SSC_TYPES_6, SSC_TYPES_7, SSC_TYPES_8, SSC_TYPES_9, t_unknown > :: check (args, start, to, nits, t, fn, id); }
+{   return value_types <    SSC_TYPES_1, SSC_TYPES_2, SSC_TYPES_3, SSC_TYPES_4, SSC_TYPES_5, SSC_TYPES_6,
+                            SSC_TYPES_7, SSC_TYPES_8, SSC_TYPES_9, SSC_TYPES_10, SSC_TYPES_11, SSC_TYPES_12, t_unknown > :: check (args, start, to, nits, t, fn, id); }
 #endif // LIMITED_META_COMPLEXITY 

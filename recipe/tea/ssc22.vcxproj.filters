@@ -1197,6 +1197,21 @@
     <Filter Include="Toast\CSS\simple">
       <UniqueIdentifier>{18fc7d2d-913f-4844-9a04-57152fe23df5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\CSS\3-grid">
+      <UniqueIdentifier>{aa4445d5-fd6a-4e67-9734-ca22925a7dd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\4-grid">
+      <UniqueIdentifier>{3b61fb87-c756-4c4e-a6bd-a4537b19c5de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-shape">
+      <UniqueIdentifier>{82404d67-16fb-48db-a1ae-eda7f50b18d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\ae">
+      <UniqueIdentifier>{c08e83b9-331f-498f-9b1f-3f689f5289f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\ae\plumbing">
+      <UniqueIdentifier>{91da426f-d1e9-4329-9357-23f28c516bd0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -2522,6 +2537,15 @@
       <Filter>Sauce\css</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\medium.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_10.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_11.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_12.cpp">
       <Filter>Sauce\css</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32132,6 +32156,150 @@
     </None>
     <None Include="..\toast\css\simple\css.spec">
       <Filter>Toast\CSS\simple</Filter>
+    </None>
+    <None Include="..\toast\css\3-grid\css.conf">
+      <Filter>Toast\CSS\3-grid</Filter>
+    </None>
+    <None Include="..\toast\css\3-grid\css.spec">
+      <Filter>Toast\CSS\3-grid</Filter>
+    </None>
+    <None Include="..\toast\css\3-grid\css-1.css">
+      <Filter>Toast\CSS\3-grid</Filter>
+    </None>
+    <None Include="..\toast\css\3-grid\css-1.html">
+      <Filter>Toast\CSS\3-grid</Filter>
+    </None>
+    <None Include="..\toast\css\3-grid\index.html">
+      <Filter>Toast\CSS\3-grid</Filter>
+    </None>
+    <None Include="..\toast\css\3-grid\css-2.css">
+      <Filter>Toast\CSS\3-grid</Filter>
+    </None>
+    <None Include="..\toast\css\3-grid\css-3.css">
+      <Filter>Toast\CSS\3-grid</Filter>
+    </None>
+    <None Include="..\toast\css\3-grid\css-4.css">
+      <Filter>Toast\CSS\3-grid</Filter>
+    </None>
+    <None Include="..\toast\css\3-grid\css-5.css">
+      <Filter>Toast\CSS\3-grid</Filter>
+    </None>
+    <None Include="..\toast\css\3-grid\css-6.html">
+      <Filter>Toast\CSS\3-grid</Filter>
+    </None>
+    <None Include="..\toast\css\3-grid\css-7.css">
+      <Filter>Toast\CSS\3-grid</Filter>
+    </None>
+    <None Include="..\toast\css\3-grid\css-7.html">
+      <Filter>Toast\CSS\3-grid</Filter>
+    </None>
+    <None Include="..\toast\css\3-grid\css-8.css">
+      <Filter>Toast\CSS\3-grid</Filter>
+    </None>
+    <None Include="..\toast\css\3-grid\css-9.css">
+      <Filter>Toast\CSS\3-grid</Filter>
+    </None>
+    <None Include="..\toast\css\3-grid\css-10.css">
+      <Filter>Toast\CSS\3-grid</Filter>
+    </None>
+    <None Include="..\toast\css\4-grid\css.conf">
+      <Filter>Toast\CSS\4-grid</Filter>
+    </None>
+    <None Include="..\toast\css\4-grid\css.spec">
+      <Filter>Toast\CSS\4-grid</Filter>
+    </None>
+    <None Include="..\toast\css\4-grid\css-1.css">
+      <Filter>Toast\CSS\4-grid</Filter>
+    </None>
+    <None Include="..\toast\css\4-grid\css-1.html">
+      <Filter>Toast\CSS\4-grid</Filter>
+    </None>
+    <None Include="..\toast\css\4-grid\css-2.css">
+      <Filter>Toast\CSS\4-grid</Filter>
+    </None>
+    <None Include="..\toast\css\4-grid\css-3.css">
+      <Filter>Toast\CSS\4-grid</Filter>
+    </None>
+    <None Include="..\toast\css\4-grid\css-4.css">
+      <Filter>Toast\CSS\4-grid</Filter>
+    </None>
+    <None Include="..\toast\css\4-grid\css-5.css">
+      <Filter>Toast\CSS\4-grid</Filter>
+    </None>
+    <None Include="..\toast\css\4-grid\css-6.html">
+      <Filter>Toast\CSS\4-grid</Filter>
+    </None>
+    <None Include="..\toast\css\4-grid\css-7.css">
+      <Filter>Toast\CSS\4-grid</Filter>
+    </None>
+    <None Include="..\toast\css\4-grid\css-7.html">
+      <Filter>Toast\CSS\4-grid</Filter>
+    </None>
+    <None Include="..\toast\css\4-grid\css-8.css">
+      <Filter>Toast\CSS\4-grid</Filter>
+    </None>
+    <None Include="..\toast\css\4-grid\css-9.css">
+      <Filter>Toast\CSS\4-grid</Filter>
+    </None>
+    <None Include="..\toast\css\4-grid\css-10.css">
+      <Filter>Toast\CSS\4-grid</Filter>
+    </None>
+    <None Include="..\toast\css\4-grid\css-11.css">
+      <Filter>Toast\CSS\4-grid</Filter>
+    </None>
+    <None Include="..\toast\css\4-grid\index.html">
+      <Filter>Toast\CSS\4-grid</Filter>
+    </None>
+    <None Include="..\toast\css\4-grid\css-9.html">
+      <Filter>Toast\CSS\4-grid</Filter>
+    </None>
+    <None Include="..\toast\css\3-shape\css.conf">
+      <Filter>Toast\CSS\3-shape</Filter>
+    </None>
+    <None Include="..\toast\css\3-shape\css.spec">
+      <Filter>Toast\CSS\3-shape</Filter>
+    </None>
+    <None Include="..\toast\css\3-shape\css-2.css">
+      <Filter>Toast\CSS\3-shape</Filter>
+    </None>
+    <None Include="..\toast\css\3-shape\css-2.html">
+      <Filter>Toast\CSS\3-shape</Filter>
+    </None>
+    <None Include="..\toast\css\3-shape\index.html">
+      <Filter>Toast\CSS\3-shape</Filter>
+    </None>
+    <None Include="..\toast\css\3-shape\css-3.css">
+      <Filter>Toast\CSS\3-shape</Filter>
+    </None>
+    <None Include="..\toast\css\3-shape\css-4.html">
+      <Filter>Toast\CSS\3-shape</Filter>
+    </None>
+    <None Include="..\toast\css\3-shape\css-5.css">
+      <Filter>Toast\CSS\3-shape</Filter>
+    </None>
+    <None Include="..\toast\css\ae\index.html">
+      <Filter>Toast\CSS\ae</Filter>
+    </None>
+    <None Include="..\toast\css\ae\songlight.css">
+      <Filter>Toast\CSS\ae</Filter>
+    </None>
+    <None Include="..\toast\css\ae\css.spec">
+      <Filter>Toast\CSS\ae</Filter>
+    </None>
+    <None Include="..\toast\css\ae\css.conf">
+      <Filter>Toast\CSS\ae</Filter>
+    </None>
+    <None Include="..\toast\css\ae\parked.html">
+      <Filter>Toast\CSS\ae</Filter>
+    </None>
+    <None Include="..\toast\css\ae\index-2.html">
+      <Filter>Toast\CSS\ae</Filter>
+    </None>
+    <None Include="..\toast\css\ae\oindex.html">
+      <Filter>Toast\CSS\ae</Filter>
+    </None>
+    <None Include="..\toast\css\ae\plumbing\songlight.css">
+      <Filter>Toast\CSS\ae\plumbing</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

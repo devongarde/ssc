@@ -1,0 +1,19 @@
+﻿.wombats-on-toast
+{   shape-outside: polygon(0 0, 500% 500%, 0 500%);
+
+    shape-outside: inset(0% 50% 0% 50%);
+
+    shape-outside: inset(0% 150% 50% 0%);
+
+    shape-outside: inset(50% 0% 0% 50%);
+    shape-margin: 0px;
+
+    shape-outside: polygon(50px 0px, 100px 100px, 0px 100px); }
+
+.float-left {
+  shape-outside: polygon(0% 50%, 50% 100%, 0 100%);
+  float: left;
+  width: 100px;
+  height: 100px;
+  margin-top: 20px;
+}

@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.19)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.1.31 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
+project (ssc VERSION 0.1.32 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
 
 set (CMAKE_CXX_STANDARD 17)
 
@@ -306,7 +306,7 @@ target_sources (ssc PRIVATE
             ${S}/css/rules.cpp ${S}/css/selector.cpp ${S}/css/selectors.cpp ${S}/css/statement.cpp ${S}/css/statements.cpp ${S}/css/typed_property.cpp
             ${S}/css/value.cpp ${S}/css/value2.cpp ${S}/css/value_types_1.cpp ${S}/css/value_types_2.cpp ${S}/css/value_types_3.cpp
             ${S}/css/value_types_4.cpp ${S}/css/value_types_5.cpp ${S}/css/value_types_6.cpp ${S}/css/value_types_7.cpp ${S}/css/value_types_8.cpp
-            ${S}/css/value_types_9.cpp ${S}/css/weight.cpp 
+            ${S}/css/value_types_9.cpp ${S}/css/value_types_10.cpp ${S}/css/value_types_11.cpp ${S}/css/value_types_12.cpp ${S}/css/weight.cpp 
         ${S}/element/elem.cpp ${S}/element/element.cpp ${S}/element/element_abcd.cpp ${S}/element/element_aria.cpp ${S}/element/element_attributes.cpp
             ${S}/element/element_classes.cpp ${S}/element/element_efghi.cpp ${S}/element/element_examine.cpp ${S}/element/element_input.cpp
             ${S}/element/element_jkl.cpp ${S}/element/element_microdata.cpp ${S}/element/element_microformats.cpp ${S}/element/element_mno.cpp

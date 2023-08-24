@@ -43,6 +43,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 void page::init (const ::std::string& name, ::std::string& content, const fileindex_t x)
 {   ids_.ndx (x);
     names_.ndx (x, false);
+    const ::std::string& xx = context.x ();
+    if (! xx.empty ()) xxx_ = find_no_case (name, xx) != ::std::string::npos;
     if (is_css (name))
     {   dot_css_ = true;
         if (context.load_css () && (context.css_version () >= css_1))

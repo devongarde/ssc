@@ -412,7 +412,7 @@ template < e_type T, e_type U, class SZ, e_type P, int F = 0 > struct type_many_
         uq4 < T, SZ, F > :: status (s_invalid); }
     ::std::size_t size () const { return size_; } };
 
-template < e_type T, e_type U, class SZ, e_type P, int MN, int MX > struct type_must_then_opt : tidy_string < T >
+template < e_type T, e_type U, class SZ, e_type P, int MN = 0, int MX = 1 > struct type_must_then_opt : tidy_string < T >
 {   using tidy_string < T > :: tidy_string;
     ::std::size_t size_ = 0;
     static e_animation_type animation_type () noexcept { return grab_animation_type < U > (); }

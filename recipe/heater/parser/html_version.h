@@ -408,9 +408,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_CS_3         0x0800000000000000
 
 #define H2_CSS_COND_RULE_3  0x1000000000000000
-#define H2_CSS_COND_RULE_4  0x1000000000000000
+#define H2_CSS_COND_RULE_4  0x2000000000000000
 #define H2_CSS_COND_RULE_34 ( H2_CSS_COND_RULE_3 | H2_CSS_COND_RULE_4 )
-#define H2_CSS_COND_RULE_5  0x1000000000000000
+#define H2_CSS_COND_RULE_5  0x4000000000000000
 #define H2_CSS_COND_RULE_45 ( H2_CSS_COND_RULE_4 | H2_CSS_COND_RULE_5 )
 #define H2_CSS_COND_RULE    ( H2_CSS_COND_RULE_34 | H2_CSS_COND_RULE_5 )
 #define H2_CSS_COND_RULE_MASK H2_CSS_COND_RULE
@@ -466,10 +466,28 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define H3_CSS_TABLE        0x0000000000000800
 
-#define H3_CSS_3        ( H3_CSS_BOX_ALIGN | H3_CSS_BOX_MODEL_3 | H3_CSS_BOX_SIZING | H3_CSS_DISPLAY | H3_CSS_MULTI_COL | H3_CSS_OVERFLOW | H3_CSS_POSITION | H3_CSS_TABLE | H3_CSS_TRANSITION | H3_CSS_WRITING_3 )
-#define H3_CSS_4        ( H3_CSS_BOX_MODEL_4 | H3_CSS_WRITING_4 )
-#define H3_CSS_5          0
-#define H3_CSS_6          0
+#define H3_CSS_GRID_3       0x0000000000001000
+#define H3_CSS_GRID_4       0x0000000000002000
+#define H3_CSS_GRID       ( H3_CSS_GRID_3 | H3_CSS_GRID_4 )  
+#define H3_CSS_GRID_MASK    H3_CSS_GRID
+
+#define H3_CSS_SHAPE_3      0x0000000000004000
+#define H3_CSS_SHAPE_4      0x0000000000008000
+#define H3_CSS_SHAPE_34   ( H3_CSS_SHAPE_3 | H3_CSS_SHAPE_4 )  
+#define H3_CSS_SHAPE        H3_CSS_SHAPE_34  
+#define H3_CSS_SHAPE_MASK   H3_CSS_SHAPE
+
+#define H3_CSS_IMAGE_3      0x0000000000010000
+#define H3_CSS_IMAGE_4      0x0000000000020000
+#define H3_CSS_IMAGE_34   ( H3_CSS_IMAGE_3 | H3_CSS_IMAGE_4 )  
+#define H3_CSS_IMAGE        H3_CSS_IMAGE_34  
+#define H3_CSS_IMAGE_MASK   H3_CSS_IMAGE
+
+#define H3_CSS_3          ( H3_CSS_BOX_ALIGN | H3_CSS_BOX_MODEL_3 | H3_CSS_BOX_SIZING | H3_CSS_DISPLAY | H3_CSS_GRID_3 | H3_CSS_IMAGE_3 | H3_CSS_MULTI_COL | H3_CSS_OVERFLOW | H3_CSS_POSITION | \
+                            H3_CSS_SHAPE_3 | H3_CSS_TABLE | H3_CSS_TRANSITION | H3_CSS_WRITING_3 )
+#define H3_CSS_4          ( H3_CSS_BOX_MODEL_4 | H3_CSS_GRID_4 | H3_CSS_IMAGE_4 | H3_CSS_SHAPE_4 | H3_CSS_WRITING_4 )
+#define H3_CSS_5            0
+#define H3_CSS_6            0
   
 #define H3_CSS_3_FULL   ( H3_CSS_3 )
 #define H3_CSS_4_FULL   ( H3_CSS_4 | H3_CSS_3_FULL )
@@ -486,7 +504,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H3_CSS_MASK       H3_CSS_ALL
 #define H3_CSS            H3_CSS_ALL
 
-#define H3_FULL_CSS_MASK    0x0000000000000FFF
+#define H3_FULL_CSS_MASK    0x000000000003FFFF
 
 class html_version : public version
 {   flags_t ext_ = NOFLAGS, ext2_ = NOFLAGS, ext3_ = NOFLAGS;
@@ -726,6 +744,10 @@ public:
     void css_font (const int n);
     int css_fragmentation () const;
     void css_fragmentation (const int n);
+    int css_grid () const;
+    void css_grid (const int n);
+    int css_image () const;
+    void css_image (const int n);
     int css_media () const;
     void css_media (const int n);
     int css_multi_column () const;
@@ -738,6 +760,8 @@ public:
     void css_position (const int n);
     int css_selector () const;
     void css_selector (const int n);
+    int css_shape () const;
+    void css_shape (const int n);
     int css_style () const;
     void css_style (const int n);
     int css_syntax () const;

@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/media.h"
 #include "utility/quote.h"
 
-void media_t::parse (arguments& args, const e_css_statement cs, const int from, const int to)
+void media_t::parse (arguments& args, const int from, const int to)
 {   PRESUME ((from <= to) || (to < 0), __FILE__, __LINE__);
     const int len = GSL_NARROW_CAST <int> (args.t_.size ());
     PRESUME (from < len, __FILE__, __LINE__);
@@ -33,11 +33,11 @@ void media_t::parse (arguments& args, const e_css_statement cs, const int from, 
     fiddlesticks < media_t > f (&args.media_, this);
     for (int i = from; i >= 0; i = next_token_at (args.t_, i, to))
     {   if (args.t_.at (i).t_ == ct_semicolon)
-        {   if (b != i) mdm_.emplace_back (args, cs, b, prev);
+        {   if (b != i) mdm_.emplace_back (args, b, prev);
             b = -1; }
         else if (b == -1) b = i;
         prev = i; }
-    if (b != -1) mdm_.emplace_back (args, cs, b, to); }
+    if (b != -1) mdm_.emplace_back (args, b, to); }
 
 void media_t::accumulate (stats_t* s) const
 {   for (auto p : mdm_)
