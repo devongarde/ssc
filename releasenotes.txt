@@ -3,6 +3,13 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.33
+- ADMS 1.0 and 2.0 ontologies
+- BFO 2.0 and 2020 ontologies
+- disco (ddi ontology)
+- various bug fixes
+- underlying work
+
 0.1.32
 - CSS Grid 3 (partial)
 - CSS Grid 4 (partial)

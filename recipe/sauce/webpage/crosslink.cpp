@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "webpage/crosslink.h"
 #include "main/context.h"
-#include "schema/schema_type.h"
+#include "ontology/ontology_type.h"
 #include "utility/quote.h"
 
 struct crosslink_t
@@ -146,7 +146,7 @@ void append_typename (::std::string& res, const itemtype_index it, bool& first)
 {   if (! first) res += ", ";
     if (type_category (it) != itemtype_schema)
         res += "other";
-    res += quote (sch::name (static_cast < e_schema_type > (ndx_item (it))));
+    res += quote (sch::name (static_cast < e_ontology_type > (ndx_item (it))));
     first = false; }
 
 ::std::string itemtype_string (const vit_t& vi)

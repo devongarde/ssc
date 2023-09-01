@@ -1,6 +1,6 @@
--N 1 -f ../toast/RDFa/schema/rdfa.conf
+-N 1 -f ../toast/RDFa/ontology/rdfa.conf
 
-PASS ../toast/RDFa/schema/creativework.html
+PASS ../toast/RDFa/ontology/creativework.html
 11 vocab_defined
 13 url_not_found
 27 vocab_defined
@@ -25,13 +25,13 @@ PASS ../toast/RDFa/schema/creativework.html
 262 attribute_barred
 266 attribute_barred
 
-PASS ../toast/RDFa/schema/person.html
+PASS ../toast/RDFa/ontology/person.html
 11 vocab_defined
 13 url_not_found
 30 use_quote_code
 39 vocab_defined
-43 not_schema_property bad_property
+43 not_ontology_property bad_property
 
-PASS ../toast/RDFa/schema/simple.html
+PASS ../toast/RDFa/ontology/simple.html
 2 ssi
 7 vocab_defined

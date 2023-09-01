@@ -16,6 +16,6 @@ PASS ../toast/microdata/schema-wxyz/webpage-2.html
 
 PASS ../toast/microdata/schema-wxyz/winery.html
 0 charset_mismatch charset_used charset_invalid
-25 not_schema_property
-26 not_schema_property
-32 not_schema_property
+25 not_ontology_property
+26 not_ontology_property
+32 not_ontology_property

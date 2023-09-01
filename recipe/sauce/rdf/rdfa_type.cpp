@@ -21,15 +21,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "rdf/rdfa_type.h"
 #include "type/type.h"
-#include "schema/schema_type.h"
+#include "ontology/ontology_type.h"
 
 ::std::string type_index_name (const type_index ndx)
-{   if (ndx != invalid_type) return sch :: name (static_cast < e_schema_type > (ndx), true);
+{   if (ndx != invalid_type) return sch :: name (static_cast < e_ontology_type > (ndx), true);
     return "untyped"; }
 
 type_index find_type_index (nitpick& nits, const html_version& v, const ::std::string& name)
 {   nitpick nuts;
-    type_master < t_schema_type > sc;
+    type_master < t_ontology > sc;
     sc.set_value (nits, v, name);
     if (sc.good ())
     {   const sch st (nits, v, sc.vocab (), sc.root ());

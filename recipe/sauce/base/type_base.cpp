@@ -985,7 +985,7 @@ enum_name_t enum_name [] =
     { t_sandboxen, "sandboxen" },
     { t_scan, "scan" },
     { t_scei, "scei" },
-    { t_schema_type, "schema type" },
+    { t_ontology, "schema type" },
     { t_scope, "scope" },
     { t_script, "script" },
     { t_scrolling, "scrolling" },

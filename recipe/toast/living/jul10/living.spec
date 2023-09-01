@@ -713,18 +713,18 @@ PASS ../toast/living/jul10/microdata.html
 59 inserted_missing_parent inserted_missing_closure inserted_missing_closure only_once
 59 dl_ancestor
 60 missing_open
-62 wrong_parent inserted_missing_closure schema_domain
+62 wrong_parent inserted_missing_closure ontology_domain
 66 url_not_found naughty_alt
-71 schema_domain
+71 ontology_domain
 73 inserted_missing_closure
 74 inserted_missing_closure
 75 inserted_missing_closure
 76 inserted_missing_closure
 77 inserted_missing_closure missing_close
 78 inserted_missing_closure
-80 schema_domain
+80 ontology_domain
 86 url_not_found naughty_alt
-89 schema_domain
+89 ontology_domain
 95 url_not_found naughty_alt
 
 PASS ../toast/living/jul10/mt.html

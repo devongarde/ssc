@@ -42,7 +42,7 @@ class rdf_t
     prop_indices prepare_prop_indices (nitpick& nits, const html_version& v, const ::std::string& name);
     bool use_parent () const noexcept { return (up_ != nullptr); }
     template < typename ENUM > ENUM fit_vocab (const html_version& v, const ::std::string& name) const;
-    bool is_vocab_defined (const e_schema s) const
+    bool is_vocab_defined (const e_ontology s) const
     {   vsh_t vs (vocabs ());
         return (vs.find (s) != vs.cend ()); }
 public:
@@ -61,9 +61,9 @@ public:
     vty_t type () const;
     bool note_prop (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value, const bool is_link, page& p);
     bool note_prop (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value, rdf_t* scope, page& p);
-    e_schema_type note_type (nitpick& nits, const html_version& v, const ::std::string& name, page& p);
-    bool verify_value (nitpick& nits, const html_version& v, const e_schema_type t, const ::std::string& value);
-    e_schema note_vocab (nitpick& nits, const html_version& v, const ::std::string& name, page& p);
+    e_ontology_type note_type (nitpick& nits, const html_version& v, const ::std::string& name, page& p);
+    bool verify_value (nitpick& nits, const html_version& v, const e_ontology_type t, const ::std::string& value);
+    e_ontology note_vocab (nitpick& nits, const html_version& v, const ::std::string& name, page& p);
     vty_t sought_types (const html_version& v, const ::std::string& name) const;
     ::std::string expand_prefix (const html_version& v, const ::std::string& s) const;
     ::std::string report (const ::std::size_t offset = 0) const; };

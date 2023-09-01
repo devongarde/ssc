@@ -23,9 +23,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/enum.h"
 #include "feedback/nitpick.h"
 
-void schema_name_init (nitpick& nits);
-::std::string schema_property_name (const e_schema_property p);
-e_schema_property get_schema_property (const ::std::string& n);
-vsp_t get_schema_properties (const ::std::string& n, const e_schema s = s_none);
-e_schema get_property_root (const ::std::string& s);
-e_schema get_property_root (const e_schema_property sp);
+void ontology_name_init (nitpick& nits);
+::std::string ontology_property_name (const e_ontology_property p);
+e_ontology_property get_ontology_property (const ::std::string& n, const e_ontology s = s_none);
+vsp_t get_ontology_properties (const ::std::string& n, const e_ontology s = s_none);
+e_ontology get_property_root (const ::std::string& s);
+e_ontology get_property_root (const e_ontology_property sp);

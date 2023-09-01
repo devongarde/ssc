@@ -1,0 +1,40 @@
+{
+  "@context": {
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "adms": "http://www.w3.org/ns/adms#"
+  },
+  "@id": "http://www.example.org/rdf#Fruit_02",
+  "@type": "adms:Asset",
+  "dcterms:created": "1999-05-24",
+  "dcterms:description": "Fruits that are found to be generally liked by most people.",
+  "dcterms:publisher": {
+    "@id": "http://www.example.org/rdf#org"
+  },
+  "dcterms:title": {
+    "@language": "en",
+    "@value": "Fruit I like"
+  },
+  "dcterms:type": {
+    "@id": "http://purl.org/adms/assettype/CodeList"
+  },
+  "adms:last": {
+    "@id": "http://www.example.org/rdf#Fruit"
+  },
+  "adms:previous": {
+    "@id": "http://www.example.org/rdf#Fruit_01"
+  },
+  "adms:status": {
+    "@id": "http://purl.org/adms/status/Completed"
+  },
+  "dcat:distribution": [
+    {
+      "@id": "http://www.example.org/rdf#Fruit_02.csv"
+    },
+    {
+      "@id": "http://www.example.org/rdf#Fruit_02.xml"
+    }
+  ]
+}

@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "main/version.h"
 #include "feedback/nitpick.h"
-#include "schema/schema_version.h"
+#include "ontology/ontology_version.h"
 
 #define HV_LEVEL1       0x0000000000000001
 #define HV_LEVEL2       0x0000000000000002
@@ -516,7 +516,7 @@ class html_version : public version
 public:
     html_version ()  { }
     explicit html_version (const unsigned short mjr) { init (mjr); }
-    explicit html_version (const schema_version& sv) noexcept : version (sv.mjr (), sv.mnr ()) { }
+    explicit html_version (const ontology_version& sv) noexcept : version (sv.mjr (), sv.mnr ()) { }
     html_version (const unsigned short mjr, const unsigned short mnr, const flags_t flags = NOFLAGS, const flags_t extensions = NOFLAGS, const flags_t e2 = NOFLAGS, const flags_t e3 = NOFLAGS) noexcept
         : version (mjr, mnr, flags), ext_ (extensions), ext2_ (e2), ext3_ (e3) { }
     html_version (const ::boost::gregorian::date& whatwg, const flags_t flags = NOFLAGS, const flags_t extensions = NOFLAGS, const flags_t e2 = NOFLAGS, const flags_t e3 = NOFLAGS);
@@ -834,6 +834,8 @@ const html_version html_css_selectors_6 (HTML_JAN22, 0, 0, H2_CSS_6, H3_CSS_6);
 
 const html_version html_css_media (HTML_4_0, 0, 0, H2_CSS, H3_CSS);
 
+const html_version html_adms_1_0 (HTML_ADMS_1_0);
+const html_version html_adms_2_0 (HTML_ADMS_2_0);
 const html_version html_as_1_0 (HTML_AS_1_0);
 const html_version html_as_2_0 (HTML_AS_2_0);
 const html_version html_cc (HTML_CC);
@@ -870,80 +872,80 @@ const html_version html_review (HTML_REVIEW);
 const html_version html_rif (HTML_RIF);
 const html_version html_role (HTML_ROLE);
 const html_version html_rr (HTML_RR);
-const html_version html_schema_0 (HTML_SCHEMA_0);
-const html_version html_schema_jun11 (HTML_SCHEMA_JUN11);
-const html_version html_schema_jul11 (HTML_SCHEMA_JUL11);
-const html_version html_schema_aug11 (HTML_SCHEMA_AUG11);
-const html_version html_schema_sep11 (HTML_SCHEMA_SEP11);
-const html_version html_schema_oct11 (HTML_SCHEMA_OCT11);
-const html_version html_schema_nov11 (HTML_SCHEMA_NOV11);
-const html_version html_schema_dec11 (HTML_SCHEMA_DEC11);
-const html_version html_schema_jan12 (HTML_SCHEMA_JAN12);
-const html_version html_schema_feb12 (HTML_SCHEMA_FEB12);
-const html_version html_schema_mar12 (HTML_SCHEMA_MAR12);
-const html_version html_schema_apr12 (HTML_SCHEMA_APR12);
-const html_version html_schema_0_91 (HTML_SCHEMA_0_91);
-const html_version html_schema_0_93 (HTML_SCHEMA_0_93);
-const html_version html_schema_0_94 (HTML_SCHEMA_0_94);
-const html_version html_schema_0_95 (HTML_SCHEMA_0_95);
-const html_version html_schema_0_96 (HTML_SCHEMA_0_96);
-const html_version html_schema_0_97 (HTML_SCHEMA_0_97);
-const html_version html_schema_0_98 (HTML_SCHEMA_0_98);
-const html_version html_schema_0_99 (HTML_SCHEMA_0_99);
-const html_version html_schema_1_0A (HTML_SCHEMA_1_0A);
-const html_version html_schema_1_0B (HTML_SCHEMA_1_0B);
-const html_version html_schema_1_0C (HTML_SCHEMA_1_0C);
-const html_version html_schema_1_0D (HTML_SCHEMA_1_0D);
-const html_version html_schema_1_0E (HTML_SCHEMA_1_0E);
-const html_version html_schema_1_0F (HTML_SCHEMA_1_0F);
-const html_version html_schema_1_1 (HTML_SCHEMA_1_1);
-const html_version html_schema_1_2 (HTML_SCHEMA_1_2);
-const html_version html_schema_1_3 (HTML_SCHEMA_1_3);
-const html_version html_schema_1_4 (HTML_SCHEMA_1_4);
-const html_version html_schema_1_5 (HTML_SCHEMA_1_5);
-const html_version html_schema_1_6 (HTML_SCHEMA_1_6);
-const html_version html_schema_1_7 (HTML_SCHEMA_1_7);
-const html_version html_schema_1_8 (HTML_SCHEMA_1_8);
-const html_version html_schema_1_9 (HTML_SCHEMA_1_9);
-const html_version html_schema_1_91 (HTML_SCHEMA_1_91);
-const html_version html_schema_1_92 (HTML_SCHEMA_1_92);
-const html_version html_schema_1_93 (HTML_SCHEMA_1_93);
-const html_version html_schema_2_0 (HTML_SCHEMA_2_0);
-const html_version html_schema_2_1 (HTML_SCHEMA_2_1);
-const html_version html_schema_2_2 (HTML_SCHEMA_2_2);
-const html_version html_schema_3_0 (HTML_SCHEMA_3_0);
-const html_version html_schema_3_1 (HTML_SCHEMA_3_1);
-const html_version html_schema_3_2 (HTML_SCHEMA_3_2);
-const html_version html_schema_3_3 (HTML_SCHEMA_3_3);
-const html_version html_schema_3_4 (HTML_SCHEMA_3_4);
-const html_version html_schema_3_5 (HTML_SCHEMA_3_5);
-const html_version html_schema_3_6 (HTML_SCHEMA_3_6);
-const html_version html_schema_3_7 (HTML_SCHEMA_3_7);
-const html_version html_schema_3_8 (HTML_SCHEMA_3_8);
-const html_version html_schema_3_9 (HTML_SCHEMA_3_9);
-const html_version html_schema_4 (HTML_SCHEMA_4);
-const html_version html_schema_5 (HTML_SCHEMA_5);
-const html_version html_schema_6 (HTML_SCHEMA_6);
-const html_version html_schema_7_00 (HTML_SCHEMA_7_00);
-const html_version html_schema_7_01 (HTML_SCHEMA_7_01);
-const html_version html_schema_7_02 (HTML_SCHEMA_7_02);
-const html_version html_schema_7_03 (HTML_SCHEMA_7_03);
-const html_version html_schema_7_04 (HTML_SCHEMA_7_04);
-const html_version html_schema_8 (HTML_SCHEMA_8);
-const html_version html_schema_9 (HTML_SCHEMA_9);
-const html_version html_schema_10 (HTML_SCHEMA_10);
-const html_version html_schema_11 (HTML_SCHEMA_11);
-const html_version html_schema_12 (HTML_SCHEMA_12);
-const html_version html_schema_13 (HTML_SCHEMA_13);
-const html_version html_schema_14 (HTML_SCHEMA_14);
-const html_version html_schema_15 (HTML_SCHEMA_15);
-const html_version html_schema_16 (HTML_SCHEMA_16);
-const html_version html_schema_17 (HTML_SCHEMA_17);
-const html_version html_schema_18 (HTML_SCHEMA_18);
-const html_version html_schema_19 (HTML_SCHEMA_19);
-const html_version html_schema_20 (HTML_SCHEMA_20);
-const html_version html_schema_21 (HTML_SCHEMA_21);
-const html_version html_schema_22 (HTML_SCHEMA_22);
+const html_version html_ontology_0 (HTML_SCHEMA_0);
+const html_version html_ontology_jun11 (HTML_SCHEMA_JUN11);
+const html_version html_ontology_jul11 (HTML_SCHEMA_JUL11);
+const html_version html_ontology_aug11 (HTML_SCHEMA_AUG11);
+const html_version html_ontology_sep11 (HTML_SCHEMA_SEP11);
+const html_version html_ontology_oct11 (HTML_SCHEMA_OCT11);
+const html_version html_ontology_nov11 (HTML_SCHEMA_NOV11);
+const html_version html_ontology_dec11 (HTML_SCHEMA_DEC11);
+const html_version html_ontology_jan12 (HTML_SCHEMA_JAN12);
+const html_version html_ontology_feb12 (HTML_SCHEMA_FEB12);
+const html_version html_ontology_mar12 (HTML_SCHEMA_MAR12);
+const html_version html_ontology_apr12 (HTML_SCHEMA_APR12);
+const html_version html_ontology_0_91 (HTML_SCHEMA_0_91);
+const html_version html_ontology_0_93 (HTML_SCHEMA_0_93);
+const html_version html_ontology_0_94 (HTML_SCHEMA_0_94);
+const html_version html_ontology_0_95 (HTML_SCHEMA_0_95);
+const html_version html_ontology_0_96 (HTML_SCHEMA_0_96);
+const html_version html_ontology_0_97 (HTML_SCHEMA_0_97);
+const html_version html_ontology_0_98 (HTML_SCHEMA_0_98);
+const html_version html_ontology_0_99 (HTML_SCHEMA_0_99);
+const html_version html_ontology_1_0A (HTML_SCHEMA_1_0A);
+const html_version html_ontology_1_0B (HTML_SCHEMA_1_0B);
+const html_version html_ontology_1_0C (HTML_SCHEMA_1_0C);
+const html_version html_ontology_1_0D (HTML_SCHEMA_1_0D);
+const html_version html_ontology_1_0E (HTML_SCHEMA_1_0E);
+const html_version html_ontology_1_0F (HTML_SCHEMA_1_0F);
+const html_version html_ontology_1_1 (HTML_SCHEMA_1_1);
+const html_version html_ontology_1_2 (HTML_SCHEMA_1_2);
+const html_version html_ontology_1_3 (HTML_SCHEMA_1_3);
+const html_version html_ontology_1_4 (HTML_SCHEMA_1_4);
+const html_version html_ontology_1_5 (HTML_SCHEMA_1_5);
+const html_version html_ontology_1_6 (HTML_SCHEMA_1_6);
+const html_version html_ontology_1_7 (HTML_SCHEMA_1_7);
+const html_version html_ontology_1_8 (HTML_SCHEMA_1_8);
+const html_version html_ontology_1_9 (HTML_SCHEMA_1_9);
+const html_version html_ontology_1_91 (HTML_SCHEMA_1_91);
+const html_version html_ontology_1_92 (HTML_SCHEMA_1_92);
+const html_version html_ontology_1_93 (HTML_SCHEMA_1_93);
+const html_version html_ontology_2_0 (HTML_SCHEMA_2_0);
+const html_version html_ontology_2_1 (HTML_SCHEMA_2_1);
+const html_version html_ontology_2_2 (HTML_SCHEMA_2_2);
+const html_version html_ontology_3_0 (HTML_SCHEMA_3_0);
+const html_version html_ontology_3_1 (HTML_SCHEMA_3_1);
+const html_version html_ontology_3_2 (HTML_SCHEMA_3_2);
+const html_version html_ontology_3_3 (HTML_SCHEMA_3_3);
+const html_version html_ontology_3_4 (HTML_SCHEMA_3_4);
+const html_version html_ontology_3_5 (HTML_SCHEMA_3_5);
+const html_version html_ontology_3_6 (HTML_SCHEMA_3_6);
+const html_version html_ontology_3_7 (HTML_SCHEMA_3_7);
+const html_version html_ontology_3_8 (HTML_SCHEMA_3_8);
+const html_version html_ontology_3_9 (HTML_SCHEMA_3_9);
+const html_version html_ontology_4 (HTML_SCHEMA_4);
+const html_version html_ontology_5 (HTML_SCHEMA_5);
+const html_version html_ontology_6 (HTML_SCHEMA_6);
+const html_version html_ontology_7_00 (HTML_SCHEMA_7_00);
+const html_version html_ontology_7_01 (HTML_SCHEMA_7_01);
+const html_version html_ontology_7_02 (HTML_SCHEMA_7_02);
+const html_version html_ontology_7_03 (HTML_SCHEMA_7_03);
+const html_version html_ontology_7_04 (HTML_SCHEMA_7_04);
+const html_version html_ontology_8 (HTML_SCHEMA_8);
+const html_version html_ontology_9 (HTML_SCHEMA_9);
+const html_version html_ontology_10 (HTML_SCHEMA_10);
+const html_version html_ontology_11 (HTML_SCHEMA_11);
+const html_version html_ontology_12 (HTML_SCHEMA_12);
+const html_version html_ontology_13 (HTML_SCHEMA_13);
+const html_version html_ontology_14 (HTML_SCHEMA_14);
+const html_version html_ontology_15 (HTML_SCHEMA_15);
+const html_version html_ontology_16 (HTML_SCHEMA_16);
+const html_version html_ontology_17 (HTML_SCHEMA_17);
+const html_version html_ontology_18 (HTML_SCHEMA_18);
+const html_version html_ontology_19 (HTML_SCHEMA_19);
+const html_version html_ontology_20 (HTML_SCHEMA_20);
+const html_version html_ontology_21 (HTML_SCHEMA_21);
+const html_version html_ontology_22 (HTML_SCHEMA_22);
 const html_version html_sd (HTML_SD);
 const html_version html_sioc (HTML_SIOC);
 const html_version html_sioc_s (HTML_SIOC);
@@ -994,6 +996,7 @@ const html_version html_may13 (HTML_MAY13, HV_WHATWG, HE_MICRODATA | HE_SVG_11, 
 const html_version html_jul13 (HTML_JUL13, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_3, H3_CSS_3);
 const html_version html_jan14 (HTML_JAN14, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_3, H3_CSS_3);
 const html_version html_jan15 (HTML_JAN15, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_3, H3_CSS_3);
+const html_version html_jun15 (HTML_JUN15, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_3, H3_CSS_3);
 const html_version html_jan16 (HTML_JAN16, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_3, H3_CSS_3);
 const html_version html_jul16 (HTML_JUL16, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_3, H3_CSS_3);
 const html_version html_jan17 (HTML_JAN17, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_3, H3_CSS_3);
@@ -1009,6 +1012,7 @@ const html_version html_feb21 (HTML_FEB21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, 
 const html_version html_apr21 (HTML_APR21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_3, H3_CSS_3);
 const html_version html_jul21 (HTML_JUL21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_3, H3_CSS_3);
 const html_version html_oct21 (HTML_OCT21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_3, H3_CSS_3);
+const html_version html_nov21 (HTML_NOV21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_3, H3_CSS_3);
 const html_version html_jan22 (HTML_JAN22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_3, H3_CSS_3);
 const html_version html_apr22 (HTML_APR22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_3, H3_CSS_3);
 const html_version html_jul22 (HTML_JUL22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_3, H3_CSS_3);

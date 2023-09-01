@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "microdata/microdata_itemscope.h"
 #include "microdata/microdata_itemtype.h"
-#include "schema/schema_property.h"
+#include "ontology/ontology_property.h"
 #include "microformat/prop.h"
 #include "main/context.h"
 #include "utility/quote.h"
@@ -42,22 +42,22 @@ void microdata_itemscope::note_itemtype (nitpick& nits, const html_version& v, c
     const itemtype_index ii = find_itemtype_index (nuts, v, name);
     if (ii != invalid_itemtype)
     {   type_.push_back (ii);
-        type_master < t_schema_type > ts;
+        type_master < t_ontology > ts;
         ts.set_value (nits, v, name);
         ::std::string::size_type ends_at = 0;
-        const e_schema sc = schema_names.starts_with (SCHEMA_CURIE, v.xhtml (), name, &ends_at);
+        const e_ontology sc = ontology_names.starts_with (ONTOLOGY_CURIE, v.xhtml (), name, &ends_at);
         if (sc == s_error)
             world_wide_wombat_web (nits, v, name);
         else
-        {   if ((schema_names.flags (sc) & SCHEMA_CRAPSPEC) == SCHEMA_CRAPSPEC)
-                nits.pick (nit_crap_spec, es_warning, ec_microdata, quote (schema_names.get (sc, SCHEMA_NAME)), " is poorly specified: use an alternative");
-            const sch s (nits, v, schema_names.after_start (SCHEMA_CURIE, name.substr (ends_at), v.xhtml ()));
+        {   if ((ontology_names.flags (sc) & ONTOLOGY_CRAPSPEC) == ONTOLOGY_CRAPSPEC)
+                nits.pick (nit_crap_spec, es_warning, ec_microdata, quote (ontology_names.get (sc, ONTOLOGY_NAME)), " is poorly specified: use an alternative");
+            const sch s (nits, v, ontology_names.after_start (ONTOLOGY_CURIE, name.substr (ends_at), v.xhtml ()));
             p.mark (s.get ());
             const flags_t flags = sch :: flags (s.get ());
             if (has_itemid && ((flags & SF_NO_ITEMID) == SF_NO_ITEMID))
-                nits.pick (nit_deprecated_schema, ed_jan21, "5.3 Sample microdata vocabularies", es_info, ec_microdata, quote (name), " cannot have ITEMID");
+                nits.pick (nit_deprecated_ontology, ed_jan21, "5.3 Sample microdata vocabularies", es_info, ec_microdata, quote (name), " cannot have ITEMID");
             if ((flags & SF_DEPRECATED) == SF_DEPRECATED)
-                nits.pick (nit_deprecated_schema, es_info, ec_microdata, quote (name), " is deprecated");
+                nits.pick (nit_deprecated_ontology, es_info, ec_microdata, quote (name), " is deprecated");
             if (context.md_export ())
             {   VERIFY_NOT_NULL (export_, __FILE__, __LINE__);
                 export_ -> add (export_path_, make_itemtype_index (s.get ())); } } } }
@@ -71,9 +71,9 @@ bool microdata_itemscope::note_itemid (nitpick& , const html_version& , const ::
 itemprop_indices microdata_itemscope::prepare_itemprop_indices (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value)
 {   itemprop_indices ii = find_itemprop_indices (nits, v, name, type ().empty ());
     if (ii.empty ())
-    {   e_schema mr = s_none;
+    {   e_ontology mr = s_none;
         ::std::string::size_type ends_at = 0;
-        mr = schema_names.starts_with (SCHEMA_CURIE, v.xhtml (), value, &ends_at);
+        mr = ontology_names.starts_with (ONTOLOGY_CURIE, v.xhtml (), value, &ends_at);
         if (mr == s_error) return ii;
         ii = find_itemprop_indices (nits, v, name.substr (ends_at), type ().empty ()); }
     return ii; }
@@ -90,7 +90,7 @@ bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, c
                     if (context.md_export ())
                     {   VERIFY_NOT_NULL (exporter (), __FILE__, __LINE__);
                         exporter () -> add (export_path_, prop, value); }
-                    p.mark (static_cast < e_schema_type > (ndx_item (i)), static_cast < e_schema_property > (ndx_item (prop)));
+                    p.mark (static_cast < e_ontology_type > (ndx_item (i)), static_cast < e_ontology_property > (ndx_item (prop)));
                     return true; }
                 knots.merge (nuts); nuts.reset (); }
     nits.merge (knots);
@@ -115,7 +115,7 @@ bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, c
                     {   if (is_valid_property (nuts, v, parent, prop, child))
                         {   nits.merge (nuts);
                             itemprop_.emplace (prop, scope);
-                            p.mark (static_cast < e_schema_type > (parent & uint32_item_mask), static_cast < e_schema_property > (prop & uint32_item_mask));
+                            p.mark (static_cast < e_ontology_type > (parent & uint32_item_mask), static_cast < e_ontology_property > (prop & uint32_item_mask));
                             return true; }
                         knots.merge (nuts); nuts.reset (); } }
     nits.merge (knots);
@@ -157,7 +157,7 @@ vit_t microdata_itemscope::sought_itemtypes (const html_version& v, const ::std:
     const itemprop_index prop = find_itemprop_index (nits, v, name, type ().empty ());
     if (prop != illegal_itemprop)
         if (prop_category (prop) == itemprop_schema)
-            for (auto i : sought_schema_types (static_cast < e_schema_property > (ndx_item (prop))))
+            for (auto i : sought_ontology_types (static_cast < e_ontology_property > (ndx_item (prop))))
                 res.push_back (i);
     return res; }
 

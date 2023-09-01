@@ -1,0 +1,25 @@
+{
+  "@context": {
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "adms": "http://www.w3.org/ns/adms#"
+  },
+  "@id": "http://www.example.org/rdf#Repository",
+  "@type": "adms:AssetRepository",
+  "dcterms:created": {
+    "@type": "xsd:date",
+    "@value": "1947-02-07"
+  },
+  "dcterms:description": {
+    "@language": "en",
+    "@value": "A complete catalog of code lists and standards created by the Exemplary Standards Body"
+  },
+  "dcterms:publisher": {
+    "@id": "http://www.example.org/rdf#org"
+  },
+  "dcterms:title": {
+    "@language": "en",
+    "@value": "The Exemplary Standards Body Catalog"
+  }
+}

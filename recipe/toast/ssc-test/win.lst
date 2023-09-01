@@ -69,6 +69,7 @@
 ../toast/HTML/minimal/minimal.spec
 ../toast/HTML/Plus/plus.spec
 ../toast/HTML/tags/tags.spec
+../toast/json-ld/adms/jsonld.spec
 ../toast/json-ld/as/jsonld.spec
 ../toast/json-ld/schemaorg/jsonld.spec
 ../toast/link/external/link.spec
@@ -157,9 +158,9 @@
 ../toast/RDFa/grddl/rdfa.spec
 ../toast/RDFa/imported/rdfa.spec
 ../toast/RDFa/lrdw/rdfa.spec
+../toast/RDFa/ontology/rdfa.spec
 ../toast/RDFa/role/rdfa.spec
 ../toast/RDFa/rs/rdfa.spec
-../toast/RDFa/schema/rdfa.spec
 ../toast/RDFa/sioc/rdfa.spec
 ../toast/RDFa/vcard/rdfa.spec
 ../toast/RDFa/vcard-2/rdfa.spec

@@ -81,7 +81,7 @@ void attribute_node::parse (nitpick& nits, const html_version& v, const bool nor
                     prepare_prefixes ();
                     parse_prefixes (nits, v, value_, prefixes () -> up (), vpre, true);
                     for (auto pr : vpre)
-                        prefixes () -> declare (v, schema_names, pr.short_, pr.long_); }
+                        prefixes () -> declare (v, ontology_names, pr.short_, pr.long_); }
                 return; }
             if (normal) nits.merge (nuts);
             break;

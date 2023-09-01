@@ -220,7 +220,7 @@ line, the "no-" switch always applies.
                         for Luxembourgish, "ma" for Marain, etc.),
                         default to 'LA'. If not given, the default is
                         your system default, or, if none, then "en-US"
-                        (the standard American dialect of English).
+                        (the standard US dialect of English).
 
 --general.maxfilesize n Do not process HTML source files that exceed n
                         bytes in size (default: 4M). Specify 0 for
@@ -528,8 +528,10 @@ line, the "no-" switch always applies.
                         versions can be verified. Note that single
                         version ontologies cannot have their version
                         changed:
+                                adms 1.0,2.0
                                 article 12,14,18,22
                                 as 1.0,2.0
+                                bfo 2.0,2020 (see below)
                                 bibo 1.3
                                 biro 1.1
                                 book 12,14,18,22
@@ -539,6 +541,7 @@ line, the "no-" switch always applies.
                                 csvw 1.0
                                 ctag 1.0
                                 daq 1.0
+                                ddi 1.0
                                 dbp 1.0
                                 dbp-owl 1.0
                                 dbr 1.0
@@ -547,6 +550,7 @@ line, the "no-" switch always applies.
                                 dcat 1.0,2.0
                                 dcmi 1.0
                                 dcterms 1.0,1.1
+                                ddi 1.0
                                 doap 1.0
                                 dqv 1.0
                                 describedby 1.0
@@ -658,6 +662,19 @@ line, the "no-" switch always applies.
                                 1.91        as version number
                                 ...
                                 22.0        as version number
+
+                        BFO (Basic Format Ontology) versions should be
+                        specified as follows:
+                                Use         For
+                                2.0         2.0
+                                2.2         2020
+
+                        BFO 2020 uses OBO's machine code style
+                        identifiers. Given the history of computing
+                        science, and as a convenience for users, BFO
+                        standard names are also accepted. Since this is
+                        unofficial, both standard and US English
+                        spellings are accepted.
 
 --shadow.changed        When shadowing a site that has been previously
                         shadowed, only copy/link files that have

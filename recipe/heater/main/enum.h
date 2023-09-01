@@ -1882,7 +1882,7 @@ typedef enum {
     mime_application_vnd_swiftview_ics, mime_application_vnd_syncml_dm_notification, mime_application_vnd_syncml_dmddf_xml,
     mime_application_vnd_syncml_dmtnds_wbxml, mime_application_vnd_syncml_dmtnds_xml, mime_application_vnd_syncml_dmddf_wbxml,
     mime_application_vnd_syncml_dm_wbxml, mime_application_vnd_syncml_dm_xml, mime_application_vnd_syncml_ds_notification,
-    mime_application_vnd_syncml_xml, mime_application_vnd_tableschema_json, mime_application_vnd_tao_intent_module_archive,
+    mime_application_vnd_syncml_xml, mime_application_vnd_tableontology_json, mime_application_vnd_tao_intent_module_archive,
     mime_application_vnd_tcpdump_pcap, mime_application_vnd_think_cell_ppttc_json, mime_application_vnd_tml,
     mime_application_vnd_tmd_mediaflex_api_xml, mime_application_vnd_tmobile_livetv, mime_application_vnd_tri_onesource,
     mime_application_vnd_trid_tpt, mime_application_vnd_triscape_mxs, mime_application_vnd_trueapp, mime_application_vnd_truedoc,
@@ -2048,8 +2048,8 @@ typedef enum { mo_display, mo_inline } e_mode;
 
 // for foaf
 // Note: Myers Briggs Type Indicator and MBTI are registered trademarks of Consulting Psychologists Press Inc. Oxford Psychologists Press Ltd has exclusive rights to the trademark in the UK.
-// Note: it's pseudoscience. See the Skeptics' Guide for more info.
-// IMHO, if a prospective employer/client/partner etc. wants to use them, them, at the very least, their HR department has problems: I would suggest looking elsewhere. 
+// Note: it's pseudoscience. See the Skeptics' Guide to the Universe for gen.
+// IMHO, if a prospective employer/client/partner etc. wants to use them, then, at the very least, their HR department has issues: I would suggest looking elsewhere. 
 typedef enum { mb_ESTJ, mb_INFP, mb_ESFP, mb_INTJ, mb_ESFJ, mb_INTP, mb_ENFP, mb_ISTJ, mb_ESTP, mb_INFJ, mb_ENFJ, mb_ISTP, mb_ENTJ, mb_ISFP, mb_ENTP, mb_ISFJ } e_myersbriggs;
 
 typedef enum
@@ -2137,7 +2137,7 @@ typedef enum
     nit_rfc_1867, nit_rfc_1942, nit_rfc_1980, nit_rfc_2070, nit_file_requires_enctype, nit_form_urlencoded, nit_use_post, nit_mime_list,
     nit_no_exec, nit_unknown_ssi, nit_attribute_assignment, nit_invalid_config, nit_invalid_set, nit_invalid_echo, nit_unsupported_code,
     nit_ssi_include_error, nit_invalid_fsize, nit_ssi_if, nit_linechange, nit_no_if, nit_invalid_flastmod, nit_ssi_syntax, nit_cannot_access,
-    nit_key, nit_interactive, nit_tabindex, nit_schema_url, nit_unrecognised_schema, nit_schema_domain, nit_mix_ruby_non, nit_too_many_ruby,
+    nit_key, nit_interactive, nit_tabindex, nit_ontology_url, nit_unrecognised_ontology, nit_ontology_domain, nit_mix_ruby_non, nit_too_many_ruby,
     nit_no_rp, nit_too_many_rp, nit_not_img, nit_bad_iframe, nit_bad_embed, nit_wild_attribute, nit_attribute_barred, nit_bad_object,
     nit_disordered_param, nit_source_track, nit_src_source, nit_media_descendants, nit_autoplay, nit_out_of_order, nit_kind_media_srclang,
     nit_track_default, nit_name_id, nit_need_coords, nit_bad_coords, nit_1000, nit_bad_header_id, nit_form_charset, nit_deprecated_value,
@@ -2145,12 +2145,12 @@ typedef enum
     nit_minmax, nit_pattern, nit_bad_datalist_id, nit_placeholder, nit_bad_form, nit_bad_select, nit_bad_datalist, nit_bad_option,
     nit_bad_textarea, nit_no_progress, nit_bad_meter, nit_not_form, nit_special_name, nit_solo, nit_bad_autocomplete, nit_snafu,
     nit_details_summary, nit_summary_header, nit_bad_dialogue, nit_bad_contextmenu, nit_bad_script, nit_bad_itemid, nit_untidy_string,
-    nit_no_itemscope, nit_new_itemprop, nit_type_error, nit_schema_property, nit_forgotten_name, nit_incompatible_itemtype, nit_inlist,
-    nit_schema_hierarchy, nit_html, nit_angle, nit_svg_version, nit_bad_rgb, nit_bad_frequency, nit_icc_colour, nit_svg_ancestor, nit_rdf,
+    nit_no_itemscope, nit_new_itemprop, nit_type_error, nit_ontology_property, nit_forgotten_name, nit_incompatible_itemtype, nit_inlist,
+    nit_ontology_hierarchy, nit_html, nit_angle, nit_svg_version, nit_bad_rgb, nit_bad_frequency, nit_icc_colour, nit_svg_ancestor, nit_rdf,
     nit_bad_namespace, nit_svg_rdf, nit_clipped, nit_mf_infer, nit_path_spec, nit_lighting, nit_animatemotion,
     nit_fontface, nit_switch, nit_transform, nit_attribute_name, nit_repeated_attribute, nit_svg_xy, nit_fontstyle, nit_svg_math,
     nit_fontstretch, nit_fontvariant, nit_fontweight, nit_panose_1, nit_icarus, nit_vector_effect, nit_paint, nit_0_1, nit_1_more,
-    nit_dashed, nit_marker, nit_background, nit_bad_result, nit_not_schema_property, nit_curses, nit_xlinktype, nit_xlinkactuate,
+    nit_dashed, nit_marker, nit_background, nit_bad_result, nit_not_ontology_property, nit_curses, nit_xlinktype, nit_xlinkactuate,
     nit_dur, nit_svg_values, nit_rotate, nit_origin, nit_colour_matrix, nit_math_kids, nit_bad_hunit, nit_bad_vunit, nit_too_many,
     nit_use_apply, nit_base, nit_declare_first, nit_arg_count, nit_operator_required, nit_bad_bvar, nit_bad_doa, nit_bad_piece,
     nit_annotation, nit_eof_in_annotation, nit_prefix_odd, nit_prefix_format, nit_rdfa_redefine, nit_rdfa_confusion, nit_rdf_protocol,
@@ -2164,7 +2164,7 @@ typedef enum
     nit_repeated_definition, nit_contradictory_expansion, nit_naughty_grave, nit_encode, nit_svg_data, nit_data, nit_bad_wild,
     nit_risky_filetype, nit_reputation, nit_incompatible_mime, nit_os_dependent, nit_bad_usemap, nit_bad_type_attribute, nit_bad_pattern,
     nit_bad_command, nit_bad_datagrid, nit_script, nit_menubar, nit_bad_card, nit_nest, nit_registration_mark, nit_bad_ref, nit_font,
-    nit_dashdash, nit_naked_grave, nit_prototype, nit_bad_property, nit_hour, nit_minute, nit_second, nit_deprecated_schema,
+    nit_dashdash, nit_naked_grave, nit_prototype, nit_bad_property, nit_hour, nit_minute, nit_second, nit_deprecated_ontology,
     nit_character_code, nit_note, nit_aria_position, nit_impure_mn, nit_program_error, nit_xhtml_5_0, nit_html_superseded,
     nit_function, nit_zero_to_one, nit_percent, nit_fontname, nit_glyphname, nit_keytimes, nit_keysplines, nit_not_n, nit_syntax,
     nit_viewbox, nit_custom, nit_duplicate_namespace, nit_contradictory_namespace, nit_unrecognised_namespace, nit_out_of_range,
@@ -2177,7 +2177,7 @@ typedef enum
     nit_b64, nit_help, nit_configuration, nit_title, nit_webaddr, nit_copyright, nit_version, nit_info, nit_build, nit_config_version,
     nit_config_date, nit_config_nit, nit_config_shadow, nit_template_file, nit_code_dtd, nit_data_vocabulary, nit_json_error,
     nit_json_internal_error, nit_json_id, nit_vocab, nit_jsonld_context, nit_json_name, nit_json_invalid_node, nit_json_value_object,
-    nit_json_out_of_place, nit_json_bad_term, nit_jsonld_type, nit_missing_schema, nit_jsonld_format, nit_jsonld_mistype,
+    nit_json_out_of_place, nit_json_bad_term, nit_jsonld_type, nit_missing_ontology, nit_jsonld_format, nit_jsonld_mistype,
     nit_jsonld_encoding, nit_jsonld_map, nit_crap_spec, nit_bad_uid, nit_missing_property, nit_no_spell, nit_misspelt, nit_bad_list,
     nit_spell_lang, nit_spell_perhaps, nit_launch, nit_sent, nit_got, nit_bad_dict, nit_deprecated, nit_case, nit_icu_barf,
     nit_convert, nit_locale, nit_wtf, nit_normalise, nit_dictionary, nit_example, nit_local, nit_report, nit_unknown_option, nit_yea_nay,
@@ -2221,7 +2221,7 @@ typedef enum
         nm_context_meta, nm_context_mf_export, nm_context_mf_verify, nm_context_mf_version, nm_context_microdata, nm_context_msg,
         nm_context_no_ex_check, nm_context_once, nm_context_output, nm_context_persisted, nm_context_rdfa, nm_context_rdf_version, nm_context_rel,
         nm_context_report, nm_context_root, nm_context_rfc_1867, nm_context_rfc_1942, nm_context_rfc_1980, nm_context_rfc_2070, nm_context_schema,
-        nm_context_schema_version, nm_context_shadow_comment, nm_context_shadow_changed, nm_context_shadow_enable, nm_context_shadow_ignore,
+        nm_context_ontology_version, nm_context_shadow_comment, nm_context_shadow_changed, nm_context_shadow_enable, nm_context_shadow_ignore,
         nm_context_shadow_persist, nm_context_shadow_root, nm_context_shadow_ssi, nm_context_shadow_space, nm_context_shadows, nm_context_site,
         nm_context_slob, nm_context_spec, nm_context_spell, nm_context_spell_path, nm_context_spellings, nm_context_ssi, nm_context_stats_export,
         nm_context_stats_page, nm_context_stats_summary, nm_context_svg_version, nm_context_tags, nm_context_test, nm_context_title, nm_context_unknown_class,
@@ -2390,7 +2390,7 @@ typedef enum {
     r_popover, r_preconnect, r_predecessor_version, r_prefetch, r_preload, r_prerender, r_prev_archive, r_preview,
     r_principles, r_privacy, r_privacy_policy,
     r_publickey, r_publisher, r_radioepg, r_referral, r_related, r_rendition, r_replies, r_reply_to, r_resource,
-    r_respond_proxy, r_respond_redirect, r_restconf, r_root, r_schema_dc, r_schema_dcterms, r_search, r_self, r_service,
+    r_respond_proxy, r_respond_redirect, r_restconf, r_root, r_ontology_dc, r_ontology_dcterms, r_search, r_self, r_service,
     r_service_desc, r_service_doc, r_service_meta, r_shortlink, r_sitemap, r_source, r_sponsor,
     r_status, r_stylesheetless, r_subresource, r_successor_version, r_sunset, r_sword, r_syndication,
     r_terms_of_service, r_timegate, r_timemap, r_timesheet, r_token_endpoint, r_tooltip, r_trackback, r_trademark,
@@ -2435,12 +2435,12 @@ typedef enum { scei_after, scei_before, scei_centre, scei_end, scei_start, scei_
 // mostly RDFa common context
 // (good grief : https://lov.linkeddata.es/dataset/lov/vocabs )
 
-#define SCHEMAS \
+#define ONTOLOGIES \
     s_none, \
-    s_article, s_as, \
-    s_bibo, s_biro, s_book, \
+    s_adms, s_article, s_as, \
+    s_bfo, s_bibo, s_biro, s_book, \
     s_cc, s_cito, s_content, s_csvw, s_ctag, \
-    s_daq, s_dbd, s_dbo, s_dbp, s_dbp_owl, s_dbr, s_dc, s_dcam, s_dcat, s_dcmi, s_dct, s_doap, s_dqv, s_describedby, s_duv, \
+    s_daq, s_dbd, s_dbo, s_dbp, s_dbp_owl, s_dbr, s_dc, s_dcam, s_dcat, s_dcmi, s_dct, s_ddi, s_doap, s_dqv, s_describedby, s_duv, \
     s_earl, s_event, \
     s_faux, s_foaf, s_frbr, \
     s_gr, s_grddl, s_gs1, \
@@ -2459,14 +2459,40 @@ typedef enum { scei_after, scei_before, scei_centre, scei_end, scei_start, scei_
     s_xhv, s_xml, s_xsd, \
     s_error
 
-typedef enum { SCHEMAS } e_schema;
-CONSTEXPR ::std::size_t schema_size = s_error;
-typedef ::std::size_t schema_id;
+#define PROPERTY_ROOTS \
+    op_context, \
+    admsp_identifier, admsp_identifier, asp_accuracy, \
+    bfo_bearer_of, bibo_abstract, biro_is_referenced_by, biro_is_referenced_by, \
+    cc_attributionname, cp_agrees_with, content_encoded, ctag_label, csvw_abouturl, \
+    daq_computedon, daq_computedon, daq_computedon, daq_computedon, daq_computedon, daq_computedon, dc_contributor, dcam_domainincludes, dcat_accessurl, dct_abstract, ddip_aggregation, doap_anonroot, dqv_computedon, duv_hasdistributor, \
+    earl_assertedby, ep_agent, \
+    foaf_account, fp_abridgement, \
+    gr_acceptedpaymentmethods, grddlp_namespacetransformation, gs1p_acceptedpaymentmethod, \
+    ical_action, \
+    jsonld_base, \
+    ldp_constrainedby, locn_address, \
+    ma_alternativetitle, mp_additional_name, \
+    oa_annotationservice, og_article_author, odrlp_action, orgp_basedat, owl_allvaluesfrom, \
+    poetry_age, pp_actedonbehalfof, ptr_bytes, \
+    qbp_attribute, \
+    rdf_description, rdfg_equivalentgraph, rdfs_comment, rev_commenter, rrp_child, \
+    sp_about, sdp_availablegraphs, sioc_about, skos_altlabel, sosa_actsonproperty, ssn_deployedplatform, \
+    tp_after, \
+    v_acquaintance, vann_changes, vcard_additional_name, void_class, \
+    wdr_abouthosts, wdrs_authenticate, wp_author, xhv_alert, \
+    op_illegal
+
+typedef enum { ONTOLOGIES } e_ontology;
+CONSTEXPR ::std::size_t ontology_size = s_error;
+typedef ::std::size_t ontology_id;
 
 typedef enum
-{   sty_context,
+{   ont_context,
 
     anything,
+
+    // automated dog management service
+    adms_asset, adms_asset_distribution, adms_asset_repository, adms_identifier,
 
     // activity streams etc.
     asc_accept, asc_activity, asc_add, asc_announce, asc_application, asc_arrive, asc_article, asc_audio,
@@ -2489,6 +2515,25 @@ typedef enum
     asc_tentativeaccept, asc_tentativereject, asc_tombstone, asc_travel,
     asc_undo, asc_update,
     asc_video, asc_view,
+
+    // basic format ontology
+    bfo_continuant, bfo_continuant_fiat_boundary,
+    bfo_dependent_continuant, bfo_disposition,
+    bfo_entity,
+    bfo_fiat_line, bfo_fiat_object_part, bfo_fiat_point, bfo_fiat_surface, bfo_function,
+    bfo_generically_dependent_continuant,
+    bfo_history,
+    bfo_immaterial_entity, bfo_independent_continuant,
+    bfo_material_entity,
+    bfo_object, bfo_object_aggregate, bfo_object_boundary, bfo_occurrent, bfo_one_dimensional_continuant_fiat_boundary, bfo_one_dimensional_region,
+        bfo_one_dimensional_temporal_region,
+    bfo_process, bfo_process_boundary, bfo_process_profile,
+    bfo_quality,
+    bfo_realisable_entity, bfo_relational_quality, bfo_role,
+    bfo_site, bfo_spatial_region, bfo_spatiotemporal_region, bfo_specifically_dependent_continuant,
+    bfo_temporal_instant, bfo_temporal_interval, bfo_temporal_region, bfo_three_dimensional_continuant_fiat_boundary, bfo_three_dimensional_region,
+        bfo_two_dimensional_continuant_fiat_boundary, bfo_two_dimensional_region,
+    bfo_zero_dimensional_continuant_fiat_boundary, bfo_zero_dimensional_region, bfo_zero_dimensional_temporal_region,
 
     // bibo
     bibo_academicarticle, bibo_article, bibo_audiodocument, bibo_audiovisualdocument,
@@ -2551,8 +2596,21 @@ typedef enum
     // dublin core terms
     dct_agent, dct_agentclass, dct_bibliographicresource, dct_fileformat, dct_frequency, dct_jurisdiction, dct_licencedocument, dct_linguisticsystem, dct_location,
         dct_locationperiodorjurisdiction, dct_mediatype, dct_mediatypeorextent, dct_methodofaccrual, dct_methodofinstruction, dct_periodoftime, dct_physicalmedium,
-        dct_physicalresource, dct_policy, dct_provenancestatement, dct_rightsstatement, dct_sizeorduration, dct_standard,
+        dct_physicalresource, dct_policy, dct_provenancestatement, dct_rightsstatement, dct_sizeorduration, dct_standard, dct_thing,
 
+    // disco
+    ddi_analysis_unit,
+    ddi_category_statistics,
+    ddi_data_file, ddi_descriptive_statistics,
+    ddi_instrument,
+    ddi_logical_dataset,
+    ddi_question, ddi_questionnaire,
+    ddi_representation, ddi_representative_variable, ddi_response_domain,
+    ddi_study, ddi_study_group, ddi_summary_statistics,
+    ddi_thing,
+    ddi_universe,
+    ddi_variable,
+ 
     // doap
     doap_archrepository,
     doap_bazaarbranch, doap_bkrepository,
@@ -2978,7 +3036,7 @@ typedef enum
     // standard microformats v1 vocabulary
     mft_adr,
     mft_geo,
-    mft_haggregate, mft_hatom, mft_haudio, mft_hcalendar, /* mft_hcard, */ mft_hentry, mft_hlisting, mft_hmedia, mft_hnews, mft_hproduct, mft_hrecipe, mft_hresume, mft_hreview,
+    mft_haggregate, mft_hatom, mft_haudio, mft_hcalendar, mft_hentry, mft_hlisting, mft_hmedia, mft_hnews, mft_hproduct, mft_hrecipe, mft_hresume, mft_hreview,
 
     // standard microformats v2 vocabulary
     mft2_hadr, mft2_hbreadcrumb, mft2_hcard, mft2_hcite, mft2_hentry, mft2_hevent, mft2_hfeed, mft2_hgeo, mft2_hitem, mft2_hlisting, mft2_hproduct, mft2_hrecipe, mft2_hresume,
@@ -3433,10 +3491,20 @@ typedef enum
     xsd_unsignedbyte, xsd_unsignedint, xsd_unsignedlong, xsd_unsignedshort,
     xsd_yearmonthduration,
 
-    sty_illegal } e_schema_type;
+    ont_illegal } e_ontology_type;
 
-typedef enum
-{   sp_context,
+typedef enum   // change this, change PROPERTY_ROOTS below
+{   op_context,
+
+    // adms
+    admsp_identifier, admsp_included_asset, admsp_interoperability_level,
+    admsp_last,
+    admsp_next,
+    admsp_prev,
+    admsp_representation_technique,
+    admsp_sample, admsp_ontology_agency, admsp_status, admsp_supported_schema,
+    admsp_translation,
+    admsp_version_notes,
 
     // activity streams etc.
     asp_accuracy, asp_actor, asp_altitude, asp_anyof, asp_attachment, asp_attachments, asp_attributedto, asp_audience, asp_author,
@@ -3460,6 +3528,33 @@ typedef enum
     asp_units, asp_updated, asp_upstreamduplicates, asp_url,
     asp_verb,
     asp_width,
+
+    // bfo
+    bfo_bearer_of,
+    bfo_concretises, bfo_concretises_always, bfo_concretises_sometimes, bfo_continuant_part_of, bfo_continuant_part_of_always, bfo_continuant_part_of_sometimes,
+    bfo_disposition_of,
+    bfo_environs, bfo_exists_at,
+    bfo_first_instant_of, bfo_function_of,
+    bfo_generically_depends_on, bfo_generically_depends_on_always, bfo_generically_depends_on_sometimes,
+    bfo_has_continuant_part, bfo_has_continuant_part_always, bfo_has_continuant_part_sometimes, bfo_has_disposition, bfo_has_first_instant, bfo_has_function,
+        bfo_has_history, bfo_has_last_instant, bfo_has_location, bfo_has_location_always, bfo_has_location_sometimes, bfo_has_material_basis,
+        bfo_has_material_basis_always, bfo_has_material_basis_sometimes, bfo_has_member_part, bfo_has_member_part_always, bfo_has_member_part_sometimes,
+        bfo_has_occurrent_part, bfo_has_participant, bfo_has_participant_always, bfo_has_participant_sometimes, bfo_has_proper_continuant_part,
+        bfo_has_proper_continuant_part_always, bfo_has_proper_continuant_part_sometimes, bfo_has_proper_occurrent_part, bfo_has_proper_temporal_part,
+        bfo_has_realisation, bfo_has_role, bfo_has_temporal_part, bfo_history_of,
+    bfo_inheres_in, bfo_instance_of, bfo_is_carrier_of, bfo_is_carrier_of_always, bfo_is_carrier_of_sometimes, bfo_is_concretised_by, bfo_is_concretised_by_always,
+        bfo_is_concretised_by_sometimes,
+    bfo_last_instant_of, bfo_located_in, bfo_located_in_always, bfo_located_in_sometimes, bfo_location_of,
+    bfo_material_basis_of, bfo_material_basis_of_always, bfo_material_basis_of_sometimes, bfo_material_part_of,
+        bfo_member_part_of, bfo_member_part_of_always, bfo_member_part_of_sometimes,
+    bfo_occupied_by, bfo_occupies_spatial_region, bfo_occupies_spatial_region_always, bfo_occupies_spatial_region_sometimes, bfo_occupies_spatiotemporal_region,
+        bfo_occupies_temporal_region, bfo_occurrent_part_of, bfo_occurs_in,
+    bfo_participates_in, bfo_participates_in_always, bfo_participates_in_sometimes, bfo_preceded_by, bfo_precedes, bfo_process_profile_of, bfo_proper_continuant_part_of,
+        bfo_proper_continuant_part_of_always, bfo_proper_continuant_part_of_sometimes, bfo_proper_occurrent_part_of, bfo_proper_temporal_part_of,
+    bfo_quality_of,
+    bfo_realises, bfo_role_of,
+    bfo_spatially_projects_onto, bfo_spatially_projects_onto_always, bfo_spatially_projects_onto_sometimes, bfo_specifically_depended_on_by, bfo_specifically_depends_on,
+    bfo_temporal_part_of, bfo_temporally_projects_onto,
 
     // bibo
     bibo_abstract, bibo_affirmedby, bibo_annotates, bibo_argued, bibo_asin, bibo_authorlist,
@@ -3589,6 +3684,26 @@ typedef enum
     dct_source, dct_spatial, dct_subject,
     dct_tableofcontents, dct_temporal, dct_title, dct_type,
     dct_valid,
+
+    // ddi
+    ddip_aggregation, ddip_analysis_unit,
+    ddip_based_on,
+    ddip_case_quantity, ddip_collection_mode, ddip_computation_base, ddip_concept, ddip_cumulative_percentage,
+    ddip_data_file, ddip_ddi_file,
+    ddip_end_date, ddip_external_documentation,
+    ddip_frequency, ddip_funded_by,
+    ddip_in_group, ddip_input_variable, ddip_instrument, ddip_invalid_cases, ddip_is_public, ddip_is_valid,
+    ddip_kind_of_data,
+    ddip_maximum, ddip_mean, ddip_median, ddip_minimum, ddip_mode,
+    ddip_number_of_cases,
+    ddip_percentage, ddip_product, ddip_purpose,
+    ddip_question, ddip_question_text,
+    ddip_representation, ddip_response_domain,
+    ddip_standard_deviation, ddip_start_date, ddip_statistics_category, ddip_statistics_data_file, ddip_statistics_variable, ddip_subtitle,
+    ddip_universe,
+    ddip_valid_cases, ddip_variable,
+    ddip_weighted_by, ddip_weighted_cumulative_percentage, ddip_weighted_frequency, ddip_weighted_invalid_cases, ddip_weighted_mean, ddip_weighted_median,
+        ddip_weighted_mode, ddip_weighted_percentage, ddip_weighted_valid_cases,
 
     // doap
     doap_anonroot, doap_audience,
@@ -4411,9 +4526,9 @@ typedef enum
     xhv_tab, xhv_tablist, xhv_tabpanel, xhv_textbox, xhv_timer, xhv_toolbar, xhv_tooltip, xhv_top, xhv_tree, xhv_treegrid, xhv_treeitem,
     xhv_up,
 
-    sp_illegal } e_schema_property;
+    op_illegal } e_ontology_property;
 
-typedef ::std::vector < e_schema_property > vsp_t;
+typedef ::std::vector < e_ontology_property > vsp_t;
 
 #define SCHEMES pt_rfc3986, pt_rfc3986_ignore, pt_geo, pt_local, pt_news, pt_tel, pt_urn
 typedef enum { SCHEMES } e_scheme;
@@ -4683,7 +4798,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
         t_myersbriggs, \
     t_name, t_nameref, t_namespace, t_namedspace, t_nav_controls, t_navigation, t_negative, t_nit_macro, t_nit_section, t_not_0, t_not_empty, t_not_neg, \
         t_not_pos, t_notation, t_notations, t_nsd, t_nsds, t_nuf, t_num, t_integer_or_percent, \
-    t_occurence, t_og, t_ogdet, t_ogtype, t_oklabfn, t_oklchfn, t_onoff, t_opacity, t_open, t_operator, t_order, t_orientation, t_origin, t_overflow, \
+    t_occurence, t_og, t_ogdet, t_ogtype, t_oklabfn, t_oklchfn, t_onoff, t_ontology, t_opacity, t_open, t_operator, t_order, t_orientation, t_origin, t_overflow, \
         t_overlay
 #define SSC_TYPE_9_MAX t_overlay
 
@@ -4700,7 +4815,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPE_10_MAX t_rules
 
 #define SSC_TYPES_11 \
-    t_safe_unsafe, t_sandbox, t_sandboxen, t_scan, t_scei, t_schema_type, t_scope, t_script, t_scrolling, t_second, t_setback_offset, t_settype, t_severity, t_sex, t_sgml, \
+    t_safe_unsafe, t_sandbox, t_sandboxen, t_scan, t_scei, t_scope, t_script, t_scrolling, t_second, t_setback_offset, t_settype, t_severity, t_sex, t_sgml, \
         t_sha1, t_sha256, t_shadow, t_shape, t_shape3, t_shape4, t_shape7, t_shape_none_uri, t_shape_fn, t_shape_fn_circle, t_shape_fn_ellipse, \
         t_shape_fn_polygon, t_shape_uri, t_shape_rendering, t_shape_rcp, t_shadowinherit, t_short, t_side, t_size, t_size3, t_sizes, t_sizex, t_slash, \
         t_smei, t_spacer, t_spacing, t_spreadmethod, t_srcset, t_ssi, t_ssi_comparison, t_ssi_config, t_ssi_echo, t_ssi_encoding, t_ssi_env, t_ssi_f, \

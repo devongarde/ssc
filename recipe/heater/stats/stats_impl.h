@@ -35,8 +35,8 @@ class stats
     ref_stats ref_;
     version_stats version_;
     attribute_stats attribute_;
-    schema_stats schema_;
-    schema_property_stats schema_property_;
+    ontology_stats ontology_;
+    ontology_property_stats ontology_property_;
     httpequiv_stats httpequiv_;
     metaname_stats metaname_;
     meta_value_stats meta_value_;
@@ -104,10 +104,10 @@ public:
     {   ref_.mark (d, n); }
     void mark (const e_element f, const e_attribute m)
     {   attribute_.mark (f, m); }
-    void mark (const e_schema_type s)
-    {   schema_.mark (s); }
-    void mark (const e_schema_type s, const e_schema_property p)
-    {   schema_property_.mark (s, p); }
+    void mark (const e_ontology_type s)
+    {   ontology_.mark (s); }
+    void mark (const e_ontology_type s, const e_ontology_property p)
+    {   ontology_property_.mark (s, p); }
     void mark (const e_css_property p)
     {   css_property_.mark (p); }
     void mark (const e_css_statement s)

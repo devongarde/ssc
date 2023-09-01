@@ -11,17 +11,17 @@ PASS ../toast/microdata/basic/examples.html
 82 dialect
 86 attribute_required url_not_found naughty_alt
 92 attribute_required url_not_found naughty_alt
-96 schema_domain
+96 ontology_domain
 100 url_not_found naughty_alt
-103 schema_domain bad_itemid
+103 ontology_domain bad_itemid
 104 inserted_missing_closure
 105 inserted_missing_closure inserted_missing_closure
 106 inserted_missing_closure
 107 inserted_missing_closure missing_close
 108 inserted_missing_closure
-110 schema_domain
+110 ontology_domain
 117 url_not_found naughty_alt
-120 schema_domain schema_domain
+120 ontology_domain ontology_domain
 121 inserted_missing_closure
 122 inserted_missing_closure inserted_missing_closure
 123 inserted_missing_closure
@@ -29,7 +29,7 @@ PASS ../toast/microdata/basic/examples.html
 125 inserted_missing_closure
 126 inserted_missing_closure missing_close
 127 inserted_missing_closure
-129 schema_domain schema_domain
+129 ontology_domain ontology_domain
 131 inserted_missing_closure
 132 inserted_missing_closure
 133 inserted_missing_closure
@@ -37,7 +37,7 @@ PASS ../toast/microdata/basic/examples.html
 135 inserted_missing_closure missing_close
 138 missing_close
 139 inserted_missing_closure inserted_missing_closure
-141 schema_domain
+141 ontology_domain
 143 inserted_missing_closure
 144 inserted_missing_closure
 145 inserted_missing_closure inserted_missing_closure
@@ -45,7 +45,7 @@ PASS ../toast/microdata/basic/examples.html
 147 inserted_missing_closure
 
 PASS ../toast/microdata/basic/itemid.html
-15 schema_domain bad_itemid
+15 ontology_domain bad_itemid
 16 inserted_missing_closure
 17 inserted_missing_closure inserted_missing_closure
 18 inserted_missing_closure
@@ -59,15 +59,15 @@ PASS ../toast/microdata/basic/itemprop.html
 97 newline_in_string newline_in_string dialect
 101 attribute_required url_not_found naughty_alt
 112 attribute_required url_not_found naughty_alt
-119 schema_domain
+119 ontology_domain
 122 inserted_missing_closure
 123 inserted_missing_closure
 125 inserted_missing_closure
 126 inserted_missing_closure
 127 inserted_missing_closure missing_close
 130 inserted_missing_closure
-161 not_schema_property unrecognised_value bad_itemprop
-162 not_schema_property
+161 not_ontology_property unrecognised_value bad_itemprop
+162 not_ontology_property
 
 PASS ../toast/microdata/basic/itemref.html
 15 missing_itemtype
@@ -89,12 +89,12 @@ PASS ../toast/microdata/basic/itemtype.html
 49 inserted_missing_closure
 
 PASS ../toast/microdata/basic/md-bad.html
-11 unrecognised_schema unrecognised_schema requires_itemscope
+11 unrecognised_ontology unrecognised_ontology requires_itemscope
 14 requires_itemscope requires_itemscope
 17 no_itemscope
 23 requires_itemscope
 26 bad_id
-29 unrecognised_schema unrecognised_schema bad_itemid
+29 unrecognised_ontology unrecognised_ontology bad_itemid
 31 correct_spelling
 32 use_quote_code
 
@@ -103,7 +103,7 @@ PASS ../toast/microdata/basic/md-lynx.html
 16 missing_itemtype
 
 PASS ../toast/microdata/basic/md-ref.html
-14 not_schema_property
+14 not_ontology_property
 18 missing_itemtype
 
 itemids

@@ -19,16 +19,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "main/standard.h"
-#include "schema/schema_hierarchy.h"
+#include "ontology/ontology_hierarchy.h"
 #include "main/context.h"
 
 struct microdata_hierachy
-{   schema_version from_;
-    schema_version to_;
-    e_schema_type general_;
-    e_schema_type specific_; };
+{   ontology_version from_;
+    ontology_version to_;
+    e_ontology_type general_;
+    e_ontology_type specific_; };
 
-microdata_hierachy schema_hierarchy [] =
+microdata_hierachy ontology_hierarchy [] =
 {   { { s_faux, 1, 0 }, { 0, 0 }, anything, owl_thing },
     { { s_faux, 1, 0 }, { 0, 0 }, anything, sch_thing },
     { { s_faux, 1, 0 }, { 0, 0 }, anything, xsd_anytype },
@@ -99,6 +99,63 @@ microdata_hierachy schema_hierarchy [] =
     { { s_as, 2, 0 }, { 0, 0 }, asc_orderedcollection, asc_orderedcollectionpage },
 
     { { s_as, 2, 0 }, { 0, 0 }, asc_reject, asc_tentativereject },
+
+    // bfo
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_continuant, bfo_dependent_continuant },
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_continuant, bfo_independent_continuant },
+
+    { { s_bfo, 2, 2 }, { 0, 0 }, bfo_continuant_fiat_boundary, bfo_fiat_line },
+    { { s_bfo, 2, 2 }, { 0, 0 }, bfo_continuant_fiat_boundary, bfo_fiat_point },
+    { { s_bfo, 2, 2 }, { 0, 0 }, bfo_continuant_fiat_boundary, bfo_fiat_surface },
+    { { s_bfo, 2, 0 }, { s_bfo, 2, 0 }, bfo_continuant_fiat_boundary, bfo_one_dimensional_continuant_fiat_boundary },
+    { { s_bfo, 2, 0 }, { s_bfo, 2, 0 }, bfo_continuant_fiat_boundary, bfo_three_dimensional_continuant_fiat_boundary },
+    { { s_bfo, 2, 0 }, { s_bfo, 2, 0 }, bfo_continuant_fiat_boundary, bfo_two_dimensional_continuant_fiat_boundary },
+
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_dependent_continuant, bfo_generically_dependent_continuant },
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_dependent_continuant, bfo_specifically_dependent_continuant },
+
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_disposition, bfo_function },
+
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_entity, bfo_continuant },
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_entity, bfo_occurrent },
+
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_entity, bfo_occurrent },
+
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_immaterial_entity, bfo_continuant_fiat_boundary },
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_immaterial_entity, bfo_site },
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_immaterial_entity, bfo_spatial_region },
+
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_independent_continuant, bfo_immaterial_entity },
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_independent_continuant, bfo_material_entity },
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_independent_continuant, bfo_object_boundary },
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_independent_continuant, bfo_site },
+
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_material_entity, bfo_fiat_object_part },
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_material_entity, bfo_object },
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_material_entity, bfo_object_aggregate },
+
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_occurrent, bfo_process },
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_occurrent, bfo_process_boundary },
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_occurrent, bfo_spatiotemporal_region },
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_occurrent, bfo_temporal_region },
+
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_process, bfo_process_profile },
+
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_quality, bfo_relational_quality },
+
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_realisable_entity, bfo_disposition },
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_realisable_entity, bfo_role },
+
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_spatial_region, bfo_one_dimensional_region },
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_spatial_region, bfo_three_dimensional_region },
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_spatial_region, bfo_two_dimensional_region },
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_spatial_region, bfo_zero_dimensional_region },
+
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_specifically_dependent_continuant, bfo_quality },
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_specifically_dependent_continuant, bfo_realisable_entity },
+
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_temporal_region, bfo_one_dimensional_temporal_region },
+    { { s_bfo, 2, 0 }, { 0, 0 }, bfo_temporal_region, bfo_zero_dimensional_temporal_region },
 
     // bibo
     { { s_bibo, 1, 3 }, { 0, 0 }, bibo_article, bibo_academicarticle },
@@ -194,11 +251,15 @@ microdata_hierachy schema_hierarchy [] =
     { { s_ctag, 1, 0 }, { 0, 0 }, ctag_tag, ctag_reader },
 
     // data catalogue
-    { { s_dcat, 1, 0 }, { 0, 0 }, dca_dataset, dca_catalogue },
+    { { s_adms, 1, 0 }, { s_adms, 1, 0 }, dca_catalogue, adms_asset_repository },
 
+    { { s_adms, 1, 0 }, { s_adms, 1, 0 }, dca_dataset, adms_asset },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_dataset, dca_catalogue },
     { { s_dcat, 1, 0 }, { s_dcat, 1, 0 }, dcmi_dataset, dca_dataset },
     { { s_void, 1, 0 }, { 0, 0 }, dcmi_dataset, void_dataset },
     { { s_void, 1, 0 }, { 0, 0 }, dcmi_dataset, void_linkset },
+
+    { { s_adms, 1, 0 }, { s_adms, 1, 0 }, dca_distribution, adms_asset_distribution },
 
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dca_dataservice },
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dca_dataset },
@@ -207,6 +268,47 @@ microdata_hierachy schema_hierarchy [] =
 
     // dcterms
     { { s_wdrs, 1, 0 }, { 0, 0 }, dct_agent, wdrs_processor },
+
+    // fake dublin code
+    { { s_dct, 1, 0 }, { 0, 0 }, dct_thing, dct_agent },
+    { { s_dct, 1, 0 }, { 0, 0 }, dct_thing, dct_agentclass },
+    { { s_dct, 1, 0 }, { 0, 0 }, dct_thing, dct_bibliographicresource },
+    { { s_dct, 1, 0 }, { 0, 0 }, dct_thing, dct_fileformat },
+    { { s_dct, 1, 0 }, { 0, 0 }, dct_thing, dct_frequency },
+    { { s_dct, 1, 0 }, { 0, 0 }, dct_thing, dct_jurisdiction },
+    { { s_dct, 1, 0 }, { 0, 0 }, dct_thing, dct_licencedocument },
+    { { s_dct, 1, 0 }, { 0, 0 }, dct_thing, dct_linguisticsystem },
+    { { s_dct, 1, 0 }, { 0, 0 }, dct_thing, dct_location },
+    { { s_dct, 1, 0 }, { 0, 0 }, dct_thing, dct_locationperiodorjurisdiction },
+    { { s_dct, 1, 0 }, { 0, 0 }, dct_thing, dct_mediatype },
+    { { s_dct, 1, 0 }, { 0, 0 }, dct_thing, dct_mediatypeorextent },
+    { { s_dct, 1, 0 }, { 0, 0 }, dct_thing, dct_methodofaccrual },
+    { { s_dct, 1, 0 }, { 0, 0 }, dct_thing, dct_methodofinstruction },
+    { { s_dct, 1, 0 }, { 0, 0 }, dct_thing, dct_periodoftime },
+    { { s_dct, 1, 0 }, { 0, 0 }, dct_thing, dct_physicalmedium },
+    { { s_dct, 1, 0 }, { 0, 0 }, dct_thing, dct_physicalresource },
+    { { s_dct, 1, 0 }, { 0, 0 }, dct_thing, dct_policy },
+    { { s_dct, 1, 0 }, { 0, 0 }, dct_thing, dct_provenancestatement },
+    { { s_dct, 1, 0 }, { 0, 0 }, dct_thing, dct_rightsstatement },
+    { { s_dct, 1, 0 }, { 0, 0 }, dct_thing, dct_sizeorduration },
+    { { s_dct, 1, 0 }, { 0, 0 }, dct_thing, dct_standard },
+
+    // disco (faux)
+    { { s_ddi, 1, 0 }, { 0, 0 }, ddi_thing, ddi_analysis_unit },
+    { { s_ddi, 1, 0 }, { 0, 0 }, ddi_thing, ddi_category_statistics },
+    { { s_ddi, 1, 0 }, { 0, 0 }, ddi_thing, ddi_data_file },
+    { { s_ddi, 1, 0 }, { 0, 0 }, ddi_thing, ddi_descriptive_statistics },
+    { { s_ddi, 1, 0 }, { 0, 0 }, ddi_thing, ddi_instrument },
+    { { s_ddi, 1, 0 }, { 0, 0 }, ddi_thing, ddi_logical_dataset },
+    { { s_ddi, 1, 0 }, { 0, 0 }, ddi_thing, ddi_question },
+    { { s_ddi, 1, 0 }, { 0, 0 }, ddi_thing, ddi_questionnaire },
+    { { s_ddi, 1, 0 }, { 0, 0 }, ddi_thing, ddi_representative_variable },
+    { { s_ddi, 1, 0 }, { 0, 0 }, ddi_thing, ddi_response_domain },
+    { { s_ddi, 1, 0 }, { 0, 0 }, ddi_thing, ddi_study },
+    { { s_ddi, 1, 0 }, { 0, 0 }, ddi_thing, ddi_study_group },
+    { { s_ddi, 1, 0 }, { 0, 0 }, ddi_thing, ddi_summary_statistics },
+    { { s_ddi, 1, 0 }, { 0, 0 }, ddi_thing, ddi_variable },
+    { { s_ddi, 1, 0 }, { 0, 0 }, ddi_thing, ddi_universe },
 
     // doap
     { { s_doap, 1, 0 }, { 0, 0 }, doap_repository, doap_archrepository },
@@ -3288,6 +3390,7 @@ microdata_hierachy schema_hierarchy [] =
     { { 2, 0 }, { 0, 0 }, sch_text, sch_xpathtype },
     { { 3, 5 }, { 0, 0 }, sch_therapeuticprocedure, sch_medicaltherapy },
     { { 3, 5 }, { 0, 0 }, sch_therapeuticprocedure, sch_psychologicaltreatment },
+    { { 2, 0 }, { 0, 0 }, sch_thing, bfo_entity},
     { { 2, 0 }, { 0, 0 }, sch_thing, sch_action },
     { { 13, 0 }, { 0, 0 }, sch_thing, sch_biochementity },
     { { 1, 3 }, { 2, 0 }, sch_thing, sch_broadcastservice },
@@ -3773,10 +3876,10 @@ microdata_hierachy schema_hierarchy [] =
     { { s_xsd, 1, 0 }, { 0, 0 }, xsd_unsignedlong, xsd_unsignedint },
     { { s_xsd, 1, 0 }, { 0, 0 }, xsd_unsignedshort, xsd_unsignedbyte },
 
-    { { 0, 0 }, { 0, 0 }, sty_illegal, sty_illegal } };
+    { { 0, 0 }, { 0, 0 }, ont_illegal, ont_illegal } };
 
-typedef ::std::multimap < e_schema_type, microdata_hierachy* > vmap_t;
-typedef ::std::multimap < e_schema_type, e_schema_type > vss_t;
+typedef ::std::multimap < e_ontology_type, microdata_hierachy* > vmap_t;
+typedef ::std::multimap < e_ontology_type, e_ontology_type > vss_t;
 vmap_t hierarchy;
 vss_t generalisations;
 
@@ -3786,35 +3889,35 @@ vss_t generalisations;
 #endif // _MSC_VER
 void hierarchy_init (nitpick& nits)
 {   PRESUME (hierarchy.empty (), __FILE__, __LINE__);
-    for (::std::size_t x = 0; schema_hierarchy [x].general_ != sty_illegal; ++x)
-    {   hierarchy.insert (vmap_t::value_type (schema_hierarchy [x].general_, &schema_hierarchy [x]));
-        if (generalisations.find (schema_hierarchy [x].specific_) != generalisations.cend ())
-            for (vmap_t::const_iterator vi = hierarchy.find (schema_hierarchy [x].general_); (vi != hierarchy.cend ()) && (vi -> first == schema_hierarchy [x].general_); ++vi)
+    for (::std::size_t x = 0; ontology_hierarchy [x].general_ != ont_illegal; ++x)
+    {   hierarchy.insert (vmap_t::value_type (ontology_hierarchy [x].general_, &ontology_hierarchy [x]));
+        if (generalisations.find (ontology_hierarchy [x].specific_) != generalisations.cend ())
+            for (vmap_t::const_iterator vi = hierarchy.find (ontology_hierarchy [x].general_); (vi != hierarchy.cend ()) && (vi -> first == ontology_hierarchy [x].general_); ++vi)
                 if (vi -> second != nullptr)
-                    if ((vi -> second -> specific_ == schema_hierarchy [x].specific_) && (vi -> second -> general_ != schema_hierarchy [x].general_))
-                        if (overlap (schema_hierarchy [x].from_, schema_hierarchy [x].to_, vi -> second -> from_, vi -> second -> to_))
-                            nits.pick (nit_schema_hierarchy, es_catastrophic, ec_schema, "multiple generalisations for ", sch::name (schema_hierarchy [x].specific_), " (", schema_hierarchy [x].specific_, ")");
-        if (context.tell (es_all)) nits.pick (nit_all, es_all, ec_schema, sch::name (schema_hierarchy [x].general_), " : ", sch::name (schema_hierarchy [x].specific_)); 
-        generalisations.emplace (vss_t::value_type (schema_hierarchy [x].specific_, schema_hierarchy [x].general_)); } }
+                    if ((vi -> second -> specific_ == ontology_hierarchy [x].specific_) && (vi -> second -> general_ != ontology_hierarchy [x].general_))
+                        if (overlap (ontology_hierarchy [x].from_, ontology_hierarchy [x].to_, vi -> second -> from_, vi -> second -> to_))
+                            nits.pick (nit_ontology_hierarchy, es_catastrophic, ec_schema, "multiple generalisations for ", sch::name (ontology_hierarchy [x].specific_), " (", ontology_hierarchy [x].specific_, ")");
+        if (context.tell (es_all)) nits.pick (nit_all, es_all, ec_schema, sch::name (ontology_hierarchy [x].general_), " : ", sch::name (ontology_hierarchy [x].specific_)); 
+        generalisations.emplace (vss_t::value_type (ontology_hierarchy [x].specific_, ontology_hierarchy [x].general_)); } }
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif // _MSC_VER
 
-void int_generalise  (const e_schema_type s, ssch_t& ssch)
+void int_generalise  (const e_ontology_type s, ssch_t& ssch)
 {   if (ssch.find (s) == ssch.cend ()) ssch.insert (s);
     for (vss_t::const_iterator i = generalisations.find (s); (i != generalisations.cend ()) && (i -> first == s); ++i)
         for (vmap_t::const_iterator vi = hierarchy.find (i -> second); (vi != hierarchy.cend ()) && (vi -> first == i -> second); ++vi)
             if (vi -> second != nullptr)
                 if (vi -> second -> specific_ == s)
-                    if (does_apply < schema_version > (get_default_schema_version (vi -> second -> from_.root ()), vi -> second -> from_, vi -> second -> to_))
+                    if (does_apply < ontology_version > (get_default_ontology_version (vi -> second -> from_.root ()), vi -> second -> from_, vi -> second -> to_))
                         int_generalise (i -> second, ssch); }
 
-ssch_t generalise (const e_schema_type s)
+ssch_t generalise (const e_ontology_type s)
 {   ssch_t res;
     int_generalise (s, res);
     return res; }
 
-bool is_specific_type_of (const e_schema_type general, const e_schema_type specific)
+bool is_specific_type_of (const e_ontology_type general, const e_ontology_type specific)
 {   for (vss_t::const_iterator x = generalisations.find (specific); x != generalisations.cend (); ++x)
     {   if (x -> first != specific) break;
         if (x -> second == general) return true;

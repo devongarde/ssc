@@ -20,15 +20,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "main/context.h"
-#include "schema/schema_type.h"
+#include "ontology/ontology_type.h"
 #include "utility/quote.h"
 #include "microformat/def.h"
 
 #define MAKE_SIMPLE_TYPE(T)     static_cast < flags_t > (T)
 
-struct symbol_entry < schema_version, e_schema_type, e_schema, s_schema > schema_type_symbol_table [] =
+struct symbol_entry < ontology_version, e_ontology_type, e_ontology, s_schema > ontology_type_symbol_table [] =
 {
     { { s_faux, 1, 0 }, { 0, 0 }, "__FAUX__", anything, s_faux },
+
+    // automated dog mating service
+    { { s_adms, 1, 0 }, { 0, 0 }, "Asset", adms_asset, s_adms },
+    { { s_adms, 1, 0 }, { 0, 0 }, "AssetDistribution", adms_asset_distribution, s_adms },
+    { { s_adms, 1, 0 }, { 0, 0 }, "AssetRepository", adms_asset_repository, s_adms },
+    { { s_adms, 1, 0 }, { 0, 0 }, "Identifier", adms_identifier, s_adms },
 
     // activity streams etc.
     { { s_as, 2, 0 }, { 0, 0 }, "Accept", asc_accept, s_as },
@@ -90,6 +96,86 @@ struct symbol_entry < schema_version, e_schema_type, e_schema, s_schema > schema
     { { s_as, 2, 0 }, { 0, 0 }, "Update", asc_update, s_as },
     { { s_as, 2, 0 }, { 0, 0 }, "Video", asc_video, s_as },
     { { s_as, 2, 0 }, { 0, 0 }, "View", asc_view, s_as },
+
+    // bfo
+    // have coded as per specs too, given OBO machine code is incomplete
+    { { s_bfo, 2, 0 }, { 0, 0 }, "BFO_0000002", bfo_continuant, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "continuant", bfo_continuant, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "BFO_0000140", bfo_continuant_fiat_boundary, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "continuant_fiat_boundary", bfo_continuant_fiat_boundary, s_bfo },
+    { { s_bfo, 2, 0 }, { s_bfo, 2, 0 }, "dependent_continuant", bfo_dependent_continuant, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "BFO_0000016", bfo_disposition, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "disposition", bfo_disposition, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "BFO_0000001", bfo_entity, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "entity", bfo_entity, s_bfo },
+    { { s_bfo, 2, 2 }, { 0, 0 }, "BFO_0000142", bfo_fiat_line, s_bfo },
+    { { s_bfo, 2, 2 }, { 0, 0 }, "fiat_line", bfo_fiat_line, s_bfo },
+    { { s_bfo, 2, 2 }, { 0, 0 }, "BFO_0000024", bfo_fiat_object_part, s_bfo },
+    { { s_bfo, 2, 2 }, { 0, 0 }, "fiat_object_part", bfo_fiat_object_part, s_bfo },
+    { { s_bfo, 2, 2 }, { 0, 0 }, "BFO_0000147", bfo_fiat_point, s_bfo },
+    { { s_bfo, 2, 2 }, { 0, 0 }, "fiat_point", bfo_fiat_point, s_bfo },
+    { { s_bfo, 2, 2 }, { 0, 0 }, "BFO_0000146", bfo_fiat_surface, s_bfo },
+    { { s_bfo, 2, 2 }, { 0, 0 }, "fiat_surface", bfo_fiat_surface, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "BFO_0000034", bfo_function, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "function", bfo_function, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "BFO_0000031", bfo_generically_dependent_continuant, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "generically_dependent_continuant", bfo_generically_dependent_continuant, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "BFO_0000182", bfo_history, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "history", bfo_history, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "BFO_0000141", bfo_immaterial_entity, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "immaterial_entity", bfo_immaterial_entity, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "BFO_0000004", bfo_independent_continuant, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "independent_continuant", bfo_independent_continuant, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "BFO_0000040", bfo_material_entity, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "material_entity", bfo_material_entity, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "BFO_0000030", bfo_object, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "object", bfo_object, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "BFO_0000027", bfo_object_aggregate, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "object_aggregate", bfo_object_aggregate, s_bfo },
+    { { s_bfo, 2, 0 }, { s_bfo, 2, 0 }, "object_boundary", bfo_object_boundary, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "BFO_0000003", bfo_occurrent, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "occurrent", bfo_occurrent, s_bfo },
+    { { s_bfo, 2, 0 }, { s_bfo, 2, 0 }, "one-dimensional_continuant_fiat_boundary", bfo_one_dimensional_continuant_fiat_boundary, s_bfo },
+    { { s_bfo, 2, 0 }, { s_bfo, 2, 0 }, "one-dimensional_region", bfo_one_dimensional_region, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "BFO_0000038", bfo_one_dimensional_temporal_region, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "one_dimensional_temporal_region", bfo_one_dimensional_temporal_region, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "BFO_0000015", bfo_process, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "process", bfo_process, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "BFO_0000035", bfo_process_boundary, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "process_boundary", bfo_process_boundary, s_bfo },
+    { { s_bfo, 2, 0 }, { s_bfo, 2, 0 }, "process_profile", bfo_process_profile, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "BFO_0000019", bfo_quality, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "quality", bfo_quality, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "BFO_0000017", bfo_realisable_entity, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "realisable_entity", bfo_realisable_entity, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "realizable_entity", bfo_realisable_entity, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "BFO_0000145", bfo_relational_quality, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "relational_quality", bfo_relational_quality, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "BFO_000023", bfo_role, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "role", bfo_role, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "BFO_000029", bfo_site, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "site", bfo_site, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "BFO_0000006", bfo_spatial_region, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "spatial_region", bfo_spatial_region, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "BFO_0000011", bfo_spatiotemporal_region, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "spatiotemporal_region", bfo_spatiotemporal_region, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "BFO_0000020", bfo_specifically_dependent_continuant, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "specifically_dependent_continuant", bfo_specifically_dependent_continuant, s_bfo },
+    { { s_bfo, 2, 2 }, { 0, 0 }, "BFO_0000203", bfo_temporal_instant, s_bfo },
+    { { s_bfo, 2, 2 }, { 0, 0 }, "temporal_instant", bfo_temporal_instant, s_bfo },
+    { { s_bfo, 2, 2 }, { 0, 0 }, "BFO_0000202", bfo_temporal_interval, s_bfo },
+    { { s_bfo, 2, 2 }, { 0, 0 }, "temporal_interval", bfo_temporal_interval, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "BFO_0000008", bfo_temporal_region, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "temporal_region", bfo_temporal_region, s_bfo },
+    // am presuming bfo Thing is actually schema.org Thing, given the title case and that it's not defined
+    { { s_bfo, 2, 0 }, { s_bfo, 2, 0 }, "three-dimensional_continuant_fiat_boundary", bfo_three_dimensional_continuant_fiat_boundary, s_bfo },
+    { { s_bfo, 2, 0 }, { s_bfo, 2, 0 }, "three-dimensional_region", bfo_three_dimensional_region, s_bfo },
+    { { s_bfo, 2, 0 }, { s_bfo, 2, 0 }, "two-dimensional_continuant_fiat_boundary", bfo_two_dimensional_continuant_fiat_boundary, s_bfo },
+    { { s_bfo, 2, 0 }, { s_bfo, 2, 0 }, "two-dimensional_region", bfo_two_dimensional_region, s_bfo },
+    { { s_bfo, 2, 0 }, { s_bfo, 2, 0 }, "zero-dimensional_continuant_fiat_boundary", bfo_zero_dimensional_continuant_fiat_boundary, s_bfo },
+    { { s_bfo, 2, 0 }, { s_bfo, 2, 0 }, "zero-dimensional_region", bfo_zero_dimensional_region, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "BFO_0000148", bfo_zero_dimensional_temporal_region, s_bfo },
+    { { s_bfo, 2, 0 }, { 0, 0 }, "zero_dimensional_temporal_region", bfo_zero_dimensional_temporal_region, s_bfo },
 
     // bibo
     { { s_bibo, 1, 3 }, { 0, 0 }, "AcademicArticle", bibo_academicarticle, s_bibo },
@@ -262,6 +348,26 @@ struct symbol_entry < schema_version, e_schema_type, e_schema, s_schema > schema
     { { s_dct, 1, 0 }, { 0, 0 }, "RightsStatement", dct_rightsstatement, s_dct },
     { { s_dct, 1, 0 }, { 0, 0 }, "SizeOrDuration", dct_sizeorduration, s_dct },
     { { s_dct, 1, 0 }, { 0, 0 }, "Standard", dct_standard, s_dct },
+    { { s_dct, 1, 0 }, { 0, 0 }, "(*Thing*)", dct_thing, s_dct },
+
+    // disco
+    { { s_ddi, 1, 0 }, { 0, 0 }, "AnalysisUnit", ddi_analysis_unit, s_ddi },
+    { { s_ddi, 1, 0 }, { 0, 0 }, "CategoryStatistics", ddi_category_statistics, s_ddi },
+    { { s_ddi, 1, 0 }, { 0, 0 }, "DataFile", ddi_data_file, s_ddi },
+    { { s_ddi, 1, 0 }, { 0, 0 }, "DescriptiveStatistics", ddi_descriptive_statistics, s_ddi },
+    { { s_ddi, 1, 0 }, { 0, 0 }, "Instrument", ddi_instrument, s_ddi },
+    { { s_ddi, 1, 0 }, { 0, 0 }, "LogicalDataSet", ddi_logical_dataset, s_ddi },
+    { { s_ddi, 1, 0 }, { 0, 0 }, "Question", ddi_question, s_ddi },
+    { { s_ddi, 1, 0 }, { 0, 0 }, "Questionnaire", ddi_questionnaire, s_ddi },
+    { { s_ddi, 1, 0 }, { 0, 0 }, "Representation", ddi_representation, s_ddi },
+    { { s_ddi, 1, 0 }, { 0, 0 }, "RepresentativeVariable", ddi_representative_variable, s_ddi },
+    { { s_ddi, 1, 0 }, { 0, 0 }, "ResponseDomain", ddi_response_domain, s_ddi },
+    { { s_ddi, 1, 0 }, { 0, 0 }, "Study", ddi_study, s_ddi },
+    { { s_ddi, 1, 0 }, { 0, 0 }, "StudyGroup", ddi_study_group, s_ddi },
+    { { s_ddi, 1, 0 }, { 0, 0 }, "SummaryStatistics", ddi_summary_statistics, s_ddi },
+    { { s_ddi, 1, 0 }, { 0, 0 }, "(*Thing*)", ddi_thing, s_ddi },
+    { { s_ddi, 1, 0 }, { 0, 0 }, "Universe", ddi_universe, s_ddi },
+    { { s_ddi, 1, 0 }, { 0, 0 }, "Variable", ddi_variable, s_ddi },
 
     // doap
     { { s_doap, 1, 0 }, { 0, 0 }, "ArchRepository", doap_archrepository, s_doap },
@@ -1928,7 +2034,7 @@ struct symbol_entry < schema_version, e_schema_type, e_schema, s_schema > schema
 
     // rif
     // this is certainly incomplete; the documented XML schema has an include containing the actual definitions,
-    // and that is a 404 (http://www.w3.org/2010/rif-schema/bld/LC/BLDRule.xsd). The full and detailed documents on RIF
+    // and that is a 404 (http://www.w3.org/2010/rif-ontology/bld/LC/BLDRule.xsd). The full and detailed documents on RIF
     // itself are as clear as mud, at least in terms of RDFa. There do not appear to be any class and property lists,
     // nor do there seem to be any RDF/a example documents. No doubt I am missing something.
     { { s_rif, 1, 0 }, { 0, 0 }, "local", rev_review, s_rif, MAKE_SIMPLE_TYPE (t_text) },
@@ -3589,57 +3695,57 @@ struct symbol_entry < schema_version, e_schema_type, e_schema, s_schema > schema
     { { s_xsd, 1, 0 }, { 0, 0 }, "unsignedShort", xsd_unsignedshort, s_xsd, MAKE_SIMPLE_TYPE (t_unsigned_short) },
     { { s_xsd, 1, 1 }, { 0, 0 }, "yearMonthDuration", xsd_yearmonthduration, s_xsd },
 
-    { { 0, 0 }, { 0, 0 }, "", sty_illegal } };
+    { { 0, 0 }, { 0, 0 }, "", ont_illegal } };
 
-sch::sch (nitpick& nits, const html_version& v, const ::std::string& x, const e_schema root)
-{   const e_schema_type es = parse (nits, v, x, root);
-    if (es != sty_illegal) set (v, es); }
+sch::sch (nitpick& nits, const html_version& v, const ::std::string& x, const e_ontology root)
+{   const e_ontology_type es = parse (nits, v, x, root);
+    if (es != ont_illegal) set (v, es); }
 
 void sch::init (nitpick& nits)
-{   symbol < schema_version, e_schema_type, e_schema, s_schema > ::
-        init (nits, schema_type_symbol_table, sizeof (schema_type_symbol_table) / sizeof (symbol_entry < schema_version, e_schema_type, e_schema, s_schema >), true); }
+{   symbol < ontology_version, e_ontology_type, e_ontology, s_schema > ::
+        init (nits, ontology_type_symbol_table, sizeof (ontology_type_symbol_table) / sizeof (symbol_entry < ontology_version, e_ontology_type, e_ontology, s_schema >), true); }
 
-e_schema_type sch::parse (nitpick& nits, const html_version& v, const ::std::string& x, const e_schema root)
+e_ontology_type sch::parse (nitpick& nits, const html_version& v, const ::std::string& x, const e_ontology root)
 {   ::std::string lc (trim_the_lot_off (x));
     if (lc.empty ())
-    {   nits.pick (nit_empty, ed_jul20, "5.2.2 Items", es_error, ec_microdata, "A schema type cannot be empty");
-        return sty_illegal; }
+    {   nits.pick (nit_empty, ed_jul20, "5.2.2 Items", es_error, ec_microdata, "A ontology type cannot be empty");
+        return ont_illegal; }
     if (lc.at (0) == '/') lc = lc.substr (1);
     if (! v.xhtml ()) lc = ::boost::algorithm::to_lower_copy (lc);
-    symbol < schema_version, e_schema_type, e_schema, s_schema > s (default_schema, lc, root);
-    for (int i = s_none; (s.unknown () || (s.get () == sty_context)) && (i < s_error); ++i)
+    symbol < ontology_version, e_ontology_type, e_ontology, s_schema > s (default_schema, lc, root);
+    for (int i = s_none; (s.unknown () || (s.get () == ont_context)) && (i < s_error); ++i)
         if (i != root)
-            s.reset (symbol < schema_version, e_schema_type, e_schema, s_schema > (default_schema, lc, static_cast < e_schema > (i)));
-    if (s.unknown () || (s.get () == sty_context))
+            s.reset (symbol < ontology_version, e_ontology_type, e_ontology, s_schema > (default_schema, lc, static_cast < e_ontology > (i)));
+    if (s.unknown () || (s.get () == ont_context))
     {   if (! check_identifier_spelling (nits, v, lc))
-            nits.pick (nit_unrecognised_schema, es_error, ec_microdata, "Unrecognised type ", quote (x)); }
+            nits.pick (nit_unrecognised_ontology, es_error, ec_microdata, "Unrecognised ontology ", quote (x)); }
     else
     {   if (s.first ().deprecated ())
-            nits.pick (nit_deprecated_schema, es_warning, ec_schema, quote (x), " is deprecated");
-        const schema_version sv = corresponding_schema_version (s.ns (), v);
+            nits.pick (nit_deprecated_ontology, es_warning, ec_schema, quote (x), " is deprecated");
+        const ontology_version sv = corresponding_ontology_version (s.ns (), v);
         if (is_faux_schema (s.ns ()))
-            nits.pick (nit_unrecognised_schema, es_error, ec_schema, quote (x), " requires a schema");
+            nits.pick (nit_unrecognised_ontology, es_error, ec_schema, quote (x), " requires an ontology");
         else if (may_apply (sv, s.first (), s.last ()))
         {   if ((s.ns () == s_v) && (v >= html_jan12))
                 nits.pick (nit_data_vocabulary, es_warning, ec_schema, "data-vocabulary is deprecated in ", v.report (), " in favour of schema.org");
             return s.get (); }
-        else nits.pick (nit_unrecognised_schema, es_error, ec_schema, quote (x), " is invalid in ", sv.report ()); }
-    return sty_illegal; }
+        else nits.pick (nit_unrecognised_ontology, es_error, ec_schema, quote (x), " is invalid in ", sv.report ()); }
+    return ont_illegal; }
 
-e_schema sch::root () const noexcept
+e_ontology sch::root () const noexcept
 { return first ().root (); }
 
-e_schema sch::root (const e_schema_type st)
+e_ontology sch::root (const e_ontology_type st)
 { return first_version (st).root (); }
 
 bool sch::enumerated () const noexcept
-{ return enumerated_schema_type (flags ()); }
+{ return enumerated_ontology_type (flags ()); }
 
 bool sch::has_simple_type () const noexcept
-{ return has_simple_schema_type (flags ()); }
+{ return has_simple_ontology_type (flags ()); }
 
 bool sch::external_enumerated () const noexcept
-{ return external_enumerated_schema_type (flags ()); }
+{ return external_enumerated_ontology_type (flags ()); }
 
 e_type sch::get_simple_type () const noexcept
-{ return get_simple_schema_type (flags ()); }
+{ return get_simple_ontology_type (flags ()); }

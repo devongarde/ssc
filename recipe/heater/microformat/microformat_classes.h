@@ -303,8 +303,8 @@ typedef microformat < rel, r_respond_proxy, c_generic, ela_ok, ela_ok, respond_p
 typedef microformat < rel, r_respond_redirect, c_generic, ela_ok, ela_ok, respond_redirect_rt > mf_respond_redirect;
 typedef microformat < rel, r_restconf, c_generic, ela_ok, ela_ok, restconf_rt > mf_restconf;
 typedef microformat < rel, r_root, c_generic, ela_hyperlink, ela_hyperlink, root_rt > mf_root;
-typedef microformat < rel, r_schema_dc, c_dcterms, ela_external, ela_no, schema_dc_rt > mf_schema_dc;
-typedef microformat < rel, r_schema_dcterms, c_dcterms, ela_external, ela_no, schema_dcterms_rt > mf_schema_dcterms;
+typedef microformat < rel, r_ontology_dc, c_dcterms, ela_external, ela_no, ontology_dc_rt > mf_ontology_dc;
+typedef microformat < rel, r_ontology_dcterms, c_dcterms, ela_external, ela_no, ontology_dcterms_rt > mf_ontology_dcterms;
 typedef microformat < rel, r_search, c_generic, ela_ok, ela_ok, search_rt > mf_search;
 typedef microformat < rel, r_section, c_html4, ela_ok, ela_ok, section_rt > mf_section;
 typedef microformat < rel, r_self, c_atom, ela_ok, ela_ok, self_rt > mf_self;
@@ -612,8 +612,8 @@ typedef ::std::shared_ptr < mf_review > review_ptr;
 typedef ::std::shared_ptr < mf_review_v1 > review_v1_ptr;
 typedef ::std::shared_ptr < mf_root > root_ptr;
 typedef ::std::shared_ptr < mf_rtitem > rtitem_ptr;
-typedef ::std::shared_ptr < mf_schema_dc > schema_dc_ptr;
-typedef ::std::shared_ptr < mf_schema_dcterms > schema_dcterms_ptr;
+typedef ::std::shared_ptr < mf_ontology_dc > ontology_dc_ptr;
+typedef ::std::shared_ptr < mf_ontology_dcterms > ontology_dcterms_ptr;
 typedef ::std::shared_ptr < mf_search > search_ptr;
 typedef ::std::shared_ptr < mf_section > section_ptr;
 typedef ::std::shared_ptr < mf_self > self_ptr;
@@ -712,7 +712,7 @@ typedef ::std::shared_ptr < mf_error > error_ptr;
     mf_edituri, mf_entry_content, mf_gbfs, mf_gtfs_static, mf_gtfs_realtime, mf_image_src, mf_import, mf_jslicence, \
     mf_lightbox, mf_lightvideo, mf_manifest, mf_maskicon, mf_meta, mf_openid_delegate, mf_openid_server, \
     mf_openid2_local_id, mf_openid2_provider, mf_p3pv1, mf_pgpkey, mf_publisher, mf_radioepg, mf_rendition, \
-    mf_root, mf_reply_to, mf_schema_dcterms, mf_shortlink, mf_sitemap, mf_subresource, mf_sword, mf_syndication, \
+    mf_root, mf_reply_to, mf_ontology_dcterms, mf_shortlink, mf_sitemap, mf_subresource, mf_sword, mf_syndication, \
     mf_timesheet, mf_token_endpoint, mf_widget, mf_wlwmanifest, mf_yandex_tableau_widget, \
     mf_docs_oasis_open_org_ns_cmis_link_200908_acl, \
     mf_accessibility, mf_longdesc, mf_m_pagescroll2id, mf_source, mf_vcalendar_parent, mf_vcalendar_child, \
@@ -720,7 +720,7 @@ typedef ::std::shared_ptr < mf_error > error_ptr;
     mf_comment, mf_contribution, mf_endorsed, mf_fan, mf_relfeed, mf_footnote, mf_kinetic_stylesheet, mf_made, \
     mf_microsummary, mf_permalink, mf_popover, mf_privacy, mf_publickey, mf_referral, mf_respond_proxy, \
     mf_respond_redirect, mf_resource, mf_sponsor, mf_tooltip, mf_trackback, mf_unendorsed, mf_user, \
-    mf_schema_dc, mf_stylesheetless, mf_logo, mf_pavatar, \
+    mf_ontology_dc, mf_stylesheetless, mf_logo, mf_pavatar, \
     mf_cc_permits, mf_cc_requires, mf_cc_prohibits, mf_cc_jurisdiction, mf_cc_legalcode, mf_cc_deprecatedon, \
     mf_cc_licence, mf_cc_morepermissions, /* mf_cc_attributionname, */ mf_cc_attributionurl, mf_cc_useguidelines, \
     mf_error
@@ -762,7 +762,7 @@ typedef ::std::shared_ptr < mf_error > error_ptr;
     edituri_ptr, entry_content_ptr, gbfs_ptr, gtfs_static_ptr, gtfs_realtime_ptr, image_src_ptr, import_ptr, jslicence_ptr, \
     lightbox_ptr, lightvideo_ptr, manifest_ptr, maskicon_ptr, meta_ptr, openid_delegate_ptr, openid_server_ptr, \
     openid2_local_id_ptr, openid2_provider_ptr, p3pv1_ptr, pgpkey_ptr, publisher_ptr, radioepg_ptr, rendition_ptr, \
-    root_ptr, reply_to_ptr, schema_dcterms_ptr, shortlink_ptr, sitemap_ptr, subresource_ptr, sword_ptr, syndication_ptr, \
+    root_ptr, reply_to_ptr, ontology_dcterms_ptr, shortlink_ptr, sitemap_ptr, subresource_ptr, sword_ptr, syndication_ptr, \
     timesheet_ptr, token_endpoint_ptr, widget_ptr, wlwmanifest_ptr, yandex_tableau_widget_ptr, \
     docs_oasis_open_org_ns_cmis_link_200908_acl_ptr, \
     accessibility_ptr, longdesc_ptr, m_pagescroll2id_ptr, source_ptr, vcalendar_parent_ptr, vcalendar_child_ptr, \
@@ -770,7 +770,7 @@ typedef ::std::shared_ptr < mf_error > error_ptr;
     comment_ptr, contribution_ptr, endorsed_ptr, fan_ptr, relfeed_ptr, footnote_ptr, kinetic_stylesheet_ptr, made_ptr, \
     microsummary_ptr, permalink_ptr, popover_ptr, privacy_ptr, publickey_ptr, referral_ptr, respond_proxy_ptr, \
     respond_redirect_ptr, resource_ptr, sponsor_ptr, tooltip_ptr, trackback_ptr, unendorsed_ptr, user_ptr, \
-    schema_dc_ptr, stylesheetless_ptr, logo_ptr, pavatar_ptr, \
+    ontology_dc_ptr, stylesheetless_ptr, logo_ptr, pavatar_ptr, \
     cc_permits_ptr, cc_requires_ptr, cc_prohibits_ptr, cc_jurisdiction_ptr, cc_legalcode_ptr, cc_deprecatedon_ptr, \
     cc_licence_ptr, cc_morepermissions_ptr, /* cc_attributionname_ptr, */ cc_attributionurl_ptr, cc_useguidelines_ptr, \
     error_ptr

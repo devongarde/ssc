@@ -180,14 +180,14 @@ PASS ../toast/HTML/5.4/html5-example.html
 149 use_quote_code naughty_grave naughty_grave naughty_grave naughty_grave naughty_grave
 151 use_double_quote_code
 153 use_double_quote_code
-156 schema_domain
+156 ontology_domain
 163 use_quote_code
-170 schema_domain
+170 ontology_domain
 177 use_quote_code
-181 schema_domain
-184 schema_domain
-191 schema_domain
-194 schema_domain
+181 ontology_domain
+184 ontology_domain
+191 ontology_domain
+194 ontology_domain
 241 url_not_found
 244 url_not_found
 246 no_such_folder url_not_found
@@ -292,7 +292,7 @@ PASS ../toast/HTML/5.4/html5-example.html
 911 use_quote_code
 921 id_exists
 939 naughty_grave
-1010 schema_domain
+1010 ontology_domain
 1041 unrecognised_value
 1061 use_quote_code
 1067 use_quote_code

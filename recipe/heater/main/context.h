@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/output.h"
 #include "stats/stats.h"
 #include "parser/html_version.h"
-#include "schema/schema_version.h"
+#include "ontology/ontology_version.h"
 #include "feedback/nitout.h"
 
 #define VALID_RESULT 0
@@ -43,7 +43,7 @@ class context_t
                     external_ = false, ext_css_ = false, extra_ = false, force_version_ = false, forwarded_ = true, icu_ = true, info_ = false, jsonld_ = false, local_ = true,
                     load_css_ = true, links_ = true, main_ = false, md_export_ = false, meta_ = false, mf_export_ = false, mf_verify_ = true, microdata_ = true,
                     nids_ = false, nits_ = false, nits_nits_nits_ = false, not_root_ = false, once_ = true, presume_tags_ = false, progress_ = false, rdfa_ = true,
-                    rel_ = false, revoke_ = false, rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, schema_ = true,
+                    rel_ = false, revoke_ = false, rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, ontology_ = true,
                     shadow_comment_ = true, shadow_changed_ = false, shadow_enable_ = false, shadow_ssi_ = true, shadow_space_ = true, slob_ = false,
                     spec_ = false, spell_ = true, spell_deduced_ = false, ssi_ = true, stats_page_ = false, stats_summary_ = false, test_ = false,
                     unknown_class_ = true, update_ = false, valid_ = false, versioned_ = false;
@@ -194,8 +194,8 @@ class context_t
     context_t& mf_version (const unsigned char n)
     {   mf_version_ = n;
         mac < int > (nm_context_mf_version, n);
-        if (n <= 1) set_default_schema_version (s_microformats, 1, 0);
-        else set_default_schema_version (s_microformats, 2, 0);
+        if (n <= 1) set_default_ontology_version (s_microformats, 1, 0);
+        else set_default_ontology_version (s_microformats, 2, 0);
         return *this; }
     context_t& microdata (const bool b)
     {   microdata_ = b;
@@ -246,7 +246,7 @@ class context_t
     context_t& root (const ::std::string& s);
     context_t& rpt_opens (const bool b) noexcept { rpt_opens_ = b; return *this; }
     context_t& schema (const bool b)
-    {   schema_ = b;
+    {   ontology_ = b;
         mac (nm_context_schema, b);
         return *this; }
     context_t& secret (const ::std::string& s) { secret_ = s; return *this; }
@@ -418,9 +418,9 @@ public:
     bool rpt_opens () const noexcept { return rpt_opens_; }
     const ::std::string& root () const { return root_; }
     const ::boost::filesystem::path& rootp () const { return proot_; }
-    bool schema () const noexcept { return schema_; }
-    schema_version schema_ver (const e_schema es = s_schema) const
-    {   return get_default_schema_version (es); }
+    bool schema () const noexcept { return ontology_; }
+    ontology_version ontology_ver (const e_ontology es = s_schema) const
+    {   return get_default_ontology_version (es); }
     const ::std::string& secret () const { return secret_; }
     bool shadow_any () const noexcept { return shadow_pages (); }
     bool shadow_comment () const noexcept { return shadow_comment_; }

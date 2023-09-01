@@ -5,93 +5,93 @@ PASS ../toast/RDFa/lrdw/lrdw.html
 8 reputation
 9 reputation
 12 rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_confusion rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_confusion rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine
-20 not_schema_property bad_property not_schema_property bad_property bad_property
-102 schema_domain
-156 not_schema_property bad_property schema_domain not_schema_property bad_property
-248 schema_domain
-255 schema_domain
-318 schema_domain
-320 not_schema_property bad_property
+20 not_ontology_property bad_property not_ontology_property bad_property bad_property
+102 ontology_domain
+156 not_ontology_property bad_property ontology_domain not_ontology_property bad_property
+248 ontology_domain
+255 ontology_domain
+318 ontology_domain
+320 not_ontology_property bad_property
 454 empty_link
-587 not_schema_property bad_property
-826 not_schema_property bad_property
-840 not_schema_property bad_property not_schema_property bad_property
+587 not_ontology_property bad_property
+826 not_ontology_property bad_property
+840 not_ontology_property bad_property not_ontology_property bad_property
 858 contradictory_expansion
-899 schema_domain
-942 not_schema_property bad_property
-1003 not_schema_property bad_property
-1118 not_schema_property bad_property
-1201 schema_domain
-1202 schema_domain
-1206 schema_domain
-1382 not_schema_property bad_property
-1386 not_schema_property bad_property
-1436 not_schema_property bad_property
-1451 not_schema_property bad_property
-1553 not_schema_property bad_property
-1601 not_schema_property bad_property
+899 ontology_domain
+942 not_ontology_property bad_property
+1003 not_ontology_property bad_property
+1118 not_ontology_property bad_property
+1201 ontology_domain
+1202 ontology_domain
+1206 ontology_domain
+1382 not_ontology_property bad_property
+1386 not_ontology_property bad_property
+1436 not_ontology_property bad_property
+1451 not_ontology_property bad_property
+1553 not_ontology_property bad_property
+1601 not_ontology_property bad_property
 1848 invalid_ipv4 rel_requires_href chocolate_teapot
 1851 invalid_ipv4
 1924 no_such_folder url_not_found
-2017 not_schema_property bad_property not_schema_property bad_property
-2044 schema_domain
-2070 schema_domain
-2090 schema_domain
-2119 schema_domain
-2135 schema_domain
-2152 schema_domain
-2164 schema_domain
+2017 not_ontology_property bad_property not_ontology_property bad_property
+2044 ontology_domain
+2070 ontology_domain
+2090 ontology_domain
+2119 ontology_domain
+2135 ontology_domain
+2152 ontology_domain
+2164 ontology_domain
 2200 contradictory_expansion
 2314 no_such_folder url_not_found
 3572 invalid_ipv4 rel_requires_href chocolate_teapot
-3611 schema_domain
+3611 ontology_domain
 3779 no_such_folder url_not_found
 3803 no_such_folder url_not_found
-3868 schema_domain
-3887 schema_domain
-3912 schema_domain
-3953 schema_domain
-3975 schema_domain
-3984 schema_domain
-4032 schema_domain
+3868 ontology_domain
+3887 ontology_domain
+3912 ontology_domain
+3953 ontology_domain
+3975 ontology_domain
+3984 ontology_domain
+4032 ontology_domain
 4632 no_such_folder url_not_found
-4680 schema_domain not_schema_property bad_property
-4682 schema_domain not_schema_property bad_property
-4684 schema_domain not_schema_property bad_property
-4686 schema_domain not_schema_property bad_property
-4688 schema_domain not_schema_property bad_property
-4686 schema_domain not_schema_property bad_property
-4695 schema_domain not_schema_property bad_property
-4697 schema_domain not_schema_property bad_property
-4717 schema_domain not_schema_property bad_property
-4719 schema_domain not_schema_property bad_property
-4721 schema_domain not_schema_property bad_property
-4723 schema_domain not_schema_property bad_property
-4725 schema_domain not_schema_property bad_property
-4727 schema_domain not_schema_property bad_property
-4729 schema_domain not_schema_property bad_property
-4731 schema_domain not_schema_property bad_property
-5110 schema_domain
+4680 ontology_domain not_ontology_property bad_property
+4682 ontology_domain not_ontology_property bad_property
+4684 ontology_domain not_ontology_property bad_property
+4686 ontology_domain not_ontology_property bad_property
+4688 ontology_domain not_ontology_property bad_property
+4686 ontology_domain not_ontology_property bad_property
+4695 ontology_domain not_ontology_property bad_property
+4697 ontology_domain not_ontology_property bad_property
+4717 ontology_domain not_ontology_property bad_property
+4719 ontology_domain not_ontology_property bad_property
+4721 ontology_domain not_ontology_property bad_property
+4723 ontology_domain not_ontology_property bad_property
+4725 ontology_domain not_ontology_property bad_property
+4727 ontology_domain not_ontology_property bad_property
+4729 ontology_domain not_ontology_property bad_property
+4731 ontology_domain not_ontology_property bad_property
+5110 ontology_domain
 5132 rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine
 5138 invalid_attribute_version wrong_version
-5160 schema_domain
-5182 not_schema_property bad_property
-5254 schema_domain
-5297 schema_domain
-5313 schema_domain
-5329 schema_domain
+5160 ontology_domain
+5182 not_ontology_property bad_property
+5254 ontology_domain
+5297 ontology_domain
+5313 ontology_domain
+5329 ontology_domain
 5363 contradictory_expansion
-5373 not_schema_property bad_property
+5373 not_ontology_property bad_property
 5380 rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine svg_version
 5396 immeasurable
 5397 immeasurable
 5870 invalid_ipv4 rel_requires_href chocolate_teapot
-5985 not_schema_property bad_property
+5985 not_ontology_property bad_property
 6068 invalid_ipv4 rel_requires_href chocolate_teapot
-6085 schema_domain
-6087 schema_domain
-6089 schema_domain
-6091 schema_domain
-6093 schema_domain
-6096 schema_domain
-6236 schema_domain
+6085 ontology_domain
+6087 ontology_domain
+6089 ontology_domain
+6091 ontology_domain
+6093 ontology_domain
+6096 ontology_domain
+6236 ontology_domain

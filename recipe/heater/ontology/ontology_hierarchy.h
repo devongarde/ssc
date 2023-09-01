@@ -19,7 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
-#include "schema/schema_type.h"
+#include "ontology/ontology_type.h"
 
-void microdata_init (nitpick& nits);
-bool is_schema_property (const e_schema_type s, const e_schema_property p);
+void hierarchy_init (nitpick& nits);
+ssch_t generalise (const e_ontology_type s);
+bool is_specific_type_of (const e_ontology_type general, const e_ontology_type specific);

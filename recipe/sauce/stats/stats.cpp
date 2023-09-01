@@ -80,11 +80,11 @@ void stats_t::mark (const e_element f, const e_attribute m)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     p_ -> mark (f, m); }
 
-void stats_t::mark (const e_schema_type s)
+void stats_t::mark (const e_ontology_type s)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     p_ -> mark (s); }
 
-void stats_t::mark (const e_schema_type s, const e_schema_property p)
+void stats_t::mark (const e_ontology_type s, const e_ontology_property p)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     p_ -> mark (s, p); }
 

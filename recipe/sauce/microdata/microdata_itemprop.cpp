@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "microdata/microdata_itemprop.h"
-#include "schema/schema_property.h"
+#include "ontology/ontology_property.h"
 #include "microformat/prop.h"
 
 typedef ssc_map < ::std::string, itemprop_index > min_t;
@@ -37,12 +37,12 @@ void init_itemprop ()
 {   unknown_props = min_uptr (new min_t); 
     unknown_ids = mii_uptr (new mii_t); }
 
-itemprop_index make_itemprop_index (const e_schema_property p)
-{   PRESUME (p <= sp_illegal, __FILE__, __LINE__);
+itemprop_index make_itemprop_index (const e_ontology_property p)
+{   PRESUME (p <= op_illegal, __FILE__, __LINE__);
     return static_cast < itemprop_index> (p) + (static_cast < itemprop_index > (itemprop_schema) << uint32_category_shift); }
 
-itemprop_indices make_itemprop_indices (const e_schema_property p)
-{   PRESUME (p <= sp_illegal, __FILE__, __LINE__);
+itemprop_indices make_itemprop_indices (const e_ontology_property p)
+{   PRESUME (p <= op_illegal, __FILE__, __LINE__);
     itemprop_indices res;
     res.emplace_back (make_itemprop_index (p));
     return res; }
@@ -57,7 +57,7 @@ itemprop_index make_itemprop_index (const e_property p)
     return GSL_NARROW_CAST < itemprop_index> (p) + (static_cast < itemprop_index > (itemprop_microformat) << uint32_category_shift); }
 
 itemprop_indices make_itemprop_indices (const e_property p)
-{   PRESUME (p <= sp_illegal, __FILE__, __LINE__);
+{   PRESUME (p <= op_illegal, __FILE__, __LINE__);
     itemprop_indices res;
     res.emplace_back (make_itemprop_index (p));
     return res; }
@@ -70,9 +70,9 @@ itemprop_indices make_itemprop_indices (const e_property p)
 
 itemprop_index find_itemprop_index (nitpick& nits, const html_version& v, const ::std::string& name, bool bespoke_permitted)
 {   nitpick knots;
-    const e_schema_property mp = identify_schema_property (name);
-    if (mp != sp_illegal) return make_itemprop_index (mp);
-    knots.pick (nit_not_schema_property, es_error, ec_schema, quote (name), " is not a recognised property");
+    const e_ontology_property mp = identify_ontology_property (name);
+    if (mp != op_illegal) return make_itemprop_index (mp);
+    knots.pick (nit_not_ontology_property, es_error, ec_schema, quote (name), " is not a recognised property (1)");
     const prop p (knots, v, name);
     if (! p.unknown () && ! p.invalid ()) return make_itemprop_index (p.get ());
     if (! bespoke_permitted)
@@ -93,9 +93,9 @@ itemprop_index find_itemprop_index (nitpick& nits, const html_version& v, const 
 itemprop_indices find_itemprop_indices (nitpick& nits, const html_version& v, const ::std::string& name, bool bespoke_permitted)
 {   nitpick knots;
     itemprop_indices res;
-    vsp_t vsp = identify_schema_properties (name);
+    vsp_t vsp = identify_ontology_properties (name);
     if (! vsp.empty ()) return make_itemprop_indices (vsp);
-    knots.pick (nit_not_schema_property, es_error, ec_schema, quote (name), " is not a recognised property");
+    knots.pick (nit_not_ontology_property, es_error, ec_schema, quote (name), " is not a recognised property (2)");
     const prop p (knots, v, name);
     if (! p.unknown () && ! p.invalid ()) return make_itemprop_indices (p.get ());
     if (! bespoke_permitted)
@@ -120,7 +120,7 @@ itemprop_indices find_itemprop_indices (nitpick& nits, const html_version& v, co
         {   case itemprop_bespoke :
                 return bespoke_itemprop_name (ndx);
             case itemprop_schema :
-                return schema_property_name (static_cast < e_schema_property > (ndx_item (ndx)));
+                return ontology_property_name (static_cast < e_ontology_property > (ndx_item (ndx)));
             case itemprop_microformat :
                 return prop::name (GSL_NARROW_CAST < e_property > (ndx_item (ndx)));
             default : break; }
@@ -131,7 +131,7 @@ bool is_valid_property (nitpick& nits, const html_version& v, const itemtype_ind
     {   case itemprop_bespoke :
             return true;
         case itemprop_schema :
-            return is_valid_schema_property (nits, v, static_cast < e_schema_type> (ndx_item (itemtype)), static_cast < e_schema_property > (ndx_item (ndx)), value, is_link);
+            return is_valid_ontology_property (nits, v, static_cast < e_ontology_type> (ndx_item (itemtype)), static_cast < e_ontology_property > (ndx_item (ndx)), value, is_link);
         case itemprop_microformat :
             return true;
         default :
@@ -144,7 +144,7 @@ bool is_valid_property (nitpick& nits, const html_version& v, const itemtype_ind
     {   case itemprop_bespoke :
             return true;
         case itemprop_schema :
-            return is_valid_schema_property (nits, v, static_cast < e_schema_type> (ndx_item (itemtype)), static_cast < e_schema_property > (ndx_item (ndx)), static_cast < e_schema_type> (ndx_item (value)));
+            return is_valid_ontology_property (nits, v, static_cast < e_ontology_type> (ndx_item (itemtype)), static_cast < e_ontology_property > (ndx_item (ndx)), static_cast < e_ontology_type> (ndx_item (value)));
         case itemprop_microformat :
             return true;
         default :

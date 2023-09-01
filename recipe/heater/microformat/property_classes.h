@@ -477,7 +477,7 @@ typedef typed_mf_value < t_rel, r_radioepg > radioepg_rt;
 typedef typed_mf_value < t_rel, r_rendition > rendition_rt;
 typedef typed_mf_value < t_rel, r_root > root_rt;
 typedef typed_mf_value < t_rel, r_reply_to > reply_to_rt;
-typedef typed_mf_value < t_rel_link, r_schema_dcterms > schema_dcterms_rt;
+typedef typed_mf_value < t_rel_link, r_ontology_dcterms > ontology_dcterms_rt;
 typedef typed_mf_value < t_rel_link, r_shortlink > shortlink_rt;
 typedef typed_mf_value < t_rel_link, r_sitemap > sitemap_rt;
 typedef typed_mf_value < t_rel_link, r_stylesheetless > stylesheetless_rt;
@@ -523,7 +523,7 @@ typedef typed_mf_value < t_rel, r_trackback > trackback_rt;
 typedef typed_mf_value < t_rel, r_unendorsed > unendorsed_rt;
 typedef typed_mf_value < t_rel, r_user > user_rt;
 
-typedef typed_mf_value < t_rel_link, r_schema_dc > schema_dc_rt;
+typedef typed_mf_value < t_rel_link, r_ontology_dc > ontology_dc_rt;
 
 typedef typed_mf_value < t_rel_illegal, r_logo > logo_rt;
 typedef typed_mf_value < t_rel_illegal, r_pavatar > pavatar_rt;

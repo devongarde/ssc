@@ -2557,7 +2557,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-rfc-2070", nm_context_rfc_2070 },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-root", nm_context_root },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-schema", nm_context_schema },
-    { { HTML_TAGS }, { HTML_UNDEF }, "context-schema-version", nm_context_schema_version },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-schema-version", nm_context_ontology_version },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-shadow-comment", nm_context_shadow_comment },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-shadow-changed", nm_context_shadow_changed },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-shadow-enable", nm_context_shadow_enable },
