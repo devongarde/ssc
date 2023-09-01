@@ -231,8 +231,8 @@ PASS ../toast/living/jan21/example-2.html
 42 mime
 56 use_quote_code
 70 use_quote_code
-74 unrecognised_schema unrecognised_schema
-84 unrecognised_schema unrecognised_schema
+74 unrecognised_ontology unrecognised_ontology
+84 unrecognised_ontology unrecognised_ontology
 115 unrecognised_value
 130 use_quote_code
 140 use_quote_code
@@ -1503,7 +1503,7 @@ PASS ../toast/living/jan21/thead.html
 31 url_not_found
 
 PASS ../toast/living/jan21/time.html
-75 schema_domain
+75 ontology_domain
 
 PASS ../toast/living/jan21/tls.html
 0 charset_mismatch charset_used charset_invalid

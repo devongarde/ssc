@@ -1,0 +1,9 @@
+{
+  "@context": {
+    "dcat": "http://www.w3.org/ns/dcat#"
+  },
+  "@id": "http://www.example.org/rdf#Repository",
+  "dcat:dataset": {
+    "@id": "http://www.example.org/rdf#Fruit_02"
+  }
+}

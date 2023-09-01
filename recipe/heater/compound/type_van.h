@@ -401,36 +401,36 @@ template < > struct type_master < t_sandboxen > : string_vector < t_sandboxen, s
             if (allgood) return; }
         string_vector < t_sandboxen, sz_space_char > :: status (s_invalid); } };
 
-template < > struct type_master < t_schema_type > : tidy_string < t_schema_type >
-{   e_schema mdr_ = s_none;
-    e_schema_type st_ = sty_illegal;
+template < > struct type_master < t_ontology > : tidy_string < t_ontology >
+{   e_ontology mdr_ = s_none;
+    e_ontology_type st_ = ont_illegal;
     ::std::string vocab_;
-    using tidy_string < t_schema_type > :: tidy_string;
+    using tidy_string < t_ontology > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_schema_type > :: set_value (nits, v, s);
-        if (tidy_string < t_schema_type > :: good ()) try
-        {   ::std::string name (tidy_string < t_schema_type > :: get_string ());
+    {   tidy_string < t_ontology > :: set_value (nits, v, s);
+        if (tidy_string < t_ontology > :: good ()) try
+        {   ::std::string name (tidy_string < t_ontology > :: get_string ());
             if (name.find (':') == ::std::string::npos)
-                nits.pick (nit_schema_url, ed_jul20, "5.2.2 Items", es_error, ec_type, quote (s), " must be an absolute URL identifying a standard type (for example, 'http://" SCHEMA_ORG "/TypeName')");
+                nits.pick (nit_ontology_url, ed_jul20, "5.2.2 Items", es_error, ec_type, quote (s), " must be an absolute URL identifying a standard type (for example, 'http://" SCHEMA_ORG "/TypeName')");
             else if ((name.length () < 6) || (name.substr (0, 4) != "http"))
-                nits.pick (nit_schema_domain, es_error, ec_type, quote (s), " is neither 'http://' nor 'https://', so is unknown to " PROG);
+                nits.pick (nit_ontology_domain, es_error, ec_type, quote (s), " is neither 'http://' nor 'https://', so is unknown to " PROG);
             else
             {   ::std::string::size_type ends_at = 0;
-                mdr_ = schema_names.starts_with (SCHEMA_CURIE, ! v.xhtml (), name, &ends_at);
+                mdr_ = ontology_names.starts_with (ONTOLOGY_CURIE, ! v.xhtml (), name, &ends_at);
                 if (mdr_ == s_error)
-                    nits.pick (nit_schema_domain, es_error, ec_type, quote (s), " is a domain unknown to " PROG);
+                    nits.pick (nit_ontology_domain, es_error, ec_type, quote (s), " is a domain unknown to " PROG);
                 else
                 {   if (ends_at > 0) vocab_ = name.substr (ends_at);
                     if (vocab_.empty ())
-                        nits.pick (nit_unrecognised_schema, es_warning, ec_type, quote (s), " is incomplete");
+                        nits.pick (nit_unrecognised_ontology, es_warning, ec_type, quote (s), " is incomplete");
                     else
                     {   st_ = sch :: parse (nits, v, vocab_, mdr_);
-                        if (st_ != sty_illegal) return;
-                        nits.pick (nit_unrecognised_schema, es_warning, ec_type, quote (s), " is unrecognised by " PROG); } } } }
+                        if (st_ != ont_illegal) return;
+                        nits.pick (nit_unrecognised_ontology, es_warning, ec_type, quote (s), " is unrecognised by " PROG); } } } }
             catch (...) { }
-        tidy_string < t_schema_type > :: status (s_invalid); }
-    e_schema_type schema_type () const noexcept { return st_; }
-    e_schema root () const noexcept { return mdr_; }
+        tidy_string < t_ontology > :: status (s_invalid); }
+    e_ontology_type ontology_type () const noexcept { return st_; }
+    e_ontology root () const noexcept { return mdr_; }
     ::std::string vocab () const { return vocab_; } };
 
 template < > struct type_master < t_shape3 > : tidy_string < t_shape3 >

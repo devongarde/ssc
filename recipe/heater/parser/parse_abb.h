@@ -119,6 +119,6 @@ public:
         return res; } };
 
 typedef abbs_t < e_namespace, namespace_names_t, ns_default, ns_error > namespaces_t;
-typedef abbs_t < e_schema, schema_names_t, s_none, s_error > prefixes_t;
+typedef abbs_t < e_ontology, ontology_names_t, s_none, s_error > prefixes_t;
 typedef ::std::shared_ptr < namespaces_t > namespaces_ptr;
 typedef ::std::shared_ptr < prefixes_t > prefixes_ptr;

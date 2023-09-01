@@ -13,7 +13,7 @@ PASS ../toast/stats/summary/keyword-2.html
 2 naughty_lang
 
 PASS ../toast/stats/summary/md-ref.html
-14 not_schema_property not_schema_property
+14 not_ontology_property not_ontology_property
 18 missing_itemtype
 24 missing_itemtype
 

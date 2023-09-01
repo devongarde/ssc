@@ -6,7 +6,7 @@ PASS ../toast/RDFa/gr/example-1.html
 77 requires_itemscope
 112 requires_itemscope bad_itemid
 132 requires_itemscope bad_itemid
-143 schema_domain
+143 ontology_domain
 158 invalid_attribute_version wrong_version
 163 missing_close
 164 use_quote_code
@@ -22,10 +22,10 @@ PASS ../toast/RDFa/gr/example-1.html
 295 requires_itemscope bad_itemid
 301 double_angular_open
 315 requires_itemscope
-348 schema_domain
-352 schema_domain
+348 ontology_domain
+352 ontology_domain
 360 unknown_protocol no_itemscope
-362 not_schema_property bad_property
+362 not_ontology_property bad_property
 405 requires_itemscope
 408 use_quote_code
 411 url_not_found

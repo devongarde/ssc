@@ -1,0 +1,16 @@
+{
+  "@context": {
+    "dcterms": "http://purl.org/dc/terms/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "adms": "http://www.w3.org/ns/adms#"
+  },
+  "@id": "http://www.example.org/rdf#Fruit_02.xml",
+  "@type": "adms:AssetDistribution",
+  "dcterms:description": "XML encoding of Fruits that are found to be generally liked by most people.",
+  "dcterms:format": {
+    "@id": "http://publications.europa.eu/resource/authority/file-type/XML"
+  },
+  "dcterms:license": {
+    "@id": "http://creativecommons.org/licenses/by/4.0/"
+  }
+}

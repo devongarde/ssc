@@ -22,12 +22,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/context.h"
 #include "rdf/rdf.h"
 #include "rdf/rdfa_prop.h"
-#include "schema/schema_property.h"
+#include "ontology/ontology_property.h"
 
 typedef ssc_map < ::std::string, prop_index > mpn_t;
 typedef ssc_map < prop_index, ::std::string > mpi_t;
 
-prop_index bespoke_prop = static_cast < prop_index > (sp_illegal);
+prop_index bespoke_prop = static_cast < prop_index > (op_illegal);
 
 typedef ::std::unique_ptr < mpn_t > mpn_uptr;
 typedef ::std::unique_ptr < mpi_t > mpi_uptr;
@@ -44,8 +44,8 @@ prop_indices make_prop_indices (const prop_index p)
     res.emplace_back (p);
     return res; }
 
-prop_indices make_prop_indices (const e_schema_property p)
-{   PRESUME (p <= sp_illegal, __FILE__, __LINE__);
+prop_indices make_prop_indices (const e_ontology_property p)
+{   PRESUME (p <= op_illegal, __FILE__, __LINE__);
     prop_indices res;
     res.emplace_back (make_prop_index (p));
     return res; }
@@ -63,19 +63,19 @@ prop_indices make_prop_indices (const vsp_t& vsp)
 
 prop_indices find_prop_indices (nitpick& nits, const html_version& v, const vsh_t& vs, const ::std::string& name, bool bespoke_permitted)
 {   nitpick knots;
-    const vsp_t iv = identify_schema_properties (name);
-    schema_version sv;
-    if (iv.empty ()) knots.pick (nit_not_schema_property, es_error, ec_schema, quote (name), " is not a recognised property");
+    const vsp_t iv = identify_ontology_properties (name);
+    ontology_version sv;
+    if (iv.empty ()) knots.pick (nit_not_ontology_property, es_error, ec_schema, quote (name), " is not a recognised property (4)");
     else
     {   vsp_t vsp;
         for (auto sp : iv)
-        {   const e_schema es = property_root (sp);
+        {   const e_ontology es = property_root (sp);
             if (vs.find (es) != vs.cend ())
-            {   if (sv.root () != es) sv = corresponding_schema_version (es, v);
+            {   if (sv.root () != es) sv = corresponding_ontology_version (es, v);
                 if (does_property_apply (sv, sp))
                     vsp.emplace_back (sp); } }
         if (! vsp.empty ()) return make_prop_indices (vsp);
-        knots.pick (nit_not_schema_property, es_error, ec_schema, quote (name), " is invalid here"); }
+        knots.pick (nit_not_ontology_property, es_error, ec_schema, quote (name), " is invalid here"); }
     if (! bespoke_permitted)
     {   nits.merge (knots);
         nits.pick (nit_bad_property, es_error, ec_rdfa, quote (name), " is not recognised");
@@ -91,22 +91,22 @@ prop_indices find_prop_indices (nitpick& nits, const html_version& v, const vsh_
     return make_prop_indices (bespoke_prop); }
 
 ::std::string prop_index_name (const prop_index ndx)
-{   if (ndx < sp_illegal)
-        return schema_property_name (static_cast < e_schema_property > (ndx));
-    if (ndx > sp_illegal)
+{   if (ndx < op_illegal)
+        return ontology_property_name (static_cast < e_ontology_property > (ndx));
+    if (ndx > op_illegal)
         return bespoke_prop_name (ndx);
     return "(illegal)"; }
 
 bool is_valid_prop (nitpick& nits, const html_version& v, const type_index t, const prop_index ndx, const ::std::string& value, const bool is_link)
-{   if (ndx < sp_illegal)
-        return is_valid_schema_property (nits, v, static_cast < e_schema_type> (t), static_cast < e_schema_property > (ndx), value, is_link);
-    if (ndx > sp_illegal) return true;
+{   if (ndx < op_illegal)
+        return is_valid_ontology_property (nits, v, static_cast < e_ontology_type> (t), static_cast < e_ontology_property > (ndx), value, is_link);
+    if (ndx > op_illegal) return true;
     GRACEFUL_CRASH (__FILE__, __LINE__);
     UNREACHABLE (return false); }
 
 bool is_valid_prop (nitpick& nits, const html_version& v, const type_index t, const prop_index ndx, const type_index value)
-{   if (ndx < sp_illegal)
-        return is_valid_schema_property (nits, v, static_cast < e_schema_type> (t), static_cast < e_schema_property > (ndx), static_cast < e_schema_type> (value));
-    if (ndx > sp_illegal) return true;
+{   if (ndx < op_illegal)
+        return is_valid_ontology_property (nits, v, static_cast < e_ontology_type> (t), static_cast < e_ontology_property > (ndx), static_cast < e_ontology_type> (value));
+    if (ndx > op_illegal) return true;
     GRACEFUL_CRASH (__FILE__, __LINE__);
     UNREACHABLE (return false); }

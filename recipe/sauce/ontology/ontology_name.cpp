@@ -19,16 +19,32 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "main/standard.h"
-#include "schema/schema_name.h"
+#include "ontology/ontology_name.h"
 #include "utility/common.h"
 
 struct property_name
 {   const char* name_ = nullptr;
-    e_schema root_;
-    e_schema_property prop_; };
+    e_ontology root_;
+    e_ontology_property prop_; };
 
 property_name namtab [] =
-{   // open graph article
+{   
+    // automatic dog mangling service
+    { "identifier", s_adms, admsp_identifier },
+    { "includedAsset", s_adms, admsp_included_asset },
+    { "interoperabilityLevel", s_adms, admsp_interoperability_level },
+    { "last", s_adms, admsp_last },
+    { "next", s_adms, admsp_next },
+    { "prev", s_adms, admsp_prev },
+    { "representationTechnique", s_adms, admsp_representation_technique },
+    { "sample", s_adms, admsp_sample },
+    { "schemaAgency", s_adms, admsp_ontology_agency },
+    { "status", s_adms, admsp_status },
+    { "supportedSchema", s_adms, admsp_supported_schema },
+    { "translation", s_adms, admsp_translation },
+    { "versionNotes", s_adms, admsp_version_notes },
+
+    // open graph article
     { "author", s_article, og_article_author },
     { "expiration_time", s_article, og_article_expiration_time },
     { "modified_time", s_article, og_article_modified_time },
@@ -114,6 +130,188 @@ property_name namtab [] =
     { "url", s_as, asp_url },
     { "verb", s_as, asp_verb },
     { "width", s_as, asp_width },
+
+    // basic format ontology (the ODO is extremely error prone; God knows who ignored the lessons of early computing science re machine code)
+    { "BFO_0000196", s_bfo, bfo_bearer_of },
+    { "bearer_of", s_bfo, bfo_bearer_of },
+    { "BFO_0000246", s_bfo, bfo_concretises },
+    { "concretises", s_bfo, bfo_concretises },
+    { "concretizes", s_bfo, bfo_concretises },
+    { "BFO_0000164", s_bfo, bfo_concretises_always },
+    { "concretises_at_all_times", s_bfo, bfo_concretises_always },
+    { "concretizes_at_all_times", s_bfo, bfo_concretises_always },
+    { "BFO_0000059", s_bfo, bfo_concretises_sometimes },
+    { "concretises_at_some_time", s_bfo, bfo_concretises_sometimes },
+    { "concretizes_at_some_time", s_bfo, bfo_concretises_sometimes },
+    { "BFO_0000230", s_bfo, bfo_continuant_part_of },
+    { "continuant_part_of", s_bfo, bfo_continuant_part_of },
+    { "BFO_0000177", s_bfo, bfo_continuant_part_of_always },
+    { "continuant_part_of_at_all_times", s_bfo, bfo_continuant_part_of_always },
+    { "BFO_0000176", s_bfo, bfo_continuant_part_of_sometimes },
+    { "continuant_part_of_at_some_time", s_bfo, bfo_continuant_part_of_sometimes },
+    { "BFO_0000183", s_bfo, bfo_environs },
+    { "environs", s_bfo, bfo_environs },
+    { "BFO_0000108", s_bfo, bfo_exists_at },
+    { "exists_at", s_bfo, bfo_exists_at },
+    { "BFO_0000221", s_bfo, bfo_first_instant_of },
+    { "first_instant_of", s_bfo, bfo_first_instant_of },
+    { "BFO_0000244", s_bfo, bfo_generically_depends_on },
+    { "generically_depends_on", s_bfo, bfo_generically_depends_on },
+    { "BFO_0000219", s_bfo, bfo_generically_depends_on_always },
+    { "generically_depends_on_at_all_times", s_bfo, bfo_generically_depends_on_always },
+    { "BFO_0000084", s_bfo, bfo_generically_depends_on_sometimes },
+    { "generically_depends_on_at_some_time", s_bfo, bfo_generically_depends_on_sometimes },
+    { "BFO_0000231", s_bfo, bfo_has_continuant_part },
+    { "has_continuant_part", s_bfo, bfo_has_continuant_part },
+    { "BFO_0000110", s_bfo, bfo_has_continuant_part_always },
+    { "has_continuant_part_at_all_times", s_bfo, bfo_has_continuant_part_always },
+    { "BFO_0000178", s_bfo, bfo_has_continuant_part_sometimes },
+    { "has_continuant_part_at_some_time", s_bfo, bfo_has_continuant_part_sometimes },
+    { "BFO_0000222", s_bfo, bfo_has_first_instant },
+    { "has_first_instant", s_bfo, bfo_has_first_instant },
+    { "BFO_0000185", s_bfo, bfo_has_history },
+    { "has_disposition", s_bfo, bfo_has_disposition },
+    { "has_function", s_bfo, bfo_has_function },
+    { "BFO_0000224", s_bfo, bfo_has_last_instant },
+    { "has_last_instant", s_bfo, bfo_has_last_instant },
+    { "BFO_0000239", s_bfo, bfo_has_location },
+    { "has_location", s_bfo, bfo_has_location },
+    { "BFO_0000170", s_bfo, bfo_has_location_always },
+    { "has_location_at_all_times", s_bfo, bfo_has_location_always },
+    { "BFO_0000124", s_bfo, bfo_has_location_sometimes },
+    { "has_location_at_some_time", s_bfo, bfo_has_location_sometimes },
+    { "BFO_0000117", s_bfo, bfo_has_occurrent_part },
+    { "has_occurrent_part", s_bfo, bfo_has_occurrent_part },
+    { "BFO_0000242", s_bfo, bfo_has_material_basis },
+    { "has_material_basis", s_bfo, bfo_has_material_basis },
+    { "BFO_0000113", s_bfo, bfo_has_material_basis_always },
+    { "has_material_basis_at_all_times", s_bfo, bfo_has_material_basis_always },
+    { "BFO_0000218", s_bfo, bfo_has_material_basis_sometimes },
+    { "has_material_basis_at_some_time", s_bfo, bfo_has_material_basis_sometimes },
+    { "BFO_0000235", s_bfo, bfo_has_member_part },
+    { "has_member_part", s_bfo, bfo_has_member_part },
+    { "BFO_0000172", s_bfo, bfo_has_member_part_always },
+    { "has_member_part_at_all_times", s_bfo, bfo_has_member_part_always },
+    { "BFO_0000115", s_bfo, bfo_has_member_part_sometimes },
+    { "has_member_part_at_some_time", s_bfo, bfo_has_member_part_sometimes },
+    { "BFO_0000248", s_bfo, bfo_has_participant },
+    { "has_participant", s_bfo, bfo_has_participant },
+    { "BFO_0000167", s_bfo, bfo_has_participant_always },
+    { "has_participant_at_all_times", s_bfo, bfo_has_participant_always },
+    { "BFO_0000057", s_bfo, bfo_has_participant_sometimes },
+    { "has_participant_at_some_time", s_bfo, bfo_has_participant_sometimes },
+    { "BFO_0000233", s_bfo, bfo_has_proper_continuant_part },
+    { "has_proper_continuant_part", s_bfo, bfo_has_proper_continuant_part },
+    { "BFO_0000111", s_bfo, bfo_has_proper_continuant_part_always },
+    { "has_proper_continuant_part_at_all_times", s_bfo, bfo_has_proper_continuant_part_always },
+    { "BFO_0000174", s_bfo, bfo_has_proper_continuant_part_sometimes },
+    { "has_proper_continuant_part_at_some_time", s_bfo, bfo_has_proper_continuant_part_sometimes },
+    { "BFO_0000118", s_bfo, bfo_has_proper_occurrent_part },
+    { "has_proper_occurrent_part", s_bfo, bfo_has_proper_occurrent_part },
+    { "BFO_0000181", s_bfo, bfo_has_proper_temporal_part },
+    { "has_proper_temporal_part", s_bfo, bfo_has_proper_temporal_part },
+    { "BFO_0000054", s_bfo, bfo_has_realisation },
+    { "has_realisation", s_bfo, bfo_has_realisation },
+    { "has_realization", s_bfo, bfo_has_realisation },
+    { "has_role", s_bfo, bfo_has_role },
+    { "BFO_0000121", s_bfo, bfo_has_temporal_part },
+    { "has_temporal_part", s_bfo, bfo_has_temporal_part },
+    { "BFO_0000184", s_bfo, bfo_history_of },
+    { "history_of", s_bfo, bfo_history_of },
+    { "BFO_0000197", s_bfo, bfo_inheres_in },
+    { "inheres_in", s_bfo, bfo_inheres_in },
+    { "BFO_0000193", s_bfo, bfo_instance_of },
+    { "instance_of", s_bfo, bfo_instance_of },
+    { "BFO_0000245", s_bfo, bfo_is_carrier_of },
+    { "is_carrier_of", s_bfo, bfo_is_carrier_of },
+    { "BFO_0000220", s_bfo, bfo_is_carrier_of_always },
+    { "is_carrier_of_at_all_times", s_bfo, bfo_is_carrier_of_always },
+    { "BFO_0000101", s_bfo, bfo_is_carrier_of_sometimes },
+    { "is_carrier_of_at_some_time", s_bfo, bfo_is_carrier_of_sometimes },
+    { "BFO_0000247", s_bfo, bfo_is_concretised_by },
+    { "is_concretised_by", s_bfo, bfo_is_concretised_by },
+    { "is_concretized_by", s_bfo, bfo_is_concretised_by },
+    { "BFO_0000165", s_bfo, bfo_is_concretised_by_always },
+    { "is_concretised_by_at_all_times", s_bfo, bfo_is_concretised_by_always },
+    { "is_concretized_by_at_all_times", s_bfo, bfo_is_concretised_by_always },
+    { "BFO_0000058", s_bfo, bfo_is_concretised_by_sometimes },
+    { "is_concretised_by_at_some_time", s_bfo, bfo_is_concretised_by_sometimes },
+    { "is_concretized_by_at_some_time", s_bfo, bfo_is_concretised_by_sometimes },
+    { "BFO_0000223", s_bfo, bfo_last_instant_of },
+    { "last_instant_of", s_bfo, bfo_last_instant_of },
+    { "BFO_0000238", s_bfo, bfo_located_in },
+    { "located_in", s_bfo, bfo_located_in },
+    { "BFO_0000082", s_bfo, bfo_located_in_always },
+    { "located_in_at_all_times", s_bfo, bfo_located_in_always },
+    { "BFO_0000171", s_bfo, bfo_located_in_sometimes },
+    { "located_in_at_some_time", s_bfo, bfo_located_in_sometimes },
+    { "location_of", s_bfo, bfo_location_of },
+    { "BFO_0000243", s_bfo, bfo_material_basis_of },
+    { "material_basis_of", s_bfo, bfo_material_basis_of },
+    { "BFO_0000163", s_bfo, bfo_material_basis_of_always },
+    { "material_basis_of_at_all_times", s_bfo, bfo_material_basis_of_always },
+    { "BFO_0000127", s_bfo, bfo_material_basis_of_sometimes },
+    { "material_basis_of_at_some_time", s_bfo, bfo_material_basis_of_sometimes },
+    { "material_part_of", s_bfo, bfo_material_part_of },
+    { "BFO_0000234", s_bfo, bfo_member_part_of },
+    { "member_part_of", s_bfo, bfo_member_part_of },
+    { "BFO_0000173", s_bfo, bfo_member_part_of_always },
+    { "member_part_of_at_all_times", s_bfo, bfo_member_part_of_always },
+    { "BFO_0000129", s_bfo, bfo_member_part_of_sometimes },
+    { "member_part_of_at_some_time", s_bfo, bfo_member_part_of_sometimes },
+    { "occupied_by", s_bfo, bfo_occupied_by },
+    { "BFO_0000236", s_bfo, bfo_occupies_spatial_region },
+    { "occupies_spatial_region", s_bfo, bfo_occupies_spatial_region },
+    { "BFO_0000211", s_bfo, bfo_occupies_spatial_region_always },
+    { "occupies_spatial_region_at_all_times", s_bfo, bfo_occupies_spatial_region_always },
+    { "BFO_0000210", s_bfo, bfo_occupies_spatial_region_sometimes },
+    { "occupies_spatial_region_at_some_time", s_bfo, bfo_occupies_spatial_region_sometimes },
+    { "BFO_0000200", s_bfo, bfo_occupies_spatiotemporal_region },
+    { "occupies_spatiotemporal_region", s_bfo, bfo_occupies_spatiotemporal_region },
+    { "BFO_0000199", s_bfo, bfo_occupies_temporal_region },
+    { "occupies_temporal_region", s_bfo, bfo_occupies_temporal_region },
+    { "BFO_0000132", s_bfo, bfo_occurrent_part_of },
+    { "occurrent_part_of", s_bfo, bfo_occurrent_part_of },
+    { "BFO_0000066", s_bfo, bfo_occurs_in },
+    { "occurs_in", s_bfo, bfo_occurs_in },
+    { "BFO_0000249", s_bfo, bfo_participates_in },
+    { "participates_in", s_bfo, bfo_participates_in },
+    { "BFO_0000166", s_bfo, bfo_participates_in_always },
+    { "participates_in_at_all_times", s_bfo, bfo_participates_in_always },
+    { "BFO_0000056", s_bfo, bfo_participates_in_sometimes },
+    { "participates_in_at_some_time", s_bfo, bfo_participates_in_sometimes },
+    { "BFO_0000062", s_bfo, bfo_preceded_by },
+    { "preceded_by", s_bfo, bfo_preceded_by },
+    { "BFO_0000063", s_bfo, bfo_precedes },
+    { "precedes", s_bfo, bfo_precedes },
+    { "BFO_0000232", s_bfo, bfo_proper_continuant_part_of },
+    { "proper_continuant_part_of", s_bfo, bfo_proper_continuant_part_of },
+    { "BFO_0000137", s_bfo, bfo_proper_continuant_part_of_always },
+    { "proper_continuant_part_of_at_all_times", s_bfo, bfo_proper_continuant_part_of_always },
+    { "BFO_0000175", s_bfo, bfo_proper_continuant_part_of_sometimes },
+    { "proper_continuant_part_of_at_some_time", s_bfo, bfo_proper_continuant_part_of_sometimes },
+    { "BFO_0000138", s_bfo, bfo_proper_occurrent_part_of },
+    { "proper_occurrent_part_of", s_bfo, bfo_proper_occurrent_part_of },
+    { "BFO_0000136", s_bfo, bfo_proper_temporal_part_of },
+    { "proper_temporal_part_of", s_bfo, bfo_proper_temporal_part_of },
+    { "quality_of", s_bfo, bfo_quality_of },
+    { "BFO_0000055", s_bfo, bfo_realises },
+    { "realises", s_bfo, bfo_realises },
+    { "realizes", s_bfo, bfo_realises },
+    { "BFO_0000237", s_bfo, bfo_spatially_projects_onto },
+    { "spatially_projects_onto", s_bfo, bfo_spatially_projects_onto },
+    { "BFO_0000217", s_bfo, bfo_spatially_projects_onto_always },
+    { "spatially_projects_onto_at_all_times", s_bfo, bfo_spatially_projects_onto_always },
+    { "BFO_0000216", s_bfo, bfo_spatially_projects_onto_sometimes },
+    { "spatially_projects_onto_at_some_time", s_bfo, bfo_spatially_projects_onto_sometimes },
+    { "BFO_0000194", s_bfo, bfo_specifically_depended_on_by },
+    { "specifically_depended_on_by", s_bfo, bfo_specifically_depended_on_by },
+    { "BFO_0000195", s_bfo, bfo_specifically_depends_on },
+    { "specifically_depends_on", s_bfo, bfo_specifically_depends_on },
+    { "BFO_0000139", s_bfo, bfo_temporal_part_of },
+    { "temporal_part_of", s_bfo, bfo_temporal_part_of },
+    { "BFO_0000153", s_bfo, bfo_temporally_projects_onto },
+    { "temporally_projects_onto", s_bfo, bfo_temporally_projects_onto },
 
     // bibo (dreadful spec, guessed)
     { "abstract", s_bibo, bibo_abstract },
@@ -513,6 +711,59 @@ property_name namtab [] =
     { "title", s_dct, dct_title },
     { "type", s_dct, dct_type },
     { "valid", s_dct, dct_valid },
+
+    // ddi
+    { "aggregation", s_ddi, ddip_aggregation },
+    { "analysisUnit", s_ddi, ddip_analysis_unit },
+    { "basedOn", s_ddi, ddip_based_on },
+    { "caseQuantity", s_ddi, ddip_case_quantity },
+    { "collectionMode", s_ddi, ddip_collection_mode },
+    { "computationBase", s_ddi, ddip_computation_base },
+    { "concept", s_ddi, ddip_concept },
+    { "cumulativePercentage", s_ddi, ddip_cumulative_percentage },
+    { "dataFile", s_ddi, ddip_data_file },
+    { "ddiFile", s_ddi, ddip_ddi_file },
+    { "endDate", s_ddi, ddip_end_date },
+    { "externalDocumentation", s_ddi, ddip_external_documentation },
+    { "frequency", s_ddi, ddip_frequency },
+    { "fundedBy", s_ddi, ddip_funded_by },
+    { "inGroup", s_ddi, ddip_in_group },
+    { "inputVariable", s_ddi, ddip_input_variable },
+    { "instrument", s_ddi, ddip_instrument },
+    { "isPublic", s_ddi, ddip_is_public },
+    { "isValid", s_ddi, ddip_is_valid },
+    { "kindOfData", s_ddi, ddip_kind_of_data },
+    { "maximum", s_ddi, ddip_maximum },
+    { "mean", s_ddi, ddip_mean },
+    { "median", s_ddi, ddip_median },
+    { "minimum", s_ddi, ddip_minimum },
+    { "mode", s_ddi, ddip_mode },
+    { "numberOfCases", s_ddi, ddip_number_of_cases },
+    { "percentage", s_ddi, ddip_percentage },
+    { "product", s_ddi, ddip_product },
+    { "purpose", s_ddi, ddip_purpose },
+    { "question", s_ddi, ddip_question },
+    { "questionText", s_ddi, ddip_question_text },
+    { "representation", s_ddi, ddip_representation },
+    { "responseDomain", s_ddi, ddip_response_domain },
+    { "standardDeviation", s_ddi, ddip_standard_deviation },
+    { "startDate", s_ddi, ddip_start_date },
+    { "statisticsCategory", s_ddi, ddip_statistics_category },
+    { "statisticsDataFile", s_ddi, ddip_statistics_data_file },
+    { "statisticsVariable", s_ddi, ddip_statistics_variable },
+    { "subtitle", s_ddi, ddip_subtitle },
+    { "universe", s_ddi, ddip_universe },
+    { "validCases", s_ddi, ddip_valid_cases },
+    { "variable", s_ddi, ddip_variable },
+    { "weightedBy", s_ddi, ddip_weighted_by },
+    { "weightedCumulativePercentage", s_ddi, ddip_weighted_cumulative_percentage },
+    { "weightedFrequency", s_ddi, ddip_weighted_frequency },
+    { "weightedInvalidCases", s_ddi, ddip_weighted_invalid_cases },
+    { "weightedMean", s_ddi, ddip_weighted_mean },
+    { "weightedMedian", s_ddi, ddip_weighted_median },
+    { "weightedMode", s_ddi, ddip_weighted_mode },
+    { "weightedPercentage", s_ddi, ddip_weighted_percentage },
+    { "weightedValidCases", s_ddi, ddip_weighted_valid_cases },
 
     // doap
     { "anonroot", s_doap, doap_anonroot },
@@ -4129,21 +4380,22 @@ property_name namtab [] =
     { "treeitem", s_xhv, xhv_treeitem },
     { "up", s_xhv, xhv_up },
 
-    { nullptr, s_none, sp_illegal } };
+    { nullptr, s_none, op_illegal } };
 
 typedef ssc_mm < ::std::string, property_name* > mpn_t;
-typedef ssc_map < e_schema_property, property_name* > mnp_t;
+typedef ssc_map < e_ontology_property, property_name* > mnp_t;
+//typedef ::std::pair < mnp_t::const_iterator, mnp_t::const_iterator > mnp_r;
 mpn_t mpn;
 mnp_t mnp;
 
-void schema_name_init (nitpick& nits)
+void ontology_name_init (nitpick& nits)
 {   PRESUME (mpn.empty (), __FILE__, __LINE__);
     PRESUME (mnp.empty (), __FILE__, __LINE__);
 #ifdef _MSC_VER
 #pragma warning (push, 3)
 #pragma warning (disable : 26481)
 #endif // _MSC_VER
-    for (property_name* p = &namtab [0]; p -> prop_ != sp_illegal; ++p)
+    for (property_name* p = &namtab [0]; p -> prop_ != op_illegal; ++p)
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif // _MSC_VER
@@ -4161,32 +4413,39 @@ void schema_name_init (nitpick& nits)
             {   mpn.insert (mpn_t::value_type (n, p));
                 mnp.insert (mnp_t::value_type (p -> prop_, p)); } } }
 
-::std::string schema_property_name (const e_schema_property p)
+::std::string ontology_property_name (const e_ontology_property p)
 {   mnp_t::const_iterator i = mnp.find (p);
     if (i == mnp.cend ()) return ::std::string ();
     return i -> second -> name_; }
 
-e_schema_property get_schema_property (const ::std::string& s)
-{   mpn_t::const_iterator i = mpn.find (s);
-    if (i == mpn.cend ()) return sp_illegal;
-    VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
-    return i -> second -> prop_; }
+e_ontology_property get_ontology_property (const ::std::string& s, const e_ontology root)
+{   auto er = mpn.equal_range (s);
+    if (er.first != mpn.cend ())
+        for (auto i = er.first; i != er.second; ++i)
+        {   PRESUME (i != mpn.cend (), __FILE__, __LINE__);
+            VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__)
+            if ((root == s_none) || (root == i -> second -> root_))
+                return i -> second -> prop_; }
+    return op_illegal; }
 
-vsp_t get_schema_properties (const ::std::string& s, const e_schema root)
+vsp_t get_ontology_properties (const ::std::string& s, const e_ontology root)
 {   vsp_t res;
-    for (mpn_t::const_iterator i = mpn.find (s); (i != mpn.cend ()) && compare_no_case (i -> first, s); ++i)
-        if ((root == s_none) || (root == i -> second -> root_))
-        {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__)
-            res.emplace_back (i -> second -> prop_); }
+    auto er = mpn.equal_range (s);
+    if (er.first != mpn.cend ())
+        for (auto i = er.first; i != er.second; ++i)
+        {   PRESUME (i != mpn.cend (), __FILE__, __LINE__);
+            VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__)
+            if ((root == s_none) || (root == i -> second -> root_))
+                res.emplace_back (i -> second -> prop_); }
     return res; }
 
-e_schema get_property_root (const ::std::string& s)
+e_ontology get_property_root (const ::std::string& s)
 {   mpn_t::const_iterator ci = mpn.find (s);
     if (ci == mpn.cend ()) return s_none;
     VERIFY_NOT_NULL (ci -> second, __FILE__, __LINE__);
     return ci -> second -> root_; }
 
-e_schema get_property_root (const e_schema_property sp)
+e_ontology get_property_root (const e_ontology_property sp)
 {   mnp_t::const_iterator ci = mnp.find (sp);
     if (ci == mnp.cend ()) return s_none;
     VERIFY_NOT_NULL (ci -> second, __FILE__, __LINE__);

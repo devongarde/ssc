@@ -26,7 +26,7 @@ template < typename CATEGORY > struct behaviour
 {   const char* ns_sep () const noexcept { return ":"; }
     bool can_be_default (const CATEGORY ) const noexcept { return false; } };
 
-template < > inline const char* behaviour < e_schema > :: ns_sep () const noexcept { return ""; }
+template < > inline const char* behaviour < e_ontology > :: ns_sep () const noexcept { return ""; }
 template < > inline bool behaviour < ident_t > :: can_be_default (const ident_t c) const noexcept { return (c == ns_xhtml); }
 
 template < class V, typename CATEGORY, CATEGORY INIT > class symbol_table : public behaviour < CATEGORY >

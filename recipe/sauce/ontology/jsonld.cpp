@@ -30,22 +30,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "parser/parse_abb.h"
 #include "url/url.h"
 #include "url/url_sanitise.h"
-#include "schema/jsonld.h"
-#include "schema/schema_type.h"
-#include "schema/schema_property.h"
-#include "schema/schema_hierarchy.h"
+#include "ontology/jsonld.h"
+#include "ontology/ontology_type.h"
+#include "ontology/ontology_property.h"
+#include "ontology/ontology_hierarchy.h"
 
 // this is not, and not intended to be, a full json-ld interpreter. It exists, mostly, to enable schema testing.
 
 typedef ::std::vector < ::boost::json::value > vv_t;
 typedef ::std::vector < vv_t > vk_t;
-typedef ssc_map < ::std::string, e_schema_property > mssp_t;
+typedef ssc_map < ::std::string, e_ontology_property > mssp_t;
+typedef ::std::vector < e_ontology > vo_t;
+typedef ::std::vector < ontology_version > vov_t;
 
 struct json_scope
 {   json_scope* parent_ = nullptr;
     vk_t keyword_;
     url base_;
-    e_schema schema_ = s_none;
+    vo_t vo_;
     ssch_t type_;
     mssp_t bespoke_;
     ::std::string name_;
@@ -56,33 +58,31 @@ struct json_scope
     explicit json_scope (json_scope* parent)
     {   keyword_.resize (jt_error);
         parent_ = parent; }
-    e_schema schema () const
-    {   if (schema_ != s_none) return schema_;
-        if (parent_ != nullptr) return parent_ -> schema ();
-        return s_none; }
+    vo_t ontologies () const
+    {   if (! vo_.empty ()) return vo_;
+        if (parent_ != nullptr) return parent_ -> ontologies ();
+        return vo_t (); }
 };
-
-// jsonic jhbbc;
 
 void outer_process_json_ld (nitpick& nits, const html_version& v, json_scope& scope, const ::boost::json::object& o);
 bool process_json_ld (nitpick& nits, const html_version& v, json_scope& scope, const ::boost::json::object& o);
 void examine_json_ld (nitpick& nits, const html_version& v, json_scope& scope, const ::boost::json::object& o, const e_jtoken tk = jt_error);
 
-e_schema_property get_schema_property (nitpick& nits, const html_version& v, const ::std::string& s)
+e_ontology_property get_ontology_property (nitpick& nits, const html_version& v, const ::std::string& s)
 {   ::std::string::size_type after = ::std::string::npos;
-    const e_schema es = schema_names.starts_with_mixed (SCHEMA_CURIE, s, &after);
+    const e_ontology es = ontology_names.starts_with_mixed (ONTOLOGY_CURIE, s, &after);
     if (es == s_error)
     {   nits.pick (nit_jsonld_type, es_error, ec_json, "schema type ", quote (s), " is unrecognised");
-        return sp_illegal; }
+        return op_illegal; }
     if (after == ::std::string::npos)
     {   nits.pick (nit_jsonld_type, es_error, ec_json, "schema type ", quote (s), " is incomplete");
-        return sp_illegal; }
-    const schema_version sv (v);
-    const e_schema_property sp = identify_schema_property (s.substr (after));
-    if (sp == sp_illegal)
-        nits.pick (nit_not_schema_property, es_error, ec_schema, quote (s.substr (after)), " is not a recognised ", sv.report (), " property");
+        return op_illegal; }
+    const ontology_version sv (v);
+    const e_ontology_property sp = identify_ontology_property (s.substr (after));
+    if (sp == op_illegal)
+        nits.pick (nit_not_ontology_property, es_error, ec_schema, quote (s.substr (after)), " is not a recognised ", sv.report (), " property");
     const sch sc (nits, v, s.substr (after), es);
-    if (sc.unknown ()) return sp_illegal;
+    if (sc.unknown ()) return op_illegal;
     return sp; }
 
 bool is_token_valid_here (nitpick& nits, const html_version& , const e_jtoken parent, const e_jtoken token)
@@ -104,17 +104,43 @@ void note_token (nitpick& nits, const html_version& v, json_scope& scope, const 
             vv_t& vv = scope.keyword_.at (jt.get ());
             vv.push_back (val); } }
 
-::std::string expand_term (nitpick& , json_scope& , const ::std::string& s)
-{
-    return s; }
+bool separate_ontology_wot (nitpick& nits, const json_scope& scope, const ::std::string& s, e_ontology& o, ::std::string& wot)
+{   const ::std::string::size_type pos = s.find (':');
+    if (pos == ::std::string::npos) return false;
+    if ((pos == 0) || (pos == s.size () - 1)) 
+    {   nits.pick (nit_missing_ontology, es_error, ec_json, quote (s), ": ':'??");
+        return false; }
+    const ::std::string ont = s.substr (0, pos);
+    const ::std::string ty = s.substr (pos+1);
+    e_ontology xo = s_none;
+    for (auto vo : scope.ontologies ())
+        if (ontology_names.get (vo, ONTOLOGY_NAME) == ont)
+        {   xo = vo; break; }
+    if (xo == s_none)
+    {   nits.pick (nit_missing_ontology, es_error, ec_json, quote (ont), " is not recognised (missing @context ?)");
+        return false; }
+    wot = ty;
+    o = xo;
+    return true; }
 
-e_schema_property wot_prop (nitpick& nits, const html_version& v, const json_scope& scope, const ::std::string& s)
+::std::string expand_term (nitpick& , json_scope& , const ::std::string& s)
+{   return s; }
+
+e_ontology_property wot_prop (nitpick& nits, const html_version& , const json_scope& scope, const ::std::string& s)
 {   PRESUME (! s.empty (), __FILE__, __LINE__);
-    const schema_version sv (corresponding_schema_version (scope.schema (), v));
-    const e_schema_property sp = identify_schema_property (s);
-    if (sp == sp_illegal)
-        nits.pick (nit_not_schema_property, es_error, ec_schema, quote (s), " is not a recognised ", sv.report (), " property");
-    return sp; }
+    e_ontology o = s_none;
+    ::std::string pr;
+    nitpick nuts;
+    if (separate_ontology_wot (nuts, scope, s, o, pr))
+    {   const e_ontology_property sp = identify_ontology_property (pr, o);
+        if (sp != op_illegal)
+        {   nits.merge (nuts);
+            return sp; } }
+    for (auto vo : scope.ontologies ())
+    {   const e_ontology_property sp = identify_ontology_property (s, vo);
+        if (sp != op_illegal) return sp; }
+    nits.pick (nit_not_ontology_property, es_error, ec_schema, quote (s), " is not a recognised property (3)");
+    return op_illegal; }
 
 bool process_map (nitpick& nits, const html_version& v, const ::boost::json::object& o, const e_type key_type)
 {   bool res = true;
@@ -126,67 +152,106 @@ bool process_map (nitpick& nits, const html_version& v, const ::boost::json::obj
             res = false; } }
     return res; }
 
-bool process_term_object (nitpick& nits, const html_version& v, json_scope& scope, const e_schema_property p, const ::boost::json::object& o)
-{   const schema_version sv = get_default_schema_version (scope.schema ());
-    vt_t vt = sought_types (sv, p);
-    nitpick nuts;
-    for (auto st : vt)
-        switch (st)
-        {   case t_js_map :
-                if (process_map (nuts, v, o, t_generic))
-                {   nits.merge (nuts); return false; }
-                break;
-            case t_js_lang_map :
-                if (process_map (nuts, v, o, t_lang))
-                {   nits.merge (nuts); return false; }
-                break;
-            default :
-                break; }
+bool process_term_object (nitpick& nits, const html_version& v, json_scope& scope, const e_ontology_property p, const ::boost::json::object& obj)
+{   nitpick nuts;
+    vov_t vov;
+    for (auto on : scope.ontologies ())
+    {   const ontology_version sv (corresponding_ontology_version (on, v));
+//    {   const ontology_version sv = get_default_ontology_version (on);
+        vov.push_back (sv);
+        vt_t vt = sought_types (sv, p);
+        for (auto st : vt)
+            switch (st)
+            {   case t_js_map :
+                    if (process_map (nuts, v, obj, t_generic))
+                    {   nits.merge (nuts); return false; }
+                    break;
+                case t_js_lang_map :
+                    if (process_map (nuts, v, obj, t_lang))
+                    {   nits.merge (nuts); return false; }
+                    break;
+                default :
+                    break; } }
+    PRESUME (vov.size () == scope.ontologies ().size (), __FILE__, __LINE__);
     json_scope new_scope (&scope);
-    examine_json_ld (nits, v, new_scope, o);
-    const bool name_type = process_json_ld (nits, v, new_scope, o);
+    examine_json_ld (nits, v, new_scope, obj);
+    const bool name_type = process_json_ld (nits, v, new_scope, obj);
     if (name_type)
-    {   for (auto st : scope.type_)
-            if (is_valid_schema_property (nuts, v, st, p, new_scope.name_, false))
-            {   vit_t sst = sought_schema_types (sv, p);
-                for (auto t : new_scope.type_)
-                {   for (auto tt : sst)
-                    {   const e_schema_type ti = type_itself (tt);
-                        if ((ti == t) || is_specific_type_of (ti, t) || is_specific_type_of (t, ti)) return name_type; }
-                    nuts.pick (nit_jsonld_type, es_error, ec_json, sch::name (t), " is not a valid type for ", schema_property_name (p)); }
-                nits.merge (nuts);
-                return name_type; } }
+        for (auto ov : vov)
+            for (auto st : scope.type_)
+            {   nitpick nets;
+                if (is_valid_ontology_property (nets, v, st, p, new_scope.name_, false))
+                {   vit_t sst = sought_ontology_types (ov, p);
+                    for (auto t : new_scope.type_)
+                    {   for (auto tt : sst)
+                        {   const e_ontology_type ti = type_itself (tt);
+                            if ((ti == t) || is_specific_type_of (ti, t) || is_specific_type_of (t, ti)) return name_type; }
+                        nuts.pick (nit_jsonld_type, es_error, ec_json, sch::name (t), " is not a valid type for ", ontology_property_name (p)); }
+                    nits.merge (nets);
+                    nits.merge (nuts);
+                    return name_type; } }
     else for (auto st : scope.type_)
         for (auto t : new_scope.type_)
-            if (is_valid_schema_property (nuts, v, st, p, t))
+            if (is_valid_ontology_property (nuts, v, st, p, t))
                 return name_type;
     nits.merge (nuts);
     return name_type; }
 
-void process_term_string (nitpick& nits, const html_version& v, json_scope& scope, const e_schema_property p, const ::std::string& s)
+void process_term_string (nitpick& nits, const html_version& v, json_scope& scope, const e_ontology_property p, const ::std::string& s)
 {   nitpick nuts;
     for (auto st : scope.type_)
-        if (is_valid_schema_property (nuts, v, st, p, s, false))
+        if (is_valid_ontology_property (nuts, v, st, p, s, false))
             return;
     nits.merge (nuts); }
 
-e_schema_type process_schema_name_type_string (nitpick& nits, const html_version& v, json_scope& scope, const ::std::string& s)
-{   const e_schema_type st = sch::parse (nits, v, s, scope.schema ());
-    if (st != sty_illegal)
+e_ontology process_context_string_int (nitpick& nits, const html_version& v, json_scope& scope, const ::std::string& s)
+{   PRESUME (! s.empty (), __FILE__, __LINE__);
+    e_ontology sn = ontology_names.find (v, ONTOLOGY_CURIE, s, false);
+    if ((sn == s_none) || (sn == s_error))
+    {   sn = ontology_names.find (v, ONTOLOGY_CURIE, s + "/", false);
+        if ((sn == s_none) || (sn == s_error))
+        {   sn = ontology_names.find (v, ONTOLOGY_CURIE, s + "#", false);
+            if ((sn == s_none) || (sn == s_error))
+            {   nits.pick (nit_jsonld_context, es_warning, ec_json, "Unfortunately, " PROG " does not recognise the schema ", quote (s), ", so cannot verify it.");
+                return s_none; } } }
+    if (context.tell (es_debug)) nits.pick (nit_jsonld_context, es_debug, ec_json, ontology_names.get (sn, ONTOLOGY_DESCRIPTION), " recognised");
+    for (auto o : scope.ontologies ())
+        if (o == sn)
+        {   nits.pick (nit_jsonld_context, es_info, ec_json, quote (ontology_names.get (o, ONTOLOGY_CURIE)), " previously noted");
+            break; }
+    if ((ontology_names.flags (sn) & ONTOLOGY_CRAPSPEC) == ONTOLOGY_CRAPSPEC)
+        nits.pick (nit_crap_spec, es_warning, ec_json, quote (ontology_names.get (sn, ONTOLOGY_NAME)), " is poorly specified: use an alternative");
+    return sn; }
+
+e_ontology_type process_ontology_name_type_string_int (nitpick& nits, const html_version& v, json_scope& scope, const ::std::string& s, const e_ontology o = s_none)
+{   const e_ontology_type st = sch::parse (nits, v, s, o);
+    if (st != ont_illegal)
         if (scope.type_.find (st) != scope.type_.cend ())
             nits.pick (nit_jsonld_type, es_error, ec_json, sch::name (st), " previously declared");
         else
         {   scope.type_.emplace (st);
             return st; }
-    return sty_illegal; }
+    return ont_illegal; }
+
+e_ontology_type process_ontology_name_type_string (nitpick& nits, const html_version& v, json_scope& scope, const ::std::string& s)
+{   e_ontology o = s_none;
+    ::std::string ty;
+    nitpick nuts;
+    if (separate_ontology_wot (nuts, scope, s, o, ty))
+    {   nits.merge (nuts);
+        return process_ontology_name_type_string_int (nits, v, scope, ty, o); }
+    for (auto vo : scope.ontologies ())
+    {   const e_ontology_type st = process_ontology_name_type_string_int (nits, v, scope, s, vo); 
+        if (st != ont_illegal) return st; }
+    return ont_illegal; }
 
 bool note_term (nitpick& nits, const html_version& v, json_scope& scope, const ::std::string& s, const ::boost::json::value& val)
 {   bool name_type = true;
     bool named = true;
     bool test = true;
     ::std::string vs;
-    const e_schema_property sp = wot_prop (nits, v, scope, expand_term (nits, scope, s));
-    if (sp != sp_illegal)
+    const e_ontology_property sp = wot_prop (nits, v, scope, expand_term (nits, scope, s));
+    if (sp != op_illegal)
     {   switch (val.kind ())
         {   case ::boost::json::kind::object :
                 name_type = process_term_object (nits, v, scope, sp, val.as_object ());
@@ -248,7 +313,7 @@ bool examine_terms (nitpick& nits, const html_version& v, json_scope& scope, con
                 if (compare_no_case (s, "type"))
                 {   scope.atless_type_ = true;
                     ::std::string vs = e.value ().as_string ().c_str ();
-                    if (process_schema_name_type_string (nits, v, scope, vs) == sty_illegal)
+                    if (process_ontology_name_type_string (nits, v, scope, vs) == ont_illegal)
                         nits.pick (nit_jsonld_mistype, es_warning, ec_json, "were it '@type', not 'type', ", quote (vs), " would be invalid");
                     else nits.pick (nit_jsonld_mistype, es_info, ec_json, "for ", quote (vs), ", should 'type' be '@type'?"); } }
     for (auto e : o)
@@ -277,8 +342,8 @@ void process_group_token (nitpick& nits, const html_version& v, json_scope& scop
             outer_process_json_ld (nits, v, scope, o); } } }
 
 void insert_context_object_string (nitpick& nits, const html_version& v, json_scope& scope, const ::std::string& key, const ::std::string& s)
-{   const e_schema_type et = process_schema_name_type_string (nits, v, scope, s);
-    if (et != sty_illegal)
+{   const e_ontology_type et = process_ontology_name_type_string (nits, v, scope, s);
+    if (et != ont_illegal)
     {   for (auto b : scope.type_)
             if (b == et)
             {   nits.pick (nit_jsonld_context, es_warning, ec_json, sch::name (et), " was previously defined"); break; }
@@ -289,7 +354,10 @@ void process_context_object_string (nitpick& nits, const html_version& v, json_s
 {   PRESUME (kvp.value ().kind () == ::boost::json::kind::string, __FILE__, __LINE__);
     const ::std::string s (trim_the_lot_off (kvp.value ().as_string ().c_str ()));
     if (s.empty ()) nits.pick (nit_jsonld_context, ed_jsonld_1_0, "5.1 The Context", es_error, ec_json, "The @context URI associated with ", quote (key), " cannot be empty");
-    else insert_context_object_string (nits, v, scope, key, s); }
+//    else insert_context_object_string (nits, v, scope, key, s); }
+    else
+    {   const e_ontology o = process_context_string_int (nits, v, scope, s);
+        if ((o != s_none) && (o != s_error)) scope.vo_.push_back (o); } }
 
 void process_context_object_object (nitpick& nits, const html_version& v, json_scope& scope, const ::std::string& key, const ::boost::json::key_value_pair& kvp)
 {   PRESUME (kvp.value ().kind () == ::boost::json::kind::object, __FILE__, __LINE__);
@@ -316,6 +384,14 @@ void process_context_object_object (nitpick& nits, const html_version& v, json_s
     else if (! compare_no_case (type, "@id")) nits.pick (nit_jsonld_context, ed_jsonld_1_0, "5.1 The Context", es_error, ec_json, "unexpected value ", type, " for @type in @context ", quote (key));
     else insert_context_object_string (nits, v, scope, key, id); }
 
+void process_context_string (nitpick& nits, const html_version& v, json_scope& scope, const ::boost::json::value& val)
+{   PRESUME (val.kind () == ::boost::json::kind::string, __FILE__, __LINE__);
+    const ::std::string s = val.as_string ().c_str ();
+    if (s.empty ()) nits.pick (nit_jsonld_context, ed_jsonld_1_0, "5.1 The Context", es_error, ec_json, "@context cannot have an empty value");
+    else
+    {   const e_ontology o = process_context_string_int (nits, v, scope, s);
+        if ((o != s_none) && (o != s_error)) scope.vo_.push_back (o); } }
+
 void process_context_object (nitpick& nits, const html_version& v, json_scope& scope, const ::boost::json::value& val)
 {   PRESUME (val.kind () == ::boost::json::kind::object, __FILE__, __LINE__);
     const ::boost::json::object& o = val.as_object ();
@@ -333,27 +409,7 @@ void process_context_object (nitpick& nits, const html_version& v, json_scope& s
                     process_context_object_object (nits, v, scope, key, e);
                     break;
                 default :
-                    break;
-            } } }
-
-void process_context_string (nitpick& nits, const html_version& v, json_scope& scope, const ::boost::json::value& val)
-{   PRESUME (val.kind () == ::boost::json::kind::string, __FILE__, __LINE__);
-    ::std::string s (trim_the_lot_off (val.as_string ().c_str ()));
-    if (s.empty ()) nits.pick (nit_jsonld_context, ed_jsonld_1_0, "5.1 The Context", es_error, ec_json, "@context cannot have an empty value");
-    else
-    {   e_schema sn = schema_names.find (v, SCHEMA_CURIE, s, false);
-        if ((sn == s_none) || (sn == s_error))
-        {   sn = schema_names.find (v, SCHEMA_CURIE, s + "/", false);
-            if ((sn == s_none) || (sn == s_error))
-            {   sn = schema_names.find (v, SCHEMA_CURIE, s + "#", false);
-                if ((sn == s_none) || (sn == s_error))
-                {   nits.pick (nit_jsonld_context, es_warning, ec_json, "Unfortunately, " PROG " does not recognise the schema ", quote (s), ", so cannot verify it.");
-                    return; } } }
-        if (scope.schema_ != s_none) nits.pick (nit_jsonld_context, es_info, ec_json, "Replacing previous @context ", schema_names.get (scope.schema_, SCHEMA_CURIE), " with ", quote (s));
-        if (context.tell (es_debug)) nits.pick (nit_jsonld_context, es_debug, ec_json, schema_names.get (sn, SCHEMA_DESCRIPTION), " recognised");
-        if ((schema_names.flags (sn) & SCHEMA_CRAPSPEC) == SCHEMA_CRAPSPEC)
-            nits.pick (nit_crap_spec, es_warning, ec_json, quote (schema_names.get (sn, SCHEMA_NAME)), " is poorly specified: use an alternative");
-        scope.schema_ = sn; } }
+                    break; } } }
 
 void process_context (nitpick& nits, const html_version& v, json_scope& scope, const vv_t& vv)
 {   if (vv.empty ()) nits.pick (nit_empty, es_comment, ec_json, "Empty @context found.");
@@ -373,7 +429,7 @@ void process_single_type (nitpick& nits, const html_version& v, json_scope& scop
 {   PRESUME (val.kind () == ::boost::json::kind::string, __FILE__, __LINE__);
     ::std::string s (trim_the_lot_off (val.as_string ().c_str ()));
     if (s.empty ()) nits.pick (nit_jsonld_type, ed_jsonld_1_0, "5.4 Specifying the Type", es_error, ec_json, "@type cannot have an empty value");
-    else process_schema_name_type_string (nits, v, scope, s); }
+    else process_ontology_name_type_string (nits, v, scope, s); }
 
 void process_type (nitpick& nits, const html_version& v, json_scope& scope, const vv_t& vv)
 {   bool booboo = false;

@@ -28,7 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "parser/parse_elements.h"
 #include "stats/stats.h"
 #include "parser/parse_ssi.h"
-#include "schema/schema_version.h"
+#include "ontology/ontology_version.h"
 #include "webpage/fileindex.h"
 #include "webpage/id.h"
 #include "microdata/microdata_itemscope.h"
@@ -121,9 +121,9 @@ public:
     {   stats_.mark_dtdd (a, b); }
     void mark (const e_element f, const e_attribute m)
     {   stats_.mark (f, m); }
-    void mark (const e_schema_type s)
+    void mark (const e_ontology_type s)
     {   stats_.mark (s); }
-    void mark (const e_schema_type s, const e_schema_property p)
+    void mark (const e_ontology_type s, const e_ontology_property p)
     {   stats_.mark (s, p); }
     void mark (const e_css_property s)
     {   stats_.mark (s); }

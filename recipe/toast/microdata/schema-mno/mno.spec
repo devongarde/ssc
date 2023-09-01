@@ -50,8 +50,8 @@ PASS ../toast/microdata/schema-mno/monetaryamount-2.html
 PASS ../toast/microdata/schema-mno/mortgageloan.html
 0 charset_mismatch charset_used charset_invalid
 20 sunk sunk
-24 missing_itemtype invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf not_schema_property
-35 missing_itemtype invalid_attribute_version wrong_version svg_rdf not_schema_property
+24 missing_itemtype invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf not_ontology_property
+35 missing_itemtype invalid_attribute_version wrong_version svg_rdf not_ontology_property
 
 PASS ../toast/microdata/schema-mno/movie.html
 53 use_double_quote_code
@@ -78,7 +78,7 @@ PASS ../toast/microdata/schema-mno/musicalbum.html
 
 PASS ../toast/microdata/schema-mno/musicevent.html
 18 no_such_folder url_not_found
-25 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+25 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 50 no_such_folder url_not_found
 54 no_such_folder url_not_found
 59 no_such_folder url_not_found
@@ -99,7 +99,7 @@ PASS ../toast/microdata/schema-mno/musicgroup.html
 65 url_not_found
 66 url_not_found url_not_found url_not_found url_not_found url_not_found url_not_found
 76 no_such_folder url_not_found
-83 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+83 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 108 no_such_folder url_not_found
 112 no_such_folder url_not_found
 117 no_such_folder url_not_found
@@ -145,21 +145,21 @@ PASS ../toast/microdata/schema-mno/offer-1.html
 78 no_such_folder url_not_found
 79 use_quote_code
 85 unrecognised_value
-86 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+86 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 89 unrecognised_value
 92 unrecognised_value
 94 unrecognised_value
 99 unrecognised_value
 101 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 106 unrecognised_value
-107 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+107 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 110 unrecognised_value
 114 unrecognised_value
 116 unrecognised_value
 121 unrecognised_value
 123 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 129 unrecognised_value
-130 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+130 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 133 unrecognised_value
 136 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
 137 unrecognised_value
@@ -167,7 +167,7 @@ PASS ../toast/microdata/schema-mno/offer-1.html
 144 unrecognised_value
 148 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 153 unrecognised_value
-154 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+154 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 157 unrecognised_value
 160 unrecognised_value
 162 unrecognised_value

@@ -1300,7 +1300,7 @@ struct symbol_entry < html_version, e_mimetype > mimetype_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, "application/vnd.syncml.dm+xml", mime_application_vnd_syncml_dm_xml, ns_default, MIME_APPLICATION | MIME_XML },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/vnd.syncml.ds.notification", mime_application_vnd_syncml_ds_notification, ns_default, MIME_APPLICATION },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/vnd.syncml+xml", mime_application_vnd_syncml_xml, ns_default, MIME_APPLICATION | MIME_XML },
-    { { HTML_4_0 }, { HTML_UNDEF }, "application/vnd.tableschema+json", mime_application_vnd_tableschema_json, ns_default, MIME_APPLICATION | MIME_JSON },
+    { { HTML_4_0 }, { HTML_UNDEF }, "application/vnd.tableschema+json", mime_application_vnd_tableontology_json, ns_default, MIME_APPLICATION | MIME_JSON },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/vnd.tao.intent-module-archive", mime_application_vnd_tao_intent_module_archive, ns_default, MIME_APPLICATION },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/vnd.tcpdump.pcap", mime_application_vnd_tcpdump_pcap, ns_default, MIME_APPLICATION },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/vnd.think-cell.ppttc+json", mime_application_vnd_think_cell_ppttc_json, ns_default, MIME_APPLICATION | MIME_JSON },

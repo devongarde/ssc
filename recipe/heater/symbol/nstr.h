@@ -188,35 +188,35 @@ public:
 #define ABB_SHORTFORM 0
 #define ABB_LONGFORM ( ABB_SHORTFORM + 1 )
 
-#define NAMESPACE_NAME ABB_SHORTFORM
-#define NAMESPACE_SCHEMA ABB_LONGFORM
+#define NAMESPACE_NAME          ABB_SHORTFORM
+#define NAMESPACE_SCHEMA        ABB_LONGFORM
 #define NAMESPACE_DESCRIPTION ( NAMESPACE_SCHEMA + 1 )
-#define NAMESPACE_COUNT ( NAMESPACE_DESCRIPTION + 1 )
+#define NAMESPACE_COUNT       ( NAMESPACE_DESCRIPTION + 1 )
 
 #define NS_DEFAULT          0x0000000000000001
 #define NS_DEPRECATED       0x0000000000000002
 #define NS_UNDECLARABLE     0x0000000000000004
 #define NS_PREDECLARED      0x0000000000000008
 
-#define PROTOCOL_NAME ABB_SHORTFORM
-#define PROTOCOL_DESCRIPTION ( PROTOCOL_NAME + 1 )
-#define PROTOCOL_COUNT ( PROTOCOL_DESCRIPTION + 1 )
+#define PROTOCOL_NAME           ABB_SHORTFORM
+#define PROTOCOL_DESCRIPTION  ( PROTOCOL_NAME + 1 )
+#define PROTOCOL_COUNT        ( PROTOCOL_DESCRIPTION + 1 )
 
-#define SCHEMA_NAME ABB_SHORTFORM
-#define SCHEMA_CURIE ABB_LONGFORM
-#define SCHEMA_DESCRIPTION ( SCHEMA_CURIE + 1 )
-#define SCHEMA_COUNT ( SCHEMA_DESCRIPTION + 1 )
+#define ONTOLOGY_NAME           ABB_SHORTFORM
+#define ONTOLOGY_CURIE          ABB_LONGFORM
+#define ONTOLOGY_DESCRIPTION  ( ONTOLOGY_CURIE + 1 )
+#define ONTOLOGY_COUNT        ( ONTOLOGY_DESCRIPTION + 1 )
 
-#define SCHEMA_PREFIX_CONTEXT   0x0000000000000001
-#define SCHEMA_BESPOKE          0x0000000000000002
-#define SCHEMA_CRAPSPEC         0x0000000000000004
+#define ONTOLOGY_PREFIX_CONTEXT   0x0000000000000001
+#define ONTOLOGY_BESPOKE          0x0000000000000002
+#define ONTOLOGY_CRAPSPEC         0x0000000000000004
 
 typedef n_string_table < e_namespace, ns_error, NAMESPACE_COUNT, 2 > namespace_names_t;
 typedef n_string_table < e_protocol, pr_error, PROTOCOL_COUNT, 1 > protocol_names_t;
-typedef n_string_table < e_schema, s_error, SCHEMA_COUNT, 2 > schema_names_t;
+typedef n_string_table < e_ontology, s_error, ONTOLOGY_COUNT, 2 > ontology_names_t;
 extern namespace_names_t namespace_names, empty_namespace_names;
 extern protocol_names_t protocol_names;
-extern schema_names_t schema_names;
+extern ontology_names_t ontology_names;
 
-vsh_t rdfa_schema_context ();
+vsh_t rdfa_ontology_context ();
 void init_nstrs (nitpick& nits);

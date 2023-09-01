@@ -8,12 +8,12 @@ PASS ../toast/RDFa/imported/dokieli.html
 12 reputation
 13 no_such_folder url_not_found
 16 rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_confusion rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_confusion rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine
-119 schema_domain
-145 schema_domain
-177 schema_domain
-237 schema_domain
-361 schema_domain
-478 schema_domain
+119 ontology_domain
+145 ontology_domain
+177 ontology_domain
+237 ontology_domain
+361 ontology_domain
+478 ontology_domain
 
 PASS ../toast/RDFa/imported/linkedresearch.html
 7 reputation
@@ -23,10 +23,10 @@ PASS ../toast/RDFa/imported/linkedresearch.html
 17 url_not_found
 18 url_not_found
 19 no_such_folder url_not_found
-63 schema_domain not_schema_property bad_property not_schema_property bad_property bad_property
+63 ontology_domain not_ontology_property bad_property not_ontology_property bad_property bad_property
 68 id_exists
-189 schema_domain
-209 schema_domain
+189 ontology_domain
+209 ontology_domain
 226 chocolate_teapot
-230 schema_domain
+230 ontology_domain
 248 url_not_found

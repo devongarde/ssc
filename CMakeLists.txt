@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.19)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.1.32 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
+project (ssc VERSION 0.1.33 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
 
 set (CMAKE_CXX_STANDARD 17)
 
@@ -265,12 +265,12 @@ target_sources (ssc PRIVATE
             ${H}/microformat/microformat_export_rel.h ${H}/microformat/microformat_properties.h ${H}/microformat/microformats.h
             ${H}/microformat/microformats_ptr.h ${H}/microformat/prop.h ${H}/microformat/property.h ${H}/microformat/property_classes.h
             ${H}/microformat/property_value.h ${H}/microformat/sibling.h
+        ${H}/ontology/jsonld.h ${H}/ontology/ontology_hierarchy.h ${H}/ontology/ontology_name.h ${H}/ontology/ontology_property.h ${H}/ontology/ontology_structure.h
+            ${H}/ontology/ontology_type.h ${H}/ontology/ontology_version.h
         ${H}/parser/html_version.h ${H}/parser/jsonic.h ${H}/parser/parse_abb.h ${H}/parser/parse_attribute.h ${H}/parser/parse_attributes.h
             ${H}/parser/parse_brac_ket.h ${H}/parser/parse_bracs_ket.h ${H}/parser/parse_element.h ${H}/parser/parse_elements.h ${H}/parser/parse_ssi.h
             ${H}/parser/pattern.h ${H}/parser/text.h ${H}/parser/text-data.h ${H}/parser/xhtml_xml.h
         ${H}/rdf/rdf.h ${H}/rdf/rdfa_prop.h ${H}/rdf/rdfa_type.h
-        ${H}/schema/jsonld.h ${H}/schema/schema_hierarchy.h ${H}/schema/schema_name.h ${H}/schema/schema_property.h ${H}/schema/schema_structure.h
-            ${H}/schema/schema_type.h ${H}/schema/schema_version.h
         ${H}/simple/simple.h ${H}/simple/type_autocomplete.h ${H}/simple/type_cookie.h ${H}/simple/type_css.h ${H}/simple/type_currency.h
             ${H}/simple/type_httpequiv.h ${H}/simple/type_jsonic.h ${H}/simple/type_media.h ${H}/simple/type_metaname.h ${H}/simple/type_rdf.h
             ${H}/simple/type_reals.h ${H}/simple/type_relational.h ${H}/simple/type_time.h ${H}/simple/type_url.h ${H}/simple/type_basic.h
@@ -322,12 +322,12 @@ target_sources (ssc PRIVATE
             ${S}/microdata/microdata_itemtype.cpp
         ${S}/microformat/family.cpp ${S}/microformat/field.cpp ${S}/microformat/microformat_constructor.cpp ${S}/microformat/microformat_export.cpp
             ${S}/microformat/microformats.cpp ${S}/microformat/property_value.cpp ${S}/microformat/sibling.cpp
+        ${S}/ontology/jsonld.cpp ${S}/ontology/ontology_hierarchy.cpp ${S}/ontology/ontology_name.cpp ${S}/ontology/ontology_property.cpp ${S}/ontology/ontology_structure.cpp
+            ${S}/ontology/ontology_type.cpp ${S}/ontology/ontology_version.cpp
         ${S}/parser/html_version.cpp ${S}/parser/jsonic.cpp ${S}/parser/parse_attribute.cpp ${S}/parser/parse_attributes.cpp ${S}/parser/parse_brac_ket.cpp
             ${S}/parser/parse_bracs_ket.cpp ${S}/parser/parse_element.cpp ${S}/parser/parse_elements.cpp ${S}/parser/parse_ssi.cpp ${S}/parser/pattern.cpp
             ${S}/parser/text.cpp ${S}/parser/text-data.cpp ${S}/parser/xhtml_xml.cpp
         ${S}/rdf/rdf.cpp ${S}/rdf/rdfa_prop.cpp ${S}/rdf/rdfa_type.cpp
-        ${S}/schema/jsonld.cpp ${S}/schema/schema_hierarchy.cpp ${S}/schema/schema_name.cpp ${S}/schema/schema_property.cpp ${S}/schema/schema_structure.cpp
-            ${S}/schema/schema_type.cpp ${S}/schema/schema_version.cpp
         ${S}/simple/type_autocomplete.cpp ${S}/simple/type_css.cpp
             ${S}/simple/type_currency.cpp ${S}/simple/type_d.cpp ${S}/simple/type_httpequiv.cpp ${S}/simple/type_id.cpp
             ${S}/simple/type_intent.cpp  ${S}/base/type_master.cpp ${S}/simple/type_media.cpp ${S}/simple/type_metaname.cpp

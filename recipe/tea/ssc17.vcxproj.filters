@@ -29,9 +29,6 @@
     <Filter Include="Sauce\parser">
       <UniqueIdentifier>{8dace281-67f1-40e7-a133-e18a7a87fa9c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sauce\schema">
-      <UniqueIdentifier>{e68d6ed1-9278-45a4-8317-c8c30a9c0c3b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Sauce\stats">
       <UniqueIdentifier>{707bc468-2dc9-419a-bc12-8a6c3ac18cb0}</UniqueIdentifier>
     </Filter>
@@ -77,9 +74,6 @@
     </Filter>
     <Filter Include="Heater\parser">
       <UniqueIdentifier>{5eadd391-6a7f-42b3-b559-f7b7e6a9532b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Heater\schema">
-      <UniqueIdentifier>{acbe307a-039a-4fed-ad19-20d217dea9ed}</UniqueIdentifier>
     </Filter>
     <Filter Include="Heater\stats">
       <UniqueIdentifier>{1ae820a1-efcf-4b25-8671-5e2f5ee62fff}</UniqueIdentifier>
@@ -155,6 +149,12 @@
     </Filter>
     <Filter Include="Sauce\simple">
       <UniqueIdentifier>{987d1a26-1296-4174-a1b0-367a8fa1eaa3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heater\ontology">
+      <UniqueIdentifier>{acbe307a-039a-4fed-ad19-20d217dea9ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\ontology">
+      <UniqueIdentifier>{e68d6ed1-9278-45a4-8317-c8c30a9c0c3b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -308,21 +308,6 @@
     <ClInclude Include="..\heater\parser\xhtml_xml.h">
       <Filter>Heater\parser</Filter>
     </ClInclude>
-    <ClInclude Include="..\heater\schema\schema_hierarchy.h">
-      <Filter>Heater\schema</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\schema\schema_property.h">
-      <Filter>Heater\schema</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\schema\schema_structure.h">
-      <Filter>Heater\schema</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\schema\schema_type.h">
-      <Filter>Heater\schema</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\schema\schema_version.h">
-      <Filter>Heater\schema</Filter>
-    </ClInclude>
     <ClInclude Include="..\heater\stats\stats.h">
       <Filter>Heater\stats</Filter>
     </ClInclude>
@@ -410,9 +395,6 @@
     <ClInclude Include="resource.h">
       <Filter>Resources</Filter>
     </ClInclude>
-    <ClInclude Include="..\heater\schema\schema_name.h">
-      <Filter>Heater\schema</Filter>
-    </ClInclude>
     <ClInclude Include="..\heater\icu\wrapper.h">
       <Filter>Heater\icu</Filter>
     </ClInclude>
@@ -493,9 +475,6 @@
     </ClInclude>
     <ClInclude Include="..\heater\spell\phrase.h">
       <Filter>Heater\spell</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\schema\jsonld.h">
-      <Filter>Heater\schema</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\coop\fred.h">
       <Filter>Heater\coop</Filter>
@@ -824,6 +803,33 @@
     <ClInclude Include="..\heater\css\value_types.h">
       <Filter>Heater\css</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\ontology\jsonld.h">
+      <Filter>Heater\ontology</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\ontology\ontology_hierarchy.h">
+      <Filter>Heater\ontology</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\ontology\ontology_name.h">
+      <Filter>Heater\ontology</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\ontology\ontology_property.h">
+      <Filter>Heater\ontology</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\ontology\ontology_structure.h">
+      <Filter>Heater\ontology</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\ontology\ontology_type.h">
+      <Filter>Heater\ontology</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\ontology\ontology_version.h">
+      <Filter>Heater\ontology</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\media.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\medium.h">
+      <Filter>Heater\css</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -967,21 +973,6 @@
     <ClCompile Include="..\sauce\parser\parse_attributes.cpp">
       <Filter>Sauce\parser</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\schema\schema_hierarchy.cpp">
-      <Filter>Sauce\schema</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\schema\schema_property.cpp">
-      <Filter>Sauce\schema</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\schema\schema_structure.cpp">
-      <Filter>Sauce\schema</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\schema\schema_type.cpp">
-      <Filter>Sauce\schema</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\schema\schema_version.cpp">
-      <Filter>Sauce\schema</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\stats\stats.cpp">
       <Filter>Sauce\stats</Filter>
     </ClCompile>
@@ -1041,9 +1032,6 @@
     </ClCompile>
     <ClCompile Include="..\sauce\webpage\root.cpp">
       <Filter>Sauce\webpage</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\schema\schema_name.cpp">
-      <Filter>Sauce\schema</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\icu\wrapper.cpp">
       <Filter>Sauce\icu</Filter>
@@ -1197,9 +1185,6 @@
     </ClCompile>
     <ClCompile Include="..\sauce\icu\lingo.cpp">
       <Filter>Sauce\icu</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\schema\jsonld.cpp">
-      <Filter>Sauce\schema</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\main\output.cpp">
       <Filter>Sauce\main</Filter>
@@ -1396,9 +1381,6 @@
     <ClCompile Include="..\sauce\simple\type_transform.cpp">
       <Filter>Sauce\simple</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\simple\type_url.cpp">
-      <Filter>Sauce\simple</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\enum\type_colour.cpp">
       <Filter>Sauce\enum</Filter>
     </ClCompile>
@@ -1457,6 +1439,42 @@
       <Filter>Sauce\css</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\typed_property.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\ontology\jsonld.cpp">
+      <Filter>Sauce\ontology</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\ontology\ontology_hierarchy.cpp">
+      <Filter>Sauce\ontology</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\ontology\ontology_name.cpp">
+      <Filter>Sauce\ontology</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\ontology\ontology_property.cpp">
+      <Filter>Sauce\ontology</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\ontology\ontology_structure.cpp">
+      <Filter>Sauce\ontology</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\ontology\ontology_type.cpp">
+      <Filter>Sauce\ontology</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\ontology\ontology_version.cpp">
+      <Filter>Sauce\ontology</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\media.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\medium.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_10.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_11.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_12.cpp">
       <Filter>Sauce\css</Filter>
     </ClCompile>
   </ItemGroup>

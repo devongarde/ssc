@@ -31,13 +31,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "microformat/sibling.h"
 #include "element/parentage.h"
 #include "microformat/property.h"
-#include "schema/schema_hierarchy.h"
+#include "ontology/ontology_hierarchy.h"
 #include "microdata/microdata_itemid.h"
 #include "type/type.h"
-#include "schema/schema_version.h"
-#include "schema/schema_structure.h"
-#include "schema/schema_property.h"
-#include "schema/schema_name.h"
+#include "ontology/ontology_version.h"
+#include "ontology/ontology_structure.h"
+#include "ontology/ontology_property.h"
+#include "ontology/ontology_name.h"
 #include "spell/spell.h"
 #include "symbol/nstr.h"
 #include "webpage/root.h"
@@ -91,9 +91,9 @@ void init (nitpick& nits)
     parentage_init (nits);
     protocol::init (nits);
     sch::init (nits);
-    schema_name_init (nits);
-    schema_property_init (nits);
-    schema_version::init (nits);
+    ontology_name_init (nits);
+    ontology_property_init (nits);
+    ontology_version::init (nits);
     init_nstrs (nits);
     svg_feature_init (nits);
     hierarchy_init (nits);

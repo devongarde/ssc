@@ -21,18 +21,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "feedback/nitpick.h"
 #include "parser/html_version.h"
-#include "schema/schema_version.h"
+#include "ontology/ontology_version.h"
 
 typedef uint32_t type_index;
 CONSTEXPR type_index invalid_type = 0;
 typedef ::std::vector < type_index > vty_t;
 
-inline CONSTEXPR type_index make_type_index (const e_schema_type p) noexcept
+inline CONSTEXPR type_index make_type_index (const e_ontology_type p) noexcept
 {   return static_cast < uint32_t > (p); }
 
-inline e_schema_type type_schema (const type_index ii) noexcept
-{   if (ii <= sty_illegal) return static_cast < e_schema_type > (ii);
-    return sty_context; }
+inline e_ontology_type type_schema (const type_index ii) noexcept
+{   if (ii <= ont_illegal) return static_cast < e_ontology_type > (ii);
+    return ont_context; }
 
 ::std::string type_index_name (const type_index ndx);
 type_index find_type_index (nitpick& nits, const html_version& v, const ::std::string& name);

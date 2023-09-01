@@ -1428,7 +1428,7 @@ PASS ../toast/living/jan19/thead.html
 31 url_not_found
 
 PASS ../toast/living/jan19/time.html
-75 schema_domain
+75 ontology_domain
 
 PASS ../toast/living/jan19/tls.html
 0 charset_mismatch charset_used charset_invalid

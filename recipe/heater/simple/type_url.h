@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "base/type_master.h"
 #include "microdata/microdata_itemtype.h"
-#include "schema/schema_type.h"
+#include "ontology/ontology_type.h"
 #include "enum/type_enum.h"
 
 class directory;

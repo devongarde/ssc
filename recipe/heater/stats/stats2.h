@@ -71,4 +71,4 @@ public:
                 else o.count_.insert (counter_t :: value_type (item.first, item.second)); } };
 
 typedef stats2 < e_element, e_attribute, last_element_tag, last_attribute > attribute_stats;
-typedef stats2 < e_schema_type, e_schema_property, sty_illegal, sp_illegal > schema_property_stats;
+typedef stats2 < e_ontology_type, e_ontology_property, ont_illegal, op_illegal > ontology_property_stats;

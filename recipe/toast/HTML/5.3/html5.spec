@@ -135,21 +135,21 @@ PASS ../toast/HTML/5.3/html5-example.html
 149 use_quote_code naughty_grave naughty_grave naughty_grave naughty_grave naughty_grave
 151 use_double_quote_code
 153 use_double_quote_code
-156 schema_domain excluded_attribute excluded_attribute
+156 ontology_domain excluded_attribute excluded_attribute
 158 excluded_attribute
 159 excluded_attribute
 163 use_quote_code
 166 excluded_attribute
-170 schema_domain excluded_attribute excluded_attribute
+170 ontology_domain excluded_attribute excluded_attribute
 172 excluded_attribute
 173 excluded_attribute
 177 use_quote_code
-181 schema_domain excluded_attribute excluded_attribute excluded_attribute
-184 schema_domain excluded_attribute excluded_attribute excluded_attribute
+181 ontology_domain excluded_attribute excluded_attribute excluded_attribute
+184 ontology_domain excluded_attribute excluded_attribute excluded_attribute
 185 excluded_attribute
 187 excluded_attribute
-191 schema_domain excluded_attribute excluded_attribute excluded_attribute
-194 schema_domain excluded_attribute excluded_attribute excluded_attribute
+191 ontology_domain excluded_attribute excluded_attribute excluded_attribute
+194 ontology_domain excluded_attribute excluded_attribute excluded_attribute
 195 excluded_attribute
 197 excluded_attribute
 241 url_not_found
@@ -256,7 +256,7 @@ PASS ../toast/HTML/5.3/html5-example.html
 911 use_quote_code
 921 id_exists
 939 naughty_grave
-1010 schema_domain excluded_attribute excluded_attribute
+1010 ontology_domain excluded_attribute excluded_attribute
 1011 excluded_attribute
 1012 excluded_attribute
 1013 excluded_attribute

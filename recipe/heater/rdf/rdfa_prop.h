@@ -28,12 +28,12 @@ CONSTEXPR prop_index null_prop = 0;
 
 void init_rdfa_prop ();
 
-inline prop_index make_prop_index (const e_schema_property p)
-{   PRESUME (p <= sp_illegal, __FILE__, __LINE__);
+inline prop_index make_prop_index (const e_ontology_property p)
+{   PRESUME (p <= op_illegal, __FILE__, __LINE__);
     return static_cast < prop_index> (p); }
 
 prop_indices make_prop_indices (const prop_index p);
-prop_indices make_prop_indices (const e_schema_property p);
+prop_indices make_prop_indices (const e_ontology_property p);
 prop_indices make_prop_indices (const vsp_t& vsp);
 ::std::string bespoke_prop_name (const prop_index ii);
 prop_indices find_prop_indices (nitpick& nits, const html_version& v, const vsh_t& vs, const ::std::string& name, bool bespoke_permitted);

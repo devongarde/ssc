@@ -28,7 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "url/url.h"
 #include "url/url_sanitise.h"
 #include "webpage/crosslink.h"
-#include "schema/jsonld.h"
+#include "ontology/jsonld.h"
 #include "icu/converter.h"
 #include "webpage/q.h"
 #include "coop/kew.h"

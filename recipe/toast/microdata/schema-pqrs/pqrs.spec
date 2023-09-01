@@ -21,7 +21,7 @@ PASS ../toast/microdata/schema-pqrs/performancerole.html
 PASS ../toast/microdata/schema-pqrs/performingartstheatre.html
 12 use_quote_code
 19 no_such_folder url_not_found
-21 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+21 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 
 PASS ../toast/microdata/schema-pqrs/periodical.html
 0 charset_mismatch charset_used charset_invalid
@@ -36,11 +36,11 @@ PASS ../toast/microdata/schema-pqrs/periodical.html
 
 PASS ../toast/microdata/schema-pqrs/person.html
 0 charset_mismatch charset_used charset_invalid
-11 not_schema_property unrecognised_value bad_itemprop
+11 not_ontology_property unrecognised_value bad_itemprop
 13 url_not_found
 28 use_quote_code
 43 no_such_folder url_not_found
-50 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+50 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 75 no_such_folder url_not_found
 79 no_such_folder url_not_found
 84 no_such_folder url_not_found
@@ -60,7 +60,7 @@ PASS ../toast/microdata/schema-pqrs/person.html
 247 inserted_missing_closure
 267 missing_itemtype
 269 requires_itemscope missing_itemtype
-271 not_schema_property unrecognised_value bad_itemprop
+271 not_ontology_property unrecognised_value bad_itemprop
 
 PASS ../toast/microdata/schema-pqrs/pharmacy.html
 12 use_quote_code
@@ -103,21 +103,21 @@ PASS ../toast/microdata/schema-pqrs/place.html
 31 url_not_found
 46 mixed_mess
 65 unrecognised_value
-66 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+66 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 69 unrecognised_value
 72 unrecognised_value
 74 unrecognised_value
 79 unrecognised_value
 81 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 86 unrecognised_value
-87 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+87 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 90 unrecognised_value
 94 unrecognised_value
 96 unrecognised_value
 101 unrecognised_value
 103 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 109 unrecognised_value
-110 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+110 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 113 unrecognised_value
 116 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
 117 unrecognised_value
@@ -125,7 +125,7 @@ PASS ../toast/microdata/schema-pqrs/place.html
 124 unrecognised_value
 128 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 133 unrecognised_value
-134 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+134 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 137 unrecognised_value
 140 unrecognised_value
 142 unrecognised_value
@@ -155,21 +155,21 @@ PASS ../toast/microdata/schema-pqrs/postaladdress.html
 71 url_not_found
 86 mixed_mess
 106 unrecognised_value
-107 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+107 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 110 unrecognised_value
 113 unrecognised_value
 115 unrecognised_value
 120 unrecognised_value
 122 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 127 unrecognised_value
-128 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+128 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 131 unrecognised_value
 135 unrecognised_value
 137 unrecognised_value
 142 unrecognised_value
 144 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 150 unrecognised_value
-151 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+151 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 154 unrecognised_value
 157 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
 158 unrecognised_value
@@ -177,7 +177,7 @@ PASS ../toast/microdata/schema-pqrs/postaladdress.html
 165 unrecognised_value
 169 unrecognised_value invalid_attribute_version wrong_version svg_rdf
 174 unrecognised_value
-175 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+175 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 178 unrecognised_value
 181 unrecognised_value
 183 unrecognised_value
@@ -294,8 +294,8 @@ PASS ../toast/microdata/schema-pqrs/recipe.html
 PASS ../toast/microdata/schema-pqrs/repaymentspecification.html
 0 charset_mismatch charset_used charset_invalid
 20 sunk sunk
-24 missing_itemtype invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf not_schema_property
-35 missing_itemtype invalid_attribute_version wrong_version svg_rdf not_schema_property
+24 missing_itemtype invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf not_ontology_property
+35 missing_itemtype invalid_attribute_version wrong_version svg_rdf not_ontology_property
 
 PASS ../toast/microdata/schema-pqrs/restaurant.html
 42 invalid_attribute_version wrong_version svg_rdf
@@ -393,7 +393,7 @@ PASS ../toast/microdata/schema-pqrs/speakablespecification.html
 
 PASS ../toast/microdata/schema-pqrs/sportsevent.html
 12 use_quote_code
-16 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+16 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 18 use_quote_code
 
 PASS ../toast/microdata/schema-pqrs/sportsteam.html

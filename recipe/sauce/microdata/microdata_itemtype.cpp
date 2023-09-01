@@ -20,12 +20,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "microdata/microdata_itemtype.h"
-#include "schema/schema_type.h"
+#include "ontology/ontology_type.h"
 #include "microformat/prop.h"
 #include "type/type.h"
 
-itemtype_index make_itemtype_index (const e_schema_type p)
-{   PRESUME (p <= sty_illegal, __FILE__, __LINE__);
+itemtype_index make_itemtype_index (const e_ontology_type p)
+{   PRESUME (p <= ont_illegal, __FILE__, __LINE__);
     return static_cast < itemtype_index> (p) + (static_cast < itemtype_index> (itemtype_schema) << uint32_category_shift); }
 
 itemtype_index make_itemtype_index (const e_property p)
@@ -36,7 +36,7 @@ itemtype_index make_itemtype_index (const e_property p)
 
 itemtype_index find_itemtype_index (nitpick& nits, const html_version& v, const ::std::string& name, const bool propped)
 {   nitpick nuts;
-    type_master < t_schema_type > sc;
+    type_master < t_ontology > sc;
     sc.set_value (nits, v, name);
     if (sc.good ())
     {   const sch st (nits, v, sc.vocab (), sc.root ());
@@ -54,6 +54,6 @@ itemtype_index find_itemtype_index (nitpick& nits, const html_version& v, const 
             case itemtype_rel :
                 return type_master < t_class > :: name (static_cast < e_class > (ndx_item (ndx)));
             case itemtype_schema :
-                return sch :: name (static_cast < e_schema_type > (ndx_item (ndx)), true);
+                return sch :: name (static_cast < e_ontology_type > (ndx_item (ndx)), true);
             default : break; }
     return "untyped"; }

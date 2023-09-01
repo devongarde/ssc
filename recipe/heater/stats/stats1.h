@@ -52,7 +52,7 @@ typedef stats1 < e_element, last_element_tag, elem_undefined > element_stats;
 typedef stats1 < e_category, last_category, ec_undefined > category_stats;
 typedef stats1 < e_severity, last_severity, es_undefined > severity_stats;
 typedef stats1 < e_doc, last_doc, ed_mishmash > ref_stats;
-typedef stats1 < e_schema_type, sty_illegal, sty_context > schema_stats;
+typedef stats1 < e_ontology_type, ont_illegal, ont_context > ontology_stats;
 typedef stats1 < e_httpequiv, he_error, he_context > httpequiv_stats;
 typedef stats1 < e_metaname, mn_illegal, mn_context > metaname_stats;
 typedef stats1 < e_css_property, ec_error, ec_context > css_property_stats;

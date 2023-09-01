@@ -69,8 +69,8 @@ PASS ../toast/living/jan23/area.html
 PASS ../toast/living/jan23/article-1.html
 18 use_quote_code
 32 use_quote_code
-36 unrecognised_schema unrecognised_schema
-46 unrecognised_schema unrecognised_schema
+36 unrecognised_ontology unrecognised_ontology
+46 unrecognised_ontology unrecognised_ontology
 
 PASS ../toast/living/jan23/article-2.html
 2 missing_close
@@ -1129,8 +1129,8 @@ PASS ../toast/living/jan23/json.html
 3 inserted_missing_parent missing_close
 4 inserted_missing_parent inserted_missing_closure missing_close
 11 use_quote_code
-14 unrecognised_schema unrecognised_schema
-24 unrecognised_schema unrecognised_schema
+14 unrecognised_ontology unrecognised_ontology
+24 unrecognised_ontology unrecognised_ontology
 32 use_double_quote_code
 
 PASS ../toast/living/jan23/label.html
@@ -1321,18 +1321,18 @@ PASS ../toast/living/jan23/microdata-1.html
 73 dialect
 77 url_not_found naughty_alt
 82 url_not_found naughty_alt
-86 schema_domain
+86 ontology_domain
 90 url_not_found
-94 schema_domain
+94 ontology_domain
 96 inserted_missing_closure
 97 inserted_missing_closure
 98 inserted_missing_closure
 99 inserted_missing_closure
 100 inserted_missing_closure missing_close
 101 inserted_missing_closure
-103 schema_domain
+103 ontology_domain
 109 url_not_found
-111 schema_domain schema_domain
+111 ontology_domain ontology_domain
 114 inserted_missing_closure
 115 inserted_missing_closure
 116 inserted_missing_closure
@@ -1341,14 +1341,14 @@ PASS ../toast/living/jan23/microdata-1.html
 119 inserted_missing_closure
 120 inserted_missing_closure missing_close
 121 inserted_missing_closure
-123 schema_domain schema_domain
+123 ontology_domain ontology_domain
 126 inserted_missing_closure
 127 inserted_missing_closure
 128 inserted_missing_closure
 129 inserted_missing_closure
 130 inserted_missing_closure missing_close
 132 inserted_missing_closure
-134 schema_domain
+134 ontology_domain
 136 inserted_missing_closure
 137 inserted_missing_closure
 138 inserted_missing_closure
@@ -2056,7 +2056,7 @@ PASS ../toast/living/jan23/thead.html
 31 url_not_found
 
 PASS ../toast/living/jan23/time.html
-77 schema_domain
+77 ontology_domain
 
 PASS ../toast/living/jan23/title-1.html
 4 long_title

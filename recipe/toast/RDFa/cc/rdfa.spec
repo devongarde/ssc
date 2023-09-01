@@ -8,18 +8,18 @@ PASS ../toast/RDFa/cc/cc.html
 61 unrecognised_value
 73 wrong_parent wrong_parent no_such_folder url_not_found interactive
 75 unrecognised_value
-78 missing_close not_schema_property bad_property missing_open
+78 missing_close not_ontology_property bad_property missing_open
 80 unrecognised_value
 84 unrecognised_value no_such_folder url_not_found alt_title
 86 inserted_missing_closure inserted_missing_closure
 112 unrecognised_namespace unrecognised_value
 117 naughty_alt
-146 not_schema_property bad_property
+146 not_ontology_property bad_property
 151 no_such_folder url_not_found
 152 no_such_folder url_not_found
 160 unrecognised_namespace unrecognised_value
 170 unrecognised_value dl_ancestor dl_ancestor
-173 not_schema_property bad_property
+173 not_ontology_property bad_property
 179 unrecognised_value
 185 only_elements
 193 unrecognised_value dl_ancestor

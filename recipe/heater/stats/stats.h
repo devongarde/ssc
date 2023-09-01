@@ -48,8 +48,8 @@ public:
     void mark (const e_category c, const unsigned n = 1);
     void mark (const e_doc d, const unsigned n = 1);
     void mark (const e_element f, const e_attribute m);
-    void mark (const e_schema_type s);
-    void mark (const e_schema_type s, const e_schema_property p);
+    void mark (const e_ontology_type s);
+    void mark (const e_ontology_type s, const e_ontology_property p);
     void mark (const e_css_property p);
     void mark (const e_css_statement s);
     void mark_custom_prop (const ::std::string& s, const ::std::size_t n = 1);

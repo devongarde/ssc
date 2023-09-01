@@ -73,20 +73,20 @@ e_status parse_prefixes (nitpick& nits, const html_version& v, const ::std::stri
                                                                                 protocol_names.get (prot, PROTOCOL_DESCRIPTION), " protocol), is used as PREFIX");
                     break; }
             if (up != nullptr)
-            {   id = up -> find_shortform (v, schema_names, name);
-                if ((id != s_error) && (id != s_none)) old_curie = up -> longform (schema_names, id); }
+            {   id = up -> find_shortform (v, ontology_names, name);
+                if ((id != s_error) && (id != s_none)) old_curie = up -> longform (ontology_names, id); }
             else
-            {   id = schema_names.find (v, SCHEMA_NAME, name, ! v.xhtml ());
-                if ((id != s_error) && (id != s_none)) old_curie = schema_names.get (static_cast < e_schema > (id), SCHEMA_CURIE); }
+            {   id = ontology_names.find (v, ONTOLOGY_NAME, name, ! v.xhtml ());
+                if ((id != s_error) && (id != s_none)) old_curie = ontology_names.get (static_cast < e_ontology > (id), ONTOLOGY_CURIE); }
            if (id == s_error) id = s_none; }
         else
         {   ::std::string l (::boost::to_lower_copy (s)), oc;
             if (up != nullptr)
-            {   curie = up -> find_longform (v, schema_names, l);
-                if ((curie != s_error) && (curie != s_none)) old_name = up -> shortform (schema_names, curie); }
+            {   curie = up -> find_longform (v, ontology_names, l);
+                if ((curie != s_error) && (curie != s_none)) old_name = up -> shortform (ontology_names, curie); }
             else
-            {   curie = schema_names.find (v, SCHEMA_CURIE, l, true);
-                if (curie != s_error) old_name = schema_names.get (static_cast < e_schema > (curie), SCHEMA_NAME); }
+            {   curie = ontology_names.find (v, ONTOLOGY_CURIE, l, true);
+                if (curie != s_error) old_name = ontology_names.get (static_cast < e_ontology > (curie), ONTOLOGY_NAME); }
             if (curie == s_error) curie = s_none;
             if (vrai)
                 if (id == curie)
@@ -100,7 +100,7 @@ e_status parse_prefixes (nitpick& nits, const html_version& v, const ::std::stri
                     else if (id != s_none)
                         if (vrai) nits.pick (nit_rdfa_redefine, es_warning, ec_rdfa, quote (name), " was previously defined as ", quote (old_curie));
                     if ((curie < s_error) && (curie != s_none))
-                        nits.pick (nit_rdfa_confusion, ed_rdfa_c, "(entire document)", es_info, ec_rdfa, quote (l), " is predefined by standard as ", quote (schema_names.get (static_cast < e_schema > (curie), SCHEMA_NAME)));
+                        nits.pick (nit_rdfa_confusion, ed_rdfa_c, "(entire document)", es_info, ec_rdfa, quote (l), " is predefined by standard as ", quote (ontology_names.get (static_cast < e_ontology > (curie), ONTOLOGY_NAME)));
                     else if (curie != s_none)
                         nits.pick (nit_rdfa_redefine, es_warning, ec_rdfa, quote (l), " is already defined with ", quote (old_name)); }
             if ((id == s_none) || (id != curie))

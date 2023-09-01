@@ -75,12 +75,12 @@ void element::examine_datatype (flags_t& flags)
         if (nowt) flags |= EF_NULL_DATATYPE;
         else
         {   ::std::string dt (tart (a_.get_string (a_datatype)));
-            const e_schema_type t = ptr -> note_type (node_.nits (), node_.version (), dt, *page_);
+            const e_ontology_type t = ptr -> note_type (node_.nits (), node_.version (), dt, *page_);
             switch (t)
             {   case rdf_xmlliteral :
                     flags |= EF_XL_DATATYPE;
                     break;
-                case sty_illegal :
+                case ont_illegal :
                     pick (nit_unknown_datatype, ed_rdfa, "6.3.1.3. XML Literals", es_error, ec_rdfa, "Unknown RDFa DATATYPE ", quote (dt));
                     break;
                 default :

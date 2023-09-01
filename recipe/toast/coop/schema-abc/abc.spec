@@ -48,7 +48,7 @@ PASS ../toast/coop/schema-abc/a/answer.html
 31 use_quote_code
 
 PASS ../toast/coop/schema-abc/a/archivecomponent.html
-15 unrecognised_value not_schema_property
+15 unrecognised_value not_ontology_property
 17 unrecognised_value
 19 unrecognised_value
 21 unrecognised_value
@@ -58,7 +58,7 @@ PASS ../toast/coop/schema-abc/a/archivecomponent.html
 32 unrecognised_value
 37 use_quote_code
 38 unrecognised_value attribute_unrecognised_here unrecognised_attribute
-39 unrecognised_value not_schema_property
+39 unrecognised_value not_ontology_property
 41 unrecognised_value
 43 unrecognised_value
 45 unrecognised_value
@@ -81,7 +81,7 @@ PASS ../toast/coop/schema-abc/a/article.html
 67 url_id_unfound
 
 PASS ../toast/coop/schema-abc/a/audiobook.html
-12 not_schema_property use_quote_code
+12 not_ontology_property use_quote_code
 16 unknown_element unknown_element
 18 unknown_element unknown_element
 19 use_quote_code use_double_quote_code
@@ -95,7 +95,7 @@ PASS ../toast/coop/schema-abc/b/bankaccount.html
 
 PASS ../toast/coop/schema-abc/b/blogposting.html
 0 charset_mismatch charset_used charset_invalid
-13 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+13 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 22 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
 24 attribute_required naughty_alt
 29 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
@@ -138,10 +138,10 @@ PASS ../toast/coop/schema-abc/b/broadcastevent.html
 35 invalid_attribute_version wrong_version svg_rdf
 53 invalid_attribute_version wrong_version svg_rdf
 58 invalid_attribute_version wrong_version svg_rdf
-70 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
-71 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+70 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+71 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 81 use_quote_code
-85 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+85 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 87 use_quote_code
 
 PASS ../toast/coop/schema-abc/b/broadcastfrequencyspecification.html
@@ -158,13 +158,13 @@ PASS ../toast/coop/schema-abc/b/broadcastservice.html
 66 bad_property
 75 bad_property
 85 invalid_attribute_version wrong_version svg_rdf timezone
-114 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
-115 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+114 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+115 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 
 PASS ../toast/coop/schema-abc/b/brokerageaccount.html
 0 charset_mismatch charset_used charset_invalid
-14 not_schema_property unrecognised_value bad_itemprop
-15 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf not_schema_property unrecognised_value bad_itemprop
+14 not_ontology_property unrecognised_value bad_itemprop
+15 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf not_ontology_property unrecognised_value bad_itemprop
 
 PASS ../toast/coop/schema-abc/c/car.html
 23 missing_itemtype
@@ -209,7 +209,7 @@ PASS ../toast/coop/schema-abc/c/collection.html
 21 requires_itemscope
 23 requires_itemscope
 28 requires_itemscope
-36 missing_close schema_url requires_itemscope missing_itemtype inserted_missing_closure
+36 missing_close ontology_url requires_itemscope missing_itemtype inserted_missing_closure
 
 PASS ../toast/coop/schema-abc/c/collegeoruniversity-1.html
 14 bad_property
@@ -259,14 +259,14 @@ PASS ../toast/coop/schema-abc/c/creativework-2.html
 80 unrecognised_value
 82 unrecognised_value
 95 no_such_folder url_not_found
-102 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+102 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 127 no_such_folder url_not_found
 131 no_such_folder url_not_found
 136 no_such_folder url_not_found
 138 no_such_folder url_not_found
 146 use_quote_code
 153 no_such_folder url_not_found
-155 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
+155 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 190 use_quote_code
 199 use_quote_code
 211 use_quote_code

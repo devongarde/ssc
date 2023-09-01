@@ -100,7 +100,7 @@ PASS ../toast/microdata/schema-hijkl/interactioncounter.html
 130 invalid_attribute_version wrong_version svg_rdf not_an_integer not_an_integer not_an_integer not_an_integer
 
 PASS ../toast/microdata/schema-hijkl/investmentfund.html
-11 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf not_schema_property unrecognised_value bad_itemprop invalid_attribute_version wrong_version svg_rdf not_schema_property unrecognised_value bad_itemprop
+11 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf not_ontology_property unrecognised_value bad_itemprop invalid_attribute_version wrong_version svg_rdf not_ontology_property unrecognised_value bad_itemprop
 12 invalid_attribute_version wrong_version svg_rdf
 
 PASS ../toast/microdata/schema-hijkl/investmentordeposit.html
@@ -172,12 +172,12 @@ PASS ../toast/microdata/schema-hijkl/loanorcredit.html
 
 PASS ../toast/microdata/schema-hijkl/locationfeaturespecification.html
 4 long_title
-19 not_schema_property
-20 not_schema_property
-23 not_schema_property
-24 not_schema_property
-37 not_schema_property
-38 not_schema_property
+19 not_ontology_property
+20 not_ontology_property
+23 not_ontology_property
+24 not_ontology_property
+37 not_ontology_property
+38 not_ontology_property
 41 invalid_attribute_version wrong_version svg_rdf
 42 invalid_attribute_version wrong_version svg_rdf
 

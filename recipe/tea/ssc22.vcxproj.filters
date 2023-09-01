@@ -26,9 +26,6 @@
     <Filter Include="Sauce\parser">
       <UniqueIdentifier>{8dace281-67f1-40e7-a133-e18a7a87fa9c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sauce\schema">
-      <UniqueIdentifier>{e68d6ed1-9278-45a4-8317-c8c30a9c0c3b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Sauce\stats">
       <UniqueIdentifier>{707bc468-2dc9-419a-bc12-8a6c3ac18cb0}</UniqueIdentifier>
     </Filter>
@@ -602,9 +599,6 @@
     <Filter Include="Toast\RDFa\1.1.3">
       <UniqueIdentifier>{a3a6c4e4-d474-4a33-b5cb-0ed6480764c0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Toast\RDFa\schema">
-      <UniqueIdentifier>{c7af229a-2dc6-40fa-b502-b232c52efa19}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Toast\RDFa\cc">
       <UniqueIdentifier>{0caeb375-1644-40ec-b2a6-eed21c0a16db}</UniqueIdentifier>
     </Filter>
@@ -1110,9 +1104,6 @@
     <Filter Include="Heater\webpage">
       <UniqueIdentifier>{d95b5002-4163-4394-8dfd-986e8bbcc54d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Heater\schema">
-      <UniqueIdentifier>{acbe307a-039a-4fed-ad19-20d217dea9ed}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Heater\icu">
       <UniqueIdentifier>{1df5d99d-383c-4709-af17-c472c1b844dd}</UniqueIdentifier>
     </Filter>
@@ -1211,6 +1202,18 @@
     </Filter>
     <Filter Include="Toast\CSS\ae\plumbing">
       <UniqueIdentifier>{91da426f-d1e9-4329-9357-23f28c516bd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\JSON-LD\adms">
+      <UniqueIdentifier>{1671f025-5a8e-458f-a8f8-54060caa7005}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\ontology">
+      <UniqueIdentifier>{e68d6ed1-9278-45a4-8317-c8c30a9c0c3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heater\ontology">
+      <UniqueIdentifier>{acbe307a-039a-4fed-ad19-20d217dea9ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\RDFa\ontology">
+      <UniqueIdentifier>{c7af229a-2dc6-40fa-b502-b232c52efa19}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1367,21 +1370,6 @@
     <ClInclude Include="..\heater\parser\xhtml_xml.h">
       <Filter>Heater\parser</Filter>
     </ClInclude>
-    <ClInclude Include="..\heater\schema\schema_hierarchy.h">
-      <Filter>Heater\schema</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\schema\schema_property.h">
-      <Filter>Heater\schema</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\schema\schema_structure.h">
-      <Filter>Heater\schema</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\schema\schema_type.h">
-      <Filter>Heater\schema</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\schema\schema_version.h">
-      <Filter>Heater\schema</Filter>
-    </ClInclude>
     <ClInclude Include="..\heater\stats\stats.h">
       <Filter>Heater\stats</Filter>
     </ClInclude>
@@ -1465,9 +1453,6 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\schema\schema_name.h">
-      <Filter>Heater\schema</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\icu\wrapper.h">
       <Filter>Heater\icu</Filter>
@@ -1555,9 +1540,6 @@
     </ClInclude>
     <ClInclude Include="..\heater\spell\phrase.h">
       <Filter>Heater\spell</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\schema\jsonld.h">
-      <Filter>Heater\schema</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\main\output.h">
       <Filter>Heater\main</Filter>
@@ -1901,6 +1883,27 @@
     <ClInclude Include="..\heater\css\medium.h">
       <Filter>Heater\css</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\ontology\jsonld.h">
+      <Filter>Heater\ontology</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\ontology\ontology_hierarchy.h">
+      <Filter>Heater\ontology</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\ontology\ontology_name.h">
+      <Filter>Heater\ontology</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\ontology\ontology_property.h">
+      <Filter>Heater\ontology</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\ontology\ontology_structure.h">
+      <Filter>Heater\ontology</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\ontology\ontology_type.h">
+      <Filter>Heater\ontology</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\ontology\ontology_version.h">
+      <Filter>Heater\ontology</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -2053,21 +2056,6 @@
     <ClCompile Include="..\sauce\parser\parse_attributes.cpp">
       <Filter>Sauce\parser</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\schema\schema_hierarchy.cpp">
-      <Filter>Sauce\schema</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\schema\schema_property.cpp">
-      <Filter>Sauce\schema</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\schema\schema_structure.cpp">
-      <Filter>Sauce\schema</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\schema\schema_type.cpp">
-      <Filter>Sauce\schema</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\schema\schema_version.cpp">
-      <Filter>Sauce\schema</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\stats\stats.cpp">
       <Filter>Sauce\stats</Filter>
     </ClCompile>
@@ -2127,9 +2115,6 @@
     </ClCompile>
     <ClCompile Include="..\sauce\webpage\root.cpp">
       <Filter>Sauce\webpage</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\schema\schema_name.cpp">
-      <Filter>Sauce\schema</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\icu\wrapper.cpp">
       <Filter>Sauce\icu</Filter>
@@ -2283,9 +2268,6 @@
     </ClCompile>
     <ClCompile Include="..\sauce\icu\lingo.cpp">
       <Filter>Sauce\icu</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\schema\jsonld.cpp">
-      <Filter>Sauce\schema</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\main\output.cpp">
       <Filter>Sauce\main</Filter>
@@ -2547,6 +2529,27 @@
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_12.cpp">
       <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\ontology\jsonld.cpp">
+      <Filter>Sauce\ontology</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\ontology\ontology_hierarchy.cpp">
+      <Filter>Sauce\ontology</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\ontology\ontology_name.cpp">
+      <Filter>Sauce\ontology</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\ontology\ontology_property.cpp">
+      <Filter>Sauce\ontology</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\ontology\ontology_structure.cpp">
+      <Filter>Sauce\ontology</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\ontology\ontology_type.cpp">
+      <Filter>Sauce\ontology</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\ontology\ontology_version.cpp">
+      <Filter>Sauce\ontology</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -20319,21 +20322,6 @@
     <None Include="..\toast\other\parsing\person.html">
       <Filter>Toast\Other\parsing</Filter>
     </None>
-    <None Include="..\toast\RDFa\schema\index.html">
-      <Filter>Toast\RDFa\schema</Filter>
-    </None>
-    <None Include="..\toast\RDFa\schema\person.html">
-      <Filter>Toast\RDFa\schema</Filter>
-    </None>
-    <None Include="..\toast\RDFa\schema\rdfa.conf">
-      <Filter>Toast\RDFa\schema</Filter>
-    </None>
-    <None Include="..\toast\RDFa\schema\rdfa.spec">
-      <Filter>Toast\RDFa\schema</Filter>
-    </None>
-    <None Include="..\toast\RDFa\schema\creativework.html">
-      <Filter>Toast\RDFa\schema</Filter>
-    </None>
     <None Include="..\toast\RDFa\cc\cc.html">
       <Filter>Toast\RDFa\cc</Filter>
     </None>
@@ -21185,9 +21173,6 @@
     </None>
     <None Include="..\toast\RDFa\dc\example-3.html">
       <Filter>Toast\RDFa\dc</Filter>
-    </None>
-    <None Include="..\toast\RDFa\schema\simple.html">
-      <Filter>Toast\RDFa\schema</Filter>
     </None>
     <None Include="..\toast\RDFa\gr\index.html">
       <Filter>Toast\RDFa\gr</Filter>
@@ -32300,6 +32285,45 @@
     </None>
     <None Include="..\toast\css\ae\plumbing\songlight.css">
       <Filter>Toast\CSS\ae\plumbing</Filter>
+    </None>
+    <None Include="..\toast\json-ld\adms\7-1.jld">
+      <Filter>Toast\JSON-LD\adms</Filter>
+    </None>
+    <None Include="..\toast\json-ld\adms\index.html">
+      <Filter>Toast\JSON-LD\adms</Filter>
+    </None>
+    <None Include="..\toast\json-ld\adms\jsonld.conf">
+      <Filter>Toast\JSON-LD\adms</Filter>
+    </None>
+    <None Include="..\toast\json-ld\adms\jsonld.spec">
+      <Filter>Toast\JSON-LD\adms</Filter>
+    </None>
+    <None Include="..\toast\json-ld\adms\7-2.jld">
+      <Filter>Toast\JSON-LD\adms</Filter>
+    </None>
+    <None Include="..\toast\json-ld\adms\7-3.jld">
+      <Filter>Toast\JSON-LD\adms</Filter>
+    </None>
+    <None Include="..\toast\json-ld\adms\7-4.jld">
+      <Filter>Toast\JSON-LD\adms</Filter>
+    </None>
+    <None Include="..\toast\RDFa\ontology\creativework.html">
+      <Filter>Toast\RDFa\ontology</Filter>
+    </None>
+    <None Include="..\toast\RDFa\ontology\index.html">
+      <Filter>Toast\RDFa\ontology</Filter>
+    </None>
+    <None Include="..\toast\RDFa\ontology\person.html">
+      <Filter>Toast\RDFa\ontology</Filter>
+    </None>
+    <None Include="..\toast\RDFa\ontology\rdfa.conf">
+      <Filter>Toast\RDFa\ontology</Filter>
+    </None>
+    <None Include="..\toast\RDFa\ontology\rdfa.spec">
+      <Filter>Toast\RDFa\ontology</Filter>
+    </None>
+    <None Include="..\toast\RDFa\ontology\simple.html">
+      <Filter>Toast\RDFa\ontology</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

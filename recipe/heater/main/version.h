@@ -310,10 +310,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_OG_2014    HTML_JAN14
 #define HTML_OG_2018    HTML_JAN18
 
+#define HTML_ADMS_1_0   HTML_2015, HTML_NOV
+#define HTML_ADMS_2_0   HTML_2023, HTML_JUN
+#define HTML_ADMS       HTML_ADMS_1_0
 #define HTML_ARTICLE    HTML_OG_2012
 #define HTML_AS_1_0     HTML_RDF10_CON
 #define HTML_AS_2_0     HTML_2017, HTML_MAY
 #define HTML_AS         HTML_AS_1_0
+#define HTML_BFO        HTML_2015, HTML_JUN
 #define HTML_BIBO       HTML_RDF11
 #define HTML_BIRO       HTML_2013, HTML_MAY
 #define HTML_BOOK       HTML_OG_2012
@@ -335,6 +339,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_DC         HTML_DC_1_0
 #define HTML_DCTERMS    HTML_DCTERMS_1_0
 #define HTML_DOAP       HTML_RDF10
+#define HTML_DDI        HTML_RDF10_CON
 #define HTML_DQV        HTML_RDF10_CON
 #define HTML_DESC_BY    HTML_RDF10
 #define HTML_DUV        HTML_RDF10_CON

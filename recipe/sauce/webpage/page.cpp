@@ -32,7 +32,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/crosslink.h"
 #include "webpage/corpus.h"
 #include "icu/charset.h"
-#include "schema/jsonld.h"
+#include "ontology/jsonld.h"
 #include "spell/spell.h"
 #include "coop/lox.h"
 

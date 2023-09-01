@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/filesystem.h"
 #include "utility/lexical.h"
 #include "feedback/nitpick.h"
-#include "schema/schema_version.h"
+#include "ontology/ontology_version.h"
 #include "attribute/attributes.h"
 #include "element/elem.h"
 #include "element/element_classes.h"
@@ -538,23 +538,23 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         	;
 
     for (int i = s_none + 1; i < s_error; ++i)
-    {   const e_schema es = static_cast < e_schema > (i);
+    {   const e_ontology es = static_cast < e_ontology > (i);
         if (is_faux_schema (es)) continue;
-        if (get_schema_version_count (es) < 2) continue;
-        ::std::string naam (schema_names.get (es, SCHEMA_NAME));
+        if (get_ontology_version_count (es) < 2) continue;
+        ::std::string naam (ontology_names.get (es, ONTOLOGY_NAME));
         ::std::string arg = ONTOLOGY;
         arg += naam;
-        ::std::string desc (schema_names.get (es, SCHEMA_DESCRIPTION));
+        ::std::string desc (ontology_names.get (es, ONTOLOGY_DESCRIPTION));
         desc += ", ";
-        if (get_schema_version_count (es) == 2)
+        if (get_ontology_version_count (es) == 2)
         {   desc += "either ";
-            desc += get_first_schema_version (es).ver ();
+            desc += get_first_ontology_version (es).ver ();
             desc += " or "; }
         else
         {   desc += "between ";
-            desc += get_first_schema_version (es).ver ();
+            desc += get_first_ontology_version (es).ver ();
             desc += " and "; }
-        desc += get_last_schema_version (es).ver ();
+        desc += get_last_ontology_version (es).ver ();
         desc += " (experimental)";
         ontology.add_options ()
             (arg.c_str (), ::boost::program_options::value < ::std::string > (), desc.c_str ()); }
@@ -725,12 +725,12 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
     if (var_ [ONTOLOGY LIST].as < bool > ())
     {   ::std::string res;
         for (int i = s_none + 1; i < s_error; ++i)
-        {   const e_schema es = static_cast < e_schema > (i);
+        {   const e_ontology es = static_cast < e_ontology > (i);
             if (is_faux_schema (es)) continue;
-            res += schema_names.get (es, SCHEMA_NAME);
-            const schema_version x (get_first_schema_version (es));
-            const schema_version y (get_last_schema_version (es));
-            const int count = get_schema_version_count (es);
+            res += ontology_names.get (es, ONTOLOGY_NAME);
+            const ontology_version x (get_first_ontology_version (es));
+            const ontology_version y (get_last_ontology_version (es));
+            const int count = get_ontology_version_count (es);
             PRESUME (count >= 1, __FILE__, __LINE__);
             if (count == 1)
             {   PRESUME (x == y, __FILE__, __LINE__);
@@ -940,29 +940,29 @@ void options::contextualise (nitpick& nits)
     macro -> load_template (nits, context.html_ver ());
 
     for (int i = s_none + 1; i < s_error; ++i)
-    {   const e_schema es = static_cast < e_schema > (i);
+    {   const e_ontology es = static_cast < e_ontology > (i);
         if (is_faux_schema (es)) continue;
-        if (get_schema_version_count (es) < 2) continue;
-        const ::std::string naam (schema_names.get (es, SCHEMA_NAME));
+        if (get_ontology_version_count (es) < 2) continue;
+        const ::std::string naam (ontology_names.get (es, ONTOLOGY_NAME));
         ::std::string arg (ONTOLOGY);
         arg += naam;
         if (var_.count (arg))
         {   ::std::string ver (trim_the_lot_off (var_ [arg].as < ::std::string > ()));
             const ::std::string::size_type pos = ver.find ('.');
             // boost lexical cast, bless its little cotton socks, doesn't process unsigned char as a number
-            schema_version x (error_schema);
+            ontology_version x (error_schema);
             if (pos == ::std::string::npos)
-                x = schema_version (es, GSL_NARROW_CAST < unsigned char > (lexical < unsigned int > :: cast (ver)), 0);
+                x = ontology_version (es, GSL_NARROW_CAST < unsigned char > (lexical < unsigned int > :: cast (ver)), 0);
             else if (pos == 0)
                 nits.pick (nit_config_version, es_warning, ec_init, "missing ontology major version");
             else if (pos == ver.length () - 1)
-                x = schema_version (es, GSL_NARROW_CAST < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))), 0);
+                x = ontology_version (es, GSL_NARROW_CAST < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))), 0);
             else if (pos > 0)
-                x = schema_version (es, GSL_NARROW_CAST < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))),
+                x = ontology_version (es, GSL_NARROW_CAST < unsigned char > (lexical < unsigned int > :: cast (ver.substr (0, pos))),
                                                               GSL_NARROW_CAST < unsigned char > (lexical < unsigned int > :: cast (ver.substr (pos+1))));
             if (x.invalid ())
                 nits.pick (nit_config_version, es_error, ec_init, "invalid ontology ", quote (x.name ()), " version; use " ONTOLOGY LIST " to get a list of known versions.");
-            else if (! set_default_schema_version (x.root (), x.mjr (), x.mnr ()))
+            else if (! set_default_ontology_version (x.root (), x.mjr (), x.mnr ()))
                 nits.pick (nit_config_version, es_error, ec_init, PROG " dislikes the ", quote (x.name ()), " version specified; use " ONTOLOGY LIST " to get a list of known versions."); } }
 
     if (var_.count (VALIDATION MICRODATAARG)) context.microdata (true);
@@ -1673,10 +1673,10 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (ONTOLOGY LIST)) res << ONTOLOGY LIST ": " << var_ [ONTOLOGY LIST].as < bool > () << "\n";
 
     for (int i = s_none + 1; i < s_error; ++i)
-    {   const e_schema es = static_cast < e_schema > (i);
+    {   const e_ontology es = static_cast < e_ontology > (i);
         if (is_faux_schema (es)) continue;
-        if (get_schema_version_count (es) < 2) continue;
-        const ::std::string naam (schema_names.get (es, SCHEMA_NAME));
+        if (get_ontology_version_count (es) < 2) continue;
+        const ::std::string naam (ontology_names.get (es, ONTOLOGY_NAME));
         ::std::string arg (ONTOLOGY);
         arg += naam;
         if (var_.count (arg))

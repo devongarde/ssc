@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "feedback/nitpick.h"
 #include "microdata/microdata_itemprop.h"
 #include "microdata/microdata_itemtype.h"
-#include "schema/schema_name.h"
+#include "ontology/ontology_name.h"
 #include "type/type.h"
 
 void stats::mark_file (const unsigned size) noexcept
@@ -94,29 +94,29 @@ mmac_t mac_subtitle (const ::std::string& title)
     uint64_t total = 0;
     unsigned count = 0;
     VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
-    for (unsigned i = 0; i < sty_illegal; ++i)
-    {   const unsigned n = schema_.at (static_cast < e_schema_type > (i));
+    for (unsigned i = 0; i < ont_illegal; ++i)
+    {   const unsigned n = ontology_.at (static_cast < e_ontology_type > (i));
         if (n == 0) continue;
         ++total;
         count += n;
         if (context.tell (es_error))
-        {   mmac_t stat = mac_init (itemtype_index_name (make_itemtype_index (static_cast < e_schema_type > (i))), n);
-            const unsigned x = schema_property_.family (static_cast < e_schema_type > (i));
+        {   mmac_t stat = mac_init (itemtype_index_name (make_itemtype_index (static_cast < e_ontology_type > (i))), n);
+            const unsigned x = ontology_property_.family (static_cast < e_ontology_type > (i));
             if (x > 0) stat.emplace (nm_stat_detail, ::boost::lexical_cast < ::std::string > (x / n));
             res += macro -> apply (ns_stat, table, stat);
             if (context.tell (es_info))
-                for (unsigned m = 0; m < sp_illegal; ++m)
-                {   const unsigned y = schema_property_.at (static_cast < e_schema_type > (i), static_cast <e_schema_property> (m));
+                for (unsigned m = 0; m < op_illegal; ++m)
+                {   const unsigned y = ontology_property_.at (static_cast < e_ontology_type > (i), static_cast <e_ontology_property> (m));
                     if (y > 0)
-                    {   mmac_t mac = mac_subinit (itemprop_index_name (make_itemprop_index (static_cast <e_schema_property> (m))), y);
+                    {   mmac_t mac = mac_subinit (itemprop_index_name (make_itemprop_index (static_cast <e_ontology_property> (m))), y);
                         res += macro -> apply (ns_substat, table, stat, mac); } } } }
     if (context.tell (es_warning))
     {   mmac_t stat = mac_subtitle ("Property counts");
         ::std::string att;
-        for (unsigned m = 0; m < sp_illegal; ++m)
-        {   const unsigned x = schema_property_.member (static_cast <e_schema_property> (m));
+        for (unsigned m = 0; m < op_illegal; ++m)
+        {   const unsigned x = ontology_property_.member (static_cast <e_ontology_property> (m));
             if (x > 0)
-            {   mmac_t item = mac_init (schema_property_name (static_cast <e_schema_property> (m)), x);
+            {   mmac_t item = mac_init (ontology_property_name (static_cast <e_ontology_property> (m)), x);
                 att += macro -> apply (ns_stat, table, stat, item); } }
         if (! att.empty ())
             res += macro -> apply (ns_stats_subhead, table, stat) + att + macro -> apply (ns_stats_subfoot, table, stat); }
@@ -547,8 +547,8 @@ void stats::accumulate (stats& o) const
     ref_.accumulate (o.ref_);
     version_.accumulate (o.version_);
     attribute_.accumulate (o.attribute_);
-    schema_.accumulate (o.schema_);
-    schema_property_.accumulate (o.schema_property_);
+    ontology_.accumulate (o.ontology_);
+    ontology_property_.accumulate (o.ontology_property_);
     httpequiv_.accumulate (o.httpequiv_);
     metaname_.accumulate (o.metaname_);
     meta_value_.accumulate (o.meta_value_);
