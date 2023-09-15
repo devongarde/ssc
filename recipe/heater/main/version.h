@@ -228,6 +228,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_OCT18  HTML_2018, HTML_OCT
 #define HTML_DEC18  HTML_2018, (HTML_DEC + HTML_31ST)
 #define HTML_JAN19  HTML_2019, HTML_JAN
+#define HTML_FEB19  HTML_2019, HTML_FEB
 #define HTML_MAR19  HTML_2019, HTML_MAR
 #define HTML_APR19  HTML_2019, HTML_APR
 #define HTML_JUN19  HTML_2019, (HTML_JUN + HTML_30TH)
@@ -263,6 +264,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_MAR23  HTML_2023, (HTML_MAR + HTML_31ST)
 #define HTML_APR23  HTML_2023, HTML_APR
 #define HTML_JUL23  HTML_2023, HTML_JUL
+#define HTML_SEP23  HTML_2023, HTML_SEP
+#define HTML_OCT23  HTML_2023, HTML_OCT
 #define HTML_DEC99  HTML_2099, (HTML_DEC + HTML_31ST)
 
 #define HTML_5_EARLIEST_YEAR    HTML_2005
@@ -313,6 +316,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_ADMS_1_0   HTML_2015, HTML_NOV
 #define HTML_ADMS_2_0   HTML_2023, HTML_JUN
 #define HTML_ADMS       HTML_ADMS_1_0
+#define HTML_ADOBE      HTML_2012, HTML_MAY
 #define HTML_ARTICLE    HTML_OG_2012
 #define HTML_AS_1_0     HTML_RDF10_CON
 #define HTML_AS_2_0     HTML_2017, HTML_MAY
@@ -345,6 +349,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_DUV        HTML_RDF10_CON
 #define HTML_EARL       HTML_RDF10_CON
 #define HTML_EVENT      HTML_RDF10_CON
+#define HTML_FABIO      HTML_FEB19
+#define HTML_EXIF_1_0   HTML_3_0
+#define HTML_EXIF_1_1   HTML_3_2
+#define HTML_EXIF_2_0   HTML_4_0
+#define HTML_EXIF_2_1   HTML_4_01
+#define HTML_EXIF_2_2   XHTML_1_0
+#define HTML_EXIF_2_21  XHTML_1_1
+#define HTML_EXIF_2_3   HTML_JUL10
+#define HTML_EXIF_2_31  HTML_JUL16
+#define HTML_EXIF_2_32  HTML_JUL19
+#define HTML_EXIF_3_0   HTML_JUL23
 #define HTML_FAUX       HTML_RDF10
 #define HTML_FOAF       HTML_RDF10
 #define HTML_FRBR       HTML_RDF10
@@ -379,6 +394,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_PROFILE    HTML_OG_2012
 #define HTML_PROV       HTML_RDF10_CON
 #define HTML_POETRY     HTML_JAN17
+#define HTML_PRISM_1_0  XHTML_1_0
+#define HTML_PRISM_1_1  XHTML_1_1
+#define HTML_PRISM_1_2  HTML_JAN05
+#define HTML_PRISM_1_3  HTML_JAN06
+#define HTML_PRISM_2_0  HTML_JAN08
+#define HTML_PRISM_2_1  HTML_JUN09
+#define HTML_PRISM_3_0  HTML_NOV12
+#define HTML_PRISM_3_1  HTML_JUN15
 #define HTML_PTR        HTML_RDF10_CON
 #define HTML_QB         HTML_RDF10_CON
 #define HTML_RDFG       HTML_RDF10
@@ -495,7 +518,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define HTML_XLINK10    XHTML_1_0
 #define HTML_XLINK11    HTML_JUN10
-
 
 class version
 {   unsigned short mjr_ = 0, mnr_ = 0;

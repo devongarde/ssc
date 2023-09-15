@@ -154,6 +154,7 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_math_4_20 : return "MathML 4, Jan 19";
         case ed_math_4_22 : return "MathML 4, Aug 22";
         case ed_mimetype : return "IANA media types";
+        case ed_prism_1 : return "PRISM spec 1.0";
         case ed_rdfa : return "RDFa";
         case ed_rdfa_c : return "RDFa Context";
         case ed_iso_8859_1 : return "ISO 8859-1";
@@ -272,6 +273,7 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_oct22 : return "HTML 5, WhatWG, October 2022";
         case ed_apr23 : return "HTML 5, WhatWG, April 2023";
         case ed_jul23 : return "HTML 5, WhatWG, July 2023";
+        case ed_prism_1 : return "Publishing Requirements for Industry Standard Metadata, Version 1.0";
         case ed_rdfa : return "RDFa Core 1.1 Third Edition";
         case ed_rdfa_c : return "RDFa Core Initial Context, May 2020";
         case ed_csp : return "Content Security Policy Level 3 Draft, Oct 2018";

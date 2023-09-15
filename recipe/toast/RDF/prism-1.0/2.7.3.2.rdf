@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:prism="http://prismstandard.org/1.0#"
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <rdf:Description rdf:about="http://wanderlust.com/2000/08/Corfu.jpg">
+    <dc:identifier rdf:resource=" http://wanderlust.com/content/2357845" />
+    <prism:copyright>
+      Copyright 2001, Wanderlust Publications. All
+      rights reserved.
+    </prism:copyright>
+    <prism:rightsAgent>Phantasy Photos, Philadelphia</prism:rightsAgent>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://SunsetSnaps.com/20456382927.jpg">
+    <dc:description>Sunset over Corfu</dc:description>
+    <dc:rights rdf:resource=
+ "http://prismstandard.org/vocabularies/1.0/rights.xml#notReusable"/>
+    <prism:rightsAgent>Sunset Snaps, New York</prism:rightsAgent>
+  </rdf:Description>
+</rdf:RDF>

@@ -30,6 +30,51 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 void mark_font (stats_t* s, const ::std::string& font);
 
+// t_arxiv
+template < > struct type_master < t_arxiv > : public tidy_string < t_arxiv >
+{   using tidy_string < t_arxiv > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
+    {   tidy_string < t_arxiv > :: set_value (nits, v, ss);
+        if (tidy_string < t_arxiv > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "value cannot be empty");
+        else if (tidy_string < t_arxiv > :: good ())
+        {   const ::std::string& s = tidy_string < t_arxiv > :: get_string ();
+            const ::std::size_t len = s.length ();
+            bool say_oops = true;
+            if ((len > 6) && compare_no_case (s.substr (0, 6), "arxiv:"))
+                if ((s.size () == 15) || (s.size () == 16))
+                    if (GSL_AT (s, 11) == '.')
+                        if (s.substr (7).find_first_not_of (DENARY ".") == ::std::string::npos)
+                        {   bool ok = true;
+                            if (((s.at (9) == '0') && (s.at (10) == '0')) || ((s.at (9) == '1') && (s.at (10) > '2')) || (s.at (9) > '1'))
+                            {   nits.pick (nit_arxiv, es_error, ec_type, "months are numbered between '01' and '12' inclusive");
+                                ok = false; }
+                            if (((s.at (7) == '0') || ((s.at (7) == '1') && (s.at (8) <= '4'))) && (s.length () != 15))
+                            {   nits.pick (nit_arxiv, es_error, ec_type, "arXiv identifiers between 2007 to 2014 have 15 characters");
+                                ok = false; }
+                            if (((s.at (7) > '1') || ((s.at (7) == '1') && (s.at (8) > '4'))) && (s.length () != 16))
+                            {   nits.pick (nit_arxiv, es_error, ec_type, "arXiv identifiers after 2015 have 16 characters");
+                                ok = false; }
+                            if (ok) return;
+                            say_oops = false; }
+            else if (len > 8)
+            {   const ::std::string::size_type slash = s.find ('/');
+                if (slash == len - 8)
+                {   const ::std::string::size_type Yy = slash+1;
+                    const ::std::string::size_type yY = slash+2;
+                    const ::std::string::size_type Mm = slash+3;
+                    const ::std::string::size_type mM = slash+4;
+                    if (s.substr (slash+1).find_first_not_of (DENARY) == ::std::string::npos)
+                    {   if (((s.at (Yy) < '9') && (s.at (yY) == '0')) && ((s.at (Yy) != '0') || (s.at (yY) > '3')))
+                            nits.pick (nit_arxiv, es_error, ec_type, "years in early arXiv identifiers lie between '91' and '03'");
+                        else if (((s.at (Mm) != '0') || (s.at (mM) == '0')) && ((s.at (Mm) != '1') || (s.at (mM) > '2')))
+                            nits.pick (nit_arxiv, es_error, ec_type, "months are numbered between '01' and '12' inclusive");
+                        else return;
+                        say_oops = false; } } }
+            if (say_oops)
+                nits.pick (nit_arxiv, es_error, ec_type, "expecting \"ARCHIVE/YYMMNNN\",  \"ARCHIVE.CLASS/YYMMNNN\", \"arXiv:YYMM.NNNN\", or \"arXiv:YYMM.NNNNN\", where YY is year, MM is month, and N... are digits"); }
+        string_value < t_arxiv > :: status (s_invalid); } };
+
 template < > struct type_master < t_b64 > : public tidy_string < t_b64 >
 {   using tidy_string < t_b64 > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -39,6 +84,18 @@ template < > struct type_master < t_b64 > : public tidy_string < t_b64 >
         else if (tidy_string < t_b64 > :: get_string ().find_first_not_of (HEX) == ::std::string::npos) return;
         else nits.pick (nit_b64, es_error, ec_type, "invalid character in base 64 binary string");
         string_value < t_b64 > :: status (s_invalid); } };
+
+template < > struct type_master < t_coden > : public tidy_string < t_coden >
+{   using tidy_string < t_coden > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
+    {   tidy_string < t_coden > :: set_value (nits, v, ss);
+        if (tidy_string < t_coden > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "a CODEN cannot be empty");
+        else
+        {   const ::std::string& s = tidy_string < t_coden > :: get_string ();
+            if ((s.length () == 6) && (s.find_first_not_of (ALPHANUMERIC) == ::std::string::npos)) return;
+            nits.pick (nit_coden, es_error, ec_type, "expecting a six character alphanumeric string"); }
+        string_value < t_coden > :: status (s_invalid); } };
 
 template < > struct type_master < t_coords > : tidy_string < t_coords >
 {   typedef vint_t value_type;
@@ -265,6 +322,20 @@ template < > struct type_master < t_mb > : public tidy_string < t_mb >
                     if (! bad) return; }
                 nits.pick (nit_mb, es_error, ec_type, quote (s.substr (unit), " is neither KB, MB, nor GiB, TiB, nor another standard byte unit")); }
             tidy_string < t_mb > :: status (s_invalid); } } };
+
+template < > struct type_master < t_prism_rcv_opt > : tidy_string < t_prism_rcv_opt >
+{   using tidy_string < t_prism_rcv_opt > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_prism_rcv_opt > :: set_value (nits, v, s);
+        const ::std::string& ss = tidy_string < t_prism_rcv_opt > :: get_string ();
+        if (tidy_string < t_prism_rcv_opt > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "a prism option is expected");
+        else if (tidy_string < t_prism_rcv_opt > :: good ())
+        {   nitpick knots;
+            if (! test_value < t_prism_rcv > (knots, v, ss))
+                nits.pick (nit_prism, ed_prism_1, "6.3 Resource Category Vocabulary (intellectual genre)", es_warning, ec_type, quote (ss), " is not a recommended resource category, so may not be recognised by all systems");
+            return; }
+        tidy_string < t_prism_rcv_opt > :: status (s_invalid); } };
 
 template < > struct type_master < t_q > : public tidy_string < t_q >
 {   using tidy_string < t_q > :: tidy_string;

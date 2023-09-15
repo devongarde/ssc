@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/"
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <rdf:Description rdf:about="http://wanderlust.com/2000/08/Corfu.jpg">
+    <dc:identifier rdf:resource="http://wanderlust.com/content/2357845"/>
+    <dc:description>Photograph taken at 6:00 am on Corfu with two models</dc:description>
+    <dc:title>Walking on the Beach in Corfu</dc:title>
+    <dc:creator>John Peterson</dc:creator>
+    <dc:contributor>Sally Smith, lighting</dc:contributor>
+    <dc:format>image/jpeg</dc:format>
+  </rdf:Description>
+</rdf:RDF>

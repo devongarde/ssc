@@ -51,6 +51,7 @@ bool check_identifier_spelling (nitpick& nits, const html_version& , const ::std
         { "colourist", d_none, nullptr },
         { "coworker", d_none, nullptr },
         { "dialogue", d_johnson, "585" },
+        { "finalised", d_none, nullptr },
         { "grey", d_collins, nullptr },
         { "gynaecologic", d_wiki, "https://en.wikipedia.org/wiki/Gynaecology" },
         { "haematologic", d_none, nullptr },

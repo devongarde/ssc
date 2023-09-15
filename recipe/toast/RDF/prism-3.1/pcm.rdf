@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:pcm="http://prismstandard.org/namespaces/pcm/3.1/">
+
+  <pcm:craftCategory rdf:resource="craftCategory.xml/#homeDecor" />
+
+  <pcm:craftCategory>home décor</pcm:craftCategory>
+
+  <pcm:craftCategory>home décor</pcm:craftCategory>
+  <pcm:craftSubcategory>    pillows </pcm:craftSubcategory>
+
+  <pcm:craftCategory rdf:resource="craftCategory.xml/#homeDecor" />
+  <pcm:craftCategory rdf:resource="craftSubcategory.xml/#pillows" />
+
+  <pcm:craftCategory>home décor</pcm:craftCategory>
+  <pcm:craftSubcategory>
+    pillows </pcm:craftSubcategory>
+
+  <pcm:craftTitle>denim pillow</pcm:craftTitle>
+
+  <pcm:mainMaterial>Household Item</pcm:mainMaterial>
+
+  <pcm:method>quilting</pcm:method>
+
+  <pcm:skillLevel>beginner</pcm:skillLevel>
+
+  <pcm:sourceType >blog</pcm:sourceType>
+
+  <pcm:specialEquipment>kiln</pcm:specialEquipment >
+
+  <pcm:specialOccasion>Valentines Day</pcm:specialOccasion>
+
+  <pcm:totalCost>$4.50</pcm:totalCost>
+
+  <pcm:totalTime>35 minutes</pcm:totalTime>
+  
+</rdf:RDF>

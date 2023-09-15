@@ -17,9 +17,9 @@ PASS ../toast/RDFa/cc/cc.html
 146 not_ontology_property bad_property
 151 no_such_folder url_not_found
 152 no_such_folder url_not_found
-160 unrecognised_namespace unrecognised_value
+160 bad_namespace
 170 unrecognised_value dl_ancestor dl_ancestor
-173 not_ontology_property bad_property
+173 not_ontology_property bad_property not_ontology_property bad_property bad_property
 179 unrecognised_value
 185 only_elements
 193 unrecognised_value dl_ancestor

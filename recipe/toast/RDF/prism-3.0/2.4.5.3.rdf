@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <rdf:Description rdf:about="http://example.org/courses/6.001">
+    <dc:creator>
+      <rdf:Bag>
+        <rdf:li>Linda Burman</rdf:li>
+        <rdf:li>Ron Daniel</rdf:li>
+      </rdf:Bag>
+    </dc:creator>
+  </rdf:Description>
+</rdf:RDF>

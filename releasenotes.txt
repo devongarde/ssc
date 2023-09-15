@@ -3,6 +3,14 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.34
+- Fabio 2.1 ontology
+- Prism ontologies, partial
+- Adobe ontologies, partial
+- Exif ontologies, partial
+- various bug fixes
+- underlying work
+
 0.1.33
 - ADMS 1.0 and 2.0 ontologies
 - BFO 2.0 and 2020 ontologies

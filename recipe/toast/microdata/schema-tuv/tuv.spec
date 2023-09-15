@@ -17,7 +17,7 @@ PASS ../toast/microdata/schema-tuv/touristattraction.html
 123 use_quote_code use_double_quote_code use_quote_code
 138 not_ontology_property
 139 not_ontology_property
-140 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
+140 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
 196 not_ontology_property
 197 not_ontology_property
 203 not_ontology_property

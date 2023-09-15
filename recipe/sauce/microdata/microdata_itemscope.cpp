@@ -51,6 +51,10 @@ void microdata_itemscope::note_itemtype (nitpick& nits, const html_version& v, c
         else
         {   if ((ontology_names.flags (sc) & ONTOLOGY_CRAPSPEC) == ONTOLOGY_CRAPSPEC)
                 nits.pick (nit_crap_spec, es_warning, ec_microdata, quote (ontology_names.get (sc, ONTOLOGY_NAME)), " is poorly specified: use an alternative");
+            if ((ontology_names.flags (sc) & ONTOLOGY_PRISM) == ONTOLOGY_PRISM)
+                nits.pick (nit_bad_namespace, es_warning, ec_namespace, quote (ontology_names.get (sc, ONTOLOGY_CURIE)), " is incorrect, despite its occasional use. Browse 'namespaces' at 'https://www.w3.org/submissions/2020/SUBM-prism-20200910/prism-basic.html' for gen.");
+            else if ((ontology_names.flags (sc) & ONTOLOGY_CRAPNS) == ONTOLOGY_CRAPNS)
+                nits.pick (nit_bad_namespace, es_warning, ec_microdata, quote (ontology_names.get (sc, ONTOLOGY_CURIE)), " is incorrect, despite its occasional use.");
             const sch s (nits, v, ontology_names.after_start (ONTOLOGY_CURIE, name.substr (ends_at), v.xhtml ()));
             p.mark (s.get ());
             const flags_t flags = sch :: flags (s.get ());

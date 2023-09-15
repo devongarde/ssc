@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+xml:lang="en-US">
+<rdf:Description rdf:about="Gettysburg.xml">
+  <dc:description>Start of the Gettysburg Address</dc:description>
+  <dc:creator>Abraham Lincoln</dc:creator>
+  <dc:format>text/xml</dc:format>
+</rdf:Description>
+<rdf:Description rdf:about="Corfu.jpg">
+  <dc:title>Walking on the Beach in Corfu</dc:title>
+  <dc:creator>John Peterson</dc:creator>
+  <dc:format>image/jpeg</dc:format>
+</rdf:Description>
+<rdf:Description rdf:about="Welch-bio.html">
+  <dc:title>GE's Genius</dc:title>
+  <dc:subject>Jack Welch</dc:subject>
+  <dc:creator>Jane Doe</dc:creator>
+  <dc:format>text/html</dc:format>
+</rdf:Description>
+…
+</rdf:RDF>

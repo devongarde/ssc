@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:prm="http://prismstandard.org/namespaces/prm/3.0/">
+  <prm:cookingEquipment>
+    Wok</prm:cookingEquipement>
+    <prm:cookingMethod>Grill</prm:cookingMethod>
+    <prm:course>Appetizer</prm:course >
+    <prm:cuisine>Asian</prm:cuisine>
+    <prm:dietaryNeeds>High Fiber</prm:dietaryNeeds>
+    <prm:dishType>MeatOrGame</prm:dishType>
+    <prm:duration>60 minutes</prm:duration>
+    <prm:ingredientExclusion>salt</prm:ingredientExclusion>
+    <prm:mainIngredient>Aubergine</prm:mainIngredient> <!-- I've translated this value into standard English! -->
+    <prm:meal>Lunch</prm:meal>
+    <prm:recipeEndingPage>104</prm:recipeEndingPage>
+    <prm:recipePageRange>102-104</prm:recipePageRange>
+    <prm:recipeSource>Magazine</prm:recipeSource>
+    <prm:recipeStartingPage>102</prm:recipeStartingPage>
+    <prm:recipeTitle>
+      Curried Butternut Squash</prm:recipeTitle>
+    <prm:servingSize>1 Cup</prm:servingSize >
+      <prm:skillLevel>
+        Expert</prm:skillLevel>
+      <prm:specialOccasion>The Grand Duke, his official birthday</prm:specialOccasion>
+        <prm:yield>4 servings</prm:yield>  
+      </rdf:RDF>

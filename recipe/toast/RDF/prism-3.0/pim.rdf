@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:pim="http://prismstandard.org/namespaces/pim/3.0/">
+
+    He studied <pim:academicField>
+      Health Economics</pim:academicField>
+before completing his Masters of Science.
+
+    During the <pim:event>Toronto Film Festival</pim:event>, films from 17
+    countries were shown.
+
+Recent conflicts in the region include the <pim:event>
+      Iran-Iraq
+      War
+    </pim:event>, the <pim:event>First Gulf War</pim:event>, and the
+    <pim:event>Second Gulf War</pim:event>.
+
+    The <pim:industry>records industry</pim:industry> attributes the recent slump
+    in CD sales to rampant piracy of their intellectual content.
+
+<pim:industry>Forestry</pim:industry>, pardon the pun, is the new growth
+    industry.
+
+    The <pim:keyword>avian flu</pim:keyword> outbreak in
+    <pim:location>Asia</pim:location> is constantly being monitored.
+
+You can learn more at <pim:link>#xmlconference</pim:link>
+
+    He spoke on the history of the<pim:location>Great Lakes basin</pim:location>
+    at the Royal Ontario Museum in <pim:location>Toronto</pim:location>.
+
+    China patterns were selected before their honeymoon in <pim:location href=
+"http://prismstandard.org/vocabs/ISO-3166/CN">China</pim:location>.
+
+    Some analysts compared the recent events to the film <pim:object>
+      Wag the
+      Dog
+    </pim:object>.
+
+    <pim:organization href="http://prismstandard.org/vocabs/NYSE:NT">
+      Nortel
+      Networks
+    </pim:organization> saw its stock fall in the face of the Brazilian
+    devaluation.
+
+    Prime Minister <pim:person>Tony Blair</pim:person> will meet with the other
+    <pim:organization>EU</pim:organization> leaders to discuss agricultural
+    policy.
+
+Catch-22 is <pim:person href="http://lc.gov/catdir/LC-NAF?Heller,+Joseph">Joseph Heller</pim:person>’s best-known work.
+
+    He studied to be an <pim:profession>
+      educator</pim:profession> before
+      completing his Masters of Science.
+
+  <pim:quote speakerRef="USPres#JFK" placeRef="city/Berlin"
+occasion="Address to West Berlin" xml:lang="de">
+    Ich bin ein
+    Berliner
+  </pim:quote>
+
+    The Stanley Cup <pim:sport>Hockey</pim:sport> playoff games were
+    broadcast in late April.
+
+  <pim:ticker>TWX</pim:ticker>
+
+    Flappers were the rage during the <pim:timePeriod>
+      Roaring
+      Twenties
+    </pim:timePeriod>
+  
+</rdf:RDF>

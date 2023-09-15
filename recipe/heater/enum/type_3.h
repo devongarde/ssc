@@ -68,6 +68,9 @@ template < > struct type_master < t_cc_permits > : three_value < t_cc_permits, e
 template < > struct type_master < t_command > : three_value < t_command, e_command, sz_command, sz_checkbox, sz_radio >
 { using three_value < t_command, e_command, sz_command, sz_checkbox, sz_radio > :: three_value; };
 
+template < > struct type_master < t_colour_space > : three_value < t_colour_space, e_colour_space, sz_cmyk, sz_rgb, sz_lab >
+{ using three_value < t_colour_space, e_colour_space, sz_cmyk, sz_rgb, sz_lab > :: three_value; };
+
 template < > struct type_master < t_controlslist > : three_value < t_controlslist, e_controlslist, sz_nodownload, sz_nofullscreen, sz_noremoteplayback >
 { using three_value < t_controlslist, e_controlslist, sz_nodownload, sz_nofullscreen, sz_noremoteplayback > :: three_value; };
 
@@ -140,6 +143,10 @@ template < > struct type_master < t_enctype > : three_value < t_enctype, e_encty
 template < > struct type_master < t_environment_blending > : three_value < t_environment_blending, e_environment_blending, sz_additive, sz_opaque, sz_subtractive >
 { using three_value < t_environment_blending, e_environment_blending, sz_additive, sz_opaque, sz_subtractive > :: three_value; };
 
+// typedef enum { eii_r03, eii_r98, eii_thm } e_exif_intind;
+template < > struct type_master < t_exif_intind > : three_value < t_exif_intind, e_exif_intind, sz_r03, sz_r98, sz_thm >
+{ using three_value < t_exif_intind, e_exif_intind, sz_r03, sz_r98, sz_thm > :: three_value; };
+
 template < > struct type_master < t_fill_rule > : three_value < t_fill_rule, e_fill_rule, sz_nonzero, sz_evenodd, sz_inherit >
 { using three_value < t_fill_rule, e_fill_rule, sz_nonzero, sz_evenodd, sz_inherit > :: three_value; };
 
@@ -157,6 +164,9 @@ template < > struct type_master < t_importance > : three_value < t_importance, e
 
 template < > struct type_master < t_infixlinebreakstyle > : three_value < t_infixlinebreakstyle, e_infixlinebreakstyle, sz_before, sz_after, sz_duplicate >
 { using three_value < t_infixlinebreakstyle, e_infixlinebreakstyle, sz_before, sz_after, sz_duplicate > :: three_value; };
+
+template < > struct type_master < t_k_m_n > : three_value < t_k_m_n, e_k_m_n, sz_k, sz_m, sz_n >
+{ using three_value < t_k_m_n, e_k_m_n, sz_k, sz_m, sz_n > :: three_value; };
 
 template < > struct type_master < t_keytype > : three_value < t_keytype, e_keytype, sz_dsa, sz_ec, sz_rsa >
 { using three_value < t_keytype, e_keytype, sz_dsa, sz_ec, sz_rsa > :: three_value; };
@@ -209,11 +219,17 @@ template < > struct type_master < t_nsd > : three_value < t_nsd, e_nsd, sz_none,
 template < > struct type_master < t_nuf > : three_value < t_nuf, e_nuf, sz_refurbished, sz_new, sz_used >
 { using three_value < t_nuf, e_nuf, sz_refurbished, sz_new, sz_used > :: three_value; };
 
+template < > struct type_master < t_onetwothree > : three_value < t_onetwothree, e_onetwothree, sz_one, sz_two, sz_three >
+{ using three_value < t_onetwothree, e_onetwothree, sz_one, sz_two, sz_three > :: three_value; };
+
 template < > struct type_master < t_popovertargetaction > : three_value < t_popovertargetaction, e_popovertargetaction, sz_hide, sz_show, sz_toggle >
 { using three_value < t_popovertargetaction, e_popovertargetaction, sz_hide, sz_show, sz_toggle > :: three_value; };
 
 template < > struct type_master < t_preload5 > : three_value < t_preload5, e_preload, sz_auto, sz_metadata, sz_none >
 { using three_value < t_preload5, e_preload, sz_auto, sz_metadata, sz_none > :: three_value; };
+
+template < > struct type_master < t_pri_img_setting > : three_value < t_pri_img_setting, e_pri_img_setting, sz_indoor, sz_outdoor, sz_studio >
+{ using three_value < t_pri_img_setting, e_pri_img_setting, sz_indoor, sz_outdoor, sz_studio > :: three_value; };
 
 template < > struct type_master < t_restart > : three_value < t_restart, e_restart, sz_always, sz_whennotactive, sz_never >
 { using three_value < t_restart, e_restart, sz_always, sz_whennotactive, sz_never > :: three_value; };
@@ -268,6 +284,21 @@ template < > struct type_master < t_vector_effect_12 > : three_value < t_vector_
 
 template < > struct type_master < t_visibility10 > : three_value < t_visibility10, e_visibility11, sz_visible, sz_hidden, sz_inherit >
 { using three_value < t_visibility10, e_visibility11, sz_visible, sz_hidden, sz_inherit > :: three_value; };
+
+template < > struct type_master < t_xmpdm_quality > : three_value < t_xmpdm_quality, e_xmpdm_quality, sz_high, sz_low, sz_medium >
+{ using three_value < t_xmpdm_quality, e_xmpdm_quality, sz_high, sz_low, sz_medium > :: three_value; };
+
+template < > struct type_master < t_xmpdm_video_alphamode > : three_value < t_xmpdm_video_alphamode, e_xmpdm_video_alphamode, sz_none, sz_premultiplied, sz_straight >
+{ using three_value < t_xmpdm_video_alphamode, e_xmpdm_video_alphamode, sz_none, sz_premultiplied, sz_straight > :: three_value; };
+
+template < > struct type_master < t_xmpdm_video_colourspace > : three_value < t_xmpdm_video_colourspace, e_xmpdm_video_colourspace, sz_ccir601, sz_ccir709, sz_srgb >
+{ using three_value < t_xmpdm_video_colourspace, e_xmpdm_video_colourspace, sz_ccir601, sz_ccir709, sz_srgb > :: three_value; };
+
+template < > struct type_master < t_xmpdm_video_fieldorder > : three_value < t_xmpdm_video_fieldorder, e_xmpdm_video_fieldorder, sz_lower, sz_progressive, sz_upper >
+{ using three_value < t_xmpdm_video_fieldorder, e_xmpdm_video_fieldorder, sz_lower, sz_progressive, sz_upper > :: three_value; };
+
+template < > struct type_master < t_xmpdm_video_videoframerate > : three_value < t_xmpdm_video_videoframerate, e_xmpdm_video_videoframerate, sz_24, sz_ntsc, sz_pal >
+{ using three_value < t_xmpdm_video_videoframerate, e_xmpdm_video_videoframerate, sz_24, sz_ntsc, sz_pal > :: three_value; };
 
 
 template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >

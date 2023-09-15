@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:pcv="http://prismstandard.org/namespaces/pcv/2.0/">
+
+<pcv:Descriptor rdf:ID="abstract">
+
+   <pcv:label>abstract</pcv:label>
+
+   <pcv:definition>A section featuring the most important points of a work. [IPTC-NewsML]</pcv:definition>
+
+  </pcv:Descriptor>
+
+ 
+
+<pcv:Descriptor rdf:ID="acknowledgement">
+
+   <pcv:label>acknowledgement</pcv:label>
+
+   <pcv:definition>Written recognition of acts or achievements. [AAT]</pcv:definition>
+
+  </pcv:Descriptor>
+
+ 
+
+<pcv:Descriptor rdf:ID="advertisement">
+
+   <pcv:label>advertisement</pcv:label>
+
+   <pcv:definition>Piece of material whose presence is paid for. [IPTC-NewsML]</pcv:definition>
+
+  </pcv:Descriptor>
+
+ 
+
+<pcv:Descriptor rdf:ID="analysis">
+
+   <pcv:label>analysis</pcv:label>
+
+   <pcv:definition> Articles which cover a topic in depth by dividing it into parts for detailed examination</pcv:definition>
+
+  </pcv:Descriptor>
+
+ 
+
+<pcv:Descriptor rdf:ID="authorBio">
+
+   <pcv:label>authorBio</pcv:label>
+
+   <pcv:definition>Brief text about the author of a work.</pcv:definition>
+
+  </pcv:Descriptor>
+
+ 
+
+<pcv:Descriptor rdf:ID="autobiography">
+
+   <pcv:label>autobiography</pcv:label>
+
+   <pcv:definition>Biography of an individual written by himself or herself. [AAT]</pcv:definition>
+
+  </pcv:Descriptor>
+
+ 
+
+<pcv:Descriptor rdf:ID="bibliography">
+
+   <pcv:label>bibliography</pcv:label>
+
+   <pcv:definition>A section describing lists of books or other textual materials arranged in some logical order giving brief information about the works, such as author, date, publisher, and place of publication; may be works by a particular author, or on a particular topic. [AAT]</pcv:definition>
+
+  </pcv:Descriptor>
+
+</rdf:RDF>

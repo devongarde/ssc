@@ -86,6 +86,10 @@ template < > struct type_master < t_channelselector > : four_value < t_channelse
 template < > struct type_master < t_content_encoding > : four_value < t_content_encoding, e_content_encoding, sz_gzip, sz_compress, sz_deflate, sz_identity >
 { using four_value < t_content_encoding, e_content_encoding, sz_gzip, sz_compress, sz_deflate, sz_identity > :: four_value; };
 
+// typedef enum { crs_custom, crs_linear, crs_mediumcontrast, crs_strongcontrast } e_crs_tonecurvename;
+template < > struct type_master < t_crs_tonecurvename > : four_value < t_crs_tonecurvename, e_crs_tonecurvename, sz_custom, sz_linear, sz_mediumcontrast, sz_strongcontrast >
+{ using four_value < t_crs_tonecurvename, e_crs_tonecurvename, sz_custom, sz_linear, sz_mediumcontrast, sz_strongcontrast > :: four_value; };
+
 template < > struct type_master < t_css_anim_dir > : four_value < t_css_anim_dir, e_css_anim_dir, sz_alternate, sz_alternate_reverse, sz_normal, sz_reverse >
 { using four_value < t_css_anim_dir, e_css_anim_dir, sz_alternate, sz_alternate_reverse, sz_normal, sz_reverse > :: four_value; };
 
@@ -188,8 +192,23 @@ template < > struct type_master < t_mf_category > : four_value < t_mf_category, 
 template < > struct type_master < t_paint_order > : four_value < t_paint_order, e_paint_order, sz_normal, sz_fill, sz_stroke, sz_markers >
 { using four_value < t_paint_order, e_paint_order, sz_normal, sz_fill, sz_stroke, sz_markers > :: four_value; };
 
+template < > struct type_master < t_pam_status > : four_value < t_pam_status, e_pam_status, sz_a, sz_c, sz_d, sz_u >
+{ using four_value < t_pam_status, e_pam_status, sz_a, sz_c, sz_d, sz_u > :: four_value; };
+
 template < > struct type_master < t_phase_x > : four_value < t_phase_x, e_phase_x, sz_bubble, sz_capture, sz_default, sz_target >
 { using four_value < t_phase_x, e_phase_x, sz_bubble, sz_capture, sz_default, sz_target > :: four_value; };
+
+template < > struct type_master < t_pri_img_season > : four_value < t_pri_img_season, e_pri_img_season, sz_fall, sz_spring, sz_summer, sz_winter >
+{ using four_value < t_pri_img_season, e_pri_img_season, sz_fall, sz_spring, sz_summer, sz_winter > :: four_value; };
+
+template < > struct type_master < t_prism_tablet_ad > : four_value < t_prism_tablet_ad, e_prism_tablet_ad, sz_dfp, sz_efp, sz_sfp, sz_sfpplus >
+{ using four_value < t_prism_tablet_ad, e_prism_tablet_ad, sz_dfp, sz_efp, sz_sfp, sz_sfpplus > :: four_value; };
+
+template < > struct type_master < t_prs_duty > : four_value < t_prs_duty, e_prs_duty, sz_compensate, sz_credit, sz_include, sz_inform >
+{ using four_value < t_prs_duty, e_prs_duty, sz_compensate, sz_credit, sz_include, sz_inform > :: four_value; };
+
+template < > struct type_master < t_recipe_skill > : four_value < t_recipe_skill, e_recipe_skill, sz_children, sz_easy, sz_expert, sz_moderate >
+{ using four_value < t_recipe_skill, e_recipe_skill, sz_children, sz_easy, sz_expert, sz_moderate > :: four_value; };
 
 template < > struct type_master < t_rsvp > : four_value < t_rsvp, e_rsvp, sz_yes, sz_no, sz_maybe, sz_interested >
 { using four_value < t_rsvp, e_rsvp, sz_yes, sz_no, sz_maybe, sz_interested > :: four_value; };
@@ -235,6 +254,12 @@ template < > struct type_master < t_visibility11 > : four_value < t_visibility11
 
 template < > struct type_master < t_vkind > : four_value < t_vkind, e_vkind, sz_individual, sz_organisation, sz_group, sz_location >
 { using four_value < t_vkind, e_vkind, sz_individual, sz_organisation, sz_group, sz_location > :: four_value; };
+
+template < > struct type_master < t_xmpdm_type > : four_value < t_xmpdm_type, e_xmpdm_type, sz_audio, sz_custom, sz_movie, sz_still >
+{ using four_value < t_xmpdm_type, e_xmpdm_type, sz_audio, sz_custom, sz_movie, sz_still > :: four_value; };
+
+template < > struct type_master < t_xmpdm_scaletype > : four_value < t_xmpdm_scaletype, e_xmpdm_scaletype, sz_both, sz_major, sz_minor, sz_neither >
+{ using four_value < t_xmpdm_scaletype, e_xmpdm_scaletype, sz_both, sz_major, sz_minor, sz_neither > :: four_value; };
 
 template < > struct type_master < t_xsdbool > : four_value < t_xsdbool, e_xsdbool, sz_0, sz_1, sz_false, sz_true >
 { using four_value < t_xsdbool, e_xsdbool, sz_0, sz_1, sz_false, sz_true > :: four_value; };

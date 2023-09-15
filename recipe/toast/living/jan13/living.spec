@@ -184,8 +184,8 @@ PASS ../toast/living/jan13/example-2.html
 34 mime
 48 use_quote_code
 62 use_quote_code
-66 bad_property bad_property bad_property bad_property
-76 bad_property bad_property bad_property bad_property
+66 bad_property bad_property bad_property bad_property bad_property
+76 bad_property bad_property bad_property bad_property bad_property
 107 unrecognised_value
 122 use_quote_code
 132 use_quote_code

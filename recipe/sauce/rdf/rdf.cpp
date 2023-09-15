@@ -41,6 +41,20 @@ bool is_valid_property (nitpick& nits, const html_version& v, const e_ontology_t
         case s_ddi :
         case s_foaf :
         case s_gr :
+        case s_pam :
+        case s_pamp :
+        case s_pcmm :
+        case s_pcm :
+        case s_pcv :
+        case s_pim :
+        case s_pmi :
+        case s_prism :
+        case s_prism_ad :
+        case s_prl :
+        case s_prm :
+        case s_prs :
+        case s_psv :
+        case s_pur :
         case s_schema :
         case s_vcard :
             return is_valid_ontology_property (nits, v, t, p, value, is_link);
@@ -63,6 +77,20 @@ bool is_valid_property (nitpick& nits, const html_version& v, const e_ontology_t
         case s_dcmi :
         case s_foaf :
         case s_gr :
+        case s_pam :
+        case s_pamp :
+        case s_pcmm :
+        case s_pcm :
+        case s_pcv :
+        case s_pim :
+        case s_pmi :
+        case s_prism :
+        case s_prism_ad :
+        case s_prl :
+        case s_prm :
+        case s_prs :
+        case s_psv :
+        case s_pur :
         case s_schema :
         case s_vcard :
             return is_valid_ontology_property (nits, v, t, p, value);

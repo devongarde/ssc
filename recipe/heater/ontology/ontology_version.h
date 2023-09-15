@@ -106,7 +106,6 @@ typedef ::std::vector < ontology_version > vsv_t;
 
 const ontology_version default_schema (s_none, 0, 0);
 
-// s_adms
 const ontology_version adms_1_0 (s_adms, 1, 0);
 const ontology_version adms_2_0 (s_adms, 2, 0);
 
@@ -128,7 +127,6 @@ const ontology_version book_2012 (s_book, HTML_2012, 0);
 const ontology_version book_2014 (s_book, HTML_2014, 0);
 const ontology_version book_2018 (s_book, HTML_2018, 0);
 
-// s_cito
 const ontology_version cito_schema (s_cito, 2, 8);
 
 const ontology_version content_schema (s_content, 1, 0);
@@ -136,6 +134,8 @@ const ontology_version content_schema (s_content, 1, 0);
 const ontology_version common_tag (s_ctag, 1, 0);
 
 const ontology_version creative_commons (s_cc, 1, 0);
+
+const ontology_version crs2_schema (s_crs2, 1, 0);
 
 const ontology_version csvw_schema (s_csvw, 1, 0);
 
@@ -172,6 +172,25 @@ const ontology_version earl_schema (s_earl, 1, 0);
 const ontology_version error_schema (s_error, 0, 0);
 
 const ontology_version event_schema (s_event, 1, 0);
+
+const ontology_version exif_1_0 (s_exif, 1, 0);
+const ontology_version exif_1_1 (s_exif, 1, 1);
+const ontology_version exif_2_0 (s_exif, 2, 0);
+const ontology_version exif_2_1 (s_exif, 2, 10);
+const ontology_version exif_2_2 (s_exif, 2, 20);
+const ontology_version exif_2_21 (s_exif, 2, 21);
+const ontology_version exif_2_3 (s_exif, 2, 30);
+const ontology_version exif_2_31 (s_exif, 2, 31);
+const ontology_version exif_2_32 (s_exif, 2, 32);
+const ontology_version exif_3_0 (s_exif, 3, 0);
+
+const ontology_version exifex_2_21 (s_exifex, 2, 21);
+const ontology_version exifex_2_3 (s_exifex, 2, 30);
+const ontology_version exifex_2_31 (s_exifex, 2, 31);
+const ontology_version exifex_2_32 (s_exifex, 2, 32);
+const ontology_version exifex_3_0 (s_exifex, 3, 0);
+
+const ontology_version fabio_schema (s_fabio, 2, 1);
 
 const ontology_version faux_schema (s_faux, 1, 0);
 
@@ -228,8 +247,47 @@ const ontology_version org_schema (s_org, 1, 0);
 const ontology_version owl_1 (s_owl, 1, 0);
 const ontology_version owl_2 (s_owl, 2, 0);
 
+const ontology_version pam_1_3 (s_pam, 1, 3);
+const ontology_version pam_2_0 (s_pam, 2, 0);
+const ontology_version pam_3_0 (s_pam, 3, 0);
+
+const ontology_version pamp_3_0 (s_pamp, 3, 0);
+
+const ontology_version pcm_3_1 (s_pcm, 3, 1);
+
+const ontology_version pcmm_3_0 (s_pcmm, 3, 0);
+
+const ontology_version pcv_1_0 (s_pcv, 1, 0);
+const ontology_version pcv_2_0 (s_pcv, 1, 0);
+
+const ontology_version pdf_schema (s_pdf, 1, 0);
+const ontology_version photoshop_schema (s_photoshop, 1, 0);
+
+const ontology_version pim_3_0 (s_pim, 3, 0);
+const ontology_version pim_2_0 (s_pim, 2, 0);
+const ontology_version pim_1_2 (s_pim, 1, 2);
+const ontology_version pim_1_0 (s_pim, 1, 0);
+
+const ontology_version pmi_3_0 (s_pmi, 3, 0);
+
 const ontology_version poetry_ontology_1_0 (s_poetry, 1, 0);
 const ontology_version poetry_ontology_1_1 (s_poetry, 1, 1);
+
+const ontology_version prism_1_0 (s_prism, 1, 0);
+const ontology_version prism_1_1 (s_prism, 1, 1);
+const ontology_version prism_1_2 (s_prism, 1, 2);
+const ontology_version prism_1_3 (s_prism, 1, 3);
+const ontology_version prism_2_0 (s_prism, 2, 0);
+const ontology_version prism_2_1 (s_prism, 2, 1);
+const ontology_version prism_3_0 (s_prism, 3, 0);
+const ontology_version prism_3_1 (s_prism, 3, 1);
+
+const ontology_version prism_ad_3_0 (s_prism_ad, 3, 0);
+
+const ontology_version prl_1_0 (s_prl, 1, 0);
+const ontology_version prl_2_0 (s_prl, 2, 0);
+
+const ontology_version prm_3_0 (s_prm, 3, 0);
 
 const ontology_version profile_2012 (s_profile, HTML_2012, 0);
 const ontology_version profile_2014 (s_profile, HTML_2014, 0);
@@ -237,7 +295,14 @@ const ontology_version profile_2018 (s_profile, HTML_2018, 0);
 
 const ontology_version provincial (s_prov, 1, 0);
 
+const ontology_version prs_3_1 (s_prs, 3, 1);
+
+const ontology_version psv_1_0 (s_psv, 1, 0);
+
 const ontology_version ptr_schema (s_ptr, 1, 0);
+
+const ontology_version pur_3_0 (s_pur, 3, 0);
+const ontology_version pur_2_1 (s_pur, 2, 1);
 
 const ontology_version data_cube (s_qb, 1, 0);
 
@@ -270,81 +335,81 @@ const ontology_version rr_schema (s_rr, 1, 0);
 // should I find better documentation. Versions before June 2011 probably
 // exist somewhere, but they're not under www.schema.org on archive.org.
 
-const ontology_version ontology_0 (s_schema, 0, 1);
-const ontology_version ontology_jun11 (s_schema, 0, 10);
-const ontology_version ontology_jul11 (s_schema, 0, 15);
-const ontology_version ontology_aug11 (s_schema, 0, 20);
-const ontology_version ontology_sep11 (s_schema, 0, 25);
-const ontology_version ontology_oct11 (s_schema, 0, 30);
-const ontology_version ontology_nov11 (s_schema, 0, 35);
-const ontology_version ontology_dec11 (s_schema, 0, 40);
-const ontology_version ontology_jan12 (s_schema, 0, 45);
-const ontology_version ontology_feb12 (s_schema, 0, 50);
-const ontology_version ontology_mar12 (s_schema, 0, 55);
-const ontology_version ontology_apr12 (s_schema, 0, 60);
-const ontology_version ontology_0_91 (s_schema, 0, 91);
-const ontology_version ontology_0_93 (s_schema, 0, 93);
-const ontology_version ontology_0_94 (s_schema, 0, 94);
-const ontology_version ontology_0_95 (s_schema, 0, 95);
-const ontology_version ontology_0_96 (s_schema, 0, 96);
-const ontology_version ontology_0_97 (s_schema, 0, 97);
-const ontology_version ontology_0_98 (s_schema, 0, 98);
-const ontology_version ontology_0_99 (s_schema, 0, 99);
-const ontology_version ontology_1_0A (s_schema, 1, 0);
-const ontology_version ontology_1_0B (s_schema, 1, 1);
-const ontology_version ontology_1_0C (s_schema, 1, 2);
-const ontology_version ontology_1_0D (s_schema, 1, 3);
-const ontology_version ontology_1_0E (s_schema, 1, 4);
-const ontology_version ontology_1_0F (s_schema, 1, 5);
-const ontology_version ontology_1_1 (s_schema, 1, 10);
-const ontology_version ontology_1_2 (s_schema, 1, 20);
-const ontology_version ontology_1_3 (s_schema, 1, 30);
-const ontology_version ontology_1_4 (s_schema, 1, 40);
-const ontology_version ontology_1_5 (s_schema, 1, 50);
-const ontology_version ontology_1_6 (s_schema, 1, 60);
-const ontology_version ontology_1_7 (s_schema, 1, 70);
-const ontology_version ontology_1_8 (s_schema, 1, 80);
-const ontology_version ontology_1_9 (s_schema, 1, 90);
-const ontology_version ontology_1_91 (s_schema, 1, 91);
-const ontology_version ontology_1_92 (s_schema, 1, 92);
-const ontology_version ontology_1_93 (s_schema, 1, 93);
-const ontology_version ontology_2_0 (s_schema, 2, 0);
-const ontology_version ontology_2_1 (s_schema, 2, 1);
-const ontology_version ontology_2_2 (s_schema, 2, 2);
-const ontology_version ontology_3_0 (s_schema, 3, 0);
-const ontology_version ontology_3_1 (s_schema, 3, 1);
-const ontology_version ontology_3_2 (s_schema, 3, 2);
-const ontology_version ontology_3_3 (s_schema, 3, 3);
-const ontology_version ontology_3_4 (s_schema, 3, 4);
-const ontology_version ontology_3_5 (s_schema, 3, 5);
-const ontology_version ontology_3_6 (s_schema, 3, 6);
-const ontology_version ontology_3_7 (s_schema, 3, 7);
-const ontology_version ontology_3_8 (s_schema, 3, 8);
-const ontology_version ontology_3_9 (s_schema, 3, 9);
-const ontology_version ontology_4 (s_schema, 4, 0);
-const ontology_version ontology_5 (s_schema, 5, 0);
-const ontology_version ontology_6 (s_schema, 6, 0);
-const ontology_version ontology_7_00 (s_schema, 7, 0);
-const ontology_version ontology_7_01 (s_schema, 7, 1);
-const ontology_version ontology_7_02 (s_schema, 7, 2);
-const ontology_version ontology_7_03 (s_schema, 7, 3);
-const ontology_version ontology_7_04 (s_schema, 7, 4);
-const ontology_version ontology_8 (s_schema, 8, 0);
-const ontology_version ontology_9 (s_schema, 9, 0);
-const ontology_version ontology_10 (s_schema, 10, 0);
-const ontology_version ontology_11 (s_schema, 11, 0);
-const ontology_version ontology_12 (s_schema, 12, 0);
-const ontology_version ontology_13 (s_schema, 13, 0);
-const ontology_version ontology_14 (s_schema, 14, 0);
-const ontology_version ontology_15 (s_schema, 15, 0);
-const ontology_version ontology_16 (s_schema, 16, 0);
-const ontology_version ontology_17 (s_schema, 17, 0);
-const ontology_version ontology_18 (s_schema, 18, 0);
-const ontology_version ontology_19 (s_schema, 19, 0);
-const ontology_version ontology_20 (s_schema, 20, 0);
-const ontology_version ontology_21 (s_schema, 21, 0);
-const ontology_version ontology_22 (s_schema, 22, 0);
-const ontology_version ontology_default (s_schema, DEFAULT_SCHEMA_ORG_MAJOR, DEFAULT_SCHEMA_ORG_MINOR);
+const ontology_version schema_0 (s_schema, 0, 1);
+const ontology_version schema_jun11 (s_schema, 0, 10);
+const ontology_version schema_jul11 (s_schema, 0, 15);
+const ontology_version schema_aug11 (s_schema, 0, 20);
+const ontology_version schema_sep11 (s_schema, 0, 25);
+const ontology_version schema_oct11 (s_schema, 0, 30);
+const ontology_version schema_nov11 (s_schema, 0, 35);
+const ontology_version schema_dec11 (s_schema, 0, 40);
+const ontology_version schema_jan12 (s_schema, 0, 45);
+const ontology_version schema_feb12 (s_schema, 0, 50);
+const ontology_version schema_mar12 (s_schema, 0, 55);
+const ontology_version schema_apr12 (s_schema, 0, 60);
+const ontology_version schema_0_91 (s_schema, 0, 91);
+const ontology_version schema_0_93 (s_schema, 0, 93);
+const ontology_version schema_0_94 (s_schema, 0, 94);
+const ontology_version schema_0_95 (s_schema, 0, 95);
+const ontology_version schema_0_96 (s_schema, 0, 96);
+const ontology_version schema_0_97 (s_schema, 0, 97);
+const ontology_version schema_0_98 (s_schema, 0, 98);
+const ontology_version schema_0_99 (s_schema, 0, 99);
+const ontology_version schema_1_0A (s_schema, 1, 0);
+const ontology_version schema_1_0B (s_schema, 1, 1);
+const ontology_version schema_1_0C (s_schema, 1, 2);
+const ontology_version schema_1_0D (s_schema, 1, 3);
+const ontology_version schema_1_0E (s_schema, 1, 4);
+const ontology_version schema_1_0F (s_schema, 1, 5);
+const ontology_version schema_1_1 (s_schema, 1, 10);
+const ontology_version schema_1_2 (s_schema, 1, 20);
+const ontology_version schema_1_3 (s_schema, 1, 30);
+const ontology_version schema_1_4 (s_schema, 1, 40);
+const ontology_version schema_1_5 (s_schema, 1, 50);
+const ontology_version schema_1_6 (s_schema, 1, 60);
+const ontology_version schema_1_7 (s_schema, 1, 70);
+const ontology_version schema_1_8 (s_schema, 1, 80);
+const ontology_version schema_1_9 (s_schema, 1, 90);
+const ontology_version schema_1_91 (s_schema, 1, 91);
+const ontology_version schema_1_92 (s_schema, 1, 92);
+const ontology_version schema_1_93 (s_schema, 1, 93);
+const ontology_version schema_2_0 (s_schema, 2, 0);
+const ontology_version schema_2_1 (s_schema, 2, 1);
+const ontology_version schema_2_2 (s_schema, 2, 2);
+const ontology_version schema_3_0 (s_schema, 3, 0);
+const ontology_version schema_3_1 (s_schema, 3, 1);
+const ontology_version schema_3_2 (s_schema, 3, 2);
+const ontology_version schema_3_3 (s_schema, 3, 3);
+const ontology_version schema_3_4 (s_schema, 3, 4);
+const ontology_version schema_3_5 (s_schema, 3, 5);
+const ontology_version schema_3_6 (s_schema, 3, 6);
+const ontology_version schema_3_7 (s_schema, 3, 7);
+const ontology_version schema_3_8 (s_schema, 3, 8);
+const ontology_version schema_3_9 (s_schema, 3, 9);
+const ontology_version schema_4 (s_schema, 4, 0);
+const ontology_version schema_5 (s_schema, 5, 0);
+const ontology_version schema_6 (s_schema, 6, 0);
+const ontology_version schema_7_00 (s_schema, 7, 0);
+const ontology_version schema_7_01 (s_schema, 7, 1);
+const ontology_version schema_7_02 (s_schema, 7, 2);
+const ontology_version schema_7_03 (s_schema, 7, 3);
+const ontology_version schema_7_04 (s_schema, 7, 4);
+const ontology_version schema_8 (s_schema, 8, 0);
+const ontology_version schema_9 (s_schema, 9, 0);
+const ontology_version schema_10 (s_schema, 10, 0);
+const ontology_version schema_11 (s_schema, 11, 0);
+const ontology_version schema_12 (s_schema, 12, 0);
+const ontology_version schema_13 (s_schema, 13, 0);
+const ontology_version schema_14 (s_schema, 14, 0);
+const ontology_version schema_15 (s_schema, 15, 0);
+const ontology_version schema_16 (s_schema, 16, 0);
+const ontology_version schema_17 (s_schema, 17, 0);
+const ontology_version schema_18 (s_schema, 18, 0);
+const ontology_version schema_19 (s_schema, 19, 0);
+const ontology_version schema_20 (s_schema, 20, 0);
+const ontology_version schema_21 (s_schema, 21, 0);
+const ontology_version schema_22 (s_schema, 22, 0);
+const ontology_version schema_default (s_schema, DEFAULT_SCHEMA_ORG_MAJOR, DEFAULT_SCHEMA_ORG_MINOR);
 
 const ontology_version sd_schema (s_sd, 1, 0);
 
@@ -359,7 +424,16 @@ const ontology_version ssn_schema (s_ssn, 1, 0);
 
 const ontology_version sosa_schema (s_sosa, 1, 0);
 
+const ontology_version xmp_stdim (s_stdim, 1, 0);
+const ontology_version xmp_stevt (s_stevt, 1, 0);
+const ontology_version xmp_stfnt (s_stfnt, 1, 0);
+const ontology_version xmp_stjob (s_stjob, 1, 0);
+const ontology_version xmp_stref (s_stref, 1, 0);
+const ontology_version xmp_stver (s_stver, 1, 0);
+
 const ontology_version taxo_schema (s_taxo, 1, 0);
+
+const ontology_version tiff_schema (s_tiff, 6, 0);
 
 const ontology_version time_schema (s_time, 1, 0);
 
@@ -392,6 +466,16 @@ const ontology_version whatwg_schema (s_whatwg, 1, 0);
 const ontology_version xhv_schema (s_xhv, 1, 0);
 
 const ontology_version xml_schema (s_xml, 1, 0);
+
+const ontology_version xmp_schema (s_xmp, 1, 0);
+const ontology_version xmp_bj (s_xmpbj, 1, 0);
+const ontology_version xmp_dm (s_xmpdm, 1, 0);
+const ontology_version xmp_g (s_xmpg, 1, 0);
+const ontology_version xmp_gimg (s_xmpgimg, 1, 0);
+const ontology_version xmp_idq (s_xmpidq, 1, 0);
+const ontology_version xmp_mm (s_xmpmm, 1, 0);
+const ontology_version xmp_rights (s_xmprights, 1, 0);
+const ontology_version xmp_tpg (s_xmptpg, 1, 0);
 
 const ontology_version xsd_1_0 (s_xsd, 1, 0);
 const ontology_version xsd_1_1 (s_xsd, 1, 1);
