@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:prism="http://prismstandard.org/namespaces/1.2/basic/"
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <rdf:Description rdf:about="http://wanderlust.com/2000/08/Corfu.jpg">
+    <dc:identifier rdf:resource="http://wanderlust.com/content/2357845" />
+    <dc:rights rdf:parseType="Resource">
+      <prism:embargoDate>2001-02-01</prism:embargoDate>
+      <prism:expirationDate>2001-02-28</prism:expirationDate>
+    </dc:rights>
+  </rdf:Description>
+</rdf:RDF>

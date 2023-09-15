@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xml:lang="en-US"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:prism="http://prismstandard.org/namespaces/basic/2.0/">
+  <dc:identifier>100340926</dc:identifier>
+  <prism:issueIdentifier>1000710</prism:issueIdentifier>
+  <prism:originPlatform platform="print"/><dc:title>The Real Running Mates</dc:title>
+  <dc:creator>Karen Tumulty</dc:creator>
+  <dc:contributor prism:role="Reporter" prism:place="New York">
+    With reporting by Nancy
+    Gibbs
+  </dc:contributor>
+  <prism:publicationName>Time</prism:publicationName>
+  <prism:coverDate>2007-09-24</prism:coverDate>
+  <prism:coverDisplayDate>September 24, 2007</prism:coverDisplayDate>
+  <prism:volume>170</prism:volume>
+  <prism:number>13</prism:number>
+  <dc:subject>POLITICS</dc:subject>
+  <prism:person>Elizabeth Edwards</prism:person>
+  <prism:person>Hillary Clinton</prism:person>
+  <prism:genre>coverStory</prism:genre>
+  <prism:wordCount>4188</prism:wordCount>
+  </rdf:RDF>

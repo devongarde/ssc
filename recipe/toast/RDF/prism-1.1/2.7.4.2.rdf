@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:prism="http://prismstandard.org/namespaces/basic/1.0/"
+ xmlns:prl="http://prismstandard.org/namespaces/prl/1.0/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <rdf:Description rdf:about="http://wanderlust.com/2000/08/Corfu.jpg">
+    <dc:identifier rdf:resource="http://wanderlust.com/content/2357845"/>
+    <dc:rights xml:base="http://prismstandard.org/vocabularies/1.0/usage.xml">
+      <rdf:Bag>
+        <rdf:li rdf:parseType="Resource">
+          <prl:usage rdf:resource="#none"/>
+          <prl:industry rdf:resource=
+ "http://prismstandard.org/vocabs/SIC/0132"/>
+        </rdf:li>
+        <rdf:li rdf:parseType="Resource">
+          <prl:geography rdf:resource=
+ "http://prismstandard.org/vocabs/ISO-3166/US"/>
+          <prism:releaseTime>2001-01-01</prism:releaseTime>
+        </rdf:li>
+        <rdf:li rdf:parseType="Resource">
+          <prl:geography rdf:resource=
+ "http://prismstandard.org/vocabs/ISO-3166GR"/>
+          <prism:expirationTime>2003-12-31</prism:expirationTime>
+        </rdf:li>
+      </rdf:Bag>
+    </dc:rights>
+  </rdf:Description>
+</rdf:RDF>

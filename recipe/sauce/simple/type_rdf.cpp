@@ -69,8 +69,8 @@ e_status parse_prefixes (nitpick& nits, const html_version& v, const ::std::stri
                     if (vrai) nits.pick (nit_namespace_confusion, es_warning, ec_namespace, "it is very confusing to use 'https' as a prefix");
                     break;
                 default :
-                    if (vrai) nits.pick (nit_rdfa_confusion, es_info, ec_rdfa,   "it is confusing that ", quote (name), ", the name of a standard internet protocol (",
-                                                                                protocol_names.get (prot, PROTOCOL_DESCRIPTION), " protocol), is used as PREFIX");
+                    if (vrai) nits.pick (nit_rdfa_confusion, es_info, ec_rdfa, "it is confusing that ", quote (name), ", the name of a standard internet protocol (",
+                                                                               protocol_names.get (prot, PROTOCOL_DESCRIPTION), " protocol), is used as PREFIX");
                     break; }
             if (up != nullptr)
             {   id = up -> find_shortform (v, ontology_names, name);

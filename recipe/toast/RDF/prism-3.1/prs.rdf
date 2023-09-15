@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:prs="http://prismstandard.org/namespaces/prs/3.1/">
+
+  <prs:action>presentPrint</prs:action>
+  <prs:duty>credit</prs:duty>
+  <prs:partyAddress>
+    1600 Duke Street, Suite 420, Alexandria, VA
+    22314</prs:partyAddress>
+      <prs:partyEmail>
+        staff@idealliance.org</prs:partyEmail>
+  <prs:partyName>John Doe</prs:partyName>
+   <prs:partyPhone>703-837-1070</prs:partyPhone>
+  <prs:rightsAgent>Jane Doe</prs:rightsAgent>
+  <prs:rightsOwner>Fred Bloggs</prs:rightsOwner>
+          
+</rdf:RDF>

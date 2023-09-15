@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:prism="http://prismstandard.org/namespaces/basic/1.0/"
+ xmlns:prl="http://prismstandard.org/namespaces/prl/1.0/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:snap="http://sunsetsnaps.com/rights/">
+  <rdf:Description rdf:about="http://sunsetsnaps.com/Zing/asdf0838484">
+    <dc:identifier rdf:resource="http://wanderlust.com/content/2357845"/>
+    <dc:rights xml:base="http://sunsetsnaps.com/rights/">
+      <rdf:Bag>
+        <!-- Prohibit flips and recolorings -->
+        <rdf:li rdf:parseType="Resource">
+          <prl:usage rdf:resource="#none"/>
+          <snaps:industry rdf:resource="#flip">
+ </rdf:li>
+        <rdf:li rdf:parseType="Resource">
+          <prl:usage rdf:resource="#none"/>
+          <snaps:industry rdf:resource="#falseColor">
+ </rdf:li>
+        <!-- Convey unusual conditions -->
+        <rdf:li rdf:parseType="Resource">
+          <prl:usage>Not to be used with discount merchandise.</prl:usage>
+        </rdf:li>
+      </rdf:Bag>
+    </dc:rights>
+  </rdf:Description>
+</rdf:RDF>

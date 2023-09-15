@@ -47,6 +47,7 @@ sh_t sh [] =  // latest first
     { cito_schema, html_jan18 },
     { content_schema, html_rdf_1_0 },
     { creative_commons, html_cc },
+    { crs2_schema, html_xmp },
     { csvw_schema, html_jan16 },
     { common_tag, html_rdf_1_0_con },
     { daq_schema, html_rdf_1_0_con },
@@ -70,7 +71,23 @@ sh_t sh [] =  // latest first
     { duv_schema, html_rdf_1_0_con },
     { earl_schema, html_rdf_1_0_con },
     { event_schema, html_rdf_1_0_con },
+    { exif_3_0, html_exif_3_0 },
+    { exif_2_32, html_exif_2_32 },
+    { exif_2_31, html_exif_2_31 },
+    { exif_2_3, html_exif_2_3 },
+    { exif_2_21, html_exif_2_21 },
+    { exif_2_2, html_exif_2_2 },
+    { exif_2_1, html_exif_2_1 },
+    { exif_2_0, html_exif_2_0 },
+    { exif_1_1, html_exif_1_1 },
+    { exif_1_0, html_exif_1_0 },
+    { exifex_3_0, html_exifex_3_0 },
+    { exifex_2_32, html_exifex_2_32 },
+    { exifex_2_31, html_exifex_2_31 },
+    { exifex_2_3, html_exifex_2_3 },
+    { exifex_2_21, html_exifex_2_21 },
     { faux_schema, html_rdf_1_0 },
+    { fabio_schema, html_jan19 },
     { foaf_schema, html_rdf_1_0 },
     { frbr_schema, xhtml_1_0 },
     { good_relations, html_rdf_1_0 },
@@ -104,13 +121,41 @@ sh_t sh [] =  // latest first
     { org_schema, html_rdf_1_0_con },
     { owl_2, html_rdf_1_0_con },
     { owl_1, html_rdf_1_0 },
-    { profile_2018, html_jan18 },
+    { org_schema, html_rdf_1_0_con },
+    { pam_2_0, html_prism_2_0 },
+    { pamp_3_0, html_prism_3_0 },
+    { pcm_3_1, html_prism_3_1 },
+    { pcmm_3_0, html_prism_3_0 },
+    { pcv_1_0, html_prism_1_0 },
+    { pdf_schema, html_xmp },
+    { photoshop_schema, html_xmp },
+    { pim_3_0, html_prism_3_0 },
+    { pim_2_0, html_prism_2_0 },
+    { pim_1_2, html_prism_1_2 },
+    { pim_1_0, html_prism_1_0 },
+    { pmi_3_0, html_prism_3_0 },
+    { poetry_ontology_1_1, html_oct22 },
+    { poetry_ontology_1_0, html_jan18 },
+    { prism_3_1, html_prism_3_1 },
+    { prism_3_0, html_prism_3_0 },
+    { prism_2_1, html_prism_2_1 },
+    { prism_2_0, html_prism_2_0 },
+    { prism_1_3, html_prism_1_3 },
+    { prism_1_2, html_prism_1_2 },
+    { prism_1_1, html_prism_1_1 },
+    { prism_1_0, html_prism_1_0 },
+    { prism_ad_3_0, html_prism_3_0 },
+    { prl_2_0, html_prism_2_0 },
+    { prl_1_0, html_prism_1_0 },
+    { prm_3_0, html_prism_3_0 },
+    { prs_3_1, html_prism_3_1 },
     { profile_2014, html_jan14 },
     { profile_2012, html_jan12 },
     { provincial, html_rdf_1_0_con },
-    { poetry_ontology_1_1, html_oct22 },
-    { poetry_ontology_1_0, html_jan18 },
+    { psv_1_0, html_prism_1_0 },
     { ptr_schema, html_rdf_1_0_con },
+    { pur_3_0, html_prism_3_0 },
+    { pur_2_1, html_prism_2_1 },
     { data_cube, html_rdf_1_0_con },
     { rdf_1_1_3_schema, html_rdf_1_1_3 },
     { rdf_1_1_2_schema, html_rdf_1_1_2 },
@@ -126,80 +171,80 @@ sh_t sh [] =  // latest first
     { rif_schema, html_rif },
     { role_schema, html_role },
     { rr_schema, html_rr },
-    { ontology_22, html_ontology_22 },
-    { ontology_21, html_ontology_21 },
-    { ontology_20, html_ontology_20 },
-    { ontology_19, html_ontology_19 },
-    { ontology_18, html_ontology_18 },
-    { ontology_17, html_ontology_17 },
-    { ontology_16, html_ontology_16 },
-    { ontology_15, html_ontology_15 },
-    { ontology_14, html_ontology_14 },
-    { ontology_13, html_ontology_13 },
-    { ontology_12, html_ontology_12 },
-    { ontology_11, html_ontology_11 },
-    { ontology_10, html_ontology_10 },
-    { ontology_9, html_ontology_9 },
-    { ontology_8, html_ontology_8 },
-    { ontology_7_04, html_ontology_7_04 },
-    { ontology_7_03, html_ontology_7_03 },
-    { ontology_7_02, html_ontology_7_02 },
-    { ontology_7_01, html_ontology_7_01 },
-    { ontology_7_00, html_ontology_7_00 },
-    { ontology_6, html_ontology_6 },
-    { ontology_5, html_ontology_5 },
-    { ontology_4, html_ontology_4 },
-    { ontology_3_9, html_ontology_3_9 },
-    { ontology_3_8, html_ontology_3_8 },
-    { ontology_3_7, html_ontology_3_7 },
-    { ontology_3_6, html_ontology_3_6 },
-    { ontology_3_5, html_ontology_3_5 },
-    { ontology_3_4, html_ontology_3_4 },
-    { ontology_3_3, html_ontology_3_3 },
-    { ontology_3_2, html_ontology_3_2 },
-    { ontology_3_1, html_ontology_3_1 },
-    { ontology_3_0, html_ontology_3_0 },
-    { ontology_2_2, html_ontology_2_2 },
-    { ontology_2_1, html_ontology_2_1 },
-    { ontology_2_0, html_ontology_2_0 },
-    { ontology_1_93, html_ontology_1_93 },
-    { ontology_1_92, html_ontology_1_92 },
-    { ontology_1_91, html_ontology_1_91 },
-    { ontology_1_9, html_ontology_1_9 },
-    { ontology_1_8, html_ontology_1_8 },
-    { ontology_1_7, html_ontology_1_7 },
-    { ontology_1_6, html_ontology_1_6 },
-    { ontology_1_5, html_ontology_1_5 },
-    { ontology_1_4, html_ontology_1_4 },
-    { ontology_1_3, html_ontology_1_3 },
-    { ontology_1_2, html_ontology_1_2 },
-    { ontology_1_1, html_ontology_1_1 },
-    { ontology_1_0F, html_ontology_1_0F },
-    { ontology_1_0E, html_ontology_1_0E },
-    { ontology_1_0D, html_ontology_1_0D },
-    { ontology_1_0C, html_ontology_1_0C },
-    { ontology_1_0B, html_ontology_1_0B },
-    { ontology_1_0A, html_ontology_1_0A },
-    { ontology_0_99, html_ontology_0_99 },
-    { ontology_0_98, html_ontology_0_98 },
-    { ontology_0_97, html_ontology_0_97 },
-    { ontology_0_96, html_ontology_0_96 },
-    { ontology_0_95, html_ontology_0_95 },
-    { ontology_0_94, html_ontology_0_94 },
-    { ontology_0_93, html_ontology_0_93 },
-    { ontology_0_91, html_ontology_0_91 },
-    { ontology_apr12, html_ontology_apr12 },
-    { ontology_mar12, html_ontology_mar12 },
-    { ontology_feb12, html_ontology_feb12 },
-    { ontology_jan12, html_ontology_jan12 },
-    { ontology_dec11, html_ontology_dec11 },
-    { ontology_nov11, html_ontology_nov11 },
-    { ontology_oct11, html_ontology_oct11 },
-    { ontology_sep11, html_ontology_sep11 },
-    { ontology_aug11, html_ontology_aug11 },
-    { ontology_jul11, html_ontology_jul11 },
-    { ontology_jun11, html_ontology_jun11 },
-    { ontology_0, html_ontology_0 },
+    { schema_22, html_schema_22 },
+    { schema_21, html_schema_21 },
+    { schema_20, html_schema_20 },
+    { schema_19, html_schema_19 },
+    { schema_18, html_schema_18 },
+    { schema_17, html_schema_17 },
+    { schema_16, html_schema_16 },
+    { schema_15, html_schema_15 },
+    { schema_14, html_schema_14 },
+    { schema_13, html_schema_13 },
+    { schema_12, html_schema_12 },
+    { schema_11, html_schema_11 },
+    { schema_10, html_schema_10 },
+    { schema_9, html_schema_9 },
+    { schema_8, html_schema_8 },
+    { schema_7_04, html_schema_7_04 },
+    { schema_7_03, html_schema_7_03 },
+    { schema_7_02, html_schema_7_02 },
+    { schema_7_01, html_schema_7_01 },
+    { schema_7_00, html_schema_7_00 },
+    { schema_6, html_schema_6 },
+    { schema_5, html_schema_5 },
+    { schema_4, html_schema_4 },
+    { schema_3_9, html_schema_3_9 },
+    { schema_3_8, html_schema_3_8 },
+    { schema_3_7, html_schema_3_7 },
+    { schema_3_6, html_schema_3_6 },
+    { schema_3_5, html_schema_3_5 },
+    { schema_3_4, html_schema_3_4 },
+    { schema_3_3, html_schema_3_3 },
+    { schema_3_2, html_schema_3_2 },
+    { schema_3_1, html_schema_3_1 },
+    { schema_3_0, html_schema_3_0 },
+    { schema_2_2, html_schema_2_2 },
+    { schema_2_1, html_schema_2_1 },
+    { schema_2_0, html_schema_2_0 },
+    { schema_1_93, html_schema_1_93 },
+    { schema_1_92, html_schema_1_92 },
+    { schema_1_91, html_schema_1_91 },
+    { schema_1_9, html_schema_1_9 },
+    { schema_1_8, html_schema_1_8 },
+    { schema_1_7, html_schema_1_7 },
+    { schema_1_6, html_schema_1_6 },
+    { schema_1_5, html_schema_1_5 },
+    { schema_1_4, html_schema_1_4 },
+    { schema_1_3, html_schema_1_3 },
+    { schema_1_2, html_schema_1_2 },
+    { schema_1_1, html_schema_1_1 },
+    { schema_1_0F, html_schema_1_0F },
+    { schema_1_0E, html_schema_1_0E },
+    { schema_1_0D, html_schema_1_0D },
+    { schema_1_0C, html_schema_1_0C },
+    { schema_1_0B, html_schema_1_0B },
+    { schema_1_0A, html_schema_1_0A },
+    { schema_0_99, html_schema_0_99 },
+    { schema_0_98, html_schema_0_98 },
+    { schema_0_97, html_schema_0_97 },
+    { schema_0_96, html_schema_0_96 },
+    { schema_0_95, html_schema_0_95 },
+    { schema_0_94, html_schema_0_94 },
+    { schema_0_93, html_schema_0_93 },
+    { schema_0_91, html_schema_0_91 },
+    { schema_apr12, html_schema_apr12 },
+    { schema_mar12, html_schema_mar12 },
+    { schema_feb12, html_schema_feb12 },
+    { schema_jan12, html_schema_jan12 },
+    { schema_dec11, html_schema_dec11 },
+    { schema_nov11, html_schema_nov11 },
+    { schema_oct11, html_schema_oct11 },
+    { schema_sep11, html_schema_sep11 },
+    { schema_aug11, html_schema_aug11 },
+    { schema_jul11, html_schema_jul11 },
+    { schema_jun11, html_schema_jun11 },
+    { schema_0, html_schema_0 },
     { sd_schema, html_sd },
     { sioc_schema, html_sioc },
     { sioc_services, html_sioc_s },
@@ -208,7 +253,14 @@ sh_t sh [] =  // latest first
     { skosxl_schema, html_skosxl },
     { ssn_schema, html_ssn },
     { sosa_schema, html_sosa },
+    { xmp_stdim, html_xmp },
+    { xmp_stevt, html_xmp },
+    { xmp_stfnt, html_xmp },
+    { xmp_stjob, html_xmp },
+    { xmp_stref, html_xmp },
+    { xmp_stver, html_xmp },
     { taxo_schema, html_taxo },
+    { tiff_schema, html_tiff },
     { time_schema, html_time },
     { data_vocabulary, html_v },
     { vann_1_1, html_vann_1_1 },
@@ -229,6 +281,15 @@ sh_t sh [] =  // latest first
     { whatwg_schema, html_whatwg },
     { xhv_schema, html_xhv },
     { xml_schema, html_xml },
+    { xmp_schema, html_xmp },
+    { xmp_bj, html_xmp },
+    { xmp_dm, html_xmp },
+    { xmp_g, html_xmp },
+    { xmp_gimg, html_xmp },
+    { xmp_idq, html_xmp },
+    { xmp_mm, html_xmp },
+    { xmp_rights, html_xmp },
+    { xmp_tpg, html_xmp },
     { xsd_1_1, html_xsd_1_1 },
     { xsd_1_0, html_xsd_1_0 },
     { error_schema, html_0 } };
@@ -346,6 +407,49 @@ template < > bool ontology_detail < s_error > :: is_this_valid (const unsigned s
 template < > bool ontology_detail < s_error > :: faux () noexcept
 {   return true; }
 
+template < > bool ontology_detail < s_exif > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+{   if (mjr > MAX_SCHEMA_ORG_MAJOR) return false;
+    switch (mjr)
+    {   case 1 : return (mnr < 2);
+        case 2 : break;
+        case 3 : return (mnr == 0);
+        default : return false; }
+    switch (mnr)
+    {   case 0 :
+        case 10 :
+        case 20 :
+        case 21 :
+        case 30 :
+        case 31 :
+        case 32 : return true;
+        default : break; }
+    return false; }
+template < > ontology_version ontology_detail < s_exif > :: from () noexcept { return ontology_version (s_exif, 1, 0); }
+template < > int ontology_detail < s_exif > :: count () noexcept { return 10; }
+template < > ontology_version ontology_detail < s_exif > :: to () noexcept { return ontology_version (s_exif, 3, 0); }
+
+template < > bool ontology_detail < s_exifex > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+{   if (mjr > MAX_SCHEMA_ORG_MAJOR) return false;
+    switch (mjr)
+    {   case 2 : break;
+        case 3 : return (mnr == 0);
+        default : return false; }
+    switch (mnr)
+    {   case 21 :
+        case 30 :
+        case 31 :
+        case 32 : return true;
+        default : break; }
+    return false; }
+template < > ontology_version ontology_detail < s_exifex > :: from () noexcept { return ontology_version (s_exifex, 1, 0); }
+template < > int ontology_detail < s_exifex > :: count () noexcept { return 5; }
+template < > ontology_version ontology_detail < s_exifex > :: to () noexcept { return ontology_version (s_exifex, 3, 0); }
+
+template < > bool ontology_detail < s_fabio > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+{   return (mjr == 2) && (mnr == 1); }
+template < > ontology_version ontology_detail < s_fabio > :: from () noexcept { return ontology_version (s_fabio, 2, 8); }
+template < > ontology_version ontology_detail < s_fabio > :: to () noexcept { return ontology_version (s_fabio, 2, 8); }
+
 template < > bool ontology_detail < s_faux > :: faux () noexcept
 {   return true; }
 
@@ -403,6 +507,40 @@ template < > ontology_version ontology_detail < s_owl > :: from () noexcept { re
 template < > int ontology_detail < s_owl > :: count () noexcept { return 2; }
 template < > ontology_version ontology_detail < s_owl > :: to () noexcept { return ontology_version (s_owl, 2, 0); }
 
+template < > bool ontology_detail < s_pam > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+{   return (mjr == 2) && (mnr == 0); }
+template < > ontology_version ontology_detail < s_pam > :: from () noexcept { return ontology_version (s_pam, 2, 0); }
+template < > ontology_version ontology_detail < s_pam > :: to () noexcept { return ontology_version (s_pam, 2, 0); }
+
+template < > bool ontology_detail < s_pamp > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+{   return (mjr == 3) && (mnr < 2); }
+template < > ontology_version ontology_detail < s_pamp > :: from () noexcept { return ontology_version (s_pamp, 3, 0); }
+template < > ontology_version ontology_detail < s_pamp > :: to () noexcept { return ontology_version (s_pamp, 3, 1); }
+
+template < > bool ontology_detail < s_pcm > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+{   return (mjr == 3) && (mnr == 1); }
+template < > ontology_version ontology_detail < s_pcm > :: from () noexcept { return ontology_version (s_pcm, 3, 1); }
+template < > ontology_version ontology_detail < s_pcm > :: to () noexcept { return ontology_version (s_pcm, 3, 1); }
+
+template < > bool ontology_detail < s_pcmm > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+{   return (mjr == 3) && (mnr < 2); }
+template < > ontology_version ontology_detail < s_pcmm > :: from () noexcept { return ontology_version (s_pcmm, 3, 0); }
+template < > ontology_version ontology_detail < s_pcmm > :: to () noexcept { return ontology_version (s_pcmm, 3, 1); }
+
+template < > bool ontology_detail < s_pim > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+{   switch (mjr)
+    {   case 1 : return mnr < 4;
+        case 2 :
+        case 3 : return mnr < 2;
+        default : return false; } }
+template < > ontology_version ontology_detail < s_pim > :: from () noexcept { return ontology_version (s_pim, 1, 0); }
+template < > ontology_version ontology_detail < s_pim > :: to () noexcept { return ontology_version (s_pim, 3, 1); }
+
+template < > bool ontology_detail < s_pmi > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+{   return (mjr == 3) && (mnr < 2); }
+template < > ontology_version ontology_detail < s_pmi > :: from () noexcept { return ontology_version (s_pmi, 3, 0); }
+template < > ontology_version ontology_detail < s_pmi > :: to () noexcept { return ontology_version (s_pmi, 3, 1); }
+
 template < > bool ontology_detail < s_poetry > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
 {   if (mjr != 1) return false;
     return (mnr == 0) || (mnr == 1); }
@@ -410,11 +548,45 @@ template < > ontology_version ontology_detail < s_poetry > :: from () noexcept {
 template < > int ontology_detail < s_poetry > :: count () noexcept { return 2; }
 template < > ontology_version ontology_detail < s_poetry > :: to () noexcept { return ontology_version (s_poetry, 1, 1); }
 
+template < > bool ontology_detail < s_prism > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+{   switch (mjr)
+    {   case 1 : return mnr < 3;
+        case 2 :
+        case 3 : return mnr < 2;
+        default : return false; } }
+template < > ontology_version ontology_detail < s_prism > :: from () noexcept { return ontology_version (s_prism, 1, 0); }
+template < > ontology_version ontology_detail < s_prism > :: to () noexcept { return ontology_version (s_prism, 3, 1); }
+
+template < > bool ontology_detail < s_prism_ad > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+{   return (mjr == 3) && (mnr < 2); }
+template < > ontology_version ontology_detail < s_prism_ad > :: from () noexcept { return ontology_version (s_prism_ad, 3, 0); }
+template < > ontology_version ontology_detail < s_prism_ad > :: to () noexcept { return ontology_version (s_prism_ad, 3, 1); }
+
+template < > bool ontology_detail < s_prl > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+{   return ((mjr == 1) && (mnr < 4)) || ((mjr == 2) && (mnr < 2)); }
+template < > ontology_version ontology_detail < s_prl > :: from () noexcept { return ontology_version (s_prl, 1, 0); }
+template < > ontology_version ontology_detail < s_prl > :: to () noexcept { return ontology_version (s_prl, 2, 1); }
+
+template < > bool ontology_detail < s_prm > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+{   return (mjr == 3) && (mnr < 2); }
+template < > ontology_version ontology_detail < s_prm > :: from () noexcept { return ontology_version (s_prm, 3, 0); }
+template < > ontology_version ontology_detail < s_prm > :: to () noexcept { return ontology_version (s_prm, 3, 1); }
+
 template < > bool ontology_detail < s_profile > :: is_this_valid (const unsigned short mjr, const unsigned short , const flags_t ) noexcept
 {   return (mjr >= HTML_2012) && (mjr <= HTML_LATEST_YEAR); }
 template < > ontology_version ontology_detail < s_profile > :: from () noexcept { return ontology_version (s_profile, HTML_2012, 0); }
 template < > int ontology_detail < s_profile > :: count () noexcept { return 4; }
 template < > ontology_version ontology_detail < s_profile > :: to () noexcept { return ontology_version (s_profile, HTML_LATEST_YEAR, 0); }
+
+template < > bool ontology_detail < s_prs > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+{   return (mjr == 3) && (mnr == 1); }
+template < > ontology_version ontology_detail < s_prs > :: from () noexcept { return ontology_version (s_prs, 3, 1); }
+template < > ontology_version ontology_detail < s_prs > :: to () noexcept { return ontology_version (s_prs, 3, 1); }
+
+template < > bool ontology_detail < s_pur > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+{   return ((mjr == 2) && (mnr == 1)) || ((mjr == 3) && (mnr < 2)); }
+template < > ontology_version ontology_detail < s_pur > :: from () noexcept { return ontology_version (s_pur, 2, 1); }
+template < > ontology_version ontology_detail < s_pur > :: to () noexcept { return ontology_version (s_pur, 3, 1); }
 
 template < > bool ontology_detail < s_rdf > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
 {   if (mjr != 1) return false;
@@ -453,8 +625,13 @@ template < > bool ontology_detail < s_schema > :: is_this_valid (const unsigned 
         default : break; }
     return false; }
 template < > ontology_version ontology_detail < s_schema > :: from () noexcept { return ontology_version (s_schema, MIN_SCHEMA_ORG_MAJOR, MIN_SCHEMA_ORG_MINOR); }
-template < > int ontology_detail < s_schema > :: count () noexcept { return 65; }
+template < > int ontology_detail < s_schema > :: count () noexcept { return 73; }
 template < > ontology_version ontology_detail < s_schema > :: to () noexcept { return ontology_version (s_schema, MAX_SCHEMA_ORG_MAJOR, MAX_SCHEMA_ORG_MINOR); }
+
+template < > bool ontology_detail < s_tiff > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+{   return (mjr == 6) && (mnr == 0); }
+template < > ontology_version ontology_detail < s_tiff > :: from () noexcept { return ontology_version (s_tiff, 6, 0); }
+template < > ontology_version ontology_detail < s_tiff > :: to () noexcept { return ontology_version (s_tiff, 6, 0); }
 
 template < > bool ontology_detail < s_vann > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
 {   if (mjr != 1) return false;

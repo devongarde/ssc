@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pam:message xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://prismstandard.org/pam2.0/pam pam.xsd"
+xmlns:pam="http://prismstandard.org/pam2.0/pam"
+xmlns:dc="http://prismstandard.org/pam2.0/dc"
+xmlns:dcterms="http://prismstandard.org/pam2.0/dcterms"
+xmlns:xhtml="http://prismstandard.org/pam2.0/xhtml"
+xmlns:pim="http://prismstandard.org/pam2.0/pim"
+xmlns:prism="http://prismstandard.org/pam2.0/prism"
+xmlns="http://prismstandard.org/pam2.0/xhtml">
+  

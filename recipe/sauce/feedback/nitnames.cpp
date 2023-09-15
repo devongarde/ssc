@@ -826,6 +826,9 @@ const nitname nitnames [] =
     { nit_bad_supports, "bad_supports" },
     { nit_experimental, "experimental" },
     { nit_cache, "cache" },
+    { nit_arxiv, "arXiv" },
+    { nit_coden, "coden" },
+    { nit_prism, "prism" },
 
     { nit_incompatible, "incompatible" },
 

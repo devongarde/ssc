@@ -328,6 +328,17 @@ struct symbol_entry < html_version, e_crossout > crossout_symbol_table [] =
     { { HTML_5_2 }, { HTML_UNDEF }, "verticalstrike", co_verticalstrike },
     { { HTML_5_2 }, { HTML_UNDEF }, "horizontalstrike", co_horizontalstrike } };
 
+struct symbol_entry < html_version, e_crs_whitebalance > crs_whitebalance_symbol_table [] =
+{   { { HTML_ADOBE }, { HTML_UNDEF }, "asshot", cwb_asshot },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "auto", cwb_auto },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "cloudy", cwb_cloudy },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "custom", cwb_custom },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "daylight", cwb_daylight },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "flash", cwb_flash },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "flourescent", cwb_flourescent },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "shade", cwb_shade },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "tungsten", cwb_tungsten } };
+
 struct symbol_entry < html_version, e_css_aaalri > css_aaalri_symbol_table [] =
 {   { { HTML_CSS }, { HTML_UNDEF }, "always", caa_always },
     { { HTML_CSS }, { HTML_UNDEF }, "auto", caa_auto },
@@ -1623,6 +1634,22 @@ struct symbol_entry < html_version, e_enterkeyhint > enterkeyhint_symbol_table [
     { { HTML_JUL20 }, { HTML_UNDEF }, "search", ekh_search },
     { { HTML_JUL20 }, { HTML_UNDEF }, "send", ekh_send } };
 
+struct symbol_entry < html_version, e_evt_action > evt_action_symbol_table [] =
+{   { { HTML_ADOBE }, { HTML_UNDEF }, "converted", evt_converted },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "copied", evt_copied },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "created", evt_created },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "cropped", evt_cropped },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "edited", evt_edited },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "filtered", evt_filtered },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "formatted", evt_formatted },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "managed", evt_managed },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "printed", evt_printed },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "produced", evt_produced },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "published", evt_published },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "resized", evt_resized },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "saved", evt_saved },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "version_updated", evt_version_updated } };
+
 struct symbol_entry < html_version, e_figalign > figalign_symbol_table [] =
 {   { { HTML_3_0 }, { HTML_3_0 }, "bleedleft", fa_bleedleft },
     { { HTML_3_0 }, { HTML_3_0 }, "left", fa_left },
@@ -2363,6 +2390,22 @@ struct symbol_entry < html_version, e_mf_reviewtype > mf_reviewtype_symbol_table
     { { HTML_4_0 }, { HTML_UNDEF }, "website", mfr_website },
     { { HTML_4_0 }, { HTML_UNDEF }, "url", mfr_url } };
 
+struct symbol_entry < html_version, e_musickey > musickey_symbol_table [] =
+{   { { HTML_ADOBE }, { HTML_UNDEF }, "A", mk_a },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "A#", mk_asharp },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "B", mk_b },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "B#", mk_c },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "C", mk_c },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "C#", mk_csharp },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "D", mk_d },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "D#", mk_dsharp },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "E", mk_e },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "F", mk_f },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "F#", mk_fsharp },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "G", mk_g },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "G#", mk_gsharp } };
+
+
 struct symbol_entry < html_version, e_myersbriggs > myersbriggs_symbol_table [] =
         // why not the astrology stuff too?
 {   { { XHTML_1_0 }, { HTML_UNDEF }, "INFP", mb_INFP },
@@ -2772,6 +2815,32 @@ struct symbol_entry < html_version, e_paintkeyword > paintkeyword_symbol_table [
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "icc-colour", pk_icccolour },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "url", pk_url } };
 
+struct symbol_entry < html_version, e_pam_ccv > pam_ccv_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "box", pccv_box },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "byline", pccv_byline },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "caption", pccv_caption },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "credit", pccv_credit },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "dateline", pccv_dateline },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "deck", pccv_deck },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "footnotes", pccv_footnotes },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "introduction", pccv_introduction },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "lead-in", pccv_leadin },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "pullQuote", pccv_pullquote },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "recipe", pccv_recipe },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "sidebar", pccv_sidebar },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "teaser", pccv_teaser },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "title", pccv_title } };
+
+// not exactly precise, but the defined values are unavoidable wrong because they break syntax (by containing hyphens and spaces)
+struct symbol_entry < html_version, e_pcmm_status > pcmm_status_symbol_table [] =
+{   { { HTML_UNDEF }, { HTML_UNDEF }, "draft", pcmm_draft },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "beingnegotiated", pcmm_beingnegotiated },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "finalized", pcmm_finalised },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "uploaded", pcmm_uploaded },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "uploadapproved", pcmm_upload_approved },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "uploadrejected", pcmm_upload_rejected },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "uploadrejectedtypeagain", pcmm_upload_rejected } };
+
 struct symbol_entry < html_version, e_plusstyle > plusstyle_symbol_table [] =
 {   { { HTML_UNDEF }, { HTML_UNDEF }, "b", ps_b },
     { { HTML_UNDEF }, { HTML_UNDEF }, "i", ps_i },
@@ -2797,6 +2866,43 @@ struct symbol_entry < html_version, e_pointer_events > pointer_events_symbol_tab
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "none", pe_none },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "inherit", pe_inherit } };
 
+struct symbol_entry < html_version, e_pri_img_colour > pri_img_colour_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "bw", pic_bw },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "color", pic_colour },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "duotone", pic_duotone },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "quadtone", pic_quadtone },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "sepia", pic_sepia },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "tritone", pic_tritone } };
+
+struct symbol_entry < html_version, e_pri_img_technique > pri_img_technique_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "above", pit_above },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "aerial", pit_aerial },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "below", pit_below },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "center", pit_center },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "closeup", pit_closeup },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "detail", pit_detail },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "distant", pit_distant },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "front", pit_front },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "offCenter", pit_offcentre },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "panoramic", pit_panoramic },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "profile", pit_profile },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "rear", pit_rear } };
+
+struct symbol_entry < html_version, e_pri_img_viewpoint > pri_img_viewpoint_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "backlit", piv_backlit },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "candid", piv_candid },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "cool", piv_cool },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "doubleExposure", piv_doubleexposure },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "flash", piv_flash },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "hdr", piv_hdr },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "motionBlur", piv_motionblur },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "negative", piv_negative },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "silhouette", piv_silhouette },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "soft", piv_soft },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "spotlit", piv_spotlit },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "warm", piv_warm },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "wideAngle", piv_wideangle } };
+
 // a couple of these are only defined in the HTML+ text, not the DTD
 struct symbol_entry < html_version, e_print > print_symbol_table [] =
 {   { { HTML_UNDEF }, { HTML_UNDEF }, "footnote", pt_footnote },
@@ -2805,6 +2911,388 @@ struct symbol_entry < html_version, e_print > print_symbol_table [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, "sidebar", pt_sidebar },
     { { HTML_UNDEF }, { HTML_UNDEF }, "silent", pt_silent } };
 
+struct symbol_entry < html_version, e_prism_ad_pos > prism_ad_pos_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "IBC", pap_ibc },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "IFC", pap_ifc },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "MB", pap_main_body },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "OBC", pap_obc },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "Text", pap_text } };
+
+struct symbol_entry < html_version, e_prism_ad_type > prism_ad_type_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "DFT", pat_dft },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "EFT", pat_eft },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "Text", pat_text },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "SFP", pat_sfp },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "SPFplus", pat_spfplus } };
+
+struct symbol_entry < html_version, e_prism_ag_type > prism_ag_type_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "blog", pag_blog },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "book", pag_book },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "bookazine", pag_bookazine },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "catalogue", pag_catalogue },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "feed", pag_feed },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "journal", pag_journal },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "magazine", pag_magazine },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "manual", pag_manual },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "newsletter", pag_newsletter },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "other", pag_other },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "report", pag_report },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "pamphlet", pag_pamphlet },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "vook", pag_vook },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "whitepaper", pag_whitepaper } };
+
+struct symbol_entry < html_version, e_prism_audience_sector > prism_audience_sector_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "ageGroup", pas_agegroup },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "ageRange", pas_agerange },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "countryRegion", pas_countryregion },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "educationalLevel", pas_educationallevel },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "employmentStatus", pas_employmentstatus },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "gender", pas_gender },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "incomeRange", pas_incomerange },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "maritalStatus", pas_maritalstatus },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "employmentSstatus", pas_employmentstatus },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "raceEthnicity", pas_culture },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "other", pas_other } };
+
+struct symbol_entry < html_version, e_prism_ccv > prism_ccv_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "box", prccv_box },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "byline", prccv_byline },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "caption", prccv_caption },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "credit", prccv_credit },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "dateline", prccv_dateline },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "deck", prccv_deck },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "footnotes", prccv_footnotes },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "introduction", prccv_introduction },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "layer", prccv_layer },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "lead-in", prccv_leadin },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "pullQuote", prccv_pullquote },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "recipe", prccv_recipe },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "sidebar", prccv_sidebar },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "subtitle", prccv_subtitle },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "teaser", prccv_teaser },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "title", prccv_title } };
+
+struct symbol_entry < html_version, e_prism_class > prism_class_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "byline", pc_byline },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "dateline", pc_dateline },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "deck", pc_deck },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "footnotes", pc_footnotes },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "lead-in", pc_leadin },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "sidebar", pc_sidebar } };
+
+struct symbol_entry < html_version, e_prism_contenttype > prism_contenttype_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "advertisement", ptt_advertisement },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "article", ptt_article },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "blogEntry", ptt_blogentry },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "bookChapter", ptt_bookchapter },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "classifiedAdSection", ptt_classifiedadsection },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "contentBlock", ptt_contentblock },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "frontCover", ptt_frontcover },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "index", ptt_index },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "introduction", ptt_introduction },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "masthead", ptt_masthead },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "navigationalAid", ptt_navigationalaid },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "otherCover", ptt_othercover } };
+
+struct symbol_entry < html_version, e_prism_cvp > prism_cvp_symbol_table [] =
+{   { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "article", pcvp_article },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "birdsEye", pcvp_birdseye },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "book", pcvp_book },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "body", pcvp_body },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "caption", pcvp_caption },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "catalog", pcvp_catalog },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "clip", pcvp_clip },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "close-up", pcvp_close_up },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "credit", pcvp_credit },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "correction", pcvp_correction },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "electronicBook", pcvp_electronicbook },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "graph", pcvp_graph },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "homePage", pcvp_homepage },
+    { { HTML_PRISM_1_2 }, { HTML_UNDEF }, "illustration", pcvp_illustration },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "index", pcvp_index },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "interactiveContent", pcvp_interactivecontent },
+    { { HTML_PRISM_1_2 }, { HTML_UNDEF }, "issue", pcvp_issue },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "journal", pcvp_journal },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "list", pcvp_list },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "magazine", pcvp_magazine },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "manual", pcvp_manual },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "map", pcvp_map },
+    { { HTML_PRISM_1_0 }, { HTML_PRISM_1_1 }, "news", pcvp_news },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "newspaper", pcvp_newspaper },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "photo", pcvp_photo },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "sidebar", pcvp_sidebar },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "table", pcvp_table },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "webPage", pcvp_webpage },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "wormsEye", pcvp_wormseye } };
+
+struct symbol_entry < html_version, e_prism_genre > prism_genre_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "abstract", pg_abstract },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "acknowledgement", pg_acknowledgement },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "adaption", pg_adaption },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "advertorial", pg_advertorial },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "analysis", pg_analysis },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "answers", pg_answers },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "appendix", pg_appendix },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "authorBio", pg_authorbio },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "autobiography", pg_autobiography },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "backCover", pg_backcover },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "bibliography", pg_bibliography },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "biography", pg_biography },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "box", pg_box },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "calendar", pg_calendar },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "cartoon", pg_cartoon },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "chapter", pg_chapter },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "chart", pg_chart },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "chronolgy", pg_chronolgy },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "clarification", pg_clarification },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "classifiedAd", pg_classifiedad },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "column", pg_column },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "correction", pg_correction },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "coverstory", pg_coverstory },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "coverPackageArticle", pg_coverpackagearticle },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "dedication", pg_dedication },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "department", pg_department },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "diagram", pg_diagram },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "electionResults", pg_electionresults },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "essay", pg_essay },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "excerpt", pg_excerpt },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "faq", pg_faq },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "fashionShoot", pg_fashionshoot },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "feature", pg_feature },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "featurePackageArticle", pg_featurepackagearticle },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "fiction", pg_fiction },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "financialStatement", pg_financialstatement },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "foreward", pg_foreward },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "glossary", pg_glossary },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "horoscope", pg_horoscope },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "insideBackCover", pg_insidebackcover },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "insideFrontCover", pg_insidefrontcover },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "interactiveContent", pg_interactivecontent },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "interview", pg_interview },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "jumppage", pg_jumppage },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "legalDocument", pg_legaldocument },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "letters", pg_letters },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "list", pg_list },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "map", pg_map },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "newsBulletin", pg_newsbulletin },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "notice", pg_notice },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "obituary", pg_obituary },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "opinion", pg_opinion },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "photoEssay", pg_photoessay },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "poem", pg_poem },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "poll", pg_poll },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "postscript", pg_postscript },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "preface", pg_preface },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "pressRelease", pg_pressrelease },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "productDescription", pg_productdescription },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "profile", pg_profile },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "puzzle", pg_puzzle },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "qAndA", pg_qanda },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "quiz", pg_quiz },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "quotation", pg_quotation },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "ranking", pg_ranking },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "recipe", pg_recipe },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "references", pg_references },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "reprint", pg_reprint },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "resources", pg_resources },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "response", pg_response },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "review", pg_review },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "schedule", pg_schedule },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "scrubber", pg_scrubber },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "sectionList", pg_sectionlist },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "sectionTableOfContents", pg_sectiontableofcontents },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "sidebar", pg_sidebar },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "stockQuote", pg_stockquote },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "supplementArticle", pg_supplementarticle },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "supplementBackCover", pg_supplementbackcover },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "supplementFrontCover", pg_supplementfrontcover },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "tableOfContents", pg_tableofcontents },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "transcript", pg_transcript },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "userComments", pg_usercomments },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "userGeneratedContent", pg_usergeneratedcontent },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "userReview", pg_userreview },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "wireStory", pg_wirestory } };
+
+struct symbol_entry < html_version, e_prism_icv > prism_icv_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "academicField", picv_academicfield },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "event", picv_event },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "industry", picv_industry },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "keyword", picv_keyword },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "link", picv_link },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "location", picv_location },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "object", picv_object },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "organization", picv_organisation },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "person", picv_person },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "profession", picv_profession },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "quote", picv_quote },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "sport", picv_sport },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "ticker", picv_ticker },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "timeframe", picv_timeframe } };
+
+struct symbol_entry < html_version, e_prism_pasv > prism_pasv_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "columnByLine", pasv_columnbyline },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "doublePageSpread", pasv_doublepagespread },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "freeFormOther", pasv_freeformother }, // NOT FreeForMother
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "fullPage", pasv_fullpage },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "oneHalfPagehoriz", pasv_onehalfpagehoriz },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "oneHalfPagespread", pasv_pasv_onehalfpagespread },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "oneHalfPagevert", pasv_pasv_onehalfpagevert },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "oneThirdPagehoriz", pasv_onethirdpagehoriz },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "oneThirdPageSq", pasv_onethirdpagesq },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "oneThirdPageVert", pasv_onethirdpagevert },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "twoThirdPageHoriz", pasv_twothirdpagehoriz },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "twoThirdPageSpread", pasv_twothirdpagespread },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "twoThirdPageVert", pasv_twothirdpagevert } };
+
+struct symbol_entry < html_version, e_prism_pcv > prism_pcv_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "broadcast", pcv_broadcast },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "email", pcv_email },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "eReader", pcv_ereader },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "mobile", pcv_mobile },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "other", pcv_other },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "print", pcv_print },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "recordableMedia", pcv_recordablemedia },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "smartPhone", pcv_smartphone },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "tablet", pcv_tablet },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "web", pcv_web } };
+
+struct symbol_entry < html_version, e_prism_pfv > prism_pfv_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "annually", pfv_annually },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "bimonthly", pfv_bimonthly },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "biweekly", pfv_biweekly },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "daily", pfv_daily },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "continually", pfv_continually },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "irregularly", pfv_irregularly },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "monthly", pfv_monthly },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "other", pfv_other },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "quarterly", pfv_quarterly },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "semiannually", pfv_semiannually },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "weekly", pfv_weekly } };
+
+struct symbol_entry < html_version, e_prism_ptv > prism_ptv_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "animation", ptv_animation },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "audio", ptv_audio },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "cartoon", ptv_cartoon },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "chart", ptv_chart },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "clip", ptv_clip },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "codeBlock", ptv_codeblock },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "complexBlock", ptv_audio },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "diagram", ptv_diagram },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "gallery", ptv_gallery },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "illustration", ptv_illustration },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "infoGraphic", ptv_infographic },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "logo", ptv_logo },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "map", ptv_map },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "other", ptv_other },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "photoIllustration", ptv_photoillustration },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "photoMontage", ptv_photomontage },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "slideshow", ptv_slideshow },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "spreadsheet", ptv_spreadsheet },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "table", ptv_table },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "video", ptv_video } };
+
+struct symbol_entry < html_version, e_prism_rcv > prism_rcv_symbol_table [] =
+{   { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "abstract", prcv_abstract },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "acknowledgement", prcv_acknowledgement },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "advertisement", prcv_advertisement },
+    { { HTML_PRISM_1_2 }, { HTML_UNDEF }, "analysis", prcv_analysis },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "authorBio", prcv_authorbio },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "autobiography", prcv_autobiography },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "bibliography", prcv_bibliography },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "biography", prcv_biography },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "brief", prcv_brief },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "cartoon", prcv_cartoon },
+    { { HTML_PRISM_1_2 }, { HTML_UNDEF }, "chronology", prcv_chronology },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "classifiedAd", prcv_classifiedad },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "column", prcv_column },
+    { { HTML_PRISM_1_2 }, { HTML_UNDEF }, "cover", prcv_cover },
+    { { HTML_PRISM_1_0 }, { HTML_PRISM_1_2 }, "dateline", prcv_dateline },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "electionResults", prcv_electionresults },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "eventsCalendar", prcv_eventscalendar },
+    { { HTML_PRISM_1_2 }, { HTML_UNDEF }, "excerpt", prcv_excerpt },
+    { { HTML_PRISM_1_2 }, { HTML_UNDEF }, "feature", prcv_feature },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "financialStatement", prcv_financialstatement },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "interview", prcv_interview },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "legalDocument", prcv_legaldocument },
+    { { HTML_PRISM_1_2 }, { HTML_UNDEF }, "letter", prcv_letter },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "letterToEditor", prcv_lettertoeditor },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "logo", prcv_logo },
+    { { HTML_PRISM_1_3 }, { HTML_UNDEF }, "newsBulletin", prcv_newsbulletin },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "notice", prcv_notice },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "obituary", prcv_obituary },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "opinion", prcv_opinion },
+    { { HTML_PRISM_1_2 }, { HTML_UNDEF }, "photoEssay", prcv_photoessay },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "poll", prcv_poll },
+    { { HTML_PRISM_1_1 }, { HTML_UNDEF }, "portrait", prcv_portrait },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "pressRelease", prcv_pressrelease },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "productDescription", prcv_productdescription },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "profile", prcv_profile },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "quotation", prcv_quotation },
+    { { HTML_PRISM_1_2 }, { HTML_UNDEF }, "ranking", prcv_ranking },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "recipe", prcv_recipe },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "review", prcv_review },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "schedule", prcv_schedule },
+    { { HTML_PRISM_1_1 }, { HTML_UNDEF }, "stockQuote", prcv_stockquote },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "tableOfContents", prcv_tableofcontents },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "transcript", prcv_transcript } };
+
+struct symbol_entry < html_version, e_prism_role > prism_role_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "amateur", role_amateur },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "animator", role_animator },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "artist", role_artist },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "author", role_author },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "cartographer", role_cartographer },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "chef", role_chef },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "choreographer", role_choreographer },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "cinematographer", role_cinematographer },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "commentator", role_commentator },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "composer", role_composer },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "correspondant", role_correspondant },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "costumeDesigner", role_costumedesigner },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "director", role_director },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "draftsman", role_draftsman },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "editor", role_editor },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "fashionCoordinator", role_fashioncoordinator },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "fashionDesigner", role_fashiondesigner },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "foodStylist", role_foodstylist },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "foodTester", role_foodtester },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "graphicDesigner", role_graphicdesigner },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "hairStylist", role_hairstylist },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "host", role_host },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "illustrator", role_illustrator },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "interviewee", role_interviewee },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "interviewer", role_interviewer },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "interpreter", role_interpreter },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "layoutDesigner", role_layoutdesigner },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "makeupartist", role_makeupartist },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "musician", role_musician },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "narrator", role_narrator },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "nutritionist", role_nutritionist },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "other", role_other },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "panelist", role_panelist },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "performer", role_performer },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "photographer", role_photographer },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "producer", role_producer },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "programmer", role_programmer },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "recipeDeveloper", role_recipedeveloper },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "reporter", role_reporter },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "researcher", role_researcher },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "researchAssistant", role_researchassistant },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "speaker", role_speaker },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "translator", role_translator },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "tvHost", role_tvhost },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "writer", role_writer } };
+
+struct symbol_entry < html_version, e_prs_action > prs_action_symbol_table [] =
+{   { { HTML_PRISM_3_1 }, { HTML_UNDEF }, "aggregate", prsa_aggregate },
+    { { HTML_PRISM_3_1 }, { HTML_UNDEF }, "presentDisplay", prsa_presentdisplay },
+    { { HTML_PRISM_3_1 }, { HTML_UNDEF }, "presentPlay", prsa_presentplay },
+    { { HTML_PRISM_3_1 }, { HTML_UNDEF }, "presentPrint", prsa_presentprint },
+    { { HTML_PRISM_3_1 }, { HTML_UNDEF }, "presentTextToSpeech", prsa_presenttexttospeech },
+    { { HTML_PRISM_3_1 }, { HTML_UNDEF }, "transform", prsa_transform },
+    { { HTML_PRISM_3_1 }, { HTML_UNDEF }, "translate", prsa_translate },
+    { { HTML_PRISM_3_1 }, { HTML_UNDEF }, "use", prsa_use } };
+
 struct symbol_entry < html_version, e_quote_style > quote_style_symbol_table [] =
 {   { { HTML_UNDEF }, { HTML_UNDEF }, "none", qs_none },
     { { HTML_UNDEF }, { HTML_UNDEF }, "c", qs_c },
@@ -2812,6 +3300,299 @@ struct symbol_entry < html_version, e_quote_style > quote_style_symbol_table [] 
     { { HTML_UNDEF }, { HTML_UNDEF }, "double", qs_double },
     { { HTML_UNDEF }, { HTML_UNDEF }, "html", qs_html },
     { { HTML_UNDEF }, { HTML_UNDEF }, "single", qs_single } };
+
+struct symbol_entry < html_version, e_recipe_content > recipe_content_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "cookTime", erc_cooktime },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "duration", erc_duration },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "ingredient", erc_ingredient },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "ingredientIntro", erc_ingredientintro },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "ingredients", erc_ingredients },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "instructions", erc_instructions },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "instructionsIntro", erc_instructionsintro },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "itemName", erc_itemname },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "ingredientHead", erc_ingredienthead },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "nutrition", erc_nutrition },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "nutrient", erc_nutrient },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "nutrientName", erc_nutrientname },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "nutritionIntro", erc_nutritionintro },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "otherTime", erc_othertime },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "prepTime", erc_preptime },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "quantity", erc_quantity },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "recipeDescription", erc_recipedescription },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "recipeNote", erc_recipenote },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "recipeTitle", erc_recipetitle },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "servingSize", erc_servingsize },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "step", erc_step },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "stepHead", erc_stephead },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "stepNote", erc_stepnote },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "totalTime", erc_totaltime },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "unit", erc_unit },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "yield", erc_yield } };
+
+struct symbol_entry < html_version, e_recipe_course > recipe_course_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "appetizer", rco_appetiser },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "desert", rco_desert },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "beverage", rco_drink },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "mainCourse", rco_main },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "saladCourse", rco_salad },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "side", rco_sidedish } };
+
+struct symbol_entry < html_version, e_recipe_cuisine > recipe_cuisine_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "african", cui_african },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "american", cui_american },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "asian", cui_asian },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "austrian", cui_austrian },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "brazilian", cui_brazilian },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "britishOrIrish", cui_archipelagan },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "cajunOrCreole", cui_cajunorcreole },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "california", cui_california },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "caribbean", cui_caribbean },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "centralOrSouthAmerican", cui_centralorsouthamerican },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "chinese", cui_chinese },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "cuban", cui_cuban },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "easternEuropean", cui_easterneuropean },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "french", cui_french },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "german", cui_german },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "greek", cui_greek },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "hungarian", cui_hungarian },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "halal", cui_halal },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "indian", cui_indian },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "italian", cui_italian },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "japanese", cui_japanese },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "jewishOrKosher", cui_jewishorkosher },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "korean", cui_korean },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "lebanese", cui_lebanese },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "mediterranean", cui_mediterranean },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "mexican", cui_mexican },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "middleEastern", cui_middleeastern },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "moroccan", cui_moroccan },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "nativeAmerican", cui_nativeamerican },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "newEngland", cui_newengland },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "pacificNorthwest", cui_pacificnorthwest },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "pacificRim", cui_pacificrim },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "peruvian", cui_peruvian },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "polish", cui_polish },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "scandinavian", cui_scandinavian },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "southern", cui_southern },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "southwest", cui_southwest },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "spanish", cui_spanish },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "swiss", cui_swiss },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "thai", cui_thai },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "vegan", cui_vegan },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "vegetarian", cui_vegetarian },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "vietnamese", cui_vietnamese } };
+
+struct symbol_entry < html_version, e_recipe_dietary > recipe_dietary_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "brainBoosting", dnv_brainboosting },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "boneBuilding", dnv_bonebuilding },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "diabetic", dnv_diabetic },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "glutenFree", dnv_glutenfree },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "healthy", dnv_healthy },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "heartHealthy", dnv_hearthealthy },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "highFiber", dnv_highfiber },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "lactoseIntolerant", dnv_lactoseintolerant },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "lowCalorie", dnv_lowcalorie },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "lowCarbohydrate", dnv_lowcarbohydrate },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "lowCholesterol", dnv_lowcholesterol },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "lowFat", dnv_lowfat },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "lowSaturatedFat", dnv_lowsaturatedfat },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "lowSodium", dnv_lowsodium },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "sugarFree", dnv_sugarfree },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "vegan", dnv_vegan },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "vegetarian", dnv_vegetarian },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "weightLoss", dnv_weightloss } };
+
+struct symbol_entry < html_version, e_recipe_dish > recipe_dish_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "appetizer", dtv_appetiser },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "babyfood", dtv_babyfood },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "beanPeaLegume", dtv_beanpealegume },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "beverageAlcoholic", dtv_beveragealcoholic },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "beverageNonalcoholic", dtv_beveragenonalcoholic },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "bread", dtv_bread },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "cakeOrCupcakes", dtv_cakeorcupcakes },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "candy", dtv_candy },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "casserole", dtv_casserole },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "cheese", dtv_cheese },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "cookie", dtv_cookie },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "dairy", dtv_dairy },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "dipOrSpread", dtv_diporspread },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "egg", dtv_egg },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "fishShellfish", dtv_fishshellfish },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "foodGift", dtv_foodgift },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "frosting", dtv_frosting },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "fruit", dtv_fruit },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "gravy", dtv_gravy },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "grill", dtv_grill },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "iceCreamOrSherbet", dtv_icecreamorsherbet },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "jellyJamPreserves", dtv_jellyjampreserves },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "marinadeOrRub", dtv_marinadeorrub },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "meatOrGame", dtv_meatorgame },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "muffinQuickBread", dtv_muffinquickbread },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "nuts", dtv_nuts },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "pasta", dtv_pasta },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "pizza", dtv_pizza },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "picklesOrRelishes", dtv_picklesorrelishes },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "piesTartsPastries", dtv_piestartspastries },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "poultry", dtv_poultry },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "puddingsOrCustards", dtv_puddingsorcustards },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "saladOrSaladDressing", dtv_saladorsaladdressing },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "sandwich", dtv_sandwich },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "sauceOrCondiment", dtv_sauceorcondiment },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "seafood", dtv_seafood },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "smoothie", dtv_smoothie },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "spiceHerbsSeasonings", dtv_spiceherbsseasonings },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "soupOrStew", dtv_souporstew },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "stirFry", dtv_stirfry },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "stuffingOrDressing", dtv_stuffingordressing },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "vegetable", dtv_vegetable } };
+
+struct symbol_entry < html_version, e_recipe_exclusion > recipe_exclusion_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "alcohol", rex_alcohol },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "dairy", rex_dairy },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "eggs", rex_eggs },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "fish", rex_fish },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "meat", rex_meat },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "nutsOrPeanuts", rex_nutsorpeanuts },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "pork", rex_pork },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "salt", rex_salt },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "shellfish", rex_shellfish },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "soy", rex_soy },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "sugar", rex_sugar },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "wheatOrGluten", rex_wheatorgluten } };
+
+struct symbol_entry < html_version, e_recipe_kit > recipe_kit_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "barbecueGrill", erk_barbecuegrill },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "blender", erk_blender },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "breadMachine", erk_breadmachine },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "broiler", erk_broiler },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "convectionOven", erk_convectionoven },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "deepFryer", erk_deepfryer },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "fonduePot", erk_fonduepot },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "foodProcessor", erk_foodprocessor },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "freezer", erk_freezer },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "fryPan", erk_fryingpan },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "griddle", erk_griddle },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "grillPan", erk_grillpan },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "iceCreamMaker", erk_icecreammaker },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "microwaveOven", erk_microwaveoven },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "oven", erk_oven },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "pressureCooker", erk_pressurecooker },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "riceCooker", erk_ricecooker },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "sandwichOrPaniniPress", erk_sandwichorpaninipress },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "slowCooker", erk_slowcooker },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "waffleMaker", erk_wafflemaker },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "wok", erk_wok } };
+
+struct symbol_entry < html_version, e_recipe_meal > recipe_meal_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "breakfast", erm_breakfast },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "brunch", erm_brunch },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "buffet", erm_buffet },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "dinner", erm_dinner },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "appetizers", erm_hdo },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "horsdOeuvres", erm_hdo },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "hors_d'Oeuvres", erm_hdo },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "lunch", erm_lunch },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "supper", erm_supper },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "snack", erm_snack } };
+
+struct symbol_entry < html_version, e_recipe_method > recipe_method_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "bake", erm_bake },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "blend", erm_blend },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "boil", erm_boil },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "braise", erm_braise },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "broil", erm_broil },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "can", erm_can },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "deepFry", erm_deepfry },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "fondue", erm_fondue },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "freeze", erm_freeze },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "fry", erm_fry },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "grillOrBarbecue", erm_grillorbarbecue },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "marinate", erm_marinate },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "microwave", erm_microwave },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "noCook", erm_nocook },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "press", erm_press },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "roast", erm_roast },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "saute", erm_saute },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "slowCook", erm_slowcook },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "steam", erm_steam },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "stirFry", erm_stirfry } };
+
+struct symbol_entry < html_version, e_recipe_source > recipe_source_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "amateur", erso_amateur },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "book", erso_book },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "celebrity", erso_celeb },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "chef", erso_chef },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "client", erso_client },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "contest", erso_contest },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "magazine", erso_magazine },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "onlineWebsite", erso_onlinewebsite }, // offline websites?!
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "readerSubmitted", erso_readersubmitted },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "restaurant", erso_restaurant },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "sponsors", erso_sponsors },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "testKitchen", erso_testkitchen },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "tvShow", erso_tvshow } };
+
+struct symbol_entry < html_version, e_recipe_special > recipe_special_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "anniversary", ersp_anniversary },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "babyShower", ersp_babyshower },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "barbeque", ersp_barbeque },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "barBasMitzvah", ersp_barbasmitzvah },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "birthdayAdult", ersp_birthdayadult },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "birthdayChild", ersp_birthdaychild },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "bridalShower", ersp_bridalshower },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "chineseNewYear", ersp_chinesenewyear },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "christmasDay", ersp_christmasday },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "christmasEve", ersp_christmaseve },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "cincoDeMayo", ersp_cincodemayo },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "cocktailparty", ersp_cocktailparty },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "cookieSwap", ersp_cookieswap },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "dinnerParty", ersp_dinnerparty },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "easter", ersp_easter },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "fathersDay", ersp_fathersday },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "fondueParty", ersp_fondueparty },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "fourthOfJuly", ersp_fourthofjuly },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "funeralOrWake", ersp_funeralorwake },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "graduation", ersp_graduation },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "halloween", ersp_halloween },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "hanukkah", ersp_hanukkah },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "kwanzaa", ersp_kwanzaa },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "laborDay", ersp_labourday },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "mardiGras", ersp_mardigras },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "memorialDay", ersp_memorialday },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "newYearsDay", ersp_newyearsday },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "newYearsEve", ersp_newyearseve },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "oscars", ersp_oscars },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "passover", ersp_passover },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "picnicOrCookout", ersp_picnicorcookout },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "potLuck", ersp_potluck },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "ramadan", ersp_ramadan },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "roshHashanah", ersp_roshhashanah },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "stPatricksDay", ersp_stpatricksday },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "superBowl", ersp_superbowl },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "tailgating", ersp_tailgating },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "thanksgiving", ersp_thanksgiving },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "valentinesDay", ersp_valentinesday },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "yomKippur", ersp_yomkippur },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "wedding", ersp_wedding },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "winterHolidayParty", ersp_winterholidayparty } };
+
+struct symbol_entry < html_version, e_recipe_time > recipe_time_symbol_table [] =
+{   { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "bake", ert_bake },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "broil", ert_broil },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "chill", ert_chill },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "cool", ert_cool },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "decorate", ert_decorate },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "grill", ert_grill },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "freeze", ert_freeze },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "handsOn", ert_handson },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "marinate", ert_marinate },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "microwave", ert_microwave },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "process", ert_process },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "rise", ert_rise },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "roast", ert_roast },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "slowCook", ert_slowcook },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "stand", ert_stand },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "startTofinish", ert_starttofinish } };
 
 struct symbol_entry < html_version, e_referrer > referrer_symbol_table [] =
 {   { { HTML_UNDEF }, { HTML_UNDEF }, "no-referrer", rf_no },
@@ -3462,7 +4243,184 @@ struct symbol_entry < html_version, e_xmlns > xmlns_symbol_table [] =
     { { XHTML_1_1 }, { HTML_UNDEF }, HTTP_W3 "/2003/05/soap-envelope", x_soapenc12 },
     { { XHTML_1_1 }, { HTML_UNDEF }, HTTPS_W3 "/2003/05/soap-envelope", x_soapenc12 },
     { { XHTML_1_0 }, { HTML_UNDEF }, HTTP "schemas.xmlsoap.org/wsdl/", x_wsdl11 },
-    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS "schemas.xmlsoap.org/wsdl/", x_wsdl11 } };
+    { { XHTML_1_0 }, { HTML_UNDEF }, HTTPS "schemas.xmlsoap.org/wsdl/", x_wsdl11 },
+
+    { { HTML_PRISM_2_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/2.0/pam/", x_pam },
+    { { HTML_PRISM_2_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/pam/2.0/", x_pam },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/pam/3.0/", x_pam },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/pamp/3.0/", x_pamp },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/pccm/3.0/", x_pccm },
+    { { HTML_PRISM_3_1 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/pcm/3.1/", x_pcm },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/1.0/pcv/", x_pcv },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/pcv/1.0/", x_pcv },
+    { { HTML_PRISM_1_3 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/1.3/pcv/", x_pcv },
+    { { HTML_PRISM_1_3 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/pcv/1.3/", x_pcv },
+    { { HTML_PRISM_2_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/2.0/pcv/", x_pcv },
+    { { HTML_PRISM_2_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/pcv/2.0/", x_pcv },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/pcv/3.0/", x_pcv },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/pim/1.0/", x_pim },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/1.0/pim/", x_pim },
+    { { HTML_PRISM_1_2 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/pim/1.2/", x_pim },
+    { { HTML_PRISM_1_2 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/1.2/pim/", x_pim },
+    { { HTML_PRISM_1_3 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/pim/1.3/", x_pim },
+    { { HTML_PRISM_1_3 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/1.3/pim/", x_pim },
+    { { HTML_PRISM_2_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/pim/2.0/", x_pim },
+    { { HTML_PRISM_2_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/2.0/pim/", x_pim },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/pim/3.0/", x_pim },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/pmi/3.0/", x_pmi },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/basic/1.0/", x_prism },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/1.0/basic/", x_prism },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/1.0#", x_prism },
+    { { HTML_PRISM_1_1 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/basic/1.1/", x_prism },
+    { { HTML_PRISM_1_1 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/1.1/basic/", x_prism },
+    { { HTML_PRISM_1_2 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/basic/1.2/", x_prism },
+    { { HTML_PRISM_1_2 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/1.2/basic/", x_prism },
+    { { HTML_PRISM_1_3 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/basic/1.3/", x_prism },
+    { { HTML_PRISM_1_3 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/1.3/basic/", x_prism },
+    { { HTML_PRISM_2_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/basic/2.0/", x_prism },
+    { { HTML_PRISM_2_1 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/basic/2.1/", x_prism },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/basic/3.0/", x_prism },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/prism-ad/3.0/", x_prism_ad },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/1.0/prl/", x_prl },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/prl/1.0/", x_prl },
+    { { HTML_PRISM_1_2 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/1.2/prl/", x_prl },
+    { { HTML_PRISM_1_2 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/prl/1.2/", x_prl },
+    { { HTML_PRISM_1_3 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/1.3/prl/", x_prl },
+    { { HTML_PRISM_1_3 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/prl/1.3/", x_prl },
+    { { HTML_PRISM_2_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/2.0/prl/", x_prl },
+    { { HTML_PRISM_2_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/prl/2.0/", x_prl },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/prm/3.0/", x_prm },
+    { { HTML_PRISM_3_1 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/prs/3.1/", x_prs },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/psv/1.0/", x_psv },
+    { { HTML_PRISM_2_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/pur/2.0/", x_pur },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, HTTP PRISM_ORG "/namespaces/pur/3.0/", x_pur },
+
+    { { HTML_ADOBE }, { HTML_UNDEF }, HTTP ADOBE_COM "/namespaces/camera-raw-settings/1.0/", x_crs2 },
+    { { HTML_ADOBE }, { HTML_UNDEF }, HTTP ADOBE_COM "/namespaces/pdf/1.3/", x_pdf },
+    { { HTML_ADOBE }, { HTML_UNDEF }, HTTP ADOBE_COM "/namespaces/photoshop/1.0/", x_photoshop },
+    { { HTML_ADOBE }, { HTML_UNDEF }, HTTP ADOBE_COM "/namespaces/xap/1.0/sType/Dimensions#", x_stdim },
+    { { HTML_ADOBE }, { HTML_UNDEF }, HTTP ADOBE_COM "/namespaces/xap/1.0/sType/ResourceEvent#", x_stevt },
+    { { HTML_ADOBE }, { HTML_UNDEF }, HTTP ADOBE_COM "/namespaces/xap/1.0/sType/Font#", x_stfnt },
+    { { HTML_ADOBE }, { HTML_UNDEF }, HTTP ADOBE_COM "/namespaces/xap/1.0/sType/Job#", x_stjob },
+    { { HTML_ADOBE }, { HTML_UNDEF }, HTTP ADOBE_COM "/namespaces/xap/1.0/sType/ResourceRef#", x_stref },
+    { { HTML_ADOBE }, { HTML_UNDEF }, HTTP ADOBE_COM "/namespaces/xap/1.0/sType/Version#", x_stver },
+    { { HTML_ADOBE }, { HTML_UNDEF }, HTTP ADOBE_COM "/namespaces/xap/1.0/", x_xmp },
+    { { HTML_ADOBE }, { HTML_UNDEF }, HTTP ADOBE_COM "/namespaces/xap/1.0/bj/", x_xmpbj },
+    { { HTML_ADOBE }, { HTML_UNDEF }, HTTP ADOBE_COM "/namespaces/xap/1.0/DynamicMedia/", x_xmpdm },
+    { { HTML_ADOBE }, { HTML_UNDEF }, HTTP ADOBE_COM "/namespaces/xap/1.0/g/", x_xmpg },
+    { { HTML_ADOBE }, { HTML_UNDEF }, HTTP ADOBE_COM "/namespaces/xap/1.0/g/img/", x_xmpgimg },
+    { { HTML_ADOBE }, { HTML_UNDEF }, HTTP ADOBE_COM "/xmp/Identifier/qual/1.0/", x_xmpidq },
+    { { HTML_ADOBE }, { HTML_UNDEF }, HTTP ADOBE_COM "/namespaces/xap/1.0/mm/", x_xmpmm },
+    { { HTML_ADOBE }, { HTML_UNDEF }, HTTP ADOBE_COM "/namespaces/xap/1.0/rights/", x_xmprights }, 
+    { { HTML_ADOBE }, { HTML_UNDEF }, HTTP ADOBE_COM "/namespaces/xap/1.0/tpg/", x_xmptpg } };
+
+struct symbol_entry < html_version, e_xmpdm_audio_channel > xmpdm_audio_channel_symbol_table [] =
+{   { { HTML_ADOBE }, { HTML_UNDEF }, "16channel", xac_16channel },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "5.1", xac_51 },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "7.1", xac_71 },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "mono", xac_mono },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "other", xac_other },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "stereo", xac_stereo } };
+
+struct symbol_entry < html_version, e_xmpdm_audio_sample > xmpdm_audio_sample_symbol_table [] =
+{   { { HTML_ADOBE }, { HTML_UNDEF }, "16int", xas_16int },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "24int", xas_24int },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "32int", xas_32int },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "32float", xas_32float },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "8int", xas_8int },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "compressed", xas_compressed },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "other", xas_other },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "packed", xas_packed } };
+
+struct symbol_entry < html_version, e_xmpdm_camera_angle > xmpdm_camera_angle_symbol_table [] =
+{   { { HTML_ADOBE }, { HTML_UNDEF }, "birdseyeshot", xca_birdseyeshot },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "dutchangle", xca_dutchangle },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "eyelevel", xca_eyelevel },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "highangle", xca_highangle },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "lowangle", xca_lowangle },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "overheadshot", xca_overheadshot },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "overtheshoulder", xca_overtheshoulder },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "pov", xca_pov },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "reactionshot", xca_reactionshot } };
+
+struct symbol_entry < html_version, e_xmpdm_camera_move > xmpdm_camera_move_symbol_table [] =
+{   { { HTML_ADOBE }, { HTML_UNDEF }, "aerial", xcm_aerial },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "boomdown", xcm_boomdown },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "boomup", xcm_boomup },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "cranedown", xcm_cranedown },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "craneup", xcm_craneup },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "dollyin", xcm_dollyin },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "dollyout", xcm_dollyout },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "panleft", xcm_panleft },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "panright", xcm_panright },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "pedestaldown", xcm_pedestaldown },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "pedestalup", xcm_pedestalup },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "tiltdown", xcm_tiltdown },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "tiltup", xcm_tiltup },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "tracking", xcm_tracking },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "truckleft", xcm_truckleft },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "truckright", xcm_truckright },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "zoomin", xcm_zoomin },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "zoomout", xcm_zoomout } };
+
+struct symbol_entry < html_version, e_xmpdm_pulldown > xmpdm_pulldown_symbol_table [] =
+{   { { HTML_ADOBE }, { HTML_UNDEF }, "WSSWW", xp_WSSWW },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "SSWWW", xp_SSWWW },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "SWWWS", xp_SWWWS },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "WWWSS", xp_WWWSS },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "WWSSW", xp_WWSSW },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "WWWSW", xp_WWWSW },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "WWSWW", xp_WWSWW },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "WSWWW", xp_WSWWW },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "SWWWW", xp_SWWWW },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "WWWWS", xp_WWWWS } };
+
+struct symbol_entry < html_version, e_xmpdm_shotsize > xmpdm_shotsize_symbol_table [] =
+{   { { HTML_ADOBE }, { HTML_UNDEF }, "cu", xss_cu },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "ecu", xss_ecu },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "ews", xss_ews },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "mcu", xss_mcu },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "ms", xss_ms },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "mws", xss_mws },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "ws", xss_ws } };
+
+struct symbol_entry < html_version, e_xmpdm_stretchmode > xmpdm_stretchmode_symbol_table [] =
+{   { { HTML_ADOBE }, { HTML_UNDEF }, "beatsplice", xsm_beatsplice },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "fixedlength", xsm_fixedlength },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "hybrid", xsm_hybrid },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "resample", xsm_resample },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "timescale", xsm_timescale } };
+
+struct symbol_entry < html_version, e_xmpdm_time_format > xmpdm_time_format_symbol_table [] =
+{   { { HTML_ADOBE }, { HTML_UNDEF }, "24Timecode", xtf_24timecode },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "23967Timecode", xtf_23967timecode },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "2997dropTimecode", xtf_2997droptimecode },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "2997nonDropTimecode", xtf_2997nondroptimecode },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "25Timecode", xtf_25timecode },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "30Timecode", xtf_30timecode },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "50Timecode", xtf_50timecode },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "5994DropTimecode", xtf_5994droptimecode },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "5994NonDropTimecode", xtf_5994nondroptimecode },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "60Timecode", xtf_60timecode } };
+
+struct symbol_entry < html_version, e_xmpdm_time_signature > xmpdm_time_signature_symbol_table [] =
+{   { { HTML_ADOBE }, { HTML_UNDEF }, "2/4", xts_24 },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "3/4", xts_34 },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "4/4", xts_44 },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "5/4", xts_54 },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "7/4", xts_74 },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "6/8", xts_68 },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "9/8", xts_98 },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "12/8", xts_128 },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "other", xts_other } };
+
+struct symbol_entry < html_version, e_xmpdm_video_pixeldepth > xmpdm_video_pixeldepth_symbol_table [] =
+{   { { HTML_ADOBE }, { HTML_UNDEF }, "16int", xvp_16int },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "24int", xvp_24int },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "32int", xvp_32int },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "32float", xvp_32float },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "8int", xvp_8int },
+    { { HTML_ADOBE }, { HTML_UNDEF }, "other", xvp_other } };
 
 #define INIT_ENUM(XX) \
     type_master < t_##XX > :: init (nits, XX##_symbol_table, sizeof (XX##_symbol_table) / sizeof (symbol_entry < html_version, e_##XX >)); \
@@ -3482,6 +4440,7 @@ void init_1 ()
 
 void init_2 ()
 {   type_master < t_10 > :: init ();
+    type_master < t_a_v > :: init ();
     type_master < t_accumulate > :: init ();
     type_master < t_additive > :: init ();
     type_master < t_all_none > :: init ();
@@ -3504,6 +4463,7 @@ void init_2 ()
     type_master < t_dataformatas > :: init ();
     type_master < t_defaultaction > :: init ();
     type_master < t_dynamic_range > :: init ();
+    type_master < t_e_w > :: init ();
     type_master < t_editable > :: init ();
     type_master < t_fill_ve > :: init ();
     type_master < t_fillanim > :: init ();
@@ -3534,12 +4494,16 @@ void init_2 ()
     type_master < t_media_prefers > :: init ();
     type_master < t_meetslice > :: init ();
     type_master < t_morphology_operator > :: init ();
+    type_master < t_n_s > :: init ();
     type_master < t_nav_controls > :: init ();
     type_master < t_notations > :: init ();
     type_master < t_onoff > :: init ();
     type_master < t_orientation > :: init ();
     type_master < t_overlay > :: init ();
     type_master < t_popover > :: init ();
+    type_master < t_pri_img_orientation > :: init ();
+    type_master < t_prism_fccv > :: init ();
+    type_master < t_prism_issue_type > :: init ();
     type_master < t_propagate > :: init ();
     type_master < t_row_column > :: init ();
     type_master < t_safe_unsafe > :: init ();
@@ -3557,6 +4521,7 @@ void init_2 ()
     type_master < t_svg_side > :: init ();
     type_master < t_svg_timelinebegin > :: init ();
     type_master < t_svg_units > :: init ();
+    type_master < t_m_t > :: init ();
     type_master < t_tbalign > :: init ();
     type_master < t_tfn > :: init ();
     type_master < t_transp > :: init ();
@@ -3568,6 +4533,7 @@ void init_2 ()
     type_master < t_wrap3 > :: init ();
     type_master < t_xlinkshow_a > :: init ();
     type_master < t_xmlspace > :: init ();
+    type_master < t_xmpg_type > :: init ();
     type_master < t_xorder > :: init ();
     type_master < t_yesno > :: init ();
     type_master < t_yesnoempty > :: init ();
@@ -3580,6 +4546,7 @@ void init_3 ()
     type_master < t_button > :: init ();
     type_master < t_cc_permits > :: init ();
     type_master < t_command > :: init ();
+    type_master < t_colour_space > :: init ();
     type_master < t_controlslist > :: init ();
     type_master < t_corp > :: init ();
     type_master < t_css_aai > :: init ();
@@ -3608,6 +4575,7 @@ void init_3 ()
     type_master < t_gamut > :: init ();
     type_master < t_importance > :: init ();
     type_master < t_infixlinebreakstyle > :: init ();
+    type_master < t_k_m_n > :: init ();
     type_master < t_keytype > :: init ();
     type_master < t_lcralign > :: init ();
     type_master < t_lraalign > :: init ();
@@ -3625,8 +4593,10 @@ void init_3 ()
     type_master < t_mf_status > :: init ();
     type_master < t_nsd > :: init ();
     type_master < t_nuf > :: init ();
+    type_master < t_onetwothree > :: init ();
     type_master < t_popovertargetaction > :: init ();
     type_master < t_preload5 > :: init ();
+    type_master < t_pri_img_setting > :: init ();
     type_master < t_restart > :: init ();
     type_master < t_scrolling > :: init ();
     type_master < t_shape_rcp > :: init ();
@@ -3644,7 +4614,12 @@ void init_3 ()
     type_master < t_valign_tmb > :: init ();
     type_master < t_valuetype > :: init ();
     type_master < t_vector_effect_12 > :: init ();
-    type_master < t_visibility10 > :: init (); }
+    type_master < t_visibility10 > :: init ();
+    type_master < t_xmpdm_quality > :: init ();
+    type_master < t_xmpdm_video_alphamode > :: init ();
+    type_master < t_xmpdm_video_colourspace > :: init ();
+    type_master < t_xmpdm_video_fieldorder > :: init ();
+    type_master < t_xmpdm_video_videoframerate > :: init (); }
 
 void init_4 ()
 {   type_master < t_actiontype2 > :: init ();
@@ -3661,6 +4636,7 @@ void init_4 ()
     type_master < t_cc_requires > :: init ();
     type_master < t_channelselector > :: init ();
     type_master < t_content_encoding > :: init ();
+    type_master < t_crs_tonecurvename > :: init ();
     type_master < t_css_anim_dir > :: init ();
     type_master < t_css_anim_fill_mode > :: init ();
     type_master < t_css_border_image_repeat > :: init ();
@@ -3695,7 +4671,12 @@ void init_4 ()
     type_master < t_mf_availability > :: init ();
     type_master < t_mf_category > :: init ();
     type_master < t_paint_order > :: init ();
+    type_master < t_pam_status > :: init ();
     type_master < t_phase_x > :: init ();
+    type_master < t_pri_img_season > :: init ();
+    type_master < t_prism_tablet_ad > :: init ();
+    type_master < t_prs_duty > :: init ();
+    type_master < t_recipe_skill > :: init ();
     type_master < t_rsvp > :: init ();
     type_master < t_shadowinherit > :: init ();
     type_master < t_shape4 > :: init ();
@@ -3711,6 +4692,8 @@ void init_4 ()
     type_master < t_valign3 > :: init ();
     type_master < t_visibility11 > :: init ();
     type_master < t_vkind > :: init ();
+    type_master < t_xmpdm_scaletype > :: init ();
+    type_master < t_xmpdm_type > :: init ();
     type_master < t_xsdbool > :: init (); };
 
 void enum_init (nitpick& nits)
@@ -3738,6 +4721,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (cntype);
     INIT_ENUM (comp_op);
     INIT_ENUM (composite_operator);
+    INIT_ENUM (crs_whitebalance);
     INIT_ENUM (css_aaalri);
     INIT_ENUM (css_absolute_size);
     INIT_ENUM (css_absolute_size);
@@ -3809,6 +4793,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (display_align);
     INIT_ENUM (dominantbaseline);
     INIT_ENUM (enterkeyhint);
+    INIT_ENUM (evt_action);
     INIT_ENUM (figalign);
     INIT_ENUM (filter_in);
     INIT_ENUM (fontname);
@@ -3853,6 +4838,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (mf_listing_action);
     INIT_ENUM (mf_method);
     INIT_ENUM (mf_reviewtype);
+    INIT_ENUM (musickey);
     INIT_ENUM (myersbriggs);
     INIT_ENUM (namedspace);
     INIT_ENUM (namespace);
@@ -3861,10 +4847,44 @@ void enum_init (nitpick& nits)
     INIT_ENUM (ogtype);
     INIT_ENUM (page_orientation);
     INIT_ENUM (paintkeyword);
+    INIT_ENUM (pam_ccv);
+    INIT_ENUM (pcmm_status);
     INIT_ENUM (plusstyle);
     INIT_ENUM (pointer_events);
+    INIT_ENUM (pri_img_colour);
+    INIT_ENUM (pri_img_technique);
+    INIT_ENUM (pri_img_viewpoint);
     INIT_ENUM (print);
+    INIT_ENUM (prism_ad_pos);
+    INIT_ENUM (prism_ad_type);
+    INIT_ENUM (prism_ag_type);
+    INIT_ENUM (prism_audience_sector);
+    INIT_ENUM (prism_ccv);
+    INIT_ENUM (prism_class);
+    INIT_ENUM (prism_contenttype);
+    INIT_ENUM (prism_cvp);
+    INIT_ENUM (prism_genre);
+    INIT_ENUM (prism_icv);
+    INIT_ENUM (prism_pasv);
+    INIT_ENUM (prism_pcv);
+    INIT_ENUM (prism_pfv);
+    INIT_ENUM (prism_ptv);
+    INIT_ENUM (prism_rcv);
+    INIT_ENUM (prism_role);
+    INIT_ENUM (prs_action);
     INIT_ENUM (quote_style);
+    INIT_ENUM (recipe_content);
+    INIT_ENUM (recipe_course);
+    INIT_ENUM (recipe_cuisine);
+    INIT_ENUM (recipe_dietary);
+    INIT_ENUM (recipe_dish);
+    INIT_ENUM (recipe_exclusion);
+    INIT_ENUM (recipe_kit);
+    INIT_ENUM (recipe_meal);
+    INIT_ENUM (recipe_method);
+    INIT_ENUM (recipe_source);
+    INIT_ENUM (recipe_special);
+    INIT_ENUM (recipe_time);
     INIT_ENUM (referrer);
     INIT_ENUM (rendering_in_tents);
     INIT_ENUM (rules);
@@ -3916,4 +4936,14 @@ void enum_init (nitpick& nits)
     INIT_ENUM (vtt);
     INIT_ENUM (whitespace);
     INIT_ENUM (writingmode);
-    INIT_ENUM (xmlns); }
+    INIT_ENUM (xmlns);
+    INIT_ENUM (xmpdm_audio_channel);
+    INIT_ENUM (xmpdm_audio_sample);
+    INIT_ENUM (xmpdm_camera_angle);
+    INIT_ENUM (xmpdm_camera_move);
+    INIT_ENUM (xmpdm_pulldown);
+    INIT_ENUM (xmpdm_shotsize);
+    INIT_ENUM (xmpdm_stretchmode);
+    INIT_ENUM (xmpdm_time_format);
+    INIT_ENUM (xmpdm_time_signature);
+    INIT_ENUM (xmpdm_video_pixeldepth); }

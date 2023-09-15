@@ -157,6 +157,16 @@
 ../toast/other/pattern/pattern.spec
 ../toast/other/simple/simple.spec
 ../toast/other/ssi/ssi.spec
+../toast/RDF/1.0/rdf.spec
+../toast/RDF/1.1/rdf.spec
+../toast/RDF/prism-1.0/rdf.spec
+../toast/RDF/prism-1.1/rdf.spec
+../toast/RDF/prism-1.2/rdf.spec
+../toast/RDF/prism-1.3/rdf.spec
+../toast/RDF/prism-2.0/rdf.spec
+../toast/RDF/prism-2.1/rdf.spec
+../toast/RDF/prism-3.0/rdf.spec
+../toast/RDF/prism-3.1/rdf.spec
 ../toast/RDFa/1.1.3/rdfa.spec
 ../toast/RDFa/cc/rdfa.spec
 ../toast/RDFa/dc/rdfa.spec

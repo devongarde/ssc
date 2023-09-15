@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns="http://purl.org/rss/1.0/"
+   xmlns:content="http://purl.org/rss/1.0/modules/content/"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:prism="http://prismstandard.org/namespaces/1.2/basic/"
+>
+
+  <channel rdf:about="http://www.nature.com/nature/current_issue/rss">
+    <title>Nature</title>
+    <description>
+      Nature is a weekly international journal publishing the finest peer-reviewed
+      research in all fields of science and technology ...
+    </description>
+    <link>http://www.nature.com/nature/current_issue/</link>
+    <dc:publisher>Nature Publishing Group</dc:publisher>
+    <dc:language>en</dc:language>
+    <dc:rights>© 2008 Nature Publishing Group</dc:rights>
+    <prism:publicationName>Nature</prism:publicationName>
+    <prism:issn>0028-0836</prism:issn>
+    <prism:eIssn>1476-4679</prism:eIssn>
+    <prism:copyright>© 2008 Nature Publishing Group</prism:copyright>
+    <prism:rightsAgent>permissions@nature.com</prism:rightsAgent>
+    <image rdf:resource="http://www.nature.com/includes/rj_globnavimages/nature_logo.gif"/>
+    <items>
+      <rdf:Seq>
+        <rdf:li rdf:resource="http://dx.doi.org/10.1038/nature07116"/>
+      </rdf:Seq>
+    </items>
+  </channel>
+  <image rdf:about="http://www.nature.com/includes/rj_globnavimages/nature_logo.gif">
+    <title>Nature</title>
+    <url>http://www.nature.com/includes/rj_globnavimages/nature_logo.gif</url>
+    <link>http://www.nature.com/nature/</link>
+  </image>
+  <item rdf:about="http://dx.doi.org/10.1038/nature07116">
+    <title>Heterogeneous chemistry in the atmosphere of Mars</title>
+    <link>http://dx.doi.org/10.1038/nature07116</link>
+    <description>
+      Hydrogen radicals are produced in the martian atmosphere by the photolysis
+      of water vapour and subsequently initiate catalytic ...
+    </description>
+    <content:encoded>
+      <![CDATA[
+<p>
+<b>Heterogeneous chemistry in the atmosphere of Mars</b>
+</p>
+<p>Nature 454, 971 (2008). <a href="http://dx.doi.org/10.1038/nature07116">doi:10.1038/nature07116</a>
+</p>
+<p>Authors: Franck Lefèvre, Jean-Loup Bertaux, R. Todd Clancy, Thérèse Encrenaz, Kelly Fast,
+ François Forget, Sébastien Lebonnois, Franck Montmessin & Séverine Perrier</p>
+<p>Hydrogen radicals are produced in the martian atmosphere by the photolysis
+ of water vapour and subsequently initiate catalytic ...</p>
+]]>
+    </content:encoded>
+    <dc:title>Heterogeneous chemistry in the atmosphere of Mars</dc:title>
+    <dc:creator>Franck Lefèvre</dc:creator>
+    <dc:creator>Jean-Loup Bertaux</dc:creator>
+    <dc:creator>R. Todd Clancy</dc:creator>
+    <dc:creator>Thérèse Encrenaz</dc:creator>
+    <dc:creator>Kelly Fast</dc:creator>
+    <dc:creator>François Forget</dc:creator>
+    <dc:creator>Sébastien Lebonnois</dc:creator>
+    <dc:creator>Franck Montmessin</dc:creator>
+    <dc:creator>Séverine Perrier</dc:creator>
+    <dc:identifier>doi:10.1038/nature07116</dc:identifier>
+    <dc:source>Nature 454, 971 (2008)</dc:source>
+    <prism:publicationName>Nature</prism:publicationName>
+    <prism:volume>454</prism:volume>
+    <prism:number>7207</prism:number>
+    <prism:section>Letter</prism:section>
+    <prism:startingPage>971</prism:startingPage>
+    <prism:endingPage>975</prism:endingPage>
+  </item>
+</rdf:RDF>

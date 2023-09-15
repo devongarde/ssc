@@ -219,8 +219,7 @@ line, the "no-" switch always applies.
                         English, "en-IE" for Irish English, "lb-LU"
                         for Luxembourgish, "ma" for Marain, etc.),
                         default to 'LA'. If not given, the default is
-                        your system default, or, if none, then "en-US"
-                        (the standard US dialect of English).
+                        your system default, or, if none, then "en-US".
 
 --general.maxfilesize n Do not process HTML source files that exceed n
                         bytes in size (default: 4M). Specify 0 for
@@ -531,6 +530,7 @@ line, the "no-" switch always applies.
                                 adms 1.0,2.0
                                 article 12,14,18,22
                                 as 1.0,2.0
+                                basic 1.0-1.3,2.1,3.0 (see below)
                                 bfo 2.0,2020 (see below)
                                 bibo 1.3
                                 biro 1.1
@@ -538,6 +538,7 @@ line, the "no-" switch always applies.
                                 cc 1.0
                                 cito 2.8
                                 content 1.0
+                                crs 1.0 (see below)
                                 csvw 1.0
                                 ctag 1.0
                                 daq 1.0
@@ -557,6 +558,8 @@ line, the "no-" switch always applies.
                                 duv 1.0
                                 earl 1.0
                                 event 1.0
+                                exif 1.0-3.0 (see below)
+                                exifex 2.21-3.0 (see below)
                                 foaf 0.1-0.99
                                 frbr_core 1.0
                                 gr 1.0
@@ -576,10 +579,25 @@ line, the "no-" switch always applies.
                                 og 10,12,14,18,22 (see below)
                                 org 1.0
                                 owl 1.0,2.0
+                                pam 2.0 (see below)
+                                pcm 3.1 (see below)
+                                pcmm 3.0 (see below)
+                                pcv 1.0(see below)
+                                pdf 1.0 (see below)
+                                photoshop 1.0 (see below)
+                                pim 1.0-3.0 (see below)
+                                pmi 3.0 (see below)
                                 poetry 1.0,1.1
+                                prism 1.0-3.0 (see below)
+                                prism-ad 3.0 (see below)
+                                prl 1.0-2.0 (see below)
+                                prm 3.0 (see below)
+                                prs 3.1 (see below)
                                 profile 12,14,18,22
                                 prov 1.0
+                                psv 1.0 (see below)
                                 ptr 1.0
+                                pur 2.1-3.0 (see below)
                                 qb 1.0
                                 rdf 1.0-1.3
                                 rdfa 1.0-1.3
@@ -598,7 +616,14 @@ line, the "no-" switch always applies.
                                 skosxl 1.0
                                 sosa 1.0
                                 ssn 1.0
+                                stdim 1.0 (see below)
+                                stevt 1.0 (see below)
+                                stfnt 1.0 (see below)
+                                stjob 1.0 (see below)
+                                stref 1.0 (see below)
+                                stver 1.0 (see below)
                                 taxo 1.0
+                                tiff 6.0
                                 time 1.0
                                 v 1.0
                                 vann 1.0,1.1
@@ -611,21 +636,67 @@ line, the "no-" switch always applies.
                                 wwg 1.0
                                 xhv 1.0
                                 xml 1.0
+                                xmp 1.0 (see below)
+                                xmpdm 1.0 (see below)
+                                xmpg 1.0 (see below)
+                                xmpgimg 1.0 (see below)
+                                xmpidq 1.0 (see below)
+                                xmpmm 1.0 (see below)
+                                xmprights 1.0 (see below)
+                                xmptpg 1.0 (see below)
                                 xsd 1.0,1.1
 
-                        vCard versions correspond to RDFa specs,
-                        published in 2001, 2006, 2010 & 2014. They do
-                        NOT correspond to vCard data format
-                        specifications.
+                        The various Adobe ontologies (crs, pdf,
+                        photoshop, stdim, stevt, stfnt, stjob, stref,
+                        stver, smp, xmpdm, xmpg, xmpgimg, xmpidq,
+                        xmpmm, xmprights, xmptpg) have only been
+                        partially applied. They do not seem to have
+                        been designed for microdata, hence the partial
+                        implementation: the goal is to enable hoovering
+                        to JSON.
+
+                        BFO (Basic Format Ontology) versions should be
+                        specified as follows:
+                                Use         For
+                                2.0         2.0
+                                2.2         2020
+
+                        BFO 2020 uses OBO's machine code style
+                        identifiers. Given the history of computing
+                        science, as a convenience for users, and with
+                        my experience of both devops and maintaining
+                        code, identifiers following the standard
+                        ontology naming convention are also accepted.
+                        Since this is unofficial, both standard English
+                        and American dialects' spellings are processed.
+
+                        The Exif & ExifEx ontologies have the following
+                        versions:
+                            Use     For
+                            1.0     1.0 (exif only)
+                            1.1     1.1 (exif only)
+                            2.0     2.0 (exif only)
+                            2.10    2.1 (exif only)
+                            2.20    2.2 (exif only)
+                            2.21    2.21
+                            2.30    2.3
+                            2.31    2.31
+                            2.32    2.32
+                            3.0     3.0
+                        Manufacturers' extensions to EXIF are omitted,
+                        with exceptions.
 
                         Open Graph versions correspond to snapshots of
                         the specs from 2010, 2012, 2014, 2018 & 2022.
 
-                        Schema.org is sometimes updated frequently.
-                        SSC is not updated as frequently. Quarterly SSC
-                        updates re the living standard will contain
-                        schema.org updates. More frequent updates are
-                        uncertain.
+                        The various Prism ontologies (pam, pamp, pcm,
+                        pcmm, pcv, pim, pmi, prism, prism_ad, prl, prm,
+                        prs, psv, pur) have only been partially
+                        applied: some specifications are unavailable,
+                        some specifications break HTML5 syntax. Prism
+                        was not designed for microdata, hence the
+                        partial implementation: the goal is to enable
+                        hoovering to JSON.
 
                         Most versions of schema (schema.org) should be
                         specified by their version number, but this
@@ -663,18 +734,10 @@ line, the "no-" switch always applies.
                                 ...
                                 22.0        as version number
 
-                        BFO (Basic Format Ontology) versions should be
-                        specified as follows:
-                                Use         For
-                                2.0         2.0
-                                2.2         2020
-
-                        BFO 2020 uses OBO's machine code style
-                        identifiers. Given the history of computing
-                        science, and as a convenience for users, BFO
-                        standard names are also accepted. Since this is
-                        unofficial, both standard and US English
-                        spellings are accepted.
+                        vCard versions correspond to RDFa specs,
+                        published in 2001, 2006, 2010 & 2014. They do
+                        NOT correspond to vCard data format
+                        specifications.
 
 --shadow.changed        When shadowing a site that has been previously
                         shadowed, only copy/link files that have
@@ -1102,7 +1165,7 @@ document directory /var/www/htdocs with a link.
 Here is site.conf:
 
 [general]
-verbose=info
+verbose=4
 class=yes
 output=site.out
 ssi=yes

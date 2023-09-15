@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:prism="http://prismstandard.org/1.0#"
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <rdf:Description rdf:about="http://wanderlust.com/2000/08/Corfu.jpg">
+    <dc:rights rdf:resource=
+ "http://PhillyPhantasyPhotos.com/terms/Contract39283.doc"/>
+  </rdf:Description>
+</rdf:RDF>

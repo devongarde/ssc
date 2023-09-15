@@ -50,6 +50,31 @@ template < e_type T, typename BASE, BASE FROM, BASE TO > struct type_integer_bet
         check_min_or_min_max < BASE, FROM, TO, FROM <= TO > :: bad_value (nits, s);    
         numeric_value < T, BASE > :: status (s_invalid); } };
 
+template < e_type T, typename BASE, BASE X, BASE... Y > struct one_integer_of : one_integer_of < T, BASE, Y... >
+{   using one_integer_of < T, BASE, Y... > :: one_integer_of;
+    static bool is_numeric () { return true; }
+    static bool set_value_ex (const int n)
+    {   if (n == X) return true;
+        return one_integer_of < T, BASE, Y... > :: set_value_ex (n); }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   one_integer_of < T, BASE, Y... > :: set_value (nits, v, s);
+        if (one_integer_of < T, BASE, Y... > :: good ())
+        {   const BASE n = one_integer_of < T, BASE, Y... > :: get ();
+            if (set_value_ex (n)) return; }
+        one_integer_of < T, BASE, Y... > :: status (s_invalid); } };
+
+template < e_type T, typename BASE, BASE X > struct one_integer_of < T, BASE, X > : numeric_value < T, BASE >
+{   using numeric_value < T, BASE > :: numeric_value;
+    static bool is_numeric () { return true; }
+    static bool set_value_ex (const int n)
+    {   return (n == X); }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   numeric_value < T, BASE > :: set_value (nits, v, s);
+        if (numeric_value < T, BASE > :: good ())
+        {   const BASE n = numeric_value < T, BASE > :: get ();
+            if (set_value_ex (n)) return; }
+        numeric_value < T, BASE > :: status (s_invalid); } };
+
 template < > struct type_master < t_base > : public numeric_value < t_base, unsigned int >
 {   typedef true_type has_int_type;
     using numeric_value < t_base, unsigned int > :: numeric_value;
@@ -336,14 +361,35 @@ template < > struct type_master < t_unsigned_byte > : type_integer_between < t_u
 template < > struct type_master < t_unsigned_short > : type_integer_between < t_unsigned_short, int, 0, 65535 >
 { using type_integer_between < t_unsigned_short, int, 0, 65535 > :: type_integer_between; };
 
-template < > struct type_master < t_1_to_7 > : type_integer_between < t_1_to_7, short, 1, 7 >
-{ using  type_integer_between < t_1_to_7, short, 1, 7 > :: type_integer_between; };
+template < > struct type_master < t_0_to_1 > : type_integer_between < t_0_to_1, short, 0, 1 >
+{ using  type_integer_between < t_0_to_1, short, 0, 1 > :: type_integer_between; };
 
-template < > struct type_master < t_1_to_20 > : type_integer_between < t_1_to_20, short, 1, 20 >
-{ using  type_integer_between < t_1_to_20, short, 1, 20 > :: type_integer_between; };
+template < > struct type_master < t_0_to_2 > : type_integer_between < t_0_to_2, short, 0, 2 >
+{ using  type_integer_between < t_0_to_2, short, 0, 2 > :: type_integer_between; };
 
-template < > struct type_master < t_1_to_99 > : type_integer_between < t_1_to_99, short, 1, 99 >
-{ using  type_integer_between < t_1_to_99, short, 1, 99 > :: type_integer_between; };
+template < > struct type_master < t_0_to_3 > : type_integer_between < t_0_to_3, short, 0, 3 >
+{ using  type_integer_between < t_0_to_3, short, 0, 3 > :: type_integer_between; };
+
+template < > struct type_master < t_0_to_4 > : type_integer_between < t_0_to_4, short, 0, 4 >
+{ using  type_integer_between < t_0_to_4, short, 0, 4 > :: type_integer_between; };
+
+template < > struct type_master < t_0_to_6 > : type_integer_between < t_0_to_6, short, 0, 6 >
+{ using  type_integer_between < t_0_to_6, short, 0, 6 > :: type_integer_between; };
+
+template < > struct type_master < t_0_to_7 > : type_integer_between < t_0_to_7, short, 0, 7 >
+{ using  type_integer_between < t_0_to_7, short, 0, 7> :: type_integer_between; };
+
+template < > struct type_master < t_0_to_8 > : type_integer_between < t_0_to_8, short, 0, 8 >
+{ using  type_integer_between < t_0_to_8, short, 0, 8 > :: type_integer_between; };
+
+template < > struct type_master < t_0_to_9 > : type_integer_between < t_0_to_9, short, 0, 9 >
+{ using  type_integer_between < t_0_to_9, short, 0, 9 > :: type_integer_between; };
+
+template < > struct type_master < t_0_to_100 > : type_number_between < t_0_to_100, 0, 100 >
+{ using  type_number_between < t_0_to_100, 0, 100 > :: type_number_between; };
+
+template < > struct type_master < t_0_to_150 > : type_number_between < t_0_to_150, 0, 150 >
+{ using  type_number_between < t_0_to_150, 0, 150 > :: type_number_between; };
 
 template < > struct type_master < t_0_to_255 > : type_integer_between < t_0_to_255, short, 0, 255 >
 { using  type_integer_between < t_0_to_255, short, 0, 255 > :: type_integer_between; };
@@ -351,8 +397,56 @@ template < > struct type_master < t_0_to_255 > : type_integer_between < t_0_to_2
 template < > struct type_master < t_0_to_1000 > : type_integer_between < t_0_to_1000, short, 0, 1000 >
 { using  type_integer_between < t_0_to_1000, short, 0, 1000 > :: type_integer_between; };
 
+template < > struct type_master < t_1_to_2 > : type_integer_between < t_1_to_2, short, 1, 2 >
+{ using  type_integer_between < t_1_to_2, short, 1, 2 > :: type_integer_between; };
+
+template < > struct type_master < t_1_or_6 > : one_integer_of < t_1_or_6, short, 1, 6 >
+{ using  one_integer_of < t_1_or_6, short, 1, 6 > :: one_integer_of; };
+
+template < > struct type_master < t_1_to_7 > : type_integer_between < t_1_to_7, short, 1, 7 >
+{ using  type_integer_between < t_1_to_7, short, 1, 7 > :: type_integer_between; };
+
+template < > struct type_master < t_1_to_8 > : type_integer_between < t_1_to_8, short, 1, 8 >
+{ using  type_integer_between < t_1_to_8, short, 1, 8 > :: type_integer_between; };
+
+template < > struct type_master < t_1_to_20 > : type_integer_between < t_1_to_20, short, 1, 20 >
+{ using  type_integer_between < t_1_to_20, short, 1, 20 > :: type_integer_between; };
+
+template < > struct type_master < t_1_to_99 > : type_integer_between < t_1_to_99, short, 1, 99 >
+{ using  type_integer_between < t_1_to_99, short, 1, 99 > :: type_integer_between; };
+
+template < > struct type_master < t_2_to_3 > : type_integer_between < t_2_to_3, short, 2, 3 >
+{ using  type_integer_between < t_2_to_3, short, 2, 3 > :: type_integer_between; };
+
+template < > struct type_master < t_2_to_4 > : type_integer_between < t_2_to_4, short, 2, 4 >
+{ using  type_integer_between < t_2_to_4, short, 2, 4 > :: type_integer_between; };
+
+template < > struct type_master < t_2_or_6 > : one_integer_of < t_2_or_6, short, 2, 6 >
+{ using one_integer_of < t_2_or_6, short, 2, 6 > :: one_integer_of; };
+
+template < > struct type_master < t_2000_to_50000 > : type_integer_between < t_2000_to_50000, int, 2000, 50000 >
+{ using  type_integer_between < t_2000_to_50000, int, 2000, 50000 > :: type_integer_between; };
+
 template < > struct type_master < t_hue > : type_number_between < t_hue, 0, 360 >
 { using  type_number_between < t_hue, 0, 360 > :: type_number_between; };
+
+template < > struct type_master < t_m1_to_5 > : type_integer_between < t_m1_to_5, short, -1, 5 >
+{ using  type_integer_between < t_m1_to_5, short, -1, 5 > :: type_integer_between; };
+
+template < > struct type_master < t_m100_to_100 > : type_integer_between < t_m100_to_100, short, -100, 100 >
+{ using  type_integer_between < t_m100_to_100, short, -100, 100 > :: type_integer_between; };
+
+template < > struct type_master < t_m128_to_127 > : type_integer_between < t_m128_to_127, short, -128, 127 >
+{ using  type_integer_between < t_m128_to_127, short, -128, 127 > :: type_integer_between; };
+
+template < > struct type_master < t_m150_to_150 > : type_integer_between < t_m150_to_150, short, -150, 150 >
+{ using  type_integer_between < t_m150_to_150, short, -150, 150 > :: type_integer_between; };
+
+template < > struct type_master < t_m4_to_4 > : type_number_between < t_m4_to_4, -4, 4 >
+{ using  type_number_between < t_m4_to_4, -4, 4 > :: type_number_between; };
+
+template < > struct type_master < t_m50_to_100 > : type_integer_between < t_m50_to_100, short, -50, 100 >
+{ using  type_integer_between < t_m50_to_100, short, -50, 100 > :: type_integer_between; };
 
 template < > struct type_master < t_zero_or_one > : type_integer_between < t_zero_or_one, short, 0, 1 >
 { using  type_integer_between < t_zero_or_one, short, 0, 1 > :: type_integer_between; };

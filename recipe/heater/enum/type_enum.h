@@ -501,6 +501,9 @@ template < > struct type_master < t_dominantbaseline > : enum_n < t_dominantbase
 template < > struct type_master < t_enterkeyhint > : enum_n < t_enterkeyhint, e_enterkeyhint >
 { using enum_n < t_enterkeyhint, e_enterkeyhint > :: enum_n; };
 
+template < > struct type_master < t_evt_action > : enum_n < t_evt_action, e_evt_action >
+{ using enum_n < t_evt_action, e_evt_action > :: enum_n; };
+
 template < > struct type_master < t_figalign > : enum_n < t_figalign, e_figalign >
 { using enum_n < t_figalign, e_figalign > :: enum_n; };
 
@@ -651,6 +654,9 @@ template < > struct type_master < t_mf_reviewtype > : enum_n < t_mf_reviewtype, 
 template < > struct type_master < t_mime > : enum_n < t_mime, e_mimetype >
 { using enum_n < t_mime, e_mimetype > :: enum_n; };
 
+template < > struct type_master < t_musickey > : enum_n < t_musickey, e_musickey >
+{ using enum_n < t_musickey, e_musickey > :: enum_n; };
+
 template < > struct type_master < t_myersbriggs > : enum_n < t_myersbriggs, e_myersbriggs >
 { using enum_n < t_myersbriggs, e_myersbriggs > :: enum_n; };
 
@@ -675,14 +681,116 @@ template < > struct type_master < t_page_orientation > : enum_n < t_page_orienta
 template < > struct type_master < t_paintkeyword > : enum_n < t_paintkeyword, e_paintkeyword >
 { using enum_n < t_paintkeyword, e_paintkeyword > :: enum_n; };
 
+template < > struct type_master < t_pam_ccv > : enum_n < t_pam_ccv, e_pam_ccv >
+{ using enum_n < t_pam_ccv, e_pam_ccv > :: enum_n; };
+
+template < > struct type_master < t_pcmm_status > : enum_n < t_pcmm_status, e_pcmm_status >
+{ using enum_n < t_pcmm_status, e_pcmm_status > :: enum_n; };
+
 template < > struct type_master < t_pointer_events > : enum_n < t_pointer_events, e_pointer_events >
 { using enum_n < t_pointer_events, e_pointer_events > :: enum_n; };
+
+template < > struct type_master < t_pri_img_colour > : enum_n < t_pri_img_colour, e_pri_img_colour >
+{ using enum_n < t_pri_img_colour, e_pri_img_colour > :: enum_n; };
+
+template < > struct type_master < t_pri_img_technique > : enum_n < t_pri_img_technique, e_pri_img_technique >
+{ using enum_n < t_pri_img_technique, e_pri_img_technique > :: enum_n; };
+
+template < > struct type_master < t_pri_img_viewpoint > : enum_n < t_pri_img_viewpoint, e_pri_img_viewpoint >
+{ using enum_n < t_pri_img_viewpoint, e_pri_img_viewpoint > :: enum_n; };
 
 template < > struct type_master < t_print > : enum_n < t_print, e_print >
 { using enum_n < t_print, e_print > :: enum_n; };
 
+template < > struct type_master < t_prism_ad_pos > : enum_n < t_prism_ad_pos, e_prism_ad_pos >
+{ using enum_n < t_prism_ad_pos, e_prism_ad_pos > :: enum_n; };
+
+template < > struct type_master < t_prism_ad_type > : enum_n < t_prism_ad_type, e_prism_ad_type >
+{ using enum_n < t_prism_ad_type, e_prism_ad_type > :: enum_n; };
+
+template < > struct type_master < t_prism_ag_type > : enum_n < t_prism_ag_type, e_prism_ag_type >
+{ using enum_n < t_prism_ag_type, e_prism_ag_type > :: enum_n; };
+
+template < > struct type_master < t_prism_audience_sector > : enum_n < t_prism_audience_sector, e_prism_audience_sector >
+{ using enum_n < t_prism_audience_sector, e_prism_audience_sector > :: enum_n; };
+
+template < > struct type_master < t_prism_ccv > : enum_n < t_prism_ccv, e_prism_ccv >
+{ using enum_n < t_prism_ccv, e_prism_ccv > :: enum_n; };
+
+template < > struct type_master < t_prism_class > : enum_n < t_prism_class, e_prism_class >
+{ using enum_n < t_prism_class, e_prism_class > :: enum_n; };
+
+template < > struct type_master < t_prism_contenttype > : enum_n < t_prism_contenttype, e_prism_contenttype >
+{ using enum_n < t_prism_contenttype, e_prism_contenttype > :: enum_n; };
+
+template < > struct type_master < t_prism_cvp > : enum_n < t_prism_cvp, e_prism_cvp >
+{ using enum_n < t_prism_cvp, e_prism_cvp > :: enum_n; };
+
+template < > struct type_master < t_prism_genre > : enum_n < t_prism_genre, e_prism_genre >
+{ using enum_n < t_prism_genre, e_prism_genre > :: enum_n; };
+
+template < > struct type_master < t_prism_icv > : enum_n < t_prism_icv, e_prism_icv >
+{ using enum_n < t_prism_icv, e_prism_icv > :: enum_n; };
+
+template < > struct type_master < t_prism_pasv > : enum_n < t_prism_pasv, e_prism_pasv >
+{ using enum_n < t_prism_pasv, e_prism_pasv > :: enum_n; };
+
+template < > struct type_master < t_prism_pcv > : enum_n < t_prism_pcv, e_prism_pcv >
+{ using enum_n < t_prism_pcv, e_prism_pcv > :: enum_n; };
+
+template < > struct type_master < t_prism_pfv > : enum_n < t_prism_pfv, e_prism_pfv >
+{ using enum_n < t_prism_pfv, e_prism_pfv > :: enum_n; };
+
+template < > struct type_master < t_prism_ptv > : enum_n < t_prism_ptv, e_prism_ptv >
+{ using enum_n < t_prism_ptv, e_prism_ptv > :: enum_n; };
+
+template < > struct type_master < t_prism_rcv > : enum_n < t_prism_rcv, e_prism_rcv >
+{ using enum_n < t_prism_rcv, e_prism_rcv > :: enum_n; };
+
+template < > struct type_master < t_prism_role > : enum_n < t_prism_role, e_prism_role >
+{ using enum_n < t_prism_role, e_prism_role > :: enum_n; };
+
+template < > struct type_master < t_prs_action > : enum_n < t_prs_action, e_prs_action >
+{ using enum_n < t_prs_action, e_prs_action > :: enum_n; };
+
 template < > struct type_master < t_quote_style > : enum_n < t_quote_style, e_quote_style >
 { using enum_n < t_quote_style, e_quote_style > :: enum_n; };
+
+template < > struct type_master < t_recipe_content > : enum_n < t_recipe_content, e_recipe_content >
+{ using enum_n < t_recipe_content, e_recipe_content > :: enum_n; };
+
+template < > struct type_master < t_recipe_course > : enum_n < t_recipe_course, e_recipe_course >
+{ using enum_n < t_recipe_course, e_recipe_course > :: enum_n; };
+
+template < > struct type_master < t_recipe_cuisine > : enum_n < t_recipe_cuisine, e_recipe_cuisine >
+{ using enum_n < t_recipe_cuisine, e_recipe_cuisine > :: enum_n; };
+
+template < > struct type_master < t_recipe_dietary > : enum_n < t_recipe_dietary, e_recipe_dietary >
+{ using enum_n < t_recipe_dietary, e_recipe_dietary > :: enum_n; };
+
+template < > struct type_master < t_recipe_dish > : enum_n < t_recipe_dish, e_recipe_dish >
+{ using enum_n < t_recipe_dish, e_recipe_dish > :: enum_n; };
+
+template < > struct type_master < t_recipe_exclusion > : enum_n < t_recipe_exclusion, e_recipe_exclusion >
+{ using enum_n < t_recipe_exclusion, e_recipe_exclusion > :: enum_n; };
+
+template < > struct type_master < t_recipe_kit > : enum_n < t_recipe_kit, e_recipe_kit >
+{ using enum_n < t_recipe_kit, e_recipe_kit > :: enum_n; };
+
+template < > struct type_master < t_recipe_meal > : enum_n < t_recipe_meal, e_recipe_meal >
+{ using enum_n < t_recipe_meal, e_recipe_meal > :: enum_n; };
+
+template < > struct type_master < t_recipe_method > : enum_n < t_recipe_method, e_recipe_method >
+{ using enum_n < t_recipe_method, e_recipe_method > :: enum_n; };
+
+template < > struct type_master < t_recipe_source > : enum_n < t_recipe_source, e_recipe_source >
+{ using enum_n < t_recipe_source, e_recipe_source > :: enum_n; };
+
+template < > struct type_master < t_recipe_special > : enum_n < t_recipe_special, e_recipe_special >
+{ using enum_n < t_recipe_special, e_recipe_special > :: enum_n; };
+
+template < > struct type_master < t_recipe_time > : enum_n < t_recipe_time, e_recipe_time >
+{ using enum_n < t_recipe_time, e_recipe_time > :: enum_n; };
 
 template < > struct type_master < t_referrer > : enum_n < t_referrer, e_referrer >
 { using enum_n < t_referrer, e_referrer > :: enum_n; };
@@ -849,3 +957,35 @@ template < > struct type_master < t_writingmode > : enum_n < t_writingmode, e_wr
 template < > struct type_master < t_xmlns > : enum_n < t_xmlns, e_xmlns >
 { using enum_n < t_xmlns, e_xmlns > :: enum_n; };
 
+template < > struct type_master < t_xmpdm_audio_channel > : enum_n < t_xmpdm_audio_channel, e_xmpdm_audio_channel >
+{ using enum_n < t_xmpdm_audio_channel, e_xmpdm_audio_channel > :: enum_n; };
+
+template < > struct type_master < t_xmpdm_audio_sample > : enum_n < t_xmpdm_audio_sample, e_xmpdm_audio_sample >
+{ using enum_n < t_xmpdm_audio_sample, e_xmpdm_audio_sample > :: enum_n; };
+
+template < > struct type_master < t_xmpdm_camera_angle > : enum_n < t_xmpdm_camera_angle, e_xmpdm_camera_angle >
+{ using enum_n < t_xmpdm_camera_angle, e_xmpdm_camera_angle > :: enum_n; };
+
+template < > struct type_master < t_xmpdm_camera_move > : enum_n < t_xmpdm_camera_move, e_xmpdm_camera_move >
+{ using enum_n < t_xmpdm_camera_move, e_xmpdm_camera_move > :: enum_n; };
+
+template < > struct type_master < t_xmpdm_pulldown > : enum_n < t_xmpdm_pulldown, e_xmpdm_pulldown >
+{ using enum_n < t_xmpdm_pulldown, e_xmpdm_pulldown > :: enum_n; };
+
+template < > struct type_master < t_xmpdm_shotsize > : enum_n < t_xmpdm_shotsize, e_xmpdm_shotsize >
+{ using enum_n < t_xmpdm_shotsize, e_xmpdm_shotsize > :: enum_n; };
+
+template < > struct type_master < t_xmpdm_stretchmode > : enum_n < t_xmpdm_stretchmode, e_xmpdm_stretchmode >
+{ using enum_n < t_xmpdm_stretchmode, e_xmpdm_stretchmode > :: enum_n; };
+
+template < > struct type_master < t_xmpdm_time_format > : enum_n < t_xmpdm_time_format, e_xmpdm_time_format >
+{ using enum_n < t_xmpdm_time_format, e_xmpdm_time_format > :: enum_n; };
+
+template < > struct type_master < t_xmpdm_time_signature > : enum_n < t_xmpdm_time_signature, e_xmpdm_time_signature >
+{ using enum_n < t_xmpdm_time_signature, e_xmpdm_time_signature > :: enum_n; };
+
+template < > struct type_master < t_xmpdm_video_pixeldepth > : enum_n < t_xmpdm_video_pixeldepth, e_xmpdm_video_pixeldepth >
+{ using enum_n < t_xmpdm_video_pixeldepth, e_xmpdm_video_pixeldepth > :: enum_n; };
+
+template < > struct type_master < t_crs_whitebalance > : enum_n < t_crs_whitebalance, e_crs_whitebalance >
+{ using enum_n < t_crs_whitebalance, e_crs_whitebalance > :: enum_n; };

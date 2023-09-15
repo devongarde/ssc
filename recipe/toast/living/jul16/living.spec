@@ -227,8 +227,8 @@ PASS ../toast/living/jul16/example-2.html
 35 mime
 49 use_quote_code
 63 use_quote_code
-67 bad_property bad_property bad_property bad_property
-77 bad_property bad_property bad_property bad_property
+67 bad_property bad_property bad_property bad_property bad_property
+77 bad_property bad_property bad_property bad_property bad_property
 108 unrecognised_value
 123 use_quote_code
 133 use_quote_code

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:pmi="http://prismstandard.org/namespaces/pmi/3.0/" xmlns:prism="http://prismstandard.org/namespaces/basic/3.0/">
+
+  <prism:byteCount>2938472</prism:byteCount>
+  <pmi:color>bw</pmi:color>
+  <pmi:contactInfo>
+    email:dkennedy@idealliance.org,
+    phone:630-941-8197
+  </pmi:contactInfo>
+  <pmi:displayName>HS1214</pmi:displayName>
+  <pmi:distributorProductID>FMD4411</pmi:distributorProductID>
+  <pmi:eventAlias>Run for the Roses</pmi:eventAlias>
+  <pmi:eventEnd>05/06/2010</pmi:eventEnd>
+  <pmi:eventStart>05/06/2010</pmi:eventStart>
+  <pmi:eventSubtype>horse race</pmi:eventSubtype>
+  <pmi:eventType>race</pmi:eventType>
+  <pmi:field>black</pmi:field>
+  <pmi:framing>head shot</pmi:framing>
+  <pmi:location>
+    <Iptc4XpmExt:LocationShown>
+      Central Park, New York,
+      City
+    </Iptc4XpmExt:LocationShown>
+  </pmi:location>
+  <pmi:make>Ford</pmi:make>
+  <pmi:manufacturer>Ford Motor Company</pmi:manufacturer>
+  <pmi:model>Mustang</pmi:model>
+  <pmi:modelYear>2011</pmi:modelYear>
+  <pmi:objectDescription>blue sports car</pmi:objectDescription>
+  <pmi:objectSubtype>coupe</pmi:objectSubtype>
+  <pmi:objectType>car</pmi:objectType>
+  <pmi:orientation>horizontal</pmi:orientation>
+  <pmi:positionDescriptor>First row, third from the left</pmi:positionDescriptor>
+  <pmi:productID>SKFMD442011</pmi:productID>
+  <pmi:productIDType>SKU</pmi:productIDType>
+  <prism:rating ratingSystem="ESRB">E</prism:rating>
+  <prism:rating rdf:resource="http://www.prismstandard.org/esrb.xml/#E"/>
+  <pmi:sequenceName>How To Steps</pmi:sequenceName>
+  <pmi:sequenceNumber>2</pmi:sequenceNumber>
+  <pmi:sequenceTotalNumber>12</pmi:sequenceTotalNumber>
+  <pmi:setting>studio</pmi:setting>
+  <pmi:shootID>41259B</pmi:shootID>
+  <pmi:slideshowName>How To Steps</pmi:slideshowName>
+  <pmi:slideshowNumber>2</pmi:slideshowNumber>
+  <pmi:slideshowTotalNumber>12</pmi:slideshowTotalNumber>
+  <pmi:viewpoint>above</pmi:viewpoint>
+  <pmi:visualTechnique>closeup</pmi:visualTechnique>
+  
+</rdf:RDF>

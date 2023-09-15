@@ -87,16 +87,21 @@ e_status declare_namespace (nitpick& nits, const html_version& v, const ::std::s
                     if (! osf.empty ())
                     {   const ident_t osf_id = namespaces -> find_shortform (v, namespace_names, osf, false);
                         if ((osf_id != ns_default) && (osf_id != ns_error))
-                        {   const flags_t flags = namespace_names.flags (static_cast < e_namespace > (osf_id));
+                        {   const flags_t flags = namespace_names.flags (v, NAMESPACE_SCHEMA, lc_schema);
                             if ((flags & NS_PREDECLARED) == 0)
                                 nits.pick (nit_namespace_confusion, es_warning, ec_namespace, quote (schema), " was previously specified with ", quote (osf));
                             else nits.pick (nit_namespace_confusion, es_info, ec_namespace, quote (schema), " is specified with ", quote (osf), " by default"); } } } }
         if ((standard_name != ns_default) && (standard_schema != ns_xhtml))
+        {   const flags_t f = namespace_names.flags (v, NAMESPACE_SCHEMA, lc_schema);
+            if ((f & NS_PRISM) == NS_PRISM)
+                nits.pick (nit_bad_namespace, es_warning, ec_namespace, quote (lc_schema), " is incorrect, despite its occasional use. Browse 'namespaces' at 'https://www.w3.org/submissions/2020/SUBM-prism-20200910/prism-basic.html' for gen.");
+            else if ((f & NS_CRAPNS) == NS_CRAPNS)
+                nits.pick (nit_bad_namespace, es_warning, ec_namespace, quote (lc_schema), " is incorrect, despite its occasional use.");
             if (standard_name != standard_schema)
             {   if ((standard_name != ns_default) && (standard_name != ns_error))
                     nits.pick (nit_contradictory_namespace, es_warning, ec_namespace, quote (xmlns), " is commonly associated with ", quote (namespace_names.get (standard_name, NAMESPACE_SCHEMA)), ", not ", quote (schema));
                 if ((standard_schema != ns_default) && (standard_schema != ns_error))
-                    nits.pick (nit_contradictory_namespace, es_warning, ec_namespace, quote (schema), " is commonly associated with ", quote (namespace_names.get (standard_schema, NAMESPACE_NAME)), ", not ", quote (xmlns)); }
+                    nits.pick (nit_contradictory_namespace, es_warning, ec_namespace, quote (schema), " is commonly associated with ", quote (namespace_names.get (standard_schema, NAMESPACE_NAME)), ", not ", quote (xmlns)); } }
         if (standard_schema == ns_error)
         {   if (standard_name == ns_default)
                 nits.pick (nit_unrecognised_namespace, es_catastrophic, ec_namespace, PROG " does not know about the default namespace ", quote (schema), ", so cannot properly verify its content");

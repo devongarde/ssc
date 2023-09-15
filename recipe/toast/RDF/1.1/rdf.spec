@@ -1,7 +1,7 @@
 -N 1 -f ../toast/RDF/1.1/rdf.conf
 
 PASS ../toast/RDF/1.1/index.html
-2 rdfa_version
+2 naughty_lang
 
 PASS ../toast/RDF/1.1/example-1.rdf
 1 xhtml_1_1
@@ -26,10 +26,12 @@ PASS ../toast/RDF/1.1/example-5.rdf
 PASS ../toast/RDF/1.1/example-6.rdf
 1 xhtml_1_1
 4 contradictory_namespace unrecognised_namespace unrecognised_value
+6 attribute_unrecognised unrecognised_attribute
 
 PASS ../toast/RDF/1.1/example-7.rdf
 1 xhtml_1_1
 4 contradictory_namespace unrecognised_namespace unrecognised_value
+6 attribute_unrecognised unrecognised_attribute
 
 PASS ../toast/RDF/1.1/example-8.rdf
 0 charset_mismatch charset_used
@@ -48,14 +50,17 @@ PASS ../toast/RDF/1.1/example-10.rdf
 PASS ../toast/RDF/1.1/example-11.rdf
 1 xhtml_1_1
 4 contradictory_namespace unrecognised_namespace unrecognised_value
+6 attribute_unrecognised unrecognised_attribute
 
 PASS ../toast/RDF/1.1/example-12.rdf
 1 xhtml_1_1
 4 contradictory_namespace unrecognised_namespace unrecognised_value
+6 attribute_unrecognised unrecognised_attribute
 
 PASS ../toast/RDF/1.1/example-13.rdf
 1 xhtml_1_1
 4 contradictory_namespace unrecognised_namespace unrecognised_value
+6 attribute_unrecognised unrecognised_attribute
 
 PASS ../toast/RDF/1.1/example-14.rdf
 1 xhtml_1_1

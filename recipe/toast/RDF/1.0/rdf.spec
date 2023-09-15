@@ -26,10 +26,12 @@ PASS ../toast/RDF/1.0/example-5.rdf
 PASS ../toast/RDF/1.0/example-6.rdf
 1 xhtml_1_0
 4 contradictory_namespace unrecognised_namespace unrecognised_value
+6 attribute_unrecognised unrecognised_attribute
 
 PASS ../toast/RDF/1.0/example-7.rdf
 1 xhtml_1_0
 4 contradictory_namespace unrecognised_namespace unrecognised_value
+6 attribute_unrecognised unrecognised_attribute
 
 PASS ../toast/RDF/1.0/example-8.rdf
 0 charset_mismatch charset_used
@@ -48,14 +50,17 @@ PASS ../toast/RDF/1.0/example-10.rdf
 PASS ../toast/RDF/1.0/example-11.rdf
 1 xhtml_1_0
 4 contradictory_namespace unrecognised_namespace unrecognised_value
+6 attribute_unrecognised unrecognised_attribute
 
 PASS ../toast/RDF/1.0/example-12.rdf
 1 xhtml_1_0
 4 contradictory_namespace unrecognised_namespace unrecognised_value
+6 attribute_unrecognised unrecognised_attribute
 
 PASS ../toast/RDF/1.0/example-13.rdf
 1 xhtml_1_0
 4 contradictory_namespace unrecognised_namespace unrecognised_value
+6 attribute_unrecognised unrecognised_attribute
 
 PASS ../toast/RDF/1.0/example-14.rdf
 1 xhtml_1_0
@@ -87,3 +92,4 @@ PASS ../toast/RDF/1.0/example-21.rdf
 1 xhtml_1_0
 3 rdfa_version
 6 xhtml_enum_lc unrecognised_value
+7 url_not_found

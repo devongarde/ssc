@@ -41,6 +41,9 @@ template < typename ENUM, ENUM ERROR_VALUE, ::std::size_t N, ::std::size_t INDIC
     amnse_t mixed_, lower_;
     meid_t ids_;
     ::std::size_t max_ = 0;
+public:
+    constexpr ::std::size_t cend () const { return static_cast < ::std::size_t > (-1); } 
+private:
 #ifdef _MSC_VER
 #pragma warning (push, 3)
 #pragma warning (disable : 26446 26481 26482) // Suggested solution breaks the compilation, plus ::std::array can't be length initialised by the initiliser
@@ -52,6 +55,20 @@ template < typename ENUM, ENUM ERROR_VALUE, ::std::size_t N, ::std::size_t INDIC
         PRESUME (i != ids_.cend (), __FILE__, __LINE__);
         PRESUME (i -> second <= max_, __FILE__, __LINE__);
         return &data_ [i -> second]; }
+    ::std::size_t ll_find_lower (const html_version& v, const ::std::size_t n, const ::std::string& s) const
+    {   if (! s.empty ())
+            for (typename mnse_t::const_iterator pos = GSL_AT (lower_, n).find (s.c_str ()); pos != GSL_AT (lower_, n).cend (); ++pos)
+            {   PRESUME (pos -> second < max_, __FILE__, __LINE__);
+                const data_t& d = data_ [pos -> second];
+                if (may_apply (v, d.from_, d.to_)) return pos -> second; }
+        return cend (); }
+    ::std::size_t ll_find_mixed (const html_version& v, const ::std::size_t n, const ::std::string& s) const
+    {   if (! s.empty ())
+            for (typename mnse_t::const_iterator pos = GSL_AT (mixed_, n).find (s.c_str ()); pos != GSL_AT (mixed_, n).cend (); ++pos)
+            {   PRESUME (pos -> second < max_, __FILE__, __LINE__);
+                const data_t& d = data_ [pos -> second];
+                if (may_apply (v, d.from_, d.to_)) return pos -> second; }
+        return cend (); }
 public:
     void init (nitpick& nits, const n_string_entry < ENUM, N >* data)
     {   VERIFY_NOT_NULL (data, __FILE__, __LINE__);
@@ -68,10 +85,10 @@ public:
                 {   ::std::string rpt (data_ [max_].sz_ [n]);
                     typename meid_t::const_iterator i = ids_.find (data_ [max_].id_);
                     if (i != ids_.cend ())
-                    {   ::std::string mix (data_ [max_].sz_ [n]);
-                        ::std::string low (::boost::to_lower_copy(::std::string (data_ [max_].sz_ [n])));
+                    {   const ::std::string mix (data_ [max_].sz_ [n]);
+                        const ::std::string low (::boost::to_lower_copy (mix));
                         mixed_.at (n).insert (typename mnse_t::value_type (mix, i -> second));
-                        lower_ .at (n).insert (typename mnse_t::value_type (low, i -> second)); } } }
+                        lower_.at (n).insert (typename mnse_t::value_type (low, i -> second)); } } }
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif // _MSC_VER
@@ -88,10 +105,6 @@ public:
     {   const data_t *pd = piece (id);
         VERIFY_NOT_NULL (pd, __FILE__, __LINE__);
         return pd -> to_; }
-    flags_t flags (const ENUM id) const
-    {   const data_t *pd = piece (id);
-        VERIFY_NOT_NULL (pd, __FILE__, __LINE__);
-        return pd -> flags_; }
 #ifdef _MSC_VER
 #pragma warning (push, 3)
 #pragma warning (disable : 26481) // ::std::array can't be length initialised by the initiliser
@@ -123,6 +136,22 @@ public:
     ENUM find (const html_version& v, const ::std::size_t n, const ::std::string& s, const bool lower) const
     {   if (lower) return find_lower (v, n, s);
         return find_mixed (v, n, s); }
+    flags_t flags (const ENUM id) const
+    {   const data_t *pd = piece (id);
+        VERIFY_NOT_NULL (pd, __FILE__, __LINE__);
+        return pd -> flags_; }
+    flags_t flags (const html_version& v, const ::std::size_t n, const ::std::string& s) const
+    {   ::std::size_t pos = 0;
+        if (v.xhtml ()) pos = ll_find_mixed (v, n, s);
+        else pos = ll_find_lower (v, n, s);
+        if (pos == cend ()) return 0;
+        PRESUME (pos < max_, __FILE__, __LINE__);
+        const ENUM id = data_ [pos].id_;
+        for ( ; pos < max_; ++pos)
+        {   const data_t& d = data_ [pos];
+            if (d.id_ != id) break;
+            if (compare_no_case (s, d.sz_ [n])) return d.flags_; }
+        return 0; }
     ENUM starts_with_lower (const ::std::size_t n, const ::std::string& s, ::std::string::size_type* ends_at = nullptr) const
     {   ::std::string ss (::boost::to_lower_copy (s));
         const ::std::size_t len = ss.length ();
@@ -197,6 +226,8 @@ public:
 #define NS_DEPRECATED       0x0000000000000002
 #define NS_UNDECLARABLE     0x0000000000000004
 #define NS_PREDECLARED      0x0000000000000008
+#define NS_CRAPNS           0x0000000000000010
+#define NS_PRISM            0x0000000000000020
 
 #define PROTOCOL_NAME           ABB_SHORTFORM
 #define PROTOCOL_DESCRIPTION  ( PROTOCOL_NAME + 1 )
@@ -210,6 +241,8 @@ public:
 #define ONTOLOGY_PREFIX_CONTEXT   0x0000000000000001
 #define ONTOLOGY_BESPOKE          0x0000000000000002
 #define ONTOLOGY_CRAPSPEC         0x0000000000000004
+#define ONTOLOGY_CRAPNS           0x0000000000000010
+#define ONTOLOGY_PRISM            0x0000000000000020
 
 typedef n_string_table < e_namespace, ns_error, NAMESPACE_COUNT, 2 > namespace_names_t;
 typedef n_string_table < e_protocol, pr_error, PROTOCOL_COUNT, 1 > protocol_names_t;

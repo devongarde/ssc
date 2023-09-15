@@ -1,7 +1,7 @@
 {
     "work": {
         "1": {
-            "type": "http:\/\/purl.org\/vocab\/frbr\/core#Work",
+            "type": "http:\/\/purl.org\/spar\/fabio\/Work",
             "prop": {
                 "work": "http:\/\/example.org\/mypond.jpeg",
                 "title": "My Pond",

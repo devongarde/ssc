@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:pcv="http://prismstandard.org/namespaces/pcv/2.0/">
+
+  <pcv:Descriptor>
+
+    <pcv:label xml:lang="x-default">Astrophysics</pcv:label>
+
+    <pcv:label xml:lang="FR">Astrophysique</pcv:label>
+
+    <pcv:broaderTerm>Physics</pcv:broaderTerm>
+
+    <pcv:broaderTerm>Astronomy</pcv:broaderTerm>
+
+    <pcv:relatedTerm>Plasma Physics</pcv:relatedTerm>
+
+    <pcv:narrowerTerm>Cosmology</pcv:narrowerTerm>
+
+    <pcv:synonym>celestial mechanics</pcv:synonym>
+
+    <pcv:definition>Includes cosmology; space plasmas; and interstellar and interplanetary gases and dust.</pcv:definition>
+
+    <pcv:code>84</pcv:code>
+
+  </pcv:Descriptor>
+
+  <pcv:Descriptor rdf:ID="Astrophysics">
+
+    <rdf:alt>
+
+        <pcv:label xml:lang="x-default">Astrophysics</pcv:label>
+        <pcv:label xml:lang="FR">Astrophysique</pcv:label>
+
+    </rdf:alt>
+
+    <rdf:bag>
+
+        <pcv:broaderTerm rdf:resource="termlist.xml#Physics"/>
+        <pcv:broaderTerm rdf:resource="termlist.xml#Astronomy"/>
+
+    </rdf:bag>
+
+    <pcv:narrowerTerm rdf:resource="#Cosmology"/>
+
+    <pcv:synonym>celestial mechanics</pcv:synonym>
+
+    <pcv:definition>Includes cosmology; space plasmas; and interstellar and interplanetary gases and dust.</pcv:definition>
+
+    <pcv:code>84</pcv:code>
+
+  </pcv:Descriptor>
+
+  <pcv:Descriptor rdf:about="http://loc.gov/LC/QA-76">
+
+    <pcv:vocabulary>Library of Congress Classification</pcv:vocabulary>
+
+    <pcv:code>QA-p76</pcv:code>
+
+    <pcv:label>Mathematical software</pcv:label>
+
+  </pcv:Descriptor>
+  
+  <pcv:Descriptor rdf:about="Astrophysics">
+
+<rdf:alt>
+
+<pcv:label xml:lang="x-default">Astrophysics</pcv:label>
+
+<pcv:label xml:lang="FR">Astrophysique</pcv:label>
+
+</rdf:alt>
+
+<pcv:relatedTerm>Plasma Physics</pcv:relatedTerm>
+
+<rdf:bag>
+
+<pcv:broaderTerm rdf:resource="termlist.xml#Physics"/>
+
+<pcv:broaderTerm rdf:resource="termlist.xml#Astronomy"/>
+
+</rdf:bag>
+
+<pcv:narrowerTerm rdf:resource="#Cosmology"/>
+
+<pcv:synonym>celestial mechanics</pcv:synonym>
+
+<pcv:definition>Includes cosmology; space plasmas; and interstellar and interplanetary gases and dust.</pcv:definition>
+
+<pcv:code>84</pcv:code>
+
+</pcv:Descriptor>
+
+  <pcv:Descriptor rdf:about="http://loc.gov/LC/QA-76">
+
+    <pcv:vocabulary>Library of Congress Classification</pcv:vocabulary>
+
+    <pcv:code>QA-p76</pcv:code>
+
+    <pcv:label>Mathematical software</pcv:label>
+
+  </pcv:Descriptor>
+  
+</rdf:RDF>
