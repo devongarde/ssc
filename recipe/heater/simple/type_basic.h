@@ -49,6 +49,9 @@ template < > struct type_master < t_compact > : tidy_string < t_compact >
     void shadow (::std::stringstream& ss, const html_version& v, element* )
     {   if (v.xhtml ()) ss << "=\"compact\""; } };
 
+template < > struct type_master < t_digits > : type_string < t_digits, sz_digits >
+{ using type_string < t_digits, sz_digits > :: type_string; };
+
 template < > struct type_master < t_existential > : type_base < mono, t_existential >
 {   using type_base < mono, t_existential > :: type_base;
     static bool is_existential () noexcept { return true; }
@@ -103,7 +106,6 @@ template < > struct type_master < t_not_empty > : string_value < t_not_empty >
         if (s.empty ())
         {   nits.pick (nit_empty, es_error, ec_type, "value should not be empty");
             string_value < t_not_empty > :: status (s_invalid); } } };
-
 
 template < > struct type_master < t_slash > : type_string < t_slash, sz_slash >
 { using type_string < t_slash, sz_slash > :: type_string; };

@@ -1,0 +1,4 @@
+﻿ruby { text-emphasis: none; }
+
+em { text-emphasis: dot; } /* Set text-emphasis for <em> elements */
+em rt { display: none; }   /* Hide ruby inside <em> elements */

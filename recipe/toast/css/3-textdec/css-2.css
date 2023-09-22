@@ -1,0 +1,10 @@
+﻿:link {
+  color: blue;
+  text-decoration: underline;
+  text-decoration: navy dotted underline; /* Ignored in CSS1/CSS2 UAs */
+}
+
+:root:lang(ja), [lang|=ja], :root:lang(ko), [lang|=ko] { text-underline-position: under right; }
+:root:lang(zh), [lang|=zh] { text-underline-position: under left; }
+
+:root { text-underline-position: under; }

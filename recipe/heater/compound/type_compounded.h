@@ -50,8 +50,17 @@ template < > struct type_master < t_css_caret > : type_some_of < t_css_caret, sz
 template < > struct type_master < t_current_colour_sz > : type_string < t_current_colour_sz, sz_currentcolour >
 { using type_string < t_current_colour_sz, sz_currentcolour > :: type_string; };
 
+template < > struct type_master < t_decibel > : type_number_unit < t_decibel, t_real, sz_db, true >
+{ using type_number_unit < t_decibel, t_real, sz_db, true > :: type_number_unit; };
+
+template < > struct type_master < t_duration_a > : type_or_string < t_duration_a, t_duration, sz_auto >
+{ using type_or_string < t_duration_a, t_duration, sz_auto > :: type_or_string; };
+
 template < > struct type_master < t_fontnias > : type_one_or_both < t_fontnias, t_fontnia, sz_comma, t_fontnia >
 { using type_one_or_both < t_fontnias, t_fontnia, sz_comma, t_fontnia > :: type_one_or_both; };
+
+template < > struct type_master < t_frequency_abs > : type_then_string < t_frequency_abs, t_frequency, sz_absolute >
+{ using type_then_string < t_frequency_abs, t_frequency, sz_absolute > :: type_then_string; };
 
 template < > struct type_master < t_hslafn > : type_function_all < t_hslafn, sz_hsla, t_hue, t_percent, t_percent, t_zero_to_one >
 { using type_function_all < t_hslafn, sz_hsla, t_hue, t_percent, t_percent, t_zero_to_one > :: type_function_all; };
@@ -98,6 +107,9 @@ template < > struct type_master < t_rgbfn > : type_function_3_4 < t_rgbfn, sz_rg
 template < > struct type_master < t_rgbafn > : type_function_all < t_rgbafn, sz_rgba, t_integer_or_percent, t_integer_or_percent, t_integer_or_percent, t_zero_to_one >
 { using type_function_all < t_rgbafn, sz_rgba, t_integer_or_percent, t_integer_or_percent, t_integer_or_percent, t_zero_to_one > :: type_function_all; };
 
+template < > struct type_master < t_startends > : either_string_or_both < t_startends, sz_start, sz_end, sz_space_char >
+{ using either_string_or_both < t_startends, sz_start, sz_end, sz_space_char > :: either_string_or_both; };
+
 template < > struct type_master < t_text_2 > : type_one_or_both < t_text_2, t_text, sz_space_char, t_text >
 { using type_one_or_both < t_text_2, t_text, sz_space_char, t_text > :: type_one_or_both; };
 
@@ -112,6 +124,9 @@ template < > struct type_master < t_transparentsz > : type_string < t_transparen
 
 template < > struct type_master < t_svg_src > : public either_type_or_either_string < t_svg_src, t_css_local_url, t_svg_two_profile, sz_srgb, sz_inherit >
 {   using either_type_or_either_string < t_svg_src, t_css_local_url, t_svg_two_profile, sz_srgb, sz_inherit > :: either_type_or_either_string; };
+
+template < > struct type_master < t_under_ff > : public type_either_string < t_under_ff, sz_under, sz_from_font >
+{   using type_either_string < t_under_ff, sz_under, sz_from_font > :: type_either_string; };
 
 template < > struct type_master < t_unit_abs_per > : type_or_string < t_unit_abs_per, t_unit_abs_len, sz_per_cent >
 { using type_or_string < t_unit_abs_per, t_unit_abs_len, sz_per_cent > :: type_or_string; };
@@ -142,29 +157,3 @@ template < > struct tnu_properties < true >
 {   static bool required (nitpick& nits, const ::std::string& ss)
     {   nits.pick (nit_bad_units, es_error, ec_type, quote (ss), ": units required");
         return true; } }; 
-
-template < e_type T, e_type N, class SZ, e_type U, bool REQ > struct type_number_unit : type_master < N >
-{   using type_master < N > :: type_master;
-    type_master < U > units;
-    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   const ::std::string ss (trim_the_lot_off (s));
-        if (ss.empty ())
-            nits.pick (nit_empty, es_error, ec_type, "a number with units expected (", type_name (T), ")");
-        else
-        {   ::std::string::size_type pos = ss.find_last_of (SZ::sz ());
-            if (pos == ::std::string::npos)
-                nits.pick (nit_bad_number, es_error, ec_type, quote (ss), ": a number with units expected");
-            else if (pos == ss.length () - 1)
-            {   type_master < N > :: set_value (nits, v, ss);
-                if (! tnu_properties < REQ > :: required (nits, ss)) return; }
-            else
-            {   const ::std::string lhs (ss.substr (0, pos+1));
-                const ::std::string rhs (ss.substr (pos+1));
-                type_master < N > :: set_value (nits, v, lhs);
-                nitpick nuts;
-                units.set_value (nuts, v, rhs);
-                if (units.good ())
-                {   nits.merge (nuts); return; } 
-                nits.pick (nit_bad_units, es_error, ec_type, quote (ss), ": bad units");
-                if (context.extra () || context.tell (es_debug)) nits.merge (nuts); } }
-        type_master < N > :: status (s_invalid); } };

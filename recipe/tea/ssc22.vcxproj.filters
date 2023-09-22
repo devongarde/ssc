@@ -1239,6 +1239,15 @@
     <Filter Include="Toast\RDF\prism-3.1">
       <UniqueIdentifier>{d63fc8a3-5ff7-468d-b8de-7f4972d590ad}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\CSS\3-speech">
+      <UniqueIdentifier>{4bf1bf9a-6ddd-4fcb-bb8a-712617fc63cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-textdec">
+      <UniqueIdentifier>{b68b74c8-ad38-4c74-acae-4f263c12fc0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\4-textdec">
+      <UniqueIdentifier>{08909cce-ff5d-4469-97d1-9f53ba4cc99c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -32573,6 +32582,87 @@
     </None>
     <None Include="..\toast\RDF\prism-3.1\prs.rdf">
       <Filter>Toast\RDF\prism-3.1</Filter>
+    </None>
+    <None Include="..\toast\css\3-speech\css.conf">
+      <Filter>Toast\CSS\3-speech</Filter>
+    </None>
+    <None Include="..\toast\css\3-speech\css.spec">
+      <Filter>Toast\CSS\3-speech</Filter>
+    </None>
+    <None Include="..\toast\css\3-speech\css-5.css">
+      <Filter>Toast\CSS\3-speech</Filter>
+    </None>
+    <None Include="..\toast\css\3-speech\index.html">
+      <Filter>Toast\CSS\3-speech</Filter>
+    </None>
+    <None Include="..\toast\css\3-speech\css-5.html">
+      <Filter>Toast\CSS\3-speech</Filter>
+    </None>
+    <None Include="..\toast\css\3-speech\css-11.css">
+      <Filter>Toast\CSS\3-speech</Filter>
+    </None>
+    <None Include="..\toast\css\3-speech\css-9.css">
+      <Filter>Toast\CSS\3-speech</Filter>
+    </None>
+    <None Include="..\toast\css\3-speech\css-12.css">
+      <Filter>Toast\CSS\3-speech</Filter>
+    </None>
+    <None Include="..\toast\css\3-speech\css-12.html">
+      <Filter>Toast\CSS\3-speech</Filter>
+    </None>
+    <None Include="..\toast\css\3-speech\css-15.css">
+      <Filter>Toast\CSS\3-speech</Filter>
+    </None>
+    <None Include="..\toast\css\3-speech\css-15.html">
+      <Filter>Toast\CSS\3-speech</Filter>
+    </None>
+    <None Include="..\toast\css\3-textdec\css.conf">
+      <Filter>Toast\CSS\3-textdec</Filter>
+    </None>
+    <None Include="..\toast\css\3-textdec\css.spec">
+      <Filter>Toast\CSS\3-textdec</Filter>
+    </None>
+    <None Include="..\toast\css\3-textdec\css-1.css">
+      <Filter>Toast\CSS\3-textdec</Filter>
+    </None>
+    <None Include="..\toast\css\3-textdec\css-1.html">
+      <Filter>Toast\CSS\3-textdec</Filter>
+    </None>
+    <None Include="..\toast\css\3-textdec\index.html">
+      <Filter>Toast\CSS\3-textdec</Filter>
+    </None>
+    <None Include="..\toast\css\4-textdec\css.conf">
+      <Filter>Toast\CSS\4-textdec</Filter>
+    </None>
+    <None Include="..\toast\css\4-textdec\css.spec">
+      <Filter>Toast\CSS\4-textdec</Filter>
+    </None>
+    <None Include="..\toast\css\4-textdec\css-1.css">
+      <Filter>Toast\CSS\4-textdec</Filter>
+    </None>
+    <None Include="..\toast\css\4-textdec\css-1.html">
+      <Filter>Toast\CSS\4-textdec</Filter>
+    </None>
+    <None Include="..\toast\css\4-textdec\index.html">
+      <Filter>Toast\CSS\4-textdec</Filter>
+    </None>
+    <None Include="..\toast\css\4-textdec\css-2.css">
+      <Filter>Toast\CSS\4-textdec</Filter>
+    </None>
+    <None Include="..\toast\css\3-textdec\css-2.css">
+      <Filter>Toast\CSS\3-textdec</Filter>
+    </None>
+    <None Include="..\toast\css\4-textdec\css-3.css">
+      <Filter>Toast\CSS\4-textdec</Filter>
+    </None>
+    <None Include="..\toast\css\3-textdec\css-3.css">
+      <Filter>Toast\CSS\3-textdec</Filter>
+    </None>
+    <None Include="..\toast\css\3-textdec\css-b.css">
+      <Filter>Toast\CSS\3-textdec</Filter>
+    </None>
+    <None Include="..\toast\css\4-textdec\css-b.css">
+      <Filter>Toast\CSS\4-textdec</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

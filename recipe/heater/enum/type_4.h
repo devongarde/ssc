@@ -126,8 +126,11 @@ template < > struct type_master < t_css_polar > : four_value < t_css_polar, e_cs
 template < > struct type_master < t_css_shape_box > : four_value < t_css_shape_box, e_css_shape_box, sz_border_box, sz_content_box, sz_margin_box, sz_padding_box >
 { using four_value < t_css_shape_box, e_css_shape_box, sz_border_box, sz_content_box, sz_margin_box, sz_padding_box > :: four_value; };
 
-template < > struct type_master < t_css_speak > : four_value < t_css_speak, e_css_speak, sz_inherit, sz_none, sz_normal, sz_spell_out >
-{ using four_value < t_css_speak, e_css_speak, sz_inherit, sz_none, sz_normal, sz_spell_out > :: four_value; };
+template < > struct type_master < t_css_speak_2 > : four_value < t_css_speak_2, e_css_speak_2, sz_inherit, sz_none, sz_normal, sz_spell_out >
+{ using four_value < t_css_speak_2, e_css_speak_2, sz_inherit, sz_none, sz_normal, sz_spell_out > :: four_value; };
+
+template < > struct type_master < t_css_textemph_skip > : four_value < t_css_textemph_skip, e_css_textemph_skip, sz_narrow, sz_punctuation, sz_spaces, sz_symbols >
+{ using four_value < t_css_textemph_skip, e_css_textemph_skip, sz_narrow, sz_punctuation, sz_spaces, sz_symbols > :: four_value; };
 
 template < > struct type_master < t_css_val_con > : four_value < t_css_val_con, e_css_val_con, sz_e, sz_infinity, sz_nan, sz_pi >
 { using four_value < t_css_val_con, e_css_val_con, sz_e, sz_infinity, sz_nan, sz_pi > :: four_value; };

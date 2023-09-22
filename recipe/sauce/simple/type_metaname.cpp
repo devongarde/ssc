@@ -24,15 +24,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 // note HTML 5, 2.6.5, extracting character encodings from meta elements
 
-#define MN_CONTEXT "user-provided"
-
-#define MN_APPLICATION "application"
-#define MN_AUTHOR "author"
-#define MN_DESCRIPTION "description"
-#define MN_KEYWORDS "keywords"
-
-#define MN_CLASSIFICATION "classification"
-
 #define MN_AGLSTERMS_ACCESSMODE "aglsterms.accessmode"
 #define MN_AGLSTERMS_ACCESSIBILITY "aglsterms.accessibility"
 #define MN_AGLSTERMS_ACT "aglsterms.act"
@@ -267,7 +258,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MN_ICAS_DATETIME_LONG "icas.datetime.long"
 #define MN_ICBM "icbm"
 #define MN_ITEMSPERPAGE "itemsPerPage"
-#define MN_KEYWORDS_NOT "keywords-not"
+#define KEYWORDS_NOT "keywords-not"
 #define MN_META_DATE "meta_date"
 #define MN_MICROTIP "microtip"
 #define MN_MOBILE_AGENT "mobile-agent"
@@ -451,16 +442,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MN_TWEETMEME_TITLE "tweetmeme-title"
 
 struct symbol_entry < html_version, e_metaname > metaname_symbol_table [] =
-{  { { HTML_UNDEF }, { HTML_UNDEF }, MN_CONTEXT, mn_context },
+{  { { HTML_UNDEF }, { HTML_UNDEF }, "user-provided", mn_context },
 
-   { { HTML_4_0 }, { HTML_UNDEF }, MN_APPLICATION, mn_application },
-   { { HTML_2_0 }, { HTML_UNDEF }, MN_AUTHOR, mn_author },
-   { { HTML_2_0 }, { HTML_UNDEF }, MN_DESCRIPTION, mn_description },
+   { { HTML_4_0 }, { HTML_UNDEF }, "application", mn_application },
+   { { HTML_2_0 }, { HTML_UNDEF }, "author", mn_author },
+   { { HTML_2_0 }, { HTML_UNDEF }, "description", mn_description },
    { { HTML_2_0 }, { HTML_UNDEF }, "generator", mn_generator },
-   { { HTML_2_0 }, { HTML_UNDEF }, MN_KEYWORDS, mn_keywords },
+   { { HTML_2_0 }, { HTML_UNDEF }, "keywords", mn_keywords },
    { { HTML_2_0 }, { HTML_UNDEF }, "identifier", mn_identifier },
 
-   { { HTML_2_0 }, { HTML_UNDEF }, MN_CLASSIFICATION, mn_classification },
+   { { HTML_2_0 }, { HTML_UNDEF }, "classification", mn_classification },
 
    { { HTML_4_0 }, { HTML_UNDEF }, MN_AGLSTERMS_ACCESSMODE, mn_aglsterms_accessmode },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_AGLSTERMS_ACCESSIBILITY, mn_aglsterms_accessibility },
@@ -713,7 +704,7 @@ struct symbol_entry < html_version, e_metaname > metaname_symbol_table [] =
    { { HTML_4_0 }, { HTML_UNDEF }, MN_ICAS_DATETIME_LONG, mn_icas_datetime_long },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_ICBM, mn_icbm },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_ITEMSPERPAGE, mn_itemsperpage },
-   { { HTML_4_0 }, { HTML_UNDEF }, MN_KEYWORDS_NOT, mn_keywords_not },
+   { { HTML_4_0 }, { HTML_UNDEF }, KEYWORDS_NOT, mn_keywords_not },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_META_DATE, mn_meta_date },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_MICROTIP, mn_microtip },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_MOBILE_AGENT, mn_mobile_agent },
@@ -1010,7 +1001,76 @@ struct symbol_entry < html_version, e_metaname > metaname_symbol_table [] =
    { { HTML_4_0 }, { HTML_UNDEF }, "profile:first_name", mn_profile_first_name },
    { { HTML_4_0 }, { HTML_UNDEF }, "profile:gender", mn_profile_gender },
    { { HTML_4_0 }, { HTML_UNDEF }, "profile:last_name", mn_profile_last_name },
-   { { HTML_4_0 }, { HTML_UNDEF }, "profile:username", mn_profile_username }
+   { { HTML_4_0 }, { HTML_UNDEF }, "profile:username", mn_profile_username },
+
+   { { HTML_4_0 }, { HTML_UNDEF }, "bingbot", mn_bingbot },
+   { { HTML_4_0 }, { HTML_UNDEF }, "msnbot", mn_msnbot },
+
+   { { HTML_4_0 }, { HTML_UNDEF }, "googlebot-news", mn_googlebot_news },
+   { { HTML_4_0 }, { HTML_UNDEF }, "adsbot-google", mn_adbots_google },
+
+   { { HTML_4_0 }, { HTML_UNDEF }, "googlebot-image", mn_googlebot_image },
+   { { HTML_4_0 }, { HTML_UNDEF }, "googlebot-video", mn_googlebot_video },
+   { { HTML_4_0 }, { HTML_UNDEF }, "storebot-google", mn_storebot_google },
+   { { HTML_4_0 }, { HTML_UNDEF }, "google-inspectiontool", mn_google_inspection_tool },
+   { { HTML_4_0 }, { HTML_UNDEF }, "googleother", mn_googleother },
+
+   { { HTML_4_0 }, { HTML_UNDEF }, "360spider", mn_360spider },
+   { { HTML_4_0 }, { HTML_UNDEF }, "ahrefsbot", mn_ahrefsbot },
+   { { HTML_4_0 }, { HTML_UNDEF }, "apache-httpclient", mn_apache_httpclient },
+   { { HTML_4_0 }, { HTML_UNDEF }, "applebot", mn_applebot },
+   { { HTML_4_0 }, { HTML_UNDEF }, "archive.org_bot", mn_archive_org_bot },
+   { { HTML_4_0 }, { HTML_UNDEF }, "baidu", mn_baidu },
+   { { HTML_4_0 }, { HTML_UNDEF }, "baiduspider", mn_baiduspider },
+   { { HTML_4_0 }, { HTML_UNDEF }, "blexbot", mn_blexbot },
+   { { HTML_4_0 }, { HTML_UNDEF }, "cfnetwork", mn_cfnetwork },
+   { { HTML_4_0 }, { HTML_UNDEF }, "coccoc", mn_coccoc },
+   { { HTML_4_0 }, { HTML_UNDEF }, "core", mn_core },
+   { { HTML_4_0 }, { HTML_UNDEF }, "crawl", mn_crawl },
+   { { HTML_4_0 }, { HTML_UNDEF }, "curl", mn_curl },
+   { { HTML_4_0 }, { HTML_UNDEF }, "dalvik", mn_dalvik },
+   { { HTML_4_0 }, { HTML_UNDEF }, "dataprovider.com", mn_dataprovider_com },
+   { { HTML_4_0 }, { HTML_UNDEF }, "dotbot", mn_dotbot },
+   { { HTML_4_0 }, { HTML_UNDEF }, "duckduckgo-favicons-bot", mn_duckduckgo_favicons_bot },
+   { { HTML_4_0 }, { HTML_UNDEF }, "facebookexternalhit", mn_facebookexternalhit },
+   { { HTML_4_0 }, { HTML_UNDEF }, "feed", mn_feed },
+   { { HTML_4_0 }, { HTML_UNDEF }, "feedfetcher-google", mn_feedfetcher_google },
+   { { HTML_4_0 }, { HTML_UNDEF }, "fetcher", mn_fetcher },
+   { { HTML_4_0 }, { HTML_UNDEF }, "firefox", mn_firefox },
+   { { HTML_4_0 }, { HTML_UNDEF }, "gigablastopensource", mn_gigablastopensource },
+   { { HTML_4_0 }, { HTML_UNDEF }, "harvest", mn_harvest },
+   { { HTML_4_0 }, { HTML_UNDEF }, "infobot", mn_infobot },
+   { { HTML_4_0 }, { HTML_UNDEF }, "java", mn_java },
+   { { HTML_4_0 }, { HTML_UNDEF }, "konqueror", mn_konqueror },
+   { { HTML_4_0 }, { HTML_UNDEF }, "link", mn_link },
+   { { HTML_4_0 }, { HTML_UNDEF }, "linkdexbot", mn_linkdexbot },
+   { { HTML_4_0 }, { HTML_UNDEF }, "mail.ru", mn_mail_ru },
+   { { HTML_4_0 }, { HTML_UNDEF }, "megaindex.ru", mn_megaindex_ru },
+   { { HTML_4_0 }, { HTML_UNDEF }, "mj12bot", mn_mj12bot },
+   { { HTML_4_0 }, { HTML_UNDEF }, "mojeekbot", mn_mojeekbot },
+   { { HTML_4_0 }, { HTML_UNDEF }, "msie", mn_msie },
+   { { HTML_4_0 }, { HTML_UNDEF }, "nautic", mn_nautic },
+   { { HTML_4_0 }, { HTML_UNDEF }, "nbot", mn_nbot },
+   { { HTML_4_0 }, { HTML_UNDEF }, "netcraft", mn_netcraft },
+   { { HTML_4_0 }, { HTML_UNDEF }, "netnewswire", mn_netnewswire },
+   { { HTML_4_0 }, { HTML_UNDEF }, "obot", mn_obot },
+   { { HTML_4_0 }, { HTML_UNDEF }, "python", mn_python },
+   { { HTML_4_0 }, { HTML_UNDEF }, "python-urllib", mn_python_urllib },
+   { { HTML_4_0 }, { HTML_UNDEF }, "riddler", mn_riddler },
+   { { HTML_4_0 }, { HTML_UNDEF }, "rome", mn_rome },
+   { { HTML_4_0 }, { HTML_UNDEF }, "seek", mn_seek },
+   { { HTML_4_0 }, { HTML_UNDEF }, "semrushbot", mn_semrushbot },
+   { { HTML_4_0 }, { HTML_UNDEF }, "seznambot", mn_seznambot },
+   { { HTML_4_0 }, { HTML_UNDEF }, "sitebot", mn_sitebot },
+   { { HTML_4_0 }, { HTML_UNDEF }, "sogou", mn_sogou },
+   { { HTML_4_0 }, { HTML_UNDEF }, "surdotlybot", mn_surdotlybot },
+   { { HTML_4_0 }, { HTML_UNDEF }, "urllib", mn_urllib },
+   { { HTML_4_0 }, { HTML_UNDEF }, "validator", mn_validator },
+   { { HTML_4_0 }, { HTML_UNDEF }, "wget", mn_wget },
+   { { HTML_4_0 }, { HTML_UNDEF }, "windows", mn_windows },
+   { { HTML_4_0 }, { HTML_UNDEF }, "yacybot", mn_yacybot },
+   { { HTML_4_0 }, { HTML_UNDEF }, "yandexbot", mn_yandexbot },
+   { { HTML_4_0 }, { HTML_UNDEF }, "yandeximages", mn_yandeximages }
 };
 
 void metaname_init (nitpick& nits)

@@ -22,8 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "simple/type_numeric.h"
 #include "base/type_master.h"
 
-// t_css_font
-
 bool process_css (nitpick& nits, const html_version& v, const ::std::string& s, element* e);
 
 template < > struct type_master < t_css > : public tidy_string < t_css >
@@ -266,7 +264,6 @@ template < > struct type_master < t_css_palette > : public tidy_string < t_css_p
         if (s -> find (x) != s -> cend ()) return false;
         nits.pick (nit_css_keyframes, es_error, ec_css, "@font-palette ", quote (x), " is referenced but not defined");
         return true; } };
-
 
 template < > struct type_master < t_css_unicode_from_to > : public tidy_string < t_css_unicode_from_to >
 {   using tidy_string < t_css_unicode_from_to > :: tidy_string;

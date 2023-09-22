@@ -1236,6 +1236,14 @@ struct symbol_entry < html_version, e_css_overflow > css_overflow_symbol_table [
     { { HTML_CSS }, { HTML_UNDEF }, "scroll", eco_scroll },
     { { HTML_CSS }, { HTML_UNDEF }, "visible", eco_visible } };
 
+struct symbol_entry < html_version, e_css_pause_3_e > css_pause_3_e_symbol_table [] =
+{   { { HTML_CSS, 0, 0, 0, H3_CSS_SPEECH }, { HTML_UNDEF }, "medium", epe_medium },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_SPEECH }, { HTML_UNDEF }, "none", epe_none },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_SPEECH }, { HTML_UNDEF }, "strong", epe_strong },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_SPEECH }, { HTML_UNDEF }, "weak", epe_weak },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_SPEECH }, { HTML_UNDEF }, "x-weak", epe_xweak },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_SPEECH }, { HTML_UNDEF }, "x-strong", epe_xstrong } };
+
 struct symbol_entry < html_version, e_css_pitch_e > css_pitch_e_symbol_table [] =
 {   { { HTML_CSS }, { HTML_UNDEF }, "high", epi_high },
     { { HTML_CSS }, { HTML_UNDEF }, "inherit", epi_inherit },
@@ -1307,6 +1315,7 @@ struct symbol_entry < html_version, e_css_speech_rate_e > css_speech_rate_e_symb
     { { HTML_CSS }, { HTML_UNDEF }, "faster", esr_faster },
     { { HTML_CSS }, { HTML_UNDEF }, "inherit", esr_inherit },
     { { HTML_CSS }, { HTML_UNDEF }, "medium", esr_medium },
+    { { HTML_CSS }, { HTML_UNDEF }, "normal", esr_normal },
     { { HTML_CSS }, { HTML_UNDEF }, "slow", esr_slow },
     { { HTML_CSS }, { HTML_UNDEF }, "slower", esr_slower },
     { { HTML_CSS }, { HTML_UNDEF }, "x-fast", esr_x_fast },
@@ -1378,6 +1387,25 @@ struct symbol_entry < html_version, e_css_text_transform > css_text_transform_sy
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "lowercase", ect_lowercase },
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "none", ect_none },
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "uppercase", ect_uppercase } };
+
+struct symbol_entry < html_version, e_css_textdec_line_e > css_textdec_line_e_symbol_table [] =
+{   { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC_4 }, { HTML_UNDEF }, "grammar-error", ectl_grammar_error },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC }, { HTML_UNDEF }, "none", ectl_none },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC_4 }, { HTML_UNDEF }, "spelling-error", ectl_spelling_error } };
+
+struct symbol_entry < html_version, e_css_textdec_style > css_textdec_style_symbol_table [] =
+{   { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC }, { HTML_UNDEF }, "dashed", ects_dashed },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC }, { HTML_UNDEF }, "dotted", ects_dotted },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC }, { HTML_UNDEF }, "double", ects_double },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC }, { HTML_UNDEF }, "solid", ects_solid },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC }, { HTML_UNDEF }, "wavy", ects_wavy } };
+
+struct symbol_entry < html_version, e_css_textemph_shape > css_textemph_shape_symbol_table [] =
+{   { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC }, { HTML_UNDEF }, "circle", cte_circle },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC }, { HTML_UNDEF }, "dot", cte_dot },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC }, { HTML_UNDEF }, "double-circle", cte_double_circle },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC }, { HTML_UNDEF }, "triangle", cte_triangle },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC }, { HTML_UNDEF }, "sesame", cte_sesame } };
 
 struct symbol_entry < html_version, e_css_user_select > css_user_select_symbol_table [] =
 {   { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "all", ecu_all },
@@ -1468,6 +1496,14 @@ struct symbol_entry < html_version, e_css_visual_box > css_visual_box_symbol_tab
 {   { { HTML_CSS, 0, 0, H2_CSS_BACKGROUND, H3_CSS_BOX_MODEL | H3_CSS_DISPLAY }, { HTML_UNDEF }, "border-box", eccl_border_box },
     { { HTML_CSS, 0, 0, H2_CSS_BACKGROUND, H3_CSS_BOX_MODEL | H3_CSS_DISPLAY }, { HTML_UNDEF }, "content-box", eccl_content_box },
     { { HTML_CSS, 0, 0, H2_CSS_BACKGROUND, H3_CSS_BOX_MODEL | H3_CSS_DISPLAY }, { HTML_UNDEF }, "padding-box", eccl_padding_box } };
+
+// typedef enum { evb_centre, evb_left, evb_leftwards, evb_right, evb_rightwards } e_css_voice_balance_e;
+struct symbol_entry < html_version, e_css_voice_balance_e > css_voice_balance_e_symbol_table [] =
+{   { { HTML_CSS }, { HTML_UNDEF }, "center", evb_centre },
+    { { HTML_CSS }, { HTML_UNDEF }, "left", evb_left },
+    { { HTML_CSS }, { HTML_UNDEF }, "leftwards", evb_leftwards },
+    { { HTML_CSS }, { HTML_UNDEF }, "right", evb_right },
+    { { HTML_CSS }, { HTML_UNDEF }, "rightwards", evb_rightwards } };
 
 struct symbol_entry < html_version, e_css_volume_e > css_volume_e_symbol_table [] =
 {   { { HTML_CSS }, { HTML_UNDEF }, "inherit", cve_inherit },
@@ -2545,9 +2581,11 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-position", nm_context_css_position },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-selector", nm_context_css_selector },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-shape", nm_context_css_shape },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-speech", nm_context_css_speech },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-style", nm_context_css_style },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-syntax", nm_context_css_syntax },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-table", nm_context_css_table },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-text-decoration", nm_context_css_text_decoration },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-transition", nm_context_css_transition },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-ui", nm_context_css_ui },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-value", nm_context_css_value },
@@ -3742,6 +3780,13 @@ struct symbol_entry < html_version, e_step_position > step_position_symbol_table
     { { HTML_UNDEF }, { HTML_UNDEF }, "jump-start", sp_jump_start },
     { { HTML_UNDEF }, { HTML_UNDEF }, "start", sp_start } };
 
+struct symbol_entry < html_version, e_stress > stress_symbol_table [] =
+{   { { HTML_CSS, 0, 0, 0, H3_CSS_SPEECH }, { HTML_UNDEF }, "moderate", str_moderate },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_SPEECH }, { HTML_UNDEF }, "none", str_none },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_SPEECH }, { HTML_UNDEF }, "normal", str_normal },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_SPEECH }, { HTML_UNDEF }, "reduced", str_reduced },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_SPEECH }, { HTML_UNDEF }, "strong", str_strong } };
+
 struct symbol_entry < html_version, e_svg_align > svg_align_symbol_table [] =
 {   { { HTML_SVG10 }, { HTML_UNDEF }, "none", sa_none },
     { { HTML_SVG10 }, { HTML_UNDEF }, "xMinYMin", sa_xmin_ymin },
@@ -3972,6 +4017,7 @@ struct symbol_entry < html_version, e_unit > unit_symbol_table [] =
 {   { { HTML_JAN21 }, { HTML_UNDEF }, "cap", eu_cap },
     { { HTML_JUN19 }, { HTML_UNDEF }, "ch", eu_ch },
     { { HTML_2_0, 0, 0, H2_CSS }, { HTML_UNDEF }, "cm", eu_cm },
+    { { HTML_2_0, 0, 0, 0, H3_CSS_SPEECH }, { HTML_UNDEF }, "db", eu_db },
     { { HTML_2_0, 0, 0, H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "dpcm", eu_dpcm },
     { { HTML_2_0, 0, 0, H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "dpi", eu_dpi },
     { { HTML_2_0, 0, 0, H2_CSS_MEDIA_4 }, { HTML_UNDEF }, "dppx", eu_dppx },
@@ -4465,6 +4511,7 @@ void init_2 ()
     type_master < t_dynamic_range > :: init ();
     type_master < t_e_w > :: init ();
     type_master < t_editable > :: init ();
+    type_master < t_filled_open > :: init ();
     type_master < t_fill_ve > :: init ();
     type_master < t_fillanim > :: init ();
     type_master < t_first_last > :: init ();
@@ -4478,6 +4525,7 @@ void init_2 ()
     type_master < t_js_version > :: init ();
     type_master < t_layout > :: init ();
     type_master < t_lengthadjust > :: init ();
+    type_master < t_literal_or_not > :: init ();
     type_master < t_loading > :: init ();
     type_master < t_lralign > :: init ();
     type_master < t_ltr_rtl > :: init ();
@@ -4496,10 +4544,13 @@ void init_2 ()
     type_master < t_morphology_operator > :: init ();
     type_master < t_n_s > :: init ();
     type_master < t_nav_controls > :: init ();
+    type_master < t_none_objects > :: init ();
+    type_master < t_normal_spell > :: init ();
     type_master < t_notations > :: init ();
     type_master < t_onoff > :: init ();
     type_master < t_orientation > :: init ();
     type_master < t_overlay > :: init ();
+    type_master < t_over_under > :: init ();
     type_master < t_popover > :: init ();
     type_master < t_pri_img_orientation > :: init ();
     type_master < t_prism_fccv > :: init ();
@@ -4540,7 +4591,8 @@ void init_2 ()
     type_master < t_zoompan > :: init (); }
 
 void init_3 ()
-{   type_master < t_aria_live > :: init ();
+{   type_master < t_all_auto_none > :: init ();
+    type_master < t_aria_live > :: init ();
     type_master < t_attributetype > :: init ();
     type_master < t_behaviour > :: init ();
     type_master < t_button > :: init ();
@@ -4558,10 +4610,14 @@ void init_3 ()
     type_master < t_css_empty_cells > :: init ();
     type_master < t_css_flex_wrap > :: init ();
     type_master < t_css_font_kerning > :: init ();
+    type_master < t_css_speak_3 > :: init ();
     type_master < t_css_speak_header > :: init ();
     type_master < t_css_speak_numeral > :: init ();
     type_master < t_css_speak_punctuation > :: init ();
     type_master < t_css_table_layout > :: init ();
+    type_master < t_css_text_orientation > :: init ();
+    type_master < t_css_voice_age > :: init ();
+    type_master < t_css_voice_gender > :: init ();
     type_master < t_csvw_direction > :: init ();
     type_master < t_decoding > :: init ();
     type_master < t_dsc > :: init ();
@@ -4649,7 +4705,8 @@ void init_4 ()
     type_master < t_css_orientation > :: init ();
     type_master < t_css_polar > :: init ();
     type_master < t_css_shape_box > :: init ();
-    type_master < t_css_speak > :: init ();
+    type_master < t_css_speak_2 > :: init ();
+    type_master < t_css_textemph_skip > :: init ();
     type_master < t_css_val_con > :: init ();
     type_master < t_device > :: init ();
     type_master < t_edit > :: init ();
@@ -4763,6 +4820,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (css_list_style_type);
     INIT_ENUM (css_paint_box);
     INIT_ENUM (css_overflow);
+    INIT_ENUM (css_pause_3_e);
     INIT_ENUM (css_pitch_e);
     INIT_ENUM (css_position);
     INIT_ENUM (css_rgb_xyz);
@@ -4777,10 +4835,14 @@ void enum_init (nitpick& nits)
     INIT_ENUM (css_text_align);
     INIT_ENUM (css_text_decoration);
     INIT_ENUM (css_text_transform);
+    INIT_ENUM (css_textdec_line_e);
+    INIT_ENUM (css_textdec_style);
+    INIT_ENUM (css_textemph_shape);
     INIT_ENUM (css_user_select);
     INIT_ENUM (css_val_fn);
     INIT_ENUM (css_vertical_align);
     INIT_ENUM (css_visual_box);
+    INIT_ENUM (css_voice_balance_e);
     INIT_ENUM (css_volume_e);
     INIT_ENUM (css_whitespace);
     INIT_ENUM (css_wide);
@@ -4900,6 +4962,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (ssi_encoding);
     INIT_ENUM (ssi_env);
     INIT_ENUM (step_position);
+    INIT_ENUM (stress);
     INIT_ENUM (svg_align);
     INIT_ENUM (svg_display);
     INIT_ENUM (svg_fontstretch);

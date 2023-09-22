@@ -148,9 +148,14 @@ line, the "no-" switch always applies.
 
 --css.shape X           Use CSS Shapes level X, where X is 0, 3 or 4
 
+--css.speech X          Use CSS Speech level X, where X is 0 or 3
+
 --css.style X           Use CSS Style level X, where X is 0 or 3
 
 --css.syntax X          Use CSS Syntex level X, where X is 0 or 3
+
+--css.text-dec X        Use CSS Text Decoration level X, where X is 0,
+                        3 or 4
 
 --css.transition X      Use CSS Transitions level X, where X is 0 or 3
 

@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.1.34
+version 0.1.35
 (c) 2020-2023 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notice
 https://ssc.lu/
@@ -11,9 +11,9 @@ https://github.com/devongarde/ssc
 ssc analyses static X/HTML snippets, files and sites:
 - HTML living standard, Jan 2005 to Jul 2023
 - HTML 1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3-draft
-- CSS 1/2.0/2.1/2.2 draft Feb 2022, some 3/4/5/6
-- SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x draft Apr 2021
-- MathML 1/2/3/4 draft Jul 2022
+- CSS 1/2.0/2.1/2.2-draft, some 3/4/5/6
+- SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x-draft
+- MathML 1/2/3/4-draft
 - XHTML 1.0/1.1/2.0/5.x
 - finds broken links
 - server side includes, mostly
@@ -56,19 +56,20 @@ To build & run:
 
 
 This is an alpha version of ssc. It may contain unexpected features.
-If you encounter such a delight, please help improve ssc by collecting
-the following information (where relevant):
+If you encounter one, please help improve ssc by collecting the
+following information (where relevant) and forwarding it to the
+developer:
 - version of ssc;
 - precise version of the operating system;
 - hardware architecture and system information;
 - detailed description of the problem;
 - detailed description of the steps to recreate it;
-- copy of output file/s and any relevant logs;
+- copy of output file/s and relevant logs;
 - copy of pages/website being analysed;
 - precise command used;
 - configuration file/s used, if any;
 - any ndx file or other pre-existing file used during the run;
-- any known workarounds or solutions;
+- any known workarounds, fixes or solutions;
 - optionally, a dance interpretation of the 'feature'.
 Email everything to mail@ssc.lu (if the collected files are more than
 small, please use a public fileserver and email the link). Do NOT send

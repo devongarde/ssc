@@ -1,0 +1,24 @@
+﻿a
+{
+  cue-before: url(/audio/bell.aiff) -3dB;
+  cue-after: url(dong.wav);
+}
+
+h1
+{
+  cue-before: url(../clips-1/pop.au) +6dB;
+  cue-after: url(../clips-2/pop.au) 6dB;
+}
+
+div.caution { cue-before: url(./audio/caution.wav) +8dB; }
+
+h1
+{
+  cue-before: url(pop.au);
+  cue-after: url(pop.au);
+}
+/* ...is equivalent to: */
+h1
+{
+  cue: url(pop.au);
+}

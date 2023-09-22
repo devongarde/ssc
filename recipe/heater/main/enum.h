@@ -41,6 +41,7 @@ typedef enum {  ab_afteredge, ab_alphabetic, ab_auto, ab_baseline, ab_beforeedge
                 ab_textbeforeedge, ab_textbottom, ab_texttop, ab_top } e_alignment_baseline;
 typedef enum { ap_centre, ap_indent, ap_justify, ap_left, ap_right } e_alignplus;
 typedef enum { a3_top, a3_middle, a3_bottom, a3_left, a3_right } e_align3;
+typedef enum { aan_all, aan_auto, aan_none } e_all_auto_none;
 typedef enum { at_none, at_angle, at_colour, at_coordinate, at_frequency, at_integer, at_percentage, at_length, at_list, at_number, at_paint, at_time, at_transform, at_url, at_other } e_animation_type;
 typedef enum { ar_initial, ar_medial, at_terminal, at_isolated } e_arabicenum;
 typedef enum { asu_cm, asu_feet, asu_inches, asu_km, asu_m, asu_miles } e_as_units;
@@ -172,6 +173,7 @@ typedef enum
 const e_attribute last_attribute = a_illegal;
 
 typedef enum { an_auto, an_css, an_xml } e_attributetype;
+typedef enum { fch_auto, fch_none } e_auto_none;
 typedef enum { ac4_characters, ec4_default, ac4_none, ac4_sentences, ac4_words } e_autocapitalise;
 
 typedef enum {
@@ -184,10 +186,10 @@ typedef enum {
     aco_url, aco_username, aco_work
 } e_autocomplete;
 
-typedef enum { bsb_baseline, bsb_bottom, bsb_centre, bsb_top, bsb_sub, bsb_super, bsb_inherit } e_baselineshift;
 typedef enum { as_audio, as_document, as_embed, as_fetch, as_font, as_image, as_object, as_script, as_style, as_track, as_video, as_worker } e_as;
 typedef enum { eas_auto, eas_smooth } e_auto_smooth;
 typedef enum { as_auto, as_stable } e_auto_stable;
+typedef enum { bsb_baseline, bsb_bottom, bsb_centre, bsb_top, bsb_sub, bsb_super, bsb_inherit } e_baselineshift;
 typedef enum { be_alternative, be_scroll, be_slide } e_behaviour;
 typedef enum { bk_asp, bk_cdata, bk_code, bk_comment, bk_doctype, bk_node, bk_num, bk_php, bk_ssi, bk_stylesheet, bk_text, bk_xml } bk_status;
 typedef enum { b_true, b_false } e_bool;
@@ -565,6 +567,7 @@ typedef enum { emti_block_end, emti_block_start, emti_inline_end, emti_inline_st
 typedef enum { ecm_crop, ecm_cross } e_css_mark;
 typedef enum { esz_auto, esz_inherit, esz_landscape, esz_portrait } e_css_orientation;
 typedef enum { eco_auto, eco_hidden, eco_inherit, eco_scroll, eco_visible } e_css_overflow;
+typedef enum { epe_medium, epe_none, epe_strong, epe_weak, epe_xweak, epe_xstrong } e_css_pause_3_e;
 typedef enum { ecpb_border_box, ecpb_content_box, ecpb_fill_box, ecpb_padding_box, ecpb_stroke_box } e_css_paint_box;
 typedef enum { epi_high, epi_inherit, epi_low, epi_medium, epi_x_high, epi_x_low } e_css_pitch_e;
 typedef enum { epo_hsl, epo_hwb, epo_lch, epo_oklch } e_css_polar;
@@ -757,12 +760,13 @@ typedef enum { ecz_block, ecz_both, ecz_horizontal, ecz_inherit, ecz_inline, ecz
 typedef enum { ecsp_centre, ecsp_end, ecsp_flex_end, ecsp_flex_start, ecsp_self_end, ecsp_self_start, ecsp_start } e_css_self_position;
 typedef enum { ecsb_border_box, ecsb_content_box, ecsb_margin_box, ecsb_padding_box } e_css_shape_box;
 typedef enum { csfr_evenodd, csfr_nonzero } e_css_shape_fillrule;
-typedef enum { csp_inherit, csp_none, csp_normal, csp_spell_out } e_css_speak;
+typedef enum { csp_inherit, csp_none, csp_normal, csp_spell_out } e_css_speak_2;
+typedef enum { csp_always, csp_auto, csp_never } e_css_speak_3;
 typedef enum { csae_auto, csae_bullets, csae_numbers, csae_spell_out, csae_words } e_css_speak_as_e;
 typedef enum { ecsh_always, ecsh_inherit, ecsh_once } e_css_speak_header;
 typedef enum { ecsn_continuous, ecsn_digits, ecsn_inherit } e_css_speak_numeral;
 typedef enum { ecsp_code, ecsp_inherit, ecsp_none } e_css_speak_punctuation;
-typedef enum { esr_fast, esr_faster, esr_inherit, esr_medium, esr_slow, esr_slower, esr_x_fast, est_x_slow } e_css_speech_rate_e;
+typedef enum { esr_fast, esr_faster, esr_inherit, esr_medium, esr_normal, esr_slow, esr_slower, esr_x_fast, est_x_slow } e_css_speech_rate_e;
 typedef enum {  css_context,
                 css_annotation,
                 css_bottom_centre, css_bottom_left, css_bottom_left_corner, css_bottom_right, css_bottom_right_corner,
@@ -790,6 +794,10 @@ typedef enum { ectd_inherit, ectd_none, ectd_underline, ectd_overline, ectd_line
 typedef enum { ecto_mixed, ecto_sideways, ecto_upright } e_css_text_orientation;
 typedef enum { etr_clip, etr_ellipses } e_css_text_resize;
 typedef enum { ect_inherit, ect_capitalise, ect_lowercase, ect_none, ect_uppercase } e_css_text_transform;
+typedef enum { ectl_grammar_error, ectl_none, ectl_spelling_error } e_css_textdec_line_e;
+typedef enum { ects_dashed, ects_dotted, ects_double, ects_solid, ects_wavy } e_css_textdec_style;
+typedef enum { cte_circle, cte_dot, cte_double_circle, cte_triangle, cte_sesame } e_css_textemph_shape;
+typedef enum { cts_narrow, cts_punctuation, cts_spaces, cts_symbols } e_css_textemph_skip;
 typedef enum {  ct_root, ct_whitespace, ct_comment, // root must be zero, all empty content must precede comment which must precede other values
                 ct_identifier, ct_keyword, ct_number, ct_string, 
                 ct_ampersand, ct_at, ct_bang, ct_bar, ct_barbar, ct_coco, ct_colon, ct_comma, ct_dash, ct_dollar, ct_dot, ct_eq,
@@ -822,6 +830,9 @@ typedef enum {  CSS_VAL_FN } e_css_val_fn;
 typedef enum { css_none, css_1, css_2_0, css_2_1, css_2_2, css_3, css_4, css_5, css_6 } e_css_version;
 typedef enum { ecva_inherit, ecv_baseline, ecv_bottom, ecv_middle, ecv_sub, ecv_super, ecv_text_bottom, ecv_text_top, ecv_top } e_css_vertical_align;
 typedef enum { eccl_border_box, eccl_content_box, eccl_padding_box } e_css_visual_box;
+typedef enum { cva_child, cva_old, cva_young  } e_css_voice_age;
+typedef enum { cvg_female, cvg_male, cvg_neutral  } e_css_voice_gender;
+typedef enum { evb_centre, evb_left, evb_leftwards, evb_right, evb_rightwards } e_css_voice_balance_e;
 typedef enum { cve_inherit, cve_loud, cve_medium, cve_silent, cve_soft, cve_x_loud, cve_x_soft } e_css_volume_e;
 typedef enum { cw_default, cw_inherit, cw_initial, cw_revert, cw_revert_layer, cw_unset } e_css_wide;
 typedef enum { ecwh_inherit, ecwh_normal, ecwh_nowrap, ecwh_pre, ecwh_preline, ecwh_prewrap } e_css_whitespace;
@@ -993,6 +1004,7 @@ typedef enum {  evt_converted, evt_copied, evt_created, evt_cropped, evt_edited,
 typedef enum { eii_r03, eii_r98, eii_thm } e_exif_intind;
 typedef enum { fa_bleedleft, fa_left, fa_centre, fa_right, fa_bleedright, fa_justify } e_figalign;
 typedef enum { fa_freeze, fa_remove } e_fillanim;
+typedef enum { fo_filled, fo_open } e_filled_open;
 typedef enum { fr_nonzero, fr_evenodd, fr_inherit } e_fill_rule;
 typedef enum { fv_strokepaint, fv_fillpaint } e_fill_ve;
 typedef enum { fi_sourcegraphic, fi_sourcealpha, fi_backgroundimage, fi_backgroundalpha, fi_fillpaint, fi_strokepaint } e_filter_in;
@@ -1019,7 +1031,6 @@ typedef enum {
     fc_yellow, fc_yellowgreen,
 } e_fixedcolour;
 
-typedef enum { fch_auto, fch_none } e_auto_none;
 typedef enum { fe_caption, fe_icon, fe_menu, fe_message_box, fe_small_caption, fe_status_bar, fe_inherit } e_font_enum;
 
 typedef enum {  fn_context, fn_serif, fn_sans_serif, fn_cursive, fn_fantasy, fn_monospace,
@@ -1297,6 +1308,7 @@ typedef enum { lc_butt, lc_round, lc_square, lc_inherit } e_linecap;
 typedef enum { lj_miter, lj_round, lj_bevel, lj_inherit } e_linejoin;
 typedef enum { lp_rel, lp_anchor, lp_rev, lp_hreflang, lp_media, lp_title, lp_titlestar, lp_type } e_linkparam;
 typedef enum { li_1, li_a, li_A, li_i, li_I } e_listtype;
+typedef enum { ln_literal_punctuation, ln_no_punctuation } e_literal_or_not;
 typedef enum { b_eager, b_lazy } e_loading;
 typedef enum {  ls_lefttop, ls_stackedrightright, ls_mediumstackedrightright, ls_shortstackedrightright, ls_righttop,
                 ls_leftslashright, ls_leftketbraright, ls_rightequalright, ls_stackedleftleft, ls_stackedleftlinetop } e_longdivstyle;
@@ -1372,126 +1384,156 @@ typedef enum { mi_command, mi_checkbox, mi_radio } e_menuitem;
 typedef enum { mt_context, mt_popup, mt_toolbar } e_menutype;
 typedef enum { md_delete, md_dialogue, md_get, md_post, md_put } e_method;
 
-typedef enum { mn_context,
+typedef enum {
+    mn_context,
 // https://www.w3.org/html/wiki/Elements/meta
-               mn_application, mn_author, mn_description, mn_generator, mn_keywords,
-// HTML 4.01 specification
-               mn_identifier,
-// http://ec.europa.eu/ipg/content/optimise/metadata/annex2_en.htm
-               mn_classification,
-// https://www.metatags.org/
-               mn_copyright,  // despite metatags opinion, I suggest this metaname still has legal relevance
-               // outdated
-               mn_contactCity, mn_contactCountry, mn_contactFaxNumber, mn_contactName, mn_contactNetworkAddress, mn_contactOrganization,
-               mn_contactPhoneNumber, mn_contactStreetAddress1, mn_contactZipcode, mn_creation, mn_distribution,
-               mn_host, mn_host_admin, mn_id, mn_identifier_url, mn_language, mn_linkage, mn_note, mn_operator, mn_presdate,
-               mn_rating, mn_subject, mn_template, mn_version,
-// https://gist.github.com/lancejpollard/1978404
-                // archaic
-                mn_abstract, mn_coverage, mn_og_email, mn_og_phone_number, mn_og_fax_number, mn_og_latitude, mn_og_longitude,
-                mn_og_street_address, mn_og_locality, mn_og_region, mn_og_postal_code, mn_og_country_name, mn_microid,
-                mn_owner, mn_revised, mn_topic, mn_summary, mn_tweetmeme_title,
-// https://wiki.whatwg.org/wiki/MetaExtensions
-               // valid proposals
-               mn_aglsterms_accessmode, mn_aglsterms_accessibility, mn_aglsterms_act, mn_aglsterms_aggregationlevel, mn_aglsterms_allow_search,
-               mn_aglsterms_availability, mn_aglsterms_case, mn_aglsterms_category, mn_aglsterms_datelicensed, mn_aglsterms_documenttype,
-               mn_aglsterms_function, mn_aglsterms_isbasedon, mn_aglsterms_isbasisfor, mn_aglsterms_jurisdiction, mn_aglsterms_mandate,
-               mn_aglsterms_protectivemarking, mn_aglsterms_regulation, mn_aglsterms_servicetype, mn_dcs_dcssta, mn_essaydirectory,
-               mn_flblogauthor, mn_fsdatecreation, mn_fsdatepublish, mn_fsflcontent, mn_fslanguage, mn_fsonsitemap, mn_fspagedescription,
-               mn_fspagename, mn_fssearchable, mn_fssection, mn_fswritertoolpagetype, mn_ie_rm_off, mn_mssmarttagspreventparsing,
-               mn_repostusapikey, mn_resourceloaderdynamicstyles, mn_wt_si_n, mn_wt_si_p, mn_wt_si_x, mn_zoomcategory, mn_zoomdescription,
-               mn_zoomimage, mn_zoompageboost, mn_zoomtitle, mn_zoomwords, mn_alexaverifyid, mn_apple_itunes_app, mn_apple_mobile_web_app_capable,
-               mn_apple_mobile_web_app_status_bar_style, mn_apple_mobile_web_app_title, mn_apple_touch_fullscreen, mn_application_name,
-               mn_application_url, mn_appstore_bundle_id, mn_appstore_developer_url, mn_appstore_store_id, mn_audience, mn_bitcoin,
-               mn_blazerr_secure, mn_blazerr_seo, mn_blazerr_ssl, mn_blazerr_support_id_noncookies, mn_blazerr_support_identifier,
-               mn_bug_blocked, mn_bug_comment, mn_bug_component, mn_bug_product, mn_bug_short_desc, mn_cfia_gdr_activity,
-               mn_cfia_gdr_commodity, mn_cfia_gdr_include, mn_cfia_gdr_program, mn_citation_author, mn_citation_author_email,
-               mn_citation_author_institution, mn_citation_conference_title, mn_citation_date, mn_citation_dissertation_institution,
-               mn_citation_doi, mn_citation_firstpage, mn_citation_fulltext_html_url, mn_citation_isbn, mn_citation_issn, mn_citation_issue,
-               mn_citation_journal_abbrev, mn_citation_journal_title, mn_citation_keywords, mn_citation_language, mn_citation_lastpage,
-               mn_citation_pdf_url, mn_citation_publication_date, mn_citation_publisher, mn_citation_technical_report_institution,
-               mn_citation_technical_report_number, mn_citation_title, mn_citation_volume, mn_collection, mn_colour_scheme, mn_contact, mn_creator,
-               mn_csrf_param, mn_csrf_token, mn_da_anonymiseip, mn_da_contactcompany, mn_da_contactemail, mn_da_contactfirstname,
-               mn_da_contactlastname, mn_da_contactname, mn_da_contacttelephone, mn_da_conversioncurrency, mn_da_conversionid,
-               mn_da_conversionvalue, mn_da_goalcurrency, mn_da_goalid, mn_da_goalvalue, mn_da_interactionselector, mn_da_pagerole,
-               mn_da_pagetaxonomy, mn_da_pagetitle, mn_da_pageversion, mn_da_sessionid, mn_da_userid, mn_date,
+    mn_application, mn_author, mn_description, mn_generator, mn_keywords,
+    // HTML 4.01 specification
+    mn_identifier,
+    // http://ec.europa.eu/ipg/content/optimise/metadata/annex2_en.htm
+    mn_classification,
+    // https://www.metatags.org/
+    mn_copyright,  // despite metatags opinion, I suggest this metaname still has legal relevance
+    // outdated
+    mn_contactCity, mn_contactCountry, mn_contactFaxNumber, mn_contactName, mn_contactNetworkAddress, mn_contactOrganization,
+    mn_contactPhoneNumber, mn_contactStreetAddress1, mn_contactZipcode, mn_creation, mn_distribution,
+    mn_host, mn_host_admin, mn_id, mn_identifier_url, mn_language, mn_linkage, mn_note, mn_operator, mn_presdate,
+    mn_rating, mn_subject, mn_template, mn_version,
+    // https://gist.github.com/lancejpollard/1978404
+    // archaic
+    mn_abstract, mn_coverage, mn_og_email, mn_og_phone_number, mn_og_fax_number, mn_og_latitude, mn_og_longitude,
+    mn_og_street_address, mn_og_locality, mn_og_region, mn_og_postal_code, mn_og_country_name, mn_microid,
+    mn_owner, mn_revised, mn_topic, mn_summary, mn_tweetmeme_title,
+    // https://wiki.whatwg.org/wiki/MetaExtensions
+    // valid proposals
+    mn_aglsterms_accessmode, mn_aglsterms_accessibility, mn_aglsterms_act, mn_aglsterms_aggregationlevel, mn_aglsterms_allow_search,
+    mn_aglsterms_availability, mn_aglsterms_case, mn_aglsterms_category, mn_aglsterms_datelicensed, mn_aglsterms_documenttype,
+    mn_aglsterms_function, mn_aglsterms_isbasedon, mn_aglsterms_isbasisfor, mn_aglsterms_jurisdiction, mn_aglsterms_mandate,
+    mn_aglsterms_protectivemarking, mn_aglsterms_regulation, mn_aglsterms_servicetype, mn_dcs_dcssta, mn_essaydirectory,
+    mn_flblogauthor, mn_fsdatecreation, mn_fsdatepublish, mn_fsflcontent, mn_fslanguage, mn_fsonsitemap, mn_fspagedescription,
+    mn_fspagename, mn_fssearchable, mn_fssection, mn_fswritertoolpagetype, mn_ie_rm_off, mn_mssmarttagspreventparsing,
+    mn_repostusapikey, mn_resourceloaderdynamicstyles, mn_wt_si_n, mn_wt_si_p, mn_wt_si_x, mn_zoomcategory, mn_zoomdescription,
+    mn_zoomimage, mn_zoompageboost, mn_zoomtitle, mn_zoomwords, mn_alexaverifyid, mn_apple_itunes_app, mn_apple_mobile_web_app_capable,
+    mn_apple_mobile_web_app_status_bar_style, mn_apple_mobile_web_app_title, mn_apple_touch_fullscreen, mn_application_name,
+    mn_application_url, mn_appstore_bundle_id, mn_appstore_developer_url, mn_appstore_store_id, mn_audience, mn_bitcoin,
+    mn_blazerr_secure, mn_blazerr_seo, mn_blazerr_ssl, mn_blazerr_support_id_noncookies, mn_blazerr_support_identifier,
+    mn_bug_blocked, mn_bug_comment, mn_bug_component, mn_bug_product, mn_bug_short_desc, mn_cfia_gdr_activity,
+    mn_cfia_gdr_commodity, mn_cfia_gdr_include, mn_cfia_gdr_program, mn_citation_author, mn_citation_author_email,
+    mn_citation_author_institution, mn_citation_conference_title, mn_citation_date, mn_citation_dissertation_institution,
+    mn_citation_doi, mn_citation_firstpage, mn_citation_fulltext_html_url, mn_citation_isbn, mn_citation_issn, mn_citation_issue,
+    mn_citation_journal_abbrev, mn_citation_journal_title, mn_citation_keywords, mn_citation_language, mn_citation_lastpage,
+    mn_citation_pdf_url, mn_citation_publication_date, mn_citation_publisher, mn_citation_technical_report_institution,
+    mn_citation_technical_report_number, mn_citation_title, mn_citation_volume, mn_collection, mn_colour_scheme, mn_contact, mn_creator,
+    mn_csrf_param, mn_csrf_token, mn_da_anonymiseip, mn_da_contactcompany, mn_da_contactemail, mn_da_contactfirstname,
+    mn_da_contactlastname, mn_da_contactname, mn_da_contacttelephone, mn_da_conversioncurrency, mn_da_conversionid,
+    mn_da_conversionvalue, mn_da_goalcurrency, mn_da_goalid, mn_da_goalvalue, mn_da_interactionselector, mn_da_pagerole,
+    mn_da_pagetaxonomy, mn_da_pagetitle, mn_da_pageversion, mn_da_sessionid, mn_da_userid, mn_date,
 
-                // https://en.wikipedia.org/wiki/Dublin_Core
-               mn_dc_contributor, mn_dc_coverage, mn_dc_creator, mn_dc_date, mn_dc_description, mn_dc_format, mn_dc_identifier,
-               mn_dc_language, mn_dc_publisher, mn_dc_relation, mn_dc_rights, mn_dc_source, mn_dc_subject, mn_dc_title, mn_dc_type,
+    // https://en.wikipedia.org/wiki/Dublin_Core
+    mn_dc_contributor, mn_dc_coverage, mn_dc_creator, mn_dc_date, mn_dc_description, mn_dc_format, mn_dc_identifier,
+    mn_dc_language, mn_dc_publisher, mn_dc_relation, mn_dc_rights, mn_dc_source, mn_dc_subject, mn_dc_title, mn_dc_type,
 
-               mn_dcterms_abstract, mn_dcterms_accessrights, mn_dcterms_accrualmethod, mn_dcterms_accrualperiodicity,
-               mn_dcterms_accrualpolicy, mn_dcterms_alternative, mn_dcterms_audience, mn_dcterms_available, mn_dcterms_bibliographiccitation,
-               mn_dcterms_conformsto, mn_dcterms_contributor, mn_dcterms_coverage, mn_dcterms_created, mn_dcterms_creator,
-               mn_dcterms_date, mn_dcterms_dateaccepted, mn_dcterms_datecopyrighted, mn_dcterms_datesubmitted, mn_dcterms_description,
-               mn_dcterms_educationlevel, mn_dcterms_extent, mn_dcterms_format, mn_dcterms_hasformat, mn_dcterms_haspart, mn_dcterms_hasversion,
-               mn_dcterms_identifier, mn_dcterms_instructionalmethod, mn_dcterms_isformatof, mn_dcterms_ispartof, mn_dcterms_isreferencedby,
-               mn_dcterms_isreplacedby, mn_dcterms_isrequiredby, mn_dcterms_isversionof, mn_dcterms_issued, mn_dcterms_language, mn_dcterms_license,
-               mn_dcterms_mediator, mn_dcterms_medium, mn_dcterms_modified, mn_dcterms_provenance, mn_dcterms_publisher, mn_dcterms_references,
-               mn_dcterms_relation, mn_dcterms_replaces, mn_dcterms_requires, mn_dcterms_rights, mn_dcterms_rightsholder, mn_dcterms_source,
-               mn_dcterms_spatial, mn_dcterms_subject, mn_dcterms_tableofcontents, mn_dcterms_temporal, mn_dcterms_title, mn_dcterms_type,
-               mn_dcterms_valid, mn_designer, mn_detectify_verification, mn_entity,
-               mn_fdse_description, mn_fdse_index_as, mn_fdse_keywords, mn_fdse_refresh, mn_fdse_robots, mn_format_detection, mn_format_print,
-               mn_fragment, mn_gcterms_topictaxonomy, mn_geo_a1, mn_geo_a2, mn_geo_a3, mn_geo_country, mn_geo_lmk, mn_geo_placename, mn_geo_position,
-               mn_geo_region, mn_globrix_bathrooms, mn_globrix_bedrooms, mn_globrix_condition, mn_globrix_features, mn_globrix_instruction,
-               mn_globrix_latitude, mn_globrix_longitude, mn_globrix_outsidespace, mn_globrix_parking, mn_globrix_period, mn_globrix_poa,
-               mn_globrix_postcode, mn_globrix_price, mn_globrix_priceproximity, mn_globrix_tenure, mn_globrix_type, mn_globrix_underoffer,
-               mn_go_import, mn_google, mn_google_play_app, mn_google_site_verification,
-               mn_gwt_property, mn_handheldfriendly, mn_icas_datetime, mn_icas_datetime_abbr, mn_icas_datetime_day, mn_icas_datetime_long,
-               mn_icbm, mn_itemsperpage, mn_keywords_not, mn_meta_date, mn_microtip, mn_mobile_agent, mn_mobile_web_app_capable, mn_mobileoptimized,
-               mn_msapplication_tilecolor, mn_msapplication_tileimage, mn_msapplication_config, mn_msapplication_navbutton_color,
-               mn_msapplication_notification, mn_msapplication_square150x150logo, mn_msapplication_square310x310logo,
-               mn_msapplication_square70x70logo, mn_msapplication_starturl, mn_msapplication_tap_highlight, mn_msapplication_task,
-               mn_msapplication_tooltip, mn_msapplication_wide310x150logo, mn_msapplication_window, mn_msvalidate_01, mn_nextgen,
-               mn_nibbler_site_verification, mn_nonfiction, mn_norton_safeweb_site_verification, mn_origin, mn_origin_trials, mn_p_domain_verify, mn_page_version,
-               mn_pingdom, mn_pinterest, mn_prism_alternatetitle, mn_pro, mn_pro_auth, mn_pro_auth_field, mn_pro_auth_fragment,
-               mn_referrer, mn_review_date, mn_revision, mn_revisit_after, mn_rights, mn_rights_standard, mn_robots, mn_rpuplugin,
-               mn_rqid, mn_shareaholic_analytics, mn_shareaholic_article_author, mn_shareaholic_article_author_name,
-               mn_shareaholic_article_modified_time, mn_shareaholic_article_published_time, mn_shareaholic_article_visibility,
-               mn_shareaholic_drupal_version, mn_shareaholic_image, mn_shareaholic_keywords, mn_shareaholic_language, mn_shareaholic_outstreamads,
-               mn_shareaholic_shareable_page, mn_shareaholic_site_id, mn_shareaholic_site_name, mn_shareaholic_url, mn_shareaholic_wp_version,
-               mn_signet_authors, mn_signet_links, mn_skype_toolbar, mn_startindex, mn_startver, mn_subject_datetime, mn_subject_system,
-               mn_theme_colour, mn_thumbnail, mn_topper, mn_topper_major, mn_topper_minor, mn_totalresults, mn_translator, mn_twitter_app_country,
-               mn_twitter_app_id_googleplay, mn_twitter_app_id_ipad, mn_twitter_app_id_iphone, mn_twitter_app_name_googleplay,
-               mn_twitter_app_name_ipad, mn_twitter_app_name_iphone, mn_twitter_app_url_googleplay, mn_twitter_app_url_ipad,
-               mn_twitter_app_url_iphone, mn_twitter_card, mn_twitter_creator, mn_twitter_creator_id, mn_twitter_data1, mn_twitter_data2,
-               mn_twitter_description, mn_twitter_domain, mn_twitter_image, mn_twitter_image0, mn_twitter_image1, mn_twitter_image2,
-               mn_twitter_image3, mn_twitter_image_height, mn_twitter_image_src, mn_twitter_image_width, mn_twitter_label1, mn_twitter_label2,
-               mn_twitter_player, mn_twitter_player_height, mn_twitter_player_stream, mn_twitter_player_stream_content_type,
-               mn_twitter_player_width, mn_twitter_site, mn_twitter_site_id, mn_twitter_title, mn_twitter_url, mn_typemetal_formatprefs,
-               mn_verify_v1, mn_vfb_version, mn_viewport, mn_web_author, mn_witget, mn_wot_verification, mn_wt_ac, mn_wt_ad, mn_wt_cg_n,
-               mn_wt_cg_s, mn_wt_mc_id, mn_wt_sv, mn_wt_ti, mn_y_key, mn_yandex_verification,
-               // invalid proposals
-               mn_blogcatalog, mn_created, mn_expires, mn_fb_admins, mn_fb_page_id, mn_gm_gpx_v, mn_google_translate_customization, mn_og_description,
-               mn_og_image, mn_og_locale, mn_og_site_name, mn_og_title, mn_og_type, mn_og_url, mn_resolutions,
-               // rejected propoals
-               mn_cache, mn_dir_content_pointer, mn_no_email_collection,
-               // http://vancouver-webpages.com/META/metatags.detail.html
-               mn_formatter, mn_vw96_object, mn_dc_chem, mn_searchbc,
-               mn_author_corporate, mn_author_personal, mn_publisher_email, mn_bookmark,
-               mn_ekbu, mn_ekdoctype, mn_ekdocowner, mn_ekdoctech, mn_ekreviewdate, mn_ekarea,
-               mn_cc, mn_alias, mn_content_type, mn_sic87, mn_document, mn_build, mn_resource_type, mn_location,
-               mn_googlebot, mn_contributor, mn_custodian, mn_custodian_contact, mn_custodian_contact_position,
-               mn_east_bounding_coordinate, mn_north_bounding_coordinate, mn_relation, mn_reply_to, mn_south_bounding_coordinate,
-               mn_west_bounding_coordinate,
-               // https://web.archive.org/web/19971018015804/http://www.mathematik.uni-osnabrueck.de/ak-technik/DMVPreprint-Core.html
-               mn_mathdmv_author, mn_mathdmv_title, mn_mathdmv_identifier, mn_mathdmv_pclass, mn_mathdmv_sclass, mn_mathdmv_pacs,
-               mn_mathdmv_cr, mn_mathdmv_subject, mn_mathdmv_keywords, mn_mathdmv_upload, mn_mathdmv_update, mn_mathdmv_objecttype,
-               mn_mathdmv_series, mn_mathdmv_referencejournals, mn_mathdmv_contact, mn_mathdmv_abstract, mn_mathdmv_notes,
-               // https://web.archive.org/web/19991111062508/http://www.htdig.org/meta.html
-               mn_htdig_keywords, mn_htdig_noindex, mn_htdig_email, mn_htdig_notification_date, mn_htdig_email_subject,
-               // WhatWG Jan 2008
-               mn_dns,
-                // https://ogp.me/
-                mn_og_audio, mn_og_determiner, mn_og_locale_alternate, mn_og_video, mn_og_image_url, mn_og_image_secure_url, mn_og_image_type, mn_og_image_width,
-                mn_og_image_height, mn_og_image_alt, mn_og_video_url, mn_og_video_secure_url, mn_og_video_width, mn_og_video_height, mn_og_video_alt,
-                mn_og_audio_url, mn_og_audio_secure_url, mn_og_audio_type, mn_music_album, mn_music_album_disc, mn_music_album_track, mn_music_creator, mn_music_duration,
-                mn_music_musician, mn_music_release_date, mn_music_song, mn_music_song_disc, mn_music_song_track, mn_video_actor, mn_video_actor_role, mn_video_director,
-                mn_video_duration, mn_video_release_date, mn_video_series, mn_video_tag, mn_video_writer, mn_article_author, mn_article_expiration_date,
-                mn_article_modified_time, mn_article_published_time, mn_article_section, mn_article_tag, mn_book_author, mn_book_isbn, mn_book_release_date, mn_book_tag,
-                mn_profile_first_name, mn_profile_gender, mn_profile_last_name, mn_profile_username,
-               // that's it
-               mn_illegal } e_metaname;
+    mn_dcterms_abstract, mn_dcterms_accessrights, mn_dcterms_accrualmethod, mn_dcterms_accrualperiodicity,
+    mn_dcterms_accrualpolicy, mn_dcterms_alternative, mn_dcterms_audience, mn_dcterms_available, mn_dcterms_bibliographiccitation,
+    mn_dcterms_conformsto, mn_dcterms_contributor, mn_dcterms_coverage, mn_dcterms_created, mn_dcterms_creator,
+    mn_dcterms_date, mn_dcterms_dateaccepted, mn_dcterms_datecopyrighted, mn_dcterms_datesubmitted, mn_dcterms_description,
+    mn_dcterms_educationlevel, mn_dcterms_extent, mn_dcterms_format, mn_dcterms_hasformat, mn_dcterms_haspart, mn_dcterms_hasversion,
+    mn_dcterms_identifier, mn_dcterms_instructionalmethod, mn_dcterms_isformatof, mn_dcterms_ispartof, mn_dcterms_isreferencedby,
+    mn_dcterms_isreplacedby, mn_dcterms_isrequiredby, mn_dcterms_isversionof, mn_dcterms_issued, mn_dcterms_language, mn_dcterms_license,
+    mn_dcterms_mediator, mn_dcterms_medium, mn_dcterms_modified, mn_dcterms_provenance, mn_dcterms_publisher, mn_dcterms_references,
+    mn_dcterms_relation, mn_dcterms_replaces, mn_dcterms_requires, mn_dcterms_rights, mn_dcterms_rightsholder, mn_dcterms_source,
+    mn_dcterms_spatial, mn_dcterms_subject, mn_dcterms_tableofcontents, mn_dcterms_temporal, mn_dcterms_title, mn_dcterms_type,
+    mn_dcterms_valid, mn_designer, mn_detectify_verification, mn_entity,
+    mn_fdse_description, mn_fdse_index_as, mn_fdse_keywords, mn_fdse_refresh, mn_fdse_robots, mn_format_detection, mn_format_print,
+    mn_fragment, mn_gcterms_topictaxonomy, mn_geo_a1, mn_geo_a2, mn_geo_a3, mn_geo_country, mn_geo_lmk, mn_geo_placename, mn_geo_position,
+    mn_geo_region, mn_globrix_bathrooms, mn_globrix_bedrooms, mn_globrix_condition, mn_globrix_features, mn_globrix_instruction,
+    mn_globrix_latitude, mn_globrix_longitude, mn_globrix_outsidespace, mn_globrix_parking, mn_globrix_period, mn_globrix_poa,
+    mn_globrix_postcode, mn_globrix_price, mn_globrix_priceproximity, mn_globrix_tenure, mn_globrix_type, mn_globrix_underoffer,
+    mn_go_import, mn_google, mn_google_play_app, mn_google_site_verification,
+    mn_gwt_property, mn_handheldfriendly, mn_icas_datetime, mn_icas_datetime_abbr, mn_icas_datetime_day, mn_icas_datetime_long,
+    mn_icbm, mn_itemsperpage, mn_keywords_not, mn_meta_date, mn_microtip, mn_mobile_agent, mn_mobile_web_app_capable, mn_mobileoptimized,
+    mn_msapplication_tilecolor, mn_msapplication_tileimage, mn_msapplication_config, mn_msapplication_navbutton_color,
+    mn_msapplication_notification, mn_msapplication_square150x150logo, mn_msapplication_square310x310logo,
+    mn_msapplication_square70x70logo, mn_msapplication_starturl, mn_msapplication_tap_highlight, mn_msapplication_task,
+    mn_msapplication_tooltip, mn_msapplication_wide310x150logo, mn_msapplication_window, mn_msvalidate_01, mn_nextgen,
+    mn_nibbler_site_verification, mn_nonfiction, mn_norton_safeweb_site_verification, mn_origin, mn_origin_trials, mn_p_domain_verify, mn_page_version,
+    mn_pingdom, mn_pinterest, mn_prism_alternatetitle, mn_pro, mn_pro_auth, mn_pro_auth_field, mn_pro_auth_fragment,
+    mn_referrer, mn_review_date, mn_revision, mn_revisit_after, mn_rights, mn_rights_standard, mn_robots, mn_rpuplugin,
+    mn_rqid, mn_shareaholic_analytics, mn_shareaholic_article_author, mn_shareaholic_article_author_name,
+    mn_shareaholic_article_modified_time, mn_shareaholic_article_published_time, mn_shareaholic_article_visibility,
+    mn_shareaholic_drupal_version, mn_shareaholic_image, mn_shareaholic_keywords, mn_shareaholic_language, mn_shareaholic_outstreamads,
+    mn_shareaholic_shareable_page, mn_shareaholic_site_id, mn_shareaholic_site_name, mn_shareaholic_url, mn_shareaholic_wp_version,
+    mn_signet_authors, mn_signet_links, mn_skype_toolbar, mn_startindex, mn_startver, mn_subject_datetime, mn_subject_system,
+    mn_theme_colour, mn_thumbnail, mn_topper, mn_topper_major, mn_topper_minor, mn_totalresults, mn_translator, mn_twitter_app_country,
+    mn_twitter_app_id_googleplay, mn_twitter_app_id_ipad, mn_twitter_app_id_iphone, mn_twitter_app_name_googleplay,
+    mn_twitter_app_name_ipad, mn_twitter_app_name_iphone, mn_twitter_app_url_googleplay, mn_twitter_app_url_ipad,
+    mn_twitter_app_url_iphone, mn_twitter_card, mn_twitter_creator, mn_twitter_creator_id, mn_twitter_data1, mn_twitter_data2,
+    mn_twitter_description, mn_twitter_domain, mn_twitter_image, mn_twitter_image0, mn_twitter_image1, mn_twitter_image2,
+    mn_twitter_image3, mn_twitter_image_height, mn_twitter_image_src, mn_twitter_image_width, mn_twitter_label1, mn_twitter_label2,
+    mn_twitter_player, mn_twitter_player_height, mn_twitter_player_stream, mn_twitter_player_stream_content_type,
+    mn_twitter_player_width, mn_twitter_site, mn_twitter_site_id, mn_twitter_title, mn_twitter_url, mn_typemetal_formatprefs,
+    mn_verify_v1, mn_vfb_version, mn_viewport, mn_web_author, mn_witget, mn_wot_verification, mn_wt_ac, mn_wt_ad, mn_wt_cg_n,
+    mn_wt_cg_s, mn_wt_mc_id, mn_wt_sv, mn_wt_ti, mn_y_key, mn_yandex_verification,
+    // invalid proposals
+    mn_blogcatalog, mn_created, mn_expires, mn_fb_admins, mn_fb_page_id, mn_gm_gpx_v, mn_google_translate_customization, mn_og_description,
+    mn_og_image, mn_og_locale, mn_og_site_name, mn_og_title, mn_og_type, mn_og_url, mn_resolutions,
+    // rejected propoals
+    mn_cache, mn_dir_content_pointer, mn_no_email_collection,
+    // http://vancouver-webpages.com/META/metatags.detail.html
+    mn_formatter, mn_vw96_object, mn_dc_chem, mn_searchbc,
+    mn_author_corporate, mn_author_personal, mn_publisher_email, mn_bookmark,
+    mn_ekbu, mn_ekdoctype, mn_ekdocowner, mn_ekdoctech, mn_ekreviewdate, mn_ekarea,
+    mn_cc, mn_alias, mn_content_type, mn_sic87, mn_document, mn_build, mn_resource_type, mn_location,
+    mn_googlebot, mn_contributor, mn_custodian, mn_custodian_contact, mn_custodian_contact_position,
+    mn_east_bounding_coordinate, mn_north_bounding_coordinate, mn_relation, mn_reply_to, mn_south_bounding_coordinate,
+    mn_west_bounding_coordinate,
+    // https://web.archive.org/web/19971018015804/http://www.mathematik.uni-osnabrueck.de/ak-technik/DMVPreprint-Core.html
+    mn_mathdmv_author, mn_mathdmv_title, mn_mathdmv_identifier, mn_mathdmv_pclass, mn_mathdmv_sclass, mn_mathdmv_pacs,
+    mn_mathdmv_cr, mn_mathdmv_subject, mn_mathdmv_keywords, mn_mathdmv_upload, mn_mathdmv_update, mn_mathdmv_objecttype,
+    mn_mathdmv_series, mn_mathdmv_referencejournals, mn_mathdmv_contact, mn_mathdmv_abstract, mn_mathdmv_notes,
+    // https://web.archive.org/web/19991111062508/http://www.htdig.org/meta.html
+    mn_htdig_keywords, mn_htdig_noindex, mn_htdig_email, mn_htdig_notification_date, mn_htdig_email_subject,
+    // WhatWG Jan 2008
+    mn_dns,
+    // https://ogp.me/
+    mn_og_audio, mn_og_determiner, mn_og_locale_alternate, mn_og_video, mn_og_image_url, mn_og_image_secure_url, mn_og_image_type, mn_og_image_width,
+    mn_og_image_height, mn_og_image_alt, mn_og_video_url, mn_og_video_secure_url, mn_og_video_width, mn_og_video_height, mn_og_video_alt,
+    mn_og_audio_url, mn_og_audio_secure_url, mn_og_audio_type, mn_music_album, mn_music_album_disc, mn_music_album_track, mn_music_creator, mn_music_duration,
+    mn_music_musician, mn_music_release_date, mn_music_song, mn_music_song_disc, mn_music_song_track, mn_video_actor, mn_video_actor_role, mn_video_director,
+    mn_video_duration, mn_video_release_date, mn_video_series, mn_video_tag, mn_video_writer, mn_article_author, mn_article_expiration_date,
+    mn_article_modified_time, mn_article_published_time, mn_article_section, mn_article_tag, mn_book_author, mn_book_isbn, mn_book_release_date, mn_book_tag,
+    mn_profile_first_name, mn_profile_gender, mn_profile_last_name, mn_profile_username,
+    // https://www.bing.com/webmasters/help/which-robots-metatags-does-bing-support-5198d240
+    mn_bingbot, mn_msnbot,
+    // https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag
+    mn_googlebot_news, mn_adbots_google,
+    // https://developers.google.com/search/docs/crawling-indexing/overview-google-crawlers
+    mn_googlebot_image, mn_googlebot_video, mn_storebot_google, mn_google_inspection_tool, mn_googleother,
+    // harvested
+    mn_360spider,
+    mn_ahrefsbot, mn_apache_httpclient, mn_applebot, mn_archive_org_bot,
+    mn_baidu, mn_baiduspider, mn_blexbot,
+    mn_cfnetwork, mn_coccoc, mn_core, mn_crawl, mn_curl,
+    mn_dalvik, mn_dataprovider_com, mn_dotbot, mn_duckduckgo_favicons_bot,
+    mn_facebookexternalhit, mn_feed, mn_feedfetcher_google, mn_fetcher, mn_firefox,
+    mn_gigablastopensource, 
+    mn_harvest,
+    mn_infobot,
+    mn_java,
+    mn_konqueror,
+    mn_link, mn_linkdexbot,
+    mn_mail_ru, mn_megaindex_ru, mn_mj12bot, mn_mojeekbot, mn_msie,
+    mn_nautic, mn_nbot, mn_netcraft, mn_netnewswire,
+    mn_obot,
+    mn_python, mn_python_urllib,
+    mn_riddler, mn_rome,
+    mn_seek, mn_semrushbot, mn_seznambot, mn_sitebot, mn_sogou, mn_surdotlybot,
+    mn_urllib,
+    mn_validator,
+    mn_wget, mn_windows,
+    mn_yacybot, mn_yandexbot, mn_yandeximages,          
+    // that's it
+    mn_illegal } e_metaname;
 const e_metaname metaname_first_w3 = mn_application;
 const e_metaname metaname_first_eu = mn_classification;
 const e_metaname metaname_first_outdated = mn_contactCity;
@@ -2221,15 +2263,17 @@ typedef enum
         nm_compile_time, nm_config,
         nm_context_article, nm_context_body, nm_context_build, nm_context_case, nm_context_cgi, nm_context_classic, nm_context_clear,
         nm_context_config, nm_context_copy, nm_context_corpus, nm_context_crosslinks, nm_context_css, nm_context_css_background,
-        nm_context_css_box_align, nm_context_css_box_model, nm_context_css_box_sizing,
-        nm_context_css_animation, nm_context_css_cascade, nm_context_css_colour, nm_context_css_compositing, nm_context_css_cond_rule,
-        nm_context_css_cs, nm_context_css_custom, nm_context_css_display, nm_context_css_ease, nm_context_css_extension, nm_context_css_fbl,
-        nm_context_css_font, nm_context_css_fragmentation, nm_context_css_grid, nm_context_css_image, nm_context_css_media, nm_context_css_multi_column, nm_context_css_namespace,
-        nm_context_css_overflow, nm_context_css_position, nm_context_css_selector, nm_context_css_shape, nm_context_css_style, nm_context_css_syntax, nm_context_css_table,
-        nm_context_css_transition, nm_context_css_ui, nm_context_css_value, nm_context_css_version, nm_context_css_writing_mode, nm_context_custom_elements, nm_context_dc,
-        nm_context_example, nm_context_export_root, nm_context_exports, nm_context_extensions, nm_context_ext_css, nm_context_extra,
-        nm_context_force_version, nm_context_foaf, nm_context_forward, nm_context_fred, nm_context_icu, nm_context_ignore, nm_context_info,
-        nm_context_index, nm_context_jsonld, nm_context_jsonld_extension, nm_context_jsonld_version,
+        nm_context_css_box_align, nm_context_css_box_model, nm_context_css_box_sizing, nm_context_css_animation, nm_context_css_cascade,
+        nm_context_css_colour, nm_context_css_compositing, nm_context_css_cond_rule, nm_context_css_cs, nm_context_css_custom,
+        nm_context_css_display, nm_context_css_ease, nm_context_css_extension, nm_context_css_fbl, nm_context_css_font,
+        nm_context_css_fragmentation, nm_context_css_grid, nm_context_css_image, nm_context_css_media, nm_context_css_multi_column,
+        nm_context_css_namespace, nm_context_css_overflow, nm_context_css_position, nm_context_css_selector, nm_context_css_shape,
+        nm_context_css_speech, nm_context_css_style, nm_context_css_syntax, nm_context_css_table, nm_context_css_transition,
+        nm_context_css_text_decoration,
+        nm_context_css_ui, nm_context_css_value, nm_context_css_version, nm_context_css_writing_mode, nm_context_custom_elements,
+        nm_context_dc, nm_context_example, nm_context_export_root, nm_context_exports, nm_context_extensions, nm_context_ext_css,
+        nm_context_extra, nm_context_force_version, nm_context_foaf, nm_context_forward, nm_context_fred, nm_context_icu,
+        nm_context_ignore, nm_context_info, nm_context_index, nm_context_jsonld, nm_context_jsonld_extension, nm_context_jsonld_version,
         nm_context_lang, nm_context_links, nm_context_local, nm_context_math, nm_context_main, nm_context_max_file_size, nm_context_md_export,
         nm_context_meta, nm_context_mf_export, nm_context_mf_verify, nm_context_mf_version, nm_context_microdata, nm_context_msg,
         nm_context_no_ex_check, nm_context_once, nm_context_output, nm_context_persisted, nm_context_rdfa, nm_context_rdf_version, nm_context_rel,
@@ -2274,6 +2318,8 @@ typedef enum
     ns_update, ns_update_foot, ns_update_head,
     ns_max } e_nit_section;
 
+typedef enum { eno_none, eno_objects } e_none_objects;
+typedef enum { ens_normal, ens_spell_out } e_normal_spell;
 typedef enum { no_dsssl, no_w3c } e_notations;
 typedef enum { nsd_none, nsd_space, nsd_dashed } e_nsd;
 typedef enum { nuf_refurbished, nuf_new, nuf_used } e_nuf;
@@ -2304,6 +2350,7 @@ typedef enum { oo_off, oo_on } e_onoff;
 typedef enum { op_arithmetic, op_atop, op_in, op_out, op_over, op_xor } e_operator;
 typedef enum { or_h, or_v } e_orientation;
 typedef enum { eo_none, eo_top } e_overlay;
+typedef enum { ou_over, ou_under } e_over_under;
 typedef enum { po_270, po_180, po_90, po0, po90, po180, po270 } e_page_orientation;
 typedef enum { pk_bad, pk_none, pk_child, pk_contextfill, pk_contextstroke, pk_currentcolour, pk_inherit, pk_icccolour, pk_url } e_paintkeyword;
 typedef enum { po_normal, po_fill, po_stroke, po_markers } e_paint_order;
@@ -5103,6 +5150,7 @@ typedef enum { s_unset, s_invalid, s_empty, s_good } e_status;
 typedef enum { sp_end, sp_jump_both, sp_jump_end, sp_jump_none, sp_jump_start, sp_start } e_step_position;
 typedef enum { stt_stitch, stt_nostitch } e_stitchtiles;
 typedef enum { sc_keep, sc_discard } e_streamedcontents;
+typedef enum { str_moderate, str_none, str_normal, str_reduced, str_strong } e_stress;
 typedef enum { sov_visible, sov_hidden, sov_scroll, sov_auto, sov_inherit } e_svg_overflow;
 typedef enum { spm_none, spm_dynamic, spm_animated, spm_secure_animated, spm_static, spm_secure_static } e_svg_processing_mode;
 typedef enum { sa_none, sa_xmin_ymin, sa_xmid_ymin, sa_xmax_ymin, sa_xmin_ymid, sa_xmid_ymid, sa_xmax_ymid, sa_xmin_ymax, sa_xmid_ymax, sa_xmax_ymax } e_svg_align;
@@ -5170,13 +5218,13 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_1 \
     t_0_more, t_0_to_1, t_0_to_2, t_0_to_3, t_0_to_4, t_0_to_6, t_0_to_7, t_0_to_8, t_0_to_9, t_0_to_100, t_0_to_150, t_0_to_255, t_0_to_1000, \
     t_10, t_1_to_2, t_1_or_6, t_1_to_7, t_1_to_8, t_1_to_20, t_1_to_99, t_1_more, t_1_more_i, t_10_int, \
-    t_2_to_3, t_2_to_4, t_2_or_6, t_2pt, t_2string, t_2x_integer, t_2x_unsigned, \
+    t_2_to_3, t_2_to_4, t_2_or_6, t_2000_to_50000, t_2pt, t_2string, t_2x_integer, t_2x_unsigned, \
     t_3x_unsigned, t_3x_urational, \
     t_4string, t_4string_ni, t_4x_0_to_6, t_4x_urational, t_4x_unsigned, \
     t_5x_unsigned, \
     t_a_b_c_d, t_a_v, t_about, t_absolute_url, t_accept, t_accrual_method, t_accrual_periodicity, t_accrual_policy, t_accumulate, t_accumulate0, t_accumulate1, \
         t_accumulate2, t_action, t_actiontype, t_actiontype2, t_additive, t_align, t_align2070, t_align3, t_aligndec, t_alignfig, t_alignment_baseline, \
-        t_alignplus, t_all_none, t_angle, t_angle_a, t_angle_ai, t_angle_i, t_angle_n, t_arabicenum, t_arabic_form, t_aria_autocomplete, \
+        t_alignplus, t_all_auto_none, t_all_none, t_angle, t_angle_a, t_angle_ai, t_angle_i, t_angle_n, t_arabicenum, t_arabic_form, t_aria_autocomplete, \
         t_aria_invalidity, t_aria_live, t_aria_sort, t_arxiv, t_as, t_as_units, t_attributename, t_attributetype, t_audio_level, t_autocapitalise, \
         t_autocomplete, t_autocompletes, t_autocompletevaried, t_auto_none, t_auto_smooth, t_auto_stable, \
     t_b64, t_background, t_bandwidth, t_base, t_baselineshift, t_bb, t_beginvalue, t_beginvalues, t_beginvaluelist, t_behaviour, t_blocking, \
@@ -5247,14 +5295,14 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
             t_css_lang, t_css_langs, t_css_layout_box, t_css_length, t_css_length_2, t_css_length_3, t_css_length_twice, t_css_length_a, \
                 t_css_length_a2, t_css_length_ai, t_css_length_amm, t_css_lengths, t_css_lengths_a, t_css_line_height, t_css_list_style, \
                 t_css_list_style_position, t_css_list_style_type, t_css_list_style_type_cs, t_css_local_url, t_css_ls_val, \
-            t_css_margin_break, t_css_margin_trim, t_css_margin_trim_inner, t_css_margins_trim_inner, t_css_margins, t_css_mark, t_css_marks, \
-                t_css_marx, \
+            t_css_margin_break, t_css_margin_trim, t_css_margin_trim_inner, t_css_margins_trim_inner, t_css_margins, t_css_mark, \
+                t_css_marks, t_css_marx, \
             t_css_nth, t_css_nth_oe, \
             t_css_orientation, t_css_outline, t_css_outline_i, t_css_outline_style, t_css_outlines, t_css_overflow, t_css_overflows, \
                 t_css_override_colour, t_css_override_colours, \
-            t_css_palette, t_css_palette_nld, t_css_paint_box, t_css_pause, t_css_pause_i, t_css_pauses, t_css_pitch, t_css_pitch_e, \
-                t_css_place_content, t_css_place_items, t_css_place_self, t_css_play_during, t_css_play_during_mr, t_css_polar, t_css_position, \
-                t_css_property, \
+            t_css_palette, t_css_palette_nld, t_css_paint_box, t_css_pause, t_css_pause_2, t_css_pause_3, t_css_pause_3_e, t_css_pause_i, \
+                t_css_pauses, t_css_pitch, t_css_pitch_e, t_css_place_content, t_css_place_items, t_css_place_self, \
+                t_css_play_during, t_css_play_during_mr, t_css_polar, t_css_position, t_css_property, \
             t_css_range, t_css_range_a, t_css_ranges
 #define SSC_TYPE_5_MAX t_css_ranges
 
@@ -5263,15 +5311,21 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
                 t_css_ref_ornaments, t_css_ref_swash, t_css_ref_styleset, t_css_ref_stylistic, \
                 t_css_relative_size, t_css_resize, t_css_rgb_xyz, \
             t_css_scrollbar_gutter, t_css_self_position, t_css_shape_box, t_css_shape_fillrule, t_css_shape_outside, t_css_shape_position, \
-                t_css_shape_radius, t_css_size, t_css_spacing, t_css_speak, t_css_speak_as, t_css_speak_as_e, t_css_speak_header, \
-                t_css_speak_numeral, t_css_speak_punctuation,  t_css_speech_rate, t_css_speech_rate_e, t_css_src, t_css_src_2, t_css_src_3, \
-                t_css_src_4, t_css_srcs, t_css_statement,  t_css_sym, t_css_system, t_css_system_e, t_css_system_fix, t_css_system_ext, \
+                t_css_shape_radius, t_css_size, t_css_spacing, t_css_speak, t_css_speak_2, t_css_speak_3, t_css_speak_as, t_css_speak_as_2, \
+                t_css_speak_as_3, t_css_speak_as_e, t_css_speak_header, t_css_speak_numeral, t_css_speak_punctuation, t_css_speech_rate, \
+                t_css_speech_rate_e, t_css_speech_rate_p, t_css_src, t_css_src_2, t_css_src_3, t_css_src_4, t_css_srcs, t_css_statement, \
+                t_css_sym, t_css_system, t_css_system_e, t_css_system_fix, t_css_system_ext, \
             t_css_table_layout, t_css_tech, t_css_text_align, t_css_text_combine_upright, t_css_text_combine_upright_d, \
-                t_css_text_decoration, t_css_text_orientation, t_css_text_resize, t_css_text_shadow, t_css_text_transform, \
+                t_css_text_decoration, t_css_text_decorations, t_css_text_orientation, t_css_text_resize, t_css_text_shadow, \
+                t_css_text_transform, t_css_textdec_line, t_css_textdec_line_e, t_css_textdec_short, t_css_textdec_skip_space, \
+                t_css_textdec_style, t_css_textdec_thickness, t_css_textdec_underline, t_css_textdec_underline_lru, t_css_textdec_underline_offset, \
+                t_css_text_emphasis, t_css_textemph_pos, t_css_textemph_shape, t_css_textemph_skip, t_css_textemph_style, t_css_textemph_substyle, \
                 t_css_track_list, t_css_track_list_auto, t_css_trans_prop, t_css_trans_prop_a, t_css_trans_prop_n, t_css_trans_props, \
                 t_css_trans_props_n, t_css_transition, t_css_transitions, \
             t_css_unicode_from_to, t_css_unicode_range, t_css_unicode_ranges, t_css_unicode_wildcard, t_css_url, t_css_user_select, \
-            t_css_val_con, t_css_val_fn, t_css_var, t_css_vertical_align,  t_css_visual_box, t_css_voice_family, t_css_volume, t_css_volume_e, \
+            t_css_val_con, t_css_val_fn, t_css_var, t_css_vertal, t_css_vertical_align,  t_css_visual_box, t_css_voice_balance, t_css_voice_balance_e, \
+                t_css_voice, t_css_voice_age, t_css_voice_families, t_css_voice_families_p, t_css_voice_family, t_css_voice_family_desc, \
+                t_css_voice_gender, t_css_voice_pitch, t_css_voice_volume, t_css_volume, t_css_volume_e, \
             t_css_wide, t_css_wsc_val, \
             t_css_whitespace, \
         t_csvw_direction, t_curie, t_curie_safe, t_curies, t_currency, t_current_colour_sz, t_cursor, t_cursor_f, t_cursor_i 
@@ -5279,17 +5333,19 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 #define SSC_TYPES_7 \
     t_d, t_dashes, t_data, t_dataformatas, t_datetime, t_datetime_absolute, t_datetime_local, t_datetime_4, t_datetime_5, t_day, t_decalign, \
-        t_decoding, t_defaultaction, t_depth, t_determiner, t_device, t_dingbat, t_dir, t_direction, t_display, t_display_align, \
-        t_dominantbaseline, t_dosh, t_dsc, t_dur, t_dur_repeat, t_duration, t_duration_media, t_dynamic_range, \
+        t_decibel, t_decoding, t_defaultaction, t_depth, t_determiner, t_device, t_digits, t_dingbat, t_dir, t_direction, t_display, \
+        t_display_align, t_dominantbaseline, t_dosh, t_dsc, t_dur, t_dur_repeat, t_duration, t_duration_a, t_duration_media, \
+        t_dynamic_range, \
     t_e_w, t_edgemode, t_edi, t_edit, t_editable, t_effect, t_email, t_emails, t_enable_background, t_enctype, t_end, t_endvaluelist, \
         t_enterkeyhint, t_environment_blending, t_evt_action, t_exif_intind, t_existential, t_expected, \
-    t_featurepolicy, t_figalign, t_filename, t_filesize, t_fill, t_fillanim, t_fill_opacity, t_fill_rule, t_fill_ve, t_filter_in, t_filterres, \
-        t_first_last, t_fixedcolour, t_fixedpoint, t_font, t_font_enum, t_font_family, t_font_families, t_fontname, t_fontnia, t_fontnias, \
-        t_fontsize, t_fontsizeadjust, t_fontstretch, t_fontstretches, t_fontstyle, t_font_synthesis, t_font_synthesis_n, t_fontweight, \
-        t_fontvariant, t_fontvariants, t_font_variant, t_font_variant_2, t_font_variant_2s, t_font_variant_4, t_font_variant_alternatives, \
-        t_font_variant_caps, t_font_variant_east_asians, t_font_variant_east_asian, t_font_variant_emoji, t_font_variant_ligature, \
-        t_font_variant_ligatures, t_font_variant_numeric, t_font_variant_numerics, t_font_variant_position, t_forced_colours, t_form, t_format, \
-        t_formaturi, t_frame, t_frame4, t_framespacing, t_frequency, t_from, \
+    t_featurepolicy, t_figalign, t_filename, t_filesize, t_fill, t_fillanim, t_filled_open, t_fill_opacity, t_fill_rule, t_fill_ve, \
+        t_filter_in, t_filterres, t_first_last, t_fixedcolour, t_fixedpoint, t_font, t_font_enum, t_font_family, t_font_families, \
+        t_fontname, t_fontnia, t_fontnias, t_fontsize, t_fontsizeadjust, t_fontstretch, t_fontstretches, t_fontstyle, t_font_synthesis, \
+        t_font_synthesis_n, t_fontweight, t_fontvariant, t_fontvariants, t_font_variant, t_font_variant_2, t_font_variant_2s, \
+        t_font_variant_4, t_font_variant_alternatives, t_font_variant_caps, t_font_variant_east_asians, t_font_variant_east_asian, \
+        t_font_variant_emoji, t_font_variant_ligature, t_font_variant_ligatures, t_font_variant_numeric, t_font_variant_numerics, \
+        t_font_variant_position, t_forced_colours, t_form, t_format, t_formaturi, t_frame, t_frame4, t_framespacing, t_frequency, \
+        t_frequency_abs, t_from, \
     t_gamut, t_gender, t_generic, t_glyphname, t_glyphnames, t_groupalign
 #define SSC_TYPE_7_MAX t_groupalign
 
@@ -5305,13 +5361,12 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
     t_k_m_n, t_key, t_keygentype, t_keyspline, t_keysplines, t_keytimes, t_keytype, t_kind, \
     t_labfn, t_lang, t_lang_n, t_langq, t_langs, t_langqs, t_larnalign, t_layout, t_lchfn, t_lcralign, t_lcraligns, t_lcrnalign, t_lcrd, t_lcrds, \
         t_lcrdss, t_length, t_length_absolute, t_length_relative, t_lengthadjust, t_linebreak, t_linebreakstyle, t_linecap, t_line_height, \
-        t_linejoin, t_linethickness, t_link, t_linkarg, t_linkargs, t_linkitself, t_linkparam, t_links, t_listtype, t_literal, t_loading, t_localfn, \
-        t_local_url, t_location, t_longdivstyle, t_loop, t_loopie, t_lraalign, t_lralign, t_lrnalign, t_lrnialign, t_lspace
+        t_linejoin, t_linethickness, t_link, t_linkarg, t_linkargs, t_linkitself, t_linkparam, t_links, t_listtype, t_literal, t_literal_or_not, \
+        t_loading, t_localfn, t_local_url, t_location, t_longdivstyle, t_loop, t_loopie, t_lraalign, t_lralign, t_lrnalign, t_lrnialign, t_lspace
 #define SSC_TYPE_8_MAX t_lspace
 
 #define SSC_TYPES_9 \
-    t_m1_to_5, t_m100_to_100, t_m128_to_127, t_m150_to_150, \
-    t_2000_to_50000, \
+    t_m1_to_5, t_m100_to_100, t_m100_to_100r, t_m128_to_127, t_m150_to_150, \
     t_m4_to_4, \
     t_m50_to_100, \
     t_m_t, t_mah, t_marked_up, t_marker, t_markerunits, t_mathalign, t_mathalign_n, t_mathaligns, t_mathclosure, t_mathdisplay, t_mathfontstyle, \
@@ -5324,10 +5379,11 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
         t_mf_class, t_mf_identifier, t_mf_itemtype, t_mf_listing_action, t_mf_listing_actions, t_mf_method, t_mf_reviewtype, t_mf_status, \
         t_mime, t_mimelist, t_mimemodule, t_mimeq, t_mimeqs, t_mimestar, t_minute, t_mode, t_month, t_monthday, t_morphology_operator, t_mql, \
         t_mqls, t_musickey, t_myersbriggs, \
-    t_n_s, t_name, t_nameref, t_namespace, t_namedspace, t_nav_controls, t_navigation, t_negative, t_nit_macro, t_nit_section, t_not_0, t_not_empty, \
-        t_not_neg, t_not_pos, t_notation, t_notations, t_nsd, t_nsds, t_nuf, t_num, \
+    t_n_s, t_name, t_nameref, t_namespace, t_namedspace, t_nav_controls, t_navigation, t_negative, t_nit_macro, t_nit_section, \
+        t_none_objects, t_normal_spell, \
+        t_not_0, t_not_empty, t_not_neg, t_not_pos, t_notation, t_notations, t_nsd, t_nsds, t_nuf, t_num, \
     t_occurence, t_og, t_ogdet, t_ogtype, t_oklabfn, t_oklchfn, t_onetwo, t_onetwothree, t_onoff, t_ontology, t_opacity, t_open, t_operator, \
-        t_order,  t_orientation, t_origin, t_overflow, t_overlay
+        t_order,  t_orientation, t_origin, t_overflow, t_overlay, t_over_under
 #define SSC_TYPE_9_MAX t_overlay
 
 #define SSC_TYPES_10 \
@@ -5349,11 +5405,12 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPE_10_MAX t_rules
 
 #define SSC_TYPES_11 \
-    t_safe_unsafe, t_sandbox, t_sandboxen, t_scan, t_scei, t_scope, t_script, t_scrolling, t_second, t_setback_offset, t_settype, t_severity, t_sex, t_sgml, \
-        t_sha1, t_sha256, t_shadow, t_shape, t_shape3, t_shape4, t_shape7, t_shape_none_uri, t_shape_fn, t_shape_fn_circle, t_shape_fn_ellipse, \
-        t_shape_fn_polygon, t_shape_uri, t_shape_rendering, t_shape_rcp, t_shadowinherit, t_short, t_side, t_size, t_size3, t_sizes, t_sizex, t_slash, \
-        t_smei, t_spacer, t_spacing, t_spreadmethod, t_srcset, t_ssi, t_ssi_comparison, t_ssi_config, t_ssi_echo, t_ssi_encoding, t_ssi_env, t_ssi_f, \
-        t_start, t_startend, t_stitchtiles, t_streamedcontents, t_ssi_include, t_ssi_set, t_ssi_sizefmt, t_step, t_step_position, t_style, \
+    t_safe_unsafe, t_sandbox, t_sandboxen, t_scan, t_scei, t_scope, t_script, t_scrolling, t_second, t_semitone, t_setback_offset, t_settype, \
+        t_severity, t_sex, t_sgml, t_sha1, t_sha256, t_shadow, t_shape, t_shape3, t_shape4, t_shape7, t_shape_none_uri, t_shape_fn, t_shape_fn_circle, \
+        t_shape_fn_ellipse,  t_shape_fn_polygon, t_shape_uri, t_shape_rendering, t_shape_rcp, t_shadowinherit, t_short, t_side, t_size, t_size3, \
+        t_sizes, t_sizex, t_slash,  t_smei, t_spacer, t_spacing, t_spreadmethod, t_srcset, t_ssi, t_ssi_comparison, t_ssi_config, t_ssi_echo, \
+        t_ssi_encoding, t_ssi_env, t_ssi_f, t_ssi_include, t_ssi_set, t_ssi_sizefmt, t_start, t_startend, t_startends, t_step, t_step_position, \
+        t_stitchtiles, t_streamedcontents, t_stress, t_style, \
         t_svg_align, t_svg_baselineshift, t_svg_baseprofile, t_svg_clip, t_svg_colour_profile, t_svg_content, t_svg_direction, t_ltr_rtl, t_svg_display, \
             t_svg_duration, t_svg_feature, t_svg_features, t_svg_fontstretch, t_svg_fontstretch_ff, t_svg_fontstyle, t_svg_fontstyle_ff, t_svg_fontvariant, \
             t_svg_fontvariant_ff, t_svg_fontweight, t_svg_fontweight_ff, t_svg_fontweights, t_svg_host, t_svg_method, t_svg_mode, t_svg_name_iri, \
@@ -5367,10 +5424,10 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPE_11_MAX t_tz
 
 #define SSC_TYPES_12 \
-    t_ugeo, t_uid, t_unicode_bidi, t_unit, t_unit_abs_len, t_unit_abs_per, t_unit_angle, t_unit_angle_per, t_unit_freq, t_unit_freq_per, t_unit_rel_len, \
+    t_ugeo, t_uid, t_under_ff, t_unicode_bidi, t_unit, t_unit_abs_len, t_unit_abs_per, t_unit_angle, t_unit_angle_per, t_unit_freq, t_unit_freq_per, t_unit_rel_len, \
         t_unit_rel_per, t_unit_res, t_unit_res_per, t_unit_time, t_unit_time_per, t_units, t_unsigned, t_unsigned_1_more, t_unsigned_1_more_a, \
         t_unsigned_byte, t_unsigned_short, t_unsigned_1_or_2, t_un_ex, t_unsigned_dosh, t_unsigneds, t_uplr, t_urange, t_urational, t_urationals, \
-        t_urifn, t_urifn_ni, t_urifn_xy, t_url, t_urls, t_urltemplate, \
+        t_urifn, t_urifn_db, t_urifn_ni, t_urifn_xy, t_url, t_urls, t_urltemplate, \
     t_valign, t_valign3, t_valign_tmb, t_value, t_values, t_valuetype, t_valuetype2, t_vector_effect, t_vector_effect_12, t_vector_effect_2, \
         t_vector_effect_20, t_vector_effect_2s, t_version, t_vertical_align, t_vertical_align_enum, t_vgender, t_vid, t_viewportscreen, t_visibility, \
         t_visibility10, t_visibility11, t_vkind, t_vocab, t_vrel, t_vtt, t_vtype, t_vunit, t_vunits, \
@@ -5394,7 +5451,8 @@ typedef enum {
 typedef ::std::vector < e_type > vtype_t;
 
 typedef enum { ub_bidioverride, ub_embed, ub_inherit, ub_isolate, ub_isolate_override, ub_normal, ub_plaintext } e_unicode_bidi;
-typedef enum { eu_cap, eu_ch, eu_cm, eu_dpcm, eu_dpi, eu_dppx, eu_em, eu_ex, eu_ic, eu_in, eu_lh, eu_mm, eu_pc, eu_pt, eu_px, eu_q, eu_rem, eu_rlh, eu_vb, eu_vh, eu_vi, eu_vmin, eu_vmax, eu_vw } e_unit;
+typedef enum {  eu_cap, eu_ch, eu_cm, eu_db, eu_dpcm, eu_dpi, eu_dppx, eu_em, eu_ex, eu_ic, eu_in, eu_lh, eu_mm, eu_pc, eu_pt, eu_px,
+                eu_q, eu_rem, eu_rlh, eu_vb, eu_vh, eu_vi, eu_vmin, eu_vmax, eu_vw } e_unit;
 typedef enum { eua_cm, eus_in, eua_mm, eua_pc, eua_pt, eua_px, eua_q } e_unit_abs_len;
 typedef enum { ean_deg, ean_grad, ean_rad, ean_turn } e_unit_angle;
 typedef enum { euf_hz, euf_khz } e_unit_freq;

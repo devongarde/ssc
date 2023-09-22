@@ -436,6 +436,9 @@ template < > struct type_master < t_m1_to_5 > : type_integer_between < t_m1_to_5
 template < > struct type_master < t_m100_to_100 > : type_integer_between < t_m100_to_100, short, -100, 100 >
 { using  type_integer_between < t_m100_to_100, short, -100, 100 > :: type_integer_between; };
 
+template < > struct type_master < t_m100_to_100r > : type_number_between < t_m100_to_100r, -100, 100 >
+{ using  type_number_between < t_m100_to_100r, -100, 100 > :: type_number_between; };
+
 template < > struct type_master < t_m128_to_127 > : type_integer_between < t_m128_to_127, short, -128, 127 >
 { using  type_integer_between < t_m128_to_127, short, -128, 127 > :: type_integer_between; };
 

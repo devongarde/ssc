@@ -261,7 +261,7 @@ html_version bracs_ket::parse (const ::std::string& content)
         {   nits.pick (nit_all, es_all, ec_parser, "\\\\ ", linelog);
             linelog.clear (); }
         ++ll;
-        if ((ll > 254) && (res.mjr () < 4) && (! ll_warned))
+        if ((ll > 254) && (res.mjr () < 3) && (! ll_warned))
         {   nits.pick (nit_mosaic_crash, es_warning, ec_parser, "long lines crash older versions of MOSAIC");
             ll_warned = true; }
         if (::std::iswcntrl (ch)) { aftercab = false; continue; }

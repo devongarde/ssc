@@ -60,3 +60,44 @@ template < e_type T > typename type_master < T > :: value_type examine_value (ni
 template < e_type T > e_animation_type grab_animation_type () noexcept
 {   type_master < T > t;
     return t.animation_type (); }
+
+template < flags_t F > struct flagify
+{   static bool accept (const flags_t& v)
+    {   return ((F & v) != NOFLAGS); }
+    static bool reject (const flags_t& v)
+    {   return accept (v); } };  
+
+template < > struct flagify < NOFLAGS >
+{   static bool accept (const flags_t& )
+    {   return true; }
+    static bool reject (const flags_t& )
+    {   return false; } };  
+
+template < e_type T, flags_t HV, flags_t HE = NOFLAGS, flags_t H2 = NOFLAGS, flags_t H3 = NOFLAGS > struct required : public type_master < T >
+{   using type_master < T > :: type_master;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s, const ::std::string& burble)
+    {   if (flagify < HV > :: accept (v.flags ()) &&    
+            flagify < HE > :: accept (v.ext ()) &&     
+            flagify < H2 > :: accept (v.ext2 ()) &&     
+            flagify < H3 > :: accept (v.ext3 ()))
+                type_master < T > :: set_value (nits, v, s);
+        else
+        {   nits.pick (nit_version, es_error, ec_type, burble);
+            type_master < T > status (s_invalid); } } };
+
+template < e_type T, flags_t HV, flags_t HE = NOFLAGS, flags_t H2 = NOFLAGS, flags_t H3 = NOFLAGS > struct barred : public type_master < T >
+{   using type_master < T > :: type_master;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s, const ::std::string& burble)
+    {   if (flagify < HV > :: reject (v.flags ()) ||    
+            flagify < HE > :: reject (v.ext ()) ||     
+            flagify < H2 > :: reject (v.ext2 ()) ||     
+            flagify < H3 > :: reject (v.ext3 ()))
+        {   nits.pick (nit_version, es_error, ec_type, burble);
+            type_master < T > status (s_invalid); } 
+        else type_master < T > :: set_value (nits, v, s); } };
+
+template < e_type T, flags_t H2, flags_t H3 > struct css_req : public required < T, NOFLAGS, NOFLAGS, H2, H3 >
+{   using required < T, NOFLAGS, NOFLAGS, H2, H3 > :: required; };
+
+template < e_type T, flags_t H2, flags_t H3 > struct css_bar : public barred < T, NOFLAGS, NOFLAGS, H2, H3 >
+{   using barred < T, NOFLAGS, NOFLAGS, H2, H3 > :: barred; };

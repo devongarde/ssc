@@ -371,6 +371,21 @@ template < > struct type_master < t_regex > : public tidy_string < t_regex >
         else if (verify_pattern (nits, v, tidy_string < t_regex > :: get_string ())) return;
         string_value < t_regex > :: status (s_invalid); } };
 
+template < > struct type_master < t_semitone > : type_master < t_real >
+{   using type_master < t_real > :: type_master;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   ::std::string ss (trim_the_lot_off (s));
+        if (! ends_with_letters (v, ss, "st"))
+            nits.pick (nit_bad_frequency, ed_svg_1_1, "4.2 Basic data types", es_error, ec_type, quote (s), " contains unexpected characters (semitone end with 'st')");
+        else if (v.css_speech () < 3)
+            nits.pick (nit_bad_frequency, es_error, ec_type, "semitones require CSS Speech 3 or better");
+        else if (ss.length () <= 2)
+            nits.pick (nit_bad_frequency, es_error, ec_type, "semitones value missing");
+        else
+        {   type_master < t_real > :: set_value (nits, v, ss.substr (0, ss.length () - 2));
+            if (good ()) return; }
+        type_master < t_real > :: status (s_invalid); } };
+
 template < > struct type_master < t_sym > : public tidy_string < t_sym >
 {   using tidy_string < t_sym > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& ss)

@@ -187,7 +187,7 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT, class LC >
             {   v.check_math_svg (nits, f, name ());
                 nits.pick (nit_wrong_version, es_error, ec_type, quote (s), " is invalid here in ", v.report ()); }
             else if (! v.is_css_compatible (f.ext2 (), f.ext3 ()))
-                nits.pick (nit_css_version, es_error, ec_type, quote (s), " is invalid here, but is valid with, for example, CSS ", f.long_css_version_name ());
+                nits.pick (nit_css_version, es_error, ec_type, quote (s), " is invalid here, but valid with, for example, CSS ", f.long_css_version_name ());
             else if (f.reject ())
                 nits.pick (nit_rejected, es_error, ec_type, quote (s), " is valid but incompatible with ", v.report ());
             else if (f.out_of_scope ())
@@ -408,6 +408,9 @@ template < > struct type_master < t_css_overflow > : enum_n < t_css_overflow, e_
 template < > struct type_master < t_css_paint_box > : enum_n < t_css_paint_box, e_css_paint_box >
 { using enum_n < t_css_paint_box, e_css_paint_box > :: enum_n; };
 
+template < > struct type_master < t_css_pause_3_e > : enum_n < t_css_pause_3_e, e_css_pause_3_e >
+{ using enum_n < t_css_pause_3_e, e_css_pause_3_e > :: enum_n; };
+
 template < > struct type_master < t_css_pitch_e > : enum_n < t_css_pitch_e, e_css_pitch_e >
 { using enum_n < t_css_pitch_e, e_css_pitch_e > :: enum_n; };
 
@@ -453,6 +456,15 @@ template < > struct type_master < t_css_text_decoration > : enum_n < t_css_text_
 template < > struct type_master < t_css_text_transform > : enum_n < t_css_text_transform, e_css_text_transform >
 { using enum_n < t_css_text_transform, e_css_text_transform > :: enum_n; };
 
+template < > struct type_master < t_css_textdec_line_e > : enum_n < t_css_textdec_line_e, e_css_textdec_line_e >
+{ using enum_n < t_css_textdec_line_e, e_css_textdec_line_e > :: enum_n; };
+
+template < > struct type_master < t_css_textdec_style > : enum_n < t_css_textdec_style, e_css_textdec_style >
+{ using enum_n < t_css_textdec_style, e_css_textdec_style > :: enum_n; };
+
+template < > struct type_master < t_css_textemph_shape > : enum_n < t_css_textemph_shape, e_css_textemph_shape >
+{ using enum_n < t_css_textemph_shape, e_css_textemph_shape > :: enum_n; };
+
 template < > struct type_master < t_css_user_select > : enum_n < t_css_user_select, e_css_user_select >
 { using enum_n < t_css_user_select, e_css_user_select > :: enum_n; };
 
@@ -464,6 +476,9 @@ template < > struct type_master < t_css_vertical_align > : enum_n < t_css_vertic
 
 template < > struct type_master < t_css_visual_box > : enum_n < t_css_visual_box, e_css_visual_box >
 { using enum_n < t_css_visual_box, e_css_visual_box > :: enum_n; };
+
+template < > struct type_master < t_css_voice_balance_e > : enum_n < t_css_voice_balance_e, e_css_voice_balance_e >
+{ using enum_n < t_css_voice_balance_e, e_css_voice_balance_e > :: enum_n; };
 
 template < > struct type_master < t_css_volume_e > : enum_n < t_css_volume_e, e_css_volume_e >
 { using enum_n < t_css_volume_e, e_css_volume_e > :: enum_n; };
@@ -842,6 +857,9 @@ template < > struct type_master < t_ssi_encoding > : enum_n < t_ssi_encoding, e_
 
 template < > struct type_master < t_ssi_env > : enum_n < t_ssi_env, e_ssi_env >
 { using enum_n < t_ssi_env, e_ssi_env > :: enum_n; };
+
+template < > struct type_master < t_stress > : enum_n < t_stress, e_stress >
+{ using enum_n < t_stress, e_stress > :: enum_n; };
 
 template < > struct type_master < t_svg_align > : enum_n < t_svg_align, e_svg_align >
 { using enum_n < t_svg_align, e_svg_align > :: enum_n; };
