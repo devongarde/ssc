@@ -50,6 +50,9 @@ public:
     ::std::size_t type () const noexcept
     {   return static_cast < ::std::size_t > (get ()); } };
 
+template < > struct type_master < t_all_auto_none > : three_value < t_all_auto_none, e_all_auto_none, sz_all, sz_auto, sz_none >
+{ using three_value < t_all_auto_none, e_all_auto_none, sz_all, sz_auto, sz_none > :: three_value; };
+
 template < > struct type_master < t_aria_live > : three_value < t_aria_live, e_aria_live, sz_assertive, sz_off, sz_polite >
 { using three_value < t_aria_live, e_aria_live, sz_assertive, sz_off, sz_polite > :: three_value; };
 
@@ -107,6 +110,9 @@ template < > struct type_master < t_css_font_kerning > : three_value < t_css_fon
 template < > struct type_master < t_css_margin_break > : three_value < t_css_margin_break, e_css_margin_break, sz_auto, sz_discard, sz_keep >
 { using three_value < t_css_margin_break, e_css_margin_break, sz_auto, sz_discard, sz_keep > :: three_value; };
 
+template < > struct type_master < t_css_speak_3 > : three_value < t_css_speak_3, e_css_speak_3, sz_always, sz_auto, sz_never >
+{ using three_value < t_css_speak_3, e_css_speak_3, sz_always, sz_auto, sz_never > :: three_value; };
+
 template < > struct type_master < t_css_speak_header > : three_value < t_css_speak_header, e_css_speak_header, sz_always, sz_inherit, sz_once >
 { using three_value < t_css_speak_header, e_css_speak_header, sz_always, sz_inherit, sz_once > :: three_value; };
 
@@ -121,6 +127,12 @@ template < > struct type_master < t_css_table_layout > : three_value < t_css_tab
 
 template < > struct type_master < t_css_text_orientation > : three_value < t_css_text_orientation, e_css_text_orientation, sz_mixed, sz_sideways, sz_upright >
 { using three_value < t_css_text_orientation, e_css_text_orientation, sz_mixed, sz_sideways, sz_upright > :: three_value; };
+
+template < > struct type_master < t_css_voice_age > : three_value < t_css_voice_age, e_css_voice_age, sz_child, sz_old, sz_young >
+{ using three_value < t_css_voice_age, e_css_voice_age, sz_child, sz_old, sz_young > :: three_value; };
+
+template < > struct type_master < t_css_voice_gender > : three_value < t_css_voice_gender, e_css_voice_gender, sz_female, sz_male, sz_neutral >
+{ using three_value < t_css_voice_gender, e_css_voice_gender, sz_female, sz_male, sz_neutral > :: three_value; };
 
 template < > struct type_master < t_csvw_direction > : three_value < t_csvw_direction, e_csvw_direction, sz_ltr, sz_rtl, sz_auto >
 { using three_value < t_csvw_direction, e_csvw_direction, sz_ltr, sz_rtl, sz_auto > :: three_value; };
@@ -143,7 +155,6 @@ template < > struct type_master < t_enctype > : three_value < t_enctype, e_encty
 template < > struct type_master < t_environment_blending > : three_value < t_environment_blending, e_environment_blending, sz_additive, sz_opaque, sz_subtractive >
 { using three_value < t_environment_blending, e_environment_blending, sz_additive, sz_opaque, sz_subtractive > :: three_value; };
 
-// typedef enum { eii_r03, eii_r98, eii_thm } e_exif_intind;
 template < > struct type_master < t_exif_intind > : three_value < t_exif_intind, e_exif_intind, sz_r03, sz_r98, sz_thm >
 { using three_value < t_exif_intind, e_exif_intind, sz_r03, sz_r98, sz_thm > :: three_value; };
 

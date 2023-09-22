@@ -1,0 +1,9 @@
+﻿/* This replaces the content of the selected element
+by the string "World Wide Web Consortium". */
+abbr { content: attr(title); }
+
+.hamlet { content: url(./audio/gielgud.wav); }
+
+ul::before { content: "Start list: "; }
+ul::after  { content: "List end. "; }
+li::before { content: "List item: "; }

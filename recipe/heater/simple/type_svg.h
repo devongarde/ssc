@@ -245,10 +245,12 @@ template < > struct type_master < t_frequency > : type_master < t_real >
     {   ::std::string ss (trim_the_lot_off (s));
         if (! ends_with_letters (v, ss, "kHz") && ! ends_with_letters (v, ss, "Hz"))
             nits.pick (nit_bad_frequency, ed_svg_1_1, "4.2 Basic data types", es_error, ec_type, quote (s), " contains unexpected characters (units are 'kHz' or 'Hz')");
-        else if (v.svg () < sv_1_1)
-            nits.pick (nit_bad_frequency, es_error, ec_type, "frequencies require SVG 1.1 or better.");
+        else if ((v.svg () < sv_1_1) && (v.css_speech () < 3))
+            nits.pick (nit_bad_frequency, es_error, ec_type, "frequencies require SVG 1.1 or better, or CSS Speech 3 or better.");
         else
-        {   type_master < t_real > :: set_value (nits, v, s);
+        {   const ::std::string::size_type pos = ss.find_first_not_of (REAL);
+            PRESUME (pos != ::std::string::npos, __FILE__, __LINE__);
+            type_master < t_real > :: set_value (nits, v, ss.substr (0, pos));
             if (good ()) return; }
         type_master < t_real > :: status (s_invalid); } };
 

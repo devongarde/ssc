@@ -532,6 +532,22 @@ template < e_type T, e_type P > struct type_or_null : tidy_string < T >
             if (test_value < P > (nits, v, ss, tidy_string < T > :: id ())) return; }
         tidy_string < T > :: status (s_invalid); } };
 
+template < e_type T, e_type N, class SZ, bool REQ > struct type_number_unit : type_master < N >
+{   using type_master < N > :: type_master;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   ::std::string ss (trim_the_lot_off (s));
+        if (ss.empty ())
+            nits.pick (nit_empty, es_error, ec_type, "a number with units expected (", type_name (T), ")");
+        else
+        {   const ::std::size_t len = strlen (SZ::sz ());
+            if (len < ss.length ())
+                if (compare_complain (nits, v, ss.substr (ss.length () - len), SZ::sz ()))
+                {   ss = ss.substr (0, ss.length () - len);
+                    type_master < N > :: set_value (nits, v, ss);
+                    return; }
+            nits.pick (nit_bad_units, es_error, ec_type, "Expecting '", SZ::sz (), "' units"); }
+        type_master < N > :: status (s_invalid); } };
+
 // would be better with various unit types and a concatenated type
 template < e_type T, e_type N, class SZ1, class SZ2 > struct type_number_unit_2 : type_master < N >
 {   using type_master < N > :: type_master;

@@ -1,0 +1,96 @@
+﻿.pfft
+{   voice-family: john/doe; /* forward slash character should be escaped */
+    voice-family: john "doe"; /* identifier sequence cannot contain strings */
+    voice-family: john!; /* exclamation mark should be escaped */
+    voice-family: john@doe; /* "at" character should be escaped */
+    voice-family: #john; /* identifier cannot start with hash character */
+    voice-family: john 1st; } /* identifier cannot start with digit */
+
+h1 { voice-family: announcer, old male; }
+p.romeo  { voice-family: romeo, young male; }
+p.juliet { voice-family: juliet, young female; }
+p.mercutio { voice-family: young male; }
+p.tybalt { voice-family: young male; }
+p.nurse { voice-family: amelie; }
+
+body { voice-rate: inherit; } /* the initial value is 'normal'
+                               (the actual speaking rate value
+                               depends on the active voice) */
+
+e1 { voice-rate: +50%; } /* the computed value is
+                          ['normal' and 50%], which will resolve
+                          to the rate corresponding to 'normal'
+                          multiplied by 0.5 (half the speaking rate) */
+
+e2 { voice-rate: fast 120%; } /* the computed value is
+                          ['fast' and 120%], which will resolve
+                          to the rate corresponding to 'fast'
+                          multiplied by 1.2 */
+
+e3 { voice-rate: normal; /* "resets" the speaking rate to the intrinsic voice value,
+                            the computed value is 'normal' (see comment below for actual value) */
+
+     voice-family: "another-voice"; } /* because the voice is different,
+                                      the calculated speaking rate may vary
+                                      compared to "body" (even though the computed
+                                      'voice-rate' value is the same) */
+
+                                      h1 { voice-pitch: 250Hz; } /* positive offset relative to the inherited absolute frequency */
+h1 { voice-pitch: +250Hz; } /* identical to the line above */
+h2 { voice-pitch: +30Hz absolute; } /* not an increment */
+h2 { voice-pitch: absolute 30Hz; } /* identical to the line above */
+h3 { voice-pitch: -20Hz; } /* negative offset (decrement) relative to the inherited absolute frequency */
+h4 { voice-pitch: -20Hz absolute; } /* illegal syntax => value ignored ("absolute" keyword not allowed with negative frequency) */
+h5 { voice-pitch: -3.5st; } /* semitones, negative offset */
+h6 { voice-pitch: 25%; } /* this means "add a quarter of the inherited value, to the inherited value" */
+h6 { voice-pitch: +25%; } /* identical to the line above */
+
+body { voice-range: inherit; } /* the initial value is 'medium'
+                               (the actual frequency value
+                               depends on the current voice) */
+
+e1 { voice-range: +25%; } /* the computed value is
+                          ['medium' + 25%] which resolves
+                          to the frequency corresponding to 'medium'
+                          plus 0.25 times the frequency
+                          corresponding to 'medium' */
+
+e2 { voice-range: +10Hz; } /* the computed value is
+                          [FREQ + 10Hz] where "FREQ" is the absolute frequency
+                          calculated in the "e1" rule above.
+                          */
+
+e3 { voice-range: inherit; /* this could be omitted,
+                           but we explicitly specify it for clarity purposes */
+
+     voice-family: "another-voice"; } /* this voice change would have resulted in
+                              the re-evaluation of the initial 'medium' keyword
+                              inherited by the "body" element
+                              (i.e. conversion from a voice-dependent keyword value
+                              to a concrete, absolute frequency),
+                              but because relative offsets were applied down the style
+                              cascade, the inherited value is actually the frequency
+                              calculated at the "e2" rule above. */
+
+e4 { voice-range: 200Hz absolute; } /* override with an absolute frequency
+                                    which doesn't depend on the current voice */
+
+e5 { voice-range: 2st; } /* the computed value is an absolute frequency,
+                         which is the result of the
+                         calculation: 200Hz + two semitones
+                         (reminder: the actual frequency corresponding to a semitone
+                         depends on the base value to which it applies) */
+
+e6 { voice-range: inherit; /* this could be omitted,
+                           but we explicitly specify it for clarity purposes */
+
+     voice-family: "yet-another-voice"; } /* despite the voice change,
+                              the computed value is the same as
+                              for "e5" (i.e. an absolute frequency value,
+                              independent from the current voice) */
+
+.default-emphasis { voice-stress: normal; }
+.lowered-emphasis { voice-stress: reduced; }
+.removed-emphasis { voice-stress: none; }
+.normal-emphasis { voice-stress: moderate; }
+.huge-emphasis { voice-stress: strong; }

@@ -150,6 +150,9 @@ template < > struct type_master < t_editable > : two_value < t_editable, e_edita
 template < > struct type_master < t_fillanim > : two_value < t_fillanim, e_fillanim, sz_freeze, sz_remove, false >
 { using two_value < t_fillanim, e_fillanim, sz_freeze, sz_remove, false > :: two_value; };
 
+template < > struct type_master < t_filled_open > : two_value < t_filled_open, e_filled_open, sz_filled, sz_open, false >
+{ using two_value < t_filled_open, e_filled_open, sz_filled, sz_open, false > :: two_value; };
+
 template < > struct type_master < t_fill_ve > : two_value < t_fill_ve, e_fill_ve, sz_strokepaint, sz_fillpaint, false >
 { using two_value < t_fill_ve, e_fill_ve, sz_strokepaint, sz_fillpaint, false > :: two_value; };
 
@@ -182,6 +185,9 @@ template < > struct type_master < t_layout > : two_value < t_layout, e_layout, s
 
 template < > struct type_master < t_lengthadjust > : two_value < t_lengthadjust, e_lengthadjust, sz_spacing, sz_spacingandglyphs, false >
 { using two_value < t_lengthadjust, e_lengthadjust, sz_spacing, sz_spacingandglyphs, false > :: two_value; };
+
+template < > struct type_master < t_literal_or_not > : two_value < t_literal_or_not, e_literal_or_not, sz_literal_punctuation, sz_no_punctuation, false >
+{ using two_value < t_literal_or_not, e_literal_or_not, sz_literal_punctuation, sz_no_punctuation, false > :: two_value; };
 
 template < > struct type_master < t_loading > : two_value < t_loading, e_loading, sz_eager, sz_lazy, false >
 { using two_value < t_loading, e_loading, sz_eager, sz_lazy, false > :: two_value; };
@@ -237,6 +243,12 @@ template < > struct type_master < t_n_s > : two_value < t_n_s, e_n_s, sz_n, sz_s
 template < > struct type_master < t_nav_controls > : two_value < t_nav_controls, e_nav_controls, sz_back, sz_none, false >
 { using two_value < t_nav_controls, e_nav_controls, sz_back, sz_none, false > :: two_value; };
 
+template < > struct type_master < t_none_objects > : two_value < t_none_objects, e_none_objects, sz_none, sz_objects, false >
+{ using two_value < t_none_objects, e_none_objects, sz_none, sz_objects, false > :: two_value; };
+
+template < > struct type_master < t_normal_spell > : two_value < t_normal_spell, e_normal_spell, sz_normal, sz_spell_out, false >
+{ using two_value < t_normal_spell, e_normal_spell, sz_normal, sz_spell_out, false > :: two_value; };
+
 template < > struct type_master < t_notations > : two_value < t_notations, e_notations, sz_dsssl, sz_w3c, false >
 { using two_value < t_notations, e_notations, sz_dsssl, sz_w3c, false > :: two_value; };
 
@@ -251,6 +263,9 @@ template < > struct type_master < t_orientation > : two_value < t_orientation, e
 
 template < > struct type_master < t_overlay > : two_value < t_overlay, e_overlay, sz_none, sz_top, false >
 { using two_value < t_overlay, e_overlay, sz_none, sz_top, false > :: two_value; };
+
+template < > struct type_master < t_over_under > : two_value < t_over_under, e_over_under, sz_over, sz_under, false >
+{ using two_value < t_over_under, e_over_under, sz_over, sz_under, false > :: two_value; };
 
 template < > struct type_master < t_popover > : two_value < t_popover, e_popover, sz_auto, sz_manual, true >
 { using two_value < t_popover, e_popover, sz_auto, sz_manual, true > :: two_value; };

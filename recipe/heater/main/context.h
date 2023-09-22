@@ -129,9 +129,11 @@ class context_t
     context_t& css_position (const int n) { version_.css_position (n); mac (nm_context_css_position, n); return *this; }
     context_t& css_selector (const int n) { version_.css_selector (n); mac (nm_context_css_selector, n); return *this; }
     context_t& css_shape (const int n) { version_.css_shape (n); mac (nm_context_css_shape, n); return *this; }
+    context_t& css_speech (const int n) { version_.css_speech (n); mac (nm_context_css_speech, n); return *this; }
     context_t& css_style (const int n) { version_.css_style (n); mac (nm_context_css_style, n); return *this; }
     context_t& css_syntax (const int n) { version_.css_syntax (n); mac (nm_context_css_syntax, n); return *this; }
     context_t& css_table (const int n) { version_.css_table (n); mac (nm_context_css_table, n); return *this; }
+    context_t& css_text_decoration (const int n) { version_.css_text_decoration (n); mac (nm_context_css_text_decoration, n); return *this; }
     context_t& css_transition (const int n) { version_.css_transition (n); mac (nm_context_css_transition, n); return *this; }
     context_t& css_ui (const int n) { version_.css_ui (n); mac (nm_context_css_ui, n); return *this; }
     context_t& css_value (const int n) { version_.css_value (n); mac (nm_context_css_value, n); return *this; }
@@ -333,9 +335,11 @@ public:
     int css_position () { return version_.css_position (); }
     int css_selector () { return version_.css_selector (); }
     int css_shape () { return version_.css_shape (); }
+    int css_speech () { return version_.css_speech (); }
     int css_style () { return version_.css_style (); }
     int css_syntax () { return version_.css_syntax (); }
     int css_table () { return version_.css_table (); }
+    int css_text_decoration () { return version_.css_text_decoration (); }
     int css_transition () { return version_.css_transition (); }
     int css_ui () { return version_.css_ui (); }
     int css_value () { return version_.css_value (); }

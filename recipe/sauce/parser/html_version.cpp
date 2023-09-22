@@ -703,10 +703,12 @@ e_css_version html_version::css_version () const noexcept
     res += subver (b, css_overflow (), "OFl");
     res += subver (b, css_position (), "Pos");
     res += subver (b, css_selector (), "Sel");
-    res += subver (b, css_style (), "Sty");
     res += subver (b, css_shape (), "Shp");
+    res += subver (b, css_speech (), "Spe");
+    res += subver (b, css_style (), "Sty");
     res += subver (b, css_syntax (), "Syn");
     res += subver (b, css_table (), "Tab");
+    res += subver (b, css_text_decoration (), "Txd");
     res += subver (b, css_transition (), "Trn");
     res += subver (b, css_ui (), "UI");
     res += subver (b, css_value (), "Val");
@@ -1131,6 +1133,14 @@ void html_version::css_shape (const int n)
     if (n == 3) set_ext3 (H3_CSS_SHAPE_3);
     else if (n == 4) set_ext3 (H3_CSS_SHAPE_4); }
 
+int html_version::css_speech () const
+{   if (any_ext3 (H3_CSS_SPEECH)) return 3;
+    return 0; }
+
+void html_version::css_speech (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_SPEECH);
+    else reset_ext3 (H3_CSS_SPEECH); }
+
 int html_version::css_style () const
 {   if (any_ext2 (H2_CSS_STYLE)) return 3;
     return 0; }
@@ -1154,6 +1164,16 @@ int html_version::css_table () const
 void html_version::css_table (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_TABLE);
     else reset_ext3 (H3_CSS_TABLE); }
+
+int html_version::css_text_decoration () const
+{   if ((ext3 () & H3_CSS_TEXTDEC_4) == H3_CSS_TEXTDEC_4) return 4;
+    if ((ext3 () & H3_CSS_TEXTDEC_3) == H3_CSS_TEXTDEC_3) return 3;
+    return 0; }
+
+void html_version::css_text_decoration (const int n)
+{   reset_ext3 (H3_CSS_TEXTDEC_MASK);
+    if (n == 4) set_ext3 (H3_CSS_TEXTDEC_34);
+    else if (n == 3) set_ext3 (H3_CSS_TEXTDEC_3); }
 
 int html_version::css_transition () const
 {   if (any_ext3 (H3_CSS_TRANSITION)) return 3;
@@ -1260,9 +1280,11 @@ bool html_version::is_css_compatible (nitpick& nits, const flags_t& f, const fla
         if (css_position () > 0) append (res, " / ", ::std::string ("Positions"));
         if (css_selector () > 0) append (res, " / ", long_level_2 ("Selectors", H2_CSS_SELECTOR_3, H2_CSS_SELECTOR_4));
         if (css_shape () > 0) append (res, " / ", long_level_3 ("Shapes", H3_CSS_SHAPE_3, H3_CSS_SHAPE_4));
+        if (css_speech () > 0) append (res, " / ", ::std::string ("Speech"));
         if (css_style () > 0) append (res, " / ", ::std::string ("Style Attributes"));
         if (css_syntax () > 0) append (res, " / ", ::std::string ("Syntax Module"));
         if (css_table () > 0) append (res, " / ", ::std::string ("Tables"));
+        if (css_text_decoration () > 0) append (res, " / ", long_level_3 ("Text Decoration", H3_CSS_TEXTDEC_3, H3_CSS_TEXTDEC_4));
         if (css_transition () > 0) append (res, " / ", ::std::string ("Transitions"));
         if (css_ui () > 0) append (res, " / ", long_level_2 ("Basic User Interface", H2_CSS_UI_3, H2_CSS_UI_4));
         if (css_value () > 0) append (res, " / ", long_level_2 ("Values and Units", H2_CSS_VALUE_3, H2_CSS_VALUE_4));

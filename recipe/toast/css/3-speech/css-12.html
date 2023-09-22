@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<link rel="stylesheet" type="text/css" media="screen" href="css-12.css">
+<TITLE>CSS speech chapter 12 example</TITLE>
+  </head>
+<body>
+<p class="romeo" xml:lang="en-US">
+  The French text below will be spoken with an English voice:
+  <span style="voice-family: preserve;" xml:lang="fr-FR">Bonjour monsieur !</span>
+
+  The English text below will be spoken with a voice different
+  than that corresponding to the class "romeo"
+  (which is inherited from the "p" parent element):
+  <span style="voice-family: female;">Hello sir!</span>
+</p>
+
+<p>This is a big car.</p>
+<!-- The speech output from the line above is identical to the line below: -->
+<p>This is a <em class="default-emphasis">big</em> car.</p>
+
+<p>This car is <em class="lowered-emphasis">massive</em>!</p>
+<!-- The "em" below is totally de-emphasized, whereas the emphasis in the line above is only reduced: -->
+<p>This car is <em class="removed-emphasis">massive</em>!</p>
+
+<!-- The lines below demonstrate increasing levels of emphasis: -->
+<p>This is a <em class="normal-emphasis">big</em> car!</p>
+<p>This is a <em class="huge-emphasis">big</em> car!!!</p>
+
+</body>
+</html>

@@ -3,6 +3,12 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.35
+- CSS Speech 3
+- CSS Text Decoration 3
+- CSS Text Decoration 4
+- underlying work
+
 0.1.34
 - Fabio 2.1 ontology
 - Prism ontologies, partial
