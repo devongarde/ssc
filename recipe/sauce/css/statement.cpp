@@ -223,7 +223,7 @@ void statement::parse_import (arguments& args, nitpick& nits, const int from, co
                 return; }
             const int child = next_non_whitespace (args.t_, i, to);
             if ((child < 0) || ((args.t_.at (child).t_ != ct_keyword) && (args.t_.at (child).t_ != ct_string) && (args.t_.at (child).t_ != ct_identifier)))
-            {   nits.pick (nit_bad_import, es_error, ec_css, "the argument given to @import url (...) should be a URL");
+            {   nits.pick (nit_bad_import, es_error, ec_css, "the argument given to @import (", tkn_rpt (args.t_.at (child)), ") should be a URL");
                 return; }
             ::std::string wot (args.t_.at (child).val_);
             if ((args.t_.at (child).t_ == ct_keyword) || (args.t_.at (child).t_ == ct_identifier) || (args.t_.at (child).t_ == ct_string))

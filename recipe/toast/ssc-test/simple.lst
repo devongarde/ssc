@@ -1,2 +1,6 @@
-../toast/css/3-textdec/css.spec
-../toast/css/4-textdec/css.spec
+../toast/SVG/1.0/svg.spec
+../toast/SVG/1.1/svg.spec
+../toast/SVG/1.2/svg.spec
+../toast/SVG/1.2-full/svg.spec
+../toast/SVG/2.0/svg.spec
+../toast/SVG/2.1/svg.spec

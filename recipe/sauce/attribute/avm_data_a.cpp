@@ -336,6 +336,7 @@ hav_t havt_area [] =
     { { HTML_2_0, HV_NOT30 | HV_RFC_1980 }, { XHTML_2_0 }, elem_area, a_nohref },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_area, a_onblur },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_area, a_onfocus },
+    { { HTML_4_0, 0, HE_SAFARI }, { XHTML_2_0 }, elem_area, a_onload },
     { { HTML_JAN07, HV_NOT50 | HV_NOT51 | HV_NOT52 }, { HTML_UNDEF }, elem_area, a_ping },
     { { HTML_JAN17 }, { HTML_UNDEF }, elem_area, a_referrerpolicy },
     { { HTML_JAN07 }, { HTML_UNDEF }, elem_area, a_rel },

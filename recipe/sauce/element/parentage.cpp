@@ -199,7 +199,7 @@ parentage parent_table [] =
     { { HTML_1_0 }, { HTML_2_0 }, elem_blockquote, elem_undefined, 0, EF_EMPH },
     { { HTML_PLUS }, { HTML_2_0 }, elem_blockquote, elem_undefined, 0, EF_TEXT | EF_MISC },
     { { HTML_3_0 }, { HTML_3_0 }, elem_blockquote, elem_undefined, 0, EF_3_BODYIN },
-    { { HTML_3_2 }, { HTML_3_2 }, elem_blockquote, elem_undefined, 0, EF_32_BLOCK },
+    { { HTML_3_2 }, { HTML_3_2 }, elem_blockquote, elem_undefined, 0, EF_32_FLOW },
     { { HTML_4_0 }, { XHTML_1_1 }, elem_blockquote, elem_undefined, 0, EF_4_FLOW },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_blockquote, elem_undefined, 0, EF_X2_FLOWLIST },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_blockquote, elem_undefined, 0, EF_5_FLOW },

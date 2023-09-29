@@ -1,9 +1,20 @@
 -N 1 -f ../toast/css/4-writing/css.conf
 
+PASS ../toast/css/4-writing/css-2.css
+0 html
+
 PASS ../toast/css/4-writing/css-3.css
+0 html
 1 namespace_unknown
 
+PASS ../toast/css/4-writing/css-4.css
+0 html
+
+PASS ../toast/css/4-writing/css-5.css
+0 html
+
 PASS ../toast/css/4-writing/css-9.css
+0 html
 7 unrecognised_value
 
 PASS ../toast/css/4-writing/css-2.html

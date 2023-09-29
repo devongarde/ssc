@@ -297,7 +297,7 @@ typedef typed_property < t_generic, ec_hyphenate_limit_lines > prop_hyphenate_li
 typedef typed_property < t_generic, ec_hyphenate_limit_zone > prop_hyphenate_limit_zone;
 typedef typed_property < t_generic, ec_hyphens > prop_hyphens;
 
-typedef typed_property < t_generic, ec_image_orientation > prop_image_orientation;
+typedef typed_property < t_css_image_processing, ec_image_orientation > prop_image_orientation;
 typedef typed_property < t_image_rendering, ec_image_rendering > prop_image_rendering;
 typedef typed_property < t_generic, ec_image_resolution > prop_image_resolution;
 typedef typed_property < t_generic, ec_ime_mode > prop_ime_mode;
@@ -403,8 +403,8 @@ typedef typed_property < t_css_kdb_nav, ec_nav_right > prop_nav_right;
 typedef typed_property < t_css_kdb_nav, ec_nav_up > prop_nav_up;
 typedef typed_property < t_text_2, ec_negative > prop_negative;
 
-typedef typed_property < t_generic, ec_object_fit > prop_object_fit;
-typedef typed_property < t_generic, ec_object_position > prop_object_position;
+typedef typed_property < t_css_object_fit, ec_object_fit > prop_object_fit;
+typedef typed_property < t_css_background_0, ec_object_position > prop_object_position;
 typedef typed_property < t_generic, ec_offset > prop_offset;
 typedef typed_property < t_generic, ec_offset_anchor > prop_offset_anchor;
 typedef typed_property < t_generic, ec_offset_distance > prop_offset_distance;
@@ -649,7 +649,7 @@ typedef typed_property < t_real, ec_units_per_em > prop_units_per_em;
 typedef typed_property < t_css_user_select, ec_user_select > prop_user_select;
 
 typedef typed_property < t_svg_rendering_intent, ec_vector_effect > prop_vector_effect;
-typedef typed_property < t_css_vertical_align, ec_vertical_align > prop_vertical_align;
+typedef typed_property < t_css_vertal, ec_vertical_align > prop_vertical_align;
 typedef typed_property < t_generic, ec_view_timeline > prop_view_timeline;
 typedef typed_property < t_generic, ec_view_timeline_axis > prop_view_timeline_axis;
 typedef typed_property < t_generic, ec_view_timeline_inset > prop_view_timeline_inset;

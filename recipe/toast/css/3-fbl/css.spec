@@ -1,7 +1,20 @@
 -N 1 -f ../toast/css/3-fbl/css.conf
 
+PASS ../toast/css/3-fbl/css-1.css
+0 html
+
+PASS ../toast/css/3-fbl/css-4.css
+0 html
+
+PASS ../toast/css/3-fbl/css-5.css
+0 html
+
 PASS ../toast/css/3-fbl/css-6.css
+0 html
 6 class_microformat_property
+
+PASS ../toast/css/3-fbl/css-8.css
+0 html
 
 PASS ../toast/css/3-fbl/css-1.html
 0 charset_mismatch charset_used charset_invalid

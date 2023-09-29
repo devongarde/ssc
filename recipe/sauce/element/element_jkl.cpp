@@ -95,7 +95,8 @@ void element::examine_li ()
             pick (nit_value_ol, ed_50, "4.4.7 The li element", es_error, ec_element, "<LI> VALUE requires an <OL> parent"); }
 
 void element::examine_link ()
-{   if (node_.version ().mjr () < 4) return;
+{   if (node_.version ().mjr () < 3) return;
+    if ((! context.ie ()) && (node_.version ().mjr () < 4)) return;
     const bool tis5 = node_.version ().is_5 ();
     const bool has_rel = a_.known (a_rel);
     const bool has_property = a_.known (a_property) && context.rdfa ();

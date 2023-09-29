@@ -90,6 +90,9 @@ template < > struct type_master < t_bool > : two_value < t_bool, e_bool, sz_fals
 template < > struct type_master < t_capture > : two_value < t_capture, ev_capture, sz_user, sz_environment, false >
 { using two_value < t_capture, ev_capture, sz_user, sz_environment, false > :: two_value; };
 
+template < > struct type_master < t_circle_ellipse > : two_value < t_circle_ellipse, e_circle_ellipse, sz_circle, sz_ellipse, false >
+{ using two_value < t_circle_ellipse, e_circle_ellipse, sz_circle, sz_ellipse, false > :: two_value; };
+
 template < > struct type_master < t_colour_scheme > : two_value < t_colour_scheme, e_colour_scheme, sz_dark, sz_light, false >
 { using two_value < t_colour_scheme, e_colour_scheme, sz_dark, sz_light, false > :: two_value; };
 

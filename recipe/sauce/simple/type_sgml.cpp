@@ -118,6 +118,8 @@ struct symbol_entry < html_version, e_sgml > doctype_symbol_table [] =
     { { XHTML_1_0, HV_XHTML }, { HTML_UNDEF },  "-//W3C//DTD XHTML 1.0 Transitional//EN", doc_xhtml10_loose },
     { { XHTML_1_0, HV_XHTML }, { HTML_UNDEF },  HTTP_W3 "/TR/xhtml1/DTD/xhtml1-loose.dtd", doc_xhtml10_loose },
     { { XHTML_1_0, HV_XHTML }, { HTML_UNDEF },  HTTPS_W3 "/TR/xhtml1/DTD/xhtml1-loose.dtd", doc_xhtml10_loose },
+    { { XHTML_1_0, HV_XHTML }, { HTML_UNDEF },  HTTP_W3 "/TR/xhtml1/DTD/xhtml1-transitional.dtd", doc_xhtml10_loose_superseded },
+    { { XHTML_1_0, HV_XHTML }, { HTML_UNDEF },  HTTPS_W3 "/TR/xhtml1/DTD/xhtml1-transitional.dtd", doc_xhtml10_loose_superseded },
     { { XHTML_1_0, HV_XHTML }, { HTML_UNDEF },  HTTP_W3 "/TR/xhtml1/DTD/transitional.dtd", doc_xhtml10_loose_superseded },
     { { XHTML_1_0, HV_XHTML }, { HTML_UNDEF },  HTTPS_W3 "/TR/xhtml1/DTD/transitional.dtd", doc_xhtml10_loose_superseded },
     { { XHTML_1_0, HV_XHTML }, { HTML_UNDEF },  "-//W3C//DTD XHTML 1.0 Frameset//EN", doc_xhtml10_frameset },

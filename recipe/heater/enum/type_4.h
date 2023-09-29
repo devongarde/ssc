@@ -123,6 +123,9 @@ template < > struct type_master < t_css_orientation > : four_value < t_css_orien
 template < > struct type_master < t_css_polar > : four_value < t_css_polar, e_css_polar, sz_hsl, sz_hwb, sz_lch, sz_oklch >
 { using four_value < t_css_polar, e_css_polar, sz_hsl, sz_hwb, sz_lch, sz_oklch > :: four_value; };
 
+template < > struct type_master < t_css_radial_size > : four_value < t_css_radial_size, e_css_radial_size, sz_closest_corner, sz_closest_side, sz_farthest_corner, sz_farthest_side >
+{ using four_value < t_css_radial_size, e_css_radial_size, sz_closest_corner, sz_closest_side, sz_farthest_corner, sz_farthest_side > :: four_value; };
+
 template < > struct type_master < t_css_shape_box > : four_value < t_css_shape_box, e_css_shape_box, sz_border_box, sz_content_box, sz_margin_box, sz_padding_box >
 { using four_value < t_css_shape_box, e_css_shape_box, sz_border_box, sz_content_box, sz_margin_box, sz_padding_box > :: four_value; };
 

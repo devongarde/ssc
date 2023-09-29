@@ -122,10 +122,11 @@ template < > struct type_master < t_coords > : tidy_string < t_coords >
                 value_.reserve (csz);
 #endif // FUDDYDUDDY
                 for (auto c : coords)
-                    if (c.find_first_not_of (okch) != ::std::string::npos)
-                    {   nits.pick (nit_bad_coords, es_error, ec_attribute, quote (c), " is not a valid value");
+                {   const ::std::string ss (trim_the_lot_off (c));
+                    if (ss.find_first_not_of (okch) != ::std::string::npos)
+                    {   nits.pick (nit_bad_coords, es_error, ec_attribute, quote (ss), " is not a valid value");
                         whoops = true; }
-                    else value_.push_back (lexical < int > :: cast (c));
+                    else value_.push_back (lexical < int > :: cast (ss)); }
                 if (! whoops)
                     switch (csz)
                     {   case 3 :
@@ -410,7 +411,7 @@ template < > struct type_master < t_target > : public tidy_string < t_target >
 {   using tidy_string < t_target > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_target > :: set_value (nits, v, s);
-        const ::std::string& val = tidy_string < t_target > :: get_string ();
+        const ::std::string& val = ::boost::to_lower_copy (tidy_string < t_target > :: get_string ());
         if (tidy_string < t_target > :: empty ())
             nits.pick (nit_empty, es_error, ec_type, "TARGET requires a value");
         else

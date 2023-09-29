@@ -1,5 +1,8 @@
 -N 1 -f ../toast/css/3-box-sizing/css.conf
 
+PASS ../toast/css/3-box-sizing/css-3.css
+0 html
+
 PASS ../toast/css/3-box-sizing/css-3.html
 2 naughty_lang
 

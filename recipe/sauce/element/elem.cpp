@@ -596,7 +596,7 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "true", elem_true, ns_default, EP_CLOSED, EF_M_CONTENT | EF_M_CONTINPRES },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "tspan", elem_tspan, ns_default, EP_SVG_12_TRANS, EF_SVG_TEXT | EF_SVG2_GRAPH },
     { { HTML_1_0 }, { XHTML_1_1 }, "tt", elem_tt, ns_default, 0, EF_EMPH | EF_FONT | EF_3_FONT | EF_32_FONT | EF_4_FONT },
-    { { HTML_1_0, HV_DEPRECATED4 | HV_NOTX2 }, { HTML_UNDEF }, "u", elem_u, ns_default, 0, EF_EMPH | EF_3_FONT | EF_32_FONT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
+    { { HTML_1_0, HV_DEPRECATED4 | HV_NOTX2 }, { HTML_UNDEF }, "u", elem_u, ns_default, 0, EF_EMPH | EF_3_FONT | EF_32_FONT | EF_4_FONT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_TAGS, HV_DEPRECATED30 }, { HTML_UNDEF }, "ul", elem_ul, ns_default, EP_ONLYELEMENTS | EP_5_DYNAMIC, EF_3_LIST | EF_LL | EF_LIST | EF_32_BLOCK | EF_4_BLOCK | EF_X2_STRUCT | EF_X2_LIST | EF_5_FLOW | EF_5_PALPABLE },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "union", elem_union, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_M_CONTENT },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "uplimit", elem_uplimit, ns_default, 0, EF_M_CONTENT | EF_M_DQ },

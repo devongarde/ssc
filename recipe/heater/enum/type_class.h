@@ -62,10 +62,11 @@ template < > inline void enum_vec < t_class, e_class > :: set_value (nitpick& ni
     vstr_t strs;
     ::std::string sss (trim_the_lot_off (ss));
     ::boost::algorithm::split (strs, sss, ::boost::algorithm::is_any_of (" "), ::boost::algorithm::token_compress_on);
-    if (strs.size () == 0)
-    {   enum_vec_base < e_class, t_class > :: status (s_empty); return; }
+    bool nowt = true;
     for (auto s : strs)
-    {   enum_vec_base < e_class, t_class > :: base_t t (enum_vec_base < e_class, t_class > :: box ());
+    {   if (s.empty ()) continue;
+        nowt = false;
+        enum_vec_base < e_class, t_class > :: base_t t (enum_vec_base < e_class, t_class > :: box ());
         t.set_value (nits, v, s);
         VERIFY_NOT_NULL (box (), __FILE__, __LINE__);
         if (is_whatwg_class (t.get ()))
@@ -76,11 +77,14 @@ template < > inline void enum_vec < t_class, e_class > :: set_value (nitpick& ni
                 if (note_class_usage (box (), s))
                     nits.pick (nit_spotted_css_class, es_comment, ec_css, "CSS class ", quote (s), " recognised");
                 else if (! check_class_spelling (nits, v, s))
-                    nits.pick (nit_unrecognised_value, es_warning, ec_type, "class ", quote (s), " is not mentioned in any CSS style sheet");
+                    nits.pick (nit_unrecognised_value, es_warning, ec_type, "class ", quote (s), " is not mentioned in any valid CSS style sheet");
             t.status (s_good); }
         enum_vec_base < e_class, t_class > :: originals_.push_back (s);
         enum_vec_base < e_class, t_class > :: value_.push_back (t); }
-    type_base < e_class, t_class > :: status (s_good); }
+    if (nowt)
+    {   nits.pick (nit_empty, es_info, ec_attribute, "an empty CLASS attribute is somewhat sarcastic");
+        enum_vec_base < e_class, t_class > :: status (s_empty); }
+    else type_base < e_class, t_class > :: status (s_good); }
 
 struct html_class : enum_n < t_class, e_class >
 {   using enum_n < t_class, e_class > :: enum_n;

@@ -233,6 +233,9 @@ template < > struct type_master < t_css_colour_percent > : type_one_or_both < t_
 template < > struct type_master < t_css_colour_percent_n > : type_or_string < t_css_colour_percent_n, t_css_colour_percent, sz_none >
 { using type_or_string < t_css_colour_percent_n, t_css_colour_percent, sz_none > :: type_or_string; };
 
+template < > struct type_master < t_css_colour_stop_list > : type_at_least_one < t_css_colour_stop_list, sz_comma, t_css_colour_stop >
+{ using type_at_least_one < t_css_colour_stop_list, sz_comma, t_css_colour_stop > :: type_at_least_one; };
+
 template < > struct type_master < t_css_cols > : type_some_of < t_css_cols, sz_space_char, 1, 4, t_css_col >
 { using type_some_of < t_css_cols, sz_space_char, 1, 4, t_css_col > :: type_some_of; };
 
@@ -529,6 +532,9 @@ template < > struct type_master < t_css_rect_ai > : either_type_or_string < t_cs
 
 template < > struct type_master < t_css_scrollbar_gutter > : type_and_maybe_string < t_css_scrollbar_gutter, t_auto_stable, sz_space_char, sz_both_edges >
 { using type_and_maybe_string < t_css_scrollbar_gutter, t_auto_stable, sz_space_char, sz_both_edges > :: type_and_maybe_string; };
+
+template < > struct type_master < t_css_image_processing > : type_either_or < t_css_image_processing, t_css_image_proc_e, t_angle >
+{ using type_either_or < t_css_image_processing, t_css_image_proc_e, t_angle > :: type_either_or; };
 
 template < > struct type_master < t_css_shape_outside > : one_of_three_or_string < t_css_shape_outside, t_css_shape_box, t_url, t_measure, sz_none >
 { using one_of_three_or_string < t_css_shape_outside, t_css_shape_box, t_url, t_measure, sz_none > :: one_of_three_or_string; };

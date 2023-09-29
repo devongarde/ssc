@@ -37,6 +37,7 @@ struct hav_t
     { { MAJOR_FROM, MINOR_FROM, HV_RFC_1942 | HV_RFC_2070 }, { MAJOR_TO, MINOR_TO }, ELEM, a_id }
 
 #define HTML_LANG_ATTRIBUTES(ELEM, MAJOR_TO, MINOR_TO) \
+    { { HTML_2_0, 0, HE_IE }, { HTML_UNDEF }, ELEM, a_direction }, \
     { { HTML_2_0, HV_RFC_1942 | HV_RFC_2070 }, { HTML_2_0 }, ELEM, a_dir }, \
     { { HTML_2_0, HV_RFC_1942 | HV_RFC_2070 }, { MAJOR_TO, MINOR_TO }, ELEM, a_lang }
 
@@ -80,6 +81,7 @@ struct hav_t
     { { MAJOR_FROM, MINOR_FROM, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_lang }
 
 #define HTML4_STANDARD_CI_ATTRIBUTES(ELEM, MAJOR_FROM, MINOR_FROM) \
+    { { HTML_3_2, 0, HE_IE | HE_NOT_SVG_10_11 }, { HTML_UNDEF }, ELEM, a_class }, \
     { { MAJOR_FROM, MINOR_FROM, 0, HE_NOT_SVG_10_11 }, { HTML_UNDEF }, ELEM, a_class }, \
     { { MAJOR_FROM, MINOR_FROM, 0, HE_NOT_SVG_10_11 }, { HTML_UNDEF }, ELEM, a_class }, \
     { { MAJOR_FROM, MINOR_FROM }, { HTML_UNDEF }, ELEM, a_id }
@@ -912,6 +914,8 @@ struct hav_t
 
 #define HTML4_STANDARD_CIS_ATTRIBUTES(ELEM, MAJOR_FROM, MINOR_FROM) \
     HTML4_STANDARD_CI_ATTRIBUTES (ELEM, MAJOR_FROM, MINOR_FROM), \
+    { { HTML_3_2, 0, HE_IE | HE_NOT_SVG_12 }, { HTML_UNDEF }, ELEM, a_onclick }, \
+    { { HTML_3_2, 0, HE_IE | HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_style }, \
     { { MAJOR_FROM, MINOR_FROM, HV_NOTPROD, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_style }
 
 #define HTML4_STANDARD_CIST_ATTRIBUTES(ELEM, MAJOR_FROM, MINOR_FROM) \

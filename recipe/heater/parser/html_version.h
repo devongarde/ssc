@@ -491,9 +491,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H3_CSS_TEXTDEC      H3_CSS_TEXTDEC_34  
 #define H3_CSS_TEXTDEC_MASK H3_CSS_TEXTDEC
 
+#define H3_CSS_TRANSFORM_3    0x0000000000200000
+#define H3_CSS_TRANSFORM_4    0x0000000000400000
+#define H3_CSS_TRANSFORM_34 ( H3_CSS_TRANSFORM_3 | H3_CSS_TRANSFORM_4 )  
+#define H3_CSS_TRANSFORM      H3_CSS_TRANSFORM_34  
+#define H3_CSS_TRANSFORM_MASK H3_CSS_TRANSFORM
+
 #define H3_CSS_3          ( H3_CSS_BOX_ALIGN | H3_CSS_BOX_MODEL_3 | H3_CSS_BOX_SIZING | H3_CSS_DISPLAY | H3_CSS_GRID_3 | H3_CSS_IMAGE_3 | H3_CSS_MULTI_COL | H3_CSS_OVERFLOW | H3_CSS_POSITION | \
-                            H3_CSS_SHAPE_3 | H3_CSS_SPEECH | H3_CSS_TABLE | H3_CSS_TEXTDEC_3 | H3_CSS_TRANSITION | H3_CSS_WRITING_3 )
-#define H3_CSS_4          ( H3_CSS_BOX_MODEL_4 | H3_CSS_GRID_4 | H3_CSS_IMAGE_4 | H3_CSS_SHAPE_4 | H3_CSS_TEXTDEC_4 | H3_CSS_WRITING_4 )
+                            H3_CSS_SHAPE_3 | H3_CSS_SPEECH | H3_CSS_TABLE | H3_CSS_TEXTDEC_3 | H3_CSS_TRANSFORM_3 | H3_CSS_TRANSITION | H3_CSS_WRITING_3 )
+#define H3_CSS_4          ( H3_CSS_BOX_MODEL_4 | H3_CSS_GRID_4 | H3_CSS_IMAGE_4 | H3_CSS_SHAPE_4 | H3_CSS_TEXTDEC_4 | H3_CSS_TRANSFORM_3 | H3_CSS_WRITING_4 )
 #define H3_CSS_5            0
 #define H3_CSS_6            0
   
@@ -512,7 +518,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H3_CSS_MASK       H3_CSS_ALL
 #define H3_CSS            H3_CSS_ALL
 
-#define H3_FULL_CSS_MASK    0x00000000001FFFFF
+#define H3_FULL_CSS_MASK    0x00000000007FFFFF
 
 class html_version : public version
 {   flags_t ext_ = NOFLAGS, ext2_ = NOFLAGS, ext3_ = NOFLAGS;
@@ -780,6 +786,8 @@ public:
     void css_table (const int n);
     int css_text_decoration () const;
     void css_text_decoration (const int n);
+    int css_transform () const;
+    void css_transform (const int n);
     int css_transition () const;
     void css_transition (const int n);
     int css_ui () const;
@@ -1057,11 +1065,12 @@ const html_version html_oct22 (HTML_OCT22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, 
 const html_version html_jan23 (HTML_JAN23, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_3, H3_CSS_3);
 const html_version html_apr23 (HTML_APR23, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_3, H3_CSS_3);
 const html_version html_jul23 (HTML_JUL23, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_6, H3_CSS_6);
+const html_version html_oct23 (HTML_OCT23, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_6, H3_CSS_6);
 const html_version html_5_0 (HTML_5_0, HV_W3, HE_SVG_11, H2_MATH_2 | H2_CSS_3, H3_CSS_3);
 const html_version html_5_1 (HTML_5_1, HV_W3, HE_SVG_11, H2_MATH_2 | H2_CSS_3, H3_CSS_3);
 const html_version html_5_2 (HTML_5_2, HV_W3, HE_SVG_11, H2_MATH_3 | H2_CSS_3, H3_CSS_3);
 const html_version html_5_3 (HTML_5_3, HV_W3, HE_SVG_11, H2_MATH_3 | H2_CSS_3, H3_CSS_3);
-const html_version html_current (html_jul23);
+const html_version html_current (html_oct23);
 const html_version html_default (html_current);
 const html_version html_max (HTML_DEC99, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_6, H3_CSS_6);
 

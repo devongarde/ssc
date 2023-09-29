@@ -33,6 +33,13 @@ bool maybe_math (nitpick& nits, const e_css_property id)
     nits.pick (nit_css_value_fn, ed_css_value_4, "10 Mathematical Expressions", es_error, ec_css, "not a numeric property");
     return false; }
 
+bool maybe_image (nitpick& nits, const e_css_property id)
+{   if (id < ec_custom) return true;
+    const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
+    if ((f & CF_IMAGE) == CF_IMAGE) return true;
+    nits.pick (nit_css_value_fn, ed_css_image_3, "2. Image Values: the <image> type", es_error, ec_css, "not an image property");
+    return false; }
+
 int check_typed_feature (arguments& args, nitpick& nits, const int start, const int to, const e_css_statement cs, const char* const sz)
 {   ::std::string name (assemble_string (args.t_, start, to, true));
     if (name.empty ()) return to;

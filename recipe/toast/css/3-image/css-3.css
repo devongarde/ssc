@@ -1,0 +1,77 @@
+﻿.pfft
+{
+    background: linear-gradient(white, gray);
+    list-style-image: radial-gradient(circle, #006, #00a 90%, #0000af 100%, white 100%);
+}
+
+.lg1
+{
+    background: linear-gradient(yellow, blue);
+    background: linear-gradient(to bottom, yellow, blue);
+    background: linear-gradient(180deg, yellow, blue);
+    background: linear-gradient(to top, blue, yellow);
+    background: linear-gradient(to bottom, yellow 0%, blue 100%);
+
+    background: linear-gradient(135deg, yellow, blue);
+    background: linear-gradient(-45deg, blue, yellow);
+
+    background: linear-gradient(yellow, blue 20%, #0f0);
+
+    background: linear-gradient(to top right, red, white, blue)
+}
+
+.rg1
+{
+    background: lradial-gradient(5em circle at top left, yellow, blue);
+    background: radial-gradient(yellow, green);
+    background: radial-gradient(ellipse at center, yellow 0%, green 100%);
+    background: radial-gradient(farthest-corner at 50% 50%, yellow, green);
+
+    background: radial-gradient(circle, yellow, green);
+
+    background: radial-gradient(red, yellow, green);
+
+    background: radial-gradient(farthest-side at left bottom, red, yellow 50px, green);
+
+    background: radial-gradient(closest-side at 20px 30px, red, yellow, green);
+    background: radial-gradient(20px 30px at 20px 30px, red, yellow, green);
+
+    background: radial-gradient(closest-side circle at 20px 30px, red, yellow, green);
+    background: radial-gradient(20px 20px at 20px 30px, red, yellow, green);
+}
+
+.r1
+{
+    background: repeating-linear-gradient(red, blue 20px, red 40px);
+    background: repeating-radial-gradient(red, blue 20px, red 40px);
+    background: repeating-radial-gradient(circle closest-side at 20px 30px, red, yellow, green 100%, yellow 150%, red 200);
+}
+
+.r2
+{
+    background: repeating-linear-gradient(red 0px, white 0px, blue 0px);
+    background: repeating-linear-gradient(red 0px, white .1px, blue .2px);
+}
+
+.csl{
+    background: linear-gradient(red, white 20%, blue);
+    background: linear-gradient(red 0%, white 20%, blue 100%);
+
+    background: linear-gradient(red 40%, white, black, blue);
+    background: linear-gradient(red 40%, white 60%, black 80%, blue 100%);
+
+    background: linear-gradient(red -50%, white, blue);
+    background: linear-gradient(red -50%, white 25%, blue 100%);
+
+    background: linear-gradient(red -50px, white, blue);
+    background: linear-gradient(red -50px, white calc(-25px + 50%), blue 100%);
+
+    background: linear-gradient(red 20px, white 0px, blue 40px);
+    background: linear-gradient(red 20px, white 20px, blue 40px);
+
+    background: linear-gradient(red, white -50%, black 150%, blue);
+    background: linear-gradient(red 0%, white 0%, black 150%, blue 150%);
+
+    background: linear-gradient(red 80px, white 0px, black, blue 100px);
+    background: linear-gradient(red 80px, white 80px, black 90px, blue 100px);
+}

@@ -47,7 +47,11 @@ ssc.exe -T --nits.spec -o ../out/3sel.tst -f ../toast/css/3-sel/css.conf
 ssc.exe -T --nits.spec -o ../out/4sel.tst -f ../toast/css/4-sel/css.conf
 ssc.exe -T --nits.spec -o ../out/3shape.tst -f ../toast/css/3-shape/css.conf
 ssc.exe -T --nits.spec -o ../out/3style.tst -f ../toast/css/3-style/css.conf
+ssc.exe -T --nits.spec -o ../out/3speech.tst -f ../toast/css/3-peech/css.conf
 ssc.exe -T --nits.spec -o ../out/3syntax.tst -f ../toast/css/3-syntax/css.conf
+ssc.exe -T --nits.spec -o ../out/3table.tst -f ../toast/css/3-able/css.conf
+ssc.exe -T --nits.spec -o ../out/3textdec.tst -f ../toast/css/3-textdec/css.conf
+ssc.exe -T --nits.spec -o ../out/4textdec.tst -f ../toast/css/4-textdec/css.conf
 ssc.exe -T --nits.spec -o ../out/3trans.tst -f ../toast/css/3-trans/css.conf
 ssc.exe -T --nits.spec -o ../out/3ui.tst -f ../toast/css/3-ui/css.conf
 ssc.exe -T --nits.spec -o ../out/4ui.tst -f ../toast/css/4-ui/css.conf

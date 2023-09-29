@@ -269,7 +269,6 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (GENERAL MACROEND, ::boost::program_options::value < ::std::string > () -> default_value ("}}"), "End of template macro (by default, the '}}' in '{{macro}}').")
 
         (CSS COND_RULE, ::boost::program_options::value < int > (), "CSS Conditional Rule level (0, 3, 4, or 5).")
-        (CSS IMAGE, ::boost::program_options::value < int > (), "CSS Images level (0, 3, or 4).")
         (CSS TABLE, ::boost::program_options::value < int > (), "CSS Table level (0 or 3).")
 
         (JSONLD EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "Extension for JSON-LD files; may be repeated.")
@@ -370,6 +369,7 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (CSS FONT, ::boost::program_options::value < int > (), "CSS Font level (0, 3, 4, or 5).")
         (CSS FRAG, ::boost::program_options::value < int > (), "CSS Fragmentation level (0, 3, or 4).")
         (CSS GRID, ::boost::program_options::value < int > (), "CSS Grid level (0, 3, or 4).")
+        (CSS IMAGE, ::boost::program_options::value < int > (), "CSS Images level (0, 3, or 4).")
         (CSS MEDIA, ::boost::program_options::value < int > (), "CSS Media level (0, 3, 4, or 5).")
         (CSS MULTI_COLUMN, ::boost::program_options::value < int > (), "CSS Multi-Column level (0 or 3).")
         (CSS NAMESPACE, ::boost::program_options::value < int > (), "CSS Namespace level (0 or 3).")
@@ -381,6 +381,7 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (CSS STYLE, ::boost::program_options::value < int > (), "CSS Style level (0 or 3).")
         (CSS SYNTAX, ::boost::program_options::value < int > (), "CSS Syntax level (0 or 3).")
         (CSS TEXT_DEC, ::boost::program_options::value < int > (), "CSS Text Decoration level (0, 3, or 4).")
+        (CSS TRANSFORM, ::boost::program_options::value < int > (), "CSS Transform level (0, 3 or 4).")
         (CSS TRANSITION, ::boost::program_options::value < int > (), "CSS Transitions level (0 or 3).")
         (CSS UI, ::boost::program_options::value < int > (), " CSS UI level (0, 3, or 4).")
         (CSS VALUE, ::boost::program_options::value < int > (), "CSS Values and Units level (0, 3, or 4).")
@@ -391,6 +392,8 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
 
         (HTML FORCE, ::boost::program_options::bool_switch (), "When <!DOCTYPE...> is missing, forcibly presume HTML version as per --html.version.")
         (HTML DONT FORCE, ::boost::program_options::bool_switch (), "When <!DOCTYPE...> is missing, correctly presume HTML 1 or HTML tags, as per --html.tags.")
+        (HTML IE, ::boost::program_options::bool_switch (), "Ignore certain naughtitudes accepted by versions of Internet Explorer.")
+        (HTML DONT IE, ::boost::program_options::bool_switch (), "Mention certain naughtitudes accepted by versions of Internet Explorer.")
         (HTML RFC1867, ::boost::program_options::bool_switch (), "Consider RFC 1867 (INPUT=FILE) when processing HTML 2.0.")
         (HTML DONT RFC1867, ::boost::program_options::bool_switch (), "Ignore RFC 1867 (INPUT=FILE) when processing HTML 2.0.")
         (HTML RFC1942, ::boost::program_options::bool_switch (), "Consider RFC 1867 RFC 1942 (tables) when processing HTML 2.0.")
@@ -399,6 +402,8 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (HTML DONT RFC1980, ::boost::program_options::bool_switch (), "Ignore RFC 1867 RFC 1980 (client side image maps) when processing HTML 2.0.")
         (HTML RFC2070, ::boost::program_options::bool_switch (), "Consider RFC 1867 RFC 2070 (internationalisation) when processing HTML 2.0.")
         (HTML DONT RFC2070, ::boost::program_options::bool_switch (), "Ignore RFC 1867 RFC 2070 (internationalisation) when processing HTML 2.0.")
+        (HTML SAFARI, ::boost::program_options::bool_switch (), "Ignore certain naughtitudes accepted by versions of Safari.")
+        (HTML DONT SAFARI, ::boost::program_options::bool_switch (), "Mention certain naughtitudes accepted by versions of Safari.")
         (HTML TAGS, ::boost::program_options::bool_switch (), "Presume HTML with no DOCTYPE is HTML Tags (CERN version).")
         (HTML DONT TAGS, ::boost::program_options::bool_switch (), "Presume HTML with no DOCTYPE is HTML 1.0.")
         (HTML TITLE ",z", ::boost::program_options::value < int > () -> default_value (MAX_IDEAL_TITLE_LENGTH), "Maximum advisable length of <TITLE> text.")
@@ -617,7 +622,7 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         context.environment (env_query_string, qu);
         if (! context.environment (env_query_string).empty ()) try
         {   context.cgi (true).article (false).body (false).cased (false).classic (false).crosslinks (false).example (false).ext_css (false)
-                .external (false).forwarded (false).icu (true).info (true).jsonld (false).links (false).load_css (false).main (false)
+                .external (false).forwarded (false).ie (false).icu (true).info (true).jsonld (false).links (false).load_css (false).main (false)
                 .md_export (false).meta (true).mf_verify (true).microdata (true).not_root (false).once (true).presume_tags (false).progress (false)
                 .rdfa (false).rel (true).revoke (false).rfc_1867 (true).rfc_1942 (true).rfc_1980 (true).rfc_2070 (true).rpt_opens (false).schema (true)
                 .shadow_changed (false).shadow_comment (false).shadow_enable (false).shadow_space (false).shadow_ssi (false).spell (false).ssi (false)
@@ -1047,7 +1052,7 @@ void options::contextualise (nitpick& nits)
         if (get_css_level (n, nits, CSS FONT, "Font", 5)) context.css_font (n);
         if (get_css_level (n, nits, CSS FRAG, "Fragmentation", 4)) context.css_fragmentation (n);
         if (get_css_level (n, nits, CSS GRID, "Grid", 4)) context.css_grid (n);
-        if (get_css_level (n, nits, CSS IMAGE, "Umage", 4)) context.css_image (n);
+        if (get_css_level (n, nits, CSS IMAGE, "Image", 4)) context.css_image (n);
         if (get_css_level (n, nits, CSS MEDIA, "Media", 5)) context.css_media (n);
         if (get_css_level (n, nits, CSS MULTI_COLUMN, "Multi-Column", 3, true)) context.css_multi_column (n);
         if (get_css_level (n, nits, CSS NAMESPACE, "Namespace", 3)) context.css_namespace (n);
@@ -1059,20 +1064,21 @@ void options::contextualise (nitpick& nits)
         if (get_css_level (n, nits, CSS STYLE, "Style", 3)) context.css_style (n);
         if (get_css_level (n, nits, CSS SYNTAX, "Syntax", 3)) context.css_syntax (n);
         if (get_css_level (n, nits, CSS TEXT_DEC, "Text Decoration", 4)) context.css_text_decoration (n);
-        if (get_css_level (n, nits, CSS TABLE, "Table", 3))
-        {   nits.pick (nit_experimental, ed_css_table, "Preface: \"This spec is not yet ready for implementation\"", es_warning, ec_init, "CSS Tables level 3 is experimental");
-            context.css_table (n); }
+        if (get_css_level (n, nits, CSS TABLE, "Table", 3)) context.css_table (n);
+        if (get_css_level (n, nits, CSS TRANSFORM, "Transform", 3, true)) context.css_transform (n);
         if (get_css_level (n, nits, CSS TRANSITION, "Transition", 3, true)) context.css_transition (n);
         if (get_css_level (n, nits, CSS UI, "UI", 4)) context.css_ui (n);
         if (get_css_level (n, nits, CSS VALUE, "VALUE", 4)) context.css_value (n);
         if (get_css_level (n, nits, CSS WRITING, "Writing Mode", 4)) context.css_writing_mode (n);
 
+        yea_nay (&context_t::ie, nits, HTML IE, HTML DONT IE);
         yea_nay (&context_t::force_version, nits, HTML FORCE, HTML DONT FORCE);
         yea_nay (&context_t::rfc_1867, nits, HTML RFC1867, HTML DONT RFC1867);
         yea_nay (&context_t::rfc_1942, nits, HTML RFC1942, HTML DONT RFC1942);
         yea_nay (&context_t::rfc_1980, nits, HTML RFC1980, HTML DONT RFC1980);
         yea_nay (&context_t::rfc_2070, nits, HTML RFC2070, HTML DONT RFC2070);
         yea_nay (&context_t::presume_tags, nits, HTML TAGS, HTML DONT TAGS);
+        yea_nay (&context_t::safari, nits, HTML SAFARI, HTML DONT SAFARI);
         if (var_.count (HTML TITLE)) context.title (static_cast < unsigned char > (var_ [HTML TITLE].as < int > ()));
 
         yea_nay (&context_t::jsonld, nits, JSONLD VERIFY, JSONLD DONT VERIFY);
@@ -1563,6 +1569,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (CSS SYNTAX)) res << CSS SYNTAX ": " << var_ [CSS SYNTAX].as < int > () << "\n";
     if (var_.count (CSS TABLE)) res << CSS TABLE ": " << var_ [CSS TABLE].as < int > () << "\n";
     if (var_.count (CSS TEXT_DEC)) res << CSS TEXT_DEC ": " << var_ [CSS TEXT_DEC].as < int > () << "\n";
+    if (var_.count (CSS TRANSFORM)) res << CSS TRANSFORM ": " << var_ [CSS TRANSFORM].as < int > () << "\n";
     if (var_.count (CSS TRANSITION)) res << CSS TRANSITION ": " << var_ [CSS TRANSITION].as < int > () << "\n";
     if (var_.count (CSS UI)) res << CSS UI ": " << var_ [CSS UI].as < int > () << "\n";
     if (var_.count (CSS VALUE)) res << CSS VALUE ": " << var_ [CSS VALUE].as < int > () << "\n";
@@ -1637,6 +1644,8 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
 
     if (var_.count (HTML FORCE)) res << HTML FORCE "\n";
     if (var_.count (HTML DONT FORCE)) res << HTML DONT FORCE "\n";
+    if (var_.count (HTML IE)) res << HTML IE "\n";
+    if (var_.count (HTML DONT IE)) res << HTML DONT IE "\n";
     if (var_.count (HTML RFC1867)) res << HTML RFC1867 "\n";
     if (var_.count (HTML DONT RFC1867)) res << HTML DONT RFC1867 "\n";
     if (var_.count (HTML RFC1942)) res << HTML RFC1942 "\n";
@@ -1645,6 +1654,8 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (HTML DONT RFC1980)) res << HTML DONT RFC1980 "\n";
     if (var_.count (HTML RFC2070)) res << HTML RFC2070 "\n";
     if (var_.count (HTML DONT RFC2070)) res << HTML DONT RFC2070 "\n";
+    if (var_.count (HTML SAFARI)) res << HTML SAFARI "\n";
+    if (var_.count (HTML DONT SAFARI)) res << HTML DONT SAFARI "\n";
     if (var_.count (HTML SNIPPET)) res << HTML SNIPPET ": " << var_ [HTML SNIPPET].as < ::std::string > () << "\n";
     if (var_ [HTML TAGS].as < bool > ()) res << HTML TAGS "\n";
     if (var_ [HTML DONT TAGS].as < bool > ()) res << HTML DONT TAGS "\n";

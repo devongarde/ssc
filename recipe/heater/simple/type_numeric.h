@@ -148,10 +148,10 @@ template < > struct type_master < t_percent > : type_master < t_fixedpoint >
     {   ::std::string ss (trim_the_lot_off (s));
         const ::std::string::size_type len (ss.length ());
         if (len > 1)
-            if (ss.at (len - 1) == '%')
+        {   if (ss.at (len - 1) == '%')
             {   type_master < t_fixedpoint > :: set_value (nits, v, ss.substr (0, len - 1));
                 if (type_master < t_fixedpoint > :: good ())
-                    if ((type_master < t_fixedpoint > :: value_ >= 0.0) && (type_master < t_fixedpoint > :: value_ <= 100.0)) return; }
+                    if ((type_master < t_fixedpoint > :: value_ >= 0.0) && (type_master < t_fixedpoint > :: value_ <= 100.0)) return; } }
         else if (v.is_5 () && (ss == "0"))
         {   type_master < t_fixedpoint > :: status (s_good);
             return; }
@@ -162,7 +162,7 @@ template < > struct type_master < t_percent > : type_master < t_fixedpoint >
     void shadow (::std::stringstream& ss, const html_version& , element* )
     {   ss << '=' << get_string (); } };
 
-template < > struct type_master < t_percent_positive > : type_master < t_fixedpoint >
+template < > struct type_master < t_percentish > : type_master < t_fixedpoint >
 {   using type_master < t_fixedpoint > :: type_master;
     static e_animation_type animation_type () noexcept { return at_percentage; }
     static bool is_numeric () { return true; }
@@ -170,14 +170,14 @@ template < > struct type_master < t_percent_positive > : type_master < t_fixedpo
     {   ::std::string ss (trim_the_lot_off (s));
         const ::std::string::size_type len (ss.length ());
         if (len > 1)
-            if (ss.at (len - 1) == '%')
+        {   if (ss.at (len - 1) == '%')
             {   type_master < t_fixedpoint > :: set_value (nits, v, ss.substr (0, len - 1));
                 if (type_master < t_fixedpoint > :: good ())
-                    if (type_master < t_fixedpoint > :: value_ >= 0.0) return; }
+                    if (type_master < t_fixedpoint > :: value_ >= 0.0) return; } } 
         else if (v.is_5 () && (ss == "0"))
         {   type_master < t_fixedpoint > :: status (s_good);
             return; }
-        nits.pick (nit_percent, es_error, ec_type, "expecting a value between 0.0 and 100.0, followed by '%'");
+        nits.pick (nit_percent, es_error, ec_type, "expecting a positive value followed by '%'");
         type_base < double, t_fixedpoint > :: status (s_invalid); }
     ::std::string get_string () const
     {   return ::boost::lexical_cast < ::std::string > (value_) + "%"; }
