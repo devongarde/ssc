@@ -1,0 +1,6 @@
+<!DOCTYPE html>
+<iframe></iframe>
+<script>
+const bound = frames[0].postMessage.bind(frames[0], "some data", "*");
+window.setTimeout(bound);
+</script>

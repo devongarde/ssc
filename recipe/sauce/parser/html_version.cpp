@@ -709,7 +709,8 @@ e_css_version html_version::css_version () const noexcept
     res += subver (b, css_syntax (), "Syn");
     res += subver (b, css_table (), "Tab");
     res += subver (b, css_text_decoration (), "Txd");
-    res += subver (b, css_transition (), "Trn");
+    res += subver (b, css_transform (), "Trf");
+    res += subver (b, css_transition (), "Trs");
     res += subver (b, css_ui (), "UI");
     res += subver (b, css_value (), "Val");
     res += subver (b, css_writing_mode (), "WrM");
@@ -1175,6 +1176,16 @@ void html_version::css_text_decoration (const int n)
     if (n == 4) set_ext3 (H3_CSS_TEXTDEC_34);
     else if (n == 3) set_ext3 (H3_CSS_TEXTDEC_3); }
 
+int html_version::css_transform () const
+{   if ((ext3 () & H3_CSS_TRANSFORM_4) == H3_CSS_TRANSFORM_4) return 4;
+    if ((ext3 () & H3_CSS_TRANSFORM_3) == H3_CSS_TRANSFORM_3) return 3;
+    return 0; }
+
+void html_version::css_transform (const int n)
+{   reset_ext3 (H3_CSS_TRANSFORM_MASK);
+    if (n == 4) set_ext3 (H3_CSS_TRANSFORM_34);
+    else if (n == 3) set_ext3 (H3_CSS_TRANSFORM_3); }
+
 int html_version::css_transition () const
 {   if (any_ext3 (H3_CSS_TRANSITION)) return 3;
     return 0; }
@@ -1285,6 +1296,7 @@ bool html_version::is_css_compatible (nitpick& nits, const flags_t& f, const fla
         if (css_syntax () > 0) append (res, " / ", ::std::string ("Syntax Module"));
         if (css_table () > 0) append (res, " / ", ::std::string ("Tables"));
         if (css_text_decoration () > 0) append (res, " / ", long_level_3 ("Text Decoration", H3_CSS_TEXTDEC_3, H3_CSS_TEXTDEC_4));
+        if (css_transform () > 0) append (res, " / ", long_level_3 ("Transforms", H3_CSS_TRANSFORM_3, H3_CSS_TRANSFORM_4));
         if (css_transition () > 0) append (res, " / ", ::std::string ("Transitions"));
         if (css_ui () > 0) append (res, " / ", long_level_2 ("Basic User Interface", H2_CSS_UI_3, H2_CSS_UI_4));
         if (css_value () > 0) append (res, " / ", long_level_2 ("Values and Units", H2_CSS_VALUE_3, H2_CSS_VALUE_4));
@@ -1307,6 +1319,8 @@ bool does_html_apply (const html_version& v, const html_version& from, const htm
     if (! to.unknown () && (v > to)) return false;
     if (from.requires_extension ())
         if (extension_conflict (v, from) != emi_good) return false;
+    if (from.ie () && context.ie ()) return true;
+    if (from.safari () && context.safari ()) return true;
     switch (v.mjr ())
     {   case 0 :    break;
         case 1 :    if (v.mnr () == 0) return ! from.not10 ();

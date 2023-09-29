@@ -1,5 +1,17 @@
 -N 1 -f ../toast/css/3-position/css.conf
 
+PASS ../toast/css/3-position/css-1.css
+0 html
+
+PASS ../toast/css/3-position/css-2.css
+0 html
+
+PASS ../toast/css/3-position/css-3.css
+0 html
+
+PASS ../toast/css/3-position/css-6.css
+0 html
+
 PASS ../toast/css/3-position/css-2.html
 2 naughty_lang
 4 long_title

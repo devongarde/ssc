@@ -116,6 +116,7 @@ hav_t havt_body [] =
     { { HTML_JUL09 }, { HTML_UNDEF }, elem_body, a_onhashchange },
     { { HTML_5_1 }, { HTML_UNDEF }, elem_body, a_onlanguagechange },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_body, a_onload },
+    { { HTML_4_0, 0, HE_SAFARI }, { XHTML_2_0 }, elem_body, a_onload },
     { { HTML_JAN05 }, { HTML_JUN13 }, elem_body, a_onmessage },
     { { HTML_JAN05 }, { HTML_JUN13 }, elem_body, a_onmessage },
     { { HTML_JUL20 }, { HTML_UNDEF }, elem_body, a_onmessageerror },

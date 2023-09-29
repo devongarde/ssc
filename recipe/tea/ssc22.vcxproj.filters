@@ -1248,6 +1248,18 @@
     <Filter Include="Toast\CSS\4-textdec">
       <UniqueIdentifier>{08909cce-ff5d-4469-97d1-9f53ba4cc99c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\CSS\3-image">
+      <UniqueIdentifier>{0392e50d-6cbe-42ec-a299-7d220a334a1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Other\ie">
+      <UniqueIdentifier>{48bad9f7-c925-475c-848d-3df04b4deb5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Other\safari">
+      <UniqueIdentifier>{e4d721cd-95d2-4892-9eda-da7b9c322241}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Living\oct23">
+      <UniqueIdentifier>{9bbe73ce-b6af-4619-8bcb-9ac33be05db1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -32664,6 +32676,813 @@
     <None Include="..\toast\css\4-textdec\css-b.css">
       <Filter>Toast\CSS\4-textdec</Filter>
     </None>
+    <None Include="..\toast\css\3-image\css.conf">
+      <Filter>Toast\CSS\3-image</Filter>
+    </None>
+    <None Include="..\toast\css\3-image\css.spec">
+      <Filter>Toast\CSS\3-image</Filter>
+    </None>
+    <None Include="..\toast\css\3-image\css-3.css">
+      <Filter>Toast\CSS\3-image</Filter>
+    </None>
+    <None Include="..\toast\css\3-image\index.html">
+      <Filter>Toast\CSS\3-image</Filter>
+    </None>
+    <None Include="..\toast\css\3-image\css-2.css">
+      <Filter>Toast\CSS\3-image</Filter>
+    </None>
+    <None Include="..\toast\css\3-image\css-5.css">
+      <Filter>Toast\CSS\3-image</Filter>
+    </None>
+    <None Include="..\toast\css\3-image\css-7.css">
+      <Filter>Toast\CSS\3-image</Filter>
+    </None>
+    <None Include="..\toast\other\ie\ie.conf">
+      <Filter>Toast\Other\ie</Filter>
+    </None>
+    <None Include="..\toast\other\ie\ie.spec">
+      <Filter>Toast\Other\ie</Filter>
+    </None>
+    <None Include="..\toast\other\ie\index.html">
+      <Filter>Toast\Other\ie</Filter>
+    </None>
+    <None Include="..\toast\other\safari\index.html">
+      <Filter>Toast\Other\safari</Filter>
+    </None>
+    <None Include="..\toast\other\safari\safari.conf">
+      <Filter>Toast\Other\safari</Filter>
+    </None>
+    <None Include="..\toast\other\safari\safari.spec">
+      <Filter>Toast\Other\safari</Filter>
+    </None>
+    <None Include="..\toast\other\safari\recordings.html">
+      <Filter>Toast\Other\safari</Filter>
+    </None>
+    <None Include="..\toast\other\ie\cyberspace.html">
+      <Filter>Toast\Other\ie</Filter>
+    </None>
+    <None Include="..\toast\other\ie\css-good.css">
+      <Filter>Toast\Other\ie</Filter>
+    </None>
+    <None Include="..\toast\other\safari\css-good.css">
+      <Filter>Toast\Other\safari</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\area.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\article-1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\article-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\aside.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\aside-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\autofocus.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\b.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\b-1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\base.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\bdi.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\blockquote.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\body.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\br.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\browsing-1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\browsing-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\browsing-3.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\browsing-4.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\button.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\canvas1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\canvas2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\canvas3.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\caption.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\cdata.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\cite.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\cm.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\code.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\commands.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\conformance.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\custom-1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\custom-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\custom-3.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\custom-4.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\data.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\datalist.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\datamodel.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\dd.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\del.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\details.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\dfn.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\dialogue.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\div.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\dl.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\dragondrops.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\dt.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\editing-1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\editing-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\el.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\em.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ep.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\et.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\extra.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\fieldset.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\figcaption.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\figure-1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\figure-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\footer.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\footer-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\footer-3.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\form.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\formex.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\forms.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\h-1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\h-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\h-3.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\head-1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\head-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\header.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\header-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\hgroup.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\hgroup-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\hidden.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\history-1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\history-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\history-3.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\history-4.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\hr.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\hs-1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\hs-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\hs-3.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\hs-4.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\hs-5.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\hs-6.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\hs-7.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\hs-8.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\hs-9.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\hs-10.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\hs-11.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\hs-12.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\hs-13.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\html.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\html4.css">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\i.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\idioms.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\iframe.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\im.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\imedia.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\img.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\index.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\input.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ins.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\intro-1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\intro-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\intro-3.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\json.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\kbd.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\label.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\li.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\link.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\links-alternate.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\links-bookmark.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\links-help.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\links-icon.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\links-licence.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\links-modulepreload.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\links-noopener.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\links-noreferrer.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\links-opener.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\links-tag.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\links-tag2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\living.conf">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\living.spec">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\lwp.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\main-1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\main-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\map.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\mark.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\math.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\me.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\menu.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\meta-1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\meta-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\meter.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\microdata-1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\microdata-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\microsyntax.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\nav-1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\nav-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\nav-3.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\noscript-1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\noscript-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\noscript-3.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\object.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ol.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\optgroup.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\output.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\p.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\popover.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\popovertarget.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\pre.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\progress.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\q.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\rp.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ruby.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\s.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\samp.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\script.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\scripting-1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\scripting-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\scripting-3.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\scripting-4.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\scripting-5.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\scripting-6.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\scripting-7.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\scripting-8.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\scripting-9.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\search-1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\search-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\section-1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\section-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\select.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\selectors.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\small.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\source.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\span.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ssah-1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ssah-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ssah-3.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ssah-4.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ssah-5.xhtml">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ssah-6.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\strange-1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\strange-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\strange-3.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\strange-4.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\strong.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\style.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\subsup.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\systemstate.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\table.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\tc.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\td.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\te.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\template1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\template2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\textarea.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\th.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\thead.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\time.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\title-1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\title-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\tls.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\track.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\u.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ul.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\us-1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\us-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\us-3.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\us-4.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\us-5.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\us-6.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\us-7.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\us-8.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\us-9.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\us-10.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\var.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\vcard.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\vevent.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\video.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\wbr.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\work.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ws-1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ws-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ws-3.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ws-4.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ws-5.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ws-6.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ws-7.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ws-8.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ws-9.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ws-10.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ws-11.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ws-12.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ws-13.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ws-14.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ws-15.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ww-1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ww-2.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ww-3.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ww-4.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ww-5.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ww-6.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ww-7.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ww-8.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ww-9.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\ww-10.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\404.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\a.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\a-1.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\abbr.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\accesskey.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\address.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\living\oct23\aks.html">
+      <Filter>Toast\Living\oct23</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
@@ -33109,6 +33928,9 @@
     </Image>
     <Image Include="..\toast\other\blob\fs.jpg">
       <Filter>Toast\Other\blob</Filter>
+    </Image>
+    <Image Include="..\toast\other\ie\x.jpg">
+      <Filter>Toast\Other\ie</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

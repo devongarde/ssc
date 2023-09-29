@@ -21,6 +21,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "base/type_master.h"
 
+template < > struct type_master < t_empty > : string_value < t_empty >
+{   using string_value < t_empty > :: string_value;
+    void set_value (nitpick& nits, const html_version& , const ::std::string& s)
+    {   ::std::string val (trim_the_lot_off (s));
+        if (val.empty ()) string_value < t_empty > :: status (s_good);
+        else
+        {   nits.pick (nit_empty, es_error, ec_type, quote (val), " is insufficiently empty");
+            string_value < t_empty > :: status (s_invalid); } } };
+
 template < > struct type_master < t_char > : string_value < t_char >
 {   using string_value < t_char > :: string_value;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)

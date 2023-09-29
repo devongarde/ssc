@@ -121,26 +121,6 @@ OpenBSD
 You may need to increase significantly the available memory setting
 for your build account in login.conf.
 
-clang vs. gcc
--------------
-For now, if you can, use gcc, not clang. There is a crash in clang
-built versions of ssc that is not exhibited by gcc or msvc built
-binaries. I have yet to find it, so do not know whether this is a bug
-in the compiler, or a bug in ssc that is only exposed by clang. To see
-the problem, run ssc against the wpt test-suite from the 2023 summer
-solstice, which can currently be found at
-https://github.com/web-platform-tests/wpt
-
-The problem is often avoided at runtime with the -N 1 switch.
-
-If you do use clang, the environment variable SANITY can be used to
-apply one of its sanitiser tests. Details of those tests can be found
-at https://clang.llvm.org/docs/index.html
-
-For example, I use this command to persuade cmake to use gcc in macos:
-  CMAKE_C_COMPILER=path CMAKE_CXX_COMPILER=path CXX=xeq CC=xeq cmake .
-where is the c then c++ compiler path, & xeq is similarly a compiler
-executable name. One does need to install gcc beforehand.
 
 Testing
 =======

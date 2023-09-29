@@ -49,8 +49,12 @@
 ./ssc -f ../toast/css/3-sel/css.conf
 ./ssc -f ../toast/css/4-sel/css.conf
 ./ssc -f ../toast/css/3-shape/css.conf
+./ssc -f ../toast/css/3-speech/css.conf
 ./ssc -f ../toast/css/3-style/css.conf
 ./ssc -f ../toast/css/3-syntax/css.conf
+./ssc -f ../toast/css/3-table/css.conf
+./ssc -f ../toast/css/3-textdec/css.conf
+./ssc -f ../toast/css/4-textdec/css.conf
 ./ssc -f ../toast/css/3-trans/css.conf
 ./ssc -f ../toast/css/3-ui/css.conf
 ./ssc -f ../toast/css/4-ui/css.conf

@@ -1,6 +1,6 @@
 COMMENT=        opinionated static (web)site nitpicker
 
-V=              0.1.35
+V=              0.1.36
 DISTNAME=       ssc-v$V
 PKGNAME=        ssc-$V
 

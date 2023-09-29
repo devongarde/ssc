@@ -40,13 +40,14 @@ class corpus;
 
 class context_t
 {   bool            article_ = false, body_ = true, case_ = false, cgi_ = false, classic_ = false, clear_ = false, crosslinks_ = true, example_ = true,
-                    external_ = false, ext_css_ = false, extra_ = false, force_version_ = false, forwarded_ = true, icu_ = true, info_ = false, jsonld_ = false, local_ = true,
-                    load_css_ = true, links_ = true, main_ = false, md_export_ = false, meta_ = false, mf_export_ = false, mf_verify_ = true, microdata_ = true,
-                    nids_ = false, nits_ = false, nits_nits_nits_ = false, not_root_ = false, once_ = true, presume_tags_ = false, progress_ = false, rdfa_ = true,
-                    rel_ = false, revoke_ = false, rfc_1867_ = true, rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, ontology_ = true,
-                    shadow_comment_ = true, shadow_changed_ = false, shadow_enable_ = false, shadow_ssi_ = true, shadow_space_ = true, slob_ = false,
-                    spec_ = false, spell_ = true, spell_deduced_ = false, ssi_ = true, stats_page_ = false, stats_summary_ = false, test_ = false,
-                    unknown_class_ = true, update_ = false, valid_ = false, versioned_ = false;
+                    external_ = false, ext_css_ = false, extra_ = false, force_version_ = false, forwarded_ = true, icu_ = true, ie_ = false, info_ = false,
+                    jsonld_ = false, local_ = true, load_css_ = true, links_ = true, main_ = false, md_export_ = false, meta_ = false, mf_export_ = false,
+                    mf_verify_ = true, microdata_ = true, nids_ = false, nits_ = false, nits_nits_nits_ = false, not_root_ = false, once_ = true,
+                    presume_tags_ = false, progress_ = false, rdfa_ = false, rel_ = false, revoke_ = false, rfc_1867_ = true, rfc_1942_ = true,
+                    rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, ontology_ = true, safari_ = false, shadow_comment_ = true, shadow_changed_ = false,
+                    shadow_enable_ = false, shadow_ssi_ = true, shadow_space_ = true, slob_ = false, spec_ = false, spell_ = true, spell_deduced_ = false,
+                    ssi_ = true, stats_page_ = false, stats_summary_ = false, test_ = false, unknown_class_ = true, update_ = false, valid_ = false,
+                    versioned_ = false;
     int             fred_ = 0, title_ = MAX_IDEAL_TITLE_LENGTH;
     e_copy          copy_ = c_none;
     unsigned char   mf_version_ = 3;
@@ -134,6 +135,7 @@ class context_t
     context_t& css_syntax (const int n) { version_.css_syntax (n); mac (nm_context_css_syntax, n); return *this; }
     context_t& css_table (const int n) { version_.css_table (n); mac (nm_context_css_table, n); return *this; }
     context_t& css_text_decoration (const int n) { version_.css_text_decoration (n); mac (nm_context_css_text_decoration, n); return *this; }
+    context_t& css_transform (const int n) { version_.css_transform (n); mac (nm_context_css_transform, n); return *this; }
     context_t& css_transition (const int n) { version_.css_transition (n); mac (nm_context_css_transition, n); return *this; }
     context_t& css_ui (const int n) { version_.css_ui (n); mac (nm_context_css_ui, n); return *this; }
     context_t& css_value (const int n) { version_.css_value (n); mac (nm_context_css_value, n); return *this; }
@@ -165,7 +167,8 @@ class context_t
     context_t& fred (const int i);
     context_t& html_ver (const html_version& v)
     {   versioned (true); version_ = v; mac (nm_context_version, version_.name ()); return *this; }
-    context_t& icu (const bool b) { icu_ = b; mac (nm_context_info, b); return *this; }
+    context_t& icu (const bool b) { icu_ = b; mac (nm_context_icu, b); return *this; }
+    context_t& ie (const bool b) { ie_ = b; mac (nm_context_ie, b); return *this; }
     context_t& ignore (nitpick& nits, const vstr_t& s);
     context_t& index (const ::std::string& s) { index_ = s; mac (nm_context_index, s); return *this; }
     context_t& info (const bool b) { info_ = b; mac (nm_context_info, b); return *this; }
@@ -247,6 +250,7 @@ class context_t
     context_t& rfc_2070 (const bool b) { rfc_2070_ = b; mac (nm_context_rfc_2070, b); return *this; }
     context_t& root (const ::std::string& s);
     context_t& rpt_opens (const bool b) noexcept { rpt_opens_ = b; return *this; }
+    context_t& safari (const bool b) { safari_ = b; mac (nm_context_safari, b); return *this; }
     context_t& schema (const bool b)
     {   ontology_ = b;
         mac (nm_context_schema, b);
@@ -340,6 +344,7 @@ public:
     int css_syntax () { return version_.css_syntax (); }
     int css_table () { return version_.css_table (); }
     int css_text_decoration () { return version_.css_text_decoration (); }
+    int css_transform () { return version_.css_transform (); }
     int css_transition () { return version_.css_transition (); }
     int css_ui () { return version_.css_ui (); }
     int css_value () { return version_.css_value (); }
@@ -370,6 +375,7 @@ public:
     html_version& html_ver () noexcept { return version_; }
     html_version html_ver (const int major, const int minor) noexcept;
     bool icu () const noexcept { return icu_; }
+    bool ie () const noexcept { return ie_; }
     const ::std::string index () const { return index_; }
     bool info () const noexcept { return info_; }
     bool invalid () const noexcept { return ! valid_; }
@@ -422,6 +428,7 @@ public:
     bool rpt_opens () const noexcept { return rpt_opens_; }
     const ::std::string& root () const { return root_; }
     const ::boost::filesystem::path& rootp () const { return proot_; }
+    bool safari () const noexcept { return safari_; }
     bool schema () const noexcept { return ontology_; }
     ontology_version ontology_ver (const e_ontology es = s_schema) const
     {   return get_default_ontology_version (es); }

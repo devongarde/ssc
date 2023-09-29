@@ -87,6 +87,9 @@ template < e_type T, class SZ, e_type P > struct type_at_least_one : type_some_o
 template < e_type T, class SZ, e_type P > struct type_at_least_none : type_some_of < T, SZ, 0, 0, P >
 {   using type_some_of < T, SZ, 0, 0, P > :: type_some_of; };
 
+template < e_type T, class SZ, e_type P, e_type Q > struct type_none_one_two : type_some_of < T, SZ, 0, 0, P, Q >
+{   using type_some_of < T, SZ, 0, 0, P, Q > :: type_some_of; };
+
 template < e_type T, class SZ, e_type P, int N > struct type_exactly_n : type_some_of < T, SZ, N, N, P >
 {   using type_some_of < T, SZ, N, N, P > :: type_some_of; };
 

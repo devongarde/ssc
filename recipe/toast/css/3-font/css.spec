@@ -1,6 +1,7 @@
 -N 1 -f ../toast/css/3-font/css.conf
 
 PASS ../toast/css/3-font/css-3.css
+0 html
 6 fontname
 7 fontname
 8 fontname weight
@@ -10,6 +11,7 @@ PASS ../toast/css/3-font/css-3.css
 13 fontname
 
 PASS ../toast/css/3-font/css-4.css
+0 html
 2 fontname
 11 fontname
 15 fontname
@@ -35,12 +37,19 @@ PASS ../toast/css/3-font/css-4.css
 130 fontname
 135 fontname
 
+PASS ../toast/css/3-font/css-5.css
+0 html
+
 PASS ../toast/css/3-font/css-6.css
+0 html
 7 css_version css_version
 28 class_microformat_property
 38 unrecognised_value
 39 unrecognised_value
 40 unrecognised_value
+
+PASS ../toast/css/3-font/css-7.css
+0 html
 
 PASS ../toast/css/3-font/css-3.html
 2 naughty_lang

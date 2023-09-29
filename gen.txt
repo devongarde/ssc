@@ -154,6 +154,10 @@ line, the "no-" switch always applies.
 
 --css.syntax X          Use CSS Syntex level X, where X is 0 or 3
 
+--css.table X           Use CSS Tables level X, where X is 0 or 3 (this
+                        this is an experimental spec which is likely
+                        to change)
+
 --css.text-dec X        Use CSS Text Decoration level X, where X is 0,
                         3 or 4
 
@@ -280,6 +284,8 @@ line, the "no-" switch always applies.
 --html.force            If <!DOCTYPE...> is missing, force presumption
                         of --html.version value, not HTML 1/tags
 
+--html.ie               Don't mention certain Internet Explorer features.
+
 --html.rfc1867          Ignore the RFC 1867 (INPUT=FILE) extension when
                         processing HTML 2.0
 
@@ -291,6 +297,8 @@ line, the "no-" switch always applies.
 
 --html.rfc2070          Ignore the RFC 2070 (internationalisation)
                         extension when processing HTML 2.0.
+
+--html.safari           Don't mention certain early Safari features.
 
 --html.tags             When an HTML file is loaded that contains no
                         DOCTYPE, ssc normally presumes HTML 1. This

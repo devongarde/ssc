@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title>p</title> </head>
+ <body>
+
+<ul>
+  <li>
+    <a href=...>All Products</a>
+    <button popovertarget=sub-nav>
+     <img src=down-arrow.png alt="Product pages">
+    </button>
+    <ul popover id=sub-nav>
+     <li><a href=...>Shirts</a>
+     <li><a href=...>Shoes</a>
+     <li><a href=...>Hats etc.</a>
+    </ul>
+  </li>
+  <!-- other list items and links here -->
+</ul>
+
+<button popovertarget=m>Actions</button>
+<div role=menu id=m popover>
+  <button role=menuitem tabindex=-1 autofocus>Edit</button>
+  <button role=menuitem tabindex=-1>Hide</button>
+  <button role=menuitem tabindex=-1>Delete</button>
+</div>
+
+<button id=submit>Submit</button>
+<p><output><span popover=manual></span></output></p>
+
+<script>
+ const sBtn = document.getElementById("submit");
+ const outSpan = document.querySelector("output [popover=manual]");
+ let successMessage;
+ let errorMessage;
+
+ /* define logic for determining success of action
+  and determining the appropriate success or error
+  messages to use */
+
+ sBtn.addEventListener("click", ()=> {
+  if ( success ) {
+   outSpan.textContent = successMessage;
+  }
+  else {
+   outSpan.textContent = errorMessage;
+  }
+  outSpan.showPopover();
+
+  setTimeout(function () {
+   outSpan.hidePopover();
+  }, 10000);
+ });
+</script>
+
+ </body>
+</html>

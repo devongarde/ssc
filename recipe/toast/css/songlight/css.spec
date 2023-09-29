@@ -13,8 +13,6 @@ PASS ../toast/css/songlight/songlight.css
 32 css_bespoke
 33 css_bespoke
 34 css_bespoke
-90 unrecognised_value
-91 unrecognised_value
 100 css_bespoke css_bespoke css_bespoke
 103 css_bespoke css_bespoke css_bespoke
 106 css_bespoke css_bespoke css_bespoke
@@ -31,8 +29,6 @@ PASS ../toast/css/songlight/yukontoast.css
 32 css_bespoke
 33 css_bespoke
 34 css_bespoke
-90 unrecognised_value
-91 unrecognised_value
 100 css_bespoke css_bespoke css_bespoke
 103 css_bespoke css_bespoke css_bespoke
 106 css_bespoke css_bespoke css_bespoke

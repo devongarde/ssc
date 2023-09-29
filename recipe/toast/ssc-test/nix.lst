@@ -37,6 +37,7 @@
 ../toast/css/4-frag/css.spec
 ../toast/css/3-grid/css.spec
 ../toast/css/4-grid/css.spec
+../toast/css/3-image/css.spec
 ../toast/css/3-mc/css.spec
 ../toast/css/3-media/css.spec
 ../toast/css/4-media/css.spec
@@ -50,6 +51,7 @@
 ../toast/css/3-speech/css.spec
 ../toast/css/3-style/css.spec
 ../toast/css/3-syntax/css.spec
+../toast/css/3-table/css.spec
 ../toast/css/3-textdec/css.spec
 ../toast/css/4-textdec/css.spec
 ../toast/css/3-trans/css.spec
@@ -122,6 +124,7 @@
 ../toast/living/jan23/living.spec
 ../toast/living/apr23/living.spec
 ../toast/living/jul23/living.spec
+../toast/living/oct23/living.spec
 ../toast/math/1/math.spec
 ../toast/math/2/math.spec
 ../toast/math/3/math.spec
@@ -151,6 +154,7 @@
 ../toast/other/CSS/css.spec
 ../toast/other/dfn/dfn.spec
 ../toast/other/dump/dump.spec
+../toast/other/ie/ie.spec
 ../toast/other/ignore/ignore.spec
 ../toast/other/img/img.spec
 ../toast/other/incorrectness/incorrectness.spec
@@ -158,6 +162,7 @@
 ../toast/other/nits/nits.spec
 ../toast/other/parsing/parsing.spec
 ../toast/other/pattern/pattern.spec
+../toast/other/safari/safari.spec
 ../toast/other/simple/simple.spec
 ../toast/other/ssi/ssi.spec
 ../toast/RDF/1.0/rdf.spec
