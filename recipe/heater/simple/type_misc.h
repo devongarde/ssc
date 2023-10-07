@@ -29,8 +29,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 // WHILE and IF appear in the XHTML2 spec in the technical docs, not in the discussion
 
 void mark_font (stats_t* s, const ::std::string& font);
+bool set_arxiv_value (nitpick& nits, const html_version& v, const ::std::string& s);
+e_status set_cookie_value (nitpick& nits, const html_version& v, const ::std::string& s);
+bool set_coords_value (nitpick& nits, const html_version& v, const ::std::string& s, vint_t& val);
+bool set_imgsizes_value (nitpick& nits, const html_version& v, const ::std::string& s);
 
-// t_arxiv
 template < > struct type_master < t_arxiv > : public tidy_string < t_arxiv >
 {   using tidy_string < t_arxiv > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
@@ -39,40 +42,7 @@ template < > struct type_master < t_arxiv > : public tidy_string < t_arxiv >
             nits.pick (nit_empty, es_error, ec_type, "value cannot be empty");
         else if (tidy_string < t_arxiv > :: good ())
         {   const ::std::string& s = tidy_string < t_arxiv > :: get_string ();
-            const ::std::size_t len = s.length ();
-            bool say_oops = true;
-            if ((len > 6) && compare_no_case (s.substr (0, 6), "arxiv:"))
-                if ((s.size () == 15) || (s.size () == 16))
-                    if (GSL_AT (s, 11) == '.')
-                        if (s.substr (7).find_first_not_of (DENARY ".") == ::std::string::npos)
-                        {   bool ok = true;
-                            if (((s.at (9) == '0') && (s.at (10) == '0')) || ((s.at (9) == '1') && (s.at (10) > '2')) || (s.at (9) > '1'))
-                            {   nits.pick (nit_arxiv, es_error, ec_type, "months are numbered between '01' and '12' inclusive");
-                                ok = false; }
-                            if (((s.at (7) == '0') || ((s.at (7) == '1') && (s.at (8) <= '4'))) && (s.length () != 15))
-                            {   nits.pick (nit_arxiv, es_error, ec_type, "arXiv identifiers between 2007 to 2014 have 15 characters");
-                                ok = false; }
-                            if (((s.at (7) > '1') || ((s.at (7) == '1') && (s.at (8) > '4'))) && (s.length () != 16))
-                            {   nits.pick (nit_arxiv, es_error, ec_type, "arXiv identifiers after 2015 have 16 characters");
-                                ok = false; }
-                            if (ok) return;
-                            say_oops = false; }
-            else if (len > 8)
-            {   const ::std::string::size_type slash = s.find ('/');
-                if (slash == len - 8)
-                {   const ::std::string::size_type Yy = slash+1;
-                    const ::std::string::size_type yY = slash+2;
-                    const ::std::string::size_type Mm = slash+3;
-                    const ::std::string::size_type mM = slash+4;
-                    if (s.substr (slash+1).find_first_not_of (DENARY) == ::std::string::npos)
-                    {   if (((s.at (Yy) < '9') && (s.at (yY) == '0')) && ((s.at (Yy) != '0') || (s.at (yY) > '3')))
-                            nits.pick (nit_arxiv, es_error, ec_type, "years in early arXiv identifiers lie between '91' and '03'");
-                        else if (((s.at (Mm) != '0') || (s.at (mM) == '0')) && ((s.at (Mm) != '1') || (s.at (mM) > '2')))
-                            nits.pick (nit_arxiv, es_error, ec_type, "months are numbered between '01' and '12' inclusive");
-                        else return;
-                        say_oops = false; } } }
-            if (say_oops)
-                nits.pick (nit_arxiv, es_error, ec_type, "expecting \"ARCHIVE/YYMMNNN\",  \"ARCHIVE.CLASS/YYMMNNN\", \"arXiv:YYMM.NNNN\", or \"arXiv:YYMM.NNNNN\", where YY is year, MM is month, and N... are digits"); }
+            if (set_arxiv_value (nits, v, s)) return; }
         string_value < t_arxiv > :: status (s_invalid); } };
 
 template < > struct type_master < t_b64 > : public tidy_string < t_b64 >
@@ -97,6 +67,12 @@ template < > struct type_master < t_coden > : public tidy_string < t_coden >
             nits.pick (nit_coden, es_error, ec_type, "expecting a six character alphanumeric string"); }
         string_value < t_coden > :: status (s_invalid); } };
 
+template < > struct type_master < t_cookie > : tidy_string < t_cookie >
+{   using tidy_string < t_cookie > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_cookie > :: set_value (nits, v, s);
+        string_value < t_cookie > :: status (set_cookie_value (nits, v, string_value < t_cookie > :: get_string ())); } };
+
 template < > struct type_master < t_coords > : tidy_string < t_coords >
 {   typedef vint_t value_type;
     value_type value_;
@@ -104,44 +80,9 @@ template < > struct type_master < t_coords > : tidy_string < t_coords >
     static e_animation_type animation_type () noexcept { return at_coordinate; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_coords > :: set_value (nits, v, s);
-        if (tidy_string < t_coords > :: empty ())
-        {   nits.pick (nit_empty, es_error, ec_type, "COORDS cannot be empty");
-            string_value < t_coords > :: status (s_invalid); }
-        else
-        {   vstr_t coords (split_by_charset (tidy_string < t_coords > :: get_string (), ","));
-            const ::std::size_t csz = coords.size ();
-            if (csz < 3)
-                nits.pick (nit_bad_coords, es_error, ec_attribute, "COORDS is too short");
-            else if ((csz > 4) && (csz % 2 != 0))
-                nits.pick (nit_bad_coords, es_error, ec_attribute, "COORDS has an odd number of values");
-            else
-            {   bool whoops = false;
-                ::std::string okch (DENARY "-");
-                if (v < html_5_0) okch += "%";
-#ifndef FUDDYDUDDY
-                value_.reserve (csz);
-#endif // FUDDYDUDDY
-                for (auto c : coords)
-                {   const ::std::string ss (trim_the_lot_off (c));
-                    if (ss.find_first_not_of (okch) != ::std::string::npos)
-                    {   nits.pick (nit_bad_coords, es_error, ec_attribute, quote (ss), " is not a valid value");
-                        whoops = true; }
-                    else value_.push_back (lexical < int > :: cast (ss)); }
-                if (! whoops)
-                    switch (csz)
-                    {   case 3 :
-                            if (value_.at (2) < 0)
-                            {   nits.pick (nit_bad_coords, es_error, ec_attribute, "the radius of a circle cannot be negative");
-                                whoops = true; }
-                            break;
-                        case 4 :
-                            if ((value_.at (0) >= value_.at (2)) || (value_.at (1) >= value_.at (3)))
-                            {   nits.pick (nit_bad_coords, es_error, ec_attribute, "the x and y values of a rectangle's first coordinate must be less than those of the second");
-                                whoops = true; }
-                            break;
-                        default : break; }
-                if (! whoops) return; }
-                tidy_string < t_coords > :: status (s_invalid); } }
+        if (tidy_string < t_coords > :: empty ()) nits.pick (nit_empty, es_error, ec_type, "COORDS cannot be empty");
+        else if (set_coords_value (nits, v, tidy_string < t_coords > :: get_string (), value_)) return;
+        tidy_string < t_coords > :: status (s_invalid); }
     static vint_t default_value () noexcept { return vint_t (); }
     vint_t get () const { return value_; } };
 
@@ -204,23 +145,8 @@ template < > struct type_master < t_imgsizes > : tidy_string < t_imgsizes >
         {   nits.pick (nit_nuts, es_error, ec_type, "SIZES cannot be empty");
             tidy_string < t_imgsizes > :: status (s_invalid); }
         else if (tidy_string < t_imgsizes > :: good ())
-            if (! compare_complain (nits, v, "any", ss))
-            {   vstr_t vs (split_by_charset (ss, ","));
-                for (auto sss : vs)
-                {   vstr_t srcsz (split_by_space (sss));
-                    ::std::string& ssz (srcsz.at (srcsz.size () - 1));
-                    if (! ssz.empty ())
-                        if (ssz.at (ssz.length () - 1) != ')')
-                            if (    (ssz.length () < 3) ||
-                                    (! compare_no_case (ssz.substr (ssz.length () - 2), "vw")) ||
-                                    (ssz.substr (0, ssz.length () - 2).find_first_not_of (POSITIVE) != ::std::string::npos))
-                                {   ::std::string::size_type pos = ssz.find_last_of (POSITIVE);
-                                    if (pos == ::std::string::npos)
-                                        tidy_string < t_imgsizes > :: status (s_invalid);
-                                    else if (pos != ssz.length () - 1)
-                                        if (! test_value < t_length > (nits, v, ssz.substr (++pos)))
-                                        {   tidy_string < t_imgsizes > :: status (s_invalid);
-                                            break; } } } } } };
+            if (set_imgsizes_value (nits, v, ss)) return;
+    tidy_string < t_imgsizes > :: status (s_invalid); } };
 
 template < > struct type_master < t_imgsizes_a > : tidy_string < t_imgsizes_a >
 {   using tidy_string < t_imgsizes_a > :: tidy_string;

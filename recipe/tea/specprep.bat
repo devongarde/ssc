@@ -36,6 +36,8 @@ ssc.exe -T --nits.spec -o ../out/5font.tst -f ../toast/css/5-font/css.conf
 ssc.exe -T --nits.spec -o ../out/4frag.tst -f ../toast/css/4-frag/css.conf
 ssc.exe -T --nits.spec -o ../out/3grid.tst -f ../toast/css/3-grid/css.conf
 ssc.exe -T --nits.spec -o ../out/4grid.tst -f ../toast/css/4-grid/css.conf
+ssc.exe -T --nits.spec -o ../out/3image.tst -f ../toast/css/3-image/css.conf
+ssc.exe -T --nits.spec -o ../out/3masking.tst -f ../toast/css/3-masking/css.conf
 ssc.exe -T --nits.spec -o ../out/3mc.tst -f ../toast/css/3-mc/css.conf
 ssc.exe -T --nits.spec -o ../out/3media.tst -f ../toast/css/3-media/css.conf
 ssc.exe -T --nits.spec -o ../out/4media.tst -f ../toast/css/4-media/css.conf
@@ -52,7 +54,9 @@ ssc.exe -T --nits.spec -o ../out/3syntax.tst -f ../toast/css/3-syntax/css.conf
 ssc.exe -T --nits.spec -o ../out/3table.tst -f ../toast/css/3-able/css.conf
 ssc.exe -T --nits.spec -o ../out/3textdec.tst -f ../toast/css/3-textdec/css.conf
 ssc.exe -T --nits.spec -o ../out/4textdec.tst -f ../toast/css/4-textdec/css.conf
-ssc.exe -T --nits.spec -o ../out/3trans.tst -f ../toast/css/3-trans/css.conf
+ssc.exe -T --nits.spec -o ../out/3transform.tst -f ../toast/css/3-transform/css.conf
+ssc.exe -T --nits.spec -o ../out/4transform.tst -f ../toast/css/4-transform/css.conf
+ssc.exe -T --nits.spec -o ../out/3transition.tst -f ../toast/css/3-transition/css.conf
 ssc.exe -T --nits.spec -o ../out/3ui.tst -f ../toast/css/3-ui/css.conf
 ssc.exe -T --nits.spec -o ../out/4ui.tst -f ../toast/css/4-ui/css.conf
 ssc.exe -T --nits.spec -o ../out/3value.tst -f ../toast/css/3-value/css.conf
@@ -121,6 +125,7 @@ ssc.exe -T --nits.spec -o ../out/oct22living.tst -f ../toast/living/oct22/living
 ssc.exe -T --nits.spec -o ../out/jan23living.tst -f ../toast/living/jan23/living.conf
 ssc.exe -T --nits.spec -o ../out/apr23living.tst -f ../toast/living/apr23/living.conf
 ssc.exe -T --nits.spec -o ../out/jul23living.tst -f ../toast/living/jul23/living.conf
+ssc.exe -T --nits.spec -o ../out/oct23living.tst -f ../toast/living/oct23/living.conf
 ssc.exe -T --nits.spec -o ../out/1math.tst -f ../toast/math/1/math.conf
 ssc.exe -T --nits.spec -o ../out/2math.tst -f ../toast/math/2/math.conf
 ssc.exe -T --nits.spec -o ../out/3math.tst -f ../toast/math/3/math.conf
@@ -151,10 +156,12 @@ ssc.exe -T --nits.spec -o ../out/CSScss.tst -f ../toast/other/CSS/css.conf
 ssc.exe -T --nits.spec -o ../out/dfndfn.tst -f ../toast/other/dfn/dfn.conf
 ssc.exe -T --nits.spec -o ../out/dumpdump.tst -f ../toast/other/dump/dump.conf
 ssc.exe -T --nits.spec -o ../out/ignoreignore.tst -f ../toast/other/ignore/ignore.conf
+ssc.exe -T --nits.spec -o ../out/ieie.tst -f ../toast/other/ie/ie.conf
 ssc.exe -T --nits.spec -o ../out/incorrectnessincorrectness.tst -f ../toast/other/incorrectness/incorrectness.conf
 ssc.exe -T --nits.spec -o ../out/nitsnits.tst -f ../toast/other/nits/nits.conf
 ssc.exe -T --nits.spec -o ../out/parsingparsing.tst -f ../toast/other/parsing/parsing.conf
 ssc.exe -T --nits.spec -o ../out/patternpattern.tst -f ../toast/other/pattern/pattern.conf
+ssc.exe -T --nits.spec -o ../out/safarisafari.tst -f ../toast/other/safari/safari.conf
 ssc.exe -T --nits.spec -o ../out/simplesimple.tst -f ../toast/other/simple/simple.conf
 ssc.exe -T --nits.spec -o ../out/ssissi.tst -f ../toast/other/ssi/ssi.conf
 ssc.exe -T --nits.spec -o ../out/RDFa113.tst -f ../toast/RDFa/1.1.3/rdfa.conf

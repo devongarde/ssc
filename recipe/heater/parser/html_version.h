@@ -497,8 +497,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H3_CSS_TRANSFORM      H3_CSS_TRANSFORM_34  
 #define H3_CSS_TRANSFORM_MASK H3_CSS_TRANSFORM
 
-#define H3_CSS_3          ( H3_CSS_BOX_ALIGN | H3_CSS_BOX_MODEL_3 | H3_CSS_BOX_SIZING | H3_CSS_DISPLAY | H3_CSS_GRID_3 | H3_CSS_IMAGE_3 | H3_CSS_MULTI_COL | H3_CSS_OVERFLOW | H3_CSS_POSITION | \
-                            H3_CSS_SHAPE_3 | H3_CSS_SPEECH | H3_CSS_TABLE | H3_CSS_TEXTDEC_3 | H3_CSS_TRANSFORM_3 | H3_CSS_TRANSITION | H3_CSS_WRITING_3 )
+#define H3_CSS_MASKING        0x0000000000800000
+
+#define H3_CSS_3          ( H3_CSS_BOX_ALIGN | H3_CSS_BOX_MODEL_3 | H3_CSS_BOX_SIZING | H3_CSS_DISPLAY | H3_CSS_GRID_3 | H3_CSS_IMAGE_3 | H3_CSS_MASKING | \
+                            H3_CSS_MULTI_COL | H3_CSS_OVERFLOW | H3_CSS_POSITION | H3_CSS_SHAPE_3 | H3_CSS_SPEECH | H3_CSS_TABLE | H3_CSS_TEXTDEC_3 | \
+                            H3_CSS_TRANSFORM_3 | H3_CSS_TRANSITION | H3_CSS_WRITING_3 )
 #define H3_CSS_4          ( H3_CSS_BOX_MODEL_4 | H3_CSS_GRID_4 | H3_CSS_IMAGE_4 | H3_CSS_SHAPE_4 | H3_CSS_TEXTDEC_4 | H3_CSS_TRANSFORM_3 | H3_CSS_WRITING_4 )
 #define H3_CSS_5            0
 #define H3_CSS_6            0
@@ -518,7 +521,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H3_CSS_MASK       H3_CSS_ALL
 #define H3_CSS            H3_CSS_ALL
 
-#define H3_FULL_CSS_MASK    0x00000000007FFFFF
+#define H3_FULL_CSS_MASK    0x0000000000FFFFFF
+
 
 class html_version : public version
 {   flags_t ext_ = NOFLAGS, ext2_ = NOFLAGS, ext3_ = NOFLAGS;
@@ -605,7 +609,7 @@ public:
     bool has_math_not_core () const noexcept { return any_ext2 (H2_MATHML) && ! has_math_core (); }
     bool has_rdfa () const noexcept { return any_ext (HE_RDFA); }
     bool has_svg () const noexcept { return any_ext (SVG_MASK); }
-    bool has_xlink () const  noexcept{ return any_ext (XLINK_MASK); }
+    bool has_xlink () const  noexcept { return any_ext (XLINK_MASK); }
     int jsonld () const noexcept { return GSL_NARROW_CAST < int > ((ext2 () & JSONLD_MASK) >> JSONLD_SHIFT); }
     int math () const noexcept { return GSL_NARROW_CAST < int > ((ext2 () & MATH_MASK) >> MATH_SHIFT); }
     int rdfa () const noexcept { return has_rdfa (); }
@@ -762,6 +766,8 @@ public:
     void css_grid (const int n);
     int css_image () const;
     void css_image (const int n);
+    int css_masking () const;
+    void css_masking (const int n);
     int css_media () const;
     void css_media (const int n);
     int css_multi_column () const;

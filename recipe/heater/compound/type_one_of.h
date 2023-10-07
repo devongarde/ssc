@@ -110,7 +110,7 @@ template < e_type T, bool EMPTY, e_type A, e_type... B > struct type_one_of : ty
         {   nitpick nuts;
             if (inner_set_value (nuts, v, ss)) nits.merge (nuts);
             else
-            {   nits.pick (nit_unrecognised_value, es_error, ec_type, quote (ss), " is invalid for all possible values (", type_name (T), ", 1)");
+            {   nits.pick (nit_unrecognised_value, es_error, ec_type, quote (ss), " is invalid (", type_name (T), ", 1)");
                 if (context.extra () || context.tell (es_debug)) nits.merge (nuts); } } }
     void set_id (const ::std::string& s)
     {   type_one_of < T, EMPTY, B... > :: set_id (s); }
@@ -248,7 +248,7 @@ template < e_type T, bool EMPTY, e_type A > struct type_one_of < T, EMPTY, A > :
         {   nitpick nuts;
             if (inner_set_value (nuts, v, ss)) nits.merge (nuts);
             else
-            {   nits.pick (nit_unrecognised_value, es_error, ec_type, quote (ss), " is invalid for all possible values (", type_name (T), ", 2)");
+            {   nits.pick (nit_unrecognised_value, es_error, ec_type, quote (ss), " is invalid (", type_name (T), ", 2)");
                 if (context.extra () || context.tell (es_debug)) nits.merge (nuts); } } }
     void set_id (const ::std::string& s)
     {   tidy_string < T > :: set_id (s); }

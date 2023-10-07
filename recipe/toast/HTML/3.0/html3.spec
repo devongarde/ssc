@@ -25,9 +25,8 @@ PASS ../toast/HTML/3.0/html3-sample.html
 11 use_metaname
 12 deprecated_element deprecated_element
 13 unrecognised_value
-24 immeasurable
 26 unrecognised_value
-27 missing_close immeasurable
+27 missing_close
 30 inserted_missing_closure
 55 deprecated_element
 58 inserted_missing_closure

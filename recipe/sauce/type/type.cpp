@@ -103,19 +103,31 @@ template < e_type TYPE > struct test_typed_value < TYPE >
 
 bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::std::string& s)
 #ifdef LIMITED_META_COMPLEXITY
-{   if (t <= SSC_TYPE_1_MAX) return test_typed_value < SSC_TYPES_1, t_unknown > :: test (nits, v, t, s);
-    if (t <= SSC_TYPE_2_MAX) return test_typed_value < SSC_TYPES_2, t_unknown > :: test (nits, v, t, s);
-    if (t <= SSC_TYPE_3_MAX) return test_typed_value < SSC_TYPES_3, t_unknown > :: test (nits, v, t, s);
-    if (t <= SSC_TYPE_4_MAX) return test_typed_value < SSC_TYPES_4, t_unknown > :: test (nits, v, t, s);
-    if (t <= SSC_TYPE_5_MAX) return test_typed_value < SSC_TYPES_5, t_unknown > :: test (nits, v, t, s);
-    if (t <= SSC_TYPE_6_MAX) return test_typed_value < SSC_TYPES_6, t_unknown > :: test (nits, v, t, s);
-    if (t <= SSC_TYPE_7_MAX) return test_typed_value < SSC_TYPES_7, t_unknown > :: test (nits, v, t, s);
-    if (t <= SSC_TYPE_8_MAX) return test_typed_value < SSC_TYPES_8, t_unknown > :: test (nits, v, t, s);
-    if (t <= SSC_TYPE_9_MAX) return test_typed_value < SSC_TYPES_9, t_unknown > :: test (nits, v, t, s);
-    if (t <= SSC_TYPE_10_MAX) return test_typed_value < SSC_TYPES_10, t_unknown > :: test (nits, v, t, s);
-    if (t <= SSC_TYPE_11_MAX) return test_typed_value < SSC_TYPES_11, t_unknown > :: test (nits, v, t, s);
-    return test_typed_value < SSC_TYPES_12, t_unknown > :: test (nits, v, t, s); }
+{
+   if (t <= SSC_TYPES_A_MAX) return test_typed_value < SSC_TYPES_A, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_B_C_MAX) return test_typed_value < SSC_TYPES_B_C, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_CSS_A_MAX) return test_typed_value < SSC_TYPES_CSS_A, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_CSS_B_MAX) return test_typed_value < SSC_TYPES_CSS_B, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_CSS_C_MAX) return test_typed_value < SSC_TYPES_CSS_C, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_CSS_D_E_MAX) return test_typed_value < SSC_TYPES_CSS_D_E, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_CSS_F_MAX) return test_typed_value < SSC_TYPES_CSS_F, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_CSS_G_L_MAX) return test_typed_value < SSC_TYPES_CSS_G_L, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_CSS_M_P_MAX) return test_typed_value < SSC_TYPES_CSS_M_P, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_CSS_R_S_MAX) return test_typed_value < SSC_TYPES_CSS_R_S, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_CSS_T_MAX) return test_typed_value < SSC_TYPES_CSS_T, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_CSS_U_Z_MAX) return test_typed_value < SSC_TYPES_CSS_U_Z, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_C_E_MAX) return test_typed_value < SSC_TYPES_C_E, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_F_MAX) return test_typed_value < SSC_TYPES_F, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_G_I_MAX) return test_typed_value < SSC_TYPES_G_I, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_J_L_MAX) return test_typed_value < SSC_TYPES_J_L, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_M_MAX) return test_typed_value < SSC_TYPES_M, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_N_O_MAX) return test_typed_value < SSC_TYPES_N_O, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_P_MAX) return test_typed_value < SSC_TYPES_P, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_Q_R_MAX) return test_typed_value < SSC_TYPES_Q_R, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_S_MAX) return test_typed_value < SSC_TYPES_S, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_T_U_MAX) return test_typed_value < SSC_TYPES_T_U, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_V_Z_MAX) return test_typed_value < SSC_TYPES_V_Z, t_unknown > :: test (nits, v, t, s);
+    GRACEFUL_CRASH (__FILE__, __LINE__); }
 #else // LIMITED_META_COMPLEXITY
-{   return test_typed_value <   SSC_TYPES_1, SSC_TYPES_2, SSC_TYPES_3, SSC_TYPES_4, SSC_TYPES_5, SSC_TYPES_6,
-                                SSC_TYPES_7, SSC_TYPES_8, SSC_TYPES_9, SSC_TYPES_10, SSC_TYPES_11, SSC_TYPES_12, t_unknown > :: test (nits, v, t, s); }
+{   return test_typed_value < SSC_TYPES, t_unknown > :: test (nits, v, t, s); }
 #endif // LIMITED_META_COMPLEXITY

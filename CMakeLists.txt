@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.19)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.1.36 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
+project (ssc VERSION 0.1.37 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
 
 set (CMAKE_CXX_STANDARD 17)
 
@@ -271,7 +271,7 @@ target_sources (ssc PRIVATE
             ${H}/parser/parse_brac_ket.h ${H}/parser/parse_bracs_ket.h ${H}/parser/parse_element.h ${H}/parser/parse_elements.h ${H}/parser/parse_ssi.h
             ${H}/parser/pattern.h ${H}/parser/text.h ${H}/parser/text-data.h ${H}/parser/xhtml_xml.h
         ${H}/rdf/rdf.h ${H}/rdf/rdfa_prop.h ${H}/rdf/rdfa_type.h
-        ${H}/simple/simple.h ${H}/simple/type_autocomplete.h ${H}/simple/type_cookie.h ${H}/simple/type_css.h ${H}/simple/type_currency.h
+        ${H}/simple/simple.h ${H}/simple/type_autocomplete.h ${H}/simple/type_css.h ${H}/simple/type_currency.h
             ${H}/simple/type_httpequiv.h ${H}/simple/type_jsonic.h ${H}/simple/type_media.h ${H}/simple/type_metaname.h ${H}/simple/type_rdf.h
             ${H}/simple/type_reals.h ${H}/simple/type_relational.h ${H}/simple/type_time.h ${H}/simple/type_url.h ${H}/simple/type_basic.h
             ${H}/simple/type_id.h ${H}/simple/type_layout.h ${H}/simple/type_math.h ${H}/simple/type_measure.h ${H}/simple/type_microdata.h
@@ -296,17 +296,20 @@ target_sources (ssc PRIVATE
             ${S}/attribute/avm_data_q.cpp ${S}/attribute/avm_data_r.cpp ${S}/attribute/avm_data_s.cpp ${S}/attribute/avm_data_t1.cpp
             ${S}/attribute/avm_data_t2.cpp ${S}/attribute/avm_data_u.cpp ${S}/attribute/avm_data_v.cpp ${S}/attribute/avm_data_w.cpp
             ${S}/attribute/avm_data_x.cpp ${S}/attribute/avm_data_rdf.cpp ${S}/attribute/namespace.cpp
-        ${S}/base/type_base.cpp ${S}/base/type_core.cpp ${S}/base/type_master.cpp
+        ${S}/base/type_base.cpp ${S}/base/type_case.cpp ${S}/base/type_core.cpp ${S}/base/type_master.cpp
         ${S}/coop/fred.cpp ${S}/coop/kew.cpp ${S}/coop/knickers.cpp ${S}/coop/lox.cpp
-        ${S}/compound/type_varied.cpp
+        ${S}/compound/type_csses.cpp ${S}/compound/type_varied.cpp
         ${S}/css/arguments.cpp ${S}/css/css.cpp ${S}/css/css_attribute.cpp ${S}/css/css_class.cpp ${S}/css/css_element.cpp ${S}/css/css_id.cpp
             ${S}/css/css_parse.cpp ${S}/css/css_state.cpp ${S}/css/decoration.cpp ${S}/css/descriptor.cpp  ${S}/css/descriptor_constructor.cpp
             ${S}/css/descriptors.cpp ${S}/css/distilled.cpp ${S}/css/ffv.cpp ${S}/css/ffvs.cpp ${S}/css/fn.cpp ${S}/css/global.cpp ${S}/css/group.cpp
             ${S}/css/media.cpp ${S}/css/medium.cpp ${S}/css/property.cpp ${S}/css/properties.cpp ${S}/css/property_constructor.cpp ${S}/css/rule.cpp
             ${S}/css/rules.cpp ${S}/css/selector.cpp ${S}/css/selectors.cpp ${S}/css/statement.cpp ${S}/css/statements.cpp ${S}/css/typed_property.cpp
-            ${S}/css/value.cpp ${S}/css/value2.cpp ${S}/css/value_types_1.cpp ${S}/css/value_types_2.cpp ${S}/css/value_types_3.cpp
-            ${S}/css/value_types_4.cpp ${S}/css/value_types_5.cpp ${S}/css/value_types_6.cpp ${S}/css/value_types_7.cpp ${S}/css/value_types_8.cpp
-            ${S}/css/value_types_9.cpp ${S}/css/value_types_10.cpp ${S}/css/value_types_11.cpp ${S}/css/value_types_12.cpp ${S}/css/weight.cpp 
+            ${S}/css/value.cpp ${S}/css/value2.cpp ${S}/css/value_types_a.cpp ${S}/css/value_types_b_c.cpp ${S}/css/value_types_css_a.cpp 
+            ${S}/css/value_types_css_b.cpp ${S}/css/value_types_css_c.cpp ${S}/css/value_types_css_d_e.cpp ${S}/css/value_types_css_f.cpp
+            ${S}/css/value_types_css_g_l.cpp ${S}/css/value_types_css_m_p.cpp ${S}/css/value_types_css_r_s.cpp ${S}/css/value_types_css_t.cpp
+            ${S}/css/value_types_css_u_z.cpp ${S}/css/value_types_c_e.cpp ${S}/css/value_types_f.cpp ${S}/css/value_types_g_i.cpp
+            ${S}/css/value_types_j_l.cpp ${S}/css/value_types_m.cpp ${S}/css/value_types_n_o.cpp ${S}/css/value_types_p.cpp ${S}/css/value_types_q_r.cpp
+            ${S}/css/value_types_s.cpp ${S}/css/value_types_t_u.cpp ${S}/css/value_types_v_z.cpp ${S}/css/weight.cpp 
         ${S}/element/elem.cpp ${S}/element/element.cpp ${S}/element/element_abcd.cpp ${S}/element/element_aria.cpp ${S}/element/element_attributes.cpp
             ${S}/element/element_classes.cpp ${S}/element/element_efghi.cpp ${S}/element/element_examine.cpp ${S}/element/element_input.cpp
             ${S}/element/element_jkl.cpp ${S}/element/element_microdata.cpp ${S}/element/element_microformats.cpp ${S}/element/element_mno.cpp
@@ -328,12 +331,12 @@ target_sources (ssc PRIVATE
             ${S}/parser/parse_bracs_ket.cpp ${S}/parser/parse_element.cpp ${S}/parser/parse_elements.cpp ${S}/parser/parse_ssi.cpp ${S}/parser/pattern.cpp
             ${S}/parser/text.cpp ${S}/parser/text-data.cpp ${S}/parser/xhtml_xml.cpp
         ${S}/rdf/rdf.cpp ${S}/rdf/rdfa_prop.cpp ${S}/rdf/rdfa_type.cpp
-        ${S}/simple/type_autocomplete.cpp ${S}/simple/type_css.cpp
+        ${S}/simple/type_autocomplete.cpp ${S}/simple/type_basic.cpp ${S}/simple/type_css.cpp
             ${S}/simple/type_currency.cpp ${S}/simple/type_d.cpp ${S}/simple/type_httpequiv.cpp ${S}/simple/type_id.cpp
-            ${S}/simple/type_intent.cpp  ${S}/base/type_master.cpp ${S}/simple/type_media.cpp ${S}/simple/type_metaname.cpp
-            ${S}/simple/type_misc.cpp ${S}/simple/type_numeric.cpp ${S}/simple/type_paint.cpp ${S}/simple/type_rdf.cpp
-            ${S}/simple/type_reals.cpp  ${S}/simple/type_sgml.cpp ${S}/simple/type_svg_feature.cpp ${S}/simple/type_time.cpp
-            ${S}/simple/type_transform.cpp ${S}/compound/type_varied.cpp
+            ${S}/simple/type_intent.cpp  ${S}/base/type_master.cpp ${S}/simple/type_measure.cpp ${S}/simple/type_media.cpp
+            ${S}/simple/type_metaname.cpp ${S}/simple/type_misc.cpp ${S}/simple/type_numeric.cpp ${S}/simple/type_paint.cpp
+            ${S}/simple/type_rdf.cpp ${S}/simple/type_reals.cpp  ${S}/simple/type_sgml.cpp ${S}/simple/type_svg_feature.cpp
+            ${S}/simple/type_time.cpp ${S}/simple/type_transform.cpp ${S}/compound/type_varied.cpp
         ${S}/spell/spell.cpp ${S}/spell/nixspell.cpp ${S}/spell/winspell.cpp
         ${S}/stats/stats.cpp ${S}/stats/stats_impl.cpp
         ${S}/symbol/nstr.cpp ${S}/symbol/symbol.cpp

@@ -776,15 +776,11 @@ PASS ../toast/SVG/1.2/rtl-complex.svg
 0 charset_mismatch charset_used
 1 xhtml_1_1
 4 svg_version
-5 invalid_attribute_version wrong_version
-6 invalid_attribute_version wrong_version
 9 use_quote_code
 
 PASS ../toast/SVG/1.2/rtl-text.svg
 0 charset_mismatch charset_used
 1 xhtml_1_1
-5 invalid_attribute_version wrong_version
-6 invalid_attribute_version wrong_version
 9 use_quote_code
 
 PASS ../toast/SVG/1.2/simplehandler.svg
@@ -845,9 +841,7 @@ PASS ../toast/SVG/1.2/svg12.xhtml
 40 svg_version
 47 svg_version
 57 svg_version
-67 svg invalid_attribute_version wrong_version unrecognised_value invalid_attribute_version wrong_version svg_version
-69 invalid_attribute_version wrong_version
-73 invalid_attribute_version wrong_version
+67 unrecognised_value svg_version
 82 missing_open
 83 missing_open
 

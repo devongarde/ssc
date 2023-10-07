@@ -559,7 +559,7 @@ template < e_type T, e_type N, class SZ1, class SZ2 > struct type_number_unit_2 
         if (ss.empty ())
             nits.pick (nit_empty, es_error, ec_type, "a number with units expected (", type_name (T), ")");
         else
-        {   vstr_t sz = { SZ1::sz (), SZ2::sz () };
+        {   const vstr_t sz = { SZ1::sz (), SZ2::sz () };
             bool found = false;
             for (auto sss : sz)
             {   if (sss.length () >= ss.length ()) continue;
@@ -581,7 +581,29 @@ template < e_type T, e_type N, class SZ1, class SZ2, class SZ3 > struct type_num
         if (ss.empty ())
             nits.pick (nit_empty, es_error, ec_type, "a number with units expected (", type_name (T), ")");
         else
-        {   vstr_t sz = { SZ1::sz (), SZ2::sz (), SZ3::sz () };
+        {   const vstr_t sz = { SZ1::sz (), SZ2::sz (), SZ3::sz () };
+            bool found = false;
+            for (auto sss : sz)
+            {   if (sss.length () >= ss.length ()) continue;
+                if (compare_complain (nits, v, ss.substr (ss.length () - sss.length ()), sss.c_str ()))
+                {   found = true;
+                    ss = ss.substr (0, ss.length () - sss.length ());
+                    break; } }
+            if (! found)
+                nits.pick (nit_bad_units, es_error, ec_type, "Units expected: '", SZ1::sz (), "', '", SZ2::sz (), "' or '", SZ3::sz (), "'");
+            else
+            {   type_master < N > :: set_value (nits, v, ss);  
+                return; } }
+        type_master < N > :: status (s_invalid); } };
+
+template < e_type T, e_type N, class SZ1, class SZ2, class SZ3, class SZ4 > struct type_number_unit_4 : type_master < N >
+{   using type_master < N > :: type_master;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   ::std::string ss (trim_the_lot_off (s));
+        if (ss.empty ())
+            nits.pick (nit_empty, es_error, ec_type, "a number with units expected (", type_name (T), ")");
+        else
+        {   const vstr_t sz = { SZ1::sz (), SZ2::sz (), SZ3::sz (), SZ4::sz () };
             bool found = false;
             for (auto sss : sz)
             {   if (sss.length () >= ss.length ()) continue;

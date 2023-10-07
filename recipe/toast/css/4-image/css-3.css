@@ -1,0 +1,85 @@
+﻿.pfft
+{   background: linear-gradient(in lab to right, #F01, #081);
+    background: linear-gradient(in srgb to right, #F01, #081);
+    background: linear-gradient(in Oklab to right, #F01, #081);
+    
+    background: linear-gradient(in lab to right, white, #01E);
+    background: linear-gradient(in srgb to right, white, #01E);
+    background: linear-gradient(in Oklab to right, white, #01E);
+    
+    background: linear-gradient(in lab to right, #44C, #795);
+    background: linear-gradient(in srgb to right, #44C, #795);
+    background: linear-gradient(in Oklab to right, #44C, #795);
+    
+    background: linear-gradient(in lch to right, #A37, #595);
+    background: linear-gradient(in lab to right, #A37, #595);
+    background: linear-gradient(in srgb to right, #A37, #595);
+    background: linear-gradient(in Oklab to right, #A37, #595);
+    background: linear-gradient(in oklch to right, #A37, #595); }
+
+.psst
+{   background: radial-gradient(in lab farthest-side at left bottom, color(display-p3 0.918 0.2 0.161), #081);
+    background: radial-gradient(in srgb farthest-side at left bottom, color(display-p3 0.918 0.2 0.161), #081);
+    background: radial-gradient(in Oklab farthest-side at left bottom, color(display-p3 0.918 0.2 0.161), #081);
+
+    background: conic-gradient(#f06, gold);
+    background: conic-gradient(at 50% 50%, #f06, gold);
+    background: conic-gradient(from 0deg, #f06, gold);
+    background: conic-gradient(from 0deg at center, #f06, gold);
+    background: conic-gradient(#f06 0%, gold 100%);
+    background: conic-gradient(#f06 0deg, gold 1turn); 
+    
+    background: conic-gradient(white -50%, black 150%);
+    background: conic-gradient(white -180deg, black 540deg);
+    background: conic-gradient(hsl(0,0%,75%), hsl(0,0%,25%));
+
+    background: conic-gradient(from 45deg, white, black, white);
+    background: conic-gradient(hsl(0,0%,75%), white 45deg, black 225deg, hsl(0,0%,75%));
+
+    background: radial-gradient(gray, transparent),
+                conic-gradient(red, magenta, blue, aqua, lime, yellow, red);
+    border-radius: 50%;
+    width: 200px; height: 200px;
+
+    background: conic-gradient(yellowgreen 40%, gold 0deg 75%, #f06 0deg);
+    border-radius: 50%;
+    width: 200px; height: 200px; }
+
+.pissed
+{   background: repeating-conic-gradient(gold, #f06 20deg);
+
+    background: repeating-conic-gradient(
+                    hsla(0,0%,100%,.2) 0deg 15deg,
+                    hsla(0,0%,100%,0) 0deg 30deg
+                ) #0ac;
+
+    background: repeating-conic-gradient(black 0deg 25%, white 0deg 50%);
+    background-size: 60px 60px;
+
+    background: conic-gradient(black 25%, white 0deg 50%, black 0deg 75%, white 0deg);
+    background-size: 60px 60px; }
+
+.phhhhhh
+{   background: linear-gradient(to right, red 0%, blue 100%);
+    background: linear-gradient(to right, red 0%, 25%, blue 100%);
+
+    background: linear-gradient(red, white 20%, blue);
+    background: linear-gradient(red 0%, white 20%, blue 100%);
+
+    background: linear-gradient(red 40%, white, black, blue);
+    background: linear-gradient(red 40%, white 60%, black 80%, blue 100%);
+
+    background: linear-gradient(red -50%, white, blue);
+    background: linear-gradient(red -50%, white 25%, blue 100%);
+
+    background: linear-gradient(red -50px, white, blue);
+    background: linear-gradient(red -50px, white calc(-25px + 50%), blue 100%);
+
+    background: linear-gradient(red 20px, white 0px, blue 40px);
+    background: linear-gradient(red 20px, white 20px, blue 40px);
+
+    background: linear-gradient(red, white -50%, black 150%, blue);
+    background: linear-gradient(red 0%, white 0%, black 150%, blue 150%);
+
+    background: linear-gradient(red 80px, white 0px, black, blue 100px);
+    background: linear-gradient(red 80px, white 80px, black 90px, blue 100px); }

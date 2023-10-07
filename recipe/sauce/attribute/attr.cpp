@@ -489,6 +489,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "markerWidth", a_markerwidth },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "mask", a_mask, ns_default, AF_SVG2_PROPERTY | AP_SET_XLINKCAT (se_mask) },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "maskContentUnits", a_maskcontentunits },
+    { { HTML_SVG10, 0, HE_SVG, 0, H3_CSS_MASKING }, { HTML_UNDEF }, "mask-type", a_masktype },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "maskUnits", a_maskunits },
     { { HTML_3_0 }, { HTML_UNDEF }, "math", a_math },
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4_C }, { HTML_UNDEF }, "mathbackground", a_mathbackground },

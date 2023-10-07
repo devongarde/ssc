@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<TITLE>CSS 3 transform chapter 10 examples</TITLE>
+  </head>
+<body>
+
+<div style="transform: translate(-10px, -20px) scale(2) rotate(45deg)"/>
+
+<div style="transform: translate(-10px, -20px)" id="root">
+  <div style="transform: scale(2)">
+    <div style="transform: rotate(45deg)">
+    </div>
+  </div>
+</div>
+
+<style>
+.box {
+  transform: scale(0);
+}
+</style>
+
+<div class="box">
+  Not visible
+</div>
+
+</body>
+</html>

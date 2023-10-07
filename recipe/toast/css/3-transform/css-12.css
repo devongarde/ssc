@@ -1,0 +1,17 @@
+﻿div {
+  transform: translateX(100px);
+}
+
+div:hover {
+  transform: translateY(100px);
+  transition: transform 3s;
+}
+
+div {
+  transform: translateX(100px);
+}
+
+div:hover {
+  transform: translateZ(100px);
+  transition: transform 3s;
+}

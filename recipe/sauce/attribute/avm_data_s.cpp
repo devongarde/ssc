@@ -306,7 +306,6 @@ hav_t havt_svg [] =
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_svg, a_preserveaspectratio },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_svg, a_snapshottime },
     { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, elem_svg, a_style },
-    { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, elem_svg, a_style },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_svg, a_streamedcontents },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_svg, a_syncbehaviourdefault },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_svg, a_synctolerancedefault },

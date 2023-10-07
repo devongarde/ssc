@@ -102,6 +102,9 @@ template < > struct type_master < t_compositing > : two_value < t_compositing, e
 template < > struct type_master < t_connect > : two_value < t_connect, e_connect, sz_line, sz_none, false >
 { using two_value < t_connect, e_connect, sz_line, sz_none, false > :: two_value; };
 
+template < > struct type_master < t_contain_cover > : two_value < t_contain_cover, e_contain_cover, sz_contain, sz_cover, false >
+{ using two_value < t_contain_cover, e_contain_cover, sz_contain, sz_cover, false > :: two_value; };
+
 template < > struct type_master < t_coordinatesystem > : two_value < t_coordinatesystem, e_gradientunits, sz_userspaceonuse, sz_objectboundingbox, false >
 { using two_value < t_coordinatesystem, e_gradientunits, sz_userspaceonuse, sz_objectboundingbox, false > :: two_value; };
 
@@ -114,14 +117,14 @@ template < > struct type_master < t_css_anim_play_state > : two_value < t_css_an
 template < > struct type_master < t_css_box_sizing > : two_value < t_css_box_sizing, e_css_box_sizing, sz_border_box, sz_content_box, false >
 { using two_value < t_css_box_sizing, e_css_box_sizing, sz_border_box, sz_content_box, false > :: two_value; };
 
+template < > struct type_master < t_css_break_box > : two_value < t_css_break_box, e_css_break_box, sz_clone, sz_slice, false >
+{ using two_value < t_css_break_box, e_css_break_box, sz_clone, sz_slice, false > :: two_value; };
+
 template < > struct type_master < t_css_display_box > : two_value < t_css_display_box, e_css_display_box, sz_contents, sz_none, false >
 { using two_value < t_css_display_box, e_css_display_box, sz_contents, sz_none, false > :: two_value; };
 
 template < > struct type_master < t_css_display_flow > : two_value < t_css_display_flow, e_css_display_flow, sz_flow, sz_flow_root, false >
 { using two_value < t_css_display_flow, e_css_display_flow, sz_flow, sz_flow_root, false > :: two_value; };
-
-template < > struct type_master < t_css_break_box > : two_value < t_css_break_box, e_css_break_box, sz_clone, sz_slice, false >
-{ using two_value < t_css_break_box, e_css_break_box, sz_clone, sz_slice, false > :: two_value; };
 
 template < > struct type_master < t_css_isolation > : two_value < t_css_isolation, e_css_isolation, sz_auto, sz_isolate, false >
 { using two_value < t_css_isolation, e_css_isolation, sz_auto, sz_isolate, false > :: two_value; };
@@ -129,11 +132,17 @@ template < > struct type_master < t_css_isolation > : two_value < t_css_isolatio
 template < > struct type_master < t_css_mark > : two_value < t_css_mark, e_css_mark, sz_crop, sz_cross, false >
 { using two_value < t_css_mark, e_css_mark, sz_crop, sz_cross, false > :: two_value; };
 
+template < > struct type_master < t_css_mask_border_mode > : two_value < t_css_mask_border_mode, e_css_mask_border_mode, sz_alpha, sz_luminance, false >
+{ using two_value < t_css_mask_border_mode, e_css_mask_border_mode, sz_alpha, sz_luminance, false > :: two_value; };
+
 template < > struct type_master < t_css_shape_fillrule > : two_value < t_css_shape_fillrule, e_css_shape_fillrule, sz_evenodd, sz_nonzero, false >
 { using two_value < t_css_shape_fillrule, e_css_shape_fillrule, sz_evenodd, sz_nonzero, false > :: two_value; };
 
 template < > struct type_master < t_css_text_resize > : two_value < t_css_text_resize, e_css_text_resize, sz_clip, sz_ellipsis, false >
 { using two_value < t_css_text_resize, e_css_text_resize, sz_clip, sz_ellipsis, false > :: two_value; };
+
+template < > struct type_master < t_css_transform_style > : two_value < t_css_transform_style, e_css_transform_style, sz_flat, sz_preserve_3d, false >
+{ using two_value < t_css_transform_style, e_css_transform_style, sz_flat, sz_preserve_3d, false > :: two_value; };
 
 template < > struct type_master < t_dataformatas > : two_value < t_dataformatas, e_dataformatas, sz_html, sz_plaintext, false >
 { using two_value < t_dataformatas, e_dataformatas, sz_html, sz_plaintext, false > :: two_value; };

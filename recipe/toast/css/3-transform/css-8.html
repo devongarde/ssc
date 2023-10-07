@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<TITLE>CSS 3 transform chapter 8 examples</TITLE>
+  </head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg">
+
+<rect width="100" height="100">
+  <animateTransform attributeName="transform" attributeType="XML"
+    type="scale" by="1" dur="5s" fill="freeze"/>
+</rect>
+
+<linearGradient gradientTransform="scale(2)">
+  <animate attributeName="gradientTransform" from="scale(2)" to="scale(4)"
+    dur="3s" additive="sum"/>
+  <animate attributeName="transform" from="translate(0, 0)" to="translate(100px, 100px)"
+    dur="3s" additive="sum"/>
+</linearGradient>
+
+</svg>
+
+</body>
+</html>

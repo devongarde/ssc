@@ -1,0 +1,7 @@
+﻿.pfft
+{   clip-path: polygon(15px 99px, 30px 87px, 65px 99px, 85px 55px,
+        122px 57px, 184px 73px, 198px 105px, 199px 150px,
+        145px 159px, 155px 139px, 126px 120px, 112px 138px,
+        80px 128px, 39px 126px, 24px 104px);
+
+    clip-path: url("#clip1"); }

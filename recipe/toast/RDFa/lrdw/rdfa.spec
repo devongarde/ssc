@@ -60,7 +60,7 @@ PASS ../toast/RDFa/lrdw/lrdw.html
 5182 not_ontology_property bad_property
 5363 contradictory_expansion
 5373 not_ontology_property bad_property
-5380 rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine svg_version
+5380 rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine invalid_attribute_version wrong_version svg_version
 5396 immeasurable
 5397 immeasurable
 5870 invalid_ipv4 rel_requires_href chocolate_teapot

@@ -35,21 +35,14 @@ bool verify_attribute_version (nitpick& nits, const html_version& v, const e_ele
             nits.pick (nit_prototype, ed_jan21, "1.11.1 Presentational markup", es_comment, ec_attribute, name, " is best not used in production in ", v.report ());
     return true; }
 
-/*
-        if (! v.check_math_svg (nits, attr :: first_version (IDENTITY), name ())) excluded_ = true;
-        if (is_invalid_attribute_version (v, tag, IDENTITY))
-        {   nits.pick (nit_invalid_attribute_version, es_error, ec_attribute, quote (name ()), " is invalid in ", v.report ());
-            return false; }
-        if (! excluded_)
-        {   excluded_ = attr :: first_version (IDENTITY).invalid_addendum (v);
-            if (excluded_) nits.pick (nit_excluded_attribute, es_warning, ec_attribute, "the attribute ", quote (name ()), " is invalid in pure ", v.report ()); }
-        deprecated_ = is_deprecated_attribute_version (v, tag, IDENTITY);
-        if (deprecated_) nits.pick (nit_deprecated_attribute, es_warning, ec_attribute, name (), " is deprecated in ", v.report ());
-        else if (not_production_attribute (v, tag, IDENTITY))
-            nits.pick (nit_prototype, ed_jan21, "1.11.1 Presentational markup", es_comment, ec_attribute, name (), " is best not used in production in ", v.report ());
-        return true; }
-
-
-
-
-*/
+bool set_attribute_value (nitpick& nits, const html_version& v, const ::std::string& ss, const ::std::string& n)
+{   if (v.is_b4_2 ())
+        nits.pick (nit_existential_value, es_warning, ec_type, "in ", v.report (), ", ", n, " cannot be given a value");
+    else
+    if (v.xhtml ())
+    {   if (ss == n) return true;
+        nits.pick (nit_xhtml_existential_makework, es_error, ec_type, "in ", v.report (), ", the value of ", n, " must be ", quote (n)); }
+    else
+    {   if (compare_no_case (ss, n)) return true;
+        nits.pick (nit_existential_value, es_warning, ec_type, "if ", n, " has a value, it must be ", quote (n)); }
+    return false; }

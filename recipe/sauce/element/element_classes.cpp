@@ -537,7 +537,7 @@ element_init_t ei [] =
     { elem_marker, {    a_externalresourcesrequired, a_orient, a_markerheight, a_markerunits, a_markerwidth, a_preserveaspectratio, a_refx, a_refy, a_viewbox, SVG_PRES,
                         SVG_DOC, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_marquee, { a_behaviour, a_bgcolour, a_direction, a_hspace, a_loop, a_scrollamount, a_scrolldelay, a_truespeed, a_vspace, WIDEHIGH, a_unknown } },
-    { elem_mask, { a_externalresourcesrequired, a_maskcontentunits, a_maskunits, SVG_COND, SVG_PRES, SVG_BOX, METADATA, LIVING_STANDARD, a_unknown } },
+    { elem_mask, { a_externalresourcesrequired, a_maskcontentunits, a_masktype, a_maskunits, SVG_COND, SVG_PRES, SVG_BOX, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_math, {  a_accentunder, a_altimg, a_altimg_height, a_altimg_width, a_altimg_valign, a_alttext, a_background, a_baseline,
                     a_bevelled, a_box, a_cdgroup, a_charalign, a_charspacing, a_close, a_columnspan, a_crossout, a_decimalpoint,
                     a_display, a_denomalign, a_depth, a_edge, a_infixlinebreakstyle, a_lang, a_leftoverhang, a_length,

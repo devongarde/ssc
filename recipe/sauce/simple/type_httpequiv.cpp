@@ -604,3 +604,181 @@ bool linkarg_set_value (nitpick& nits, const html_version& v, const ::std::strin
                 break;
             default : return true; } }
     return false; }
+
+e_status set_cache_value (nitpick& nits, const html_version& v, const ::std::string& ss)
+{   if (ss.empty ())
+        nits.pick (nit_empty, es_error, ec_type, "cache value required");
+    else
+    {   const ::std::string::size_type pos = ss.find ('=');
+        ::std::string arg, s (ss);
+        bool booboo = false;
+        if (pos != ::std::string::npos)
+        {   if ((pos == 0) || (pos == ss.length () - 1)) booboo = true;
+            else
+            {   arg = ss.substr (pos+1);
+                s = ss.substr (0, pos);
+                if (arg.find_first_not_of (DENARY) != ::std::string::npos) booboo = true; }
+            if (booboo) nits.pick (nit_bad_cache, ed_rfc_7234, "5.2.1. Request Cache-Control Directives", es_error, ec_type, "bad syntax or bad integer"); }
+        if (! booboo)
+            if (! test_value < t_cachekey > (nits, v, s))
+                nits.pick (nit_bad_cache, ed_rfc_7234, "5.2.1. Request Cache-Control Directives", es_error, ec_type, quote (s), " is not a valid cache keyword");
+            else switch (examine_value < t_cachekey > (nits, v, s))
+            {   case ck_maxage :
+                case ck_minfresh :
+                    if (arg.empty ())
+                    {   nits.pick (nit_bad_cache, ed_rfc_7234, "5.2.1. Request Cache-Control Directives", es_error, ec_type, quote (s), " requires an integer argument (for example, 'max-sausages=5')");
+                        booboo = true; }
+                    break;
+                case ck_nocache :
+                case ck_nostore :
+                case ck_notransform :
+                case ck_onlyifcached :
+                    if (! arg.empty ())
+                    {   nits.pick (nit_bad_cache, ed_rfc_7234, "5.2.1. Request Cache-Control Directives", es_error, ec_type, quote (s), " takes no argument");
+                        booboo = true; }
+                    break;
+                default : break; }
+        if (! booboo) return s_good; }
+    return s_invalid; }
+
+e_status set_content_type_value (nitpick& nits, const html_version& v, const ::std::string& s, ::std::string& charset)
+{   if (s.empty ()) return s_empty;
+    vstr_t sides (split_sides_at_semi (nits, s));
+    if (sides.size () > 0)
+    {   if (! compare_no_case (sides.at (0), HTML_TYPE))
+            nits.pick (nit_text_html_expected, es_error, ec_type, "content type should be '" HTML_TYPE ";charset=...'");
+        if (sides.size () == 1)
+            nits.pick (nit_charset_missing, es_error, ec_type, "the charset is missing");
+        else
+        {   ::std::string ss (trim_the_lot_off (sides.at (1)));
+            const ::std::string::size_type pos = ss.find ('=');
+            if ((pos != ::std::string::npos) && compare_no_case (ss.substr (0, pos), "charset"))
+            {   type_master < t_charset > cs;
+                ::std::string sss (ss.substr (pos+1));
+                cs.set_value (nits, v, sss);
+                if (cs.good ())
+                {   charset = sss; return s_good; } } } }
+    return s_invalid; }
+
+e_status set_csp_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   if (s.empty ()) return s_empty;
+    vstr_t sides (split_sides_at_semi (nits, s, 1, 0));
+    bool res = true;
+    for (auto ss : sides)
+    {   ::std::string sss (trim_the_lot_off (ss));
+        if (! sss.empty ())
+        {   vstr_t csp (split_by_space (sss));
+            if (csp.size () > 0)
+                if (! test_value < t_csp_directive > (nits, v, csp.at (0)))
+                    res = false;
+                else
+                {   const e_csp_directive cd = examine_value < t_csp_directive > (nits, v, csp.at (0));
+                    switch (cd)
+                    {   case csp_plugin_types :
+                            if (! compare_no_case (csp.at (1), QNONE))
+                                for (::std::size_t i = 1; i < csp.size (); ++i)
+                                    if (! test_value < t_mime > (nits, v, csp.at (i))) res = false;
+                            break;
+                        case csp_sandbox :
+                            for (::std::size_t i = 10; i < csp.size (); ++i)
+                                if (! test_value < t_sandbox > (nits, v, csp.at (i))) res = false;
+                            break;
+                        case csp_frame_ancestors :
+                            if (csp.size () < 2)
+                                nits.pick (nit_bad_csp_directive, ed_csp, "Content Security Policy Directives", es_error, ec_type, quote (csp.at (0)), " requires arguments");
+                            else for (::std::size_t i = 1; i < csp.size (); ++i)
+                                if (! test_value < t_csp_ancestor > (nits, v, csp.at (i))) res = false;
+                            break;
+                        case csp_report_uri :
+                            for (::std::size_t i = 10; i < csp.size (); ++i)
+                                if (! test_value < t_url > (nits, v, csp.at (i))) res = false;
+                            break;
+                        case csp_report_to :
+                        case csp_block_all_mixed_content :
+                        case csp_update_insecure_requests :
+                        case csp_require_sri_for :
+                            break;
+                        default :
+                            if (csp.size () < 2)
+                                nits.pick (nit_bad_csp_directive, ed_csp, "Content Security Policy Directives", es_error, ec_type, quote (csp.at (0)), " requires arguments");
+                            else if ((csp.size () != 2) || ! compare_no_case (csp.at (1), QNONE))
+                                for (::std::size_t i = 1; i < csp.size (); ++i)
+                                    if (! test_value < t_csp_source > (nits, v, csp.at (i))) res = false; } } } }
+    if (res) return s_good;
+    return s_invalid; }
+
+e_status set_csp_sauce_value (nitpick& nits, const html_version& v, const ::std::string& ss)
+{   if (ss.empty ()) return s_empty;
+    ::std::string s (ss);
+    const ::std::string::size_type len = s.length ();
+    if ((len > 1) && (s.at (0) == '\'') && (s.at (len - 1) == '\''))
+    {   if (v >= csp_c2)
+        {   s = s.substr (1, len - 2);
+            const ::std::string::size_type pos = s.find ('-');
+            if (pos != ::std::string::npos)
+            {   if ((pos == 5) && compare_no_case (EVIL, s.substr (0, 5)))
+                {   if (s.substr (6).find_first_not_of (ALPHABET DENARY "+/-_*") == ::std::string::npos) return s_good;
+                    nits.pick (nit_bad_number_once, ed_csp, "Content Security Policy Directives", es_error, ec_attribute, "invalid number once"); }
+                else if (pos != 6)
+                    nits.pick (nit_bad_csp_source, ed_csp, "Content Security Policy Directives", es_error, ec_attribute, quote (s.substr (0, pos)), " is an unrecognised source");
+                else
+                {   ::std::string algo (s.substr (0, 6));
+                    if (compare_no_case (algo, "sha256") ||
+                        compare_no_case (algo, "sha384") ||
+                        compare_no_case (algo, "sha512")) return s_good;
+                    nits.pick (nit_invalid_algorithm, ed_csp, "Content Security Policy Directives", es_error, ec_attribute, quote (s.substr (0, 6)), " is an unrecognised digest"); } } } }
+    else
+    if (ss.at (len - 1) == ':')
+    {   e_protocol prot;
+        if (symbol < html_version, e_protocol > :: parse (nits, v, ss.substr (0, len - 1), prot)) return s_good; }
+    else
+    {   if (ss.find ('*') != ::std::string::npos) return s_good;
+        url u (nits, v, ss, pr_https);
+        if (! u.invalid ()) return s_good; }
+    return s_invalid; }
+
+e_status set_linkarg_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   if (s.empty ())
+        nits.pick (nit_empty, es_error, ec_type, "value required (", type_name (t_linkarg), ")");
+    else if (linkarg_set_value (nits, v, s)) return s_good;
+    return s_invalid; }
+
+e_status set_linkitself_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   if (s.empty ())
+        nits.pick (nit_bad_link_pragma, es_error, ec_type, "oddly, a link pragma needs a link");
+    else if ((s.length () < 3) || (s.at (0) != '<') || (s.at (s.length () -1) != '>'))
+        nits.pick (nit_bad_link_pragma, es_error, ec_type, "the URL must be enclosed in angular brackets");
+    else if (test_value < t_url > (nits, v, s.substr (1, s.length ()-2))) return s_good;
+    return s_invalid; }
+
+e_status set_location_value (nitpick& nits, const html_version& v, const ::std::string& s, ::std::string& val)
+{   if (s.empty ()) return s_empty;
+    vstr_t sides (split_sides_at_semi (nits, s));
+    if (sides.size () > 0)
+    {   if (! compare_no_case (sides.at (0), "0"))
+            nits.pick (nit_text_html_expected, ed_w3, HTTPS_W3 "/TR/2016/NOTE-WCAG20-TECHS-20161007/F41", es_error, ec_type, "do not use location with any period but zero, to avoid causing some users significant problems");
+        if (sides.size () == 1)
+            nits.pick (nit_url_empty, es_error, ec_type, "the url is missing");
+        else
+        {   url u (nits, v, trim_the_lot_off (sides.at (2)));
+            if (! u.invalid ()) { val = u.original (); return s_good; } } }
+    return s_invalid; }
+
+e_status set_refresh_value (nitpick& nits, const html_version& v, const ::std::string& s, ::std::string& val)
+{   if (s.empty ())
+        nits.pick (nit_empty, es_error, ec_type, "value required (", type_name (t_refresh), ")");
+    else
+    {   vstr_t sides (split_sides_at_semi (nits, s, 1));
+        if (sides.size () > 0)
+        {   if (sides.size () < 2) return s_good;
+            if (! compare_no_case (sides.at (0), "0"))
+                nits.pick (nit_refresh_zero, ed_w3, HTTPS_W3 "/TR/2016/NOTE-WCAG20-TECHS-20161007/F41", es_error, ec_type, "do not use refresh with any period but zero, to avoid causing some users significant problems");
+            const int ulen = 4;
+            ::std::string x (trim_the_lot_off (sides.at (1)));
+            if (x.length () < 5 || ! compare_no_case (x.substr (0, ulen), "url="))
+                nits.pick (nit_url_empty, es_error, ec_type, "the refresh url must be preceded by 'url='");
+            else
+            {   url u (nits, v, x.substr (ulen));
+                if (! u.invalid ())
+                {   val = u.original (); return s_good; } } } }
+    return s_invalid; }

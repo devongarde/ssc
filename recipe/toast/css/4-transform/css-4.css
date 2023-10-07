@@ -1,0 +1,22 @@
+﻿.transformed {
+  height: 100px;
+  width: 100px;
+  background: lime;
+  transform: perspective(50px) translateZ(100px);
+}
+
+.transformed {
+  height: 100px;
+  width: 100px;
+  background: radial-gradient(yellow, blue);
+  transform: perspective(50px) translateZ(50px);
+}
+
+.transformed {
+  height: 50px;
+  width: 50px;
+  background: lime;
+  border: 25px solid blue;
+  transform-origin: left;
+  transform: perspective(50px) rotateY(-45deg);
+}

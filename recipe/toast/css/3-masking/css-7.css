@@ -1,0 +1,25 @@
+﻿body { mask-image: linear-gradient(black 0%, transparent 100%) }
+p { mask-image: none }
+div { mask-image: url(resources.svg#mask2) }
+
+body {
+    background-color: blue;
+    mask-image: url(dot-mask.png) luminance;
+    mask-repeat: space;
+}
+
+body {
+    mask-image: url("logo.png");
+    mask-position: 100% 100%;
+    mask-repeat: no-repeat;
+}
+
+.pfft
+{   mask-position: right 3em bottom 10px; }
+
+.psst
+{   mask-image: rect.svg, circle.svg;
+    mask-composite: add, exclude;
+
+    mask-image: trapeze.svg, circle.svg, rect.svg;
+    mask-composite: subtract, add; }

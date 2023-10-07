@@ -38,6 +38,8 @@
 ../toast/css/3-grid/css.spec
 ../toast/css/4-grid/css.spec
 ../toast/css/3-image/css.spec
+../toast/css/4-image/css.spec
+../toast/css/3-masking/css.spec
 ../toast/css/3-mc/css.spec
 ../toast/css/3-media/css.spec
 ../toast/css/4-media/css.spec
@@ -54,7 +56,9 @@
 ../toast/css/3-table/css.spec
 ../toast/css/3-textdec/css.spec
 ../toast/css/4-textdec/css.spec
-../toast/css/3-trans/css.spec
+../toast/css/3-transform/css.spec
+../toast/css/4-transform/css.spec
+../toast/css/3-transition/css.spec
 ../toast/css/3-ui/css.spec
 ../toast/css/4-ui/css.spec
 ../toast/css/3-value/css.spec

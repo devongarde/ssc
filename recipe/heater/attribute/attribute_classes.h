@@ -124,7 +124,7 @@ typedef typed_attribute < t_existential, a_autoplay > attr_autoplay;
 typedef typed_attribute < t_existential, a_autosubmit > attr_autosubmit;
 typedef typed_attribute < t_generic, a_axes > attr_axes;
 typedef typed_attribute < t_generic, a_axis > attr_axis;
-typedef typed_attribute < t_angle, a_azimuth > attr_azimuth;
+typedef typed_attribute < t_angle_a, a_azimuth > attr_azimuth;
 typedef typed_attribute < t_background, a_background > attr_background;
 typedef typed_attribute < t_paint, a_background_fill > attr_background_fill;
 typedef typed_attribute < t_integer, a_balance > attr_balance;
@@ -171,7 +171,8 @@ typedef typed_attribute < t_class, a_class > attr_class;
 typedef typed_attribute < t_url, a_classid > attr_classid;
 typedef typed_attribute < t_clear, a_clear > attr_clear;
 typedef typed_attribute < t_clip, a_clip > attr_clip;
-typedef typed_attribute < t_clip_path_rule, a_clip_path > attr_clip_path;
+//typedef typed_attribute < t_clip_path_rule, a_clip_path > attr_clip_path;
+typedef typed_attribute < t_css_clip_path, a_clip_path > attr_clip_path;
 typedef typed_attribute < t_fill_rule, a_clip_rule > attr_clip_rule;
 typedef typed_attribute < t_tfi, a_clip_to_self > attr_clip_to_self;
 typedef typed_attribute < t_coordinatesystem, a_clippathunits > attr_clippathunits;
@@ -261,7 +262,7 @@ typedef typed_attribute < t_edgemode, a_edgemode > attr_edgemode;
 typedef typed_attribute < t_edit, a_edit > attr_edit;
 typedef typed_attribute < t_editable, a_editable > attr_editable;
 typedef typed_attribute < t_effect, a_effect > attr_effect;
-typedef typed_attribute < t_angle, a_elevation > attr_elevation;
+typedef typed_attribute < t_angle_a, a_elevation > attr_elevation;
 typedef typed_attribute < t_text, a_encoding > attr_encoding;
 typedef typed_attribute < t_enctype, a_enctype > attr_enctype;
 typedef typed_attribute < t_enable_background, a_enable_background > attr_enablebackground;
@@ -286,7 +287,7 @@ typedef typed_attribute < t_existential, a_femorphology > attr_femorphology;
 typedef typed_attribute < t_bool, a_fence > attr_fence;
 typedef typed_attribute < t_existential, a_fetile > attr_fetile;
 typedef typed_attribute < t_importance, a_fetchpriority > attr_fetchpriority;
-typedef typed_attribute < t_fill, a_fill > attr_fill;
+typedef typed_attribute < t_fill_v, a_fill > attr_fill;
 typedef typed_attribute < t_fill_opacity, a_fill_opacity > attr_fill_opacity;
 typedef typed_attribute < t_fill_rule, a_fill_rule > attr_fill_rule;
 typedef typed_attribute < t_urifn_ni, a_filter > attr_filter;
@@ -438,7 +439,7 @@ typedef typed_attribute < t_unsigned, a_length > attr_length;
 typedef typed_attribute < t_lengthadjust, a_lengthadjust > attr_lengthadjust;
 typedef typed_attribute < t_measure_ni, a_letter_spacing > attr_letter_spacing;
 typedef typed_attribute < t_colour_cii, a_lighting_colour > attr_lighting_colour;
-typedef typed_attribute < t_angle, a_limitingconeangle > attr_limitingconeangle;
+typedef typed_attribute < t_angle_a, a_limitingconeangle > attr_limitingconeangle;
 typedef typed_attribute < t_linebreak, a_linebreak > attr_linebreak;
 typedef typed_attribute < t_text, a_linebreakmultichar > attr_linebreakmultichar;
 typedef typed_attribute < t_linebreakstyle, a_linebreakstyle > attr_linebreakstyle;
@@ -473,6 +474,7 @@ typedef typed_attribute < t_markerunits, a_markerunits > attr_markerunits;
 typedef typed_attribute < t_measure, a_markerwidth > attr_markerwidth;
 typedef typed_attribute < t_urifn_ni, a_mask > attr_mask;
 typedef typed_attribute < t_coordinatesystem, a_maskcontentunits > attr_maskcontentunits;
+typedef typed_attribute < t_css_mask_border_mode, a_masktype > attr_masktype;
 typedef typed_attribute < t_coordinatesystem, a_maskunits > attr_maskunits;
 typedef typed_attribute < t_existential, a_math > attr_math;
 typedef typed_attribute < t_colour, a_mathbackground > attr_mathbackground;
@@ -1431,6 +1433,7 @@ const e_attribute last_1 = a_gutter;
     attr_markerwidth, \
     attr_mask, \
     attr_maskcontentunits, \
+    attr_masktype, \
     attr_maskunits, \
     attr_math, \
     attr_mathbackground, \

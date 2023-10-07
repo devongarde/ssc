@@ -697,6 +697,7 @@ e_css_version html_version::css_version () const noexcept
     res += subver (b, css_fragmentation (), "Fra");
     res += subver (b, css_grid (), "Grd");
     res += subver (b, css_image (), "Img");
+    res += subver (b, css_masking (), "Msk");
     res += subver (b, css_media (), "Med");
     res += subver (b, css_multi_column (), "Mlt");
     res += subver (b, css_namespace (), "Ns");
@@ -710,7 +711,7 @@ e_css_version html_version::css_version () const noexcept
     res += subver (b, css_table (), "Tab");
     res += subver (b, css_text_decoration (), "Txd");
     res += subver (b, css_transform (), "Trf");
-    res += subver (b, css_transition (), "Trs");
+    res += subver (b, css_transition (), "Tri");
     res += subver (b, css_ui (), "UI");
     res += subver (b, css_value (), "Val");
     res += subver (b, css_writing_mode (), "WrM");
@@ -1068,6 +1069,14 @@ void html_version::css_image (const int n)
     if (n == 4) set_ext3 (H3_CSS_IMAGE);
     else if (n == 3) set_ext3 (H3_CSS_IMAGE_3); }
 
+int html_version::css_masking () const
+{   if (any_ext3 (H3_CSS_MASKING)) return 3;
+    return 0; }
+
+void html_version::css_masking (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_MASKING);
+    else reset_ext3 (H3_CSS_MASKING); }
+
 int html_version::css_media () const
 {   if ((ext2 () & H2_CSS_MEDIA_5) == H2_CSS_MEDIA_5) return 5;   
     if ((ext2 () & H2_CSS_MEDIA_4) == H2_CSS_MEDIA_4) return 4;   
@@ -1183,8 +1192,8 @@ int html_version::css_transform () const
 
 void html_version::css_transform (const int n)
 {   reset_ext3 (H3_CSS_TRANSFORM_MASK);
-    if (n == 4) set_ext3 (H3_CSS_TRANSFORM_34);
-    else if (n == 3) set_ext3 (H3_CSS_TRANSFORM_3); }
+    if ((n == 2) || (n == 4)) set_ext3 (H3_CSS_TRANSFORM_34);
+    else if ((n == 1) || (n == 3)) set_ext3 (H3_CSS_TRANSFORM_3); }
 
 int html_version::css_transition () const
 {   if (any_ext3 (H3_CSS_TRANSITION)) return 3;

@@ -33,31 +33,28 @@ template < > struct type_master < t_angle > : type_master < t_real >
     static e_animation_type animation_type () noexcept { return at_angle; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string ss (trim_the_lot_off (s));
-        if (v.has_svg () && compare_complain (nits, v, "auto", ss))
-            type_master < t_real > :: status (s_good);
+        float max = 360.0; ::std::string::size_type len = ss.length ();
+        if (len > 3)
+        {   ::std::string sss (ss.substr (len - 3));
+            ::std::string ssss (ss.substr (len - 4));
+            if (compare_complain (nits, v, ssss, "grad")) { max = 400.0; len -= 4; }
+            else if ((v.is_svg_2 () || (v.css_value () >= 3)) && compare_complain (nits, v, ssss, "turn")) { max = 1.0; len -= 4; }
+            else if (compare_complain (nits, v, sss, "rad")) { max = static_cast < float > (3.141592653589*2); len -= 3; }
+            else if (compare_complain (nits, v, sss, "deg")) len -= 3;
+            ss = ss.substr (0, len); }
+        if (ss.substr (0, len).find_first_not_of (SIGNEDDECIMAL) != ::std::string::npos)
+            if (v.has_svg ()) nits.pick (nit_angle, ed_svg_1_1, "4.2 Basic data types", es_error, ec_type, quote (s), " contains unexpected characters (units are 'deg', 'grad', or 'rad')");
+            else if (v.has_css ()) nits.pick (nit_angle, ed_css_20, "4.3.7 Angles", es_error, ec_type, quote (s), " contains unexpected characters (units are 'deg', 'grad', or 'rad')");
+            else nits.pick (nit_angle, es_error, ec_type, quote (s), " contains unexpected characters (units are 'deg', 'grad', or 'rad')");
         else
-        {   float max = 360.0; ::std::string::size_type len = ss.length ();
-            if (len > 3)
-            {   ::std::string sss (ss.substr (len - 3));
-                ::std::string ssss (ss.substr (len - 4));
-                if (compare_complain (nits, v, ssss, "grad")) { max = 400.0; len -= 4; }
-                else if ((v.is_svg_2 () || (v.css_value () >= 3)) && compare_complain (nits, v, ssss, "turn")) { max = 1.0; len -= 4; }
-                else if (compare_complain (nits, v, sss, "rad")) { max = static_cast < float > (3.141592653589*2); len -= 3; }
-                else if (compare_complain (nits, v, sss, "deg")) len -= 3;
-                ss = ss.substr (0, len); }
-            if (ss.substr (0, len).find_first_not_of (SIGNEDDECIMAL) != ::std::string::npos)
-                if (v.has_svg ()) nits.pick (nit_angle, ed_svg_1_1, "4.2 Basic data types", es_error, ec_type, quote (s), " contains unexpected characters (units are 'deg', 'grad', or 'rad')");
-                else if (v.has_css ()) nits.pick (nit_angle, ed_css_20, "4.3.7 Angles", es_error, ec_type, quote (s), " contains unexpected characters (units are 'deg', 'grad', or 'rad')");
-                else nits.pick (nit_angle, es_error, ec_type, quote (s), " contains unexpected characters (units are 'deg', 'grad', or 'rad')");
-            else
-            {   type_master < t_real > :: set_value (nits, v, ss);
-                if (good ())
-                    if ((value_ >= max) || (value_ <= (-1 * static_cast < double> (max))))
-                        if (v.has_svg ()) nits.pick (nit_angle, ed_svg_1_1, "4.2 Basic data types", es_error, ec_type, quote (s), " should closer to zero than +- ", ::boost::lexical_cast < ::std::string > (max));
-                        else if (v.has_css ()) nits.pick (nit_angle, ed_css_20, "4.3.7 Angles", es_error, ec_type, quote (s), " should be closer to zero than +- ", ::boost::lexical_cast < ::std::string > (max));
-                        else nits.pick (nit_angle,es_error, ec_type, quote (s), " should be closer to zero than +- ", ::boost::lexical_cast < ::std::string > (max));
-                    else return; }
-            type_master < t_real > :: status (s_invalid); } } };
+        {   type_master < t_real > :: set_value (nits, v, ss);
+            if (good ())
+                if ((value_ >= max) || (value_ <= (-1 * static_cast < double> (max))))
+                    if (v.has_svg ()) nits.pick (nit_angle, ed_svg_1_1, "4.2 Basic data types", es_error, ec_type, quote (s), " should closer to zero than +- ", ::boost::lexical_cast < ::std::string > (max));
+                    else if (v.has_css ()) nits.pick (nit_angle, ed_css_20, "4.3.7 Angles", es_error, ec_type, quote (s), " should be closer to zero than +- ", ::boost::lexical_cast < ::std::string > (max));
+                    else nits.pick (nit_angle,es_error, ec_type, quote (s), " should be closer to zero than +- ", ::boost::lexical_cast < ::std::string > (max));
+                else return; }
+        type_master < t_real > :: status (s_invalid); } };
 
 template < > struct type_master < t_attributename > : tidy_string < t_attributename >
 {   e_attribute value_ = a_unknown;

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS 3 masking test page</title>
+    <LINK rel="stylesheet" href="css-5.css" type="text/css">
+</head>
+
+<body>
+
+<svg>
+
+<g clip-path="circle()">
+  <path id="shape" d="M0,0 L10,10, L 20,0 z"/>
+</g>
+
+<use xlink:href="#shape"/>
+
+<clipPath id="clip1">
+    <polygon points="15,99 30,87 65,99 85,55 122,57 184,73 198,105
+        199,150 145,159 155,139 126,120 112,138 80,128 39,126 24,104"/>
+</clipPath>
+
+</svg>
+
+</body>
+</html>

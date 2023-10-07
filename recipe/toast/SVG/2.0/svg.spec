@@ -111,7 +111,7 @@ PASS ../toast/SVG/2.0/foreignobject.svg
 PASS ../toast/SVG/2.0/g.xhtml
 0 title_required
 1 xhtml_5_0
-3 svg_version
+3 invalid_attribute_version wrong_version svg_version
 
 PASS ../toast/SVG/2.0/iar-1.svg
 0 title_required
@@ -307,7 +307,7 @@ PASS ../toast/SVG/2.0/svg-1.xhtml
 PASS ../toast/SVG/2.0/svg-2.xhtml
 0 title_required
 1 xhtml_5_0
-3 svg_version
+3 invalid_attribute_version wrong_version svg_version
 
 PASS ../toast/SVG/2.0/svg-3.xhtml
 0 title_required

@@ -8,6 +8,7 @@ PASS ../toast/SVG/2.1/animation-1.xhtml
 PASS ../toast/SVG/2.1/animation-2.xhtml
 1 xhtml_5_0
 6 contradictory_namespace
+7 not_animatable
 11 contradictory_namespace
 12 url_not_found
 
@@ -111,7 +112,7 @@ PASS ../toast/SVG/2.1/foreignobject.svg
 PASS ../toast/SVG/2.1/g.xhtml
 0 title_required
 1 xhtml_5_0
-3 svg_version
+3 invalid_attribute_version wrong_version svg_version
 
 PASS ../toast/SVG/2.1/iar-1.svg
 0 title_required
@@ -310,7 +311,7 @@ PASS ../toast/SVG/2.1/svg-1.xhtml
 PASS ../toast/SVG/2.1/svg-2.xhtml
 0 title_required
 1 xhtml_5_0
-3 svg_version
+3 invalid_attribute_version wrong_version svg_version
 
 PASS ../toast/SVG/2.1/svg-3.xhtml
 0 title_required

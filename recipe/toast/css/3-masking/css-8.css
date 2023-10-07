@@ -1,0 +1,6 @@
+﻿div {
+    background: linear-gradient(bottom, #F27BAA 0%, #FCC8AD 100%);
+    mask-border-slice: 25 fill;
+    mask-border-repeat: stretch;
+    mask-border-source: url(mask.png);
+}

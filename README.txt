@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.1.36
+version 0.1.37
 (c) 2020-2023 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notice
 https://ssc.lu/
@@ -9,20 +9,20 @@ https://github.com/devongarde/ssc
 
 
 ssc analyses static X/HTML snippets, files and sites:
-- HTML living standard, Jan 2005 to Jul 2023
-- HTML 1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3-draft
+- HTML living standard, Jan 2005 to Oct 2023
+- HTML Tags/1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3-draft
 - CSS 1/2.0/2.1/2.2-draft, some 3/4/5/6
 - SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x-draft
 - MathML 1/2/3/4-draft
 - XHTML 1.0/1.1/2.0/5.x
 - finds broken links
 - server side includes, mostly
-- many microdata & RDFa ontologies
+- many ontologies
 
 with opinions on:
 - standard english where dialect is required
 - perfectly legal but sloppy HTML
-- abhorrent rudeness such as autoplay on video
+- abhorrent rudeness such as AUTOPLAY on <VIDEO>
 
 It does NOT:
 - analyse or understand scripts
@@ -91,7 +91,7 @@ to untrusted data sources, such as that found on the open web.
 Notes on names:
 - recipe: a nod to Vernor Vinge's "A Fire Upon the Deep";
 - tea: without tea, nothing works; then there's builders' tea;
-- sauce: makes the dull tasty; identifies incompetent pedants;
+- sauce: makes the dull tasty; identifies linguistically weak pedants;
 - toast: toasts code; i liked burnt toast;
 - heater: i'm not stopping now;
 - unii: my preferred plural of unix: to my ears, both unixes and unices
@@ -104,7 +104,7 @@ SEE ALSO
 build.txt        notes on building ssc
 gen.txt          a model man page
 usage.txt        how to use ssc
-releasenotes.txt chips
+releasenotes.txt fishless chips
 LICENCE.txt      ssc licence information
 LICENSE.txt      formal GPL 3 licence
 more licences    licences for borrowed external content
@@ -119,9 +119,7 @@ any tools to properly identify its flaws. Anything I did find was at
 most cursory.
 
 Then came the cow flu*.
-
 * corvid means crow, thus covid means cow**.
-
 ** by the rules of sympathetic spelling.
 
 
@@ -142,4 +140,4 @@ GNU General Public License for more details.
 
 dylan harris
 mail@ssc.lu
-September 2023
+October 2023

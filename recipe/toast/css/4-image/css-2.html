@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<link rel="stylesheet" type="text/css" href="css-2.css">
+<TITLE>CSS 4 image chapter 2 example</TITLE>
+  </head>
+<body>
+
+<ul style="list-style-image: image(ltr 'arrow.png');">
+  <li dir='ltr'>My bullet is on the left!</li>
+  <li dir='rtl'>MY BULLET IS ON THE RIGHT!</li>
+</ul>
+
+<style>
+#src { color: white; background: lime; width: 300px; height: 40px; position: relative; }
+#dst { color: black; background: element(#src); padding: 20px; margin: 20px 0; }
+</style>
+<p id='src'>I’m an ordinary element!</p>
+<p id='dst'>I’m using the previous element as my background!</p>
+
+<svg>
+  <defs>
+    <pattern id='pattern1'>
+      <path d='...'>
+    </pattern>
+  </defs>
+</svg>
+<p style="background: element(#pattern1)">
+  I’m using the pattern as a background!
+  If the pattern is changed or animated,
+  my background will be updated too!
+</p>
+
+<script>
+  var canvas = document.querySelector('#animated-bullet');
+  canvas.width = 20; canvas.height = 20;
+  drawAnimation(canvas);
+</script>
+<canvas id='animated-bullet' style='display:none'></canvas>
+<ul style="list-style-image: element(#animated-bullet);">
+  <li>I’m using the canvas as a bullet!</li>
+  <li>So am I!</li>
+  <li>As the canvas is changed over time with Javascript,
+      we’ll all update our bullet image with it!</li>
+</ul>
+
+<p id='one' style="display:none; position: relative;">one</p>
+<iframe src="http://example.com">
+  <p id='two' style="position: relative;">I’m fallback content!</p>
+</iframe>
+<ul>
+  <li style="background: element(#one);">
+    A display:none element isn’t rendered, and a P element
+    doesn’t provide a paint source.
+  </li>
+  <li style="background: element(#two);">
+    The descendants of a replaced element like an IFRAME
+    can’t be used in element() either.
+  </li>
+  <li style="background: element(#three);">
+    There’s no element with an id of "three", so this also
+    gets rendered as a transparent image.
+  </li>
+</ul>
+
+<script>
+function navigateSlides() {
+  var currentSlide = ...;
+  document.querySelector('#prev-slide').id = '';
+  document.querySelector('#next-slide').id = '';
+  currentSlide.previousElementSibling.id = 'prev-slide';
+  currentSlide.nextElementSibling.id = 'next-slide';
+}
+</script>
+<style>
+.slide {
+  /* Need to be a stacking context to be element()-able. */
+  position: relative;
+}
+#prev-preview, #next-preview {
+  position: fixed;
+}
+#prev-preview { background: element(#prev-slide); }
+#next-preview { background: element(#next-slide); }
+</style>
+<a id='prev-preview'>Previous Slide</a>
+<a id='next-preview'>Next Slide</a>
+<section class='slide'>...</section>
+<section class='slide current-slide'>...</section>
+
+<script>
+var bg = document.createElement('canvas');
+bg.height = 200;
+bg.width = 1000;
+drawFancyBackground(bg);
+CSS.elementSources.set('fancy', bg);
+</script>
+<style>
+h1 {
+  background-image: element(#fancy);
+}
+</style>
+
+</body>
+</html>

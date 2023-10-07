@@ -21,6 +21,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "enum/type_enum.h"
 
+bool parse_currency (const html_version& v, const ::std::string& s, const e_currency unit, double& val);
+
 template < > struct type_master < t_dosh > : tidy_string < t_dosh >
 {   typedef double value_type, base_type;
     double value_ = 0.0;
@@ -31,18 +33,7 @@ template < > struct type_master < t_dosh > : tidy_string < t_dosh >
         ::std::swap (unit_, t.unit_);
         tidy_string < t_dosh > :: swap (t); }
     bool parse (const html_version& v, const ::std::string& s) // see http://microformats.org/wiki/h-listing
-    {   const vstr_t args (split_by_space (s));
-        if (args.size () > 2) return false;
-        ::std::string amount;
-        if (args.size () == 1) amount = trim_the_lot_off (GSL_AT (args, 0));
-        if (args.size () == 2)
-        {   const ::std::string c (GSL_AT (args, 0));
-            if (symbol < html_version, e_currency > :: find (v, GSL_AT (args, 0), unit_)) amount = trim_the_lot_off (GSL_AT (args, 1));
-            else if (! symbol < html_version, e_currency > :: find (v, amount, unit_)) return false; }
-        if (amount.empty ()) return false;
-        bool res = false;
-        value_ = lexical < double > :: cast2 (amount, res);
-        return res; }
+    {   return parse_currency (v, s, unit_, value_); }  
     bool has_value (const base_type& d) const noexcept { return d == value_; }
     int get_int () const noexcept { return static_cast < int > (value_ + 0.5); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)

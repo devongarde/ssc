@@ -33,7 +33,7 @@ class css_group
     element_bitset bs_;
     page& page_;
     mcss_t mcss_;
-    dst_ptr snippets_;
+    dst_ptr snippets_, transforms_;
     sstr_t counter_style_, font_family_, keyframe_, layer_, page_name_, palette_;
     sstr_t annotation_, character_variant_, historical_form_, ornament_, swash_, styleset_, stylistic_;
     namespaces_ptr ns_;
@@ -55,6 +55,8 @@ public:
     bool parse_file (nitpick& nits, const namespaces_ptr& ns, const url& u, const bool state_version = false, const bool local = true, const bool reparse = false, const bool xxx = false);
     css_ptr parse_media_queries (   const ::std::string& content, const html_version& v, page& p, const namespaces_ptr& namespaces, const element_bitset eb, bool sv,
                                     int line = 0, const e_element e = elem_undefined);
+    bool parse_transform (  const ::std::string& content, const html_version& v, const namespaces_ptr& namespaces, const element_bitset eb, bool sv,
+                            int line = 0, const e_element e = elem_undefined);
     bool note_class (const e_element e, const ::std::string& s);
     bool note_id (const e_element e, const ::std::string& s);
     bool note_element (const e_element e);

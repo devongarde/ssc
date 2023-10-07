@@ -82,7 +82,7 @@ hav_t havt_del [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_desc [] =
-{   SVG_PRESENTATION_ATTRIBUTES_2 (elem_desc),
+{   SVG_PRESENTATION_ATTRIBUTES (elem_desc),
     SVG_HTML_ATTRIBUTES (elem_desc),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 

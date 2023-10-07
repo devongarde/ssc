@@ -92,6 +92,9 @@ template < > struct type_master < t_css_azimuth_lri > : three_value < t_css_azim
 template < > struct type_master < t_css_border_collapse > : three_value < t_css_border_collapse, e_css_border_collapse, sz_collapse, sz_inherit, sz_separate >
 { using three_value < t_css_border_collapse, e_css_border_collapse, sz_collapse, sz_inherit, sz_separate > :: three_value; };
 
+template < > struct type_master < t_css_clip_path_box > : three_value < t_css_clip_path_box, e_css_clip_path_box, sz_fill_box, sz_stroke_box, sz_view_box >
+{ using three_value < t_css_clip_path_box, e_css_clip_path_box, sz_fill_box, sz_stroke_box, sz_view_box > :: three_value; };
+
 template < > struct type_master < t_css_column_fill > : three_value < t_css_column_fill, e_css_column_fill, sz_auto, sz_balance, sz_balance_all >
 { using three_value < t_css_column_fill, e_css_column_fill, sz_auto, sz_balance, sz_balance_all > :: three_value; };
 
@@ -112,6 +115,9 @@ template < > struct type_master < t_css_image_proc_e > : three_value < t_css_ima
 
 template < > struct type_master < t_css_margin_break > : three_value < t_css_margin_break, e_css_margin_break, sz_auto, sz_discard, sz_keep >
 { using three_value < t_css_margin_break, e_css_margin_break, sz_auto, sz_discard, sz_keep > :: three_value; };
+
+template < > struct type_master < t_css_masking_mode > : three_value < t_css_masking_mode, e_css_masking_mode, sz_alpha, sz_luminance, sz_match_source >
+{ using three_value < t_css_masking_mode, e_css_masking_mode, sz_alpha, sz_luminance, sz_match_source > :: three_value; };
 
 template < > struct type_master < t_css_speak_3 > : three_value < t_css_speak_3, e_css_speak_3, sz_always, sz_auto, sz_never >
 { using three_value < t_css_speak_3, e_css_speak_3, sz_always, sz_auto, sz_never > :: three_value; };
@@ -271,6 +277,9 @@ template < > struct type_master < t_svg_direction > : three_value < t_svg_direct
 
 template < > struct type_master < t_svg_fontvariant > : three_value < t_svg_fontvariant, e_svg_fontvariant, sz_normal, sz_smallcaps, sz_inherit >
 { using three_value < t_svg_fontvariant, e_svg_fontvariant, sz_normal, sz_smallcaps, sz_inherit > :: three_value; };
+
+template < > struct type_master < t_tcbalign > : three_value < t_tcbalign, e_tcbalign, sz_top, sz_centre, sz_bottom >
+{ using three_value < t_tcbalign, e_tcbalign, sz_top, sz_centre, sz_bottom > :: three_value; };
 
 template < > struct type_master < t_tendstotype > : three_value < t_tendstotype, e_tendstotype, sz_above, sz_below, sz_twosided >
 { using three_value < t_tendstotype, e_tendstotype, sz_above, sz_below, sz_twosided > :: three_value; };

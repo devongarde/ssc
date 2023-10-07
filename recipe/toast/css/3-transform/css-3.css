@@ -1,0 +1,17 @@
+﻿div
+{   transform-origin: 0 0;
+    transform: translate(-10px, -20px) scale(2) rotate(45deg); }
+
+div
+{   transform: translate(100px, 100px); }
+
+div
+{   height: 100px; width: 100px;
+    transform-origin: 50px 50px;
+    transform: rotate(45deg); }
+
+div
+{   height: 100px; width: 100px;
+    transform: translate(80px, 80px) scale(1.5, 1.5) rotate(45deg); 
+
+}

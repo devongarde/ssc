@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS 3 masking test page</title>
+</head>
+
+<body>
+
+<svg>
+  <mask style="mask-type: luminance;" id="mask">
+    ...
+  </mask>
+</svg>
+
+<p style="mask-image: url(#mask); mask-mode: auto;">
+  This is the masked content.
+</p>
+
+<svg>
+ <mask style="mask-type: luminance;" id="mask2">
+   ...
+ </mask>
+</svg>
+
+<p style="mask-image: url(#mask2); mask-mode: alpha;">
+ This is the masked content.
+</p>
+
+</body>
+</html>

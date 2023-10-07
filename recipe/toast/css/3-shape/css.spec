@@ -15,6 +15,7 @@ PASS ../toast/css/3-shape/css-2.html
 2 naughty_lang
 9 unrecognised_value url_not_found naughty_alt
 10 unrecognised_value url_not_found naughty_alt
+18 css_version
 
 PASS ../toast/css/3-shape/css-4.html
 2 naughty_lang

@@ -138,6 +138,7 @@ bool options::get_css_level (int& n, nitpick& nits, const char* opt, const char*
         switch (n)
         {   case 0 : return true;
             case 1 : if (accept_1) { n = 3; return true; } break;
+            case 2 : if (accept_1 && (maxlevel > 3)) { n = 4; return true; } break;
             case 3 :
             case 4 :
             case 5 :
@@ -370,6 +371,7 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (CSS FRAG, ::boost::program_options::value < int > (), "CSS Fragmentation level (0, 3, or 4).")
         (CSS GRID, ::boost::program_options::value < int > (), "CSS Grid level (0, 3, or 4).")
         (CSS IMAGE, ::boost::program_options::value < int > (), "CSS Images level (0, 3, or 4).")
+        (CSS MASKING, ::boost::program_options::value < int > (), "CSS Masking level (0 or 3).")
         (CSS MEDIA, ::boost::program_options::value < int > (), "CSS Media level (0, 3, 4, or 5).")
         (CSS MULTI_COLUMN, ::boost::program_options::value < int > (), "CSS Multi-Column level (0 or 3).")
         (CSS NAMESPACE, ::boost::program_options::value < int > (), "CSS Namespace level (0 or 3).")
@@ -1053,6 +1055,7 @@ void options::contextualise (nitpick& nits)
         if (get_css_level (n, nits, CSS FRAG, "Fragmentation", 4)) context.css_fragmentation (n);
         if (get_css_level (n, nits, CSS GRID, "Grid", 4)) context.css_grid (n);
         if (get_css_level (n, nits, CSS IMAGE, "Image", 4)) context.css_image (n);
+        if (get_css_level (n, nits, CSS MASKING, "Masking", 3)) context.css_masking (n);
         if (get_css_level (n, nits, CSS MEDIA, "Media", 5)) context.css_media (n);
         if (get_css_level (n, nits, CSS MULTI_COLUMN, "Multi-Column", 3, true)) context.css_multi_column (n);
         if (get_css_level (n, nits, CSS NAMESPACE, "Namespace", 3)) context.css_namespace (n);
@@ -1065,7 +1068,7 @@ void options::contextualise (nitpick& nits)
         if (get_css_level (n, nits, CSS SYNTAX, "Syntax", 3)) context.css_syntax (n);
         if (get_css_level (n, nits, CSS TEXT_DEC, "Text Decoration", 4)) context.css_text_decoration (n);
         if (get_css_level (n, nits, CSS TABLE, "Table", 3)) context.css_table (n);
-        if (get_css_level (n, nits, CSS TRANSFORM, "Transform", 3, true)) context.css_transform (n);
+        if (get_css_level (n, nits, CSS TRANSFORM, "Transform", 4, true)) context.css_transform (n);
         if (get_css_level (n, nits, CSS TRANSITION, "Transition", 3, true)) context.css_transition (n);
         if (get_css_level (n, nits, CSS UI, "UI", 4)) context.css_ui (n);
         if (get_css_level (n, nits, CSS VALUE, "VALUE", 4)) context.css_value (n);
@@ -1557,6 +1560,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (CSS FRAG)) res << CSS FRAG ": " << var_ [CSS FRAG].as < int > () << "\n";
     if (var_.count (CSS GRID)) res << CSS GRID ": " << var_ [CSS GRID].as < int > () << "\n";
     if (var_.count (CSS IMAGE)) res << CSS IMAGE ": " << var_ [CSS IMAGE].as < int > () << "\n";
+    if (var_.count (CSS MASKING)) res << CSS MASKING ": " << var_ [CSS MASKING].as < int > () << "\n";
     if (var_.count (CSS MEDIA)) res << CSS MEDIA ": " << var_ [CSS MEDIA].as < int > () << "\n";
     if (var_.count (CSS MULTI_COLUMN)) res << CSS MULTI_COLUMN ": " << var_ [CSS MULTI_COLUMN].as < int > () << "\n";
     if (var_.count (CSS NAMESPACE)) res << CSS NAMESPACE ": " << var_ [CSS NAMESPACE].as < int > () << "\n";

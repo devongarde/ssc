@@ -35,16 +35,12 @@ PASS ../toast/SVG/1.1/bidi-1.svg
 0 charset_mismatch charset_used
 1 xhtml_1_1
 4 svg_version
-5 invalid_attribute_version wrong_version
-6 invalid_attribute_version wrong_version
 9 use_quote_code
 
 PASS ../toast/SVG/1.1/bidi-2.svg
 0 charset_mismatch charset_used
 1 xhtml_1_1
 4 svg_version
-5 invalid_attribute_version wrong_version
-6 invalid_attribute_version wrong_version
 9 use_quote_code
 
 PASS ../toast/SVG/1.1/circle.xhtml
@@ -758,13 +754,13 @@ PASS ../toast/SVG/1.1/svg11.html
 738 svg_version
 747 svg_version
 772 svg_version
-785 no_xmllang
-786 no_xmllang
-787 no_xmllang
+785 no_lang
+786 no_lang
+787 no_lang
 790 use_quote_code
-794 no_xmllang
-795 no_xmllang
-796 no_xmllang
+794 no_lang
+795 no_lang
+796 no_lang
 798 use_quote_code
 806 svg_version
 807 use_quote_code
