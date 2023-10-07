@@ -1,0 +1,26 @@
+﻿.pfft
+{   background-image: image-set( "foo.png" 1x,
+                                 "foo-2x.png" 2x,
+                                 "foo-print.png" 600dpi );
+
+    background-image: image-set( "foo.avif" type("image/avif"),
+                                 "foo.jpg" type("image/jpeg") );
+
+
+    background-image: image-set( linear-gradient(cornflowerblue, white) 1x,
+                                 url("detailed-gradient.png") 3x ); }
+
+body      { color: black; background: white; }
+p.special { color: white; background: url("dark.png") black; }
+
+body      { color: black; background: white; }
+p.special { color: white; background: image("dark.png", black); }
+
+.splat
+{   background-image: image('sprites.svg#xywh=40,0,20,20'); }
+
+.plonk
+{   background-image: url('swirl.png'); /* old UAs */
+    background-image: image('sprites.png#xywh=10,30,60,20'); /* new UAs */
+
+    background-image: image(rgba(0,0,255,.5)), url("bg-image.png"); }

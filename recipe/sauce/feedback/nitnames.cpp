@@ -829,6 +829,8 @@ const nitname nitnames [] =
     { nit_arxiv, "arXiv" },
     { nit_coden, "coden" },
     { nit_prism, "prism" },
+    { nit_mask, "mask" },
+    { nit_mask_border, "mask border" },
 
     { nit_incompatible, "incompatible" },
 

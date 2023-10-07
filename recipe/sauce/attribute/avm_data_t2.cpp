@@ -86,7 +86,7 @@ hav_t havt_times [] =
 hav_t havt_title [] =
 {   { { HTML_SVG12, 0, HE_SVG_12_FULL | REQUIRED }, { HTML_UNDEF }, elem_title, a_systemlanguage },
     HTMLPLUS_ATTRIBUTES (elem_title),
-    SVG_PRESENTATION_ATTRIBUTES_2 (elem_title),
+    SVG_PRESENTATION_ATTRIBUTES (elem_title),
     SVG_HTML_ATTRIBUTES (elem_title),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 

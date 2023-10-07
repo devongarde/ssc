@@ -405,9 +405,6 @@ template < > struct type_master < t_css_list_style_type > : enum_n < t_css_list_
 template < > struct type_master < t_css_overflow > : enum_n < t_css_overflow, e_css_overflow >
 { using enum_n < t_css_overflow, e_css_overflow > :: enum_n; };
 
-template < > struct type_master < t_css_object_fit > : enum_n < t_css_object_fit, e_css_object_fit >
-{ using enum_n < t_css_object_fit, e_css_object_fit > :: enum_n; };
-
 template < > struct type_master < t_css_paint_box > : enum_n < t_css_paint_box, e_css_paint_box >
 { using enum_n < t_css_paint_box, e_css_paint_box > :: enum_n; };
 
@@ -467,6 +464,9 @@ template < > struct type_master < t_css_textdec_style > : enum_n < t_css_textdec
 
 template < > struct type_master < t_css_textemph_shape > : enum_n < t_css_textemph_shape, e_css_textemph_shape >
 { using enum_n < t_css_textemph_shape, e_css_textemph_shape > :: enum_n; };
+
+template < > struct type_master < t_css_transform_box > : enum_n < t_css_transform_box, e_css_transform_box >
+{ using enum_n < t_css_transform_box, e_css_transform_box > :: enum_n; };
 
 template < > struct type_master < t_css_user_select > : enum_n < t_css_user_select, e_css_user_select >
 { using enum_n < t_css_user_select, e_css_user_select > :: enum_n; };

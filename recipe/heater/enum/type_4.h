@@ -86,7 +86,6 @@ template < > struct type_master < t_channelselector > : four_value < t_channelse
 template < > struct type_master < t_content_encoding > : four_value < t_content_encoding, e_content_encoding, sz_gzip, sz_compress, sz_deflate, sz_identity >
 { using four_value < t_content_encoding, e_content_encoding, sz_gzip, sz_compress, sz_deflate, sz_identity > :: four_value; };
 
-// typedef enum { crs_custom, crs_linear, crs_mediumcontrast, crs_strongcontrast } e_crs_tonecurvename;
 template < > struct type_master < t_crs_tonecurvename > : four_value < t_crs_tonecurvename, e_crs_tonecurvename, sz_custom, sz_linear, sz_mediumcontrast, sz_strongcontrast >
 { using four_value < t_crs_tonecurvename, e_crs_tonecurvename, sz_custom, sz_linear, sz_mediumcontrast, sz_strongcontrast > :: four_value; };
 
@@ -98,6 +97,9 @@ template < > struct type_master < t_css_anim_fill_mode > : four_value < t_css_an
 
 template < > struct type_master < t_css_border_image_repeat > : four_value < t_css_border_image_repeat, e_css_border_image_repeat, sz_repeat, sz_round, sz_space_word, sz_stretch >
 { using four_value < t_css_border_image_repeat, e_css_border_image_repeat, sz_repeat, sz_round, sz_space_word, sz_stretch > :: four_value; };
+
+template < > struct type_master < t_css_composite > : four_value < t_css_composite, e_css_composite, sz_add, sz_exclude, sz_intersect, sz_subtract >
+{ using four_value < t_css_composite, e_css_composite, sz_add, sz_exclude, sz_intersect, sz_subtract > :: four_value; };
 
 template < > struct type_master < t_css_display_legacy > : four_value < t_css_display_legacy, e_css_display_legacy, sz_inline_block, sz_inline_flex, sz_inline_grid, sz_inline_table >
 { using four_value < t_css_display_legacy, e_css_display_legacy, sz_inline_block, sz_inline_flex, sz_inline_grid, sz_inline_table > :: four_value; };
@@ -116,6 +118,9 @@ template < > struct type_master < t_css_hue_interpolation > : four_value < t_css
 
 template < > struct type_master < t_css_margin_trim_inner > : four_value < t_css_margin_trim_inner, e_css_margin_trim_inner, sz_block_end, sz_block_start, sz_inline_end, sz_inline_start >
 { using four_value < t_css_margin_trim_inner, e_css_margin_trim_inner, sz_block_end, sz_block_start, sz_inline_end, sz_inline_start > :: four_value; };
+
+template < > struct type_master < t_css_mask_border_repeat > : four_value < t_css_mask_border_repeat, e_css_mask_border_repeat, sz_repeat, sz_round, sz_space_word, sz_stretch >
+{ using four_value < t_css_mask_border_repeat, e_css_mask_border_repeat, sz_repeat, sz_round, sz_space_word, sz_stretch > :: four_value; };
 
 template < > struct type_master < t_css_orientation > : four_value < t_css_orientation, e_css_orientation, sz_auto, sz_inherit, sz_landscape, sz_portrait >
 { using four_value < t_css_orientation, e_css_orientation, sz_auto, sz_inherit, sz_landscape, sz_portrait > :: four_value; };

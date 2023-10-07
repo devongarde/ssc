@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS 3 masking test page</title>
+</head>
+
+<body>
+
+<svg>
+
+<g clip-rule="nonzero">
+  <clipPath id="MyClip">
+    <path d="..." clip-rule="evenodd" />
+  </clipPath>
+  <rect clip-path="url(#MyClip)" ... />
+</g>
+
+<g clip-rule="nonzero">
+  <clipPath id="MyClip">
+    <path d="..." />
+  </clipPath>
+  <rect clip-path="url(#MyClip)" clip-rule="evenodd" ... />
+</g>
+
+</svg>
+
+</body>
+</html>

@@ -204,3 +204,17 @@ struct symbol_entry < html_version, e_currency > currency_symbol_table [] =
 
 void currency_init (nitpick& nits)
 {   type_master < t_currency > :: init (nits, currency_symbol_table, sizeof (currency_symbol_table) / sizeof (symbol_entry < html_version, e_currency >)); }
+
+bool parse_currency (const html_version& v, const ::std::string& s, const e_currency unit, double& val)
+{   const vstr_t args (split_by_space (s));
+    if (args.size () > 2) return false;
+    ::std::string amount;
+    if (args.size () == 1) amount = trim_the_lot_off (GSL_AT (args, 0));
+    if (args.size () == 2)
+    {   const ::std::string c (GSL_AT (args, 0));
+        if (symbol < html_version, e_currency > :: find (v, GSL_AT (args, 0), unit)) amount = trim_the_lot_off (GSL_AT (args, 1));
+        else if (! symbol < html_version, e_currency > :: find (v, amount, unit)) return false; }
+    if (amount.empty ()) return false;
+    bool res = false;
+    val = lexical < double > :: cast2 (amount, res);
+    return res; }

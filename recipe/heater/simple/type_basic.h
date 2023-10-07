@@ -21,6 +21,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "base/type_master.h"
 
+e_status set_compact_value (nitpick& nits, const html_version& v, const ::std::string& s);
+e_status set_html_value (nitpick& nits, const html_version& v, const ::std::string& s);
+e_status set_loopie_value (nitpick& nits, const html_version& v, const ::std::string& s);
+
 template < > struct type_master < t_empty > : string_value < t_empty >
 {   using string_value < t_empty > :: string_value;
     void set_value (nitpick& nits, const html_version& , const ::std::string& s)
@@ -46,15 +50,7 @@ template < > struct type_master < t_compact > : tidy_string < t_compact >
 {   using tidy_string < t_compact > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_value < t_compact > :: set_value (nits, v, s);
-        if (s.empty ())
-        {   string_value < t_compact > :: status (s_good); return; }
-        if (v.is_1 ())
-        {   string_value < t_compact > :: status (s_invalid);
-            nits.pick (nit_bad_compact, es_error, ec_type, "in ", v.report (), ", compact has no value"); }
-        ::std::string ss (string_value < t_compact > :: get_string ());
-        if (! compare_complain (nits, v, "compact", ss))
-        {   string_value < t_compact > :: status (s_invalid);
-            nits.pick (nit_bad_border, es_error, ec_type, "if compact is given a value, it must be \"compact\", not ", quote (s)); } }
+        string_value < t_compact > :: status (set_compact_value (nits, v, string_value < t_compact > :: get_string ())); }
     void shadow (::std::stringstream& ss, const html_version& v, element* )
     {   if (v.xhtml ()) ss << "=\"compact\""; } };
 
@@ -71,15 +67,7 @@ template < > struct type_master < t_html > : tidy_string < t_html >
 {   using tidy_string < t_html > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_html > :: set_value (nits, v, s);
-        if (tidy_string < t_html > :: empty ())
-        {   nits.pick (nit_empty, es_error, ec_type, "a SRCDOC value cannot be empty");
-            string_value < t_html > :: status (s_invalid); }
-        else
-        {   elements_node nodes;
-            if (nodes.parse (nits, tidy_string < t_html > :: get_string ()))
-                if (! nodes.has_element (elem_html))
-                    nits.pick (nit_requires_html, ed_50, "4.7.2 The iframe element", es_error, ec_attribute, "the HTML snippet in a SRCDOC attribute must include an <HTML> element");
-            nodes.harvest_nits (nits); } } };
+        string_value < t_html > :: status (set_html_value (nits, v, string_value < t_html > :: get_string ())); } };
 
 template < > struct type_master < t_illegal > : type_base < mono, t_illegal >
 {   using type_base < mono, t_illegal > :: type_base;
@@ -98,15 +86,7 @@ template < > struct type_master < t_loopie > : tidy_string < t_loopie >
 {   using tidy_string < t_loopie > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_loopie > :: set_value (nits, v, s);
-        const ::std::string& x = tidy_string < t_loopie > :: get_string ();
-        if (x.empty ()) return;
-        if ((x.find_first_not_of (DENARY) == ::std::string::npos) || (x == "-1"))
-            tidy_string < t_loopie > :: status (s_good);
-        if (compare_complain (nits, v, "infinite", x))
-            tidy_string < t_loopie > :: status (s_good);
-        else
-        {   nits.pick (nit_infinite_number, es_error, ec_type, quote (s), "should be an unsigned integer, -1, or the keyword 'infinite'");
-            tidy_string < t_loopie > :: status (s_invalid); } } };
+        string_value < t_loopie > :: status (set_loopie_value (nits, v, string_value < t_loopie > :: get_string ())); } };
 
 template < > struct type_master < t_not_empty > : string_value < t_not_empty >
 {   using string_value < t_not_empty > :: string_value;

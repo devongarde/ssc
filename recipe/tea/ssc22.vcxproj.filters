@@ -1152,9 +1152,6 @@
     <Filter Include="Toast\CSS\3-cr">
       <UniqueIdentifier>{cdc38715-0639-4bbf-a013-84ac504cfa17}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Toast\CSS\3-trans">
-      <UniqueIdentifier>{254679e7-710b-4850-8f83-b247a8694288}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Toast\CSS\3-mc">
       <UniqueIdentifier>{b605019a-89f1-4d47-bbd8-3df5a74eae95}</UniqueIdentifier>
     </Filter>
@@ -1259,6 +1256,21 @@
     </Filter>
     <Filter Include="Toast\Living\oct23">
       <UniqueIdentifier>{9bbe73ce-b6af-4619-8bcb-9ac33be05db1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\4-image">
+      <UniqueIdentifier>{7dd84018-f506-4a0f-9153-f8001388695b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\4-transform">
+      <UniqueIdentifier>{5d2f0e4f-5d24-49f1-a333-2183eca855d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-transform">
+      <UniqueIdentifier>{aa5ec4b4-220f-41ef-b1c7-60df4c11141a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-transition">
+      <UniqueIdentifier>{88a8ee6e-3d6b-4742-8b2f-69f9ee72001c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-masking">
+      <UniqueIdentifier>{2cd7b8f6-675d-4c3d-96c6-e76770d43f05}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1773,9 +1785,6 @@
       <Filter>Heater\simple</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\simple\type_basic.h">
-      <Filter>Heater\simple</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\simple\type_cookie.h">
       <Filter>Heater\simple</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\simple\type_css.h">
@@ -2518,31 +2527,31 @@
     <ClCompile Include="..\sauce\css\value2.cpp">
       <Filter>Sauce\css</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_1.cpp">
+    <ClCompile Include="..\sauce\css\value_types_a.cpp">
       <Filter>Sauce\css</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_2.cpp">
+    <ClCompile Include="..\sauce\css\value_types_b_c.cpp">
       <Filter>Sauce\css</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_3.cpp">
+    <ClCompile Include="..\sauce\css\value_types_css_a.cpp">
       <Filter>Sauce\css</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_4.cpp">
+    <ClCompile Include="..\sauce\css\value_types_css_b.cpp">
       <Filter>Sauce\css</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_5.cpp">
+    <ClCompile Include="..\sauce\css\value_types_css_c.cpp">
       <Filter>Sauce\css</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_6.cpp">
+    <ClCompile Include="..\sauce\css\value_types_css_d_e.cpp">
       <Filter>Sauce\css</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_7.cpp">
+    <ClCompile Include="..\sauce\css\value_types_css_f.cpp">
       <Filter>Sauce\css</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_8.cpp">
+    <ClCompile Include="..\sauce\css\value_types_css_g_l.cpp">
       <Filter>Sauce\css</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_9.cpp">
+    <ClCompile Include="..\sauce\css\value_types_css_m_p.cpp">
       <Filter>Sauce\css</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\ffv.cpp">
@@ -2566,13 +2575,13 @@
     <ClCompile Include="..\sauce\css\medium.cpp">
       <Filter>Sauce\css</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_10.cpp">
+    <ClCompile Include="..\sauce\css\value_types_css_r_s.cpp">
       <Filter>Sauce\css</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_11.cpp">
+    <ClCompile Include="..\sauce\css\value_types_css_t.cpp">
       <Filter>Sauce\css</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_12.cpp">
+    <ClCompile Include="..\sauce\css\value_types_css_u_z.cpp">
       <Filter>Sauce\css</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\ontology\jsonld.cpp">
@@ -2595,6 +2604,51 @@
     </ClCompile>
     <ClCompile Include="..\sauce\ontology\ontology_version.cpp">
       <Filter>Sauce\ontology</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\simple\type_measure.cpp">
+      <Filter>Sauce\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\base\type_case.cpp">
+      <Filter>Sauce\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\simple\type_basic.cpp">
+      <Filter>Sauce\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\compound\type_csses.cpp">
+      <Filter>Sauce\compound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_f.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_g_i.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_j_l.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_m.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_n_o.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_p.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_q_r.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_s.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_t_u.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_v_z.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_c_e.cpp">
+      <Filter>Sauce\css</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -31893,21 +31947,6 @@
     <None Include="..\toast\css\3-cr\css-6.css">
       <Filter>Toast\CSS\3-cr</Filter>
     </None>
-    <None Include="..\toast\css\3-trans\css.conf">
-      <Filter>Toast\CSS\3-trans</Filter>
-    </None>
-    <None Include="..\toast\css\3-trans\css.spec">
-      <Filter>Toast\CSS\3-trans</Filter>
-    </None>
-    <None Include="..\toast\css\3-trans\css-2.css">
-      <Filter>Toast\CSS\3-trans</Filter>
-    </None>
-    <None Include="..\toast\css\3-trans\index.html">
-      <Filter>Toast\CSS\3-trans</Filter>
-    </None>
-    <None Include="..\toast\css\3-trans\css-3.css">
-      <Filter>Toast\CSS\3-trans</Filter>
-    </None>
     <None Include="..\toast\css\3-mc\css.conf">
       <Filter>Toast\CSS\3-mc</Filter>
     </None>
@@ -33482,6 +33521,129 @@
     </None>
     <None Include="..\toast\living\oct23\aks.html">
       <Filter>Toast\Living\oct23</Filter>
+    </None>
+    <None Include="..\toast\css\4-transform\css.conf">
+      <Filter>Toast\CSS\4-transform</Filter>
+    </None>
+    <None Include="..\toast\css\4-transform\css.spec">
+      <Filter>Toast\CSS\4-transform</Filter>
+    </None>
+    <None Include="..\toast\css\4-transform\css-3.css">
+      <Filter>Toast\CSS\4-transform</Filter>
+    </None>
+    <None Include="..\toast\css\4-transform\css-4.css">
+      <Filter>Toast\CSS\4-transform</Filter>
+    </None>
+    <None Include="..\toast\css\4-transform\css-4.html">
+      <Filter>Toast\CSS\4-transform</Filter>
+    </None>
+    <None Include="..\toast\css\4-transform\index.html">
+      <Filter>Toast\CSS\4-transform</Filter>
+    </None>
+    <None Include="..\toast\css\4-image\css.conf">
+      <Filter>Toast\CSS\4-image</Filter>
+    </None>
+    <None Include="..\toast\css\4-image\css.spec">
+      <Filter>Toast\CSS\4-image</Filter>
+    </None>
+    <None Include="..\toast\css\4-image\css-2.css">
+      <Filter>Toast\CSS\4-image</Filter>
+    </None>
+    <None Include="..\toast\css\4-image\index.html">
+      <Filter>Toast\CSS\4-image</Filter>
+    </None>
+    <None Include="..\toast\css\4-image\css-2.html">
+      <Filter>Toast\CSS\4-image</Filter>
+    </None>
+    <None Include="..\toast\css\4-image\css-3.css">
+      <Filter>Toast\CSS\4-image</Filter>
+    </None>
+    <None Include="..\toast\css\4-image\css-6.css">
+      <Filter>Toast\CSS\4-image</Filter>
+    </None>
+    <None Include="..\toast\css\4-image\css-8.css">
+      <Filter>Toast\CSS\4-image</Filter>
+    </None>
+    <None Include="..\toast\css\3-transform\index.html">
+      <Filter>Toast\CSS\3-transform</Filter>
+    </None>
+    <None Include="..\toast\css\3-transform\css.conf">
+      <Filter>Toast\CSS\3-transform</Filter>
+    </None>
+    <None Include="..\toast\css\3-transform\css.spec">
+      <Filter>Toast\CSS\3-transform</Filter>
+    </None>
+    <None Include="..\toast\css\3-transform\css-3.css">
+      <Filter>Toast\CSS\3-transform</Filter>
+    </None>
+    <None Include="..\toast\css\3-transform\css-3.html">
+      <Filter>Toast\CSS\3-transform</Filter>
+    </None>
+    <None Include="..\toast\css\3-transform\css-5.css">
+      <Filter>Toast\CSS\3-transform</Filter>
+    </None>
+    <None Include="..\toast\css\3-transform\css-7.html">
+      <Filter>Toast\CSS\3-transform</Filter>
+    </None>
+    <None Include="..\toast\css\3-transform\css-8.html">
+      <Filter>Toast\CSS\3-transform</Filter>
+    </None>
+    <None Include="..\toast\css\3-transform\css-10.html">
+      <Filter>Toast\CSS\3-transform</Filter>
+    </None>
+    <None Include="..\toast\css\3-transform\css-12.css">
+      <Filter>Toast\CSS\3-transform</Filter>
+    </None>
+    <None Include="..\toast\css\3-transform\css-13.html">
+      <Filter>Toast\CSS\3-transform</Filter>
+    </None>
+    <None Include="..\toast\css\3-transition\css.conf">
+      <Filter>Toast\CSS\3-transition</Filter>
+    </None>
+    <None Include="..\toast\css\3-transition\css.spec">
+      <Filter>Toast\CSS\3-transition</Filter>
+    </None>
+    <None Include="..\toast\css\3-transition\css-2.css">
+      <Filter>Toast\CSS\3-transition</Filter>
+    </None>
+    <None Include="..\toast\css\3-transition\css-3.css">
+      <Filter>Toast\CSS\3-transition</Filter>
+    </None>
+    <None Include="..\toast\css\3-transition\index.html">
+      <Filter>Toast\CSS\3-transition</Filter>
+    </None>
+    <None Include="..\toast\css\4-transform\css-14.css">
+      <Filter>Toast\CSS\4-transform</Filter>
+    </None>
+    <None Include="..\toast\css\3-masking\css.conf">
+      <Filter>Toast\CSS\3-masking</Filter>
+    </None>
+    <None Include="..\toast\css\3-masking\css.spec">
+      <Filter>Toast\CSS\3-masking</Filter>
+    </None>
+    <None Include="..\toast\css\3-masking\css-5.css">
+      <Filter>Toast\CSS\3-masking</Filter>
+    </None>
+    <None Include="..\toast\css\3-masking\css-5.html">
+      <Filter>Toast\CSS\3-masking</Filter>
+    </None>
+    <None Include="..\toast\css\3-masking\index.html">
+      <Filter>Toast\CSS\3-masking</Filter>
+    </None>
+    <None Include="..\toast\css\3-masking\css-6.html">
+      <Filter>Toast\CSS\3-masking</Filter>
+    </None>
+    <None Include="..\toast\css\3-masking\css-7.html">
+      <Filter>Toast\CSS\3-masking</Filter>
+    </None>
+    <None Include="..\toast\css\3-masking\css-7.css">
+      <Filter>Toast\CSS\3-masking</Filter>
+    </None>
+    <None Include="..\toast\css\3-masking\css-8.css">
+      <Filter>Toast\CSS\3-masking</Filter>
+    </None>
+    <None Include="..\toast\css\3-masking\css-9.html">
+      <Filter>Toast\CSS\3-masking</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

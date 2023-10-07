@@ -1,0 +1,14 @@
+﻿img.high-res {
+  image-resolution: 300dpi;
+}
+
+img { image-resolution: from-image }
+
+img { image-resolution: from-image 300dpi }
+img { image-resolution: 300dpi from-image }
+
+img { image-resolution: 300dpi }
+
+img { image-resolution: 300dpi snap; }
+
+img { image-resolution: snap from-image; }

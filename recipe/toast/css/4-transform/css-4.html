@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<link rel="stylesheet" type="text/css" href="css-4.css">
+<TITLE>CSS 4 image chapter 4 examples</TITLE>
+  </head>
+<body>
+
+<style>
+div {
+    height: 150px;
+    width: 150px;
+}
+.container {
+    border: 1px solid black;
+}
+.transformed {
+    transform: rotateY(50deg);
+}
+</style>
+
+<div class="container">
+    <div class="transformed"></div>
+</div>
+
+<style>
+div {
+  height: 150px;
+  width: 150px;
+}
+.container {
+  perspective: 500px;
+  border: 1px solid black;
+}
+.transformed {
+  transform: rotateY(50deg);
+}
+</style>
+
+<div class="container">
+  <div class="transformed"></div>
+</div>
+
+<style>
+div {
+  height: 150px;
+  width: 150px;
+}
+.scene {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid black;
+  perspective: 500px;
+}
+.container {
+  transform-style: preserve-3d;
+}
+.container > div {
+  position: absolute;
+  left: 0;
+}
+.container > :first-child {
+  transform: rotateY(45deg);
+  background-color: orange;
+  top: 10px;
+  height: 135px;
+}
+.container > :last-child {
+  transform: translateZ(40px);
+  background-color: rgba(0, 0, 255, 0.6);
+  top: 50px;
+  height: 100px;
+}
+</style>
+
+<div class="scene">
+  <div class="container">
+    Lorem ipsum dolor sit amet, consectetaur adipisicing elit…
+    <div></div>
+    <div></div>
+  </div>
+</div>
+
+<style>
+div {
+  height: 150px;
+  width: 150px;
+}
+.container {
+  perspective: 500px;
+  border: 1px solid black;
+}
+.transformed {
+  transform: rotateY(50deg);
+  background-color: blue;
+}
+.child {
+  transform-origin: top left;
+  transform: rotateX(40deg);
+  background-color: lime;
+}
+</style>
+
+<div class="container">
+  <div class="transformed">
+    <div class="child"></div>
+  </div>
+</div>
+
+<style>
+div {
+  height: 150px;
+  width: 150px;
+}
+.container {
+  perspective: 500px;
+  border: 1px solid black;
+}
+.transformed {
+  transform-style: preserve-3d;
+  transform: rotateY(50deg);
+  background-color: blue;
+}
+.child {
+  transform-origin: top left;
+  transform: rotateX(40deg);
+  background-color: lime;
+}
+</style>
+
+<style>
+.body { perspective: 500px; }
+#card {
+  position: relative;
+  height: 300px; width: 200px;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+#card.flipped {
+  transform: rotateY(180deg);
+}
+.face {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: silver;
+  border-radius: 40px;
+  backface-visibility: hidden;
+}
+.back {
+  transform: rotateY(180deg);
+}
+</style>
+<div id="card" onclick="this.classList.toggle('flipped')">
+  <div class="front face">Front</div>
+  <div class="back face">Back</div>
+</div>
+
+</body>
+</html>

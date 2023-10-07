@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<TITLE>CSS 3 transform chapter 7 examples</TITLE>
+  </head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg">
+  <style>
+  .container {
+    transform: translate(100px, 100px);
+  }
+  </style>
+
+  <g class="container" transform="translate(200 200)">
+    <rect width="100" height="100" fill="blue" />
+  </g>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg">
+  <style>
+  pattern {
+    transform: rotate(45deg);
+    transform-origin: 50% 50%;
+  }
+  </style>
+
+  <defs>
+  <pattern id="pattern-1">
+    <rect id="rect1" width="100" height="100" fill="blue" />
+  </pattern>
+  </defs>
+
+  <rect width="200" height="200" fill="url(#pattern-1)" />
+</svg>
+
+</body>
+</html>

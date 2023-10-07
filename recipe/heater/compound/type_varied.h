@@ -271,8 +271,8 @@ template < > struct type_master < t_end > : varied < t_end >
                 default :
                     validate_type < type_master < t_endvaluelist > > (nits, v); } } };
 
-template < > struct type_master < t_fill > : varied < t_fill >
-{   using varied < t_fill > :: varied;
+template < > struct type_master < t_fill_v > : varied < t_fill_v >
+{   using varied < t_fill_v > :: varied;
     static e_animation_type animation_type () noexcept { return at_paint; }
     void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* , const ::std::string& )
     {   if (good () || empty ())

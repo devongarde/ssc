@@ -225,6 +225,7 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_css_selectors_4 : return "CSS Selectors 4";
         case ed_css_syntax : return "CSS Syntax Module";
         case ed_css_table : return "CSS Table Module Level 3";
+        case ed_css_transform_3 : return "CSS Transforms Module 1";
         case ed_css_ui_3 : return "CSS UI 3";
         case ed_css_ui_4 : return "CSS UI 4";
         case ed_css_value_3 : return "CSS Value 3";
@@ -333,6 +334,7 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_css_selectors_4 : return "CSS Selectors Level 4, November 2022 draft";
         case ed_css_syntax : return "CSS Syntax Module Level 3, December 2021 draft";
         case ed_css_table : return "CSS Table Module Level 3, July 2019 draft";
+        case ed_css_transform_3 : return "CSS Transforms Module 1, February 2019";
         case ed_css_ui_3 : return "CSS Basic User Interface Level 3, June 2018";
         case ed_css_ui_4 : return "CSS Basic User Interface Level 4, March 2021 draft";
         case ed_css_value_3 : return "CSS Values and Units 3, December 2022";

@@ -92,6 +92,7 @@ hav_t havt_marquee [] =
 hav_t havt_mask [] =
 {   { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_mask, a_externalresourcesrequired },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_mask, a_maskcontentunits },
+    { { HTML_SVG10, 0, HE_SVG, 0, H3_CSS_MASKING }, { HTML_UNDEF }, elem_mask, a_masktype },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_mask, a_maskunits },
     SVG_BOX_ATTRIBUTES (elem_mask),
     SVG_CONDITIONAL_ATTRIBUTES (elem_mask),

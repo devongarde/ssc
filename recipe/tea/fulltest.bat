@@ -36,6 +36,8 @@ ssc.exe -f ../toast/css/5-font/css.conf
 ssc.exe -f ../toast/css/4-frag/css.conf
 ssc.exe -f ../toast/css/3-grid/css.conf
 ssc.exe -f ../toast/css/4-grid/css.conf
+ssc.exe -f ../toast/css/3-image/css.conf
+ssc.exe -f ../toast/css/3-masking/css.conf
 ssc.exe -f ../toast/css/3-mc/css.conf
 ssc.exe -f ../toast/css/3-media/css.conf
 ssc.exe -f ../toast/css/4-media/css.conf
@@ -52,7 +54,9 @@ ssc.exe -f ../toast/css/3-syntax/css.conf
 ssc.exe -f ../toast/css/3-table/css.conf
 ssc.exe -f ../toast/css/3-textdec/css.conf
 ssc.exe -f ../toast/css/4-textdec/css.conf
-ssc.exe -f ../toast/css/3-trans/css.conf
+ssc.exe -f ../toast/css/3-transform/css.conf
+ssc.exe -f ../toast/css/4-transform/css.conf
+ssc.exe -f ../toast/css/3-transition/css.conf
 ssc.exe -f ../toast/css/3-ui/css.conf
 ssc.exe -f ../toast/css/4-ui/css.conf
 ssc.exe -f ../toast/css/3-value/css.conf
@@ -121,6 +125,7 @@ ssc.exe -f ../toast/living/oct22/living.conf
 ssc.exe -f ../toast/living/jan23/living.conf
 ssc.exe -f ../toast/living/apr23/living.conf
 ssc.exe -f ../toast/living/jul23/living.conf
+ssc.exe -f ../toast/living/oct23/living.conf
 ssc.exe -f ../toast/math/1/math.conf
 ssc.exe -f ../toast/math/2/math.conf
 ssc.exe -f ../toast/math/3/math.conf
@@ -150,11 +155,13 @@ ssc.exe -f ../toast/other/clacks/clacks.conf
 ssc.exe -f ../toast/other/CSS/css.conf
 ssc.exe -f ../toast/other/dfn/dfn.conf
 ssc.exe -f ../toast/other/dump/dump.conf
+ssc.exe -f ../toast/other/ie/ie.conf
 ssc.exe -f ../toast/other/ignore/ignore.conf
 ssc.exe -f ../toast/other/incorrectness/incorrectness.conf
 ssc.exe -f ../toast/other/nits/nits.conf
 ssc.exe -f ../toast/other/parsing/parsing.conf
 ssc.exe -f ../toast/other/pattern/pattern.conf
+ssc.exe -f ../toast/other/safari/safari.conf
 ssc.exe -f ../toast/other/simple/simple.conf
 ssc.exe -f ../toast/other/ssi/ssi.conf
 ssc.exe -f ../toast/RDFa/1.1.3/rdfa.conf

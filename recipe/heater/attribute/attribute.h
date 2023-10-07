@@ -78,6 +78,7 @@ struct attribute_base
 #endif // _MSC_VER
 
 bool verify_attribute_version (nitpick& nits, const html_version& v, const e_element tag, const e_attribute id, const ::std::string& name, bool& excluded, bool& deprecated);
+bool set_attribute_value (nitpick& nits, const html_version& v, const ::std::string& s, const ::std::string& n);
 
 template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public attribute_base, public typed_value < e_attribute, TYPE, IDENTITY >
 {   typed_attribute () = default;
@@ -101,20 +102,11 @@ template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public a
         if (! typed_value < e_attribute, TYPE, IDENTITY > :: is_existential ()) return;
         ::std::string ss (trim_the_lot_off (s));
         if (ss.empty ())
-        {   if (v.xhtml ())
-            {   nits.pick (nit_xhtml_existential_makework, es_error, ec_type, "in ", v.report (), ", the attribute ", quote (name ()), " must be assigned ", quote (name ()));
-                typed_value < e_attribute, TYPE, IDENTITY > :: status (s_invalid); } }
+        {   if (! v.xhtml ()) return;
+            nits.pick (nit_xhtml_existential_makework, es_error, ec_type, "in ", v.report (), ", the attribute ", quote (name ()), " must be assigned ", quote (name ()));
+            typed_value < e_attribute, TYPE, IDENTITY > :: status (s_invalid); }
         else if (typed_value < e_attribute, TYPE, IDENTITY > :: good ())
-            if (v.is_b4_2 ())
-            {   nits.pick (nit_existential_value, es_warning, ec_type, "in ", v.report (), ", ", name (), " cannot be given a value");
-                typed_value < e_attribute, TYPE, IDENTITY > :: status (s_invalid); }
-            else
-            if (v.xhtml ())
-            {   if (ss != name ())
-                {   nits.pick (nit_xhtml_existential_makework, es_error, ec_type, "in ", v.report (), ", the value of ", name (), " must be ", quote (name ()));
-                    typed_value < e_attribute, TYPE, IDENTITY > :: status (s_invalid); } }
-            else if (! compare_no_case (ss, name ()))
-            {   nits.pick (nit_existential_value, es_warning, ec_type, "if ", name (), " has a value, it must be ", quote (name ()));
+        {   if (! set_attribute_value (nits, v, ss, name ()))
                 typed_value < e_attribute, TYPE, IDENTITY > :: status (s_invalid); } }
     virtual void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* pe, const ::std::string& s) override
     {   typed_value < e_attribute, TYPE, IDENTITY > :: verify_attribute (nits, v, e, pe, s); }

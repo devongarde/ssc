@@ -1,0 +1,5 @@
+﻿.pfft
+{
+    background: linear-gradient( to bottom, red 0%, yellow, black 100px);
+    background: linear-gradient(rgb(255, 0, 0), rgb(255, 255, 0), rgb(0, 0, 0) 100px);
+}

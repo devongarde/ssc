@@ -28,6 +28,9 @@ template < > struct type_master < t_audio_level > : type_or_string < t_audio_lev
 template < > struct type_master < t_angle_i > : type_or_string < t_angle_i, t_angle, sz_inherit >
 { using type_or_string < t_angle_i, t_angle, sz_inherit > :: type_or_string; };
 
+template < > struct type_master < t_angle_0 > : type_or_string < t_angle_0, t_angle, sz_0 >
+{ using type_or_string < t_angle_0, t_angle, sz_0 > :: type_or_string; };
+
 template < > struct type_master < t_angle_a > : type_or_string < t_angle_a, t_angle, sz_auto >
 { using type_or_string < t_angle_a, t_angle, sz_auto > :: type_or_string; };
 

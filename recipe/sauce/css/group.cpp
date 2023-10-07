@@ -30,7 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/page.h"
 
 css_group::css_group (page& p) : page_ (p)
-{   snippets_ = dst_ptr (new distilled (false)); }
+{   snippets_ = dst_ptr (new distilled (false));
+    transforms_ = dst_ptr (new distilled (false)); }
 
 css_ptr css_group::parse (  dst_ptr dsp, const ::std::string& content, const html_version& v, const namespaces_ptr& ns, bool state_version, bool snippet, const ::std::string& abs, const element_bitset eb,
                             int line, const e_element e, const ::boost::filesystem::path dp)
@@ -126,6 +127,13 @@ css_ptr css_group::parse_media_queries (const ::std::string& content, const html
 {   dst_ptr dst;
     css_ptr cp = css_ptr (new css (v, content, namespaces, dst, p, p.get_site_path (), sv, true, line, e, eb, p.get_disk_path (), true));
     return cp; }
+
+bool css_group::parse_transform (   const ::std::string& content, const html_version& v, const namespaces_ptr& namespaces, const element_bitset eb, bool sv,
+                                    int line, const e_element e)
+{   ::std::string s (".css_internal_transform { transform: ");
+    s += content;
+    s += "; }";
+    return parse (transforms_, s, v, namespaces, true, true, ::std::string (), bs_, line, e) != css_ptr (); }
 
 bool css_group::has_id (const ::std::string& id) const
 {   VERIFY_NOT_NULL (snippets_.get (), __FILE__, __LINE__);

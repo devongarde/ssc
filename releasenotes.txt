@@ -3,11 +3,20 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.37
+- CSS Images 4
+- CSS Masking 3
+- CSS Transforms 3
+- CSS Transforms 4
+- various bug fixes
+- underlying work
+
 0.1.36
 - Living Standard October 2023
-- CSS Images 3, very drafty
+- CSS Images 3
 - --html.ie ignores certain old internet explorer naughtitudes
 - --html.safari ignores certain old safari naughtitudes
+- various bug fixes
 - underlying work
 
 0.1.35

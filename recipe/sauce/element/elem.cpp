@@ -585,7 +585,7 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_3_0 }, { HTML_3_0 }, "tilde", elem_tilde, ns_default, 0, EF_3_MATHVC },
     { { HTML_JAN07 }, { HTML_UNDEF }, "time", elem_time, ns_default, 0, EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "times", elem_times, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_M_CONTENT },
-    { { HTML_TAGS }, { HTML_UNDEF }, "title", elem_title, ns_default, EP_SIMPLE, EF_METADATA | EF_X2_STRUCT | EF_X2_LIST | EF_X2_TEXT | EF_S_G | EF_SVG_DESC },
+    { { HTML_TAGS, 0, 0 }, { HTML_UNDEF }, "title", elem_title, ns_default, EP_SIMPLE, EF_METADATA | EF_X2_STRUCT | EF_X2_LIST | EF_X2_TEXT | EF_S_G | EF_SVG_DESC },
     { { HTML_PLUS, HV_RFC_1942 }, { HTML_UNDEF }, "tr", elem_tr, ns_default, EP_UNCLOSEDPLUS },
     { { HTML_JUL10 }, { HTML_UNDEF }, "track", elem_track, ns_default, EP_CLOSED },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "traitDef", elem_traitdef, ns_default, EP_CLOSED },

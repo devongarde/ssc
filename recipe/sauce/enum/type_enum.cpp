@@ -417,8 +417,8 @@ struct symbol_entry < html_version, e_css_background_repeat > css_background_rep
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "repeat", ecbr_repeat },
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "repeat-x", ecbr_repeat_x },
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "repeat-y", ecbr_repeat_y },
-    { { HTML_CSS, 0, 0, H2_CSS_BACKGROUND }, { HTML_UNDEF }, "round", ecbr_round },
-    { { HTML_CSS, 0, 0, H2_CSS_BACKGROUND }, { HTML_UNDEF }, "space", ecbr_space } };
+    { { HTML_CSS, 0, 0, H2_CSS_BACKGROUND, H3_CSS_MASKING }, { HTML_UNDEF }, "round", ecbr_round },
+    { { HTML_CSS, 0, 0, H2_CSS_BACKGROUND, H3_CSS_MASKING }, { HTML_UNDEF }, "space", ecbr_space } };
 
 struct symbol_entry < html_version, e_css_blend_mode > css_blend_mode_symbol_table [] =
 {   { { HTML_CSS, 0, 0, H2_CSS_COMPOSITING }, { HTML_UNDEF }, "colour", ecbm_colour },
@@ -521,12 +521,12 @@ struct symbol_entry < html_version, e_css_content_position > css_content_positio
     { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_ALIGN | H3_CSS_GRID }, { HTML_UNDEF }, "start", eccp_start } };
 
 struct symbol_entry < html_version, e_css_coord_box > css_coord_box_symbol_table [] =
-{   { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_MODEL }, { HTML_UNDEF }, "border-box", eccb_border_box },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_MODEL }, { HTML_UNDEF }, "content-box", eccb_content_box },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_MODEL }, { HTML_UNDEF }, "fill-box", eccb_fill_box },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_MODEL }, { HTML_UNDEF }, "padding-box", eccb_padding_box },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_MODEL }, { HTML_UNDEF }, "stroke-box", eccb_stroke_box },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_MODEL }, { HTML_UNDEF }, "view-box", eccb_view_box } };
+{   { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_MODEL | H3_CSS_MASKING }, { HTML_UNDEF }, "border-box", eccb_border_box },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_MODEL | H3_CSS_MASKING }, { HTML_UNDEF }, "content-box", eccb_content_box },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_MODEL | H3_CSS_MASKING }, { HTML_UNDEF }, "fill-box", eccb_fill_box },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_MODEL | H3_CSS_MASKING }, { HTML_UNDEF }, "padding-box", eccb_padding_box },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_MODEL | H3_CSS_MASKING }, { HTML_UNDEF }, "stroke-box", eccb_stroke_box },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_MODEL | H3_CSS_MASKING }, { HTML_UNDEF }, "view-box", eccb_view_box } };
 
 struct symbol_entry < html_version, e_css_counter_style > css_counter_style_symbol_table [] =
 {   { { HTML_CSS, 0, 0, H2_CSS_CS_3 }, { HTML_UNDEF }, "arabic-indic", eccs_arabic_indic, ns_default, CF_CS_PREDEFINED },
@@ -1229,13 +1229,6 @@ struct symbol_entry < html_version, e_css_paint_box > css_paint_box_symbol_table
     { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_MODEL }, { HTML_UNDEF }, "padding-box", ecpb_padding_box },
     { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_MODEL }, { HTML_UNDEF }, "stroke-box", ecpb_stroke_box } };
 
-struct symbol_entry < html_version, e_css_object_fit > css_object_fit_symbol_table [] =
-{   { { HTML_CSS, 0, 0, 0, H3_CSS_IMAGE }, { HTML_UNDEF }, "contain", cof_contain },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_IMAGE }, { HTML_UNDEF }, "cover", cof_cover },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_IMAGE }, { HTML_UNDEF }, "fill", cov_fill },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_IMAGE }, { HTML_UNDEF }, "none", cof_none },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_IMAGE }, { HTML_UNDEF }, "scale-down", cof_scale_down } };
-
 struct symbol_entry < html_version, e_css_overflow > css_overflow_symbol_table [] =
 {   { { HTML_CSS }, { HTML_UNDEF }, "auto", eco_auto },
     { { HTML_CSS }, { HTML_UNDEF }, "hidden", eco_hidden },
@@ -1414,6 +1407,13 @@ struct symbol_entry < html_version, e_css_textemph_shape > css_textemph_shape_sy
     { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC }, { HTML_UNDEF }, "triangle", cte_triangle },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TEXTDEC }, { HTML_UNDEF }, "sesame", cte_sesame } };
 
+struct symbol_entry < html_version, e_css_transform_box > css_transform_box_symbol_table [] =
+{   { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM }, { HTML_UNDEF }, "content-box", ctb_content_box },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM }, { HTML_UNDEF }, "border-box", ctb_border_box },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM }, { HTML_UNDEF }, "fill-box", ctb_fill_box },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM }, { HTML_UNDEF }, "stroke-box", ctb_stroke_box },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM }, { HTML_UNDEF }, "view-box", ctb_view_box } };
+
 struct symbol_entry < html_version, e_css_user_select > css_user_select_symbol_table [] =
 {   { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "all", ecu_all },
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "auto", ecu_auto },
@@ -1431,7 +1431,7 @@ struct symbol_entry < html_version, e_css_val_fn > css_val_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_VALUE_4 }, { HTML_UNDEF }, "atan2", cvf_atan2 },
     { { HTML_CSS, 0, 0, H2_CSS_VALUE }, { HTML_UNDEF }, "calc", cvf_calc },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "character-variant", cvf_character_variant },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_SHAPE }, { HTML_UNDEF }, "circle", cvf_circle },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_SHAPE | H3_CSS_MASKING }, { HTML_UNDEF }, "circle", cvf_circle },
     { { HTML_CSS, 0, 0, H2_CSS_VALUE_4 }, { HTML_UNDEF }, "clamp", cvf_clamp },
     { { HTML_CSS, 0, 0, H2_CSS_COLOUR_4 }, { HTML_UNDEF }, "color", cvf_colour },
     { { HTML_CSS, 0, 0, H2_CSS_VALUE | H2_CSS_COLOUR_5 }, { HTML_UNDEF }, "color-mix", cvf_colour_mix },
@@ -1445,7 +1445,7 @@ struct symbol_entry < html_version, e_css_val_fn > css_val_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_EASE }, { HTML_UNDEF }, "ease-in-out", cvf_ease_in_out, ns_default, CF_NO_PARAMS },
     { { HTML_CSS, 0, 0, H2_CSS_EASE }, { HTML_UNDEF }, "ease-out", cvf_ease_out, ns_default, CF_NO_PARAMS },
     { { HTML_CSS, 0, 0, 0, H3_CSS_IMAGE_4 }, { HTML_UNDEF }, "element", cvf_element },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_SHAPE }, { HTML_UNDEF }, "ellipse", cvf_ellipse },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_SHAPE | H3_CSS_MASKING }, { HTML_UNDEF }, "ellipse", cvf_ellipse },
     { { HTML_CSS, 0, 0, H2_CSS_VALUE_4 }, { HTML_UNDEF }, "exp", cvf_exp },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_3 }, { HTML_UNDEF }, "format", cvf_format },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "historical-forms", cvf_historical_forms },
@@ -1471,9 +1471,9 @@ struct symbol_entry < html_version, e_css_val_fn > css_val_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_COLOUR_4 }, { HTML_UNDEF }, "oklab", cvf_oklab },
     { { HTML_CSS, 0, 0, H2_CSS_COLOUR_4 }, { HTML_UNDEF }, "oklch", cvf_oklch },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "ornaments", cvf_ornaments },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_SHAPE }, { HTML_UNDEF }, "path", cvf_path },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_SHAPE | H3_CSS_MASKING }, { HTML_UNDEF }, "path", cvf_path },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM_4 }, { HTML_UNDEF }, "perspective", cvf_perspective },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_SHAPE }, { HTML_UNDEF }, "polygon", cvf_polygon },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_SHAPE | H3_CSS_MASKING }, { HTML_UNDEF }, "polygon", cvf_polygon },
     { { HTML_CSS, 0, 0, H2_CSS_VALUE_4 }, { HTML_UNDEF }, "pow", cvf_pow },
     { { HTML_CSS }, { HTML_UNDEF }, "rgb", cvf_rgb },
     { { HTML_CSS, 0, 0, H2_CSS_COLOUR_3 }, { HTML_UNDEF }, "rgba", cvf_rgba },
@@ -1517,7 +1517,7 @@ struct symbol_entry < html_version, e_css_val_fn > css_val_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, 0, H3_CSS_TRANSFORM_4 }, { HTML_UNDEF }, "translateZ", cvf_translatez },
     { { HTML_CSS }, { HTML_UNDEF }, "url", cvf_url },
     { { HTML_CSS, 0, 0, H2_CSS_CUSTOM }, { HTML_UNDEF }, "var", cvf_var },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_SHAPE }, { HTML_UNDEF }, "xywh", cvf_xywh } };
+    { { HTML_CSS, 0, 0, 0, H3_CSS_SHAPE | H3_CSS_MASKING }, { HTML_UNDEF }, "xywh", cvf_xywh } };
 
 struct symbol_entry < html_version, e_css_vertical_align > css_vertical_align_symbol_table [] =
 {   { { HTML_CSS }, { HTML_UNDEF }, "inherit", ecva_inherit },
@@ -1535,7 +1535,6 @@ struct symbol_entry < html_version, e_css_visual_box > css_visual_box_symbol_tab
     { { HTML_CSS, 0, 0, H2_CSS_BACKGROUND, H3_CSS_BOX_MODEL | H3_CSS_DISPLAY }, { HTML_UNDEF }, "content-box", eccl_content_box },
     { { HTML_CSS, 0, 0, H2_CSS_BACKGROUND, H3_CSS_BOX_MODEL | H3_CSS_DISPLAY }, { HTML_UNDEF }, "padding-box", eccl_padding_box } };
 
-// typedef enum { evb_centre, evb_left, evb_leftwards, evb_right, evb_rightwards } e_css_voice_balance_e;
 struct symbol_entry < html_version, e_css_voice_balance_e > css_voice_balance_e_symbol_table [] =
 {   { { HTML_CSS }, { HTML_UNDEF }, "center", evb_centre },
     { { HTML_CSS }, { HTML_UNDEF }, "left", evb_left },
@@ -2616,6 +2615,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-fragmentation", nm_context_css_fragmentation },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-grid", nm_context_css_grid },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-image", nm_context_css_image },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-masking", nm_context_css_masking },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-media", nm_context_css_media },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-multi-column", nm_context_css_multi_column },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-namespace", nm_context_css_namespace },
@@ -4550,8 +4550,10 @@ void init_2 ()
     type_master < t_css_display_flow > :: init ();
     type_master < t_css_isolation > :: init ();
     type_master < t_css_mark > :: init ();
+    type_master < t_css_mask_border_mode > :: init ();
     type_master < t_css_shape_fillrule > :: init ();
     type_master < t_css_text_resize > :: init ();
+    type_master < t_css_transform_style > :: init ();
     type_master < t_dataformatas > :: init ();
     type_master < t_defaultaction > :: init ();
     type_master < t_dynamic_range > :: init ();
@@ -4651,6 +4653,7 @@ void init_3 ()
     type_master < t_css_anim_comp > :: init ();
     type_master < t_css_azimuth_lri > :: init ();
     type_master < t_css_border_collapse > :: init ();
+    type_master < t_css_clip_path_box > :: init ();
     type_master < t_css_column_fill > :: init ();
     type_master < t_css_display_outside > :: init ();
     type_master < t_css_empty_cells > :: init ();
@@ -4658,6 +4661,7 @@ void init_3 ()
     type_master < t_css_font_kerning > :: init ();
     type_master < t_css_image_proc_e > :: init ();
     type_master < t_css_margin_break > :: init ();
+    type_master < t_css_masking_mode > :: init ();
     type_master < t_css_speak_3 > :: init ();
     type_master < t_css_speak_header > :: init ();
     type_master < t_css_speak_numeral > :: init ();
@@ -4744,12 +4748,14 @@ void init_4 ()
     type_master < t_css_anim_dir > :: init ();
     type_master < t_css_anim_fill_mode > :: init ();
     type_master < t_css_border_image_repeat > :: init ();
+    type_master < t_css_composite > :: init ();
     type_master < t_css_display_legacy > :: init ();
     type_master < t_css_flex_direction > :: init ();
     type_master < t_css_fn_round_t > :: init ();
     type_master < t_css_font_style_e > :: init ();
     type_master < t_css_hue_interpolation > :: init ();
     type_master < t_css_margin_trim_inner > :: init ();
+    type_master < t_css_mask_border_repeat > :: init ();
     type_master < t_css_orientation > :: init ();
     type_master < t_css_polar > :: init ();
     type_master < t_css_radial_size > :: init ();
@@ -4868,7 +4874,6 @@ void enum_init (nitpick& nits)
     INIT_ENUM (css_list_style_position);
     INIT_ENUM (css_list_style_type);
     INIT_ENUM (css_paint_box);
-    INIT_ENUM (css_object_fit);
     INIT_ENUM (css_overflow);
     INIT_ENUM (css_pause_3_e);
     INIT_ENUM (css_pitch_e);
@@ -4888,6 +4893,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (css_textdec_line_e);
     INIT_ENUM (css_textdec_style);
     INIT_ENUM (css_textemph_shape);
+    INIT_ENUM (css_transform_box);
     INIT_ENUM (css_user_select);
     INIT_ENUM (css_val_fn);
     INIT_ENUM (css_vertical_align);

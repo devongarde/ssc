@@ -38,6 +38,10 @@ template < > struct type_master < t_2x_unsigned > : type_one_two < t_2x_unsigned
 {   static bool is_numeric () { return true; }
     using type_one_two < t_2x_unsigned, t_unsigned, t_unsigned, sz_space_char > :: type_one_two; };
 
+template < > struct type_master < t_3x_real > : type_one_two_three < t_3x_real, t_real, t_real, t_real, sz_space_char >
+{   static bool is_numeric () { return true; }
+    using type_one_two_three < t_3x_real, t_real, t_real, t_real, sz_space_char > :: type_one_two_three; };
+
 template < > struct type_master < t_3x_unsigned > : type_one_two_three < t_3x_unsigned, t_unsigned, t_unsigned, t_unsigned, sz_space_char >
 {   static bool is_numeric () { return true; }
     using type_one_two_three < t_3x_unsigned, t_unsigned, t_unsigned, t_unsigned, sz_space_char > :: type_one_two_three; };
@@ -118,6 +122,9 @@ template < > struct type_master < t_unsigned_1_or_2 > : type_range < t_unsigned_
 {   static bool is_numeric () { return true; }
     using type_range < t_unsigned_1_or_2, sz_commaspace, t_unsigned, 1, 2 > :: type_range; };
 
+template < > struct type_master < t_unsigned_n > : type_or_string < t_unsigned_n, t_unsigned, sz_none >
+{ using type_or_string < t_unsigned_n, t_unsigned, sz_none > :: type_or_string; };
+
 template < > struct type_master < t_unsigneds > : type_at_least_one < t_unsigneds, sz_space_char, t_unsigned >
 {   static bool is_numeric () { return true; }
     using type_at_least_one < t_unsigneds, sz_space_char, t_unsigned > :: type_at_least_one; };
@@ -144,3 +151,6 @@ template < > struct type_master < t_x_dot_y > : type_one_two < t_x_dot_y, t_inte
 template < > struct type_master < t_zero_to_ones > : type_at_least_one < t_zero_to_ones, sz_commaspace, t_zero_to_one >
 {    static bool is_numeric () { return true; }
     using type_at_least_one < t_zero_to_ones, sz_commaspace, t_zero_to_one > :: type_at_least_one; };
+
+template < > struct type_master < t_resolution > : type_number_unit_4 < t_resolution, t_0_more, sz_dpi, sz_dpcm, sz_dppx, sz_x >
+{ using type_number_unit_4 < t_resolution, t_0_more, sz_dpi, sz_dpcm, sz_dppx, sz_x > :: type_number_unit_4; };

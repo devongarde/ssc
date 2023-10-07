@@ -161,6 +161,11 @@ line, the "no-" switch always applies.
 --css.text-dec X        Use CSS Text Decoration level X, where X is 0,
                         3 or 4
 
+--css.transform X       Use CSS Transforms level X, where X is 0, 3 or
+                        4 (since the specs confusingly use levels 1 and
+                        2 for CSS versions which are neither CSS 1 nor
+                        2.x, ssc accepts 1 for 3, and 2 for 4).
+
 --css.transition X      Use CSS Transitions level X, where X is 0 or 3
 
 --css.ui X              Use CSS Basic User Interface level X, where X

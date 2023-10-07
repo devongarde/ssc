@@ -95,10 +95,14 @@ void element_node::swap (element_node& en) noexcept
 void element_node::manage_reversioner ()
 {   switch (tag ())
     {   case elem_svg :
+            if (context.svg_version () != sv_none) version_.svg_version (context.svg_version ());
+            else
             {   const e_svg_version e = va_.get_svg (version_);
                 if (e != sv_none) version_.svg_version (e); }
             break;
         case elem_math :
+            if (context.math_version () != math_none) version_.math_version (context.math_version ());
+            else
             {   const e_math_version m = va_.get_math (version_);
                 if (m != math_none) version_.math_version (m); }
             break;
@@ -112,9 +116,16 @@ void element_node::parse_attributes (const html_version& , const ::std::string::
     if (! va_.empty ())
     {   va_.manage_xmlns (nits (), version_);
         switch (id ())
-        {   case elem_svg : version_.svg_version (va_.get_svg (version_)); break;
-            case elem_math : version_.math_version (va_.get_math (version_)); break;
-            default : break; } } }
+        {   case elem_svg : 
+                if (context.svg_version () != sv_none) version_.svg_version (context.svg_version ()); 
+                else version_.svg_version (va_.get_svg (version_));
+                break;
+            case elem_math :
+                if (context.math_version () != math_none) version_.math_version (context.math_version ()); 
+                else version_.math_version (va_.get_math (version_));
+                break;
+            default :
+                break; } } }
 
 ::std::string element_node::rpt (const int level)
 {   ::std::string res (::boost::lexical_cast < ::std::string > (level) + ": ");

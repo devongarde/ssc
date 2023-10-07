@@ -23,16 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "base/sz.h"
 #include "utility/quote.h"
 
-inline void compare_validate (nitpick& nits, const html_version& v, const ::std::string& naam, const ::std::string& s)
-{   if (v.xhtml () && (naam != s) && compare_no_case (naam, s))
-        if (naam.find_first_of (UPPERCASE) != ::std::string::npos)
-            nits.pick (nit_xhtml_enum_lc, ed_x1, "4.11. Attributes with pre-defined value sets", es_warning, ec_type, quote (s), ": enumerations must have matching case in ", v.report (), " (", quote (naam), ")");
-        else nits.pick (nit_xhtml_enum_lc, ed_x1, "4.11. Attributes with pre-defined value sets", es_warning, ec_type, quote (s), ": enumerations must be lower cased in ", v.report (), " (", quote (naam), ")"); }
-
-inline bool compare_complain (nitpick& nits, const html_version& v, const char* lhs, const ::std::string& rhs)
-{   if (! compare_no_case (lhs, rhs)) return false;
-    compare_validate (nits, v, lhs, rhs);
-    return true; }
+void compare_validate (nitpick& nits, const html_version& v, const ::std::string& naam, const ::std::string& s);
+bool compare_complain (nitpick& nits, const html_version& v, const char* lhs, const ::std::string& rhs);
 
 inline bool compare_complain (nitpick& nits, const html_version& v, const ::std::string& lhs, const char* rhs)
 {   return compare_complain (nits, v, rhs, lhs); }

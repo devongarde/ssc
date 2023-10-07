@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS 3 masking test page</title>
+    <LINK rel="stylesheet" href="css-7.css" type="text/css">
+</head>
+
+<body>
+
+<svg>
+
+<mask id="SVGMask" mask-type="alpha" maskContentUnits="objectBoundingBox">
+  <radialGradient id="radialFill">
+    <stop stop-color="white" offset="0"/>
+    <stop stop-color="black" offset="1"/>
+  </radialGradient>
+  <circle fill="url(#radialFill)" cx="0.5" cy="0.5" r="0.5"/>
+</mask>
+
+<style>
+  rect {
+    mask-image: url(#SVGMask);
+    mask-mode: luminance;
+  }
+</style>
+
+<rect width="200" height="200" fill="green"/>
+</svg>
+
+</body>
+</html>
