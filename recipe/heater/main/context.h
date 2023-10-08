@@ -140,9 +140,10 @@ class context_t
     context_t& css_transition (const int n) { version_.css_transition (n); mac (nm_context_css_transition, n); return *this; }
     context_t& css_ui (const int n) { version_.css_ui (n); mac (nm_context_css_ui, n); return *this; }
     context_t& css_value (const int n) { version_.css_value (n); mac (nm_context_css_value, n); return *this; }
-    context_t& css_writing_mode (const int n) { version_.css_writing_mode (n); mac (nm_context_css_writing_mode, n); return *this; }
     context_t& css_version (const int mjr, const int mnr);
     context_t& css_version (const e_css_version v) { version_.css_version (v); mac < int > (nm_context_css_version, v); return *this; }
+    context_t& css_writing_mode (const int n) { version_.css_writing_mode (n); mac (nm_context_css_writing_mode, n); return *this; }
+    context_t& css_will_change (const int n) { version_.css_will_change (n); mac (nm_context_css_will_change, n); return *this; }
     context_t& custom_elements (const vstr_t& s) { custom_elements_ = s; mac (nm_context_custom_elements, s); return *this; }
     context_t& domsg (const ::std::string& s) { domsg_ = s; return *this; }
     context_t& environment (const e_environment e, const ::std::string& s);
@@ -257,6 +258,7 @@ class context_t
         mac (nm_context_schema, b);
         return *this; }
     context_t& secret (const ::std::string& s) { secret_ = s; return *this; }
+    context_t& set_profile (const flags_t f) { version_.set_profile (f); return *this; }
     context_t& shadow_comment (const bool b) { shadow_comment_ = b; if (b) shadow_enable (true); mac (nm_context_shadow_comment, b); return *this; }
     context_t& shadow_changed (const bool b) { shadow_changed_ = b; if (b) shadow_enable (true); mac (nm_context_shadow_changed, b); return *this; }
     context_t& shadow_enable (const bool b) { shadow_enable_ = b; mac (nm_context_shadow_enable, b); return *this; }
@@ -290,12 +292,15 @@ class context_t
     context_t& title (const int n)
     { if (n <= 0) title_ = 0; else title_ = n; mac < int > (nm_context_title, title_); return *this; }
     context_t& todo (const e_do e) noexcept { do_ = e; return *this; }
-    context_t& unknown_class (const bool b) noexcept { unknown_class_ = b; mac (nm_context_unknown_class, b); return *this; }
+    context_t& unknown_class (const bool b) { unknown_class_ = b; mac (nm_context_unknown_class, b); return *this; }
     context_t& update (const bool b) noexcept { update_ = b; return *this; }
     context_t& verbose (const e_severity i) noexcept { verbose_ = i; return *this; }
     context_t& versioned (const bool b) noexcept { versioned_ = b; return *this; }
     context_t& virtuals (const vstr_t& s) { virtuals_ = s; mac (nm_context_virtuals, s); return *this; }
     context_t& x (const ::std::string& s) { x_ = s; return *this; }
+    context_t& mobile_profile (const bool b) { if (b) version_.set_profile (H3_NOT_MOBILE); else version_.reset_profile (H3_NOT_MOBILE); return *this; }
+    context_t& print_profile (const bool b) { if (b) version_.set_profile (H3_NOT_PRINT); else version_.reset_profile (H3_NOT_PRINT); return *this; }
+    context_t& tv_profile (const bool b) { if (b) version_.set_profile (H3_NOT_TV); else version_.reset_profile (H3_NOT_TV); return *this; }
     void consolidate_jsonld ()
     {   for (auto j : jsonld_ext_) extensions_.push_back (j); }
 public:
@@ -352,6 +357,7 @@ public:
     int css_value () { return version_.css_value (); }
     e_css_version css_version () const noexcept { return version_.css_version (); }
     int css_writing_mode () { return version_.css_writing_mode (); }
+    int css_will_change () { return version_.css_will_change (); }
     const vstr_t custom_elements () const { return custom_elements_; }
     bool dodedu () const noexcept { return (copy_ >= c_deduplicate); }
     const ::std::string domsg () const { return domsg_; }
@@ -478,6 +484,10 @@ public:
         return n <= verbose_; }
     ::boost::program_options::options_description& validation () noexcept { return validation_; }
     const ::boost::program_options::options_description& validation () const noexcept { return validation_; }
+    bool profile_checks () const { return version_.profile_checks (); }
+    bool mobile_profile () const { return version_.mobile_profile (); }
+    bool print_profile () const { return version_.print_profile (); }
+    bool tv_profile () const { return version_.tv_profile (); }
     ::std::string make_absolute_url (const ::std::string& link, bool can_use_index = true) const; };
 
 extern context_t context;

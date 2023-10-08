@@ -193,7 +193,8 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT, class LC >
             else if (f.out_of_scope ())
                 nits.pick (nit_out_of_scope, es_error, ec_type, quote (s), " is out of scope for an HTML server");
             else
-            {   if (f.deprecated (v))
+            {   f.check_css_status (nits, symbol < html_version, ENUM, CATEGORY, INIT, LC > :: name ());
+                if (f.deprecated (v))
                     nits.pick (nit_deprecated_value, es_warning, ec_type, quote (s), " is deprecated in ", v.report ());
                 if ((f.ext () & HE_M3_NONSTAND) != 0)
                     nits.pick (nit_non_standard_value, es_warning, ec_type, quote (s), " is non-standard in ", v.report (), ", and unlikely to be supported by many browsers");

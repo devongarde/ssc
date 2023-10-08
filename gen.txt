@@ -63,9 +63,9 @@ switches only work on the command line.
 Most binary options, e.g. those without arguments below that turn on a
 feature (which may be the default), have a corresponding "no-" switch
 to turn it off. The "no-" is inserted after the dot, so, for example,
-the contradiction to "--general.class" is "--general.no-class". When
-both are specified, perhaps in a configuration file and on the command
-line, the "no-" switch always applies.
+the contradiction to "--general.tea" is "--general.no-tea". When both
+are specified, perhaps in a configuration file and on the command line,
+the "no-" switch always applies.
 
 --corpus.article        Prefer the content of <ARTICLE> when gathering
                         corpus text.
@@ -134,7 +134,11 @@ line, the "no-" switch always applies.
 
 --css.image X           Use CSS Images level X, where X is 0, 3 or 4
 
+--css.masking X         Use CSS Masking level X, where X is 0 or 3
+
 --css.media X           Use CSS Media level X, where X is 0, 3, 4 or 5
+
+--css.mobile            Test against the CSS Mobile Profile
 
 --css.multi-column X    Use CSS Multi-Column level X, where X is 0 or 3
 
@@ -143,6 +147,8 @@ line, the "no-" switch always applies.
 --css.overflow X        Use CSS Overflow level X, where X is 0 or 3
 
 --css.position X        Use CSS Positions level X, where X is 0 or 3
+
+--css.print             Test against the CSS Print Profile
 
 --css.selector X        Use CSS Selectors level X, where X is 0, 3 or 4
 
@@ -160,6 +166,8 @@ line, the "no-" switch always applies.
 
 --css.text-dec X        Use CSS Text Decoration level X, where X is 0,
                         3 or 4
+
+--css.tv                Test against the CSS TV Profile
 
 --css.transform X       Use CSS Transforms level X, where X is 0, 3 or
                         4 (since the specs confusingly use levels 1 and
@@ -185,6 +193,8 @@ line, the "no-" switch always applies.
                             4     all CSS level 4 (unfinished)
                             5     all CSS level 5 (unfinished)
                             6     all CSS level 6 (unfinished)
+
+--css.wc X              Use CSS Will Change level X, where X is 0 or 3
 
 --css.writing X         Use CSS Writing Mode level X, where X is 0, 3
                         or 4
@@ -221,7 +231,7 @@ line, the "no-" switch always applies.
 --general.file XXX      File for persistent data. Requires -N. See also
                         --general.datapath. Default extension: .ndx.
 
---general.git           Ignore git's internal files.
+--general.git           Ignore git files.
 
 --general.ignore EL     ignore attributes and content of the element
                         <EL>. May  be repeated.

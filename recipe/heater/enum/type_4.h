@@ -98,6 +98,9 @@ template < > struct type_master < t_css_anim_fill_mode > : four_value < t_css_an
 template < > struct type_master < t_css_border_image_repeat > : four_value < t_css_border_image_repeat, e_css_border_image_repeat, sz_repeat, sz_round, sz_space_word, sz_stretch >
 { using four_value < t_css_border_image_repeat, e_css_border_image_repeat, sz_repeat, sz_round, sz_space_word, sz_stretch > :: four_value; };
 
+template < > struct type_master < t_css_box_orient > : four_value < t_css_box_orient, e_css_box_orient, sz_block_axis, sz_horizontal, sz_inline_axis, sz_vertical >
+{ using four_value < t_css_box_orient, e_css_box_orient, sz_block_axis, sz_horizontal, sz_inline_axis, sz_vertical > :: four_value; };
+
 template < > struct type_master < t_css_composite > : four_value < t_css_composite, e_css_composite, sz_add, sz_exclude, sz_intersect, sz_subtract >
 { using four_value < t_css_composite, e_css_composite, sz_add, sz_exclude, sz_intersect, sz_subtract > :: four_value; };
 
@@ -256,6 +259,9 @@ template < > struct type_master < t_tfmu > : four_value < t_tfmu, e_tfmu, sz_fal
 
 template < > struct type_master < t_uplr > : four_value < t_uplr, e_uplr, sz_down, sz_left, sz_right, sz_up >
 { using four_value < t_uplr, e_uplr, sz_down, sz_left, sz_right, sz_up > :: four_value; };
+
+template < > struct type_master < t_user_modify > : four_value < t_user_modify, e_user_modify, sz_read_only, sz_read_write, sz_read_write_plaintext_only, sz_write_only >
+{ using four_value < t_user_modify, e_user_modify, sz_read_only, sz_read_write, sz_read_write_plaintext_only, sz_write_only > :: four_value; };
 
 template < > struct type_master < t_valign3 > : four_value < t_valign3, e_valign3, sz_top, sz_middle, sz_bottom, sz_baseline >
 { using four_value < t_valign3, e_valign3, sz_top, sz_middle, sz_bottom, sz_baseline > :: four_value; };

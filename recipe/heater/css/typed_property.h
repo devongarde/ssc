@@ -98,18 +98,19 @@ template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public
             case iiu_unset : return "unset";
             default : return ""; } }
     virtual void shadow (::std::stringstream& ss, arguments& args, element* e) override
-    {   if (iiu_ == iiu_none) type_master < TYPE > ::shadow (ss, args.v_, e);
+    {   if (iiu_ == iiu_none) type_master < TYPE > :: shadow (ss, args.v_, e);
         else ss << iiu (); }
     int set_value_ex (arguments& args, const int start, const int to, nitpick& nits, const ::std::string& s)
     {   nitpick nuts, nets;
         if (! args.v_.is_css_compatible (type_master < t_css_property > :: first_version (IDENTITY)))
-        {   nits.pick (nit_css_version, es_error, ec_css, type_master < t_css_property > :: name (IDENTITY), " requires CSS ", type_master < t_css_property > :: first_version (IDENTITY).long_css_version_name ());
+        {   nits.pick (nit_css_version, es_error, ec_css, name (), " requires CSS ", type_master < t_css_property > :: first_version (IDENTITY).long_css_version_name ());
             base_type :: status (s_invalid); }
         else
         {   type_master < TYPE > :: set_value (nuts, args.v_, s);
             bool ok = type_master < TYPE > :: good ();
             if (ok)
             {   const html_version f (type_master < TYPE > :: first (type_master < TYPE > :: get_int ()));
+                f.check_css_status (nits, name ());
                 if (! args.v_.is_css_compatible (f))
                 {   nits.pick (nit_css_version, es_error, ec_css, quote (s), " requires CSS ", f.long_css_version_name ());
                     base_type :: status (s_invalid);

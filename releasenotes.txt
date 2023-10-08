@@ -3,6 +3,15 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.38
+- CSS 2015 Snapshot
+- CSS Mobile Profile 2
+- CSS Print Profile
+- CSS TV Profile
+- CSS Will Change 3
+- drop VS 2017
+- underlying work
+
 0.1.37
 - CSS Images 4
 - CSS Masking 3

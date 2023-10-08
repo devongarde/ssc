@@ -1,0 +1,19 @@
+﻿{ will-change: transform, opacity /* , ... */; }
+
+ body > .sidebar {
+ will-change: transform;
+ /* Will use 'transform' to slide it out
+ when the user requests. */
+}
+
+.cats-flying-around-the-screen {
+ will-change: left, top;
+}
+
+.element { transition: opacity .2s; opacity: 1; }
+.element:hover { will-change: opacity; }
+.element:active { opacity: .3; }
+
+.element { transition: opacity .2s; opacity: 1; }
+.container:hover > .element { will-change: opacity; }
+.element:hover { opacity: .3; }

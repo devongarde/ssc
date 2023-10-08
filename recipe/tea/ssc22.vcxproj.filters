@@ -1272,6 +1272,15 @@
     <Filter Include="Toast\CSS\3-masking">
       <UniqueIdentifier>{2cd7b8f6-675d-4c3d-96c6-e76770d43f05}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\CSS\3-wc">
+      <UniqueIdentifier>{8e383816-6b3e-41e4-8b74-c0c82e088260}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\profile">
+      <UniqueIdentifier>{a6c62027-3905-47ee-9536-e1f8e4ceb1d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\deprecated">
+      <UniqueIdentifier>{7c6c0081-d8b6-4b20-91f2-eec753cd8304}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -33644,6 +33653,42 @@
     </None>
     <None Include="..\toast\css\3-masking\css-9.html">
       <Filter>Toast\CSS\3-masking</Filter>
+    </None>
+    <None Include="..\toast\css\3-wc\css.conf">
+      <Filter>Toast\CSS\3-wc</Filter>
+    </None>
+    <None Include="..\toast\css\3-wc\css.spec">
+      <Filter>Toast\CSS\3-wc</Filter>
+    </None>
+    <None Include="..\toast\css\3-wc\css-1.css">
+      <Filter>Toast\CSS\3-wc</Filter>
+    </None>
+    <None Include="..\toast\css\3-wc\index.html">
+      <Filter>Toast\CSS\3-wc</Filter>
+    </None>
+    <None Include="..\toast\css\profile\css.conf">
+      <Filter>Toast\CSS\profile</Filter>
+    </None>
+    <None Include="..\toast\css\profile\css.spec">
+      <Filter>Toast\CSS\profile</Filter>
+    </None>
+    <None Include="..\toast\css\profile\css-1.css">
+      <Filter>Toast\CSS\profile</Filter>
+    </None>
+    <None Include="..\toast\css\profile\index.html">
+      <Filter>Toast\CSS\profile</Filter>
+    </None>
+    <None Include="..\toast\css\deprecated\css.conf">
+      <Filter>Toast\CSS\deprecated</Filter>
+    </None>
+    <None Include="..\toast\css\deprecated\css.spec">
+      <Filter>Toast\CSS\deprecated</Filter>
+    </None>
+    <None Include="..\toast\css\deprecated\css-1.css">
+      <Filter>Toast\CSS\deprecated</Filter>
+    </None>
+    <None Include="..\toast\css\deprecated\index.html">
+      <Filter>Toast\CSS\deprecated</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

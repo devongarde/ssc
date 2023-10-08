@@ -373,9 +373,13 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (CSS IMAGE, ::boost::program_options::value < int > (), "CSS Images level (0, 3, or 4).")
         (CSS MASKING, ::boost::program_options::value < int > (), "CSS Masking level (0 or 3).")
         (CSS MEDIA, ::boost::program_options::value < int > (), "CSS Media level (0, 3, 4, or 5).")
+        (CSS MOBILE, ::boost::program_options::bool_switch (), "Notify if some CSS conflicts with the CSS Mobile Profile.")
+        (CSS DONT MOBILE, ::boost::program_options::bool_switch (), "Do not notify CSS Mobile Profile matters.")
         (CSS MULTI_COLUMN, ::boost::program_options::value < int > (), "CSS Multi-Column level (0 or 3).")
         (CSS NAMESPACE, ::boost::program_options::value < int > (), "CSS Namespace level (0 or 3).")
         (CSS OVERFLOH, ::boost::program_options::value < int > (), "CSS Overflow level (0 or 3).")
+        (CSS PRINT, ::boost::program_options::bool_switch (), "Notify if some CSS conflicts with the CSS Print Profile.")
+        (CSS DONT PRINT, ::boost::program_options::bool_switch (), "No not notify CSS Print Profile matters.")
         (CSS POSITION, ::boost::program_options::value < int > (), "CSS Positions level (0 or 3).")
         (CSS SELECTOR, ::boost::program_options::value < int > (), "CSS Selector level (0, 3, or 4).")
         (CSS SHAPE, ::boost::program_options::value < int > (), "CSS Shapes level (0, 3, or 4).")
@@ -385,11 +389,14 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (CSS TEXT_DEC, ::boost::program_options::value < int > (), "CSS Text Decoration level (0, 3, or 4).")
         (CSS TRANSFORM, ::boost::program_options::value < int > (), "CSS Transform level (0, 3 or 4).")
         (CSS TRANSITION, ::boost::program_options::value < int > (), "CSS Transitions level (0 or 3).")
+        (CSS TV, ::boost::program_options::bool_switch (), "Notify if some CSS conflicts with the CSS TV Profile.")
+        (CSS DONT TV, ::boost::program_options::bool_switch (), "No notify CSS TV Profile matters.")
         (CSS UI, ::boost::program_options::value < int > (), " CSS UI level (0, 3, or 4).")
         (CSS VALUE, ::boost::program_options::value < int > (), "CSS Values and Units level (0, 3, or 4).")
         (CSS VERIFY, ::boost::program_options::bool_switch (), "Process .css files.")
         (CSS DONT VERIFY, ::boost::program_options::bool_switch (), "Do not process .css files.")
         (CSS VERSION, ::boost::program_options::value < ::std::string > (),  "Presume this version of CSS (default appropriate for HTML version).")
+        (CSS WC, ::boost::program_options::value < int > (), "CSS Will Change level (0 or 3).")
         (CSS WRITING, ::boost::program_options::value < int > (), "CSS Writing Mode level (0, 3 or 4).")
 
         (HTML FORCE, ::boost::program_options::bool_switch (), "When <!DOCTYPE...> is missing, forcibly presume HTML version as per --html.version.")
@@ -1057,10 +1064,11 @@ void options::contextualise (nitpick& nits)
         if (get_css_level (n, nits, CSS IMAGE, "Image", 4)) context.css_image (n);
         if (get_css_level (n, nits, CSS MASKING, "Masking", 3)) context.css_masking (n);
         if (get_css_level (n, nits, CSS MEDIA, "Media", 5)) context.css_media (n);
-        if (get_css_level (n, nits, CSS MULTI_COLUMN, "Multi-Column", 3, true)) context.css_multi_column (n);
+        yea_nay (&context_t::mobile_profile, nits, CSS MOBILE, CSS DONT MOBILE);
         if (get_css_level (n, nits, CSS NAMESPACE, "Namespace", 3)) context.css_namespace (n);
         if (get_css_level (n, nits, CSS OVERFLOH, "Overflow", 3)) context.css_overflow (n);
         if (get_css_level (n, nits, CSS POSITION, "Overflow", 3)) context.css_position (n);
+        yea_nay (&context_t::print_profile, nits, CSS PRINT, CSS DONT PRINT);
         if (get_css_level (n, nits, CSS SELECTOR, "Selector", 4)) context.css_selector (n);
         if (get_css_level (n, nits, CSS SHAPE, "Shape", 4)) context.css_shape (n);
         if (get_css_level (n, nits, CSS SPEECH, "Speech", 3)) context.css_speech (n);
@@ -1070,9 +1078,11 @@ void options::contextualise (nitpick& nits)
         if (get_css_level (n, nits, CSS TABLE, "Table", 3)) context.css_table (n);
         if (get_css_level (n, nits, CSS TRANSFORM, "Transform", 4, true)) context.css_transform (n);
         if (get_css_level (n, nits, CSS TRANSITION, "Transition", 3, true)) context.css_transition (n);
+        yea_nay (&context_t::tv_profile, nits, CSS TV, CSS DONT TV);
         if (get_css_level (n, nits, CSS UI, "UI", 4)) context.css_ui (n);
         if (get_css_level (n, nits, CSS VALUE, "VALUE", 4)) context.css_value (n);
         if (get_css_level (n, nits, CSS WRITING, "Writing Mode", 4)) context.css_writing_mode (n);
+        if (get_css_level (n, nits, CSS WC, "Will Change", 3)) context.css_will_change (n);
 
         yea_nay (&context_t::ie, nits, HTML IE, HTML DONT IE);
         yea_nay (&context_t::force_version, nits, HTML FORCE, HTML DONT FORCE);
@@ -1562,10 +1572,14 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (CSS IMAGE)) res << CSS IMAGE ": " << var_ [CSS IMAGE].as < int > () << "\n";
     if (var_.count (CSS MASKING)) res << CSS MASKING ": " << var_ [CSS MASKING].as < int > () << "\n";
     if (var_.count (CSS MEDIA)) res << CSS MEDIA ": " << var_ [CSS MEDIA].as < int > () << "\n";
+    if (var_.count (CSS MOBILE)) res << CSS MOBILE ": " << var_ [CSS MOBILE].as < int > () << "\n";
+    if (var_.count (CSS DONT MOBILE)) res << CSS DONT MOBILE ": " << var_ [CSS DONT MOBILE].as < int > () << "\n";
     if (var_.count (CSS MULTI_COLUMN)) res << CSS MULTI_COLUMN ": " << var_ [CSS MULTI_COLUMN].as < int > () << "\n";
     if (var_.count (CSS NAMESPACE)) res << CSS NAMESPACE ": " << var_ [CSS NAMESPACE].as < int > () << "\n";
     if (var_.count (CSS OVERFLOH)) res << CSS OVERFLOH ": " << var_ [CSS OVERFLOH].as < int > () << "\n";
     if (var_.count (CSS POSITION)) res << CSS POSITION ": " << var_ [CSS POSITION].as < int > () << "\n";
+    if (var_.count (CSS PRINT)) res << CSS PRINT ": " << var_ [CSS PRINT].as < int > () << "\n";
+    if (var_.count (CSS DONT PRINT)) res << CSS DONT PRINT ": " << var_ [CSS DONT PRINT].as < int > () << "\n";
     if (var_.count (CSS SELECTOR)) res << CSS SELECTOR ": " << var_ [CSS SELECTOR].as < int > () << "\n";
     if (var_.count (CSS SHAPE)) res << CSS SHAPE ": " << var_ [CSS SHAPE].as < int > () << "\n";
     if (var_.count (CSS SPEECH)) res << CSS SPEECH ": " << var_ [CSS SPEECH].as < int > () << "\n";
@@ -1575,12 +1589,15 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (CSS TEXT_DEC)) res << CSS TEXT_DEC ": " << var_ [CSS TEXT_DEC].as < int > () << "\n";
     if (var_.count (CSS TRANSFORM)) res << CSS TRANSFORM ": " << var_ [CSS TRANSFORM].as < int > () << "\n";
     if (var_.count (CSS TRANSITION)) res << CSS TRANSITION ": " << var_ [CSS TRANSITION].as < int > () << "\n";
+    if (var_.count (CSS TV)) res << CSS TV ": " << var_ [CSS TV].as < int > () << "\n";
+    if (var_.count (CSS DONT TV)) res << CSS DONT TV ": " << var_ [CSS DONT TV].as < int > () << "\n";
     if (var_.count (CSS UI)) res << CSS UI ": " << var_ [CSS UI].as < int > () << "\n";
     if (var_.count (CSS VALUE)) res << CSS VALUE ": " << var_ [CSS VALUE].as < int > () << "\n";
     if (var_.count (CSS VERIFY)) res << CSS VERIFY ": " << var_ [CSS VERIFY].as < bool > () << "\n";
     if (var_.count (CSS DONT VERIFY)) res << CSS DONT VERIFY ": " << var_ [CSS DONT VERIFY].as < bool > () << "\n";
     if (var_.count (CSS VERSION)) res << CSS VERSION ": " << var_ [CSS VERSION].as < ::std::string > () << "\n";
     if (var_.count (CSS WRITING)) res << CSS WRITING ": " << var_ [CSS WRITING].as < int > () << "\n";
+    if (var_.count (CSS WC)) res << CSS WC ": " << var_ [CSS WC].as < int > () << "\n";
 
     if (var_.count (ENVIRONMENT QUERY_STRING))
     {   if (var_.count (ENVIRONMENT SERVER_SOFTWARE)) res << ENVIRONMENT SERVER_SOFTWARE ": " << var_ [ENVIRONMENT SERVER_SOFTWARE].as < ::std::string > () << "\n";

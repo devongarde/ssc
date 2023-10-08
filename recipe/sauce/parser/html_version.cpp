@@ -511,6 +511,7 @@ bool html_version::deprecated (const html_version& current) const
             if (current.all_ext (HE_SVG_DEPR_21)) return true;
             break;
         default : break; }
+    if ((context.css_version () > 0) && current.css_deprecated ()) return true;
     switch (current.mjr ())
     {   case 1 : return (current.any_flags (HV_DEPRECATEDX10));
         case 2 : return (current.any_flags (HV_DEPRECATED2));
@@ -714,6 +715,7 @@ e_css_version html_version::css_version () const noexcept
     res += subver (b, css_transition (), "Tri");
     res += subver (b, css_ui (), "UI");
     res += subver (b, css_value (), "Val");
+    res += subver (b, css_will_change (), "WC");
     res += subver (b, css_writing_mode (), "WrM");
     return res; }
 
@@ -1223,6 +1225,14 @@ void html_version::css_value (const int n)
     if (n == 3) set_ext2 (H2_CSS_VALUE_3);
     else if (n == 4) set_ext2 (H2_CSS_VALUE); }
 
+int html_version::css_will_change () const
+{   if (any_ext3 (H3_CSS_WC)) return 3;
+    return 0; }
+
+void html_version::css_will_change (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_WC);
+    else reset_ext3 (H3_CSS_WC); }
+
 int html_version::css_writing_mode () const
 {   if ((ext3 () & H3_CSS_WRITING_4) == H3_CSS_WRITING_4) return 4;
     if ((ext3 () & H3_CSS_WRITING_3) == H3_CSS_WRITING_3) return 3;
@@ -1250,6 +1260,42 @@ bool html_version::is_css_compatible (nitpick& nits, const flags_t& f, const fla
 {   if (is_css_compatible (f, f2)) return true;
     nits.pick (nit_css_version, es_error, ec_css, "CSS ", long_css_version_name (), " required");   
     return false; }
+
+void html_version::check_css_status (nitpick& nits, const ::std::string& s) const
+{   if (context.profile_checks ())
+    {   if (context.mobile_profile () && ((ext3_ & H3_NOT_MOBILE) == H3_NOT_MOBILE))
+            nits.pick (nit_profile, es_warning, ec_css, s, " may be ignored when the CSS Mobile profile applies");   
+        if (context.print_profile () && ((ext3_ & H3_NOT_PRINT) == H3_NOT_PRINT))
+            nits.pick (nit_profile, es_warning, ec_css, s, " may be ignored when the CSS Print profile applies");   
+        if (context.tv_profile () && ((ext3_ & H3_NOT_TV) == H3_NOT_TV))
+            nits.pick (nit_profile, es_warning, ec_css, s, " may be ignored when the CSS TV profile applies"); }
+    if (css_deprecated ())   
+        nits.pick (nit_deprecated, es_warning, ec_css, s, " has been deprecated and should not be used"); }
+
+void html_version::reset_profile ()
+{   
+    ext3_ &= ~H3_NOT_MASK; }
+
+void html_version::set_profile (const flags_t f)
+{   
+    ext3_ |= f; }
+
+void html_version::reset_profile (const flags_t f)
+{   
+    ext3_ &= ~f; }
+
+bool html_version::profile_checks () const
+{   return (ext3_ & H3_NOT_MASK) != 0; }
+
+bool html_version::mobile_profile () const
+{   return (ext3_ & H3_NOT_MOBILE) == H3_NOT_MOBILE; }
+
+bool html_version::print_profile () const
+{   return (ext3_ & H3_NOT_PRINT) == H3_NOT_PRINT; }
+
+bool html_version::tv_profile () const
+{   return (ext3_ & H3_NOT_TV) == H3_NOT_TV; }
+
 
 ::std::string html_version::long_level_2 (const ::std::string& s, const flags_t l3, const flags_t l4, const flags_t l5, const flags_t l6) const
 {   if ((ext2_ & l6) != 0) return s + " level 6";
@@ -1309,6 +1355,7 @@ bool html_version::is_css_compatible (nitpick& nits, const flags_t& f, const fla
         if (css_transition () > 0) append (res, " / ", ::std::string ("Transitions"));
         if (css_ui () > 0) append (res, " / ", long_level_2 ("Basic User Interface", H2_CSS_UI_3, H2_CSS_UI_4));
         if (css_value () > 0) append (res, " / ", long_level_2 ("Values and Units", H2_CSS_VALUE_3, H2_CSS_VALUE_4));
+        if (css_will_change () > 0) append (res, " / ", ::std::string ("Will Change"));
         if (css_writing_mode () > 0) append (res, " / ", long_level_3 ("Writing Mode", H3_CSS_WRITING_3, H3_CSS_WRITING_4));
         if (all_ext2 (H2_CSS_SVG_21)) append (res, " and ", "SVG 2.1"); 
         else if (all_ext2 (H2_CSS_SVG_20)) append (res, " and ", "SVG 2.0"); 
