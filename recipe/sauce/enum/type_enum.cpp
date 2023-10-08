@@ -1070,11 +1070,11 @@ struct symbol_entry < html_version, e_css_font_weight > css_font_weight_symbol_t
 struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
 {   { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "(unknown)", efn_none },
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "active", efn_active },
-    { { HTML_CSS, 0, 0, H2_CSS | H2_CSS_COCO }, { HTML_UNDEF }, "after", efn_after },
+    { { HTML_CSS, 0, 0, H2_CSS | H2_CSS_COCO, H3_NOT_TV }, { HTML_UNDEF }, "after", efn_after },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "any-link", efn_any_link },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "autofill", efn_autofill },
     { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_COCO }, { HTML_UNDEF }, "backdrop", efn_backdrop },
-    { { HTML_CSS, 0, 0, H2_CSS | H2_CSS_COCO }, { HTML_UNDEF }, "before", efn_before },
+    { { HTML_CSS, 0, 0, H2_CSS | H2_CSS_COCO, H3_NOT_TV }, { HTML_UNDEF }, "before", efn_before },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "blank", efn_blank },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "buffering", efn_buffering },
     { { HTML_CSS, 0, 0, H2_CSS_3 }, { HTML_UNDEF }, "checked", efn_checked },
@@ -1106,14 +1106,14 @@ struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_N_ARGS }, { HTML_UNDEF }, "has", efn_has },
     { { HTML_CSS, 0, 0, H2_CSS_3 }, { HTML_UNDEF }, "host", efn_host },
     { { HTML_CSS, 0, 0, H2_CSS_3 }, { HTML_UNDEF }, "host-context", efn_host_context },
-    { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "hover", efn_hover, },
+    { { HTML_CSS, 0, 0, H2_CSS, H3_NOT_TV }, { HTML_UNDEF }, "hover", efn_hover, },
     { { HTML_CSS, 0, 0, H2_CSS_3 }, { HTML_UNDEF }, "indeterminate", efn_indeterminate },
     { { HTML_CSS, 0, 0, 0, H3_CSS_IMAGE }, { HTML_UNDEF }, "image", efn_image },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "in-range", efn_in_range },
     { { HTML_CSS, 0, 0, 0, H3_CSS_SHAPE }, { HTML_UNDEF }, "inset", efn_inset },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "invalid", efn_invalid },
     { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_N_ARGS }, { HTML_UNDEF }, "is", efn_is },
-    { { HTML_CSS, 0, 0, H2_CSS_1_2_ARGS }, { HTML_UNDEF }, "lang", efn_lang },
+    { { HTML_CSS, 0, 0, H2_CSS_1_2_ARGS, H3_NOT_TV }, { HTML_UNDEF }, "lang", efn_lang },
     { { HTML_CSS, 0, 0, H2_CSS_3 }, { HTML_UNDEF }, "last-child", efn_last_child },
     { { HTML_CSS, 0, 0, H2_CSS_3 }, { HTML_UNDEF }, "last-of-type", efn_last_of_type },
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "left", efn_left, ns_default, CF_PAGE },
@@ -1330,22 +1330,22 @@ struct symbol_entry < html_version, e_css_statement > css_statement_symbol_table
     { { HTML_CSS }, { HTML_UNDEF }, "bottom-right-corner", css_bottom_right_corner, ns_default, CF_PRINT },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "character-variant", css_character_variant, ns_default, CF_MUST_FONT_FV },
     { { HTML_CSS }, { HTML_UNDEF }, "charset", css_charset },
-    { { HTML_SVG11, 0, HE_SVG }, { HTML_UNDEF }, "color-profile", css_colour_profile },
+    { { HTML_SVG11, 0, HE_SVG, 0, H3_NOT_TV }, { HTML_UNDEF }, "color-profile", css_colour_profile },
     { { HTML_CSS, 0, 0, H2_CSS_CS_3 }, { HTML_UNDEF }, "counter-style", css_counter_style },
     { { HTML_CSS, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "custom-media", css_custom_media },
     { { HTML_CSS, 0, 0, H2_CSS_3 }, { HTML_UNDEF }, "document", css_document },
     { { HTML_CSS, 0, 0, H2_CSS_COND_RULE_5 }, { HTML_UNDEF }, "else", css_else },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "font-feature-values", css_font_feature_values },
-    { { HTML_CSS, 0, 0, H2_CSS_2 }, { HTML_UNDEF }, "font-face", css_font_face },
+    { { HTML_CSS, 0, 0, H2_CSS_2, H3_NOT_TV }, { HTML_UNDEF }, "font-face", css_font_face },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "font-palette-values", css_font_palette_values },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "historical-forms", css_historical_forms, ns_default, CF_MUST_FONT_FV },
-    { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "import", css_import },
+    { { HTML_CSS, 0, 0, H2_CSS, H3_NOT_PRINT }, { HTML_UNDEF }, "import", css_import },
     { { HTML_CSS, 0, 0, H2_CSS_3 }, { HTML_UNDEF }, "keyframes", css_keyframes },
     { { HTML_CSS, 0, 0, H2_CSS_CASCADE_5 }, { HTML_UNDEF }, "layer", css_layer },
     { { HTML_CSS }, { HTML_UNDEF }, "media", css_media },
-    { { HTML_CSS, 0, 0, H2_CSS_3 }, { HTML_UNDEF }, "namespace", css_namespace },
+    { { HTML_CSS, 0, 0, H2_CSS_3, H3_NOT_MOBILE }, { HTML_UNDEF }, "namespace", css_namespace },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "ornaments", css_ornaments, ns_default, CF_MUST_FONT_FV },
-    { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "page", css_page },
+    { { HTML_CSS, 0, 0, H2_CSS, H3_NOT_TV }, { HTML_UNDEF }, "page", css_page },
     { { HTML_JAN22, 0, 0, H2_CSS_6 }, { HTML_UNDEF }, "scope", css_scope },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "swash", css_swash, ns_default, CF_MUST_FONT_FV },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "styleset", css_styleset, ns_default, CF_MUST_FONT_FV },
@@ -2633,6 +2633,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-ui", nm_context_css_ui },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-value", nm_context_css_value },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-version", nm_context_css_version },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-will-change", nm_context_css_will_change },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-writing-mode", nm_context_css_writing_mode },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-custom-elements", nm_context_custom_elements },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-dc", nm_context_dc },
@@ -4554,6 +4555,7 @@ void init_2 ()
     type_master < t_css_shape_fillrule > :: init ();
     type_master < t_css_text_resize > :: init ();
     type_master < t_css_transform_style > :: init ();
+    type_master < t_css_wc_e > :: init ();
     type_master < t_dataformatas > :: init ();
     type_master < t_defaultaction > :: init ();
     type_master < t_dynamic_range > :: init ();
@@ -4748,6 +4750,7 @@ void init_4 ()
     type_master < t_css_anim_dir > :: init ();
     type_master < t_css_anim_fill_mode > :: init ();
     type_master < t_css_border_image_repeat > :: init ();
+    type_master < t_css_box_orient > :: init ();
     type_master < t_css_composite > :: init ();
     type_master < t_css_display_legacy > :: init ();
     type_master < t_css_flex_direction > :: init ();

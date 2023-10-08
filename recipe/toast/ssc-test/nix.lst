@@ -63,12 +63,15 @@
 ../toast/css/4-ui/css.spec
 ../toast/css/3-value/css.spec
 ../toast/css/4-value/css.spec
+../toast/css/3-wc/css.spec
 ../toast/css/3-writing/css.spec
 ../toast/css/4-writing/css.spec
 ../toast/css/accessibility/css.spec
 ../toast/css/ae/css.spec
 ../toast/css/custom/css.spec
+../toast/css/deprecated/css.spec
 ../toast/css/ease/css.spec
+../toast/css/profile/css.spec
 ../toast/css/simple/css.spec
 ../toast/css/songlight/css.spec
 ../toast/HTML/1.0/html1.spec

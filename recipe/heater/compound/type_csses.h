@@ -845,6 +845,15 @@ template < > struct type_master < t_css_voice_families > : type_at_least_one < t
 template < > struct type_master < t_css_voice_families_p > : type_or_either_string < t_css_voice_families_p, t_css_voice_families, sz_inherit, sz_preserve >
 { using type_or_either_string < t_css_voice_families_p, t_css_voice_families, sz_inherit, sz_preserve > :: type_or_either_string; };
 
+template < > struct type_master < t_css_wc > : type_either_or < t_css_wc, t_css_wc_e, t_css_property >
+{ using type_either_or < t_css_wc, t_css_wc_e, t_css_property > :: type_either_or; };
+
+template < > struct type_master < t_css_wcs > : type_some_of < t_css_wcs, sz_comma, 1, 999, t_css_wc >
+{ using type_some_of < t_css_wcs, sz_comma, 1, 999, t_css_wc > :: type_some_of; };
+
+template < > struct type_master < t_css_wcs_a > : type_or_string < t_css_wcs_a, t_css_wcs, sz_auto >
+{ using type_or_string < t_css_wcs_a, t_css_wcs, sz_auto > :: type_or_string; };
+
 template < > struct type_master < t_css_langs > : string_vector < t_css_langs, sz_comma >
 {   using string_vector < t_css_langs, sz_comma > :: string_vector;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)

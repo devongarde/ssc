@@ -64,12 +64,15 @@
 ./ssc -f ../toast/css/4-ui/css.conf
 ./ssc -f ../toast/css/3-value/css.conf
 ./ssc -f ../toast/css/4-value/css.conf
+./ssc -f ../toast/css/3-wc/css.conf
 ./ssc -f ../toast/css/3-writing/css.conf
 ./ssc -f ../toast/css/4-writing/css.conf
 ./ssc -f ../toast/css/accessibility/css.conf
 ./ssc -f ../toast/css/ae/css.conf
 ./ssc -f ../toast/css/custom/css.conf
+./ssc -f ../toast/css/deprecated/css.conf
 ./ssc -f ../toast/css/ease/css.conf
+./ssc -f ../toast/css/profile/css.conf
 ./ssc -f ../toast/css/simple/css.conf
 ./ssc -f ../toast/css/songlight/css.conf
 ./ssc -f ../toast/HTML/1.0/html1.conf

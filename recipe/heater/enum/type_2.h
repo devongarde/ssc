@@ -144,6 +144,9 @@ template < > struct type_master < t_css_text_resize > : two_value < t_css_text_r
 template < > struct type_master < t_css_transform_style > : two_value < t_css_transform_style, e_css_transform_style, sz_flat, sz_preserve_3d, false >
 { using two_value < t_css_transform_style, e_css_transform_style, sz_flat, sz_preserve_3d, false > :: two_value; };
 
+template < > struct type_master < t_css_wc_e > : two_value < t_css_wc_e, e_css_wc_e, sz_contents, sz_scroll_position, false >
+{ using two_value < t_css_wc_e, e_css_wc_e, sz_contents, sz_scroll_position, false > :: two_value; };
+
 template < > struct type_master < t_dataformatas > : two_value < t_dataformatas, e_dataformatas, sz_html, sz_plaintext, false >
 { using two_value < t_dataformatas, e_dataformatas, sz_html, sz_plaintext, false > :: two_value; };
 

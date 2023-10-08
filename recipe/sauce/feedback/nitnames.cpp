@@ -831,6 +831,7 @@ const nitname nitnames [] =
     { nit_prism, "prism" },
     { nit_mask, "mask" },
     { nit_mask_border, "mask border" },
+    { nit_profile, "profile" },
 
     { nit_incompatible, "incompatible" },
 

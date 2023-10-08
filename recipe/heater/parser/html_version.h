@@ -499,9 +499,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define H3_CSS_MASKING        0x0000000000800000
 
+#define H3_CSS_WC             0x0000000001000000
+
 #define H3_CSS_3          ( H3_CSS_BOX_ALIGN | H3_CSS_BOX_MODEL_3 | H3_CSS_BOX_SIZING | H3_CSS_DISPLAY | H3_CSS_GRID_3 | H3_CSS_IMAGE_3 | H3_CSS_MASKING | \
                             H3_CSS_MULTI_COL | H3_CSS_OVERFLOW | H3_CSS_POSITION | H3_CSS_SHAPE_3 | H3_CSS_SPEECH | H3_CSS_TABLE | H3_CSS_TEXTDEC_3 | \
-                            H3_CSS_TRANSFORM_3 | H3_CSS_TRANSITION | H3_CSS_WRITING_3 )
+                            H3_CSS_TRANSFORM_3 | H3_CSS_TRANSITION | H3_CSS_WC | H3_CSS_WRITING_3 )
 #define H3_CSS_4          ( H3_CSS_BOX_MODEL_4 | H3_CSS_GRID_4 | H3_CSS_IMAGE_4 | H3_CSS_SHAPE_4 | H3_CSS_TEXTDEC_4 | H3_CSS_TRANSFORM_3 | H3_CSS_WRITING_4 )
 #define H3_CSS_5            0
 #define H3_CSS_6            0
@@ -521,7 +523,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H3_CSS_MASK       H3_CSS_ALL
 #define H3_CSS            H3_CSS_ALL
 
-#define H3_FULL_CSS_MASK    0x0000000000FFFFFF
+#define H3_FULL_CSS_MASK      0x0000000001FFFFFF
+
+#define H3_NOT_MOBILE         0x1000000000000000
+#define H3_NOT_PRINT          0x2000000000000000
+#define H3_NOT_TV             0x4000000000000000
+#define H3_NOT_MASK         ( H3_NOT_MOBILE | H3_NOT_PRINT | H3_NOT_TV )
+
+#define H3_CSS_DEPRECATED     0x8000000000000000
 
 
 class html_version : public version
@@ -800,6 +809,8 @@ public:
     void css_ui (const int n);
     int css_value () const;
     void css_value (const int n);
+    int css_will_change () const;
+    void css_will_change (const int n);
     int css_writing_mode () const;
     void css_writing_mode (const int n);
     bool is_css_compatible (const flags_t& f, const flags_t& f2) const;
@@ -808,6 +819,15 @@ public:
     {   return is_css_compatible (v.ext2_, v.ext3_); }
     bool is_css_compatible (nitpick& nits, const html_version& v) const
     {   return is_css_compatible (nits, v.ext2_, v.ext3_); }
+    void check_css_status (nitpick& nits, const ::std::string& s) const;
+    void reset_profile ();
+    void set_profile (const flags_t f);
+    void reset_profile (const flags_t f);
+    bool profile_checks () const;
+    bool mobile_profile () const;
+    bool print_profile () const;
+    bool tv_profile () const;
+    bool css_deprecated () const { return (ext3_ & H3_CSS_DEPRECATED) == H3_CSS_DEPRECATED; }
     ::std::string get_doctype () const;
     ::std::string name () const;
     ::std::string report () const; };

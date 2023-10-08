@@ -114,7 +114,9 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
             if (context.html_ver ().css_version () == css_1)
                 nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": + requires CSS 2.0 or better");
             else
-            {   css_element e (elem_css_precede_immediate);
+            {   if (context.tv_profile ())
+                    nits.pick (nit_profile, es_warning, ec_css, "The '+' adjacent selector may be ignored by the CSS TV profile");   
+                css_element e (elem_css_precede_immediate);
                 ::std::swap (*this, e); }
             break;
         case ct_splat :
@@ -157,7 +159,12 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
         {   case ct_square_brac :
                 if (context.html_ver ().css_version () == css_1)
                     nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": [...] requires CSS 2.0 or better");
-                else decore_.emplace_back (args, b);
+                else
+                {   if (context.print_profile ())
+                        nits.pick (nit_profile, es_warning, ec_css, "Attribute selectors may be ignored by the CSS Print profile");   
+                    if (context.tv_profile ())
+                        nits.pick (nit_profile, es_warning, ec_css, "Attribute selectors may be ignored by the CSS TV profile");   
+                    decore_.emplace_back (args, b); }
                 i =  next_non_whitespace (args.t_, i, to);
                 break;
             case ct_dot :

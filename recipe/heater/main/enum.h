@@ -427,6 +427,7 @@ typedef enum { cbii_repeat, cbii_round, cbii_space, cbii_stretch } e_css_border_
 typedef enum { ecbs_inherit, ecb_dashed, ecb_dotted, ecb_double, ecb_groove, ecb_hidden, ecb_inset, ecb_none, ecb_outset, ecb_ridge, ecb_solid } e_css_border_style;
 typedef enum { ecb_inherit, ecb_medium, ecb_thick, ecb_thin } e_css_border_width;
 typedef enum { ebam_auto, ebam_baseline, ebam_centre, ebam_flex_end, ebam_flex_start, ebam_normal, ebam_stretch } e_css_box_alignself_mess;
+typedef enum { cbo_block_axis, cbo_horizontal, cbo_inline_axis, cbo_vertical } e_css_box_orient;
 typedef enum { ebx_border_box, ebx_content_box } e_css_box_sizing;
 typedef enum {  ecb_all, ecb_always, ecb_auto, ecb_avoid, ecb_avoid_column, ecb_avoid_page, ecb_avoid_region, ecb_column, ecb_left, ecb_page, ecb_recto,
                 ecb_region, ecb_right, ecb_verso } e_css_break;
@@ -609,8 +610,8 @@ typedef enum {  ec_unknown, ec_context, ec_custom, ec_inherit,
                     ec_border_inline_end, ec_border_inline_end_colour, ec_border_inline_end_style, ec_border_inline_end_width, ec_border_inline_start, ec_border_inline_start_colour,
                     ec_border_inline_start_style, ec_border_inline_start_width, ec_border_inline_style, ec_border_inline_width, ec_border_left, ec_border_left_colour,
                     ec_border_left_style, ec_border_left_width, ec_border_radius, ec_border_right, ec_border_right_colour, ec_border_right_style, ec_border_right_width,
-                    ec_border_spacing, ec_border_start_end_radius, ec_border_start_start_radius, ec_border_style, ec_border_top, ec_border_top_colour,
-                    ec_border_top_left_radius, ec_border_top_right_radius, ec_border_top_style, ec_border_top_width, ec_border_width, ec_bottom, ec_box_decoration_break, ec_box_shadow,
+                    ec_border_spacing, ec_border_start_end_radius, ec_border_start_start_radius, ec_border_style, ec_border_top, ec_border_top_colour, ec_border_top_left_radius,
+                    ec_border_top_right_radius, ec_border_top_style, ec_border_top_width, ec_border_width, ec_bottom, ec_box_decoration_break, ec_box_flex, ec_box_orient, ec_box_shadow,
                     ec_box_sizing, ec_box_snap, ec_break_after, ec_break_before, ec_break_inside,
                 ec_cap_height, ec_caption_side, ec_caret, ec_caret_colour, ec_caret_shape, ec_centre_line, ec_chains, ec_clear, ec_clip, ec_clip_path, ec_clip_rule, ec_colour,
                     ec_colour_adjust, ec_colour_interpolation, ec_colour_interpolation_filters, ec_colour_profile, ec_colour_rendering, ec_colour_scheme, ec_column_count, ec_column_fill,
@@ -639,7 +640,7 @@ typedef enum {  ec_unknown, ec_context, ec_custom, ec_inherit,
                     ec_line_padding, ec_line_snap, ec_list_style, ec_list_style_image, ec_list_style_position, ec_list_style_type,
                 ec_margin, ec_margin_block, ec_margin_block_end, ec_margin_block_start, ec_margin_bottom, ec_margin_break, ec_margin_inline, ec_margin_inline_end,
                     ec_margin_inline_start, ec_margin_left, ec_margin_right, ec_margin_top, ec_margin_trim, ec_marker, ec_marker_end, ec_marker_knockout_left, ec_marker_knockout_right,
-                    ec_marker_mid, ec_marker_pattern, ec_marker_segment, ec_marker_side, ec_marker_start, ec_marks,
+                    ec_marker_mid, ec_marker_offset, ec_marker_pattern, ec_marker_segment, ec_marker_side, ec_marker_start, ec_marks,
                     ec_marquee_direction, ec_marquee_loop, ec_marquee_speed, ec_marquee_style, ec_mask, ec_mask_border, ec_mask_border_mode, ec_mask_border_outset,
                     ec_mask_border_repeat, ec_mask_border_slice, ec_mask_border_source, ec_mask_border_width, ec_mask_clip, ec_mask_composite, ec_mask_image, ec_mask_mode,
                     ec_mask_origin, ec_mask_position, ec_mask_repeat, ec_mask_size, ec_mask_type, ec_mathline, ec_max_block_size, ec_max_height, ec_max_inline_size, ec_max_lines,
@@ -677,14 +678,14 @@ typedef enum {  ec_unknown, ec_context, ec_custom, ec_inherit,
                     ec_text_justify, ec_text_orientation, ec_text_overflow, ec_text_rendering, ec_text_resize, ec_text_shadow, ec_text_space_trim, ec_text_spacing, ec_text_spacing_trim,
                     ec_text_transform, ec_text_underline_offset, ec_text_underline_position, ec_text_wrap, ec_top, ec_topline, ec_transform, ec_transform_box, ec_transform_origin,
                     ec_transform_style, ec_transition, ec_transition_delay, ec_transition_duration, ec_transition_property, ec_transition_timing_function, ec_translate,
-                ec_unicode_bidi, ec_unicode_range, ec_units_per_em, ec_user_select,
+                ec_unicode_bidi, ec_unicode_range, ec_units_per_em, ec_user_modify, ec_user_select,
                 ec_vector_effect, ec_vertical_align, ec_view_timeline, ec_view_timeline_axis, ec_view_timeline_inset, ec_view_timeline_name, ec_view_transition_name, ec_visibility,
                     ec_voice_balance, ec_voice_duration, ec_voice_family, ec_voice_pitch, ec_voice_range, ec_voice_rate, ec_voice_stress, ec_voice_volume, ec_volume,
                 ec_white_space, ec_white_space_collapse, ec_widows, ec_width, ec_widths, ec_will_change, ec_word_boundary_detection, ec_word_boundary_expansion,
                     ec_word_break, ec_word_spacing, ec_word_wrap, ec_wrap_after, ec_wrap_before, ec_wrap_flow, ec_wrap_inside, ec_wrap_through, ec_writing_mode,
                 ec_x, ec_x_height,
                 ec_y,
-                ec_z_index,
+                ec_z_index, ec_zoom,
 
                 // https://developer.mozilla.org/en-US/docs/Web/CSS/Webkit_Extensions
                 // https://developer.mozilla.org/en-US/docs/Web/CSS/Mozilla_Extensions
@@ -861,6 +862,7 @@ typedef enum { cva_child, cva_old, cva_young  } e_css_voice_age;
 typedef enum { cvg_female, cvg_male, cvg_neutral  } e_css_voice_gender;
 typedef enum { evb_centre, evb_left, evb_leftwards, evb_right, evb_rightwards } e_css_voice_balance_e;
 typedef enum { cve_inherit, cve_loud, cve_medium, cve_silent, cve_soft, cve_x_loud, cve_x_soft } e_css_volume_e;
+typedef enum { wc_contents, wc_scroll_position } e_css_wc_e;
 typedef enum { cw_default, cw_inherit, cw_initial, cw_revert, cw_revert_layer, cw_unset } e_css_wide;
 typedef enum { ecwh_inherit, ecwh_normal, ecwh_nowrap, ecwh_pre, ecwh_preline, ecwh_prewrap } e_css_whitespace;
 
@@ -2278,7 +2280,7 @@ typedef enum
     nit_css_custom, nit_css_colour, nit_bad_number, nit_css_value, nit_css_keyframes, nit_css_value_fn, nit_css_value_param,
     nit_css_living_standard, nit_popover, nit_css_ease, nit_multiple_spaces, nit_repeated_value, nit_css_font, nit_unicode_my_arse,
     nit_css_font_feature, nit_css_palette, nit_descriptor, nit_not_here, nit_counter_style, nit_clacks, nit_bad_supports,
-    nit_experimental, nit_cache, nit_arxiv, nit_coden, nit_prism, nit_mask, nit_mask_border,
+    nit_experimental, nit_cache, nit_arxiv, nit_coden, nit_prism, nit_mask, nit_mask_border, nit_profile,
 
     nit_incompatible,
 
@@ -2298,7 +2300,7 @@ typedef enum
         nm_context_css_namespace, nm_context_css_overflow, nm_context_css_position, nm_context_css_selector, nm_context_css_shape,
         nm_context_css_speech, nm_context_css_style, nm_context_css_syntax, nm_context_css_table, nm_context_css_transform,
         nm_context_css_transition, nm_context_css_text_decoration, nm_context_css_ui, nm_context_css_value, nm_context_css_version,
-        nm_context_css_writing_mode, nm_context_custom_elements, nm_context_dc, nm_context_example, nm_context_export_root,
+        nm_context_css_will_change, nm_context_css_writing_mode, nm_context_custom_elements, nm_context_dc, nm_context_example, nm_context_export_root,
         nm_context_exports, nm_context_extensions, nm_context_ext_css, nm_context_extra, nm_context_force_version, nm_context_foaf,
         nm_context_forward, nm_context_fred, nm_context_icu, nm_context_ie, nm_context_ignore, nm_context_info, nm_context_index,
         nm_context_jsonld, nm_context_jsonld_extension, nm_context_jsonld_version, nm_context_lang, nm_context_links, nm_context_local,
@@ -5292,8 +5294,8 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
                 t_css_border_width, t_css_border_width_i, t_css_border_wsc, t_css_border_wsc_i, t_css_borders_measure, t_css_borders_measure_i, \
                 t_css_box_alignitems, t_css_box_alignitems_ns, t_css_box_alignself, t_css_box_alignself_acs, t_css_box_alignself_mess, t_css_box_content, \
                 t_css_box_content_n, t_css_box_justify, t_css_box_justify_n, t_css_box_justitems, t_css_box_justitems_ns, t_css_box_justself, \
-                t_css_box_justself_ans, t_css_box_legacy, t_css_box_overflow, t_css_box_shadow, t_css_box_shadows, t_css_box_shadows_n, t_css_box_sizing, \
-                t_css_break, t_css_break_box, t_css_break_inside
+                t_css_box_justself_ans, t_css_box_legacy, t_css_box_orient, t_css_box_overflow, t_css_box_shadow, t_css_box_shadows, t_css_box_shadows_n, \
+                t_css_box_sizing, t_css_break, t_css_break_box, t_css_break_inside
 #define SSC_TYPES_CSS_B_MAX t_css_break_inside
 
 #define SSC_TYPES_CSS_C \
@@ -5384,9 +5386,8 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
             t_css_val_con, t_css_val_fn, t_css_val_fn_n, t_css_var, t_css_vertal, t_css_vertical_align, t_css_visual_box, t_css_voice_balance, \
                 t_css_voice_balance_e, t_css_voice, t_css_voice_age, t_css_voice_families, t_css_voice_families_p, t_css_voice_family, \
                 t_css_voice_family_desc, t_css_voice_gender, t_css_voice_pitch, t_css_voice_volume, t_css_volume, t_css_volume_e, \
-            t_css_wide, t_css_wsc_val, \
-            t_css_whitespace
-#define SSC_TYPES_CSS_U_Z_MAX t_css_whitespace
+            t_css_wc, t_css_wc_e, t_css_wcs, t_css_wcs_a, t_css_whitespace, t_css_wide, t_css_wsc_val
+#define SSC_TYPES_CSS_U_Z_MAX t_css_wsc_val
 
 #define SSC_TYPES_C_E \
         t_csvw_direction, t_curie, t_curie_safe, t_curies, t_currency, t_current_colour_sz, t_cursor, t_cursor_f, t_cursor_i, \
@@ -5502,8 +5503,8 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
     t_ugeo, t_uid, t_under_ff, t_unicode_bidi, t_unit, t_unit_abs_len, t_unit_abs_per, t_unit_angle, t_unit_angle_per, t_unit_freq, t_unit_freq_per, \
         t_unit_rel_len, t_unit_rel_per, t_unit_res, t_unit_res_per, t_unit_time, t_unit_time_per, t_units, t_unsigned, t_unsigned_1_more, t_unsigned_1_more_a, \
         t_unsigned_byte, t_unsigned_short, t_unsigned_1_or_2, t_un_ex, t_unsigned_dosh, t_unsigned_n, t_unsigneds, t_uplr, t_urange, t_urational, t_urationals, \
-        t_urifn, t_urifn_db, t_urifn_ni, t_urifn_xy, t_url, t_urls, t_urltemplate
-#define SSC_TYPES_T_U_MAX t_urltemplate
+        t_urifn, t_urifn_db, t_urifn_ni, t_urifn_xy, t_url, t_urls, t_urltemplate, t_user_modify
+#define SSC_TYPES_T_U_MAX t_user_modify
 
 #define SSC_TYPES_V_Z \
     t_valign, t_valign3, t_valign_tmb, t_value, t_values, t_valuetype, t_valuetype2, t_vector_effect, t_vector_effect_12, t_vector_effect_2, \
@@ -5524,32 +5525,6 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
                     SSC_TYPES_CSS_G_L, SSC_TYPES_CSS_M_P, SSC_TYPES_CSS_R_S, SSC_TYPES_CSS_T, SSC_TYPES_CSS_U_Z, SSC_TYPES_C_E, SSC_TYPES_F, \
                     SSC_TYPES_G_I, SSC_TYPES_J_L, SSC_TYPES_M, SSC_TYPES_N_O, SSC_TYPES_P, SSC_TYPES_Q_R, SSC_TYPES_S, SSC_TYPES_T_U, SSC_TYPES_V_Z
 
-/*
-SSC_TYPES_A
-SSC_TYPES_B_C
-SSC_TYPES_CSS_A
-SSC_TYPES_CSS_B
-SSC_TYPES_CSS_C
-SSC_TYPES_CSS_D_E
-SSC_TYPES_CSS_F
-SSC_TYPES_CSS_G_L
-SSC_TYPES_CSS_M_P
-SSC_TYPES_CSS_R_S
-SSC_TYPES_CSS_T
-SSC_TYPES_CSS_U_Z
-SSC_TYPES_C_E
-SSC_TYPES_F
-SSC_TYPES_G_I
-SSC_TYPES_J_L
-SSC_TYPES_M
-SSC_TYPES_N_O
-SSC_TYPES_P
-SSC_TYPES_Q_R
-SSC_TYPES_S
-SSC_TYPES_T_U
-SSC_TYPES_V_Z
-*/
-
 typedef enum {
     t_unknown, SSC_TYPES, t_error } e_type;
 
@@ -5566,6 +5541,7 @@ typedef enum { eur_dpcm, eur_dpi, eur_dppx } e_unit_res;
 typedef enum { eut_ms, eur_s } e_unit_time;
 typedef enum { w_en, w_pixels, w_relative } e_units;
 typedef enum { di_down, di_left, di_right, di_up } e_uplr;
+typedef enum { um_read_only, um_read_write, um_read_write_plaintext_only, um_write_only } e_user_modify;
 typedef enum { va32_top, va32_middle, va32_bottom } e_valign_tmb;
 typedef enum { va_top, va_middle, va_bottom, va_baseline } e_valign3;
 typedef enum { vt_data, vt_object, vt_ref } e_valuetype;

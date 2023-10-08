@@ -141,6 +141,8 @@ typedef typed_property < t_css_border_measure, ec_border_top_width > prop_border
 typedef typed_property < t_css_borders_measure_i, ec_border_width > prop_border_width;
 typedef typed_property < t_css_length_ai, ec_bottom > prop_bottom;
 typedef typed_property < t_css_break_box, ec_box_decoration_break > prop_box_decoration_break;
+typedef typed_property < t_real, ec_box_flex > prop_box_flex;
+typedef typed_property < t_css_box_orient, ec_box_orient > prop_box_orient;
 typedef typed_property < t_css_box_shadows_n, ec_box_shadow > prop_box_shadow;
 typedef typed_property < t_css_box_sizing, ec_box_sizing > prop_box_sizing;
 typedef typed_property < t_generic, ec_box_snap > prop_box_snap;
@@ -359,6 +361,7 @@ typedef typed_property < t_marker, ec_marker_end > prop_marker_end;
 typedef typed_property < t_generic, ec_marker_knockout_left > prop_marker_knockout_left;
 typedef typed_property < t_generic, ec_marker_knockout_right > prop_marker_knockout_right;
 typedef typed_property < t_marker, ec_marker_mid > prop_marker_mid;
+typedef typed_property < t_css_length_a, ec_marker_offset > prop_marker_offset;
 typedef typed_property < t_generic, ec_marker_pattern > prop_marker_pattern;
 typedef typed_property < t_generic, ec_marker_segment > prop_marker_segment;
 typedef typed_property < t_generic, ec_marker_side > prop_marker_side;
@@ -648,6 +651,7 @@ typedef typed_property < t_generic, ec_translate > prop_translate;
 typedef typed_property < t_unicode_bidi, ec_unicode_bidi > prop_unicode_bidi;
 typedef typed_property < t_css_unicode_ranges, ec_unicode_range > prop_unicode_range;
 typedef typed_property < t_real, ec_units_per_em > prop_units_per_em;
+typedef typed_property < t_user_modify, ec_user_modify > prop_user_modify;
 typedef typed_property < t_css_user_select, ec_user_select > prop_user_select;
 
 typedef typed_property < t_svg_rendering_intent, ec_vector_effect > prop_vector_effect;
@@ -673,7 +677,7 @@ typedef typed_property < t_generic, ec_white_space_collapse > prop_white_space_c
 typedef typed_property < t_integer_i, ec_widows > prop_widows;
 typedef typed_property < t_css_length_amm, ec_width > prop_width;
 typedef typed_property < t_generic, ec_widths > prop_widths;
-typedef typed_property < t_generic, ec_will_change > prop_will_change;
+typedef typed_property < t_css_wcs_a, ec_will_change > prop_will_change;
 typedef typed_property < t_generic, ec_word_boundary_detection > prop_word_boundary_detection;
 typedef typed_property < t_generic, ec_word_boundary_expansion > prop_word_boundary_expansion;
 typedef typed_property < t_generic, ec_word_break > prop_word_break;
@@ -692,6 +696,7 @@ typedef typed_property < t_real, ec_x_height > prop_x_height;
 typedef typed_property < t_measure, ec_y > prop_y;
 
 typedef typed_property < t_integer_ai, ec_z_index > prop_z_index;
+typedef typed_property < t_css_length, ec_zoom > prop_zoom;
 
 typedef typed_property < t_unknown, ec_unknown > prop_unknown;
 
@@ -1469,6 +1474,8 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_border_width, \
     prop_bottom, \
     prop_box_decoration_break, \
+    prop_box_flex, \
+    prop_box_orient, \
     prop_box_shadow, \
     prop_box_sizing, \
     prop_box_snap, \
@@ -1686,6 +1693,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_marker_knockout_left, \
     prop_marker_knockout_right, \
     prop_marker_mid, \
+    prop_marker_offset, \
     prop_marker_pattern, \
     prop_marker_segment, \
     prop_marker_side, \
@@ -1974,6 +1982,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_units_per_em, \
     prop_vector_effect, \
     prop_unknown, \
+    prop_user_modify, \
     prop_user_select, \
     prop_vertical_align, \
     prop_view_timeline, \
@@ -2012,6 +2021,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_x_height, \
     prop_y, \
     prop_z_index, \
+    prop_zoom, \
     prop_moz_animation, \
     prop_moz_animation_delay, \
     prop_moz_animation_direction, \
