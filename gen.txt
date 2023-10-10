@@ -105,6 +105,15 @@ the "no-" switch always applies.
 --css.compositing X     Use CSS Compositing and Blending level X, where
                         X is 0 or 3
 
+--css.contain X         Use CSS Contain level X, where X is 0, 3, 4 or
+                        5. Note that CSS Contain level 3 calls itself
+                        level 1, even though it is not part of CSS 1.
+                        Similarly, level 4 calls itself level 2, even
+                        though it is part of neither CSS 2.0, 2.1, nor
+                        2.2. Finally, level 5 calls itself level 3,
+                        yet it contains much not found elsewhere in
+                        CSS level 3. This misnaming is too confusing.
+
 --css.cs X              Use CSS Counter Style level X, where X is 0 or
                         3
 
@@ -121,6 +130,9 @@ the "no-" switch always applies.
 
 --css.fbl X             Use CSS Flexible Box Layout level X, where X is
                         0 or 3
+
+--css.filter X          Use CSS Filter Effects level X, where X is 0 or
+                        3
 
 --css.font X            Use CSS Fonts level X, where X is 0, 3, 4 or 5
 
@@ -153,6 +165,8 @@ the "no-" switch always applies.
 --css.selector X        Use CSS Selectors level X, where X is 0, 3 or 4
 
 --css.shape X           Use CSS Shapes level X, where X is 0, 3 or 4
+
+--css.snap X            Use CSS Scroll Snap level X, where X is 0 or 3
 
 --css.speech X          Use CSS Speech level X, where X is 0 or 3
 

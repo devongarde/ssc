@@ -378,3 +378,42 @@ e_status set_css_src_value (nitpick& nits, const html_version& v, const ::std::s
     {   if (test_value < t_css_src_2 > (nits, v, s)) return s_good; }
     else nits.pick (nit_css_version, es_error, ec_css, "@font-face requires CSS Fonts or CSS 2.0"); 
     return s_invalid; }
+
+e_status set_css_container_value (nitpick& nits, const html_version& v, const ::std::string& sss)
+{   if (sss.empty ()) nits.pick (nit_empty, es_error, ec_type, "a container specification cannot be empty");
+    else
+    {   vstr_t ss (split_by_space (sss));
+        PRESUME (! ss.empty (), __FILE__, __LINE__);
+        bool res = true, slashed = false;
+        typedef enum { cs_name, cs_slash, cs_type, cs_done } con_state;
+        con_state state = cs_name;
+        for (auto s : ss)
+        {   nitpick nuts, knits;
+            switch (state)
+            {   case cs_name :
+                    if (test_value < t_css_container_name > (nuts, v, s))
+                    {   nits.merge (nuts); state = cs_slash; break; }
+                    FALLTHROUGH;
+                case cs_slash :
+                    if (s == "/")
+                    {   state = cs_type; slashed = true; break; }
+                    FALLTHROUGH;
+                case cs_type :
+                    if (test_value < t_css_container_type > (nits, v, s))
+                        if (state == cs_name)
+                            nits.pick (nit_container, es_error, ec_type, "missing container name");
+                        else if (! slashed)
+                            nits.pick (nit_container, es_error, ec_type, "missing '/'");
+                    else res = false;
+                    state = cs_done;
+                    break;
+                case cs_done :
+                    nits.pick (nit_container, es_error, ec_type, quote (s), ": unexpected");
+                    res = false; break;
+                default :
+                    nits.pick (nit_container, es_error, ec_type, quote (s), " is not a known container property value");
+                    res = false; break; } }
+        if (res && (state == cs_type))
+            nits.pick (nit_container, es_error, ec_type, "missing container type");
+        else if (res) return s_good; }
+    return s_invalid; }

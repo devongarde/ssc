@@ -300,6 +300,16 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_annotation >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
     {   return value_fn < TYPE, cvf_annotation, 1, 1, t_css_feature_annotation > :: check (args, start, to, nits); } };
 
+template < e_type TYPE > struct value_fn_params < TYPE, cvf_blur >
+{   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
+    {   if (! maybe_filter (nits, id)) return -1;
+        return value_fn < TYPE, cvf_blur, 0, 1, t_css_length_abs > :: check (args, start, to, nits); } };
+
+template < e_type TYPE > struct value_fn_params < TYPE, cvf_brightness >
+{   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
+    {   if (! maybe_filter (nits, id)) return -1;
+        return value_fn < TYPE, cvf_brightness, 0, 1, t_real_percent > :: check (args, start, to, nits); } };
+
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_character_variant >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
     {   return value_fn < TYPE, cvf_character_variant, 1, -1, t_css_feature_character_variant > :: check (args, start, to, nits); } };
@@ -321,6 +331,11 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_conic_gradient >
     {   if (! maybe_image (nits, id)) return -1;
         return value_fn < TYPE, cvf_conic_gradient, 1, 2, t_conic_2, t_css_angular_colour_stop_list > :: check (args, start, to, nits); } };
 
+template < e_type TYPE > struct value_fn_params < TYPE, cvf_contrast >
+{   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
+    {   if (! maybe_filter (nits, id)) return -1;
+        return value_fn < TYPE, cvf_contrast, 0, 1, t_real_percent > :: check (args, start, to, nits); } };
+
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_cross_fade >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
     {   if (! maybe_image (nits, id)) return -1;
@@ -335,6 +350,14 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_device_cmyk >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
     {   if (! maybe_colour < TYPE > (nits)) return -1;
         return value_fn < TYPE, cvf_device_cmyk, 4, 6, t_real_percent, t_real_percent, t_real_percent, t_real_percent, t_slash, t_css_alpha > :: check (args, start, to, nits); } };
+
+template < e_type TYPE > struct value_fn_params < TYPE, cvf_drop_shadow >
+{   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
+    {   if (! maybe_filter (nits, id)) return -1;
+        nitpick gnats;
+        const int i = value_fn < TYPE, cvf_drop_shadow, 2, 3, t_css_col, t_css_length > :: check (args, start, to, gnats);
+        if (i >= 0) { nits.merge (gnats); return i; }
+        return value_fn < TYPE, cvf_drop_shadow, 1, 3, t_css_length, t_css_length, t_css_col > :: check (args, start, to, nits); } };
 
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_ease >
 {   static int check (arguments& , const int , const int to, nitpick& nits, const e_css_property )
@@ -368,9 +391,22 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_ellipse >
                                 sz_at,
                                 value_fn < TYPE, cvf_ellipse, 1, 1, t_css_shape_position > > :: check (args, start, to, nits); } };
 
+template < e_type TYPE > struct value_fn_params < TYPE, cvf_filter >
+{   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
+    {   if (! maybe_image (nits, id)) return -1;
+        nitpick gnats;
+        const int i = value_fn < TYPE, cvf_filter, 1, 999, t_fn > :: check (args, start, to, gnats);
+        if (i >= 0) { nits.merge (gnats); return i; }
+        return value_fn < TYPE, cvf_filter, 2, 999, t_css_image, t_fn > :: check (args, start, to, gnats); } };
+
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_format >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
     {   return value_fn < TYPE, cvf_format, 1, 1, t_generic > :: check (args, start, to, nits); } };
+
+template < e_type TYPE > struct value_fn_params < TYPE, cvf_greyscale >
+{   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
+    {   if (! maybe_filter (nits, id)) return -1;
+        return value_fn < TYPE, cvf_greyscale, 0, 1, t_real_percent > :: check (args, start, to, nits); } };
 
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_historical_forms >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
@@ -384,6 +420,11 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_hsla >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
     {   if (! maybe_colour < TYPE > (nits)) return -1;
         return value_fn < TYPE, cvf_hsla, 4, 4, t_real, t_percent, t_percent, t_zero_to_one > :: check (args, start, to, nits); } };
+
+template < e_type TYPE > struct value_fn_params < TYPE, cvf_hue_rotate >
+{   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
+    {   if (! maybe_filter (nits, id)) return -1;
+        return value_fn < TYPE, cvf_hue_rotate, 0, 1, t_angle_0 > :: check (args, start, to, nits); } };
 
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_hwb >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
@@ -410,6 +451,11 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_inset >
                                 value_fn < TYPE, cvf_lab, 1, 4, t_css_length >,
                                 sz_round,
                                 value_fn < TYPE, cvf_lab, 1, 1, t_css_border_radius > > :: check (args, start, to, nits); } };
+
+template < e_type TYPE > struct value_fn_params < TYPE, cvf_invert >
+{   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
+    {   if (! maybe_filter (nits, id)) return -1;
+        return value_fn < TYPE, cvf_invert, 0, 1, t_real_percent > :: check (args, start, to, nits); } };
 
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_lab >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
@@ -475,6 +521,11 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_oklab >
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_oklch >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
     {   return common_colour < TYPE, cvf_oklch > :: check (args, start, to, nits, "3.7. Relative OKLCH Colors"); } };
+
+template < e_type TYPE > struct value_fn_params < TYPE, cvf_opacity >
+{   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
+    {   if (! maybe_filter (nits, id)) return -1;
+        return value_fn < TYPE, cvf_opacity, 0, 1, t_real_percent > :: check (args, start, to, nits); } };
 
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_ornaments >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
@@ -581,6 +632,11 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_rotatez >
     {   if (! maybe_transform (nits, id, true)) return -1;
         return value_fn < TYPE, cvf_rotatez, 1, 1, t_angle_0 > :: check (args, start, to, nits); } };
 
+template < e_type TYPE > struct value_fn_params < TYPE, cvf_saturate >
+{   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
+    {   if (! maybe_filter (nits, id)) return -1;
+        return value_fn < TYPE, cvf_saturate, 0, 1, t_real_percent > :: check (args, start, to, nits); } };
+
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_scale >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
     {   if (! maybe_transform (nits, id)) return -1;
@@ -608,6 +664,11 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_scalez >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
     {   if (! maybe_transform (nits, id, true)) return -1;
         return value_fn < TYPE, cvf_scalez, 1, 1, t_real_percent > :: check (args, start, to, nits); } };
+
+template < e_type TYPE > struct value_fn_params < TYPE, cvf_sepia >
+{   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
+    {   if (! maybe_filter (nits, id)) return -1;
+        return value_fn < TYPE, cvf_sepia, 0, 1, t_real_percent > :: check (args, start, to, nits); } };
 
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_skew >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)

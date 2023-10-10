@@ -29,10 +29,14 @@
 ./ssc -f ../toast/css/4-colour/css.conf
 ./ssc -f ../toast/css/5-colour/css.conf
 ./ssc -f ../toast/css/3-compositing/css.conf
+./ssc -f ../toast/css/3-contain/css.conf
+./ssc -f ../toast/css/4-contain/css.conf
+./ssc -f ../toast/css/5-contain/css.conf
 ./ssc -f ../toast/css/3-cr/css.conf
 ./ssc -f ../toast/css/3-cs/css.conf
 ./ssc -f ../toast/css/3-display/css.conf
 ./ssc -f ../toast/css/3-fbl/css.conf
+./ssc -f ../toast/css/3-filter/css.conf
 ./ssc -f ../toast/css/3-font/css.conf
 ./ssc -f ../toast/css/4-font/css.conf
 ./ssc -f ../toast/css/5-font/css.conf
@@ -51,6 +55,7 @@
 ./ssc -f ../toast/css/3-sel/css.conf
 ./ssc -f ../toast/css/4-sel/css.conf
 ./ssc -f ../toast/css/3-shape/css.conf
+./ssc -f ../toast/css/3-snap/css.conf
 ./ssc -f ../toast/css/3-speech/css.conf
 ./ssc -f ../toast/css/3-style/css.conf
 ./ssc -f ../toast/css/3-syntax/css.conf

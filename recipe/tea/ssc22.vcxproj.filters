@@ -1281,6 +1281,21 @@
     <Filter Include="Toast\CSS\deprecated">
       <UniqueIdentifier>{7c6c0081-d8b6-4b20-91f2-eec753cd8304}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\CSS\3-filter">
+      <UniqueIdentifier>{0be5de92-059b-40e7-857f-8d71570c3553}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-contain">
+      <UniqueIdentifier>{511df6f8-b9eb-4d74-82be-600c2ccc213b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\5-contain">
+      <UniqueIdentifier>{040f8c55-ab10-4a1e-b81b-beb8d158e2d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\4-contain">
+      <UniqueIdentifier>{36054c1c-f222-4b02-97dd-e4b68f045494}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-snap">
+      <UniqueIdentifier>{1ae45685-3bdd-4a68-b096-a0a0433bece7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -33689,6 +33704,135 @@
     </None>
     <None Include="..\toast\css\deprecated\index.html">
       <Filter>Toast\CSS\deprecated</Filter>
+    </None>
+    <None Include="..\toast\css\3-filter\css.conf">
+      <Filter>Toast\CSS\3-filter</Filter>
+    </None>
+    <None Include="..\toast\css\3-filter\css.spec">
+      <Filter>Toast\CSS\3-filter</Filter>
+    </None>
+    <None Include="..\toast\css\3-filter\css-1.css">
+      <Filter>Toast\CSS\3-filter</Filter>
+    </None>
+    <None Include="..\toast\css\3-filter\index.html">
+      <Filter>Toast\CSS\3-filter</Filter>
+    </None>
+    <None Include="..\toast\css\3-filter\css-1.svg">
+      <Filter>Toast\CSS\3-filter</Filter>
+    </None>
+    <None Include="..\toast\css\3-filter\css-9-1.svg">
+      <Filter>Toast\CSS\3-filter</Filter>
+    </None>
+    <None Include="..\toast\css\3-filter\css-9-2.svg">
+      <Filter>Toast\CSS\3-filter</Filter>
+    </None>
+    <None Include="..\toast\css\3-filter\css-9-3.svg">
+      <Filter>Toast\CSS\3-filter</Filter>
+    </None>
+    <None Include="..\toast\css\3-filter\css-9-4.svg">
+      <Filter>Toast\CSS\3-filter</Filter>
+    </None>
+    <None Include="..\toast\css\3-filter\css-9-5.svg">
+      <Filter>Toast\CSS\3-filter</Filter>
+    </None>
+    <None Include="..\toast\css\3-filter\css-9-6.svg">
+      <Filter>Toast\CSS\3-filter</Filter>
+    </None>
+    <None Include="..\toast\css\3-filter\css-9-7.svg">
+      <Filter>Toast\CSS\3-filter</Filter>
+    </None>
+    <None Include="..\toast\css\3-filter\css-9-8.svg">
+      <Filter>Toast\CSS\3-filter</Filter>
+    </None>
+    <None Include="..\toast\css\3-filter\css-9-9.svg">
+      <Filter>Toast\CSS\3-filter</Filter>
+    </None>
+    <None Include="..\toast\css\3-filter\css-13.svg">
+      <Filter>Toast\CSS\3-filter</Filter>
+    </None>
+    <None Include="..\toast\css\3-filter\css-14.svg">
+      <Filter>Toast\CSS\3-filter</Filter>
+    </None>
+    <None Include="..\toast\css\3-contain\css.conf">
+      <Filter>Toast\CSS\3-contain</Filter>
+    </None>
+    <None Include="..\toast\css\3-contain\css.spec">
+      <Filter>Toast\CSS\3-contain</Filter>
+    </None>
+    <None Include="..\toast\css\3-contain\css-2.html">
+      <Filter>Toast\CSS\3-contain</Filter>
+    </None>
+    <None Include="..\toast\css\3-contain\css-3.css">
+      <Filter>Toast\CSS\3-contain</Filter>
+    </None>
+    <None Include="..\toast\css\3-contain\css-3.html">
+      <Filter>Toast\CSS\3-contain</Filter>
+    </None>
+    <None Include="..\toast\css\3-contain\index.html">
+      <Filter>Toast\CSS\3-contain</Filter>
+    </None>
+    <None Include="..\toast\css\5-contain\css.conf">
+      <Filter>Toast\CSS\5-contain</Filter>
+    </None>
+    <None Include="..\toast\css\5-contain\css.spec">
+      <Filter>Toast\CSS\5-contain</Filter>
+    </None>
+    <None Include="..\toast\css\5-contain\css-4.css">
+      <Filter>Toast\CSS\5-contain</Filter>
+    </None>
+    <None Include="..\toast\css\5-contain\css-3.html">
+      <Filter>Toast\CSS\5-contain</Filter>
+    </None>
+    <None Include="..\toast\css\5-contain\index.html">
+      <Filter>Toast\CSS\5-contain</Filter>
+    </None>
+    <None Include="..\toast\css\4-contain\css.conf">
+      <Filter>Toast\CSS\4-contain</Filter>
+    </None>
+    <None Include="..\toast\css\4-contain\css.spec">
+      <Filter>Toast\CSS\4-contain</Filter>
+    </None>
+    <None Include="..\toast\css\4-contain\css-2.html">
+      <Filter>Toast\CSS\4-contain</Filter>
+    </None>
+    <None Include="..\toast\css\4-contain\css-3.css">
+      <Filter>Toast\CSS\4-contain</Filter>
+    </None>
+    <None Include="..\toast\css\4-contain\css-3.html">
+      <Filter>Toast\CSS\4-contain</Filter>
+    </None>
+    <None Include="..\toast\css\4-contain\index.html">
+      <Filter>Toast\CSS\4-contain</Filter>
+    </None>
+    <None Include="..\toast\css\5-contain\css-4.html">
+      <Filter>Toast\CSS\5-contain</Filter>
+    </None>
+    <None Include="..\toast\css\4-contain\css-4.html">
+      <Filter>Toast\CSS\4-contain</Filter>
+    </None>
+    <None Include="..\toast\css\5-contain\css-5.css">
+      <Filter>Toast\CSS\5-contain</Filter>
+    </None>
+    <None Include="..\toast\css\5-contain\css-6.css">
+      <Filter>Toast\CSS\5-contain</Filter>
+    </None>
+    <None Include="..\toast\css\3-snap\css.conf">
+      <Filter>Toast\CSS\3-snap</Filter>
+    </None>
+    <None Include="..\toast\css\3-snap\css.spec">
+      <Filter>Toast\CSS\3-snap</Filter>
+    </None>
+    <None Include="..\toast\css\3-snap\css-2.css">
+      <Filter>Toast\CSS\3-snap</Filter>
+    </None>
+    <None Include="..\toast\css\3-snap\css-2.html">
+      <Filter>Toast\CSS\3-snap</Filter>
+    </None>
+    <None Include="..\toast\css\3-snap\css-4.css">
+      <Filter>Toast\CSS\3-snap</Filter>
+    </None>
+    <None Include="..\toast\css\3-snap\index.html">
+      <Filter>Toast\CSS\3-snap</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

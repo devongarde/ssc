@@ -26,10 +26,14 @@ ssc.exe -T --nits.spec -o ../out/3colour.tst -f ../toast/css/3-colour/css.conf
 ssc.exe -T --nits.spec -o ../out/4colour.tst -f ../toast/css/4-colour/css.conf
 ssc.exe -T --nits.spec -o ../out/5colour.tst -f ../toast/css/5-colour/css.conf
 ssc.exe -T --nits.spec -o ../out/3comp.tst -f ../toast/css/3-compositing/css.conf
+ssc.exe -T --nits.spec -o ../out/3contain.tst -f ../toast/css/3-contain/css.conf
+ssc.exe -T --nits.spec -o ../out/4contain.tst -f ../toast/css/4-contain/css.conf
+ssc.exe -T --nits.spec -o ../out/5contain.tst -f ../toast/css/5-contain/css.conf
 ssc.exe -T --nits.spec -o ../out/3cr.tst -f ../toast/css/3-cr/css.conf
 ssc.exe -T --nits.spec -o ../out/3cs.tst -f ../toast/css/3-cs/css.conf
 ssc.exe -T --nits.spec -o ../out/3display.tst -f ../toast/css/3-display/css.conf
 ssc.exe -T --nits.spec -o ../out/3fbl.tst -f ../toast/css/3-fbl/css.conf
+ssc.exe -T --nits.spec -o ../out/3filter.tst -f ../toast/css/3-filter/css.conf
 ssc.exe -T --nits.spec -o ../out/3font.tst -f ../toast/css/3-font/css.conf
 ssc.exe -T --nits.spec -o ../out/4font.tst -f ../toast/css/4-font/css.conf
 ssc.exe -T --nits.spec -o ../out/5font.tst -f ../toast/css/5-font/css.conf
@@ -48,8 +52,9 @@ ssc.exe -T --nits.spec -o ../out/3position.tst -f ../toast/css/3-position/css.co
 ssc.exe -T --nits.spec -o ../out/3sel.tst -f ../toast/css/3-sel/css.conf
 ssc.exe -T --nits.spec -o ../out/4sel.tst -f ../toast/css/4-sel/css.conf
 ssc.exe -T --nits.spec -o ../out/3shape.tst -f ../toast/css/3-shape/css.conf
-ssc.exe -T --nits.spec -o ../out/3style.tst -f ../toast/css/3-style/css.conf
+ssc.exe -T --nits.spec -o ../out/3snap.tst -f ../toast/css/3-snap/css.conf
 ssc.exe -T --nits.spec -o ../out/3speech.tst -f ../toast/css/3-peech/css.conf
+ssc.exe -T --nits.spec -o ../out/3style.tst -f ../toast/css/3-style/css.conf
 ssc.exe -T --nits.spec -o ../out/3syntax.tst -f ../toast/css/3-syntax/css.conf
 ssc.exe -T --nits.spec -o ../out/3table.tst -f ../toast/css/3-able/css.conf
 ssc.exe -T --nits.spec -o ../out/3textdec.tst -f ../toast/css/3-textdec/css.conf

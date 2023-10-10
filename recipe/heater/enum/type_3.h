@@ -59,6 +59,9 @@ template < > struct type_master < t_aria_live > : three_value < t_aria_live, e_a
 template < > struct type_master < t_attributetype > : three_value < t_attributetype, e_attributetype, sz_auto, sz_CSS, sz_XML >
 { using three_value < t_attributetype, e_attributetype, sz_auto, sz_CSS, sz_XML > :: three_value; };
 
+template < > struct type_master < t_auto_hidden_visible > : three_value < t_auto_hidden_visible, e_auto_hidden_visible, sz_auto, sz_hidden, sz_visible >
+{ using three_value < t_auto_hidden_visible, e_auto_hidden_visible, sz_auto, sz_hidden, sz_visible > :: three_value; };
+
 template < > struct type_master < t_behaviour > : three_value < t_behaviour, e_behaviour, sz_alternate, sz_scroll, sz_slide >
 { using three_value < t_behaviour, e_behaviour, sz_alternate, sz_scroll, sz_slide > :: three_value; };
 

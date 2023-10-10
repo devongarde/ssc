@@ -97,6 +97,132 @@ void statement::parse_counter_style (arguments& args, nitpick& nits, const int f
         fiddlesticks < statement > f (&args.st_, this);
         dsc_.parse (args, css_counter_style, args.t_.at (to).child_); } }
 
+void statement::parse_container (arguments& args, nitpick& nits, const int from, const int to)
+{   int i = next_non_whitespace (args.t_, from, to); 
+    if (context.html_ver ().css_contain () < 5)
+        nits.pick (nit_css_version, es_error, ec_css, "@ccontainer requires CSS Contain 5");
+    else if (i < 0)
+        nits.pick (nit_container, es_error, ec_css, "expecting container details after @container");
+    else
+    {   ::std::string name;
+        if ((args.t_.at (i).t_ == ct_identifier) || (args.t_.at (i).t_ == ct_keyword))
+        {   if (! is_one_of (args.t_.at (i).val_, { "and", "none", "not", "or", "style" } ))
+            {   name = args.t_.at (i).val_;
+                i = next_non_whitespace (args.t_, i, to);
+                if (i < 0)
+                {   nits.pick (nit_container, es_error, ec_css, "expecting container condition after ", quote (name));
+                    return; } } }
+        int depth = 0;
+        bool had_brax = false, more = true, notted = false, styled = false, curly = false, r1 = false, slash = false, ketable = false;
+        css_token op = ct_error;
+        e_css_container_feature feature = ccf_none;
+        for (int j = i; more && (j > 0); j = next_non_whitespace (args.t_, j, to))
+            switch (args.t_.at (j).t_)
+            {   case ct_round_brac :
+                    ++depth;
+                    had_brax = notted = ketable = false;
+                    break;
+                case ct_round_ket :
+                    styled = ketable = false;
+                    if (depth <= 0)
+                    {   nits.pick (nit_container, es_error, ec_css, "unexpected ket (')')");
+                        break; }
+                    if (--depth == 0) had_brax = true;
+                    break;
+                case ct_curly_brac :
+                    if (depth > 0) nits.pick (nit_container, es_error, ec_css, "missing ket/s (')')");
+                    i = j;
+                    more = false;
+                    curly = true;
+                    continue;
+                case ct_keyword :
+                case ct_identifier :
+                    if (op == ct_error)
+                    {   if (compare_no_case (args.t_.at (j).val_, "not"))
+                        {   if (notted) nits.pick (nit_container, es_error, ec_css, "too many nots");
+                            else if (had_brax) nits.pick (nit_container, es_error, ec_css, "not must be placed before any other term"); 
+                            notted = true; }
+                        else if (compare_no_case (args.t_.at (j).val_, "and") || compare_no_case (args.t_.at (j).val_, "or"))
+                        {   if (! had_brax) nits.pick (nit_container, es_error, ec_css, "'and' and 'or' may be be placed after bracketed terms"); }
+                        else if (compare_no_case (args.t_.at (j).val_, "style")) styled = true;
+                        else if (ketable)
+                            nits.pick (nit_container, es_error, ec_css, quote (tkn_rpt (args.t_.at (j))), ": expecting ')'");
+                        else
+                            feature = examine_value < t_css_container_feature > (nits, args.v_, args.t_.at (j).val_);
+                        break;
+                    }
+                    FALLTHROUGH;
+                case ct_string :
+                case ct_number :
+                    if ((op != ct_error) && ! styled)
+                    {   ketable = true;
+                        switch (feature)
+                        {   case ccf_aspect_ratio :
+                                test_value < t_css_length > (nits, args.v_, args.t_.at (j).val_);
+                                if (! r1) r1 = true;
+                                else
+                                {   r1 = false;
+                                    if (! slash)
+                                        nits.pick (nit_container, es_error, ec_css, "missing '/'"); }
+                                break;
+                            case ccf_orientation :
+                                test_value < t_media_orientation > (nits, args.v_, args.t_.at (j).val_);
+                                op = ct_error;
+                                break;
+                            case ccf_block_size :
+                            case ccf_height :
+                            case ccf_inline_size :
+                            case ccf_width :
+                                test_value < t_css_length > (nits, args.v_, args.t_.at (j).val_);
+                                op = ct_error;
+                                break;
+                            default :
+                                op = ct_error;
+                                GRACEFUL_CRASH (__FILE__, __LINE__);
+                                break; }
+                    }
+                    break;
+                case ct_slash :
+                    if (! styled)
+                        if (r1 && slash)
+                            nits.pick (nit_container, es_error, ec_css, "only one slash per ratio, thank you");
+                        else if (r1 && (op != ct_error) && (feature == ccf_aspect_ratio))
+                            slash = true;
+                        else 
+                            nits.pick (nit_container, es_error, ec_css, "unexpected '/'");
+                    break;
+                case ct_eq :
+                case ct_gt :
+                case ct_gteq :
+                case ct_lt :
+                case ct_lteq :
+                    if (! styled)
+                        if (op != ct_error)
+                            nits.pick (nit_container, es_error, ec_css, "only one operator per feature, thank you");
+                        else if (depth == 0)
+                            nits.pick (nit_container, es_error, ec_css, "comparison operators must be bracketed");
+                        else if (feature == ccf_none)
+                            nits.pick (nit_container, es_error, ec_css, "operators must follow a valid feature name");
+                        else op = args.t_.at (j).t_;
+                    break;
+                case ct_root :
+                case ct_error :
+                    break;
+                case ct_eof :
+                    more = false;
+                    break;
+                default :
+                    if (depth == 0)
+                        nits.pick (nit_container, es_error, ec_css, quote (tkn_rpt (args.t_.at (j))), ": unexpected");
+                    break; }
+        if (! curly)
+            nits.pick (nit_container, es_error, ec_css, "missing @container stylesheet");
+        else 
+        {   if (depth > 0) nits.pick (nit_container, es_error, ec_css, "missing ket/s (')')");
+            PRESUME (args.t_.at (to).child_ > 0, __FILE__, __LINE__);
+            fiddlesticks < statement > f (&args.st_, this);
+            vst_.emplace_back (pst_t (new statements (args, args.t_.at (i).child_))); } } }
+
 void statement::parse_custom_media (arguments& args, nitpick& nits, const int from, const int to)
 {   int i = next_non_whitespace (args.t_, from, to); 
     if (context.html_ver ().css_media () < 5)
@@ -584,6 +710,9 @@ void statement::parse (arguments& args, const int from, const int to)
             case css_counter_style :
                 parse_counter_style (args, nits, b, to);
                 break;
+            case css_container :
+                parse_container (args, nits, b, to);
+                break;
             case css_custom_media :
                 parse_custom_media (args, nits, b, to);
                 break;
@@ -686,6 +815,9 @@ void statement::accumulate (stats_t* s) const
             break;
         case css_counter_style :
             res = "@counter-style;";
+            break;
+        case css_container :
+            res = "@container";
             break;
         case css_custom_media :
             res = "@custom-media;";

@@ -1,0 +1,106 @@
+﻿main, aside {
+  container: my-layout / inline-size;
+}
+
+.media-object {
+  display: grid;
+  grid-template: 'img' auto 'content' auto / 100%;
+}
+
+@container my-layout (inline-size > 45em) {
+  .media-object {
+    grid-template: 'img content' auto / auto 1fr;
+  }
+}
+
+aside, main {
+  container-type: inline-size;
+}
+
+h2 { font-size: 1.2em; }
+
+@container (width > 40em) {
+  h2 { font-size: 1.5em; }
+}
+
+section {
+  container-type: style;
+}
+
+@container (--cards: small) {
+  article {
+    border: thin solid silver;
+    border-radius: 0.5em;
+    padding: 1em;
+  }
+}
+
+main {
+  container-type: size;
+  container-name: my-page-layout;
+}
+
+.my-component {
+  container-type: inline-size;
+  container-name: my-component-library;
+}
+
+@container my-page-layout (block-size > 12em) {
+  .card { margin-block: 2em; }
+}
+
+@container my-component-library (inline-size > 30em) {
+  .card { margin-inline: 2em; }
+}
+
+main {
+  container: my-layout / size;
+}
+
+.grid-item {
+  container: my-component / inline-size;
+}
+
+@container card (inline-size > 30em) and style(--responsive: true) {
+  /* styles */
+}
+
+@container card (inline-size > 30em) {
+  @container style(--responsive: true) {
+    /* styles */
+  }
+}
+
+main {
+  display: flex;
+  width: 300px;
+}
+
+#container {
+  container-type: inline-size;
+  flex: 1;
+}
+
+/* Resolved width is initially 200px, but changes as the transition
+   on #sibling progresses. */
+#inner {
+  transition: 1s background-color;
+  background-color: tomato;
+}
+
+/* When this container query starts (or stops) applying, a transition
+   must start on background-color on #inner. */
+@container (width <= 150px) {
+  #inner {
+    background-color: skyblue;
+  }
+}
+
+#sibling {
+  width: 100px;
+  transition: width 1s;
+}
+
+#sibling:hover {
+  width: 200px;
+}

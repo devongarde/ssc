@@ -1,0 +1,11 @@
+<?xml version="1.0" standalone="yes"?> 
+<svg xmlns="http://www.w3.org/2000/svg">
+
+  <rect width="200px" filter="none" ...="">
+    <animate attributeName="filter" from="blur(0px)" to="blur(10px)" dur="10s"
+             additive="sum"/>
+    <animate attributeName="filter" from="sepia(0)" to="sepia(1)" dur="10s"
+             additive="sum"/>
+  </rect>
+
+</svg>

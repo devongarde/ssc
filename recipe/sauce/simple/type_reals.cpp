@@ -20,9 +20,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "type/type.h"
+#include "utility/quote.h"
 
 bool test_reals (nitpick& nits, const html_version& v, const ::std::string& s, const ::std::size_t expected, const bool pts, const int max)
-{   vstr_t args (split_by_comma_space (trim_the_lot_off (s)));
+{   //vstr_t args (split_by_comma_space (trim_the_lot_off (s)));
+    vstr_t args (uq2 (s, ( UQ_ROUND | UQ_TRIM | BS_NUMERIC ), ", \n")); 
     if (expected == 0)
     {   if (pts)
             if (args.size () % 2 != 0)
@@ -37,8 +39,11 @@ bool test_reals (nitpick& nits, const html_version& v, const ::std::string& s, c
     else if ((max == 0) && (args.size () != expected))
     {   nits.pick (nit_unreal, es_error, ec_type, "precisely ", expected, " real numbers expected, but ", args.size (), " found");
         return false; }
+    bool res = true;
     for (auto arg : args)
-    {   type_master < t_measure > m;
-        m.set_value (nits, v, arg);
-        if (! m.good ()) return false; }
-    return true; }
+        if (! arg.empty ())
+            if ((arg.at (0) != '(') && (arg.at (0) != '['))
+            {   type_master < t_measure > m;
+                m.set_value (nits, v, arg);
+                if (! m.good ()) res = false; }
+    return res; }

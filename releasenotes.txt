@@ -3,6 +3,17 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.39
+- CSS 2017 Snapshot
+- CSS 2018 Snapshot
+- CSS Contain 5
+- CSS Contain 4
+- CSS Contain 3
+- CSS Filter 3
+- CSS Scroll Snap 3
+- various bug fixes
+- underlying work
+
 0.1.38
 - CSS 2015 Snapshot
 - CSS Mobile Profile 2

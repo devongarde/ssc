@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>contain 5 example</title>
+   <LINK REL=STYLESHEET TYPE="text/css" HREF="css-4.css">
+  </head>
+<body>
+
+<style>
+  #container {
+    width: 100px;
+    container-type: inline-size;
+  }
+  @container (inline-size < 150px) {
+    #inner::before {
+      content: "BEFORE";
+    }
+  }
+</style>
+<div id=container>
+  <span id=inner></span>
+</div>
+
+<div id=host style="width:200px">
+  <template shadowroot=open>
+    <style>
+      #container {
+        width: 100px;
+        container-type: inline-size;
+      }
+      @container (inline-size < 150px) {
+        ::slotted(span) {
+          color: green;
+        }
+      }
+    </style>
+    <div id=container>
+      <slot />
+    </div>
+  </template>
+  <span id=slotted>Green</span>
+</div>
+
+<main>
+  <div id=container>
+    <div id=inner>Inner</div>
+  </div>
+  <div id=sibling>Sibling</div>
+</main>
+
+</body>
+</html>

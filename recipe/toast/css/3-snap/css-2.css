@@ -1,0 +1,33 @@
+﻿img {
+    /* Specifies that the center of each photo
+       should align with the center of the scroll
+       container in the X axis when snapping */
+    scroll-snap-align: none center;
+}
+.photoGallery {
+    width: 500px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    /* Requires that the scroll position always be
+       at a snap position when the scrolling
+       operation completes. */
+    scroll-snap-type: x mandatory;
+}
+
+.page {
+    /* Defines the top of each page as the
+       edge that should be used for snapping */
+    scroll-snap-align: start none;
+}
+.docScroller {
+    width: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Specifies that each element’s snap area should
+       align with a 100px offset from the top edge. */
+    scroll-padding: 100px 0 0;
+    /* Encourages scrolling to end at a snap position when the
+        operation completes, if it is near a snap position */
+    scroll-snap-type: y proximity;
+}
