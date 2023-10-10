@@ -216,6 +216,7 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_css_cs_3 : return "CSS Counter Styles 3";
         case ed_css_custom : return "CSS Custom Properties";
         case ed_css_ease : return "CSS Easing Functions";
+        case ed_css_filter_3 : return "CSS Filter Effects 3";
         case ed_css_font_4 : return "CSS Fonts 4";
         case ed_css_image_3 : return "CSS Images 3";
         case ed_css_media_3 : return "CSS Media 3"; 
@@ -325,6 +326,7 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_css_cs_3 : return "CSS Counter Stylse 3, July 2021";
         case ed_css_custom : return "CSS Custom Properties for Cascading Variables Level 1, June 2022";
         case ed_css_ease : return "CSS Easing Functions Level 1, February 2023";
+        case ed_css_filter_3 : return "CSS Filter Effects Level 3, December 2018";
         case ed_css_font_4 : return "CSS Fonts Level 4, December 2021";
         case ed_css_image_3 : return "CSS Images Level 3, December 2020"; 
         case ed_css_media_3 : return "CSS Media Queries Level 3, April 2022"; 

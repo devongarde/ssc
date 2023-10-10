@@ -832,6 +832,7 @@ const nitname nitnames [] =
     { nit_mask, "mask" },
     { nit_mask_border, "mask border" },
     { nit_profile, "profile" },
+    { nit_container, "container" },
 
     { nit_incompatible, "incompatible" },
 

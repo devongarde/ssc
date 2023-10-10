@@ -359,6 +359,7 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (CSS CASCADE, ::boost::program_options::value < int > (), "CSS Cascade & Inheritance level (0, 3, 4, 5 or 6).")
         (CSS COLOUR, ::boost::program_options::value < int > (), "CSS Colour level (0, 3, 4, or 5).")
         (CSS COMPOSITING, ::boost::program_options::value < int > (), "CSS Compositing and Blending level (0 or 3).")
+        (CSS CONTAIN, ::boost::program_options::value < int > (), "CSS Contain level (0, 3, 4, or 5).")
         (CSS CS, ::boost::program_options::value < int > (), "CSS Counter Style level (0 or 3).")
         (CSS CUSTOM, ::boost::program_options::value < int > (), "CSS Custom level (0 or 3).")
         (CSS DISPLAY, ::boost::program_options::value < int > (), "CSS Display level (0 or 3).")
@@ -367,6 +368,7 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (CSS EXTERNAL, ::boost::program_options::bool_switch (), "Nitpick css files imported from external sites.")
         (CSS DONT EXTERNAL, ::boost::program_options::bool_switch (), "Do not nitpick imported CSS files.")
         (CSS FBL, ::boost::program_options::value < int > (), "CSS Flexible Box Layout level (0 or 3).")
+        (CSS FILTER, ::boost::program_options::value < int > (), "CSS Filter Effects level (0 or 3).")
         (CSS FONT, ::boost::program_options::value < int > (), "CSS Font level (0, 3, 4, or 5).")
         (CSS FRAG, ::boost::program_options::value < int > (), "CSS Fragmentation level (0, 3, or 4).")
         (CSS GRID, ::boost::program_options::value < int > (), "CSS Grid level (0, 3, or 4).")
@@ -383,7 +385,8 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (CSS POSITION, ::boost::program_options::value < int > (), "CSS Positions level (0 or 3).")
         (CSS SELECTOR, ::boost::program_options::value < int > (), "CSS Selector level (0, 3, or 4).")
         (CSS SHAPE, ::boost::program_options::value < int > (), "CSS Shapes level (0, 3, or 4).")
-        (CSS SPEECH, ::boost::program_options::value < int > (), "CSS Sheech level (0 or 3).")
+        (CSS SNAP, ::boost::program_options::value < int > (), "CSS Scroll Snap level (0 or 3).")
+        (CSS SPEECH, ::boost::program_options::value < int > (), "CSS Speech level (0 or 3).")
         (CSS STYLE, ::boost::program_options::value < int > (), "CSS Style level (0 or 3).")
         (CSS SYNTAX, ::boost::program_options::value < int > (), "CSS Syntax level (0 or 3).")
         (CSS TEXT_DEC, ::boost::program_options::value < int > (), "CSS Text Decoration level (0, 3, or 4).")
@@ -1053,11 +1056,13 @@ void options::contextualise (nitpick& nits)
         if (get_css_level (n, nits, CSS COLOUR, "Colour", 5)) context.css_colour (n);
         if (get_css_level (n, nits, CSS COMPOSITING, "Compositing", 3, true)) context.css_compositing (n);
         if (get_css_level (n, nits, CSS COND_RULE, "Conditional Rule", 5)) context.css_conditional_rule (n);
+        if (get_css_level (n, nits, CSS CONTAIN, "Contain", 5)) context.css_contain (n);
         if (get_css_level (n, nits, CSS CS, "Counter Style", 3)) context.css_counter_style (n);
         if (get_css_level (n, nits, CSS CUSTOM, "Custom", 3, true)) context.css_custom (n);
         if (get_css_level (n, nits, CSS DISPLAY, "Display", 3)) context.css_display (n);
         if (get_css_level (n, nits, CSS EASE, "Ease", 4, true)) context.css_ease (n);
         if (get_css_level (n, nits, CSS FBL, "Flexible Box Layout", 3)) context.css_fbl (n);
+        if (get_css_level (n, nits, CSS FILTER, "Filter Effects", 3)) context.css_filter (n);
         if (get_css_level (n, nits, CSS FONT, "Font", 5)) context.css_font (n);
         if (get_css_level (n, nits, CSS FRAG, "Fragmentation", 4)) context.css_fragmentation (n);
         if (get_css_level (n, nits, CSS GRID, "Grid", 4)) context.css_grid (n);
@@ -1071,6 +1076,7 @@ void options::contextualise (nitpick& nits)
         yea_nay (&context_t::print_profile, nits, CSS PRINT, CSS DONT PRINT);
         if (get_css_level (n, nits, CSS SELECTOR, "Selector", 4)) context.css_selector (n);
         if (get_css_level (n, nits, CSS SHAPE, "Shape", 4)) context.css_shape (n);
+        if (get_css_level (n, nits, CSS SNAP, "Snap", 3)) context.css_snap (n);
         if (get_css_level (n, nits, CSS SPEECH, "Speech", 3)) context.css_speech (n);
         if (get_css_level (n, nits, CSS STYLE, "Style", 3)) context.css_style (n);
         if (get_css_level (n, nits, CSS SYNTAX, "Syntax", 3)) context.css_syntax (n);
@@ -1561,11 +1567,13 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (CSS COMPOSITING)) res << CSS COMPOSITING ": " << var_ [CSS COMPOSITING].as < int > () << "\n";
     if (var_.count (CSS COND_RULE)) res << CSS COND_RULE ": " << var_ [CSS COND_RULE].as < int > () << "\n";
     if (var_.count (CSS CS)) res << CSS CS ": " << var_ [CSS CS].as < int > () << "\n";
+    if (var_.count (CSS CONTAIN)) res << CSS CONTAIN ": " << var_ [CSS CONTAIN].as < int > () << "\n";
     if (var_.count (CSS CUSTOM)) res << CSS CUSTOM ": " << var_ [CSS CUSTOM].as < int > () << "\n";
     if (var_.count (CSS DISPLAY)) res << CSS DISPLAY ": " << var_ [CSS DISPLAY].as < int > () << "\n";
     if (var_.count (CSS EASE)) res << CSS EASE ": " << var_ [CSS EASE].as < int > () << "\n";
     if (var_.count (CSS EXTENSION)) res << CSS EXTENSION ": "; pvs (res, var_ [CSS EXTENSION].as < vstr_t > ()); res << "\n";
     if (var_.count (CSS FBL)) res << CSS FBL ": " << var_ [CSS FBL].as < int > () << "\n";
+    if (var_.count (CSS FILTER)) res << CSS FILTER ": " << var_ [CSS FILTER].as < int > () << "\n";
     if (var_.count (CSS FONT)) res << CSS FONT ": " << var_ [CSS FONT].as < int > () << "\n";
     if (var_.count (CSS FRAG)) res << CSS FRAG ": " << var_ [CSS FRAG].as < int > () << "\n";
     if (var_.count (CSS GRID)) res << CSS GRID ": " << var_ [CSS GRID].as < int > () << "\n";
@@ -1583,6 +1591,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (CSS SELECTOR)) res << CSS SELECTOR ": " << var_ [CSS SELECTOR].as < int > () << "\n";
     if (var_.count (CSS SHAPE)) res << CSS SHAPE ": " << var_ [CSS SHAPE].as < int > () << "\n";
     if (var_.count (CSS SPEECH)) res << CSS SPEECH ": " << var_ [CSS SPEECH].as < int > () << "\n";
+    if (var_.count (CSS SNAP)) res << CSS SNAP ": " << var_ [CSS SNAP].as < int > () << "\n";
     if (var_.count (CSS STYLE)) res << CSS STYLE ": " << var_ [CSS STYLE].as < int > () << "\n";
     if (var_.count (CSS SYNTAX)) res << CSS SYNTAX ": " << var_ [CSS SYNTAX].as < int > () << "\n";
     if (var_.count (CSS TABLE)) res << CSS TABLE ": " << var_ [CSS TABLE].as < int > () << "\n";

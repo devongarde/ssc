@@ -1,0 +1,32 @@
+﻿html {
+  scroll-snap-type: block;   /* applied to main document scroller */
+}
+h1, h2, h3, h4, h5, h6 {
+  scroll-snap-align: start;  /* snap to the start (top) of the viewport */
+}
+
+.log {
+  scroll-snap-type: proximity;
+  align-content: end;
+}
+.log::after {
+  display: block;
+  content: "";
+  scroll-snap-align: end;
+}
+
+html {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 500px 0 0;
+}
+.toolbar {
+    position: fixed;
+    height: 100%;
+    width: 500px;
+    right: 0;
+}
+img {
+    scroll-snap-align: none center;
+}

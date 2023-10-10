@@ -58,7 +58,6 @@ PASS ../toast/SVG/2.0/ellipse.xhtml
 
 PASS ../toast/SVG/2.0/feblend.svg
 1 xhtml_5_0
-33 is_property
 
 PASS ../toast/SVG/2.0/fecolourmatrix.svg
 1 xhtml_5_0
@@ -70,8 +69,6 @@ PASS ../toast/SVG/2.0/fecomponenttransfer.xhtml
 PASS ../toast/SVG/2.0/fecomposite.svg
 1 xhtml_5_0
 13 use_double_quote_code
-87 is_property
-124 is_property
 128 use_double_quote_code
 
 PASS ../toast/SVG/2.0/fedropshadow.html
@@ -89,7 +86,6 @@ PASS ../toast/SVG/2.0/feimage.html
 PASS ../toast/SVG/2.0/femorphology.svg
 1 xhtml_5_0
 7 use_quote_code
-24 is_property
 
 PASS ../toast/SVG/2.0/feturbulence.svg
 1 xhtml_5_0

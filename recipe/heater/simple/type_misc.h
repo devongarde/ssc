@@ -250,6 +250,9 @@ template < > struct type_master < t_mb > : public tidy_string < t_mb >
                 nits.pick (nit_mb, es_error, ec_type, quote (s.substr (unit), " is neither KB, MB, nor GiB, TiB, nor another standard byte unit")); }
             tidy_string < t_mb > :: status (s_invalid); } } };
 
+template < > struct type_master < t_normal > : public type_string < t_normal, sz_normal >
+{   using type_string < t_normal, sz_normal > :: type_string; };
+
 template < > struct type_master < t_prism_rcv_opt > : tidy_string < t_prism_rcv_opt >
 {   using tidy_string < t_prism_rcv_opt > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)

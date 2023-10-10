@@ -1,0 +1,20 @@
+﻿img {
+  width: 100px;
+  aspect-ratio: 1/1;
+  contain: size;
+}
+
+article {flow-into: foo;}
+#a, #b, #c, #d, #e, #f {flow-from: foo;}
+aside {contain: layout}
+
+div {
+  contain: style;
+  counter-increment: n;
+}
+div::before, div::after {
+  content: counters(n, '.') " ";
+}
+div::after {
+  counter-increment: n 2;
+}

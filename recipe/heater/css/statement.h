@@ -42,6 +42,7 @@ class statement
     void parse_charset (arguments& args, nitpick& nits, const int from, const int to);
     void parse_colour_profile (arguments& args, nitpick& nits, const int from, const int to);
     void parse_counter_style (arguments& args, nitpick& nits, const int from, const int to);
+    void parse_container (arguments& args, nitpick& nits, const int from, const int to);
     void parse_custom_media (arguments& args, nitpick& nits, const int from, const int to);
     void parse_feature_value (arguments& args, nitpick& nits, const int to, const e_css_statement cs, font_features& ffv);
     void parse_font_feature_values (arguments& args, nitpick& nits, const int from, const int to);

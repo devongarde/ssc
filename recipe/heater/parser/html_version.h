@@ -498,14 +498,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H3_CSS_TRANSFORM_MASK H3_CSS_TRANSFORM
 
 #define H3_CSS_MASKING        0x0000000000800000
-
 #define H3_CSS_WC             0x0000000001000000
+#define H3_CSS_FILTER         0x0000000002000000
 
-#define H3_CSS_3          ( H3_CSS_BOX_ALIGN | H3_CSS_BOX_MODEL_3 | H3_CSS_BOX_SIZING | H3_CSS_DISPLAY | H3_CSS_GRID_3 | H3_CSS_IMAGE_3 | H3_CSS_MASKING | \
-                            H3_CSS_MULTI_COL | H3_CSS_OVERFLOW | H3_CSS_POSITION | H3_CSS_SHAPE_3 | H3_CSS_SPEECH | H3_CSS_TABLE | H3_CSS_TEXTDEC_3 | \
-                            H3_CSS_TRANSFORM_3 | H3_CSS_TRANSITION | H3_CSS_WC | H3_CSS_WRITING_3 )
-#define H3_CSS_4          ( H3_CSS_BOX_MODEL_4 | H3_CSS_GRID_4 | H3_CSS_IMAGE_4 | H3_CSS_SHAPE_4 | H3_CSS_TEXTDEC_4 | H3_CSS_TRANSFORM_3 | H3_CSS_WRITING_4 )
-#define H3_CSS_5            0
+#define H3_CSS_CONTAIN_3      0x0000000004000000
+#define H3_CSS_CONTAIN_4      0x0000000008000000
+#define H3_CSS_CONTAIN_5      0x0000000010000000
+#define H3_CSS_CONTAIN_34 ( H3_CSS_CONTAIN_3 | H3_CSS_CONTAIN_4 )
+#define H3_CSS_CONTAIN_45 ( H3_CSS_CONTAIN_4 | H3_CSS_CONTAIN_5 )
+#define H3_CSS_CONTAIN    ( H3_CSS_CONTAIN_34 | H3_CSS_CONTAIN_5 )
+#define H3_CSS_CONTAIN_MASK H3_CSS_CONTAIN
+
+#define H3_CSS_SNAP           0x0000000020000000
+
+#define H3_CSS_3          ( H3_CSS_BOX_ALIGN | H3_CSS_BOX_MODEL_3 | H3_CSS_BOX_SIZING | H3_CSS_CONTAIN_3 | H3_CSS_DISPLAY | H3_CSS_FILTER | H3_CSS_GRID_3 | \
+                            H3_CSS_IMAGE_3 | H3_CSS_MASKING |  H3_CSS_MULTI_COL | H3_CSS_OVERFLOW | H3_CSS_POSITION | H3_CSS_SHAPE_3 | H3_CSS_SNAP | \
+                            H3_CSS_SPEECH | H3_CSS_TABLE | H3_CSS_TEXTDEC_3 | H3_CSS_TRANSFORM_3 | H3_CSS_TRANSITION | H3_CSS_WC | H3_CSS_WRITING_3 )
+#define H3_CSS_4          ( H3_CSS_BOX_MODEL_4 | H3_CSS_CONTAIN_4 | H3_CSS_GRID_4 | H3_CSS_IMAGE_4 | H3_CSS_SHAPE_4 | H3_CSS_TEXTDEC_4 | H3_CSS_TRANSFORM_3 | \
+                            H3_CSS_WRITING_4 )
+#define H3_CSS_5            H3_CSS_CONTAIN_5
 #define H3_CSS_6            0
   
 #define H3_CSS_3_FULL   ( H3_CSS_3 )
@@ -523,7 +534,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H3_CSS_MASK       H3_CSS_ALL
 #define H3_CSS            H3_CSS_ALL
 
-#define H3_FULL_CSS_MASK      0x0000000001FFFFFF
+#define H3_FULL_CSS_MASK      0x000000003FFFFFFF
 
 #define H3_NOT_MOBILE         0x1000000000000000
 #define H3_NOT_PRINT          0x2000000000000000
@@ -758,6 +769,8 @@ public:
     int css_conditional_rule () const;
     void css_conditional_rule (const int n);
     int css_counter_style () const;
+    int css_contain () const;
+    void css_contain (const int n);
     void css_counter_style (const int n);
     int css_custom () const;
     void css_custom (const int n);
@@ -767,6 +780,8 @@ public:
     void css_ease (const int n);
     int css_fbl () const;
     void css_fbl (const int n);
+    int css_filter () const;
+    void css_filter (const int n);
     int css_font () const;
     void css_font (const int n);
     int css_fragmentation () const;
@@ -791,6 +806,8 @@ public:
     void css_selector (const int n);
     int css_shape () const;
     void css_shape (const int n);
+    int css_snap () const;
+    void css_snap (const int n);
     int css_speech () const;
     void css_speech (const int n);
     int css_style () const;

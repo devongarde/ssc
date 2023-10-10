@@ -334,6 +334,12 @@ template < > struct type_master < t_css_caret_shape > : enum_n < t_css_caret_sha
 template < > struct type_master < t_css_clear > : enum_n < t_css_clear, e_css_clear >
 { using enum_n < t_css_clear, e_css_clear > :: enum_n; };
 
+template < > struct type_master < t_css_contain_e > : enum_n < t_css_contain_e, e_css_contain_e >
+{ using enum_n < t_css_contain_e, e_css_contain_e > :: enum_n; };
+
+template < > struct type_master < t_css_container_feature > : enum_n < t_css_container_feature, e_css_container_feature >
+{ using enum_n < t_css_container_feature, e_css_container_feature > :: enum_n; };
+
 template < > struct type_master < t_css_cursor_e > : enum_n < t_css_cursor_e, e_css_cursor_e >
 { using enum_n < t_css_cursor_e, e_css_cursor_e > :: enum_n; };
 
@@ -432,6 +438,9 @@ template < > struct type_master < t_css_relative_size > : enum_n < t_css_relativ
 
 template < > struct type_master < t_css_resize > : enum_n < t_css_resize, e_css_resize >
 { using enum_n < t_css_resize, e_css_resize > :: enum_n; };
+
+template < > struct type_master < t_css_ss_type_e > : enum_n < t_css_ss_type_e, e_css_ss_type_e >
+{ using enum_n < t_css_ss_type_e, e_css_ss_type_e > :: enum_n; };
 
 template < > struct type_master < t_css_self_position > : enum_n < t_css_self_position, e_css_self_position >
 { using enum_n < t_css_self_position, e_css_self_position > :: enum_n; };

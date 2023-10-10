@@ -113,12 +113,14 @@ class context_t
     context_t& css_colour (const int n) { version_.css_colour (n); mac (nm_context_css_colour, n); return *this; }
     context_t& css_compositing (const int n) { version_.css_compositing (n); mac (nm_context_css_compositing, n); return *this; }
     context_t& css_conditional_rule (const int n) { version_.css_conditional_rule (n); mac (nm_context_css_cond_rule, n); return *this; }
+    context_t& css_contain (const int n) { version_.css_contain (n); mac (nm_context_css_contain, n); return *this; }
     context_t& css_counter_style (const int n) { version_.css_counter_style (n); mac (nm_context_css_cs, n); return *this; }
     context_t& css_custom (const int n) { version_.css_custom (n); mac (nm_context_css_custom, n); return *this; }
     context_t& css_display (const int n) { version_.css_display (n); mac (nm_context_css_display, n); return *this; }
     context_t& css_ease (const int n) { version_.css_ease (n); mac (nm_context_css_ease, n); return *this; }
     context_t& css_extension (const vstr_t& s) { css_ext_ = s; mac (nm_context_css_extension, s); return *this; }
     context_t& css_fbl (const int n) { version_.css_fbl (n); mac (nm_context_css_fbl, n); return *this; }
+    context_t& css_filter (const int n) { version_.css_filter (n); mac (nm_context_css_filter, n); return *this; }
     context_t& css_font (const int n) { version_.css_font (n); mac (nm_context_css_font, n); return *this; }
     context_t& css_fragmentation (const int n) { version_.css_fragmentation (n); mac (nm_context_css_fragmentation, n); return *this; }
     context_t& css_grid (const int n) { version_.css_grid (n); mac (nm_context_css_grid, n); return *this; }
@@ -131,6 +133,7 @@ class context_t
     context_t& css_position (const int n) { version_.css_position (n); mac (nm_context_css_position, n); return *this; }
     context_t& css_selector (const int n) { version_.css_selector (n); mac (nm_context_css_selector, n); return *this; }
     context_t& css_shape (const int n) { version_.css_shape (n); mac (nm_context_css_shape, n); return *this; }
+    context_t& css_snap (const int n) { version_.css_snap (n); mac (nm_context_css_snap, n); return *this; }
     context_t& css_speech (const int n) { version_.css_speech (n); mac (nm_context_css_speech, n); return *this; }
     context_t& css_style (const int n) { version_.css_style (n); mac (nm_context_css_style, n); return *this; }
     context_t& css_syntax (const int n) { version_.css_syntax (n); mac (nm_context_css_syntax, n); return *this; }
@@ -328,12 +331,14 @@ public:
     int css_colour () { return version_.css_colour (); }
     int css_compositing () { return version_.css_compositing (); }
     int css_conditional_rule () { return version_.css_conditional_rule (); }
+    int css_contain () { return version_.css_contain (); }
     int css_counter_style () { return version_.css_counter_style (); }
     int css_custom () { return version_.css_custom (); }
     int css_display () { return version_.css_display (); }
     int css_ease () { return version_.css_ease (); }
     const vstr_t css_extension () const { return css_ext_; }
     int css_fbl () { return version_.css_fbl (); }
+    int css_filter () { return version_.css_filter (); }
     int css_font () { return version_.css_font (); }
     int css_fragmentation () { return version_.css_fragmentation (); }
     int css_grid () { return version_.css_grid (); }
@@ -346,6 +351,7 @@ public:
     int css_position () { return version_.css_position (); }
     int css_selector () { return version_.css_selector (); }
     int css_shape () { return version_.css_shape (); }
+    int css_snap () { return version_.css_snap (); }
     int css_speech () { return version_.css_speech (); }
     int css_style () { return version_.css_style (); }
     int css_syntax () { return version_.css_syntax (); }

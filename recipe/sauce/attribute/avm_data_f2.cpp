@@ -104,8 +104,7 @@ hav_t havt_fn [] =
 hav_t havt_font [] =
 {   { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_font, a_colour },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font, a_externalresourcesrequired },
-    { { HTML_3_2, 0, HE_IE }, { HTML_3_2 }, elem_font, a_face },
-    { { HTML_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_font, a_face },
+    { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_font, a_face },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font, a_horiz_adv_x },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font, a_horiz_origin_x },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_font, a_horiz_origin_y },

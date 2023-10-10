@@ -414,7 +414,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_JUL07 }, { HTML_DEC08 }, "irrelevant", a_irrelevant },
     { { HTML_JUL16 }, { HTML_UNDEF }, "is", a_is },
     { { HTML_PLUS }, { HTML_UNDEF }, "ismap", a_ismap },
-    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "isolation", a_isolation, ns_default, AF_PROPERTY },
+    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "isolation", a_isolation },
     { { HTML_JUL09, HV_WHATWG, HE_MICRODATA }, { HTML_DEC09 }, "item", a_item },
     { { HTML_JAN10, HV_WHATWG, HE_MICRODATA }, { HTML_UNDEF }, "itemid", a_itemid },
     { { HTML_JUL09, HV_WHATWG, HE_MICRODATA }, { HTML_UNDEF }, "itemprop", a_itemprop },

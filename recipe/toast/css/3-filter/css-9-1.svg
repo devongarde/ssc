@@ -1,0 +1,45 @@
+<?xml version="1.0" standalone="yes"?> 
+<svg xmlns="http://www.w3.org/2000/svg">
+  
+  <filter id="filter">
+    <feColorMatrix type="hueRotate" values="45"/>
+    <feOffset dx="10" dy="10"/>
+    <feGaussianBlur stdDeviation="3"/>
+  </filter>
+  
+  <filter id="filter">
+    <feColorMatrix type="hueRotate" values="45"/>
+    <feOffset dx="10" dy="10"/>
+    <feGaussianBlur stdDeviation="3"/>
+    <feFlood flood-color="green" result="flood"/>
+    <feComposite operator="in" in="SourceAlpha" in2="flood"/>
+  </filter>
+
+  <filter id="pfft">
+    
+  <feGaussianBlur in="alpha-channel-of-feDropShadow-in"   stdDeviation="stdDeviation-of-feDropShadow"/>
+  <feOffset dx="dx-of-feDropShadow"   dy="dy-of-feDropShadow" result="offsetblur"/>
+  <feFlood flood-color="flood-color-of-feDropShadow"  flood-opacity="flood-opacity-of-feDropShadow"/>
+  <feComposite in2="offsetblur" operator="in"/>
+  <feMerge>
+    <feMergeNode/>
+    <feMergeNode in="in-of-feDropShadow"/>
+  </feMerge>
+
+  <feGaussianBlur in="alpha-channel-of-feDropShadow-in" stdDeviation="stdDeviation-of-feDropShadow"/>
+
+  <feOffset dx="dx-of-feDropShadow" dy="dy-of-feDropShadow" result="offsetblur"/>
+
+  <feFlood flood-color="flood-color-of-feDropShadow" flood-opacity="flood-opacity-of-feDropShadow"/>
+
+  <feComposite in2="offsetblur" operator="in"/>
+
+  <feMerge>
+    <feMergeNode/>
+    <feMergeNode in="in-of-feDropShadow"/>
+  </feMerge>
+
+  </filter>
+
+
+</svg>

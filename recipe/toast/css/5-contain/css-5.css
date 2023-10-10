@@ -1,0 +1,10 @@
+﻿aside, main {
+  container-type: inline-size;
+}
+
+aside { font-size: 16px; }
+main { font-size: 24px; }
+
+@container (width > 40em) {
+  h2 { font-size: 1.5em; }
+}

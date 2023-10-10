@@ -80,6 +80,9 @@ template < > struct type_master < t_captionalign > : four_value < t_captionalign
 template < > struct type_master < t_cc_requires > : four_value < t_cc_requires, e_cc_requires, sz_cc_attribution, sz_cc_notice, sz_cc_sharealike, sz_cc_sourcecode >
 { using four_value < t_cc_requires, e_cc_requires, sz_cc_attribution, sz_cc_notice, sz_cc_sharealike, sz_cc_sourcecode > :: four_value; };
 
+template < > struct type_master < t_cens > : four_value < t_cens, e_cens, sz_centre, sz_end, sz_none, sz_start >
+{ using four_value < t_cens, e_cens, sz_centre, sz_end, sz_none, sz_start > :: four_value; };
+
 template < > struct type_master < t_channelselector > : four_value < t_channelselector, e_channelselector, sz_a, sz_b, sz_g, sz_r >
 { using four_value < t_channelselector, e_channelselector, sz_a, sz_b, sz_g, sz_r > :: four_value; };
 

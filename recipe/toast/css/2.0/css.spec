@@ -451,7 +451,7 @@ PASS ../toast/css/2.0/css-12-6-4.html
 
 PASS ../toast/css/2.0/css-12-6-5.html
 0 charset_mismatch charset_used
-24 css_version naughty_content deprecated
+24 css_version deprecated naughty_content
 36 inserted_missing_closure
 38 inserted_missing_closure
 39 inserted_missing_closure missing_close

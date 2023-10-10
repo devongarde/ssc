@@ -401,7 +401,7 @@ typedef typed_attribute < t_text, a_intrinsicsize > attr_intrinsicsize;
 typedef typed_attribute < t_html_boolean, a_irrelevant > attr_irrelevant;
 typedef typed_attribute < t_is, a_is > attr_is;
 typedef typed_attribute < t_existential, a_ismap > attr_ismap;
-typedef typed_attribute < t_generic, a_isolation > attr_isolation;
+typedef typed_attribute < t_css_isolation, a_isolation > attr_isolation;
 typedef typed_attribute < t_generic, a_item > attr_item;
 typedef typed_attribute < t_itemid, a_itemid > attr_itemid;
 typedef typed_attribute < t_itemprop, a_itemprop > attr_itemprop;

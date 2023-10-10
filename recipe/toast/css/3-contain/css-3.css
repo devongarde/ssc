@@ -1,0 +1,9 @@
+﻿img {
+  width: 100px;
+  aspect-ratio: 1/1;
+  contain: size;
+}
+
+article {flow-into: foo;}
+#a, #b, #c, #d, #e, #f {flow-from: foo;}
+aside {contain: layout}

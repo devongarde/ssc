@@ -1,0 +1,7 @@
+﻿/* The fallback value does not rely on containment */
+h2 { font-size: 1.2em; }
+
+@container (inline-size >= 0px) {
+  /* only applies when an inline-size container is available */
+  h2 { font-size: calc(1.2em + 1cqi); }
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>contain 4 example</title>
+  </head>
+<body>
+
+<style>
+.sv {
+  content-visibility: auto;
+  min-height: 50px;
+}
+</style>
+
+<div class=sv>
+  ... some content goes here ...
+</div>
+
+<style>
+.sv {
+  content-visibility: hidden;
+}
+</style>
+
+<div class=sv>
+  ... some content goes here ...
+</div>
+
+<style>
+body {
+  margin: 0;
+}
+.sv {
+  content-visibility: hidden;
+  position: relative;
+  left: 10px;
+  top: 20px;
+}
+#child {
+  position: relative;
+  left: 1px;
+  top: 2px;
+  width: 100px;
+  height: 200px;
+}
+</style>
+
+<div id=target class=sv>
+  <div id=child></div>
+  ... some other content goes here ...
+</div>
+<script>
+  ...
+  // This will force rendering work, including layout,
+  // if the UA previously avoided it.
+  target.firstElementChild.getBoundingClientRect();
+  ...
+</script>
+
+
+</body>
+</html>

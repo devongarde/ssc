@@ -28,10 +28,14 @@
 ../toast/css/4-colour/css.spec
 ../toast/css/5-colour/css.spec
 ../toast/css/3-compositing/css.spec
+../toast/css/3-contain/css.spec
+../toast/css/4-contain/css.spec
+../toast/css/5-contain/css.spec
 ../toast/css/3-cr/css.spec
 ../toast/css/3-cs/css.spec
 ../toast/css/3-display/css.spec
 ../toast/css/3-fbl/css.spec
+../toast/css/3-filter/css.spec
 ../toast/css/3-font/css.spec
 ../toast/css/4-font/css.spec
 ../toast/css/5-font/css.spec
@@ -51,6 +55,7 @@
 ../toast/css/3-sel/css.spec
 ../toast/css/4-sel/css.spec
 ../toast/css/3-shape/css.spec
+../toast/css/3-snap/css.spec
 ../toast/css/3-speech/css.spec
 ../toast/css/3-style/css.spec
 ../toast/css/3-syntax/css.spec

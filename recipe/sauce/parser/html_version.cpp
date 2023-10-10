@@ -689,11 +689,13 @@ e_css_version html_version::css_version () const noexcept
     res += subver (b, css_colour (), "Col");
     res += subver (b, css_compositing (), "Cmp");
     res += subver (b, css_conditional_rule (), "CoR");
+    res += subver (b, css_contain (), "Con");
     res += subver (b, css_counter_style (), "CoS");
     res += subver (b, css_custom (), "Cus");
     res += subver (b, css_display (), "Dsp");
     res += subver (b, css_ease (), "Eas");
     res += subver (b, css_fbl (), "FBL");
+    res += subver (b, css_filter (), "Fil");
     res += subver (b, css_font (), "Fon");
     res += subver (b, css_fragmentation (), "Fra");
     res += subver (b, css_grid (), "Grd");
@@ -987,6 +989,20 @@ void html_version::css_conditional_rule (const int n)
         case 3 : set_ext2 (H2_CSS_COND_RULE_3); break;
         default : break; } }
 
+int html_version::css_contain () const
+{   if ((ext3 () & H3_CSS_CONTAIN_5) == H3_CSS_CONTAIN_5) return 5;   
+    if ((ext3 () & H3_CSS_CONTAIN_4) == H3_CSS_CONTAIN_4) return 4;   
+    if ((ext3 () & H3_CSS_CONTAIN_3) == H3_CSS_CONTAIN_3) return 3;   
+    return 0; }
+
+void html_version::css_contain (const int n)
+{   reset_ext3 (H3_CSS_CONTAIN_MASK);
+    switch (n)
+    {   case 5 : set_ext3 (H3_CSS_CONTAIN); break;
+        case 4 : set_ext3 (H3_CSS_CONTAIN_34); break;
+        case 3 : set_ext3 (H3_CSS_CONTAIN_3); break;
+        default : break; } }
+
 int html_version::css_counter_style () const
 {   if (any_ext2 (H2_CSS_CS_3)) return 3;
     return 0; }
@@ -1026,6 +1042,14 @@ int html_version::css_fbl () const
 void html_version::css_fbl (const int n)
 {   if (n > 0) set_ext2 (H2_CSS_FBL_3);
     else reset_ext2 (H2_CSS_FBL_3); }
+
+int html_version::css_filter () const
+{   if (any_ext3 (H3_CSS_FILTER)) return 3;
+    return 0; }
+
+void html_version::css_filter (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_FILTER);
+    else reset_ext3 (H3_CSS_FILTER); }
 
 int html_version::css_font () const
 {   if ((ext2 () & H2_CSS_FONT_5) == H2_CSS_FONT_5) return 5;   
@@ -1144,6 +1168,14 @@ void html_version::css_shape (const int n)
 {   reset_ext3 (H3_CSS_SHAPE_MASK);
     if (n == 3) set_ext3 (H3_CSS_SHAPE_3);
     else if (n == 4) set_ext3 (H3_CSS_SHAPE_4); }
+
+int html_version::css_snap () const
+{   if (any_ext3 (H3_CSS_SNAP)) return 3;
+    return 0; }
+
+void html_version::css_snap (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_SNAP);
+    else reset_ext3 (H3_CSS_SNAP); }
 
 int html_version::css_speech () const
 {   if (any_ext3 (H3_CSS_SPEECH)) return 3;
@@ -1330,11 +1362,13 @@ bool html_version::tv_profile () const
         if (css_cascade () > 0) append (res, " / ", long_level_2 ("Cascade", H2_CSS_CASCADE_3, H2_CSS_CASCADE_4, H2_CSS_CASCADE_5, H2_CSS_CASCADE_6));
         if (css_colour () > 0) append (res, " / ", long_level_2 ("Colour", H2_CSS_COLOUR_3, H2_CSS_COLOUR_4, H2_CSS_COLOUR_5));
         if (css_compositing () > 0) append (res, " / ", ::std::string ("Compositing and Blending"));
+        if (css_contain () > 0) append (res, " / ", long_level_3 ("Contain", H3_CSS_CONTAIN_3, H3_CSS_CONTAIN_4, H3_CSS_CONTAIN_5));
         if (css_counter_style () > 0) append (res, " / ", ::std::string ("Counter Style"));
         if (css_custom () > 0) append (res, " / ", ::std::string ("Custom Properties for Cascading Variables"));
         if (css_display () > 0) append (res, " / ", ::std::string ("Display"));
         if (css_ease () > 0) append (res, " / ", ::std::string ("Easing Functions"));
         if (css_fbl () > 0) append (res, " / ", ::std::string ("Flexible Box Layout"));
+        if (css_filter () > 0) append (res, " / ", ::std::string ("Filter Effects"));
         if (css_font () > 0) append (res, " / ", long_level_2 ("Fonts", H2_CSS_FONT_3, H2_CSS_FONT_4, H2_CSS_FONT_5));
         if (css_fragmentation () > 0) append (res, " / ", long_level_2 ("Fragmentation", H2_CSS_FRAG_3, H2_CSS_FRAG_4));
         if (css_grid () > 0) append (res, " / ", long_level_3 ("Grid", H3_CSS_GRID_3, H3_CSS_GRID_4));
