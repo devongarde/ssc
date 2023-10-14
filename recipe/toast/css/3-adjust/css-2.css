@@ -1,0 +1,23 @@
+﻿:root {
+  color-scheme: light dark;
+}
+
+:root {
+  color-scheme: light;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+:root {
+  color-scheme: light dark;
+}
+
+.light-theme-example {
+  color-scheme: light;
+}
+
+.dark-theme-example {
+  color-scheme: dark;
+}

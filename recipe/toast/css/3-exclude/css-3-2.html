@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>CSS 3 exclusions test pages</title>
+<style>
+#d1 {
+    position:relative;
+    height: auto;
+    color: #46A4E9;
+    border: 1px solid gray;
+}
+
+#e1 {
+    wrap-flow: both;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 40%;
+    height: 40%;
+    border: 1px solid red;
+    margin-left: -20%;
+    margin-top: -20%;
+}
+
+#d2 {
+    position: static;
+    width: 100%;
+    height: auto;
+    color: #808080;
+}
+
+#e2 {
+    wrap-flow: both;
+    position: absolute;
+    right: 5ex;
+    top: 1em;
+    width: 12ex;
+    height: 10em;
+    border: 1px solid lime;
+}
+</style>
+<body>
+    <div id="d1">
+        Lorem ipsusm ...
+        <p id="e1"></p>
+    </div>
+    <div id="d2">
+        Lorem ipsusm ...
+        <p id="e2" ></p>
+    </div>
+</body>
+</html>

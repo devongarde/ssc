@@ -561,9 +561,9 @@ bool test_not_extension (const html_version& lhs, const html_version& rhs) noexc
         default : break; }
     return false; }
 
+// have encountered occasional bugs with 64 bit manipulation on some platforms (a & b), but the &= operator appears reliable, so ...
 bool is_excluded (const html_version& lhs, const html_version& rhs, const flags_t mask)
 {   PRESUME (mask != 0, __FILE__, __LINE__);
-    // have encountered occasional bugs with 64 bit manipulation on some platforms (a & b), but the &= operator appears reliable, so ...
     flags_t a = mask, b = mask;
     a &= lhs.ext ();
     b &= rhs.ext ();
@@ -573,7 +573,6 @@ bool is_excluded (const html_version& lhs, const html_version& rhs, const flags_
 
 bool is_excluded2 (const html_version& lhs, const html_version& rhs, const flags_t mask)
 {   PRESUME (mask != 0, __FILE__, __LINE__);
-    // have encountered occasional bugs with 64 bit manipulation on some platforms (a & b), but the &= operator appears reliable, so ...
     flags_t a = mask, b = mask;
     a &= lhs.ext2 ();
     b &= rhs.ext2 ();
@@ -583,7 +582,6 @@ bool is_excluded2 (const html_version& lhs, const html_version& rhs, const flags
 
 bool is_excluded3 (const html_version& lhs, const html_version& rhs, const flags_t mask)
 {   PRESUME (mask != 0, __FILE__, __LINE__);
-    // have encountered occasional bugs with 64 bit manipulation on some platforms (a & b), but the &= operator appears reliable, so ...
     flags_t a = mask, b = mask;
     a &= lhs.ext3 ();
     b &= rhs.ext3 ();
@@ -680,41 +678,50 @@ e_css_version html_version::css_version () const noexcept
     else if (all_ext2 (H2_CSS_1)) { res = "1"; b = 1; }
     else return "";
     PRESUME (b < 7, __FILE__, __LINE__);
+    res += subver (b, css_adjust (), "Adj");
     res += subver (b, css_animation (), "Ani");
     res += subver (b, css_background (), "Bac");
     res += subver (b, css_box_alignment (), "BxA");
     res += subver (b, css_box_model (), "BxM");
     res += subver (b, css_box_sizing (), "BxS");
     res += subver (b, css_cascade (), "Cas");
-    res += subver (b, css_colour (), "Col");
     res += subver (b, css_compositing (), "Cmp");
-    res += subver (b, css_conditional_rule (), "CoR");
+    res += subver (b, css_colour (), "Col");
     res += subver (b, css_contain (), "Con");
+    res += subver (b, css_conditional_rule (), "CoR");
     res += subver (b, css_counter_style (), "CoS");
     res += subver (b, css_custom (), "Cus");
+    res += subver (b, css_device (), "Dev");
     res += subver (b, css_display (), "Dsp");
     res += subver (b, css_ease (), "Eas");
+    res += subver (b, css_exclude (), "Exc");
     res += subver (b, css_fbl (), "FBL");
     res += subver (b, css_filter (), "Fil");
     res += subver (b, css_font (), "Fon");
     res += subver (b, css_fragmentation (), "Fra");
     res += subver (b, css_grid (), "Grd");
     res += subver (b, css_image (), "Img");
-    res += subver (b, css_masking (), "Msk");
+    res += subver (b, css_inline (), "Inl");
+    res += subver (b, css_line_grid (), "LnG");
+    res += subver (b, css_lists (), "Lst");
+    res += subver (b, css_logic (), "Log");
     res += subver (b, css_media (), "Med");
     res += subver (b, css_multi_column (), "Mlt");
+    res += subver (b, css_masking (), "Msk");
     res += subver (b, css_namespace (), "Ns");
     res += subver (b, css_overflow (), "OFl");
     res += subver (b, css_position (), "Pos");
+    res += subver (b, css_scrollbar (), "Scr");
     res += subver (b, css_selector (), "Sel");
     res += subver (b, css_shape (), "Shp");
     res += subver (b, css_speech (), "Spe");
     res += subver (b, css_style (), "Sty");
     res += subver (b, css_syntax (), "Syn");
     res += subver (b, css_table (), "Tab");
-    res += subver (b, css_text_decoration (), "Txd");
     res += subver (b, css_transform (), "Trf");
     res += subver (b, css_transition (), "Tri");
+    res += subver (b, css_text_decoration (), "Txd");
+    res += subver (b, css_text (), "Txt");
     res += subver (b, css_ui (), "UI");
     res += subver (b, css_value (), "Val");
     res += subver (b, css_will_change (), "WC");
@@ -725,15 +732,93 @@ void html_version::css_version (const e_css_version v) noexcept
 {   reset_ext2 (H2_FULL_CSS_MASK);
     reset_ext3 (H3_FULL_CSS_MASK);
     switch (v)
-    {   case css_1 : set_ext2 (H2_CSS_1); break;
-        case css_2_0 : set_ext2 (H2_CSS_2_0_FULL); break;
-        case css_2_1 : set_ext2 (H2_CSS_2_1_FULL); break;
-        case css_2_2 : set_ext2 (H2_CSS_2_2_FULL); break;
-        case css_3 : set_ext2 (H2_CSS_3_FULL); set_ext3 (H3_CSS_3_FULL); break;
-        case css_4 : set_ext2 (H2_CSS_4_FULL); set_ext3 (H3_CSS_4_FULL); break;
-        case css_5 : set_ext2 (H2_CSS_5_FULL); set_ext3 (H3_CSS_5_FULL); break;
-        case css_6 : set_ext2 (H2_CSS_6_FULL); set_ext3 (H3_CSS_6_FULL); break;
-        default : break; } }
+    {   case css_1 :        set_ext2 (H2_CSS_1);
+                            break;
+        case css_2_0 :      set_ext2 (H2_CSS_2_0_FULL);
+                            break;
+        case css_2_1 :      set_ext2 (H2_CSS_2_1_FULL);
+                            break;
+        case css_2_2 :      set_ext2 (H2_CSS_2_2_FULL);
+                            break;
+        case css_3 :        set_ext2 (H2_CSS_3_FULL);
+                            set_ext3 (H3_CSS_3_FULL);
+                            break;
+        case css_4 :        set_ext2 (H2_CSS_4_FULL);
+                            set_ext3 (H3_CSS_4_FULL);
+                            break;
+        case css_5 :        set_ext2 (H2_CSS_5_FULL);
+                            set_ext3 (H3_CSS_5_FULL);
+                            break;
+        case css_6 :        set_ext2 (H2_CSS_6_FULL);
+                            set_ext3 (H3_CSS_6_FULL);
+                            break;
+        case css_2007 :     set_ext2 (H2_CSS_2_1_FULL | H2_CSS_2007);
+                            set_ext3 (H3_CSS_2007);
+                            break;
+        case css_2010 :     set_ext2 (H2_CSS_2_1_FULL | H2_CSS_2010);
+                            set_ext3 (H3_CSS_2010);
+                            break;
+        case css_2015 :     set_ext2 (H2_CSS_2_1_FULL | H2_CSS_2015);
+                            set_ext3 (H3_CSS_2015);
+                            break;
+        case css_2015_1 :   set_ext2 (H2_CSS_2_1_FULL | H2_CSS_2015 | H2_CSS_2015_1);
+                            set_ext3 (H3_CSS_2015_1);
+                            break;
+        case css_2017 :     set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2017);
+                            set_ext3 (H3_CSS_2017);
+                            break;
+        case css_2017_1 :   set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2017 | H2_CSS_2017_1);
+                            set_ext3 (H3_CSS_2017 | H3_CSS_2017_1);
+                            break;
+        case css_2017_2 :   set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2017 | H2_CSS_2017_1 | H2_CSS_2017_2);
+                            set_ext3 (H3_CSS_2017 | H3_CSS_2017_1 | H3_CSS_2017_2);
+                            break;
+        case css_2018 :     set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2018);
+                            set_ext3 (H3_CSS_2018);
+                            break;
+        case css_2018_1 :   set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2018 | H2_CSS_2018_1);
+                            set_ext3 (H3_CSS_2018 | H3_CSS_2018_1);
+                            break;
+        case css_2018_2 :   set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2018 | H2_CSS_2018_1 | H2_CSS_2018_2);
+                            set_ext3 (H3_CSS_2018 | H3_CSS_2018_1 | H3_CSS_2018_2);
+                            break;
+        case css_2020 :     set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2020);
+                            set_ext3 (H3_CSS_2020);
+                            break;
+        case css_2020_1 :   set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2020 | H2_CSS_2020_1);
+                            set_ext3 (H3_CSS_2020 | H3_CSS_2020_1);
+                            break;
+        case css_2020_2 :   set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2020 | H2_CSS_2020_1 | H2_CSS_2020_2);
+                            set_ext3 (H3_CSS_2020 | H3_CSS_2020_1 | H3_CSS_2020_2);
+                            break;
+        case css_2021 :     set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2021);
+                            set_ext3 (H3_CSS_2021);
+                            break;
+        case css_2021_1 :   set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2021 | H2_CSS_2021_1);
+                            set_ext3 (H3_CSS_2021 | H3_CSS_2021_1);
+                            break;
+        case css_2021_2 :   set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2021 | H2_CSS_2021_1 | H2_CSS_2021_2);
+                            set_ext3 (H3_CSS_2021 | H3_CSS_2021_1 | H3_CSS_2021_2);
+                            break;
+        case css_2022 :     set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2022);
+                            set_ext3 (H3_CSS_2022);
+                            break;
+        case css_2022_1 :   set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2022 | H2_CSS_2022_1);
+                            set_ext3 (H3_CSS_2022 | H3_CSS_2022_1);
+                            break;
+        case css_2022_2 :   set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2022 | H2_CSS_2022_1 | H2_CSS_2022_2);
+                            set_ext3 (H3_CSS_2022 | H3_CSS_2022_1 | H3_CSS_2022_2);
+                            break;
+        case css_2023 :     set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2023);
+                            set_ext3 (H3_CSS_2023);
+                            break;
+        case css_2023_1 :   set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2023 | H2_CSS_2023_1);
+                            set_ext3 (H3_CSS_2023 | H3_CSS_2023_1);
+                            break;
+        case css_2023_2 :   set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2023 | H2_CSS_2023_1 | H2_CSS_2023_2);
+                            set_ext3 (H3_CSS_2023 | H3_CSS_2023_1 | H3_CSS_2023_2);
+                            break;
+        default :           break; } }
 
 e_rdf_version html_version::rdf_version () const noexcept
 {   if (all_ext (HE_RDFA)) return rdf_a;
@@ -893,6 +978,14 @@ bool html_version::svg_limited (const e_svg_version v) const noexcept
         default : break; }
     return false; }
 
+int html_version::css_adjust () const
+{   if (any_ext3 (H3_CSS_ADJUST)) return 3;
+    return 0; }
+
+void html_version::css_adjust (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_ADJUST);
+    else reset_ext3 (H3_CSS_ADJUST); }
+
 int html_version::css_animation () const
 {   if ((ext2 () & H2_CSS_ANIM_4) == H2_CSS_ANIM_4) return 4;   
     if ((ext2 () & H2_CSS_ANIM_3) == H2_CSS_ANIM_3) return 3;   
@@ -1019,6 +1112,14 @@ void html_version::css_custom (const int n)
 {   if (n > 0) set_ext2 (H2_CSS_CUSTOM);
     else reset_ext2 (H2_CSS_CUSTOM); }
 
+int html_version::css_device () const
+{   if (any_ext3 (H3_CSS_DEVICE)) return 3;
+    return 0; }
+
+void html_version::css_device (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_DEVICE);
+    else reset_ext3 (H3_CSS_DEVICE); }
+
 int html_version::css_display () const
 {   if (any_ext3 (H3_CSS_DISPLAY)) return 3;
     return 0; }
@@ -1034,6 +1135,15 @@ int html_version::css_ease () const
 void html_version::css_ease (const int n)
 {   if (n > 0) set_ext2 (H2_CSS_EASE);
     else reset_ext2 (H2_CSS_EASE); }
+
+int html_version::css_exclude () const
+{   if (any_ext3 (H3_CSS_EXCLUDE)) return 3;
+    return 0; }
+
+void html_version::css_exclude (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_EXCLUDE);
+    else reset_ext3 (H3_CSS_DEVICE); }
+
 
 int html_version::css_fbl () const
 {   if (any_ext2 (H2_CSS_FBL_3)) return 3;
@@ -1095,6 +1205,38 @@ void html_version::css_image (const int n)
     if (n == 4) set_ext3 (H3_CSS_IMAGE);
     else if (n == 3) set_ext3 (H3_CSS_IMAGE_3); }
 
+int html_version::css_inline () const
+{   if (any_ext3 (H3_CSS_INLINE)) return 3;
+    return 0; }
+
+void html_version::css_inline (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_INLINE);
+    else reset_ext3 (H3_CSS_INLINE); }
+
+int html_version::css_line_grid () const
+{   if (any_ext3 (H3_CSS_LINE_GRID)) return 3;
+    return 0; }
+
+void html_version::css_line_grid (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_LINE_GRID);
+    else reset_ext3 (H3_CSS_LINE_GRID); }
+
+int html_version::css_lists () const
+{   if (any_ext3 (H3_CSS_LISTS)) return 3;
+    return 0; }
+
+void html_version::css_lists (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_LISTS);
+    else reset_ext3 (H3_CSS_LISTS); }
+
+int html_version::css_logic () const
+{   if (any_ext3 (H3_CSS_LOGIC)) return 3;
+    return 0; }
+
+void html_version::css_logic (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_LOGIC);
+    else reset_ext3 (H3_CSS_LOGIC); }
+
 int html_version::css_masking () const
 {   if (any_ext3 (H3_CSS_MASKING)) return 3;
     return 0; }
@@ -1148,6 +1290,14 @@ int html_version::css_position () const
 void html_version::css_position (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_POSITION);
     else reset_ext3 (H3_CSS_POSITION); }
+
+int html_version::css_scrollbar () const
+{   if (any_ext3 (H3_CSS_SCROLLBAR)) return 3;
+    return 0; }
+
+void html_version::css_scrollbar (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_SCROLLBAR);
+    else reset_ext3 (H3_CSS_SCROLLBAR); }
 
 int html_version::css_selector () const
 {   if ((ext2 () & H2_CSS_SELECTOR_4) == H2_CSS_SELECTOR_4) return 4;   
@@ -1208,6 +1358,16 @@ int html_version::css_table () const
 void html_version::css_table (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_TABLE);
     else reset_ext3 (H3_CSS_TABLE); }
+
+int html_version::css_text () const
+{   if ((ext3 () & H3_CSS_TEXT_4) == H3_CSS_TEXT_4) return 4;
+    if ((ext3 () & H3_CSS_TEXT_3) == H3_CSS_TEXT_3) return 3;
+    return 0; }
+
+void html_version::css_text (const int n)
+{   reset_ext3 (H3_CSS_TEXT_MASK);
+    if (n == 4) set_ext3 (H3_CSS_TEXT_34);
+    else if (n == 3) set_ext3 (H3_CSS_TEXT_3); }
 
 int html_version::css_text_decoration () const
 {   if ((ext3 () & H3_CSS_TEXTDEC_4) == H3_CSS_TEXTDEC_4) return 4;
@@ -1293,7 +1453,7 @@ bool html_version::is_css_compatible (nitpick& nits, const flags_t& f, const fla
     nits.pick (nit_css_version, es_error, ec_css, "CSS ", long_css_version_name (), " required");   
     return false; }
 
-void html_version::check_css_status (nitpick& nits, const ::std::string& s) const
+void html_version::check_status (nitpick& nits, const ::std::string& s) const
 {   if (context.profile_checks ())
     {   if (context.mobile_profile () && ((ext3_ & H3_NOT_MOBILE) == H3_NOT_MOBILE))
             nits.pick (nit_profile, es_warning, ec_css, s, " may be ignored when the CSS Mobile profile applies");   
@@ -1301,6 +1461,10 @@ void html_version::check_css_status (nitpick& nits, const ::std::string& s) cons
             nits.pick (nit_profile, es_warning, ec_css, s, " may be ignored when the CSS Print profile applies");   
         if (context.tv_profile () && ((ext3_ & H3_NOT_TV) == H3_NOT_TV))
             nits.pick (nit_profile, es_warning, ec_css, s, " may be ignored when the CSS TV profile applies"); }
+    if (abandoned ())
+        nits.pick (nit_abandoned, es_warning, ec_css, s, " is from an abandoned, unfinished and unimplemented specification: it will at best be ignored");
+    if (dinosaur ())
+        nits.pick (nit_dinosaur, es_warning, ec_css, s, " is ancient and will not be recognised");
     if (css_deprecated ())   
         nits.pick (nit_deprecated, es_warning, ec_css, s, " has been deprecated and should not be used"); }
 
@@ -1361,29 +1525,38 @@ bool html_version::tv_profile () const
         if (css_box_sizing () > 0) append (res, " / ", ::std::string ("Box Sizing"));
         if (css_cascade () > 0) append (res, " / ", long_level_2 ("Cascade", H2_CSS_CASCADE_3, H2_CSS_CASCADE_4, H2_CSS_CASCADE_5, H2_CSS_CASCADE_6));
         if (css_colour () > 0) append (res, " / ", long_level_2 ("Colour", H2_CSS_COLOUR_3, H2_CSS_COLOUR_4, H2_CSS_COLOUR_5));
+        if (css_adjust () > 0) append (res, " / ", ::std::string ("Colour Adjustment"));
         if (css_compositing () > 0) append (res, " / ", ::std::string ("Compositing and Blending"));
         if (css_contain () > 0) append (res, " / ", long_level_3 ("Contain", H3_CSS_CONTAIN_3, H3_CSS_CONTAIN_4, H3_CSS_CONTAIN_5));
         if (css_counter_style () > 0) append (res, " / ", ::std::string ("Counter Style"));
         if (css_custom () > 0) append (res, " / ", ::std::string ("Custom Properties for Cascading Variables"));
+        if (css_device () > 0) append (res, " / ", ::std::string ("Device Adaption"));
         if (css_display () > 0) append (res, " / ", ::std::string ("Display"));
         if (css_ease () > 0) append (res, " / ", ::std::string ("Easing Functions"));
+        if (css_exclude () > 0) append (res, " / ", ::std::string ("Exclusions"));
         if (css_fbl () > 0) append (res, " / ", ::std::string ("Flexible Box Layout"));
         if (css_filter () > 0) append (res, " / ", ::std::string ("Filter Effects"));
         if (css_font () > 0) append (res, " / ", long_level_2 ("Fonts", H2_CSS_FONT_3, H2_CSS_FONT_4, H2_CSS_FONT_5));
         if (css_fragmentation () > 0) append (res, " / ", long_level_2 ("Fragmentation", H2_CSS_FRAG_3, H2_CSS_FRAG_4));
         if (css_grid () > 0) append (res, " / ", long_level_3 ("Grid", H3_CSS_GRID_3, H3_CSS_GRID_4));
         if (css_image () > 0) append (res, " / ", long_level_3 ("Images", H3_CSS_IMAGE_3, H3_CSS_IMAGE_4));
+        if (css_inline () > 0) append (res, " / ", ::std::string ("Inline Layout"));
+        if (css_lists () > 0) append (res, " / ", ::std::string ("Lists and Counters"));
+        if (css_line_grid () > 0) append (res, " / ", ::std::string ("Line Grid"));
+        if (css_logic () > 0) append (res, " / ", ::std::string ("Logical Properties"));
         if (css_media () > 0) append (res, " / ", long_level_2 ("Media Queries", H2_CSS_MEDIA_3, H2_CSS_MEDIA_4, H2_CSS_MEDIA_5));
         if (css_multi_column () > 0) append (res, " / ", ::std::string ("Multi-Column"));
         if (css_namespace () > 0) append (res, " / ", ::std::string ("Namespaces"));
         if (css_overflow () > 0) append (res, " / ", ::std::string ("Overflow"));
         if (css_position () > 0) append (res, " / ", ::std::string ("Positions"));
+        if (css_scrollbar () > 0) append (res, " / ", ::std::string ("Scrollbar Style"));
         if (css_selector () > 0) append (res, " / ", long_level_2 ("Selectors", H2_CSS_SELECTOR_3, H2_CSS_SELECTOR_4));
         if (css_shape () > 0) append (res, " / ", long_level_3 ("Shapes", H3_CSS_SHAPE_3, H3_CSS_SHAPE_4));
         if (css_speech () > 0) append (res, " / ", ::std::string ("Speech"));
         if (css_style () > 0) append (res, " / ", ::std::string ("Style Attributes"));
         if (css_syntax () > 0) append (res, " / ", ::std::string ("Syntax Module"));
         if (css_table () > 0) append (res, " / ", ::std::string ("Tables"));
+        if (css_text () > 0) append (res, " / ", long_level_3 ("Text", H3_CSS_TEXT_3, H3_CSS_TEXT_4));
         if (css_text_decoration () > 0) append (res, " / ", long_level_3 ("Text Decoration", H3_CSS_TEXTDEC_3, H3_CSS_TEXTDEC_4));
         if (css_transform () > 0) append (res, " / ", long_level_3 ("Transforms", H3_CSS_TRANSFORM_3, H3_CSS_TRANSFORM_4));
         if (css_transition () > 0) append (res, " / ", ::std::string ("Transitions"));

@@ -51,6 +51,30 @@ template < e_type T, e_type P, class SZ > struct string_then_type : tidy_string 
             else if (test_value < P > (nits, v, ss.substr (len), tidy_string < T > :: id ())) return; }
         tidy_string < T > :: status (s_invalid); } };
 
+template < e_type T, e_type P, class SZ = sz_logical > struct maybe_logical_type : tidy_string < T >
+{   using tidy_string < T > :: tidy_string;
+    static e_animation_type animation_type () noexcept { return grab_animation_type < P > (); }
+    void accumulate (stats_t* s) const
+    {   if (tidy_string < T > :: good ()) tidy_string < T > :: accumulate (s); }
+    void accumulate (stats_t* s, const e_element e) const
+    {   if (tidy_string < T > :: good ()) tidy_string < T > :: accumulate (s, e); }
+    void accumulate (stats_t* s, const element_bitset& e) const
+    {   if (tidy_string < T > :: good ()) tidy_string < T > :: accumulate (s, e); }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < T > :: set_value (nits, v, s);
+        if (tidy_string < T > :: empty ())
+            nits.pick (nit_syntax, es_error, ec_type, "value(s) expected");
+        else if (tidy_string < T > :: good ())
+        {   ::std::string ss (tidy_string < T > :: get_string ());
+            const ::std::size_t len = strlen (SZ :: sz ());
+            if (ss.length () >= len)
+                if (compare_no_case (SZ :: sz (), ss.substr (0, len)))
+                {   if (context.css_logic () < 3)
+                    {   nits.pick (nit_css_version, es_error, ec_type, SZ :: sz (), " requires CSS Logical Properties level 3 or better");
+                        tidy_string < T > :: status (s_invalid); }
+                    ss = trim_the_lot_off (ss.substr (len)); }
+            if (test_value < P > (nits, v, ss, tidy_string < T > :: id ())) return; }
+        tidy_string < T > :: status (s_invalid); } };
 template < e_type T, class SZ1, class SZ2 > struct type_either_string : type_sz < T, SZ1, SZ2 >
 {   using type_sz < T, SZ1, SZ2 > :: type_sz; };
 

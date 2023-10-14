@@ -311,7 +311,7 @@ void statement::bracketed_property (arguments& args, nitpick& nits, const int to
     if ((child < 0) || ((args.t_.at (child).t_ != ct_keyword) && (args.t_.at (child).t_ != ct_identifier) && (args.t_.at (child).t_ != ct_round_brac)))
     {   nits.pick (nit_bad_import, es_error, ec_css, "expecting a bracketed condition"); i = -1; }
     int brackets = 1;
-    int j = child;
+    const int j = child;
     for (; (child > 0) && ((to < 0) || (child <= to)); child = next_non_whitespace (args.t_, child, to))
         switch (args.t_.at (child).t_)
         {   case ct_round_brac :
@@ -663,6 +663,17 @@ void statement::parse_supports (arguments& args, nitpick& nits, const int from, 
                 else if (i < ket-1) bracketed_property (args, nits, ket-1, i);
                 vst_.emplace_back (pst_t (new statements (args, args.t_.at (ket).child_))); } } } }
 
+void statement::parse_viewport (arguments& args, nitpick& nits, const int from, const int to)
+{   if (args.v_.css_device () < 3)
+        nits.pick (nit_css_version, es_error, ec_css, "@viewport requires CSS Device Adaption");
+    else
+    {   const int ket = token_find (args.t_, ct_curly_brac, from, to);
+        if (ket < 0)
+            nits.pick (nit_css_scope, es_error, ec_css, "@viewport requires { ... }");
+        else
+        {   fiddlesticks < statement > f (&args.st_, this);
+            dsc_.parse (args, css_counter_style, args.t_.at (ket).child_);; } } }
+
 void statement::parse (arguments& args, const int from, const int to)
 {   PRESUME (from <= to, __FILE__, __LINE__);
     PRESUME (from + 1 < GSL_NARROW_CAST < int > (args.t_.size ()), __FILE__, __LINE__);
@@ -749,6 +760,9 @@ void statement::parse (arguments& args, const int from, const int to)
             case css_supports :
                 parse_supports (args, nits, b, to);
                 break;
+            case css_viewport :
+                parse_viewport (args, nits, b, to);
+                break;
             case css_bottom_centre :
             case css_bottom_left :
             case css_bottom_left_corner :
@@ -761,7 +775,6 @@ void statement::parse (arguments& args, const int from, const int to)
             case css_top_right_corner :
                 break;
             case css_document :
-            case css_viewport :
                 break;
             case css_else :
             case css_when :

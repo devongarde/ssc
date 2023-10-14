@@ -43,16 +43,16 @@ ignored when checking spelling. Because the intervening HTML is so
 long, crossing a number of lines, and ssc reports small snippets of
 HTML per issue, to avoid spouting too much verbiage, it will not show
 sufficient HTML to see the entire misspelt word. That's why, for some
-errors, you must take the HTML snippet and corresponding line number as
-a hint, not an absolute. There is an issue, it is near the reported
-HTML and line number, but, in this case, is not actually there. Of
-course, the report of the misspelt word does report the word it
-considers misspelt (here, "taostd").
+errors, you must take the snippet and corresponding line number as a
+hint, not an absolute. There is an issue, it is near the reported HTML
+and line number, but, in this case, is not actually there. Of course,
+the report of the misspelt word does report the word it considers
+misspelt (here, "taostd").
 
 
 switches
 --------
-SSC has a number of switches:
+SSC has a number of switches, including:
 
 -h	        Output simple help
 -V	        Output the version of SSC
@@ -73,23 +73,22 @@ SSC has a number of switches:
 
 -I	        Process Server Side Includes
 -g dir      set website root directory (defaults to current directory)
--x xxx      treat files with extension xxx as HTML/XHTML (may be
-            repeated)
+-x xxx      treat files with extension xxx as HTML/XHTML
 -i file     file is index file in directories (default index.html)
--s dom      dom is the local site’s domain name (may be repeated)
+-s dom      dom is the local site’s domain name
 -L arg      Define virtual directory (arg is formatted
-            ‘virtual=physical’) (may be repeated)
+            ‘virtual=physical’)
 
 -e	        Check external links (each link is checked once per run,
             not once per encounter)
--3	        Report HTTP 301 and 308 as errors (e.g. forwarding)
+-3	        Report HTTP 301 and 308 as errors
 -l	        Check internal links
 -O	        Report each broken link only once, not each time it occurs
 -r	        Do not check whether https certificates have been revoked
--X	        Check crosslinked IDs (e.g. id attribute)
+-X	        Check crosslinked IDs
 
--M	        Check microformats.org set using class attribute
--m	        Check ontologies set using WhatWG microdata attributes
+-M	        Check microformats use of class attribute
+-m	        Check ontologies use of WhatWG microdata attributes
 
 -S	        Report site statistics
 

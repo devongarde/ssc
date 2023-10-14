@@ -37,8 +37,20 @@ template < > struct type_master < t_real_percent > : public type_either_or < t_r
 template < > struct type_master < t_real_percent_n > : public either_type_or_string < t_real_percent_n, t_percent, t_real, sz_none >
 {   using either_type_or_string < t_real_percent_n, t_percent, t_real, sz_none > :: either_type_or_string; };
 
+template < > struct type_master < t_real_perflex > : public type_either_or < t_real_perflex, t_percent_flexible, t_real >
+{   using type_either_or < t_real_perflex, t_percent_flexible, t_real > :: type_either_or; };
+
 template < > struct type_master < t_colourfn > : type_function_1_4_5 < t_colourfn, sz_color, t_css_rgb_xyz, t_percent_flexible, t_percent_flexible, t_percent_flexible, t_zero_to_one >
 { using type_function_1_4_5 < t_colourfn, sz_color, t_css_rgb_xyz, t_percent_flexible, t_percent_flexible, t_percent_flexible, t_zero_to_one > :: type_function_1_4_5; };
+
+template < > struct type_master < t_colour_schemes > : type_at_least_one < t_colour_schemes, sz_space_char, t_colour_scheme >
+{ using type_at_least_one < t_colour_schemes, sz_space_char, t_colour_scheme > :: type_at_least_one; };
+
+template < > struct type_master < t_colour_schemes_o > : type_and_maybe_string < t_colour_schemes_o, t_colour_scheme, sz_space_char, sz_only >
+{ using type_and_maybe_string < t_colour_schemes_o, t_colour_scheme, sz_space_char, sz_only > :: type_and_maybe_string; };
+
+template < > struct type_master < t_colour_schemes_n > : type_or_string < t_colour_schemes_n, t_colour_schemes_o, sz_normal >
+{ using type_or_string < t_colour_schemes_n, t_colour_schemes_o, sz_normal > :: type_or_string; };
 
 template < > struct type_master < t_scale_down > : type_string < t_scale_down, sz_scale_down >
 { using type_string < t_scale_down, sz_scale_down > :: type_string; };

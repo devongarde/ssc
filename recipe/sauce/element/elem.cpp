@@ -645,6 +645,7 @@ bool elem::under_parse (nitpick& nits, const html_version& v, const ::std::strin
 bool elem::parse (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& x)
 {   PRESUME (! x.empty (), __FILE__, __LINE__);
     ::std::string el (x), n;
+    first ().check_status (nits, el);
     ns (examine_namespace (nits, v, namespaces, el, n));
     if (el.empty ()) return false;
     nitpick knits;

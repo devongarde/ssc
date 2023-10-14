@@ -257,7 +257,7 @@ template < > struct type_master < t_display > : varied < t_display >
     void verify_attribute (nitpick& nits, const html_version& v, const elem& id, element* , const ::std::string& )
     {   if (good () || empty ())
             if (id.is_svg () || (id.get () == elem_a)) validate_type < type_master < t_svg_display > > (nits, v);
-            else if (id.is_math ()) validate_type < type_master < t_mathdisplay > > (nits, v); } };
+            else if (id.is_math ()) validate_type < type_master < t_block_inline > > (nits, v); } };
 
 template < > struct type_master < t_end > : varied < t_end >
 {   using varied < t_end > :: varied;

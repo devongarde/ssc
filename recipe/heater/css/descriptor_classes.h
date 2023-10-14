@@ -47,10 +47,18 @@ typedef typed_property < t_css_font_style_2, ec_font_style > desc_font_style;
 typedef typed_property < t_svg_fontvariant, ec_font_variant > desc_font_variant;
 typedef typed_property < t_css_font_variation_settings, ec_font_variation_settings > desc_font_variation_settings;
 typedef typed_property < t_css_font_weights, ec_font_weight > desc_font_weight;
+typedef typed_property < t_css_length_2, ec_height > desc_height;
 typedef typed_property < t_percent_flexible, ec_line_gap_override > desc_line_gap_override;
 typedef typed_property < t_percents_n, ec_line_gap_override > desc_line_gap_override_5;
 typedef typed_property < t_real, ec_mathline > desc_mathline;
+typedef typed_property < t_css_length_a, ec_max_height > desc_max_height;
+typedef typed_property < t_css_length_a, ec_max_width > desc_max_width;
+typedef typed_property < t_real_perflex, ec_max_zoom > desc_max_zoom;
+typedef typed_property < t_css_length_a, ec_min_height > desc_min_height;
+typedef typed_property < t_css_length_a, ec_min_width > desc_min_width;
+typedef typed_property < t_real_perflex, ec_min_zoom > desc_min_zoom;
 typedef typed_property < t_text_2, ec_negative > desc_negative;
+typedef typed_property < t_alp, ec_orientation > desc_orientation;
 typedef typed_property < t_css_override_colours, ec_override_colours > desc_override_colours;
 typedef typed_property < t_css_addsym, ec_pad > desc_pad;
 typedef typed_property < t_10_int, ec_panose_1 > desc_panose_1;
@@ -72,8 +80,11 @@ typedef typed_property < t_percents_nf, ec_superscript_size_override > desc_supe
 typedef typed_property < t_real, ec_topline > desc_topline;
 typedef typed_property < t_css_unicode_ranges, ec_unicode_range > desc_unicode_range;
 typedef typed_property < t_real, ec_units_per_em > desc_units_per_em;
+typedef typed_property < t_fixed_zoom, ec_user_zoom > desc_user_zoom;
+typedef typed_property < t_css_length_2, ec_width > desc_width;
 typedef typed_property < t_generic, ec_widths > desc_widths;
 typedef typed_property < t_real, ec_x_height > desc_x_height;
+typedef typed_property < t_real_perflex, ec_zoom > desc_zoom;
 typedef typed_property < t_unknown, ec_unknown > desc_unknown;
 
 #define COUNTER_DESCRIPTORS \
@@ -153,3 +164,16 @@ typedef typed_property < t_unknown, ec_unknown > desc_unknown;
     desc_base_palette, \
     desc_font_family, \
     desc_override_colours
+
+#define VIEWPORT_DESCRIPTORS \
+    desc_height, \
+    desc_max_height, \
+    desc_max_width, \
+    desc_max_zoom, \
+    desc_min_height, \
+    desc_min_width, \
+    desc_min_zoom, \
+    desc_orientation, \
+    desc_user_zoom, \
+    desc_width, \
+    desc_zoom

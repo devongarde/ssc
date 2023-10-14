@@ -136,6 +136,7 @@ struct symbol_entry < html_version, e_media > media_symbol_table [] =
     { { HTML_4_0, 0, 0, H2_CSS_2 | H2_CSS_MEDIA_3 }, { HTML_UNDEF }, "projection", md_projection, ns_default, CF_MEDIA_DEVICE },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "p3", md_p3, ns_default, CF_MEDIA_VALUE },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "px", md_px, ns_default, CF_MEDIA_UNIT },
+    { { HTML_4_0, HV_ABANDONED }, { HTML_UNDEF }, "reader", md_reader, ns_default, CF_MEDIA_DEVICE },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_45 | H2_CSS_COND_RULE }, { HTML_UNDEF }, "rec2020", md_rec2020, ns_default, CF_MEDIA_VALUE },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "reduce", md_reduce, ns_default, CF_MEDIA_VALUE },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "resolution", md_resolution, ns_default, CF_MEDIA_PROPERTY },

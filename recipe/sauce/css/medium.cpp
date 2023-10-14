@@ -294,6 +294,7 @@ void medium_t::check_feature_compatibility (nitpick& nits, const e_media media, 
                 default :
                     break; }
             break;
+        case md_reader :
         case md_tv :
             break;
         default :
@@ -913,12 +914,13 @@ bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
             case md_braille :
             case md_embossed :
             case md_handheld :
+            case md_print :
             case md_projection :
+            case md_reader :
+            case md_screen :
             case md_speech :
             case md_tty :
             case md_tv :
-            case md_screen :
-            case md_print :
             case md_all :
                 if ((device != md_all) && (device != md_error))
                 {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": ", enum_n < t_media, e_media > :: name (m.m_), " unexpected; is a comma missing?");

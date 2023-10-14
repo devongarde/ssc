@@ -1,0 +1,73 @@
+﻿::first-letter, /* style first paragraph’s T */
+img, /* style illuminated H */
+span /* style phrase inside span */
+{ initial-letter: 2; }
+
+h2 + p::first-letter { initial-letter: 2; }
+
+p::first-letter {
+  initial-letter: 3;
+  color: red;
+  width: 5em;
+  text-align: right;
+  margin-left: -5em;
+}
+
+p {
+  margin-left: 5em;
+}
+
+em { initial-letter: 2; }
+b, strong { initial-letter: 3; }
+
+span.initial {
+  initial-letter: 2;
+  initial-letter-align: ideographic;
+}
+
+[lang]:lang(zh, ja, ko, ii) {
+  initial-letter-align: ideographic;
+}
+[lang]:lang(hi, mr, ne, pi, kok, brx, mai, sd, sa) {
+  initial-letter-align: hanging;
+}
+/* Script tags override language tags */
+[lang]:lang('*-Latn', '*-Cyrl') {
+  initial-letter-align: alphabetic;
+}
+[lang]:lang('*-Hani', '*-Hant', '*-Hans') {
+  initial-letter-align: ideographic;
+}
+
+h1 + p:first-letter {
+  initial-letter: 3; /* 3-line drop-cap */
+  initial-letter-wrap: first;
+  margin-right: 0.1em;
+}
+@supports (not (initial-letter-wrap: first)) {
+  /* Classes auto-generated on paragraphs to match first letter. */
+  p.A:first-letter {
+    initial-letter-wrap: -40%; /* Start of glyph outline, assuming correct font. */
+  }
+}
+
+p::first-letter {
+  initial-letter: 3;
+  initial-letter-wrap: none;
+}
+
+p::first-letter {
+  initial-letter: 3;
+  initial-letter-wrap: all;
+}
+
+p::first-letter {
+  initial-letter: 3;
+  initial-letter-wrap: first;
+}
+
+p::first-letter {
+  initial-letter: 3;
+  initial-letter-wrap: all;
+}
+

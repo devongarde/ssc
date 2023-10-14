@@ -1,0 +1,10 @@
+﻿.exclusion{ wrap-flow: auto; }
+.exclusion{ wrap-flow: both; }
+.exclusion{ wrap-flow: start; } 	
+.exclusion{ wrap-flow: end; }
+.exclusion{ wrap-flow: minimum; } 	
+.exclusion{ wrap-flow: maximum; }
+.exclusion{ wrap-flow: clear; }
+
+.middle { z-index: auto; } 	
+.middle { z-index: 1; }

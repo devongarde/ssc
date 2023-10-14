@@ -1296,6 +1296,27 @@
     <Filter Include="Toast\CSS\3-snap">
       <UniqueIdentifier>{1ae45685-3bdd-4a68-b096-a0a0433bece7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\CSS\3-scrollbar">
+      <UniqueIdentifier>{52cb58a8-4992-4b9c-abc3-cef97dc09d74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-logic">
+      <UniqueIdentifier>{7a41b15d-cca5-42fe-ae44-e6924055807a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-adjust">
+      <UniqueIdentifier>{1ffeb3db-63af-4616-a1bf-255753d46bba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\reader">
+      <UniqueIdentifier>{61fee840-0dc5-4f04-9bcf-2c3be0e0d023}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-device">
+      <UniqueIdentifier>{376a3843-e01e-4902-bdfe-63610dabfb59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-exclude">
+      <UniqueIdentifier>{8185b9e4-a9a3-4a74-9882-6104b5b1590e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-inline">
+      <UniqueIdentifier>{99155fb5-700e-4dd8-a319-b636b94608b4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -2673,6 +2694,12 @@
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_c_e.cpp">
       <Filter>Sauce\css</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\simple\type_jsonic.cpp">
+      <Filter>Sauce\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\simple\type_layout.cpp">
+      <Filter>Sauce\simple</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -33833,6 +33860,138 @@
     </None>
     <None Include="..\toast\css\3-snap\index.html">
       <Filter>Toast\CSS\3-snap</Filter>
+    </None>
+    <None Include="..\toast\css\3-scrollbar\css.conf">
+      <Filter>Toast\CSS\3-scrollbar</Filter>
+    </None>
+    <None Include="..\toast\css\3-scrollbar\css.spec">
+      <Filter>Toast\CSS\3-scrollbar</Filter>
+    </None>
+    <None Include="..\toast\css\3-scrollbar\css-2.css">
+      <Filter>Toast\CSS\3-scrollbar</Filter>
+    </None>
+    <None Include="..\toast\css\3-scrollbar\index.html">
+      <Filter>Toast\CSS\3-scrollbar</Filter>
+    </None>
+    <None Include="..\toast\css\3-scrollbar\css-3.css">
+      <Filter>Toast\CSS\3-scrollbar</Filter>
+    </None>
+    <None Include="..\toast\css\3-logic\css.conf">
+      <Filter>Toast\CSS\3-logic</Filter>
+    </None>
+    <None Include="..\toast\css\3-logic\css.spec">
+      <Filter>Toast\CSS\3-logic</Filter>
+    </None>
+    <None Include="..\toast\css\3-logic\css-1.css">
+      <Filter>Toast\CSS\3-logic</Filter>
+    </None>
+    <None Include="..\toast\css\3-logic\css-4.css">
+      <Filter>Toast\CSS\3-logic</Filter>
+    </None>
+    <None Include="..\toast\css\3-logic\index.html">
+      <Filter>Toast\CSS\3-logic</Filter>
+    </None>
+    <None Include="..\toast\css\3-adjust\index.html">
+      <Filter>Toast\CSS\3-adjust</Filter>
+    </None>
+    <None Include="..\toast\css\3-adjust\css.conf">
+      <Filter>Toast\CSS\3-adjust</Filter>
+    </None>
+    <None Include="..\toast\css\3-adjust\css.spec">
+      <Filter>Toast\CSS\3-adjust</Filter>
+    </None>
+    <None Include="..\toast\css\3-adjust\css-2.css">
+      <Filter>Toast\CSS\3-adjust</Filter>
+    </None>
+    <None Include="..\toast\css\3-adjust\css-3.css">
+      <Filter>Toast\CSS\3-adjust</Filter>
+    </None>
+    <None Include="..\toast\css\3-logic\css-1.html">
+      <Filter>Toast\CSS\3-logic</Filter>
+    </None>
+    <None Include="..\toast\css\reader\css.conf">
+      <Filter>Toast\CSS\reader</Filter>
+    </None>
+    <None Include="..\toast\css\reader\css.spec">
+      <Filter>Toast\CSS\reader</Filter>
+    </None>
+    <None Include="..\toast\css\reader\css-1.css">
+      <Filter>Toast\CSS\reader</Filter>
+    </None>
+    <None Include="..\toast\css\reader\index.html">
+      <Filter>Toast\CSS\reader</Filter>
+    </None>
+    <None Include="..\toast\css\3-device\css.conf">
+      <Filter>Toast\CSS\3-device</Filter>
+    </None>
+    <None Include="..\toast\css\3-device\css.spec">
+      <Filter>Toast\CSS\3-device</Filter>
+    </None>
+    <None Include="..\toast\css\3-device\css-4.css">
+      <Filter>Toast\CSS\3-device</Filter>
+    </None>
+    <None Include="..\toast\css\3-device\css-7.css">
+      <Filter>Toast\CSS\3-device</Filter>
+    </None>
+    <None Include="..\toast\css\3-device\css-9.css">
+      <Filter>Toast\CSS\3-device</Filter>
+    </None>
+    <None Include="..\toast\css\3-device\css-9.html">
+      <Filter>Toast\CSS\3-device</Filter>
+    </None>
+    <None Include="..\toast\css\3-device\css-11.css">
+      <Filter>Toast\CSS\3-device</Filter>
+    </None>
+    <None Include="..\toast\css\3-device\index.html">
+      <Filter>Toast\CSS\3-device</Filter>
+    </None>
+    <None Include="..\toast\css\3-exclude\index.html">
+      <Filter>Toast\CSS\3-exclude</Filter>
+    </None>
+    <None Include="..\toast\css\3-exclude\css.conf">
+      <Filter>Toast\CSS\3-exclude</Filter>
+    </None>
+    <None Include="..\toast\css\3-exclude\css.spec">
+      <Filter>Toast\CSS\3-exclude</Filter>
+    </None>
+    <None Include="..\toast\css\3-exclude\css-3-1.html">
+      <Filter>Toast\CSS\3-exclude</Filter>
+    </None>
+    <None Include="..\toast\css\3-exclude\css-3-2.html">
+      <Filter>Toast\CSS\3-exclude</Filter>
+    </None>
+    <None Include="..\toast\css\3-exclude\css-3.css">
+      <Filter>Toast\CSS\3-exclude</Filter>
+    </None>
+    <None Include="..\toast\css\3-inline\index.html">
+      <Filter>Toast\CSS\3-inline</Filter>
+    </None>
+    <None Include="..\toast\css\3-inline\css.conf">
+      <Filter>Toast\CSS\3-inline</Filter>
+    </None>
+    <None Include="..\toast\css\3-inline\css.spec">
+      <Filter>Toast\CSS\3-inline</Filter>
+    </None>
+    <None Include="..\toast\css\3-inline\css-4.css">
+      <Filter>Toast\CSS\3-inline</Filter>
+    </None>
+    <None Include="..\toast\css\3-inline\css-4.html">
+      <Filter>Toast\CSS\3-inline</Filter>
+    </None>
+    <None Include="..\toast\css\3-inline\css-5.css">
+      <Filter>Toast\CSS\3-inline</Filter>
+    </None>
+    <None Include="..\toast\css\3-inline\css-6.css">
+      <Filter>Toast\CSS\3-inline</Filter>
+    </None>
+    <None Include="..\toast\css\3-inline\css-6.html">
+      <Filter>Toast\CSS\3-inline</Filter>
+    </None>
+    <None Include="..\toast\css\3-inline\css-a.css">
+      <Filter>Toast\CSS\3-inline</Filter>
+    </None>
+    <None Include="..\toast\css\3-inline\css-a.html">
+      <Filter>Toast\CSS\3-inline</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

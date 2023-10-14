@@ -451,5 +451,8 @@ template < > struct type_master < t_m4_to_4 > : type_number_between < t_m4_to_4,
 template < > struct type_master < t_m50_to_100 > : type_integer_between < t_m50_to_100, short, -50, 100 >
 { using  type_integer_between < t_m50_to_100, short, -50, 100 > :: type_integer_between; };
 
+template < > struct type_master < t_real_1_up > : n_or_more < 1 >
+{ using  n_or_more < 1 > :: n_or_more; };
+
 template < > struct type_master < t_zero_or_one > : type_integer_between < t_zero_or_one, short, 0, 1 >
 { using  type_integer_between < t_zero_or_one, short, 0, 1 > :: type_integer_between; };

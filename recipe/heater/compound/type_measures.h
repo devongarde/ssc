@@ -25,6 +25,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 template < > struct type_master < t_measures > : type_at_least_none < t_measures, sz_space_comma, t_measure >
 { using type_at_least_none < t_measures, sz_space_comma, t_measure > :: type_at_least_none; };
 
+template < > struct type_master < t_measure_2 > : type_range < t_measure_2, sz_space_char, t_measure, 1, 2 >
+{ using type_range < t_measure_2, sz_space_char, t_measure, 1, 2 > :: type_range; };
+
 template < > struct type_master < t_measure_4 > : type_range < t_measure_4, sz_space_char, t_measure, 1, 4 >
 { using type_range < t_measure_4, sz_space_char, t_measure, 1, 4 > :: type_range; };
 
@@ -51,6 +54,9 @@ template < > struct type_master < t_measures_all > : type_or_string < t_measures
 
 template < > struct type_master < t_measures_i > : type_either_or < t_measures_i, t_measure_4, t_css_inherit >
 { using type_either_or < t_measures_i, t_measure_4, t_css_inherit > :: type_either_or; };
+
+template < > struct type_master < t_measures_l > : maybe_logical_type < t_measures_l, t_measure_4 >
+{ using maybe_logical_type < t_measures_l, t_measure_4 > :: maybe_logical_type; };
 
 template < > struct type_master < t_refx > : type_or_any_string < t_refx, t_measure, sz_left, sz_centre, sz_right >
 { using type_or_any_string < t_refx, t_measure, sz_left, sz_centre, sz_right > :: type_or_any_string; };

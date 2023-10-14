@@ -12,6 +12,7 @@ ssc.exe -f ../toast/css/1/css.conf
 ssc.exe -f ../toast/css/2.0/css.conf
 ssc.exe -f ../toast/css/2.1/css.conf
 ssc.exe -f ../toast/css/2.2/css.conf
+ssc.exe -f ../toast/css/3-adjust/css.conf
 ssc.exe -f ../toast/css/3-animation/css.conf
 ssc.exe -f ../toast/css/4-animation/css.conf
 ssc.exe -f ../toast/css/3-background/css.conf
@@ -31,7 +32,9 @@ ssc.exe -f ../toast/css/4-contain/css.conf
 ssc.exe -f ../toast/css/5-contain/css.conf
 ssc.exe -f ../toast/css/3-cr/css.conf
 ssc.exe -f ../toast/css/3-cs/css.conf
+ssc.exe -f ../toast/css/3-device/css.conf
 ssc.exe -f ../toast/css/3-display/css.conf
+ssc.exe -f ../toast/css/3-exclude/css.conf
 ssc.exe -f ../toast/css/3-fbl/css.conf
 ssc.exe -f ../toast/css/3-filter/css.conf
 ssc.exe -f ../toast/css/3-font/css.conf
@@ -41,6 +44,8 @@ ssc.exe -f ../toast/css/4-frag/css.conf
 ssc.exe -f ../toast/css/3-grid/css.conf
 ssc.exe -f ../toast/css/4-grid/css.conf
 ssc.exe -f ../toast/css/3-image/css.conf
+ssc.exe -f ../toast/css/3-inline/css.conf
+ssc.exe -f ../toast/css/3-logic/css.conf
 ssc.exe -f ../toast/css/3-masking/css.conf
 ssc.exe -f ../toast/css/3-mc/css.conf
 ssc.exe -f ../toast/css/3-media/css.conf
@@ -49,6 +54,7 @@ ssc.exe -f ../toast/css/5-media/css.conf
 ssc.exe -f ../toast/css/3-ns/css.conf
 ssc.exe -f ../toast/css/3-overflow/css.conf
 ssc.exe -f ../toast/css/3-position/css.conf
+ssc.exe -f ../toast/css/3-scrollbar/css.conf
 ssc.exe -f ../toast/css/3-sel/css.conf
 ssc.exe -f ../toast/css/4-sel/css.conf
 ssc.exe -f ../toast/css/3-shape/css.conf
@@ -75,6 +81,7 @@ ssc.exe -f ../toast/css/custom/css.conf
 ssc.exe -f ../toast/css/deprecated/css.conf
 ssc.exe -f ../toast/css/ease/css.conf
 ssc.exe -f ../toast/css/profile/css.conf
+ssc.exe -f ../toast/css/reader/css.conf
 ssc.exe -f ../toast/css/simple/css.conf
 ssc.exe -f ../toast/css/songlight/css.conf
 ssc.exe -f ../toast/HTML/1.0/html1.conf

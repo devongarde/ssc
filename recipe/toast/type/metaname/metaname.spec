@@ -28,3 +28,5 @@ PASS ../toast/type/metaname/og.html
 
 PASS ../toast/type/metaname/old.html
 5 unrecognised_value
+6 dinosaur
+7 dinosaur

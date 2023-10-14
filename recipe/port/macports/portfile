@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                ssc
-version             0.1.39
+version             0.1.40
 categories          www
 platforms           {darwin >= 14} {openbsd >= 6.8}
 supported_archs     x86_64 arm64
