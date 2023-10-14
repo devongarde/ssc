@@ -1,0 +1,33 @@
+﻿@viewport {
+    width: auto;
+}
+
+@media screen and (min-width: 400px) {
+    div { color: red; }
+}
+
+@media screen and (max-width: 400px) {
+    div { color: green; }
+}
+
+@media screen and (width: 397px) {
+    div { color: green; }
+}
+
+@viewport {
+    width: 397px;
+}
+
+@viewport {
+    width: 397px;
+}
+
+@media screen and (width: 397px) {
+    @viewport {
+        width: 500px;
+    }
+}
+
+@media screen and (width: 397px) {
+    div { color: green; }
+}

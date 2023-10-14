@@ -270,7 +270,8 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (GENERAL MACROEND, ::boost::program_options::value < ::std::string > () -> default_value ("}}"), "End of template macro (by default, the '}}' in '{{macro}}').")
 
         (CSS COND_RULE, ::boost::program_options::value < int > (), "CSS Conditional Rule level (0, 3, 4, or 5).")
-        (CSS TABLE, ::boost::program_options::value < int > (), "CSS Table level (0 or 3).")
+        (CSS LIST, ::boost::program_options::value < int > (), "CSS Lists and Counters level (0 or 3).")
+        (CSS TEXT_ARG, ::boost::program_options::value < int > (), "CSS Text level (0, 3, or 4).")
 
         (JSONLD EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "Extension for JSON-LD files; may be repeated.")
         (JSONLD VERIFY, ::boost::program_options::bool_switch (), "Experimental: Verify JSON-LD.")
@@ -351,6 +352,7 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (CORPUS DONT MAIN, ::boost::program_options::bool_switch (), "Avoid the content of <MAIN> when gather page corpus.")
         (CORPUS OUTPUT ",d", ::boost::program_options::value < ::std::string > (), "Dump corpus of site content to specified file.")
 
+        (CSS ADJUST, ::boost::program_options::value < int > (), "CSS Colour Adjust level (0 or 3).")
         (CSS ANIMATION, ::boost::program_options::value < int > (), "CSS Animation level (0 or 3).")
         (CSS BACKGROUND, ::boost::program_options::value < int > (), "CSS Background Borders level (0 or 3).")
         (CSS BOX_ALIGN, ::boost::program_options::value < int > (), "CSS Box Alignment level (0 or 3).")
@@ -362,8 +364,10 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (CSS CONTAIN, ::boost::program_options::value < int > (), "CSS Contain level (0, 3, 4, or 5).")
         (CSS CS, ::boost::program_options::value < int > (), "CSS Counter Style level (0 or 3).")
         (CSS CUSTOM, ::boost::program_options::value < int > (), "CSS Custom level (0 or 3).")
+        (CSS DEVICE, ::boost::program_options::value < int > (), "CSS Device Adaption level (0 or 3).")
         (CSS DISPLAY, ::boost::program_options::value < int > (), "CSS Display level (0 or 3).")
         (CSS EASE, ::boost::program_options::value < int > (), "CSS Ease level (0 or 3).")
+        (CSS EXCLUDE, ::boost::program_options::value < int > (), "CSS Exclusions level (0 or 3).")
         (CSS EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "CSS files have this extension (default css); may be repeated.")
         (CSS EXTERNAL, ::boost::program_options::bool_switch (), "Nitpick css files imported from external sites.")
         (CSS DONT EXTERNAL, ::boost::program_options::bool_switch (), "Do not nitpick imported CSS files.")
@@ -373,6 +377,9 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (CSS FRAG, ::boost::program_options::value < int > (), "CSS Fragmentation level (0, 3, or 4).")
         (CSS GRID, ::boost::program_options::value < int > (), "CSS Grid level (0, 3, or 4).")
         (CSS IMAGE, ::boost::program_options::value < int > (), "CSS Images level (0, 3, or 4).")
+        (CSS INLINE, ::boost::program_options::value < int > (), "CSS Inline Layout level (0 or 3).")
+        (CSS LINE_GRID, ::boost::program_options::value < int > (), "CSS Line Grid level (0 or 3).")
+        (CSS LOGIC, ::boost::program_options::value < int > (), "CSS Logical Properties and Values level (0 or 3).")
         (CSS MASKING, ::boost::program_options::value < int > (), "CSS Masking level (0 or 3).")
         (CSS MEDIA, ::boost::program_options::value < int > (), "CSS Media level (0, 3, 4, or 5).")
         (CSS MOBILE, ::boost::program_options::bool_switch (), "Notify if some CSS conflicts with the CSS Mobile Profile.")
@@ -383,12 +390,14 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (CSS PRINT, ::boost::program_options::bool_switch (), "Notify if some CSS conflicts with the CSS Print Profile.")
         (CSS DONT PRINT, ::boost::program_options::bool_switch (), "No not notify CSS Print Profile matters.")
         (CSS POSITION, ::boost::program_options::value < int > (), "CSS Positions level (0 or 3).")
+        (CSS SCROLLBAR, ::boost::program_options::value < int > (), "CSS Scrollbar Styling level (0 or 3).")
         (CSS SELECTOR, ::boost::program_options::value < int > (), "CSS Selector level (0, 3, or 4).")
         (CSS SHAPE, ::boost::program_options::value < int > (), "CSS Shapes level (0, 3, or 4).")
         (CSS SNAP, ::boost::program_options::value < int > (), "CSS Scroll Snap level (0 or 3).")
         (CSS SPEECH, ::boost::program_options::value < int > (), "CSS Speech level (0 or 3).")
         (CSS STYLE, ::boost::program_options::value < int > (), "CSS Style level (0 or 3).")
         (CSS SYNTAX, ::boost::program_options::value < int > (), "CSS Syntax level (0 or 3).")
+        (CSS TABLE, ::boost::program_options::value < int > (), "CSS Table level (0 or 3).")
         (CSS TEXT_DEC, ::boost::program_options::value < int > (), "CSS Text Decoration level (0, 3, or 4).")
         (CSS TRANSFORM, ::boost::program_options::value < int > (), "CSS Transform level (0, 3 or 4).")
         (CSS TRANSITION, ::boost::program_options::value < int > (), "CSS Transitions level (0 or 3).")
@@ -398,7 +407,14 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (CSS VALUE, ::boost::program_options::value < int > (), "CSS Values and Units level (0, 3, or 4).")
         (CSS VERIFY, ::boost::program_options::bool_switch (), "Process .css files.")
         (CSS DONT VERIFY, ::boost::program_options::bool_switch (), "Do not process .css files.")
-        (CSS VERSION, ::boost::program_options::value < ::std::string > (),  "Presume this version of CSS (default appropriate for HTML version).")
+        (CSS VERSION, ::boost::program_options::value < ::std::string > (),
+            "Select no CSS (0); "
+            "a specific version (1, 2.0, 2.1, 2.2); "
+            "all modules of a given level (3, 4, 5, 6); "
+            "solid snapshot modules by year (07, 10, 15, 17, 18, 20, 21, 22, 23); "
+            "solid and wobbly snapshot modules by year (15+, 17+, 18+, 20+, 21+, 22+, 23+); "
+            "all snapshot modules by year (15++, 17++, 18++, 20++, 21++, 22++, 23++): "
+            "default appropriate for HTML version.")
         (CSS WC, ::boost::program_options::value < int > (), "CSS Will Change level (0 or 3).")
         (CSS WRITING, ::boost::program_options::value < int > (), "CSS Writing Mode level (0, 3 or 4).")
 
@@ -1033,20 +1049,11 @@ void options::contextualise (nitpick& nits)
         
         if (var_.count (CSS VERSION) != 0)
         {   ::std::string ver (var_ [CSS VERSION].as < ::std::string > ());
-            if (ver.empty ())
-                nits.pick (nit_config_version, es_warning, ec_init, "missing CSS version");
-            else
-            {   const ::std::string::size_type pos = ver.find ('.');
-                if (pos == ::std::string::npos)
-                    if (ver.at (0) == '2') context.css_version (lexical < int > :: cast (ver), 1);
-                    else context.css_version (lexical < int > :: cast (ver), 0);
-                else if (pos == ver.length () - 1) context.css_version (lexical < int > :: cast (ver.substr (0, pos)), 0);
-                else if (pos == 0) context.css_version (css_none);
-                else context.css_version (lexical < int > :: cast (ver.substr (0, pos)), lexical < int > :: cast (ver.substr (pos+1)));
-                if (context.css_version () == css_none)
-                    nits.pick (nit_config_version, es_warning, ec_init, "ignoring invalid CSS version"); } }
+            if (ver.empty ()) nits.pick (nit_config_version, es_warning, ec_init, "missing CSS version");
+            else context.css_version (examine_value < t_css_version > (nits, html_default, ver)); }
 
         int n = 0;
+        if (get_css_level (n, nits, CSS ADJUST, "Colour Adjust", 4)) context.css_adjust (n);
         if (get_css_level (n, nits, CSS ANIMATION, "Animation", 4)) context.css_animation (n);
         if (get_css_level (n, nits, CSS BACKGROUND, "Background Border", 3, true)) context.css_background (n);
         if (get_css_level (n, nits, CSS BOX_ALIGN, "Background Alignment", 3)) context.css_box_alignment (n);
@@ -1059,14 +1066,20 @@ void options::contextualise (nitpick& nits)
         if (get_css_level (n, nits, CSS CONTAIN, "Contain", 5)) context.css_contain (n);
         if (get_css_level (n, nits, CSS CS, "Counter Style", 3)) context.css_counter_style (n);
         if (get_css_level (n, nits, CSS CUSTOM, "Custom", 3, true)) context.css_custom (n);
+        if (get_css_level (n, nits, CSS DEVICE, "Device Adaption", 3)) context.css_device (n);
         if (get_css_level (n, nits, CSS DISPLAY, "Display", 3)) context.css_display (n);
         if (get_css_level (n, nits, CSS EASE, "Ease", 4, true)) context.css_ease (n);
+        if (get_css_level (n, nits, CSS EXCLUDE, "Exclusions", 3)) context.css_exclude (n);
         if (get_css_level (n, nits, CSS FBL, "Flexible Box Layout", 3)) context.css_fbl (n);
         if (get_css_level (n, nits, CSS FILTER, "Filter Effects", 3)) context.css_filter (n);
         if (get_css_level (n, nits, CSS FONT, "Font", 5)) context.css_font (n);
         if (get_css_level (n, nits, CSS FRAG, "Fragmentation", 4)) context.css_fragmentation (n);
         if (get_css_level (n, nits, CSS GRID, "Grid", 4)) context.css_grid (n);
         if (get_css_level (n, nits, CSS IMAGE, "Image", 4)) context.css_image (n);
+        if (get_css_level (n, nits, CSS INLINE, "Inline Layout", 3)) context.css_inline (n);
+        if (get_css_level (n, nits, CSS LIST, "Lists and Counters", 3)) context.css_lists (n);
+        if (get_css_level (n, nits, CSS LINE_GRID, "Line Grid", 3)) context.css_line_grid (n);
+        if (get_css_level (n, nits, CSS LOGIC, "Logical Properties and Values", 3)) context.css_logic (n);
         if (get_css_level (n, nits, CSS MASKING, "Masking", 3)) context.css_masking (n);
         if (get_css_level (n, nits, CSS MEDIA, "Media", 5)) context.css_media (n);
         yea_nay (&context_t::mobile_profile, nits, CSS MOBILE, CSS DONT MOBILE);
@@ -1074,12 +1087,14 @@ void options::contextualise (nitpick& nits)
         if (get_css_level (n, nits, CSS OVERFLOH, "Overflow", 3)) context.css_overflow (n);
         if (get_css_level (n, nits, CSS POSITION, "Overflow", 3)) context.css_position (n);
         yea_nay (&context_t::print_profile, nits, CSS PRINT, CSS DONT PRINT);
+        if (get_css_level (n, nits, CSS SCROLLBAR, "Scrollbar Styling", 4)) context.css_scrollbar (n);
         if (get_css_level (n, nits, CSS SELECTOR, "Selector", 4)) context.css_selector (n);
         if (get_css_level (n, nits, CSS SHAPE, "Shape", 4)) context.css_shape (n);
         if (get_css_level (n, nits, CSS SNAP, "Snap", 3)) context.css_snap (n);
         if (get_css_level (n, nits, CSS SPEECH, "Speech", 3)) context.css_speech (n);
         if (get_css_level (n, nits, CSS STYLE, "Style", 3)) context.css_style (n);
         if (get_css_level (n, nits, CSS SYNTAX, "Syntax", 3)) context.css_syntax (n);
+        if (get_css_level (n, nits, CSS TEXT_ARG, "Text", 4)) context.css_text (n);
         if (get_css_level (n, nits, CSS TEXT_DEC, "Text Decoration", 4)) context.css_text_decoration (n);
         if (get_css_level (n, nits, CSS TABLE, "Table", 3)) context.css_table (n);
         if (get_css_level (n, nits, CSS TRANSFORM, "Transform", 4, true)) context.css_transform (n);
@@ -1557,6 +1572,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_ [CORPUS DONT MAIN].as < bool > ()) res << CORPUS DONT MAIN "\n";
     if (var_.count (CORPUS OUTPUT)) res << CORPUS OUTPUT ": " << var_ [CORPUS OUTPUT].as < ::std::string > () << "\n";
 
+    if (var_.count (CSS ADJUST)) res << CSS ADJUST ": " << var_ [CSS ADJUST].as < int > () << "\n";
     if (var_.count (CSS ANIMATION)) res << CSS ANIMATION ": " << var_ [CSS ANIMATION].as < int > () << "\n";
     if (var_.count (CSS BACKGROUND)) res << CSS BACKGROUND ": " << var_ [CSS BACKGROUND].as < int > () << "\n";
     if (var_.count (CSS BOX_ALIGN)) res << CSS BOX_ALIGN ": " << var_ [CSS BOX_ALIGN].as < int > () << "\n";
@@ -1569,8 +1585,10 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (CSS CS)) res << CSS CS ": " << var_ [CSS CS].as < int > () << "\n";
     if (var_.count (CSS CONTAIN)) res << CSS CONTAIN ": " << var_ [CSS CONTAIN].as < int > () << "\n";
     if (var_.count (CSS CUSTOM)) res << CSS CUSTOM ": " << var_ [CSS CUSTOM].as < int > () << "\n";
+    if (var_.count (CSS DEVICE)) res << CSS DEVICE ": " << var_ [CSS DEVICE].as < int > () << "\n";
     if (var_.count (CSS DISPLAY)) res << CSS DISPLAY ": " << var_ [CSS DISPLAY].as < int > () << "\n";
     if (var_.count (CSS EASE)) res << CSS EASE ": " << var_ [CSS EASE].as < int > () << "\n";
+    if (var_.count (CSS EXCLUDE)) res << CSS EXCLUDE ": " << var_ [CSS EXCLUDE].as < int > () << "\n";
     if (var_.count (CSS EXTENSION)) res << CSS EXTENSION ": "; pvs (res, var_ [CSS EXTENSION].as < vstr_t > ()); res << "\n";
     if (var_.count (CSS FBL)) res << CSS FBL ": " << var_ [CSS FBL].as < int > () << "\n";
     if (var_.count (CSS FILTER)) res << CSS FILTER ": " << var_ [CSS FILTER].as < int > () << "\n";
@@ -1578,6 +1596,10 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (CSS FRAG)) res << CSS FRAG ": " << var_ [CSS FRAG].as < int > () << "\n";
     if (var_.count (CSS GRID)) res << CSS GRID ": " << var_ [CSS GRID].as < int > () << "\n";
     if (var_.count (CSS IMAGE)) res << CSS IMAGE ": " << var_ [CSS IMAGE].as < int > () << "\n";
+    if (var_.count (CSS INLINE)) res << CSS INLINE ": " << var_ [CSS INLINE].as < int > () << "\n";
+    if (var_.count (CSS LIST)) res << CSS LIST ": " << var_ [CSS LIST].as < int > () << "\n";
+    if (var_.count (CSS LINE_GRID)) res << CSS LINE_GRID ": " << var_ [CSS LINE_GRID].as < int > () << "\n";
+    if (var_.count (CSS LOGIC)) res << CSS LOGIC ": " << var_ [CSS LOGIC].as < int > () << "\n";
     if (var_.count (CSS MASKING)) res << CSS MASKING ": " << var_ [CSS MASKING].as < int > () << "\n";
     if (var_.count (CSS MEDIA)) res << CSS MEDIA ": " << var_ [CSS MEDIA].as < int > () << "\n";
     if (var_.count (CSS MOBILE)) res << CSS MOBILE ": " << var_ [CSS MOBILE].as < int > () << "\n";
@@ -1588,6 +1610,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (CSS POSITION)) res << CSS POSITION ": " << var_ [CSS POSITION].as < int > () << "\n";
     if (var_.count (CSS PRINT)) res << CSS PRINT ": " << var_ [CSS PRINT].as < int > () << "\n";
     if (var_.count (CSS DONT PRINT)) res << CSS DONT PRINT ": " << var_ [CSS DONT PRINT].as < int > () << "\n";
+    if (var_.count (CSS SCROLLBAR)) res << CSS SCROLLBAR ": " << var_ [CSS SCROLLBAR].as < int > () << "\n";
     if (var_.count (CSS SELECTOR)) res << CSS SELECTOR ": " << var_ [CSS SELECTOR].as < int > () << "\n";
     if (var_.count (CSS SHAPE)) res << CSS SHAPE ": " << var_ [CSS SHAPE].as < int > () << "\n";
     if (var_.count (CSS SPEECH)) res << CSS SPEECH ": " << var_ [CSS SPEECH].as < int > () << "\n";
@@ -1595,6 +1618,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (CSS STYLE)) res << CSS STYLE ": " << var_ [CSS STYLE].as < int > () << "\n";
     if (var_.count (CSS SYNTAX)) res << CSS SYNTAX ": " << var_ [CSS SYNTAX].as < int > () << "\n";
     if (var_.count (CSS TABLE)) res << CSS TABLE ": " << var_ [CSS TABLE].as < int > () << "\n";
+    if (var_.count (CSS TEXT_ARG)) res << CSS TEXT_ARG ": " << var_ [CSS TEXT_ARG].as < int > () << "\n";
     if (var_.count (CSS TEXT_DEC)) res << CSS TEXT_DEC ": " << var_ [CSS TEXT_DEC].as < int > () << "\n";
     if (var_.count (CSS TRANSFORM)) res << CSS TRANSFORM ": " << var_ [CSS TRANSFORM].as < int > () << "\n";
     if (var_.count (CSS TRANSITION)) res << CSS TRANSITION ": " << var_ [CSS TRANSITION].as < int > () << "\n";

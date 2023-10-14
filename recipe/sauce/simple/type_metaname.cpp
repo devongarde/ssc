@@ -1079,19 +1079,65 @@ void metaname_init (nitpick& nits)
 void validate_metaname_content (nitpick& nits, const html_version& v, const bool in_head, const e_metaname mn, const ::std::string& content, page& p)
 {   const bool stats = in_head && context.meta ();
     switch (mn)
-    {   case mn_keywords :
+    {   case mn_application_name :
+        case mn_author :
+        case mn_colour_scheme :
+        case mn_generator :
+            if (stats)
+                p.mark_meta (mn, content);
+            break;
+        case mn_article_modified_time :
+        case mn_article_published_time :
+        case mn_article_expiration_date :
+        case mn_book_release_date :
+        case mn_music_release_date :
+        case mn_video_release_date :
+            test_value < t_datetime > (nits, v, content);
+            break;
+        case mn_book_isbn :
+            test_value < t_isbn > (nits, v, content);
+            break;
+        case mn_keywords :
             if (stats)
             {   vstr_t s (split_by_charset (content, ","));
                 for (auto ss : s)
                 {   ::std::string sss (trim_the_lot_off (ss));
                     if (! sss.empty ()) p.mark_meta (mn, sss); } }
             break;
-        case mn_author :
-        case mn_application_name :
-        case mn_generator :
-        case mn_colour_scheme :
-            if (stats)
-                p.mark_meta (mn, content);
+        case mn_music_duration :
+        case mn_music_album_disc :
+        case mn_music_album_track :
+        case mn_music_song_disc :
+        case mn_music_song_track :
+        case mn_og_image_width :
+        case mn_og_image_height :
+        case mn_video_duration :
+            test_value < t_unsigned > (nits, v, content);
+            break;
+        case mn_og_type :
+            test_value < t_og > (nits, v, content);
+            break;
+        case mn_og_audio :
+        case mn_og_audio_url :
+        case mn_og_audio_secure_url :
+        case mn_og_image :
+        case mn_og_image_url :
+        case mn_og_image_secure_url :
+        case mn_og_video :
+        case mn_og_video_url :
+        case mn_og_video_secure_url :
+            break;
+        case mn_og_image_type :
+            check_mimetype_family (nits, v, content, MIME_IMAGE);
+            break;
+        case mn_og_locale :
+            test_value < t_lang > (nits, v, content);
+            break;
+        case mn_og_locale_alternate :
+            test_value < t_langs > (nits, v, content);
+            break;
+        case mn_profile_gender :
+            test_value < t_sex > (nits, v, content);
             break;
         case mn_referrer :
             {   if (stats) p.mark_meta (mn);
@@ -1107,51 +1153,9 @@ void validate_metaname_content (nitpick& nits, const html_version& v, const bool
                 if (! col.good ())
                     nits.pick (nit_theme_colour, ed_jul20, "4.2.5.1 Standard metadata names", es_error, ec_attribute, "When using <META> NAME=\"" MN_THEME_COLOUR "\", CONTENT should be a colour"); }
             break;
-        case mn_og_type :
-            test_value < t_og > (nits, v, content);
-            break;
-        case mn_og_audio :
-        case mn_og_video :
-        case mn_og_image :
-        case mn_og_image_url :
-        case mn_og_image_secure_url :
-        case mn_og_video_url :
-        case mn_og_video_secure_url :
-        case mn_og_audio_url :
-        case mn_og_audio_secure_url :
-            break;
-        case mn_music_duration :
-        case mn_music_album_disc :
-        case mn_music_album_track :
-        case mn_music_song_disc :
-        case mn_music_song_track :
-        case mn_og_image_width :
-        case mn_og_image_height :
-        case mn_video_duration :
-            test_value < t_unsigned > (nits, v, content);
-            break;
-        case mn_og_locale :
-            test_value < t_lang > (nits, v, content);
-            break;
-        case mn_og_locale_alternate :
-            test_value < t_langs > (nits, v, content);
-            break;
-        case mn_og_image_type :
-            check_mimetype_family (nits, v, content, MIME_IMAGE);
-            break;
-        case mn_article_modified_time :
-        case mn_article_published_time :
-        case mn_article_expiration_date :
-        case mn_book_release_date :
-        case mn_music_release_date :
-        case mn_video_release_date :
-            test_value < t_datetime > (nits, v, content);
-            break;
-        case mn_profile_gender :
-            test_value < t_sex > (nits, v, content);
-            break;
-        case mn_book_isbn :
-            test_value < t_isbn > (nits, v, content);
+        case mn_viewport :
+            if (v.css_device () < 3)
+                nits.pick (nit_css_version, es_warning, ec_attribute, "<META> NAME=\"" MN_VIEWPORT "\" requires CSS Device Adaption level 3 or better");
             break;
         default :
             if (stats) p.mark_meta (mn);

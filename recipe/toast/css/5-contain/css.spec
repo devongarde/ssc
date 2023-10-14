@@ -4,8 +4,6 @@ PASS ../toast/css/5-contain/css-4.css
 0 html
 27 isnt unrecognised_value
 30 unrecognised_value unrecognised_value
-49 unrecognised_value
-53 unrecognised_value
 64 unrecognised_value unrecognised_value
 69 unrecognised_value unrecognised_value
 

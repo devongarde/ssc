@@ -1,0 +1,15 @@
+﻿p {
+  margin-inline-start: 1px;
+  margin-left: 2px;
+  margin-inline-end: 3px;
+}
+
+blockquote {
+  margin: logical 1em 2em 3em 4em;
+}
+blockquote {
+  margin-block-start:  1em;
+  margin-inline-start: 2em;
+  margin-block-end:    3em;
+  margin-inline-end:   4em;
+}

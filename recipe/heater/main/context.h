@@ -104,6 +104,7 @@ class context_t
         return *this; }
     context_t& corpus (const ::boost::filesystem::path& f) { corpus_ = f; mac (nm_context_corpus, f.string ()); return *this; }
     context_t& crosslinks (const bool b) { crosslinks_ = b; mac (nm_context_crosslinks, b); return *this; }
+    context_t& css_adjust (const int n) { version_.css_adjust (n); mac (nm_context_css_adjust, n); return *this; }
     context_t& css_animation (const int n) { version_.css_animation (n); mac (nm_context_css_animation, n); return *this; }
     context_t& css_background (const int n) { version_.css_background (n); mac (nm_context_css_background, n); return *this; }
     context_t& css_box_alignment (const int n) { version_.css_box_alignment (n); mac (nm_context_css_box_align, n); return *this; }
@@ -116,8 +117,10 @@ class context_t
     context_t& css_contain (const int n) { version_.css_contain (n); mac (nm_context_css_contain, n); return *this; }
     context_t& css_counter_style (const int n) { version_.css_counter_style (n); mac (nm_context_css_cs, n); return *this; }
     context_t& css_custom (const int n) { version_.css_custom (n); mac (nm_context_css_custom, n); return *this; }
+    context_t& css_device (const int n) { version_.css_device (n); mac (nm_context_css_device, n); return *this; }
     context_t& css_display (const int n) { version_.css_display (n); mac (nm_context_css_display, n); return *this; }
     context_t& css_ease (const int n) { version_.css_ease (n); mac (nm_context_css_ease, n); return *this; }
+    context_t& css_exclude (const int n) { version_.css_exclude (n); mac (nm_context_css_exclude, n); return *this; }
     context_t& css_extension (const vstr_t& s) { css_ext_ = s; mac (nm_context_css_extension, s); return *this; }
     context_t& css_fbl (const int n) { version_.css_fbl (n); mac (nm_context_css_fbl, n); return *this; }
     context_t& css_filter (const int n) { version_.css_filter (n); mac (nm_context_css_filter, n); return *this; }
@@ -125,12 +128,17 @@ class context_t
     context_t& css_fragmentation (const int n) { version_.css_fragmentation (n); mac (nm_context_css_fragmentation, n); return *this; }
     context_t& css_grid (const int n) { version_.css_grid (n); mac (nm_context_css_grid, n); return *this; }
     context_t& css_image (const int n) { version_.css_image (n); mac (nm_context_css_image, n); return *this; }
+    context_t& css_inline (const int n) { version_.css_inline (n); mac (nm_context_css_inline, n); return *this; }
+    context_t& css_line_grid (const int n) { version_.css_line_grid (n); mac (nm_context_css_line_grid, n); return *this; }
+    context_t& css_lists (const int n) { version_.css_lists (n); mac (nm_context_css_lists, n); return *this; }
+    context_t& css_logic (const int n) { version_.css_logic (n); mac (nm_context_css_logic, n); return *this; }
     context_t& css_masking (const int n) { version_.css_masking (n); mac (nm_context_css_masking, n); return *this; }
     context_t& css_media (const int n) { version_.css_media (n); mac (nm_context_css_media, n); return *this; }
     context_t& css_multi_column (const int n) { version_.css_multi_column (n); mac (nm_context_css_multi_column, n); return *this; }
     context_t& css_namespace (const int n) { version_.css_namespace (n); mac (nm_context_css_namespace, n); return *this; }
     context_t& css_overflow (const int n) { version_.css_overflow (n); mac (nm_context_css_overflow, n); return *this; }
     context_t& css_position (const int n) { version_.css_position (n); mac (nm_context_css_position, n); return *this; }
+    context_t& css_scrollbar (const int n) { version_.css_scrollbar (n); mac (nm_context_css_scrollbar, n); return *this; }
     context_t& css_selector (const int n) { version_.css_selector (n); mac (nm_context_css_selector, n); return *this; }
     context_t& css_shape (const int n) { version_.css_shape (n); mac (nm_context_css_shape, n); return *this; }
     context_t& css_snap (const int n) { version_.css_snap (n); mac (nm_context_css_snap, n); return *this; }
@@ -138,6 +146,7 @@ class context_t
     context_t& css_style (const int n) { version_.css_style (n); mac (nm_context_css_style, n); return *this; }
     context_t& css_syntax (const int n) { version_.css_syntax (n); mac (nm_context_css_syntax, n); return *this; }
     context_t& css_table (const int n) { version_.css_table (n); mac (nm_context_css_table, n); return *this; }
+    context_t& css_text (const int n) { version_.css_text (n); mac (nm_context_css_text, n); return *this; }
     context_t& css_text_decoration (const int n) { version_.css_text_decoration (n); mac (nm_context_css_text_decoration, n); return *this; }
     context_t& css_transform (const int n) { version_.css_transform (n); mac (nm_context_css_transform, n); return *this; }
     context_t& css_transition (const int n) { version_.css_transition (n); mac (nm_context_css_transition, n); return *this; }
@@ -322,6 +331,7 @@ public:
     e_copy copy () const noexcept { return copy_; }
     ::boost::filesystem::path corpus () const { return corpus_; }
     bool crosslinks () const noexcept { return crosslinks_; }
+    int css_adjust () { return version_.css_adjust (); }
     int css_animation () { return version_.css_animation (); }
     int css_background () { return version_.css_background (); }
     int css_box_alignment () { return version_.css_box_alignment (); }
@@ -334,21 +344,28 @@ public:
     int css_contain () { return version_.css_contain (); }
     int css_counter_style () { return version_.css_counter_style (); }
     int css_custom () { return version_.css_custom (); }
+    int css_device () { return version_.css_device (); }
     int css_display () { return version_.css_display (); }
     int css_ease () { return version_.css_ease (); }
+    int css_exclude () { return version_.css_exclude (); }
     const vstr_t css_extension () const { return css_ext_; }
     int css_fbl () { return version_.css_fbl (); }
     int css_filter () { return version_.css_filter (); }
     int css_font () { return version_.css_font (); }
     int css_fragmentation () { return version_.css_fragmentation (); }
     int css_grid () { return version_.css_grid (); }
+    int css_line_grid () { return version_.css_line_grid (); }
+    int css_lists () { return version_.css_lists (); }
+    int css_logic () { return version_.css_logic (); }
     int css_image () { return version_.css_image (); }
+    int css_inline () { return version_.css_inline (); }
     int css_masking () { return version_.css_masking (); }
     int css_media () { return version_.css_media (); }
     int css_multi_column () { return version_.css_multi_column (); }
     int css_namespace () { return version_.css_namespace (); }
     int css_overflow () { return version_.css_overflow (); }
     int css_position () { return version_.css_position (); }
+    int css_scrollbar () { return version_.css_scrollbar (); }
     int css_selector () { return version_.css_selector (); }
     int css_shape () { return version_.css_shape (); }
     int css_snap () { return version_.css_snap (); }
@@ -356,6 +373,7 @@ public:
     int css_style () { return version_.css_style (); }
     int css_syntax () { return version_.css_syntax (); }
     int css_table () { return version_.css_table (); }
+    int css_text () { return version_.css_text(); }
     int css_text_decoration () { return version_.css_text_decoration (); }
     int css_transform () { return version_.css_transform (); }
     int css_transition () { return version_.css_transition (); }

@@ -36,10 +36,8 @@ PASS ../toast/css/5-cascade/css-6.css
 35 css_keyframes
 51 css_layer
 52 css_layer
-53 unrecognised_value
 60 css_layer
 61 css_layer
-62 unrecognised_value
 64 css_layer
 68 css_layer
 78 css_layer

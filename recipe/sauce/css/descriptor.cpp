@@ -68,6 +68,9 @@ void descriptor::parse (arguments& args, const e_css_statement , const int from,
                 case css_font_palette_values :
                     dsc_ = make_palette_v_ptr (args, var, to, nits, k, val_, p);
                     break;
+                case css_viewport :
+                    dsc_ = make_viewport_v_ptr (args, var, to, nits, k, val_, p);
+                    break;
                 default :
                     GRACEFUL_CRASH (__FILE__, __LINE__);
                     break; }

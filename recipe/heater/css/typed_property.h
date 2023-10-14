@@ -110,7 +110,7 @@ template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public
             bool ok = type_master < TYPE > :: good ();
             if (ok)
             {   const html_version f (type_master < TYPE > :: first (type_master < TYPE > :: get_int ()));
-                f.check_css_status (nits, name ());
+                f.check_status (nits, name ());
                 if (! args.v_.is_css_compatible (f))
                 {   nits.pick (nit_css_version, es_error, ec_css, quote (s), " requires CSS ", f.long_css_version_name ());
                     base_type :: status (s_invalid);
@@ -164,6 +164,8 @@ property_v_ptr make_feature_v_ptr (arguments& args, const int start, const int t
 property_v_ptr make_feature_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const css_token t);
 property_v_ptr make_palette_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const css_token t);
 property_v_ptr make_palette_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const css_token t);
+property_v_ptr make_viewport_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const css_token t);
+property_v_ptr make_viewport_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const css_token t);
 
 #ifdef _MSC_VER
 #pragma warning (pop)

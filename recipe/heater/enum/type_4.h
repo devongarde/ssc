@@ -68,6 +68,9 @@ template < > struct type_master < t_aria_invalidity > : four_value < t_aria_inva
 template < > struct type_master < t_aria_sort > : four_value < t_aria_sort, e_aria_sort, sz_ascending, sz_descending, sz_none, sz_other >
 { using four_value < t_aria_sort, e_aria_sort, sz_ascending, sz_descending, sz_none, sz_other> :: four_value; };
 
+template < > struct type_master < t_bens > : four_value < t_bens, e_bens, sz_both, sz_end, sz_none, sz_start >
+{ using four_value < t_bens, e_bens, sz_both, sz_end, sz_none, sz_start > :: four_value; };
+
 template < > struct type_master < t_buffered_rendering > : four_value < t_buffered_rendering, e_buffered_rendering, sz_auto, sz_dynamic, sz_static, sz_inherit >
 { using four_value < t_buffered_rendering, e_buffered_rendering, sz_auto, sz_dynamic, sz_static, sz_inherit > :: four_value; };
 
@@ -121,6 +124,12 @@ template < > struct type_master < t_css_font_style_e > : four_value < t_css_font
 
 template < > struct type_master < t_css_hue_interpolation > : four_value < t_css_hue_interpolation, e_css_hue_interpolation, sz_decreasing, sz_increasing, sz_longer, sz_shorter >
 { using four_value < t_css_hue_interpolation, e_css_hue_interpolation, sz_decreasing, sz_increasing, sz_longer, sz_shorter > :: four_value; };
+
+template < > struct type_master < t_css_initial_letter_align > : four_value < t_css_initial_letter_align, e_css_initial_letter_align, sz_alphabetic, sz_hanging, sz_ideographic, sz_leading >
+{ using four_value < t_css_initial_letter_align, e_css_initial_letter_align, sz_alphabetic, sz_hanging, sz_ideographic, sz_leading > :: four_value; };
+
+template < > struct type_master < t_css_initial_letter_wrap_e > : four_value < t_css_initial_letter_wrap_e, e_css_initial_letter_wrap_e, sz_all, sz_first, sz_grid, sz_none >
+{ using four_value < t_css_initial_letter_wrap_e, e_css_initial_letter_wrap_e, sz_all, sz_first, sz_grid, sz_none > :: four_value; };
 
 template < > struct type_master < t_css_margin_trim_inner > : four_value < t_css_margin_trim_inner, e_css_margin_trim_inner, sz_block_end, sz_block_start, sz_inline_end, sz_inline_start >
 { using four_value < t_css_margin_trim_inner, e_css_margin_trim_inner, sz_block_end, sz_block_start, sz_inline_end, sz_inline_start > :: four_value; };
@@ -184,9 +193,6 @@ template < > struct type_master < t_linecap > : four_value < t_linecap, e_lineca
 
 template < > struct type_master < t_linejoin > : four_value < t_linejoin, e_linejoin, sz_miter, sz_round, sz_bevel, sz_inherit >
 { using four_value < t_linejoin, e_linejoin, sz_miter, sz_round, sz_bevel, sz_inherit > :: four_value; };
-
-template < > struct type_master < t_lrnialign > : four_value < t_lrnialign, e_lrnialign, sz_left, sz_right, sz_none, sz_inherit >
-{ using four_value < t_lrnialign, e_lrnialign, sz_left, sz_right, sz_none, sz_inherit > :: four_value; };
 
 template < > struct type_master < t_mathclosure > : four_value < t_mathclosure, e_mathclosure, sz_open, sz_closed, sz_openclosed, sz_closedopen >
 { using four_value < t_mathclosure, e_mathclosure, sz_open, sz_closed, sz_openclosed, sz_closedopen > :: four_value; };

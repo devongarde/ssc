@@ -53,14 +53,26 @@ public:
 template < > struct type_master < t_all_auto_none > : three_value < t_all_auto_none, e_all_auto_none, sz_all, sz_auto, sz_none >
 { using three_value < t_all_auto_none, e_all_auto_none, sz_all, sz_auto, sz_none > :: three_value; };
 
+template < > struct type_master < t_alp > : three_value < t_alp, e_alp, sz_auto, sz_landscape, sz_portrait >
+{ using three_value < t_alp, e_alp, sz_auto, sz_landscape, sz_portrait > :: three_value; };
+
 template < > struct type_master < t_aria_live > : three_value < t_aria_live, e_aria_live, sz_assertive, sz_off, sz_polite >
 { using three_value < t_aria_live, e_aria_live, sz_assertive, sz_off, sz_polite > :: three_value; };
 
 template < > struct type_master < t_attributetype > : three_value < t_attributetype, e_attributetype, sz_auto, sz_CSS, sz_XML >
 { using three_value < t_attributetype, e_attributetype, sz_auto, sz_CSS, sz_XML > :: three_value; };
 
+template < > struct type_master < t_auto_first_last > : three_value < t_auto_first_last, e_auto_first_last, sz_auto, sz_first, sz_last >
+{ using three_value < t_auto_first_last, e_auto_first_last, sz_auto, sz_first, sz_last > :: three_value; };
+
 template < > struct type_master < t_auto_hidden_visible > : three_value < t_auto_hidden_visible, e_auto_hidden_visible, sz_auto, sz_hidden, sz_visible >
 { using three_value < t_auto_hidden_visible, e_auto_hidden_visible, sz_auto, sz_hidden, sz_visible > :: three_value; };
+
+template < > struct type_master < t_auto_none_thin > : three_value < t_auto_none_thin, e_auto_none_thin, sz_auto, sz_none, sz_thin >
+{ using three_value < t_auto_none_thin, e_auto_none_thin, sz_auto, sz_none, sz_thin > :: three_value; };
+
+template < > struct type_master < t_baseline_contain_none > : three_value < t_baseline_contain_none, e_baseline_contain_none, sz_baseline, sz_contain, sz_none >
+{ using three_value < t_baseline_contain_none, e_baseline_contain_none, sz_baseline, sz_contain, sz_none > :: three_value; };
 
 template < > struct type_master < t_behaviour > : three_value < t_behaviour, e_behaviour, sz_alternate, sz_scroll, sz_slide >
 { using three_value < t_behaviour, e_behaviour, sz_alternate, sz_scroll, sz_slide > :: three_value; };
@@ -106,6 +118,9 @@ template < > struct type_master < t_css_display_outside > : three_value < t_css_
 
 template < > struct type_master < t_css_empty_cells > : three_value < t_css_empty_cells, e_css_empty_cells, sz_hide, sz_inherit, sz_show >
 { using three_value < t_css_empty_cells, e_css_empty_cells, sz_hide, sz_inherit, sz_show > :: three_value; };
+
+template < > struct type_master < t_css_fca > : three_value < t_css_fca, e_css_fca, sz_auto, sz_none, sz_preserve_parent_colour >
+{ using three_value < t_css_fca, e_css_fca, sz_auto, sz_none, sz_preserve_parent_colour > :: three_value; };
 
 template < > struct type_master < t_css_flex_wrap > : three_value < t_css_flex_wrap, e_css_flex_wrap, sz_nowrap, sz_wrap, sz_wrap_reverse >
 { using three_value < t_css_flex_wrap, e_css_flex_wrap, sz_nowrap, sz_wrap, sz_wrap_reverse > :: three_value; };

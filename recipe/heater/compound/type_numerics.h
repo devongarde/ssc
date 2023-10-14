@@ -148,9 +148,12 @@ template < > struct type_master < t_4x_urational > : type_one_two_three_four < t
 template < > struct type_master < t_x_dot_y > : type_one_two < t_x_dot_y, t_integer, t_integer, sz_dot_char >
 {   using type_one_two < t_x_dot_y, t_integer, t_integer, sz_dot_char > :: type_one_two; };
 
-template < > struct type_master < t_zero_to_ones > : type_at_least_one < t_zero_to_ones, sz_commaspace, t_zero_to_one >
-{    static bool is_numeric () { return true; }
-    using type_at_least_one < t_zero_to_ones, sz_commaspace, t_zero_to_one > :: type_at_least_one; };
+template < > struct type_master < t_reals_1_up > : type_some_of < t_reals_1_up, sz_space_char, 1, 3, t_real_1_up >
+{ using type_some_of < t_reals_1_up, sz_space_char, 1, 3, t_real_1_up > :: type_some_of; };
 
 template < > struct type_master < t_resolution > : type_number_unit_4 < t_resolution, t_0_more, sz_dpi, sz_dpcm, sz_dppx, sz_x >
 { using type_number_unit_4 < t_resolution, t_0_more, sz_dpi, sz_dpcm, sz_dppx, sz_x > :: type_number_unit_4; };
+
+template < > struct type_master < t_zero_to_ones > : type_at_least_one < t_zero_to_ones, sz_commaspace, t_zero_to_one >
+{    static bool is_numeric () { return true; }
+    using type_at_least_one < t_zero_to_ones, sz_commaspace, t_zero_to_one > :: type_at_least_one; };

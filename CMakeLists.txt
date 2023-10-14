@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.19)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.1.39 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
+project (ssc VERSION 0.1.40 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
 
 set (CMAKE_CXX_STANDARD 17)
 
@@ -332,8 +332,8 @@ target_sources (ssc PRIVATE
             ${S}/parser/text.cpp ${S}/parser/text-data.cpp ${S}/parser/xhtml_xml.cpp
         ${S}/rdf/rdf.cpp ${S}/rdf/rdfa_prop.cpp ${S}/rdf/rdfa_type.cpp
         ${S}/simple/type_autocomplete.cpp ${S}/simple/type_basic.cpp ${S}/simple/type_css.cpp
-            ${S}/simple/type_currency.cpp ${S}/simple/type_d.cpp ${S}/simple/type_httpequiv.cpp ${S}/simple/type_id.cpp
-            ${S}/simple/type_intent.cpp  ${S}/base/type_master.cpp ${S}/simple/type_measure.cpp ${S}/simple/type_media.cpp
+            ${S}/simple/type_currency.cpp ${S}/simple/type_d.cpp ${S}/simple/type_httpequiv.cpp ${S}/simple/type_id.cpp ${S}/simple/type_jsonic.cpp
+            ${S}/simple/type_intent.cpp ${S}/simple/type_layout.cpp ${S}/base/type_master.cpp ${S}/simple/type_measure.cpp ${S}/simple/type_media.cpp
             ${S}/simple/type_metaname.cpp ${S}/simple/type_misc.cpp ${S}/simple/type_numeric.cpp ${S}/simple/type_paint.cpp
             ${S}/simple/type_rdf.cpp ${S}/simple/type_reals.cpp  ${S}/simple/type_sgml.cpp ${S}/simple/type_svg_feature.cpp
             ${S}/simple/type_time.cpp ${S}/simple/type_transform.cpp ${S}/compound/type_varied.cpp

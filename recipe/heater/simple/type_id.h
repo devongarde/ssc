@@ -22,6 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "base/type_master.h"
 bool invalid_id_result (nitpick& nits, const html_version& v, const ::std::string& s, const element* const e);
 bool note_id_usage (element* p, const ::std::string& s);
+e_status set_id_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box);
+e_status set_idref_value (nitpick& nits, const html_version& v, const ::std::string& s);
+e_status set_uid_value (nitpick& nits, const html_version& v, const ::std::string& s);
 
 template < > struct type_master < t_id > : tidy_string < t_id >
 {   bool tested_ = false, predefined_ = false;
@@ -32,33 +35,7 @@ template < > struct type_master < t_id > : tidy_string < t_id >
         tidy_string < t_id >::swap (t); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& arg)
     {   tidy_string < t_id > :: set_value (nits, v, arg);
-        const ::std::string& s = tidy_string < t_id > :: get_string ();
-        if (s.empty ())
-        {   nits.pick (nit_bad_id, es_error, ec_type, "an ID cannot be empty");
-            tidy_string < t_id > :: status (s_invalid); }
-        else if (note_id_usage (box (), s))
-            nits.pick (nit_spotted_id, es_comment, ec_css, "CSS id ", quote (s), " recognised");
-        switch (v.mjr ())
-        {   case 3 :
-                if (v.mnr () == 2)
-                {   if (::std::string (ALPHABET).find (s.at (0)) == ::std::string::npos)
-                    {   nits.pick (nit_bad_id, es_error, ec_type, quote (s), " does not start with a letter");
-                        tidy_string < t_id > :: status (s_invalid); } }
-                break;
-            case 4 :
-                if (::std::string (ALPHABET).find (s.at (0)) == ::std::string::npos)
-                {   nits.pick (nit_bad_id, es_error, ec_type, quote (s), " does not start with a letter");
-                    tidy_string < t_id > :: status (s_invalid); }
-                else if (s.find_first_not_of (IDS) != ::std::string::npos)
-                {   nits.pick (nit_bad_id, ed_4, "6.2 SGML basic types", es_error, ec_type, quote (s), " may only contain letters, digits, '-', '_', ':', and '.'");
-                    tidy_string < t_id > :: status (s_invalid); }
-                break;
-            case 5 :
-                if (find_if (s.cbegin (), s.cend (), ::std::iswspace) != s.cend ())
-                {   nits.pick (nit_bad_id, es_error, ec_type, quote (s), " may not contain a space");
-                    tidy_string < t_id > :: status (s_invalid); }
-                break;
-            default : break; }
+        tidy_string < t_id > :: status (set_id_value (nits, v, tidy_string < t_id > :: get_string (), box ()));
         tested_ = predefined_ = false; }
    bool invalid_id (nitpick& nits, const html_version& , ids_t& ids, element* pe)
    {    if (bad ()) return false;
@@ -86,12 +63,7 @@ template < > struct type_master < t_idref > : tidy_string < t_idref >
 {   using tidy_string < t_idref > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_idref > :: set_value (nits, v, s);
-        if (s.empty ())
-        {   nits.pick (nit_bad_id, es_error, ec_type, "an id cannot be empty");
-            tidy_string < t_idref > :: status (s_invalid); }
-        else if (::std::find_if (s.cbegin (), s.cend (), ::std::iswspace) != s.cend ())
-        {   nits.pick (nit_bad_id, es_error, ec_type, quote (s), " contains a space");
-            tidy_string < t_idref > :: status (s_invalid); } }
+        tidy_string < t_idref > :: status (set_idref_value (nits, v, tidy_string < t_idref > :: get_string ())); }
     void verify_id (element& e)
     {   if (! tidy_string < t_idref > :: good ()) return;
         if (! ids_t::is_good_id (e, tidy_string < t_idref > :: get_string (), ec_type, nit_unknown, true))
@@ -129,13 +101,4 @@ template < > struct type_master < t_uid > : tidy_string < t_uid >
 {   using tidy_string < t_uid > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
     {   tidy_string < t_uid > :: set_value (nits, v, trim_the_lot_off (ss));
-        if (! tidy_string < t_uid > :: empty ())
-        {   const ::std::string& s = tidy_string < t_uid > :: get_string ();
-            const ::std::string::size_type pos = s.find (':');
-            if (pos == ::std::string::npos)
-            {   if (s.find_first_not_of (HEX "-") == ::std::string::npos) return; }
-            else if ((pos > 0) && (pos < (s.length () - 1)))
-            {   if ((pos != 3) || ! compare_no_case ("UID", s.substr (0, 3))) return;
-                if (s.substr (pos+1).find_first_not_of (HEX "-") == ::std::string::npos) return; }
-            nits.pick (nit_bad_uid, es_warning, ec_type, "expecting 'UID:' followed by a long hexadecimal number");
-            tidy_string < t_uid > :: status (s_invalid); } } };
+        tidy_string < t_uid > :: status (set_uid_value (nits, v, tidy_string < t_uid > :: get_string ())); } };

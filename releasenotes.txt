@@ -3,9 +3,17 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.40
+- CSS Colour Adjustment 3
+- CSS Device Adaption 3
+- CSS Exclusions 3
+- CSS Inline Layout 3
+- CSS Line Grid 3
+- CSS Logical Properties 3
+- CSS Scrollbar Style 3
+- underlying work
+
 0.1.39
-- CSS 2017 Snapshot
-- CSS 2018 Snapshot
 - CSS Contain 5
 - CSS Contain 4
 - CSS Contain 3

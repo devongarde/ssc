@@ -41,7 +41,7 @@ PASS ../toast/css/3-grid/css-7.html
 0 charset_mismatch charset_used charset_invalid
 2 naughty_lang
 44 id_exists
-51 unrecognised_value
+51 css_version
 104 attribute_barred
 
 PASS ../toast/css/3-grid/index.html

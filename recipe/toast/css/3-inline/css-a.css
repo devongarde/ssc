@@ -1,0 +1,4 @@
+﻿img[src^="/text/"] {
+  height: 1em; /* Size to match adjacent text */
+  margin-bottom: -0.2em; /* Baseline at 20% above bottom */
+}

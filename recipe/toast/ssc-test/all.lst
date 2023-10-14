@@ -14,6 +14,7 @@
 ../toast/css/2.0/css.spec
 ../toast/css/2.1/css.spec
 ../toast/css/2.2/css.spec
+../toast/css/3-adjust/css.spec
 ../toast/css/3-animation/css.spec
 ../toast/css/4-animation/css.spec
 ../toast/css/3-background/css.spec
@@ -33,7 +34,9 @@
 ../toast/css/5-contain/css.spec
 ../toast/css/3-cr/css.spec
 ../toast/css/3-cs/css.spec
+../toast/css/3-device/css.spec
 ../toast/css/3-display/css.spec
+../toast/css/3-exclude/css.spec
 ../toast/css/3-fbl/css.spec
 ../toast/css/3-filter/css.spec
 ../toast/css/3-font/css.spec
@@ -44,6 +47,7 @@
 ../toast/css/4-grid/css.spec
 ../toast/css/3-image/css.spec
 ../toast/css/4-image/css.spec
+v../toast/css/3-logic/css.spec
 ../toast/css/3-masking/css.spec
 ../toast/css/3-mc/css.spec
 ../toast/css/3-media/css.spec
@@ -52,6 +56,7 @@
 ../toast/css/3-ns/css.spec
 ../toast/css/3-overflow/css.spec
 ../toast/css/3-position/css.spec
+../toast/css/3-scrollbar/css.spec
 ../toast/css/3-sel/css.spec
 ../toast/css/4-sel/css.spec
 ../toast/css/3-shape/css.spec
@@ -78,6 +83,7 @@
 ../toast/css/deprecated/css.spec
 ../toast/css/ease/css.spec
 ../toast/css/profile/css.spec
+../toast/css/reader/css.spec
 ../toast/css/simple/css.spec
 ../toast/css/songlight/css.spec
 ../toast/HTML/1.0/html1.spec

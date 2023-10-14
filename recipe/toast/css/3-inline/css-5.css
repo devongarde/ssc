@@ -1,0 +1,3 @@
+﻿div { line-height: 1.2; font-size: 10pt }     /* number */
+div { line-height: 1.2em; font-size: 10pt }   /* length */
+div { line-height: 120%; font-size: 10pt }    /* percentage */

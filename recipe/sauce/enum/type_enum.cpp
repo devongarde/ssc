@@ -103,21 +103,21 @@ struct symbol_entry < html_version, e_align3 > align3_symbol_table [] =
 
 struct symbol_entry < html_version, e_alignment_baseline > alignment_baseline_symbol_table [] =
 {   { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "after-edge", ab_afteredge },
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "alphabetic", ab_alphabetic },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "alphabetic", ab_alphabetic },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "auto",  ab_auto },
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "baseline", ab_baseline },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "baseline", ab_baseline },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "before-edge", ab_beforeedge },
     { { HTML_SVG10, 0, HE_SVG_10 | HE_SVG_DEPR_10 }, { HTML_UNDEF }, "bottom", ab_bottom },
-    { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, "central", ab_central },
+    { { HTML_SVG11, 0, HE_SVG_11_2, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "central", ab_central },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "hanging", ab_hanging },
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "ideographic", ab_ideographic },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "ideographic", ab_ideographic },
     { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, "inherit", ab_inherit },
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "mathematical", ab_mathematical },
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "middle", ab_middle },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "mathematical", ab_mathematical },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "middle", ab_middle },
     { { HTML_SVG10, 0, HE_SVG_10_11_20 | HE_SVG_DEPR_20 }, { HTML_UNDEF }, "text-after-edge", ab_textafteredge },
     { { HTML_SVG10, 0, HE_SVG_10_11_20 | HE_SVG_DEPR_20 }, { HTML_UNDEF }, "text-before-edge", ab_textbeforeedge },
-    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "text-bottom", ab_textbottom },
-    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "text-top", ab_texttop },
+    { { HTML_SVG20, 0, HE_SVG_2, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "text-bottom", ab_textbottom },
+    { { HTML_SVG20, 0, HE_SVG_2, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "text-top", ab_texttop },
     { { HTML_SVG10, 0, HE_SVG_10 | HE_SVG_DEPR_10 }, { HTML_UNDEF }, "top", ab_top } };
 
 struct symbol_entry < html_version, e_alignplus > alignplus_symbol_table [] =
@@ -225,11 +225,11 @@ struct symbol_entry < html_version, e_autocomplete > autocomplete_symbol_table [
 
 struct symbol_entry < html_version, e_baselineshift > baselineshift_symbol_table [] =
 {   { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "baseline", bsb_baseline },
-    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "bottom", bsb_bottom },
-    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "center", bsb_centre },
-    { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, "top", bsb_top },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "sub", bsb_sub },
-    { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "super", bsb_super },
+    { { HTML_SVG20, 0, HE_SVG_2, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "bottom", bsb_bottom },
+    { { HTML_SVG20, 0, HE_SVG_2, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "center", bsb_centre },
+    { { HTML_SVG20, 0, HE_SVG_2, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "top", bsb_top },
+    { { HTML_SVG10, 0, HE_SVG, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "sub", bsb_sub },
+    { { HTML_SVG10, 0, HE_SVG, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "super", bsb_super },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "inherit", bsb_inherit } };
 
 struct symbol_entry < html_version, e_cachekey > cachekey_symbol_table [] =
@@ -345,7 +345,9 @@ struct symbol_entry < html_version, e_css_aaalri > css_aaalri_symbol_table [] =
     { { HTML_CSS }, { HTML_UNDEF }, "avoid", caa_avoid },
     { { HTML_CSS }, { HTML_UNDEF }, "inherit", caa_inherit },
     { { HTML_CSS }, { HTML_UNDEF }, "left", caa_left },
-    { { HTML_CSS }, { HTML_UNDEF }, "right", caa_right } };
+    { { HTML_CSS, 0, 0, 0, H3_CSS_LOGIC }, { HTML_UNDEF }, "recto", caa_recto },
+    { { HTML_CSS }, { HTML_UNDEF }, "right", caa_right },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_LOGIC }, { HTML_UNDEF }, "verso", caa_verso } };
 
 struct symbol_entry < html_version, e_css_absolute_size > css_absolute_size_symbol_table [] =
 {   { { HTML_CSS }, { HTML_UNDEF }, "inherit", ecas_inherit },
@@ -466,6 +468,14 @@ struct symbol_entry < html_version, e_css_box_alignself_mess > css_box_alignself
     { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_ALIGN | H3_CSS_GRID }, { HTML_UNDEF }, "normal", ebam_normal },
     { { HTML_CSS, 0, 0, H2_CSS_FBL_3, H3_CSS_BOX_ALIGN | H3_CSS_GRID }, { HTML_UNDEF }, "stretch", ebam_stretch } };
 
+struct symbol_entry < html_version, e_css_box_snap > css_box_snap_symbol_table [] =
+{   { { HTML_CSS, 0, 0, 0, H3_CSS_LINE_GRID }, { HTML_UNDEF }, "block-end", cbs_block_end },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_LINE_GRID }, { HTML_UNDEF }, "block-start", cbs_block_start },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_LINE_GRID }, { HTML_UNDEF }, "center", cbs_centre },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_LINE_GRID }, { HTML_UNDEF }, "first-baseline", cbs_first_baseline },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_LINE_GRID }, { HTML_UNDEF }, "last-baseline", cbs_last_baseline },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_LINE_GRID }, { HTML_UNDEF }, "none", cbs_none } };
+
 struct symbol_entry < html_version, e_css_break > css_break_symbol_table [] =
 {   { { HTML_CSS, 0, 0, H2_CSS_FRAG_4 }, { HTML_UNDEF }, "all", ecb_all },
     { { HTML_CSS, 0, 0, H2_CSS_FRAG_4 }, { HTML_UNDEF }, "always", ecb_always },
@@ -498,6 +508,8 @@ struct symbol_entry < html_version, e_css_caret_shape > css_caret_shape_symbol_t
 struct symbol_entry < html_version, e_css_clear > css_clear_symbol_table [] =
 {   { { HTML_CSS }, { HTML_UNDEF }, "inherit", ecc_inherit },
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "both", ecc_both },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_LOGIC }, { HTML_UNDEF }, "inline-end", ecc_inline_end },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_LOGIC }, { HTML_UNDEF }, "inline-start", ecc_inline_start },
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "left", ecc_left },
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "none", ecc_none },
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "right", ecc_right } };
@@ -1160,6 +1172,7 @@ struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
     { { HTML_JUL23, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "popover-open", efn_popover_open, ns_default, CF_LV_STD_JUL23 },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "read-only", efn_read_only },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "read-write", efn_read_write },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_LOGIC }, { HTML_UNDEF }, "recto", efn_recto, ns_default, CF_PAGE },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "required", efn_required },
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "right", efn_right, ns_default, CF_PAGE },
     { { HTML_CSS, 0, 0, H2_CSS_3 }, { HTML_UNDEF }, "root", efn_root },
@@ -1176,6 +1189,7 @@ struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "user-invalid", efn_user_invalid, },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "user-valid", efn_user_valid, },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "valid", efn_valid },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_LOGIC }, { HTML_UNDEF }, "verso", efn_verso, ns_default, CF_PAGE },
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "visited", efn_visited },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "volume-locked", efn_volume_locked },
     { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_N_ARGS }, { HTML_UNDEF }, "where", efn_where },
@@ -1196,6 +1210,20 @@ struct symbol_entry < html_version, e_css_generic_family > css_generic_family_sy
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "ui-rounded", ecf_ui_rounded },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "ui-sans-serif", ecf_ui_sans_serif },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "ui-serif", ecf_ui_serif } };
+
+struct symbol_entry < html_version, e_css_inline_bem_1 > css_inline_bem_1_symbol_table [] =
+{   { { HTML_CSS, 0, 0, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "alphabetic", cib1_alphabetic },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "cap", cib1_cap },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "ex", cib1_ex },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "ideographic", cib1_ideographic },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "ideographic-ink", cib1_ideographic_ink },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "text", cib1_text } };
+
+struct symbol_entry < html_version, e_css_inline_bem_2 > css_inline_bem_2_symbol_table [] =
+{   { { HTML_CSS, 0, 0, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "alphabetic", cib2_alphabetic },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "ideographic", cib2_ideographic },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "ideographic-ink", cib2_ideographic_ink },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "text", cib2_text } };
 
 struct symbol_entry < html_version, e_css_justify_content > css_justify_content_symbol_table [] =
 {   { { HTML_CSS, 0, 0, H2_CSS_FBL_3 }, { HTML_UNDEF }, "center", ejc_centre },
@@ -1301,11 +1329,11 @@ struct symbol_entry < html_version, e_css_relative_size > css_relative_size_symb
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "smaller", ecr_smaller } };
 
 struct symbol_entry < html_version, e_css_resize > css_resize_symbol_table [] =
-{   { { HTML_CSS, 0, 0, H2_CSS_UI_4 }, { HTML_UNDEF }, "block", ecz_block },
+{   { { HTML_CSS, 0, 0, H2_CSS_UI_4, H3_CSS_LOGIC }, { HTML_UNDEF }, "block", ecz_block },
     { { HTML_CSS, 0, 0, H2_CSS_UI }, { HTML_UNDEF }, "both", ecz_both },
     { { HTML_CSS, 0, 0, H2_CSS_UI }, { HTML_UNDEF }, "horizontal", ecz_horizontal },
-    { { HTML_CSS, 0, 0, H2_CSS_UI }, { HTML_UNDEF }, "inherit", ecz_inherit },
-    { { HTML_CSS, 0, 0, H2_CSS_UI_4 }, { HTML_UNDEF }, "inline", ecz_inline },
+    { { HTML_CSS, 0, 0, H2_CSS_UI, H3_CSS_LOGIC }, { HTML_UNDEF }, "inherit", ecz_inherit },
+    { { HTML_CSS, 0, 0, H2_CSS_UI_4, H3_CSS_LOGIC }, { HTML_UNDEF }, "inline", ecz_inline },
     { { HTML_CSS, 0, 0, H2_CSS_UI }, { HTML_UNDEF }, "none", ecz_none },
     { { HTML_CSS, 0, 0, H2_CSS_UI }, { HTML_UNDEF }, "vertical", ecz_vertical } };
 
@@ -1379,7 +1407,7 @@ struct symbol_entry < html_version, e_css_statement > css_statement_symbol_table
     { { HTML_CSS }, { HTML_UNDEF }, "top-left-corner", css_top_left_corner, ns_default, CF_PRINT },
     { { HTML_CSS }, { HTML_UNDEF }, "top-right", css_top_right, ns_default, CF_PRINT },
     { { HTML_CSS }, { HTML_UNDEF }, "top-right-corner", css_top_right_corner, ns_default, CF_PRINT },
-    { { HTML_CSS, 0, 0, H2_CSS_3 }, { HTML_UNDEF }, "viewport", css_viewport },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_DEVICE }, { HTML_UNDEF }, "viewport", css_viewport },
     { { HTML_CSS, 0, 0, H2_CSS_COND_RULE_5 }, { HTML_UNDEF }, "when", css_when } };
 
 struct symbol_entry < html_version, e_css_system_e > css_system_e_symbol_table [] =
@@ -1391,10 +1419,12 @@ struct symbol_entry < html_version, e_css_system_e > css_system_e_symbol_table [
 
 struct symbol_entry < html_version, e_css_text_align > css_text_align_symbol_table [] =
 {   { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "center", ecta_centre },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_LOGIC }, { HTML_UNDEF }, "end", ecta_end },
     { { HTML_CSS }, { HTML_UNDEF }, "inherit", ecta_inherit },
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "justify", ecta_justify },
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "left", ecta_left },
-    { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "right", ecta_right } };
+    { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "right", ecta_right },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_LOGIC }, { HTML_UNDEF }, "start", ecta_start } };
 
 struct symbol_entry < html_version, e_css_text_decoration > css_text_decoration_symbol_table [] =
 {   { { HTML_CSS }, { HTML_UNDEF }, "inherit", ectd_inherit },
@@ -1553,6 +1583,63 @@ struct symbol_entry < html_version, e_css_val_fn > css_val_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_CUSTOM }, { HTML_UNDEF }, "var", cvf_var },
     { { HTML_CSS, 0, 0, 0, H3_CSS_SHAPE | H3_CSS_MASKING }, { HTML_UNDEF }, "xywh", cvf_xywh } };
 
+struct symbol_entry < html_version, e_css_version > css_version_symbol_table [] =
+{   { { HTML_TAGS }, { HTML_UNDEF }, "0", css_none },
+    { { HTML_TAGS }, { HTML_UNDEF }, "none", css_none },
+    { { HTML_TAGS }, { HTML_UNDEF }, "1", css_1 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2.0", css_2_0 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2", css_2_1 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2.1", css_2_1 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2.2", css_2_2 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "3", css_3 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "4", css_4 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "5", css_5 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "6", css_6 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "07", css_2007 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2007", css_2007 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "10", css_2010 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2010", css_2010 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "15", css_2015 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2015", css_2015 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "15+", css_2015_1 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2015+", css_2015_1 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "17", css_2017 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2017", css_2017 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "17+", css_2017_1 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2017+", css_2017_1 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "17++", css_2017_2 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2017++", css_2017_2 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "18", css_2018 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2018", css_2018 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "18+", css_2018_1 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2018+", css_2018_1 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "18++", css_2018_2 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2018++", css_2018_2 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "20", css_2020 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2020", css_2020 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "20+", css_2020_1 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2020+", css_2020_1 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "20++", css_2020_2 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2020++", css_2020_2 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "21", css_2021 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2021", css_2021 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "21+", css_2021_1 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2021+", css_2021_1 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "21++", css_2021_2 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2021++", css_2021_2 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "22", css_2022 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2022", css_2022 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "22+", css_2022_1 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2022+", css_2022_1 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "22++", css_2022_2 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2022++", css_2022_2 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "23", css_2023 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2023", css_2023 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "23+", css_2023_1 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2023+", css_2023_1 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "23++", css_2023_2 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2023++", css_2023_2 } };
+
 struct symbol_entry < html_version, e_css_vertical_align > css_vertical_align_symbol_table [] =
 {   { { HTML_CSS }, { HTML_UNDEF }, "inherit", ecva_inherit },
     { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "baseline", ecv_baseline },
@@ -1600,6 +1687,15 @@ struct symbol_entry < html_version, e_css_wide > css_wide_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_CASCADE_456 }, { HTML_UNDEF }, "revert", cw_revert },
     { { HTML_CSS, 0, 0, H2_CSS_CASCADE_56 }, { HTML_UNDEF }, "revert-layer", cw_revert_layer },
     { { HTML_CSS, 0, 0, H2_CSS_CASCADE }, { HTML_UNDEF }, "unset", cw_unset } };
+
+struct symbol_entry < html_version, e_css_wrap_flow > css_wrap_flow_symbol_table [] =
+{   { { HTML_CSS, 0, 0, 0, H3_CSS_EXCLUDE }, { HTML_UNDEF }, "auto", cwf_auto },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_EXCLUDE }, { HTML_UNDEF }, "both", cwf_both },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_EXCLUDE }, { HTML_UNDEF }, "clear", cwf_clear },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_EXCLUDE }, { HTML_UNDEF }, "end", cwf_end },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_EXCLUDE }, { HTML_UNDEF }, "maximum", cwf_maximum },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_EXCLUDE }, { HTML_UNDEF }, "minimum", cwf_minimum },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_EXCLUDE }, { HTML_UNDEF }, "start", cwf_start } };
 
 struct symbol_entry < html_version, e_cursor > cursor_symbol_table [] =
 {   { { HTML_SVG10, 0, HE_SVG_10_11_FULL }, { HTML_UNDEF }, "auto",  cu_auto },
@@ -1716,18 +1812,20 @@ struct symbol_entry < html_version, e_display_align > display_align_symbol_table
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, "center", da_centre },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, "after", da_after },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, "inherit", da_inherit } };
-
+// db_textbottom, db_texttop
 struct symbol_entry < html_version, e_dominantbaseline > dominantbaseline_symbol_table [] =
-{   { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "auto",  db_auto },
+{   { { HTML_SVG10, 0, HE_SVG_10_11_2, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "auto",  db_auto },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "use-script", db_usescript },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "no-change", db_nochange },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "reset-size", db_resetsize },
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "ideographic", db_ideographic },
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "alphabetic", db_alphabetic },
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "hanging", db_hanging },
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "mathematical", db_mathematical },
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "central", db_central },
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "middle", db_middle },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "ideographic", db_ideographic },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "alphabetic", db_alphabetic },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "hanging", db_hanging },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "mathematical", db_mathematical },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "central", db_central },
+    { { HTML_SVG10, 0, HE_SVG_10_11_2, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "middle", db_middle },
+    { { HTML_SVG10, 0, 0, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "text-bottom", db_textbottom },
+    { { HTML_SVG10, 0, 0, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "text-top", db_texttop },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "text-after-edge", db_textafteredge },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "text-before-edge", db_textbeforeedge },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "inherit", db_inherit } };
@@ -2354,6 +2452,14 @@ struct symbol_entry < html_version, e_longdivstyle > longdivstyle_symbol_table [
     { { HTML_5_2 }, { HTML_UNDEF }, "stackedleftleft", ls_stackedleftleft },
     { { HTML_5_2 }, { HTML_UNDEF }, "stackedleftlinetop", ls_stackedleftlinetop } };
 
+struct symbol_entry < html_version, e_lrnialign > lrnialign_symbol_table [] =
+{   { { HTML_CSS, 0, 0, 0, H3_CSS_LOGIC }, { HTML_UNDEF }, "clear", li_clear },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_LOGIC }, { HTML_UNDEF }, "float", li_float },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "left", li_left },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "right", li_right },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "none", li_none },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "inherit", li_inherit } };
+
 struct symbol_entry < html_version, e_mah > mah_symbol_table [] =
 {   { { HTML_UNDEF }, { HTML_UNDEF }, "go", mah_go },
     { { HTML_UNDEF }, { HTML_UNDEF }, "done", mah_done },
@@ -2630,6 +2736,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-corpus", nm_context_corpus },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-crosslinks", nm_context_crosslinks },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css", nm_context_css },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-adjust", nm_context_css_adjust },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-animation", nm_context_css_animation },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-background", nm_context_css_background },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-box-alignment", nm_context_css_box_align },
@@ -2642,8 +2749,10 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-contain", nm_context_css_contain },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-counter-style", nm_context_css_cs },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-custom", nm_context_css_custom },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-device", nm_context_css_device },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-display", nm_context_css_display },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-ease", nm_context_css_ease },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-exclude", nm_context_css_exclude },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-extension", nm_context_css_extension },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-fbl", nm_context_css_fbl },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-filter", nm_context_css_filter },
@@ -2651,12 +2760,17 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-fragmentation", nm_context_css_fragmentation },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-grid", nm_context_css_grid },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-image", nm_context_css_image },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-inline", nm_context_css_inline },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-line-grid", nm_context_css_line_grid },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-lists", nm_context_css_lists },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-logic", nm_context_css_logic },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-masking", nm_context_css_masking },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-media", nm_context_css_media },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-multi-column", nm_context_css_multi_column },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-namespace", nm_context_css_namespace },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-overflow", nm_context_css_overflow },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-position", nm_context_css_position },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-scrollbar", nm_context_css_scrollbar },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-selector", nm_context_css_selector },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-shape", nm_context_css_shape },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-snap", nm_context_css_snap },
@@ -2664,6 +2778,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-style", nm_context_css_style },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-syntax", nm_context_css_syntax },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-table", nm_context_css_table },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-text", nm_context_css_text },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-text-decoration", nm_context_css_text_decoration },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-transform", nm_context_css_transform },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-transition", nm_context_css_transition },
@@ -4036,6 +4151,8 @@ struct symbol_entry < html_version, e_tableframe > tableframe_symbol_table [] =
 struct symbol_entry < html_version, e_tblri > tblri_symbol_table [] =
 {   { { HTML_CSS }, { HTML_UNDEF }, "bottom", etb_bottom },
     { { HTML_CSS }, { HTML_UNDEF }, "inherit", etb_inherit },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_LOGIC }, { HTML_UNDEF }, "inline-end", etb_inline_end },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_LOGIC }, { HTML_UNDEF }, "inline-start", etb_inline_start },
     { { HTML_CSS, 0, 0, H2_CSS_2_0 }, { HTML_UNDEF }, "left", etb_left },
     { { HTML_CSS, 0, 0, H2_CSS_2_0 }, { HTML_UNDEF }, "right", etb_right },
     { { HTML_CSS }, { HTML_UNDEF }, "top", etb_top } };
@@ -4587,6 +4704,7 @@ void init_2 ()
     type_master < t_connect > :: init ();
     type_master < t_coordinatesystem > :: init ();
     type_master < t_cors > :: init ();
+    type_master < t_create_parent > :: init ();
     type_master < t_css_anim_play_state > :: init ();
     type_master < t_css_box_sizing > :: init ();
     type_master < t_css_break_box > :: init ();
@@ -4601,13 +4719,16 @@ void init_2 ()
     type_master < t_css_wc_e > :: init ();
     type_master < t_dataformatas > :: init ();
     type_master < t_defaultaction > :: init ();
+    type_master < t_drop_raise > :: init ();
     type_master < t_dynamic_range > :: init ();
     type_master < t_e_w > :: init ();
+    type_master < t_economy_exact > :: init ();
     type_master < t_editable > :: init ();
     type_master < t_filled_open > :: init ();
     type_master < t_fill_ve > :: init ();
     type_master < t_fillanim > :: init ();
     type_master < t_first_last > :: init ();
+    type_master < t_fixed_zoom > :: init ();
     type_master < t_forced_colours > :: init ();
     type_master < t_always_normal > :: init ();
     type_master < t_auto_none > :: init ();
@@ -4624,7 +4745,7 @@ void init_2 ()
     type_master < t_lralign > :: init ();
     type_master < t_ltr_rtl > :: init ();
     type_master < t_markerunits > :: init ();
-    type_master < t_mathdisplay > :: init ();
+    type_master < t_block_inline > :: init ();
     type_master < t_mathfontstyle > :: init ();
     type_master < t_mathfontweight > :: init ();
     type_master < t_mathmode > :: init ();
@@ -4640,7 +4761,9 @@ void init_2 ()
     type_master < t_n_s > :: init ();
     type_master < t_nav_controls > :: init ();
     type_master < t_none_objects > :: init ();
+    type_master < t_none_wrap > :: init ();
     type_master < t_normal_spell > :: init ();
+    type_master < t_normal_stretch > :: init ();
     type_master < t_notations > :: init ();
     type_master < t_onoff > :: init ();
     type_master < t_orientation > :: init ();
@@ -4688,9 +4811,13 @@ void init_2 ()
 
 void init_3 ()
 {   type_master < t_all_auto_none > :: init ();
+    type_master < t_alp > :: init ();
     type_master < t_aria_live > :: init ();
     type_master < t_attributetype > :: init ();
+    type_master < t_auto_first_last > :: init ();
     type_master < t_auto_hidden_visible > :: init ();
+    type_master < t_auto_none_thin > :: init ();
+    type_master < t_baseline_contain_none > :: init ();
     type_master < t_behaviour > :: init ();
     type_master < t_button > :: init ();
     type_master < t_cc_permits > :: init ();
@@ -4706,6 +4833,7 @@ void init_3 ()
     type_master < t_css_column_fill > :: init ();
     type_master < t_css_display_outside > :: init ();
     type_master < t_css_empty_cells > :: init ();
+    type_master < t_css_fca > :: init ();
     type_master < t_css_flex_wrap > :: init ();
     type_master < t_css_font_kerning > :: init ();
     type_master < t_css_image_proc_e > :: init ();
@@ -4787,6 +4915,7 @@ void init_4 ()
     type_master < t_aria_autocomplete > :: init ();
     type_master < t_aria_invalidity > :: init ();
     type_master < t_aria_sort > :: init ();
+    type_master < t_bens > :: init ();
     type_master < t_buffered_rendering > :: init ();
     type_master < t_calcmode > :: init ();
     type_master < t_captionalign > :: init ();
@@ -4805,6 +4934,8 @@ void init_4 ()
     type_master < t_css_fn_round_t > :: init ();
     type_master < t_css_font_style_e > :: init ();
     type_master < t_css_hue_interpolation > :: init ();
+    type_master < t_css_initial_letter_align > :: init ();
+    type_master < t_css_initial_letter_wrap_e > :: init ();
     type_master < t_css_margin_trim_inner > :: init ();
     type_master < t_css_mask_border_repeat > :: init ();
     type_master < t_css_orientation > :: init ();
@@ -4826,7 +4957,6 @@ void init_4 ()
     type_master < t_linebreakstyle > :: init ();
     type_master < t_linecap > :: init ();
     type_master < t_linejoin > :: init ();
-    type_master < t_lrnialign > :: init ();
     type_master < t_mathclosure > :: init ();
     type_master < t_mathside > :: init ();
     type_master < t_media_display_mode > :: init ();
@@ -4898,6 +5028,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (css_border_style);
     INIT_ENUM (css_border_width);
     INIT_ENUM (css_box_alignself_mess);
+    INIT_ENUM (css_box_snap);
     INIT_ENUM (css_break);
     INIT_ENUM (css_break_inside);
     INIT_ENUM (css_caret_shape);
@@ -4922,6 +5053,8 @@ void enum_init (nitpick& nits)
     INIT_ENUM (css_font_variation);
     INIT_ENUM (css_font_weight);
     INIT_ENUM (css_generic_family);
+    INIT_ENUM (css_inline_bem_1);
+    INIT_ENUM (css_inline_bem_2);
     INIT_ENUM (css_justify_content);
     INIT_ENUM (css_layout_box);
     INIT_ENUM (css_list_style_position);
@@ -4950,12 +5083,14 @@ void enum_init (nitpick& nits)
     INIT_ENUM (css_transform_box);
     INIT_ENUM (css_user_select);
     INIT_ENUM (css_val_fn);
+    INIT_ENUM (css_version);
     INIT_ENUM (css_vertical_align);
     INIT_ENUM (css_visual_box);
     INIT_ENUM (css_voice_balance_e);
     INIT_ENUM (css_volume_e);
     INIT_ENUM (css_whitespace);
     INIT_ENUM (css_wide);
+    INIT_ENUM (css_wrap_flow);
     INIT_ENUM (crossout);
     INIT_ENUM (cursor);
     INIT_ENUM (decalign);
@@ -4996,6 +5131,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (linebreak);
     INIT_ENUM (linkparam);
     INIT_ENUM (listtype);
+    INIT_ENUM (lrnialign);
     INIT_ENUM (longdivstyle);
     INIT_ENUM (mah);
     INIT_ENUM (mathalign);

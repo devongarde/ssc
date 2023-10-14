@@ -577,3 +577,23 @@ template < > struct type_master < t_srcset > : tidy_string < t_srcset >
     void reset () noexcept
     {   value_.clear ();
         tidy_string < t_srcset > :: reset (); } };
+
+template < > struct type_master < t_css_vertal_2 > : tidy_string < t_css_vertal_2 >
+{   using tidy_string < t_css_vertal_2 > :: tidy_string;
+	static e_animation_type animation_type () noexcept { return at_none; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_vertal_2 > :: set_value (nits, v, s);
+        if (tidy_string < t_css_vertal_2 > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "missing vertical align value");
+        else if (tidy_string < t_css_vertal_2 > :: good ())
+        {   ::std::string ss (tidy_string < t_css_vertal_2 > :: get_string ());
+            nitpick nuts; bool tested = false;
+            if (v.css_inline () > 0)
+            {   if (test_value < t_css_vertal_inline > (nuts, v, ss)) return;
+                tested = true; }
+            if (v.svg () || v.is_css_2 ())
+            {   if (test_value < t_css_vertal > (nits, v, ss)) return;
+                tested = true; }
+            if (tested) nits.merge (nuts);
+            else nits.pick (nit_version, es_error, ec_type, "VERTICAL-ALIGN requires SVG or CSS 2 or later"); }
+        tidy_string < t_css_vertal_2 > :: status (s_invalid); } };

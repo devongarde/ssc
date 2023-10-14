@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.1.39
+version 0.1.40
 (c) 2020-2023 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notice
 https://ssc.lu/
@@ -11,7 +11,7 @@ https://github.com/devongarde/ssc
 ssc analyses static X/HTML snippets, files and sites:
 - HTML living standard, Jan 2005 to Oct 2023
 - HTML Tags/1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3-draft
-- CSS 1/2.0/2.1/2.2-draft, some 3/4/5/6
+- CSS 1/2.0/2.1/2.2-draft, 2007/2010/2015 snapshots
 - SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x-draft
 - MathML 1/2/3/4-draft
 - XHTML 1.0/1.1/2.0/5.x
@@ -70,7 +70,7 @@ developer:
 - configuration file/s used, if any;
 - any ndx file or other pre-existing file used during the run;
 - any known workarounds, fixes or solutions;
-- optionally, a dance interpretation of the 'feature'.
+- a dance interpretation.
 Email everything to mail@ssc.lu (if the collected files are more than
 small, please use a public fileserver and email the link). Do NOT send
 anything confidential. Furthermore, unless you state otherwise, we
@@ -84,7 +84,7 @@ https://github.com/devongarde/ssc . Thank you.
 SSC can be run in a CGI environment. This is intended for use with
 OpenBSD's native httpd web server (https://man.openbsd.org/httpd.8).
 You are reminded that SSC is pre-production software. Do NOT expose it
-to untrusted data sources, such as that found on the open web.
+to untrusted data sources, such as those found on the open web.
 
 
 
@@ -120,7 +120,7 @@ most cursory.
 
 Then came the cow flu*.
 * corvid means crow, thus covid means cow**.
-** by the rules of sympathetic spelling.
+** by the law of sympathetic spelling.
 
 
 

@@ -56,6 +56,7 @@ class statement
     void parse_page (arguments& args, nitpick& nits, const int from, const int to);
     void parse_scope (arguments& args, nitpick& nits, const int from, const int to);
     void parse_supports (arguments& args, nitpick& nits, const int from, const int to);
+    void parse_viewport (arguments& args, nitpick& nits, const int from, const int to);
     void bracketed_property (arguments& args, nitpick& nits, const int to, int& i);
 public:
     DEFAULT_CONSTRUCTORS (statement);

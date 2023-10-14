@@ -193,7 +193,7 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT, class LC >
             else if (f.out_of_scope ())
                 nits.pick (nit_out_of_scope, es_error, ec_type, quote (s), " is out of scope for an HTML server");
             else
-            {   f.check_css_status (nits, symbol < html_version, ENUM, CATEGORY, INIT, LC > :: name ());
+            {   f.check_status (nits, symbol < html_version, ENUM, CATEGORY, INIT, LC > :: name ());
                 if (f.deprecated (v))
                     nits.pick (nit_deprecated_value, es_warning, ec_type, quote (s), " is deprecated in ", v.report ());
                 if ((f.ext () & HE_M3_NONSTAND) != 0)
@@ -322,6 +322,9 @@ template < > struct type_master < t_css_border_style > : enum_n < t_css_border_s
 template < > struct type_master < t_css_border_width > : enum_n < t_css_border_width, e_css_border_width >
 { using enum_n < t_css_border_width, e_css_border_width > :: enum_n; };
 
+template < > struct type_master < t_css_box_snap > : enum_n < t_css_box_snap, e_css_box_snap >
+{ using enum_n < t_css_box_snap, e_css_box_snap > :: enum_n; };
+
 template < > struct type_master < t_css_break > : enum_n < t_css_break, e_css_break >
 { using enum_n < t_css_break, e_css_break > :: enum_n; };
 
@@ -396,6 +399,12 @@ template < > struct type_master < t_css_font_weight > : enum_n < t_css_font_weig
 
 template < > struct type_master < t_css_generic_family > : enum_n < t_css_generic_family, e_css_generic_family >
 { using enum_n < t_css_generic_family, e_css_generic_family > :: enum_n; };
+
+template < > struct type_master < t_css_inline_bem_1 > : enum_n < t_css_inline_bem_1, e_css_inline_bem_1 >
+{ using enum_n < t_css_inline_bem_1, e_css_inline_bem_1 > :: enum_n; };
+
+template < > struct type_master < t_css_inline_bem_2 > : enum_n < t_css_inline_bem_2, e_css_inline_bem_2 >
+{ using enum_n < t_css_inline_bem_2, e_css_inline_bem_2 > :: enum_n; };
 
 template < > struct type_master < t_css_justify_content > : enum_n < t_css_justify_content, e_css_justify_content >
 { using enum_n < t_css_justify_content, e_css_justify_content > :: enum_n; };
@@ -484,6 +493,9 @@ template < > struct type_master < t_css_user_select > : enum_n < t_css_user_sele
 template < > struct type_master < t_css_val_fn > : enum_n < t_css_val_fn, e_css_val_fn >
 { using enum_n < t_css_val_fn, e_css_val_fn > :: enum_n; };
 
+template < > struct type_master < t_css_version > : enum_n < t_css_version, e_css_version >
+{ using enum_n < t_css_version, e_css_version > :: enum_n; };
+
 template < > struct type_master < t_css_vertical_align > : enum_n < t_css_vertical_align, e_css_vertical_align >
 { using enum_n < t_css_vertical_align, e_css_vertical_align > :: enum_n; };
 
@@ -501,6 +513,9 @@ template < > struct type_master < t_css_whitespace > : enum_n < t_css_whitespace
 
 template < > struct type_master < t_css_wide > : enum_n < t_css_wide, e_css_wide >
 { using enum_n < t_css_wide, e_css_wide > :: enum_n; };
+
+template < > struct type_master < t_css_wrap_flow > : enum_n < t_css_wrap_flow, e_css_wrap_flow >
+{ using enum_n < t_css_wrap_flow, e_css_wrap_flow > :: enum_n; };
 
 template < > struct type_master < t_currency > : enum_n < t_currency, e_currency >
 { using enum_n < t_currency, e_currency > :: enum_n; };
@@ -630,6 +645,9 @@ template < > struct type_master < t_linkparam > : enum_n < t_linkparam, e_linkpa
 
 template < > struct type_master < t_listtype > : enum_n < t_listtype, e_listtype, ident_t, ns_default, sz_false >
 { using enum_n < t_listtype, e_listtype, ident_t, ns_default, sz_false > :: enum_n; };
+
+template < > struct type_master < t_lrnialign > : enum_n < t_lrnialign, e_lrnialign >
+{ using enum_n < t_lrnialign, e_lrnialign > :: enum_n; };
 
 template < > struct type_master < t_longdivstyle > : enum_n < t_longdivstyle, e_longdivstyle >
 { using enum_n < t_longdivstyle, e_longdivstyle > :: enum_n; };

@@ -1016,6 +1016,7 @@ e_attribute attr::parse (nitpick& nits, const html_version& v, const namespaces_
         check_identifier_spelling (nits, v, lc); }
     else
     {   if ((v >= html_jan05) && ((a.flags () & AF_NOT_NAMESPACED) == 0)) nits.merge (nuts);
+        a.first ().check_status (nits, lc);
         if (v.is_svg_2 ())
         {   if ((a.flags () & AF_PROPERTY) == AF_PROPERTY)
                 nits.pick (nit_is_property, ed_svg_2_0, "1.4. Text layout - Content Area", es_error, ec_attribute, quote (key), " is a property, not an attribute (use STYLE)");

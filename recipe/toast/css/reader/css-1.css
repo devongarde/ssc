@@ -1,0 +1,8 @@
+﻿@media reader and (grid: 0) {
+    /* styles for bitmapped displays */
+    ...
+}
+@media reader and (grid: 1) {
+    /* Styles for grid-based displays */
+    ...
+}

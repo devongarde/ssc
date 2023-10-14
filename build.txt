@@ -9,8 +9,7 @@ Introduction
 SSC can be built on various unii with CMake and gcc or clang,
 supporting C++ 17 or better, or with Visual Studios 2019 / 2022 under
 Windows. I have built & tested a 64-bit version in selected OSs on
-intel/amd & arm64 (m2) architecture. For now, the arm solution
-should be seen as particularly hopeless.
+intel/amd & arm64 (m2) architecture.
 
 Although ssc builds and runs with some older compilers on some older
 systems, not all features are available on them.
@@ -25,7 +24,7 @@ You need boost version 1.75 or better (https://boost.org), a recent
 version of the ICU libraries (https://icu-project.org/), Microsoft's
 GSL library (https://github.com/Microsoft/GSL) (or define NO_GSL), and
 a recent version of libcurl (https://curl.se/)*. Usually, an Operating
-System's package system has an appropriate version ready to install.
+System's package system has appropriate versions ready to install.
 
 *libcurl requires a thread-safe underlying SSL library: see
 https://curl.se/libcurl/c/threadsafe.html
@@ -42,9 +41,6 @@ hunspell
 Building SSC under unii, including macos, requires a development
 installation of hunspell (https://hunspell.github.io/).
 
-Once you've got them, you can run cmake from the project root
-directory.
-
 winspell
 --------
 The Windows build, by default, uses the native Windows spellchecker,
@@ -58,9 +54,9 @@ Building
 Windows
 -------
 To build from Visual Studio, navigate to recipe/tea, open the
-appropriate .sln file, then build. Only Visual Studios 2017 / 2019 /
+appropriate .sln file, then build. Only Visual Studios 2019 and
 2022, 64 bit, have been built & tested, for intel and arm64, under
-Windows 10 & 11. I've not built ssc using CMake under Windows.
+Windows 10 & 11.
 
 Note the included solutions presume Microsoft's VCPKG manager. There
 are alternatives.
@@ -99,8 +95,8 @@ The following have been successfully built as x64 amd/intel:
 FreeBSD:  12.3 / 13.1
 Linux:    Alma Linux 9, AOSC, Centos 8 / 9, SUSE Tumbleweed,
           Ubuntu 20.04 / 22.04
-MacOS:    Ventura, Monterey, Big Sur, Catalina, Mojave, High Sierra,
-          Sierra, El Capitan, and Yosemite
+MacOS:    Sonoma, Ventura, Monterey, Big Sur, Catalina, Mojave, High
+          Sierra, Sierra, El Capitan, and Yosemite
 OpenBSD:  7.3 / 7.2 / 7.1 / 7.0 / 6.9 / 6.8
 
 The following have been successfully built as arm64:
@@ -114,7 +110,7 @@ Centos 9
 --------
 The appropriate CMake command is:
   cmake . -DFLAVOUR=CentosOSStream -DFLAVOUR_VER=9
-(beware the standard English spelling of flavour.)
+(note the standard English spelling of flavour.)
 
 OpenBSD
 -------
@@ -139,7 +135,7 @@ CMake
 -----
 Under CMake, run ctest:
   ctest -V
-(which runs ssc-test for you, using ...nix.lst).
+(which runs ssc-test for you, using nix.lst).
 
 Dimitude
 --------

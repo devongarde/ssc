@@ -1,0 +1,6 @@
+﻿blockquote {
+    text-align: start; /* left in latin, right in arabic */
+    margin-inline-start: 0px; /* margin-left in latin, margin-right in arabic */
+    border-inline-start: 5px solid gray; /* border-left in latin, border-right in arabic */
+    padding-inline-start: 5px; /* padding-left in latin, padding-right in arabic */
+}
