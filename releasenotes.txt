@@ -3,6 +3,16 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.41
+- all CSS snapshots
+- CSS Lists 3
+- CSS Text 3
+- CSS Text 4
+- CSS Conditional Rules 3
+- CSS Conditional Rules 4
+- various bug fixes
+- underlying work
+
 0.1.40
 - CSS Colour Adjustment 3
 - CSS Device Adaption 3

@@ -360,6 +360,21 @@ template < e_type T, e_type P, class SZ, int F = 0 > struct maybe_type_then_stri
         uq4 < T, sz_space_char, F > :: status (s_invalid); }
     ::std::size_t size () const noexcept { return 3; } };
 
+template < e_type T, e_type P, class SZ, int F = 0 > struct type_then_maybe_string : uq4 < T, sz_space_char, F >
+{   using uq4 < T, sz_space_char, F > :: uq4;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   vstr_t vs (uq4 < T, sz_space_char, F > :: set_value (nits, v, s));
+        if (uq4 < T, sz_space_char, F > :: empty ()) nits.pick (nit_empty, es_warning, ec_type, "bit minimalist, that (", type_name (T), ")");
+        else if (uq4 < T, sz_space_char, F > :: good ())
+        {   PRESUME (vs.size () > 0, __FILE__, __LINE__);
+            bool good = test_value < P > (nits, v, vs.at (0));
+            if (vs.size () == 1) return;
+            if (! compare_complain (nits, v, SZ :: sz (), vs.at (1))) good = false;
+            if (vs.size () > 2) nits.pick (nit_too_many, es_warning, ec_type, "too many values");
+            if (good) return; }
+        uq4 < T, sz_space_char, F > :: status (s_invalid); }
+    ::std::size_t size () const noexcept { return 3; } };
+
 template < e_type T, e_type P, e_type Q, class SZ, int F = 0 > struct both_types_then_string : uq4 < T, sz_space_char, F >
 {   using uq4 < T, sz_space_char, F > :: uq4;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)

@@ -31,6 +31,8 @@ ssc.exe -T --nits.spec -o ../out/3contain.tst -f ../toast/css/3-contain/css.conf
 ssc.exe -T --nits.spec -o ../out/4contain.tst -f ../toast/css/4-contain/css.conf
 ssc.exe -T --nits.spec -o ../out/5contain.tst -f ../toast/css/5-contain/css.conf
 ssc.exe -T --nits.spec -o ../out/3cr.tst -f ../toast/css/3-cr/css.conf
+ssc.exe -T --nits.spec -o ../out/4cr.tst -f ../toast/css/4-cr/css.conf
+ssc.exe -T --nits.spec -o ../out/5cr.tst -f ../toast/css/5-cr/css.conf
 ssc.exe -T --nits.spec -o ../out/3cs.tst -f ../toast/css/3-cs/css.conf
 ssc.exe -T --nits.spec -o ../out/3device.tst -f ../toast/css/3-device/css.conf
 ssc.exe -T --nits.spec -o ../out/3display.tst -f ../toast/css/3-display/css.conf
@@ -45,6 +47,7 @@ ssc.exe -T --nits.spec -o ../out/3grid.tst -f ../toast/css/3-grid/css.conf
 ssc.exe -T --nits.spec -o ../out/4grid.tst -f ../toast/css/4-grid/css.conf
 ssc.exe -T --nits.spec -o ../out/3image.tst -f ../toast/css/3-image/css.conf
 ssc.exe -T --nits.spec -o ../out/3inline.tst -f ../toast/css/3-inline/css.conf
+ssc.exe -T --nits.spec -o ../out/3list.tst -f ../toast/css/3-list/css.conf
 ssc.exe -T --nits.spec -o ../out/3logic.tst -f ../toast/css/3-logic/css.conf
 ssc.exe -T --nits.spec -o ../out/3masking.tst -f ../toast/css/3-masking/css.conf
 ssc.exe -T --nits.spec -o ../out/3mc.tst -f ../toast/css/3-mc/css.conf
@@ -63,6 +66,8 @@ ssc.exe -T --nits.spec -o ../out/3speech.tst -f ../toast/css/3-peech/css.conf
 ssc.exe -T --nits.spec -o ../out/3style.tst -f ../toast/css/3-style/css.conf
 ssc.exe -T --nits.spec -o ../out/3syntax.tst -f ../toast/css/3-syntax/css.conf
 ssc.exe -T --nits.spec -o ../out/3table.tst -f ../toast/css/3-able/css.conf
+ssc.exe -T --nits.spec -o ../out/3text.tst -f ../toast/css/3-text/css.conf
+ssc.exe -T --nits.spec -o ../out/4text.tst -f ../toast/css/4-text/css.conf
 ssc.exe -T --nits.spec -o ../out/3textdec.tst -f ../toast/css/3-textdec/css.conf
 ssc.exe -T --nits.spec -o ../out/4textdec.tst -f ../toast/css/4-textdec/css.conf
 ssc.exe -T --nits.spec -o ../out/3transform.tst -f ../toast/css/3-transform/css.conf

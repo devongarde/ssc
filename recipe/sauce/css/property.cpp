@@ -33,7 +33,10 @@ void property::parse (arguments& args, const int from, const int to)
     PRESUME (from < len, __FILE__, __LINE__);
     PRESUME (to < len, __FILE__, __LINE__);
     int b = first_non_whitespace (args.t_, from, to);
-    if ((b < 0) || (args.t_.at (b).t_ == ct_curly_ket)) return;
+    if (b < 0) return;
+    while ((token_category (args.t_.at (b).t_) & TC_ROUND) != 0)
+        b = next_non_whitespace (args.t_, b, to);
+    if (args.t_.at (b).t_ == ct_curly_ket) return;
     from_ = b;
     nitpick& nits = args.t_.at (b).nits_;
     if (args.t_.at (b).t_ != ct_keyword)

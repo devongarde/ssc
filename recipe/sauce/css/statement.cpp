@@ -237,6 +237,37 @@ void statement::parse_custom_media (arguments& args, nitpick& nits, const int fr
         {   ::std::string def (assemble_string (args.t_, i, to, true));
             args.custom_media ().insert (::std::pair (name, def)); } } }
 
+void statement::conditional (arguments& args, nitpick& , const int from, const int to)
+{   media_.parse (args, from, to); }
+
+void statement::parse_else (arguments& args, nitpick& nits, const int from, const int to)
+{   if (args.v_.css_conditional_rule () < 5)
+        nits.pick (nit_css_version, es_error, ec_css, "@else requires CSS Conditional Rule level 5");
+    else if ((prev_ != css_when) && (prev_ != css_else))
+        nits.pick (nit_when_else, es_error, ec_css, "@else must follow @else or @when");
+    else
+    {   const int i = next_non_whitespace (args.t_, from, to);
+        if (i < 0)
+            nits.pick (nit_bad_supports, es_error, ec_css, "expecting at least {...} after @when");
+        else
+        {   int brac = i;
+            if (args.t_.at (i).t_ != ct_curly_brac)
+                brac = token_find (args.t_, ct_curly_brac, i, to);
+            if (brac < 0)
+                nits.pick (nit_css_scope, es_error, ec_css, "@else requires { ... }");
+            else
+            {   if (brac == i)
+                {   if (blank_else_)
+                        nits.pick (nit_when_else, es_error, ec_css, "the preceding @else was unconditional, so this one can never apply");
+                    blank_else_ = true; }
+                else
+                {   blank_else_ = false;
+                    if ((args.t_.at (i).t_ != ct_keyword) && (args.t_.at (i).t_ != ct_identifier))
+                        nits.pick (nit_bad_supports, es_error, ec_css, "an @else condition must be media() or supports()"); }
+                fiddlesticks < statement > f (&args.st_, this);
+                conditional (args, nits, i, brac-1);
+                vst_.emplace_back (pst_t (new statements (args, args.t_.at (brac).child_))); } } } }
+
 void statement::parse_feature_value (arguments& args, nitpick& nits, const int to, const e_css_statement cs, font_features& ffv)
 {   if (context.css_font () < 4)
         nits.pick (nit_css_version, ed_css_font_4, "6.9.1. Basic syntax", es_error, ec_css, "@", type_master < t_css_statement > :: name (cs), " requires CSS Font 4 or higher");
@@ -306,25 +337,49 @@ void statement::parse_font_palette_values (arguments& args, nitpick& nits, const
         {   fiddlesticks < statement > f (&args.st_, this);
             dsc_.parse (args, css_font_palette_values, args.t_.at (to).child_); } } }
 
-void statement::bracketed_property (arguments& args, nitpick& nits, const int to, int& i)
+void statement::bracketed_property (arguments& args, nitpick& nits, const int to, int& i, const bool atsupports, const e_supports su)
 {   int child = next_non_whitespace (args.t_, i, to);
+    e_nit naughty = nit_bad_import;
+    if (atsupports) naughty = nit_bad_supports;
     if ((child < 0) || ((args.t_.at (child).t_ != ct_keyword) && (args.t_.at (child).t_ != ct_identifier) && (args.t_.at (child).t_ != ct_round_brac)))
-    {   nits.pick (nit_bad_import, es_error, ec_css, "expecting a bracketed condition"); i = -1; }
+    {   nits.pick (naughty, es_error, ec_css, "expecting a bracketed condition"); i = -1; return; }
     int brackets = 1;
+    if ((su != su_none) && (args.t_.at (child).t_ == ct_identifier) && (args.t_.at (child).t_ == ct_keyword))
+        child = next_non_whitespace (args.t_, child, to);
     const int j = child;
+    int prev = child;
+    e_supports fk = su;
     for (; (child > 0) && ((to < 0) || (child <= to)); child = next_non_whitespace (args.t_, child, to))
-        switch (args.t_.at (child).t_)
+    {   switch (args.t_.at (child).t_)
         {   case ct_round_brac :
                 ++brackets; 
                 break;
             case ct_round_ket :
                 if (--brackets == 0)
-                {   fiddlesticks < statement > f (&args.st_, this);
-                    prop_.parse (args, j, child-1);
-                    child = next_non_whitespace (args.t_, child, to); }
+                {   switch (fk)
+                    {   case su_none :
+                            {   fiddlesticks < statement > f (&args.st_, this);
+                                prop_.parse (args, j, prev);
+                                child = next_non_whitespace (args.t_, child, to); }
+                            break;
+                        case su_font_tech :
+                            test_value < t_css_tech > (nits, args.v_, args.t_.at (prev).val_);
+                            break;
+                        case su_font_format :
+                            test_value < t_css_format > (nits, args.v_, args.t_.at (prev).val_);
+                            break;
+                        case su_selector :
+                            {   fiddlesticks < statement > f (&args.st_, this);
+                                sel_.parse (args, j, prev);
+                                child = next_non_whitespace (args.t_, child, to); }
+                           break;
+                        default :
+                            GRACEFUL_CRASH (__FILE__, __LINE__); }
+                    fk = su_none; }
                 break;
             default :
                 break; }
+        prev = child; }
     if (child > 0) i = child; else i = to; }
 
 void statement::parse_import (arguments& args, nitpick& nits, const int from, const int to)
@@ -659,8 +714,13 @@ void statement::parse_supports (arguments& args, nitpick& nits, const int from, 
                 nits.pick (nit_css_scope, es_error, ec_css, "@supports requires { ... }");
             else
             {   fiddlesticks < statement > f (&args.st_, this);
-                if (args.t_.at (i).t_ != ct_round_brac) prop_.parse (args, i, ket);
-                else if (i < ket-1) bracketed_property (args, nits, ket-1, i);
+                e_supports su = su_none;
+                if ((i < ket-1) && (context.css_conditional_rule () >= 4))
+                    if ((args.t_.at (i).t_ == ct_keyword) || (args.t_.at (i).t_ == ct_identifier))
+                    {   nitpick nuts;
+                        su = examine_value < t_supports > (nuts, args.v_, args.t_.at (i).val_); }
+                if ((args.t_.at (i).t_ != ct_round_brac) && (su == su_none)) prop_.parse (args, i, ket);
+                else if (i < ket-1) bracketed_property (args, nits, ket-1, i, true, su);
                 vst_.emplace_back (pst_t (new statements (args, args.t_.at (ket).child_))); } } } }
 
 void statement::parse_viewport (arguments& args, nitpick& nits, const int from, const int to)
@@ -674,6 +734,25 @@ void statement::parse_viewport (arguments& args, nitpick& nits, const int from, 
         {   fiddlesticks < statement > f (&args.st_, this);
             dsc_.parse (args, css_counter_style, args.t_.at (ket).child_);; } } }
 
+void statement::parse_when (arguments& args, nitpick& nits, const int from, const int to)
+{   if (args.v_.css_conditional_rule () < 5)
+        nits.pick (nit_css_version, es_error, ec_css, "@when requires CSS Conditional Rule level 5");
+    else
+    {   blank_else_ = false;
+        const int i = next_non_whitespace (args.t_, from, to);
+        if (i < 0)
+            nits.pick (nit_bad_supports, es_error, ec_css, "expecting a condition and {...} after @when");
+        else if ((args.t_.at (i).t_ != ct_keyword) && (args.t_.at (i).t_ != ct_identifier))
+            nits.pick (nit_bad_supports, es_error, ec_css, "@when expects media() or supports()");
+        else
+        {   const int brac = token_find (args.t_, ct_curly_brac, i, to);
+            if (brac < 0)
+                nits.pick (nit_css_scope, es_error, ec_css, "@when requires { ... }");
+            else
+            {   fiddlesticks < statement > f (&args.st_, this);
+                conditional (args, nits, i, brac-1);
+                vst_.emplace_back (pst_t (new statements (args, args.t_.at (brac).child_))); } } } }
+
 void statement::parse (arguments& args, const int from, const int to)
 {   PRESUME (from <= to, __FILE__, __LINE__);
     PRESUME (from + 1 < GSL_NARROW_CAST < int > (args.t_.size ()), __FILE__, __LINE__);
@@ -682,6 +761,7 @@ void statement::parse (arguments& args, const int from, const int to)
     nitpick& nits = args.t_.at (b).nits_;
     if ((b < 0) || (args.t_.at (b).t_ != ct_at))
     {   nits.pick (nit_css_syntax, es_error, ec_css, "expecting '@'");
+        prev_ = css_error;
         return; }
     b = next_non_whitespace (args.t_, b, to);
     if ((b < 0) || (args.t_.at (b).t_ != ct_keyword))
@@ -780,7 +860,10 @@ void statement::parse (arguments& args, const int from, const int to)
             case css_when :
                 break;
             default :
-                break; } } }
+                break; }
+        prev_ = st_.get ();
+        return; }
+    prev_ = css_error; }
 
 e_css_statement statement::get () const
 {   return st_.get (); }

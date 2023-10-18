@@ -611,6 +611,28 @@ e_emi svg_conflict (const html_version& lhs, const html_version& rhs)
     {   if (rhs.svg_x2 () && (lhs == xhtml_2)) return emi_good;
         if (rhs.svg_old_html ()) return emi_good; }
     else if (lhs < html_jul08) return emi_good;
+    if (rhs.any_ext2 (H2_CSS_SVG))
+//        if (context.html_ver ().is_css_compatible (rhs.ext2 (), rhs.ext3 ()))
+        if (lhs.is_css_compatible (rhs.ext2 (), rhs.ext3 ()))
+            switch (lhs.svg_version ())
+            {   case sv_1_0 :
+                    if (rhs.any_ext2 (H2_CSS_SVG_10)) return emi_good;
+                    break;
+                case sv_1_1 :
+                    if (rhs.any_ext2 (H2_CSS_SVG_11)) return emi_good;
+                    break;
+                case sv_1_2_tiny :
+                case sv_1_2_full :
+                    if (rhs.any_ext2 (H2_CSS_SVG_12)) return emi_good;
+                    break;
+                case sv_2_0 :
+                    if (rhs.any_ext2 (H2_CSS_SVG_20)) return emi_good;
+                    break;
+                case sv_2_1 :
+                    if (rhs.any_ext2 (H2_CSS_SVG_21)) return emi_good;
+                    break;
+                default :
+                    break; }
     if (is_excluded (lhs, rhs, SVG_MASK)) return emi_not_this_svg;
     if (test_not_extension (lhs, rhs)) return emi_not_this_svg;
     return emi_good; }
@@ -703,7 +725,7 @@ e_css_version html_version::css_version () const noexcept
     res += subver (b, css_image (), "Img");
     res += subver (b, css_inline (), "Inl");
     res += subver (b, css_line_grid (), "LnG");
-    res += subver (b, css_lists (), "Lst");
+    res += subver (b, css_list (), "Lst");
     res += subver (b, css_logic (), "Log");
     res += subver (b, css_media (), "Med");
     res += subver (b, css_multi_column (), "Mlt");
@@ -734,11 +756,11 @@ void html_version::css_version (const e_css_version v) noexcept
     switch (v)
     {   case css_1 :        set_ext2 (H2_CSS_1);
                             break;
-        case css_2_0 :      set_ext2 (H2_CSS_2_0_FULL);
+        case css_2_0 :      set_ext2 (H2_CSS_2_0);
                             break;
-        case css_2_1 :      set_ext2 (H2_CSS_2_1_FULL);
+        case css_2_1 :      set_ext2 (H2_CSS_2_1);
                             break;
-        case css_2_2 :      set_ext2 (H2_CSS_2_2_FULL);
+        case css_2_2 :      set_ext2 (H2_CSS_2_2);
                             break;
         case css_3 :        set_ext2 (H2_CSS_3_FULL);
                             set_ext3 (H3_CSS_3_FULL);
@@ -752,70 +774,70 @@ void html_version::css_version (const e_css_version v) noexcept
         case css_6 :        set_ext2 (H2_CSS_6_FULL);
                             set_ext3 (H3_CSS_6_FULL);
                             break;
-        case css_2007 :     set_ext2 (H2_CSS_2_1_FULL | H2_CSS_2007);
+        case css_2007 :     set_ext2 (H2_CSS_2007);
                             set_ext3 (H3_CSS_2007);
                             break;
-        case css_2010 :     set_ext2 (H2_CSS_2_1_FULL | H2_CSS_2010);
+        case css_2010 :     set_ext2 (H2_CSS_2010);
                             set_ext3 (H3_CSS_2010);
                             break;
-        case css_2015 :     set_ext2 (H2_CSS_2_1_FULL | H2_CSS_2015);
+        case css_2015 :     set_ext2 (H2_CSS_2015);
                             set_ext3 (H3_CSS_2015);
                             break;
-        case css_2015_1 :   set_ext2 (H2_CSS_2_1_FULL | H2_CSS_2015 | H2_CSS_2015_1);
+        case css_2015_1 :   set_ext2 (H2_CSS_2015 | H2_CSS_2015_1);
                             set_ext3 (H3_CSS_2015_1);
                             break;
-        case css_2017 :     set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2017);
+        case css_2017 :     set_ext2 (H2_CSS_2017);
                             set_ext3 (H3_CSS_2017);
                             break;
-        case css_2017_1 :   set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2017 | H2_CSS_2017_1);
+        case css_2017_1 :   set_ext2 (H2_CSS_2017 | H2_CSS_2017_1);
                             set_ext3 (H3_CSS_2017 | H3_CSS_2017_1);
                             break;
-        case css_2017_2 :   set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2017 | H2_CSS_2017_1 | H2_CSS_2017_2);
+        case css_2017_2 :   set_ext2 (H2_CSS_2017 | H2_CSS_2017_1 | H2_CSS_2017_2);
                             set_ext3 (H3_CSS_2017 | H3_CSS_2017_1 | H3_CSS_2017_2);
                             break;
-        case css_2018 :     set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2018);
+        case css_2018 :     set_ext2 (H2_CSS_2018);
                             set_ext3 (H3_CSS_2018);
                             break;
-        case css_2018_1 :   set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2018 | H2_CSS_2018_1);
+        case css_2018_1 :   set_ext2 (H2_CSS_2018 | H2_CSS_2018_1);
                             set_ext3 (H3_CSS_2018 | H3_CSS_2018_1);
                             break;
-        case css_2018_2 :   set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2018 | H2_CSS_2018_1 | H2_CSS_2018_2);
+        case css_2018_2 :   set_ext2 (H2_CSS_2018 | H2_CSS_2018_1 | H2_CSS_2018_2);
                             set_ext3 (H3_CSS_2018 | H3_CSS_2018_1 | H3_CSS_2018_2);
                             break;
-        case css_2020 :     set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2020);
+        case css_2020 :     set_ext2 (H2_CSS_2020);
                             set_ext3 (H3_CSS_2020);
                             break;
-        case css_2020_1 :   set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2020 | H2_CSS_2020_1);
+        case css_2020_1 :   set_ext2 (H2_CSS_2020 | H2_CSS_2020_1);
                             set_ext3 (H3_CSS_2020 | H3_CSS_2020_1);
                             break;
-        case css_2020_2 :   set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2020 | H2_CSS_2020_1 | H2_CSS_2020_2);
+        case css_2020_2 :   set_ext2 (H2_CSS_2020 | H2_CSS_2020_1 | H2_CSS_2020_2);
                             set_ext3 (H3_CSS_2020 | H3_CSS_2020_1 | H3_CSS_2020_2);
                             break;
-        case css_2021 :     set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2021);
+        case css_2021 :     set_ext2 (H2_CSS_2021);
                             set_ext3 (H3_CSS_2021);
                             break;
-        case css_2021_1 :   set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2021 | H2_CSS_2021_1);
+        case css_2021_1 :   set_ext2 (H2_CSS_2021 | H2_CSS_2021_1);
                             set_ext3 (H3_CSS_2021 | H3_CSS_2021_1);
                             break;
-        case css_2021_2 :   set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2021 | H2_CSS_2021_1 | H2_CSS_2021_2);
+        case css_2021_2 :   set_ext2 (H2_CSS_2021 | H2_CSS_2021_1 | H2_CSS_2021_2);
                             set_ext3 (H3_CSS_2021 | H3_CSS_2021_1 | H3_CSS_2021_2);
                             break;
-        case css_2022 :     set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2022);
+        case css_2022 :     set_ext2 (H2_CSS_2022);
                             set_ext3 (H3_CSS_2022);
                             break;
-        case css_2022_1 :   set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2022 | H2_CSS_2022_1);
+        case css_2022_1 :   set_ext2 (H2_CSS_2022 | H2_CSS_2022_1);
                             set_ext3 (H3_CSS_2022 | H3_CSS_2022_1);
                             break;
-        case css_2022_2 :   set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2022 | H2_CSS_2022_1 | H2_CSS_2022_2);
+        case css_2022_2 :   set_ext2 (H2_CSS_2022 | H2_CSS_2022_1 | H2_CSS_2022_2);
                             set_ext3 (H3_CSS_2022 | H3_CSS_2022_1 | H3_CSS_2022_2);
                             break;
-        case css_2023 :     set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2023);
+        case css_2023 :     set_ext2 (H2_CSS_2023);
                             set_ext3 (H3_CSS_2023);
                             break;
-        case css_2023_1 :   set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2023 | H2_CSS_2023_1);
+        case css_2023_1 :   set_ext2 (H2_CSS_2023 | H2_CSS_2023_1);
                             set_ext3 (H3_CSS_2023 | H3_CSS_2023_1);
                             break;
-        case css_2023_2 :   set_ext2 (H2_CSS_2_2_FULL | H2_CSS_2023 | H2_CSS_2023_1 | H2_CSS_2023_2);
+        case css_2023_2 :   set_ext2 (H2_CSS_2023 | H2_CSS_2023_1 | H2_CSS_2023_2);
                             set_ext3 (H3_CSS_2023 | H3_CSS_2023_1 | H3_CSS_2023_2);
                             break;
         default :           break; } }
@@ -1221,13 +1243,13 @@ void html_version::css_line_grid (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_LINE_GRID);
     else reset_ext3 (H3_CSS_LINE_GRID); }
 
-int html_version::css_lists () const
-{   if (any_ext3 (H3_CSS_LISTS)) return 3;
+int html_version::css_list () const
+{   if (any_ext3 (H3_CSS_LIST)) return 3;
     return 0; }
 
-void html_version::css_lists (const int n)
-{   if (n == 3) set_ext3 (H3_CSS_LISTS);
-    else reset_ext3 (H3_CSS_LISTS); }
+void html_version::css_list (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_LIST);
+    else reset_ext3 (H3_CSS_LIST); }
 
 int html_version::css_logic () const
 {   if (any_ext3 (H3_CSS_LOGIC)) return 3;
@@ -1541,7 +1563,7 @@ bool html_version::tv_profile () const
         if (css_grid () > 0) append (res, " / ", long_level_3 ("Grid", H3_CSS_GRID_3, H3_CSS_GRID_4));
         if (css_image () > 0) append (res, " / ", long_level_3 ("Images", H3_CSS_IMAGE_3, H3_CSS_IMAGE_4));
         if (css_inline () > 0) append (res, " / ", ::std::string ("Inline Layout"));
-        if (css_lists () > 0) append (res, " / ", ::std::string ("Lists and Counters"));
+        if (css_list () > 0) append (res, " / ", ::std::string ("Lists and Counters"));
         if (css_line_grid () > 0) append (res, " / ", ::std::string ("Line Grid"));
         if (css_logic () > 0) append (res, " / ", ::std::string ("Logical Properties"));
         if (css_media () > 0) append (res, " / ", long_level_2 ("Media Queries", H2_CSS_MEDIA_3, H2_CSS_MEDIA_4, H2_CSS_MEDIA_5));

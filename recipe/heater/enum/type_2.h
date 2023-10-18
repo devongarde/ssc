@@ -72,8 +72,14 @@ template < > struct type_master < t_accumulate > : two_value < t_accumulate, e_a
 template < > struct type_master < t_additive > : two_value < t_additive, e_additive, sz_replace, sz_sum, false >
 { using two_value < t_additive, e_additive, sz_replace, sz_sum, false > :: two_value; };
 
+template < > struct type_master < t_aesf > : two_value < t_aesf, e_aesf, sz_allow_end, sz_space_first, false >
+{ using two_value < t_aesf, e_aesf, sz_allow_end, sz_space_first, false > :: two_value; };
+
 template < > struct type_master < t_all_none > : two_value < t_all_none, e_bool, sz_all, sz_none, false >
 { using two_value < t_all_none, e_bool, sz_all, sz_none, false > :: two_value; };
+
+template < > struct type_master < t_allow_force > : two_value < t_allow_force, e_allow_force, sz_allow_end, sz_force_end, false >
+{ using two_value < t_allow_force, e_allow_force, sz_allow_end, sz_force_end, false > :: two_value; };
 
 template < > struct type_master < t_always_normal > : two_value < t_always_normal, e_always_normal, sz_always, sz_normal, false >
 { using two_value < t_always_normal, e_always_normal, sz_always, sz_normal, false > :: two_value; };
@@ -234,17 +240,14 @@ template < > struct type_master < t_m_t > : two_value < t_m_t, e_m_t, sz_m, sz_t
 template < > struct type_master < t_mand_prox > : two_value < t_mand_prox, e_mand_prox, sz_mandatory, sz_proximity, false >
 { using two_value < t_mand_prox, e_mand_prox, sz_mandatory, sz_proximity, false > :: two_value; };
 
-template < > struct type_master < t_media_hover > : two_value < t_media_hover, e_media_hover, sz_hover, sz_none, false >
-{ using two_value < t_media_hover, e_media_hover, sz_hover, sz_none, false > :: two_value; };
-
-template < > struct type_master < t_media_inline > : two_value < t_media_inline, e_media_inline, sz_none, sz_scroll, false >
-{ using two_value < t_media_inline, e_media_inline, sz_none, sz_scroll, false > :: two_value; };
-
-template < > struct type_master < t_meetslice > : two_value < t_meetslice, e_meetslice, sz_meet, sz_slice, false >
-{ using two_value < t_meetslice, e_meetslice, sz_meet, sz_slice, false > :: two_value; };
+template < > struct type_master < t_manual_normal > : two_value < t_manual_normal, e_manual_normal, sz_manual, sz_normal, false >
+{ using two_value < t_manual_normal, e_manual_normal, sz_manual, sz_normal, false > :: two_value; };
 
 template < > struct type_master < t_markerunits > : two_value < t_markerunits, e_markerunits, sz_strokewidth, sz_userspaceonuse, false >
 { using two_value < t_markerunits, e_markerunits, sz_strokewidth, sz_userspaceonuse, false > :: two_value; };
+
+template < > struct type_master < t_match_self_parent > : two_value < t_match_self_parent, e_match_self_parent, sz_match_parent, sz_match_self, false >
+{ using two_value < t_match_self_parent, e_match_self_parent, sz_match_parent, sz_match_self, false > :: two_value; };
 
 template < > struct type_master < t_mathfontstyle > : two_value < t_mathfontstyle, e_fontstyle, sz_italic, sz_normal, false >
 { using two_value < t_mathfontstyle, e_fontstyle, sz_italic, sz_normal, false > :: two_value; };
@@ -261,11 +264,20 @@ template < > struct type_master < t_mathorder > : two_value < t_mathorder, m_mat
 template < > struct type_master < t_mathscope > : two_value < t_mathscope, e_mathscope, sz_global, sz_local, false >
 { using two_value < t_mathscope, e_mathscope, sz_global, sz_local, false > :: two_value; };
 
+template < > struct type_master < t_media_hover > : two_value < t_media_hover, e_media_hover, sz_hover, sz_none, false >
+{ using two_value < t_media_hover, e_media_hover, sz_hover, sz_none, false > :: two_value; };
+
+template < > struct type_master < t_media_inline > : two_value < t_media_inline, e_media_inline, sz_none, sz_scroll, false >
+{ using two_value < t_media_inline, e_media_inline, sz_none, sz_scroll, false > :: two_value; };
+
 template < > struct type_master < t_media_orientation > : two_value < t_media_orientation, e_media_orientation, sz_landscape, sz_portrait, false >
 { using two_value < t_media_orientation, e_media_orientation, sz_landscape, sz_portrait, false > :: two_value; };
 
 template < > struct type_master < t_media_prefers > : two_value < t_media_prefers, e_media_prefers, sz_no_preference, sz_reduce, false >
 { using two_value < t_media_prefers, e_media_prefers, sz_no_preference, sz_reduce, false > :: two_value; };
+
+template < > struct type_master < t_meetslice > : two_value < t_meetslice, e_meetslice, sz_meet, sz_slice, false >
+{ using two_value < t_meetslice, e_meetslice, sz_meet, sz_slice, false > :: two_value; };
 
 template < > struct type_master < t_morphology_operator > : two_value < t_morphology_operator, e_morphology_operator, sz_dilate, sz_erode, false >
 { using two_value < t_morphology_operator, e_morphology_operator, sz_dilate, sz_erode, false > :: two_value; };

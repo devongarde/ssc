@@ -256,6 +256,7 @@ void elements_node::parse (const html_version& v, bracs_ket& elements)
     element_node* previous = nullptr;
     for (auto e : elements.ve_)
     {   elem id;
+        bool bad_version = false;
         VERIFY_NOT_NULL (parent, __FILE__, __LINE__);
         const html_version ver (parent -> version_);
         switch (e.status_)
@@ -270,7 +271,11 @@ void elements_node::parse (const html_version& v, bracs_ket& elements)
             case bk_node :      {   ::std::string mc (::std::string (e.start_, e.eofe_));
                                     if (e.eofe_ < e.end_) attributes_node::process_attributes (e.nits_, ver, parent, e.eofe_, e.end_, e.line_);
                                     id.reset (e.nits_, ver, parent -> namespaces (), mc);
-                                    if (ver.xhtml () && ! id.unknown ())
+                                    if (id.unknown ())
+                                    {   nitpick nuts;
+                                        elem tst (nuts, html_0, parent -> namespaces (), mc);
+                                        bad_version = ! tst.unknown (); } 
+                                    else if (ver.xhtml ())
                                     {   const ::std::string& naam (id.name ());
                                         if (parent -> version_.xhtml () && (naam != mc))
                                             if (mc.find (':') == ::std::string::npos)
@@ -290,8 +295,10 @@ void elements_node::parse (const html_version& v, bracs_ket& elements)
         if (id.unknown ())
         {   ::std::string s (e.start_, e.eofe_);
             if (GSL_NARROW_CAST < size_t > (id.ns ()) < first_runtime_namespace)
-                e.nits_.pick (nit_unknown_element, ed_jul23, "1.11.2: Cases that are likely to be typos", es_warning, ec_element, PROG " does not know the element <", ::std::string (s), ">, so cannot verify it");
-            else e.nits_.pick (nit_unknown_element, ed_jul23, "1.11.2: Cases that are likely to be typos", es_comment, ec_element, PROG " does not know <", ::std::string (s), ">, so cannot verify it");
+                if (bad_version) e.nits_.pick (nit_unknown_element, es_warning, ec_element, "<", ::std::string (s), "> is an invalid element in ", v.report ());
+                else e.nits_.pick (nit_unknown_element, ed_jul23, "1.11.2: Cases that are likely to be typos", es_warning, ec_element, PROG " does not know the element <", ::std::string (s), ">, so cannot verify it");
+            else if (bad_version) e.nits_.pick (nit_unknown_element, es_comment, ec_element, "<", ::std::string (s), "> is invalid in ", v.report ());
+                else e.nits_.pick (nit_unknown_element, ed_jul23, "1.11.2: Cases that are likely to be typos", es_comment, ec_element, PROG " does not know <", ::std::string (s), ">, so cannot verify it");
             if (v.xhtml () && (s == "base"))
                 e.nits_.pick (nit_unknown_element, es_comment, ec_element, "in XHTML, use <xml:base>, not <base>"); }
 

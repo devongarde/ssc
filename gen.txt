@@ -67,9 +67,6 @@ the contradiction to "--general.tea" is "--general.no-tea". When both
 are specified, perhaps in a configuration file and on the command line,
 the "no-" switch always applies.
 
-Normally, it's only useful to define --css.version. The other css
-switches are for when precise tuning of css features is necessary.
-
 --corpus.article        Prefer the content of <ARTICLE> when gathering
                         corpus text.
 
@@ -114,6 +111,9 @@ switches are for when precise tuning of css features is necessary.
 --css.compositing X     Use CSS Compositing and Blending level X, where
                         X is 0 or 3.
 
+--css.cond-rule X       Use CSS Conditional Rules level X, where X is
+                        0, 3, 4, or 5.
+
 --css.contain X         Use CSS Contain level X, where X is 0, 3, 4 or
                         5: see --css.version for gen.
 
@@ -157,6 +157,9 @@ switches are for when precise tuning of css features is necessary.
 
 --css.line-grid X       Use CSS Line Grid level X, where X is 0 or 3.
 
+--css.list X            Use CSS Lists and Counters level X, where X is
+                        0 or 3.
+
 --css.logic X           Use CSS Logical Properties level X, where X is
                         0 or 3.
 
@@ -197,6 +200,8 @@ switches are for when precise tuning of css features is necessary.
 --css.table X           Use CSS Tables level X, where X is 0 or 3 (this
                         is an experimental spec, likely to change).
 
+--css.text X            Use CSS Text level X, where X is 0, 3 or 4.
+
 --css.text-dec X        Use CSS Text Decoration level X, where X is 0,
                         3 or 4.
 
@@ -224,30 +229,40 @@ switches are for when precise tuning of css features is necessary.
                             4     all CSS level 4 (unfinished)
                             5     all CSS level 5 (unfinished)
                             6     all CSS level 6 (unfinished)
-                        Note that extensions to CSS that are part of
-                        neither CSS 1 nor CSS 2.x specifications are
-                        numbered three and upwards here, for internal
-                        consistency. If you wish to use an extension
-                        named ... level 1, that is not part of CSS 1,
-                        specify 3. Similarly for extensions that are
-                        named level 2 that are not part of any CSS 2
-                        specification, etm..
-                        Versions can also be identified by CSS snapshot
-                        year. Most years' snapshots are divided into
-                        three categories: stable, wobbly (+), and
-                        wibbly (++), determined by the browsers of the
-                        day (browse the CSS snapshots at w3.org for
-                        gen). The values accepted include:
                             2007
                             2010
-                            2015, 2015+
-                            2017, 2017+, 2017++
-                            2018, 2018+, 2018++
-                            2020, 2020+, 2020++
-                            2021, 2021+, 2021++
-                            2022, 2022+, 2022++
-                            2023, 2023+, 2023++
-                        The snapshots are unfinished.
+                            2015
+                            2015+
+                            2017
+                            2017+
+                            2017++
+                            2018
+                            2018+
+                            2018++
+                            2020
+                            2020+
+                            2020++
+                            2021
+                            2021+
+                            2021++
+                            2022
+                            2022+
+                            2022++
+                            2023
+                            2023+
+                            2023++
+                        The years are CSS snapshots, whether stable,
+                        + wobbly, or ++ wibbly (the terminology in the
+                        specifications is inconsistent, so...), as
+                        determined by the browsers of the day.
+                        For levels 3, 4, 5 and 6, note that extensions
+                        that are part of neither CSS 1 nor CSS 2.x
+                        specifications are numbered three and upwards
+                        in ssc, for internal consistency. If you wish
+                        to use an extension named ... level 1, that is
+                        not part of CSS 1, specify 3. Similarly, for
+                        those named level 2 that are not part of any
+                        CSS 2 specification, etm..
 
 --css.wc X              Use CSS Will Change level X, where X is 0 or 3.
 

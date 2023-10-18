@@ -31,5 +31,6 @@ int check_typed_feature (arguments& args, nitpick& nits, const int start, const 
 bool maybe_filter (nitpick& nits, const e_css_property id);
 bool maybe_image (nitpick& nits, const e_css_property id);
 bool maybe_math (nitpick& nits, const e_css_property id);
+bool maybe_text_4 (nitpick& nits, const e_css_property id);
 bool maybe_transform (nitpick& nits, const e_css_property id, const bool t4 = false);
 int test_value_fns (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);

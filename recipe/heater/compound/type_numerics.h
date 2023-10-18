@@ -38,6 +38,10 @@ template < > struct type_master < t_2x_unsigned > : type_one_two < t_2x_unsigned
 {   static bool is_numeric () { return true; }
     using type_one_two < t_2x_unsigned, t_unsigned, t_unsigned, sz_space_char > :: type_one_two; };
 
+template < > struct type_master < t_3x_integer > : type_one_two_three < t_3x_integer, t_integer, t_integer, t_integer, sz_space_char >
+{   static bool is_numeric () { return true; }
+    using type_one_two_three < t_3x_integer, t_integer, t_integer, t_integer, sz_space_char > :: type_one_two_three; };
+
 template < > struct type_master < t_3x_real > : type_one_two_three < t_3x_real, t_real, t_real, t_real, sz_space_char >
 {   static bool is_numeric () { return true; }
     using type_one_two_three < t_3x_real, t_real, t_real, t_real, sz_space_char > :: type_one_two_three; };
@@ -70,6 +74,10 @@ template < > struct type_master < t_integer_i > : type_or_string < t_integer_i, 
 {    static bool is_numeric () { return true; }
     using type_or_string < t_integer_i, t_integer, sz_inherit > :: type_or_string; };
 
+template < > struct type_master < t_integer_nl > : type_or_string < t_integer_nl, t_integer, sz_no_limit >
+{    static bool is_numeric () { return true; }
+    using type_or_string < t_integer_nl, t_integer, sz_no_limit > :: type_or_string; };
+
 template < > struct type_master < t_integer_oo > : type_or_either_string < t_integer_oo, t_integer, sz_off, sz_on >
 {   static bool is_numeric () { return true; }
     using type_or_either_string < t_integer_oo, t_integer, sz_off, sz_on > :: type_or_either_string; };
@@ -77,6 +85,10 @@ template < > struct type_master < t_integer_oo > : type_or_either_string < t_int
 template < > struct type_master < t_integers > : type_at_least_one < t_integers, sz_space_char, t_integer >
 {   static bool is_numeric () { return true; }
     using type_at_least_one < t_integers, sz_space_char, t_integer > :: type_at_least_one; };
+
+template < > struct type_master < t_integers_a > : type_range < t_integers_a, sz_space_char, t_integer_ai, 1, 3 >
+{   static bool is_numeric () { return true; }
+    using type_range < t_integers_a, sz_space_char, t_integer_ai, 1, 3 > :: type_range; };
 
 template < > struct type_master < t_positive_1_2 > : type_range < t_positive_1_2, sz_commaspace, t_0_more, 1, 2 >
 {   static bool is_numeric () { return true; }

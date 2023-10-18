@@ -1,0 +1,9 @@
+﻿p {
+  text-align: justify;
+  hanging-punctuation: allow-end;
+}
+
+p {
+  text-align: justify;
+  hanging-punctuation: force-end;
+}

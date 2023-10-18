@@ -155,8 +155,14 @@ template < > struct type_master < t_css_speak_2 > : four_value < t_css_speak_2, 
 template < > struct type_master < t_css_textemph_skip > : four_value < t_css_textemph_skip, e_css_textemph_skip, sz_narrow, sz_punctuation, sz_spaces, sz_symbols >
 { using four_value < t_css_textemph_skip, e_css_textemph_skip, sz_narrow, sz_punctuation, sz_spaces, sz_symbols > :: four_value; };
 
+template < > struct type_master < t_css_text_justify > : four_value < t_css_text_justify, e_css_text_justify, sz_auto, sz_inter_character, sz_inter_word, sz_none >
+{ using four_value < t_css_text_justify, e_css_text_justify, sz_auto, sz_inter_character, sz_inter_word, sz_none > :: four_value; };
+
 template < > struct type_master < t_css_val_con > : four_value < t_css_val_con, e_css_val_con, sz_e, sz_infinity, sz_nan, sz_pi >
 { using four_value < t_css_val_con, e_css_val_con, sz_e, sz_infinity, sz_nan, sz_pi > :: four_value; };
+
+template < > struct type_master < t_css_word_break > : four_value < t_css_word_break, e_css_word_break, sz_break_all, sz_break_word, sz_keep_all, sz_normal >
+{ using four_value < t_css_word_break, e_css_word_break, sz_break_all, sz_break_word, sz_keep_all, sz_normal > :: four_value; };
 
 template < > struct type_master < t_device > : four_value < t_device, e_device, sz_media, sz_fs, sz_rs232, sz_usb >
 { using four_value < t_device, e_device, sz_media, sz_fs, sz_rs232, sz_usb > :: four_value; };

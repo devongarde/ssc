@@ -210,6 +210,8 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_css_cascade_4 : return "CSS Cascade 4"; 
         case ed_css_cascade_5 : return "CSS Cascade 5"; 
         case ed_css_cascade_6 : return "CSS Cascade 6";
+        case ed_cr_4 : return "CSS Conditional Rule 4"; 
+        case ed_cr_5 : return "CSS Conditional Rule 5"; 
         case ed_css_colour_3 : return "CSS Colour 3";
         case ed_css_colour_4 : return "CSS Colour 4";
         case ed_css_colour_5 : return "CSS Colour 5";
@@ -320,6 +322,8 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_css_cascade_4 : return "CSS Cascade Level 4, January 2022"; 
         case ed_css_cascade_5 : return "CSS Cascade Level 5, January 2022"; 
         case ed_css_cascade_6 : return "CSS Cascade Level 6, March 2023"; 
+        case ed_cr_4 : return "CSS Conditional Rule Level 4, February 2022"; 
+        case ed_cr_5 : return "CSS Conditional Rule Level 5, December 2021"; 
         case ed_css_colour_3 : return "CSS Colour 3, January 2022";
         case ed_css_colour_4 : return "CSS Colour 4, November 2022";
         case ed_css_colour_5 : return "CSS Colour 5 (June 2022 draft)";

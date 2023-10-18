@@ -15,7 +15,6 @@ PASS ../toast/css/4-writing/css-5.css
 
 PASS ../toast/css/4-writing/css-9.css
 0 html
-7 unrecognised_value
 
 PASS ../toast/css/4-writing/css-2.html
 2 naughty_lang

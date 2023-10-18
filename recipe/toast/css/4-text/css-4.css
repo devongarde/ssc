@@ -1,0 +1,34 @@
+﻿@namespace m "http://www.w3.org/1998/Math/MathML";
+m|* {
+  white-space-collapse: discard;
+}
+m|mi, m|mn, m|mo, m|ms, m|mtext {
+  white-space-trim: discard-inner;
+}
+
+dt { display: inline; }
+dt + dt:before { content: ", "; white-space-trim: discard-before; }
+
+span { white-space: normal; white-space-trim: discard-inner; }
+
+p {
+  white-space: pre-wrap;
+  width: 5ch;
+  border: solid 1px;
+  font-family: monospace;
+  text-align: center;
+}
+
+p {
+  white-space: pre-wrap;
+  width: 3ch;
+  border: solid 1px;
+  font-family: monospace;
+}
+
+p {
+  white-space: pre-wrap;
+  width: 3ch;
+  border: solid 1px;
+  font-family: monospace;
+}

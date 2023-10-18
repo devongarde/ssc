@@ -73,7 +73,8 @@ bool decoration::bef_aft () const
 {   if (sparkle_.index () != dt_fn) return false;
     switch (ssc_get < css_fn > (sparkle_).get ())
     {   case efn_after :
-        case efn_before : return true;
+        case efn_before :
+        case efn_marker : return true;
         default : return false; } }
 
 void decoration::accumulate (stats_t* s, const e_element e) const

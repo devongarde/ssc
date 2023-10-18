@@ -1,0 +1,46 @@
+﻿abbr:lang(ja) { text-transform: full-width; }
+
+section > p:first-of-type::first-line {
+  text-transform: uppercase;
+}
+
+rt { font-size: 50%; text-transform: full-size-kana; }
+:is(h1, h2, h3, h4) rt { text-transform: none; /* unset for large text*/ }
+
+@supports (word-boundary-detection: auto(ja)) {
+  h1:lang(ja) {
+    word-boundary-detection: auto(ja);
+    word-break: keep-all;
+  }
+}
+
+p {
+  word-boundary-expansion: ideographic-space;
+}
+
+p {
+  word-break: keep-all;
+  word-boundary-expansion: ideographic-space;
+}
+
+p wbr.p {
+  word-boundary-expansion: ideographic-space;
+}
+
+p wbr {
+  word-boundary-expansion: ideographic-space;
+}
+
+p {
+  word-break: keep-all;
+}
+p wbr.p {
+  word-boundary-expansion: ideographic-space;
+}
+
+p {
+  word-break: keep-all;
+}
+p wbr {
+  word-boundary-expansion: ideographic-space;
+}

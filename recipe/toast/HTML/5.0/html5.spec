@@ -2,12 +2,10 @@
 
 PASS ../toast/HTML/5.0/css-good.css
 0 html
-1 css_version
 4 whatwg_class whatwg_class
 
 PASS ../toast/HTML/5.0/css-good-too.css
 0 html
-1 css_version
 
 PASS ../toast/HTML/5.0/example-1.html
 2 naughty_lang

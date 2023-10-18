@@ -130,7 +130,7 @@ class context_t
     context_t& css_image (const int n) { version_.css_image (n); mac (nm_context_css_image, n); return *this; }
     context_t& css_inline (const int n) { version_.css_inline (n); mac (nm_context_css_inline, n); return *this; }
     context_t& css_line_grid (const int n) { version_.css_line_grid (n); mac (nm_context_css_line_grid, n); return *this; }
-    context_t& css_lists (const int n) { version_.css_lists (n); mac (nm_context_css_lists, n); return *this; }
+    context_t& css_list (const int n) { version_.css_list (n); mac (nm_context_css_lists, n); return *this; }
     context_t& css_logic (const int n) { version_.css_logic (n); mac (nm_context_css_logic, n); return *this; }
     context_t& css_masking (const int n) { version_.css_masking (n); mac (nm_context_css_masking, n); return *this; }
     context_t& css_media (const int n) { version_.css_media (n); mac (nm_context_css_media, n); return *this; }
@@ -355,7 +355,7 @@ public:
     int css_fragmentation () { return version_.css_fragmentation (); }
     int css_grid () { return version_.css_grid (); }
     int css_line_grid () { return version_.css_line_grid (); }
-    int css_lists () { return version_.css_lists (); }
+    int css_list () { return version_.css_list (); }
     int css_logic () { return version_.css_logic (); }
     int css_image () { return version_.css_image (); }
     int css_inline () { return version_.css_inline (); }

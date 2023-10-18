@@ -1,0 +1,40 @@
+﻿h1 { counter-reset: section -1 }
+h1 { counter-reset: imagenum 99 }
+
+H1 { counter-reset: section -1 imagenum 99 }
+
+h1::before {
+    content: "Chapter " counter(chapter) ". ";
+    counter-increment: chapter;  /* Add 1 to chapter */
+    counter-reset: section;      /* Set section to 0 */
+}
+h2::before {
+    content: counter(chapter) "." counter(section) " ";
+    counter-increment: section;
+}
+
+ol { counter-reset: item }
+li { display: block }
+li::before { content: counter(item) ". "; counter-increment: item }
+
+h2 { counter-increment: count2; }
+h2.secret { display: none; }
+
+ol.evens > li { counter-increment: list-item 2; }
+
+ol > li::marker { content: counters(list-item,'.') '.'; }
+
+H1::before        { content: counter(chno, upper-latin) ". " }
+/* Generates headings like "A. A History of Discontent" */
+
+H2::before        { content: counter(section, upper-roman) " - " }
+/* Generates headings like "II - The Discontent Part" */
+
+BLOCKQUOTE::after { content: " [" counter(bq, decimal) "]" }
+/* Generates blockquotes that end like "... [3]" */
+
+DIV.note::before  { content: counter(notecntr, disc) " " }
+/* Simply generates a bullet before every div.note */
+
+P::before         { content: counter(p, none) }
+/* inserts nothing */

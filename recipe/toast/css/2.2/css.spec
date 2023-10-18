@@ -206,6 +206,7 @@ PASS ../toast/css/2.2/css-9-2-2.html
 3 long_title
 
 PASS ../toast/css/2.2/css-9-2-3.html
+5 css_version css_version
 13 inserted_missing_closure
 14 inserted_missing_closure inserted_missing_closure
 15 inserted_missing_closure missing_close

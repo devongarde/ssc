@@ -44,3 +44,15 @@ int first_non_whitespace (const vtt_t& vt, int from, const int to = -1);
 int next_non_whitespace (const vtt_t& vt, const int from, const int to = -1);
 int next_token_at (const vtt_t& vt, const int from, const int to = -1);
 ::std::string assemble_unit (vtt_t& vt, int& i, const int to = -1);
+
+#define TC_ERROR    0x0001
+#define TC_BASE     0x0002
+#define TC_SPACE    0x0004
+#define TC_COMPARE  0x0008
+#define TC_PLUMBING 0x0010
+#define TC_ROUND    0x0020
+#define TC_SQUIGGLE 0x0040
+#define TC_SQUARE   0x0080
+#define TC_VALUE    0x0100
+
+unsigned short token_category (const css_token t);

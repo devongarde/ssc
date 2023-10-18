@@ -491,3 +491,42 @@ int next_non_whitespace (const vtt_t& vt, const int from, const int to)
             else s = vt.at (i++).val_; }
         else s = tkn_rpt (vt.at (i++));
     return s; }
+
+#define TC_ROUND    0x0020
+#define TC_SQUIGGLE 0x0040
+#define TC_SQUARE   0x0080
+
+unsigned short token_category (const css_token t)
+{   PRESUME (t <= ct_error, __FILE__, __LINE__);
+    switch (t)
+    {   case ct_root :
+        case ct_eof :
+            return TC_BASE;
+        case ct_whitespace :
+        case ct_comment :
+            return TC_SPACE;
+        case ct_identifier :
+        case ct_keyword :
+        case ct_number :
+        case ct_string :
+            return TC_VALUE;
+        case ct_eq :
+        case ct_gt :
+        case ct_gteq :
+        case ct_gtgt :
+        case ct_lt :
+        case ct_lteq :
+            return TC_COMPARE;
+        case ct_curly_brac : 
+        case ct_curly_ket : 
+            return TC_SQUIGGLE;
+        case ct_square_brac :
+        case ct_square_ket :
+            return TC_SQUARE;
+        case ct_round_brac :
+        case ct_round_ket :
+            return TC_ROUND;
+        case ct_error :
+            return TC_ERROR;
+        default :
+            return TC_PLUMBING; } }

@@ -442,6 +442,7 @@
     <ClCompile Include="..\sauce\simple\type_httpequiv.cpp" />
     <ClCompile Include="..\sauce\simple\type_id.cpp" />
     <ClCompile Include="..\sauce\simple\type_intent.cpp" />
+    <ClCompile Include="..\sauce\simple\type_jsonic.cpp" />
     <ClCompile Include="..\sauce\simple\type_measure.cpp" />
     <ClCompile Include="..\sauce\simple\type_media.cpp" />
     <ClCompile Include="..\sauce\simple\type_metaname.cpp" />

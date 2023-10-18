@@ -1,0 +1,8 @@
+﻿abbr:lang(ja) { text-transform: full-width; }
+
+section > p:first-of-type::first-line {
+  text-transform: uppercase;
+}
+
+rt { font-size: 50%; text-transform: full-size-kana; }
+:is(h1, h2, h3, h4) rt { text-transform: none; /* unset for large text*/ }
