@@ -622,7 +622,6 @@ PASS ../toast/living/oct23/hs-9.html
 4 inserted_missing_parent inserted_missing_closure missing_close
 
 PASS ../toast/living/oct23/html4.css
-10 unrecognised_value unrecognised_value
 71 css_version
 73 css_version
 74 css_version

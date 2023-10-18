@@ -1,0 +1,6 @@
+﻿[lang]:lang(ojs) { hyphenate-character: "᐀" /* CANADIAN SYLLABICS HYPHEN (U+1400) */ }
+
+p { hyphenate-limit-chars: auto 3; }
+
+p { hyphenate-limit-last: always }
+div.chapter {  hyphenate-limit-last: spread }

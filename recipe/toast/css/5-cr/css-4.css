@@ -1,0 +1,48 @@
+﻿@when media(width >= 400px) and media(pointer: fine) and supports(display: flex) {
+  /* A */
+} @else supports(caret-color: pink) and supports(background: double-rainbow()) {
+  /* B */
+} @else {
+  /* C */
+}
+
+@media (width >= 400px) and (pointer: fine) {
+  @supports (display: flex) {
+    /* A */
+  }
+  @supports not (display: flex) {
+    @supports (caret-color: pink) and (background: double-rainbow()) {
+      /* B */
+    }
+    @supports not ((caret-color: pink) and (background: double-rainbow())) {
+      /* C */
+    }
+  }
+}
+@media not ((width >= 400px) and (pointer: fine)) {
+  @supports (caret-color: pink) and (background: double-rainbow()) {
+    /* B */
+  }
+  @supports not ((caret-color: pink) and (background: double-rainbow())) {
+    /* C */
+  }
+}
+
+@when font-tech(color-COLRv1) and font-tech(variations) {
+  @font-face { font-family: icons; src: url(icons-gradient-var.woff2); }
+}
+@else font-tech(color-SVG) {
+  @font-face { font-family: icons; src: url(icons-gradient.woff2); }
+}
+@else font-tech(color-COLRv0) {
+  @font-face { font-family: icons; src: url(icons-flat.woff2); }
+}
+@else {
+  @font-face { font-family: icons; src: url(icons-fallback.woff2); }
+}
+
+@font-face { font-family: icons; src: url(icons-fallback.woff2); }
+
+@supports font-tech(color-COLRv1) {
+  @font-face { font-family: icons; src: url(icons-gradient-var.woff2); }
+}

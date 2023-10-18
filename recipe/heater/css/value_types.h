@@ -300,6 +300,11 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_annotation >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
     {   return value_fn < TYPE, cvf_annotation, 1, 1, t_css_feature_annotation > :: check (args, start, to, nits); } };
 
+template < e_type TYPE > struct value_fn_params < TYPE, cvf_auto >
+{   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
+    {   if (! maybe_text_4 (nits, id)) return -1;
+        return value_fn < TYPE, cvf_auto, 1, 1, t_lang > :: check (args, start, to, nits); } };
+
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_blur >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
     {   if (! maybe_filter (nits, id)) return -1;

@@ -50,6 +50,9 @@ public:
     ::std::size_t type () const noexcept
     {   return static_cast < ::std::size_t > (get ()); } };
 
+template < > struct type_master < t_anywhere_break_normal > : three_value < t_anywhere_break_normal, e_anywhere_break_normal, sz_anywhere, sz_break_word, sz_normal >
+{ using three_value < t_anywhere_break_normal, e_anywhere_break_normal, sz_anywhere, sz_break_word, sz_normal > :: three_value; };
+
 template < > struct type_master < t_all_auto_none > : three_value < t_all_auto_none, e_all_auto_none, sz_all, sz_auto, sz_none >
 { using three_value < t_all_auto_none, e_all_auto_none, sz_all, sz_auto, sz_none > :: three_value; };
 
@@ -67,6 +70,9 @@ template < > struct type_master < t_auto_first_last > : three_value < t_auto_fir
 
 template < > struct type_master < t_auto_hidden_visible > : three_value < t_auto_hidden_visible, e_auto_hidden_visible, sz_auto, sz_hidden, sz_visible >
 { using three_value < t_auto_hidden_visible, e_auto_hidden_visible, sz_auto, sz_hidden, sz_visible > :: three_value; };
+
+template < > struct type_master < t_auto_manual_none > : three_value < t_auto_manual_none, e_auto_manual_none, sz_auto, sz_manual, sz_none >
+{ using three_value < t_auto_manual_none, e_auto_manual_none, sz_auto, sz_manual, sz_none > :: three_value; };
 
 template < > struct type_master < t_auto_none_thin > : three_value < t_auto_none_thin, e_auto_none_thin, sz_auto, sz_none, sz_thin >
 { using three_value < t_auto_none_thin, e_auto_none_thin, sz_auto, sz_none, sz_thin > :: three_value; };
@@ -160,6 +166,9 @@ template < > struct type_master < t_css_voice_age > : three_value < t_css_voice_
 
 template < > struct type_master < t_css_voice_gender > : three_value < t_css_voice_gender, e_css_voice_gender, sz_female, sz_male, sz_neutral >
 { using three_value < t_css_voice_gender, e_css_voice_gender, sz_female, sz_male, sz_neutral > :: three_value; };
+
+template < > struct type_master < t_css_wbe > : three_value < t_css_wbe, e_css_wbe, sz_ideographic_space, sz_none, sz_space_word >
+{ using three_value < t_css_wbe, e_css_wbe, sz_ideographic_space, sz_none, sz_space_word > :: three_value; };
 
 template < > struct type_master < t_csvw_direction > : three_value < t_csvw_direction, e_csvw_direction, sz_ltr, sz_rtl, sz_auto >
 { using three_value < t_csvw_direction, e_csvw_direction, sz_ltr, sz_rtl, sz_auto > :: three_value; };

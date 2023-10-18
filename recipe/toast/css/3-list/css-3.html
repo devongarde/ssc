@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS 3 lists test pages</title>
+    <LINK rel="stylesheet" href="css-3.css" type="text/css">
+</head>
+
+<body>
+
+<style>
+p { margin-left: 12 em; }
+p.note {
+  display: list-item;
+  counter-increment: note-counter;
+}
+p.note::marker {
+  content: "Note " counter(note-counter) ":";
+}
+</style>
+<p>This is the first paragraph in this document.
+<p class="note">This is a very short document.
+<p>This is the end.
+
+<style>
+p { margin-left: 8em } /* Make space for counters */
+li { list-style-type: lower-roman; }
+li::marker { color: blue; font-weight:bold; }
+</style>
+<p>This is a long preceding paragraph ...
+<ol>
+  <li>This is the first item.
+  <li>This is the second item.
+  <li>This is the third item.
+</ol>
+<p>This is a long following paragraph ...
+
+<style>
+  ul.compact { list-style: inside; }
+  ul         { list-style: outside; }
+</style>
+<ul class=compact>
+  <li>first "inside" list item comes first</li>
+  <li>second "inside" list item comes first</li>
+</ul>
+<hr>
+<ul>
+  <li>first "outside" list item comes first</li>
+  <li>second "outside" list item comes first</li>
+</ul>
+
+<ul>
+  <li>english one
+  <li dir=rtl>OWT WERBEH
+  <li>english three
+  <li dir=rtl>RUOF WERBEH
+</ul>
+
+</body>
+</html>

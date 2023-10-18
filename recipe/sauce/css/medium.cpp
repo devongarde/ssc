@@ -52,8 +52,7 @@ void medium_t::note_value (const arguments& args, nitpick& nits, const ::std::st
     {   const ::std::string starters (DENARY "-");
         const ::std::string denary (DENARY);
         if (starters.find (s.at (0)) == ::std::string::npos) 
-        {   // n = s;
-            enum_n < t_media, e_media > md;
+        {   enum_n < t_media, e_media > md;
             md.set_value (nits, args.v_, s); }
         else
         {   ::std::string n;
@@ -377,9 +376,18 @@ bool medium_t::validate_version (const arguments& args, nitpick& nits, const e_m
                 nits.pick (nit_deprecated_media, ed_css_media_4, "2.3. Media Types", es_warning, ec_mql, quote (commas.at (comma)), ": ", enum_n < t_media, e_media > :: name (media),
                     " is deprecated in ", args.v_.long_css_version_name (), ", 'Authors must not use these media types'");
             break;
+        case md_media :
+        case md_supports :
+            if (args.v_.css_conditional_rule () < 5)
+            {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": ", enum_n < t_media, e_media > :: name (media), " requires CSS Conditional Rules 5 or better");
+                return false; }
+            if ((args.st_ == nullptr) || ((args.st_ -> get () != css_else) && (args.st_ -> get () != css_when)))
+            {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": ", enum_n < t_media, e_media > :: name (media), " requires a parental @else or @when");
+                return false; }
+            break;
         case md_selector :
             if (args.v_.css_conditional_rule () < 4)
-            {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": ", enum_n < t_media, e_media > :: name (media), " requires CSS Conditional Rules 4");
+            {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": ", enum_n < t_media, e_media > :: name (media), " requires CSS Conditional Rules 4 or better");
                 return false; }
             break;
         default :
@@ -725,9 +733,13 @@ bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
                         break; }
                     colonised = rator = false;
                     if (t != t_media_orientation)
-                    {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": not expecting an orientation value");
+                    {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": expecting an orientation value");
                         res = false; }
                     argled = true;
+                    break;
+                case md_media :
+                case md_supports :
+                    check_feature_compatibility (nits, device, m.m_);
                     break;
                 case md_min_resolution :
                 case md_max_resolution :

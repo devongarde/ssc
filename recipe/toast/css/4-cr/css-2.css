@@ -1,0 +1,14 @@
+﻿@supports selector(col || td) {
+  col.selected || td {
+    background: tan;
+  }
+}
+
+@supports selector(a[xlink|href]) {
+  // do something, but fail
+  }
+
+@namespace x url(http://www.w3.org/1999/xlink);
+@supports selector(a[x|href]) {
+  // do something
+  }

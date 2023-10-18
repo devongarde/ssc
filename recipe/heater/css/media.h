@@ -21,8 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "css/medium.h"
 
-//int process_media_query (arguments& args, nitpick& nits, const int from, const int to);
-
 class media_t
 {   vmdm_t mdm_;
 public:

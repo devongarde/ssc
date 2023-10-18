@@ -112,9 +112,11 @@ e_status set_css_col_value (nitpick& nits, const html_version& v, const ::std::s
 
 e_status set_css_display_1_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   if (s.empty ()) nits.pick (nit_key, es_error, ec_type, "display cannot be empty");
-    else if (v.css_display () == 0)
-    {   if (test_value < t_css_display > (nits, v, s)) return s_good; }
-    else if (test_value < t_css_display_3 > (nits, v, s)) return s_good;
+    nitpick nuts;
+    if (v.css_display () >= 3)
+    {   if (test_value < t_css_display_3 > (nuts, v, s))
+        {   nits.merge (nuts); return s_good; } }
+    if (test_value < t_css_display > (nits, v, s)) return s_good;
     return s_invalid; }
 
 e_status set_css_font_size_4_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -348,9 +350,9 @@ e_status set_css_list_style_type_cs_value (nitpick& nits, const html_version& v,
     if (test_value < t_css_list_style_type > (nuts, v, s))
     {   nits.merge (nuts);
         return s_good; }
-    if (v.css_counter_style () >= 3)
+    if ((v.css_counter_style () >= 3) || (v.css_list () >= 3))
     {   if (! test_value < t_css_counter_style_name > (nuts, v, s))
-            nits.pick (nit_counter_style, es_comment, ec_css, quote (s), ": not a recognised counter style");
+            nits.pick (nit_counter_style, es_comment, ec_css, quote (s), ": not a recognised counter style or list value");
         return s_good; }
     nits.merge (nuts);
     return s_invalid; }

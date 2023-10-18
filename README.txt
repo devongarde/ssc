@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.1.40
+version 0.1.41
 (c) 2020-2023 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notice
 https://ssc.lu/
@@ -11,7 +11,7 @@ https://github.com/devongarde/ssc
 ssc analyses static X/HTML snippets, files and sites:
 - HTML living standard, Jan 2005 to Oct 2023
 - HTML Tags/1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3-draft
-- CSS 1/2.0/2.1/2.2-draft, 2007/2010/2015 snapshots
+- CSS 1/2.0/2.1/2.2-draft, 2007-2023 snapshots, more
 - SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x-draft
 - MathML 1/2/3/4-draft
 - XHTML 1.0/1.1/2.0/5.x
@@ -55,10 +55,12 @@ To build & run:
 
 
 
-This is an alpha version of ssc. It may contain unexpected features.
-If you encounter one, please help improve ssc by collecting the
-following information (where relevant) and forwarding it to the
-developer:
+This is an alpha version of ssc. It is incomplete. What is complete
+needs refining. The developer needs coffee.
+
+It may contain unexpected features. If you encounter one, please help
+improve ssc by collecting the following information (where relevant)
+and forwarding it to the developer:
 - version of ssc;
 - precise version of the operating system;
 - hardware architecture and system information;
@@ -125,8 +127,8 @@ Then came the cow flu*.
 
 
 Unabashed Opportunism
-If you appreciate modernist poetry or abstract photography, I've been
-published. Click on books at https://dylanharris.org/ for gen.
+If you appreciate modernist poetry or abstract photography, click on
+books at https://dylanharris.org/ for gen.
 
 
 

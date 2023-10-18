@@ -177,35 +177,33 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT, class LC >
     ::std::string t (careless_case < LC >::lower (pret));
     nitpick knots;
     if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "empty value (", type_name (E), ")");
+    else if (! symbol < html_version, ENUM, CATEGORY, INIT, LC > :: parse (nits, v, t))
+    {   check_identifier_spelling (nits, v, t);
+        nits.pick (nit_unrecognised_value, es_error, ec_type, quote (s), " is not a valid ", type_name (E), " value"); }
     else
-    {   const bool parsed = symbol < html_version, ENUM, CATEGORY, INIT, LC > :: parse (nits, v, t);
-        if (parsed)
-        {   enum_base < ENUM, E > :: value_ = symbol < html_version, ENUM, CATEGORY, INIT, LC > :: get (); // ooops, two values :-(
-            careless_case < LC > :: validate (nits, v, get_string (), pret);
-            const html_version f = symbol < html_version, ENUM, CATEGORY, INIT, LC > :: first ();
-            if (! may_apply (v, f, symbol < html_version, ENUM, CATEGORY, INIT, LC > :: last ()))
-            {   v.check_math_svg (nits, f, name ());
-                nits.pick (nit_wrong_version, es_error, ec_type, quote (s), " is invalid here in ", v.report ()); }
-            else if (! v.is_css_compatible (f.ext2 (), f.ext3 ()))
-                nits.pick (nit_css_version, es_error, ec_type, quote (s), " is invalid here, but valid with, for example, CSS ", f.long_css_version_name ());
-            else if (f.reject ())
-                nits.pick (nit_rejected, es_error, ec_type, quote (s), " is valid but incompatible with ", v.report ());
-            else if (f.out_of_scope ())
-                nits.pick (nit_out_of_scope, es_error, ec_type, quote (s), " is out of scope for an HTML server");
-            else
-            {   f.check_status (nits, symbol < html_version, ENUM, CATEGORY, INIT, LC > :: name ());
-                if (f.deprecated (v))
-                    nits.pick (nit_deprecated_value, es_warning, ec_type, quote (s), " is deprecated in ", v.report ());
-                if ((f.ext () & HE_M3_NONSTAND) != 0)
-                    nits.pick (nit_non_standard_value, es_warning, ec_type, quote (s), " is non-standard in ", v.report (), ", and unlikely to be supported by many browsers");
-                else if (f.bespoke ())
-                    nits.pick (nit_bespoke_obsolete, es_warning, ec_type, quote (s), " is bespoke andor obsolete, so unlikely to be supported by many browsers.");
-                enum_base < ENUM, E > :: status (s_good);
-                enum_base < ENUM, E > :: post_set_value (nits, v);
-                return; } }
+    {   enum_base < ENUM, E > :: value_ = symbol < html_version, ENUM, CATEGORY, INIT, LC > :: get (); // ooops, two values :-(
+        careless_case < LC > :: validate (nits, v, get_string (), pret);
+        const html_version f = symbol < html_version, ENUM, CATEGORY, INIT, LC > :: first ();
+        if (! may_apply (v, f, symbol < html_version, ENUM, CATEGORY, INIT, LC > :: last ()))
+        {   v.check_math_svg (nits, f, name ());
+            nits.pick (nit_wrong_version, es_error, ec_type, quote (s), " is invalid here in ", v.report ()); }
+        else if (! v.is_css_compatible (f.ext2 (), f.ext3 ()))
+            nits.pick (nit_css_version, es_error, ec_type, quote (s), " is invalid here, but valid with, for example, CSS ", f.long_css_version_name ());
+        else if (f.reject ())
+            nits.pick (nit_rejected, es_error, ec_type, quote (s), " is valid but incompatible with ", v.report ());
+        else if (f.out_of_scope ())
+            nits.pick (nit_out_of_scope, es_error, ec_type, quote (s), " is out of scope for an HTML server");
         else
-        {   check_identifier_spelling (nits, v, t);
-            nits.pick (nit_unrecognised_value, es_error, ec_type, quote (s), " is not a valid ", type_name (E), " value"); } }
+        {   f.check_status (nits, symbol < html_version, ENUM, CATEGORY, INIT, LC > :: name ());
+            if (f.deprecated (v))
+                nits.pick (nit_deprecated_value, es_warning, ec_type, quote (s), " is deprecated in ", v.report ());
+            if ((f.ext () & HE_M3_NONSTAND) != 0)
+                nits.pick (nit_non_standard_value, es_warning, ec_type, quote (s), " is non-standard in ", v.report (), ", and unlikely to be supported by many browsers");
+            else if (f.bespoke ())
+                nits.pick (nit_bespoke_obsolete, es_warning, ec_type, quote (s), " is bespoke andor obsolete, so unlikely to be supported by many browsers.");
+            enum_base < ENUM, E > :: status (s_good);
+            enum_base < ENUM, E > :: post_set_value (nits, v);
+            return; } }
     enum_base < ENUM, E > :: status (s_invalid); }
 
 template < > class type_master < t_accrual_method > : public enum_n < t_accrual_method, e_accrual_method >
@@ -246,6 +244,9 @@ template < > struct type_master < t_baselineshift > : enum_n < t_baselineshift, 
 
 template < > struct type_master < t_cachekey > : enum_n < t_cachekey, e_cachekey >
 { using enum_n < t_cachekey, e_cachekey > :: enum_n; };
+
+template < > struct type_master < t_celnrs > : enum_n < t_celnrs, e_celnrs >
+{ using enum_n < t_celnrs, e_celnrs > :: enum_n; };
 
 template < > struct type_master < t_charset > : enum_n < t_charset, e_charset >
 { using enum_n < t_charset, e_charset > :: enum_n; };
@@ -343,6 +344,9 @@ template < > struct type_master < t_css_contain_e > : enum_n < t_css_contain_e, 
 template < > struct type_master < t_css_container_feature > : enum_n < t_css_container_feature, e_css_container_feature >
 { using enum_n < t_css_container_feature, e_css_container_feature > :: enum_n; };
 
+template < > struct type_master < t_css_control_break > : enum_n < t_css_control_break, e_css_control_break >
+{ using enum_n < t_css_control_break, e_css_control_break > :: enum_n; };
+
 template < > struct type_master < t_css_cursor_e > : enum_n < t_css_cursor_e, e_css_cursor_e >
 { using enum_n < t_css_cursor_e, e_css_cursor_e > :: enum_n; };
 
@@ -400,6 +404,9 @@ template < > struct type_master < t_css_font_weight > : enum_n < t_css_font_weig
 template < > struct type_master < t_css_generic_family > : enum_n < t_css_generic_family, e_css_generic_family >
 { using enum_n < t_css_generic_family, e_css_generic_family > :: enum_n; };
 
+template < > struct type_master < t_css_hll > : enum_n < t_css_hll, e_css_hll >
+{ using enum_n < t_css_hll, e_css_hll > :: enum_n; };
+
 template < > struct type_master < t_css_inline_bem_1 > : enum_n < t_css_inline_bem_1, e_css_inline_bem_1 >
 { using enum_n < t_css_inline_bem_1, e_css_inline_bem_1 > :: enum_n; };
 
@@ -411,6 +418,9 @@ template < > struct type_master < t_css_justify_content > : enum_n < t_css_justi
 
 template < > struct type_master < t_css_layout_box > : enum_n < t_css_layout_box, e_css_layout_box >
 { using enum_n < t_css_layout_box, e_css_layout_box > :: enum_n; };
+
+template < > struct type_master < t_css_line_break > : enum_n < t_css_line_break, e_css_line_break >
+{ using enum_n < t_css_line_break, e_css_line_break > :: enum_n; };
 
 template < > struct type_master < t_css_list_style_position > : enum_n < t_css_list_style_position, e_css_list_style_position >
 { using enum_n < t_css_list_style_position, e_css_list_style_position > :: enum_n; };
@@ -469,6 +479,15 @@ template < > struct type_master < t_css_system_e > : enum_n < t_css_system_e, e_
 template < > struct type_master < t_css_text_align > : enum_n < t_css_text_align, e_css_text_align >
 { using enum_n < t_css_text_align, e_css_text_align > :: enum_n; };
 
+template < > struct type_master < t_css_text_align_all > : enum_n < t_css_text_align_all, e_css_text_align_all >
+{ using enum_n < t_css_text_align_all, e_css_text_align_all > :: enum_n; };
+
+template < > struct type_master < t_css_text_align_last > : enum_n < t_css_text_align_last, e_css_text_align_last >
+{ using enum_n < t_css_text_align_last, e_css_text_align_last > :: enum_n; };
+
+template < > struct type_master < t_css_text_autospace > : enum_n < t_css_text_autospace, e_css_text_autospace >
+{ using enum_n < t_css_text_autospace, e_css_text_autospace > :: enum_n; };
+
 template < > struct type_master < t_css_text_decoration > : enum_n < t_css_text_decoration, e_css_text_decoration >
 { using enum_n < t_css_text_decoration, e_css_text_decoration > :: enum_n; };
 
@@ -483,6 +502,9 @@ template < > struct type_master < t_css_textdec_style > : enum_n < t_css_textdec
 
 template < > struct type_master < t_css_textemph_shape > : enum_n < t_css_textemph_shape, e_css_textemph_shape >
 { using enum_n < t_css_textemph_shape, e_css_textemph_shape > :: enum_n; };
+
+template < > struct type_master < t_css_text_wrap > : enum_n < t_css_text_wrap, e_css_text_wrap >
+{ using enum_n < t_css_text_wrap, e_css_text_wrap > :: enum_n; };
 
 template < > struct type_master < t_css_transform_box > : enum_n < t_css_transform_box, e_css_transform_box >
 { using enum_n < t_css_transform_box, e_css_transform_box > :: enum_n; };
@@ -516,6 +538,12 @@ template < > struct type_master < t_css_wide > : enum_n < t_css_wide, e_css_wide
 
 template < > struct type_master < t_css_wrap_flow > : enum_n < t_css_wrap_flow, e_css_wrap_flow >
 { using enum_n < t_css_wrap_flow, e_css_wrap_flow > :: enum_n; };
+
+template < > struct type_master < t_css_wsc > : enum_n < t_css_wsc, e_css_wsc >
+{ using enum_n < t_css_wsc, e_css_wsc > :: enum_n; };
+
+template < > struct type_master < t_css_wst > : enum_n < t_css_wst, e_css_wst >
+{ using enum_n < t_css_wst, e_css_wst > :: enum_n; };
 
 template < > struct type_master < t_currency > : enum_n < t_currency, e_currency >
 { using enum_n < t_currency, e_currency > :: enum_n; };
@@ -891,6 +919,9 @@ template < > struct type_master < t_ssi_env > : enum_n < t_ssi_env, e_ssi_env >
 
 template < > struct type_master < t_stress > : enum_n < t_stress, e_stress >
 { using enum_n < t_stress, e_stress > :: enum_n; };
+
+template < > struct type_master < t_supports > : enum_n < t_supports, e_supports >
+{ using enum_n < t_supports, e_supports > :: enum_n; };
 
 template < > struct type_master < t_svg_align > : enum_n < t_svg_align, e_svg_align >
 { using enum_n < t_svg_align, e_svg_align > :: enum_n; };

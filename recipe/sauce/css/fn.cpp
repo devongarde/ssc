@@ -64,7 +64,10 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
         params_.clear ();
         params_.push_back (param);
         switch (fn_)
-        {   case efn_lang :
+        {   case efn_auto :
+                test_value < t_lang > (nits, context.html_ver (), param);
+                return;
+            case efn_lang :
                 if (args.v_.css_selector () >= 4)
                     test_value < t_css_langs > (nits, context.html_ver (), param);
                 else test_value < t_lang > (nits, context.html_ver (), param);

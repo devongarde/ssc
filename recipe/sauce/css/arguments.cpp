@@ -43,26 +43,32 @@ arguments::arguments (const html_version& v, const namespaces_ptr& namespaces, c
     ns_ -> up (namespaces.get ()); }
 
 bool arguments::prep_for_make (nitpick& nits, const int , int& b, const int to, int& var, int& bang, css_token& p, bool& xs, bool& xk, bool& xn, bool& xi, bool& fn, bool& clean, int& kc, ::std::string& val)
-{   int pre = to;
+{   int pre = to, rc = 0;
     var = b;
     bang = token_find (t_, ct_bang, b, to, &pre);
     if (bang < 0) pre = to;
     xs = false; xk = false; xn = false; xi = false; fn = false; clean = true;
     const bool nff = (st_ == nullptr) || (st_ -> get () != css_font_face);
     kc = 0;
-    while (((to == -1) || (b <= pre)) && (b > 0) && (t_.at (b).t_ != ct_curly_ket))
-    {   if ((p == ct_error) || (p <= ct_comment)) p = t_.at (b).t_;
-        switch (t_.at (b).t_)
-        {   case ct_keyword : xk = true; break;
-            case ct_identifier : xi = true; break;
-            case ct_number : xn = true; break;
-            case ct_string : xs = true; break;
-            case ct_round_brac : fn = true; break;
-            case ct_comma: clean = nff; break;
-            default : break; }                    
-        if (clean) val += tkn_rpt (t_.at (b));
-        b = next_token_at (t_, b, pre);
-        ++kc; }
+    if ((b > 0) && (t_.at (b).t_ != ct_curly_ket))
+        while ((b > 0) && ((to == -1) || (b <= pre)))
+        {   if ((rc == 0) && (t_.at (b).t_ == ct_round_ket)) break;
+            if ((p == ct_error) || (p <= ct_comment)) p = t_.at (b).t_;
+            switch (t_.at (b).t_)
+            {   case ct_keyword : xk = true; break;
+                case ct_identifier : xi = true; break;
+                case ct_number : xn = true; break;
+                case ct_string : xs = true; break;
+                case ct_round_brac : fn = true; ++rc; break;
+                case ct_round_ket : if (rc > 0) --rc; break;
+                case ct_comma: clean = nff; break;
+                default : break; }                    
+            if (clean) val += tkn_rpt (t_.at (b));
+            int c = next_token_at (t_, b, pre);
+            if ((c > 0) && (token_category (t_.at (c).t_) == TC_SQUIGGLE)) break;
+            b = c;
+            ++kc; }
+    val = trim_the_lot_off (val);
     if (val.length () >= 5)
         if (val.at (0) == '-')
             if (    ((val.length () >= 6) && (val.substr (1, 5) == "khtml")) ||
@@ -94,9 +100,10 @@ void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string
             nits.pick (nit_naughty_page, es_error, ec_css, s, " requires @font-palette-values"); }
     if ((f & CF_BEF_AFT) == CF_BEF_AFT)
         if ((ss_ == nullptr) || (! ss_ -> bef_aft ()))
-            if (context.css_version () > css_2_2)
-                nits.pick (nit_naughty_content, ed_css_21, "12.2 The 'content' p. 182 property", es_error, ec_css, s, " requires an element with ::before andor ::after");
-            else nits.pick (nit_naughty_content, ed_css_21, "12.2 The 'content' p. 182 property", es_error, ec_css, s, " requires an element with :before andor :after"); }
+            if ((st_ == nullptr) || ((st_ -> get () != css_supports) || (context.css_conditional_rule () < 3)))
+                if (context.css_version () > css_2_2)
+                    nits.pick (nit_naughty_content, ed_css_21, "12.2 The 'content' p. 182 property", es_error, ec_css, s, " requires an element with ::before andor ::after");
+                else nits.pick (nit_naughty_content, ed_css_21, "12.2 The 'content' p. 182 property", es_error, ec_css, s, " requires an element with :before andor :after"); }
 
 void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string& s, const bool xk, const bool xi, const bool xn, const bool xs, const bool fn, const int kc, const ::std::string& item, const ::std::string& val) const
 {   if (! fn)

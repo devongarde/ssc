@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS 3 lists test pages</title>
+    <LINK rel="stylesheet" href="css-4.css" type="text/css">
+</head>
+
+<body>
+
+
+<ol> item0 is created, set to 0
+<li> item0 is incremented to 1
+<li> item0 is incremented to 2
+<ol> item1 is created, set to 0, nested in item0
+<li> item1 is incremented to 1
+<li> item1 is incremented to 2
+<li> item1 is incremented to 3
+<ol> item2 is created, set to 0, nested in item1
+<li> item2 is incremented to 1
+</ol>
+<li> item1 is incremented to 4
+<ol> item3 is created, set to 0, nested in item1
+<li> item3 is incremented to 1
+</ol>
+<li> item1 is incremented to 5
+</ol>
+<li> item0 is incremented to 3
+<li> item0 is incremented to 4
+</ol>
+<ol> item4 is created, set to 0
+<li> item4 is incremented to 1
+<li> item4 is incremented to 2
+</ol>
+
+<ul style='counter-reset: example 0;'>
+  <li id='foo' style='counter-increment: example;'>
+    foo
+    <div id='bar' style='counter-increment: example;'>bar</div>
+  </li>
+  <li id='baz'>
+    baz
+  </li>
+</ul>
+
+<ol>
+  <li>First top-level item
+  <li value=5>Second top-level item, value=5
+    <ol start=3>
+      <li>First second-level item, list start=3
+      <li>Second second-level item, list start=3
+        <ol reversed>
+          <li>First third-level item in reversed list
+          <li>Second third-level item in reversed list
+          <li>Third third-level item in reversed list
+          <li>Fourth third-level item in reversed list
+        </ol>
+    </ol>
+  <li>Third second-level item, list start=3
+  <li>Third top-level item
+</ol>
+
+<ul>
+  <li>one</li>
+  <li>two
+    <ul>
+      <li>nested one</li>
+      <li>nested two</li>
+    </ul>
+  </li>
+  <li>three</li>
+</ul>
+<style>
+li::marker { content: '(' counters(list-item,'.') ') '; }
+</style>
+
+<h1>First H1</h1>
+...
+<h2>First H2 in H1</h2>
+...
+<h2>Second H2 in H1</h2>
+...
+<h3>First H3 in H2</h3>
+...
+<h1>Second H1</h1>
+...
+<h2>First H2 in H1</h2>
+...
+<style>
+body { counter-reset: h1 h2 h3; }
+h1   { counter-increment: h1; counter-reset: h2 h3;}
+h2   { counter-increment: h2; counter-reset:    h3; }
+h3   { counter-increment: h3; }
+h1::before { content: counter(h1,upper-alpha) ' '; }
+h2::before { content: counter(h1,upper-alpha) '.'
+                      counter(h2,decimal) ' '; }
+h3::before { content: counter(h1,upper-alpha) '.'
+                      counter(h2,decimal) '.'
+                      counter(h3,lower-roman) ' '; }
+</style>
+
+</body>
+</html>

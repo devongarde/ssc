@@ -1,0 +1,58 @@
+﻿::marker, ::before::marker, ::after::marker {
+  unicode-bidi: isolate;
+  font-variant-numeric: tabular-nums;
+  white-space: pre;
+  text-transform: none;
+}
+
+li { list-style-image: url("http://www.example.com/ellipse.png") }
+
+ul { list-style-type: "★"; }
+/* Sets the marker to a "star" character */
+
+p.note {
+  display: list-item;
+  list-style-type: "Note: ";
+  list-style-position: inside;
+}
+/* Gives note paragraphs a marker consisting of the string "Note: " */
+
+ol { list-style-type: upper-roman; }
+/* Sets all ordered lists to use the upper-roman counter-style
+   (defined in the Counter Styles specification [[CSS-COUNTER-STYLES]]) */
+
+ul { list-style-type: symbols(cyclic '○' '●'); }
+/* Sets all unordered list items to alternate between empty and
+   filled circles for their markers. */
+
+ul { list-style-type: none; }
+/* Suppresses the marker entirely, unless list-style-image is specified
+   with a valid image. */
+
+ul { list-style: upper-roman inside }  /* Any UL */
+ul ul { list-style: circle outside } /* Any UL child of a UL */
+
+.pfft
+{
+list-style: none disc;
+/* Sets the image to "none" and the type to "disc". */
+
+list-style: none url(bullet.png);
+/* Sets the image to "url(bullet.png)" and the type to "none". */
+
+list-style: none;
+/* Sets both image and type to "none". */
+
+list-style: none disc url(bullet.png);
+/* Syntax error */
+}
+
+ol.alpha li { list-style: lower-alpha; }
+ul li       { list-style: disc; }
+
+ol.alpha > li { list-style: lower-alpha; }
+ul > li       { list-style: disc; }
+
+ol.alpha { list-style: lower-alpha; }
+ul       { list-style: disc; }
+

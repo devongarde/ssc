@@ -22,6 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "simple/type_misc.h"
 #include "compound/type_compound.h"
 
+template < > struct type_master < t_aesfs > : type_range < t_aesfs, sz_space_char, t_aesf, 1, 2 >
+{ using type_range < t_aesfs, sz_space_char, t_aesf, 1, 2 > :: type_range; };
+
 template < > struct type_master < t_angle_n > : type_or_string < t_angle_n, t_angle, sz_none >
 { using  type_or_string < t_angle_n, t_angle, sz_none > :: type_or_string; };
 
@@ -132,6 +135,9 @@ template < > struct type_master < t_angular_colour_more > : type_either_or < t_a
 
 template < > struct type_master < t_lrtb > : type_either_or_both < t_lrtb, t_lralign, sz_space_char, t_tbalign >
 { using type_either_or_both < t_lrtb, t_lralign, sz_space_char, t_tbalign > :: type_either_or_both; };
+
+template < > struct type_master < t_text_a > : type_or_string < t_text_a, t_text, sz_auto >
+{ using type_or_string < t_text_a, t_text, sz_auto > :: type_or_string; };
 
 template < > struct type_master < t_to_lrtb > : string_then_type < t_to_lrtb, t_lrtb, sz_to >
 { using string_then_type < t_to_lrtb, t_lrtb, sz_to > :: string_then_type; };

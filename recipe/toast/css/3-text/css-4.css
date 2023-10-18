@@ -1,0 +1,21 @@
+﻿p {
+  white-space: pre-wrap;
+  width: 5ch;
+  border: solid 1px;
+  font-family: monospace;
+  text-align: center;
+}
+
+p {
+  white-space: pre-wrap;
+  width: 3ch;
+  border: solid 1px;
+  font-family: monospace;
+}
+
+p {
+  white-space: pre-wrap;
+  width: 3ch;
+  border: solid 1px;
+  font-family: monospace;
+}

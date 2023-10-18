@@ -1,0 +1,35 @@
+﻿p { letter-spacing: 1em; }
+
+p { letter-spacing: 1em; }
+
+p    { letter-spacing: 1em; }
+span { letter-spacing: 2em; }
+
+p    { letter-spacing: 1em; }
+span { letter-spacing: 2em; }
+
+p    { letter-spacing: 1em; }
+span { letter-spacing: 2em; }
+
+p    { line-padding: 0.5em; line-height: 1; text-align: center }
+span { background: black; color: white; }
+em   { background: green; color: white; }
+
+p { /* Flush alignment */
+  margin: 0;
+  text-indent: 1em;
+  text-spacing-trim: trim-auto;
+}
+
+p { /* Fullwidth alignment */
+  margin: 0;
+  text-indent: 1em;
+  text-spacing-trim: space-all;
+}
+
+p { /* Hanging alignment */
+  margin: 0;
+  text-indent: 1em;
+  text-spacing-trim: trim-auto;
+  hanging-punctuation: first;
+}

@@ -50,6 +50,16 @@ bool maybe_math (nitpick& nits, const e_css_property id)
     nits.pick (nit_css_value_fn, ed_css_value_4, "10 Mathematical Expressions", es_error, ec_css, "not a numeric property");
     return false; }
 
+bool maybe_text_4 (nitpick& nits, const e_css_property id)
+{   if (id < ec_custom) return true;
+    if (context.css_text () < 4)
+    {   nits.pick (nit_css_version, es_error, ec_css, "Requires CSS Text 4 or better");
+        return false; }
+    const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
+    if ((f & CF_TEXT_4) == CF_TEXT_4) return true;
+    nits.pick (nit_css_value_fn, es_error, ec_css, "not a CSS Text 4 property");
+    return false; }
+
 bool maybe_transform (nitpick& nits, const e_css_property id, const bool t4)
 {   if (id < ec_custom) return true;
     switch (context.css_transform ())

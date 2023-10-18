@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS 3 lists test pages</title>
+</head>
+
+<body>
+
+<style>
+li::marker { content: "(" counter(list-item, lower-roman) ")"; }
+li { display: list-item; }
+</style>
+<ol>
+  <li>This is the first item.
+  <li>This is the second item.
+  <li>This is the third item.
+</ol>
+
+</body>
+</html>

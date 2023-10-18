@@ -269,10 +269,6 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (GENERAL MACROSTART, ::boost::program_options::value < ::std::string > () -> default_value ("{{"), "Start of template macro (by default, the '{{' in '{{macro}}').")
         (GENERAL MACROEND, ::boost::program_options::value < ::std::string > () -> default_value ("}}"), "End of template macro (by default, the '}}' in '{{macro}}').")
 
-        (CSS COND_RULE, ::boost::program_options::value < int > (), "CSS Conditional Rule level (0, 3, 4, or 5).")
-        (CSS LIST, ::boost::program_options::value < int > (), "CSS Lists and Counters level (0 or 3).")
-        (CSS TEXT_ARG, ::boost::program_options::value < int > (), "CSS Text level (0, 3, or 4).")
-
         (JSONLD EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "Extension for JSON-LD files; may be repeated.")
         (JSONLD VERIFY, ::boost::program_options::bool_switch (), "Experimental: Verify JSON-LD.")
         (JSONLD DONT VERIFY, ::boost::program_options::bool_switch (), "Do not verify JSON-LD.")
@@ -361,6 +357,7 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (CSS CASCADE, ::boost::program_options::value < int > (), "CSS Cascade & Inheritance level (0, 3, 4, 5 or 6).")
         (CSS COLOUR, ::boost::program_options::value < int > (), "CSS Colour level (0, 3, 4, or 5).")
         (CSS COMPOSITING, ::boost::program_options::value < int > (), "CSS Compositing and Blending level (0 or 3).")
+        (CSS COND_RULE, ::boost::program_options::value < int > (), "CSS Conditional Rule level (0, 3, 4, or 5).")
         (CSS CONTAIN, ::boost::program_options::value < int > (), "CSS Contain level (0, 3, 4, or 5).")
         (CSS CS, ::boost::program_options::value < int > (), "CSS Counter Style level (0 or 3).")
         (CSS CUSTOM, ::boost::program_options::value < int > (), "CSS Custom level (0 or 3).")
@@ -379,6 +376,7 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (CSS IMAGE, ::boost::program_options::value < int > (), "CSS Images level (0, 3, or 4).")
         (CSS INLINE, ::boost::program_options::value < int > (), "CSS Inline Layout level (0 or 3).")
         (CSS LINE_GRID, ::boost::program_options::value < int > (), "CSS Line Grid level (0 or 3).")
+        (CSS LIST, ::boost::program_options::value < int > (), "CSS Lists and Counters level (0 or 3).")
         (CSS LOGIC, ::boost::program_options::value < int > (), "CSS Logical Properties and Values level (0 or 3).")
         (CSS MASKING, ::boost::program_options::value < int > (), "CSS Masking level (0 or 3).")
         (CSS MEDIA, ::boost::program_options::value < int > (), "CSS Media level (0, 3, 4, or 5).")
@@ -398,6 +396,7 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (CSS STYLE, ::boost::program_options::value < int > (), "CSS Style level (0 or 3).")
         (CSS SYNTAX, ::boost::program_options::value < int > (), "CSS Syntax level (0 or 3).")
         (CSS TABLE, ::boost::program_options::value < int > (), "CSS Table level (0 or 3).")
+        (CSS TEXT_ARG, ::boost::program_options::value < int > (), "CSS Text level (0, 3, or 4).")
         (CSS TEXT_DEC, ::boost::program_options::value < int > (), "CSS Text Decoration level (0, 3, or 4).")
         (CSS TRANSFORM, ::boost::program_options::value < int > (), "CSS Transform level (0, 3 or 4).")
         (CSS TRANSITION, ::boost::program_options::value < int > (), "CSS Transitions level (0 or 3).")
@@ -1077,7 +1076,7 @@ void options::contextualise (nitpick& nits)
         if (get_css_level (n, nits, CSS GRID, "Grid", 4)) context.css_grid (n);
         if (get_css_level (n, nits, CSS IMAGE, "Image", 4)) context.css_image (n);
         if (get_css_level (n, nits, CSS INLINE, "Inline Layout", 3)) context.css_inline (n);
-        if (get_css_level (n, nits, CSS LIST, "Lists and Counters", 3)) context.css_lists (n);
+        if (get_css_level (n, nits, CSS LIST, "Lists and Counters", 3)) context.css_list (n);
         if (get_css_level (n, nits, CSS LINE_GRID, "Line Grid", 3)) context.css_line_grid (n);
         if (get_css_level (n, nits, CSS LOGIC, "Logical Properties and Values", 3)) context.css_logic (n);
         if (get_css_level (n, nits, CSS MASKING, "Masking", 3)) context.css_masking (n);
