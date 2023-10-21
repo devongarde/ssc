@@ -690,6 +690,16 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_skewy >
     {   if (! maybe_transform (nits, id)) return -1;
         return value_fn < TYPE, cvf_skewy, 1, 1, t_angle_0 > :: check (args, start, to, nits); } };
 
+template < e_type TYPE > struct value_fn_params < TYPE, cvf_snap_block >
+{   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
+    {   if (! maybe_float (nits, id)) return -1;
+        return value_fn < TYPE, cvf_snap_block, 1, 2, t_css_length, t_ens > :: check (args, start, to, nits); } };
+
+template < e_type TYPE > struct value_fn_params < TYPE, cvf_snap_inline >
+{   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
+    {   if (! maybe_float (nits, id)) return -1;
+        return value_fn < TYPE, cvf_snap_inline, 1, 2, t_css_length, t_lnr > :: check (args, start, to, nits); } };
+
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_src >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
     {   return value_fn < TYPE, cvf_src, 1, 2, t_url, t_generic > :: check (args, start, to, nits); } };
@@ -786,5 +796,5 @@ template < e_type T, e_type... TS > struct value_types : public value_types < TS
         return value_fns < T, CSS_VAL_FN > :: check (args, start, to, nits, fn, id); } };
 
 template < e_type T > struct value_types < T >
-{   static int check (arguments& , int& , const int , nitpick& , const e_type , const e_css_val_fn , const e_css_property )
-    {   GRACEFUL_CRASH (__FILE__, __LINE__); } };
+{   static int check (arguments& , int& , const int to, nitpick& , const e_type , const e_css_val_fn , const e_css_property )
+    {   return to; } };

@@ -22,6 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "simple/type_misc.h"
 #include "compound/type_compound.h"
 
+template < > struct type_master < t_acn_2 > : type_range < t_acn_2, sz_space_char, t_acn, 1, 2 >
+{ using type_range < t_acn_2, sz_space_char, t_acn, 1, 2 > :: type_range; };
+
 template < > struct type_master < t_aesfs > : type_range < t_aesfs, sz_space_char, t_aesf, 1, 2 >
 { using type_range < t_aesfs, sz_space_char, t_aesf, 1, 2 > :: type_range; };
 

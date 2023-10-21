@@ -74,6 +74,14 @@ template < > struct type_master < t_integer_i > : type_or_string < t_integer_i, 
 {    static bool is_numeric () { return true; }
     using type_or_string < t_integer_i, t_integer, sz_inherit > :: type_or_string; };
 
+template < > struct type_master < t_integer_is > : type_or_either_string < t_integer_is, t_integer, sz_increment, sz_same >
+{   static bool is_numeric () { return true; }
+    using type_or_either_string < t_integer_is, t_integer, sz_increment, sz_same > :: type_or_either_string; };
+
+template < > struct type_master < t_integer_ln > : type_or_either_string < t_integer_ln, t_integer, sz_last, sz_none >
+{   static bool is_numeric () { return true; }
+    using type_or_either_string < t_integer_ln, t_integer, sz_last, sz_none > :: type_or_either_string; };
+
 template < > struct type_master < t_integer_nl > : type_or_string < t_integer_nl, t_integer, sz_no_limit >
 {    static bool is_numeric () { return true; }
     using type_or_string < t_integer_nl, t_integer, sz_no_limit > :: type_or_string; };

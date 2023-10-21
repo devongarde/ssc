@@ -39,6 +39,7 @@ ssc.exe -T --nits.spec -o ../out/3display.tst -f ../toast/css/3-display/css.conf
 ssc.exe -T --nits.spec -o ../out/3exclude.tst -f ../toast/css/3-exclude/css.conf
 ssc.exe -T --nits.spec -o ../out/3fbl.tst -f ../toast/css/3-fbl/css.conf
 ssc.exe -T --nits.spec -o ../out/3filter.tst -f ../toast/css/3-filter/css.conf
+ssc.exe -T --nits.spec -o ../out/3float.tst -f ../toast/css/3-float/css.conf
 ssc.exe -T --nits.spec -o ../out/3font.tst -f ../toast/css/3-font/css.conf
 ssc.exe -T --nits.spec -o ../out/4font.tst -f ../toast/css/4-font/css.conf
 ssc.exe -T --nits.spec -o ../out/5font.tst -f ../toast/css/5-font/css.conf
@@ -57,6 +58,11 @@ ssc.exe -T --nits.spec -o ../out/5media.tst -f ../toast/css/5-media/css.conf
 ssc.exe -T --nits.spec -o ../out/3ns.tst -f ../toast/css/3-ns/css.conf
 ssc.exe -T --nits.spec -o ../out/3overflow.tst -f ../toast/css/3-overflow/css.conf
 ssc.exe -T --nits.spec -o ../out/3position.tst -f ../toast/css/3-position/css.conf
+ssc.exe -T --nits.spec -o ../out/3present.tst -f ../toast/css/3-present/css.conf
+ssc.exe -T --nits.spec -o ../out/4pseudo.tst -f ../toast/css/4-pseudo/css.conf
+ssc.exe -T --nits.spec -o ../out/3rhythm.tst -f ../toast/css/3-rhythm/css.conf
+ssc.exe -T --nits.spec -o ../out/3round.tst -f ../toast/css/3-round/css.conf
+ssc.exe -T --nits.spec -o ../out/3ruby.tst -f ../toast/css/3-ruby/css.conf
 ssc.exe -T --nits.spec -o ../out/3scrollbar.tst -f ../toast/css/3-scrollbar/css.conf
 ssc.exe -T --nits.spec -o ../out/3sel.tst -f ../toast/css/3-sel/css.conf
 ssc.exe -T --nits.spec -o ../out/4sel.tst -f ../toast/css/4-sel/css.conf

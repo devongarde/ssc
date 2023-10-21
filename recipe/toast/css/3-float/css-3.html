@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CSS 3 Page Float test pages</title>
+<link rel="stylesheet" type="text/css" href="css-3.css">
+</head>
+
+<body>
+
+<h1>CSS 3 Page Float test pages</h1>
+
+<style>
+.float {
+float-reference: float-container;
+}
+
+#container {
+float-container: true;
+}
+</style>
+
+<div id="container">
+<p>First paragraph<span class="float">FLOAT</span></p>
+
+<p>Second paragraph
+<span class="inline-block">[<span class="float">FLOAT</span>] </span>
+And some more text</p>
+</div>
+
+</body>
+</html>

@@ -203,6 +203,7 @@ PASS ../toast/css/2.1/css-9-2-2.html
 3 long_title
 
 PASS ../toast/css/2.1/css-9-2-3.html
+5 css_version css_version
 13 inserted_missing_closure
 14 inserted_missing_closure inserted_missing_closure
 15 inserted_missing_closure missing_close
@@ -541,6 +542,7 @@ PASS ../toast/css/2.1/css-18-4.css
 
 PASS ../toast/css/2.1/css-A-1.css
 0 html
+5 css_version
 
 PASS ../toast/css/2.1/css-A-2.css
 0 html
@@ -570,6 +572,7 @@ PASS ../toast/css/2.1/css-A-11.html
 
 PASS ../toast/css/2.1/css-A-12.css
 0 html
+1 css_version
 
 PASS ../toast/css/2.1/html4.css
 0 html

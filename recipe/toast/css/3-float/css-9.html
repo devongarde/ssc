@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CSS 3 Page Float test pages</title>
+</head>
+
+<body>
+
+<h1>CSS 3 Page Float test pages</h1>
+
+<style>
+.float {
+  float: left;
+  margin: 5px;
+}
+.border {
+    border: 3px solid black;
+    margin: 5px;
+}
+#outer {
+    border: 1px solid green;
+    display: inline-block;
+}
+canvas {
+    background-color: brown;
+}
+p {
+  margin: 5px;
+}
+</style>
+<div id="outer">
+    <p class="border">
+        <span class="float border">
+            <canvas width="100" height="100"/>
+        </span>
+        First paragraph.
+    </p>
+    <p class="border">
+        Second paragraph and some more text.
+    </p>
+</div>
+
+<style>
+.float {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    wrap-flow: both;
+}
+.border {
+    border: 3px solid black;
+    margin: 5px;
+}
+#outer {
+    border: 1px solid green;
+    display: inline-block;
+    position: relative;
+}
+canvas {
+    background-color: brown;
+}
+</style>
+
+<div id="outer">
+    <p class="border">
+        <span class="float border">
+            <canvas width="100" height="100"/>
+        </span>
+        First paragraph.
+    </p>
+    <p class="border">
+        Second paragraph and some more text.
+    </p>
+</div>
+
+</body>
+</html>

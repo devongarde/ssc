@@ -1,0 +1,14 @@
+﻿.figure { float-reference: column; float: top }
+
+.figure { float-reference: column; float: block-start; width: 50% }
+
+.figure { float-reference: column; float: snap-block }
+
+div.figure { float-reference: column; float: snap-block(1.5em) }
+
+div.figure { float-reference: column; float: snap-block(2.5em) }
+
+table { float: snap }
+table { float: snap-block(3em) }
+table { float: snap-block(3em, bottom) }
+table { float: snap-block(3em 2em, bottom) }

@@ -404,9 +404,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_FONT       ( H2_CSS_FONT_34 | H2_CSS_FONT_5 )   
 #define H2_CSS_FONT_MASK    H2_CSS_FONT
 
-#define H2_CSS_FBL_3        0x0400000000000000
+#define H2_CSS_FBL        0x0400000000000000
 
-#define H2_CSS_CS_3         0x0800000000000000
+#define H2_CSS_CS         0x0800000000000000
 
 #define H2_CSS_COND_RULE_3  0x1000000000000000
 #define H2_CSS_COND_RULE_4  0x2000000000000000
@@ -418,8 +418,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define H2_CLACKS           0x8000000000000000
 
-#define H2_CSS_3        ( H2_CSS_ANIM_3 | H2_CSS_BACKGROUND | H2_CSS_CASCADE_3 | H2_CSS_COLOUR_3 | H2_CSS_COMPOSITING | H2_CSS_COND_RULE_3 | H2_CSS_CS_3 | \
-                          H2_CSS_CUSTOM | H2_CSS_EASE | H2_CSS_FBL_3 | H2_CSS_FONT_3 | H2_CSS_FRAG_3 | H2_CSS_MEDIA_3 | H2_CSS_NAMESPACE | H2_CSS_SELECTOR_3 | \
+#define H2_CSS_3        ( H2_CSS_ANIM_3 | H2_CSS_BACKGROUND | H2_CSS_CASCADE_3 | H2_CSS_COLOUR_3 | H2_CSS_COMPOSITING | H2_CSS_COND_RULE_3 | H2_CSS_CS | \
+                          H2_CSS_CUSTOM | H2_CSS_EASE | H2_CSS_FBL | H2_CSS_FONT_3 | H2_CSS_FRAG_3 | H2_CSS_MEDIA_3 | H2_CSS_NAMESPACE | H2_CSS_SELECTOR_3 | \
                           H2_CSS_STYLE | H2_CSS_SYNTAX | H2_CSS_UI_3 | H2_CSS_VALUE_3 )
 #define H2_CSS_4        ( H2_CSS_ANIM_4 | H2_CSS_CASCADE_4 | H2_CSS_COLOUR_4 | H2_CSS_COND_RULE_4 | H2_CSS_FONT_4 | H2_CSS_FRAG_4 | H2_CSS_MEDIA_4 | \
                           H2_CSS_SELECTOR_4 | H2_CSS_UI_4 | H2_CSS_VALUE_4 )
@@ -433,6 +433,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define H2_CSS_3_4      ( H2_CSS_3 | H2_CSS_4 )
 #define H2_CSS_3_4_5    ( H2_CSS_3_4 | H2_CSS_5 )
+#define H2_CSS_3_4_5_6  ( H2_CSS_3_4_5 | H2_CSS_6 )
 
 #define H2_CSS_5_PLUS   ( H2_CSS_5 | H2_CSS_6 )
 #define H2_CSS_4_PLUS   ( H2_CSS_4 | H2_CSS_5_PLUS )
@@ -449,17 +450,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_2010       ( H2_CSS_2007 | H2_CSS_MEDIA_3 )
 #define H2_CSS_2015       ( H2_CSS_2010 | H2_CSS_BACKGROUND | H2_CSS_CASCADE_3 | H2_CSS_COMPOSITING | H2_CSS_COND_RULE_3 | H2_CSS_FONT_3 | H2_CSS_SYNTAX | \
                             H2_CSS_VALUE_3 | H2_CSS_UI_3 )
-#define H2_CSS_2015_1     ( H2_CSS_CS_3 | H2_CSS_FBL_3 )
-#define H2_CSS_2017       ( H2_CSS_ANIM_3 | H2_CSS_2015 )
-#define H2_CSS_2017_1     ( H2_CSS_CUSTOM | H2_CSS_FBL_3 )
-#define H2_CSS_2017_2     ( H2_CSS_ANIM_3 | H2_CSS_CS_3 | H2_CSS_FRAG_3 )
-#define H2_CSS_2018       ( H2_CSS_2017 | H2_CSS_CUSTOM | H2_CSS_FBL_3 )
+#define H2_CSS_2015_1     ( H2_CSS_CS | H2_CSS_FBL )
+#define H2_CSS_2017       ( H2_CSS_2015 | H2_CSS_ANIM_3 )
+#define H2_CSS_2017_1     ( H2_CSS_CUSTOM | H2_CSS_FBL )
+#define H2_CSS_2017_2     ( H2_CSS_ANIM_3 | H2_CSS_CS | H2_CSS_FRAG_3 )
+#define H2_CSS_2018       ( H2_CSS_2017 | H2_CSS_CUSTOM | H2_CSS_FBL )
 #define H2_CSS_2018_1       0
-#define H2_CSS_2018_2     ( H2_CSS_ANIM_3 | H2_CSS_CASCADE_4 | H2_CSS_CS_3 | H2_CSS_FRAG_3 | H2_CSS_MEDIA_4 )
+#define H2_CSS_2018_2     ( H2_CSS_ANIM_3 | H2_CSS_CASCADE_4 | H2_CSS_CS | H2_CSS_FRAG_3 | H2_CSS_MEDIA_4 )
 #define H2_CSS_2020       ( H2_CSS_2018 | H2_CSS_CASCADE_4 | H2_CSS_EASE )
-#define H2_CSS_2020_1     ( H2_CSS_COLOUR_4 | H2_CSS_CS_3 | H2_CSS_FRAG_3 | H2_CSS_MEDIA_4 )
+#define H2_CSS_2020_1     ( H2_CSS_COLOUR_4 | H2_CSS_CS | H2_CSS_FRAG_3 | H2_CSS_MEDIA_4 )
 #define H2_CSS_2020_2     ( H2_CSS_ANIM_3 )
-#define H2_CSS_2021       ( H2_CSS_2020 | H2_CSS_CS_3 )
+#define H2_CSS_2021       ( H2_CSS_2020 | H2_CSS_CS )
 #define H2_CSS_2021_1     ( H2_CSS_COLOUR_4 | H2_CSS_FRAG_3 | H2_CSS_MEDIA_4 )
 #define H2_CSS_2021_2     ( H2_CSS_ANIM_3 | H2_CSS_FONT_4 )
 #define H2_CSS_2022       ( H2_CSS_2021 | H2_CSS_COLOUR_4 )
@@ -552,14 +553,23 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H3_CSS_TEXT_MASK      H3_CSS_TEXT
 
 #define H3_CSS_LIST          0x0000008000000000
+#define H3_CSS_PSEUDO        0x0000010000000000
+#define H3_CSS_ROUND         0x0000020000000000
+#define H3_CSS_RHYTHM        0x0000040000000000
+#define H3_CSS_OVERSCROLL    0x0000080000000000
+#define H3_CSS_ANCHOR        0x0000100000000000
+#define H3_CSS_RUBY          0x0000200000000000
+#define H3_CSS_PRESENT       0x0000400000000000
+#define H3_CSS_FLOAT         0x0000800000000000
 
-#define H3_CSS_3          ( H3_CSS_ADJUST | H3_CSS_BOX_ALIGN | H3_CSS_BOX_MODEL_3 | H3_CSS_BOX_SIZING | H3_CSS_CONTAIN_3 | H3_CSS_DEVICE | H3_CSS_DISPLAY | \
-                            H3_CSS_EXCLUDE | H3_CSS_FILTER | H3_CSS_GRID_3 | H3_CSS_IMAGE_3 | H3_CSS_INLINE | H3_CSS_LINE_GRID | H3_CSS_LIST | H3_CSS_LOGIC | \
-                            H3_CSS_MASKING | H3_CSS_MULTI_COL | H3_CSS_OVERFLOW | H3_CSS_POSITION | H3_CSS_SCROLLBAR | H3_CSS_SHAPE_3 | H3_CSS_SNAP | \
+#define H3_CSS_3          ( H3_CSS_ADJUST | H3_CSS_ANCHOR | H3_CSS_BOX_ALIGN | H3_CSS_BOX_MODEL_3 | H3_CSS_BOX_SIZING | H3_CSS_CONTAIN_3 | H3_CSS_DEVICE | \
+                            H3_CSS_DISPLAY | H3_CSS_EXCLUDE | H3_CSS_FILTER | H3_CSS_FLOAT | H3_CSS_GRID_3 | H3_CSS_IMAGE_3 | H3_CSS_INLINE | \
+                            H3_CSS_LINE_GRID | H3_CSS_LIST | H3_CSS_LOGIC | H3_CSS_MASKING | H3_CSS_MULTI_COL | H3_CSS_OVERFLOW | H3_CSS_OVERSCROLL | \
+                            H3_CSS_POSITION | H3_CSS_PRESENT | H3_CSS_RHYTHM | H3_CSS_ROUND | H3_CSS_RUBY | H3_CSS_SCROLLBAR | H3_CSS_SHAPE_3 | H3_CSS_SNAP | \
                             H3_CSS_SPEECH | H3_CSS_TABLE | H3_CSS_TEXT_3 | H3_CSS_TEXTDEC_3 | H3_CSS_TRANSFORM_3 | H3_CSS_TRANSITION | H3_CSS_WC | \
                             H3_CSS_WRITING_3 )
-#define H3_CSS_4          ( H3_CSS_BOX_MODEL_4 | H3_CSS_CONTAIN_4 | H3_CSS_GRID_4 | H3_CSS_IMAGE_4 | H3_CSS_SHAPE_4 | H3_CSS_TEXT_4 | H3_CSS_TEXTDEC_4 | \
-                            H3_CSS_TRANSFORM_4 | H3_CSS_WRITING_4 )
+#define H3_CSS_4          ( H3_CSS_BOX_MODEL_4 | H3_CSS_CONTAIN_4 | H3_CSS_GRID_4 | H3_CSS_IMAGE_4 | H3_CSS_PSEUDO | H3_CSS_SHAPE_4 | H3_CSS_TEXT_4 | \
+                            H3_CSS_TEXTDEC_4 | H3_CSS_TRANSFORM_4 | H3_CSS_WRITING_4 )
 #define H3_CSS_5            H3_CSS_CONTAIN_5
 #define H3_CSS_6            0
   
@@ -570,6 +580,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define H3_CSS_3_4      ( H3_CSS_3 | H3_CSS_4 )
 #define H3_CSS_3_4_5    ( H3_CSS_3_4 | H3_CSS_5 )
+#define H3_CSS_3_4_5_6  ( H3_CSS_3_4_5 | H3_CSS_6 )
 
 #define H3_CSS_5_PLUS   ( H3_CSS_5 | H3_CSS_6 )
 #define H3_CSS_4_PLUS   ( H3_CSS_4 | H3_CSS_5_PLUS )
@@ -578,11 +589,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H3_CSS_MASK       H3_CSS_ALL
 #define H3_CSS            H3_CSS_ALL
 
-#define H3_FULL_CSS_MASK      0x000000FFFFFFFFFF
+#define H3_FULL_CSS_MASK      0x0000FFFFFFFFFFFF
 
 #define H3_CSS_2007           0
-#define H3_CSS_2010           0
-#define H3_CSS_2015         ( H3_CSS_IMAGE_3 | H3_CSS_MULTI_COL )
+#define H3_CSS_2010         ( H3_CSS_2007 )
+#define H3_CSS_2015         ( H3_CSS_2010 | H3_CSS_IMAGE_3 | H3_CSS_MULTI_COL )
 #define H3_CSS_2015_1       ( H3_CSS_MASKING | H3_CSS_SHAPE_3 | H3_CSS_SPEECH | H3_CSS_TEXTDEC_3 | H3_CSS_TRANSITION | H3_CSS_TRANSFORM_3 )
 #define H3_CSS_2017         ( H3_CSS_2015 | H3_CSS_WRITING_3 )
 #define H3_CSS_2017_1       ( H3_CSS_TEXT_3 | H3_CSS_TRANSFORM_3 )
@@ -622,15 +633,16 @@ class html_version : public version
     bool note_parsed_version (nitpick& nits, const e_nit n, const html_version& got, const ::std::string& gen);
     void init (const unsigned short mjr);
     bool test_extension () const noexcept;
-    ::std::string long_level_2 (const ::std::string& s, const flags_t l3, const flags_t l4, const flags_t l5 = 0, const flags_t l6 = 0) const;
-    ::std::string long_level_3 (const ::std::string& s, const flags_t l3, const flags_t l4, const flags_t l5 = 0, const flags_t l6 = 0) const;
+    bool compare_css (const flags_t e2, const flags_t e3, flags_t& ext2, flags_t& ext3) const;
+    ::std::string css_version_text (const bool b) const;
 public:
     html_version ()  { }
     explicit html_version (const unsigned short mjr) { init (mjr); }
     explicit html_version (const ontology_version& sv) noexcept : version (sv.mjr (), sv.mnr ()) { }
+    explicit html_version (const ::boost::gregorian::date& d);
     html_version (const unsigned short mjr, const unsigned short mnr, const flags_t flags = NOFLAGS, const flags_t extensions = NOFLAGS, const flags_t e2 = NOFLAGS, const flags_t e3 = NOFLAGS) noexcept
         : version (mjr, mnr, flags), ext_ (extensions), ext2_ (e2), ext3_ (e3) { }
-    html_version (const ::boost::gregorian::date& whatwg, const flags_t flags = NOFLAGS, const flags_t extensions = NOFLAGS, const flags_t e2 = NOFLAGS, const flags_t e3 = NOFLAGS);
+    html_version (const ::boost::gregorian::date& whatwg, const flags_t flags, const flags_t extensions = NOFLAGS, const flags_t e2 = NOFLAGS, const flags_t e3 = NOFLAGS);
     DEFAULT_COPY_CONSTRUCTORS (html_version);
 	~html_version () = default;
     void swap (html_version& v) noexcept
@@ -740,8 +752,11 @@ public:
     bool not_svg_21 () const noexcept { return (ext () & HE_NOT_SVG_21) != 0; }
     e_css_version css_version () const noexcept;
     void css_version (const e_css_version v) noexcept;
-    ::std::string css_version_name () const;
-    ::std::string long_css_version_name () const;
+    bool css_any_3_4_5_6 () const noexcept;
+    ::std::string css_version_name () const
+    {   return css_version_text (false); }
+    ::std::string long_css_version_name () const
+    {   return css_version_text (true); }
     e_jsonld_version jsonld_version () const noexcept;
     void jsonld_version (const e_jsonld_version v) noexcept;
     bool math_4_core () const noexcept;
@@ -826,6 +841,8 @@ public:
     const char *alternative_charset () const noexcept;
     int css_adjust () const;
     void css_adjust (const int n);
+    int css_anchor () const;
+    void css_anchor (const int n);
     int css_animation () const;
     void css_animation (const int n);
     int css_background () const;
@@ -862,6 +879,8 @@ public:
     void css_fbl (const int n);
     int css_filter () const;
     void css_filter (const int n);
+    int css_float () const;
+    void css_float (const int n);
     int css_font () const;
     void css_font (const int n);
     int css_fragmentation () const;
@@ -888,8 +907,20 @@ public:
     void css_namespace (const int n);
     int css_overflow () const;
     void css_overflow (const int n);
+    int css_overscroll () const;
+    void css_overscroll (const int n);
+   int css_pseudo () const;
+    void css_pseudo (const int n);
     int css_position () const;
     void css_position (const int n);
+    int css_present () const;
+    void css_present (const int n);
+    int css_rhythm () const;
+    void css_rhythm (const int n);
+    int css_round () const;
+    void css_round (const int n);
+    int css_ruby () const;
+    void css_ruby (const int n);
     int css_scrollbar () const;
     void css_scrollbar (const int n);
     int css_selector () const;
@@ -929,13 +960,13 @@ public:
     bool is_css_compatible (nitpick& nits, const html_version& v) const
     {   return is_css_compatible (nits, v.ext2_, v.ext3_); }
     void check_status (nitpick& nits, const ::std::string& s) const;
-    void reset_profile ();
-    void set_profile (const flags_t f);
-    void reset_profile (const flags_t f);
-    bool profile_checks () const;
-    bool mobile_profile () const;
-    bool print_profile () const;
-    bool tv_profile () const;
+    void reset_profile () { ext3_ &= ~H3_NOT_MASK; }
+    void set_profile (const flags_t f) { ext3_ |= f; }
+    void reset_profile (const flags_t f) { ext3_ &= ~f; }
+    bool profile_checks () const { return (ext3_ & H3_NOT_MASK) != 0; }
+    bool mobile_profile () const { return (ext3_ & H3_NOT_MOBILE) == H3_NOT_MOBILE; }
+    bool print_profile () const { return (ext3_ & H3_NOT_PRINT) == H3_NOT_PRINT; }
+    bool tv_profile () const { return (ext3_ & H3_NOT_TV) == H3_NOT_TV; }
     bool css_deprecated () const { return (ext3_ & H3_CSS_DEPRECATED) == H3_CSS_DEPRECATED; }
     ::std::string get_doctype () const;
     ::std::string name () const;
@@ -1124,6 +1155,7 @@ const html_version html_schema_19 (HTML_SCHEMA_19);
 const html_version html_schema_20 (HTML_SCHEMA_20);
 const html_version html_schema_21 (HTML_SCHEMA_21);
 const html_version html_schema_22 (HTML_SCHEMA_22);
+const html_version html_schema_23 (HTML_SCHEMA_23);
 const html_version html_sd (HTML_SD);
 const html_version html_sioc (HTML_SIOC);
 const html_version html_sioc_s (HTML_SIOC);

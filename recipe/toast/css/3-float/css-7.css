@@ -1,0 +1,17 @@
+﻿img {
+  float-reference: column;
+  float: left;
+  float-offset: 2em;
+}
+
+img {
+  float-reference: column;
+  float: right;
+  float-offset: 5px;
+}
+
+.pullquote {
+  float-reference: region;
+  float: right;
+  float-offset: 50%; /* 50% centers the box */
+}

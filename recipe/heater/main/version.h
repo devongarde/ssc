@@ -484,6 +484,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_SCHEMA_20    HTML_2023, ( HTML_MAY + HTML_22ND )
 #define HTML_SCHEMA_21    HTML_2023, ( HTML_MAY + HTML_23RD )
 #define HTML_SCHEMA_22    HTML_2023, ( HTML_JUN + HTML_30TH )
+#define HTML_SCHEMA_23    HTML_2023, ( HTML_OCT + HTML_17TH )
 #define HTML_SCHEMA       HTML_SCHEMA_0
 #define HTML_SD         HTML_RDF10_CON
 #define HTML_SIOC       HTML_RDF10

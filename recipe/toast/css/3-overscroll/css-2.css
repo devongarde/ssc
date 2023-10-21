@@ -1,0 +1,12 @@
+﻿#sidebar {
+  overscroll-behavior: contain;
+}
+
+html {
+  /* only disable pull-to-refresh but allow swipe navigations */
+  overscroll-behavior-y: contain;
+}
+
+#infinite_scroller {
+  overscroll-behavior-y: none;
+}

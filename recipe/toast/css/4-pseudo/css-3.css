@@ -1,0 +1,18 @@
+﻿:root::spelling-error { text-decoration-line: spelling-error; }
+:root::grammar-error  { text-decoration-line: grammar-error; }
+
+em::selection { color: initial; }
+em::selection { color: inherit; }
+em::selection { color: unset; }
+em::selection { color: green; }
+p::selection { color: green; }
+
+p::selection      { color: yellow; background: green; }
+p > em::selection { color: orange; }
+em::selection     { color:    red; }
+
+::selection          { background: blue; }
+p.warning::selection { background:  red; }
+
+:root::selection     { background: blue; }
+p.warning::selection { background:  red; }

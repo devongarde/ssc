@@ -377,6 +377,9 @@ template < > struct type_master < t_css_display_internal > : enum_n < t_css_disp
 template < > struct type_master < t_css_elevation_e > : enum_n < t_css_elevation_e, e_css_elevation_e >
 { using enum_n < t_css_elevation_e, e_css_elevation_e > :: enum_n; };
 
+template < > struct type_master < t_css_float > : enum_n < t_css_float, e_css_float >
+{ using enum_n < t_css_float, e_css_float > :: enum_n; };
+
 template < > struct type_master < t_css_fn > : enum_n < t_css_fn, e_css_fn >
 { using enum_n < t_css_fn, e_css_fn > :: enum_n; };
 

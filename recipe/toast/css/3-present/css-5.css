@@ -1,0 +1,4 @@
+﻿     ol { overflow: hidden; }
+     li { presentation-level: increment; margin-left: 100%; }
+     li:at-level { color: white; }
+     li:above-level { color: silver; }
