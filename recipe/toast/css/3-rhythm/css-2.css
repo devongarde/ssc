@@ -1,0 +1,12 @@
+﻿:root {
+  font-size: 12pt;
+  --my-grid: 18pt;
+  line-height-step: var(--my-grid);
+}
+h1 {
+  font-size: 20pt;
+  margin-top: calc(2 * var(--my-grid));
+}
+p {
+  margin: 0;
+}

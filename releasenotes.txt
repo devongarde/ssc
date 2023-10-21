@@ -3,13 +3,27 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.42
+- schema.org 23.0
+- CSS Overscroll 3
+- CSS Page Floats 3
+- CSS Presentation Levels 3
+- CSS Pseudo-Elements 4
+- CSS Rhythmic Sizing 3
+- CSS Round Display 3
+- CSS Ruby Annotations 3
+- CSS Scrollbar Anchor 3
+- various bug fixes
+- underlying work
+
 0.1.41
 - all CSS snapshots
+- CSS Conditional Rules 3
+- CSS Conditional Rules 4
+- CSS Conditional Rules 5
 - CSS Lists 3
 - CSS Text 3
 - CSS Text 4
-- CSS Conditional Rules 3
-- CSS Conditional Rules 4
 - various bug fixes
 - underlying work
 

@@ -1,0 +1,15 @@
+﻿.figure { float-reference: region }
+.figure { float: top }
+.figure { float-defer: 1 }
+
+.figure { float-reference: column; float: top; float-defer: -2 }
+
+.figure { float-reference: page }
+.figure { float: top }
+.figure { float-defer: -1 }
+
+.figure { float-reference: column }
+.figure { float: top }
+.figure { float-defer: last }
+
+.figure { float-reference: column; float: top; float-defer: last }

@@ -1,0 +1,13 @@
+﻿@viewport (viewport-fit: contain) {
+    /* CSS for the rectangular design */
+}      
+
+@viewport {
+    viewport-fit: cover;
+}
+@media (shape: round){
+    /* styles for the round design */
+}
+@media (shape: rect){
+    /* styles for the rectangular design */
+}

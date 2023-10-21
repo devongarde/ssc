@@ -172,9 +172,13 @@ template < > struct type_master < t_fn > : public tidy_string < t_fn >
 {   using tidy_string < t_fn > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_fn > :: set_value (nits, v, s);
-        if (tidy_string < t_fn > :: empty ())
+        if ((v.css_version () <= css_2_2) && ! v.css_any_3_4_5_6 ())
+        {   nits.pick (nit_css_version, es_error, ec_type, "CSS level 3 or better required");
+            status (s_invalid); }
+        else if (tidy_string < t_fn > :: empty ())
             nits.pick (nit_empty, es_warning, ec_type, "rather a minimalistic transform"); }
     bool invalid_id (nitpick& nits, const html_version& v, ids_t& , element* e)
     {   if (tidy_string < t_fn > :: good ())
             tidy_string < t_fn > :: status (set_fn_value (nits, v, tidy_string < t_fn > :: get_string (), e));
         return false; } };
+  

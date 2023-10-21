@@ -84,4 +84,3 @@ property_v_ptr make_viewport_v_ptr (arguments& args, const int start, const int 
 {   PRESUME ((i >= 0) && (i < GSL_NARROW_CAST < int > (args.t_.size ())), __FILE__, __LINE__);
     ::std::string n (args.t_.at (i).val_);
     return make_palette_v_ptr (args, start, to, nits, examine_value < t_css_property > (nits, args.v_, n), value, t); }
-

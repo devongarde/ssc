@@ -1,0 +1,12 @@
+﻿.figure { float-reference: column; float: bottom; clear: none }
+
+.figure { float-reference: column; float: bottom; clear: bottom }
+
+.figure { float-reference: column; float: bottom; clear: top }
+
+.figure { float-reference: column; float: bottom; clear: bottom }
+
+.figure { float-reference: page; float: top; clear: top }
+
+.figure.one { float-reference: column; float: top; clear: top }
+.figure.two { float-reference: column; float: bottom; clear: bottom }

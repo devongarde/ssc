@@ -73,4 +73,5 @@ property_v_ptr make_property_v_ptr (arguments& args, const int start, const int 
         {   nits.pick (nit_css_custom, ed_css_custom, "2. Defining Custom Properties", es_error, ec_css, "Custom property '--' is \"reserved for future use\"");   
             return make_property_v_ptr (args, start, to, nits, ec_unknown, value, t); }   
         return make_property_v_ptr (args, start, to, nits, ec_custom, value, t); }
-    return make_property_v_ptr (args, start, to, nits, examine_value < t_css_property > (nits, args.v_, n), value, t); }
+    auto p = examine_value < t_css_property > (nits, args.v_, n);
+    return make_property_v_ptr (args, start, to, nits, p, value, t); }

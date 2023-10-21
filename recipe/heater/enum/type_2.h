@@ -32,15 +32,16 @@ template < > struct is_that < true >
 template < e_type TYPE, typename base_type, class OFF, class ON, bool EMPTY > class two_value : public type_base < base_type, TYPE >, public is_that < EMPTY >
 {   bool true_ = false;
     static ::std::string off_, on_;
+    static void init ();
 public:
     typedef true_type has_int_type;
     two_value () = default;
     explicit two_value (element* box) noexcept : type_base < base_type, TYPE > (box) { }
-    static void init ();
     static e_animation_type animation_type () noexcept { return at_other; }
     ::std::string get_string () const
     {   if (! type_base < base_type, TYPE > :: unknown ())
-            if (true_) return ON::sz (); else return OFF::sz ();
+        {   init ();
+            if (true_) return ON::sz (); else return OFF::sz (); }
         return ::std::string (); }
     void shadow (::std::stringstream& ss, const html_version& , element* )
     {   ss << '=' << get_string (); }
@@ -54,6 +55,31 @@ public:
     {   return static_cast < base_type > (true_); }
     int get_int () const noexcept { return true_ ? 1 : 0; }
     ::std::size_t type () const noexcept { return static_cast < ::std::size_t > (get ()); } };
+
+template < e_type TYPE, typename base_type, class OFF, class ON, bool EMPTY >
+    void two_value < TYPE, base_type, OFF, ON, EMPTY > :: init ()
+{   if (off_.empty ())
+    {   off_ = ::boost::to_lower_copy (::std::string (OFF::sz ()));
+        on_ =  ::boost::to_lower_copy (::std::string (ON::sz ()));
+        PRESUME (! off_.empty (), __FILE__, __LINE__);
+        PRESUME (! on_.empty (), __FILE__, __LINE__); } }
+
+template < e_type TYPE, typename base_type, class OFF, class ON, bool EMPTY >
+    void two_value < TYPE, base_type, OFF, ON, EMPTY > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   ::std::string pret (trim_the_lot_off (s));
+    ::std::string t (case_must_match < false >::lower (pret));
+    type_base < base_type, TYPE > :: status (s_good);
+    if (is_that < EMPTY > :: beside_the_point (t)) return;
+    init ();
+    if (t == off_) true_ = false;
+    else if (t == on_) true_ = true;
+    else
+    {   if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "attribute cannot have an empty value (", type_name (TYPE), ")");
+        else if (! check_identifier_spelling (nits, v, t))
+            nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid; it can be ", quote (OFF::sz ()), " or ", quote (ON::sz ()));
+        type_base < base_type, TYPE > :: status (s_invalid);
+        return; }
+    compare_validate (nits, v, get_string (), pret); }
 
 template < e_type TYPE, typename base_type, class OFF, class ON, bool EMPTY >
     ::std::string two_value < TYPE, base_type, OFF, ON, EMPTY > :: off_;
@@ -246,6 +272,9 @@ template < > struct type_master < t_manual_normal > : two_value < t_manual_norma
 template < > struct type_master < t_markerunits > : two_value < t_markerunits, e_markerunits, sz_strokewidth, sz_userspaceonuse, false >
 { using two_value < t_markerunits, e_markerunits, sz_strokewidth, sz_userspaceonuse, false > :: two_value; };
 
+template < > struct type_master < t_margin_padding > : two_value < t_margin_padding, e_margin_padding, sz_margin, sz_padding, false >
+{ using two_value < t_margin_padding, e_margin_padding, sz_margin, sz_padding, false > :: two_value; };
+
 template < > struct type_master < t_match_self_parent > : two_value < t_match_self_parent, e_match_self_parent, sz_match_parent, sz_match_self, false >
 { using two_value < t_match_self_parent, e_match_self_parent, sz_match_parent, sz_match_self, false > :: two_value; };
 
@@ -332,6 +361,9 @@ template < > struct type_master < t_prism_issue_type > : two_value < t_prism_iss
 
 template < > struct type_master < t_propagate > : two_value < t_propagate, e_propagate, sz_stop, sz_continue, false >
 { using two_value < t_propagate, e_propagate, sz_stop, sz_continue, false > :: two_value; };
+
+template < > struct type_master < t_rect_round > : two_value < t_rect_round, e_rect_round, sz_rect, sz_round, false >
+{ using two_value < t_rect_round, e_rect_round, sz_rect, sz_round, false > :: two_value; };
 
 template < > struct type_master < t_row_column > : two_value < t_row_column, e_row_column, sz_column, sz_row, false >
 { using two_value < t_row_column, e_row_column, sz_column, sz_row, false > :: two_value; };
@@ -434,25 +466,3 @@ template < > struct type_master < t_yesnoempty > : two_value < t_yesnoempty, e_y
 
 template < > struct type_master < t_zoompan > : two_value < t_zoompan, e_zoompan, sz_disable, sz_magnify, false >
 { using two_value < t_zoompan, e_zoompan, sz_disable, sz_magnify, false > :: two_value; };
-
-template < e_type TYPE, typename base_type, class OFF, class ON, bool EMPTY >
-    void two_value < TYPE, base_type, OFF, ON, EMPTY > :: init ()
-{   off_ = ::boost::to_lower_copy (::std::string (OFF::sz ()));
-    on_ =  ::boost::to_lower_copy (::std::string (ON::sz ())); }
-
-template < e_type TYPE, typename base_type, class OFF, class ON, bool EMPTY >
-    void two_value < TYPE, base_type, OFF, ON, EMPTY > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-{   ::std::string pret (trim_the_lot_off (s));
-    ::std::string t (case_must_match < false >::lower (pret));
-    type_base < base_type, TYPE > :: status (s_good);
-    if (is_that < EMPTY > :: beside_the_point (t)) return;
-    PRESUME (! off_.empty (), __FILE__, __LINE__);
-    if (t == off_) true_ = false;
-    else if (t == on_) true_ = true;
-    else
-    {   if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "attribute cannot have an empty value (", type_name (TYPE), ")");
-        else if (! check_identifier_spelling (nits, v, t))
-            nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid; it can be ", quote (OFF::sz ()), " or ", quote (ON::sz ()));
-        type_base < base_type, TYPE > :: status (s_invalid);
-        return; }
-    compare_validate (nits, v, get_string (), pret); }

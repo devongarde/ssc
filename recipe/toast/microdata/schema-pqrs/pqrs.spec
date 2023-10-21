@@ -344,6 +344,7 @@ PASS ../toast/microdata/schema-pqrs/service.html
 PASS ../toast/microdata/schema-pqrs/softwareapplication.html
 119 bespoke_obsolete
 146 url_not_found
+155 css_version
 157 no_such_folder url_not_found
 159 url_not_found link_rel_off
 160 unrecognised_value unknown_rel no_such_folder url_not_found link_rel_off

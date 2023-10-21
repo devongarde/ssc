@@ -1,0 +1,11 @@
+﻿.figure { float-reference: column; float: top; float-defer: 1000 }
+
+.figure { float-reference: column; float: top; float-defer: -5 }
+
+p { float-reference: page; float: top; float-defer: last }
+
+.one { float-reference: page; float: top; float-defer: last }
+.two { float-reference: column; float: top; clear: column }
+
+.one { float-reference: page; float: top; float-defer: last }
+.two { float-reference: page; float: top; clear: page; }

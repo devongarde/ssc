@@ -88,6 +88,9 @@ the "no-" switch always applies.
 --css.adjust X          Use CSS Colour Adjustment level X, where X is 0
                         or 3.
 
+--css.anchor X          Use CSS Scrollbar Anchoring level X, where X is
+                        0 or 3.
+
 --css.animation X       Use CSS Animation level X, where X is 0, 3 or
                         4.
 
@@ -142,6 +145,8 @@ the "no-" switch always applies.
 --css.filter X          Use CSS Filter Effects level X, where X is 0 or
                         3.
 
+--css.float X           Use CSS Page Floats level X, where X is 0 or 3.
+
 --css.font X            Use CSS Fonts level X, where X is 0, 3, 4 or 5.
 
 --css.frag X            Use CSS Fragmentation level X, where X is 0, 3.
@@ -177,9 +182,24 @@ the "no-" switch always applies.
 
 --css.overflow X        Use CSS Overflow level X, where X is 0 or 3.
 
+--css.overscroll X      Use CSS Overscroll Behaviour level X, where X
+                        is 0 or 3.
+
 --css.position X        Use CSS Positions level X, where X is 0 or 3.
 
+--css.present X         Use CSS Presentation Levels level X, where X is
+                        0 or 3.
+
 --css.print             Test against the CSS Print Profile.
+
+--css.rhythm X          Use CSS Rhythmic Sizing level X, where X is 0
+                        or 3.
+
+--css.round X           Use CSS Round Display level X, where X is 0 or
+                        3.
+
+--css.ruby X            Use CSS Ruby Annotations level X, where X is 0
+                        or 3.
 
 --css.scrollbar X       Use CSS Scrollbar Style level X, where X is 0
                         or 3.

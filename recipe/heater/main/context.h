@@ -105,6 +105,7 @@ class context_t
     context_t& corpus (const ::boost::filesystem::path& f) { corpus_ = f; mac (nm_context_corpus, f.string ()); return *this; }
     context_t& crosslinks (const bool b) { crosslinks_ = b; mac (nm_context_crosslinks, b); return *this; }
     context_t& css_adjust (const int n) { version_.css_adjust (n); mac (nm_context_css_adjust, n); return *this; }
+    context_t& css_anchor (const int n) { version_.css_anchor (n); mac (nm_context_css_anchor, n); return *this; }
     context_t& css_animation (const int n) { version_.css_animation (n); mac (nm_context_css_animation, n); return *this; }
     context_t& css_background (const int n) { version_.css_background (n); mac (nm_context_css_background, n); return *this; }
     context_t& css_box_alignment (const int n) { version_.css_box_alignment (n); mac (nm_context_css_box_align, n); return *this; }
@@ -124,6 +125,7 @@ class context_t
     context_t& css_extension (const vstr_t& s) { css_ext_ = s; mac (nm_context_css_extension, s); return *this; }
     context_t& css_fbl (const int n) { version_.css_fbl (n); mac (nm_context_css_fbl, n); return *this; }
     context_t& css_filter (const int n) { version_.css_filter (n); mac (nm_context_css_filter, n); return *this; }
+    context_t& css_float (const int n) { version_.css_float (n); mac (nm_context_css_float, n); return *this; }
     context_t& css_font (const int n) { version_.css_font (n); mac (nm_context_css_font, n); return *this; }
     context_t& css_fragmentation (const int n) { version_.css_fragmentation (n); mac (nm_context_css_fragmentation, n); return *this; }
     context_t& css_grid (const int n) { version_.css_grid (n); mac (nm_context_css_grid, n); return *this; }
@@ -137,7 +139,13 @@ class context_t
     context_t& css_multi_column (const int n) { version_.css_multi_column (n); mac (nm_context_css_multi_column, n); return *this; }
     context_t& css_namespace (const int n) { version_.css_namespace (n); mac (nm_context_css_namespace, n); return *this; }
     context_t& css_overflow (const int n) { version_.css_overflow (n); mac (nm_context_css_overflow, n); return *this; }
+    context_t& css_overscroll (const int n) { version_.css_overscroll (n); mac (nm_context_css_overscroll, n); return *this; }
     context_t& css_position (const int n) { version_.css_position (n); mac (nm_context_css_position, n); return *this; }
+    context_t& css_present (const int n) { version_.css_present (n); mac (nm_context_css_present, n); return *this; }
+    context_t& css_pseudo (const int n) { version_.css_pseudo (n); mac (nm_context_css_pseudo, n); return *this; }
+    context_t& css_rhythm (const int n) { version_.css_rhythm (n); mac (nm_context_css_rhythm, n); return *this; }
+    context_t& css_round (const int n) { version_.css_round (n); mac (nm_context_css_round, n); return *this; }
+    context_t& css_ruby (const int n) { version_.css_ruby (n); mac (nm_context_css_ruby, n); return *this; }
     context_t& css_scrollbar (const int n) { version_.css_scrollbar (n); mac (nm_context_css_scrollbar, n); return *this; }
     context_t& css_selector (const int n) { version_.css_selector (n); mac (nm_context_css_selector, n); return *this; }
     context_t& css_shape (const int n) { version_.css_shape (n); mac (nm_context_css_shape, n); return *this; }
@@ -332,6 +340,7 @@ public:
     ::boost::filesystem::path corpus () const { return corpus_; }
     bool crosslinks () const noexcept { return crosslinks_; }
     int css_adjust () { return version_.css_adjust (); }
+    int css_anchor () { return version_.css_anchor (); }
     int css_animation () { return version_.css_animation (); }
     int css_background () { return version_.css_background (); }
     int css_box_alignment () { return version_.css_box_alignment (); }
@@ -351,6 +360,7 @@ public:
     const vstr_t css_extension () const { return css_ext_; }
     int css_fbl () { return version_.css_fbl (); }
     int css_filter () { return version_.css_filter (); }
+    int css_float () { return version_.css_float (); }
     int css_font () { return version_.css_font (); }
     int css_fragmentation () { return version_.css_fragmentation (); }
     int css_grid () { return version_.css_grid (); }
@@ -364,7 +374,13 @@ public:
     int css_multi_column () { return version_.css_multi_column (); }
     int css_namespace () { return version_.css_namespace (); }
     int css_overflow () { return version_.css_overflow (); }
+    int css_overscroll () { return version_.css_overscroll (); }
     int css_position () { return version_.css_position (); }
+    int css_present () { return version_.css_present (); }
+    int css_pseudo () { return version_.css_pseudo (); }
+    int css_rhythm () { return version_.css_rhythm (); }
+    int css_round () { return version_.css_round (); }
+    int css_ruby () { return version_.css_ruby (); }
     int css_scrollbar () { return version_.css_scrollbar (); }
     int css_selector () { return version_.css_selector (); }
     int css_shape () { return version_.css_shape (); }

@@ -81,6 +81,7 @@ typedef typed_property < t_real, ec_topline > desc_topline;
 typedef typed_property < t_css_unicode_ranges, ec_unicode_range > desc_unicode_range;
 typedef typed_property < t_real, ec_units_per_em > desc_units_per_em;
 typedef typed_property < t_fixed_zoom, ec_user_zoom > desc_user_zoom;
+typedef typed_property < t_auto_contain_cover, ec_viewport_fit > desc_viewport_fit;
 typedef typed_property < t_css_length_2, ec_width > desc_width;
 typedef typed_property < t_generic, ec_widths > desc_widths;
 typedef typed_property < t_real, ec_x_height > desc_x_height;
@@ -175,5 +176,6 @@ typedef typed_property < t_unknown, ec_unknown > desc_unknown;
     desc_min_zoom, \
     desc_orientation, \
     desc_user_zoom, \
+    desc_viewport_fit, \
     desc_width, \
     desc_zoom

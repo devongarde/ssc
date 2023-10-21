@@ -26,10 +26,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 > class four_value : public type_base < base_type, TYPE >
 {   base_type value_ = static_cast < base_type > (0);
     static ::std::string a_, b_, c_, d_;
+    static void init ();
 public:
     typedef true_type has_int_type;
     using type_base < base_type, TYPE > :: type_base;
-    static void init ();
     static e_animation_type animation_type () noexcept { return at_other; }
     ::std::string get_string () const;
     void shadow (::std::stringstream& ss, const html_version& , element* )
@@ -43,6 +43,60 @@ public:
     int get_int () const { return static_cast < int > (value_); }
     ::std::size_t type () const noexcept { return static_cast < ::std::size_t > (get ()); }
     bool has_value (const base_type& b) const { return type_base < base_type, TYPE > :: good () && (value_ == b); } };
+
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 >
+    ::std::string four_value < TYPE, base_type, SZ0, SZ1, SZ2, SZ3 > :: get_string () const
+{   if (! type_base < base_type, TYPE > :: unknown ())
+    {   init ();
+        switch (static_cast <int> (value_))
+        {   case 0 : return a_;
+            case 1 : return b_;
+            case 2 : return c_;
+            case 3 : return d_;
+            default : break; } }
+    return ::std::string (); }
+
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 >
+    void four_value < TYPE, base_type, SZ0, SZ1, SZ2, SZ3 > :: init ()
+{   if (a_.empty ())
+    {   a_ = ::boost::to_lower_copy (::std::string (SZ0::sz ()));
+        b_ = ::boost::to_lower_copy (::std::string (SZ1::sz ()));
+        c_ = ::boost::to_lower_copy (::std::string (SZ2::sz ()));
+        d_ = ::boost::to_lower_copy (::std::string (SZ3::sz ())); 
+        PRESUME (! a_.empty (), __FILE__, __LINE__);
+        PRESUME (! b_.empty (), __FILE__, __LINE__);
+        PRESUME (! c_.empty (), __FILE__, __LINE__);
+        PRESUME (! d_.empty (), __FILE__, __LINE__); } }
+
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 >
+    void four_value < TYPE, base_type, SZ0, SZ1, SZ2, SZ3 > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   init ();
+    ::std::string pret (trim_the_lot_off (s));
+    ::std::string t (case_must_match < false >::lower (pret));
+    type_base < base_type, TYPE > :: status (s_good);
+    if (t == a_) value_ = static_cast <base_type> (0);
+    else if (t == b_) value_ = static_cast <base_type> (1);
+    else if (t == c_) value_ = static_cast <base_type> (2);
+    else if (t == d_) value_ = static_cast <base_type> (3);
+    else
+    {   if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "attribute cannot have an empty value (", type_name (TYPE), ")");
+        else if (! check_identifier_spelling (nits, v, t))
+            nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid; it can be ", quote (SZ0::sz ()), ", ", quote (SZ1::sz ()), ", ", quote (SZ2::sz ()), ", or ", quote (SZ3::sz ()));
+        type_base < base_type, TYPE > :: status (s_invalid);
+        return; }
+    compare_validate (nits, v, get_string (), pret); }
+
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 >
+    ::std::string four_value < TYPE, base_type, SZ0, SZ1, SZ2, SZ3 > :: a_;
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 >
+    ::std::string four_value < TYPE, base_type, SZ0, SZ1, SZ2, SZ3 > :: b_;
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 >
+    ::std::string four_value < TYPE, base_type, SZ0, SZ1, SZ2, SZ3 > :: c_;
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 >
+    ::std::string four_value < TYPE, base_type, SZ0, SZ1, SZ2, SZ3 > :: d_;
+
+template < > struct type_master < t_aces > : four_value < t_aces, e_aces, sz_auto, sz_centre, sz_end, sz_start >
+{ using four_value < t_aces, e_aces, sz_auto, sz_centre, sz_end, sz_start > :: four_value; };
 
 template < > struct type_master < t_actiontype2 > : four_value < t_actiontype2, e_actiontype, sz_toggle, sz_statusline, sz_tooltip, sz_highlight >
 { using four_value < t_actiontype2, e_actiontype, sz_toggle, sz_statusline, sz_tooltip, sz_highlight > :: four_value; };
@@ -86,8 +140,14 @@ template < > struct type_master < t_cc_requires > : four_value < t_cc_requires, 
 template < > struct type_master < t_cens > : four_value < t_cens, e_cens, sz_centre, sz_end, sz_none, sz_start >
 { using four_value < t_cens, e_cens, sz_centre, sz_end, sz_none, sz_start > :: four_value; };
 
+template < > struct type_master < t_centre_space > : four_value < t_centre_space, e_centre_space, sz_centre, sz_space_around, sz_space_between, sz_start >
+{ using four_value < t_centre_space, e_centre_space, sz_centre, sz_space_around, sz_space_between, sz_start > :: four_value; };
+
 template < > struct type_master < t_channelselector > : four_value < t_channelselector, e_channelselector, sz_a, sz_b, sz_g, sz_r >
 { using four_value < t_channelselector, e_channelselector, sz_a, sz_b, sz_g, sz_r > :: four_value; };
+
+template < > struct type_master < t_cipr > : four_value < t_cipr, e_cipr, sz_column, sz_inline, sz_page, sz_region >
+{ using four_value < t_cipr, e_cipr, sz_column, sz_inline, sz_page, sz_region > :: four_value; };
 
 template < > struct type_master < t_content_encoding > : four_value < t_content_encoding, e_content_encoding, sz_gzip, sz_compress, sz_deflate, sz_identity >
 { using four_value < t_content_encoding, e_content_encoding, sz_gzip, sz_compress, sz_deflate, sz_identity > :: four_value; };
@@ -295,49 +355,3 @@ template < > struct type_master < t_xmpdm_scaletype > : four_value < t_xmpdm_sca
 
 template < > struct type_master < t_xsdbool > : four_value < t_xsdbool, e_xsdbool, sz_0, sz_1, sz_false, sz_true >
 { using four_value < t_xsdbool, e_xsdbool, sz_0, sz_1, sz_false, sz_true > :: four_value; };
-
-
-template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 >
-    ::std::string four_value < TYPE, base_type, SZ0, SZ1, SZ2, SZ3 > :: get_string () const
-{   if (! type_base < base_type, TYPE > :: unknown ())
-        switch (static_cast <int> (value_))
-        {   case 0 : return SZ0::sz ();
-            case 1 : return SZ1::sz ();
-            case 2 : return SZ2::sz ();
-            case 3 : return SZ3::sz ();
-            default : break; }
-    return ::std::string (); }
-
-template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 >
-    void four_value < TYPE, base_type, SZ0, SZ1, SZ2, SZ3 > :: init ()
-{   a_ = ::boost::to_lower_copy (::std::string (SZ0::sz ()));
-    b_ = ::boost::to_lower_copy (::std::string (SZ1::sz ()));
-    c_ = ::boost::to_lower_copy (::std::string (SZ2::sz ()));
-    d_ = ::boost::to_lower_copy (::std::string (SZ3::sz ())); }
-
-template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 >
-    void four_value < TYPE, base_type, SZ0, SZ1, SZ2, SZ3 > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-{   ::std::string pret (trim_the_lot_off (s));
-    ::std::string t (case_must_match < false >::lower (pret));
-    type_base < base_type, TYPE > :: status (s_good);
-    PRESUME (! a_.empty (), __FILE__, __LINE__);
-    if (t == a_) value_ = static_cast <base_type> (0);
-    else if (t == b_) value_ = static_cast <base_type> (1);
-    else if (t == c_) value_ = static_cast <base_type> (2);
-    else if (t == d_) value_ = static_cast <base_type> (3);
-    else
-    {   if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "attribute cannot have an empty value (", type_name (TYPE), ")");
-        else if (! check_identifier_spelling (nits, v, t))
-            nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid; it can be ", quote (SZ0::sz ()), ", ", quote (SZ1::sz ()), ", ", quote (SZ2::sz ()), ", or ", quote (SZ3::sz ()));
-        type_base < base_type, TYPE > :: status (s_invalid);
-        return; }
-    compare_validate (nits, v, get_string (), pret); }
-
-template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 >
-    ::std::string four_value < TYPE, base_type, SZ0, SZ1, SZ2, SZ3 > :: a_;
-template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 >
-    ::std::string four_value < TYPE, base_type, SZ0, SZ1, SZ2, SZ3 > :: b_;
-template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 >
-    ::std::string four_value < TYPE, base_type, SZ0, SZ1, SZ2, SZ3 > :: c_;
-template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 >
-    ::std::string four_value < TYPE, base_type, SZ0, SZ1, SZ2, SZ3 > :: d_;

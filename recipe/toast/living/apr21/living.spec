@@ -2,6 +2,7 @@
 
 PASS ../toast/living/apr21/404.html
 12 bespoke_obsolete
+47 css_version
 50 link_rel_off
 59 missing_itemtype
 64 unrecognised_value
@@ -294,6 +295,7 @@ PASS ../toast/living/apr21/details.html
 7 use_double_quote_code
 25 inserted_missing_closure missing_close
 26 inserted_missing_closure
+28 css_version
 
 PASS ../toast/living/apr21/dfn.html
 9 use_quote_code

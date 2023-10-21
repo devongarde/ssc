@@ -181,6 +181,9 @@ bool medium_t::value_expected (const e_media prop, e_type& t, bool& length, bool
         case md_scripting :
             t = t_media_scripting;
             return true;
+        case md_shape :
+            t = t_rect_round;
+            return true;
         case md_update :
             t = t_media_update;
             return true;
@@ -196,7 +199,7 @@ void medium_t::check_feature_compatibility (nitpick& nits, const e_media media, 
         case md_speech :
             switch (prop)
             {   case md_colour :
-                    nits.pick (nit_media_ignored, es_warning, ec_mql, "although colour is essential in audio, the colour feature only applies to visual media");
+                    nits.pick (nit_media_ignored, es_warning, ec_mql, "although colour is essential to audio, the colour feature only applies to visual media");
                     break;
                 case md_colour_index :
                 case md_aspect_ratio :
@@ -230,7 +233,7 @@ void medium_t::check_feature_compatibility (nitpick& nits, const e_media media, 
                 case md_resolution :
                 case md_scan :
                 case md_width :
-                    nits.pick (nit_media_ignored, es_warning, ec_mql, enum_n < t_media, e_media > :: name (prop), " is ignored by ", enum_n < t_media, e_media > :: name (media), " media");
+                    nits.pick (nit_media_ignored, es_warning, ec_mql, enum_n < t_media, e_media > :: name (prop), " is explicitly ignored by ", enum_n < t_media, e_media > :: name (media), " media");
                     break;
                 default :
                     break; }
@@ -245,7 +248,7 @@ void medium_t::check_feature_compatibility (nitpick& nits, const e_media media, 
                 case md_min_resolution :
                 case md_resolution :
                 case md_scan :
-                    nits.pick (nit_media_ignored, es_warning, ec_mql, enum_n < t_media, e_media > :: name (prop), " is ignored by ", enum_n < t_media, e_media > :: name (media), " media");
+                    nits.pick (nit_media_ignored, es_warning, ec_mql, enum_n < t_media, e_media > :: name (prop), " is explicitly ignored by ", enum_n < t_media, e_media > :: name (media), " media");
                     break;
                 default :
                     break; }
@@ -253,7 +256,7 @@ void medium_t::check_feature_compatibility (nitpick& nits, const e_media media, 
         case md_print :
             switch (prop)
             {   case md_scan :
-                    nits.pick (nit_media_ignored, es_warning, ec_mql, enum_n < t_media, e_media > :: name (prop), " is ignored by ", enum_n < t_media, e_media > :: name (media), " media");
+                    nits.pick (nit_media_ignored, es_warning, ec_mql, enum_n < t_media, e_media > :: name (prop), " is explicitly ignored by ", enum_n < t_media, e_media > :: name (media), " media");
                     break;
                 default :
                     break; }
@@ -278,7 +281,7 @@ void medium_t::check_feature_compatibility (nitpick& nits, const e_media media, 
                 case md_orientation :
                 case md_resolution :
                 case md_scan :
-                    nits.pick (nit_media_ignored, es_warning, ec_mql, enum_n < t_media, e_media > :: name (prop), " is ignored by ", enum_n < t_media, e_media > :: name (media), " media");
+                    nits.pick (nit_media_ignored, es_warning, ec_mql, enum_n < t_media, e_media > :: name (prop), " is explicitly ignored by ", enum_n < t_media, e_media > :: name (media), " media");
                     break;
                 default :
                     break; }
@@ -288,7 +291,7 @@ void medium_t::check_feature_compatibility (nitpick& nits, const e_media media, 
         case md_handheld :
             switch (prop)
             {   case md_scan :
-                    nits.pick (nit_media_ignored, es_warning, ec_mql, enum_n < t_media, e_media > :: name (prop), " is ignored by ", enum_n < t_media, e_media > :: name (media), " media");
+                    nits.pick (nit_media_ignored, es_warning, ec_mql, enum_n < t_media, e_media > :: name (prop), " is explicitly ignored by ", enum_n < t_media, e_media > :: name (media), " media");
                     break;
                 default :
                     break; }
@@ -390,7 +393,12 @@ bool medium_t::validate_version (const arguments& args, nitpick& nits, const e_m
             {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": ", enum_n < t_media, e_media > :: name (media), " requires CSS Conditional Rules 4 or better");
                 return false; }
             break;
-        default :
+         case md_shape :
+            if ((args.v_.css_media () < 4) || (args.v_.css_round () < 3))
+            {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": ", enum_n < t_media, e_media > :: name (media), " requires CSS Round Displays and CSS Media 4 or later");
+                return false; }
+            break;
+       default :
             break; }
     return true; }
 
@@ -852,6 +860,18 @@ bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
                     rator = resolved = false;
                     argled = true;
                     break;
+                case md_rect :
+                case md_round :
+                    if (! colonised)
+                    {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": unexpected ", enum_n < t_media, e_media > :: name (m.m_), " (7)");
+                        res = rator = false;
+                        break; }
+                    colonised = rator = false;
+                    if (t != t_rect_round)
+                    {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": expecting an shape");
+                        res = false; }
+                    argled = true;
+                    break;
                 case md_reduce :
                     if (t != t_media_prefers)
                     {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": ", enum_n < t_media, e_media > :: name (m.m_), " only applies to prefers-reduced-transparency");
@@ -869,6 +889,12 @@ bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
                         ignore = true; }
                     rator = resolved = false;
                     argled = true;
+                    break;
+                case md_shape :
+                    check_feature_compatibility (nits, device, m.m_);
+                    arged = value_expected (m.m_, t, len, ratio, dpi);
+                    want_val = discrete = true;
+                    rator = false;
                     break;
                 case md_slash :
                     if (! numbered)

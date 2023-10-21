@@ -349,6 +349,7 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (CORPUS OUTPUT ",d", ::boost::program_options::value < ::std::string > (), "Dump corpus of site content to specified file.")
 
         (CSS ADJUST, ::boost::program_options::value < int > (), "CSS Colour Adjust level (0 or 3).")
+        (CSS ANCHOR, ::boost::program_options::value < int > (), "CSS Scroll Anchoring level (0 or 3).")
         (CSS ANIMATION, ::boost::program_options::value < int > (), "CSS Animation level (0 or 3).")
         (CSS BACKGROUND, ::boost::program_options::value < int > (), "CSS Background Borders level (0 or 3).")
         (CSS BOX_ALIGN, ::boost::program_options::value < int > (), "CSS Box Alignment level (0 or 3).")
@@ -370,6 +371,7 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (CSS DONT EXTERNAL, ::boost::program_options::bool_switch (), "Do not nitpick imported CSS files.")
         (CSS FBL, ::boost::program_options::value < int > (), "CSS Flexible Box Layout level (0 or 3).")
         (CSS FILTER, ::boost::program_options::value < int > (), "CSS Filter Effects level (0 or 3).")
+        (CSS FLOAT, ::boost::program_options::value < int > (), "CSS Page Floats level (0 or 3).")
         (CSS FONT, ::boost::program_options::value < int > (), "CSS Font level (0, 3, 4, or 5).")
         (CSS FRAG, ::boost::program_options::value < int > (), "CSS Fragmentation level (0, 3, or 4).")
         (CSS GRID, ::boost::program_options::value < int > (), "CSS Grid level (0, 3, or 4).")
@@ -385,9 +387,15 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (CSS MULTI_COLUMN, ::boost::program_options::value < int > (), "CSS Multi-Column level (0 or 3).")
         (CSS NAMESPACE, ::boost::program_options::value < int > (), "CSS Namespace level (0 or 3).")
         (CSS OVERFLOH, ::boost::program_options::value < int > (), "CSS Overflow level (0 or 3).")
+        (CSS OVERSCROLL, ::boost::program_options::value < int > (), "CSS Overscroll Behaviour level (0 or 3).")
+        (CSS POSITION, ::boost::program_options::value < int > (), "CSS Positions level (0 or 3).")
+        (CSS PRESENT, ::boost::program_options::value < int > (), "CSS Presentation Levels level (0 or 3).")
         (CSS PRINT, ::boost::program_options::bool_switch (), "Notify if some CSS conflicts with the CSS Print Profile.")
         (CSS DONT PRINT, ::boost::program_options::bool_switch (), "No not notify CSS Print Profile matters.")
-        (CSS POSITION, ::boost::program_options::value < int > (), "CSS Positions level (0 or 3).")
+        (CSS PSEUDO, ::boost::program_options::value < int > (), "CSS Pseudo-Elements level (0 or 4).")
+        (CSS RHYTHM, ::boost::program_options::value < int > (), "CSS Rhythmic Sizing level (0 or 3).")
+        (CSS ROUND, ::boost::program_options::value < int > (), "CSS Round Display level (0 or 3).")
+        (CSS RUBY, ::boost::program_options::value < int > (), "CSS Ruby Annotation Layout level (0 or 3).")
         (CSS SCROLLBAR, ::boost::program_options::value < int > (), "CSS Scrollbar Styling level (0 or 3).")
         (CSS SELECTOR, ::boost::program_options::value < int > (), "CSS Selector level (0, 3, or 4).")
         (CSS SHAPE, ::boost::program_options::value < int > (), "CSS Shapes level (0, 3, or 4).")
@@ -946,7 +954,7 @@ void options::contextualise (nitpick& nits)
                         else if ((y > HTML_LATEST_YEAR) || ((y == HTML_LATEST_YEAR) && (m > HTML_LATEST_MONTH)))
                         {   nits.pick (nit_config_date, es_warning, ec_init, quote (ver), " is too recent, presuming ", HTML_LATEST_YEAR, "/", HTML_LATEST_MONTH, "/1");
                             context.html_ver (html_current); }
-                        else context.html_ver (d);
+                        else context.html_ver (html_version (d));
                         if (xhtml)
                             context.html_ver ().set_flags (HV_XHTML); } }
             else switch (lexical < int > :: cast (ver))
@@ -1053,6 +1061,7 @@ void options::contextualise (nitpick& nits)
 
         int n = 0;
         if (get_css_level (n, nits, CSS ADJUST, "Colour Adjust", 4)) context.css_adjust (n);
+        if (get_css_level (n, nits, CSS ANCHOR, "Scrollbar Anchoring", 4)) context.css_anchor (n);
         if (get_css_level (n, nits, CSS ANIMATION, "Animation", 4)) context.css_animation (n);
         if (get_css_level (n, nits, CSS BACKGROUND, "Background Border", 3, true)) context.css_background (n);
         if (get_css_level (n, nits, CSS BOX_ALIGN, "Background Alignment", 3)) context.css_box_alignment (n);
@@ -1071,6 +1080,7 @@ void options::contextualise (nitpick& nits)
         if (get_css_level (n, nits, CSS EXCLUDE, "Exclusions", 3)) context.css_exclude (n);
         if (get_css_level (n, nits, CSS FBL, "Flexible Box Layout", 3)) context.css_fbl (n);
         if (get_css_level (n, nits, CSS FILTER, "Filter Effects", 3)) context.css_filter (n);
+        if (get_css_level (n, nits, CSS FLOAT, "Page Floats", 3)) context.css_float (n);
         if (get_css_level (n, nits, CSS FONT, "Font", 5)) context.css_font (n);
         if (get_css_level (n, nits, CSS FRAG, "Fragmentation", 4)) context.css_fragmentation (n);
         if (get_css_level (n, nits, CSS GRID, "Grid", 4)) context.css_grid (n);
@@ -1084,8 +1094,14 @@ void options::contextualise (nitpick& nits)
         yea_nay (&context_t::mobile_profile, nits, CSS MOBILE, CSS DONT MOBILE);
         if (get_css_level (n, nits, CSS NAMESPACE, "Namespace", 3)) context.css_namespace (n);
         if (get_css_level (n, nits, CSS OVERFLOH, "Overflow", 3)) context.css_overflow (n);
-        if (get_css_level (n, nits, CSS POSITION, "Overflow", 3)) context.css_position (n);
+        if (get_css_level (n, nits, CSS OVERSCROLL, "Overscroll Behaviour", 3)) context.css_overscroll (n);
+        if (get_css_level (n, nits, CSS POSITION, "Position", 3)) context.css_position (n);
+        if (get_css_level (n, nits, CSS PRESENT, "Presentation Levels", 3)) context.css_present (n);
         yea_nay (&context_t::print_profile, nits, CSS PRINT, CSS DONT PRINT);
+        if (get_css_level (n, nits, CSS PSEUDO, "Pseudo-Elements", 4)) context.css_pseudo (n);
+        if (get_css_level (n, nits, CSS RHYTHM, "Rhythmic Sizing", 4)) context.css_rhythm (n);
+        if (get_css_level (n, nits, CSS ROUND, "Round Display", 4)) context.css_round (n);
+        if (get_css_level (n, nits, CSS RUBY, "Ruby Annotation Layout", 4)) context.css_ruby (n);
         if (get_css_level (n, nits, CSS SCROLLBAR, "Scrollbar Styling", 4)) context.css_scrollbar (n);
         if (get_css_level (n, nits, CSS SELECTOR, "Selector", 4)) context.css_selector (n);
         if (get_css_level (n, nits, CSS SHAPE, "Shape", 4)) context.css_shape (n);
@@ -1572,6 +1588,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (CORPUS OUTPUT)) res << CORPUS OUTPUT ": " << var_ [CORPUS OUTPUT].as < ::std::string > () << "\n";
 
     if (var_.count (CSS ADJUST)) res << CSS ADJUST ": " << var_ [CSS ADJUST].as < int > () << "\n";
+    if (var_.count (CSS ANCHOR)) res << CSS ANCHOR ": " << var_ [CSS ANCHOR].as < int > () << "\n";
     if (var_.count (CSS ANIMATION)) res << CSS ANIMATION ": " << var_ [CSS ANIMATION].as < int > () << "\n";
     if (var_.count (CSS BACKGROUND)) res << CSS BACKGROUND ": " << var_ [CSS BACKGROUND].as < int > () << "\n";
     if (var_.count (CSS BOX_ALIGN)) res << CSS BOX_ALIGN ": " << var_ [CSS BOX_ALIGN].as < int > () << "\n";
@@ -1591,6 +1608,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (CSS EXTENSION)) res << CSS EXTENSION ": "; pvs (res, var_ [CSS EXTENSION].as < vstr_t > ()); res << "\n";
     if (var_.count (CSS FBL)) res << CSS FBL ": " << var_ [CSS FBL].as < int > () << "\n";
     if (var_.count (CSS FILTER)) res << CSS FILTER ": " << var_ [CSS FILTER].as < int > () << "\n";
+    if (var_.count (CSS FLOAT)) res << CSS FLOAT ": " << var_ [CSS FLOAT].as < int > () << "\n";
     if (var_.count (CSS FONT)) res << CSS FONT ": " << var_ [CSS FONT].as < int > () << "\n";
     if (var_.count (CSS FRAG)) res << CSS FRAG ": " << var_ [CSS FRAG].as < int > () << "\n";
     if (var_.count (CSS GRID)) res << CSS GRID ": " << var_ [CSS GRID].as < int > () << "\n";
@@ -1606,9 +1624,15 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (CSS MULTI_COLUMN)) res << CSS MULTI_COLUMN ": " << var_ [CSS MULTI_COLUMN].as < int > () << "\n";
     if (var_.count (CSS NAMESPACE)) res << CSS NAMESPACE ": " << var_ [CSS NAMESPACE].as < int > () << "\n";
     if (var_.count (CSS OVERFLOH)) res << CSS OVERFLOH ": " << var_ [CSS OVERFLOH].as < int > () << "\n";
+    if (var_.count (CSS OVERSCROLL)) res << CSS OVERSCROLL ": " << var_ [CSS OVERSCROLL].as < int > () << "\n";
     if (var_.count (CSS POSITION)) res << CSS POSITION ": " << var_ [CSS POSITION].as < int > () << "\n";
+    if (var_.count (CSS PRESENT)) res << CSS PRESENT ": " << var_ [CSS PRESENT].as < int > () << "\n";
     if (var_.count (CSS PRINT)) res << CSS PRINT ": " << var_ [CSS PRINT].as < int > () << "\n";
+    if (var_.count (CSS PSEUDO)) res << CSS PSEUDO ": " << var_ [CSS PSEUDO].as < int > () << "\n";
     if (var_.count (CSS DONT PRINT)) res << CSS DONT PRINT ": " << var_ [CSS DONT PRINT].as < int > () << "\n";
+    if (var_.count (CSS RHYTHM)) res << CSS RHYTHM ": " << var_ [CSS RHYTHM].as < int > () << "\n";
+    if (var_.count (CSS ROUND)) res << CSS ROUND ": " << var_ [CSS ROUND].as < int > () << "\n";
+    if (var_.count (CSS RUBY)) res << CSS RUBY ": " << var_ [CSS RUBY].as < int > () << "\n";
     if (var_.count (CSS SCROLLBAR)) res << CSS SCROLLBAR ": " << var_ [CSS SCROLLBAR].as < int > () << "\n";
     if (var_.count (CSS SELECTOR)) res << CSS SELECTOR ": " << var_ [CSS SELECTOR].as < int > () << "\n";
     if (var_.count (CSS SHAPE)) res << CSS SHAPE ": " << var_ [CSS SHAPE].as < int > () << "\n";

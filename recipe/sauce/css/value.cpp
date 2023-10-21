@@ -36,6 +36,16 @@ bool maybe_filter (nitpick& nits, const e_css_property id)
     nits.pick (nit_css_value_fn, ed_css_filter_3, "6. Filter Functions", es_error, ec_css, "not a filter property");
     return false; }
 
+bool maybe_float (nitpick& nits, const e_css_property id)
+{   if (id < ec_custom) return true;
+    if (context.css_float () < 3)
+    {   nits.pick (nit_css_version, es_error, ec_css, "Requires CSS Page Floats 3 or better");
+        return false; }
+    const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
+    if ((f & CF_FLOAT) == CF_FLOAT) return true;
+    nits.pick (nit_css_value_fn, es_error, ec_css, "not a Page Float property");
+    return false; }
+
 bool maybe_image (nitpick& nits, const e_css_property id)
 {   if (id < ec_custom) return true;
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));

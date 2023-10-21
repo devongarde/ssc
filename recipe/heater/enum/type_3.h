@@ -26,10 +26,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE = false > class three_value : public type_base < base_type, TYPE >
 {   base_type value_ = static_cast < base_type > (0);
     static ::std::string a_, b_, c_;
+    static void init ();
 public:
     typedef true_type has_int_type;
     using type_base < base_type, TYPE > :: type_base;
-    static void init ();
     static e_animation_type animation_type () noexcept
     {   return at_other; }
     ::std::string get_string () const;
@@ -50,6 +50,54 @@ public:
     ::std::size_t type () const noexcept
     {   return static_cast < ::std::size_t > (get ()); } };
 
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >
+    void three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE > :: init ()
+{   if (a_.empty ())
+    {   a_ = ::boost::to_lower_copy (::std::string (SZ0::sz ()));
+        b_ = ::boost::to_lower_copy (::std::string (SZ1::sz ()));
+        c_ = ::boost::to_lower_copy (::std::string (SZ2::sz ()));
+        PRESUME (! a_.empty (), __FILE__, __LINE__);
+        PRESUME (! b_.empty (), __FILE__, __LINE__);
+        PRESUME (! c_.empty (), __FILE__, __LINE__); } }
+
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >
+    void three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   ::std::string pret (trim_the_lot_off (s));
+    ::std::string t (case_must_match < CASE >::lower (pret));
+    type_base < base_type, TYPE > :: status (s_good);
+    init ();
+    if (t == a_) value_ = static_cast <base_type> (0);
+    else if (t == b_) value_ = static_cast <base_type> (1);
+    else if (t == c_) value_ = static_cast <base_type> (2);
+    else
+    {   if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "attribute cannot have an empty value (", type_name (TYPE), ")");
+        else if (! check_identifier_spelling (nits, v, t))
+            nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid; it can be ", quote (SZ0::sz ()), ", ", quote (SZ1::sz ()), ", or ", quote (SZ2::sz ()));
+        type_base < base_type, TYPE > :: status (s_invalid);
+        return; }
+    case_must_match < CASE > :: validate (nits, v, get_string (), pret); }
+
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >
+    ::std::string three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE > :: get_string () const
+{   if (! type_base < base_type, TYPE > :: unknown ())
+    {   init ();
+        switch (static_cast <int> (value_))
+        {   case 0 : return SZ0::sz ();
+            case 1 : return SZ1::sz ();
+            case 2 : return SZ2::sz ();
+            default : break; } }
+    return ::std::string (); }
+
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >
+    ::std::string three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE > :: a_;
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >
+    ::std::string three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE > :: b_;
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >
+    ::std::string three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE > :: c_;
+
+template < > struct type_master < t_acn > : three_value < t_acn, e_acn, sz_auto, sz_contain, sz_none >
+{ using three_value < t_acn, e_acn, sz_auto, sz_contain, sz_none > :: three_value; };
+
 template < > struct type_master < t_anywhere_break_normal > : three_value < t_anywhere_break_normal, e_anywhere_break_normal, sz_anywhere, sz_break_word, sz_normal >
 { using three_value < t_anywhere_break_normal, e_anywhere_break_normal, sz_anywhere, sz_break_word, sz_normal > :: three_value; };
 
@@ -65,6 +113,9 @@ template < > struct type_master < t_aria_live > : three_value < t_aria_live, e_a
 template < > struct type_master < t_attributetype > : three_value < t_attributetype, e_attributetype, sz_auto, sz_CSS, sz_XML >
 { using three_value < t_attributetype, e_attributetype, sz_auto, sz_CSS, sz_XML > :: three_value; };
 
+template < > struct type_master < t_auto_contain_cover > : three_value < t_auto_contain_cover, e_auto_contain_cover, sz_auto, sz_contain, sz_cover >
+{ using three_value < t_auto_contain_cover, e_auto_contain_cover, sz_auto, sz_contain, sz_cover > :: three_value; };
+
 template < > struct type_master < t_auto_first_last > : three_value < t_auto_first_last, e_auto_first_last, sz_auto, sz_first, sz_last >
 { using three_value < t_auto_first_last, e_auto_first_last, sz_auto, sz_first, sz_last > :: three_value; };
 
@@ -73,6 +124,9 @@ template < > struct type_master < t_auto_hidden_visible > : three_value < t_auto
 
 template < > struct type_master < t_auto_manual_none > : three_value < t_auto_manual_none, e_auto_manual_none, sz_auto, sz_manual, sz_none >
 { using three_value < t_auto_manual_none, e_auto_manual_none, sz_auto, sz_manual, sz_none > :: three_value; };
+
+template < > struct type_master < t_auto_merge_separate > : three_value < t_auto_merge_separate, e_auto_merge_separate, sz_auto, sz_merge, sz_separate >
+{ using three_value < t_auto_merge_separate, e_auto_merge_separate, sz_auto, sz_merge, sz_separate > :: three_value; };
 
 template < > struct type_master < t_auto_none_thin > : three_value < t_auto_none_thin, e_auto_none_thin, sz_auto, sz_none, sz_thin >
 { using three_value < t_auto_none_thin, e_auto_none_thin, sz_auto, sz_none, sz_thin > :: three_value; };
@@ -152,6 +206,9 @@ template < > struct type_master < t_css_speak_header > : three_value < t_css_spe
 template < > struct type_master < t_css_speak_numeral > : three_value < t_css_speak_numeral, e_css_speak_numeral, sz_continuous, sz_digits, sz_inherit >
 { using three_value < t_css_speak_numeral, e_css_speak_numeral, sz_continuous, sz_digits, sz_inherit > :: three_value; };
 
+template < > struct type_master < t_css_shape_inside_e > : three_value < t_css_shape_inside_e, e_css_shape_inside_e, sz_auto, sz_display, sz_outside_shape >
+{ using three_value < t_css_shape_inside_e, e_css_shape_inside_e, sz_auto, sz_display, sz_outside_shape > :: three_value; };
+
 template < > struct type_master < t_css_speak_punctuation > : three_value < t_css_speak_punctuation, e_css_speak_punctuation, sz_code, sz_inherit, sz_none >
 { using three_value < t_css_speak_punctuation, e_css_speak_punctuation, sz_code, sz_inherit, sz_none > :: three_value; };
 
@@ -176,6 +233,12 @@ template < > struct type_master < t_csvw_direction > : three_value < t_csvw_dire
 template < > struct type_master < t_decoding > : three_value < t_decoding, e_decoding, sz_auto, sz_sync, sz_async >
 { using three_value < t_decoding, e_decoding, sz_auto, sz_sync, sz_async > :: three_value; };
 
+template < > struct type_master < t_display_none_parent > : three_value < t_display_none_parent, e_display_none_parent, sz_display, sz_none, sz_parent >
+{ using three_value < t_display_none_parent, e_display_none_parent, sz_display, sz_none, sz_parent > :: three_value; };
+
+template < > struct type_master < t_dnu > : three_value < t_dnu, e_dnu, sz_down, sz_nearest, sz_up >
+{ using three_value < t_dnu, e_dnu, sz_down, sz_nearest, sz_up > :: three_value; };
+
 template < > struct type_master < t_dsc > : three_value < t_dsc, e_dsc, sz_disc, sz_square, sz_circle >
 { using three_value < t_dsc, e_dsc, sz_disc, sz_square, sz_circle > :: three_value; };
 
@@ -187,6 +250,9 @@ template < > struct type_master < t_edi > : three_value < t_edi, e_edi, sz_enabl
 
 template < > struct type_master < t_enctype > : three_value < t_enctype, e_enctype, sz_app_urlencoded, sz_multipart_form_data, sz_text_plain >
 { using three_value < t_enctype, e_enctype, sz_app_urlencoded, sz_multipart_form_data, sz_text_plain > :: three_value; };
+
+template < > struct type_master < t_ens > : three_value < t_ens, e_ens, sz_end, sz_near, sz_start >
+{ using three_value < t_ens, e_ens, sz_end, sz_near, sz_start > :: three_value; };
 
 template < > struct type_master < t_environment_blending > : three_value < t_environment_blending, e_environment_blending, sz_additive, sz_opaque, sz_subtractive >
 { using three_value < t_environment_blending, e_environment_blending, sz_additive, sz_opaque, sz_subtractive > :: three_value; };
@@ -220,6 +286,9 @@ template < > struct type_master < t_keytype > : three_value < t_keytype, e_keyty
 
 template < > struct type_master < t_lcralign > : three_value < t_lcralign, e_lcralign, sz_left, sz_centre, sz_right >
 { using three_value < t_lcralign, e_lcralign, sz_left, sz_centre, sz_right > :: three_value; };
+
+template < > struct type_master < t_lnr > : three_value < t_lnr, e_lnr, sz_left, sz_near, sz_right >
+{ using three_value < t_lnr, e_lnr, sz_left, sz_near, sz_right > :: three_value; };
 
 template < > struct type_master < t_lrnalign > : three_value < t_lrnalign, e_lrnalign, sz_left, sz_right, sz_none >
 { using three_value < t_lrnalign, e_lrnalign, sz_left, sz_right, sz_none > :: three_value; };
@@ -349,44 +418,3 @@ template < > struct type_master < t_xmpdm_video_fieldorder > : three_value < t_x
 
 template < > struct type_master < t_xmpdm_video_videoframerate > : three_value < t_xmpdm_video_videoframerate, e_xmpdm_video_videoframerate, sz_24, sz_ntsc, sz_pal >
 { using three_value < t_xmpdm_video_videoframerate, e_xmpdm_video_videoframerate, sz_24, sz_ntsc, sz_pal > :: three_value; };
-
-
-template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >
-    ::std::string three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE > :: get_string () const
-{   if (! type_base < base_type, TYPE > :: unknown ())
-        switch (static_cast <int> (value_))
-        {   case 0 : return SZ0::sz ();
-            case 1 : return SZ1::sz ();
-            case 2 : return SZ2::sz ();
-            default : break; }
-    return ::std::string (); }
-
-template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >
-    void three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE > :: init ()
-{   a_ = ::boost::to_lower_copy (::std::string (SZ0::sz ()));
-    b_ = ::boost::to_lower_copy (::std::string (SZ1::sz ()));
-    c_ = ::boost::to_lower_copy (::std::string (SZ2::sz ())); }
-
-template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >
-    void three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-{   ::std::string pret (trim_the_lot_off (s));
-    ::std::string t (case_must_match < CASE >::lower (pret));
-    type_base < base_type, TYPE > :: status (s_good);
-    PRESUME (! a_.empty (), __FILE__, __LINE__)
-    if (t == a_) value_ = static_cast <base_type> (0);
-    else if (t == b_) value_ = static_cast <base_type> (1);
-    else if (t == c_) value_ = static_cast <base_type> (2);
-    else
-    {   if (t.empty ()) nits.pick (nit_empty, es_error, ec_type, "attribute cannot have an empty value (", type_name (TYPE), ")");
-        else if (! check_identifier_spelling (nits, v, t))
-            nits.pick (nit_unrecognised_value, es_error, ec_type, quote (pret), " is invalid; it can be ", quote (SZ0::sz ()), ", ", quote (SZ1::sz ()), ", or ", quote (SZ2::sz ()));
-        type_base < base_type, TYPE > :: status (s_invalid);
-        return; }
-    case_must_match < CASE > :: validate (nits, v, get_string (), pret); }
-
-template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >
-    ::std::string three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE > :: a_;
-template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >
-    ::std::string three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE > :: b_;
-template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >
-    ::std::string three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE > :: c_;

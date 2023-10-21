@@ -29,6 +29,7 @@ void add_param (const arguments& args, t_params& params, int& from, const int i)
 int check_typed_identifier (arguments& args, nitpick& nits, const int start, const int to, const e_type t);
 int check_typed_feature (arguments& args, nitpick& nits, const int start, const int to, const e_css_statement cs, const char* const sz);
 bool maybe_filter (nitpick& nits, const e_css_property id);
+bool maybe_float (nitpick& nits, const e_css_property id);
 bool maybe_image (nitpick& nits, const e_css_property id);
 bool maybe_math (nitpick& nits, const e_css_property id);
 bool maybe_text_4 (nitpick& nits, const e_css_property id);

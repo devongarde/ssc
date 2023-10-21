@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS 3 round display test pages</title>
+</head>
+
+<body>
+
+<style>
+    #container {
+        shape-inside: display;
+        // the same as circle(50% at 50%, 50%) in a regular round display
+    }
+    #green-box { float: left; }
+    #blue-box { float: right; }
+</style>
+<div id="container">
+    <p>
+        Some inline content
+        <img id="green-box" src="green-box.jpg" />
+        with a float left and float right, in a
+        <img id="blue-box" src="blue-box.jpg" />
+        simple box with a circle shape-inside.
+    </p>
+</div>
+</body>
+</html>

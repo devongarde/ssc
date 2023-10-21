@@ -1,0 +1,41 @@
+﻿ruby { display: ruby; }
+rp   { display: none; }
+rbc  { display: ruby-base-container; }
+rtc  { display: ruby-text-container; }
+rb   { display: ruby-base; white-space: nowrap; }
+rt   { display: ruby-text; }
+ruby, rb, rt, rbc, rtc { unicode-bidi: isolate; }
+
+rtc, rt {
+  font-variant-east-asian: ruby;  /* See [[CSS-FONTS-3]] */
+  text-justify: ruby;             /* See [[CSS-TEXT-4]] */
+  text-emphasis: none;            /* See [[CSS-TEXT-DECOR-3]] */
+  white-space: nowrap;
+  line-height: 1; }
+
+rtc, :not(rtc) > rt {
+  font-size: 50%; }
+rtc:lang(zh-TW), :not(rtc) > rt:lang(zh-TW),
+rtc:lang(zh-Hanb), :not(rtc) > rt:lang(zh-Hanb), {
+  font-size: 30%; }               /* bopomofo */
+
+ruby, rb, rt, rbc, rtc, rp {
+  display: inline; white-space: inherit;
+  font: inherit; text-emphasis: inherit; }
+
+/* Parens around <rtc> */
+rtc::before { content: "（"; }
+rtc::after  { content: "）"; }
+
+/* Parens before first <rt> not inside <rtc> */
+rb  + rt::before,
+rtc + rt::before { content: "（"; }
+
+/* Parens after <rt> not inside <rtc> */
+rb ~ rt:last-child::after,
+rt + rb::before  { content: "）"; }
+rt + rtc::before { content: "）（"; }
+
+/* Parens around each <rt> */
+rt::before { content: "（"; }
+rt::after  { content: "）"; }

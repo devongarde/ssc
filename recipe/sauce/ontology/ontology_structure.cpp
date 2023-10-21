@@ -3701,8 +3701,9 @@ microdata_structure ontology_structure [] =
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, sch_anatomicalsystem, sp_relatedstructure },
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, sch_anatomicalsystem, sp_relatedtherapy },
 
+    { { 10, 0 }, { 0, 0 }, sch_answer, sp_answerexplanation },
     { { 1, 20 }, { 1, 93 }, sch_answer, sp_downvotecount },
-    { { 1, 20 }, { 1, 93 }, sch_answer, sp_parentitem },
+    { { 1, 20 }, { 0, 0 }, sch_answer, sp_parentitem },
     { { 1, 20 }, { 1, 93 }, sch_answer, sp_upvotecount },
 
     { { 3, 1 }, { 0, 0 }, sch_apartment, sp_numberofrooms },
@@ -3923,6 +3924,7 @@ microdata_structure ontology_structure [] =
 
     { { 1, 20 }, { 0, 0 }, sch_comment, sp_downvotecount },
     { { 1, 20 }, { 0, 0 }, sch_comment, sp_parentitem },
+    { { 23, 0 }, { 0, 0 }, sch_comment, sp_sharedcontent },
     { { 1, 20 }, { 0, 0 }, sch_comment, sp_upvotecount },
 
     { { 2, 0 }, { 0, 0 }, sch_commentaction, sp_resultcomment },
@@ -5248,6 +5250,7 @@ microdata_structure ontology_structure [] =
 
     { { 3, 5 }, { 0, 0 }, sch_organisation, sp_actionablefeedbackpolicy },
     { { 0, 10 }, { 0, 0 }, sch_organisation, sp_address },
+    { { 23, 0 }, { 0, 0 }, sch_organisation, sp_agentinteractionstatistic },
     { { 0, 10 }, { 0, 0 }, sch_organisation, sp_aggregaterating },
     { { 2, 2 }, { 0, 0 }, sch_organisation, sp_alumni },
     { { 3, 0 }, { 0, 0 }, sch_organisation, sp_areaserved },
@@ -5381,6 +5384,7 @@ microdata_structure ontology_structure [] =
     { { 0, 30 }, { 0, 0 }, sch_person, sp_additionalname },
     { { 0, 10 }, { 0, 0 }, sch_person, sp_address },
     { { 0, 10 }, { 0, 0 }, sch_person, sp_affiliation },
+    { { 23, 0 }, { 0, 0 }, sch_person, sp_agentinteractionstatistic },
     { { 0, 10 }, { 0, 0 }, sch_person, sp_alumniof },
     { { 0, 91 }, { 0, 0 }, sch_person, sp_award },
     { { 0, 10 }, { 1, 90 }, sch_person, sp_awards },
@@ -5688,10 +5692,11 @@ microdata_structure ontology_structure [] =
 
     { { 1, 20 }, { 0, 0 }, sch_question, sp_acceptedanswer },
     { { 1, 20 }, { 0, 0 }, sch_question, sp_answercount },
-    { { 1, 20 }, { 0, 0 }, sch_question, sp_downvotecount },
+    { { 1, 20 }, { 9, 0 }, sch_question, sp_downvotecount },
     { { 10, 0 }, { 0, 0 }, sch_question, sp_eduquestiontype },
+    { { 23, 0 }, { 0, 0 }, sch_question, sp_parentitem },
     { { 1, 20 }, { 0, 0 }, sch_question, sp_suggestedanswer },
-    { { 1, 20 }, { 0, 0 }, sch_question, sp_upvotecount },
+    { { 1, 20 }, { 9, 0 }, sch_question, sp_upvotecount },
 
     { { 3, 5 }, { 0, 0 }, sch_quotation, sp_spokenbycharacter },
 

@@ -1,6 +1,7 @@
 -N 1 -f ../toast/RDFa/imported/rdfa.conf
 
 PASS ../toast/RDFa/imported/dokieli.html
+6 css_version
 7 no_such_folder url_not_found
 8 no_such_folder url_not_found
 9 no_such_folder url_not_found
@@ -11,6 +12,7 @@ PASS ../toast/RDFa/imported/dokieli.html
 177 ontology_domain
 
 PASS ../toast/RDFa/imported/linkedresearch.html
+6 css_version
 7 reputation
 8 reputation
 9 reputation
