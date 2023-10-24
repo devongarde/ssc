@@ -952,6 +952,7 @@ struct hav_t
     { { HTML_JAN07, HV_NOT50, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_draggable }, \
     { { HTML_JAN11, HV_NOT50, HE_NOT_SVG }, { HTML_DEC16, HV_NOT52 | HV_NOT53 }, ELEM, a_dropzone }, \
     { { HTML_JUL18, HV_NOT53, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_enterkeyhint }, \
+    { { HTML_CSS_PART, 0, HE_NOT_SVG, 0, H3_CSS_SHADOW }, { HTML_UNDEF }, ELEM, a_exportparts }, \
     { { HTML_5_0, HV_W3, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_generator_unable }, \
     { { HTML_JAN09, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_hidden }, \
     { { HTML_JUL12, 0, HE_NOT_SVG }, { HTML_JUN14 }, ELEM, a_inert }, \
@@ -1041,6 +1042,7 @@ struct hav_t
     { { HTML_JUL09, 0, HE_NOT_SVG_1 }, { HTML_JUN13 }, ELEM, a_onvolumechange }, \
     { { HTML_JUL09, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_onwaiting }, \
     { { HTML_JUL15, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_onwheel }, \
+    { { HTML_CSS_PART, 0, HE_NOT_SVG, 0, H3_CSS_SHADOW }, { HTML_UNDEF }, ELEM, a_part }, \
     { { HTML_APR23, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_popover }, \
     { { HTML_JAN08, 0, HE_NOT_SVG }, { HTML_DEC08 }, ELEM, a_ref }, \
     { { HTML_JAN08, 0, HE_NOT_SVG }, { HTML_DEC08 }, ELEM, a_registrationmark }, \

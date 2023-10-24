@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS custom highlights test pages</title>
+</head>
+
+<style>
+  ::highlight(sample) { background-color: rgba(0, 0, 255, 0.3); }
+</style>
+
+<style>
+  :root::highlight(foo) {
+    color:blue;
+    background-color:yellow;
+  }
+  :root::highlight(bar) {
+    background-color:orange;
+  }
+</style>
+
+<body>Lorem Ipsum.
+
+<script>
+  let textNode = document.body.firstChild;
+
+  let r1 = new Range();
+  r1.setStart(textNode, 1);
+  r1.setEnd(textNode, 5);
+
+  let r2 = new Range();
+  r2.setStart(textNode, 3);
+  r2.setEnd(textNode, 7);
+
+  CSS.highlights.set("sample", new Highlight(r1, r2));
+</script>
+
+<script>
+  let textNode = document.body.firstChild;
+
+  let r1 = new Range();
+  r1.setStart(textNode, 0);
+  r1.setEnd(textNode, 6);
+
+  let r2 = new Range();
+  r2.setStart(textNode, 3);
+  r2.setEnd(textNode, 9);
+
+  let h1 = new Highlight(r1);
+  let h2 = new Highlight(r2);
+
+  CSS.highlights.set("foo", h1);
+  CSS.highlights.set("bar", h2);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS shadow parts test pages</title>
+</head>
+
+<body>
+
+<style>
+  c-e::part(textspan) { color: red; }
+</style>
+
+<template id="c-e-template">
+  <span part="textspan">This text will be red</span>
+</template>
+<c-e></c-e>
+<script>
+  // Add template as custom element c-e
+  ...
+</script>
+
+<style>
+  c-e::part(textspan) { color: red; }
+</style>
+
+<template id="c-e-outer-template">
+  <c-e-inner exportparts="innerspan textspan"></c-e-inner>
+</template>
+
+<template id="c-e-inner-template">
+  <span part="innerspan">
+    This text will be red because the containing shadow
+    host forwards innerspan to the document as "textspan"
+    and the document style matches it.
+  </span>
+  <span part="textspan">
+    This text will not be red because textspan in the document style
+    cannot match against the part inside the inner custom element
+    if it is not forwarded.
+  </span>
+</template>
+
+<c-e></c-e>
+<script>
+  // Add template as custom elements c-e-inner, c-e-outer
+    ...
+</script>
+
+</body>
+</html>

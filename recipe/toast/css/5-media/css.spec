@@ -19,7 +19,6 @@ PASS ../toast/css/5-media/css-2.css
 7 illegal_value
 10 illegal_value
 13 illegal_value
-21 unrecognised_value
 
 PASS ../toast/css/5-media/css-2.html
 4 url_not_found

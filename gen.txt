@@ -155,6 +155,9 @@ the "no-" switch always applies.
 --css.grid X            Use CSS Grid level X, where X is 0, 3 or 4: see
                         --css.version for gen.
 
+--css.highlight X       Use CSS Custom Highlights level X, where X is 0
+                        or 3.
+
 --css.image X           Use CSS Images level X, where X is 0, 3 or 4.
 
 --css.inline X          Use CSS Inline Layout level X, where X is 0 or
@@ -180,10 +183,15 @@ the "no-" switch always applies.
 
 --css.namespace X       Use CSS Namespaces level X, where X is 0 or 3.
 
+--css.nes X             Use CSS Non-Element Selectors level X, where X
+                        is 0 or 3.
+
 --css.overflow X        Use CSS Overflow level X, where X is 0 or 3.
 
 --css.overscroll X      Use CSS Overscroll Behaviour level X, where X
                         is 0 or 3.
+
+--css.page X            Use CSS Paged Media level X, where X is 0 or 3.
 
 --css.position X        Use CSS Positions level X, where X is 0 or 3.
 
@@ -206,6 +214,9 @@ the "no-" switch always applies.
 
 --css.selector X        Use CSS Selectors level X, where X is 0, 3 or
                         4.
+
+--css.shadow X          Use CSS Shadow Parts level X, where X is 0 or
+                        3.
 
 --css.shape X           Use CSS Shapes level X, where X is 0, 3 or 4.
 
@@ -446,7 +457,7 @@ the "no-" switch always applies.
                             ...         (halfly)
                             2021/1/1    WhatWG HTML 5 (Jan 2021)
                             ...         (quarterly)
-                            2023/7/1    WhatWG HTML 5 (Jul 2023)
+                            2023/10/1   WhatWG HTML 5 (Oct 2023)
 
                             XHTML 1.0   XHTML 1.0
                             XHTML 1.1   XHTML 1.1 core
@@ -725,7 +736,7 @@ the "no-" switch always applies.
                                 rif 1.0
                                 role 1.0
                                 rr 1.0
-                                schema 0.10-22.0 (see below)
+                                schema 0.10-23.0 (see below)
                                 sd 1.0
                                 sioc 1.0
                                 sioc_s 1.0
@@ -850,7 +861,7 @@ the "no-" switch always applies.
                                 1.90        1.9
                                 1.91        as version number
                                 ...
-                                22.0        as version number
+                                23.0        as version number
 
                         vCard versions correspond to RDFa specs,
                         published in 2001, 2006, 2010 & 2014. They do

@@ -50,13 +50,12 @@ void medium_t::note_value (const arguments& args, nitpick& nits, const ::std::st
         vm_.emplace_back (md_custom_media, s);
     else
     {   const ::std::string starters (DENARY "-");
-        const ::std::string denary (DENARY);
         if (starters.find (s.at (0)) == ::std::string::npos) 
         {   enum_n < t_media, e_media > md;
             md.set_value (nits, args.v_, s); }
         else
         {   ::std::string n;
-            const ::std::string::size_type pos = s.substr (1).find_first_not_of (DENARY);
+            const ::std::string::size_type pos = s.substr (1).find_first_not_of (SIGNEDDECIMAL);
             if (pos == ::std::string::npos) n = s;
             else n = s.substr (0, pos+1);
             if (n.at (0) == '-') vm_.emplace_back (md_negative, s);   

@@ -69,6 +69,31 @@ property_v_ptr make_feature_v_ptr (arguments& args, const int start, const int t
     ::std::string n (args.t_.at (i).val_);
     return make_feature_v_ptr (args, start, to, nits, examine_value < t_css_property > (nits, args.v_, n), value, t); }
 
+property_v_ptr make_margin_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const css_token t)
+{   return descriptor_constructor < MARGIN_DESCRIPTORS, desc_unknown > :: make (args, start, to, nits, p, s, t); }
+
+property_v_ptr make_margin_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const css_token t)
+{   PRESUME ((i >= 0) && (i < GSL_NARROW_CAST < int > (args.t_.size ())), __FILE__, __LINE__);
+    ::std::string n (args.t_.at (i).val_);
+    return make_margin_v_ptr (args, start, to, nits, examine_value < t_css_property > (nits, args.v_, n), value, t); }
+
+property_v_ptr make_page_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const css_token t)
+{   if (context.css_page () >= 3)
+        return descriptor_constructor < PAGE_3_DESCRIPTORS, desc_unknown > :: make (args, start, to, nits, p, s, t);
+    switch (context.css_version ())
+    {   case css_none :
+        case css_1 :
+            GRACEFUL_CRASH (__FILE__, __LINE__);
+        case css_2_0 :
+            return descriptor_constructor < PAGE_2_0_DESCRIPTORS, desc_unknown > :: make (args, start, to, nits, p, s, t);
+        default :
+            return descriptor_constructor < PAGE_2_1_DESCRIPTORS, desc_unknown > :: make (args, start, to, nits, p, s, t); } }
+
+property_v_ptr make_page_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const css_token t)
+{   PRESUME ((i >= 0) && (i < GSL_NARROW_CAST < int > (args.t_.size ())), __FILE__, __LINE__);
+    ::std::string n (args.t_.at (i).val_);
+    return make_page_v_ptr (args, start, to, nits, examine_value < t_css_property > (nits, args.v_, n), value, t); }
+
 property_v_ptr make_palette_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const css_token t)
 {   return descriptor_constructor < PALETTE_DESCRIPTORS, desc_unknown > :: make (args, start, to, nits, p, s, t); }
 
@@ -83,4 +108,4 @@ property_v_ptr make_viewport_v_ptr (arguments& args, const int start, const int 
 property_v_ptr make_viewport_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const css_token t)
 {   PRESUME ((i >= 0) && (i < GSL_NARROW_CAST < int > (args.t_.size ())), __FILE__, __LINE__);
     ::std::string n (args.t_.at (i).val_);
-    return make_palette_v_ptr (args, start, to, nits, examine_value < t_css_property > (nits, args.v_, n), value, t); }
+    return make_viewport_v_ptr (args, start, to, nits, examine_value < t_css_property > (nits, args.v_, n), value, t); }

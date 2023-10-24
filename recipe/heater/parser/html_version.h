@@ -561,13 +561,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H3_CSS_RUBY          0x0000200000000000
 #define H3_CSS_PRESENT       0x0000400000000000
 #define H3_CSS_FLOAT         0x0000800000000000
+#define H3_CSS_NES           0x0001000000000000
+#define H3_CSS_SHADOW        0x0002000000000000
+#define H3_CSS_HIGHLIGHT     0x0004000000000000
+#define H3_CSS_PAGE          0x0008000000000000
 
 #define H3_CSS_3          ( H3_CSS_ADJUST | H3_CSS_ANCHOR | H3_CSS_BOX_ALIGN | H3_CSS_BOX_MODEL_3 | H3_CSS_BOX_SIZING | H3_CSS_CONTAIN_3 | H3_CSS_DEVICE | \
-                            H3_CSS_DISPLAY | H3_CSS_EXCLUDE | H3_CSS_FILTER | H3_CSS_FLOAT | H3_CSS_GRID_3 | H3_CSS_IMAGE_3 | H3_CSS_INLINE | \
-                            H3_CSS_LINE_GRID | H3_CSS_LIST | H3_CSS_LOGIC | H3_CSS_MASKING | H3_CSS_MULTI_COL | H3_CSS_OVERFLOW | H3_CSS_OVERSCROLL | \
-                            H3_CSS_POSITION | H3_CSS_PRESENT | H3_CSS_RHYTHM | H3_CSS_ROUND | H3_CSS_RUBY | H3_CSS_SCROLLBAR | H3_CSS_SHAPE_3 | H3_CSS_SNAP | \
-                            H3_CSS_SPEECH | H3_CSS_TABLE | H3_CSS_TEXT_3 | H3_CSS_TEXTDEC_3 | H3_CSS_TRANSFORM_3 | H3_CSS_TRANSITION | H3_CSS_WC | \
-                            H3_CSS_WRITING_3 )
+                            H3_CSS_DISPLAY | H3_CSS_EXCLUDE | H3_CSS_FILTER | H3_CSS_FLOAT | H3_CSS_GRID_3 | H3_CSS_HIGHLIGHT | H3_CSS_IMAGE_3 | H3_CSS_INLINE | \
+                            H3_CSS_LINE_GRID | H3_CSS_LIST | H3_CSS_LOGIC | H3_CSS_MASKING | H3_CSS_MULTI_COL | H3_CSS_NES | H3_CSS_OVERFLOW | H3_CSS_OVERSCROLL | \
+                            H3_CSS_PAGE | H3_CSS_POSITION | H3_CSS_PRESENT | H3_CSS_RHYTHM | H3_CSS_ROUND | H3_CSS_RUBY | H3_CSS_SCROLLBAR | H3_CSS_SHAPE_3 | \
+                            H3_CSS_SHADOW | H3_CSS_SNAP | H3_CSS_SPEECH | H3_CSS_TABLE | H3_CSS_TEXT_3 | H3_CSS_TEXTDEC_3 | H3_CSS_TRANSFORM_3 | \
+                            H3_CSS_TRANSITION | H3_CSS_WC | H3_CSS_WRITING_3 )
 #define H3_CSS_4          ( H3_CSS_BOX_MODEL_4 | H3_CSS_CONTAIN_4 | H3_CSS_GRID_4 | H3_CSS_IMAGE_4 | H3_CSS_PSEUDO | H3_CSS_SHAPE_4 | H3_CSS_TEXT_4 | \
                             H3_CSS_TEXTDEC_4 | H3_CSS_TRANSFORM_4 | H3_CSS_WRITING_4 )
 #define H3_CSS_5            H3_CSS_CONTAIN_5
@@ -589,7 +593,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H3_CSS_MASK       H3_CSS_ALL
 #define H3_CSS            H3_CSS_ALL
 
-#define H3_FULL_CSS_MASK      0x0000FFFFFFFFFFFF
+#define H3_FULL_CSS_MASK      0x000FFFFFFFFFFFFF
 
 #define H3_CSS_2007           0
 #define H3_CSS_2010         ( H3_CSS_2007 )
@@ -887,6 +891,8 @@ public:
     void css_fragmentation (const int n);
     int css_grid () const;
     void css_grid (const int n);
+    int css_highlight () const;
+    void css_highlight (const int n);
     int css_image () const;
     void css_image (const int n);
     int css_inline () const;
@@ -905,11 +911,15 @@ public:
     void css_multi_column (const int n);
     int css_namespace () const;
     void css_namespace (const int n);
+    int css_nes () const;
+    void css_nes (const int n);
     int css_overflow () const;
     void css_overflow (const int n);
     int css_overscroll () const;
     void css_overscroll (const int n);
-   int css_pseudo () const;
+    int css_page () const;
+    void css_page (const int n);
+    int css_pseudo () const;
     void css_pseudo (const int n);
     int css_position () const;
     void css_position (const int n);
@@ -925,6 +935,8 @@ public:
     void css_scrollbar (const int n);
     int css_selector () const;
     void css_selector (const int n);
+    int css_shadow () const;
+    void css_shadow (const int n);
     int css_shape () const;
     void css_shape (const int n);
     int css_snap () const;

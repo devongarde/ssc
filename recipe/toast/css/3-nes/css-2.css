@@ -1,0 +1,3 @@
+﻿abbr::attr(|bert) { text-transform: full-width; }
+
+abbr::attr(bert) { text-transform: full-width; }

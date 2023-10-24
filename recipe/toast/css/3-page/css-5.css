@@ -1,0 +1,45 @@
+﻿@page {
+  size: 8.5in 11in;
+  margin: 10%;
+
+  @top-left {
+    content: "Hamlet";
+  }
+  @top-right {
+    content: "Page " counter(page);
+  }
+}
+
+@page {
+  @top-left-corner { content: " "; border: solid green; }
+  @top-right-corner { content: url(foo.png); border: solid green; }
+  @bottom-right-corner { content: counter(page); border: solid green; }
+  @bottom-left-corner { content: normal; border: solid green; }
+}
+
+@page {
+  @top-left { content: "Header in Left Cell (top-left)" }
+}
+
+@page {
+  @top-center { content: "Header in Center Cell (top-center)" }
+}
+
+@page {
+  @top-right { content: "Header in Right Cell (top-right)" }
+}
+
+@page {
+  @top-left { content: "Left Cell (top-left)" }
+  @top-center { content: "Header in Center Cell (top-center)" }
+}
+
+@page {
+  @top-center { content: "Header in Center Cell (top-center)" }
+  @top-right { content: "Right Cell (top-right)" }
+}
+
+@page {
+  @top-left { content: "Header in top-left with approx. twice as many words as right cell." }
+  @top-right { content: "Right cell (top-right)" }
+}

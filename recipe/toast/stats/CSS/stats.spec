@@ -8,7 +8,7 @@ PASS ../toast/stats/CSS/basic.css
 10 unrecognised_value unrecognised_value unrecognised_value
 11 css_colour
 12 unrecognised_value
-18 css_dubious
+18 css_version css_dubious
 20 fontname
 
 STATS
@@ -774,7 +774,7 @@ PASS ../toast/stats/CSS/import.css
 10 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value
 11 css_colour
 12 unrecognised_value
-18 css_dubious
+18 css_version css_dubious
 20 fontname
 
 STATS

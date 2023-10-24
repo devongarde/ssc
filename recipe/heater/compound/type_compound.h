@@ -51,6 +51,26 @@ template < e_type T, e_type P, class SZ > struct string_then_type : tidy_string 
             else if (test_value < P > (nits, v, ss.substr (len), tidy_string < T > :: id ())) return; }
         tidy_string < T > :: status (s_invalid); } };
 
+template < e_type T, e_type P, class SZ > struct string_or_type_or_both : tidy_string < T >
+{   using tidy_string < T > :: tidy_string;
+    static e_animation_type animation_type () noexcept { return grab_animation_type < P > (); }
+    void accumulate (stats_t* s) const
+    {   if (tidy_string < T > :: good ()) tidy_string < T > :: accumulate (s); }
+    void accumulate (stats_t* s, const e_element e) const
+    {   if (tidy_string < T > :: good ()) tidy_string < T > :: accumulate (s, e); }
+    void accumulate (stats_t* s, const element_bitset& e) const
+    {   if (tidy_string < T > :: good ()) tidy_string < T > :: accumulate (s, e); }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < T > :: set_value (nits, v, s);
+        if (tidy_string < T > :: good () || tidy_string < T > :: empty ())
+        {   const ::std::string ss (trim_the_lot_off (tidy_string < T > :: get_string ()));
+            const ::std::size_t len = strlen (SZ :: sz ());
+            if ((ss.length () == len) && compare_complain (nits, v, SZ :: sz (), ss)) return;
+            if ((ss.length () < len) || ! compare_complain (nits, v, SZ :: sz (), ss.substr (0, len)))
+            {   if (test_value < P > (nits, v, ss, tidy_string < T > :: id ())) return; }
+            else if (test_value < P > (nits, v, ss.substr (len), tidy_string < T > :: id ())) return; }
+        tidy_string < T > :: status (s_invalid); } };
+
 template < e_type T, e_type P, class SZ = sz_logical > struct maybe_logical_type : tidy_string < T >
 {   using tidy_string < T > :: tidy_string;
     static e_animation_type animation_type () noexcept { return grab_animation_type < P > (); }

@@ -1,0 +1,78 @@
+﻿@page {
+  size: 4in 6in;
+}
+
+@media (max-width: 6in) {
+  @page {
+    size: letter;
+  }
+}
+
+@page {
+size: A4 landscape;
+}
+
+@page {
+size: auto;/* auto is the initial value */
+margin: 10%;
+}
+
+@page {
+size: 8.5in 11in;/* width height */
+}
+
+/* style sheet for "A4" printing */
+@media print and (width: 21cm) and (height: 29.7cm) {
+  @page {
+     margin: 3cm;
+  }
+ }
+
+/* style sheet for "letter" printing */
+@media print and (width: 8.5in) and (height: 11in) {
+  @page {
+  margin: 1in;
+  }
+}
+
+@page { marks: crop cross }
+
+@page {
+  size: 4in 6in;
+}
+
+@media (max-width: 6in) {
+  @page {
+    size: letter;
+  }
+}
+
+@page {
+size: A4 landscape;
+}
+
+@page {
+size: auto;/* auto is the initial value */
+margin: 10%;
+}
+
+@page {
+size: 8.5in 11in;/* width height */
+}
+
+
+/* style sheet for "A4" printing */
+@media print and (width: 21cm) and (height: 29.7cm) {
+  @page {
+     margin: 3cm;
+  }
+ }
+
+/* style sheet for "letter" printing */
+@media print and (width: 8.5in) and (height: 11in) {
+  @page {
+  margin: 1in;
+  }
+}
+
+@page { marks: crop cross }

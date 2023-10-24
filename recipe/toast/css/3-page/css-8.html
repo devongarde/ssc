@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+  <style>
+    html   {
+      writing-mode: vertical-rl;
+      line-height: 1.6;
+    }
+    .main  {
+      page: main;
+      columns: 2;
+      column-gap: 1rem;
+    }
+    .index {
+      page: index;
+      columns: 3;
+      column-gap: 1rem;
+    }
+    @page {
+      margin: auto;  /* center kihon hanmen on page */
+      width:  40rem; /* 1.6 × 25 lines        */
+    }
+    @page main  { height: 61rem; } /* 2 × 30 chars + 1 × gap */
+    @page index { height: 62rem; } /* 3 × 20 chars + 2 × gap */
+  </style>
+  <section class="main"> ... </section>
+<div>
+<table>...</table>
+<table>...</table>
+<p>This text is rendered on a 'narrow' page</p>
+</div>
+  <section class="index"> ... </section>
+</html>

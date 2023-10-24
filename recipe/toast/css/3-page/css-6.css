@@ -1,0 +1,21 @@
+﻿@page {
+  margin: 10%;
+
+  @top-center {
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 2em;
+    content: counter(page);
+  }
+}
+
+@page {
+  counter-increment: page 2;
+}
+
+body {counter-reset: chapter;}
+div.chapter {counter-increment: chapter;}
+@page {
+  margin: 10%;
+  @top-center { content: "Chapter" counter(chapter) }
+}

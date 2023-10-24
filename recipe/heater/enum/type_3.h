@@ -350,6 +350,9 @@ template < > struct type_master < t_pri_img_setting > : three_value < t_pri_img_
 template < > struct type_master < t_restart > : three_value < t_restart, e_restart, sz_always, sz_whennotactive, sz_never >
 { using three_value < t_restart, e_restart, sz_always, sz_whennotactive, sz_never > :: three_value; };
 
+template < > struct type_master < t_rotate_upright > : three_value < t_rotate_upright, e_rotate_upright, sz_rotate_left, sz_rotate_right, sz_upright >
+{ using three_value < t_rotate_upright, e_rotate_upright, sz_rotate_left, sz_rotate_right, sz_upright > :: three_value; };
+
 template < > struct type_master < t_scrolling > : three_value < t_scrolling, e_scrolling, sz_auto, sz_no, sz_yes >
 { using three_value < t_scrolling, e_scrolling, sz_auto, sz_no, sz_yes > :: three_value; };
 

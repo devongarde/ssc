@@ -24,6 +24,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/decoration.h"
 #include "css/css_element.h"
 #include "css/selector.h"
+#include "css/group.h"
+#include "webpage/page.h"
 
 void css_fn::parse (arguments& args, const int from, const int to, const bool coco, const bool knotted)
 {   PRESUME ((to < 0) || (from <= to), __FILE__, __LINE__);
@@ -64,8 +66,29 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
         params_.clear ();
         params_.push_back (param);
         switch (fn_)
-        {   case efn_auto :
+        {   case efn_attr :
+                if (context.css_nes () < 3)
+                    nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS Non-Element Selectors");
+                else
+                {   const ::std::string::size_type bar = param.find ('|');
+                    ::std::string ns, at (param);
+                    if (bar != ::std::string::npos)
+                    {   if ((bar == 0) || (bar == at.length () - 1))
+                        {   nits.pick (nit_pseud, es_error, ec_css, quote (param), ": bad namespace");
+                            return; }
+                        ns = at.substr (0, bar - 1);
+                        at = at.substr (bar+1); }
+                    const attr a (nits, args.v_, args.ns_, at, ns);
+                    if (a.get () == a_unknown)
+                        nits.pick (nit_attribute_unrecognised, es_error, ec_css, quote (param), ": unknown attribute"); }
+                return;
+            case efn_auto :
                 test_value < t_lang > (nits, context.html_ver (), param);
+                return;
+            case efn_highlight :
+                if (context.css_highlight () < 3)
+                    nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS Custom Highlight");
+                else test_value < t_idref > (nits, context.html_ver (), param);
                 return;
             case efn_lang :
                 if (args.v_.css_selector () >= 4)
@@ -95,6 +118,14 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
                 {   nits.pick (nit_not_not, ed_css_selectors_3, "6.6.7. The negation pseudo-class", es_error, ec_css, ":not(:not) is not nice");
                     return; }
                 break;
+            case efn_part :
+                if (context.css_shadow () < 3)
+                    nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS Shadow Parts");
+                else
+                {   vstr_t parts = split_by_space (param);
+                    for (auto part : parts)
+                        args.g_.get_page ().parts ().insert (part); }
+                return;
             case efn_current :
             case efn_has :
             case efn_is :

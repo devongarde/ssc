@@ -54,6 +54,7 @@ class statement
     void parse_import (arguments& args, nitpick& nits, const int from, const int to);
     void parse_keyframes (arguments& args, nitpick& nits, const int from, const int to);
     void parse_layer (arguments& args, nitpick& nits, const int from, const int to);
+    void parse_margin (arguments& args, nitpick& nits, const int from, const int to, const e_css_statement cs);
     void parse_media (arguments& args, nitpick& nits, const int from, const int to);
     void parse_namespace (arguments& args, nitpick& nits, const int from, const int to);
     void parse_page (arguments& args, nitpick& nits, const int from, const int to);
@@ -69,6 +70,7 @@ public:
     {   parse (args, from, to); }
     e_css_statement get () const;
     void parse (arguments& args, const int from, const int to);
+    void add_child (pst_t ps) { vst_.push_back (ps); }
     void validate (arguments& args);
     void accumulate (stats_t* s) const;
     void shadow (::std::stringstream& ss, arguments& args);

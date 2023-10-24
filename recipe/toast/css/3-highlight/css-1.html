@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS custom highlights test pages</title>
+</head>
+
+<style>
+  :root::highlight(example-highlight) {
+    background-color: yellow;
+    color: blue;
+  }
+</style>
+<body>
+
+<span>One </span><span>two </span><span>three…</span>
+
+<script>
+  let r = new Range();
+  r.setStart(document.body, 0);
+  r.setEnd(document.body, 2);
+
+  CSS.highlights.set("example-highlight", new Highlight(r));
+</script>
+
+</body>
+</html>

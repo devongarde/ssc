@@ -46,6 +46,7 @@ ssc.exe -T --nits.spec -o ../out/5font.tst -f ../toast/css/5-font/css.conf
 ssc.exe -T --nits.spec -o ../out/4frag.tst -f ../toast/css/4-frag/css.conf
 ssc.exe -T --nits.spec -o ../out/3grid.tst -f ../toast/css/3-grid/css.conf
 ssc.exe -T --nits.spec -o ../out/4grid.tst -f ../toast/css/4-grid/css.conf
+ssc.exe -T --nits.spec -o ../out/3highlight.tst -f ../toast/css/3-highlight/css.conf
 ssc.exe -T --nits.spec -o ../out/3image.tst -f ../toast/css/3-image/css.conf
 ssc.exe -T --nits.spec -o ../out/3inline.tst -f ../toast/css/3-inline/css.conf
 ssc.exe -T --nits.spec -o ../out/3list.tst -f ../toast/css/3-list/css.conf
@@ -55,8 +56,10 @@ ssc.exe -T --nits.spec -o ../out/3mc.tst -f ../toast/css/3-mc/css.conf
 ssc.exe -T --nits.spec -o ../out/3media.tst -f ../toast/css/3-media/css.conf
 ssc.exe -T --nits.spec -o ../out/4media.tst -f ../toast/css/4-media/css.conf
 ssc.exe -T --nits.spec -o ../out/5media.tst -f ../toast/css/5-media/css.conf
+ssc.exe -T --nits.spec -o ../out/3nes.tst -f ../toast/css/3-nes/css.conf
 ssc.exe -T --nits.spec -o ../out/3ns.tst -f ../toast/css/3-ns/css.conf
 ssc.exe -T --nits.spec -o ../out/3overflow.tst -f ../toast/css/3-overflow/css.conf
+ssc.exe -T --nits.spec -o ../out/3page.tst -f ../toast/css/3-page/css.conf
 ssc.exe -T --nits.spec -o ../out/3position.tst -f ../toast/css/3-position/css.conf
 ssc.exe -T --nits.spec -o ../out/3present.tst -f ../toast/css/3-present/css.conf
 ssc.exe -T --nits.spec -o ../out/4pseudo.tst -f ../toast/css/4-pseudo/css.conf
@@ -66,6 +69,7 @@ ssc.exe -T --nits.spec -o ../out/3ruby.tst -f ../toast/css/3-ruby/css.conf
 ssc.exe -T --nits.spec -o ../out/3scrollbar.tst -f ../toast/css/3-scrollbar/css.conf
 ssc.exe -T --nits.spec -o ../out/3sel.tst -f ../toast/css/3-sel/css.conf
 ssc.exe -T --nits.spec -o ../out/4sel.tst -f ../toast/css/4-sel/css.conf
+ssc.exe -T --nits.spec -o ../out/3shadow.tst -f ../toast/css/3-shadow/css.conf
 ssc.exe -T --nits.spec -o ../out/3shape.tst -f ../toast/css/3-shape/css.conf
 ssc.exe -T --nits.spec -o ../out/3snap.tst -f ../toast/css/3-snap/css.conf
 ssc.exe -T --nits.spec -o ../out/3speech.tst -f ../toast/css/3-peech/css.conf
