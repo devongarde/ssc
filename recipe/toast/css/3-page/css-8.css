@@ -1,0 +1,4 @@
+﻿@page narrow { size: 9cm 18cm }
+@page rotated { size: landscape }
+div { page: narrow }
+table { page: rotated }

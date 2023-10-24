@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/flags.h"
 #include "css/group.h"
 
-void descriptor::parse (arguments& args, const e_css_statement , const int from, const int to)
+void descriptor::parse (arguments& args, const e_css_statement cs, const int from, const int to)
 {   PRESUME ((to < 0) || (from <= to), __FILE__, __LINE__);
     VERIFY_NOT_NULL (args.st_, __FILE__, __LINE__);
     PRESUME (args.cs () != css_error, __FILE__, __LINE__);
@@ -38,6 +38,18 @@ void descriptor::parse (arguments& args, const e_css_statement , const int from,
     if ((b < 0) || (args.t_.at (b).t_ == ct_curly_ket)) return;
     from_ = b;
     nitpick& nits = args.t_.at (b).nits_;
+    if (args.t_.at (b).t_ == ct_at)
+    {   VERIFY_NOT_NULL (args.st_, __FILE__, __LINE__);
+        const int ob = token_find (args.t_, ct_curly_brac, b);
+        if (ob < 0)
+            nits.pick (nit_css_syntax, es_error, ec_css, "@...: missing { ... }");
+        else
+        {   int done = close_bracket_for (args.t_, ob, to);
+            args.st_ -> add_child (pst_t (new statements (args, b, done)));
+            if (done > 0)
+            {   done = next_non_whitespace (args.t_, done, to);
+                parse (args, cs, done, to); } }
+        return; }
     if (args.t_.at (b).t_ != ct_keyword)
         nits.pick (nit_descriptor, es_error, ec_css, quote (tkn_rpt (args.t_.at (b))), ": descriptor name expected");
     else
@@ -70,6 +82,27 @@ void descriptor::parse (arguments& args, const e_css_statement , const int from,
                     break;
                 case css_viewport :
                     dsc_ = make_viewport_v_ptr (args, var, to, nits, k, val_, p);
+                    break;
+                case css_page :
+                    dsc_ = make_page_v_ptr (args, var, to, nits, k, val_, p);
+                    break;
+                case css_bottom_centre :
+                case css_bottom_left :
+                case css_bottom_left_corner :
+                case css_bottom_right :
+                case css_bottom_right_corner :
+                case css_left_bottom :
+                case css_left_middle :
+                case css_left_top :
+                case css_right_bottom :
+                case css_right_middle :
+                case css_right_top :
+                case css_top_centre :
+                case css_top_left :
+                case css_top_left_corner :
+                case css_top_right :
+                case css_top_right_corner :
+                    dsc_ = make_margin_v_ptr (args, var, to, nits, k, val_, p);
                     break;
                 default :
                     GRACEFUL_CRASH (__FILE__, __LINE__);

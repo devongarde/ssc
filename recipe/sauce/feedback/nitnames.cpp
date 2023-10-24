@@ -835,6 +835,7 @@ const nitname nitnames [] =
     { nit_container, "container" },
     { nit_abandoned, "abandoned" },
     { nit_when_else, "when else" },
+    { nit_part, "part" },
 
     { nit_incompatible, "incompatible" },
 

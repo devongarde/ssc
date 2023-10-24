@@ -530,3 +530,36 @@ unsigned short token_category (const css_token t)
             return TC_ERROR;
         default :
             return TC_PLUMBING; } }
+
+int close_bracket_for (const vtt_t& vt, const int from, const int to)
+{   int i = from;
+    const css_token op = vt.at (i).t_;
+    css_token dop = ct_error;
+    switch (op)
+    {   case ct_round_brac :
+            dop = ct_round_ket; break;
+        case ct_square_brac :
+            dop = ct_square_ket; break;
+        case ct_curly_brac :
+            dop = ct_curly_ket; break;
+        default :
+            return i; }
+    int depth = 1;
+    for (i = next_non_whitespace (vt, i, to); i > 0; i = next_non_whitespace (vt, i, to))
+        switch (vt.at (i).t_)
+        {   case ct_round_brac :
+            case ct_square_brac :
+            case ct_curly_brac :
+                if (vt.at (i).t_ == op) ++depth;
+                break;
+            case ct_round_ket :
+            case ct_square_ket :
+            case ct_curly_ket :
+                if (vt.at (i).t_ == dop)
+                {   --depth;
+                    if (depth == 0) return i;
+                    PRESUME (depth > 0, __FILE__, __LINE__); }
+                break;
+            default :
+                break; }
+    return -1; }

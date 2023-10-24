@@ -40,7 +40,6 @@ FOOTER,HEADER,LI,MAIN,PRE { color:#999999 }
 
 <P>
 <A href="#intro">introduction</A><BR>
-<A href="#trial">try</A><BR>
 <A href="#why">why</A><BR>
 <A href="#about">README</A><BR>
 <A href="#usage">usage</A><BR>
@@ -61,7 +60,7 @@ FOOTER,HEADER,LI,MAIN,PRE { color:#999999 }
 
 <P>
 The static site checker is an opinionated HTML nitpicker, a command&ndash;line tool to validate static HTML &amp; XHTML websites.
-I built it to nitpick my hand&ndash;coded
+I built it to nitpick arts &amp; ego, my hand&ndash;coded
 <A href="https://dylanharris.org/">identity website</A>.
 </P>
 
@@ -70,141 +69,13 @@ It should not be used on untrusted content; its parsers are holier than <A href=
 </P>
 
 <P>
-If you want to try it, play with the form below, or, if you&rsquo;re really enthusiastic,
-<a href="src/ssc-v0.1.24.tgz" type="application/gzip">here&rsquo;s the current source</a>.
+If you want to try it,
+<a href="src/ssc-v0.1.42.tgz" type="application/gzip">here&rsquo;s the current source</a>. The build instuctions follow.
 </P>
 
 <P>
-<A href="https://harris.eu.com/">Dylan Harris</A><BR>
-June 2023
-</P>
-
-</section>
-
-<HR>
-
-<section id="trial">
-<h2>try</h2>
-
-<form method=get action="/cgi-bin/dance" >
-
-<p>
-<label>
-<textarea cols=80 maxlength=65535 required rows=8 name=html.snippet placeholder="X/HTML goes here">
-</textarea>
-</label>
-
-<!--#comment PIVOT -->
-
-<br><br>
-
-<label>Version:
-<select name=html.version>
-<option></option>
-<option value=0.1>HTML Tags (draft)</option>
-<option value=1.0>HTML 1.0 (draft)</option>
-<option value=1.1>HTML + (draft)</option>
-<option value=2.0>HTML 2</option>
-<option value=3.0>HTML 3.0 (draft)</option>
-<option value=3.2>HTML 3.2</option>
-<option value=4.0>HTML 4.0</option>
-<option value=4.1>HTML 4.01</option>
-<option value=5.0>HTML 5.0</option>
-<option value=5.1>HTML 5.1</option>
-<option value=5.2>HTML 5.2</option>
-<option value=5.3>HTML 5.3 (draft)</option>
-<option value="2007/07/01">Living Standard July 2007</option>
-<option value="2008/01/01">Living Standard January 2008</option>
-<option value="2008/07/01">Living Standard July 2008</option>
-<option value="2009/01/01">Living Standard January 2009</option>
-<option value="2009/07/01">Living Standard July 2009</option>
-<option value="2010/01/01">Living Standard January 2010</option>
-<option value="2010/07/01">Living Standard July 2010</option>
-<option value="2011/01/01">Living Standard January 2011</option>
-<option value="2011/07/01">Living Standard July 2011</option>
-<option value="2012/01/01">Living Standard January 2012</option>
-<option value="2012/07/01">Living Standard July 2012</option>
-<option value="2013/01/01">Living Standard January 2013</option>
-<option value="2013/07/01">Living Standard July 2013</option>
-<option value="2014/01/01">Living Standard January 2014</option>
-<option value="2014/07/01">Living Standard July 2014</option>
-<option value="2015/01/01">Living Standard January 2015</option>
-<option value="2015/07/01">Living Standard July 2015</option>
-<option value="2016/01/01">Living Standard January 2016</option>
-<option value="2016/07/01">Living Standard July 2016</option>
-<option value="2017/01/01">Living Standard January 2017</option>
-<option value="2017/07/01">Living Standard July 2017</option>
-<option value="2018/01/01">Living Standard January 2018</option>
-<option value="2018/07/01">Living Standard July 2018</option>
-<option value="2019/01/01">Living Standard January 2019</option>
-<option value="2019/07/01">Living Standard July 2019</option>
-<option value="2020/01/01">Living Standard January 2020</option>
-<option value="2020/07/01">Living Standard July 2020</option>
-<option value="2021/01/01">Living Standard January 2021</option>
-<option value="2021/04/01">Living Standard April 2021</option>
-<option value="2021/07/01">Living Standard July 2021</option>
-<option value="2021/10/01">Living Standard October 2021</option>
-<option value="2022/01/01">Living Standard January 2022</option>
-<option value="2022/04/01">Living Standard April 2022</option>
-<option value="2022/07/01">Living Standard July 2022</option>
-<option value="2022/10/01">Living Standard October 2022</option>
-<option value="2023/01/01">Living Standard January 2023</option>
-<option value="2023/01/01" selected>Living Standard April 2023</option>
-<option value="2005/07/01">WebApps January 2005</option>
-<option value="2005/01/01">WebApps July 2005</option>
-<option value="2006/07/01">WebApps January 2006</option>
-<option value="2006/01/01">WebApps July 2006</option>
-<option value="2007/07/01">WebApps January 2007</option>
-<option value=4.2>XHTML 1.0</option>
-<option value=4.3>XHTML 1.1</option>
-<option value=4.4>XHTML 2.0</option>
-</select>
-</label>
-
-<br><br>
-
-<label>Verbosity:
-<select name=general.verbose required>
-<option></option>
-<option value=2>Errors</option>
-<option value=3 selected>Warnings</option>
-<option value=4>Info</option>
-<option value=5>Comments</option>
-</select>
-</label>
-
-<br><br>
-
-<button type=reset>
-Reset
-</button>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-<button type=submit>
-Submit
-</button>
-</p>
-
-</form>
-
-<h3>note</h3>
-
-<P>
-SSC is a <em>site</em> checker, not a page checker, yet here you can only input a page, at most.
-It is not the best possible illustration of the program&rsquo;s abilities, but it is better than nothing.
-Testing a web site would require proof of ownership of that site, and I&rsquo;m not going there for a simple demo.
-</p>
-
-<P>
-Not all features are available. For example, spell checking and link checking are disabled.
-There is a fairly tight limit on the size of a snippet.
-</p>
-
-<P>
-SSC is &alpha; software. This form demos its potential, that&rsquo;s all.
-Do not presume reported issues are correct. Do not presume unreported issues aren&rsquo;t issues.
-If you&rsquo;re unsure, check against the appropriate standard. There is no guarantee of anything, let alone accuracy.
+<A href="https://dylanharris.org/">Dylan Harris</A><BR>
+October 2023
 </P>
 
 </section>
@@ -308,7 +179,7 @@ breaking the security and intergrity of all sites that use them.
 </ul>
 
 <P>
-<A href="https://harris.eu.com/">Dylan Harris</A><br>
+<A href="https://dylanharris.org/">Dylan Harris</A><br>
 October 2022
 </P>
 
@@ -322,7 +193,7 @@ October 2022
 <pre>
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.1.22
+version 0.1.42
 (c) 2020-2023 dylan harris
 see LICENCE.txt &amp; LICENSE.txt for copyright &amp; licence notice
 <a href="https://ssc.lu/">https://ssc.lu/</a>
@@ -331,16 +202,16 @@ see LICENCE.txt &amp; LICENSE.txt for copyright &amp; licence notice
 
 
 ssc analyses static HTML snippets, files and sites:
+&mdash; HTML living standard, Jan 2005 to Oct 2023
 &mdash; HTML 1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3&ndash;draft
-&mdash; HTML living standard, Jan 2005 to Apr 2023
-&mdash; CSS 1/2.0/2.1/2.2&ndash;draft Feb 2022, some 3/4/5/6
+&mdash; CSS 1/2.0/2.1/2.2&ndash;draft, 2007-2023 snapshots, etc.
 &mdash; SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x&ndash;draft Apr 2021
 &mdash; MathML 1/2/3/4&ndash;draft Jul 2022
 &mdash; XHTML 1.0/1.1/2.0/5.x
 &mdash; finds broken links
 &mdash; server side includes, mostly
-&mdash; common microdata &amp; RDFa ontologies, including
-&mdash; schema.org from 0.10 to 21.0
+&mdash; many microdata &amp; RDFa ontologies, including
+&mdash; many ontologies
 
 with opinions on:
 &mdash; standard english where dialect is required
@@ -377,23 +248,24 @@ To build &amp; run:
 
 
 
-This is an &alpha; version of ssc. Despite heavy testing, it may contain
-unexpected features. If you encounter such an bug, please help improve
-ssc by collecting the following information (where relevant):
-- version of ssc;
-- precise version of the operating system;
-- hardware architecture and system information;
-- detailed description of the error and how to cause it;
-- copy of output file showing the error;
-- copy of pages/website being analysed;
-- precise command used;
-- configuration file(s) used, if any;
-- any ndx file or other pre&ndash;existing file used during the run;
-- any known workarounds or solutions;
-- a blues or dance interpretation of the &lsquo;feature&rsquo;;
+This is an alpha version of ssc. It may contain unexpected features.
+If you encounter such a delight, please help improve ssc by collecting
+the following information (where relevant):
+&mdash; version of ssc;
+&mdash; precise version of the operating system;
+&mdash; hardware architecture and system information;
+&mdash; detailed description of the problem;
+&mdash; detailed description of the steps to recreate it;
+&mdash; copy of output file showing the error;
+&mdash; copy of pages/website being analysed;
+&mdash; precise command used;
+&mdash; configuration file(s) used, if any;
+&mdash; any ndx file or other pre&ndash;existing file used during the run;
+&mdash; any known workarounds or solutions;
+&mdash; optionally, a dance interpretation of the &lsquo;feature&rsquo;;
 and emailing everything to mail@ssc.lu (if the collected files are more
 than small, please use a public fileserver and email the link). Do NOT
-send anything confidential. Furthermore, unless you request otherwise,
+send anything confidential. Furthermore, unless you state otherwise,
 we reserve the right to publish some or all of the information sent in
 future versions of ssc, usually in the test suite. If you have a fix,
 you are invited to submit a pull request on <a href="https://github.com/devongarde/ssc">github</a>. Thank you.
@@ -409,20 +281,21 @@ Haldane, apocryphal : &ldquo;[the Creator has] an inordinate fondness for beetle
 
 
 Notes on names:
-- recipe: a nod to Vernor Vinge&rsquo;s &ldquo;A Fire Upon the Deep&rdquo;
-- tea: without tea, nothing works; then there&rsquo;s builders&rsquo; tea
-- sauce: identifies those who presume; and anyway, it&rsquo;s obvious
-- toast: toasts code; i like burnt toast
-- heater: i&rsquo;m not stopping now
-- unii: my preferred plural of unix; both unixes and unices sound like they sing castrato
-
+&mdash; recipe: a nod to Vernor Vinge&rsquo;s &ldquo;A Fire Upon the Deep&rdquo;;
+&mdash; tea: without tea, nothing works; then there&rsquo;s builders&rsquo; tea;
+&mdash; sauce: makes the dull tasty; identifies incompetent pedants;
+&mdash; toast: toasts code; i liked burnt toast;
+&mdash; heater: i&rsquo;m not stopping now;
+&mdash; unii: my preferred plural of unix: to my ears, both unixes and unices
+        sound like they sing castrato.
+&mdash; andor: and/or sans ancienne; land of Gift (aber nicht das Gift)
 
 
 SEE ALSO
 build.txt        notes on building ssc
 gen.txt          a model man page
 usage.txt        how to use ssc
-releasenotes.txt a slight history of releases
+releasenotes.txt chips
 LICENCE.txt      ssc licence information
 LICENSE.txt      formal GPL 3 licence
 more licences    licences for borrowed external content
@@ -433,7 +306,7 @@ Background
 I have a website, <a href="https://dylanharris.org/">arts &amp; ego, at https://dylanharris.org/</a>. It has
 approaching 60G of original content. It contains hand coded HTMLs 2,
 3, 4 &amp; 5. It is a complete mess. Despite a long search, I could not
-find any tools to properly diagnose its flaws. Anything I did find
+find any tools to properly identify its flaws. Anything I did find
 was at most cursory.
 
 Then came the cow flu<sup>*</sup>.
@@ -444,9 +317,15 @@ Then came the cow flu<sup>*</sup>.
 
 
 
+Unabashed Opportunism
+If you appreciate modernist poetry or abstract photography, I&rsquo;ve been
+published. Click on books at <a href="https://dylanharris.org/">arts &amp; ego</a> for gen.
+
+
+
 written by dylan harris
 mail@ssc.lu
-May 2023
+October 2023
 </pre>
 </section>
 
@@ -473,7 +352,7 @@ ssc (the Static Site Checker) is an opinionated HTML nit-picker,
 intended for people, such as its author, who hand code websites. It
 doesn't just check static websites for broken links, dubious syntax,
 and bad semantic data, it will actively complain about things that are
-perfectly legal but just a little bit untidy, like its author.
+perfectly legal but rather untidy, like its author.
 
 Except when serving CGI queries, it recursively scans the directory
 looking for HTML source files to analyse. It produces a list of errors,
@@ -491,7 +370,7 @@ These options are only available on the command line:
 
 -f file                 Load configuration from file, which should be
                         in .INI file format. See CONFIGURATION FILE
-                        FORMAT below.
+                        FORMAT below. This should be an absolute path.
 
 -F                      Load the configuration file .ssc/config in the
                         current directory.
@@ -525,78 +404,239 @@ the contradiction to "--general.class" is "--general.no-class". When
 both are specified, perhaps in a configuration file and on the command
 line, the "no-" switch always applies.
 
-
---corpus.article        Prefer the content of &lt;ARTICLE&gt; when gathering
+--corpus.article        Prefer the content of <ARTICLE> when gathering
                         corpus text.
 
---corpus.body           Prefer the content of &lt;BODY&gt; when gathering
+--corpus.body           Prefer the content of <BODY> when gathering
                         corpus text. This is the default.
 
---corpus.main           Prefer the content of &lt;MAIN&gt; when gathering
+--corpus.main           Prefer the content of <MAIN> when gathering
                         corpus text.
 
 --corpus.output file    Dump XML corpus of site into file. This is
                         intended for use by a local search engine. If
                         none of --corpus.article, --corpus.body, or
                         --corpus.main are specified, the content of
-                        &lt;BODY&gt; is used. If more than one are
-                        specified, then the text collected depends on a
-                        page's content. This is incompatible with
+                        <BODY> is used. If more than one are specified,
+                        then the text collected depends on a page's
+                        content. This is incompatible with
                         --shadow.update.
 
---css.animation X       Use CSS Animations level X, where X is 0, 3 or
-                        4
+--css.adjust X          Use CSS Colour Adjustment level X, where X is 0
+                        or 3.
 
---css.cascade X         Use CSS Cascade level X, where X is 0, 3, 4, 5,
-                        or 6
+--css.anchor X          Use CSS Scrollbar Anchoring level X, where X is
+                        0 or 3.
 
---css.colour X          Use CSS Colour level X, where X is 0, 3 or 4
+--css.animation X       Use CSS Animation level X, where X is 0, 3 or
+                        4.
+
+--css.background X      Use CSS Backgrounds and Borders level X, where
+                        X is 0 or 3.
+                        
+--css.box-align X       Use CSS Box Alignment level X, where X is 0 or
+                        3.
+
+--css.box-model X       Use CSS Box Model level X, where X is 0, 3 or
+                        4.
+                        
+--css.box-sizing X      Use CSS Box Sizing level X, where X is 0 or 3.
+
+--css.cascade X         Use CSS Cascading and Inheritance level X,
+                        where X is 0, 3, 4, 5 or 6.
+
+--css.colour X          Use CSS Colour level X, where X is 0, 3, 4 or
+                        5.
+
+--css.compositing X     Use CSS Compositing and Blending level X, where
+                        X is 0 or 3.
+
+--css.cond-rule X       Use CSS Conditional Rules level X, where X is
+                        0, 3, 4, or 5.
+
+--css.contain X         Use CSS Contain level X, where X is 0, 3, 4 or
+                        5: see --css.version for gen.
+
+--css.cs X              Use CSS Counter Style level X, where X is 0 or
+                        3.
+
+--css.custom X          Use CSS Custom Properties for Cascading
+                        Variables level X, where X is 0 or 3.
+
+--css.device  X         Use CSS Device Adaption level X, where X is 0
+                        or 3.
+
+--css.display X         Use CSS Display level X, where X is 0 or 3.
+
+--css.ease X            Use CSS Easing Functions level X, where X is 0
+                        or 3.
+
+--css.exclude X         Use CSS Exclusions level X, where X is 0 or 3.
 
 --css.extension ext     Presume files with extension '.ext' are CSS
-                        files
+                        files.
 
---css.media X           Use CSS Media level X, where X is 0, 3, 4 or 5
+--css.fbl X             Use CSS Flexible Box Layout level X, where X is
+                        0 or 3.
 
---css.namespace X       Use CSS Namespaces level X, where X is 0 or 3
+--css.filter X          Use CSS Filter Effects level X, where X is 0 or
+                        3.
 
---css.selector X        Use CSS Selectors level X, where X is 0, 3 or 4
+--css.float X           Use CSS Page Floats level X, where X is 0 or 3.
 
---css.style X           Use CSS Style level X, where X is 0 or 3
+--css.font X            Use CSS Fonts level X, where X is 0, 3, 4 or 5.
+
+--css.frag X            Use CSS Fragmentation level X, where X is 0, 3.
+                        or 4
+
+--css.grid X            Use CSS Grid level X, where X is 0, 3 or 4: see
+                        --css.version for gen.
+
+--css.image X           Use CSS Images level X, where X is 0, 3 or 4.
+
+--css.inline X          Use CSS Inline Layout level X, where X is 0 or
+                        3.
+
+--css.line-grid X       Use CSS Line Grid level X, where X is 0 or 3.
+
+--css.list X            Use CSS Lists and Counters level X, where X is
+                        0 or 3.
+
+--css.logic X           Use CSS Logical Properties level X, where X is
+                        0 or 3.
+
+--css.masking X         Use CSS Masking level X, where X is 0 or 3.
+
+--css.media X           Use CSS Media Queries level X, where X is 0, 3,
+                        4 or 5.
+
+--css.mobile            Test against the CSS Mobile Profile.
+
+--css.multi-column X    Use CSS Multi-Column level X, where X is 0 or
+                        3.
+
+--css.namespace X       Use CSS Namespaces level X, where X is 0 or 3.
+
+--css.overflow X        Use CSS Overflow level X, where X is 0 or 3.
+
+--css.overscroll X      Use CSS Overscroll Behaviour level X, where X
+                        is 0 or 3.
+
+--css.position X        Use CSS Positions level X, where X is 0 or 3.
+
+--css.present X         Use CSS Presentation Levels level X, where X is
+                        0 or 3.
+
+--css.print             Test against the CSS Print Profile.
+
+--css.rhythm X          Use CSS Rhythmic Sizing level X, where X is 0
+                        or 3.
+
+--css.round X           Use CSS Round Display level X, where X is 0 or
+                        3.
+
+--css.ruby X            Use CSS Ruby Annotations level X, where X is 0
+                        or 3.
+
+--css.scrollbar X       Use CSS Scrollbar Style level X, where X is 0
+                        or 3.
+
+--css.selector X        Use CSS Selectors level X, where X is 0, 3 or
+                        4.
+
+--css.shape X           Use CSS Shapes level X, where X is 0, 3 or 4.
+
+--css.snap X            Use CSS Scroll Snap level X, where X is 0 or 3.
+
+--css.speech X          Use CSS Speech level X, where X is 0 or 3.
+
+--css.style X           Use CSS Style level X, where X is 0 or 3.
+
+--css.syntax X          Use CSS Syntex level X, where X is 0 or 3
+
+--css.table X           Use CSS Tables level X, where X is 0 or 3 (this
+                        is an experimental spec, likely to change).
+
+--css.text X            Use CSS Text level X, where X is 0, 3 or 4.
+
+--css.text-dec X        Use CSS Text Decoration level X, where X is 0,
+                        3 or 4.
+
+--css.tv                Test against the CSS TV Profile.
+
+--css.transform X       Use CSS Transforms level X, where X is 0, 3 or
+                        4: see --css.version for gen.
+
+--css.transition X      Use CSS Transitions level X, where X is 0 or 3.
 
 --css.ui X              Use CSS Basic User Interface level X, where X
-                        is 0, 3 or 4
+                        is 0, 3 or 4.
 
 --css.value X           Use CSS Values and Units level X, where X is 0,
-                        3 or 4
+                        3 or 4.
 
---css.verify            Verify CSS files (replaces --general.css)
+--css.verify            Verify CSS files (replaces --general.css).
 
 --css.version X         Presume version X of CSS, where X is one of:
-                            1   CSS 1.0
-                            2.0 CSS 2.0
-                            2.1 CSS 2.1
-                            2.2 CSS 2.2 (Feb 2022 draft)
-                            3   CSS level 3 (unfinished)
-                            4   CSS level 4 (unfinished)
-                            5   CSS level 5 (unfinished)
-                            6   CSS level 6 (unfinished)
+                            1     CSS 1.0
+                            2.0   CSS 2.0
+                            2.1   CSS 2.1
+                            2.2   CSS 2.2 (Feb 2022 draft)
+                            3     all CSS level 3 (unfinished)
+                            4     all CSS level 4 (unfinished)
+                            5     all CSS level 5 (unfinished)
+                            6     all CSS level 6 (unfinished)
+                            2007
+                            2010
+                            2015
+                            2015+
+                            2017
+                            2017+
+                            2017++
+                            2018
+                            2018+
+                            2018++
+                            2020
+                            2020+
+                            2020++
+                            2021
+                            2021+
+                            2021++
+                            2022
+                            2022+
+                            2022++
+                            2023
+                            2023+
+                            2023++
+                        The years are CSS snapshots, whether stable,
+                        + wobbly, or ++ wibbly (the terminology in the
+                        specifications is inconsistent, so...), as
+                        determined by the browsers of the day.
+                        For levels 3, 4, 5 and 6, note that extensions
+                        that are part of neither CSS 1 nor CSS 2.x
+                        specifications are numbered three and upwards
+                        in ssc, for internal consistency. If you wish
+                        to use an extension named ... level 1, that is
+                        not part of CSS 1, specify 3. Similarly, for
+                        those named level 2 that are not part of any
+                        CSS 2 specification, etm..
 
---general.class         Report unrecognised classes.
+--css.wc X              Use CSS Will Change level X, where X is 0 or 3.
+
+--css.writing X         Use CSS Writing Mode level X, where X is 0, 3
+                        or 4.
+
+--general.class         Nitpick class values
 
 --general.classic       Report all classes used, not just those in
                         CSS files.
 
 --general.cgi           Check environment variables for snippets of
--W                      HTML. Expects environment variables as produced
-                        by OpenBSD's native web server, httpd, produced
+-W                      HTML. SSC expects environment variables as
+                        produced by OpenBSD's native httpd, produced
                         using &lt;FORM METHOD=GET &hellip;&gt;. Do NOT let ssc
-                        anywhere near untrusted data should you do so,
-                        unless you are very confident about your system
-                        configuration (because it'll defend you against
-                        naughty people who may take advantage of ssc's
-                        pre-alpha nature and its corresponding myriad
-                        flaws). Ignores many options including
-                        shadowing.
+                        anywhere near untrusted data. Ignores many
+                        options such as shadowing.
 
 --general.custom EL     Define a custom element &lt;EL&gt; for verifying the
                         IS attribute. May be repeated.
@@ -604,13 +644,13 @@ line, the "no-" switch always applies.
 --general.datapath dir  Look for any configuration, caches, and other
 -p dir                  useful files, in this directory.
 
---general.defthrd t     If --general.thread is not set, then use this
--N t                    number of threads.
+--general.defthrd N     If --general.thread is not given, then set the
+-N N                    number of threads to N.
 
 --general.error x       If nits of the specified category or worse are
--E                      generated, then exit with an error code. Values
-                        are: 'catastrophe', 'error' (the default),
-                        'warning', 'info', or 'comment'.
+-E                      generated, then, on exit, return an error code.
+                        Values are: 'catastrophe', 'error' (the
+                        default), 'warning', 'info', or 'comment'.
 
 --general.exclude REG   Ignore all files that match the posix regular
                         expression REG. May be repeated.
@@ -618,27 +658,27 @@ line, the "no-" switch always applies.
 --general.file XXX      File for persistent data. Requires -N. See also
                         --general.datapath. Default extension: .ndx.
 
---general.git           Ignore internal git files
+--general.git           Ignore git's internal files.
 
 --general.ignore EL     ignore attributes and content of the element
-                        &lt;EL&gt;. May be repeated.
+                        &lt;EL&gt;. May  be repeated.
 
---general.info          Report launch context when starting
+--general.info          Report launch context when starting.
 
 --general.lang LA       If an X/HTML file does not have a language /
                         dialect specified (e.g. "en" for generic
                         English, "en-IE" for Irish English, "lb-LU"
-                        for Luxembourgish, etc.), default to 'LA'. If
-                        not given, the default is your system default,
-                        or, if none, then "en-US" (standard American
-                        English).
+                        for Luxembourgish, "ma" for Marain, etc.),
+                        default to 'LA'. If not given, the default is
+                        your system default, or, if none, then "en-US"
+                        (the standard American dialect of English).
 
 --general.maxfilesize n Do not process HTML source files that exceed n
                         bytes in size (default: 4M). Specify 0 for
                         unlimited, although be warned that ssc is
                         stunningly stupid in such circumstances and may
-                        even attempt to load files bigger than availabl
-                       e memory.
+                        even attempt to load files bigger than
+                        available memory.
 
 --general.output        Output to the specified file. If this switch is
 -o file                 not used, standard output is used.
@@ -654,17 +694,17 @@ line, the "no-" switch always applies.
 
 --general.rpt           Report CSS files that are opened.
 
---general.slob          Ignore perfectly legal but inefficient, indeed
+--general.slob          Ignore perfectly legal yet inefficient, indeed
                         thoroughly slobby, HTML, such as being far too
-                        lazy to get round to bothering to close elements.
+                        lazy to get round to bothering to close
+                        elements.
 
 --general.spec          Reset the values of most switches to false.
 -j
 
---general.ssi           Process Server Side Includes. Although ssc can
--I                      process many server side includes, it cannot
-                        process those containing formulae. Note that
-                        processing SSIs may cause incorrect line
+--general.ssi           Process Server Side Includes (SSIs). Note ssc
+-I                      cannot process SSIs directives with formulae.
+                        Processing SSIs may cause incorrect line
                         numbers to be mentioned when an issue is
                         reported.
 
@@ -672,8 +712,8 @@ line, the "no-" switch always applies.
 -T                      ssc-test. Not generally useful. Documented so
                         you can avoid it!
 
---general.thread t      Use t threads when running. Defaults to a value
--n t                    appropriate for the hardware. Too high a value
+--general.thread N      Use N threads when running. Defaults to a value
+-n N                    appropriate for the hardware. Too high a value
                         can cause problems. See also --general.defthrd.
 
 --general.verbose x     Output nits to the specified verbosity:
@@ -684,8 +724,10 @@ line, the "no-" switch always applies.
                         for example, 'warning' will also output
                         'catastrophe' and 'error' nits.
 
---html.force            If &lt;!DOCTYPE...&gt; is missing, force presumption
+--html.force            If &lt;!DOCTYPE. &hellip;&gt; is missing, force presumption
                         of --html.version value, not HTML 1/tags
+
+--html.ie               Don't mention certain Internet Explorer features.
 
 --html.rfc1867          Ignore the RFC 1867 (INPUT=FILE) extension when
                         processing HTML 2.0
@@ -699,51 +741,56 @@ line, the "no-" switch always applies.
 --html.rfc2070          Ignore the RFC 2070 (internationalisation)
                         extension when processing HTML 2.0.
 
---html.tags             When an HTML file is loaded that contains no
-                        DOCTYPE, ssc normally presumes it's an HTML 1
-                        file. This switch tells it to presume the file
-                        follows an earlier HTML Tags specification
-                        (the one at CERN). This is overridden by
-                        --html.version.
+--html.safari           Don't mention certain early Safari features.
 
+--html.tags             When an HTML file is loaded that contains no
+                        DOCTYPE, ssc normally presumes HTML 1. This
+                        switch tells it to presume the file conforms
+                        to an earlier HTML Tags specification (the one
+                        at CERN). This is overridden by --html.version.
 
 --html.title n          If &lt;TITLE&gt; text is longer than n characters,
 -z n                    say so. This applies to text enclosed by a
-                        &lt;TITLE&gt; element in under &lt;HEAD&gt;, not the value
-                        of TITLE attributes.
+                        &lt;TITLE&gt; element under &lt;HEAD&gt;, not the value of
+                        TITLE attributes.
 
 --html.version X        If no doctype (or xml header) is specified,
                         presume version X of HTML. X can be:
-                            tags        HTML tags (1991, informal),
-                            1.0         HTML 1.0 (June 1993 draft),
-                            +           HTML Plus (November 1993 draft),
-                            2.0         HTML 2.0,
-                            3.0         HTML 3.0 (March 1995 draft),
-                            3.2         HTML 3.2,
-                            4.0         HTML 4.0,
-                            4.1         HTML 4.01,
-                            4.2         XHTML 1.0,
-                            4.3         XHTML 1.1 core,
-                            4.4         XHTML 2.0 (December 2010 draft),
-                            5.0         W3 HTML 5.0,
-                            5.1         W3 HTML 5.1,
-                            5.2         W3 HTML 5.2,
-                            5.3         W3 HTML 5.3 (October 2018 draft),
+                            tags  HTML tags (1991, informal)
+                            1     HTML 1.0 (Jun 1993 draft)
+                            1.0   HTML 1.0 (Jun 1993 draft)
+                            +     HTML Plus (Nov 1993 draft)
+                            2     HTML 2.0
+                            2.0   HTML 2.0
+                            3     HTML 3.2
+                            3.0   HTML 3.0 (Mar 1995 draft)
+                            3.2   HTML 3.2
+                            4     HTML 4.01
+                            4.0   HTML 4.0
+                            4.1   HTML 4.01
+                            4.2   XHTML 1.0
+                            4.3   XHTML 1.1 core
+                            4.4   XHTML 2.0 (Dec 2010 draft)
+                            5     recent WhatWG HTML 5
+                            5.0   W3 HTML 5.0
+                            5.1   W3 HTML 5.1
+                            5.2   W3 HTML 5.2
+                            5.3   W3 HTML 5.3 (Oct 2018 draft)
 
-                            2005/1/1    WhatWG WebApps draft (January 2005),
+                            2005/1/1    WhatWG WebApps draft (Jan 2005)
                             ...         (halfly)
-                            2007/1/1    WhatWG WebApps draft (January 2007),
-                            2007/7/1    WhatWG HTML 5 (July 2007),
+                            2007/1/1    WhatWG WebApps draft (Jan 2007)
+                            2007/7/1    WhatWG HTML 5 (Jul 2007)
                             ...         (halfly)
-                            2021/1/1    WhatWG HTML 5 (January 2021),
+                            2021/1/1    WhatWG HTML 5 (Jan 2021)
                             ...         (quarterly)
-                            2023/4/1    WhatWG HTML 5 (April 2023),
+                            2023/7/1    WhatWG HTML 5 (Jul 2023)
 
-                            XHTML 1.0   XHTML 1.0,
-                            XHTML 1.1   XHTML 1.1 core,
-                            XHTML 2.0   (December 2010 draft),
-                            XHTML 5.x   XHTML corresponding to equivalent W3
-                                        HTML.
+                            XHTML 1.0   XHTML 1.0
+                            XHTML 1.1   XHTML 1.1 core
+                            XHTML 2.0   (Dec 2010 draft)
+                            XHTML 5.x   XHTML corresponding to
+                                        equivalent W3 HTML
 
                         Although you can specify exact dates for
                         versions of the WhatWG HTML 5 living standard,
@@ -801,6 +848,9 @@ line, the "no-" switch always applies.
                         time it's encountered (requires
                         --link.external).
 
+--link.pretend FILE     When checking local files, pretend this file
+                        exists.
+
 --link.report DOMAIN    Report links to domain and its descendents. May
                         be repeated.
 
@@ -812,6 +862,8 @@ line, the "no-" switch always applies.
                         then, when this switch is set, ssc will verify
                         that the id exists and that it is not hidden.
 
+--math.core             Presume Math 4 core (May 2022 draft).
+
 --math.draft D          Presume this draft of MathML 4. The following
                         drafts supported:
                                 2020    December 2020 draft
@@ -819,12 +871,12 @@ line, the "no-" switch always applies.
 
 --math.version N        Presume version N of MathML (1, 2, 3 pr 4). The
                         following versions are supported:
-                                0   work it out from the (HTML) version
-                                    of the file being analysed,
-                                1   MathML 1,
-                                2   MathML 2,
-                                3   MathML 3,
-                                4   MathML 4 (see --math.draft).
+                                0   try to work it out from the (HTML)
+                                    version of the file being analysed
+                                1   MathML 1
+                                2   MathML 2
+                                3   MathML 3
+                                4   MathML 4 (see --math.draft)
 
 --microdata.export      Export schema.org microdata encountered. This
                         data is exported in JSON format (not JSON-LD).
@@ -856,9 +908,9 @@ line, the "no-" switch always applies.
 
 --microformat.version x Presume microformats version x. The following
                         values are currently accepted:
-                                1   microformats version 1 only,
-                                2   microformats version 2 only,
-                                3   both microformats versions 1 and 2.
+                                1   microformats version 1 only
+                                2   microformats version 2 only
+                                3   both microformats versions 1 and 2
 
 --nits.catastrophe n    redefine nit n as a catastrophe; may be
                         repeated (the value of n can be determined
@@ -876,6 +928,8 @@ line, the "no-" switch always applies.
                         (the value of n can be determined using
                         --nits.nids).
 
+--nits.extra            Report additional nits.
+
 --nits.format F         Specify the output format; F is a template
                         file (see OUTPUT TEMPLATE below).
 
@@ -892,7 +946,7 @@ line, the "no-" switch always applies.
                         to aid automation.
 
 --nits.quote X          Specify quote style when using nit.format. X
-                        can be one of 'text' or 'html'.
+                        can be 'text' or 'html'.
 
 --nits.root             By default, seek nit output template files in
                         the website root.
@@ -929,15 +983,22 @@ line, the "no-" switch always applies.
                         versions can be verified. Note that single
                         version ontologies cannot have their version
                         changed:
+                                adms 1.0,2.0
                                 article 12,14,18,22
                                 as 1.0,2.0
+                                basic 1.0-1.3,2.1,3.0 (see below)
+                                bfo 2.0,2020 (see below)
                                 bibo 1.3
+                                biro 1.1
                                 book 12,14,18,22
                                 cc 1.0
+                                cito 2.8
                                 content 1.0
+                                crs 1.0 (see below)
                                 csvw 1.0
                                 ctag 1.0
                                 daq 1.0
+                                ddi 1.0
                                 dbp 1.0
                                 dbp-owl 1.0
                                 dbr 1.0
@@ -946,12 +1007,15 @@ line, the "no-" switch always applies.
                                 dcat 1.0,2.0
                                 dcmi 1.0
                                 dcterms 1.0,1.1
+                                ddi 1.0
                                 doap 1.0
                                 dqv 1.0
                                 describedby 1.0
                                 duv 1.0
                                 earl 1.0
                                 event 1.0
+                                exif 1.0-3.0 (see below)
+                                exifex 2.21-3.0 (see below)
                                 foaf 0.1-0.99
                                 frbr_core 1.0
                                 gr 1.0
@@ -971,10 +1035,25 @@ line, the "no-" switch always applies.
                                 og 10,12,14,18,22 (see below)
                                 org 1.0
                                 owl 1.0,2.0
-                                poetry 1.0
+                                pam 2.0 (see below)
+                                pcm 3.1 (see below)
+                                pcmm 3.0 (see below)
+                                pcv 1.0(see below)
+                                pdf 1.0 (see below)
+                                photoshop 1.0 (see below)
+                                pim 1.0-3.0 (see below)
+                                pmi 3.0 (see below)
+                                poetry 1.0,1.1
+                                prism 1.0-3.0 (see below)
+                                prism-ad 3.0 (see below)
+                                prl 1.0-2.0 (see below)
+                                prm 3.0 (see below)
+                                prs 3.1 (see below)
                                 profile 12,14,18,22
                                 prov 1.0
+                                psv 1.0 (see below)
                                 ptr 1.0
+                                pur 2.1-3.0 (see below)
                                 qb 1.0
                                 rdf 1.0-1.3
                                 rdfa 1.0-1.3
@@ -984,7 +1063,7 @@ line, the "no-" switch always applies.
                                 rif 1.0
                                 role 1.0
                                 rr 1.0
-                                schema 0.10-21.0 (see below)
+                                schema 0.10-23.0 (see below)
                                 sd 1.0
                                 sioc 1.0
                                 sioc_s 1.0
@@ -993,7 +1072,14 @@ line, the "no-" switch always applies.
                                 skosxl 1.0
                                 sosa 1.0
                                 ssn 1.0
+                                stdim 1.0 (see below)
+                                stevt 1.0 (see below)
+                                stfnt 1.0 (see below)
+                                stjob 1.0 (see below)
+                                stref 1.0 (see below)
+                                stver 1.0 (see below)
                                 taxo 1.0
+                                tiff 6.0
                                 time 1.0
                                 v 1.0
                                 vann 1.0,1.1
@@ -1006,17 +1092,72 @@ line, the "no-" switch always applies.
                                 wwg 1.0
                                 xhv 1.0
                                 xml 1.0
+                                xmp 1.0 (see below)
+                                xmpdm 1.0 (see below)
+                                xmpg 1.0 (see below)
+                                xmpgimg 1.0 (see below)
+                                xmpidq 1.0 (see below)
+                                xmpmm 1.0 (see below)
+                                xmprights 1.0 (see below)
+                                xmptpg 1.0 (see below)
                                 xsd 1.0,1.1
-                        vCard versions correspond to RDFa specs,
-                        published in 2001, 2006, 2010 & 2014. They do
-                        NOT correspond to vCard data format
-                        specifications. Open Graph versions correspond
-                        to snapshots of the specs from 2010, 2012,
-                        2014, 2018 & 2022. Most versions of schema
-                        (schema.org) should be specified by their
-                        version number, but this doesn't work with
-                        early versions, which should be specified as
-                        follows:
+
+                        The various Adobe ontologies (crs, pdf,
+                        photoshop, stdim, stevt, stfnt, stjob, stref,
+                        stver, smp, xmpdm, xmpg, xmpgimg, xmpidq,
+                        xmpmm, xmprights, xmptpg) have only been
+                        partially applied. They do not seem to have
+                        been designed for microdata, hence the partial
+                        implementation: the goal is to enable hoovering
+                        to JSON.
+
+                        BFO (Basic Format Ontology) versions should be
+                        specified as follows:
+                                Use         For
+                                2.0         2.0
+                                2.2         2020
+
+                        BFO 2020 uses OBO's machine code style
+                        identifiers. Given the history of computing
+                        science, as a convenience for users, and with
+                        my experience of both devops and maintaining
+                        code, identifiers following the standard
+                        ontology naming convention are also accepted.
+                        Since this is unofficial, both standard English
+                        and American dialects' spellings are processed.
+
+                        The Exif & ExifEx ontologies have the following
+                        versions:
+                            Use     For
+                            1.0     1.0 (exif only)
+                            1.1     1.1 (exif only)
+                            2.0     2.0 (exif only)
+                            2.10    2.1 (exif only)
+                            2.20    2.2 (exif only)
+                            2.21    2.21
+                            2.30    2.3
+                            2.31    2.31
+                            2.32    2.32
+                            3.0     3.0
+                        Manufacturers' extensions to EXIF are omitted,
+                        with exceptions.
+
+                        Open Graph versions correspond to snapshots of
+                        the specs from 2010, 2012, 2014, 2018 & 2022.
+
+                        The various Prism ontologies (pam, pamp, pcm,
+                        pcmm, pcv, pim, pmi, prism, prism_ad, prl, prm,
+                        prs, psv, pur) have only been partially
+                        applied: some specifications are unavailable,
+                        some specifications break HTML5 syntax. Prism
+                        was not designed for microdata, hence the
+                        partial implementation: the goal is to enable
+                        hoovering to JSON.
+
+                        Most versions of schema (schema.org) should be
+                        specified by their version number, but this
+                        doesn't work with early versions, which should
+                        be specified a follows:
                                 Use         For
                                 0.10        June 2011
                                 0.15        July 2011
@@ -1045,9 +1186,14 @@ line, the "no-" switch always applies.
                                 1.70        1.7
                                 1.80        1.8
                                 1.90        1.9
-                                1.91       as version number
+                                1.91        as version number
                                 ...
-                                21.0       as version number
+                                23.0        as version number
+
+                        vCard versions correspond to RDFa specs,
+                        published in 2001, 2006, 2010 & 2014. They do
+                        NOT correspond to vCard data format
+                        specifications.
 
 --shadow.changed        When shadowing a site that has been previously
                         shadowed, only copy/link files that have
@@ -1059,25 +1205,26 @@ line, the "no-" switch always applies.
 --shadow.copy X         Create a shadow directory structure from source
                         HTML files, with errors removed and some things
                         tidied up. X can be:
-                                no     copy nothing (default);
+                                no     copy nothing (default)
                                 pages  write 'fixed' source files,
-                                       ignore non source files;
+                                       ignore non source files
                                 hard   set up hard links to non-source
                                        files (requires source and
                                        shadow directories to be on the
-                                       same disk);
+                                       same disk) (see below)
                                 soft   set up soft links to non-source
-                                       files;
-                                all    copy non HTML files too;
+                                       files (see below)
+                                all    copy non HTML files too
                                 dedu   copy non HTML files too, but
                                        deduplicate them, changing links
-                                       in HTML source if necessary;
+                                       in HTML source if necessary (see
+                                       below)
                                 report report duplicates (no
-                                       shadowing).
+                                       shadowing)
                         ssc cannot convert between versions of HTML,
-                        nor between HTML and XHTML. The soft and hard
-                        link options are only available on systems
-                        that support them.
+                        nor between HTML and XHTML.
+                        Link options are only available on systems that
+                        support links.
 
 --shadow.enable         Enable shadowing (set by other shadow options).
                         If shadowing is enabled, but shadow.root is not
@@ -1086,7 +1233,7 @@ line, the "no-" switch always applies.
 
 --shadow.file f         Write ssc's shadow cache to file f, to
                         accelerate future shadowing of the same
-                        content.
+                        content updated.
 
 --shadow.ignore ext     When shadowing, ignore files with this
                         extension (may be repeated).
@@ -1094,11 +1241,11 @@ line, the "no-" switch always applies.
 --shadow.info           Add a comment at or near the top of each
                         shadowed HTML file noting its generation time.
 
---shadow.msg text       Insert a comment containing the text at the top
-                        of every generated page. Note that, if any SSI
-                        included file is updated, the comment will
-                        appear whether or not the original page is
-                        updated.
+--shadow.msg text       Insert a comment containing text at the top of
+                        each generated page. Note that, if any SSI
+                        include file is updated, the comment will
+                        appear whether or not the original page has
+                        changed.
 
 --shadow.root dir       Where to write the shadowed site.
 
@@ -1109,8 +1256,8 @@ line, the "no-" switch always applies.
                         shadowing, even if --general.ssi is set.
 
 --shadow.update         Only examine files that have changed since the
--u                      last time ssc ran. This is incompatible wit
-                       h --corpus.file. This requires --shadow.file.
+-u                      last time ssc ran. This is incompatible with
+                        --corpus.file. This requires --shadow.file.
                         Nits of files that have not changed will not be
                         reported.
 
@@ -1128,13 +1275,13 @@ line, the "no-" switch always applies.
 -x ext                  source files. This may be repeated. Files with
                         extension .html are always checked.
 
---site.index file       This is the name of the index file in a
+--site.index file       This is the name of the default file in a
 -i file                 directory. This can be repeated. This is used
                         for checking internal links.
 
 --site.root dir         This is the root of the website to analyse. ssc
--g dir                  will recursively scan the directory analysin
-                       g any HTML files it finds. The default is the
+-g dir                  will recursively scan the directory analysing
+                        any HTML files it finds. The default is the
                         current directory.
 
 --site.virtual v=d      The virtual directory 'v' is located in actual
@@ -1142,14 +1289,15 @@ line, the "no-" switch always applies.
                         example:
                             --site.virtual virtual=D:\actual
 
---spell.accept XXX      XXX is a correct spelling or a word (or a list
+--spell.accept XXX      XXX is a correct spelling of a word (or a list
                         of words) in all languages.
 
 --spell.cased           Nitpick correctly spelt but wrongly cased
                         words.
 
 --spell.check           Check text spelling. Uses external spelling
-                        checkers, so results may be inconsistent between systems.
+                        checkers, so results will be inconsistent
+                        between systems.
 
 --spell.dict LANG,DICT  Unix only. Associate dictionary DICT with LANG.
                         For example, if the standard English dictionary
@@ -1176,7 +1324,7 @@ line, the "no-" switch always applies.
 
 --stats.export F        Export stats to file F.
 
---stats.meta            Produce statistics on &lt;META&gt; usage in &lt;HEAD&gt;.
+--stats.meta            Produce statistics on &lt;MET&gt; usage in &lt;HEAD&gt;.
                         Note that pragmas reported (http-equiv) are
                         those found in the HTML source, not those
                         returned by the HTTP protocol. Remember that
@@ -1192,15 +1340,15 @@ line, the "no-" switch always applies.
 --svg.version x         Presume any SVG code encountered is this
                         version, unless the SVG code itself specifies a
                         version. Versions recognised:
-                            1.0,
-                            1.1,
-                            1.2 (really 1.2/tiny),
-                            1.2/tiny,
+                            1.0
+                            1.1
+                            1.2      (really 1.2/tiny)
+                            1.2/tiny
                             1.2/full (May 2004 draft, incomplete, any
-                                      conflict with tiny always
-                                      resolved in favour of  tiny),
-                            2.0,
-                            2.1 (april 2021 draft).
+                                      conflict with 1.2/tiny always
+                                      resolves in favour of 1.2/tiny)
+                            2.0
+                            2.1 (April 2021 draft)
                         If this switch is not used, and some SVG code
                         does not identify its version, the version is
                         derived from the version of the host X/HTML
@@ -1238,6 +1386,15 @@ line, the "no-" switch always applies.
                         Accept the extension EXT as a mimetype file
                         extension. May be repeated.
 
+--validation.ff FEATURE Accept FEATURE as a CSS font feature. These
+                        should normally be four characters long. May be
+                        repeated.
+
+--validation.ff VARIATION
+                        Accept VARIATION as a CSS font variation. These
+                        should normally be four characters long. May be
+                        repeated.
+
 --validation.httpequiv HEQ
                         Accept HEQ as a valid macro for httpequiv on
                         &lt;META&gt; elements. May be repeated.
@@ -1250,7 +1407,8 @@ line, the "no-" switch always applies.
                         are 0, 1, 2, and 3 (draft). WhatWG versions are
                         determined by date, corresponding roughly to
                         the date of the (online) publication of the
-                        specific version. See the --html.version switch.
+                        specific version. See the --html.version
+                        switch.
 
 --validation.metaname M
                         Accept M as valid for the NAME attribute of the
@@ -1263,7 +1421,7 @@ line, the "no-" switch always applies.
                         Accept MT as a valid mimetype. May be repeated.
 
 --validation.sgml SGML  Accept SGML as a valid SGML schema
-                        identification (as found in &lt;!DOCTYPE &hellip;&gt;. May
+                        identification (as found in &lt;!DOCTYPE &hellip;&gt;). May
                         be repeated.
 
 --validation.XXX YYY    Accept YYY as a valid value for attribute type
@@ -1277,8 +1435,9 @@ CONFIGURATION FILE FORMAT
 If a configuration file is used, it should be in INI file format. All
 content is optional.
 
-Section and option names are derived from the long form switch name, which
-consists of SECTION.OPTION, laid out in the format:
+Section and option names are derived from the long form switch name,
+which consists of --SECTION.OPTION, laid out in the format:
+
 [SECTION]
 OPTION=yes
 OPTION=123456
@@ -1286,8 +1445,8 @@ OPTION=123456
 Switches that do not have a long form version cannot be used in a
 configuration file.
 
-Each ssc test (in the toast folder) has a configuration file; browse
-them for examples.
+Each ssc test (in the recipe/toast folder) has a configuration file;
+browse them for examples.
 
 
 
@@ -1309,8 +1468,9 @@ parameters are processed, including general.verbose and html.version.
 
 
 EXIT STATUS
+
 If no significant nits are found, ssc exits with 0, otherwise it exits
-with a value > 0.
+with a value &gt; 0. See the --general.error switch.
 
 
 
@@ -1342,9 +1502,9 @@ ssc -V
 To check the static web side source directory /home/site/wwwroot:
 ssc /home/site/wwwroot
 
-To check a static website for example.com which uses server side
-includes, that lies in the current directory, with verification of
-external links, giving rather verbose output:
+To check a static HTML/XHTML website for example.com, that uses server
+side includes, in the current directory, with verification of external
+links, with rather verbose output:
 ssc -e -I -x html -x shtml -s example.com -v 5 -i index.shtml
 
 To check a static web side in the current directory, with a virtual
@@ -1355,6 +1515,7 @@ To check a static web site using a configuration file:
 ssc -f config.file
 
 A simple configuration file might contain:
+
 [general]
 verbose=4
 output=simple.out
@@ -1366,6 +1527,7 @@ root=simple
 
 A configuration file to check a site against HTML 5.2 and SVG 1.1 might
 contain:
+
 [general]
 output=site.out
 class=yes
@@ -1382,8 +1544,8 @@ version=5.2
 version=1.1
 
 A configuration file to check against a particular WhatWG living
-standard,
-gathering statistics:
+standard, gathering statistics:
+
 [general]
 output=jan21.out
 [html]
@@ -1403,6 +1565,7 @@ meta=yes
 
 A configuration file to shadow copy and deduplicate a site might
 contain:
+
 [general]
 output=dedu.out
 class=yes
@@ -1418,6 +1581,7 @@ file=dedu.ndx
 
 A configuration file to export microdata preparing against schema.org
 version 7.2 might contain:
+
 [general]
 output=export.out
 class=yes
@@ -1494,13 +1658,15 @@ info=yes
 
 
 SEE ALSO
+
 tidy
 linkchecker
 
 
 
 HISTORY
-ssc is written by Dylan Harris, https://ssc.lu/.
+
+ssc (ssc.lu) is written by Dylan Harris (dylanharris.org)
 </pre>
 
 </section>
@@ -1547,9 +1713,9 @@ or Death&rsquo;s horse <a href="https://en.wikipedia.org/wiki/Death_(Discworld)#
 <h2>bug reporting</h2>
 
 <p>
-SSC is &alpha; software. Despite heavy testing, it may contain
-unexpected features. If you encounter such an bug, please help improve
-ssc by collecting the following information (where relevant):
+SSC is &alpha; software. It may contain unexpected features. If you
+encounter such a delight, please help improve ssc by collecting the
+following information (where relevant):
 </p>
 
 <ul><li>
@@ -1602,9 +1768,9 @@ https://ssc.lu/
 Introduction
 ============
 SSC can be built on various unii with CMake and gcc or clang,
-supporting C++ 17 or better, or with Visual Studios 2017 / 2019 / 2022
+supporting C++ 17 or better, or with Visual Studios 2019 / 2022
 under Windows. I have built & tested a 64-bit version in selected OSs
-on intel/amd architecture. A test arm64 version is also available.
+on intel/amd & arm64 (m2) architecture. 
 
 Although ssc builds and runs with older compilers on older systems, not
 all features are available on them.
@@ -1617,13 +1783,19 @@ Common dependencies
 -------------------
 You need boost version 1.75 or better (https://boost.org), a recent
 version of the ICU libraries (https://icu-project.org/), Microsoft's
-GSL library (https://github.com/Microsoft/GSL), and a recent version of
-libcurl (https://curl.se/)*. Usually, an Operating System's package
-system has an appropriate version ready to install.
+GSL library (https://github.com/Microsoft/GSL) (or define NO_GSL), and
+a recent version of libcurl (https://curl.se/)*. Usually, an Operating
+System's package system has an appropriate version ready to install.
 
 *libcurl requires a thread-safe underlying SSL library: see
 https://curl.se/libcurl/c/threadsafe.html
 
+You may need to set these environment variables:
+- BOOST: if you're not using your operating system's packaged flavour
+  of boost, then set BOOST to your boost source root directory;
+- ICU_ROOT: if you're not using your operating system's packaged ICU,
+  set ICU_ROOT to your ICU source root directory;
+- GSL: set it to your GSL root directory.
 
 hunspell
 --------
@@ -1642,32 +1814,25 @@ multilingual contexts.
 
 Building
 ========
-Note: at the moment, ssc takes forever and a day to compile. I will
-address this in forthcoming versions.
 
 Windows
 -------
 To build from Visual Studio, navigate to recipe/tea, open the
 appropriate .sln file, then build. Only Visual Studios 2017 / 2019 /
-2022, 64 bit, have been built & tested, for intel Windows 10 & 11.
-I've not built ssc using CMake under Windows.
+2022, 64 bit, have been built & tested, for intel and arm64, under
+Windows 10 & 11. I've not built ssc using CMake under Windows.
 
 Note the included solutions presume Microsoft's VCPKG manager. There
 are alternatives.
 
-You may need to set these environment variables:
-- BOOST: if you're not using your operating system's packaged flavour of boost,
-  then set BOOST to your boost source root directory;
-- ICU_ROOT: similarly, if you're not using your operating system's packaged
-  ICU, set ICU_ROOT to your ICU library source root directory;
-- GSL: set it to your GSL root directory.
+On low memory build machines, disable the /MP switch.
 
 
 Unii & mock Unii
 ----------------
 You will need CMake 3.19 or better. On Linux, you will also need
-lsb-release. These can be found in most distributions standard
-packages.
+lsb-release. These can be found in most distributions' standard
+packages. (For macos, I used macports, but brew is good too.)
 From the home ssc directory, compile a normal build thus:
 cmake .
 make
@@ -1692,26 +1857,29 @@ given that means things are already in the desired state.
 
 The following have been successfully built as x64 amd/intel:
 FreeBSD:  12.3 / 13.1
-Linux:    Alma Linux 9, AOSC, Centos 8 / 9<sup>*</sup>, SUSE Tumbleweed,
+Linux:    Alma Linux 9, AOSC, Centos 8 / 9, SUSE Tumbleweed,
           Ubuntu 20.04 / 22.04
-MacOS:    Ventura, Monterey, Big Sur, Catalina, Mojave, High Sierra,
-          Sierra, El Capitan, and Yosemite
-OpenBSD:  7.3 / 7.2 / 7.1 / 7.0 / 6.9 / 6.8 
+MacOS:    Sonoma, Ventura, Monterey, Big Sur, Catalina, Mojave, High
+          Sierra, Sierra, El Capitan, and Yosemite
+OpenBSD:  7.3 / 7.2 / 7.1 / 7.0 / 6.9 / 6.8
 
 The following have been successfully built as arm64:
+Linux:    Centos 9
 MacOS:    Ventura
 
 A build on an older operating system may result in some features being
 unavailable.
 
-<sup>*</sup>Because Centos 9 doesn't offer lsb-release, the appropriate CMake
-command is:
+Centos 9
+--------
+The appropriate CMake command is:
   cmake . -DFLAVOUR=CentosOSStream -DFLAVOUR_VER=9
+(beware the standard English spelling of flavour.)
 
 OpenBSD
 -------
 You may need to increase significantly the available memory setting
-for your build account in login.conf, if you have not done so already.
+for your build account in login.conf.
 
 
 Testing
@@ -1722,7 +1890,7 @@ Windows
 Under Visual Studio, run ssc??-test using these arguments:
 
   -v -x $(ProjectDir)..\..\ssc.exe
-    -f $(ProjectDir)..\toast\ssc-test\ssc.lst
+    -f $(ProjectDir)..\toast\ssc-test\win.lst
 (all one line)
 
 Add '-d' if you want the test utility to retain intemediate files.
@@ -1731,11 +1899,12 @@ CMake
 -----
 Under CMake, run ctest:
   ctest -V
+(which runs ssc-test for you, using nix.lst).
 
 Dimitude
 --------
-The testing utility is rather dim; it will test features that are
-not built, causing failures.
+The testing utility is rather dim; it will test features that are not
+built, causing failures.
 
 Spelling test results depend on the dictionaries installed.
 
@@ -1748,14 +1917,14 @@ GSL
 If you can't find a copy of Microsoft's GSL in your system's standard
 package suite, then grab a current copy from its github repository
 (https://github.com/Microsoft/GSL), then unpack, build and install it.
-In Windows, remember to add the root directory to your local path.
+In Windows, remember to add its root directory to your local path.
 
 Curl
 ----
 This is in every standard unix flavour repository that I've met, but
 not so easy for Windows. I suggest the following:
 
-1  Install the Microsoft repository vcpkg (<a href="https://vcpkg.io">from here</a>?)
+1  Install the Microsoft repository vcpkg (https://vcpkg.io)
 2  Run up the visual studio 64bit native command prompt
 3  Run the vcpkg bootstrap batch file, noting the comments
 4  Enter "vcpkg install curl:x64-windows"
@@ -1782,7 +1951,7 @@ their own versions using the sources found at boost.org.
 <p>
 If everything works correctly, then everything will be built, a series of tests run, with a final result at the very end saying no failures.
 Having said that, given SSC is &alpha;, don&rsquo;t be too surprised to see some warnings or some final test errors. Worse, some tests have
-dependencies that are vary across systems, which can cause spurious test failues.
+dependencies that are vary across systems, which can cause spurious test failues (ho ho).
 </p>
 
 </section>
@@ -1791,6 +1960,545 @@ dependencies that are vary across systems, which can cause spurious test failues
 
 <section id="sauce">
 <h2>source</h2>
+
+<h3>0.1.42</h3>
+
+<ul>
+<li>
+schema.org 23.0
+</li>
+<li>
+CSS Overscroll 3
+</li>
+<li>
+CSS Page Floats 3
+</li>
+<li>
+CSS Presentation Levels 3
+</li>
+<li>
+CSS Pseudo-Elements 4
+</li>
+<li>
+CSS Rhythmic Sizing 3
+</li>
+<li>
+CSS Round Display 3
+</li>
+<li>
+CSS Ruby Annotations 3
+</li>
+<li>
+CSS Scrollbar Anchor 3
+</li>
+<li>
+various bug fixes
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.42.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-10-21">23 10 21</time>
+</li>
+</ul>
+
+<h3>0.1.41</h3>
+
+<ul>
+<li>
+all CSS snapshots
+</li>
+<li>
+CSS Conditional Rules 3
+</li>
+<li>
+CSS Conditional Rules 4
+</li>
+<li>
+CSS Conditional Rules 5
+</li>
+<li>
+CSS Lists 3
+</li>
+<li>
+CSS Text 3
+</li>
+<li>
+CSS Text 4
+</li>
+<li>
+various bug fixes
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.41.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-10-18">23 10 18</time>
+</li>
+</ul>
+
+<h3>0.1.40</h3>
+
+<ul>
+<li>
+CSS Colour Adjustment 3
+</li>
+<li>
+CSS Device Adaption 3
+</li>
+<li>
+CSS Exclusions 3
+</li>
+<li>
+CSS Inline Layout 3
+</li>
+<li>
+CSS Line Grid 3
+</li>
+<li>
+CSS Logical Properties 3
+</li>
+<li>
+CSS Scrollbar Style 3
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.40.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-10-14">23 10 14</time>
+</li>
+</ul>
+
+<h3>0.1.39</h3>
+
+<ul>
+<li>
+CSS Contain 5
+</li>
+<li>
+CSS Contain 4
+</li>
+<li>
+CSS Contain 3
+</li>
+<li>
+CSS Filter 3
+</li>
+<li>
+CSS Scroll Snap 3
+</li>
+<li>
+various bug fixes
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.39.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-10-10">23 10 10</time>
+</li>
+</ul>
+
+<h3>0.1.38</h3>
+
+<ul>
+<li>
+CSS 2015 Snapshot
+</li>
+<li>
+CSS Mobile Profile 2
+</li>
+<li>
+CSS Print Profile
+</li>
+<li>
+CSS TV Profile
+</li>
+<li>
+CSS Will Change 3
+</li>
+<li>
+drop VS 2017
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.38.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-10-08">23 10 8</time>
+</li>
+</ul>
+
+<h3>0.1.37</h3>
+
+<ul>
+<li>
+CSS Images 4
+</li>
+<li>
+CSS Masking 3
+</li>
+<li>
+CSS Transforms 3
+</li>
+<li>
+CSS Transforms 4
+</li>
+<li>
+various bug fixes
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.37.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-10-07">23 10 7</time>
+</li>
+</ul>
+
+<h3>0.1.36</h3>
+
+<ul>
+<li>
+Living Standard October 2023
+</li>
+<li>
+CSS Images 3
+</li>
+<li>
+--html.ie ignores certain old internet explorer naughtitudes
+</li>
+<li>
+--html.safari ignores certain old safari naughtitudes
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.36.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-10-01">23 10 1</time>
+</li>
+</ul>
+
+<h3>0.1.35</h3>
+
+<ul>
+<li>
+CSS Speech 3
+</li>
+<li>
+CSS Text Decoration 3
+</li>
+<li>
+CSS Text Decoration 4
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.35.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-09-22">23 9 22</time>
+</li>
+</ul>
+
+<h3>0.1.34</h3>
+
+<ul>
+<li>
+Fabio 2.1 ontology
+</li>
+<li>
+Prism ontologies, partial
+</li>
+<li>
+Adobe ontologies, partial
+</li>
+<li>
+Exif ontologies, partial
+</li>
+<li>
+various bug fixes
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.34.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-09-16">23 9 16</time>
+</li>
+</ul>
+
+<h3>0.1.33</h3>
+
+<ul>
+<li>
+ADMS 1.0 and 2.0 ontologies
+</li>
+<li>
+BFO 2.0 and 2020 ontologies
+</li>
+<li>
+disco (ddi ontology)
+</li>
+<li>
+various bug fixes
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.33.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-09-02">23 9 2</time>
+</li>
+</ul>
+
+<h3>0.1.32</h3>
+
+<ul>
+<li>
+CSS Grid 3 (partial)
+</li>
+<li>
+CSS Grid 4 (partial)
+</li>
+<li>
+CSS Shapes 3
+</li>
+<li>
+various bug fixes
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.32.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-08-25">23 8 25</time>
+</li>
+</ul>
+
+<h3>0.1.31</h3>
+
+<ul>
+<li>
+CSS Writing Mode 3
+</li>
+<li>
+CSS Writing Mode 4
+</li>
+<li>
+biro ontology
+</li>
+<li>
+cito ontology
+</li>
+<li>
+various bug fixes
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.31.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-08-05">23 8 5</time>
+</li>
+</ul>
+
+<h3>0.1.30</h3>
+
+<ul>
+<li>
+CSS Box Alignment 3
+</li>
+<li>
+CSS Box Model 3
+</li>
+<li>
+CSS Box Model 4
+</li>
+<li>
+CSS Display 3
+</li>
+<li>
+CSS Multi-Column 3
+</li>
+<li>
+CSS Overflow 3
+</li>
+<li>
+CSS Positions 3
+</li>
+<li>
+CSS Transitions 3
+</li>
+<li>
+X-Clacks-Overhead
+</li>
+<li>
+various bug fixes
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.30.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-07-15">23 7 15</time>
+</li>
+</ul>
+
+<h3>0.1.29</h3>
+
+<ul>
+<li>
+CSS Counter Style 3
+</li>
+<li>
+CSS Flexible Box Layout 3
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.29.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-07-09">23 7 9</time>
+</li>
+</ul>
+
+<h3>0.1.28</h3>
+
+<ul>
+<li>
+CSS Font 3
+</li>
+<li>
+CSS Font 4 (December 2021 draft)
+</li>
+<li>
+CSS Font 5 (December 2021 draft)
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.28.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-07-08">23 7 8</time>
+</li>
+</ul>
+
+<h3>0.1.27</h3>
+
+<ul>
+<li>
+CSS Compositing
+</li>
+<li>
+CSS Fragmentation 3
+</li>
+<li>
+CSS Fragmentation 4 (December 2018 draft)
+</li>
+<li>
+schema.org 22
+</li>
+<li>
+various bug fixes
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.27.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-07-01">23 7 1</time>
+</li>
+</ul>
+
+
+<h3>0.1.26</h3>
+
+<ul>
+<li>
+CSS Backgrounds and Borders (Feb 2023 version)
+</li>
+<li>
+CSS Colour 5
+</li>
+<li>
+CSS Easing Functions
+</li>
+<li>
+further improve build time
+</li>
+<li>
+various bug fixes
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.26.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-06-28">23 6 28</time>
+</li>
+</ul>
+
+
+<h3>0.1.25</h3>
+
+<ul>
+<li>
+Living Standard July 2023
+</li>
+<li>
+output nit references, where applicable
+</li>
+<li>
+various bug fixes
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.25.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-06-21">23 6 21</time>
+</li>
+</ul>
 
 <h3>0.1.24</h3>
 

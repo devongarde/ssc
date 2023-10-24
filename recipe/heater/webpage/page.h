@@ -40,7 +40,7 @@ class url;
 
 class page
 {   ids_t ids_, names_, glyphs_;
-    sstr_t access_, dfns_, profiles_;
+    sstr_t access_, dfns_, parts_, profiles_;
     element* document_ = nullptr;
     elements_node nodes_;
     ::std::string name_;
@@ -186,6 +186,8 @@ public:
     ustr_t& abbrs () noexcept { return abbrs_; }
     const sstr_t& dfns () const noexcept { return dfns_; }
     sstr_t& dfns () noexcept { return dfns_; }
+    const sstr_t& parts () const noexcept { return parts_; }
+    sstr_t& parts () noexcept { return parts_; }
     const sstr_t& profiles () const noexcept { return profiles_; }
     sstr_t& profiles () noexcept { return profiles_; }
     const url& base () const noexcept;

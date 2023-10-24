@@ -822,6 +822,7 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, flags_t& ext
     res += single_feature (b, "Fon", "Fonts", ext2_, e2, H2_CSS_FONT_3, H2_CSS_FONT_4, H2_CSS_FONT_5);
     res += single_feature (b, "Fra", "Fragmentation", ext2_, e2, H2_CSS_FRAG_3, H2_CSS_FRAG_4);
     res += single_feature (b, "Grd", "Grid", ext3_, e3, H3_CSS_GRID_3, H3_CSS_GRID_4);
+    res += single_feature (b, "HiL", "Custom Highlight", ext3_, e3, H3_CSS_HIGHLIGHT);
     res += single_feature (b, "Img", "Images", ext3_, e3, H3_CSS_IMAGE_4, H3_CSS_IMAGE_3);
     res += single_feature (b, "Inl", "Inline Layout", ext3_, e3, H3_CSS_INLINE);
     res += single_feature (b, "LnG", "Lists and Counters", ext3_, e3, H3_CSS_LINE_GRID);
@@ -830,9 +831,11 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, flags_t& ext
     res += single_feature (b, "Med", "Media Queries", ext2_, e2, H2_CSS_MEDIA_3, H2_CSS_MEDIA_4, H2_CSS_MEDIA_5);
     res += single_feature (b, "Mlt", "Multi-Column", ext3_, e3, H3_CSS_MULTI_COL);
     res += single_feature (b, "Nam", "Namespaces", ext2_, e2, H2_CSS_NAMESPACE);
+    res += single_feature (b, "Nes", "Namespaces", ext2_, e2, H3_CSS_NES);
     res += single_feature (b, "Msk", "Masking", ext3_, e3, H3_CSS_MASKING);
     res += single_feature (b, "Ofl", "Overflow", ext3_, e3, H3_CSS_OVERFLOW);
     res += single_feature (b, "Osc", "Overscroll Behaviour", ext3_, e3, H3_CSS_OVERSCROLL);
+    res += single_feature (b, "PaM", "Paged Media", ext3_, e3, H3_CSS_PAGE);
     res += single_feature (b, "PFl", "Page Floats", ext3_, e3, H3_CSS_FLOAT);
     res += single_feature (b, "Pos", "Positions", ext3_, e3, H3_CSS_POSITION);
     res += single_feature (b, "Pre", "Presentation Levels", ext3_, e3, H3_CSS_PRESENT);
@@ -842,6 +845,7 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, flags_t& ext
     res += single_feature (b, "Rub", "Ruby Annotation", ext3_, e3, H3_CSS_RUBY);
     res += single_feature (b, "Scr", "Scrollbar Style", ext3_, e3, H3_CSS_SCROLLBAR);
     res += single_feature (b, "Sel", "Selectors", ext2_, e2, H2_CSS_SELECTOR_3, H2_CSS_SELECTOR_4);
+    res += single_feature (b, "Sha", "Shadow Parts", ext3_, e3, H3_CSS_SHADOW);
     res += single_feature (b, "Shp", "Shapes", ext3_, e3, H3_CSS_SHAPE_3, H3_CSS_SHAPE_4);
     res += single_feature (b, "Snp", "Scroll Snap", ext3_, e3, H3_CSS_SNAP);
     res += single_feature (b, "Spe", "Speech", ext3_, e3, H3_CSS_SPEECH);
@@ -1345,6 +1349,14 @@ void html_version::css_grid (const int n)
     if ((n == 2) || (n == 4)) set_ext3 (H3_CSS_GRID);
     else if ((n == 1) || (n == 3)) set_ext3 (H3_CSS_GRID_3); }
 
+int html_version::css_highlight () const
+{   if (any_ext3 (H3_CSS_HIGHLIGHT)) return 3;
+    return 0; }
+
+void html_version::css_highlight (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_HIGHLIGHT);
+    else reset_ext3 (H3_CSS_HIGHLIGHT); }
+
 int html_version::css_image () const
 {   if ((ext3 () & H3_CSS_IMAGE_4) == H3_CSS_IMAGE_4) return 4;
     if ((ext3 () & H3_CSS_IMAGE_3) == H3_CSS_IMAGE_3) return 3;
@@ -1421,6 +1433,14 @@ int html_version::css_namespace () const
 {   if (any_ext2 (H2_CSS_NAMESPACE)) return 3;
     return 0; }
 
+void html_version::css_nes (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_NES);
+    else reset_ext3 (H3_CSS_NES); }
+
+int html_version::css_nes () const
+{   if (any_ext3 (H3_CSS_NES)) return 3;
+    return 0; }
+
 void html_version::css_namespace (const int n)
 {   if (n == 3) set_ext2 (H2_CSS_NAMESPACE);
     else reset_ext2 (H2_CSS_NAMESPACE); }
@@ -1440,6 +1460,14 @@ int html_version::css_overscroll () const
 void html_version::css_overscroll (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_OVERSCROLL);
     else reset_ext3 (H3_CSS_OVERSCROLL); }
+
+int html_version::css_page () const
+{   if (any_ext3 (H3_CSS_PAGE)) return 3;
+    return 0; }
+
+void html_version::css_page (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_PAGE);
+    else reset_ext3 (H3_CSS_PAGE); }
 
 int html_version::css_position () const
 {   if (any_ext3 (H3_CSS_POSITION)) return 3;
@@ -1506,6 +1534,14 @@ void html_version::css_selector (const int n)
 {   reset_ext2 (H2_CSS_SELECTOR_MASK);
     if (n == 3) set_ext2 (H2_CSS_SELECTOR_3);
     else if (n == 4) set_ext2 (H2_CSS_SELECTOR); }
+
+int html_version::css_shadow () const
+{   if (any_ext3 (H3_CSS_SHADOW)) return 3;
+    return 0; }
+
+void html_version::css_shadow (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_SHADOW);
+    else reset_ext3 (H3_CSS_SHADOW); }
 
 int html_version::css_shape () const
 {   if ((ext3 () & H3_CSS_SHAPE_4) == H3_CSS_SHAPE_4) return 4;   

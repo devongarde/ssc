@@ -8,7 +8,7 @@ PASS ../toast/css/1/basic.css
 10 unrecognised_value unrecognised_value unrecognised_value
 11 css_colour
 12 unrecognised_value
-18 css_dubious
+18 css_version css_dubious
 20 fontname
 
 PASS ../toast/css/1/cool.css
@@ -109,7 +109,7 @@ PASS ../toast/css/1/import.css
 10 unrecognised_value unrecognised_value unrecognised_value unrecognised_value unrecognised_value
 11 css_colour
 12 unrecognised_value
-18 css_dubious
+18 css_version css_dubious
 20 fontname
 
 PASS ../toast/css/1/index.html

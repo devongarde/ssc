@@ -46,6 +46,7 @@ ssc.exe -f ../toast/css/5-font/css.conf
 ssc.exe -f ../toast/css/4-frag/css.conf
 ssc.exe -f ../toast/css/3-grid/css.conf
 ssc.exe -f ../toast/css/4-grid/css.conf
+ssc.exe -f ../toast/css/3-highlight/css.conf
 ssc.exe -f ../toast/css/3-image/css.conf
 ssc.exe -f ../toast/css/3-inline/css.conf
 ssc.exe -f ../toast/css/3-list/css.conf
@@ -55,8 +56,10 @@ ssc.exe -f ../toast/css/3-mc/css.conf
 ssc.exe -f ../toast/css/3-media/css.conf
 ssc.exe -f ../toast/css/4-media/css.conf
 ssc.exe -f ../toast/css/5-media/css.conf
+ssc.exe -f ../toast/css/3-nes/css.conf
 ssc.exe -f ../toast/css/3-ns/css.conf
 ssc.exe -f ../toast/css/3-overflow/css.conf
+ssc.exe -f ../toast/css/3-page/css.conf
 ssc.exe -f ../toast/css/3-position/css.conf
 ssc.exe -f ../toast/css/4-present/css.conf
 ssc.exe -f ../toast/css/4-pseudo/css.conf
@@ -66,6 +69,7 @@ ssc.exe -f ../toast/css/3-ruby/css.conf
 ssc.exe -f ../toast/css/3-scrollbar/css.conf
 ssc.exe -f ../toast/css/3-sel/css.conf
 ssc.exe -f ../toast/css/4-sel/css.conf
+ssc.exe -f ../toast/css/3-shadow/css.conf
 ssc.exe -f ../toast/css/3-shape/css.conf
 ssc.exe -f ../toast/css/3-snap/css.conf
 ssc.exe -f ../toast/css/3-speech/css.conf

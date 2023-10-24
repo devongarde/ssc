@@ -162,6 +162,10 @@ property_v_ptr make_descriptor_v_ptr (arguments& args, const int start, const in
 property_v_ptr make_descriptor_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const css_token t);
 property_v_ptr make_feature_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const css_token t);
 property_v_ptr make_feature_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const css_token t);
+property_v_ptr make_margin_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const css_token t);
+property_v_ptr make_margin_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const css_token t);
+property_v_ptr make_page_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const css_token t);
+property_v_ptr make_page_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const css_token t);
 property_v_ptr make_palette_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const css_token t);
 property_v_ptr make_palette_v_ptr (arguments& args, const int start, const int to, nitpick& nits, const int i, const ::std::string& value, const css_token t);
 property_v_ptr make_viewport_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const css_token t);

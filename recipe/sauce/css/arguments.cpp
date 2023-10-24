@@ -100,7 +100,7 @@ void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string
             nits.pick (nit_naughty_page, es_error, ec_css, s, " requires @font-palette-values"); }
     if ((f & CF_BEF_AFT) == CF_BEF_AFT)
         if ((ss_ == nullptr) || (! ss_ -> bef_aft ()))
-            if ((st_ == nullptr) || ((st_ -> get () != css_supports) || (context.css_conditional_rule () < 3)))
+            if ((st_ == nullptr) || ((st_ -> get () < css_content_ok) || (context.css_conditional_rule () < 3)))
                 if (context.css_version () > css_2_2)
                     nits.pick (nit_naughty_content, ed_css_21, "12.2 The 'content' p. 182 property", es_error, ec_css, s, " requires an element with ::before andor ::after");
                 else nits.pick (nit_naughty_content, ed_css_21, "12.2 The 'content' p. 182 property", es_error, ec_css, s, " requires an element with :before andor :after"); }
@@ -210,9 +210,10 @@ sstr_t& arguments::palette ()
 
 void arguments::validate (nitpick& nits, const flags_t f, const ::std::string& p, const ::std::string& vl) const
 {   if ((f & CF_PAGE) == CF_PAGE)
-        if (! ps_ -> state ().test (ec_page_property))
-            if ((st_ == nullptr) || ((st_ -> get () != css_page) && (st_ -> get () != css_media)))
-                nits.pick (nit_naughty_page, es_error, ec_css, p, " requires @page, @media, or the page property");
+        if (ps_ != nullptr) // null for descriptors
+            if (! ps_ -> state ().test (ec_page_property))
+                if ((st_ == nullptr) || ((st_ -> get () != css_page) && (st_ -> get () != css_media)))
+                    nits.pick (nit_naughty_page, es_error, ec_css, p, " requires @page, @media, or the page property");
     if ((f & CF_NOT_LV_STD_JUL23) == CF_NOT_LV_STD_JUL23)
         if (v_ >= html_jul23)
             nits.pick (nit_css_living_standard, es_warning, ec_css, p, " is incompatible with the living standard after April 2023");

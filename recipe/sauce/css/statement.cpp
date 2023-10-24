@@ -565,6 +565,20 @@ void statement::parse_layer (arguments& args, nitpick& nits, const int from, con
             vst_.emplace_back (pst_t (new statements (args, args.t_.at (to).child_))); }
         else if (! got) nits.pick (nit_css_layer, es_error, ec_css, "neither @layer name nor { ... } defined"); } }
 
+void statement::parse_margin (arguments& args, nitpick& nits, const int from, const int to, const e_css_statement cs)
+{   if (context.html_ver ().css_page () < 3)
+        nits.pick (nit_css_version, es_error, ec_css, "CSS Page level 3 required");
+    else
+    {   int i = from;
+        if ((i >= 0) && (args.t_.at (i).t_ != ct_curly_brac) && (i < to))
+            i = next_non_whitespace (args.t_, i, to); 
+        if ((i < 0) || (args.t_.at (i).t_ != ct_curly_brac))
+            nits.pick (nit_bad_page, es_error, ec_css, "expecting { property... }");
+        else
+        {   PRESUME (args.t_.at (i).child_ > 0, __FILE__, __LINE__);
+            fiddlesticks < statement > f (&args.st_, this);
+            dsc_.parse (args, cs, args.t_.at (i).child_); } } }
+
 void statement::parse_media (arguments& args, nitpick& nits, const int from, const int to)
 {   if (context.html_ver ().css_version () == css_1)
         nits.pick (nit_css_version, es_error, ec_css, "@media requires CSS 2.0 or later");
@@ -642,14 +656,30 @@ void statement::parse_page (arguments& args, nitpick& nits, const int from, cons
             if (args.g_.page_name ().find (n) != args.g_.page_name ().cend ())
                 nits.pick (nit_page_name_again, es_error, ec_css, quote (args.t_.at (i).val_), " previously used.");
             else args.g_.page_name ().insert (n);
-            i = next_non_whitespace (args.t_, i, to);
-            if (i != to) nits.pick (nit_css_syntax, es_error, ec_css, "unexpected content after ", quote (args.t_.at (i).val_)); }
-        if ((to < 0) || (args.t_.at (to).t_ != ct_curly_brac))
+            i = next_non_whitespace (args.t_, i, to); }
+        if ((i > 0) && (args.t_.at (i).t_ == ct_colon))
+        {   i = next_non_whitespace (args.t_, i, to);
+            if ((i > 0) && ((args.t_.at (i).t_ == ct_keyword) || (args.t_.at (i).t_ == ct_identifier)))
+            {   enum_n < t_css_fn, e_css_fn > fn;
+                fn.set_value (nits, context.html_ver (), args.t_.at (i).val_);
+                args.check_flags (nits, fn.flags (), fn.name ());
+                switch (fn.get ())
+                {   case efn_blank :
+                    case efn_first :
+                    case efn_left :
+                    case efn_right :
+                        break;
+                    default :
+                        nits.pick (nit_bad_page, es_error, ec_css, "Only :blank, :first, :left, or :right can accompany @page");
+                        break; } }
+            i = next_non_whitespace (args.t_, i, to); }
+        if ((i > 0) && (i != to)) nits.pick (nit_css_syntax, es_error, ec_css, quote (args.t_.at (i).val_), ": unexpected");
+        if ((i < 0) || (to < 0) || (args.t_.at (to).t_ != ct_curly_brac))
             nits.pick (nit_bad_page, es_error, ec_css, "expecting { property... } after @page");
         else
         {   PRESUME (args.t_.at (to).child_ > 0, __FILE__, __LINE__);
             fiddlesticks < statement > f (&args.st_, this);
-            prop_.parse (args, args.t_.at (to).child_); } } }
+            dsc_.parse (args, css_page, args.t_.at (to).child_); } } }
 
 void statement::parse_scope (arguments& args, nitpick& nits, const int from, const int to)
 {   if (context.html_ver ().css_cascade () < 6)
@@ -792,6 +822,24 @@ void statement::parse (arguments& args, const int from, const int to)
             case css_stylistic :
                 parse_feature_value (args, nits, to, st_.get (), stylistic_);
                 break;
+            case css_bottom_centre :
+            case css_bottom_left :
+            case css_bottom_left_corner :
+            case css_bottom_right :
+            case css_bottom_right_corner :
+            case css_left_bottom :
+            case css_left_middle :
+            case css_left_top :
+            case css_right_bottom :
+            case css_right_middle :
+            case css_right_top :
+            case css_top_centre :
+            case css_top_left :
+            case css_top_left_corner :
+            case css_top_right :
+            case css_top_right_corner :
+                parse_margin (args, nits, b, to, st_.get ());
+                break;
             case css_charset :
                 parse_charset (args, nits, b, to);
                 break;
@@ -842,17 +890,6 @@ void statement::parse (arguments& args, const int from, const int to)
                 break;
             case css_viewport :
                 parse_viewport (args, nits, b, to);
-                break;
-            case css_bottom_centre :
-            case css_bottom_left :
-            case css_bottom_left_corner :
-            case css_bottom_right :
-            case css_bottom_right_corner :
-            case css_top_centre :
-            case css_top_left :
-            case css_top_left_corner :
-            case css_top_right :
-            case css_top_right_corner :
                 break;
             case css_document :
                 break;
@@ -943,7 +980,16 @@ void statement::accumulate (stats_t* s) const
             res = "@keyframes;";
             break;
         case css_layer :
-            res = "@layer ();";
+            res = "@left ();";
+            break;
+        case css_left_bottom :
+            res = "@left-bottom ();";
+            break;
+        case css_left_middle :
+            res = "@left-middle ();";
+            break;
+        case css_left_top :
+            res = "@left-top ();";
             break;
         case css_media :
             res = "@media ();";
@@ -956,6 +1002,15 @@ void statement::accumulate (stats_t* s) const
             break;
         case css_page :
             res = "@page ();";
+            break;
+        case css_right_bottom :
+            res = "@right-bottom ();";
+            break;
+        case css_right_middle :
+            res = "@right-middle ();";
+            break;
+        case css_right_top :
+            res = "@right-top ();";
             break;
         case css_supports :
             res = "@supports;";

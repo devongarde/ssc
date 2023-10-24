@@ -583,6 +583,9 @@ template < > struct type_master < t_css_lengths_a_l > : maybe_logical_type < t_c
 template < > struct type_master < t_css_lengths_l > : maybe_logical_type < t_css_lengths_l, t_css_lengths >
 { using maybe_logical_type < t_css_lengths_l, t_css_lengths > :: maybe_logical_type; };
 
+template < > struct type_master < t_css_length_xtz > : string_or_type_or_both < t_css_length_xtz, t_css_length_a2, sz_extend_to_zoom >
+{ using string_or_type_or_both < t_css_length_xtz, t_css_length_a2, sz_extend_to_zoom > :: string_or_type_or_both; };
+
 template < > struct type_master < t_css_line_height > : one_of_three_or_string < t_css_line_height, t_css_length, t_measure, t_real, sz_normal >
 { using one_of_three_or_string < t_css_line_height, t_css_length, t_measure, t_real, sz_normal > :: one_of_three_or_string; };
 
@@ -677,6 +680,12 @@ template < > struct type_master < t_css_overflows > : type_one_or_both < t_css_o
 
 template < > struct type_master < t_css_palette_nld > : type_or_any_string < t_css_palette_nld, t_css_palette, sz_dark, sz_light, sz_normal >
 { using type_or_any_string < t_css_palette_nld, t_css_palette, sz_dark, sz_light, sz_normal > :: type_or_any_string; };
+
+template < > struct type_master < t_css_size_es > : type_ab_ba < t_css_size_es, sz_space_char, t_css_size_e, t_media_orientation >
+{ using type_ab_ba < t_css_size_es, sz_space_char, t_css_size_e, t_media_orientation > :: type_ab_ba; };
+
+template < > struct type_master < t_css_size_3 > : either_type_or_string < t_css_size_3, t_css_size, t_css_size_es, sz_auto >
+{ using either_type_or_string < t_css_size_3, t_css_size, t_css_size_es, sz_auto > :: either_type_or_string; };
 
 template < > struct type_master < t_css_pause_2 > : type_number_unit_3 < t_css_pause_2, t_real, sz_ms, sz_s, sz_per_cent >
 { using type_number_unit_3 < t_css_pause_2, t_real, sz_ms, sz_s, sz_per_cent > :: type_number_unit_3; };

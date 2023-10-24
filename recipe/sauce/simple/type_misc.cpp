@@ -21,6 +21,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "type/type.h"
 #include "stats/stats.h"
+#include "element/element.h"
+#include "webpage/page.h"
 
 void mark_font (stats_t* s, const ::std::string& font)
 {   VERIFY_NOT_NULL (s, __FILE__, __LINE__);
@@ -63,7 +65,6 @@ bool set_arxiv_value (nitpick& nits, const html_version& , const ::std::string& 
         nits.pick (nit_arxiv, es_error, ec_type, "expecting \"ARCHIVE/YYMMNNN\",  \"ARCHIVE.CLASS/YYMMNNN\", \"arXiv:YYMM.NNNN\", or \"arXiv:YYMM.NNNNN\", where YY is year, MM is month, and N... are digits");
     return false; }
 
-// set_cookie_value
 e_status set_cookie_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   if (s.empty ())
        nits.pick (nit_empty, es_error, ec_type, "cookie value required");
@@ -146,6 +147,43 @@ bool set_coords_value (nitpick& nits, const html_version& v, const ::std::string
                 default : break; }
         if (! whoops) return true; }
     return false; }
+
+bool invalid_exportparts (nitpick& nits, const html_version& v, element* box, const vstr_t& s)
+{   VERIFY_NOT_NULL (box, __FILE__, __LINE__);
+    bool res = false;
+    sstr_t& parts = box -> get_page ().parts ();
+    for (auto k : s)
+    {   const ::std::string::size_type pos = k.find (':');
+        PRESUME ((pos == ::std::string::npos ) || ((pos > 0) && (pos < k.length ()-1)), __FILE__, __LINE__);
+        if (pos != ::std::string::npos)
+        {   const ::std::string p (k.substr (0, pos));
+            if (parts.find (p) == parts.cend ())
+            {   nits.pick (nit_part, es_error, ec_type, "part ", quote (p), " is unrecognised");
+                res = true; } } }
+    return res; }
+
+bool invalid_parts (nitpick& nits, const html_version& v, element* box, const vstr_t& s)
+{   VERIFY_NOT_NULL (box, __FILE__, __LINE__);
+    bool res = false;
+    sstr_t& parts = box -> get_page ().parts ();
+    for (auto k : s)
+        if (parts.find (k) == parts.cend ())
+        {   nits.pick (nit_part, es_error, ec_type, "part ", quote (k), " is unrecognised");
+            res = true; }
+    return res; }
+
+bool set_exportpart_value (nitpick& nits, const html_version& v, const vstr_t& s, element* box)
+{   bool res = true;
+    if (box != nullptr)
+        for (auto k : s)
+        {   const ::std::string::size_type pos = k.find (':');
+            if ((pos == 0) || (pos == k.length ()-1))
+            {   nits.pick (nit_part, es_error, ec_attribute, quote (k), " is malformed");
+                res = false; }
+            else if (pos == ::std::string::npos)
+                box -> get_page ().parts ().insert (k);
+            else box -> get_page ().parts ().insert (k.substr (pos+1)); }
+    return res; }
 
 bool set_imgsizes_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   bool good = true;

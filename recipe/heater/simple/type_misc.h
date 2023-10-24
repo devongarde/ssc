@@ -33,6 +33,9 @@ bool set_arxiv_value (nitpick& nits, const html_version& v, const ::std::string&
 e_status set_cookie_value (nitpick& nits, const html_version& v, const ::std::string& s);
 bool set_coords_value (nitpick& nits, const html_version& v, const ::std::string& s, vint_t& val);
 bool set_imgsizes_value (nitpick& nits, const html_version& v, const ::std::string& s);
+bool set_exportpart_value (nitpick& nits, const html_version& v, const vstr_t& s, element* box);
+bool invalid_exportparts (nitpick& nits, const html_version& v, element* box, const vstr_t& s);
+bool invalid_parts (nitpick& nits, const html_version& v, element* box, const vstr_t& s);
 
 template < > struct type_master < t_arxiv > : public tidy_string < t_arxiv >
 {   using tidy_string < t_arxiv > :: tidy_string;
@@ -85,6 +88,16 @@ template < > struct type_master < t_coords > : tidy_string < t_coords >
         tidy_string < t_coords > :: status (s_invalid); }
     static vint_t default_value () noexcept { return vint_t (); }
     vint_t get () const { return value_; } };
+
+template < > struct type_master < t_exportpart > : string_vector < t_exportpart, sz_space_char >
+{   using string_vector < t_exportpart, sz_space_char > :: string_vector;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   string_vector < t_exportpart, sz_space_char > :: set_value (nits, v, s);
+        if (! set_exportpart_value (nits, v, string_vector < t_exportpart, sz_space_char > :: get (), box ()))
+            string_vector < t_exportpart, sz_space_char > :: status (s_invalid); }
+    bool invalid_id (nitpick& nits, const html_version& v, ids_t& , element* box)
+    {   if (! good () || (box == nullptr)) return false;
+        return invalid_parts (nits, v, box, string_vector < t_exportpart, sz_space_char > :: get ()); } };
 
 template < > struct type_master < t_filename > : public tidy_string < t_filename >
 {   using tidy_string < t_filename > :: tidy_string;
@@ -211,7 +224,7 @@ template < > struct type_master < t_key > : string_vector < t_key, sz_space_char
                 if (! predefined_) keys -> insert (k);
                 else
                 {   nits.pick (nit_key, ed_41, "17.11.2 Access keys", es_error, ec_type, "access key ", quote (k), " is used elsewhere");
-                    tidy_string < t_key > :: status (s_invalid);
+                    string_vector < t_key, sz_space_char > :: status (s_invalid);
                     break; } }
             tested_ = true; }
         return predefined_; } };
@@ -252,6 +265,14 @@ template < > struct type_master < t_mb > : public tidy_string < t_mb >
 
 template < > struct type_master < t_normal > : public type_string < t_normal, sz_normal >
 {   using type_string < t_normal, sz_normal > :: type_string; };
+
+template < > struct type_master < t_part > : string_vector < t_part, sz_space_char >
+{   using string_vector < t_part, sz_space_char > :: string_vector;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   string_vector < t_part, sz_space_char > :: set_value (nits, v, s); }
+    bool invalid_id (nitpick& nits, const html_version& v, ids_t& , element* box)
+    {   if (! good () || (box == nullptr)) return false;
+        return invalid_parts (nits, v, box, string_vector < t_part, sz_space_char > :: get ()); } };
 
 template < > struct type_master < t_prism_rcv_opt > : tidy_string < t_prism_rcv_opt >
 {   using tidy_string < t_prism_rcv_opt > :: tidy_string;

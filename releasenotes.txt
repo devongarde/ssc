@@ -3,6 +3,15 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.43
+- OpenBSD 7.4
+- Macos Sonoma
+- CSS Custom Highlights 3
+- CSS Non-Element Selectors 3
+- CSS Paged Media 3
+- CSS Shadow Parts 3
+- underlying work
+
 0.1.42
 - schema.org 23.0
 - CSS Overscroll 3

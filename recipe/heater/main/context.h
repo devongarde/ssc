@@ -129,6 +129,7 @@ class context_t
     context_t& css_font (const int n) { version_.css_font (n); mac (nm_context_css_font, n); return *this; }
     context_t& css_fragmentation (const int n) { version_.css_fragmentation (n); mac (nm_context_css_fragmentation, n); return *this; }
     context_t& css_grid (const int n) { version_.css_grid (n); mac (nm_context_css_grid, n); return *this; }
+    context_t& css_highlight (const int n) { version_.css_highlight (n); mac (nm_context_css_highlight, n); return *this; }
     context_t& css_image (const int n) { version_.css_image (n); mac (nm_context_css_image, n); return *this; }
     context_t& css_inline (const int n) { version_.css_inline (n); mac (nm_context_css_inline, n); return *this; }
     context_t& css_line_grid (const int n) { version_.css_line_grid (n); mac (nm_context_css_line_grid, n); return *this; }
@@ -138,8 +139,10 @@ class context_t
     context_t& css_media (const int n) { version_.css_media (n); mac (nm_context_css_media, n); return *this; }
     context_t& css_multi_column (const int n) { version_.css_multi_column (n); mac (nm_context_css_multi_column, n); return *this; }
     context_t& css_namespace (const int n) { version_.css_namespace (n); mac (nm_context_css_namespace, n); return *this; }
+    context_t& css_nes (const int n) { version_.css_nes (n); mac (nm_context_css_nes, n); return *this; }
     context_t& css_overflow (const int n) { version_.css_overflow (n); mac (nm_context_css_overflow, n); return *this; }
     context_t& css_overscroll (const int n) { version_.css_overscroll (n); mac (nm_context_css_overscroll, n); return *this; }
+    context_t& css_page (const int n) { version_.css_page (n); mac (nm_context_css_page, n); return *this; }
     context_t& css_position (const int n) { version_.css_position (n); mac (nm_context_css_position, n); return *this; }
     context_t& css_present (const int n) { version_.css_present (n); mac (nm_context_css_present, n); return *this; }
     context_t& css_pseudo (const int n) { version_.css_pseudo (n); mac (nm_context_css_pseudo, n); return *this; }
@@ -148,6 +151,7 @@ class context_t
     context_t& css_ruby (const int n) { version_.css_ruby (n); mac (nm_context_css_ruby, n); return *this; }
     context_t& css_scrollbar (const int n) { version_.css_scrollbar (n); mac (nm_context_css_scrollbar, n); return *this; }
     context_t& css_selector (const int n) { version_.css_selector (n); mac (nm_context_css_selector, n); return *this; }
+    context_t& css_shadow (const int n) { version_.css_shadow (n); mac (nm_context_css_shadow, n); return *this; }
     context_t& css_shape (const int n) { version_.css_shape (n); mac (nm_context_css_shape, n); return *this; }
     context_t& css_snap (const int n) { version_.css_snap (n); mac (nm_context_css_snap, n); return *this; }
     context_t& css_speech (const int n) { version_.css_speech (n); mac (nm_context_css_speech, n); return *this; }
@@ -364,6 +368,7 @@ public:
     int css_font () { return version_.css_font (); }
     int css_fragmentation () { return version_.css_fragmentation (); }
     int css_grid () { return version_.css_grid (); }
+    int css_highlight () { return version_.css_highlight (); }
     int css_line_grid () { return version_.css_line_grid (); }
     int css_list () { return version_.css_list (); }
     int css_logic () { return version_.css_logic (); }
@@ -373,8 +378,10 @@ public:
     int css_media () { return version_.css_media (); }
     int css_multi_column () { return version_.css_multi_column (); }
     int css_namespace () { return version_.css_namespace (); }
+    int css_nes () { return version_.css_nes (); }
     int css_overflow () { return version_.css_overflow (); }
     int css_overscroll () { return version_.css_overscroll (); }
+    int css_page () { return version_.css_page (); }
     int css_position () { return version_.css_position (); }
     int css_present () { return version_.css_present (); }
     int css_pseudo () { return version_.css_pseudo (); }
@@ -383,6 +390,7 @@ public:
     int css_ruby () { return version_.css_ruby (); }
     int css_scrollbar () { return version_.css_scrollbar (); }
     int css_selector () { return version_.css_selector (); }
+    int css_shadow () { return version_.css_shadow (); }
     int css_shape () { return version_.css_shape (); }
     int css_snap () { return version_.css_snap (); }
     int css_speech () { return version_.css_speech (); }

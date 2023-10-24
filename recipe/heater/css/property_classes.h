@@ -1799,7 +1799,6 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_page_break_after, \
     prop_page_break_before, \
     prop_page_break_inside, \
-    prop_page, \
     prop_paint_order, \
     prop_panose_1, \
     prop_pause, \
