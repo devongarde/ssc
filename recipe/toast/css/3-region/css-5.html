@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS 3 regions test pages</title>
+
+<style>
+  article {
+      flow-into: article-flow;
+  }
+  #flex {
+      display: flex;
+      flex-pack: justify;
+      height: 6em;
+  }
+  #flex > div {
+      flow-from: article;
+      width: calc(50% - 0.5em);
+  }
+  #remainder {
+      flow-from: article;
+      height: auto;
+  }
+</style>
+
+<style>
+  article {
+      flow-into: article-flow;
+  }
+  #multi-col {
+      column-count: 2;
+      flow-from: article;
+      height: 6em;
+      column-gap: 1em; 
+  }
+  #remainder {
+      flow-from: article;
+      height: auto;
+  }
+</style>
+
+</head>
+
+<body>
+
+  <article>...</article>
+  <div id="multicol"></div>
+  <div id="remainder"></div>
+
+  <article>...</article>
+  <div id="flex">
+    <div />
+    <div />
+  </div>
+  <div id="remainder"></div>
+
+</body>
+</html>

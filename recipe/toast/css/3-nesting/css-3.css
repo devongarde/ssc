@@ -1,0 +1,24 @@
+﻿a, b {
+  & c { color: blue; }
+}
+
+:is(a, b) c { color: blue; }
+
+.foo, .foo::before, .foo::after {
+  color: red;
+
+  &:hover { color: blue; }
+}
+
+.foo, .foo::before, .foo::after {
+  color: red;
+}
+.foo:hover {
+  color: blue;
+}
+
+#a, b {
+  & c { color: blue; }
+}
+.foo c { color: red; }
+

@@ -116,6 +116,7 @@ class context_t
     context_t& css_compositing (const int n) { version_.css_compositing (n); mac (nm_context_css_compositing, n); return *this; }
     context_t& css_conditional_rule (const int n) { version_.css_conditional_rule (n); mac (nm_context_css_cond_rule, n); return *this; }
     context_t& css_contain (const int n) { version_.css_contain (n); mac (nm_context_css_contain, n); return *this; }
+    context_t& css_content (const int n) { version_.css_content (n); mac (nm_context_css_content, n); return *this; }
     context_t& css_counter_style (const int n) { version_.css_counter_style (n); mac (nm_context_css_cs, n); return *this; }
     context_t& css_custom (const int n) { version_.css_custom (n); mac (nm_context_css_custom, n); return *this; }
     context_t& css_device (const int n) { version_.css_device (n); mac (nm_context_css_device, n); return *this; }
@@ -124,6 +125,7 @@ class context_t
     context_t& css_exclude (const int n) { version_.css_exclude (n); mac (nm_context_css_exclude, n); return *this; }
     context_t& css_extension (const vstr_t& s) { css_ext_ = s; mac (nm_context_css_extension, s); return *this; }
     context_t& css_fbl (const int n) { version_.css_fbl (n); mac (nm_context_css_fbl, n); return *this; }
+    context_t& css_fill (const int n) { version_.css_fill (n); mac (nm_context_css_fill, n); return *this; }
     context_t& css_filter (const int n) { version_.css_filter (n); mac (nm_context_css_filter, n); return *this; }
     context_t& css_float (const int n) { version_.css_float (n); mac (nm_context_css_float, n); return *this; }
     context_t& css_font (const int n) { version_.css_font (n); mac (nm_context_css_font, n); return *this; }
@@ -137,19 +139,24 @@ class context_t
     context_t& css_logic (const int n) { version_.css_logic (n); mac (nm_context_css_logic, n); return *this; }
     context_t& css_masking (const int n) { version_.css_masking (n); mac (nm_context_css_masking, n); return *this; }
     context_t& css_media (const int n) { version_.css_media (n); mac (nm_context_css_media, n); return *this; }
+    context_t& css_motion (const int n) { version_.css_motion (n); mac (nm_context_css_motion, n); return *this; }
     context_t& css_multi_column (const int n) { version_.css_multi_column (n); mac (nm_context_css_multi_column, n); return *this; }
     context_t& css_namespace (const int n) { version_.css_namespace (n); mac (nm_context_css_namespace, n); return *this; }
     context_t& css_nes (const int n) { version_.css_nes (n); mac (nm_context_css_nes, n); return *this; }
+    context_t& css_nesting (const int n) { version_.css_nesting (n); mac (nm_context_css_nesting, n); return *this; }
     context_t& css_overflow (const int n) { version_.css_overflow (n); mac (nm_context_css_overflow, n); return *this; }
     context_t& css_overscroll (const int n) { version_.css_overscroll (n); mac (nm_context_css_overscroll, n); return *this; }
     context_t& css_page (const int n) { version_.css_page (n); mac (nm_context_css_page, n); return *this; }
     context_t& css_position (const int n) { version_.css_position (n); mac (nm_context_css_position, n); return *this; }
     context_t& css_present (const int n) { version_.css_present (n); mac (nm_context_css_present, n); return *this; }
     context_t& css_pseudo (const int n) { version_.css_pseudo (n); mac (nm_context_css_pseudo, n); return *this; }
+    context_t& css_region (const int n) { version_.css_region (n); mac (nm_context_css_region, n); return *this; }
     context_t& css_rhythm (const int n) { version_.css_rhythm (n); mac (nm_context_css_rhythm, n); return *this; }
     context_t& css_round (const int n) { version_.css_round (n); mac (nm_context_css_round, n); return *this; }
     context_t& css_ruby (const int n) { version_.css_ruby (n); mac (nm_context_css_ruby, n); return *this; }
+    context_t& css_scope (const int n) { version_.css_scope (n); mac (nm_context_css_scope, n); return *this; }
     context_t& css_scrollbar (const int n) { version_.css_scrollbar (n); mac (nm_context_css_scrollbar, n); return *this; }
+    context_t& css_sda (const int n) { version_.css_sda (n); mac (nm_context_css_sda, n); return *this; }
     context_t& css_selector (const int n) { version_.css_selector (n); mac (nm_context_css_selector, n); return *this; }
     context_t& css_shadow (const int n) { version_.css_shadow (n); mac (nm_context_css_shadow, n); return *this; }
     context_t& css_shape (const int n) { version_.css_shape (n); mac (nm_context_css_shape, n); return *this; }
@@ -166,6 +173,7 @@ class context_t
     context_t& css_value (const int n) { version_.css_value (n); mac (nm_context_css_value, n); return *this; }
     context_t& css_version (const int mjr, const int mnr);
     context_t& css_version (const e_css_version v) { version_.css_version (v); mac < int > (nm_context_css_version, v); return *this; }
+    context_t& css_view (const int n) { version_.css_view (n); mac (nm_context_css_view, n); return *this; }
     context_t& css_writing_mode (const int n) { version_.css_writing_mode (n); mac (nm_context_css_writing_mode, n); return *this; }
     context_t& css_will_change (const int n) { version_.css_will_change (n); mac (nm_context_css_will_change, n); return *this; }
     context_t& custom_elements (const vstr_t& s) { custom_elements_ = s; mac (nm_context_custom_elements, s); return *this; }
@@ -355,6 +363,7 @@ public:
     int css_compositing () { return version_.css_compositing (); }
     int css_conditional_rule () { return version_.css_conditional_rule (); }
     int css_contain () { return version_.css_contain (); }
+    int css_content () { return version_.css_content (); }
     int css_counter_style () { return version_.css_counter_style (); }
     int css_custom () { return version_.css_custom (); }
     int css_device () { return version_.css_device (); }
@@ -364,6 +373,7 @@ public:
     const vstr_t css_extension () const { return css_ext_; }
     int css_fbl () { return version_.css_fbl (); }
     int css_filter () { return version_.css_filter (); }
+    int css_fill () { return version_.css_fill (); }
     int css_float () { return version_.css_float (); }
     int css_font () { return version_.css_font (); }
     int css_fragmentation () { return version_.css_fragmentation (); }
@@ -376,19 +386,24 @@ public:
     int css_inline () { return version_.css_inline (); }
     int css_masking () { return version_.css_masking (); }
     int css_media () { return version_.css_media (); }
+    int css_motion () { return version_.css_motion (); }
     int css_multi_column () { return version_.css_multi_column (); }
     int css_namespace () { return version_.css_namespace (); }
     int css_nes () { return version_.css_nes (); }
+    int css_nesting () { return version_.css_nesting (); }
     int css_overflow () { return version_.css_overflow (); }
     int css_overscroll () { return version_.css_overscroll (); }
     int css_page () { return version_.css_page (); }
     int css_position () { return version_.css_position (); }
     int css_present () { return version_.css_present (); }
     int css_pseudo () { return version_.css_pseudo (); }
+    int css_region () { return version_.css_region (); }
     int css_rhythm () { return version_.css_rhythm (); }
     int css_round () { return version_.css_round (); }
     int css_ruby () { return version_.css_ruby (); }
+    int css_scope () { return version_.css_scope (); }
     int css_scrollbar () { return version_.css_scrollbar (); }
+    int css_sda () { return version_.css_sda (); }
     int css_selector () { return version_.css_selector (); }
     int css_shadow () { return version_.css_shadow (); }
     int css_shape () { return version_.css_shape (); }
@@ -404,6 +419,7 @@ public:
     int css_ui () { return version_.css_ui (); }
     int css_value () { return version_.css_value (); }
     e_css_version css_version () const noexcept { return version_.css_version (); }
+    int css_view () { return version_.css_view (); }
     int css_writing_mode () { return version_.css_writing_mode (); }
     int css_will_change () { return version_.css_will_change (); }
     const vstr_t custom_elements () const { return custom_elements_; }

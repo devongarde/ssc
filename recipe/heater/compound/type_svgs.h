@@ -194,6 +194,12 @@ template < > struct type_master < t_urifn_ni > : type_id_or_either_string < t_ur
 {   using type_id_or_either_string < t_urifn_ni, t_urifn, sz_none, sz_inherit > :: type_id_or_either_string;
     static e_animation_type animation_type () noexcept { return at_url; } };
 
+template < > struct type_master < t_urifn_xy > : type_must_then_opt < t_urifn_xy, t_urifn, sz_space_char, t_integer, 0, 2 >
+{ using type_must_then_opt < t_urifn_xy, t_urifn, sz_space_char, t_integer, 0, 2 > :: type_must_then_opt; };
+
+template < > struct type_master < t_urifn_str > : public type_either_or < t_urifn_str, t_urifn, t_text >
+{   using type_either_or < t_urifn_str, t_urifn, t_text > :: type_either_or; };
+
 template < > struct type_master < t_vertical_align > : type_either_or < t_vertical_align, t_vertical_align_enum, t_measure >
 {   using type_either_or < t_vertical_align, t_vertical_align_enum, t_measure > :: type_either_or;
     static e_animation_type animation_type () noexcept { return at_other; } };

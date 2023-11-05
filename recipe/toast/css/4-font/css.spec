@@ -51,7 +51,6 @@ PASS ../toast/css/4-font/css-6.css
 75 unrecognised_value not_here
 76 css_font_feature
 77 css_syntax
-80 css_element
 102 fontname
 134 css_font_feature
 135 css_font_feature

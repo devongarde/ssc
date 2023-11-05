@@ -2,7 +2,6 @@
 
 PASS ../toast/css/3-page/css-3.css
 0 html
-1 css_version css_version
 
 PASS ../toast/css/3-page/css-4.css
 0 html

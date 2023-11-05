@@ -44,6 +44,7 @@ class stats
     css_statement_stats css_statement_;
     smsid_stats custom_prop_, dcl_class_, dcl_id_, dcl_element_class_, dcl_element_id_, font_,
                 use_class_, use_id_, use_element_class_, use_element_id_;
+    sstr_t highlight_;
     uint64_t file_count_ = 0;
     unsigned smallest_ = UINT_MAX;
     unsigned biggest_ = 0;
@@ -62,6 +63,7 @@ class stats
     ::std::string category_report () const;
     ::std::string class_report () const;
     ::std::string class_report2 () const;
+    ::std::string css_highlight_report () const;
     ::std::string css_property_report () const;
     ::std::string css_statement_report () const;
     ::std::string custom_property_report () const;
@@ -125,6 +127,8 @@ public:
     {   metaname_.mark (mn); }
     void use_class (const ::std::string& s, const ::std::size_t n = 1)
     {   use_class_.mark (s, n); }
+    void use_highlight (const ::std::string& s)
+    {   highlight_.insert (s); }
     void use_id (const ::std::string& s, const ::std::size_t n = 1)
     {   use_id_.mark (s, n); }
     void use_element_class (const ::std::string& s, const ::std::size_t n = 1)

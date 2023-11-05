@@ -7,9 +7,9 @@ PASS ../toast/css/custom/css-2.css
 0 html
 2 css_custom
 3 css_custom
-11 css_syntax css_syntax
-12 css_element css_element css_syntax css_syntax css_syntax
-13 css_syntax css_syntax css_syntax css_syntax
+11 css_syntax
+12 css_syntax css_syntax
+13 css_syntax css_syntax css_syntax
 16 css_custom css_custom css_custom css_custom
 20 css_custom
 25 css_custom

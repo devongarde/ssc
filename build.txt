@@ -61,7 +61,7 @@ Windows 10 & 11.
 Note the included solutions presume Microsoft's VCPKG manager. There
 are alternatives.
 
-On low memory build machines, disable the /MP switch.
+On low memory machines, disable the /MP switch.
 
 
 Unii & mock Unii
@@ -89,7 +89,7 @@ complaints about being unable to find or copy files during testing are
 not of concern, these come from scripts that set up or tear down
 individual tests, and the standard commands used sometimes complain if
 they can't find files they're supposed to delete, which is a bit silly
-given that means things are already in the desired state.
+given that means things are already in the required state.
 
 The following have, at some point, been successfully built as x64 amd:
 FreeBSD:  12.3 / 13.1

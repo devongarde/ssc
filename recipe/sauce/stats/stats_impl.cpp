@@ -236,6 +236,19 @@ mmac_t mac_subtitle (const ::std::string& title)
         res = macro -> apply (ns_stats_head, table) + res + macro -> apply (ns_stats_foot, table); }
     return res; }
 
+::std::string stats::css_highlight_report () const
+{   mmac_t table = mac_title ("CSS custom highlights");
+    ::std::string res;
+    if (! highlight_.empty ())
+    {   for (auto s : highlight_)
+        {   mmac_t stat = mac_init (s);
+            res += macro -> apply (ns_stat, macro -> macros (), table, stat); }
+        mmac_t finish;
+        ::std::string sum = ::boost::lexical_cast < ::std::string > (highlight_.size ()) + " highlights named";
+        finish.emplace (nm_stats_total, sum);
+        res = macro -> apply (ns_stats_head, finish, table) + res + macro -> apply (ns_stats_foot, finish, table); }
+    return res; }
+
 ::std::string stats::css_property_report () const
 {   mmac_t table = mac_title ("CSS properties");
     ::std::string res;
@@ -509,6 +522,7 @@ mmac_t mac_subtitle (const ::std::string& title)
     res += dtdd_report ();
     res += css_property_report ();
     res += css_statement_report ();
+    res += css_highlight_report ();
     res += font_report ();
     res += class_report ();
     res += itemid_report ();

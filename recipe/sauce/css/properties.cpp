@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/arguments.h"
 #include "css/properties.h"
 #include "utility/quote.h"
-#include "css/statement.h"
+#include "css/statements.h"
+#include "css/property.h"
 
 void properties::parse (arguments& args, const int from, const int to)
 {   PRESUME ((from <= to) || (to < 0), __FILE__, __LINE__);
@@ -38,33 +39,41 @@ void properties::parse (arguments& args, const int from, const int to)
         if (atat >= 0)
             switch (args.t_.at (i).t_)
             {   case ct_at :
-                    if (! burnt)
-                    {   nitpick& nits = args.t_.at (b).nits_;
-                        nits.pick (nit_css_syntax, es_error, ec_css, "two @s for the price of one?!"); }
-                    else
-                    {   nitpick& nits = args.t_.at (i).nits_;
-                        nits.pick (nit_css_syntax, es_error, ec_css, "unexpected second @..."); }
-                    burnt = true;
+                    if (brack == 0)
+                        if (! burnt)
+                        {   nitpick& nits = args.t_.at (b).nits_;
+                            nits.pick (nit_css_syntax, es_error, ec_css, "two @s for the price of one?!");
+                            burnt = true; }
+                        else
+                        {   nitpick& nits = args.t_.at (i).nits_;
+                            nits.pick (nit_css_syntax, es_error, ec_css, "unexpected second @..."); }
                     break; 
                 case ct_curly_brac :
                 {   PRESUME (args.t_.at (i).child_ > 0, __FILE__, __LINE__);
-                    PRESUME (args.st_ != nullptr, __FILE__, __LINE__);
-                    i = token_find (args.t_, ct_curly_ket, i);
-                    if (i < 0)
+                    i = close_bracket_for (args.t_, i, to);
+                    if (brack > 0)
                     {   nitpick& nits = args.t_.at (atat).nits_;
-                        nits.pick (nit_css_syntax, es_error, ec_css, "found '{' but not '}'; moving on from this");
-                        return; }
-                    args.st_ -> parse (args, atat, i);
-                    atat = b = -1;
-                    break; }
+                        nits.pick (nit_css_syntax, es_warning, ec_css, "unbalanced brackets before {"); }
+                    if (st_.get () == nullptr) st_ = pst_t (new statements (args, atat, i));
+                    else st_ -> parse (args, atat, i);
+                    atat = b = -1; }
+                    break;
                 case ct_keyword :
                 case ct_identifier :
                 case ct_dash :
                 case ct_whitespace :
                 case ct_comment :
                     break;
+                case ct_round_brac :
+                case ct_square_brac :
+                    ++brack;
+                    break;
+                case ct_round_ket :
+                case ct_square_ket :
+                    if (brack > 0) --brack;
+                    break;
                 default :
-                    if (! burnt)
+                    if ((! burnt) && (brack == 0))
                     {   nitpick& nits = args.t_.at (atat).nits_;
                         nits.pick (nit_css_syntax, es_error, ec_css, quote (tkn_rpt (args.t_.at (i))), ": unexpected; expecting { ... }");
                         burnt = true; }
@@ -75,7 +84,7 @@ void properties::parse (arguments& args, const int from, const int to)
                 break;
             case ct_semicolon :
                 if (brack == 0)
-                {   if (b != i) prop_.emplace_back (args, b, prev);
+                {   if (b != i) prop_.emplace_back (new property (args, b, prev));
                     b = -1; }
                 break;
             case ct_round_brac :
@@ -92,25 +101,25 @@ void properties::parse (arguments& args, const int from, const int to)
                 break; }
         prev = i; }
     if (b != -1)
-        if (atat < 0) prop_.emplace_back (args, b, to);
+        if (atat < 0) prop_.emplace_back (new property (args, b, to));
         else if (! burnt) args.st_ -> parse (args, atat, (to > 0) ? to : prev); }
 
 void properties::accumulate (stats_t* s, const element_bitset& e) const
 {   for (auto p : prop_)
-        p.accumulate (s, e); }
+        p -> accumulate (s, e); }
 
 ::std::string properties::rpt () const
 {   ::std::string res ("{ ");
     for (auto s : prop_)
     {   if (! res.empty ()) res += "; ";
-        res += s.rpt (); }
+        res += s -> rpt (); }
     res += " }";
     return res; }
   
 void properties::validate (arguments& args)
 {   fiddlesticks < properties > f (&args.ps_, this);
     for (auto i : prop_)
-        i.validate (args); }
+        i -> validate (args); }
 
 void properties::shadow (::std::stringstream& ss, arguments& )
 {   ss << rpt (); }

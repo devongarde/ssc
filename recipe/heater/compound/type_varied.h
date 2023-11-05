@@ -280,6 +280,8 @@ template < > struct type_master < t_fill_v > : varied < t_fill_v >
                 validate_type < type_master < t_fill_ve > > (nits, v);
             else if (((elem :: categories (e) & EF_SVG_ANIM) != 0) || (e.get () == elem_animation))
                 validate_type < type_master < t_fillanim > > (nits, v);
+            else if (context.css_fill () >= 3)
+                validate_type < type_master < t_css_background > > (nits, v);
             else validate_type < type_master < t_paint > > (nits, v); } };
 
 template < > struct type_master < t_fontstretch > : varied < t_fontstretch >
@@ -982,7 +984,6 @@ template < > struct type_master < t_xlinkshow_e > : type_string < t_xlinkactuate
 
 template < > struct type_master < t_xlinkshow_o > : type_string < t_xlinkactuate_onrequest, sz_other >
 { using type_string < t_xlinkactuate_onrequest, sz_other > :: type_string; };
-
 
 template < > struct type_master < t_xlinkshow > : varied < t_xlinkshow >
 {   using varied < t_xlinkshow > :: varied;

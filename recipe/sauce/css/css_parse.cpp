@@ -185,7 +185,7 @@ bool css::parse (const ::std::string& content, const bool x, const bool mdm)
     bool commented = false, sgml_cmt = false, xml_cmt = false;
 
     if (! args_.g_.told ())
-    {   if (args_.snippet_ || args_.styled ())
+    {   if (args_.snippet_ || args_.part ())
             args_.t_.at (0).nits_.pick (nit_css_version, es_comment, ec_css, "Presuming CSS version ", args_.v_.css_version_name ());
         else if (context.html_ver () != html_default)
             args_.t_.at (0).nits_.pick (nit_html, es_info, ec_css, "Presuming CSS intended for use with ", context.html_ver ().name ());
@@ -293,9 +293,9 @@ bool css::parse (const ::std::string& content, const bool x, const bool mdm)
                                bonk (args_.t_, ct_barbar, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                            else args_.t_.at (args_.t_.size () - 1).nits_.pick (nit_css_version, ed_css_selectors_4, "2. Selectors Overview", es_error, ec_css, "|| requires CSS Selector 4");
                            break;
-                case '&' : if (context.html_ver ().css_cascade () >= 6)
+                case '&' : if ((context.html_ver ().css_cascade () >= 6) || ((context.html_ver ().css_view () >= 3)))
                                bonk (args_.t_, ct_ampersand, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
-                           else args_.t_.at (args_.t_.size () - 1).nits_.pick (nit_css_version, ed_css_cascade_6, "2.5.3. Scoped Style Rules", es_error, ec_css, "& requires CSS Cascade 6");
+                           else args_.t_.at (args_.t_.size () - 1).nits_.pick (nit_css_version, ed_css_cascade_6, "2.5.3. Scoped Style Rules", es_error, ec_css, "& requires CSS Cascade 6 or CSS Nesting");
                            break;
                 case '+' : bonk (args_.t_, ct_plus, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
                 case '"' :
@@ -563,3 +563,36 @@ int close_bracket_for (const vtt_t& vt, const int from, const int to)
             default :
                 break; }
     return -1; }
+
+int pos_de (const vtt_t& vt, const css_token sep, const int from, const int to, vint_t& vfr, vint_t& vto, const bool empties)
+{   PRESUME (from >= 0, __FILE__, __LINE__);
+    PRESUME (to > 0, __FILE__, __LINE__);
+    PRESUME (to > from, __FILE__, __LINE__);
+    int prev = from, depth = 0;
+    vfr.clear (); vto.clear ();
+    for (int i = from; i < to; ++i)
+        switch (vt.at (i).t_)
+        {   case ct_round_brac :
+            case ct_square_brac :
+            case ct_curly_brac :
+                ++depth;
+                break;
+            case ct_round_ket :
+            case ct_square_ket :
+            case ct_curly_ket :
+                if (depth > 0) --depth;
+                break;
+            default :
+                if ((depth == 0) && (vt.at (i).t_ == sep))
+                {   if (i > prev)
+                    {   vfr.push_back (prev);
+                        vto.push_back (i - 1); }
+                    else if (empties)
+                    {   vfr.push_back (-1);
+                        vto.push_back (-1); }
+                    prev = i+1; }
+                break; }
+    if (prev < to)
+    {   vfr.push_back (prev);
+        vto.push_back (to); }
+    return GSL_NARROW_CAST < int > (vfr.size ()); }

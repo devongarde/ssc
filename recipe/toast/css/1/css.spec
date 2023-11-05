@@ -46,7 +46,6 @@ PASS ../toast/css/1/css-7.css
 1 unrecognised_value
 6 unrecognised_value unrecognised_value
 7 css_syntax
-8 unrecognised_value
 15 unrecognised_value
 27 css_version
 33 unrecognised_value unrecognised_value

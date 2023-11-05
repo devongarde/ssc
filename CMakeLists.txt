@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.19)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.1.43 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
+project (ssc VERSION 0.1.44 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
 
 set (CMAKE_CXX_STANDARD 17)
 
@@ -249,7 +249,7 @@ target_sources (ssc PRIVATE
             ${H}/compound/type_microdatas.h ${H}/compound/type_microformats.h ${H}/compound/type_mimes.h ${H}/compound/type_numerics.h
             ${H}/compound/type_svgs.h ${H}/compound/type_sz.h ${H}/compound/type_van.h ${H}/compound/type_varied.h
         ${H}/coop/fred.h ${H}/coop/kew.h ${H}/coop/knickers.h ${H}/coop/lox.h ${H}/coop/tls.h
-        ${H}/css/arguments.h ${H}/css/css.h ${H}/css/css_attribute.h ${H}/css/css_class.h ${H}/css/css_element.h ${H}/css/css_parse.h
+        ${H}/css/arguments.h ${H}/css/css.h ${H}/css/css_attribute.h ${H}/css/css_class.h ${H}/css/css_element.h ${H}/css/css_parse.h ${H}/css/css_pre.h
             ${H}/css/css_state.h ${H}/css/decoration.h ${H}/css/descriptor.h ${H}/css/descriptor_classes.h ${H}/css/descriptors.h ${H}/css/distilled.h
             ${H}/css/ffv.h ${H}/css/ffvs.h ${H}/css/flags.h ${H}/css/fn.h ${H}/css/global.h ${H}/css/group.h ${H}/css/id.h ${H}/css/media.h
             ${H}/css/medium.h ${H}/css/property.h ${H}/css/properties.h ${H}/css/property_classes.h ${H}/css/rule.h ${H}/css/rules.h
@@ -310,12 +310,12 @@ target_sources (ssc PRIVATE
             ${S}/css/descriptors.cpp ${S}/css/distilled.cpp ${S}/css/ffv.cpp ${S}/css/ffvs.cpp ${S}/css/fn.cpp ${S}/css/global.cpp ${S}/css/group.cpp
             ${S}/css/media.cpp ${S}/css/medium.cpp ${S}/css/property.cpp ${S}/css/properties.cpp ${S}/css/property_constructor.cpp ${S}/css/rule.cpp
             ${S}/css/rules.cpp ${S}/css/selector.cpp ${S}/css/selectors.cpp ${S}/css/statement.cpp ${S}/css/statements.cpp ${S}/css/typed_property.cpp
-            ${S}/css/value.cpp ${S}/css/value2.cpp ${S}/css/value_types_a.cpp ${S}/css/value_types_b_c.cpp ${S}/css/value_types_css_a.cpp 
-            ${S}/css/value_types_css_b.cpp ${S}/css/value_types_css_c.cpp ${S}/css/value_types_css_d_e.cpp ${S}/css/value_types_css_f.cpp
-            ${S}/css/value_types_css_g_l.cpp ${S}/css/value_types_css_m_p.cpp ${S}/css/value_types_css_r_s.cpp ${S}/css/value_types_css_t.cpp
-            ${S}/css/value_types_css_u_z.cpp ${S}/css/value_types_c_e.cpp ${S}/css/value_types_f.cpp ${S}/css/value_types_g_i.cpp
-            ${S}/css/value_types_j_l.cpp ${S}/css/value_types_m.cpp ${S}/css/value_types_n_o.cpp ${S}/css/value_types_p.cpp ${S}/css/value_types_q_r.cpp
-            ${S}/css/value_types_s.cpp ${S}/css/value_types_t_u.cpp ${S}/css/value_types_v_z.cpp ${S}/css/weight.cpp 
+            ${S}/css/value.cpp ${S}/css/value2.cpp ${S}/css/value_types_0_9.cpp ${S}/css/value_types_a.cpp ${S}/css/value_types_b_c.cpp
+            ${S}/css/value_types_css_a.cpp ${S}/css/value_types_css_b.cpp ${S}/css/value_types_css_c.cpp ${S}/css/value_types_css_d_e.cpp
+            ${S}/css/value_types_css_f.cpp ${S}/css/value_types_css_g_l.cpp ${S}/css/value_types_css_m_p.cpp ${S}/css/value_types_css_r_s.cpp
+            ${S}/css/value_types_css_t.cpp ${S}/css/value_types_css_u_z.cpp ${S}/css/value_types_c_e.cpp ${S}/css/value_types_f.cpp
+            ${S}/css/value_types_g_i.cpp ${S}/css/value_types_j_l.cpp ${S}/css/value_types_m.cpp ${S}/css/value_types_n_o.cpp ${S}/css/value_types_p.cpp
+            ${S}/css/value_types_q_r.cpp ${S}/css/value_types_s.cpp ${S}/css/value_types_t_u.cpp ${S}/css/value_types_v_z.cpp ${S}/css/weight.cpp 
         ${S}/element/elem.cpp ${S}/element/element.cpp ${S}/element/element_abcd.cpp ${S}/element/element_aria.cpp ${S}/element/element_attributes.cpp
             ${S}/element/element_classes.cpp ${S}/element/element_efghi.cpp ${S}/element/element_examine.cpp ${S}/element/element_input.cpp
             ${S}/element/element_jkl.cpp ${S}/element/element_microdata.cpp ${S}/element/element_microformats.cpp ${S}/element/element_mno.cpp

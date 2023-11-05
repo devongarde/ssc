@@ -1,0 +1,12 @@
+﻿table {flow-into: table-content}
+
+table > * {flow-into: table-content} 
+
+table * {flow-into: table-content}
+
+span {flow-into: span-content}
+
+#id {
+  flow-into: foolish;
+  flow-from: foolish;
+}

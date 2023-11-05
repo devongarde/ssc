@@ -118,7 +118,7 @@ void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string
             nits.pick (nit_css_syntax, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, quote (val), ": should be a keyword");
         if (xk || xn || xi) if ((f & CF_EXPECT_STRING) == CF_EXPECT_STRING)
             nits.pick (nit_css_syntax, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, quote (val), ": should be a string");
-        if (! xn) if ((f & CF_EXPECT_NUMBER) == CF_EXPECT_NUMBER)
+        if (! xn) if ((f & (CF_EXPECT_NUMBERS | CF_EXPECT_NUMBER)) != 0)
             nits.pick (nit_css_syntax, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, quote (val), ": should be a number"); }
     if (snippet_ && ((f & CF_SVG) == CF_SVG))
         if (! eb_.test (elem_svg))

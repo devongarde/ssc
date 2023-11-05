@@ -1,0 +1,8 @@
+﻿section h1 { bookmark-level: 1; }
+section section h1 { bookmark-level: 2; }
+section section section h1 { bookmark-level: 3; }
+
+h1 {
+    bookmark-label: content(text);
+    bookmark-level: 1;
+}

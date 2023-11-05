@@ -1,0 +1,14 @@
+﻿h1::before { content: counter(section) ": "; }
+
+chapter { counter-increment: chapter; }
+chapter > title::before { content: "Chapter " counter(chapter) "\A"; }
+
+/* Replace <logo> elements with the site’s logo, using a format
+ * supported by the UA */
+logo { content: url(logo.mov), url(logo.mng), url(logo.png), none; }
+
+/* Replace <figure> elements with the referenced document, or,
+ * failing that, with either the contents of the alt attribute or the
+ * contents of the element itself if there is no alt attribute */
+figure[alt] { content: attr(href url), attr(alt); }
+figure:not([alt]) { content: attr(href url), contents; }

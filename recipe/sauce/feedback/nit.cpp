@@ -215,6 +215,7 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_css_colour_3 : return "CSS Colour 3";
         case ed_css_colour_4 : return "CSS Colour 4";
         case ed_css_colour_5 : return "CSS Colour 5";
+        case ed_css_content : return "CSS Generated Content";
         case ed_css_cs_3 : return "CSS Counter Styles 3";
         case ed_css_custom : return "CSS Custom Properties";
         case ed_css_ease : return "CSS Easing Functions";
@@ -224,6 +225,7 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_css_media_3 : return "CSS Media 3"; 
         case ed_css_media_4 : return "CSS Media 4"; 
         case ed_css_namespaces_3 : return "CSS Namespaces 3";
+        case ed_css_nesting : return "CSS Nesting";
         case ed_css_selectors_3 : return "CSS Selectors 3";
         case ed_css_selectors_4 : return "CSS Selectors 4";
         case ed_css_syntax : return "CSS Syntax Module";
@@ -327,6 +329,7 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_css_colour_3 : return "CSS Colour 3, January 2022";
         case ed_css_colour_4 : return "CSS Colour 4, November 2022";
         case ed_css_colour_5 : return "CSS Colour 5 (June 2022 draft)";
+        case ed_css_content : return "CSS Generated Content (August 2019 draft)";
         case ed_css_cs_3 : return "CSS Counter Stylse 3, July 2021";
         case ed_css_custom : return "CSS Custom Properties for Cascading Variables Level 1, June 2022";
         case ed_css_ease : return "CSS Easing Functions Level 1, February 2023";
@@ -336,6 +339,7 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
         case ed_css_media_3 : return "CSS Media Queries Level 3, April 2022"; 
         case ed_css_media_4 : return "CSS Media Queries Level 4, July 2020"; 
         case ed_css_namespaces_3 : return "CSS Namespaces 3, September 2011";
+        case ed_css_nesting : return "CSS Nesting, February 2023";
         case ed_css_selectors_3 : return "CSS Selectors Level 3, November 2018";
         case ed_css_selectors_4 : return "CSS Selectors Level 4, November 2022 draft";
         case ed_css_syntax : return "CSS Syntax Module Level 3, December 2021 draft";

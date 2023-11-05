@@ -76,6 +76,8 @@ public:
     void nick_nits (nitpick& nits);
     const arguments& args () const { return args_; }
     arguments& args () { return args_; }
+    const statements& stms () const { return st_; }
+    statements& stms () { return st_; }
     const element_bitset get_elements () const { return st_.get_elements (); } };
 
 typedef ::std::shared_ptr < css > css_ptr;

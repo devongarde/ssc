@@ -23,17 +23,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/enum.h"
 #include "element/elem.h"
 #include "css/css_attribute.h"
-
-class css_element;
-class selector;
-typedef ::std::shared_ptr < css_element > csp_t;
-typedef ::std::shared_ptr < selector > csl_t;
+#include "css/css_pre.h"
 
 class css_fn
 {   e_css_fn fn_ = efn_none;
     vstr_t params_;
-    ::std::vector < csp_t > ve_;
-    ::std::vector < csl_t > vsl_;
+    vpel_t ve_;
+    vpsel_t vsl_;
 public:
     DEFAULT_CONSTRUCTORS (css_fn);
     css_fn (arguments& args, const int from, const int to, const bool coco = false, const bool knotted = false)

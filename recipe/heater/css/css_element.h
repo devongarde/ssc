@@ -22,12 +22,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "feedback/nitpick.h"
 #include "main/enum.h"
 #include "element/elem.h"
+#include "css/css_pre.h"
 #include "css/decoration.h"
 #include "css/arguments.h"
 
 class css_element
 {   elem e_;
     vcd_t decore_;
+    ps_t duff_;
+    vpst_t st_;
+    vpp_t pp_;
 public:
     DEFAULT_CONSTRUCTORS (css_element);
     explicit css_element (const elem& e) : e_ (e) { }

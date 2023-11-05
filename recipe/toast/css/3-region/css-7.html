@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS 3 regions test pages</title>
+
+<style>
+  article {
+      flow-into: article;
+  }
+  #rA, #rB, #rC {
+      flow-from: article;
+      height: auto;
+      margin: 1em 1em 0em 1em;
+      padding: 1em;
+      border: 3px solid #46A4E9;
+  }
+  #rA {
+      width: auto;
+  }
+  #rB {
+      float: left;
+      width: 15em;
+      max-height: 150px;
+  }
+  #rC {
+      float: right;
+      width: 12em;
+  }
+  #main-flow {
+      padding: 0em 1em 0em 1em;
+  }
+</style>
+</head>
+
+<body>
+    <article>
+        <p style="break-after:region;">I am not a ... </p>
+        <p>...</p>
+    </article>
+    <div id="rA"></div>
+    <div id="rB"></div>
+    <div id="rC"></div>
+    <div id="main-flow">
+        <p>Lorem ipsum dolor ...</p>
+    </div>
+</body>
+</html>

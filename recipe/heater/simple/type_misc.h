@@ -370,3 +370,13 @@ template < > struct type_master < t_target > : public tidy_string < t_target >
             if ((val == "_blank") || (val == "_self") || (val == "_parent") || (val == "_top")) return;
             nits.pick (nit_badtarget, es_error, ec_type, quote (s), " starts with '_', but is not a standard target"); }
         string_value < t_target > :: status (s_invalid); } };
+
+template < > struct type_master < t_text_2n > : string_vector < t_text_2n, sz_space_char >
+{   using string_vector < t_text_2n, sz_space_char > :: string_vector;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   string_vector < t_text_2n, sz_space_char > :: set_value (nits, v, s);
+        if (string_vector < t_text_2n, sz_space_char > :: empty ()) return;
+        if (string_vector < t_text_2n, sz_space_char > :: good ())
+        {   if (string_vector < t_text_2n, sz_space_char > :: get ().size () % 2 == 0) return;
+            nits.pick (nit_sizes, es_error, ec_type, "an even number of strings expected"); }
+        string_vector < t_text_2n, sz_space_char > :: status (s_invalid); } };

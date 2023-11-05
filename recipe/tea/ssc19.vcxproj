@@ -323,6 +323,7 @@
     <ClCompile Include="..\sauce\css\typed_property.cpp" />
     <ClCompile Include="..\sauce\css\value.cpp" />
     <ClCompile Include="..\sauce\css\value2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_0_9.cpp" />
     <ClCompile Include="..\sauce\css\value_types_a.cpp" />
     <ClCompile Include="..\sauce\css\value_types_b_c.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_a.cpp" />

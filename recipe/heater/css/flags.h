@@ -77,3 +77,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define CF_FILTER           0x0000020000000000
 #define CF_TEXT_4           0x0000040000000000
 #define CF_FLOAT            0x0000080000000000
+#define CF_OFFSET_PATH      0x0000100000000000
+#define CF_CONTENT          0x0000200000000000
+
+#define CF_EXPECT_NUMBERS   0x0000400000000000

@@ -59,6 +59,7 @@ public:
     void mark_meta (const e_metaname mn);
     void mark_meta (const e_metaname mn, const ::std::string& val);
     void use_class (const ::std::string& s, const ::std::size_t n = 1);
+    void use_highlight (const ::std::string& s);
     void use_id (const ::std::string& s, const ::std::size_t n = 1);
     void use_element_class (const ::std::string& s, const ::std::size_t n = 1);
     void use_element_id (const ::std::string& s, const ::std::size_t n = 1);

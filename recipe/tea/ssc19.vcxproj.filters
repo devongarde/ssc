@@ -1543,6 +1543,9 @@
     <ClCompile Include="..\sauce\simple\type_jsonic.cpp">
       <Filter>Sauce\simple</Filter>
     </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_0_9.cpp">
+      <Filter>Sauce\css</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="fulltest.bat">

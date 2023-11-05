@@ -3,6 +3,16 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.44
+- CSS Generated Content 3
+- CSS Region 3
+- CSS Scoping 3
+- CSS Scroll-Driven Animations 3
+- CSS View Transitions 3
+- improved integration of SVG and CSS
+- various bug fixes
+- underlying work
+
 0.1.43
 - OpenBSD 7.4
 - Macos Sonoma
@@ -10,6 +20,7 @@ https://ssc.lu/
 - CSS Non-Element Selectors 3
 - CSS Paged Media 3
 - CSS Shadow Parts 3
+- various bug fixes
 - underlying work
 
 0.1.42

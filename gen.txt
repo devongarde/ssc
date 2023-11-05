@@ -120,6 +120,9 @@ the "no-" switch always applies.
 --css.contain X         Use CSS Contain level X, where X is 0, 3, 4 or
                         5: see --css.version for gen.
 
+--css.content X         Use CSS Generated Content level X, where X is 0
+                        or 3.
+
 --css.cs X              Use CSS Counter Style level X, where X is 0 or
                         3.
 
@@ -200,6 +203,8 @@ the "no-" switch always applies.
 
 --css.print             Test against the CSS Print Profile.
 
+--css.region X          Use CSS Regions level X, where X is 0 or 3.
+
 --css.rhythm X          Use CSS Rhythmic Sizing level X, where X is 0
                         or 3.
 
@@ -209,8 +214,13 @@ the "no-" switch always applies.
 --css.ruby X            Use CSS Ruby Annotations level X, where X is 0
                         or 3.
 
+--css.scope X           Use CSS Scoping level X, where X is 0 or 3.
+
 --css.scrollbar X       Use CSS Scrollbar Style level X, where X is 0
                         or 3.
+
+--css.sda X             Use CSS Scroll-Driven Animations Style level X,
+                        where X is 0 or 3.
 
 --css.selector X        Use CSS Selectors level X, where X is 0, 3 or
                         4.
@@ -294,6 +304,9 @@ the "no-" switch always applies.
                         not part of CSS 1, specify 3. Similarly, for
                         those named level 2 that are not part of any
                         CSS 2 specification, etm..
+
+--css.view  X           Use CSS View Transitions level X, where X is 0
+                        or 3.
 
 --css.wc X              Use CSS Will Change level X, where X is 0 or 3.
 

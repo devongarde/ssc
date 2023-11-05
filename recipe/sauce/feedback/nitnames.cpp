@@ -836,6 +836,12 @@ const nitname nitnames [] =
     { nit_abandoned, "abandoned" },
     { nit_when_else, "when else" },
     { nit_part, "part" },
+    { nit_highlight, "highlight" },
+    { nit_sda, "sda" },
+    { nit_vtn, "vtn" },
+    { nit_naughty_offset, "naughty_offset" },
+    { nit_nesting, "nesting" },
+    { nit_content, "content" },
 
     { nit_incompatible, "incompatible" },
 

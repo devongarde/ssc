@@ -270,10 +270,10 @@ int main (int argc, char** argv)
         macro -> set (nm_context_build, build_info);
         macro -> set (nm_run_args, args);
         context.general_info (::boost::filesystem::current_path ().string () + "\n" + args + "\n" VERSION_STRING " [" __DATE__  " " __TIME__ "] [" + build_info + "]\n");
-        res = context.parameters (nuts, argc, argv);
 #ifdef DEBUG
         avm_elem_crosscheck ();
 #endif
+        res = context.parameters (nuts, argc, argv);
         if (context.todo () == do_simple)
         {   ::std::cout << full_title;
             ::std::cout << context.domsg ();

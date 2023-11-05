@@ -1,0 +1,15 @@
+﻿@scope div {
+  span {
+    color: blue;
+  }
+}
+@scope section {
+  span {
+    color: orange;
+  }
+}
+
+@scope aside {
+p { color: green; }
+}
+aside#sidebar p { color: red; }

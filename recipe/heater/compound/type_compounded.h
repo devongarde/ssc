@@ -28,11 +28,26 @@ template < > struct type_master < t_acn_2 > : type_range < t_acn_2, sz_space_cha
 template < > struct type_master < t_aesfs > : type_range < t_aesfs, sz_space_char, t_aesf, 1, 2 >
 { using type_range < t_aesfs, sz_space_char, t_aesf, 1, 2 > :: type_range; };
 
+template < > struct type_master < t_angle_ar > : type_or_either_string < t_angle_ar, t_angle, sz_auto, sz_reverse >
+{ using type_or_either_string < t_angle_ar, t_angle, sz_auto, sz_reverse > :: type_or_either_string; };
+
+template < > struct type_master < t_angle_ars > : type_range < t_angle_ars, sz_space_char, t_angle_ar, 1, 2 >
+{ using type_range < t_angle_ars, sz_space_char, t_angle_ar, 1, 2 > :: type_range; };
+
 template < > struct type_master < t_angle_n > : type_or_string < t_angle_n, t_angle, sz_none >
 { using  type_or_string < t_angle_n, t_angle, sz_none > :: type_or_string; };
 
 template < > struct type_master < t_angle_p > : public type_either_or < t_angle_p, t_angle, t_percent >
 {   using type_either_or < t_angle_p, t_angle, t_percent > :: type_either_or; };
+
+template < > struct type_master < t_bixys > : type_at_least_one < t_bixys, sz_space_char, t_bixy >
+{ using type_at_least_one < t_bixys, sz_space_char, t_bixy > :: type_at_least_one; };
+
+template < > struct type_master < t_contents > : type_string < t_contents, sz_contents >
+{ using type_string < t_contents, sz_contents > :: type_string; };
+
+template < > struct type_master < t_dsss > : public type_either_or < t_dsss, t_dss, t_text >
+{   using type_either_or < t_dsss, t_dss, t_text > :: type_either_or; };
 
 template < > struct type_master < t_hue_n > : either_type_or_string < t_hue_n, t_angle, t_hue, sz_none >
 { using  either_type_or_string < t_hue_n, t_angle, t_hue, sz_none > :: either_type_or_string; };
@@ -67,8 +82,8 @@ template < > struct type_master < t_contain_cover_sd > : type_either_or_both < t
 template < > struct type_master < t_cookies > : type_at_least_one < t_cookies, sz_semicolon, t_cookie >
 { using type_at_least_one < t_cookies, sz_semicolon, t_cookie > :: type_at_least_one; };
 
-template < > struct type_master < t_css_all_2 > : public type_sz < t_css_all_2, sz_initial, sz_inherit, sz_unset >
-{   using type_sz < t_css_all_2, sz_initial, sz_inherit, sz_unset > :: type_sz; };
+//template < > struct type_master < t_css_all_2 > : public type_sz < t_css_all_2, sz_initial, sz_inherit, sz_unset >
+//{   using type_sz < t_css_all_2, sz_initial, sz_inherit, sz_unset > :: type_sz; };
 
 template < > struct type_master < t_css_caret > : type_some_of < t_css_caret, sz_space_char, 0, 2, t_css_colour_a, t_css_caret_shape >
 { using type_some_of < t_css_caret, sz_space_char, 0, 2, t_css_colour_a, t_css_caret_shape > :: type_some_of; };
@@ -253,8 +268,8 @@ template < > struct type_master < t_unit_res_per > : type_or_string < t_unit_res
 template < > struct type_master < t_unit_time_per > : type_or_string < t_unit_time_per, t_unit_time, sz_per_cent >
 { using type_or_string < t_unit_time_per, t_unit_time, sz_per_cent > :: type_or_string; };
 
-template < > struct type_master < t_urifn_xy > : type_must_then_opt < t_urifn_xy, t_urifn, sz_space_char, t_integer, 0, 2 >
-{ using type_must_then_opt < t_urifn_xy, t_urifn, sz_space_char, t_integer, 0, 2 > :: type_must_then_opt; };
+template < > struct type_master < t_url_n > : type_or_string < t_url_n, t_url, sz_none >
+{ using type_or_string < t_url_n, t_url, sz_none > :: type_or_string; };
 
 template < > struct type_master < t_xlinktype > : type_string < t_xlinktype, sz_simple >
 { using type_string < t_xlinktype, sz_simple > :: type_string; };

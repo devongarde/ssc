@@ -30,6 +30,7 @@ class css_group;
 class properties;
 class font_features;
 class media_t;
+class css;
 
 struct arguments
 {   css_group& g_;
@@ -38,6 +39,7 @@ struct arguments
     bool sv_ = true;
     bool snippet_ = false;
     bool had_rule_ = false;
+    bool nested_ = false;
     e_element styled_ = elem_undefined;
     ::std::string abs_;
     dst_ptr dst_;
@@ -63,5 +65,6 @@ struct arguments
     const sstr_t& palette () const; 
     sstr_t& palette ();
     e_css_statement cs () const;
-    bool styled () const noexcept { return styled_ != elem_undefined; }
+    bool styled () const noexcept { return (styled_ != elem_undefined); }
+    bool part () const noexcept { return nested_ || styled (); }
     void validate (nitpick& nits, const flags_t f, const ::std::string& p, const ::std::string& v) const; };

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS 3 regions test pages</title>
+    <LINK rel="stylesheet" href="css-3.css" type="text/css">
+
+<style>
+.article{
+    flow-into: thread;
+}
+.region{
+    flow-from: thread;
+}
+</style>
+
+<style>
+  article {
+    flow-into: article-flow;
+  }
+  #region-1, #region-2 {
+    flow-from: article-flow;
+    region-fragment: break; /* or auto */
+    overflow: visible; /* or hidden */
+  }
+</style>
+
+</head>
+
+<body>
+
+<span>one</span>
+<span>two</span>
+
+<span>one</span><span>two</span>
+
+<div class=region>div content</div>
+
+ <article>...</article>
+  <div id="region-1"></div>
+  <div id="region-2"></div>
+
+</body>
+</html>

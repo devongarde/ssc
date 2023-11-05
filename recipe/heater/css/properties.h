@@ -21,10 +21,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "css/property.h"
 #include "css/css_state.h"
+#include "css/css_pre.h"
 
 class properties
 {   vpr_t prop_;
     property_bitset state_;
+    pst_t st_;
 public:
     DEFAULT_CONSTRUCTORS (properties);
     properties (arguments& args, const int from, const int to = -1)

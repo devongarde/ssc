@@ -95,6 +95,9 @@ template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, boo
 template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >
     ::std::string three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE > :: c_;
 
+template < > struct type_master < t_acm > : three_value < t_acm, e_acm, sz_arcs, sz_crop, sz_miter >
+{ using three_value < t_acm, e_acm, sz_arcs, sz_crop, sz_miter > :: three_value; };
+
 template < > struct type_master < t_acn > : three_value < t_acn, e_acn, sz_auto, sz_contain, sz_none >
 { using three_value < t_acn, e_acn, sz_auto, sz_contain, sz_none > :: three_value; };
 
@@ -134,14 +137,23 @@ template < > struct type_master < t_auto_none_thin > : three_value < t_auto_none
 template < > struct type_master < t_baseline_contain_none > : three_value < t_baseline_contain_none, e_baseline_contain_none, sz_baseline, sz_contain, sz_none >
 { using three_value < t_baseline_contain_none, e_baseline_contain_none, sz_baseline, sz_contain, sz_none > :: three_value; };
 
+template < > struct type_master < t_bcs > : three_value < t_bcs, e_bcs, sz_bounding_box, sz_clone, sz_slice >
+{ using three_value < t_bcs, e_bcs, sz_bounding_box, sz_clone, sz_slice > :: three_value; };
+
 template < > struct type_master < t_behaviour > : three_value < t_behaviour, e_behaviour, sz_alternate, sz_scroll, sz_slide >
 { using three_value < t_behaviour, e_behaviour, sz_alternate, sz_scroll, sz_slide > :: three_value; };
+
+template < > struct type_master < t_brs > : three_value < t_brs, e_brs, sz_bevel, sz_round, sz_stupid >
+{ using three_value < t_brs, e_brs, sz_bevel, sz_round, sz_stupid > :: three_value; };
 
 template < > struct type_master < t_button > : three_value < t_button, e_button, sz_button, sz_submit, sz_reset >
 { using three_value < t_button, e_button, sz_button, sz_submit, sz_reset > :: three_value; };
 
 template < > struct type_master < t_cc_permits > : three_value < t_cc_permits, e_cc_permits, sz_cc_derivativeworks, sz_cc_distribution, sz_cc_reproduction >
 { using three_value < t_cc_permits, e_cc_permits, sz_cc_derivativeworks, sz_cc_distribution, sz_cc_reproduction > :: three_value; };
+
+template < > struct type_master < t_cio > : three_value < t_cio, e_cio, sz_centre, sz_inset, sz_outset >
+{ using three_value < t_cio, e_cio, sz_centre, sz_inset, sz_outset > :: three_value; };
 
 template < > struct type_master < t_command > : three_value < t_command, e_command, sz_command, sz_checkbox, sz_radio >
 { using three_value < t_command, e_command, sz_command, sz_checkbox, sz_radio > :: three_value; };
@@ -241,6 +253,9 @@ template < > struct type_master < t_dnu > : three_value < t_dnu, e_dnu, sz_down,
 
 template < > struct type_master < t_dsc > : three_value < t_dsc, e_dsc, sz_disc, sz_square, sz_circle >
 { using three_value < t_dsc, e_dsc, sz_disc, sz_square, sz_circle > :: three_value; };
+
+template < > struct type_master < t_dss > : three_value < t_dss, e_dss, sz_dotted, sz_solid, sz_space_word >
+{ using three_value < t_dss, e_dss,  sz_dotted, sz_solid, sz_space_word > :: three_value; };
 
 template < > struct type_master < t_edgemode > : three_value < t_edgemode, e_edgemode, sz_duplicate, sz_wrap, sz_none >
 { using three_value < t_edgemode, e_edgemode, sz_duplicate, sz_wrap, sz_none > :: three_value; };

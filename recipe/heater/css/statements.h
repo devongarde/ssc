@@ -44,4 +44,5 @@ public:
     void accumulate (stats_t* s) const;
     void validate (arguments& args);
     void shadow (::std::stringstream& ss, arguments& args);
+    const statement& back () const { return statements_.back (); }
     ::std::string rpt () const; };
