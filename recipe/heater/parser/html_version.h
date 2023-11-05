@@ -353,10 +353,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_SVG_10       0x0000001000000000
 #define H2_CSS_SVG_11       0x0000002000000000
 #define H2_CSS_SVG_12       0x0000004000000000
-#define H2_CSS_SVG_1      ( H2_CSS_SVG_10 | H2_CSS_SVG_11 | H2_CSS_SVG_12 )
+#define H2_CSS_SVG_11_12  ( H2_CSS_SVG_11 | H2_CSS_SVG_12 )
+#define H2_CSS_SVG_1      ( H2_CSS_SVG_10 | H2_CSS_SVG_11_12 )
 #define H2_CSS_SVG_20       0x0000008000000000
 #define H2_CSS_SVG_21       0x0000010000000000
 #define H2_CSS_SVG_2      ( H2_CSS_SVG_20 | H2_CSS_SVG_21 )
+#define H2_CSS_SVG_11_2   ( H2_CSS_SVG_11 | H2_CSS_SVG_2 )
+#define H2_CSS_SVG_12_2   ( H2_CSS_SVG_12 | H2_CSS_SVG_2 )
+#define H2_CSS_SVG_11_12_2 ( H2_CSS_SVG_11_12 | H2_CSS_SVG_2 )
 #define H2_CSS_SVG        ( H2_CSS_SVG_1 | H2_CSS_SVG_2 )
 #define H2_CSS_SVG_MASK     H2_CSS_SVG  
 
@@ -565,72 +569,81 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H3_CSS_SHADOW        0x0002000000000000
 #define H3_CSS_HIGHLIGHT     0x0004000000000000
 #define H3_CSS_PAGE          0x0008000000000000
+#define H3_CSS_SDA           0x0010000000000000
+#define H3_CSS_VIEW          0x0020000000000000
+#define H3_CSS_SCOPE         0x0040000000000000
+#define H3_CSS_MOTION        0x0080000000000000
+#define H3_CSS_FILL          0x0100000000000000
+#define H3_CSS_NESTING       0x0200000000000000
+#define H3_CSS_CONTENT       0x0400000000000000
+#define H3_CSS_REGION        0x0800000000000000
 
-#define H3_CSS_3          ( H3_CSS_ADJUST | H3_CSS_ANCHOR | H3_CSS_BOX_ALIGN | H3_CSS_BOX_MODEL_3 | H3_CSS_BOX_SIZING | H3_CSS_CONTAIN_3 | H3_CSS_DEVICE | \
-                            H3_CSS_DISPLAY | H3_CSS_EXCLUDE | H3_CSS_FILTER | H3_CSS_FLOAT | H3_CSS_GRID_3 | H3_CSS_HIGHLIGHT | H3_CSS_IMAGE_3 | H3_CSS_INLINE | \
-                            H3_CSS_LINE_GRID | H3_CSS_LIST | H3_CSS_LOGIC | H3_CSS_MASKING | H3_CSS_MULTI_COL | H3_CSS_NES | H3_CSS_OVERFLOW | H3_CSS_OVERSCROLL | \
-                            H3_CSS_PAGE | H3_CSS_POSITION | H3_CSS_PRESENT | H3_CSS_RHYTHM | H3_CSS_ROUND | H3_CSS_RUBY | H3_CSS_SCROLLBAR | H3_CSS_SHAPE_3 | \
-                            H3_CSS_SHADOW | H3_CSS_SNAP | H3_CSS_SPEECH | H3_CSS_TABLE | H3_CSS_TEXT_3 | H3_CSS_TEXTDEC_3 | H3_CSS_TRANSFORM_3 | \
-                            H3_CSS_TRANSITION | H3_CSS_WC | H3_CSS_WRITING_3 )
+#define H3_NOT_MOBILE        0x1000000000000000
+#define H3_NOT_PRINT         0x2000000000000000
+#define H3_NOT_TV            0x4000000000000000
+#define H3_NOT_MASK        ( H3_NOT_MOBILE | H3_NOT_PRINT | H3_NOT_TV )
+
+#define H3_CSS_DEPRECATED    0x8000000000000000
+
+#define H3_CSS_3          ( H3_CSS_ADJUST | H3_CSS_ANCHOR | H3_CSS_BOX_ALIGN | H3_CSS_BOX_MODEL_3 | H3_CSS_BOX_SIZING | H3_CSS_CONTAIN_3 | H3_CSS_CONTENT | \
+                            H3_CSS_DEVICE | H3_CSS_DISPLAY | H3_CSS_EXCLUDE | H3_CSS_FILL | H3_CSS_FILTER | H3_CSS_FLOAT | H3_CSS_GRID_3 | H3_CSS_HIGHLIGHT | \
+                            H3_CSS_IMAGE_3 | H3_CSS_INLINE | H3_CSS_LINE_GRID | H3_CSS_LIST | H3_CSS_LOGIC | H3_CSS_MASKING | H3_CSS_MOTION | \
+                            H3_CSS_MULTI_COL | H3_CSS_NES | H3_CSS_NESTING | H3_CSS_OVERFLOW | H3_CSS_OVERSCROLL |  H3_CSS_PAGE | H3_CSS_POSITION | \
+                            H3_CSS_PRESENT | H3_CSS_REGION | H3_CSS_RHYTHM | H3_CSS_ROUND | H3_CSS_RUBY | H3_CSS_SCOPE | H3_CSS_SCROLLBAR | H3_CSS_SDA | \
+                            H3_CSS_SHAPE_3 | H3_CSS_SHADOW | H3_CSS_SNAP | H3_CSS_SPEECH | H3_CSS_TABLE | H3_CSS_TEXT_3 | H3_CSS_TEXTDEC_3 | \
+                            H3_CSS_TRANSFORM_3 | H3_CSS_TRANSITION | H3_CSS_VIEW | H3_CSS_WC | H3_CSS_WRITING_3 )
 #define H3_CSS_4          ( H3_CSS_BOX_MODEL_4 | H3_CSS_CONTAIN_4 | H3_CSS_GRID_4 | H3_CSS_IMAGE_4 | H3_CSS_PSEUDO | H3_CSS_SHAPE_4 | H3_CSS_TEXT_4 | \
                             H3_CSS_TEXTDEC_4 | H3_CSS_TRANSFORM_4 | H3_CSS_WRITING_4 )
 #define H3_CSS_5            H3_CSS_CONTAIN_5
 #define H3_CSS_6            0
   
-#define H3_CSS_3_FULL   ( H3_CSS_3 )
-#define H3_CSS_4_FULL   ( H3_CSS_4 | H3_CSS_3_FULL )
-#define H3_CSS_5_FULL   ( H3_CSS_5 | H3_CSS_4_FULL )
-#define H3_CSS_6_FULL   ( H3_CSS_6 | H3_CSS_5_FULL )
+#define H3_CSS_3_FULL     ( H3_CSS_3 )
+#define H3_CSS_4_FULL     ( H3_CSS_4 | H3_CSS_3_FULL )
+#define H3_CSS_5_FULL     ( H3_CSS_5 | H3_CSS_4_FULL )
+#define H3_CSS_6_FULL     ( H3_CSS_6 | H3_CSS_5_FULL )
 
-#define H3_CSS_3_4      ( H3_CSS_3 | H3_CSS_4 )
-#define H3_CSS_3_4_5    ( H3_CSS_3_4 | H3_CSS_5 )
-#define H3_CSS_3_4_5_6  ( H3_CSS_3_4_5 | H3_CSS_6 )
+#define H3_CSS_3_4        ( H3_CSS_3 | H3_CSS_4 )
+#define H3_CSS_3_4_5      ( H3_CSS_3_4 | H3_CSS_5 )
+#define H3_CSS_3_4_5_6    ( H3_CSS_3_4_5 | H3_CSS_6 )
 
-#define H3_CSS_5_PLUS   ( H3_CSS_5 | H3_CSS_6 )
-#define H3_CSS_4_PLUS   ( H3_CSS_4 | H3_CSS_5_PLUS )
-#define H3_CSS_3_PLUS   ( H3_CSS_3 | H3_CSS_4_PLUS )
-#define H3_CSS_ALL        H3_CSS_3_PLUS
-#define H3_CSS_MASK       H3_CSS_ALL
-#define H3_CSS            H3_CSS_ALL
+#define H3_CSS_5_PLUS     ( H3_CSS_5 | H3_CSS_6 )
+#define H3_CSS_4_PLUS     ( H3_CSS_4 | H3_CSS_5_PLUS )
+#define H3_CSS_3_PLUS     ( H3_CSS_3 | H3_CSS_4_PLUS )
+#define H3_CSS_ALL          H3_CSS_3_PLUS
+#define H3_CSS_MASK         H3_CSS_ALL
+#define H3_CSS              H3_CSS_ALL
 
-#define H3_FULL_CSS_MASK      0x000FFFFFFFFFFFFF
+#define H3_FULL_CSS_MASK    0x07FFFFFFFFFFFFFF
 
-#define H3_CSS_2007           0
-#define H3_CSS_2010         ( H3_CSS_2007 )
-#define H3_CSS_2015         ( H3_CSS_2010 | H3_CSS_IMAGE_3 | H3_CSS_MULTI_COL )
-#define H3_CSS_2015_1       ( H3_CSS_MASKING | H3_CSS_SHAPE_3 | H3_CSS_SPEECH | H3_CSS_TEXTDEC_3 | H3_CSS_TRANSITION | H3_CSS_TRANSFORM_3 )
-#define H3_CSS_2017         ( H3_CSS_2015 | H3_CSS_WRITING_3 )
-#define H3_CSS_2017_1       ( H3_CSS_TEXT_3 | H3_CSS_TRANSFORM_3 )
-#define H3_CSS_2017_2       ( H3_CSS_BOX_ALIGN | H3_CSS_FILTER | H3_CSS_GRID_3 | H3_CSS_MASKING | H3_CSS_SHAPE_3 | H3_CSS_SHAPE_3 | H3_CSS_SPEECH | \
-                              H3_CSS_TEXTDEC_3 | H3_CSS_WC )
-#define H3_CSS_2018         ( H3_CSS_2017 | H3_CSS_TRANSFORM_3 )
-#define H3_CSS_2018_1       ( H3_CSS_FILTER | H3_CSS_GRID_3 | H3_CSS_TEXT_3 | H3_CSS_TRANSITION | H3_CSS_WC )
-#define H3_CSS_2018_2       ( H3_CSS_BOX_ALIGN | H3_CSS_CONTAIN_3 | H3_CSS_MASKING | H3_CSS_SHAPE_3 | H3_CSS_SNAP | H3_CSS_SPEECH | H3_CSS_TEXTDEC_3 )
-#define H3_CSS_2020         ( H3_CSS_2018 | H3_CSS_CONTAIN_3 | H3_CSS_TRANSFORM_3 )
-#define H3_CSS_2020_1       ( H3_CSS_BOX_ALIGN | H3_CSS_BOX_SIZING | H3_CSS_DISPLAY | H3_CSS_MASKING | H3_CSS_SHAPE_3 | H3_CSS_SNAP | H3_CSS_SPEECH | \
-                              H3_CSS_TEXT_3 | H3_CSS_TEXTDEC_3 )
-#define H3_CSS_2020_2       ( H3_CSS_FILTER | H3_CSS_GRID_3 | H3_CSS_GRID_4 | H3_CSS_TRANSITION | H3_CSS_WC )
-#define H3_CSS_2021         ( H3_CSS_2020 )
-#define H3_CSS_2021_1       ( H3_CSS_BOX_ALIGN | H3_CSS_DISPLAY | H3_CSS_MASKING | H3_CSS_SCROLLBAR | H3_CSS_SHAPE_3 | H3_CSS_SNAP | H3_CSS_SPEECH | \
-                              H3_CSS_TEXT_3 | H3_CSS_TEXTDEC_3 | H3_CSS_WRITING_4 )
-#define H3_CSS_2021_2       ( H3_CSS_ADJUST | H3_CSS_BOX_SIZING | H3_CSS_FILTER | H3_CSS_GRID_3 | H3_CSS_GRID_4 | H3_CSS_TRANSFORM_4 | H3_CSS_TRANSITION | \
-                              H3_CSS_WC )
-#define H3_CSS_2022         ( H3_CSS_2021 )
-#define H3_CSS_2022_1       ( H3_CSS_BOX_ALIGN | H3_CSS_DISPLAY | H3_CSS_MASKING | H3_CSS_SCROLLBAR | H3_CSS_SHAPE_3 | H3_CSS_SNAP | H3_CSS_SPEECH | \
-                              H3_CSS_TEXT_3 | H3_CSS_TEXTDEC_3 | H3_CSS_WRITING_4 )
-#define H3_CSS_2022_2       ( H3_CSS_FILTER | H3_CSS_GRID_3 | H3_CSS_GRID_4 | H3_CSS_LIST | H3_CSS_LOGIC | H3_CSS_POSITION | H3_CSS_TRANSITION | H3_CSS_WC )
-#define H3_CSS_2023         ( H3_CSS_2022 )
-#define H3_CSS_2023_1       ( H3_CSS_BOX_ALIGN | H3_CSS_DISPLAY | H3_CSS_MASKING | H3_CSS_SCROLLBAR | H3_CSS_SHAPE_3 | H3_CSS_SPEECH | H3_CSS_TEXT_3 | \
-                              H3_CSS_TEXTDEC_3 | H3_CSS_WRITING_4 )
-#define H3_CSS_2023_2       ( H3_CSS_ADJUST | H3_CSS_BOX_SIZING | H3_CSS_FILTER | H3_CSS_GRID_3 | H3_CSS_GRID_4 | H3_CSS_LIST | H3_CSS_LOGIC | H3_CSS_POSITION | \
-                              H3_CSS_SNAP | H3_CSS_TRANSFORM_4 | H3_CSS_TRANSITION | H3_CSS_WC )
-
-#define H3_NOT_MOBILE         0x1000000000000000
-#define H3_NOT_PRINT          0x2000000000000000
-#define H3_NOT_TV             0x4000000000000000
-#define H3_NOT_MASK         ( H3_NOT_MOBILE | H3_NOT_PRINT | H3_NOT_TV )
-
-#define H3_CSS_DEPRECATED     0x8000000000000000
+#define H3_CSS_2007         0
+#define H3_CSS_2010       ( H3_CSS_2007 )
+#define H3_CSS_2015       ( H3_CSS_2010 | H3_CSS_IMAGE_3 | H3_CSS_MULTI_COL )
+#define H3_CSS_2015_1     ( H3_CSS_MASKING | H3_CSS_SHAPE_3 | H3_CSS_SPEECH | H3_CSS_TEXTDEC_3 | H3_CSS_TRANSITION | H3_CSS_TRANSFORM_3 )
+#define H3_CSS_2017       ( H3_CSS_2015 | H3_CSS_WRITING_3 )
+#define H3_CSS_2017_1     ( H3_CSS_TEXT_3 | H3_CSS_TRANSFORM_3 )
+#define H3_CSS_2017_2     ( H3_CSS_BOX_ALIGN | H3_CSS_FILTER | H3_CSS_GRID_3 | H3_CSS_MASKING | H3_CSS_SHAPE_3 | H3_CSS_SHAPE_3 | H3_CSS_SPEECH | \
+                            H3_CSS_TEXTDEC_3 | H3_CSS_WC )
+#define H3_CSS_2018       ( H3_CSS_2017 | H3_CSS_TRANSFORM_3 )
+#define H3_CSS_2018_1     ( H3_CSS_FILTER | H3_CSS_GRID_3 | H3_CSS_TEXT_3 | H3_CSS_TRANSITION | H3_CSS_WC )
+#define H3_CSS_2018_2     ( H3_CSS_BOX_ALIGN | H3_CSS_CONTAIN_3 | H3_CSS_MASKING | H3_CSS_SHAPE_3 | H3_CSS_SNAP | H3_CSS_SPEECH | H3_CSS_TEXTDEC_3 )
+#define H3_CSS_2020       ( H3_CSS_2018 | H3_CSS_CONTAIN_3 | H3_CSS_TRANSFORM_3 )
+#define H3_CSS_2020_1     ( H3_CSS_BOX_ALIGN | H3_CSS_BOX_SIZING | H3_CSS_DISPLAY | H3_CSS_MASKING | H3_CSS_SHAPE_3 | H3_CSS_SNAP | H3_CSS_SPEECH | \
+                            H3_CSS_TEXT_3 | H3_CSS_TEXTDEC_3 )
+#define H3_CSS_2020_2     ( H3_CSS_FILTER | H3_CSS_GRID_3 | H3_CSS_GRID_4 | H3_CSS_TRANSITION | H3_CSS_WC )
+#define H3_CSS_2021       ( H3_CSS_2020 )
+#define H3_CSS_2021_1     ( H3_CSS_BOX_ALIGN | H3_CSS_DISPLAY | H3_CSS_MASKING | H3_CSS_SCROLLBAR | H3_CSS_SHAPE_3 | H3_CSS_SNAP | H3_CSS_SPEECH | \
+                            H3_CSS_TEXT_3 | H3_CSS_TEXTDEC_3 | H3_CSS_WRITING_4 )
+#define H3_CSS_2021_2     ( H3_CSS_ADJUST | H3_CSS_BOX_SIZING | H3_CSS_FILTER | H3_CSS_GRID_3 | H3_CSS_GRID_4 | H3_CSS_TRANSFORM_4 | H3_CSS_TRANSITION | \
+                            H3_CSS_WC )
+#define H3_CSS_2022       ( H3_CSS_2021 )
+#define H3_CSS_2022_1     ( H3_CSS_BOX_ALIGN | H3_CSS_DISPLAY | H3_CSS_MASKING | H3_CSS_SCROLLBAR | H3_CSS_SHAPE_3 | H3_CSS_SNAP | H3_CSS_SPEECH | \
+                            H3_CSS_TEXT_3 | H3_CSS_TEXTDEC_3 | H3_CSS_WRITING_4 )
+#define H3_CSS_2022_2     ( H3_CSS_FILTER | H3_CSS_GRID_3 | H3_CSS_GRID_4 | H3_CSS_LIST | H3_CSS_LOGIC | H3_CSS_POSITION | H3_CSS_TRANSITION | H3_CSS_WC )
+#define H3_CSS_2023       ( H3_CSS_2022 )
+#define H3_CSS_2023_1     ( H3_CSS_BOX_ALIGN | H3_CSS_DISPLAY | H3_CSS_MASKING | H3_CSS_SCROLLBAR | H3_CSS_SHAPE_3 | H3_CSS_SPEECH | H3_CSS_TEXT_3 | \
+                            H3_CSS_TEXTDEC_3 | H3_CSS_WRITING_4 )
+#define H3_CSS_2023_2     ( H3_CSS_ADJUST | H3_CSS_BOX_SIZING | H3_CSS_FILTER | H3_CSS_GRID_3 | H3_CSS_GRID_4 | H3_CSS_LIST | H3_CSS_LOGIC | H3_CSS_POSITION | \
+                            H3_CSS_SNAP | H3_CSS_TRANSFORM_4 | H3_CSS_TRANSITION | H3_CSS_WC )
 
 class html_version : public version
 {   flags_t ext_ = NOFLAGS, ext2_ = NOFLAGS, ext3_ = NOFLAGS;
@@ -865,9 +878,11 @@ public:
     void css_compositing (const int n);
     int css_conditional_rule () const;
     void css_conditional_rule (const int n);
-    int css_counter_style () const;
     int css_contain () const;
     void css_contain (const int n);
+    int css_content () const;
+    void css_content (const int n);
+    int css_counter_style () const;
     void css_counter_style (const int n);
     int css_custom () const;
     void css_custom (const int n);
@@ -881,6 +896,8 @@ public:
     void css_exclude (const int n);
     int css_fbl () const;
     void css_fbl (const int n);
+    int css_fill () const;
+    void css_fill (const int n);
     int css_filter () const;
     void css_filter (const int n);
     int css_float () const;
@@ -907,12 +924,16 @@ public:
     void css_masking (const int n);
     int css_media () const;
     void css_media (const int n);
+    int css_motion () const;
+    void css_motion (const int n);
     int css_multi_column () const;
     void css_multi_column (const int n);
     int css_namespace () const;
     void css_namespace (const int n);
     int css_nes () const;
     void css_nes (const int n);
+    int css_nesting () const;
+    void css_nesting (const int n);
     int css_overflow () const;
     void css_overflow (const int n);
     int css_overscroll () const;
@@ -925,14 +946,20 @@ public:
     void css_position (const int n);
     int css_present () const;
     void css_present (const int n);
+    int css_region () const;
+    void css_region (const int n);
     int css_rhythm () const;
     void css_rhythm (const int n);
     int css_round () const;
     void css_round (const int n);
     int css_ruby () const;
     void css_ruby (const int n);
+    int css_scope () const;
+    void css_scope (const int n);
     int css_scrollbar () const;
     void css_scrollbar (const int n);
+    int css_sda () const;
+    void css_sda (const int n);
     int css_selector () const;
     void css_selector (const int n);
     int css_shadow () const;
@@ -961,6 +988,8 @@ public:
     void css_ui (const int n);
     int css_value () const;
     void css_value (const int n);
+    int css_view () const;
+    void css_view (const int n);
     int css_will_change () const;
     void css_will_change (const int n);
     int css_writing_mode () const;

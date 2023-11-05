@@ -9,6 +9,7 @@ PASS ../toast/css/3-compositing/css-3-1.html
 
 PASS ../toast/css/3-compositing/css-3-2.html
 2 naughty_lang
+5 css_version
 12 url_not_found naughty_alt
 
 PASS ../toast/css/3-compositing/css-3-3.html

@@ -26,6 +26,16 @@ void add_param (const arguments& args, t_params& params, int& from, const int i)
 {   params.emplace_back (from, i-1);
     from = next_non_whitespace (args.t_, i, -1); }
 
+bool maybe_content (nitpick& nits, const e_css_property id)
+{   if (id < ec_custom) return true;
+    if (context.css_content () < 3)
+    {   nits.pick (nit_css_version, ed_css_content, "1. Inserting and replacing content with the content property", es_error, ec_css, "Requires CSS Generated Content");
+        return false; }
+    const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
+    if ((f & CF_CONTENT) == CF_CONTENT) return true;
+    nits.pick (nit_css_value_fn, ed_css_content, "1. Inserting and replacing content with the content property", es_error, ec_css, "not a content property");
+    return false; }
+
 bool maybe_filter (nitpick& nits, const e_css_property id)
 {   if (id < ec_custom) return true;
     if (context.css_filter () < 3)
@@ -58,6 +68,16 @@ bool maybe_math (nitpick& nits, const e_css_property id)
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
     if ((f & (CF_EXPECT_STRING | CF_EXPECT_KEYWORDS)) == 0) return true;
     nits.pick (nit_css_value_fn, ed_css_value_4, "10 Mathematical Expressions", es_error, ec_css, "not a numeric property");
+    return false; }
+
+bool maybe_offset_path (nitpick& nits, const e_css_property id)
+{   if (id < ec_custom) return true;
+    if (context.css_motion () < 3)
+    {   nits.pick (nit_css_version, es_error, ec_css, "Requires CSS Motion Path 3 or better");
+        return false; }
+    const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
+    if ((f & CF_TEXT_4) == CF_TEXT_4) return true;
+    nits.pick (nit_css_value_fn, es_error, ec_css, "not a CSS Text 4 property");
     return false; }
 
 bool maybe_text_4 (nitpick& nits, const e_css_property id)
@@ -98,7 +118,8 @@ int check_typed_feature (arguments& args, nitpick& nits, const int start, const 
 
 int test_value_fns (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id)
 #ifdef LIMITED_META_COMPLEXITY
-{   int test_value_fns_a (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+{   int test_value_fns_0_9 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
+    int test_value_fns_a (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_b_c (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_a (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_css_b (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
@@ -122,6 +143,8 @@ int test_value_fns (arguments& args, int& start, const int to, nitpick& nits, co
     int test_value_fns_t_u (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
     int test_value_fns_v_z (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id);
 
+// int test_value_fns_0_9 (arguments& args, int& start, const int to, nitpick& nits, const e_type t, const e_css_val_fn fn, const e_css_property id)
+    if (t <= SSC_TYPES_0_9_MAX) return test_value_fns_0_9 (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_A_MAX) return test_value_fns_a (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_B_C_MAX) return test_value_fns_b_c (args, start, to, nits, t, fn, id);
     if (t <= SSC_TYPES_CSS_A_MAX) return test_value_fns_css_a (args, start, to, nits, t, fn, id);

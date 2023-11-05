@@ -16,7 +16,7 @@ PASS ../toast/css/2.0/aargh.css
 11 css_colour css_colour
 13 naughty_page
 14 unrecognised_value naughty_page
-18 css_element css_element css_version css_version css_element
+18 css_version css_version
 
 PASS ../toast/css/2.0/css-1.css
 0 html
@@ -77,7 +77,6 @@ PASS ../toast/css/2.0/css-4-2.css
 20 unrecognised_value
 25 unrecognised_value unrecognised_value
 26 css_syntax
-27 unrecognised_value
 35 css_syntax property
 36 css_syntax property
 37 property

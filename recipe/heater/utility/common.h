@@ -105,6 +105,8 @@ inline vstr_t split_by_newline (const ::std::string& s)
 vstr_t split_by_string (const ::std::string& s, const ::std::string& splitter);
 vstr_t separate_by_whitespace_and (const ::std::string& s, const char* charset);
 
+int pos_de (const ::std::string& s, const char* charset, vint_t& vf, vint_t& vt, const bool empties = false);
+
 ::std::string read_text_file (nitpick& nits, const ::boost::filesystem::path& name, bool& borked);
 ::std::string read_text_file (nitpick& nits, const ::std::string& name, bool& borked);
 void_ptr read_binary_file (nitpick& nits, const ::boost::filesystem::path& name, uintmax_t& sz, const bool zero_ok = false);
@@ -253,6 +255,18 @@ template < class P > struct fiddlesticks
         twas_ = *p_;
         *p_ = x; }
     ~fiddlesticks () { *p_ = twas_; } };
+
+template < > struct fiddlesticks < bool >
+{   bool twas_ = false;
+    bool* b_ = nullptr;
+    fiddlesticks () = delete;
+    DEFAULT_NO_COPY_NO_MOVE (fiddlesticks);
+    explicit fiddlesticks (bool* b, const bool x)
+    {   VERIFY_NOT_NULL (b, __FILE__, __LINE__);
+        b_ = b;
+        twas_ = *b_;
+        *b_ = x; }
+    ~fiddlesticks () { *b_ = twas_; } };
 
 int hex_value (const ::std::string_view str);
 ::std::string map_to_utf8 (const int val);

@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 bool process_css (nitpick& nits, const html_version& v, const ::std::string& s, element* e);
 e_status set_css_all_value (nitpick& nits, const html_version& v, const ::std::string& s);
+e_status set_css_content_name_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box);
 e_status set_css_font_value (nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_css_font_stretch_value (nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_css_font_variant_value (nitpick& nits, const html_version& v, const ::std::string& s);
@@ -35,6 +36,9 @@ e_status set_css_nth_value (nitpick& nits, const html_version& v, const ::std::s
 e_status set_css_unicode_from_to_value (nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_css_unicode_wildcard_value (nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_fn_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box);
+e_status set_region_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box);
+e_status set_stn_value (nitpick& nits, const html_version& v, const vstr_t& vs, element* box);
+e_status set_vtn_value (nitpick& nits, const html_version& v, const vstr_t& vs, element* box);
 
 template < > struct type_master < t_css > : public tidy_string < t_css >
 {   using tidy_string < t_css > :: tidy_string;
@@ -77,6 +81,20 @@ template < > struct type_master < t_css_bespoke > : public tidy_string < t_css_b
     void verify_attribute (nitpick& nits, const html_version& , const elem& , element* , const ::std::string& attnam)
     {   nits.pick (nit_css_bespoke, es_warning, ec_type, "bespoke properties, such as ", attnam, ", are processed neither by " PROG " nor all browsers"); } };
 
+template < > struct type_master < t_css_content_name > : public tidy_string < t_css_content_name >
+{   using tidy_string < t_css_content_name > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_content_name > :: set_value (nits, v, s);
+        if (context.css_version () < 3)
+        {   nits.pick (nit_css_version, es_error, ec_type, "CSS Generated Content required");
+            status (s_invalid); }
+        else if (tidy_string < t_css_content_name > :: empty ())
+            nits.pick (nit_empty, es_warning, ec_type, "rather a minimalistic name, that"); }
+    bool invalid_id (nitpick& nits, const html_version& v, ids_t& , element* e)
+    {   if (tidy_string < t_css_content_name > :: good ())
+            tidy_string < t_css_content_name > :: status (set_css_content_name_value (nits, v, tidy_string < t_css_content_name > :: get_string (), e));
+        return false; } };
+
 template < > struct type_master < t_css_counter_style_name > : public tidy_string < t_css_counter_style_name >
 {   using tidy_string < t_css_counter_style_name > :: tidy_string;
 	static e_animation_type animation_type () noexcept { return at_none; }
@@ -89,7 +107,7 @@ template < > struct type_master < t_css_counter_style_name > : public tidy_strin
         if (! tidy_string < t_css_counter_style_name > :: good ()) return true;
         const ::std::string& x = tidy_string < t_css_counter_style_name > :: get_string ();
         if (s -> find (x) != s -> cend ()) return false;
-        nits.pick (nit_css_keyframes, es_error, ec_css, "@counter-style ", quote (x), " is referenced but not defined");
+        nits.pick (nit_counter_style, es_error, ec_css, "@counter-style ", quote (x), " is referenced but not defined");
         return true; } };
 
 template < > struct type_master < t_css_font > : tidy_string < t_css_font >
@@ -156,11 +174,33 @@ template < > struct type_master < t_css_palette > : public tidy_string < t_css_p
         nits.pick (nit_css_keyframes, es_error, ec_css, "@font-palette ", quote (x), " is referenced but not defined");
         return true; } };
 
+template < > struct type_master < t_css_stn > : public string_vector < t_css_stn, sz_space_char >
+{   using string_vector < t_css_stn, sz_space_char > :: string_vector;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   string_vector < t_css_stn, sz_space_char > :: set_value (nits, v, s);
+        if (string_vector < t_css_stn, sz_space_char > :: empty ())
+            nits.pick (nit_empty, es_warning, ec_type, "missing content"); }
+    bool invalid_id (nitpick& nits, const html_version& v, ids_t& , element* e)
+    {   if (string_vector < t_css_stn, sz_space_char > :: good ())
+            set_stn_value (nits, v, string_vector < t_css_stn, sz_space_char > :: get (), e);
+        return true; } };
+
 template < > struct type_master < t_css_unicode_from_to > : public tidy_string < t_css_unicode_from_to >
 {   using tidy_string < t_css_unicode_from_to > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_css_unicode_from_to > :: set_value (nits, v, s);
         tidy_string < t_css_unicode_from_to > :: status (set_css_unicode_from_to_value (nits, v, tidy_string < t_css_unicode_from_to > :: get_string ())); } };
+
+template < > struct type_master < t_css_vtn > : public string_vector < t_css_vtn, sz_space_char >
+{   using string_vector < t_css_vtn, sz_space_char > :: string_vector;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   string_vector < t_css_vtn, sz_space_char > :: set_value (nits, v, s);
+        if (string_vector < t_css_vtn, sz_space_char > :: empty ())
+            nits.pick (nit_empty, es_warning, ec_type, "missing content"); }
+    bool invalid_id (nitpick& nits, const html_version& v, ids_t& , element* e)
+    {   if (string_vector < t_css_vtn, sz_space_char > :: good ())
+            set_vtn_value (nits, v, string_vector < t_css_vtn, sz_space_char > :: get (), e);
+        return true; } };
 
 template < > struct type_master < t_css_unicode_wildcard > : public tidy_string < t_css_unicode_wildcard >
 {   using tidy_string < t_css_unicode_wildcard > :: tidy_string;
@@ -181,4 +221,17 @@ template < > struct type_master < t_fn > : public tidy_string < t_fn >
     {   if (tidy_string < t_fn > :: good ())
             tidy_string < t_fn > :: status (set_fn_value (nits, v, tidy_string < t_fn > :: get_string (), e));
         return false; } };
-  
+
+template < > struct type_master < t_css_region_id > : public tidy_string < t_css_region_id >
+{   using tidy_string < t_css_region_id > :: tidy_string;
+	static e_animation_type animation_type () noexcept { return at_none; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_region_id > :: set_value (nits, v, s);
+        if (! tidy_string < t_css_region_id > :: empty ()) return;
+        nits.pick (nit_empty, es_error, ec_type, "missing region name");
+        tidy_string < t_css_region_id > :: status (s_invalid); }
+    bool invalid_id (nitpick& nits, const html_version& v, ids_t& , element* e)
+    {   if (tidy_string < t_css_region_id > :: good ())
+            if (set_region_value (nits, v, tidy_string < t_css_region_id > :: get (), e) == s_good)
+                return false;
+        return true; } };

@@ -215,7 +215,9 @@ void css_group::accumulate (stats_t* s) const
     for (auto c : mcss_)
         c.second -> accumulate (s);
     if (snippets_.get () != nullptr)
-        snippets_ -> accumulate (s); }
+        snippets_ -> accumulate (s);
+    for (auto h : highlight_)
+        s -> use_highlight (h); }
 
 void css_group::validate ()
 {   for (auto i : mcss_)

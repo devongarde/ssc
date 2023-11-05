@@ -195,6 +195,26 @@ vstr_t split_by_string (const ::std::string& s, const ::std::string& splitter)
     ::boost::algorithm::find_all (v, s, splitter);
     return v; }
 
+int pos_de (const ::std::string& s, const char* charset, vint_t& vf, vint_t& vt, const bool empties)
+{   const ::std::string cs (charset);
+    const int len = GSL_NARROW_CAST < int > (s.length ());
+    int prev = 0;
+    vf.clear (); vt.clear ();
+    for (int i = 0; i < len; ++i)
+    {   const char ch = s.at (i);
+        if (cs.find (ch))
+        {   if (i - 1 != prev)
+            {   vf.push_back (prev);
+                vt.push_back (i - 1); }
+            else if (empties)
+            {   vf.push_back (-1);
+                vt.push_back (-1); }
+            prev = i+1; } }
+    if (prev < len)
+    {   vf.push_back (prev);
+        vt.push_back (len); }
+    return GSL_NARROW_CAST < int  > (vf.size ()); }
+
 vstr_t split_by_whitespace_and (const ::std::string& s, const char* charset)
 {   ::std::string cs;
     if (charset != nullptr) cs.assign (charset);

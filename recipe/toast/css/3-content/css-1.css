@@ -1,0 +1,11 @@
+﻿.new::before {
+ content: url(./img/star.png) / "New!";
+  /* or a localized attribute from the DOM: attr("data-alt") */
+}
+
+.expandable::before {
+ content: "\25BA" / "";
+/* a.k.a. ► */
+ /* aria-expanded="false" already in DOM,
+   so this pseudo-element is decorative */
+}

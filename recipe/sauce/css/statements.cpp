@@ -42,9 +42,9 @@ void statements::parse (arguments& args, const int start, const int finish)
                 {   statements_.emplace_back (args, at, prev);
                     at = -1; }
                 else if (from > 0)
-                {   if (args.styled ()) props_.parse (args, from, prev);
+                {   if (args.part ()) props_.parse (args, from, prev);
                     else
-                    {   args.t_.at (i).nits_.pick (nit_css_syntax, es_error, ec_css, "unexpected ", tkn_rpt (args.t_.at (i)), " (6)");
+                    {   // args.t_.at (i).nits_.pick (nit_css_syntax, es_error, ec_css, "unexpected ", tkn_rpt (args.t_.at (i)), " (6)");
                         rules_.emplace_back (args, from, prev); }
                     from = -1; }
                 break;
@@ -65,12 +65,12 @@ void statements::parse (arguments& args, const int start, const int finish)
                 if ((at < 0) && (from < 0)) from = i;
                 break; }
     if (at > 0)
-        if (args.styled ()) props_.parse (args, from, prev);
+        if (args.part ()) props_.parse (args, from, prev);
         else
         {   args.t_.at (stm (last)).nits_.pick (nit_css_unfinished, es_error, ec_css, "incomplete");
             rules_.emplace_back (args, from, last - 1); }
     else if ((from > 0) && (args.t_.at (from).t_ != ct_eof))
-        if (args.styled ()) props_.parse (args, from, prev);
+        if (args.part ()) props_.parse (args, from, prev);
         else
         {   args.t_.at (stm (last)).nits_.pick (nit_css_unfinished, es_error, ec_css, "incomplete");
             rules_.emplace_back (args, from, last - 1); } }

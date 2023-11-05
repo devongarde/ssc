@@ -206,6 +206,9 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT, class LC >
             return; } }
     enum_base < ENUM, E > :: status (s_invalid); }
 
+template < > class type_master < t_abfmt > : public enum_n < t_abfmt, e_abfmt >
+{ using enum_n < t_abfmt, e_abfmt > :: enum_n; };
+
 template < > class type_master < t_accrual_method > : public enum_n < t_accrual_method, e_accrual_method >
 { using enum_n < t_accrual_method, e_accrual_method > :: enum_n; };
 
@@ -451,6 +454,9 @@ template < > struct type_master < t_css_position > : enum_n < t_css_position, e_
 
 template < > struct type_master < t_css_property > : enum_n < t_css_property, e_css_property >
 { using enum_n < t_css_property, e_css_property > :: enum_n; };
+
+template < > struct type_master < t_css_ray_size > : enum_n < t_css_ray_size, e_css_ray_size >
+{ using enum_n < t_css_ray_size, e_css_ray_size > :: enum_n; };
 
 template < > struct type_master < t_css_rect > : enum_n < t_css_rect, e_css_rect >
 { using enum_n < t_css_rect, e_css_rect > :: enum_n; };

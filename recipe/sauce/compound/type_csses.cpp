@@ -357,6 +357,69 @@ e_status set_css_list_style_type_cs_value (nitpick& nits, const html_version& v,
     nits.merge (nuts);
     return s_invalid; }
 
+e_status set_css_offset_value (nitpick& nits, const html_version& v, const ::std::string& sss)
+{   vstr_t ss (split_by_space (sss));
+    if (ss.empty ()) return s_empty;
+    typedef enum { of_position, of_path, of_distance, of_rotate, of_anchor, of_over } offset_state;
+    offset_state state = of_position;
+    bool slashed = false;
+    e_status jolly = s_good;
+    for (auto s : ss)
+    {   nitpick nuts, gnats, knots, nets;
+        if (s == "/")
+            if (slashed)
+            {   nits.pick (nit_naughty_offset, es_error, ec_type, "additional slash unexpected");
+                jolly = s_invalid; }
+            else
+            {   slashed = true;
+                state = of_anchor; }
+        else switch (state)
+        {   case of_position :
+                if (test_value < t_css_position_a > (nuts, v, s))
+                {   nits.merge (nuts); state = of_path; break; }
+                FALLTHROUGH;
+            case of_path :
+                if (test_value < t_css_offset_path_n > (gnats, v, s))
+                {   nits.merge (gnats); state = of_distance; break; }
+                FALLTHROUGH;
+            case of_distance :
+                if (test_value < t_css_length > (knots, v, s))
+                {   nits.merge (knots); state = of_rotate; break; }
+                FALLTHROUGH;
+            case of_rotate :
+                if (test_value < t_angle_ar > (nets, v, s))
+                {   nits.merge (nets); state = of_over; break; }
+                jolly = s_invalid;
+#ifdef DEBUG
+                nits.merge (nuts);
+                nits.merge (gnats);
+                nits.merge (knots);
+                nits.merge (nets);
+#endif // DEBUG
+                nits.pick (nit_naughty_offset, es_error, ec_type, quote (s), " is not an OFFSET value");
+                break;
+            case of_anchor :
+                if (! test_value < t_css_position_a > (nits, v, s)) jolly = s_invalid;
+                state = of_over;
+                break;
+            case of_over :
+                nits.pick (nit_naughty_offset, es_error, ec_type, quote (s), ": unexpected additional value");
+                jolly = s_invalid;
+                break;
+            default :
+                GRACEFUL_CRASH (__FILE__, __LINE__);
+                break; } }
+    return jolly; }    
+
+e_status set_css_quotes_3_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   nitpick nuts;
+    if (context.css_content () >= 3)
+        if (test_value < t_css_quotes > (nuts, v, s))
+        {   nits.merge (nuts); return s_good; }
+    if (test_value < t_4string_ni > (nits, v, s)) return s_good;
+    nits.merge (nuts);
+    return s_invalid; }
+
 e_status set_css_speak_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box)
 {   if (s.empty ()) nits.pick (nit_empty, es_error, ec_type, "must be empty ... NOT");
     else
@@ -418,4 +481,53 @@ e_status set_css_container_value (nitpick& nits, const html_version& v, const ::
         if (res && (state == cs_type))
             nits.pick (nit_container, es_error, ec_type, "missing container type");
         else if (res) return s_good; }
+    return s_invalid; }
+
+e_status set_css_content_3_value (nitpick& nits, const html_version& v, const ::std::string& sss)
+{   vstr_t ss (split_by_space (sss));
+    if (ss.empty ()) return s_empty;
+    bool res = true;
+    typedef enum { con_rep, con_list, con_slash, con_str, con_count, con_done } con_state;
+    con_state state = con_rep;
+    for (auto s : ss)
+    {   nitpick nuts, knits, knots, nets;
+        switch (state)
+        {   case con_rep :
+                if (test_value < t_css_image > (nuts, v, s))
+                {   nits.merge (nuts); state = con_list; break; }
+                FALLTHROUGH;
+            case con_list :
+                if (test_value < t_css_content_list > (knits, v, s))
+                {   nits.merge (knits); state = con_list; break; }
+                FALLTHROUGH;
+            case con_slash :
+                if (s == "/")
+                {   state = con_str; break; }
+                nits.merge (nuts);
+                nits.merge (knits);
+                nits.pick (nit_content, es_error, ec_type, quote (s), ": unexpected");
+                state = con_list;
+                res = false; break;
+            case con_str :
+                if (test_value < t_text > (knots, v, s))
+                {   nits.merge (knots); state = con_count; break; }
+                FALLTHROUGH;
+            case con_count :
+                if (test_value < t_css_fn > (nets, v, s))
+                {   nits.merge (nets); state = con_done; break; }
+                FALLTHROUGH;
+            case con_done :
+                nits.merge (knots);
+                nits.merge (nets);
+                nits.pick (nit_content, es_error, ec_type, quote (s), ": unexpected");
+                res = false; break;
+            default :
+                nits.pick (nit_content, es_error, ec_type, quote (s), " is not a known container property value");
+                res = false; break; } }
+    if (! res) return s_good;
+    return s_invalid; }
+
+e_status set_css_content_x_value (nitpick& nits, const html_version& v, const ::std::string& s)
+{   if ((context.css_content () >= 3) && (test_value < t_css_content_3nn > (nits, v, s))) return s_good;
+    if (test_value < t_css_content > (nits, v, s)) return s_good;
     return s_invalid; }

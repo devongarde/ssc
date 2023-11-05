@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/typed_property.h"
 #include "css/arguments.h"
 #include "css/weight.h"
+#include "css/css_pre.h"
 
 class property
 {   property_v_ptr prop_;
@@ -29,6 +30,10 @@ class property
     ::std::string name_, val_;
     flags_t flags_ = NOFLAGS;
     int from_ = 0;
+    ps_t duff_;
+    vpst_t st_;
+    psel_t sel_;
+    pp_t pp_;
 public:
     DEFAULT_CONSTRUCTORS (property);
     property (arguments& args, const int from, const int to)
@@ -40,5 +45,3 @@ public:
     const ::std::string name () const { return name_; } 
     void name (arguments& args, const ::std::string& n);
     ::std::string rpt () const; };
-
-typedef ::std::vector < property > vpr_t;

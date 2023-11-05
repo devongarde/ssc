@@ -53,6 +53,13 @@ e_status set_css_all_value (nitpick& nits, const html_version& v, const ::std::s
     else return s_good;
     return s_invalid; }
 
+e_status set_css_content_name_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box)
+{   if (s.empty ()) return s_empty;
+    VERIFY_NOT_NULL (box, __FILE__, __LINE__);
+    css_group& g = box -> get_page ().css ();
+    g.content_name ().insert (s);
+    return s_good; }
+
 e_status set_css_font_value (nitpick& nits, const html_version& v, const ::std::string& sss)
 {   if (sss.empty ())
         nits.pick (nit_empty, es_error, ec_type, "a font specification cannot be empty");
@@ -224,3 +231,30 @@ e_status set_fn_value (nitpick& nits, const html_version& v, const ::std::string
     if (box -> get_page ().css ().parse_transform (interpret_string (nits, v, s), v, box -> namespaces (), box -> ancestral_elements (), false, box -> line ()))
         return s_good;
     return s_invalid; }
+
+e_status set_region_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box)
+{   if (s.empty ()) return s_invalid;
+    VERIFY_NOT_NULL (box, __FILE__, __LINE__);
+    css_group& g = box -> get_page ().css ();
+    g.region ().insert (s);
+    return s_good; }
+
+e_status set_stn_value (nitpick& nits, const html_version& v, const vstr_t& vs, element* box)
+{   if (vs.empty ()) return s_empty;
+    VERIFY_NOT_NULL (box, __FILE__, __LINE__);
+    css_group& g = box -> get_page ().css ();
+    for (auto s : vs)
+        if ((s.length () < 2) || (s.substr (0, 2) != "--"))
+            nits.pick (nit_sda, es_error, ec_css, quote (s), ": Scroll-Driver Animation identifiers must start with double dash");
+        else g.scroll_anim ().insert (s);
+    return s_good; }
+
+e_status set_vtn_value (nitpick& nits, const html_version& v, const vstr_t& vs, element* box)
+{   if (vs.empty ()) return s_empty;
+    VERIFY_NOT_NULL (box, __FILE__, __LINE__);
+    css_group& g = box -> get_page ().css ();
+    for (auto s : vs)
+        if ((s.length () < 2) || (s.substr (0, 2) != "--"))
+            nits.pick (nit_vtn, es_error, ec_css, quote (s), ": View Transition identifiers must start with double dash");
+        else g.view ().insert (s);
+    return s_good; }

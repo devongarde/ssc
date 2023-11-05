@@ -32,6 +32,7 @@
 ../toast/css/3-contain/css.spec
 ../toast/css/4-contain/css.spec
 ../toast/css/5-contain/css.spec
+../toast/css/3-content/css.spec
 ../toast/css/3-cr/css.spec
 ../toast/css/4-cr/css.spec
 ../toast/css/5-cr/css.spec
@@ -40,6 +41,7 @@
 ../toast/css/3-display/css.spec
 ../toast/css/3-exclude/css.spec
 ../toast/css/3-fbl/css.spec
+../toast/css/3-fill/css.spec
 ../toast/css/3-filter/css.spec
 ../toast/css/3-float/css.spec
 ../toast/css/3-font/css.spec
@@ -59,7 +61,9 @@
 ../toast/css/3-media/css.spec
 ../toast/css/4-media/css.spec
 ../toast/css/5-media/css.spec
+../toast/css/3-motion/css.spec
 ../toast/css/3-nes/css.spec
+../toast/css/3-nesting/css.spec
 ../toast/css/3-ns/css.spec
 ../toast/css/3-overflow/css.spec
 ../toast/css/3-overscroll/css.spec
@@ -67,10 +71,13 @@
 ../toast/css/3-position/css.spec
 ../toast/css/3-present/css.spec
 ../toast/css/4-pseudo/css.spec
+../toast/css/3-region/css.spec
 ../toast/css/3-rhythm/css.spec
 ../toast/css/3-round/css.spec
 ../toast/css/3-ruby/css.spec
+../toast/css/3-scope/css.spec
 ../toast/css/3-scrollbar/css.spec
+../toast/css/3-sda/css.spec
 ../toast/css/3-sel/css.spec
 ../toast/css/4-sel/css.spec
 ../toast/css/3-shadow/css.spec
@@ -91,6 +98,7 @@
 ../toast/css/4-ui/css.spec
 ../toast/css/3-value/css.spec
 ../toast/css/4-value/css.spec
+../toast/css/3-view/css.spec
 ../toast/css/3-wc/css.spec
 ../toast/css/3-writing/css.spec
 ../toast/css/4-writing/css.spec

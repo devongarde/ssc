@@ -205,6 +205,7 @@ PASS ../toast/SVG/1.0/path-2.xhtml
 10 use_double_quote_code
 11 class_microformat_property
 26 newline_in_string newline_in_string
+36 css_version
 
 PASS ../toast/SVG/1.0/path-3.xhtml
 1 xhtml_1_0

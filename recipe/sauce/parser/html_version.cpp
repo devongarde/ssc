@@ -799,6 +799,12 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, flags_t& ext
     else if (compare_css (H2_CSS_2_0, 0, e2, e3)) res = "2.0";
     else if (compare_css (H2_CSS_1, 0, e2, e3)) res = "1";
     else if (b) res = "extension";
+
+#define H3_CSS_MOTION        0x0080000000000000
+#define H3_CSS_FILL          0x0100000000000000
+#define H3_CSS_NESTING       0x0200000000000000
+#define H3_CSS_CONTENT       0x0400000000000000
+
     res += single_feature (b, "Adj", "Colour Adjustment", ext3_, e3, H3_CSS_ADJUST);
     res += single_feature (b, "Anc", "Scrollbar Anchoring", ext3_, e3, H3_CSS_ANCHOR);
     res += single_feature (b, "Ani", "Animation", ext2_, e2, H2_CSS_ANIM_3, H2_CSS_ANIM_4);
@@ -810,6 +816,7 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, flags_t& ext
     res += single_feature (b, "Cmp", "Compositing and Blending", ext2_, e2, H2_CSS_COMPOSITING);
     res += single_feature (b, "Col", "Colour", ext2_, e2, H2_CSS_COLOUR_3, H2_CSS_COLOUR_4, H2_CSS_COLOUR_5);
     res += single_feature (b, "Con", "Contain", ext3_, e3, H3_CSS_CONTAIN_3, H3_CSS_CONTAIN_4, H3_CSS_CONTAIN_5);
+    res += single_feature (b, "Cnt", "Generated Content", ext3_, e3, H3_CSS_CONTENT);
     res += single_feature (b, "CoR", "Conditional Rule", ext2_, e2, H2_CSS_COND_RULE_3, H2_CSS_COND_RULE_4, H2_CSS_COND_RULE_5);
     res += single_feature (b, "CoS", "Counter Style", ext2_, e2, H2_CSS_CS);
     res += single_feature (b, "Cus", "Custom Properties for Cascading Variables", ext2_, e2, H2_CSS_CUSTOM);
@@ -817,8 +824,9 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, flags_t& ext
     res += single_feature (b, "Dsp", "Display", ext3_, e3, H3_CSS_DISPLAY);
     res += single_feature (b, "Eas", "Easing Functions", ext2_, e2, H2_CSS_EASE);
     res += single_feature (b, "Exc", "Exclusions", ext3_, e3, H3_CSS_EXCLUDE);
-    res += single_feature (b, "FBL", "Flexible Box Layout", ext2_, e2, H2_CSS_FBL);
+    res += single_feature (b, "Fll", "Fill and Stroke", ext3_, e3, H3_CSS_FILL);
     res += single_feature (b, "Fil", "Filter Effects", ext3_, e3, H3_CSS_FILTER);
+    res += single_feature (b, "FBL", "Flexible Box Layout", ext2_, e2, H2_CSS_FBL);
     res += single_feature (b, "Fon", "Fonts", ext2_, e2, H2_CSS_FONT_3, H2_CSS_FONT_4, H2_CSS_FONT_5);
     res += single_feature (b, "Fra", "Fragmentation", ext2_, e2, H2_CSS_FRAG_3, H2_CSS_FRAG_4);
     res += single_feature (b, "Grd", "Grid", ext3_, e3, H3_CSS_GRID_3, H3_CSS_GRID_4);
@@ -828,11 +836,13 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, flags_t& ext
     res += single_feature (b, "LnG", "Lists and Counters", ext3_, e3, H3_CSS_LINE_GRID);
     res += single_feature (b, "Lst", "Line Grid", ext3_, e3, H3_CSS_LIST);
     res += single_feature (b, "Log", "Logical Properties", ext3_, e3, H3_CSS_LOGIC);
+    res += single_feature (b, "Msk", "Masking", ext3_, e3, H3_CSS_MASKING);
     res += single_feature (b, "Med", "Media Queries", ext2_, e2, H2_CSS_MEDIA_3, H2_CSS_MEDIA_4, H2_CSS_MEDIA_5);
+    res += single_feature (b, "Mot", "Motion Path", ext3_, e3, H3_CSS_MOTION);
     res += single_feature (b, "Mlt", "Multi-Column", ext3_, e3, H3_CSS_MULTI_COL);
     res += single_feature (b, "Nam", "Namespaces", ext2_, e2, H2_CSS_NAMESPACE);
-    res += single_feature (b, "Nes", "Namespaces", ext2_, e2, H3_CSS_NES);
-    res += single_feature (b, "Msk", "Masking", ext3_, e3, H3_CSS_MASKING);
+    res += single_feature (b, "Nes", "Non-Element Selectors", ext3_, e2, H3_CSS_NES);
+    res += single_feature (b, "Nst", "Nesting", ext3_, e2, H3_CSS_NESTING);
     res += single_feature (b, "Ofl", "Overflow", ext3_, e3, H3_CSS_OVERFLOW);
     res += single_feature (b, "Osc", "Overscroll Behaviour", ext3_, e3, H3_CSS_OVERSCROLL);
     res += single_feature (b, "PaM", "Paged Media", ext3_, e3, H3_CSS_PAGE);
@@ -1242,6 +1252,14 @@ void html_version::css_contain (const int n)
         case 3 : set_ext3 (H3_CSS_CONTAIN_3); break;
         default : break; } }
 
+int html_version::css_content () const
+{   if (any_ext3 (H3_CSS_CONTENT)) return 3;
+    return 0; }
+
+void html_version::css_content (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_CONTENT);
+    else reset_ext3 (H3_CSS_CONTENT); }
+
 int html_version::css_counter_style () const
 {   if (any_ext2 (H2_CSS_CS)) return 3;
     return 0; }
@@ -1290,7 +1308,6 @@ void html_version::css_exclude (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_EXCLUDE);
     else reset_ext3 (H3_CSS_DEVICE); }
 
-
 int html_version::css_fbl () const
 {   if (any_ext2 (H2_CSS_FBL)) return 3;
     return 0; }
@@ -1298,6 +1315,14 @@ int html_version::css_fbl () const
 void html_version::css_fbl (const int n)
 {   if (n > 0) set_ext2 (H2_CSS_FBL);
     else reset_ext2 (H2_CSS_FBL); }
+
+int html_version::css_fill () const
+{   if (any_ext3 (H3_CSS_FILL)) return 3;
+    return 0; }
+
+void html_version::css_fill (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_FILL);
+    else reset_ext3 (H3_CSS_FILL); }
 
 int html_version::css_filter () const
 {   if (any_ext3 (H3_CSS_FILTER)) return 3;
@@ -1421,6 +1446,14 @@ void html_version::css_media (const int n)
         case 3 : set_ext2 (H2_CSS_MEDIA_3); break;
         default : break; } }
 
+int html_version::css_motion () const
+{   if (any_ext3 (H3_CSS_MOTION)) return 3;
+    return 0; }
+
+void html_version::css_motion (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_MOTION);
+    else reset_ext3 (H3_CSS_MOTION); }
+
 int html_version::css_multi_column () const
 {   if (any_ext3 (H3_CSS_MULTI_COL)) return 3;
     return 0; }
@@ -1433,6 +1466,10 @@ int html_version::css_namespace () const
 {   if (any_ext2 (H2_CSS_NAMESPACE)) return 3;
     return 0; }
 
+void html_version::css_namespace (const int n)
+{   if (n == 3) set_ext2 (H2_CSS_NAMESPACE);
+    else reset_ext2 (H2_CSS_NAMESPACE); }
+
 void html_version::css_nes (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_NES);
     else reset_ext3 (H3_CSS_NES); }
@@ -1441,9 +1478,13 @@ int html_version::css_nes () const
 {   if (any_ext3 (H3_CSS_NES)) return 3;
     return 0; }
 
-void html_version::css_namespace (const int n)
-{   if (n == 3) set_ext2 (H2_CSS_NAMESPACE);
-    else reset_ext2 (H2_CSS_NAMESPACE); }
+int html_version::css_nesting () const
+{   if (any_ext3 (H3_CSS_NESTING)) return 3;
+    return 0; }
+
+void html_version::css_nesting (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_NESTING);
+    else reset_ext3 (H3_CSS_NESTING); }
 
 int html_version::css_overflow () const
 {   if (any_ext3 (H3_CSS_OVERFLOW)) return 3;
@@ -1493,6 +1534,14 @@ void html_version::css_pseudo (const int n)
 {   if ((n == 3) || (n == 4)) set_ext3 (H3_CSS_PSEUDO);
     else reset_ext3 (H3_CSS_PSEUDO); }
 
+int html_version::css_region () const
+{   if (any_ext3 (H3_CSS_REGION)) return 3;
+    return 0; }
+
+void html_version::css_region (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_REGION);
+    else reset_ext3 (H3_CSS_REGION); }
+
 int html_version::css_rhythm () const
 {   if (any_ext3 (H3_CSS_RHYTHM)) return 3;
     return 0; }
@@ -1517,6 +1566,14 @@ void html_version::css_ruby (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_RUBY);
     else reset_ext3 (H3_CSS_RUBY); }
 
+int html_version::css_scope () const
+{   if (any_ext3 (H3_CSS_SCOPE)) return 3;
+    return 0; }
+
+void html_version::css_scope (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_SCOPE);
+    else reset_ext3 (H3_CSS_SCOPE); }
+
 int html_version::css_scrollbar () const
 {   if (any_ext3 (H3_CSS_SCROLLBAR)) return 3;
     return 0; }
@@ -1524,6 +1581,14 @@ int html_version::css_scrollbar () const
 void html_version::css_scrollbar (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_SCROLLBAR);
     else reset_ext3 (H3_CSS_SCROLLBAR); }
+
+int html_version::css_sda () const
+{   if (any_ext3 (H3_CSS_SDA)) return 3;
+    return 0; }
+
+void html_version::css_sda (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_SDA);
+    else reset_ext3 (H3_CSS_SDA); }
 
 int html_version::css_selector () const
 {   if ((ext2 () & H2_CSS_SELECTOR_4) == H2_CSS_SELECTOR_4) return 4;   
@@ -1650,6 +1715,14 @@ void html_version::css_value (const int n)
 {   reset_ext2 (H2_CSS_VALUE_MASK);
     if (n == 3) set_ext2 (H2_CSS_VALUE_3);
     else if (n == 4) set_ext2 (H2_CSS_VALUE); }
+
+int html_version::css_view () const
+{   if (any_ext3 (H3_CSS_VIEW)) return 3;
+    return 0; }
+
+void html_version::css_view (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_VIEW);
+    else reset_ext3 (H3_CSS_VIEW); }
 
 int html_version::css_will_change () const
 {   if (any_ext3 (H3_CSS_WC)) return 3;

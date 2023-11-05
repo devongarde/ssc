@@ -95,6 +95,9 @@ template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, cla
 template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 >
     ::std::string four_value < TYPE, base_type, SZ0, SZ1, SZ2, SZ3 > :: d_;
 
+template < > struct type_master < t_abcfl > : four_value < t_abcfl, e_abcfl, sz_after, sz_before, sz_content, sz_first_letter >
+{ using four_value < t_abcfl, e_abcfl, sz_after, sz_before, sz_content, sz_first_letter > :: four_value; };
+
 template < > struct type_master < t_aces > : four_value < t_aces, e_aces, sz_auto, sz_centre, sz_end, sz_start >
 { using four_value < t_aces, e_aces, sz_auto, sz_centre, sz_end, sz_start > :: four_value; };
 
@@ -124,6 +127,9 @@ template < > struct type_master < t_aria_sort > : four_value < t_aria_sort, e_ar
 
 template < > struct type_master < t_bens > : four_value < t_bens, e_bens, sz_both, sz_end, sz_none, sz_start >
 { using four_value < t_bens, e_bens, sz_both, sz_end, sz_none, sz_start > :: four_value; };
+
+template < > struct type_master < t_bixy > : four_value < t_bixy, e_bixy, sz_block, sz_inline, sz_x, sz_y  >
+{ using four_value < t_bixy, e_bixy, sz_block, sz_inline, sz_x, sz_y > :: four_value; };
 
 template < > struct type_master < t_buffered_rendering > : four_value < t_buffered_rendering, e_buffered_rendering, sz_auto, sz_dynamic, sz_static, sz_inherit >
 { using four_value < t_buffered_rendering, e_buffered_rendering, sz_auto, sz_dynamic, sz_static, sz_inherit > :: four_value; };
@@ -232,6 +238,9 @@ template < > struct type_master < t_edit > : four_value < t_edit, e_edit, sz_cha
 
 template < > struct type_master < t_effect > : four_value < t_effect, e_effect, sz_embed, sz_overlay, sz_replace, sz_new >
 { using four_value < t_effect, e_effect, sz_embed, sz_overlay, sz_replace, sz_new > :: four_value; };
+
+template < > struct type_master < t_ffls > : four_value < t_ffls, e_ffls, sz_first, sz_first_except, sz_last, sz_start >
+{ using four_value < t_ffls, e_ffls, sz_first, sz_first_except, sz_last, sz_start > :: four_value; };
 
 template < > struct type_master < t_font_variant_emoji > : four_value < t_font_variant_emoji, e_font_variant_emoji, sz_auto, sz_emoji, sz_text, sz_unicode >
 { using four_value < t_font_variant_emoji, e_font_variant_emoji, sz_auto, sz_emoji, sz_text, sz_unicode > :: four_value; };

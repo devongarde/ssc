@@ -54,6 +54,9 @@ template < > struct type_master < t_compact > : tidy_string < t_compact >
     void shadow (::std::stringstream& ss, const html_version& v, element* )
     {   if (v.xhtml ()) ss << "=\"compact\""; } };
 
+template < > struct type_master < t_contain > : type_string < t_contain, sz_contain >
+{ using type_string < t_contain, sz_contain > :: type_string; };
+
 template < > struct type_master < t_digits > : type_string < t_digits, sz_digits >
 { using type_string < t_digits, sz_digits > :: type_string; };
 

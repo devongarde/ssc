@@ -29,7 +29,7 @@ PASS ../toast/css/5-media/css-2.html
 PASS ../toast/css/5-media/css-3.css
 0 html
 1 unrecognised_value css_syntax css_syntax css_syntax
-2 css_version unrecognised_value css_syntax css_syntax
+2 css_syntax unrecognised_value
 4 unrecognised_value css_syntax css_syntax css_syntax
 6 unrecognised_value css_syntax css_syntax
 8 css_syntax

@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "main/enum.h"
+#include "utility/common.h"
 #include "feedback/nitpick.h"
 
 struct token_t
@@ -45,6 +46,7 @@ int next_non_whitespace (const vtt_t& vt, const int from, const int to = -1);
 int next_token_at (const vtt_t& vt, const int from, const int to = -1);
 int close_bracket_for (const vtt_t& vt, const int from, const int to = -1);
 ::std::string assemble_unit (vtt_t& vt, int& i, const int to = -1);
+int pos_de (const vtt_t& vt, const css_token sep, const int from, const int to, vint_t& vfr, vint_t& vto, const bool empties = false);
 
 #define TC_ERROR    0x0001
 #define TC_BASE     0x0002

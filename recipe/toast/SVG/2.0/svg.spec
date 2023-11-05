@@ -139,7 +139,7 @@ PASS ../toast/SVG/2.0/index.html
 
 PASS ../toast/SVG/2.0/inline_size.html
 2 naughty_lang
-28 is_property
+28 css_version is_property
 
 PASS ../toast/SVG/2.0/line.xhtml
 0 title_required
@@ -261,12 +261,16 @@ PASS ../toast/SVG/2.0/shape.html
 26 css_version
 34 css_version
 41 css_version newline_in_string newline_in_string
+42 bespoke_obsolete
+43 bespoke_obsolete
 44 fontname
 46 unrecognised_value
 47 css_version newline_in_string newline_in_string
+48 bespoke_obsolete
 49 fontname
 51 unrecognised_value
 57 css_version newline_in_string newline_in_string
+58 bespoke_obsolete
 60 unrecognised_value
 
 PASS ../toast/SVG/2.0/styling-1.svg
@@ -425,7 +429,7 @@ PASS ../toast/SVG/2.0/viewport.xhtml
 
 PASS ../toast/SVG/2.0/white-space.html
 2 naughty_lang
-14 use_double_quote_code newline_in_string newline_in_string
+14 css_version use_double_quote_code newline_in_string newline_in_string
 
 PASS ../toast/SVG/2.0/will-change.html
 2 naughty_lang

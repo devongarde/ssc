@@ -32,6 +32,7 @@
 ./ssc -f ../toast/css/3-contain/css.conf
 ./ssc -f ../toast/css/4-contain/css.conf
 ./ssc -f ../toast/css/5-contain/css.conf
+./ssc -f ../toast/css/3-content/css.conf
 ./ssc -f ../toast/css/3-cr/css.conf
 ./ssc -f ../toast/css/4-cr/css.conf
 ./ssc -f ../toast/css/5-cr/css.conf
@@ -40,6 +41,7 @@
 ./ssc -f ../toast/css/3-display/css.conf
 ./ssc -f ../toast/css/3-exclude/css.conf
 ./ssc -f ../toast/css/3-fbl/css.conf
+./ssc -f ../toast/css/3-fill/css.conf
 ./ssc -f ../toast/css/3-filter/css.conf
 ./ssc -f ../toast/css/3-float/css.conf
 ./ssc -f ../toast/css/3-font/css.conf
@@ -58,17 +60,22 @@
 ./ssc -f ../toast/css/3-media/css.conf
 ./ssc -f ../toast/css/4-media/css.conf
 ./ssc -f ../toast/css/5-media/css.conf
+./ssc -f ../toast/css/3-motion/css.conf
 ./ssc -f ../toast/css/3-nes/css.conf
+./ssc -f ../toast/css/3-nesting/css.conf
 ./ssc -f ../toast/css/3-ns/css.conf
 ./ssc -f ../toast/css/3-overflow/css.conf
 ./ssc -f ../toast/css/3-page/css.conf
 ./ssc -f ../toast/css/3-position/css.conf
 ./ssc -f ../toast/css/4-present/css.conf
 ./ssc -f ../toast/css/4-pseudo/css.conf
+./ssc -f ../toast/css/3-region/css.conf
 ./ssc -f ../toast/css/3-rhythm/css.conf
 ./ssc -f ../toast/css/3-round/css.conf
 ./ssc -f ../toast/css/3-ruby/css.conf
+./ssc -f ../toast/css/3-scope/css.conf
 ./ssc -f ../toast/css/3-scrollbar/css.conf
+./ssc -f ../toast/css/3-sda/css.conf
 ./ssc -f ../toast/css/3-sel/css.conf
 ./ssc -f ../toast/css/4-sel/css.conf
 ./ssc -f ../toast/css/3-shadow/css.conf
@@ -89,6 +96,7 @@
 ./ssc -f ../toast/css/4-ui/css.conf
 ./ssc -f ../toast/css/3-value/css.conf
 ./ssc -f ../toast/css/4-value/css.conf
+./ssc -f ../toast/css/3-view/css.conf
 ./ssc -f ../toast/css/3-wc/css.conf
 ./ssc -f ../toast/css/3-writing/css.conf
 ./ssc -f ../toast/css/4-writing/css.conf

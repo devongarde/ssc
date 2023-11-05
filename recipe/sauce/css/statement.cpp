@@ -682,28 +682,40 @@ void statement::parse_page (arguments& args, nitpick& nits, const int from, cons
             dsc_.parse (args, css_page, args.t_.at (to).child_); } } }
 
 void statement::parse_scope (arguments& args, nitpick& nits, const int from, const int to)
-{   if (context.html_ver ().css_cascade () < 6)
-        nits.pick (nit_css_version, es_error, ec_css, "@scope requires CSS cascade 6");
+{   if ((context.css_cascade () < 6) && (context.css_scope () < 3))
+        nits.pick (nit_css_version, es_error, ec_css, "@scope requires CSS Cascade 6 or CSS scope 3");
     else
     {   int i = next_non_whitespace (args.t_, from, to);
         if (i < 0)
             nits.pick (nit_css_scope, ed_css_cascade_6, "2.5.2. Syntax of @scope", es_error, ec_css, "@scope: scope missing");
         else
         {   if (args.t_.at (i).t_ == ct_round_brac)
-            {   i = next_non_whitespace (args.t_, i, to);
-                const int z = token_find (args.t_, ct_round_ket, i, to);
-                if (z < 0)
-                {   nits.pick (nit_css_scope, ed_css_cascade_6, "2.5.2. Syntax of @scope", es_error, ec_css, "@scope found '(' but not ')'");
-                    return; }
-                PRESUME (args.t_.at (to).child_ > 0, __FILE__, __LINE__);
-                fiddlesticks < statement > f (&args.st_, this);
-                sel_.parse (args, i, z);
-                i = next_non_whitespace (args.t_, z, to);
-                if (i < 0)
-                {   nits.pick (nit_css_scope, ed_css_cascade_6, "2.5.2. Syntax of @scope", es_error, ec_css, "@scope expects {...} after any selectors");
-                    return; } }
-            if ((args.t_.at (i).t_ == ct_keyword) || (args.t_.at (i).t_ == ct_identifier))
-                if (compare_no_case (args.t_.at (i).val_, "to")) 
+                if (context.css_cascade () < 6)
+                    nits.pick (nit_css_version, es_error, ec_css, "@scope ( ... ) requires CSS Cascade 6");
+                else
+                {   i = next_non_whitespace (args.t_, i, to);
+                    if ((i >= 0) && (args.t_.at (i).t_ == ct_ampersand))
+                    {   if (context.css_nesting () < 3)
+                            nits.pick (nit_nesting, ed_css_nesting, "2.2. Nesting Other At-Rules", es_error, ec_css, "'missing keyword after '&', '&' here requires CSS Nesting");
+                        i = next_non_whitespace (args.t_, i, to); }
+                    if (i < 0)
+                    {   nits.pick (nit_css_scope, es_error, ec_css, "@scope content ends unexpectedly");
+                        return; }
+                    const int z = token_find (args.t_, ct_round_ket, i, to);
+                    if (z < 0)
+                    {   nits.pick (nit_css_scope, ed_css_cascade_6, "2.5.2. Syntax of @scope", es_error, ec_css, "@scope found '(' but not ')'");
+                        return; }
+                    PRESUME (args.t_.at (to).child_ > 0, __FILE__, __LINE__);
+                    fiddlesticks < statement > f (&args.st_, this);
+                    sel_.parse (args, i, z);
+                    i = next_non_whitespace (args.t_, z, to);
+                    if (i < 0)
+                    {   nits.pick (nit_css_scope, ed_css_cascade_6, "2.5.2. Syntax of @scope", es_error, ec_css, "@scope expects {...} after any selectors");
+                        return; } }
+            if (((args.t_.at (i).t_ == ct_keyword) || (args.t_.at (i).t_ == ct_identifier)) && (compare_no_case (args.t_.at (i).val_, "to"))) 
+            {   if (context.css_cascade () < 6)
+                    nits.pick (nit_css_version, es_error, ec_css, "@scope to requires CSS Cascade 6");
+                else
                 {   i = next_non_whitespace (args.t_, i, to);
                     if (args.t_.at (i).t_ != ct_round_brac)
                     {   nits.pick (nit_css_scope, ed_css_cascade_6, "2.5.2. Syntax of @scope", es_error, ec_css, "@scope expects ( selectors ) after 'to'");
@@ -719,7 +731,16 @@ void statement::parse_scope (arguments& args, nitpick& nits, const int from, con
                     i = next_non_whitespace (args.t_, z, to);
                     if (i < 0)
                     {   nits.pick (nit_css_scope, ed_css_cascade_6, "2.5.2. Syntax of @scope", es_error, ec_css, "@scope expects {...} after any selectors");
-                        return; } }
+                        return; } } }
+            else if (args.t_.at (i).t_ != ct_curly_brac)
+            {   const int z = token_find (args.t_, ct_curly_brac, i, to);
+                if (z < 0)
+                {   nits.pick (nit_css_scope, es_error, ec_css, "@scope expects {...} after selectors");
+                    return; }
+                if (z > i)
+                {   fiddlesticks < statement > f (&args.st_, this);
+                    sel_.parse (args, i, z-1);
+                    i = z; } }
             if (args.t_.at (i).t_ != ct_curly_brac)
                 nits.pick (nit_css_scope, ed_css_cascade_6, "2.5.2. Syntax of @scope", es_error, ec_css, "@scope requires {...}");
             else

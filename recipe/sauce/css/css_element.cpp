@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/enum.h"
 #include "type/type.h"
 #include "element/state.h"
+#include "css/statements.h"
 
 #define SEL_SEPS ":.#["
 
@@ -66,7 +67,16 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
         return; }
     bool pseudo = true;
     switch (args.t_.at (b).t_)
-    {   case ct_barbar :
+    {   case ct_ampersand :
+        case ct_round_brac :
+            pseudo = false;
+            if (context.css_nesting () < 3)
+                nits.pick (nit_css_version, es_error, ec_css, quote (wo), " here requires CSS Nesting");
+            else
+            {   css_element e (elem_css_child);
+                ::std::swap (*this, e); }
+            break;
+         case ct_barbar :
             pseudo = false;
             if (context.html_ver ().css_selector () < 4)
                 nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": || requires CSS Selector 4");
@@ -74,6 +84,42 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
             {   css_element e (elem_css_cell);
                 ::std::swap (*this, e); }
             break;
+        case ct_at :
+            if (context.css_nesting () < 3)
+                nits.pick (nit_nesting, es_error, ec_css, "'@' here requires CSS Nesting");
+            else
+            {   const int kw = next_non_whitespace (args.t_, b, to);
+                if (kw < 0)
+                {   nits.pick (nit_nesting, ed_css_nesting, "2.2. Nesting Other At-Rules", es_error, ec_css, "missing keyword after '@'");
+                    return; }
+                if ((args.t_.at (kw).t_ != ct_keyword) || (args.t_.at (kw).t_ != ct_identifier))
+                {   nits.pick (nit_nesting, ed_css_nesting, "2.2. Nesting Other At-Rules", es_error, ec_css, "@", tkn_rpt (args.t_.at (kw)), "??");
+                    return; }
+                enum_n < t_css_statement, e_css_statement > cst;
+                cst.set_value (nits, args.v_, args.t_.at (kw).val_);
+                const e_css_statement st = cst.get ();
+                switch (st)
+                {   case css_media :
+                    case css_supports :
+                    case css_scope :
+                    case css_layer :
+                    case css_container :
+                        break;
+                    case css_context :
+                    case css_error :
+                        nits.pick (nit_nesting, es_error, ec_css, "@", tkn_rpt (args.t_.at (kw)), " is unrecognised");
+                        return;
+                    default :
+                        nits.pick (nit_nesting, ed_css_nesting, "2.2. Nesting Other At-Rules", es_error, ec_css, "@", tkn_rpt (args.t_.at (kw)), " cannot be nested");
+                        return; }
+                if (! cst.first ().is_css_compatible (context.html_ver ()))
+                {   nits.pick (nit_nesting, es_error, ec_css, "@", tkn_rpt (args.t_.at (kw)), " is not available in ", context.html_ver ().long_css_version_name ());
+                    return; }
+                if (duff_ == nullptr) duff_ = ps_t (new statement ());
+                fiddlesticks < statement > f (&args.st_, duff_.get ());
+                fiddlesticks < bool > nb (&args.nested_, true);
+                st_.emplace_back (pst_t (new statements (args, b, to))); }
+            return;
         case ct_coco :
         case ct_colon :
         case ct_dot :
@@ -96,6 +142,7 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
             {   css_element e (elem_css_child);
                 ::std::swap (*this, e); }
             break;
+        case ct_identifier :
         case ct_keyword :
             {   PRESUME (! args.styled (), __FILE__, __LINE__);
                 if (no_ns || (! args.snippet_))
@@ -129,25 +176,33 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
             break;
         case ct_squiggle :
             pseudo = false;
-            if (context.html_ver ().css_selector () < 3)
+            if (context.css_selector () < 3)
                 nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": ~ requires CSS 3 selectors or better");
             else
             {   css_element e (elem_css_precede);
                 ::std::swap (*this, e); }
             break;
+        case ct_round_ket :
+        case ct_square_ket :
+        case ct_curly_ket :
+        case ct_semicolon :
+            if (context.css_nesting () >= 3) return;
+            FALLTHROUGH;
         default :
             nits.pick (nit_css_element, es_error, ec_css, quote (tkn_rpt (args.t_.at (from))), ": element expected");
             return; }
     if (! pseudo)
     {   if ((b > 0) && (b < to))
         {   b = next_non_whitespace (args.t_, b, to);
-            switch (args.t_.at (b).t_)
+            if (b < 0) nits.pick (nit_css_syntax, es_error, ec_css, "I believe that's technically termed an 'orrible mess");
+            else switch (args.t_.at (b).t_)
             {   case ct_hash :
                 case ct_dot :
                 case ct_coco :
                 case ct_colon :
                 case ct_square_brac :
-                    nits.pick (nit_naughty_decoration, es_error, ec_css, quote (tkn_rpt (args.t_.at (from))), " cannot be decorated");
+                    if (context.css_nesting () < 3)
+                        nits.pick (nit_naughty_decoration, es_error, ec_css, quote (tkn_rpt (args.t_.at (b))), " cannot be decorated");
                     break;
                 default:
                     parse (args, b, to);
@@ -192,7 +247,10 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
                 return;
             case ct_comma :
             case ct_round_ket :
-                return;
+            case ct_square_ket :
+            case ct_semicolon :
+                if (context.css_nesting () >= 3) return;
+                FALLTHROUGH;
             default :
                 nits.pick (nit_css_syntax, es_error, ec_css, quote (tkn_rpt (args.t_.at (i))), ": unexpected (4)");
                 return; } }

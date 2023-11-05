@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CSS 3 motion path test pages</title>
+
+<style>
+    body {
+        transform-style: preserve-3d;
+        width: 200px;
+        height: 200px;
+    }
+    .box {
+        width: 50px;
+        height: 50px;
+        offset-position: 50% 50%;
+        offset-distance: 100%;
+        offset-rotate: 0deg;
+    }
+    #redBox {
+        background-color: red;
+        offset-path: ray(45deg closest-side);
+    }
+    #blueBox {
+        background-color: blue;
+        offset-path: ray(180deg closest-side);
+    }
+</style>
+
+<style>
+    body {
+        transform-style: preserve-3d;
+        width: 200px;
+        height: 200px;
+    }
+    .box {
+        width: 50px;
+        height: 50px;
+        offset-position: 50% 50%;
+        offset-distance: 100%;
+        offset-rotate: 0deg;
+    }
+    #redBox {
+        background-color: red;
+        offset-path: ray(45deg closest-side contain);
+    }
+    #blueBox {
+        background-color: blue;
+        offset-path: ray(180deg closest-side contain);
+    }
+</style>
+
+<style>
+    body {
+        transform-style: preserve-3d;
+        width: 250px;
+        height: 250px;
+    }
+    .box {
+        width: 60%;
+        height: 10%;
+
+        offset-position: 20% 20%;
+        offset-distance: 0%;
+        offset-rotate: 0deg;
+        offset-anchor: 200% -300%;
+    }
+    #blueBox {
+        background-color: blue;
+        offset-path: ray(-90deg closest-side contain);
+    }
+</style>
+
+<style>
+    #container {
+        transform-style: preserve-3d;
+        width: 200px;
+        height: 200px;
+    }
+    .box {
+        width: 20%;
+        height: 20%;
+        offset-position: 140% 70%;
+        offset-distance: 100%;
+    }
+    #redBox {
+        background-color: red;
+        offset-path: ray(-90deg sides);
+    }
+    #blueBox {
+        background-color: blue;
+        offset-path: ray(180deg closest-side);
+    }
+</style>
+
+<style>
+    body {
+        width: 500px;
+        height: 300px;
+        border-radius: 80px;
+        border: dashed aqua;
+        margin: 0;
+    }
+    #blueBox {
+        width: 40px;
+        height: 20px;
+        background-color: blue;
+        offset-path: margin-box;
+    }
+</style>
+
+<style>
+    body {
+        width: 323px;
+        height: 131px;
+        margin: 0px;
+        border: 2px solid black;
+        padding: 8px;
+        transform-style: preserve-3d;
+    }
+    .item {
+        width:  90px;
+        height: 40px;
+        background-color: violet;
+    }
+    #middle {
+        offset-position: auto;
+        offset-path: circle(60%) margin-box;
+        offset-distance: 25%;
+        offset-anchor: left top;
+    }
+</style>
+
+<style>
+    .item {
+        width: 100px;
+        height: 40px;
+        offset-position: 0% 0%;
+        offset-path: path('m 0 0 h 200 v 150');
+    }
+    #box1 {
+        background-color: red;
+        offset-distance: -280%;
+    }
+    #box2 {
+        background-color: green;
+        offset-distance: 190%;
+    }
+</style>
+
+<style>
+    .item {
+        width: 100px;
+        height: 40px;
+        offset-position: 0% 0%;
+        offset-path: path('m 0 0 h 200 v 150 z');
+    }
+    #box1 {
+        background-color: red;
+        offset-distance: -280%;
+    }
+    #box2 {
+        background-color: green;
+        offset-distance: 190%;
+    }
+</style>
+
+<style>
+    body {
+        transform-style: preserve-3d;
+        width: 300px;
+        height: 300px;
+        border: dashed gray;
+        border-radius: 50%;
+    }
+    .circleBox {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 40px;
+        height: 40px;
+        background-color: red;
+        border-radius: 50%;
+    }
+    #circle1 {
+        offset-path: ray(0deg farthest-side);
+        offset-distance: 50%;
+    }
+    #circle2 {
+        offset-path: ray(90deg farthest-side);
+        offset-distance: 20%;
+    }
+    #circle3 {
+        offset-path: ray(225deg farthest-side);
+        offset-distance: 100%;
+    }
+</style>
+
+<style>
+    #wrap {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        border: 1px solid black;
+    }
+
+    #box {
+        width: 100px;
+        height: 100px;
+        background-color: green;
+        position: absolute;
+        top: 100px;
+        left: 80px;
+        offset-position: auto;
+        offset-anchor: center;
+        offset-path: ray(45deg);
+    }
+</style>
+
+<style>
+    #wrap {
+        transform-style: preserve-3d;
+        width: 400px;
+        height: 350px;
+    }
+    .item {
+        position: absolute;
+        left: 200px;
+        top: 0px;
+        offset-position: 200px 100px; /* translates by 0px,100px */
+        offset-anchor: left top;
+        transform-origin: left top;
+        width: 130px;
+        height: 80px;
+        border-top-right-radius: 23px;
+    }
+    #box1 {
+        background-color: tomato;
+        offset-position: auto;
+    }
+    #box2 {
+        background-color: green;
+    }
+    #box3 {
+        background-color: navy;
+        rotate: 90deg; /* applied before motion path transform */
+    }
+    #box4 {
+        background-color: gold;
+        transform: rotate(90deg); /* applied after motion path transform */
+    }
+</style>
+
+<style>
+    #wrap {
+        transform-style: preserve-3d;
+        width: 500px;
+        height: 250px;
+        line-height: 0px;
+    }
+    span {
+        position: static;
+        display: inline-block;
+        width: 100px;
+        height: 50px;
+        border-top-right-radius: 23px;
+        scale: 2.5 2.5; /* applied before motion path transform */
+        offset-position: center;
+        transform: scale(0.4); /* applied after motion path transform */
+    }
+    #box1 {
+        background-color: tomato;
+    }
+    #box2 {
+        background-color: green;
+    }
+    #box3 {
+        background-color: navy;
+    }
+    #box4 {
+        background-color: gold;
+    }
+</style>
+
+<style>
+    #wrap {
+        transform-style: preserve-3d;
+        width: 540px;
+        height: 420px;
+    }
+    .item {
+        position: absolute;
+        width: 90px;
+        height: 70px;
+        border-top-right-radius: 23px;
+        scale: 0.8 0.8; /* applied before motion path transform */
+        offset-path: padding-box;
+        offset-distance: 50%;
+        offset-rotate: 0deg;
+        offset-anchor: right bottom;
+        transform: scale(1.25); /* applied after motion path transform */
+    }
+    #box1 {
+        background-color: tomato;
+        position: static;
+        offset-position: auto; /* ignored */
+    }
+    #box2 {
+        background-color: green;
+        right: 0px;
+        top: 0px;
+        offset-position: 23% 45%; /* ignored */
+    }
+    #box3 {
+        background-color: navy;
+        left: 0px;
+        bottom: 0px;
+        offset-position: 34% 56px; /* ignored */
+    }
+    #box4 {
+        background-color: gold;
+        right: 0px;
+        bottom: 0px;
+        offset-position: 45px 67px; /* ignored */
+    }
+</style>
+
+<style>
+    body {
+        transform-style: preserve-3d;
+        width: 300px;
+        height: 300px;
+        border: 2px solid gray;
+        border-radius: 50%;
+    }
+    .box {
+        width: 50px;
+        height: 50px;
+        background-color: orange;
+        offset-position: 50% 50%;
+        offset-distance: 100%;
+        offset-rotate: 0deg;
+    }
+    #item1 {
+        offset-path: ray(45deg closest-side);
+        offset-anchor: right top;
+    }
+    #item2 {
+        offset-path: ray(135deg closest-side);
+        offset-anchor: right bottom;
+    }
+    #item3 {
+        offset-path: ray(225deg closest-side);
+        offset-anchor: left bottom;
+    }
+    #item4 {
+        offset-path: ray(315deg closest-side);
+        offset-anchor: left top;
+    }
+</style>
+
+<style>
+    body {
+        width: 500px;
+        height: 500px;
+    }
+    .box {
+        background-color: mediumpurple;
+        offset-path: none;
+        offset-anchor: center;
+    }
+    #item1 {
+        offset-position: 90% 20%;
+        width: 60%;
+        height: 20%;
+    }
+    #item2 {
+        offset-position: 100% 100%;
+        width: 30%;
+        height: 10%;
+    }
+    #item3 {
+        offset-position: 50% 100%;
+        width: 20%;
+        height: 60%;
+    }
+    #item4 {
+        offset-position: 0% 100%;
+        width: 30%;
+        height: 90%;
+    }
+</style>
+
+<style>
+    body {
+        width: 500px;
+        height: 500px;
+    }
+    .box {
+        background-color: mediumpurple;
+        offset-path: none;
+        offset-anchor: auto;
+    }
+    #item1 {
+        offset-position: 90% 20%;
+        width: 60%;
+        height: 20%;
+    }
+    #item2 {
+        offset-position: 100% 100%;
+        width: 30%;
+        height: 10%;
+    }
+    #item3 {
+        offset-position: 50% 100%;
+        width: 20%;
+        height: 60%;
+    }
+    #item4 {
+        offset-position: 0% 100%;
+        width: 30%;
+        height: 90%;
+    }
+</style>
+
+<style>
+    body {
+        width: 300px;
+        height: 300px;
+        margin: 0px;
+        border: solid gray;
+        border-radius: 50%;
+    }
+    .circle {
+        offset-position: 150px 150px;
+        offset-distance: 86%;
+        width: 42px;
+        height: 42px;
+        background-color: mediumpurple;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #item1 {
+        offset-path: ray(0deg closest-side);
+        offset-rotate: auto 90deg;
+    }
+    #item2 {
+        offset-path: ray(45deg closest-side);
+        offset-rotate: auto 90deg;
+    }
+    #item3 {
+        offset-path: ray(135deg closest-side);
+        offset-rotate: auto -90deg;
+    }
+    #item4 {
+        offset-path: ray(180deg closest-side);
+        offset-rotate: auto -90deg;
+    }
+    #item5 {
+        offset-path: ray(225deg closest-side);
+        offset-rotate: reverse 90deg;
+    }
+    #item6 {
+        offset-path: ray(-45deg closest-side);
+        offset-rotate: reverse -90deg;
+    }
+</style>
+
+</head>
+
+<body>
+
+    <div class="box" id="redBox"></div>
+    <div class="box" id="blueBox"></div>
+
+    <div class="item"></div>
+    <div class="item" id="middle"></div>
+    <div class="item"></div>
+
+    <div class="item" id="box1"></div>
+    <div class="item" id="box2"></div>
+
+    <div class="circleBox" id="circle1"></div>
+    <div class="circleBox" id="circle2"></div>
+    <div class="circleBox" id="circle3"></div>
+
+    <div id="wrap">
+        <div id="box"></div>
+    </div>
+
+    <div id="wrap">
+        <div class="item" id="box1"></div>
+        <div class="item" id="box2"></div>
+        <div class="item" id="box3"></div>
+        <div class="item" id="box4"></div>
+    </div>
+
+    <div id="wrap">
+        <div>
+            <span id="box1"></span><span id="box2"></span>
+        </div>
+        <div>
+            <span id="box3"></span><span id="box4"></span>
+        </div>
+    </div>
+
+    <div class="box" id="item1"></div>
+    <div class="box" id="item2"></div>
+    <div class="box" id="item3"></div>
+    <div class="box" id="item4"></div>
+
+    <div class="circle" id="item1">1</div>
+    <div class="circle" id="item2">2</div>
+    <div class="circle" id="item3">3</div>
+    <div class="circle" id="item4">4</div>
+    <div class="circle" id="item5">5</div>
+    <div class="circle" id="item6">6</div>
+
+
+</body>
+</html>

@@ -5,8 +5,6 @@ PASS ../toast/css/6-cascade/index.html
 
 PASS ../toast/css/6-cascade/css-2.css
 0 html
-69 css_element
-72 css_element
 
 PASS ../toast/css/6-cascade/css-2.html
 2 naughty_lang

@@ -19,16 +19,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
-//#include "type/type.h"
 #include "css/properties.h"
 #include "css/rules.h"
 #include "css/ffvs.h"
 #include "css/descriptors.h"
 #include "css/media.h"
-
-class statements;
-typedef ::std::shared_ptr < statements > pst_t;
-typedef ::std::vector < pst_t > vpst_t;
+#include "css/css_pre.h"
 
 class statement
 {   type_master < t_css_statement > st_;

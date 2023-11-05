@@ -110,6 +110,9 @@ template < > struct type_master < t_allow_force > : two_value < t_allow_force, e
 template < > struct type_master < t_always_normal > : two_value < t_always_normal, e_always_normal, sz_always, sz_normal, false >
 { using two_value < t_always_normal, e_always_normal, sz_always, sz_normal, false > :: two_value; };
 
+template < > struct type_master < t_auto_break > : two_value < t_auto_break, e_auto_break, sz_auto, sz_break, false >
+{ using two_value < t_auto_break, e_auto_break, sz_auto, sz_break, false > :: two_value; };
+
 template < > struct type_master < t_auto_none > : two_value < t_auto_none, e_auto_none, sz_auto, sz_none, false >
 { using two_value < t_auto_none, e_auto_none, sz_auto, sz_none, false > :: two_value; };
 
@@ -131,6 +134,9 @@ template < > struct type_master < t_capture > : two_value < t_capture, ev_captur
 template < > struct type_master < t_circle_ellipse > : two_value < t_circle_ellipse, e_circle_ellipse, sz_circle, sz_ellipse, false >
 { using two_value < t_circle_ellipse, e_circle_ellipse, sz_circle, sz_ellipse, false > :: two_value; };
 
+template < > struct type_master < t_closed_open > : two_value < t_closed_open, e_closed_open, sz_closed, sz_open, false >
+{ using two_value < t_closed_open, e_closed_open, sz_closed, sz_open, false > :: two_value; };
+
 template < > struct type_master < t_colour_scheme > : two_value < t_colour_scheme, e_colour_scheme, sz_dark, sz_light, false >
 { using two_value < t_colour_scheme, e_colour_scheme, sz_dark, sz_light, false > :: two_value; };
 
@@ -151,6 +157,9 @@ template < > struct type_master < t_cors > : two_value < t_cors, ev_cors, sz_ano
 
 template < > struct type_master < t_create_parent > : two_value < t_create_parent, e_create_parent, sz_create, sz_match_parent, false >
 { using two_value < t_create_parent, e_create_parent, sz_create, sz_match_parent, false > :: two_value; };
+
+template < > struct type_master < t_cs > : two_value < t_cs, e_cs, sz_compress, sz_stretch, false >
+{ using two_value < t_cs, e_cs, sz_compress, sz_stretch, false > :: two_value; };
 
 template < > struct type_master < t_css_anim_play_state > : two_value < t_css_anim_play_state, e_css_anim_play_state, sz_paused, sz_running, false >
 { using two_value < t_css_anim_play_state, e_css_anim_play_state, sz_paused, sz_running, false > :: two_value; };
@@ -193,6 +202,10 @@ template < > struct type_master < t_dataformatas > : two_value < t_dataformatas,
 
 template < > struct type_master < t_defaultaction > : two_value < t_defaultaction, e_defaultaction, sz_cancel, sz_perform, false >
 { using two_value < t_defaultaction, e_defaultaction, sz_cancel, sz_perform, false > :: two_value; };
+
+//typedef enum { dg_dash, dg_gaps } e_dg;
+template < > struct type_master < t_dg > : two_value < t_dg, e_dg, sz_dash, sz_gaps, false >
+{ using two_value < t_dg, e_dg, sz_dash, sz_gaps, false > :: two_value; };
 
 template < > struct type_master < t_drop_raise > : two_value < t_drop_raise, e_drop_raise, sz_drop, sz_raise, false >
 { using two_value < t_drop_raise, e_drop_raise, sz_drop, sz_raise, false > :: two_value; };

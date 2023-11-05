@@ -1,0 +1,30 @@
+﻿#this {
+    flow-into: my-flow;
+  }
+  #there {
+    flow-from: my-flow;
+  }
+
+  article {
+    flow-into: article-flow;
+  }
+  .region {
+    flow-from: article-flow;
+  }
+  .top {
+    max-height: 80vh;
+  }
+
+   nav a {
+    flow-into: nav-link-flow;
+  }
+  nav {
+    flow-from: nav-link-flow;
+  }
+
+  .breaking {
+    flow-into: breaking-news;
+  }
+  .breaking-news {
+    flow-from: breaking-news;
+  }

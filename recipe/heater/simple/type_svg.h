@@ -113,7 +113,7 @@ template < > struct type_master < t_fill_opacity > : tidy_string < t_fill_opacit
             if (compare_complain (nits, v, sz_inherit :: sz (), ss)) return;
             nitpick nuts, knits;
             if (test_value < t_zero_to_one > (nuts, v, ss)) { nits.merge (nuts); return; }
-            if (v.is_svg_2 () && (test_value < t_percent > (knits, v, ss))) { nits.merge (knits); return; }
+            if (((v.is_svg_2 () || context.css_fill () >= 3)) && (test_value < t_percent > (knits, v, ss))) { nits.merge (knits); return; }
             nits.merge (nuts); nits.merge (knits); }
         tidy_string < t_fill_opacity > :: status (s_invalid); } };
 

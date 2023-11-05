@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS 3 sda test pages</title>
+</head>
+
+<body>
+
+<style>
+  @keyframes anim {
+    from { color: red; }
+    to { color: green; }
+  }
+
+  .root {
+    /* declares the scope of a 'scroller' timeline to reach all descendants */
+    timeline-scope: scroller;
+  }
+
+  .root .animation {
+    animation: anim;
+    /* references the 'scroller' timeline for driving the progress of 'anim' */
+    animation-timeline: scroller;
+  }
+
+  .root .animation + .scroller {
+    /* attaches a scroll progress timeline to the timeline name 'scroller' */
+    scroll-timeline: scroller;
+  }
+</style>
+&hellip;
+<section class="root">
+  <div class="animation">Animating Box</div>
+  <div class="scroller">Scrollable Box</div>
+</section>
+
+</body>
+</html>

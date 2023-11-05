@@ -54,7 +54,6 @@ PASS ../toast/css/2.2/css-4-1.css
 55 unrecognised_value
 58 unrecognised_value unrecognised_value
 59 css_syntax
-60 unrecognised_value
 62 unrecognised_value unrecognised_value
 63 unrecognised_value
 71 fontname css_syntax
@@ -64,19 +63,18 @@ PASS ../toast/css/2.2/css-4-2.css
 1 unrecognised_value
 6 unrecognised_value unrecognised_value
 7 css_syntax
-8 unrecognised_value
 16 css_syntax property
 17 css_syntax property
 18 property
 19 property
 20 css_syntax css_colour
 21 css_syntax css_colour css_colour
-23 css_syntax css_element unrecognised_value
+23 css_syntax nesting unrecognised_value
 24 unrecognised_value
 25 css_syntax
 25 css_syntax
 26 css_element
-26 css_element
+26 css_version css_syntax
 26 css_element
 28 unrecognised_value
 38 css_version naughty_content css_syntax

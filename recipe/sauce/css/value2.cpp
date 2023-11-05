@@ -42,6 +42,7 @@ template < e_type TYPE > struct property_by_type < TYPE >
 int check_typed_identifier (arguments& args, nitpick& nits, const int start, const int to, const e_type t)
 {   PRESUME ((args.t_.at (start).t_ == ct_keyword) || (args.t_.at (start).t_ == ct_identifier) || (args.t_.at (start).t_ == ct_number), __FILE__, __LINE__);
 #ifdef LIMITED_META_COMPLEXITY
+    if (t <= SSC_TYPES_0_9_MAX) return property_by_type < SSC_TYPES_0_9, t_unknown > :: check (args, start, to, nits, t);
     if (t <= SSC_TYPES_A_MAX) return property_by_type < SSC_TYPES_A, t_unknown > :: check (args, start, to, nits, t);
     if (t <= SSC_TYPES_B_C_MAX) return property_by_type < SSC_TYPES_B_C, t_unknown > :: check (args, start, to, nits, t);
     if (t <= SSC_TYPES_CSS_A_MAX) return property_by_type < SSC_TYPES_CSS_A, t_unknown > :: check (args, start, to, nits, t);

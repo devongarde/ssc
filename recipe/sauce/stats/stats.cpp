@@ -144,6 +144,10 @@ void stats_t::use_class (const ::std::string& s, const ::std::size_t n)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     return p_ -> use_class (s, n); }
 
+void stats_t::use_highlight (const ::std::string& s)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> use_highlight (s); }
+
 void stats_t::use_id (const ::std::string& s, const ::std::size_t n)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     return p_ -> use_id (s, n); }

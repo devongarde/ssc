@@ -103,8 +103,8 @@ template < e_type TYPE > struct test_typed_value < TYPE >
 
 bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::std::string& s)
 #ifdef LIMITED_META_COMPLEXITY
-{
-   if (t <= SSC_TYPES_A_MAX) return test_typed_value < SSC_TYPES_A, t_unknown > :: test (nits, v, t, s);
+{   if (t <= SSC_TYPES_0_9_MAX) return test_typed_value < SSC_TYPES_0_9, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_A_MAX) return test_typed_value < SSC_TYPES_A, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPES_B_C_MAX) return test_typed_value < SSC_TYPES_B_C, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPES_CSS_A_MAX) return test_typed_value < SSC_TYPES_CSS_A, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPES_CSS_B_MAX) return test_typed_value < SSC_TYPES_CSS_B, t_unknown > :: test (nits, v, t, s);

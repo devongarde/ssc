@@ -51,7 +51,7 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
                     nits.pick (nit_pseud, ed_css_selectors_3, "2 Selectors", es_error, ec_css, fn.name (), " is a pseudo class, use ':', not '::'"); } }
         b = next_non_whitespace (args.t_, b, to);
         if ((b == -1) || (args.t_.at (b).t_ != ct_round_brac))
-        {   if ((cats & H2_CSS_ARG_MASK) != 0)
+        {   if (((cats & H2_CSS_ARG_MASK) != 0) && (fn_ != efn_host))
                 nits.pick (nit_pseud, es_error, ec_css, fn.name (), ": missing arguments");   
             return; }
         if ((cats & H2_CSS_ARG_MASK) == 0)
@@ -88,8 +88,17 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
             case efn_highlight :
                 if (context.css_highlight () < 3)
                     nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS Custom Highlight");
-                else test_value < t_idref > (nits, context.html_ver (), param);
+                else 
+                {   sstr_t& h = args.g_.highlight ();
+                    if (h.find (param) != h.cend ())
+                        nits.pick (nit_highlight, es_error, ec_css, quote (param), ": previously defined");
+                    else h.insert (param); }
                 return;
+            case efn_host :
+            case efn_host_context :
+                if (context.css_view () > 0)
+                    vsl_.emplace_back (new selector (args, b, ket, true));
+                break;
             case efn_lang :
                 if (args.v_.css_selector () >= 4)
                     test_value < t_css_langs > (nits, context.html_ver (), param);
@@ -125,6 +134,16 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
                 {   vstr_t parts = split_by_space (param);
                     for (auto part : parts)
                         args.g_.get_page ().parts ().insert (part); }
+                return;
+            case efn_view_transition_group :
+            case efn_view_transition_new :
+            case efn_view_transition_old :
+            case efn_view_transition_image_pair :
+                if (context.css_view () < 3)
+                    nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS View Transitions");
+                else if (param != "*") 
+                {   sstr_t& h = args.g_.view ();
+                    if (h.find (param) == h.cend ()) h.insert (param); }
                 return;
             case efn_current :
             case efn_has :

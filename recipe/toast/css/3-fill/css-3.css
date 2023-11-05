@@ -1,0 +1,8 @@
+﻿@namespace svg "http://www.w3.org/2000/svg";
+svg:svg:root, *|*:not(svg|*) > svg:svg {
+  fill-color: black;
+}
+
+svg:svg {
+  fill-origin: content-box;
+}
