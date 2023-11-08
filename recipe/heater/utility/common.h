@@ -269,7 +269,6 @@ template < > struct fiddlesticks < bool >
     ~fiddlesticks () { *b_ = twas_; } };
 
 int hex_value (const ::std::string_view str);
-::std::string map_to_utf8 (const int val);
 
 inline constexpr ::std::size_t stp (const int i, const int n = 1)
 {   const ::std::size_t res (i);

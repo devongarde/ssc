@@ -103,6 +103,7 @@ ssc.exe -f ../toast/css/ae/css.conf
 ssc.exe -f ../toast/css/custom/css.conf
 ssc.exe -f ../toast/css/deprecated/css.conf
 ssc.exe -f ../toast/css/ease/css.conf
+ssc.exe -f ../toast/css/marquee/css.conf
 ssc.exe -f ../toast/css/profile/css.conf
 ssc.exe -f ../toast/css/reader/css.conf
 ssc.exe -f ../toast/css/simple/css.conf

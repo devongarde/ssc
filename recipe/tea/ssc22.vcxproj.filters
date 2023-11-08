@@ -1389,6 +1389,9 @@
     <Filter Include="Toast\CSS\3-region">
       <UniqueIdentifier>{c84a9054-6ff8-4851-9e03-6490fef97d2c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\CSS\marquee">
+      <UniqueIdentifier>{af38e2f6-34bd-4cc6-9269-80271a8ba1ab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -34601,6 +34604,21 @@
     </None>
     <None Include="..\toast\css\3-region\index.html">
       <Filter>Toast\CSS\3-region</Filter>
+    </None>
+    <None Include="..\toast\css\marquee\css.conf">
+      <Filter>Toast\CSS\marquee</Filter>
+    </None>
+    <None Include="..\toast\css\marquee\css.spec">
+      <Filter>Toast\CSS\marquee</Filter>
+    </None>
+    <None Include="..\toast\css\marquee\css-2.css">
+      <Filter>Toast\CSS\marquee</Filter>
+    </None>
+    <None Include="..\toast\css\marquee\index.html">
+      <Filter>Toast\CSS\marquee</Filter>
+    </None>
+    <None Include="..\toast\css\marquee\css-7.css">
+      <Filter>Toast\CSS\marquee</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

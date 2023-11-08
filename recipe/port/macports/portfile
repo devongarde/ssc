@@ -3,7 +3,7 @@
 PortSystem          1.0
 
 name                ssc
-version             0.1.44
+version             0.1.45
 categories          www
 platforms           {darwin >= 14} {openbsd >= 6.8}
 supported_archs     x86_64 arm64
@@ -13,7 +13,7 @@ description         an opinionated website nitpicker
 long_description    ${name}, the Static Site Checker, is an opinionated nitpicker for static \
                     websites, analysing HTML, SVG, MathML, and more, including ontologies. \
                     It can produce detailed reports, 'repaired' HTML with resolved server \
-                    side includes, site statistics, and more.
+                    side includes, site statistics, and more. Consider it, at best, alpha.
 
 homepage            https://ssc.lu
 master_sites        https://github.com/devongarde/ssc

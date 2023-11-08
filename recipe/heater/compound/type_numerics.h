@@ -30,6 +30,8 @@ template < > struct type_master < t_1_more > : n_or_more < 1 >
 {   static bool is_numeric () { return true; }
     using n_or_more < 1 > :: n_or_more; };
 
+// t_1_more_int
+
 template < > struct type_master < t_2x_integer > : type_one_two < t_2x_integer, t_integer, t_integer, sz_space_char >
 {   static bool is_numeric () { return true; }
     using type_one_two < t_2x_integer, t_integer, t_integer, sz_space_char > :: type_one_two; };

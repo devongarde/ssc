@@ -106,6 +106,7 @@ class context_t
     context_t& crosslinks (const bool b) { crosslinks_ = b; mac (nm_context_crosslinks, b); return *this; }
     context_t& css_adjust (const int n) { version_.css_adjust (n); mac (nm_context_css_adjust, n); return *this; }
     context_t& css_anchor (const int n) { version_.css_anchor (n); mac (nm_context_css_anchor, n); return *this; }
+    context_t& css_anchor_pos (const int n) { version_.css_anchor_pos (n); mac (nm_context_css_anchor_pos, n); return *this; }
     context_t& css_animation (const int n) { version_.css_animation (n); mac (nm_context_css_animation, n); return *this; }
     context_t& css_background (const int n) { version_.css_background (n); mac (nm_context_css_background, n); return *this; }
     context_t& css_box_alignment (const int n) { version_.css_box_alignment (n); mac (nm_context_css_box_align, n); return *this; }
@@ -137,6 +138,7 @@ class context_t
     context_t& css_line_grid (const int n) { version_.css_line_grid (n); mac (nm_context_css_line_grid, n); return *this; }
     context_t& css_list (const int n) { version_.css_list (n); mac (nm_context_css_lists, n); return *this; }
     context_t& css_logic (const int n) { version_.css_logic (n); mac (nm_context_css_logic, n); return *this; }
+    context_t& css_marquee (const int n) { version_.css_marquee (n); mac (nm_context_css_marquee, n); return *this; }
     context_t& css_masking (const int n) { version_.css_masking (n); mac (nm_context_css_masking, n); return *this; }
     context_t& css_media (const int n) { version_.css_media (n); mac (nm_context_css_media, n); return *this; }
     context_t& css_motion (const int n) { version_.css_motion (n); mac (nm_context_css_motion, n); return *this; }
@@ -161,6 +163,7 @@ class context_t
     context_t& css_shadow (const int n) { version_.css_shadow (n); mac (nm_context_css_shadow, n); return *this; }
     context_t& css_shape (const int n) { version_.css_shape (n); mac (nm_context_css_shape, n); return *this; }
     context_t& css_snap (const int n) { version_.css_snap (n); mac (nm_context_css_snap, n); return *this; }
+    context_t& css_spatial (const int n) { version_.css_spatial (n); mac (nm_context_css_spatial, n); return *this; }
     context_t& css_speech (const int n) { version_.css_speech (n); mac (nm_context_css_speech, n); return *this; }
     context_t& css_style (const int n) { version_.css_style (n); mac (nm_context_css_style, n); return *this; }
     context_t& css_syntax (const int n) { version_.css_syntax (n); mac (nm_context_css_syntax, n); return *this; }
@@ -353,6 +356,7 @@ public:
     bool crosslinks () const noexcept { return crosslinks_; }
     int css_adjust () { return version_.css_adjust (); }
     int css_anchor () { return version_.css_anchor (); }
+    int css_anchor_pos () { return version_.css_anchor_pos (); }
     int css_animation () { return version_.css_animation (); }
     int css_background () { return version_.css_background (); }
     int css_box_alignment () { return version_.css_box_alignment (); }
@@ -384,6 +388,7 @@ public:
     int css_logic () { return version_.css_logic (); }
     int css_image () { return version_.css_image (); }
     int css_inline () { return version_.css_inline (); }
+    int css_marquee () { return version_.css_marquee (); }
     int css_masking () { return version_.css_masking (); }
     int css_media () { return version_.css_media (); }
     int css_motion () { return version_.css_motion (); }
@@ -408,6 +413,7 @@ public:
     int css_shadow () { return version_.css_shadow (); }
     int css_shape () { return version_.css_shape (); }
     int css_snap () { return version_.css_snap (); }
+    int css_spatial () { return version_.css_spatial (); }
     int css_speech () { return version_.css_speech (); }
     int css_style () { return version_.css_style (); }
     int css_syntax () { return version_.css_syntax (); }

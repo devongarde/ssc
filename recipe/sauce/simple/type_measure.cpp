@@ -52,7 +52,7 @@ bool set_css_measure_value (nitpick& nits, const html_version& v, const ::std::s
             if (s.empty ())
             {   nits.pick (nit_missing_value, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_type, quote (s), ": got the units but not how many");
                 return false; } }
-        else if (context.html_ver ().is_css_compatible (v.ext2 (), v.ext3 ())) return true;
+        else if (context.html_ver ().is_css_compatible (v.ext2 (), v.ext3 (), v.ext4 ())) return true;
         else
         {   nits.pick (nit_missing_units, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_type, quote (s), ": units must be specified for lengths");
             return false; }

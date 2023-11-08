@@ -350,13 +350,14 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
 
         (CSS ADJUST, ::boost::program_options::value < int > (), "CSS Colour Adjust level (0 or 3).")
         (CSS ANCHOR, ::boost::program_options::value < int > (), "CSS Scroll Anchoring level (0 or 3).")
+        (CSS ANCHOR_POS, ::boost::program_options::value < int > (), "CSS Anchoring Positioning level (0 or 3).")
         (CSS ANIMATION, ::boost::program_options::value < int > (), "CSS Animation level (0 or 3).")
         (CSS BACKGROUND, ::boost::program_options::value < int > (), "CSS Background Borders level (0 or 3).")
         (CSS BOX_ALIGN, ::boost::program_options::value < int > (), "CSS Box Alignment level (0 or 3).")
         (CSS BOX_MODEL, ::boost::program_options::value < int > (), "CSS Box Model level (0, 3 or 4).")
-        (CSS BOX_SIZING, ::boost::program_options::value < int > (), "CSS Box Sizing level (0 or 3).")
+        (CSS BOX_SIZING, ::boost::program_options::value < int > (), "CSS Box Sizing level (0, 3 or 4).")
         (CSS CASCADE, ::boost::program_options::value < int > (), "CSS Cascade & Inheritance level (0, 3, 4, 5 or 6).")
-        (CSS COLOUR, ::boost::program_options::value < int > (), "CSS Colour level (0, 3, 4, or 5).")
+        (CSS COLOUR, ::boost::program_options::value < int > (), "CSS Colour level (0, 3, 4, 5, or 6).")
         (CSS COMPOSITING, ::boost::program_options::value < int > (), "CSS Compositing and Blending level (0 or 3).")
         (CSS COND_RULE, ::boost::program_options::value < int > (), "CSS Conditional Rule level (0, 3, 4, or 5).")
         (CSS CONTAIN, ::boost::program_options::value < int > (), "CSS Contain level (0, 3, 4, or 5).")
@@ -383,6 +384,7 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (CSS LINE_GRID, ::boost::program_options::value < int > (), "CSS Line Grid level (0 or 3).")
         (CSS LIST, ::boost::program_options::value < int > (), "CSS Lists and Counters level (0 or 3).")
         (CSS LOGIC, ::boost::program_options::value < int > (), "CSS Logical Properties and Values level (0 or 3).")
+        (CSS MARQUEE, ::boost::program_options::value < int > (), "CSS Marquee level (0 or 3).")
         (CSS MASKING, ::boost::program_options::value < int > (), "CSS Masking level (0 or 3).")
         (CSS MEDIA, ::boost::program_options::value < int > (), "CSS Media level (0, 3, 4, or 5).")
         (CSS MOBILE, ::boost::program_options::bool_switch (), "Notify if some CSS conflicts with the CSS Mobile Profile.")
@@ -392,7 +394,7 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (CSS NAMESPACE, ::boost::program_options::value < int > (), "CSS Namespace level (0 or 3).")
         (CSS NES, ::boost::program_options::value < int > (), "CSS Non-Element Selectors level (0 or 3).")
         (CSS NESTING, ::boost::program_options::value < int > (), "CSS Nesting level (0 or 3).")
-        (CSS OVERFLOH, ::boost::program_options::value < int > (), "CSS Overflow level (0 or 3).")
+        (CSS OVERFLOH, ::boost::program_options::value < int > (), "CSS Overflow level (0, 3 or 4).")
         (CSS OVERSCROLL, ::boost::program_options::value < int > (), "CSS Overscroll Behaviour level (0 or 3).")
         (CSS PAGE, ::boost::program_options::value < int > (), "CSS Paged Media level (0 or 3).")
         (CSS POSITION, ::boost::program_options::value < int > (), "CSS Positions level (0 or 3).")
@@ -411,6 +413,7 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (CSS SHAPE, ::boost::program_options::value < int > (), "CSS Shapes level (0, 3, or 4).")
         (CSS SNAP, ::boost::program_options::value < int > (), "CSS Scroll Snap level (0 or 3).")
         (CSS SP, ::boost::program_options::value < int > (), "CSS Shadow Parts level (0, 3, or 4).")
+        (CSS SPATIAL, ::boost::program_options::value < int > (), "CSS Spatial Navigation level (0 or 3).")
         (CSS SPEECH, ::boost::program_options::value < int > (), "CSS Speech level (0 or 3).")
         (CSS STYLE, ::boost::program_options::value < int > (), "CSS Style level (0 or 3).")
         (CSS SYNTAX, ::boost::program_options::value < int > (), "CSS Syntax level (0 or 3).")
@@ -1074,13 +1077,14 @@ void options::contextualise (nitpick& nits)
         int n = 0;
         if (get_css_level (n, nits, CSS ADJUST, "Colour Adjust", 4)) context.css_adjust (n);
         if (get_css_level (n, nits, CSS ANCHOR, "Scrollbar Anchoring", 4)) context.css_anchor (n);
+        if (get_css_level (n, nits, CSS ANCHOR_POS, "Anchor Positioning", 3)) context.css_anchor (n);
         if (get_css_level (n, nits, CSS ANIMATION, "Animation", 4)) context.css_animation (n);
         if (get_css_level (n, nits, CSS BACKGROUND, "Background Border", 3, true)) context.css_background (n);
         if (get_css_level (n, nits, CSS BOX_ALIGN, "Background Alignment", 3)) context.css_box_alignment (n);
         if (get_css_level (n, nits, CSS BOX_MODEL, "Background Model", 4)) context.css_box_model (n);
-        if (get_css_level (n, nits, CSS BOX_SIZING, "Background Sizing", 3)) context.css_box_sizing (n);
+        if (get_css_level (n, nits, CSS BOX_SIZING, "Background Sizing", 4)) context.css_box_sizing (n);
         if (get_css_level (n, nits, CSS CASCADE, "Cascade & Inheritance", 6)) context.css_cascade (n);
-        if (get_css_level (n, nits, CSS COLOUR, "Colour", 5)) context.css_colour (n);
+        if (get_css_level (n, nits, CSS COLOUR, "Colour", 6)) context.css_colour (n);
         if (get_css_level (n, nits, CSS COMPOSITING, "Compositing", 3, true)) context.css_compositing (n);
         if (get_css_level (n, nits, CSS COND_RULE, "Conditional Rule", 5)) context.css_conditional_rule (n);
         if (get_css_level (n, nits, CSS CONTAIN, "Contain", 5)) context.css_contain (n);
@@ -1104,6 +1108,7 @@ void options::contextualise (nitpick& nits)
         if (get_css_level (n, nits, CSS LIST, "Lists and Counters", 3)) context.css_list (n);
         if (get_css_level (n, nits, CSS LINE_GRID, "Line Grid", 3)) context.css_line_grid (n);
         if (get_css_level (n, nits, CSS LOGIC, "Logical Properties and Values", 3)) context.css_logic (n);
+        if (get_css_level (n, nits, CSS MARQUEE, "Marquee", 3)) context.css_marquee (n);
         if (get_css_level (n, nits, CSS MASKING, "Masking", 3)) context.css_masking (n);
         if (get_css_level (n, nits, CSS MEDIA, "Media", 5)) context.css_media (n);
         yea_nay (&context_t::mobile_profile, nits, CSS MOBILE, CSS DONT MOBILE);
@@ -1112,7 +1117,7 @@ void options::contextualise (nitpick& nits)
         if (get_css_level (n, nits, CSS NAMESPACE, "Namespace", 3)) context.css_namespace (n);
         if (get_css_level (n, nits, CSS NES, "non-Element Selectors", 3)) context.css_nes (n);
         if (get_css_level (n, nits, CSS NESTING, "Nesting", 3)) context.css_nesting (n);
-        if (get_css_level (n, nits, CSS OVERFLOH, "Overflow", 3)) context.css_overflow (n);
+        if (get_css_level (n, nits, CSS OVERFLOH, "Overflow", 4)) context.css_overflow (n);
         if (get_css_level (n, nits, CSS OVERSCROLL, "Overscroll Behaviour", 3)) context.css_overscroll (n);
         if (get_css_level (n, nits, CSS PAGE, "Paged Media", 3)) context.css_page (n);
         if (get_css_level (n, nits, CSS POSITION, "Position", 3)) context.css_position (n);
@@ -1130,6 +1135,7 @@ void options::contextualise (nitpick& nits)
         if (get_css_level (n, nits, CSS SP, "Shadow Parts", 4)) context.css_shadow (n);
         if (get_css_level (n, nits, CSS SHAPE, "Shape", 4)) context.css_shape (n);
         if (get_css_level (n, nits, CSS SNAP, "Snap", 3)) context.css_snap (n);
+        if (get_css_level (n, nits, CSS SPATIAL, "Spatial Navigation", 3)) context.css_spatial (n);
         if (get_css_level (n, nits, CSS SPEECH, "Speech", 3)) context.css_speech (n);
         if (get_css_level (n, nits, CSS STYLE, "Style", 3)) context.css_style (n);
         if (get_css_level (n, nits, CSS SYNTAX, "Syntax", 3)) context.css_syntax (n);
@@ -1140,7 +1146,7 @@ void options::contextualise (nitpick& nits)
         if (get_css_level (n, nits, CSS TRANSITION, "Transition", 3, true)) context.css_transition (n);
         yea_nay (&context_t::tv_profile, nits, CSS TV, CSS DONT TV);
         if (get_css_level (n, nits, CSS UI, "UI", 4)) context.css_ui (n);
-        if (get_css_level (n, nits, CSS VALUE, "VALUE", 4)) context.css_value (n);
+        if (get_css_level (n, nits, CSS VALUE, "Values and Units", 4)) context.css_value (n);
         if (get_css_level (n, nits, CSS VIEW, "View Transitions", 3)) context.css_view (n);
         if (get_css_level (n, nits, CSS WC, "Will Change", 3)) context.css_will_change (n);
         if (get_css_level (n, nits, CSS WRITING, "Writing Mode", 4)) context.css_writing_mode (n);
@@ -1615,6 +1621,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
 
     if (var_.count (CSS ADJUST)) res << CSS ADJUST ": " << var_ [CSS ADJUST].as < int > () << "\n";
     if (var_.count (CSS ANCHOR)) res << CSS ANCHOR ": " << var_ [CSS ANCHOR].as < int > () << "\n";
+    if (var_.count (CSS ANCHOR_POS)) res << CSS ANCHOR_POS ": " << var_ [CSS ANCHOR_POS].as < int > () << "\n";
     if (var_.count (CSS ANIMATION)) res << CSS ANIMATION ": " << var_ [CSS ANIMATION].as < int > () << "\n";
     if (var_.count (CSS BACKGROUND)) res << CSS BACKGROUND ": " << var_ [CSS BACKGROUND].as < int > () << "\n";
     if (var_.count (CSS BOX_ALIGN)) res << CSS BOX_ALIGN ": " << var_ [CSS BOX_ALIGN].as < int > () << "\n";
@@ -1646,6 +1653,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (CSS LIST)) res << CSS LIST ": " << var_ [CSS LIST].as < int > () << "\n";
     if (var_.count (CSS LINE_GRID)) res << CSS LINE_GRID ": " << var_ [CSS LINE_GRID].as < int > () << "\n";
     if (var_.count (CSS LOGIC)) res << CSS LOGIC ": " << var_ [CSS LOGIC].as < int > () << "\n";
+    if (var_.count (CSS MARQUEE)) res << CSS MARQUEE ": " << var_ [CSS MARQUEE].as < int > () << "\n";
     if (var_.count (CSS MASKING)) res << CSS MASKING ": " << var_ [CSS MASKING].as < int > () << "\n";
     if (var_.count (CSS MEDIA)) res << CSS MEDIA ": " << var_ [CSS MEDIA].as < int > () << "\n";
     if (var_.count (CSS MOBILE)) res << CSS MOBILE ": " << var_ [CSS MOBILE].as < int > () << "\n";
@@ -1673,6 +1681,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_.count (CSS SELECTOR)) res << CSS SELECTOR ": " << var_ [CSS SELECTOR].as < int > () << "\n";
     if (var_.count (CSS SP)) res << CSS SP ": " << var_ [CSS SP].as < int > () << "\n";
     if (var_.count (CSS SHAPE)) res << CSS SHAPE ": " << var_ [CSS SHAPE].as < int > () << "\n";
+    if (var_.count (CSS SPATIAL)) res << CSS SPATIAL ": " << var_ [CSS SPATIAL].as < int > () << "\n";
     if (var_.count (CSS SPEECH)) res << CSS SPEECH ": " << var_ [CSS SPEECH].as < int > () << "\n";
     if (var_.count (CSS SNAP)) res << CSS SNAP ": " << var_ [CSS SNAP].as < int > () << "\n";
     if (var_.count (CSS STYLE)) res << CSS STYLE ": " << var_ [CSS STYLE].as < int > () << "\n";

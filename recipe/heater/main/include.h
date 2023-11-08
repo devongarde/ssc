@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
-#define VERSION_RELEASE 44
-#define VERSION_STRING "0.1.44"
+#define VERSION_RELEASE 45
+#define VERSION_STRING "0.1.45"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -147,12 +147,27 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #if _MSC_VER >= 1930
 #pragma warning (disable : 26812)
 #define _WIN32_WINNT 0x0A00 // 10
+#ifndef VS2022
+#define VS2022
+#undef VS2019
+#undef VS2017
+#endif // VS2022
 #elif _MSC_VER >= 1920
 #define _WIN32_WINNT 0x0A00 // 10
+#ifndef VS2019
+#define VS2019
+#undef VS2022
+#undef VS2017
+#endif // VS2019
 #elif _MSC_VER >= 1910
 #define _WIN32_WINNT 0x0603 // 8.1
 #define SMALLINT
 #define NOMERGE
+#ifndef VS2017
+#define VS2017
+#undef VS2019
+#undef VS2022
+#endif // VS2017
 #else // _MSC_VER
 #error ssc only builds with VS 2017 / 2019 / 2022.
 #endif // _MSC_VER
@@ -205,7 +220,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include <bitset>
 #include <set>
 #include <array>
+#ifndef VS2017  // https://social.msdn.microsoft.com/Forums/azure/en-US/999a5b68-a1d3-4a76-8f3b-65655257c301/vs2017-stdcodecvt-linker-error?forum=vcgeneral
 #include <codecvt>
+#endif
 #include <locale>
 #ifndef NO_FRED
 #include <shared_mutex>

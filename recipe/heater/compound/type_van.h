@@ -355,6 +355,27 @@ template < > struct type_master < t_inputaccept > : tidy_string < t_inputaccept 
 template < > struct type_master < t_nsds > : type_at_least_one < t_nsds, sz_space_char, t_nsd >
 { using type_at_least_one < t_nsds, sz_space_char, t_nsd > :: type_at_least_one; };
 
+template < > struct type_master < t_ratio > : tidy_string < t_ratio >
+{   using tidy_string < t_ratio > :: tidy_string;
+	static e_animation_type animation_type () noexcept { return at_number; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_ratio > :: set_value (nits, v, s);
+        ::std::string arg (tidy_string < t_ratio > :: get_string ());
+        if (s.empty ()) nits.pick (nit_empty, es_error, ec_type, "ratio expected");
+        else if (good ())
+        {   ::std::string::size_type pos = arg.find ('/');
+            if ((pos == ::std::string::npos) || (pos == 0) || (pos >= arg.size () - 1))
+                nits.pick (nit_bad_aspect_ratio, es_error, ec_type, quote (arg), ": expecting width / height");
+            else
+            {   double w = ::boost::lexical_cast < double > (arg.substr (0, pos));
+                double h = ::boost::lexical_cast < double > (arg.substr (pos+1));
+                if ((w < 0.0) || (h < 0.0))
+                    nits.pick (nit_bad_aspect_ratio, es_error, ec_type, quote (arg), ": all ratio values must be positive numbers");
+                else if ((w == 0.0) || (h == 0.0))
+                    nits.pick (nit_bad_aspect_ratio, es_error, ec_type, quote (arg), ": degenerate ratios are ignored");
+                else return; } }
+        tidy_string < t_ratio > :: status (s_invalid); } };
+
 template < > struct type_master < t_real_1_2 > : type_one_or_both < t_real_1_2, t_real, sz_commaspace, t_real >
 {   using type_one_or_both < t_real_1_2, t_real, sz_commaspace, t_real > :: type_one_or_both;
     static e_animation_type animation_type () noexcept { return at_number; } };

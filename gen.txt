@@ -174,6 +174,8 @@ the "no-" switch always applies.
 --css.logic X           Use CSS Logical Properties level X, where X is
                         0 or 3.
 
+--css.marquee X         Use CSS Marquee level X, where X is 0 or 3.
+
 --css.masking X         Use CSS Masking level X, where X is 0 or 3.
 
 --css.media X           Use CSS Media Queries level X, where X is 0, 3,
@@ -266,14 +268,15 @@ the "no-" switch always applies.
                             2.0   CSS 2.0
                             2.1   CSS 2.1
                             2.2   CSS 2.2 (Feb 2022 draft)
-                            3     all CSS level 3 (unfinished)
-                            4     all CSS level 4 (unfinished)
-                            5     all CSS level 5 (unfinished)
-                            6     all CSS level 6 (unfinished)
+                            3     all CSS level 3 so far
+                            4     all CSS level 4 so far
+                            5     all CSS level 5 so far
+                            6     all CSS level 6 so far
                             2007
                             2010
                             2015
                             2015+
+                            2015++
                             2017
                             2017+
                             2017++
@@ -292,10 +295,13 @@ the "no-" switch always applies.
                             2023
                             2023+
                             2023++
-                        The years are CSS snapshots, whether stable,
-                        + wobbly, or ++ wibbly (the terminology in the
-                        specifications is inconsistent, so...), as
-                        determined by the browsers of the day.
+                        The years are CSS snapshots, whether the year
+                        itself for stable modules, with + for wobbly
+                        modules, and ++ for wibbly-wobbly modules, as
+                        per the corresponding W3 CSS snapshots (the
+                        terminology in those snapshots is inconsistent,
+                        hence our use of the scientific terms wobbly
+                        and wibbly-wobbly).
                         For levels 3, 4, 5 and 6, note that extensions
                         that are part of neither CSS 1 nor CSS 2.x
                         specifications are numbered three and upwards
@@ -303,7 +309,7 @@ the "no-" switch always applies.
                         to use an extension named ... level 1, that is
                         not part of CSS 1, specify 3. Similarly, for
                         those named level 2 that are not part of any
-                        CSS 2 specification, etm..
+                        CSS 2 specification, etc..
 
 --css.view  X           Use CSS View Transitions level X, where X is 0
                         or 3.

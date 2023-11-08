@@ -187,7 +187,7 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT, class LC >
         if (! may_apply (v, f, symbol < html_version, ENUM, CATEGORY, INIT, LC > :: last ()))
         {   v.check_math_svg (nits, f, name ());
             nits.pick (nit_wrong_version, es_error, ec_type, quote (s), " is invalid here in ", v.report ()); }
-        else if (! v.is_css_compatible (f.ext2 (), f.ext3 ()))
+        else if (! v.is_css_compatible (f.ext2 (), f.ext3 (), f.ext4 ()))
             nits.pick (nit_css_version, es_error, ec_type, quote (s), " is invalid here, but valid with, for example, CSS ", f.long_css_version_name ());
         else if (f.reject ())
             nits.pick (nit_rejected, es_error, ec_type, quote (s), " is valid but incompatible with ", v.report ());
@@ -301,6 +301,9 @@ template < > struct type_master < t_css_align_content > : enum_n < t_css_align_c
 
 template < > struct type_master < t_css_align_items > : enum_n < t_css_align_items, e_css_align_items >
 { using enum_n < t_css_align_items, e_css_align_items > :: enum_n; };
+
+template < > struct type_master < t_css_all_2 > : enum_n < t_css_all_2, e_css_all_2 >
+{ using enum_n < t_css_all_2, e_css_all_2 > :: enum_n; };
 
 template < > struct type_master < t_css_box_alignself_mess > : enum_n < t_css_box_alignself_mess, e_css_box_alignself_mess >
 { using enum_n < t_css_box_alignself_mess, e_css_box_alignself_mess > :: enum_n; };

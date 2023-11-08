@@ -611,6 +611,12 @@ template < > struct type_master < t_css_lengths_n > : type_or_string < t_css_len
 template < > struct type_master < t_css_length_xtz > : string_or_type_or_both < t_css_length_xtz, t_css_length_a2, sz_extend_to_zoom >
 { using string_or_type_or_both < t_css_length_xtz, t_css_length_a2, sz_extend_to_zoom > :: string_or_type_or_both; };
 
+template < > struct type_master < t_css_line_clamp > : type_one_or_both < t_css_line_clamp, t_positive, sz_space_char, t_text_na >
+{ using type_one_or_both < t_css_line_clamp, t_positive, sz_space_char, t_text_na > :: type_one_or_both; };
+
+template < > struct type_master < t_css_line_clamp_n > : type_or_string < t_css_line_clamp_n, t_css_line_clamp, sz_none >
+{ using type_or_string < t_css_line_clamp_n, t_css_line_clamp, sz_none > :: type_or_string; };
+
 template < > struct type_master < t_css_line_height > : one_of_three_or_string < t_css_line_height, t_css_length, t_measure, t_real, sz_normal >
 { using one_of_three_or_string < t_css_line_height, t_css_length, t_measure, t_real, sz_normal > :: one_of_three_or_string; };
 

@@ -101,17 +101,20 @@ template < > struct type_master < t_acm > : three_value < t_acm, e_acm, sz_arcs,
 template < > struct type_master < t_acn > : three_value < t_acn, e_acn, sz_auto, sz_contain, sz_none >
 { using three_value < t_acn, e_acn, sz_auto, sz_contain, sz_none > :: three_value; };
 
-template < > struct type_master < t_anywhere_break_normal > : three_value < t_anywhere_break_normal, e_anywhere_break_normal, sz_anywhere, sz_break_word, sz_normal >
-{ using three_value < t_anywhere_break_normal, e_anywhere_break_normal, sz_anywhere, sz_break_word, sz_normal > :: three_value; };
-
 template < > struct type_master < t_all_auto_none > : three_value < t_all_auto_none, e_all_auto_none, sz_all, sz_auto, sz_none >
 { using three_value < t_all_auto_none, e_all_auto_none, sz_all, sz_auto, sz_none > :: three_value; };
 
 template < > struct type_master < t_alp > : three_value < t_alp, e_alp, sz_auto, sz_landscape, sz_portrait >
 { using three_value < t_alp, e_alp, sz_auto, sz_landscape, sz_portrait > :: three_value; };
 
+template < > struct type_master < t_anywhere_break_normal > : three_value < t_anywhere_break_normal, e_anywhere_break_normal, sz_anywhere, sz_break_word, sz_normal >
+{ using three_value < t_anywhere_break_normal, e_anywhere_break_normal, sz_anywhere, sz_break_word, sz_normal > :: three_value; };
+
 template < > struct type_master < t_aria_live > : three_value < t_aria_live, e_aria_live, sz_assertive, sz_off, sz_polite >
 { using three_value < t_aria_live, e_aria_live, sz_assertive, sz_off, sz_polite > :: three_value; };
+
+template < > struct type_master < t_ass > : three_value < t_ass, e_ass, sz_alternate, sz_slide, sz_scroll >
+{ using three_value < t_ass, e_ass, sz_alternate, sz_slide, sz_scroll > :: three_value; };
 
 template < > struct type_master < t_attributetype > : three_value < t_attributetype, e_attributetype, sz_auto, sz_CSS, sz_XML >
 { using three_value < t_attributetype, e_attributetype, sz_auto, sz_CSS, sz_XML > :: three_value; };
@@ -208,6 +211,9 @@ template < > struct type_master < t_css_margin_break > : three_value < t_css_mar
 
 template < > struct type_master < t_css_masking_mode > : three_value < t_css_masking_mode, e_css_masking_mode, sz_alpha, sz_luminance, sz_match_source >
 { using three_value < t_css_masking_mode, e_css_masking_mode, sz_alpha, sz_luminance, sz_match_source > :: three_value; };
+
+template < > struct type_master < t_css_overflow_style > : three_value < t_css_overflow_style, e_css_overflow_style, sz_auto, sz_marquee_block, sz_marquee_line >
+{ using three_value < t_css_overflow_style, e_css_overflow_style, sz_auto, sz_marquee_block, sz_marquee_line > :: three_value; };
 
 template < > struct type_master < t_css_speak_3 > : three_value < t_css_speak_3, e_css_speak_3, sz_always, sz_auto, sz_never >
 { using three_value < t_css_speak_3, e_css_speak_3, sz_always, sz_auto, sz_never > :: three_value; };
@@ -329,8 +335,11 @@ template < > struct type_master < t_media_pointer > : three_value < t_media_poin
 template < > struct type_master < t_media_scripting > : three_value < t_media_scripting, e_media_scripting, sz_enabled, sz_initial_only, sz_none >
 { using three_value < t_media_scripting, e_media_scripting, sz_enabled, sz_initial_only, sz_none > :: three_value; };
 
-template < > struct type_master < t_media_update > : three_value < t_media_update, e_media_update, sz_fast, sz_none, sz_slow >
-{ using three_value < t_media_update, e_media_update, sz_fast, sz_none, sz_slow > :: three_value; };
+template < > struct type_master < t_fnrs > : three_value < t_fnrs, e_fnrs, sz_fast, sz_normal, sz_slow >
+{ using three_value < t_fnrs, e_fnrs, sz_fast, sz_normal, sz_slow > :: three_value; };
+
+template < > struct type_master < t_fns > : three_value < t_fns, e_fns, sz_fast, sz_none, sz_slow >
+{ using three_value < t_fns, e_fns, sz_fast, sz_none, sz_slow > :: three_value; };
 
 template < > struct type_master < t_menuitem > : three_value < t_menuitem, e_menuitem, sz_command, sz_checkbox, sz_radio >
 { using three_value < t_menuitem, e_menuitem, sz_command, sz_checkbox, sz_radio > :: three_value; };

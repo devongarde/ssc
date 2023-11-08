@@ -30,8 +30,11 @@ typedef typed_property < t_css_box_content_n, ec_align_content > prop_align_cont
 typedef typed_property < t_css_box_alignitems_ns, ec_align_items > prop_align_items;
 typedef typed_property < t_css_box_alignself_acs, ec_align_self > prop_align_self;
 typedef typed_property < t_alignment_baseline, ec_alignment_baseline > prop_alignment_baseline;
-//typedef typed_property < t_css_all_2, ec_all > prop_all;
+typedef typed_property < t_css_all_2, ec_all > prop_all;
 typedef typed_property < t_generic, ec_altglyph > prop_altglyph;
+typedef typed_property < t_generic, ec_anchor_default > prop_anchor_default;
+typedef typed_property < t_generic, ec_anchor_name > prop_anchor_name;
+typedef typed_property < t_generic, ec_anchor_scroll > prop_anchor_scroll;
 typedef typed_property < t_css_animation, ec_animation > prop_animation;
 typedef typed_property < t_css_anim_comp, ec_animation_composition > prop_animation_composition;
 typedef typed_property < t_datetime, ec_animation_delay > prop_animation_delay;
@@ -51,7 +54,7 @@ typedef typed_property < t_generic, ec_animation_timing_function > prop_animatio
 typedef typed_property < t_css_appearance, ec_appearance > prop_appearance;
 typedef typed_property < t_real, ec_ascent > prop_ascent;
 typedef typed_property < t_percent_flexible, ec_ascent_override > prop_ascent_override;
-typedef typed_property < t_generic, ec_aspect_ratio > prop_aspect_ratio;
+typedef typed_property < t_ratio_a, ec_aspect_ratio > prop_aspect_ratio;
 typedef typed_property < t_real_i, ec_audio_level > prop_audio_level;
 typedef typed_property < t_css_azimuth, ec_azimuth > prop_azimuth;
 
@@ -71,7 +74,7 @@ typedef typed_property < t_svg_baselineshift, ec_baseline_shift > prop_baseline_
 typedef typed_property < t_auto_first_last, ec_baseline_source > prop_baseline_source;
 typedef typed_property < t_css_base_palette, ec_base_palette > prop_base_palette;
 typedef typed_property < t_generic, ec_bbox > prop_bbox;
-typedef typed_property < t_generic, ec_block_ellipsis > prop_block_ellipsis;
+typedef typed_property < t_text_na, ec_block_ellipsis > prop_block_ellipsis;
 typedef typed_property < t_css_length_amm, ec_block_size > prop_block_size;
 typedef typed_property < t_css_block_step, ec_block_step > prop_block_step;
 typedef typed_property < t_aces, ec_block_step_align > prop_block_step_align;
@@ -337,12 +340,12 @@ typedef typed_property < t_css_box_justself, ec_justify_self > prop_justify_self
 
 typedef typed_property < t_measure_ai, ec_kerning > prop_kerning;
 
-typedef typed_property < t_generic, ec_leading_trim > prop_leading_trim;
+typedef typed_property < t_benrs, ec_leading_trim > prop_leading_trim;
 typedef typed_property < t_css_length_ai, ec_left > prop_left;
 typedef typed_property < t_css_length_n, ec_letter_spacing > prop_letter_spacing;
 typedef typed_property < t_css_col, ec_lighting_colour > prop_lighting_colour;
 typedef typed_property < t_css_line_break, ec_line_break > prop_line_break;
-typedef typed_property < t_generic, ec_line_clamp > prop_line_clamp;
+typedef typed_property < t_css_line_clamp_n, ec_line_clamp > prop_line_clamp;
 typedef typed_property < t_percent_flexible, ec_line_gap_override > prop_line_gap_override;
 typedef typed_property < t_create_parent, ec_line_grid > prop_line_grid;
 typedef typed_property < t_css_line_height, ec_line_height > prop_line_height;
@@ -379,10 +382,10 @@ typedef typed_property < t_generic, ec_marker_segment > prop_marker_segment;
 typedef typed_property < t_match_self_parent, ec_marker_side > prop_marker_side;
 typedef typed_property < t_marker, ec_marker_start > prop_marker_start;
 typedef typed_property < t_css_marx, ec_marks > prop_marks;
-typedef typed_property < t_generic, ec_marquee_direction > prop_marquee_direction;
-typedef typed_property < t_generic, ec_marquee_loop > prop_marquee_loop;
-typedef typed_property < t_generic, ec_marquee_speed > prop_marquee_speed;
-typedef typed_property < t_generic, ec_marquee_style > prop_marquee_style;
+typedef typed_property < t_forrev, ec_marquee_direction > prop_marquee_direction;
+typedef typed_property < t_positive_i, ec_marquee_play_count > prop_marquee_play_count;
+typedef typed_property < t_fnrs, ec_marquee_speed > prop_marquee_speed;
+typedef typed_property < t_ass, ec_marquee_style > prop_marquee_style;
 typedef typed_property < t_css_mask, ec_mask > prop_mask;
 typedef typed_property < t_css_mask_border, ec_mask_border > prop_mask_border;
 typedef typed_property < t_css_mask_border_mode, ec_mask_border_mode > prop_mask_border_mode;
@@ -451,7 +454,7 @@ typedef typed_property < t_generic, ec_overflow_clip_margin_left > prop_overflow
 typedef typed_property < t_generic, ec_overflow_clip_margin_right > prop_overflow_clip_margin_right;
 typedef typed_property < t_generic, ec_overflow_clip_margin_top > prop_overflow_clip_margin_top;
 typedef typed_property < t_css_overflow, ec_overflow_inline > prop_overflow_inline;
-typedef typed_property < t_generic, ec_overflow_style > prop_overflow_style;
+typedef typed_property < t_css_overflow_style, ec_overflow_style > prop_overflow_style;
 typedef typed_property < t_anywhere_break_normal, ec_overflow_wrap > prop_overflow_wrap;
 typedef typed_property < t_css_overflow, ec_overflow_x > prop_overflow_x;
 typedef typed_property < t_css_overflow, ec_overflow_y > prop_overflow_y;
@@ -493,6 +496,8 @@ typedef typed_property < t_css_place_self, ec_place_self > prop_place_self;
 typedef typed_property < t_css_play_during, ec_play_during > prop_play_during;
 typedef typed_property < t_pointer_events, ec_pointer_events > prop_pointer_events;
 typedef typed_property < t_css_position, ec_position > prop_position;
+typedef typed_property < t_generic, ec_position_fallback > prop_position_fallback;
+typedef typed_property < t_generic, ec_position_fallback_bounds > prop_position_fallback_bounds;
 typedef typed_property < t_text, ec_prefix > prop_prefix;
 typedef typed_property < t_integer_is, ec_presentation_level > prop_presentation_level;
 typedef typed_property < t_economy_exact, ec_print_colour_adjust > prop_print_colour_adjust;
@@ -582,12 +587,14 @@ typedef typed_property < t_real_i, ec_stress > prop_stress;
 typedef typed_property < t_css_str_sets_n, ec_string_set > prop_string_set;
 typedef typed_property < t_css_background, ec_stroke > prop_stroke;
 typedef typed_property < t_cio, ec_stroke_align > prop_stroke_align;
+typedef typed_property < t_generic, ec_stroke_alignment > prop_stroke_alignment;
 typedef typed_property < t_bcs, ec_stroke_break > prop_stroke_break;
 typedef typed_property < t_css_cols, ec_stroke_colour > prop_stroke_colour;
 typedef typed_property < t_css_length_n, ec_stroke_dash_corner > prop_stroke_dash_corner;
 typedef typed_property < t_css_djs_n, ec_stroke_dash_justify > prop_stroke_dash_justify;
 typedef typed_property < t_generic, ec_stroke_dashadjust > prop_stroke_dashadjust;
 typedef typed_property < t_dashes, ec_stroke_dasharray > prop_stroke_dasharray;
+typedef typed_property < t_generic, ec_stroke_dashcorner > prop_stroke_dashcorner;
 typedef typed_property < t_css_length, ec_stroke_dashoffset > prop_stroke_dashoffset;
 typedef typed_property < t_css_images, ec_stroke_image > prop_stroke_image;
 typedef typed_property < t_linecap, ec_stroke_linecap > prop_stroke_linecap;
@@ -630,7 +637,6 @@ typedef typed_property < t_css_textdec_skip_space, ec_text_decoration_skip_space
 typedef typed_property < t_css_textdec_style, ec_text_decoration_style > prop_text_decoration_style;
 typedef typed_property < t_css_textdec_thickness, ec_text_decoration_thickness > prop_text_decoration_thickness;
 typedef typed_property < t_generic, ec_text_definition > prop_text_definition;
-typedef typed_property < t_generic, ec_text_edge > prop_text_edge;
 typedef typed_property < t_css_text_emphasis, ec_text_emphasis > prop_text_emphasis;
 typedef typed_property < t_css_col, ec_text_emphasis_colour > prop_text_emphasis_colour;
 typedef typed_property < t_css_textemph_pos, ec_text_emphasis_position > prop_text_emphasis_position;
@@ -644,13 +650,14 @@ typedef typed_property < t_css_text_resize, ec_text_overflow > prop_text_overflo
 typedef typed_property < t_text_rendering, ec_text_rendering > prop_text_rendering;
 typedef typed_property < t_css_text_resize, ec_text_resize > prop_text_resize;
 typedef typed_property < t_css_box_shadows_n, ec_text_shadow > prop_text_shadow;
-typedef typed_property < t_generic, ec_text_space_trim > prop_text_space_trim;
 typedef typed_property < t_css_text_spacing_nan, ec_text_spacing > prop_text_spacing;
 typedef typed_property < t_css_tst, ec_text_spacing_trim > prop_text_spacing_trim;
 typedef typed_property < t_css_text_transform_n, ec_text_transform > prop_text_transform;
 typedef typed_property < t_css_textdec_underline_offset, ec_text_underline_offset > prop_text_underline_offset;
 typedef typed_property < t_css_textdec_underline_lru, ec_text_underline_position > prop_text_underline_position;
 typedef typed_property < t_css_text_wrap, ec_text_wrap > prop_text_wrap;
+typedef typed_property < t_generic, ec_text_wrap_mode > prop_text_wrap_mode;
+typedef typed_property < t_generic, ec_text_wrap_style > prop_text_wrap_style;
 typedef typed_property < t_css_stn_n, ec_timeline_scope > prop_timeline_scope;
 typedef typed_property < t_css_length_ai, ec_top > prop_top;
 typedef typed_property < t_real, ec_topline > prop_topline;
@@ -659,6 +666,7 @@ typedef typed_property < t_css_transform_box, ec_transform_box > prop_transform_
 typedef typed_property < t_css_transform_origins, ec_transform_origin > prop_transform_origin;
 typedef typed_property < t_css_transform_style, ec_transform_style > prop_transform_style;
 typedef typed_property < t_generic, ec_transition > prop_transition;
+typedef typed_property < t_generic, ec_transition_behaviour > prop_transition_behaviour;
 typedef typed_property < t_css_durations, ec_transition_delay > prop_transition_delay;
 typedef typed_property < t_css_durations, ec_transition_duration > prop_transition_duration;
 typedef typed_property < t_css_trans_props_n, ec_transition_property > prop_transition_property;
@@ -702,6 +710,7 @@ typedef typed_property < t_css_wcs_a, ec_will_change > prop_will_change;
 typedef typed_property < t_css_wbd, ec_word_boundary_detection > prop_word_boundary_detection;
 typedef typed_property < t_css_wbe, ec_word_boundary_expansion > prop_word_boundary_expansion;
 typedef typed_property < t_css_word_break, ec_word_break > prop_word_break;
+typedef typed_property < t_generic, ec_word_space_transform > prop_word_space_transform;
 typedef typed_property < t_css_length_n, ec_word_spacing > prop_word_spacing;
 typedef typed_property < t_anywhere_break_normal, ec_word_wrap > prop_word_wrap;
 typedef typed_property < t_css_control_break, ec_wrap_after > prop_wrap_after;
@@ -949,7 +958,7 @@ typedef typed_property < t_css_bespoke, ec_webkit_justify_self > prop_webkit_jus
 typedef typed_property < t_css_bespoke, ec_webkit_line_align > prop_webkit_line_align;
 typedef typed_property < t_css_bespoke, ec_webkit_line_box_contain > prop_webkit_line_box_contain;
 typedef typed_property < t_css_bespoke, ec_webkit_line_break > prop_webkit_line_break;
-typedef typed_property < t_css_bespoke, ec_webkit_line_clamp > prop_webkit_line_clamp;
+typedef typed_property < t_positive_n, ec_webkit_line_clamp > prop_webkit_line_clamp;
 typedef typed_property < t_css_bespoke, ec_webkit_line_grid > prop_webkit_line_grid;
 typedef typed_property < t_css_bespoke, ec_webkit_line_snap > prop_webkit_line_snap;
 typedef typed_property < t_css_bespoke, ec_webkit_locale > prop_webkit_locale;
@@ -1376,7 +1385,6 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_rate > prop_xv_voice_rate;
 typedef typed_property < t_css_bespoke, ec_xv_voice_stress > prop_xv_voice_stress;
 typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volume;
 
-
 #define CSS_PROPERTIES_1 \
     prop_custom, \
     prop_accent_colour, \
@@ -1385,7 +1393,11 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_align_items, \
     prop_align_self, \
     prop_alignment_baseline, \
+    prop_all, \
     prop_altglyph, \
+    prop_anchor_default, \
+    prop_anchor_name, \
+    prop_anchor_scroll, \
     prop_animation, \
     prop_animation_composition, \
     prop_animation_delay, \
@@ -1731,7 +1743,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_marker_start, \
     prop_marks, \
     prop_marquee_direction, \
-    prop_marquee_loop, \
+    prop_marquee_play_count, \
     prop_marquee_speed, \
     prop_marquee_style, \
     prop_mask, \
@@ -1841,6 +1853,8 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_play_during, \
     prop_pointer_events, \
     prop_position, \
+    prop_position_fallback, \
+    prop_position_fallback_bounds, \
     prop_prefix, \
     prop_presentation_level, \
     prop_print_colour_adjust, \
@@ -1935,7 +1949,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_stop_opacity, \
     prop_stroke, \
     prop_stroke_align, \
-    prop_stroke_align, \
+    prop_stroke_alignment, \
     prop_stroke_break, \
     prop_stroke_colour, \
     prop_stroke_dash_corner, \
@@ -1943,6 +1957,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_stroke_dashadjust, \
     prop_stroke_dasharray, \
     prop_stroke_dash_corner, \
+    prop_stroke_dashcorner, \
     prop_stroke_dash_justify, \
     prop_stroke_dashoffset, \
     prop_stroke_image, \
@@ -1979,7 +1994,6 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_text_decoration_style, \
     prop_text_decoration_thickness, \
     prop_text_definition, \
-    prop_text_edge, \
     prop_text_emphasis, \
     prop_text_emphasis_colour, \
     prop_text_emphasis_position, \
@@ -1993,13 +2007,14 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_text_rendering, \
     prop_text_resize, \
     prop_text_shadow, \
-    prop_text_space_trim, \
     prop_text_spacing, \
     prop_text_spacing_trim, \
     prop_text_transform, \
     prop_text_underline_offset, \
     prop_text_underline_position, \
     prop_text_wrap, \
+    prop_text_wrap_mode, \
+    prop_text_wrap_style, \
     prop_timeline_scope, \
     prop_top, \
     prop_topline, \
@@ -2008,6 +2023,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_transform_origin, \
     prop_transform_style, \
     prop_transition, \
+    prop_transition_behaviour, \
     prop_transition_delay, \
     prop_transition_duration, \
     prop_transition_property, \
@@ -2053,6 +2069,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_word_boundary_detection, \
     prop_word_boundary_expansion, \
     prop_word_break, \
+    prop_word_space_transform, \
     prop_word_spacing, \
     prop_word_wrap, \
     prop_wrap_after, \
