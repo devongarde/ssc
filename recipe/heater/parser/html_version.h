@@ -169,6 +169,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HE_RDFA         0x0000000000004000
 #define RDF_MASK        ( HE_RDF_DEP | HE_RDF | HE_RDFA )
 
+#define SVG_SHIFT       0
+#define XLINK_SHIFT     8
+#define RDF_SHIFT       12
+
 #define HE_MICRODATA    0x0000000000008000
 #define HE_SVG_X2       0x0000000000010000
 
@@ -203,9 +207,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HE_GROUP_SHIFT  24
 #define HE_GROUP(XXXX)  ((flags_t) XXXX << HE_GROUP_SHIFT)
 
-#define SVG_SHIFT       0
-#define XLINK_SHIFT     8
-#define RDF_SHIFT       12
+// 3 unused bits
 
 #define HE_EXPERIMENTAL 0x0000000080000000
 
@@ -352,11 +354,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define H2_CSS_SVG_10       0x0000001000000000
 #define H2_CSS_SVG_11       0x0000002000000000
-#define H2_CSS_SVG_12       0x0000004000000000
+#define H2_CSS_SVG_12_TINY  0x0000004000000000
+#define H2_CSS_SVG_12_FULL  0x0000008000000000
+#define H2_CSS_SVG_12     ( H2_CSS_SVG_12_TINY | H2_CSS_SVG_12_FULL )
 #define H2_CSS_SVG_11_12  ( H2_CSS_SVG_11 | H2_CSS_SVG_12 )
 #define H2_CSS_SVG_1      ( H2_CSS_SVG_10 | H2_CSS_SVG_11_12 )
-#define H2_CSS_SVG_20       0x0000008000000000
-#define H2_CSS_SVG_21       0x0000010000000000
+#define H2_CSS_SVG_20       0x0000010000000000
+#define H2_CSS_SVG_21       0x0000020000000000
 #define H2_CSS_SVG_2      ( H2_CSS_SVG_20 | H2_CSS_SVG_21 )
 #define H2_CSS_SVG_11_2   ( H2_CSS_SVG_11 | H2_CSS_SVG_2 )
 #define H2_CSS_SVG_12_2   ( H2_CSS_SVG_12 | H2_CSS_SVG_2 )
@@ -364,13 +368,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_SVG        ( H2_CSS_SVG_1 | H2_CSS_SVG_2 )
 #define H2_CSS_SVG_MASK     H2_CSS_SVG  
 
-#define H2_CSS_COLOUR_3     0x0000020000000000  
-#define H2_CSS_COLOUR_4     0x0000040000000000  
-#define H2_CSS_COLOUR_34  ( H2_CSS_COLOUR_3 | H2_CSS_COLOUR_4 )  
-#define H2_CSS_COLOUR_5     0x0000080000000000  
-#define H2_CSS_COLOUR_45  ( H2_CSS_COLOUR_4 | H2_CSS_COLOUR_5 )  
-#define H2_CSS_COLOUR     ( H2_CSS_COLOUR_34 | H2_CSS_COLOUR_5 )
-#define H2_CSS_COLOUR_MASK  H2_CSS_COLOUR
+// a couple of unused bits for SVG
 
 #define H2_CSS_MEDIA_3      0x0000100000000000  
 #define H2_CSS_MEDIA_4      0x0000200000000000  
@@ -389,7 +387,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_ANIM_MASK    H2_CSS_ANIM
 
 #define H2_CSS_EASE         0x0004000000000000
-
 #define H2_CSS_BACKGROUND   0x0008000000000000
 
 #define H2_CSS_FRAG_3       0x0010000000000000
@@ -409,7 +406,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_FONT_MASK    H2_CSS_FONT
 
 #define H2_CSS_FBL        0x0400000000000000
-
 #define H2_CSS_CS         0x0800000000000000
 
 #define H2_CSS_COND_RULE_3  0x1000000000000000
@@ -422,12 +418,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define H2_CLACKS           0x8000000000000000
 
-#define H2_CSS_3        ( H2_CSS_ANIM_3 | H2_CSS_BACKGROUND | H2_CSS_CASCADE_3 | H2_CSS_COLOUR_3 | H2_CSS_COMPOSITING | H2_CSS_COND_RULE_3 | H2_CSS_CS | \
-                          H2_CSS_CUSTOM | H2_CSS_EASE | H2_CSS_FBL | H2_CSS_FONT_3 | H2_CSS_FRAG_3 | H2_CSS_MEDIA_3 | H2_CSS_NAMESPACE | H2_CSS_SELECTOR_3 | \
-                          H2_CSS_STYLE | H2_CSS_SYNTAX | H2_CSS_UI_3 | H2_CSS_VALUE_3 )
-#define H2_CSS_4        ( H2_CSS_ANIM_4 | H2_CSS_CASCADE_4 | H2_CSS_COLOUR_4 | H2_CSS_COND_RULE_4 | H2_CSS_FONT_4 | H2_CSS_FRAG_4 | H2_CSS_MEDIA_4 | \
-                          H2_CSS_SELECTOR_4 | H2_CSS_UI_4 | H2_CSS_VALUE_4 )
-#define H2_CSS_5        ( H2_CSS_CASCADE_5 | H2_CSS_COLOUR_5 | H2_CSS_COND_RULE_5 | H2_CSS_FONT_5 | H2_CSS_MEDIA_5 )
+#define H2_CSS_3        ( H2_CSS_ANIM_3 | H2_CSS_BACKGROUND | H2_CSS_CASCADE_3 | H2_CSS_COMPOSITING | H2_CSS_COND_RULE_3 | H2_CSS_CS | H2_CSS_CUSTOM | \
+                          H2_CSS_EASE | H2_CSS_FBL | H2_CSS_FONT_3 | H2_CSS_FRAG_3 | H2_CSS_MEDIA_3 | H2_CSS_NAMESPACE | H2_CSS_SELECTOR_3 | H2_CSS_STYLE | \
+                          H2_CSS_SYNTAX | H2_CSS_UI_3 | H2_CSS_VALUE_3 )
+#define H2_CSS_4        ( H2_CSS_ANIM_4 | H2_CSS_CASCADE_4 | H2_CSS_COND_RULE_4 | H2_CSS_FONT_4 | H2_CSS_FRAG_4 | H2_CSS_MEDIA_4 | H2_CSS_SELECTOR_4 | \
+                          H2_CSS_UI_4 | H2_CSS_VALUE_4 )
+#define H2_CSS_5        ( H2_CSS_CASCADE_5 | H2_CSS_COND_RULE_5 | H2_CSS_FONT_5 | H2_CSS_MEDIA_5 )
 #define H2_CSS_6          H2_CSS_CASCADE_6
 
 #define H2_CSS_3_FULL   ( H2_CSS_3 | H2_CSS_2_2_FULL )
@@ -450,11 +446,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define H2_FULL_CSS_MASK    0x7FFFFFFFFFFF8000
 
-#define H2_CSS_2007       ( H2_CSS_2_1 | H2_CSS_COLOUR_3 | H2_CSS_NAMESPACE | H2_CSS_SELECTOR_3 | H2_CSS_STYLE )
+#define H2_CSS_2007       ( H2_CSS_2_1 | H2_CSS_NAMESPACE | H2_CSS_SELECTOR_3 | H2_CSS_STYLE )
 #define H2_CSS_2010       ( H2_CSS_2007 | H2_CSS_MEDIA_3 )
 #define H2_CSS_2015       ( H2_CSS_2010 | H2_CSS_BACKGROUND | H2_CSS_CASCADE_3 | H2_CSS_COMPOSITING | H2_CSS_COND_RULE_3 | H2_CSS_FONT_3 | H2_CSS_SYNTAX | \
                             H2_CSS_VALUE_3 | H2_CSS_UI_3 )
-#define H2_CSS_2015_1     ( H2_CSS_CS | H2_CSS_FBL )
+#define H2_CSS_2015_1     ( H2_CSS_FBL )
+#define H2_CSS_2015_2     ( H2_CSS_CS )
 #define H2_CSS_2017       ( H2_CSS_2015 | H2_CSS_ANIM_3 )
 #define H2_CSS_2017_1     ( H2_CSS_CUSTOM | H2_CSS_FBL )
 #define H2_CSS_2017_2     ( H2_CSS_ANIM_3 | H2_CSS_CS | H2_CSS_FRAG_3 )
@@ -462,31 +459,35 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_2018_1       0
 #define H2_CSS_2018_2     ( H2_CSS_ANIM_3 | H2_CSS_CASCADE_4 | H2_CSS_CS | H2_CSS_FRAG_3 | H2_CSS_MEDIA_4 )
 #define H2_CSS_2020       ( H2_CSS_2018 | H2_CSS_CASCADE_4 | H2_CSS_EASE )
-#define H2_CSS_2020_1     ( H2_CSS_COLOUR_4 | H2_CSS_CS | H2_CSS_FRAG_3 | H2_CSS_MEDIA_4 )
+#define H2_CSS_2020_1     ( H2_CSS_CS | H2_CSS_FRAG_3 | H2_CSS_MEDIA_4 )
 #define H2_CSS_2020_2     ( H2_CSS_ANIM_3 )
 #define H2_CSS_2021       ( H2_CSS_2020 | H2_CSS_CS )
-#define H2_CSS_2021_1     ( H2_CSS_COLOUR_4 | H2_CSS_FRAG_3 | H2_CSS_MEDIA_4 )
+#define H2_CSS_2021_1     ( H2_CSS_FRAG_3 | H2_CSS_MEDIA_4 )
 #define H2_CSS_2021_2     ( H2_CSS_ANIM_3 | H2_CSS_FONT_4 )
-#define H2_CSS_2022       ( H2_CSS_2021 | H2_CSS_COLOUR_4 )
+#define H2_CSS_2022       ( H2_CSS_2021 )
 #define H2_CSS_2022_1     ( H2_CSS_FRAG_3 | H2_CSS_MEDIA_4 )
 #define H2_CSS_2022_2     ( H2_CSS_ANIM_3 | H2_CSS_FONT_4 )
 #define H2_CSS_2023       ( H2_CSS_2022 )
 #define H2_CSS_2023_1     ( H2_CSS_FRAG_3 | H2_CSS_MEDIA_4 )
 #define H2_CSS_2023_2     ( H2_CSS_ANIM_3 | H2_CSS_CASCADE_5 | H2_CSS_COND_RULE_4 | H2_CSS_FONT_4 )
 
-#define H3_CSS_TRANSITION   0x0000000000000001
-#define H3_CSS_MULTI_COL    0x0000000000000002
-#define H3_CSS_DISPLAY      0x0000000000000004
-#define H3_CSS_OVERFLOW     0x0000000000000008
+#define H3_CSS_TRANSITION     0x0000000000000001
+#define H3_CSS_MULTI_COL      0x0000000000000002
+#define H3_CSS_DISPLAY        0x0000000000000004
 
-#define H3_CSS_BOX_MODEL_3  0x0000000000000010
-#define H3_CSS_BOX_MODEL_4  0x0000000000000020
+#define H3_CSS_BOX_SIZING_3   0x0000000000000008
+#define H3_CSS_BOX_SIZING_4   0x0000000000000010
+#define H3_CSS_BOX_SIZING_34 ( H3_CSS_BOX_SIZING_3 | H3_CSS_BOX_SIZING_4 )  
+#define H3_CSS_BOX_SIZING     H3_CSS_BOX_SIZING_34  
+#define H3_CSS_BOX_SIZING_MASK H3_CSS_BOX_SIZING
+
+#define H3_CSS_BOX_MODEL_3    0x0000000000000020
+#define H3_CSS_BOX_MODEL_4    0x0000000000000040
 #define H3_CSS_BOX_MODEL_34 ( H3_CSS_BOX_MODEL_3 | H3_CSS_BOX_MODEL_4 )  
 #define H3_CSS_BOX_MODEL      H3_CSS_BOX_MODEL_34  
 #define H3_CSS_BOX_MODEL_MASK H3_CSS_BOX_MODEL
 
-#define H3_CSS_BOX_ALIGN    0x0000000000000040
-#define H3_CSS_BOX_SIZING   0x0000000000000080
+#define H3_CSS_BOX_ALIGN    0x0000000000000080
 
 #define H3_CSS_POSITION     0x0000000000000100
 
@@ -585,15 +586,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define H3_CSS_DEPRECATED    0x8000000000000000
 
-#define H3_CSS_3          ( H3_CSS_ADJUST | H3_CSS_ANCHOR | H3_CSS_BOX_ALIGN | H3_CSS_BOX_MODEL_3 | H3_CSS_BOX_SIZING | H3_CSS_CONTAIN_3 | H3_CSS_CONTENT | \
+#define H3_CSS_3          ( H3_CSS_ADJUST | H3_CSS_ANCHOR | H3_CSS_BOX_ALIGN | H3_CSS_BOX_MODEL_3 | H3_CSS_BOX_SIZING_3 | H3_CSS_CONTAIN_3 | H3_CSS_CONTENT | \
                             H3_CSS_DEVICE | H3_CSS_DISPLAY | H3_CSS_EXCLUDE | H3_CSS_FILL | H3_CSS_FILTER | H3_CSS_FLOAT | H3_CSS_GRID_3 | H3_CSS_HIGHLIGHT | \
                             H3_CSS_IMAGE_3 | H3_CSS_INLINE | H3_CSS_LINE_GRID | H3_CSS_LIST | H3_CSS_LOGIC | H3_CSS_MASKING | H3_CSS_MOTION | \
-                            H3_CSS_MULTI_COL | H3_CSS_NES | H3_CSS_NESTING | H3_CSS_OVERFLOW | H3_CSS_OVERSCROLL |  H3_CSS_PAGE | H3_CSS_POSITION | \
+                            H3_CSS_MULTI_COL | H3_CSS_NES | H3_CSS_NESTING | H3_CSS_OVERSCROLL |  H3_CSS_PAGE | H3_CSS_POSITION | \
                             H3_CSS_PRESENT | H3_CSS_REGION | H3_CSS_RHYTHM | H3_CSS_ROUND | H3_CSS_RUBY | H3_CSS_SCOPE | H3_CSS_SCROLLBAR | H3_CSS_SDA | \
                             H3_CSS_SHAPE_3 | H3_CSS_SHADOW | H3_CSS_SNAP | H3_CSS_SPEECH | H3_CSS_TABLE | H3_CSS_TEXT_3 | H3_CSS_TEXTDEC_3 | \
                             H3_CSS_TRANSFORM_3 | H3_CSS_TRANSITION | H3_CSS_VIEW | H3_CSS_WC | H3_CSS_WRITING_3 )
-#define H3_CSS_4          ( H3_CSS_BOX_MODEL_4 | H3_CSS_CONTAIN_4 | H3_CSS_GRID_4 | H3_CSS_IMAGE_4 | H3_CSS_PSEUDO | H3_CSS_SHAPE_4 | H3_CSS_TEXT_4 | \
-                            H3_CSS_TEXTDEC_4 | H3_CSS_TRANSFORM_4 | H3_CSS_WRITING_4 )
+#define H3_CSS_4          ( H3_CSS_BOX_MODEL_4 | H3_CSS_BOX_SIZING_4 | H3_CSS_CONTAIN_4 | H3_CSS_GRID_4 | H3_CSS_IMAGE_4 | H3_CSS_PSEUDO | H3_CSS_SHAPE_4 | \
+                            H3_CSS_TEXT_4 |  H3_CSS_TEXTDEC_4 | H3_CSS_TRANSFORM_4 | H3_CSS_WRITING_4 )
 #define H3_CSS_5            H3_CSS_CONTAIN_5
 #define H3_CSS_6            0
   
@@ -618,7 +619,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H3_CSS_2007         0
 #define H3_CSS_2010       ( H3_CSS_2007 )
 #define H3_CSS_2015       ( H3_CSS_2010 | H3_CSS_IMAGE_3 | H3_CSS_MULTI_COL )
-#define H3_CSS_2015_1     ( H3_CSS_MASKING | H3_CSS_SHAPE_3 | H3_CSS_SPEECH | H3_CSS_TEXTDEC_3 | H3_CSS_TRANSITION | H3_CSS_TRANSFORM_3 )
+#define H3_CSS_2015_1     ( H3_CSS_TRANSITION | H3_CSS_TRANSFORM_3 )
+#define H3_CSS_2015_2     ( H3_CSS_MASKING | H3_CSS_SHAPE_3 | H3_CSS_SPEECH | H3_CSS_TEXTDEC_3 )
 #define H3_CSS_2017       ( H3_CSS_2015 | H3_CSS_WRITING_3 )
 #define H3_CSS_2017_1     ( H3_CSS_TEXT_3 | H3_CSS_TRANSFORM_3 )
 #define H3_CSS_2017_2     ( H3_CSS_BOX_ALIGN | H3_CSS_FILTER | H3_CSS_GRID_3 | H3_CSS_MASKING | H3_CSS_SHAPE_3 | H3_CSS_SHAPE_3 | H3_CSS_SPEECH | \
@@ -645,28 +647,90 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H3_CSS_2023_2     ( H3_CSS_ADJUST | H3_CSS_BOX_SIZING | H3_CSS_FILTER | H3_CSS_GRID_3 | H3_CSS_GRID_4 | H3_CSS_LIST | H3_CSS_LOGIC | H3_CSS_POSITION | \
                             H3_CSS_SNAP | H3_CSS_TRANSFORM_4 | H3_CSS_TRANSITION | H3_CSS_WC )
 
+#define H4_CSS_COLOUR_3     0x0000000000000001  
+#define H4_CSS_COLOUR_4     0x0000000000000002  
+#define H4_CSS_COLOUR_5     0x0000000000000004  
+#define H4_CSS_COLOUR_6     0x0000000000000008  
+#define H4_CSS_COLOUR_34  ( H4_CSS_COLOUR_3 | H4_CSS_COLOUR_4 )  
+#define H4_CSS_COLOUR_345 ( H4_CSS_COLOUR_34 | H4_CSS_COLOUR_6 )  
+#define H4_CSS_COLOUR_56  ( H4_CSS_COLOUR_5 | H4_CSS_COLOUR_6 )  
+#define H4_CSS_COLOUR     ( H4_CSS_COLOUR_34 | H4_CSS_COLOUR_56 )
+#define H4_CSS_COLOUR_MASK  H4_CSS_COLOUR
+
+#define H4_CSS_OVERFLOW_3   0x0000000000000010
+#define H4_CSS_OVERFLOW_4   0x0000000000000020
+#define H4_CSS_OVERFLOW   ( H4_CSS_OVERFLOW_3 | H4_CSS_OVERFLOW_4 )
+#define H4_CSS_OVERFLOW_MASK H4_CSS_OVERFLOW
+
+#define H4_CSS_ANCHOR_POS   0x0000000000000040
+#define H4_CSS_MARQUEE      0x0000000000000080
+#define H4_CSS_SPATIAL      0x0000000000000100
+
+#define H4_CSS_3          ( H4_CSS_ANCHOR_POS | H4_CSS_COLOUR_3 | H4_CSS_MARQUEE | H4_CSS_OVERFLOW_3 | H4_CSS_SPATIAL )
+#define H4_CSS_4          ( H4_CSS_COLOUR_4 | H4_CSS_OVERFLOW_4 )
+#define H4_CSS_5            H4_CSS_COLOUR_5
+#define H4_CSS_6            H4_CSS_COLOUR_6
+  
+#define H4_CSS_3_FULL     ( H4_CSS_3 )
+#define H4_CSS_4_FULL     ( H4_CSS_4 | H4_CSS_3_FULL )
+#define H4_CSS_5_FULL     ( H4_CSS_5 | H4_CSS_4_FULL )
+#define H4_CSS_6_FULL     ( H4_CSS_6 | H4_CSS_5_FULL )
+
+#define H4_CSS_3_4        ( H4_CSS_3 | H4_CSS_4 )
+#define H4_CSS_3_4_5      ( H4_CSS_3_4 | H4_CSS_5 )
+#define H4_CSS_3_4_5_6    ( H4_CSS_3_4_5 | H4_CSS_6 )
+
+#define H4_CSS_5_PLUS     ( H4_CSS_5 | H4_CSS_6 )
+#define H4_CSS_4_PLUS     ( H4_CSS_4 | H4_CSS_5_PLUS )
+#define H4_CSS_3_PLUS     ( H4_CSS_3 | H4_CSS_4_PLUS )
+#define H4_CSS_ALL          H4_CSS_3_PLUS
+#define H4_CSS_MASK         H4_CSS_ALL
+#define H4_CSS              H4_CSS_ALL
+
+#define H4_FULL_CSS_MASK    0x00000000000001FF
+
+#define H4_CSS_2007         H4_CSS_COLOUR_3
+#define H4_CSS_2010       ( H4_CSS_2007 )
+#define H4_CSS_2015       ( H4_CSS_2010 )
+#define H4_CSS_2015_1       0
+#define H4_CSS_2015_2       0
+#define H4_CSS_2017       ( H4_CSS_2015 )
+#define H4_CSS_2017_1       0
+#define H4_CSS_2017_2       0
+#define H4_CSS_2018       ( H4_CSS_2017 )
+#define H4_CSS_2018_1       0
+#define H4_CSS_2018_2       0
+#define H4_CSS_2020       ( H4_CSS_2018 )
+#define H4_CSS_2020_1     ( H4_CSS_COLOUR_4 )
+#define H4_CSS_2020_2       0
+#define H4_CSS_2021       ( H4_CSS_2020 )
+#define H4_CSS_2021_1     ( H4_CSS_COLOUR_4 )
+#define H4_CSS_2021_2       0
+#define H4_CSS_2022       ( H4_CSS_2021 | H4_CSS_COLOUR_4 )
+#define H4_CSS_2022_1       0
+#define H4_CSS_2022_2       0
+#define H4_CSS_2023       ( H4_CSS_2022 )
+#define H4_CSS_2023_1       0
+#define H4_CSS_2023_2       0
+
 class html_version : public version
-{   flags_t ext_ = NOFLAGS, ext2_ = NOFLAGS, ext3_ = NOFLAGS;
+{   flags_t ext_ = NOFLAGS, ext2_ = NOFLAGS, ext3_ = NOFLAGS, ext4_ = NOFLAGS;
     bool note_parsed_version (nitpick& nits, const e_nit n, const html_version& got, const ::std::string& gen);
     void init (const unsigned short mjr);
     bool test_extension () const noexcept;
-    bool compare_css (const flags_t e2, const flags_t e3, flags_t& ext2, flags_t& ext3) const;
+    bool compare_css (const flags_t e2, const flags_t e3, const flags_t e4, flags_t& ext2, flags_t& ext3, flags_t& ext4) const;
     ::std::string css_version_text (const bool b) const;
 public:
     html_version ()  { }
     explicit html_version (const unsigned short mjr) { init (mjr); }
     explicit html_version (const ontology_version& sv) noexcept : version (sv.mjr (), sv.mnr ()) { }
     explicit html_version (const ::boost::gregorian::date& d);
-    html_version (const unsigned short mjr, const unsigned short mnr, const flags_t flags = NOFLAGS, const flags_t extensions = NOFLAGS, const flags_t e2 = NOFLAGS, const flags_t e3 = NOFLAGS) noexcept
-        : version (mjr, mnr, flags), ext_ (extensions), ext2_ (e2), ext3_ (e3) { }
-    html_version (const ::boost::gregorian::date& whatwg, const flags_t flags, const flags_t extensions = NOFLAGS, const flags_t e2 = NOFLAGS, const flags_t e3 = NOFLAGS);
+    html_version (const unsigned short mjr, const unsigned short mnr, const flags_t flags = NOFLAGS, const flags_t extensions = NOFLAGS, const flags_t e2 = NOFLAGS, const flags_t e3 = NOFLAGS, const flags_t e4 = NOFLAGS) noexcept
+        : version (mjr, mnr, flags), ext_ (extensions), ext2_ (e2), ext3_ (e3), ext4_ (e4) { }
+    html_version (const ::boost::gregorian::date& whatwg, const flags_t flags, const flags_t extensions = NOFLAGS, const flags_t e2 = NOFLAGS, const flags_t e3 = NOFLAGS, const flags_t e4 = NOFLAGS);
     DEFAULT_COPY_CONSTRUCTORS (html_version);
 	~html_version () = default;
-    void swap (html_version& v) noexcept
-    {   version::swap (v);
-        ::std::swap (ext_, v.ext_);
-        ::std::swap (ext2_, v.ext2_);
-        ::std::swap (ext3_, v.ext3_); }
+    void swap (html_version& v) noexcept;
     void reset () noexcept { html_version v; swap (v); }
     void reset (const html_version& v) noexcept { html_version vv (v); swap (vv); }
     void set_ext (const flags_t u) noexcept { ext_ |= u; }
@@ -695,6 +759,16 @@ public:
     bool no_ext3 (const flags_t u) const noexcept { return ((ext3_ & u) == 0); }
     flags_t ext3 () const noexcept { return ext3_; }
     flags_t ext3 (const flags_t m, int r) const noexcept { return (ext3 () & m) >> r; }
+    void set_ext4 (const flags_t u) noexcept { ext4_ |= u; }
+    void set_ext4 (const flags_t m, const flags_t u) noexcept { reset_ext4 (m); set_ext4 (u); }
+    void set_ext4 (const flags_t m, const flags_t u, int r) noexcept { reset_ext4 (m); set_ext4 ((u << r) & m); }
+    void reset_ext4 (const flags_t u) noexcept { ext4_ &= ~u; }
+    bool all_ext4 (const flags_t u) const noexcept
+    {   return ((ext4_ & u) == u); }
+    bool any_ext4 (const flags_t u) const noexcept { return ((ext4_ & u) != 0); }
+    bool no_ext4 (const flags_t u) const noexcept { return ((ext4_ & u) == 0); }
+    flags_t ext4 () const noexcept { return ext4_; }
+    flags_t ext4 (const flags_t m, int r) const noexcept { return (ext4 () & m) >> r; }
     bool is_not (const unsigned short j, const unsigned short n = USHRT_MAX) const noexcept
     {   if (unknown ()) return false;
         if (j != mjr ()) return true;
@@ -725,7 +799,7 @@ public:
     bool experimental () const noexcept { return all_ext (HE_EXPERIMENTAL); }
     bool frameset () const noexcept { return all_flags (HV_FRAMESET); }
     bool ie () const noexcept { return all_ext (HE_IE); }
-    bool has_css () const noexcept { return any_ext2 (H2_CSS_ALL) || any_ext3 (H3_CSS_ALL); }
+    bool has_css () const noexcept { return any_ext2 (H2_CSS_ALL) || any_ext3 (H3_CSS_ALL) || any_ext4 (H4_CSS_ALL); }
     bool has_jsonld () const noexcept { return any_ext2 (JSONLD_MASK); }
     bool has_math () const noexcept { return any_ext2 (MATH_MASK); }
     bool has_math_core () const noexcept { return any_ext2 (H2_MATH_C); }
@@ -745,10 +819,10 @@ public:
     bool is_css_2_0 () const noexcept { return (any_ext2 (H2_CSS_2_0)); }
     bool is_css_2_1 () const noexcept { return (any_ext2 (H2_CSS_2_1)); }
     bool is_css_2_2 () const noexcept { return (any_ext2 (H2_CSS_2_2)); }
-    bool is_css_3 () const noexcept { return (any_ext2 (H2_CSS_3) || any_ext3 (H3_CSS_3)); }
-    bool is_css_4 () const noexcept { return (any_ext2 (H2_CSS_4) || any_ext3 (H3_CSS_4)); }
-    bool is_css_5 () const noexcept { return (any_ext2 (H2_CSS_5) || any_ext3 (H3_CSS_5)); }
-    bool is_css_6 () const noexcept { return (any_ext2 (H2_CSS_6) || any_ext3 (H3_CSS_6)); }
+    bool is_css_3 () const noexcept { return (any_ext2 (H2_CSS_3) || any_ext3 (H3_CSS_3) || any_ext4 (H4_CSS_3)); }
+    bool is_css_4 () const noexcept { return (any_ext2 (H2_CSS_4) || any_ext3 (H3_CSS_4) || any_ext4 (H4_CSS_4)); }
+    bool is_css_5 () const noexcept { return (any_ext2 (H2_CSS_5) || any_ext3 (H3_CSS_5) || any_ext4 (H4_CSS_5)); }
+    bool is_css_6 () const noexcept { return (any_ext2 (H2_CSS_6) || any_ext3 (H3_CSS_6) || any_ext4 (H4_CSS_6)); }
     bool is_jsonld_10 () const noexcept { return (ext2 () & H2_JSONLD_1_0) == H2_JSONLD_1_0; }
     bool is_jsonld_11 () const noexcept { return (ext2 () & H2_JSONLD_1_1) == H2_JSONLD_1_1; }
     bool is_rdf () const noexcept { return (ext () & HE_RDF) != 0; }
@@ -860,6 +934,8 @@ public:
     void css_adjust (const int n);
     int css_anchor () const;
     void css_anchor (const int n);
+    int css_anchor_pos () const;
+    void css_anchor_pos (const int n);
     int css_animation () const;
     void css_animation (const int n);
     int css_background () const;
@@ -920,6 +996,8 @@ public:
     void css_list (const int n);
     int css_logic () const;
     void css_logic (const int n);
+    int css_marquee () const;
+    void css_marquee (const int n);
     int css_masking () const;
     void css_masking (const int n);
     int css_media () const;
@@ -968,6 +1046,8 @@ public:
     void css_shape (const int n);
     int css_snap () const;
     void css_snap (const int n);
+    int css_spatial () const;
+    void css_spatial (const int n);
     int css_speech () const;
     void css_speech (const int n);
     int css_style () const;
@@ -994,12 +1074,12 @@ public:
     void css_will_change (const int n);
     int css_writing_mode () const;
     void css_writing_mode (const int n);
-    bool is_css_compatible (const flags_t& f, const flags_t& f2) const;
-    bool is_css_compatible (nitpick& nits, const flags_t& f, const flags_t& f2) const;
+    bool is_css_compatible (const flags_t& f, const flags_t& f3, const flags_t& f4) const;
+    bool is_css_compatible (nitpick& nits, const flags_t& f, const flags_t& f3, const flags_t& f4) const;
     bool is_css_compatible (const html_version& v) const
-    {   return is_css_compatible (v.ext2_, v.ext3_); }
+    {   return is_css_compatible (v.ext2_, v.ext3_, v.ext4_); }
     bool is_css_compatible (nitpick& nits, const html_version& v) const
-    {   return is_css_compatible (nits, v.ext2_, v.ext3_); }
+    {   return is_css_compatible (nits, v.ext2_, v.ext3_, v.ext4_); }
     void check_status (nitpick& nits, const ::std::string& s) const;
     void reset_profile () { ext3_ &= ~H3_NOT_MASK; }
     void set_profile (const flags_t f) { ext3_ |= f; }
@@ -1050,14 +1130,14 @@ const html_version html_css_1 (HTML_2_0, 0, 0, H2_CSS_1);
 const html_version html_css_2_0 (HTML_3_2, 0, 0, H2_CSS_2_0);
 const html_version html_css_2_1 (XHTML_1_0, 0, 0, H2_CSS_2_1);
 const html_version html_css_2_2 (HTML_JUL16, 0, 0, H2_CSS_2_1);
-const html_version html_css_3 (HTML_JAN15, 0, 0, H2_CSS_3, H3_CSS_3);
-const html_version html_css_4 (HTML_OCT17, 0, 0, H2_CSS_4, H3_CSS_4);
-const html_version html_css_5 (HTML_JAN22, 0, 0, H2_CSS_5, H3_CSS_5);
-const html_version html_css_6 (HTML_JAN22, 0, 0, H2_CSS_6, H3_CSS_6);
+const html_version html_css_3 (HTML_JAN15, 0, 0, H2_CSS_3, H3_CSS_3, H4_CSS_3);
+const html_version html_css_4 (HTML_OCT17, 0, 0, H2_CSS_4, H3_CSS_4, H4_CSS_4);
+const html_version html_css_5 (HTML_JAN22, 0, 0, H2_CSS_5, H3_CSS_5, H4_CSS_5);
+const html_version html_css_6 (HTML_JAN22, 0, 0, H2_CSS_6, H3_CSS_6, H4_CSS_6);
 
-const html_version html_css_selectors_4 (HTML_JAN21, 0, 0, H2_CSS_4, H3_CSS_4);
-const html_version html_css_selectors_5 (HTML_JAN22, 0, 0, H2_CSS_5, H3_CSS_5);
-const html_version html_css_selectors_6 (HTML_JAN22, 0, 0, H2_CSS_6, H3_CSS_6);
+const html_version html_css_selectors_4 (HTML_JAN21, 0, 0, H2_CSS_4, H3_CSS_4, H4_CSS_4);
+const html_version html_css_selectors_5 (HTML_JAN22, 0, 0, H2_CSS_5, H3_CSS_5, H4_CSS_5);
+const html_version html_css_selectors_6 (HTML_JAN22, 0, 0, H2_CSS_6, H3_CSS_6, H4_CSS_6);
 
 const html_version html_css_media (HTML_4_0, 0, 0, H2_CSS, H3_CSS);
 
@@ -1229,61 +1309,61 @@ const html_version html_xsd_1_1 (HTML_XSD_11);
 
 const html_version html_ttml (HTML_TTML);
 const html_version html_xlink_1_0 (HTML_XLINK10);
-const html_version html_xlink_1_1 (HTML_XLINK11, 0, HE_SVG_11, H2_MATH_2 | H2_CSS_2010, H3_CSS_2010);
+const html_version html_xlink_1_1 (HTML_XLINK11, 0, HE_SVG_11, H2_MATH_2 | H2_CSS_2010, H3_CSS_2010, H4_CSS_2010);
 
 const html_version html_jan05 (HTML_JAN05, HV_WHATWG, HE_MICRODATA, H2_CSS_2_1);
 const html_version html_jul05 (HTML_JUL05, HV_WHATWG, HE_MICRODATA, H2_CSS_2_1);
 const html_version html_jan06 (HTML_JAN06, HV_WHATWG, HE_MICRODATA, H2_CSS_2_1);
-const html_version html_jan07 (HTML_JAN07, HV_WHATWG, HE_MICRODATA, H2_CSS_2007);
-const html_version html_jul07 (HTML_JUL07, HV_WHATWG, HE_MICRODATA, H2_CSS_2007);
-const html_version html_jan08 (HTML_JAN08, HV_WHATWG, HE_MICRODATA, H2_CSS_2007);
-const html_version html_jul08 (HTML_JUL08, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2007);
-const html_version html_jan09 (HTML_JAN09, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2007);
-const html_version html_jul09 (HTML_JUL09, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2007);
-const html_version html_jan10 (HTML_JAN10, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2010, H3_CSS_2010);
-const html_version html_jul10 (HTML_JUL10, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2010, H3_CSS_2010);
-const html_version html_jan11 (HTML_JAN11, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2010, H3_CSS_2010);
-const html_version html_jul11 (HTML_JUL11, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2010, H3_CSS_2010);
-const html_version html_jan12 (HTML_JAN12, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2010, H3_CSS_2010);
-const html_version html_jul12 (HTML_JUL12, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2010, H3_CSS_2010);
-const html_version html_jan13 (HTML_JAN13, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2010, H3_CSS_2010);
-const html_version html_may13 (HTML_MAY13, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2010, H3_CSS_2010);
-const html_version html_jul13 (HTML_JUL13, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2010, H3_CSS_2010);
-const html_version html_jan14 (HTML_JAN14, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2010, H3_CSS_2010);
-const html_version html_jan15 (HTML_JAN15, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_2015, H3_CSS_2015);
-const html_version html_jun15 (HTML_JUN15, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_2015, H3_CSS_2015);
-const html_version html_jan16 (HTML_JAN16, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_2015, H3_CSS_2015);
-const html_version html_jul16 (HTML_JUL16, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_2015, H3_CSS_2015);
-const html_version html_jan17 (HTML_JAN17, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_2017, H3_CSS_2017);
-const html_version html_jul17 (HTML_JUL17, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_2017, H3_CSS_2017);
-const html_version html_jan18 (HTML_JAN18, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_2018, H3_CSS_2018);
-const html_version html_jul18 (HTML_OCT18, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_2018, H3_CSS_2018);
-const html_version html_oct18 (HTML_JUL18, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3 | H2_CSS_2018, H3_CSS_2018);
-const html_version html_jan19 (HTML_JAN19, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3 | H2_CSS_2018, H3_CSS_2018);
-const html_version html_jul19 (HTML_JUL19, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3 | H2_CSS_2018, H3_CSS_2018);
-const html_version html_jan20 (HTML_JAN20, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3 | H2_CSS_2020, H3_CSS_2020);
-const html_version html_jul20 (HTML_JUL20, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3 | H2_CSS_2020, H3_CSS_2020);
-const html_version html_jan21 (HTML_JAN21, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3 | H2_CSS_2021, H3_CSS_2021);
-const html_version html_feb21 (HTML_FEB21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3 | H2_CSS_2021, H3_CSS_2021);
-const html_version html_apr21 (HTML_APR21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_2021, H3_CSS_2021);
-const html_version html_jul21 (HTML_JUL21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_2021, H3_CSS_2021);
-const html_version html_oct21 (HTML_OCT21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_2021, H3_CSS_2021);
-const html_version html_nov21 (HTML_NOV21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_2021, H3_CSS_2021);
-const html_version html_jan22 (HTML_JAN22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_2022, H3_CSS_2022);
-const html_version html_apr22 (HTML_APR22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_2022, H3_CSS_2022);
-const html_version html_jul22 (HTML_JUL22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_2022, H3_CSS_2022);
-const html_version html_oct22 (HTML_OCT22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_2022, H3_CSS_2022);
-const html_version html_jan23 (HTML_JAN23, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_2023, H3_CSS_2023);
-const html_version html_apr23 (HTML_APR23, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_2023, H3_CSS_2023);
-const html_version html_jul23 (HTML_JUL23, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_2023, H3_CSS_2023);
-const html_version html_oct23 (HTML_OCT23, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_2023, H3_CSS_2023);
-const html_version html_5_0 (HTML_5_0, HV_W3, HE_SVG_11, H2_MATH_2 | H2_CSS_2010, H3_CSS_2010);
-const html_version html_5_1 (HTML_5_1, HV_W3, HE_SVG_11, H2_MATH_2 | H2_CSS_2015, H3_CSS_2015);
-const html_version html_5_2 (HTML_5_2, HV_W3, HE_SVG_11, H2_MATH_3 | H2_CSS_2017, H3_CSS_2017);
-const html_version html_5_3 (HTML_5_3, HV_W3, HE_SVG_11, H2_MATH_3 | H2_CSS_2018, H3_CSS_2018);
+const html_version html_jan07 (HTML_JAN07, HV_WHATWG, HE_MICRODATA, H2_CSS_2007, H3_CSS_2007, H4_CSS_2007);
+const html_version html_jul07 (HTML_JUL07, HV_WHATWG, HE_MICRODATA, H2_CSS_2007, H3_CSS_2007, H4_CSS_2007);
+const html_version html_jan08 (HTML_JAN08, HV_WHATWG, HE_MICRODATA, H2_CSS_2007, H3_CSS_2007, H4_CSS_2007);
+const html_version html_jul08 (HTML_JUL08, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2007, H3_CSS_2007, H4_CSS_2007);
+const html_version html_jan09 (HTML_JAN09, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2007, H3_CSS_2007, H4_CSS_2007);
+const html_version html_jul09 (HTML_JUL09, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2007, H3_CSS_2007, H4_CSS_2007);
+const html_version html_jan10 (HTML_JAN10, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2010, H3_CSS_2010, H4_CSS_2010);
+const html_version html_jul10 (HTML_JUL10, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2010, H3_CSS_2010, H4_CSS_2010);
+const html_version html_jan11 (HTML_JAN11, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2010, H3_CSS_2010, H4_CSS_2010);
+const html_version html_jul11 (HTML_JUL11, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2010, H3_CSS_2010, H4_CSS_2010);
+const html_version html_jan12 (HTML_JAN12, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2010, H3_CSS_2010, H4_CSS_2010);
+const html_version html_jul12 (HTML_JUL12, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2010, H3_CSS_2010, H4_CSS_2010);
+const html_version html_jan13 (HTML_JAN13, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2010, H3_CSS_2010, H4_CSS_2010);
+const html_version html_may13 (HTML_MAY13, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2010, H3_CSS_2010, H4_CSS_2010);
+const html_version html_jul13 (HTML_JUL13, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2010, H3_CSS_2010, H4_CSS_2010);
+const html_version html_jan14 (HTML_JAN14, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_2 | H2_CSS_2010, H3_CSS_2010, H4_CSS_2010);
+const html_version html_jan15 (HTML_JAN15, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_2015, H3_CSS_2015, H4_CSS_2015);
+const html_version html_jun15 (HTML_JUN15, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_2015, H3_CSS_2015, H4_CSS_2015);
+const html_version html_jan16 (HTML_JAN16, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_2015, H3_CSS_2015, H4_CSS_2015);
+const html_version html_jul16 (HTML_JUL16, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_2015, H3_CSS_2015, H4_CSS_2015);
+const html_version html_jan17 (HTML_JAN17, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_2017, H3_CSS_2017, H4_CSS_2017);
+const html_version html_jul17 (HTML_JUL17, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_2017, H3_CSS_2017, H4_CSS_2017);
+const html_version html_jan18 (HTML_JAN18, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_2018, H3_CSS_2018, H4_CSS_2018);
+const html_version html_jul18 (HTML_OCT18, HV_WHATWG, HE_MICRODATA | HE_SVG_11, H2_MATH_3 | H2_CSS_2018, H3_CSS_2018, H4_CSS_2018);
+const html_version html_oct18 (HTML_JUL18, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3 | H2_CSS_2018, H3_CSS_2018, H4_CSS_2018);
+const html_version html_jan19 (HTML_JAN19, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3 | H2_CSS_2018, H3_CSS_2018, H4_CSS_2018);
+const html_version html_jul19 (HTML_JUL19, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3 | H2_CSS_2018, H3_CSS_2018, H4_CSS_2018);
+const html_version html_jan20 (HTML_JAN20, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3 | H2_CSS_2020, H3_CSS_2020, H4_CSS_2020);
+const html_version html_jul20 (HTML_JUL20, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3 | H2_CSS_2020, H3_CSS_2020, H4_CSS_2020);
+const html_version html_jan21 (HTML_JAN21, HV_WHATWG, HE_MICRODATA | HE_SVG_20, H2_MATH_3 | H2_CSS_2021, H3_CSS_2021, H4_CSS_2021);
+const html_version html_feb21 (HTML_FEB21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_3 | H2_CSS_2021, H3_CSS_2021, H4_CSS_2021);
+const html_version html_apr21 (HTML_APR21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_2021, H3_CSS_2021, H4_CSS_2021);
+const html_version html_jul21 (HTML_JUL21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_2021, H3_CSS_2021, H4_CSS_2021);
+const html_version html_oct21 (HTML_OCT21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_2021, H3_CSS_2021, H4_CSS_2021);
+const html_version html_nov21 (HTML_NOV21, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_2021, H3_CSS_2021, H4_CSS_2021);
+const html_version html_jan22 (HTML_JAN22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_2022, H3_CSS_2022, H4_CSS_2022);
+const html_version html_apr22 (HTML_APR22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_4_20 | H2_CSS_2022, H3_CSS_2022, H4_CSS_2022);
+const html_version html_jul22 (HTML_JUL22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_2022, H3_CSS_2022, H4_CSS_2022);
+const html_version html_oct22 (HTML_OCT22, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_2022, H3_CSS_2022, H4_CSS_2022);
+const html_version html_jan23 (HTML_JAN23, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_2023, H3_CSS_2023, H4_CSS_2023);
+const html_version html_apr23 (HTML_APR23, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_2023, H3_CSS_2023, H4_CSS_2023);
+const html_version html_jul23 (HTML_JUL23, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_2023, H3_CSS_2023, H4_CSS_2023);
+const html_version html_oct23 (HTML_OCT23, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_2023, H3_CSS_2023, H4_CSS_2023);
+const html_version html_5_0 (HTML_5_0, HV_W3, HE_SVG_11, H2_MATH_2 | H2_CSS_2010, H3_CSS_2010, H4_CSS_2010);
+const html_version html_5_1 (HTML_5_1, HV_W3, HE_SVG_11, H2_MATH_2 | H2_CSS_2015, H3_CSS_2015, H4_CSS_2015);
+const html_version html_5_2 (HTML_5_2, HV_W3, HE_SVG_11, H2_MATH_3 | H2_CSS_2017, H3_CSS_2017, H4_CSS_2017);
+const html_version html_5_3 (HTML_5_3, HV_W3, HE_SVG_11, H2_MATH_3 | H2_CSS_2018, H3_CSS_2018, H4_CSS_2018);
 const html_version html_current (html_oct23);
 const html_version html_default (html_current);
-const html_version html_max (HTML_DEC99, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_6, H3_CSS_6);
+const html_version html_max (HTML_DEC99, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_6, H3_CSS_6, H4_CSS_6);
 
 bool does_html_apply (const html_version& v, const html_version& from, const html_version& to);
 bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e);

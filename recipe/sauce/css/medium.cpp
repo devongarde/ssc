@@ -184,7 +184,7 @@ bool medium_t::value_expected (const e_media prop, e_type& t, bool& length, bool
             t = t_rect_round;
             return true;
         case md_update :
-            t = t_media_update;
+            t = t_fns;
             return true;
         default :
             break; }
@@ -657,7 +657,7 @@ bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
                     break;
                 case md_fast :
                 case md_slow :
-                    if (t != t_media_update)
+                    if (t != t_fns)
                     {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": not expecting an update value");
                         res = false;
                         ignore = true; }
@@ -807,7 +807,7 @@ bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
                         case t_media_inline :
                         case t_media_overflow :
                         case t_media_pointer :
-                        case t_media_update :
+                        case t_fns :
                         case t_nav_controls :
                             break;
                         default :

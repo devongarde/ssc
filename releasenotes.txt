@@ -3,6 +3,13 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.45
+- CSS Marquee
+- restore VS 2017 build
+- OpenBSD package ready to submit
+- various bug fixes
+- underlying work
+
 0.1.44
 - CSS Generated Content 3
 - CSS Region 3

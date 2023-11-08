@@ -140,7 +140,10 @@ PASS ../toast/SVG/2.1/index.html
 
 PASS ../toast/SVG/2.1/inline_size.html
 2 naughty_lang
-28 css_version is_property
+13 css_version
+21 css_version
+28 css_version css_version is_property
+34 css_version
 
 PASS ../toast/SVG/2.1/line.xhtml
 0 title_required

@@ -32,7 +32,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #ifdef _MSC_VER
 ::std::wstring convert_to_wstring (nitpick& nits, const ::icu::UnicodeString& us);
+#ifndef VS2017
 ::std::wstring convert_to_wstring (const ::std::string& s);
+#endif // VS2017
 ::std::string normalise_utf8 (nitpick& nits, const ::std::string& s);
 #endif // _MSC_VER
 

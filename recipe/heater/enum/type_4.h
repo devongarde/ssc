@@ -128,6 +128,9 @@ template < > struct type_master < t_aria_sort > : four_value < t_aria_sort, e_ar
 template < > struct type_master < t_bens > : four_value < t_bens, e_bens, sz_both, sz_end, sz_none, sz_start >
 { using four_value < t_bens, e_bens, sz_both, sz_end, sz_none, sz_start > :: four_value; };
 
+template < > struct type_master < t_benrs > : four_value < t_benrs, e_benrs, sz_both, sz_end, sz_normal, sz_start >
+{ using four_value < t_benrs, e_benrs, sz_both, sz_end, sz_normal, sz_start > :: four_value; };
+
 template < > struct type_master < t_bixy > : four_value < t_bixy, e_bixy, sz_block, sz_inline, sz_x, sz_y  >
 { using four_value < t_bixy, e_bixy, sz_block, sz_inline, sz_x, sz_y > :: four_value; };
 

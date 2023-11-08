@@ -81,7 +81,8 @@ e_status set_css_col_value (nitpick& nits, const html_version& v, const ::std::s
     else
     {   nitpick nuts, nets, nots, nats;
         switch (v.css_colour ())
-        {   case 5 :
+        {   case 6 :
+            case 5 :
             case 4 :
                 if (test_value < t_css_colour_4 > (nuts, v, s))
                 {   nits.merge (nuts);

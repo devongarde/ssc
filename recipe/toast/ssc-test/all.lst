@@ -107,6 +107,7 @@
 ../toast/css/custom/css.spec
 ../toast/css/deprecated/css.spec
 ../toast/css/ease/css.spec
+../toast/css/marquee/css.spec
 ../toast/css/profile/css.spec
 ../toast/css/reader/css.spec
 ../toast/css/simple/css.spec

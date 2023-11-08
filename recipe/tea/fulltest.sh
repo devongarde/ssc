@@ -105,6 +105,7 @@
 ./ssc -f ../toast/css/custom/css.conf
 ./ssc -f ../toast/css/deprecated/css.conf
 ./ssc -f ../toast/css/ease/css.conf
+./ssc -f ../toast/css/marquee/css.conf
 ./ssc -f ../toast/css/profile/css.conf
 ./ssc -f ../toast/css/reader/css.conf
 ./ssc -f ../toast/css/simple/css.conf

@@ -1,0 +1,2 @@
+﻿li {overflow: auto; overflow-style: marquee; marquee-play-count: 0}
+li:focus, li:hover {marquee-play-count: 1}

@@ -82,9 +82,6 @@ template < > struct type_master < t_contain_cover_sd > : type_either_or_both < t
 template < > struct type_master < t_cookies > : type_at_least_one < t_cookies, sz_semicolon, t_cookie >
 { using type_at_least_one < t_cookies, sz_semicolon, t_cookie > :: type_at_least_one; };
 
-//template < > struct type_master < t_css_all_2 > : public type_sz < t_css_all_2, sz_initial, sz_inherit, sz_unset >
-//{   using type_sz < t_css_all_2, sz_initial, sz_inherit, sz_unset > :: type_sz; };
-
 template < > struct type_master < t_css_caret > : type_some_of < t_css_caret, sz_space_char, 0, 2, t_css_colour_a, t_css_caret_shape >
 { using type_some_of < t_css_caret, sz_space_char, 0, 2, t_css_colour_a, t_css_caret_shape > :: type_some_of; };
 
@@ -157,6 +154,9 @@ template < > struct type_master < t_lrtb > : type_either_or_both < t_lrtb, t_lra
 template < > struct type_master < t_text_a > : type_or_string < t_text_a, t_text, sz_auto >
 { using type_or_string < t_text_a, t_text, sz_auto > :: type_or_string; };
 
+template < > struct type_master < t_text_na > : type_or_either_string < t_text_na, t_text, sz_auto, sz_none >
+{ using type_or_either_string < t_text_na, t_text, sz_auto, sz_none > :: type_or_either_string; };
+
 template < > struct type_master < t_to_lrtb > : string_then_type < t_to_lrtb, t_lrtb, sz_to >
 { using string_then_type < t_to_lrtb, t_lrtb, sz_to > :: string_then_type; };
 
@@ -205,6 +205,12 @@ template < > struct type_master < t_position > : type_one_of < t_position, false
 template < > struct type_master < t_positions > : type_some_of < t_positions, sz_comma, 1,999, t_position >
 { using type_some_of < t_positions, sz_comma, 1, 999, t_position > :: type_some_of; };
 
+template < > struct type_master < t_positive_i > : type_or_string < t_positive_i, t_positive, sz_infinite >
+{ using type_or_string < t_positive_i, t_positive, sz_infinite > :: type_or_string; };
+
+template < > struct type_master < t_positive_n > : type_or_string < t_positive_n, t_positive, sz_none >
+{ using type_or_string < t_positive_n, t_positive, sz_none > :: type_or_string; };
+
 template < > struct type_master < t_radial_size > : type_one_or_both < t_radial_size, t_css_radial_size, sz_space_char, t_css_length >
 { using type_one_or_both < t_radial_size, t_css_radial_size, sz_space_char, t_css_length > :: type_one_or_both; };
  
@@ -213,6 +219,9 @@ template < > struct type_master < t_radial_ending > : type_one_or_both < t_radia
  
 template < > struct type_master < t_radial_1 > : type_none_one_two < t_radial_1, sz_space_char, t_radial_ending, t_at_pos >
 { using type_none_one_two < t_radial_1, sz_space_char, t_radial_ending, t_at_pos > :: type_none_one_two; };
+
+template < > struct type_master < t_ratio_a > : string_or_type_or_both < t_ratio_a, t_ratio, sz_auto >
+{ using string_or_type_or_both < t_ratio_a, t_ratio, sz_auto > :: string_or_type_or_both; };
 
 template < > struct type_master < t_rgbfn > : type_function_3_4 < t_rgbfn, sz_rgb, t_real_percent_n, t_real_percent_n, t_real_percent_n, t_zero_to_one >
 { using type_function_3_4 < t_rgbfn, sz_rgb, t_real_percent_n, t_real_percent_n, t_real_percent_n, t_zero_to_one > :: type_function_3_4; };

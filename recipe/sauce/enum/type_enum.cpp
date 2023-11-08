@@ -391,6 +391,13 @@ struct symbol_entry < html_version, e_css_align_items > css_align_items_symbol_t
     { { HTML_CSS, 0, 0, H2_CSS_FBL }, { HTML_UNDEF }, "flex-start", ecai_flex_start },
     { { HTML_CSS, 0, 0, H2_CSS_FBL }, { HTML_UNDEF }, "stretch", ecai_stretch } };
 
+struct symbol_entry < html_version, e_css_all_2 > css_all_2_symbol_table [] =
+{   { { HTML_CSS, 0, 0, H2_CSS_CASCADE }, { HTML_UNDEF }, "inherit", all_inherit },
+    { { HTML_CSS, 0, 0, H2_CSS_CASCADE }, { HTML_UNDEF }, "initial", all_initial },
+    { { HTML_CSS, 0, 0, H2_CSS_CASCADE_456 }, { HTML_UNDEF }, "revert", all_revert },
+    { { HTML_CSS, 0, 0, H2_CSS_CASCADE_56 }, { HTML_UNDEF }, "revert-layer", all_revert_layer },
+    { { HTML_CSS, 0, 0, H2_CSS_CASCADE }, { HTML_UNDEF }, "unset", all_unset } };
+
 struct symbol_entry < html_version, e_css_appearance > css_appearance_symbol_table [] =
 {   { { HTML_CSS }, { HTML_UNDEF }, "inherit", eca_inherit },
     { { HTML_CSS }, { HTML_UNDEF }, "auto", eca_auto },
@@ -1393,24 +1400,24 @@ struct symbol_entry < html_version, e_css_ray_size > css_ray_size_symbol_table [
     { { HTML_CSS, 0, 0, 0, H3_CSS_MOTION }, { HTML_UNDEF }, "sides", cry_sides } };
 
 struct symbol_entry < html_version, e_css_rgb_xyz > css_rgb_xyz_symbol_table [] =
-{   { { HTML_CSS, 0, 0, H2_CSS_COLOUR_4 }, { HTML_UNDEF }, "a98-rgb", crx_a98_rgb },
-    { { HTML_CSS, 0, 0, H2_CSS_COLOUR_4 }, { HTML_UNDEF }, "display-p3", crx_display_p3 },
-    { { HTML_CSS, 0, 0, H2_CSS_COLOUR_4 }, { HTML_UNDEF }, "prophoto-rgb", crx_prophoto_rgb },
-    { { HTML_CSS, 0, 0, H2_CSS_COLOUR_4 }, { HTML_UNDEF }, "rec2020", crx_rec2020 },
-    { { HTML_CSS, 0, 0, H2_CSS_COLOUR_4 }, { HTML_UNDEF }, "srgb", crx_srgb },
-    { { HTML_CSS, 0, 0, H2_CSS_COLOUR_4 }, { HTML_UNDEF }, "srgb-linear", crx_srgb_linear },
-    { { HTML_CSS, 0, 0, H2_CSS_COLOUR_4 }, { HTML_UNDEF }, "xyz", crx_xyz },
-    { { HTML_CSS, 0, 0, H2_CSS_COLOUR_4 }, { HTML_UNDEF }, "xyz-d50", crx_xyz_d50 },
-    { { HTML_CSS, 0, 0, H2_CSS_COLOUR_4 }, { HTML_UNDEF }, "xyz-d65", crx_xyz_d65 } };
+{   { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "a98-rgb", crx_a98_rgb },
+    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "display-p3", crx_display_p3 },
+    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "prophoto-rgb", crx_prophoto_rgb },
+    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "rec2020", crx_rec2020 },
+    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "srgb", crx_srgb },
+    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "srgb-linear", crx_srgb_linear },
+    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "xyz", crx_xyz },
+    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "xyz-d50", crx_xyz_d50 },
+    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "xyz-d65", crx_xyz_d65 } };
 
 struct symbol_entry < html_version, e_css_rect > css_rect_symbol_table [] =
-{   { { HTML_CSS, 0, 0, H2_CSS_COLOUR_4 }, { HTML_UNDEF }, "lab", ec4_lab },
-    { { HTML_CSS, 0, 0, H2_CSS_COLOUR_4 }, { HTML_UNDEF }, "oklab", ec4_oklab },
-    { { HTML_CSS, 0, 0, H2_CSS_COLOUR_4 }, { HTML_UNDEF }, "srgb", ec4_srgb },
-    { { HTML_CSS, 0, 0, H2_CSS_COLOUR_4 }, { HTML_UNDEF }, "srgb-linear", ec4_srgb_linear },
-    { { HTML_CSS, 0, 0, H2_CSS_COLOUR_4 }, { HTML_UNDEF }, "xyz", ec4_xyz },
-    { { HTML_CSS, 0, 0, H2_CSS_COLOUR_4 }, { HTML_UNDEF }, "xyz-d50", ec4_xyz_d50 },
-    { { HTML_CSS, 0, 0, H2_CSS_COLOUR_4 }, { HTML_UNDEF }, "xyz-d65", ec4_xyz_d65 } };
+{   { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "lab", ec4_lab },
+    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "oklab", ec4_oklab },
+    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "srgb", ec4_srgb },
+    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "srgb-linear", ec4_srgb_linear },
+    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "xyz", ec4_xyz },
+    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "xyz-d50", ec4_xyz_d50 },
+    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "xyz-d65", ec4_xyz_d65 } };
 
 struct symbol_entry < html_version, e_css_relative_size > css_relative_size_symbol_table [] =
 {   { { HTML_CSS }, { HTML_UNDEF }, "inherit", ecr_inherit },
@@ -1620,8 +1627,8 @@ struct symbol_entry < html_version, e_css_val_fn > css_val_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "character-variant", cvf_character_variant },
     { { HTML_CSS, 0, 0, 0, H3_CSS_SHAPE | H3_CSS_MASKING }, { HTML_UNDEF }, "circle", cvf_circle },
     { { HTML_CSS, 0, 0, H2_CSS_VALUE_4 }, { HTML_UNDEF }, "clamp", cvf_clamp },
-    { { HTML_CSS, 0, 0, H2_CSS_COLOUR_4 }, { HTML_UNDEF }, "color", cvf_colour },
-    { { HTML_CSS, 0, 0, H2_CSS_VALUE | H2_CSS_COLOUR_5 }, { HTML_UNDEF }, "color-mix", cvf_colour_mix },
+    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "color", cvf_colour },
+    { { HTML_CSS, 0, 0, H2_CSS_VALUE, 0, H4_CSS_COLOUR_5 }, { HTML_UNDEF }, "color-mix", cvf_colour_mix },
     { { HTML_CSS, 0, 0, 0, H3_CSS_IMAGE_4 }, { HTML_UNDEF }, "conic-gradient", cvf_conic_gradient },
     { { HTML_CSS, 0, 0, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "content", cvf_content },
     { { HTML_CSS, 0, 0, 0, H3_CSS_FILTER }, { HTML_UNDEF }, "contrast", cvf_contrast },
@@ -1630,7 +1637,7 @@ struct symbol_entry < html_version, e_css_val_fn > css_val_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, 0, H3_CSS_CONTENT | H3_CSS_LIST }, { HTML_UNDEF }, "counters", cvf_counters },
     { { HTML_CSS, 0, 0, 0, H3_CSS_IMAGE_4 }, { HTML_UNDEF }, "cross-fade", cvf_cross_fade },
     { { HTML_CSS, 0, 0, H2_CSS_EASE }, { HTML_UNDEF }, "cubic-bezier", cvf_cubic_bezier },
-    { { HTML_CSS, 0, 0, H2_CSS_VALUE | H2_CSS_COLOUR_5 }, { HTML_UNDEF }, "device-cmyk", cvf_device_cmyk },
+    { { HTML_CSS, 0, 0, H2_CSS_VALUE, 0, H4_CSS_COLOUR_5 }, { HTML_UNDEF }, "device-cmyk", cvf_device_cmyk },
     { { HTML_CSS, 0, 0, 0, H3_CSS_FILTER }, { HTML_UNDEF }, "drop-shadow", cvf_drop_shadow },
     { { HTML_CSS, 0, 0, H2_CSS_EASE }, { HTML_UNDEF }, "ease", cvf_ease, ns_default, CF_NO_PARAMS },
     { { HTML_CSS, 0, 0, H2_CSS_EASE }, { HTML_UNDEF }, "ease-in", cvf_ease_in, ns_default, CF_NO_PARAMS },
@@ -1643,17 +1650,17 @@ struct symbol_entry < html_version, e_css_val_fn > css_val_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_FONT_3 }, { HTML_UNDEF }, "format", cvf_format },
     { { HTML_CSS, 0, 0, 0, H3_CSS_FILTER }, { HTML_UNDEF }, "grayscale", cvf_greyscale },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "historical-forms", cvf_historical_forms },
-    { { HTML_CSS, 0, 0, H2_CSS_COLOUR_3 }, { HTML_UNDEF }, "hsl", cvf_hsl },
-    { { HTML_CSS, 0, 0, H2_CSS_COLOUR_3 }, { HTML_UNDEF }, "hsla", cvf_hsla },
+    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_3 }, { HTML_UNDEF }, "hsl", cvf_hsl },
+    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_3 }, { HTML_UNDEF }, "hsla", cvf_hsla },
     { { HTML_CSS, 0, 0, 0, H3_CSS_FILTER }, { HTML_UNDEF }, "hue-rotate", cvf_hue_rotate },
-    { { HTML_CSS, 0, 0, H2_CSS_COLOUR_4 }, { HTML_UNDEF }, "hwb", cvf_hwb },
+    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "hwb", cvf_hwb },
     { { HTML_CSS, 0, 0, H2_CSS_VALUE_4 }, { HTML_UNDEF }, "hypot", cvf_hypot },
     { { HTML_CSS, 0, 0, 0, H3_CSS_IMAGE }, { HTML_UNDEF }, "image", cvf_image },
     { { HTML_CSS, 0, 0, 0, H3_CSS_IMAGE_4 }, { HTML_UNDEF }, "image-set", cvf_image_set },
     { { HTML_CSS, 0, 0, 0, H3_CSS_SHAPE }, { HTML_UNDEF }, "inset", cvf_inset },
     { { HTML_CSS, 0, 0, 0, H3_CSS_FILTER }, { HTML_UNDEF }, "invert", cvf_invert },
-    { { HTML_CSS, 0, 0, H2_CSS_COLOUR_4 }, { HTML_UNDEF }, "lab", cvf_lab },
-    { { HTML_CSS, 0, 0, H2_CSS_COLOUR_4 }, { HTML_UNDEF }, "lch", cvf_lch },
+    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "lab", cvf_lab },
+    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "lch", cvf_lch },
     { { HTML_CSS, 0, 0, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "leader", cvf_leader },
     { { HTML_CSS, 0, 0, H2_CSS_EASE }, { HTML_UNDEF }, "linear", cvf_linear, ns_default, CF_NO_PARAMS },
     { { HTML_CSS, 0, 0, 0, H3_CSS_IMAGE }, { HTML_UNDEF }, "linear-gradient", cvf_linear_gradient },
@@ -1665,8 +1672,8 @@ struct symbol_entry < html_version, e_css_val_fn > css_val_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_VALUE_4 }, { HTML_UNDEF }, "min", cvf_min },
     { { HTML_CSS, 0, 0, H2_CSS_VALUE_4 }, { HTML_UNDEF }, "mix", cvf_mix },
     { { HTML_CSS, 0, 0, H2_CSS_VALUE_4 }, { HTML_UNDEF }, "mod", cvf_mod },
-    { { HTML_CSS, 0, 0, H2_CSS_COLOUR_4 }, { HTML_UNDEF }, "oklab", cvf_oklab },
-    { { HTML_CSS, 0, 0, H2_CSS_COLOUR_4 }, { HTML_UNDEF }, "oklch", cvf_oklch },
+    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "oklab", cvf_oklab },
+    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "oklch", cvf_oklch },
     { { HTML_CSS, 0, 0, 0, H3_CSS_FILTER }, { HTML_UNDEF }, "opacity", cvf_opacity },
     { { HTML_CSS, 0, 0, H2_CSS_FONT_4 }, { HTML_UNDEF }, "ornaments", cvf_ornaments },
     { { HTML_CSS, 0, 0, 0, H3_CSS_SHAPE | H3_CSS_MASKING | H3_CSS_MOTION }, { HTML_UNDEF }, "path", cvf_path },
@@ -1674,7 +1681,7 @@ struct symbol_entry < html_version, e_css_val_fn > css_val_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, 0, H3_CSS_SHAPE | H3_CSS_MASKING }, { HTML_UNDEF }, "polygon", cvf_polygon },
     { { HTML_CSS, 0, 0, H2_CSS_VALUE_4 }, { HTML_UNDEF }, "pow", cvf_pow },
     { { HTML_CSS }, { HTML_UNDEF }, "rgb", cvf_rgb },
-    { { HTML_CSS, 0, 0, H2_CSS_COLOUR_3 }, { HTML_UNDEF }, "rgba", cvf_rgba },
+    { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_3 }, { HTML_UNDEF }, "rgba", cvf_rgba },
     { { HTML_CSS, 0, 0, 0, H3_CSS_IMAGE }, { HTML_UNDEF }, "radial-gradient", cvf_radial_gradient },
     { { HTML_CSS, 0, 0, 0, H3_CSS_MOTION }, { HTML_UNDEF }, "ray", cvf_ray },
     { { HTML_CSS, 0, 0, 0, H3_CSS_IMAGE_4 }, { HTML_UNDEF }, "repeating-conic-gradient", cvf_repeating_conic_gradient },
@@ -1746,6 +1753,8 @@ struct symbol_entry < html_version, e_css_version > css_version_symbol_table [] 
     { { HTML_TAGS }, { HTML_UNDEF }, "2015", css_2015 },
     { { HTML_TAGS }, { HTML_UNDEF }, "15+", css_2015_1 },
     { { HTML_TAGS }, { HTML_UNDEF }, "2015+", css_2015_1 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "15++", css_2015_2 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2015++", css_2015_2 },
     { { HTML_TAGS }, { HTML_UNDEF }, "17", css_2017 },
     { { HTML_TAGS }, { HTML_UNDEF }, "2017", css_2017 },
     { { HTML_TAGS }, { HTML_UNDEF }, "17+", css_2017_1 },
@@ -2896,6 +2905,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css", nm_context_css },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-adjust", nm_context_css_adjust },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-anchor", nm_context_css_anchor },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-anchor-pos", nm_context_css_anchor_pos },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-animation", nm_context_css_animation },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-background", nm_context_css_background },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-box-alignment", nm_context_css_box_align },
@@ -2927,6 +2937,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-line-grid", nm_context_css_line_grid },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-lists", nm_context_css_lists },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-logic", nm_context_css_logic },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-marquee", nm_context_css_marquee },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-masking", nm_context_css_masking },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-media", nm_context_css_media },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-motion", nm_context_css_motion },
@@ -4892,6 +4903,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (css_absolute_size);
     INIT_ENUM (css_align_content);
     INIT_ENUM (css_align_items);
+    INIT_ENUM (css_all_2);
     INIT_ENUM (css_appearance);
     INIT_ENUM (css_azimuth_e);
     INIT_ENUM (css_background_attachment);

@@ -70,12 +70,12 @@ It should not be used on untrusted content; its parsers are holier than <A href=
 
 <P>
 If you want to try it,
-<a href="src/ssc-v0.1.42.tgz" type="application/gzip">here&rsquo;s the current source</a>. The build instuctions follow.
+<a href="src/ssc-v0.1.44.tgz" type="application/gzip">here&rsquo;s the current source</a>. The build instuctions follow.
 </P>
 
 <P>
 <A href="https://dylanharris.org/">Dylan Harris</A><BR>
-October 2023
+November 2023
 </P>
 
 </section>
@@ -88,7 +88,7 @@ October 2023
 <p>
 Why did I make the static site checker? Aren&rsquo;t there a lot of other HTML validators around?
 When I checked a few years ago; I couldn&rsquo;t find a web site validator, only web page validators.
-Things may have improved. Anyway, my google fu is poo.
+Things may have improved. Anyway, my google foo is poo.
 </p>
 
 <p>
@@ -180,7 +180,7 @@ breaking the security and intergrity of all sites that use them.
 
 <P>
 <A href="https://dylanharris.org/">Dylan Harris</A><br>
-October 2022
+November 2022
 </P>
 
 </section>
@@ -193,7 +193,7 @@ October 2022
 <pre>
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.1.42
+version 0.1.44
 (c) 2020-2023 dylan harris
 see LICENCE.txt &amp; LICENSE.txt for copyright &amp; licence notice
 <a href="https://ssc.lu/">https://ssc.lu/</a>
@@ -204,13 +204,12 @@ see LICENCE.txt &amp; LICENSE.txt for copyright &amp; licence notice
 ssc analyses static HTML snippets, files and sites:
 &mdash; HTML living standard, Jan 2005 to Oct 2023
 &mdash; HTML 1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3&ndash;draft
-&mdash; CSS 1/2.0/2.1/2.2&ndash;draft, 2007-2023 snapshots, etc.
+&mdash; CSS 1/2.0/2.1/2.2&ndash;draft, 2007-2023 snapshots, more
 &mdash; SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x&ndash;draft Apr 2021
 &mdash; MathML 1/2/3/4&ndash;draft Jul 2022
 &mdash; XHTML 1.0/1.1/2.0/5.x
 &mdash; finds broken links
 &mdash; server side includes, mostly
-&mdash; many microdata &amp; RDFa ontologies, including
 &mdash; many ontologies
 
 with opinions on:
@@ -325,7 +324,7 @@ published. Click on books at <a href="https://dylanharris.org/">arts &amp; ego</
 
 written by dylan harris
 mail@ssc.lu
-October 2023
+November 2023
 </pre>
 </section>
 
@@ -457,6 +456,9 @@ line, the "no-" switch always applies.
 --css.contain X         Use CSS Contain level X, where X is 0, 3, 4 or
                         5: see --css.version for gen.
 
+--css.content X         Use CSS Generated Content level X, where X is 0
+                        or 3.
+
 --css.cs X              Use CSS Counter Style level X, where X is 0 or
                         3.
 
@@ -492,6 +494,9 @@ line, the "no-" switch always applies.
 --css.grid X            Use CSS Grid level X, where X is 0, 3 or 4: see
                         --css.version for gen.
 
+--css.highlight X       Use CSS Custom Highlights level X, where X is 0
+                        or 3.
+
 --css.image X           Use CSS Images level X, where X is 0, 3 or 4.
 
 --css.inline X          Use CSS Inline Layout level X, where X is 0 or
@@ -517,10 +522,15 @@ line, the "no-" switch always applies.
 
 --css.namespace X       Use CSS Namespaces level X, where X is 0 or 3.
 
+--css.nes X             Use CSS Non-Element Selectors level X, where X
+                        is 0 or 3.
+
 --css.overflow X        Use CSS Overflow level X, where X is 0 or 3.
 
 --css.overscroll X      Use CSS Overscroll Behaviour level X, where X
                         is 0 or 3.
+
+--css.page X            Use CSS Paged Media level X, where X is 0 or 3.
 
 --css.position X        Use CSS Positions level X, where X is 0 or 3.
 
@@ -528,6 +538,8 @@ line, the "no-" switch always applies.
                         0 or 3.
 
 --css.print             Test against the CSS Print Profile.
+
+--css.region X          Use CSS Regions level X, where X is 0 or 3.
 
 --css.rhythm X          Use CSS Rhythmic Sizing level X, where X is 0
                         or 3.
@@ -538,11 +550,19 @@ line, the "no-" switch always applies.
 --css.ruby X            Use CSS Ruby Annotations level X, where X is 0
                         or 3.
 
+--css.scope X           Use CSS Scoping level X, where X is 0 or 3.
+
 --css.scrollbar X       Use CSS Scrollbar Style level X, where X is 0
                         or 3.
 
+--css.sda X             Use CSS Scroll-Driven Animations Style level X,
+                        where X is 0 or 3.
+
 --css.selector X        Use CSS Selectors level X, where X is 0, 3 or
                         4.
+
+--css.shadow X          Use CSS Shadow Parts level X, where X is 0 or
+                        3.
 
 --css.shape X           Use CSS Shapes level X, where X is 0, 3 or 4.
 
@@ -608,10 +628,13 @@ line, the "no-" switch always applies.
                             2023
                             2023+
                             2023++
-                        The years are CSS snapshots, whether stable,
-                        + wobbly, or ++ wibbly (the terminology in the
-                        specifications is inconsistent, so...), as
-                        determined by the browsers of the day.
+                        The years are CSS snapshots, whether the year
+                        itself for stable modules, with + for wobbly
+                        modules, and ++ for wibbly-wobbly modules, as
+                        per the corresponding W3 CSS snapshots (the
+                        terminology in those snapshots is inconsistent,
+                        hence our use of the scientific terms wobbly
+                        and wibbly-wobbly).
                         For levels 3, 4, 5 and 6, note that extensions
                         that are part of neither CSS 1 nor CSS 2.x
                         specifications are numbered three and upwards
@@ -620,6 +643,9 @@ line, the "no-" switch always applies.
                         not part of CSS 1, specify 3. Similarly, for
                         those named level 2 that are not part of any
                         CSS 2 specification, etm..
+
+--css.view  X           Use CSS View Transitions level X, where X is 0
+                        or 3.
 
 --css.wc X              Use CSS Will Change level X, where X is 0 or 3.
 
@@ -1855,20 +1881,19 @@ individual tests, and the standard commands used sometimes complain if
 they can't find files they're supposed to delete, which is a bit silly
 given that means things are already in the desired state.
 
-The following have been successfully built as x64 amd/intel:
+The following have been successfully built as amd x64:
 FreeBSD:  12.3 / 13.1
 Linux:    Alma Linux 9, AOSC, Centos 8 / 9, SUSE Tumbleweed,
           Ubuntu 20.04 / 22.04
 MacOS:    Sonoma, Ventura, Monterey, Big Sur, Catalina, Mojave, High
           Sierra, Sierra, El Capitan, and Yosemite
-OpenBSD:  7.3 / 7.2 / 7.1 / 7.0 / 6.9 / 6.8
+OpenBSD:  7.4 / 7.3 / 7.2 / 7.1 / 7.0 / 6.9 / 6.8
 
 The following have been successfully built as arm64:
 Linux:    Centos 9
-MacOS:    Ventura
+MacOS:    Sonoma, Ventura
 
-A build on an older operating system may result in some features being
-unavailable.
+Not all features are available on all versions of all systems.
 
 Centos 9
 --------
@@ -1960,6 +1985,103 @@ dependencies that are vary across systems, which can cause spurious test failues
 
 <section id="sauce">
 <h2>source</h2>
+
+<h3>0.1.45</h3>
+
+<ul>
+<li>
+CSS Marquee
+</li>
+<li>
+restore VS 2017 build
+</li>
+<li>
+OpenBSD package ready to submit
+</li>
+<li>
+various bug fixes
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.45.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-11-08">23 11 8</time>
+</li>
+</ul>
+
+
+<h3>0.1.44</h3>
+
+<ul>
+<li>
+CSS Generated Content 3
+</li>
+<li>
+CSS Region 3
+</li>
+<li>
+CSS Scoping 3
+</li>
+<li>
+CSS Scroll-Driven Animations 3
+</li>
+<li>
+CSS View Transitions 3
+</li>
+<li>
+improved integration of SVG and CSS
+</li>
+<li>
+various bug fixes
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.44.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-11-05">23 11 5</time>
+</li>
+</ul>
+
+<h3>0.1.43</h3>
+
+<ul>
+<li>
+OpenBSD 7.4
+</li>
+<li>
+Macos Sonoma
+</li>
+<li>
+CSS Custom Highlights 3
+</li>
+<li>
+CSS Non-Element Selectors 3
+</li>
+<li>
+CSS Paged Media 3
+</li>
+<li>
+CSS Shadow Parts 3
+</li>
+<li>
+various bug fixes
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-v0.1.43.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2023-10-24">23 10 24</time>
+</li>
+</ul>
 
 <h3>0.1.42</h3>
 

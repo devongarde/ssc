@@ -240,6 +240,9 @@ template < > struct type_master < t_fixed_zoom > : two_value < t_fixed_zoom, e_f
 template < > struct type_master < t_forced_colours > : two_value < t_forced_colours, e_forced_colours, sz_active, sz_none, false >
 { using two_value < t_forced_colours, e_forced_colours, sz_active, sz_none, false > :: two_value; };
 
+template < > struct type_master < t_forrev > : two_value < t_forrev, e_forrev, sz_forward, sz_reverse, false >
+{ using two_value < t_forrev, e_forrev, sz_forward, sz_reverse, false > :: two_value; };
+
 template < > struct type_master < t_gender > : two_value < t_gender, e_gender, sz_female, sz_male, false >
 { using two_value < t_gender, e_gender, sz_female, sz_male, false > :: two_value; };
 

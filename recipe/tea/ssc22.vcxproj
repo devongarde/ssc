@@ -2090,6 +2090,11 @@
     <None Include="..\toast\css\ease\css.conf" />
     <None Include="..\toast\css\ease\css.spec" />
     <None Include="..\toast\css\ease\index.html" />
+    <None Include="..\toast\css\marquee\css-2.css" />
+    <None Include="..\toast\css\marquee\css-7.css" />
+    <None Include="..\toast\css\marquee\css.conf" />
+    <None Include="..\toast\css\marquee\css.spec" />
+    <None Include="..\toast\css\marquee\index.html" />
     <None Include="..\toast\css\profile\css-1.css" />
     <None Include="..\toast\css\profile\css.conf" />
     <None Include="..\toast\css\profile\css.spec" />

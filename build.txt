@@ -7,9 +7,9 @@ https://ssc.lu/
 Introduction
 ============
 SSC can be built on various unii with CMake and gcc or clang,
-supporting C++ 17 or better, or with Visual Studios 2019 / 2022 under
-Windows. I have built & tested a 64-bit version in selected OSs on
-intel/amd & arm64 (m2) architecture.
+supporting C++ 17 or better, or with Visual Studios 2017 / 2019 / 2022
+under Windows. I have built & tested a 64-bit version in selected OSs
+on intel/amd & arm64 (m2) architecture.
 
 Although ssc builds and runs with some older compilers on some older
 systems, not all features are available on them.
