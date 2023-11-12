@@ -17,7 +17,7 @@ PASS ../toast/css/3-region/css-3.html
 
 PASS ../toast/css/3-region/css-5.html
 2 naughty_lang
-6 unrecognised_value
+6 abandoned
 54 id_exists
 
 PASS ../toast/css/3-region/css-7.html

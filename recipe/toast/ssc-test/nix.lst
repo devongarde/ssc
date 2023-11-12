@@ -21,6 +21,7 @@
 ../toast/css/3-box-model/css.spec
 ../toast/css/4-box-model/css.spec
 ../toast/css/3-box-sizing/css.spec
+../toast/css/4-box-sizing/css.spec
 ../toast/css/3-cascade/css.spec
 ../toast/css/4-cascade/css.spec
 ../toast/css/5-cascade/css.spec
@@ -66,6 +67,7 @@
 ../toast/css/3-nesting/css.spec
 ../toast/css/3-ns/css.spec
 ../toast/css/3-overflow/css.spec
+../toast/css/4-overflow/css.spec
 ../toast/css/3-overscroll/css.spec
 ../toast/css/3-page/css.spec
 ../toast/css/3-position/css.spec
@@ -83,6 +85,7 @@
 ../toast/css/3-shadow/css.spec
 ../toast/css/3-shape/css.spec
 ../toast/css/3-snap/css.spec
+../toast/css/3-spatial/css.spec
 ../toast/css/3-speech/css.spec
 ../toast/css/3-style/css.spec
 ../toast/css/3-syntax/css.spec

@@ -64,7 +64,7 @@ template < > struct type_master < t_attributename > : tidy_string < t_attributen
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_attributename > :: set_value (nits, v, s);
         if (s.empty ())
-        {   nits.pick (nit_empty, es_error, ec_type, "ATTRIBUTENAME should have an attribute name");
+        {   nits.pick (nit_empty, es_error, ec_type, "attribute name expected");
             string_value < t_attributename > :: status (s_invalid); } }
     void verify_attribute (nitpick& nits, const html_version& v, const elem& , element* pe, const ::std::string& attnam)
     {   VERIFY_NOT_NULL (pe, __FILE__, __LINE__);

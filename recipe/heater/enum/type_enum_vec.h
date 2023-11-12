@@ -95,9 +95,11 @@ template < e_type E, typename ENUM, typename CATEGORY = ident_t, CATEGORY INIT =
     {   enum_vec tmp (n);
         swap (tmp); }
     static void init (nitpick& nits, const symbol_entry < html_version, ENUM, CATEGORY, INIT > table [], const ::std::size_t size, const bool wildcards = false)
-    {   symbol < html_version, ENUM, CATEGORY, INIT > :: init (nits, table, size, wildcards); }
+    {   eleanor f (lox_eleanor);
+        symbol < html_version, ENUM, CATEGORY, INIT > :: init (nits, table, size, wildcards); }
     static void extend (const vstr_t& extension, const std::size_t s = 0)
-    {   for (auto e : extension)
+    {   eleanor f (lox_eleanor);
+        for (auto e : extension)
             symbol < html_version, ENUM, CATEGORY, INIT > :: extend (e, static_cast < ENUM > (s)); }
     ::std::string values (const html_version& v) const
     {   return symbol < html_version, ENUM, CATEGORY, INIT > :: value_list (v); }

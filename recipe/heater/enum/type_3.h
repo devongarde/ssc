@@ -53,7 +53,8 @@ public:
 template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >
     void three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE > :: init ()
 {   if (a_.empty ())
-    {   a_ = ::boost::to_lower_copy (::std::string (SZ0::sz ()));
+    {   eleanor f (lox_eleanor);
+        a_ = ::boost::to_lower_copy (::std::string (SZ0::sz ()));
         b_ = ::boost::to_lower_copy (::std::string (SZ1::sz ()));
         c_ = ::boost::to_lower_copy (::std::string (SZ2::sz ()));
         PRESUME (! a_.empty (), __FILE__, __LINE__);
@@ -124,6 +125,9 @@ template < > struct type_master < t_auto_contain_cover > : three_value < t_auto_
 
 template < > struct type_master < t_auto_first_last > : three_value < t_auto_first_last, e_auto_first_last, sz_auto, sz_first, sz_last >
 { using three_value < t_auto_first_last, e_auto_first_last, sz_auto, sz_first, sz_last > :: three_value; };
+
+template < > struct type_master < t_auto_focus_scroll > : three_value < t_auto_focus_scroll, e_auto_focus_scroll, sz_auto, sz_focus, sz_scroll  >
+{ using three_value < t_auto_focus_scroll, e_auto_focus_scroll, sz_auto, sz_focus, sz_scroll > :: three_value; };
 
 template < > struct type_master < t_auto_hidden_visible > : three_value < t_auto_hidden_visible, e_auto_hidden_visible, sz_auto, sz_hidden, sz_visible >
 { using three_value < t_auto_hidden_visible, e_auto_hidden_visible, sz_auto, sz_hidden, sz_visible > :: three_value; };
@@ -316,6 +320,9 @@ template < > struct type_master < t_lrnalign > : three_value < t_lrnalign, e_lrn
 
 template < > struct type_master < t_lraalign > : three_value < t_lraalign, e_lraalign, sz_left, sz_right, sz_all >
 { using three_value < t_lraalign, e_lraalign, sz_left, sz_right, sz_all > :: three_value; };
+
+template < > struct type_master < t_lzz > : three_value < t_lzz, e_lzz, sz_legacy, sz_zero_if_extrinsic, sz_zero_if_scroll >
+{ using three_value < t_lzz, e_lzz, sz_legacy, sz_zero_if_extrinsic, sz_zero_if_scroll > :: three_value; };
 
 template < > struct type_master < t_mathform > : three_value < t_mathform, e_mathform, sz_infix, sz_postfix, sz_prefix >
 { using three_value < t_mathform, e_mathform, sz_infix, sz_postfix, sz_prefix > :: three_value; };

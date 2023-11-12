@@ -20,34 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 
-// NOTE: if x appears in source A and source B, it'll be declared in the first, only.
-// also note all ids specified in lower case, because in fact they're case independent, but this code compares in lower case
-
-// HTML x: https://www.w3.org/Architecture/NOTE-link.html
-
-// HTML5: https://dev.w3.org/html5/spec-LC/links.html#linkTypes
-#define R_ALTERNATIVE "alternate"
-#define R_AUTHOR "author"
-#define R_BOOKMARK "bookmark"
-#define R_EXTERNAL "external"
-#define R_HELP "help"
-#define R_ICON "icon"
-#define R_LICENCE "license"
-#define R_NEXT "next"
-#define R_NOFOLLOW "nofollow"
-#define R_NOREFERRER "noreferrer"
-#define R_PINGBACK "pingback"
-#define R_PREFETCH "prefetch"
-#define R_PREV "prev"
-#define R_SEARCH "search"
-#define R_SIDEBAR "sidebar"
-#define R_STYLESHEET "stylesheet"
-#define R_TAG "tag"
-
 // HTML4  https://www.w3.org/TR/REC-html40/types.html#type-links and http://microformats.org/wiki/existing-rel-values
-#define R_APPENDIX "appendix"
-#define R_BEGIN "begin"
-#define R_BIBLIOENTRY "biblioentry"
 #define R_BIBLIOGRAPHY "bibliography"
 #define R_CHAPTER "chapter"
 #define R_CHILD "child"
@@ -80,26 +53,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define R_URC "urc"
 #define R_UP "up"
 
-// HTML3: https://www.w3.org/MarkUp/html3/dochead.html and http://microformats.org/wiki/existing-rel-values, dropped
-#define R_BANNER "banner"
-#define R_HOME "home"
-#define R_NAVIGATE "navigate"
-
-// GRDDL : https://www.w3.org/TR/grddl/#transformation
-#define R_TRANSFORMATION "transformation"
-
 // IANA: http://www.iana.org/assignments/link-relations/link-relations.xhtml
 #define R_ABOUT "about"
 #define R_ARCHIVES "archives"
 #define R_BLOCKED_BY "blocked-by"
-#define R_CANONICAL "canonical"
 #define R_CITE_AS "cite-as"
 #define R_CONVERTED_FROM "convertedFrom"
 #define R_CREATE_FORM "create-form"
 #define R_CURRENT "current"
 #define R_DESCRIBED_BY "describedby"
 #define R_DESCRIBES "describes"
-#define R_DNSPREFETCH "dns-prefetch"
 #define R_DUPLICATE "duplicate"
 #define R_EDIT "edit"
 #define R_EDIT_FORM "edit-form"
@@ -131,13 +94,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define R_NEXT_ARCHIVE "next-archive"
 #define R_ORIGINAL "original"
 #define R_PAYMENT "payment"
-#define R_PRECONNECT "preconnect"
 #define R_PREDECESSOR_VERSION "predecessor-version"
-#define R_PRELOAD "preload"
 #define R_PRERENDER "prerender"
 #define R_PREVIEW "preview"
 #define R_PREV_ARCHIVE "prev-archive"
-#define R_PRIVACY_POLICY "privacy-policy"
 #define R_PROFILE "profile"
 #define R_RELATED "related"
 #define R_RESTCONF "restconf"
@@ -151,7 +111,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define R_STATUS "status"
 #define R_SUCCESSOR_VERSION "successor-version"
 #define R_SUNSET "sunset"
-#define R_TERMS_OF_SERVICE "terms-of-service"
 #define R_TIMEGATE "timegate"
 #define R_TIMEMAP "timemap"
 #define R_TYPE "type"
@@ -160,9 +119,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define R_WEBMENTION "webmention"
 #define R_WORKING_COPY "working-copy"
 #define R_WORKING_COPY_OF "working-copy-of"
-
-// International Tag Set (its)
-#define R_ITSRULES "its-rules" // internationalisation tag set
 
 // microformats: http://microformats.org/wiki/existing-rel-values, XFN/HTML4, etc.
 #define R_ACQUAINTANCE "acquaintance"
@@ -203,13 +159,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define R_CONTENT_LICENCE "content-license" // misspelling obligatory
 #define R_CONTENT_REPOSITORY "content-repository"
 #define R_CMIS "http://docs.oasis-open.org/ns/cmis/link/200908/acl"
-#define R_DCTERMS_CONFORMS_TO "dcterms.conformsto"
-#define R_DCTERMS_CONTRIBUTOR "dcterms.contributor"
-#define R_DCTERMS_CREATOR "dcterms.creator"
-#define R_DCTERMS_DESCRIPTION "dcterms.description"
-#define R_DCTERMS_HAS_FORMAT "dcterms.hasformat"
-#define R_DCTERMS_HAS_PART "dcterms.haspart"
-#define R_DCTERMS_HAS_VERSION "dcterms.hasversion"
 #define R_DCTERMS_IS_FORMAT_OF "dcterms.isformatof"
 #define R_DCTERMS_IS_PART_OF "dcterms.ispartof"
 #define R_DCTERMS_IS_REFERENCED_BY "dcterms.isreferencedby"
@@ -241,7 +190,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define R_JSLICENCE "jslicense" // misspelling obligatory
 #define R_LIGHTBOX "lightbox"
 #define R_LIGHTVIDEO "lightvideo"
-#define R_MANIFEST "manifest"
 #define R_MASKICON "mask-icon"
 #define R_META "meta"
 #define R_MICROPUB "micropub"
@@ -316,6 +264,3 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 // microformats v1 (hNews): http://microformats.org/wiki/hnews
 #define R_PRINCIPLES "principles"
 #define R_ITEM_LICENCE "item-license"
-
-// HTML 5.4 maybe to be, July 2020
-#define R_MODULE_PRELOAD "modulepreload"

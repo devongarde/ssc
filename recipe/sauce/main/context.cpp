@@ -39,12 +39,12 @@ int context_t::parameters (nitpick& nits, int argc, char** argv)
 {   options o (nits, argc, argv);
     if (context.todo () == do_booboo) return ERROR_STATE;
     if ((context.todo () != do_examine) && (context.todo () != do_cgi)) return STOP_OK;
-    excludable_filenames.insert (".git"); // should logically be in constructor but MSVC throws a wobbly
+#ifdef DARWIN
     excludable_filenames.insert (".DS_Store");
+#endif // DARWIN
     o.contextualise (nits);
     if (! test () && tell (es_debug))
     {   ::std::string s (o.report ());
-        outstr.init (nits, s);
         mac (nm_context_output, s); }
 
     for (const ::std::string& name : site_)
@@ -199,61 +199,53 @@ bool context_t::rdfa () const noexcept
     if (version_.is_svg_12 ()) return true;
     return (version_ == xhtml_2); }
 
-#ifdef NO_BOOST_REGEX
-context_t& context_t::exclude (nitpick& , const ::std::string& )
-{  return *this; }
-context_t& context_t::pretend (nitpick& , const ::std::string& )
-{  return *this; }
-#else // NO_BOOST_REGEX
-context_t& context_t::exclude (nitpick& nits, const ::std::string& s)
-{   try
-    {   wild_t w (s, ::boost::regex::basic_regex::extended);
-        exclude_.push_back (w); }
-    catch (...)
-    {   nits.pick (nit_regex, es_error, ec_init, "ignoring the invalid regular expression ", quote (s)); }
+context_t& context_t::exclude (nitpick& , const ::std::string& s)
+{   exclude_.push_back (s);
     return *this; }
-context_t& context_t::pretend (nitpick& nits, const ::std::string& s)
-{   try
-    {   wild_t w (s, ::boost::regex::basic_regex::extended);
-        pretend_.push_back (w); }
-    catch (...)
-    {   nits.pick (nit_regex, es_error, ec_init, "ignoring the invalid regular expression ", quote (s)); }
+context_t& context_t::pretend (nitpick& , const ::std::string& s)
+{   pretend_.push_back (s);
     return *this; }
-#endif // NO_BOOST_REGEX
 
 context_t& context_t::exclude (nitpick& nits, const vstr_t& s)
 {   for (auto ss : s)
+#ifdef WIN32
+        exclude (nits, ::boost::to_lower_copy (ss));
+#else // WIN32
         exclude (nits, ss);
+#endif // WIN32
     return *this; }
 
 context_t& context_t::pretend (nitpick& nits, const vstr_t& s)
 {   for (auto ss : s)
-        pretend (nits, ss);
+        pretend (nits, ::boost::to_lower_copy (ss));
     return *this; }
 
+bool context_t::matches (const ::std::string& s, const ::std::string& w, const char sep) const
+{   const ::std::string::size_type slen = s.length ();
+    const ::std::string::size_type wlen = w.length ();
+    if (slen == 0) return (wlen == 0);
+    if (wlen == 0) return true;
+    if (slen < wlen) return false;
+    if (wlen == slen) return (w == s);
+    const ::std::string::size_type pos = s.find (w);
+    if (pos == ::std::string::npos) return false;
+    if ((pos > 0) && (s.at (pos-1) != sep)) return false;
+    if (pos + wlen >= slen) return true;
+    return (s.at (pos+wlen) == sep); }
 
-#ifdef NO_BOOST_REGEX   
-bool context_t::excluded (nitpick& , const ::boost::filesystem::path& ) const
-{   return false; }
-
-bool context_t::pretended (const ::std::string& ) const
-{   return false; }
-#else // NO_BOOST_REGEX
 bool context_t::excluded (nitpick& nits, const ::boost::filesystem::path& p) const
-{   for (auto w : exclude_)
-        if (::boost::regex_search (p.string (), w, ::boost::regex_constants::match_any))
-            return true;
-    if (excludable_filenames.find (p.filename ().string ()) != excludable_filenames.cend ())
-        nits.pick (nit_os_file, es_warning, ec_schema, "System file ", p.string (), " found but not excluded");
+{   if (! p.empty () && (excludable_filenames.find (p.filename ().string ()) == excludable_filenames.cend ()))
+        for (auto w : exclude_)
+            if (matches (p.string (), w, ::boost::filesystem::path::preferred_separator))
+            {   nits.pick (nit_excluded, es_comment, ec_file, "excluding ", p.string ());
+                return true; }
     return false; }
 
 bool context_t::pretended (const ::std::string& s) const
-{   if (! s.empty ())
-        for (auto w : pretend_)
-            if (::boost::regex_search (s, w, ::boost::regex_constants::match_any))
-                return true;
+{   for (auto w : pretend_)
+        if (matches (s, w))
+            return true;
     return false; }
-#endif // NO_BOOST_REGEX
 
 context_t& context_t::fred (const int i)
 {   const int nmt = fred_t::no_more_than (); // <=> :-(

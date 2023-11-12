@@ -49,7 +49,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "alignment-baseline", a_alignment_baseline, ns_default, AF_SVG2_PROPERTY },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "alignmentscope", a_alignmentscope },
     { { HTML_3_2 }, { HTML_UNDEF }, "alink", a_alink },
-    { { HTML_JUL18, 0, HE_EXPERIMENTAL }, { HTML_UNDEF }, "allow", a_allow },
+    { { HTML_JUL18 }, { HTML_UNDEF }, "allow", a_allow },
     { { HTML_SVG10, 0, HE_SVG_10 }, { HTML_UNDEF }, "allow-zoom-and-pan", a_allow_zoom_and_pan },
     { { HTML_JAN13 }, { HTML_UNDEF }, "allowfullscreen", a_allowfullscreen },
     { { HTML_JAN17 }, { HTML_UNDEF }, "allowpaymentrequest", a_allowpaymentrequest },

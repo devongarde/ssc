@@ -1,0 +1,19 @@
+<!DOCTYPE HTML><style>
+  .article {
+    continue: fragments;
+  }
+  .article::first-letter {
+    font-size: 2em;
+    line-height: 0.9;
+  }
+  .article::nth-fragment(1) {
+    font-size: 1.5em;
+    max-lines: 3;
+  }
+  .article::nth-fragment(2) {
+    column-count: 2;
+  }
+</style>
+<div class="article">
+  ...
+</div>

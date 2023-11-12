@@ -865,7 +865,7 @@ void elements_init (nitpick& nits)
 #ifdef DEBUG
             if (j > n) { n = j; e = i; }
             if (vebs.at (GSL_AT (ei, i).tag_).test (GSL_AT (GSL_AT (ei, i).a_, j)))
-                nits.pick (nit_repeated_attribute, es_comment, ec_program, "attribute ", attr::name (GSL_AT (GSL_AT (ei, i).a_, j)), " repeated in ", elem::name (GSL_AT (ei, i).tag_), " bitset init");
+                nits.pick (nit_repeated_attribute, es_debug, ec_program, "attribute ", attr::name (GSL_AT (GSL_AT (ei, i).a_, j)), " repeated in ", elem::name (GSL_AT (ei, i).tag_), " bitset init");
             else vebs.at (GSL_AT (ei, i).tag_).set (GSL_AT (GSL_AT (ei, i).a_, j)); } }
     nits.pick (nit_note, es_splurge, ec_program, "<", elem::name (e), "> has ", n, " attributes"); }
 #else // DEBUG

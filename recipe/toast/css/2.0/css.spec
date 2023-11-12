@@ -74,7 +74,7 @@ PASS ../toast/css/2.0/css-4-1.css
 
 PASS ../toast/css/2.0/css-4-2.css
 0 html
-20 unrecognised_value
+20 css_version
 25 unrecognised_value unrecognised_value
 26 css_syntax
 35 css_syntax property

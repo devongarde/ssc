@@ -2,7 +2,7 @@
 
 PASS ../toast/css/3-view/css-1.css
 0 html
-39 unrecognised_value unrecognised_value
+39 unrecognised_value
 
 PASS ../toast/css/3-view/css-5.css
 0 html

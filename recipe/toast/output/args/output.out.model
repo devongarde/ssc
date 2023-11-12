@@ -1,0 +1,17 @@
+Static Site Checker v0.1.46 (https://ssc.lu/)
+(c) 2020-2023 Dylan Harris
+
+** Arguments:
+general.class
+general.defthrd: 1
+general.verbose: 3
+general.yggdrisil
+html.version: 2023/07/01
+link.check
+nits.info: clacks
+nits.nids
+site.extension: html
+site.index: index.html
+site.domain: example.edu
+site.root: ../toast/output/args
+spell.no-check

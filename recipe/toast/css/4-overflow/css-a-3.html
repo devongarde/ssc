@@ -1,0 +1,22 @@
+<!DOCTYPE HTML><style>
+  .bouncy-columns {
+    continue: fragments;
+    width: 6em;
+    height: 10em;
+    float: left;
+    margin: 1em;
+    font: medium/1.25 Times New
+      Roman, Times, serif;
+  }
+  .bouncy-columns::nth-fragment(1) {
+    background: aqua; color: black;
+    transform: rotate(-3deg);
+  }
+  .bouncy-columns::nth-fragment(2) {
+    background: yellow; color: black;
+    transform: rotate(3deg);
+  }
+</style>
+<div class="bouncy-columns">
+  ...
+</div>

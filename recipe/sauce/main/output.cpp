@@ -31,7 +31,7 @@ void output_streams_t::init (nitpick& nits, const ::std::string& s)
     macro -> set (nm_general_output, s);
     fos_.reset (new ::std::ofstream (s));
     if (fos_ -> fail ())
-    {   nits.pick (nit_cannot_open, es_catastrophic, ec_init, "cannot open ", s, " for output.");
+    {   nits.pick (nit_cannot_open, es_catastrophic, ec_init, "cannot open ", quote (s), " for output [4].");
         fos_.reset (); } }
 
 ::std::string output_streams_t::ensane (const ::std::string& s) const

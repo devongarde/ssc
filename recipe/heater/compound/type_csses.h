@@ -557,6 +557,12 @@ template < > struct type_master < t_css_inline_bem > : type_must_then_opt < t_cs
 template < > struct type_master < t_css_inline_bem_l > : type_or_string < t_css_inline_bem_l, t_css_inline_bem, sz_leading >
 { using type_or_string < t_css_inline_bem_l, t_css_inline_bem, sz_leading > :: type_or_string; };
 
+template < > struct type_master < t_css_intrinsic > : either_type_or_string < t_css_intrinsic, t_css_length, t_css_length_a2, sz_none >
+{ using either_type_or_string < t_css_intrinsic, t_css_length, t_css_length_a2, sz_none > :: either_type_or_string; };
+
+template < > struct type_master < t_css_intrinsic_2 > : type_one_or_both < t_css_intrinsic_2, t_css_intrinsic, sz_space_char, t_css_intrinsic >
+{ using type_one_or_both < t_css_intrinsic_2, t_css_intrinsic, sz_space_char, t_css_intrinsic > :: type_one_or_both; };
+
 template < > struct type_master < t_css_kbd_lhs > : type_or_string < t_css_kbd_lhs, t_css_id, sz_auto >
 { using type_or_string < t_css_kbd_lhs, t_css_id, sz_auto > :: type_or_string; };
 
@@ -578,8 +584,8 @@ template < > struct type_master < t_css_length_a > : type_or_string < t_css_leng
 template < > struct type_master < t_css_length_a2 > : type_one_or_both < t_css_length_a2, t_css_length_a, sz_space_char, t_css_length_a >
 { using type_one_or_both < t_css_length_a2, t_css_length_a, sz_space_char, t_css_length_a > :: type_one_or_both; };
 
-template < > struct type_master < t_css_length_amm > : type_or_any_string < t_css_length_amm, t_css_length_3, sz_auto, sz_max_content, sz_min_content >
-{ using type_or_any_string < t_css_length_amm, t_css_length_3, sz_auto, sz_max_content, sz_min_content > :: type_or_any_string; };
+template < > struct type_master < t_css_length_amm > : type_either_or < t_css_length_amm, t_css_length_3, t_css_sizing >
+{ using type_either_or < t_css_length_amm, t_css_length_3, t_css_sizing > :: type_either_or; };
 
 template < > struct type_master < t_css_length_ai > : either_type_or_string < t_css_length_ai, t_css_inherit, t_css_length, sz_auto >
 { using either_type_or_string < t_css_length_ai, t_css_inherit, t_css_length, sz_auto > :: either_type_or_string; };
@@ -1057,6 +1063,15 @@ template < > struct type_master < t_css_text_autospaces_na > : type_or_either_st
 template < > struct type_master < t_css_text_justify_nc > : type_then_maybe_string < t_css_text_justify_nc, t_css_text_justify, sz_no_compress >
 { using type_then_maybe_string < t_css_text_justify_nc, t_css_text_justify, sz_no_compress > :: type_then_maybe_string; };
 
+template < > struct type_master < t_css_text_fade > : type_either_or < t_css_text_fade, t_fn, t_text >
+{ using type_either_or < t_css_text_fade, t_fn, t_text > :: type_either_or; };
+ 
+template < > struct type_master < t_css_text_resize_4 > : type_or_any_string < t_css_text_resize_4, t_css_text_fade, sz_clip, sz_ellipsis, sz_fade >
+{ using type_or_any_string < t_css_text_resize_4, t_css_text_fade, sz_clip, sz_ellipsis, sz_fade > :: type_or_any_string; };
+
+template < > struct type_master < t_css_text_resizes_4 > : type_some_of < t_css_text_resizes_4, sz_space_char, 1, 2, t_css_text_resize_4 >
+{ using type_some_of < t_css_text_resizes_4, sz_space_char, 1, 2, t_css_text_resize_4 > :: type_some_of; };
+
 template < > struct type_master < t_css_tst > : type_or_any_string < t_css_tst, t_aesfs, sz_auto, sz_space_all, sz_trim_auto >
 { using type_or_any_string < t_css_tst, t_aesfs, sz_auto, sz_space_all, sz_trim_auto > :: type_or_any_string; };
 
@@ -1068,6 +1083,9 @@ template < > struct type_master < t_css_unicode_ranges > : type_at_least_one < t
 
 template < > struct type_master < t_css_val_fn_n > : type_or_string < t_css_val_fn_n, t_css_val_fn, sz_none >
 { using type_or_string < t_css_val_fn_n, t_css_val_fn, sz_none > :: type_or_string; };
+
+template < > struct type_master < t_css_vbl_len > : type_either_or < t_css_vbl_len, t_css_visual_box, t_css_length_abs >
+{ using type_either_or < t_css_vbl_len, t_css_visual_box, t_css_length_abs > :: type_either_or; };
 
 template < > struct type_master < t_css_vtn_n > : type_or_string < t_css_vtn_n, t_css_vtn, sz_none >
 { using type_or_string < t_css_vtn_n, t_css_vtn, sz_none > :: type_or_string; };

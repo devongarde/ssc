@@ -1,0 +1,32 @@
+<!DOCTYPE HTML><style>
+  .dark-columns {
+    continue: fragments;
+    width: 6em;
+    height: 10em;
+    float: left;
+    margin-right: 1em;
+    font: medium/1.25 Times New
+      Roman, Times, serif;
+  }
+  .dark-columns::nth-fragment(1) {
+    background: aqua; color: black;
+  }
+  .dark-columns::nth-fragment(1) :link {
+    color: blue;
+  }
+  .dark-columns::nth-fragment(1) :visited {
+    color: purple;
+  }
+  .dark-columns::nth-fragment(2) {
+    background: navy; color: white;
+  }
+  .dark-columns::nth-fragment(2) :link {
+    color: aqua;
+  }
+  .dark-columns::nth-fragment(2) :visited {
+    color: fuchsia;
+  }
+</style>
+<div class="dark-columns">
+  ...
+</div>

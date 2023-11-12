@@ -1,0 +1,11 @@
+﻿.outer { height: 200px; border: solid; }
+.inner { height: stretch; margin: 10px; }
+
+.outer { height: 200px; margin: 0; }
+.inner { height: stretch; margin: 10px; }
+
+.outer { float: left; margin: 0; }
+.inner { width: stretch; margin: 10px; }
+
+.outer { height: auto; margin: 0; }
+.inner { height: stretch; margin: 10px; }

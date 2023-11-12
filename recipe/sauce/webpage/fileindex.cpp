@@ -514,7 +514,7 @@ bool fileindex_load_internal (nitpick& nits, bool& ok)
     if (context.progress ()) ::std::cout << "loading " << p.string () << " ...\n";
     BOOST_FSTREAM_CNSTRO (f, p, ::std::ios::in);
     if (f.fail ())
-    {   nits.pick (nit_cannot_read, es_error, ec_crc, "cannot open ", p.string ());
+    {   nits.pick (nit_cannot_read, es_error, ec_crc, "cannot open ", quote (p.string ()), " [2]");
         ok = true; return false; }
     reset_fileindices ();
     enum { fl_prog, fl_version, fl_root, fl_virtual_count, fl_virtual, fl_count, fl_site, fl_disk, fl_data } status = fl_prog;
@@ -734,7 +734,7 @@ void fileindex_save_and_close (nitpick& nits)
     if (context.tell (es_all)) outstr.out (fileindex_report ());
     ::boost::filesystem::path name (persist_path ());
     BOOST_FSTREAM_CNSTRO (f, name, ::std::ios::out | ::std::ios::trunc);
-    if (f.fail ()) nits.pick (nit_cannot_update, es_error, ec_crc, "cannot open ", name.string ());
+    if (f.fail ()) nits.pick (nit_cannot_update, es_error, ec_crc, "cannot open ", quote (name.string ()), " [3]");
     else
     {   mndx_t mndx; ::std::size_t x = 0;
         for (::std::size_t n = 0; n < vx.size (); ++n)

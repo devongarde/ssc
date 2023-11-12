@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.1.45
+version 0.1.46
 (c) 2020-2023 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notice
 https://ssc.lu/
@@ -21,7 +21,7 @@ ssc analyses static X/HTML snippets, files and sites:
 
 with opinions on:
 - standard english where dialect is required
-- perfectly legal but sloppy HTML
+- legal but slovenly HTML
 - abhorrent rudeness such as AUTOPLAY on <VIDEO>
 
 It does NOT:

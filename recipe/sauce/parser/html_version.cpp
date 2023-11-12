@@ -830,6 +830,7 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
     else if (compare_css (H2_CSS_2_0, 0, 0, e2, e3, e4)) res = "2.0";
     else if (compare_css (H2_CSS_1, 0, 0, e2, e3, e4)) res = "1";
 
+    res += single_feature (res, b, "AcP", "Anchor Positioning", ext4_, e4, H4_CSS_ANCHOR_POS);
     res += single_feature (res, b, "Adj", "Colour Adjustment", ext3_, e3, H3_CSS_ADJUST);
     res += single_feature (res, b, "Anc", "Scrollbar Anchoring", ext3_, e3, H3_CSS_ANCHOR);
     res += single_feature (res, b, "Ani", "Animation", ext2_, H2_CSS_ANIM_3, H2_CSS_ANIM_4);
@@ -861,6 +862,7 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
     res += single_feature (res, b, "LnG", "Lists and Counters", ext3_, e3, H3_CSS_LINE_GRID);
     res += single_feature (res, b, "Lst", "Line Grid", ext3_, e3, H3_CSS_LIST);
     res += single_feature (res, b, "Log", "Logical Properties", ext3_, e3, H3_CSS_LOGIC);
+    res += single_feature (res, b, "Mrq", "Marquee", ext4_, e4, H4_CSS_ADVLAY);
     res += single_feature (res, b, "Msk", "Masking", ext3_, e3, H3_CSS_MASKING);
     res += single_feature (res, b, "Med", "Media Queries", ext2_, e2, H2_CSS_MEDIA_3, H2_CSS_MEDIA_4, H2_CSS_MEDIA_5);
     res += single_feature (res, b, "Mot", "Motion Path", ext3_, e3, H3_CSS_MOTION);
@@ -884,12 +886,13 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
     res += single_feature (res, b, "Sha", "Shadow Parts", ext3_, e3, H3_CSS_SHADOW);
     res += single_feature (res, b, "Shp", "Shapes", ext3_, e3, H3_CSS_SHAPE_3, H3_CSS_SHAPE_4);
     res += single_feature (res, b, "Snp", "Scroll Snap", ext3_, e3, H3_CSS_SNAP);
+    res += single_feature (res, b, "Spa", "Spatial Navigation", ext4_, e4, H4_CSS_SPATIAL);
     res += single_feature (res, b, "Spe", "Speech", ext3_, e3, H3_CSS_SPEECH);
     res += single_feature (res, b, "Sty", "Style Attributes", ext2_, e2, H2_CSS_STYLE);
     res += single_feature (res, b, "Syn", "Syntax Module", ext2_, e2, H2_CSS_SYNTAX);
     res += single_feature (res, b, "Tab", "Tables", ext3_, e3, H3_CSS_TABLE);
     res += single_feature (res, b, "Trf", "Transforms", ext3_, e3, H3_CSS_TRANSFORM_3, H3_CSS_TRANSFORM_4);
-    res += single_feature (res, b, "Trs", "Transitions", ext3_, e3, H3_CSS_TRANSITION);
+    res += single_feature (res, b, "Trs", "Transitions", ext4_, e4, H4_CSS_TRANSITION_3, H4_CSS_TRANSITION_4);
     res += single_feature (res, b, "Txd", "Text Decoration", ext3_, e3, H3_CSS_TEXTDEC_3, H3_CSS_TEXTDEC_4);
     res += single_feature (res, b, "Txt", "Text", ext3_, e3, H3_CSS_TEXT_3, H3_CSS_TEXT_4);
     res += single_feature (res, b, "UsI", "Basic User Interface", ext2_, e2, H2_CSS_UI_3, H2_CSS_UI_4);
@@ -1192,6 +1195,14 @@ void html_version::css_adjust (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_ADJUST);
     else reset_ext3 (H3_CSS_ADJUST); }
 
+int html_version::css_advanced_layout () const
+{   if (any_ext4 (H4_CSS_ADVLAY)) return 3;
+    return 0; }
+
+void html_version::css_advanced_layout (const int n)
+{   if (n == 3) set_ext4 (H4_CSS_ADVLAY);
+    else reset_ext4 (H4_CSS_ADVLAY); }
+
 int html_version::css_anchor () const
 {   if (any_ext3 (H3_CSS_ANCHOR)) return 3;
     return 0; }
@@ -1201,7 +1212,7 @@ void html_version::css_anchor (const int n)
     else reset_ext4 (H3_CSS_ANCHOR); }
 
 int html_version::css_anchor_pos () const
-{   if (any_ext3 (H4_CSS_ANCHOR_POS)) return 3;
+{   if (any_ext4 (H4_CSS_ANCHOR_POS)) return 3;
     return 0; }
 
 void html_version::css_anchor_pos (const int n)
@@ -1241,7 +1252,7 @@ int html_version::css_box_model () const
 
 void html_version::css_box_model (const int n)
 {   reset_ext3 (H3_CSS_BOX_MODEL_MASK);
-    if (n == 4) set_ext3 (H3_CSS_BOX_MODEL_34);
+    if (n == 4) set_ext3 (H3_CSS_BOX_MODEL);
     else if (n == 3) set_ext3 (H3_CSS_BOX_MODEL_3); }
 
 int html_version::css_box_sizing () const
@@ -1452,6 +1463,14 @@ void html_version::css_highlight (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_HIGHLIGHT);
     else reset_ext3 (H3_CSS_HIGHLIGHT); }
 
+int html_version::css_hyperlink () const
+{   if (any_ext3 (H3_CSS_HYPERLINK)) return 3;
+    return 0; }
+
+void html_version::css_hyperlink (const int n)
+{   if (n == 3) set_ext3 (H3_CSS_HYPERLINK);
+    else reset_ext3 (H3_CSS_HYPERLINK); }
+
 int html_version::css_image () const
 {   if ((ext3 () & H3_CSS_IMAGE_4) == H3_CSS_IMAGE_4) return 4;
     if ((ext3 () & H3_CSS_IMAGE_3) == H3_CSS_IMAGE_3) return 3;
@@ -1495,7 +1514,7 @@ void html_version::css_logic (const int n)
     else reset_ext3 (H3_CSS_LOGIC); }
 
 int html_version::css_marquee () const
-{   if (any_ext3 (H4_CSS_MARQUEE)) return 3;
+{   if (any_ext4 (H4_CSS_MARQUEE)) return 3;
     return 0; }
 
 void html_version::css_marquee (const int n)
@@ -1706,6 +1725,14 @@ void html_version::css_snap (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_SNAP);
     else reset_ext3 (H3_CSS_SNAP); }
 
+int html_version::css_snap_points () const
+{   if (any_ext4 (H4_CSS_SNAP_POINTS)) return 3;
+    return 0; }
+
+void html_version::css_snap_points (const int n)
+{   if (n == 3) set_ext4 (H4_CSS_SNAP_POINTS);
+    else reset_ext4 (H4_CSS_SNAP_POINTS); }
+
 int html_version::css_spatial () const
 {   if (any_ext4 (H4_CSS_SPATIAL)) return 3;
     return 0; }
@@ -1777,12 +1804,14 @@ void html_version::css_transform (const int n)
     else if ((n == 1) || (n == 3)) set_ext3 (H3_CSS_TRANSFORM_3); }
 
 int html_version::css_transition () const
-{   if (any_ext3 (H3_CSS_TRANSITION)) return 3;
+{   if ((ext4 () & H4_CSS_TRANSITION_4) == H4_CSS_TRANSITION_4) return 4;
+    if ((ext4 () & H4_CSS_TRANSITION_3) == H4_CSS_TRANSITION_3) return 3;
     return 0; }
 
 void html_version::css_transition (const int n)
-{   if (n == 3) set_ext3 (H3_CSS_TRANSITION);
-    else reset_ext3 (H3_CSS_TRANSITION); }
+{   reset_ext4 (H4_CSS_TRANSITION);
+    if (n == 4) set_ext4 (H4_CSS_TRANSITION);
+    else if (n == 3) set_ext4 (H4_CSS_TRANSITION_3); }
 
 int html_version::css_ui () const
 {   if ((ext2 () & H2_CSS_UI_4) == H2_CSS_UI_4) return 4;   
@@ -1860,6 +1889,8 @@ void html_version::check_status (nitpick& nits, const ::std::string& s) const
         nits.pick (nit_abandoned, es_warning, ec_css, s, " was rejected, abandoned, unfinished, andor unimplemented: it will at best be ignored");
     if (dinosaur ())
         nits.pick (nit_dinosaur, es_warning, ec_css, s, " is ancient and will not be recognised");
+    if (experimental ())
+        nits.pick (nit_experimental, es_warning, ec_css, s, " is experimental, so unlikely to be recognised");
     if (css_deprecated ())   
         nits.pick (nit_deprecated, es_warning, ec_css, s, " has been deprecated and should not be used"); }
 

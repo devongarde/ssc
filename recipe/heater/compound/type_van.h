@@ -367,10 +367,21 @@ template < > struct type_master < t_ratio > : tidy_string < t_ratio >
             if ((pos == ::std::string::npos) || (pos == 0) || (pos >= arg.size () - 1))
                 nits.pick (nit_bad_aspect_ratio, es_error, ec_type, quote (arg), ": expecting width / height");
             else
-            {   double w = ::boost::lexical_cast < double > (arg.substr (0, pos));
-                double h = ::boost::lexical_cast < double > (arg.substr (pos+1));
+            {   const ::std::string numerator (trim_the_lot_off (arg.substr (0, pos)));
+                const ::std::string demoninator (trim_the_lot_off (arg.substr (pos+1)));
+                double w = 0.0, h = 0.0;
+                if (! numerator.empty ())
+                {   nitpick nuts;
+                    if (test_value < t_fn > (nuts, v, numerator))
+                    {   nits.merge (nuts); w = 1.0; }
+                    else w = lexical < double > :: cast (numerator); }
+                if (! demoninator.empty ())
+                {   nitpick nuts;
+                    if (test_value < t_fn > (nuts, v, demoninator))
+                    {   nits.merge (nuts); h = 1.0; }
+                    else h = lexical < double > :: cast (demoninator); }
                 if ((w < 0.0) || (h < 0.0))
-                    nits.pick (nit_bad_aspect_ratio, es_error, ec_type, quote (arg), ": all ratio values must be positive numbers");
+                    nits.pick (nit_bad_aspect_ratio, es_error, ec_type, quote (arg), ": all ratio values must be positive");
                 else if ((w == 0.0) || (h == 0.0))
                     nits.pick (nit_bad_aspect_ratio, es_error, ec_type, quote (arg), ": degenerate ratios are ignored");
                 else return; } }
@@ -613,6 +624,21 @@ template < > struct type_master < t_css_text_align_4 > : tidy_string < t_css_tex
                 {   nits.merge (nuts); return; } }
             if (test_value < t_css_text_align > (nits, v, ss)) return; }
         tidy_string < t_css_text_align_4 > :: status (s_invalid); } };
+
+template < > struct type_master < t_css_text_resizes > : tidy_string < t_css_text_resizes >
+{   using tidy_string < t_css_text_resizes > :: tidy_string;
+	static e_animation_type animation_type () noexcept { return at_none; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_css_text_resizes > :: set_value (nits, v, s);
+        if (tidy_string < t_css_text_resizes > :: empty ()) nits.pick (nit_empty, es_error, ec_type, "missing value");
+        else if (tidy_string < t_css_text_resizes > :: good ())
+        {   ::std::string ss (tidy_string < t_css_text_resizes > :: get_string ());
+            nitpick nuts;
+            if (v.css_overflow () >= 4)
+            {   if (test_value < t_css_text_resizes_4 > (nuts, v, ss))
+                { nits.merge (nuts); return; } }
+            if (test_value < t_css_text_resize > (nits, v, ss)) return; }
+        tidy_string < t_css_text_resizes > :: status (s_invalid); } };
 
 template < > struct type_master < t_css_vertal_2 > : tidy_string < t_css_vertal_2 >
 {   using tidy_string < t_css_vertal_2 > :: tidy_string;

@@ -472,9 +472,11 @@ bool directory::integrate_virtual (const ::std::string& site, path_root_ptr& dis
 
 ::std::size_t integrate_virtuals (paths_root& virt, vd_t& vd)
 {   PRESUME (virt.size () == vd.size (), __FILE__, __LINE__);
+    VERIFY_NOT_NULL (vd.at (0), __FILE__, __LINE__);
+    VERIFY_NOT_NULL (virt.at (0), __FILE__, __LINE__);
+    vd.at (0) -> integrate_virtual (virt.at (0) -> get_site_path (), virt.at (0), vd.at (0));
     for (::std::size_t n = 1; n < virt.size (); ++n)
-    {   VERIFY_NOT_NULL (vd.at (0), __FILE__, __LINE__);
-        VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
+    {   VERIFY_NOT_NULL (virt.at (n), __FILE__, __LINE__);
         if (! vd.at (0) -> integrate_virtual (virt.at (n) -> get_site_path (), virt.at (n), vd.at (n)))
             return n; }
     return 0; }

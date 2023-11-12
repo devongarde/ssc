@@ -1,0 +1,12 @@
+﻿div {
+  width: max-content;
+  contain-intrinsic-size: 100px 100px;
+  overflow: auto;
+}
+
+div {
+  width: max-content;
+  contain-intrinsic-size: 100px 100px;
+  height: 50px;
+  overflow: auto;
+}

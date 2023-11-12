@@ -3,10 +3,21 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.46
+- CSS Box Sizing 4
+- CSS Text Overflow 4
+- CSS Spatial Navigation 3
+- added -A switch
+- --general.exclude now uses simple matching
+- --link.pretend now uses simple matching
+- generalised --general.git as --general.vcs
+- various bug fixes
+- underlying work
+
 0.1.45
 - CSS Marquee
 - restore VS 2017 build
-- OpenBSD package ready to submit
+- OpenBSD package ready
 - various bug fixes
 - underlying work
 

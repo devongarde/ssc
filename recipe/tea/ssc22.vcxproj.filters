@@ -1392,6 +1392,24 @@
     <Filter Include="Toast\CSS\marquee">
       <UniqueIdentifier>{af38e2f6-34bd-4cc6-9269-80271a8ba1ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\CSS\4-box-sizing">
+      <UniqueIdentifier>{bec41ae0-b60d-49d1-8b84-2ddba05ebc67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\4-overflow">
+      <UniqueIdentifier>{7491fbfd-de0d-44bc-9ded-1c3bfb8aa730}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\CSS\3-spatial">
+      <UniqueIdentifier>{a6602b1d-e064-4248-a3f3-ffcc13e9b3c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sauce\css_value">
+      <UniqueIdentifier>{6e8a8910-06fa-4cdf-92b9-1345ada13ab5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heater\css_value">
+      <UniqueIdentifier>{54003ffb-f2ea-454c-b54f-04c39b942585}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Output\args">
+      <UniqueIdentifier>{664e7847-c49c-4ee9-a1e9-097f3d338989}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -2030,12 +2048,6 @@
     <ClInclude Include="..\heater\compound\type_fn.h">
       <Filter>Heater\compound</Filter>
     </ClInclude>
-    <ClInclude Include="..\heater\css\value.h">
-      <Filter>Heater\css</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\css\value_types.h">
-      <Filter>Heater\css</Filter>
-    </ClInclude>
     <ClInclude Include="..\heater\css\ffv.h">
       <Filter>Heater\css</Filter>
     </ClInclude>
@@ -2080,6 +2092,12 @@
     </ClInclude>
     <ClInclude Include="..\heater\css\css_pre.h">
       <Filter>Heater\css</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\value.h">
+      <Filter>Heater\css_value</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\css\value_types.h">
+      <Filter>Heater\css_value</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2641,41 +2659,8 @@
     <ClCompile Include="..\sauce\css\typed_property.cpp">
       <Filter>Sauce\css</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\attribute\attribute.cpp">
       <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value2.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_a.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_b_c.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_a.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_b.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_c.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_d_e.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_f.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_g_l.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_m_p.cpp">
-      <Filter>Sauce\css</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\ffv.cpp">
       <Filter>Sauce\css</Filter>
@@ -2696,15 +2681,6 @@
       <Filter>Sauce\css</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\medium.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_r_s.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_t.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_u_z.cpp">
       <Filter>Sauce\css</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\ontology\jsonld.cpp">
@@ -2740,39 +2716,6 @@
     <ClCompile Include="..\sauce\compound\type_csses.cpp">
       <Filter>Sauce\compound</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_f.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_g_i.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_j_l.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_m.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_n_o.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_p.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_q_r.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_s.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_t_u.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_v_z.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_c_e.cpp">
-      <Filter>Sauce\css</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\simple\type_jsonic.cpp">
       <Filter>Sauce\simple</Filter>
     </ClCompile>
@@ -2780,7 +2723,124 @@
       <Filter>Sauce\simple</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_0_9.cpp">
-      <Filter>Sauce\css</Filter>
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_a.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_b.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_c.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_d_e.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_a.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_b_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_b_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_c_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_d_e.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_f_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_g_i.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_m_n.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_r.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_t_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_u_z.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_f.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_g_h.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_j_l.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_m_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_n_o.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_p_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_q_r.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_svg.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_t.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_v_w.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_c_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_f_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_o_p.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_s.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_t_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_i.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_m_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_p_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_s.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_u.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_x_z.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_j_l.cpp">
+      <Filter>Sauce\css_value</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -32841,9 +32901,6 @@
     <None Include="..\toast\css\3-textdec\css-3.css">
       <Filter>Toast\CSS\3-textdec</Filter>
     </None>
-    <None Include="..\toast\css\3-textdec\css-b.css">
-      <Filter>Toast\CSS\3-textdec</Filter>
-    </None>
     <None Include="..\toast\css\4-textdec\css-b.css">
       <Filter>Toast\CSS\4-textdec</Filter>
     </None>
@@ -34619,6 +34676,111 @@
     </None>
     <None Include="..\toast\css\marquee\css-7.css">
       <Filter>Toast\CSS\marquee</Filter>
+    </None>
+    <None Include="..\toast\css\4-box-sizing\css.conf">
+      <Filter>Toast\CSS\4-box-sizing</Filter>
+    </None>
+    <None Include="..\toast\css\4-box-sizing\css.spec">
+      <Filter>Toast\CSS\4-box-sizing</Filter>
+    </None>
+    <None Include="..\toast\css\4-box-sizing\css-4.css">
+      <Filter>Toast\CSS\4-box-sizing</Filter>
+    </None>
+    <None Include="..\toast\css\4-box-sizing\css-4.html">
+      <Filter>Toast\CSS\4-box-sizing</Filter>
+    </None>
+    <None Include="..\toast\css\4-box-sizing\css-5.css">
+      <Filter>Toast\CSS\4-box-sizing</Filter>
+    </None>
+    <None Include="..\toast\css\4-box-sizing\css-6.css">
+      <Filter>Toast\CSS\4-box-sizing</Filter>
+    </None>
+    <None Include="..\toast\css\4-box-sizing\css-6.html">
+      <Filter>Toast\CSS\4-box-sizing</Filter>
+    </None>
+    <None Include="..\toast\css\4-box-sizing\index.html">
+      <Filter>Toast\CSS\4-box-sizing</Filter>
+    </None>
+    <None Include="..\toast\css\3-textdec\css-b.css">
+      <Filter>Toast\CSS\3-textdec</Filter>
+    </None>
+    <None Include="..\toast\css\4-overflow\css.conf">
+      <Filter>Toast\CSS\4-overflow</Filter>
+    </None>
+    <None Include="..\toast\css\4-overflow\css.spec">
+      <Filter>Toast\CSS\4-overflow</Filter>
+    </None>
+    <None Include="..\toast\css\4-overflow\css-4.css">
+      <Filter>Toast\CSS\4-overflow</Filter>
+    </None>
+    <None Include="..\toast\css\4-overflow\css-4.html">
+      <Filter>Toast\CSS\4-overflow</Filter>
+    </None>
+    <None Include="..\toast\css\4-overflow\css-5.css">
+      <Filter>Toast\CSS\4-overflow</Filter>
+    </None>
+    <None Include="..\toast\css\4-overflow\css-5.html">
+      <Filter>Toast\CSS\4-overflow</Filter>
+    </None>
+    <None Include="..\toast\css\4-overflow\css-a-1.html">
+      <Filter>Toast\CSS\4-overflow</Filter>
+    </None>
+    <None Include="..\toast\css\4-overflow\css-a-2.html">
+      <Filter>Toast\CSS\4-overflow</Filter>
+    </None>
+    <None Include="..\toast\css\4-overflow\css-a-3.html">
+      <Filter>Toast\CSS\4-overflow</Filter>
+    </None>
+    <None Include="..\toast\css\4-overflow\index.html">
+      <Filter>Toast\CSS\4-overflow</Filter>
+    </None>
+    <None Include="..\toast\css\4-overflow\css-a-4.html">
+      <Filter>Toast\CSS\4-overflow</Filter>
+    </None>
+    <None Include="..\toast\css\4-overflow\css-a-5.html">
+      <Filter>Toast\CSS\4-overflow</Filter>
+    </None>
+    <None Include="..\toast\css\3-spatial\css.conf">
+      <Filter>Toast\CSS\3-spatial</Filter>
+    </None>
+    <None Include="..\toast\css\3-spatial\css.spec">
+      <Filter>Toast\CSS\3-spatial</Filter>
+    </None>
+    <None Include="..\toast\css\3-spatial\css-3.css">
+      <Filter>Toast\CSS\3-spatial</Filter>
+    </None>
+    <None Include="..\toast\css\3-spatial\css-3.html">
+      <Filter>Toast\CSS\3-spatial</Filter>
+    </None>
+    <None Include="..\toast\css\3-spatial\css-5.html">
+      <Filter>Toast\CSS\3-spatial</Filter>
+    </None>
+    <None Include="..\toast\css\3-spatial\css-6.css">
+      <Filter>Toast\CSS\3-spatial</Filter>
+    </None>
+    <None Include="..\toast\css\3-spatial\css-6.html">
+      <Filter>Toast\CSS\3-spatial</Filter>
+    </None>
+    <None Include="..\toast\css\3-spatial\css-9.css">
+      <Filter>Toast\CSS\3-spatial</Filter>
+    </None>
+    <None Include="..\toast\css\3-spatial\css-9.html">
+      <Filter>Toast\CSS\3-spatial</Filter>
+    </None>
+    <None Include="..\toast\css\3-spatial\index.html">
+      <Filter>Toast\CSS\3-spatial</Filter>
+    </None>
+    <None Include="..\toast\output\args\output.conf">
+      <Filter>Toast\Output\args</Filter>
+    </None>
+    <None Include="..\toast\output\args\index.html">
+      <Filter>Toast\Output\args</Filter>
+    </None>
+    <None Include="..\toast\output\args\output.out.model">
+      <Filter>Toast\Output\args</Filter>
+    </None>
+    <None Include="..\toast\output\args\output.spec">
+      <Filter>Toast\Output\args</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

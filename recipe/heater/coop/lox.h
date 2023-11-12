@@ -18,7 +18,8 @@ Licence along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
-// most locks are mutually exclusive; if one lock is applied, no others can be, except flox (outputting nits) and dear (updating fileindices) can be applied when another lock is applied
+// most locks are mutually exclusive; if one lock is applied, no others can be, except flox (outputting nits), dear (updating fileindices)
+// and eleanor (initing enums) can be applied when another lock is applied
 
 // no locks are recursive
 
@@ -64,3 +65,13 @@ struct dear
     explicit dear (const e_lox ) { }
 #endif // NO_FRED
     ~dear (); };
+
+struct eleanor
+{   eleanor () = delete;
+    NO_COPY_CONSTRUCTORS (eleanor);
+#ifndef NO_FRED
+    explicit eleanor (const e_lox l);
+#else // NO_FRED
+    explicit eleanor (const e_lox ) { }
+#endif // NO_FRED
+    ~eleanor (); };

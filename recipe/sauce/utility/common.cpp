@@ -122,7 +122,7 @@ void_ptr read_binary_file (nitpick& nits, const ::boost::filesystem::path& name,
                 if (vp.get () == nullptr) nits.pick (nit_out_of_memory, es_catastrophic, ec_io, "out of memory reading ", name.string ());
                 else
                 {   fp = fopen (name.string ().c_str (), "rb");
-                    if (fp == nullptr) nits.pick (nit_cannot_open, es_catastrophic, ec_io, "cannot open ", name.string ());
+                    if (fp == nullptr) nits.pick (nit_cannot_open, es_catastrophic, ec_io, "cannot open ", quote (name.string ()), " [1]");
                     else
                     {   const ::std::size_t rd = fread (vp.get (), 1, GSL_NARROW_CAST < ::std::size_t > (mz), fp);
                         fclose (fp); // if this fails there's sod all we can do about it, so ... :-)

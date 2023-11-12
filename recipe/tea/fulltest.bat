@@ -19,6 +19,7 @@ ssc.exe -f ../toast/css/3-background/css.conf
 ssc.exe -f ../toast/css/3-box-model/css.conf
 ssc.exe -f ../toast/css/4-box-model/css.conf
 ssc.exe -f ../toast/css/3-box-sizing/css.conf
+ssc.exe -f ../toast/css/4-box-sizing/css.conf
 ssc.exe -f ../toast/css/3-cascade/css.conf
 ssc.exe -f ../toast/css/4-cascade/css.conf
 ssc.exe -f ../toast/css/5-cascade/css.conf
@@ -63,6 +64,7 @@ ssc.exe -f ../toast/css/3-nes/css.conf
 ssc.exe -f ../toast/css/3-nesting/css.conf
 ssc.exe -f ../toast/css/3-ns/css.conf
 ssc.exe -f ../toast/css/3-overflow/css.conf
+ssc.exe -f ../toast/css/4-overflow/css.conf
 ssc.exe -f ../toast/css/3-page/css.conf
 ssc.exe -f ../toast/css/3-position/css.conf
 ssc.exe -f ../toast/css/4-present/css.conf
@@ -79,6 +81,7 @@ ssc.exe -f ../toast/css/4-sel/css.conf
 ssc.exe -f ../toast/css/3-shadow/css.conf
 ssc.exe -f ../toast/css/3-shape/css.conf
 ssc.exe -f ../toast/css/3-snap/css.conf
+ssc.exe -f ../toast/css/3-spatial/css.conf
 ssc.exe -f ../toast/css/3-speech/css.conf
 ssc.exe -f ../toast/css/3-style/css.conf
 ssc.exe -f ../toast/css/3-syntax/css.conf

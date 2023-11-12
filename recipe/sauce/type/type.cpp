@@ -105,28 +105,41 @@ bool test_value (nitpick& nits, const html_version& v, const e_type t, const ::s
 #ifdef LIMITED_META_COMPLEXITY
 {   if (t <= SSC_TYPES_0_9_MAX) return test_typed_value < SSC_TYPES_0_9, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPES_A_MAX) return test_typed_value < SSC_TYPES_A, t_unknown > :: test (nits, v, t, s);
-    if (t <= SSC_TYPES_B_C_MAX) return test_typed_value < SSC_TYPES_B_C, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_B_MAX) return test_typed_value < SSC_TYPES_B, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_C_MAX) return test_typed_value < SSC_TYPES_C, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPES_CSS_A_MAX) return test_typed_value < SSC_TYPES_CSS_A, t_unknown > :: test (nits, v, t, s);
-    if (t <= SSC_TYPES_CSS_B_MAX) return test_typed_value < SSC_TYPES_CSS_B, t_unknown > :: test (nits, v, t, s);
-    if (t <= SSC_TYPES_CSS_C_MAX) return test_typed_value < SSC_TYPES_CSS_C, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_CSS_B_1_MAX) return test_typed_value < SSC_TYPES_CSS_B_1, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_CSS_B_2_MAX) return test_typed_value < SSC_TYPES_CSS_B_2, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_CSS_C_1_MAX) return test_typed_value < SSC_TYPES_CSS_C_1, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_CSS_C_2_MAX) return test_typed_value < SSC_TYPES_CSS_C_2, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPES_CSS_D_E_MAX) return test_typed_value < SSC_TYPES_CSS_D_E, t_unknown > :: test (nits, v, t, s);
-    if (t <= SSC_TYPES_CSS_F_MAX) return test_typed_value < SSC_TYPES_CSS_F, t_unknown > :: test (nits, v, t, s);
-    if (t <= SSC_TYPES_CSS_G_L_MAX) return test_typed_value < SSC_TYPES_CSS_G_L, t_unknown > :: test (nits, v, t, s);
-    if (t <= SSC_TYPES_CSS_M_P_MAX) return test_typed_value < SSC_TYPES_CSS_M_P, t_unknown > :: test (nits, v, t, s);
-    if (t <= SSC_TYPES_CSS_R_S_MAX) return test_typed_value < SSC_TYPES_CSS_R_S, t_unknown > :: test (nits, v, t, s);
-    if (t <= SSC_TYPES_CSS_T_MAX) return test_typed_value < SSC_TYPES_CSS_T, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_CSS_F_1_MAX) return test_typed_value < SSC_TYPES_CSS_F_1, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_CSS_F_2_MAX) return test_typed_value < SSC_TYPES_CSS_F_2, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_CSS_G_I_MAX) return test_typed_value < SSC_TYPES_CSS_G_I, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_CSS_J_L_MAX) return test_typed_value < SSC_TYPES_CSS_J_L, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_CSS_M_N_MAX) return test_typed_value < SSC_TYPES_CSS_M_N, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_CSS_O_P_MAX) return test_typed_value < SSC_TYPES_CSS_O_P, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_CSS_R_MAX) return test_typed_value < SSC_TYPES_CSS_R, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_CSS_S_MAX) return test_typed_value < SSC_TYPES_CSS_S, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_CSS_T_1_MAX) return test_typed_value < SSC_TYPES_CSS_T_1, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_CSS_T_2_MAX) return test_typed_value < SSC_TYPES_CSS_T_2, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPES_CSS_U_Z_MAX) return test_typed_value < SSC_TYPES_CSS_U_Z, t_unknown > :: test (nits, v, t, s);
-    if (t <= SSC_TYPES_C_E_MAX) return test_typed_value < SSC_TYPES_C_E, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_D_E_MAX) return test_typed_value < SSC_TYPES_D_E, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPES_F_MAX) return test_typed_value < SSC_TYPES_F, t_unknown > :: test (nits, v, t, s);
-    if (t <= SSC_TYPES_G_I_MAX) return test_typed_value < SSC_TYPES_G_I, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_G_H_MAX) return test_typed_value < SSC_TYPES_G_H, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_I_MAX) return test_typed_value < SSC_TYPES_I, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPES_J_L_MAX) return test_typed_value < SSC_TYPES_J_L, t_unknown > :: test (nits, v, t, s);
-    if (t <= SSC_TYPES_M_MAX) return test_typed_value < SSC_TYPES_M, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_M_1_MAX) return test_typed_value < SSC_TYPES_M_1, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_M_2_MAX) return test_typed_value < SSC_TYPES_M_2, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPES_N_O_MAX) return test_typed_value < SSC_TYPES_N_O, t_unknown > :: test (nits, v, t, s);
-    if (t <= SSC_TYPES_P_MAX) return test_typed_value < SSC_TYPES_P, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_P_1_MAX) return test_typed_value < SSC_TYPES_P_1, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_P_2_MAX) return test_typed_value < SSC_TYPES_P_2, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPES_Q_R_MAX) return test_typed_value < SSC_TYPES_Q_R, t_unknown > :: test (nits, v, t, s);
     if (t <= SSC_TYPES_S_MAX) return test_typed_value < SSC_TYPES_S, t_unknown > :: test (nits, v, t, s);
-    if (t <= SSC_TYPES_T_U_MAX) return test_typed_value < SSC_TYPES_T_U, t_unknown > :: test (nits, v, t, s);
-    if (t <= SSC_TYPES_V_Z_MAX) return test_typed_value < SSC_TYPES_V_Z, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_T_MAX) return test_typed_value < SSC_TYPES_T, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_U_MAX) return test_typed_value < SSC_TYPES_U, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_V_W_MAX) return test_typed_value < SSC_TYPES_V_W, t_unknown > :: test (nits, v, t, s);
+    if (t <= SSC_TYPES_X_Z_MAX) return test_typed_value < SSC_TYPES_X_Z, t_unknown > :: test (nits, v, t, s);
     GRACEFUL_CRASH (__FILE__, __LINE__); }
 #else // LIMITED_META_COMPLEXITY
 {   return test_typed_value < SSC_TYPES, t_unknown > :: test (nits, v, t, s); }
