@@ -67,6 +67,8 @@ public:
     void set_flox (const bool b) { if (inited ()) tls ().flox_ = b; }
     bool get_dear () const { return inited () && tls ().dear_; }
     void set_dear (const bool b) { if (inited ()) tls ().dear_ = b; }
+    bool get_eleanor () const { return inited () && tls ().eleanor_; }
+    void set_eleanor (const bool b) { if (inited ()) tls ().eleanor_ = b; }
     int count () const noexcept { return count_; }
     void one_more () noexcept { ++count_; }
     void one_less () noexcept { if (count_ > 0) --count_; }

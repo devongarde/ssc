@@ -108,9 +108,11 @@ template < e_type E, typename ENUM, typename CATEGORY = ident_t, CATEGORY INIT =
     DEFAULT_CONSTRUCTORS (enum_n);
     explicit enum_n (element* box) noexcept : enum_base < ENUM, E > (box) { }
     static void init (nitpick& nits, const symbol_entry < html_version, ENUM, CATEGORY, INIT > table [], const ::std::size_t size, const bool wildcards = false)
-    {   symbol < html_version, ENUM, CATEGORY, INIT, LC > :: init (nits, table, size, wildcards); }
+    {   eleanor f (lox_eleanor);
+        symbol < html_version, ENUM, CATEGORY, INIT, LC > :: init (nits, table, size, wildcards); }
     static void extend (const ::std::string& extension, const ::std::size_t e = 0)
-    {   symbol < html_version, ENUM, CATEGORY, INIT, LC > :: extend (extension, e); }
+    {   eleanor f (lox_eleanor);
+        symbol < html_version, ENUM, CATEGORY, INIT, LC > :: extend (extension, e); }
     static void extend (const vstr_t& extension, const ::std::size_t e = 0)
     {   for (auto ext : extension) extend (ext, e); }
     static bool exists (const ::std::string& x)
@@ -236,6 +238,9 @@ template < > struct type_master < t_as > : enum_n < t_as, e_as >
 template < > struct type_master < t_as_units > : enum_n < t_as_units, e_as_units >
 { using enum_n < t_as_units, e_as_units > :: enum_n; };
 
+template < > struct type_master < t_attr_unit > : enum_n < t_attr_unit, e_attr_unit >
+{ using enum_n < t_attr_unit, e_attr_unit > :: enum_n; };
+
 template < > struct type_master < t_autocapitalise > : enum_n < t_autocapitalise, e_autocapitalise >
 { using enum_n < t_autocapitalise, e_autocapitalise > :: enum_n; };
 
@@ -349,6 +354,9 @@ template < > struct type_master < t_css_contain_e > : enum_n < t_css_contain_e, 
 
 template < > struct type_master < t_css_container_feature > : enum_n < t_css_container_feature, e_css_container_feature >
 { using enum_n < t_css_container_feature, e_css_container_feature > :: enum_n; };
+
+template < > struct type_master < t_css_continue > : enum_n < t_css_continue, e_css_continue >
+{ using enum_n < t_css_continue, e_css_continue > :: enum_n; };
 
 template < > struct type_master < t_css_control_break > : enum_n < t_css_control_break, e_css_control_break >
 { using enum_n < t_css_control_break, e_css_control_break > :: enum_n; };
@@ -478,6 +486,9 @@ template < > struct type_master < t_css_ss_type_e > : enum_n < t_css_ss_type_e, 
 
 template < > struct type_master < t_css_self_position > : enum_n < t_css_self_position, e_css_self_position >
 { using enum_n < t_css_self_position, e_css_self_position > :: enum_n; };
+
+template < > struct type_master < t_css_sizing > : enum_n < t_css_sizing, e_css_sizing >
+{ using enum_n < t_css_sizing, e_css_sizing > :: enum_n; };
 
 template < > struct type_master < t_css_speak_as_e > : enum_n < t_css_speak_as_e, e_css_speak_as_e >
 { using enum_n < t_css_speak_as_e, e_css_speak_as_e > :: enum_n; };

@@ -182,12 +182,13 @@ int examine (nitpick& nits)
         vd.reserve (vmax);
         for (::std::size_t n = 0; n < vmax; ++n)
             vd.emplace_back (new directory (virt.at (n), GSL_NARROW_CAST < short > (n)));
-        nitpick nuts;
+        nitpick nuts, gnats;
         knickers k (nuts, &nits);
 #ifndef NO_FRED
         if (! fred.init (nits)) res = ERROR_STATE;
+        else
 #endif // NO_FRED
-        else try
+        try
         {   for (::std::size_t x = 0; (res != ERROR_STATE) && (x < vmax); ++x)
             {   VERIFY_NOT_NULL (vd.at (x), __FILE__, __LINE__);
                 VERIFY_NOT_NULL (virt.at (x), __FILE__, __LINE__);
@@ -215,23 +216,26 @@ int examine (nitpick& nits)
 #ifndef NO_FRED
                         else q.push (q_entry (&nits, vd.at (n), st_folder));
                     trundle (); } }
+            nits.merge (nuts);
             fred.await ();
 #else // NO_FRED
-                        examine (&nits, vd.at (n));
+                        else examine (&nits, vd.at (n));
                     trundle (); } }
+            nits.merge (nuts);
 #endif // NO_FRED
             spell_free ();
-            close_corpus (nuts);
-            fileindex_save_and_close (nuts); }
+            close_corpus (gnats);
+            fileindex_save_and_close (gnats); }
         catch (const ::std::system_error& e)
-        {   nuts.pick (nit_scan_failed, es_catastrophic, ec_init, "system error ", e.what ());
+        {   gnats.pick (nit_scan_failed, es_catastrophic, ec_init, "system error ", e.what ());
             res = ERROR_STATE; }
         catch (const ::std::exception& e)
-        {   nuts.pick (nit_scan_failed, es_catastrophic, ec_init, "exception ", e.what ());
+        {   gnats.pick (nit_scan_failed, es_catastrophic, ec_init, "exception ", e.what ());
             res = ERROR_STATE; }
         catch (...)
-        {   nuts.pick (nit_scan_failed, es_catastrophic, ec_init, "unknown exception");
-            res = ERROR_STATE; } }
+        {   gnats.pick (nit_scan_failed, es_catastrophic, ec_init, "unknown exception");
+            res = ERROR_STATE; }
+        nits.merge (gnats); }
     VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
     macro -> dump_nits (nits, ns_update, ns_update_head, ns_update_foot);
     macro -> dump_nits (exp, ns_export, ns_export_head, ns_export_foot);
@@ -274,8 +278,9 @@ int main (int argc, char** argv)
         avm_elem_crosscheck ();
 #endif
         res = context.parameters (nuts, argc, argv);
-        if (context.todo () == do_simple)
-        {   ::std::cout << full_title;
+        if ((context.todo () == do_simple) || context.yggdrisil ())
+        {   if (context.yggdrisil ()) ::std::cout << simple_title;
+            else ::std::cout << full_title;
             ::std::cout << context.domsg ();
             return VALID_RESULT; }
         if (context.progress ()) ::std::cout << "\npreparing\n";

@@ -21,6 +21,7 @@
 ./ssc -f ../toast/css/3-box-model/css.conf
 ./ssc -f ../toast/css/4-box-model/css.conf
 ./ssc -f ../toast/css/3-box-sizing/css.conf
+./ssc -f ../toast/css/4-box-sizing/css.conf
 ./ssc -f ../toast/css/3-cascade/css.conf
 ./ssc -f ../toast/css/4-cascade/css.conf
 ./ssc -f ../toast/css/5-cascade/css.conf
@@ -65,6 +66,7 @@
 ./ssc -f ../toast/css/3-nesting/css.conf
 ./ssc -f ../toast/css/3-ns/css.conf
 ./ssc -f ../toast/css/3-overflow/css.conf
+./ssc -f ../toast/css/4-overflow/css.conf
 ./ssc -f ../toast/css/3-page/css.conf
 ./ssc -f ../toast/css/3-position/css.conf
 ./ssc -f ../toast/css/4-present/css.conf
@@ -81,6 +83,7 @@
 ./ssc -f ../toast/css/3-shadow/css.conf
 ./ssc -f ../toast/css/3-shape/css.conf
 ./ssc -f ../toast/css/3-snap/css.conf
+./ssc -f ../toast/css/3-spatial/css.conf
 ./ssc -f ../toast/css/3-speech/css.conf
 ./ssc -f ../toast/css/3-style/css.conf
 ./ssc -f ../toast/css/3-syntax/css.conf

@@ -1,0 +1,21 @@
+﻿#container {
+    width: 900px;
+    height: 1400px;
+}
+
+#scrollContainer {
+    width: 700px;
+    height: 700px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.item {
+    width: 150px;
+    height: 110px;
+    background-color: blue;
+}
+
+.item:focus {
+    background-color: red;
+}

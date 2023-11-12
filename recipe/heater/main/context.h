@@ -47,7 +47,7 @@ class context_t
                     rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, ontology_ = true, safari_ = false, shadow_comment_ = true, shadow_changed_ = false,
                     shadow_enable_ = false, shadow_ssi_ = true, shadow_space_ = true, slob_ = false, spec_ = false, spell_ = true, spell_deduced_ = false,
                     ssi_ = true, stats_page_ = false, stats_summary_ = false, test_ = false, unknown_class_ = true, update_ = false, valid_ = false,
-                    versioned_ = false;
+                    versioned_ = false, yggdrisil_ = false;
     int             fred_ = 0, title_ = MAX_IDEAL_TITLE_LENGTH;
     e_copy          copy_ = c_none;
     unsigned char   mf_version_ = 3;
@@ -61,9 +61,7 @@ class context_t
     vstr_t          css_ext_, custom_elements_, environment_, exports_, extensions_, jsonld_ext_, no_ex_check_, report_, shadow_ignore_, shadows_, site_,
                     spellings_, virtuals_;
     ::boost::program_options::options_description validation_;
-#ifndef NO_BOOST_REGEX
-    vwild_t         exclude_, pretend_;
-#endif // NO_BOOST_REGEX
+    vstr_t          exclude_, pretend_;
     e_svg_processing_mode svg_mode_ = spm_none;
     e_quote_style   quote_style_ = qs_none;
     e_do            do_ = do_booboo;
@@ -105,6 +103,7 @@ class context_t
     context_t& corpus (const ::boost::filesystem::path& f) { corpus_ = f; mac (nm_context_corpus, f.string ()); return *this; }
     context_t& crosslinks (const bool b) { crosslinks_ = b; mac (nm_context_crosslinks, b); return *this; }
     context_t& css_adjust (const int n) { version_.css_adjust (n); mac (nm_context_css_adjust, n); return *this; }
+    context_t& css_advanced_layout (const int n) { version_.css_advanced_layout (n); mac (nm_context_advanced_layout, n); return *this; }
     context_t& css_anchor (const int n) { version_.css_anchor (n); mac (nm_context_css_anchor, n); return *this; }
     context_t& css_anchor_pos (const int n) { version_.css_anchor_pos (n); mac (nm_context_css_anchor_pos, n); return *this; }
     context_t& css_animation (const int n) { version_.css_animation (n); mac (nm_context_css_animation, n); return *this; }
@@ -133,6 +132,7 @@ class context_t
     context_t& css_fragmentation (const int n) { version_.css_fragmentation (n); mac (nm_context_css_fragmentation, n); return *this; }
     context_t& css_grid (const int n) { version_.css_grid (n); mac (nm_context_css_grid, n); return *this; }
     context_t& css_highlight (const int n) { version_.css_highlight (n); mac (nm_context_css_highlight, n); return *this; }
+    context_t& css_hyperlink (const int n) { version_.css_hyperlink (n); mac (nm_context_css_hyperlink, n); return *this; }
     context_t& css_image (const int n) { version_.css_image (n); mac (nm_context_css_image, n); return *this; }
     context_t& css_inline (const int n) { version_.css_inline (n); mac (nm_context_css_inline, n); return *this; }
     context_t& css_line_grid (const int n) { version_.css_line_grid (n); mac (nm_context_css_line_grid, n); return *this; }
@@ -163,6 +163,7 @@ class context_t
     context_t& css_shadow (const int n) { version_.css_shadow (n); mac (nm_context_css_shadow, n); return *this; }
     context_t& css_shape (const int n) { version_.css_shape (n); mac (nm_context_css_shape, n); return *this; }
     context_t& css_snap (const int n) { version_.css_snap (n); mac (nm_context_css_snap, n); return *this; }
+    context_t& css_snap_points (const int n) { version_.css_snap_points (n); mac (nm_context_css_snap_points, n); return *this; }
     context_t& css_spatial (const int n) { version_.css_spatial (n); mac (nm_context_css_spatial, n); return *this; }
     context_t& css_speech (const int n) { version_.css_speech (n); mac (nm_context_css_speech, n); return *this; }
     context_t& css_style (const int n) { version_.css_style (n); mac (nm_context_css_style, n); return *this; }
@@ -226,6 +227,7 @@ class context_t
     context_t& macro_end (const ::std::string& s) { macro_end_ = s; return *this; }
     context_t& macro_start (const ::std::string& s) { macro_start_ = s; return *this; }
     context_t& main (const bool b) { main_ = b; mac (nm_context_main, b); return *this; }
+    bool matches (const ::std::string& s, const ::std::string& w, const char sep = '/') const;
     context_t& math_version (const int v);
     context_t& math_version (const e_math_version v) noexcept { version_.math_version (v); return *this; }
     context_t& max_file_size (const long l) { max_file_size_ = l; mac < long > (nm_context_max_file_size, l);return *this; }
@@ -333,6 +335,7 @@ class context_t
     context_t& versioned (const bool b) noexcept { versioned_ = b; return *this; }
     context_t& virtuals (const vstr_t& s) { virtuals_ = s; mac (nm_context_virtuals, s); return *this; }
     context_t& x (const ::std::string& s) { x_ = s; return *this; }
+    context_t& yggdrisil (const bool b) { yggdrisil_ = b; return *this; }
     context_t& mobile_profile (const bool b) { if (b) version_.set_profile (H3_NOT_MOBILE); else version_.reset_profile (H3_NOT_MOBILE); return *this; }
     context_t& print_profile (const bool b) { if (b) version_.set_profile (H3_NOT_PRINT); else version_.reset_profile (H3_NOT_PRINT); return *this; }
     context_t& tv_profile (const bool b) { if (b) version_.set_profile (H3_NOT_TV); else version_.reset_profile (H3_NOT_TV); return *this; }
@@ -355,6 +358,7 @@ public:
     ::boost::filesystem::path corpus () const { return corpus_; }
     bool crosslinks () const noexcept { return crosslinks_; }
     int css_adjust () { return version_.css_adjust (); }
+    int css_advanced_layout () { return version_.css_advanced_layout (); }
     int css_anchor () { return version_.css_anchor (); }
     int css_anchor_pos () { return version_.css_anchor_pos (); }
     int css_animation () { return version_.css_animation (); }
@@ -383,6 +387,7 @@ public:
     int css_fragmentation () { return version_.css_fragmentation (); }
     int css_grid () { return version_.css_grid (); }
     int css_highlight () { return version_.css_highlight (); }
+    int css_hyperlink () { return version_.css_hyperlink (); }
     int css_line_grid () { return version_.css_line_grid (); }
     int css_list () { return version_.css_list (); }
     int css_logic () { return version_.css_logic (); }
@@ -413,6 +418,7 @@ public:
     int css_shadow () { return version_.css_shadow (); }
     int css_shape () { return version_.css_shape (); }
     int css_snap () { return version_.css_snap (); }
+    int css_snap_points () { return version_.css_snap_points (); }
     int css_spatial () { return version_.css_spatial (); }
     int css_speech () { return version_.css_speech (); }
     int css_style () { return version_.css_style (); }
@@ -549,6 +555,7 @@ public:
     bool update () const noexcept { return update_; }
     bool versioned () const noexcept { return versioned_; }
     const ::std::string& x () const { return x_; }
+    bool yggdrisil () const { return yggdrisil_; }
     bool tell (const e_severity n) const noexcept
     {   if (n == es_undefined) return false;
         return n <= verbose_; }

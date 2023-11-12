@@ -1,0 +1,7 @@
+﻿li {
+  line-clamp: 5 "… (continued on next page)";
+}
+strong {
+  display: block;
+  text-transform: uppercase;
+}

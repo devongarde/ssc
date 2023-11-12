@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
-#define VERSION_RELEASE 45
-#define VERSION_STRING "0.1.45"
+#define VERSION_RELEASE 46
+#define VERSION_STRING "0.1.46"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -279,10 +279,6 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define FS_THROWS
 #endif // 1.73
 
-#if BOOST_MINOR < 76
-#define NO_BOOST_REGEX
-#endif // 1.75
-
 #if BOOST_MINOR < 77
 #define NO_BOOST_DATE_FACET
 #endif
@@ -359,9 +355,6 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #include <boost/property_tree/string_path.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/logic/tribool.hpp>
-#ifndef NO_BOOST_REGEX   
-#include <boost/regex.hpp>
-#endif
 
 #if BOOST_MINOR > 76
 #include <boost/system.hpp>

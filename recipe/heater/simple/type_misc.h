@@ -48,6 +48,20 @@ template < > struct type_master < t_arxiv > : public tidy_string < t_arxiv >
             if (set_arxiv_value (nits, v, s)) return; }
         string_value < t_arxiv > :: status (s_invalid); } };
 
+template < > struct type_master < t_attr > : public tidy_string < t_attr >
+{   using tidy_string < t_attr > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
+    {   tidy_string < t_attr > :: set_value (nits, v, ss);
+        if (tidy_string < t_attr > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "attribute name expected");
+        else
+        {   const ::std::string s (tidy_string < t_attr > :: get_string ());
+            ::std::string ns;
+            const attr a (nits, v, namespaces_ptr (), s, ns);
+            if (a.get () != a_unknown) return;
+            nits.pick (nit_attribute_unrecognised, es_error, ec_css, quote (s), ": unknown attribute"); }
+        string_value < t_attr > :: status (s_invalid); } };
+
 template < > struct type_master < t_b64 > : public tidy_string < t_b64 >
 {   using tidy_string < t_b64 > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)

@@ -94,6 +94,9 @@ SSC has a number of switches, including:
 
 A longer list of switches is given by the -h switch.
 
+If you find yourself stuck with switches, add -A to your command line
+to see what switches ssc has noticed.
+
 
 Environment
 -----------

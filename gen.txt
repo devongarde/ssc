@@ -31,6 +31,8 @@ COMMAND LINE ONLY SWITCHES
 
 These options are only available on the command line:
 
+-A                      List switches read, then exit.
+
 -f file                 Load configuration from file, which should be
                         in .INI file format. See CONFIGURATION FILE
                         FORMAT below. This should be an absolute path.
@@ -103,7 +105,8 @@ the "no-" switch always applies.
 --css.box-model X       Use CSS Box Model level X, where X is 0, 3 or
                         4.
                         
---css.box-sizing X      Use CSS Box Sizing level X, where X is 0 or 3.
+--css.box-sizing X      Use CSS Box Sizing level X, where X is 0, 3 or
+                        4.
 
 --css.cascade X         Use CSS Cascading and Inheritance level X,
                         where X is 0, 3, 4, 5 or 6.
@@ -191,7 +194,7 @@ the "no-" switch always applies.
 --css.nes X             Use CSS Non-Element Selectors level X, where X
                         is 0 or 3.
 
---css.overflow X        Use CSS Overflow level X, where X is 0 or 3.
+--css.overflow X        Use CSS Overflow level X, where X is 0, 3 or 4.
 
 --css.overscroll X      Use CSS Overscroll Behaviour level X, where X
                         is 0 or 3.
@@ -233,6 +236,9 @@ the "no-" switch always applies.
 --css.shape X           Use CSS Shapes level X, where X is 0, 3 or 4.
 
 --css.snap X            Use CSS Scroll Snap level X, where X is 0 or 3.
+
+--css.spatial X         Use CSS Spatial Navigation level X, where X is
+                        0 or 3.
 
 --css.speech X          Use CSS Speech level X, where X is 0 or 3.
 
@@ -345,13 +351,12 @@ the "no-" switch always applies.
                         Values are: 'catastrophe', 'error' (the
                         default), 'warning', 'info', or 'comment'.
 
---general.exclude REG   Ignore all files that match the posix regular
-                        expression REG. May be repeated.
+--general.exclude xxx   Ignore all paths containing xxx. May be
+                        repeated. Case independent under Windows only.
+                        .DS_Store is always excluded in darwin (macos).
 
 --general.file XXX      File for persistent data. Requires -N. See also
                         --general.datapath. Default extension: .ndx.
-
---general.git           Ignore git files.
 
 --general.ignore EL     ignore attributes and content of the element
                         <EL>. May  be repeated.
@@ -407,6 +412,12 @@ the "no-" switch always applies.
 --general.thread N      Use N threads when running. Defaults to a value
 -n N                    appropriate for the hardware. Too high a value
                         can cause problems. See also --general.defthrd.
+
+--general.vcs           Excludes some version control systems' files
+                        and directories, namely .bazaar, .bk, CVS,
+                        .cvsignore, db, _darcs, .fslckout, .git,
+                        .gitignore, .pijul, RCS, SCCS, & .svn. This
+                        also excludes directories called .ssc.
 
 --general.verbose x     Output nits to the specified verbosity:
 -v                      'catastrophe', 'error', 'warning', 'info',
@@ -540,8 +551,8 @@ the "no-" switch always applies.
                         time it's encountered (requires
                         --link.external).
 
---link.pretend FILE     When checking local files, pretend this file
-                        exists.
+--link.pretend FILE     Pretend links containing xxx exist. May be
+                        repeated.
 
 --link.report DOMAIN    Report links to domain and its descendents. May
                         be repeated.

@@ -1,0 +1,31 @@
+﻿ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
+}
+li {
+  aspect-ratio: 1/1;
+  overflow: auto;
+}
+
+@supports (aspect-ratio: attr(width number) / 1) {
+  iframe {
+    aspect-ratio: attr(width number) / attr(height number);
+    width: 100%;
+    height: auto;
+  }
+}
+
+div {
+  aspect-ratio: 1/1;
+  /* 'width' and 'height' both default to 'auto' */
+}
+
+div {
+  overflow: auto;
+  aspect-ratio: 1/1;
+}
+
+div {
+  aspect-ratio: 1/1;
+  min-height: 0;
+}

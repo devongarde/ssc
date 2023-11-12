@@ -86,8 +86,13 @@ bool ignore_this_slob_stuff (const e_nit code) noexcept
     {   case nit_inserted_missing_closure :
         case nit_inserted_missing_parent :
         case nit_missing_close :
-        case nit_missing_open : return true;
-        default : return false; } }
+        case nit_missing_open :
+        case nit_use_quote_code :
+        case nit_use_double_quote_code :
+        case nit_wrong_parent :
+            return true;
+        default :
+            return false; } }
 
 ::std::string nit_ref (const ::std::string& doc, const ::std::string& ref)
 {   ::std::string res;

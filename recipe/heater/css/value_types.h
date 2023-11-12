@@ -300,6 +300,14 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_annotation >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
     {   return value_fn < TYPE, cvf_annotation, 1, 1, t_css_feature_annotation > :: check (args, start, to, nits); } };
 
+template < e_type TYPE > struct value_fn_params < TYPE, cvf_attr >
+{   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
+    {   if (! maybe_content (nits, id)) return -1;
+        nitpick gnats;
+        const int i = value_fn < TYPE, cvf_attr, 2, 2, t_attr_unit, t_attr > :: check (args, start, to, gnats);
+        if (i >= 0) { nits.merge (gnats); return i; }
+        return value_fn < TYPE, cvf_attr, 1, 2, t_attr, t_generic > :: check (args, start, to, nits); } };
+
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_auto >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
     {   if (! maybe_text_4 (nits, id)) return -1;
@@ -410,6 +418,11 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_ellipse >
                                 value_fn < TYPE, cvf_ellipse, 2, 2, t_css_shape_radius >,
                                 sz_at,
                                 value_fn < TYPE, cvf_ellipse, 1, 1, t_css_shape_position > > :: check (args, start, to, nits); } };
+
+template < e_type TYPE > struct value_fn_params < TYPE, cvf_fade >
+{   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
+    {   if (! maybe_text_overflow (nits, id)) return -1;
+        return value_fn < TYPE, cvf_fade, 1, 1, t_css_length > :: check (args, start, to, nits); } };
 
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_filter >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)

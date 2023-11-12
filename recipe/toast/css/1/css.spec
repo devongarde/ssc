@@ -43,7 +43,7 @@ PASS ../toast/css/1/css-6.css
 
 PASS ../toast/css/1/css-7.css
 0 html
-1 unrecognised_value
+1 css_version
 6 unrecognised_value unrecognised_value
 7 css_syntax
 15 unrecognised_value

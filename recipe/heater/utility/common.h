@@ -41,10 +41,6 @@ typedef ssc_map < ::std::size_t, ::std::string > misd_t;
 typedef ustr_t::value_type ustrv_t;
 typedef ::std::basic_string < char32_t > string32;
 typedef ::std::basic_stringstream < char32_t > stringstream32;
-#ifndef NO_BOOST_REGEX
-typedef ::boost::basic_regex < char > wild_t;
-typedef ::std::vector < wild_t > vwild_t;
-#endif // NO_BOOST_REGEX
 
 #ifdef _MSC_VER
 #pragma warning (push, 3)

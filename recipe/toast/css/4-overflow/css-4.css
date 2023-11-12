@@ -1,0 +1,24 @@
+﻿div {
+  font-family: monospace;
+  white-space: pre;
+  overflow: hidden;
+  width: 9ch;
+  text-overflow: ellipsis;
+}
+
+div {
+  font-family: Helvetica, sans-serif;
+  line-height: 1.1;
+  width: 3.1em;
+  border: solid .1em black;
+  padding: 0.2em; margin:1em 0;
+}
+
+div.crawlbar {
+  text-overflow: ellipsis;
+  height: 2em;
+  overflow: scroll;
+  white-space: nowrap;
+  width: 15em;
+  border:1em solid black;
+}

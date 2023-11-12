@@ -85,6 +85,20 @@ dear::dear (const e_lox l)
 #endif // RPT_LOX
     }
 
+eleanor::eleanor (const e_lox l)
+{   if (dont_bother ()) return;
+    PRESUME (l == lox_eleanor, __FILE__, __LINE__);
+    PRESUME (! fred.get_eleanor (), __FILE__, __LINE__);
+    fred.set_eleanor (true);
+#ifdef RPT_LOX
+    ::std::cout << ::std::this_thread::get_id () << " trying to lock eleanor" << ::std::endl;
+#endif // RPT_LOX
+    vmx.at (lox_eleanor).lock ();
+#ifdef RPT_LOX
+    |::std::cout << ::std::this_thread::get_id () << " locked eleanor" << ::std::endl;
+#endif // RPT_LOX
+    }
+
 void whoopsie (const e_lox l, const char * sz, const ::std::exception& e) noexcept
 {   try
     {   ::std::cerr << "unlocking mutex " << l << " raised " << sz << " " << e.what () << "; aborting\n"; }
@@ -146,5 +160,23 @@ dear::~dear ()
     {   whoopsie (lox_dear, "exception", e); }
     catch (...)
     {   fprintf (stderr, "unknown dear mutex exception; aborting."); }
+    GRACELESS_CRASH (__FILE__, __LINE__); }
+
+eleanor::~eleanor ()
+{   if (dont_bother ()) return;
+    try
+    {   PRESUME (fred.get_eleanor (), __FILE__, __LINE__);
+#ifdef RPT_LOX
+        ::std::cout << ::std::this_thread::get_id () << " unlocking eleanor" << ::std::endl;
+#endif // RPT_LOX
+        vmx.at (lox_eleanor).unlock ();
+        fred.set_eleanor (false);
+        return; }
+    catch (const ::std::system_error& e)
+    {   whoopsie (lox_eleanor, "system error", e); }
+    catch (const ::std::exception& e)
+    {   whoopsie (lox_eleanor, "exception", e); }
+    catch (...)
+    {   fprintf (stderr, "unknown eleanor mutex exception; aborting."); }
     GRACELESS_CRASH (__FILE__, __LINE__); }
 #endif // NO_FRED

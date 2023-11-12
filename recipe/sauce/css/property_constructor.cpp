@@ -56,9 +56,10 @@ property_v_ptr make_property_v_ptr (arguments& args, const int start, const int 
     if (p < LAST_CSS_2_PROP) return property_constructor < CSS_PROPERTIES_2, prop_unknown > :: make (args, start, to, nits, p, s, t);
     if (p < LAST_CSS_3_PROP) return property_constructor < CSS_PROPERTIES_3, prop_unknown > :: make (args, start, to, nits, p, s, t);
     if (p < LAST_CSS_4_PROP) return property_constructor < CSS_PROPERTIES_4, prop_unknown > :: make (args, start, to, nits, p, s, t);
-    return property_constructor < CSS_PROPERTIES_5, prop_unknown > :: make (args, start, to, nits, p, s, t); 
+    if (p < LAST_CSS_5_PROP) return property_constructor < CSS_PROPERTIES_5, prop_unknown > :: make (args, start, to, nits, p, s, t);
+    return property_constructor < CSS_PROPERTIES_6, prop_unknown > :: make (args, start, to, nits, p, s, t); 
 #else // LIMITED_META_COMPLEXITY
-    return property_constructor < CSS_PROPERTIES_1, CSS_PROPERTIES_2, CSS_PROPERTIES_3, CSS_PROPERTIES_4, CSS_PROPERTIES_5, prop_unknown > :: make (args, start, to, nits, p, s, t); 
+    return property_constructor < CSS_PROPERTIES_1, CSS_PROPERTIES_2, CSS_PROPERTIES_3, CSS_PROPERTIES_4, CSS_PROPERTIES_5, CSS_PROPERTIES_6, prop_unknown > :: make (args, start, to, nits, p, s, t); 
 #endif // LIMITED_META_COMPLEXITY
 }
 

@@ -122,6 +122,11 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
                             param = assemble_string (args.t_, b, prev); } }
                     test_value < t_css_nth_oe > (nits, context.html_ver (), param); }
                 return;
+            case efn_nth_fragment :
+                if (context.css_overflow () < 4)
+                    nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS Text Overflow 4");
+                test_value < t_positive > (nits, context.html_ver (), param);
+                break;
             case efn_not :
                 if (knotted)
                 {   nits.pick (nit_not_not, ed_css_selectors_3, "6.6.7. The negation pseudo-class", es_error, ec_css, ":not(:not) is not nice");

@@ -59,7 +59,8 @@ public:
 template < e_type TYPE, typename base_type, class OFF, class ON, bool EMPTY >
     void two_value < TYPE, base_type, OFF, ON, EMPTY > :: init ()
 {   if (off_.empty ())
-    {   off_ = ::boost::to_lower_copy (::std::string (OFF::sz ()));
+    {   eleanor f (lox_eleanor);
+        off_ = ::boost::to_lower_copy (::std::string (OFF::sz ()));
         on_ =  ::boost::to_lower_copy (::std::string (ON::sz ()));
         PRESUME (! off_.empty (), __FILE__, __LINE__);
         PRESUME (! on_.empty (), __FILE__, __LINE__); } }
@@ -112,6 +113,9 @@ template < > struct type_master < t_always_normal > : two_value < t_always_norma
 
 template < > struct type_master < t_auto_break > : two_value < t_auto_break, e_auto_break, sz_auto, sz_break, false >
 { using two_value < t_auto_break, e_auto_break, sz_auto, sz_break, false > :: two_value; };
+
+template < > struct type_master < t_auto_contain > : two_value < t_auto_contain, e_auto_contain, sz_auto, sz_contain, false >
+{ using two_value < t_auto_contain, e_auto_contain, sz_auto, sz_contain, false > :: two_value; };
 
 template < > struct type_master < t_auto_none > : two_value < t_auto_none, e_auto_none, sz_auto, sz_none, false >
 { using two_value < t_auto_none, e_auto_none, sz_auto, sz_none, false > :: two_value; };
@@ -245,6 +249,9 @@ template < > struct type_master < t_forrev > : two_value < t_forrev, e_forrev, s
 
 template < > struct type_master < t_gender > : two_value < t_gender, e_gender, sz_female, sz_male, false >
 { using two_value < t_gender, e_gender, sz_female, sz_male, false > :: two_value; };
+
+template < > struct type_master < t_grid_normal > : two_value < t_grid_normal, e_grid_normal, sz_grid, sz_normal, false >
+{ using two_value < t_grid_normal, e_grid_normal, sz_grid, sz_normal, false > :: two_value; };
 
 template < > struct type_master < t_hidden > : two_value < t_hidden, e_hidden, sz_hidden, sz_until_found, true >
 { using two_value < t_hidden, e_hidden, sz_hidden, sz_until_found, true > :: two_value; };

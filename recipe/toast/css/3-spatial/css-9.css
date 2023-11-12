@@ -1,0 +1,17 @@
+﻿.scroller {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    height: 300px;
+    width: 200px;
+    overflow-y: scroll;
+    spatial-navigation-action: focus;
+}
+.item {
+    height: 100px;
+    width: 100px;
+    margin: 50px auto;
+    background-color: blue;
+}
+:focus {
+    background-color: red;
+}

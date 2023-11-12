@@ -842,6 +842,7 @@ const nitname nitnames [] =
     { nit_naughty_offset, "naughty_offset" },
     { nit_nesting, "nesting" },
     { nit_content, "content" },
+    { nit_excluded, "excluded" },
 
     { nit_incompatible, "incompatible" },
 

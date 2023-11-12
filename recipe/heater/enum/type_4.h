@@ -59,7 +59,8 @@ template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, cla
 template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, class SZ3 >
     void four_value < TYPE, base_type, SZ0, SZ1, SZ2, SZ3 > :: init ()
 {   if (a_.empty ())
-    {   a_ = ::boost::to_lower_copy (::std::string (SZ0::sz ()));
+    {   eleanor f (lox_eleanor);
+        a_ = ::boost::to_lower_copy (::std::string (SZ0::sz ()));
         b_ = ::boost::to_lower_copy (::std::string (SZ1::sz ()));
         c_ = ::boost::to_lower_copy (::std::string (SZ2::sz ()));
         d_ = ::boost::to_lower_copy (::std::string (SZ3::sz ())); 

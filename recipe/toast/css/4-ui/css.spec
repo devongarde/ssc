@@ -8,7 +8,7 @@ PASS ../toast/css/4-ui/css-4.css
 
 PASS ../toast/css/4-ui/css-5.css
 0 html
-47 deprecated
+47 abandoned
 
 PASS ../toast/css/4-ui/css-6.css
 0 html
