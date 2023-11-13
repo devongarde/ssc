@@ -353,7 +353,7 @@ the "no-" switch always applies.
 
 --general.exclude xxx   Ignore all paths containing xxx. May be
                         repeated. Case independent under Windows only.
-                        .DS_Store is always excluded in darwin (macos).
+                        .DS_Store is always excluded under darwin.
 
 --general.file XXX      File for persistent data. Requires -N. See also
                         --general.datapath. Default extension: .ndx.
@@ -413,11 +413,21 @@ the "no-" switch always applies.
 -n N                    appropriate for the hardware. Too high a value
                         can cause problems. See also --general.defthrd.
 
---general.vcs           Excludes some version control systems' files
-                        and directories, namely .bazaar, .bk, CVS,
-                        .cvsignore, db, _darcs, .fslckout, .git,
-                        .gitignore, .pijul, RCS, SCCS, & .svn. This
-                        also excludes directories called .ssc.
+--general.vcs           Excludes, as per --general.exclude:
+                            .bazaar
+                            .bk
+                            CVS
+                            .cvsignore
+                            _darcs
+                            .fslckout
+                            .git
+                            .gitattributes
+                            .gitignore
+                            .gitmodules
+                            .pijul
+                            RCS
+                            SCCS
+                            .svn
 
 --general.verbose x     Output nits to the specified verbosity:
 -v                      'catastrophe', 'error', 'warning', 'info',
