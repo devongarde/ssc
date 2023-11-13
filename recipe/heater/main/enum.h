@@ -5501,8 +5501,8 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
                 t_css_background_position_1, t_css_background_position_2, t_css_background_position_3, t_css_background_position_3s, \
                 t_css_background_positions, t_css_background_repeat,  t_css_background_repeat_2, t_css_background_repeat_3, t_css_background_repeats, \
                 t_css_background_size, t_css_background_sizes,  t_css_backval, t_css_base_palette, t_css_baseline_position, t_css_bespoke, \
-                t_css_blend_mode, t_css_block_step, t_css_border_collapse,  t_css_border_image, t_css_border_image_repeat, t_css_border_images_repeat
-#define SSC_TYPES_CSS_B_1_MAX t_css_break_inside
+                t_css_blend_mode, t_css_block_step, t_css_border_collapse, t_css_border_image, t_css_border_image_repeat, t_css_border_images_repeat
+#define SSC_TYPES_CSS_B_1_MAX t_css_border_images_repeat
 
 #define SSC_TYPES_CSS_B_2 \
                 t_css_border_image_slice, t_css_border_image_src, t_css_border_measure, t_css_border_radius, t_css_border_spacing, t_css_border_spacing_2, \
@@ -5569,7 +5569,8 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
             t_css_lang, t_css_langs, t_css_layout_box, t_css_length, t_css_length_2, t_css_length_3, t_css_length_4, t_css_length_a, t_css_length_a2, \
                 t_css_length_abs,  t_css_length_abs_r, t_css_length_ai, t_css_length_amm, t_css_length_n, t_css_length_xtz, t_css_lengths, t_css_lengths_a, \
                 t_css_lengths_a_l,  t_css_lengths_l, t_css_lengths_n, t_css_length_twice, t_css_line_break, t_css_line_clamp, t_css_line_clamp_n, \
-                t_css_line_height, t_css_list_style, t_css_list_style_position, t_css_list_style_type, t_css_list_style_type_cs, t_css_local_url, t_css_ls_val
+                t_css_line_height, t_css_list_style, t_css_list_style_position, t_css_list_style_type, t_css_list_style_type_cs, t_css_local_url, \
+                t_css_ls_val
 #define SSC_TYPES_CSS_J_L_MAX t_css_ls_val
 
 #define SSC_TYPES_CSS_M_N \
@@ -5766,12 +5767,12 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
         t_urifn, t_urifn_db, t_urifn_ni, t_urifn_str, t_urifn_xy, t_url, t_url_n, t_urls, t_urltemplate, t_user_modify
 #define SSC_TYPES_U_MAX t_user_modify
 
-#define SSC_TYPES_V_W\
+#define SSC_TYPES_V_W \
     t_valign, t_valign3, t_valign_tmb, t_value, t_values, t_valuetype, t_valuetype2, t_vector_effect, t_vector_effect_12, t_vector_effect_2, \
         t_vector_effect_20, t_vector_effect_2s, t_version, t_vertical_align, t_vertical_align_enum, t_vgender, t_vid, t_viewportscreen, t_visibility, \
         t_visibility10, t_visibility11, t_vkind, t_vocab, t_vrel, t_vtt, t_vtype, t_vunit, t_vunits, \
     t_wanted, t_wallclock, t_week, t_whitespace, t_width, t_workertype, t_wrap, t_wrap3, t_writingmode, t_wxhs
- #define SSC_TYPES_V_W_MAX t_zoompan
+ #define SSC_TYPES_V_W_MAX t_wxhs
 
 #define SSC_TYPES_X_Z \
    t_x_content_type_options, t_x_dot_y, t_x_ua_compatible, t_xlinkactuate, t_xlinkactuate_onrequest, t_xlinkactuate_onload, t_xlinkshow, t_xlinkshow_a, \

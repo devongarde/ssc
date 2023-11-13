@@ -1065,15 +1065,15 @@ void options::contextualise (nitpick& nits)
             context.exclude (nits, "CVS");
             context.exclude (nits, ".cvsignore");
             context.exclude (nits, "_darcs");
-            context.exclude (nits, "db");
             context.exclude (nits, ".fslckout");
             context.exclude (nits, ".git");
+            context.exclude (nits, ".gitattributes");
             context.exclude (nits, ".gitignore");
+            context.exclude (nits, ".gitmodules");
             context.exclude (nits, ".monotone");
             context.exclude (nits, ".pijul");
             context.exclude (nits, "RCS");
             context.exclude (nits, "SCCS");
-            context.exclude (nits, ".ssc");
             context.exclude (nits, ".svn"); }
         if (var_.count (GENERAL IGNORED)) context.ignore (nits, var_ [GENERAL IGNORED].as < vstr_t > ());
         if (var_.count (GENERAL LANG)) context.lang (var_ [GENERAL LANG].as < ::std::string > ());

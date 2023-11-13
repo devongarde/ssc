@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.1.46
+version 0.1.47
 (c) 2020-2023 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notice
 https://ssc.lu/
@@ -72,7 +72,7 @@ and forwarding it to the developer:
 - configuration file/s used, if any;
 - any ndx file or other pre-existing file used during the run;
 - any known workarounds, fixes or solutions;
-- a dance interpretation.
+- a video of a dance interpretation of the issue.
 Email everything to mail@ssc.lu (if the collected files are more than
 small, please use a public fileserver and email the link). Do NOT send
 anything confidential. Furthermore, unless you state otherwise, we
@@ -121,8 +121,11 @@ any tools to properly identify its flaws. Anything I did find was at
 most cursory.
 
 Then came the cow flu*.
+
+Hence ssc is a covid project that grew out of hand.
+
 * corvid means crow, thus covid means cow**.
-** by the law of sympathetic spelling.
+** by the laws of sympathetic spelling.
 
 
 

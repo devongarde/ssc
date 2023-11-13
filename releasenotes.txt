@@ -3,7 +3,13 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.47
+- amended --general.vcs filename list
+- fix type bug
+- underlying work
+
 0.1.46
+- NOTE 0.1.46 has a type bug; prefer 0.1.47.
 - CSS Box Sizing 4
 - CSS Text Overflow 4
 - CSS Spatial Navigation 3
