@@ -180,34 +180,34 @@ void html_version::init (const unsigned short mjr)
     if (known () && xhtml ())
     {   res << "XHTML";
         switch (mnr ())
-        {   case 2 : res << "1.0"; break;
-            case 3 : res << "1.1"; break;
-            case 4 : res << "2.0"; break;
-            default : res << "5"; } }
+        {   case 2 : res << "-1.0"; break;
+            case 3 : res << "-1.1"; break;
+            case 4 : res << "-2.0"; break;
+            default : res << "-5"; } }
     else
     {   res << "HTML";
         if (known ())
             switch (mjr ())
             {   case 0 :
-                    if (mnr () == 1) res << "Tags";
+                    if (mnr () == 1) res << "-Tags";
                     break;
                 case 1 :
-                    if (mnr () == 0) res << "1";
+                    if (mnr () == 0) res << "-1";
                     else if (mnr () == 1) res << "+";
                     break;
                 case 2 :
-                    res << "2";
+                    res << "-2";
                     if (level () > 0) res << "/" << level ();
                     break;
                 case 3 :
-                    res << "3." << GSL_NARROW_CAST <char> (mnr () + '0');
+                    res << "-3." << GSL_NARROW_CAST <char> (mnr () + '0');
                     break;
                 case 4 :
-                    res << "4.0";
+                    res << "-4.0";
                     if (mnr () == 1) res << "1";
                     break;
                 default:
-                    res << minor_to_date (*this);
+                    res << "-" << minor_to_date (*this);
                     break; } }
     return res.str (); }
 

@@ -58,6 +58,11 @@ public:
         return i -> second; }
     cit cbegin () const { return count_.cbegin (); }
     cit cend () const { return count_.cend (); }
+    bool exists (const T& s) const
+    {   for (auto i : count_)
+            if (i.first.a_ == s)
+                return true;
+        return false; }
     void mark (const T& a, const T& b, const unsigned u = 1)
     {   mark (ab_t (a, b), u); }
     void accumulate (stats4 < T >& o) const

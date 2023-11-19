@@ -1,4 +1,4 @@
-/*                                                                 ,
+﻿/*                                                                 ,
 ssc (static site checker)
 Copyright (c) 2020-2023 Dylan Harris
 https://dylanharris.org/
@@ -1305,6 +1305,9 @@ typedef enum { eg_p3, eg_rec2020, eg_srgb  } e_gamut;
 typedef enum { g_female, g_male } e_gender;
 typedef enum { gu_userspaceonuse, gu_objectboundingbox } e_gradientunits;
 typedef enum { gn_grid, gn_normal } e_grid_normal;
+typedef enum
+{   gst_annotation, gst_character_variant, gst_content_name, gst_counter_style, gst_font_family, gst_highlight, gst_historical_form, gst_keyframe,
+    gst_layer, gst_ornament, gst_page_name, gst_palette, gst_region, gst_scroll_anim, gst_styleset, gst_stylistic, gst_swash, gst_view, gst_max } e_gsstr;
 typedef enum { al_left, al_center, al_right, al_justify, al_char } e_halign;
 typedef enum { eh_hidden, eh_untilfound } e_hidden;
 
@@ -2470,7 +2473,7 @@ typedef enum
     nit_css_font_feature, nit_css_palette, nit_descriptor, nit_not_here, nit_counter_style, nit_clacks, nit_bad_supports,
     nit_experimental, nit_cache, nit_arxiv, nit_coden, nit_prism, nit_mask, nit_mask_border, nit_profile, nit_container,
     nit_abandoned, nit_when_else, nit_part, nit_highlight, nit_sda, nit_vtn, nit_naughty_offset, nit_nesting, nit_content,
-    nit_excluded,
+    nit_excluded, nit_ftp_protocol, nit_tld,
 
     nit_incompatible,
 
@@ -2504,8 +2507,15 @@ typedef enum
         nm_context_rfc_1867, nm_context_rfc_1942, nm_context_rfc_1980, nm_context_rfc_2070, nm_context_root, nm_context_safari,
         nm_context_schema, nm_context_ontology_version, nm_context_shadow_comment, nm_context_shadow_changed, nm_context_shadow_enable,
         nm_context_shadow_ignore, nm_context_shadow_persist, nm_context_shadow_root, nm_context_shadow_ssi, nm_context_shadow_space,
-        nm_context_shadows, nm_context_site, nm_context_slob, nm_context_spec, nm_context_spell, nm_context_spell_path, nm_context_spellings,
-        nm_context_ssi, nm_context_stats_export, nm_context_stats_page, nm_context_stats_summary, nm_context_svg_version, nm_context_tags,
+        nm_context_shadows, nm_context_site, nm_context_sloven, nm_context_spec, nm_context_spell, nm_context_spell_path, nm_context_spellings,
+        nm_context_ssi, nm_context_stats_export, nm_context_stats_page, nm_context_stats_summary,
+        nm_context_stats_abbr, nm_context_stats_annotation, nm_context_stats_category, nm_context_stats_character_variant, nm_context_stats_class,
+        nm_context_stats_content_name, nm_context_stats_counter_style, nm_context_stats_css_property, nm_context_stats_custom_media, nm_context_stats_custom_property,
+        nm_context_stats_dfn, nm_context_stats_dtdd, nm_context_stats_element, nm_context_stats_file, nm_context_stats_font, nm_context_stats_font_family,
+        nm_context_stats_highlight, nm_context_stats_historical_form, nm_context_stats_itemid, nm_context_stats_keyframe, nm_context_stats_layer, nm_context_stats_meta,
+        nm_context_stats_ontology, nm_context_stats_ornament, nm_context_stats_page_name, nm_context_stats_palette, nm_context_stats_reference, nm_context_stats_region,
+        nm_context_stats_scroll_anim, nm_context_stats_statement, nm_context_stats_styleset, nm_context_stats_stylistic, nm_context_stats_swash,
+        nm_context_stats_version, nm_context_stats_view,nm_context_svg_version, nm_context_tags,
         nm_context_test, nm_context_title, nm_context_unknown_class, nm_context_version, nm_context_virtuals, nm_context_xsd, nm_copy_addr,
         nm_copy_html, nm_copy_text,
     nm_general_info, nm_general_output, nm_general_path, nm_grand_title,
@@ -5441,6 +5451,143 @@ typedef enum { ac_false, ac_mixed, ac_true, ac_undefined  } e_tfmu;
 typedef enum { tfa_auto, tfa_false, tfa_true } e_tfa;
 typedef enum { tfi_false, tfi_true, tfi_inherit } e_tfi;
 typedef enum { tfu_false, tfu_true, tfu_undefined } e_tfu;
+
+typedef enum
+{   tld_context,
+    tld_aaa, tld_aarp, tld_abarth, tld_abb, tld_abbott, tld_abbvie, tld_abc, tld_abogado, tld_abudhabi, tld_ac, tld_academy,
+        tld_accenture, tld_accountant, tld_accountants, tld_aco, tld_active, tld_actor, tld_ad, tld_ads, tld_adult, tld_ae, tld_aeg,
+        tld_aero, tld_aetna, tld_af, tld_afl, tld_africa, tld_ag, tld_agakhan, tld_agency, tld_ai, tld_aig, tld_aigo,
+        tld_airbus, tld_airforce, tld_airtel, tld_akdn, tld_al, tld_alfaromeo, tld_alibaba, tld_alipay, tld_allfinanz, tld_allstate,
+        tld_ally, tld_alsace, tld_alstom, tld_am, tld_amazon, tld_americanexpress, tld_amex, tld_amica, tld_amsterdam,
+        tld_analytics, tld_android, tld_anz, tld_ao, tld_aol, tld_apartments, tld_app, tld_apple, tld_aq, tld_aquarelle,
+        tld_ar, tld_arab, tld_aramco, tld_archi, tld_army, tld_arpa, tld_art, tld_arte, tld_as, tld_asia, tld_associates,
+        tld_at, tld_attorney, tld_au, tld_auction, tld_audi, tld_audible, tld_audio, tld_auspost, tld_author, tld_auto, tld_autos,
+        tld_aw, tld_aws, tld_ax, tld_axa, tld_az, tld_azure,
+    tld_ba, tld_baby, tld_baidu, tld_bananarepublic, tld_band, tld_bank, tld_bar, tld_barcelona, tld_barclaycard, tld_barclays,
+        tld_barefoot, tld_bargains, tld_baseball, tld_basketball, tld_bauhaus, tld_bayern, tld_bazar, tld_bb, tld_bbc, tld_bbs,
+        tld_bbt, tld_bbva, tld_bcg, tld_bcn, tld_bd, tld_be, tld_beauty, tld_beer, tld_bentley, tld_berlin, tld_best, tld_bestbuy, tld_bet,
+        tld_bf, tld_bg, tld_bh, tld_bharti, tld_bi, tld_bible, tld_bid, tld_bike, tld_bing, tld_bingo, tld_bio, tld_bit, tld_biz, tld_bj,
+        tld_black, tld_blackfriday, tld_blanco, tld_blockbuster, tld_blog, tld_bloomberg, tld_blue, tld_bm, tld_bms, tld_bmw, tld_bn, tld_bnl,
+        tld_bnpparibas, tld_bo, tld_boehringer, tld_bom, tld_bond, tld_boo, tld_book, tld_booking, tld_boots, tld_bosch, tld_bostik,
+        tld_boston, tld_bot, tld_boutique, tld_box, tld_bq, tld_br, tld_bradesco, tld_bridgestone, tld_broadway, tld_broker, tld_brother,
+        tld_brussels, tld_bs, tld_bt, tld_bugatti, tld_build, tld_builders, tld_business, tld_buy, tld_buzz, tld_bw, tld_by, tld_bz, tld_bzh,
+    tld_ca, tld_cab, tld_cafe, tld_cal, tld_call, tld_calvinklein, tld_cam, tld_camera, tld_camp, tld_cancerresearch, tld_canon, tld_capetown,
+        tld_capital, tld_capitalone, tld_car, tld_caravan, tld_cards, tld_care, tld_career, tld_careers, tld_cars, tld_cartier, tld_casa,
+        tld_case, tld_cash, tld_casino, tld_cat, tld_catering, tld_catholic, tld_cba, tld_cbn, tld_cbre, tld_cbs, tld_cc, tld_cd, tld_center,
+        tld_ceo, tld_cern, tld_cf, tld_cfa, tld_cfd, tld_cg, tld_ch, tld_chan, tld_chanel, tld_channel, tld_charity, tld_chase,
+        tld_chat, tld_cheap, tld_chintai, tld_christmas, tld_chrome, tld_chrysler, tld_church, tld_ci, tld_cipriani, tld_circle, tld_cisco,
+        tld_citadel, tld_citi, tld_citic, tld_city, tld_ck, tld_cl, tld_claims, tld_cleaning, tld_click, tld_clinic, tld_clinique, tld_clothing,
+        tld_cloud, tld_club, tld_clubmed, tld_cm, tld_cn, tld_co, tld_coach, tld_codes, tld_coffee, tld_coin, tld_college, tld_cologne, tld_com,
+        tld_comcast, tld_commbank, tld_community, tld_company, tld_compare, tld_computer, tld_condos, tld_construction, tld_consulting,
+        tld_contact, tld_contractors, tld_cooking, tld_cool, tld_coop, tld_corsica, tld_country, tld_coupon, tld_coupons, tld_courses,
+        tld_cpa, tld_cr, tld_credit, tld_creditcard, tld_creditunion, tld_cricket, tld_crown, tld_crs, tld_cruise, tld_cruises, tld_crypto,
+        tld_csc, tld_cu, tld_cuisinella, tld_cv, tld_cw, tld_cx, tld_cy, tld_cyb, tld_cymru, tld_cyou, tld_cz,
+    tld_dabur, tld_dad, tld_dance, tld_data, tld_date, tld_dating, tld_datsun, tld_day, tld_de, tld_deal, tld_dealer, tld_deals, tld_degree,
+        tld_delivery, tld_dell, tld_deloitte, tld_delta, tld_democrat, tld_dental, tld_dentist, tld_desi, tld_design, tld_dev, tld_dhl,
+        tld_diamonds, tld_diet, tld_digital, tld_direct, tld_directory, tld_discount, tld_discover, tld_dish, tld_diy, tld_dj, tld_dk, tld_dm,
+        tld_dnp, tld_do, tld_docs, tld_doctor, tld_dodge, tld_dog, tld_doha, tld_domains, tld_dot, tld_download, tld_drive, tld_dubai, tld_dunlop,
+        tld_dupont, tld_durban, tld_dvag, tld_dyn, tld_dz,
+    tld_earth, tld_eat, tld_ec, tld_eco, tld_edeka, tld_edu, tld_education, tld_ee, tld_eg, tld_eh, tld_email, tld_emc, tld_emerck,
+        tld_energy, tld_engineer, tld_engineering, tld_enterprises, tld_entertainment, tld_epost, tld_epson, tld_equipment, tld_er, tld_ericsson,
+        tld_erni, tld_es, tld_esq, tld_estate, tld_esurance, tld_et, tld_eth, tld_etisalat, tld_eu, tld_eurovision, tld_eus, tld_events,
+        tld_everbank, tld_example, tld_exchange, tld_expert, tld_exposed, tld_express, tld_extraspace,
+    tld_fage, tld_fail, tld_fairwinds, tld_faith, tld_family, tld_fan, tld_fans, tld_farm, tld_farmers, tld_fashion, tld_fast, tld_fedex,
+        tld_feedback, tld_ferrari, tld_ferrero, tld_fi, tld_fiat, tld_fidelity, tld_film, tld_final, tld_finance, tld_financial,
+        tld_fire, tld_firestone, tld_firmdale, tld_fish, tld_fishing, tld_fit, tld_fitness, tld_fj, tld_fk, tld_flickr, tld_flights, tld_flir,
+        tld_florist, tld_flowers, tld_flsmidth, tld_fly, tld_fm, tld_fo, tld_foo, tld_food, tld_foodnetwork, tld_football, tld_ford, tld_forex,
+        tld_forsale, tld_forum, tld_foundation, tld_fox, tld_fr, tld_free, tld_fresenius, tld_frl, tld_frogans, tld_frontdoor, tld_frontier,
+        tld_fujitsu, tld_fujixerox, tld_fun, tld_fund, tld_fur, tld_furniture, tld_futbol, tld_fyi,
+    tld_ga, tld_gal, tld_gallery, tld_gallo, tld_gallup, tld_game, tld_games, tld_gap, tld_garden, tld_gay, tld_gbiz, tld_gd, tld_gdn, tld_ge,
+        tld_gea, tld_geek, tld_gent, tld_genting, tld_gf, tld_gg, tld_gh, tld_gi, tld_gift, tld_gifts, tld_gives, tld_giving, tld_gl, tld_glass,
+        tld_gle, tld_global, tld_globo, tld_gm, tld_gmail, tld_gmbh, tld_gmo, tld_gmx, tld_gn, tld_godaddy, tld_gold,
+        tld_goldpoint, tld_golf, tld_goodyear, tld_goog, tld_google, tld_gop, tld_gopher, tld_gov, tld_gp, tld_gq, tld_gr,
+        tld_grainger, tld_graphics, tld_gratis, tld_green, tld_gripe, tld_grocery, tld_group, tld_gs, tld_gt, tld_gu, tld_guardian, tld_gucci,
+        tld_guide, tld_guitars, tld_guru, tld_gw, tld_gy,
+    tld_hair, tld_hamburg, tld_hangout, tld_haus,  tld_hbo, tld_hdfc, tld_hdfcbank, tld_health, tld_healthcare, tld_help,
+        tld_helsinki, tld_here, tld_hermes, tld_hiphop, tld_hisamitsu, tld_hitachi, tld_hiv, tld_hk, tld_hkt, tld_hm, tld_hn, tld_hockey,
+        tld_holdings, tld_holiday, tld_home, tld_homegoods, tld_homes, tld_homesense, tld_honda, tld_honeywell, tld_horse, tld_hospital, tld_host,
+        tld_hosting, tld_hot, tld_hoteles, tld_hotels, tld_hotmail, tld_house, tld_how, tld_hr, tld_hsbc, tld_ht, tld_hu, tld_hughes, tld_hyatt,
+        tld_hyundai,
+    tld_ibm, tld_ice, tld_icu, tld_id, tld_ie, tld_ieee, tld_ifm, tld_ikano, tld_il, tld_im, tld_imdb, tld_immo, tld_immobilien, tld_in,
+        tld_inc, tld_industries, tld_indy, tld_infiniti, tld_info, tld_ing, tld_ink, tld_institute, tld_insurance, tld_insure, tld_int, tld_intel,
+        tld_international, tld_intuit, tld_invalid, tld_investments, tld_io, tld_ipiranga, tld_iq, tld_ir, tld_irish, tld_is, tld_iselect,
+        tld_ist, tld_istanbul, tld_it, tld_itau, tld_itv, tld_iveco,
+    tld_jaguar, tld_java, tld_jcb, tld_jcp, tld_je, tld_jeep, tld_jetzt, tld_jewelry, tld_jm, tld_jo, tld_jobs, tld_joburg, tld_joy, tld_jp,
+        tld_jpmorgan, tld_juegos, tld_juniper,
+    tld_kaufen, tld_kddi, tld_ke, tld_kerryhotels, tld_kerrylogistics, tld_kerryproperties, tld_kfh, tld_kg, tld_kh, tld_ki, tld_kia,
+        tld_kim, tld_kinder, tld_kindle, tld_kitchen, tld_kiwi, tld_km, tld_kn, tld_ko, tld_koeln, tld_komatsu, tld_kosher, tld_kp,
+        tld_kpmg, tld_kpn, tld_kr, tld_krd, tld_kred, tld_ku, tld_kuokgroup, tld_kw, tld_ky, tld_kyoto, tld_kz,
+    tld_la, tld_lacaixa, tld_ladbrokes, tld_lamborghini, tld_lan, tld_lancaster, tld_lancia, tld_lancome, tld_land, tld_landrover, tld_lanxess,
+        tld_lasalle, tld_lat, tld_latrobe, tld_law, tld_lawyer, tld_lb, tld_lc, tld_lds, tld_lease, tld_leclerc, tld_legal, tld_lego,
+        tld_lexus, tld_lgbt, tld_li, tld_liaison, tld_lib, tld_libre, tld_lidl, tld_life, tld_lifeinsurance, tld_lifestyle, tld_lighting,
+        tld_like, tld_lilly, tld_limited, tld_limo, tld_lincoln, tld_linde, tld_link, tld_lipsy, tld_live, tld_living, tld_lixil, tld_lk,
+        tld_loan, tld_loans, tld_local, tld_localhost, tld_locker, tld_locus, tld_lol, tld_london, tld_lotte, tld_lotto, tld_love, tld_lpl,
+        tld_lplfinancial, tld_lr, tld_ls, tld_lt, tld_ltd, tld_ltda, tld_lu, tld_lundbeck, tld_lupin, tld_luxe, tld_luxury, tld_lv, tld_ly,
+    tld_ma, tld_macys, tld_madrid, tld_maif, tld_maison, tld_makeup, tld_man, tld_management, tld_mango, tld_map, tld_market, tld_marketing,
+        tld_markets, tld_marriott, tld_maserati, tld_mattel, tld_mba, tld_mc, tld_mckinsey, tld_md, tld_me, tld_med, tld_media, tld_meet,
+        tld_melbourne, tld_meme, tld_memorial, tld_men, tld_menu, tld_metlife, tld_mg, tld_mh, tld_miami, tld_microsoft, tld_mil, tld_mini,
+        tld_mint, tld_mit, tld_mitsubishi, tld_mk, tld_ml, tld_mlb, tld_mm, tld_mma, tld_mn, tld_mo, tld_mobi, tld_mobile, tld_mobily, tld_moda,
+        tld_moe, tld_moi, tld_mom, tld_monash, tld_money, tld_monster, tld_mormon, tld_mortgage, tld_moscow, tld_moto, tld_motorcycles, tld_mov,
+        tld_movie, tld_movistar, tld_mp, tld_mq, tld_mr, tld_ms, tld_msd, tld_mt, tld_mtn, tld_mtr, tld_mu, tld_museum, tld_music, tld_mutual,
+        tld_mv, tld_mw, tld_mx, tld_my, tld_mz, tld_na,
+    tld_nadex, tld_nagoya, tld_name, tld_nationwide, tld_natura, tld_navy, tld_nba, tld_nc, tld_ne, tld_nec, tld_neo, tld_net, tld_netflix,
+        tld_network, tld_neustar, tld_new, tld_newholland, tld_news, tld_nexus, tld_nf, tld_nfl, tld_ng, tld_ngo, tld_nhk, tld_ni, tld_nico,
+        tld_nike, tld_nikon, tld_ninja, tld_nissan, tld_nissay, tld_nl, tld_no, tld_nokia, tld_northwesternmutual, tld_norton, tld_now, tld_np,
+        tld_nr, tld_nra, tld_nrw, tld_ntt, tld_nu, tld_null, tld_nyc, tld_nz,
+    tld_o, tld_obi, tld_observer, tld_office, tld_okinawa, tld_om, tld_omega, tld_one, tld_ong, tld_onion, tld_onl, tld_online, tld_ooo,
+        tld_open, tld_oracle, tld_orange, tld_org, tld_organic, tld_origins, tld_osaka, tld_oss, tld_otsuka, tld_ovh, tld_oz, tld_pa, tld_page,
+    tld_panasonic, tld_paris, tld_parody, tld_partners, tld_parts, tld_party, tld_passagens, tld_pay, tld_pccw, tld_pe, tld_pet, tld_pf,
+        tld_pfizer, tld_pg, tld_ph, tld_pharmacy, tld_philips, tld_phone, tld_photo, tld_photography, tld_photos, tld_physio, tld_piaget,
+        tld_pics, tld_pictet, tld_pictures, tld_pid, tld_pin, tld_ping, tld_pink, tld_pioneer, tld_pirate, tld_pizza, tld_pk, tld_pl, tld_place,
+        tld_play, tld_playstation, tld_plumbing, tld_plus, tld_pm, tld_pn, tld_pohl, tld_poker, tld_politie, tld_porn, tld_post, tld_pr,
+        tld_praxi, tld_press, tld_prime, tld_pro, tld_prod, tld_productions, tld_prof, tld_progressive, tld_promo, tld_properties, tld_property,
+        tld_protection, tld_pru, tld_prudential, tld_ps, tld_pt, tld_pub, tld_pw, tld_pwc, tld_py,
+    tld_qa, tld_qpon, tld_quebec, tld_quest, tld_qvc,
+    tld_racing, tld_radio, tld_re, tld_read, tld_realestate, tld_realtor, tld_realty, tld_recipes, tld_red, tld_redstone, tld_rehab,
+        tld_reise, tld_reisen, tld_reit, tld_reliance, tld_ren, tld_rent, tld_rentals, tld_repair, tld_report, tld_republican, tld_rest,
+        tld_restaurant, tld_review, tld_reviews, tld_rexroth, tld_rich, tld_ricoh, tld_rio, tld_rip, tld_rm, tld_rmit, tld_ro, tld_rocher,
+        tld_rocks, tld_rodeo, tld_rogers, tld_room, tld_rs, tld_rsvp, tld_ru, tld_rugby, tld_ruhr, tld_run, tld_rw, tld_rwe, tld_ryukyu,
+    tld_sa, tld_saarland, tld_safe, tld_safety, tld_sakura, tld_sale, tld_salon, tld_samsung, tld_sandvik, tld_sandvikcoromant, tld_sanofi,
+        tld_sap, tld_sarl, tld_save, tld_saxo, tld_sb, tld_sbi, tld_sbs, tld_sc, tld_sca, tld_scb, tld_schaeffler, tld_schmidt,
+        tld_scholarships, tld_school, tld_schule, tld_schwarz, tld_science, tld_scjohnson, tld_scor, tld_scot, tld_sd, tld_se, tld_search,
+        tld_seat, tld_secure, tld_security, tld_seek, tld_select, tld_sener, tld_services, tld_ses, tld_seven, tld_sew, tld_sex, tld_sexy,
+        tld_sfr, tld_sg, tld_sh, tld_shangrila, tld_sharp, tld_shaw, tld_shell, tld_shiksha, tld_shoes, tld_shop, tld_shopping, tld_shouji,
+        tld_show, tld_showtime, tld_shriram, tld_si, tld_silk, tld_sina, tld_singles, tld_site, tld_sk, tld_ski, tld_skin, tld_sky,
+        tld_skype, tld_sl, tld_sling, tld_sm, tld_smart, tld_smile, tld_sn, tld_sncf, tld_so, tld_soccer, tld_social, tld_softbank,
+        tld_software, tld_sohu, tld_solar, tld_solutions, tld_song, tld_sony, tld_soy, tld_spa, tld_space, tld_spiegel, tld_sport, tld_spot,
+        tld_spreadbetting, tld_sr, tld_srl, tld_ss, tld_st, tld_stada, tld_staples, tld_star, tld_starhub, tld_statebank, tld_statefarm,
+        tld_statoil, tld_stc, tld_stcgroup, tld_stockholm, tld_storage, tld_store, tld_stream, tld_studio, tld_study, tld_style, tld_su,
+        tld_sucks, tld_supplies, tld_supply, tld_support, tld_surf, tld_surgery, tld_suzuki, tld_sv, tld_swatch, tld_swiftcover, tld_swiss,
+        tld_sx, tld_sy, tld_sydney, tld_symantec, tld_systems, tld_sz,
+    tld_taipei, tld_talk, tld_taobao, tld_target, tld_tatamotors, tld_tatar, tld_tattoo, tld_tax, tld_taxi, tld_tc, tld_td, tld_tdk, tld_te,
+        tld_team, tld_tech, tld_technology, tld_tel, tld_telecity, tld_telefonica, tld_temasek, tld_tennis, tld_test, tld_teva, tld_tf, tld_tg,
+        tld_th, tld_theater, tld_theatre, tld_ti, tld_tickets, tld_tienda, tld_tiffany, tld_tips, tld_tires, tld_tirol, tld_tj, tld_tjx, tld_tk,
+        tld_tl, tld_tm, tld_tn, tld_to, tld_today, tld_tokyo, tld_tools, tld_top, tld_toray, tld_toshiba, tld_total, tld_tours, tld_town,
+        tld_toyota, tld_toys, tld_tr, tld_trade, tld_trading, tld_training, tld_travel, tld_travelchannel, tld_travelers, tld_travelersinsurance,
+        tld_trust, tld_tt, tld_tube, tld_tui, tld_tunes, tld_tushu, tld_tv, tld_tvs, tld_tw, tld_tz,
+    tld_ua, tld_ubs, tld_uconnect, tld_ug, tld_uk, tld_unicom, tld_university, tld_uno, tld_uol, tld_ups, tld_us, tld_uu, tld_uy, tld_uz,
+    tld_va, tld_vacations, tld_vanguard, tld_vc, tld_ve, tld_vegas, tld_ventures, tld_verisign, tld_versicherung, tld_vet, tld_vg, tld_vi,
+        tld_viajes, tld_video, tld_vig, tld_viking, tld_villas, tld_vin, tld_vip, tld_virgin, tld_visa, tld_vision, tld_vista, tld_vistaprint,
+        tld_vivo, tld_vlaanderen, tld_vm, tld_vn, tld_vodka, tld_volkswagen, tld_volvo, tld_vote, tld_voting, tld_voto, tld_voyage, tld_vu, tld_vuelos,
+    tld_wales, tld_walmart, tld_walter, tld_wang, tld_wanggou, tld_watch, tld_watches, tld_weather, tld_weatherchannel, tld_webcam, tld_weber,
+        tld_website, tld_wed, tld_wedding, tld_weibo, tld_weir, tld_wf, tld_whoswho, tld_wien, tld_wiki, tld_williamhill, tld_win, tld_windows,
+        tld_wine, tld_winners, tld_wme, tld_wolterskluwer, tld_woodside, tld_work, tld_works, tld_world, tld_wow, tld_ws, tld_wtc, tld_wtf,
+    tld_xbox, tld_xerox, tld_xfinity, tld_xihuan, tld_xin, tld_xxx, tld_xyz,
+    tld_yachts, tld_yahoo, tld_yamaxun, tld_yandex, tld_ye, tld_yodobashi, tld_yoga, tld_yokohama, tld_you, tld_youtube, tld_yt,
+    tld_za, tld_zappos, tld_zara, tld_zero, tld_zip, tld_zippo, tld_zm, tld_zone, tld_zuerich, tld_zw,
+    tld_xn__11b4c3d, tld_xn__1ck2e1b, tld_xn__1qqw23a, tld_xn__30rr7y, tld_xn__3bst00m, tld_xn__3ds443g, tld_xn__3oq18vl8pn36a,
+        tld_xn__42c2d9a, tld_xn__45q11c, tld_xn__4gbrim, tld_xn__54b7fta0cc, tld_xn__55qw42g, tld_xn__55qx5d, tld_xn__5su34j936bgsg,
+        tld_xn__5tzm5g, tld_xn__6frz82g, tld_xn__6qq986b3xl, tld_xn__80adxhks, tld_xn__80aqecdr1a, tld_xn__80asehdb, tld_xn__80aswg,
+        tld_xn__8y0a063a, tld_xn__9dbq2a, tld_xn__b4w605ferd, tld_xn__bck1b9a5dre4c, tld_xn__c1avg, tld_xn__c2br7g, tld_xn__cck2b3b,
+        tld_xn__cg4bki, tld_xn__czr694b, tld_xn__czru2d, tld_xn__d1acj3b, tld_xn__eckvdtc9d, tld_xn__estv75g, tld_xn__fhbei, tld_xn__fiq228c5hs,
+        tld_xn__fiq64b, tld_xn__flw351e, tld_xn__fzys8d69uvgm, tld_xn__g2xx48c, tld_xn__gckr3f0f, tld_xn__i1b6b1a6a2e, tld_xn__io0a7i,
+        tld_xn__j1aef, tld_xn__jlq61u9w7b, tld_xn__kcrx77d1x4a, tld_xn__kput3i, tld_xn__mgba3a3ejt, tld_xn__mgbaakc7dvf, tld_xn__mgbab2bd,
+        tld_xn__mgbb9fbpob, tld_xn__mgbca7dzdo, tld_xn__mgbi4ecexp, tld_xn__mk1bu44c, tld_xn__mxtq1m, tld_xn__ngbc5azd, tld_xn__ngbe9e0a,
+        tld_xn__ngbrx, tld_xn__nqv7f, tld_xn__p1acf, tld_xn__q9jyb4c, tld_xn__qcka1pmc, tld_xn__rhqv96g, tld_xn__ses554g, tld_xn__t60b56a,
+        tld_xn__tckwe, tld_xn__vermgensberater_ctb, tld_xn__vermgensberatung_pwb, tld_xn__w4r85el8fhu5dnra, tld_xn__w4rs40l, tld_xn__xhq521b,
+        tld_xn__h2brj9c,
+    tld_error } e_tld;
+
 typedef enum { ta_translate, ta_scale, ta_rotate, ta_skewx, ta_skewy } e_transform_anim;
 typedef enum { tb_geometric, tb_pinned, tb_pinned90, tb_pinned180, tb_pinned270 } e_transformbehaviour;
 typedef enum { tr_nowt, tr_matrix, tr_ref, tr_translate, tr_translatex, tr_translatey, tr_scale, tr_scalex, tr_scaley, tr_rotate, tr_skew, tr_skewx, tr_skewy } e_transform_fn;
@@ -5754,10 +5901,10 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_SVG_MAX t_svg_viewboxrect
 
 #define SSC_TYPES_T \
-    t_tableframe, t_tablevalues, t_target, t_tbalign, t_tblri, t_tcbalign, t_tdscope, t_tel, t_tendstotype, t_text, t_text_2, t_text_2n, t_text_a, t_text_na, \
-        t_text_decoration, t_textoverflow, t_text_rendering, t_texts, t_texts_n, t_tfa, t_tfi, t_tfmu, t_tfn, t_tfu, t_tokens, t_to_lrtb, t_transform, \
-        t_transform_anim, t_transformbehaviour, t_transform_fn, t_transition_subtype, t_transition_type, t_transp, t_transparentsz, t_truefalseempty, \
-        t_turbulence_type, t_type, t_type_fn, t_typeof, t_tz
+    t_tableframe, t_tablevalues, t_target, t_tbalign, t_tblri, t_tcbalign, t_tdscope, t_tel, t_tendstotype, t_text, t_text_2, t_text_2n, t_text_a, \
+        t_text_na, t_text_decoration, t_textoverflow, t_text_rendering, t_texts, t_texts_n, t_tfa, t_tfi, t_tfmu, t_tfn, t_tfu, t_tld, t_tokens, \
+        t_to_lrtb, t_transform, t_transform_anim, t_transformbehaviour, t_transform_fn, t_transition_subtype, t_transition_type, t_transp, \
+        t_transparentsz, t_truefalseempty, t_turbulence_type, t_type, t_type_fn, t_typeof, t_tz
 #define SSC_TYPES_T_MAX t_tz
 
 #define SSC_TYPES_U \

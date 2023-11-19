@@ -47,6 +47,8 @@ void distilled::accumulate (stats_t* s) const
 {   VERIFY_NOT_NULL (s, __FILE__, __LINE__);
     for (auto c : class_)
         s -> dcl_class (c.first, c.second);
+    for (auto c : custom_prop_)
+        s -> dcl_custom_prop (c.first, c.second);
     for (auto c : id_)
         s -> dcl_id (c.first, c.second);
     for (auto c : element_class_)
@@ -54,7 +56,10 @@ void distilled::accumulate (stats_t* s) const
     for (auto c : element_id_)
         s -> dcl_element_id (c.first, c.second);
     for (auto c : font_)
-        s -> mark_font (c.first, c.second); }
+        s -> mark_font (c.first, c.second);
+    for (int i = 0; i < gst_max; ++i)
+        for (auto c : str_.at (i))
+            s -> mark_str (static_cast < e_gsstr > (i), c); }
 
 ::std::string distilled::review (const mmac_t& mac, const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot, const e_nit_section& page_head, const bool unfiltered)
 {   // here, cp_ is borked

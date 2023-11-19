@@ -561,13 +561,13 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
                 else status = es_args;
                 break;
             case es_am_2 : if (*i == '>')
-            {   ::std::string a (unify_whitespace (trim_the_lot_off (::std::string (args, i-3))));
-                ::std::string ln (::boost::lexical_cast < ::std::string > (line));
-                ln += ": <!--#";
-                ln += cmd + " " + a + " -->";
-                to += process_ssi (ln, nits, v, p, c, cmd, a, linechange, inif, updated);
-                revised = true; status = es_dull; }
-            break;
+                {   ::std::string a (unify_whitespace (trim_the_lot_off (::std::string (args, i-3))));
+                    ::std::string ln (::boost::lexical_cast < ::std::string > (line));
+                    ln += ": <!--#";
+                    ln += cmd + " " + a + " -->";
+                    to += process_ssi (ln, nits, v, p, c, cmd, a, linechange, inif, updated);
+                    revised = true; status = es_dull; }
+                break;
             case es_note :
                 if (*i == '-') status = es_cm_1;
                 break;
@@ -576,8 +576,10 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
                 else status = es_note;
                 break;
             case es_cm_2 :
-                if (*i == '>') status = es_dull;
-                warned = false;
+                if (*i == '>')
+                {   status = es_dull;
+                    warned = false; }
+                else status = es_note;
                 break; } }
     switch (status)
     {   case es_ssi :

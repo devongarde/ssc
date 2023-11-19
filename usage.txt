@@ -12,42 +12,41 @@ directory, and type:
     Windows: ssc
     Unix: ./ssc
 
-If it is installed correctly, it should respond with (c) info.
+If it's installed correctly, it should respond with (c) info.
 
 It is possible to set up configuration files, but, to start, we'll try
-a simple set of command line options. It the HTML files belonging to
-your website is located in DIR, and the main index file is called
-index.html, then all you need type is:
+a simple set of command line options. If the HTML files belonging to
+your website is located in the current directory, and the main index
+file is called index.html, then all you need type is:
 
-ssc DIR
+ssc .
 
-and off it will go, reporting on any issues it finds in all HTML files
-in DIR and its descendants.
+and off it will go, reporting any issues it finds in all HTML files in
+the current directory and its descendants.
 
 
 reports
 -------
-When ssc reports issues, it reports the HTML where it realised there
-was a problem, with the corresponding line number. This may be after
-the actual point of the problem. Consider, for example:
+When ssc reports issues, it reports the HTML where it spots the
+problem, with the approximate line number. This may be after the actual
+location of the problem. Consider, for example:
 
 <P>Taost<A href="https://example.com/superdoopersecretrecipe.html"
 title="what a wonderful page oh so wow" onclick="haltandcatchfire"
 onhover="winkembarrassingly" wimper=frequently>d wombats are a
 delicious</A> thing.</P>
 
-The word ssc spots is "taostd". It knows there's a word to check when
+The word ssc spots is "Taostd". It knows there's a word to check when
 it gets to the end of the word, e.g. at the space that follows it. In
 this case, the word is interrupted by rather a lot of HTML, which is
 ignored when checking spelling. Because the intervening HTML is so
 long, crossing a number of lines, and ssc reports small snippets of
-HTML per issue, to avoid spouting too much verbiage, it will not show
-sufficient HTML to see the entire misspelt word. That's why, for some
-errors, you must take the snippet and corresponding line number as a
-hint, not an absolute. There is an issue, it is near the reported HTML
-and line number, but, in this case, is not actually there. Of course,
-the report of the misspelt word does report the word it considers
-misspelt (here, "taostd").
+HTML per issue (to avoid spouting too much verbiage), it will not show
+sufficient HTML to see the entire misspelt word. That's why, usually,
+you should take the snippet and corresponding line number as a hint,
+not an absolute. There is an issue, it is near the reported HTML and
+line number, but, in this case, is not actually there. Of course, the
+report of the misspelt word mentions the word it considers misspelt.
 
 
 switches
@@ -59,7 +58,7 @@ SSC has a number of switches, including:
 -f file	    Load a runtime configuration from file
 -F	        Load a runtime configuration from ~/.ssc/config
 
--o file     Output report to file
+-o file     Output a report to file
 
 -v x	    Report level x issues, where x is
 	0 None
@@ -72,19 +71,18 @@ SSC has a number of switches, including:
 	7... more and more debug
 
 -I	        Process Server Side Includes
--g dir      set website root directory (defaults to current directory)
+-g dir      set the root directory (defaults to current directory)
 -x xxx      treat files with extension xxx as HTML/XHTML
--i file     file is index file in directories (default index.html)
+-i file     file is the index filename (default index.html)
 -s dom      dom is the local site’s domain name
--L arg      Define virtual directory (arg is formatted
+-L arg      Define a virtual directory (arg is formatted
             ‘virtual=physical’)
 
 -e	        Check external links (each link is checked once per run,
             not once per encounter)
--3	        Report HTTP 301 and 308 as errors
 -l	        Check internal links
--O	        Report each broken link only once, not each time it occurs
--r	        Do not check whether https certificates have been revoked
+-O	        Report each broken link once, not each time it's found
+-r	        Do not check for https certificate revocation
 -X	        Check crosslinked IDs
 
 -M	        Check microformats use of class attribute
@@ -92,10 +90,12 @@ SSC has a number of switches, including:
 
 -S	        Report site statistics
 
-A longer list of switches is given by the -h switch.
+-A			Report switches noticed by ssc, and exit.
 
-If you find yourself stuck with switches, add -A to your command line
-to see what switches ssc has noticed.
+A full list of switches is given by the -h switch.
+
+If you find yourself having switch problems, add -A to your command line
+to see what switches ssc has noticed. -A kyboshes other processing.
 
 
 Environment
@@ -122,7 +122,7 @@ examples, mostly adapted from the tests:
 A simple configuration file
 ---------------------------
 [general]
-verbose=4
+verbose=5
 output=ssc.out
 class=
 
@@ -144,7 +144,7 @@ class names.
 Links and virtual directories
 -----------------------------
 [general]
-verbose=4
+verbose=5
 output=ssc.out
 
 [site]
@@ -171,7 +171,7 @@ root).
 Microformats
 ------------
 [general]
-verbose=4
+verbose=5
 output=ssc.out
 class=
 
@@ -189,9 +189,9 @@ analysis is required).
 
 
 Microdata
-------------
+---------
 [general]
-verbose=4
+verbose=5
 output=ssc.out
 class=
 
@@ -215,7 +215,7 @@ Statistics
 ----------
 [general]
 ssi=
-verbose=4
+verbose=5
 output=ssc.out
 class=
 
@@ -241,7 +241,7 @@ MathML 2
 This configuration file could be used to test MathML 2.
 
 [general]
-verbose=4
+verbose=5
 output=m2.out
 class=
 
@@ -284,10 +284,47 @@ arts & ego
 This is the configuration file I used to analyse my site.
 
 [general]
-verbose=4
+verbose=info
+output=~/www/live.out
+ignore=pre
+rpt=
+progress=
 class=
-output=ssc.out
+classic=
+no-rel=
 ssi=
+
+[css]
+verify=
+extension=css
+version=2023++
+
+[html]
+version=2023/10/01
+title=80
+rfc1942=
+rfc2070=
+ie=
+safari=
+
+[link]
+no-external=
+xlink=
+pretend=cgi-bin
+local=
+
+[nits]
+silence=use_double_quote_code
+silence=use_quote_code
+silence=missing_itemtype
+
+[shadow]
+copy=dedu
+root=~/www/live
+file=~/www/live.ndx
+ignore=inc
+info=
+msg=arts & ego (c) 1978-2023 dylan harris
 
 [site]
 domain=dylanharris.org
@@ -296,22 +333,68 @@ extension=html
 extension=htm
 extension=asp
 index=index.shtml
-root=X:\Site
+root=|/Sites
 
-[link]
-check=
-xlink=
-
-[microformat]
-verify=
+[spell]
+no-check=
 
 [stats]
 summary=
 
+[validation]
+lang=ma
+fontname=Marain
+fontname=droid-sans-mono
+fontname=ArialMT
+fontname=Arial-BoldMT
+fontname=Times-Italic
+fontname=Times-Roman
+fontname=TimesNewRomanPSMT
+fontname=TrebuchetMS
+fontname=TrebuchetMS-Italic
+
 My site has been built by hand over the decades, and is full of errors.
 I wrote ssc because I was frustrated that I could find no tool to
 properly check it. Unfortunately, SSC is too successful: it finds
-hundreds of errors in arts & ego. I am slowly making the repairs.
+a gadzillion errors in arts & ego. I am slowly making the repairs.
+
+
+OpenBSD website
+---------------
+Perhaps you've grabbed a copy of the OpenBSD website from github
+(https://github.com/openbsd/www.git):
+
+[general]
+verbose=info
+output=~/www.out
+git=
+progress=
+sloven=
+
+[css]
+version=2023++
+device=3
+
+[html]
+version=2023/10/01
+title=80
+force=
+
+[link]
+check=
+no-xlink=
+
+[nits]
+comment=ftp_protocol
+
+[site]
+domain=openbsd.org
+root=~/github/www
+index=index.html
+
+[stats]
+summary=
+
 
 
 Potential gotchas
@@ -328,8 +411,8 @@ The version indicated by the DOCTYPE can be very broad. For example,
 the HTML 5 doctype specifies HTML 5 alone, but not which flavour (W3 or
 living standard), nor which revision.
 
-If you are verifying HTML, and it contains some MathML, SVG, or other
-such snippets, then ssc will attempt to guess the version of the latter
+If you are verifying HTML, and it contains some CSS, MathML, SVG, or
+other content, then ssc will attempt to guess the version of the latter
 from the former (unless you tell it which to use).
 
 All this is why that, if you want to be precise about document
@@ -340,7 +423,6 @@ then specify those versions too.
 
 More info
 =========
-
 The ssc source root includes some text files with more information.
 
 gen.text			Command line man page

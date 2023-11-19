@@ -29,13 +29,10 @@ PASS ../toast/RDFa/lrdw/lrdw.html
 1451 not_ontology_property bad_property
 1553 not_ontology_property bad_property
 1601 not_ontology_property bad_property
-1848 invalid_ipv4 rel_requires_href chocolate_teapot
-1851 invalid_ipv4
 1924 no_such_folder url_not_found
 2017 not_ontology_property bad_property not_ontology_property bad_property
 2200 contradictory_expansion
 2314 no_such_folder url_not_found
-3572 invalid_ipv4 rel_requires_href chocolate_teapot
 3611 ontology_domain
 3779 no_such_folder url_not_found
 3803 no_such_folder url_not_found
@@ -64,9 +61,7 @@ PASS ../toast/RDFa/lrdw/lrdw.html
 5380 rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine invalid_attribute_version wrong_version svg_version
 5396 immeasurable
 5397 immeasurable
-5870 invalid_ipv4 rel_requires_href chocolate_teapot
 5985 not_ontology_property bad_property
-6068 invalid_ipv4 rel_requires_href chocolate_teapot
 6085 ontology_domain
 6087 ontology_domain
 6089 ontology_domain

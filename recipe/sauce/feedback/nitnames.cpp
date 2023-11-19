@@ -843,6 +843,8 @@ const nitname nitnames [] =
     { nit_nesting, "nesting" },
     { nit_content, "content" },
     { nit_excluded, "excluded" },
+    { nit_ftp_protocol, "ftp_protocol" },
+    { nit_tld, "tld" },
 
     { nit_incompatible, "incompatible" },
 

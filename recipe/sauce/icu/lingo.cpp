@@ -327,7 +327,7 @@ vstr_t lingo::to_words (nitpick& nits, const ::std::string& s) const
     if (n < arbitrary_max) res = l;
     return res; }
 
-::std::string lingo::region () const
+::std::string lingo::reg () const
 {   if (invalid () || ! context.icu ())
     {   const ::std::string::size_type pos = orig_.find_first_of ("_-");
         if (pos == ::std::string::npos) return ::std::string ();
@@ -343,7 +343,7 @@ vstr_t lingo::to_words (nitpick& nits, const ::std::string& s) const
     return res; }
 
 ::std::string lingo::dialect () const
-{   if (region ().empty ()) return language ();
-    return language () + "-" + region (); }
+{   if (reg ().empty ()) return language ();
+    return language () + "-" + reg (); }
 
 #endif // NOICU

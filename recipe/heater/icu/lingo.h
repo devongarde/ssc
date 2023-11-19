@@ -45,7 +45,7 @@ public:
     ::std::locale& locale () { return locale_; }
     const ::std::locale& locale () const { return locale_; }
     ::std::string language () const;
-    ::std::string region () const;
+    ::std::string reg () const;
     ::std::string dialect () const;
     bool is_upper (const ::std::string& s) const;
     bool is_lower (const ::std::string& s) const;

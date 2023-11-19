@@ -242,21 +242,41 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
             continue; }
         if (cmdline.empty ()) { cmdline = s; continue; }
         else switch (s.at (0))
-        {   case 'C' :  classed = true; elementclassed = ided = elementided = examine = exporterrors = shadow = lynx = itemid = exports = file_stats = only = overall_stats = false; continue;
+        {   case 'c' :
+            case 'C' :  classed = true; elementclassed = ided = elementided = examine = exporterrors = shadow = lynx = itemid = exports = file_stats = only = overall_stats = false; continue;
+            case 'd' :
             case 'D' :  elementclassed = true; classed = ided = elementided = examine = exporterrors = shadow = lynx = itemid = exports = file_stats = only = overall_stats = false; continue;
-            case 'E' :  exports = true; elementclassed = ided = elementided = examine = exporterrors = shadow = classed = lynx = itemid = file_stats = only = overall_stats = false; continue;
-            case 'e' :  exporterrors = true; elementclassed = ided = elementided = examine = exports = shadow = classed = lynx = itemid = file_stats = only = overall_stats = false; continue;
+            case 'E' :  
+            case 'e' :  if ((s.length () > 0) && (s.at (1) == 'X'))
+                        {   exports = true; elementclassed = ided = elementided = examine = exporterrors = shadow = classed = lynx = itemid = file_stats = only = overall_stats = false; }
+                        else
+                        {   exporterrors = true; elementclassed = ided = elementided = examine = exports = shadow = classed = lynx = itemid = file_stats = only = overall_stats = false; }
+                        continue;
+            case 'g' :
             case 'G' :  overall_stats = true; elementclassed = ided = elementided = examine = exporterrors = shadow = classed = lynx = exports = itemid = file_stats = only = false; continue;
-            case 'i' :  itemid = true; elementclassed = ided = elementided = examine = exporterrors = shadow = classed = lynx = exports = file_stats = only = overall_stats = false; continue;
+            case 'J' :
             case 'j' :  ided = true; elementclassed = classed = elementided = examine = exporterrors = shadow = lynx = itemid = exports = file_stats = only = overall_stats = false; continue;
+            case 'K' :
             case 'k' :  elementided = true; classed = ided = elementclassed = examine = exporterrors = shadow = lynx = itemid = exports = file_stats = only = overall_stats = false; continue;
+            case 'l' :
             case 'L' :  lynx = true; elementclassed = ided = elementided = examine = exporterrors = shadow = classed = itemid = exports = file_stats = only = overall_stats = false; continue;
-            case 'S' :  file_stats = true; stats.clear (); elementclassed = ided = elementided = examine = exporterrors = shadow = classed = lynx = exports = itemid = only = overall_stats = false; continue;
-            case 's' :  shadow = true; elementclassed = ided = elementided = examine = exporterrors = lynx = classed = itemid = exports = file_stats = only = overall_stats = false; continue;
+            case 'S' :
+            case 's' :  if ((s.length () > 1) && (s.at (1) == 'h'))
+                        {   shadow = true; elementclassed = ided = elementided = examine = exporterrors = lynx = classed = itemid = exports = file_stats = only = overall_stats = false; }
+                        else
+                        {   file_stats = true; stats.clear (); elementclassed = ided = elementided = examine = exporterrors = shadow = classed = lynx = exports = itemid = only = overall_stats = false; }
+                        continue;
+            case 'U' :
             case 'u' :  examine = true; elementclassed = ided = elementided = exporterrors = exports = shadow = classed = lynx = itemid = file_stats = only = overall_stats = false; continue;
+            case 'o' :
             case 'O' :  only_check_exports = only = true; elementclassed = ided = elementided = examine = exporterrors = exports = shadow = classed = lynx = itemid = file_stats = overall_stats = false; continue;
             case 'I' :
+            case 'i' :  if ((s.length () > 1) && (s.at (1) == 't'))
+                        {   itemid = true; elementclassed = ided = elementided = examine = exporterrors = shadow = classed = lynx = exports = file_stats = only = overall_stats = false; continue; }
+                        FALLTHROUGH;
+            case 'f' :
             case 'F' :
+            case 'p' :
             case 'P' :
             case '*' :
                 {   elementclassed = ided = elementided = examine = exporterrors = exports = shadow = classed = lynx = itemid = only = file_stats = overall_stats = false;
@@ -269,8 +289,8 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
                     catch (...)
                     {   ::std::cerr << "cannot canonise " << fn << "; will proceed sans\n"; }
                     if (! testfile (fn)) return false;
-                    expect.flags_ = (s.at (0) == 'F') ? NW_FAIL : 0;
-                    expect.flags_ += (s.at (0) == 'I') ? NW_IGNORE : 0;
+                    expect.flags_ = ((s.at (0) == 'f') || (s.at (0) == 'F')) ? NW_FAIL : 0;
+                    expect.flags_ += ((s.at (0) == 'I') || (s.at (0) == 'i')) ? NW_IGNORE : 0;
                     previous = fn;
                     expect.nits_.clear (); }
                 continue;
@@ -613,16 +633,16 @@ bool examine_results (  knotted& expected, vstr_t& results, unsigned& passed, un
                 {   if (! exporterrorcheck (line)) { oops = true; res = false; }
                     exporterrors = false; shush = true; continue; }
                 if (classes)
-                {   if (! classcheck (line, expected_classes, "class")) { oops = true; res = false; }
+                {   if (! classcheck (line, expected_classes, "Class")) { oops = true; res = false; }
                     continue; }
                 if (elementclasses)
-                {   if (! classcheck (line, expected_elementclasses, "element.class")) { oops = true; res = false; }
+                {   if (! classcheck (line, expected_elementclasses, "Element.class")) { oops = true; res = false; }
                     continue; }
                 if (ids)
-                {   if (! classcheck (line, expected_ids, "id")) { oops = true; res = false; }
+                {   if (! classcheck (line, expected_ids, "Id")) { oops = true; res = false; }
                     continue; }
                 if (elementids)
-                {   if (! classcheck (line, expected_elementids, "element#id")) { oops = true; res = false; }
+                {   if (! classcheck (line, expected_elementids, "Element#id")) { oops = true; res = false; }
                     continue; }
                 if (examine)
                 {   if (! examinecheck (line)) { oops = true; res = false; }
@@ -675,15 +695,15 @@ bool examine_results (  knotted& expected, vstr_t& results, unsigned& passed, un
                     if (i != expected.end ()) fn = xfn; }
                 catch (...) { }
                 if (i == expected.end ())
-                {   if (fn == "class(es)") classes = true;
-                    else if (fn == "element.class(es)") elementclasses = true;
-                    else if (fn == "id(s)") ids = true;
-                    else if (fn == "element#id(s)") elementids = true;
-                    else if (fn == "link") lynx = true;
-                    else if (fn == "itemids") itemid = true;
-                    else if (fn == "update") examine = true;
-                    else if (fn == "shadow") shadow = true;
-                    else if (fn == "exports") exporterrors = true;
+                {   if (fn == "Class(es)") classes = true;
+                    else if (fn == "Element.class(es)") elementclasses = true;
+                    else if (fn == "Id(s)") ids = true;
+                    else if (fn == "Element#id(s)") elementids = true;
+                    else if (fn == "Link") lynx = true;
+                    else if (fn == "Itemids") itemid = true;
+                    else if (fn == "Update") examine = true;
+                    else if (fn == "Shadow") shadow = true;
+                    else if (fn == "Exports") exporterrors = true;
                     else if (fn == "Statistics") file_stats = true;
                     else if (fn == "Grand") overall_stats = true;
                     else

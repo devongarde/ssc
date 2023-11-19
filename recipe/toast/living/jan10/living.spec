@@ -96,7 +96,7 @@ PASS ../toast/living/jan10/details.html
 0 charset_mismatch charset_used charset_invalid
 6 unrecognised_value unrecognised_value
 7 use_double_quote_code
-25 inserted_missing_closure missing_close
+25 lonely_ampersand inserted_missing_closure missing_close
 27 inserted_missing_closure missing_close
 28 inserted_missing_closure inserted_missing_closure
 

@@ -108,7 +108,14 @@ bool external::verify (nitpick& nits, const html_version& v, const url& u, int& 
     if (u.empty ())
     {   code = 400; return false; }
     if (! u.is_usable ())
-    {   nits.pick (nit_protocol, es_info, ec_link, "unable to verify ", u.get_component (es_scheme));
+    {   switch (u.get_protocol ())
+        {   case pr_ftp :
+            case pr_ftps :
+                nits.pick (nit_ftp_protocol, es_info, ec_link, "unable to verify ", u.get_component (es_scheme));
+                break;
+            default :
+                nits.pick (nit_protocol, es_info, ec_link, "unable to verify ", u.get_component (es_scheme));
+                break; }
         code = 0; }
     else
     {   {   lox l (lox_external);

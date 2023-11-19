@@ -191,6 +191,17 @@ mmac_t mac_subtitle (const ::std::string& title)
     if (! res.empty ())  res = macro -> apply (ns_stats_head, table) + res + macro -> apply (ns_stats_foot, table);
     return res; }
 
+::std::string stats::custom_media_report () const
+{   mmac_t table = mac_title ("Custom Media");
+    ::std::string res;
+    VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+    for (auto i : custom_media_.count_)
+        if (i.second > 0)
+        {   mmac_t stat = mac_init (i.first.a_, i.second, i.first.b_);
+            res += macro -> apply (ns_stat, macro -> macros (), table, stat); }
+    if (! res.empty ()) res = macro -> apply (ns_stats_head, table) + res + macro -> apply (ns_stats_foot, table);
+    return res; }
+
 ::std::string stats::dfn_report () const
 {   mmac_t table = mac_title ("Definitions");
     ::std::string res;
@@ -203,7 +214,7 @@ mmac_t mac_subtitle (const ::std::string& title)
     return res; }
 
 ::std::string stats::dtdd_report () const
-{   mmac_t table = mac_title ("Name/Value pairs");
+{   mmac_t table = mac_title ("Name/Value Pairs");
     ::std::string res;
     VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
     for (auto i : dtdd_.count_)
@@ -236,21 +247,8 @@ mmac_t mac_subtitle (const ::std::string& title)
         res = macro -> apply (ns_stats_head, table) + res + macro -> apply (ns_stats_foot, table); }
     return res; }
 
-::std::string stats::css_highlight_report () const
-{   mmac_t table = mac_title ("CSS custom highlights");
-    ::std::string res;
-    if (! highlight_.empty ())
-    {   for (auto s : highlight_)
-        {   mmac_t stat = mac_init (s);
-            res += macro -> apply (ns_stat, macro -> macros (), table, stat); }
-        mmac_t finish;
-        ::std::string sum = ::boost::lexical_cast < ::std::string > (highlight_.size ()) + " highlights named";
-        finish.emplace (nm_stats_total, sum);
-        res = macro -> apply (ns_stats_head, finish, table) + res + macro -> apply (ns_stats_foot, finish, table); }
-    return res; }
-
 ::std::string stats::css_property_report () const
-{   mmac_t table = mac_title ("CSS properties");
+{   mmac_t table = mac_title ("CSS Properties");
     ::std::string res;
     unsigned count = 0, total = 0;
     for (unsigned int d = 1; d <= ec_error; ++d)
@@ -267,7 +265,7 @@ mmac_t mac_subtitle (const ::std::string& title)
     return res; }
 
 ::std::string stats::css_statement_report () const
-{   mmac_t table = mac_title ("CSS statements");
+{   mmac_t table = mac_title ("CSS Statements");
     ::std::string res;
     unsigned count = 0, total = 0;
     for (unsigned int d = 1; d <= css_error; ++d)
@@ -283,19 +281,57 @@ mmac_t mac_subtitle (const ::std::string& title)
     if (! res.empty ()) res = macro -> apply (ns_stats_head, finish, table) + res +macro -> apply (ns_stats_foot, finish, table);
     return res; }
 
+const char* str_name [] =
+{   "Annotation",
+    "Character Variant",
+    "Content Name",
+    "Counter Style",
+    "Font Family",
+    "Highlight",
+    "Font Historical Form",
+    "Keyframe",
+    "Layer",
+    "Font Ornament",
+    "Page Name",
+    "Palette",
+    "Region",
+    "Scroll Anim",
+    "Styleset",
+    "Stylistic",
+    "Swash",
+    "View",
+    nullptr };
+
+::std::string stats::css_str_report (const e_gsstr gst) const
+{   PRESUME (gst < gst_max, __FILE__, __LINE__);
+    VERIFY_NOT_NULL (GSL_AT (str_name, gst), __FILE__, __LINE__);
+    mmac_t table = mac_title (::std::string ("CSS ") + GSL_AT (str_name, gst));
+    ::std::string res;
+    if (! str_.at (gst).empty ())
+    {   for (auto i = str_.at (gst).cbegin (); i != str_.at (gst).cend (); ++i)
+        {   mmac_t stat = mac_init (*i);
+            res += macro -> apply (ns_stat, macro -> macros (), table, stat); }
+        mmac_t finish;
+        ::std::string sum = ::boost::lexical_cast < ::std::string > (str_.at (gst).size ());
+        finish.emplace (nm_stats_total, sum);
+        res = macro -> apply (ns_stats_head, finish, table) + res + macro -> apply (ns_stats_foot, finish, table); }
+    return res; }
+
 ::std::string stats::category_report () const
 {   mmac_t table = mac_title ("Nit Categories");
     ::std::string res;
     res += saybe (table, category_.at (ec_html), "HTML");
     res += saybe (table, category_.at (ec_aria), "Aria");
     res += saybe (table, category_.at (ec_attribute), "Attribute");
+    res += saybe (table, category_.at (ec_cache), "Cache");
+    res += saybe (table, category_.at (ec_corpus), "Corpus");
     res += saybe (table, category_.at (ec_crc), "CRC");
     res += saybe (table, category_.at (ec_css), "CSS");
     res += saybe (table, category_.at (ec_directory), "Directory");
     res += saybe (table, category_.at (ec_element), "Element");
     res += saybe (table, category_.at (ec_file), "File");
-    res += saybe (table, category_.at (ec_incorrectness), "Incorrectness");
     res += saybe (table, category_.at (ec_icu), "ICU");
+    res += saybe (table, category_.at (ec_incorrectness), "Incorrectness");
     res += saybe (table, category_.at (ec_init), "Init");
     res += saybe (table, category_.at (ec_io), "I/O");
     res += saybe (table, category_.at (ec_json), "JSON");
@@ -482,29 +518,29 @@ mmac_t mac_subtitle (const ::std::string& title)
     return s; }
 
 ::std::string stats::font_report () const
-{   return report_usage ("font(s)", font_); }
+{   return report_usage ("Font(s)", font_); }
 
 ::std::string stats::class_report () const
-{   return  report_usage ("class(es)", dcl_class_, use_class_) +
-            report_usage ("element.class(es)", dcl_element_class_, use_element_class_); }
+{   return  report_usage ("Class(es)", dcl_class_, use_class_) +
+            report_usage ("Element.class(es)", dcl_element_class_, use_element_class_); }
 
 ::std::string stats::class_report2 () const
-{   return  report_usage ("class(es)", dcl_class_, use_class_, ns_class, ns_class_head, ns_class_foot,
+{   return  report_usage ("Class(es)", dcl_class_, use_class_, ns_class, ns_class_head, ns_class_foot,
                 nm_class_name, nm_class_decl_int, nm_class_int, nm_class_decl_count, nm_class_count, nm_class_title) +
-            report_usage ("element.class(es)", dcl_element_class_, use_element_class_, ns_class, ns_class_head, ns_class_foot,
+            report_usage ("Element.class(es)", dcl_element_class_, use_element_class_, ns_class, ns_class_head, ns_class_foot,
                 nm_class_name, nm_class_decl_int, nm_class_int, nm_class_decl_count, nm_class_count, nm_class_title); }
 
 ::std::string stats::itemid_report () const
-{   return  report_usage ("itemid(s)", dcl_id_, use_id_); }
+{   return  report_usage ("Itemid(s)", dcl_id_, use_id_); }
 
 ::std::string stats::id_report2 () const
-{   return  report_usage ("id(s)", dcl_id_, use_id_, ns_nsid, ns_id_head, ns_id_foot,
+{   return  report_usage ("Id(s)", dcl_id_, use_id_, ns_nsid, ns_id_head, ns_id_foot,
                 nm_id_name, nm_id_decl_int, nm_id_int, nm_id_decl_count, nm_id_count, nm_id_title) +
-            report_usage ("element#id(s)", dcl_element_id_, use_element_id_, ns_nsid, ns_id_head, ns_id_foot,
+            report_usage ("Element#id(s)", dcl_element_id_, use_element_id_, ns_nsid, ns_id_head, ns_id_foot,
                 nm_id_name, nm_id_decl_int, nm_id_int, nm_id_decl_count, nm_id_count, nm_id_title); }
 
 ::std::string stats::custom_property_report () const
-{   return report_usage ("custom properties", custom_prop_); }
+{   return report_usage ("Custom Properties", dcl_custom_prop_, use_custom_prop_); }
 
 ::std::string stats::report (const bool grand) const
 {   ::std::string res;
@@ -514,27 +550,29 @@ mmac_t mac_subtitle (const ::std::string& title)
     else g.emplace (nm_grand_title, "Statistics");
     VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
     res += macro -> apply (ns_grand_head, g);
-    res += element_report ();
-    res += ontology_report ();
-    res += meta_report ();
-    res += abbr_report ();
-    res += dfn_report ();
-    res += dtdd_report ();
-    res += css_property_report ();
-    res += css_statement_report ();
-    res += css_highlight_report ();
-    res += font_report ();
-    res += class_report ();
-    res += itemid_report ();
-    res += custom_property_report ();
+    if (context.stats_element ()) res += element_report ();
+    if (context.stats_ontology ()) res += ontology_report ();
+    if (context.stats_meta ()) res += meta_report ();
+    if (context.stats_abbr ()) res += abbr_report ();
+    if (context.stats_dfn ()) res += dfn_report ();
+    if (context.stats_dtdd ()) res += dtdd_report ();
+    if (context.stats_css_property ()) res += css_property_report ();
+    if (context.stats_statement ()) res += css_statement_report ();
+    if (context.stats_custom_media ()) res += custom_media_report ();
+    if (context.stats_custom_property ()) res += custom_property_report ();
+    for (int i = 0; i < gst_max; ++i)
+        if (context.stats_gst (static_cast < e_gsstr > (i)))
+        res += css_str_report (static_cast < e_gsstr > (i));
+    if (context.stats_font ()) res += font_report ();
+    if (context.stats_class ()) res += class_report ();
+    if (context.stats_itemid ()) res += itemid_report ();
     if (grand)
     {   res += error_report ();
         if (file_count_ > 1)
-        {   res += category_report ();
-            res += reference_report ();
-            res += version_report ();
-            res += file_report (); } }
-    res += macro -> apply (ns_grand_foot, g);
+        {   if (context.stats_category ()) res += category_report ();
+            if (context.stats_reference ()) res += reference_report ();
+            if (context.stats_version ()) res += version_report ();
+            if (context.stats_file ()) res += file_report (); } }    res += macro -> apply (ns_grand_foot, g);
     return res; }
 
 bool stats::severity_exceeded () const
@@ -555,6 +593,7 @@ void stats::accumulate (stats& o) const
     visible_.accumulate (o.visible_);
     dfn_.accumulate (o.dfn_);
     abbr_.accumulate (o.abbr_);
+    custom_media_.accumulate (o.custom_media_);
     dtdd_.accumulate (o.dtdd_);
     severity_ .accumulate (o.severity_);
     category_.accumulate (o.category_);
@@ -567,6 +606,7 @@ void stats::accumulate (stats& o) const
     metaname_.accumulate (o.metaname_);
     meta_value_.accumulate (o.meta_value_);
     dcl_class_.accumulate (o.dcl_class_);
+    dcl_custom_prop_.accumulate (o.dcl_custom_prop_);
     dcl_id_.accumulate (o.dcl_id_);
     dcl_element_class_.accumulate (o.dcl_element_class_);
     dcl_element_id_.accumulate (o.dcl_element_id_);
@@ -574,9 +614,12 @@ void stats::accumulate (stats& o) const
     css_statement_.accumulate (o.css_statement_);
     font_.accumulate (o.font_);
     use_class_.accumulate (o.use_class_);
+    use_custom_prop_.accumulate (o.use_custom_prop_);
     use_id_.accumulate (o.use_id_);
     use_element_class_.accumulate (o.use_element_class_);
     use_element_id_.accumulate (o.use_element_id_);
+    for (int i = 0; i < gst_max; ++i)
+        str_.at (static_cast < e_gsstr > (i)).accumulate (o.str_.at (static_cast < e_gsstr > (i)));
     if (smallest_ < o.smallest_) o.smallest_ = smallest_;
     if (biggest_ > o.biggest_) o.biggest_ = biggest_;
     o.file_size_ += file_size_;
@@ -584,5 +627,3 @@ void stats::accumulate (stats& o) const
 
 ::std::string stats::class_and_id_report () const
 {   return class_report2 () + id_report2 (); }
-
-

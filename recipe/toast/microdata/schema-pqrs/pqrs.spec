@@ -101,7 +101,7 @@ PASS ../toast/microdata/schema-pqrs/pharmacy.html
 PASS ../toast/microdata/schema-pqrs/place.html
 23 url_not_found
 31 url_not_found
-46 mixed_mess
+46 lonely_ampersand
 65 unrecognised_value
 66 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 69 unrecognised_value
@@ -153,7 +153,7 @@ PASS ../toast/microdata/schema-pqrs/postaladdress.html
 41 use_quote_code
 63 url_not_found
 71 url_not_found
-86 mixed_mess
+86 lonely_ampersand
 106 unrecognised_value
 107 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 110 unrecognised_value
@@ -307,7 +307,7 @@ PASS ../toast/microdata/schema-pqrs/review.html
 23 invalid_attribute_version wrong_version svg_rdf
 24 invalid_attribute_version wrong_version svg_rdf
 62 no_such_folder url_not_found
-63 no_such_folder url_not_found mixed_mess
+63 no_such_folder url_not_found lonely_ampersand
 64 no_such_folder url_not_found
 68 url_not_found
 71 no_such_folder url_not_found

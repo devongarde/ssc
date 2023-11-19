@@ -39,7 +39,6 @@ PASS ../toast/css/4-sel/css-8.css
 
 PASS ../toast/css/4-sel/css-9.css
 0 html
-10 css_custom
 
 PASS ../toast/css/4-sel/css-10.css
 0 html

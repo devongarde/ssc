@@ -32,6 +32,7 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
     const int len = GSL_NARROW_CAST <int> (args.t_.size ());
     PRESUME (from < len, __FILE__, __LINE__);
     PRESUME (to < len, __FILE__, __LINE__);
+    VERIFY_NOT_NULL (args.dst_, __FILE__, __LINE__);
     int b = first_non_whitespace (args.t_, from, to);
     nitpick& nits = args.t_.at (from).nits_;
     if (args.t_.at (b).t_ != ct_keyword)
@@ -88,11 +89,13 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
             case efn_highlight :
                 if (context.css_highlight () < 3)
                     nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS Custom Highlight");
-                else 
-                {   sstr_t& h = args.g_.highlight ();
-                    if (h.find (param) != h.cend ())
-                        nits.pick (nit_highlight, es_error, ec_css, quote (param), ": previously defined");
-                    else h.insert (param); }
+//                else
+//                {   sstr_t& h = args.g_.highlight ();
+//                    if (h.find (param) != h.cend ())
+//                        nits.pick (nit_highlight, es_error, ec_css, quote (param), ": previously defined");
+//                    else h.insert (param); }
+                else if (args.has_str (gst_highlight, param) || ! args.dst_ -> note_str (gst_highlight, param))
+                    nits.pick (nit_highlight, es_error, ec_css, quote (param), ": previously defined");
                 return;
             case efn_host :
             case efn_host_context :
@@ -146,9 +149,11 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
             case efn_view_transition_image_pair :
                 if (context.css_view () < 3)
                     nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS View Transitions");
-                else if (param != "*") 
-                {   sstr_t& h = args.g_.view ();
-                    if (h.find (param) == h.cend ()) h.insert (param); }
+                else if (param != "*")
+//                {   sstr_t& h = args.g_.view ();
+//                    if (h.find (param) == h.cend ()) h.insert (param); }
+                    if (! args.has_str (gst_view, param))
+                        args.dst_ -> note_str (gst_view, param); 
                 return;
             case efn_current :
             case efn_has :

@@ -2,7 +2,7 @@
 
 PASS ../toast/microdata/schema-wxyz/webpage-1.html
 10 no_such_folder url_not_found
-11 no_such_folder url_not_found mixed_mess
+11 no_such_folder url_not_found lonely_ampersand
 12 no_such_folder url_not_found
 16 url_not_found
 19 no_such_folder url_not_found

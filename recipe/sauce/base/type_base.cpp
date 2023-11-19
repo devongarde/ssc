@@ -1582,6 +1582,7 @@ enum_name_t enum_name [] =
     { t_tfmu, "tfmu" },
     { t_tfn, "tfn" },
     { t_tfu, "tfu" },
+    { t_tld, "tld" },
     { t_tokens, "tokens" },
     { t_to_lrtb, "to lrtb" },
     { t_transform, "transform" },

@@ -80,13 +80,15 @@ void nit::reset (const nit& n)
     res << ::std::setw (4) << (m + static_cast < unsigned > (code));
     return res.str (); }
 
-bool ignore_this_slob_stuff (const e_nit code) noexcept
-{   if (! context.slob ()) return false;
+bool ignore_this_slovenly_stuff (const e_nit code) noexcept
+{   if (! context.sloven ()) return false;
     switch (code)
-    {   case nit_inserted_missing_closure :
+    {   case nit_dl_ancestor :
+        case nit_inserted_missing_closure :
         case nit_inserted_missing_parent :
         case nit_missing_close :
         case nit_missing_open :
+        case nit_only_once :
         case nit_use_quote_code :
         case nit_use_double_quote_code :
         case nit_wrong_parent :

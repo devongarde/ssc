@@ -62,7 +62,7 @@ vstr_t sections;
     "\n" \
     "[config-head]\n" \
     "\n" \
-    START_OF_SECTION " configuration\n" \
+    START_OF_SECTION " Configuration\n" \
     "\n" \
     "[config-foot]\n" \
     "\n" \
@@ -75,7 +75,7 @@ vstr_t sections;
     "\n" \
     "[export-head]\n" \
     "\n" \
-    START_OF_SECTION " exports\n" \
+    START_OF_SECTION " Exports\n" \
     "{{nit-line}} {{nit-ns}}\n" \
     "\n" \
     "[export-foot]\n" \
@@ -92,7 +92,7 @@ vstr_t sections;
     "\n" \
     "[itemid-head]\n" \
     "\n" \
-    START_OF_SECTION " itemids\n" \
+    START_OF_SECTION " Itemids\n" \
     "\n" \
     "[itemid-foot]\n" \
     "\n" \
@@ -101,7 +101,7 @@ vstr_t sections;
     "\n" \
     "[init-head]\n" \
     "\n" \
-    START_OF_SECTION " initialisation\n" \
+    START_OF_SECTION " Initialisation\n" \
     "\n" \
     "[init-foot]\n" \
     "\n" \
@@ -109,7 +109,7 @@ vstr_t sections;
     "\n" \
     "[link-head]\n" \
     "\n" \
-    START_OF_SECTION " link errors\n" \
+    START_OF_SECTION " Link errors\n" \
     "{{nit-line}} {{nit-ns}}\n" \
     "\n" \
     "[link-foot]\n" \
@@ -135,7 +135,7 @@ vstr_t sections;
     "\n" \
     "[shadow-head]\n" \
     "\n" \
-    START_OF_SECTION " shadow\n" \
+    START_OF_SECTION " Shadow\n" \
     "{{nit-line}} {{nit-ns}}\n" \
     "\n" \
     "[shadow-foot]\n" \
@@ -161,7 +161,7 @@ vstr_t sections;
     "\n" \
     "[update-head]\n" \
     "\n" \
-    START_OF_SECTION " update\n" \
+    START_OF_SECTION " Update\n" \
     "{{nit-line}} {{nit-ns}}\n" \
     "\n" \
     "[update-foot]\n" \
@@ -199,7 +199,7 @@ vstr_t sections;
     "\n" \
     "[config-head]\n" \
     "\n" \
-    START_OF_SECTION " configuration\n" \
+    START_OF_SECTION " Configuration\n" \
     "\n" \
     "[config-foot]\n" \
     "\n" \
@@ -214,7 +214,7 @@ vstr_t sections;
     "\n" \
     "[export-head]\n" \
     "\n" \
-    START_OF_SECTION " exports\n" \
+    START_OF_SECTION " Exports\n" \
     "{{nit-line}} {{nit-ns}}\n" \
     "\n" \
     "[export-foot]\n" \
@@ -231,7 +231,7 @@ vstr_t sections;
     "\n" \
     "[itemid-head]\n" \
     "\n" \
-    START_OF_SECTION " itemids\n" \
+    START_OF_SECTION " Itemids\n" \
     "\n" \
     "[itemid-foot]\n" \
     "\n" \
@@ -240,7 +240,7 @@ vstr_t sections;
     "\n" \
     "[init-head]\n" \
     "\n" \
-    START_OF_SECTION " initialisation\n" \
+    START_OF_SECTION " Initialisation\n" \
     "\n" \
     "[init-foot]\n" \
     "\n" \
@@ -248,7 +248,7 @@ vstr_t sections;
     "\n" \
     "[link-head]\n" \
     "\n" \
-    START_OF_SECTION " link errors\n" \
+    START_OF_SECTION " Link errors\n" \
     "{{nit-line}} {{nit-ns}}\n" \
     "\n" \
     "[link-foot]\n" \
@@ -275,7 +275,7 @@ vstr_t sections;
     "\n" \
     "[shadow-head]\n" \
     "\n" \
-    START_OF_SECTION " shadow\n" \
+    START_OF_SECTION " Shadow\n" \
     "{{nit-line}} {{nit-ns}}\n" \
     "\n" \
     "[shadow-foot]\n" \
@@ -301,7 +301,7 @@ vstr_t sections;
     "\n" \
     "[update-head]\n" \
     "\n" \
-    START_OF_SECTION " update\n" \
+    START_OF_SECTION " Update\n" \
     "{{nit-line}} {{nit-ns}}\n" \
     "\n" \
     "[update-foot]\n" \
@@ -340,7 +340,7 @@ vstr_t sections;
     "\n" \
     "[config-head]\n" \
     "\n" \
-    START_OF_SECTION " configuration\n" \
+    START_OF_SECTION " Configuration\n" \
     "\n" \
     "[config-foot]\n" \
     "\n" \
@@ -356,7 +356,7 @@ vstr_t sections;
     "\n" \
     "[export-head]\n" \
     "\n" \
-    START_OF_SECTION " exports\n" \
+    START_OF_SECTION " Exports\n" \
     "\n" \
     "[export-foot]\n" \
     "\n" \
@@ -371,7 +371,7 @@ vstr_t sections;
     "\n" \
     "[itemid-head]\n" \
     "\n" \
-    START_OF_SECTION " itemids\n" \
+    START_OF_SECTION " Itemids\n" \
     "\n" \
     "[itemid-foot]\n" \
     "\n" \
@@ -380,7 +380,7 @@ vstr_t sections;
     "\n" \
     "[init-head]\n" \
     "\n" \
-    START_OF_SECTION " initialisation\n" \
+    START_OF_SECTION " Initialisation\n" \
     "\n" \
     "[init-foot]\n" \
     "\n" \
@@ -389,7 +389,7 @@ vstr_t sections;
     "\n" \
     "[link-head]\n" \
     "\n" \
-    START_OF_SECTION " link errors\n" \
+    START_OF_SECTION " Link errors\n" \
     "\n" \
     "[link-foot]\n" \
     "\n" \
@@ -440,7 +440,7 @@ vstr_t sections;
     "\n" \
     "[update-head]\n" \
     "\n" \
-    START_OF_SECTION " update\n" \
+    START_OF_SECTION " Update\n" \
     "\n" \
     "[update-foot]\n" \
     "\n"
@@ -481,7 +481,7 @@ vstr_t sections;
     "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN><BR>\n" \
     "\n" \
     "[config-head]\n" \
-    "<H2 class=\"nit-section\">configuration</H2>\n" \
+    "<H2 class=\"nit-section\">Configuration</H2>\n" \
     "<P>\n" \
     "\n" \
     "[config-foot]\n" \
@@ -515,12 +515,12 @@ vstr_t sections;
     "</HEAD>\n" \
     "<BODY>\n" \
     "<HEADER>\n" \
-    "<H1 class=\"nit-title\">{{prog-abbrev}} report{{context-root: for :}}</H1>\n" \
+    "<H1 class=\"nit-title\">{{prog-abbrev}} Report{{context-root: for :}}</H1>\n" \
     "</HEADER>\n" \
     "<MAIN>\n" \
     "\n" \
     "[doc-foot]\n" \
-    "<A href=\"/index.html\">previous page</A>\n" \
+    "<A href=\"/index.html\">Previous page</A>\n" \
     "</MAIN>\n" \
     "<HR>\n" \
     "<FOOTER class=\"smaller\">\n" \
@@ -534,7 +534,7 @@ vstr_t sections;
     "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN><BR>\n" \
     "\n" \
     "[export-head]\n" \
-    "<H2 class=\"nit-section\">exports</H2>\n" \
+    "<H2 class=\"nit-section\">Exports</H2>\n" \
     "<P>\n" \
     "\n" \
     "[export-foot]\n" \
@@ -562,7 +562,7 @@ vstr_t sections;
     "\n" \
     "[init-head]\n" \
     "\n" \
-    "<H2 class=\"nit-section\">initialisation</H2>\n" \
+    "<H2 class=\"nit-section\">Initialisation</H2>\n" \
     "\n" \
     "[init-foot]\n" \
     "</P>\n" \
@@ -601,7 +601,7 @@ vstr_t sections;
     "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]</SPAN><BR>\n" \
     "\n" \
     "[shadow-head]\n" \
-    "<H2 class=\"nit-section\">shadow</H2>\n" \
+    "<H2 class=\"nit-section\">Shadow</H2>\n" \
     "<P>\n" \
     "\n" \
     "[shadow-foot]\n" \
@@ -632,7 +632,7 @@ vstr_t sections;
     "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]</SPAN><BR>\n" \
     "\n" \
     "[update-head]\n" \
-    "<H2 class=\"nit-section\">update</H2>\n" \
+    "<H2 class=\"nit-section\">Update</H2>\n" \
     "<P>\n" \
     "\n" \
     "[update-foot]\n" \

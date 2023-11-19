@@ -182,7 +182,7 @@ PASS ../toast/microdata/schema-hijkl/locationfeaturespecification.html
 42 invalid_attribute_version wrong_version svg_rdf
 
 PASS ../toast/microdata/schema-hijkl/localbusiness.html
-40 mixed_mess
+40 lonely_ampersand
 116 inserted_missing_closure
 
 itemids

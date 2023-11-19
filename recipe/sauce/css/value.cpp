@@ -121,7 +121,8 @@ bool maybe_transform (nitpick& nits, const e_css_property id, const bool t4)
 int check_typed_feature (arguments& args, nitpick& nits, const int start, const int to, const e_css_statement cs, const char* const sz)
 {   ::std::string name (assemble_string (args.t_, start, to, true));
     if (name.empty ()) return to;
-    if (args.font_feature (cs).find (name) != args.font_feature (cs).cend ()) return to;
+//    if (args.font_feature (cs).find (name) != args.font_feature (cs).cend ()) return to;
+    if (args.has_font_feature (cs, name)) return to;
     if (name.find_first_not_of (DENARY) == ::std::string::npos) return to;
     else nits.pick (nit_css_font_feature, es_error, ec_css, quote (name), ": unknown @", sz);
     return start; }

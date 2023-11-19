@@ -54,7 +54,7 @@ Elements:
     type: 4 times 
     value: 4 times 
   13 elements used 111 times
-CSS class(es):
+CSS Class(es):
     bodyclass: 0
     boing: 0
     doris: 0
@@ -63,8 +63,8 @@ CSS class(es):
     pclass: 0
     sid: 0
     test: 0
-  8 class(es) used 0 times
-CSS element.class(es):
+  8 Class(es) used 0 times
+CSS Element.class(es):
     body.bodyclass: 0
     data.boing: 0
     data.doris: 0
@@ -73,7 +73,7 @@ CSS element.class(es):
     h1.h2class: 0
     h1.pclass: 0
     slot.test: 0
-  8 element.class(es) used 0 times
+  8 Element.class(es) used 0 times
 Nits Reported:
     Errors: once 
     Warnings: 17 times 
@@ -87,7 +87,7 @@ References:
     HTML 5.0: 4 times 
   
 Versions:
-    HTML5/20210101/SVG-2.0/MathML-4(Dec20)/CSS-1/WhatWG: 5 times 
+    HTML-5/20210101/SVG-2.0/MathML-4(Dec20)/CSS-1/WhatWG: 5 times 
   
 File info:
      1620 bytes read in 8 files, with an average of roughly 203 bytes per file

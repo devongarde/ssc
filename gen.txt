@@ -391,9 +391,9 @@ the "no-" switch always applies.
 
 --general.rpt           Report CSS files that are opened.
 
---general.slob          Ignore perfectly legal yet inefficient, indeed
-                        thoroughly slobby, HTML, such as being far too
-                        lazy to get round to bothering to close
+--general.sloven        Ignore perfectly legal yet inefficient, indeed
+                        thoroughly slovenly, HTML, such as being far
+                        too lazy to bother to get round to closing
                         elements.
 
 --general.spec          Reset the values of most switches to false.
@@ -430,12 +430,13 @@ the "no-" switch always applies.
                             .svn
 
 --general.verbose x     Output nits to the specified verbosity:
--v                      'catastrophe', 'error', 'warning', 'info',
-                        'comment' (the default), or '0' for silence.
-                        Additional values are available when debugging.
-                        Each level includes its preceding level, so,
-                        for example, 'warning' will also output
-                        'catastrophe' and 'error' nits.
+-v                      'catastrophe', 'abhorrent', 'error', 'warning',
+                        'info' (the default), 'comment', or '0' for
+                        silence. Additional values are available when
+                        debugging. Each level includes its preceding
+                        level, so, for example, 'warning' will also
+                        output 'catastrophe', 'abhorrent', and 'error'
+                        nits.
 
 --html.force            If <!DOCTYPE...> is missing, force presumption
                         of --html.version value, not HTML 1/tags
@@ -1033,16 +1034,8 @@ the "no-" switch always applies.
 --spell.path PATH       Unix only. Path to spelling executable.
                         Hunspell or a compatible program is expected.
                         If none is specified, ssc will seek hunspell.
-                        (Under Windows, ssc uses the OS spellchecker.)
-
---stats.export F        Export stats to file F.
-
---stats.meta            Produce statistics on <META> usage in <HEAD>.
-                        Note that pragmas reported (http-equiv) are
-                        those found in the HTML source, not those
-                        returned by the HTTP protocol. Remember that
-                        many web servers (not all) will remove some
-                        pragmas when serving pages.
+                        Under Windows, ssc uses the system spell-
+                        checker, if there is one.
 
 --stats.page            Produce statistics for each source file
                         encountered.

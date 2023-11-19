@@ -213,6 +213,7 @@
     <ClInclude Include="..\heater\stats\stats3.h" />
     <ClInclude Include="..\heater\stats\stats4.h" />
     <ClInclude Include="..\heater\stats\stats5.h" />
+    <ClInclude Include="..\heater\stats\stats6.h" />
     <ClInclude Include="..\heater\stats\stats_impl.h" />
     <ClInclude Include="..\heater\symbol\nstr.h" />
     <ClInclude Include="..\heater\symbol\symbol.h" />
@@ -517,9 +518,12 @@
     <None Include="..\toast\conf\live\corona-live.conf" />
     <None Include="..\toast\conf\live\live.conf" />
     <None Include="..\toast\conf\live\simple.conf" />
-    <None Include="..\toast\conf\other\nancy-wpt.conf" />
-    <None Include="..\toast\conf\other\obsd.conf" />
+    <None Include="..\toast\conf\other\win-wpt.conf" />
+    <None Include="..\toast\conf\other\o73-wpt.conf" />
+    <None Include="..\toast\conf\other\macos-obsd.conf" />
+    <None Include="..\toast\conf\other\win-obsd.conf" />
     <None Include="..\toast\conf\other\wpt.conf" />
+    <None Include="..\toast\conf\other\wsl-wpt.conf" />
     <None Include="..\toast\conf\sole\corona.conf" />
     <None Include="..\toast\conf\sole\rose.conf" />
     <None Include="..\toast\conf\ssc\corona.conf" />

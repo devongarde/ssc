@@ -44,8 +44,8 @@ EXPORTS
 ../toast/microdata/export/vevent.html.model ../toast/tmp/export/vevent.html.json
 ../toast/microdata/export/work.html.model ../toast/tmp/export/work.html.json
 
-exports
+Exports
 0 shadow
 
-itemid
+Itemid
 #mozOrg

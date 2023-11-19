@@ -219,6 +219,7 @@ bool parse_rfc3986 (nitpick& nits, const html_version& v, const e_protocol prot,
         path = hier_part;
 
     const bool authority_empty = authority.empty ();
+
     if (! authority_empty)
     {   if (remove_head (authority, user, AT))
         {   if (remove_tail (user, insecure_password, COLON))
@@ -250,9 +251,14 @@ bool parse_rfc3986 (nitpick& nits, const html_version& v, const e_protocol prot,
                         {   nits.pick (nit_bad_port, ed_rfc_3986, "3.2.3. Port", es_error, ec_url, "port out of range"); return false; } }
 
         if (ipv6.empty ())
-            if (host.empty ())
+        {   if (host.empty ())
             {   nits.pick (nit_empty_host, ed_rfc_3986, "3.2.2. Host", es_error, ec_url, "host cannot be empty"); return false; }
-            else if ((host.at (0) >= '0') && (host.at (0) <= '9'))
+            bool maybe_ipv4 = (host.at (0) >= '0') && (host.at (0) <= '9');
+            const ::std::string::size_type pos = host.find_last_of ('.');
+            if (maybe_ipv4)
+                if ((pos != ::std::string::npos) && (pos < host.length () - 1))
+                    maybe_ipv4 = (host.at (pos + 1) >= '0') && (host.at (pos + 1) <= '9');
+            if (maybe_ipv4)
             {   if (host.find_first_not_of (DENARY ".") != host.npos)
                 {   nits.pick (nit_invalid_ipv4, ed_rfc_3986, "3.2.2. Host", es_warning, ec_url, "illegal character in ipv4 address"); return false; }
                 vstr_t octal;
@@ -271,7 +277,33 @@ bool parse_rfc3986 (nitpick& nits, const html_version& v, const e_protocol prot,
             else
             {   if (host.find_first_not_of (DOMAINNAME) != host.npos)
                 {   nits.pick (nit_invalid_domain, ed_rfc_3986, "3.2.2. Host", es_error, ec_url, "illegal character in domain"); return false; }
-                domain = host; } }
+                nitpick nuts;
+                if ((pos != ::std::string::npos) && (pos < host.length () - 1))
+                {   const e_tld tld = examine_value < t_tld > (nuts, v, host.substr (pos+1));
+                    switch (tld)
+                    {   case tld_context :
+                            nits.pick (nit_tld, es_warning, ec_url, quote (host.substr (pos)), " is not a TLD (top level domain, such as '.com') recognised by " PROG);
+                            break;
+                        case tld_example :
+                            nits.pick (nit_tld, es_warning, ec_url, quote (host.substr (pos)), " is an example top level domain which belongs in documentation; it should never be found on a live network");
+                            break;
+                        case tld_invalid :
+                            nits.pick (nit_tld, es_error, ec_url, quote (host.substr (pos)), " is intended to be deliberately wrong, and should never be encountered in a live network");
+                            break;
+                        case tld_test :
+                            nits.pick (nit_tld, es_info, ec_url, quote (host.substr (pos)), " is intended for domain testing only and should not be used on a live network");
+                            break;
+                        case tld_local :
+                            nits.pick (nit_tld, es_info, ec_url, quote (host.substr (pos)), " is intended for local use only and should not be used on an internet facing network");
+                            break;
+                        case tld_home :
+                        case tld_lan :
+                        case tld_vm :
+                            nits.pick (nit_tld, es_info, ec_url, quote (host.substr (pos)), " is not an official top level domain and can cause problems if it leaks to the internet: use '.local' instead");
+                            break;
+                        default :
+                            break; } }
+                domain = host; } } }
 
     if (! path.empty ())
     {   ::std::string pp (path);

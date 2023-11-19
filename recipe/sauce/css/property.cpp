@@ -188,12 +188,17 @@ void property::parse (arguments& args, const int from, const int to)
             args.ps_ -> state () |= pr;
             if (pr == ec_custom)
             {   name_ = args.t_.at (k).val_;
-                auto cp = args.g_.custom_prop ().find (name_);
-                if (cp == args.g_.custom_prop ().cend ())
-                {   args.g_.custom_prop ().emplace (name_, 1);
-                    nits.pick (nit_css_custom, es_info, ec_css, quote (name_), " noted"); }
+//                auto cp = args.g_.custom_prop ().find (name_);
+//                if (cp == args.g_.custom_prop ().cend ())
+//                {   args.g_.custom_prop ().emplace (name_, 1);
+//                    nits.pick (nit_css_custom, es_info, ec_css, quote (name_), " noted"); }
+//                else
+//                {   cp -> second += 1;
+//                    nits.pick (nit_css_custom, es_comment, ec_css, quote (name_), " referenced again"); } }
+                if (args.has_custom_prop (name_))
+                    nits.pick (nit_css_custom, es_comment, ec_css, quote (name_), " noted");
                 else
-                {   cp -> second += 1;
+                {   args.note_custom_prop (name_);
                     nits.pick (nit_css_custom, es_comment, ec_css, quote (name_), " referenced again"); } }
             flags_ = pp.flags ();
             args.check_flags (nits, flags_, pp.name ());
@@ -217,7 +222,7 @@ void property::accumulate (stats_t* s, const element_bitset& e) const
         prop_ -> accumulate (s, e); }
     w_.accumulate (s);
     if (! name_.empty ())
-        s -> mark_custom_prop (name_); }
+        s -> use_custom_prop (name_); }
 
 ::std::string property::rpt () const
 {   if (prop_.get () == nullptr) return ::std::string ();

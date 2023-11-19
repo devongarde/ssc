@@ -86,10 +86,10 @@ void bracs_ket::nodoctype (nitpick& nits, html_version& v, ::std::string::const_
         nits.pick (nit_html, es_error, ec_parser, "Missing <!DOCTYPE ... > at beginning of content; incorrectly presuming ", context.html_ver ().name ()); }
     else if (context.presume_tags ())
     {   v.reset (html_tags);
-        nits.pick (nit_presume_html_tags, ed_tags, "", es_warning, ec_parser, "No <!DOCTYPE ... > found at beginning of content; presuming HTML Tags"); }
+        nits.pick (nit_presume_html_tags, ed_tags, "", es_warning, ec_parser, "No <!DOCTYPE ... > found at the beginning of the content: am presuming HTML Tags"); }
     else
     {   v.reset (html_1);
-        nits.pick (nit_presume_html_1, ed_1, "", es_warning, ec_parser, "No <!DOCTYPE ... > found at beginning of content; presuming HTML 1.0"); } }
+        nits.pick (nit_presume_html_1, ed_1, "", es_warning, ec_parser, "No <!DOCTYPE ... > found at the beginning: am presuming the most recent version of HTML not to require one, HTML 1.0"); } }
 
 void bracs_ket::mixed_mess (nitpick& nits, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const char* item, const char* inside)
 {   PRESUME (item != nullptr, __FILE__, __LINE__);
@@ -122,7 +122,7 @@ void check_character (nitpick& nits, const html_version& v, const ::std::string:
                 return;
             case '`' :
                 if (v >= html_jul10)
-                {   nits.pick (nit_naughty_grave, ed_jul10, "1.11.2 Syntax errors", es_info, ec_parser, "a grave accent is better encoded (e.g. '&grave;') or quoted"); return; }
+                {   nits.pick (nit_naughty_grave, ed_jul10, "1.11.2 Syntax errors", es_info, ec_parser, "a grave accent is better encoded (e.g. '&grave;')"); return; }
                 break;
             default :
                 {   ::std::string cc = get_character_code (::std::string (1, *i));
@@ -362,14 +362,14 @@ html_version bracs_ket::parse (const ::std::string& content)
                 switch (ch)
                 {   case '<' :  status = s_open; soe = twas = i; break;
                     case '>' : if (aftercab) if (! silent_content) nits.pick (nit_double_gin_and_tonic, es_info, ec_parser, "is that double '>' intentional?"); break;
-                    case '&' :  if (! xmp_mode) { status= s_amper; twas = i; } break;
+                    case '&' :  if (! xmp_mode) { status = s_amper; twas = i; } break;
                     default : if (! xmp_mode && ! silent_content) check_character (nits, res, e, i); }
                 break;
             case s_amper :
                 if (context.tell (es_all)) form_.pick (nit_all, es_all, ec_parser, "s_amper ", ch);
                 switch (ch)
                 {   case '#' :  status = s_hash; break;
-                    case ' ' :  break;
+//                    case ' ' :  break;
                     case '<' :  mixed_mess (nits, b, e, i, elmt, ccnu);
                                 status = s_open; soe = twas = i; break;
                     case ';' :  nits.pick (nit_empty_character_code, es_info, ec_parser, "empty character code");
@@ -854,7 +854,7 @@ html_version bracs_ket::parse (const ::std::string& content)
                                 mixed_mess (nits, b, e, i, oel, ano); status = s_open; twas = i; break;
                     case '&' :  if (xmp_mode) { status = s_dull; break; }
                                 mixed_mess (nits, b, e, i, cc, elmt); status= s_amper; twas = i;break;
-                    case '=' :  nits.pick (nit_forgotten_name, es_warning, ec_parser, "has an attribute name been omitted?");
+                    case '=' :  nits.pick (nit_forgotten_name, es_warning, ec_parser, "has an element or an attribute name been omitted?");
                                 twas = text; status = s_dull; break;
                     default :   if (((ch < 'A') || (ch > 'Z')) && ((ch < 'a') || (ch > 'z')) && ((ch < '0') || (ch > '9')) && (ch != '-') && (ch != ':'))
                                 {   twas = text; status = s_dull; } }
@@ -958,7 +958,9 @@ html_version bracs_ket::parse (const ::std::string& content)
             case s_element_double_quote :
                 if (context.tell (es_all)) form_.pick (nit_all, es_all, ec_parser, "s_element_double_quote ", ch);
                 status = ket_quote (nits, ch, status, s_inside, '"', newline, backslashed);
-                break; } }
+                break;
+            default :
+                GRACEFUL_CRASH (__FILE__, __LINE__); break; } }
     if (context.tell (es_all))
     {   if (! linelog.empty ()) nits.pick (nit_all, es_all, ec_parser, "\\\\ ", linelog);
         form_.pick (nit_all, es_all, ec_parser, "end of input"); }
