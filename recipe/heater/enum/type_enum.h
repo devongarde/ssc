@@ -1003,6 +1003,9 @@ template < > struct type_master < t_text_decoration > : enum_n < t_text_decorati
 template < > struct type_master < t_text_rendering > : enum_n < t_text_rendering, e_text_rendering >
 { using enum_n < t_text_rendering, e_text_rendering > :: enum_n; };
 
+template < > struct type_master < t_tld > : enum_n < t_tld, e_tld >
+{ using enum_n < t_tld, e_tld > :: enum_n; };
+
 template < > struct type_master < t_transform_anim > : enum_n < t_transform_anim, e_transform_anim >
 { using enum_n < t_transform_anim, e_transform_anim > :: enum_n; };
 

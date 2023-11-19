@@ -36,6 +36,10 @@ void stats_t::dcl_class (const ::std::string& s, const ::std::size_t n)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     return p_ -> dcl_class (s, n); }
 
+void stats_t::dcl_custom_prop (const ::std::string& s, const ::std::size_t n)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> dcl_custom_prop (s, n); }
+
 void stats_t::dcl_id (const ::std::string& s, const ::std::size_t n)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     return p_ -> dcl_id (s, n); }
@@ -51,6 +55,10 @@ void stats_t::dcl_element_id (const ::std::string& s, const ::std::size_t n)
 void stats_t::mark_abbr (const ::std::string& a, const ::std::string& b)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     p_ -> mark_abbr (a, b); }
+
+void stats_t::mark_custom_media (const ::std::string& str, const ::std::string& def)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    p_ -> mark_custom_media (str, def);; }
 
 void stats_t::mark_dfn (const ::std::string& a, const ::std::string& b)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
@@ -96,10 +104,6 @@ void stats_t::mark (const e_css_statement s)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     p_ -> mark (s); }
 
-void stats_t::mark_custom_prop (const ::std::string& s, const ::std::size_t n)
-{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
-    p_ -> mark_custom_prop (s, n); }
-
 void stats_t::mark_file (const unsigned size)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     p_ -> mark_file (size); }
@@ -120,9 +124,17 @@ void stats_t::mark_meta (const e_metaname mn, const ::std::string& val)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     p_ -> mark_meta (mn, val); }
 
+void stats_t::mark_str (const e_gsstr gst, const ::std::string& s)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    p_ -> mark_str (gst, s); }
+
 void stats_t::merge_class (const smsid_t& s)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     return p_ -> merge_class (s); }
+
+void stats_t::merge_custom_prop (const smsid_t& s)
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> merge_custom_prop (s); }
 
 void stats_t::merge_id (const smsid_t& s)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
@@ -144,9 +156,9 @@ void stats_t::use_class (const ::std::string& s, const ::std::size_t n)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     return p_ -> use_class (s, n); }
 
-void stats_t::use_highlight (const ::std::string& s)
+void stats_t::use_custom_prop (const ::std::string& s, const ::std::size_t n)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
-    return p_ -> use_highlight (s); }
+    return p_ -> use_custom_prop (s, n); }
 
 void stats_t::use_id (const ::std::string& s, const ::std::size_t n)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
@@ -168,9 +180,21 @@ bool stats_t::has_class (const ::std::string& s) const
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     return p_ -> has_class (s); }
 
+bool stats_t::has_custom_media (const ::std::string& name) const
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> has_custom_media (name); }
+
+bool stats_t::has_custom_prop (const ::std::string& s) const
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> has_custom_prop (s); }
+
 bool stats_t::has_id (const ::std::string& s) const
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
     return p_ -> has_id (s); }
+
+bool stats_t::has_str (const e_gsstr g, const ::std::string& s) const
+{   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
+    return p_ -> has_str (g, s); }
 
 ::std::string stats_t::report (const bool grand) const
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);

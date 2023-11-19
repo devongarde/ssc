@@ -23,18 +23,18 @@ PASS ../toast/type/url/bad.html
 30 url_missing_username chocolate_teapot
 31 url_empty_password url_missing_username chocolate_teapot
 32 empty_host chocolate_teapot
-33 url_empty_password protocol
+33 url_empty_password ftp_protocol
 34 url_empty_password empty_host chocolate_teapot
-35 url_insecure_password protocol
+35 url_insecure_password ftp_protocol
 41 chocolate_teapot
 
 PASS ../toast/type/url/dubious.html
 2 naughty_lang
 11 unknown_protocol chocolate_teapot
-12 url_insecure_password protocol
+12 url_insecure_password ftp_protocol
 
 PASS ../toast/type/url/good.html
 2 naughty_lang
 19 character_code
-28 protocol
-29 protocol
+28 ftp_protocol
+29 ftp_protocol

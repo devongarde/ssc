@@ -193,18 +193,20 @@ bool directory::add_to_content (nitpick* ticks, const ::boost::filesystem::direc
 {   VERIFY_NOT_NULL (ticks, __FILE__, __LINE__);
     ::boost::filesystem::path qp (i.path ());
     fileindex_t ndx = nullfileindex;
-    if (is_folder (qp)) ndx = insert_directory_path (ndx_, qp);
+    const bool enfolded = is_folder (qp);
+    if (enfolded) ndx = insert_directory_path (ndx_, qp);
     else ndx = insert_disk_path (ndx_, qp, 0);
     ::std::string p;
     if (site.empty ()) p = get_site_path ();
     else p = site;
     ::std::string f (local_path_to_nix (qp.filename ().string ()));
     p = join_site_paths (p, f);
-    if (is_regular_file (qp))
+    if (::boost::filesystem::is_regular_file (qp))
     {   if (context.dodedu ()) get_crc (*ticks, ndx);
-        if (is_css (f)) return priority_.insert (value_t (f, nullptr)).second;
-        else return content_.insert (value_t (f, nullptr)).second; }
-    if (is_directory (qp))
+        if (is_css (f))
+            return priority_.insert (value_t (f, nullptr)).second;
+        return content_.insert (value_t (f, nullptr)).second; }
+    if (enfolded)
     {   dir_ptr dp (new directory (ticks, f, ndx, this, p, false)); 
         if (content_.insert (value_t (f, dp)).second)
 #ifndef NO_FRED
@@ -291,7 +293,7 @@ void directory::examine (nitpick* ticks, dir_ptr me_me_me) const
 #ifdef NO_FRED
             examine_page (ticks, i.first); }
 #else // NO_FRED
-            q.push (q_entry (ticks, me_me_me, st_priority, i.first)); }
+            q.rude (q_entry (ticks, me_me_me, st_priority, i.first)); }
     ::std::this_thread::yield ();
 #endif // NO_FRED
     for (auto i : content_)
@@ -484,7 +486,8 @@ bool directory::integrate_virtual (const ::std::string& site, path_root_ptr& dis
 bool has_extension (const ::std::string& name, const vstr_t& extensions)
 {   ::std::string ext (::boost::filesystem::path (name).extension ().string ());
     if (ext.empty ()) return false;
-    return is_one_of (ext.substr (1), extensions); }
+    if (ext.at (0) == '.') return is_one_of (ext.substr (1), extensions);
+    return is_one_of (ext, extensions); }
 
 bool is_css (const ::std::string& name)
 {   return has_extension (name, context.css_extension ()); }

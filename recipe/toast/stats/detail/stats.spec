@@ -5,28 +5,20 @@ PASS ../toast/stats/detail/index.html
 
 STATS
 Elements:
-    !doctype: once
-    body: once
-    h1: once
-    head: once
-    html: once
-    meta: thrice
-      content: thrice
-      name: thrice
-    p: once
-    title: once
+    !doctype: once 
+    body: once 
+    h1: once 
+    head: once 
+    html: once 
+    meta: thrice 
+      content: thrice 
+      name: thrice 
+    p: once 
+    title: once 
   Attribute counts:
-    content: thrice
-    name: thrice
+    content: thrice 
+    name: thrice 
   11 elements used 26 times
-Headers:
-  metadata:
-    description: once
-  name:
-    author:
-      sid: once
-    generator:
-      notepad: once
 ===
 
 PASS ../toast/stats/detail/itemref.html
@@ -80,13 +72,13 @@ Ontology:
     name: once 
     publisher: once 
   2 itemtypes used thrice
-CSS itemid(s):
+CSS Itemid(s):
     a: 0
     amanda: 0
     b: 0
     c: 0
     comments: 0
-  5 itemid(s) used 0 times
+  5 Itemid(s) used 0 times
 ===
 
 PASS ../toast/stats/detail/keyword-1.html
@@ -94,42 +86,31 @@ PASS ../toast/stats/detail/keyword-1.html
 
 STATS
 Elements:
-    !doctype: once
-    abbr: once
-      title: once
-    body: once
-    dfn: 5 times
-      title: twice
-    h1: once
-    head: once
-    html: once
-    meta: 4 times
-      content: 4 times
-      http-equiv: once
-      name: thrice
-    p: 5 times
-    span: once
-    title: once
+    !doctype: once 
+    abbr: once 
+      title: once 
+    body: once 
+    dfn: 5 times 
+      title: twice 
+    h1: once 
+    head: once 
+    html: once 
+    meta: 4 times 
+      content: 4 times 
+      http-equiv: once 
+      name: thrice 
+    p: 5 times 
+    span: once 
+    title: once 
   Attribute counts:
-    content: 4 times
-    http-equiv: once
-    name: thrice
-    title: thrice
+    content: 4 times 
+    http-equiv: once 
+    name: thrice 
+    title: thrice 
   14 elements used 54 times
-Headers:
-  pragma:
-    Refresh: once
-  name:
-    author:
-      doris: once
-    keywords:
-      a: once
-      b: once
-      c: once
-
 Abbreviations:
     CFL: once Chemin de Fer Luxembourg
-
+  
 Definitions:
     Chemin de Fer Luxembourg: once CFL operates trains.
     FRED: once File Retrieval Encoding and Decoding
@@ -143,46 +124,34 @@ PASS ../toast/stats/detail/keyword-2.html
 
 STATS
 Elements:
-    !doctype: once
-    abbr: once
-      title: once
-    body: once
-    dd: 7 times
-    dl: once
-    dt: 8 times
-    h1: once
-    head: once
-    html: once
-    meta: 4 times
-      content: 4 times
-      http-equiv: once
-      name: thrice
-    p: once
-      lang: once
-    title: once
+    !doctype: once 
+    abbr: once 
+      title: once 
+    body: once 
+    dd: 7 times 
+    dl: once 
+    dt: 8 times 
+    h1: once 
+    head: once 
+    html: once 
+    meta: 4 times 
+      content: 4 times 
+      http-equiv: once 
+      name: thrice 
+    p: once 
+      lang: once 
+    title: once 
   Attribute counts:
-    content: 4 times
-    http-equiv: once
-    lang: once
-    name: thrice
-    title: once
+    content: 4 times 
+    http-equiv: once 
+    lang: once 
+    name: thrice 
+    title: once 
   16 elements used 82 times
-Headers:
-  pragma:
-    Content-Security-Policy: once
-  name:
-    author:
-      doris: once
-    generator:
-      beer: once
-    keywords:
-      a: once
-      d: once
-
 Abbreviations:
     DP: once Demokratesch Partei
-
-Name/Value pairs:
+  
+Name/Value Pairs:
     bread and cheese: once in Dutch hotel breakfast
     bread and cheese: once in Flemish hotel breakfast
     coffee: once in hotel continental breakfast
@@ -251,10 +220,10 @@ Ontology:
     name: 4 times 
     url: 4 times 
   2 itemtypes used 4 times
-CSS itemid(s):
+CSS Itemid(s):
     tid: 0
-  1 itemid(s) used 0 times
-===
+  1 Itemid(s) used 0 times
+  ===
 
 itemids
 #mozOrg
@@ -336,25 +305,6 @@ Ontology:
     publisher: once 
     url: 4 times 
   3 itemtypes used 7 times
-Headers:
-  pragma:
-    Content-Security-Policy: once 
-    Refresh: once 
-  metadata:
-    description: once 
-  name:
-    author:  
-      doris: twice 
-      sid: once 
-    generator:  
-      beer: once 
-      notepad: once 
-    keywords:  
-      a: twice 
-      b: once 
-      c: once 
-      d: once 
-  
 Abbreviations:
     CFL: once Chemin de Fer Luxembourg
     DP: once Demokratesch Partei
@@ -366,7 +316,7 @@ Definitions:
     Tiddles: once The tortoiseshell Tiddles is a rather affectionate cat.
     Tiddles: once Tiddles, no siamese, likes to miaow.
   
-Name/Value pairs:
+Name/Value Pairs:
     bread and cheese: once in Dutch hotel breakfast
     bread and cheese: once in Flemish hotel breakfast
     coffee: once in hotel continental breakfast
@@ -379,14 +329,14 @@ Name/Value pairs:
     sausage: once in English breakfast
     sausage: once in Irish breakfast
   
-CSS itemid(s):
+CSS Itemid(s):
     a: 0
     amanda: 0
     b: 0
     c: 0
     comments: 0
     tid: 0
-  6 itemid(s) used 0 times
+  6 Itemid(s) used 0 times
 Nits Reported:
     Errors: 4 times 
     Warnings: 6 times 
@@ -401,10 +351,10 @@ Nit Categories:
 References:
     HTML 5.0: thrice 
     WhatWG HTML 5, Jul 20: thrice 
-    HTML 5, Jul 23: twice
-    
+    HTML 5, Jul 23: twice 
+  
 Versions:
-    HTML5/20210101/SVG-2.0/MathML-4(Dec20)/CSS-2.1/WhatWG: 5 times 
+    HTML-5/20210101/SVG-2.0/MathML-4(Dec20)/CSS-2.1/WhatWG: 5 times 
   
 File info:
      3773 bytes read in 5 files, with an average of roughly 755 bytes per file

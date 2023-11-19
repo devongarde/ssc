@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.19)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.1.47 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
+project (ssc VERSION 0.1.48 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
 
 set (CMAKE_CXX_STANDARD 17)
 
@@ -89,7 +89,11 @@ endif ()
     set (NO_CURL "1")
     if (${CMAKE_SYSTEM} MATCHES "FreeBSD-13.1")
       target_compile_definitions (ssc PRIVATE UNIX OS_VER="${OS}" FBSD NO_PCF_STR HUNSPELL NOCURL)
+    elseif (${CMAKE_SYSTEM} MATCHES "FreeBSD-13.1")
+      target_compile_definitions (ssc PRIVATE UNIX OS_VER="${OS}" FBSD NO_PCF_STR HUNSPELL NOCURL)
     elseif (${CMAKE_SYSTEM} MATCHES "FreeBSD-12.3")
+      target_compile_definitions (ssc PRIVATE UNIX OS_VER="${OS}" FBSD NO_PCF_STR HUNSPELL NOCURL)
+    elseif (${CMAKE_SYSTEM} MATCHES "FreeBSD-12.4")
       target_compile_definitions (ssc PRIVATE UNIX OS_VER="${OS}" FBSD NO_PCF_STR HUNSPELL NOCURL)
     else ()
       set (OS "FreeBSD?")
@@ -284,7 +288,7 @@ target_sources (ssc PRIVATE
             ${H}/simple/type_microformat.h ${H}/simple/type_misc.h ${H}/simple/type_numeric.h ${H}/simple/type_svg.h
         ${H}/spell/spell.h ${H}/spell/phrase.h
         ${H}/stats/stats.h ${H}/stats/stats0.h ${H}/stats/stats1.h ${H}/stats/stats2.h ${H}/stats/stats3.h ${H}/stats/stats4.h ${H}/stats/stats5.h
-            ${H}/stats/stats_impl.h
+            ${H}/stats/stats6.h ${H}/stats/stats_impl.h
         ${H}/symbol/nstr.h ${H}/symbol/symbol.h ${H}/symbol/symbol_entry.h ${H}/symbol/symbol_key.h ${H}/symbol/symbol_store.h ${H}/symbol/symbol_table.h
         ${H}/type/type.h ${H}/type/type_csp.h
         ${H}/url/curl.h ${H}/url/url.h ${H}/url/url_parameters.h ${H}/url/url_protocol.h ${H}/url/url_sanitise.h ${H}/url/url_scheme.h

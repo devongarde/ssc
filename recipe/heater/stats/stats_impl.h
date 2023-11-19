@@ -25,11 +25,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "stats/stats3.h"
 #include "stats/stats4.h"
 #include "stats/stats5.h"
+#include "stats/stats6.h"
 #include "parser/html_version.h"
+
+//     vsstr_t str_ = vsstr_t (gst_max);
+//    smsid_t class_, custom_prop_, id_, element_class_, element_id_, font_;
+//    ustr_t custom_media_;
+
 
 class stats
 {   element_stats element_, visible_;
-    term_stats dfn_, abbr_, dtdd_;
+    term_stats dfn_, abbr_, dtdd_, custom_media_;
     severity_stats severity_;
     category_stats category_;
     ref_stats ref_;
@@ -42,9 +48,10 @@ class stats
     meta_value_stats meta_value_;
     css_property_stats css_property_;
     css_statement_stats css_statement_;
-    smsid_stats custom_prop_, dcl_class_, dcl_id_, dcl_element_class_, dcl_element_id_, font_,
-                use_class_, use_id_, use_element_class_, use_element_id_;
-    sstr_t highlight_;
+    smsid_stats dcl_class_, dcl_custom_prop_, dcl_id_, dcl_element_class_, dcl_element_id_, font_,
+                use_class_, use_custom_prop_, use_id_, use_element_class_, use_element_id_;
+//    sstr_t highlight_, custom_media_;
+    vs6_stats str_ = vs6_stats (gst_max);
     uint64_t file_count_ = 0;
     unsigned smallest_ = UINT_MAX;
     unsigned biggest_ = 0;
@@ -63,9 +70,10 @@ class stats
     ::std::string category_report () const;
     ::std::string class_report () const;
     ::std::string class_report2 () const;
-    ::std::string css_highlight_report () const;
     ::std::string css_property_report () const;
     ::std::string css_statement_report () const;
+    ::std::string css_str_report (const e_gsstr gst) const;
+    ::std::string custom_media_report () const;
     ::std::string custom_property_report () const;
     ::std::string dfn_report () const;
     ::std::string dtdd_report () const;
@@ -82,6 +90,8 @@ class stats
 public:
     void dcl_class (const ::std::string& s, const ::std::size_t n = 1)
     {   dcl_class_.mark (s, n); }
+    void dcl_custom_prop (const ::std::string& s, const ::std::size_t n = 1)
+    {   dcl_custom_prop_.mark (s, n); }
     void dcl_id (const ::std::string& s, const ::std::size_t n = 1)
     {   dcl_id_.mark (s, n); }
     void dcl_element_class (const ::std::string& s, const ::std::size_t n = 1)
@@ -92,6 +102,8 @@ public:
     {   element_.mark (e); }
     void mark_abbr (const ::std::string& a, const ::std::string& b)
     {   abbr_.mark (tart (a), tart (b)); }
+    void mark_custom_media (const ::std::string& str, const ::std::string& def)
+    {   custom_media_.mark (tart (str), tart (def)); }
     void mark_dfn (const ::std::string& a, const ::std::string& b)
     {   dfn_.mark (tart (a), tart (b)); }
     void mark_dtdd (const ::std::string& a, const ::std::string& b)
@@ -117,18 +129,18 @@ public:
     void mark_meta (const e_metaname mn, const ::std::string& val)
     {   meta_value_.mark (mn, tart (val)); }
     void mark_file (const unsigned size) noexcept;
-    void mark_custom_prop (const ::std::string& s, const ::std::size_t n = 1)
-    {   custom_prop_.mark (s, n); }
     void mark_font (const ::std::string& s, const ::std::size_t n = 1)
     {   font_.mark (s, n); }
     void mark_meta (const e_httpequiv he)
     {   httpequiv_.mark (he); }
     void mark_meta (const e_metaname mn)
     {   metaname_.mark (mn); }
+    void mark_str (const e_gsstr gst, const ::std::string& s)
+    {   str_.at (gst).mark (s); }
     void use_class (const ::std::string& s, const ::std::size_t n = 1)
     {   use_class_.mark (s, n); }
-    void use_highlight (const ::std::string& s)
-    {   highlight_.insert (s); }
+    void use_custom_prop (const ::std::string& s, const ::std::size_t n = 1)
+    {   use_custom_prop_.mark (s, n); }
     void use_id (const ::std::string& s, const ::std::size_t n = 1)
     {   use_id_.mark (s, n); }
     void use_element_class (const ::std::string& s, const ::std::size_t n = 1)
@@ -139,9 +151,16 @@ public:
     {   visible_.mark (e); }
     bool has_class (const ::std::string& s) const
     {   return dcl_class_.at (s) > 0; }
+    bool has_custom_media (const ::std::string& name) const
+    {   return custom_media_.exists (name); }
+    bool has_custom_prop (const ::std::string& s) const
+    {   return dcl_custom_prop_.at (s) > 0; }
     bool has_id (const ::std::string& s) const
     {   return dcl_id_.at (s) > 0; }
+    bool has_str (const e_gsstr g, const ::std::string& s) const
+    {   return str_.at (g).find (s) != str_.at (g).cend (); }
     void merge_class (const smsid_t& s) { dcl_class_.merge (s); }
+    void merge_custom_prop (const smsid_t& s) { dcl_custom_prop_.merge (s); }
     void merge_id (const smsid_t& s) { dcl_id_.merge (s); }
     void merge_element_class (const smsid_t& s) { dcl_element_class_.merge (s); }
     void merge_element_id (const smsid_t& s) { dcl_element_id_.merge (s); }

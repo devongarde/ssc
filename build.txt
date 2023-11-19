@@ -6,13 +6,13 @@ https://ssc.lu/
 
 Introduction
 ============
-SSC can be built on various unii with CMake and gcc or clang,
-supporting C++ 17 or better, or with Visual Studios 2017 / 2019 / 2022
-under Windows. I have built & tested a 64-bit version in selected OSs
-on intel/amd & arm64 (m2) architecture.
+SSC can be built on various unii with CMake and gcc or clang for C++ 17
+or better, or Visual Studios 2017 / 2019 / 2022 under Windows. I have
+built & tested a 64-bit version in various OSs on intel/amd & arm64
+(m2) architecture.
 
-Although ssc builds and runs with some older compilers on some older
-systems, not all features are available on them.
+Although ssc builds with older compilers on some older systems, not all
+features are available.
 
 
 Libraries
@@ -20,11 +20,11 @@ Libraries
 
 Common dependencies
 -------------------
-You need boost version 1.75 or better (https://boost.org), a recent
-version of the ICU libraries (https://icu-project.org/), Microsoft's
-GSL library (https://github.com/Microsoft/GSL) (or define NO_GSL), and
-a recent version of libcurl (https://curl.se/)*. Usually, an Operating
-System's package system has appropriate versions ready to install.
+ssc needs boost version 1.75 or better (https://boost.org), a recent
+copy of the ICU libraries (https://icu-project.org/), Microsoft's GSL
+library (https://github.com/Microsoft/GSL) (or define NO_GSL), and a
+recent version of libcurl (https://curl.se/)*. Usually, an Operating
+System's package manager has appropriate versions ready to install.
 
 *libcurl requires a thread-safe underlying SSL library: see
 https://curl.se/libcurl/c/threadsafe.html
@@ -45,7 +45,7 @@ winspell
 --------
 The Windows build, by default, uses the native Windows spellchecker,
 although, except for Windows 11, that doesn't seem to work so well in
-multilingual contexts.
+contexts unimpaired by monolingualism.
 
 
 Building
@@ -54,8 +54,8 @@ Building
 Windows
 -------
 To build from Visual Studio, navigate to recipe/tea, open the
-appropriate .sln file, then build. Only Visual Studios 2019 and
-2022, 64 bit, have been built & tested, for intel and arm64, under
+appropriate .sln file, then build. Only Visual Studios 2017, 2019 and
+2022, have been built & tested, for amd64 (x64) and arm64 (M2), under
 Windows 10 & 11.
 
 Note the included solutions presume Microsoft's VCPKG manager. There
@@ -68,8 +68,8 @@ Unii & mock Unii
 ----------------
 You will need CMake 3.19 or better. On Linux, you will also need
 lsb-release. These can be found in most distributions' standard
-packages. (For macos, I used macports, but brew is good too.)
-From the home ssc directory, compile a normal build thus:
+packages. For macos, I used macports, but brew is good too. From the
+home ssc directory, compile a normal build thus:
 cmake .
 make
 ctest
@@ -92,18 +92,21 @@ they can't find files they're supposed to delete, which is a bit silly
 given that means things are already in the required state.
 
 The following have, at some point, been successfully built as x64 amd:
-FreeBSD:  12.3 / 13.1
+FreeBSD:  13.2 / 13.1 / 12.4 / 12.3
 Linux:    Alma Linux 9, AOSC, Centos 8 / 9, SUSE Tumbleweed,
           Ubuntu 20.04 / 22.04
 MacOS:    Sonoma, Ventura, Monterey, Big Sur, Catalina, Mojave, High
-          Sierra, Sierra, El Capitan, and Yosemite
+          Sierra, Sierra, El Capitan, Yosemite
 OpenBSD:  7.4 / 7.3 / 7.2 / 7.1 / 7.0 / 6.9 / 6.8
 
 The following have been successfully built as arm64:
 Linux:    Centos 9
 MacOS:    Sonoma, Ventura
 
-Not all features are available on all versions of all systems.
+The current version of ssc requires the current version of an operating
+system. Older operating systems require older versions of ssc. Not all
+features work on all systems.
+
 
 Centos 9
 --------
@@ -123,12 +126,11 @@ Testing
 Windows
 -------
 Under Visual Studio, run ssc??-test using these arguments:
-
   -v -x $(ProjectDir)..\..\ssc.exe
     -f $(ProjectDir)..\toast\ssc-test\win.lst
-(all one line)
+(on one line)
 
-Add '-d' if you want the test utility to retain intemediate files.
+Add '-d' if you want the test utility to retain temporary files.
 
 CMake
 -----
@@ -138,8 +140,8 @@ Under CMake, run ctest:
 
 Dimitude
 --------
-The testing utility is rather dim; it will test features that are not
-built, causing failures.
+The testing utility is rather dim; it will test unbuilt features,
+causing failures.
 
 Spelling test results depend on the dictionaries installed.
 
@@ -156,8 +158,8 @@ In Windows, remember to add its root directory to your local path.
 
 Curl
 ----
-This is in every standard unix flavour repository that I've met, but
-not so easy for Windows. I suggest the following:
+This is in almost every standard unix flavour repository, but not so
+easy for Windows. I suggest the following:
 
 1  Install the Microsoft repository vcpkg (https://vcpkg.io)
 2  Run up the visual studio 64bit native command prompt
@@ -170,12 +172,12 @@ not so easy for Windows. I suggest the following:
 7  If you plan to debug, also add debug\bin, perhaps:
     ****\vcpkg\installed\x64-windows\debug\bin
 
-Adapt the architecture as necessary. If you omit it, vcpkg might
-carefully ignore your hardware and install x86.
+Set the architecture as necessary. If you omit it, vcpkg may carefully
+ignore your hardware and install x86.
 
 Boost
 -----
 Boost is to C++ as breakfast is to the working day.
 
-Most package managers support it, including vcpkg. Many people build
-their own versions using the sources found at boost.org.
+Most package managers support it, including vcpkg. Alternatively, build
+your own version using the source found at boost.org.

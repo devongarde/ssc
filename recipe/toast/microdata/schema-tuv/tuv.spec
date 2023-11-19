@@ -29,6 +29,7 @@ PASS ../toast/microdata/schema-tuv/touristdestination.html
 
 PASS ../toast/microdata/schema-tuv/touristtrip.html
 0 charset_mismatch charset_used charset_invalid
+18 tld tld
 84 not_ontology_property
 125 not_ontology_property
 163 use_quote_code
@@ -77,9 +78,11 @@ PASS ../toast/microdata/schema-tuv/videogame-1.html
 14 no_such_folder url_not_found
 52 data_type
 53 attribute_required attribute_required
+58 lonely_ampersand
 
 PASS ../toast/microdata/schema-tuv/videogame-2.html
 0 charset_mismatch charset_used charset_invalid
+17 lonely_ampersand
 
 PASS ../toast/microdata/schema-tuv/videogame-3.html
 16 use_quote_code

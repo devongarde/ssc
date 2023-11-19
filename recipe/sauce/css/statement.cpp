@@ -58,16 +58,19 @@ void statement::parse_colour_profile (arguments& args, nitpick& nits, const int 
                 if ((args.t_.at (i).t_ == ct_identifier) || (args.t_.at (i).t_ == ct_keyword))
                 {   ::std::string s (args.t_.at (i).val_);
                     if ((s.size () > 2) && (s.substr (0, 2) == "--"))
-                        if (args.g_.custom_prop ().find (s) != args.g_.custom_prop ().cend ())
+//                        if (args.g_.custom_prop ().find (s) != args.g_.custom_prop ().cend ())
+                        if (args.has_custom_prop (s))
                             nits.pick (nit_css_custom, es_warning, ec_css, "@color-profile identifier ", s, " previously encountered");
                         else
                         {   nits.pick (nit_css_custom, es_info, ec_css, "noting @color-profile ", s);
-                            args.g_.custom_prop ().emplace (s, 1); } } }
+//                            args.g_.custom_prop ().emplace (s, 1); } } }
+                            args.note_custom_prop (s); } } }
         fiddlesticks < statement > f (&args.st_, this);
         prop_.parse (args, args.t_.at (to).child_); } }
 
 void statement::parse_counter_style (arguments& args, nitpick& nits, const int from, const int to)
 {   const int i = next_non_whitespace (args.t_, from, to); 
+    VERIFY_NOT_NULL (args.dst_, __FILE__, __LINE__);
     if (context.html_ver ().css_counter_style () < 3)
         nits.pick (nit_css_version, es_error, ec_css, "@counter-style requires CSS Counter Style 3");
     else if ((i < 0) || ((args.t_.at (i).t_ != ct_string) && (args.t_.at (i).t_ != ct_identifier) && (args.t_.at (i).t_ != ct_number) && (args.t_.at (i).t_ != ct_keyword)))
@@ -88,11 +91,13 @@ void statement::parse_counter_style (arguments& args, nitpick& nits, const int f
                 nits.pick (nit_counter_style, ed_css_cascade_5, "7.3. Explicit Defaulting", es_error, ec_css, quote (args.t_.at (i).val_), ": no CSS wide keyword can be used with @counter-style");
             if ((cs.get () & CF_CS_PREDEFINED) == CF_CS_PREDEFINED)
                 nits.pick (nit_counter_style, ed_css_cs_3, "6. Simple Predefined Counter Styles", es_warning, ec_css, quote (args.t_.at (i).val_), " is a predefined @counter-style"); }
-        else if (args.g_.counter_style ().find (name) != args.g_.counter_style ().cend ())
+//        else if (args.g_.counter_style ().find (name) != args.g_.counter_style ().cend ())
+        else if (args.dst_ -> has_str (gst_counter_style, name))
             nits.pick (nit_counter_style, ed_css_cs_3, "3. Defining Custom Counter Styles: the @counter-style rule", es_warning, ec_css, quote (args.t_.at (i).val_), ": defined earlier");
         else    
         {   nits.pick (nit_counter_style, es_comment, ec_css, "noted ", quote (name));
-            args.g_.counter_style ().insert (name); }
+            args.dst_ -> note_str (gst_counter_style, name); }
+//            args.g_.counter_style ().insert (name); }
         PRESUME (args.t_.at (to).child_ > 0, __FILE__, __LINE__);
         fiddlesticks < statement > f (&args.st_, this);
         dsc_.parse (args, css_counter_style, args.t_.at (to).child_); } }
@@ -235,7 +240,8 @@ void statement::parse_custom_media (arguments& args, nitpick& nits, const int fr
         if (i < 0) nits.pick (nit_css_syntax, es_error, ec_css, "missing @custom-media definition after ", quote (name));
         else
         {   ::std::string def (assemble_string (args.t_, i, to, true));
-            args.custom_media ().insert (::std::pair (name, def)); } } }
+//            args.custom_media ().insert (::std::pair (name, def)); } } }
+            args.note_custom_media (name, def); } } }
 
 void statement::conditional (arguments& args, nitpick& , const int from, const int to)
 {   media_.parse (args, from, to); }
@@ -291,12 +297,13 @@ void statement::parse_font_feature_values (arguments& args, nitpick& nits, const
     {   if (i == to) nits.pick (nit_css_syntax, es_error, ec_css, "expecting a name after @font-feature-values (2)");
         else
         {   ::std::string name (assemble_string (args.t_, i, to, false));
-            if (args.font_family ().find (name) != args.font_family ().cend ())
+            if (args.has_str (gst_font_family, name))
                 nits.pick (nit_css_font_feature, es_comment, ec_css, quote (name), " previously named.");
             else 
             {   if (! enum_n < t_fontname, e_fontname > :: exists (name))
-                    enum_n < t_fontname, e_fontname > :: extend (name, fn_bespoke); 
-                args.font_family ().insert (name); }
+                    enum_n < t_fontname, e_fontname > :: extend (name, fn_bespoke);
+//                args.font_family ().insert (name); }
+                if (! args.has_str (gst_font_family, name)) args.dst_ -> note_str (gst_font_family, name); } 
             i = next_non_whitespace (args.t_, i, to);
             if (i < 0) nits.pick (nit_css_font_feature, es_error, ec_css, "missing @font-feature-values properties after ", quote (name)); }
         if ((to < 0) || (args.t_.at (to).t_ != ct_curly_brac))
@@ -326,9 +333,12 @@ void statement::parse_font_palette_values (arguments& args, nitpick& nits, const
     {   if (i == to) nits.pick (nit_css_syntax, es_error, ec_css, "expecting a name after @font-palette-values (2)");
         else
         {   ::std::string name (assemble_string (args.t_, i, to, false));
-            if (args.palette ().find (name) != args.palette ().cend ())
+//            if (args.palette ().find (name) != args.palette ().cend ())
+//                nits.pick (nit_css_palette, es_comment, ec_css, quote (name), " previously named.");
+ //           else args.palette ().insert (name);
+            VERIFY_NOT_NULL (args.dst_, __FILE__, __LINE__);
+            if (args.has_str (gst_palette, name) || ! args.dst_ -> note_str (gst_palette, name))
                 nits.pick (nit_css_palette, es_comment, ec_css, quote (name), " previously named.");
-            else args.palette ().insert (name);
             i = next_non_whitespace (args.t_, i, to);
             if (i < 0) nits.pick (nit_css_palette, es_error, ec_css, "missing @font-palette-values properties after ", quote (name)); }
         if ((to < 0) || (args.t_.at (to).t_ != ct_curly_brac))
@@ -475,10 +485,13 @@ void statement::parse_keyframes (arguments& args, nitpick& nits, const int from,
     else
     {   ::std::string name (args.t_.at (i).val_);
         nitpick nuts;
+        VERIFY_NOT_NULL (args.dst_.get (), __FILE__, __LINE__);
         if (test_value < t_css_wide > (nuts, args.v_, name))
             nits.pick (nit_css_keyframes, ed_css_animation_3, "3. Keyframes", es_error, ec_css, quote (name), " is a CSS wide keyword, so cannot be used as a @keyframes name");
-        else if (args.g_.keyframe ().find (name) == args.g_.keyframe ().cend ()) args.g_.keyframe ().insert (name);
-        else nits.pick (nit_css_keyframes, ed_css_animation_3, "3. Keyframes", es_warning, ec_css, "@keyframes ", quote (name), " previously defined");
+//        else if (args.g_.keyframe ().find (name) == args.g_.keyframe ().cend ()) args.g_.keyframe ().insert (name);
+//        else nits.pick (nit_css_keyframes, ed_css_animation_3, "3. Keyframes", es_warning, ec_css, "@keyframes ", quote (name), " previously defined");
+        else if (args.has_str (gst_keyframe, name) || ! args.dst_ -> note_str (gst_keyframe, name))
+            nits.pick (nit_css_keyframes, ed_css_animation_3, "3. Keyframes", es_warning, ec_css, "@keyframes ", quote (name), " previously defined");
         i = next_non_whitespace (args.t_, i, to);
         int num = 0;
         sstr_t pcnts;
@@ -552,9 +565,12 @@ void statement::parse_layer (arguments& args, nitpick& nits, const int from, con
             if ((i < 0) || ((args.t_.at (i).t_ != ct_identifier) && (args.t_.at (i).t_ != ct_keyword))) break;
             got = true;
             name = args.t_.at (i).val_;
-            if (args.g_.layer ().find (name) != args.g_.layer ().cend ())
+//            if (args.g_.layer ().find (name) != args.g_.layer ().cend ())
+//                nits.pick (nit_css_layer, es_info, ec_css, "layer ", name, " previously mentioned");
+//            else args.g_.layer ().insert (name);
+            VERIFY_NOT_NULL (args.dst_, __FILE__, __LINE__);
+            if (args.has_str (gst_layer, name) || ! args.dst_ -> note_str (gst_layer, name))
                 nits.pick (nit_css_layer, es_info, ec_css, "layer ", name, " previously mentioned");
-            else args.g_.layer ().insert (name);
             i = next_non_whitespace (args.t_, i, to);
             if ((i <= 0) || (args.t_.at (i).t_ != ct_comma)) break;
             i = next_non_whitespace (args.t_, i, to); }
@@ -653,9 +669,12 @@ void statement::parse_page (arguments& args, nitpick& nits, const int from, cons
             return; }
         if ((i > 0) && ((args.t_.at (i).t_ == ct_keyword) || (args.t_.at (i).t_ == ct_identifier)))
         {   const ::std::string n (::boost::to_lower_copy (args.t_.at (i).val_));
-            if (args.g_.page_name ().find (n) != args.g_.page_name ().cend ())
+//            if (args.g_.page_name ().find (n) != args.g_.page_name ().cend ())
+//                nits.pick (nit_page_name_again, es_error, ec_css, quote (args.t_.at (i).val_), " previously used.");
+//            else args.g_.page_name ().insert (n);
+            VERIFY_NOT_NULL (args.dst_, __FILE__, __LINE__);
+            if (args.has_str (gst_layer, n) || ! args.dst_ -> note_str (gst_page_name, n))
                 nits.pick (nit_page_name_again, es_error, ec_css, quote (args.t_.at (i).val_), " previously used.");
-            else args.g_.page_name ().insert (n);
             i = next_non_whitespace (args.t_, i, to); }
         if ((i > 0) && (args.t_.at (i).t_ == ct_colon))
         {   i = next_non_whitespace (args.t_, i, to);

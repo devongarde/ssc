@@ -186,9 +186,9 @@ void spell_tell (nitpick& nits, const lingo& lang, const ::std::string& word, co
             break;
         default :
             {   ::std::string msg ("was ");
-                const ::std::size_t q = alt.size () - 1;
-                for (::std::size_t i = 0; i < q; ++i) msg += quote (alt.at (i)) + ", ";
-                msg += " or " + quote (alt.at (q)) + " intended?";
+                const ::std::size_t qs = alt.size () - 1;
+                for (::std::size_t i = 0; i < qs; ++i) msg += quote (alt.at (i)) + ", ";
+                msg += " or " + quote (alt.at (qs)) + " intended?";
                 nits.pick (nit_spell_perhaps, es_info, ec_spell, msg);
                 break; } } }
 #endif // NOSPELL

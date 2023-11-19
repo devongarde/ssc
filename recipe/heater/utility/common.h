@@ -34,6 +34,7 @@ typedef ::std::vector < double > vdbl_t;
 typedef ::std::vector < ::std::string > vstr_t;
 typedef ::std::vector < vstr_t > vvstr_t;
 typedef ssc_set < ::std::string > sstr_t;
+typedef ::std::vector < sstr_t > vsstr_t;
 typedef ssc_map < ::std::string, ::std::string > ustr_t;
 typedef ssc_map < ::std::string, ::std::size_t > msid_t;
 typedef ::std::map < ::std::string, ::std::size_t > smsid_t;

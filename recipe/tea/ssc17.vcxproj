@@ -205,6 +205,7 @@
     <ClInclude Include="..\heater\stats\stats3.h" />
     <ClInclude Include="..\heater\stats\stats4.h" />
     <ClInclude Include="..\heater\stats\stats5.h" />
+    <ClInclude Include="..\heater\stats\stats6.h" />
     <ClInclude Include="..\heater\stats\stats_impl.h" />
     <ClInclude Include="..\heater\symbol\nstr.h" />
     <ClInclude Include="..\heater\symbol\symbol.h" />

@@ -53,17 +53,28 @@ struct arguments
     arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g);
     arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet, const e_element styled, const element_bitset eb);
     arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g, bool sv, bool snippet, const ::std::string& abs, dst_ptr dst, const e_element styled, const element_bitset eb);
+    sstr_t get_str (const e_gsstr gst) const;
+    bool has_str (const e_gsstr gst, const ::std::string& name) const;
+    bool note_str (const e_gsstr gst, const ::std::string& name);
     bool prep_for_make (nitpick& nits, const int from, int& b, const int to, int& var, int& bang, css_token& p, bool& xs, bool& xk, bool& xn, bool& xi, bool& fn, bool& clean, int& kc, ::std::string& val);
     void check_flags (nitpick& nits, const flags_t f, const ::std::string& s) const;
     void check_flags (nitpick& nits, const flags_t f, const ::std::string& s, const bool xk, const bool xi, const bool xn, const bool xs, const bool fn, const int kc, const ::std::string& item, const ::std::string& val) const;
-    const ustr_t& custom_media () const; 
-    ustr_t& custom_media ();
-    const sstr_t& font_family () const; 
-    sstr_t& font_family ();
-    const sstr_t& font_feature (const e_css_statement st) const; 
-    sstr_t& font_feature (const e_css_statement st);
-    const sstr_t& palette () const; 
-    sstr_t& palette ();
+    bool has_custom_prop (const ::std::string& name) const;
+    void note_custom_prop (const ::std::string& name);
+//    const ustr_t& custom_media () const; 
+//    ustr_t& custom_media ();
+    bool has_custom_media (const ::std::string& name) const;
+    void note_custom_media (const ::std::string& name, const ::std::string& def);
+//    sstr_t font_family () const; 
+//    sstr_t& font_family ();
+//    bool note_font_family (const ::std::string& name);
+    sstr_t font_feature (const e_css_statement st) const; 
+    bool has_font_feature (const e_css_statement st, const ::std::string& name) const;
+    bool note_font_feature (const e_css_statement st, const ::std::string& name);
+//    sstr_t& font_feature (const e_css_statement st);
+//    sstr_t& font_feature (const e_css_statement st);
+//    const sstr_t& palette () const; 
+//    sstr_t& palette ();
     e_css_statement cs () const;
     bool styled () const noexcept { return (styled_ != elem_undefined); }
     bool part () const noexcept { return nested_ || styled (); }

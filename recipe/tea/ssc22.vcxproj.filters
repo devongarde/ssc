@@ -2099,6 +2099,9 @@
     <ClInclude Include="..\heater\css\value_types.h">
       <Filter>Heater\css_value</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\stats\stats6.h">
+      <Filter>Heater\stats</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -31092,10 +31095,10 @@
     <None Include="..\toast\css\5-colour\index.html">
       <Filter>Toast\CSS\5-colour</Filter>
     </None>
-    <None Include="..\toast\conf\other\nancy-wpt.conf">
+    <None Include="..\toast\conf\other\win-wpt.conf">
       <Filter>Toast\Conf\other</Filter>
     </None>
-    <None Include="..\toast\conf\other\obsd.conf">
+    <None Include="..\toast\conf\other\macos-obsd.conf">
       <Filter>Toast\Conf\other</Filter>
     </None>
     <None Include="..\toast\conf\other\wpt.conf">
@@ -34781,6 +34784,15 @@
     </None>
     <None Include="..\toast\output\args\output.spec">
       <Filter>Toast\Output\args</Filter>
+    </None>
+    <None Include="..\toast\conf\other\o73-wpt.conf">
+      <Filter>Toast\Conf\other</Filter>
+    </None>
+    <None Include="..\toast\conf\other\win-obsd.conf">
+      <Filter>Toast\Conf\other</Filter>
+    </None>
+    <None Include="..\toast\conf\other\wsl-wpt.conf">
+      <Filter>Toast\Conf\other</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

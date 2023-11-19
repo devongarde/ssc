@@ -96,8 +96,7 @@ bool css_group::parse_file (nitpick& nits, const namespaces_ptr& ns, const url& 
             {   if (xxx) nits.pick (nit_cache, es_info, ec_cache, "unhappy: ", borked, " ", content.empty ());
                 res = true; }
             else
-            {   // namespaces_ptr ns; // don't optimise this away, mr. optimiser!
-                css_ptr cp = parse (dsp, content, context.html_ver (), ns, state_versions, false, abs, empty_element_bitset, 0, elem_undefined, page_.get_disk_path (nits, u));
+            {   css_ptr cp = parse (dsp, content, context.html_ver (), ns, state_versions, false, abs, empty_element_bitset, 0, elem_undefined, page_.get_disk_path (nits, u));
                 res = (cp != css_ptr ());
                 if (xxx) nits.pick (nit_cache, es_info, ec_cache, "parsed: ", res); 
                 if (res && (local || context.ext_css ()))
@@ -116,10 +115,14 @@ bool css_group::parse_file (nitpick& nits, const namespaces_ptr& ns, const url& 
         return false; }
     if (xxx) nits.pick (nit_cache, es_info, ec_cache, u.absolute (), " previously loaded with ", dsp -> cl ().size (), " classes, ", dsp -> id ().size (), " ids");
     page_.merge_class (dsp -> cl ());
+    page_.merge_custom_prop (dsp -> cp ());
     page_.merge_id (dsp -> id ());
     page_.merge_element_class (dsp -> ecl ());
     page_.merge_element_id (dsp -> eid ());
     page_.merge_font (dsp -> f ());
+    for (int i = 0; i < gst_max; ++i)
+        for (auto c : dsp -> ss ().at (i))
+            page_.mark_str (static_cast < e_gsstr > (i), c);
     return true; }
 
 css_ptr css_group::parse_media_queries (const ::std::string& content, const html_version& v, page& p, const namespaces_ptr& namespaces, const element_bitset eb, bool sv,
@@ -134,6 +137,56 @@ bool css_group::parse_transform (   const ::std::string& content, const html_ver
     s += content;
     s += "; }";
     return parse (transforms_, s, v, namespaces, true, true, ::std::string (), bs_, line, e) != css_ptr (); }
+
+bool css_group::has_str (const e_gsstr g, const ::std::string& s) const
+{   if (snippets_.get () != nullptr)
+        if (snippets_.get () -> has_str (g, s))
+            return true;
+    for (auto cs : mcss_)
+        if (cs.second -> has_str (g, s)) return true;
+    return page_.has_str (g, s); }
+
+bool css_group::note_str (const e_gsstr g, const ::std::string& s)
+{   if (has_str (g, s)) return false;
+    page_.mark_str (g, s);
+    return true; }
+//    VERIFY_NOT_NULL (snippets_.get (), __FILE__, __LINE__);
+//    return snippets_ -> note_str (g, s); }
+
+sstr_t css_group::get_strs (const e_gsstr g) const
+{   sstr_t res;
+    if (snippets_.get () != nullptr)
+        res.insert (snippets_ -> get_str (g).cbegin (), snippets_ -> get_str (g).cend ());
+    for (auto cs : mcss_)
+        res.insert (cs.second -> get_str (g).cbegin (), cs.second -> get_str (g).cend ());
+    return res; }
+
+bool css_group::has_custom_prop (const ::std::string& name) const
+{   VERIFY_NOT_NULL (snippets_.get (), __FILE__, __LINE__);
+    for (auto cs : mcss_)
+        if (cs.second -> has_custom_prop (name)) return true;
+    if (snippets_ -> has_custom_prop (name)) return true;
+    return page_.has_custom_prop (name); }
+
+void css_group::note_custom_prop (const ::std::string& name)
+{   VERIFY_NOT_NULL (snippets_.get (), __FILE__, __LINE__);
+    page_.use_custom_prop (name); }
+//    page_.use_custom_prop (name);
+//    if (! has_custom_prop (name))
+//        snippets_ -> insert_custom_prop (name); }
+
+bool css_group::has_custom_media (const ::std::string& name) const
+{   VERIFY_NOT_NULL (snippets_.get (), __FILE__, __LINE__);
+    for (auto cs : mcss_)
+        if (cs.second -> has_custom_media (name)) return true;
+    if (snippets_ -> has_custom_media (name)) return true;
+    return page_.has_custom_media (name); }
+
+void css_group::note_custom_media (const ::std::string& name, const ::std::string& def)
+{   VERIFY_NOT_NULL (snippets_.get (), __FILE__, __LINE__);
+    if (! has_custom_media (name))
+        page_.mark_custom_media (name, def); }
+ //       snippets_ -> note_custom_media (name, def); }
 
 bool css_group::has_id (const ::std::string& id) const
 {   VERIFY_NOT_NULL (snippets_.get (), __FILE__, __LINE__);
@@ -215,9 +268,9 @@ void css_group::accumulate (stats_t* s) const
     for (auto c : mcss_)
         c.second -> accumulate (s);
     if (snippets_.get () != nullptr)
-        snippets_ -> accumulate (s);
-    for (auto h : highlight_)
-        s -> use_highlight (h); }
+        snippets_ -> accumulate (s); }
+//        for (auto h : snippets_ -> get_str (gst_highlight))
+//            s -> use_highlight (h); } }
 
 void css_group::validate ()
 {   for (auto i : mcss_)

@@ -74,7 +74,7 @@ void element::examine_table ()
                     pick (nit_table_children, ed_50, "4.9.1 The table element", es_error, ec_element, "<TABLE> children in wrong order (<CAPTION>, <COLGROUP>s, <THEAD>, <TFOOT>, <TR>s or <TBODY>s, <TFOOT>, with only one <TFOOT>)");
                 else pick (nit_table_children, ed_51, "4.9.1 The table element", es_error, ec_element, "<TABLE> children in wrong order (<CAPTION>, <COLGROUP>s, <THEAD>, <TR>s or <TBODY>s, <TFOOT>)");
             if (doubled) pick (nit_table_children, ed_50, "4.9.1 The table element", es_error, ec_element, "only one <CAPTION>, <THEAD>, <TFOOT> per <TABLE>");
-            if (mixed) pick (nit_table_children, ed_50, "4.9.1 The table element", es_error, ec_element, "either <TBODY>s or <TR>s, not both");
+            if (mixed) pick (nit_table_children, ed_50, "4.9.1 The table element", es_error, ec_element, "either <TBODY>s or <TR>s, but not both");
             if (ooo || doubled || mixed) break; } } }
 
 void element::examine_td ()

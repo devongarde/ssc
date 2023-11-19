@@ -259,3 +259,64 @@ context_t& context_t::root (const ::std::string& s)
 {   root_ = s;
     mac (nm_context_root, s);
     proot_ = canonical_name (absolute_name (::boost::filesystem::path (s))); return *this; }
+
+bool context_t::stats_gst (const e_gsstr gst)
+{   switch (gst)
+    {   case gst_annotation : return stats_annotation ();
+        case gst_character_variant : return stats_character_variant ();
+        case gst_content_name : return stats_content_name ();
+        case gst_counter_style : return stats_counter_style ();
+        case gst_font_family : return stats_font_family ();
+        case gst_highlight : return stats_highlight ();
+        case gst_historical_form : return stats_historical_form ();
+        case gst_keyframe : return stats_keyframe ();
+        case gst_layer : return stats_layer ();
+        case gst_ornament : return stats_ornament ();
+        case gst_page_name : return stats_page_name ();
+        case gst_palette : return stats_palette ();
+        case gst_region : return stats_region ();
+        case gst_scroll_anim : return stats_scroll_anim ();
+        case gst_styleset : return stats_styleset ();
+        case gst_stylistic : return stats_stylistic ();
+        case gst_swash : return stats_swash ();
+        case gst_view : return stats_view ();
+        default : break; }
+    GRACEFUL_CRASH (__FILE__, __LINE__); }
+
+context_t& context_t::stats_all (const bool b)
+{   stats_abbr (b);
+    stats_annotation (b);
+    stats_category (b);
+    stats_character_variant (b);
+    stats_class (b);
+    stats_content_name (b);
+    stats_counter_style (b);
+    stats_css_property (b);
+    stats_custom_media (b);
+    stats_custom_property (b);
+    stats_dfn (b);
+    stats_dtdd (b);
+    stats_element (b);
+    stats_file (b);
+    stats_font (b);
+    stats_font_family (b);
+    stats_highlight (b);
+    stats_historical_form (b);
+    stats_itemid (b);
+    stats_keyframe (b);
+    stats_layer (b);
+    stats_meta (b);
+    stats_ontology (b);
+    stats_ornament (b);
+    stats_page_name (b);
+    stats_palette (b);
+    stats_reference (b);
+    stats_region (b);
+    stats_scroll_anim (b);
+    stats_statement (b);
+    stats_styleset (b);
+    stats_stylistic (b);
+    stats_swash (b);
+    stats_version (b);
+    stats_view (b);
+    return *this; }

@@ -135,6 +135,7 @@ PASS ../toast/living/jan21/details.html
 0 charset_mismatch charset_used charset_invalid
 6 unrecognised_value unrecognised_value
 7 use_double_quote_code
+23 lonely_ampersand
 25 inserted_missing_closure missing_close
 26 inserted_missing_closure
 28 css_version

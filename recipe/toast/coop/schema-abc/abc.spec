@@ -25,7 +25,7 @@ PASS ../toast/coop/schema-abc/a/aggregaterating-1.html
 
 PASS ../toast/coop/schema-abc/a/aggregaterating-2.html
 10 no_such_folder url_not_found
-11 no_such_folder url_not_found mixed_mess
+11 no_such_folder url_not_found lonely_ampersand
 12 no_such_folder url_not_found
 16 url_not_found
 19 no_such_folder url_not_found
@@ -105,7 +105,7 @@ PASS ../toast/coop/schema-abc/b/blogposting.html
 
 PASS ../toast/coop/schema-abc/b/book-1.html
 10 no_such_folder url_not_found
-11 no_such_folder url_not_found mixed_mess
+11 no_such_folder url_not_found lonely_ampersand
 12 no_such_folder url_not_found
 16 url_not_found
 19 no_such_folder url_not_found
@@ -129,6 +129,7 @@ PASS ../toast/coop/schema-abc/b/book-2.html
 
 PASS ../toast/coop/schema-abc/b/book-3.html
 8 url_id_unfound
+10 lonely_ampersand
 15 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
 28 no_such_folder url_not_found
 
@@ -246,7 +247,7 @@ PASS ../toast/coop/schema-abc/c/coverart.html
 
 PASS ../toast/coop/schema-abc/c/creativework-1.html
 10 no_such_folder url_not_found
-11 no_such_folder url_not_found mixed_mess
+11 no_such_folder url_not_found lonely_ampersand
 12 no_such_folder url_not_found
 16 url_not_found
 19 no_such_folder url_not_found

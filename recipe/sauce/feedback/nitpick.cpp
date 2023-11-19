@@ -56,11 +56,11 @@ void nitpick::merge (const nitpick& np)
     np.accumulate (*this); }
 
 template < class T > ::std::string nitpick::inner_review (const e_nit_section& entry, const T& t, const mmac_t& mac, mmac_t& outer, bool& quote, bool& dq, bool& infoed, bool& eol, bool& hasns, const bool unfiltered) const
-{   extern bool ignore_this_slob_stuff (const e_nit code);
+{   extern bool ignore_this_slovenly_stuff (const e_nit code);
     hasns = false;
     ::std::string res, ns;
     for (auto n : t)
-        if (unfiltered || (context.tell (n.severity ()) && ! ignore_this_slob_stuff (n.code ())))
+        if (unfiltered || (context.tell (n.severity ()) && ! ignore_this_slovenly_stuff (n.code ())))
         {   switch (n.code ())
             {   case nit_context:
                     infoed = true;

@@ -55,6 +55,9 @@ public:
     bool has_class (const ::std::string& s) const
     {   VERIFY_NOT_NULL (args_.dst_.get (), __FILE__, __LINE__);
         return args_.dst_ -> has_class (s); }
+    bool has_custom_prop (const ::std::string& s) const
+    {   VERIFY_NOT_NULL (args_.dst_.get (), __FILE__, __LINE__);
+        return args_.dst_ -> has_custom_prop (s); }
     bool has_id (const ::std::string& s) const
     {   VERIFY_NOT_NULL (args_.dst_.get (), __FILE__, __LINE__);
         return args_.dst_ -> has_id (s); }
@@ -66,6 +69,21 @@ public:
         return args_.dst_ -> has_element_id (s); }
     bool has_namespace (const ::std::string& ) const
     {   return false; }
+    bool has_custom_media (const ::std::string& name) const
+    {   VERIFY_NOT_NULL (args_.dst_.get (), __FILE__, __LINE__);
+        return args_.dst_ -> has_custom_media (name); }
+    void note_custom_media (const ::std::string& name, const ::std::string& def)
+    {   VERIFY_NOT_NULL (args_.dst_.get (), __FILE__, __LINE__);
+        args_.dst_ -> note_custom_media (name, def); }
+    void note_str (const e_gsstr g, const ::std::string& s)
+    {   VERIFY_NOT_NULL (args_.dst_.get (), __FILE__, __LINE__);
+        args_.dst_ -> note_str (g, s); }
+    bool has_str (const e_gsstr g, const ::std::string& s) const
+    {   VERIFY_NOT_NULL (args_.dst_.get (), __FILE__, __LINE__);
+        return args_.dst_ -> has_str (g, s); }
+    const sstr_t& get_str (const e_gsstr g) const
+    {   VERIFY_NOT_NULL (args_.dst_.get (), __FILE__, __LINE__);
+        return args_.dst_ -> get_str (g); }
     bool parse (const ::std::string& content, const bool x, const bool mdm = false); // in css_parse.cpp
     ::std::string review (mmac_t& mac, const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot, const e_nit_section& page_head = ns_none, const bool unfiltered = false) const;
     void accumulate (nitpick& accumulator) const;

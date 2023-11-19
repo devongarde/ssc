@@ -28,7 +28,9 @@ typedef ::std::shared_ptr < css > css_ptr;
 
 class distilled
 {   friend class css_global;
-    smsid_t class_, id_, element_class_, element_id_, font_;
+    vsstr_t str_ = vsstr_t (gst_max);
+    smsid_t class_, custom_prop_, id_, element_class_, element_id_, font_;
+    ustr_t custom_media_;
     css_ptr cp_;
     v_np ticks_;
     bool in_progress_ = false, file_ = false, borked_ = false;
@@ -47,11 +49,14 @@ public:
     void reset ();
     css_ptr expel () { css_ptr res (cp_); cp_.reset (); return res; }
     smsid_t& cl () { return class_; }
+    smsid_t& cp () { return custom_prop_; }
     smsid_t& id () { return id_; }
     smsid_t& ecl () { return element_class_; }
     smsid_t& eid () { return element_id_; }
     smsid_t& f () { return element_id_; }
+    vsstr_t& ss () { return str_; }
     const smsid_t& cl () const { return class_; }
+    const smsid_t& cp () const { return custom_prop_; }
     const smsid_t& id () const { return id_; }
     const smsid_t& ecl () const { return element_class_; }
     const smsid_t& eid () const { return element_id_; }
@@ -59,6 +64,8 @@ public:
     void accumulate (stats_t* s) const;
     void insert_class (const ::std::string& s, const int n = 1)
     {   insert_smsid (class_, s, n); }
+    void insert_custom_prop (const ::std::string& s, const int n = 1)
+    {   insert_smsid (custom_prop_, s, n); }
     void insert_id (const ::std::string& s, const int n = 1)
     {   insert_smsid (id_, s, n); }
     void insert_element_class (const ::std::string& s, const int n = 1)
@@ -69,6 +76,8 @@ public:
     {   insert_smsid (font_, s, n); }
     bool has_class (const ::std::string& s) const
     {   return (class_.find (s) != class_.cend ()); }
+    bool has_custom_prop (const ::std::string& s) const
+    {   return (custom_prop_.find (s) != custom_prop_.cend ()); }
     bool has_id (const ::std::string& s) const
     {   return (id_.find (s) != id_.cend ()); }
     bool has_element_class (const e_element e, const ::std::string& s) const;
@@ -79,6 +88,21 @@ public:
     {   return (element_id_.find (s) != element_id_.cend ()); }
     bool has_font (const ::std::string& s) const
     {   return (font_.find (s) != font_.cend ()); }
+    bool has_custom_media (const ::std::string& name) const
+    {   return custom_media_.find (name) != custom_media_.cend (); }
+    bool note_custom_media (const ::std::string& name, const ::std::string& def)
+    {   if (has_custom_media (name)) return false;
+        auto i = custom_media_.insert (::std::pair (name, def));
+        return i.second; } 
+    bool note_str (const e_gsstr g, const ::std::string& s)
+    {   auto i = str_.at (g).insert (s);
+        return i.second; }
+    bool has_str (const e_gsstr g, const ::std::string& s) const
+    {   return (str_.at (g).find (s) != str_.at (g).cend ()); }
+    const sstr_t& get_str (const e_gsstr g) const
+    {   return str_.at (g); }
+    sstr_t& get_str (const e_gsstr g)
+    {   return str_.at (g); }
     void merge (const nitpick& ticks)
     {   ticks_.push_back (ticks); }
     ::std::string report () const;

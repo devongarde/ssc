@@ -152,37 +152,92 @@ void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string
     if (((f & CF_MUST_PALETTE) == CF_MUST_PALETTE) && (st != css_font_palette_values))
         nits.pick (nit_not_here, ed_css_font_4, "9. Colour Font Support", es_error, ec_css, quote (item), " can only be used with @font-palette-values"); }
 
-const ustr_t& arguments::custom_media () const
-{ return g_.custom_media_; }
- 
-ustr_t& arguments::custom_media ()
-{ return g_.custom_media_; }
+bool arguments::has_custom_prop (const ::std::string& name) const
+{   if (dst_ != nullptr)
+        if (dst_ -> has_custom_prop (name))
+            return true;
+    return g_.has_custom_prop (name); }
 
-const sstr_t& arguments::font_feature (const e_css_statement st) const
+void arguments::note_custom_prop (const ::std::string& name)
+{   if (dst_ != nullptr) dst_ -> insert_custom_prop (name);
+    else g_.note_custom_prop (name); }
+
+bool arguments::has_custom_media (const ::std::string& name) const
+{   if (dst_ != nullptr)
+        if (dst_ -> has_custom_media (name))
+            return true;
+    return g_.has_custom_media (name); }
+
+void arguments::note_custom_media (const ::std::string& name, const ::std::string& def)
+{   if (dst_ != nullptr) dst_ -> note_custom_media (name, def);
+    g_.note_custom_media (name, def); }
+
+//const ustr_t& arguments::custom_media () const
+//{ return g_.custom_media_; }
+ 
+//ustr_t& arguments::custom_media ()
+//{ return g_.custom_media_; }
+
+sstr_t arguments::get_str (const e_gsstr gst) const
+{   if (dst_ != nullptr) return dst_ -> get_str (gst);
+    return g_.get_strs (gst); }
+
+sstr_t arguments::font_feature (const e_css_statement st) const
 {   switch (st)
     {   case css_annotation :
-            return g_.annotation_;
+//            return g_.annotation_;
+            return get_str (gst_annotation);
         case css_character_variant :
-            return g_.character_variant_;
+//            return g_.character_variant_;
+            return get_str (gst_character_variant);
         case css_historical_forms :
-            return g_.historical_form_;
+//            return g_.historical_form_;
+            return get_str (gst_historical_form);
         case css_ornaments :
-            return g_.ornament_;
+//            return g_.ornament_;
+            return get_str (gst_ornament);
         case css_swash :
-            return g_.swash_;
+//            return g_.swash_;
+            return get_str (gst_swash);
         case css_styleset :
-            return g_.styleset_;
+//            return g_.styleset_;
+            return get_str (gst_styleset);
         case css_stylistic :
-            return g_.stylistic_;
+//            return g_.stylistic_;
+            return get_str (gst_stylistic);
+        default :
+            GRACEFUL_CRASH (__FILE__, __LINE__); } }
+
+bool arguments::has_str (const e_gsstr gst, const ::std::string& name) const
+{   if (dst_ != nullptr) return dst_ -> has_str (gst, name);
+    return g_.has_str (gst, name); }
+
+bool arguments::has_font_feature (const e_css_statement st, const ::std::string& name) const
+{   switch (st)
+    {   case css_annotation :
+            return has_str (gst_annotation, name);
+        case css_character_variant :
+            return has_str (gst_character_variant, name);
+        case css_historical_forms :
+            return has_str (gst_historical_form, name);
+        case css_ornaments :
+            return has_str (gst_ornament, name);
+        case css_swash :
+            return has_str (gst_swash, name);
+        case css_styleset :
+            return has_str (gst_styleset, name);
+        case css_stylistic :
+            return has_str (gst_stylistic, name);
         default :
             GRACEFUL_CRASH (__FILE__, __LINE__); } }
  
-const sstr_t& arguments::font_family () const
-{   return g_.font_family_; }
+//sstr_t arguments::font_family () const
+//{   return g_.font_family_; }
+//{   return get_str (gst_font_family); }
  
-sstr_t& arguments::font_family ()
-{   return g_.font_family_; }
-
+//sstr_t& arguments::font_family ()
+//{   return g_.font_family_; }
+/*
 sstr_t& arguments::font_feature (const e_css_statement st)
 {   switch (st)
     {   case css_annotation :
@@ -201,12 +256,37 @@ sstr_t& arguments::font_feature (const e_css_statement st)
             return g_.stylistic_;
         default :
             GRACEFUL_CRASH (__FILE__, __LINE__); } }
+*/
 
-const sstr_t& arguments::palette () const
-{   return g_.palette_; }
+bool arguments::note_str (const e_gsstr gst, const ::std::string& name)
+{   if (dst_ != nullptr) return dst_ -> note_str (gst, name);
+    return g_.note_str (gst, name); }
+
+bool arguments::note_font_feature (const e_css_statement st, const ::std::string& name)
+{   VERIFY_NOT_NULL (dst_, __FILE__, __LINE__);
+    switch (st)
+    {   case css_annotation :
+            return dst_ -> note_str (gst_annotation, name);
+        case css_character_variant :
+            return dst_ -> note_str (gst_character_variant, name);
+        case css_historical_forms :
+            return dst_ -> note_str (gst_historical_form, name);
+        case css_ornaments :
+            return dst_ -> note_str (gst_ornament, name);
+        case css_swash :
+            return dst_ -> note_str (gst_swash, name);
+        case css_styleset :
+            return dst_ -> note_str (gst_styleset, name);
+        case css_stylistic :
+            return dst_ -> note_str (gst_stylistic, name);
+        default :
+            GRACEFUL_CRASH (__FILE__, __LINE__); } }
+
+//const sstr_t& arguments::palette () const
+//{   return g_.palette_; }
  
-sstr_t& arguments::palette ()
-{   return g_.palette_; }
+//sstr_t& arguments::palette ()
+//{   return g_.palette_; }
 
 void arguments::validate (nitpick& nits, const flags_t f, const ::std::string& p, const ::std::string& vl) const
 {   if ((f & CF_PAGE) == CF_PAGE)
@@ -221,7 +301,8 @@ void arguments::validate (nitpick& nits, const flags_t f, const ::std::string& p
         if (v_ < html_jul23)
             nits.pick (nit_css_living_standard, es_warning, ec_css, p, " requires the living standard mid-2023 or later");
     if ((f & CF_PAGE_NAME) == CF_PAGE_NAME)
-    {   const sstr_t& pn (g_.page_name ());
+//    {   const sstr_t& pn (g_.page_name ());
+    {   const sstr_t& pn (g_.get_strs (gst_page_name));
         ::std::string vll (trim_the_lot_off (vl));
         if (pn.find (::boost::to_lower_copy (vll)) == pn.cend ())
             nits.pick (nit_no_such_page, es_error, ec_css, quote (vll), " is not a known page name"); } }
