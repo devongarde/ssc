@@ -277,36 +277,3 @@ PASS ../toast/coop/schema-abc/c/creditcard.html
 15 invalid_attribute_version wrong_version svg_rdf
 17 invalid_attribute_version wrong_version svg_rdf sunk sunk
 22 invalid_attribute_version wrong_version svg_rdf
-
-itemids
-#author
-#book1
-#book2
-#book3
-#iss9734
-#iss9735
-#issue
-#periodical
-#record
-#trilogy
-#vol376
-http://example.org/colls/68
-http://id.loc.gov/vocabulary/iso639-2
-http://id.loc.gov/vocabulary/iso639-2/cze
-http://library.anytown.gov.uk
-http://techcrunch.com/2015/03/08/apple-watch-event-live-blog
-http://viaf.org/viaf/102304634
-http://viaf.org/viaf/113230702
-http://viaf.org/viaf/17823
-http://viaf.org/viaf/46911882
-http://viaf.org/viaf/8453420
-http://worldcat.org/entity/work/id/2292573321
-http://worldcat.org/entity/work/id/460647
-http://www.twitter.com
-http://www.worldcat.org/oclc/17105155
-http://www.worldcat.org/oclc/297618476
-http://www.worldcat.org/oclc/41310554
-http://www.worldcat.org/oclc/68043906
-http://www.worldcat.org/oclc/751835184
-https://archive.org/details/alices_adventures_1005_librivox#work
-https://schema.org/AudioBook

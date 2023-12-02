@@ -24,10 +24,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 void statements::parse (arguments& args, const int start, const int finish)
 {   PRESUME (args.t_.at (0).t_ == ct_root, __FILE__, __LINE__);
+    if ((context.css_nesting () > 0) && (start >= 0))
+    {   int i = first_non_whitespace (args.t_, start, finish);
+        if (i > 0)
+            if ((args.t_.at (i).t_ == ct_identifier) || (args.t_.at (i).t_ == ct_keyword))
+            {   nitpick nuts;
+                if (test_value < t_css_property > (nuts, args.v_, args.t_.at (i).val_))
+                {   props_.parse (args, start, finish);
+                    return; } } } 
     int from = -1, at = -1;
     const int last = (finish >= 0) ? finish : GSL_NARROW_CAST < int > (args.t_.size ());
     int prev = -1;
-
     for (int i = start; (i > 0) && (i < last); prev = i, i = next_token_at (args.t_, i, last))
         switch (args.t_.at (i).t_)
         {   case ct_at :

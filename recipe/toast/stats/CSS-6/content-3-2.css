@@ -1,0 +1,59 @@
+﻿foo { content: normal; }  /* this is the initial value */
+foo::after { content: contents; }
+
+foo { content: none; }
+foo::after { content: contents; }
+
+blockquote p:before { content: open-quote }
+blockquote p:after { content: no-close-quote }
+blockquote p:last-child::after { content: close-quote }
+
+:lang(fr) > * { quotes: "\00AB\2005" "\2005\00BB" "\2039\2005" "\2005\203A" }
+:lang(en) > * { quotes: "\201C" "\201D" "\2018" "\2019" }
+
+:lang(fr) > * { quotes: "« " " »" "‹ " " ›" }
+:lang(en) > * { quotes: "“" "”" "‘" "’" }
+
+/* Specify pairs of quotes for two levels in two languages */
+:lang(en) > q { quotes: '"' '"' "'" "'" }
+:lang(no) > q { quotes: "«" "»" "’" "’" }
+
+/* Insert quotes before and after Q element content */
+q::before { content: open-quote }
+q::after  { content: close-quote }
+
+ol.toc a::after {
+  content: leader('.') target-counter(attr(href), page);
+}
+
+a::after { content: target-counter(attr(href url), page) }
+
+.frontmatter a::after { content: leader('.') target-counter(attr(href url), page, lower-roman) }
+.bodymatter a::after { content: leader('.') target-counter(attr(href url), page, decimal) }
+
+a::after { content: ", in the chapter entitled " target-text(attr(href url)) }
+
+H1 { string-set: chapter contents; }
+
+@page {
+  size: 15cm 10cm;
+  margin: 1.5cm;
+
+  @top-left {
+  content: "first: " string(heading, first);
+  }
+  @top-center {
+  content: "start: " string(heading, start);
+  }
+   @top-right {
+   content: "last: " string(heading, last);
+  }
+  }
+
+h2 { string-set: heading content() }
+
+h1::before { content: 'Chapter ' counter(chapter); }
+h1 { string-set: header content(before) ':' content(text); }
+h1::after { content: '.'; }
+
+section { string-set: header attr(title) }

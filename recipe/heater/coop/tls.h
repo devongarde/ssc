@@ -20,7 +20,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 
-#ifndef NO_FRED
+typedef enum { sii_fn, sii_hush, sii_max } e_statii;
+CONSTEXPR ::std::size_t max_statii = static_cast < ::std::size_t > (sii_max);
+
+#ifdef NO_FRED
+static vsstr_t vsesii;
+#else // NO_FRED
 
 struct fred_tls  // thread local storage, not sorted ssl
 {   const e_fred fred_;
@@ -29,8 +34,9 @@ struct fred_tls  // thread local storage, not sorted ssl
     ::std::atomic_bool flox_;
     ::std::atomic_bool dear_;
     ::std::atomic_bool eleanor_;
+    vsstr_t vsesii_;
     fred_tls () : fred_ (fred_bloggs), lox_ (lox_none), empty_ (true), flox_ (false), dear_ (false), eleanor_ (false) { }
-    explicit fred_tls (const e_fred f) noexcept : fred_ (f), lox_ (lox_none), empty_ (true), flox_ (false), dear_ (false), eleanor_ (false) { }
+    explicit fred_tls (const e_fred f) : fred_ (f), lox_ (lox_none), empty_ (true), flox_ (false), dear_ (false), eleanor_ (false) { }
     NO_COPY_CONSTRUCTORS (fred_tls);
     ~fred_tls () = default; };
 
@@ -39,3 +45,21 @@ typedef ssc_map < ::std::thread::id, int > mid_t;
 typedef ::std::vector < ::std::thread > vth_t;
 typedef ::std::vector < tls_ptr > vtls_t;
 #endif // NO_FRED
+
+void set_esii (const e_statii sii, const ::std::string& s);
+void reset_esii (const e_statii sii);
+bool test_esii (const e_statii sii, const ::std::string& s);
+
+class esii_scope
+{   const e_statii sii_;
+    const bool care_;
+public:
+    esii_scope () = delete;
+    NO_COPY_CONSTRUCTORS (esii_scope);
+    esii_scope (const e_statii sii, const ::std::string& s, const bool care = true) : sii_ (sii), care_ (care || ! test_esii (sii, s))
+    {   if (care_) set_esii (sii, s); }
+    ~esii_scope ()
+    {   if (care_) try
+        {    reset_esii (sii_); }
+        catch (...)
+        {   GRACELESS_CRASH (__FILE__, __LINE__); } } };

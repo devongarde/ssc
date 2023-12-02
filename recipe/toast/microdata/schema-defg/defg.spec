@@ -169,9 +169,3 @@ PASS ../toast/microdata/schema-defg/governmentpermit.html
 
 PASS ../toast/microdata/schema-defg/governmentservice.html
 14 use_double_quote_code
-
-itemids
-http://dbpedia.org/resource/Seismic_hazard
-http://dbpedia.org/resource/United_States
-http://example.org/datasets/seismic-hazard-zones
-http://www.reddit.com/r/webdev/comments/2gypch/is_schemaorg_still_a_thing/

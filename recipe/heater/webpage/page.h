@@ -109,6 +109,7 @@ public:
     void lang (nitpick& nits, const html_version& v, const ::std::string& l);
     const ::std::string& charset () const noexcept { return charset_; }
     void charset (nitpick& nits, const html_version& v, const ::std::string& cs);
+    element* get_document () { return document_; }
     void mark (const e_element e)
     {   stats_.mark (e); }
     void visible (const e_element e)

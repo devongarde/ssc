@@ -42,7 +42,6 @@ void font_feature::parse (arguments& args, const e_css_statement cs, const int f
         nits.pick (nit_property, es_error, ec_css, quote (tkn_rpt (args.t_.at (b))), ": feature name expected");
     else
     {   name_ = args.t_.at (b).val_;
-//        args.font_feature (cs).insert (name_);
         args.note_font_feature (cs, name_);
         n_ = b;
         b = next_non_whitespace (args.t_, b, to);

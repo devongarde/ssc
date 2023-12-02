@@ -3,8 +3,6 @@
   hanging-punctuation: allow-end;
 }
 
-hanging-punctuation: force-end
-
 p {
   text-align: justify;
   hanging-punctuation: force-end;

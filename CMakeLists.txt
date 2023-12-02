@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.19)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.1.48 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
+project (ssc VERSION 0.1.49 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
 
 set (CMAKE_CXX_STANDARD 17)
 
@@ -307,7 +307,7 @@ target_sources (ssc PRIVATE
             ${S}/attribute/avm_data_t2.cpp ${S}/attribute/avm_data_u.cpp ${S}/attribute/avm_data_v.cpp ${S}/attribute/avm_data_w.cpp
             ${S}/attribute/avm_data_x.cpp ${S}/attribute/avm_data_rdf.cpp ${S}/attribute/namespace.cpp
         ${S}/base/type_base.cpp ${S}/base/type_case.cpp ${S}/base/type_core.cpp ${S}/base/type_master.cpp
-        ${S}/coop/fred.cpp ${S}/coop/kew.cpp ${S}/coop/knickers.cpp ${S}/coop/lox.cpp
+        ${S}/coop/fred.cpp ${S}/coop/kew.cpp ${S}/coop/knickers.cpp ${S}/coop/lox.cpp ${S}/coop/tls.cpp
         ${S}/compound/type_csses.cpp ${S}/compound/type_varied.cpp
         ${S}/css/arguments.cpp ${S}/css/css.cpp ${S}/css/css_attribute.cpp ${S}/css/css_class.cpp ${S}/css/css_element.cpp ${S}/css/css_id.cpp
             ${S}/css/css_parse.cpp ${S}/css/css_state.cpp ${S}/css/decoration.cpp ${S}/css/descriptor.cpp  ${S}/css/descriptor_constructor.cpp

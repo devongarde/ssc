@@ -89,29 +89,30 @@ mmac_t mac_subtitle (const ::std::string& title)
     return mac; }
 
 ::std::string stats::ontology_report () const
-{   mmac_t table = mac_title ("Ontology");
+{   mmac_t table = mac_title (REPORT_ONTOLOGY);
     ::std::string res;
     uint64_t total = 0;
     unsigned count = 0;
     VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
-    for (unsigned i = 0; i < ont_illegal; ++i)
-    {   const unsigned n = ontology_.at (static_cast < e_ontology_type > (i));
-        if (n == 0) continue;
-        ++total;
-        count += n;
-        if (context.tell (es_error))
-        {   mmac_t stat = mac_init (itemtype_index_name (make_itemtype_index (static_cast < e_ontology_type > (i))), n);
-            const unsigned x = ontology_property_.family (static_cast < e_ontology_type > (i));
-            if (x > 0) stat.emplace (nm_stat_detail, ::boost::lexical_cast < ::std::string > (x / n));
-            res += macro -> apply (ns_stat, table, stat);
-            if (context.tell (es_info))
-                for (unsigned m = 0; m < op_illegal; ++m)
-                {   const unsigned y = ontology_property_.at (static_cast < e_ontology_type > (i), static_cast <e_ontology_property> (m));
-                    if (y > 0)
-                    {   mmac_t mac = mac_subinit (itemprop_index_name (make_itemprop_index (static_cast <e_ontology_property> (m))), y);
-                        res += macro -> apply (ns_substat, table, stat, mac); } } } }
-    if (context.tell (es_warning))
-    {   mmac_t stat = mac_subtitle ("Property counts");
+    if (context.stats_ontology ())
+        for (unsigned i = 0; i < ont_illegal; ++i)
+        {   const unsigned n = ontology_.at (static_cast < e_ontology_type > (i));
+            if (n == 0) continue;
+            ++total;
+            count += n;
+            if (context.tell (es_error))
+            {   mmac_t stat = mac_init (itemtype_index_name (make_itemtype_index (static_cast < e_ontology_type > (i))), n);
+                const unsigned x = ontology_property_.family (static_cast < e_ontology_type > (i));
+                if (x > 0) stat.emplace (nm_stat_detail, ::boost::lexical_cast < ::std::string > (x / n));
+                res += macro -> apply (ns_stat, table, stat);
+                if (context.tell (es_info))
+                    for (unsigned m = 0; m < op_illegal; ++m)
+                    {   const unsigned y = ontology_property_.at (static_cast < e_ontology_type > (i), static_cast <e_ontology_property> (m));
+                        if (y > 0)
+                        {   mmac_t mac = mac_subinit (itemprop_index_name (make_itemprop_index (static_cast <e_ontology_property> (m))), y);
+                            res += macro -> apply (ns_substat, table, stat, mac); } } } }
+    if (context.stats_property ())
+    {   mmac_t stat = mac_subtitle (REPORT_PROPERTY " counts");
         ::std::string att;
         for (unsigned m = 0; m < op_illegal; ++m)
         {   const unsigned x = ontology_property_.member (static_cast <e_ontology_property> (m));
@@ -129,36 +130,37 @@ mmac_t mac_subtitle (const ::std::string& title)
     return res; }
 
 ::std::string stats::element_report () const
-{   mmac_t table = mac_title ("Elements");
+{   mmac_t table = mac_title (REPORT_ELEMENT);
     ::std::string res;
     uint64_t total = 0;
     unsigned count = 0;
     VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
-    for (unsigned i = 0; i < last_element_tag; ++i)
-    {   const unsigned n = element_.at (i);
-        if (n == 0) continue;
-        ++total;
-        count += n;
-        if (context.tell (es_comment) || (context.tell (es_error) && ((elem::categories (i) & EF_FAUX) == 0)))
-        {   mmac_t stat = mac_init (elem::name (i), n);
-            if (! context.tell (es_info))
-            {   const unsigned x = attribute_.family (i);
-                if (x > 0)
-                {   ::std::string average ("on average ");
-                    average += ::boost::lexical_cast < ::std::string > (x / n);
-                    average += " attribute";
-                    if (x > 1) average += "s";
-                    stat.emplace (nm_stat_detail, average); }
-                res += macro -> apply (ns_stat, table, stat); }
-            else
-            {   res += macro -> apply (ns_stat, table, stat);
-                for (unsigned m = 0; m < last_attribute; ++m)
-                {   const unsigned y = attribute_.at (i, static_cast <e_attribute> (m));
-                    if (y > 0)
-                    {   mmac_t mac = mac_subinit (attr::name (static_cast <e_attribute> (m)), y);
-                        res += macro -> apply (ns_substat, table, stat, mac); } } } } }
-    if (context.tell (es_warning))
-    {   mmac_t stat = mac_subtitle ("Attribute counts");
+    if (context.stats_element ())
+        for (unsigned i = 0; i < last_element_tag; ++i)
+        {   const unsigned n = element_.at (i);
+            if (n == 0) continue;
+            ++total;
+            count += n;
+            if (context.tell (es_comment) || ((elem::categories (i) & EF_FAUX) == 0))
+            {   mmac_t stat = mac_init (elem::name (i), n);
+                if (! context.stats_attribute ())
+                {   const unsigned x = attribute_.family (i);
+                    if (x > 0)
+                    {   ::std::string average ("on average ");
+                        average += ::boost::lexical_cast < ::std::string > (x / n);
+                        average += " attribute";
+                        if (x > 1) average += "s";
+                        stat.emplace (nm_stat_detail, average); }
+                    res += macro -> apply (ns_stat, table, stat); }
+                else
+                {   res += macro -> apply (ns_stat, table, stat);
+                    for (unsigned m = 0; m < last_attribute; ++m)
+                    {   const unsigned y = attribute_.at (i, static_cast <e_attribute> (m));
+                        if (y > 0)
+                        {   mmac_t mac = mac_subinit (attr::name (static_cast <e_attribute> (m)), y);
+                            res += macro -> apply (ns_substat, table, stat, mac); } } } } }
+    if (context.stats_attribute ())
+    {   mmac_t stat = mac_subtitle (REPORT_ATTRIBUTE " count");
         ::std::string att;
         for (unsigned m = 0; m < last_attribute; ++m)
         {   const unsigned x = attribute_.member (static_cast <e_attribute> (m));
@@ -173,7 +175,7 @@ mmac_t mac_subtitle (const ::std::string& title)
     return res; }
 
 ::std::string stats::version_report () const
-{   mmac_t table = mac_title ("Versions");
+{   mmac_t table = mac_title (REPORT_VERSION);
     ::std::string res;
     VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
     for (auto ii = version_.count_.cbegin (); ii != version_.count_.cend (); ++ii)
@@ -183,16 +185,16 @@ mmac_t mac_subtitle (const ::std::string& title)
     return res; }
 
 ::std::string stats::abbr_report () const
-{   mmac_t table = mac_title ("Abbreviations");
+{   mmac_t table = mac_title (REPORT_ABRREVIATION);
     ::std::string res;
     VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
     for (auto i : abbr_.count_)
-        if (i.second > 0) res += macro -> apply (ns_stat, macro -> macros (), table, mac_init (i.first.a_, i.second, i.first.b_));
+        if (i.second > 0) res += macro -> apply (ns_stat, macro -> macros (), table, mac_init (i.first.a_, i.second, quote (i.first.b_)));
     if (! res.empty ())  res = macro -> apply (ns_stats_head, table) + res + macro -> apply (ns_stats_foot, table);
     return res; }
 
 ::std::string stats::custom_media_report () const
-{   mmac_t table = mac_title ("Custom Media");
+{   mmac_t table = mac_title (REPORT_CUSTARD_MEDIA);
     ::std::string res;
     VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
     for (auto i : custom_media_.count_)
@@ -202,53 +204,54 @@ mmac_t mac_subtitle (const ::std::string& title)
     if (! res.empty ()) res = macro -> apply (ns_stats_head, table) + res + macro -> apply (ns_stats_foot, table);
     return res; }
 
-::std::string stats::dfn_report () const
-{   mmac_t table = mac_title ("Definitions");
+::std::string stats::definition_report () const
+{   mmac_t table = mac_title (REPORT_DEFINITION);
     ::std::string res;
     VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
     for (auto i : dfn_.count_)
         if (i.second > 0)
-        {   mmac_t stat = mac_init (i.first.a_, i.second, i.first.b_);
+        {   mmac_t stat = mac_init (i.first.a_, i.second, quote (i.first.b_));
             res += macro -> apply (ns_stat, macro -> macros (), table, stat); }
     if (! res.empty ()) res = macro -> apply (ns_stats_head, table) + res + macro -> apply (ns_stats_foot, table);
     return res; }
 
-::std::string stats::dtdd_report () const
-{   mmac_t table = mac_title ("Name/Value Pairs");
+::std::string stats::value_pair_report () const
+{   mmac_t table = mac_title (REPORT_NAME_VALUE " Pair");
     ::std::string res;
     VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
     for (auto i : dtdd_.count_)
         if (i.second > 0)
-        {   mmac_t stat = mac_init (i.first.a_, i.second, i.first.b_);
+        {   mmac_t stat = mac_init (i.first.a_, i.second, quote (i.first.b_));
             res += macro -> apply (ns_stat, macro -> macros (), table, stat); }
     if (! res.empty ()) res = macro -> apply (ns_stats_head, table) + res + macro -> apply (ns_stats_foot, table);
     return res; }
 
 ::std::string stats::error_report () const
-{   mmac_t table = mac_title ("Nits Reported");
+{   mmac_t table = mac_title (REPORT_NITS " Reported");
     ::std::string res;
     res += saybe (table, severity_.at (es_catastrophic), "Catastrophes");
     if (context.tell (es_abhorrent)) { res += saybe (table, severity_.at (es_abhorrent), "Abhorrences");
-    if (context.tell (es_error)) { res += saybe (table, severity_.at (es_error), "Errors");
-    if (context.tell (es_warning)) { res += saybe (table, severity_.at (es_warning), "Warnings");
-    if (context.tell (es_info)) { res += saybe (table, severity_.at (es_info), "Info");
-    if (context.tell (es_comment)) { res += saybe (table, severity_.at (es_comment), "Comments");
+        if (context.tell (es_error)) { res += saybe (table, severity_.at (es_error), "Errors");
+            if (context.tell (es_warning)) { res += saybe (table, severity_.at (es_warning), "Warnings");
+                if (context.tell (es_info)) { res += saybe (table, severity_.at (es_info), "Info");
+                    if (context.tell (es_comment)) { res += saybe (table, severity_.at (es_comment), "Comments");
 #ifdef _DEBUG
-    if (context.tell (es_debug)) { res += saybe (table, severity_.at (es_debug), "Debug");
-    if (context.tell (es_variable)) { res += saybe (table, severity_.at (es_variable), "Variables");
-    if (context.tell (es_structure)) { res += saybe (table, severity_.at (es_structure), "Structure");
-    if (context.tell (es_detail)) { res += saybe (table, severity_.at (es_detail), "Details");
-    if (context.tell (es_splurge)) { res += saybe (table, severity_.at (es_splurge), "Splurge");
-    if (context.tell (es_all)) res += saybe (table, severity_.at (es_all), "All"); } } } } }
+                        if (context.tell (es_debug)) { res += saybe (table, severity_.at (es_debug), "Debug");
+                            if (context.tell (es_variable)) { res += saybe (table, severity_.at (es_variable), "Variables");
+                                if (context.tell (es_structure)) { res += saybe (table, severity_.at (es_structure), "Structure");
+                                    if (context.tell (es_detail)) { res += saybe (table, severity_.at (es_detail), "Details");
+                                        if (context.tell (es_splurge)) { res += saybe (table, severity_.at (es_splurge), "Splurge");
+                                            if (context.tell (es_all)) res += saybe (table, severity_.at (es_all), "All");
+                                        } } } } }
 #endif // _DEBUG
-                                                                                             } } } } }
+                    } } } } }
     if (! res.empty ())
     {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
         res = macro -> apply (ns_stats_head, table) + res + macro -> apply (ns_stats_foot, table); }
     return res; }
 
-::std::string stats::css_property_report () const
-{   mmac_t table = mac_title ("CSS Properties");
+::std::string stats::property_report () const
+{   mmac_t table = mac_title (REPORT_PROPERTY);
     ::std::string res;
     unsigned count = 0, total = 0;
     for (unsigned int d = 1; d <= ec_error; ++d)
@@ -264,8 +267,8 @@ mmac_t mac_subtitle (const ::std::string& title)
     if (! res.empty ()) res = macro -> apply (ns_stats_head, finish, table) + res + macro -> apply (ns_stats_foot, finish, table);
     return res; }
 
-::std::string stats::css_statement_report () const
-{   mmac_t table = mac_title ("CSS Statements");
+::std::string stats::statement_report () const
+{   mmac_t table = mac_title (REPORT_STATEMENT);
     ::std::string res;
     unsigned count = 0, total = 0;
     for (unsigned int d = 1; d <= css_error; ++d)
@@ -282,43 +285,49 @@ mmac_t mac_subtitle (const ::std::string& title)
     return res; }
 
 const char* str_name [] =
-{   "Annotation",
-    "Character Variant",
-    "Content Name",
-    "Counter Style",
-    "Font Family",
-    "Highlight",
-    "Font Historical Form",
-    "Keyframe",
-    "Layer",
-    "Font Ornament",
-    "Page Name",
-    "Palette",
-    "Region",
-    "Scroll Anim",
-    "Styleset",
-    "Stylistic",
-    "Swash",
-    "View",
+{   REPORT_ANNOTATION,
+    REPORT_CHARACTER,
+    REPORT_CONTENT,
+    REPORT_COUNTER,
+    REPORT_FAMILY,
+    REPORT_HIGHLIGHT,
+    REPORT_HISTORICAL,
+    REPORT_KEYFRAME,
+    REPORT_LAYER,
+    REPORT_ORNAMENT,
+    REPORT_PAGE_NAME,
+    REPORT_PALETTE,
+    REPORT_REGION,
+    REPORT_SCROLL,
+    REPORT_STYLESET,
+    REPORT_STYLISTIC,
+    REPORT_SWASH,
+    REPORT_VIEW,
     nullptr };
 
 ::std::string stats::css_str_report (const e_gsstr gst) const
 {   PRESUME (gst < gst_max, __FILE__, __LINE__);
     VERIFY_NOT_NULL (GSL_AT (str_name, gst), __FILE__, __LINE__);
-    mmac_t table = mac_title (::std::string ("CSS ") + GSL_AT (str_name, gst));
+    const ::std::string name (GSL_AT (str_name, gst));
+    mmac_t table;
+    table.emplace (nm_note_title, name);
     ::std::string res;
     if (! str_.at (gst).empty ())
-    {   for (auto i = str_.at (gst).cbegin (); i != str_.at (gst).cend (); ++i)
-        {   mmac_t stat = mac_init (*i);
-            res += macro -> apply (ns_stat, macro -> macros (), table, stat); }
-        mmac_t finish;
-        ::std::string sum = ::boost::lexical_cast < ::std::string > (str_.at (gst).size ());
-        finish.emplace (nm_stats_total, sum);
-        res = macro -> apply (ns_stats_head, finish, table) + res + macro -> apply (ns_stats_foot, finish, table); }
+    {   int n = 0;
+        for (auto i = str_.at (gst).cbegin (); i != str_.at (gst).cend (); ++i)
+        {   ++n;
+            mmac_t stat;
+            stat.emplace (nm_note_content, *i);
+            res += macro -> apply (ns_note, macro -> macros (), table, stat); }
+        if (n < 2) table.emplace (nm_note_note, "");
+        else
+        {   const ::std::string sum = ::std::string ("Used ") + once_twice_thrice (str_.at (gst).size ());
+            table.emplace (nm_note_note, sum); }
+        res = macro -> apply (ns_note_head, table) + res + macro -> apply (ns_note_foot, table); }
     return res; }
 
 ::std::string stats::category_report () const
-{   mmac_t table = mac_title ("Nit Categories");
+{   mmac_t table = mac_title (REPORT_CAREGORY);
     ::std::string res;
     res += saybe (table, category_.at (ec_html), "HTML");
     res += saybe (table, category_.at (ec_aria), "Aria");
@@ -363,27 +372,30 @@ const char* str_name [] =
 
 ::std::string stats::file_report () const
 {   ::std::string res;
-    if (context.tell (es_warning)) res = ::boost::lexical_cast < ::std::string > (file_size_) + " bytes read in ";
-    if (file_count_ == 1)
-        res += ::boost::lexical_cast < ::std::string > (file_count_) + " file";
-    else
-    {   res += ::boost::lexical_cast < ::std::string > (file_count_) + " files, with an average of roughly ";
-        res += ::boost::lexical_cast < ::std::string > (static_cast < int > (floor (file_size_ / file_count_ + 0.5)));
-        res += " bytes per file"; }
-    mmac_t table = mac_title ("File info");
-    mmac_t stat = mac_init ("", res);
-    res = macro -> apply (ns_stat, table, stat);
+    mmac_t stat, s2;
+    mmac_t table;
     VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
-    if (context.tell (es_error) && (file_count_ > 1))
-    {   ::std::string app = "smallest file: " + ::boost::lexical_cast < ::std::string > (smallest_) + " bytes, ";
-        app += "largest file: " + ::boost::lexical_cast < ::std::string > (biggest_) + " bytes";
-        mmac_t x = mac_init ("", app);
-        res += macro -> apply (ns_stat, table, x); }
-    res = macro -> apply (ns_stats_head, table) + res + macro -> apply (ns_stats_foot, table);
+    table.emplace (nm_note_title, "File Info");
+    table.emplace (nm_note_note, "");
+    if (file_count_ == 1)
+    {   res = ::boost::lexical_cast < ::std::string > (file_size_) + " bytes read in one file";
+        stat.emplace (nm_note_content, res);
+        res = macro -> apply (ns_note, stat); }
+    else
+    {   const ::std::string r  = ::boost::lexical_cast < ::std::string > (file_size_) + " bytes read in " +
+                                 ::boost::lexical_cast < ::std::string > (file_count_) + " files, with an average of roughly " +
+                                 ::boost::lexical_cast < ::std::string > (static_cast < int > (floor (file_size_ / file_count_ + 0.5))) +
+                                 " bytes per file";
+        const ::std::string sl = "smallest file: " + ::boost::lexical_cast < ::std::string > (smallest_) + " bytes, largest file: " + 
+                                 ::boost::lexical_cast < ::std::string > (biggest_) + " bytes";
+        stat.emplace (nm_note_content, r);
+        s2.emplace (nm_note_content, sl);
+        res = macro -> apply (ns_note, stat) + macro -> apply (ns_note, s2); }
+    res = macro -> apply (ns_note_head, table) + res + macro -> apply (ns_note_foot, table);
     return res; }
 
 ::std::string stats::reference_report () const
-{   mmac_t table = mac_title ("References");
+{   mmac_t table = mac_title (REPORT_REFERENCE);
     ::std::string res;
     VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
     for (unsigned int d = 1; d <= last_doc; ++d)
@@ -395,10 +407,10 @@ const char* str_name [] =
     return res; }
 
 ::std::string stats::meta_report () const
-{   mmac_t table = mac_title ("Headers");
+{   mmac_t table = mac_title (REPORT_HEADER);
     ::std::string res;
     VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
-    if (context.meta ())
+    if (context.stats_meta ())
     {   ::std::string sub;
         mmac_t stat1 = mac_subtitle ("pragma");
         for (unsigned i = 0; i < he_error; ++i)
@@ -460,7 +472,7 @@ const char* str_name [] =
         mac.emplace (nm_tally_total, once_twice_thrice < ::std::size_t > (grand));
         mac.emplace (nm_tally_use_sum, "");
         mac.emplace (nm_tally_use_total, "");
-        s = macro -> apply (ns_tally_head, mac) + s + macro -> apply (ns_tally_foot, mac); }
+        s = macro -> apply (ns_tally_head, mac) + s + macro -> apply (ns_tally_foot, mac) + "\n"; }
     return s; }
 
 ::std::string stats::single_usage (const ::std::string name, const ::std::size_t dn, const ::std::size_t un,
@@ -477,7 +489,8 @@ const char* str_name [] =
         e_nit_section sc, e_nit_section h, e_nit_section f, e_nit_macro n,
         e_nit_macro i1, e_nit_macro i2, e_nit_macro c1, e_nit_macro c2,
         e_nit_macro ttl, e_nit_macro t1, e_nit_macro t2, e_nit_macro sum1, e_nit_macro sum2) const
-{   ::std::string s;
+{   mmac_t table = mac_title (category);
+    ::std::string s;
     ::smsid_t::const_iterator di = dcl.cbegin ();
     ::smsid_t::const_iterator ui = used.cbegin ();
     ::std::size_t count = 0, gd = 0, gu = 0;
@@ -507,72 +520,95 @@ const char* str_name [] =
             ++ui; ++di; }
         ++count; }
     if (! s.empty ())
-    {   mmac_t mac = mac_title (category);
+    {   mmac_t mac;
         mac.emplace (c1, ::boost::lexical_cast < ::std::string > (count));
         mac.emplace (sum1, once_twice_thrice < ::std::size_t > (gd));
         mac.emplace (ttl, category);
         mac.emplace (t1, once_twice_thrice < ::std::size_t > (gd));
         mac.emplace (sum2, once_twice_thrice < ::std::size_t > (gu));
         mac.emplace (t2, once_twice_thrice < ::std::size_t > (gu));
-        s = macro -> apply (h, mac) + s + macro -> apply (f, mac); }
+        s = macro -> apply (h, table, mac) + s + macro -> apply (f, table, mac) + "\n"; }
     return s; }
 
 ::std::string stats::font_report () const
-{   return report_usage ("Font(s)", font_); }
+{   return report_usage (REPORT_FONT, font_); }
 
 ::std::string stats::class_report () const
-{   return  report_usage ("Class(es)", dcl_class_, use_class_) +
-            report_usage ("Element.class(es)", dcl_element_class_, use_element_class_); }
+{   return  report_usage (REPORT_CLASS, dcl_class_, use_class_, ns_du, ns_du_head, ns_du_foot,
+                nm_tally_name, nm_tally_decl_count, nm_tally_use_count, nm_tally_decl_int, nm_tally_use_int, nm_tally_title) +
+            report_usage (REPORT_ELEMENT_CLASS, dcl_element_class_, use_element_class_, ns_du, ns_du_head, ns_du_foot,
+                nm_tally_name, nm_tally_decl_count, nm_tally_use_count, nm_tally_decl_int, nm_tally_use_int, nm_tally_title); }
 
 ::std::string stats::class_report2 () const
-{   return  report_usage ("Class(es)", dcl_class_, use_class_, ns_class, ns_class_head, ns_class_foot,
+{   return  report_usage (REPORT_CLASS, dcl_class_, use_class_, ns_class, ns_class_head, ns_class_foot,
                 nm_class_name, nm_class_decl_int, nm_class_int, nm_class_decl_count, nm_class_count, nm_class_title) +
-            report_usage ("Element.class(es)", dcl_element_class_, use_element_class_, ns_class, ns_class_head, ns_class_foot,
+            report_usage (REPORT_ELEMENT_CLASS, dcl_element_class_, use_element_class_, ns_class, ns_class_head, ns_class_foot,
                 nm_class_name, nm_class_decl_int, nm_class_int, nm_class_decl_count, nm_class_count, nm_class_title); }
 
 ::std::string stats::itemid_report () const
-{   return  report_usage ("Itemid(s)", dcl_id_, use_id_); }
+{   return report_usage (REPORT_ITEMID, dcl_id_, use_id_) ; }
+
+::std::string stats::id_report () const
+{   return  report_usage (REPORT_ID, dcl_id_, use_id_, ns_du, ns_du_head, ns_du_foot,
+                nm_tally_name, nm_tally_decl_count, nm_tally_use_count, nm_tally_decl_int, nm_tally_use_int, nm_tally_title) +
+            report_usage (REPORT_ELEMENT_ID, dcl_element_id_, use_element_id_, ns_du, ns_du_head, ns_du_foot,
+                nm_tally_name, nm_tally_decl_count, nm_tally_use_count, nm_tally_decl_int, nm_tally_use_int, nm_tally_title); }
 
 ::std::string stats::id_report2 () const
-{   return  report_usage ("Id(s)", dcl_id_, use_id_, ns_nsid, ns_id_head, ns_id_foot,
+{   return  report_usage (REPORT_ID, dcl_id_, use_id_, ns_nsid, ns_id_head, ns_id_foot,
                 nm_id_name, nm_id_decl_int, nm_id_int, nm_id_decl_count, nm_id_count, nm_id_title) +
-            report_usage ("Element#id(s)", dcl_element_id_, use_element_id_, ns_nsid, ns_id_head, ns_id_foot,
+            report_usage (REPORT_ELEMENT_ID, dcl_element_id_, use_element_id_, ns_nsid, ns_id_head, ns_id_foot,
                 nm_id_name, nm_id_decl_int, nm_id_int, nm_id_decl_count, nm_id_count, nm_id_title); }
 
 ::std::string stats::custom_property_report () const
-{   return report_usage ("Custom Properties", dcl_custom_prop_, use_custom_prop_); }
+{   return report_usage (REPORT_CUSTARD_PROPERTY, dcl_custom_prop_, use_custom_prop_); }
 
 ::std::string stats::report (const bool grand) const
 {   ::std::string res;
     if ((context.verbose () == es_undefined) || (context.verbose () == es_illegal)) return res;
     mmac_t g;
-    if (grand) g.emplace (nm_grand_title, "Grand Totals");
-    else g.emplace (nm_grand_title, "Statistics");
+    if (grand) g.emplace (nm_grand_title, REPORT_GRAND " Total");
+    else g.emplace (nm_grand_title, REPORT_STAT);
     VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
     res += macro -> apply (ns_grand_head, g);
-    if (context.stats_element ()) res += element_report ();
-    if (context.stats_ontology ()) res += ontology_report ();
-    if (context.stats_meta ()) res += meta_report ();
     if (context.stats_abbr ()) res += abbr_report ();
-    if (context.stats_dfn ()) res += dfn_report ();
-    if (context.stats_dtdd ()) res += dtdd_report ();
-    if (context.stats_css_property ()) res += css_property_report ();
-    if (context.stats_statement ()) res += css_statement_report ();
+    if (context.stats_gst (gst_annotation)) res += css_str_report (gst_annotation);
+    if (grand && context.stats_category ()) res += category_report ();
+    if (context.stats_gst (gst_character_variant)) res += css_str_report (gst_character_variant);
+    if (context.stats_class ()) res += class_report ();
+    if (context.stats_gst (gst_content_name)) res += css_str_report (gst_content_name);
+    if (context.stats_gst (gst_counter_style)) res += css_str_report (gst_counter_style);
     if (context.stats_custom_media ()) res += custom_media_report ();
     if (context.stats_custom_property ()) res += custom_property_report ();
-    for (int i = 0; i < gst_max; ++i)
-        if (context.stats_gst (static_cast < e_gsstr > (i)))
-        res += css_str_report (static_cast < e_gsstr > (i));
+    if (context.stats_definition ()) res += definition_report ();
+    if (context.stats_element ()) res += element_report ();
+    if (grand && context.stats_error ()) res += error_report ();
+    if (grand && (file_count_ > 1) && context.stats_file ()) res += file_report ();
     if (context.stats_font ()) res += font_report ();
-    if (context.stats_class ()) res += class_report ();
+    if (context.stats_gst (gst_font_family)) res += css_str_report (gst_font_family);
+    if (context.stats_gst (gst_highlight)) res += css_str_report (gst_highlight);
+    if (context.stats_gst (gst_historical_form)) res += css_str_report (gst_historical_form);
+    if (context.stats_id ()) res += id_report ();
     if (context.stats_itemid ()) res += itemid_report ();
-    if (grand)
-    {   res += error_report ();
-        if (file_count_ > 1)
-        {   if (context.stats_category ()) res += category_report ();
-            if (context.stats_reference ()) res += reference_report ();
-            if (context.stats_version ()) res += version_report ();
-            if (context.stats_file ()) res += file_report (); } }    res += macro -> apply (ns_grand_foot, g);
+    if (context.stats_gst (gst_keyframe)) res += css_str_report (gst_keyframe);
+    if (context.stats_gst (gst_layer)) res += css_str_report (gst_layer);
+    if (context.stats_meta ()) res += meta_report ();
+    if (context.stats_ontology ()) res += ontology_report ();
+    if (context.stats_gst (gst_ornament)) res += css_str_report (gst_ornament);
+    if (context.stats_gst (gst_page_name)) res += css_str_report (gst_page_name);
+    if (context.stats_gst (gst_palette)) res += css_str_report (gst_palette);
+    if (context.stats_css_property ()) res += property_report ();
+    if (grand && (file_count_ > 1) && context.stats_reference ()) res += reference_report ();
+    if (context.stats_gst (gst_region)) res += css_str_report (gst_region);
+    if (context.stats_gst (gst_scroll_anim)) res += css_str_report (gst_scroll_anim);
+    if (context.stats_statement ()) res += statement_report ();
+    if (context.stats_gst (gst_styleset)) res += css_str_report (gst_styleset);
+    if (context.stats_gst (gst_stylistic)) res += css_str_report (gst_stylistic);
+    if (context.stats_gst (gst_swash)) res += css_str_report (gst_swash);
+    if (context.stats_value_pair ()) res += value_pair_report ();
+    if (grand && (file_count_ > 1) && context.stats_version ()) res += version_report ();
+    if (context.stats_gst (gst_view)) res += css_str_report (gst_view);
+    res += macro -> apply (ns_grand_foot, g);
     return res; }
 
 bool stats::severity_exceeded () const
@@ -626,4 +662,7 @@ void stats::accumulate (stats& o) const
     o.file_count_ += file_count_; }
 
 ::std::string stats::class_and_id_report () const
-{   return class_report2 () + id_report2 (); }
+{   ::std::string res;
+    if (context.stats_class ()) res = class_report2 ();
+    if (context.stats_id ()) res += id_report2 ();
+    return res; }

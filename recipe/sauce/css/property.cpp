@@ -146,11 +146,13 @@ void property::parse (arguments& args, const int from, const int to)
                     fiddlesticks < bool > nb (&args.nested_, true);
                     st_.emplace_back (pst_t (new statements (args, vfr.at (x), vto.at (x)))); }
                 break;
+            case ct_comment :
             case ct_keyword :
             case ct_identifier :
             case ct_whitespace :
-            case ct_comment :
                 break;
+            case ct_eof :
+                return;
             default :
                 nits.pick (nit_property, es_error, ec_css, quote (tkn_rpt (args.t_.at (vfr.at (x)))), ": property name expected");
                 return; }
@@ -188,13 +190,6 @@ void property::parse (arguments& args, const int from, const int to)
             args.ps_ -> state () |= pr;
             if (pr == ec_custom)
             {   name_ = args.t_.at (k).val_;
-//                auto cp = args.g_.custom_prop ().find (name_);
-//                if (cp == args.g_.custom_prop ().cend ())
-//                {   args.g_.custom_prop ().emplace (name_, 1);
-//                    nits.pick (nit_css_custom, es_info, ec_css, quote (name_), " noted"); }
-//                else
-//                {   cp -> second += 1;
-//                    nits.pick (nit_css_custom, es_comment, ec_css, quote (name_), " referenced again"); } }
                 if (args.has_custom_prop (name_))
                     nits.pick (nit_css_custom, es_comment, ec_css, quote (name_), " noted");
                 else
@@ -206,7 +201,8 @@ void property::parse (arguments& args, const int from, const int to)
             if (pp.first ().css_ui () > args.v_.css_ui ())
                 nits.pick (nit_css_version, ed_css_ui_3, "3.1. Changing the Box Model: the box-sizing property", es_error, ec_css, quote (args.t_.at (k).val_), " requires CSS Basic User Interface level 3");
             static elem eca (elem_css_all);
-            prop_ -> verify (nits, eca); }
+            prop_ -> verify (nits, eca);
+            prop_ -> invalid_id (args, nits); }
         if (bang > 0)
         {   b = next_non_whitespace (args.t_, bang, to);
             if (b < 0)

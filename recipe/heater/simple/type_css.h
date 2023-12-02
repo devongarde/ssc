@@ -210,6 +210,7 @@ template < > struct type_master < t_css_unicode_wildcard > : public tidy_string 
 
 template < > struct type_master < t_fn > : public tidy_string < t_fn >
 {   using tidy_string < t_fn > :: tidy_string;
+    bool boing_ = false;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_fn > :: set_value (nits, v, s);
         if ((v.css_version () <= css_2_2) && ! v.css_any_3_4_5_6 ())

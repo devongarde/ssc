@@ -333,9 +333,6 @@ void statement::parse_font_palette_values (arguments& args, nitpick& nits, const
     {   if (i == to) nits.pick (nit_css_syntax, es_error, ec_css, "expecting a name after @font-palette-values (2)");
         else
         {   ::std::string name (assemble_string (args.t_, i, to, false));
-//            if (args.palette ().find (name) != args.palette ().cend ())
-//                nits.pick (nit_css_palette, es_comment, ec_css, quote (name), " previously named.");
- //           else args.palette ().insert (name);
             VERIFY_NOT_NULL (args.dst_, __FILE__, __LINE__);
             if (args.has_str (gst_palette, name) || ! args.dst_ -> note_str (gst_palette, name))
                 nits.pick (nit_css_palette, es_comment, ec_css, quote (name), " previously named.");
@@ -488,8 +485,6 @@ void statement::parse_keyframes (arguments& args, nitpick& nits, const int from,
         VERIFY_NOT_NULL (args.dst_.get (), __FILE__, __LINE__);
         if (test_value < t_css_wide > (nuts, args.v_, name))
             nits.pick (nit_css_keyframes, ed_css_animation_3, "3. Keyframes", es_error, ec_css, quote (name), " is a CSS wide keyword, so cannot be used as a @keyframes name");
-//        else if (args.g_.keyframe ().find (name) == args.g_.keyframe ().cend ()) args.g_.keyframe ().insert (name);
-//        else nits.pick (nit_css_keyframes, ed_css_animation_3, "3. Keyframes", es_warning, ec_css, "@keyframes ", quote (name), " previously defined");
         else if (args.has_str (gst_keyframe, name) || ! args.dst_ -> note_str (gst_keyframe, name))
             nits.pick (nit_css_keyframes, ed_css_animation_3, "3. Keyframes", es_warning, ec_css, "@keyframes ", quote (name), " previously defined");
         i = next_non_whitespace (args.t_, i, to);
@@ -565,9 +560,6 @@ void statement::parse_layer (arguments& args, nitpick& nits, const int from, con
             if ((i < 0) || ((args.t_.at (i).t_ != ct_identifier) && (args.t_.at (i).t_ != ct_keyword))) break;
             got = true;
             name = args.t_.at (i).val_;
-//            if (args.g_.layer ().find (name) != args.g_.layer ().cend ())
-//                nits.pick (nit_css_layer, es_info, ec_css, "layer ", name, " previously mentioned");
-//            else args.g_.layer ().insert (name);
             VERIFY_NOT_NULL (args.dst_, __FILE__, __LINE__);
             if (args.has_str (gst_layer, name) || ! args.dst_ -> note_str (gst_layer, name))
                 nits.pick (nit_css_layer, es_info, ec_css, "layer ", name, " previously mentioned");
@@ -669,9 +661,6 @@ void statement::parse_page (arguments& args, nitpick& nits, const int from, cons
             return; }
         if ((i > 0) && ((args.t_.at (i).t_ == ct_keyword) || (args.t_.at (i).t_ == ct_identifier)))
         {   const ::std::string n (::boost::to_lower_copy (args.t_.at (i).val_));
-//            if (args.g_.page_name ().find (n) != args.g_.page_name ().cend ())
-//                nits.pick (nit_page_name_again, es_error, ec_css, quote (args.t_.at (i).val_), " previously used.");
-//            else args.g_.page_name ().insert (n);
             VERIFY_NOT_NULL (args.dst_, __FILE__, __LINE__);
             if (args.has_str (gst_layer, n) || ! args.dst_ -> note_str (gst_page_name, n))
                 nits.pick (nit_page_name_again, es_error, ec_css, quote (args.t_.at (i).val_), " previously used.");

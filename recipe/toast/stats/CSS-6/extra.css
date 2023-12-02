@@ -1,0 +1,116 @@
+﻿
+@font-feature-values Ignoble { @historical-forms { shakespeare: 1; chaucer: 2; } }
+
+p {
+  font-family: Ignoble;
+  font-variant-alternates: historical-forms(shakespeare);
+}
+
+#from-mdn {
+  height: 300px;
+  overflow-y: scroll;
+  scroll-timeline-name: --squareTimeline;
+  position: relative;
+}
+
+@font-feature-values the70s { @stylistic { sixteen-bars: 1; brand-new: 2; } }
+
+p {
+  font-family: the70s;
+  font-variant-alternates: stylistic(brand-new);
+}
+
+@font-feature-values fireplace { @ornaments { robin: 1; doe: 2; } }
+
+p {
+  font-family: fireplace;
+  font-variant-alternates: ornaments(robin);
+}
+
+::highlight(sample) { background-color: rgba(0, 0, 255, 0.3); }
+
+:root::highlight(foo) {
+color:blue;
+background-color:yellow;
+}
+
+:root::highlight(bar) {
+background-color:orange;
+}
+
+@page LandscapeTable {  }
+@page CompanyLetterHead:first {  } /*  identifier and pseudo page. */
+@page toc {  }
+
+@layer plain {
+  html {
+    block-size: 100%;
+
+    & body {
+      min-block-size: 100%;
+    }
+  }
+}
+
+@layer base {
+  html {
+    block-size: 100%;
+
+    @layer support {
+      & body {
+        min-block-size: 100%;
+      }
+    }
+  }
+}
+
+@keyframes fade-in {
+	from { opacity: 0; }
+}
+
+@keyframes fade-out {
+	to { opacity: 0; }
+}
+
+@keyframes slide-from-right {
+	from { transform: translateX(30px); }
+}
+
+@keyframes slide-to-left {
+	to { transform: translateX(-30px); }
+}
+
+#this {
+    flow-into: my-flow;
+  }
+  #there {
+    flow-from: my-flow;
+  }
+
+  article {
+    flow-into: article-flow;
+  }
+  .region {
+    flow-from: article-flow;
+  }
+  .top {
+    max-height: 80vh;
+  }
+
+   nav a {
+    flow-into: nav-link-flow;
+  }
+  nav {
+    flow-from: nav-link-flow;
+  }
+
+  .breaking {
+    flow-into: breaking-news;
+  }
+  .breaking-news {
+    flow-from: breaking-news;
+  }
+
+:root {
+    view-transition-name: --root;
+}

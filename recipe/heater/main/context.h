@@ -41,19 +41,20 @@ class corpus;
 class context_t
 {   bool            article_ = false, body_ = true, case_ = false, cgi_ = false, classic_ = false, clear_ = false, crosslinks_ = true, example_ = true,
                     external_ = false, ext_css_ = false, extra_ = false, force_version_ = false, forwarded_ = true, icu_ = true, ie_ = false,
-                    info_ = false, jsonld_ = false, local_ = true, load_css_ = true, links_ = true, main_ = false, md_export_ = false, meta_ = false,
+                    info_ = false, jsonld_ = false, local_ = true, load_css_ = true, links_ = true, main_ = false, md_export_ = false,
                     mf_export_ = false, mf_verify_ = true, microdata_ = true, nids_ = false, nits_ = false, nits_nits_nits_ = false, not_root_ = false,
                     once_ = true, presume_tags_ = false, progress_ = false, rdfa_ = false, rel_ = false, revoke_ = false, rfc_1867_ = true, 
                     rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, ontology_ = true, safari_ = false, 
                     shadow_changed_ = false, shadow_comment_ = true, shadow_enable_ = false, shadow_space_ = true, shadow_ssi_ = true, sloven_ = false, 
-                    spec_ = false, spell_ = true, spell_deduced_ = false, ssi_ = true, stats_abbr_ = true, stats_annotation_ = true, 
-                    stats_category_ = true, stats_character_variant_ = true, stats_class_ = true, stats_content_name_ = true,
-                    stats_counter_style_ = true, stats_css_property_ = true, stats_custom_media_ = true, stats_custom_property_ = true,
-                    stats_dfn_ = false, stats_dtdd_ = false, stats_element_ = true, stats_file_ = true, stats_font_ = true, stats_font_family_ = true, 
-                    stats_highlight_ = false, stats_historical_form_ = false, stats_itemid_ = true, stats_keyframe_ = false, stats_layer_ = false, 
-                    stats_meta_ = true, stats_ontology_ = true, stats_ornament_ = false, stats_page_name_ = true, stats_page_ = false, 
-                    stats_palette_ = false, stats_reference_ = true, stats_region_ = false, stats_scroll_anim_ = false, stats_statement_ = true, 
-                    stats_styleset_ = false, stats_stylistic_ = false, stats_summary_ = false, stats_swash_ = false, stats_version_ = true, 
+                    spec_ = false, spell_ = true, spell_deduced_ = false, ssi_ = true, stats_abbr_ = false, stats_annotation_ = false, 
+                    stats_attribute_ = false, stats_category_ = false, stats_character_variant_ = false, stats_class_ = false,
+                    stats_content_name_ = false, stats_counter_style_ = false, stats_css_property_ = false, stats_custom_media_ = false,
+                    stats_custom_property_ = false, stats_definition_ = false, stats_value_pair_ = false, stats_element_ = false, stats_error_ = false,
+                    stats_file_ = false, stats_font_ = false, stats_font_family_ = false, stats_highlight_ = false, stats_historical_form_ = false,
+                    stats_id_ = false, stats_itemid_ = false, stats_keyframe_ = false, stats_layer_ = false, stats_meta_ = false,
+                    stats_ontology_ = false, stats_ornament_ = false, stats_page_name_ = false, stats_page_ = false, stats_palette_ = false,
+                    stats_property_ = false, stats_reference_ = false, stats_region_ = false, stats_scroll_anim_ = false, stats_statement_ = false,
+                    stats_styleset_ = false, stats_stylistic_ = false, stats_summary_ = false, stats_swash_ = false, stats_version_ = false,
                     stats_view_ = false, test_ = false, unknown_class_ = true, update_ = false, valid_ = false, versioned_ = false, yggdrisil_ = false;
     int             fred_ = 0, title_ = MAX_IDEAL_TITLE_LENGTH;
     e_copy          copy_ = c_none;
@@ -239,7 +240,6 @@ class context_t
     context_t& math_version (const e_math_version v) noexcept { version_.math_version (v); return *this; }
     context_t& max_file_size (const long l) { max_file_size_ = l; mac < long > (nm_context_max_file_size, l);return *this; }
     context_t& md_export (const bool b) { md_export_ = b; mac (nm_context_md_export, b); return *this; }
-    context_t& meta (const bool b) { meta_ = b; mac (nm_context_meta, b); return *this; }
     context_t& mf_export (const bool b) { mf_export_ = b; mac (nm_context_mf_export, b); return *this; }
     context_t& mf_verify (const bool b) { mf_verify_ = b; mac (nm_context_mf_verify, b); return *this; }
     context_t& mf_version (const unsigned char n)
@@ -330,6 +330,7 @@ class context_t
     context_t& stats_all (const bool b);
     context_t& stats_abbr (const bool b) { stats_abbr_ = b; mac (nm_context_stats_abbr, b); return *this; }
     context_t& stats_annotation (const bool b) { stats_annotation_ = b; mac (nm_context_stats_annotation, b); return *this; }
+    context_t& stats_attribute (const bool b) { stats_attribute_ = b; mac (nm_context_stats_attribute, b); return *this; }
     context_t& stats_category (const bool b) { stats_category_ = b; mac (nm_context_stats_category, b); return *this; }
     context_t& stats_character_variant (const bool b) { stats_character_variant_ = b; mac (nm_context_stats_character_variant, b); return *this; }
     context_t& stats_class (const bool b) { stats_class_ = b; mac (nm_context_stats_class, b); return *this; }
@@ -338,14 +339,16 @@ class context_t
     context_t& stats_css_property (const bool b) { stats_css_property_ = b; mac (nm_context_stats_css_property, b); return *this; }
     context_t& stats_custom_media (const bool b) { stats_custom_media_ = b; mac (nm_context_stats_custom_media, b); return *this; }
     context_t& stats_custom_property (const bool b) { stats_custom_property_ = b; mac (nm_context_stats_custom_property, b); return *this; }
-    context_t& stats_dfn (const bool b) { stats_dfn_ = b; mac (nm_context_stats_dfn, b); return *this; }
-    context_t& stats_dtdd (const bool b) { stats_dtdd_ = b; mac (nm_context_stats_dtdd, b); return *this; }
+    context_t& stats_definition (const bool b) { stats_definition_ = b; mac (nm_context_stats_dfn, b); return *this; }
+    context_t& stats_value_pair (const bool b) { stats_value_pair_ = b; mac (nm_context_stats_dtdd, b); return *this; }
     context_t& stats_element (const bool b) { stats_element_ = b; mac (nm_context_stats_element, b); return *this; }
+    context_t& stats_error (const bool b) { stats_error_ = b; mac (nm_context_stats_error, b); return *this; }
     context_t& stats_file (const bool b) { stats_file_ = b; mac (nm_context_stats_file, b); return *this; }
     context_t& stats_font (const bool b) { stats_font_ = b; mac (nm_context_stats_font, b); return *this; }
     context_t& stats_font_family (const bool b) { stats_font_family_ = b; mac (nm_context_stats_font_family, b); return *this; }
     context_t& stats_highlight (const bool b) { stats_highlight_ = b; mac (nm_context_stats_highlight, b); return *this; }
     context_t& stats_historical_form (const bool b) { stats_historical_form_ = b; mac (nm_context_stats_historical_form, b); return *this; }
+    context_t& stats_id (const bool b) { stats_id_ = b; mac (nm_context_stats_id, b); return *this; }
     context_t& stats_itemid (const bool b) { stats_itemid_ = b; mac (nm_context_stats_itemid, b); return *this; }
     context_t& stats_keyframe (const bool b) { stats_keyframe_ = b; mac (nm_context_stats_keyframe, b); return *this; }
     context_t& stats_layer (const bool b) { stats_layer_ = b; mac (nm_context_stats_layer, b); return *this; }
@@ -355,6 +358,7 @@ class context_t
     context_t& stats_page (const bool b) { stats_page_ = b; mac (nm_context_stats_page, b); return *this; }
     context_t& stats_page_name (const bool b) { stats_page_name_ = b; mac (nm_context_stats_page_name, b); return *this; }
     context_t& stats_palette (const bool b) { stats_palette_ = b; mac (nm_context_stats_palette, b); return *this; }
+    context_t& stats_property (const bool b) { stats_property_ = b; mac (nm_context_stats_property, b); return *this; }
     context_t& stats_reference (const bool b) { stats_reference_ = b; mac (nm_context_stats_reference, b); return *this; }
     context_t& stats_region (const bool b) { stats_region_ = b; mac (nm_context_stats_region, b); return *this; }
     context_t& stats_scroll_anim (const bool b) { stats_scroll_anim_ = b; mac (nm_context_stats_scroll_anim, b); return *this; }
@@ -519,7 +523,6 @@ public:
     e_math_version math_version () const noexcept { return version_.math_version (); }
     unsigned long max_file_size () const noexcept { return GSL_NARROW_CAST < unsigned long > (max_file_size_); }
     bool md_export () const noexcept { return md_export_; }
-    bool meta () const noexcept { return meta_; }
     bool mf_export () const noexcept { return mf_export_; }
     bool mf_verify () const noexcept { return mf_verify_; }
     bool mf_version1 () const noexcept { return (mf_version_ & 1) != 0; }
@@ -589,6 +592,7 @@ public:
     bool stats_page () const noexcept { return stats_page_; }
     bool stats_abbr () const noexcept { return stats_abbr_; }
     bool stats_annotation () const noexcept { return stats_annotation_; }
+    bool stats_attribute () const noexcept { return stats_attribute_; }
     bool stats_category () const noexcept { return stats_category_; }
     bool stats_character_variant () const noexcept { return stats_character_variant_; }
     bool stats_class () const noexcept { return stats_class_; }
@@ -597,15 +601,17 @@ public:
     bool stats_css_property () const noexcept { return stats_css_property_; }
     bool stats_custom_media () const noexcept { return stats_custom_media_; }
     bool stats_custom_property () const noexcept { return stats_custom_property_; }
-    bool stats_dfn () const noexcept { return stats_dfn_; }
-    bool stats_dtdd () const noexcept { return stats_dtdd_; }
+    bool stats_definition () const noexcept { return stats_definition_; }
+    bool stats_value_pair () const noexcept { return stats_value_pair_; }
     bool stats_element () const noexcept { return stats_element_; }
+    bool stats_error () const noexcept { return stats_error_; }
     bool stats_file () const noexcept { return stats_file_; }
     bool stats_font () const noexcept { return stats_font_; }
     bool stats_font_family () const noexcept { return stats_font_family_; }
     bool stats_gst (const e_gsstr gst);
     bool stats_highlight () const noexcept { return stats_highlight_; }
     bool stats_historical_form () const noexcept { return stats_historical_form_; }
+    bool stats_id () const noexcept { return stats_id_; }
     bool stats_itemid () const noexcept { return stats_itemid_; }
     bool stats_keyframe () const noexcept { return stats_keyframe_; }
     bool stats_layer () const noexcept { return stats_layer_; }
@@ -614,6 +620,7 @@ public:
     bool stats_ornament () const noexcept { return stats_ornament_; }
     bool stats_page_name () const noexcept { return stats_page_name_; }
     bool stats_palette () const noexcept { return stats_palette_; }
+    bool stats_property () const noexcept { return stats_property_; }
     bool stats_reference () const noexcept { return stats_reference_; }
     bool stats_region () const noexcept { return stats_region_; }
     bool stats_scroll_anim () const noexcept { return stats_scroll_anim_; }

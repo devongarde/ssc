@@ -292,6 +292,7 @@
     <ClCompile Include="..\sauce\coop\kew.cpp" />
     <ClCompile Include="..\sauce\coop\knickers.cpp" />
     <ClCompile Include="..\sauce\coop\lox.cpp" />
+    <ClCompile Include="..\sauce\coop\tls.cpp" />
     <ClCompile Include="..\sauce\css\arguments.cpp" />
     <ClCompile Include="..\sauce\css\css.cpp" />
     <ClCompile Include="..\sauce\css\css_attribute.cpp" />

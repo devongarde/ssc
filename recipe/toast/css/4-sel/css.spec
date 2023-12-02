@@ -35,7 +35,7 @@ PASS ../toast/css/4-sel/css-7.html
 PASS ../toast/css/4-sel/css-8.css
 0 html
 5 class_microformat_property
-8 css_syntax selector naughty_content
+8 css_syntax pseud
 
 PASS ../toast/css/4-sel/css-9.css
 0 html

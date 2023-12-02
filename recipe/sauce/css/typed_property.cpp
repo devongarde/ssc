@@ -48,43 +48,26 @@ bool examine_custom_property (arguments& args, nitpick& nits, const int from, co
             else
             {   args.note_custom_prop (prop);
                 nits.pick (nit_css_custom, es_comment, ec_css, quote (prop), " noted (with fallback value)"); }
-//        auto i = args.g_.custom_prop ().find (prop);
-//        if (i == args.g_.custom_prop ().cend ())
-//        {   if (comma < 0)
-//            {   nits.pick (nit_css_custom, es_warning, ec_css, quote (prop), " is not a known custom property");
-//                res = false; }
-//            else
-//            {   args.g_.custom_prop ().emplace (prop, 1);
-//                nits.pick (nit_css_custom, es_info, ec_css, quote (prop), " noted (with fallback value)"); }
-//            res = false; }
-//        else i -> second += 1; }
             res = false; }
         else args.note_custom_prop (prop); }
     return res; }
 
 bool check_custom_property (arguments& args, const ::std::string& s)
-//{   auto i = args.g_.custom_prop ().find (s);
-//    if (i == args.g_.custom_prop ().cend ()) return false;
-//    i -> second += 1;
 {   if (! args.has_custom_prop (s)) return false;
     args.note_custom_prop (s);
     return true; }
 
-
 void validate_animation_name (type_master < t_css_anim_base >& cab, arguments& args)
-//{   cab.invalid_access (args.t_.at (0).nits_, args.v_, &args.g_.keyframe ()); }
 {   VERIFY_NOT_NULL (args.dst_, __FILE__, __LINE__);
     sstr_t sstr (args.g_.get_strs (gst_keyframe));
     cab.invalid_access (args.t_.at (0).nits_, args.v_, &sstr); }
 
 void validate_counter_style_name (type_master < t_css_counter_style_name >& cab, arguments& args)
-//{   cab.invalid_access (args.t_.at (0).nits_, args.v_, &args.g_.counter_style ()); }
 {   VERIFY_NOT_NULL (args.dst_, __FILE__, __LINE__);
     sstr_t sstr (args.g_.get_strs (gst_counter_style));
     cab.invalid_access (args.t_.at (0).nits_, args.v_, &sstr); }
 
 void validate_palette (type_master < t_css_palette >& cab, arguments& args)
-//{   cab.invalid_access (args.t_.at (0).nits_, args.v_, &args.g_.palette ()); }
 {   VERIFY_NOT_NULL (args.dst_, __FILE__, __LINE__);
     sstr_t sstr (args.g_.get_strs (gst_palette));
     cab.invalid_access (args.t_.at (0).nits_, args.v_, &sstr); }

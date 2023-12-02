@@ -33,7 +33,8 @@ bool maybe_content (nitpick& nits, const e_css_property id)
         return false; }
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
     if ((f & CF_CONTENT) == CF_CONTENT) return true;
-    nits.pick (nit_css_value_fn, ed_css_content, "1. Inserting and replacing content with the content property", es_error, ec_css, "not a content property");
+    if (! test_esii (sii_hush, HIDE_ME))
+        nits.pick (nit_css_value_fn, ed_css_content, "1. Inserting and replacing content with the content property", es_error, ec_css, "not a content property");
     return false; }
 
 bool maybe_filter (nitpick& nits, const e_css_property id)
@@ -43,7 +44,8 @@ bool maybe_filter (nitpick& nits, const e_css_property id)
         return false; }
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
     if ((f & CF_FILTER) == CF_FILTER) return true;
-    nits.pick (nit_css_value_fn, ed_css_filter_3, "6. Filter Functions", es_error, ec_css, "not a filter property");
+    if (! test_esii (sii_hush, HIDE_ME))
+        nits.pick (nit_css_value_fn, ed_css_filter_3, "6. Filter Functions", es_error, ec_css, "not a filter property");
     return false; }
 
 bool maybe_float (nitpick& nits, const e_css_property id)
@@ -53,21 +55,24 @@ bool maybe_float (nitpick& nits, const e_css_property id)
         return false; }
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
     if ((f & CF_FLOAT) == CF_FLOAT) return true;
-    nits.pick (nit_css_value_fn, es_error, ec_css, "not a Page Float property");
+    if (! test_esii (sii_hush, HIDE_ME))
+        nits.pick (nit_css_value_fn, es_error, ec_css, "not a Page Float property");
     return false; }
 
 bool maybe_image (nitpick& nits, const e_css_property id)
 {   if (id < ec_custom) return true;
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
     if ((f & CF_IMAGE) == CF_IMAGE) return true;
-    nits.pick (nit_css_value_fn, ed_css_image_3, "2. Image Values: the <image> type", es_error, ec_css, "not an image property");
+    if (! test_esii (sii_hush, HIDE_ME))
+        nits.pick (nit_css_value_fn, ed_css_image_3, "2. Image Values: the <image> type", es_error, ec_css, "not an image property");
     return false; }
 
 bool maybe_math (nitpick& nits, const e_css_property id)
 {   if (id < ec_custom) return true;
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
     if ((f & (CF_EXPECT_STRING | CF_EXPECT_KEYWORDS)) == 0) return true;
-    nits.pick (nit_css_value_fn, ed_css_value_4, "10 Mathematical Expressions", es_error, ec_css, "not a numeric property");
+    if (! test_esii (sii_hush, HIDE_ME))
+        nits.pick (nit_css_value_fn, ed_css_value_4, "10 Mathematical Expressions", es_error, ec_css, "not a numeric property");
     return false; }
 
 bool maybe_offset_path (nitpick& nits, const e_css_property id)
@@ -77,7 +82,8 @@ bool maybe_offset_path (nitpick& nits, const e_css_property id)
         return false; }
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
     if ((f & CF_TEXT_4) == CF_TEXT_4) return true;
-    nits.pick (nit_css_value_fn, es_error, ec_css, "not a CSS Text 4 property");
+    if (! test_esii (sii_hush, HIDE_ME))
+        nits.pick (nit_css_value_fn, es_error, ec_css, "not a CSS Text 4 property");
     return false; }
 
 bool maybe_text_4 (nitpick& nits, const e_css_property id)
@@ -87,7 +93,8 @@ bool maybe_text_4 (nitpick& nits, const e_css_property id)
         return false; }
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
     if ((f & CF_TEXT_4) == CF_TEXT_4) return true;
-    nits.pick (nit_css_value_fn, es_error, ec_css, "not a CSS Text 4 property");
+    if (! test_esii (sii_hush, HIDE_ME))
+        nits.pick (nit_css_value_fn, es_error, ec_css, "not a CSS Text 4 property");
     return false; }
 
 bool maybe_text_overflow (nitpick& nits, const e_css_property id)
@@ -97,7 +104,8 @@ bool maybe_text_overflow (nitpick& nits, const e_css_property id)
         return false; }
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
     if ((f & CF_FADE) == CF_FADE) return true;
-    nits.pick (nit_css_value_fn, es_error, ec_css, "fade() only applies to text-overflow");
+    if (! test_esii (sii_hush, HIDE_ME))
+        nits.pick (nit_css_value_fn, es_error, ec_css, "fade() only applies to text-overflow");
     return false; }
 
 bool maybe_transform (nitpick& nits, const e_css_property id, const bool t4)
@@ -115,7 +123,8 @@ bool maybe_transform (nitpick& nits, const e_css_property id, const bool t4)
             return false; }
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
     if ((f & CF_TRANSFORM) == CF_TRANSFORM) return true;
-    nits.pick (nit_css_value_fn, ed_css_transform_3, "9. The Transform Functions", es_error, ec_css, "not transform property");
+    if (! test_esii (sii_hush, HIDE_ME))
+        nits.pick (nit_css_value_fn, ed_css_transform_3, "9. The Transform Functions", es_error, ec_css, "not transform property");
     return false; }
 
 int check_typed_feature (arguments& args, nitpick& nits, const int start, const int to, const e_css_statement cs, const char* const sz)

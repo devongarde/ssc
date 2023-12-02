@@ -2,8 +2,6 @@
 body { padding: 1em 2em }     /* top & bottom = 1em, right & left = 2em */
 body { padding: 1em 2em 3em } /* top=1em, right=2em, bottom=3em, left=2em */
 
-The last rule of the example above is equivalent to the example below:
-
 body {
   padding-top: 1em;
   padding-right: 2em;

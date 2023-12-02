@@ -31,6 +31,7 @@ class properties;
 class font_features;
 class media_t;
 class css;
+class element;
 
 struct arguments
 {   css_group& g_;
@@ -61,21 +62,13 @@ struct arguments
     void check_flags (nitpick& nits, const flags_t f, const ::std::string& s, const bool xk, const bool xi, const bool xn, const bool xs, const bool fn, const int kc, const ::std::string& item, const ::std::string& val) const;
     bool has_custom_prop (const ::std::string& name) const;
     void note_custom_prop (const ::std::string& name);
-//    const ustr_t& custom_media () const; 
-//    ustr_t& custom_media ();
     bool has_custom_media (const ::std::string& name) const;
     void note_custom_media (const ::std::string& name, const ::std::string& def);
-//    sstr_t font_family () const; 
-//    sstr_t& font_family ();
-//    bool note_font_family (const ::std::string& name);
     sstr_t font_feature (const e_css_statement st) const; 
     bool has_font_feature (const e_css_statement st, const ::std::string& name) const;
     bool note_font_feature (const e_css_statement st, const ::std::string& name);
-//    sstr_t& font_feature (const e_css_statement st);
-//    sstr_t& font_feature (const e_css_statement st);
-//    const sstr_t& palette () const; 
-//    sstr_t& palette ();
     e_css_statement cs () const;
     bool styled () const noexcept { return (styled_ != elem_undefined); }
     bool part () const noexcept { return nested_ || styled (); }
+    element* get_document () const;
     void validate (nitpick& nits, const flags_t f, const ::std::string& p, const ::std::string& v) const; };

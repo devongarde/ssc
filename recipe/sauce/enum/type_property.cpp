@@ -27,6 +27,11 @@ struct symbol_entry < html_version, e_css_property > css_property_symbol_table [
     { { HTML_CSS, 0, 0, H2_CSS_COND_RULE }, { HTML_UNDEF }, "not", ec_not, ns_default, CF_MEDIA_LOGIC },
     { { HTML_CSS, 0, 0, H2_CSS_COND_RULE }, { HTML_UNDEF }, "or", ec_or, ns_default, CF_MEDIA_LOGIC },
 
+    { { HTML_CSS }, { HTML_UNDEF }, "???", ec_unknown },
+    { { HTML_CSS }, { HTML_UNDEF }, "*", ec_context },
+    { { HTML_CSS, 0, 0, H2_CSS_CUSTOM }, { HTML_UNDEF }, "(custom)", ec_custom },
+    { { HTML_CSS }, { HTML_UNDEF }, "(inherit)", ec_inherit },
+
     { { HTML_CSS, 0, 0, H2_CSS_UI_4 }, { HTML_UNDEF }, "accent-color", ec_accent_colour },
     { { HTML_CSS, 0, 0, H2_CSS_CS }, { HTML_UNDEF }, "additive-symbols", ec_additive_symbols, ns_default, CF_MUST_COUNTER },
     { { HTML_CSS, 0, 0, H2_CSS_FBL, H3_CSS_BOX_ALIGN | H3_CSS_GRID }, { HTML_UNDEF }, "align-content", ec_align_content, ns_default, CF_EXPECT_KEYWORDS },

@@ -16,7 +16,7 @@ PASS ../toast/css/3-sel/css-6.css
 21 correct_spelling
 22 correct_spelling
 30 css_namespace
-65 css_syntax selector naughty_content
+65 css_syntax pseud
 
 PASS ../toast/css/3-sel/css-6.html
 5 long_title

@@ -106,10 +106,5 @@ PASS ../toast/microdata/basic/md-ref.html
 14 not_ontology_property
 18 missing_itemtype
 
-itemids
-#mozOrg
-Doris
-urn:isbn:0-330-34032-8
-
 LYNX
 0 422 422

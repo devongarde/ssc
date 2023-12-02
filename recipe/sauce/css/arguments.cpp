@@ -26,6 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/statement.h"
 #include "css/group.h"
 #include "webpage/page.h"
+#include "element/element.h"
 
 arguments::arguments (const html_version& v, const namespaces_ptr& namespaces, css_group& g)
     : g_ (g), v_ (v)
@@ -172,12 +173,6 @@ void arguments::note_custom_media (const ::std::string& name, const ::std::strin
 {   if (dst_ != nullptr) dst_ -> note_custom_media (name, def);
     g_.note_custom_media (name, def); }
 
-//const ustr_t& arguments::custom_media () const
-//{ return g_.custom_media_; }
- 
-//ustr_t& arguments::custom_media ()
-//{ return g_.custom_media_; }
-
 sstr_t arguments::get_str (const e_gsstr gst) const
 {   if (dst_ != nullptr) return dst_ -> get_str (gst);
     return g_.get_strs (gst); }
@@ -185,25 +180,18 @@ sstr_t arguments::get_str (const e_gsstr gst) const
 sstr_t arguments::font_feature (const e_css_statement st) const
 {   switch (st)
     {   case css_annotation :
-//            return g_.annotation_;
             return get_str (gst_annotation);
         case css_character_variant :
-//            return g_.character_variant_;
             return get_str (gst_character_variant);
         case css_historical_forms :
-//            return g_.historical_form_;
             return get_str (gst_historical_form);
         case css_ornaments :
-//            return g_.ornament_;
             return get_str (gst_ornament);
         case css_swash :
-//            return g_.swash_;
             return get_str (gst_swash);
         case css_styleset :
-//            return g_.styleset_;
             return get_str (gst_styleset);
         case css_stylistic :
-//            return g_.stylistic_;
             return get_str (gst_stylistic);
         default :
             GRACEFUL_CRASH (__FILE__, __LINE__); } }
@@ -231,33 +219,6 @@ bool arguments::has_font_feature (const e_css_statement st, const ::std::string&
         default :
             GRACEFUL_CRASH (__FILE__, __LINE__); } }
  
-//sstr_t arguments::font_family () const
-//{   return g_.font_family_; }
-//{   return get_str (gst_font_family); }
- 
-//sstr_t& arguments::font_family ()
-//{   return g_.font_family_; }
-/*
-sstr_t& arguments::font_feature (const e_css_statement st)
-{   switch (st)
-    {   case css_annotation :
-            return g_.annotation_;
-        case css_character_variant :
-            return g_.character_variant_;
-        case css_historical_forms :
-            return g_.historical_form_;
-        case css_ornaments :
-            return g_.ornament_;
-        case css_swash :
-            return g_.swash_;
-        case css_styleset :
-            return g_.styleset_;
-        case css_stylistic :
-            return g_.stylistic_;
-        default :
-            GRACEFUL_CRASH (__FILE__, __LINE__); } }
-*/
-
 bool arguments::note_str (const e_gsstr gst, const ::std::string& name)
 {   if (dst_ != nullptr) return dst_ -> note_str (gst, name);
     return g_.note_str (gst, name); }
@@ -282,12 +243,6 @@ bool arguments::note_font_feature (const e_css_statement st, const ::std::string
         default :
             GRACEFUL_CRASH (__FILE__, __LINE__); } }
 
-//const sstr_t& arguments::palette () const
-//{   return g_.palette_; }
- 
-//sstr_t& arguments::palette ()
-//{   return g_.palette_; }
-
 void arguments::validate (nitpick& nits, const flags_t f, const ::std::string& p, const ::std::string& vl) const
 {   if ((f & CF_PAGE) == CF_PAGE)
         if (ps_ != nullptr) // null for descriptors
@@ -301,7 +256,6 @@ void arguments::validate (nitpick& nits, const flags_t f, const ::std::string& p
         if (v_ < html_jul23)
             nits.pick (nit_css_living_standard, es_warning, ec_css, p, " requires the living standard mid-2023 or later");
     if ((f & CF_PAGE_NAME) == CF_PAGE_NAME)
-//    {   const sstr_t& pn (g_.page_name ());
     {   const sstr_t& pn (g_.get_strs (gst_page_name));
         ::std::string vll (trim_the_lot_off (vl));
         if (pn.find (::boost::to_lower_copy (vll)) == pn.cend ())
@@ -310,4 +264,11 @@ void arguments::validate (nitpick& nits, const flags_t f, const ::std::string& p
 e_css_statement arguments::cs () const
 {   if (st_ == nullptr) return css_error;
     return st_ -> get (); }
+
+element* arguments::get_document () const
+{   element* e = g_.get_page ().get_document ();
+    if (e != nullptr) return e;
+    static element_node en;
+    static element el (::std::string ("faux"), en, nullptr, &g_.get_page ());    
+    return &el; }
  

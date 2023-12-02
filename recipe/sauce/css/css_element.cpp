@@ -231,15 +231,23 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
                 break;
             case ct_coco :
             case ct_colon :
-                {   int brac = token_find (args.t_, ct_round_brac, i, to);
-                    if (brac < 0) brac = next_non_whitespace (args.t_, i, to);
+                {   int j = next_non_whitespace (args.t_, i, to);
+                    if (j < 0)
+                        nits.pick (nit_css_syntax, es_error, ec_css, quote (wo), ": unexpected here");
+                    else if ((args.t_.at (j).t_ != ct_identifier) && (args.t_.at (j).t_ != ct_keyword))
+                        nits.pick (nit_css_syntax, es_error, ec_css, quote (wo), ": missing pseudo name");
                     else
-                    {   const int ket = token_find (args.t_, ct_round_ket, brac, to);
-                        if (ket > 0) brac = ket;
-                        else nits.pick (nit_css_syntax, es_error, ec_css, quote (wo), ": missing close bracket"); }
-                    if (brac > 0) decore_.emplace_back (args, i, brac, knotted);
-                    i = next_non_whitespace (args.t_, brac, to); }
-                break;
+                    {   j = next_non_whitespace (args.t_, j, to);
+                        if (j > 0)
+                        {   if (args.t_.at (j).t_ == ct_round_brac)
+                            {   j = token_find (args.t_, ct_round_ket, j, to);
+                                if (j < 0) nits.pick (nit_css_syntax, es_error, ec_css, quote (wo), ": missing close bracket"); }
+                            else --j; }
+                        decore_.emplace_back (args, i, j, knotted);
+                        if (j > 0)
+                        {   i = next_non_whitespace (args.t_, j, to); break; } }
+                    i = j; }
+                break;                    
             case ct_plus :
             case ct_gt :
             case ct_squiggle :

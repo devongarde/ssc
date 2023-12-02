@@ -145,11 +145,11 @@ template < e_type TYPE > inline int check_typed_property (arguments& args, nitpi
         switch (args.t_.at (i).t_)
         {   case ct_number :
                 s = assemble_unit (args.t_, i, to);
-                if (! test_value < TYPE > (nuts, args.v_, s))
+                if (! test_value < TYPE > (nuts, args.v_, s, args.get_document ()))
                     if (! type_master < TYPE > :: is_numeric ())
                     {   nitpick nets;
                         if ((! s.empty ()) && ((s.size () > 1) || (s.at (0) != '-')))
-                            if (test_value < t_real > (nets, args.v_, s))
+                            if (test_value < t_real > (nets, args.v_, s, args.get_document ()))
                             {   nits.merge (nets); break; }
                         i = first_non_whitespace (args.t_, i, to);
                         const int j = check_typed_identifier (args, nits, i, to, TYPE);
@@ -159,7 +159,7 @@ template < e_type TYPE > inline int check_typed_property (arguments& args, nitpi
             case ct_keyword :
             case ct_identifier :
                 s = assemble_string (args.t_, i, to, true);
-                if (! test_value < TYPE > (nuts, args.v_, s))
+                if (! test_value < TYPE > (nuts, args.v_, s, args.get_document ()))
                 {   const int j = check_typed_identifier (args, nits, i, to, TYPE);
                     if (j > i) return j; }
                 nits.merge (nuts);

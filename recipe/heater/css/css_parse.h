@@ -34,11 +34,13 @@ struct token_t
     {   nits_.set_context (line, x); } };
 
 typedef ::std::vector < token_t > vtt_t;
+typedef ::std::vector < css_token > vctk_t;
 
 ::std::string tkn_rpt (const css_token t, const ::std::string& s = ::std::string ());
 inline ::std::string tkn_rpt (const token_t& t)
 { return tkn_rpt (t.t_, t.val_); }
 ::std::string assemble_string (vtt_t& vt, const int from, const int to = -1, const bool inclusive = false);
+int tokens_find (const vtt_t& vt, const vctk_t& t, const int from = 0, const int to = -1, int* prev = nullptr);
 int token_find (const vtt_t& vt, const css_token t, const int from = 0, const int to = -1, int* prev = nullptr);
 int ident_find (const vtt_t& vt, const ::std::string& kw, const int from = 0, const int to = -1, int* prev = nullptr);
 int first_non_whitespace (const vtt_t& vt, int from, const int to = -1);

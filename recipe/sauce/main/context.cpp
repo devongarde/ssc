@@ -286,6 +286,7 @@ bool context_t::stats_gst (const e_gsstr gst)
 context_t& context_t::stats_all (const bool b)
 {   stats_abbr (b);
     stats_annotation (b);
+    stats_attribute (b);
     stats_category (b);
     stats_character_variant (b);
     stats_class (b);
@@ -294,14 +295,16 @@ context_t& context_t::stats_all (const bool b)
     stats_css_property (b);
     stats_custom_media (b);
     stats_custom_property (b);
-    stats_dfn (b);
-    stats_dtdd (b);
+    stats_definition (b);
+    stats_value_pair (b);
     stats_element (b);
+    stats_error (b);
     stats_file (b);
     stats_font (b);
     stats_font_family (b);
     stats_highlight (b);
     stats_historical_form (b);
+    stats_id (b);
     stats_itemid (b);
     stats_keyframe (b);
     stats_layer (b);
@@ -310,6 +313,7 @@ context_t& context_t::stats_all (const bool b)
     stats_ornament (b);
     stats_page_name (b);
     stats_palette (b);
+    stats_property (b);
     stats_reference (b);
     stats_region (b);
     stats_scroll_anim (b);

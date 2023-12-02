@@ -1313,6 +1313,3 @@ PASS ../toast/living/jul10/ww-2.html
 11 inserted_missing_closure
 12 inserted_missing_closure missing_close
 13 inserted_missing_closure
-
-itemids
-urn:isbn:0-330-34032-8

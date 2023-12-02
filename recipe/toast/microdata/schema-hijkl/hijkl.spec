@@ -184,21 +184,3 @@ PASS ../toast/microdata/schema-hijkl/locationfeaturespecification.html
 PASS ../toast/microdata/schema-hijkl/localbusiness.html
 40 lonely_ampersand
 116 inserted_missing_closure
-
-itemids
-#product
-customs-code-en.html
-customs-code-en.pdf
-customs-code-fr.html
-customs-code-fr.pdf
-http://data.europa.eu/eli/dir/1980/181/oj
-http://eurovoc.europa.eu/1896
-http://eurovoc.europa.eu/2897
-http://law.country.zz/legislation/5634AB
-http://law.country.zz/legislation/5634AB/en
-https://twitter.com
-http://videolectures.net/iswc2013_guha_tunnel/
-http://www.twitter.com
-https://www.facebook.com
-https://www.twitter.com
-https://www.youtube.com

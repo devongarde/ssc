@@ -2277,6 +2277,3 @@ PASS ../toast/living/oct21/ww-8.html
 
 PASS ../toast/living/oct21/ww-9.html
 5 long_title
-
-itemids
-urn:isbn:0-330-34032-8

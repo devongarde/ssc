@@ -63,11 +63,8 @@ public:
     void accumulate (stats_t* s) const;
     bool has_custom_prop (const ::std::string& name) const;
     void note_custom_prop (const ::std::string& name);
-//    const smsid_t& custom_prop () const; { return custom_prop_; }
-//    smsid_t& custom_prop () { return custom_prop_; }
     bool has_custom_media (const ::std::string& name) const;
     void note_custom_media (const ::std::string& name, const ::std::string& def);
-//    const ustr_t& custom_media () const { return custom_media_; }
     const page& get_page () const { return page_; }
     page& get_page () { return page_; }
     bool note_str (const e_gsstr g, const ::std::string& s);
@@ -75,26 +72,6 @@ public:
     sstr_t get_strs (const e_gsstr g) const;
     const media_t& media () const { return media_; }
     media_t& media () { return media_; }
-//    const sstr_t& content_name () const { return content_name_; }
-//    sstr_t& content_name () { return content_name_; }
-//    const sstr_t& counter_style () const { return counter_style_; }
-//    sstr_t& counter_style () { return counter_style_; }
-//    const sstr_t& highlight () const { return highlight_; }
-//    sstr_t& highlight () { return highlight_; }
-//    const sstr_t& keyframe () const { return keyframe_; }
-//    sstr_t& keyframe () { return keyframe_; }
-//    const sstr_t& layer () const { return layer_; }
-//    sstr_t& layer () { return layer_; }
-//    const sstr_t& palette () const { return palette_; }
-//    sstr_t& palette () { return palette_; }
-//    const sstr_t& page_name () const { return page_name_; }
-//    sstr_t& page_name () { return page_name_; }
-//    const sstr_t& region () const { return region_; }
-//    sstr_t& region () { return region_; }
-//    const sstr_t& scroll_anim () const { return scroll_anim_; }
-//    sstr_t& scroll_anim () { return scroll_anim_; }
-//    const sstr_t& view () const { return view_; }
-//    sstr_t& view () { return view_; }
     const namespaces_ptr namespaces () const { return ns_; }
     bool told () const { return told_; }
     void told (const bool b) { told_ = b; }

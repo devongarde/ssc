@@ -3,6 +3,12 @@ static site checker
 https://ssc.lu/
 (c) 2020-2023 Dylan Harris
 
+0.1.49
+- updated stats reports
+- microdata switch section renamed to ontology
+- various bug fixes
+- underlying work
+
 0.1.48
 - Freebsd 12.4 and 13.2
 - renamed --general.slob as --general.sloven

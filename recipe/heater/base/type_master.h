@@ -36,25 +36,34 @@ template < e_type TYPE > struct type_master : public string_value < TYPE >
 #pragma warning (push, 3)
 #pragma warning (disable : 26440) // By the same logic: dalmations are dogs, dalmations have spots, therefore all dogs have spots.
 #endif // _MSC_VER
-template < e_type T > bool test_value (nitpick& nits, const html_version& v, const ::std::string& s)
+template < e_type T > bool test_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box = nullptr)
 {   type_master < T > t;
     t.set_value (nits, v, s);
+    if (t.good () && (box != nullptr))
+    {   ids_t i;
+        t.invalid_id (nits, v, i, box); }
     return t.good (); }
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif // _MSC_VER
 
-template < e_type T > bool test_value (nitpick& nits, const html_version& v, const ::std::string& s, ::std::string& id)
+template < e_type T > bool test_value (nitpick& nits, const html_version& v, const ::std::string& s, ::std::string& id, element* box = nullptr)
 {   type_master < T > t;
     t.set_value (nits, v, s);
     if (! t.good ()) return false;
     id = t.get_id ();
+    if (t.good () && (box != nullptr))
+    {   ids_t i;
+        t.invalid_id (nits, v, i, box); }
     return true; }
 
-template < e_type T > typename type_master < T > :: value_type examine_value (nitpick& nits, const html_version& v, const ::std::string& s)
+template < e_type T > typename type_master < T > :: value_type examine_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box = nullptr)
 {   type_master < T > t;
     t.set_value (nits, v, s);
     if (! t.good ()) return static_cast < typename type_master < T > :: value_type > (type_master < T > :: default_value ());
+    if (box != nullptr)
+    {   ids_t i;
+        t.invalid_id (nits, v, i, box); }
     return static_cast < typename type_master < T > :: value_type > (t.get ()); }
 
 template < e_type T > e_animation_type grab_animation_type () noexcept

@@ -37,6 +37,7 @@ struct property_base
     virtual bool good () const noexcept { return false; }
     virtual bool bad () const noexcept { return true; }
     virtual bool invalid () const noexcept { return true; }
+    virtual bool invalid_id (arguments& , nitpick& ) const { return true; }
     virtual void verify (nitpick& , const elem& ) { }
     virtual void validate (arguments& ) { }
     virtual void accumulate (stats_t* , const element_bitset& ) const { }
@@ -58,6 +59,8 @@ template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public
 {   typedef type_master < TYPE > base_type;
     e_iiu iiu_ = iiu_none;
     int fin_ = -1;
+    bool ok_ = false;
+    ::std::string s_;
     static ::std::string name () { return type_master < t_css_property > :: name (IDENTITY); }
     CONSTEXPR static e_css_property whoami () { return IDENTITY; }
     CONSTEXPR static e_type whatami () { return TYPE; }
@@ -107,14 +110,15 @@ template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public
             base_type :: status (s_invalid); }
         else
         {   type_master < TYPE > :: set_value (nuts, args.v_, s);
-            bool ok = type_master < TYPE > :: good ();
-            if (ok)
-            {   const html_version f (type_master < TYPE > :: first (type_master < TYPE > :: get_int ()));
+            ok_ = type_master < TYPE > :: good ();
+            if (ok_)
+            {   s_ = s;
+                const html_version f (type_master < TYPE > :: first (type_master < TYPE > :: get_int ()));
                 f.check_status (nits, name ());
                 if (! args.v_.is_css_compatible (f))
                 {   nits.pick (nit_css_version, es_error, ec_css, quote (s), " requires CSS ", f.long_css_version_name ());
                     base_type :: status (s_invalid);
-                    ok = false; }
+                    ok_ = false; }
                 else nits.merge (nuts); }
             else if (s.length () >= 3)
             {   PRESUME ((start > 0) && (start < GSL_NARROW_CAST < int > (args.t_.size ())), __FILE__, __LINE__);
@@ -124,11 +128,18 @@ template < e_type TYPE, e_css_property IDENTITY > struct typed_property : public
                         return start; } }
             int i = start;
             if ((args.st_ == nullptr) || (args.cs () != css_font_face))
-                if (check_fn (args, i, to, nits, ok))
+                if (check_fn (args, i, to, nits, ok_))
                 {   base_type :: status (s_good);
                     return i; }
-            if (! ok) nits.merge (nuts); }
+            if (! ok_) nits.merge (nuts); }
         return start; }
+    virtual bool invalid_id (arguments& args, nitpick& nits) const override
+    {   if (! ok_) return true;
+        nitpick nuts;
+        type_master < TYPE > pt;
+        pt.set_value (nuts, args.v_, s_);
+        ids_t i;
+        return pt.invalid_id (nits, args.v_, i, args.get_document ()); }
     virtual void set_value (arguments& args, const int start, const int to, nitpick& nits, const ::std::string& s) override
     {   fin_ = set_value_ex (args, start, to, nits, s); }
     virtual ::std::string rpt () const override

@@ -26,7 +26,7 @@ PASS ../toast/other/CSS/css-good.html
 12 unrecognised_value
 
 GRAND
-Elements:
+Element:
     !doctype: 5 times 
     body: 5 times 
       class: once 
@@ -46,7 +46,7 @@ Elements:
     slot: twice 
       class: twice 
     title: 5 times 
-  Attribute counts:
+  Attribute count:
     class: 11 times 
     href: 4 times 
     lang: once 
@@ -54,7 +54,7 @@ Elements:
     type: 4 times 
     value: 4 times 
   13 elements used 111 times
-CSS Class(es):
+Class:
     bodyclass: 0
     boing: 0
     doris: 0
@@ -63,8 +63,8 @@ CSS Class(es):
     pclass: 0
     sid: 0
     test: 0
-  8 Class(es) used 0 times
-CSS Element.class(es):
+  8 Class used 0 times
+Element.Class:
     body.bodyclass: 0
     data.boing: 0
     data.doris: 0
@@ -73,23 +73,23 @@ CSS Element.class(es):
     h1.h2class: 0
     h1.pclass: 0
     slot.test: 0
-  8 Element.class(es) used 0 times
+  8 Element.Class used 0 times
 Nits Reported:
     Errors: once 
     Warnings: 17 times 
   
-Nit Categories:
+Category:
     Attribute: 6 times 
     Type: 11 times 
     URx: once 
   
-References:
+Reference:
     HTML 5.0: 4 times 
   
-Versions:
+Version:
     HTML-5/20210101/SVG-2.0/MathML-4(Dec20)/CSS-1/WhatWG: 5 times 
   
-File info:
+File Info:
      1620 bytes read in 8 files, with an average of roughly 203 bytes per file
      smallest file: 0 bytes, largest file: 365 bytes
 ===

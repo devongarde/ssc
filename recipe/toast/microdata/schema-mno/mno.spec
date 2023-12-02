@@ -230,11 +230,3 @@ PASS ../toast/microdata/schema-mno/organisationrole.html
 27 bad_property
 37 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
 38 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
-
-itemids
-#record
-http://library.anytown.gov.uk
-http://www.ncbi.nlm.nih.gov/mesh/C18.452.394.750.149
-http://www.ncbi.nlm.nih.gov/mesh/D02.078.370.141.450
-http://www.wikidata.org/entity/6555518
-http://www.wikidata.org/entity/Q1916402

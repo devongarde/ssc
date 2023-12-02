@@ -845,9 +845,3 @@ PASS ../toast/living/jan10/vevent.html
 
 PASS ../toast/living/jan10/wbr.html
 7 use_double_quote_code use_double_quote_code
-
-itemids
-http://purl.oreilly.com/products/9780596007683.BOOK
-http://purl.oreilly.com/products/9780596802189.EBOOK
-http://purl.oreilly.com/works/45U8QJGZSQKDH8N
-urn:isbn:0-330-34032-8

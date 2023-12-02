@@ -282,26 +282,34 @@ bool parse_rfc3986 (nitpick& nits, const html_version& v, const e_protocol prot,
                 {   const e_tld tld = examine_value < t_tld > (nuts, v, host.substr (pos+1));
                     switch (tld)
                     {   case tld_context :
-                            nits.pick (nit_tld, es_warning, ec_url, quote (host.substr (pos)), " is not a TLD (top level domain, such as '.com') recognised by " PROG);
+                            nits.pick (nit_tld, es_warning, ec_url, quote (host.substr (pos)), " is not a top level domain recognised by " PROG);
                             break;
                         case tld_example :
-                            nits.pick (nit_tld, es_warning, ec_url, quote (host.substr (pos)), " is an example top level domain which belongs in documentation; it should never be found on a live network");
+                            nits.pick (nit_tld, es_warning, ec_url, quote (host.substr (pos)), " is an example top level domain which belongs in documentation, not in code");
                             break;
                         case tld_invalid :
-                            nits.pick (nit_tld, es_error, ec_url, quote (host.substr (pos)), " is intended to be deliberately wrong, and should never be encountered in a live network");
+                            nits.pick (nit_tld, es_error, ec_url, quote (host.substr (pos)), " is deliberately wrong, and should never be encountered in code");
                             break;
                         case tld_test :
                             nits.pick (nit_tld, es_info, ec_url, quote (host.substr (pos)), " is intended for domain testing only and should not be used on a live network");
                             break;
                         case tld_local :
-                            nits.pick (nit_tld, es_info, ec_url, quote (host.substr (pos)), " is intended for local use only and should not be used on an internet facing network");
+                            nits.pick (nit_tld, es_warning, ec_url, quote (host.substr (pos)), " is often used for local multicast DNS and it's use here might cause conflict");
+                            break;
+                        case tld_vm :
+                            nits.pick (nit_tld, es_warning, ec_url, quote (host.substr (pos)), " is not an official top level domain and can cause problems if it leaks: a common alternative is '.lan'");
+                            break;
+                        case tld_internet :
+                            nits.pick (nit_tld, es_info, ec_url, quote (host.substr (pos)), " is officially an unofficial top level domain (RFC6762), but, ironically, it can cause problems if it leaks to the internet");
                             break;
                         case tld_home :
                         case tld_lan :
-                        case tld_vm :
-                            nits.pick (nit_tld, es_info, ec_url, quote (host.substr (pos)), " is not an official top level domain and can cause problems if it leaks to the internet: use '.local' instead");
+                        case tld_corp :
+                        case tld_intranet :
+                        case tld_private :
+                            nits.pick (nit_tld, es_info, ec_url, quote (host.substr (pos)), " is officially an unofficial top level domain (RFC6762); it can cause problems if it leaks to the internet");
                             break;
-                        default :
+                       default :
                             break; } }
                 domain = host; } } }
 
