@@ -14,7 +14,7 @@ PASS ../toast/css/3-nesting/css-2.css
 272 css_version
 273 css_version
 289 css_syntax unrecognised_value
-349 nesting media_ignored
+349 media_ignored
 373 css_version css_version
 397 css_version
 398 css_version

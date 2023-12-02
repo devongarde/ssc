@@ -30,8 +30,7 @@ PASS ../toast/css/3-ui/html.css
 76 precisely naughty_content
 84 unrecognised_value unrecognised_value unrecognised_value unrecognised_value
 109 naughty_content
-112 css_syntax selector
-115 naughty_content
+112 css_syntax pseud
 
 PASS ../toast/css/3-ui/index.html
 2 naughty_lang

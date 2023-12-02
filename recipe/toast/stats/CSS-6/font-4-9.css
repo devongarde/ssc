@@ -1,0 +1,72 @@
+﻿@media (prefers-color-scheme: dark) {  .banner {font-palette: dark;
+  }
+}
+
+@font-palette-values Cooler {
+    font-family: Bixa;
+    base-palette: 1;
+    override-colors:
+        1 #7EB7E4;
+}
+
+@font-palette-values Augusta {
+    font-family: Handover Sans;
+    base-palette: 3;
+    override-colors:
+        1 rgb(43, 12, 9),
+        3 var(--highlight);
+}
+
+@font-face {
+  font-family: Bixxxa;
+  src: url('./bixxxa.woff') format('woff');
+}
+
+@font-face {
+  font-family: Bungeehee;
+  src: url('./bungeehee.woff') format('woff');
+}
+
+@font-palette-values ToxicGreen {
+  font-family: Bixxxa;
+  base-palette: 3; /* This is Bixxxa’s green palette */
+}
+
+@font-palette-values ToxicGreen {
+  font-family: Bungeehee;
+  base-palette: 7; /* This is Bungeehee’s green palette... */
+  2: lime; /* ...except this is pink, which I overwrite to lime */
+}
+
+h1 {
+  font-family: Bixxxa;
+  font-palette: ToxicGreen;
+}
+
+h2 {
+  font-family: Bungeehee;
+  font-palette: ToxicGreen;
+}
+
+h3 {
+  font-family: Bixxxa, Bungeehee;
+  font-palette: ToxicGreen;
+}
+
+@font-palette-values Festival {
+    font-family: Banner Flag;
+    base-palette: 1;
+    override-colors:
+        0 rgb(123, 64, 27),
+        1 currentColor,
+        2 var(--highlight);
+}
+@font-palette-values Augusta {
+    font-family: Handover Sans;
+    base-palette: 3;
+}
+
+@font-face {
+  font-family: "Custom Emoji";
+  src: url("CustomEmoji.ttf") format("truetype");
+}

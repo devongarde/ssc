@@ -156,7 +156,7 @@ bool load_expected (const ::boost::filesystem::path& f, knotted& expected, ::std
         ::std::string s (::boost::trim_copy (ss));
         bool done = s.empty ();
         if (file_stats || overall_stats)
-        {   done = (s == END_OF_STATS); }
+            done = (s == END_OF_STATS);
         if (done)
         {   if (! last_nits.empty ()) expect.nits_.insert (::nitted::value_type (last_line, last_nits));
             last_line = static_cast < size_t > (-1);
@@ -539,7 +539,7 @@ int check_exports (vstr_t& correct_export, vstr_t& created_export)
 
 bool compare_stats (const vstr_t& expected, const vstr_t& got, const ::std::string& name)
 {   if (expected.empty ())
-    {   if (verbose) ::std::cout << name << " has no stats\n"; return false; }
+    {   /* if (verbose) ::std::cout << name << " has no stats\n"; */ return false; }
     if (got.empty ())
     {   if (verbose) ::std::cout << name << " has unexpected stats\n"; return false; }
     vstr_t::const_iterator master = expected.cbegin ();
@@ -562,9 +562,9 @@ bool compare_stats (const vstr_t& expected, const vstr_t& got, const ::std::stri
         if (! trim_test.empty ()) break;
         ++test; }
     if (master != expected.cend ())
-    {   if (verbose) ::std::cout << name << " stats too short (expected lines " << expected.size () << ", got lines " << got.size () <<")\n"; return false; }
+    {   if (verbose) ::std::cout << name << " stats too short (expected " << expected.size () << " lines, got " << got.size () <<" lines)\n"; return false; }
     if (test != got.cend ())
-    {   if (verbose) ::std::cout << name << " stats too long (expected lines " << expected.size () << ", got lines " << got.size () <<")\n"; return false; }
+    {   if (verbose) ::std::cout << name << " stats too long (expected " << expected.size () << " lines, got " << got.size () <<" lines)\n"; return false; }
    return true; }
 
 bool check_file_stats (const ::boost::filesystem::path& fn, const vstr_t& file, mvstr_t& page_stats)
@@ -604,7 +604,7 @@ bool examine_results (  knotted& expected, vstr_t& results, unsigned& passed, un
         {   vstr_t line;
             bool done = results.at (r).empty ();
             if (file_stats || overall_stats)
-            {   done = (results.at (r) == END_OF_STATS); }
+                done = (results.at (r) == END_OF_STATS);
             if (done)
             {   if (! file.empty ())
                 {   if (! previous.empty ()) if (! check_file_stats (previous, file, page_stats)) { ++failed; res = false; }
@@ -695,17 +695,17 @@ bool examine_results (  knotted& expected, vstr_t& results, unsigned& passed, un
                     if (i != expected.end ()) fn = xfn; }
                 catch (...) { }
                 if (i == expected.end ())
-                {   if (fn == "Class(es)") classes = true;
-                    else if (fn == "Element.class(es)") elementclasses = true;
-                    else if (fn == "Id(s)") ids = true;
-                    else if (fn == "Element#id(s)") elementids = true;
-                    else if (fn == "Link") lynx = true;
-                    else if (fn == "Itemids") itemid = true;
-                    else if (fn == "Update") examine = true;
-                    else if (fn == "Shadow") shadow = true;
-                    else if (fn == "Exports") exporterrors = true;
-                    else if (fn == "Statistics") file_stats = true;
-                    else if (fn == "Grand") overall_stats = true;
+                {   if (fn == REPORT_CLASS) classes = true;
+                    else if (fn == REPORT_ELEMENT_CLASS) elementclasses = true;
+                    else if (fn == REPORT_ID) ids = true;
+                    else if (fn == REPORT_ELEMENT_ID) elementids = true;
+                    else if (fn == REPORT_LINK) lynx = true;
+                    else if (fn == REPORT_ITEMID) itemid = true;
+                    else if (fn == REPORT_UPDATE) examine = true;
+                    else if (fn == REPORT_SHADOW) shadow = true;
+                    else if (fn == REPORT_EXPORT) exporterrors = true;
+                    else if (fn == REPORT_STAT) file_stats = true;
+                    else if (fn == REPORT_GRAND) overall_stats = true;
                     else
                     {   if (verbose) ::std::cout << "results for unexpected file " << fn << " found\n";
                         res = false; ++failed;

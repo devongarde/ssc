@@ -5,11 +5,19 @@ PASS ../toast/css/custom/index.html
 
 PASS ../toast/css/custom/css-2.css
 0 html
-11 css_syntax
-12 css_syntax css_syntax
-13 css_syntax css_syntax css_syntax
+1 css_version
+11 css_syntax css_syntax
+12 css_syntax css_syntax css_syntax css_syntax
+13 css_syntax css_syntax css_syntax css_syntax css_syntax css_syntax
 16 css_custom css_custom css_custom css_custom
+19 css_version
+25 css_version
+30 css_version
+31 css_version
+32 css_version
 33 css_version css_version
+35 css_version
+40 css_version
 
 PASS ../toast/css/custom/css-2.html
 0 charset_mismatch charset_used charset_invalid
@@ -22,3 +30,5 @@ PASS ../toast/css/custom/css-3.css
 3 css_syntax unrecognised_value
 8 css_custom
 11 css_custom
+32 css_version
+35 css_version

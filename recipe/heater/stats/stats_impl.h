@@ -28,11 +28,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "stats/stats6.h"
 #include "parser/html_version.h"
 
-//     vsstr_t str_ = vsstr_t (gst_max);
-//    smsid_t class_, custom_prop_, id_, element_class_, element_id_, font_;
-//    ustr_t custom_media_;
-
-
 class stats
 {   element_stats element_, visible_;
     term_stats dfn_, abbr_, dtdd_, custom_media_;
@@ -50,7 +45,6 @@ class stats
     css_statement_stats css_statement_;
     smsid_stats dcl_class_, dcl_custom_prop_, dcl_id_, dcl_element_class_, dcl_element_id_, font_,
                 use_class_, use_custom_prop_, use_id_, use_element_class_, use_element_id_;
-//    sstr_t highlight_, custom_media_;
     vs6_stats str_ = vs6_stats (gst_max);
     uint64_t file_count_ = 0;
     unsigned smallest_ = UINT_MAX;
@@ -70,22 +64,23 @@ class stats
     ::std::string category_report () const;
     ::std::string class_report () const;
     ::std::string class_report2 () const;
-    ::std::string css_property_report () const;
-    ::std::string css_statement_report () const;
     ::std::string css_str_report (const e_gsstr gst) const;
     ::std::string custom_media_report () const;
     ::std::string custom_property_report () const;
-    ::std::string dfn_report () const;
-    ::std::string dtdd_report () const;
+    ::std::string definition_report () const;
+    ::std::string value_pair_report () const;
     ::std::string element_report () const;
     ::std::string error_report () const;
     ::std::string file_report () const;
     ::std::string font_report () const;
+    ::std::string id_report () const;
     ::std::string id_report2 () const;
     ::std::string itemid_report () const;
     ::std::string meta_report () const;
     ::std::string ontology_report () const;
+    ::std::string property_report () const;
     ::std::string reference_report () const;
+    ::std::string statement_report () const;
     ::std::string version_report () const;
 public:
     void dcl_class (const ::std::string& s, const ::std::size_t n = 1)

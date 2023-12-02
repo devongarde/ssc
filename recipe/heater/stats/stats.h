@@ -91,4 +91,5 @@ public:
 extern stats_t overall;
 
 inline void report_global_stats (const bool grand)
-{   outstr.out (overall.report (grand)); }
+{   outstr.out ("\n\n");
+    outstr.out (overall.report (grand)); }

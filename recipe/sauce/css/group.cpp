@@ -133,9 +133,10 @@ css_ptr css_group::parse_media_queries (const ::std::string& content, const html
 
 bool css_group::parse_transform (   const ::std::string& content, const html_version& v, const namespaces_ptr& namespaces, const element_bitset eb, bool sv,
                                     int line, const e_element e)
-{   ::std::string s (".css_internal_transform { transform: ");
+{   ::std::string s ("." HIDE_ME " { transform: ");
     s += content;
     s += "; }";
+    esii_scope esii (sii_hush, HIDE_ME, false);
     return parse (transforms_, s, v, namespaces, true, true, ::std::string (), bs_, line, e) != css_ptr (); }
 
 bool css_group::has_str (const e_gsstr g, const ::std::string& s) const
@@ -269,8 +270,6 @@ void css_group::accumulate (stats_t* s) const
         c.second -> accumulate (s);
     if (snippets_.get () != nullptr)
         snippets_ -> accumulate (s); }
-//        for (auto h : snippets_ -> get_str (gst_highlight))
-//            s -> use_highlight (h); } }
 
 void css_group::validate ()
 {   for (auto i : mcss_)

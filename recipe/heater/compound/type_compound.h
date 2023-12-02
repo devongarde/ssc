@@ -186,6 +186,12 @@ template < e_type T, e_type P, class SZ > struct type_or_string : tidy_string < 
             if (compare_complain (nits, v, SZ :: sz (), ss)) { str_ = true; return; }
             if (test_value < P > (nits, v, ss, tidy_string < T > :: id ())) return; }
         tidy_string < T > :: status (s_invalid); }
+    bool invalid_id (nitpick& nits, const html_version& v, ids_t& i, element* e)
+    {   if (str_) return false;
+        type_master < P > pt;
+        nitpick nuts;
+        pt.set_value (nuts, v, tidy_string < T > :: get_string ());
+        return pt.invalid_id (nits, v, i, e); }
     bool invalid_access (nitpick& nits, const html_version& v, sstr_t* s)
     {   if (str_) return false;
         type_master < P > pt;
@@ -226,6 +232,7 @@ template < e_type T, e_type P, e_type Q, e_type R, class SZ > struct one_of_thre
 
 template < e_type T, e_type P, class SZ1, class SZ2 > struct type_or_either_string : tidy_string < T >
 {   using tidy_string < T > :: tidy_string;
+    ::std::string str_;
     static e_animation_type animation_type () noexcept { return grab_animation_type < P > (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
@@ -233,8 +240,23 @@ template < e_type T, e_type P, class SZ1, class SZ2 > struct type_or_either_stri
         {   const ::std::string ss (tidy_string < T > :: get_string ());
             if (compare_complain (nits, v, SZ1 :: sz (), ss)) return;
             if (compare_complain (nits, v, SZ2 :: sz (), ss)) return;
-            if (test_value < P > (nits, v, ss, tidy_string < T > :: id ())) return; }
-        tidy_string < T > :: status (s_invalid); } };
+            if (test_value < P > (nits, v, ss, tidy_string < T > :: id ()))
+            {   str_ = ss; return; } }
+        tidy_string < T > :: status (s_invalid); } 
+    bool invalid_id (nitpick& nits, const html_version& v, ids_t& i, element* e)
+    {   if (tidy_string < T > :: good () && ! str_.empty ())
+        {   type_master < P > pt; 
+            nitpick nuts;  
+            pt.set_value (nuts, v, str_);
+            return pt.invalid_id (nits, v, i, e); }
+        return true; }
+    bool invalid_access (nitpick& nits, const html_version& v, sstr_t* s)
+    {   if (tidy_string < T > :: good () && ! str_.empty ())
+        {   type_master < P > pt;   
+            nitpick nuts;  
+            pt.set_value (nuts, v, str_);
+            return pt.invalid_access (nits, v, s); }
+        return true; } };
 
 template < e_type T, e_type P, e_type Q, class SZ1, class SZ2 > struct either_type_or_either_string : tidy_string < T >
 {   using tidy_string < T > :: tidy_string;
@@ -536,6 +558,7 @@ template < e_type T, e_type P, class SZSEP, class SZ1 > struct type_and_maybe_st
 
 template < e_type T, e_type P, class SZSEP, class SZ1, class SZ2 > struct type_and_maybe_strings : tidy_string < T >
 {   using tidy_string < T > :: tidy_string;
+    ::std::string sub_;
     static e_animation_type animation_type () noexcept { return grab_animation_type < P > (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < T > :: set_value (nits, v, s);
@@ -550,9 +573,23 @@ template < e_type T, e_type P, class SZSEP, class SZ1, class SZ2 > struct type_a
                 if (! compare_complain (nuts, v, SZ1 :: sz (), params.at (i)) &&
                     ! compare_complain (nuts, v, SZ2 :: sz (), params.at (i)))
                     nice = false;
-            if (nice) return;
+            if (nice) { sub_ = params.at (0); return; }
             nits.merge (nuts); }
-        tidy_string < T > :: status (s_invalid); } };
+        tidy_string < T > :: status (s_invalid); } 
+    bool invalid_id (nitpick& nits, const html_version& v, ids_t& i, element* e)
+    {   if (tidy_string < T > :: good () && ! sub_.empty ())
+        {   type_master < P > pt;
+            nitpick nuts;   
+            pt.set_value (nuts, v, sub_);
+            return pt.invalid_id (nits, v, i, e); }
+        return true; }
+    bool invalid_access (nitpick& nits, const html_version& v, sstr_t* s)
+    {   if (tidy_string < T > :: good () && ! sub_.empty ())
+        {   type_master < P > pt;   
+            nitpick nuts;   
+            pt.set_value (nuts, v, sub_);
+            return pt.invalid_access (nits, v, s); }
+        return true; } };
 
 template < e_type T, e_type P, class SZSEP, class SZ1 > struct string_then_maybe_type : tidy_string < T >
 {   using tidy_string < T > :: tidy_string;

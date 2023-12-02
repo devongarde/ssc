@@ -361,7 +361,7 @@ html_version bracs_ket::parse (const ::std::string& content)
                 if (context.tell (es_all)) form_.pick (nit_all, es_all, ec_parser, "s_dull ", ch);
                 switch (ch)
                 {   case '<' :  status = s_open; soe = twas = i; break;
-                    case '>' : if (aftercab) if (! silent_content) nits.pick (nit_double_gin_and_tonic, es_info, ec_parser, "is that double '>' intentional?"); break;
+                    case '>' : if (aftercab) if (! silent_content) nits.pick (nit_double_gin_and_tonic, es_info, ec_parser, "is that double '>' intentional? Perhaps a '>' should be '&gt;'?"); break;
                     case '&' :  if (! xmp_mode) { status = s_amper; twas = i; } break;
                     default : if (! xmp_mode && ! silent_content) check_character (nits, res, e, i); }
                 break;

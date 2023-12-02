@@ -432,18 +432,3 @@ PASS ../toast/microdata/schema-pqrs/store.html
 107 use_quote_code
 109 invalid_attribute_version wrong_version svg_rdf
 110 invalid_attribute_version wrong_version svg_rdf
-
-itemids
-#author
-#book1
-#book2
-#book3
-#iss9734
-#iss9735
-#issue
-#model
-#periodical
-#product
-#trilogy
-#vol376
-https://www.pinterest.com/pin/201887995769400347/

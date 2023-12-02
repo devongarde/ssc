@@ -51,7 +51,7 @@ bool note_itemid (nitpick& nits, const html_version& , const ::std::string& id, 
 
 ::std::string report_itemids ()
 {   ::std::string res;
-    if (! empty_itemid ())
+    if (! empty_itemid () && context.stats_itemid ())
     {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
         VERIFY_NOT_NULL (miid.get (), __FILE__, __LINE__);
         lox l (lox_itemid);

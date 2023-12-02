@@ -446,6 +446,18 @@ bool css::parse (const ::std::string& content, const bool x, const bool mdm)
         res += tkn_rpt (vt.at (i));
     return res; }
 
+int tokens_find (const vtt_t& vt, const vctk_t& t, const int from, const int to, int* prev)
+{   PRESUME ((from >= 0) && (from < GSL_NARROW_CAST < int > (vt.size ())), __FILE__, __LINE__);
+    PRESUME ((from <= to) || (to < 0), __FILE__, __LINE__);
+    PRESUME (t.size () > 0, __FILE__, __LINE__);
+    if (prev != nullptr) *prev = -1;
+    for (int i = from; (i >= 0) && (i < GSL_NARROW_CAST < int > (vt.size ())); i = next_token_at (vt, i, to))
+    {   if ((to >= 0) && (i > to)) break;
+        else for (auto tk : t)
+            if (vt.at (i).t_ == tk) return i;
+        if (prev != nullptr) *prev = i; }
+    return -1; }
+
 int token_find (const vtt_t& vt, const css_token t, const int from, const int to, int* prev)
 {   PRESUME ((from >= 0) && (from < GSL_NARROW_CAST < int > (vt.size ())), __FILE__, __LINE__);
     PRESUME ((from <= to) || (to < 0), __FILE__, __LINE__);

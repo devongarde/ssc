@@ -1,0 +1,52 @@
+﻿@counter-style triangle
+ {
+  system: cyclic;
+  symbols: ‣;
+  suffix: " ";
+}
+
+@counter-style box-corner
+ {
+  system: fixed;
+  symbols: ◰ ◳ ◲ ◱;
+  suffix: ': ';
+}
+
+@counter-style footnote
+ {
+  system: symbolic;
+  symbols: '*' ⁑ † ‡;
+  suffix: " ";
+}
+
+@counter-style upper-alpha-legal
+ {
+  system: symbolic;
+  symbols: A B C D E F G H I J K L M
+           N O P Q R S T U V W X Y Z;
+}
+
+@counter-style go
+ {
+  system: alphabetic;
+  symbols: url(white.svg) url(black.svg);
+  suffix: " ";
+}
+
+@counter-style trinary
+ {
+  system: numeric;
+  symbols: '0' '1' '2';
+}
+
+@counter-style dice
+{
+  system: additive;
+  additive-symbols: 6 ⚅, 5 ⚄, 4 ⚃, 3 ⚂, 2 ⚁, 1 ⚀;
+  suffix: " ";
+}
+
+@counter-style decimal-paren {
+  system: extends decimal;
+  suffix: ") ";
+}

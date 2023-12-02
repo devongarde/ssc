@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
-#define VERSION_RELEASE 48
-#define VERSION_STRING "0.1.48"
+#define VERSION_RELEASE 49
+#define VERSION_STRING "0.1.49"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -537,6 +537,41 @@ typedef uint64_t flags_t; // at least 64 bits
 
 #include "main/abort.h"
 
+typedef uint64_t ident_t;
+typedef uint32_t uid_t;
+CONSTEXPR uid_t uid_max = UINT32_MAX;
+
+typedef ::std::vector < int > vint_t;
+typedef ::std::vector < double > vdbl_t;
+typedef ::std::vector < ::std::string > vstr_t;
+typedef ::std::vector < vstr_t > vvstr_t;
+typedef ssc_set < ::std::string > sstr_t;
+typedef ::std::vector < sstr_t > vsstr_t;
+typedef ssc_set < unsigned int > sui_t;
+typedef ::std::vector < sui_t > vsui_t;
+typedef ssc_map < ::std::string, ::std::string > ustr_t;
+typedef ssc_map < ::std::string, ::std::size_t > msid_t;
+typedef ::std::map < ::std::string, ::std::size_t > smsid_t;
+typedef ssc_map < ::std::size_t, ::std::string > misd_t;
+typedef ustr_t::value_type ustrv_t;
+typedef ::std::basic_string < char32_t > string32;
+typedef ::std::basic_stringstream < char32_t > stringstream32;
+
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 26408)
+#endif // _MSC_VER
+typedef ::std::shared_ptr < void > void_ptr;
+struct really_free { void operator () (void *p) noexcept { free (p); } };
+inline void_ptr alloc_void_ptr (const ::std::size_t sz) { return void_ptr (malloc (sz), really_free ()); }
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
+
+CONSTEXPR uint32_t uint32_category_shift =  28;
+CONSTEXPR uint32_t uint32_item_mask =       0x0FFFFFFF;
+CONSTEXPR uint32_t uint32_category_mask =   0xF0000000;
+
 #endif // SCC_TEST
 
 #define COMMENT_CHAR '/'
@@ -655,3 +690,53 @@ extern const char* full_title;
 
 #define NO_COPY_CONSTRUCTORS(XXX) DEFAULT_NO_COPY_NO_MOVE (XXX)
 #define DELETE_CONSTRUCTORS(XXX) CONSTRUCT_DELETE (XXX)
+
+#define HIDE_ME                   ".--" PROG "_HIDE_ME"
+
+#define REPORT_ABRREVIATION       "Abbreviation"
+#define REPORT_ATTRIBUTE          "Attribute"
+#define REPORT_CLASS              "Class"
+#define REPORT_CUSTARD_MEDIA      "Custom-Media"
+#define REPORT_CUSTARD_PROPERTY   "Custom-Property"
+#define REPORT_DEFINITION         "Definition"
+#define REPORT_ELEMENT            "Element"
+#define REPORT_ELEMENT_CLASS      "Class/Element"
+#define REPORT_ELEMENT_ID         "Id/Element"
+#define REPORT_EXPORT             "Export"
+#define REPORT_GRAND              "Grand"
+#define REPORT_ID                 "Id"
+#define REPORT_ITEMID             "ItemId"
+#define REPORT_LINK               "Link"
+#define REPORT_NAME_VALUE         "Name/Value"
+#define REPORT_ONTOLOGY           "Ontology"
+#define REPORT_NITS               "Nits"
+#define REPORT_PROPERTY           "Property"
+#define REPORT_SHADOW             "Shadow"
+#define REPORT_STATEMENT          "Statement"
+#define REPORT_STAT               "Statistic"
+#define REPORT_UPDATE             "Update"
+#define REPORT_VERSION            "Version"
+
+#define REPORT_ANNOTATION         "Annotation"
+#define REPORT_CAREGORY           "Category"
+#define REPORT_CHARACTER          "Character"
+#define REPORT_CONTENT            "Content-Name"
+#define REPORT_COUNTER            "Counter-Style"
+#define REPORT_FAMILY             "Font-Family"
+#define REPORT_FONT               "Font"
+#define REPORT_HEADER             "Header"
+#define REPORT_HIGHLIGHT          "Highlight"
+#define REPORT_HISTORICAL         "Historical-Form"
+#define REPORT_KEYFRAME           "Keyframe"
+#define REPORT_LAYER              "Layer"
+#define REPORT_ORNAMENT           "Ornament"
+#define REPORT_PAGE               "Page"
+#define REPORT_PAGE_NAME          "Page-Name"
+#define REPORT_PALETTE            "Palette"
+#define REPORT_REFERENCE          "Reference"
+#define REPORT_REGION             "Region"
+#define REPORT_SCROLL             "Scroll-Anim"
+#define REPORT_STYLESET           "Styleset"
+#define REPORT_STYLISTIC          "Stylistic"
+#define REPORT_SWASH              "Swash"
+#define REPORT_VIEW               "View"

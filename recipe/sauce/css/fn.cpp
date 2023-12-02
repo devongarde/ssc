@@ -86,15 +86,13 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
             case efn_auto :
                 test_value < t_lang > (nits, context.html_ver (), param);
                 return;
+            case efn_dir :
+                test_value < t_ltr_rtl > (nits, context.html_ver (), param);
+                return;
             case efn_highlight :
                 if (context.css_highlight () < 3)
                     nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS Custom Highlight");
-//                else
-//                {   sstr_t& h = args.g_.highlight ();
-//                    if (h.find (param) != h.cend ())
-//                        nits.pick (nit_highlight, es_error, ec_css, quote (param), ": previously defined");
-//                    else h.insert (param); }
-                else if (args.has_str (gst_highlight, param) || ! args.dst_ -> note_str (gst_highlight, param))
+                else if (args.g_.has_str (gst_highlight, param) || ! args.g_.note_str (gst_highlight, param))
                     nits.pick (nit_highlight, es_error, ec_css, quote (param), ": previously defined");
                 return;
             case efn_host :
@@ -106,9 +104,6 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
                 if (args.v_.css_selector () >= 4)
                     test_value < t_css_langs > (nits, context.html_ver (), param);
                 else test_value < t_lang > (nits, context.html_ver (), param);
-                return;
-            case efn_dir :
-                test_value < t_ltr_rtl > (nits, context.html_ver (), param);
                 return;
             case efn_nth_child :
             case efn_nth_col :
@@ -150,8 +145,6 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
                 if (context.css_view () < 3)
                     nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS View Transitions");
                 else if (param != "*")
-//                {   sstr_t& h = args.g_.view ();
-//                    if (h.find (param) == h.cend ()) h.insert (param); }
                     if (! args.has_str (gst_view, param))
                         args.dst_ -> note_str (gst_view, param); 
                 return;
@@ -160,6 +153,8 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
             case efn_is :
             case efn_where :
                 break;
+            case efn_root :
+                return;
             default : return; }
         params_.clear ();
         ::std::vector < int > f;

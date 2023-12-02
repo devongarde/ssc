@@ -1,0 +1,23 @@
+﻿@custom-media --modern (color), (hover);
+
+@media (--modern) and (width > 1024px) {
+  .a { color: green; }
+}
+
+@media ((color) or (hover)) and (width > 1024px) {
+  .a { color: green; }
+}
+
+@media (color), (hover) and (width > 1024px) {
+  .a { color: green; }
+}
+
+@custom-media --narrow-window (max-width: 30em);
+
+@media (--narrow-window) {
+  /* narrow window styles */
+}
+@media (--narrow-window) and (script) {
+  /* special styles for when script is allowed */
+}
+/* etc */

@@ -119,7 +119,7 @@ int ciao ()
             outstr.out ("\n"); } }
     if (! ss.str ().empty ())
         outstr.out (ss.str ());
-    if (context.tell (es_warning))
+    if (context.stats_itemid ())
         if (! empty_itemid ())
             outstr.out (report_itemids ());
     if (context.stats_summary ()) report_global_stats (true);

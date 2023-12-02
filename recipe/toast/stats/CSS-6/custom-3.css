@@ -1,0 +1,45 @@
+﻿.foo {
+--side: margin-top;
+var(--side): 20px;
+}
+
+/* In the component’s style: */
+.component .header {
+color: var(--header-color, blue);
+}
+.component .text {
+color: var(--text-color, black);
+}
+
+/* In the larger application’s style: */
+.component {
+--text-color: #080;
+/* header-color isn’t set,
+ and so remains blue,
+ the fallback value */
+}
+
+.foo {
+--gap: 20;
+margin-top: var(--gap)px;
+}
+
+.foo {
+--gap: 20;
+margin-top: calc(var(--gap) * 1px);
+}
+
+:root { --looks-valid: 20px; }
+p { background-color: var(--looks-valid); }
+
+:root { --not-a-color: 20px; }
+p { background-color: red; }
+p { background-color: var(--not-a-color); }
+
+.foo {
+--prop1: lol;
+--prop2: var(--prop1) var(--prop1);
+--prop3: var(--prop2) var(--prop2);
+--prop4: var(--prop3) var(--prop3);
+/* etc */
+}

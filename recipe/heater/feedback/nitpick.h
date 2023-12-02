@@ -68,23 +68,25 @@ public:
     nitpick nick ();
 
     template < typename... Ts > void pick (const e_nit code, const e_doc doc, const ::std::string& ref, const e_severity severity, const e_category category, Ts... msg) noexcept
+   try
     {   lox l (lox_nits);
-        try
-        {   nits_.emplace_back (code, doc, ref, user_severity (code, severity), category, com < Ts... > :: bine (msg...)); }
-        catch (...)
-        {   stuffed_ = true; } }
+        nits_.emplace_back (code, doc, ref, user_severity (code, severity), category, com < Ts... > :: bine (msg...)); }
+    catch (...)
+    {   stuffed_ = true; }
+
     template < typename... Ts > void pick (const e_nit code, const e_doc doc, const e_severity severity, const e_category category, Ts... msg) noexcept
+    try
     {   lox l (lox_nits);
-        try
-        {   nits_.emplace_back (code, doc, ::std::string (), user_severity (code, severity), category, com < Ts... > :: bine (msg...)); }
-        catch (...)
-        {   stuffed_ = true; } }
+        nits_.emplace_back (code, doc, ::std::string (), user_severity (code, severity), category, com < Ts... > :: bine (msg...)); }
+    catch (...)
+    {   stuffed_ = true; }
+
     template < typename... Ts > void pick (const e_nit code, const e_severity severity, const e_category category, Ts... msg) noexcept
+    try
     {   lox l (lox_nits);
-        try
-        {   nits_.emplace_back (code, user_severity (code, severity), category, com < Ts... > :: bine (msg...)); }
-        catch (...)
-        {   stuffed_ = true; } }
+        nits_.emplace_back (code, user_severity (code, severity), category, com < Ts... > :: bine (msg...)); }
+    catch (...)
+    {   stuffed_ = true; }
 
     void pick (const nit& n) noexcept;
     void pick (nit&& n) noexcept;

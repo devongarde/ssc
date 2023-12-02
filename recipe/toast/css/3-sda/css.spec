@@ -21,6 +21,7 @@ PASS ../toast/css/3-sda/css-a.css
 
 PASS ../toast/css/3-sda/css-4.html
 2 naughty_lang
+9 sda sda
 
 PASS ../toast/css/3-sda/index.html
 2 naughty_lang

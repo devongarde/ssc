@@ -137,10 +137,3 @@ PASS ../toast/microdata/schema-tuv/visualartwork.html
 109 attribute_required naughty_alt
 135 missing_close
 138 inserted_missing_closure
-
-itemids
-http://videolectures.net/iswc2013_guha_tunnel/
-https://twitter.com
-https://www.facebook.com
-https://www.twitter.com
-https://www.youtube.com

@@ -254,7 +254,6 @@ void element::examine_meta ()
                         break;
                     case he_location :
                     case he_refresh :
-//                        pick (nit_debug, es_info, ec_element, "testing ", ct);
                         page_ -> verify_url (nits (), ct);
                         break;
                     default : break; } } } }

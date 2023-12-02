@@ -1,5 +1,5 @@
 NAME
-ssc - analyse static web site source
+ssc - static site checker
 
 
 
@@ -12,16 +12,14 @@ ssc
 
 DESCRIPTION
 ssc (the Static Site Checker) is an opinionated HTML nit-picker,
-intended for people, such as its author, who hand code websites. It
-doesn't just check static websites for broken links, dubious syntax,
-and bad semantic data, it will actively complain about things that are
+intended for people, like its author, who hand code websites. It
+doesn't just check static sites for broken links, dubious syntax, and
+bad semantic data, it will actively complain about things that are
 perfectly legal but rather untidy, like its author.
 
 Except when serving CGI queries, it recursively scans the directory
-looking for HTML source files to analyse. It produces a list of errors,
-warnings, comments, and other hints of imperfection. Once complete, it
-summarises internal site inconsistencies, and can produce some simple
-statistics.
+seeking HTML & related files to analyse. It produces a list of errors,
+warnings, and other hints of imperfection.
 
 Scripts are ignored.
 
@@ -33,8 +31,8 @@ These options are only available on the command line:
 
 -A                      List switches read, then exit.
 
--f file                 Load configuration from file, which should be
-                        in .INI file format. See CONFIGURATION FILE
+-f file                 Load a configuration from a file, which should
+                        be in .INI file format. See CONFIGURATION FILE
                         FORMAT below. This should be an absolute path.
 
 -F                      Load the configuration file .ssc/config in the
@@ -42,32 +40,35 @@ These options are only available on the command line:
 
 -h                      Show a summary of switches, then exit.
 
--H snippet              Only nitpick this snippet of html
+-H snippet              Only nitpick this snippet of HTML.
 
 --ontology.list         List known schema versions, then exit.
 
 -V                      Show version details, then exit.
 
---validation            Show attribute extensions, then exit. Attribute
-                        extensions are additional values that can be
-                        associated with attributes on some X/HTML
-                        elements, and is intended for use with bespoke
-                        extensions of HTML.
+--validation            List extendable attribute types, then exit.
+                        These types accept additional values on some
+                        X/HTML attributes and CSS properties. It is
+                        intended to allow checking of HTML etc. with
+                        bespoke extensions.
 
 
 
 COMMAND LINE AND CONFIGURATION FILES SWITCHES
 
 These options are available on the command line (with dashes) and in
-configuration files (without dashes). The short form alternative
-switches only work on the command line.
+configuration files (without dashes). The short form single letter
+alternative switches only work on the command line.
 
 Most binary options, e.g. those without arguments below that turn on a
 feature (which may be the default), have a corresponding "no-" switch
 to turn it off. The "no-" is inserted after the dot, so, for example,
-the contradiction to "--general.tea" is "--general.no-tea". When both
-are specified, perhaps in a configuration file and on the command line,
-the "no-" switch always applies.
+the contradiction to "--general.noh" would be "--general.no-noh". When
+both are specified, perhaps in a configuration file and on the command
+line, the "no-" switch always applies.
+
+Corpus
+Corpus switches control XML data for output to a local search engine.
 
 --corpus.article        Prefer the content of <ARTICLE> when gathering
                         corpus text.
@@ -86,6 +87,14 @@ the "no-" switch always applies.
                         then the text collected depends on a page's
                         content. This is incompatible with
                         --shadow.update.
+
+CSS
+The CSS switches precisely control CSS interpretation. If you are
+checking a site with a CSS version contemporary to the given HTML
+version (see --html.version), you can ignore them. Otherwise, you
+probably only need --css.version. The other switches allow you to
+precisely specify the CSS modules presumed. Specific modules are
+defined at w3.org.
 
 --css.adjust X          Use CSS Colour Adjustment level X, where X is 0
                         or 3.
@@ -325,6 +334,9 @@ the "no-" switch always applies.
 --css.writing X         Use CSS Writing Mode level X, where X is 0, 3
                         or 4.
 
+General switches
+This are switches that don't really belong in any other section.
+
 --general.class         Nitpick class values.
 
 --general.classic       Report all classes used, not just those in
@@ -359,7 +371,7 @@ the "no-" switch always applies.
                         --general.datapath. Default extension: .ndx.
 
 --general.ignore EL     ignore attributes and content of the element
-                        <EL>. May  be repeated.
+                        <EL>. May be repeated.
 
 --general.info          Report launch context when starting.
 
@@ -377,7 +389,7 @@ the "no-" switch always applies.
                         even attempt to load files bigger than
                         available memory.
 
---general.output        Output to the specified file. If this switch is
+--general.output file   Output to the specified file. If this switch is
 -o file                 not used, standard output is used.
 
 --general.progress      Dump progress information to standard output.
@@ -407,13 +419,14 @@ the "no-" switch always applies.
 
 --general.test          Output data in automated test format. Used by
 -T                      ssc-test. Not generally useful. Documented so
-                        you can avoid it!
+                        you can avoid using it!
 
 --general.thread N      Use N threads when running. Defaults to a value
 -n N                    appropriate for the hardware. Too high a value
                         can cause problems. See also --general.defthrd.
 
---general.vcs           Excludes, as per --general.exclude:
+--general.vcs           Excludes, as per --general.exclude, files and
+                        directories called:
                             .bazaar
                             .bk
                             CVS
@@ -438,10 +451,17 @@ the "no-" switch always applies.
                         output 'catastrophe', 'abhorrent', and 'error'
                         nits.
 
+HTML
+The only HTML switch you are likely to need is --html.version, and then
+only if you want to check a site that is not contemporary to the build
+of ssc. The remaining switches allow you to precisely control analysis
+of older sites.
+
 --html.force            If <!DOCTYPE...> is missing, force presumption
                         of --html.version value, not HTML 1/tags
 
---html.ie               Don't mention certain Internet Explorer features.
+--html.ie               Don't mention certain Internet Explorer
+                        'features'.
 
 --html.rfc1867          Ignore the RFC 1867 (INPUT=FILE) extension when
                         processing HTML 2.0
@@ -455,7 +475,7 @@ the "no-" switch always applies.
 --html.rfc2070          Ignore the RFC 2070 (internationalisation)
                         extension when processing HTML 2.0.
 
---html.safari           Don't mention certain early Safari features.
+--html.safari           Don't mention certain early Safari 'features'.
 
 --html.tags             When an HTML file is loaded that contains no
                         DOCTYPE, ssc normally presumes HTML 1. This
@@ -527,6 +547,11 @@ the "no-" switch always applies.
                         during ssc's development can be found at
                         https://ssc.lu/.
 
+Link switches
+If you want to check links on the site, you'll find these switches
+useful, particularly --link.external. --link.check is a must, it spots
+broken links within the site.
+
 --link.301              Normally, when ssc checks external links
 -3                      (--link.external), it does not report http
                         forwarding errors 301 and 308. Use this switch
@@ -576,6 +601,10 @@ the "no-" switch always applies.
                         then, when this switch is set, ssc will verify
                         that the id exists and that it is not hidden.
 
+MathML switches
+These switches are useful when you have some MathML which is not
+contemporary to the corresponding HTML.
+
 --math.core             Presume Math 4 core (May 2022 draft).
 
 --math.draft D          Presume this draft of MathML 4. The following
@@ -592,25 +621,9 @@ the "no-" switch always applies.
                                 3   MathML 3
                                 4   MathML 4 (see --math.draft)
 
---microdata.export      Export schema.org microdata encountered. This
-                        data is exported in JSON format (not JSON-LD).
-
---microdata.root DIR    When exporting microdata with
-                        --microdata.export, write files into the
-                        directory DIR. ssc will create the directory
-                        tree structure as appropriate.
-
---microdata.verify      Check microdata found in WhatWG microdata
--m                      attributes (itemprop, itemtype, etc.). Note
-                        that ssc only knows about certain ontologies
-                        (see --ontology.list)
-
---microdata.virtual v=d When exporting microdata using
-                        --microdata.export, export the contents of
-                        virtual directory 'v' to 'd'. 'v' must match a
-                        directory identified with --site.virtual. For
-                        example:
-                            --microdata.virtual virtual=X:\virtual.
+Microformat switches
+These switches are useful for checking andor outputting any microformat
+data found.
 
 --microformat.export    Export microformat data encountered in JSON
                         format. This option will write files in the
@@ -625,6 +638,15 @@ the "no-" switch always applies.
                                 1   microformats version 1 only
                                 2   microformats version 2 only
                                 3   both microformats versions 1 and 2
+
+Nits
+Nits are the output of ssc, the static site NITpicker. You will need
+these switches if you want to hide certain nits, output lots of extra
+gen, etc..
+
+--nits.abhorrent n      redefine nit n as an abhorrence; may be
+                        repeated (the value of n can be determined
+                        using --nits.nids below).
 
 --nits.catastrophe n    redefine nit n as a catastrophe; may be
                         repeated (the value of n can be determined
@@ -677,16 +699,43 @@ the "no-" switch always applies.
 
 --nits.watch            Output debug nits (intended for automation).
 
+RDFa switches
+SSC can check, to some extent, RDFa content. Use the ontology switches
+if you need to precisely control details about the data collected.
+
 --rdfa.version          When checking RDFa files, presume this version
-                        (default: 1.1.3). Note, RDFa analyis is
-                        incomplete, and only intended for supporting
-                        HTML analysis.
+                        (default: 1.1.3). RDFa analyis is incomplete,
+                        and only intended to support HTML analysis.
+
+Ontology switches
+If you are interested in checking andor hoovering ontology data, you
+may find these switches useful. Note that ssc only knows about certain
+ontologies (see --ontology.list).
+
+--ontology.export       Export ontologies encountered. This data is
+                        exported in JSON format (not JSON-LD).
+
+--ontology.root DIR     When exporting ontologies with
+                        --ontology.export, write files into the
+                        directory DIR. ssc will create the directory
+                        tree structure as appropriate.
+
+--ontology.verify       Check ontology found in WhatWG living standard
+                        microdata attributes (itemprop, itemtype,
+                        etc.).
+
+--ontology.virtual v=d  When exporting ontologies using
+                        --ontology.export, export the contents of
+                        virtual directory 'v' to 'd'. 'v' must match a
+                        directory identified with --site.virtual. For
+                        example:
+                            --ontology.virtual virtual=X:\virtual.
 
 --ontology.ONT X.Y      Presume version X.Y of ontology ONT. For
                         example:
                             --ontology.xsd 1.1
-                        defaults usage of XSD to version 1.1. The
-                        versions apply to RDFa, microdata, and
+                        defaults usage of XSD to version 1.1. This
+                        versioning applies to RDFa, microdata, and
                         microformats (using class) analysis. If .Y is
                         omitted, .0 is presumed. X must be present.
                         Unspecified defaults are derived from the HTML
@@ -777,7 +826,7 @@ the "no-" switch always applies.
                                 rif 1.0
                                 role 1.0
                                 rr 1.0
-                                schema 0.10-23.0 (see below)
+                                schema.org 0.10-23.0 (see below)
                                 sd 1.0
                                 sioc 1.0
                                 sioc_s 1.0
@@ -838,7 +887,7 @@ the "no-" switch always applies.
                         code, identifiers following the standard
                         ontology naming convention are also accepted.
                         Since this is unofficial, both standard English
-                        and American dialects' spellings are processed.
+                        and American dialect spellings are processed.
 
                         The Exif & ExifEx ontologies have the following
                         versions:
@@ -909,6 +958,10 @@ the "no-" switch always applies.
                         NOT correspond to vCard data format
                         specifications.
 
+Shadow switches
+A shadow is a copy of the site being analysed, with, for example, SSIs
+resolved, bad content removed, and duplicated content consolidated.
+
 --shadow.changed        When shadowing a site that has been previously
                         shadowed, only copy/link files that have
                         changed.
@@ -929,16 +982,16 @@ the "no-" switch always applies.
                                 soft   set up soft links to non-source
                                        files (see below)
                                 all    copy non HTML files too
-                                dedu   copy non HTML files too, but
+                                dedu   copy non HTML files, but
                                        deduplicate them, changing links
-                                       in HTML source if necessary (see
+                                       in HTML source as necessary (see
                                        below)
                                 report report duplicates (no
                                        shadowing)
                         ssc cannot convert between versions of HTML,
                         nor between HTML and XHTML.
                         Link options are only available on systems that
-                        support links.
+                        support filesystem links.
 
 --shadow.enable         Enable shadowing (set by other shadow options).
                         If shadowing is enabled, but shadow.root is not
@@ -947,7 +1000,7 @@ the "no-" switch always applies.
 
 --shadow.file f         Write ssc's shadow cache to file f, to
                         accelerate future shadowing of the same
-                        content updated.
+                        content, updated.
 
 --shadow.ignore ext     When shadowing, ignore files with this
                         extension (may be repeated).
@@ -961,7 +1014,7 @@ the "no-" switch always applies.
                         appear whether or not the original page has
                         changed.
 
---shadow.root dir       Where to write the shadowed site.
+--shadow.root dir       Where to write the shadow site.
 
 --shadow.space          Leave excess/repeated spaces and blank lines in
                         the shadowed files untidily untouched.
@@ -973,12 +1026,17 @@ the "no-" switch always applies.
 -u                      last time ssc ran. This is incompatible with
                         --corpus.file. This requires --shadow.file.
                         Nits of files that have not changed will not be
-                        reported.
+                        reported again.
 
 --shadow.virtual v=d    When shadowing virtual directories, output the
                         shadow of virtual directory 'v' to directory
                         'd'. 'v' must match a directory set up using
                         --site.virtual.
+
+Site switches
+You will probably need to set some of these switches. For example, if
+your website is www.example.com, then you should say so using the
+--site.domain switch.
 
 --site.domain domain    The domain name of the site is 'domain'. This
 -S domain               can be repeated. This is used to identify any
@@ -991,7 +1049,8 @@ the "no-" switch always applies.
 
 --site.index file       This is the name of the default file in a
 -i file                 directory. This can be repeated. This is used
-                        for checking internal links.
+                        when checking internal links. The default
+                        default is index.html.
 
 --site.root dir         This is the root of the website to analyse. ssc
 -g dir                  will recursively scan the directory analysing
@@ -1002,6 +1061,11 @@ the "no-" switch always applies.
 -L v=d                  directory 'd' on the local filesystem. For
                         example:
                             --site.virtual virtual=D:\actual
+
+Spell switches
+These control spell checking. SSC doesn't actually spell check itself,
+it uses spell checking facilities on the host system, so your results
+may vary.
 
 --spell.accept XXX      XXX is a correct spelling of a word (or a list
                         of words) in all languages.
@@ -1021,7 +1085,8 @@ the "no-" switch always applies.
 
 --spell.icu             If "no", do not use the ICU libraries at all
                         (they are rather slow). This will increase the
-                        inaccuracy and incorrectness of the spell checks.
+                        inaccuracy and incorrectness of the spell
+                        checks.
 
 --spell.list FN,LANG    The file FN contains a list of valid spellings
                         for language LANG (which may include country
@@ -1037,11 +1102,159 @@ the "no-" switch always applies.
                         Under Windows, ssc uses the system spell-
                         checker, if there is one.
 
+Stats switches
+SSC can output lots of statistical information about the site being
+analysed, although by default it outputs nothing. Use --stats.selected
+to output a small subset of statistical data, and --stats.all to output
+everything. Use --stats.summary to output grand totals, and
+--stats.page to output information on each page read. The other
+switches allow you to precisely specify what data you want to see. If
+you want to output the data to a file, use --stats.export. If you
+select both --stats.page and --stats.all, be prepared for rather a lot
+of output.
+
+--stats.abbr            Output abbreviation report, so you can verify
+                        the same abbreviations have the same expansions
+                        across the site.
+
+--stats.all             Output all statistics reports.
+
+--stats.annotation      Output annotation report.
+
+--stats.attribute       Output element attribute report, which expands
+                        the element report to output information about
+                        attributes used.
+
+--stats.category        Output category report, which output the total
+                        quantity of nits reported by nit category.
+
+--stats.character-variant Output character variant report.
+
+--stats.class           Output class report, which allows to you see
+                        which classes are defined in CSS but not used,
+                        which classes are used but not defined, as well
+                        as a count of both for all classes encountered.
+
+--stats.content-name    Output content name report.
+
+--stats.counter-style   Output counter style report.
+
+--stats.css-property    Output css property report, which gives you an
+                        idea of the sophistication of the CSS used on
+                        the site.
+
+--stats.custom-media    Output custom media report, which lists all
+                        named custom media definitions encountered.
+
+--stats.custom-property Output custom property report, which lists all
+                        named custom property definitions encountered.
+
+--stats.definition      Output definitions report, so you can verify
+                        the same terms have the same definitions across
+                        the site.
+
+--stats.element         Output element report., which totals all
+                        elements encountered across the site.
+
+--stats.error           Output counts of errors, warnings, etc..
+
+--stats.export F        Export to file F.
+
+--stats.file            Output file report, which reports the number of
+                        pages processed, and summerises file sizes.
+
+--stats.font            Output font report, which lists all fonts used
+                        across the site.
+
+--stats.font-family     Output font family report, which lists all font
+                        families named across the site.
+
+--stats.highlight       Output highlight report.
+
+--stats.historical-form Output historical font form report.
+
+--stats.id              Output id report, allowing you to identify
+                        which ids are styled but not mentioned.
+
+--stats.itemid          Output itemid report, which gives you an idea
+                        of the ontological significance and depth of
+                        the site.
+
+--stats.keyframe        Output keyframe report, which lists all named
+                        keyframes.
+
+--stats.layer           Output layer report, which lists all named
+                        layers.
+
+--stats.meta            Produce statistics on <META> usage in <HEAD>.
+                        Note that pragmas reported (http-equiv) are
+                        those found in the HTML source, not those
+                        returned by the HTTP protocol. Remember that
+                        many web servers (not all) will remove some
+                        pragmas when serving pages.
+
+--stats.name-value      Output name/value pairs report, which helps
+                        you identify inconsistencies between
+                        definitions across the site.
+
+--stats.ontology        Output ontology report, which gives an insight
+                        into the ontological depth of the site being
+                        analysed.
+
+--stats.ornament        Output ornament report, which reports all named
+                        CSS font ornaments encountered.
+
 --stats.page            Produce statistics for each source file
                         encountered.
 
+--stats.page-name       Output page name report, which reports all
+                        named CSS page-names encountered.
+
+--stats.palette         Output palette report, which reports all named
+                        CSS palettes encountered.
+
+--stats.property        Output ontology property count report, as an
+                        addendum to --stats.ontology.
+
+--stats.reference       Output reference report, which identifies, as
+                        precisely as it can, which versions of HTML,
+                        XHTML, CSS, etc., are found.
+
+--stats.region          Output region report, which reports all CSS
+                        named regions encountered.
+
+--stats.scroll-anim     Output scroll animation report, which reports
+                        all CSS named scroll animations encountered.
+
+--stats.selected        Output a selected set of reports; may be
+                        modified by other stats switches.
+
+--stats.statement       Output CSS statement report, which summarises
+                        all CSS statements encountered.
+
+--stats.styleset        Output styleset report, which reports all CSS
+                        named stylesets encountered.
+
+--stats.stylistic       Output stylistic report, which reports all CSS
+                        named stylistics encountered, excluding the
+                        band themselves.
+
 --stats.summary         Produce a summary of overall statistics for the
-                        website.
+                        website, including grand totals.
+
+--stats.swash           Output swash report, which reports all CSS
+                        named swashes encountered.
+
+--stats.version         Output version report, which summarises
+                        versions of HTML, SVG, MathML, etc.,
+                        encountered.
+
+--stats.view            Output view report, which reports all CSS named
+                        views encountered.
+
+SVG switch
+If you want to analyse some SVG that is not comporary to the HTML being
+analysed, you may find the --svg.version switch useful.
 
 --svg.version x         Presume any SVG code encountered is this
                         version, unless the SVG code itself specifies a
@@ -1059,6 +1272,15 @@ the "no-" switch always applies.
                         does not identify its version, the version is
                         derived from the version of the host X/HTML
                         code.
+
+Validation switches
+These switches are only useful if you have bespoke HTML and CSS on your
+website. They allow you to define additional valid values of certain
+data types. Start with the --validation switch, and go on from there.
+
+--validation            Only available from the command line. Lists all
+                        types that can be given additional valid
+                        values.
 
 --validation.attribute ATT
                         Add the custom attribute ATT. This attribute
@@ -1189,7 +1411,7 @@ followed by text. In that text, certain specific identifiers, enclosed
 in brace pairs, are substituted. For example:
 
 [dog-section]
-My pet dog {{dog-name}} is a {{bad-dog}}.
+My dog {{dog-name}} is a {{bad-dog}}.
 
 For examples, browse recipe/toast/output/*.nit
 

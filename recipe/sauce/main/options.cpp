@@ -280,6 +280,13 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (JSONLD DONT VERIFY, ::boost::program_options::bool_switch (), "Do not verify JSON-LD.")
         (JSONLD VERSION, ::boost::program_options::value < ::std::string > (), "Presume this version of JSON-LD (1.0 or 1.1, default 1.0).")
 
+        (MICRODATA EXPORT, ::boost::program_options::bool_switch (), "Export microformat data (only verified data if --" ONTOLOGY VERIFY " is set).")
+        (MICRODATA DONT EXPORT, ::boost::program_options::bool_switch (), "Do not export microformat data.")
+        (MICRODATA VERIFY ",m", ::boost::program_options::bool_switch (), "Check microdata (" PROG " only understands certain microdata schemas).")
+        (MICRODATA DONT VERIFY, ::boost::program_options::bool_switch (), "Do not check microdata.")
+        (MICRODATA ROOT, ::boost::program_options::value < ::std::string > (), "Microdata export root directory (requires --" ONTOLOGY EXPORT ").")
+        (MICRODATA VIRTUAL, ::boost::program_options::value < vstr_t > () -> composing (), "Export virtual directory, syntax virtual=directory. Must correspond to --" WEBSITE VIRTUAL ".")
+
         (NITS CACHE, ::boost::program_options::value < ::std::string > (), "Output nits on cache usage of filenames containing argument (no wildcards, except use \"*\" for all; empty for no report).")
         (NITS SPEC, ::boost::program_options::bool_switch (), "Output nits in test spec format (requires -T).")
         (NITS DONT SPEC, ::boost::program_options::bool_switch (), "Do not output nits in test spec format.")
@@ -492,12 +499,12 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (MATH DRAFT, ::boost::program_options::value < int > (), "For MathML 4 only, which draft (2020 or 2022).")
         (MATH VERSION, ::boost::program_options::value < int > (), "preferred version of MathML (default (0): determine by HTML version).")
 
-        (MICRODATA EXPORT, ::boost::program_options::bool_switch (), "Export microformat data (only verified data if --" MICRODATA VERIFY " is set).")
-        (MICRODATA DONT EXPORT, ::boost::program_options::bool_switch (), "Do not export microformat data.")
-        (MICRODATA VERIFY ",m", ::boost::program_options::bool_switch (), "Check microdata (" PROG " only understands certain microdata schemas).")
-        (MICRODATA DONT VERIFY, ::boost::program_options::bool_switch (), "Do not check microdata.")
-        (MICRODATA ROOT, ::boost::program_options::value < ::std::string > (), "Microdata export root directory (requires --" MICRODATA EXPORT ").")
-        (MICRODATA VIRTUAL, ::boost::program_options::value < vstr_t > () -> composing (), "Export virtual directory, syntax virtual=directory. Must correspond to --" WEBSITE VIRTUAL ".")
+        (ONTOLOGY EXPORT, ::boost::program_options::bool_switch (), "Export ontology data (only verified data if --" ONTOLOGY VERIFY " is set).")
+        (ONTOLOGY DONT EXPORT, ::boost::program_options::bool_switch (), "Do not export ontology data.")
+        (ONTOLOGY VERIFY ",m", ::boost::program_options::bool_switch (), "Check ontology (" PROG " only understands certain ontologies).")
+        (ONTOLOGY DONT VERIFY, ::boost::program_options::bool_switch (), "Do not check microntologyodata.")
+        (ONTOLOGY ROOT, ::boost::program_options::value < ::std::string > (), "Ontology export root directory (requires --" ONTOLOGY EXPORT ").")
+        (ONTOLOGY VIRTUAL, ::boost::program_options::value < vstr_t > () -> composing (), "Export virtual directory content, syntax virtual=directory. Must correspond to --" WEBSITE VIRTUAL ".")
 
         (MF VERIFY ",M", ::boost::program_options::bool_switch (), "Check microformats in class and rel attributes (see https://" MICROFORMATS_ORG "/).")
         (MF DONT VERIFY, ::boost::program_options::bool_switch (), "Do not check microformats in class and rel attributes.")
@@ -584,8 +591,11 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (STATS ABBR, ::boost::program_options::bool_switch (), "Output abbr report.")
         (STATS DONT ABBR, ::boost::program_options::bool_switch (), "Do not output abbr report.")
         (STATS ALL, ::boost::program_options::bool_switch (), "Output all stats reports.")
+        (STATS DONT ALL, ::boost::program_options::bool_switch (), "Output no stats reports.")
         (STATS ANNOTATION, ::boost::program_options::bool_switch (), "Output annotation report.")
         (STATS DONT ANNOTATION, ::boost::program_options::bool_switch (), "Do not output annotation report.")
+        (STATS ATTRIB, ::boost::program_options::bool_switch (), "Output element attribute report.")
+        (STATS DONT ATTRIB, ::boost::program_options::bool_switch (), "Do not output element attribute report.")
         (STATS CAT, ::boost::program_options::bool_switch (), "Output category report.")
         (STATS DONT CAT, ::boost::program_options::bool_switch (), "Do not output category report.")
         (STATS CHARVAR, ::boost::program_options::bool_switch (), "Output character_variant report.")
@@ -608,6 +618,8 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (STATS DONT DTDD, ::boost::program_options::bool_switch (), "Do not output dtdd report.")
         (STATS ELEMENT, ::boost::program_options::bool_switch (), "Output element report.")
         (STATS DONT ELEMENT, ::boost::program_options::bool_switch (), "Do not output element report.")
+        (STATS ERR, ::boost::program_options::bool_switch (), "Output counts of errors, warnings, etc..")
+        (STATS DONT ERR, ::boost::program_options::bool_switch (), "Do not output counts of errors, warnings, etc..")
         (STATS EXPORT, ::boost::program_options::value < ::std::string > (), "Export collected statistical data here.")
         (STATS FICHIER, ::boost::program_options::bool_switch (), "Output file report.")
         (STATS DONT FICHIER, ::boost::program_options::bool_switch (), "Do not output file report.")
@@ -619,6 +631,8 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (STATS DONT HIGHLIGHT, ::boost::program_options::bool_switch (), "Do not output highlight report.")
         (STATS HISTFORM, ::boost::program_options::bool_switch (), "Output historical_form report.")
         (STATS DONT HISTFORM, ::boost::program_options::bool_switch (), "Do not output historical_form report.")
+        (STATS ID, ::boost::program_options::bool_switch (), "Output ID report.")
+        (STATS DONT ID, ::boost::program_options::bool_switch (), "Do not output ID report.")
         (STATS ITEMID, ::boost::program_options::bool_switch (), "Output itemid report.")
         (STATS DONT ITEMID, ::boost::program_options::bool_switch (), "Do not output itemid report.")
         (STATS KEYFRAME, ::boost::program_options::bool_switch (), "Output keyframe report.")
@@ -637,12 +651,15 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         (STATS DONT PAGE_NAME, ::boost::program_options::bool_switch (), "Do not output page_name report.")
         (STATS PALETTE, ::boost::program_options::bool_switch (), "Output palette report.")
         (STATS DONT PALETTE, ::boost::program_options::bool_switch (), "Do not output palette report.")
+        (STATS PROPER, ::boost::program_options::bool_switch (), "Output ontology property count report.")
+        (STATS DONT PROPER, ::boost::program_options::bool_switch (), "Do not output ontology property count report.")
         (STATS REFERENCE, ::boost::program_options::bool_switch (), "Output reference report.")
         (STATS DONT REFERENCE, ::boost::program_options::bool_switch (), "Do not output reference report.")
         (STATS REGION, ::boost::program_options::bool_switch (), "Output region report.")
         (STATS DONT REGION, ::boost::program_options::bool_switch (), "Do not output region report.")
         (STATS SCROLL_ANIM, ::boost::program_options::bool_switch (), "Output scroll_anim report.")
         (STATS DONT SCROLL_ANIM, ::boost::program_options::bool_switch (), "Do not output scroll_anim report.")
+        (STATS SELECTED, ::boost::program_options::bool_switch (), "Output a selected set of reports.")
         (STATS STATEMENT, ::boost::program_options::bool_switch (), "Output css statement report.")
         (STATS DONT STATEMENT, ::boost::program_options::bool_switch (), "Do not output css statement report.")
         (STATS STYLESET, ::boost::program_options::bool_switch (), "Output styleset report.")
@@ -744,7 +761,7 @@ void options::parse (nitpick& nits, int argc, char* const * argv)
         if (! context.environment (env_query_string).empty ()) try
         {   context.cgi (true).article (false).body (false).cased (false).classic (false).crosslinks (false).example (false).ext_css (false)
                 .external (false).forwarded (false).ie (false).icu (true).info (true).jsonld (false).links (false).load_css (false).main (false)
-                .md_export (false).meta (true).mf_verify (true).microdata (true).not_root (false).once (true).ontology (true).presume_tags (false)
+                .md_export (false).mf_verify (true).microdata (true).not_root (false).once (true).ontology (true).presume_tags (false)
                 .progress (false) .rdfa (false).rel (true).revoke (false).rfc_1867 (true).rfc_1942 (true).rfc_1980 (true).rfc_2070 (true).rpt_opens (false)
                 .shadow_changed (false).shadow_comment (false).shadow_enable (false).shadow_space (false).shadow_ssi (false).spell (false).ssi (false)
                 .stats_page (false).stats_summary (false).unknown_class (false).update (false);
@@ -937,7 +954,7 @@ void options::contextualise (nitpick& nits)
 
     if (context.test () || var_ [GENERAL SPEC].as <bool> ())
         context.article (false).body (false).cased (false).classic (false).crosslinks (false).example (false).external (false).ext_css (false).forwarded (false)
-            .icu (true).info (false).jsonld (false).links (false).load_css (true).main (false).md_export (false).meta (false).mf_verify (false)
+            .icu (true).info (false).jsonld (false).links (false).load_css (true).main (false).md_export (false).mf_verify (false)
             .microdata (false).nids (true).nits (false).nits_nits_nits (true).not_root (false).once (false).ontology (true).presume_tags (false)
             .progress (false).rdfa (false).rel (false).revoke (false).rfc_1867 (true).rfc_1942 (true).rfc_1980 (true).rfc_2070 (true).rpt_opens (false)
             .shadow_changed (false).shadow_comment (false).shadow_enable (false).shadow_space (false).shadow_ssi (false).spell (false).ssi (false)
@@ -1358,6 +1375,11 @@ void options::contextualise (nitpick& nits)
                 if (! nitpick::modify_severity (s, es_warning))
                     nits.pick (nit_config_nit, es_error, ec_init, quote (s), ": no such nit.");
 
+        yea_nay (&context_t::md_export, nits, ONTOLOGY EXPORT, ONTOLOGY DONT EXPORT);
+        yea_nay (&context_t::ontology, nits, ONTOLOGY VERIFY, ONTOLOGY DONT VERIFY);
+        if (var_.count (ONTOLOGY ROOT)) context.export_root (nix_path_to_local (var_ [ONTOLOGY ROOT].as < ::std::string > ()));
+        if (var_.count (ONTOLOGY VIRTUAL)) context.exports (var_ [ONTOLOGY VIRTUAL].as < vstr_t > ());
+
 //      TO BE REACTIVATED!!! Hopefully.
 //        if (var_.count (RDFA VERSION))
 //        {   ::std::string rv = var_ [RDFA VERSION].as < ::std::string > ();
@@ -1477,9 +1499,14 @@ void options::contextualise (nitpick& nits)
             lingo::identify_dialects (nits); }
 #endif // NOSPELL
 
+        if (var_ [STATS SELECTED].as <bool> ())
+            context.stats_error (true).stats_file (true).stats_summary (true);
+
+        if (var_ [STATS DONT ALL].as <bool> ()) context.stats_all (false);
+        else if (var_ [STATS ALL].as <bool> ()) context.stats_all (true);
         yea_nay (&context_t::stats_abbr, nits, STATS ABBR, STATS DONT ABBR);
-        if (var_.count (STATS ALL)) context.stats_all (true);
         yea_nay (&context_t::stats_annotation, nits, STATS ANNOTATION, STATS DONT ANNOTATION);
+        yea_nay (&context_t::stats_attribute, nits, STATS ATTRIB, STATS DONT ATTRIB);
         yea_nay (&context_t::stats_category, nits, STATS CAT, STATS DONT CAT);
         yea_nay (&context_t::stats_character_variant, nits, STATS CHARVAR, STATS DONT CHARVAR);
         yea_nay (&context_t::stats_class, nits, STATS CLASS, STATS DONT CLASS);
@@ -1488,24 +1515,27 @@ void options::contextualise (nitpick& nits)
         yea_nay (&context_t::stats_css_property, nits, STATS CSSPROP, STATS DONT CSSPROP);
         yea_nay (&context_t::stats_custom_media, nits, STATS CUSTMED, STATS DONT CUSTMED);
         yea_nay (&context_t::stats_custom_property, nits, STATS CUSTPROP, STATS DONT CUSTPROP);
-        yea_nay (&context_t::stats_dfn, nits, STATS DFN, STATS DONT DFN);
-        yea_nay (&context_t::stats_dtdd, nits, STATS DTDD, STATS DONT DTDD);
+        yea_nay (&context_t::stats_definition, nits, STATS DFN, STATS DONT DFN);
+        yea_nay (&context_t::stats_value_pair, nits, STATS DTDD, STATS DONT DTDD);
         yea_nay (&context_t::stats_element, nits, STATS ELEMENT, STATS DONT ELEMENT);
+        yea_nay (&context_t::stats_error, nits, STATS ERR, STATS DONT ERR);
         if (var_.count (STATS EXPORT)) context.stats (var_ [STATS EXPORT].as < ::std::string > ());
         yea_nay (&context_t::stats_file, nits, STATS FICHIER, STATS DONT FICHIER);
         yea_nay (&context_t::stats_font, nits, STATS FONT, STATS DONT FONT);
         yea_nay (&context_t::stats_font_family, nits, STATS FONT_FAMILY, STATS DONT FONT_FAMILY);
         yea_nay (&context_t::stats_highlight, nits, STATS HIGHLIGHT, STATS DONT HIGHLIGHT);
         yea_nay (&context_t::stats_historical_form, nits, STATS HISTFORM, STATS DONT HISTFORM);
+        yea_nay (&context_t::stats_id, nits, STATS ID, STATS DONT ID);
         yea_nay (&context_t::stats_itemid, nits, STATS ITEMID, STATS DONT ITEMID);
         yea_nay (&context_t::stats_keyframe, nits, STATS KEYFRAME, STATS DONT KEYFRAME);
         yea_nay (&context_t::stats_layer, nits, STATS LAYER, STATS DONT LAYER);
         yea_nay (&context_t::stats_meta, nits, STATS META, STATS DONT META);
         yea_nay (&context_t::stats_ontology, nits, STATS ONT, STATS DONT ONT);
         yea_nay (&context_t::stats_ornament, nits, STATS ORNAMENT, STATS DONT ORNAMENT);
+        yea_nay (&context_t::stats_page, nits, STATS PAGE, STATS DONT PAGE);
         yea_nay (&context_t::stats_page_name, nits, STATS PAGE_NAME, STATS DONT PAGE_NAME);
         yea_nay (&context_t::stats_palette, nits, STATS PALETTE, STATS DONT PALETTE);
-        yea_nay (&context_t::stats_page, nits, STATS PAGE, STATS DONT PAGE);
+        yea_nay (&context_t::stats_property, nits, STATS PROPER, STATS DONT PROPER);
         yea_nay (&context_t::stats_reference, nits, STATS REFERENCE, STATS DONT REFERENCE);
         yea_nay (&context_t::stats_region, nits, STATS REGION, STATS DONT REGION);
         yea_nay (&context_t::stats_scroll_anim, nits, STATS SCROLL_ANIM, STATS DONT SCROLL_ANIM);
@@ -1984,6 +2014,13 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_ [NITS DONT WATCH].as < bool > ()) res << NITS DONT WATCH "\n";
     if (var_.count (NITS XXX)) res << NITS XXX ": " << var_ [NITS XXX].as < ::std::string > () << "\n";
 
+    if (var_ [ONTOLOGY EXPORT].as < bool > ()) res << ONTOLOGY EXPORT "\n";
+    if (var_ [ONTOLOGY DONT EXPORT].as < bool > ()) res << ONTOLOGY DONT EXPORT "\n";
+    if (var_ [ONTOLOGY VERIFY].as < bool > ()) res << ONTOLOGY VERIFY "\n";
+    if (var_ [ONTOLOGY DONT VERIFY].as < bool > ()) res << ONTOLOGY DONT VERIFY "\n";
+    if (var_.count (ONTOLOGY ROOT)) res << ONTOLOGY ROOT ": " << var_ [ONTOLOGY ROOT].as < ::std::string > () << "\n";
+    if (var_.count (ONTOLOGY VIRTUAL)) { res << ONTOLOGY VIRTUAL ": "; pvs (res, var_ [ONTOLOGY VIRTUAL].as < vstr_t > ()); res << "\n"; }
+
     if (var_ [MF EXPORT].as < bool > ()) res << MF EXPORT "\n";
     if (var_ [MF DONT EXPORT].as < bool > ()) res << MF DONT EXPORT "\n";
     if (var_ [MF VERIFY].as < bool > ()) res << MF VERIFY "\n";
@@ -2050,8 +2087,11 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_ [STATS ABBR].as < bool > ()) res << STATS ABBR "\n";
     if (var_ [STATS DONT ABBR].as < bool > ()) res << STATS DONT ABBR "\n";
     if (var_ [STATS ALL].as < bool > ()) res << STATS ALL "\n";
+    if (var_ [STATS DONT ALL].as < bool > ()) res << STATS DONT ALL "\n";
     if (var_ [STATS ANNOTATION].as < bool > ()) res << STATS ANNOTATION "\n";
     if (var_ [STATS DONT ANNOTATION].as < bool > ()) res << STATS DONT ANNOTATION "\n";
+    if (var_ [STATS ATTRIB].as < bool > ()) res << STATS ATTRIB "\n";
+    if (var_ [STATS DONT ATTRIB].as < bool > ()) res << STATS DONT ATTRIB "\n";
     if (var_ [STATS CAT].as < bool > ()) res << STATS CAT "\n";
     if (var_ [STATS DONT CAT].as < bool > ()) res << STATS DONT CAT "\n";
     if (var_ [STATS CHARVAR].as < bool > ()) res << STATS CHARVAR "\n";
@@ -2074,6 +2114,8 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_ [STATS DONT DTDD].as < bool > ()) res << STATS DONT DTDD "\n";
     if (var_ [STATS ELEMENT].as < bool > ()) res << STATS ELEMENT "\n";
     if (var_ [STATS DONT ELEMENT].as < bool > ()) res << STATS DONT ELEMENT "\n";
+    if (var_ [STATS ERR].as < bool > ()) res << STATS ERR "\n";
+    if (var_ [STATS DONT ERR].as < bool > ()) res << STATS DONT ERR "\n";
     if (var_.count (STATS EXPORT)) res << STATS EXPORT ": " << var_ [STATS EXPORT].as < ::std::string > () << "\n";
     if (var_ [STATS FICHIER].as < bool > ()) res << STATS FICHIER "\n";
     if (var_ [STATS DONT FICHIER].as < bool > ()) res << STATS DONT FICHIER "\n";
@@ -2085,6 +2127,8 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_ [STATS DONT HIGHLIGHT].as < bool > ()) res << STATS DONT HIGHLIGHT "\n";
     if (var_ [STATS HISTFORM].as < bool > ()) res << STATS HISTFORM "\n";
     if (var_ [STATS DONT HISTFORM].as < bool > ()) res << STATS DONT HISTFORM "\n";
+    if (var_ [STATS ID].as < bool > ()) res << STATS ID "\n";
+    if (var_ [STATS DONT ID].as < bool > ()) res << STATS DONT ID "\n";
     if (var_ [STATS ITEMID].as < bool > ()) res << STATS ITEMID "\n";
     if (var_ [STATS DONT ITEMID].as < bool > ()) res << STATS DONT ITEMID "\n";
     if (var_ [STATS KEYFRAME].as < bool > ()) res << STATS KEYFRAME "\n";
@@ -2103,12 +2147,15 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     if (var_ [STATS DONT PAGE_NAME].as < bool > ()) res << STATS DONT PAGE_NAME "\n";
     if (var_ [STATS PALETTE].as < bool > ()) res << STATS PALETTE "\n";
     if (var_ [STATS DONT PALETTE].as < bool > ()) res << STATS DONT PALETTE "\n";
+    if (var_ [STATS PROPER].as < bool > ()) res << STATS PROPER "\n";
+    if (var_ [STATS DONT PROPER].as < bool > ()) res << STATS DONT PROPER "\n";
     if (var_ [STATS REFERENCE].as < bool > ()) res << STATS REFERENCE "\n";
     if (var_ [STATS DONT REFERENCE].as < bool > ()) res << STATS DONT REFERENCE "\n";
     if (var_ [STATS REGION].as < bool > ()) res << STATS REGION "\n";
     if (var_ [STATS DONT REGION].as < bool > ()) res << STATS DONT REGION "\n";
     if (var_ [STATS SCROLL_ANIM].as < bool > ()) res << STATS SCROLL_ANIM "\n";
     if (var_ [STATS DONT SCROLL_ANIM].as < bool > ()) res << STATS DONT SCROLL_ANIM "\n";
+    if (var_ [STATS SELECTED].as < bool > ()) res << STATS SELECTED "\n";
     if (var_ [STATS STATEMENT].as < bool > ()) res << STATS STATEMENT "\n";
     if (var_ [STATS DONT STATEMENT].as < bool > ()) res << STATS DONT STATEMENT "\n";
     if (var_ [STATS STYLESET].as < bool > ()) res << STATS STYLESET "\n";

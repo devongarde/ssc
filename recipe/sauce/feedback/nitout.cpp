@@ -32,7 +32,7 @@ vstr_t sections;
 
 #define SPEC_NIT \
     "[class]\n" \
-    "{{class-name}} {{class-decl-int}} {{class-int}}\n" \
+    "  {{class-name|| }}{{class-decl-int|styled |}}{{class-int|, used |}}\n" \
     "\n" \
     "[class-head]\n" \
     "\n" \
@@ -40,8 +40,16 @@ vstr_t sections;
     "\n" \
     "[class-foot]\n" \
     "\n" \
+    "[du]\n" \
+    "  {{tally-name|| }}{{tally-decl-int|styled |}}{{tally-use-int|, used |}}\n" \
+    "\n" \
+    "[du-head]\n" \
+    "{{tally-title||:}}\n" \
+    "\n" \
+    "[du-foot]\n" \
+    "\n" \
     "[id]\n" \
-    "{{id-name}} {{id-decl-int}} {{id-int}}\n" \
+    "  {{id-name|| }}{{id-decl-int|styled |}}{{id-int|, used |}}\n" \
     "\n" \
     "[id-head]\n" \
     "\n" \
@@ -50,13 +58,13 @@ vstr_t sections;
     "[id-foot]\n" \
     "\n" \
     "[tally]\n" \
-    "    {{tally-name}}: {{tally-int}}\n" \
+    "    {{tally-name}}{{tally-int|: |}}\n" \
     "\n" \
     "[tally-head]\n" \
-    "{{tally-title:CSS ::}}\n" \
+    "{{tally-title||:}}\n" \
     "\n" \
     "[tally-foot]\n" \
-    "  {{tally-count}} {{tally-title}} used {{tally-total}}\n" \
+    "  {{tally-count|| }}{{tally-title}}{{tally-total| used |}}\n" \
     "\n" \
     "[config]\n" \
     "\n" \
@@ -75,7 +83,7 @@ vstr_t sections;
     "\n" \
     "[export-head]\n" \
     "\n" \
-    START_OF_SECTION " Exports\n" \
+    START_OF_SECTION " " REPORT_EXPORT "\n" \
     "{{nit-line}} {{nit-ns}}\n" \
     "\n" \
     "[export-foot]\n" \
@@ -88,11 +96,11 @@ vstr_t sections;
     END_OF_STATS "\n" \
     "\n" \
     "[itemid]\n" \
-    "{{itemid-name}} ({{itemid-page}}:{{itemid-line}})\n" \
+    "{{itemid-name||: }}({{itemid-page}}{{itemid-line|: |}})\n" \
     "\n" \
     "[itemid-head]\n" \
     "\n" \
-    START_OF_SECTION " Itemids\n" \
+    START_OF_SECTION " " REPORT_ITEMID "\n" \
     "\n" \
     "[itemid-foot]\n" \
     "\n" \
@@ -109,7 +117,7 @@ vstr_t sections;
     "\n" \
     "[link-head]\n" \
     "\n" \
-    START_OF_SECTION " Link errors\n" \
+    START_OF_SECTION " " REPORT_LINK " Errors\n" \
     "{{nit-line}} {{nit-ns}}\n" \
     "\n" \
     "[link-foot]\n" \
@@ -125,6 +133,15 @@ vstr_t sections;
     "[nits-foot]\n" \
     "{{nits-lost:(:)\n}}" \
     "\n" \
+    "[note]\n" \
+    "    {{note-content||:}}\n" \
+    "\n" \
+    "[note-head]\n" \
+    "{{note-title}}\n" \
+    "\n" \
+    "[note-foot]\n" \
+    "{{note-note|  |\n}}\n" \
+    "\n" \
     "[page-head]\n" \
     "\n" \
     "PASS {{page-disk-path}}\n" \
@@ -135,22 +152,22 @@ vstr_t sections;
     "\n" \
     "[shadow-head]\n" \
     "\n" \
-    START_OF_SECTION " Shadow\n" \
+    START_OF_SECTION " " REPORT_SHADOW "\n" \
     "{{nit-line}} {{nit-ns}}\n" \
     "\n" \
     "[shadow-foot]\n" \
     "\n" \
     "[stat]\n" \
-    "    {{stat-name||: }}{{stat-count}} {{stat-detail}}\n" \
+    "    {{stat-name||:}}{{stat-count| |}}{{stat-detail|, |}}\n" \
     "\n" \
     "[stats-head]\n" \
     "{{stats-title||:}}\n" \
     "\n" \
     "[stats-foot]\n" \
-    "  {{stats-total}}\n" \
+    "{{stats-total|  |\n}}\n" \
     "\n" \
     "[stat-sub]\n" \
-    "      {{stat-subname||: }}{{stat-subcount}} {{stat-subdetail}}\n" \
+    "      {{stat-subname||:}}{{stat-subcount| |}}{{stat-subdetail|, |}}\n" \
     "\n" \
     "[stats-subhead]\n" \
     "  {{stats-subtitle||:}}\n" \
@@ -161,7 +178,7 @@ vstr_t sections;
     "\n" \
     "[update-head]\n" \
     "\n" \
-    START_OF_SECTION " Update\n" \
+    START_OF_SECTION " " REPORT_UPDATE "\n" \
     "{{nit-line}} {{nit-ns}}\n" \
     "\n" \
     "[update-foot]\n" \
@@ -169,7 +186,7 @@ vstr_t sections;
 
 #define TEST_NIT \
     "[class]\n" \
-    "{{class-name}} {{class-decl-int}} {{class-int}}\n" \
+    "  {{class-name|| }}{{class-decl-int|styled |}}{{class-int|, used |}}\n" \
     "\n" \
     "[class-head]\n" \
     "\n" \
@@ -177,8 +194,16 @@ vstr_t sections;
     "\n" \
     "[class-foot]\n" \
     "\n" \
+    "[du]\n" \
+    "  {{tally-name|| }}{{tally-decl-int|styled |}}{{tally-use-int|, used |}}\n" \
+    "\n" \
+    "[du-head]\n" \
+    "{{tally-title||:}}\n" \
+    "\n" \
+    "[du-foot]\n" \
+    "\n" \
     "[id]\n" \
-    "{{id-name}} {{id-decl-int}} {{id-int}}\n" \
+    "  {{id-name|| }}{{id-decl-int|styled |}}{{id-int|, used |}}\n" \
     "\n" \
     "[id-head]\n" \
     "\n" \
@@ -187,13 +212,13 @@ vstr_t sections;
     "[id-foot]\n" \
     "\n" \
     "[tally]\n" \
-    "    {{tally-name}}: {{tally-int}}\n" \
+    "    {{tally-name}}{{tally-int|: |}}\n" \
     "\n" \
     "[tally-head]\n" \
-    "{{tally-title:CSS ::}}\n" \
+    "{{tally-title||:}}\n" \
     "\n" \
     "[tally-foot]\n" \
-    "  {{tally-count}} {{tally-title}} used {{tally-total}}\n" \
+    "  {{tally-count|| }}{{tally-title}}{{tally-total| used |}}\n" \
     "\n" \
     "[config]\n" \
     "\n" \
@@ -214,7 +239,7 @@ vstr_t sections;
     "\n" \
     "[export-head]\n" \
     "\n" \
-    START_OF_SECTION " Exports\n" \
+    START_OF_SECTION " " REPORT_EXPORT "\n" \
     "{{nit-line}} {{nit-ns}}\n" \
     "\n" \
     "[export-foot]\n" \
@@ -231,7 +256,7 @@ vstr_t sections;
     "\n" \
     "[itemid-head]\n" \
     "\n" \
-    START_OF_SECTION " Itemids\n" \
+    START_OF_SECTION " " REPORT_ITEMID "\n" \
     "\n" \
     "[itemid-foot]\n" \
     "\n" \
@@ -248,7 +273,7 @@ vstr_t sections;
     "\n" \
     "[link-head]\n" \
     "\n" \
-    START_OF_SECTION " Link errors\n" \
+    START_OF_SECTION " " REPORT_LINK " Errors\n" \
     "{{nit-line}} {{nit-ns}}\n" \
     "\n" \
     "[link-foot]\n" \
@@ -264,6 +289,15 @@ vstr_t sections;
     "[nits-foot]\n" \
     "{{nits-lost:(:)\n}}" \
     "\n" \
+    "[note]\n" \
+    "    {{note-content}}\n" \
+    "\n" \
+    "[note-head]\n" \
+    "{{note-title||:}}\n" \
+    "\n" \
+    "[note-foot]\n" \
+    "{{note-note|  |\n}}\n" \
+    "\n" \
     "[page-head]\n" \
     "\n" \
     "\n" \
@@ -275,22 +309,22 @@ vstr_t sections;
     "\n" \
     "[shadow-head]\n" \
     "\n" \
-    START_OF_SECTION " Shadow\n" \
+    START_OF_SECTION " " REPORT_SHADOW "\n" \
     "{{nit-line}} {{nit-ns}}\n" \
     "\n" \
     "[shadow-foot]\n" \
     "\n" \
     "[stat]\n" \
-    "    {{stat-name||: }}{{stat-count}} {{stat-detail}}\n" \
+    "    {{stat-name||:}}{{stat-count| |}}{{stat-detail|, |}}\n" \
     "\n" \
     "[stats-head]\n" \
     "{{stats-title||:}}\n" \
     "\n" \
     "[stats-foot]\n" \
-    "  {{stats-total}}\n" \
+    "{{stats-total|  |\n}}\n" \
     "\n" \
     "[stat-sub]\n" \
-    "      {{stat-subname||: }}{{stat-subcount}} {{stat-subdetail}}\n" \
+    "      {{stat-subname||:}}{{stat-subcount| |}}{{stat-subdetail|, |}}\n" \
     "\n" \
     "[stats-subhead]\n" \
     "  {{stats-subtitle||:}}\n" \
@@ -301,7 +335,7 @@ vstr_t sections;
     "\n" \
     "[update-head]\n" \
     "\n" \
-    START_OF_SECTION " Update\n" \
+    START_OF_SECTION " " REPORT_UPDATE "\n" \
     "{{nit-line}} {{nit-ns}}\n" \
     "\n" \
     "[update-foot]\n" \
@@ -309,7 +343,7 @@ vstr_t sections;
 
 #define TEXT_NIT \
     "[class]\n" \
-    "{{class-name}}: style {{class-decl-int}}, class {{class-int}}\n" \
+    "  {{class-name|| }}{{class-decl-int|styled |}}{{class-int|, used |}}\n" \
     "\n" \
     "[class-head]\n" \
     "\n" \
@@ -317,8 +351,16 @@ vstr_t sections;
     "\n" \
     "[class-foot]\n" \
     "\n" \
+    "[du]\n" \
+    "  {{tally-name|| }}{{tally-decl-int|styled |}}{{tally-use-int|, used |}}\n" \
+    "\n" \
+    "[du-head]\n" \
+    "{{tally-title||:}}\n" \
+    "\n" \
+    "[du-foot]\n" \
+    "\n" \
     "[id]\n" \
-    "{{id-name}}: style {{id-decl-int}}, id {{id-int}}\n" \
+    "  {{id-name|| }}{{id-decl-int|styled |}}{{id-int|, used |}}\n" \
     "\n" \
     "[id-head]\n" \
     "\n" \
@@ -327,13 +369,13 @@ vstr_t sections;
     "[id-foot]\n" \
     "\n" \
     "[tally]\n" \
-    "    {{tally-name}}: {{tally-int}}\n" \
+    "    {{tally-name}}{{tally-int|: |}}\n" \
     "\n" \
     "[tally-head]\n" \
-    "{{tally-title:CSS ::}}\n" \
+    "{{tally-title||:}}\n" \
     "\n" \
     "[tally-foot]\n" \
-    "  {{tally-count}} {{tally-title}} used {{tally-sum}}\n" \
+    "  {{tally-count|| }}{{tally-title}}{{tally-total| used |}}\n" \
     "\n" \
     "[config]\n" \
     "{{nit-explanation}}\n" \
@@ -356,7 +398,7 @@ vstr_t sections;
     "\n" \
     "[export-head]\n" \
     "\n" \
-    START_OF_SECTION " Exports\n" \
+    START_OF_SECTION " " REPORT_EXPORT "\n" \
     "\n" \
     "[export-foot]\n" \
     "\n" \
@@ -371,7 +413,7 @@ vstr_t sections;
     "\n" \
     "[itemid-head]\n" \
     "\n" \
-    START_OF_SECTION " Itemids\n" \
+    START_OF_SECTION " " REPORT_ITEMID "\n" \
     "\n" \
     "[itemid-foot]\n" \
     "\n" \
@@ -389,7 +431,7 @@ vstr_t sections;
     "\n" \
     "[link-head]\n" \
     "\n" \
-    START_OF_SECTION " Link errors\n" \
+    START_OF_SECTION " " REPORT_LINK " Errors\n" \
     "\n" \
     "[link-foot]\n" \
     "\n" \
@@ -405,6 +447,15 @@ vstr_t sections;
     "[nits-foot]\n" \
     "{{nits-lost:(:)\n}}" \
     "\n" \
+    "[note]\n" \
+    "    {{note-content}}\n" \
+    "\n" \
+    "[note-head]\n" \
+    "{{note-title||:}}\n" \
+    "\n" \
+    "[note-foot]\n" \
+    "{{note-note|  |\n}}\n" \
+    "\n" \
     "[page-head]\n" \
     "\n" \
     "\n" \
@@ -419,16 +470,16 @@ vstr_t sections;
     "[shadow-foot]\n" \
     "\n" \
     "[stat]\n" \
-    "    {{stat-name||: }}{{stat-count}} {{stat-detail}}\n" \
+    "    {{stat-name||:}}{{stat-count| |}}{{stat-detail|, |}}\n" \
     "\n" \
     "[stats-head]\n" \
     "{{stats-title||:}}\n" \
     "\n" \
     "[stats-foot]\n" \
-    "  {{stats-total}}\n" \
+    "{{stats-total|  |\n}}\n" \
     "\n" \
     "[stat-sub]\n" \
-    "      {{stat-subname||: }}{{stat-subcount}} {{stat-subdetail}}\n" \
+    "      {{stat-subname||:}}{{stat-subcount| |}}{{stat-subdetail|, |}}\n" \
     "\n" \
     "[stats-subhead]\n" \
     "  {{stats-subtitle||:}}\n" \
@@ -440,7 +491,7 @@ vstr_t sections;
     "\n" \
     "[update-head]\n" \
     "\n" \
-    START_OF_SECTION " Update\n" \
+    START_OF_SECTION " " REPORT_UPDATE "\n" \
     "\n" \
     "[update-foot]\n" \
     "\n"
@@ -456,8 +507,18 @@ vstr_t sections;
     "[class-foot]\n" \
     "</P>\n" \
     "\n" \
+    "[du]\n" \
+    "<SPAN class=\"nit-name\">{{tally-name}}:</SPAN> <SPAN class=\"nit-count\">style {{tally-decl-count}},</SPAN> <SPAN class=\"nit-count\">class {{tally-use-count}}</SPAN><BR>\n" \
+    "\n" \
+    "[du-head]\n" \
+    "\n" \
+    "<H2 class=\"nit-section\">{{tally-title}}</H2>\n" \
+    "\n" \
+    "[du-foot]\n" \
+    "<SPAN class=\"nit-name\">{{tally-count}} {{tally-title}}:</SPAN> <SPAN class=\"nit-count\">{{tally-total}}, {{tally-use-total}}</SPAN>\n" \
+    "\n" \
     "[id]\n" \
-    "<SPAN class=\"nit-name\">{{id-name}}:</SPAN> <SPAN class=\"nit-count\">style {{id-decl-count}},</SPAN> <SPAN class=\"nit-count\">id {{id-count}}</SPAN><BR>\n" \
+    "<SPAN class=\"nit-name\">{{id-name||: }}</SPAN><SPAN class=\"nit-count\">{{id-decl-count|style |}}</SPAN> <SPAN class=\"nit-count\">{{id-count| id |}}</SPAN><BR>\n" \
     "\n" \
     "[id-head]\n" \
     "<H2 class=\"nit-section\">{{id-title}}</H2>\n" \
@@ -467,7 +528,7 @@ vstr_t sections;
     "</P>\n" \
     "\n" \
     "[tally]\n" \
-    "<SPAN class=\"nit-name\">{{tally-name}}</SPAN> <SPAN class=\"nit-count\">{{tally-count}}</SPAN><BR>\n" \
+    "<SPAN class=\"nit-name\">{{tally-name}}</SPAN><SPAN class=\"nit-count\">{{tally-count|: |}}</SPAN><BR>\n" \
     "\n" \
     "[tally-head]\n" \
     "{{tally-title:<H2 class=\"nit-section\">: CSS/HTML:</H2>\n}}" \
@@ -534,14 +595,14 @@ vstr_t sections;
     "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN><BR>\n" \
     "\n" \
     "[export-head]\n" \
-    "<H2 class=\"nit-section\">Exports</H2>\n" \
+    "<H2 class=\"nit-section\">" REPORT_EXPORT "</H2>\n" \
     "<P>\n" \
     "\n" \
     "[export-foot]\n" \
     "</P>\n" \
     "\n" \
     "[grand-head]\n" \
-    "<H3 class=\"nit-subsection\">{{grand-title}}</H3>\n" \
+    "<H3 class=\"nit-subsection\">{{grand-title}}{{page-title}}</H3>\n" \
     "<P>\n" \
     "\n" \
     "[grand-foot]\n" \
@@ -551,7 +612,7 @@ vstr_t sections;
     "<SPAN class=\"nit-name\">{{itemid-name}}</SPAN> <SPAN class=\"nit-id\">({{itemid-page}}:{{itemid-line}})</SPAN><BR>\n" \
     "\n" \
     "[itemid-head]\n" \
-    "<H2 class=\"nit-section\">Item IDs</H2>\n" \
+    "<H2 class=\"nit-section\">" REPORT_ITEMID "</H2>\n" \
     "<P>\n" \
     "\n" \
     "[itemid-foot]\n" \
@@ -571,7 +632,7 @@ vstr_t sections;
     "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]</SPAN><BR>\n" \
     "\n" \
     "[link-head]\n" \
-    "<H2 class=\"nit-section\">link errors</H2>\n" \
+    "<H2 class=\"nit-section\">" REPORT_LINK " Errors</H2>\n" \
     "<P>\n" \
     "\n" \
     "[link-foot]\n" \
@@ -591,6 +652,15 @@ vstr_t sections;
     "{{nits-lost:<BR><SPAN class=\"nit-error\">(:)</SPAN>}}" \
     "</P>\n" \
     "\n" \
+    "[note]\n" \
+    "<SPAN class=\"nit-name\">{{note-content}}</SPAN>\n" \
+    "\n" \
+    "[note-head]\n" \
+    "<H2 class=\"nit-section\">{{note-title}}</H2>\n" \
+    "\n" \
+    "[note-foot]\n" \
+    "<SPAN class=\"nit-name\">{{note-note||\n}}</SPAN>" \
+    "\n" \
     "[page-head]\n" \
     "<H2 class=\"nit-section\">{{page-site-path}}</H2>\n" \
     "\n" \
@@ -601,25 +671,25 @@ vstr_t sections;
     "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]</SPAN><BR>\n" \
     "\n" \
     "[shadow-head]\n" \
-    "<H2 class=\"nit-section\">Shadow</H2>\n" \
+    "<H2 class=\"nit-section\">" REPORT_SHADOW "</H2>\n" \
     "<P>\n" \
     "\n" \
     "[shadow-foot]\n" \
     "</P>\n" \
     "\n" \
     "[stat]\n" \
-    "<SPAN class=\"nit-name\">{{stat-name}}</SPAN> <SPAN class=\"nit-count\">{{stat-count}}</SPAN> <SPAN class=\"nit-detail\">{{stat-detail}}</SPAN><BR>\n" \
+    "<SPAN class=\"nit-name\">{{stat-name||:}}</SPAN><SPAN class=\"nit-count\">{{stat-count| |}}</SPAN><SPAN class=\"nit-detail\">{{stat-detail|, |}}</SPAN><BR>\n" \
     "\n" \
     "[stats-head]\n" \
     "<H3 class=\"nit-section\">{{stats-title}}</H3>\n" \
     "<P>\n" \
     "\n" \
     "[stats-foot]\n" \
-    "<SPAN class=\"nit-name\">Total:</SPAN> <SPAN class=\"nit-count\">{{stats-total}}</SPAN>\n" \
+    "<SPAN class=\"nit-name\">Total:</SPAN> <SPAN class=\"nit-count\">{{stats-total||\n}}</SPAN>\n" \
     "</P>\n" \
     "\n" \
     "[stat-sub]\n" \
-    "<SPAN class=\"nit-subname\">{{stat-subname}}</SPAN> <SPAN class=\"nit-subcount\">{{stat-subcount}} <SPAN class=\"nit-subdetail\">{{stat-subdetail}}</SPAN></SPAN><BR>\n" \
+    "<SPAN class=\"nit-subname\">{{stat-subname||:}}</SPAN><SPAN class=\"nit-subcount\">{{stat-subcount| |}}<SPAN class=\"nit-subdetail\">{{stat-subdetail|, |}}</SPAN></SPAN><BR>\n" \
     "\n" \
     "[stats-subhead]\n" \
     "<H4 class=\"nit-subsection\">{{stats-subtitle}}</H4>\n" \
@@ -632,7 +702,7 @@ vstr_t sections;
     "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]</SPAN><BR>\n" \
     "\n" \
     "[update-head]\n" \
-    "<H2 class=\"nit-section\">Update</H2>\n" \
+    "<H2 class=\"nit-section\">" REPORT_UPDATE "</H2>\n" \
     "<P>\n" \
     "\n" \
     "[update-foot]\n" \

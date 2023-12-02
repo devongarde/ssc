@@ -46,6 +46,3 @@ EXPORTS
 
 Exports
 0 shadow
-
-Itemid
-#mozOrg

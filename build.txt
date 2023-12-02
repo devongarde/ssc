@@ -55,7 +55,7 @@ Windows
 -------
 To build from Visual Studio, navigate to recipe/tea, open the
 appropriate .sln file, then build. Only Visual Studios 2017, 2019 and
-2022, have been built & tested, for amd64 (x64) and arm64 (M2), under
+2022 have been built & tested, for amd64 (x64) and arm64 (M2), under
 Windows 10 & 11.
 
 Note the included solutions presume Microsoft's VCPKG manager. There

@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "type/type.h"
+#include "element/element.h"
 
 // would prefer to use template parameter packs, but got hacked off with the fussy clear-as-mud syntax
 bool test_many (const vtype_t& vty, v_np& bad, v_np& good, const nitpick& model, const html_version& v, const vstr_t& vs) 
