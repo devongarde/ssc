@@ -1,7 +1,7 @@
 USAGE NOTES
 static site checker
 https://ssc.lu/
-(c) 2020-2023 Dylan Harris
+(c) 2020-2024 Dylan Harris
 
 
 Running SSC
@@ -63,12 +63,13 @@ SSC has a number of switches, including:
 -v x	    Report level x issues, where x is
 	0 None
 	1 Catastrophes
-	2 Errors
-	3 Warnings
-	4 Info
-	5 Comments
-	6 Debug
-	7... more and more debug
+	2 Abhorrences
+	3 Errors
+	4 Warnings
+	5 Info
+	6 Comments
+	7 Debug
+	8... more and more debug
 
 -I	        Process Server Side Includes
 -g dir      set the root directory (defaults to current directory)
@@ -90,12 +91,21 @@ SSC has a number of switches, including:
 
 -S	        Report site statistics
 
+-Y 1		Disable multithreading
+
 -A			Report switches noticed by ssc, and exit.
 
 A full list of switches is given by the -h switch.
 
-If you find yourself having switch problems, add -A to your command line
-to see what switches ssc has noticed. -A kyboshes other processing.
+If you find yourself having switch problems, add -A to your command
+line to see what switches ssc has noticed. -A kyboshes other
+processing.
+
+Unfortunately, some fruity system suppliers sometimes release a buggy
+compiler. These bugs can often be avoided by using an alternative
+compiler (try gcc), disabling multithreading at runtime (-Y 1), or not
+upgrading your system until the fruity supplier releases a bug free
+version of their noisy compiler.
 
 
 Environment
@@ -324,7 +334,7 @@ root=~/www/live
 file=~/www/live.ndx
 ignore=inc
 info=
-msg=arts & ego (c) 1978-2023 dylan harris
+msg=arts & ego (c) 1978-2024 dylan harris
 
 [site]
 domain=dylanharris.org

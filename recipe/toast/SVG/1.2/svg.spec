@@ -1,4 +1,4 @@
--N 1 -f ../toast/SVG/1.2/svg.conf
+-Y 1 -f ../toast/SVG/1.2/svg.conf
 
 PASS ../toast/SVG/1.2/01_01.svg
 0 title_required

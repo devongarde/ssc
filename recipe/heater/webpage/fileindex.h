@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -47,7 +47,6 @@ CONSTEXPR fileindex_t nullfileindex = SIZE_MAX;
 #define FX_WAITAMO  0x00000200
 #define FX_PRETEND  0x00000400
 
-void fileindex_init ();
 ::boost::filesystem::path persist_path ();
 bool fileindex_load (nitpick& nits);
 void fileindex_save_and_close (nitpick& nits);

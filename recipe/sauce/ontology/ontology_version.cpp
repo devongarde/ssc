@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -171,6 +171,7 @@ sh_t sh [] =  // latest first
     { rif_schema, html_rif },
     { role_schema, html_role },
     { rr_schema, html_rr },
+    { schema_24, html_schema_24 },
     { schema_23, html_schema_23 },
     { schema_22, html_schema_22 },
     { schema_21, html_schema_21 },
@@ -626,7 +627,7 @@ template < > bool ontology_detail < s_schema > :: is_this_valid (const unsigned 
         default : break; }
     return false; }
 template < > ontology_version ontology_detail < s_schema > :: from () noexcept { return ontology_version (s_schema, MIN_SCHEMA_ORG_MAJOR, MIN_SCHEMA_ORG_MINOR); }
-template < > int ontology_detail < s_schema > :: count () noexcept { return 73; }
+template < > int ontology_detail < s_schema > :: count () noexcept { return 75; }
 template < > ontology_version ontology_detail < s_schema > :: to () noexcept { return ontology_version (s_schema, MAX_SCHEMA_ORG_MAJOR, MAX_SCHEMA_ORG_MINOR); }
 
 template < > bool ontology_detail < s_tiff > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept

@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -35,7 +35,7 @@ typedef ::std::unique_ptr < mpi_t > mpi_uptr;
 mpn_uptr bespoke_props;
 mpi_uptr bespoke_ids;
 
-void init_rdfa_prop ()
+void reset_rdfa_prop ()
 {   bespoke_props = mpn_uptr (new mpn_t);   
     bespoke_ids = mpi_uptr (new mpi_t); }
 

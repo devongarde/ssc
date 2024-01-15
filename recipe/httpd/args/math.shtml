@@ -1,0 +1,47 @@
+<!--#include virtual="/plumbing/html.inc" -->
+<!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="MathML arguments" -->
+<title>
+<!--#echo encoding="none" var="title" -->
+</title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/blog-section.inc" -->
+<!--#include virtual="/plumbing/html-top-start.inc" -->
+<!--#include virtual="/plumbing/argle.inc" -->
+<!--#include virtual="/plumbing/html-top-end.inc" -->
+<!--#include virtual="/plumbing/blog-schema.inc" -->
+<data class="u-url u-uid" value="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->">
+</data>
+
+<img alt="riff on name" class="mw50 inline_illustration_left" src="/image/ssc-msgdb-vf-tr.jpg" title="made with studio artist 5.5">
+
+<h1 itemprop="name" class="p-name">
+<!--#echo encoding="none" var="title" -->
+</h1>
+
+<p>
+These switches are useful when you have some MathML which correspond to your version of HTML.
+</p>
+
+<table>
+<tr><td>math.core</td><td>Presume Math 4 core (May 2022 draft).</td></tr>
+
+<tr><td>math.draft D</td><td>Presume this draft of MathML 4. The following
+                        drafts supported:<table>
+                        <tr><td>2020</td><td>December 2020 draft</td></tr>
+                        <tr><td>2022</td><td>August 2022 draft</td></tr></table></td></tr>
+
+<tr><td>math.version N</td><td>Specify MathML version, from:
+                        <table>
+                        <tr><td>0</td><td>try to work it out from the (HTML)
+                                    version of the file being analysed</td></tr>
+                        <tr><td>1</td><td>MathML 1</td></tr>
+                        <tr><td>2</td><td>MathML 2</td></tr>
+                        <tr><td>3</td><td>MathML 3</td></tr>
+                        <tr><td>4</td><td>MathML 4 (see --math.draft)</td></tr>
+                        </table></td></tr>
+</table>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/args.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

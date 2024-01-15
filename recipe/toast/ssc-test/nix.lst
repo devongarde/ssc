@@ -1,4 +1,5 @@
 ../toast/conf/html/conf.spec
+../toast/conf/httpd/httpd.spec
 ../toast/conf/xhtml/conf.spec
 ../toast/coop/corrupt/corrupt.spec
 ../toast/coop/corrupt/corrupt1.spec
@@ -173,6 +174,7 @@
 ../toast/living/apr23/living.spec
 ../toast/living/jul23/living.spec
 ../toast/living/oct23/living.spec
+../toast/living/jan24/living.spec
 ../toast/math/1/math.spec
 ../toast/math/2/math.spec
 ../toast/math/3/math.spec

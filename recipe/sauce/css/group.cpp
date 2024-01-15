@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -131,7 +131,7 @@ css_ptr css_group::parse_media_queries (const ::std::string& content, const html
     css_ptr cp = css_ptr (new css (v, content, namespaces, dst, p, p.get_site_path (), sv, true, line, e, eb, p.get_disk_path (), true));
     return cp; }
 
-bool css_group::parse_transform (   const ::std::string& content, const html_version& v, const namespaces_ptr& namespaces, const element_bitset eb, bool sv,
+bool css_group::parse_transform (   const ::std::string& content, const html_version& v, const namespaces_ptr& namespaces, const element_bitset , bool ,
                                     int line, const e_element e)
 {   ::std::string s ("." HIDE_ME " { transform: ");
     s += content;

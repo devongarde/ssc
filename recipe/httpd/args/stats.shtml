@@ -1,0 +1,181 @@
+<!--#include virtual="/plumbing/html.inc" -->
+<!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="stats arguments" -->
+<title>
+<!--#echo encoding="none" var="title" -->
+</title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/blog-section.inc" -->
+<!--#include virtual="/plumbing/html-top-start.inc" -->
+<!--#include virtual="/plumbing/argle.inc" -->
+<!--#include virtual="/plumbing/html-top-end.inc" -->
+<!--#include virtual="/plumbing/blog-schema.inc" -->
+<data class="u-url u-uid" value="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->">
+</data>
+
+<h1 itemprop="name" class="p-name">
+<!--#echo encoding="none" var="title" -->
+</h1>
+
+<img alt="riff on name" class="mw25 inline_illustration_right" src="/image/ssc-msgdb-t1-b4.jpg" title="made with studio artist 5.5">
+
+<p>
+SSC can output lots of statistical information about the site being
+analysed, although by default it outputs nothing.
+</p>
+
+<p>
+Use <kbd>stats.selected</kbd>
+to output a small subset of statistical data, and <kbd>stats.all</kbd> to output
+everything. Use <kbd>stats.summary</kbd> to output grand totals, and
+<kbd>stats.page</kbd> to output information on each page read. The other
+switches allow you to precisely specify what data you want to see. If
+you want to output the data to a file, use <kbd>stats.export</kbd>. If you
+select both <kbd>stats.page</kbd> and <kbd>stats.all</kbd>, be prepared for rather a lot
+of output.
+</p>
+
+<table>
+<tr><td>stats.abbr</td><td>Output abbreviation report, so you can verify
+                        the same abbreviations have the same expansions
+                        across the site.</td></tr>
+
+<tr><td>stats.all</td><td>Output all statistics reports.</td></tr>
+
+<tr><td>stats.annotation</td><td>Output annotation report.</td></tr>
+
+<tr><td>stats.attribute</td><td>Output element attribute report, which expands
+                        the element report to output information about
+                        attributes used.</td></tr>
+
+<tr><td>stats.category</td><td>Output category report, which output the total
+                        quantity of nits reported by nit category.</td></tr>
+
+<tr><td>stats.character-variant</td><td>Output character variant report.</td></tr>
+
+<tr><td>stats.class</td><td>Output class report, which allows to you see
+                        which classes are defined in CSS but not used,
+                        which classes are used but not defined, as well
+                        as a count of both for all classes encountered.</td></tr>
+
+<tr><td>stats.content-name</td><td>Output content name report.</td></tr>
+
+<tr><td>stats.counter-style</td><td>Output counter style report.</td></tr>
+
+<tr><td>stats.css-property</td><td>Output css property report, which gives you an
+                        idea of the sophistication of the CSS used on
+                        the site.</td></tr>
+
+<tr><td>stats.custom-media</td><td>Output custom media report, which lists all
+                        named custom media definitions encountered.</td></tr>
+
+<tr><td>stats.custom-property</td><td>Output custom property report, which lists all
+                        named custom property definitions encountered.</td></tr>
+
+<tr><td>stats.definition</td><td>Output definitions report, so you can verify
+                        the same terms have the same definitions across
+                        the site.</td></tr>
+
+<tr><td>stats.element</td><td>Output an element report, which totals all
+                        elements encountered across the site.</td></tr>
+
+<tr><td>stats.error</td><td>Output counts of errors, warnings, etc..</td></tr>
+
+<tr><td>stats.export F</td><td>Export to file F.</td></tr>
+
+<tr><td>stats.file</td><td>Output file report, which reports the number of
+                        pages processed, and summerises file sizes.</td></tr>
+
+<tr><td>stats.font</td><td>Output font report, which lists all fonts used
+                        across the site.</td></tr>
+
+<tr><td>stats.font-family</td><td>Output font family report, which lists all font
+                        families named across the site.</td></tr>
+
+<tr><td>stats.highlight</td><td>Output highlight report.</td></tr>
+
+<tr><td>stats.historical-form</td><td>Output historical font form report.</td></tr>
+
+<tr><td>stats.id</td><td>Output an id report, allowing you to identify
+                        which ids are styled but not mentioned.</td></tr>
+
+<tr><td>stats.itemid</td><td>Output an itemid report, which gives you an idea
+                        of the ontological significance and depth of
+                        the site.</td></tr>
+
+<tr><td>stats.keyframe</td><td>Output keyframe report, which lists all named
+                        keyframes.</td></tr>
+
+<tr><td>stats.layer</td><td>Output layer report, which lists all named
+                        layers.</td></tr>
+
+<tr><td>stats.meta</td><td>Produce statistics on &lt;META&gt; usage in &lt;HEAD&gt;.
+                        Note that pragmas reported (http-equiv) are
+                        those found in the HTML source, not those
+                        returned by the HTTP protocol. Remember that
+                        many web servers (not all) will remove some
+                        pragmas when serving pages.</td></tr>
+
+<tr><td>stats.name-value</td><td>Output name/value pairs report, which helps
+                        you identify inconsistencies between
+                        definitions across the site.</td></tr>
+
+<tr><td>stats.ontology</td><td>Output ontology report, which gives an insight
+                        into the ontological depth of the site being
+                        analysed.</td></tr>
+
+<tr><td>stats.ornament</td><td>Output ornament report, which reports all named
+                        CSS font ornaments encountered.</td></tr>
+
+<tr><td>stats.page</td><td>Produce statistics for each source file
+                        encountered.</td></tr>
+
+<tr><td>stats.page-name</td><td>Output page name report, which reports all
+                        named CSS page-names encountered.</td></tr>
+
+<tr><td>stats.palette</td><td>Output palette report, which reports all named
+                        CSS palettes encountered.</td></tr>
+
+<tr><td>stats.property</td><td>Output ontology property count report, as an
+                        addendum to --stats.ontology.</td></tr>
+
+<tr><td>stats.reference</td><td>Output reference report, which identifies, as
+                        precisely as it can, which versions of HTML,
+                        XHTML, CSS, etc., are found.</td></tr>
+
+<tr><td>stats.region</td><td>Output region report, which reports all CSS
+                        named regions encountered.</td></tr>
+
+<tr><td>stats.scroll-anim</td><td>Output scroll animation report, which reports
+                        all CSS named scroll animations encountered.</td></tr>
+
+<tr><td>stats.selected</td><td>Output a selected set of reports; may be
+                        modified by other stats switches.</td></tr>
+
+<tr><td>stats.statement</td><td>Output CSS statement report, which summarises
+                        all CSS statements encountered.</td></tr>
+
+<tr><td>stats.styleset</td><td>Output styleset report, which reports all CSS
+                        named stylesets encountered.</td></tr>
+
+<tr><td>stats.stylistic</td><td>Output stylistic report, which reports all CSS
+                        named stylistics encountered, excluding the
+                        band themselves.</td></tr>
+
+<tr><td>stats.summary</td><td>Produce a summary of overall statistics for the
+                        website, including grand totals.</td></tr>
+
+<tr><td>stats.swash</td><td>Output swash report, which reports all CSS
+                        named swashes encountered.</td></tr>
+
+<tr><td>stats.version</td><td>Output version report, which summarises
+                        versions of HTML, SVG, MathML, etc.,
+                        encountered.</td></tr>
+
+<tr><td>stats.view</td><td>Output view report, which reports all CSS named
+                        views encountered.</td></tr>
+</table>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/args.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

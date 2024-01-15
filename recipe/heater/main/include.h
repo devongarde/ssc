@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -20,6 +20,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 
+#define NOCURL
+
 #define SSC_LU "ssc.lu"
 #define DYLANHARRIS_ORG "dylanharris.org"
 
@@ -30,14 +32,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
-#define VERSION_RELEASE 49
-#define VERSION_STRING "0.1.49"
+#define VERSION_RELEASE 50
+#define VERSION_STRING "0.1.50"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
 #define COPYRIGHT_FORENAME "Dylan"
 #define COPYRIGHT_SURNAME "Harris"
-#define COPYRIGHT_YEAR "2020-2023"
+#define COPYRIGHT_YEAR "2020-2024"
 #define COPYRIGHT_TEXT COPYRIGHT_SYMBOL " " COPYRIGHT_YEAR " " COPYRIGHT_FORENAME " " COPYRIGHT_SURNAME
 #define COPYRIGHT_HTML "&copy;" NBSP COPYRIGHT_YEAR NBSP COPYRIGHT_FORENAME NBSP COPYRIGHT_SURNAME
 #define COPYRIGHT_WEBADDR "https://" DYLANHARRIS_ORG "/"
@@ -199,10 +201,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include <unistd.h>
 #endif // UNIX
 
-#ifdef _MSC_VER
-#include <windows.h>
-#endif // _MSC_VER
-
 #ifndef SSC_TEST
 #include <string>
 #include <sstream>
@@ -222,13 +220,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include <array>
 #ifndef VS2017  // https://social.msdn.microsoft.com/Forums/azure/en-US/999a5b68-a1d3-4a76-8f3b-65655257c301/vs2017-stdcodecvt-linker-error?forum=vcgeneral
 #include <codecvt>
-#endif
+#endif // VS2017
 #include <locale>
 #ifndef NO_FRED
 #include <shared_mutex>
 #include <thread>
 #include <atomic>
 #endif // NO_FRED
+
+#if ! defined (NO_FRED) && ! defined (FUDDYDUDDY) && ! defined (VS2017) && ! defined (VS2019)
+#define BEASTCHAR "w"
+#else
+#define BEASTCHAR
+#endif // ...
 
 #ifndef NOICU
 #include <unicode/ucsdet.h>
@@ -238,22 +242,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include <unicode/normalizer2.h>
 #include <unicode/brkiter.h>
 #include <unicode/ustring.h>
-
-#ifdef _MSC_VER
-#pragma comment (lib, "icudt.lib")
-#if defined (_DEBUG) && (_MSC_VER >= 1920) && (_MSC_VER < 1930)
-#pragma comment (lib, "icuind.lib")
-#pragma comment (lib, "icuiod.lib")
-#pragma comment (lib, "icutud.lib")
-#pragma comment (lib, "icuucd.lib")
-#else // _DEBUG
-#pragma comment (lib, "icuin.lib")
-#pragma comment (lib, "icuio.lib")
-#pragma comment (lib, "icutu.lib")
-#pragma comment (lib, "icuuc.lib")
-#endif // _DEBUG
-#endif // _MSC_VER
-
 #endif // NOICU
 
 #endif // SSC_TEST
@@ -386,6 +374,10 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #include <curl/curl.h>
 #endif // NOCURL
 #endif // SSC_TEST
+
+#ifdef _MSC_VER
+#include <windows.h>
+#endif // _MSC_VER
 
 #include <boost/filesystem.hpp>
 #include <boost/lexical_cast.hpp>
@@ -574,6 +566,13 @@ CONSTEXPR uint32_t uint32_category_mask =   0xF0000000;
 
 #endif // SCC_TEST
 
+// Some implementations crash on vector bool iterators
+#ifdef REALLY_BUGGY_VECTOR_BOOL
+    typedef ::std::vector < int > faux_vb_t;
+#else // REALLY_BUGGY_VECTOR_BOOL
+    typedef ::std::vector < bool > faux_vb_t;
+#endif // REALLY_BUGGY_VECTOR_BOOL
+
 #define COMMENT_CHAR '/'
 #define COMMENT_STRCHAR "/"
 
@@ -596,14 +595,14 @@ CONSTEXPR uint32_t uint32_category_mask =   0xF0000000;
 #endif // NO_JSONIC
 
 #ifdef _MSC_VER
-#ifndef OS
-#define OS "Windows x64"
-#endif // OS
+#ifndef BUILD_OS
+#define BUILD_OS "Windows x64"
+#endif // BUILD_OS
 #else
 #ifndef OS_VER
-#define OS "???"
+#define BUILD_OS "???"
 #else // OS_VER
-#define OS OS_VER
+#define BUILD_OS OS_VER
 #endif // OS_VER
 #endif // _MSC_VER
 
@@ -619,14 +618,14 @@ CONSTEXPR uint32_t uint32_category_mask =   0xF0000000;
 #define DBG_STATUS
 #endif // DEBUG
 
-#define BUILD_INFO   DBG_STATUS FUDDY CURLY JSNIC NPS_GEN SPELT ":" OS ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER
+// Enable this to see full messages that would otherwise be generated when using -T switch, roughly speaking
+// #define EXPAND_TEST "t"
+
+#define BUILD_INFO   DBG_STATUS FUDDY CURLY JSNIC NPS_GEN SPELT BEASTCHAR ":" BUILD_OS ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER
 #define BASE_TITLE   FULLNAME " v" VERSION_STRING " (" WEBADDR ")\n"
 #define SIMPLE_TITLE BASE_TITLE COPYRIGHT_TEXT "\n"
 #define FULL_TITLE   BASE_TITLE COPYRIGHT "\n" "[" __DATE__ " " __TIME__  "] [" BUILD_INFO "]" "\n"
 #define TEST_TITLE   FULLNAME " v" VERSION_STRING "\n" "(" __DATE__ " " __TIME__ ")\n" WEBADDR "\n" COPYRIGHT "\n\n"
-
-// Enable this to see full messages that would otherwise be generated when using -T switch, roughly speaking
-// #define EXPAND_TEST
 
 #define TYPE_HELP "Type '" PROG " -h' for help."
 

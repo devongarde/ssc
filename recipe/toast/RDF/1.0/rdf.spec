@@ -1,4 +1,4 @@
--N 1 -f ../toast/RDF/1.0/rdf.conf
+-Y 1 -f ../toast/RDF/1.0/rdf.conf
 
 PASS ../toast/RDF/1.0/index.html
 2 naughty_lang

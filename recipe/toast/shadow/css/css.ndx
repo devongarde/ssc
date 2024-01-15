@@ -1,9 +1,9 @@
 Static Site Checker
-0.1.46
+0.1.50
 ../toast/shadow/css
 0
 -
-8
+9
 /Users/dylan/project/app/ssc/recipe/toast/shadow/css
 /Users/dylan/project/app/ssc/recipe/toast/shadow/css
 0,0,0,18,0,0,0
@@ -27,4 +27,7 @@ css.conf
 -1,0,0,256,0,0,0
 index.html.model
 /Users/dylan/project/app/ssc/recipe/toast/shadow/css/index.html.model
+-1,0,0,256,0,0,0
+css.ndx
+/Users/dylan/project/app/ssc/recipe/toast/shadow/css/css.ndx
 -1,0,0,256,0,0,0

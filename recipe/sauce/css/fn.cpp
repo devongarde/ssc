@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -190,7 +190,8 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
                     PRESUME (f.size () == params_.size (), __FILE__, __LINE__);
                     for (::std::size_t n = 0; n < params_.size (); ++n)
                         if (f.at (n) > 0) vsl_.emplace_back (new selector (args, f.at (n), ket, true)); 
-                        else ve_.emplace_back (new css_element (nits, args.v_, args.ns_, params_.at (n)));
+                        else if (! params_.at (n).empty ())
+                            ve_.emplace_back (new css_element (nits, args.v_, args.ns_, params_.at (n)));
                     break;
                 default :
                     GRACEFUL_CRASH (__FILE__, __LINE__);

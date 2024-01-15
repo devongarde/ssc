@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -27,6 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "ontology/ontology_version.h"
 #include "feedback/nitout.h"
 
+#define STOP_NOW -1
 #define VALID_RESULT 0
 #define STOP_OK 1
 #define NOTHING_TO_DO 2
@@ -41,10 +42,10 @@ class corpus;
 class context_t
 {   bool            article_ = false, body_ = true, case_ = false, cgi_ = false, classic_ = false, clear_ = false, crosslinks_ = true, example_ = true,
                     external_ = false, ext_css_ = false, extra_ = false, force_version_ = false, forwarded_ = true, icu_ = true, ie_ = false,
-                    info_ = false, jsonld_ = false, local_ = true, load_css_ = true, links_ = true, main_ = false, md_export_ = false,
+                    info_ = false, iterate_ = false, jsonld_ = false, local_ = true, load_css_ = true, links_ = true, main_ = false, md_export_ = false,
                     mf_export_ = false, mf_verify_ = true, microdata_ = true, nids_ = false, nits_ = false, nits_nits_nits_ = false, not_root_ = false,
                     once_ = true, presume_tags_ = false, progress_ = false, rdfa_ = false, rel_ = false, revoke_ = false, rfc_1867_ = true, 
-                    rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, ontology_ = true, safari_ = false, 
+                    rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, ontology_ = true, safari_ = false, serve_ = false, 
                     shadow_changed_ = false, shadow_comment_ = true, shadow_enable_ = false, shadow_space_ = true, shadow_ssi_ = true, sloven_ = false, 
                     spec_ = false, spell_ = true, spell_deduced_ = false, ssi_ = true, stats_abbr_ = false, stats_annotation_ = false, 
                     stats_attribute_ = false, stats_category_ = false, stats_character_variant_ = false, stats_class_ = false,
@@ -56,7 +57,7 @@ class context_t
                     stats_property_ = false, stats_reference_ = false, stats_region_ = false, stats_scroll_anim_ = false, stats_statement_ = false,
                     stats_styleset_ = false, stats_stylistic_ = false, stats_summary_ = false, stats_swash_ = false, stats_version_ = false,
                     stats_view_ = false, test_ = false, unknown_class_ = true, update_ = false, valid_ = false, versioned_ = false, yggdrisil_ = false;
-    int             fred_ = 0, title_ = MAX_IDEAL_TITLE_LENGTH;
+    ::std::size_t   fred_ = 1, title_ = MAX_IDEAL_TITLE_LENGTH;
     e_copy          copy_ = c_none;
     unsigned char   mf_version_ = 3;
     html_version    version_;
@@ -210,14 +211,15 @@ class context_t
         if (b) external (b);
         mac (nm_context_forward, b);
         return *this; }
-    context_t& fred (const int i);
+    context_t& fred (const ::std::size_t i);
     context_t& html_ver (const html_version& v)
     {   versioned (true); version_ = v; mac (nm_context_version, version_.name ()); return *this; }
     context_t& icu (const bool b) { icu_ = b; mac (nm_context_icu, b); return *this; }
     context_t& ie (const bool b) { ie_ = b; mac (nm_context_ie, b); return *this; }
     context_t& ignore (nitpick& nits, const vstr_t& s);
-    context_t& index (const ::std::string& s) { index_ = s; mac (nm_context_index, s); return *this; }
     context_t& info (const bool b) { info_ = b; mac (nm_context_info, b); return *this; }
+    context_t& index (const ::std::string& s) { index_ = s; mac (nm_context_index, s); return *this; }
+    context_t& iterate (const bool b) { iterate_ = b; mac (nm_context_iterate, b); return *this; }
     context_t& jsonld (const bool b) { jsonld_ = b; mac (nm_context_jsonld, b); return *this; }
     context_t& jsonld_extension (const vstr_t& s) { jsonld_ext_ = s; mac (nm_context_jsonld_extension, s); return *this; }
     context_t& jsonld_version (const e_jsonld_version v)
@@ -373,8 +375,8 @@ class context_t
     context_t& svg_version (const int mjr, const int mnr);
     context_t& svg_version (const e_svg_version v) { version_.svg_version (v); mac < int > (nm_context_svg_version, v); return *this; }
     context_t& test (const bool b) { test_ = b; mac (nm_context_test, b); return *this; }
-    context_t& title (const int n)
-    { if (n <= 0) title_ = 0; else title_ = n; mac < int > (nm_context_title, title_); return *this; }
+    context_t& title (const ::std::size_t n)
+    { if (n <= 0) title_ = 0; else title_ = n; mac < ::std::size_t > (nm_context_title, title_); return *this; }
     context_t& todo (const e_do e) noexcept { do_ = e; return *this; }
     context_t& unknown_class (const bool b) { unknown_class_ = b; mac (nm_context_unknown_class, b); return *this; }
     context_t& update (const bool b) noexcept { update_ = b; return *this; }
@@ -390,7 +392,7 @@ class context_t
     {   for (auto j : jsonld_ext_) extensions_.push_back (j); }
 public:
     context_t ();
-    int parameters (nitpick& nits, int argc, char** argv);
+    int parameters (nitpick& nits, const vstr_t& vs);
     bool article () const noexcept { return article_; }
     bool body () const noexcept { return body_; }
     const ::std::string build () const { return build_; }
@@ -496,7 +498,7 @@ public:
     bool extra () const noexcept { return extra_; }
     bool force_version () const noexcept { return force_version_; }
     bool forwarded () const noexcept{ return forwarded_; }
-    int fred () const noexcept{ return fred_; }
+    ::std::size_t fred () const noexcept{ return fred_; }
     const ::std::string& general_info () const { return general_info_; }
     context_t& general_info (const ::std::string& s) { general_info_ = s; mac (nm_general_info, s); return *this; }
     bool has_math () const noexcept { return version_.has_math (); }
@@ -507,8 +509,9 @@ public:
     html_version html_ver (const int major, const int minor) noexcept;
     bool icu () const noexcept { return icu_; }
     bool ie () const noexcept { return ie_; }
-    const ::std::string index () const { return index_; }
     bool info () const noexcept { return info_; }
+    const ::std::string index () const { return index_; }
+    bool iterate () const noexcept { return iterate_; }
     bool invalid () const noexcept { return ! valid_; }
     bool jsonld () const noexcept { return jsonld_; }
     const vstr_t jsonld_extension () const { return jsonld_ext_; }
@@ -540,6 +543,8 @@ public:
     bool not_root () const noexcept { return not_root_; }
     bool once () const noexcept { return once_; }
     bool ontology () const noexcept { return ontology_; }
+    ontology_version ontology_ver (const e_ontology es = s_schema) const
+    {   return get_default_ontology_version (es); }
     const ::std::string& path () const { return path_; }
     const ::std::string persisted () const { return persisted_; }
     bool presume_tags () const noexcept { return presume_tags_; }
@@ -560,8 +565,6 @@ public:
     const ::std::string& root () const { return root_; }
     const ::boost::filesystem::path& rootp () const { return proot_; }
     bool safari () const noexcept { return safari_; }
-    ontology_version ontology_ver (const e_ontology es = s_schema) const
-    {   return get_default_ontology_version (es); }
     const ::std::string& secret () const { return secret_; }
     bool shadow_any () const noexcept { return shadow_pages (); }
     bool shadow_comment () const noexcept { return shadow_comment_; }
@@ -633,7 +636,7 @@ public:
     e_svg_processing_mode svg_mode () const noexcept { return svg_mode_; }
     e_svg_version svg_version () const noexcept { return version_.svg_version (); }
     bool test () const noexcept { return test_ && nit_override_.empty (); }
-    int title () const noexcept { return title_; }
+    ::std::size_t title () const noexcept { return title_; }
     e_do todo () const noexcept { return do_; }
     bool unknown_class () const noexcept { return unknown_class_; }
     e_severity verbose () const noexcept { return verbose_; }

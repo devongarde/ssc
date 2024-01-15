@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -33,7 +33,7 @@ itemprop_index bespoke_itemprop = 0;
 min_uptr unknown_props;
 mii_uptr unknown_ids;
 
-void init_itemprop ()
+void reset_itemprop ()
 {   unknown_props = min_uptr (new min_t); 
     unknown_ids = mii_uptr (new mii_t); }
 

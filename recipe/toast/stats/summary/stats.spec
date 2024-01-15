@@ -1,4 +1,4 @@
--N 1 -f ../toast/stats/summary/stats.conf
+-Y 1 -f ../toast/stats/summary/stats.conf
 
 PASS ../toast/stats/summary/itemref.html
 15 missing_itemtype

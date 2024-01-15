@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -25,11 +25,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 class options
 {   ::boost::program_options::variables_map var_, env_;
     void help (const ::boost::program_options::options_description& aid) const;
-	void parse (nitpick& nits, int argc, char* const * argv);
+	void parse (nitpick& nits, const vstr_t& vs);
     void yea_nay (context_t& (context_t::*fn) (const bool ), nitpick& nits, const char* yea, const char* nay);
     bool get_css_level (int& n, nitpick& nits, const char* opt, const char* name, const int maxlevel, const bool accept_1 = false);
 public:
-	options (nitpick& nits, int argc, char** argv)
-    {   parse (nits, argc, argv); }
+	options (nitpick& nits, const vstr_t& vs)
+    {   parse (nits, vs); }
     void contextualise (nitpick& nits);
     ::std::string report () const; };

@@ -1,4 +1,4 @@
--N 1 -f ../toast/microdata/export/export.conf
+-Y 1 -f ../toast/microdata/export/export.conf
 
 PASS ../toast/microdata/export/h-card.html
 0 write_wrote

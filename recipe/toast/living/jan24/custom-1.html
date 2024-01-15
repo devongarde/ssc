@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> custom elements </title> </head>
+ <body>
+
+<flag-icon country="nl"></flag-icon>
+
+<form action="..." method="...">
+<label><my-checkbox name="agreed"></my-checkbox> I read the agreement.</label>
+<input type="submit">
+</form>
+
+<button is="plastic-button">Click Me!</button>
+
+<script>
+class LabeledCheckbox extends HTMLElement {
+  constructor() {
+    super();
+    this._internals = this.attachInternals();
+    this.addEventListener('click', this._onClick.bind(this));
+
+    const shadowRoot = this.attachShadow({mode: 'closed'});
+    shadowRoot.innerHTML =
+      `<style>
+       :host::before {
+         content: '[ ]';
+         white-space: pre;
+         font-family: monospace;
+       }
+       :host(:state(checked))::before { content: '[x]' }
+       </style>
+       <slot>Label</slot>`;
+  }
+
+  get checked() { return this._internals.states.has('checked'); }
+
+  set checked(flag) {
+    if (flag)
+      this._internals.states.add('checked');
+    else
+      this._internals.states.delete('checked');
+  }
+
+  _onClick(event) {
+    this.checked = !this.checked;
+  }
+}
+
+customElements.define('labeled-checkbox', LabeledCheckbox);
+</script>
+
+<style>
+labeled-checkbox { border: dashed red; }
+labeled-checkbox:state(checked) { border: solid; }
+</style>
+
+<labeled-checkbox>You need to check this</labeled-checkbox>
+
+<script>
+class QuestionBox extends HTMLElement {
+  constructor() {
+    super();
+    const shadowRoot = this.attachShadow({mode: 'closed'});
+    shadowRoot.innerHTML =
+      `<div><slot>Question</slot></div>
+       <labeled-checkbox part='checkbox'>Yes</labeled-checkbox>`;
+  }
+}
+customElements.define('question-box', QuestionBox);
+</script>
+
+<style>
+question-box::part(checkbox) { color: red; }
+question-box::part(checkbox):state(checked) { color: green; }
+</style>
+
+<question-box>Continue?</question-box>
+
+ </body>
+</html>

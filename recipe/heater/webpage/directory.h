@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -57,6 +57,7 @@ protected:
 public:
     explicit directory (const path_root_ptr& root, const short v);
     directory (const fileindex_t parent_ndx, const ::std::string& name, const bool offsite);
+    static void reinit ();
     void swap (directory& d) noexcept;
     bool is_root () const noexcept { return root_.get () != nullptr; }
     bool empty () const noexcept { return content_.empty (); }

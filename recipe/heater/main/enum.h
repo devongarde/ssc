@@ -1,6 +1,6 @@
 ﻿/*                                                                 ,
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
-#include "main/include.h"
 
 typedef enum { e_0, e_1 } e_10;
 typedef enum { ac_a, av_v } e_a_v;
@@ -596,7 +595,7 @@ typedef enum {  ecft_colour_cbdt, ecft_colour_colrv0, ecft_colour_colrv1, ecft_c
                 ecft_palette, ecft_variations } e_css_font_tech;
 typedef enum { ecfn_down, ecfn_nearest, ecfn_to_zero, ecfn_up } e_css_fn_round_t;
 typedef enum { ecfw_all, ecfw_normal, ecfw_bold, ecfw_bolder, ecfw_lighter, ecfw_100, ecfw_200, ecfw_300, ecfw_400, ecfw_500, ecfw_600, ecfw_700, ecfw_800, ecfw_900, ecfw_inherit } e_css_font_weight;
-typedef enum {  efn_none,
+typedef enum {  efn_none, efn_webkit_autofill,
                 efn_above_level, efn_active, efn_after, efn_any_link, efn_at_level, efn_attr, efn_auto, efn_autofill,
                 efn_backdrop, efn_before, efn_below_level, efn_blank, efn_buffering,
                 efn_checked, efn_circle, efn_closed, efn_content, efn_cubic_bezier, efn_cue, efn_cue_region, efn_current,
@@ -1550,6 +1549,7 @@ typedef enum { mo_numeric, mo_lexicographic } m_mathorder;
 typedef enum { ov_elide, ov_linebreak, ov_scale, ov_scroll, ov_truncate } e_mathoverflow;
 typedef enum { ms_global, ms_local } e_mathscope;
 typedef enum { math_none, math_1, math_2, math_3, math_4_20, math_4_22, math_core } e_math_version;
+constexpr e_math_version last_math = math_core;
 typedef enum { mf_infix, mf_prefix, mf_postfix } e_mathform;
 typedef enum { fmw_bold, fmw_normal } e_math_fontweight;
 typedef enum { mf_dash, mf_none, mf_solid } e_mathframe;
@@ -2312,7 +2312,7 @@ typedef enum {
     mime_application_news_message_id, mime_application_x_httpd_asp,
 
     // other
-    mime_application_7z,
+    mime_application_7z, mime_video_x_flv,
 
     mime_bork } e_mimetype;
 
@@ -2474,7 +2474,7 @@ typedef enum
     nit_css_font_feature, nit_css_palette, nit_descriptor, nit_not_here, nit_counter_style, nit_clacks, nit_bad_supports,
     nit_experimental, nit_cache, nit_arxiv, nit_coden, nit_prism, nit_mask, nit_mask_border, nit_profile, nit_container,
     nit_abandoned, nit_when_else, nit_part, nit_highlight, nit_sda, nit_vtn, nit_naughty_offset, nit_nesting, nit_content,
-    nit_excluded, nit_ftp_protocol, nit_tld,
+    nit_excluded, nit_ftp_protocol, nit_tld, nit_no_set, nit_bad_address,
 
     nit_incompatible,
 
@@ -2500,12 +2500,14 @@ typedef enum
         nm_context_css_transition, nm_context_css_text, nm_context_css_text_decoration, nm_context_css_ui, nm_context_css_value, nm_context_css_version,
         nm_context_css_view, nm_context_css_will_change, nm_context_css_writing_mode, nm_context_custom_elements, nm_context_dc, nm_context_example,
         nm_context_export_root, nm_context_exports, nm_context_extensions, nm_context_ext_css, nm_context_extra, nm_context_force_version,
-        nm_context_foaf, nm_context_forward, nm_context_fred, nm_context_icu, nm_context_ie, nm_context_ignore, nm_context_info,
-        nm_context_index, nm_context_jsonld, nm_context_jsonld_extension, nm_context_jsonld_version, nm_context_lang, nm_context_links,
+        nm_context_foaf, nm_context_forward, nm_context_fred, nm_context_icu, nm_context_ie, nm_context_ignore, nm_context_index, nm_context_info, nm_context_iterate,
+        nm_context_jsonld, nm_context_jsonld_extension, nm_context_jsonld_version, nm_context_lang, nm_context_links,
         nm_context_local, nm_context_math, nm_context_main, nm_context_max_file_size, nm_context_md_export,
         nm_context_mf_export, nm_context_mf_verify, nm_context_mf_version, nm_context_microdata, nm_context_msg, nm_context_no_ex_check,
         nm_context_once, nm_context_output, nm_context_persisted, nm_context_rdfa, nm_context_rdf_version, nm_context_rel, nm_context_report,
         nm_context_rfc_1867, nm_context_rfc_1942, nm_context_rfc_1980, nm_context_rfc_2070, nm_context_root, nm_context_safari,
+        nm_context_server, nm_context_server_address_from, nm_context_server_address_to, nm_context_server_address, nm_context_server_port,
+        nm_context_server_root,
         nm_context_schema, nm_context_ontology_version, nm_context_shadow_comment, nm_context_shadow_changed, nm_context_shadow_enable,
         nm_context_shadow_ignore, nm_context_shadow_persist, nm_context_shadow_root, nm_context_shadow_ssi, nm_context_shadow_space,
         nm_context_shadows, nm_context_site, nm_context_sloven, nm_context_spec, nm_context_spell, nm_context_spell_path, nm_context_spellings,
@@ -3807,9 +3809,13 @@ typedef enum
     sch_hostel, sch_hotel, sch_hotelroom, sch_house, sch_housepainter, sch_howitworkshealthaspect, sch_howorwherehealthaspect, sch_howto, sch_howtodirection, sch_howtoitem, sch_howtosection, sch_howtostep,
     sch_howtosupply, sch_howtotip, sch_howtotool, sch_hvacbusiness, sch_hypertoc, sch_hypertocentry,
 
-    sch_icecreamshop, sch_ignoreaction, sch_imagegallery, sch_imageobject, sch_imageobjectsnapshot, sch_imagingtest, sch_individualproduct, sch_infectious, sch_infectiousagentclass, sch_infectiousdisease, sch_inforce,
+    sch_icecreamshop, sch_ignoreaction, sch_imagegallery, sch_imageobject, sch_imageobjectsnapshot, sch_imagingtest, sch_individualphysician, sch_individualproduct, sch_infectious, sch_infectiousagentclass, sch_infectiousdisease, sch_inforce,
     sch_informaction, sch_ingredientshealthaspect, sch_insertaction, sch_installaction, sch_installment, sch_instock, sch_instoreonly, sch_insuranceagency, sch_intangible, sch_integer, sch_interactaction,
-    sch_interactioncounter, sch_internationaltrial, sch_internetcafe, sch_investmentfund, sch_investmentordeposit, sch_inviteaction, sch_invoice, sch_invoiceprice, sch_iosplatform, sch_itemavailability, sch_itemlist,
+    sch_interactioncounter, sch_internationaltrial, sch_internetcafe, sch_investmentfund, sch_investmentordeposit, sch_inviteaction, sch_invoice, sch_invoiceprice, sch_iosplatform, sch_iptcdigitalsourceenumeration,
+    sch_iptcalgorithmicmediadigitalsource, sch_iptcalgorithmicallyenhanceddigitalsource, sch_iptccompositecapturedigitalsource, sch_iptccompositesyntheticdigitalsource,
+    sch_iptccompositewithtrainedalgorithmicmediadigitalsource, sch_iptcdatadrivenmediadigitalsource, sch_iptcdigitalartdigitalsource, sch_iptcdigitalcapturedigitalsource,
+    sch_iptcminorhumaneditsdigitalsource, sch_iptcnegativefilmdigitalsource, sch_iptcpositivefilmdigitalsource, sch_iptcprintdigitalsource,
+    sch_iptctrainedalgorithmicmediadigitalsource, sch_iptcvirtualrecordingdigitalsource, sch_itemavailability, sch_itemlist,
     sch_itemlistorderascending, sch_itemlistorderdescending, sch_itemlistordertype, sch_itemlistunordered, sch_itempage,
 
     sch_jewellers, sch_jobposting, sch_joinaction, sch_joint,
@@ -3854,7 +3860,7 @@ typedef enum
     sch_partiallyinforce, sch_pathology, sch_pathologytest, sch_patient, sch_patientexperiencehealthaspect, sch_pawnshop, sch_payaction, sch_paymentautomaticallyapplied, sch_paymentcard, sch_paymentchargespecification,
     sch_paymentcomplete, sch_paymentdeclined, sch_paymentdue, sch_paymentmethod, sch_paymentpastdue, sch_paymentservice, sch_paymentstatustype, sch_peopleaudience, sch_percutaneousprocedure, sch_performaction, sch_performancerole,
     sch_performingartstheatre, sch_performinggroup, sch_periodical, sch_permit, sch_person, sch_pet, sch_petshop, sch_pharmacy, sch_pharmacyspeciality, sch_photograph, sch_photographaction, sch_physicalactivity,
-    sch_physicalactivitycategory, sch_physicalexam, sch_physicaltherapy, sch_physician, sch_physiotherapy, sch_ayurvedic, sch_place, sch_placebocontrolledtrial, sch_placeofworship, sch_planaction, sch_plasticsurgery, sch_play,
+    sch_physicalactivitycategory, sch_physicalexam, sch_physicaltherapy, sch_physician, sch_physiciansoffice, sch_physiotherapy, sch_ayurvedic, sch_place, sch_placebocontrolledtrial, sch_placeofworship, sch_planaction, sch_plasticsurgery, sch_play,
     sch_playaction, sch_playgameaction, sch_playground, sch_plumber, sch_podcastepisode, sch_podcastseason, sch_podcastseries, sch_podiatric, sch_policestation, sch_politicalparty, sch_pond, sch_postaladdress,
     sch_postalcoderangespecification, sch_poster, sch_postoffice, sch_potentialactionstatus, sch_pregnancyhealthaspect, sch_preorder, sch_preorderaction, sch_prependaction, sch_presale, sch_preschool, sch_prescriptiononly,
     sch_presentationdigitaldocument, sch_preventionhealthaspect, sch_preventionindication, sch_pricecomponenttypeenumeration, sch_pricespecification, sch_pricetypeenumeration, sch_primarycare, sch_prion, sch_product,
@@ -4953,7 +4959,7 @@ typedef enum
     sp_datafeedelement, sp_dataset, sp_datasettimeinterval, sp_datecreated, sp_datedeleted, sp_dateissued, sp_dateline, sp_datemodified, sp_dateposted, sp_datepublished, sp_dateread, sp_datereceived, sp_datesent,
     sp_datevehiclefirstregistered, sp_dayofweek, sp_deathdate, sp_deathplace, sp_defaultvalue, sp_deliveryaddress, sp_deliveryleadtime, sp_deliverymethod, sp_deliverystatus, sp_deliverytime, sp_department, sp_departureairport,
     sp_departureboatterminal, sp_departurebusstop, sp_departuregate, sp_departureplatform, sp_departurestation, sp_departureterminal, sp_departuretime, sp_dependencies, sp_depth, sp_description, sp_device, sp_diagnosis, sp_diagram, sp_diet,
-    sp_dietfeatures, sp_differentialdiagnosis, sp_directapply, sp_director, sp_directors, sp_disambiguatingdescription, sp_discount, sp_discountcode, sp_discountcurrency, sp_discusses, sp_discussionurl, sp_diseasepreventioninfo, sp_diseasespreadstatistics,
+    sp_dietfeatures, sp_differentialdiagnosis, sp_digitalsourcetype, sp_directapply, sp_director, sp_directors, sp_disambiguatingdescription, sp_discount, sp_discountcode, sp_discountcurrency, sp_discusses, sp_discussionurl, sp_diseasepreventioninfo, sp_diseasespreadstatistics,
     sp_dissolutiondate, sp_distance, sp_distinguishingsign, sp_distribution, sp_diversitypolicy, sp_diversitystaffingreport, sp_documentation, sp_doesnotship, sp_domainincludes, sp_domiciledmortgage, sp_doortime, sp_dosageform,
     sp_doseschedule, sp_doseunit, sp_dosevalue, sp_downloadurl, sp_downpayment, sp_downvotecount, sp_drainsto, sp_drivewheelconfiguration, sp_dropofflocation, sp_dropofftime, sp_drug, sp_drugclass, sp_drugunit, sp_duns,
     sp_duplicatetherapy, sp_duration, sp_durationofwarranty, sp_duringmedia,
@@ -5025,7 +5031,7 @@ typedef enum
     sp_paymentduedate, sp_paymentmethod, sp_paymentmethodid, sp_paymentstatus, sp_paymenturl, sp_penciler, sp_percentile10, sp_percentile25, sp_percentile75, sp_percentile90, sp_performer, sp_performers, sp_performerin,
     sp_performtime, sp_permissions, sp_permissiontype, sp_permitaudience, sp_permittedusage, sp_petsallowed, sp_phase, sp_phonetictext, sp_photo, sp_photos, sp_physicalrequirement, sp_physiologicalbenefits, sp_pickuplocation,
     sp_pickuptime, sp_playersonline, sp_playertype, sp_playmode, sp_polygon, sp_population, sp_populationtype, sp_potentialuse, sp_position, sp_positivenotes, sp_possiblecomplication, sp_possibletreatment,
-    sp_postalcode, sp_postalcodebegin, sp_postalcodeend, sp_postalcodeprefix, sp_postalcoderange, sp_postofficeboxnumber, sp_postop, sp_potentialaction, sp_predecessorof, sp_pregnancycategory, sp_pregnancywarning, sp_preop,
+    sp_postalcode, sp_postalcodebegin, sp_postalcodeend, sp_postalcodeprefix, sp_postalcoderange, sp_postofficeboxnumber, sp_postop, sp_potentialaction, sp_practicesat, sp_predecessorof, sp_pregnancycategory, sp_pregnancywarning, sp_preop,
     sp_preparation, sp_preptime, sp_prescribinginfo, sp_prescriptionstatus, sp_previousitem, sp_previousstartdate, sp_price, sp_pricecomponent, sp_pricecomponenttype, sp_pricecurrency, sp_pricerange, sp_pricespecification,
     sp_pricetype, sp_pricevaliduntil, sp_primaryimageofpage, sp_primaryprevention, sp_printcolumn, sp_printedition, sp_printpage, sp_printsection, sp_procedure, sp_proceduretype, sp_processingtime, sp_processorrequirements,
     sp_producer, sp_produces, sp_productgroupid, sp_productid, sp_productioncompany, sp_productiondate, sp_productreturndays, sp_productreturnlink, sp_productsupported, sp_proficiencylevel, sp_programmemembershipused,
@@ -5063,7 +5069,7 @@ typedef enum
     sp_travelbans, sp_trialdesign, sp_tributary, sp_triporigin, sp_typeofbed, sp_typeofgood, sp_typicalagerange, sp_typicalcreditsperterm, sp_typicaltest,
 
     sp_undername, sp_unitcode, sp_unittext, sp_unnamedsourcespolicy, sp_unsaturatedfatcontent, sp_uploaddate, sp_upvotecount, sp_url, sp_urltemplate, sp_usageinfo, sp_usedtodiagnose, sp_userinteractioncount, sp_usesdevice,
-    sp_useshealthplanidstandard, sp_utterances,
+    sp_useshealthplanidstandard, sp_usnpi, sp_utterances,
 
     sp_validfor, sp_validfrom, sp_validin, sp_validto, sp_validuntil, sp_value, sp_valueaddedtaxincluded, sp_valuemaxlength, sp_valueminlength, sp_valuename, sp_valuepattern, sp_valuereference, sp_valuerequired,
     sp_variablemeasured, sp_variablesmeasured, sp_variantcover, sp_variesby, sp_vatid, sp_vehicleconfiguration, sp_vehicleengine, sp_vehicleidentificationnumber, sp_vehicleinteriorcolour, sp_vehicleinteriortype, sp_vehiclemodeldate,
@@ -5441,6 +5447,7 @@ typedef enum { stb_onload, stb_onstart } e_svg_timelinebegin;
 typedef enum { tsz_discrete, tsz_gamma, tsz_identity, tsz_linear, tsz_table } e_svg_type;
 typedef enum { su_object_bbox, su_userspace } e_svg_units;
 typedef enum { sv_none, sv_1_0, sv_1_1, sv_1_2_tiny, sv_1_2_full, sv_2_0, sv_2_1 } e_svg_version;
+constexpr e_svg_version last_svg = sv_2_1;
 typedef enum { svg_none, svg_1_0, svg_1_1, svg_1_2_tiny, svg_1_2_full, svg_2_0 } e_svg_version_grand;
 typedef enum { sb_canslip, sb_locked, sb_independent, sb_default } e_syncbehaviour;
 typedef enum { sbd_canslip, sbd_locked, sbd_independent, sbd_inherit } e_syncbehaviourdefault;

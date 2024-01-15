@@ -1,4 +1,4 @@
--N 1 -f ../toast/w3/3663/w3.conf
+-Y 1 -f ../toast/w3/3663/w3.conf
 
 PASS ../toast/w3/3663/index.html
 2 naughty_lang

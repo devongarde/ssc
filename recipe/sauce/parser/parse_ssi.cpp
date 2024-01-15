@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -95,12 +95,12 @@ bool encoding (::std::string& ln, nitpick& nits, const html_version& v, e_ssi_en
         if (value < e_ssi_env, t_ssi_env > (ln, nits, v, env, arg, required))
             if (noenv)
             {   set_ssi_context (ln, nits, es_error);
-                nits.pick (nit_invalid_set, es_error, ec_ssi, "apologies, but " PROG " cannot set environment variables"); }
+                nits.pick (nit_no_set, es_error, ec_ssi, "apologies, but " PROG " cannot set environment variables"); }
             else switch (env)
             {   case ssi_DATE_GMT :
                     {   ::std::ostringstream ss;
 #ifndef NO_BOOST_DATE_FACET
-                        GSL_OWNER (::boost::gregorian::date_input_facet) facet (new ::boost::gregorian::date_input_facet ("%D %T %Z"));
+                        const GSL_OWNER (::boost::gregorian::date_input_facet) facet (new ::boost::gregorian::date_input_facet ("%D %T %Z"));
                         ss.imbue (::std::locale (::std::locale (), facet));
                         ss << ::boost::posix_time::second_clock::universal_time ();
 #else // NO_BOOST_DATE_FACET
@@ -111,7 +111,7 @@ bool encoding (::std::string& ln, nitpick& nits, const html_version& v, e_ssi_en
                 case ssi_DATE_LOCAL :
                     {   ::std::ostringstream ss;
 #ifndef NO_BOOST_DATE_FACET
-                        GSL_OWNER (::boost::gregorian::date_input_facet) facet (new ::boost::gregorian::date_input_facet ("%D %T %Z"));
+                        const GSL_OWNER (::boost::gregorian::date_input_facet) facet (new ::boost::gregorian::date_input_facet ("%D %T %Z"));
                         ss.imbue (::std::locale (::std::locale (), facet));
                         ss << ::boost::posix_time::second_clock::local_time ();
 #else // NO_BOOST_DATE_FACET
@@ -139,7 +139,7 @@ bool encoding (::std::string& ln, nitpick& nits, const html_version& v, e_ssi_en
                         t = get_last_write_time (x);
                         ::std::ostringstream ss;
 #ifndef NO_BOOST_DATE_FACET
-                        GSL_OWNER (::boost::gregorian::date_input_facet) facet (new ::boost::gregorian::date_input_facet ("%D %T %Z"));
+                        const GSL_OWNER (::boost::gregorian::date_input_facet) facet (new ::boost::gregorian::date_input_facet ("%D %T %Z"));
                         ss.imbue (::std::locale (::std::locale (), facet));
                         ss << ::boost::posix_time::from_time_t (t);
 #else // NO_BOOST_DATE_FACET

@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -20,11 +20,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "main/include.h"
+#include "main/context.h"
 
 #ifndef NOICU
-#include "main/context.h"
 #include "icu/wrapper.h"
 #include "icu/charset.h"
+#endif // NOICU
 
 #define DOT_UTF8 ".UTF-8"
 
@@ -58,4 +59,3 @@ public:
     bool compare (const ::std::string& lhs, const ::std::string& rhs) const;
     bool no_case_compare (const ::std::string& lhs, const ::std::string& rhs) const;
     vstr_t to_words (nitpick& nits, const ::std::string& s) const; };
-#endif // NOICU

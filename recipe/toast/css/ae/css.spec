@@ -1,4 +1,4 @@
--N 1 -f ../toast/css/ae/css.conf
+-Y 1 -f ../toast/css/ae/css.conf
 
 PASS ../toast/css/ae/index.html
 4 unexpected_doctype_content

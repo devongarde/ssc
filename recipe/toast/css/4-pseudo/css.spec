@@ -1,4 +1,4 @@
--N 1 -f ../toast/css/4-pseudo/css.conf
+-Y 1 -f ../toast/css/4-pseudo/css.conf
 
 PASS ../toast/css/4-pseudo/css-2.css
 0 html

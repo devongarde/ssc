@@ -1,4 +1,4 @@
--N 1 -f ../toast/other/ie/ie.conf
+-Y 1 -f ../toast/other/ie/ie.conf
 
 PASS ../toast/other/ie/css-good.css
 0 html

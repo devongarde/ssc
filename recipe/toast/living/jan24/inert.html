@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> inert </title> </head>
+ <body>
+
+<section aria-labelledby=s1>
+  <h3 id=s1>Population by City</h3>
+  <div class=container>
+    <div class=loading><p>Loading...</p></div>
+    <div inert>
+      <form>
+        <fieldset>
+          <legend>Date range</legend>
+          <div>
+            <label for=start>Start</label>
+            <input type=date id=start>
+          </div>
+          <div>
+            <label for=end>End</label>
+            <input type=date id=end>
+          </div>
+          <div>
+            <button>Apply</button>
+          </div>
+        </fieldset>
+      </form>
+      <table>
+        <caption>From 20-- to 20--</caption>
+        <thead>
+          <tr>
+            <th>City</th>
+            <th>State</th>
+            <th>20-- Population</th>
+            <th>20-- Population</th>
+            <th>Percentage change</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- ... -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+ </body>
+</html>

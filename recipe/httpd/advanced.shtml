@@ -1,0 +1,207 @@
+<!--#include virtual="/plumbing/html.inc" -->
+<!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="try ssc out" -->
+<title>
+<!--#echo encoding="none" var="title" -->
+</title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/blog-section.inc" -->
+<!--#include virtual="/plumbing/html-top-start.inc" -->
+<!--#include virtual="/plumbing/html-top-end.inc" -->
+<!--#include virtual="/plumbing/blog-schema.inc" -->
+<data class="u-url u-uid" value="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->">
+</data>
+
+<h1 itemprop="name" class="p-name">
+<!--#echo encoding="none" var="title" -->
+</h1>
+
+<p>
+Paste an HTML snippet, review the options, &amp; Submit.
+</p>
+
+<form method=get action="/cgi-bin/dance">
+
+<p>
+<label>
+<textarea cols=80 maxlength=65535 required rows=8 name=html.snippet placeholder="paste X/HTML here">
+</textarea>
+</label>
+
+<!--#comment PIVOT -->
+
+<br><br>
+
+<select name=css.version>
+<option></option>
+<option value=0>no &lt;STYLE&gt;</option>
+<option value=1>CSS 1</option>
+<option value=2.0>CSS 2.0</option>
+<option value=2.1>CSS 2.1</option>
+<option value=2.2>CSS 2.2 (draft)</option>
+<option value=2007>CSS 2007 Snapshot</option>
+<option value=2010>CSS 2010 Snapshot</option>
+<option value=2015>CSS 2015 core Snapshot</option>
+<option value=2015+>CSS 2015 wibbly Snapshot</option>
+<option value=2015++>CSS 2015 wibbly&ndash;wobbly Snapshot</option>
+<option value=2017>CSS 2017 core Snapshot</option>
+<option value=2017+>CSS 2017 wibbly Snapshot</option>
+<option value=2017++>CSS 2017 wibbly&ndash;wobbly Snapshot</option>
+<option value=2018>CSS 2018 core Snapshot</option>
+<option value=2018+>CSS 2018 wibbly Snapshot</option>
+<option value=2018++>CSS 2018 wibbly&ndash;wobbly Snapshot</option>
+<option value=2020>CSS 2020 core Snapshot</option>
+<option value=2020+>CSS 2020 wibbly Snapshot</option>
+<option value=2020++>CSS 2020 wibbly&ndash;wobbly Snapshot</option>
+<option value=2021>CSS 2021 core Snapshot</option>
+<option value=2021+>CSS 2021 wibbly Snapshot</option>
+<option value=2021++>CSS 2021 wibbly&ndash;wobbly Snapshot</option>
+<option value=2022>CSS 2022 core Snapshot</option>
+<option value=2022+>CSS 2022 wibbly Snapshot</option>
+<option value=2022++>CSS 2022 wibbly&ndash;wobbly Snapshot</option>
+<option value=2023>CSS 2023 core Snapshot</option>
+<option value=2023+>CSS 2023 wibbly Snapshot</option>
+<option value=2023++ selected>CSS 2023 wibbly&ndash;wobbly Snapshot</option>
+<option value=3>All CSS level 3 modules</option>
+<option value=4>All CSS levels 3 &amp; 4 modules</option>
+<option value=5>All CSS levels 3, 4 &amp; 5 modules</option>
+<option value=6>All CSS modules</option>
+</select>
+
+<br><br>
+
+<select name=html.version>
+<option></option>
+<option value=0.1>HTML Tags (draft)</option>
+<option value=1.0>HTML 1.0 (draft)</option>
+<option value=1.1>HTML + (draft)</option>
+<option value=2.0>HTML 2</option>
+<option value=3.0>HTML 3.0 (draft)</option>
+<option value=3.2>HTML 3.2</option>
+<option value=4.0>HTML 4.0</option>
+<option value=4.1>HTML 4.01</option>
+<option value=5.0>HTML 5.0</option>
+<option value=5.1>HTML 5.1</option>
+<option value=5.2>HTML 5.2</option>
+<option value=5.3>HTML 5.3 (draft)</option>
+<option value="2007/07/01">HTML 5 Living Standard July 2007</option>
+<option value="2008/01/01">HTML 5 Living Standard January 2008</option>
+<option value="2008/07/01">HTML 5 Living Standard July 2008</option>
+<option value="2009/01/01">HTML 5 Living Standard January 2009</option>
+<option value="2009/07/01">HTML 5 Living Standard July 2009</option>
+<option value="2010/01/01">HTML 5 Living Standard January 2010</option>
+<option value="2010/07/01">HTML 5 Living Standard July 2010</option>
+<option value="2011/01/01">HTML 5 Living Standard January 2011</option>
+<option value="2011/07/01">HTML 5 Living Standard July 2011</option>
+<option value="2012/01/01">HTML 5 Living Standard January 2012</option>
+<option value="2012/07/01">HTML 5 Living Standard July 2012</option>
+<option value="2013/01/01">HTML 5 Living Standard January 2013</option>
+<option value="2013/07/01">HTML 5 Living Standard July 2013</option>
+<option value="2014/01/01">HTML 5 Living Standard January 2014</option>
+<option value="2014/07/01">HTML 5 Living Standard July 2014</option>
+<option value="2015/01/01">HTML 5 Living Standard January 2015</option>
+<option value="2015/07/01">HTML 5 Living Standard July 2015</option>
+<option value="2016/01/01">HTML 5 Living Standard January 2016</option>
+<option value="2016/07/01">HTML 5 Living Standard July 2016</option>
+<option value="2017/01/01">HTML 5 Living Standard January 2017</option>
+<option value="2017/07/01">HTML 5 Living Standard July 2017</option>
+<option value="2018/01/01">HTML 5 Living Standard January 2018</option>
+<option value="2018/07/01">HTML 5 Living Standard July 2018</option>
+<option value="2019/01/01">HTML 5 Living Standard January 2019</option>
+<option value="2019/07/01">HTML 5 Living Standard July 2019</option>
+<option value="2020/01/01">HTML 5 Living Standard January 2020</option>
+<option value="2020/07/01">HTML 5 Living Standard July 2020</option>
+<option value="2021/01/01">HTML 5 Living Standard January 2021</option>
+<option value="2021/04/01">HTML 5 Living Standard April 2021</option>
+<option value="2021/07/01">HTML 5 Living Standard July 2021</option>
+<option value="2021/10/01">HTML 5 Living Standard October 2021</option>
+<option value="2022/01/01">HTML 5 Living Standard January 2022</option>
+<option value="2022/04/01">HTML 5 Living Standard April 2022</option>
+<option value="2022/07/01">HTML 5 Living Standard July 2022</option>
+<option value="2022/10/01">HTML 5 Living Standard October 2022</option>
+<option value="2023/01/01">HTML 5 Living Standard January 2023</option>
+<option value="2023/04/01">HTML 5 Living Standard April 2023</option>
+<option value="2023/07/01">HTML 5 Living Standard July 2023</option>
+<option value="2023/10/01" selected>HTML 5 Living Standard October 2023</option>
+<option value="2005/07/01">WebApps January 2005</option>
+<option value="2005/01/01">WebApps July 2005</option>
+<option value="2006/07/01">WebApps January 2006</option>
+<option value="2006/01/01">WebApps July 2006</option>
+<option value="2007/07/01">WebApps January 2007</option>
+<option value=4.2>XHTML 1.0</option>
+<option value=4.3>XHTML 1.1 core</option>
+<option value=4.4>XHTML 2.0</option>
+<option value="XHTML 5.0">XHTML 5.0</option>
+<option value="XHTML 5.1">XHTML 5.1</option>
+<option value="XHTML 5.2">XHTML 5.2</option>
+<option value="XHTML 5.3">XHTML 5.3 (draft)</option>
+</select>
+
+<br><br>
+
+<select name=mathml.version required>
+<option></option>
+<option value=0>no &lt;MATH&gt;</option>
+<option value=1>MathML 1</option>
+<option value=2>MathML 2</option>
+<option value=3 selected>MathML 3</option>
+<option value=4>MathML 4</option>
+<option value=4>MathML 4 core</option>
+</select>
+
+<br><br>
+
+<select name=svg.version required>
+<option></option>
+<option value=0>no &lt;SVG&gt;</option>
+<option value=1.0>SVG 1.0</option>
+<option value=1.1>SVG 1.1</option>
+<option value=1.2>SVG 1.2</option>
+<option value=1.2>SVG 1.2/full (draft)</option>
+<option value=2.0 selected>SVG 2.0</option>
+<option value=2.1>SVG 2.1 (draft)</option>
+</select>
+
+<br><br>
+
+<select name=general.verbose required>
+<option></option>
+<option value=1>Catastrophic Errors only</option>
+<option value=2>Abhorrent Errors &amp; worse</option>
+<option value=3>All Errors</option>
+<option value=4 selected>Errors &amp; Warnings only</option>
+<option value=5>Errors, Warnings, &amp; Information</option>
+<option value=6>Everything</option>
+</select>
+
+<br><br>
+
+<label><input type=checkbox name=spelling> Check spelling</label>
+<br>
+<label><input type=checkbox name=sloven> Slovenly HTML</label>
+<br>
+<label><input type=checkbox name=ie> Ignore old Internet Explorer ideosyncracies</label>
+<br>
+<label><input type=checkbox name=safari> Ignore old Safari ideosyncracies</label>
+<br>
+<label><input type=checkbox name=mf> Verify <a href="https://www.microformats.org/">Microformats</a></label>
+<br>
+<label><input type=checkbox name=microdata> Verify ontologies</label>
+
+<br><br>
+
+<button type=reset>
+Reset
+</button>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<button type=submit>
+Submit
+</button>
+</p>
+
+</form>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

@@ -1,4 +1,4 @@
--N 1 -f ../toast/microdata/basic/basic.conf
+-Y 1 -f ../toast/microdata/basic/basic.conf
 
 PASS ../toast/microdata/basic/961020.html
 20 missing_itemtype

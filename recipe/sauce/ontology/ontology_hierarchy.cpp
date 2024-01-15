@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -2834,6 +2834,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { 3, 4 }, { 0, 0 }, sch_creativework, sch_howtotip },
     { { 11, 0 }, { 0, 0 }, sch_creativework, sch_hypertoc },
     { { 11, 0 }, { 0, 0 }, sch_creativework, sch_hypertocentry },
+    { { 24, 0 }, { 0, 0 }, sch_creativework, sch_iptcdigitalsourceenumeration },
     { { 0, 10 }, { 1, 91 }, sch_creativework, sch_itemlist },
     { { 9, 0 }, { 0, 0 }, sch_creativework, sch_learningresource },
     { { 3, 5 }, { 0, 0 }, sch_creativework, sch_legislation },
@@ -3003,6 +3004,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { 9, 0 }, { 0, 0 }, sch_enumeration, sch_governmentbenefitstype },
     { { 5, 0 }, { 0, 0 }, sch_enumeration, sch_healthaspectenumeration },
     { { 1, 92 }, { 2, 1 }, sch_enumeration, sch_infectiousagentclass },
+    { { 24, 0 }, { 0, 0 }, sch_enumeration, sch_iptcdigitalsourceenumeration },
     { { 0, 10 }, { 0, 0 }, sch_enumeration, sch_itemavailability },
     { { 1, 92 }, { 0, 0 }, sch_enumeration, sch_itemlistordertype },
     { { 3, 5 }, { 8, 0 }, sch_enumeration, sch_legalforcestatus },
@@ -3277,6 +3279,20 @@ microdata_hierachy ontology_hierarchy [] =
     { { 3, 5 }, { 0, 0 }, sch_investmentordeposit, sch_brokerageaccount },
     { { 3, 1 }, { 0, 0 }, sch_investmentordeposit, sch_depositaccount },
     { { 3, 5 }, { 0, 0 }, sch_investmentordeposit, sch_investmentfund },
+    { { 24, 0 }, { 0, 0 }, sch_iptcdigitalsourceenumeration, sch_iptcalgorithmicmediadigitalsource },
+    { { 24, 0 }, { 0, 0 }, sch_iptcdigitalsourceenumeration, sch_iptcalgorithmicallyenhanceddigitalsource },
+    { { 24, 0 }, { 0, 0 }, sch_iptcdigitalsourceenumeration, sch_iptccompositecapturedigitalsource },
+    { { 24, 0 }, { 0, 0 }, sch_iptcdigitalsourceenumeration, sch_iptccompositesyntheticdigitalsource },
+    { { 24, 0 }, { 0, 0 }, sch_iptcdigitalsourceenumeration, sch_iptccompositewithtrainedalgorithmicmediadigitalsource },
+    { { 24, 0 }, { 0, 0 }, sch_iptcdigitalsourceenumeration, sch_iptcdatadrivenmediadigitalsource },
+    { { 24, 0 }, { 0, 0 }, sch_iptcdigitalsourceenumeration, sch_iptcdigitalartdigitalsource },
+    { { 24, 0 }, { 0, 0 }, sch_iptcdigitalsourceenumeration, sch_iptcdigitalcapturedigitalsource },
+    { { 24, 0 }, { 0, 0 }, sch_iptcdigitalsourceenumeration, sch_iptcminorhumaneditsdigitalsource },
+    { { 24, 0 }, { 0, 0 }, sch_iptcdigitalsourceenumeration, sch_iptcnegativefilmdigitalsource },
+    { { 24, 0 }, { 0, 0 }, sch_iptcdigitalsourceenumeration, sch_iptcpositivefilmdigitalsource },
+    { { 24, 0 }, { 0, 0 }, sch_iptcdigitalsourceenumeration, sch_iptcprintdigitalsource },
+    { { 24, 0 }, { 0, 0 }, sch_iptcdigitalsourceenumeration, sch_iptctrainedalgorithmicmediadigitalsource },
+    { { 24, 0 }, { 0, 0 }, sch_iptcdigitalsourceenumeration, sch_iptcvirtualrecordingdigitalsource },
     { { 12, 0 }, { 0, 0 }, sch_itemavailability, sch_backorder },
     { { 0, 10 }, { 0, 0 }, sch_itemavailability, sch_discontinued },
     { { 0, 10 }, { 0, 0 }, sch_itemavailability, sch_instock },
@@ -3733,6 +3749,8 @@ microdata_hierachy ontology_hierarchy [] =
     { { 0, 95 }, { 0, 0 }, sch_physicalexam, sch_nose },
     { { 0, 95 }, { 0, 0 }, sch_physicalexam, sch_skin },
     { { 0, 95 }, { 0, 0 }, sch_physicalexam, sch_throat },
+    { { 24, 0 }, { 0, 0 }, sch_physician, sch_individualphysician },
+    { { 24, 0 }, { 0, 0 }, sch_physician, sch_physiciansoffice },
     { { 3, 1 }, { 0, 0 }, sch_place, sch_accommodation },
     { { 0, 10 }, { 0, 0 }, sch_place, sch_administrativearea },
     { { 0, 10 }, { 0, 0 }, sch_place, sch_civicstructure },

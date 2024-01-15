@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -845,6 +845,8 @@ const nitname nitnames [] =
     { nit_excluded, "excluded" },
     { nit_ftp_protocol, "ftp_protocol" },
     { nit_tld, "tld" },
+    { nit_no_set, "no_set" },
+    { nit_bad_address, "bad_address" },
 
     { nit_incompatible, "incompatible" },
 
@@ -859,7 +861,7 @@ timmap quick_tim;
 void nits_init ()
 {   if (! quick_nit.empty ()) return;
     ::std::size_t i;
-    ::std::vector < bool > bitten;
+    faux_vb_t bitten;
     bitten.resize (nit_off);
     for (i = 0; GSL_AT (nitnames, i).nit_ != nit_off; ++i)
     {   quick_nit.insert (::nitmap::value_type (GSL_AT (nitnames, i).sz_, GSL_AT (nitnames, i).nit_));

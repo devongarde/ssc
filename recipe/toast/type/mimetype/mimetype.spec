@@ -1,4 +1,4 @@
--N 1 -f ../toast/type/mimetype/mimetype.conf
+-Y 1 -f ../toast/type/mimetype/mimetype.conf
 
 PASS ../toast/type/mimetype/index.html
 2 naughty_lang

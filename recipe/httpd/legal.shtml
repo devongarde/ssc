@@ -1,0 +1,183 @@
+<!--#include virtual="/plumbing/html.inc" -->
+<!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="copyright &amp; licence" -->
+<title>
+<!--#echo encoding="none" var="title" -->
+</title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/blog-section.inc" -->
+<!--#include virtual="/plumbing/html-top-start.inc" -->
+<!--#include virtual="/plumbing/html-top-end.inc" -->
+<!--#include virtual="/plumbing/blog-schema.inc" -->
+<data class="u-url u-uid" value="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->">
+</data>
+
+<h1 itemprop="name" class="p-name">
+<!--#echo encoding="none" var="title" -->
+</h1>
+
+<h2>
+<a href="<!--#echo encoding="none" var="slashaddress" -->"><!--#echo encoding="none" var="short" --></a>
+</h2>
+
+<p>
+<!--#echo encoding="none" var="short" -->, <!--#echo encoding="none" var="name" -->,
+<a href="<!--#echo encoding="none" var="slashaddress" -->"><!--#echo encoding="none" var="slashaddress" --></a>
+copyright &copy; 2020&ndash;<!--#echo encoding="none" var="year" -->
+<a href="<!--#echo encoding="none" var="aesite" -->"><!--#echo encoding="none" var="owner" --></a>
+</p>
+
+<p>
+Any dispute shall be resolved by a court of the Grand Duchy of Luxembourg in accordance with
+<a href="https://uk.practicallaw.thomsonreuters.com/w-018-2382">the law of the Grand Duchy of Luxembourg</a>.
+</p>
+
+<h2><a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GPL</a></h2>
+
+<p>
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either
+<a href="https://www.gnu.org/licenses/gpl-3.0.fr.html" hreflang="fr">version 3 of the License</a>, or
+any later version.
+</p>
+
+<p>
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+<a href="https://www.gnu.org/licenses/gpl-3.0.fr.html" hreflang="fr">GNU General Public License</a> for more details.
+</p>
+
+<p>
+You should have received a copy of the <a href="https://www.gnu.org/licenses/gpl-3.0.fr.html" hreflang="fr">GNU General Public
+License</a> along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+</p>
+
+<h2><a href="https://whatwg.org/">W3</a></h2>
+
+<p>
+Some test files come from <a href="https://whatwg.org/">w3.org</a> (some directly, in W3 documents, etc.), and are licensed as follows:
+</p>
+
+<h3>License</h3>
+
+<p>
+By obtaining and/or copying this work, you (the licensee) agree that you have read, understood, and will comply with the following terms and conditions.
+</p>
+
+<p>
+Permission to copy, modify, and distribute this work, with or without modification, for any purpose and without fee or royalty is hereby granted, provided that you include the following on ALL copies of the work or portions thereof, including modifications:
+</p>
+
+<blockquote>
+    The full text of this NOTICE in a location viewable to users of the redistributed or derivative work.
+    Any pre&ndash;existing intellectual property disclaimers, notices, or terms and conditions. If none exist, the W3C Software and Document Short Notice should be included.
+    Notice of any changes or modifications, through a copyright statement on the new code or document such as
+    &ldquo;This software or document includes material copied from or derived from [title and URI of the W3C document]. Copyright &copy; [YEAR] W3CÆ (MIT, ERCIM, Keio, Beihang).&rdquo;
+</blockquote>
+
+<h3>Disclaimers</h3>
+
+<p>
+THIS WORK IS PROVIDED &ldquo;AS IS,&rdquo; AND COPYRIGHT HOLDERS MAKE NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY PARTICULAR PURPOSE OR THAT THE USE OF THE SOFTWARE OR DOCUMENT WILL NOT INFRINGE ANY THIRD PARTY PATENTS, COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS.
+</p>
+
+<p>
+COPYRIGHT HOLDERS WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF ANY USE OF THE SOFTWARE OR DOCUMENT.
+</p>
+
+<p>
+The name and trademarks of copyright holders may NOT be used in advertising or publicity pertaining to the work without specific, written prior permission. Title to copyright in this work will at all times remain with copyright holders.
+Notes
+</p>
+
+<p>
+This version: <a href="http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document">http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document</a>
+</p>
+
+<p>
+Previous version: <a href="http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231">http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231</a>
+</p>
+
+<p>
+This version makes clear that the license is applicable to both software and text, by changing the name and substituting &ldquo;work&rdquo; for instances of &ldquo;software and its documentation.&rdquo; It moves &ldquo;notice of changes or modifications to the files&rdquo; to the copyright notice, to make clear that the license is compatible with other liberal licenses.
+</p>
+
+<h2><a href="https://whatwg.org/">WhatWG</a></h2>
+
+<p>
+Some test files come from <a href="https://whatwg.org/">whatwg.org</a> (some directly, in WhatWG documents, etc.), and are licensed under a Creative Commons Attribution 4.0 International License. See <a href="https://whatwg.org/">https://whatwg.org/</a> for details.
+</p>
+
+<h2><a href="https://boost.org">Boost Software License</a> - Version 1.0 - August 17th, 2003</h2>
+
+<p>
+Permission is hereby granted, free of charge, to any person or organization
+obtaining a copy of the software and accompanying documentation covered by
+this license (the &ldquo;Software&rdquo;) to use, reproduce, display, distribute,
+execute, and transmit the Software, and to prepare derivative works of the
+Software, and to permit third-parties to whom the Software is furnished to
+do so, all subject to the following:
+</p>
+
+<p>
+The copyright notices in the Software and this entire statement, including
+the above license grant, this restriction and the following disclaimer,
+must be included in all copies of the Software, in whole or in part, and
+all derivative works of the Software, unless such copies or derivative
+works are solely in the form of machine-executable object code generated by
+a source language processor.
+</p>
+
+<p>
+THE SOFTWARE IS PROVIDED &ldquo;AS IS&rdquo;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. IN NO EVENT
+SHALL THE COPYRIGHT HOLDERS OR ANYONE DISTRIBUTING THE SOFTWARE BE LIABLE
+FOR ANY DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
+</p>
+
+<h2><a href="https://corruptpress.com">corruptpress.com</a></h2>
+
+<p>
+Some test files are derived from pages at <a href="https://corruptpress.com">corruptpress.com</a>.
+They are licensed under a Creative Commons Attribution 4.0 International License.
+Browse <a href="https://corruptpress.com">https://corruptpress.com/</a> for details.
+</p>
+
+<h2><a href="<!--#echo encoding="none" var="aesite" -->"><!--#echo encoding="none" var="aename" --></a></h2>
+
+<p>
+Some test files are derived from pages at <a href="<!--#echo encoding="none" var="aesite" -->"><!--#echo encoding="none" var="aename" --></a>.
+They are licensed under a Creative Commons Attribution 4.0 International License. Browse
+<a href="<!--#echo encoding="none" var="aesite" -->and/and/legal.shtml"><!--#echo encoding="none" var="aename" --></a> for details.
+</p>
+
+<h2>REMINDER</h2>
+
+<p>
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  <a href="<!--#echo encoding="none" var="legal" -->">See the
+GNU General Public License for more details</a>.
+</p>
+
+<footer class="smaller">
+<P>
+<a href="<!--#echo encoding="none" var="aesite" -->"><!--#echo encoding="none" var="owner" --></a> is registered as a sole trader in Luxembourg
+<BR>
+BP&nbsp;10133642/0 &nbsp;
+RCS&nbsp;A43134 &nbsp;
+VAT&nbsp;LU33409780
+<BR><BR>
+&copy; 2020&ndash;<!--#echo encoding="none" var="year" --> <A href="<!--#echo encoding="none" var="aesite" -->"><!--#echo encoding="none" var="uowner" --></A>;
+<A href="mailto:<!--#echo encoding="none" var="email" -->">email</A> and <A href="<!--#echo encoding="none" var="aesite" -->and/and/contact.shtml">contact</A>
+</P>
+</footer>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

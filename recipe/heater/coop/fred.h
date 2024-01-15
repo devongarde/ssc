@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -26,38 +26,40 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 class fred_t
 {   mid_t tls_; // must not be modified once threading starts
     vtls_t vtls_;
-    ::std::atomic_int count_;
-    ::std::atomic_int inactive_;
+    ::std::atomic_uint count_;
+    ::std::atomic_uint inactive_;
     ::std::atomic_bool started_;
     ::std::atomic_bool abandon_;
     vth_t vt_;
-    int tls_int () const;
+    ::std::size_t tls_int () const;
     void fred_minion (nitpick* ticks);
 public:
     fred_t () : count_ (0), inactive_ (0), started_ (false), abandon_ (false) { }
     NO_COPY_CONSTRUCTORS (fred_t);
     ~fred_t () = default;
     bool init (nitpick& nits);
+    bool reinit (nitpick& nits);
     void await ();
     void done ();
     bool inited () const noexcept { return ! tls_.empty (); }
     bool abandoned () const noexcept { return abandon_; }
     bool started () const noexcept { return started_; }
     void abandon ();
-    void active () noexcept
+    void activate () noexcept
     {   try
-        {   inactive_ -= 1;
-            PRESUME (inactive_ >= 0, __FILE__ , __LINE__); }
+        {   PRESUME (inactive_ > 0, __FILE__ , __LINE__);
+            inactive_ -= 1; }
         catch (...) { /* abort? */ } }
-    void inactive () noexcept
+    void inactivate () noexcept
     {   try
         {   inactive_ += 1; }
         catch (...) { /* abort? */ } }
     bool activity () const noexcept
     {   return (count_ > 0) && (inactive_ < count_); }
+    bool relaxed () const noexcept;
     fred_tls& tls ();
     const fred_tls& tls () const;
-    void insert_tls (const int n, const ::std::thread::id& fid);
+    void insert_tls (const ::std::size_t n, const ::std::thread::id& fid);
     bool dqe ();
     const mid_t& mid () const noexcept { return tls_; }
     e_fred get_fred () const { return tls ().fred_; }
@@ -69,21 +71,21 @@ public:
     void set_dear (const bool b) { if (inited ()) tls ().dear_ = b; }
     bool get_eleanor () const { return inited () && tls ().eleanor_; }
     void set_eleanor (const bool b) { if (inited ()) tls ().eleanor_ = b; }
-    int count () const noexcept { return count_; }
+    unsigned count () const noexcept { return count_; }
     void one_more () noexcept { ++count_; }
     void one_less () noexcept { if (count_ > 0) --count_; }
     void yield () noexcept
     {   if (count_ > 0) ::std::this_thread::yield (); }
     static void onexit ();
-    static int suggested ();
-    static int no_more_than (); };
+    static ::std::size_t suggested ();
+    static ::std::size_t no_more_than (); };
 
 extern fred_t fred;
 
 struct faffing
-{   faffing () { fred.inactive (); }
+{   faffing () { fred.inactivate (); }
     NO_COPY_CONSTRUCTORS (faffing);
-    ~faffing () { fred.active (); } };
+    ~faffing () { fred.activate (); } };
 
 struct counting
 {   counting () { fred.one_more (); }

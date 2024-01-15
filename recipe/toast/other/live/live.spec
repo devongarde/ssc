@@ -1,4 +1,4 @@
--N 1 -f ../toast/other/live/live.conf
+-Y 1 -f ../toast/other/live/live.conf
 
 PASS ../toast/other/live/plumbing/songlight.css
 0 html

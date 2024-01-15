@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -28,7 +28,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 css_global global_css;
 
 css_global::css_global ()
-{   mdst_.clear (); } // it looks like some stuff was optimised away that shouldn't have been, so ...
+{   reset (); } // it looks like some stuff was optimised away that shouldn't have been, so ...
+
+void css_global::reset ()
+{   mdst_.clear (); }
 
 dst_ptr css_global::get_or_preinsert (const ::std::string& s)
 {   dst_ptr dsp = get (s);

@@ -33,6 +33,13 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "httpd", "..\httpd\", "{D634
 		SlnRelativePath = "..\httpd\"
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "vcpkg", "vcpkg", "{8B4AB3E6-92A0-4DDD-95D8-CC7D00B9DA41}"
+	ProjectSection(SolutionItems) = preProject
+		cpp.hint = cpp.hint
+		..\..\vcpkg-configuration.json = ..\..\vcpkg-configuration.json
+		..\..\vcpkg.json = ..\..\vcpkg.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

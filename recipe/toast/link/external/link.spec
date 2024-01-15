@@ -1,4 +1,4 @@
--N 1 -f ../toast/link/external/link.conf
+-Y 1 -f ../toast/link/external/link.conf
 
 PASS ../toast/link/external/index.html
 2 naughty_lang

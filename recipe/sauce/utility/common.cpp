@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -43,7 +43,7 @@ bool test_file (nitpick& nits, const ::boost::filesystem::path& name, uintmax_t&
     try
     {   path p (name);
         if (! exists (p)) nits.pick (nit_cannot_open, es_catastrophic, ec_io, PROG " cannot access ", name.string ());
-        else if (! is_regular_file (p)) nits.pick (nit_cannot_open, es_catastrophic, ec_io, name.string (), " is not a normal file");
+        else if (! is_normal_file (p)) nits.pick (nit_cannot_open, es_catastrophic, ec_io, name.string (), " is not a normal file");
         else
         {   mz = file_size (p);
             if ((context.max_file_size () == 0) || (mz <= context.max_file_size ())) return true;

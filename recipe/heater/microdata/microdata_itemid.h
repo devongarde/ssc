@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 class element;
 
-void init_itemid ();
+void reset_itemid ();
 ::std::string report_itemids ();
 bool empty_itemid ();
 bool invalid_itemid (nitpick& nits, const html_version& v, const ::std::string& id, const element* const e);

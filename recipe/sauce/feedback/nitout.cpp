@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -709,7 +709,7 @@ vstr_t sections;
     "</P>\n" \
     "\n"
 
-void init_macro ()
+void reset_macro ()
 {   macro = macro_uptr (new macro_t);
     VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
     macro -> init (); }
@@ -778,11 +778,11 @@ void macro_t::set (const e_nit_macro m, ::std::string&& s)
         default : return s; } }
 
 bool macro_t::is_template_loaded ()
-{   PRESUME (! fred.inited (), __FILE__, __LINE__);
+{   PRESUME (fred.relaxed (), __FILE__, __LINE__);
     return ! sections.empty (); }
 
 void macro_t::init ()
-{   PRESUME (! fred.inited (), __FILE__, __LINE__);
+{   PRESUME (fred.relaxed (), __FILE__, __LINE__);
     mmac_.emplace (nm_prog_abbrev, PROG);
     mmac_.emplace (nm_copy_addr, COPYRIGHT_WEBADDR);
     mmac_.emplace (nm_copy_html, COPYRIGHT_HTML);
@@ -844,7 +844,7 @@ bool macro_t::load_template_int (nitpick& nits, const html_version& v, const ::s
     return res; }
 
 bool macro_t::load_template (nitpick& nits, const html_version& v)
-{   PRESUME (! fred.inited (), __FILE__, __LINE__);
+{   PRESUME (fred.relaxed (), __FILE__, __LINE__);
     const ::std::string& format = context.nit_format ();
     ::std::string config;
     bool res = false;

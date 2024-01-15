@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -54,9 +54,9 @@ vstr_t nix_path_to_local (const vstr_t& v)
 	    {	res = ::boost::filesystem::last_write_time (name); }
 	    catch (...)
 #else // FS_THROWS
-    {   ::boost::system::error_code ec;
-        res = ::boost::filesystem::last_write_time (name, ec);
-        if (ec.failed ())
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::last_write_time (name, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
         {   res = 0; } }
     return res; }
@@ -71,9 +71,9 @@ uintmax_t get_file_size (const ::boost::filesystem::path& name)
 	    {	res = ::boost::filesystem::file_size (name); }
 	    catch (...)
 #else // FS_THROWS
-    {   ::boost::system::error_code ec;
-        res = ::boost::filesystem::file_size (name, ec);
-        if (ec.failed ())
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::file_size (name, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
         {   res = 0; } }
     return res; }
@@ -85,23 +85,23 @@ bool is_folder (const ::boost::filesystem::path& name)
 	    {	res = ::boost::filesystem::is_directory (name); }
 	    catch (...)
 #else // FS_THROWS
-    {   ::boost::system::error_code ec;
-        res = ::boost::filesystem::is_directory (name, ec);
-        if (ec.failed ())
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::is_directory (name, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
         {   return false; } }
     return res; }
 
-bool is_file (const ::boost::filesystem::path& name)
+bool is_normal_file (const ::boost::filesystem::path& name)
 {   bool res = false;
 #ifdef FS_THROWS
     {   try
 	    {	res = ::boost::filesystem::is_regular_file (name); }
 	    catch (...)
 #else // FS_THROWS
-    {   ::boost::system::error_code ec;
-        res = ::boost::filesystem::is_regular_file (name, ec);
-        if (ec.failed ())
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::is_regular_file (name, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
         {   return false; } }
     return res; }
@@ -113,9 +113,9 @@ bool file_exists (const ::boost::filesystem::path& name)
 	    {	res = ::boost::filesystem::exists (name); }
 	    catch (...)
 #else // FS_THROWS
-    {   ::boost::system::error_code ec;
-        res = ::boost::filesystem::exists (name, ec);
-        if (ec.failed ())
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::exists (name, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
         {   return false; } }
     return res; }
@@ -127,9 +127,9 @@ bool file_exists (const ::boost::filesystem::path& name)
 	    {	res = ::boost::filesystem::status (name); }
 	    catch (...)
 #else // FS_THROWS
-    {   ::boost::system::error_code ec;
-        res = ::boost::filesystem::status (name, ec);
-        if (ec.failed ())
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::status (name, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
         {   return ::boost::filesystem::file_status (); } }
     return res; }
@@ -145,9 +145,9 @@ bool file_permissions (const ::boost::filesystem::path& name, ::boost::filesyste
 	    {	::boost::filesystem::permissions (name, p); }
 	    catch (...)
 #else // FS_THROWS
-    {   ::boost::system::error_code ec;
-        ::boost::filesystem::permissions (name, p, ec);
-        if (ec.failed ())
+    {   ::boost::system::error_code jec;
+        ::boost::filesystem::permissions (name, p, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
         {   return false; } }
     return true; }
@@ -160,9 +160,9 @@ bool file_permissions (const ::boost::filesystem::path& name, ::boost::filesyste
 	    {	res = ::boost::filesystem::absolute (name); }
 	    catch (...)
 #else // FS_THROWS
-    {   ::boost::system::error_code ec;
-        res = ::boost::filesystem::absolute (name, ec);
-        if (ec.failed ())
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::absolute (name, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
         {   return name; } }
     return res; }
@@ -174,9 +174,9 @@ bool file_permissions (const ::boost::filesystem::path& name, ::boost::filesyste
 	    {	res = ::boost::filesystem::canonical (name); }
 	    catch (...)
 #else // FS_THROWS
-    {   ::boost::system::error_code ec;
-        res = ::boost::filesystem::canonical (name, ec);
-        if (ec.failed ())
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::canonical (name, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
         {   return name; } }
     return res; }
@@ -191,9 +191,9 @@ bool make_directories (const ::boost::filesystem::path& name)
 	    {	::boost::filesystem::create_directories (name); }
 	    catch (...)
 #else // FS_THROWS
-    {   ::boost::system::error_code ec;
-        ::boost::filesystem::create_directories (name, ec);
-        if (ec.failed ())
+    {   ::boost::system::error_code jec;
+        ::boost::filesystem::create_directories (name, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
         {   return false; } }
     return true; }
@@ -208,9 +208,9 @@ bool make_directory (const ::boost::filesystem::path& name)
 	    {	::boost::filesystem::create_directory (name); }
 	    catch (...)
 #else // FS_THROWS
-    {   ::boost::system::error_code ec;
-        ::boost::filesystem::create_directory (name, ec);
-        if (ec.failed ())
+    {   ::boost::system::error_code jec;
+        ::boost::filesystem::create_directory (name, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
         {   return false; } }
     return true; }
@@ -225,9 +225,9 @@ bool delete_file (const ::boost::filesystem::path& name)
 	    {	res = ::boost::filesystem::remove (name); }
 	    catch (...)
 #else // FS_THROWS
-    {   ::boost::system::error_code ec;
-        res = ::boost::filesystem::remove (name, ec);
-        if (ec.failed ())
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::remove (name, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
         {   return false; } }
     return res; }
@@ -242,9 +242,9 @@ bool rename_file (const ::boost::filesystem::path& from, const ::boost::filesyst
 	    {	::boost::filesystem::rename (from, to); }
 	    catch (...)
 #else // FS_THROWS
-    {   ::boost::system::error_code ec;
-        ::boost::filesystem::rename (from, to, ec);
-        if (ec.failed ())
+    {   ::boost::system::error_code jec;
+        ::boost::filesystem::rename (from, to, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
         {   return false; } }
     return true; }
@@ -259,9 +259,9 @@ bool duplicate_file (const ::boost::filesystem::path& from, const ::boost::files
 	    {	::boost::filesystem::copy_file (from, to, opt); }
 	    catch (...)
 #else // FS_THROWS
-    {   ::boost::system::error_code ec;
-        ::boost::filesystem::copy_file (from, to, opt, ec);
-        if (ec.failed ())
+    {   ::boost::system::error_code jec;
+        ::boost::filesystem::copy_file (from, to, opt, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
         {   return false; } }
     return true; }
@@ -273,9 +273,9 @@ bool duplicate_file (const ::boost::filesystem::path& from, const ::boost::files
 	    {	res = ::boost::filesystem::temp_directory_path (); }
 	    catch (...)
 #else // FS_THROWS
-    {   ::boost::system::error_code ec;
-        res = ::boost::filesystem::temp_directory_path (ec);
-        if (ec.failed ())
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::temp_directory_path (jec);
+        if (jec.failed ())
 #endif // FS_THROWS
         {   return ::boost::filesystem::path (); } }
     return res; }
@@ -288,9 +288,9 @@ bool is_file_linked (const ::boost::filesystem::path& name)
 	    {	res = ::boost::filesystem::is_symlink (name); }
 	    catch (...)
 #else // FS_THROWS
-    {   ::boost::system::error_code ec;
-        res = ::boost::filesystem::is_symlink (name, ec);
-        if (ec.failed ())
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::is_symlink (name, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
         {   return false; } }
     return res; }
@@ -302,9 +302,9 @@ bool is_file_linked (const ::boost::filesystem::path& name)
 	    {	res = ::boost::filesystem::read_symlink (name); }
 	    catch (...)
 #else // FS_THROWS
-    {   ::boost::system::error_code ec;
-        res = ::boost::filesystem::read_symlink (name, ec);
-        if (ec.failed ())
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::read_symlink (name, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
         {   return name; } }
     return res; }
@@ -316,9 +316,9 @@ bool make_hard_link (const ::boost::filesystem::path& name, const ::boost::files
 	    {	::boost::filesystem::create_hard_link (name, link); }
 	    catch (...)
 #else // FS_THROWS
-    {   ::boost::system::error_code ec;
-        ::boost::filesystem::create_hard_link (name, link, ec);
-        if (ec.failed ())
+    {   ::boost::system::error_code jec;
+        ::boost::filesystem::create_hard_link (name, link, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
         {   return false; } }
     return true; }
@@ -330,9 +330,9 @@ bool make_link (const ::boost::filesystem::path& name, const ::boost::filesystem
 	    {	::boost::filesystem::create_symlink (name, link); }
 	    catch (...)
 #else // FS_THROWS
-    {   ::boost::system::error_code ec;
-        ::boost::filesystem::create_symlink (name, link, ec);
-        if (ec.failed ())
+    {   ::boost::system::error_code jec;
+        ::boost::filesystem::create_symlink (name, link, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
         {   return false; } }
     return true; }

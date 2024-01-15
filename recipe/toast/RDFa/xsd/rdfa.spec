@@ -1,4 +1,4 @@
--N 1 -f ../toast/RDFa/xsd/rdfa.conf
+-Y 1 -f ../toast/RDFa/xsd/rdfa.conf
 
 PASS ../toast/RDFa/xsd/xsd.html
 13 not_ontology_property bad_property not_ontology_property bad_property bad_property

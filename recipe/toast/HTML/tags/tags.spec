@@ -1,4 +1,4 @@
--N 1 -f ../toast/HTML/tags/tags.conf
+-Y 1 -f ../toast/HTML/tags/tags.conf
 
 PASS ../toast/HTML/tags/index.html
 1 presume_html_tags

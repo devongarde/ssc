@@ -1,4 +1,4 @@
--N 1 -f ../toast/XHTML/1.1/xhtml11.conf
+-Y 1 -f ../toast/XHTML/1.1/xhtml11.conf
 
 PASS ../toast/XHTML/1.1/index.xhtml
 1 xhtml_1_0

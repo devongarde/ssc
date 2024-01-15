@@ -1,4 +1,4 @@
--N 1 -f ../toast/shadow/pages/pages.conf
+-Y 1 -f ../toast/shadow/pages/pages.conf
 
 PASS ../toast/shadow/pages/html-bad.html
 0 charset_mismatch charset_used charset_invalid

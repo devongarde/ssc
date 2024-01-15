@@ -1,4 +1,4 @@
--N 1 -f ../toast/RDFa/imported/rdfa.conf
+-Y 1 -f ../toast/RDFa/imported/rdfa.conf
 
 PASS ../toast/RDFa/imported/dokieli.html
 6 css_version

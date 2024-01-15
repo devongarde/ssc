@@ -1,7 +1,7 @@
 BUILD NOTES
 static site checker
 https://ssc.lu/
-(c) 2020-2023 Dylan Harris
+(c) 2020-2024 Dylan Harris
 
 
 Introduction
@@ -20,14 +20,15 @@ Libraries
 
 Common dependencies
 -------------------
-ssc needs boost version 1.75 or better (https://boost.org), a recent
-copy of the ICU libraries (https://icu-project.org/), Microsoft's GSL
-library (https://github.com/Microsoft/GSL) (or define NO_GSL), and a
-recent version of libcurl (https://curl.se/)*. Usually, an Operating
-System's package manager has appropriate versions ready to install.
+The Visual Studio 2022 build uses vcpkg, so all dependencies should be
+automagically installed.
 
-*libcurl requires a thread-safe underlying SSL library: see
-https://curl.se/libcurl/c/threadsafe.html
+Otherwise, ssc needs boost version 1.75 or better (https://boost.org),
+a recent copy of the ICU libraries (https://icu-project.org/),
+Microsoft's GSL library (https://github.com/Microsoft/GSL) (or define
+NO_GSL), and a recent version of libcurl (https://curl.se/)* (or define
+NOCURL). Usually, an Operating System's package manager has appropriate
+versions ready to install.
 
 You may need to set these environment variables:
 - BOOST: if you're not using your operating system's packaged flavour
@@ -35,6 +36,9 @@ You may need to set these environment variables:
 - ICU_ROOT: if you're not using your operating system's packaged ICU,
   set ICU_ROOT to your ICU source root directory;
 - GSL: set it to your GSL root directory.
+
+*libcurl requires a thread-safe underlying SSL library: see
+https://curl.se/libcurl/c/threadsafe.html. 
 
 hunspell
 --------
@@ -57,9 +61,6 @@ To build from Visual Studio, navigate to recipe/tea, open the
 appropriate .sln file, then build. Only Visual Studios 2017, 2019 and
 2022 have been built & tested, for amd64 (x64) and arm64 (M2), under
 Windows 10 & 11.
-
-Note the included solutions presume Microsoft's VCPKG manager. There
-are alternatives.
 
 On low memory machines, disable the /MP switch.
 
@@ -107,6 +108,8 @@ The current version of ssc requires the current version of an operating
 system. Older operating systems require older versions of ssc. Not all
 features work on all systems.
 
+I've sometimes found it necessary to use cmake's
+-DCMAKE_CXX_COMPILER=... switch.
 
 Centos 9
 --------
@@ -118,6 +121,12 @@ OpenBSD
 -------
 You may need to increase significantly the available memory setting
 for your build account in login.conf.
+
+Macos
+-----
+Certain versions of macos clang produce buggy code, whether or not
+optimisations are applied. Use an alternative compiler if you want
+a stable executable.
 
 
 Testing
@@ -158,8 +167,8 @@ In Windows, remember to add its root directory to your local path.
 
 Curl
 ----
-This is in almost every standard unix flavour repository, but not so
-easy for Windows. I suggest the following:
+This is in almost every unix repository, but not so easy for Windows. I
+suggest the following:
 
 1  Install the Microsoft repository vcpkg (https://vcpkg.io)
 2  Run up the visual studio 64bit native command prompt

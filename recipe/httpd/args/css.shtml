@@ -1,0 +1,316 @@
+<!--#include virtual="/plumbing/html.inc" -->
+<!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="CSS arguments" -->
+<title>
+<!--#echo encoding="none" var="title" -->
+</title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/blog-section.inc" -->
+<!--#include virtual="/plumbing/html-top-start.inc" -->
+<!--#include virtual="/plumbing/argle.inc" -->
+<!--#include virtual="/plumbing/html-top-end.inc" -->
+<!--#include virtual="/plumbing/blog-schema.inc" -->
+<data class="u-url u-uid" value="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->">
+</data>
+
+<h1 itemprop="name" class="p-name">
+<!--#echo encoding="none" var="title" -->
+</h1>
+
+<h2>introduction</h2>
+
+<p>
+The CSS switches precisely control CSS interpretation. If you are
+checking a site with a CSS version contemporary to the given HTML
+version (see <a href="html.shtml"><kbd>html.version</kbd></a>), you can ignore them.
+Otherwise, you probably only need <kbd>css.version</kbd>.
+</p>
+
+<h2>css.version</h2>
+
+<p>
+<kbd>css.version</kbd> accepts the following values:
+</p>
+
+<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-zpf-k13.jpg" title="made with studio artist 5.5">
+
+<table>
+<tr><td>1</td><td>CSS 1.0</td></tr>
+<tr><td>2.0</td><td>CSS 2.0</td></tr>
+<tr><td>2.1</td><td>CSS 2.1</td></tr>
+<tr><td>2.2</td><td>CSS 2.2 (Feb 2022 draft)</td></tr>
+<tr><td>3</td><td>all CSS level 3</td></tr>
+<tr><td>4</td><td>all CSS level 4</td></tr>
+<tr><td>5</td><td>all CSS level 5</td></tr>
+<tr><td>6</td><td>all CSS level 6</td></tr>
+<tr><td>2007</td><td>2007 snapshot</td></tr>
+<tr><td>2010</td><td>2010 snapshot</td></tr>
+<tr><td>2015</td><td>2015 base snapshot</td></tr>
+<tr><td>2015+</td><td>2015 wibbly snapshot</td></tr>
+<tr><td>2015++</td><td>2015 wibbly&ndash;wobbly snapshot</td></tr>
+<tr><td>2017</td><td>2017 base snapshot</td></tr>
+<tr><td>2017+</td><td>2017 wibbly snapshot</td></tr>
+<tr><td>2017++</td><td>2017 wibbly&ndash;wobbly snapshot</td></tr>
+<tr><td>2018</td><td>2018 base snapshot</td></tr>
+<tr><td>2018+</td><td>2018 wibbly snapshot</td></tr>
+<tr><td>2018++</td><td>2018 wibbly&ndash;wobbly snapshot</td></tr>
+<tr><td>2020</td><td>2020 base snapshot</td></tr>
+<tr><td>2020+</td><td>2020 wibbly snapshot</td></tr>
+<tr><td>2020++</td><td>2020 wibbly&ndash;wobbly snapshot</td></tr>
+<tr><td>2021</td><td>2021 base snapshot</td></tr>
+<tr><td>2021+</td><td>2021 wibbly snapshot</td></tr>
+<tr><td>2021++</td><td>2021 wibbly&ndash;wobbly snapshot</td></tr>
+<tr><td>2022</td><td>2022 base snapshot</td></tr>
+<tr><td>2022+</td><td>2022 wibbly snapshot</td></tr>
+<tr><td>2022++</td><td>2022 wibbly&ndash;wobbly snapshot</td></tr>
+<tr><td>2023</td><td>2023 base snapshot</td></tr>
+<tr><td>2023+</td><td>2023 wibbly snapshot</td></tr>
+<tr><td>2023++</td><td>2023 wibbly&ndash;wobbly snapshot</td></tr>
+</table>
+
+<p>
+                        The years are CSS snapshots, whether the year
+                        itself for stable modules, with + for wobbly
+                        modules, and ++ for wibbly&ndash;wobbly modules, as
+                        per the corresponding W3 CSS snapshots (the
+                        terminology in those snapshots is inconsistent,
+                        hence the use of the whovian scientific terms &lsquo;wobbly&rsquo;
+                        and &lsquo;wibbly&ndash;wobbly&rsquo;).
+</p>
+
+<p>
+CSS module numbering is inconsistent.
+CSS level 1 was defined in 1997, and the definition is complete, yet some CSS modules
+have been published more recently and claim to be part of CSS level 1, even though:
+</p>
+
+<ul>
+<li>
+they depend on other modules which are not part of CSS level 1,
+</li>
+<li>
+the contents of the module are not included in the CSS level 1 specification.
+</li></ul>
+
+<p>
+ <!--#echo encoding="none" var="short" -->
+ignores these inconsistencies, and pretends that all modules published after the CSS level 1 and
+CSS level 2 specifications are level three and higher, as per the great majority of such modules.
+</p>
+
+<p>
+Thus, for levels 3, 4, 5 and 6, modules
+                        that are part of neither CSS 1 nor CSS 2.x
+                        specifications are numbered three and upwards
+                        in <!--#echo encoding="none" var="short" -->.
+Hence, if you wish
+                        to use an extension named &hellip; level 1, that is
+                        not part of CSS 1, specify 3. Similarly, for
+                        those named level 2 that are not part of any
+                        CSS 2 specification, specify 4, etc..
+</p>
+
+<h2>other CSS arguments</h2>
+
+<p>
+These other switches allow you to
+precisely specify the CSS modules presumed, and will only be useful in very
+specific circumstances. Specific modules are
+defined at <a href="https://www.w3.org/Style/CSS/specs.en.html">w3.org</a>.
+</p>
+
+<table>
+<tr><td>css.adjust X</td><td>Use CSS Colour Adjustment level X, where X is 0
+                        or 3.</td></tr>
+
+<tr><td>css.anchor X</td><td>Use CSS Scrollbar Anchoring level X, where X is
+                        0 or 3.</td></tr>
+
+<tr><td>css.animation X</td><td>Use CSS Animation level X, where X is 0, 3 or
+                        4.</td></tr>
+
+<tr><td>css.background X</td><td>Use CSS Backgrounds and Borders level X, where
+                        X is 0 or 3.</td></tr>
+                        
+<tr><td>css.box-align X</td><td>Use CSS Box Alignment level X, where X is 0 or
+                        3.</td></tr>
+
+<tr><td>css.box-model X</td><td>Use CSS Box Model level X, where X is 0, 3 or
+                        4.</td></tr>
+                        
+<tr><td>css.box-sizing X</td><td>Use CSS Box Sizing level X, where X is 0, 3 or
+                        4.</td></tr>
+
+<tr><td>css.cascade X</td><td>Use CSS Cascading and Inheritance level X,
+                        where X is 0, 3, 4, 5 or 6.</td></tr>
+
+<tr><td>css.colour X</td><td>Use CSS Colour level X, where X is 0, 3, 4 or
+                        5.</td></tr>
+
+<tr><td>css.compositing X</td><td>Use CSS Compositing and Blending level X, where
+                        X is 0 or 3.</td></tr>
+
+<tr><td>css.cond-rule X</td><td>Use CSS Conditional Rules level X, where X is
+                        0, 3, 4, or 5.</td></tr>
+
+<tr><td>css.contain X</td><td>Use CSS Contain level X, where X is 0, 3, 4 or
+                        5: see --css.version for gen.</td></tr>
+
+<tr><td>css.content X</td><td>Use CSS Generated Content level X, where X is 0
+                        or 3.</td></tr>
+
+<tr><td>css.cs X</td><td>Use CSS Counter Style level X, where X is 0 or
+                        3.</td></tr>
+
+<tr><td>css.custom X</td><td>Use CSS Custom Properties for Cascading
+                        Variables level X, where X is 0 or 3.</td></tr>
+
+<tr><td>css.device  X</td><td>Use CSS Device Adaption level X, where X is 0
+                        or 3.</td></tr>
+
+<tr><td>css.display X</td><td>Use CSS Display level X, where X is 0 or 3.</td></tr>
+
+<tr><td>css.ease X</td><td>Use CSS Easing Functions level X, where X is 0
+                        or 3.</td></tr>
+
+<tr><td>css.exclude X</td><td>Use CSS Exclusions level X, where X is 0 or 3.</td></tr>
+
+<tr><td>css.extension ext</td><td>Presume files with extension &lsquo;.ext&rsquo; are CSS
+                        files.</td></tr>
+
+<tr><td>css.fbl X</td><td>Use CSS Flexible Box Layout level X, where X is
+                        0 or 3.</td></tr>
+
+<tr><td>css.filter X</td><td>Use CSS Filter Effects level X, where X is 0 or
+                        3.</td></tr>
+
+<tr><td>css.float X</td><td>Use CSS Page Floats level X, where X is 0 or 3.</td></tr>
+
+<tr><td>css.font X</td><td>Use CSS Fonts level X, where X is 0, 3, 4 or 5.</td></tr>
+
+<tr><td>css.frag X</td><td>Use CSS Fragmentation level X, where X is 0, 3,
+                        or 4.</td></tr>
+
+<tr><td>css.grid X</td><td>Use CSS Grid level X, where X is 0, 3 or 4: see
+                        --css.version for gen.</td></tr>
+
+<tr><td>css.highlight X</td><td>Use CSS Custom Highlights level X, where X is 0
+                        or 3.</td></tr>
+
+<tr><td>css.image X</td><td>Use CSS Images level X, where X is 0, 3 or 4.</td></tr>
+
+<tr><td>css.inline X</td><td>Use CSS Inline Layout level X, where X is 0 or
+                        3.</td></tr>
+
+<tr><td>css.line-grid X</td><td>Use CSS Line Grid level X, where X is 0 or 3.</td></tr>
+
+<tr><td>css.list X</td><td>Use CSS Lists and Counters level X, where X is
+                        0 or 3.</td></tr>
+
+<tr><td>css.logic X</td><td>Use CSS Logical Properties level X, where X is
+                        0 or 3.</td></tr>
+
+<tr><td>css.marquee X</td><td>Use CSS Marquee level X, where X is 0 or 3.</td></tr>
+
+<tr><td>css.masking X</td><td>Use CSS Masking level X, where X is 0 or 3.</td></tr>
+
+<tr><td>css.media X</td><td>Use CSS Media Queries level X, where X is 0, 3,
+                        4 or 5.</td></tr>
+
+<tr><td>css.mobile</td><td>Test against the CSS Mobile Profile.</td></tr>
+
+<tr><td>css.multi-column X</td><td>Use CSS Multi-Column level X, where X is 0 or
+                        3.</td></tr>
+
+<tr><td>css.namespace X</td><td>Use CSS Namespaces level X, where X is 0 or 3.</td></tr>
+
+<tr><td>css.nes X</td><td>Use CSS Non-Element Selectors level X, where X
+                        is 0 or 3.</td></tr>
+
+<tr><td>css.overflow X</td><td>Use CSS Overflow level X, where X is 0, 3 or 4.</td></tr>
+
+<tr><td>css.overscroll X</td><td>Use CSS Overscroll Behaviour level X, where X
+                        is 0 or 3.</td></tr>
+
+<tr><td>css.page X</td><td>Use CSS Paged Media level X, where X is 0 or 3.</td></tr>
+
+<tr><td>css.position X</td><td>Use CSS Positions level X, where X is 0 or 3.</td></tr>
+
+<tr><td>css.present X</td><td>Use CSS Presentation Levels level X, where X is
+                        0 or 3.</td></tr>
+
+<tr><td>css.print</td><td>Test against the CSS Print Profile.</td></tr>
+
+<tr><td>css.region X</td><td>Use CSS Regions level X, where X is 0 or 3.</td></tr>
+
+<tr><td>css.rhythm X</td><td>Use CSS Rhythmic Sizing level X, where X is 0
+                        or 3.</td></tr>
+
+<tr><td>css.round X</td><td>Use CSS Round Display level X, where X is 0 or
+                        3.</td></tr>
+
+<tr><td>css.ruby X</td><td>Use CSS Ruby Annotations level X, where X is 0
+                        or 3.</td></tr>
+
+<tr><td>css.scope X</td><td>Use CSS Scoping level X, where X is 0 or 3.</td></tr>
+
+<tr><td>css.scrollbar X</td><td> Use CSS Scrollbar Style level X, where X is 0
+                        or 3.</td></tr>
+
+<tr><td>css.sda X</td><td>Use CSS Scroll-Driven Animations Style level X,
+                        where X is 0 or 3.</td></tr>
+
+<tr><td>css.selector X</td><td>Use CSS Selectors level X, where X is 0, 3 or
+                        4.</td></tr>
+
+<tr><td>css.shadow X</td><td>Use CSS Shadow Parts level X, where X is 0 or
+                        3.</td></tr>
+
+<tr><td>css.shape X</td><td>Use CSS Shapes level X, where X is 0, 3 or 4.</td></tr>
+
+<tr><td>css.snap X</td><td>Use CSS Scroll Snap level X, where X is 0 or 3.</td></tr>
+
+<tr><td>css.spatial X</td><td>Use CSS Spatial Navigation level X, where X is
+                        0 or 3.</td></tr>
+
+<tr><td>css.speech X</td><td>Use CSS Speech level X, where X is 0 or 3.</td></tr>
+
+<tr><td>css.style X</td><td>Use CSS Style level X, where X is 0 or 3.</td></tr>
+
+<tr><td>css.syntax X</td><td>Use CSS Syntex level X, where X is 0 or 3.</td></tr>
+
+<tr><td>css.table X</td><td>Use CSS Tables level X, where X is 0 or 3 (this
+                        is an experimental spec, likely to change).</td></tr>
+
+<tr><td>css.text X</td><td>Use CSS Text level X, where X is 0, 3 or 4.</td></tr>
+
+<tr><td>css.text-dec X</td><td>Use CSS Text Decoration level X, where X is 0,
+                        3 or 4.</td></tr>
+
+<tr><td>css.tv</td><td>Test against the CSS TV Profile.</td></tr>
+
+<tr><td>css.transform X</td><td>Use CSS Transforms level X, where X is 0, 3 or
+                        4: see --css.version for gen.</td></tr>
+
+<tr><td>css.transition X</td><td>Use CSS Transitions level X, where X is 0 or 3.</td></tr>
+
+<tr><td>css.ui X</td><td>Use CSS Basic User Interface level X, where X
+                        is 0, 3 or 4.</td></tr>
+
+<tr><td>css.value X</td><td>Use CSS Values and Units level X, where X is 0,
+                        3 or 4.</td></tr>
+
+<tr><td>css.verify</td><td>Verify CSS files (replaces --general.css).</td></tr>
+
+<tr><td>css.view X</td><td>Use CSS View Transitions level X, where X is 0
+                        or 3.</td></tr>
+
+<tr><td>css.wc X</td><td>Use CSS Will Change level X, where X is 0 or 3.</td></tr>
+
+<tr><td>css.writing X</td><td>Use CSS Writing Mode level X, where X is 0, 3
+                        or 4.</td></tr>
+</table>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/args.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

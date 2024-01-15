@@ -1,0 +1,19 @@
+@namespace "http://www.w3.org/1999/xhtml";
+
+hr {
+  color: gray;
+  border-style: inset;
+  border-width: 1px;
+  margin-block-start: 0.5em;
+  margin-inline-end: auto;
+  margin-block-end: 0.5em;
+  margin-inline-start: auto;
+  overflow: hidden;
+}
+
+@namespace "http://www.w3.org/1999/xhtml";
+
+hr[align=left i] { margin-left: 0; margin-right: auto; }
+hr[align=right i] { margin-left: auto; margin-right: 0; }
+hr[align=center i] { margin-left: auto; margin-right: auto; }
+hr[color], hr[noshade] { border-style: solid; }

@@ -1,4 +1,4 @@
--N 1 -f ../toast/css/deprecated/css.conf
+-Y 1 -f ../toast/css/deprecated/css.conf
 
 PASS ../toast/css/deprecated/css-1.css
 0 html

@@ -1,9 +1,9 @@
 Static Site Checker
-0.1.46
+0.1.50
 ../toast/shadow/pages
 0
 -
-19
+20
 /Users/dylan/project/app/ssc/recipe/toast/shadow/pages
 /Users/dylan/project/app/ssc/recipe/toast/shadow/pages
 0,0,0,18,0,0,0
@@ -60,4 +60,7 @@ space.html.model
 -1,0,0,256,0,0,0
 index.html.model
 /Users/dylan/project/app/ssc/recipe/toast/shadow/pages/index.html.model
+-1,0,0,256,0,0,0
+pages.ndx
+/Users/dylan/project/app/ssc/recipe/toast/shadow/pages/pages.ndx
 -1,0,0,256,0,0,0

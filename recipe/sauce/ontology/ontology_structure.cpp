@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -4610,6 +4610,8 @@ microdata_structure ontology_structure [] =
 
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, sch_imagingtest, sp_imagingtechnique },
 
+    { { 24, 0 }, { 0, 0 }, sch_individualphysician, sp_practicesat },
+
     { { 0, 99 }, { 0, 0 }, sch_individualproduct, sp_serialnumber },
 
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, sch_infectiousdisease, sp_infectiousagent },
@@ -5460,6 +5462,8 @@ microdata_structure ontology_structure [] =
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, sch_physician, sp_availableservice },
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, sch_physician, sp_hospitalaffiliation },
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, sch_physician, sp_medicalspeciality },
+    { { 24, 0 }, { 0, 0 }, sch_physician, sp_occupationalcategory },
+    { { 24, 0 }, { 0, 0 }, sch_physician, sp_usnpi },
 
     { { 2, 0 }, { 0, 0 }, sch_place, sp_additionalproperty },
     { { 0, 10 }, { 0, 0 }, sch_place, sp_address },

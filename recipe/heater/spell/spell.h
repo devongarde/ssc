@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -35,9 +35,9 @@ void add_spell_list (nitpick& nits, const ::std::string& lang, const ::boost::fi
 #ifndef NOSPELL
 void check_spelling (nitpick& nits, const html_version& v, const lingo& lang, const ::std::string& text);
 void spell_init (nitpick& nits);
+void spell_reset ();
 vstr_t load_dictionaries (nitpick& nits);
 void spell_free ();
-void spell_terminate ();
 void add_dict (const ::std::string& lang, const ::std::string& dict);
 ::std::string get_dict_lang (const ::std::string& dict);
 ::std::string get_lang_dict (const ::std::string& lang);
@@ -48,9 +48,9 @@ inline void check_spelling (nitpick& , const html_version& , const lingo& , cons
 inline void spell_init (nitpick& nits)
 {   mssfl = mssfl_uptr (new mssfl_t);
     nits.pick (nit_no_spell, es_comment, ec_spell, "spell check unavailable"); }
+inline void spell_reset () { }
 inline vstr_t load_dictionaries (nitpick& ) { return vstr_t (); }
 inline void spell_free () { }
-inline void spell_terminate () { }
 inline void add_dict (const lingo& , const ::std::string& ) { }
 inline ::std::string get_lang_dict (const ::std::string& ) { return ::std::string (); }
 inline ::std::string get_dict_lang (const ::std::string& ) { return ::std::string (); }

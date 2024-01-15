@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -34,7 +34,7 @@ typedef ::std::map < ::std::string, itemid > miid_t;
 typedef ::std::unique_ptr < miid_t > miid_uptr;
 miid_uptr miid;
 
-void init_itemid ()
+void reset_itemid ()
 {   miid = miid_uptr (new miid_t); }
 
 bool note_itemid (nitpick& nits, const html_version& , const ::std::string& id, const ::std::string& path, const int line)

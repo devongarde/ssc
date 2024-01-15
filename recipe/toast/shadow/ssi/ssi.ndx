@@ -1,9 +1,9 @@
 Static Site Checker
-0.1.46
+0.1.50
 ../toast/shadow/ssi
 0
 -
-10
+11
 /Users/dylan/project/app/ssc/recipe/toast/shadow/ssi
 /Users/dylan/project/app/ssc/recipe/toast/shadow/ssi
 0,0,0,18,0,0,0
@@ -33,4 +33,7 @@ ssi.inc
 -1,0,0,256,0,0,0
 index.html.model
 /Users/dylan/project/app/ssc/recipe/toast/shadow/ssi/index.html.model
+-1,0,0,256,0,0,0
+ssi.ndx
+/Users/dylan/project/app/ssc/recipe/toast/shadow/ssi/ssi.ndx
 -1,0,0,256,0,0,0

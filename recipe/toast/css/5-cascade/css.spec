@@ -1,4 +1,4 @@
--N 1 -f ../toast/css/5-cascade/css.conf
+-Y 1 -f ../toast/css/5-cascade/css.conf
 
 PASS ../toast/css/5-cascade/index.html
 2 naughty_lang

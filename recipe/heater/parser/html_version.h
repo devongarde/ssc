@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -22,6 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/version.h"
 #include "feedback/nitpick.h"
 #include "ontology/ontology_version.h"
+
+#define LATEST_HTML_STR "Jan 2024"
+#define LATEST_CSS_STR  "2023"
 
 #define HV_LEVEL1       0x0000000000000001
 #define HV_LEVEL2       0x0000000000000002
@@ -1291,6 +1294,7 @@ const html_version html_schema_20 (HTML_SCHEMA_20);
 const html_version html_schema_21 (HTML_SCHEMA_21);
 const html_version html_schema_22 (HTML_SCHEMA_22);
 const html_version html_schema_23 (HTML_SCHEMA_23);
+const html_version html_schema_24 (HTML_SCHEMA_24);
 const html_version html_sd (HTML_SD);
 const html_version html_sioc (HTML_SIOC);
 const html_version html_sioc_s (HTML_SIOC);
@@ -1371,11 +1375,12 @@ const html_version html_jan23 (HTML_JAN23, HV_WHATWG, HE_MICRODATA | HE_SVG_21, 
 const html_version html_apr23 (HTML_APR23, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_2023, H3_CSS_2023, H4_CSS_2023);
 const html_version html_jul23 (HTML_JUL23, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_2023, H3_CSS_2023, H4_CSS_2023);
 const html_version html_oct23 (HTML_OCT23, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_2023, H3_CSS_2023, H4_CSS_2023);
+const html_version html_jan24 (HTML_JAN24, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_2023, H3_CSS_2023, H4_CSS_2023);
 const html_version html_5_0 (HTML_5_0, HV_W3, HE_SVG_11, H2_MATH_2 | H2_CSS_2010, H3_CSS_2010, H4_CSS_2010);
 const html_version html_5_1 (HTML_5_1, HV_W3, HE_SVG_11, H2_MATH_2 | H2_CSS_2015, H3_CSS_2015, H4_CSS_2015);
 const html_version html_5_2 (HTML_5_2, HV_W3, HE_SVG_11, H2_MATH_3 | H2_CSS_2017, H3_CSS_2017, H4_CSS_2017);
 const html_version html_5_3 (HTML_5_3, HV_W3, HE_SVG_11, H2_MATH_3 | H2_CSS_2018, H3_CSS_2018, H4_CSS_2018);
-const html_version html_current (html_oct23);
+const html_version html_current (html_jan24);
 const html_version html_default (html_current);
 const html_version html_max (HTML_DEC99, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_6, H3_CSS_6, H4_CSS_6);
 

@@ -1,9 +1,9 @@
 Static Site Checker
-0.1.46
+0.1.50
 ../toast/shadow/copy
 0
 -
-19
+20
 /Users/dylan/project/app/ssc/recipe/toast/shadow/copy
 /Users/dylan/project/app/ssc/recipe/toast/shadow/copy
 0,0,0,18,0,0,0
@@ -60,4 +60,7 @@ space.html.model
 -1,0,0,256,0,0,0
 index.html.model
 /Users/dylan/project/app/ssc/recipe/toast/shadow/copy/index.html.model
+-1,0,0,256,0,0,0
+copy.ndx
+/Users/dylan/project/app/ssc/recipe/toast/shadow/copy/copy.ndx
 -1,0,0,256,0,0,0

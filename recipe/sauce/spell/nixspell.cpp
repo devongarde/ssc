@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -127,15 +127,15 @@ hun::hun (nitpick& nits, const ::boost::filesystem::path& p, const lingo& lang)
         return; }
     nits.pick (nit_dictionary, es_comment, ec_spell, "Found dictionary for ", quote (lang.dialect ())); }
 
-void spell_init (nitpick& )
+void spell_reset ()
 {   mssfl = mssfl_uptr (new mssfl_t); }
+
+void spell_init (nitpick& )
+{   spell_reset (); }
 
 void spell_free ()
 {   for (mhun_t::iterator i = mh.begin (); i != mh.end (); ++i)
         i -> second.set_dead (); }  // Control-C
-
-void spell_terminate ()
-{ }
 
 void apply_wordlist (nitpick& nits, mhun_t::iterator& hi, const vstr_t& list)
 {   for (auto s : list)

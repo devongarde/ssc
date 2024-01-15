@@ -1,0 +1,199 @@
+@namespace "http://www.w3.org/1999/xhtml";
+
+table { display: table; }
+caption { display: table-caption; }
+colgroup, colgroup[hidden] { display: table-column-group; }
+col, col[hidden] { display: table-column; }
+thead, thead[hidden] { display: table-header-group; }
+tbody, tbody[hidden] { display: table-row-group; }
+tfoot, tfoot[hidden] { display: table-footer-group; }
+tr, tr[hidden] { display: table-row; }
+td, th { display: table-cell; }
+
+colgroup[hidden], col[hidden], thead[hidden], tbody[hidden],
+tfoot[hidden], tr[hidden] {
+  visibility: collapse;
+}
+
+table {
+  box-sizing: border-box;
+  border-spacing: 2px;
+  border-collapse: separate;
+  text-indent: initial;
+}
+td, th { padding: 1px; }
+th { font-weight: bold; }
+
+caption { text-align: center; }
+thead, tbody, tfoot, table > tr { vertical-align: middle; }
+tr, td, th { vertical-align: inherit; }
+
+thead, tbody, tfoot, tr { border-color: inherit; }
+table[rules=none i], table[rules=groups i], table[rules=rows i],
+table[rules=cols i], table[rules=all i], table[frame=void i],
+table[frame=above i], table[frame=below i], table[frame=hsides i],
+table[frame=lhs i], table[frame=rhs i], table[frame=vsides i],
+table[frame=box i], table[frame=border i],
+table[rules=none i] > tr > td, table[rules=none i] > tr > th,
+table[rules=groups i] > tr > td, table[rules=groups i] > tr > th,
+table[rules=rows i] > tr > td, table[rules=rows i] > tr > th,
+table[rules=cols i] > tr > td, table[rules=cols i] > tr > th,
+table[rules=all i] > tr > td, table[rules=all i] > tr > th,
+table[rules=none i] > thead > tr > td, table[rules=none i] > thead > tr > th,
+table[rules=groups i] > thead > tr > td, table[rules=groups i] > thead > tr > th,
+table[rules=rows i] > thead > tr > td, table[rules=rows i] > thead > tr > th,
+table[rules=cols i] > thead > tr > td, table[rules=cols i] > thead > tr > th,
+table[rules=all i] > thead > tr > td, table[rules=all i] > thead > tr > th,
+table[rules=none i] > tbody > tr > td, table[rules=none i] > tbody > tr > th,
+table[rules=groups i] > tbody > tr > td, table[rules=groups i] > tbody > tr > th,
+table[rules=rows i] > tbody > tr > td, table[rules=rows i] > tbody > tr > th,
+table[rules=cols i] > tbody > tr > td, table[rules=cols i] > tbody > tr > th,
+table[rules=all i] > tbody > tr > td, table[rules=all i] > tbody > tr > th,
+table[rules=none i] > tfoot > tr > td, table[rules=none i] > tfoot > tr > th,
+table[rules=groups i] > tfoot > tr > td, table[rules=groups i] > tfoot > tr > th,
+table[rules=rows i] > tfoot > tr > td, table[rules=rows i] > tfoot > tr > th,
+table[rules=cols i] > tfoot > tr > td, table[rules=cols i] > tfoot > tr > th,
+table[rules=all i] > tfoot > tr > td, table[rules=all i] > tfoot > tr > th {
+  border-color: black;
+}
+
+@namespace "http://www.w3.org/1999/xhtml";
+
+table[align=left i] { float: left; }
+table[align=right i] { float: right; }
+table[align=center i] { margin-inline-start: auto; margin-inline-end: auto; }
+thead[align=absmiddle i], tbody[align=absmiddle i], tfoot[align=absmiddle i],
+tr[align=absmiddle i], td[align=absmiddle i], th[align=absmiddle i] {
+  text-align: center;
+}
+
+caption[align=bottom i] { caption-side: bottom; }
+p[align=left i], h1[align=left i], h2[align=left i], h3[align=left i],
+h4[align=left i], h5[align=left i], h6[align=left i] {
+  text-align: left;
+}
+p[align=right i], h1[align=right i], h2[align=right i], h3[align=right i],
+h4[align=right i], h5[align=right i], h6[align=right i] {
+  text-align: right;
+}
+p[align=center i], h1[align=center i], h2[align=center i], h3[align=center i],
+h4[align=center i], h5[align=center i], h6[align=center i] {
+  text-align: center;
+}
+p[align=justify i], h1[align=justify i], h2[align=justify i], h3[align=justify i],
+h4[align=justify i], h5[align=justify i], h6[align=justify i] {
+  text-align: justify;
+}
+thead[valign=top i], tbody[valign=top i], tfoot[valign=top i],
+tr[valign=top i], td[valign=top i], th[valign=top i] {
+  vertical-align: top;
+}
+thead[valign=middle i], tbody[valign=middle i], tfoot[valign=middle i],
+tr[valign=middle i], td[valign=middle i], th[valign=middle i] {
+  vertical-align: middle;
+}
+thead[valign=bottom i], tbody[valign=bottom i], tfoot[valign=bottom i],
+tr[valign=bottom i], td[valign=bottom i], th[valign=bottom i] {
+  vertical-align: bottom;
+}
+thead[valign=baseline i], tbody[valign=baseline i], tfoot[valign=baseline i],
+tr[valign=baseline i], td[valign=baseline i], th[valign=baseline i] {
+  vertical-align: baseline;
+}
+
+td[nowrap], th[nowrap] { white-space: nowrap; }
+
+table[rules=none i], table[rules=groups i], table[rules=rows i],
+table[rules=cols i], table[rules=all i] {
+  border-style: hidden;
+  border-collapse: collapse;
+}
+table[border] { border-style: outset; } /* only if border is not equivalent to zero */
+table[frame=void i] { border-style: hidden; }
+table[frame=above i] { border-style: outset hidden hidden hidden; }
+table[frame=below i] { border-style: hidden hidden outset hidden; }
+table[frame=hsides i] { border-style: outset hidden outset hidden; }
+table[frame=lhs i] { border-style: hidden hidden hidden outset; }
+table[frame=rhs i] { border-style: hidden outset hidden hidden; }
+table[frame=vsides i] { border-style: hidden outset; }
+table[frame=box i], table[frame=border i] { border-style: outset; }
+
+table[border] > tr > td, table[border] > tr > th,
+table[border] > thead > tr > td, table[border] > thead > tr > th,
+table[border] > tbody > tr > td, table[border] > tbody > tr > th,
+table[border] > tfoot > tr > td, table[border] > tfoot > tr > th {
+  /* only if border is not equivalent to zero */
+  border-width: 1px;
+  border-style: inset;
+}
+table[rules=none i] > tr > td, table[rules=none i] > tr > th,
+table[rules=none i] > thead > tr > td, table[rules=none i] > thead > tr > th,
+table[rules=none i] > tbody > tr > td, table[rules=none i] > tbody > tr > th,
+table[rules=none i] > tfoot > tr > td, table[rules=none i] > tfoot > tr > th,
+table[rules=groups i] > tr > td, table[rules=groups i] > tr > th,
+table[rules=groups i] > thead > tr > td, table[rules=groups i] > thead > tr > th,
+table[rules=groups i] > tbody > tr > td, table[rules=groups i] > tbody > tr > th,
+table[rules=groups i] > tfoot > tr > td, table[rules=groups i] > tfoot > tr > th,
+table[rules=rows i] > tr > td, table[rules=rows i] > tr > th,
+table[rules=rows i] > thead > tr > td, table[rules=rows i] > thead > tr > th,
+table[rules=rows i] > tbody > tr > td, table[rules=rows i] > tbody > tr > th,
+table[rules=rows i] > tfoot > tr > td, table[rules=rows i] > tfoot > tr > th {
+  border-width: 1px;
+  border-style: none;
+}
+table[rules=cols i] > tr > td, table[rules=cols i] > tr > th,
+table[rules=cols i] > thead > tr > td, table[rules=cols i] > thead > tr > th,
+table[rules=cols i] > tbody > tr > td, table[rules=cols i] > tbody > tr > th,
+table[rules=cols i] > tfoot > tr > td, table[rules=cols i] > tfoot > tr > th {
+  border-width: 1px;
+  border-block-start-style: none;
+  border-inline-end-style: solid;
+  border-block-end-style: none;
+  border-inline-start-style: solid;
+}
+table[rules=all i] > tr > td, table[rules=all i] > tr > th,
+table[rules=all i] > thead > tr > td, table[rules=all i] > thead > tr > th,
+table[rules=all i] > tbody > tr > td, table[rules=all i] > tbody > tr > th,
+table[rules=all i] > tfoot > tr > td, table[rules=all i] > tfoot > tr > th {
+  border-width: 1px;
+  border-style: solid;
+}
+
+table[rules=groups i] > colgroup {
+  border-inline-start-width: 1px;
+  border-inline-start-style: solid;
+  border-inline-end-width: 1px;
+  border-inline-end-style: solid;
+}
+table[rules=groups i] > thead,
+table[rules=groups i] > tbody,
+table[rules=groups i] > tfoot {
+  border-block-start-width: 1px;
+  border-block-start-style: solid;
+  border-block-end-width: 1px;
+  border-block-end-style: solid;
+}
+
+table[rules=rows i] > tr, table[rules=rows i] > thead > tr,
+table[rules=rows i] > tbody > tr, table[rules=rows i] > tfoot > tr {
+  border-block-start-width: 1px;
+  border-block-start-style: solid;
+  border-block-end-width: 1px;
+  border-block-end-style: solid;
+}
+
+@namespace "http://www.w3.org/1999/xhtml";
+
+table {
+  font-weight: initial;
+  font-style: initial;
+  font-variant: initial;
+  font-size: initial;
+  line-height: initial;
+  white-space: initial;
+  text-align: initial;
+}
+
+@namespace "http://www.w3.org/1999/xhtml";
+
+:is(table, thead, tbody, tfoot, tr) > form { display: none !important; }

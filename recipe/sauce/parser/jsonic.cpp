@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -63,13 +63,13 @@ bool jsonic::parse (nitpick& nits, const ::std::string& s, const e_charcode enco
 {   if ((encoding != cc_utf8) && (encoding != cc_ansi))
         nits.pick (nit_jsonld_encoding, es_error, ec_json, "JSON-LD parsing requires ASCII, ANSI or UTF-8.");
     else try {
-        ::boost::json::error_code ec;
+        ::boost::json::error_code jec;
         ::boost::json::parse_options po;
         po.allow_comments = true;
         po.allow_trailing_commas = true;
         po.allow_invalid_utf8 = (encoding == cc_utf8);
-        value_ = ::boost::json::parse (s, ec, ::boost::json::storage_ptr (), po);
-        if (ec) nits.pick (nit_json_error, es_error, ec_json, "JSON error: ", ec.message ());
+        value_ = ::boost::json::parse (s, jec, ::boost::json::storage_ptr (), po);
+        if (jec) nits.pick (nit_json_error, es_error, ec_json, "JSON error: ", jec.message ());
         else
         {   if (context.tell (es_structure)) outstr.out (rpt (value_));
             return true; } }

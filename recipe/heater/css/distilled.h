@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -37,8 +37,8 @@ class distilled
 public:
     DEFAULT_CONSTRUCTORS_NO_EMPTY (distilled);
     explicit distilled (bool b) : in_progress_ (b) { } // set to false for a snippet
-    explicit distilled (const smsid_t& c, const smsid_t& i, const smsid_t& ec, const smsid_t& ei)
-        :   class_ (c), id_ (i), element_class_ (ec), element_id_ (ei)
+    explicit distilled (const smsid_t& c, const smsid_t& i, const smsid_t& eci, const smsid_t& ei)
+        :   class_ (c), id_ (i), element_class_ (eci), element_id_ (ei)
     { }
     bool wait () const noexcept { return in_progress_; }
     bool sort_it_out () const noexcept { return in_progress_; }

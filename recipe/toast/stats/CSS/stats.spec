@@ -1,4 +1,4 @@
--N 1 -f ../toast/stats/CSS/stats.conf
+-Y 1 -f ../toast/stats/CSS/stats.conf
 
 PASS ../toast/stats/CSS/basic.css
 0 html
@@ -1106,5 +1106,5 @@ Statement:
 
 Version:
     HTML-3.2/CSS-1: 10 times
-    HTML-5/20231001/SVG-2.1/MathML-core/CSS-1/WhatWG: 7 times
+    HTML-5/20240101/SVG-2.1/MathML-core/CSS-1/WhatWG: 7 times
 ===

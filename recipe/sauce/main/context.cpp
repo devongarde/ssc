@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -35,8 +35,8 @@ context_t::context_t ()
     :   validation_ ("Additional attribute values (check " PROG "'s source code for context)", DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH)
 {   environment_.resize (env_max); };
 
-int context_t::parameters (nitpick& nits, int argc, char** argv)
-{   options o (nits, argc, argv);
+int context_t::parameters (nitpick& nits, const vstr_t& vs)
+{   options o (nits, vs);
     if (context.todo () == do_booboo) return ERROR_STATE;
     if ((context.todo () != do_examine) && (context.todo () != do_cgi)) return STOP_OK;
 #ifdef DARWIN
@@ -247,8 +247,8 @@ bool context_t::pretended (const ::std::string& s) const
             return true;
     return false; }
 
-context_t& context_t::fred (const int i)
-{   const int nmt = fred_t::no_more_than (); // <=> :-(
+context_t& context_t::fred (const ::std::size_t i)
+{   const ::std::size_t nmt = fred_t::no_more_than (); // <=> :-(
     if (i > nmt) fred_ = nmt;
     else if (i > 0) fred_ = i;
     else fred_ = fred_t::suggested ();

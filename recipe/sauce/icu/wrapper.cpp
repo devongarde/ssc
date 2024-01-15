@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -19,6 +19,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "main/standard.h"
+
+#ifndef NOICU
+
 #include "main/context.h"
 #include "utility/quote.h"
 #include "icu/wrapper.h"
@@ -69,3 +72,5 @@ void_ptr converter::convert_to (const void_ptr& vp, const uintmax_t sz)
         {   const int32_t l2 = ucnv_toUChars (conv_, to_uc, len, from, GSL_NARROW_CAST < int32_t > (sz), &err_);
             if ((l2 <= len) && (err_ <= 0)) return res; } }
     return void_ptr (); }
+
+#endif // NOICU

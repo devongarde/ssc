@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> dialogue </title> </head>
+ <body>
+
+<dialog>
+  <label>Product Number <input type="text" readonly></label>
+  <label>Product Name <input type="text" autofocus></label>
+</dialog>
+
+<dialog style="height: 80vh;">
+  <div style="overflow: auto; height: 60vh;" autofocus>
+    <p>By placing an order via this Web site on the first day of the fourth month of the year
+    2010 Anno Domini, you agree to grant Us a non-transferable option to claim, for now and for
+    ever more, your immortal soul.</p>
+    <p>Should We wish to exercise this option, you agree to surrender your immortal soul,
+    and any claim you may have on it, within 5 (five) working days of receiving written
+    notification from  this site or one of its duly authorized minions.</p>
+    <!-- ... etc., with many more <p> elements ... -->
+  </div>
+  <form method="dialog">
+    <button type="submit" value="agree">Agree</button>
+    <button type="submit" value="disagree">Disagree</button>
+  </form>
+</dialog>
+
+<dialog>
+<h1>Add to Wallet</h1>
+<p><strong><label for=amt>How many gold coins do you want to add to your
+wallet?</label></strong></p>
+<p><input id=amt name=amt type=number min=0 step=0.01 value=100></p>
+<p><small>You add coins at your own risk.</small></p>
+<p><label><input name=round type=checkbox> Only add perfectly round coins </label></p>
+<p><input type=button onclick="submit()" value="Add Coins"></p>
+</dialog>
+
+ </body>
+</html>

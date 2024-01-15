@@ -1,4 +1,4 @@
--N 1 -f ../toast/microdata/schema-pqrs/pqrs.conf
+-Y 1 -f ../toast/microdata/schema-pqrs/pqrs.conf
 
 PASS ../toast/microdata/schema-pqrs/painting.html
 0 charset_mismatch charset_used charset_invalid

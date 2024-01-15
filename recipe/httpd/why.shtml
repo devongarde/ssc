@@ -1,0 +1,115 @@
+<!--#include virtual="/plumbing/html.inc" -->
+<!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="why static site checker" -->
+<title>
+<!--#echo encoding="none" var="title" -->
+</title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/blog-section.inc" -->
+<!--#include virtual="/plumbing/html-top-start.inc" -->
+<!--#include virtual="/plumbing/html-top-end.inc" -->
+<!--#include virtual="/plumbing/blog-schema.inc" -->
+<data class="u-url u-uid" value="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->">
+</data>
+
+<h1 itemprop="name" class="p-name">
+<!--#echo encoding="none" var="title" -->
+</h1>
+
+<p>
+Why did I make the static site checker? Aren&rsquo;t there a lot of other HTML validators around?
+When I checked a few years ago; I couldn&rsquo;t find a web site validator, only web page validators.
+Things may have improved. Anyway, my google foo is poo.
+</p>
+
+<p>
+My <a href="https://dylanharris.org/">identity website</a> has more than 100,000 pages. I&rsquo;m too impatient
+to push each through a validator one by one; I want to validate my site as a whole.
+Furthermore, single page validators can&rsquo;t catch inter&ndash;page errors, such as
+broken internal links, let alone hidden links
+(an otherwise valid link to a HIDDEN element).
+</p>
+
+<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-rough-t2.jpg" title="made with studio artist 5.5">
+
+<p>
+Many people avoid such problems by using frameworks.
+I find frameworks awful. IMAO, they produce dull, boring, trite design.
+The visual arts world has had centuries to develop excellent form for a rectangular space.
+Most 21<sup>st</sup> frameworks are so crude they haven&rsquo;t even absorbed 14<sup>th</sup> century visual arts&rsquo; ideas,
+when painters broke out of rectangular form in a rectangular frame.
+So much is possible, so much hasn&rsquo;t happened.
+I want to break this dull, stultifying, archaic, mutton.
+</p>
+
+<p>
+Maybe I&rsquo;m making the wrong comparison, that the web isn&rsquo;t about image, it&rsquo;s about type.
+The Western visual arts never did really suss mixing writing and form
+(that&rsquo;s not really true, but, IMAO, such arts never escaped their context).
+However, the Eastern visual arts most certainly did, and frameworks haven&rsquo;t noticed them either.
+</p>
+
+<p>
+Enough of this. Rather than criticising other people for not doing, I should do. 
+I need to make some example sites. That&rsquo;s where <!--#echo encoding="none" var="short" --> comes in.
+</p>
+
+<p>
+If I am to build a site using an experimental visual process, I can&rsquo;t use frameworks.
+If I can&rsquo;t use frameworks, I have to hand code.
+And there&rsquo;s the key problem: HTML is such a convoluted, evolved mess,
+that the people who designed it, in their own design presentations, make errors.
+Ok, I only found this out by testing <!--#echo encoding="none" var="short" --> on them,
+which conveniently illustrates that HTML is overcomplicated.
+I&rsquo;m not going
+to reveal names because these people are working hard to make the web a better place.
+Let&rsquo;s just say <a href="https://www.w3.org/">W3</a> had broken links,
+<a href="https://whatwg.org/">WhatWG</a> referenced withdrawn ontologies,
+and many other authors&rsquo; sites have other internal inconsistencies.
+That the people who define the web make mistakes using their own design in their own documents that
+espouse their design, helps explain why most stick to dull, formulaic, boring, frameworks.
+To be fair, my HTML is far worse than their mild technical naughtiness,
+which is why I had to write <!--#echo encoding="none" var="short" -->.
+</p>
+
+<p>
+I&rsquo;ve yet to build a site inspired by visual art&rsquo;s form and layout.
+My efforts have been spent building <!--#echo encoding="none" var="short" -->, a tool to make that practical.
+</p>
+
+<p>
+Since I&rsquo;m here, I&rsquo;ll list other issues I have with frameworks:
+</p>
+
+<ul>
+<li>
+They have to be regularly maintained. Every time an update comes out, that update has to be applied to a site,
+otherwise the site becomes vulnerable to the exploits published by the update.
+Time is lost playing patch catchup.
+</li>
+<li>
+Updates for frameworks sometimes fail;
+instead of fixing issues, they break sites.
+That&rsquo;s why <a href="https://dylanharris.org/past/aei/2010/index.html">I dropped Drupal</a>.
+That&rsquo;s why I swore off NextCloud.
+</li>
+<li>
+Frameworks use scripted languages, such as PHP.
+There were, in October 2021,
+<A href="https://www.cvedetails.com/product/128/PHP-PHP.html?vendor_id=74">five known vulnerabilities in PHP</a>
+(far better than time was).
+Other frameworks use other scripted languages with other problems.
+</li>
+<li>
+IMAO, frameworks&rsquo; and scripts&rsquo; worst flaw is many import code at runtime from
+third&ndash;party repositories.
+Their integrity and security is dependent on that of the repository,
+over which a site owner (usually) has no control.
+There are many examples of
+<a href="https://www.theallineed.com/technology/20210330/php-source-code-repository-hacked/">repositories being hacked</a>,
+breaking the security and intergrity of all sites that use them.
+</li>
+</ul>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

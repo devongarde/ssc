@@ -1,6 +1,6 @@
 #!/bin/sh
-
-# This is intended for OpenBSD 6.8/6.9/7.0.
+#
+# Written for OpenBSD
 
 # disable filename globbing
 set -f

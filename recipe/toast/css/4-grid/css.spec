@@ -1,4 +1,4 @@
--N 1 -f ../toast/css/4-grid/css.conf
+-Y 1 -f ../toast/css/4-grid/css.conf
 
 PASS ../toast/css/4-grid/css-1.css
 0 html

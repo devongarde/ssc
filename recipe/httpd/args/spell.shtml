@@ -1,0 +1,73 @@
+<!--#include virtual="/plumbing/html.inc" -->
+<!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="spell arguments" -->
+<title>
+<!--#echo encoding="none" var="title" -->
+</title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/blog-section.inc" -->
+<!--#include virtual="/plumbing/html-top-start.inc" -->
+<!--#include virtual="/plumbing/argle.inc" -->
+<!--#include virtual="/plumbing/html-top-end.inc" -->
+<!--#include virtual="/plumbing/blog-schema.inc" -->
+<data class="u-url u-uid" value="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->">
+</data>
+
+<h1 itemprop="name" class="p-name">
+<!--#echo encoding="none" var="title" -->
+</h1>
+
+<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-zpf-trb30.jpg" title="made with studio artist 5.5">
+
+<p>
+These control spell checking. SSC doesn&rsquo;t actually spell check itself,
+it uses spell checking facilities on the host system, so your results
+may vary.
+</p>
+
+<table>
+<tr><td>spell.accept&nbsp;XXX</td><td>XXX is a correct spelling of a word (or a list
+                        of words) in all languages.</td></tr>
+
+<tr><td>spell.cased</td><td>Nitpick correctly spelt but wrongly cased
+                        words.</td></tr>
+
+<tr><td>spell.check</td><td>Check text spelling. Uses external spelling
+                        checkers, so results will be inconsistent
+                        between systems.</td></tr>
+
+<tr><td>spell.dict LANG,DICT</td><td>Associate dictionary DICT with LANG.
+                        For example, if the standard English dictionary
+                        is en_GB-large:
+                            <kbd>--spell.dict&nbsp;en-GB,en_GB-large</kbd>.
+                        <!--#echo encoding="none" var="short" --> ignores this
+switch in windows; it uses the system dictionaries.
+                        </td></tr>
+
+<tr><td>spell.icu</td><td>Use the somewhat slow, but accurate, ICU libraries.
+Disabling this option will increase the speed and incorrectness of the spell
+                        checks.</td></tr>
+
+<tr><td>spell.list&nbsp;FN,LANG</td><td>The file FN contains a list of valid spellings
+                        for language LANG (which may include country
+                        info). If LANG is omitted, the valid spellings
+                        apply to all languages. For example:<br>
+                            <kbd>--spell.list&nbsp;ie.txt,en-IE<br>
+                            --spell.list&nbsp;de.txt,de<br>
+                            --spell.list&nbsp;lb.txt</kbd></td></tr>
+
+<tr><td>spell.path PATH</td><td>Path to spelling executable (ignored in Windows).
+                        Hunspell or a compatible program is expected.
+                        If none is specified, ssc will seek hunspell.
+                        Under Windows, ssc uses the system spell-checker,
+                        if there is one.</td></tr>
+</table>
+
+<p>
+Just in case a dimnitude accidentally browses this page,
+the word &lsquo;spell&rsquo; refers to spelling, not chicken entrails.
+</p>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/args.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->
