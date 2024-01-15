@@ -1,4 +1,4 @@
--N 1 -f ../toast/css/5-font/css.conf
+-Y 1 -f ../toast/css/5-font/css.conf
 
 PASS ../toast/css/5-font/css-2.css
 0 html

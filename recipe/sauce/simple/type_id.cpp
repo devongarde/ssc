@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -58,7 +58,7 @@ e_status set_id_value (nitpick& nits, const html_version& v, const ::std::string
         if (res) return s_good; }
     return s_invalid; }
 
-e_status set_idref_value (nitpick& nits, const html_version& v, const ::std::string& s)
+e_status set_idref_value (nitpick& nits, const html_version& , const ::std::string& s)
 {   if (s.empty ())
         nits.pick (nit_empty, es_error, ec_type, "an id cannot be empty");
     else if (::std::find_if (s.cbegin (), s.cend (), ::std::iswspace) == s.cend ())
@@ -66,7 +66,7 @@ e_status set_idref_value (nitpick& nits, const html_version& v, const ::std::str
     else nits.pick (nit_bad_id, es_error, ec_type, quote (s), " contains a space");
     return s_invalid; }
 
-e_status set_uid_value (nitpick& nits, const html_version& v, const ::std::string& s)
+e_status set_uid_value (nitpick& nits, const html_version& , const ::std::string& s)
 {   if (s.empty ()) return s_empty;
     const ::std::string::size_type pos = s.find (':');
     if (pos == ::std::string::npos)

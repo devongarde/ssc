@@ -29,6 +29,14 @@ COMMAND LINE ONLY SWITCHES
 
 These options are only available on the command line:
 
+-a                      Ask the user to enter arguments, answer them;
+                        ask and answer again, until a blank line is
+                        entered. Arguments entered on the command line
+                        (with -a) will be processed as normal. Certain
+                        arguments entered during the argument answer
+                        cycle will be ignored, including -a and thread
+                        counts.
+                        
 -A                      List switches read, then exit.
 
 -f file                 Load a configuration from a file, which should
@@ -349,38 +357,20 @@ This are switches that don't really belong in any other section.
                         anywhere near untrusted data. Ignores many
                         options such as shadowing.
 
---general.custom EL     Define a custom element <EL> for verifying the
-                        IS attribute. May be repeated.
-
 --general.datapath dir  Look for any configuration, caches, and other
--p dir                  useful files, in this directory.
+-C dir                  useful files, in this directory.
 
 --general.defthrd N     If --general.thread is not given, then set the
--N N                    number of threads to N.
-
---general.error x       If nits of the specified category or worse are
--E                      generated, then, on exit, return an error code.
-                        Values are: 'catastrophe', 'error' (the
-                        default), 'warning', 'info', or 'comment'.
+-Y N                    number of threads to N.
 
 --general.exclude xxx   Ignore all paths containing xxx. May be
                         repeated. Case independent under Windows only.
                         .DS_Store is always excluded under darwin.
 
---general.file XXX      File for persistent data. Requires -N. See also
+--general.file XXX      File for persistent data. See also
                         --general.datapath. Default extension: .ndx.
 
---general.ignore EL     ignore attributes and content of the element
-                        <EL>. May be repeated.
-
 --general.info          Report launch context when starting.
-
---general.lang LA       If an X/HTML file does not have a language /
-                        dialect specified (e.g. "en" for generic
-                        English, "en-IE" for Irish English, "lb-LU"
-                        for Luxembourgish, "ma" for Marain, etc.),
-                        default to 'LA'. If not given, the default is
-                        your system default, or, if none, then "en-US".
 
 --general.maxfilesize n Do not process HTML source files that exceed n
                         bytes in size (default: 4M). Specify 0 for
@@ -395,34 +385,21 @@ This are switches that don't really belong in any other section.
 --general.progress      Dump progress information to standard output.
 -D                      This can interfere with formatted output.
 
---general.rdfa          Check RDFa attributes.
-
---general.rel           Only mention <LINK> REL values, found neither
-                        in the living standard nor at microformats.org,
-                        in debug output.
+--general.rdfa          Check RDFa attributes (version 1.1.3). This is
+                        intended for ontology testing only, so is
+                        incomplete.
 
 --general.rpt           Report CSS files that are opened.
 
---general.sloven        Ignore perfectly legal yet inefficient, indeed
-                        thoroughly slovenly, HTML, such as being far
-                        too lazy to bother to get round to closing
-                        elements.
-
 --general.spec          Reset the values of most switches to false.
 -j
-
---general.ssi           Process Server Side Includes (SSIs). Note ssc
--I                      cannot process SSIs directives with formulae.
-                        Processing SSIs may cause incorrect line
-                        numbers to be mentioned when an issue is
-                        reported.
 
 --general.test          Output data in automated test format. Used by
 -T                      ssc-test. Not generally useful. Documented so
                         you can avoid using it!
 
 --general.thread N      Use N threads when running. Defaults to a value
--n N                    appropriate for the hardware. Too high a value
+-y N                    appropriate for the hardware. Too high a value
                         can cause problems. See also --general.defthrd.
 
 --general.vcs           Excludes, as per --general.exclude, files and
@@ -442,26 +419,34 @@ This are switches that don't really belong in any other section.
                             SCCS
                             .svn
 
---general.verbose x     Output nits to the specified verbosity:
--v                      'catastrophe', 'abhorrent', 'error', 'warning',
-                        'info' (the default), 'comment', or '0' for
-                        silence. Additional values are available when
-                        debugging. Each level includes its preceding
-                        level, so, for example, 'warning' will also
-                        output 'catastrophe', 'abhorrent', and 'error'
-                        nits.
-
 HTML
 The only HTML switch you are likely to need is --html.version, and then
 only if you want to check a site that is not contemporary to the build
 of ssc. The remaining switches allow you to precisely control analysis
 of older sites.
 
+--html.custom EL        Define a custom element <EL> for verifying the
+                        IS attribute. May be repeated.
+
 --html.force            If <!DOCTYPE...> is missing, force presumption
                         of --html.version value, not HTML 1/tags
 
 --html.ie               Don't mention certain Internet Explorer
                         'features'.
+
+--html.ignore EL        Ignore attributes and content of the element
+                        <EL>. May be repeated.
+
+--html.lang LA          If an X/HTML file does not have a language /
+                        dialect specified (e.g. "en" for generic
+                        English, "en-IE" for Irish English, "lb-LU"
+                        for Luxembourgish, "ma" for Marain, etc.),
+                        default to 'LA'. If not given, the default is
+                        your system default, or, if none, then "en-US".
+
+--html.rel              Only mention <LINK> REL values, found neither
+                        in the living standard nor at microformats.org,
+                        in debug output.
 
 --html.rfc1867          Ignore the RFC 1867 (INPUT=FILE) extension when
                         processing HTML 2.0
@@ -476,6 +461,17 @@ of older sites.
                         extension when processing HTML 2.0.
 
 --html.safari           Don't mention certain early Safari 'features'.
+
+--html.sloven           Ignore perfectly legal yet inefficient, indeed
+                        thoroughly slovenly, HTML, such as being far
+                        too lazy to bother to get round to closing
+                        elements.
+
+--html.ssi              Process Server Side Includes (SSIs). Note ssc
+-I                      cannot process SSIs directives with formulae.
+                        Processing SSIs may cause incorrect line
+                        numbers to be mentioned when an issue is
+                        reported.
 
 --html.tags             When an HTML file is loaded that contains no
                         DOCTYPE, ssc normally presumes HTML 1. This
@@ -518,7 +514,7 @@ of older sites.
                             ...         (halfly)
                             2021/1/1    WhatWG HTML 5 (Jan 2021)
                             ...         (quarterly)
-                            2023/10/1   WhatWG HTML 5 (Oct 2023)
+                            2024/1/1    WhatWG HTML 5 (Jan 2024)
 
                             XHTML 1.0   XHTML 1.0
                             XHTML 1.1   XHTML 1.1 core
@@ -664,6 +660,11 @@ gen, etc..
                         (the value of n can be determined using
                         --nits.nids).
 
+--nits.errorexit x      If nits of the specified category or worse are
+-E                      generated, then, on exit, return an error code.
+                        Values are: 'catastrophe', 'error' (the
+                        default), 'warning', 'info', or 'comment'.
+
 --nits.extra            Report additional nits.
 
 --nits.format F         Specify the output format; F is a template
@@ -693,19 +694,20 @@ gen, etc..
 --nits.unique           Do not output repeated nits, even if they may
                         contain additional information.
 
+--nits.verbose x        Output nits to the specified verbosity:
+-v                      'catastrophe', 'abhorrent', 'error', 'warning',
+                        'info' (the default), 'comment', or '0' for
+                        silence. Additional values are available when
+                        debugging. Each level includes its preceding
+                        level, so, for example, 'warning' will also
+                        output 'catastrophe', 'abhorrent', and 'error'
+                        nits.
+
 --nits.warning n        Redefine nit n as a warning; may be repeated
                         (the value of n can be determined using
                         --nits.nids).
 
 --nits.watch            Output debug nits (intended for automation).
-
-RDFa switches
-SSC can check, to some extent, RDFa content. Use the ontology switches
-if you need to precisely control details about the data collected.
-
---rdfa.version          When checking RDFa files, presume this version
-                        (default: 1.1.3). RDFa analyis is incomplete,
-                        and only intended to support HTML analysis.
 
 Ontology switches
 If you are interested in checking andor hoovering ontology data, you
@@ -826,7 +828,7 @@ ontologies (see --ontology.list).
                                 rif 1.0
                                 role 1.0
                                 rr 1.0
-                                schema.org 0.10-23.0 (see below)
+                                schema.org 0.10-24.0 (see below)
                                 sd 1.0
                                 sioc 1.0
                                 sioc_s 1.0
@@ -951,12 +953,50 @@ ontologies (see --ontology.list).
                                 1.90        1.9
                                 1.91        as version number
                                 ...
-                                23.0        as version number
+                                24.0        as version number
 
                         vCard versions correspond to RDFa specs,
                         published in 2001, 2006, 2010 & 2014. They do
                         NOT correspond to vCard data format
                         specifications.
+
+                        
+Server switches
+A simple web / web socket server is available to provide a GUI for
+ssc, and to support a simple service. If this is used for more than
+simple tasks, it should be put behind the usual array of good quality
+services, such as a firewall, a proxy, and so on. It is not designed
+to be robust. The following switches are available:
+
+--server.enable         Enable the server (default disabled)
+
+--server.accept F,T     Accept connections from clients in the address
+                        range F to T. If T is omitted, it is F. The
+                        default is 127.0.0.1. Non-local address ranges
+                        are rejected. May be repeated.
+
+--server.address A      Serve on this address (default 127.0.0.1). Use
+                        * for all addresses.
+
+--server.paramters f    The certificate parameters can be found in the
+                        file f.
+
+--server.passfile f     The certificate password can be found in the
+                        file f.
+
+--server.password xxx   The certificate password is xxx. This switch is
+                        only available in configuration files, and does
+                        not work on the command line.
+
+--server.port P         Serve on this port (default 80, until I think
+                        of a better one).
+
+--server.private f      The certificate private key can be found in the
+                        file f.
+
+--server.public f       The certificate public key can be found in the
+                        file f.
+
 
 Shadow switches
 A shadow is a copy of the site being analysed, with, for example, SSIs
@@ -1367,7 +1407,7 @@ Section and option names are derived from the long form switch name,
 which consists of --SECTION.OPTION, laid out in the format:
 
 [SECTION]
-OPTION=yes
+OPTION=
 OPTION=123456
 
 Switches that do not have a long form version cannot be used in a
@@ -1458,9 +1498,9 @@ contain:
 
 [general]
 output=site.out
-class=yes
+class=
 [link]
-check=yes
+check=
 [site]
 domain=example.edu
 extension=html
@@ -1479,7 +1519,7 @@ output=jan21.out
 [html]
 version=2021/01/01
 [link]
-check=yes
+check=
 [microdata]
 version=11.0
 [site]
@@ -1488,15 +1528,15 @@ extension=html
 index=index.html
 root=site
 [stats]
-summary=yes
-meta=yes
+summary=
+meta=
 
 A configuration file to shadow copy and deduplicate a site might
 contain:
 
 [general]
 output=dedu.out
-class=yes
+class=
 [site]
 domain=example.edu
 extension=html
@@ -1512,16 +1552,16 @@ version 7.2 might contain:
 
 [general]
 output=export.out
-class=yes
+class=
 [site]
 domain=example.edu
 extension=html
 index=index.html
 root=site
 [link]
-check=yes
+check=
 [microdata]
-export=yes
+export=
 root=export
 version=7.2
 
@@ -1550,21 +1590,21 @@ Here is site.conf:
 
 [general]
 verbose=4
-class=yes
+class=
 output=site.out
-ssi=yes
+ssi=
 ignore=pre
-rpt=yes
+rpt=
 
 [html]
 version=2021/04/01
 
 [link]
-check=yes
-xlink=yes
+check=
+xlink=
 
 [microformat]
-verify=yes
+verify=
 
 [site]
 domain=example.com
@@ -1574,14 +1614,14 @@ index=index.shtml
 root=corrupt_source
 
 [stats]
-summary=yes
+summary=
 
 [shadow]
 copy=dedu
 root=site
 file=site.ndx
 ignore=inc
-info=yes
+info=
 
 
 

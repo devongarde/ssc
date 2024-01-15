@@ -1,4 +1,4 @@
--N 1 -f ../toast/stats/detail/stats.conf
+-Y 1 -f ../toast/stats/detail/stats.conf
 
 PASS ../toast/stats/detail/extra.html
 14 unrecognised_value

@@ -1,4 +1,4 @@
--N 1 -f ../toast/shadow/copyover/copyover.conf
+-Y 1 -f ../toast/shadow/copyover/copyover.conf
 
 PASS ../toast/shadow/copyover/html-bad.html
 0 charset_mismatch charset_used charset_invalid

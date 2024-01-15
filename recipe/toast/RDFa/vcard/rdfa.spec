@@ -1,4 +1,4 @@
--N 1 -f ../toast/RDFa/vcard/rdfa.conf
+-Y 1 -f ../toast/RDFa/vcard/rdfa.conf
 
 PASS ../toast/RDFa/vcard/ontology.html
 12 vocab_defined

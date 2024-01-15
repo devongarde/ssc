@@ -1,0 +1,79 @@
+<!--#include virtual="/plumbing/html.inc" -->
+<!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="nits arguments" -->
+<title>
+<!--#echo encoding="none" var="title" -->
+</title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/blog-section.inc" -->
+<!--#include virtual="/plumbing/html-top-start.inc" -->
+<!--#include virtual="/plumbing/argle.inc" -->
+<!--#include virtual="/plumbing/html-top-end.inc" -->
+<!--#include virtual="/plumbing/blog-schema.inc" -->
+<data class="u-url u-uid" value="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->">
+</data>
+
+<h1 itemprop="name" class="p-name">
+<!--#echo encoding="none" var="title" -->
+</h1>
+
+<p>
+Nits are the output of ssc, the static site NITpicker. You will need
+these switches if you want to hide certain nits, output lots of extra
+gen, etc..
+</p>
+
+<p>
+Many of these switches require a value, n, to identify a particular nit. This value
+is not normally output, to avoid clutter. However, it can be seed by using the
+<kbd>nits.nids</kbd> switch.
+</p>
+
+<table>
+<tr><td>nits.abhorrent&nbsp;n</td><td>redefine nit n as an abhorrence; may be
+                        repeated.</td></tr>
+
+<tr><td>nits.catastrophe&nbsp;n</td><td>redefine nit n as a catastrophe; may be
+                        repeated.</td></tr>
+
+<tr><td>nits.comment&nbsp;n</td><td>Redefine nit n as a comment; may be repeated.</td></tr>
+
+<tr><td>nits.debug&nbsp;n</td><td>Redefine nit n as a debug message; may be
+                        repeated.</td></tr>
+
+<tr><td>nits.error&nbsp;n</td><td>Redefine nit n as an error; may be repeated.</td></tr>
+
+<tr><td>nits.extra</td><td>Report additional nits.</td></tr>
+
+<tr><td>nits.format&nbsp;F</td><td>Specify the output format; F is a template
+                        file (see <a href="template.shtml">output templates</a>).</td></tr>
+
+<tr><td>nits.info&nbsp;n</td><td>Redefine nit n as information; may be repeated.</td></tr>
+
+<tr><td>nits.nids</td><td>Output nit ids, which can be used to redefine
+                        nits.</td></tr>
+
+<tr><td>nits.override&nbsp;F</td><td>Use this output format, not the one specified
+                        by <kbd>nits.format</kbd>. F is a template file (see
+                        <a href="template.shtml">output templates</a>). This switch is intended
+                        to aid automation.</td></tr>
+
+<tr><td>nits.quote&nbsp;X</td><td>Specify quote style when using nit.format. X
+                        can be &lsquo;text&rsquo; or &lsquo;html&rsquo;.</td></tr>
+
+<tr><td>nits.root</td><td>By default, seek nit output template files in
+                        the website root.</td></tr>
+
+<tr><td>nits.silence&nbsp;n</td><td>Silence nit n; may be repeated.</td></tr>
+
+<tr><td>nits.unique</td><td>Do not output repeated nits, even if they may
+                        contain additional information.</td></tr>
+
+<tr><td>nits.warning&nbsp;n</td><td>Redefine nit n as a warning; may be repeated.</td></tr>
+
+<tr><td>nits.watch</td><td>Output debug nits (intended for automation).</td></tr>
+</table>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/args.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

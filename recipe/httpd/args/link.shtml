@@ -1,0 +1,83 @@
+<!--#include virtual="/plumbing/html.inc" -->
+<!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="link arguments" -->
+<title>
+<!--#echo encoding="none" var="title" -->
+</title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/blog-section.inc" -->
+<!--#include virtual="/plumbing/html-top-start.inc" -->
+<!--#include virtual="/plumbing/argle.inc" -->
+<!--#include virtual="/plumbing/html-top-end.inc" -->
+<!--#include virtual="/plumbing/blog-schema.inc" -->
+<data class="u-url u-uid" value="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->">
+</data>
+
+<h1 itemprop="name" class="p-name">
+<!--#echo encoding="none" var="title" -->
+</h1>
+
+<p>
+To check site links.
+</p>
+
+<table>
+<tr><td>link.check<br>-l</td><td>Check internal links, e.g. those within the
+                      website being analysed.</td></tr>
+
+<tr><td>link.external<br>-e</td><td>Check external links, e.g. those not on the
+                      site being checked. Note that ssc will NOT
+                        check RFC 2606 links, such as example.com (see
+                        <kbd>link.example</kbd>).</td></tr>
+
+<tr><td>link.once<br>-O</td><td>Only report each broken external link once. If,
+                      for example, the site has a number of references
+                        to a page that does not exist, ssc will only
+                        report the first instance of the broken link.
+                        Note that, even if it reports every occurrence
+                        of the link, it will only check it the first
+                        time it&rsquo;s encountered (requires
+                        <kbd>link.external</kbd>).</td></tr>
+
+<tr><td>link.xlink<br>-X</td><td>Check crosslink IDs on the site being analysed.
+                    For example, if a link goes to /index.html#id,
+                        then, when this switch is set, ssc will verify
+                        that the id exists and that it is not hidden.</td></tr>
+</table>
+
+<p>
+These switches are also available.
+</p>
+
+<table>
+<tr><td>link.301<br>-3</td><td>Normally, when ssc checks external links
+                      (<kbd>link.external</kbd>), it does not report http
+                        forwarding errors 301 and 308. Use this switch
+                        to have it do so.</td></tr>
+
+<tr><td>link.example</td><td>Report links to faux domains, as defined by RFC
+                        2606 (note ssc also reports links to
+                        example.edu, example.gov &amp; example.mil).</td></tr>
+
+<tr><td>link.forward</td><td>Report HTTP forwarding errors encountered when
+                        checking external links (e.g. 301 and 308).</td></tr>
+
+<tr><td>link.ignore&nbsp;dom</td><td>When checking external links, ignore
+                        the dom domain. May be repeated.</td></tr>
+
+<tr><td>link.local</td><td>Report links to local domains, such as domains
+                        ending in .lan, .home, .corp, &amp; others.</td></tr>
+
+<tr><td>link.pretend&nbsp;f</td><td>Pretend links containing f exist. May be
+                        repeated.</td></tr>
+
+<tr><td>link.report&nbsp;dom</td><td>Report links to the dom domain and its descendents. May
+                        be repeated.</td></tr>
+
+<tr><td>link.revoke<br>-r</td><td>Do not check whether links&rsquo; https certificates
+                     have been revoked (requires <kbd>link.external</kbd>).</td></tr>
+</table>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/args.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

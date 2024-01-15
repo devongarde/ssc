@@ -1,4 +1,4 @@
--N 1 -f ../toast/other/aria/aria.conf
+-Y 1 -f ../toast/other/aria/aria.conf
 
 PASS ../toast/other/aria/index.html
 0 charset_mismatch charset_used charset_invalid

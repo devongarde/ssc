@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -41,7 +41,7 @@ struct fred_tls  // thread local storage, not sorted ssl
     ~fred_tls () = default; };
 
 typedef ::std::shared_ptr < fred_tls > tls_ptr;
-typedef ssc_map < ::std::thread::id, int > mid_t;
+typedef ssc_map < ::std::thread::id, ::std::size_t > mid_t;
 typedef ::std::vector < ::std::thread > vth_t;
 typedef ::std::vector < tls_ptr > vtls_t;
 #endif // NO_FRED

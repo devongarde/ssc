@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -4755,6 +4755,7 @@ property_gen gentab [] =
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, s_schema, sp_dietfeatures, t_ontology, sch_text },
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, s_schema, sp_dietfeatures, t_text },
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, s_schema, sp_differentialdiagnosis, t_ontology, sch_ddxelement },
+    { { 24, 0 }, { 0, 0 }, s_schema, sp_digitalsourcetype, t_ontology, sch_iptcdigitalsourceenumeration },
     { { 13, 0 }, { 0, 0 }, s_schema, sp_directapply, t_ontology, sch_boolean },
     { { 13, 0 }, { 0, 0 }, s_schema, sp_directapply, t_bool },
     { { 0, 10 }, { 0, 0 }, s_schema, sp_director, t_ontology, sch_person },
@@ -6067,12 +6068,13 @@ property_gen gentab [] =
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, s_schema, sp_postop, t_text },
     { { 1, 20 }, { 0, 0 }, s_schema, sp_potentialaction, t_ontology, sch_action },
     { { 13, 0 }, { 0, 0 }, s_schema, sp_potentialuse, t_ontology, sch_definedterm },
-    { { 0, 95, SV_NOT_3034 }, { 0, 0 }, s_schema, sp_preop, t_ontology, sch_text },
-    { { 0, 95, SV_NOT_3034 }, { 0, 0 }, s_schema, sp_preop, t_text },
+    { { 24, 0 }, { 0, 0 }, s_schema, sp_practicesat, t_ontology, sch_medicalorganisation },
     { { 0, 99 }, { 0, 0 }, s_schema, sp_predecessorof, t_ontology, sch_productmodel },
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, s_schema, sp_pregnancycategory, t_ontology, sch_drugpregnancycategory },
     { { 0, 95 }, { 0, 0 }, s_schema, sp_pregnancywarning, t_ontology, sch_text },
     { { 0, 95 }, { 0, 0 }, s_schema, sp_pregnancywarning, t_text },
+    { { 0, 95, SV_NOT_3034 }, { 0, 0 }, s_schema, sp_preop, t_ontology, sch_text },
+    { { 0, 95, SV_NOT_3034 }, { 0, 0 }, s_schema, sp_preop, t_text },
     { { 0, 10 }, { 0, 0 }, s_schema, sp_preptime, t_ontology, sch_duration },
     { { 0, 10 }, { 0, 0 }, s_schema, sp_preptime, t_duration },
     { { 3, 5 }, { 0, 0 }, s_schema, sp_preparation, t_ontology, sch_medicalentity },
@@ -6813,6 +6815,8 @@ property_gen gentab [] =
     { { 3, 5 }, { 0, 0 }, s_schema, sp_useshealthplanidstandard, t_text },
     { { 3, 5 }, { 0, 0 }, s_schema, sp_useshealthplanidstandard, t_ontology, sch_url },
     { { 3, 5 }, { 0, 0 }, s_schema, sp_useshealthplanidstandard, t_url },
+    { { 24, 0 }, { 0, 0 }, s_schema, sp_usnpi, t_ontology, sch_text },
+    { { 24, 0 }, { 0, 0 }, s_schema, sp_usnpi, t_text },
     { { 11, 0 }, { 0, 0 }, s_schema, sp_utterances, t_ontology, sch_text },
     { { 11, 0 }, { 0, 0 }, s_schema, sp_utterances, t_text },
     { { 1, 4 }, { 0, 0 }, s_schema, sp_validfor, t_ontology, sch_duration },
@@ -7968,11 +7972,7 @@ void ontology_property_init (nitpick& nits)
     for (int i = 1; i < op_illegal; ++i)
     {   const e_ontology_property sp = static_cast < e_ontology_property > (i);
         if (mpp.find (sp) == mpp.cend ())
-        {
-#ifdef _DEBUG
-            outstr.out (ontology_names.get (property_root (sp), ONTOLOGY_NAME) + ::std::string (":") + ontology_property_name (sp) + " missing from property table.\n");
-#endif
-            nits.pick (nit_missing_property, es_catastrophic, ec_init, ontology_names.get (property_root (sp), ONTOLOGY_NAME), ":", ontology_property_name (sp), " (", i, ") missing from property table."); } } }
+            nits.pick (nit_missing_property, es_catastrophic, ec_init, ontology_names.get (property_root (sp), ONTOLOGY_NAME), ":", ontology_property_name (sp), " (", i, ") missing from property table."); } }
 
 e_ontology_property identify_ontology_property (const ::std::string& name, const e_ontology root)
 {   ::std::string n (::boost::to_lower_copy (name));

@@ -1,4 +1,4 @@
--N 1 -f ../toast/RDFa/role/rdfa.conf
+-Y 1 -f ../toast/RDFa/role/rdfa.conf
 
 PASS ../toast/RDFa/role/index.xhtml
 1 xhtml_1_1

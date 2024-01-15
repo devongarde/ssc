@@ -1,4 +1,4 @@
--N 1 -f ../toast/living/oct23/living.conf
+-Y 1 -f ../toast/living/oct23/living.conf
 
 PASS ../toast/living/oct23/404.html
 12 bespoke_obsolete
@@ -623,6 +623,9 @@ PASS ../toast/living/oct23/hs-9.html
 2 missing_close
 3 inserted_missing_parent missing_close
 4 inserted_missing_parent inserted_missing_closure missing_close
+
+PASS ../toast/living/oct23/html4.css
+0 html
 
 PASS ../toast/living/oct23/i.html
 0 charset_mismatch charset_used charset_invalid

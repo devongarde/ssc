@@ -1,4 +1,4 @@
--N 1 -f ../toast/shadow/css/css.conf
+-Y 1 -f ../toast/shadow/css/css.conf
 
 PASS ../toast/shadow/css/index.html
 2 naughty_lang

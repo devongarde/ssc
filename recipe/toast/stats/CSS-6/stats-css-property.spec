@@ -1,4 +1,4 @@
--N 1 -f ../toast/stats/CSS-6/stats-css-property.conf
+-Y 1 -f ../toast/stats/CSS-6/stats-css-property.conf
 
 PASS ../toast/stats/CSS-6/content-3-2.css
 0 html

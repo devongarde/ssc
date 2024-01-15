@@ -1,4 +1,4 @@
--N 1 -f ../toast/HTML/5.4/html5.conf
+-Y 1 -f ../toast/HTML/5.4/html5.conf
 
 PASS ../toast/HTML/5.4/css-good.css
 0 html

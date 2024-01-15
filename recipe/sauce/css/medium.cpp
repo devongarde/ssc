@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -404,7 +404,7 @@ bool medium_t::validate_version (const arguments& args, nitpick& nits, const e_m
 
 bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
 {   typedef enum { tf_dull, tf_brac, tf_colonised, tf_silly_brac } tf_state;
-    typedef::std::vector < bool > vdv_t;
+    typedef faux_vb_t vdv_t;
     int comma = 0;
     tf_state status = tf_dull;
     e_media device = md_error;

@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -60,14 +60,10 @@ struct index_t
     ::std::time_t last_write_ = 0;
     sndx_t dx_, lx_;
     DEFAULT_CONSTRUCTORS (index_t);
-    explicit index_t (const fileindex_t mummy, const ::std::string& name)
-        :   mummy_ (mummy), name_ (name) { }
-    explicit index_t (const fileindex_t mummy, const ::std::string& name, const fileindex_flags flags)
+    explicit index_t (const fileindex_t mummy, const ::std::string& name, const fileindex_flags flags = 0)
         :   mummy_ (mummy), name_ (name), flags_ (flags) { }
     explicit index_t (const ::std::string& name, const short v)
         :   mummy_ (nullfileindex), name_ (name), v_ (v), flags_ (FX_DIR | FX_EXISTS) { }
-    index_t (const fileindex_t mummy, const ::std::string& name, const fileindex_flags flags, const uintmax_t size, const ::std::time_t& last_write)
-        :   mummy_ (mummy), name_ (name), flags_ (flags), size_ (size), last_write_ (last_write) { }
     index_t (const fileindex_t mummy, const ::std::string& name, const fileindex_flags flags, const uintmax_t size, const ::std::time_t& last_write, const crc_t& crc, const sndx_t& dx, const sndx_t& lx)
         :   mummy_ (mummy), name_ (name), flags_ (flags), size_ (size), crc_ (crc), last_write_ (last_write), dx_ (dx), lx_ (lx) { }
     ::boost::filesystem::path disk_path () const;
@@ -117,29 +113,29 @@ bool index_t::needs_update (const ::std::time_t& st) const
         if (last_write (x) > st) return true;
     return false; }
 
-void fileindex_init ()
-{   PRESUME (disk_x.empty (), __FILE__, __LINE__);
-    PRESUME (site_x.empty (), __FILE__, __LINE__);
-#ifndef ORDERED
-    disk_x.reserve (VX_RESERVE);
-    site_x.reserve (VX_RESERVE);
-#endif // ORDERED
-}
-
 void reset_fileindices () noexcept
 {   vx.clear ();
     site_x.clear ();
     disk_x.clear ();
-    mcrc.clear (); }
+    mcrc.clear (); 
+#ifndef ORDERED
+    try
+    {   disk_x.reserve (VX_RESERVE);
+        site_x.reserve (VX_RESERVE); }
+    catch (...)
+    {   site_x.clear ();
+        disk_x.clear (); }
+#endif // ORDERED
+}
 
 void unindex (const fileindex_t ndx)
-{   //PRESUME (ndx < vx.size (), __FILE__, __LINE__);
+{   PRESUME (static_cast < ::std::size_t > (ndx) < vx.size (), __FILE__, __LINE__);
     site_x.erase (GSL_AT (vx, ndx).site_path ());
     disk_x.erase (GSL_AT (vx, ndx).disk_path ().string ());
     if (GSL_AT (vx, ndx).crc_ != crc_initrem) mcrc.erase (GSL_AT (vx, ndx).crc_); }
 
 void reindex (const fileindex_t ndx)
-{   //PRESUME (ndx < vx.size (), __FILE__, __LINE__);
+{   PRESUME (static_cast < ::std::size_t > (ndx) < vx.size (), __FILE__, __LINE__);
     unindex (ndx);
     site_x.emplace (mxp_t::value_type (GSL_AT (vx, ndx).site_path (), ndx));
     disk_x.emplace (mxp_t::value_type (GSL_AT (vx, ndx).disk_path ().string (), ndx));
@@ -150,7 +146,7 @@ void reindex (const fileindex_t ndx)
     inner_reset_flag (ndx, FX_CRC); }
 
 void note_deleted (const fileindex_t ndx)
-{   //PRESUME (ndx < vx.size (), __FILE__, __LINE__);
+{   PRESUME (static_cast < ::std::size_t > (ndx) < vx.size (), __FILE__, __LINE__);
     inner_reset_flag (ndx, FX_STALE);
     if (! inner_get_any_flag (ndx, FX_DELETED))
     {   inner_set_flag (ndx, FX_DELETED);
@@ -173,7 +169,7 @@ void update_fileindex (const fileindex_t ndx, const fileindex_flags ff, const bo
 #ifndef NOLYNX
     else if (! is_file_linked (name)) f |= FX_LINKED;
 #endif // NOLYNX
-    else if (! is_file (name)) f |= FX_BORKED;
+    else if (! is_normal_file (name)) f |= FX_BORKED;
     else
     {   s = get_file_size (name);
         lw = get_last_write_time (name); }
@@ -233,7 +229,7 @@ fileindex_t insert_directory_path (const fileindex_t mummy, const ::boost::files
     return ndx; }
 
 fileindex_t insert_root_path (const ::boost::filesystem::path& name, const short v)
-{   PRESUME (! fred.started (), __FILE__, __LINE__);
+{   PRESUME (fred.relaxed (), __FILE__, __LINE__);
     ::boost::filesystem::path canon (canonical_name (absolute_name (name)));
     fileindex_t xin = get_fileindex (canon);
     if (xin != nullfileindex)
@@ -508,7 +504,7 @@ void set_crc (const fileindex_t ndx, const crc_t& crc)
     return p; }
 
 bool fileindex_load_internal (nitpick& nits, bool& ok)
-{   PRESUME (! fred.inited (), __FILE__, __LINE__);
+{   PRESUME (fred.relaxed (), __FILE__, __LINE__);
     ::boost::filesystem::path p (persist_path ());
     if (! file_exists (p)) return true;
     if (context.progress ()) ::std::cout << "loading " << p.string () << " ...\n";

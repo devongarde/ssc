@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -53,7 +53,7 @@ e_status set_css_all_value (nitpick& nits, const html_version& v, const ::std::s
     else return s_good;
     return s_invalid; }
 
-e_status set_css_content_name_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box)
+e_status set_css_content_name_value (nitpick& , const html_version& , const ::std::string& s, element* box)
 {   if (s.empty ()) return s_empty;
     VERIFY_NOT_NULL (box, __FILE__, __LINE__);
     css_group& g = box -> get_page ().css ();
@@ -157,7 +157,7 @@ e_status set_css_font_weights_value (nitpick& nits, const html_version& v, const
         else if (test_value < t_css_font_weight > (nits, v, s)) return s_good; }
     return s_invalid; }
 
-e_status set_css_frame_value (nitpick& nits, const html_version& v, const ::std::string& s)
+e_status set_css_frame_value (nitpick& nits, const html_version& , const ::std::string& s)
 {   if (s.empty ())
         nits.pick (nit_empty, es_error, ec_type, "a frame name cannot be empty");
     else
@@ -166,7 +166,7 @@ e_status set_css_frame_value (nitpick& nits, const html_version& v, const ::std:
         nits.pick (nit_empty, ed_css_ui_4, "5.3. Keyboard control", es_error, ec_type, "to quote, a frame name 'MUST NOT start with the underscore \"_\" character'"); }
     return s_invalid; }
 
-e_status set_css_id_value (nitpick& nits, const html_version& v, const ::std::string& s)
+e_status set_css_id_value (nitpick& nits, const html_version& , const ::std::string& s)
 {   if (s.empty ())
         nits.pick (nit_empty, es_error, ec_type, "a id cannot be empty");
     else
@@ -183,7 +183,7 @@ e_status set_css_inherit_value (nitpick& nits, const html_version& v, const ::st
     else return s_good;
     return s_invalid; }
 
-e_status set_css_nth_value (nitpick& nits, const html_version& v, const ::std::string& s)
+e_status set_css_nth_value (nitpick& nits, const html_version& , const ::std::string& s)
 {   if (s.empty ())
         nits.pick (nit_empty, ed_css_selectors_3, "6.6.5.2. :nth-child() pseudo-class", es_error, ec_type, "pseudo class children specification cannot be empty");
     else if (s.find_first_not_of (DENARY "+-nN ") != ::std::string::npos)
@@ -191,7 +191,7 @@ e_status set_css_nth_value (nitpick& nits, const html_version& v, const ::std::s
     else return s_good; // maybe do more checking!
      return s_invalid; }
 
-e_status set_css_unicode_from_to_value (nitpick& nits, const html_version& v, const ::std::string& s)
+e_status set_css_unicode_from_to_value (nitpick& nits, const html_version& , const ::std::string& s)
 {   if (s.empty ())
         nits.pick (nit_empty, es_error, ec_type, "a unicode value cannot be empty");
     else
@@ -211,7 +211,7 @@ e_status set_css_unicode_from_to_value (nitpick& nits, const html_version& v, co
             else return s_good; } }
     return s_invalid; }
 
-e_status set_css_unicode_wildcard_value (nitpick& nits, const html_version& v, const ::std::string& s)
+e_status set_css_unicode_wildcard_value (nitpick& nits, const html_version& , const ::std::string& s)
 {   if (s.empty ())
         nits.pick (nit_empty, es_error, ec_type, "a unicode value cannot be empty");
     else
@@ -234,14 +234,14 @@ e_status set_fn_value (nitpick& nits, const html_version& v, const ::std::string
             return s_good; }
     return s_invalid; }
 
-e_status set_region_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box)
+e_status set_region_value (nitpick& , const html_version& , const ::std::string& s, element* box)
 {   if (s.empty ()) return s_invalid;
     VERIFY_NOT_NULL (box, __FILE__, __LINE__);
     css_group& g = box -> get_page ().css ();
     g.note_str (gst_region, s);
     return s_good; }
 
-e_status set_stn_value (nitpick& nits, const html_version& v, const vstr_t& vs, element* box)
+e_status set_stn_value (nitpick& nits, const html_version& , const vstr_t& vs, element* box)
 {   if (vs.empty ()) return s_empty;
     VERIFY_NOT_NULL (box, __FILE__, __LINE__);
     css_group& g = box -> get_page ().css ();
@@ -251,7 +251,7 @@ e_status set_stn_value (nitpick& nits, const html_version& v, const vstr_t& vs, 
         else g.note_str (gst_scroll_anim, s);
     return s_good; }
 
-e_status set_vtn_value (nitpick& nits, const html_version& v, const vstr_t& vs, element* box)
+e_status set_vtn_value (nitpick& nits, const html_version& , const vstr_t& vs, element* box)
 {   if (vs.empty ()) return s_empty;
     VERIFY_NOT_NULL (box, __FILE__, __LINE__);
     css_group& g = box -> get_page ().css ();

@@ -73,8 +73,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include</IncludePath>
-    <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
     <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
   </PropertyGroup>
@@ -87,8 +87,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include</IncludePath>
-    <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
     <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
   </PropertyGroup>
@@ -98,6 +98,15 @@
     <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(VC_LibraryPath_arm64);$(WindowsSDK_LibraryPath_arm64)</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
     <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg">
+    <VcpkgEnableManifest>true</VcpkgEnableManifest>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <VcpkgTriplet>x64-windows</VcpkgTriplet>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <VcpkgTriplet>x64-windows</VcpkgTriplet>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -116,7 +125,7 @@
     </Link>
     <PostBuildEvent>
       <Command>$(TargetPath) -d -i $(ProjectDir)..\toast\ssc-test\output.txt $(ProjectDir)..\toast\ssc-test\input.spec
-copy $(TargetPath) $(ProjectDir)..\..</Command>
+copy $(TargetPath) $(ProjectDir)..\..\ssc-test.exe</Command>
       <Message>Toast Toaster</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -164,7 +173,7 @@ copy $(TargetPath) $(ProjectDir)..\..</Command>
       <GenerateMapFile>true</GenerateMapFile>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(TargetPath) $(ProjectDir)..\..
+      <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc-test.exe
 $(TargetPath) -d -i $(ProjectDir)..\toast\ssc-test\output.txt $(ProjectDir)..\toast\ssc-test\input.spec
 </Command>
       <Message>Toast Toaster</Message>

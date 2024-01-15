@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -57,6 +57,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_2021   21
 #define HTML_2022   22
 #define HTML_2023   23
+#define HTML_2024   24
 #define HTML_2099   99
 
 #define MAJOR_TAGS   0
@@ -269,14 +270,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_OCT23  HTML_2023, HTML_OCT
 #define HTML_NOV23  HTML_2023, HTML_NOV
 #define HTML_DEC99  HTML_2099, (HTML_DEC + HTML_31ST)
+#define HTML_JAN24  HTML_2024, HTML_JAN
 
 #define HTML_5_EARLIEST_YEAR    HTML_2005
 #define HTML_5_EARLIEST_MONTH   1
 
-#define HTML_LATEST_YEAR        HTML_2023
-#define HTML_LATEST_MONTH       10
+#define HTML_LATEST_YEAR        HTML_2024
+#define HTML_LATEST_MONTH       1
 
-#define HTML_CURRENT            HTML_OCT23
+#define HTML_CURRENT            HTML_JAN24
 
 #define HTML_UNDEF      0, 0
 
@@ -488,6 +490,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_SCHEMA_21    HTML_2023, ( HTML_MAY + HTML_23RD )
 #define HTML_SCHEMA_22    HTML_2023, ( HTML_JUN + HTML_30TH )
 #define HTML_SCHEMA_23    HTML_2023, ( HTML_OCT + HTML_17TH )
+#define HTML_SCHEMA_24    HTML_2024, ( HTML_JAN + HTML_9TH )
 #define HTML_SCHEMA       HTML_SCHEMA_0
 #define HTML_SD         HTML_RDF10_CON
 #define HTML_SIOC       HTML_RDF10

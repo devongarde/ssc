@@ -1,4 +1,4 @@
--N 1 -f ../toast/microformats/rel/rel.conf
+-Y 1 -f ../toast/microformats/rel/rel.conf
 
 PASS ../toast/microformats/rel/bad.html
 6 url_not_found

@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -131,9 +131,13 @@ bool paths_root::add_export (nitpick& nits, const ::std::string& assignment)
         nits.pick (nit_bad_parameter, es_error, ec_init, quote (virt), " is no virtual directory"); } }
     return false; }
 
+static paths_root pr_virtuals;
+
 paths_root& paths_root::virtual_roots () noexcept
-{   static paths_root virtuals;
-    return virtuals; }
+{   return pr_virtuals; }
+
+void paths_root::reinit ()
+{   pr_virtuals.clear (); }
 
 bool make_xxx_directory (nitpick& nits, const ::boost::filesystem::path& p)
 {   if (file_exists (p))

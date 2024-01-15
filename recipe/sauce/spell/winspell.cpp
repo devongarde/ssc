@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -41,8 +41,11 @@ ISpellCheckerFactory* scf = nullptr;
 CONSTEXPR int sweetmax = 8192;
 bool com = false;
 
+void spell_reset ()
+{   mssfl = mssfl_uptr (new mssfl_t); }
+
 void spell_init (nitpick& nits)
-{   mssfl = mssfl_uptr (new mssfl_t);
+{   spell_reset ();
     HRESULT hr = CoInitializeEx (nullptr, COINIT_MULTITHREADED);
     if (FAILED (hr)) nits.pick (nit_no_spell, es_warning, ec_spell, "Cannot initialise COM (error ", hr, ")");
     else
@@ -62,7 +65,6 @@ void spell_free ()
         com = false; } }
 
 vstr_t load_dictionaries (nitpick& ) { return vstr_t (); }
-void spell_terminate () { }
 
 void apply_wordlist (ISpellChecker* isp, const vstr_t& list)
 {   VERIFY_NOT_NULL (isp, __FILE__, __LINE__);

@@ -1,4 +1,4 @@
--N 1 -f ../toast/css/4-box-model/css.conf
+-Y 1 -f ../toast/css/4-box-model/css.conf
 
 PASS ../toast/css/4-box-model/css-3.css
 0 html

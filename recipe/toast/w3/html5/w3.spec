@@ -1,4 +1,4 @@
--N 1 -f ../toast/w3/html5/w3.conf
+-Y 1 -f ../toast/w3/html5/w3.conf
 
 PASS ../toast/w3/html5/html5-error-explanation.html
 2 naughty_lang

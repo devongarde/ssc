@@ -1,4 +1,4 @@
--N 1 -f ../toast/stats/detail/stats-ontology.conf
+-Y 1 -f ../toast/stats/detail/stats-ontology.conf
 
 PASS ../toast/stats/detail/extra.html
 14 unrecognised_value

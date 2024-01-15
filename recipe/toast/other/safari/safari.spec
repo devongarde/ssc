@@ -1,4 +1,4 @@
--N 1 -f ../toast/other/safari/safari.conf
+-Y 1 -f ../toast/other/safari/safari.conf
 
 PASS ../toast/other/safari/css-good.css
 0 html

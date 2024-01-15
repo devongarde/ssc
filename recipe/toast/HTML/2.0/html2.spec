@@ -1,4 +1,4 @@
--N 1 -f ../toast/HTML/2.0/html2.conf
+-Y 1 -f ../toast/HTML/2.0/html2.conf
 
 PASS ../toast/HTML/2.0/html2-good.html
 5 attribute_required

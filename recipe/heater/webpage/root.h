@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -56,6 +56,8 @@ public:
     bool add_shadow (nitpick& nits, const ::std::string& assignment);
     bool add_export (nitpick& nits, const ::std::string& assignment);
     static paths_root& virtual_roots () noexcept;
+    static void reinit ();
+    void clear () { root_.clear(); }
     const path_root_ptr& at (const ::std::size_t x) const { return root_.at (x); }
     path_root_ptr& at (const ::std::size_t x) { return root_.at (x); }
     ::std::size_t size () const noexcept { return root_.size (); }

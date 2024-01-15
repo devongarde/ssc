@@ -1,4 +1,4 @@
--N 1 -f ../toast/HTML/1.0/html1.conf
+-Y 1 -f ../toast/HTML/1.0/html1.conf
 
 PASS ../toast/HTML/1.0/index.html
 1 presume_html_1

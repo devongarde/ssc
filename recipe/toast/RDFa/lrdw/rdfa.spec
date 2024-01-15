@@ -1,4 +1,4 @@
--N 1 -f ../toast/RDFa/lrdw/rdfa.conf
+-Y 1 -f ../toast/RDFa/lrdw/rdfa.conf
 
 PASS ../toast/RDFa/lrdw/lrdw.html
 6 css_version

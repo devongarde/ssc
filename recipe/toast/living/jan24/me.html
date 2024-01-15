@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+ <head> <title> media elements </title> </head>
+ <body>
+
+<section id="video">
+ <p><a href="playing-cats.nfv">Download video</a></p>
+</section>
+<script>
+ const videoSection = document.getElementById('video');
+ const videoElement = document.createElement('video');
+ const support = videoElement.canPlayType('video/x-new-fictional-format;codecs="kittens,bunnies"');
+ if (support === "probably") {
+   videoElement.setAttribute("src", "playing-cats.nfv");
+   videoSection.replaceChildren(videoElement);
+ }
+</script>
+
+<video src="myvideo#track=Alternative"></video>
+
+<video src="adverts.cgi?kind=video" controls autoplay loop muted></video>
+
+ </body>
+</html>

@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -27,8 +27,9 @@ void state_init ();
 // I got fed up working around borked bitset implementations. This is extremely
 // inefficient compared to a decent working implementation, but at least it
 // pretends to work. :-(
+
 template < typename T, T SIZE > class ssc_bitset
-{   typedef ::std::vector < bool > base_t;
+{   typedef faux_vb_t base_t;
     base_t bs_;
     explicit ssc_bitset (const base_t& b) : bs_ (b)
     { PRESUME (bs_.size () == SIZE, __FILE__, __LINE__); }

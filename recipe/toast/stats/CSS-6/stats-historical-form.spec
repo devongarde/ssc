@@ -1,4 +1,4 @@
--N 1 -f ../toast/stats/CSS-6/stats-historical-form.conf
+-Y 1 -f ../toast/stats/CSS-6/stats-historical-form.conf
 
 PASS ../toast/stats/CSS-6/content-3-2.css
 0 html

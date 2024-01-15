@@ -1,4 +1,4 @@
--N 1 -f ../toast/microdata/schema-abc/abc.conf
+-Y 1 -f ../toast/microdata/schema-abc/abc.conf
 
 PASS ../toast/microdata/schema-abc/administrativearea.html
 14 use_double_quote_code

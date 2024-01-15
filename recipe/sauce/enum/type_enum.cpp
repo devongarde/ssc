@@ -1,6 +1,6 @@
 ﻿/*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -806,6 +806,7 @@ struct symbol_entry < html_version, e_css_float > css_float_symbol_table [] =
 
 struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
 {   { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "(unknown)", efn_none },
+    { { HTML_JAN24, HE_BESPOKE, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "-webkit-autofill", efn_webkit_autofill }, // living standard
     { { HTML_CSS, 0, 0, 0, H3_CSS_PRESENT }, { HTML_UNDEF }, "above-level", efn_above_level },
     { { HTML_CSS, 0, 0, H2_CSS_1_2 | H2_CSS_SELECTOR }, { HTML_UNDEF }, "active", efn_active },
     { { HTML_CSS, 0, 0, H2_CSS_2 | H2_CSS_COCO | H2_CSS_SELECTOR, H3_NOT_TV | H3_CSS_PSEUDO }, { HTML_UNDEF }, "after", efn_after },
@@ -902,7 +903,7 @@ struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_COCO }, { HTML_UNDEF }, "slotted", efn_slotted },
     { { HTML_CSS, 0, 0, H2_CSS_COCO, H3_CSS_PSEUDO }, { HTML_UNDEF }, "spelling-error", efn_spelling_error },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "stalled", efn_stalled },
-    { { HTML_CSS, 0, 0, H2_CSS_3 }, { HTML_UNDEF }, "state", efn_state },
+    { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_1_ARG }, { HTML_UNDEF }, "state", efn_state },
     { { HTML_CSS, 0, 0, H2_CSS_3 }, { HTML_UNDEF }, "target", efn_target },
     { { HTML_CSS, 0, 0, H2_CSS_COCO, H3_CSS_PSEUDO }, { HTML_UNDEF }, "target-text", efn_target_text },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "target-within", efn_target_within },
@@ -3047,6 +3048,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-ignore", nm_context_ignore },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-info", nm_context_info },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-index", nm_context_index },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-iterate", nm_context_iterate },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-jsonld", nm_context_jsonld },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-jsonld-extension", nm_context_jsonld_extension },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-jsonld-version", nm_context_jsonld_version },
@@ -3078,6 +3080,12 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-safari", nm_context_safari },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-schema", nm_context_schema },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-schema-version", nm_context_ontology_version },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-server", nm_context_server },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-server-accept-from", nm_context_server_address_from },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-server-accept-to", nm_context_server_address_to },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-server-address", nm_context_server_address },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-server-port", nm_context_server_port },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-server-root", nm_context_server_root },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-shadow-comment", nm_context_shadow_comment },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-shadow-changed", nm_context_shadow_changed },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-shadow-enable", nm_context_shadow_enable },

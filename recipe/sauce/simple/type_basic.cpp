@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -32,7 +32,7 @@ e_status set_compact_value (nitpick& nits, const html_version& v, const ::std::s
             return s_invalid; } }
     return s_good; }
 
-e_status set_html_value (nitpick& nits, const html_version& v, const ::std::string& s)
+e_status set_html_value (nitpick& nits, const html_version& , const ::std::string& s)
 {   if (s.empty ())
     {   nits.pick (nit_empty, es_error, ec_type, "a SRCDOC value cannot be empty");
         return s_invalid; }

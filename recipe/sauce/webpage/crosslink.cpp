@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -72,7 +72,7 @@ typedef ::std::map < fileindex_t, sought_t > vx_t;
 typedef ::std::unique_ptr < vx_t > vx_ptr;
 vx_ptr xlynx;
 
-void init_crosslinks ()
+void reset_crosslinks ()
 {   xlynx = vx_ptr (new vx_t); }
 
 void declare_crosslinks (const fileindex_t sought, const ids_t& ids)

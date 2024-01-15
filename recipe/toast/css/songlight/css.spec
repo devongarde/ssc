@@ -1,4 +1,4 @@
--N 1 -f ../toast/css/songlight/css.conf
+-Y 1 -f ../toast/css/songlight/css.conf
 
 PASS ../toast/css/songlight/index.html
 2 naughty_lang

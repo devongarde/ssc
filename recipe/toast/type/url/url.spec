@@ -1,4 +1,4 @@
--N 1 -f ../toast/type/url/url.conf
+-Y 1 -f ../toast/type/url/url.conf
 
 PASS ../toast/type/url/index.html
 2 naughty_lang

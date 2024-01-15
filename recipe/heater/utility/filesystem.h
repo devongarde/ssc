@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -35,7 +35,7 @@ vstr_t nix_path_to_local (const vstr_t& v);
 ::std::time_t get_last_write_time (const ::boost::filesystem::path& name);
 uintmax_t get_file_size (const ::boost::filesystem::path& name);
 bool is_folder (const ::boost::filesystem::path& name);
-bool is_file (const ::boost::filesystem::path& name);
+bool is_normal_file (const ::boost::filesystem::path& name);
 bool file_exists (const ::boost::filesystem::path& name);
 ::boost::filesystem::file_status file_data (const ::boost::filesystem::path& name);
 #ifndef NO_PERMS
@@ -53,7 +53,7 @@ bool duplicate_file (const ::boost::filesystem::path& from, const ::boost::files
 ::std::time_t get_last_write_time (const ::boost::filesystem::path& name) noexcept;
 uintmax_t get_file_size (const ::boost::filesystem::path& name) noexcept;
 bool is_folder (const ::boost::filesystem::path& name);
-bool is_file (const ::boost::filesystem::path& name);
+bool is_normal_file (const ::boost::filesystem::path& name);
 bool file_exists (const ::boost::filesystem::path& name);
 ::boost::filesystem::file_status file_data (const ::boost::filesystem::path& name);
 #ifndef NO_PERMS

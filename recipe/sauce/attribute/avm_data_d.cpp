@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -87,7 +87,8 @@ hav_t havt_desc [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_details [] =
-{   { { HTML_JAN07, HV_NOT50 }, { HTML_UNDEF }, elem_details, a_open },
+{   { { HTML_JAN24 }, { HTML_UNDEF }, elem_details, a_name },
+    { { HTML_JAN07, HV_NOT50 }, { HTML_UNDEF }, elem_details, a_open },
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_details),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 

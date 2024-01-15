@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -380,13 +380,13 @@ bool directory::verify_local (nitpick& nits, const html_version& , const url& u,
         else if ((! fancy) && get_any_flag (ndx, FX_DIR)) return false;
         else if (get_any_flag (ndx, FX_TESTED))
             return (get_any_flag (ndx, (FX_SCANNED | FX_EXISTS)));
-    if (is_file (p))
+    if (is_normal_file (p))
     {   maintain_fileindex (nits, p, u.absolute (), ndx, FX_TESTED | FX_EXISTS);
         return true; }
     if (fancy)
         if (is_folder (p))
         {   ::boost::filesystem::path p2 = p / context.index ();
-            if (is_file (p2))
+            if (is_normal_file (p2))
             {   maintain_fileindex (nits, p, u.absolute (), ndx, FX_TESTED | FX_EXISTS | FX_DIR);
                 maintain_fileindex (nits, p2, sanitise (u.absolute () + "/" + context.index ()), ndx, FX_TESTED | FX_EXISTS);
                 return true; }
@@ -610,3 +610,5 @@ bool directory::avoid_update (const ::std::string& name, const bool page) const
     original /= name;
     imitation /= name;
     return avoid_update (original, imitation, page); }
+
+void directory::reinit () { external_.reinit (); }

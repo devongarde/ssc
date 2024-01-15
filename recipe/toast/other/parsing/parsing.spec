@@ -1,4 +1,4 @@
--N 1 -f ../toast/other/parsing/parsing.conf
+-Y 1 -f ../toast/other/parsing/parsing.conf
 
 PASS ../toast/other/parsing/comment.html
 16 ssi

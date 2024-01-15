@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -35,6 +35,9 @@ public:
     ~stats_t () = default;
     void swap (stats_t& s) noexcept
     {   p_.swap (s.p_); }
+    void reset ()
+    {   stats_t tmp;
+        swap (tmp); }
     void dcl_class (const ::std::string& s, const ::std::size_t n = 1);
     void dcl_custom_prop (const ::std::string& s, const ::std::size_t n = 1);
     void dcl_id (const ::std::string& s, const ::std::size_t n = 1);

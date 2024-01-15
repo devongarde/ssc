@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -26,7 +26,7 @@ typedef ::std::vector < prop_index > prop_indices;
 CONSTEXPR prop_index illegal_prop = 0xFFFFFFFF;
 CONSTEXPR prop_index null_prop = 0;
 
-void init_rdfa_prop ();
+void reset_rdfa_prop ();
 
 inline prop_index make_prop_index (const e_ontology_property p)
 {   PRESUME (p <= op_illegal, __FILE__, __LINE__);

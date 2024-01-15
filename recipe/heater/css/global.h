@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -29,6 +29,7 @@ class css_global
     dst_ptr inner_get (const ::std::string& s) const;
 public:
     css_global ();
+    void reset ();
     dst_ptr get_or_preinsert (const ::std::string& s);
     void release (dst_ptr cp);
     dst_ptr get (const ::std::string& s) const;

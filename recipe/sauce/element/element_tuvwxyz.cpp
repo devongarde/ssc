@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -129,7 +129,7 @@ void element::examine_title ()
     page_ -> title (ttl);
     if (is_whitespace (ttl))
         pick (nit_text_content, es_warning, ec_element, "<TITLE> text should be more than whitespace");
-    else if (ttl.length () > GSL_NARROW_CAST < unsigned int > (context.title ()))
+    else if (ttl.length () > context.title ())
         pick (nit_long_title, ed_tags, "TITLE section", es_warning, ec_element, "the TITLE text (", quote (ttl.substr (0, context.title ())), "...) is unlikely to fit in a tab");
     page_ -> confirm_title (); }
 

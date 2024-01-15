@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -2029,7 +2029,8 @@ struct symbol_entry < html_version, e_mimetype > mimetype_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, "application/news-message-id", mime_application_news_message_id, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/x-httpd-asp", mime_application_x_httpd_asp, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL | MIME_PAGE },
     // other
-    { { HTML_5_0 }, { HTML_UNDEF }, "7z", mime_application_7z, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
+    { { HTML_5_0 }, { HTML_UNDEF }, "application/7z", mime_application_7z, ns_default, MIME_APPLICATION | MIME_UNOFFICIAL },
+    { { HTML_5_0 }, { HTML_UNDEF }, "video/x-flv", mime_video_x_flv, ns_default, MIME_VIDEO | MIME_UNOFFICIAL },
     { { HTML_4_0 }, { HTML_UNDEF }, nullptr, mime_context } };
 
 struct symbol_entry < html_version, e_format > format_symbol_table [] =
@@ -2168,6 +2169,7 @@ struct symbol_entry < html_version, e_format > format_symbol_table [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, "jpg", mime_image_jpeg },
     { { HTML_UNDEF }, { HTML_UNDEF }, "jfif", mime_image_pipeg },
     { { HTML_UNDEF }, { HTML_UNDEF }, "svg", mime_image_svg_xml },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "svgz", mime_image_svg_xml },
     { { HTML_UNDEF }, { HTML_UNDEF }, "tif", mime_image_tiff },
     { { HTML_UNDEF }, { HTML_UNDEF }, "tiff", mime_image_tiff },
     { { HTML_UNDEF }, { HTML_UNDEF }, "ras", mime_image_x_cmu_raster },
@@ -2278,6 +2280,7 @@ struct symbol_entry < html_version, e_format > format_symbol_table [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, "m4v", mime_video_mp4 },
     { { HTML_4_01 }, { HTML_UNDEF }, "rss", mime_application_rss_xml },
     { { HTML_UNDEF }, { HTML_UNDEF }, "vtt", mime_text_vtt },
+    { { HTML_5_0 }, { HTML_UNDEF }, "flv", mime_video_x_flv },
 
     { { HTML_UNDEF }, { HTML_UNDEF }, nullptr, mime_context } };
 

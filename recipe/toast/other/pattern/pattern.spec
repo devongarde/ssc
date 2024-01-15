@@ -1,4 +1,4 @@
--N 1 -f ../toast/other/pattern/pattern.conf
+-Y 1 -f ../toast/other/pattern/pattern.conf
 
 PASS ../toast/other/pattern/index.html
 14 bad_pattern

@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -45,7 +45,7 @@ public:
     ::std::string apply (const e_nit_section& section, const mmac_t& values1, const mmac_t& values2, const mmac_t& values3);
     ::std::string apply (const e_nit_section& section, const mmac_t& values1, const mmac_t& values2, const mmac_t& values3, const mmac_t& values4); };
 
-void init_macro ();
+void reset_macro ();
 
 typedef ::std::unique_ptr < macro_t > macro_uptr;
 extern macro_uptr macro;

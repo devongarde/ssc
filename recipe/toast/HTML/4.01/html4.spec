@@ -1,4 +1,4 @@
--N 1 -f ../toast/HTML/4.01/html4.conf
+-Y 1 -f ../toast/HTML/4.01/html4.conf
 
 PASS ../toast/HTML/4.01/css-good.css
 4 whatwg_class whatwg_class

@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -2899,6 +2899,7 @@ struct symbol_entry < ontology_version, e_ontology_type, e_ontology, s_schema > 
     { { 0, 10 }, { 0, 0 }, "ImageObject", sch_imageobject },
     { { 13, 0 }, { 0, 0 }, "ImageObjectSnapshot", sch_imageobjectsnapshot },
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, "ImagingTest", sch_imagingtest },
+    { { 24, 0 }, { 0, 0 }, "IndividualPhysician", sch_individualphysician },
     { { 0, 99 }, { 0, 0 }, "IndividualProduct", sch_individualproduct },
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, "Infectious", sch_infectious },
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, "InfectiousAgentClass", sch_infectiousagentclass, s_schema, SF_ENUMERATION },
@@ -2924,6 +2925,21 @@ struct symbol_entry < ontology_version, e_ontology_type, e_ontology, s_schema > 
     { { 1, 93 }, { 0, 0 }, "Invoice", sch_invoice },
     { { 11, 0 }, { 0, 0 }, "InvoicePrice", sch_invoiceprice },
     { { 14, 0 }, { 0, 0 }, "IOSPlatform", sch_iosplatform },
+    { { 24, 0 }, { 0, 0 }, "IPTCDigitalSourceEnumeration", sch_iptcdigitalsourceenumeration, s_schema, SF_ENUMERATION },
+    { { 24, 0 }, { 0, 0 }, "AlgorithmicMediaDigitalSource", sch_iptcalgorithmicmediadigitalsource },
+    { { 24, 0 }, { 0, 0 }, "AlgorithmicallyEnhancedDigitalSource", sch_iptcalgorithmicallyenhanceddigitalsource },
+    { { 24, 0 }, { 0, 0 }, "CompositeCaptureDigitalSource", sch_iptccompositecapturedigitalsource },
+    { { 24, 0 }, { 0, 0 }, "CompositeSyntheticDigitalSource", sch_iptccompositesyntheticdigitalsource },
+    { { 24, 0 }, { 0, 0 }, "CompositeWithTrainedAlgorithmicMediaDigitalSource", sch_iptccompositewithtrainedalgorithmicmediadigitalsource },
+    { { 24, 0 }, { 0, 0 }, "DataDrivenMediaDigitalSource", sch_iptcdatadrivenmediadigitalsource },
+    { { 24, 0 }, { 0, 0 }, "DigitalArtDigitalSource", sch_iptcdigitalartdigitalsource },
+    { { 24, 0 }, { 0, 0 }, "DigitalCaptureDigitalSource", sch_iptcdigitalcapturedigitalsource },
+    { { 24, 0 }, { 0, 0 }, "MinorHumanEditsDigitalSource", sch_iptcminorhumaneditsdigitalsource },
+    { { 24, 0 }, { 0, 0 }, "NegativeFilmDigitalSource", sch_iptcnegativefilmdigitalsource },
+    { { 24, 0 }, { 0, 0 }, "PositiveFilmDigitalSource", sch_iptcpositivefilmdigitalsource },
+    { { 24, 0 }, { 0, 0 }, "PrintDigitalSource", sch_iptcprintdigitalsource },
+    { { 24, 0 }, { 0, 0 }, "TrainedAlgorithmicMediaDigitalSource", sch_iptctrainedalgorithmicmediadigitalsource },
+    { { 24, 0 }, { 0, 0 }, "VirtualRecordingDigitalSource", sch_iptcvirtualrecordingdigitalsource },
     { { 0, 10 }, { 0, 0 }, "ItemAvailability", sch_itemavailability, s_schema, SF_ENUMERATION },
     { { 0, 10 }, { 0, 0 }, "ItemList", sch_itemlist },
     { { 1, 92 }, { 0, 0 }, "ItemListOrderAscending", sch_itemlistorderascending },
@@ -3280,6 +3296,7 @@ struct symbol_entry < ontology_version, e_ontology_type, e_ontology, s_schema > 
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, "PhysicalExam", sch_physicalexam, s_schema, SF_ENUMERATION },
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, "PhysicalTherapy", sch_physicaltherapy },
     { { 0, 10 }, { 0, 0 }, "Physician", sch_physician },
+    { { 24, 0 }, { 0, 0 }, "PhysiciansOffice", sch_physiciansoffice },
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, "Physiotherapy", sch_physiotherapy },
     { { 0, 10 }, { 0, 0 }, "Place", sch_place },
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, "PlaceboControlledTrial", sch_placebocontrolledtrial },

@@ -1,4 +1,4 @@
--N 1 -f ../toast/w3/bogus/w3.conf
+-Y 1 -f ../toast/w3/bogus/w3.conf
 
 PASS ../toast/w3/bogus/bogus-fpi.html
 23 attempted_escape attempted_escape url_not_found

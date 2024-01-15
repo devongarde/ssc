@@ -1,4 +1,4 @@
--N 1 -f ../toast/HTML/3.0/html3.conf
+-Y 1 -f ../toast/HTML/3.0/html3.conf
 
 PASS ../toast/HTML/3.0/html3-deprecated.html
 1 sq_brac_ket

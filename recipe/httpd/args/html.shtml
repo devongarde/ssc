@@ -1,0 +1,148 @@
+<!--#include virtual="/plumbing/html.inc" -->
+<!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="HTML arguments" -->
+<title>
+<!--#echo encoding="none" var="title" -->
+</title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/blog-section.inc" -->
+<!--#include virtual="/plumbing/html-top-start.inc" -->
+<!--#include virtual="/plumbing/argle.inc" -->
+<!--#include virtual="/plumbing/html-top-end.inc" -->
+<!--#include virtual="/plumbing/blog-schema.inc" -->
+<data class="u-url u-uid" value="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->">
+</data>
+
+<h1 itemprop="name" class="p-name">
+<!--#echo encoding="none" var="title" -->
+</h1>
+
+<h2>introduction</h2>
+
+<p>
+If you want to check a site against a version of HTML that corresponds to <!--#echo encoding="none" var="short" -->&rsquo;s current build,
+you won&rsquo;t need to use these switches. The default is the most recent version of HTML at the time of the build.
+</p>
+
+<h2>html.version</h2>
+
+<p>
+However, beyong that,
+the only HTML switch you are likely to need is <kbd>html.version</kbd>, which applies
+when no <kbd>&lt;!DOCTYPE&hellip;&gt;</kbd> (or xml header) is specified, andor if you prefer to precisely
+define which version of HTML 5 to consider. It accepts the following values:
+</p>
+
+<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-var-sm.jpg" title="made with studio artist 5.5">
+
+<table>
+<tr><td>tags</td><td>HTML tags (1991, informal)</td></tr>
+<tr><td>1</td><td>HTML 1.0 (Jun 1993 draft)</td></tr>
+<tr><td>1.0</td><td>HTML 1.0 (Jun 1993 draft)</td></tr>
+<tr><td>+</td><td>HTML Plus (Nov 1993 draft)</td></tr>
+<tr><td>2</td><td>HTML 2.0</td></tr>
+<tr><td>2.0</td><td>HTML 2.0</td></tr>
+<tr><td>3</td><td>HTML 3.2</td></tr>
+<tr><td>3.0</td><td>HTML 3.0 (Mar 1995 draft)</td></tr>
+<tr><td>3.2</td><td>HTML 3.2</td></tr>
+<tr><td>4</td><td>HTML 4.01</td></tr>
+<tr><td>4.0</td><td>HTML 4.0</td></tr>
+<tr><td>4.1</td><td>HTML 4.01</td></tr>
+<tr><td>4.2</td><td>XHTML 1.0</td></tr>
+<tr><td>4.3</td><td>XHTML 1.1 core</td></tr>
+<tr><td>4.4</td><td>XHTML 2.0 (Dec 2010 draft)</td></tr>
+<tr><td>5</td><td>recent WhatWG HTML 5</td></tr>
+<tr><td>5.0</td><td>W3 HTML 5.0</td></tr>
+<tr><td>5.1</td><td>W3 HTML 5.1</td></tr>
+<tr><td>5.2</td><td>W3 HTML 5.2</td></tr>
+<tr><td>5.3</td><td>W3 HTML 5.3 (Oct 2018 draft)</td></tr>
+
+<tr><td>2005/1/1</td><td>WhatWG WebApps draft (Jan 2005)</td></tr>
+<tr><td>...</td><td>(halfly)</td></tr>
+<tr><td>2007/1/1</td><td>WhatWG WebApps draft (Jan 2007)</td></tr>
+<tr><td>2007/7/1</td><td>WhatWG HTML 5 (Jul 2007)</td></tr>
+<tr><td>...</td><td>(halfly)</td></tr>
+<tr><td>2021/1/1</td><td>WhatWG HTML 5 (Jan 2021)</td></tr>
+<tr><td>..</td><td>(quarterly)</td></tr>
+<tr><td>2023/10/1</td><td>WhatWG HTML 5 (Oct 2023)</td></tr>
+
+<tr><td>XHTML 1.0</td><td>XHTML 1.0</td></tr>
+<tr><td>XHTML 1.1</td><td>XHTML 1.1 core</td></tr>
+<tr><td>XHTML 2.0</td><td>(Dec 2010 draft)</td></tr>
+<tr><td>XHTML 5.x</td><td>XHTML corresponding to
+                                        equivalent W3 HTML</td></tr>
+</table>
+
+<p>
+                        Although you can specify exact dates for
+                        versions of the <a href="https://whatwg.org">WhatWG HTML 5 living standard</a>,
+                        currently only broad versions published quarterly in
+                        January, April, July and October are supported (halfly
+                        before 2021).
+</p>
+
+<p>
+                        Certain versions of HTML offer variants, such
+                        as loose and strict definitions. <!--#echo encoding="none" var="short" --> picks
+                        those up from the <kbd>&lt;!DOCTYPE&hellip;&gt;</kbd> in the HTML
+                        file, if any, and then carefully ignores them.
+</p>
+
+<p>
+                        Validation of XHTML is even less strict.
+</p>
+
+<p>
+                        Just to remind you, there are no guarantees of
+                        accuracy (or inaccuracy).
+</p>
+
+<p>
+                        Copies of the appropriate standards can be
+                        found online. A copy of the copies referenced
+                        during ssc&rsquo;s development can be found at
+                        <a href="<!--#echo encoding="none" var="slashaddress" -->"><!--#echo encoding="none" var="address" --></a>.
+</p> 
+
+<h2>other html arguments</h2>
+
+<p>
+The remaining switches allow you to precisely control analysis.
+</p>
+
+<table>
+<tr><td>html.force</td><td>If <kbd>&lt;!DOCTYPE&hellip;&gt;</kbd> is missing, force presumption
+                        of <kbd>html.version</kbd> value, not HTML 1/tags</td></tr>
+
+<tr><td>html.ie</td><td>Don&rsquo;t mention certain Internet Explorer
+                        &lsquo;features&rsquo;.</td></tr>
+
+<tr><td>html.rfc1867</td><td>Ignore the RFC 1867 (INPUT=FILE) extension when
+                        processing HTML 2.0</td></tr>
+
+<tr><td>html.rfc1942</td><td>Ignore the RFC 1942 (tables) extension when
+                        processing HTML 2.0.</td></tr>
+
+<tr><td>html.rfc1980</td><td>Ignore the RFC 1980 (client side image maps)
+                        extension when processing HTML 2.0.</td></tr>
+
+<tr><td>html.rfc2070</td><td>Ignore the RFC 2070 (internationalisation)
+                        extension when processing HTML 2.0.</td></tr>
+
+<tr><td>html.safari</td><td>Don&rsquo;t mention certain early Safari &lsquo;features&rsquo;.</td></tr>
+
+<tr><td>html.tags</td><td>When an HTML file is loaded that contains no
+                        <kbd>&lt;!DOCTYPE&hellip;&gt;</kbd>, <!--#echo encoding="none" var="short" --> normally presumes HTML 1. This
+                        switch tells it to presume the file conforms
+                        to an earlier HTML Tags specification (the one
+                        at CERN). This is overridden by <kbd>html.version</kbd>.</td></tr>
+
+<tr><td>html.title n<br>-z n</td><td>If <kbd>&lt;TITLE&gt;</kbd> text is longer than n characters,
+                say so. This applies to text enclosed by a
+                        <kbd>&lt;TITLE&gt;</kbd> element under <kbd>&lt;HEAD&gt;</kbd>, not the value of
+                        TITLE attributes.</td></tr>
+</table>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/args.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

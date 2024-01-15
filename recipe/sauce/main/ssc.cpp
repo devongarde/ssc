@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -64,16 +64,30 @@ const char* test_title = TEST_TITLE;
 const char* simple_title = SIMPLE_TITLE;
 const char* full_title = FULL_TITLE;
 
+int cycle_start (nitpick& nits)
+{   reset_crosslinks ();
+    reset_fileindices ();
+    reset_itemid ();
+    reset_itemprop ();
+    reset_macro ();
+    reset_rdfa_prop ();
+    spell_reset ();
+    overall.reset ();
+    directory::reinit ();
+    paths_root::reinit ();
+    nits.set_context (0, PROG " reinitialisation");
+    return VALID_RESULT; }
+
 void init (nitpick& nits)
-{   init_cache ();
+{   vstr_t v (split_by_charset (VERSION_STRING, "."));
+    PRESUME (v.size () == 3, __FILE__, __LINE__);
+    PRESUME (lexical < int > :: cast (v.at (0)) == VERSION_MAJOR, __FILE__, __LINE__);
+    PRESUME (lexical < int > :: cast (v.at (1)) == VERSION_MINOR, __FILE__, __LINE__);
+    PRESUME (lexical < int > :: cast (v.at (2)) == VERSION_RELEASE, __FILE__, __LINE__);
+    init_cache ();
     state_init ();
-    init_macro ();
-    init_itemid ();
-    init_itemprop ();
-    init_rdfa_prop ();
-    init_crosslinks ();
     nits_init ();
-    nits.set_context (0, PROG " initialisation");
+    cycle_start (nits);
     types_init (nits);
     spell_init (nits);
     lingo::init (nits);
@@ -85,7 +99,6 @@ void init (nitpick& nits)
     elem::init (nits);
     elements_init (nits);
     fields_init (nits);
-    fileindex_init ();
     family_init (nits);
     sibling_init (nits);
     parentage_init (nits);
@@ -100,11 +113,19 @@ void init (nitpick& nits)
     microdata_init (nits);
     url::init (nits);
     wotsit_init (nits);
-    curl_init (); }
+    curl_init ();
+#ifdef DEBUG
+    avm_elem_crosscheck ();
+#endif
+    VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__); }
 
 int ciao ()
-{   ::std::ostringstream ss;
+{   spell_free ();
     curl_done ();
+    return VALID_RESULT; }
+
+int cycle_finish ()
+{   ::std::ostringstream ss;
     global_css.accumulate (&overall);
     if (context.tell (es_warning))
     {   if (context.classic () && ! context.stats_summary ())
@@ -124,8 +145,8 @@ int ciao ()
             outstr.out (report_itemids ());
     if (context.stats_summary ()) report_global_stats (true);
     if (context.tell (es_debug)) outstr.out (fileindex_report ());
-    spell_terminate ();
     if (overall.severity_exceeded ()) return ERROR_STATE;
+    global_css.reset ();
     return VALID_RESULT; }
 
 #ifndef NO_FRED
@@ -145,7 +166,7 @@ int examine (nitpick& nits)
         try
         {   if (! web.invalid ()) web.examine ();
             ::std::string s (web.nits ().review ());
-                web.nits ().accumulate (&overall);
+            web.nits ().accumulate (&overall);
             s += web.report ();
             web.cleanup ();
             if (context.test ()) outstr.out (START_OF_SECTION " " SNIPPET "\n");
@@ -185,7 +206,7 @@ int examine (nitpick& nits)
         nitpick nuts, gnats;
         knickers k (nuts, &nits);
 #ifndef NO_FRED
-        if (! fred.init (nits)) res = ERROR_STATE;
+        if (! fred.reinit (nits)) res = ERROR_STATE;
         else
 #endif // NO_FRED
         try
@@ -223,7 +244,6 @@ int examine (nitpick& nits)
                     trundle (); } }
             nits.merge (nuts);
 #endif // NO_FRED
-            spell_free ();
             close_corpus (gnats);
             fileindex_save_and_close (gnats); }
         catch (const ::std::system_error& e)
@@ -242,49 +262,51 @@ int examine (nitpick& nits)
     macro -> dump_nits (shadow, ns_shadow, ns_shadow_head, ns_shadow_foot);
     return res; };
 
-int main (int argc, char** argv)
+int cycle (nitpick& nits, const int argc, char** argv = nullptr)
 {   int res = NOTHING_TO_DO;
+    time_balloon balloon;
+    ::std::string args, msg;
     bool enfooten = false;
-    ::std::string msg;
-    PRESUME (argc > 0, __FILE__, __LINE__);
-    VERIFY_NOT_NULL (argv, __FILE__, __LINE__);
+    vstr_t vs;
     try
-    {   time_balloon balloon;
-        vstr_t v (split_by_charset (VERSION_STRING, "."));
-        PRESUME (v.size () == 3, __FILE__, __LINE__);
-        PRESUME (lexical < int > :: cast (v.at (0)) == VERSION_MAJOR, __FILE__, __LINE__);
-        PRESUME (lexical < int > :: cast (v.at (1)) == VERSION_MINOR, __FILE__, __LINE__);
-        PRESUME (lexical < int > :: cast (v.at (2)) == VERSION_RELEASE, __FILE__, __LINE__);
-        nitpick nits, nuts;
-        init (nits);
+    {   if (context.iterate ()) cycle_start (nits);
         context.started (balloon.inflate_time ());
         context.build (__DATE__ " " __TIME__);
+        if (argc > 0)
 #ifdef _MSC_VER
 #pragma warning (push, 3)
 #pragma warning (disable : 26481)
 #endif // _MSC_VER
-        ::std::string args (argv [0]);
-        for (int i = 1; i < argc; ++i)
-        {   args += " ";
-            args += argv [i]; }
+            for (int i = 1; i < argc; ++i)
+            {   args += " ";
+                args += argv [i];
+                vs.push_back (argv [i]); }
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif // _MSC_VER
+        else
+        {   constexpr ::std::size_t max_len = 65536;
+            char ch [max_len] = { 0 };
+            ::std::cout << "\n" PROG " ";
+            ::std::cin.getline (&ch [0], max_len-1);
+            ch [max_len-1] = 0;
+            args = ::std::string (ch);
+            if (args.empty ()) return STOP_NOW;
+            vs = uq2 (args, UQ_TRIM | UQ_SQ | UQ_DQ | UQ_BS | UQ_REPEATQ | UQ_UNIFY, " "); }
         VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
         macro -> set (nm_context_build, build_info);
         macro -> set (nm_run_args, args);
         context.general_info (::boost::filesystem::current_path ().string () + "\n" + args + "\n" VERSION_STRING " [" __DATE__  " " __TIME__ "] [" + build_info + "]\n");
-#ifdef DEBUG
-        avm_elem_crosscheck ();
-#endif
-        res = context.parameters (nuts, argc, argv);
+        nitpick nuts;
+        res = context.parameters (nuts, vs);
+        if (! macro -> is_template_loaded ()) macro -> load_template (nuts, html_default);
         if ((context.todo () == do_simple) || context.yggdrisil ())
         {   if (context.yggdrisil ()) ::std::cout << simple_title;
             else ::std::cout << full_title;
+            macro -> dump_nits (nuts, ns_config, ns_config_head, ns_config_foot);
             ::std::cout << context.domsg ();
             return VALID_RESULT; }
         if (context.progress ()) ::std::cout << "\npreparing\n";
-        if (! macro -> is_template_loaded ()) macro -> load_template (nuts, html_default);
         outstr.out (macro -> apply (ns_doc_head));
         enfooten = true;
         macro -> dump_nits (nits, ns_init, ns_init_head, ns_init_foot);
@@ -296,35 +318,62 @@ int main (int argc, char** argv)
         {   if (! fileindex_load (nuts)) res = ERROR_STATE;
             macro -> dump_nits (nuts, ns_config, ns_config_head, ns_config_foot);
             res = examine (nits);
-            nits.accumulate (&overall);
-            const int cr = ciao ();
-            if (cr > res) res = cr; }
+            nits.accumulate (&overall); }
+        const int cr = cycle_finish ();
+        if (cr > res) res = cr;
         balloon.pop ();
         macro -> set (nm_time_finish, balloon.pop_time ());
         macro -> set (nm_time_duration, balloon.duration ()); }
     catch (const ::std::system_error& e)
-    {   msg = "catastrophic exit with system error: ";
+    {   msg = "catastrophic cycle system error: ";
         msg += e.what ();
         res = ERROR_STATE; }
     catch (const ::std::exception& e)
-    {   msg = "catastrophic exit with exception: ";
+    {   msg = "catastrophic cycle exception: ";
         msg += e.what ();
         res = ERROR_STATE; }
     catch (...)
-    {   msg = "catastrophic exit with an unknown exception";
+    {   msg = "catastrophic cycle unknown exception";
         res = ERROR_STATE; }
     if (! enfooten)
     {   if (! msg.empty ()) ::std::cerr << msg << "\n"; }
     else try
     {   if (! msg.empty ()) macro -> set (nm_run_catastrophe, msg);
         outstr.out (macro -> apply (ns_doc_foot));
-        if (! msg.empty ()) outstr.err (msg + "\n"); }
+        if (! msg.empty ()) outstr.err (msg + "\n");
+        if (context.progress ())
+            if (outstr.name ().empty ()) ::std::cout << "finished\n";
+            else ::std::cout << "results written to " << outstr.name () << "\n"; }
     catch (...)
-    {   if (msg.empty ()) msg = "catastrophic exception writing footers\n";
+    {   if (msg.empty ()) msg = "catastrophic cycle footers exception\n";
         ::std::cerr << msg << "\n";
         res = ERROR_STATE; }
-    fred.done ();
-    if (context.progress ())
-        if (outstr.name ().empty ()) ::std::cout << "finished\n";
-        else ::std::cout << "results written to " << outstr.name () << "\n";
+    return res; }
+
+int main (int argc, char** argv)
+{   int res = NOTHING_TO_DO;
+    ::std::string msg;
+    PRESUME (argc > 0, __FILE__, __LINE__);
+    VERIFY_NOT_NULL (argv, __FILE__, __LINE__);
+    try
+    {   nitpick nits;
+        init (nits);
+        do
+        {   res = cycle (nits, argc, argv);
+            if (res == STOP_NOW) { res = VALID_RESULT; break; }
+            argc = 0; }
+        while (context.iterate ());
+        fred.done (); }
+    catch (const ::std::system_error& e)
+    {   msg = "catastrophic exit system error: ";
+        msg += e.what ();
+        res = ERROR_STATE; }
+    catch (const ::std::exception& e)
+    {   msg = "catastrophic exit exception: ";
+        msg += e.what ();
+        res = ERROR_STATE; }
+    catch (...)
+    {   msg = "catastrophic exit unknown exception";
+        res = ERROR_STATE; }
+    try { fred.done (); } catch (...) { }
     return res; };

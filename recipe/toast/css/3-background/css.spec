@@ -1,4 +1,4 @@
--N 1 -f ../toast/css/3-background/css.conf
+-Y 1 -f ../toast/css/3-background/css.conf
 
 PASS ../toast/css/3-background/css-2.html
 0 html_unknown_sgml

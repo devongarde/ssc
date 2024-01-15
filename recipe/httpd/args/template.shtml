@@ -1,0 +1,50 @@
+<!--#include virtual="/plumbing/html.inc" -->
+<!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="output templates" -->
+<title>
+<!--#echo encoding="none" var="title" -->
+</title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/blog-section.inc" -->
+<!--#include virtual="/plumbing/html-top-start.inc" -->
+<!--#include virtual="/plumbing/argle.inc" -->
+<!--#include virtual="/plumbing/html-top-end.inc" -->
+<!--#include virtual="/plumbing/blog-schema.inc" -->
+<data class="u-url u-uid" value="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->">
+</data>
+
+<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-bnew-sp6.jpg" title="made with studio artist 5.5">
+
+<h1 itemprop="name" class="p-name">
+<!--#echo encoding="none" var="title" -->
+</h1>
+
+<p>
+The <a href="nits.shtml"><kbd>nit.format</kbd></a> switch allows control of output format. It takes a
+file name. The format of that text file is a sequence of fixed section
+names, enclosed in square brackets on their own lines, each optionally
+followed by text. In that text, certain specific identifiers, enclosed
+in brace pairs, are substituted. For example:
+</p>
+
+<pre><code>
+[dog-section]
+My dog {{dog-name}} is a {{bad-dog}}.
+</code></pre>
+
+<p>
+For examples, browse recipe/toast/output/*.nit <a href="/release-notes.shtml">in the source</a>.
+</p>
+
+<p>
+If no file is specified, or if the file cannot be loaded, a default
+template is used.
+</p>
+
+<p>
+Note also the <a href="nits.shtml"><kbd>nit.quote</kbd></a> switch.
+</p>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/args.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

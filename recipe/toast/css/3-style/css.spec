@@ -1,4 +1,4 @@
--N 1 -f ../toast/css/3-style/css.conf
+-Y 1 -f ../toast/css/3-style/css.conf
 
 PASS ../toast/css/3-style/index.html
 2 naughty_lang

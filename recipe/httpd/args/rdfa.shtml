@@ -1,0 +1,40 @@
+<!--#include virtual="/plumbing/html.inc" -->
+<!--#include virtual="/plumbing/var.inc" -->
+<!--#set var="title" value="RDFa arguments" -->
+<title>
+<!--#echo encoding="none" var="title" -->
+</title>
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/blog-section.inc" -->
+<!--#include virtual="/plumbing/html-top-start.inc" -->
+<!--#include virtual="/plumbing/argle.inc" -->
+<!--#include virtual="/plumbing/html-top-end.inc" -->
+<!--#include virtual="/plumbing/blog-schema.inc" -->
+<data class="u-url u-uid" value="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->">
+</data>
+
+<img alt="riff on name" class="mw50 inline_illustration_left" src="/image/ssc-msgdb-var-3s2.jpg" title="made with studio artist 5.5">
+
+<h1 itemprop="name" class="p-name">
+<!--#echo encoding="none" var="title" -->
+</h1>
+
+<p>
+<!--#echo encoding="none" var="short" --> can check, to some extent, RDFa content. Use the ontology switches
+if you need to precisely control details about the data collected.
+</p>
+
+<p>
+There is only one switch,
+rdfa.version, which specifies the RDFa version to presume when checking RDFa files.
+                        The default is 1.1.3.
+</p>
+
+<p>
+Note that RDFa analyis is incomplete,
+                        and only intended to support HTML analysis.
+</p>
+
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/args.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

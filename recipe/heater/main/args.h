@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -35,7 +35,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MICRODATA_  "microdata"
 #define NITS_       "nits"
 #define ONTOLOGY_   "ontology"
-#define RDFA_       "rdfa"
+#define SERVER_     "server"
 #define SP          "shadow"
 #define SHADOW_     SP
 #define SPELL_      "spell"
@@ -58,7 +58,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MICRODATA   MICRODATA_ JOIN
 #define NITS        NITS_ JOIN
 #define ONTOLOGY    ONTOLOGY_ JOIN
-#define RDFA        RDFA_ JOIN
+#define SERVER      SERVER_ JOIN
 #define SHADOW      SHADOW_ JOIN
 #define SPELL       SPELL_ JOIN
 #define STATS       STATS_ JOIN
@@ -70,6 +70,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define ABBR        "abbreviation"
 #define ABHORRENT   "abhorrent"
 #define ACCEPT      "accept"
+#define ADDRESS     "address"
 #define ADJUST      "adjust"
 #define ALL         "all"
 #define ADVLAY      "adv-lay"
@@ -78,6 +79,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define ANIMATION   "animation"
 #define ANNOTATION  "annotation"
 #define ARTICLE     "article"
+#define ASK         "ask"
 #define ATTRIB      "attribute"
 #define BACKGROUND  "background"
 #define BODY        "body"
@@ -120,7 +122,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define CUSTOM      "custom"
 #define DATAPATH    "datapath"
 #define DATETIME    "datetime"
-#define DC          "dc"
 #define DBG         "debug"
 #define DEFCONF     "defconf"
 #define DEFTHRD     "defthrd"
@@ -139,6 +140,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define ENABLE      "enable"
 #define ENDPOINT    "endpoint"
 #define ERR         "error"
+#define ERROREXIT   "errorexit"
 #define EXAMPLE     "example"
 #define EXCLUDE     "exclude"
 #define EXPORT      "export"
@@ -151,7 +153,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define FF          "ff"
 #define FILL        "fill"
 #define FLOAT       "float"
-#define FOAF        "foaf"
 #define FONT        "font"
 #define FONT_FAMILY "font-family"
 #define FORCE       "force"
@@ -216,14 +217,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define PAGE        "page"
 #define PAGE_NAME   "page-name"
 #define PALETTE     "palette"
+#define PARAMETERS  "parameters"
+#define PASSFILE    "passfile"
+#define PASSWORD    "password"
+#define PORT        "port"
 #define POSITION    "position"
 #define PRETEND     "pretend"
 #define PRESENT     "present"
 #define PRINT       "print"
+#define PRIVATE     "private"
 #define PROGRESS    "progress"
 #define PROPER      "property"
 #define PSEUDO      "pseudo"
+#define PUBLIC      "public"
 #define QUOTE       "quote"
+#define RDFA        "rdfa"
 #define REFERENCE   "reference"
 #define REGION      "region"
 #define REL         "rel"
@@ -299,7 +307,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define WATCH       "watch"
 #define WC          "wc"
 #define WRITING     "writing"
-#define XSD         "xsd"
 #define XXX         "xxx"
 #define YGGDRISIL   "yggdrisil"
 

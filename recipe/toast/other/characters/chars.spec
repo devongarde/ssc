@@ -1,4 +1,4 @@
--N 1 -f ../toast/other/characters/chars.conf
+-Y 1 -f ../toast/other/characters/chars.conf
 
 PASS ../toast/other/characters/index.html
 2 naughty_lang

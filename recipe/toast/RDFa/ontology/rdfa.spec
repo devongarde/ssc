@@ -1,4 +1,4 @@
--N 1 -f ../toast/RDFa/ontology/rdfa.conf
+-Y 1 -f ../toast/RDFa/ontology/rdfa.conf
 
 PASS ../toast/RDFa/ontology/creativework.html
 11 vocab_defined

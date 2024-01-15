@@ -1,4 +1,4 @@
--N 1 -f ../toast/json-ld/as/jsonld.conf
+-Y 1 -f ../toast/json-ld/as/jsonld.conf
 
 PASS ../toast/json-ld/as/balderdash.jld
 0 unrecognised_ontology lingo

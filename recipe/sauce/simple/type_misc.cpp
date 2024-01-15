@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -148,7 +148,7 @@ bool set_coords_value (nitpick& nits, const html_version& v, const ::std::string
         if (! whoops) return true; }
     return false; }
 
-bool invalid_exportparts (nitpick& nits, const html_version& v, element* box, const vstr_t& s)
+bool invalid_exportparts (nitpick& nits, const html_version& , element* box, const vstr_t& s)
 {   VERIFY_NOT_NULL (box, __FILE__, __LINE__);
     bool res = false;
     sstr_t& parts = box -> get_page ().parts ();
@@ -162,7 +162,7 @@ bool invalid_exportparts (nitpick& nits, const html_version& v, element* box, co
                 res = true; } } }
     return res; }
 
-bool invalid_parts (nitpick& nits, const html_version& v, element* box, const vstr_t& s)
+bool invalid_parts (nitpick& nits, const html_version& , element* box, const vstr_t& s)
 {   VERIFY_NOT_NULL (box, __FILE__, __LINE__);
     bool res = false;
     sstr_t& parts = box -> get_page ().parts ();
@@ -172,7 +172,7 @@ bool invalid_parts (nitpick& nits, const html_version& v, element* box, const vs
             res = true; }
     return res; }
 
-bool set_exportpart_value (nitpick& nits, const html_version& v, const vstr_t& s, element* box)
+bool set_exportpart_value (nitpick& nits, const html_version& , const vstr_t& s, element* box)
 {   bool res = true;
     if (box != nullptr)
         for (auto k : s)

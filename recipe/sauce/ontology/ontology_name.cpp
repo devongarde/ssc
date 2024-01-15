@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -3407,6 +3407,7 @@ property_name namtab [] =
     { "diet", s_schema, sp_diet },
     { "dietFeatures", s_schema, sp_dietfeatures },
     { "differentialDiagnosis", s_schema, sp_differentialdiagnosis },
+    { "digitalSourceType", s_schema, sp_digitalsourcetype },
     { "director", s_schema, sp_director },
     { "directors", s_schema, sp_directors },
     { "directApply", s_schema, sp_directapply },
@@ -4043,10 +4044,11 @@ property_name namtab [] =
     { "postalCodeRange", s_schema, sp_postalcoderange },
     { "potentialAction", s_schema, sp_potentialaction },
     { "potentialUse", s_schema, sp_potentialuse },
-    { "preOp", s_schema, sp_preop },
+    { "practicesAt", s_schema, sp_practicesat },
     { "predecessorOf", s_schema, sp_predecessorof },
     { "pregnancyCategory", s_schema, sp_pregnancycategory },
     { "pregnancyWarning", s_schema, sp_pregnancywarning },
+    { "preOp", s_schema, sp_preop },
     { "prepTime", s_schema, sp_preptime },
     { "preparation", s_schema, sp_preparation },
     { "prescribingInfo", s_schema, sp_prescribinginfo },
@@ -4426,6 +4428,7 @@ property_name namtab [] =
     { "userInteractionCount", s_schema, sp_userinteractioncount },
     { "usesDevice", s_schema, sp_usesdevice },
     { "usesHealthPlanIdStandard", s_schema, sp_useshealthplanidstandard },
+    { "usNPI", s_schema, sp_usnpi },
     { "utterances", s_schema, sp_utterances },
     { "validFor", s_schema, sp_validfor },
     { "validFrom", s_schema, sp_validfrom },

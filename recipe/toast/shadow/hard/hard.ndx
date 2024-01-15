@@ -1,9 +1,9 @@
 Static Site Checker
-0.1.46
+0.1.50
 ../toast/shadow/hard
 0
 -
-10
+11
 /Users/dylan/project/app/ssc/recipe/toast/shadow/hard
 /Users/dylan/project/app/ssc/recipe/toast/shadow/hard
 0,0,0,18,0,0,0
@@ -33,4 +33,7 @@ hard.conf
 -1,0,0,256,0,0,0
 index.html.model
 /Users/dylan/project/app/ssc/recipe/toast/shadow/hard/index.html.model
+-1,0,0,256,0,0,0
+hard.ndx
+/Users/dylan/project/app/ssc/recipe/toast/shadow/hard/hard.ndx
 -1,0,0,256,0,0,0

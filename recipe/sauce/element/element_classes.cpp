@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -322,7 +322,7 @@ element_init_t ei [] =
     { elem_degree, { MATH3COMMON, a_unknown } },
     { elem_desc, { SVG_PRES, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_del, { a_datetime, METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_details, { a_open, METADATA, LIVING_STANDARD, a_unknown } },
+    { elem_details, { a_name, a_open, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_determinant, { MATH3DEFCOM, a_unknown } },
     { elem_device, { a_type, METADATA, COMMON5, a_unknown } },
     { elem_devicecolour, { a_name, SVG_XLINK, METADATA, LIVING_STANDARD, a_unknown } },

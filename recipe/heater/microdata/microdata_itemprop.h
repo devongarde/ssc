@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2023 Dylan Harris
+File Info
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -26,7 +26,7 @@ typedef ::std::vector < itemprop_index > itemprop_indices;
 CONSTEXPR itemprop_index illegal_itemprop = 0xFFFFFFFF;
 CONSTEXPR itemprop_index null_itemprop = 0;
 
-void init_itemprop ();
+void reset_itemprop ();
 itemprop_index make_itemprop_index (const e_ontology_property p);
 itemprop_indices make_itemprop_indices (const e_ontology_property p);
 itemprop_indices make_itemprop_indices (const vsp_t& vsp);
