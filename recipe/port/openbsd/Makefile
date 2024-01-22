@@ -1,6 +1,6 @@
 COMMENT=        opinionated static (web)site nitpicker
 
-V=              0.1.50
+V=              0.1.51
 DISTNAME=       ssc-$V
 PKGNAME=        ssc-$V
 
@@ -25,8 +25,9 @@ WANTLIB +=      ${COMPILER_LIBCXX}
 
 MODULES=        devel/cmake
 BUILD_DEPENDS=  devel/microsoft-gsl
-LIB_DEPENDS=    devel/boost textproc/icu4c textproc/hunspell net/curl
-
-NO_TEST=        yes
+LIB_DEPENDS=    devel/boost \
+                textproc/icu4c \
+                textproc/hunspell \
+                net/curl
 
 .include <bsd.port.mk>
