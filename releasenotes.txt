@@ -3,6 +3,11 @@ static site checker
 https://ssc.lu/
 (c) 2020-2024 Dylan Harris
 
+0.1.51
+- most libraries set to dynamic load
+- updated CSS 2023 Snapshot to December 2023 specification
+- underlying work
+
 0.1.50
 - Schema.org 24.0
 - Living Standard Jan 2024
