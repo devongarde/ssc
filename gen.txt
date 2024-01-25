@@ -363,7 +363,7 @@ This are switches that don't really belong in any other section.
 --general.defthrd N     If --general.thread is not given, then set the
 -Y N                    number of threads to N.
 
---general.exclude xxx   Ignore all paths containing xxx. May be
+--general.exclude xxx   Ignore files that end with xxx. May be
                         repeated. Case independent under Windows only.
                         .DS_Store is always excluded under darwin.
 
@@ -583,7 +583,7 @@ broken links within the site.
                         time it's encountered (requires
                         --link.external).
 
---link.pretend FILE     Pretend links containing xxx exist. May be
+--link.pretend FILE     Pretend links ending with xxx exist. May be
                         repeated.
 
 --link.report DOMAIN    Report links to domain and its descendents. May

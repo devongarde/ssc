@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# This is intended for OpenBSD 6.8/6.9/7.0.
+
+# disable filename globbing
+set -f
+
+logger ssc "$REMOTE_HOST $REMOTE_ADDR $REMOTE_USER '$QUERY_STRING'"
+
+LD_LIBRARY_PATH=/usr/lib:/usr/local/lib:/usr/libexec:/lib
+export LD_LIBRARY_PATH
+
+RES=`ssc`
+logger ssc $RES
+
+echo "Content-type: text/html; charset=iso-8859-1"
+echo
+echo $RES

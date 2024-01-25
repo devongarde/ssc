@@ -22,7 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "parser/jsonic.h"
 
 #ifndef NO_JSONIC
-#include <boost/json/src.hpp>
 #include "main/context.h"
 
 ::std::string jsonic::rpt_base (const ::boost::json::value& val, const int indent)
