@@ -1404,11 +1404,11 @@
     <Filter Include="Toast\Stats\CSS-6">
       <UniqueIdentifier>{0f83f400-7106-4679-80da-adc4845da439}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Toast\Conf\httpd">
-      <UniqueIdentifier>{836f8041-b4bb-442f-8639-f6a30f23d1f2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Toast\Living\jan24">
       <UniqueIdentifier>{5d3a3314-a7c7-43aa-b3b2-33f979f2de09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Conf\httpd">
+      <UniqueIdentifier>{9561605b-c1f5-461c-9ce5-5cb703d2019b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -35025,21 +35025,6 @@
     <None Include="..\toast\stats\CSS-6\stats-view.spec">
       <Filter>Toast\Stats\CSS-6</Filter>
     </None>
-    <None Include="..\toast\conf\httpd\httpd.conf">
-      <Filter>Toast\Conf\httpd</Filter>
-    </None>
-    <None Include="..\toast\conf\httpd\httpd.spec">
-      <Filter>Toast\Conf\httpd</Filter>
-    </None>
-    <None Include="..\toast\conf\httpd\index.html.model">
-      <Filter>Toast\Conf\httpd</Filter>
-    </None>
-    <None Include="..\toast\conf\httpd\pre.bat">
-      <Filter>Toast\Conf\httpd</Filter>
-    </None>
-    <None Include="..\toast\conf\httpd\pre.sh">
-      <Filter>Toast\Conf\httpd</Filter>
-    </None>
     <None Include="..\toast\living\jan24\base.html">
       <Filter>Toast\Living\jan24</Filter>
     </None>
@@ -35864,6 +35849,12 @@
     </None>
     <None Include="..\toast\living\jan24\progress.css">
       <Filter>Toast\Living\jan24</Filter>
+    </None>
+    <None Include="..\toast\conf\httpd\httpd.conf">
+      <Filter>Toast\Conf\httpd</Filter>
+    </None>
+    <None Include="..\toast\conf\httpd\httpd.spec">
+      <Filter>Toast\Conf\httpd</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

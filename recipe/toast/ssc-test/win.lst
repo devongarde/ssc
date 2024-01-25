@@ -123,6 +123,9 @@
 ../toast/HTML/minimal/minimal.spec
 ../toast/HTML/Plus/plus.spec
 ../toast/HTML/tags/tags.spec
+../toast/json-ld/adms/jsonld.spec
+../toast/json-ld/as/jsonld.spec
+../toast/json-ld/schemaorg/jsonld.spec
 ../toast/living/jul07/living.spec
 ../toast/living/jan08/living.spec
 ../toast/living/jul08/living.spec
