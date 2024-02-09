@@ -567,6 +567,9 @@
     <SourcePath>$(VC_SourcePath);</SourcePath>
     <ExcludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(VC_ExecutablePath_x64);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(FxCopDir);$(MSBuild_ExecutablePath);$(VC_LibraryPath_x64);$(SystemRoot)</ExcludePath>
   </PropertyGroup>
+  <PropertyGroup Label="Vcpkg">
+    <VcpkgEnableManifest>true</VcpkgEnableManifest>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
@@ -586,7 +589,7 @@
       <SubSystem>Console</SubSystem>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
-      <AdditionalDependencies>libcurl-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe</Command>
@@ -615,7 +618,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
-      <AdditionalDependencies>libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe</Command>

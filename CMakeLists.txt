@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.19)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.1.52 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
+project (ssc VERSION 0.1.53 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
 
 set (CMAKE_CXX_STANDARD 17)
 
@@ -73,7 +73,7 @@ endif ()
     set (D "/usr/local/bin")
     set (INC "/usr/local/include/" "/usr/local/include/hunspell")
     set (LD "/usr/local/lib")
-    set (LIB "/usr/local/lib/libhunspell-1.7.so.1.0")
+    set (LIB "/usr/local/lib/libhunspell-1.7.so.0")
     set (BUILD_OS ${CMAKE_SYSTEM})
     target_compile_definitions (ssc-test PRIVATE UNIX NO_PCF_STR)
     set (NO_CURL "1")

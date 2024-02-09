@@ -707,8 +707,9 @@ bool examine_results (  knotted& expected, vstr_t& results, unsigned& passed, un
                     else if (fn == REPORT_STAT) file_stats = true;
                     else if (fn == REPORT_GRAND) overall_stats = true;
                     else
-                    {   if (verbose) ::std::cout << "results for unexpected file " << fn << " found\n";
-                        res = false; ++failed;
+                    {   if (fn != CONFIGURE)
+                        {   if (verbose) ::std::cout << "results for unexpected file " << fn << " found\n";
+                            res = false; ++failed; }
                         fn.clear (); shush = true; } }
                 else
                 {   previous = fn;

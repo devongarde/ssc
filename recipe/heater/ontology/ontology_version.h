@@ -47,13 +47,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SV_VC_NOT2      0x00000100
 #define SV_VC_DEP4      0x00000400
 
-#define MAX_SCHEMA_ORG_MAJOR 24
+#define MAX_SCHEMA_ORG_MAJOR 25
 #define MAX_SCHEMA_ORG_MINOR 0
 #define MIN_SCHEMA_ORG_MAJOR 0
 #define MIN_SCHEMA_ORG_MINOR 10
 #define DEFAULT_SCHEMA_ORG_MAJOR 24
 #define DEFAULT_SCHEMA_ORG_MINOR 0
-#define DEFAULT_SCHEMA_ORG_VERSION "24.0"
+#define DEFAULT_SCHEMA_ORG_VERSION "25.0"
 
 class html_version;
 struct ontology_version;
@@ -411,6 +411,7 @@ const ontology_version schema_21 (s_schema, 21, 0);
 const ontology_version schema_22 (s_schema, 22, 0);
 const ontology_version schema_23 (s_schema, 23, 0);
 const ontology_version schema_24 (s_schema, 24, 0);
+const ontology_version schema_25 (s_schema, 25, 0);
 const ontology_version schema_default (s_schema, DEFAULT_SCHEMA_ORG_MAJOR, DEFAULT_SCHEMA_ORG_MINOR);
 
 const ontology_version sd_schema (s_sd, 1, 0);

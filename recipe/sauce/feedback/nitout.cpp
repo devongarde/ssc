@@ -70,7 +70,7 @@ vstr_t sections;
     "\n" \
     "[config-head]\n" \
     "\n" \
-    START_OF_SECTION " Configuration\n" \
+    START_OF_SECTION " " CONFIGURE "\n" \
     "\n" \
     "[config-foot]\n" \
     "\n" \
@@ -224,7 +224,7 @@ vstr_t sections;
     "\n" \
     "[config-head]\n" \
     "\n" \
-    START_OF_SECTION " Configuration\n" \
+    START_OF_SECTION " " CONFIGURE "\n" \
     "\n" \
     "[config-foot]\n" \
     "\n" \
@@ -382,7 +382,7 @@ vstr_t sections;
     "\n" \
     "[config-head]\n" \
     "\n" \
-    START_OF_SECTION " Configuration\n" \
+    START_OF_SECTION " " CONFIGURE "\n" \
     "\n" \
     "[config-foot]\n" \
     "\n" \
@@ -542,7 +542,7 @@ vstr_t sections;
     "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN><BR>\n" \
     "\n" \
     "[config-head]\n" \
-    "<H2 class=\"nit-section\">Configuration</H2>\n" \
+    "<H2 class=\"nit-section\">" CONFIGURE "</H2>\n" \
     "<P>\n" \
     "\n" \
     "[config-foot]\n" \

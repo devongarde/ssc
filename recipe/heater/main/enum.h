@@ -3765,7 +3765,8 @@ typedef enum
     sch_busstation, sch_busstop, sch_bustrip, sch_buyaction,
 
     sch_cableorsatelliteservice, sch_cafeorcoffeeshop, sch_campground, sch_campingpitch, sch_canal, sch_cancelaction, sch_car, sch_cardiovascular, sch_cardiovascularexam, sch_carusagetype, sch_caseseries,
-    sch_casino, sch_cassetteformat, sch_categorycode, sch_categorycodeset, sch_catholicchurch, sch_causeshealthaspect, sch_cdcpmdrecord, sch_cdformat, sch_cemetery, sch_chapter,
+    sch_casino, sch_cassetteformat, sch_categorycode, sch_categorycodeset, sch_catholicchurch, sch_causeshealthaspect, sch_cdcpmdrecord, sch_cdformat, sch_cemetery,
+    sch_certification, sch_certificationactive, sch_certificationinactive, sch_certificationstatusenumeration, sch_chapter,
     sch_charitableincorporatedorganization, sch_checkaction, sch_checkinaction, sch_checkoutaction, sch_checkoutpage, sch_chemicalsubstance, sch_childcare, sch_childrensevent, sch_chooseaction, sch_church, sch_city, sch_townhall,
     sch_civicstructure, sch_claim, sch_claimreview, sch_class, sch_cleaningfee, sch_clinician, sch_clip, sch_clothesshop, sch_code, sch_cohortstudy, sch_collection, sch_collectionpage,
     sch_collegeoruniversity, sch_comedyclub, sch_comedyevent, sch_comiccoverart, sch_comicissue, sch_comicseries, sch_comicstory, sch_comment, sch_commentaction, sch_commentpermission,
@@ -3820,7 +3821,7 @@ typedef enum
 
     sch_jewellers, sch_jobposting, sch_joinaction, sch_joint,
 
-    sch_kosherdiet,
+    sch_keepproduct, sch_kosherdiet,
 
     sch_laboratoryscience, sch_lakebodyofwater, sch_landform, sch_landmarksorhistoricalbuildings, sch_language, sch_laserdiscformat, sch_learningresource, sch_leaveaction, sch_lefthanddriving, sch_legalforcestatus,
     sch_legalservice, sch_legalvaluelevel, sch_legislation, sch_legislationobject, sch_legislativebuilding, sch_leisuretimeactivity, sch_lendaction, sch_library, sch_librarysystem, sch_lifestylemodification, sch_ligament,
@@ -4933,7 +4934,7 @@ typedef enum
     sp_appliestopaymentmethod, sp_area, sp_archivedat, sp_archiveheld, sp_areaserved, sp_arrivalairport, sp_arrivalboatterminal, sp_arrivalbusstop, sp_arrivalgate, sp_arrivalplatform, sp_arrivalstation, sp_arrivalterminal,
     sp_arrivaltime, sp_artedition, sp_arterialbranch, sp_artform, sp_articlebody, sp_articlesection, sp_artist, sp_artmedium, sp_artworksurface, sp_asin, sp_aspect, sp_assemblyversion, sp_assess, sp_assesses,
     sp_associatedanatomy, sp_associatedarticle, sp_associatedclaimreview, sp_associateddisease, sp_associatedmedia, sp_associatedmediareview, sp_associatedpathophysiology, sp_associatedreview, sp_athlete,
-    sp_attendee, sp_attendees, sp_audience, sp_audiencetype, sp_audio, sp_authenticator, sp_author, sp_availability, sp_availabilityends, sp_availabilitystarts, sp_availableatorfrom, sp_availablechannel,
+    sp_attendee, sp_attendees, sp_audience, sp_audiencetype, sp_audio, sp_auditdate, sp_authenticator, sp_author, sp_availability, sp_availabilityends, sp_availabilitystarts, sp_availableatorfrom, sp_availablechannel,
     sp_availabledeliverymethod, sp_availablefrom, sp_availablein, sp_availablelanguage, sp_availablelocation, sp_availableondevice, sp_availableservice, sp_availablestrength, sp_availabletest, sp_availableuntil,
     sp_award, sp_awards, sp_awayteam,
 
@@ -4944,9 +4945,9 @@ typedef enum
     sp_browserrequirements, sp_businessdays, sp_businessfunction, sp_busname, sp_busnumber, sp_buyer, sp_byartist, sp_byday, sp_bymonth, sp_bymonthday, sp_bymonthweek,
 
     sp_callsign, sp_calories, sp_candidate, sp_caption, sp_carbohydratecontent, sp_cargovolume, sp_carrierrequirements, sp_cashback, sp_catalogue, sp_cataloguenumber, sp_category, sp_cause, sp_causeof,
-    sp_ccrecipient, sp_character, sp_characterattribute, sp_charactername, sp_cheatcode, sp_checkintime, sp_checkoutpageurltemplate, sp_checkouttime, sp_chemicalcomposition, sp_chemicalrole, sp_childmaxage,
+    sp_ccrecipient, sp_certificationidentification, sp_certificationstatus, sp_character, sp_characterattribute, sp_charactername, sp_cheatcode, sp_checkintime, sp_checkoutpageurltemplate, sp_checkouttime, sp_chemicalcomposition, sp_chemicalrole, sp_childmaxage,
     sp_childminage, sp_children, sp_childtaxon, sp_cholesterolcontent, sp_circle, sp_citation, sp_claiminterpreter, sp_claimreviewed, sp_clinicalpharamcology,
-    sp_clipnumber, sp_closes, sp_coach, sp_code, sp_coderepository, sp_codesampletype, sp_codevalue, sp_codingsystem, sp_colleague, sp_colleagues, sp_collection, sp_collectionsize, sp_colour, sp_colourist, sp_comment, sp_commentcount, sp_commenttext, sp_commenttime,
+    sp_clipnumber, sp_closes, sp_coach, sp_code, sp_coderepository, sp_codesampletype, sp_codevalue, sp_codingsystem, sp_colleague, sp_colleagues, sp_collection, sp_collectionsize, sp_colour, sp_colourist, sp_colourswatch, sp_comment, sp_commentcount, sp_commenttext, sp_commenttime,
     sp_competencyrequired, sp_competitor, sp_composer, sp_comprisedof, sp_conditionsofaccess, sp_confirmationnumber, sp_connectedto, sp_constrainingproperty, sp_constraintproperty, sp_contactlesspayment, sp_contactoption, sp_contactpoint, sp_contactpoints, sp_contacttype,
     sp_containedin, sp_containedinplace, sp_containsplace, sp_containsseason, sp_contentlocation, sp_contentrating, sp_contentreferencetime, sp_contentsize, sp_contenttype, sp_contenturl, sp_contraindication, sp_contributor, sp_cookingmethod, sp_cooktime,
     sp_copyrightholder, sp_copyrightnotice, sp_copyrightyear, sp_correction, sp_correctionspolicy, sp_cost, sp_costcategory, sp_costcurrency, sp_costorigin, sp_costperunit, sp_countriesnotsupported, sp_countriessupported,
@@ -4981,8 +4982,8 @@ typedef enum
     sp_geographicarea, sp_geointersects, sp_geomidpoint, sp_geooverlaps, sp_georadius, sp_geotouches, sp_geowithin, sp_gettingtestedinfo, sp_givenname, sp_globallocationnumber, sp_governmentbenefitsinfo, sp_graceperiod, sp_grantee,
     sp_greater, sp_greaterorequal, sp_gtin, sp_gtin12, sp_gtin13, sp_gtin14, sp_gtin8, sp_guideline, sp_guidelinedate, sp_guidelinesubject,
 
-    sp_handlingtime, sp_hasadultconsideration, sp_hasbiochementitypart, sp_hasbiopolymersequence, sp_hasbroadcastchannel, sp_hascategorycode, sp_hascourse, sp_hascourseinstance, sp_hascredential, sp_hasdefinedterm, sp_hasdeliverymethod, sp_hasdigitaldocumentpermission, sp_hasdrivethroughservice,
-    sp_hasenergyconsumptiondetails, sp_hasenergyefficiencycategory, sp_hashealthaspect, sp_hasmap, sp_hasmeasurement, sp_hasmenu,
+    sp_handlingtime, sp_hasadultconsideration, sp_hasbiochementitypart, sp_hasbiopolymersequence, sp_hasbroadcastchannel, sp_hascategorycode, sp_hascertification, sp_hascourse, sp_hascourseinstance, sp_hascredential, sp_hasdefinedterm,
+    sp_hasdeliverymethod, sp_hasdigitaldocumentpermission, sp_hasdrivethroughservice, sp_hasenergyconsumptiondetails, sp_hasenergyefficiencycategory, sp_hashealthaspect, sp_hasmap, sp_hasmeasurement, sp_hasmenu,
     sp_hasmenuitem, sp_hasmenusection, sp_hasmerchantreturnpolicy, sp_hasmolecularfunction, sp_hasoccupation, sp_hasoffercatalogue, sp_haspart, sp_haspos, sp_hasproductreturnpolicy, sp_hasrepresentation, sp_hasvariant, sp_headline, sp_healthcarereportingdata, sp_healthcondition,
     sp_healthplancoinsuranceoption, sp_healthplancoinsurancerate, sp_healthplancopay, sp_healthplancopayoption, sp_healthplancostsharing, sp_healthplandrugoption, sp_healthplandrugtier, sp_healthplanid, sp_healthplanmarketingurl,
     sp_healthplannetworkid, sp_healthplannetworktier, sp_healthplanpharmacycategory, sp_height, sp_highprice, sp_hiringorganisation, sp_holdingarchive, sp_homelocation, sp_hometeam, sp_honourificprefix, sp_honourificsuffix,

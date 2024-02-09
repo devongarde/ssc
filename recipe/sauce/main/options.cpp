@@ -705,7 +705,7 @@ void options::parse (nitpick& nits, const vstr_t& vs)
     for (int i = s_none + 1; i < s_error; ++i)
     {   const e_ontology es = static_cast < e_ontology > (i);
         if (is_faux_schema (es)) continue;
-        if (get_ontology_version_count (es) < 2) continue;
+        if (get_ontology_version_count (es) < 1) continue;
         ::std::string naam (ontology_names.get (es, ONTOLOGY_NAME));
         ::std::string arg = ONTOLOGY;
         arg += naam;
@@ -715,7 +715,7 @@ void options::parse (nitpick& nits, const vstr_t& vs)
         {   desc += "either ";
             desc += get_first_ontology_version (es).ver ();
             desc += " or "; }
-        else
+        else if (get_ontology_version_count (es) > 1)
         {   desc += "between ";
             desc += get_first_ontology_version (es).ver ();
             desc += " and "; }
@@ -2071,7 +2071,7 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
     for (int i = s_none + 1; i < s_error; ++i)
     {   const e_ontology es = static_cast < e_ontology > (i);
         if (is_faux_schema (es)) continue;
-        if (get_ontology_version_count (es) < 2) continue;
+        if (get_ontology_version_count (es) < 1) continue;
         const ::std::string naam (ontology_names.get (es, ONTOLOGY_NAME));
         ::std::string arg (ONTOLOGY);
         arg += naam;

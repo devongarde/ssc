@@ -1295,6 +1295,7 @@ const html_version html_schema_21 (HTML_SCHEMA_21);
 const html_version html_schema_22 (HTML_SCHEMA_22);
 const html_version html_schema_23 (HTML_SCHEMA_23);
 const html_version html_schema_24 (HTML_SCHEMA_24);
+const html_version html_schema_25 (HTML_SCHEMA_25);
 const html_version html_sd (HTML_SD);
 const html_version html_sioc (HTML_SIOC);
 const html_version html_sioc_s (HTML_SIOC);

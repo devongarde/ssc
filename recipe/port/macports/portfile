@@ -1,11 +1,12 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
 
 PortSystem          1.0
+PortGroup           cmake 1.0
 
 name                ssc
 version             0.1.52
 categories          www
-platforms           {darwin >= 18} {openbsd >= 6.8}
+platforms           {darwin >= 18} {openbsd >= 7.2}
 supported_archs     x86_64 arm64
 license             GPL-3
 maintainers         ssc.lu:dylan
@@ -15,17 +16,22 @@ long_description    ${name}, the Static Site Checker, is an opinionated nitpicke
                     It can produce detailed reports, 'repaired' HTML with resolved server \
                     side includes, site statistics, and more. Consider it, at best, alpha.
 
-homepage            https://ssc.lu
-master_sites        ${homepage}/src
+homepage            https://ssc.lu/
+master_sites        https://github.com/devongarde/ssc/releases/download/ \
+                    ${homepage}src/
 
-checksums           rmd160  b7f1e6e0adce80e54a02526b0f6305565084f4b5 \
-                    sha256  b14b49447512fd42f9d85387d2f49b1d949599e785fc04b638a9357f6a06c9fc \
-                    size    22314184
+distname            ${name}-v${version}
+distfiles           ssc-v${version}.tgz
+extract.suffix      .tgz
+extract.post_args   "| tar -xzf -"
+
+checksums           rmd160  a328148130a20865f03b6d7caab5becc33dbabe6 \
+                    sha256  cc808edc84baf2c8c23eb9e193ebd30c9a7b73d6e9037e966c6b938cba7e50f7 \
+                    size    22986644
 
 depends_lib         port:boost \
                     port:hunspell \
-                    port:libcurl
+                    port:icu \
+                    port:curl
 
-depends_build       port:cmake
-
-depends_test        port:cmake
+compiler.cxx_standard   2017

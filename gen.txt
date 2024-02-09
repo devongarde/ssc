@@ -828,7 +828,7 @@ ontologies (see --ontology.list).
                                 rif 1.0
                                 role 1.0
                                 rr 1.0
-                                schema.org 0.10-24.0 (see below)
+                                schema.org 0.10-25.0 (see below)
                                 sd 1.0
                                 sioc 1.0
                                 sioc_s 1.0
@@ -953,49 +953,12 @@ ontologies (see --ontology.list).
                                 1.90        1.9
                                 1.91        as version number
                                 ...
-                                24.0        as version number
+                                25.0        as version number
 
                         vCard versions correspond to RDFa specs,
                         published in 2001, 2006, 2010 & 2014. They do
                         NOT correspond to vCard data format
                         specifications.
-
-                        
-Server switches
-A simple web / web socket server is available to provide a GUI for
-ssc, and to support a simple service. If this is used for more than
-simple tasks, it should be put behind the usual array of good quality
-services, such as a firewall, a proxy, and so on. It is not designed
-to be robust. The following switches are available:
-
---server.enable         Enable the server (default disabled)
-
---server.accept F,T     Accept connections from clients in the address
-                        range F to T. If T is omitted, it is F. The
-                        default is 127.0.0.1. Non-local address ranges
-                        are rejected. May be repeated.
-
---server.address A      Serve on this address (default 127.0.0.1). Use
-                        * for all addresses.
-
---server.paramters f    The certificate parameters can be found in the
-                        file f.
-
---server.passfile f     The certificate password can be found in the
-                        file f.
-
---server.password xxx   The certificate password is xxx. This switch is
-                        only available in configuration files, and does
-                        not work on the command line.
-
---server.port P         Serve on this port (default 80, until I think
-                        of a better one).
-
---server.private f      The certificate private key can be found in the
-                        file f.
-
---server.public f       The certificate public key can be found in the
-                        file f.
 
 
 Shadow switches
