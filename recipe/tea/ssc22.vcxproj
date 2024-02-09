@@ -2525,6 +2525,15 @@
     <None Include="..\toast\json-ld\as\index.html" />
     <None Include="..\toast\json-ld\as\jsonld.conf" />
     <None Include="..\toast\json-ld\as\jsonld.spec" />
+    <None Include="..\toast\json-ld\certification\certification-1.html" />
+    <None Include="..\toast\json-ld\certification\certification-2.html" />
+    <None Include="..\toast\json-ld\certification\certification-3.html" />
+    <None Include="..\toast\json-ld\certification\certification-4.html" />
+    <None Include="..\toast\json-ld\certification\certification-5.html" />
+    <None Include="..\toast\json-ld\certification\certification-6.html" />
+    <None Include="..\toast\json-ld\certification\index.html" />
+    <None Include="..\toast\json-ld\certification\jsonld.conf" />
+    <None Include="..\toast\json-ld\certification\jsonld.spec" />
     <None Include="..\toast\json-ld\csvw\action.123.json" />
     <None Include="..\toast\json-ld\csvw\countries.json" />
     <None Include="..\toast\json-ld\csvw\countries_embed-minimal.json" />

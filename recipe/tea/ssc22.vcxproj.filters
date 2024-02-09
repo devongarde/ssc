@@ -1410,6 +1410,9 @@
     <Filter Include="Toast\Conf\httpd">
       <UniqueIdentifier>{9561605b-c1f5-461c-9ce5-5cb703d2019b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\JSON-LD\certification">
+      <UniqueIdentifier>{8291d7e2-80f7-401a-91ba-c67cf5cece47}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -35855,6 +35858,33 @@
     </None>
     <None Include="..\toast\conf\httpd\httpd.spec">
       <Filter>Toast\Conf\httpd</Filter>
+    </None>
+    <None Include="..\toast\json-ld\certification\certification-1.html">
+      <Filter>Toast\JSON-LD\certification</Filter>
+    </None>
+    <None Include="..\toast\json-ld\certification\certification-2.html">
+      <Filter>Toast\JSON-LD\certification</Filter>
+    </None>
+    <None Include="..\toast\json-ld\certification\certification-3.html">
+      <Filter>Toast\JSON-LD\certification</Filter>
+    </None>
+    <None Include="..\toast\json-ld\certification\certification-4.html">
+      <Filter>Toast\JSON-LD\certification</Filter>
+    </None>
+    <None Include="..\toast\json-ld\certification\certification-5.html">
+      <Filter>Toast\JSON-LD\certification</Filter>
+    </None>
+    <None Include="..\toast\json-ld\certification\certification-6.html">
+      <Filter>Toast\JSON-LD\certification</Filter>
+    </None>
+    <None Include="..\toast\json-ld\certification\index.html">
+      <Filter>Toast\JSON-LD\certification</Filter>
+    </None>
+    <None Include="..\toast\json-ld\certification\jsonld.conf">
+      <Filter>Toast\JSON-LD\certification</Filter>
+    </None>
+    <None Include="..\toast\json-ld\certification\jsonld.spec">
+      <Filter>Toast\JSON-LD\certification</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

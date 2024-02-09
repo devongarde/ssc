@@ -20,7 +20,7 @@ Libraries
 
 Common dependencies
 -------------------
-The Visual Studio 2022 build uses vcpkg, so all dependencies should be
+The Visual Studio solutions use vcpkg, so dependencies should be
 automagically installed.
 
 Otherwise, ssc needs boost version 1.75 or better (https://boost.org),
@@ -63,6 +63,11 @@ appropriate .sln file, then build. Only Visual Studios 2017, 2019 and
 Windows 10 & 11.
 
 On low memory machines, disable the /MP switch.
+
+The Visual Studio solutions use vcpkg, which resolves dependencies.
+For all versions, except recent editions of Visual Studio 2022, you may
+need to first download and install vcpkg yourself, from
+https://vcpkg.io/.
 
 
 Unii & mock Unii
@@ -165,28 +170,8 @@ package suite, then grab a current copy from its github repository
 (https://github.com/Microsoft/GSL), then unpack, build and install it.
 In Windows, remember to add its root directory to your local path.
 
-Curl
-----
-This is in almost every unix repository, but not so easy for Windows. I
-suggest the following:
-
-1  Install the Microsoft repository vcpkg (https://vcpkg.io)
-2  Run up the visual studio 64bit native command prompt
-3  Run the vcpkg bootstrap batch file, noting the comments
-4  Enter "vcpkg install curl:x64-windows"
-5  Add an environment variable to your account for CURL, perhaps:
-    CURL=****\vcpkg\installed\x64-windows
-6  Add the installation bin directory to your local path, perhaps:
-    ****\vcpkg\installed\x64-windows\bin
-7  If you plan to debug, also add debug\bin, perhaps:
-    ****\vcpkg\installed\x64-windows\debug\bin
-
-Set the architecture as necessary. If you omit it, vcpkg may carefully
-ignore your hardware and install x86.
-
 Boost
 -----
-Boost is to C++ as breakfast is to the working day.
-
-Most package managers support it, including vcpkg. Alternatively, build
-your own version using the source found at boost.org.
+Boost is to C++ as breakfast is to the working day. Most package
+managers support it. You can always build your own version using the
+source found at boost.org.
