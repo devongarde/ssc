@@ -1,10 +1,10 @@
 # -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
 
 PortSystem          1.0
-PortGroup           cmake 1.0
+PortGroup           cmake 1.1
 
 name                ssc
-version             0.1.52
+version             0.1.53
 categories          www
 platforms           {darwin >= 18} {openbsd >= 7.2}
 supported_archs     x86_64 arm64
@@ -14,7 +14,7 @@ description         an opinionated static website nitpicker
 long_description    ${name}, the Static Site Checker, is an opinionated nitpicker for static \
                     websites, analysing HTML, SVG, MathML, and more, including ontologies. \
                     It can produce detailed reports, 'repaired' HTML with resolved server \
-                    side includes, site statistics, and more. Consider it, at best, alpha.
+                    side includes, site statistics, etc.. Consider it, at best, alpha.
 
 homepage            https://ssc.lu/
 master_sites        https://github.com/devongarde/ssc/releases/download/ \
@@ -25,13 +25,18 @@ distfiles           ssc-v${version}.tgz
 extract.suffix      .tgz
 extract.post_args   "| tar -xzf -"
 
-checksums           rmd160  a328148130a20865f03b6d7caab5becc33dbabe6 \
-                    sha256  cc808edc84baf2c8c23eb9e193ebd30c9a7b73d6e9037e966c6b938cba7e50f7 \
-                    size    22986644
+checksums           rmd160  e22e554de61f8cd5e558d2225d5f1a4a6215f1bb \
+                    sha256  44df944b8ecee8064ea41e8bb0c12a777691ec3f21ff07d4cbb761a4cea7400a \
+                    size    23016906
 
 depends_lib         port:boost \
                     port:hunspell \
                     port:icu \
                     port:curl
 
+depends_build       port:cmake
+
+depends_test        port:cmake
+
 compiler.cxx_standard   2017
+

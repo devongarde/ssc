@@ -125,7 +125,10 @@ ssc.exe -T --nits.spec -o ../out/5.4html5.tst -f ../toast/HTML/5.4/html5.conf
 ssc.exe -T --nits.spec -o ../out/minimalminimal.tst -f ../toast/HTML/minimal/minimal.conf
 ssc.exe -T --nits.spec -o ../out/Plusplus.tst -f ../toast/HTML/Plus/plus.conf
 ssc.exe -T --nits.spec -o ../out/tagstags.tst -f ../toast/HTML/tags/tags.conf
+ssc.exe -T --nits.spec -o ../out/j10.tst -f ../toast/json-ld/1.0/jsonld.conf
+ssc.exe -T --nits.spec -o ../out/jadms.tst -f ../toast/json-ld/adms/jsonld.conf
 ssc.exe -T --nits.spec -o ../out/jas.tst -f ../toast/json-ld/as/jsonld.conf
+ssc.exe -T --nits.spec -o ../out/jcert.tst -f ../toast/json-ld/certification/jsonld.conf
 ssc.exe -T --nits.spec -o ../out/jschemaorg.tst -f ../toast/json-ld/schemaorg/jsonld.conf
 ssc.exe -T --nits.spec -o ../out/exlink.tst -f ../toast/link/external/link.conf
 ssc.exe -T --nits.spec -o ../out/linklink.tst -f ../toast/link/link/link.conf

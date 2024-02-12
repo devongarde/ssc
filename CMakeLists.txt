@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.19)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.1.53 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
+project (ssc VERSION 0.1.54 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
 
 set (CMAKE_CXX_STANDARD 17)
 
@@ -140,7 +140,7 @@ endif ()
     endif ()
   elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     set (D "/opt/local/bin")
-    set (DOCU "/opt/local/share/doc")
+    set (DOCU "/opt/local/share/doc/ssc")
     set (INC "/usr/local/include/" "/opt/local/include/" "/opt/local/include/hunspell")
     set (LD "/usr/local/lib" "/opt/local/lib")
     set (Boost_USE_STATIC_LIBS OFF)

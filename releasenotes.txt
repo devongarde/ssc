@@ -3,6 +3,12 @@ static site checker
 https://ssc.lu/
 (c) 2020-2024 Dylan Harris
 
+0.1.54
+- submit openbsd port (for 0.1.53)
+- fix macport configuration
+- various bug fixes
+- underlying work
+
 0.1.53
 - schema.org 25.0
 - visual studios 2017/2019 solutions use vcpkg

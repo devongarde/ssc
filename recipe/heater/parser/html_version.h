@@ -617,7 +617,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H3_CSS_MASK         H3_CSS_ALL
 #define H3_CSS              H3_CSS_ALL
 
-#define H3_FULL_CSS_MASK    0x07FFFFFFFFFFFFFF
+#define H3_FULL_CSS_MASK    0x0FFFFFFFFFFFFFFF
 
 #define H3_CSS_2007         0
 #define H3_CSS_2010       ( H3_CSS_2007 )
@@ -698,7 +698,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H4_CSS_MASK         H4_CSS_ALL
 #define H4_CSS              H4_CSS_ALL
 
-#define H4_FULL_CSS_MASK    0x0000000000000FFF
+#define H4_FULL_CSS_MASK    0x0000000000001FFF
 
 #define H4_CSS_2007         H4_CSS_COLOUR_3
 #define H4_CSS_2010       ( H4_CSS_2007 )
