@@ -127,7 +127,10 @@
 ./ssc -f ../toast/HTML/minimal/minimal.conf
 ./ssc -f ../toast/HTML/Plus/plus.conf
 ./ssc -f ../toast/HTML/tags/tags.conf
+./ssc -f ../toast/json-ld/1.0/jsonld.conf
+./ssc -f ../toast/json-ld/adms/jsonld.conf
 ./ssc -f ../toast/json-ld/as/jsonld.conf
+./ssc -f ../toast/json-ld/certification/jsonld.conf
 ./ssc -f ../toast/json-ld/schemaorg/jsonld.conf
 ./ssc -f ../toast/link/external/link.conf
 ./ssc -f ../toast/link/link/link.conf
