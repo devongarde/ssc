@@ -953,7 +953,7 @@ ontologies (see --ontology.list).
                                 1.90        1.9
                                 1.91        as version number
                                 ...
-                                25.0        as version number
+                                26.0        as version number
 
                         vCard versions correspond to RDFa specs,
                         published in 2001, 2006, 2010 & 2014. They do
