@@ -51,7 +51,7 @@ public:
         return curl_easy_setopt (c_, option, s.c_str ()); }
     CURLcode opt (CURLoption option, int i)
     {   PRESUME (valid (), __FILE__, __LINE__);
-        return curl_easy_setopt (c_, option, ::gsl::narrow_cast < long > (i)); }
+        return curl_easy_setopt (c_, option, GSL_NARROW_CAST < long > (i)); }
     bool set_write_buffer ()
     {   PRESUME (valid (), __FILE__, __LINE__);
         if (buf_.get () != nullptr) return true;
@@ -72,7 +72,7 @@ public:
     {   PRESUME (valid (), __FILE__, __LINE__);
         long status = 0;
         curl_easy_getinfo (c_, CURLINFO_RESPONSE_CODE, &status);
-        return ::gsl::narrow_cast <int > (status); }
+        return GSL_NARROW_CAST <int > (status); }
     bool valid () const { return c_ != nullptr; } };
 
 CURL* curly::c_ = nullptr;

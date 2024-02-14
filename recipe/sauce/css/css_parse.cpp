@@ -77,11 +77,11 @@ bool anticipate (::std::string::const_iterator& from, ::std::string::const_itera
 void breed (v_np& , vtt_t& t, const ::std::string::const_iterator , const ::std::string::const_iterator )
 {   int mum = 0;
     PRESUME (t.size () > 0, __FILE__, __LINE__);
-    const int last = ::gsl::narrow_cast < int > (t.size () - 1);
+    const int last = GSL_NARROW_CAST < int > (t.size () - 1);
     if (last == 0) return;
     t.at (0).child_ = 1;
     vct_t brat;
-    for (int i = 1; i < ::gsl::narrow_cast < int > (t.size ()); ++i)
+    for (int i = 1; i < GSL_NARROW_CAST < int > (t.size ()); ++i)
     {   t.at (i).mum_ = mum;
         if (i < last) t.at (i).next_ = i + 1;
         switch (t.at (i).t_)
@@ -103,7 +103,7 @@ void breed (v_np& , vtt_t& t, const ::std::string::const_iterator , const ::std:
                     t.at (i).mum_ = 0;
                     break; }
                 else
-                {   const int pos = ::gsl::narrow_cast < int > (brat.size () - 1);
+                {   const int pos = GSL_NARROW_CAST < int > (brat.size () - 1);
                     if (((t.at (i).t_ == ct_curly_ket) && (brat.at (pos) != ct_curly_brac)) ||
                         ((t.at (i).t_ == ct_round_ket) && (brat.at (pos) != ct_round_brac)) ||
                         ((t.at (i).t_ == ct_square_ket) && (brat.at (pos) != ct_square_brac)))
