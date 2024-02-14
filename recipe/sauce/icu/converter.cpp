@@ -64,7 +64,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 ::std::string convert_to_utf8 (const unsigned int n)
 // https://stackoverflow.com/questions/23322438/how-to-convert-a-unicode-code-point-to-characters-in-c-using-icu
-{   ::icu::UnicodeString s (::gsl::narrow_cast < UChar32 > (n));
+{   ::icu::UnicodeString s (GSL_NARROW_CAST < UChar32 > (n));
     ::std::string res;
     s.toUTF8String (res);
     return res; }

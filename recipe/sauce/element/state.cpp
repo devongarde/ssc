@@ -75,7 +75,7 @@ void state_init ()
 void merge_smsid (smsid_t& a, const element_bitset& b, const int n)
 {   for (::std::size_t x = 0; x < b.size (); ++x)
         if (b.test (x))
-        {   ::std::string s (elem::name (::gsl::narrow_cast < e_element > (x)));
+        {   ::std::string s (elem::name (GSL_NARROW_CAST < e_element > (x)));
             auto i = a.find (s);
             if (i != a.cend ()) i -> second += n;
             else a.insert (smsid_t::value_type (s, n)); } }

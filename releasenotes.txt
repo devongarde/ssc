@@ -3,6 +3,14 @@ static site checker
 https://ssc.lu/
 (c) 2020-2024 Dylan Harris
 
+0.1.56
+- underlying work
+
+0.1.56
+- fix NO_GSL build
+- more work on macports
+- underlying work
+
 0.1.55
 - schema.org 26.0
 - underlying work

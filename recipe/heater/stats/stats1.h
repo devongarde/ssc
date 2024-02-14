@@ -46,7 +46,7 @@ public:
     {   if (o.count_.size () == 0) o.count_ = count_;
         else for (unsigned i = 0; i < count_.size (); ++i)
             if (count_.at (i) > 0)
-                o.mark (::gsl::narrow_cast < ENUM > (i), count_.at (i)); } };
+                o.mark (GSL_NARROW_CAST < ENUM > (i), count_.at (i)); } };
 
 typedef stats1 < e_element, last_element_tag, elem_undefined > element_stats;
 typedef stats1 < e_category, last_category, ec_undefined > category_stats;
