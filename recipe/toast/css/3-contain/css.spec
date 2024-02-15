@@ -2,6 +2,8 @@
 
 PASS ../toast/css/3-contain/css-3.css
 0 html
+7 css_version
+8 css_version
 
 PASS ../toast/css/3-contain/css-2.html
 0 charset_mismatch charset_used charset_invalid

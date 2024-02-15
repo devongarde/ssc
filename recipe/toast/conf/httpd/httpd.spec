@@ -8,6 +8,6 @@ Nits Reported:
     Warnings: once
 
 File Info:
-    142870 bytes read in 2 files, with an average of roughly 71435 bytes per file
-    smallest file: 298 bytes, largest file: 142572 bytes
+    143499 bytes read in 2 files, with an average of roughly 71750 bytes per file
+    smallest file: 298 bytes, largest file: 143201 bytes
 ===
