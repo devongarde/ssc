@@ -41,11 +41,13 @@ const vstr_t rfc2606_no_no =
     "test" };
 
 // https://tools.ietf.org/id/draft-chapin-rfc2606bis-00.html
+// ICANN .internal recommendation Jan 24
 const vstr_t rfc2606_local =
 {   "corp",
     "domain",
     "home",
     "host",
+    "internal", // ICANN
     "lan",
     "local",
     "localdomain" };

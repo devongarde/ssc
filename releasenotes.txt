@@ -3,9 +3,13 @@ static site checker
 https://ssc.lu/
 (c) 2020-2024 Dylan Harris
 
+0.1.58
+- recognise ICANN's .internal
+- various CMake improvements
+- underlying work
+
 0.1.57
 - add CMake uninstall target
-- have CMake respect ${prefix}
 
 0.1.56
 - fix NO_GSL compilation error

@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
-#define VERSION_RELEASE 57
-#define VERSION_STRING "0.1.57"
+#define VERSION_RELEASE 58
+#define VERSION_STRING "0.1.58"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -395,6 +395,14 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define GSL_NOT_NULL(TYPE) TYPE
 #define GSL_OWNER(TYPE) TYPE
 #endif // NO_GSL
+
+#ifdef HUNSPELL
+#ifdef NOHUNSUB
+#include <hunspell.hxx>
+#else // NOHUNSUB
+#include <hunspell/hunspell.hxx>
+#endif // NOHUNSUB
+#endif // HUNSPELL
 
 #ifndef NO_FALLTHROUGH
 #define FALLTHROUGH [[fallthrough]]

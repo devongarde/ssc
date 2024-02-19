@@ -10,3 +10,7 @@ PASS ../toast/link/external/index.html
 24 404
 29 example
 30 example
+34 tld local
+35 tld local
+36 tld local
+37 local
