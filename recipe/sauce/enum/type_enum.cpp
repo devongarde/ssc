@@ -5087,6 +5087,7 @@ struct symbol_entry < html_version, e_tld > tld_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "insure", tld_insure },
     { { HTML_TAGS }, { HTML_UNDEF }, "int", tld_int },
     { { HTML_TAGS }, { HTML_UNDEF }, "intel", tld_intel },
+    { { HTML_TAGS }, { HTML_UNDEF }, "internal", tld_internal, ns_default, TLD_LOCAL },
     { { HTML_TAGS }, { HTML_UNDEF }, "international", tld_international },
     { { HTML_TAGS }, { HTML_UNDEF }, "internet", tld_internet, ns_default, TLD_LOCAL | TLD_UNOFFICIAL },
     { { HTML_TAGS }, { HTML_UNDEF }, "intuit", tld_intuit },

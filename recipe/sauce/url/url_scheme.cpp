@@ -294,20 +294,23 @@ bool parse_rfc3986 (nitpick& nits, const html_version& v, const e_protocol prot,
                             nits.pick (nit_tld, es_info, ec_url, quote (host.substr (pos)), " is intended for domain testing only and should not be used on a live network");
                             break;
                         case tld_local :
-                            nits.pick (nit_tld, es_warning, ec_url, quote (host.substr (pos)), " is often used for local multicast DNS and it's use here might cause conflict");
+                            nits.pick (nit_tld, es_warning, ec_url, quote (host.substr (pos)), " is often used for local multicast DNS and its use here could cause problems");
                             break;
                         case tld_vm :
-                            nits.pick (nit_tld, es_warning, ec_url, quote (host.substr (pos)), " is not an official top level domain and can cause problems if it leaks: a common alternative is '.lan'");
+                            nits.pick (nit_tld, es_warning, ec_url, quote (host.substr (pos)), " is not an official top level domain and can cause problems if it leaks: the ICANN recommendation is '.internal'");
                             break;
                         case tld_internet :
-                            nits.pick (nit_tld, es_info, ec_url, quote (host.substr (pos)), " is officially an unofficial top level domain (RFC6762), but, ironically, it can cause problems if it leaks to the internet");
+                            nits.pick (nit_tld, es_info, ec_url, quote (host.substr (pos)), " is officially an unofficial top level domain (RFC6762), but, ironically, it can cause problems if it leaks to the internet: the ICANN recommendation is '.internal'");
                             break;
                         case tld_home :
                         case tld_lan :
                         case tld_corp :
                         case tld_intranet :
                         case tld_private :
-                            nits.pick (nit_tld, es_info, ec_url, quote (host.substr (pos)), " is officially an unofficial top level domain (RFC6762); it can cause problems if it leaks to the internet");
+                            nits.pick (nit_tld, es_info, ec_url, quote (host.substr (pos)), " is officially an unofficial top level domain (RFC6762), but it can cause problems if it leaks to the internet: the ICANN recommendation is '.internal'");
+                            break;
+                        case tld_internal :
+                            nits.pick (nit_tld, es_comment, ec_url, quote (host.substr (pos)), " is proposed BY ICANN as a top level domain, but not yet commonly accepted");
                             break;
                        default :
                             break; } }

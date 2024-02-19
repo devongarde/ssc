@@ -128,6 +128,8 @@
 ../toast/json-ld/as/jsonld.spec
 ../toast/json-ld/certification/jsonld.spec
 ../toast/json-ld/schemaorg/jsonld.spec
+../toast/link/external/link.spec
+../toast/link/link/link.spec
 ../toast/living/jul07/living.spec
 ../toast/living/jan08/living.spec
 ../toast/living/jul08/living.spec

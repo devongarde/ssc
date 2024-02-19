@@ -21,7 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 
 #ifdef HUNSPELL
-#include <hunspell.hxx>
 #include "spell/spell.h"
 #include "main/context.h"
 #include "parser/text.h"

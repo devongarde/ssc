@@ -4,7 +4,7 @@ PortSystem                  1.0
 PortGroup                   github 1.0
 PortGroup                   cmake 1.1
 
-github.setup                devongarde ssc 0.1.56 v
+github.setup                devongarde ssc 0.1.57 v
 github.tarball_from         releases
 
 revision                    0
@@ -26,11 +26,10 @@ extract.suffix              .tgz
 extract.post_args           "| tar -xzf -"
 
 homepage                    https://ssc.lu/
-master_sites                https://github.com/devongarde/ssc/releases/download/v${version}
 
-checksums                   rmd160  df2784a8d7671568cc3bd87b8a7f0ba9b0d9c809 \
-                            sha256  1ee28fec98d7910f87f7120cbaa517837259f4eced34491576c2b8e2834b2ce3 \
-                            size    23016387
+checksums                   rmd160  8dfab0a3e1599b828c6c8c078610b7dd707308e7 \
+                            sha256  17cf1b5cd3c2767999d6690728c98b0d3a653dd4bb6817ed1052c7aaa08c20b7 \
+                            size    23014642
 
 depends_lib                 port:boost \
                             port:hunspell \
