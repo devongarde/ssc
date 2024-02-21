@@ -11482,6 +11482,7 @@
     <None Include="..\toast\XHTML\5.0\x5-example.xhtml" />
     <None Include="..\toast\XHTML\5.0\xhtml5.conf" />
     <None Include="..\toast\XHTML\5.0\xhtml5.spec" />
+    <None Include="cmake_uninstall.cmake.in" />
     <None Include="fulltest.bat" />
     <None Include="fulltest.sh" />
     <None Include="specprep.bat" />

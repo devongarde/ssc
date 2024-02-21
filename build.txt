@@ -101,9 +101,8 @@ The following have, at some point, been successfully built as x64 amd:
 FreeBSD:  13.2 / 13.1 / 12.4 / 12.3
 Linux:    Alma Linux 9, AOSC, Centos 8 / 9, SUSE Tumbleweed,
           Ubuntu 20.04 / 22.04
-MacOS:    Sonoma, Ventura, Monterey, Big Sur, Catalina, Mojave, High
-          Sierra, Sierra, El Capitan, Yosemite
-OpenBSD:  7.4 / 7.3 / 7.2 / 7.1 / 7.0 / 6.9 / 6.8
+MacOS:    Sonoma / Ventura / Monterey / Big Sur / Catalina / Mojave
+OpenBSD:  7.4 / 7.3 / 7.2 / 7.1 / 7.0 / 6.9
 
 The following have been successfully built as arm64:
 Linux:    Centos 9
