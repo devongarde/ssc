@@ -30,8 +30,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
-#define VERSION_RELEASE 58
-#define VERSION_STRING "0.1.58"
+#define VERSION_RELEASE 59
+#define VERSION_STRING "0.1.59"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -68,7 +68,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #endif // SSC_TEST
 
 #ifdef NOICU
+#ifndef NOSPELL
 #define NOSPELL
+#endif // NOSPELL
 #else // NOICU
 #define BOOST_HAS_ICU
 #endif // NOICU

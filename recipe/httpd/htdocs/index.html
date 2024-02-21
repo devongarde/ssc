@@ -70,7 +70,7 @@ It should not be used on untrusted content; its parsers are holier than <A href=
 
 <P>
 If you want to try it,
-<a href="src/ssc-v0.1.58.tgz" type="application/gzip">here&rsquo;s the current source</a>. The build instructions follow.
+<a href="src/ssc-0.1.59.tgz" type="application/gzip">here&rsquo;s the current source</a>. The build instructions follow.
 </P>
 
 <P>
@@ -194,7 +194,7 @@ January 2024
 <pre>
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.1.55
+version 0.1.58
 (c) 2020-2024 dylan harris
 see LICENCE.txt &amp; LICENSE.txt for copyright &amp; licence notice
 <a href="https://ssc.lu/">https://ssc.lu/</a>
@@ -2190,17 +2190,16 @@ individual tests, and the standard commands used sometimes complain if
 they can't find files they're supposed to delete, which is a bit silly
 given that means things are already in the required state.
 
-The following have, at some point, been successfully built as x64 amd:
+The following have been successfully built as amd64:
 FreeBSD:  13.2 / 13.1 / 12.4 / 12.3
 Linux:    Alma Linux 9, AOSC, Centos 8 / 9, SUSE Tumbleweed,
           Ubuntu 20.04 / 22.04
-MacOS:    Sonoma, Ventura, Monterey, Big Sur, Catalina, Mojave, High
-          Sierra, Sierra, El Capitan, Yosemite
-OpenBSD:  7.4 / 7.3 / 7.2 / 7.1 / 7.0 / 6.9 / 6.8
+MacOS:    Sonoma / Ventura / Monterey / Big Sur / Catalina / Mojave
+OpenBSD:  7.4 / 7.3 / 7.2 / 7.1 / 7.0 / 6.9
 
 The following have been successfully built as arm64:
 Linux:    Centos 9
-MacOS:    Sonoma, Ventura
+MacOS:    Sonoma / Ventura
 
 The current version of ssc requires the current version of an operating
 system. Older operating systems require older versions of ssc. Not all
@@ -2285,11 +2284,14 @@ dependencies that vary across systems, which can cause spurious test failures.
 <section id="sauce">
 <h2>source</h2>
 
-<h3>0.1.58</h3>
+<h3>0.1.59</h3>
 
 <ul>
 <li>
-recognise ICANN's .internal
+Withdraw support for Macos High Sierra and earlier
+</li>
+<li>
+Withdraw support for OpenBSD 6.8
 </li>
 <li>
 various CMake improvements
@@ -2298,10 +2300,30 @@ various CMake improvements
 underlying work
 </li>
 <li>
-<A href="src/ssc-v0.1.58.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-0.1.59.tgz" type="application/gzip">download source</a>
 </li>
 <li>
-released <time itemprop="datePublished" class="dt-published" datetime="2024-02-29">24 2 29</time>
+released <time itemprop="datePublished" class="dt-published" datetime="2024-02-21">24 2 21</time>
+</li>
+</ul>
+
+<h3>0.1.58</h3>
+
+<ul>
+<li>
+recognise ICANN&rsquo;s .internal
+</li>
+<li>
+various CMake improvements
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-0.1.58.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2024-02-19">24 2 19</time>
 </li>
 </ul>
 

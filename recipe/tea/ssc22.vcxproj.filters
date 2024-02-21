@@ -35886,6 +35886,9 @@
     <None Include="..\toast\json-ld\certification\jsonld.spec">
       <Filter>Toast\JSON-LD\certification</Filter>
     </None>
+    <None Include="cmake_uninstall.cmake.in">
+      <Filter>Tea</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">

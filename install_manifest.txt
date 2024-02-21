@@ -1,0 +1,6 @@
+/usr/local/bin/ssc
+/usr/local/share/doc/ssc/README.txt
+/usr/local/share/doc/ssc/gen.txt
+/usr/local/share/doc/ssc/LICENCE.txt
+/usr/local/share/doc/ssc/LICENSE.txt
+/usr/local/share/doc/ssc/usage.txt
