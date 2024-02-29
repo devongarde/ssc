@@ -36338,6 +36338,9 @@
     <Image Include="..\toast\other\ie\x.jpg">
       <Filter>Toast\Other\ie</Filter>
     </Image>
+    <Image Include="..\toast\microformats\rel\photo.jpg">
+      <Filter>Toast\Microformat\Rel</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\toast\virtual\README.txt">

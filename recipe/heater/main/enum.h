@@ -2892,7 +2892,7 @@ typedef enum {
     r_dcterms_isrequiredby, r_dcterms_isversionof, r_dcterms_licence, r_dcterms_mediator, r_dcterms_publisher, r_dcterms_references,
     r_dcterms_relation, r_dcterms_replaces, r_dcterms_requires, r_dcterms_rightsholder, r_dcterms_source, r_dcterms_subject, r_definition,
     r_describedby, r_describes, r_disclaimer, r_disclosure, r_dnsprefetch, r_docs_oasis_open_org_ns_cmis_link_200908_acl,
-    r_duplicate, r_edit, r_edit_form, r_edit_media, r_editor, r_edituri, r_end, r_endorsed, r_entry_content, r_external,
+    r_duplicate, r_edit, r_edit_form, r_edit_media, r_editor, r_edituri, r_end, r_endorsed, r_entry_content, r_expect, r_external,
     r_fan, r_feed, r_footnote, r_gbfs, r_gtfs_realtime, r_gtfs_static, r_hosts,
     r_hub, r_icon, r_image_src, r_import, r_intervalafter, r_intervalbefore, r_intervalcontains, r_intervaldisjoint,
     r_intervalduring, r_intervalequals, r_intervalfinishedby, r_intervalfinishes, r_intervalin, r_intervalmeets, r_intervalmetby,

@@ -11589,6 +11589,7 @@
     <Image Include="..\toast\HTML\5.4\x.jpg" />
     <Image Include="..\toast\microformats\mf1\photo.jpg" />
     <Image Include="..\toast\microformats\mf2\photo.jpg" />
+    <Image Include="..\toast\microformats\rel\photo.jpg" />
     <Image Include="..\toast\other\blob\25-small.jpg" />
     <Image Include="..\toast\other\blob\7595.jpg" />
     <Image Include="..\toast\other\blob\A-small.jpg" />

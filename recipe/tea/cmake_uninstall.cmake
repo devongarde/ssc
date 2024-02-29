@@ -1,8 +1,8 @@
-if(NOT EXISTS "/Users/dylan/project/app/ssc/build/install_manifest.txt")
-  message(FATAL_ERROR "Cannot find install manifest: /Users/dylan/project/app/ssc/build/install_manifest.txt")
+if(NOT EXISTS "/Users/dylan/project/app/ssc/install_manifest.txt")
+  message(FATAL_ERROR "Cannot find install manifest: /Users/dylan/project/app/ssc/install_manifest.txt")
 endif()
 
-file(READ "/Users/dylan/project/app/ssc/build/install_manifest.txt" files)
+file(READ "/Users/dylan/project/app/ssc/install_manifest.txt" files)
 string(REGEX REPLACE "\n" ";" files "${files}")
 foreach(file ${files})
   message(STATUS "Uninstalling $ENV{DESTDIR}${file}")

@@ -158,6 +158,7 @@ struct symbol_entry < html_version, e_rel > rel_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, R_ENDORSED, r_endorsed },
     { { HTML_4_0, HR_MF1 }, { HTML_UNDEF }, R_ENTRY_CATEGORY, r_entry_category },
     { { HTML_4_0 }, { HTML_UNDEF }, R_ENTRY_CONTENT, r_entry_content },
+    { { HTML_MAR24, HR_LINK }, { HTML_UNDEF }, "expect", r_expect },
     { { HTML_4_0, HR_A_AREA | HR_FORM | HV_NOT50 | HV_NOT51 }, { HTML_UNDEF }, "external", r_external },
     { { HTML_4_0 }, { HTML_UNDEF }, R_FAN, r_fan },
     { { HTML_4_0, HR_A_AREA | HR_LINK }, { HTML_DEC09 }, R_FEED, r_feed },
