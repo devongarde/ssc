@@ -4,13 +4,13 @@ PortSystem                  1.0
 PortGroup                   github 1.0
 PortGroup                   cmake 1.1
 
-github.setup                devongarde ssc 0.1.58
+github.setup                devongarde ssc 0.1.59 v
 github.tarball_from         releases
 
 revision                    0
 
 categories                  www
-platforms                   {darwin >= 18} {openbsd >= 7.2}
+platforms                   {darwin >= 14} {openbsd >= 6.9}
 supported_archs             x86_64 arm64
 license                     GPL-3
 maintainers                 { @devongarde } openmaintainer
@@ -26,15 +26,15 @@ extract.post_args           "| tar -xzf -"
 
 homepage                    https://ssc.lu/
 
-checksums                   rmd160  d0b9ced9b4797ade2d13801333b8634bb41c7ee6 \
-                            sha256  9d9208fd971858722fd124565ef176646414899f5133d4993569dd38519ddba9 \
-                            size    23014642
+checksums                   rmd160  5f3aad2f36a130a3890ee06e21e1a1eb6c7373a8 \
+                            sha256  bbb84775ca490abaed32abb7ee9ea1a2f382b07bbe4ae36355f28a3241074861 \
+                            size    23015484
 
 depends_lib                 port:boost \
                             port:hunspell \
                             port:icu \
                             port:curl
 
-configure.cppflags-append   -DNO_GSL
+configure.cppflags-append   "-DNO_GSL -DALTDEST=/opt"
 
 compiler.cxx_standard       2017

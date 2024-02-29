@@ -3,6 +3,10 @@ static site checker
 https://ssc.lu/
 (c) 2020-2024 Dylan Harris
 
+0.1.60
+- add rel="expect" from current living standard
+- underlying work
+
 0.1.59
 - withdraw support for macOS High Sierra and earlier
 - withdraw support for OpenBSD 6.8
