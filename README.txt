@@ -1,6 +1,4 @@
-WARNING: I've deleted a number of binaries from the repo history, reducing the repo size from 2G to 120M. You may see consequences
-when you attempt to browse old versions, but there should be no impact on the code itself. Thanks to buhtz here for notification
-of the problem, and to rohannicholls for the solution (https://rowannicholls.github.io/git/advanced/shrink_repository.html).
+WARNING: I've deleted a number of binaries from the repo history, reducing the repo size from 2G to 120M. You may see consequences when you attempt to browse old versions, but there should be no impact on the code itself. Thanks to buhtz here for notification of the problem, and to rohannicholls for the solution (https://rowannicholls.github.io/git/advanced/shrink_repository.html).
 
 
 Static Site Checker
