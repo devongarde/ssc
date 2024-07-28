@@ -19,7 +19,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
-#include "main/enum.h"
 #include "parser/html_version.h"
 
 struct true_type { };
@@ -74,8 +73,8 @@ int pos_de (const ::std::string& s, const char* charset, vint_t& vf, vint_t& vt,
 ::std::string read_text_file (nitpick& nits, const ::boost::filesystem::path& name, bool& borked);
 ::std::string read_text_file (nitpick& nits, const ::std::string& name, bool& borked);
 void_ptr read_binary_file (nitpick& nits, const ::boost::filesystem::path& name, uintmax_t& sz, const bool zero_ok = false);
-bool write_text_file (const ::boost::filesystem::path& n, const ::std::string& content);
-bool write_text_file (const ::std::string& name, const ::std::string& content);
+bool write_text_file (nitpick& nits, const ::boost::filesystem::path& n, const ::std::string& content);
+bool write_text_file (nitpick& nits, const ::std::string& name, const ::std::string& content);
 ::boost::filesystem::path get_tmp_filename ();
 bool contains (const vstr_t& con, const ::std::string& val);
 
@@ -109,9 +108,9 @@ template < class T > void write_field (::boost::property_tree::ptree& tree, cons
     name += field;
     tree.put (name, value); }
 
-bool read_header (const ::boost::property_tree::ptree& json, const ::std::string& expected, ::std::string& version, const ::std::string& filename);
+bool read_header (nitpick& nits, const ::boost::property_tree::ptree& json, const ::std::string& expected, ::std::string& version, const ::std::string& filename);
 void write_header (::boost::property_tree::ptree& json, const char* context);
-bool replace_file (const ::boost::property_tree::ptree& json, const ::boost::filesystem::path& filename);
+bool replace_file (nitpick& nits, const ::boost::property_tree::ptree& json, const ::boost::filesystem::path& filename);
 
 inline ::std::string slash_dot (const ::std::string& slash)
 {   ::std::string dot (slash);
@@ -179,6 +178,13 @@ inline ::std::string x_dot_y (const unsigned short mjr, const unsigned short mnr
 {   ::std::string res (::boost::lexical_cast < ::std::string > (static_cast < int > (mjr)));
     res += ".";
     res += ::boost::lexical_cast < ::std::string > (static_cast < int > (mnr));
+    return res; }
+
+inline ::std::string x_dot_oh_y (const unsigned short mjr, const unsigned short mnr)
+{   ::std::string res (::boost::lexical_cast < ::std::string > (static_cast < int > (mjr)));
+    if (mnr > 0)
+    {   res += ".0";
+        res += ::boost::lexical_cast < ::std::string > (static_cast < int > (mnr)); }
     return res; }
 
 inline ::std::string x_dot_y_ish (const unsigned short mjr, const unsigned short mnr)
@@ -270,3 +276,5 @@ template < e_css_val_fn T > struct listed < T >
 inline ::std::string::size_type find_no_case (const ::std::string& s, const ::std::string& x)
 {   if (s.empty () || x.empty ()) return ::std::string::npos;
     return ::boost::to_lower_copy (s).find (::boost::to_lower_copy (x)); }
+
+::std::string enhtml (const ::std::string& s);

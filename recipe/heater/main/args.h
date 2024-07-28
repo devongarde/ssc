@@ -55,17 +55,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define LINKS       LINK_ JOIN
 #define MF          MF_ JOIN
 #define MATH        MATH_ JOIN
+#define MENTION     MENTION_ JOIN
 #define MICRODATA   MICRODATA_ JOIN
 #define NITS        NITS_ JOIN
 #define ONTOLOGY    ONTOLOGY_ JOIN
 #define SERVER      SERVER_ JOIN
 #define SHADOW      SHADOW_ JOIN
 #define SPELL       SPELL_ JOIN
+#define SSC         PROG JOIN
 #define STATS       STATS_ JOIN
 #define SVG         SVG_ JOIN
 #define VALIDATION  VALIDATION_ JOIN
 #define WEBSITE     WEBSITE_ JOIN
-#define MENTION     MENTION_ JOIN
 
 #define ABBR        "abbreviation"
 #define ABHORRENT   "abhorrent"
@@ -107,7 +108,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define COND_RULE   "cond-rule"
 #define CONFIG      "config"
 #define CONTAIN     "contain"
-#define CONTENT     "content"
+#define CON_TENT    "content"
 #define CONNAME     "content-name"
 #define COPY        "copy"
 #define CORE        "core"
@@ -129,6 +130,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define DEVICE      "device"
 #define DFN         "definition"
 #define DICT        "dict"
+#define DDICT       "ddict"
+#define DLANG       "dlang"
 #define DINGBATARG  "dingbat"
 #define DISPLAY     "display"
 #define DONT        "no-"
@@ -139,7 +142,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define ELEMATTR    ELEMENT "-" ATTRIB
 #define ENABLE      "enable"
 #define ENDPOINT    "endpoint"
-#define ERR         "error"
+#define WHOOPS      "error"
 #define ERROREXIT   "errorexit"
 #define EXAMPLE     "example"
 #define EXCLUDE     "exclude"
@@ -176,6 +179,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define IMAGE       "image"
 #define INDEX       "index"
 #define INFO        "info"
+#define INFORMATION "information"
 #define INLINE      "inline"
 #define INPUT       "input"
 #define ITEMID      "itemid"
@@ -209,6 +213,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define ONCE        "once"
 #define ONT         "ontology"
 #define OUTPUT      "output"
+#define OPTBOOST    "boost"
+#define OPTCOMP     "compiler"
+#define OPTCURL     "curly"
+#define OPTDEBUG    "debug"
+#define OPTFUDDY    "fuddy"
+#define OPTGUI      "gui"
+#define OPTICU      "icu"
+#define OPTJSON     "jsonic"
+#define OPTNPS      "nps"
+#define OPTOS       "os"
+#define OPTPROC     "proc"
+#define OPTSERVER   "server"
+#define OPTSPELL    "spell"
 #define ORNAMENT    "ornament"
 #define OVERFLOH    "overflow"
 #define OVERRIDE    "override"
@@ -271,6 +288,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SSI         "ssi"
 #define STATEMENT   "statement"
 #define STRUCTURE   "struct"
+#define STRUCTURE2  "structure"
 #define STYLE       "style"
 #define STYLESET    "styleset"
 #define STYLISTIC   "stylistic"
@@ -278,6 +296,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SUMMARY     "summary"
 #define SWASH       "swash"
 #define SWITCHES    "switches"
+#define SYSTEM      "system"
 #define SYNTAX      "syntax"
 #define TABLE       "table"
 #define TAGS        "tags"
@@ -294,7 +313,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define UPDATE      "update"
 #define UI          "ui"
 #define USER        "user"
-#define VALUE       "value"
+#define VAL         "value"
 #define VARIABLE    "variable"
 #define VCS         "vcs"
 #define VERBOSE     "verbose"
@@ -302,6 +321,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define VER         "version"
 #define VERSION     "version"
 #define VIEW        "view"
+#define VIEWPORT    "viewport"
 #define VIRTUAL     "virtual"
 #define WARNING     "warning"
 #define WATCH       "watch"
@@ -319,10 +339,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define TEMPLATE    "template"
 #define WRITE       "write"
 
-#define EXT         ".ssc"
-#define CFG         "config"
-
-#define CONFIGURATION "." PROG "/" CFG
+#define CFG                 "config"
+#define CONFIGURATION       DEFAULT_DATAPATH "/" CFG
 
 // environment
 #define ENV_CONFIG          PROG "_" CONFIG

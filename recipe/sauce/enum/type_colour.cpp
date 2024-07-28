@@ -223,6 +223,12 @@ struct symbol_entry < html_version, e_css_colour > css_colour_symbol_table [] =
 struct symbol_entry < html_version, e_fixedcolour > fixedcolour_symbol_table [] =
 {    STANDARD_COLOURS (fc_, HTML_SVG10) };
 
+::std::size_t fixedcolour_count ()
+{   return sizeof (fixedcolour_symbol_table) / sizeof (symbol_entry < html_version, e_fixedcolour >); }
+
+::std::size_t css_colour_count ()
+{   return sizeof (css_colour_symbol_table) / sizeof (symbol_entry < html_version, e_css_colour >); }
+
 void colour_init (nitpick& nits)
-{   type_master < t_css_colour > :: init (nits, css_colour_symbol_table, sizeof (css_colour_symbol_table) / sizeof (symbol_entry < html_version, e_css_colour >));
-    type_master < t_fixedcolour > :: init (nits, fixedcolour_symbol_table, sizeof (fixedcolour_symbol_table) / sizeof (symbol_entry < html_version, e_fixedcolour >)); }
+{   type_master < t_css_colour > :: init (nits, css_colour_symbol_table, css_colour_count ());
+    type_master < t_fixedcolour > :: init (nits, fixedcolour_symbol_table, fixedcolour_count ()); }

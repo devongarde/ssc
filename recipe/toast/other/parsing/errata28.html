@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang=en id=errata>
+<meta charset=utf-8>
+
+<title>Errata</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<p>
+<strong>006: STABILITY FIX: Dec 4, 2000</strong><br>
+On some machines, a PCIBIOS device driver interrupt allocation bug can cause a
+kernel hang while probing PCI devices.  If you have this symptom, you can disable
+PCIBIOS as a workaround.  To do this,
+    <ul>
+    <li>Enter the User Kernel Configuration by booting with the
+	option &quot;boot -c&quot;.
+    <li>Once at the <i>UKC></i> prompt, enter
+        <blockquote><pre>
+	UKC> disable pcibios
+	UKC> quit<!--
+	--></pre></blockquote>
+    <li>See <a href="./faq/faq5.html#5.6">this page</a> after a successful
+    boot for instructions on how to re-write your kernel to disable PCIBIOS
+    permanently.
+    </ul>

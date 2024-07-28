@@ -26,12 +26,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define PROG "ssc"
 #define TESTPROG PROG "-test"
 #define FULLNAME "Static Site Checker"
+#define FORMALNAME "The " FULLNAME
 #define WEBADDR "https://" SSC_LU "/"
 
 #define VERSION_MAJOR 0
-#define VERSION_MINOR 1
-#define VERSION_RELEASE 60
-#define VERSION_STRING "0.1.60"
+#define VERSION_MINOR 2
+#define VERSION_RELEASE 2
+#define VERSION_STRING "0.2.2"
+#define EDITION_STANDARD "standard"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -47,6 +49,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define DEFAULT_LINE_LENGTH 72
 #define DESCRIPTION_LENGTH 60
+
+#if defined (WX) && defined (BEASTIES)
+#error cannot combine WX and BEASTIES
+#elif defined (WX)
+#define EDITION "/g"
+#define EDITION_LONG "gui"
+#elif defined (BEASTIES)
+#define EDITION "/s"
+#define EDITION_LONG "server"
+#else
+#define EDITION
+#define EDITION_LONG EDITION_STANDARD
+#endif
 
 #if defined (DEBUG) || defined (_DEBUG) || defined (SSC_ASSERTS)
 #  ifndef DEBUG
@@ -101,16 +116,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma GCC diagnostic ignored "-Wall"
 #pragma GCC diagnostic ignored "-Wextra"
 #define COMPILER "c"
+#define COMPNAME "clang"
 #define MSVC_NOEXCEPT
 #define PROCSIZE "64"
 #define STR_IT_BYTE
 #elif ! defined (_MSC_VER)
 #define COMPILER "g"
+#define COMPNAME "gcc"
 #define MSVC_NOEXCEPT
 #define PROCSIZE "64"
 #define STR_IT_BYTE
 #else
 #define COMPILER "m"
+#define COMPNAME "msvc"
 #define NOLYNX
 #define BORKED_BITSET_OPS
 #define MSVC_NOEXCEPT noexcept
@@ -354,7 +372,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #include <boost/thread.hpp>
 
 #ifdef _MSC_VER
-#pragma warning ( disable : 4701 ) // CRC
+#pragma warning (disable : 4701) // CRC
 #endif
 
 #include <boost/crc.hpp>
@@ -362,13 +380,61 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #ifndef NO_JSONIC
 #ifdef _MSC_VER
 #pragma warning (push, 3)
-#pragma warning ( disable : ALL_CODE_ANALYSIS_WARNINGS ) // boost
+#pragma warning (disable : ALL_CODE_ANALYSIS_WARNINGS) // boost
 #endif // _MSC_VER
 #include <boost/json.hpp>
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif // _MSC_VER
 #endif // NO_JSONIC
+
+#ifdef BEASTIES
+#ifdef _MSC_VER
+#pragma warning (push, 3)
+#pragma warning (disable : 4459) // declaration of context hides global declaration
+#endif // _MSC_VER
+#include <boost/beast/core.hpp>
+#include <boost/beast/http.hpp>
+#include <boost/beast/ssl.hpp>
+#include <boost/beast/websocket.hpp>
+#include <boost/beast/version.hpp>
+#include <boost/asio/bind_executor.hpp>
+#include <boost/asio/dispatch.hpp>
+#include <boost/asio/signal_set.hpp>
+#include <boost/asio/strand.hpp>
+#include <boost/make_unique.hpp>
+#include <boost/optional.hpp>
+#ifdef _MSC_VER
+#pragma warning (pop)
+#endif // _MSC_VER
+#endif // BEASTIES
+
+#ifdef WX
+#define WXS "x"
+#define wxUSE_GUI 1
+#define wxUSE_WXHTML_HELP 1
+#ifdef _MSC_VER
+#define __WXMSW__
+#endif // _MSC_VER
+#include <wx/wx.h>
+#include <wx/dataview.h>
+#include <wx/dirctrl.h>
+#include <wx/fdrepdlg.h>
+#include <wx/filepicker.h>
+#include <wx/fs_zip.h>
+#include <wx/helphtml.h>
+#include <wx/html/htmlwin.h>
+#include <wx/html/htmprint.h>
+#include <wx/notebook.h>
+#include <wx/print.h>
+#include <wx/spinctrl.h>
+#include <wx/statline.h>
+#include <wx/stc/stc.h>
+#include <wx/dlimpexp.h>
+#include <wx/wizard.h>
+#else // WX
+#define WXS
+#endif // WX
 
 #ifndef NOCURL
 #include <curl/curl.h>
@@ -389,6 +455,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define GSL_NARROW_CAST ::gsl::narrow_cast
 #define GSL_AT(ARRAY, ENTRY) ::gsl::at (ARRAY, ENTRY)
 #define GSL_OWNER(TYPE) ::gsl::owner < TYPE * >
+#define GSL_OWNER_PT(TYPE) ::gsl::owner < TYPE >
 #define GSL_NOT_NULL(TYPE) ::gsl::not_null < TYPE >
 #else // NO_GSL
 #define GSL_SPAN(ARRAY, MAXLEN) ARRAY
@@ -396,15 +463,8 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define GSL_AT(ARRAY, ENTRY) ARRAY [ENTRY]
 #define GSL_NOT_NULL(TYPE) TYPE
 #define GSL_OWNER(TYPE) TYPE
+#define GSL_OWNER_PT (TYPE) TYPE
 #endif // NO_GSL
-
-#ifdef HUNSPELL
-#ifdef NOHUNSUB
-#include <hunspell.hxx>
-#else // NOHUNSUB
-#include <hunspell/hunspell.hxx>
-#endif // NOHUNSUB
-#endif // HUNSPELL
 
 #ifndef NO_FALLTHROUGH
 #define FALLTHROUGH [[fallthrough]]
@@ -419,6 +479,12 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif
+
+#if defined (_DEBUG) && defined (_MSC_VER)
+#define DEBUG_BREAK ::DebugBreak ()
+#else
+#define DEBUG_BREAK
+#endif // _DEBUG ...
 
 #define END_OF_STATS "==="
 #define START_OF_SECTION "***"
@@ -518,7 +584,9 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define PURL_ORG            "purl.org"
 #define PRISM_ORG           "prismstandard.org"
 #define RDFS_ORG            "rdfs.org"
+#define SPECIAL_PRIVACY     "www.specialprivacy.eu"
 #define W3_ORG              "www.w3.org"
+#define W3ID_ORG            "w3id.org"
 #define XMLNS               "xmlns"
 #define XHTMLNS             "xml"
 #define XLINK               "xlink"
@@ -587,9 +655,9 @@ CONSTEXPR uint32_t uint32_category_mask =   0xF0000000;
 
 #ifdef NOCURL
 #define CURLY
-#else // NO_JSONIC
+#else // NOCURL
 #define CURLY "c"
-#endif // NO_JSONIC
+#endif // NOCURL
 
 #ifdef NO_PCF_STR
 #define NPS_GEN
@@ -630,11 +698,11 @@ CONSTEXPR uint32_t uint32_category_mask =   0xF0000000;
 // Enable this to see full messages that would otherwise be generated when using -T switch, roughly speaking
 // #define EXPAND_TEST "t"
 
-#define BUILD_INFO   DBG_STATUS FUDDY CURLY JSNIC NPS_GEN SPELT BEASTCHAR ":" BUILD_OS ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER
-#define BASE_TITLE   FULLNAME " v" VERSION_STRING " (" WEBADDR ")\n"
+#define BUILD_INFO   DBG_STATUS FUDDY CURLY JSNIC NPS_GEN SPELT BEASTCHAR WXS ":" BUILD_OS ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER
+#define BASE_TITLE   FULLNAME " v" VERSION_STRING EDITION " (" WEBADDR ")\n"
 #define SIMPLE_TITLE BASE_TITLE COPYRIGHT_TEXT "\n"
 #define FULL_TITLE   BASE_TITLE COPYRIGHT "\n" "[" __DATE__ " " __TIME__  "] [" BUILD_INFO "]" "\n"
-#define TEST_TITLE   FULLNAME " v" VERSION_STRING "\n" "(" __DATE__ " " __TIME__ ")\n" WEBADDR "\n" COPYRIGHT "\n\n"
+#define TEST_TITLE   FULLNAME " v" VERSION_STRING EDITION "\n" "(" __DATE__ " " __TIME__ ")\n" WEBADDR "\n" COPYRIGHT "\n\n"
 
 #define TYPE_HELP "Type '" PROG " -h' for help."
 
@@ -699,6 +767,8 @@ extern const char* full_title;
 #define NO_COPY_CONSTRUCTORS(XXX) DEFAULT_NO_COPY_NO_MOVE (XXX)
 #define DELETE_CONSTRUCTORS(XXX) CONSTRUCT_DELETE (XXX)
 
+#define EXT                       "." PROG
+#define DEFAULT_DATAPATH          "." PROG
 #define HIDE_ME                   ".--" PROG "_HIDE_ME"
 
 #define REPORT_ABRREVIATION       "Abbreviation"
@@ -748,3 +818,26 @@ extern const char* full_title;
 #define REPORT_STYLISTIC          "Stylistic"
 #define REPORT_SWASH              "Swash"
 #define REPORT_VIEW               "View"
+
+#define CSS_EXT                   "css"
+#define HTML_EXT                  "html"
+#define JSONLD_EXT                "jld"
+#define XHTML_EXT                 "xhtml"
+
+#ifdef DARWIN
+#define REPERTOIRE                "folder"
+#else // DARWIN
+#define REPERTOIRE                "directory"
+#endif // DARWIN
+
+#include "main/enum.h"
+
+#ifdef REALLY_BUGGY_VECTOR_BOOL
+// probably quite innocent, but I'm not wasting my time testing what is already known to be a flawed implementation
+typedef ::std::array < int, rcb_max > aset_t;
+#else // REALLY_BUGGY_VECTOR_BOOL
+typedef ::std::array < bool, rcb_max > aset_t;
+#endif // REALLY_BUGGY_VECTOR_BOOL
+
+// Hearty thanks given for these coding guidelines:
+// https://cs.fit.edu/~kgallagher/Schtick/How%20To%20Write%20Unmaintainable%20Code.html

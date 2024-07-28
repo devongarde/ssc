@@ -250,7 +250,7 @@ template < e_type TYPE, e_css_val_fn T, int MIN, int MAX, e_type... PARAMS > str
 template < e_type TYPE, e_css_val_fn T > struct common_colour
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const ::std::string& ref)
     {   if (! maybe_colour < TYPE > (nits)) return start;
-        if (args.v_.css_colour () < 5)
+        if (args.v_.css_module (c_colour) < 5)
             return value_fn < TYPE, T, 3, 3, t_real, t_percent, t_percent > :: check (args, start, to, nits); 
         nitpick nuts, nets, nots;
         int i = value_fn < TYPE, T, 1, 5, t_real_n, t_percent_n, t_percent_n, t_slash, t_css_alpha_n > :: check (args, start, to, nuts);
@@ -280,7 +280,7 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_clamp >
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_colour >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
     {   if (! maybe_colour < TYPE > (nits)) return -1;
-        if (args.v_.css_colour () < 5)
+        if (args.v_.css_module (c_colour) < 5)
             return value_fn < TYPE, cvf_colour, 4, 4, t_css_rgb_xyz, t_real_percent_n, t_real_percent_n, t_real_percent_n > :: check (args, start, to, nits);
         nitpick nuts, nets, nots;
         int i = value_fn < TYPE, cvf_colour, 4, 6, t_css_rgb_xyz, t_real_percent_n, t_real_percent_n, t_real_percent_n, t_slash, t_css_alpha > :: check (args, start, to, nuts);
@@ -626,7 +626,7 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_round >
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_rgb >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property )
     {   if (! maybe_colour < TYPE > (nits)) return -1;
-        if (args.v_.css_colour () < 5)
+        if (args.v_.css_module (c_colour) < 5)
             return value_fn < TYPE, cvf_rgb, 3, 3, t_real_percent_n, t_real_percent_n, t_real_percent_n > :: check (args, start, to, nits); 
         nitpick nuts, nets;
         int i = value_fn < TYPE, cvf_rgb, 3, 5, t_real_percent_n, t_real_percent_n, t_real_percent_n, t_slash, t_css_alpha > :: check (args, start, to, nuts);
@@ -684,7 +684,7 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_saturate >
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_scale >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
     {   if (! maybe_transform (nits, id)) return -1;
-        if (context.css_transform () == 3) return value_fn < TYPE, cvf_scale, 1, 2, t_real > :: check (args, start, to, nits);
+        if (context.css_module (c_transform) == 3) return value_fn < TYPE, cvf_scale, 1, 2, t_real > :: check (args, start, to, nits);
         return value_fn < TYPE, cvf_scale, 1, 2, t_real_percent > :: check (args, start, to, nits); } };
 
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_scale3d >
@@ -695,13 +695,13 @@ template < e_type TYPE > struct value_fn_params < TYPE, cvf_scale3d >
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_scalex >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
     {   if (! maybe_transform (nits, id)) return -1;
-        if (context.css_transform () == 3) return value_fn < TYPE, cvf_scalex, 1, 1, t_real > :: check (args, start, to, nits);
+        if (context.css_module (c_transform) == 3) return value_fn < TYPE, cvf_scalex, 1, 1, t_real > :: check (args, start, to, nits);
         return value_fn < TYPE, cvf_scalex, 1, 1, t_real_percent > :: check (args, start, to, nits); } };
 
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_scaley >
 {   static int check (arguments& args, const int start, const int to, nitpick& nits, const e_css_property id)
     {   if (! maybe_transform (nits, id)) return -1;
-        if (context.css_transform () == 3) return value_fn < TYPE, cvf_scaley, 1, 1, t_real > :: check (args, start, to, nits);
+        if (context.css_module (c_transform) == 3) return value_fn < TYPE, cvf_scaley, 1, 1, t_real > :: check (args, start, to, nits);
         return value_fn < TYPE, cvf_scaley, 1, 1, t_real_percent > :: check (args, start, to, nits); } };
 
 template < e_type TYPE > struct value_fn_params < TYPE, cvf_scalez >

@@ -22,7 +22,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "spell/spell.h"
 #include "main/context.h"
 
-// for those who habitually spell correctly (unlike me)
+mssfl_uptr mssfl;
+
+#ifndef NOSPELL
+ustr_t langdict, dictlang;
+#endif // NOSPELL
+
+// for those who habitually spell korrectly
 bool check_identifier_spelling (nitpick& nits, const html_version& , const ::std::string& s)
 {   typedef enum { d_none, d_johnson, d_anaesthesia, d_oz, d_collins, d_wiki } e_dictionary;
     const char* const dictionary [] =
@@ -132,8 +138,6 @@ bool check_identifier_spelling (nitpick& nits, const html_version& , const ::std
             return true; }
     return false; }
 
-mssfl_uptr mssfl;
-
 #ifndef NOSPELL
 #include "base/type_master.h"
 #include "utility/filesystem.h"
@@ -153,7 +157,26 @@ void add_spell_list (nitpick& nits, const ::std::string& lang, const ::boost::fi
     {   VERIFY_NOT_NULL (mssfl.get (), __FILE__, __LINE__);
         mssfl -> insert (mssfl_t::value_type (lang, split_by_whitespace_and (list))); } }
 
-ustr_t langdict, dictlang;
+void add_spell_list (nitpick& nits, const vstr_t& spl)
+{   for (auto sp : spl)
+    {   ::std::string::size_type pos = sp.find (',');
+        if (pos == ::std::string::npos)
+            add_spell_list (nits, "*", sp);
+        else if ((pos == 0) && (sp.length () > 1))
+            add_spell_list (nits, "*", sp.substr (1));
+        else if ((pos == 0) || (pos >= sp.length () - 1))
+            nits.pick (nit_bad_dict, es_error, ec_init, quote (sp), " is badly formatted");
+        else
+            add_spell_list (nits, sp.substr (0, pos), sp.substr (pos+1)); } }
+
+vstr_t get_spell_list ()
+{   vstr_t res;
+    VERIFY_NOT_NULL (mssfl.get (), __FILE__, __LINE__);
+    for (auto spl : *mssfl)
+    {   ::std::string lan (spl.first);
+        for (auto sp : spl.second)
+            res.push_back (lan + "," + sp); }
+    return res; }
 
 void add_dict (const ::std::string& lang, const ::std::string& dict)
 {   dictlang.emplace (dict, lang);

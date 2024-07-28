@@ -1,0 +1,19 @@
+﻿ruby { display: ruby; }
+rb { display: ruby-base; white-space: nowrap; }
+rbc { display: ruby-base-container; } /* For compatibility with XHTML-inspired markup */
+rp { display: none; }
+rt { display: ruby-text; }
+rtc { display: ruby-text-container; }
+ruby, rb, rbc, rt, rtc { unicode-bidi: isolate; }
+rtc, rt {
+  font-variant-east-asian: ruby;
+  text-emphasis: none;
+  white-space: nowrap;
+  line-height: 1;
+}
+rtc, :not(rtc) > rt {
+  font-size: 50%;
+}
+rtc:lang(zh-TW), :not(rtc) > rt:lang(zh-TW) {
+    font-size: 30%;
+  }

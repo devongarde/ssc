@@ -25,10 +25,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "coop/lox.h"
 
 class stats_t;
+typedef ssc_map < e_nit, e_severity > mns_t;
 
 class nitpick
 {   typedef ::std::vector < nit > vn_t;
-    typedef ssc_map < e_nit, e_severity > mns_t;
     vn_t nits_;
     static mns_t mns_;
     ::std::string before_, mote_, after_;
@@ -61,14 +61,19 @@ public:
     static void modify_severity (const e_nit code, const e_severity s)
     {   mns_.emplace (mns_t::value_type (code, s)); }
     static bool modify_severity (const ::std::string& name, const e_severity s);
+    static e_severity get_severity (const e_nit code)
+    {   return user_severity (code, es_undefined); }
+    static void reset_severities () { mns_.clear (); }
     void swap (nitpick& np) noexcept;
     void reset () noexcept;
     void reset (const nitpick& np);
     void merge (const nitpick& np);
+    static const mns_t& mns () { return mns_; }
+    static void mns (const mns_t& m) { mns_ = m; }
     nitpick nick ();
 
     template < typename... Ts > void pick (const e_nit code, const e_doc doc, const ::std::string& ref, const e_severity severity, const e_category category, Ts... msg) noexcept
-   try
+    try
     {   lox l (lox_nits);
         nits_.emplace_back (code, doc, ref, user_severity (code, severity), category, com < Ts... > :: bine (msg...)); }
     catch (...)

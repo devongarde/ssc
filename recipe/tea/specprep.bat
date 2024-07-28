@@ -125,10 +125,7 @@ ssc.exe -T --nits.spec -o ../out/5.4html5.tst -f ../toast/HTML/5.4/html5.conf
 ssc.exe -T --nits.spec -o ../out/minimalminimal.tst -f ../toast/HTML/minimal/minimal.conf
 ssc.exe -T --nits.spec -o ../out/Plusplus.tst -f ../toast/HTML/Plus/plus.conf
 ssc.exe -T --nits.spec -o ../out/tagstags.tst -f ../toast/HTML/tags/tags.conf
-ssc.exe -T --nits.spec -o ../out/j10.tst -f ../toast/json-ld/1.0/jsonld.conf
-ssc.exe -T --nits.spec -o ../out/jadms.tst -f ../toast/json-ld/adms/jsonld.conf
 ssc.exe -T --nits.spec -o ../out/jas.tst -f ../toast/json-ld/as/jsonld.conf
-ssc.exe -T --nits.spec -o ../out/jcert.tst -f ../toast/json-ld/certification/jsonld.conf
 ssc.exe -T --nits.spec -o ../out/jschemaorg.tst -f ../toast/json-ld/schemaorg/jsonld.conf
 ssc.exe -T --nits.spec -o ../out/exlink.tst -f ../toast/link/external/link.conf
 ssc.exe -T --nits.spec -o ../out/linklink.tst -f ../toast/link/link/link.conf
@@ -171,6 +168,9 @@ ssc.exe -T --nits.spec -o ../out/jan23living.tst -f ../toast/living/jan23/living
 ssc.exe -T --nits.spec -o ../out/apr23living.tst -f ../toast/living/apr23/living.conf
 ssc.exe -T --nits.spec -o ../out/jul23living.tst -f ../toast/living/jul23/living.conf
 ssc.exe -T --nits.spec -o ../out/oct23living.tst -f ../toast/living/oct23/living.conf
+ssc.exe -T --nits.spec -o ../out/jan24living.tst -f ../toast/living/jan24/living.conf
+ssc.exe -T --nits.spec -o ../out/apr24living.tst -f ../toast/living/apr24/living.conf
+ssc.exe -T --nits.spec -o ../out/jul24living.tst -f ../toast/living/jul24/living.conf
 ssc.exe -T --nits.spec -o ../out/1math.tst -f ../toast/math/1/math.conf
 ssc.exe -T --nits.spec -o ../out/2math.tst -f ../toast/math/2/math.conf
 ssc.exe -T --nits.spec -o ../out/3math.tst -f ../toast/math/3/math.conf
@@ -180,6 +180,7 @@ ssc.exe -T --nits.spec -o ../out/12schema.tst -f ../toast/microdata/12/schema.co
 ssc.exe -T --nits.spec -o ../out/addendumadd.tst -f ../toast/microdata/addendum/add.conf
 ssc.exe -T --nits.spec -o ../out/basicbasic.tst -f ../toast/microdata/basic/basic.conf
 ssc.exe -T --nits.spec -o ../out/exportexport.tst -f ../toast/microdata/export/export.conf
+ssc.exe -T --nits.spec -o ../out/microlink.tst -f ../toast/microdata/link/link.conf
 ssc.exe -T --nits.spec -o ../out/microdatamf.tst -f ../toast/microdata/microformats/mf.conf
 ssc.exe -T --nits.spec -o ../out/schema-abcabc.tst -f ../toast/microdata/schema-abc/abc.conf
 ssc.exe -T --nits.spec -o ../out/schema-defgdefg.tst -f ../toast/microdata/schema-defg/defg.conf

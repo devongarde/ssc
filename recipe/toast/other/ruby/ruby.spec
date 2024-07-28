@@ -1,0 +1,105 @@
+-Y 1 -f ../toast/other/ruby/ruby.conf
+
+PASS ../toast/other/ruby/index.html
+2 naughty_lang
+
+PASS ../toast/other/ruby/ruby-2.html
+2 naughty_lang
+18 inserted_missing_closure missing_close
+19 inserted_missing_closure
+22 inserted_missing_closure
+23 inserted_missing_closure inserted_missing_closure missing_close
+24 inserted_missing_closure
+26 missing_close
+26 inserted_missing_closure
+26 missing_close
+26 inserted_missing_closure
+26 missing_close
+26 inserted_missing_closure
+26 missing_close
+26 inserted_missing_closure
+26 missing_close
+26 inserted_missing_closure
+26 missing_close
+26 inserted_missing_closure
+26 missing_close
+26 inserted_missing_closure
+26 missing_close
+26 inserted_missing_closure
+28 missing_close
+28 inserted_missing_closure
+28 missing_close
+28 inserted_missing_closure
+30 missing_close
+30 inserted_missing_closure
+30 inserted_missing_closure
+30 inserted_missing_closure
+30 inserted_missing_closure
+30 inserted_missing_closure missing_close
+30 missing_close
+32 missing_close no_rp no_rp
+32 inserted_missing_closure
+32 inserted_missing_closure
+32 inserted_missing_closure
+32 inserted_missing_closure
+32 inserted_missing_closure
+32 inserted_missing_closure
+32 inserted_missing_closure missing_close
+32 missing_close too_many_ruby too_many_ruby too_many_ruby
+34 missing_close
+34 inserted_missing_closure
+36 missing_close
+36 inserted_missing_closure
+38 missing_close
+38 inserted_missing_closure
+40 missing_close
+40 inserted_missing_closure
+40 inserted_missing_closure
+40 inserted_missing_closure
+40 inserted_missing_closure
+40 inserted_missing_closure missing_close
+40 missing_close too_many_ruby too_many_ruby too_many_ruby too_many_ruby too_many_ruby
+42 missing_close
+42 inserted_missing_closure
+44 inserted_missing_closure missing_close
+44 inserted_missing_closure
+47 inserted_missing_closure
+48 inserted_missing_closure
+48 inserted_missing_closure
+49 inserted_missing_closure missing_close
+49 inserted_missing_closure missing_close
+50 inserted_missing_closure inserted_missing_closure
+53 inserted_missing_closure
+53 inserted_missing_closure
+54 inserted_missing_closure
+54 inserted_missing_closure
+54 inserted_missing_closure
+55 inserted_missing_closure missing_close
+56 inserted_missing_closure
+59 inserted_missing_closure
+60 inserted_missing_closure
+60 inserted_missing_closure
+61 inserted_missing_closure missing_close
+61 inserted_missing_closure missing_close
+62 inserted_missing_closure inserted_missing_closure
+65 inserted_missing_closure
+65 inserted_missing_closure
+66 inserted_missing_closure
+66 inserted_missing_closure
+66 inserted_missing_closure
+67 inserted_missing_closure missing_close
+68 inserted_missing_closure
+70 inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure
+
+PASS ../toast/other/ruby/ruby-a.html
+2 naughty_lang
+11 no_rp no_rp inserted_missing_closure inserted_missing_closure inserted_missing_closure double_gin_and_tonic inserted_missing_closure double_gin_and_tonic inserted_missing_closure  double_gin_and_tonic inserted_missing_closure double_gin_and_tonic inserted_missing_closure double_gin_and_tonic double_gin_and_tonic missing_close inserted_missing_closure
+
+PASS ../toast/other/ruby/ruby-b.html
+2 naughty_lang
+12 inserted_missing_closure inserted_missing_closure
+13 inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close
+14 inserted_missing_closure
+
+PASS ../toast/other/ruby/ruby.css
+0 html

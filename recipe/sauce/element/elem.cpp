@@ -499,8 +499,8 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "radialGradient", elem_radialgradient, ns_default, EP_SET_XLINKCAT (se_gradient), EF_SVG_PSGRAD },
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "rationals", elem_rationals, ns_default, EP_CLOSED, EF_M_CONTENT | EF_M_CONTINPRES },
     { { HTML_3_0 }, { HTML_3_0 }, "range", elem_range, ns_default, EP_CLOSED },
-    { { XHTML_1_1, HV_W3 }, { HTML_UNDEF }, "rb", elem_rb },
-    { { XHTML_1_1 }, { XHTML_2_0 }, "rbc", elem_rbc },
+    { { XHTML_1_1, HV_W3, 0, 0, 0, H4_RUBY }, { HTML_UNDEF }, "rb", elem_rb, ns_default },
+    { { XHTML_1_1, 0, 0, 0, 0, H4_RUBY }, { XHTML_2_0 }, "rbc", elem_rbc },
     { { HTML_RDF10, 0, HE_RDF }, { HTML_UNDEF }, "RDF", elem_rdf_rdf, ns_rdf, 0, EF_4_SPECIAL | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_EMBEDDED | EF_RDF | EF_METADATA },
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "real", elem_real, ns_default, EP_CLOSED | EP_ARGS_1, EF_M_CONTENT },
     { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, "reals", elem_reals, ns_default, EP_CLOSED, EF_M_CONTENT | EF_M_CONTINPRES },
@@ -515,10 +515,10 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_3_0 }, { HTML_3_0 }, "right", elem_right, ns_default, EP_CLOSED },
     { { HTML_3_0, HV_NOT4 | HV_NOT32 }, { HTML_UNDEF }, "root", elem_root, ns_default, EP_CLOSED | EP_PRE_X_OPEN | EP_ARGS_1 | EP_ARGS_2, EF_MATH | EF_M_CONTENT },
     { { HTML_3_0 }, { HTML_3_0 }, "row", elem_row },
-    { { XHTML_1_1 }, { HTML_UNDEF }, "rp", elem_rp },
-    { { XHTML_1_1 }, { HTML_UNDEF }, "rt", elem_rt },
-    { { XHTML_1_1, HV_W3 }, { HTML_UNDEF }, "rtc", elem_rtc },
-    { { XHTML_1_1 }, { HTML_UNDEF }, "ruby", elem_ruby, ns_default, 0, EF_4_PHRASE | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
+    { { XHTML_1_1, 0, 0, 0, 0, H4_RUBY }, { HTML_UNDEF }, "rp", elem_rp, ns_default },
+    { { XHTML_1_1, 0, 0, 0, 0, H4_RUBY }, { HTML_UNDEF }, "rt", elem_rt, ns_default },
+    { { XHTML_1_1, HV_W3, 0, 0, 0, H4_RUBY }, { HTML_UNDEF }, "rtc", elem_rtc, ns_default },
+    { { XHTML_1_1, 0, 0, 0, 0, H4_RUBY }, { HTML_UNDEF }, "ruby", elem_ruby, ns_default, 0, EF_4_PHRASE | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_JAN08 }, { HTML_DEC08 }, "rule", elem_rule },
     { { HTML_PLUS, HV_NOT2 | HV_NOT32 | HV_DEPRECATED4 | HV_NOTXX }, { HTML_UNDEF }, "s", elem_s, ns_default, 0, EF_EMPH | EF_3_FONT | EF_4_FONT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_1_0 }, { HTML_UNDEF }, "samp", elem_samp, ns_default, 0, EF_EMPH | EF_PHRASE | EF_4_PHRASE | EF_X2_TEXT | EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
@@ -687,7 +687,7 @@ bool elem::is_lazy (const html_version& v) const noexcept
     switch (v.mjr ())
     {   case 0 : return false;
         case 1 : if (v.mnr () == 1)
-                    return ((flags () & (EP_LAZY)) | (categories () & (EF_EMPH))) != 0;
+                    return ((flags () & EP_LAZY) | (categories () & EF_EMPH)) != 0;
                  return false;
         default : break; }
     return false; }
@@ -715,29 +715,30 @@ bool elem::is_transparent (const html_version& v) const noexcept
     if (v.is_5 () && ((flags () & EP_5_TRANSPARENT) == EP_5_TRANSPARENT)) return true;
     return (v.is_svg_12 () && ((flags () & EP_SVG_12_TRANS) == EP_SVG_12_TRANS)); }
 
-void add_elements (const vstr_t& v)
+void add_elements (nitpick& nits, const vstr_t& v)
 {   nitpick nuts;
     for (auto e : v)
     {   vstr_t args (split_by_charset (e, ","));
         ::std::size_t x = args.size ();
         if (x > 4)
         {   x = 4;
-            outstr.err ("ignoring extra arguments for '", args.at (0), "'\n"); }
+            nits.pick (nit_config_element, es_warning, ec_init, "ignoring extra arguments for '", args.at (0), "'\n"); }
         e_namespace ns = ns_default;
         flags_t flags = NOFLAGS, flags2 = NOFLAGS;
         switch (x)
         {   case 4 :
-                flags2 = lexical < flags_t > :: cast (args.at (3));
+                if (! args.at (3).empty ()) flags2 = lexical < flags_t > :: cast (args.at (3));
                 FALLTHROUGH;
             case 3 :
-                flags = lexical < flags_t > :: cast (args.at (2));
+                if (! args.at (2).empty ()) flags = lexical < flags_t > :: cast (args.at (2));
                 FALLTHROUGH;
             case 2 :
-                ns = examine_value < t_namespace > (nuts, context.html_ver (), args.at (1));
+                if (! args.at (1).empty ()) ns = examine_value < t_namespace > (nuts, context.html_ver (), args.at (1));
                 FALLTHROUGH;
             case 1 :
-                elem::extend (::boost::to_lower_copy (args.at (0)), elem_custom, ns, context.html_ver (), html_0, flags, flags2);
-                FALLTHROUGH;
+                if (args.at (0).empty ()) nits.pick (nit_config_attribute, es_error, ec_init, "no element name in '", e, "'\n");
+                else elem::extend (::boost::to_lower_copy (args.at (0)), elem_custom, ns, context.html_ver (), html_0, flags, flags2);
+                break;
             default : break; } } }
 
 bool elem::fits_link_category (const html_version& v, const e_element e, const e_sought_category cat)

@@ -20,7 +20,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "type/type.h"
-#include "main/enum.h"
 
 ::std::string namespace_name (const ident_t ns)
 {   PRESUME (ns <= ns_error, __FILE__, __LINE__);
@@ -28,3 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 ::std::string namespace_name (const e_ontology ns)
 {   return ontology_names.get (ns, ONTOLOGY_CURIE); }
+
+::std::string namespace_name (const e_nit_macro ns)
+{   PRESUME (ns <= nm_max, __FILE__, __LINE__);
+    return type_master < t_nit_macro > :: name (static_cast < e_nit_macro > (ns)); }

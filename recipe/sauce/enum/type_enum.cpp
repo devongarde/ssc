@@ -367,6 +367,17 @@ struct symbol_entry < html_version, e_cntype > cntype_symbol_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, "complex-cartesian", cn_complexcartesian },
     { { XHTML_1_0 }, { HTML_UNDEF }, "constant", cn_constant } };
 
+struct symbol_entry < html_version, e_copy > copy_symbol_table [] =
+{   { { HTML_TAGS }, { HTML_UNDEF }, "no", c_none },
+    { { HTML_TAGS }, { HTML_UNDEF }, "pages", c_html },
+#ifndef NOLYNX
+    { { HTML_TAGS }, { HTML_UNDEF }, "hard", c_hard },
+    { { HTML_TAGS }, { HTML_UNDEF }, "soft", c_soft },
+#endif // NOLYNX
+    { { HTML_TAGS }, { HTML_UNDEF }, "all", c_copy },
+    { { HTML_TAGS }, { HTML_UNDEF }, "dedu", c_deduplicate },
+    { { HTML_TAGS }, { HTML_UNDEF }, "report", c_rpt } };
+
 struct symbol_entry < html_version, e_crossout > crossout_symbol_table [] =
 {   { { HTML_5_2 }, { HTML_UNDEF }, "none", co_none },
     { { HTML_5_2 }, { HTML_UNDEF }, "updiagonalstrike", co_updiagonalstrike },
@@ -830,7 +841,7 @@ struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 | H2_CSS_N_ARGS }, { HTML_UNDEF }, "current", efn_current },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "default", efn_default },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "defined", efn_defined },
-    { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_1_ARG }, { HTML_UNDEF }, "dir", efn_dir },
+    { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_1_ARG, 0, H4_CSS_SAFE_2018 }, { HTML_UNDEF }, "dir", efn_dir },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR }, { HTML_UNDEF }, "disabled", efn_disabled },
     { { HTML_CSS, 0, 0, 0, H3_CSS_SHAPE }, { HTML_UNDEF }, "ellipse", efn_ellipse },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR }, { HTML_UNDEF }, "empty", efn_empty },
@@ -843,7 +854,7 @@ struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR }, { HTML_UNDEF }, "first-of-type", efn_first_of_type },
     { { HTML_CSS, 0, 0, H2_CSS_1_2 | H2_CSS_SELECTOR }, { HTML_UNDEF }, "focus", efn_focus },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "focus-visible", efn_focus_visible },
-    { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "focus-within", efn_focus_within },
+    { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4, 0, H4_CSS_SAFE_2018 }, { HTML_UNDEF }, "focus-within", efn_focus_within },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "fullscreen", efn_fullscreen },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "future", efn_future },
     { { HTML_CSS, 0, 0, H2_CSS_COCO, H3_CSS_PSEUDO }, { HTML_UNDEF }, "grammar-error", efn_grammar_error },
@@ -858,7 +869,7 @@ struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, 0, H3_CSS_SHAPE }, { HTML_UNDEF }, "inset", efn_inset },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "invalid", efn_invalid },
     { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_N_ARGS }, { HTML_UNDEF }, "is", efn_is },
-    { { HTML_CSS, 0, 0, H2_CSS_1_2_ARGS, H3_NOT_TV }, { HTML_UNDEF }, "lang", efn_lang },
+    { { HTML_CSS, 0, 0, H2_CSS_1_2_ARGS, H3_NOT_TV, H4_CSS_SAFE_2018 }, { HTML_UNDEF }, "lang", efn_lang },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR }, { HTML_UNDEF }, "last-child", efn_last_child },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR }, { HTML_UNDEF }, "last-of-type", efn_last_of_type },
     { { HTML_CSS, 0, 0, H2_CSS_2, H3_CSS_PAGE }, { HTML_UNDEF }, "left", efn_left, ns_default, CF_PAGE },
@@ -1383,6 +1394,105 @@ struct symbol_entry < html_version, e_css_list_style_type > css_list_style_type_
     { { HTML_CSS, 0, 0, H2_CSS_2_0 }, { HTML_UNDEF }, "hira-gana-iroha", ecl_hira_gana_iroha },
     { { HTML_CSS, 0, 0, H2_CSS_2_0 }, { HTML_UNDEF }, "katakana-iroha", ecl_katakana_iroha } };
 
+struct symbol_entry < html_version, e_css_module, e_nit_macro, nm_none > css_module_symbol_table [] =
+{   { { HTML_CSS, 0, 0, H4_CSS_ADVLAY }, { HTML_UNDEF }, "Advanced Layout", c_advanced_layout, nm_context_advanced_layout, MOD_ON_OFF },
+    { { HTML_CSS, 0, 0, H4_CSS_ANCHOR_POS }, { HTML_UNDEF }, "Anchoring Positioning", c_anchor_pos, nm_context_css_anchor_pos, MOD_ON_OFF },
+    { { HTML_CSS }, { HTML_UNDEF }, "Animation Worklet", c_animation_worklet, nm_none, MOD_LEVEL_3 | MOD_UNSUPPORTED },
+    { { HTML_CSS, H2_CSS_ANIM_MASK }, { HTML_UNDEF }, "Animations", c_animation, nm_context_css_animation, MOD_LEVELS_12, H2_CSS_ANIM_34 },
+    { { HTML_CSS, H2_CSS_BACKGROUND }, { HTML_UNDEF }, "Background and Borders", c_background_border, nm_context_css_background, MOD_LEVELS_34 },
+    { { HTML_CSS, H2_CSS_UI_MASK }, { HTML_UNDEF }, "Basic User Interface", c_basic_user_interface, nm_context_css_ui, MOD_LEVELS_34 },
+    { { HTML_CSS }, { HTML_UNDEF }, "Bahavioural Extensions", c_behavioural_extensions, nm_none, MOD_ON_OFF | MOD_ABANDONED | MOD_UNSUPPORTED },
+    { { HTML_CSS, 0, H3_CSS_BOX_ALIGN }, { HTML_UNDEF }, "Box Alignment", c_box_alignment, nm_context_css_box_align, MOD_LEVEL_3 },
+    { { HTML_CSS, 0, H3_CSS_BOX_MODEL_MASK }, { HTML_UNDEF }, "Box Model", c_box_model, nm_context_css_box_model, MOD_LEVELS_34 },
+    { { HTML_CSS, 0, H3_CSS_BOX_SIZING_MASK }, { HTML_UNDEF }, "Box Sizing", c_box_sizing, nm_context_css_box_sizing, MOD_LEVELS_34 },
+    { { HTML_CSS, H2_CSS_CASCADE_MASK }, { HTML_UNDEF }, "Cascading & Inheritance", c_cascade_inheritance, nm_context_css_cascade, MOD_LEVELS_3456 },
+    { { HTML_CSS, 0, 0, H4_CSS_COLOUR_MASK }, { HTML_UNDEF }, "Colour", c_colour, nm_context_css_colour, MOD_LEVELS_345 },
+    { { HTML_CSS, 0, H3_CSS_ADJUST }, { HTML_UNDEF }, "Colour Adjustment", c_colour_adjustment, nm_context_css_adjust, MOD_LEVEL_3 },
+    { { HTML_CSS, H2_CSS_COMPOSITING }, { HTML_UNDEF }, "Compositing & Blending", c_compositing_blending, nm_context_css_compositing, MOD_LEVEL_1 },
+    { { HTML_CSS, H2_CSS_COND_RULE_MASK }, { HTML_UNDEF }, "Conditional Rules", c_conditional_rule, nm_context_css_cond_rule, MOD_LEVELS_345 },
+    { { HTML_CSS, 0, H3_CSS_CONTAIN_MASK }, { HTML_UNDEF }, "Containment", c_containment, nm_context_css_contain, MOD_LEVELS_123 },
+    { { HTML_CSS, H2_CSS_CS }, { HTML_UNDEF }, "Counter Style", c_counter_style, nm_context_css_cs, MOD_LEVEL_3 },
+    { { HTML_CSS }, { HTML_UNDEF }, "CSS Object Model", c_cssom, nm_none, MOD_UNSUPPORTED },
+    { { HTML_CSS }, { HTML_UNDEF }, "CSSOM View", c_cssom_view, nm_none, MOD_UNSUPPORTED },
+    { { HTML_CSS, 0, H3_CSS_HIGHLIGHT }, { HTML_UNDEF }, "Custom Highlight API", c_custom_highlight, nm_context_css_highlight, MOD_LEVEL_1 },
+    { { HTML_CSS, H2_CSS_CUSTOM }, { HTML_UNDEF }, "Custom Properties for Cascading Variables", c_custom_property, nm_context_css_custom, MOD_LEVEL_1 },
+    { { HTML_CSS, 0, H3_CSS_DEVICE }, { HTML_UNDEF }, "Device Adaption", c_device_adaption, nm_context_css_device, MOD_ON_OFF },
+    { { HTML_CSS, 0, H3_CSS_DISPLAY }, { HTML_UNDEF }, "Display", c_display, nm_context_css_display, MOD_LEVEL_3 },
+    { { HTML_CSS, H2_CSS_EASE }, { HTML_UNDEF }, "Easing Functions", c_easing_function, nm_context_css_ease, MOD_LEVEL_1 },
+    { { HTML_CSS, 0, H3_CSS_EXCLUDE }, { HTML_UNDEF }, "Exclusion", c_exclusion, nm_context_css_exclude, MOD_ON_OFF },
+    { { HTML_CSS, 0, H3_CSS_FILL }, { HTML_UNDEF }, "Fill and Stroke", c_fill_stroke, nm_context_css_fill, MOD_LEVEL_3 },
+    { { HTML_CSS, 0, H3_CSS_FILTER }, { HTML_UNDEF }, "Filter Effects", c_filter_effect, nm_context_css_filter, MOD_LEVEL_1 },
+    { { HTML_CSS, H2_CSS_FBL }, { HTML_UNDEF }, "Flexible Box Layout", c_flexible_box_layout, nm_context_css_fbl, MOD_LEVEL_1 },
+    { { HTML_CSS, H2_CSS_FONT_MASK }, { HTML_UNDEF }, "Fonts", c_font, nm_context_css_font, MOD_LEVELS_345 },
+    { { HTML_CSS }, { HTML_UNDEF }, "Font Loading", c_font_loading, nm_none, MOD_LEVEL_3 | MOD_UNSUPPORTED },
+    { { HTML_CSS, H2_CSS_FRAG_34 }, { HTML_UNDEF }, "Fragmentation", c_fragmentation, nm_context_css_fragmentation, MOD_LEVELS_34 },
+    { { HTML_CSS }, { HTML_UNDEF }, "Fullscreen", c_fullscreen, nm_none, MOD_ON_OFF | MOD_ABANDONED | MOD_UNSUPPORTED },
+    { { HTML_CSS, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "Generated Content", c_generated_content, nm_context_css_content, MOD_LEVEL_3 },
+    { { HTML_CSS }, { HTML_UNDEF }, "Generated Content for Paged Media", c_generated_content_paged, nm_none, MOD_ON_OFF | MOD_FUTURE },
+    { { HTML_CSS }, { HTML_UNDEF }, "Geometry Interfaces", c_geometry_interfaces, nm_none, MOD_LEVEL_1 | MOD_UNSUPPORTED },
+    { { HTML_CSS, 0, H3_CSS_GRID_MASK }, { HTML_UNDEF }, "Grid Layout", c_grid_layout, nm_context_css_grid, MOD_LEVELS_12 },
+    { { HTML_CSS, 0, H3_CSS_HYPERLINK }, { HTML_UNDEF }, "Hyperlink Presentation", c_hyperlink_presentation, nm_context_css_hyperlink, MOD_ON_OFF | MOD_ABANDONED },
+    { { HTML_CSS, 0, H3_CSS_IMAGE_MASK }, { HTML_UNDEF }, "Images / Values and Replaced Content", c_image, nm_context_css_image, MOD_LEVELS_34 },
+    { { HTML_CSS, 0, H3_CSS_INLINE }, { HTML_UNDEF }, "Inline Layout", c_inline_layout, nm_context_css_inline, MOD_LEVEL_3 },
+    { { HTML_CSS }, { HTML_UNDEF }, "Layout API", c_layout, nm_none, MOD_UNSUPPORTED },
+    { { HTML_CSS, 0, H3_CSS_LINE_GRID }, { HTML_UNDEF }, "Line Grid", c_line_grid, nm_context_css_line_grid, MOD_ON_OFF },
+    { { HTML_CSS, 0, H3_CSS_LIST }, { HTML_UNDEF }, "Lists & Counters", c_list_counter, nm_context_css_list, MOD_LEVEL_3 },
+    { { HTML_CSS, 0, H3_CSS_LOGIC }, { HTML_UNDEF }, "Logical Properties & Values", c_logical_property, nm_context_css_logic, MOD_LEVEL_1 },
+    { { HTML_CSS, 0, 0, H4_CSS_MARQUEE }, { HTML_UNDEF }, "Marquee", c_marquee, nm_context_css_marquee, MOD_ON_OFF | MOD_ABANDONED },
+    { { HTML_CSS, 0, H3_CSS_MASKING }, { HTML_UNDEF }, "Masking", c_masking, nm_context_css_masking, MOD_LEVEL_1 },
+    { { HTML_CSS, H2_CSS_MEDIA_MASK }, { HTML_UNDEF }, "Media Query", c_media_query, nm_context_css_media, MOD_LEVELS_345 },
+    { { HTML_CSS, 0, H3_NOT_MOBILE }, { HTML_UNDEF }, "Mobile Profile", c_mobile_profile, nm_none, MOD_ON_OFF | MOD_ABANDONED },
+    { { HTML_CSS, 0, H3_CSS_MOTION }, { HTML_UNDEF }, "Motion Path", c_motion_path, nm_context_css_motion, MOD_LEVEL_1 },
+    { { HTML_CSS, 0, H3_CSS_MULTI_COL }, { HTML_UNDEF }, "Multicolumn Layout", c_multicolumn, nm_context_css_multi_column, MOD_LEVEL_1 },
+    { { HTML_CSS, H2_CSS_NAMESPACE }, { HTML_UNDEF }, "Namespaces", c_namespace, nm_context_css_namespace, MOD_ON_OFF },
+    { { HTML_CSS, 0, H3_CSS_NESTING }, { HTML_UNDEF }, "Nesting", c_nesting, nm_context_css_nesting, MOD_ON_OFF },
+    { { HTML_CSS, 0, H3_CSS_NES }, { HTML_UNDEF }, "Non-Element Selectors", c_non_element_selector, nm_context_css_selector, MOD_ON_OFF },
+    { { HTML_CSS, 0, 0, H4_CSS_OVERFLOW_MASK }, { HTML_UNDEF }, "Overflow", c_overflow, nm_context_css_overflow, MOD_LEVELS_34 },
+    { { HTML_CSS, 0, H3_CSS_OVERSCROLL }, { HTML_UNDEF }, "Overscroll Behaviour", c_overscroll_behaviour, nm_context_css_overscroll, MOD_LEVEL_1 },
+    { { HTML_CSS, 0, H3_CSS_FLOAT }, { HTML_UNDEF }, "Page Floats", c_page_float, nm_context_css_float, MOD_ON_OFF },
+    { { HTML_CSS, 0, H3_CSS_PAGE }, { HTML_UNDEF }, "Paged Media", c_paged_media, nm_none, MOD_LEVEL_3 | MOD_FUTURE },
+    { { HTML_CSS }, { HTML_UNDEF }, "Painting API", c_painting_api, nm_none, MOD_UNSUPPORTED },
+    { { HTML_CSS, 0, H3_CSS_POSITION }, { HTML_UNDEF }, "Positioned Layout", c_positioned_layout, nm_context_css_position, MOD_LEVEL_3 },
+    { { HTML_CSS, 0, H3_CSS_PRESENT }, { HTML_UNDEF }, "Presentation Level", c_presentation_level, nm_context_css_present, MOD_ON_OFF | MOD_ABANDONED },
+    { { HTML_CSS, 0, H3_NOT_PRINT }, { HTML_UNDEF }, "Print Profile", c_print_profile, nm_none, MOD_ON_OFF | MOD_ABANDONED },
+    { { HTML_CSS }, { HTML_UNDEF }, "Properties & Values API", c_property_value, nm_none, MOD_LEVEL_1 | MOD_UNSUPPORTED },
+    { { HTML_CSS, 0, H3_CSS_PSEUDO }, { HTML_UNDEF }, "Pseudo Elements", c_pseudo_element, nm_context_css_pseudo, MOD_LEVEL_4 },
+    { { HTML_CSS }, { HTML_UNDEF }, "Reader Media Type", c_reader_media_type, nm_none, MOD_ON_OFF | MOD_ABANDONED },
+    { { HTML_CSS, 0, H3_CSS_REGION }, { HTML_UNDEF }, "Regions", c_region, nm_context_css_region, MOD_ON_OFF },
+    { { HTML_CSS }, { HTML_UNDEF }, "Resize Observer", c_resize_observer, nm_none, MOD_ON_OFF | MOD_UNSUPPORTED },
+    { { HTML_CSS, 0, H3_CSS_RHYTHM }, { HTML_UNDEF }, "Rhythmic Sizing", c_rhythmic_sizing, nm_context_css_rhythm, MOD_LEVEL_1 },
+    { { HTML_CSS, 0, H3_CSS_ROUND }, { HTML_UNDEF }, "Round Display", c_round_display, nm_context_css_round, MOD_LEVEL_1 },
+    { { HTML_CSS, 0, H3_CSS_RUBY }, { HTML_UNDEF }, "Ruby Annotation", c_ruby_annotation, nm_context_css_ruby, MOD_LEVEL_1 },
+    { { HTML_CSS, 0, H3_CSS_SCOPE }, { HTML_UNDEF }, "Scoping", c_scoping, nm_context_css_scope, MOD_LEVEL_1 },
+    { { HTML_CSS, 0, H3_CSS_ANCHOR }, { HTML_UNDEF }, "Scroll Anchoring", c_scroll_anchoring, nm_context_css_anchor, MOD_LEVEL_1 },
+    { { HTML_CSS, 0, H3_CSS_SDA }, { HTML_UNDEF }, "Scroll Driven Animations", c_scroll_driven_animation, nm_none, MOD_ON_OFF | MOD_FUTURE },
+    { { HTML_CSS, 0, H3_CSS_SNAP }, { HTML_UNDEF }, "Scroll Snap", c_scroll_snap, nm_context_css_snap, MOD_LEVEL_1 },
+    { { HTML_CSS, 0, 0, H4_CSS_SNAP_POINTS }, { HTML_UNDEF }, "Scroll Snap Points", c_scroll_snap_point, nm_context_css_snap_point, MOD_LEVEL_1 },
+    { { HTML_CSS, 0, H3_CSS_SCROLLBAR }, { HTML_UNDEF }, "Scrollbar Styling", c_scrollbar_styling, nm_none, MOD_LEVEL_1 | MOD_FUTURE },
+    { { HTML_CSS, H2_CSS_SELECTOR_MASK }, { HTML_UNDEF }, "Selector", c_selector, nm_context_css_selector, MOD_LEVELS_34 },
+    { { HTML_CSS, 0, H3_CSS_SHADOW }, { HTML_UNDEF }, "Shadow Parts", c_shadow_part, nm_context_css_shadow, MOD_ON_OFF },
+    { { HTML_CSS, 0, H3_CSS_SHAPE_MASK }, { HTML_UNDEF }, "Shapes", c_shape, nm_context_css_shape, MOD_LEVELS_12 },
+    { { HTML_CSS, 0, 0, H4_CSS_SPATIAL }, { HTML_UNDEF }, "Spatial Navigation", c_spatial_navigation, nm_context_css_spatial, MOD_LEVEL_1 },
+    { { HTML_CSS, 0, H3_CSS_SPEECH }, { HTML_UNDEF }, "Speech", c_speech, nm_context_css_speech, MOD_LEVEL_1 },
+    { { HTML_CSS, H2_CSS_STYLE }, { HTML_UNDEF }, "Style Attributes", c_style_attribute, nm_context_css_style, MOD_ON_OFF },
+    { { HTML_CSS, H2_CSS_SVG_MASK }, { HTML_UNDEF }, "SVG", c_svg, nm_none, MOD_LEVELS_12 | MOD_FUTURE },
+    { { HTML_CSS }, { HTML_UNDEF }, "Syntax", c_syntax, nm_context_css_syntax, MOD_LEVEL_3 | MOD_UNSUPPORTED },
+    { { HTML_CSS, 0, H3_CSS_TABLE }, { HTML_UNDEF }, "Table", c_table, nm_context_css_table, MOD_LEVEL_3 },
+    { { HTML_CSS, 0, 0, H4_CSS_ADVLAY }, { HTML_UNDEF }, "Template Layout", c_template_layout, nm_none, MOD_ON_OFF | MOD_FUTURE },
+    { { HTML_CSS, 0, H3_CSS_TEXT_MASK }, { HTML_UNDEF }, "Text", c_text, nm_context_css_text, MOD_LEVELS_34 },
+    { { HTML_CSS, 0, H3_CSS_TEXTDEC_MASK }, { HTML_UNDEF }, "Text Decoration", c_text_decoration, nm_context_css_text_decoration, MOD_LEVELS_34 },
+    { { HTML_CSS, 0, H3_CSS_TRANSFORM_MASK }, { HTML_UNDEF }, "Transforms", c_transform, nm_context_css_transform, MOD_LEVELS_12 },
+    { { HTML_CSS, 0, 0, H4_CSS_TRANSITION_MASK }, { HTML_UNDEF }, "Transitions", c_transition, nm_context_css_transition, MOD_LEVELS_12 },
+    { { HTML_CSS, 0, H3_NOT_TV }, { HTML_UNDEF }, "TV Profile", c_tv_profile, nm_none, MOD_ON_OFF | MOD_ABANDONED },
+    { { HTML_CSS }, { HTML_UNDEF }, "Typed OM", c_typed_om, nm_none, MOD_LEVEL_1 | MOD_UNSUPPORTED },
+    { { HTML_CSS, H2_CSS_VALUE_MASK }, { HTML_UNDEF }, "Values and Units", c_value_unit, nm_context_css_value, MOD_LEVELS_34 },
+    { { HTML_CSS, 0, H3_CSS_VIEW }, { HTML_UNDEF }, "View Transitions", c_view_transition, nm_context_css_view, MOD_LEVEL_1 },
+    { { HTML_CSS, 0, 0, H4_CSS_VIEWPORT }, { HTML_UNDEF }, "Viewport", c_viewport, nm_css_context_viewport, MOD_ON_OFF },
+    { { HTML_CSS }, { HTML_UNDEF }, "Web Animations", c_web_animations, nm_none, MOD_LEVELS_12 | MOD_UNSUPPORTED },
+    { { HTML_CSS, 0, H3_CSS_WC }, { HTML_UNDEF }, "Will Change", c_will_change, nm_context_css_will_change, MOD_LEVEL_1 },
+    { { HTML_CSS }, { HTML_UNDEF }, "Worklets", c_worklets, nm_none, MOD_LEVEL_1 | MOD_ABANDONED | MOD_UNSUPPORTED },
+    { { HTML_CSS, 0, H3_CSS_WRITING_MASK }, { HTML_UNDEF }, "Writing Modes", c_writing_mode, nm_context_css_writing_mode, MOD_LEVELS_34 } };
+
 struct symbol_entry < html_version, e_css_paint_box > css_paint_box_symbol_table [] =
 {   { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_MODEL, H4_CSS_OVERFLOW }, { HTML_UNDEF }, "border-box", ecpb_border_box },
     { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_MODEL, H4_CSS_OVERFLOW }, { HTML_UNDEF }, "content-box", ecpb_content_box },
@@ -1392,8 +1502,8 @@ struct symbol_entry < html_version, e_css_paint_box > css_paint_box_symbol_table
 
 struct symbol_entry < html_version, e_css_overflow > css_overflow_symbol_table [] =
 {   { { HTML_CSS }, { HTML_UNDEF }, "auto", eco_auto },
+    { { HTML_CSS }, { HTML_UNDEF }, "clip", eco_clip },
     { { HTML_CSS }, { HTML_UNDEF }, "hidden", eco_hidden },
-    { { HTML_CSS }, { HTML_UNDEF }, "inherit", eco_inherit },
     { { HTML_CSS }, { HTML_UNDEF }, "scroll", eco_scroll },
     { { HTML_CSS }, { HTML_UNDEF }, "visible", eco_visible } };
 
@@ -1413,8 +1523,8 @@ struct symbol_entry < html_version, e_css_sizing > css_sizing_symbol_table [] =
 {   { { HTML_CSS }, { HTML_UNDEF }, "auto", csz_auto },
     { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_SIZING_4 }, { HTML_UNDEF }, "contain", csz_contain },
     { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_SIZING_4 }, { HTML_UNDEF }, "fit-content", csz_fit_content },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_SIZING }, { HTML_UNDEF }, "max-content", csz_max_content },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_SIZING }, { HTML_UNDEF }, "min-content", csz_min_content },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_SIZING, H4_CSS_SAFE_2018 }, { HTML_UNDEF }, "max-content", csz_max_content },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_SIZING, H4_CSS_SAFE_2018 }, { HTML_UNDEF }, "min-content", csz_min_content },
     { { HTML_CSS, 0, 0, 0, H3_CSS_BOX_SIZING_4 }, { HTML_UNDEF }, "stretch", csz_stretch } };
 
 struct symbol_entry < html_version, e_css_pause_3_e > css_pause_3_e_symbol_table [] =
@@ -1678,8 +1788,8 @@ struct symbol_entry < html_version, e_css_val_fn > css_val_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, 0, H3_CSS_SHAPE | H3_CSS_MASKING }, { HTML_UNDEF }, "circle", cvf_circle },
     { { HTML_CSS, 0, 0, H2_CSS_VALUE_4 }, { HTML_UNDEF }, "clamp", cvf_clamp },
     { { HTML_CSS, 0, 0, 0, 0, H4_CSS_COLOUR_4 }, { HTML_UNDEF }, "color", cvf_colour },
-    { { HTML_CSS, 0, 0, H2_CSS_VALUE, 0, H4_CSS_COLOUR_5 }, { HTML_UNDEF }, "color-mix", cvf_colour_mix },
-    { { HTML_CSS, 0, 0, 0, H3_CSS_IMAGE_4 }, { HTML_UNDEF }, "conic-gradient", cvf_conic_gradient },
+    { { HTML_CSS, 0, 0, H2_CSS_VALUE, 0, H4_CSS_COLOUR_5 | H4_CSS_SAFE_2022 }, { HTML_UNDEF }, "color-mix", cvf_colour_mix },
+    { { HTML_CSS, 0, 0, 0, H3_CSS_IMAGE_4, H4_CSS_SAFE_2018 }, { HTML_UNDEF }, "conic-gradient", cvf_conic_gradient },
     { { HTML_CSS, 0, 0, 0, H3_CSS_CONTENT }, { HTML_UNDEF }, "content", cvf_content },
     { { HTML_CSS, 0, 0, 0, H3_CSS_FILTER }, { HTML_UNDEF }, "contrast", cvf_contrast },
     { { HTML_CSS, 0, 0, H2_CSS_VALUE_4 }, { HTML_UNDEF }, "cos", cvf_cos },
@@ -1787,6 +1897,7 @@ struct symbol_entry < html_version, e_css_val_fn > css_val_fn_symbol_table [] =
 struct symbol_entry < html_version, e_css_version > css_version_symbol_table [] =
 {   { { HTML_TAGS }, { HTML_UNDEF }, "0", css_none },
     { { HTML_TAGS }, { HTML_UNDEF }, "none", css_none },
+    { { HTML_TAGS }, { HTML_UNDEF }, "bespoke", css_bespoke },
     { { HTML_TAGS }, { HTML_UNDEF }, "1", css_1 },
     { { HTML_TAGS }, { HTML_UNDEF }, "2.0", css_2_0 },
     { { HTML_TAGS }, { HTML_UNDEF }, "2", css_2_1 },
@@ -1841,7 +1952,13 @@ struct symbol_entry < html_version, e_css_version > css_version_symbol_table [] 
     { { HTML_TAGS }, { HTML_UNDEF }, "23+", css_2023_1 },
     { { HTML_TAGS }, { HTML_UNDEF }, "2023+", css_2023_1 },
     { { HTML_TAGS }, { HTML_UNDEF }, "23++", css_2023_2 },
-    { { HTML_TAGS }, { HTML_UNDEF }, "2023++", css_2023_2 } };
+    { { HTML_TAGS }, { HTML_UNDEF }, "2023++", css_2023_2 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "24", css_2024 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2024", css_2024 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "24+", css_2024_1 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2024+", css_2024_1 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "24++", css_2024_2 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2024++", css_2024_2 } };
 
 struct symbol_entry < html_version, e_css_vertical_align > css_vertical_align_symbol_table [] =
 {   { { HTML_CSS }, { HTML_UNDEF }, "inherit", ecva_inherit },
@@ -2759,6 +2876,15 @@ struct symbol_entry < html_version, e_mathvariant > mathvariant_symbol_table [] 
     { { HTML_5_2 }, { HTML_UNDEF }, "looped", mv_looped },
     { { HTML_5_2 }, { HTML_UNDEF }, "stretched", mv_stretched } };
 
+struct symbol_entry < html_version, e_math_version > math_version_symbol_table [] =
+{   { { HTML_TAGS }, { HTML_UNDEF }, "0", math_none },
+    { { HTML_TAGS }, { HTML_UNDEF }, "1", math_1 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "2", math_2 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "3", math_3 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "4.20", math_4_20 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "4", math_4_22 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "core", math_core } };
+
 struct symbol_entry < html_version, e_matrixtype > matrixtype_symbol_table [] =
 {   { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "matrix", mt_matrix },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "saturate", mt_saturate },
@@ -2988,7 +3114,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-image", nm_context_css_image },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-inline", nm_context_css_inline },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-line-grid", nm_context_css_line_grid },
-    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-lists", nm_context_css_lists },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-lists", nm_context_css_list },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-logic", nm_context_css_logic },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-marquee", nm_context_css_marquee },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-masking", nm_context_css_masking },
@@ -3015,7 +3141,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-shadow", nm_context_css_shadow },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-shape", nm_context_css_shape },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-snap", nm_context_css_snap },
-    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-snap-points", nm_context_css_snap_points },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-snap-points", nm_context_css_snap_point },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-speech", nm_context_css_speech },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-style", nm_context_css_style },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-syntax", nm_context_css_syntax },
@@ -3028,6 +3154,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-value", nm_context_css_value },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-version", nm_context_css_version },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-view", nm_context_css_view },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-css-viewport", nm_css_context_viewport },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-will-change", nm_context_css_will_change },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-writing-mode", nm_context_css_writing_mode },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-custom-elements", nm_context_custom_elements },
@@ -3077,6 +3204,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-rfc-1980", nm_context_rfc_1980 },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-rfc-2070", nm_context_rfc_2070 },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-root", nm_context_root },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-ruby", nm_context_ruby },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-safari", nm_context_safari },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-schema", nm_context_schema },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-schema-version", nm_context_ontology_version },
@@ -3149,6 +3277,8 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-test", nm_context_test },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-title", nm_context_title },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-unknown-class", nm_context_unknown_class },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-vcs", nm_context_vcs },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-version", nm_context_version },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-virtuals", nm_context_virtuals },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-xsd", nm_context_xsd },
     { { HTML_TAGS }, { HTML_UNDEF }, "copyright-addr", nm_copy_addr },
@@ -4179,7 +4309,7 @@ struct symbol_entry < html_version, e_scei > scei_symbol_table [] =
 struct symbol_entry < html_version, e_severity > severity_symbol_table [] =
 {   { { HTML_TAGS }, { HTML_UNDEF }, CATASTROPHE, es_catastrophic },
     { { HTML_TAGS }, { HTML_UNDEF }, ABHORRENT, es_abhorrent },
-    { { HTML_TAGS }, { HTML_UNDEF }, ERR, es_error },
+    { { HTML_TAGS }, { HTML_UNDEF }, WHOOPS, es_error },
     { { HTML_TAGS }, { HTML_UNDEF }, WARNING, es_warning },
     { { HTML_TAGS }, { HTML_UNDEF }, INFO, es_info },
     { { HTML_TAGS }, { HTML_UNDEF }, COMMENT, es_comment },
@@ -4474,6 +4604,49 @@ struct symbol_entry < html_version, e_text_rendering > text_rendering_symbol_tab
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "optimizeLegibility", tr_optimiselegibility },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, "geometricPrecision", tr_geometricprecision },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "inherit", tr_inherit } };
+
+struct symbol_entry < html_version, e_report, e_nit_macro, nm_none > report_symbol_table [] =
+{   { { HTML_TAGS }, { HTML_UNDEF }, "A&bbreviation", rcb_abbreviation, nm_context_stats_abbr },
+    { { HTML_TAGS }, { HTML_UNDEF }, "A&nnotation", rcb_annotation, nm_context_stats_annotation },
+    { { HTML_TAGS }, { HTML_UNDEF }, "A&ttribute", rcb_attribute, nm_context_stats_attribute },
+    { { HTML_TAGS }, { HTML_UNDEF }, "C&ategory", rcb_category, nm_context_stats_category },
+    { { HTML_TAGS }, { HTML_UNDEF }, "C&haracter Variant", rcb_character_variant, nm_context_stats_character_variant },
+    { { HTML_TAGS }, { HTML_UNDEF }, "C&lass", rcb_class, nm_context_stats_class },
+    { { HTML_TAGS }, { HTML_UNDEF }, "C&ontent Name", rcb_content_name, nm_context_stats_content_name },
+    { { HTML_TAGS }, { HTML_UNDEF }, "C&ounter Style", rcb_counter_style, nm_context_stats_counter_style },
+    { { HTML_TAGS }, { HTML_UNDEF }, "CSS &Property", rcb_css_property, nm_context_stats_css_property },
+    { { HTML_TAGS }, { HTML_UNDEF }, "C&ustom Media", rcb_custom_media, nm_context_stats_custom_media },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Custom Property", rcb_custom_property, nm_context_stats_custom_property },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Definition", rcb_definition, nm_context_stats_dfn },
+    { { HTML_TAGS }, { HTML_UNDEF }, "&Element", rcb_element, nm_context_stats_element },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Err&or", rcb_error, nm_context_stats_error },
+    { { HTML_TAGS }, { HTML_UNDEF }, "File&", rcb_file, nm_context_stats_file },
+    { { HTML_TAGS }, { HTML_UNDEF }, "&Font", rcb_font, nm_context_stats_font },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Font Fa&mily", rcb_font_family, nm_context_stats_font_family },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Hi&ghlight", rcb_highlight, nm_context_stats_highlight },
+    { { HTML_TAGS }, { HTML_UNDEF }, "H&istorical Form", rcb_historical_form, nm_context_stats_historical_form },
+    { { HTML_TAGS }, { HTML_UNDEF }, "I&D", rcb_id, nm_context_stats_id },
+    { { HTML_TAGS }, { HTML_UNDEF }, "&ItemId", rcb_itemid, nm_context_stats_itemid },
+    { { HTML_TAGS }, { HTML_UNDEF }, "&Keyframe", rcb_keyframe, nm_context_stats_keyframe },
+    { { HTML_TAGS }, { HTML_UNDEF }, "La&yer", rcb_layer, nm_context_stats_layer },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Met&a", rcb_meta, nm_context_stats_meta },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Name/&Value", rcb_name_value, nm_context_stats_dtdd },
+    { { HTML_TAGS }, { HTML_UNDEF }, "&Ontology", rcb_ontology, nm_context_stats_ontology },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Ornaments", rcb_ornament, nm_context_stats_ornament },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Page", rcb_page, nm_context_stats_page },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Page Name", rcb_page_name, nm_context_stats_page_name },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Palette", rcb_palette, nm_context_stats_palette },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Property", rcb_property, nm_context_stats_property },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Reference", rcb_reference, nm_context_stats_reference },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Region", rcb_region, nm_context_stats_region },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Scroll Animation", rcb_scroll_animation, nm_context_stats_scroll_anim },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Statement", rcb_statement, nm_context_stats_statement },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Styleset", rcb_styleset, nm_context_stats_styleset },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Stylistic", rcb_stylistic, nm_context_stats_stylistic },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Summary", rcb_summary, nm_context_stats_summary },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Swash", rcb_swash, nm_context_stats_swash },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Version", rcb_version, nm_context_stats_version },
+    { { HTML_TAGS }, { HTML_UNDEF }, "View", rcb_view, nm_context_stats_view } };
 
 struct symbol_entry < html_version, e_tld > tld_symbol_table [] =
 {   { { HTML_TAGS }, { HTML_UNDEF }, "aaa", tld_aaa },
@@ -6397,9 +6570,13 @@ struct symbol_entry < html_version, e_xmpdm_video_pixeldepth > xmpdm_video_pixel
     { { HTML_ADOBE }, { HTML_UNDEF }, "8int", xvp_8int },
     { { HTML_ADOBE }, { HTML_UNDEF }, "other", xvp_other } };
 
+#define INIT_FIXED_ENUM(XX,NN) \
+    type_master < t_##XX > :: init (nits, XX##_symbol_table, NN);
+
 #define INIT_ENUM(XX) \
-    type_master < t_##XX > :: init (nits, XX##_symbol_table, sizeof (XX##_symbol_table) / sizeof (symbol_entry < html_version, e_##XX >)); \
-    context.validation ().add_options () (VALIDATION #XX, ::boost::program_options::value < vstr_t > () -> composing (), "add a valid '" #XX "'.")
+    INIT_FIXED_ENUM (XX, sizeof (XX##_symbol_table) / sizeof (symbol_entry < html_version, e_##XX >)) \
+    if (context.validation ().find (VALIDATION #XX) == context.validation ().cend ()) \
+        context.validation ().insert (::std::pair (VALIDATION #XX, "add a valid '" #XX "'."))
 
 void enum_init (nitpick& nits)
 {   INIT_ENUM (abfmt);
@@ -6422,13 +6599,13 @@ void enum_init (nitpick& nits)
     INIT_ENUM (colour_interpolation);
     INIT_ENUM (colour_rendering);
     INIT_ENUM (cookieid);
+    INIT_ENUM (copy);
     INIT_ENUM (cntype);
     INIT_ENUM (comp_op);
     INIT_ENUM (composite_operator);
     INIT_ENUM (crossout);
     INIT_ENUM (crs_whitebalance);
     INIT_ENUM (css_aaalri);
-    INIT_ENUM (css_absolute_size);
     INIT_ENUM (css_absolute_size);
     INIT_ENUM (css_align_content);
     INIT_ENUM (css_align_items);
@@ -6477,9 +6654,10 @@ void enum_init (nitpick& nits)
     INIT_ENUM (css_line_break);
     INIT_ENUM (css_list_style_position);
     INIT_ENUM (css_list_style_type);
-    INIT_ENUM (css_size_e);
+    INIT_FIXED_ENUM (css_module, c_bad);
     INIT_ENUM (css_paint_box);
     INIT_ENUM (css_overflow);
+    INIT_ENUM (css_size_e);
     INIT_ENUM (css_sizing);
     INIT_ENUM (css_pause_3_e);
     INIT_ENUM (css_pitch_e);
@@ -6565,6 +6743,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (mathnotation);
     INIT_ENUM (mathoverflow);
     INIT_ENUM (mathvariant);
+    INIT_ENUM (math_version);
     INIT_ENUM (matrixtype);
     INIT_ENUM (method);
     INIT_ENUM (mf_identifier);
@@ -6621,6 +6800,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (recipe_time);
     INIT_ENUM (referrer);
     INIT_ENUM (rendering_in_tents);
+    INIT_FIXED_ENUM (report, rcb_max);
     INIT_ENUM (rules);
     INIT_ENUM (sandbox);
     INIT_ENUM (scei);
@@ -6684,3 +6864,335 @@ void enum_init (nitpick& nits)
     INIT_ENUM (xmpdm_time_format);
     INIT_ENUM (xmpdm_time_signature);
     INIT_ENUM (xmpdm_video_pixeldepth); }
+
+#undef INIT_ENUM
+#undef INIT_FIXED_ENUM
+
+#define RETURN_SIZE(XX) \
+    case t_##XX : return sizeof (XX##_symbol_table) / sizeof (symbol_entry < html_version, e_##XX >);
+
+::std::size_t enum_base_count (const e_type t)
+{   extern ::std::size_t charset_count ();
+    extern ::std::size_t class_count ();
+    extern ::std::size_t css_colour_count ();
+    extern ::std::size_t country_count ();
+    extern ::std::size_t currency_count ();
+    extern ::std::size_t dingbat_count ();
+    extern ::std::size_t fixedcolour_count ();
+    extern ::std::size_t format_count ();
+    extern ::std::size_t css_property_count ();
+    extern ::std::size_t httpequiv_count ();
+    extern ::std::size_t lang_count ();
+    extern ::std::size_t media_count ();
+    extern ::std::size_t metaname_count ();
+    extern ::std::size_t mime_count ();
+    extern ::std::size_t rel_count ();
+    extern ::std::size_t sgml_count ();
+    extern ::std::size_t svg_feature_count ();
+
+    switch (t)
+    {   case t_charset : return charset_count ();
+        case t_class : return class_count ();
+        case t_css_colour : return css_colour_count ();
+        case t_fixedcolour : return fixedcolour_count ();
+        case t_country : return country_count ();
+        case t_currency : return currency_count ();
+        case t_format : return format_count ();
+        case t_css_property : return css_property_count ();
+        case t_httpequiv : return httpequiv_count ();
+        case t_lang : return lang_count ();
+        case t_rel : return rel_count ();
+        case t_media : return media_count ();
+        case t_metaname : return metaname_count ();
+        case t_mime : return mime_count ();
+        case t_sgml : return sgml_count (); 
+        case t_svg_feature : return svg_feature_count ();
+        RETURN_SIZE (abfmt);
+        RETURN_SIZE (accrual_method);
+        RETURN_SIZE (accrual_periodicity);
+        RETURN_SIZE (accrual_policy);
+        RETURN_SIZE (action);
+        RETURN_SIZE (align3);
+        RETURN_SIZE (alignment_baseline);
+        RETURN_SIZE (alignplus);
+        RETURN_SIZE (as);
+        RETURN_SIZE (as_units);
+        RETURN_SIZE (attr_unit);
+        RETURN_SIZE (autocapitalise);
+        RETURN_SIZE (autocomplete);
+        RETURN_SIZE (baselineshift);
+        RETURN_SIZE (cachekey);
+        RETURN_SIZE (celnrs);
+        RETURN_SIZE (citype);
+        RETURN_SIZE (colour_interpolation);
+        RETURN_SIZE (colour_rendering);
+        RETURN_SIZE (cookieid);
+        RETURN_SIZE (copy);
+        RETURN_SIZE (cntype);
+        RETURN_SIZE (comp_op);
+        RETURN_SIZE (composite_operator);
+        RETURN_SIZE (crossout);
+        RETURN_SIZE (crs_whitebalance);
+        RETURN_SIZE (css_aaalri);
+        RETURN_SIZE (css_absolute_size);
+        RETURN_SIZE (css_align_content);
+        RETURN_SIZE (css_align_items);
+        RETURN_SIZE (css_all_2);
+        RETURN_SIZE (css_appearance);
+        RETURN_SIZE (css_azimuth_e);
+        RETURN_SIZE (css_background_attachment);
+        RETURN_SIZE (css_background_repeat);
+        RETURN_SIZE (css_blend_mode);
+        RETURN_SIZE (css_border_style);
+        RETURN_SIZE (css_border_width);
+        RETURN_SIZE (css_box_alignself_mess);
+        RETURN_SIZE (css_box_snap);
+        RETURN_SIZE (css_break);
+        RETURN_SIZE (css_break_inside);
+        RETURN_SIZE (css_caret_shape);
+        RETURN_SIZE (css_clear);
+        RETURN_SIZE (css_contain_e);
+        RETURN_SIZE (css_content_enum);
+        RETURN_SIZE (css_container_feature);
+        RETURN_SIZE (css_content_position);
+        RETURN_SIZE (css_continue);
+        RETURN_SIZE (css_coord_box);
+        RETURN_SIZE (css_control_break);
+        RETURN_SIZE (css_counter_style);
+        RETURN_SIZE (css_cursor_e);
+        RETURN_SIZE (css_display);
+        RETURN_SIZE (css_display_inside);
+        RETURN_SIZE (css_display_internal);
+        RETURN_SIZE (css_elevation_e);
+        RETURN_SIZE (css_float);
+        RETURN_SIZE (css_fn);
+        RETURN_SIZE (css_font_display);
+        RETURN_SIZE (css_font_feature);
+        RETURN_SIZE (css_font_format);
+        RETURN_SIZE (css_font_size_adjust_e);
+        RETURN_SIZE (css_font_tech);
+        RETURN_SIZE (css_font_variation);
+        RETURN_SIZE (css_font_weight);
+        RETURN_SIZE (css_generic_family);
+        RETURN_SIZE (css_hll);
+        RETURN_SIZE (css_inline_bem_1);
+        RETURN_SIZE (css_inline_bem_2);
+        RETURN_SIZE (css_justify_content);
+        RETURN_SIZE (css_layout_box);
+        RETURN_SIZE (css_line_break);
+        RETURN_SIZE (css_list_style_position);
+        RETURN_SIZE (css_list_style_type);
+        case t_css_module : return c_bad;
+        RETURN_SIZE (css_paint_box);
+        RETURN_SIZE (css_overflow);
+        RETURN_SIZE (css_size_e);
+        RETURN_SIZE (css_sizing);
+        RETURN_SIZE (css_pause_3_e);
+        RETURN_SIZE (css_pitch_e);
+        RETURN_SIZE (css_position);
+        RETURN_SIZE (css_ray_size);
+        RETURN_SIZE (css_rgb_xyz);
+        RETURN_SIZE (css_rect);
+        RETURN_SIZE (css_relative_size);
+        RETURN_SIZE (css_resize);
+        RETURN_SIZE (css_ss_type_e);
+        RETURN_SIZE (css_self_position);
+        RETURN_SIZE (css_speak_as_e);
+        RETURN_SIZE (css_statement);
+        RETURN_SIZE (css_speech_rate_e);
+        RETURN_SIZE (css_system_e);
+        RETURN_SIZE (css_text_align);
+        RETURN_SIZE (css_text_align_all);
+        RETURN_SIZE (css_text_align_last);
+        RETURN_SIZE (css_text_autospace);
+        RETURN_SIZE (css_text_decoration);
+        RETURN_SIZE (css_text_transform);
+        RETURN_SIZE (css_textdec_line_e);
+        RETURN_SIZE (css_textdec_style);
+        RETURN_SIZE (css_textemph_shape);
+        RETURN_SIZE (css_transform_box);
+        RETURN_SIZE (css_user_select);
+        RETURN_SIZE (css_text_wrap);
+        RETURN_SIZE (css_val_fn);
+        RETURN_SIZE (css_version);
+        RETURN_SIZE (css_vertical_align);
+        RETURN_SIZE (css_visual_box);
+        RETURN_SIZE (css_voice_balance_e);
+        RETURN_SIZE (css_volume_e);
+        RETURN_SIZE (css_whitespace);
+        RETURN_SIZE (css_wide);
+        RETURN_SIZE (css_wrap_flow);
+        RETURN_SIZE (css_wsc);
+        RETURN_SIZE (css_wst);
+        RETURN_SIZE (cursor);
+        RETURN_SIZE (decalign);
+        RETURN_SIZE (determiner);
+        RETURN_SIZE (dingbat);
+        RETURN_SIZE (dir);
+        RETURN_SIZE (display_align);
+        RETURN_SIZE (dominantbaseline);
+        RETURN_SIZE (enterkeyhint);
+        RETURN_SIZE (evt_action);
+        RETURN_SIZE (figalign);
+        RETURN_SIZE (filter_in);
+        RETURN_SIZE (fontname);
+        RETURN_SIZE (font_enum);
+        RETURN_SIZE (font_variant_2);
+        RETURN_SIZE (font_variant_caps);
+        RETURN_SIZE (font_variant_east_asian);
+        RETURN_SIZE (font_variant_ligature);
+        RETURN_SIZE (font_variant_numeric);
+        RETURN_SIZE (formaturi);
+        RETURN_SIZE (halign);
+        RETURN_SIZE (icalfreq);
+        RETURN_SIZE (image_rendering);
+        RETURN_SIZE (icc);
+        RETURN_SIZE (indentalign);
+        RETURN_SIZE (inky);
+        RETURN_SIZE (inputmode);
+        RETURN_SIZE (inputplus);
+        RETURN_SIZE (inputtype);
+        RETURN_SIZE (inputtype3);
+        RETURN_SIZE (inputtype32);
+        RETURN_SIZE (inputtype4);
+        RETURN_SIZE (inputtype5);
+        RETURN_SIZE (jtoken);
+        RETURN_SIZE (kind);
+        RETURN_SIZE (length_absolute);
+        RETURN_SIZE (length_relative);
+        RETURN_SIZE (linebreak);
+        RETURN_SIZE (linkparam);
+        RETURN_SIZE (listtype);
+        RETURN_SIZE (lrnialign);
+        RETURN_SIZE (longdivstyle);
+        RETURN_SIZE (mah);
+        RETURN_SIZE (mathalign);
+        RETURN_SIZE (mathlocation);
+        RETURN_SIZE (mathnotation);
+        RETURN_SIZE (mathoverflow);
+        RETURN_SIZE (mathvariant);
+        RETURN_SIZE (math_version);
+        RETURN_SIZE (matrixtype);
+        RETURN_SIZE (method);
+        RETURN_SIZE (mf_identifier);
+        RETURN_SIZE (mf_itemtype);
+        RETURN_SIZE (mf_listing_action);
+        RETURN_SIZE (mf_method);
+        RETURN_SIZE (mf_reviewtype);
+        RETURN_SIZE (musickey);
+        RETURN_SIZE (myersbriggs);
+        RETURN_SIZE (namedspace);
+        RETURN_SIZE (namespace);
+        RETURN_SIZE (nit_macro);
+        RETURN_SIZE (nit_section);
+        RETURN_SIZE (ogtype);
+        RETURN_SIZE (page_orientation);
+        RETURN_SIZE (paintkeyword);
+        RETURN_SIZE (pam_ccv);
+        RETURN_SIZE (pcmm_status);
+        RETURN_SIZE (plusstyle);
+        RETURN_SIZE (pointer_events);
+        RETURN_SIZE (pri_img_colour);
+        RETURN_SIZE (pri_img_technique);
+        RETURN_SIZE (pri_img_viewpoint);
+        RETURN_SIZE (print);
+        RETURN_SIZE (prism_ad_pos);
+        RETURN_SIZE (prism_ad_type);
+        RETURN_SIZE (prism_ag_type);
+        RETURN_SIZE (prism_audience_sector);
+        RETURN_SIZE (prism_ccv);
+        RETURN_SIZE (prism_class);
+        RETURN_SIZE (prism_contenttype);
+        RETURN_SIZE (prism_cvp);
+        RETURN_SIZE (prism_genre);
+        RETURN_SIZE (prism_icv);
+        RETURN_SIZE (prism_pasv);
+        RETURN_SIZE (prism_pcv);
+        RETURN_SIZE (prism_pfv);
+        RETURN_SIZE (prism_ptv);
+        RETURN_SIZE (prism_rcv);
+        RETURN_SIZE (prism_role);
+        RETURN_SIZE (prs_action);
+        RETURN_SIZE (quote_style);
+        RETURN_SIZE (recipe_content);
+        RETURN_SIZE (recipe_course);
+        RETURN_SIZE (recipe_cuisine);
+        RETURN_SIZE (recipe_dietary);
+        RETURN_SIZE (recipe_dish);
+        RETURN_SIZE (recipe_exclusion);
+        RETURN_SIZE (recipe_kit);
+        RETURN_SIZE (recipe_meal);
+        RETURN_SIZE (recipe_method);
+        RETURN_SIZE (recipe_source);
+        RETURN_SIZE (recipe_special);
+        RETURN_SIZE (recipe_time);
+        RETURN_SIZE (referrer);
+        RETURN_SIZE (rendering_in_tents);
+        case t_report : return rcb_max;
+        RETURN_SIZE (rules);
+        RETURN_SIZE (sandbox);
+        RETURN_SIZE (scei);
+        RETURN_SIZE (severity);
+        RETURN_SIZE (shadow);
+        RETURN_SIZE (shape7);
+        RETURN_SIZE (shape_rendering);
+        RETURN_SIZE (smei);
+        RETURN_SIZE (ssi);
+        RETURN_SIZE (ssi_comparison);
+        RETURN_SIZE (ssi_encoding);
+        RETURN_SIZE (ssi_env);
+        RETURN_SIZE (step_position);
+        RETURN_SIZE (stress);
+        RETURN_SIZE (supports);
+        RETURN_SIZE (svg_align);
+        RETURN_SIZE (svg_display);
+        RETURN_SIZE (svg_fontstretch);
+        RETURN_SIZE (svg_fontstretch_ff);
+        RETURN_SIZE (svg_fontstyle);
+        RETURN_SIZE (svg_fontweight);
+        RETURN_SIZE (svg_fontweight_ff);
+        RETURN_SIZE (svg_mode);
+        RETURN_SIZE (svg_overflow);
+        RETURN_SIZE (svg_rendering_intent);
+        RETURN_SIZE (svg_type);
+        RETURN_SIZE (svg_version);
+        RETURN_SIZE (svg_version_grand);
+        RETURN_SIZE (tableframe);
+        RETURN_SIZE (tblri);
+        RETURN_SIZE (text_decoration);
+        RETURN_SIZE (text_rendering);
+        RETURN_SIZE (tld);
+        RETURN_SIZE (transform_anim);
+        RETURN_SIZE (transformbehaviour);
+        RETURN_SIZE (transform_fn);
+        RETURN_SIZE (turbulence_type);
+        RETURN_SIZE (unit);
+        RETURN_SIZE (unit_abs_len);
+        RETURN_SIZE (unit_angle);
+        RETURN_SIZE (unit_freq);
+        RETURN_SIZE (unit_rel_len);
+        RETURN_SIZE (unit_res);
+        RETURN_SIZE (unit_time);
+        RETURN_SIZE (unicode_bidi);
+        RETURN_SIZE (vector_effect_2);
+        RETURN_SIZE (vertical_align_enum);
+        RETURN_SIZE (vgender);
+        RETURN_SIZE (vrel);
+        RETURN_SIZE (vtt);
+        RETURN_SIZE (whitespace);
+        RETURN_SIZE (writingmode);
+        RETURN_SIZE (xmlns);
+        RETURN_SIZE (xmpdm_audio_channel);
+        RETURN_SIZE (xmpdm_audio_sample);
+        RETURN_SIZE (xmpdm_camera_angle);
+        RETURN_SIZE (xmpdm_camera_move);
+        RETURN_SIZE (xmpdm_pulldown);
+        RETURN_SIZE (xmpdm_shotsize);
+        RETURN_SIZE (xmpdm_stretchmode);
+        RETURN_SIZE (xmpdm_time_format);
+        RETURN_SIZE (xmpdm_time_signature);
+        RETURN_SIZE (xmpdm_video_pixeldepth);
+        default: break; }
+    GRACEFUL_CRASH (__FILE__, __LINE__); }
+
+#undef RETURN_SIZE

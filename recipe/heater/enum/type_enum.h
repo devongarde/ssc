@@ -23,6 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "base/type_case.h"
 #include "spell/spell.h"
 
+::std::size_t enum_base_count (const e_type t);
+
 template < typename TYPE, e_type E > struct enum_base : public type_base < TYPE, E >
 {   typedef typename type_base < TYPE, E > :: value_type value_type;
     typedef typename type_base < TYPE, E > :: base_type base_type;
@@ -131,6 +133,11 @@ template < e_type E, typename ENUM, typename CATEGORY = ident_t, CATEGORY INIT =
     void set (const value_type v) noexcept { enum_base < ENUM, E > :: value_ = v; }
     static ::std::string values (const html_version& v)
     {   return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: value_list (v); }
+    static ::std::size_t extra_values ()
+    {   const ::std::size_t vc = symbol < html_version, ENUM, CATEGORY, INIT, LC >::value_count ();
+        const ::std::size_t bc = enum_base_count (E);
+        PRESUME (bc <= vc, __FILE__, __LINE__);
+        return vc - bc; }
     ::std::string get_string () const
     {   return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: name (enum_base < ENUM, E > :: value_); }
     void shadow (::std::stringstream& ss, const html_version& , element* )
@@ -143,6 +150,8 @@ template < e_type E, typename ENUM, typename CATEGORY = ident_t, CATEGORY INIT =
     bool unknown () const noexcept { return enum_base < ENUM, E > :: unknown (); }
     ::std::string name () const
     {   return get_string (); }
+    static ::std::string base_name (const ENUM e)
+    {   return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: base_name (e); }
     static ::std::string name (const ENUM e)
     {   return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: name (e); }
     ::std::string original () const
@@ -285,6 +294,9 @@ template < > struct type_master < t_conlit > : enum_n < t_conlit, e_conlit >
 
 template < > struct type_master < t_country > : enum_n < t_country, e_country >
 { using enum_n < t_country, e_country > :: enum_n; };
+
+template < > struct type_master < t_copy > : enum_n < t_copy, e_copy >
+{ using enum_n < t_copy, e_copy > :: enum_n; };
 
 template < > struct type_master < t_crossout > : enum_n < t_crossout, e_crossout >
 { using enum_n < t_crossout, e_crossout > :: enum_n; };
@@ -444,6 +456,9 @@ template < > struct type_master < t_css_list_style_position > : enum_n < t_css_l
 
 template < > struct type_master < t_css_list_style_type > : enum_n < t_css_list_style_type, e_css_list_style_type >
 { using enum_n < t_css_list_style_type, e_css_list_style_type > :: enum_n; };
+
+template < > struct type_master < t_css_module > : enum_n < t_css_module, e_css_module, e_nit_macro, nm_none >
+{ using enum_n < t_css_module, e_css_module, e_nit_macro, nm_none > :: enum_n; };
 
 template < > struct type_master < t_css_overflow > : enum_n < t_css_overflow, e_css_overflow >
 { using enum_n < t_css_overflow, e_css_overflow > :: enum_n; };
@@ -724,6 +739,9 @@ template < > struct type_master < t_mathoverflow > : enum_n < t_mathoverflow, e_
 template < > struct type_master < t_mathvariant > : enum_n < t_mathvariant, e_mathvariant >
 { using enum_n < t_mathvariant, e_mathvariant > :: enum_n; };
 
+template < > struct type_master < t_math_version > : enum_n < t_math_version, e_math_version >
+{ using enum_n < t_math_version, e_math_version > :: enum_n; };
+
 template < > struct type_master < t_matrixtype > : enum_n < t_matrixtype, e_matrixtype >
 { using enum_n < t_matrixtype, e_matrixtype > :: enum_n; };
 
@@ -897,6 +915,9 @@ template < > struct type_master < t_referrer > : enum_n < t_referrer, e_referrer
 
 template < > struct type_master < t_rendering_in_tents > : enum_n < t_rendering_in_tents, e_rendering_in_tents >
 { using enum_n < t_rendering_in_tents, e_rendering_in_tents > :: enum_n; };
+
+template < > struct type_master < t_report > : enum_n < t_report, e_report, e_nit_macro, nm_none >
+{ using enum_n < t_report, e_report, e_nit_macro, nm_none > :: enum_n; };
 
 template < > struct type_master < t_role > : enum_n < t_role, e_aria_role >
 { using enum_n < t_role, e_aria_role > :: enum_n; };

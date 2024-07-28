@@ -80,7 +80,7 @@ void properties::parse (arguments& args, const int from, const int to)
                     break; }
         else switch (args.t_.at (i).t_)
         {   case ct_at :
-                if ((context.css_page () >= 3) && (brack == 0)) atat = i;
+                if ((context.css_module (c_paged_media) >= 3) && (brack == 0)) atat = i;
                 break;
             case ct_semicolon :
                 if (brack == 0)

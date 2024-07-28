@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+
+<html> 
+<head>
+
+<title>microdata</title>
+<meta content="text/html; charset=utf-8" http-equiv=Content-Type>
+
+<meta content="dylan harris" name=author>
+<meta content=04320 name=classification> 
+<meta content="dylan.harris@live.ie" name=contact>
+<meta content="(c) 1978-2024 dylan harris" name=copyright>
+<meta content="dylan,harris,dylan harris" name=keywords>
+<meta content=";cc by-nc-sa" name=rights-standard>
+<meta content="#000000" name=theme-color>
+
+</head>
+<body>
+
+
+<div id=amersfoort itemscope itemtype="https://schema.org/City">
+<link href="#netherlands" itemprop="containedInPlace">
+<meta content=Amersfoort itemprop="name">
+<link href="https://en.wikipedia.org/wiki/Amersfoort" itemprop="sameAs">
+</div>
+
+<div id=amsterdam itemscope itemtype="https://schema.org/City">
+<link href="#netherlands" itemprop="containedInPlace">
+<meta content=Amsterdam itemprop="name">
+<link href="https://en.wikipedia.org/wiki/Amsterdam" itemprop="sameAs">
+</div>
+
+<div id=delft itemscope itemtype="https://schema.org/City">
+<link href="#netherlands" itemprop="containedInPlace">
+<meta content=Delft itemprop="name">
+<link href="https://en.wikipedia.org/wiki/Delft" itemprop="sameAs">
+</div>
+
+<div id=eindhoven itemscope itemtype="https://schema.org/City">
+<link href="#netherlands" itemprop="containedInPlace">
+<meta content=Eindhoven itemprop="name">
+<link href="https://en.wikipedia.org/wiki/Eindhoven" itemprop="sameAs">
+</div>
+
+<div id=gouda itemscope itemtype="https://schema.org/City">
+<link href="#netherlands" itemprop="containedInPlace">
+<meta content=Gouda itemprop="name">
+<link href="https://en.wikipedia.org/wiki/Gouda,_South_Holland" itemprop="sameAs">
+</div>
+
+<div id=hague itemscope itemtype="https://schema.org/City">
+<meta content="Den Haag" itemprop="alternateName">
+<link href="#netherlands" itemprop="containedInPlace">
+<meta content="The Hague" itemprop="name">
+<link href="https://en.wikipedia.org/wiki/The_Hague" itemprop="sameAs">
+</div>
+
+<div id=leiden itemscope itemtype="https://schema.org/City">
+<meta content=Leyden itemprop="alternateName">
+<link href="#netherlands" itemprop="containedInPlace">
+<meta content=Leiden itemprop="name">
+<link href="https://en.wikipedia.org/wiki/Leiden" itemprop="sameAs">
+</div>
+
+<div id=tilburg itemscope itemtype="https://schema.org/City">
+<link href="#netherlands" itemprop="containedInPlace">
+<meta content=Tilburg itemprop="name">
+<link href="https://en.wikipedia.org/wiki/Tilburg" itemprop="sameAs">
+</div>
+
+<div id=utrecht itemscope itemtype="https://schema.org/City">
+<link href="#netherlands" itemprop="containedInPlace">
+<meta content=Utrecht itemprop="name">
+<link href="https://en.wikipedia.org/wiki/Utrecht" itemprop="sameAs">
+</div>
+
+<div id=netherlands itemscope itemtype="https://schema.org/Country">
+<meta content=Nederland itemprop="alternateName">
+<meta content=Holland itemprop="alternateName">
+<link href="#amersfoort" itemprop="containsPlace">
+<link href="#amsterdam" itemprop="containsPlace">
+<link href="#delft" itemprop="containsPlace">
+<link href="#eindhoven" itemprop="containsPlace">
+<link href="#gouda" itemprop="containsPlace">
+<link href="#hague" itemprop="containsPlace">
+<link href="#leiden" itemprop="containsPlace">
+<link href="#tilburg" itemprop="containsPlace">
+<link href="#utrecht" itemprop="containsPlace">
+<meta content="The Netherlands" itemprop="name">
+<link href="https://en.wikipedia.org/wiki/Netherlands" itemprop="sameAs">
+</div>
+
+</body>
+</html>

@@ -127,10 +127,7 @@
 ./ssc -f ../toast/HTML/minimal/minimal.conf
 ./ssc -f ../toast/HTML/Plus/plus.conf
 ./ssc -f ../toast/HTML/tags/tags.conf
-./ssc -f ../toast/json-ld/1.0/jsonld.conf
-./ssc -f ../toast/json-ld/adms/jsonld.conf
 ./ssc -f ../toast/json-ld/as/jsonld.conf
-./ssc -f ../toast/json-ld/certification/jsonld.conf
 ./ssc -f ../toast/json-ld/schemaorg/jsonld.conf
 ./ssc -f ../toast/link/external/link.conf
 ./ssc -f ../toast/link/link/link.conf
@@ -173,6 +170,9 @@
 ./ssc -f ../toast/living/apr23/living.conf
 ./ssc -f ../toast/living/jul23/living.conf
 ./ssc -f ../toast/living/oct23/living.conf
+./ssc -f ../toast/living/jan24/living.conf
+./ssc -f ../toast/living/apr24/living.conf
+./ssc -f ../toast/living/jul24/living.conf
 ./ssc -f ../toast/math/1/math.conf
 ./ssc -f ../toast/math/2/math.conf
 ./ssc -f ../toast/math/3/math.conf
@@ -182,6 +182,7 @@
 ./ssc -f ../toast/microdata/addendum/add.conf
 ./ssc -f ../toast/microdata/basic/basic.conf
 ./ssc -f ../toast/microdata/export/export.conf
+./ssc -f ../toast/microdata/link/link.conf
 ./ssc -f ../toast/microdata/microformats/mf.conf
 ./ssc -f ../toast/microdata/schema-abc/abc.conf
 ./ssc -f ../toast/microdata/schema-defg/defg.conf

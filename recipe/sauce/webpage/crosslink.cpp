@@ -22,7 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/crosslink.h"
 #include "main/context.h"
 #include "ontology/ontology_type.h"
+#include "ontology/ontology_hierarchy.h"
 #include "utility/quote.h"
+#include "microdata/microdata_itemtype.h"
 
 struct crosslink_t
 {   ::std::string id_;          // id sought on sought page
@@ -31,7 +33,22 @@ struct crosslink_t
     vit_t type_;                // itemtypes sought, if any
     e_element e_ = elem_undefined; // element that declared id / seeker element
     crosslink_t (const ::std::string& id, const ::std::size_t n, const bool hidden, const vit_t& itemtypes, const e_element e)
-        :   id_ (id), line_ (n), hidden_ (hidden), type_ (itemtypes), e_ (e) { } };
+        :   id_ (id), line_ (n), hidden_ (hidden), type_ (itemtypes), e_ (e) { }
+#ifdef DEBUG
+    ::std::string rpt () const
+    {   ::std::string res ("id_=");
+        res += id_;
+        res += ",line_=";
+        res += ::boost::lexical_cast < ::std::string > (line_);
+        res += ",hidden_=";
+        if (hidden_) res += 'H'; else res += '-';
+        res += ",type_=";
+        res += rpt_vit (type_, ' ');
+        res += ",e_=";
+        res += elem::name (e_);
+        return res; }
+#endif // DEBUG
+};
 
 typedef ::std::vector < crosslink_t > vcl_t;
 typedef ::std::vector < e_sought_category > vsc_t;
@@ -44,7 +61,24 @@ struct seeker_t
     void emplace_back (const ::std::string& id, const ::std::size_t line, const bool hidden, const vit_t& itemtypes, const e_element e)
     {   ids_.emplace_back (id, line, hidden, itemtypes, e);
         cats_.emplace_back (elem::link_category_sought (e));
-        PRESUME (ids_.size () == cats_.size (), __FILE__, __LINE__); } };
+        PRESUME (ids_.size () == cats_.size (), __FILE__, __LINE__); }
+#ifdef DEBUG
+    ::std::string rpt () const
+    {   ::std::string res ("  ");
+        res += get_disk_path (page_).string ();
+        res += "\n  ids:";
+        for (auto id : ids_)
+        {   res += "\n    ";
+            res += id.rpt (); }
+        if (! cats_.empty ())
+        {   res += "\n  cats:\n    ";
+            bool miaow = false;
+            for (auto cat : cats_)
+            {   if (miaow) res += ","; else miaow = true;
+                res += ::boost::lexical_cast < ::std::string > (cat); } }
+        return res; }
+#endif // DEBUG
+};        
 
 typedef ::std::map < fileindex_t, seeker_t > vsk_t;
 
@@ -59,7 +93,22 @@ struct sought_t
 {   fileindex_t page_;    // sought page
     vcl_t declared_;      // ids declared on sought page
     vsk_t seekers_;       // list of seekers searching for ids on this page
-    sought_t (const fileindex_t p) : page_ (p) { } };
+    sought_t (const fileindex_t p) : page_ (p) { }
+#ifdef DEBUG
+    ::std::string rpt () const
+    {   ::std::string res (get_disk_path (page_).string ());
+        res += ":";
+        for (auto id : declared_)
+        {   res += "\n  ";
+            res += id.rpt (); }
+        for (vsk_t::const_iterator i = seekers_.cbegin (); i != seekers_.cend (); ++i)
+        {   res += "\n  ";
+            res += get_disk_path (i -> first).string ();
+            res += "\n";
+            res += i -> second.rpt (); }
+        return res; }
+#endif // DEBUG
+};
 
 inline bool operator == (const sought_t& lhs, const sought_t& rhs) noexcept { return lhs.page_ == rhs.page_; }
 inline bool operator != (const sought_t& lhs, const sought_t& rhs) noexcept { return lhs.page_ != rhs.page_; }
@@ -71,6 +120,18 @@ inline bool operator >= (const sought_t& lhs, const sought_t& rhs) noexcept { re
 typedef ::std::map < fileindex_t, sought_t > vx_t;
 typedef ::std::unique_ptr < vx_t > vx_ptr;
 vx_ptr xlynx;
+
+#ifdef DEBUG
+::std::string rpt_lynx (const ::std::string& s = ::std::string ())
+{   ::std::string res;
+    if (! s.empty ()) res = s + ":-\n";
+    if (xlynx.get () != nullptr)
+        for (vx_t::const_iterator i = xlynx -> cbegin (); i != xlynx -> cend (); ++i)
+        {   res += get_disk_path (i -> first).string ();
+            res += "\n";
+            res += i -> second.rpt () + "\n"; }
+    return res; }
+#endif // DEBUG
 
 void reset_crosslinks ()
 {   xlynx = vx_ptr (new vx_t); }
@@ -106,6 +167,19 @@ void add_sought (const fileindex_t seeker, const ::std::size_t line, const filei
     if (seek_i == seek.cend ())
     {   auto se = seek.emplace (seeker, seeker_t (seeker));
         seek_i = se.first; }
+    else for (vcl_t::iterator i = seek_i -> second.ids_.begin (); i != seek_i -> second.ids_.end (); ++i)
+        if ((i -> id_ == id) && (i -> line_ == line) && (i -> hidden_ == hidden) && (i -> e_ == e))
+            if (! itemtypes.empty ())
+            {   if (i -> type_.empty ())
+                    i -> type_ = itemtypes;
+                else for (auto it : itemtypes)
+                {   bool gotcha = false;
+                    for (auto ct : i -> type_)
+                        if (it == ct)
+                        {   gotcha = true; break; }
+                    if (! gotcha)
+                        i -> type_.push_back (it); }
+                return; }
     seek_i -> second.emplace_back (id, line, hidden, itemtypes, e); }
 
 void add_sought (   const ::boost::filesystem::path& seeker, const ::std::size_t line, const ::boost::filesystem::path& sought,
@@ -126,10 +200,16 @@ bool has_id (const vcl_t& v, const ::std::string& id)
     return false; }
 
 bool has_itemtype (const vcl_t& vc, const vit_t& vi)
-{   for (auto i : vc)
-        for (auto j : i.type_)
-            for (auto k : vi)
-                if (j == k) return true;
+{   if (! vc.empty ())
+        for (auto k : vi)
+        {   const e_itemtype_category k_cat = type_category (k);
+            const e_ontology_type k_it = type_itself (k);
+            if (k_it == anything) return true;
+            else for (auto i : vc)
+                for (auto j : i.type_)
+                {   if (j == k) return true;
+                    if ((k_cat == type_category (j)) && is_specific_type_of (k_it, type_itself (j)))
+                        return true; } }
     return false; }
 
 bool is_hidden (const vcl_t& v, const ::std::string& id)
@@ -144,7 +224,7 @@ e_element get_element (const vcl_t& v, const ::std::string& id)
 
 void append_typename (::std::string& res, const itemtype_index it, bool& first)
 {   if (! first) res += ", ";
-    if (type_category (it) != itemtype_schema)
+    if (type_category (it) != itemtype_ontology)
         res += "other";
     res += quote (sch::name (static_cast < e_ontology_type > (ndx_item (it))));
     first = false; }
@@ -169,6 +249,10 @@ void append_typename (::std::string& res, const itemtype_index it, bool& first)
 void reconcile_crosslinks (nitpick& nits)
 {   if (context.crosslinks ())
     {   PRESUME (! fred.activity (), __FILE__, __LINE__);
+#ifdef DEBUG
+        if (context.tell (es_all))
+            outstr.console (rpt_lynx ("reconcile"));
+#endif // DEBUG        
         for (auto ix : *xlynx)
             for (auto is : ix.second.seekers_)
                 if (ix.second.page_ != is.second.page_)

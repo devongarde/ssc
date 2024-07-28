@@ -38,7 +38,7 @@ template < > struct type_master < t_angle > : type_master < t_real >
         {   ::std::string sss (ss.substr (len - 3));
             ::std::string ssss (ss.substr (len - 4));
             if (compare_complain (nits, v, ssss, "grad")) { max = 400.0; len -= 4; }
-            else if ((v.is_svg_2 () || (v.css_value () >= 3)) && compare_complain (nits, v, ssss, "turn")) { max = 1.0; len -= 4; }
+            else if ((v.is_svg_2 () || (v.css_module (c_value_unit) >= 3)) && compare_complain (nits, v, ssss, "turn")) { max = 1.0; len -= 4; }
             else if (compare_complain (nits, v, sss, "rad")) { max = static_cast < float > (3.141592653589*2); len -= 3; }
             else if (compare_complain (nits, v, sss, "deg")) len -= 3;
             ss = ss.substr (0, len); }
@@ -113,7 +113,7 @@ template < > struct type_master < t_fill_opacity > : tidy_string < t_fill_opacit
             if (compare_complain (nits, v, sz_inherit :: sz (), ss)) return;
             nitpick nuts, knits;
             if (test_value < t_zero_to_one > (nuts, v, ss)) { nits.merge (nuts); return; }
-            if (((v.is_svg_2 () || context.css_fill () >= 3)) && (test_value < t_percent > (knits, v, ss))) { nits.merge (knits); return; }
+            if (((v.is_svg_2 () || context.css_module (c_fill_stroke) >= 3)) && (test_value < t_percent > (knits, v, ss))) { nits.merge (knits); return; }
             nits.merge (nuts); nits.merge (knits); }
         tidy_string < t_fill_opacity > :: status (s_invalid); } };
 
@@ -242,7 +242,7 @@ template < > struct type_master < t_frequency > : type_master < t_real >
     {   ::std::string ss (trim_the_lot_off (s));
         if (! ends_with_letters (v, ss, "kHz") && ! ends_with_letters (v, ss, "Hz"))
             nits.pick (nit_bad_frequency, ed_svg_1_1, "4.2 Basic data types", es_error, ec_type, quote (s), " contains unexpected characters (units are 'kHz' or 'Hz')");
-        else if ((v.svg () < sv_1_1) && (v.css_speech () < 3))
+        else if ((v.svg () < sv_1_1) && (v.css_module (c_speech) < 3))
             nits.pick (nit_bad_frequency, es_error, ec_type, "frequencies require SVG 1.1 or better, or CSS Speech 3 or better.");
         else
         {   const ::std::string::size_type pos = ss.find_first_not_of (REAL);

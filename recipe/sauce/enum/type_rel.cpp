@@ -385,9 +385,12 @@ struct symbol_entry < html_version, e_rel > rel_symbol_table [] =
     { { XHTML_1_0 }, { HTML_UNDEF }, "xhv:top", r_top },
     { { XHTML_1_0 }, { HTML_UNDEF }, "xhv:up", r_up } };
 
+::std::size_t rel_count ()
+{   return sizeof (rel_symbol_table) / sizeof (symbol_entry < html_version, e_rel >); }
+
 void rel_init (nitpick& nits)
-{   type_master < t_rel > :: init (nits, rel_symbol_table, sizeof (rel_symbol_table) / sizeof (symbol_entry < html_version, e_rel >)); }
+{   type_master < t_rel > :: init (nits, rel_symbol_table, rel_count ()); }
 
 void check_rel_spelling (nitpick& nits, const html_version& v, const ::std::string& original)
 {   check_identifier_spelling (nits, v, original);
-    nits.pick (nit_unknown_rel, ed_microformats, "http://" MICROFORMATS_ORG "/wiki/existing-rel-values", es_warning, ec_type, quote (::boost::to_lower_copy (trim_the_lot_off (original))), " is an unknown rel / rev identifier"); }
+    nits.pick (nit_unknown_rel, ed_microformats, "http://" MICROFORMATS_ORG "/wiki/existing-rel-values", es_warning, ec_type, quote (::boost::to_lower_copy (trim_the_lot_off (original))), " is an unknown rel / rev identifier (in ", v.nice_name (), ")"); }

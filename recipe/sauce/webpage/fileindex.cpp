@@ -507,7 +507,7 @@ bool fileindex_load_internal (nitpick& nits, bool& ok)
 {   PRESUME (fred.relaxed (), __FILE__, __LINE__);
     ::boost::filesystem::path p (persist_path ());
     if (! file_exists (p)) return true;
-    if (context.progress ()) ::std::cout << "loading " << p.string () << " ...\n";
+    if (context.progress ()) outstr.console ("loading ", p.string (), " ...\n");
     BOOST_FSTREAM_CNSTRO (f, p, ::std::ios::in);
     if (f.fail ())
     {   nits.pick (nit_cannot_read, es_error, ec_crc, "cannot open ", quote (p.string ()), " [2]");
@@ -758,7 +758,7 @@ void fileindex_save_and_close (nitpick& nits)
                         if (! write_fileindex_record (nits, f, name, n, mndx)) break; } } }
 
 void dedu (nitpick& nits) // presumes run between scan and examine phases
-{   if (context.progress ()) ::std::cout << "Deduplicating\n";  
+{   if (context.progress ()) outstr.console ("Deduplicating\n");  
     for (fileindex_t i = 0; i < vx.size (); ++i)
     {   index_t& x = vx.at (i);
         if ((x.flags_ & (FX_DIR | FX_BORKED | FX_SCANNED)) == 0)

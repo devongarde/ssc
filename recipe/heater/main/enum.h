@@ -175,7 +175,7 @@ typedef enum
         a_v_ideographic, a_viewbox, a_viewtarget, a_viewport_fill, a_viewport_fill_opacity, a_visibility, a_vlink, a_v_mathematical, a_vocab,
         a_voffset, a_volume, a_vspace,
     a_webkitdirectory, a_while, a_white_space, a_width, a_widths, a_will_change, a_word_break, a_word_spacing, a_word_wrap, a_workertype, a_wrap,
-        a_writing_mode,
+        a_writing_mode, a_writingsuggestions,
     a_x, a_x1, a_x2, a_xchannelselector, a_x_height, a_xlinkactuate, a_xlinkarcrole, a_xlinkhref, a_xlinkrole, a_xlinkshow, a_xlinktitle, a_xlinktype,
         a_xmlbase, a_xmlid, a_xmllang, a_xmllink, a_xmlns, a_xmlns_xlink, a_xmlspace, a_xref, a_xsischemaloc,
     a_y, a_y1, a_y2, a_ychannelselector,
@@ -211,6 +211,42 @@ typedef enum { fch_auto, fch_none } e_auto_none;
 typedef enum { ant_auto, ant_none, ant_thin } e_auto_none_thin;
 typedef enum { eas_auto, eas_smooth } e_auto_smooth;
 typedef enum { as_auto, as_stable } e_auto_stable;
+typedef enum {  button_add = 1, button_add_2, button_add_3, button_all,
+                button_clear, button_config,
+                button_erase, button_erase_2, button_erase_3,
+                button_load,
+                button_rename, button_rename_2, button_rename_3,
+                button_save, button_selected,
+                check_export, check_external,
+                check_file_size, check_fred,
+                check_internal,
+                check_site, check_spell,
+                check_verify,
+                choice_version,
+                file_name, file_name_2, file_name_3,
+                list_ext, list_ext_2, list_ext_3,
+                list_level,
+                list_module,
+                list_ontology,
+                menu_conf_open, menu_conf_save, menu_conf_save_as, menu_corpus, menu_css,
+                menu_file,
+                menu_general,
+                menu_help, menu_html,
+                menu_lynx,
+                menu_math, menu_mf,
+                menu_next, menu_nits,
+                menu_ontology,
+                menu_print_setup, menu_prior, menu_properties,
+                menu_root,
+                menu_server, menu_shadow, menu_site, menu_snippet, menu_spell, menu_spin, menu_stats, menu_svg,
+                menu_validation,
+                menu_wizzard, // ball park incident
+                radio_choice, radio_level,
+                snippet_dialogue,
+                spin_file_size,
+                spin_fred,
+                text_ext, text_ext_2, text_ext_3,
+                text_output } e_bar_gum;
 typedef enum { bcn_baseline, bcn_contain, bcn_none } e_baseline_contain_none;
 typedef enum { bsb_baseline, bsb_bottom, bsb_centre, bsb_top, bsb_sub, bsb_super, bsb_inherit } e_baselineshift;
 typedef enum { bcs_bounding_box, bcs_clone, bcs_slice } e_bcs;
@@ -650,8 +686,35 @@ typedef enum { ecm_crop, ecm_cross } e_css_mark;
 typedef enum { mbm_alpha, mbm_luminance } e_css_mask_border_mode;
 typedef enum { mbr_repeat, mbr_round, mbr_space, mbd_stretch } e_css_mask_border_repeat;
 typedef enum { cmm_alpha, cmm_luminance, cmm_match_source } e_css_masking_mode;
+
+// https://www.w3.org/Style/CSS/current-work
+#define CSS_MODULES \
+    c_advanced_layout, c_anchor_pos, c_animation_worklet, c_animation, \
+    c_background_border, c_basic_user_interface, c_behavioural_extensions, c_box_alignment, c_box_model, c_box_sizing, \
+    c_cascade_inheritance, c_colour, c_colour_adjustment, c_compositing_blending, c_conditional_rule, c_containment, c_counter_style, \
+        c_cssom, c_cssom_view, c_custom_highlight, c_custom_property, \
+    c_device_adaption, c_display, \
+    c_easing_function, c_exclusion, \
+    c_fill_stroke, c_filter_effect, c_flexible_box_layout, c_font, c_font_loading, c_fragmentation, c_fullscreen, \
+    c_generated_content, c_generated_content_paged, c_geometry_interfaces, c_grid_layout, \
+    c_hyperlink_presentation, \
+    c_image, c_inline_layout, \
+    c_layout, c_line_grid, c_list_counter, c_logical_property, \
+    c_marquee, c_masking, c_media_query, c_mobile_profile, c_motion_path, c_multicolumn, \
+    c_namespace, c_nesting, c_non_element_selector, \
+    c_overflow, c_overscroll_behaviour, \
+    c_page_float, c_paged_media, c_painting_api, c_positioned_layout, c_presentation_level, c_print_profile, c_property_value, \
+        c_pseudo_element, \
+    c_reader_media_type, c_region, c_resize_observer, c_rhythmic_sizing, c_round_display, c_ruby_annotation, \
+    c_scoping, c_scroll_anchoring, c_scroll_driven_animation, c_scroll_snap, c_scroll_snap_point, c_scrollbar_styling, c_selector, \
+        c_shadow_part, c_shape, c_spatial_navigation, c_speech, c_style_attribute, c_svg, c_syntax, \
+    c_table, c_template_layout, c_text, c_text_decoration, c_transform, c_transition, c_tv_profile, c_typed_om, \
+    c_viewport, c_value_unit, c_view_transition, \
+    c_web_animations, c_will_change, c_worklets, c_writing_mode
+typedef enum { CSS_MODULES, c_bad } e_css_module;
+
 typedef enum { esz_auto, esz_inherit, esz_landscape, esz_portrait } e_css_orientation;
-typedef enum { eco_auto, eco_hidden, eco_inherit, eco_scroll, eco_visible } e_css_overflow;
+typedef enum { eco_auto, eco_clip, eco_hidden, eco_scroll, eco_visible } e_css_overflow;
 typedef enum { cos_auto, cos_marquee_block, cos_marquee_line } e_css_overflow_style;
 typedef enum { epe_medium, epe_none, epe_strong, epe_weak, epe_xweak, epe_xstrong } e_css_pause_3_e;
 typedef enum { ecpb_border_box, ecpb_content_box, ecpb_fill_box, ecpb_padding_box, ecpb_stroke_box } e_css_paint_box;
@@ -1015,9 +1078,10 @@ typedef enum { cvc_e, cvc_infinity, cvc_nan, cvc_pi } e_css_val_con;
                 cvf_var, \
                 cvf_xywh
 typedef enum {  CSS_VAL_FN } e_css_val_fn;
-typedef enum {  css_none, css_1, css_2_0, css_2_1, css_2_2, css_3, css_4, css_5, css_6, css_2007, css_2010,
+typedef enum {  css_none, css_bespoke, css_1, css_2_0, css_2_1, css_2_2, css_3, css_4, css_5, css_6, css_2007, css_2010,
                 css_2015, css_2015_1, css_2015_2, css_2017, css_2017_1, css_2017_2, css_2018, css_2018_1, css_2018_2, css_2020, css_2020_1, css_2020_2,
-                css_2021, css_2021_1, css_2021_2, css_2022, css_2022_1, css_2022_2, css_2023, css_2023_1, css_2023_2 } e_css_version;
+                css_2021, css_2021_1, css_2021_2, css_2022, css_2022_1, css_2022_2, css_2023, css_2023_1, css_2023_2, css_2024, css_2024_1, css_2024_2 } e_css_version;
+constexpr e_css_version css_version_max = css_2024_2;
 typedef enum { ecva_inherit, ecv_baseline, ecv_bottom, ecv_middle, ecv_sub, ecv_super, ecv_text_bottom, ecv_text_top, ecv_top } e_css_vertical_align;
 typedef enum { eccl_border_box, eccl_content_box, eccl_padding_box } e_css_visual_box;
 typedef enum { cva_child, cva_old, cva_young  } e_css_voice_age;
@@ -1059,6 +1123,7 @@ typedef enum {  cu_auto, cu_crosshair, cu_default, cu_pointer, cu_move, cu_eresi
 typedef enum { edf_html, edf_plaintext } e_dataformatas;
 typedef enum {  dt_collection, dt_dataset, dt_event, dt_image, dt_interactiveresource, dt_movingimage, dt_physicalobject, dt_service,
                 dt_software, dt_sound, dt_stillimage, dt_text } e_dcmitype;
+typedef enum { ddny_device_height, ddny_device_width, ddny_no, ddny_yes } e_ddny;
 typedef enum { dec_left, dec_center, dec_right, dec_justify, dec_decimal } e_decalign;
 typedef enum { ed_auto, ed_sync, ed_async } e_decoding;
 typedef enum { df_cancel, df_perform } e_defaultaction;
@@ -1404,9 +1469,10 @@ typedef enum { i4_button, i4_checkbox, i4_file, i4_hidden, i4_image, i4_password
 typedef enum {  i5_button, i5_checkbox, i5_colour, i5_date, i5_datetime, i5_datetime_local, i5_email, i5_file, i5_hidden, i5_image, i5_month, i5_number,
                 i5_password, i5_radio, i5_reset, i5_range, i5_search, i5_submit, i5_tel, i5_text, i5_time, i5_url, i5_week } e_inputtype5;
 typedef enum { ih_infix, ih_postfix, ih_prefix, ih_silent } e_intent_hint;
+typedef enum { iw_overlays_content, iw_resizes_content, iw_resizes_visual } e_interactive_widget;
 typedef enum { eic_inverted, eic_none } e_inverted_colours;
-typedef enum { itemprop_bespoke, itemprop_schema, itemprop_microformat } e_itemprop_category;
-typedef enum { itemtype_none, itemtype_schema, itemtype_microformat, itemtype_rel } e_itemtype_category;
+typedef enum { itemprop_bespoke, itemprop_ontology, itemprop_microformat } e_itemprop_category;
+typedef enum { itemtype_none, itemtype_ontology, itemtype_microformat, itemtype_rel } e_itemtype_category;
 typedef enum { jsonld_none, jsonld_1_0, jsonld_1_1 } e_jsonld_version;
 
 // these must be in processing order as per processing a JSON-LD object
@@ -2474,7 +2540,8 @@ typedef enum
     nit_css_font_feature, nit_css_palette, nit_descriptor, nit_not_here, nit_counter_style, nit_clacks, nit_bad_supports,
     nit_experimental, nit_cache, nit_arxiv, nit_coden, nit_prism, nit_mask, nit_mask_border, nit_profile, nit_container,
     nit_abandoned, nit_when_else, nit_part, nit_highlight, nit_sda, nit_vtn, nit_naughty_offset, nit_nesting, nit_content,
-    nit_excluded, nit_ftp_protocol, nit_tld, nit_no_set, nit_bad_address,
+    nit_excluded, nit_ftp_protocol, nit_tld, nit_no_set, nit_bad_address, nit_mf_export, nit_config_attribute, nit_config_element,
+    nit_config_lingo, nit_not_ssc, nit_cannot_replace, nit_not_expected_content,
 
     nit_incompatible,
 
@@ -2492,20 +2559,20 @@ typedef enum
         nm_context_css_contain, nm_context_css_content, nm_context_css_cs, nm_context_css_custom, nm_context_css_device, nm_context_css_display, nm_context_css_ease,
         nm_context_css_exclude, nm_context_css_extension, nm_context_css_fbl, nm_context_css_fill, nm_context_css_filter, nm_context_css_float, nm_context_css_font,
         nm_context_css_fragmentation, nm_context_css_grid, nm_context_css_highlight, nm_context_css_hyperlink, nm_context_css_image, nm_context_css_inline, nm_context_css_line_grid,
-        nm_context_css_lists, nm_context_css_logic, nm_context_css_marquee, nm_context_css_masking, nm_context_css_media, nm_context_css_motion, nm_context_css_multi_column,
+        nm_context_css_list, nm_context_css_logic, nm_context_css_marquee, nm_context_css_masking, nm_context_css_media, nm_context_css_motion, nm_context_css_multi_column,
         nm_context_css_namespace, nm_context_css_nes, nm_context_css_nesting, nm_context_css_overflow, nm_context_css_overscroll, nm_context_css_page, nm_context_css_position,
         nm_context_css_present, nm_context_css_pseudo, nm_context_css_region, nm_context_css_rhythm, nm_context_css_round, nm_context_css_ruby, nm_context_css_scope,
-        nm_context_css_scrollbar, nm_context_css_sda, nm_context_css_selector, nm_context_css_shadow, nm_context_css_shape, nm_context_css_snap, nm_context_css_snap_points,
+        nm_context_css_scrollbar, nm_context_css_sda, nm_context_css_selector, nm_context_css_shadow, nm_context_css_shape, nm_context_css_snap, nm_context_css_snap_point,
         nm_context_css_speech, nm_context_css_spatial, nm_context_css_style, nm_context_css_syntax, nm_context_css_table, nm_context_css_transform,
         nm_context_css_transition, nm_context_css_text, nm_context_css_text_decoration, nm_context_css_ui, nm_context_css_value, nm_context_css_version,
-        nm_context_css_view, nm_context_css_will_change, nm_context_css_writing_mode, nm_context_custom_elements, nm_context_dc, nm_context_example,
+        nm_context_css_view, nm_css_context_viewport, nm_context_css_will_change, nm_context_css_writing_mode, nm_context_custom_elements, nm_context_dc, nm_context_example,
         nm_context_export_root, nm_context_exports, nm_context_extensions, nm_context_ext_css, nm_context_extra, nm_context_force_version,
         nm_context_foaf, nm_context_forward, nm_context_fred, nm_context_icu, nm_context_ie, nm_context_ignore, nm_context_index, nm_context_info, nm_context_iterate,
         nm_context_jsonld, nm_context_jsonld_extension, nm_context_jsonld_version, nm_context_lang, nm_context_links,
         nm_context_local, nm_context_math, nm_context_main, nm_context_max_file_size, nm_context_md_export,
         nm_context_mf_export, nm_context_mf_verify, nm_context_mf_version, nm_context_microdata, nm_context_msg, nm_context_no_ex_check,
         nm_context_once, nm_context_output, nm_context_persisted, nm_context_rdfa, nm_context_rdf_version, nm_context_rel, nm_context_report,
-        nm_context_rfc_1867, nm_context_rfc_1942, nm_context_rfc_1980, nm_context_rfc_2070, nm_context_root, nm_context_safari,
+        nm_context_rfc_1867, nm_context_rfc_1942, nm_context_rfc_1980, nm_context_rfc_2070, nm_context_root, nm_context_ruby, nm_context_safari,
         nm_context_server, nm_context_server_address_from, nm_context_server_address_to, nm_context_server_address, nm_context_server_port,
         nm_context_server_root,
         nm_context_schema, nm_context_ontology_version, nm_context_shadow_comment, nm_context_shadow_changed, nm_context_shadow_enable,
@@ -2520,7 +2587,7 @@ typedef enum
         nm_context_stats_ontology, nm_context_stats_ornament, nm_context_stats_page_name, nm_context_stats_palette, nm_context_stats_reference,
         nm_context_stats_region, nm_context_stats_property, nm_context_stats_scroll_anim, nm_context_stats_statement, nm_context_stats_styleset,
         nm_context_stats_stylistic, nm_context_stats_swash, nm_context_stats_version, nm_context_stats_view,nm_context_svg_version, nm_context_tags,
-        nm_context_test, nm_context_title, nm_context_unknown_class, nm_context_version, nm_context_virtuals, nm_context_xsd, nm_copy_addr,
+        nm_context_test, nm_context_title, nm_context_unknown_class, nm_context_vcs, nm_context_version, nm_context_virtuals, nm_context_xsd, nm_copy_addr,
         nm_copy_html, nm_copy_text,
     nm_general_info, nm_general_output, nm_general_path, nm_grand_title,
     nm_html_snippet,
@@ -2592,360 +2659,6 @@ typedef enum {
 typedef enum { ot_one, ot_two } e_onetwo;
 typedef enum { ott_one, ott_two, ott_three } e_onetwothree;
 typedef enum { oo_off, oo_on } e_onoff;
-typedef enum { op_arithmetic, op_atop, op_in, op_out, op_over, op_xor } e_operator;
-typedef enum { or_h, or_v } e_orientation;
-typedef enum { eo_none, eo_top } e_overlay;
-typedef enum { ou_over, ou_under } e_over_under;
-typedef enum { po_270, po_180, po_90, po0, po90, po180, po270 } e_page_orientation;
-typedef enum { pk_bad, pk_none, pk_child, pk_contextfill, pk_contextstroke, pk_currentcolour, pk_inherit, pk_icccolour, pk_url } e_paintkeyword;
-typedef enum { po_normal, po_fill, po_stroke, po_markers } e_paint_order;
-typedef enum {  pccv_box, pccv_byline, pccv_caption, pccv_credit, pccv_dateline, pccv_deck, pccv_footnotes, pccv_introduction, pccv_leadin, pccv_pullquote,
-                pccv_recipe, pccv_sidebar, pccv_teaser, pccv_title } e_pam_ccv;
-typedef enum { pam_a, pam_c, pam_d, pam_u } e_pam_status;
-typedef enum { pcmm_draft, pcmm_beingnegotiated, pcmm_finalised, pcmm_uploaded, pcmm_upload_approved, pcmm_upload_rejected } e_pcmm_status;
-typedef enum { ph_bubble, ph_capture, ph_default, ph_target } e_phase_x;
-typedef enum { ps_b, ps_i, ps_p, ps_s, ps_sub, ps_sup, ps_tt, ps_u } e_plusstyle;
-typedef enum {  pe_auto, pe_boundingbox, pe_bounding_box, pe_visiblepainted, pe_visiblefill, pe_visiblestroke, pe_visible, pe_painted, pe_fill,
-                pe_stroke, pe_all, pe_none, pe_inherit } e_pointer_events;
-typedef enum { pop_auto, pop_manual } e_popover;
-typedef enum { pta_hide, pta_show, pta_toggle } e_popovertargetaction;
-typedef enum { pr_auto, pr_metadata, pr_none } e_preload;
-typedef enum { pic_bw, pic_colour, pic_duotone, pic_quadtone, pic_sepia, pic_tritone } e_pri_img_colour;
-typedef enum { pio_horizontal, pio_vertical } e_pri_img_orientation;
-typedef enum { pis_autumn, pis_spring, pis_summer, pis_winter } e_pri_img_season;
-typedef enum { pis_indoor, pis_outdoor, pis_studio } e_pri_img_setting;
-typedef enum {  pit_above, pit_aerial, pit_below, pit_center, pit_closeup, pit_detail, pit_distant, pit_front, pit_offcentre,
-                pit_panoramic, pit_profile, pit_rear } e_pri_img_technique;
-typedef enum {  piv_backlit, piv_candid, piv_cool, piv_doubleexposure, piv_flash, piv_hdr, piv_motionblur, piv_negative, piv_silhouette,
-                piv_soft, piv_spotlit, piv_warm, piv_wideangle} e_pri_img_viewpoint;
-typedef enum { pt_footnote, pt_reference, pt_section, pt_sidebar, pt_silent } e_print;
-typedef enum { pap_ibc, pap_ifc, pap_main_body, pap_obc, pap_text } e_prism_ad_pos;
-typedef enum { pat_dft, pat_eft, pat_text, pat_sfp, pat_spfplus } e_prism_ad_type;
-typedef enum {  pag_blog, pag_book, pag_bookazine, pag_catalogue, pag_feed, pag_journal, pag_magazine, pag_manual, pag_newsletter,
-                pag_newspaper, pag_other, pag_report, pag_pamphlet, pag_vook, pag_whitepaper } e_prism_ag_type;
-typedef enum {  pas_agegroup, pas_agerange, pas_countryregion, pas_educationallevel, pas_employmentstatus, pas_gender, pas_incomerange, pas_maritalstatus,
-                pas_culture, pas_other } e_prism_audience_sector;
-typedef enum { pc_byline, pc_dateline, pc_deck, pc_footnotes, pc_leadin, pc_sidebar } e_prism_class;
-typedef enum {  ptt_advertisement, ptt_article, ptt_blogentry, ptt_bookchapter, ptt_classifiedadsection, ptt_contentblock, ptt_frontcover, ptt_index,
-                ptt_introduction, ptt_masthead, ptt_navigationalaid, ptt_othercover } e_prism_contenttype;
-typedef enum {  prccv_box, prccv_byline, prccv_caption, prccv_credit, prccv_dateline, prccv_deck, prccv_footnotes, prccv_introduction, prccv_layer, prccv_leadin,
-                prccv_pullquote, prccv_recipe, prccv_sidebar, prccv_subtitle, prccv_teaser, prccv_title } e_prism_ccv;
-
-typedef enum {
-    pcvp_article,
-    pcvp_birdseye, pcvp_book, pcvp_body,
-    pcvp_caption, pcvp_catalog, pcvp_clip, pcvp_close_up, pcvp_credit, pcvp_correction,
-    pcvp_electronicbook,
-    pcvp_graph,
-    pcvp_homepage,
-    pcvp_illustration, pcvp_index, pcvp_interactivecontent, pcvp_issue,
-    pcvp_journal,
-    pcvp_list,
-    pcvp_magazine, pcvp_manual, pcvp_map,
-    pcvp_news, pcvp_newspaper,
-    pcvp_photo,
-    pcvp_sidebar,
-    pcvp_table,
-    pcvp_webpage, pcvp_wormseye,
-} e_prism_cvp;
-
-typedef enum { pfcc_credit, pfcc_mediatitle } e_prism_fccv;
-
-typedef enum {
-    pg_abstract, pg_acknowledgement, pg_adaption, pg_advertorial, pg_analysis, pg_answers, pg_appendix, pg_authorbio, pg_autobiography,
-    pg_backcover, pg_bibliography, pg_biography, pg_box,
-    pg_calendar, pg_cartoon, pg_chapter, pg_chart, pg_chronolgy, pg_clarification, pg_classifiedad, pg_column, pg_correction, pg_coverstory, pg_coverpackagearticle,
-    pg_dedication, pg_department, pg_diagram,
-    pg_electionresults, pg_essay, pg_excerpt,
-    pg_faq, pg_fashionshoot, pg_feature, pg_featurepackagearticle, pg_fiction, pg_financialstatement, pg_foreward,
-    pg_glossary,
-    pg_horoscope,
-    pg_insidebackcover, pg_insidefrontcover, pg_interactivecontent, pg_interview,
-    pg_jumppage,
-    pg_legaldocument, pg_letters, pg_list,
-    pg_map,
-    pg_newsbulletin, pg_notice,
-    pg_obituary, pg_opinion,
-    pg_photoessay, pg_poem, pg_poll, pg_postscript, pg_preface, pg_pressrelease, pg_productdescription, pg_profile, pg_puzzle,
-    pg_qanda, pg_quiz, pg_quotation,
-    pg_ranking, pg_recipe, pg_references, pg_reprint, pg_resources, pg_response, pg_review,
-    pg_schedule, pg_scrubber, pg_sectionlist, pg_sectiontableofcontents, pg_sidebar, pg_stockquote, pg_supplementarticle, pg_supplementbackcover, pg_supplementfrontcover,
-    pg_tableofcontents, pg_transcript,
-    pg_usercomments, pg_usergeneratedcontent, pg_userreview,
-    pg_wirestory
-} e_prism_genre;
-
-typedef enum {  picv_academicfield, picv_event, picv_industry, picv_keyword, picv_link, picv_location, picv_object, picv_organisation, picv_person,
-                picv_profession, picv_quote, picv_sport, picv_ticker, picv_timeframe } e_prism_icv;
-typedef enum { pit_regular, pit_special } e_prism_issue_type;
-typedef enum {  pasv_columnbyline, pasv_doublepagespread, pasv_freeformother, pasv_fullpage, pasv_onehalfpagehoriz, pasv_pasv_onehalfpagespread,
-                pasv_pasv_onehalfpagevert, pasv_onethirdpagehoriz, pasv_onethirdpagesq, pasv_onethirdpagevert, pasv_twothirdpagehoriz, pasv_twothirdpagespread,
-                pasv_twothirdpagevert } e_prism_pasv;
-typedef enum { pcv_broadcast, pcv_email, pcv_ereader, pcv_mobile, pcv_other, pcv_print, pcv_recordablemedia, pcv_smartphone, pcv_tablet, pcv_web } e_prism_pcv;
-typedef enum {  pfv_annually, pfv_bimonthly, pfv_biweekly, pfv_daily, pfv_continually, pfv_irregularly, pfv_monthly, pfv_other, pfv_quarterly,
-                pfv_semiannually, pfv_weekly } e_prism_pfv;
-typedef enum {  ptv_animation, ptv_audio, ptv_cartoon, ptv_chart, ptv_clip, ptv_codeblock, ptv_complexblock, ptv_diagram, ptv_gallery, ptv_illustration,
-                ptv_infographic, ptv_logo, ptv_map, ptv_other, ptv_photo, ptv_photoillustration, ptv_photomontage, ptv_slideshow, ptv_spreadsheet,
-                ptv_table, ptv_video } e_prism_ptv;
-
-typedef enum { 
-    prcv_abstract, prcv_acknowledgement, prcv_advertisement, prcv_analysis, prcv_authorbio, prcv_autobiography,
-    prcv_bibliography, prcv_biography, prcv_brief,
-    prcv_cartoon, prcv_chronology, prcv_classifiedad, prcv_column, prcv_cover,
-    prcv_dateline,
-    prcv_electionresults, prcv_eventscalendar, prcv_excerpt,
-    prcv_feature, prcv_financialstatement,
-    prcv_interview,
-    prcv_legaldocument, prcv_letter, prcv_lettertoeditor, prcv_logo,
-    prcv_newsbulletin, prcv_notice,
-    prcv_obituary, prcv_opinion,
-    prcv_photoessay, prcv_poll, prcv_portrait, prcv_pressrelease, prcv_productdescription, prcv_profile,
-    prcv_quotation,
-    prcv_ranking, prcv_recipe, prcv_review,
-    prcv_schedule, prcv_stockquote,
-    prcv_tableofcontents, prcv_transcript,
-} e_prism_rcv;
-
-typedef enum {
-    role_amateur, role_animator, role_artist, role_author,
-    role_cartographer, role_chef, role_choreographer, role_cinematographer, role_commentator, role_composer, role_correspondant, role_costumedesigner,
-    role_director, role_draftsman,
-    role_editor,
-    role_fashioncoordinator, role_fashiondesigner, role_foodstylist, role_foodtester,
-    role_graphicdesigner,
-    role_hairstylist, role_host,
-    role_illustrator, role_interviewee, role_interviewer, role_interpreter,
-    role_layoutdesigner,
-    role_makeupartist, role_musician,
-    role_narrator, role_nutritionist,
-    role_other, role_panelist, role_performer, role_photographer, role_producer, role_programmer,
-    role_recipedeveloper, role_reporter, role_researcher, role_researchassistant,
-    role_speaker,
-    role_translator, role_tvhost,
-    role_writer
- } e_prism_role;
-
-typedef enum { pta_dfp, pta_efp, pta_sfp, pta_sfpplus } e_prism_tablet_ad;
-typedef enum { pr_stop, pr_continue } e_propagate;
-typedef int e_property;
-
-typedef enum {
-    pr_other,
-    pr_aaa, pr_aaas, pr_about, pr_acap, pr_acct, pr_acr, pr_adiumxtra, pr_admin, pr_afp, pr_afs, pr_aim, pr_apt, pr_app, pr_attachment, pr_aw, pr_amss,
-    pr_barian, pr_beshare, pr_bitcoin, pr_blob, pr_bolo,
-    pr_callto, pr_cap, pr_chrome, pr_chrome_extension, pr_cid, pr_clsid, pr_coap, pr_coaps, pr_com_eventbrite_attendee, pr_content, pr_crid, pr_cvs,
-    pr_dab, pr_data, pr_dav, pr_dict, pr_did, pr_dina_playsingle, pr_dina_playcontainer, pr_dns, pr_dntp, pr_doi, pr_drm, pr_dtn, pr_dvb,
-    pr_ed2k, pr_example,
-    pr_facetime, pr_fax, pr_feed, pr_file, pr_filesystem, pr_finger, pr_fish, pr_fm, pr_ftp, pr_ftps,
-    pr_gemini, pr_geo, pr_gg, pr_git, pr_gizmoproject, pr_go, pr_gopher, pr_gtalk,
-    pr_h323, pr_hcp, pr_http, pr_https,
-    pr_iax, pr_icap, pr_icon, pr_im, pr_imap, pr_info, pr_iotdisco, pr_ipn, pr_ipp, pr_ipps, pr_irc, pr_irc6, pr_ircs, pr_iris, pr_iris_beep, pr_iris_xpc,
-        pr_iris_xpcs, pr_iris_lws, pr_itms,
-    pr_jabber, pr_jar, pr_javascript, pr_jdbc, pr_jms,
-    pr_keyparc,
-    pr_lastfm, pr_ldap, pr_ldaps,
-    pr_magnet, pr_mailserver, pr_mailto, pr_maps, pr_market, pr_message, pr_mid, pr_mms, pr_modem, pr_ms_help, pr_ms_settings, pr_ms_settings_airplanemode,
-        pr_ms_settings_bluetooth, pr_ms_settings_camera, pr_ms_settings_cellular, pr_ms_settings_cloudstorage, pr_ms_settings_emailandaccounts,
-        pr_ms_settings_language, pr_ms_settings_location, pr_ms_settings_lock, pr_ms_settings_nfctransactions, pr_ms_settings_notifications, pr_ms_settings_power,
-        pr_ms_settings_privacy, pr_ms_settings_proximity, pr_ms_settings_screenrotation, pr_ms_settings_wifi, pr_ms_settings_workplace, pr_msnum, pr_msrp, pr_msrps,
-        pr_mtqp, pr_mumble, pr_mupdate, pr_mvn,
-    pr_news, pr_nfs, pr_ni, pr_nih, pr_nntp, pr_notes,
-    pr_ocsp, pr_odbc, pr_oid, pr_opaquelocktoken, pr_openpgp4fpr,
-    pr_pack, pr_palm, pr_paparazzi, pr_payto, pr_pkcs11, pr_platform, pr_pop, pr_pres, pr_prospero, pr_proxy, pr_psyc,
-    pr_query,
-    pr_redis, pr_rediss, pr_reload, pr_res, pr_resource, pr_rmi, pr_rsync, pr_rtmfp, pr_rtmp, pr_rtsp,
-    pr_s3, pr_secondlife, pr_service, pr_session, pr_sftp, pr_sgn, pr_shttp, pr_sieve, pr_sip, pr_sips, pr_skype, pr_slack, pr_smb, pr_sms, pr_snews, pr_snmp,
-        pr_soap_beep, pr_soap_beeps, pr_soldat, pr_spotify, pr_ssh, pr_steam, pr_stratum, pr_stun, pr_stuns, pr_snv,
-    pr_tag, pr_teamspeak, pr_tel, pr_telnet, pr_tftp, pr_things, pr_thismessage, pr_tn3270, pr_tip, pr_trueconf, pr_turn, pr_turns, pr_tv,
-    pr_udp, pr_uid, pr_unreal, pr_urn, pr_ut2004, pr_vemmi, pr_ventrilo, pr_videotex, pr_view_source, pr_vnc,
-    pr_wais, pr_webcal, pr_webplus, pr_ws, pr_wss, pr_wtai, pr_wyciwyg, pr_xcon, pr_xcon_userid, pr_xfire, pr_xmlrpc_beep, pr_xmlrpc_beeps, pr_xmpp, pr_xri,
-    pr_ymsgr,
-    pr_z39_50, pr_z39_50r, pr_z39_50s, pr_zoommtg, pr_zoomus,
-    pr_error } e_protocol;
-
-typedef enum { prsa_aggregate, prsa_presentdisplay, prsa_presentplay, prsa_presentprint, prsa_presenttexttospeech, prsa_transform, prsa_translate, prsa_use } e_prs_action;
-typedef enum { prsd_compensate, prsd_credit, prsd_include, prsd_inform } e_prs_duty;
-typedef enum { qs_none, qs_c, qs_csv, qs_double, qs_html, qs_single } e_quote_style;
-typedef enum { rp_collection, rp_literal, rp_resource } e_rdf_parsetype;
-typedef enum { rdf_none, rdf_a, rdf_deprecated, rdf_1_0, rdf_1_1 } e_rdf_version;
-typedef enum {  erc_cooktime, erc_duration, erc_ingredient, erc_ingredientintro, erc_ingredients, erc_instructions, erc_instructionsintro, erc_itemname,
-                erc_ingredienthead, erc_nutrition, erc_nutrient, erc_nutrientname, erc_nutritionintro, erc_othertime, erc_preptime, erc_quantity,
-                erc_recipedescription, erc_recipenote, erc_recipetitle, erc_servingsize, erc_step, erc_stephead, erc_stepnote, erc_totaltime, erc_unit, erc_yield } e_recipe_content;
-typedef enum { rco_appetiser, rco_desert, rco_drink, rco_main, rco_salad, rco_sidedish } e_recipe_course;
-
-typedef enum {
-    cui_african, cui_american, cui_asian, cui_austrian,
-    cui_brazilian, cui_archipelagan,
-    cui_cajunorcreole, cui_california, cui_caribbean, cui_centralorsouthamerican, cui_chinese, cui_cuban,
-    cui_easterneuropean,
-    cui_french,
-    cui_german, cui_greek,
-    cui_hungarian, cui_halal,
-    cui_indian, cui_italian,
-    cui_japanese, cui_jewishorkosher,
-    cui_korean,
-    cui_lebanese,
-    cui_mediterranean, cui_mexican, cui_middleeastern, cui_moroccan,
-    cui_nativeamerican, cui_newengland,
-    cui_pacificnorthwest, cui_pacificrim, cui_peruvian, cui_polish,
-    cui_scandinavian, cui_southern, cui_southwest, cui_spanish, cui_swiss,
-    cui_thai,
-    cui_vegan, cui_vegetarian, cui_vietnamese
-} e_recipe_cuisine;
-
-typedef enum {  dnv_brainboosting, dnv_bonebuilding, dnv_diabetic, dnv_glutenfree, dnv_healthy, dnv_hearthealthy, dnv_highfiber, dnv_lactoseintolerant,
-                dnv_lowcalorie, dnv_lowcarbohydrate, dnv_lowcholesterol, dnv_lowfat, dnv_lowsaturatedfat, dnv_lowsodium, dnv_sugarfree, dnv_vegan,
-                dnv_vegetarian, dnv_weightloss } e_recipe_dietary;
-
-typedef enum {
-    dtv_appetiser,
-    dtv_babyfood, dtv_beanpealegume, dtv_beveragealcoholic, dtv_beveragenonalcoholic, dtv_bread,
-    dtv_cakeorcupcakes, dtv_candy, dtv_casserole, dtv_cheese, dtv_cookie,
-    dtv_dairy, dtv_diporspread,
-    dtv_egg,
-    dtv_fishshellfish, dtv_foodgift, dtv_frosting, dtv_fruit,
-    dtv_gravy, dtv_grill,
-    dtv_icecreamorsherbet,
-    dtv_jellyjampreserves,
-    dtv_marinadeorrub, dtv_meatorgame, dtv_muffinquickbread,
-    dtv_nuts,
-    dtv_pasta, dtv_pizza, dtv_picklesorrelishes, dtv_piestartspastries, dtv_poultry, dtv_puddingsorcustards,
-    dtv_saladorsaladdressing, dtv_sandwich,
-    dtv_sauceorcondiment, dtv_seafood, dtv_smoothie, dtv_spiceherbsseasonings, dtv_souporstew, dtv_stirfry, dtv_stuffingordressing,
-    dtv_vegetable
-} e_recipe_dish;
-
-typedef enum {  rex_alcohol, rex_dairy, rex_eggs, rex_fish, rex_meat, rex_nutsorpeanuts, rex_pork, rex_salt, rex_shellfish, rex_soy,
-                rex_sugar, rex_wheatorgluten } e_recipe_exclusion;
-typedef enum {  erk_barbecuegrill, erk_blender, erk_breadmachine, erk_broiler, erk_convectionoven, erk_deepfryer, erk_fonduepot, erk_foodprocessor,
-                erk_freezer, erk_fryingpan, erk_griddle, erk_grillpan, erk_icecreammaker, erk_microwaveoven, erk_oven, erk_pressurecooker, erk_ricecooker,
-                erk_sandwichorpaninipress, erk_slowcooker, erk_wafflemaker, erk_wok } e_recipe_kit;
-typedef enum { erm_breakfast, erm_brunch, erm_buffet, erm_dinner, erm_hdo, erm_lunch, erm_supper, erm_snack } e_recipe_meal;
-typedef enum {  erm_bake, erm_blend, erm_boil, erm_braise, erm_broil, erm_can, erm_deepfry, erm_fondue, erm_freeze, erm_fry, erm_grillorbarbecue, erm_marinate,
-                erm_microwave, erm_nocook, erm_press, erm_roast, erm_saute, erm_slowcook, erm_steam, erm_stirfry } e_recipe_method;
-typedef enum {  erso_amateur, erso_book, erso_celeb, erso_chef, erso_client, erso_contest, erso_magazine, erso_onlinewebsite, erso_readersubmitted,
-                erso_restaurant, erso_sponsors, erso_testkitchen, erso_tvshow } e_recipe_source;
-typedef enum { ersk_children, ersk_easy, ersk_expert, ersk_moderate } e_recipe_skill;
-
-typedef enum {
-    ersp_anniversary,
-    ersp_babyshower, ersp_barbeque, ersp_barbasmitzvah, ersp_birthdayadult, ersp_birthdaychild, ersp_bridalshower,
-    ersp_chinesenewyear, ersp_christmasday, ersp_christmaseve, ersp_cincodemayo, ersp_cocktailparty, ersp_cookieswap,
-    ersp_dinnerparty,
-    ersp_easter,
-    ersp_fathersday, ersp_fondueparty, ersp_fourthofjuly, ersp_funeralorwake,
-    ersp_graduation,
-    ersp_halloween, ersp_hanukkah,
-    ersp_kwanzaa,
-    ersp_labourday,
-    ersp_mardigras, ersp_memorialday,
-    ersp_newyearsday, ersp_newyearseve,
-    ersp_oscars,
-    ersp_passover, ersp_picnicorcookout, ersp_potluck,
-    ersp_ramadan, ersp_roshhashanah,
-    ersp_stpatricksday, ersp_superbowl,
-    ersp_tailgating, ersp_thanksgiving,
-    ersp_valentinesday,
-    ersp_yomkippur,
-    ersp_wedding, ersp_winterholidayparty
-} e_recipe_special;
-
-typedef enum {  ert_bake, ert_broil, ert_chill, ert_cool, ert_decorate, ert_grill, ert_freeze, ert_handson, ert_marinate, ert_microwave,
-                ert_process, ert_rise, ert_roast, ert_slowcook, ert_stand, ert_starttofinish } e_recipe_time;
-typedef enum { rr_rect, rr_round } e_rect_round;
-typedef enum { rf_no, rf_downgrade, rf_same, rf_origin, rf_strict, rf_strictcross, rf_cross, rf_unsafe } e_referrer;
-
-typedef enum {
-    r_context,
-
-    // microformats v1 only
-    r_entry_category = (int) c_error + 1,
-
-    // both v1 and v2
-    r_acquaintance, r_alternative, r_appendix, r_author, r_bookmark, r_chapter, r_child, r_colleague, r_contact,
-    r_contents, r_copyright, r_coresident, r_coworker, r_crush, r_date, r_directory, r_enclosure, r_first, r_friend,
-    r_glossary, r_help, r_home, r_index, r_in_reply_to, r_its_rules, r_kin, r_last, r_licence, r_me, r_met, r_muse,
-    r_parent, r_payment, r_prev, r_pronunciation, r_section, r_sibling, r_sidebar, r_spouse, r_start, r_stylesheet,
-    r_subsection, r_supercedes, r_sweetheart, r_toc, r_top, r_transformation, r_up, r_vcs_git, r_vcs_svn,
-    r_micropub, r_pingback, r_webmention, r_canonical, r_code_licence, r_content_licence, r_discussion, r_issues,
-    r_bibliography, r_cite, r_group, r_map, r_member,
-    r_neighbour, r_next, r_nofollow, r_tag,
-
-    // microformats v2 only
-    r_about, r_profile, r_accessibility,
-
-        // https://github.com/ampproject/amphtml
-    r_amphtml,
-
-    r_apple_touch_icon, r_apple_touch_icon_precomposed,
-    r_apple_touch_startup_image,
-
-    // https://sitemorse.com/rel-archived/
-    r_archived,
-
-    r_archives, r_attachment, r_authorisation_endpoint, r_banner, r_begin, r_biblioentry,
-    r_blocked_by, r_category, r_chrome_webstore_item, r_citation,
-    r_cite_as, r_code_repository, r_collection, r_comment, r_component,
-    r_content_repository, r_contribution, r_convertedfrom, r_create_form,
-    r_current, r_dcterms_conformsto, r_dcterms_contributor, r_dcterms_creator, r_dcterms_description, r_dcterms_hasformat,
-    r_dcterms_haspart, r_dcterms_hasversion, r_dcterms_isformatof, r_dcterms_ispartof, r_dcterms_isreferencedby, r_dcterms_isreplacedby,
-    r_dcterms_isrequiredby, r_dcterms_isversionof, r_dcterms_licence, r_dcterms_mediator, r_dcterms_publisher, r_dcterms_references,
-    r_dcterms_relation, r_dcterms_replaces, r_dcterms_requires, r_dcterms_rightsholder, r_dcterms_source, r_dcterms_subject, r_definition,
-    r_describedby, r_describes, r_disclaimer, r_disclosure, r_dnsprefetch, r_docs_oasis_open_org_ns_cmis_link_200908_acl,
-    r_duplicate, r_edit, r_edit_form, r_edit_media, r_editor, r_edituri, r_end, r_endorsed, r_entry_content, r_expect, r_external,
-    r_fan, r_feed, r_footnote, r_gbfs, r_gtfs_realtime, r_gtfs_static, r_hosts,
-    r_hub, r_icon, r_image_src, r_import, r_intervalafter, r_intervalbefore, r_intervalcontains, r_intervaldisjoint,
-    r_intervalduring, r_intervalequals, r_intervalfinishedby, r_intervalfinishes, r_intervalin, r_intervalmeets, r_intervalmetby,
-    r_intervaloverlappedby, r_intervaloverlaps, r_intervalstartedby, r_intervalstarts, r_item, r_item_licence, r_jslicence,
-    r_kinetic_stylesheet, r_latest_version, r_lightbox, r_lightvideo, r_logo, r_longdesc, r_lrdd, r_m_pagescroll2id, r_made,
-    r_manifest, r_maskicon, r_memento, r_meta, r_microsummary, r_monitor, r_monitor_group,
-    r_next_archive, r_navigate, r_noopener, r_noreferrer, r_openid2_local_id, r_openid2_provider,
-    r_openid_delegate, r_openid_server, r_origin, r_original, r_p3pv1, r_pavatar, r_permalink, r_pgpkey, r_pointer,
-    r_popover, r_preconnect, r_predecessor_version, r_prefetch, r_preload, r_prerender, r_prev_archive, r_preview,
-    r_principles, r_privacy, r_privacy_policy,
-    r_publickey, r_publisher, r_radioepg, r_referral, r_related, r_rendition, r_replies, r_reply_to, r_resource,
-    r_respond_proxy, r_respond_redirect, r_restconf, r_root, r_ontology_dc, r_ontology_dcterms, r_search, r_self, r_service,
-    r_service_desc, r_service_doc, r_service_meta, r_shortlink, r_sitemap, r_source, r_sponsor,
-    r_status, r_stylesheetless, r_subresource, r_successor_version, r_sunset, r_sword, r_syndication,
-    r_terms_of_service, r_timegate, r_timemap, r_timesheet, r_token_endpoint, r_tooltip, r_trackback, r_trademark,
-    r_translation, r_type, r_unendorsed, r_urc, r_user, r_vcalendar_child, r_vcalendar_parent, r_vcalendar_sibling,
-    r_version_history, r_via, r_w_api_org, r_widget, r_wlwmanifest, r_working_copy, r_working_copy_of,
-    r_yandex_tableau_widget,
-
-    // standard dublin core
-    r_dc_contributor, r_dc_coverage, r_dc_creator, r_dc_date, r_dc_description, r_dc_format, r_dc_identifier, r_dc_language,
-    r_dc_publisher, r_dc_relation, r_dc_rights, r_dc_source, r_dc_subject, r_dc_title, r_dc_type,
-
-    // creative commons
-    r_cc_permits, r_cc_requires, r_cc_prohibits, r_cc_jurisdiction, r_cc_legalcode, r_cc_deprecatedon,
-    r_cc_licence, r_cc_morepermissions, r_cc_attributionname, r_cc_attributionurl, r_cc_useguidelines,
-
-    // HTML 1.0 ()  plus made & search
-    r_annotation, r_embed, r_history, r_includes, r_interested, r_present, r_recedes, r_reply, r_subdocument,
-    r_supersedes, r_useglossary, r_useindex,
-
-    // WhatWG HTML
-    r_bodyok, r_modulepreload, r_opener, r_serviceworker,
-
-    // curie
-    r_curie,
-
-    // additional xhv
-    r_role,
-
-    r_illegal } e_rel;
-
-typedef enum { ri_auto, ri_perceptual, ri_relativecolourimetric, ri_saturation, ri_absolutecolourimetric } e_rendering_in_tents;
-typedef enum { re_always, re_whennotactive, re_never } e_restart;
-typedef enum { ru_rotate_left, ru_rotate_right, ru_upright } e_rotate_upright;
-typedef enum { trc_column, trc_row } e_row_column;
-typedef enum { rs_yes, rs_no, rs_maybe, rs_interested } e_rsvp;
-typedef enum { ru_none, ru_groups, ru_rows, ru_cols, ru_all } e_rules;
-typedef enum { su_safe, su_unsafe } e_safe_unsafe;
-typedef enum {  sand_unknown, sand_adwua, sand_asabua, sand_atnbua, sand_atntcp, sand_ad, sand_forms, sand_modals, sand_orientation, sand_pointer,
-                sand_popups, sand_popupescape, sand_presentation, sand_origin, sand_scripts, sand_navigation } e_sandbox;
-typedef enum { sc_interlace, sc_progressive } e_scan;
-typedef enum { scei_after, scei_before, scei_centre, scei_end, scei_start, scei_inherit } e_scei;
 
 // mostly RDFa common context
 // (good grief : https://lov.linkeddata.es/dataset/lov/vocabs )
@@ -2955,23 +2668,27 @@ typedef enum { scei_after, scei_before, scei_centre, scei_end, scei_start, scei_
     s_adms, s_article, s_as, \
     s_bfo, s_bibo, s_biro, s_book, \
     s_cc, s_cito, s_content, s_crs2, s_csvw, s_ctag, \
-    s_daq, s_dbd, s_dbo, s_dbp, s_dbp_owl, s_dbr, s_dc, s_dcam, s_dcat, s_dcmi, s_dct, s_ddi, s_doap, s_dqv, s_describedby, s_duv, \
+    s_daq, s_dbd, s_dbo, s_dbp, s_dbp_owl, s_dbr, s_dc, s_dcam, s_dcat, s_dcmi, s_dct, s_ddi, s_doap, s_dpv, s_dpv_gdpr, s_dpv_legal, s_dpv_nace, \
+        s_dpv_owl, s_dpv_pd, s_dpv_skos, s_dpv_tech, s_dqv, s_describedby, s_duv, \
     s_earl, s_event, s_exif, s_exifex, \
-    s_fabio, s_faux, s_foaf, s_frbr, \
+    s_fabio, s_foaf, s_frbr, \
     s_gr, s_grddl, s_gs1, \
     s_ical, s_icaltzd, \
     s_jsonld, \
     s_ldp, s_licence, s_locn, \
     s_ma, s_microformats, s_music, \
     s_oa, s_odrl, s_og, s_org, s_owl, \
-    s_pam, s_pamp, s_pcm, s_pcmm, s_pcv, s_pdf, s_photoshop, s_pim, s_pmi, s_poetry, s_prism, s_prism_ad, s_prl, s_prm, s_profile, s_prov, s_prs, s_psv, s_ptr, s_pur, \
+    s_pam, s_pamp, s_pcm, s_pcmm, s_pcv, s_pdf, s_photoshop, s_pim, s_pmi, s_poetry, s_prism, s_prism_ad, s_prl, s_prm, s_profile, \
+        s_prov, s_prs, s_psv, s_ptr, s_pur, \
     s_qb, \
     s_rdf, s_rdfa, s_rdfg, s_rdfs, s_rev, s_rif, s_role, s_rr, \
-    s_schema, s_sd, s_sioc, s_sioc_s, s_sioc_t, s_skos, s_skosxl, s_stdim, s_stevt, s_stfnt, s_stjob, s_stref, s_stver, s_sosa, s_ssn, \
+    s_schema, s_sd, s_sioc, s_sioc_s, s_sioc_t, s_skos, s_skosxl, s_stdim, s_stevt, s_stfnt, s_stjob, s_stref, s_stver, s_sosa, s_spl, \
+        s_ssn, s_svd, s_svdu, s_svl, s_svpu, s_svpr, s_svr, \
     s_taxo, s_tiff, s_time, \
     s_v, s_vann, s_vcard, s_video, s_void, \
     s_wdr, s_wdrs, s_website, s_whatwg, \
     s_xhv, s_xml, s_xmp, s_xmpbj, s_xmpdm, s_xmpg, s_xmpgimg, s_xmpidq, s_xmpmm, s_xmprights, s_xmptpg, s_xsd, \
+    s_faux, \
     s_error
 
 typedef enum { ONTOLOGIES } e_ontology;
@@ -3114,6 +2831,359 @@ typedef enum
     doap_repository,
     doap_specification, doap_svnrepository,
     doap_version,
+
+    // data privacy
+    dpv_academicresearch, dpv_academicscientificorganisation, dpv_accent, dpv_access, dpv_accesscontrol, dpv_accesscontrolmethod, dpv_accountidentifier, dpv_accountmanagement, dpv_acquantaince,
+        dpv_acquire, dpv_activitycompleted, dpv_activityhalted, dpv_activitymonitoring, dpv_activityongoing, dpv_activityproposed, dpv_activitystatus, dpv_adapt, dpv_adult, dpv_advertising, dpv_age,
+        dpv_algorithmiclogic, dpv_align, dpv_alter, dpv_analyse, dpv_anonymisation, dpv_anonymise, dpv_anonymiseddata, dpv_antiterrorismoperations, dpv_apartmentowned, dpv_applicant,
+        dpv_assess, dpv_assessment, dpv_association, dpv_asylumseeker, dpv_asymmetriccryptography, dpv_asymmetricencryption, dpv_attitude, dpv_auditapproved, dpv_auditnotrequired, dpv_auditrejected, dpv_auditrequested, dpv_auditrequired, dpv_auditstatus,
+        dpv_authenticating, dpv_authenticationabc, dpv_authenticationhistory, dpv_authenticationpabc, dpv_authenticationprotocols, dpv_authorisationprocedure, dpv_authority,
+        dpv_automateddecisionmaking,
+    dpv_bankaccount, dpv_behavioural, dpv_beneficiary, dpv_benefit, dpv_biometric, dpv_bloodtype, dpv_browserfingerprint, dpv_browsingbehaviour, dpv_browsingreferral,
+    dpv_calllog, dpv_carowned, dpv_certification, dpv_certificationseal, dpv_character, dpv_child, dpv_citizen, dpv_client, dpv_codeofconduct, dpv_collect, dpv_collectedpersonaldata,
+        dpv_combine, dpv_commercialinterest, dpv_commercialresearch, dpv_communication, dpv_communicationforcustomercare, dpv_communicationmanagement, dpv_communicationsmetadata,
+        dpv_completeanonymisation, dpv_compliancestatus, dpv_compliant, dpv_concept, dpv_connection, dpv_consequence, dpv_consequenceassideeffect, dpv_consequenceoffailure, 
+        dpv_consequenceofsuccess, dpv_consent, dpv_consult, dpv_consultation, dpv_consultationwithauthority, dpv_consumer, dpv_contact, dpv_context, dpv_contract,
+        dpv_contractperformance, dpv_contractualterms, dpv_controllerprocessoragreement, dpv_copy, dpv_countermoneylaundering, dpv_country, dpv_createeventrecommendations,
+        dpv_createpersonalisedrecommendations, dpv_createproductrecommendations, dpv_credit, dpv_creditcapacity, dpv_creditcardnumber, dpv_creditchecking, dpv_creditrecord,
+        dpv_creditscore, dpv_creditstanding, dpv_creditworthiness, dpv_criminal, dpv_criminalcharge, dpv_criminalconviction, dpv_criminalpardon, dpv_customer, dpv_customercare,
+        dpv_customerclaimsmanagement, dpv_customermanagement, dpv_customerordermanagement, dpv_customerrelationshipmanagement, dpv_customersolvencymonitoring,
+    dpv_damage, dpv_data, dpv_datacontroller, dpv_dataexporter, dpv_dataimporter, dpv_dataprocessingagreement, dpv_dataprocessingrecords, dpv_dataprocessor, dpv_dataprotectionauthority, dpv_dataprotectionofficer,
+        dpv_datasource, dpv_datasubject, dpv_datasubjectright, dpv_datasubprocessor, dpv_datatransferimpactassessment, dpv_datatransferlegalbasis, dpv_deidentification,
+        dpv_deliveryofgoods, dpv_demeanour, dpv_demographic, dpv_derive, dpv_derivedpersonaldata, dpv_designstandard, dpv_destruct, dpv_detriment, dpv_deviceapplications,
+        dpv_devicebased, dpv_deviceoperatingsystem, dpv_devicesoftware, dpv_dialect, dpv_directmarketing, dpv_disability, dpv_disciplinaryaction, dpv_disclose,
+        dpv_disclosebytransmission, dpv_dislike, dpv_disputemanagement, dpv_disseminate, dpv_divorce, dpv_dnacode, dpv_dpia, dpv_drugtestresult, dpv_duration,
+    dpv_economicunion, dpv_elderlydatasubject, dpv_emailaddress, dpv_emailcontent, dpv_employee, dpv_employmenthistory, dpv_encryptioninrest, dpv_encryptionintransfer, dpv_enforceaccesscontrol, dpv_enforcesecurity,
+        dpv_enterintocontract, dpv_entity, dpv_erase, dpv_ethnicity, dpv_ethnicorigin, dpv_evaluationscoring, dpv_expressedconsent, dpv_explicitlyexpressedconsent, dpv_external,
+    dpv_family, dpv_familyhealthhistory, dpv_familystructure, dpv_favourite, dpv_favouritecolour, dpv_favouritefood, dpv_favouritemusic, dpv_fetish, dpv_filter, dpv_financial,
+        dpv_financialaccount, dpv_financialaccountnumber, dpv_fingerprint, dpv_forprofitorganisation, dpv_fraudpreventionanddetection, dpv_frequency, dpv_friend,
+    dpv_gender, dpv_generalreputation, dpv_generate, dpv_generatedpersonaldata, dpv_geographic, dpv_governmentalorganisation, dpv_gpscoordinate, dpv_groupmembership,
+        dpv_guardianofdatasubject, dpv_guidelinesprinciple,
+    dpv_haircolour, dpv_harm, dpv_health, dpv_healthdata, dpv_healthhistory, dpv_healthrecord, dpv_height, dpv_historical, dpv_houseowned, dpv_humaninvolvement, dpv_humanresourcemanagement,
+    dpv_identifying, dpv_identifyrectifyimpairments, dpv_identityverification, dpv_immigrant, dpv_impact, dpv_impactassessment, dpv_importance, dpv_improveexistingproductsandservices, dpv_improveinternalcrmprocesses, dpv_income,
+        dpv_incomebracket, dpv_incompliant, dpv_increaseservicerobustness, dpv_individualhealthhistory, dpv_industryconsortium, dpv_infer, dpv_inferredpersonaldata, dpv_innovativeuseofnewtechnologies, dpv_intention, dpv_interaction, dpv_interest,
+        dpv_internal, dpv_internalresourceoptimisation, dpv_internationalorganisation, dpv_ipaddress,
+    dpv_job, dpv_jobapplicant, dpv_jointdatacontrollers, dpv_jointdatacontrollersagreement,
+    dpv_knowledgebelief,
+    dpv_language, dpv_largescaleprocessing, dpv_law, dpv_legalagreement, dpv_legalbasis, dpv_legalcompliance, dpv_legalentity, dpv_legalobligation, dpv_legitimateinterest,
+        dpv_legitimateinterestassessment, dpv_legitimateinterestofcontroller, dpv_legitimateinterestofthirdparty, dpv_lifehistory, dpv_like, dpv_linkclicked,
+        dpv_loanrecord, dpv_location,
+    dpv_macaddress, dpv_maintaincreditcheckingdatabase, dpv_maintaincreditratingdatabase, dpv_maintainfrauddatabase, dpv_makeavailable, dpv_maritalstatus, dpv_marketing,
+        dpv_marriage, dpv_match, dpv_matchingcombining, dpv_materialdamage, dpv_medicalhealth, dpv_member, dpv_memberpartnermanagement, dpv_mentalhealth,
+        dpv_mentallyvulnerabledatasubject, dpv_modify, dpv_monitor, dpv_move,
+    dpv_nationalauthority, dpv_naturalperson, dpv_name, dpv_nda, dpv_necessity, dpv_noncitizen, dpv_noncommercialresearch, dpv_nongovernmentorganisation, dpv_nonmaterialdamage, dpv_nonpersonaldata,
+        dpv_nonpublicdatasource, dpv_nonprofitorganisation, dpv_notcompliant, dpv_notice, dpv_notrequired,
+    dpv_observe, dpv_observedpersonaldata, dpv_obtain, dpv_officialauthorityofcontroller, dpv_officialid, dpv_offspring, dpv_opinion, dpv_optimisationforconsumer, dpv_optimisationforcontroller,
+        dpv_optimiseuserinterface, dpv_optional, dpv_organisation, dpv_organisationalmeasure, dpv_organisationalunit, dpv_organisationcompliancemanagement,
+        dpv_organisationgovernance, dpv_organisationriskmanagement, dpv_organise, dpv_ownership,
+    dpv_parent, dpv_parentofdatasubject, dpv_partiallycompliant, dpv_participant, dpv_password, dpv_patient, dpv_payment, dpv_paymentcard, dpv_paymentcardexpiry, dpv_paymentcardnumber, dpv_personaldata,
+        dpv_personaldatacategory, dpv_personaldatahandling, dpv_personalisation, dpv_personalisedadvertising, dpv_personalisedbenefits, dpv_personality,
+        dpv_personalpossession, dpv_personnelhiring, dpv_personnelmanagement, dpv_personnelpayment, dpv_philosophicalbelief, dpv_physicaladdress, dpv_physicalcharacteristic,
+        dpv_physicalhealth, dpv_physicaltrait, dpv_pia, dpv_picture, dpv_piercing, dpv_pincode, dpv_policy, dpv_politicalaffiliation, dpv_preference, dpv_prescription,
+        dpv_primaryimportance, dpv_privacybydefault, dpv_privacybydesign, dpv_privacynotice, dpv_privacypreference, dpv_processing, dpv_processingcontext, dpv_processingrecords,
+        dpv_proclivitie, dpv_professional, dpv_professionalcertification, dpv_professionalevaluation, dpv_professionalinterview, dpv_profiling, dpv_pseudoanonymisation,
+        dpv_pseudoanonymise, dpv_pseudoanonymiseddata, dpv_pseudonymisationencryption, dpv_publicdatasource, dpv_publicinterest, dpv_publiclife, dpv_publicrelations,
+        dpv_purchase, dpv_purchasesandspendinghabit, dpv_purpose,
+    dpv_query,
+    dpv_race, dpv_recipient, dpv_record, dpv_recordmanagement, dpv_recordsofactivities, dpv_reference, dpv_region, dpv_regionalauthority, dpv_registerofprocessingactivities,
+        dpv_registrationauthentication, dpv_regularityofrecertification, dpv_relation, dpv_relationship, dpv_religion, dpv_religiousbelief, dpv_remove, dpv_representative,
+        dpv_requestedserviceprovision, dpv_required, dpv_researchanddevelopment, dpv_restrict, dpv_retina, dpv_retrieve, dpv_right, dpv_risk, dpv_riskmanagementprocedure,
+        dpv_riskmitigationmeasure, dpv_roomnumber,
+    dpv_safeguard, dpv_safeguardfordatatransfer, dpv_salary, dpv_sale, dpv_school, dpv_screen, dpv_seal, dpv_secondaryimportance, dpv_secrettext, dpv_sector, dpv_security,
+        dpv_selldatatothirdparties, dpv_sellinsightsfromdata, dpv_sellproducts, dpv_sellproductstodatasubject, dpv_selltargettedadvertisements, dpv_sensitivepersonaldata,
+        dpv_serviceconsumptionbehaviour, dpv_serviceoptimisation, dpv_servicepersonalisation, dpv_serviceprovision, dpv_serviceusageanalytics, dpv_sexual,
+        dpv_sexualhistory, dpv_sexualpreference, dpv_share, dpv_sibling, dpv_singlesignon, dpv_skintone, dpv_social, dpv_socialmediacommunication,
+        dpv_socialmediamarketing, dpv_socialnetwork, dpv_socialstatus, dpv_specialcategorypersonaldata, dpv_stafftraining, dpv_status, dpv_storagecondition, dpv_storagedeletion,
+        dpv_storageduration, dpv_storagelocation, dpv_storagerestoration, dpv_storagerestriction, dpv_store, dpv_structure, dpv_student,
+        dpv_subprocessoragreement, dpv_subscriber, dpv_supranationalauthority, dpv_supranationalunion, dpv_syntheticdata, dpv_systematicmonitoring,
+    dpv_targetedadvertising, dpv_tattoo, dpv_tax, dpv_technicalmeasure, dpv_technicalorganisationalmeasure, dpv_technicalorganisationmeasure, dpv_technicalserviceprovision, dpv_technology,
+        dpv_telephonenumber, dpv_thirdcountry, dpv_thirdparty, dpv_thirdpartyagreement, dpv_thought, dpv_tourist, dpv_tracking, dpv_transaction, dpv_transactional, dpv_transfer, dpv_transform, dpv_transmit,
+        dpv_tvviewingbehaviour,
+    dpv_uid, dpv_usageanalytics, dpv_use, dpv_user, dpv_userinterfacepersonalisation, dpv_username,
+    dpv_vendormanagement, dpv_vendorpayment, dpv_vendorrecordsmanagement, dpv_vendorselectionassessment, dpv_violationofcompliance, dpv_visitor, dpv_vitalinterest,
+        dpv_vitalinterestofdatasubject, dpv_vitalinterestofnaturalperson, dpv_voicecommunicationrecording, dpv_voicemail, dpv_vulnerabledatasubject,
+    dpv_weight, dpv_workhistory,
+
+    // DPV GDPR
+    dpv_gdpr_a13, dpv_gdpr_a14, dpv_gdpr_a15, dpv_gdpr_a16, dpv_gdpr_a17, dpv_gdpr_a18, dpv_gdpr_a19, dpv_gdpr_a20,
+        dpv_gdpr_a21, dpv_gdpr_a22, dpv_gdpr_a73, dpv_gdpr_a77,
+    dpv_gdpr_a453,
+    dpv_gdpr_a462a, dpv_gdpr_a462b, dpv_gdpr_a462c, dpv_gdpr_a462d, dpv_gdpr_a462e, dpv_gdpr_a462f,
+    dpv_gdpr_a463a, dpv_gdpr_a463b, 
+    dpv_gdpr_a491a, dpv_gdpr_a491b, dpv_gdpr_a491c, dpv_gdpr_a491d, dpv_gdpr_a491e, dpv_gdpr_a491f, dpv_gdpr_a491g,
+    dpv_gdpr_a492,
+    dpv_gdpr_a61aexplicitconsent, dpv_gdpr_a61anonexplicitconsent,
+    dpv_gdpr_a61b, dpv_gdpr_a61c, dpv_gdpr_a61d, dpv_gdpr_a61e, dpv_gdpr_a61e_officialauthority, dpv_gdpr_a61e_publicinterest, dpv_gdpr_a61f,
+    dpv_gdpr_a92a, dpv_gdpr_a92b, dpv_gdpr_a92c, dpv_gdpr_a92d, dpv_gdpr_a92e, dpv_gdpr_a92f, dpv_gdpr_a92g, dpv_gdpr_a92h, dpv_gdpr_a92i, dpv_gdpr_a92j,
+    dpv_gdpr_adhoccontractualclauses,
+    dpv_gdpr_bindingcorporaterules,
+    dpv_gdpr_certificationmechanismsfordatatransfers, dpv_gdpr_codesofconductfordatatransfers,
+    dpv_gdpr_datatransfertool,
+    dpv_gdpr_dpiaindicateshighrisk, dpv_gdpr_dpiaindicateslowrisk, dpv_gdpr_dpiaindicatesnorisk, dpv_gdpr_dpianecessityassessment, dpv_gdpr_dpianecessitystatus,
+        dpv_gdpr_dpianotrequired, dpv_gdpr_dpiaoutcome, dpv_gdpr_dpiaoutcomedpaconsultation, dpv_gdpr_dpiaoutcomehighresidualrisk, dpv_gdpr_dpiaoutcomerisksmitigated,
+        dpv_gdpr_dpiaoutcomestatus, dpv_gdpr_dpiaprocedure, dpv_gdpr_dpiarequired, dpv_gdpr_dpiariskstatus, 
+    dpv_gdpr_sccbycommission, dpv_gdpr_sccbysupervisoryauthority, dpv_gdpr_standardcontractualclauses,
+        dpv_gdpr_supplementarymeasure,
+
+    // DPV legal
+    dpvl_ad, dpvl_adequacy_eu_ad, dpvl_adequacy_eu_ar, dpvl_adequacy_eu_ca, dpvl_adequacy_eu_ch, dpvl_adequacy_eu_fo, dpvl_adequacy_eu_gb,
+        dpvl_adequacy_eu_gg, dpvl_adequacy_eu_il, dpvl_adequacy_eu_im, dpvl_adequacy_eu_je, dpvl_adequacy_eu_jp, dpvl_adequacy_eu_nz,
+        dpvl_adequacy_eu_uy, dpvl_ae, dpvl_af, dpvl_africa, dpvl_ag, dpvl_ai, dpvl_al, dpvl_am, dpvl_americas, dpvl_ao, dpvl_aq, dpvl_ar, dpvl_as,
+        dpvl_asia, dpvl_at, dpvl_au, dpvl_australiaandnewzealand, dpvl_aw, dpvl_ax, dpvl_az,
+    dpvl_ba, dpvl_bb, dpvl_bd, dpvl_be, dpvl_bf, dpvl_bg, dpvl_bh, dpvl_bi, dpvl_bj, dpvl_bl, dpvl_bm, dpvl_bn, dpvl_bo, dpvl_bq, dpvl_br,
+        dpvl_bs, dpvl_bt, dpvl_bv, dpvl_bw, dpvl_by, dpvl_bz,
+    dpvl_ca, dpvl_caribbean, dpvl_cc, dpvl_cd, dpvl_centralamerica, dpvl_centralasia, dpvl_cf, dpvl_cg, dpvl_ch, dpvl_channelislands, dpvl_ci,
+        dpvl_ck, dpvl_cl, dpvl_cm, dpvl_cn, dpvl_co, dpvl_cr, dpvl_cu, dpvl_cv, dpvl_cw, dpvl_cx, dpvl_cy, dpvl_cz,
+    dpvl_de, dpvl_de_bb, dpvl_de_bdsg, dpvl_de_be, dpvl_de_be_bbgdsg, dpvl_de_be_blndsg, dpvl_de_bw, dpvl_de_bw_ldsg, dpvl_de_by,
+        dpvl_de_by_baydsg, dpvl_de_hb, dpvl_de_hb_bremdsgvoag, dpvl_de_he, dpvl_de_he_hdisg, dpvl_de_hh, dpvl_de_hh_hmbdsg, dpvl_de_lsa_dsg,
+        dpvl_de_mv, dpvl_de_mv_dsg, dpvl_de_ni, dpvl_de_ni_ndsg, dpvl_de_nw, dpvl_de_nw_dsg, dpvl_de_rp, dpvl_de_rp_ldsg, dpvl_de_sh,
+        dpvl_de_sh_ldsg, dpvl_de_sl, dpvl_de_sl_sdsg, dpvl_de_sn, dpvl_de_sn_sachsdsg, dpvl_de_st, dpvl_de_th, dpvl_de_th_thurdsg, dpvl_dj,
+        dpvl_dk, dpvl_dm, dpvl_do, dpvl_dpa_at, dpvl_dpa_be, dpvl_dpa_bg, dpvl_dpa_cz, dpvl_dpa_de, dpvl_dpa_de_bb, dpvl_dpa_de_be,
+        dpvl_dpa_de_by_non_public, dpvl_dpa_de_by_public, dpvl_dpa_de_hb, dpvl_dpa_de_he, dpvl_dpa_de_hh, dpvl_dpa_de_mv, dpvl_dpa_de_ni,
+        dpvl_dpa_de_nw, dpvl_dpa_de_rp, dpvl_dpa_de_sh, dpvl_dpa_de_sl, dpvl_dpa_de_sn, dpvl_dpa_de_st, dpvl_dpa_de_th, dpvl_dpa_dk, dpvl_dpa_ee,
+        dpvl_dpa_es, dpvl_dpa_fi, dpvl_dpa_fr, dpvl_dpa_gr, dpvl_dpa_hr, dpvl_dpa_hu, dpvl_dpa_ie, dpvl_dpa_it, dpvl_dpa_lt, dpvl_dpa_lu,
+        dpvl_dpa_lv, dpvl_dpa_mt, dpvl_dpa_nl, dpvl_dpa_pl, dpvl_dpa_pt, dpvl_dpa_ro, dpvl_dpa_se, dpvl_dpa_si, dpvl_dpa_sk, dpvl_dz,
+    dpvl_easternafrica, dpvl_easternasia, dpvl_easterneurope, dpvl_ec, dpvl_ee, dpvl_eea, dpvl_eea30, dpvl_eea31, dpvl_eg, dpvl_eh, dpvl_er,
+        dpvl_es, dpvl_et, dpvl_eu, dpvl_eu_gdpr, dpvl_eu27, dpvl_eu28, dpvl_europe,
+    dpvl_fi, dpvl_fj, dpvl_fk, dpvl_fm, dpvl_fo, dpvl_fr,
+    dpvl_ga, dpvl_gb, dpvl_gd, dpvl_ge, dpvl_gf, dpvl_gg, dpvl_gh, dpvl_gi, dpvl_gl, dpvl_gm, dpvl_gn, dpvl_gp, dpvl_gq, dpvl_gr, dpvl_gs,
+        dpvl_gt, dpvl_gu, dpvl_gw, dpvl_gy,
+    dpvl_hk, dpvl_hm, dpvl_hn, dpvl_hr, dpvl_ht, dpvl_hu,
+    dpvl_id, dpvl_ie, dpvl_il, dpvl_im, dpvl_in, dpvl_io, dpvl_iq, dpvl_ir, dpvl_is, dpvl_it,
+    dpvl_je, dpvl_jm, dpvl_jo, dpvl_jp,
+    dpvl_ke, dpvl_kg, dpvl_kh, dpvl_ki, dpvl_km, dpvl_kn, dpvl_kp, dpvl_kr, dpvl_kw, dpvl_ky, dpvl_kz,
+    dpvl_la, dpvl_latinamericaandthecaribbean, dpvl_lb, dpvl_lc, dpvl_li, dpvl_lk, dpvl_lr, dpvl_ls, dpvl_lt, dpvl_lu, dpvl_lv, dpvl_ly,
+    dpvl_ma, dpvl_mc, dpvl_md, dpvl_me, dpvl_melanesia, dpvl_mf, dpvl_mg, dpvl_mh, dpvl_micronesia, dpvl_middleafrica, dpvl_mk, dpvl_ml,
+        dpvl_mm, dpvl_mn, dpvl_mo, dpvl_mp, dpvl_mq, dpvl_mr, dpvl_ms, dpvl_mt, dpvl_mu, dpvl_mv, dpvl_mw, dpvl_mx, dpvl_my, dpvl_mz,
+    dpvl_na, dpvl_nc, dpvl_ne, dpvl_nf, dpvl_ng, dpvl_ni, dpvl_nl, dpvl_no, dpvl_northernafrica, dpvl_northernamerica, dpvl_northerneurope,
+        dpvl_np, dpvl_nr, dpvl_nu, dpvl_nz,
+    dpvl_oceania, dpvl_om,
+    dpvl_pa, dpvl_pe, dpvl_pf, dpvl_pg, dpvl_ph, dpvl_pk, dpvl_pl, dpvl_pm, dpvl_pn, dpvl_polynesia, dpvl_pr, dpvl_ps, dpvl_pt, dpvl_pw,
+        dpvl_py,
+    dpvl_qa,
+    dpvl_re, dpvl_ro, dpvl_rs, dpvl_ru, dpvl_rw,
+    dpvl_sa, dpvl_sark, dpvl_sb, dpvl_sc, dpvl_sd, dpvl_se, dpvl_sg, dpvl_sh, dpvl_si, dpvl_sj, dpvl_sk, dpvl_sl, dpvl_sm, dpvl_sn, dpvl_so,
+        dpvl_southamerica, dpvl_southeasternasia, dpvl_southernafrica, dpvl_southernasia, dpvl_southerneurope, dpvl_sr, dpvl_ss, dpvl_st,
+        dpvl_subsaharanafrica, dpvl_sv, dpvl_sx, dpvl_sy, dpvl_sz,
+    dpvl_tc, dpvl_td, dpvl_tf, dpvl_tg, dpvl_th, dpvl_tj, dpvl_tk, dpvl_tl, dpvl_tm, dpvl_tn, dpvl_to, dpvl_tr, dpvl_tt, dpvl_tv, dpvl_tw,
+    dpvl_tz,
+    dpvl_ua, dpvl_ug, dpvl_um, dpvl_us, dpvl_us_ak, dpvl_us_al, dpvl_us_ar, dpvl_us_as, dpvl_us_az, dpvl_us_ca, dpvl_us_ca_ccpa,
+        dpvl_us_ca_cpra, dpvl_us_co, dpvl_us_ct, dpvl_us_dc, dpvl_us_de, dpvl_us_fl, dpvl_us_ga, dpvl_us_gu, dpvl_us_hi, dpvl_us_ia, dpvl_us_id,
+        dpvl_us_il, dpvl_us_in, dpvl_us_ks, dpvl_us_ky, dpvl_us_la, dpvl_us_ma, dpvl_us_md, dpvl_us_me, dpvl_us_mi, dpvl_us_mn, dpvl_us_mo,
+        dpvl_us_mp, dpvl_us_ms, dpvl_us_mt, dpvl_us_nc, dpvl_us_nd, dpvl_us_ne, dpvl_us_nh, dpvl_us_nj, dpvl_us_nm, dpvl_us_nv, dpvl_us_ny,
+        dpvl_us_oh, dpvl_us_ok, dpvl_us_or, dpvl_us_pa, dpvl_us_pr, dpvl_us_ri, dpvl_us_sc, dpvl_us_sd, dpvl_us_tn, dpvl_us_tx, dpvl_us_um,
+        dpvl_us_ut, dpvl_us_va, dpvl_us_vi, dpvl_us_vt, dpvl_us_wa, dpvl_us_wi, dpvl_us_wv, dpvl_us_wy, dpvl_uy, dpvl_uz,
+    dpvl_va, dpvl_vc, dpvl_ve, dpvl_vg, dpvl_vi, dpvl_vn, dpvl_vu,
+    dpvl_westernafrica, dpvl_westernasia, dpvl_westerneurope, dpvl_wf, dpvl_ws,
+    dpvl_ye, dpvl_yt,
+    dpvl_za, dpvl_zm, dpvl_zw,
+
+    // DPV NACE
+    dpv_nace_a, dpv_nace_a01, dpv_nace_a01_1, dpv_nace_a01_11, dpv_nace_a01_12, dpv_nace_a01_13, dpv_nace_a01_14,
+        dpv_nace_a01_15, dpv_nace_a01_16, dpv_nace_a01_19, dpv_nace_a01_2, dpv_nace_a01_21, dpv_nace_a01_22, dpv_nace_a01_23,
+        dpv_nace_a01_24, dpv_nace_a01_25, dpv_nace_a01_26, dpv_nace_a01_27, dpv_nace_a01_28, dpv_nace_a01_29, dpv_nace_a01_3,
+        dpv_nace_a01_30, dpv_nace_a01_4, dpv_nace_a01_41, dpv_nace_a01_42, dpv_nace_a01_43, dpv_nace_a01_44, dpv_nace_a01_45,
+        dpv_nace_a01_46, dpv_nace_a01_47, dpv_nace_a01_49, dpv_nace_a01_5, dpv_nace_a01_50, dpv_nace_a01_6, dpv_nace_a01_61,
+        dpv_nace_a01_62, dpv_nace_a01_63, dpv_nace_a01_64, dpv_nace_a01_7, dpv_nace_a01_70, dpv_nace_a02, dpv_nace_a02_1,
+        dpv_nace_a02_10, dpv_nace_a02_2, dpv_nace_a02_20, dpv_nace_a02_3, dpv_nace_a02_30, dpv_nace_a02_4, dpv_nace_a02_40,
+        dpv_nace_a03, dpv_nace_a03_1, dpv_nace_a03_11, dpv_nace_a03_12, dpv_nace_a03_2, dpv_nace_a03_21, dpv_nace_a03_22,
+    dpv_nace_b, dpv_nace_b05, dpv_nace_b05_1, dpv_nace_b05_10, dpv_nace_b05_2, dpv_nace_b05_20, dpv_nace_b06,
+        dpv_nace_b06_1, dpv_nace_b06_10, dpv_nace_b06_2, dpv_nace_b06_20, dpv_nace_b07, dpv_nace_b07_1, dpv_nace_b07_10,
+        dpv_nace_b07_2, dpv_nace_b07_21, dpv_nace_b07_29, dpv_nace_b08, dpv_nace_b08_1, dpv_nace_b08_11, dpv_nace_b08_12,
+        dpv_nace_b08_9, dpv_nace_b08_91, dpv_nace_b08_92, dpv_nace_b08_93, dpv_nace_b08_99, dpv_nace_b09, dpv_nace_b09_1,
+        dpv_nace_b09_10, dpv_nace_b09_9, dpv_nace_b09_90,
+    dpv_nace_c, dpv_nace_c10, dpv_nace_c10_1, dpv_nace_c10_11, dpv_nace_c10_12, dpv_nace_c10_13, dpv_nace_c10_2,
+        dpv_nace_c10_20, dpv_nace_c10_3, dpv_nace_c10_31, dpv_nace_c10_32, dpv_nace_c10_39, dpv_nace_c10_4, dpv_nace_c10_41,
+        dpv_nace_c10_42, dpv_nace_c10_5, dpv_nace_c10_51, dpv_nace_c10_52, dpv_nace_c10_6, dpv_nace_c10_61, dpv_nace_c10_62,
+        dpv_nace_c10_7, dpv_nace_c10_71, dpv_nace_c10_72, dpv_nace_c10_73, dpv_nace_c10_8, dpv_nace_c10_81, dpv_nace_c10_82,
+        dpv_nace_c10_83, dpv_nace_c10_84, dpv_nace_c10_85, dpv_nace_c10_86, dpv_nace_c10_89, dpv_nace_c10_9, dpv_nace_c10_91,
+        dpv_nace_c10_92, dpv_nace_c11, dpv_nace_c11_0, dpv_nace_c11_01, dpv_nace_c11_02, dpv_nace_c11_03, dpv_nace_c11_04,
+        dpv_nace_c11_05, dpv_nace_c11_06, dpv_nace_c11_07, dpv_nace_c12, dpv_nace_c12_0, dpv_nace_c12_00, dpv_nace_c13,
+        dpv_nace_c13_1, dpv_nace_c13_10, dpv_nace_c13_2, dpv_nace_c13_20, dpv_nace_c13_3, dpv_nace_c13_30, dpv_nace_c13_9,
+        dpv_nace_c13_91, dpv_nace_c13_92, dpv_nace_c13_93, dpv_nace_c13_94, dpv_nace_c13_95, dpv_nace_c13_96, dpv_nace_c13_99,
+        dpv_nace_c14, dpv_nace_c14_1, dpv_nace_c14_11, dpv_nace_c14_12, dpv_nace_c14_13, dpv_nace_c14_14, dpv_nace_c14_19,
+        dpv_nace_c14_2, dpv_nace_c14_20, dpv_nace_c14_3, dpv_nace_c14_31, dpv_nace_c14_39, dpv_nace_c15, dpv_nace_c15_1,
+        dpv_nace_c15_11, dpv_nace_c15_12, dpv_nace_c15_2, dpv_nace_c15_20, dpv_nace_c16, dpv_nace_c16_1, dpv_nace_c16_10,
+        dpv_nace_c16_2, dpv_nace_c16_21, dpv_nace_c16_22, dpv_nace_c16_23, dpv_nace_c16_24, dpv_nace_c16_29, dpv_nace_c17,
+        dpv_nace_c17_1, dpv_nace_c17_11, dpv_nace_c17_12, dpv_nace_c17_2, dpv_nace_c17_21, dpv_nace_c17_22, dpv_nace_c17_23,
+        dpv_nace_c17_24, dpv_nace_c17_29, dpv_nace_c18, dpv_nace_c18_1, dpv_nace_c18_11, dpv_nace_c18_12, dpv_nace_c18_13,
+        dpv_nace_c18_14, dpv_nace_c18_2, dpv_nace_c18_20, dpv_nace_c19, dpv_nace_c19_1, dpv_nace_c19_10, dpv_nace_c19_2,
+        dpv_nace_c19_20, dpv_nace_c20, dpv_nace_c20_1, dpv_nace_c20_11, dpv_nace_c20_12, dpv_nace_c20_13, dpv_nace_c20_14,
+        dpv_nace_c20_15, dpv_nace_c20_16, dpv_nace_c20_17, dpv_nace_c20_2, dpv_nace_c20_20, dpv_nace_c20_3, dpv_nace_c20_30,
+        dpv_nace_c20_4, dpv_nace_c20_41, dpv_nace_c20_42, dpv_nace_c20_5, dpv_nace_c20_51, dpv_nace_c20_52, dpv_nace_c20_53,
+        dpv_nace_c20_59, dpv_nace_c20_6, dpv_nace_c20_60, dpv_nace_c21, dpv_nace_c21_1, dpv_nace_c21_10, dpv_nace_c21_2,
+        dpv_nace_c21_20, dpv_nace_c22, dpv_nace_c22_1, dpv_nace_c22_11, dpv_nace_c22_19, dpv_nace_c22_2, dpv_nace_c22_21,
+        dpv_nace_c22_22, dpv_nace_c22_23, dpv_nace_c22_29, dpv_nace_c23, dpv_nace_c23_1, dpv_nace_c23_11, dpv_nace_c23_12,
+        dpv_nace_c23_13, dpv_nace_c23_14, dpv_nace_c23_19, dpv_nace_c23_2, dpv_nace_c23_20, dpv_nace_c23_3, dpv_nace_c23_31,
+        dpv_nace_c23_32, dpv_nace_c23_4, dpv_nace_c23_41, dpv_nace_c23_42, dpv_nace_c23_43, dpv_nace_c23_44, dpv_nace_c23_49,
+        dpv_nace_c23_5, dpv_nace_c23_51, dpv_nace_c23_52, dpv_nace_c23_6, dpv_nace_c23_61, dpv_nace_c23_62, dpv_nace_c23_63,
+        dpv_nace_c23_64, dpv_nace_c23_65, dpv_nace_c23_69, dpv_nace_c23_7, dpv_nace_c23_70, dpv_nace_c23_9, dpv_nace_c23_91,
+        dpv_nace_c23_99, dpv_nace_c24, dpv_nace_c24_1, dpv_nace_c24_10, dpv_nace_c24_2, dpv_nace_c24_20, dpv_nace_c24_3,
+        dpv_nace_c24_31, dpv_nace_c24_32, dpv_nace_c24_33, dpv_nace_c24_34, dpv_nace_c24_4, dpv_nace_c24_41, dpv_nace_c24_42,
+        dpv_nace_c24_43, dpv_nace_c24_44, dpv_nace_c24_45, dpv_nace_c24_46, dpv_nace_c24_5, dpv_nace_c24_51, dpv_nace_c24_52,
+        dpv_nace_c24_53, dpv_nace_c24_54, dpv_nace_c25, dpv_nace_c25_1, dpv_nace_c25_11, dpv_nace_c25_12, dpv_nace_c25_2,
+        dpv_nace_c25_21, dpv_nace_c25_29, dpv_nace_c25_3, dpv_nace_c25_30, dpv_nace_c25_4, dpv_nace_c25_40, dpv_nace_c25_5,
+        dpv_nace_c25_50, dpv_nace_c25_6, dpv_nace_c25_61, dpv_nace_c25_62, dpv_nace_c25_7, dpv_nace_c25_71, dpv_nace_c25_72,
+        dpv_nace_c25_73, dpv_nace_c25_9, dpv_nace_c25_91, dpv_nace_c25_92, dpv_nace_c25_93, dpv_nace_c25_94, dpv_nace_c25_99,
+        dpv_nace_c26, dpv_nace_c26_1, dpv_nace_c26_11, dpv_nace_c26_12, dpv_nace_c26_2, dpv_nace_c26_20, dpv_nace_c26_3,
+        dpv_nace_c26_30, dpv_nace_c26_4, dpv_nace_c26_40, dpv_nace_c26_5, dpv_nace_c26_51, dpv_nace_c26_52, dpv_nace_c26_6,
+        dpv_nace_c26_60, dpv_nace_c26_7, dpv_nace_c26_70, dpv_nace_c26_8, dpv_nace_c26_80, dpv_nace_c27, dpv_nace_c27_1,
+        dpv_nace_c27_11, dpv_nace_c27_12, dpv_nace_c27_2, dpv_nace_c27_20, dpv_nace_c27_3, dpv_nace_c27_31, dpv_nace_c27_32,
+        dpv_nace_c27_33, dpv_nace_c27_4, dpv_nace_c27_40, dpv_nace_c27_5, dpv_nace_c27_51, dpv_nace_c27_52, dpv_nace_c27_9,
+        dpv_nace_c27_90, dpv_nace_c28, dpv_nace_c28_1, dpv_nace_c28_11, dpv_nace_c28_12, dpv_nace_c28_13, dpv_nace_c28_14,
+        dpv_nace_c28_15, dpv_nace_c28_2, dpv_nace_c28_21, dpv_nace_c28_22, dpv_nace_c28_23, dpv_nace_c28_24, dpv_nace_c28_25,
+        dpv_nace_c28_29, dpv_nace_c28_3, dpv_nace_c28_30, dpv_nace_c28_4, dpv_nace_c28_41, dpv_nace_c28_49, dpv_nace_c28_9,
+        dpv_nace_c28_91, dpv_nace_c28_92, dpv_nace_c28_93, dpv_nace_c28_94, dpv_nace_c28_95, dpv_nace_c28_96, dpv_nace_c28_99,
+        dpv_nace_c29, dpv_nace_c29_1, dpv_nace_c29_10, dpv_nace_c29_2, dpv_nace_c29_20, dpv_nace_c29_3, dpv_nace_c29_31,
+        dpv_nace_c29_32, dpv_nace_c30, dpv_nace_c30_1, dpv_nace_c30_11, dpv_nace_c30_12, dpv_nace_c30_2, dpv_nace_c30_20,
+        dpv_nace_c30_3, dpv_nace_c30_30, dpv_nace_c30_4, dpv_nace_c30_40, dpv_nace_c30_9, dpv_nace_c30_91, dpv_nace_c30_92,
+        dpv_nace_c30_99, dpv_nace_c31, dpv_nace_c31_0, dpv_nace_c31_01, dpv_nace_c31_02, dpv_nace_c31_03, dpv_nace_c31_09,
+        dpv_nace_c32, dpv_nace_c32_1, dpv_nace_c32_11, dpv_nace_c32_12, dpv_nace_c32_13, dpv_nace_c32_2, dpv_nace_c32_20,
+        dpv_nace_c32_3, dpv_nace_c32_30, dpv_nace_c32_4, dpv_nace_c32_40, dpv_nace_c32_5, dpv_nace_c32_50, dpv_nace_c32_9,
+        dpv_nace_c32_91, dpv_nace_c32_99, dpv_nace_c33, dpv_nace_c33_1, dpv_nace_c33_11, dpv_nace_c33_12, dpv_nace_c33_13,
+        dpv_nace_c33_14, dpv_nace_c33_15, dpv_nace_c33_16, dpv_nace_c33_17, dpv_nace_c33_19, dpv_nace_c33_2, dpv_nace_c33_20,
+    dpv_nace_d, dpv_nace_d35, dpv_nace_d35_1, dpv_nace_d35_11, dpv_nace_d35_12, dpv_nace_d35_13, dpv_nace_d35_14,
+        dpv_nace_d35_2, dpv_nace_d35_21, dpv_nace_d35_22, dpv_nace_d35_23, dpv_nace_d35_3, dpv_nace_d35_30,
+    dpv_nace_e, dpv_nace_e36, dpv_nace_e36_0, dpv_nace_e36_00, dpv_nace_e37, dpv_nace_e37_0, dpv_nace_e37_00,
+        dpv_nace_e38, dpv_nace_e38_1, dpv_nace_e38_11, dpv_nace_e38_12, dpv_nace_e38_2, dpv_nace_e38_21, dpv_nace_e38_22,
+        dpv_nace_e38_3, dpv_nace_e38_31, dpv_nace_e38_32, dpv_nace_e39, dpv_nace_e39_0, dpv_nace_e39_00,
+    dpv_nace_f, dpv_nace_f41, dpv_nace_f41_1, dpv_nace_f41_10, dpv_nace_f41_2, dpv_nace_f41_20, dpv_nace_f42,
+        dpv_nace_f42_1, dpv_nace_f42_11, dpv_nace_f42_12, dpv_nace_f42_13, dpv_nace_f42_2, dpv_nace_f42_21, dpv_nace_f42_22,
+        dpv_nace_f42_9, dpv_nace_f42_91, dpv_nace_f42_99, dpv_nace_f43, dpv_nace_f43_1, dpv_nace_f43_11, dpv_nace_f43_12,
+        dpv_nace_f43_13, dpv_nace_f43_2, dpv_nace_f43_21, dpv_nace_f43_22, dpv_nace_f43_29, dpv_nace_f43_3, dpv_nace_f43_31,
+        dpv_nace_f43_32, dpv_nace_f43_33, dpv_nace_f43_34, dpv_nace_f43_39, dpv_nace_f43_9, dpv_nace_f43_91, dpv_nace_f43_99,
+    dpv_nace_g, dpv_nace_g45, dpv_nace_g45_1, dpv_nace_g45_11, dpv_nace_g45_19, dpv_nace_g45_2, dpv_nace_g45_20,
+        dpv_nace_g45_3, dpv_nace_g45_31, dpv_nace_g45_32, dpv_nace_g45_4, dpv_nace_g45_40, dpv_nace_g46, dpv_nace_g46_1,
+        dpv_nace_g46_11, dpv_nace_g46_12, dpv_nace_g46_13, dpv_nace_g46_14, dpv_nace_g46_15, dpv_nace_g46_16, dpv_nace_g46_17,
+        dpv_nace_g46_18, dpv_nace_g46_19, dpv_nace_g46_2, dpv_nace_g46_21, dpv_nace_g46_22, dpv_nace_g46_23, dpv_nace_g46_24,
+        dpv_nace_g46_3, dpv_nace_g46_31, dpv_nace_g46_32, dpv_nace_g46_33, dpv_nace_g46_34, dpv_nace_g46_35, dpv_nace_g46_36,
+        dpv_nace_g46_37, dpv_nace_g46_38, dpv_nace_g46_39, dpv_nace_g46_4, dpv_nace_g46_41, dpv_nace_g46_42, dpv_nace_g46_43,
+        dpv_nace_g46_44, dpv_nace_g46_45, dpv_nace_g46_46, dpv_nace_g46_47, dpv_nace_g46_48, dpv_nace_g46_49, dpv_nace_g46_5,
+        dpv_nace_g46_51, dpv_nace_g46_52, dpv_nace_g46_6, dpv_nace_g46_61, dpv_nace_g46_62, dpv_nace_g46_63, dpv_nace_g46_64,
+        dpv_nace_g46_65, dpv_nace_g46_66, dpv_nace_g46_69, dpv_nace_g46_7, dpv_nace_g46_71, dpv_nace_g46_72, dpv_nace_g46_73,
+        dpv_nace_g46_74, dpv_nace_g46_75, dpv_nace_g46_76, dpv_nace_g46_77, dpv_nace_g46_9, dpv_nace_g46_90, dpv_nace_g47,
+        dpv_nace_g47_1, dpv_nace_g47_11, dpv_nace_g47_19, dpv_nace_g47_2, dpv_nace_g47_21, dpv_nace_g47_22, dpv_nace_g47_23,
+        dpv_nace_g47_24, dpv_nace_g47_25, dpv_nace_g47_26, dpv_nace_g47_29, dpv_nace_g47_3, dpv_nace_g47_30, dpv_nace_g47_4,
+        dpv_nace_g47_41, dpv_nace_g47_42, dpv_nace_g47_43, dpv_nace_g47_5, dpv_nace_g47_51, dpv_nace_g47_52, dpv_nace_g47_53,
+        dpv_nace_g47_54, dpv_nace_g47_59, dpv_nace_g47_6, dpv_nace_g47_61, dpv_nace_g47_62, dpv_nace_g47_63, dpv_nace_g47_64,
+        dpv_nace_g47_65, dpv_nace_g47_7, dpv_nace_g47_71, dpv_nace_g47_72, dpv_nace_g47_73, dpv_nace_g47_74, dpv_nace_g47_75,
+        dpv_nace_g47_76, dpv_nace_g47_77, dpv_nace_g47_78, dpv_nace_g47_79, dpv_nace_g47_8, dpv_nace_g47_81, dpv_nace_g47_82,
+        dpv_nace_g47_89, dpv_nace_g47_9, dpv_nace_g47_91, dpv_nace_g47_99,
+    dpv_nace_h, dpv_nace_h49, dpv_nace_h49_1, dpv_nace_h49_10, dpv_nace_h49_2, dpv_nace_h49_20, dpv_nace_h49_3,
+        dpv_nace_h49_31, dpv_nace_h49_32, dpv_nace_h49_39, dpv_nace_h49_4, dpv_nace_h49_41, dpv_nace_h49_42, dpv_nace_h49_5,
+        dpv_nace_h49_50, dpv_nace_h50, dpv_nace_h50_1, dpv_nace_h50_10, dpv_nace_h50_2, dpv_nace_h50_20, dpv_nace_h50_3,
+        dpv_nace_h50_30, dpv_nace_h50_4, dpv_nace_h50_40, dpv_nace_h51, dpv_nace_h51_1, dpv_nace_h51_10, dpv_nace_h51_2,
+        dpv_nace_h51_21, dpv_nace_h51_22, dpv_nace_h52, dpv_nace_h52_1, dpv_nace_h52_10, dpv_nace_h52_2, dpv_nace_h52_21,
+        dpv_nace_h52_22, dpv_nace_h52_23, dpv_nace_h52_24, dpv_nace_h52_29, dpv_nace_h53, dpv_nace_h53_1, dpv_nace_h53_10,
+        dpv_nace_h53_2, dpv_nace_h53_20,
+    dpv_nace_i, dpv_nace_i55, dpv_nace_i55_1, dpv_nace_i55_10, dpv_nace_i55_2, dpv_nace_i55_20, dpv_nace_i55_3,
+        dpv_nace_i55_30, dpv_nace_i55_9, dpv_nace_i55_90, dpv_nace_i56, dpv_nace_i56_1, dpv_nace_i56_10, dpv_nace_i56_2,
+        dpv_nace_i56_21, dpv_nace_i56_29, dpv_nace_i56_3, dpv_nace_i56_30,
+    dpv_nace_j, dpv_nace_j58, dpv_nace_j58_1, dpv_nace_j58_11, dpv_nace_j58_12, dpv_nace_j58_13, dpv_nace_j58_14,
+        dpv_nace_j58_19, dpv_nace_j58_2, dpv_nace_j58_21, dpv_nace_j58_29, dpv_nace_j59, dpv_nace_j59_1, dpv_nace_j59_11,
+        dpv_nace_j59_12, dpv_nace_j59_13, dpv_nace_j59_14, dpv_nace_j59_2, dpv_nace_j59_20, dpv_nace_j60, dpv_nace_j60_1,
+        dpv_nace_j60_10, dpv_nace_j60_2, dpv_nace_j60_20, dpv_nace_j61, dpv_nace_j61_1, dpv_nace_j61_10, dpv_nace_j61_2,
+        dpv_nace_j61_20, dpv_nace_j61_3, dpv_nace_j61_30, dpv_nace_j61_9, dpv_nace_j61_90, dpv_nace_j62, dpv_nace_j62_0,
+        dpv_nace_j62_01, dpv_nace_j62_02, dpv_nace_j62_03, dpv_nace_j62_09, dpv_nace_j63, dpv_nace_j63_1, dpv_nace_j63_11,
+        dpv_nace_j63_12, dpv_nace_j63_9, dpv_nace_j63_91, dpv_nace_j63_99,
+    dpv_nace_k, dpv_nace_k64, dpv_nace_k64_1, dpv_nace_k64_11, dpv_nace_k64_19, dpv_nace_k64_2, dpv_nace_k64_20,
+        dpv_nace_k64_3, dpv_nace_k64_30, dpv_nace_k64_9, dpv_nace_k64_91, dpv_nace_k64_92, dpv_nace_k64_99, dpv_nace_k65,
+        dpv_nace_k65_1, dpv_nace_k65_11, dpv_nace_k65_12, dpv_nace_k65_2, dpv_nace_k65_20, dpv_nace_k65_3, dpv_nace_k65_30,
+        dpv_nace_k66, dpv_nace_k66_1, dpv_nace_k66_11, dpv_nace_k66_12, dpv_nace_k66_19, dpv_nace_k66_2, dpv_nace_k66_21,
+        dpv_nace_k66_22, dpv_nace_k66_29, dpv_nace_k66_3, dpv_nace_k66_30,
+    dpv_nace_l, dpv_nace_l68, dpv_nace_l68_1, dpv_nace_l68_10, dpv_nace_l68_2, dpv_nace_l68_20, dpv_nace_l68_3,
+        dpv_nace_l68_31, dpv_nace_l68_32,
+    dpv_nace_m, dpv_nace_m69, dpv_nace_m69_1, dpv_nace_m69_10, dpv_nace_m69_2, dpv_nace_m69_20, dpv_nace_m70,
+        dpv_nace_m70_1, dpv_nace_m70_10, dpv_nace_m70_2, dpv_nace_m70_21, dpv_nace_m70_22, dpv_nace_m71, dpv_nace_m71_1,
+        dpv_nace_m71_11, dpv_nace_m71_12, dpv_nace_m71_2, dpv_nace_m71_20, dpv_nace_m72, dpv_nace_m72_1, dpv_nace_m72_11,
+        dpv_nace_m72_19, dpv_nace_m72_2, dpv_nace_m72_20, dpv_nace_m73, dpv_nace_m73_1, dpv_nace_m73_11, dpv_nace_m73_12,
+        dpv_nace_m73_2, dpv_nace_m73_20, dpv_nace_m74, dpv_nace_m74_1, dpv_nace_m74_10, dpv_nace_m74_2, dpv_nace_m74_20,
+        dpv_nace_m74_3, dpv_nace_m74_30, dpv_nace_m74_9, dpv_nace_m74_90, dpv_nace_m75, dpv_nace_m75_0, dpv_nace_m75_00,
+    dpv_nace_n, dpv_nace_n77, dpv_nace_n77_1, dpv_nace_n77_11, dpv_nace_n77_12, dpv_nace_n77_2, dpv_nace_n77_21,
+        dpv_nace_n77_22, dpv_nace_n77_29, dpv_nace_n77_3, dpv_nace_n77_31, dpv_nace_n77_32, dpv_nace_n77_33, dpv_nace_n77_34,
+        dpv_nace_n77_35, dpv_nace_n77_39, dpv_nace_n77_4, dpv_nace_n77_40, dpv_nace_n78, dpv_nace_n78_1, dpv_nace_n78_10,
+        dpv_nace_n78_2, dpv_nace_n78_20, dpv_nace_n78_3, dpv_nace_n78_30, dpv_nace_n79, dpv_nace_n79_1, dpv_nace_n79_11,
+        dpv_nace_n79_12, dpv_nace_n79_9, dpv_nace_n79_90, dpv_nace_n80, dpv_nace_n80_1, dpv_nace_n80_10, dpv_nace_n80_2,
+        dpv_nace_n80_20, dpv_nace_n80_3, dpv_nace_n80_30, dpv_nace_n81, dpv_nace_n81_1, dpv_nace_n81_10, dpv_nace_n81_2,
+        dpv_nace_n81_21, dpv_nace_n81_22, dpv_nace_n81_29, dpv_nace_n81_3, dpv_nace_n81_30, dpv_nace_n82, dpv_nace_n82_1,
+        dpv_nace_n82_11, dpv_nace_n82_19, dpv_nace_n82_2, dpv_nace_n82_20, dpv_nace_n82_3, dpv_nace_n82_30, dpv_nace_n82_9,
+        dpv_nace_n82_91, dpv_nace_n82_92, dpv_nace_n82_99,
+    dpv_nace_o, dpv_nace_o84, dpv_nace_o84_1, dpv_nace_o84_11, dpv_nace_o84_12, dpv_nace_o84_13, dpv_nace_o84_2,
+        dpv_nace_o84_21, dpv_nace_o84_22, dpv_nace_o84_23, dpv_nace_o84_24, dpv_nace_o84_25, dpv_nace_o84_3, dpv_nace_o84_30,
+    dpv_nace_p, dpv_nace_p85, dpv_nace_p85_1, dpv_nace_p85_10, dpv_nace_p85_2, dpv_nace_p85_20, dpv_nace_p85_3,
+        dpv_nace_p85_31, dpv_nace_p85_32, dpv_nace_p85_4, dpv_nace_p85_41, dpv_nace_p85_42, dpv_nace_p85_5, dpv_nace_p85_51,
+        dpv_nace_p85_52, dpv_nace_p85_53, dpv_nace_p85_59, dpv_nace_p85_6, dpv_nace_p85_60,
+    dpv_nace_q, dpv_nace_q86, dpv_nace_q86_1, dpv_nace_q86_10, dpv_nace_q86_2, dpv_nace_q86_21, dpv_nace_q86_22,
+        dpv_nace_q86_23, dpv_nace_q86_9, dpv_nace_q86_90, dpv_nace_q87, dpv_nace_q87_1, dpv_nace_q87_10, dpv_nace_q87_2,
+        dpv_nace_q87_20, dpv_nace_q87_3, dpv_nace_q87_30, dpv_nace_q87_9, dpv_nace_q87_90, dpv_nace_q88, dpv_nace_q88_1,
+        dpv_nace_q88_10, dpv_nace_q88_9, dpv_nace_q88_91, dpv_nace_q88_99,
+    dpv_nace_r, dpv_nace_r90, dpv_nace_r90_0, dpv_nace_r90_01, dpv_nace_r90_02, dpv_nace_r90_03, dpv_nace_r90_04,
+        dpv_nace_r91, dpv_nace_r91_0, dpv_nace_r91_01, dpv_nace_r91_02, dpv_nace_r91_03, dpv_nace_r91_04, dpv_nace_r92,
+        dpv_nace_r92_0, dpv_nace_r92_00, dpv_nace_r93, dpv_nace_r93_1, dpv_nace_r93_11, dpv_nace_r93_12, dpv_nace_r93_13,
+        dpv_nace_r93_19, dpv_nace_r93_2, dpv_nace_r93_21, dpv_nace_r93_29,
+    dpv_nace_s, dpv_nace_s94, dpv_nace_s94_1, dpv_nace_s94_11, dpv_nace_s94_12, dpv_nace_s94_2, dpv_nace_s94_20,
+        dpv_nace_s94_9, dpv_nace_s94_91, dpv_nace_s94_92, dpv_nace_s94_99, dpv_nace_s95, dpv_nace_s95_1, dpv_nace_s95_11,
+        dpv_nace_s95_12, dpv_nace_s95_2, dpv_nace_s95_21, dpv_nace_s95_22, dpv_nace_s95_23, dpv_nace_s95_24, dpv_nace_s95_25,
+        dpv_nace_s95_29, dpv_nace_s96, dpv_nace_s96_0, dpv_nace_s96_01, dpv_nace_s96_02, dpv_nace_s96_03, dpv_nace_s96_04,
+        dpv_nace_s96_09,
+    dpv_nace_t, dpv_nace_t97, dpv_nace_t97_0, dpv_nace_t97_00, dpv_nace_t98, dpv_nace_t98_1, dpv_nace_t98_10,
+        dpv_nace_t98_2, dpv_nace_t98_20,
+    dpv_nace_u, dpv_nace_u99, dpv_nace_u99_0, dpv_nace_u99_00,
+
+    // DPV PD
+    dpv_pd_accent, dpv_pd_accountidentifier, dpv_pd_acquantaince, dpv_pd_age, dpv_pd_age_exact, dpv_pd_age_range, dpv_pd_apartmentowned, dpv_pd_association, dpv_pd_attitude, dpv_pd_authenticating,
+        dpv_pd_authenticationhistory,
+    dpv_pd_bankaccount, dpv_pd_behavioural, dpv_pd_birthdate, dpv_pd_birthplace, dpv_pd_biometric, dpv_pd_bloodtype, dpv_pd_browserfingerprint, dpv_pd_browsingbehaviour, dpv_pd_browsingreferral,
+    dpv_pd_calllog, dpv_pd_carowned, dpv_pd_character, dpv_pd_communication, dpv_pd_communicationsmetadata, dpv_pd_connection, dpv_pd_contact, dpv_pd_country,
+        dpv_pd_credit, dpv_pd_creditcapacity, dpv_pd_creditcardnumber, dpv_pd_creditrecord, dpv_pd_creditscore, dpv_pd_creditstanding, dpv_pd_creditworthiness,
+        dpv_pd_criminal, dpv_pd_criminalcharge, dpv_pd_criminalconviction, dpv_pd_criminalpardon, dpv_pd_currentemployment,
+    dpv_pd_demeanour, dpv_pd_demographic, dpv_pd_deviceapplications, dpv_pd_devicebased, dpv_pd_deviceoperatingsystem, dpv_pd_devicesoftware, dpv_pd_dialect,
+        dpv_pd_disability, dpv_pd_disciplinaryaction, dpv_pd_dislike, dpv_pd_divorce, dpv_pd_dnacode, dpv_pd_drugtestresult,
+    dpv_pd_education, dpv_pd_educationexperience, dpv_pd_educationqualification, dpv_pd_emailaddress, dpv_pd_emailaddresspersonal, dpv_pd_emailaddresswork, dpv_pd_emailcontent, dpv_pd_employmenthistory, dpv_pd_ethnicity, dpv_pd_ethnicorigin, dpv_pd_external,
+    dpv_pd_family, dpv_pd_familyhealthhistory, dpv_pd_familystructure, dpv_pd_favourite, dpv_pd_favouritecolour, dpv_pd_favouritefood, dpv_pd_favouritemusic,
+        dpv_pd_fetish, dpv_pd_financial, dpv_pd_financialaccount, dpv_pd_financialaccountnumber, dpv_pd_fingerprint, dpv_pd_friend,
+    dpv_pd_gender, dpv_gd_geneticdata, dpv_pd_generalreputation, dpv_pd_geographic, dpv_pd_gpscoordinate, dpv_pd_groupmembership,
+    dpv_pd_haircolour, dpv_pd_health, dpv_pd_healthhistory, dpv_pd_healthrecord, dpv_pd_height, dpv_pd_historical, dpv_pd_houseowned,
+    dpv_pd_identifying, dpv_pd_income, dpv_pd_incomebracket, dpv_pd_individualhealthhistory, dpv_pd_insurance, dpv_pd_intention, dpv_pd_interaction, dpv_pd_interest,
+        dpv_pd_internal, dpv_pd_ipaddress,
+    dpv_pd_job,
+    dpv_pd_knowledgebelief,
+    dpv_pd_language, dpv_pd_lifehistory, dpv_pd_like, dpv_pd_linkclicked, dpv_pd_loanrecord, dpv_pd_location,
+    dpv_pd_macaddress, dpv_pd_maritalstatus, dpv_pd_marriage, dpv_pd_medicalhealth, dpv_pd_mentalhealth,
+    dpv_pd_name, dpv_pd_nationality,
+    dpv_pd_officialid, dpv_pd_offspring, dpv_pd_opinion, dpv_pd_ownership,
+    dpv_pd_parent, dpv_pd_passport, dpv_pd_password, dpv_pd_pastemployment, dpv_pd_paymentcard, dpv_pd_paymentcardexpiry, dpv_pd_paymentcardnumber, dpv_pd_personality, dpv_pd_personalpossession,
+        dpv_pd_philosophicalbelief, dpv_pd_physicaladdress, dpv_pd_physicalcharacteristic, dpv_pd_physicalhealth, dpv_pd_physicaltrait, dpv_pd_picture,
+        dpv_pd_piercing, dpv_pd_pincode, dpv_pd_politicalaffiliation, dpv_pd_politicalopinion, dpv_pd_preference, dpv_pd_prescription, dpv_pd_privacypreference, dpv_pd_proclivitie,
+        dpv_pd_professional, dpv_pd_professionalcertification, dpv_pd_professionalevaluation, dpv_pd_professionalinterview, dpv_pd_publiclife, dpv_pd_purchase,
+        dpv_pd_purchasesandspendinghabit,
+    dpv_pd_race, dpv_pd_reference, dpv_pd_relationship, dpv_pd_religion, dpv_pd_religiousbelief, dpv_pd_retina, dpv_pd_roomnumber,
+    dpv_pd_salary, dpv_pd_sale, dpv_pd_school, dpv_pd_secrettext, dpv_pd_serviceconsumptionbehaviour, dpv_pd_sexual, dpv_pd_sexualhistory,
+        dpv_pd_sexualpreference, dpv_pd_sibling, dpv_pd_skintone, dpv_pd_social, dpv_pd_socialmediacommunication, dpv_pd_socialnetwork, dpv_pd_socialstatus,
+    dpv_pd_tattoo, dpv_pd_tax, dpv_pd_telephonenumber, dpv_pd_thought, dpv_pd_tracking, dpv_pd_tradeunionmembership, dpv_pd_transaction, dpv_pd_transactional, dpv_pd_travelhistory, dpv_pd_tvviewingbehavior,
+    dpv_pd_uid, dpv_pd_username,
+    dpv_pd_voicecommunicationrecording, dpv_pd_voicemail,
+    dpv_pd_weight, dpv_pd_workhistory,
+
+    // DPV text
+    dpvt_algorithmic, dpvt_application,
+    dpvt_bluetooth,
+    dpvt_cellularnetwork, dpvt_communicationmechanism, dpvt_component, dpvt_cookie, dpvt_covertsurveillancetechnology,
+    dpvt_database, dpvt_datacopyingtechnology, dpvt_datadisclosuretechnology, dpvt_datamanagementtechnology, dpvt_dataobtainingtechnology, dpvt_dataorganisingtechnology,
+        dpvt_dataremovaltechnology, dpvt_datasecuritytechnology, dpvt_datastoragetechnology, dpvt_datatechnology, dpvt_datatransfertechnology, dpvt_datatransformationtechnology,
+        dpvt_datausagetechnology, dpvt_detectionsecuritytechnology,
+    dpvt_filesystem, dpvt_fixeduse,
+    dpvt_goods, dpvt_gps,
+    dpvt_identitymanagementtechnology, dpvt_identitytechnology, dpvt_identitywallet, dpvt_internet,
+    dpvt_localnetwork,
+    dpvt_managementtechnology, dpvt_mitigationsecuritytechnology, dpvt_monitoringsecuritytechnology,
+    dpvt_networking,
+    dpvt_operationaltechnology, dpvt_operationdevice, dpvt_operationenvironment, dpvt_operationmanagement, dpvt_overtsurveillancetechnology,
+    dpvt_personalinformationmanagementsystem, dpvt_pet, dpvt_preventionsecuritytechnology, dpvt_product,
+    dpvt_securitymanagementtechnology, dpvt_securitytechnology, dpvt_services, dpvt_smartphoneapplication, dpvt_subscription, dpvt_surveillancetechnology, dpvt_system,
+    dpvt_technologyactor, dpvt_technologydeveloper, dpvt_technologyprovider, dpvt_technologyprovisionmethod, dpvt_technologyreadinesslevel, dpvt_technologysubject,
+        dpvt_technologyusagelocation, dpvt_technologyuser,
+    dpvt_wifi,
 
     // data quality
     dqv_category,
@@ -4291,6 +4361,35 @@ typedef enum
     doap_vendor,
     doap_wiki,
 
+    // data privacy
+    dpv_consentnotice,
+    dpv_duration_p,
+    dpv_expiry, dpv_expirycondition, dpv_expirytime,
+    dpv_hasactivitystatus, dpv_hasaddress, dpv_hasalgorithmiclogic, dpv_hasapplicablelaw, dpv_hasauthority, dpv_hascompliancestatus, dpv_hasconsentnotice, dpv_hasconsequence,
+        dpv_hasconsequences, dpv_hascontact, dpv_hascontext,
+        dpv_hascountry, dpv_hasdata, dpv_hasdatacontroller, dpv_hasdataexporter, dpv_hasdataimporter, dpv_hasdataprocessor, dpv_hasdataprotectionofficer, dpv_hasdatasource, dpv_hasdatasubject,
+        dpv_hasduration, dpv_hasentity, dpv_hasexpiry, dpv_hasexpirycondition, dpv_hasexpirytime, dpv_hasfrequency, dpv_hashumaninvolvement, dpv_hasidentifier, dpv_hasimpact,
+        dpv_hasimpacton, dpv_hasjointdatacontrollers, dpv_hasjurisdiction, dpv_haslegalbasis, dpv_haslocation, dpv_hasname, dpv_hasnotice, dpv_hasorganisationalmeasure, dpv_haspersonaldata,
+        dpv_haspersonaldatacategory, dpv_haspersonaldatahandling, dpv_haspolicy, dpv_hasprocessing, dpv_hasprovisionby, dpv_hasprovisionbyjustification, dpv_hasprovisionmethod,
+        dpv_hasprovisiontime, dpv_haspurpose, dpv_hasright, dpv_hasrecipient, dpv_hasrecipientdatacontroller, dpv_hasrecipientthirdparty, dpv_hasrelationwithdatasubject, dpv_hasrepresentative, dpv_hasresponsibleentity,
+        dpv_hasrisk, dpv_hasstatus, dpv_hassector, dpv_hasstorage, dpv_hastechnicalmeasure, dpv_hastechnicalorganisationalmeasure, dpv_hasthirdcountry, dpv_haswithdrawalby,
+        dpv_haswithdrawalbyjustification, dpv_haswithdrawalmethod, dpv_haswithdrawaltime,
+    dpv_innovativeuseofnewsolutions, dpv_isafter, dpv_isauthorityfor, dpv_isautomateddecisionmaking, dpv_isbefore, dpv_isevaluationorscoring, dpv_isexplicit, dpv_isimplementedbyentity, dpv_isimplementedusingtechnology, dpv_isinstanceof, dpv_islargescale,
+        dpv_ismatchingcombining, dpv_ismitigatedbymeasure, dpv_ispolicyfor, dpv_issubtypeof, dpv_issystematicmonitoring,
+    dpv_location_p,
+    dpv_measureimplementedby, dpv_mitigatesrisk,
+    dpv_provisionby, dpv_provisionbyjustification, dpv_provisionmethod, dpv_provisiontime,
+    dpv_storage,
+    dpv_withdrawalby, dpv_withdrawalbyjustification, dpv_withdrawalmethod, dpv_withdrawaltime,
+
+    // DPV text
+    dpvt_hascommunicationmechanism,
+    dpvt_hasdeveloper,
+    dpvt_hasprovider, dpvt_hasprovisionmethod,
+    dpvt_hassubject,
+    dpvt_hastrl,
+    dpvt_hasuser,
+
     // dqv
     dqv_computedon,
     dqv_expecteddatatype,
@@ -4945,7 +5044,8 @@ typedef enum
     sp_browserrequirements, sp_businessdays, sp_businessfunction, sp_busname, sp_busnumber, sp_buyer, sp_byartist, sp_byday, sp_bymonth, sp_bymonthday, sp_bymonthweek,
 
     sp_callsign, sp_calories, sp_candidate, sp_caption, sp_carbohydratecontent, sp_cargovolume, sp_carrierrequirements, sp_cashback, sp_catalogue, sp_cataloguenumber, sp_category, sp_cause, sp_causeof,
-    sp_ccrecipient, sp_certificationidentification, sp_certificationstatus, sp_character, sp_characterattribute, sp_charactername, sp_cheatcode, sp_checkintime, sp_checkoutpageurltemplate, sp_checkouttime, sp_chemicalcomposition, sp_chemicalrole, sp_childmaxage,
+    sp_ccrecipient, sp_certificationidentification, sp_certificationrating, sp_certificationstatus, sp_character, sp_characterattribute, sp_charactername, sp_cheatcode, sp_checkintime, sp_checkoutpageurltemplate,
+    sp_checkouttime, sp_chemicalcomposition, sp_chemicalrole, sp_childmaxage,
     sp_childminage, sp_children, sp_childtaxon, sp_cholesterolcontent, sp_circle, sp_citation, sp_claiminterpreter, sp_claimreviewed, sp_clinicalpharamcology,
     sp_clipnumber, sp_closes, sp_coach, sp_code, sp_coderepository, sp_codesampletype, sp_codevalue, sp_codingsystem, sp_colleague, sp_colleagues, sp_collection, sp_collectionsize, sp_colour, sp_colourist, sp_colourswatch, sp_comment, sp_commentcount, sp_commenttext, sp_commenttime,
     sp_competencyrequired, sp_competitor, sp_composer, sp_comprisedof, sp_conditionsofaccess, sp_confirmationnumber, sp_connectedto, sp_constrainingproperty, sp_constraintproperty, sp_contactlesspayment, sp_contactoption, sp_contactpoint, sp_contactpoints, sp_contacttype,
@@ -4983,7 +5083,7 @@ typedef enum
     sp_greater, sp_greaterorequal, sp_gtin, sp_gtin12, sp_gtin13, sp_gtin14, sp_gtin8, sp_guideline, sp_guidelinedate, sp_guidelinesubject,
 
     sp_handlingtime, sp_hasadultconsideration, sp_hasbiochementitypart, sp_hasbiopolymersequence, sp_hasbroadcastchannel, sp_hascategorycode, sp_hascertification, sp_hascourse, sp_hascourseinstance, sp_hascredential, sp_hasdefinedterm,
-    sp_hasdeliverymethod, sp_hasdigitaldocumentpermission, sp_hasdrivethroughservice, sp_hasenergyconsumptiondetails, sp_hasenergyefficiencycategory, sp_hashealthaspect, sp_hasmap, sp_hasmeasurement, sp_hasmenu,
+    sp_hasdeliverymethod, sp_hasdigitaldocumentpermission, sp_hasdrivethroughservice, sp_hasenergyconsumptiondetails, sp_hasenergyefficiencycategory, sp_hasgs1digitallink, sp_hashealthaspect, sp_hasmap, sp_hasmeasurement, sp_hasmenu,
     sp_hasmenuitem, sp_hasmenusection, sp_hasmerchantreturnpolicy, sp_hasmolecularfunction, sp_hasoccupation, sp_hasoffercatalogue, sp_haspart, sp_haspos, sp_hasproductreturnpolicy, sp_hasrepresentation, sp_hasvariant, sp_headline, sp_healthcarereportingdata, sp_healthcondition,
     sp_healthplancoinsuranceoption, sp_healthplancoinsurancerate, sp_healthplancopay, sp_healthplancopayoption, sp_healthplancostsharing, sp_healthplandrugoption, sp_healthplandrugtier, sp_healthplanid, sp_healthplanmarketingurl,
     sp_healthplannetworkid, sp_healthplannetworktier, sp_healthplanpharmacycategory, sp_height, sp_highprice, sp_hiringorganisation, sp_holdingarchive, sp_homelocation, sp_hometeam, sp_honourificprefix, sp_honourificsuffix,
@@ -5344,6 +5444,381 @@ typedef enum
 
 typedef ::std::vector < e_ontology_property > vsp_t;
 
+typedef enum { op_arithmetic, op_atop, op_in, op_out, op_over, op_xor } e_operator;
+typedef enum { or_h, or_v } e_orientation;
+typedef enum { eo_none, eo_top } e_overlay;
+typedef enum { ou_over, ou_under } e_over_under;
+typedef enum { po_270, po_180, po_90, po0, po90, po180, po270 } e_page_orientation;
+typedef enum { pk_bad, pk_none, pk_child, pk_contextfill, pk_contextstroke, pk_currentcolour, pk_inherit, pk_icccolour, pk_url } e_paintkeyword;
+typedef enum { po_normal, po_fill, po_stroke, po_markers } e_paint_order;
+typedef enum {  pccv_box, pccv_byline, pccv_caption, pccv_credit, pccv_dateline, pccv_deck, pccv_footnotes, pccv_introduction, pccv_leadin, pccv_pullquote,
+                pccv_recipe, pccv_sidebar, pccv_teaser, pccv_title } e_pam_ccv;
+typedef enum { pam_a, pam_c, pam_d, pam_u } e_pam_status;
+typedef enum { pcmm_draft, pcmm_beingnegotiated, pcmm_finalised, pcmm_uploaded, pcmm_upload_approved, pcmm_upload_rejected } e_pcmm_status;
+typedef enum { ph_bubble, ph_capture, ph_default, ph_target } e_phase_x;
+typedef enum { ps_b, ps_i, ps_p, ps_s, ps_sub, ps_sup, ps_tt, ps_u } e_plusstyle;
+typedef enum {  pe_auto, pe_boundingbox, pe_bounding_box, pe_visiblepainted, pe_visiblefill, pe_visiblestroke, pe_visible, pe_painted, pe_fill,
+                pe_stroke, pe_all, pe_none, pe_inherit } e_pointer_events;
+typedef enum { pop_auto, pop_manual } e_popover;
+typedef enum { pta_hide, pta_show, pta_toggle } e_popovertargetaction;
+typedef enum { pr_auto, pr_metadata, pr_none } e_preload;
+typedef enum { pic_bw, pic_colour, pic_duotone, pic_quadtone, pic_sepia, pic_tritone } e_pri_img_colour;
+typedef enum { pio_horizontal, pio_vertical } e_pri_img_orientation;
+typedef enum { pis_autumn, pis_spring, pis_summer, pis_winter } e_pri_img_season;
+typedef enum { pis_indoor, pis_outdoor, pis_studio } e_pri_img_setting;
+typedef enum {  pit_above, pit_aerial, pit_below, pit_center, pit_closeup, pit_detail, pit_distant, pit_front, pit_offcentre,
+                pit_panoramic, pit_profile, pit_rear } e_pri_img_technique;
+typedef enum {  piv_backlit, piv_candid, piv_cool, piv_doubleexposure, piv_flash, piv_hdr, piv_motionblur, piv_negative, piv_silhouette,
+                piv_soft, piv_spotlit, piv_warm, piv_wideangle} e_pri_img_viewpoint;
+typedef enum { pt_footnote, pt_reference, pt_section, pt_sidebar, pt_silent } e_print;
+typedef enum { pap_ibc, pap_ifc, pap_main_body, pap_obc, pap_text } e_prism_ad_pos;
+typedef enum { pat_dft, pat_eft, pat_text, pat_sfp, pat_spfplus } e_prism_ad_type;
+typedef enum {  pag_blog, pag_book, pag_bookazine, pag_catalogue, pag_feed, pag_journal, pag_magazine, pag_manual, pag_newsletter,
+                pag_newspaper, pag_other, pag_report, pag_pamphlet, pag_vook, pag_whitepaper } e_prism_ag_type;
+typedef enum {  pas_agegroup, pas_agerange, pas_countryregion, pas_educationallevel, pas_employmentstatus, pas_gender, pas_incomerange, pas_maritalstatus,
+                pas_culture, pas_other } e_prism_audience_sector;
+typedef enum { pc_byline, pc_dateline, pc_deck, pc_footnotes, pc_leadin, pc_sidebar } e_prism_class;
+typedef enum {  ptt_advertisement, ptt_article, ptt_blogentry, ptt_bookchapter, ptt_classifiedadsection, ptt_contentblock, ptt_frontcover, ptt_index,
+                ptt_introduction, ptt_masthead, ptt_navigationalaid, ptt_othercover } e_prism_contenttype;
+typedef enum {  prccv_box, prccv_byline, prccv_caption, prccv_credit, prccv_dateline, prccv_deck, prccv_footnotes, prccv_introduction, prccv_layer, prccv_leadin,
+                prccv_pullquote, prccv_recipe, prccv_sidebar, prccv_subtitle, prccv_teaser, prccv_title } e_prism_ccv;
+
+typedef enum {
+    pcvp_article,
+    pcvp_birdseye, pcvp_book, pcvp_body,
+    pcvp_caption, pcvp_catalog, pcvp_clip, pcvp_close_up, pcvp_credit, pcvp_correction,
+    pcvp_electronicbook,
+    pcvp_graph,
+    pcvp_homepage,
+    pcvp_illustration, pcvp_index, pcvp_interactivecontent, pcvp_issue,
+    pcvp_journal,
+    pcvp_list,
+    pcvp_magazine, pcvp_manual, pcvp_map,
+    pcvp_news, pcvp_newspaper,
+    pcvp_photo,
+    pcvp_sidebar,
+    pcvp_table,
+    pcvp_webpage, pcvp_wormseye,
+} e_prism_cvp;
+
+typedef enum { pfcc_credit, pfcc_mediatitle } e_prism_fccv;
+
+typedef enum {
+    pg_abstract, pg_acknowledgement, pg_adaption, pg_advertorial, pg_analysis, pg_answers, pg_appendix, pg_authorbio, pg_autobiography,
+    pg_backcover, pg_bibliography, pg_biography, pg_box,
+    pg_calendar, pg_cartoon, pg_chapter, pg_chart, pg_chronolgy, pg_clarification, pg_classifiedad, pg_column, pg_correction, pg_coverstory, pg_coverpackagearticle,
+    pg_dedication, pg_department, pg_diagram,
+    pg_electionresults, pg_essay, pg_excerpt,
+    pg_faq, pg_fashionshoot, pg_feature, pg_featurepackagearticle, pg_fiction, pg_financialstatement, pg_foreward,
+    pg_glossary,
+    pg_horoscope,
+    pg_insidebackcover, pg_insidefrontcover, pg_interactivecontent, pg_interview,
+    pg_jumppage,
+    pg_legaldocument, pg_letters, pg_list,
+    pg_map,
+    pg_newsbulletin, pg_notice,
+    pg_obituary, pg_opinion,
+    pg_photoessay, pg_poem, pg_poll, pg_postscript, pg_preface, pg_pressrelease, pg_productdescription, pg_profile, pg_puzzle,
+    pg_qanda, pg_quiz, pg_quotation,
+    pg_ranking, pg_recipe, pg_references, pg_reprint, pg_resources, pg_response, pg_review,
+    pg_schedule, pg_scrubber, pg_sectionlist, pg_sectiontableofcontents, pg_sidebar, pg_stockquote, pg_supplementarticle, pg_supplementbackcover, pg_supplementfrontcover,
+    pg_tableofcontents, pg_transcript,
+    pg_usercomments, pg_usergeneratedcontent, pg_userreview,
+    pg_wirestory
+} e_prism_genre;
+
+typedef enum {  picv_academicfield, picv_event, picv_industry, picv_keyword, picv_link, picv_location, picv_object, picv_organisation, picv_person,
+                picv_profession, picv_quote, picv_sport, picv_ticker, picv_timeframe } e_prism_icv;
+typedef enum { pit_regular, pit_special } e_prism_issue_type;
+typedef enum {  pasv_columnbyline, pasv_doublepagespread, pasv_freeformother, pasv_fullpage, pasv_onehalfpagehoriz, pasv_pasv_onehalfpagespread,
+                pasv_pasv_onehalfpagevert, pasv_onethirdpagehoriz, pasv_onethirdpagesq, pasv_onethirdpagevert, pasv_twothirdpagehoriz, pasv_twothirdpagespread,
+                pasv_twothirdpagevert } e_prism_pasv;
+typedef enum { pcv_broadcast, pcv_email, pcv_ereader, pcv_mobile, pcv_other, pcv_print, pcv_recordablemedia, pcv_smartphone, pcv_tablet, pcv_web } e_prism_pcv;
+typedef enum {  pfv_annually, pfv_bimonthly, pfv_biweekly, pfv_daily, pfv_continually, pfv_irregularly, pfv_monthly, pfv_other, pfv_quarterly,
+                pfv_semiannually, pfv_weekly } e_prism_pfv;
+typedef enum {  ptv_animation, ptv_audio, ptv_cartoon, ptv_chart, ptv_clip, ptv_codeblock, ptv_complexblock, ptv_diagram, ptv_gallery, ptv_illustration,
+                ptv_infographic, ptv_logo, ptv_map, ptv_other, ptv_photo, ptv_photoillustration, ptv_photomontage, ptv_slideshow, ptv_spreadsheet,
+                ptv_table, ptv_video } e_prism_ptv;
+
+typedef enum { 
+    prcv_abstract, prcv_acknowledgement, prcv_advertisement, prcv_analysis, prcv_authorbio, prcv_autobiography,
+    prcv_bibliography, prcv_biography, prcv_brief,
+    prcv_cartoon, prcv_chronology, prcv_classifiedad, prcv_column, prcv_cover,
+    prcv_dateline,
+    prcv_electionresults, prcv_eventscalendar, prcv_excerpt,
+    prcv_feature, prcv_financialstatement,
+    prcv_interview,
+    prcv_legaldocument, prcv_letter, prcv_lettertoeditor, prcv_logo,
+    prcv_newsbulletin, prcv_notice,
+    prcv_obituary, prcv_opinion,
+    prcv_photoessay, prcv_poll, prcv_portrait, prcv_pressrelease, prcv_productdescription, prcv_profile,
+    prcv_quotation,
+    prcv_ranking, prcv_recipe, prcv_review,
+    prcv_schedule, prcv_stockquote,
+    prcv_tableofcontents, prcv_transcript,
+} e_prism_rcv;
+
+typedef enum {
+    role_amateur, role_animator, role_artist, role_author,
+    role_cartographer, role_chef, role_choreographer, role_cinematographer, role_commentator, role_composer, role_correspondant, role_costumedesigner,
+    role_director, role_draftsman,
+    role_editor,
+    role_fashioncoordinator, role_fashiondesigner, role_foodstylist, role_foodtester,
+    role_graphicdesigner,
+    role_hairstylist, role_host,
+    role_illustrator, role_interviewee, role_interviewer, role_interpreter,
+    role_layoutdesigner,
+    role_makeupartist, role_musician,
+    role_narrator, role_nutritionist,
+    role_other, role_panelist, role_performer, role_photographer, role_producer, role_programmer,
+    role_recipedeveloper, role_reporter, role_researcher, role_researchassistant,
+    role_speaker,
+    role_translator, role_tvhost,
+    role_writer
+ } e_prism_role;
+
+typedef enum { pta_dfp, pta_efp, pta_sfp, pta_sfpplus } e_prism_tablet_ad;
+typedef enum { pr_stop, pr_continue } e_propagate;
+typedef int e_property;
+
+typedef enum {
+    pr_other,
+    pr_aaa, pr_aaas, pr_about, pr_acap, pr_acct, pr_acr, pr_adiumxtra, pr_admin, pr_afp, pr_afs, pr_aim, pr_apt, pr_app, pr_attachment, pr_aw, pr_amss,
+    pr_barian, pr_beshare, pr_bitcoin, pr_blob, pr_bolo,
+    pr_callto, pr_cap, pr_chrome, pr_chrome_extension, pr_cid, pr_clsid, pr_coap, pr_coaps, pr_com_eventbrite_attendee, pr_content, pr_crid, pr_cvs,
+    pr_dab, pr_data, pr_dav, pr_dict, pr_did, pr_dina_playsingle, pr_dina_playcontainer, pr_dns, pr_dntp, pr_doi, pr_drm, pr_dtn, pr_dvb,
+    pr_ed2k, pr_example,
+    pr_facetime, pr_fax, pr_feed, pr_file, pr_filesystem, pr_finger, pr_fish, pr_fm, pr_ftp, pr_ftps,
+    pr_gemini, pr_geo, pr_gg, pr_git, pr_gizmoproject, pr_go, pr_gopher, pr_gtalk,
+    pr_h323, pr_hcp, pr_http, pr_https,
+    pr_iax, pr_icap, pr_icon, pr_im, pr_imap, pr_info, pr_iotdisco, pr_ipn, pr_ipp, pr_ipps, pr_irc, pr_irc6, pr_ircs, pr_iris, pr_iris_beep, pr_iris_xpc,
+        pr_iris_xpcs, pr_iris_lws, pr_itms,
+    pr_jabber, pr_jar, pr_javascript, pr_jdbc, pr_jms,
+    pr_keyparc,
+    pr_lastfm, pr_ldap, pr_ldaps,
+    pr_magnet, pr_mailserver, pr_mailto, pr_maps, pr_market, pr_message, pr_mid, pr_mms, pr_modem, pr_ms_help, pr_ms_settings, pr_ms_settings_airplanemode,
+        pr_ms_settings_bluetooth, pr_ms_settings_camera, pr_ms_settings_cellular, pr_ms_settings_cloudstorage, pr_ms_settings_emailandaccounts,
+        pr_ms_settings_language, pr_ms_settings_location, pr_ms_settings_lock, pr_ms_settings_nfctransactions, pr_ms_settings_notifications, pr_ms_settings_power,
+        pr_ms_settings_privacy, pr_ms_settings_proximity, pr_ms_settings_screenrotation, pr_ms_settings_wifi, pr_ms_settings_workplace, pr_msnum, pr_msrp, pr_msrps,
+        pr_mtqp, pr_mumble, pr_mupdate, pr_mvn,
+    pr_news, pr_nfs, pr_ni, pr_nih, pr_nntp, pr_notes,
+    pr_ocsp, pr_odbc, pr_oid, pr_opaquelocktoken, pr_openpgp4fpr,
+    pr_pack, pr_palm, pr_paparazzi, pr_payto, pr_pkcs11, pr_platform, pr_pop, pr_pres, pr_prospero, pr_proxy, pr_psyc,
+    pr_query,
+    pr_redis, pr_rediss, pr_reload, pr_res, pr_resource, pr_rmi, pr_rsync, pr_rtmfp, pr_rtmp, pr_rtsp,
+    pr_s3, pr_secondlife, pr_service, pr_session, pr_sftp, pr_sgn, pr_shttp, pr_sieve, pr_sip, pr_sips, pr_skype, pr_slack, pr_smb, pr_sms, pr_snews, pr_snmp,
+        pr_soap_beep, pr_soap_beeps, pr_soldat, pr_spotify, pr_ssh, pr_steam, pr_stratum, pr_stun, pr_stuns, pr_snv,
+    pr_tag, pr_teamspeak, pr_tel, pr_telnet, pr_tftp, pr_things, pr_thismessage, pr_tn3270, pr_tip, pr_trueconf, pr_turn, pr_turns, pr_tv,
+    pr_udp, pr_uid, pr_unreal, pr_urn, pr_ut2004, pr_vemmi, pr_ventrilo, pr_videotex, pr_view_source, pr_vnc,
+    pr_wais, pr_webcal, pr_webplus, pr_ws, pr_wss, pr_wtai, pr_wyciwyg, pr_xcon, pr_xcon_userid, pr_xfire, pr_xmlrpc_beep, pr_xmlrpc_beeps, pr_xmpp, pr_xri,
+    pr_ymsgr,
+    pr_z39_50, pr_z39_50r, pr_z39_50s, pr_zoommtg, pr_zoomus,
+    pr_error } e_protocol;
+
+typedef enum { prsa_aggregate, prsa_presentdisplay, prsa_presentplay, prsa_presentprint, prsa_presenttexttospeech, prsa_transform, prsa_translate, prsa_use } e_prs_action;
+typedef enum { prsd_compensate, prsd_credit, prsd_include, prsd_inform } e_prs_duty;
+typedef enum { qs_none, qs_c, qs_csv, qs_double, qs_html, qs_single } e_quote_style;
+typedef enum { rp_collection, rp_literal, rp_resource } e_rdf_parsetype;
+typedef enum { rdf_none, rdf_a, rdf_deprecated, rdf_1_0, rdf_1_1 } e_rdf_version;
+typedef enum {  erc_cooktime, erc_duration, erc_ingredient, erc_ingredientintro, erc_ingredients, erc_instructions, erc_instructionsintro, erc_itemname,
+                erc_ingredienthead, erc_nutrition, erc_nutrient, erc_nutrientname, erc_nutritionintro, erc_othertime, erc_preptime, erc_quantity,
+                erc_recipedescription, erc_recipenote, erc_recipetitle, erc_servingsize, erc_step, erc_stephead, erc_stepnote, erc_totaltime, erc_unit, erc_yield } e_recipe_content;
+typedef enum { rco_appetiser, rco_desert, rco_drink, rco_main, rco_salad, rco_sidedish } e_recipe_course;
+
+typedef enum {
+    cui_african, cui_american, cui_asian, cui_austrian,
+    cui_brazilian, cui_archipelagan,
+    cui_cajunorcreole, cui_california, cui_caribbean, cui_centralorsouthamerican, cui_chinese, cui_cuban,
+    cui_easterneuropean,
+    cui_french,
+    cui_german, cui_greek,
+    cui_hungarian, cui_halal,
+    cui_indian, cui_italian,
+    cui_japanese, cui_jewishorkosher,
+    cui_korean,
+    cui_lebanese,
+    cui_mediterranean, cui_mexican, cui_middleeastern, cui_moroccan,
+    cui_nativeamerican, cui_newengland,
+    cui_pacificnorthwest, cui_pacificrim, cui_peruvian, cui_polish,
+    cui_scandinavian, cui_southern, cui_southwest, cui_spanish, cui_swiss,
+    cui_thai,
+    cui_vegan, cui_vegetarian, cui_vietnamese
+} e_recipe_cuisine;
+
+typedef enum {  dnv_brainboosting, dnv_bonebuilding, dnv_diabetic, dnv_glutenfree, dnv_healthy, dnv_hearthealthy, dnv_highfiber, dnv_lactoseintolerant,
+                dnv_lowcalorie, dnv_lowcarbohydrate, dnv_lowcholesterol, dnv_lowfat, dnv_lowsaturatedfat, dnv_lowsodium, dnv_sugarfree, dnv_vegan,
+                dnv_vegetarian, dnv_weightloss } e_recipe_dietary;
+
+typedef enum {
+    dtv_appetiser,
+    dtv_babyfood, dtv_beanpealegume, dtv_beveragealcoholic, dtv_beveragenonalcoholic, dtv_bread,
+    dtv_cakeorcupcakes, dtv_candy, dtv_casserole, dtv_cheese, dtv_cookie,
+    dtv_dairy, dtv_diporspread,
+    dtv_egg,
+    dtv_fishshellfish, dtv_foodgift, dtv_frosting, dtv_fruit,
+    dtv_gravy, dtv_grill,
+    dtv_icecreamorsherbet,
+    dtv_jellyjampreserves,
+    dtv_marinadeorrub, dtv_meatorgame, dtv_muffinquickbread,
+    dtv_nuts,
+    dtv_pasta, dtv_pizza, dtv_picklesorrelishes, dtv_piestartspastries, dtv_poultry, dtv_puddingsorcustards,
+    dtv_saladorsaladdressing, dtv_sandwich,
+    dtv_sauceorcondiment, dtv_seafood, dtv_smoothie, dtv_spiceherbsseasonings, dtv_souporstew, dtv_stirfry, dtv_stuffingordressing,
+    dtv_vegetable
+} e_recipe_dish;
+
+typedef enum {  rex_alcohol, rex_dairy, rex_eggs, rex_fish, rex_meat, rex_nutsorpeanuts, rex_pork, rex_salt, rex_shellfish, rex_soy,
+                rex_sugar, rex_wheatorgluten } e_recipe_exclusion;
+typedef enum {  erk_barbecuegrill, erk_blender, erk_breadmachine, erk_broiler, erk_convectionoven, erk_deepfryer, erk_fonduepot, erk_foodprocessor,
+                erk_freezer, erk_fryingpan, erk_griddle, erk_grillpan, erk_icecreammaker, erk_microwaveoven, erk_oven, erk_pressurecooker, erk_ricecooker,
+                erk_sandwichorpaninipress, erk_slowcooker, erk_wafflemaker, erk_wok } e_recipe_kit;
+typedef enum { erm_breakfast, erm_brunch, erm_buffet, erm_dinner, erm_hdo, erm_lunch, erm_supper, erm_snack } e_recipe_meal;
+typedef enum {  erm_bake, erm_blend, erm_boil, erm_braise, erm_broil, erm_can, erm_deepfry, erm_fondue, erm_freeze, erm_fry, erm_grillorbarbecue, erm_marinate,
+                erm_microwave, erm_nocook, erm_press, erm_roast, erm_saute, erm_slowcook, erm_steam, erm_stirfry } e_recipe_method;
+typedef enum {  erso_amateur, erso_book, erso_celeb, erso_chef, erso_client, erso_contest, erso_magazine, erso_onlinewebsite, erso_readersubmitted,
+                erso_restaurant, erso_sponsors, erso_testkitchen, erso_tvshow } e_recipe_source;
+typedef enum { ersk_children, ersk_easy, ersk_expert, ersk_moderate } e_recipe_skill;
+
+typedef enum {
+    ersp_anniversary,
+    ersp_babyshower, ersp_barbeque, ersp_barbasmitzvah, ersp_birthdayadult, ersp_birthdaychild, ersp_bridalshower,
+    ersp_chinesenewyear, ersp_christmasday, ersp_christmaseve, ersp_cincodemayo, ersp_cocktailparty, ersp_cookieswap,
+    ersp_dinnerparty,
+    ersp_easter,
+    ersp_fathersday, ersp_fondueparty, ersp_fourthofjuly, ersp_funeralorwake,
+    ersp_graduation,
+    ersp_halloween, ersp_hanukkah,
+    ersp_kwanzaa,
+    ersp_labourday,
+    ersp_mardigras, ersp_memorialday,
+    ersp_newyearsday, ersp_newyearseve,
+    ersp_oscars,
+    ersp_passover, ersp_picnicorcookout, ersp_potluck,
+    ersp_ramadan, ersp_roshhashanah,
+    ersp_stpatricksday, ersp_superbowl,
+    ersp_tailgating, ersp_thanksgiving,
+    ersp_valentinesday,
+    ersp_yomkippur,
+    ersp_wedding, ersp_winterholidayparty
+} e_recipe_special;
+
+typedef enum {  ert_bake, ert_broil, ert_chill, ert_cool, ert_decorate, ert_grill, ert_freeze, ert_handson, ert_marinate, ert_microwave,
+                ert_process, ert_rise, ert_roast, ert_slowcook, ert_stand, ert_starttofinish } e_recipe_time;
+
+typedef enum
+{   rcb_abbreviation, rcb_annotation, rcb_attribute,
+    rcb_category, rcb_character_variant, rcb_class, rcb_content_name, rcb_counter_style, rcb_css_property, rcb_custom_media, rcb_custom_property,
+    rcb_definition,
+    rcb_element, rcb_error,
+    rcb_file, rcb_font, rcb_font_family,
+    rcb_highlight, rcb_historical_form,
+    rcb_id, rcb_itemid,
+    rcb_keyframe,
+    rcb_layer,
+    rcb_meta,
+    rcb_name_value,
+    rcb_ontology, rcb_ornament,
+    rcb_page, rcb_page_name, rcb_palette, rcb_property,
+    rcb_reference, rcb_region,
+    rcb_scroll_animation, rcb_statement, rcb_styleset, rcb_stylistic, rcb_summary, rcb_swash,
+    rcb_version, rcb_view,
+    rcb_max } e_report;
+
+typedef enum { rr_rect, rr_round } e_rect_round;
+typedef enum { rf_no, rf_downgrade, rf_same, rf_origin, rf_strict, rf_strictcross, rf_cross, rf_unsafe } e_referrer;
+
+typedef enum {
+    r_context,
+
+    // microformats v1 only
+    r_entry_category = (int) c_error + 1,
+
+    // both v1 and v2
+    r_acquaintance, r_alternative, r_appendix, r_author, r_bookmark, r_chapter, r_child, r_colleague, r_contact,
+    r_contents, r_copyright, r_coresident, r_coworker, r_crush, r_date, r_directory, r_enclosure, r_first, r_friend,
+    r_glossary, r_help, r_home, r_index, r_in_reply_to, r_its_rules, r_kin, r_last, r_licence, r_me, r_met, r_muse,
+    r_parent, r_payment, r_prev, r_pronunciation, r_section, r_sibling, r_sidebar, r_spouse, r_start, r_stylesheet,
+    r_subsection, r_supercedes, r_sweetheart, r_toc, r_top, r_transformation, r_up, r_vcs_git, r_vcs_svn,
+    r_micropub, r_pingback, r_webmention, r_canonical, r_code_licence, r_content_licence, r_discussion, r_issues,
+    r_bibliography, r_cite, r_group, r_map, r_member,
+    r_neighbour, r_next, r_nofollow, r_tag,
+
+    // microformats v2 only
+    r_about, r_profile, r_accessibility,
+
+    // https://github.com/ampproject/amphtml
+    r_amphtml,
+
+    r_apple_touch_icon, r_apple_touch_icon_precomposed,
+    r_apple_touch_startup_image,
+
+    // https://sitemorse.com/rel-archived/
+    r_archived,
+
+    r_archives, r_attachment, r_authorisation_endpoint, r_banner, r_begin, r_biblioentry,
+    r_blocked_by, r_category, r_chrome_webstore_item, r_citation,
+    r_cite_as, r_code_repository, r_collection, r_comment, r_component,
+    r_content_repository, r_contribution, r_convertedfrom, r_create_form,
+    r_current, r_dcterms_conformsto, r_dcterms_contributor, r_dcterms_creator, r_dcterms_description, r_dcterms_hasformat,
+    r_dcterms_haspart, r_dcterms_hasversion, r_dcterms_isformatof, r_dcterms_ispartof, r_dcterms_isreferencedby, r_dcterms_isreplacedby,
+    r_dcterms_isrequiredby, r_dcterms_isversionof, r_dcterms_licence, r_dcterms_mediator, r_dcterms_publisher, r_dcterms_references,
+    r_dcterms_relation, r_dcterms_replaces, r_dcterms_requires, r_dcterms_rightsholder, r_dcterms_source, r_dcterms_subject, r_definition,
+    r_describedby, r_describes, r_disclaimer, r_disclosure, r_dnsprefetch, r_docs_oasis_open_org_ns_cmis_link_200908_acl,
+    r_duplicate, r_edit, r_edit_form, r_edit_media, r_editor, r_edituri, r_end, r_endorsed, r_entry_content, r_expect, r_external,
+    r_fan, r_feed, r_footnote, r_gbfs, r_gtfs_realtime, r_gtfs_static, r_hosts,
+    r_hub, r_icon, r_image_src, r_import, r_intervalafter, r_intervalbefore, r_intervalcontains, r_intervaldisjoint,
+    r_intervalduring, r_intervalequals, r_intervalfinishedby, r_intervalfinishes, r_intervalin, r_intervalmeets, r_intervalmetby,
+    r_intervaloverlappedby, r_intervaloverlaps, r_intervalstartedby, r_intervalstarts, r_item, r_item_licence, r_jslicence,
+    r_kinetic_stylesheet, r_latest_version, r_lightbox, r_lightvideo, r_logo, r_longdesc, r_lrdd, r_m_pagescroll2id, r_made,
+    r_manifest, r_maskicon, r_memento, r_meta, r_microsummary, r_monitor, r_monitor_group,
+    r_next_archive, r_navigate, r_noopener, r_noreferrer, r_openid2_local_id, r_openid2_provider,
+    r_openid_delegate, r_openid_server, r_origin, r_original, r_p3pv1, r_pavatar, r_permalink, r_pgpkey, r_pointer,
+    r_popover, r_preconnect, r_predecessor_version, r_prefetch, r_preload, r_prerender, r_prev_archive, r_preview,
+    r_principles, r_privacy, r_privacy_policy,
+    r_publickey, r_publisher, r_radioepg, r_referral, r_related, r_rendition, r_replies, r_reply_to, r_resource,
+    r_respond_proxy, r_respond_redirect, r_restconf, r_root, r_ontology_dc, r_ontology_dcterms, r_search, r_self, r_service,
+    r_service_desc, r_service_doc, r_service_meta, r_shortlink, r_sitemap, r_source, r_sponsor,
+    r_status, r_stylesheetless, r_subresource, r_successor_version, r_sunset, r_sword, r_syndication,
+    r_terms_of_service, r_timegate, r_timemap, r_timesheet, r_token_endpoint, r_tooltip, r_trackback, r_trademark,
+    r_translation, r_type, r_unendorsed, r_urc, r_user, r_vcalendar_child, r_vcalendar_parent, r_vcalendar_sibling,
+    r_version_history, r_via, r_w_api_org, r_widget, r_wlwmanifest, r_working_copy, r_working_copy_of,
+    r_yandex_tableau_widget,
+
+    // standard dublin core
+    r_dc_contributor, r_dc_coverage, r_dc_creator, r_dc_date, r_dc_description, r_dc_format, r_dc_identifier, r_dc_language,
+    r_dc_publisher, r_dc_relation, r_dc_rights, r_dc_source, r_dc_subject, r_dc_title, r_dc_type,
+
+    // creative commons
+    r_cc_permits, r_cc_requires, r_cc_prohibits, r_cc_jurisdiction, r_cc_legalcode, r_cc_deprecatedon,
+    r_cc_licence, r_cc_morepermissions, r_cc_attributionname, r_cc_attributionurl, r_cc_useguidelines,
+
+    // HTML 1.0 ()  plus made & search
+    r_annotation, r_embed, r_history, r_includes, r_interested, r_present, r_recedes, r_reply, r_subdocument,
+    r_supersedes, r_useglossary, r_useindex,
+
+    // WhatWG HTML
+    r_bodyok, r_modulepreload, r_opener, r_serviceworker,
+
+    // curie
+    r_curie,
+
+    // additional xhv
+    r_role,
+
+    r_illegal } e_rel;
+
+typedef enum { ri_auto, ri_perceptual, ri_relativecolourimetric, ri_saturation, ri_absolutecolourimetric } e_rendering_in_tents;
+typedef enum { re_always, re_whennotactive, re_never } e_restart;
+typedef enum { ru_rotate_left, ru_rotate_right, ru_upright } e_rotate_upright;
+typedef enum { trc_column, trc_row } e_row_column;
+typedef enum { rs_yes, rs_no, rs_maybe, rs_interested } e_rsvp;
+typedef enum { ru_none, ru_groups, ru_rows, ru_cols, ru_all } e_rules;
+typedef enum { su_safe, su_unsafe } e_safe_unsafe;
+typedef enum {  sand_unknown, sand_adwua, sand_asabua, sand_atnbua, sand_atntcp, sand_ad, sand_forms, sand_modals, sand_orientation, sand_pointer,
+                sand_popups, sand_popupescape, sand_presentation, sand_origin, sand_scripts, sand_navigation } e_sandbox;
+typedef enum { sc_interlace, sc_progressive } e_scan;
+typedef enum { scei_after, scei_before, scei_centre, scei_end, scei_start, scei_inherit } e_scei;
+
 #define SCHEMES pt_rfc3986, pt_rfc3986_ignore, pt_geo, pt_local, pt_news, pt_tel, pt_urn
 typedef enum { SCHEMES } e_scheme;
 
@@ -5612,7 +6087,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 // here's hoping future compilers will have a little more oomph. Still, given the current crop are hampered, I've no real choice but to ...
 #define SSC_TYPES_0_9 \
     t_0_more, t_0_to_1, t_0_to_2, t_0_to_3, t_0_to_4, t_0_to_6, t_0_to_7, t_0_to_8, t_0_to_9, t_0_to_100, t_0_to_150, t_0_to_255, t_0_to_1000, \
-    t_10, t_1_to_2, t_1_or_6, t_1_to_7, t_1_to_8, t_1_to_20, t_1_to_99, t_1_more, t_1_more_i, t_10_int, \
+    t_10, t_1_to_2, t_1_or_6, t_1_to_7, t_1_to_8, t_1_to_20, t_1_to_99, t_1_to_10000, t_1_more, t_1_more_i, t_10_int, \
     t_2_to_3, t_2_to_4, t_2_or_6, t_2000_to_50000, t_2pt, t_2string, t_2x_integer, t_2x_unsigned, \
     t_3x_integer, t_3x_real, t_3x_unsigned, t_3x_urational, \
     t_4string, t_4string_ni, t_4x_0_to_6, t_4x_urational, t_4x_unsigned, \
@@ -5643,7 +6118,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
         t_colour_schemes_n, t_colour_schemes_o, t_colour_space, t_colour_trans, t_colour_trans_i,  t_colour_v, t_colourfn, t_command, t_compact, t_comp_op, \
         t_composite_operator, t_compositing, t_conlit, t_conic_1, t_conic_2, t_connect, t_contain, t_contain_cover, t_contain_cover_sd, t_content_encoding, \
         t_content_encodings, t_content_type, t_context_menu, t_contents, t_controlslist, t_cookie, t_cookieid, t_cookies, t_coordinatesystem, t_coords, \
-        t_corp, t_cors, t_country, t_cntype, t_create_parent, t_crossout, t_crs_tonecurvename, t_crs_whitebalance, t_cs, t_csp, t_csp_ancestor, \
+        t_copy, t_corp, t_cors, t_country, t_cntype, t_create_parent, t_crossout, t_crs_tonecurvename, t_crs_whitebalance, t_cs, t_csp, t_csp_ancestor, \
         t_csp_directive, t_csp_keyword, t_csp_sauce, t_csp_source
 #define SSC_TYPES_C_MAX t_csp_source
 
@@ -5738,7 +6213,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
            t_css_margin_break, t_css_margin_trim, t_css_margin_trim_inner, t_css_margins_trim_inner, t_css_margins, t_css_margins_l, t_css_mark, \
                 t_css_marks, t_css_marx, t_css_mask, t_css_mask_border, t_css_mask_border_mode, t_css_mask_border_outsets, \
                 t_css_mask_border_repeat, t_css_mask_border_repeats, t_css_mask_border_slice, t_css_mask_border_width, \
-                t_css_mask_border_widths, t_css_masking_mode, t_css_masking_modes, t_css_mask_ref, t_css_mask_refs, t_css_masks, \
+                t_css_mask_border_widths, t_css_masking_mode, t_css_masking_modes, t_css_mask_ref, t_css_mask_refs, t_css_masks, t_css_module, \
             t_css_nth, t_css_nth_oe
 #define SSC_TYPES_CSS_M_N_MAX t_css_nth_oe
 
@@ -5798,10 +6273,10 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_CSS_U_Z_MAX t_css_wsts
 
 #define SSC_TYPES_D_E \
-    t_d, t_dashes, t_data, t_dataformatas, t_datetime, t_datetime_absolute, t_datetime_local, t_datetime_4, t_datetime_5, t_day, t_decalign, \
-        t_decibel, t_decoding, t_defaultaction, t_depth, t_determiner, t_device, t_dg, t_digits, t_dingbat, t_dir, t_direction, t_display, \
-        t_display_align, t_display_none_parent, t_dnu, t_dominantbaseline, t_dosh, t_drop_raise, t_dsc, t_dss, t_dsss, t_dur, t_dur_repeat, \
-        t_duration, t_duration_a, t_duration_media, t_dynamic_range, \
+    t_d, t_dashes, t_data, t_dataformatas, t_datetime, t_datetime_absolute, t_datetime_local, t_datetime_4, t_datetime_5, t_day, t_ddny, \
+        t_decalign, t_decibel, t_decoding, t_defaultaction, t_depth, t_determiner, t_device, t_device_or_height, t_device_or_width, t_dg, t_digits, \
+        t_dingbat, t_dir, t_direction, t_display, t_display_align, t_display_none_parent, t_dnu, t_dominantbaseline, t_dosh, t_drop_raise, t_dsc, \
+        t_dss, t_dsss, t_dur, t_dur_repeat, t_duration, t_duration_a, t_duration_media, t_dynamic_range, \
     t_e_w, t_economy_exact, t_edgemode, t_edi, t_edit, t_editable, t_effect, t_email, t_emails, t_empty, t_enable_background, t_enctype, t_end, \
         t_endvaluelist, t_ens, t_enterkeyhint, t_environment_blending, t_evt_action, t_exif_intind, t_existential, t_expected, t_exportpart
 #define SSC_TYPES_D_E_MAX t_exportpart
@@ -5818,7 +6293,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_F_MAX t_from_angle
 
 #define SSC_TYPES_G_H \
-    t_gamut, t_gender, t_generic, t_glyphname, t_glyphnames, t_grid_normal, t_groupalign, \
+    t_gamut, t_gender, t_generic, t_glyphname, t_glyphnames, t_grid_normal, t_groupalign, t_gtin, t_gtin8, t_gtin12, t_gtin13, t_gtin14, \
     t_halign, t_hash_ref, t_hash_fn, t_height, t_hex, t_hidden, t_hidden_ex, t_hour, t_hslafn, t_hslfn, t_hslfn4, t_html, t_html_boolean, \
         t_httpequiv, t_hue, t_hue_n, t_hunit, t_hv, t_hwbfn
 #define SSC_TYPES_G_H_MAX t_hwbfn
@@ -5828,8 +6303,8 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
         t_importance, t_in, t_index, t_indentalign, t_indentalign2, t_indentshift2, t_infixlinebreakstyle, t_initialvisibility, t_inky, t_inlist, \
         t_inputaccept, t_inputmode, t_inputplus, t_inputtype, t_inputtype3, t_inputtype32, t_inputtype4, t_inputtype5, t_inset, t_integer, \
         t_integer_ai, t_integer_i, t_integer_is, t_integer_ln, t_integer_n, t_integer_nl, t_integer_oo, t_integer_or_percent, t_integers, t_integers_a, \
-        t_intent, t_intent_app, t_intent_args, t_intent_conlit, t_intent_hint, t_intent_ref, t_inverted_colours, t_ip_address, t_is, t_isbn, \
-        t_issn, t_itemid, t_itemprop, t_itemtype, t_itemref
+        t_intent, t_intent_app, t_intent_args, t_intent_conlit, t_intent_hint, t_intent_ref, t_interactive_widget, t_inverted_colours, t_ip_address, \
+        t_is, t_isbn, t_issn, t_itemid, t_itemprop, t_itemtype, t_itemref
 #define SSC_TYPES_I_MAX t_itemref
 
 #define SSC_TYPES_J_L \
@@ -5843,17 +6318,16 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_J_L_MAX t_lzz
 
 #define SSC_TYPES_M_1 \
-    t_m1_to_5, t_m100_to_100, t_m100_to_100r, t_m128_to_127, t_m150_to_150, \
+    t_m1_to_1, t_m1_to_5, t_m100_to_100, t_m100_to_100r, t_m128_to_127, t_m150_to_150, \
     t_m4_to_4, \
     t_m50_to_100, \
     t_m_t, t_mah, t_mand_prox, t_manual_normal, t_margin_padding, t_marked_up, t_marker, t_markerunits, t_match_self_parent, t_mathalign, t_mathalign_n, \
-        t_mathaligns, \
-        t_mathclosure, t_mathfontstyle, t_mathfontweight, t_mathform, t_mathframe, t_mathlocation, t_mathmode, t_mathnotation, t_mathnotations, \
+        t_mathaligns, t_mathclosure, t_mathfontstyle, t_mathfontweight, t_mathform, t_mathframe, t_mathlocation, t_mathmode, t_mathnotation, t_mathnotations, \
         t_mathoccurence, t_mathorder, t_mathoverflow, t_mathscope, t_mathside, t_mathsize, t_mathspace, t_mathspaceauto, t_mathspacefit
 #define SSC_TYPES_M_1_MAX t_mathspacefit
 
 #define SSC_TYPES_M_2 \
-        t_mathspaceinfinity, t_mathvariant, t_mathvertauto, t_matrixtype, t_matrix_values, t_mb, t_measure, t_measure_2, t_measure_4, t_measure_a, \
+        t_mathspaceinfinity, t_mathvariant, t_math_version, t_mathvertauto, t_matrixtype, t_matrix_values, t_mb, t_measure, t_measure_2, t_measure_4, t_measure_a, \
         t_measure_ai, t_measure_i, t_measure_in, t_measure_ni, t_measure_or_more, t_measures, t_measures_a, t_measures_all, t_measures_i, \
         t_measures_l, t_media, t_media_display_mode, t_media_hover, t_media_inline, t_media_orientation, t_media_overflow, t_media_pointer, \
         t_media_prefers, t_media_prefers_2, t_media_scripting, t_meetslice, t_menuitem, t_menutype, t_metaname, t_method, \
@@ -5871,7 +6345,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_N_O_MAX t_over_under
 
 #define SSC_TYPES_P_1 \
-    t_page_orientation, t_paint, t_paintkeyword, t_paint_order, t_pam_ccv, t_pam_status, t_panose1, t_part, t_pcmm_status, t_percent, t_percentish, \
+    t_p1_10, t_page_orientation, t_paint, t_paintkeyword, t_paint_order, t_pam_ccv, t_pam_status, t_panose1, t_part, t_pcmm_status, t_percent, t_percentish, \
         t_percent_flexible, t_percent_n, t_percents_nf, t_percents_flexible, t_percents_n, t_percent_or_not, t_phase, t_phase_x, t_pics, \
         t_plus_1_7, t_plusstyle, t_pointer_events, t_points, t_popover, t_popovertargetaction, t_position, t_position_lcrtcb, t_position_lcr_len, \
         t_position_lcrtcb_len, t_position_tcb_len, t_position_lr_len, t_position_lrtb_len, t_position_tb_len, t_positions, t_positive, t_positive_1_2, \
@@ -5892,7 +6366,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
         t_recipe_content, t_recipe_course, t_recipe_cuisine, t_recipe_dietary, t_recipe_dish, t_recipe_exclusion, t_recipe_kit, t_recipe_meal, \
         t_recipe_method, t_recipe_source, t_recipe_skill, t_recipe_special, t_recipe_time, t_rect_round, t_referrer, t_refresh, t_refx, t_refy, \
         t_regex, t_rel, t_rel_a, t_rel_avoid, t_rel_css, t_rel_illegal, t_rel_link, t_rel_obsolete, t_rendering_colour_space, t_rendering_in_tents, \
-        t_repeatcount, t_resolution, t_restart, t_result, t_reveal_trans, t_rgbafn, t_rgbfn, t_role, t_roles, t_roman_dsc, t_root_url, t_rotate, \
+        t_repeatcount, t_report, t_resolution, t_restart, t_result, t_reveal_trans, t_rgbafn, t_rgbfn, t_role, t_roles, t_roman_dsc, t_root_url, t_rotate, \
         t_rotate_anim, t_rotate_upright, t_row_column, t_rowscols, t_rsvp, t_rules
 #define SSC_TYPES_Q_R_MAX t_rules
 
@@ -5925,13 +6399,15 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
     t_ugeo, t_uid, t_under_ff, t_unicode_bidi, t_unit, t_unit_abs_len, t_unit_abs_per, t_unit_angle, t_unit_angle_per, t_unit_freq, t_unit_freq_per, \
         t_unit_rel_len, t_unit_rel_per, t_unit_res, t_unit_res_per, t_unit_time, t_unit_time_per, t_units, t_unsigned, t_unsigned_1_more, t_unsigned_1_more_a, \
         t_unsigned_byte, t_unsigned_short, t_unsigned_1_or_2, t_un_ex, t_unsigned_dosh, t_unsigned_n, t_unsigneds, t_uplr, t_urange, t_urational, t_urationals, \
-        t_urifn, t_urifn_db, t_urifn_ni, t_urifn_str, t_urifn_xy, t_url, t_url_n, t_urls, t_urltemplate, t_user_modify
-#define SSC_TYPES_U_MAX t_user_modify
+        t_urifn, t_urifn_db, t_urifn_ni, t_urifn_str, t_urifn_xy, t_url, t_url_n, t_urls, t_urltemplate, t_user_modify, t_user_scalable
+#define SSC_TYPES_U_MAX t_user_scalable
 
 #define SSC_TYPES_V_W \
     t_valign, t_valign3, t_valign_tmb, t_value, t_values, t_valuetype, t_valuetype2, t_vector_effect, t_vector_effect_12, t_vector_effect_2, \
-        t_vector_effect_20, t_vector_effect_2s, t_version, t_vertical_align, t_vertical_align_enum, t_vgender, t_vid, t_viewportscreen, t_visibility, \
-        t_visibility10, t_visibility11, t_vkind, t_vocab, t_vrel, t_vtt, t_vtype, t_vunit, t_vunits, \
+        t_vector_effect_20, t_vector_effect_2s, t_version, t_vertical_align, t_vertical_align_enum, t_vgender, t_vid, \
+        t_viewport, t_viewport_comma, t_viewport_height, t_viewport_initial_scale, t_viewport_interactive_widget, t_viewport_maximum_scale, \
+        t_viewport_minimum_scale, t_viewport_scale, t_viewport_semi, t_viewport_setting, t_viewport_target_densitydpi, t_viewport_user_scalable, t_viewport_width, \
+        t_viewportscreen, t_visibility, t_visibility10, t_visibility11, t_vkind, t_vocab, t_vrel, t_vtt, t_vtype, t_vunit, t_vunits, \
     t_wanted, t_wallclock, t_week, t_whitespace, t_width, t_workertype, t_wrap, t_wrap3, t_writingmode, t_wxhs
  #define SSC_TYPES_V_W_MAX t_wxhs
 

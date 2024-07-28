@@ -36,6 +36,8 @@ You may need to set these environment variables:
 - ICU_ROOT: if you're not using your operating system's packaged ICU,
   set ICU_ROOT to your ICU source root directory;
 - GSL: set it to your GSL root directory.
+- WX_ROOT: if you're building the gui front end to ssc, you'll need to
+  install wxWidgets and set WX_ROOT to its installation directory.
 
 *libcurl requires a thread-safe underlying SSL library: see
 https://curl.se/libcurl/c/threadsafe.html. 
@@ -50,6 +52,27 @@ winspell
 The Windows build, by default, uses the native Windows spellchecker,
 although, except for Windows 11, that doesn't seem to work so well in
 contexts unimpaired by monolingualism.
+
+
+Notes on the GUI
+================
+
+wxWidgets
+---------
+Why use this ancient behemoth given the good number of somewhat less
+archaic C++ GUI libraries? The requirements were: (i) Open Source;
+(ii) supports Windows/MacOS/Linux/OpenBSD. Of those libraries I found,
+only wxWidgets was documented to support OpenBSD. 
+
+Polylingualism
+--------------
+ssc is written for coders. HTML/etc. code is based on English, so
+ssc's GUI text is similarly monolingual.
+
+Unstable
+--------
+The GUI will evolve rapidly over the coming few months, so expect it to
+change significantly.
 
 
 Building
@@ -101,8 +124,10 @@ The following have, at some point, been successfully built as x64 amd:
 FreeBSD:  13.2 / 13.1 / 12.4 / 12.3
 Linux:    Alma Linux 9, AOSC, Centos 8 / 9, SUSE Tumbleweed,
           Ubuntu 20.04 / 22.04
-MacOS:    Sonoma / Ventura / Monterey / Big Sur / Catalina / Mojave
-OpenBSD:  7.4 / 7.3 / 7.2 / 7.1 / 7.0 / 6.9
+MacOS:    Sonoma, Ventura, Monterey, Big Sur, Catalina, Mojave. Older
+          versions of ssc have been built under High Sierra, Sierra, El
+          Capitan and Yosemite
+OpenBSD:  7.4 / 7.3 / 7.2 / 7.1 / 7.0 / 6.9 / 6.8
 
 The following have been successfully built as arm64:
 Linux:    Centos 9
@@ -171,6 +196,26 @@ In Windows, remember to add its root directory to your local path.
 
 Boost
 -----
-Boost is to C++ as breakfast is to the working day. Most package
-managers support it. You can always build your own version using the
-source found at boost.org.
+Boost is to C++ as breakfast to the working day.
+
+Most package managers support it, including vcpkg. Alternatively, build
+your own version using the source found at boost.org.
+
+Curl
+----
+curl is used for link checking and, where necessary, obtaining remote
+resources. Most package managers support it.
+
+wxWidgets
+---------
+This is only required if you make a GUI build, which is not recommended
+(yet). It can be found at wxwidgets.org. Note that I have not tested it
+under many supported (by wxWidgets) systems.
+
+
+Editions
+========
+
+Currently, there are new, work-in-progress, server and gui editions in
+the Visual Studio solution. These do not work and should not be used.
+Stick to the standard edition.

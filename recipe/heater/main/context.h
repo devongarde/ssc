@@ -22,6 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "feedback/nitpick.h"
 #include "feedback/nitout.h"
 #include "main/output.h"
+#ifdef BEASTIES
+#include "main/server.h"
+#endif // BEASTIES
 #include "stats/stats.h"
 #include "parser/html_version.h"
 #include "ontology/ontology_version.h"
@@ -32,50 +35,74 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define STOP_OK 1
 #define NOTHING_TO_DO 2
 #define ERROR_STATE 3
+#define CATASTROPHIC_STATE 4
 #define DEFAULT_MAX_FILE_SIZE 4
 #define DMFS_BYTES (DEFAULT_MAX_FILE_SIZE * 1024 * 1024)
 
 CONSTEXPR e_severity default_output = es_warning;
+CONSTEXPR bool def_article = false, def_body = true, def_case = false, def_cgi = false, def_classic = false, def_clear = false,
+    def_crosslinks = true, def_example = true, def_external = false, def_ext_css = false, def_extra = false,
+    def_force_version = false, def_forwarded = true, def_icu = true, def_ie = false, def_info = false, def_iterate = false,
+    def_jsonld = false, def_local = true, def_load_css = true, def_links = true, def_main = false, def_md_export = false,
+    def_mf_export = false, def_mf_verify = true, def_microdata = true, def_nids = false, def_nits = false,
+    def_nits_nits_nits = false, def_not_root = false, def_once = true, def_presume_tags = false, def_progress = false,
+    def_rdfa = false, def_rel = false, def_revoke = false, def_rfc_1867 = true, def_rfc_1942 = true, def_rfc_1980 = true,
+    def_rfc_2070 = true, def_rpt_opens = false, def_ruby = false, def_ontology = true, def_safari = false, def_serve = false,
+    def_shadow_changed = false, def_shadow_comment = true, def_shadow_enable = false, def_shadow_space = true,
+    def_shadow_ssi = true, def_sloven = false, def_spec = false, def_spell = true, def_spell_deduced = false, def_ssi = true,
+    def_test = false, def_unknown_class = true, def_update = false, def_valid = false, def_vcs = false, def_versioned = false,
+    def_yggdrisil = false;
+CONSTEXPR const char* const def_macrostart = "{{";
+CONSTEXPR const char* const def_macroend = "}}";
+CONSTEXPR const char* const def_path = DEFAULT_DATAPATH;
+CONSTEXPR const char* const def_persisted = PROG EXT;
+CONSTEXPR ::std::size_t def_htmltitle = MAX_IDEAL_TITLE_LENGTH;
+CONSTEXPR ::std::size_t def_fred = 1;
+CONSTEXPR unsigned char def_mf = 3;
+CONSTEXPR long def_max_file_size = DMFS_BYTES;
+CONSTEXPR const char* const def_css_ext = CSS_EXT;
+CONSTEXPR const char* const def_html_ext = HTML_EXT;
+CONSTEXPR const char* const def_jsonld_ext = JSONLD_EXT;
+
 class replies;
 class corpus;
 
 class context_t
-{   bool            article_ = false, body_ = true, case_ = false, cgi_ = false, classic_ = false, clear_ = false, crosslinks_ = true, example_ = true,
-                    external_ = false, ext_css_ = false, extra_ = false, force_version_ = false, forwarded_ = true, icu_ = true, ie_ = false,
-                    info_ = false, iterate_ = false, jsonld_ = false, local_ = true, load_css_ = true, links_ = true, main_ = false, md_export_ = false,
-                    mf_export_ = false, mf_verify_ = true, microdata_ = true, nids_ = false, nits_ = false, nits_nits_nits_ = false, not_root_ = false,
-                    once_ = true, presume_tags_ = false, progress_ = false, rdfa_ = false, rel_ = false, revoke_ = false, rfc_1867_ = true, 
-                    rfc_1942_ = true, rfc_1980_ = true, rfc_2070_ = true, rpt_opens_ = false, ontology_ = true, safari_ = false, serve_ = false, 
-                    shadow_changed_ = false, shadow_comment_ = true, shadow_enable_ = false, shadow_space_ = true, shadow_ssi_ = true, sloven_ = false, 
-                    spec_ = false, spell_ = true, spell_deduced_ = false, ssi_ = true, stats_abbr_ = false, stats_annotation_ = false, 
-                    stats_attribute_ = false, stats_category_ = false, stats_character_variant_ = false, stats_class_ = false,
-                    stats_content_name_ = false, stats_counter_style_ = false, stats_css_property_ = false, stats_custom_media_ = false,
-                    stats_custom_property_ = false, stats_definition_ = false, stats_value_pair_ = false, stats_element_ = false, stats_error_ = false,
-                    stats_file_ = false, stats_font_ = false, stats_font_family_ = false, stats_highlight_ = false, stats_historical_form_ = false,
-                    stats_id_ = false, stats_itemid_ = false, stats_keyframe_ = false, stats_layer_ = false, stats_meta_ = false,
-                    stats_ontology_ = false, stats_ornament_ = false, stats_page_name_ = false, stats_page_ = false, stats_palette_ = false,
-                    stats_property_ = false, stats_reference_ = false, stats_region_ = false, stats_scroll_anim_ = false, stats_statement_ = false,
-                    stats_styleset_ = false, stats_stylistic_ = false, stats_summary_ = false, stats_swash_ = false, stats_version_ = false,
-                    stats_view_ = false, test_ = false, unknown_class_ = true, update_ = false, valid_ = false, versioned_ = false, yggdrisil_ = false;
-    ::std::size_t   fred_ = 1, title_ = MAX_IDEAL_TITLE_LENGTH;
+{   friend class options;
+    bool            article_ = def_article, body_ = def_body, case_ = def_case, cgi_ = def_cgi, classic_ = def_classic,
+                    clear_ = def_clear, crosslinks_ = def_crosslinks, example_ = def_example, external_ = def_external,
+                    ext_css_ = def_ext_css, extra_ = def_extra, force_version_ = def_force_version, forwarded_ = def_forwarded,
+                    icu_ = def_icu, ie_ = def_ie, info_ = def_info, iterate_ = def_iterate, jsonld_ = def_jsonld,
+                    local_ = def_local, load_css_ = def_load_css, links_ = def_links, main_ = def_main,
+                    md_export_ = def_md_export, mf_export_ = def_mf_export, mf_verify_ = def_mf_verify,
+                    microdata_ = def_microdata, nids_ = def_nids, nits_ = def_nits, nits_nits_nits_ = def_nits_nits_nits,
+                    not_root_ = def_not_root, once_ = def_once, presume_tags_ = def_presume_tags, progress_ = def_progress,
+                    rdfa_ = def_rdfa, rel_ = def_rel, revoke_ = def_revoke, rfc_1867_ = def_rfc_1867, rfc_1942_ = def_rfc_1942,
+                    rfc_1980_ = def_rfc_1980, rfc_2070_ = def_rfc_2070, rpt_opens_ = def_rpt_opens, ruby_ = def_ruby,
+                    ontology_ = def_ontology, safari_ = def_safari, serve_ = def_serve,                                                                                                                                                 shadow_changed_ = def_shadow_changed, shadow_comment_ = def_shadow_comment, shadow_enable_ = def_shadow_enable, shadow_space_ = def_shadow_space, shadow_ssi_ = def_shadow_ssi, sloven_ = def_sloven,                                                                                                                                           spec_ = def_spec, spell_ = def_spell, spell_deduced_ = def_spell_deduced, ssi_ = def_ssi, test_ = def_test, unknown_class_ = def_unknown_class, update_ = def_update,   valid_ = def_valid, vcs_ = def_vcs, versioned_ = def_versioned, yggdrisil_ = def_yggdrisil;
+    ::std::size_t   fred_ = def_fred, title_ = def_htmltitle;
     e_copy          copy_ = c_none;
-    unsigned char   mf_version_ = 3;
+    unsigned char   mf_version_ = def_mf;
     html_version    version_;
-    long            max_file_size_ = DMFS_BYTES;
-    e_severity      verbose_ = default_output;
-    e_severity      report_error_ = es_error;
-    ::std::string   build_, cache_, domsg_, export_root_, general_info_, index_, lang_, macro_end_ = "}}", macro_start_ = "{{", msg_, nit_format_,
-                    nit_override_, path_, persisted_, root_, secret_, shadow_, shadow_persist_, snippet_, started_, stats_, x_;
-    ::boost::filesystem::path config_, corpus_, spell_path_;
-    vstr_t          css_ext_, custom_elements_, environment_, exports_, extensions_, jsonld_ext_, no_ex_check_, report_, shadow_ignore_, shadows_, site_,
-                    spellings_, virtuals_;
-    ::boost::program_options::options_description validation_;
-    vstr_t          exclude_, pretend_;
+    long            max_file_size_ = def_max_file_size;
+    e_severity      report_error_ = es_error, verbose_ = default_output;
+    ::std::string   accept_, build_, cache_, domsg_, export_root_, general_info_, index_, lang_,
+                    macro_end_ = def_macroend, macro_start_ = def_macrostart, msg_,
+                    nit_format_, nit_override_, out_, path_ = def_path, persisted_, root_, secret_, shadow_, shadow_persist_,
+                    snippet_, started_, stats_, svg_, x_;
+    ::boost::filesystem::path config_, corpus_, proot_, spell_path_;
+    vstr_t          abhorrent_, attrib_, catastrophe_, cmd_, comment_, css_ext_ = { CSS_EXT }, custom_elements_, debug_,
+                    dict_, dlang_, elem_, elem_attrib_, environment_, error_, exclude_, exports_, extensions_ = { HTML_EXT },
+                    inform_, ignore_, jsonld_ext_, no_ex_check_ = { JSONLD_EXT }, pretend_, report_, shadow_ignore_, shadows_,
+                    silent_, site_, spell_list_, spellings_, warning_, virtuals_, vont_;
+    static ustr_t   validation_;
     e_svg_processing_mode svg_mode_ = spm_none;
     e_quote_style   quote_style_ = qs_none;
     e_do            do_ = do_booboo;
-    ::boost::filesystem::path proot_;
-    friend class options;
+#ifdef BEASTIES
+    server_t        server_;
+#endif // BEASTIES
+    aset_t          rpt_;
     template < typename T > void mac (const e_nit_macro ns, const T n)
     {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
         macro -> set (ns, ::boost::lexical_cast < ::std::string > (n)); }
@@ -96,13 +123,23 @@ class context_t
             ss += quote (sss); }
         VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
         macro -> set (ns, ss); }
+public:
+    context_t ();
+    context_t (nitpick& nits, const ::boost::filesystem::path& fn);
+    DEFAULT_COPY_CONSTRUCTORS (context_t);
+    ~context_t () = default;
+    context_t& abhorrent (const ::std::string& s) { abhorrent_.push_back (s); return *this; }
+    context_t& accept (const ::std::string& s) { accept_ = s; return *this; }
     context_t& article (const bool b) { article_ = b; mac (nm_context_article, b); return *this; }
+    context_t& attrib (const vstr_t& s) { attrib_ = s; return *this; }
     context_t& body (const bool b) { body_ = b; mac (nm_context_body, b); return *this; }
     context_t& cache (const ::std::string& s) { cache_ = s; return *this; }
     context_t& cased (const bool b) { case_ = b; mac (nm_context_case, b); return *this; }
+    context_t& catastrophe (const ::std::string& s) { catastrophe_.push_back (s); return *this; }
     context_t& cgi (const bool b) { cgi_ = b; mac (nm_context_cgi, b); spell (false); return *this; }
     context_t& classic (const bool b) { classic_ = b; mac (nm_context_classic, b); return *this; }
     context_t& clear (const bool b) { clear_ = b; mac (nm_context_clear, b); return *this; }
+    context_t& comment (const ::std::string& s) { comment_.push_back (s); return *this; }
     context_t& config (const ::boost::filesystem::path& c) { config_ = c; mac (nm_context_config, c.string ()); return *this; }
     context_t& copy (const int c)
     {   if ((c > c_none) && (c <= c_rpt)) copy_ = static_cast < e_copy > (c);
@@ -111,87 +148,19 @@ class context_t
         return *this; }
     context_t& corpus (const ::boost::filesystem::path& f) { corpus_ = f; mac (nm_context_corpus, f.string ()); return *this; }
     context_t& crosslinks (const bool b) { crosslinks_ = b; mac (nm_context_crosslinks, b); return *this; }
-    context_t& css_adjust (const int n) { version_.css_adjust (n); mac (nm_context_css_adjust, n); return *this; }
-    context_t& css_advanced_layout (const int n) { version_.css_advanced_layout (n); mac (nm_context_advanced_layout, n); return *this; }
-    context_t& css_anchor (const int n) { version_.css_anchor (n); mac (nm_context_css_anchor, n); return *this; }
-    context_t& css_anchor_pos (const int n) { version_.css_anchor_pos (n); mac (nm_context_css_anchor_pos, n); return *this; }
-    context_t& css_animation (const int n) { version_.css_animation (n); mac (nm_context_css_animation, n); return *this; }
-    context_t& css_background (const int n) { version_.css_background (n); mac (nm_context_css_background, n); return *this; }
-    context_t& css_box_alignment (const int n) { version_.css_box_alignment (n); mac (nm_context_css_box_align, n); return *this; }
-    context_t& css_box_model (const int n) { version_.css_box_model (n); mac (nm_context_css_box_model, n); return *this; }
-    context_t& css_box_sizing (const int n) { version_.css_box_sizing (n); mac (nm_context_css_box_sizing, n); return *this; }
-    context_t& css_cascade (const int n) { version_.css_cascade (n); mac (nm_context_css_cascade, n); return *this; }
-    context_t& css_colour (const int n) { version_.css_colour (n); mac (nm_context_css_colour, n); return *this; }
-    context_t& css_compositing (const int n) { version_.css_compositing (n); mac (nm_context_css_compositing, n); return *this; }
-    context_t& css_conditional_rule (const int n) { version_.css_conditional_rule (n); mac (nm_context_css_cond_rule, n); return *this; }
-    context_t& css_contain (const int n) { version_.css_contain (n); mac (nm_context_css_contain, n); return *this; }
-    context_t& css_content (const int n) { version_.css_content (n); mac (nm_context_css_content, n); return *this; }
-    context_t& css_counter_style (const int n) { version_.css_counter_style (n); mac (nm_context_css_cs, n); return *this; }
-    context_t& css_custom (const int n) { version_.css_custom (n); mac (nm_context_css_custom, n); return *this; }
-    context_t& css_device (const int n) { version_.css_device (n); mac (nm_context_css_device, n); return *this; }
-    context_t& css_display (const int n) { version_.css_display (n); mac (nm_context_css_display, n); return *this; }
-    context_t& css_ease (const int n) { version_.css_ease (n); mac (nm_context_css_ease, n); return *this; }
-    context_t& css_exclude (const int n) { version_.css_exclude (n); mac (nm_context_css_exclude, n); return *this; }
     context_t& css_extension (const vstr_t& s) { css_ext_ = s; mac (nm_context_css_extension, s); return *this; }
-    context_t& css_fbl (const int n) { version_.css_fbl (n); mac (nm_context_css_fbl, n); return *this; }
-    context_t& css_fill (const int n) { version_.css_fill (n); mac (nm_context_css_fill, n); return *this; }
-    context_t& css_filter (const int n) { version_.css_filter (n); mac (nm_context_css_filter, n); return *this; }
-    context_t& css_float (const int n) { version_.css_float (n); mac (nm_context_css_float, n); return *this; }
-    context_t& css_font (const int n) { version_.css_font (n); mac (nm_context_css_font, n); return *this; }
-    context_t& css_fragmentation (const int n) { version_.css_fragmentation (n); mac (nm_context_css_fragmentation, n); return *this; }
-    context_t& css_grid (const int n) { version_.css_grid (n); mac (nm_context_css_grid, n); return *this; }
-    context_t& css_highlight (const int n) { version_.css_highlight (n); mac (nm_context_css_highlight, n); return *this; }
-    context_t& css_hyperlink (const int n) { version_.css_hyperlink (n); mac (nm_context_css_hyperlink, n); return *this; }
-    context_t& css_image (const int n) { version_.css_image (n); mac (nm_context_css_image, n); return *this; }
-    context_t& css_inline (const int n) { version_.css_inline (n); mac (nm_context_css_inline, n); return *this; }
-    context_t& css_line_grid (const int n) { version_.css_line_grid (n); mac (nm_context_css_line_grid, n); return *this; }
-    context_t& css_list (const int n) { version_.css_list (n); mac (nm_context_css_lists, n); return *this; }
-    context_t& css_logic (const int n) { version_.css_logic (n); mac (nm_context_css_logic, n); return *this; }
-    context_t& css_marquee (const int n) { version_.css_marquee (n); mac (nm_context_css_marquee, n); return *this; }
-    context_t& css_masking (const int n) { version_.css_masking (n); mac (nm_context_css_masking, n); return *this; }
-    context_t& css_media (const int n) { version_.css_media (n); mac (nm_context_css_media, n); return *this; }
-    context_t& css_motion (const int n) { version_.css_motion (n); mac (nm_context_css_motion, n); return *this; }
-    context_t& css_multi_column (const int n) { version_.css_multi_column (n); mac (nm_context_css_multi_column, n); return *this; }
-    context_t& css_namespace (const int n) { version_.css_namespace (n); mac (nm_context_css_namespace, n); return *this; }
-    context_t& css_nes (const int n) { version_.css_nes (n); mac (nm_context_css_nes, n); return *this; }
-    context_t& css_nesting (const int n) { version_.css_nesting (n); mac (nm_context_css_nesting, n); return *this; }
-    context_t& css_overflow (const int n) { version_.css_overflow (n); mac (nm_context_css_overflow, n); return *this; }
-    context_t& css_overscroll (const int n) { version_.css_overscroll (n); mac (nm_context_css_overscroll, n); return *this; }
-    context_t& css_page (const int n) { version_.css_page (n); mac (nm_context_css_page, n); return *this; }
-    context_t& css_position (const int n) { version_.css_position (n); mac (nm_context_css_position, n); return *this; }
-    context_t& css_present (const int n) { version_.css_present (n); mac (nm_context_css_present, n); return *this; }
-    context_t& css_pseudo (const int n) { version_.css_pseudo (n); mac (nm_context_css_pseudo, n); return *this; }
-    context_t& css_region (const int n) { version_.css_region (n); mac (nm_context_css_region, n); return *this; }
-    context_t& css_rhythm (const int n) { version_.css_rhythm (n); mac (nm_context_css_rhythm, n); return *this; }
-    context_t& css_round (const int n) { version_.css_round (n); mac (nm_context_css_round, n); return *this; }
-    context_t& css_ruby (const int n) { version_.css_ruby (n); mac (nm_context_css_ruby, n); return *this; }
-    context_t& css_scope (const int n) { version_.css_scope (n); mac (nm_context_css_scope, n); return *this; }
-    context_t& css_scrollbar (const int n) { version_.css_scrollbar (n); mac (nm_context_css_scrollbar, n); return *this; }
-    context_t& css_sda (const int n) { version_.css_sda (n); mac (nm_context_css_sda, n); return *this; }
-    context_t& css_selector (const int n) { version_.css_selector (n); mac (nm_context_css_selector, n); return *this; }
-    context_t& css_shadow (const int n) { version_.css_shadow (n); mac (nm_context_css_shadow, n); return *this; }
-    context_t& css_shape (const int n) { version_.css_shape (n); mac (nm_context_css_shape, n); return *this; }
-    context_t& css_snap (const int n) { version_.css_snap (n); mac (nm_context_css_snap, n); return *this; }
-    context_t& css_snap_points (const int n) { version_.css_snap_points (n); mac (nm_context_css_snap_points, n); return *this; }
-    context_t& css_spatial (const int n) { version_.css_spatial (n); mac (nm_context_css_spatial, n); return *this; }
-    context_t& css_speech (const int n) { version_.css_speech (n); mac (nm_context_css_speech, n); return *this; }
-    context_t& css_style (const int n) { version_.css_style (n); mac (nm_context_css_style, n); return *this; }
-    context_t& css_syntax (const int n) { version_.css_syntax (n); mac (nm_context_css_syntax, n); return *this; }
-    context_t& css_table (const int n) { version_.css_table (n); mac (nm_context_css_table, n); return *this; }
-    context_t& css_text (const int n) { version_.css_text (n); mac (nm_context_css_text, n); return *this; }
-    context_t& css_text_decoration (const int n) { version_.css_text_decoration (n); mac (nm_context_css_text_decoration, n); return *this; }
-    context_t& css_transform (const int n) { version_.css_transform (n); mac (nm_context_css_transform, n); return *this; }
-    context_t& css_transition (const int n) { version_.css_transition (n); mac (nm_context_css_transition, n); return *this; }
-    context_t& css_ui (const int n) { version_.css_ui (n); mac (nm_context_css_ui, n); return *this; }
-    context_t& css_value (const int n) { version_.css_value (n); mac (nm_context_css_value, n); return *this; }
+    context_t& css_module (const e_css_module r, const int n);
     context_t& css_version (const int mjr, const int mnr);
     context_t& css_version (const e_css_version v) { version_.css_version (v); mac < int > (nm_context_css_version, v); return *this; }
-    context_t& css_view (const int n) { version_.css_view (n); mac (nm_context_css_view, n); return *this; }
-    context_t& css_writing_mode (const int n) { version_.css_writing_mode (n); mac (nm_context_css_writing_mode, n); return *this; }
-    context_t& css_will_change (const int n) { version_.css_will_change (n); mac (nm_context_css_will_change, n); return *this; }
     context_t& custom_elements (const vstr_t& s) { custom_elements_ = s; mac (nm_context_custom_elements, s); return *this; }
+    context_t& debug (const ::std::string& s) { debug_.push_back (s); return *this; }
+    context_t& dict (const ::std::string& s) { dict_.push_back (s); return *this; }
+    context_t& dlang (const ::std::string& s) { dlang_.push_back (s); return *this; }
     context_t& domsg (const ::std::string& s) { domsg_ = s; return *this; }
+    context_t& elem (const vstr_t& s) { elem_ = s; return *this; }
+    context_t& elem_attrib (const vstr_t& s) { elem_attrib_ = s; return *this; }
     context_t& environment (const e_environment e, const ::std::string& s);
+    context_t& error (const ::std::string& s) { error_.push_back (s); return *this; }
     context_t& example (const bool b) { example_ = b; mac (nm_context_example, b); return *this; }
     context_t& exclude (nitpick& nits, const vstr_t& s);
     context_t& exclude (nitpick& nits, const ::std::string& s);
@@ -218,6 +187,7 @@ class context_t
     context_t& ie (const bool b) { ie_ = b; mac (nm_context_ie, b); return *this; }
     context_t& ignore (nitpick& nits, const vstr_t& s);
     context_t& info (const bool b) { info_ = b; mac (nm_context_info, b); return *this; }
+    context_t& inform (const ::std::string& s) { inform_.push_back (s); return *this; }
     context_t& index (const ::std::string& s) { index_ = s; mac (nm_context_index, s); return *this; }
     context_t& iterate (const bool b) { iterate_ = b; mac (nm_context_iterate, b); return *this; }
     context_t& jsonld (const bool b) { jsonld_ = b; mac (nm_context_jsonld, b); return *this; }
@@ -276,6 +246,12 @@ class context_t
     {   ontology_ = b;
         mac (nm_context_schema, b);
         return *this; }
+    context_t& ont_ver (const e_ontology o, const ::std::string& s)
+    {   PRESUME (o < s_error, __FILE__, __LINE__);
+        if (vont_.size () == 0) vont_.resize (s_error);
+        vont_.at (o) = s;
+        return *this; }
+    context_t& out_name (const ::std::string& s) { out_ = s; return *this; }
     context_t& path (const ::std::string& s)
     {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
         path_ = s;
@@ -302,8 +278,59 @@ class context_t
     context_t& rfc_2070 (const bool b) { rfc_2070_ = b; mac (nm_context_rfc_2070, b); return *this; }
     context_t& root (const ::std::string& s);
     context_t& rpt_opens (const bool b) noexcept { rpt_opens_ = b; return *this; }
+    context_t& ruby (const bool b) { ruby_ = b; mac (nm_context_ruby, b); return *this; }
     context_t& safari (const bool b) { safari_ = b; mac (nm_context_safari, b); return *this; }
     context_t& secret (const ::std::string& s) { secret_ = s; return *this; }
+#ifdef BEASTIES
+    context_t& serve (const bool b)
+    {   serve_ = b;
+        mac (nm_context_server, b);
+        return *this; }
+    context_t& server_accept (nitpick& nits, const ::std::string& from, const ::std::string& to = ::std::string ())
+    {   server_.accept (nits, from, to);
+        mac (nm_context_server_address_from, from);
+        mac (nm_context_server_address_to, to);
+        return *this; }
+    context_t& server_address (nitpick& nits, const ::std::string& s)
+    {   server_.address (nits, s);
+        mac (nm_context_server_address, s);
+        return *this; }
+    context_t& server_port (nitpick& nits, const int n)
+    {   server_.port (nits, n);
+        mac (nm_context_server_port, n);
+        return *this; }
+    context_t& server_root (nitpick& nits, const ::std::string& s)
+    {   server_.root (nits, s);
+        mac (nm_context_server_root, s);
+        return *this; }
+    // certs and passwords are not recorded
+    context_t& server_parameters (nitpick& nits, const ::std::string& s)
+    {   server_.parameters_cert (nits, s);
+        return *this; }
+    context_t& server_passfile (nitpick& nits, const ::std::string& s)
+    {   server_.passfile (nits, s);
+        return *this; }
+    context_t& server_password (nitpick& nits, const ::std::string& s)
+    {   server_.password (nits, s);
+        return *this; }
+    context_t& server_private (nitpick& nits, const ::std::string& s)
+    {   server_.private_cert (nits, s);
+        return *this; }
+    context_t& server_public (nitpick& nits, const ::std::string& s)
+    {   server_.public_cert (nits, s);
+        return *this; }
+#else // BEASTIES
+    context_t& serve (const bool ) { serve_ = false; mac (nm_context_server, false); return *this; }
+    context_t& server_accept (nitpick& , const ::std::string& , const ::std::string& ) { return *this; }
+    context_t& server_address (nitpick& , const ::std::string& ) { return *this; }
+    context_t& server_port (nitpick& , const int ) { return *this; }
+    context_t& server_root (nitpick& , const ::std::string& ) { return *this; }
+    context_t& server_parameters (nitpick& , const ::std::string& ) { return *this; }
+    context_t& server_passfile (nitpick& , const ::std::string& ) { return *this; }
+    context_t& server_password (nitpick& , const ::std::string& ) { return *this; }
+    context_t& server_private (nitpick& , const ::std::string& ) { return *this; }
+    context_t& server_public (nitpick& , const ::std::string& ) { return *this; }
+#endif // BEASTIES
     context_t& set_profile (const flags_t f) { version_.set_profile (f); return *this; }
     context_t& shadow_comment (const bool b) { shadow_comment_ = b; if (b) shadow_enable (true); mac (nm_context_shadow_comment, b); return *this; }
     context_t& shadow_changed (const bool b) { shadow_changed_ = b; if (b) shadow_enable (true); mac (nm_context_shadow_changed, b); return *this; }
@@ -314,6 +341,7 @@ class context_t
     context_t& shadow_ssi (const bool b) { shadow_ssi_ = b; if (b) shadow_enable (true); mac (nm_context_shadow_ssi, b); return *this; }
     context_t& shadow_space (const bool b) { shadow_space_ = b; if (b) shadow_enable (true); mac (nm_context_shadow_space, b); return *this; }
     context_t& shadows (const vstr_t& s) { shadows_ = s; mac (nm_context_shadows, s); shadow_enable (true); return *this; }
+    context_t& silent (const ::std::string& s) { silent_.push_back (s); return *this; }
     context_t& site (const vstr_t& s) { site_ = s; mac (nm_context_site, s); return *this; }
     context_t& sloven (const bool b) { sloven_ = b; mac (nm_context_sloven, b); return *this; }
     context_t& snippet (const ::std::string& s)
@@ -325,52 +353,15 @@ class context_t
         return *this; }
     context_t& spec (const bool b) { spec_ = b; return *this; }
     context_t& spell_deduced (const bool b) { spell_deduced_ = b; return *this; }
+    context_t& spell_list (const ::std::string& s) { spell_list_.push_back (s); return *this; }
     context_t& spellings (const vstr_t& s) { spellings_ = s; mac (nm_context_spellings, s); return *this; }
     context_t& spell_path (const ::boost::filesystem::path& f) { spell_path_ = f; mac (nm_context_spell_path, f); return *this; }
     context_t& ssi (const bool b) { ssi_ = b; mac (nm_context_ssi, b); return *this; }
     context_t& stats (const ::std::string& s) { stats_ = s; mac (nm_context_stats_export, s); return *this; }
+    context_t& stats (const e_report r, const bool b);
     context_t& stats_all (const bool b);
-    context_t& stats_abbr (const bool b) { stats_abbr_ = b; mac (nm_context_stats_abbr, b); return *this; }
-    context_t& stats_annotation (const bool b) { stats_annotation_ = b; mac (nm_context_stats_annotation, b); return *this; }
-    context_t& stats_attribute (const bool b) { stats_attribute_ = b; mac (nm_context_stats_attribute, b); return *this; }
-    context_t& stats_category (const bool b) { stats_category_ = b; mac (nm_context_stats_category, b); return *this; }
-    context_t& stats_character_variant (const bool b) { stats_character_variant_ = b; mac (nm_context_stats_character_variant, b); return *this; }
-    context_t& stats_class (const bool b) { stats_class_ = b; mac (nm_context_stats_class, b); return *this; }
-    context_t& stats_content_name (const bool b) { stats_content_name_ = b; mac (nm_context_stats_content_name, b); return *this; }
-    context_t& stats_counter_style (const bool b) { stats_counter_style_ = b; mac (nm_context_stats_counter_style, b); return *this; }
-    context_t& stats_css_property (const bool b) { stats_css_property_ = b; mac (nm_context_stats_css_property, b); return *this; }
-    context_t& stats_custom_media (const bool b) { stats_custom_media_ = b; mac (nm_context_stats_custom_media, b); return *this; }
-    context_t& stats_custom_property (const bool b) { stats_custom_property_ = b; mac (nm_context_stats_custom_property, b); return *this; }
-    context_t& stats_definition (const bool b) { stats_definition_ = b; mac (nm_context_stats_dfn, b); return *this; }
-    context_t& stats_value_pair (const bool b) { stats_value_pair_ = b; mac (nm_context_stats_dtdd, b); return *this; }
-    context_t& stats_element (const bool b) { stats_element_ = b; mac (nm_context_stats_element, b); return *this; }
-    context_t& stats_error (const bool b) { stats_error_ = b; mac (nm_context_stats_error, b); return *this; }
-    context_t& stats_file (const bool b) { stats_file_ = b; mac (nm_context_stats_file, b); return *this; }
-    context_t& stats_font (const bool b) { stats_font_ = b; mac (nm_context_stats_font, b); return *this; }
-    context_t& stats_font_family (const bool b) { stats_font_family_ = b; mac (nm_context_stats_font_family, b); return *this; }
-    context_t& stats_highlight (const bool b) { stats_highlight_ = b; mac (nm_context_stats_highlight, b); return *this; }
-    context_t& stats_historical_form (const bool b) { stats_historical_form_ = b; mac (nm_context_stats_historical_form, b); return *this; }
-    context_t& stats_id (const bool b) { stats_id_ = b; mac (nm_context_stats_id, b); return *this; }
-    context_t& stats_itemid (const bool b) { stats_itemid_ = b; mac (nm_context_stats_itemid, b); return *this; }
-    context_t& stats_keyframe (const bool b) { stats_keyframe_ = b; mac (nm_context_stats_keyframe, b); return *this; }
-    context_t& stats_layer (const bool b) { stats_layer_ = b; mac (nm_context_stats_layer, b); return *this; }
-    context_t& stats_meta (const bool b) { stats_meta_ = b; mac (nm_context_stats_meta, b); return *this; }
-    context_t& stats_ontology (const bool b) { stats_ontology_ = b; mac (nm_context_stats_ontology, b); return *this; }
-    context_t& stats_ornament (const bool b) { stats_ornament_ = b; mac (nm_context_stats_ornament, b); return *this; }
-    context_t& stats_page (const bool b) { stats_page_ = b; mac (nm_context_stats_page, b); return *this; }
-    context_t& stats_page_name (const bool b) { stats_page_name_ = b; mac (nm_context_stats_page_name, b); return *this; }
-    context_t& stats_palette (const bool b) { stats_palette_ = b; mac (nm_context_stats_palette, b); return *this; }
-    context_t& stats_property (const bool b) { stats_property_ = b; mac (nm_context_stats_property, b); return *this; }
-    context_t& stats_reference (const bool b) { stats_reference_ = b; mac (nm_context_stats_reference, b); return *this; }
-    context_t& stats_region (const bool b) { stats_region_ = b; mac (nm_context_stats_region, b); return *this; }
-    context_t& stats_scroll_anim (const bool b) { stats_scroll_anim_ = b; mac (nm_context_stats_scroll_anim, b); return *this; }
-    context_t& stats_statement (const bool b) { stats_statement_ = b; mac (nm_context_stats_statement, b); return *this; }
-    context_t& stats_summary (const bool b) { stats_summary_ = b; mac (nm_context_stats_summary, b); return *this; }
-    context_t& stats_styleset (const bool b) { stats_styleset_ = b; mac (nm_context_stats_styleset, b); return *this; }
-    context_t& stats_stylistic (const bool b) { stats_stylistic_ = b; mac (nm_context_stats_stylistic, b); return *this; }
-    context_t& stats_swash (const bool b) { stats_swash_ = b; mac (nm_context_stats_swash, b); return *this; }
-    context_t& stats_version (const bool b) { stats_version_ = b; mac (nm_context_stats_version, b); return *this; }
-    context_t& stats_view (const bool b) { stats_view_ = b; mac (nm_context_stats_view, b); return *this; }
+    context_t& stats_report (const e_report e, const bool b) { rpt_.at (e) = b; return *this; }
+    context_t& svg (const ::std::string& s) { svg_ = s; return *this; }
     context_t& svg_mode (const e_svg_processing_mode m) noexcept { svg_mode_ = m; return *this; }
     context_t& svg_version (const int mjr, const int mnr);
     context_t& svg_version (const e_svg_version v) { version_.svg_version (v); mac < int > (nm_context_svg_version, v); return *this; }
@@ -380,9 +371,11 @@ class context_t
     context_t& todo (const e_do e) noexcept { do_ = e; return *this; }
     context_t& unknown_class (const bool b) { unknown_class_ = b; mac (nm_context_unknown_class, b); return *this; }
     context_t& update (const bool b) noexcept { update_ = b; return *this; }
+    context_t& vcs (const bool b) noexcept { vcs_ = b; mac (nm_context_vcs, b); return *this; }
     context_t& verbose (const e_severity i) noexcept { verbose_ = i; return *this; }
     context_t& versioned (const bool b) noexcept { versioned_ = b; return *this; }
     context_t& virtuals (const vstr_t& s) { virtuals_ = s; mac (nm_context_virtuals, s); return *this; }
+    context_t& warning (const ::std::string& s) { warning_.push_back (s); return *this; }
     context_t& x (const ::std::string& s) { x_ = s; return *this; }
     context_t& yggdrisil (const bool b) { yggdrisil_ = b; return *this; }
     context_t& mobile_profile (const bool b) { if (b) version_.set_profile (H3_NOT_MOBILE); else version_.reset_profile (H3_NOT_MOBILE); return *this; }
@@ -390,104 +383,42 @@ class context_t
     context_t& tv_profile (const bool b) { if (b) version_.set_profile (H3_NOT_TV); else version_.reset_profile (H3_NOT_TV); return *this; }
     void consolidate_jsonld ()
     {   for (auto j : jsonld_ext_) extensions_.push_back (j); }
-public:
-    context_t ();
-    int parameters (nitpick& nits, const vstr_t& vs);
+    int parameters (output_streams_t& ost, nitpick& nits, const vstr_t& vs);
+    const vstr_t& abhorrent () const { return abhorrent_; }
+    const ::std::string accept () const { return accept_; }
     bool article () const noexcept { return article_; }
+    const vstr_t& attrib () const { return attrib_; }
     bool body () const noexcept { return body_; }
     const ::std::string build () const { return build_; }
     context_t& build (const ::std::string& s) { build_ = s; mac (nm_compile_time, s); return *this; }
     const ::std::string& cache () const noexcept { return cache_; }
     bool cased () const noexcept { return case_; }
+    const vstr_t& catastrophe () const { return catastrophe_; }
     bool cgi () const noexcept { return cgi_; }
     bool classic () const noexcept { return classic_; }
     bool clear () const noexcept { return clear_; }
+    const vstr_t& cmd () const { return cmd_; }
+    vstr_t cmd () { return cmd_; }
+    const vstr_t& comment () const { return comment_; }
     ::boost::filesystem::path config () const { return config_; }
     e_copy copy () const noexcept { return copy_; }
     ::boost::filesystem::path corpus () const { return corpus_; }
     bool crosslinks () const noexcept { return crosslinks_; }
-    int css_adjust () const { return version_.css_adjust (); }
-    int css_advanced_layout () const { return version_.css_advanced_layout (); }
-    int css_anchor () const { return version_.css_anchor (); }
-    int css_anchor_pos () const { return version_.css_anchor_pos (); }
-    int css_animation () const { return version_.css_animation (); }
-    int css_background () const { return version_.css_background (); }
-    int css_box_alignment () const { return version_.css_box_alignment (); }
-    int css_box_model () const { return version_.css_box_model (); }
-    int css_box_sizing () const { return version_.css_box_sizing (); }
-    int css_cascade () const { return version_.css_cascade (); }
-    int css_colour () const { return version_.css_colour (); }
-    int css_compositing () const { return version_.css_compositing (); }
-    int css_conditional_rule () const { return version_.css_conditional_rule (); }
-    int css_contain () const { return version_.css_contain (); }
-    int css_content () const { return version_.css_content (); }
-    int css_counter_style () const { return version_.css_counter_style (); }
-    int css_custom () const { return version_.css_custom (); }
-    int css_device () const { return version_.css_device (); }
-    int css_display () const { return version_.css_display (); }
-    int css_ease () const { return version_.css_ease (); }
-    int css_exclude () const { return version_.css_exclude (); }
     const vstr_t css_extension () const { return css_ext_; }
-    int css_fbl () const { return version_.css_fbl (); }
-    int css_filter () const { return version_.css_filter (); }
-    int css_fill () const { return version_.css_fill (); }
-    int css_float () const { return version_.css_float (); }
-    int css_font () const { return version_.css_font (); }
-    int css_fragmentation () const { return version_.css_fragmentation (); }
-    int css_grid () const { return version_.css_grid (); }
-    int css_highlight () const { return version_.css_highlight (); }
-    int css_hyperlink () const { return version_.css_hyperlink (); }
-    int css_line_grid () const { return version_.css_line_grid (); }
-    int css_list () const { return version_.css_list (); }
-    int css_logic () const { return version_.css_logic (); }
-    int css_image () const { return version_.css_image (); }
-    int css_inline () const { return version_.css_inline (); }
-    int css_marquee () const { return version_.css_marquee (); }
-    int css_masking () const { return version_.css_masking (); }
-    int css_media () const { return version_.css_media (); }
-    int css_motion () const { return version_.css_motion (); }
-    int css_multi_column () const { return version_.css_multi_column (); }
-    int css_namespace () const { return version_.css_namespace (); }
-    int css_nes () const { return version_.css_nes (); }
-    int css_nesting () const { return version_.css_nesting (); }
-    int css_overflow () const { return version_.css_overflow (); }
-    int css_overscroll () const { return version_.css_overscroll (); }
-    int css_page () const { return version_.css_page (); }
-    int css_position () const { return version_.css_position (); }
-    int css_present () const { return version_.css_present (); }
-    int css_pseudo () const { return version_.css_pseudo (); }
-    int css_region () const { return version_.css_region (); }
-    int css_rhythm () const { return version_.css_rhythm (); }
-    int css_round () const { return version_.css_round (); }
-    int css_ruby () const { return version_.css_ruby (); }
-    int css_scope () const { return version_.css_scope (); }
-    int css_scrollbar () const { return version_.css_scrollbar (); }
-    int css_sda () const { return version_.css_sda (); }
-    int css_selector () const { return version_.css_selector (); }
-    int css_shadow () const { return version_.css_shadow (); }
-    int css_shape () const { return version_.css_shape (); }
-    int css_snap () const { return version_.css_snap (); }
-    int css_snap_points () const { return version_.css_snap_points (); }
-    int css_spatial () const { return version_.css_spatial (); }
-    int css_speech () const { return version_.css_speech (); }
-    int css_style () const { return version_.css_style (); }
-    int css_syntax () const { return version_.css_syntax (); }
-    int css_table () const { return version_.css_table (); }
-    int css_text () const { return version_.css_text(); }
-    int css_text_decoration () const { return version_.css_text_decoration (); }
-    int css_transform () const { return version_.css_transform (); }
-    int css_transition () const { return version_.css_transition (); }
-    int css_ui () const { return version_.css_ui (); }
-    int css_value () const { return version_.css_value (); }
+    int css_module (const e_css_module m) const { return version_.css_module (m); }
     e_css_version css_version () const noexcept { return version_.css_version (); }
-    int css_view () const { return version_.css_view (); }
-    int css_writing_mode () const { return version_.css_writing_mode (); }
-    int css_will_change () const { return version_.css_will_change (); }
     const vstr_t custom_elements () const { return custom_elements_; }
+    const vstr_t& debug () const { return debug_; }
+    const vstr_t& dict () const { return dict_; }
+    const vstr_t& dlang () const { return dlang_; }
     bool dodedu () const noexcept { return (copy_ >= c_deduplicate); }
     const ::std::string domsg () const { return domsg_; }
+    const vstr_t& elem () const { return elem_; }
+    const vstr_t& elem_attrib () const { return elem_attrib_; }
     const ::std::string environment (const e_environment e) const { return environment_.at (e); }
+    const vstr_t& error () const { return error_; }
     bool example () const noexcept { return example_; }
+    const vstr_t exclude () const { return exclude_; }
     bool excluded (nitpick& nits, const ::boost::filesystem::path& p) const;
     bool export_defined () const noexcept { return ! export_root_.empty (); }
     const ::std::string export_root () const { return export_root_; }
@@ -509,7 +440,9 @@ public:
     html_version html_ver (const int major, const int minor) noexcept;
     bool icu () const noexcept { return icu_; }
     bool ie () const noexcept { return ie_; }
+    const vstr_t ignore () const { return ignore_; }
     bool info () const noexcept { return info_; }
+    const vstr_t& inform () const { return inform_; }
     const ::std::string index () const { return index_; }
     bool iterate () const noexcept { return iterate_; }
     bool invalid () const noexcept { return ! valid_; }
@@ -528,6 +461,7 @@ public:
     bool md_export () const noexcept { return md_export_; }
     bool mf_export () const noexcept { return mf_export_; }
     bool mf_verify () const noexcept { return mf_verify_; }
+    int mf_version () const noexcept { return mf_version_; }
     bool mf_version1 () const noexcept { return (mf_version_ & 1) != 0; }
     bool mf_version2 () const noexcept { return (mf_version_ & 2) != 0; }
     bool microdata () const noexcept { return microdata_; }
@@ -545,8 +479,14 @@ public:
     bool ontology () const noexcept { return ontology_; }
     ontology_version ontology_ver (const e_ontology es = s_schema) const
     {   return get_default_ontology_version (es); }
+    ::std::string ont_ver (const e_ontology o) const
+    {   PRESUME (o < s_error, __FILE__, __LINE__);
+        if (vont_.size () > 0) return vont_.at (o);
+        return ::std::string (); }
+    const ::std::string& out_name () const { return out_; }
     const ::std::string& path () const { return path_; }
     const ::std::string persisted () const { return persisted_; }
+    const vstr_t& pretend () const { return pretend_; }
     bool presume_tags () const noexcept { return presume_tags_; }
     bool pretended (const ::std::string& s) const;
     bool progress () const noexcept { return progress_; }
@@ -563,9 +503,27 @@ public:
     bool rfc_2070 () const noexcept { return rfc_2070_; }
     bool rpt_opens () const noexcept { return rpt_opens_; }
     const ::std::string& root () const { return root_; }
+    bool ruby () const noexcept { return ruby_; }
     const ::boost::filesystem::path& rootp () const { return proot_; }
     bool safari () const noexcept { return safari_; }
     const ::std::string& secret () const { return secret_; }
+#ifdef BEASTIES
+    bool serve () const noexcept { return serve_; }
+    ::std::string server_address () const { return server_.address (); }
+    unsigned short server_port () const { return server_.port (); }
+    ::std::string server_root () const { return server_.root_.string (); }
+    ::std::string server_parameters () const { return server_.parameters_; }
+    ::std::string server_passfile () const { return server_.passfile_.string (); }
+    ::std::string server_public () const { return server_.public_; }
+#else // BEASTIES
+    bool serve () const noexcept { return false; }
+    ::std::string address () const { return ::std::string (); }
+    unsigned short server_port () const { return 0; }
+    ::std::string server_root () const { return ::std::string (); }
+    ::std::string server_parameters () const { return ::std::string (); }
+    ::std::string server_passfile () const { return ::std::string (); }
+    ::std::string server_public () const { return ::std::string (); }
+#endif // BEASTIES
     bool shadow_any () const noexcept { return shadow_pages (); }
     bool shadow_comment () const noexcept { return shadow_comment_; }
     bool shadow_changed () const noexcept { return shadow_changed_; }
@@ -578,12 +536,14 @@ public:
     bool shadow_ssi () const noexcept { return shadow_ssi_; }
     bool shadow_space () const noexcept { return shadow_space_; }
     const vstr_t shadows () const { return shadows_; }
+    const vstr_t& silent () const { return silent_; }
     const vstr_t site () const { return site_; }
     bool sloven () const noexcept { return sloven_; }
     bool spell () const noexcept { return spell_; }
     context_t& spell (const bool b) { spell_ = b; mac (nm_context_spell, b); return *this; }
     bool spell_deduced () const noexcept { return spell_deduced_; }
-    const vstr_t spellings () const { return spellings_; }
+    const vstr_t& spell_list () const { return spell_list_; }
+    const vstr_t& spellings () const { return spellings_; }
     const ::boost::filesystem::path& spell_path () const { return spell_path_; }
     const ::std::string& snippet () const { return snippet_; }
     bool spec () const noexcept { return spec_; }
@@ -591,48 +551,10 @@ public:
     const ::std::string& started () const { return started_; }
     context_t& started (const ::std::string& s) { started_ = s; mac (nm_time_start, s); return *this; }
     const ::std::string& stats () const { return stats_; }
-    bool stats_summary () const noexcept { return stats_summary_; }
-    bool stats_page () const noexcept { return stats_page_; }
-    bool stats_abbr () const noexcept { return stats_abbr_; }
-    bool stats_annotation () const noexcept { return stats_annotation_; }
-    bool stats_attribute () const noexcept { return stats_attribute_; }
-    bool stats_category () const noexcept { return stats_category_; }
-    bool stats_character_variant () const noexcept { return stats_character_variant_; }
-    bool stats_class () const noexcept { return stats_class_; }
-    bool stats_content_name () const noexcept { return stats_content_name_; }
-    bool stats_counter_style () const noexcept { return stats_counter_style_; }
-    bool stats_css_property () const noexcept { return stats_css_property_; }
-    bool stats_custom_media () const noexcept { return stats_custom_media_; }
-    bool stats_custom_property () const noexcept { return stats_custom_property_; }
-    bool stats_definition () const noexcept { return stats_definition_; }
-    bool stats_value_pair () const noexcept { return stats_value_pair_; }
-    bool stats_element () const noexcept { return stats_element_; }
-    bool stats_error () const noexcept { return stats_error_; }
-    bool stats_file () const noexcept { return stats_file_; }
-    bool stats_font () const noexcept { return stats_font_; }
-    bool stats_font_family () const noexcept { return stats_font_family_; }
+    bool stats (const e_report r) const { return rpt_.at (r); }
     bool stats_gst (const e_gsstr gst);
-    bool stats_highlight () const noexcept { return stats_highlight_; }
-    bool stats_historical_form () const noexcept { return stats_historical_form_; }
-    bool stats_id () const noexcept { return stats_id_; }
-    bool stats_itemid () const noexcept { return stats_itemid_; }
-    bool stats_keyframe () const noexcept { return stats_keyframe_; }
-    bool stats_layer () const noexcept { return stats_layer_; }
-    bool stats_meta () const noexcept { return stats_meta_; }
-    bool stats_ontology () const noexcept { return stats_ontology_; }
-    bool stats_ornament () const noexcept { return stats_ornament_; }
-    bool stats_page_name () const noexcept { return stats_page_name_; }
-    bool stats_palette () const noexcept { return stats_palette_; }
-    bool stats_property () const noexcept { return stats_property_; }
-    bool stats_reference () const noexcept { return stats_reference_; }
-    bool stats_region () const noexcept { return stats_region_; }
-    bool stats_scroll_anim () const noexcept { return stats_scroll_anim_; }
-    bool stats_statement () const noexcept { return stats_statement_; }
-    bool stats_styleset () const noexcept { return stats_styleset_; }
-    bool stats_stylistic () const noexcept { return stats_stylistic_; }
-    bool stats_swash () const noexcept { return stats_swash_; }
-    bool stats_version () const noexcept { return stats_version_; }
-    bool stats_view () const noexcept { return stats_view_; }
+    bool stats_report (const e_report e) const { return rpt_.at (e); }
+    const ::std::string& svg () const { return svg_; }
     e_svg_processing_mode svg_mode () const noexcept { return svg_mode_; }
     e_svg_version svg_version () const noexcept { return version_.svg_version (); }
     bool test () const noexcept { return test_ && nit_override_.empty (); }
@@ -642,18 +564,22 @@ public:
     e_severity verbose () const noexcept { return verbose_; }
     const vstr_t virtuals () const { return virtuals_; }
     bool update () const noexcept { return update_; }
+    bool vcs () const noexcept { return vcs_; }
+    void apply_vcs (nitpick& nits);
     bool versioned () const noexcept { return versioned_; }
+    const vstr_t& warning () const { return warning_; }
     const ::std::string& x () const { return x_; }
     bool yggdrisil () const { return yggdrisil_; }
     bool tell (const e_severity n) const noexcept
     {   if (n == es_undefined) return false;
         return n <= verbose_; }
-    ::boost::program_options::options_description& validation () noexcept { return validation_; }
-    const ::boost::program_options::options_description& validation () const noexcept { return validation_; }
+    ustr_t& validation () noexcept { return validation_; }
+    const ustr_t& validation () const noexcept { return validation_; }
     bool profile_checks () const { return version_.profile_checks (); }
     bool mobile_profile () const { return version_.mobile_profile (); }
     bool print_profile () const { return version_.print_profile (); }
     bool tv_profile () const { return version_.tv_profile (); }
-    ::std::string make_absolute_url (const ::std::string& link, bool can_use_index = true) const; };
+    ::std::string make_absolute_url (const ::std::string& link, bool can_use_index = true) const;
+    bool write (nitpick& nits, const ::boost::filesystem::path& fn) const; };
 
 extern context_t context;

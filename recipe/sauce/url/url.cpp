@@ -35,10 +35,11 @@ bool url::operator == (const url& rhs) const
 {   return (current_ == rhs.current_) && (protocol_ == rhs.protocol_) && (params_ == rhs.params_); }
 
 void url::init (nitpick& )
-{   standard_text_extensions_.resize (3);
-    GSL_AT (standard_text_extensions_, 0) = "html";
+{   standard_text_extensions_.resize (4);
+    GSL_AT (standard_text_extensions_, 0) = HTML_EXT;
     GSL_AT (standard_text_extensions_, 1) = "shtml";
     GSL_AT (standard_text_extensions_, 2) = "htm";
+    GSL_AT (standard_text_extensions_, 2) = XHTML_EXT;
     standard_image_extensions_.resize (4);
     GSL_AT (standard_image_extensions_, 0) = "jpg";
     GSL_AT (standard_image_extensions_, 1) = "jpeg";

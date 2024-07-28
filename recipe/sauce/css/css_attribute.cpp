@@ -43,7 +43,7 @@ void css_attribute::parse (arguments& args, const int from, const int to)
         if ((p > 0) && ((args.t_.at (p).t_ == ct_identifier) || (args.t_.at (p).t_ == ct_keyword) || (args.t_.at (p).t_ == ct_splat)))
         {   nitpick& nits = args.t_.at (n).nits_;
             b = p;
-            if (args.v_.css_namespace () < 3)
+            if (args.v_.css_module (c_namespace) < 3)
                 nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": namespaces requires CSS Namespace 3 or better");
             else if ((b < 0) && (b4 < 0))
                 nits.pick (nit_css_syntax, es_error, ec_css, quote (wo), ": a namespace andor an attribute must be given");
@@ -92,7 +92,7 @@ void css_attribute::parse (arguments& args, const int from, const int to)
                 if (args.t_.at (b).t_ != ct_eq)
                     nits.pick (nit_css_attribute, es_error, ec_css, "missing = following ^");
                 else b = next_non_whitespace (args.t_, b, to);
-                if (context.html_ver ().css_selector () < 3) nits.pick (nit_css_version, ed_css_selectors_3, "2 Selectors", es_error, ec_css, "^= requires CSS 3 or later");
+                if (context.html_ver ().css_module (c_selector) < 3) nits.pick (nit_css_version, ed_css_selectors_3, "2 Selectors", es_error, ec_css, "^= requires CSS 3 or later");
                 else eat_ = eat_begins;
                 break; 
             case ct_dollar :
@@ -100,7 +100,7 @@ void css_attribute::parse (arguments& args, const int from, const int to)
                 if (args.t_.at (b).t_ != ct_eq)
                     nits.pick (nit_css_attribute, es_error, ec_css, "missing = following $");
                 else b = next_non_whitespace (args.t_, b, to);
-                if (context.html_ver ().css_selector () < 3) nits.pick (nit_css_version, ed_css_selectors_3, "2 Selectors", es_error, ec_css, "$= requires CSS 3 or later");
+                if (context.html_ver ().css_module (c_selector) < 3) nits.pick (nit_css_version, ed_css_selectors_3, "2 Selectors", es_error, ec_css, "$= requires CSS 3 or later");
                 else eat_ = eat_ends;
                 break; 
             case ct_splat :
@@ -108,7 +108,7 @@ void css_attribute::parse (arguments& args, const int from, const int to)
                 if (args.t_.at (b).t_ != ct_eq)
                     nits.pick (nit_css_attribute, es_error, ec_css, "missing = following *");
                 else b = next_non_whitespace (args.t_, b, to);
-                if (context.html_ver ().css_selector () < 3) nits.pick (nit_css_version, ed_css_selectors_3, "2 Selectors", es_error, ec_css, "*= requires CSS 3 or later");
+                if (context.html_ver ().css_module (c_selector) < 3) nits.pick (nit_css_version, ed_css_selectors_3, "2 Selectors", es_error, ec_css, "*= requires CSS 3 or later");
                 else eat_ = eat_contains;
                 break; 
             case ct_squiggle :
@@ -139,7 +139,7 @@ void css_attribute::parse (arguments& args, const int from, const int to)
         if (args.t_.at (b).t_ != ct_keyword)
         {   nits.pick (nit_css_syntax, es_error, ec_css, tkn_rpt (args.t_.at (b)), ": unexpected (3)");
             return; }
-        if (context.css_selector () < 4)
+        if (context.css_module (c_selector) < 4)
         {   nits.pick (nit_css_version, ed_css_selectors_4, "2 Selectors Overview", es_error, ec_css, "case sensitivity selectors require CSS Selectors Level 4");
             return; }
         bool ok = false;

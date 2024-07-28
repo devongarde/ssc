@@ -94,48 +94,47 @@ void element::examine_ruby ()
     for (element* c = child_; c != nullptr; c = c -> sibling_)
     {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
         if (is_standard_element (c -> tag ()) && ! c -> node_.is_closure ())
-            if (is_whatwg)
-                switch (c -> tag ())
-                {   case elem_ruby :
-                        if (had_non_ruby) pick (nit_mix_ruby_non, ed_jul20, "4.5.10 The ruby element", es_error, ec_element, "do not mix child <RUBY> elements with child phrasal elements");
-                        else if (had_ruby) pick (nit_too_many_ruby, ed_jul20, "4.5.10 The ruby element", es_error, ec_element, "each child <RUBY> must be separated by an <RT>");
-                        if (had_rt || had_rp)
-                                pick (nit_no_rp, ed_jul20, "4.5.10 The ruby element", es_error, ec_element, "each child <RUBY> must precede any <RT> or <RP> children");
-                        had_ruby = true;
-                        had_non_ruby = had_rt = had_rp = rp_mode = false;
-                        break;
-                    case elem_rt :
-                        if (rp_mode && had_rt)
-                            pick (nit_no_rp, ed_jul20, "4.5.10 The ruby element", es_error, ec_element, "<RP> should be interleaved with <RT>");
-                        had_ruby = had_non_ruby = had_rp = false;
-                        had_rt = true;
-                        break;
-                    case elem_rp :
-                        if (! rp_mode && had_rt)
-                            pick (nit_no_rp, ed_jul20, "4.5.10 The ruby element", es_error, ec_element, "<RP> must precede any <RT>");
-                        had_ruby = had_non_ruby = had_rt = false;
-                        had_rp = rp_mode = true;
-                        break;
-                    default :
-                        if (had_ruby) pick (nit_too_many_ruby, ed_jul20, "4.5.10 The ruby element", es_error, ec_element, "Do not mix child <RUBY>s with child phrasal elements");
-                        had_non_ruby = true;
-                        had_ruby = had_rt = had_rp = false;
-                        break; }
-                else switch (c -> tag ())
-                {   case elem_rt :
-                    case elem_rtc :
-                        if (had_rt)
-                            pick (nit_no_rp, ed_51, "4.5.10 The ruby element", es_error, ec_element, "<RP> should immediately precede OR follow <RT> andor <RTC>");
-                        else had_rt = true;
-                        break;
-                    case elem_rp :
-                        had_rp = true;
-                        break;
-                    default :
-                        if (had_rt != had_rp)
-                            pick (nit_no_rp, ed_51, "4.5.10 The ruby element", es_error, ec_element, "<RT> and <RTC> elements must precede or follow an <RP>");
-                        had_rp = had_rt = false;
-                        break; } }
+            if (is_whatwg) switch (c -> tag ())
+            {   case elem_ruby :
+                    if (had_non_ruby) pick (nit_mix_ruby_non, ed_jul20, "4.5.10 The ruby element", es_error, ec_element, "do not mix child <RUBY> elements with child phrasal elements");
+                    else if (had_ruby) pick (nit_too_many_ruby, ed_jul20, "4.5.10 The ruby element", es_error, ec_element, "each child <RUBY> must be separated by an <RT>");
+                    if (had_rt || had_rp)
+                            pick (nit_no_rp, ed_jul20, "4.5.10 The ruby element", es_error, ec_element, "each child <RUBY> must precede any <RT> or <RP> children");
+                    had_ruby = true;
+                    had_non_ruby = had_rt = had_rp = rp_mode = false;
+                    break;
+                case elem_rt :
+                    if (rp_mode && had_rt)
+                        pick (nit_no_rp, ed_jul20, "4.5.10 The ruby element", es_error, ec_element, "<RP> should be interleaved with <RT>");
+                    had_ruby = had_non_ruby = had_rp = false;
+                    had_rt = true;
+                    break;
+                case elem_rp :
+                    if (! rp_mode && had_rt)
+                        pick (nit_no_rp, ed_jul20, "4.5.10 The ruby element", es_error, ec_element, "<RP> must precede any <RT>");
+                    had_ruby = had_non_ruby = had_rt = false;
+                    had_rp = rp_mode = true;
+                    break;
+                default :
+                    if (had_ruby) pick (nit_too_many_ruby, ed_jul20, "4.5.10 The ruby element", es_error, ec_element, "Do not mix child <RUBY>s with child phrasal elements");
+                    had_non_ruby = true;
+                    had_ruby = had_rt = had_rp = false;
+                    break; }
+            else switch (c -> tag ())
+            {   case elem_rt :
+                case elem_rtc :
+                    if (had_rt)
+                        pick (nit_no_rp, ed_51, "4.5.10 The ruby element", es_error, ec_element, "<RP> should immediately precede OR follow <RT> andor <RTC>");
+                    else had_rt = true;
+                    break;
+                case elem_rp :
+                    had_rp = true;
+                    break;
+                default :
+                    if (had_rt != had_rp)
+                        pick (nit_no_rp, ed_51, "4.5.10 The ruby element", es_error, ec_element, "<RT> and <RTC> elements must precede or follow an <RP>");
+                    had_rp = had_rt = false;
+                    break; } }
     if (! is_whatwg)
         if (had_rt != had_rp)
             pick (nit_no_rp, ed_51, "4.5.10 The ruby element", es_error, ec_element, "<RP> should immediately precede OR follow <RT> andor <RTC>"); }

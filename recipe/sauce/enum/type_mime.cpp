@@ -2284,9 +2284,15 @@ struct symbol_entry < html_version, e_format > format_symbol_table [] =
 
     { { HTML_UNDEF }, { HTML_UNDEF }, nullptr, mime_context } };
 
+::std::size_t mime_count ()
+{   return sizeof (mimetype_symbol_table) / sizeof (symbol_entry < html_version, e_mimetype >) - 1; }
+
+::std::size_t format_count ()
+{   return sizeof (format_symbol_table) / sizeof (symbol_entry < html_version, e_format >) - 1; }
+
 void mime_init (nitpick& nits)
-{   type_master < t_mime > :: init (nits, mimetype_symbol_table, sizeof (mimetype_symbol_table) / sizeof (symbol_entry < html_version, e_mimetype >));
-    type_master < t_format > :: init (nits, format_symbol_table, sizeof (format_symbol_table) / sizeof (symbol_entry < html_version, e_format >)); }
+{   type_master < t_mime > :: init (nits, mimetype_symbol_table, mime_count () + 1);
+    type_master < t_format > :: init (nits, format_symbol_table, format_count () + 1); }
 
 e_format extension_format (nitpick& , const html_version& v, const ::std::string& ext, flags_t& flags)
 {   return type_master < t_format > :: find (v, ext, ns_default, nullptr, nullptr, &flags); }

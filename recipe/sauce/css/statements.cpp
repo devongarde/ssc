@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 void statements::parse (arguments& args, const int start, const int finish)
 {   PRESUME (args.t_.at (0).t_ == ct_root, __FILE__, __LINE__);
-    if ((context.css_nesting () > 0) && (start >= 0))
+    if ((context.css_module (c_nesting) > 0) && (start >= 0))
     {   int i = first_non_whitespace (args.t_, start, finish);
         if (i > 0)
             if ((args.t_.at (i).t_ == ct_identifier) || (args.t_.at (i).t_ == ct_keyword))

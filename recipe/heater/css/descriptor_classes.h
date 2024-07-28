@@ -20,7 +20,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "css/typed_property.h"
-#include "main/enum.h"
 
 typedef typed_property < t_css_addsyms, ec_additive_symbols > desc_additive_symbols;
 typedef typed_property < t_real, ec_ascent > desc_ascent;

@@ -94,7 +94,7 @@ mmac_t mac_subtitle (const ::std::string& title)
     uint64_t total = 0;
     unsigned count = 0;
     VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
-    if (context.stats_ontology ())
+    if (context.stats (rcb_ontology))
         for (unsigned i = 0; i < ont_illegal; ++i)
         {   const unsigned n = ontology_.at (static_cast < e_ontology_type > (i));
             if (n == 0) continue;
@@ -111,7 +111,7 @@ mmac_t mac_subtitle (const ::std::string& title)
                         if (y > 0)
                         {   mmac_t mac = mac_subinit (itemprop_index_name (make_itemprop_index (static_cast <e_ontology_property> (m))), y);
                             res += macro -> apply (ns_substat, table, stat, mac); } } } }
-    if (context.stats_property ())
+    if (context.stats (rcb_property))
     {   mmac_t stat = mac_subtitle (REPORT_PROPERTY " counts");
         ::std::string att;
         for (unsigned m = 0; m < op_illegal; ++m)
@@ -135,7 +135,7 @@ mmac_t mac_subtitle (const ::std::string& title)
     uint64_t total = 0;
     unsigned count = 0;
     VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
-    if (context.stats_element ())
+    if (context.stats (rcb_element))
         for (unsigned i = 0; i < last_element_tag; ++i)
         {   const unsigned n = element_.at (i);
             if (n == 0) continue;
@@ -143,7 +143,7 @@ mmac_t mac_subtitle (const ::std::string& title)
             count += n;
             if (context.tell (es_comment) || ((elem::categories (i) & EF_FAUX) == 0))
             {   mmac_t stat = mac_init (elem::name (i), n);
-                if (! context.stats_attribute ())
+                if (! context.stats (rcb_attribute) )
                 {   const unsigned x = attribute_.family (i);
                     if (x > 0)
                     {   ::std::string average ("on average ");
@@ -159,7 +159,7 @@ mmac_t mac_subtitle (const ::std::string& title)
                         if (y > 0)
                         {   mmac_t mac = mac_subinit (attr::name (static_cast <e_attribute> (m)), y);
                             res += macro -> apply (ns_substat, table, stat, mac); } } } } }
-    if (context.stats_attribute ())
+    if (context.stats (rcb_attribute) )
     {   mmac_t stat = mac_subtitle (REPORT_ATTRIBUTE " count");
         ::std::string att;
         for (unsigned m = 0; m < last_attribute; ++m)
@@ -410,7 +410,7 @@ const char* str_name [] =
 {   mmac_t table = mac_title (REPORT_HEADER);
     ::std::string res;
     VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
-    if (context.stats_meta ())
+    if (context.stats (rcb_meta))
     {   ::std::string sub;
         mmac_t stat1 = mac_subtitle ("pragma");
         for (unsigned i = 0; i < he_error; ++i)
@@ -571,42 +571,42 @@ const char* str_name [] =
     else g.emplace (nm_grand_title, REPORT_STAT);
     VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
     res += macro -> apply (ns_grand_head, g);
-    if (context.stats_abbr ()) res += abbr_report ();
+    if (context.stats (rcb_abbreviation)) res += abbr_report ();
     if (context.stats_gst (gst_annotation)) res += css_str_report (gst_annotation);
-    if (grand && context.stats_category ()) res += category_report ();
+    if (grand && context.stats (rcb_category) ) res += category_report ();
     if (context.stats_gst (gst_character_variant)) res += css_str_report (gst_character_variant);
-    if (context.stats_class ()) res += class_report ();
+    if (context.stats (rcb_class)) res += class_report ();
     if (context.stats_gst (gst_content_name)) res += css_str_report (gst_content_name);
     if (context.stats_gst (gst_counter_style)) res += css_str_report (gst_counter_style);
-    if (context.stats_custom_media ()) res += custom_media_report ();
-    if (context.stats_custom_property ()) res += custom_property_report ();
-    if (context.stats_definition ()) res += definition_report ();
-    if (context.stats_element ()) res += element_report ();
-    if (grand && context.stats_error ()) res += error_report ();
-    if (grand && (file_count_ > 1) && context.stats_file ()) res += file_report ();
-    if (context.stats_font ()) res += font_report ();
+    if (context.stats (rcb_custom_media)) res += custom_media_report ();
+    if (context.stats (rcb_custom_property) ) res += custom_property_report ();
+    if (context.stats (rcb_definition)) res += definition_report ();
+    if (context.stats (rcb_element)) res += element_report ();
+    if (grand && context.stats (rcb_error)) res += error_report ();
+    if (grand && (file_count_ > 1) && context.stats (rcb_file)) res += file_report ();
+    if (context.stats (rcb_font)) res += font_report ();
     if (context.stats_gst (gst_font_family)) res += css_str_report (gst_font_family);
     if (context.stats_gst (gst_highlight)) res += css_str_report (gst_highlight);
     if (context.stats_gst (gst_historical_form)) res += css_str_report (gst_historical_form);
-    if (context.stats_id ()) res += id_report ();
-    if (context.stats_itemid ()) res += itemid_report ();
+    if (context.stats (rcb_id)) res += id_report ();
+    if (context.stats (rcb_itemid)) res += itemid_report ();
     if (context.stats_gst (gst_keyframe)) res += css_str_report (gst_keyframe);
     if (context.stats_gst (gst_layer)) res += css_str_report (gst_layer);
-    if (context.stats_meta ()) res += meta_report ();
-    if (context.stats_ontology ()) res += ontology_report ();
+    if (context.stats (rcb_meta)) res += meta_report ();
+    if (context.stats (rcb_ontology)) res += ontology_report ();
     if (context.stats_gst (gst_ornament)) res += css_str_report (gst_ornament);
     if (context.stats_gst (gst_page_name)) res += css_str_report (gst_page_name);
     if (context.stats_gst (gst_palette)) res += css_str_report (gst_palette);
-    if (context.stats_css_property ()) res += property_report ();
-    if (grand && (file_count_ > 1) && context.stats_reference ()) res += reference_report ();
+    if (context.stats (rcb_css_property)) res += property_report ();
+    if (grand && (file_count_ > 1) && context.stats (rcb_reference)) res += reference_report ();
     if (context.stats_gst (gst_region)) res += css_str_report (gst_region);
     if (context.stats_gst (gst_scroll_anim)) res += css_str_report (gst_scroll_anim);
-    if (context.stats_statement ()) res += statement_report ();
+    if (context.stats (rcb_statement)) res += statement_report ();
     if (context.stats_gst (gst_styleset)) res += css_str_report (gst_styleset);
     if (context.stats_gst (gst_stylistic)) res += css_str_report (gst_stylistic);
     if (context.stats_gst (gst_swash)) res += css_str_report (gst_swash);
-    if (context.stats_value_pair ()) res += value_pair_report ();
-    if (grand && (file_count_ > 1) && context.stats_version ()) res += version_report ();
+    if (context.stats (rcb_name_value)) res += value_pair_report ();
+    if (grand && (file_count_ > 1) && context.stats (rcb_version)) res += version_report ();
     if (context.stats_gst (gst_view)) res += css_str_report (gst_view);
     res += macro -> apply (ns_grand_foot, g);
     return res; }
@@ -663,6 +663,6 @@ void stats::accumulate (stats& o) const
 
 ::std::string stats::class_and_id_report () const
 {   ::std::string res;
-    if (context.stats_class ()) res = class_report2 ();
-    if (context.stats_id ()) res += id_report2 ();
+    if (context.stats (rcb_class)) res = class_report2 ();
+    if (context.stats (rcb_id)) res += id_report2 ();
     return res; }

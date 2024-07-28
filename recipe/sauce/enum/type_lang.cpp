@@ -722,5 +722,8 @@ struct symbol_entry < html_version, e_lang > lang_symbol_table [] =
     // archaic stubs
     { { HTML_PLUS }, { HTML_UNDEF }, "i", la_i } };
 
+::std::size_t lang_count ()
+{   return sizeof (lang_symbol_table) / sizeof (symbol_entry < html_version, e_lang >); }
+
 void lang_init (nitpick& nits)
-{   type_master < t_lang > :: init (nits, lang_symbol_table, sizeof (lang_symbol_table) / sizeof (symbol_entry < html_version, e_lang >)); }
+{   type_master < t_lang > :: init (nits, lang_symbol_table, lang_count ()); }

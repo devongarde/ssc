@@ -19,46 +19,36 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
-#include "feedback/nitpick.h"
-#include "feedback/nitout.h"
-#include "feedback/nitout.h"
-#include "coop/lox.h"
+#include "utility/lexical.h"
+
+class nitpick;
+
+#ifdef WX
+class wxLogWindow;
+#endif // WX
 
 class output_streams_t
 {   ::std::unique_ptr < ::std::ofstream > fos_;
+#ifdef WX
+    bool wx_ = false;
+#endif // WX
     ::std::string name_;
     ::std::string ensane (const ::std::string& s) const;
-    ::std::ostream& out () const noexcept { if (fos_) return *fos_; return ::std::cout; }
-    ::std::ostream& err () const noexcept { if (fos_) return *fos_; return ::std::cerr; }
 public:
     void init (nitpick& nits, const ::std::string& s);
     const ::std::string& name () const noexcept { return name_; }
-    void out (const ::std::string& s) const
-    {   lox l (lox_out);
-        out () << s; }
-    void out (const ::std::string& s1, const ::std::string& s2) const
-    {   lox l (lox_out);
-        out () << s1 << s2; }
-    void out (const ::std::string& s1, const ::std::string& s2, const ::std::string& s3)
-    {   lox l (lox_out);
-        out () << s1 << s2 << s3; }
-    void out (const ::std::string& s1, const ::std::string& s2, const ::std::string& s3, const ::std::string& s4)
-    {   lox l (lox_out);
-        out () << s1 << s2 << s3 << s4; }
-    void out (const ::std::string& s1, const ::std::string& s2, const ::std::string& s3, const ::std::string& s4, const ::std::string& s5)
-    {   lox l (lox_out);
-        out () << s1 << s2 << s3 << s4 << s5; }
-    void err (const ::std::string& s) const
-    {   lox l (lox_out);
-        err () << ensane (s); }
-    void err (const ::std::string& s1, const ::std::string& s2) const
-    {   lox l (lox_out);
-        err () << ensane (s1) << ensane (s2); }
-    void err (const ::std::string& s1, const ::std::string& s2, const ::std::string& s3) const
-    {   lox l (lox_out);
-        err () << ensane (s1) << ensane (s2) << ensane (s3); }
-    void err (const ::std::string& s1, const ::std::string& s2, const ::std::string& s3, const ::std::string& s4, const ::std::string& s5) const
-    {   lox l (lox_out);
-        err () << ensane (s1) << ensane (s2) << ensane (s3) << ensane (s4) << ensane (s5); } };
+#ifdef WX
+    void enloggen (const bool b) noexcept { wx_ = b; }
+#endif // WX
+    void out (const ::std::string& s) const;
+    void console (const ::std::string& s) const;
+    void err (const ::std::string& s) const;
+    bool invalid () const { return fos_.get () == nullptr; }
+    template < typename... Ts > void out (const ::std::string& s, Ts... msg) const
+    {   out (s + com < Ts... > :: bine (msg...)); }
+    template < typename... Ts > void console (const ::std::string& s, Ts... msg) const
+    {   console (s + com < Ts... > :: bine (msg...)); }
+    template < typename... Ts > void err (const ::std::string& s, Ts... msg) const
+    {   err (s + com < Ts... > :: bine (msg...)); } };
 
 extern output_streams_t outstr;

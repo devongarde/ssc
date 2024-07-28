@@ -1,0 +1,149 @@
+<ul>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="about"/>
+      <param name="ID" value="2"/>
+      <param name="Local" value="about.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="configuration"/>
+      <param name="ID" value="20"/>
+      <param name="Local" value="config.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="corpus"/>
+      <param name="ID" value="6"/>
+      <param name="Local" value="corpus.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="css"/>
+      <param name="ID" value="10"/>
+      <param name="Local" value="css.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="file"/>
+      <param name="ID" value="11"/>
+      <param name="Local" value="file.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="general"/>
+      <param name="ID" value="12"/>
+      <param name="Local" value="general.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="HTML"/>
+      <param name="ID" value="7"/>
+      <param name="Local" value="html.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="introduction"/>
+      <param name="ID" value="1"/>
+      <param name="Local" value="index.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="lynx"/>
+      <param name="ID" value="13"/>
+      <param name="Local" value="lynx.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="mathml"/>
+      <param name="ID" value="4"/>
+      <param name="Local" value="mathml.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="mf"/>
+      <param name="ID" value="8"/>
+      <param name="Local" value="microformats.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="nits"/>
+      <param name="ID" value="14"/>
+      <param name="Local" value="nits.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="ontology"/>
+      <param name="ID" value="15"/>
+      <param name="Local" value="ontology.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="shadow"/>
+      <param name="ID" value="16"/>
+      <param name="Local" value="shadow.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="site"/>
+      <param name="ID" value="17"/>
+      <param name="Local" value="site.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="snippet"/>
+      <param name="ID" value="3"/>
+      <param name="Local" value="snippet.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="spell"/>
+      <param name="ID" value="18"/>
+      <param name="Local" value="spell.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="stats"/>
+      <param name="ID" value="9"/>
+      <param name="Local" value="stats.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="svg"/>
+      <param name="ID" value="5"/>
+      <param name="Local" value="svg.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="validation"/>
+      <param name="ID" value="19"/>
+      <param name="Local" value="validation.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="wizzard"/>
+      <param name="ID" value="21"/>
+      <param name="Local" value="wizzard.html"/>
+    </object>
+  </li>
+</ul>

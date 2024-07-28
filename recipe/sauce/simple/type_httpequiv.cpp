@@ -472,8 +472,11 @@ struct symbol_entry < html_version, e_httpequiv > httpequiv_symbol_table [] =
     { { HTML_2_0, HV_OUTOFSCOPE }, { HTML_UNDEF }, "X400-Trace", he_x400_trace },
     { { HTML_2_0, HV_OUTOFSCOPE }, { HTML_UNDEF }, "Xref", he_xref } };
 
+::std::size_t httpequiv_count ()
+{   return sizeof (httpequiv_symbol_table) / sizeof (symbol_entry < html_version, e_httpequiv >); }
+
 void httpequiv_init (nitpick& nits)
-{   type_master < t_httpequiv > :: init (nits, httpequiv_symbol_table, sizeof (httpequiv_symbol_table) / sizeof (symbol_entry < html_version, e_httpequiv >)); }
+{   type_master < t_httpequiv > :: init (nits, httpequiv_symbol_table, httpequiv_count ()); }
 
 template < e_type TYPE > ::std::string validate_he_content (nitpick& nits, const html_version& v, const ::std::string& content, page& )
 {   type_master < TYPE > t;

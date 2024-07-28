@@ -202,8 +202,11 @@ struct symbol_entry < html_version, e_currency > currency_symbol_table [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, "ZMW", e_iso_ZMW },
     { { HTML_UNDEF }, { HTML_UNDEF }, "ZWL", e_iso_ZWL } };
 
+::std::size_t currency_count ()
+{   return sizeof (currency_symbol_table) / sizeof (symbol_entry < html_version, e_currency >); }
+
 void currency_init (nitpick& nits)
-{   type_master < t_currency > :: init (nits, currency_symbol_table, sizeof (currency_symbol_table) / sizeof (symbol_entry < html_version, e_currency >)); }
+{   type_master < t_currency > :: init (nits, currency_symbol_table, currency_count ()); }
 
 bool parse_currency (const html_version& v, const ::std::string& s, const e_currency unit, double& val)
 {   const vstr_t args (split_by_space (s));

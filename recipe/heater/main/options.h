@@ -23,13 +23,38 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/context.h"
 
 class options
-{   ::boost::program_options::variables_map var_, env_;
+{   static ::boost::program_options::options_description
+        aid_, basic_, cgi_, cmd_, config_, environ_, hidden_, ontology_, primary_, risky_, valid_;
+    static ::boost::program_options::positional_options_description pos_;
+   ::boost::program_options::variables_map var_, env_var_;
     void help (const ::boost::program_options::options_description& aid) const;
-	void parse (nitpick& nits, const vstr_t& vs);
-    void yea_nay (context_t& (context_t::*fn) (const bool ), nitpick& nits, const char* yea, const char* nay);
+    void init (context_t& c);
+	void parse (context_t& c, output_streams_t& o, nitpick& nits, const vstr_t& vs);
+    bool parse (nitpick& nits, const ::boost::filesystem::path& file);
+    void yea_nay (context_t& c, context_t& (context_t::*fn) (const bool ), nitpick& nits, const char* yea, const char* nay);
+    void yea_nay (context_t& c, const e_report r, nitpick& nits, const char* yea, const char* nay);
+    void yea_nay (context_t& c, const e_css_module m, nitpick& nits, const char* yea, const char* nay);
     bool get_css_level (int& n, nitpick& nits, const char* opt, const char* name, const int maxlevel, const bool accept_1 = false);
+    void process_css_level (context_t& c, const e_css_module m, int& n, nitpick& nits, const char* opt, const char* name, const int maxlevel, const bool accept_1 = false);
+    template < class T > void report_variable (::std::ostringstream& res, const char* wot, const char* section, int& count, const char* variable) const;
+    void report_bool (::std::ostringstream& res, const char* yay, const char* nay, const char* section, int& count, const char* ja, const char* nein) const;
 public:
-	options (nitpick& nits, const vstr_t& vs)
-    {   parse (nits, vs); }
-    void contextualise (nitpick& nits);
-    ::std::string report () const; };
+	options (context_t& c, output_streams_t& o, nitpick& nits, const vstr_t& vs)
+    {   parse (c, o, nits, vs); }
+    options (nitpick& nits, const ::boost::filesystem::path& fn)
+    {   parse (nits, fn); }
+    explicit options (const context_t& c);
+    void contextualise (context_t& c, output_streams_t& o, nitpick& nits);
+    template < class T > void insert (const ::std::string& k, const T& t);
+    bool write (nitpick& nits, const ::boost::filesystem::path& fn) const;
+    ::std::string report (const bool file = false) const; };
+
+// https://stackoverflow.com/questions/56056265/insert-into-boostprogram-optionsvariables-map-by-index-operator#56056772
+template < class T > inline void options::insert (const ::std::string& k, const T& t)
+{   var_.::std::map < ::std::string, ::boost::program_options::variable_value >::operator [] (k).value () = ::boost::any (t); }
+
+template < > inline void options::insert < ::boost::any > (const ::std::string& k, const ::boost::any& t)
+{   var_.::std::map < ::std::string, ::boost::program_options::variable_value >::operator [] (k).value () = t; }
+
+template < > inline void options::insert < ::std::string > (const ::std::string& k, const ::std::string& t)
+{   var_.::std::map < ::std::string, ::boost::program_options::variable_value >::operator [] (k).value () = t; }

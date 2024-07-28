@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "stats/stats.h"
 #include "coop/lox.h"
 
-nitpick::mns_t nitpick::mns_;
+mns_t nitpick::mns_;
 bool nitpick::fe_ = false;
 bool nitpick::sarcasm_ = false;
 

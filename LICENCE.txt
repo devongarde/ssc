@@ -161,3 +161,12 @@ dylanharris.org
 Some test files were derived from pages at https://dylanharris.org/.
 They are licensed under a Creative Commons Attribution 4.0
 International License. Browse https://dylanharris.org/ for details.
+
+
+sc.edu
+======
+
+I snaffled a XPM teapot from John Burkardt of the University of South
+Carolina, who kindly released it under the GNU LPGL licence, here:
+https://people.math.sc.edu/Burkardt/data/xpm/xpm.html
+

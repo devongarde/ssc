@@ -91,6 +91,12 @@ template < > struct type_master < t_current_colour_sz > : type_string < t_curren
 template < > struct type_master < t_decibel > : type_number_unit < t_decibel, t_real, sz_db, true >
 { using type_number_unit < t_decibel, t_real, sz_db, true > :: type_number_unit; };
 
+template < > struct type_master < t_device_or_height > : type_or_string < t_device_or_height, t_1_to_10000, sz_device_height >
+{ using type_or_string < t_device_or_height, t_1_to_10000, sz_device_height > :: type_or_string; };
+
+template < > struct type_master < t_device_or_width > : type_or_string < t_device_or_width, t_1_to_10000, sz_device_width >
+{ using type_or_string < t_device_or_width, t_1_to_10000, sz_device_width > :: type_or_string; };
+
 template < > struct type_master < t_duration_a > : type_or_string < t_duration_a, t_duration, sz_auto >
 { using type_or_string < t_duration_a, t_duration, sz_auto > :: type_or_string; };
 
@@ -111,6 +117,9 @@ template < > struct type_master < t_from_angle > : string_then_type < t_from_ang
 
 template < > struct type_master < t_frp > : type_either_or < t_frp, t_fr, t_css_length >
 { using type_either_or < t_frp, t_fr, t_css_length > :: type_either_or; };
+
+template < > struct type_master < t_gtin > : type_one_of < t_gtin, false, t_gtin8, t_gtin12, t_gtin13, t_gtin14 >
+{ using type_one_of < t_gtin, false, t_gtin8, t_gtin12, t_gtin13, t_gtin14 > :: type_one_of; };
 
 template < > struct type_master < t_hslafn > : type_function_all < t_hslafn, sz_hsla, t_hue, t_percent, t_percent, t_zero_to_one >
 { using type_function_all < t_hslafn, sz_hsla, t_hue, t_percent, t_percent, t_zero_to_one > :: type_function_all; };
@@ -279,6 +288,48 @@ template < > struct type_master < t_unit_time_per > : type_or_string < t_unit_ti
 
 template < > struct type_master < t_url_n > : type_or_string < t_url_n, t_url, sz_none >
 { using type_or_string < t_url_n, t_url, sz_none > :: type_or_string; };
+
+template < > struct type_master < t_user_scalable > : type_or_either_string < t_user_scalable, t_m1_to_1, sz_no, sz_yes >
+{ using type_or_either_string < t_user_scalable, t_m1_to_1, sz_no, sz_yes > :: type_or_either_string; };
+
+template < > struct type_master < t_viewport_height > : type_a_eq_b < t_viewport_height, sz_height, t_device_or_height >
+{ using type_a_eq_b < t_viewport_height, sz_height, t_device_or_height > :: type_a_eq_b; };
+
+template < > struct type_master < t_viewport_scale > : public type_either_or < t_viewport_scale, t_ddny, t_p1_10 >
+{ using type_either_or < t_viewport_scale, t_ddny, t_p1_10 > :: type_either_or; };
+
+template < > struct type_master < t_viewport_initial_scale > : type_a_eq_b < t_viewport_initial_scale, sz_initial_scale, t_viewport_scale >
+{ using type_a_eq_b < t_viewport_initial_scale, sz_initial_scale, t_viewport_scale > :: type_a_eq_b; };
+
+template < > struct type_master < t_viewport_interactive_widget > : type_a_eq_b < t_viewport_interactive_widget, sz_interactive_widget, t_interactive_widget >
+{ using type_a_eq_b < t_viewport_interactive_widget, sz_interactive_widget, t_interactive_widget > :: type_a_eq_b; };
+
+template < > struct type_master < t_viewport_maximum_scale > : type_a_eq_b < t_viewport_maximum_scale, sz_maximum_scale, t_viewport_scale >
+{ using type_a_eq_b < t_viewport_maximum_scale, sz_maximum_scale, t_viewport_scale > :: type_a_eq_b; };
+
+template < > struct type_master < t_viewport_minimum_scale > : type_a_eq_b < t_viewport_minimum_scale, sz_minimum_scale, t_viewport_scale >
+{ using type_a_eq_b < t_viewport_minimum_scale, sz_minimum_scale, t_viewport_scale > :: type_a_eq_b; };
+
+template < > struct type_master < t_viewport_target_densitydpi > : type_a_eq_b < t_viewport_target_densitydpi, sz_target_densitydpi, t_generic >
+{ using type_a_eq_b < t_viewport_target_densitydpi, sz_target_densitydpi, t_generic > :: type_a_eq_b; };
+
+template < > struct type_master < t_viewport_user_scalable > : type_a_eq_b < t_viewport_user_scalable, sz_user_scalable, t_user_scalable >
+{ using type_a_eq_b < t_viewport_user_scalable, sz_user_scalable, t_user_scalable > :: type_a_eq_b; };
+
+template < > struct type_master < t_viewport_width > : type_a_eq_b < t_viewport_width, sz_width, t_device_or_width >
+{ using type_a_eq_b < t_viewport_width, sz_width, t_device_or_width > :: type_a_eq_b; };
+
+template < > struct type_master < t_viewport_setting > : type_one_of < t_viewport_setting, false, t_viewport_height, t_viewport_initial_scale, t_viewport_interactive_widget, t_viewport_maximum_scale, t_viewport_minimum_scale, t_viewport_target_densitydpi, t_viewport_user_scalable, t_viewport_width >
+{ using type_one_of < t_viewport_setting, false, t_viewport_height, t_viewport_initial_scale, t_viewport_interactive_widget, t_viewport_maximum_scale, t_viewport_minimum_scale, t_viewport_target_densitydpi, t_viewport_user_scalable, t_viewport_width > :: type_one_of; };
+
+template < > struct type_master < t_viewport_comma > : type_at_least_one < t_viewport_comma, sz_comma, t_viewport_setting >
+{   using type_at_least_one < t_viewport_comma, sz_comma, t_viewport_setting > :: type_at_least_one; };
+
+template < > struct type_master < t_viewport_semi > : type_at_least_one < t_viewport_semi, sz_semicolon, t_viewport_setting >
+{   using type_at_least_one < t_viewport_semi, sz_semicolon, t_viewport_setting > :: type_at_least_one; };
+
+template < > struct type_master < t_viewport > : public type_either_or < t_viewport, t_viewport_comma, t_viewport_semi >
+{ using type_either_or < t_viewport, t_viewport_comma, t_viewport_semi > :: type_either_or; };
 
 template < > struct type_master < t_xlinktype > : type_string < t_xlinktype, sz_simple >
 { using type_string < t_xlinktype, sz_simple > :: type_string; };

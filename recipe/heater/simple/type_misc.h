@@ -28,14 +28,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 // unspecified attributes that will not be detailed
 // WHILE and IF appear in the XHTML2 spec in the technical docs, not in the discussion
 
+bool invalid_exportparts (nitpick& nits, const html_version& v, element* box, const vstr_t& s);
+bool invalid_parts (nitpick& nits, const html_version& v, element* box, const vstr_t& s);
 void mark_font (stats_t* s, const ::std::string& font);
 bool set_arxiv_value (nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_cookie_value (nitpick& nits, const html_version& v, const ::std::string& s);
 bool set_coords_value (nitpick& nits, const html_version& v, const ::std::string& s, vint_t& val);
-bool set_imgsizes_value (nitpick& nits, const html_version& v, const ::std::string& s);
 bool set_exportpart_value (nitpick& nits, const html_version& v, const vstr_t& s, element* box);
-bool invalid_exportparts (nitpick& nits, const html_version& v, element* box, const vstr_t& s);
-bool invalid_parts (nitpick& nits, const html_version& v, element* box, const vstr_t& s);
+bool set_imgsizes_value (nitpick& nits, const html_version& v, const ::std::string& s);
 
 template < > struct type_master < t_arxiv > : public tidy_string < t_arxiv >
 {   using tidy_string < t_arxiv > :: tidy_string;
@@ -152,6 +152,18 @@ template < > struct type_master < t_font_family > : tidy_string < t_font_family 
 
 template < > struct type_master < t_from > : public type_string < t_from, sz_from >
 {   using type_string < t_from, sz_from > :: type_string; };
+
+template < > struct type_master < t_gtin8 > : restricted_string < t_gtin8, 8, sz_denary >
+{   using restricted_string < t_gtin8, 8, sz_denary > :: restricted_string; };
+
+template < > struct type_master < t_gtin12 > : restricted_string < t_gtin12, 12, sz_denary >
+{   using restricted_string < t_gtin12, 12, sz_denary > :: restricted_string; };
+
+template < > struct type_master < t_gtin13 > : restricted_string < t_gtin13, 13, sz_denary >
+{   using restricted_string < t_gtin13, 13, sz_denary > :: restricted_string; };
+
+template < > struct type_master < t_gtin14 > : restricted_string < t_gtin14, 14, sz_denary >
+{   using restricted_string < t_gtin14, 14, sz_denary > :: restricted_string; };
 
 template < > struct type_master < t_hex > : public tidy_string < t_hex >
 {   using tidy_string < t_hex > :: tidy_string;
@@ -342,7 +354,7 @@ template < > struct type_master < t_semitone > : type_master < t_real >
     {   ::std::string ss (trim_the_lot_off (s));
         if (! ends_with_letters (v, ss, "st"))
             nits.pick (nit_bad_frequency, ed_svg_1_1, "4.2 Basic data types", es_error, ec_type, quote (s), " contains unexpected characters (semitone end with 'st')");
-        else if (v.css_speech () < 3)
+        else if (v.css_module (c_speech) < 3)
             nits.pick (nit_bad_frequency, es_error, ec_type, "semitones require CSS Speech 3 or better");
         else if (ss.length () <= 2)
             nits.pick (nit_bad_frequency, es_error, ec_type, "semitones value missing");

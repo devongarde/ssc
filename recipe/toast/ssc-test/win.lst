@@ -170,6 +170,8 @@
 ../toast/living/jul23/living.spec
 ../toast/living/oct23/living.spec
 ../toast/living/jan24/living.spec
+../toast/living/apr24/living.spec
+../toast/living/jul24/living.spec
 ../toast/math/1/math.spec
 ../toast/math/2/math.spec
 ../toast/math/3/math.spec
@@ -180,6 +182,7 @@
 ../toast/microdata/addendum/add.spec
 ../toast/microdata/basic/basic.spec
 ../toast/microdata/export/export.spec
+../toast/microdata/link/link.spec
 ../toast/microdata/microformats/mf.spec
 ../toast/microdata/schema-abc/abc.spec
 ../toast/microdata/schema-defg/defg.spec
@@ -207,6 +210,7 @@
 ../toast/other/nits/nits.spec
 ../toast/other/parsing/parsing.spec
 ../toast/other/pattern/pattern.spec
+../toast/other/ruby/ruby.spec
 ../toast/other/safari/safari.spec
 ../toast/other/simple/simple.spec
 ../toast/other/ssi/ssi.spec

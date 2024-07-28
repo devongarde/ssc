@@ -54,7 +54,7 @@ void element::mf_put_vocab (const e_class v, const prop& p, const ::std::string&
             if (context.tell (es_debug)) pick (nit_debug, es_debug, ec_element, "putting ", quote (val), " in json at ", naam);
             page_ -> export_item (naam, val); } } }
 
-void element::mf_put_rel (const e_class v, const prop& p, const vstr_t& rels)
+void element::mf_put_rel (nitpick& nits, const e_class v, const prop& p, const vstr_t& rels)
 {   PRESUME (! p.invalid (), __FILE__, __LINE__);
     if (context.mf_export ())
     {   VERIFY_NOT_NULL (mf_, __FILE__, __LINE__);
@@ -66,7 +66,7 @@ void element::mf_put_rel (const e_class v, const prop& p, const vstr_t& rels)
             if (a_.has (a_media)) media = a_.get_string (a_media);
             if (a_.has (a_title)) title = a_.get_string (a_title);
             if (a_.has (a_type)) type = a_.get_string (a_type);
-            page_ -> export_rel (val, hreflang, media, rels, t, title, type);
+            page_ -> export_rel (nits, val, hreflang, media, rels, t, title, type);
             if (context.tell (es_debug))
                 pick (nit_debug, es_debug, ec_element,
                     "export_rel ", quote (val), ", ", hreflang, ", ", media, ", ",

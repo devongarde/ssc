@@ -27,6 +27,9 @@ template < e_type TYPE, class SZ > struct one_value : public type_base < mono, T
     static e_animation_type animation_type () noexcept { return at_other; }
     ::std::string get_string () const
     {   if (! type_base < mono, TYPE > :: unknown ()) return SZ::sz (); return ::std::string (); }
+    ::std::string name () const { return get_string (); }
+    static ::std::string name (const mono )
+    {   return SZ::sz (); }
     void shadow (::std::stringstream& ss, const html_version& , element* )
     {   ss << '=' << get_string (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s);

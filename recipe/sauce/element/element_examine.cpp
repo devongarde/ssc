@@ -334,7 +334,9 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
                 else if (hv.webcomponents ()) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), ">: avoid bespoke Web Components elements");
                 else if (hv.bespoke () ) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), ">: avoid using bespoke elements");
                 if ((node_.version ().w3 ()) && hv.whatwg ()) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), "> is only defined by WhatWG");
-                else if ((node_.version ().whatwg ()) && hv.w3 ()) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), "> is element only defined by W3");
+                else if ((node_.version ().whatwg ()) && hv.w3 ())
+                    if (! hv.ruby ()) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), "> is an element only defined by W3");
+                    else if (context.html_ver () < html_ruby) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), "> requires at least the ", html_ruby.nice_name (), " living standard");
 
                 if (hv.deprecated (node_.version ()))
                     pick (nit_deprecated_element, es_warning, ec_element, "<", elem :: name (tag), "> is deprecated in ", node_.version ().report ());

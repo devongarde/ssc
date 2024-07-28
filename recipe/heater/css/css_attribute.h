@@ -20,7 +20,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "feedback/nitpick.h"
-#include "main/enum.h"
 #include "attribute/attr.h"
 #include "css/arguments.h"
 

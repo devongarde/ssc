@@ -29,30 +29,43 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "coop/fred.h"
 
 context_t context;
+ustr_t context_t::validation_;
 ssc_set < ::std::string > excludable_filenames;
 
 context_t::context_t ()
-    :   validation_ ("Additional attribute values (check " PROG "'s source code for context)", DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH)
-{   environment_.resize (env_max); };
+    :   path_ (DEFAULT_DATAPATH)
+{   environment_.resize (env_max); }
 
-int context_t::parameters (nitpick& nits, const vstr_t& vs)
-{   options o (nits, vs);
-    if (context.todo () == do_booboo) return ERROR_STATE;
-    if ((context.todo () != do_examine) && (context.todo () != do_cgi)) return STOP_OK;
+context_t::context_t (nitpick& nits, const ::boost::filesystem::path& fn)
+    :   path_ (DEFAULT_DATAPATH)
+{   environment_.resize (env_max);
+    options o (nits, fn);
+
+    if (nits.worst () <= es_error) valid_ = false;
+    else
+    {   output_streams_t ost;
+#ifdef DARWIN
+        excludable_filenames.insert (".DS_Store");
+#endif // DARWIN
+        o.contextualise (*this, ost, nits);
+        if (! test () && tell (es_debug))
+        {   ::std::string s (o.report ());
+            mac (nm_context_output, s); }
+        valid_ = ! root ().empty (); } }
+
+int context_t::parameters (output_streams_t& ost, nitpick& nits, const vstr_t& vs)
+{   options o (*this, ost, nits, vs);
+    if (todo () == do_booboo) return ERROR_STATE;
+    if ((todo () != do_examine) && (todo () != do_cgi)) return STOP_OK;
 #ifdef DARWIN
     excludable_filenames.insert (".DS_Store");
 #endif // DARWIN
-    o.contextualise (nits);
+    o.contextualise (*this, ost, nits);
     if (! test () && tell (es_debug))
     {   ::std::string s (o.report ());
         mac (nm_context_output, s); }
 
-    for (const ::std::string& name : site_)
-        if (name.find_first_not_of (DOMAINNAME) != ::std::string::npos)
-        {   valid_ = false;
-            nits.pick (nit_invalid_domain, es_error, ec_init, quote (name), " is not a valid domain name (do not include protocols)");
-            return ERROR_STATE; }
-    valid_ = context.cgi () || (! root ().empty ());
+    valid_ = cgi () || (! root ().empty ());
     return valid_ ? VALID_RESULT : ERROR_STATE; }
 
 ::std::string context_t::make_absolute_url (const ::std::string& link, bool can_use_index ) const
@@ -148,7 +161,7 @@ context_t& context_t::math_version (const int v)
 context_t& context_t::ignore (nitpick& nits, const vstr_t& s)
 {   e_element e = elem_undefined;
     for (auto ss : s)
-        if (elem :: find (html_0, ss, e)) elem :: ignore (e);
+        if (elem :: find (html_0, ss, e)) { elem :: ignore (e); ignore_.push_back (ss); }
         else nits.pick (nit_unknown_element, es_error, ec_init, quote (ss), " is not an element");
     mac (nm_context_ignore, s);
     return *this; }
@@ -202,6 +215,7 @@ bool context_t::rdfa () const noexcept
 context_t& context_t::exclude (nitpick& , const ::std::string& s)
 {   exclude_.push_back (s);
     return *this; }
+
 context_t& context_t::pretend (nitpick& , const ::std::string& s)
 {   pretend_.push_back (s);
     return *this; }
@@ -229,7 +243,7 @@ bool context_t::matches (const ::std::string& s, const ::std::string& w, const c
     if (wlen == slen) return (w == s);
     const ::std::string::size_type pos = s.find (w);
     if (pos == ::std::string::npos) return false;
-    if ((pos > 0) && (s.at (pos-1) != sep)) return false;
+    if ((pos > 0) && (sep != 0) && (s.at (pos-1) != sep)) return false;
     if (pos + wlen >= slen) return true;
     return (s.at (pos+wlen) == sep); }
 
@@ -243,7 +257,7 @@ bool context_t::excluded (nitpick& nits, const ::boost::filesystem::path& p) con
 
 bool context_t::pretended (const ::std::string& s) const
 {   for (auto w : pretend_)
-        if (matches (s, w))
+        if (matches (s, w, 0))
             return true;
     return false; }
 
@@ -258,69 +272,65 @@ context_t& context_t::fred (const ::std::size_t i)
 context_t& context_t::root (const ::std::string& s)
 {   root_ = s;
     mac (nm_context_root, s);
-    proot_ = canonical_name (absolute_name (::boost::filesystem::path (s))); return *this; }
+    proot_ = canonical_name (absolute_name (::boost::filesystem::path (s)));
+    return *this; }
 
 bool context_t::stats_gst (const e_gsstr gst)
 {   switch (gst)
-    {   case gst_annotation : return stats_annotation ();
-        case gst_character_variant : return stats_character_variant ();
-        case gst_content_name : return stats_content_name ();
-        case gst_counter_style : return stats_counter_style ();
-        case gst_font_family : return stats_font_family ();
-        case gst_highlight : return stats_highlight ();
-        case gst_historical_form : return stats_historical_form ();
-        case gst_keyframe : return stats_keyframe ();
-        case gst_layer : return stats_layer ();
-        case gst_ornament : return stats_ornament ();
-        case gst_page_name : return stats_page_name ();
-        case gst_palette : return stats_palette ();
-        case gst_region : return stats_region ();
-        case gst_scroll_anim : return stats_scroll_anim ();
-        case gst_styleset : return stats_styleset ();
-        case gst_stylistic : return stats_stylistic ();
-        case gst_swash : return stats_swash ();
-        case gst_view : return stats_view ();
+    {   case gst_annotation : return stats (rcb_annotation);
+        case gst_character_variant : return stats (rcb_character_variant) ;
+        case gst_content_name : return stats (rcb_content_name);
+        case gst_counter_style : return stats (rcb_counter_style);
+        case gst_font_family : return stats (rcb_font_family);
+        case gst_highlight : return stats (rcb_highlight);
+        case gst_historical_form : return stats (rcb_historical_form);
+        case gst_keyframe : return stats (rcb_keyframe);
+        case gst_layer : return stats (rcb_layer);
+        case gst_ornament : return stats (rcb_ornament);
+        case gst_page_name : return stats (rcb_page_name);
+        case gst_palette : return stats (rcb_palette);
+        case gst_region : return stats (rcb_region);
+        case gst_scroll_anim : return stats (rcb_scroll_animation);
+        case gst_styleset : return stats (rcb_styleset);
+        case gst_stylistic : return stats (rcb_stylistic);
+        case gst_swash : return stats (rcb_swash);
+        case gst_view : return stats (rcb_view);
         default : break; }
     GRACEFUL_CRASH (__FILE__, __LINE__); }
 
 context_t& context_t::stats_all (const bool b)
-{   stats_abbr (b);
-    stats_annotation (b);
-    stats_attribute (b);
-    stats_category (b);
-    stats_character_variant (b);
-    stats_class (b);
-    stats_content_name (b);
-    stats_counter_style (b);
-    stats_css_property (b);
-    stats_custom_media (b);
-    stats_custom_property (b);
-    stats_definition (b);
-    stats_value_pair (b);
-    stats_element (b);
-    stats_error (b);
-    stats_file (b);
-    stats_font (b);
-    stats_font_family (b);
-    stats_highlight (b);
-    stats_historical_form (b);
-    stats_id (b);
-    stats_itemid (b);
-    stats_keyframe (b);
-    stats_layer (b);
-    stats_meta (b);
-    stats_ontology (b);
-    stats_ornament (b);
-    stats_page_name (b);
-    stats_palette (b);
-    stats_property (b);
-    stats_reference (b);
-    stats_region (b);
-    stats_scroll_anim (b);
-    stats_statement (b);
-    stats_styleset (b);
-    stats_stylistic (b);
-    stats_swash (b);
-    stats_version (b);
-    stats_view (b);
+{   for (int i = 0; i < rcb_max; ++i)
+        stats (static_cast < e_report > (i), b);
     return *this; }
+
+context_t& context_t::stats (const e_report r, const bool b)
+{   rpt_.at (r) = b;
+    mac (enum_n < t_report, e_report, e_nit_macro, nm_none > :: category (r), b);
+    return *this; }
+
+context_t& context_t::css_module (const e_css_module m, const int n)
+{   mac (enum_n < t_css_module, e_css_module, e_nit_macro, nm_none > :: category (m), n);
+    version_.css_module (m, n);
+    return *this; }
+
+void context_t::apply_vcs (nitpick& nits)
+{   if (vcs ())
+    {   exclude (nits, ".bazaar");
+        exclude (nits, ".bk");
+        exclude (nits, "CVS");
+        exclude (nits, ".cvsignore");
+        exclude (nits, "_darcs");
+        exclude (nits, ".fslckout");
+        exclude (nits, ".git");
+        exclude (nits, ".gitattributes");
+        exclude (nits, ".gitignore");
+        exclude (nits, ".gitmodules");
+        exclude (nits, ".monotone");
+        exclude (nits, ".pijul");
+        exclude (nits, "RCS");
+        exclude (nits, "SCCS");
+        exclude (nits, ".svn"); } }
+
+bool context_t::write (nitpick& nits, const ::boost::filesystem::path& fn) const
+{   options opt (*this);
+    return opt.write (nits, fn); }

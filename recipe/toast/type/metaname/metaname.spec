@@ -30,3 +30,6 @@ PASS ../toast/type/metaname/old.html
 5 unrecognised_value
 6 dinosaur
 7 dinosaur
+
+PASS ../toast/type/metaname/viewport.html
+2 naughty_lang

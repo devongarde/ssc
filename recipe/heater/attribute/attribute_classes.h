@@ -950,6 +950,7 @@ typedef typed_attribute < t_measure_ni, a_word_spacing > attr_word_spacing;
 typedef typed_attribute < t_workertype, a_workertype > attr_workertype;
 typedef typed_attribute < t_rap, a_wrap > attr_wrap;
 typedef typed_attribute < t_writingmode, a_writing_mode > attr_writingmode;
+typedef typed_attribute < t_truefalseempty, a_writingsuggestions > attr_writingsuggestions;
 typedef typed_attribute < t_measure, a_x1 > attr_x1;
 typedef typed_attribute < t_measure, a_x2 > attr_x2;
 typedef typed_attribute < t_measure_or_more, a_x > attr_x;
@@ -1914,6 +1915,7 @@ const e_attribute last_2 = a_overline_thickness;
     attr_workertype, \
     attr_wrap, \
     attr_writingmode, \
+    attr_writingsuggestions, \
     attr_x1, \
     attr_x2, \
     attr_x, \

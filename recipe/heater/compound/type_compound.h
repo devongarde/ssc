@@ -51,6 +51,32 @@ template < e_type T, e_type P, class SZ > struct string_then_type : tidy_string 
             else if (test_value < P > (nits, v, ss.substr (len), tidy_string < T > :: id ())) return; }
         tidy_string < T > :: status (s_invalid); } };
 
+template < e_type T, class SZ, e_type P > struct type_a_eq_b : tidy_string < T >
+{   using tidy_string < T > :: tidy_string;
+    static e_animation_type animation_type () noexcept
+    {   return grab_animation_type < P > (); }
+    void accumulate (stats_t* s) const
+    {   if (tidy_string < T > :: good ()) tidy_string < T > :: accumulate (s); }
+    void accumulate (stats_t* s, const e_element e) const
+    {   if (tidy_string < T > :: good ()) tidy_string < T > :: accumulate (s, e); }
+    void accumulate (stats_t* s, const element_bitset& e) const
+    {   if (tidy_string < T > :: good ()) tidy_string < T > :: accumulate (s, e); }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < T > :: set_value (nits, v, s);
+        if (tidy_string < T > :: good ())
+        {   const ::std::string ss (tidy_string < T > :: get_string ());
+            const ::std::string::size_type pos = ss.find ('=');
+            if (pos == ::std::string::npos)
+                nits.pick (nit_syntax, es_error, ec_type, quote (ss), ": expecting '='");
+            else if (pos == 0)
+                nits.pick (nit_syntax, es_error, ec_type, quote (ss), ": missing field name");
+            else if (pos == ss.length () - 1)
+                nits.pick (nit_syntax, es_error, ec_type, quote (ss), ": missing value");
+            else if (! compare_no_case (ss.substr (0, pos), SZ::sz ()))
+                nits.pick (nit_syntax, es_error, ec_type, quote (ss), ": expecting ", SZ::sz ());
+            else if (test_value < P > (nits, v, ss.substr (pos+1), tidy_string < T > :: id ())) return; }
+        tidy_string < T > :: status (s_invalid); } };
+
 template < e_type T, e_type P, class SZ > struct string_or_type_or_both : tidy_string < T >
 {   using tidy_string < T > :: tidy_string;
     static e_animation_type animation_type () noexcept { return grab_animation_type < P > (); }
@@ -89,7 +115,7 @@ template < e_type T, e_type P, class SZ = sz_logical > struct maybe_logical_type
             const ::std::size_t len = strlen (SZ :: sz ());
             if (ss.length () >= len)
                 if (compare_no_case (SZ :: sz (), ss.substr (0, len)))
-                {   if (context.css_logic () < 3)
+                {   if (context.css_module (c_logical_property) < 3)
                     {   nits.pick (nit_css_version, es_error, ec_type, SZ :: sz (), " requires CSS Logical Properties level 3 or better");
                         tidy_string < T > :: status (s_invalid); }
                     ss = trim_the_lot_off (ss.substr (len)); }

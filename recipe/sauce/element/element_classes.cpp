@@ -178,7 +178,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define COMMON52    a_onauxclick, a_onloadend, COMMON51
 #define COMMON53    COMMON52
 #define LIVING_STANDARD    a_autocapitalise, a_enterkeyhint, a_exportparts, a_inputmode, a_onformdata, a_onsecuritypolicyviolation, \
-                    a_onslotchange, a_part, a_popover, a_slot, COMMON53
+                    a_onslotchange, a_part, a_popover, a_slot, a_writingsuggestions, COMMON53
 #define X5          LIVING_STANDARD
 #define LIVING_STANDARD_PLUS a_index, LIVING_STANDARD
 
@@ -679,7 +679,7 @@ element_init_t ei [] =
     { elem_range, { a_from, a_until, a_class, a_id, a_unknown } },
     { elem_rationals, { MATH3DEFCOM, a_unknown } },
     { elem_rb, { METADATA, LIVING_STANDARD, a_unknown } },
-    { elem_rbc, { METADATA, LIVING_STANDARD, a_unknown } },
+    { elem_rbc, { METADATA, XHTML2, a_unknown } },
     { elem_rdf_1, { METADATA, LIVING_STANDARD, a_unknown } },
     { elem_rdf_2, { METADATA, LIVING_STANDARD, a_unknown } },
     { elem_rdf_3, { METADATA, LIVING_STANDARD, a_unknown } },
@@ -888,33 +888,33 @@ bool has_attribute (const e_element e, const e_attribute a)
     if (e >= vebs.size ()) return false;
     return vebs.at (e).test (a); }
 
-void add_element_attributes (const vstr_t& v)
+void add_element_attributes (nitpick& nits, const vstr_t& v)
 {   nitpick nuts;
     for (auto e : v)
     {   vstr_t args (split_by_charset (e, ","));
         if (args.size () < 2) continue;
         const elem el (context.html_ver (), args.at (0));
         if (el.invalid ())
-        {   outstr.err ("the element '", args.at (0), "' is not recognised\n"); }
+        {   nits.pick (nit_config_element, es_error, ec_init, "the element '", args.at (0), "' is not recognised\n"); }
         else if (args.at (1).find (':') != ::std::string::npos)
-            outstr.err ("apologies, but " PROG " does not support adding attributes in non-standard namespaces (yet)\n");
+            nits.pick (nit_config_attribute, es_warning, ec_init, "apologies, but " PROG " does not support adding attributes in non-standard namespaces (yet)\n");
         else
         {   ::std::string ns;
             namespaces_ptr ptr;
             const e_attribute a = attr :: parse (nuts, context.html_ver (), ptr, args.at (1), ns);
             if (a == a_error)
-            {   outstr.err ("the attribute '", args.at (1), "' is not recognised\n"); }
+            {   nits.pick (nit_config_attribute, es_error, ec_init, "the attribute '", args.at (1), "' is not recognised\n"); }
             else element_add_attribute (el.get (), a); } } }
 
 #ifdef DEBUG
 void avm_class_crosscheck (const e_element e, const e_attribute a)
 {   if (! vebs.at (e).test (a))
         if (overlap (elem::first_version (e), elem::final_version (e), elem::first_version (a), elem::final_version (a)))
-        {   ::std::cerr << "avm/elem dispute ";
+        {   outstr.err ("avm/elem dispute ");
             ::std::string n (elem::name (e));
-            if (n.empty ()) ::std::cerr << e; else ::std::cerr << n;
-            ::std::cerr << " ";
+            if (n.empty ()) outstr.err ("unnamed element"); else outstr.err (n);
+            outstr.err (" ");
             n = attr::name (a);
-            if (n.empty ()) ::std::cerr << a; else ::std::cerr << n;
-            ::std::cerr << "\n"; } }
+            if (n.empty ()) outstr.err ("unnamed attribute"); else outstr.err (n);
+            outstr.err ("\n"); } }
 #endif // DEBUG

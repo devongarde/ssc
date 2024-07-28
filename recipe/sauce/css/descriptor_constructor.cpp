@@ -39,7 +39,7 @@ template < > struct descriptor_constructor < desc_unknown >
         return ptr; } };
 
 property_v_ptr make_descriptor_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const css_token t)
-{   switch (args.v_.css_font ())
+{   switch (args.v_.css_module (c_font))
     {   case 5 :  return descriptor_constructor < DESCRIPTORS_5, desc_unknown > :: make (args, start, to, nits, p, s, t);
         case 4 :  return descriptor_constructor < DESCRIPTORS_4, desc_unknown > :: make (args, start, to, nits, p, s, t);
         case 3 :  return descriptor_constructor < DESCRIPTORS_3, desc_unknown > :: make (args, start, to, nits, p, s, t);
@@ -78,7 +78,7 @@ property_v_ptr make_margin_v_ptr (arguments& args, const int start, const int to
     return make_margin_v_ptr (args, start, to, nits, examine_value < t_css_property > (nits, args.v_, n), value, t); }
 
 property_v_ptr make_page_v_ptr (arguments& args, const int start, const int to, nitpick& nits, e_css_property p, const ::std::string& s, const css_token t)
-{   if (context.css_page () >= 3)
+{   if (context.css_module (c_paged_media) >= 3)
         return descriptor_constructor < PAGE_3_DESCRIPTORS, desc_unknown > :: make (args, start, to, nits, p, s, t);
     switch (context.css_version ())
     {   case css_none :

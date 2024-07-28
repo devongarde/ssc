@@ -127,10 +127,7 @@ ssc.exe -f ../toast/HTML/Plus/plus.conf
 ssc.exe -f ../toast/HTML/tags/tags.conf
 ssc.exe -f ../toast/link/external/link.conf
 ssc.exe -f ../toast/link/link/link.conf
-ssc.exe -f ../toast/json-ld/1.0/jsonld.conf
-ssc.exe -f ../toast/json-ld/adms/jsonld.conf
 ssc.exe -f ../toast/json-ld/as/jsonld.conf
-ssc.exe -f ../toast/json-ld/certification/jsonld.conf
 ssc.exe -f ../toast/json-ld/schemaorg/jsonld.conf
 ssc.exe -f ../toast/living/jul07/living.conf
 ssc.exe -f ../toast/living/jan08/living.conf
@@ -171,6 +168,9 @@ ssc.exe -f ../toast/living/jan23/living.conf
 ssc.exe -f ../toast/living/apr23/living.conf
 ssc.exe -f ../toast/living/jul23/living.conf
 ssc.exe -f ../toast/living/oct23/living.conf
+ssc.exe -f ../toast/living/jan24/living.conf
+ssc.exe -f ../toast/living/apr24/living.conf
+ssc.exe -f ../toast/living/jul24/living.conf
 ssc.exe -f ../toast/math/1/math.conf
 ssc.exe -f ../toast/math/2/math.conf
 ssc.exe -f ../toast/math/3/math.conf
@@ -180,6 +180,7 @@ ssc.exe -f ../toast/microdata/12/schema.conf
 ssc.exe -f ../toast/microdata/addendum/add.conf
 ssc.exe -f ../toast/microdata/basic/basic.conf
 ssc.exe -f ../toast/microdata/export/export.conf
+ssc.exe -f ../toast/microdata/link/link.conf
 ssc.exe -f ../toast/microdata/microformats/mf.conf
 ssc.exe -f ../toast/microdata/schema-abc/abc.conf
 ssc.exe -f ../toast/microdata/schema-defg/defg.conf

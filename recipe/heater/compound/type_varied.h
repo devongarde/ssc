@@ -280,7 +280,7 @@ template < > struct type_master < t_fill_v > : varied < t_fill_v >
                 validate_type < type_master < t_fill_ve > > (nits, v);
             else if (((elem :: categories (e) & EF_SVG_ANIM) != 0) || (e.get () == elem_animation))
                 validate_type < type_master < t_fillanim > > (nits, v);
-            else if (context.css_fill () >= 3)
+            else if (context.css_module (c_fill_stroke) >= 3)
                 validate_type < type_master < t_css_background > > (nits, v);
             else validate_type < type_master < t_paint > > (nits, v); } };
 

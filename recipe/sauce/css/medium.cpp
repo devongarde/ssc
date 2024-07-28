@@ -338,7 +338,7 @@ bool medium_t::validate_version (const arguments& args, nitpick& nits, const e_m
         case md_vertical_viewport_segments :
         case md_video_colour_gamut :
         case md_video_dynamic_range :
-            if (args.v_.css_media () < 5)
+            if (args.v_.css_module (c_media_query) < 5)
             {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": ", enum_n < t_media, e_media > :: name (media), " requires CSS Media 5");
                 return false; }
             break;
@@ -363,7 +363,7 @@ bool medium_t::validate_version (const arguments& args, nitpick& nits, const e_m
         case md_scroll :
         case md_slow :
         case md_srgb :
-            if ((args.v_.css_media () < 4) && (args.v_.css_conditional_rule () < 3))
+            if ((args.v_.css_module (c_media_query) < 4) && (args.v_.css_module (c_conditional_rule) < 3))
             {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": ", enum_n < t_media, e_media > :: name (media), " requires CSS Conditional Rules, or CSS Media 4 or later");
                 return false; }
             break;
@@ -375,13 +375,13 @@ bool medium_t::validate_version (const arguments& args, nitpick& nits, const e_m
         case md_speech :
         case md_tty :
         case md_tv :
-            if (args.v_.css_media () >= 4)
+            if (args.v_.css_module (c_media_query) >= 4)
                 nits.pick (nit_deprecated_media, ed_css_media_4, "2.3. Media Types", es_warning, ec_mql, quote (commas.at (comma)), ": ", enum_n < t_media, e_media > :: name (media),
                     " is deprecated in ", args.v_.long_css_version_name (), ", 'Authors must not use these media types'");
             break;
         case md_media :
         case md_supports :
-            if (args.v_.css_conditional_rule () < 5)
+            if (args.v_.css_module (c_conditional_rule) < 5)
             {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": ", enum_n < t_media, e_media > :: name (media), " requires CSS Conditional Rules 5 or better");
                 return false; }
             if ((args.st_ == nullptr) || ((args.st_ -> get () != css_else) && (args.st_ -> get () != css_when)))
@@ -389,12 +389,12 @@ bool medium_t::validate_version (const arguments& args, nitpick& nits, const e_m
                 return false; }
             break;
         case md_selector :
-            if (args.v_.css_conditional_rule () < 4)
+            if (args.v_.css_module (c_conditional_rule) < 4)
             {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": ", enum_n < t_media, e_media > :: name (media), " requires CSS Conditional Rules 4 or better");
                 return false; }
             break;
          case md_shape :
-            if ((args.v_.css_media () < 4) || (args.v_.css_round () < 3))
+            if ((args.v_.css_module (c_media_query) < 4) || (args.v_.css_module (c_round_display) < 3))
             {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": ", enum_n < t_media, e_media > :: name (media), " requires CSS Round Displays and CSS Media 4 or later");
                 return false; }
             break;
@@ -820,7 +820,7 @@ bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
                     argled = true;
                     break;
                 case md_not :
-                    if (args.v_.css_media () < 3)
+                    if (args.v_.css_module (c_media_query) < 3)
                     {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": here, ", enum_n < t_media, e_media > :: name (m.m_), " requires CSS Media 3");
                         return false; }
                     else if (! vm_.empty ())
@@ -828,7 +828,7 @@ bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
                         return false; }
                     break;
                 case md_only :
-                    if (args.v_.css_media () < 4)
+                    if (args.v_.css_module (c_media_query) < 4)
                     {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": here, ", enum_n < t_media, e_media > :: name (m.m_), " requires CSS Media 4");
                         return false; }
                     else if (! vm_.empty ())
@@ -967,7 +967,7 @@ bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
                 {   nits.pick (nit_bad_media, es_error, ec_mql, "not all?! only all?!");
                     res = false; }
                 knot = false;
-                if (args.v_.css_media () < css_3)
+                if (args.v_.css_module (c_media_query) < css_3)
                 {   PRESUME (m.m_ < vdv.size (), __FILE__, __LINE__);
                     if (vdv.at (m.m_))
                     {   nits.pick (nit_bad_media, es_error, ec_mql, quote (commas.at (comma)), ": ", enum_n < t_media, e_media > :: name (m.m_), " repeated");
@@ -1024,7 +1024,7 @@ bool medium_t::token_flow (arguments args, nitpick& nits, const vstr_t& commas)
 void medium_t::triple_pong (const arguments& args, nitpick& nits, const int level, const bool zero, const int brackets,
                             const media_expects got, const media_expects expect, media_expects& expecting,
                             const char* wot, const e_media e, ::std::string& ss)
-{   if (context.css_media () < level) 
+{   if (context.css_module (c_media_query) < level) 
     {   valid_ = false;
         nits.pick (nit_css_version, es_error, ec_mql, "'", wot, "' in media queries require CSS Media Queries level ", level, " or better"); }
     else if ((! zero) && (brackets == 0))
@@ -1058,8 +1058,8 @@ void medium_t::parse (arguments& args , const int from, const int to)
     {   const ::std::string& val = args.t_.at (i).val_;
         switch (args.t_.at (i).t_)
         {   case ct_identifier :
-//                if ((args.v_.css_media () > 3) && (args.g_.custom_media ().find (val) != args.g_.custom_media ().cend ()))
-                if ((args.v_.css_media () > 3) && (args.has_custom_media (val)))
+//                if ((args.v_.css_module (c_media_query) > 3) && (args.g_.custom_media ().find (val) != args.g_.custom_media ().cend ()))
+                if ((args.v_.css_module (c_media_query) > 3) && (args.has_custom_media (val)))
                 {   switch (expecting)
                     {   case me_id :
                             expecting = me_after_id;
@@ -1205,7 +1205,7 @@ void medium_t::parse (arguments& args , const int from, const int to)
                 i = -1;
                 break;
             case ct_round_brac :
-                if (context.css_media () < 3)
+                if (context.css_module (c_media_query) < 3)
                 {   valid_ = false;
                     nits.pick (nit_css_version, es_error, ec_mql, "'(' in media queries require CSS Media Queries level 3 or better");
                     break; }
@@ -1224,10 +1224,10 @@ void medium_t::parse (arguments& args , const int from, const int to)
                 expecting = me_prop;
                 ss += "(";
                 ++brackets;
-                if (context.css_cascade () > 3) first = true;
+                if (context.css_module (c_cascade_inheritance) > 3) first = true;
                 break;
             case ct_round_ket :
-                if (context.css_media () < 3) 
+                if (context.css_module (c_media_query) < 3) 
                 {   valid_ = false;
                     nits.pick (nit_css_version, es_error, ec_mql, "')' in media queries require CSS Media Queries level 3 or better"); }
                 else if (brackets < 1) 

@@ -3,6 +3,7 @@
     "boost",
     "curl",
     "icu",
-    "ms-gsl"
+    "ms-gsl",
+    "wxwidgets"
   ]
 }

@@ -493,45 +493,45 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
     ::std::string from (input), to, cmd;
     ::std::string::const_iterator start = from.cbegin (), var = from.cbegin (), args = from.cbegin (), b = from.cbegin (), e = from.cend ();
     int line = 1, nlc = 0;
-    bool nr = true;
+    bool nr = true, ord = true;
     c.if_ = true;
     for (::std::string::const_iterator i = b; i != e; ++i)
     {   switch (*i)
         {   case '\f' :
             case '\n' :
                 if (++nlc < 3) to += *i;
-                ++line; nr = true;
-                continue;
+                ++line; nr = true; ord = false;
+                break;
             case '\v' :
                 if (++nlc < 3) to += '\n';
-                ++line; nr = true;
-                continue;
+                ++line; nr = true; ord = false;
+                break;
             case '\r' :
                 if (nr) to += *i;
-                nr = false;
-                continue;
+                nr = false; ord = false;
+                break;
             case '\t' :
-                to += *i; nr = true;
-                continue;
+                to += *i; nr = true; ord = false;
+                break;
             default :
-                nr = true; break; }
+                nr = ord = true; break; }
         if (! ::std::iswspace (*i) && ! ::std::iswcntrl (*i)) nlc = 0;
         switch (status)
         {   case es_dull :
                 if (*i == '<') { status = es_open; start = i; }
-                else if (c.if_) to += *i;
+                else if (c.if_ && ord) to += *i;
                 break;
             case es_open :
                 if (*i == '!') status = es_bang;
-                else { if (c.if_) { to += "<"; to += *i; } status = es_dull; }
+                else { if (c.if_) { to += "<"; if (ord) to += *i; } status = es_dull; }
                 break;
             case es_bang :
                 if (*i == '-') status = es_om_1;
-                else { if (c.if_) { to += "<!"; to += *i; } status = es_dull; }
+                else { if (c.if_) { to += "<!"; if (ord) to += *i; } status = es_dull; }
                 break;
             case es_om_1 :
                 if (*i == '-') status = es_om_2;
-                else { if (c.if_) { to += "<!-"; to += *i; } status = es_dull; }
+                else { if (c.if_) { to += "<!-"; if (ord) to += *i; } status = es_dull; }
                 break;
             case es_om_2 :
                 if (*i == '#') { status = es_ssi; var = i; }

@@ -139,38 +139,39 @@ void_ptr read_binary_file (nitpick& nits, const ::boost::filesystem::path& name,
     if (fp != nullptr) fclose (fp);
     return void_ptr (); }
 
-bool write_text_file (const ::boost::filesystem::path& n, const ::std::string& content)
+bool write_text_file (nitpick& nits, const ::boost::filesystem::path& n, const ::std::string& content)
 {   using namespace boost::filesystem;
     path p (n);
     p += ".tmp";
     try
     {   BOOST_OFSTREAM_CNSTR (f, p);
         if (f.bad ())
-        {   if (context.tell (es_catastrophic))
-            {   outstr.err ("Cannot open temporary file ", p.string (), "\n"); }
+        {   outstr.err ("Cannot open temporary file ", p.string (), "\n");
+            nits.pick (nit_cannot_open, es_catastrophic, ec_io, "Cannot open temporary file ", p.string ()); 
             return false; }
         try
         {   f << content; }
         catch (...)
-        {   if (context.tell (es_catastrophic))
-            {   outstr.err ("Cannot write to temporary file ", p.string (), "\n"); }
+        {   outstr.err ("Cannot write to temporary file ", p.string (), "\n");
+            nits.pick (nit_cannot_write, es_catastrophic, ec_io, "Cannot write to temporary file ", p.string ());
             return false; }
         f.close ();
         if (file_exists (n))
             if (! delete_file (n))
-            {   if (context.tell (es_catastrophic))
-                {   outstr.err ("Cannot delete existing file ", p.string (), "\n"); }
+            {   outstr.err ("Cannot delete existing file ", p.string (), "\n");
+                nits.pick (nit_cannot_delete, es_catastrophic, ec_io, "Cannot delete existing file ", p.string ());
                 return false; }
         rename_file (p, n);
         return true; }
     catch (...) { }
     if (file_exists (p)) delete_file (p);
     if (context.tell (es_error))
-    {   outstr.err ("Cannot update ", p.string (), "\n"); }
+    {   outstr.err ("Cannot update ", p.string (), "\n");
+        nits.pick (nit_cannot_update, es_catastrophic, ec_io, "Cannot update ", p.string ()); }
     return false; }
 
-bool write_text_file (const ::std::string& name, const ::std::string& content)
-{   return write_text_file (::boost::filesystem::path (name), content); }
+bool write_text_file (nitpick& nits, const ::std::string& name, const ::std::string& content)
+{   return write_text_file (nits, ::boost::filesystem::path (name), content); }
 
 ::std::string trim_the_lot_off (const ::std::string& s)
 {   return ::boost::trim_copy (s); }
@@ -353,24 +354,26 @@ bool one_of_domain (const ::std::string& s, const vstr_t& v)
 {   ::boost::filesystem::path model (temp_dir ());
     if (model.string ().empty ()) return ::boost::filesystem::path ();
     model /= ::boost::filesystem::unique_path ();
-    model += "." PROG;
+    model += EXT;
     return absolute_name (model); }
 
-bool read_header (const ::boost::property_tree::ptree& json, const ::std::string& expected, ::std::string& version, const ::std::string& filename)
+bool read_header (nitpick& nits, const ::boost::property_tree::ptree& json, const ::std::string& expected, ::std::string& version, const ::std::string& filename)
 {   ::std::string prog = read_field < ::std::string > (json, APP);
     if (context.test ()) version = VERSION_STRING;
     else version = read_field < ::std::string > (json, VER);
     ::std::string con = read_field < ::std::string > (json, CONTEXT);
     if ((prog != PROG) || (version.substr (0, 3) != "0.0"))
     {   if (context.tell (es_error))
-        {   outstr.err (filename, " is not an " PROG " file, or this copy of " PROG " (v" VERSION_STRING ") is too old to read it\n"); }
+        {   outstr.err (filename, " is not an " PROG " file, or this copy of " PROG " (v" VERSION_STRING ") is too old to read it\n");
+            nits.pick (nit_not_ssc, es_error, ec_io, filename, " is not an " PROG " file, or this copy of " PROG " (v" VERSION_STRING ") is too old to read it"); }
         return false; }
     if (! expected.empty ())
         if (con != expected)
         {   if (context.tell (es_error))
             {   ::std::ostringstream ss;
                 ss << filename << " is not an " PROG " " << expected << " file\n";
-                outstr.err (ss.str ()); }
+                outstr.err (ss.str ());
+                nits.pick (nit_not_ssc, es_error, ec_io, ss.str ()); }
             return false; }
     return true; }
 
@@ -379,7 +382,7 @@ void write_header (::boost::property_tree::ptree& json, const char* k)
     if (! context.test ()) write_field < ::std::string > (json, VER, VERSION_STRING);
     write_field < ::std::string > (json, CONTEXT, k); }
 
-bool replace_file (const ::boost::property_tree::ptree& json, const ::boost::filesystem::path& filename)
+bool replace_file (nitpick& nits, const ::boost::property_tree::ptree& json, const ::boost::filesystem::path& filename)
 {   ::boost::filesystem::path tmp (filename), old (filename);
     tmp += ".tmp";
     old += ".old";
@@ -388,8 +391,8 @@ bool replace_file (const ::boost::property_tree::ptree& json, const ::boost::fil
         {   ::boost::property_tree::write_json (filename.string (), json); }
         catch (...)
         {   delete_file (filename);
-            if (context.tell (es_catastrophic))
-            {   outstr.err ("Cannot write ", filename.string (), "\n"); }
+            outstr.err ("Cannot write ", filename.string (), "\n");
+            nits.pick (nit_cannot_write, es_catastrophic, ec_io, "Cannot write ", filename.string ());
             return false; } }
     else
     {   try
@@ -397,14 +400,14 @@ bool replace_file (const ::boost::property_tree::ptree& json, const ::boost::fil
             rename_file (filename, old); }
         catch (...)
         {   delete_file (tmp);
-            if (context.tell (es_catastrophic))
-                outstr.err ("Cannot write ", tmp.string (), "\n");
+            outstr.err ("Cannot write ", tmp.string (), "\n");
+            nits.pick (nit_cannot_write, es_catastrophic, ec_io, "Cannot write ", tmp.string ());
             return false; }
         if (! rename_file (tmp, filename))
         {   rename_file (old, filename);
             delete_file (tmp);
-            if (context.tell (es_catastrophic))
-                outstr.err ("Cannot replace ", filename.string (), " with ", tmp.string (), "\n");
+            outstr.err ("Cannot replace ", filename.string (), " with ", tmp.string (), "\n");
+            nits.pick (nit_cannot_replace, es_catastrophic, ec_io, "Cannot replace ", filename.string (), " with ", tmp.string (), "\n");
             return false; }
        delete_file (old); }
     return true; }
@@ -551,10 +554,21 @@ sstr_t smsid_set (const smsid_t& s)
         res.emplace (i.first);
     return res; }
 
-// next two from https://stackoverflow.com/questions/55271662/c11-how-to-convert-a-hex-string-into-unicode-string
+// from https://stackoverflow.com/questions/55271662/c11-how-to-convert-a-hex-string-into-unicode-string
 int hex_value (const ::std::string_view str) {
-    ::std::stringstream stream{};
+    ::std::stringstream stream {};
     stream << ::std::hex << str;
     int res;
     stream >> res;
+    return res; }
+
+::std::string enhtml (const ::std::string& s)
+{   ::std::string res;
+    for (::std::string::const_iterator i = s.begin (); i != s.end (); ++i)
+        switch (*i)
+        {   case '<' : res += "&lt;"; break;
+            case '>' : res += "&gt;"; break;
+            case '&' : res += "&amp;"; break;
+            case ' ' : res += "&nbsp;"; break;
+            default :  res += *i; break; }
     return res; }

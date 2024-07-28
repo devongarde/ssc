@@ -54,4 +54,4 @@ struct attr : symbol < html_version, e_attribute >
 CONSTEXPR inline bool is_custom_attribute (const e_attribute a) noexcept { return (a == a_custom); }
 CONSTEXPR inline bool is_error_attribute (const e_attribute a) noexcept { return (a == a_illegal); }
 CONSTEXPR inline bool is_unknown_attribute (const e_attribute a) noexcept { return (a == a_unknown); }
-void add_attributes (const vstr_t& v);
+void add_attributes (nitpick& nits, const vstr_t& v);

@@ -1,0 +1,10 @@
+@namespace "http://www.w3.org/1999/xhtml";
+
+details > summary:first-of-type {
+  display: list-item;
+  counter-increment: list-item 0;
+  list-style: disclosure-closed inside;
+}
+details[open] > summary:first-of-type {
+  list-style-type: disclosure-open;
+}

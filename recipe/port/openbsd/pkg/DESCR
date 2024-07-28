@@ -1,5 +1,4 @@
-The command line utility ssc is an opinionated HTML nitpicker for
-static websites, analysing most versions of HTML, XHTML, SVG, & MathML,
-including ontologies. It can produce detailed reports, 'repaired' HTML
-with resolved server side includes, site statistics, and more. It is
-alpha quality, at best.
+The command line utility ssc is an opinionated static website nitpicker,
+analysing most versions of HTML, XHTML, SVG, & MathML, including
+ontologies. It can produce detailed reports, 'repaired' HTML with
+resolved server side includes, site statistics, and more.

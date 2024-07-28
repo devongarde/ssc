@@ -87,6 +87,19 @@ template < e_type T, class SZ, int F, bool CONTENT = true > struct uq4 : tidy_st
         if_empty < T, CONTENT > :: whinge (nits);
         return vstr_t (); } };
 
+template < e_type T, int N, class SZ, bool CONTENT = true > struct restricted_string : tidy_string < T >
+{   using tidy_string < T > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < T > :: set_value (nits, v, s);
+        PRESUME (SZ :: sz () != nullptr, __FILE__, __LINE__);
+        if (! tidy_string < T > :: empty ())
+        {   if (tidy_string < T > :: good ())
+            {   const ::std::string ss (tidy_string < T > :: get_string ());
+                if ((ss.length () == N) && (ss.find_first_not_of (SZ :: sz ()) == ::std::string::npos)) return;
+                nits.pick (nit_not_expected_content, es_error, ec_type, quote (ss), ": expecting exactly ", N, " characters, from among ", quote (SZ :: sz ())); } 
+            tidy_string < T > :: status (s_invalid); }
+        if_empty < T, CONTENT > :: whinge (nits); } };
+
 template < e_type TYPE > struct string_vector_base : public tidy_string < TYPE >
 {   typedef vstr_t value_type;
     value_type value_;

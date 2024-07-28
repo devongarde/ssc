@@ -59,29 +59,31 @@ html_version::html_version (const ::boost::gregorian::date& d)
     {   case 0 :
         case 1 : break;
         case 2 :
-        case 3 : set_ext2 (H2_CSS_1); break;
-        case 4 : if (mnr () == 0) set_ext2 (H2_CSS_2_0);
-                 else set_ext2 (H2_CSS_2_1);
+        case 3 : css_version (css_1); break;
+        case 4 : if (mnr () == 0) css_version (css_2_0);
+                 else css_version (css_2_1);
                  break;
         case 5 :
-        case 6 : set_ext2 (H2_CSS_2_1); break;
+        case 6 : css_version (css_2_1); break;
         case 7 :
         case 8 :
-        case 9 : set_ext2 (H2_CSS_2007); set_ext3 (H3_CSS_2007); set_ext4 (H4_CSS_2007); break;
+        case 9 : css_version (css_2007); break;
         case 10 :
         case 11 :
         case 12 :
         case 13 :
-        case 14 : set_ext2 (H2_CSS_2010); set_ext3 (H3_CSS_2010); set_ext4 (H4_CSS_2010); break; 
+        case 14 : css_version (css_2010); break; 
         case 15 : 
-        case 16 : set_ext2 (H2_CSS_2015); set_ext3 (H3_CSS_2015); set_ext4 (H4_CSS_2015); break;
-        case 17 : set_ext2 (H2_CSS_2017); set_ext3 (H3_CSS_2017); set_ext4 (H4_CSS_2017); break; 
+        case 16 : css_version (css_2015); break;
+        case 17 : css_version (css_2017); break; 
         case 18 :
-        case 19 : set_ext2 (H2_CSS_2018); set_ext3 (H3_CSS_2018); set_ext4 (H4_CSS_2018); break;  
-        case 20 : set_ext2 (H2_CSS_2020); set_ext3 (H3_CSS_2020); set_ext4 (H4_CSS_2020); break; 
-        case 21 : set_ext2 (H2_CSS_2021); set_ext3 (H3_CSS_2021); set_ext4 (H4_CSS_2021); break; 
-        case 22 : set_ext2 (H2_CSS_2022); set_ext3 (H3_CSS_2022); set_ext4 (H4_CSS_2022); break; 
-        default : set_ext2 (H2_CSS_2023); set_ext3 (H3_CSS_2023); set_ext4 (H4_CSS_2023); break; } }
+        case 19 : css_version (css_2018); break;  
+        case 20 : css_version (css_2020); break; 
+        case 21 : css_version (css_2021); break; 
+        case 22 : css_version (css_2022); break; 
+        case 23 : css_version (css_2023); break; 
+        case 24 : css_version (css_2024); break;
+        default : css_version (css_2024); break; } }
 
 html_version::html_version (const boost::gregorian::date& d, const flags_t flags, const flags_t extensions, const flags_t e2, const flags_t e3, const flags_t e4)
         :   version (0, 0, flags | HV_WHATWG), ext_ (extensions), ext2_ (e2), ext3_ (e3), ext4_ (e4)
@@ -211,6 +213,40 @@ void html_version::init (const unsigned short mjr)
                     break; } }
     return res.str (); }
 
+::std::string html_version::nice_name () const
+{   if (mjr () < 5) return name ();
+    ::std::ostringstream res;
+    if (known () && xhtml ()) res << "X";
+    res << "HTML-5";
+    switch (mnr ())
+    {   case MINOR_5_0 : res << ".0"; return res.str ();
+        case MINOR_5_1 : res << ".1"; return res.str (); 
+        case MINOR_5_2 : res << ".2"; return res.str ();
+        case MINOR_5_3 : res << ".3"; return res.str (); 
+        default : break; }
+    switch (mjr ())
+    {   case 5 :
+            if (mnr () >= HTML_JUL) return "WebApps-2005/Jul";
+            return "WebApps-2005/Jan";
+        case 6 :
+            if (mnr () >= HTML_JUL) return "WebApps-2005/Jul";
+            return "WebApps-2005/Jan";
+        case 7 :
+            if (mnr () >= HTML_JUL) break;
+            return "WebApps-2005/Jan";
+        default : break; }
+    res << "-20";
+    if (mjr () < 10) res << "0";
+    res << mjr () << "/";
+    if (mjr () <= 20)
+        if (mnr () >= HTML_JUL) res << "Jul";
+        else res << "Jan";
+    else if (mnr () >= HTML_OCT) res << "Oct";
+    else if (mnr () >= HTML_JUL) res << "Jul";
+    else if (mnr () >= HTML_APR) res << "Apr";
+    else res << "Jan";
+    return res.str (); }
+
 ::std::string html_version::report () const
 {   ::std::ostringstream res;
     res << name ();
@@ -243,7 +279,7 @@ bool html_version::note_parsed_version (nitpick& nits, const e_nit n, const html
     const e_rdf_version rv = context.rdf_version ();
     const uint64_t cm = (context.html_ver ().ext2 () & H2_FULL_CSS_MASK);
     const uint64_t cm3 = (context.html_ver ().ext3 () & H3_FULL_CSS_MASK);
-    const uint64_t cm4 = (context.html_ver ().ext4 () & H4_FULL_CSS_MASK);
+    const uint64_t cm4 = (context.html_ver ().ext4 () & (H4_FULL_CSS_MASK | H4_CSS_VER_MASK));
     if (is_not (got))
     {   if (got > *this)
         {   bool minor = false;
@@ -747,7 +783,9 @@ bool html_version::check_math_svg (nitpick& nits, const html_version& a, const :
     return true; }
 
 e_css_version html_version::css_version () const noexcept
-{   if (all_ext2 (H2_CSS_6) && all_ext3 (H3_CSS_6) && all_ext4 (H4_CSS_6)) return css_6;
+{   const e_css_version res = static_cast < e_css_version > ((ext4_ & H4_CSS_VER_MASK) >> H4_CSS_VER_SHIFT);
+    if (res != css_none) return res;
+    if (all_ext2 (H2_CSS_6) && all_ext3 (H3_CSS_6) && all_ext4 (H4_CSS_6)) return css_6;
     if (all_ext2 (H2_CSS_5) && all_ext3 (H3_CSS_5) && all_ext4 (H4_CSS_5)) return css_5;
     if (all_ext2 (H2_CSS_4) && all_ext3 (H3_CSS_4) && all_ext4 (H4_CSS_4)) return css_4;
     if (all_ext2 (H2_CSS_3) && all_ext3 (H3_CSS_3) && all_ext4 (H4_CSS_3)) return css_3;
@@ -769,7 +807,7 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
 ::std::string big_small_start (const bool b, const char* klein, const char* gross)
 {   VERIFY_NOT_NULL (klein, __FILE__, __LINE__);
     VERIFY_NOT_NULL (gross, __FILE__, __LINE__);
-    if (b) return  gross;
+    if (b) return gross;
     return klein; }
 
 ::std::string big_small (const ::std::string& x, const bool b, const char* klein, const char* gross, const char* level = nullptr)
@@ -802,6 +840,9 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
     else if (compare_css (H2_CSS_5, H3_CSS_5, H4_CSS_5, e2, e3, e4)) res = big_small_start (b, "5", "level 5");
     else if (compare_css (H2_CSS_4, H3_CSS_4, H4_CSS_4, e2, e3, e4)) res = big_small_start (b, "4", "level 4");
     else if (compare_css (H2_CSS_3, H3_CSS_3, H4_CSS_3, e2, e3, e4)) res = big_small_start (b, "3", "level 3");
+    else if (compare_css (H2_CSS_2024_2, H3_CSS_2024_2, H4_CSS_2024_2, e2, e3, e4)) res = big_small_start (b, "24++", "2024 wibbly wobbly snapshot");
+    else if (compare_css (H2_CSS_2024_1, H3_CSS_2024_1, H4_CSS_2024_1, e2, e3, e4)) res = big_small_start (b, "24+", "2024 wobbly snapshot");
+    else if (compare_css (H2_CSS_2024, H3_CSS_2024, H4_CSS_2024, e2, e3, e4)) res = big_small_start (b, "24", "2024 base snapshot");
     else if (compare_css (H2_CSS_2023_2, H3_CSS_2023_2, H4_CSS_2023_2, e2, e3, e4)) res = big_small_start (b, "23++", "2023 wibbly wobbly snapshot");
     else if (compare_css (H2_CSS_2023_1, H3_CSS_2023_1, H4_CSS_2023_1, e2, e3, e4)) res = big_small_start (b, "23+", "2023 wobbly snapshot");
     else if (compare_css (H2_CSS_2023, H3_CSS_2023, H4_CSS_2023, e2, e3, e4)) res = big_small_start (b, "23", "2023 base snapshot");
@@ -904,7 +945,7 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
 void html_version::css_version (const e_css_version v) noexcept
 {   reset_ext2 (H2_FULL_CSS_MASK);
     reset_ext3 (H3_FULL_CSS_MASK);
-    reset_ext4 (H4_FULL_CSS_MASK);
+    reset_ext4 (H4_FULL_CSS_MASK | H4_CSS_VER_MASK);
     switch (v)
     {   case css_1 :        set_ext2 (H2_CSS_1);
                             break;
@@ -1022,7 +1063,20 @@ void html_version::css_version (const e_css_version v) noexcept
                             set_ext3 (H3_CSS_2023 | H3_CSS_2023_1 | H3_CSS_2023_2);
                             set_ext4 (H4_CSS_2023 | H4_CSS_2023_1 | H4_CSS_2023_2);
                             break;
-        default :           break; } }
+        case css_2024 :     set_ext2 (H2_CSS_2024);
+                            set_ext3 (H3_CSS_2024);
+                            set_ext4 (H4_CSS_2024);
+                            break;
+        case css_2024_1 :   set_ext2 (H2_CSS_2024 | H2_CSS_2024_1);
+                            set_ext3 (H3_CSS_2024 | H3_CSS_2024_1);
+                            set_ext4 (H4_CSS_2024 | H4_CSS_2024_1);
+                            break;
+        case css_2024_2 :   set_ext2 (H2_CSS_2024 | H2_CSS_2024_1 | H2_CSS_2024_2);
+                            set_ext3 (H3_CSS_2024 | H3_CSS_2024_1 | H3_CSS_2024_2);
+                            set_ext4 (H4_CSS_2024 | H4_CSS_2024_1 | H4_CSS_2024_2);
+                            break;
+        default :           break; }
+    set_ext4 (H4_CSS_VER_MASK, v, H4_CSS_VER_SHIFT); }
 
 bool html_version::css_any_3_4_5_6 () const noexcept
 {   if ((ext4_ & H4_CSS_3_4_5_6) != 0) return true;
@@ -1187,92 +1241,96 @@ bool html_version::svg_limited (const e_svg_version v) const noexcept
         default : break; }
     return false; }
 
-int html_version::css_adjust () const
+template < e_css_module MOD > void html_version::set_level (const int ) { }
+
+template < e_css_module MOD > int html_version::get_level () const { return 0; }
+
+template < > int html_version::get_level < c_colour_adjustment > () const
 {   if (any_ext3 (H3_CSS_ADJUST)) return 3;
     return 0; }
 
-void html_version::css_adjust (const int n)
+template < > void html_version::set_level < c_colour_adjustment > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_ADJUST);
     else reset_ext3 (H3_CSS_ADJUST); }
 
-int html_version::css_advanced_layout () const
+template < > int html_version::get_level < c_advanced_layout > () const
 {   if (any_ext4 (H4_CSS_ADVLAY)) return 3;
     return 0; }
 
-void html_version::css_advanced_layout (const int n)
+template < > void html_version::set_level < c_advanced_layout > (const int n)
 {   if (n == 3) set_ext4 (H4_CSS_ADVLAY);
     else reset_ext4 (H4_CSS_ADVLAY); }
 
-int html_version::css_anchor () const
+template < > int html_version::get_level < c_scroll_anchoring > () const
 {   if (any_ext3 (H3_CSS_ANCHOR)) return 3;
     return 0; }
 
-void html_version::css_anchor (const int n)
+template < > void html_version::set_level < c_scroll_anchoring > (const int n)
 {   if (n == 3) set_ext4 (H3_CSS_ANCHOR);
     else reset_ext4 (H3_CSS_ANCHOR); }
 
-int html_version::css_anchor_pos () const
+template < > int html_version::get_level < c_anchor_pos > () const
 {   if (any_ext4 (H4_CSS_ANCHOR_POS)) return 3;
     return 0; }
 
-void html_version::css_anchor_pos (const int n)
+template < > void html_version::set_level < c_anchor_pos > (const int n)
 {   if (n == 3) set_ext4 (H4_CSS_ANCHOR_POS);
     else reset_ext4 (H4_CSS_ANCHOR_POS); }
 
-int html_version::css_animation () const
+template < > int html_version::get_level < c_animation > () const
 {   if ((ext2 () & H2_CSS_ANIM_4) == H2_CSS_ANIM_4) return 4;   
     if ((ext2 () & H2_CSS_ANIM_3) == H2_CSS_ANIM_3) return 3;   
     return 0; }
 
-void html_version::css_animation (const int n)
+template < > void html_version::set_level < c_animation > (const int n)
 {   reset_ext2 (H2_CSS_ANIM_MASK);
     if (n == 4) set_ext2 (H2_CSS_ANIM_34);
     else if (n == 3) set_ext2 (H2_CSS_ANIM_3); }
 
-int html_version::css_background () const
+template < > int html_version::get_level < c_background_border > () const
 {   if (any_ext2 (H2_CSS_BACKGROUND)) return 3;
     return 0; }
 
-void html_version::css_background (const int n)
+template < > void html_version::set_level < c_background_border > (const int n)
 {   if (n == 3) set_ext2 (H2_CSS_BACKGROUND);
     else reset_ext2 (H2_CSS_BACKGROUND); }
 
-int html_version::css_box_alignment () const
+template < > int html_version::get_level < c_box_alignment > () const
 {   if (any_ext3 (H3_CSS_BOX_ALIGN)) return 3;
     return 0; }
 
-void html_version::css_box_alignment (const int n)
+template < > void html_version::set_level < c_box_alignment > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_BOX_ALIGN);
     else reset_ext3 (H3_CSS_BOX_ALIGN); }
 
-int html_version::css_box_model () const
+template < > int html_version::get_level < c_box_model > () const
 {   if ((ext3 () & H3_CSS_BOX_MODEL_4) == H3_CSS_BOX_MODEL_4) return 4;
     if ((ext3 () & H3_CSS_BOX_MODEL_3) == H3_CSS_BOX_MODEL_3) return 3;
     return 0; }
 
-void html_version::css_box_model (const int n)
+template < > void html_version::set_level < c_box_model > (const int n)
 {   reset_ext3 (H3_CSS_BOX_MODEL_MASK);
     if (n == 4) set_ext3 (H3_CSS_BOX_MODEL);
     else if (n == 3) set_ext3 (H3_CSS_BOX_MODEL_3); }
 
-int html_version::css_box_sizing () const
+template < > int html_version::get_level < c_box_sizing > () const
 {   if ((ext3 () & H3_CSS_BOX_SIZING_4) == H3_CSS_BOX_SIZING_4) return 4;
     if ((ext3 () & H3_CSS_BOX_SIZING_3) == H3_CSS_BOX_SIZING_3) return 3;
     return 0; }
 
-void html_version::css_box_sizing (const int n)
+template < > void html_version::set_level < c_box_sizing > (const int n)
 {   reset_ext3 (H3_CSS_BOX_SIZING_MASK);
     if (n == 4) set_ext3 (H3_CSS_BOX_SIZING_34);
     else if (n == 3) set_ext3 (H3_CSS_BOX_SIZING_3); }
 
-int html_version::css_cascade () const
+template < > int html_version::get_level < c_cascade_inheritance > () const
 {   if ((ext2 () & H2_CSS_CASCADE_6) == H2_CSS_CASCADE_6) return 6;   
     if ((ext2 () & H2_CSS_CASCADE_5) == H2_CSS_CASCADE_5) return 5;   
     if ((ext2 () & H2_CSS_CASCADE_4) == H2_CSS_CASCADE_4) return 4;   
     if ((ext2 () & H2_CSS_CASCADE_3) == H2_CSS_CASCADE_3) return 3;   
     return 0; }
 
-void html_version::css_cascade (const int n)
+template < > void html_version::set_level < c_cascade_inheritance > (const int n)
 {   reset_ext2 (H2_CSS_CASCADE_MASK);
     switch (n)
     {   case 6 : set_ext2 (H2_CSS_CASCADE); break;
@@ -1281,14 +1339,14 @@ void html_version::css_cascade (const int n)
         case 3 : set_ext2 (H2_CSS_CASCADE_3); break;
         default : break; } }
 
-int html_version::css_colour () const
+template < > int html_version::get_level < c_colour > () const
 {   if ((ext4 () & H4_CSS_COLOUR_6) == H4_CSS_COLOUR_6) return 6;   
     if ((ext4 () & H4_CSS_COLOUR_5) == H4_CSS_COLOUR_5) return 5;   
     if ((ext4 () & H4_CSS_COLOUR_4) == H4_CSS_COLOUR_4) return 4;   
     if ((ext4 () & H4_CSS_COLOUR_3) == H4_CSS_COLOUR_3) return 3;   
     return 0; }
 
-void html_version::css_colour (const int n)
+template < > void html_version::set_level < c_colour > (const int n)
 {   reset_ext4 (H4_CSS_COLOUR_MASK);
     switch (n)
     {   case 6 : set_ext4 (H4_CSS_COLOUR); break;
@@ -1297,21 +1355,21 @@ void html_version::css_colour (const int n)
         case 3 : set_ext4 (H4_CSS_COLOUR_3); break;
         default : break; } }
 
-int html_version::css_compositing () const
+template < > int html_version::get_level < c_compositing_blending > () const
 {   if (any_ext2 (H2_CSS_COMPOSITING)) return 3;
     return 0; }
 
-void html_version::css_compositing (const int n)
+template < > void html_version::set_level < c_compositing_blending > (const int n)
 {   if (n > 0) set_ext2 (H2_CSS_COMPOSITING);
     else reset_ext2 (H2_CSS_COMPOSITING); }
 
-int html_version::css_conditional_rule () const
+template < > int html_version::get_level < c_conditional_rule > () const
 {   if ((ext2 () & H2_CSS_COND_RULE_5) == H2_CSS_COND_RULE_5) return 5;   
     if ((ext2 () & H2_CSS_COND_RULE_4) == H2_CSS_COND_RULE_4) return 4;   
     if ((ext2 () & H2_CSS_COND_RULE_3) == H2_CSS_COND_RULE_3) return 3;   
     return 0; }
 
-void html_version::css_conditional_rule (const int n)
+template < > void html_version::set_level < c_conditional_rule > (const int n)
 {   reset_ext2 (H2_CSS_COND_RULE_MASK);
     switch (n)
     {   case 5 : set_ext2 (H2_CSS_COND_RULE); break;
@@ -1319,13 +1377,13 @@ void html_version::css_conditional_rule (const int n)
         case 3 : set_ext2 (H2_CSS_COND_RULE_3); break;
         default : break; } }
 
-int html_version::css_contain () const
+template < > int html_version::get_level < c_containment > () const
 {   if ((ext3 () & H3_CSS_CONTAIN_5) == H3_CSS_CONTAIN_5) return 5;   
     if ((ext3 () & H3_CSS_CONTAIN_4) == H3_CSS_CONTAIN_4) return 4;   
     if ((ext3 () & H3_CSS_CONTAIN_3) == H3_CSS_CONTAIN_3) return 3;   
     return 0; }
 
-void html_version::css_contain (const int n)
+template < > void html_version::set_level < c_containment > (const int n)
 {   reset_ext3 (H3_CSS_CONTAIN_MASK);
     switch (n)
     {   case 5 : set_ext3 (H3_CSS_CONTAIN); break;
@@ -1333,101 +1391,101 @@ void html_version::css_contain (const int n)
         case 3 : set_ext3 (H3_CSS_CONTAIN_3); break;
         default : break; } }
 
-int html_version::css_content () const
+template < > int html_version::get_level < c_generated_content > () const
 {   if (any_ext3 (H3_CSS_CONTENT)) return 3;
     return 0; }
 
-void html_version::css_content (const int n)
+template < > void html_version::set_level < c_generated_content > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_CONTENT);
     else reset_ext3 (H3_CSS_CONTENT); }
 
-int html_version::css_counter_style () const
+template < > int html_version::get_level < c_counter_style > () const
 {   if (any_ext2 (H2_CSS_CS)) return 3;
     return 0; }
 
-void html_version::css_counter_style (const int n)
+template < > void html_version::set_level < c_counter_style > (const int n)
 {   if (n > 0) set_ext2 (H2_CSS_CS);
     else reset_ext2 (H2_CSS_CS); }
 
-int html_version::css_custom () const
+template < > int html_version::get_level < c_custom_property > () const
 {   if (any_ext2 (H2_CSS_CUSTOM)) return 3;
     return 0; }
 
-void html_version::css_custom (const int n)
+template < > void html_version::set_level < c_custom_property > (const int n)
 {   if (n > 0) set_ext2 (H2_CSS_CUSTOM);
     else reset_ext2 (H2_CSS_CUSTOM); }
 
-int html_version::css_device () const
+template < > int html_version::get_level < c_device_adaption > () const
 {   if (any_ext3 (H3_CSS_DEVICE)) return 3;
     return 0; }
 
-void html_version::css_device (const int n)
+template < > void html_version::set_level < c_device_adaption > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_DEVICE);
     else reset_ext3 (H3_CSS_DEVICE); }
 
-int html_version::css_display () const
+template < > int html_version::get_level < c_display > () const
 {   if (any_ext3 (H3_CSS_DISPLAY)) return 3;
     return 0; }
 
-void html_version::css_display (const int n)
+template < > void html_version::set_level < c_display > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_DISPLAY);
     else reset_ext3 (H3_CSS_DISPLAY); }
 
-int html_version::css_ease () const
+template < > int html_version::get_level < c_easing_function > () const
 {   if (any_ext2 (H2_CSS_EASE)) return 3;
     return 0; }
 
-void html_version::css_ease (const int n)
+template < > void html_version::set_level < c_easing_function > (const int n)
 {   if (n > 0) set_ext2 (H2_CSS_EASE);
     else reset_ext2 (H2_CSS_EASE); }
 
-int html_version::css_exclude () const
+template < > int html_version::get_level < c_exclusion > () const
 {   if (any_ext3 (H3_CSS_EXCLUDE)) return 3;
     return 0; }
 
-void html_version::css_exclude (const int n)
+template < > void html_version::set_level < c_exclusion > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_EXCLUDE);
     else reset_ext3 (H3_CSS_DEVICE); }
 
-int html_version::css_fbl () const
+template < > int html_version::get_level < c_flexible_box_layout > () const
 {   if (any_ext2 (H2_CSS_FBL)) return 3;
     return 0; }
 
-void html_version::css_fbl (const int n)
+template < > void html_version::set_level < c_flexible_box_layout > (const int n)
 {   if (n > 0) set_ext2 (H2_CSS_FBL);
     else reset_ext2 (H2_CSS_FBL); }
 
-int html_version::css_fill () const
+template < > int html_version::get_level < c_fill_stroke > () const
 {   if (any_ext3 (H3_CSS_FILL)) return 3;
     return 0; }
 
-void html_version::css_fill (const int n)
+template < > void html_version::set_level < c_fill_stroke > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_FILL);
     else reset_ext3 (H3_CSS_FILL); }
 
-int html_version::css_filter () const
+template < > int html_version::get_level < c_filter_effect > () const
 {   if (any_ext3 (H3_CSS_FILTER)) return 3;
     return 0; }
 
-void html_version::css_filter (const int n)
+template < > void html_version::set_level < c_filter_effect > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_FILTER);
     else reset_ext3 (H3_CSS_FILTER); }
 
-int html_version::css_float () const
+template < > int html_version::get_level < c_page_float > () const
 {   if (any_ext3 (H3_CSS_FLOAT)) return 3;
     return 0; }
 
-void html_version::css_float (const int n)
+template < > void html_version::set_level < c_page_float > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_FLOAT);
     else reset_ext3 (H3_CSS_FLOAT); }
 
-int html_version::css_font () const
+template < > int html_version::get_level < c_font > () const
 {   if ((ext2 () & H2_CSS_FONT_5) == H2_CSS_FONT_5) return 5;   
     if ((ext2 () & H2_CSS_FONT_4) == H2_CSS_FONT_4) return 4;   
     if ((ext2 () & H2_CSS_FONT_3) == H2_CSS_FONT_3) return 3;   
     return 0; }
 
-void html_version::css_font (const int n)
+template < > void html_version::set_level < c_font > (const int n)
 {   reset_ext2 (H2_CSS_FONT_MASK);
     switch (n)
     {   case 5 : set_ext2 (H2_CSS_FONT); break;
@@ -1435,107 +1493,107 @@ void html_version::css_font (const int n)
         case 3 : set_ext2 (H2_CSS_FONT_3); break;
         default : break; } }
 
-int html_version::css_fragmentation () const
+template < > int html_version::get_level < c_fragmentation > () const
 {   if ((ext2 () & H2_CSS_FRAG_4) == H2_CSS_FRAG_4) return 4;   
     if ((ext2 () & H2_CSS_FRAG_3) == H2_CSS_FRAG_3) return 3;   
     return 0; }
 
-void html_version::css_fragmentation (const int n)
+template < > void html_version::set_level < c_fragmentation > (const int n)
 {   reset_ext2 (H2_CSS_FRAG_MASK);
     if (n == 4) set_ext2 (H2_CSS_FRAG_34);
     else if (n == 3) set_ext2 (H2_CSS_FRAG_3); }
 
-int html_version::css_grid () const
+template < > int html_version::get_level < c_grid_layout > () const
 {   if ((ext3 () & H3_CSS_GRID_4) == H3_CSS_GRID_4) return 4;
     if ((ext3 () & H3_CSS_GRID_3) == H3_CSS_GRID_3) return 3;
     return 0; }
 
-void html_version::css_grid (const int n)
+template < > void html_version::set_level < c_grid_layout > (const int n)
 {   reset_ext3 (H3_CSS_GRID_MASK);
     if ((n == 2) || (n == 4)) set_ext3 (H3_CSS_GRID);
     else if ((n == 1) || (n == 3)) set_ext3 (H3_CSS_GRID_3); }
 
-int html_version::css_highlight () const
+template < > int html_version::get_level < c_custom_highlight > () const
 {   if (any_ext3 (H3_CSS_HIGHLIGHT)) return 3;
     return 0; }
 
-void html_version::css_highlight (const int n)
+template < > void html_version::set_level < c_custom_highlight > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_HIGHLIGHT);
     else reset_ext3 (H3_CSS_HIGHLIGHT); }
 
-int html_version::css_hyperlink () const
+template < > int html_version::get_level < c_hyperlink_presentation > () const
 {   if (any_ext3 (H3_CSS_HYPERLINK)) return 3;
     return 0; }
 
-void html_version::css_hyperlink (const int n)
+template < > void html_version::set_level < c_hyperlink_presentation > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_HYPERLINK);
     else reset_ext3 (H3_CSS_HYPERLINK); }
 
-int html_version::css_image () const
+template < > int html_version::get_level < c_image > () const
 {   if ((ext3 () & H3_CSS_IMAGE_4) == H3_CSS_IMAGE_4) return 4;
     if ((ext3 () & H3_CSS_IMAGE_3) == H3_CSS_IMAGE_3) return 3;
     return 0; }
 
-void html_version::css_image (const int n)
+template < > void html_version::set_level < c_image > (const int n)
 {   reset_ext3 (H3_CSS_IMAGE_MASK);
     if (n == 4) set_ext3 (H3_CSS_IMAGE);
     else if (n == 3) set_ext3 (H3_CSS_IMAGE_3); }
 
-int html_version::css_inline () const
+template < > int html_version::get_level < c_inline_layout > () const
 {   if (any_ext3 (H3_CSS_INLINE)) return 3;
     return 0; }
 
-void html_version::css_inline (const int n)
+template < > void html_version::set_level < c_inline_layout > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_INLINE);
     else reset_ext3 (H3_CSS_INLINE); }
 
-int html_version::css_line_grid () const
+template < > int html_version::get_level < c_line_grid > () const
 {   if (any_ext3 (H3_CSS_LINE_GRID)) return 3;
     return 0; }
 
-void html_version::css_line_grid (const int n)
+template < > void html_version::set_level < c_line_grid > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_LINE_GRID);
     else reset_ext3 (H3_CSS_LINE_GRID); }
 
-int html_version::css_list () const
+template < > int html_version::get_level < c_list_counter > () const
 {   if (any_ext3 (H3_CSS_LIST)) return 3;
     return 0; }
 
-void html_version::css_list (const int n)
+template < > void html_version::set_level < c_list_counter > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_LIST);
     else reset_ext3 (H3_CSS_LIST); }
 
-int html_version::css_logic () const
+template < > int html_version::get_level < c_logical_property > () const
 {   if (any_ext3 (H3_CSS_LOGIC)) return 3;
     return 0; }
 
-void html_version::css_logic (const int n)
+template < > void html_version::set_level < c_logical_property > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_LOGIC);
     else reset_ext3 (H3_CSS_LOGIC); }
 
-int html_version::css_marquee () const
+template < > int html_version::get_level < c_marquee > () const
 {   if (any_ext4 (H4_CSS_MARQUEE)) return 3;
     return 0; }
 
-void html_version::css_marquee (const int n)
+template < > void html_version::set_level < c_marquee > (const int n)
 {   if (n == 3) set_ext4 (H4_CSS_MARQUEE);
     else reset_ext4 (H4_CSS_MARQUEE); }
 
-int html_version::css_masking () const
+template < > int html_version::get_level < c_masking > () const
 {   if (any_ext3 (H3_CSS_MASKING)) return 3;
     return 0; }
 
-void html_version::css_masking (const int n)
+template < > void html_version::set_level < c_masking > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_MASKING);
     else reset_ext3 (H3_CSS_MASKING); }
 
-int html_version::css_media () const
+template < > int html_version::get_level < c_media_query > () const
 {   if ((ext2 () & H2_CSS_MEDIA_5) == H2_CSS_MEDIA_5) return 5;   
     if ((ext2 () & H2_CSS_MEDIA_4) == H2_CSS_MEDIA_4) return 4;   
     if ((ext2 () & H2_CSS_MEDIA_3) == H2_CSS_MEDIA_3) return 3;   
     return 0; }
 
-void html_version::css_media (const int n)
+template < > void html_version::set_level < c_media_query > (const int n)
 {   reset_ext2 (H2_CSS_MEDIA_MASK);
     switch (n)
     {   case 5 : set_ext2 (H2_CSS_MEDIA); break;
@@ -1543,327 +1601,358 @@ void html_version::css_media (const int n)
         case 3 : set_ext2 (H2_CSS_MEDIA_3); break;
         default : break; } }
 
-int html_version::css_motion () const
+template < > int html_version::get_level < c_motion_path > () const
 {   if (any_ext3 (H3_CSS_MOTION)) return 3;
     return 0; }
 
-void html_version::css_motion (const int n)
+template < > void html_version::set_level < c_motion_path > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_MOTION);
     else reset_ext3 (H3_CSS_MOTION); }
 
-int html_version::css_multi_column () const
+template < > int html_version::get_level < c_multicolumn > () const
 {   if (any_ext3 (H3_CSS_MULTI_COL)) return 3;
     return 0; }
 
-void html_version::css_multi_column (const int n)
+template < > void html_version::set_level < c_multicolumn > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_MULTI_COL);
     else reset_ext3 (H3_CSS_MULTI_COL); }
 
-int html_version::css_namespace () const
+template < > int html_version::get_level < c_namespace > () const
 {   if (any_ext2 (H2_CSS_NAMESPACE)) return 3;
     return 0; }
 
-void html_version::css_namespace (const int n)
+template < > void html_version::set_level < c_namespace > (const int n)
 {   if (n == 3) set_ext2 (H2_CSS_NAMESPACE);
     else reset_ext2 (H2_CSS_NAMESPACE); }
 
-void html_version::css_nes (const int n)
+template < > void html_version::set_level < c_non_element_selector > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_NES);
     else reset_ext3 (H3_CSS_NES); }
 
-int html_version::css_nes () const
+template < > int html_version::get_level < c_non_element_selector > () const
 {   if (any_ext3 (H3_CSS_NES)) return 3;
     return 0; }
 
-int html_version::css_nesting () const
+template < > int html_version::get_level < c_nesting > () const
 {   if (any_ext3 (H3_CSS_NESTING)) return 3;
     return 0; }
 
-void html_version::css_nesting (const int n)
+template < > void html_version::set_level < c_nesting > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_NESTING);
     else reset_ext3 (H3_CSS_NESTING); }
 
-int html_version::css_overflow () const
+template < > int html_version::get_level < c_overflow > () const
 {   if ((ext4 () & H4_CSS_OVERFLOW_4) == H4_CSS_OVERFLOW_4) return 4;
     if ((ext4 () & H4_CSS_OVERFLOW_3) == H4_CSS_OVERFLOW_3) return 3;
     return 0; }
 
-void html_version::css_overflow (const int n)
+template < > void html_version::set_level < c_overflow > (const int n)
 {   reset_ext4 (H4_CSS_OVERFLOW_MASK);
     if (n == 4) set_ext4 (H4_CSS_OVERFLOW);
     else if (n == 3) set_ext4 (H4_CSS_OVERFLOW_3); }
 
-int html_version::css_overscroll () const
+template < > int html_version::get_level < c_overscroll_behaviour > () const
 {   if (any_ext3 (H3_CSS_OVERSCROLL)) return 3;
     return 0; }
 
-void html_version::css_overscroll (const int n)
+template < > void html_version::set_level < c_overscroll_behaviour > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_OVERSCROLL);
     else reset_ext3 (H3_CSS_OVERSCROLL); }
 
-int html_version::css_page () const
+template < > int html_version::get_level < c_paged_media > () const
 {   if (any_ext3 (H3_CSS_PAGE)) return 3;
     return 0; }
 
-void html_version::css_page (const int n)
+template < > void html_version::set_level < c_paged_media > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_PAGE);
     else reset_ext3 (H3_CSS_PAGE); }
 
-int html_version::css_position () const
+template < > int html_version::get_level < c_positioned_layout > () const
 {   if (any_ext3 (H3_CSS_POSITION)) return 3;
     return 0; }
 
-void html_version::css_position (const int n)
+template < > void html_version::set_level < c_positioned_layout > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_POSITION);
     else reset_ext3 (H3_CSS_POSITION); }
 
-int html_version::css_present () const
+template < > int html_version::get_level < c_presentation_level > () const
 {   if (any_ext3 (H3_CSS_PRESENT)) return 3;
     return 0; }
 
-void html_version::css_present (const int n)
+template < > void html_version::set_level < c_presentation_level > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_PRESENT);
     else reset_ext3 (H3_CSS_PRESENT); }
 
-int html_version::css_pseudo () const
+template < > int html_version::get_level < c_pseudo_element > () const
 {   if (any_ext3 (H3_CSS_PSEUDO)) return 4;
     return 0; }
 
-void html_version::css_pseudo (const int n)
+template < > void html_version::set_level < c_pseudo_element > (const int n)
 {   if ((n == 3) || (n == 4)) set_ext3 (H3_CSS_PSEUDO);
     else reset_ext3 (H3_CSS_PSEUDO); }
 
-int html_version::css_region () const
+template < > int html_version::get_level < c_region > () const
 {   if (any_ext3 (H3_CSS_REGION)) return 3;
     return 0; }
 
-void html_version::css_region (const int n)
+template < > void html_version::set_level < c_region > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_REGION);
     else reset_ext3 (H3_CSS_REGION); }
 
-int html_version::css_rhythm () const
+template < > int html_version::get_level < c_rhythmic_sizing > () const
 {   if (any_ext3 (H3_CSS_RHYTHM)) return 3;
     return 0; }
 
-void html_version::css_rhythm (const int n)
+template < > void html_version::set_level < c_rhythmic_sizing > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_RHYTHM);
     else reset_ext3 (H3_CSS_RHYTHM); }
 
-int html_version::css_round () const
+template < > int html_version::get_level < c_round_display > () const
 {   if (any_ext3 (H3_CSS_ROUND)) return 3;
     return 0; }
 
-void html_version::css_round (const int n)
+template < > void html_version::set_level < c_round_display > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_ROUND);
     else reset_ext3 (H3_CSS_ROUND); }
 
-int html_version::css_ruby () const
+template < > int html_version::get_level < c_ruby_annotation > () const
 {   if (any_ext3 (H3_CSS_RUBY)) return 3;
     return 0; }
 
-void html_version::css_ruby (const int n)
+template < > void html_version::set_level < c_ruby_annotation > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_RUBY);
     else reset_ext3 (H3_CSS_RUBY); }
 
-int html_version::css_scope () const
+template < > int html_version::get_level < c_scoping > () const
 {   if (any_ext3 (H3_CSS_SCOPE)) return 3;
     return 0; }
 
-void html_version::css_scope (const int n)
+template < > void html_version::set_level < c_scoping > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_SCOPE);
     else reset_ext3 (H3_CSS_SCOPE); }
 
-int html_version::css_scrollbar () const
+template < > int html_version::get_level < c_scrollbar_styling > () const
 {   if (any_ext3 (H3_CSS_SCROLLBAR)) return 3;
     return 0; }
 
-void html_version::css_scrollbar (const int n)
+template < > void html_version::set_level < c_scrollbar_styling > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_SCROLLBAR);
     else reset_ext3 (H3_CSS_SCROLLBAR); }
 
-int html_version::css_sda () const
+template < > int html_version::get_level < c_scroll_driven_animation > () const
 {   if (any_ext3 (H3_CSS_SDA)) return 3;
     return 0; }
 
-void html_version::css_sda (const int n)
+template < > void html_version::set_level < c_scroll_driven_animation > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_SDA);
     else reset_ext3 (H3_CSS_SDA); }
 
-int html_version::css_selector () const
+template < > int html_version::get_level < c_selector > () const
 {   if ((ext2 () & H2_CSS_SELECTOR_4) == H2_CSS_SELECTOR_4) return 4;   
     if ((ext2 () & H2_CSS_SELECTOR_3) == H2_CSS_SELECTOR_3) return 3;   
     return 0; }
 
-void html_version::css_selector (const int n)
+template < > void html_version::set_level < c_selector > (const int n)
 {   reset_ext2 (H2_CSS_SELECTOR_MASK);
     if (n == 3) set_ext2 (H2_CSS_SELECTOR_3);
     else if (n == 4) set_ext2 (H2_CSS_SELECTOR); }
 
-int html_version::css_shadow () const
+template < > int html_version::get_level < c_shadow_part > () const
 {   if (any_ext3 (H3_CSS_SHADOW)) return 3;
     return 0; }
 
-void html_version::css_shadow (const int n)
+template < > void html_version::set_level < c_shadow_part > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_SHADOW);
     else reset_ext3 (H3_CSS_SHADOW); }
 
-int html_version::css_shape () const
+template < > int html_version::get_level < c_shape > () const
 {   if ((ext3 () & H3_CSS_SHAPE_4) == H3_CSS_SHAPE_4) return 4;   
     if ((ext3 () & H3_CSS_SHAPE_3) == H3_CSS_SHAPE_3) return 3;   
     return 0; }
 
-void html_version::css_shape (const int n)
+template < > void html_version::set_level < c_shape > (const int n)
 {   reset_ext3 (H3_CSS_SHAPE_MASK);
     if (n == 3) set_ext3 (H3_CSS_SHAPE_3);
     else if (n == 4) set_ext3 (H3_CSS_SHAPE_4); }
 
-int html_version::css_snap () const
+template < > int html_version::get_level < c_scroll_snap > () const
 {   if (any_ext3 (H3_CSS_SNAP)) return 3;
     return 0; }
 
-void html_version::css_snap (const int n)
+template < > void html_version::set_level < c_scroll_snap > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_SNAP);
     else reset_ext3 (H3_CSS_SNAP); }
 
-int html_version::css_snap_points () const
+template < > int html_version::get_level < c_scroll_snap_point > () const
 {   if (any_ext4 (H4_CSS_SNAP_POINTS)) return 3;
     return 0; }
 
-void html_version::css_snap_points (const int n)
+template < > void html_version::set_level < c_scroll_snap_point > (const int n)
 {   if (n == 3) set_ext4 (H4_CSS_SNAP_POINTS);
     else reset_ext4 (H4_CSS_SNAP_POINTS); }
 
-int html_version::css_spatial () const
+template < > int html_version::get_level < c_spatial_navigation > () const
 {   if (any_ext4 (H4_CSS_SPATIAL)) return 3;
     return 0; }
 
-void html_version::css_spatial (const int n)
+template < > void html_version::set_level < c_spatial_navigation > (const int n)
 {   if (n == 3) set_ext4 (H4_CSS_SPATIAL);
     else reset_ext4 (H4_CSS_SPATIAL); }
 
-int html_version::css_speech () const
+template < > int html_version::get_level < c_speech > () const
 {   if (any_ext3 (H3_CSS_SPEECH)) return 3;
     return 0; }
 
-void html_version::css_speech (const int n)
+template < > void html_version::set_level < c_speech > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_SPEECH);
     else reset_ext3 (H3_CSS_SPEECH); }
 
-int html_version::css_style () const
+template < > int html_version::get_level < c_style_attribute > () const
 {   if (any_ext2 (H2_CSS_STYLE)) return 3;
     return 0; }
 
-void html_version::css_style (const int n)
+template < > void html_version::set_level < c_style_attribute > (const int n)
 {   if (n >= 3) set_ext2 (H2_CSS_STYLE);
     else reset_ext2 (H2_CSS_STYLE); }
 
-int html_version::css_syntax () const
+template < > int html_version::get_level < c_syntax > () const
 {   if (any_ext2 (H2_CSS_SYNTAX)) return 3;
     return 0; }
 
-void html_version::css_syntax (const int n)
+template < > void html_version::set_level < c_syntax > (const int n)
 {   if (n == 3) set_ext2 (H2_CSS_SYNTAX);
     else reset_ext2 (H2_CSS_SYNTAX); }
 
-int html_version::css_table () const
+template < > int html_version::get_level < c_table > () const
 {   if (any_ext3 (H3_CSS_TABLE)) return 3;
     return 0; }
 
-void html_version::css_table (const int n)
+template < > void html_version::set_level < c_table > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_TABLE);
     else reset_ext3 (H3_CSS_TABLE); }
 
-int html_version::css_text () const
+template < > int html_version::get_level < c_text > () const
 {   if ((ext3 () & H3_CSS_TEXT_4) == H3_CSS_TEXT_4) return 4;
     if ((ext3 () & H3_CSS_TEXT_3) == H3_CSS_TEXT_3) return 3;
     return 0; }
 
-void html_version::css_text (const int n)
+template < > void html_version::set_level < c_text > (const int n)
 {   reset_ext3 (H3_CSS_TEXT_MASK);
     if (n == 4) set_ext3 (H3_CSS_TEXT_34);
     else if (n == 3) set_ext3 (H3_CSS_TEXT_3); }
 
-int html_version::css_text_decoration () const
+template < > int html_version::get_level < c_text_decoration > () const
 {   if ((ext3 () & H3_CSS_TEXTDEC_4) == H3_CSS_TEXTDEC_4) return 4;
     if ((ext3 () & H3_CSS_TEXTDEC_3) == H3_CSS_TEXTDEC_3) return 3;
     return 0; }
 
-void html_version::css_text_decoration (const int n)
+template < > void html_version::set_level < c_text_decoration > (const int n)
 {   reset_ext3 (H3_CSS_TEXTDEC_MASK);
     if (n == 4) set_ext3 (H3_CSS_TEXTDEC_34);
     else if (n == 3) set_ext3 (H3_CSS_TEXTDEC_3); }
 
-int html_version::css_transform () const
+template < > int html_version::get_level < c_transform > () const
 {   if ((ext3 () & H3_CSS_TRANSFORM_4) == H3_CSS_TRANSFORM_4) return 4;
     if ((ext3 () & H3_CSS_TRANSFORM_3) == H3_CSS_TRANSFORM_3) return 3;
     return 0; }
 
-void html_version::css_transform (const int n)
+template < > void html_version::set_level < c_transform > (const int n)
 {   reset_ext3 (H3_CSS_TRANSFORM_MASK);
     if ((n == 2) || (n == 4)) set_ext3 (H3_CSS_TRANSFORM_34);
     else if ((n == 1) || (n == 3)) set_ext3 (H3_CSS_TRANSFORM_3); }
 
-int html_version::css_transition () const
+template < > int html_version::get_level < c_transition > () const
 {   if ((ext4 () & H4_CSS_TRANSITION_4) == H4_CSS_TRANSITION_4) return 4;
     if ((ext4 () & H4_CSS_TRANSITION_3) == H4_CSS_TRANSITION_3) return 3;
     return 0; }
 
-void html_version::css_transition (const int n)
+template < > void html_version::set_level < c_transition > (const int n)
 {   reset_ext4 (H4_CSS_TRANSITION);
     if (n == 4) set_ext4 (H4_CSS_TRANSITION);
     else if (n == 3) set_ext4 (H4_CSS_TRANSITION_3); }
 
-int html_version::css_ui () const
+template < > int html_version::get_level < c_basic_user_interface > () const
 {   if ((ext2 () & H2_CSS_UI_4) == H2_CSS_UI_4) return 4;   
     if ((ext2 () & H2_CSS_UI_3) == H2_CSS_UI_3) return 3;   
     return 0; }
 
-void html_version::css_ui (const int n)
+template < > void html_version::set_level < c_basic_user_interface > (const int n)
 {   reset_ext2 (H2_CSS_UI_MASK);
     if (n == 3) set_ext2 (H2_CSS_UI_3);
     else if (n == 4) set_ext2 (H2_CSS_UI); }
 
-int html_version::css_value () const
+template < > int html_version::get_level < c_value_unit > () const
 {   if ((ext2 () & H2_CSS_VALUE_4) == H2_CSS_VALUE_4) return 4;   
     if ((ext2 () & H2_CSS_VALUE_3) == H2_CSS_VALUE_3) return 3;   
     return 0; }
 
-void html_version::css_value (const int n)
+template < > void html_version::set_level < c_value_unit > (const int n)
 {   reset_ext2 (H2_CSS_VALUE_MASK);
     if (n == 3) set_ext2 (H2_CSS_VALUE_3);
     else if (n == 4) set_ext2 (H2_CSS_VALUE); }
 
-int html_version::css_view () const
+template < > int html_version::get_level < c_viewport > () const
+{   if (any_ext4 (H4_CSS_VIEWPORT)) return 3;
+    return 0; }
+
+template < > void html_version::set_level < c_viewport > (const int n)
+{   if (n == 3) set_ext4 (H4_CSS_VIEWPORT);
+    else reset_ext4 (H4_CSS_VIEWPORT); }
+
+template < > int html_version::get_level < c_view_transition > () const
 {   if (any_ext3 (H3_CSS_VIEW)) return 3;
     return 0; }
 
-void html_version::css_view (const int n)
+template < > void html_version::set_level < c_view_transition > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_VIEW);
     else reset_ext3 (H3_CSS_VIEW); }
 
-int html_version::css_will_change () const
+template < > int html_version::get_level < c_will_change > () const
 {   if (any_ext3 (H3_CSS_WC)) return 3;
     return 0; }
 
-void html_version::css_will_change (const int n)
+template < > void html_version::set_level < c_will_change > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_WC);
     else reset_ext3 (H3_CSS_WC); }
 
-int html_version::css_writing_mode () const
+template < > int html_version::get_level < c_writing_mode > () const
 {   if ((ext3 () & H3_CSS_WRITING_4) == H3_CSS_WRITING_4) return 4;
     if ((ext3 () & H3_CSS_WRITING_3) == H3_CSS_WRITING_3) return 3;
     return 0; }
 
-void html_version::css_writing_mode (const int n)
+template < > void html_version::set_level < c_writing_mode > (const int n)
 {   reset_ext3 (H3_CSS_WRITING_MASK);
     if (n == 4) set_ext3 (H3_CSS_WRITING_34);
     else if (n == 3) set_ext3 (H3_CSS_WRITING_3); }
+
+template < e_css_module MOD, e_css_module... MS > struct process_module : process_module < MS... >
+{   static void set_level (html_version& v, const e_css_module m, const int n)
+    {   if (m != MOD) process_module < MS... > :: set_level (v, m, n);
+        else v.set_level < MOD > (n); }
+    static int get_level (const html_version& v, const e_css_module m)
+    {   if (m != MOD) return process_module < MS... > :: get_level (v, m);
+        return v.get_level < MOD > (); } };
+
+template < e_css_module MOD > struct process_module < MOD >
+{   static void set_level (html_version& v, const e_css_module m, const int n)
+    {   PRESUME (m == MOD, __FILE__, __LINE__);
+        v.set_level < MOD > (n); }
+    static int get_level (const html_version& v, const e_css_module m)
+    {   PRESUME (m == MOD, __FILE__, __LINE__);
+        return v.get_level < MOD > (); } };
+
+int html_version::css_module (const e_css_module m) const
+{   return process_module < CSS_MODULES > :: get_level (*this, m); }      
+
+void html_version::css_module (const e_css_module m, const int n)
+{   process_module < CSS_MODULES > :: set_level (*this, m, n); }
 
 bool html_version::is_css_compatible (const flags_t& f, const flags_t& f3, const flags_t& f4) const
 {   constexpr flags_t ext2_concerned = H2_FULL_CSS_MASK & ~H2_CSS_ARG_MASK;
     if (((ext2_ & ext2_concerned) == 0) && ((ext3_ & H3_FULL_CSS_MASK) == 0) && ((ext4_ & H4_FULL_CSS_MASK) == 0)) return true;
     if (((f & ext2_concerned) == 0) && ((f3 & H3_FULL_CSS_MASK) == 0) && ((f4 & H4_FULL_CSS_MASK) == 0)) return true;
     if (((ext2_ & f) != 0) || ((ext3_ & f3) != 0) || ((ext4_ & f4) != 0)) return true;
+    if (((ext4_ & f4) & H4_CSS_SAFE) != 0) return true;
     if (has_svg ())
     {   if (((f & H2_CSS_SVG_10) == H2_CSS_SVG_10) && ((ext_ & HE_SVG_10) == HE_SVG_10)) return true;
         if (((f & H2_CSS_SVG_11) == H2_CSS_SVG_11) && ((ext_ & HE_SVG_11) == HE_SVG_11)) return true;
@@ -1932,7 +2021,9 @@ bool does_html_apply (const html_version& v, const html_version& from, const htm
                     GRACEFUL_CRASH (__FILE__, __LINE__);
                     UNBREAKABLE;
         default :   if (from.xhtml () && from.notx5 ()) return false;
-                    if (context.html_ver ().whatwg () && from.w3 ()) return false;
+                    if (context.html_ver ().whatwg () && from.w3 ())
+                        if (! from.ruby () || ! context.ruby ()) return false;
+                        else if (context.html_ver () < html_ruby) return false;
                     switch (w3_5_minor (v))
                     {   case 0 : return ! from.not50 ();
                         case 1 : return ! from.not51 ();
@@ -2023,3 +2114,8 @@ html_version get_min_version (const e_css_version e) noexcept
         case css_5 : return html_css_5;
         case css_6 : return html_css_6;
         default : return html_0; } }
+
+bool is_css_identical (const html_version& lhs, const html_version& rhs)
+{   if ((lhs.ext2 () & H2_FULL_CSS_MASK) != (rhs.ext2 () & H2_FULL_CSS_MASK)) return false;
+    if ((lhs.ext3 () & H3_MPT_CSS_MASK) != (rhs.ext3 () & H3_MPT_CSS_MASK)) return false;
+    return (lhs.ext4 () & H4_FULL_CSS_MASK) == (rhs.ext4 () & H4_FULL_CSS_MASK); }

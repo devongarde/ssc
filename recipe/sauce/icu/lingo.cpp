@@ -19,12 +19,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "main/standard.h"
-#include "icu/lingo.h"
 #ifndef NOICU
+#include "icu/lingo.h"
 #include "icu/converter.h"
 #include "icu/charset.h"
 #include "spell/spell.h"
-#endif // NOICU
 
 constexpr int32_t arbitrary_max = 2048;
 vstr_t lingo::dicts_;
@@ -58,7 +57,6 @@ ab_t ab [] =
 typedef ssc_map < ::std::string, ::std::string > mab_t;
 mab_t mab;
 
-#ifndef NOICU
 int32_t from_utf8 (const ::std::string& s, UChar *sz, const int32_t len)
 {   PRESUME (context.icu (), __FILE__, __LINE__);
     VERIFY_NOT_NULL (sz, __FILE__, __LINE__);
@@ -81,7 +79,6 @@ int32_t to_utf8 (UChar *sz, const int32_t len, ::std::string& s)
         if (actual < arbitrary_max)
         {   s = res; return actual; }
     return 0; }
-#endif // NOICU
 
 bool set_locale (::std::locale& loc, const ::std::string& lang)
 {   try
@@ -94,7 +91,6 @@ lingo::lingo (nitpick& nits, const ::std::string& lang) : orig_ (lang)
 {   if (lang.empty () || ! set_locale (locale_, lang))
         if (! set_locale (locale_, STANDARD_ENGLISH))
             locale_ = ::std::locale::classic ();
-#ifndef NOICU
     if (context.icu ())
     {   int32_t actual = 0;
         UErrorCode err = U_ZERO_ERROR;
@@ -105,25 +101,17 @@ lingo::lingo (nitpick& nits, const ::std::string& lang) : orig_ (lang)
         else
         {   locale_id_ = ::std::string (&GSL_AT (locale_id, 0));
             nits.pick (nit_locale, es_comment, ec_icu, "Half recognised ", lang);
-            uloc_ = uloc; } }
-#endif // NOICU
-}
+            uloc_ = uloc; } } }
 
-void lingo::init (nitpick& )
+void lingo::init (nitpick& nits)
 {   for (int i = 0; GSL_AT (ab, i).a_ != nullptr; ++i)
-#ifdef DEBUG
         if (mab.find (::std::string (GSL_AT (ab, i).a_)) != mab.cend ())
-            outstr.err (::std::string (GSL_AT (ab, i).a_) + " repeated in standard language table.\n");
+            nits.pick (nit_config_lingo, es_error, ec_program, ::std::string (GSL_AT (ab, i).a_) + " repeated in standard language table.");
         else
-#endif // DEBUG
             mab.insert (::std::pair < ::std::string, ::std::string > (::std::string (GSL_AT (ab, i).a_), ::std::string (GSL_AT (ab, i).b_))); }
 
-#ifdef NOICU
-void lingo::identify_dialects (nitpick& ) { }
-#else // NOICU
 void lingo::identify_dialects (nitpick& nits)
 {   if (context.spell ()) dicts_ = load_dictionaries (nits); }
-#endif // NOICU
 
 ::std::string lingo::standard_dialect (const ::std::string& l)
 {   if (l.empty ()) return STANDARD_ENGLISH;
@@ -133,9 +121,6 @@ void lingo::identify_dialects (nitpick& nits)
     return l; }
 
 bool lingo::is_upper (const ::std::string& s) const
-#ifdef NOICU
-{   return iswupper (s.at (0)); }
-#else // NOICU
 {   if (invalid () || ! context.icu ()) return iswupper (s.at (0));
     const int32_t len = GSL_NARROW_CAST < int32_t > (s.length ());
     const uint8_t* psz = reinterpret_cast <const uint8_t*> (s.c_str ());
@@ -145,12 +130,8 @@ bool lingo::is_upper (const ::std::string& s) const
         U8_NEXT_OR_FFFD (psz, pos, len, ch);
         if ((ch != 0xFFFD) && u_isULowercase (ch)) return false; }
     return true; }
-#endif // NOICU
 
 bool lingo::is_lower (const ::std::string& s) const
-#ifdef NOICU
-{   return iswlower (s.at (0)); }
-#else // NOICU
 {   if (invalid () || ! context.icu ()) return iswlower (s.at (0));
     const int32_t len = GSL_NARROW_CAST < int32_t > (s.length ());
     const uint8_t* psz = reinterpret_cast <const uint8_t*> (s.c_str ());
@@ -160,12 +141,8 @@ bool lingo::is_lower (const ::std::string& s) const
         U8_NEXT_OR_FFFD (psz, pos, len, ch);
         if ((ch != 0xFFFD) && u_isUUppercase (ch)) return false; }
     return true; }
-#endif // NOICU
 
 bool lingo::is_alpha (const ::std::string& s) const
-#ifdef NOICU
-{   return iswalpha (s.at (0)); }
-#else // NOICU
 {   if (invalid () || ! context.icu ()) return iswalpha (s.at (0));
     const int32_t len = GSL_NARROW_CAST < int32_t > (s.length ());
     const uint8_t* psz = reinterpret_cast <const uint8_t*> (s.c_str ());
@@ -175,12 +152,8 @@ bool lingo::is_alpha (const ::std::string& s) const
         U8_NEXT_OR_FFFD (psz, pos, len, ch);
         if ((ch != 0xFFFD) && ! u_isUAlphabetic (ch)) return false; }
     return true; }
-#endif // NOICU
 
 bool lingo::is_space (const ::std::string& s) const
-#ifdef NOICU
-{   return iswspace (s.at (0)); }
-#else // NOICU
 {   if (invalid () || ! context.icu ()) return iswspace (s.at (0));
     const int32_t len = GSL_NARROW_CAST < int32_t > (s.length ());
     const uint8_t* psz = reinterpret_cast <const uint8_t*> (s.c_str ());
@@ -190,12 +163,8 @@ bool lingo::is_space (const ::std::string& s) const
         U8_NEXT_OR_FFFD (psz, pos, len, ch);
         if ((ch != 0xFFFD) && ! u_isUWhiteSpace (ch)) return false; }
     return true; }
-#endif // NOICU
 
 ::std::string lingo::to_upper (const ::std::string& s) const
-#ifdef NOICU
-{   return ::boost::to_upper_copy (s); }
-#else // NOICU
 {   if (invalid () || ! context.icu ()) return ::boost::to_upper_copy (s);
     UChar tmp [arbitrary_max] = { 0 };
     int32_t len = from_utf8 (s, &GSL_AT (tmp, 0), arbitrary_max);
@@ -210,12 +179,8 @@ bool lingo::is_space (const ::std::string& s) const
                 len = to_utf8 (upc, actual, res);
                 if (len > 0) return res; } } }
     return ::boost::to_upper_copy (s); }
-#endif // NOICU
 
 ::std::string lingo::to_lower (const ::std::string& s) const
-#ifdef NOICU
-{   return ::boost::to_lower_copy (s); }
-#else // NOICU
 {   if (invalid () || ! context.icu ()) return ::boost::to_lower_copy (s);
     UChar tmp [arbitrary_max] = { 0 };
     int32_t len = from_utf8 (s, &GSL_AT (tmp, 0), arbitrary_max);
@@ -230,12 +195,8 @@ bool lingo::is_space (const ::std::string& s) const
                 len = to_utf8 (upc, actual, res);
                 if (len > 0) return res; } } }
     return ::boost::to_lower_copy (s); }
-#endif // NOICU
 
 ::std::string lingo::to_fold (const ::std::string& s) const
-#ifdef NOICU
-{   return s; }
-#else // NOICU
 {   if (invalid () || ! context.icu ()) return s;
     UChar tmp [arbitrary_max] = { 0 };
     int32_t len = from_utf8 (s, &GSL_AT (tmp, 0), arbitrary_max);
@@ -250,12 +211,8 @@ bool lingo::is_space (const ::std::string& s) const
                 len = to_utf8 (upc, actual, res);
                 if (len > 0) return res; } } }
     return s; }
-#endif // NOICU
 
 ::std::string lingo::to_title (const ::std::string& s) const
-#ifdef NOICU
-{   return s; }
-#else // NOICU
 {   if (invalid () || ! context.icu ()) return s;
     UChar tmp [arbitrary_max] = { 0 };
     int32_t len = from_utf8 (s, &GSL_AT (tmp, 0), arbitrary_max);
@@ -279,12 +236,8 @@ bool lingo::is_space (const ::std::string& s) const
             throw; }
         if (pb != nullptr) ubrk_close (pb); }
     return s; }
-#endif // NOICU
 
 bool lingo::compare (const ::std::string& lhs, const ::std::string& rhs) const
-#ifdef NOICU
-{   return lhs == rhs; }
-#else // NOICU
 {   if (invalid () || ! context.icu ()) return lhs == rhs;
     UChar l [arbitrary_max] = { 0 };
     UChar r [arbitrary_max] = { 0 };
@@ -294,12 +247,8 @@ bool lingo::compare (const ::std::string& lhs, const ::std::string& rhs) const
     for (int32_t n = 0; n < llen; ++n)
         if (GSL_AT (l, n) != GSL_AT (r, n)) return false;
     return true; }
-#endif // NOICU
 
 bool lingo::no_case_compare (const ::std::string& lhs, const ::std::string& rhs) const
-#ifdef NOICU
-{   return compare_no_case (lhs, rhs); }
-#else // NOICU
 {   if (invalid () || ! context.icu ()) return compare_no_case (lhs, rhs);
     UChar tmp [arbitrary_max] = { 0 };
     UChar l [arbitrary_max] = { 0 };
@@ -316,12 +265,8 @@ bool lingo::no_case_compare (const ::std::string& lhs, const ::std::string& rhs)
     for (int32_t n = 0; n < llen; ++n)
         if (GSL_AT (l, n) != GSL_AT (r, n)) return false;
     return true; }
-#endif // NOICU
 
 vstr_t lingo::to_words (nitpick& nits, const ::std::string& s) const
-#ifdef NOICU
-{   return split_by_whitespace_and (s); }
-#else // NOICU
 {   if (invalid () || ! context.icu ()) return split_by_whitespace_and (s);
     vstr_t res;
     if (! s.empty ())
@@ -366,16 +311,12 @@ vstr_t lingo::to_words (nitpick& nits, const ::std::string& s) const
                 throw; }
             if (pb != nullptr) ubrk_close (pb); } }
     return res; }
-#endif // NOICU
 
 ::std::string lingo::language () const
-#ifndef NOICU
 {   if (invalid () || ! context.icu ())
-#endif // NOICU
     {   const ::std::string::size_type pos = orig_.find_first_of ("_-");
         if (pos == ::std::string::npos) return orig_;
         return orig_.substr (0, pos); }
-#ifndef NOICU
     ::std::string res;
     UErrorCode err = U_ZERO_ERROR;
     char l [arbitrary_max] = { 0 };
@@ -383,18 +324,14 @@ vstr_t lingo::to_words (nitpick& nits, const ::std::string& s) const
     if (U_SUCCESS (err))
     if (n < arbitrary_max) res = l;
     return res; }
-#endif // NOICU
 
 ::std::string lingo::reg () const
-#ifndef NOICU
 {   if (invalid () || ! context.icu ())
-#endif // NOICU
     {   const ::std::string::size_type pos = orig_.find_first_of ("_-");
         if (pos == ::std::string::npos) return ::std::string ();
         const ::std::string::size_type pos2 = orig_.find_first_not_of (ALPHANUMERIC, pos);
         if (pos2 == ::std::string::npos) return orig_.substr (pos+1);
         return orig_.substr (pos+1, pos2-pos); }
-#ifndef NOICU
     ::std::string res;
     UErrorCode err = U_ZERO_ERROR;
     char l [arbitrary_max] = { 0 };
@@ -402,8 +339,9 @@ vstr_t lingo::to_words (nitpick& nits, const ::std::string& s) const
     if (U_SUCCESS (err))
     if (n < arbitrary_max) res = l;
     return res; }
-#endif // NOICU
 
 ::std::string lingo::dialect () const
 {   if (reg ().empty ()) return language ();
     return language () + "-" + reg (); }
+
+#endif // NOICU

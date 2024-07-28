@@ -31,7 +31,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "simple/type_media.h"
 
 void statement::parse_charset (arguments& args, nitpick& nits, const int from, const int to)
-{   if ((args.v_.css_version () == css_1) || (args.v_.css_syntax () > 0))
+{   if ((args.v_.css_version () == css_1) || (args.v_.css_module (c_syntax) > 0))
         nits.pick (nit_css_version, ed_css_syntax, "9.3. The '@charset' Rule", es_error, ec_css, "@charset requires CSS 2");
     else
     {   const int i = next_non_whitespace (args.t_, from, to); 
@@ -40,7 +40,7 @@ void statement::parse_charset (arguments& args, nitpick& nits, const int from, c
         else test_value < t_charset > (nits, context.html_ver (), args.t_.at (i).val_); } }
 
 void statement::parse_colour_profile (arguments& args, nitpick& nits, const int from, const int to)
-{   if (args.v_.css_colour () < 5)
+{   if (args.v_.css_module (c_colour) < 5)
     {   if (args.snippet_)
             if (! args.eb_.test (elem_svg))
             {   nits.pick (nit_css_svg, ed_svg_1_1, "12.3.4 The CSS @color-profile rule", es_warning, ec_css, "@color-profile expects an ancestral <SVG>, or CSS Colour 5");
@@ -71,7 +71,7 @@ void statement::parse_colour_profile (arguments& args, nitpick& nits, const int 
 void statement::parse_counter_style (arguments& args, nitpick& nits, const int from, const int to)
 {   const int i = next_non_whitespace (args.t_, from, to); 
     VERIFY_NOT_NULL (args.dst_, __FILE__, __LINE__);
-    if (context.html_ver ().css_counter_style () < 3)
+    if (context.html_ver ().css_module (c_counter_style) < 3)
         nits.pick (nit_css_version, es_error, ec_css, "@counter-style requires CSS Counter Style 3");
     else if ((i < 0) || ((args.t_.at (i).t_ != ct_string) && (args.t_.at (i).t_ != ct_identifier) && (args.t_.at (i).t_ != ct_number) && (args.t_.at (i).t_ != ct_keyword)))
         nits.pick (nit_css_syntax, es_error, ec_css, "expecting an identifier after @counter-style");
@@ -104,7 +104,7 @@ void statement::parse_counter_style (arguments& args, nitpick& nits, const int f
 
 void statement::parse_container (arguments& args, nitpick& nits, const int from, const int to)
 {   int i = next_non_whitespace (args.t_, from, to); 
-    if (context.html_ver ().css_contain () < 5)
+    if (context.html_ver ().css_module (c_containment) < 5)
         nits.pick (nit_css_version, es_error, ec_css, "@ccontainer requires CSS Contain 5");
     else if (i < 0)
         nits.pick (nit_container, es_error, ec_css, "expecting container details after @container");
@@ -230,7 +230,7 @@ void statement::parse_container (arguments& args, nitpick& nits, const int from,
 
 void statement::parse_custom_media (arguments& args, nitpick& nits, const int from, const int to)
 {   int i = next_non_whitespace (args.t_, from, to); 
-    if (context.html_ver ().css_media () < 5)
+    if (context.html_ver ().css_module (c_media_query) < 5)
         nits.pick (nit_css_version, es_error, ec_css, "@custom-media requires CSS Media 5");
     else if ((i < 0) || ((args.t_.at (i).t_ != ct_string) && (args.t_.at (i).t_ != ct_identifier) && (args.t_.at (i).t_ != ct_number) && (args.t_.at (i).t_ != ct_keyword)))
         nits.pick (nit_css_syntax, es_error, ec_css, "expecting an identifier after @custom-media");
@@ -247,7 +247,7 @@ void statement::conditional (arguments& args, nitpick& , const int from, const i
 {   media_.parse (args, from, to); }
 
 void statement::parse_else (arguments& args, nitpick& nits, const int from, const int to)
-{   if (args.v_.css_conditional_rule () < 5)
+{   if (args.v_.css_module (c_conditional_rule) < 5)
         nits.pick (nit_css_version, es_error, ec_css, "@else requires CSS Conditional Rule level 5");
     else if ((prev_ != css_when) && (prev_ != css_else))
         nits.pick (nit_when_else, es_error, ec_css, "@else must follow @else or @when");
@@ -275,7 +275,7 @@ void statement::parse_else (arguments& args, nitpick& nits, const int from, cons
                 vst_.emplace_back (pst_t (new statements (args, args.t_.at (brac).child_))); } } } }
 
 void statement::parse_feature_value (arguments& args, nitpick& nits, const int to, const e_css_statement cs, font_features& ffv)
-{   if (context.css_font () < 4)
+{   if (context.css_module (c_font) < 4)
         nits.pick (nit_css_version, ed_css_font_4, "6.9.1. Basic syntax", es_error, ec_css, "@", type_master < t_css_statement > :: name (cs), " requires CSS Font 4 or higher");
     else if ((args.st_ == nullptr) || (args.st_ -> st_.get () != css_font_feature_values))
         nits.pick (nit_css_font_feature, ed_css_font_4, "6.9.1. Basic syntax", es_error, ec_css, "@", type_master < t_css_statement > :: name (cs), " must be a child of @font-feature-values");
@@ -289,7 +289,7 @@ void statement::parse_feature_value (arguments& args, nitpick& nits, const int t
 void statement::parse_font_feature_values (arguments& args, nitpick& nits, const int from, const int to)
 {   PRESUME (to > 0, __FILE__, __LINE__);
     int i = next_non_whitespace (args.t_, from, to); 
-    if (context.html_ver ().css_font () < 4)
+    if (context.html_ver ().css_module (c_font) < 4)
         nits.pick (nit_css_version, es_error, ec_css, "@font-feature-values requires CSS Font 4");
     else if ((i < 0) || ((args.t_.at (i).t_ != ct_string) && (args.t_.at (i).t_ != ct_identifier) && (args.t_.at (i).t_ != ct_number) && (args.t_.at (i).t_ != ct_keyword)))
         nits.pick (nit_css_syntax, es_error, ec_css, "expecting a name after @font-feature-values (1)");
@@ -313,7 +313,7 @@ void statement::parse_font_feature_values (arguments& args, nitpick& nits, const
             vst_.emplace_back (pst_t (new statements (args, args.t_.at (to).child_))); } } }
 
 void statement::parse_font_face (arguments& args, nitpick& nits, const int to)
-{   if ((context.html_ver ().css_version () != css_2_0) && (context.css_font () < 3))
+{   if ((context.html_ver ().css_version () != css_2_0) && (context.css_module (c_font) < 3))
         nits.pick (nit_css_version, es_error, ec_css, "@font-face requires CSS 2.0, or CSS Font 3 or higher");
     else if ((to < 0) || (args.t_.at (to).t_ != ct_curly_brac))
         nits.pick (nit_css_syntax, es_error, ec_css, "expecting { descriptor... } after @font-face");
@@ -325,7 +325,7 @@ void statement::parse_font_face (arguments& args, nitpick& nits, const int to)
 void statement::parse_font_palette_values (arguments& args, nitpick& nits, const int from, const int to)
 {   PRESUME (to > 0, __FILE__, __LINE__);
     int i = next_non_whitespace (args.t_, from, to); 
-    if (context.html_ver ().css_font () < 4)
+    if (context.html_ver ().css_module (c_font) < 4)
         nits.pick (nit_css_version, es_error, ec_css, "@font-palette-values requires CSS Font 4");
     else if ((i < 0) || ((args.t_.at (i).t_ != ct_string) && (args.t_.at (i).t_ != ct_identifier) && (args.t_.at (i).t_ != ct_number) && (args.t_.at (i).t_ != ct_keyword)))
         nits.pick (nit_css_syntax, es_error, ec_css, "expecting a name after @font-palette-values (1)");
@@ -424,7 +424,7 @@ void statement::parse_import (arguments& args, nitpick& nits, const int from, co
             else i = next_non_whitespace (args.t_, child, to);
             u = examine_value < t_url > (nits, context.html_ver (), wot); }
         if ((i > 0) && (compare_no_case (args.t_.at (i).val_, "layer")))
-        {   if (args.v_.css_cascade () < 5)
+        {   if (args.v_.css_module (c_cascade_inheritance) < 5)
             {   nits.pick (nit_css_version, es_error, ec_css, "supports requires CSS Cascade 5 or later");
                 return; }
             const int j = next_non_whitespace (args.t_, i, to);
@@ -446,7 +446,7 @@ void statement::parse_import (arguments& args, nitpick& nits, const int from, co
                         return; }
                     i = next_non_whitespace (args.t_, ket, to); } } }
         if ((i > 0) && (compare_no_case (args.t_.at (i).val_, "supports")))
-        {   if (args.v_.css_cascade () < 4)
+        {   if (args.v_.css_module (c_cascade_inheritance) < 4)
             {   nits.pick (nit_css_version, es_error, ec_css, "supports requires CSS Cascade 4 or later");
                 return; }
             i = next_non_whitespace (args.t_, i, to);
@@ -474,7 +474,7 @@ void statement::parse_import (arguments& args, nitpick& nits, const int from, co
         media_.parse (args, mql, to); } }
 
 void statement::parse_keyframes (arguments& args, nitpick& nits, const int from, const int to)
-{   if (context.html_ver ().css_animation () < 3)
+{   if (context.html_ver ().css_module (c_animation) < 3)
         nits.pick (nit_css_version, ed_css_animation_3, "3. Keyframes", es_error, ec_css, "@keyframes requires CSS Animation level 3 or higher");
     int i = next_non_whitespace (args.t_, from, to); 
     if ((i < 0) || ((args.t_.at (i).t_ != ct_string) && (args.t_.at (i).t_ != ct_identifier) && (args.t_.at (i).t_ != ct_keyword)))
@@ -549,7 +549,7 @@ void statement::parse_keyframes (arguments& args, nitpick& nits, const int from,
                             break; } } } } } }
 
 void statement::parse_layer (arguments& args, nitpick& nits, const int from, const int to)
-{   if (context.html_ver ().css_cascade () < 5)
+{   if (context.html_ver ().css_module (c_cascade_inheritance) < 5)
         nits.pick (nit_css_version, es_error, ec_css, "@layer requires CSS cascade 5 or later");
     else 
     {   int i = from;
@@ -574,7 +574,7 @@ void statement::parse_layer (arguments& args, nitpick& nits, const int from, con
         else if (! got) nits.pick (nit_css_layer, es_error, ec_css, "neither @layer name nor { ... } defined"); } }
 
 void statement::parse_margin (arguments& args, nitpick& nits, const int from, const int to, const e_css_statement cs)
-{   if (context.html_ver ().css_page () < 3)
+{   if (context.html_ver ().css_module (c_paged_media) < 3)
         nits.pick (nit_css_version, es_error, ec_css, "CSS Page level 3 required");
     else
     {   int i = from;
@@ -608,7 +608,7 @@ void statement::parse_media (arguments& args, nitpick& nits, const int from, con
                 vst_.emplace_back (pst_t (new statements (args, args.t_.at (st).child_))); } } } }
 
 void statement::parse_namespace (arguments& args, nitpick& nits, const int from, const int to)
-{   if (context.html_ver ().css_namespace () < 3)
+{   if (context.html_ver ().css_module (c_namespace) < 3)
         nits.pick (nit_css_version, ed_css_namespaces_3, "CSS Namespaces 3, September 2011", es_error, ec_css, "@namespace requires CSS 3 or later");
     else
     if (args.had_rule_)
@@ -690,7 +690,7 @@ void statement::parse_page (arguments& args, nitpick& nits, const int from, cons
             dsc_.parse (args, css_page, args.t_.at (to).child_); } } }
 
 void statement::parse_scope (arguments& args, nitpick& nits, const int from, const int to)
-{   if ((context.css_cascade () < 6) && (context.css_scope () < 3))
+{   if ((context.css_module (c_cascade_inheritance) < 6) && (context.css_module (c_scoping) < 3))
         nits.pick (nit_css_version, es_error, ec_css, "@scope requires CSS Cascade 6 or CSS scope 3");
     else
     {   int i = next_non_whitespace (args.t_, from, to);
@@ -698,12 +698,12 @@ void statement::parse_scope (arguments& args, nitpick& nits, const int from, con
             nits.pick (nit_css_scope, ed_css_cascade_6, "2.5.2. Syntax of @scope", es_error, ec_css, "@scope: scope missing");
         else
         {   if (args.t_.at (i).t_ == ct_round_brac)
-                if (context.css_cascade () < 6)
+                if (context.css_module (c_cascade_inheritance) < 6)
                     nits.pick (nit_css_version, es_error, ec_css, "@scope ( ... ) requires CSS Cascade 6");
                 else
                 {   i = next_non_whitespace (args.t_, i, to);
                     if ((i >= 0) && (args.t_.at (i).t_ == ct_ampersand))
-                    {   if (context.css_nesting () < 3)
+                    {   if (context.css_module (c_nesting) < 3)
                             nits.pick (nit_nesting, ed_css_nesting, "2.2. Nesting Other At-Rules", es_error, ec_css, "'missing keyword after '&', '&' here requires CSS Nesting");
                         i = next_non_whitespace (args.t_, i, to); }
                     if (i < 0)
@@ -721,7 +721,7 @@ void statement::parse_scope (arguments& args, nitpick& nits, const int from, con
                     {   nits.pick (nit_css_scope, ed_css_cascade_6, "2.5.2. Syntax of @scope", es_error, ec_css, "@scope expects {...} after any selectors");
                         return; } }
             if (((args.t_.at (i).t_ == ct_keyword) || (args.t_.at (i).t_ == ct_identifier)) && (compare_no_case (args.t_.at (i).val_, "to"))) 
-            {   if (context.css_cascade () < 6)
+            {   if (context.css_module (c_cascade_inheritance) < 6)
                     nits.pick (nit_css_version, es_error, ec_css, "@scope to requires CSS Cascade 6");
                 else
                 {   i = next_non_whitespace (args.t_, i, to);
@@ -757,7 +757,7 @@ void statement::parse_scope (arguments& args, nitpick& nits, const int from, con
                 vst_.emplace_back (pst_t (new statements (args, args.t_.at (i).child_))); } } } }
 
 void statement::parse_supports (arguments& args, nitpick& nits, const int from, const int to)
-{   if ((args.v_.css_cascade () < 4) && (args.v_.css_conditional_rule () < 3))
+{   if ((args.v_.css_module (c_cascade_inheritance) < 4) && (args.v_.css_module (c_conditional_rule) < 3))
         nits.pick (nit_css_version, es_error, ec_css, "@supports requires CSS Cascade 4, or CSS Conditional Rules 3");
     else
     {   int i = next_non_whitespace (args.t_, from, to);
@@ -774,7 +774,7 @@ void statement::parse_supports (arguments& args, nitpick& nits, const int from, 
             else
             {   fiddlesticks < statement > f (&args.st_, this);
                 e_supports su = su_none;
-                if ((i < ket-1) && (context.css_conditional_rule () >= 4))
+                if ((i < ket-1) && (context.css_module (c_conditional_rule) >= 4))
                     if ((args.t_.at (i).t_ == ct_keyword) || (args.t_.at (i).t_ == ct_identifier))
                     {   nitpick nuts;
                         su = examine_value < t_supports > (nuts, args.v_, args.t_.at (i).val_); }
@@ -783,7 +783,7 @@ void statement::parse_supports (arguments& args, nitpick& nits, const int from, 
                 vst_.emplace_back (pst_t (new statements (args, args.t_.at (ket).child_))); } } } }
 
 void statement::parse_viewport (arguments& args, nitpick& nits, const int from, const int to)
-{   if (args.v_.css_device () < 3)
+{   if (args.v_.css_module (c_device_adaption) < 3) // NOT CSS Viewport!
         nits.pick (nit_css_version, es_error, ec_css, "@viewport requires CSS Device Adaption");
     else
     {   const int ket = token_find (args.t_, ct_curly_brac, from, to);
@@ -794,7 +794,7 @@ void statement::parse_viewport (arguments& args, nitpick& nits, const int from, 
             dsc_.parse (args, css_counter_style, args.t_.at (ket).child_);; } } }
 
 void statement::parse_when (arguments& args, nitpick& nits, const int from, const int to)
-{   if (args.v_.css_conditional_rule () < 5)
+{   if (args.v_.css_module (c_conditional_rule) < 5)
         nits.pick (nit_css_version, es_error, ec_css, "@when requires CSS Conditional Rule level 5");
     else
     {   blank_else_ = false;

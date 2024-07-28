@@ -336,6 +336,16 @@ template < > struct type_master < t_zero_to_one > : type_master < t_real >
             nits.pick (nit_zero_to_one, es_error, ec_type, quote (s), " is not between 0.0 and 1.0 (inclusive)");
             type_master < t_real > :: status (s_invalid); } } };
 
+template < > struct type_master < t_p1_10 > : type_master < t_real >
+{   using type_master < t_real > :: type_master;
+    static bool is_numeric () { return true; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   type_master < t_real > :: set_value (nits, v, s);
+        if (type_master < t_real > :: good ())
+        {   if ((type_master < t_real > :: value_ >= 0.1) && (type_master < t_real > :: value_ <= 10.0)) return;
+            nits.pick (nit_zero_to_one, es_error, ec_type, quote (s), " is not between 0.1 and 10.0 (inclusive)");
+            type_master < t_real > :: status (s_invalid); } } };
+
 template < int N > struct n_or_more : type_master < t_real >
 {   using type_master < t_real > :: type_master;
     static bool is_numeric () { return true; }
@@ -429,6 +439,9 @@ template < > struct type_master < t_2000_to_50000 > : type_integer_between < t_2
 
 template < > struct type_master < t_hue > : type_number_between < t_hue, 0, 360 >
 { using  type_number_between < t_hue, 0, 360 > :: type_number_between; };
+
+template < > struct type_master < t_m1_to_1 > : type_number_between < t_m1_to_1, -1, 1 >
+{ using  type_number_between < t_m1_to_1, -1, 1 > :: type_number_between; };
 
 template < > struct type_master < t_m1_to_5 > : type_integer_between < t_m1_to_5, short, -1, 5 >
 { using  type_integer_between < t_m1_to_5, short, -1, 5 > :: type_integer_between; };

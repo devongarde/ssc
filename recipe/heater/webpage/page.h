@@ -88,8 +88,8 @@ public:
     const ::boost::filesystem::path get_disk_path () const;
     const ::boost::filesystem::path get_disk_path (nitpick& nits, const url& u) const;
     const ::boost::filesystem::path get_export_path () const;
-    void export_rel (const ::std::string& url, const ::std::string& hreflang, const ::std::string& media, const vstr_t& rels, const ::std::string& text, const ::std::string& title, const ::std::string& type)
-    {   if (! snippet_) mf_export_.rel (url, hreflang, media, rels, text, title, type); }
+    void export_rel (nitpick& nits,const ::std::string& url, const ::std::string& hreflang, const ::std::string& media, const vstr_t& rels, const ::std::string& text, const ::std::string& title, const ::std::string& type)
+    {   if (! snippet_) mf_export_.rel (nits, url, hreflang, media, rels, text, title, type); }
     void export_item (const ::std::string& wo, const ::std::string& was)
     {   if (! snippet_) mf_export_.item (wo, was); }
     bool mf_write (const ::boost::filesystem::path& name)

@@ -21,7 +21,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "microdata/microdata_itemscope.h"
 #include "microdata/microdata_itemtype.h"
+#include "ontology/ontology_structure.h"
 #include "ontology/ontology_property.h"
+#include "ontology/ontology_hierarchy.h"
 #include "microformat/prop.h"
 #include "main/context.h"
 #include "utility/quote.h"
@@ -36,6 +38,14 @@ void microdata_itemscope::swap (microdata_itemscope& mi)
     export_path_.swap (mi.export_path_);
     parent_.swap (mi.parent_);
     parent2_.swap (mi.parent2_); }
+
+vit_t microdata_itemscope::types () const
+{   vit_t res (type_);
+    if (has_parent ())
+    {   VERIFY_NOT_NULL (parent_.lock (), __FILE__, __LINE__);
+        for (auto i : parent_.lock () -> types ())
+            res.emplace_back (i); } // inefficiency on toast
+    return res; }
 
 void microdata_itemscope::note_itemtype (nitpick& nits, const html_version& v, const ::std::string& name, page& p, const bool has_itemid)
 {   nitpick nuts;
@@ -156,15 +166,24 @@ bool microdata_itemscope::write (nitpick& nits, const ::boost::filesystem::path&
     return export_ -> write (nits, name); }
 
 vit_t microdata_itemscope::sought_itemtypes (const html_version& v, const ::std::string& name) const
-{   nitpick nits;
-    vit_t res;
-    const itemprop_index prop = find_itemprop_index (nits, v, name, type ().empty ());
-    if (prop != illegal_itemprop)
-        if (prop_category (prop) == itemprop_schema)
-            for (auto i : sought_ontology_types (static_cast < e_ontology_property > (ndx_item (prop))))
-                res.push_back (i);
+{   nitpick nits, nuts;
+    vit_t res, ts (types ());
+    const itemprop_indices vii = find_itemprop_indices (nuts, v, name, type ().empty ());
+    for (auto ii : vii)
+        if (ii != illegal_itemprop)
+            if (prop_category (ii) == itemprop_ontology)
+                for (auto t : ts)
+                {   const e_ontology_type ty (type_itself (t));
+                    const e_ontology_property pr (prop_itself (ii));
+                    ssch_t ss = generalise (ty);
+                    for (auto kss : ss)
+                        if (kss != anything)
+                                if (is_ontology_property (kss, pr))
+                                {   const vit_t sot = sought_ontology_types (pr);
+                                    for (auto i : sot)
+                                        if (! has_simple_ontology_type (sch :: flags (type_itself (i))))
+                                            res.push_back (i); } }
     return res; }
-
 
 bool are_categories_compatible (const e_itemprop_category ipc, const e_itemtype_category itc)
 {   if (itc == itemtype_none) return (ipc == itemprop_bespoke);

@@ -307,5 +307,8 @@ struct symbol_entry < html_version, e_sgml > doctype_symbol_table [] =
     { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, HTTP_W3 "/Graphics/SVG/1.1/DTD/svg11-tiny.dtd", doc_svg11 },
     { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, HTTPS_W3 "/Graphics/SVG/1.1/DTD/svg11-tiny.dtd", doc_svg11 } };
 
+::std::size_t sgml_count ()
+{   return sizeof (doctype_symbol_table) / sizeof (symbol_entry < html_version, e_sgml >); }
+
 void sgml_init (nitpick& nits)
-{   type_master < t_sgml > :: init (nits, doctype_symbol_table, sizeof (doctype_symbol_table) / sizeof (symbol_entry < html_version, e_sgml >)); }
+{   type_master < t_sgml > :: init (nits, doctype_symbol_table, sgml_count ()); }

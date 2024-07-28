@@ -470,5 +470,8 @@ struct symbol_entry < html_version, e_charset > charset_symbol_table [] =
 
     { { HTML_4_0, REJECT }, { HTML_UNDEF }, nullptr, cs_illegal } };
 
+::std::size_t charset_count ()
+{   return sizeof (charset_symbol_table) / sizeof (symbol_entry < html_version, e_charset >) - 1; }
+
 void charset_init (nitpick& nits)
-{   type_master < t_charset > :: init (nits, charset_symbol_table, sizeof (charset_symbol_table) / sizeof (symbol_entry < html_version, e_charset >)); }
+{   type_master < t_charset > :: init (nits, charset_symbol_table, charset_count () + 1); }

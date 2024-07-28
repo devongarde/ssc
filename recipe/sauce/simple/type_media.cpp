@@ -164,8 +164,11 @@ struct symbol_entry < html_version, e_media > media_symbol_table [] =
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA_5 }, { HTML_UNDEF }, "video-dynamic-range", md_video_dynamic_range, ns_default, CF_MEDIA_PROPERTY },
     { { HTML_4_0, 0, 0, H2_CSS_MEDIA | H2_CSS_COND_RULE }, { HTML_UNDEF }, "width", md_width, ns_default, CF_MEDIA_PROPERTY } };
 
+::std::size_t media_count ()
+{   return sizeof (media_symbol_table) / sizeof (symbol_entry < html_version, e_media >); }
+
 void media_init (nitpick& nits)
-{   type_master < t_media > :: init (nits, media_symbol_table, sizeof (media_symbol_table) / sizeof (symbol_entry < html_version, e_media >)); }
+{   type_master < t_media > :: init (nits, media_symbol_table, media_count ()); }
 
 bool parse_media_query (nitpick& nits, const html_version& v, const ::std::string& sss, element* e)
 {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);

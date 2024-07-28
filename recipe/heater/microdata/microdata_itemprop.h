@@ -36,6 +36,10 @@ itemprop_indices make_itemprop_indices (const e_property p);
 CONSTEXPR inline e_itemprop_category prop_category (const itemprop_index ii) noexcept
 {   return static_cast < e_itemprop_category> (GSL_NARROW_CAST < uint32_t > (ii) >> uint32_category_shift); }
 
+CONSTEXPR inline e_ontology_property prop_itself (const itemprop_index ii) noexcept
+{   PRESUME (prop_category (ii) == itemprop_ontology, __FILE__, __LINE__);
+    return static_cast < e_ontology_property> (GSL_NARROW_CAST < uint32_t > (ii) & uint32_item_mask); }
+
 ::std::string bespoke_itemprop_name (const itemprop_index ii);
 itemprop_index find_itemprop_index (nitpick& nits, const html_version& v, const ::std::string& name, bool bespoke_permitted);
 itemprop_indices find_itemprop_indices (nitpick& nits, const html_version& v, const ::std::string& name, bool bespoke_permitted);

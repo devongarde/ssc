@@ -33,10 +33,10 @@ void microformat_export::item (const ::std::string& wo, const ::std::string& was
 {   initiated_ = true;
     tree_.put (::boost::property_tree::path (wo, EXPORT_SEP), was); }
 
-void microformat_export::rel (const ::std::string& url, const ::std::string& hreflang, const ::std::string& media, const vstr_t& rels, const ::std::string& text, const ::std::string& title, const ::std::string& type)
+void microformat_export::rel (nitpick& nits, const ::std::string& url, const ::std::string& hreflang, const ::std::string& media, const vstr_t& rels, const ::std::string& text, const ::std::string& title, const ::std::string& type)
 {   initiated_ = true;
-    for (auto rel : rels) rel_.insert (rel, url);
-    url_.insert (url, url_export (hreflang, media, rels, text, title, type)); }
+    for (auto rl : rels) rel_.insert (nits, rl, url);
+    url_.insert (nits, url, url_export (hreflang, media, rels, text, title, type)); }
 
 bool microformat_export::write (nitpick& nits, const ::boost::filesystem::path& file)
 {   if (! context.mf_export ()) return true;

@@ -199,7 +199,7 @@ void page::itemscope (const itemscope_ptr itemscope)
     css ().accumulate (&stats_);
     {   lox curly (lox_stats);
         stats_.accumulate (); }
-    if (context.stats_page ())
+    if (context.stats (rcb_page))
         res << stats_.report (false);
     return res.str (); }
 

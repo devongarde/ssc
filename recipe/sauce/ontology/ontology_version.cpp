@@ -68,6 +68,80 @@ sh_t sh [] =  // latest first
     { doap_schema, html_rdf_1_0 },
     { data_quality, html_rdf_1_0_con },
     { described_by, html_rdf_1_0 },
+    { dpv_2_0, html_dpv_2 },
+    { dpv_1_0, html_dpv_1 },
+    { dpv_0_9, html_dpv_09 },
+    { dpv_0_8_2, html_dpv_082 },
+    { dpv_0_8_1, html_dpv_081 },
+    { dpv_0_8_0, html_dpv_080 },
+    { dpv_0_7, html_dpv_07 },
+    { dpv_0_6, html_dpv_06 },
+    { dpv_0_5, html_dpv_05 },
+    { dpv_0_4_2, html_dpv_042 },
+    { dpv_0_4_1, html_dpv_041 },
+    { dpv_0_4_0, html_dpv_040 },
+    { dpv_0_3, html_dpv_03 },
+    { dpv_0_2, html_dpv_02 },
+    { dpv_0_1, html_dpv_01 },
+    { dpv_gdpr_2_0, html_dpv_2 },
+    { dpv_gdpr_1_0, html_dpv_1 },
+    { dpv_gdpr_0_9, html_dpv_09 },
+    { dpv_gdpr_0_8_2, html_dpv_082 },
+    { dpv_gdpr_0_8_1, html_dpv_081 },
+    { dpv_gdpr_0_8_0, html_dpv_080 },
+    { dpv_gdpr_0_7, html_dpv_07 },
+    { dpv_gdpr_0_6, html_dpv_06 },
+    { dpv_gdpr_0_5, html_dpv_05 },
+    { dpv_gdpr_0_4_2, html_dpv_042 },
+    { dpv_gdpr_0_4_1, html_dpv_041 },
+    { dpv_gdpr_0_4_0, html_dpv_040 },
+    { dpv_gdpr_0_3, html_dpv_03 },
+    { dpv_gdpr_0_2, html_dpv_02 },
+    { dpv_gdpr_0_1, html_dpv_01 },
+    { dpv_legal, html_dpv_05 },
+    { dpv_nace, html_dpv_01 },
+    { dpv_owl_2_0, html_dpv_2 },
+    { dpv_owl_1_0, html_dpv_1 },
+    { dpv_owl_0_9, html_dpv_09 },
+    { dpv_owl_0_8_2, html_dpv_082 },
+    { dpv_owl_0_8_1, html_dpv_081 },
+    { dpv_owl_0_8_0, html_dpv_080 },
+    { dpv_owl_0_7, html_dpv_07 },
+    { dpv_owl_0_6, html_dpv_06 },
+    { dpv_owl_0_5, html_dpv_05 },
+    { dpv_owl_0_4_2, html_dpv_042 },
+    { dpv_owl_0_4_1, html_dpv_041 },
+    { dpv_owl_0_4_0, html_dpv_040 },
+    { dpv_pd_2_0, html_dpv_2 },
+    { dpv_pd_1_0, html_dpv_1 },
+    { dpv_pd_0_9, html_dpv_09 },
+    { dpv_pd_0_8_2, html_dpv_082 },
+    { dpv_pd_0_8_1, html_dpv_081 },
+    { dpv_pd_0_8_0, html_dpv_080 },
+    { dpv_pd_0_7, html_dpv_07 },
+    { dpv_pd_0_6, html_dpv_06 },
+    { dpv_pd_0_5, html_dpv_05 },
+    { dpv_pd_0_4_2, html_dpv_042 },
+    { dpv_pd_0_4_1, html_dpv_041 },
+    { dpv_pd_0_4_0, html_dpv_040 },
+    { dpv_skos_2_0, html_dpv_2 },
+    { dpv_skos_1_0, html_dpv_1 },
+    { dpv_skos_0_9, html_dpv_09 },
+    { dpv_skos_0_8_2, html_dpv_082 },
+    { dpv_skos_0_8_1, html_dpv_081 },
+    { dpv_skos_0_8_0, html_dpv_080 },
+    { dpv_skos_0_7, html_dpv_07 },
+    { dpv_skos_0_6, html_dpv_06 },
+    { dpv_skos_0_5, html_dpv_05 },
+    { dpv_skos_0_4_2, html_dpv_042 },
+    { dpv_skos_0_4_1, html_dpv_041 },
+    { dpv_skos_0_4_0, html_dpv_040 },
+    { dpv_tech_2_0, html_dpv_2 },
+    { dpv_tech_1_0, html_dpv_1 },
+    { dpv_tech_0_9, html_dpv_09 },
+    { dpv_tech_0_8_2, html_dpv_082 },
+    { dpv_tech_0_8_1, html_dpv_081 },
+    { dpv_tech_0_8_0, html_dpv_080 },
     { duv_schema, html_rdf_1_0_con },
     { earl_schema, html_rdf_1_0_con },
     { event_schema, html_rdf_1_0_con },
@@ -171,6 +245,9 @@ sh_t sh [] =  // latest first
     { rif_schema, html_rif },
     { role_schema, html_role },
     { rr_schema, html_rr },
+    { schema_27_02, html_schema_27_02 },
+    { schema_27_01, html_schema_27_01 },
+    { schema_27, html_schema_27 },
     { schema_26, html_schema_26 },
     { schema_25, html_schema_25 },
     { schema_24, html_schema_24 },
@@ -186,6 +263,7 @@ sh_t sh [] =  // latest first
     { schema_14, html_schema_14 },
     { schema_13, html_schema_13 },
     { schema_12, html_schema_12 },
+    { schema_11_01, html_schema_11_01 },
     { schema_11, html_schema_11 },
     { schema_10, html_schema_10 },
     { schema_9, html_schema_9 },
@@ -257,6 +335,13 @@ sh_t sh [] =  // latest first
     { skosxl_schema, html_skosxl },
     { ssn_schema, html_ssn },
     { sosa_schema, html_sosa },
+    { spl_1_0, html_dec22 },
+    { svd_1_0, html_dec22 },
+    { svdu_1_0, html_dec22 },
+    { svl_1_0, html_dec22 },
+    { svpr_1_0, html_dec22 },
+    { svpu_1_0, html_dec22 },
+    { svr_1_0, html_dec22 },
     { xmp_stdim, html_xmp },
     { xmp_stevt, html_xmp },
     { xmp_stfnt, html_xmp },
@@ -298,6 +383,158 @@ sh_t sh [] =  // latest first
     { xsd_1_0, html_xsd_1_0 },
     { error_schema, html_0 } };
 
+vsv_t vsv = {
+    adms_1_0, adms_2_0,
+    article_2012, article_2014, article_2018,
+    as_1_0, as_2_0,
+    bfo_2020, bfo_2_0,
+    bibo_schema,
+    biro_schema,
+    book_2012, book_2014, book_2018,
+    cito_schema,
+    common_tag,
+    content_schema,
+    creative_commons,
+    crs2_schema,
+    csvw_schema,
+    daq_schema,
+    data_catalogue_1, data_catalogue_2,
+    data_cube,
+    data_quality,
+    data_vocabulary,
+    dbd_schema,
+    dbo_schema,
+    dbp_owl_schema,
+    dbp_schema,
+    dbr_schema,
+    dc_1_0, dc_1_1,
+    dcam,
+    dcmi,
+    described_by,
+    disco_schema,
+    doap_schema,
+    dpv_2_0, dpv_1_0, dpv_0_9, dpv_0_8_2, dpv_0_8_1, dpv_0_8_0, dpv_0_7, dpv_0_6, dpv_0_5, dpv_0_4_2, dpv_0_4_1, dpv_0_4_0, dpv_0_3, dpv_0_2, dpv_0_1,
+    dpv_gdpr_2_0, dpv_gdpr_1_0, dpv_gdpr_0_9, dpv_gdpr_0_8_2, dpv_gdpr_0_8_1, dpv_gdpr_0_8_0, dpv_gdpr_0_7, dpv_gdpr_0_6, dpv_gdpr_0_5, dpv_gdpr_0_4_2, dpv_gdpr_0_4_1, dpv_gdpr_0_4_0, dpv_gdpr_0_3, dpv_gdpr_0_2, dpv_gdpr_0_1,
+    dpv_legal,
+    dpv_nace,
+    dpv_owl_2_0, dpv_owl_1_0, dpv_owl_0_9, dpv_owl_0_8_2, dpv_owl_0_8_1, dpv_owl_0_8_0, dpv_owl_0_7, dpv_owl_0_6, dpv_owl_0_5, dpv_owl_0_4_2, dpv_owl_0_4_1, dpv_owl_0_4_0,
+    dpv_pd_2_0, dpv_pd_1_0, dpv_pd_0_9, dpv_pd_0_8_2, dpv_pd_0_8_1, dpv_pd_0_8_0, dpv_pd_0_7, dpv_pd_0_6, dpv_pd_0_5, dpv_pd_0_4_2, dpv_pd_0_4_1, dpv_pd_0_4_0,
+    dpv_skos_2_0, dpv_skos_1_0, dpv_skos_0_9, dpv_skos_0_8_2, dpv_skos_0_8_1, dpv_skos_0_8_0, dpv_skos_0_7, dpv_skos_0_6, dpv_skos_0_5, dpv_skos_0_4_2, dpv_skos_0_4_1, dpv_skos_0_4_0,
+    dpv_tech_2_0, dpv_tech_1_0, dpv_tech_0_9, dpv_tech_0_8_2, dpv_tech_0_8_1, dpv_tech_0_8_0,
+    dublin_core_terms_1_0, dublin_core_terms_1_1,
+    duv_schema,
+    earl_schema,
+    error_schema,
+    event_schema,
+    exif_1_0, exif_1_1, exif_2_0, exif_2_1, exif_2_2, exif_2_21, exif_2_3, exif_2_31, exif_2_32, exif_3_0,
+    exifex_2_21, exifex_2_3, exifex_2_31, exifex_2_32, exifex_3_0,
+    fabio_schema,
+    faux_schema,
+    foaf_schema,
+    frbr_schema,
+    good_relations,
+    grddl_schema,
+    gs1_10, gs1_11, gs1_12, gs1_13, gs1_14, gs1_15, gs1_151,
+    ical_schema,
+    icaltzd_schema,
+    jsonld_ontology_1_0, jsonld_ontology_1_1,
+    licence_schema,
+    linked_data_platform,
+    locn_schema,
+    media_resources,
+    mf_1, mf_2, mf_all,
+    music_2012, music_2014, music_2018,
+    odrl_schema,
+    open_graph_2010, open_graph_2012, open_graph_2014, open_graph_2018,
+    org_schema,
+    owl_1, owl_2,
+    pam_1_3, pam_2_0, pam_3_0,
+    pamp_3_0,
+    pcm_3_1,
+    pcmm_3_0,
+    pcv_1_0, pcv_2_0,
+    pdf_schema,
+    photoshop_schema,
+    pim_1_0, pim_1_2, pim_2_0, pim_3_0,
+    pmi_3_0,
+    poetry_ontology_1_0, poetry_ontology_1_1,
+    prism_1_0, prism_1_1, prism_1_2, prism_1_3, prism_2_0, prism_2_1, prism_3_0, prism_3_1,
+    prism_ad_3_0,
+    prl_1_0, prl_2_0,
+    prm_3_0,
+    profile_2012, profile_2014, profile_2018,
+    provincial,
+    prs_3_1,
+    psv_1_0,
+    ptr_schema,
+    pur_2_1,
+    pur_3_0,
+    rdf_1_0_schema, rdf_1_1_1_schema, rdf_1_1_2_schema, rdf_1_1_3_schema,
+    rdfa_1_0_schema, rdfa_1_1_1_schema, rdfa_1_1_2_schema, rdfa_1_1_3_schema,
+    rdfg_schema,
+    rdfs_schema,
+    review_schema,
+    rif_schema,
+    role_schema,
+    rr_schema,
+    schema_jun11, schema_jul11, schema_aug11,  schema_sep11, schema_oct11, schema_nov11, schema_dec11, schema_jan12, schema_feb12,
+            schema_mar12, schema_apr12,
+        schema_0_91, schema_0_93, schema_0_94, schema_0_95, schema_0_96, schema_0_97, schema_0_98, schema_0_99,
+        schema_1_0A, schema_1_0B, schema_1_0C, schema_1_0D, schema_1_0E, schema_1_0F,
+        schema_1_1, schema_1_2, schema_1_3, schema_1_4, schema_1_5, schema_1_6, schema_1_7, schema_1_8, schema_1_9, schema_1_91,
+            schema_1_92, schema_1_93,
+        schema_2_0, schema_2_1, schema_2_2, schema_3_0, schema_3_1, schema_3_2, schema_3_3, schema_3_4, schema_3_5, schema_3_6,
+            schema_3_7, schema_3_8, schema_3_9,
+        schema_4, schema_5, schema_6, schema_7_00, schema_7_01, schema_7_02, schema_7_03, schema_7_04, schema_8, schema_9,
+        schema_10, schema_11, schema_11_01, schema_12, schema_13, schema_14, schema_15, schema_16, schema_17, schema_18, schema_19,
+        schema_20, schema_21, schema_22, schema_23, schema_24, schema_25, schema_26, schema_27, schema_27_01, schema_27_02,
+    sd_schema,
+    sioc_schema,
+    sioc_services,
+    sioc_types,
+    skos_schema,
+    skosxl_schema,
+    sosa_schema,
+    ssn_schema,
+    spl_1_0,
+    svd_1_0,
+    svdu_1_0,
+    svl_1_0,
+    svpr_1_0,
+    svpu_1_0,
+    svr_1_0,
+    taxo_schema,
+    tiff_schema,
+    time_schema,
+    vann_1_0, vann_1_1,
+    vcard_2001, vcard_2006, vcard_2010, vcard_2014,
+    video_2012, video_2014, video_2018,
+    void_schema,
+    wdr_schema,
+    wdrs_schema,
+    web_annotation,
+    website_2012, website_2014, website_2018,
+    whatwg_schema,
+    xhv_schema,
+    xml_schema,
+    xmp_bj,
+    xmp_dm,
+    xmp_g,
+    xmp_gimg,
+    xmp_idq,
+    xmp_mm,
+    xmp_rights,
+    xmp_schema,
+    xmp_stdim,
+    xmp_stevt,
+    xmp_stfnt,
+    xmp_stjob,
+    xmp_stref,
+    xmp_stver,
+    xmp_tpg,
+    xsd_1_0, xsd_1_1,
+    default_ontology };
+
 typedef ::std::multimap < e_ontology, sh_t* > mss_t;
 mss_t mss;
 ::std::array < ontology_version, s_error > va;
@@ -313,7 +550,7 @@ ontology_version get_default_ontology_version (const e_ontology es)
 
 ontology_version corresponding_ontology_version (const e_ontology es, const html_version& v)
 {   PRESUME (es < s_error, __FILE__, __LINE__);
-    if (es == s_none) return default_schema;
+    if (es == s_none) return default_ontology;
     if (! va.at (es).invalid ()) return va.at (es);
     PRESUME (! mss.empty (), __FILE__, __LINE__);
     for (mss_t::const_iterator i = mss.find (es); (i != mss.cend ()) && (i -> first == es); ++i)
@@ -325,10 +562,14 @@ ontology_version corresponding_ontology_version (const e_ontology es, const html
 template < e_ontology V > struct ontology_detail
 {   static bool is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
     {   return (mjr == 1) && (mnr == 0); }
+    static ::std::string ver (const unsigned short mjr, const unsigned short mnr)
+    {   ::std::string res;
+        res += x_dot_y (mjr, mnr);
+        return res; }
     static ::std::string name (const ::std::string s, const unsigned short mjr, const unsigned short mnr)
     {   ::std::string res (s);
         res += " v";
-        res += x_dot_y (mjr, mnr);
+        res += ver (mjr, mnr);
         return res; }
     static ontology_version from () noexcept { return ontology_version (V, 1, 0); }
     static int count () noexcept { return 1; }
@@ -406,14 +647,63 @@ template < > ontology_version ontology_detail < s_dct > :: from () noexcept { re
 template < > int ontology_detail < s_dct > :: count () noexcept { return 2; }
 template < > ontology_version ontology_detail < s_dct > :: to () noexcept { return ontology_version (s_dct, 1, 1); }
 
+bool is_dpv_valid (const unsigned short mjr, const unsigned short mnr, const unsigned short mm = 10) noexcept
+{   switch (mjr)
+    {   case 2 :
+        case 1 : return mnr == 0;
+        case 0 :
+            if (mnr < mm) return false; 
+            switch (mnr)
+            {   case 10 :
+                case 20 :
+                case 30 :
+                case 40 :
+                case 41 :
+                case 42 :
+                case 50 :
+                case 60 :
+                case 70 :
+                case 80 :
+                case 81 :
+                case 82 :
+                case 90 : return true;
+                default : return false; }
+        default : break; }
+    return false; }
+
+#define DETAIL_DPV(ONT,MM,N) \
+    template < > bool ontology_detail < ONT > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept \
+    {   return is_dpv_valid (mjr, mnr, MM); } \
+    template < > ontology_version ontology_detail < ONT > :: from () noexcept { return ontology_version (s_dpv, 0, MM); } \
+    template < > int ontology_detail < ONT > :: count () noexcept { return N; } \
+    template < > ontology_version ontology_detail < ONT > :: to () noexcept { return ontology_version (s_dpv, 2, 0); }
+
+DETAIL_DPV (s_dpv, 10, 15)
+DETAIL_DPV (s_dpv_gdpr, 10, 15)
+DETAIL_DPV (s_dpv_owl, 40, 12)
+DETAIL_DPV (s_dpv_pd, 40, 12)
+DETAIL_DPV (s_dpv_skos, 40, 12)
+DETAIL_DPV (s_dpv_tech, 80, 6)
+
+template < > bool ontology_detail < s_dpv_legal > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+{   return (mjr == 0) && (mnr == 5); }
+template < > ontology_version ontology_detail < s_dpv_legal > :: from () noexcept { return ontology_version (s_dpv_nace, 0, 5); }
+template < > int ontology_detail < s_dpv_legal > :: count () noexcept { return 1; }
+template < > ontology_version ontology_detail < s_dpv_legal > :: to () noexcept { return ontology_version (s_dpv_nace, 0, 5); }
+
+template < > bool ontology_detail < s_dpv_nace > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+{   return (mjr == 0) && (mnr == 1); }
+template < > ontology_version ontology_detail < s_dpv_nace > :: from () noexcept { return ontology_version (s_dpv_nace, 0, 1); }
+template < > int ontology_detail < s_dpv_nace > :: count () noexcept { return 1; }
+template < > ontology_version ontology_detail < s_dpv_nace > :: to () noexcept { return ontology_version (s_dpv_nace, 0, 1); }
+
 template < > bool ontology_detail < s_error > :: is_this_valid (const unsigned short , const unsigned short , const flags_t ) noexcept
 {   return false; }
 template < > bool ontology_detail < s_error > :: faux () noexcept
 {   return true; }
 
 template < > bool ontology_detail < s_exif > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
-{   if (mjr > MAX_SCHEMA_ORG_MAJOR) return false;
-    switch (mjr)
+{   switch (mjr)
     {   case 1 : return (mnr < 2);
         case 2 : break;
         case 3 : return (mnr == 0);
@@ -433,8 +723,7 @@ template < > int ontology_detail < s_exif > :: count () noexcept { return 10; }
 template < > ontology_version ontology_detail < s_exif > :: to () noexcept { return ontology_version (s_exif, 3, 0); }
 
 template < > bool ontology_detail < s_exifex > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
-{   if (mjr > MAX_SCHEMA_ORG_MAJOR) return false;
-    switch (mjr)
+{  switch (mjr)
     {   case 2 : break;
         case 3 : return (mnr == 0);
         default : return false; }
@@ -614,6 +903,8 @@ template < > bool ontology_detail < s_schema > :: is_this_valid (const unsigned 
         case 2 : return (mnr < 3);
         case 3 : break;
         case 7 : return (mnr < 5);
+        case 11 : return (mnr < 2);
+        case 27 : return (mnr < 3);
         default : return (mnr == 0); }
     switch (mnr)
     {   case 0 : return ((flags & SV_NOT_30) == 0);
@@ -629,8 +920,16 @@ template < > bool ontology_detail < s_schema > :: is_this_valid (const unsigned 
         default : break; }
     return false; }
 template < > ontology_version ontology_detail < s_schema > :: from () noexcept { return ontology_version (s_schema, MIN_SCHEMA_ORG_MAJOR, MIN_SCHEMA_ORG_MINOR); }
-template < > int ontology_detail < s_schema > :: count () noexcept { return 75; }
+template < > int ontology_detail < s_schema > :: count () noexcept { return 81; }
 template < > ontology_version ontology_detail < s_schema > :: to () noexcept { return ontology_version (s_schema, MAX_SCHEMA_ORG_MAJOR, MAX_SCHEMA_ORG_MINOR); }
+template < > ::std::string ontology_detail < s_schema > :: ver (const unsigned short mjr, const unsigned short mnr)
+{   if ((mjr == 7) || (mjr == 11) || (mjr == 27)) return x_dot_oh_y (mjr, mnr);
+    return x_dot_y (mjr, mnr); }
+template < > ::std::string ontology_detail < s_schema > :: name (const ::std::string s, const unsigned short mjr, const unsigned short mnr)
+{   ::std::string res (s);
+    res += " v";
+    res += ver (mjr, mnr);
+    return res; }
 
 template < > bool ontology_detail < s_tiff > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
 {   return (mjr == 6) && (mnr == 0); }
@@ -691,6 +990,9 @@ template < e_ontology V, e_ontology... Vs > struct schemas : schemas < Vs... >
     static ::std::string name (const e_ontology es, const unsigned short mjr, const unsigned short mnr)
     {   if (es == V) return ontology_detail < V >::name (name (es), mjr, mnr);
         return schemas < Vs... > :: name (es, mjr, mnr); }
+    static ::std::string ver (const e_ontology es, const unsigned short mjr, const unsigned short mnr)
+    {   if (es == V) return ontology_detail < V >::ver (mjr, mnr);
+        return schemas < Vs... > :: ver (es, mjr, mnr); }
     static ontology_version from (const e_ontology es) noexcept
     {   if (es == V) return ontology_detail < V > :: from ();
         return schemas < Vs... > :: from (es); }
@@ -713,10 +1015,13 @@ template < e_ontology V, e_ontology... Vs > struct schemas : schemas < Vs... >
 template < > struct schemas < s_error >
 {   static ontology_version get_corresponding (const e_ontology , const html_version& )
     {   GRACEFUL_CRASH (__FILE__, __LINE__);
-        UNREACHABLE (return default_schema); }
+        UNREACHABLE (return default_ontology); }
     static ontology_version get_default (const e_ontology )
     {   GRACEFUL_CRASH (__FILE__, __LINE__);
-        UNREACHABLE (return default_schema); }
+        UNREACHABLE (return default_ontology); }
+    static ::std::string ver (const e_ontology , const unsigned short , const unsigned short )
+    {   GRACEFUL_CRASH (__FILE__, __LINE__);
+        UNREACHABLE (return "*** NO SUCH SCHEMA "); }
     static ::std::string name (const e_ontology , const unsigned short , const unsigned short )
     {   GRACEFUL_CRASH (__FILE__, __LINE__);
         UNREACHABLE (return "*** NO SUCH SCHEMA "); }
@@ -757,7 +1062,8 @@ void ontology_version::init (nitpick& DEBUGONLY (nits))
 #ifdef _DEBUG
     for (int i = 1; i < s_error; ++i)
         if (mss.find (static_cast < e_ontology > (i)) == mss.cend ())
-            nits.pick (nit_missing_ontology, es_catastrophic, ec_schema, "Corresponding HTML version for schema ", i, " missing");
+            nits.pick ( nit_missing_ontology, es_catastrophic, ec_schema,
+                        "Corresponding HTML version for ontology ", i, " missing");
 #endif
     for (int i = 0; i < s_error; ++i) GSL_AT (va, i) = error_schema; }
 
@@ -774,7 +1080,7 @@ void ontology_version::init (nitpick& DEBUGONLY (nits))
 
 ::std::string ontology_version::ver () const
 {   if (root () == s_none) return "0.0";
-    return x_dot_y_ish (mjr (), mnr ()); }
+    return schemas < ONTOLOGIES > :: ver (root (), mjr (), mnr ()); }
 
 bool overlap (const ontology_version& lhs_from, const ontology_version& lhs_to, const ontology_version& rhs_from, const ontology_version& rhs_to)
 {   PRESUME (lhs_from.unknown () || lhs_to.unknown () || (lhs_from.root () == lhs_to.root ()), __FILE__, __LINE__);

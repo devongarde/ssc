@@ -28,7 +28,7 @@ void add_param (const arguments& args, t_params& params, int& from, const int i)
 
 bool maybe_content (nitpick& nits, const e_css_property id)
 {   if (id < ec_custom) return true;
-    if (context.css_content () < 3)
+    if (context.css_module (c_generated_content) < 3)
     {   nits.pick (nit_css_version, ed_css_content, "1. Inserting and replacing content with the content property", es_error, ec_css, "Requires CSS Generated Content");
         return false; }
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
@@ -39,7 +39,7 @@ bool maybe_content (nitpick& nits, const e_css_property id)
 
 bool maybe_filter (nitpick& nits, const e_css_property id)
 {   if (id < ec_custom) return true;
-    if (context.css_filter () < 3)
+    if (context.css_module (c_filter_effect) < 3)
     {   nits.pick (nit_css_version, ed_css_filter_3, "6. Filter Functions", es_error, ec_css, "Requires CSS Filter 3 or better");
         return false; }
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
@@ -50,7 +50,7 @@ bool maybe_filter (nitpick& nits, const e_css_property id)
 
 bool maybe_float (nitpick& nits, const e_css_property id)
 {   if (id < ec_custom) return true;
-    if (context.css_float () < 3)
+    if (context.css_module (c_page_float) < 3)
     {   nits.pick (nit_css_version, es_error, ec_css, "Requires CSS Page Floats 3 or better");
         return false; }
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
@@ -77,7 +77,7 @@ bool maybe_math (nitpick& nits, const e_css_property id)
 
 bool maybe_offset_path (nitpick& nits, const e_css_property id)
 {   if (id < ec_custom) return true;
-    if (context.css_motion () < 3)
+    if (context.css_module (c_motion_path) < 3)
     {   nits.pick (nit_css_version, es_error, ec_css, "Requires CSS Motion Path 3 or better");
         return false; }
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
@@ -88,7 +88,7 @@ bool maybe_offset_path (nitpick& nits, const e_css_property id)
 
 bool maybe_text_4 (nitpick& nits, const e_css_property id)
 {   if (id < ec_custom) return true;
-    if (context.css_text () < 4)
+    if (context.css_module (c_text) < 4)
     {   nits.pick (nit_css_version, es_error, ec_css, "Requires CSS Text 4 or better");
         return false; }
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
@@ -99,7 +99,7 @@ bool maybe_text_4 (nitpick& nits, const e_css_property id)
 
 bool maybe_text_overflow (nitpick& nits, const e_css_property id)
 {   if (id < ec_custom) return true;
-    if (context.css_overflow () < 4)
+    if (context.css_module (c_overflow) < 4)
     {   nits.pick (nit_css_version, es_error, ec_css, "Requires CSS Text Overflow 4 or better");
         return false; }
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
@@ -110,7 +110,7 @@ bool maybe_text_overflow (nitpick& nits, const e_css_property id)
 
 bool maybe_transform (nitpick& nits, const e_css_property id, const bool t4)
 {   if (id < ec_custom) return true;
-    switch (context.css_transform ())
+    switch (context.css_module (c_transform))
     {   case 3 :
             if (t4)
             {   nits.pick (nit_css_version, es_error, ec_css, "Requires CSS Transform 4 or better");

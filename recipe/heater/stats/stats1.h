@@ -19,7 +19,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
-#include "main/enum.h"
 
 template < class ENUM, ENUM max_enum, ENUM undefined_enum > class stats1
 {   typedef ::std::vector < unsigned > counter_t;

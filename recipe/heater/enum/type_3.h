@@ -33,7 +33,16 @@ public:
     static e_animation_type animation_type () noexcept
     {   return at_other; }
     ::std::string get_string () const;
-    void shadow (::std::stringstream& ss, const html_version& , element* )
+     ::std::string name () const { return get_string (); }
+    static ::std::string name (const base_type e)
+    {   switch (e)
+        {   case 0 : return SZ0::sz ();
+            case 1 : return SZ1::sz ();
+            case 2 : return SZ2::sz ();
+            default : break; }
+        GRACEFUL_CRASH (__FILE__, __LINE__);
+        UNREACHABLE (return ::std::string ()); }
+   void shadow (::std::stringstream& ss, const html_version& , element* )
     {   ss << '=' << get_string (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s);
     void swap (three_value& t) noexcept
@@ -302,6 +311,9 @@ template < > struct type_master < t_importance > : three_value < t_importance, e
 
 template < > struct type_master < t_infixlinebreakstyle > : three_value < t_infixlinebreakstyle, e_infixlinebreakstyle, sz_before, sz_after, sz_duplicate >
 { using three_value < t_infixlinebreakstyle, e_infixlinebreakstyle, sz_before, sz_after, sz_duplicate > :: three_value; };
+
+template < > struct type_master < t_interactive_widget > : three_value < t_interactive_widget, e_interactive_widget, sz_overlays_content, sz_resizes_content, sz_resizes_visual >
+{ using three_value < t_interactive_widget, e_interactive_widget, sz_overlays_content, sz_resizes_content, sz_resizes_visual > :: three_value; };
 
 template < > struct type_master < t_k_m_n > : three_value < t_k_m_n, e_k_m_n, sz_k, sz_m, sz_n >
 { using three_value < t_k_m_n, e_k_m_n, sz_k, sz_m, sz_n > :: three_value; };

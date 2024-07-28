@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 e_status set_css_background_attachments_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box)
 {   if (s.empty ()) nits.pick (nit_empty, es_error, ec_type, "must be empty ... NOT");
     else
-    {   if (v.css_background () < 3)
+    {   if (v.css_module (c_background_border) < 3)
         {   type_master < t_css_background_attachment > tst (box);
             tst.set_value (nits, v, s);
             if (tst.good ()) return s_good; }
@@ -38,7 +38,7 @@ e_status set_css_background_attachments_value (nitpick& nits, const html_version
 e_status set_css_background_position_3_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box)
 {   if (s.empty ()) nits.pick (nit_empty, es_error, ec_type, "must be empty ... NOT");
     else
-    {   if (v.css_background () < 3)
+    {   if (v.css_module (c_background_border) < 3)
         {   type_master < t_css_background_position > tst (box);
             tst.set_value (nits, v, s);
             if (tst.good ()) return s_good; }
@@ -51,7 +51,7 @@ e_status set_css_background_position_3_value (nitpick& nits, const html_version&
 e_status set_css_background_repeat_3_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box)
 {   if (s.empty ()) nits.pick (nit_empty, es_error, ec_type, "must be empty ... NOT");
     else
-    {   if (v.css_background () < 3)
+    {   if (v.css_module (c_background_border) < 3)
         {   type_master < t_css_background_repeat > tst (box);
             tst.set_value (nits, v, s);
             if (tst.good ()) return s_good; }
@@ -65,7 +65,7 @@ e_status set_css_background_value (nitpick& nits, const html_version& v, const :
 {   if (s.empty ())
         nits.pick (nit_empty, es_error, ec_type, "must be empty ... NOT");
     else
-    {   if (v.css_background () < 3)
+    {   if (v.css_module (c_background_border) < 3)
         {   type_master < t_css_background_0 > tst (box);
             tst.set_value (nits, v, s);
             if (tst.good ()) return s_good; }
@@ -80,7 +80,7 @@ e_status set_css_col_value (nitpick& nits, const html_version& v, const ::std::s
         nits.pick (nit_empty, es_error, ec_type, "a colour expected");
     else
     {   nitpick nuts, nets, nots, nats;
-        switch (v.css_colour ())
+        switch (v.css_module (c_colour))
         {   case 6 :
             case 5 :
             case 4 :
@@ -114,7 +114,7 @@ e_status set_css_col_value (nitpick& nits, const html_version& v, const ::std::s
 e_status set_css_display_1_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   if (s.empty ()) nits.pick (nit_key, es_error, ec_type, "display cannot be empty");
     nitpick nuts;
-    if (v.css_display () >= 3)
+    if (v.css_module (c_display) >= 3)
     {   if (test_value < t_css_display_3 > (nuts, v, s))
         {   nits.merge (nuts); return s_good; } }
     if (test_value < t_css_display > (nits, v, s)) return s_good;
@@ -123,7 +123,7 @@ e_status set_css_display_1_value (nitpick& nits, const html_version& v, const ::
 e_status set_css_font_size_4_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   if (s.empty ()) nits.pick (nit_key, es_error, ec_type, "font-size cannot be empty");
     else
-    {   if ((context.css_font () >= 4) && compare_no_case (s, "math")) return s_good;
+    {   if ((context.css_module (c_font) >= 4) && compare_no_case (s, "math")) return s_good;
         if (test_value < t_css_font_size > (nits, v, s)) return s_good; }
     return s_invalid; }
 
@@ -132,7 +132,7 @@ e_status set_css_font_size_adjust_value (nitpick& nits, const html_version& v, c
     else
     {   const ::std::size_t len (vs.size ());
         PRESUME (len > 0, __FILE__, __LINE__);  
-        if (v.css_font () < 5)
+        if (v.css_module (c_font) < 5)
         {   if (len > 1) nits.pick (nit_css_syntax, es_warning, ec_css, "ignoring unexpected junk following ", quote (vs.at (0))); 
             if (test_value < t_real_ni > (nits, v, vs.at (0))) return s_good; }
         else if (compare_no_case (vs.at (0), "none"))
@@ -176,7 +176,7 @@ bool pos_test (nitpick& nits, const html_version& v, bool& b, ::std::string& pos
 
 e_status set_css_mask_value (nitpick& nits, const html_version& v, const ::std::string& sss)
 {   if (sss.empty ()) nits.pick (nit_empty, es_error, ec_type, "a mask cannot be empty");
-    else if (context.css_masking () < 3)
+    else if (context.css_module (c_masking) < 3)
     {   if (test_value < t_urifn_ni > (nits, v, sss)) return s_good; }
     else
     {   nitpick gnats;
@@ -351,7 +351,7 @@ e_status set_css_list_style_type_cs_value (nitpick& nits, const html_version& v,
     if (test_value < t_css_list_style_type > (nuts, v, s))
     {   nits.merge (nuts);
         return s_good; }
-    if ((v.css_counter_style () >= 3) || (v.css_list () >= 3))
+    if ((v.css_module (c_counter_style) >= 3) || (v.css_module (c_list_counter) >= 3))
     {   if (! test_value < t_css_counter_style_name > (nuts, v, s))
             nits.pick (nit_counter_style, es_comment, ec_css, quote (s), ": not a recognised counter style or list value");
         return s_good; }
@@ -414,7 +414,7 @@ e_status set_css_offset_value (nitpick& nits, const html_version& v, const ::std
 
 e_status set_css_quotes_3_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   nitpick nuts;
-    if (context.css_content () >= 3)
+    if (context.css_module (c_generated_content) >= 3)
         if (test_value < t_css_quotes > (nuts, v, s))
         {   nits.merge (nuts); return s_good; }
     if (test_value < t_4string_ni > (nits, v, s)) return s_good;
@@ -424,7 +424,7 @@ e_status set_css_quotes_3_value (nitpick& nits, const html_version& v, const ::s
 e_status set_css_speak_value (nitpick& nits, const html_version& v, const ::std::string& s, element* box)
 {   if (s.empty ()) nits.pick (nit_empty, es_error, ec_type, "must be empty ... NOT");
     else
-    {   if (v.css_speech () >= 3)
+    {   if (v.css_module (c_speech) >= 3)
         {   type_master < t_css_speak_3 > tst (box);
             tst.set_value (nits, v, s);
             if (tst.good ()) return s_good; }
@@ -436,9 +436,9 @@ e_status set_css_speak_value (nitpick& nits, const html_version& v, const ::std:
     return s_invalid; }
 
 e_status set_css_src_value (nitpick& nits, const html_version& v, const ::std::string& s)
-{   if (context.css_font () >= 4)
+{   if (context.css_module (c_font) >= 4)
     {   if (test_value < t_css_src_4 > (nits, v, s)) return s_good; }
-    else if (context.css_font () == 3)  
+    else if (context.css_module (c_font) == 3)  
     {   if (test_value < t_css_src_3 > (nits, v, s)) return s_good; }
     else if (context.css_version () == css_2_0)
     {   if (test_value < t_css_src_2 > (nits, v, s)) return s_good; }
@@ -529,6 +529,6 @@ e_status set_css_content_3_value (nitpick& nits, const html_version& v, const ::
     return s_invalid; }
 
 e_status set_css_content_x_value (nitpick& nits, const html_version& v, const ::std::string& s)
-{   if ((context.css_content () >= 3) && (test_value < t_css_content_3nn > (nits, v, s))) return s_good;
+{   if ((context.css_module (c_generated_content) >= 3) && (test_value < t_css_content_3nn > (nits, v, s))) return s_good;
     if (test_value < t_css_content > (nits, v, s)) return s_good;
     return s_invalid; }

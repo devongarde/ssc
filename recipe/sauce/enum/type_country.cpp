@@ -272,5 +272,8 @@ struct symbol_entry < html_version, e_country > country_symbol_table [] =
     { { HTML_PLUS }, { HTML_UNDEF }, "ZM", cou_zm },
     { { HTML_PLUS }, { HTML_UNDEF }, "ZW", cou_zw } };
 
+::std::size_t country_count ()
+{   return sizeof (country_symbol_table) / sizeof (symbol_entry < html_version, e_country >); }
+
 void country_init (nitpick& nits)
-{   type_master < t_country > :: init (nits, country_symbol_table, sizeof (country_symbol_table) / sizeof (symbol_entry < html_version, e_country >)); }
+{   type_master < t_country > :: init (nits, country_symbol_table, country_count ()); }

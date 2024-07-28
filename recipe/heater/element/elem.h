@@ -239,4 +239,4 @@ CONSTEXPR inline bool is_error_element (const e_element e) noexcept { return (e 
 CONSTEXPR inline bool is_undefined_element (const e_element e) noexcept { return (e == elem_undefined); }
 CONSTEXPR inline bool is_standard_element (const e_element e) noexcept { return (e >= elem_custom) && (e < elem_error); }
 
-void add_elements (const vstr_t& v);
+void add_elements (nitpick& nits, const vstr_t& v);

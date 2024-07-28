@@ -1052,6 +1052,7 @@ struct hav_t
     { { HTML_JUL09, 0, HE_NOT_SVG }, { HTML_DEC09 }, ELEM, a_subject }, \
     { { HTML_JAN08, 0, HE_NOT_SVG }, { HTML_DEC08 }, ELEM, a_template }, \
     { { HTML_JUL12, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_translate }, \
+    { { HTML_APR24, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_writingsuggestions }, \
     { { HTML_5_3, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_xmlns }, \
     { { HTML_SVG11, 0, HE_NOT_SVG_10 }, { HTML_UNDEF }, ELEM, a_xmlspace }
 

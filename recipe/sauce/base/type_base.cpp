@@ -51,6 +51,7 @@ enum_name_t enum_name [] =
     { t_1_to_7, "1 to 7" },
     { t_1_to_8, "1 to 8" },
     { t_1_to_99, "1 to 99" },
+    { t_1_to_10000, "1 to 10000" },
     { t_10_int, "10 int" },
     { t_2_to_3, "2 to 3" },
     { t_2_to_4, "2 to 4" },
@@ -243,6 +244,7 @@ enum_name_t enum_name [] =
     { t_context_menu, "context menu" },
     { t_contents, "contents" },
     { t_controlslist, "controls list" },
+    { t_copy, "copy" },
     { t_cookie, "cookie" },
     { t_cookieid, "cookie id" },
     { t_cookies, "cookies" },
@@ -620,6 +622,7 @@ enum_name_t enum_name [] =
     { t_css_mask_ref, "CSS mask ref" },
     { t_css_mask_refs, "CSS mask refs" },
     { t_css_masks, "CSS masks" },
+    { t_css_module, "CSS module" },
     { t_css_nth, "CSS nth" },
     { t_css_nth_oe, "CSS nth odd/even" },
     { t_css_object_fit, "CSS object fit" },
@@ -875,6 +878,7 @@ enum_name_t enum_name [] =
     { t_datetime_absolute, "datetime absolute" },
     { t_datetime_local, "datetime local" },
     { t_day, "day" },
+    { t_ddny, "ddny" },
     { t_decalign, "dec align" },
     { t_decibel, "decibel" },
     { t_decoding, "decoding" },
@@ -882,6 +886,8 @@ enum_name_t enum_name [] =
     { t_depth, "depth" },
     { t_determiner, "determiner" },
     { t_device, "device" },
+    { t_device_or_height, "device or height" },
+    { t_device_or_width, "device or width" },
     { t_dg, "dg" },
     { t_digits, "digits" },
     { t_dingbat, "dingbat" },
@@ -998,6 +1004,11 @@ enum_name_t enum_name [] =
     { t_glyphnames, "glyph names" },
     { t_grid_normal, "grid normal" },
     { t_groupalign, "group align" },
+    { t_gtin, "gtin" },
+    { t_gtin8, "gtin8" },
+    { t_gtin12, "gtin12" },
+    { t_gtin13, "gtin13" },
+    { t_gtin14, "gtin14" },
     { t_halign, "h align" },
     { t_hash_fn, "hash fn" },
     { t_hash_ref, "hash ref" },
@@ -1070,6 +1081,7 @@ enum_name_t enum_name [] =
     { t_intent_conlit, "intent conlit" },
     { t_intent_hint, "intent hint" },
     { t_intent_ref, "intent ref" },
+    { t_interactive_widget, "interactie widget" },
     { t_inverted_colours, "inverted colours" },
     { t_ip_address, "ip address" },
     { t_is, "is" },
@@ -1150,6 +1162,7 @@ enum_name_t enum_name [] =
     { t_ltr_rtl, "ltr rtl" },
     { t_lzz, "lzz" },
     { t_m_t, "m t" },
+    { t_m1_to_1, "-1 to 1"},
     { t_m1_to_5, "-1 to 5" },
     { t_m100_to_100, "-100 to 100" },
     { t_m100_to_100r, "-100.0 to 100.0" },
@@ -1188,6 +1201,7 @@ enum_name_t enum_name [] =
     { t_mathspacefit, "math space fit" },
     { t_mathspaceinfinity, "math space infinity" },
     { t_mathvariant, "math variant" },
+    { t_math_version, "math version" },
     { t_mathvertauto, "math vertauto" },
     { t_matrix_values, "matrix values" },
     { t_matrixtype, "matrix type" },
@@ -1288,6 +1302,7 @@ enum_name_t enum_name [] =
     { t_overflow, "overflow" },
     { t_overlay, "overlay" },
     { t_over_under, "over under" },
+    { t_p1_10, "p1 10" },
     { t_page_orientation, "page orientation" },
     { t_paint, "paint" },
     { t_paint_order, "paint order" },
@@ -1422,6 +1437,7 @@ enum_name_t enum_name [] =
     { t_rendering_colour_space, "rendering colour space" },
     { t_rendering_in_tents, "rendering in tents" },
     { t_repeatcount, "repeat count" },
+    { t_report, "report" },
     { t_restart, "restart" },
     { t_resolution, "resolution" },
     { t_result, "result" },
@@ -1642,6 +1658,7 @@ enum_name_t enum_name [] =
     { t_urls, "urls" },
     { t_urltemplate, "url template" },
     { t_user_modify, "user modify" },
+    { t_user_scalable, "user scalable" },
     { t_valign, "v align" },
     { t_valign3, "v align 3" },
     { t_valign_tmb, "v align tmb" },
@@ -1659,6 +1676,19 @@ enum_name_t enum_name [] =
     { t_vertical_align_enum, "vertical align enum" },
     { t_vgender, "v gender" },
     { t_vid, "v id" },
+    { t_viewport, "viewport" },
+    { t_viewport_comma, "viewport comma" },
+    { t_viewport_height, "viewport height" },
+    { t_viewport_initial_scale, "viewport initial scale" },
+    { t_viewport_interactive_widget, "viewport interactive widget" },
+    { t_viewport_maximum_scale, "viewport maximum scale" },
+    { t_viewport_minimum_scale, "viewport minimum scale" },
+    { t_viewport_scale, "viewport scale" },
+    { t_viewport_semi, "viewport semi" },
+    { t_viewport_setting, "viewport setting" },
+    { t_viewport_target_densitydpi, "viewport target density dpi" },
+    { t_viewport_user_scalable, "viewport user scalable" },
+    { t_viewport_width, "viewport width" },
     { t_viewportscreen, "viewport screen" },
     { t_visibility, "visibility" },
     { t_visibility10, "visibility 10" },
@@ -1729,14 +1759,14 @@ enum_name_t enum_name [] =
 
 vstr_t vtn;
 
-void type_name_init ()
+void type_name_init (nitpick& nits)
 {   vtn.resize (t_error);
     for (int i = 0; GSL_AT (enum_name, i).t_ != t_error; ++i)
         vtn.at (GSL_AT (enum_name, i).t_) = GSL_AT (enum_name, i).name_;
 #ifdef DEBUG
     for (int i = 0; i < t_error; ++i)
         if (vtn.at (i).empty ())
-            outstr.err ("Missing type name at ", ::boost::lexical_cast < ::std::string > (i), "\n");
+            nits.pick (nit_type_error, es_error, ec_program, "Missing type name at ", ::boost::lexical_cast < ::std::string > (i));
 #endif // DEBUG
 }
 

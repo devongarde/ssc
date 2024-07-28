@@ -3,13 +3,36 @@ static site checker
 https://ssc.lu/
 (c) 2020-2024 Dylan Harris
 
+0.2.2
+- schema.org version 27.0.2
+- most DPV ontologies to v0.7
+- CSS Viewport Module Level 1, January 2024 draft
+- note edition in version info
+- various bug fixes
+- underlying work
+
+0.2.1
+- Living Standard July 2024
+- CSS 2024 Snapshot
+- schema.org version 27.01
+- "4. Safe to Release pre-CR Exceptions" (CSS Snapshots, 2018 onwards)
+- underlying work
+
+0.2.0
+- Living Standard April 2024
+- schema.org 27.0
+- OpenBSD 7.5
+- ICANN .internal recommendation
+- various bug fixes
+- underlying work
+
 0.1.60
-- add rel="expect" from current living standard
+- add rel="expect"
 - underlying work
 
 0.1.59
-- withdraw support for macOS High Sierra and earlier
-- withdraw support for OpenBSD 6.8
+- withdraw macOS High Sierra and earlier
+- withdraw OpenBSD 6.8
 - various CMake improvements
 - underlying work
 
@@ -22,10 +45,6 @@ https://ssc.lu/
 - add CMake uninstall target
 
 0.1.56
-- fix NO_GSL compilation error
-- underlying work
-
-0.1.56
 - fix NO_GSL build
 - more work on macports
 - underlying work
@@ -35,20 +54,20 @@ https://ssc.lu/
 - underlying work
 
 0.1.54
-- prepare macports submission
-- submit openbsd port (for 0.1.53)
+- prepare macports release
 - various bug fixes
 - underlying work
 
 0.1.53
+- visual studios 2017/2019 use vcpkg
 - schema.org 25.0
-- visual studios 2017/2019 solutions use vcpkg
 - various bug fixes
 - underlying work
 
 0.1.52
-- Fix Macos build bug introduced in 0.1.51
-- more dynamic loads
+- Fix Macos bug error introduced in 0.1.51
+- more dynamic load
+- various bug fixes
 - underlying work
 
 0.1.51
@@ -58,11 +77,13 @@ https://ssc.lu/
 - underlying work
 
 0.1.50
-- Schema.org 24.0
-- Living Standard Jan 2024
-- VS 2022 now uses vcpkg
+- schema.org version 24.0
+- Living Standard January 2024
+- Optional obnoxious GUI
+- VC 2022 now uses vcpkg
+- introduce arguments/answer cycle
 - recategorised some switches
-- default thread count now 1
+- reduce default thread count to 1
 - address more Apple clang bugs
 - underlying work
 

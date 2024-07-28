@@ -829,7 +829,7 @@ struct symbol_entry < html_version, e_metaname > metaname_symbol_table [] =
    { { HTML_4_0 }, { HTML_UNDEF }, MN_VERIFY_V1, mn_verify_v1 },
    { { HTML_2_0 }, { HTML_UNDEF }, MN_VERSION, mn_version },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_VFB_VERSION, mn_vfb_version },
-   { { HTML_4_0 }, { HTML_UNDEF }, MN_VIEWPORT, mn_viewport },
+   { { HTML_SEP11 }, { HTML_UNDEF }, MN_VIEWPORT, mn_viewport },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_WEB_AUTHOR, mn_web_author },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_WITGET, mn_witget },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_WOT_VERIFICATION, mn_wot_verification },
@@ -1070,20 +1070,22 @@ struct symbol_entry < html_version, e_metaname > metaname_symbol_table [] =
    { { HTML_4_0 }, { HTML_UNDEF }, "windows", mn_windows },
    { { HTML_4_0 }, { HTML_UNDEF }, "yacybot", mn_yacybot },
    { { HTML_4_0 }, { HTML_UNDEF }, "yandexbot", mn_yandexbot },
-   { { HTML_4_0 }, { HTML_UNDEF }, "yandeximages", mn_yandeximages }
-};
+   { { HTML_4_0 }, { HTML_UNDEF }, "yandeximages", mn_yandeximages } };
+
+::std::size_t metaname_count ()
+{   return sizeof (metaname_symbol_table) / sizeof (symbol_entry < html_version, e_metaname >); }
 
 void metaname_init (nitpick& nits)
-{   type_master < t_metaname > :: init (nits, metaname_symbol_table, sizeof (metaname_symbol_table) / sizeof (symbol_entry < html_version, e_metaname >)); }
+{   type_master < t_metaname > :: init (nits, metaname_symbol_table, metaname_count ()); }
 
 void validate_metaname_content (nitpick& nits, const html_version& v, const bool in_head, const e_metaname mn, const ::std::string& content, page& p)
-{   const bool stats = in_head && context.stats_meta ();
+{   const bool stts = in_head && context.stats (rcb_meta);
     switch (mn)
     {   case mn_application_name :
         case mn_author :
         case mn_colour_scheme :
         case mn_generator :
-            if (stats)
+            if (stts)
                 p.mark_meta (mn, content);
             break;
         case mn_article_modified_time :
@@ -1098,7 +1100,7 @@ void validate_metaname_content (nitpick& nits, const html_version& v, const bool
             test_value < t_isbn > (nits, v, content);
             break;
         case mn_keywords :
-            if (stats)
+            if (stts)
             {   vstr_t s (split_by_charset (content, ","));
                 for (auto ss : s)
                 {   ::std::string sss (trim_the_lot_off (ss));
@@ -1140,25 +1142,28 @@ void validate_metaname_content (nitpick& nits, const html_version& v, const bool
             test_value < t_sex > (nits, v, content);
             break;
         case mn_referrer :
-            {   if (stats) p.mark_meta (mn);
+            {   if (stts) p.mark_meta (mn);
                 type_master < t_referrer > ref;
                 ref.set_value (nits, v, content);
                 if (! ref.good ())
                     nits.pick (nit_theme_colour, ed_jul20, "4.2.5.1 Standard metadata names", es_error, ec_attribute, "When using <META> NAME=\"referrer\", CONTENT should be a referrer policy"); }
             break;
         case mn_theme_colour :
-            {   if (stats) p.mark_meta (mn);
+            {   if (stts) p.mark_meta (mn);
                 type_master < t_colour > col;
                 col.set_value (nits, v, content);
                 if (! col.good ())
                     nits.pick (nit_theme_colour, ed_jul20, "4.2.5.1 Standard metadata names", es_error, ec_attribute, "When using <META> NAME=\"" MN_THEME_COLOUR "\", CONTENT should be a colour"); }
             break;
         case mn_viewport :
-            if (v.css_device () < 3)
-                nits.pick (nit_css_version, es_warning, ec_attribute, "<META> NAME=\"" MN_VIEWPORT "\" requires CSS Device Adaption level 3 or better");
+            {   const int cv = v.css_module (c_viewport);
+                const int cd = v.css_module (c_device_adaption);
+                if ((cv < 3) && (cd < 3))
+                    nits.pick (nit_css_version, es_warning, ec_attribute, "<META> NAME=\"" MN_VIEWPORT "\" requires either CSS Device Adaption level 3 or CSS Viewport level 3"); }
+            test_value < t_viewport > (nits, v, content);
             break;
         default :
-            if (stats) p.mark_meta (mn);
+            if (stts) p.mark_meta (mn);
             break; } }
 
 void validate_metaname_url (nitpick& nits, const html_version& v, const bool , const e_metaname mn, const ::std::string& content, element& e)

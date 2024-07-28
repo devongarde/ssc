@@ -80,7 +80,7 @@ void directory::swap (directory& d) noexcept
     if (lhs == ".") return internal_get_site_path (nits, rhs);
     if (lhs == "..")
     {   if (mummy_ != nullptr) return mummy_ -> internal_get_site_path (nits, rhs);
-        nits.pick (nit_attempted_escape, es_error, ec_directory, "blocking access to root's parent folder");
+        nits.pick (nit_attempted_escape, es_error, ec_directory, "blocking access to root's parent " REPERTOIRE);
         return internal_get_site_path (nits, rhs); }
     auto i = content_.find (lhs);
     if (i != content_.end ())

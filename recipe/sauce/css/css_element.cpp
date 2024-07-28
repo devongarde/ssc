@@ -21,7 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "css/css_element.h"
 #include "css/arguments.h"
-#include "main/enum.h"
 #include "type/type.h"
 #include "element/state.h"
 #include "css/statements.h"
@@ -42,7 +41,7 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
     const int n = token_find (args.t_, ct_bar, b, to, &b4);
     if (n > 0)
     {   b = next_non_whitespace (args.t_, n, to);
-        if (args.v_.css_namespace () < 3)
+        if (args.v_.css_module (c_namespace) < 3)
             nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": namespaces requires CSS Namespace 3 or better");
         else if ((b < 0) && (b4 < 0))
             nits.pick (nit_css_syntax, es_error, ec_css, quote (wo), ": a namespace andor an element must be given");
@@ -70,7 +69,7 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
     {   case ct_ampersand :
         case ct_round_brac :
             pseudo = false;
-            if (context.css_nesting () < 3)
+            if (context.css_module (c_nesting) < 3)
                 nits.pick (nit_css_version, es_error, ec_css, quote (wo), " here requires CSS Nesting");
             else
             {   css_element e (elem_css_child);
@@ -78,14 +77,14 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
             break;
          case ct_barbar :
             pseudo = false;
-            if (context.html_ver ().css_selector () < 4)
+            if (context.html_ver ().css_module (c_selector) < 4)
                 nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": || requires CSS Selector 4");
             else
             {   css_element e (elem_css_cell);
                 ::std::swap (*this, e); }
             break;
         case ct_at :
-            if (context.css_nesting () < 3)
+            if (context.css_module (c_nesting) < 3)
                 nits.pick (nit_nesting, es_error, ec_css, "'@' here requires CSS Nesting");
             else
             {   const int kw = next_non_whitespace (args.t_, b, to);
@@ -138,7 +137,7 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
             break;
         case ct_gtgt :
             pseudo = false;
-            if (context.html_ver ().css_cascade () >= 6)
+            if (context.html_ver ().css_module (c_cascade_inheritance) >= 6)
             {   css_element e (elem_css_child);
                 ::std::swap (*this, e); }
             break;
@@ -176,7 +175,7 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
             break;
         case ct_squiggle :
             pseudo = false;
-            if (context.css_selector () < 3)
+            if (context.css_module (c_selector) < 3)
                 nits.pick (nit_css_version, es_error, ec_css, quote (wo), ": ~ requires CSS 3 selectors or better");
             else
             {   css_element e (elem_css_precede);
@@ -186,7 +185,7 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
         case ct_square_ket :
         case ct_curly_ket :
         case ct_semicolon :
-            if (context.css_nesting () >= 3) return;
+            if (context.css_module (c_nesting) >= 3) return;
             FALLTHROUGH;
         default :
             nits.pick (nit_css_element, es_error, ec_css, quote (tkn_rpt (args.t_.at (from))), ": element expected");
@@ -201,7 +200,7 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
                 case ct_coco :
                 case ct_colon :
                 case ct_square_brac :
-                    if (context.css_nesting () < 3)
+                    if (context.css_module (c_nesting) < 3)
                         nits.pick (nit_naughty_decoration, es_error, ec_css, quote (tkn_rpt (args.t_.at (b))), " cannot be decorated");
                     break;
                 default:
@@ -257,7 +256,7 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
             case ct_round_ket :
             case ct_square_ket :
             case ct_semicolon :
-                if (context.css_nesting () >= 3) return;
+                if (context.css_module (c_nesting) >= 3) return;
                 FALLTHROUGH;
             default :
                 nits.pick (nit_css_syntax, es_error, ec_css, quote (tkn_rpt (args.t_.at (i))), ": unexpected (4)");

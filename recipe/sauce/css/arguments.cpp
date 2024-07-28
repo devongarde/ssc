@@ -82,7 +82,7 @@ void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string
 {   if ((f & CF_DEPRECATED) == CF_DEPRECATED)
         nits.pick (nit_deprecated, es_warning, ec_css, s, " is deprecated, so unlikely to be supported by many browsers");
     if ((f & CF_DEPRECATED_45) == CF_DEPRECATED_45)
-        if (v_.css_media () > 3)
+        if (v_.css_module (c_media_query) > 3)
             nits.pick (nit_deprecated_media, ed_css_media_4, "Appendix A", es_warning, ec_css, s, " is deprecated in CSS Media levels 4 & 5, 'Authors must not use them'");
     if ((f & CF_FACE_OR_PROFILE) == CF_FACE_OR_PROFILE)
     {   if ((st_ == nullptr) || ((st_ -> get () != css_font_face) && (st_ -> get () != css_colour_profile)))
@@ -101,7 +101,7 @@ void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string
             nits.pick (nit_naughty_page, es_error, ec_css, s, " requires @font-palette-values"); }
     if ((f & CF_BEF_AFT) == CF_BEF_AFT)
         if ((ss_ == nullptr) || (! ss_ -> bef_aft ()))
-            if ((st_ == nullptr) || ((st_ -> get () < css_content_ok) || (context.css_conditional_rule () < 3)))
+            if ((st_ == nullptr) || ((st_ -> get () < css_content_ok) || (context.css_module (c_conditional_rule) < 3)))
                 if (context.css_version () > css_2_2)
                     nits.pick (nit_naughty_content, ed_css_21, "12.2 The 'content' p. 182 property", es_error, ec_css, s, " requires an element with ::before andor ::after");
                 else nits.pick (nit_naughty_content, ed_css_21, "12.2 The 'content' p. 182 property", es_error, ec_css, s, " requires an element with :before andor :after"); }

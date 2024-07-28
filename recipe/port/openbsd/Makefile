@@ -1,7 +1,7 @@
 COMMENT=        opinionated static (web)site nitpicker
 
-V=              0.1.60
-DISTNAME=       ssc-$V
+V=              0.2.2
+DISTNAME=       ssc-v$V
 PKGNAME=        ssc-$V
 
 CATEGORIES=     www
@@ -25,13 +25,14 @@ WANTLIB +=      boost_date_time-mt boost_filesystem-mt boost_json-mt
 WANTLIB +=      boost_locale-mt boost_program_options-mt boost_regex-mt
 WANTLIB +=      boost_system-mt boost_thread-mt c curl hunspell-1.7
 WANTLIB +=      icudata icui18n icuio icutu icuuc m pthread
-WANTLIB +=      ${COMPILER_LIBCXX}
+WWANTLIB +=      ${COMPILER_LIBCXX}
 
 MODULES=        devel/cmake
 BUILD_DEPENDS=  devel/microsoft-gsl
 LIB_DEPENDS=    devel/boost \
                 net/curl \
                 textproc/hunspell \
-                textproc/icu4c
+                textproc/icu4c \
+                x11/wxWidgets
 
 .include <bsd.port.mk>

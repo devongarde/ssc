@@ -618,7 +618,7 @@ template < > struct type_master < t_css_text_align_4 > : tidy_string < t_css_tex
         if (tidy_string < t_css_text_align_4 > :: empty ()) nits.pick (nit_empty, es_error, ec_type, "missing whitespace value");
         else if (tidy_string < t_css_text_align_4 > :: good ())
         {   ::std::string ss (tidy_string < t_css_text_align_4 > :: get_string ());
-            if (v.css_text () >= 4)
+            if (v.css_module (c_text) >= 4)
             {   nitpick nuts;
                 if (test_value < t_char > (nuts, v, ss))
                 {   nits.merge (nuts); return; } }
@@ -634,7 +634,7 @@ template < > struct type_master < t_css_text_resizes > : tidy_string < t_css_tex
         else if (tidy_string < t_css_text_resizes > :: good ())
         {   ::std::string ss (tidy_string < t_css_text_resizes > :: get_string ());
             nitpick nuts;
-            if (v.css_overflow () >= 4)
+            if (v.css_module (c_overflow) >= 4)
             {   if (test_value < t_css_text_resizes_4 > (nuts, v, ss))
                 { nits.merge (nuts); return; } }
             if (test_value < t_css_text_resize > (nits, v, ss)) return; }
@@ -650,7 +650,7 @@ template < > struct type_master < t_css_vertal_2 > : tidy_string < t_css_vertal_
         else if (tidy_string < t_css_vertal_2 > :: good ())
         {   ::std::string ss (tidy_string < t_css_vertal_2 > :: get_string ());
             nitpick nuts; bool tested = false;
-            if (v.css_inline () > 0)
+            if (v.css_module (c_inline_layout) > 0)
             {   if (test_value < t_css_vertal_inline > (nuts, v, ss)) return;
                 tested = true; }
             if (v.svg () || v.is_css_2 ())
@@ -669,7 +669,7 @@ template < > struct type_master < t_css_whitespace_2 > : tidy_string < t_css_whi
         else if (tidy_string < t_css_whitespace_2 > :: good ())
         {   ::std::string ss (tidy_string < t_css_whitespace_2 > :: get_string ());
             nitpick nuts;
-            if (v.css_text () >= 4)
+            if (v.css_module (c_text) >= 4)
             {   if (test_value < t_css_whitespace_4 > (nuts, v, ss))
                 { nits.merge (nuts); return; } }
             if (test_value < t_css_whitespace > (nits, v, ss)) return; }

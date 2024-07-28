@@ -1,0 +1,74 @@
+﻿/*                                                                 ,
+ssc (static site checker)
+File Info
+https://dylanharris.org/
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public Licence as published by
+the Free Software Foundation, either version 3 of the Licence, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public Licence for more details.
+
+You should have received a copy of the GNU General Public
+Licence along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+*/
+
+#pragma once
+
+#ifdef WX
+#include "gui/gui-dialogue.h"
+#include "feedback/nitpick.h"
+
+#define NIT_CAPTION "Nitpicking..."
+
+class nits_t : public dialogue_t
+{   wxBoxSizer* box_options_ = nullptr;
+    wxBoxSizer* box_output_ = nullptr;
+    wxBoxSizer* box_verbosity_ = nullptr;
+    wxCheckBox* check_id_ = nullptr;
+    wxCheckBox* check_repeat_ = nullptr;
+    wxChoice* choice_verbosity_ = nullptr;
+    wxFilePickerCtrl* file_output_ = nullptr;
+    wxListBox* list_level_ = nullptr;
+    wxRadioBox* radio_level_ = nullptr;
+    wxStaticLine* line1_ = nullptr;
+    wxStaticLine* line2_ = nullptr;
+    wxStaticLine* line3_ = nullptr;
+    wxStaticText* static_output_ = nullptr;   
+    wxStaticText* static_verbosity_ = nullptr;
+    mns_t current_, stable_;
+    bool id_ = false, repeat_ = false;
+    ::boost::filesystem::path output_;
+    e_severity verbosity_ = es_undefined;
+    DECLARE_CLASS (nits_t)
+    DECLARE_EVENT_TABLE ()
+public:
+    nits_t () { }
+    nits_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = NIT_CAPTION);
+    ~nits_t () { }
+    bool invalid () const noexcept { return dialogue_t :: invalid () || box_verbosity_ == nullptr || file_output_ == nullptr || radio_level_ == nullptr || check_repeat_ == nullptr; }
+    void Init () const noexcept { }
+    bool Create (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = NIT_CAPTION);
+    void CreateControls ();
+    void OnHelpClick (wxCommandEvent& event);
+    void OnListLevel (wxCommandEvent& event);
+    void OnRadioLevel (wxCommandEvent& event);
+    bool TransferDataToWindow ();
+    bool TransferDataFromWindow ();
+    bool id () const noexcept { return id_; }
+    void id (const bool b) noexcept { id_ = b; }
+    ::boost::filesystem::path output () const { return output_; }
+    void output (const ::boost::filesystem::path& p) { output_ = p; }
+    bool repeat () const noexcept { return repeat_; }
+    void repeat (const bool b) noexcept { repeat_ = b; }
+    mns_t severity () const { return stable_; }
+    void severity (const mns_t& s) { stable_ = s; }
+    e_severity verbosity () const noexcept { return verbosity_; }
+    void verbosity (const e_severity v) noexcept { verbosity_ = v; } };
+
+#endif // WX

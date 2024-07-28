@@ -857,6 +857,9 @@
     <ClInclude Include="..\heater\stats\stats6.h">
       <Filter>Heater\stats</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\main\server.h">
+      <Filter>Heater\main</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1599,6 +1602,9 @@
     </ClCompile>
     <ClCompile Include="..\sauce\coop\tls.cpp">
       <Filter>Sauce\coop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\main\server.cpp">
+      <Filter>Sauce\main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

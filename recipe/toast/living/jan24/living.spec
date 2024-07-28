@@ -2345,6 +2345,7 @@ PASS ../toast/living/jan24/ww-9.html
 5 long_title
 
 PASS ../toast/living/jan24/bidi.css
+0 html
 3 css_version
 10 css_version css_version css_version
 16 css_version
@@ -2353,15 +2354,12 @@ PASS ../toast/living/jan24/bidi.css
 29 css_version
 30 css_version css_version
 
+PASS ../toast/living/jan24/details.css
+0 html
+
 PASS ../toast/living/jan24/fieldset.css
-5 css_version
-6 css_version
-8 css_version
-9 css_version
-10 css_version
-11 css_version
+0 html
 12 css_version
-16 css_version css_version
 19 css_version
 20 css_version
 23 css_version
@@ -2370,30 +2368,27 @@ PASS ../toast/living/jan24/fieldset.css
 28 css_version
 
 PASS ../toast/living/jan24/form.css
+0 html
 9 css_version
 10 css_version
-14 unrecognised_value unrecognised_value
 15 css_version
 30 css_version css_version css_version
 31 css_version
 42 css_namespace
 
+PASS ../toast/living/jan24/html4.css
+0 html
+
 PASS ../toast/living/jan24/hr.css
-7 css_version
-8 css_version
-9 css_version
-10 css_version
+0 html
 14 css_namespace
 16 css_version
 17 css_version
 18 css_version
 
 PASS ../toast/living/jan24/lists.css
+0 html
 4 css_version
-6 css_version css_version
-9 css_version css_version
-12 css_version
-13 css_version
 28 css_namespace
 31 css_version css_version
 32 css_version css_version
@@ -2404,10 +2399,15 @@ PASS ../toast/living/jan24/lists.css
 37 css_version css_version
 38 css_version css_version
 
+PASS ../toast/living/jan24/marquee.css
+0 html
+
 PASS ../toast/living/jan24/meter.css
+0 html
 3 css_version
 
 PASS ../toast/living/jan24/phrasing.css
+0 html
 13 css_version
 14 css_version
 21 css_version
@@ -2420,9 +2420,11 @@ PASS ../toast/living/jan24/phrasing.css
 41 css_version css_version
 
 PASS ../toast/living/jan24/progress.css
+0 html
 3 css_version
 
 PASS ../toast/living/jan24/replaced.css
+0 html
 6 css_namespace
 10 css_version
 13 css_namespace
@@ -2448,20 +2450,11 @@ PASS ../toast/living/jan24/replaced.css
 55 css_version css_version css_version
 
 PASS ../toast/living/jan24/sections.css
-7 css_version css_version
-8 css_version css_version
-9 css_version css_version
-10 css_version css_version
-11 css_version css_version
-12 css_version css_version
+0 html
 14 css_namespace
-16 css_version css_version
-17 css_version css_version
-18 css_version css_version
-19 css_version css_version
-20 css_version css_version
 
 PASS ../toast/living/jan24/tables.css
+0 html
 32 css_version css_version css_version
 33 css_version css_version css_version
 34 css_version css_version css_version
@@ -2490,7 +2483,7 @@ PASS ../toast/living/jan24/tables.css
 60 css_namespace
 62 css_version
 63 css_version
-64 css_version css_version css_version
+64 css_version
 65 css_version css_version css_version
 66 css_version css_version css_version
 70 css_version
@@ -2536,31 +2529,17 @@ PASS ../toast/living/jan24/tables.css
 145 css_version css_version
 146 css_version css_version
 147 css_version css_version
-149 css_version
-150 css_version
-151 css_version
-152 css_version
 154 css_version css_version
 155 css_version css_version
 156 css_version css_version
 157 css_version css_version
 162 css_version
-163 css_version
-164 css_version
-165 css_version
-166 css_version
 168 css_version
 169 css_version
 170 css_version
 171 unrecognised_value
-172 css_version
-173 css_version
-174 css_version
 177 css_version css_version
 178 css_version css_version
 179 unrecognised_value
-180 css_version
-181 css_version
-182 css_version
 185 css_namespace
 197 css_namespace

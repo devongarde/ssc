@@ -39,7 +39,7 @@ void reset_itemprop ()
 
 itemprop_index make_itemprop_index (const e_ontology_property p)
 {   PRESUME (p <= op_illegal, __FILE__, __LINE__);
-    return static_cast < itemprop_index> (p) + (static_cast < itemprop_index > (itemprop_schema) << uint32_category_shift); }
+    return static_cast < itemprop_index> (p) + (static_cast < itemprop_index > (itemprop_ontology) << uint32_category_shift); }
 
 itemprop_indices make_itemprop_indices (const e_ontology_property p)
 {   PRESUME (p <= op_illegal, __FILE__, __LINE__);
@@ -119,7 +119,7 @@ itemprop_indices find_itemprop_indices (nitpick& nits, const html_version& v, co
         switch (ndx >> uint32_category_shift)
         {   case itemprop_bespoke :
                 return bespoke_itemprop_name (ndx);
-            case itemprop_schema :
+            case itemprop_ontology :
                 return ontology_property_name (static_cast < e_ontology_property > (ndx_item (ndx)));
             case itemprop_microformat :
                 return prop::name (GSL_NARROW_CAST < e_property > (ndx_item (ndx)));
@@ -130,7 +130,7 @@ bool is_valid_property (nitpick& nits, const html_version& v, const itemtype_ind
 {   switch (ndx >> uint32_category_shift)
     {   case itemprop_bespoke :
             return true;
-        case itemprop_schema :
+        case itemprop_ontology :
             return is_valid_ontology_property (nits, v, static_cast < e_ontology_type> (ndx_item (itemtype)), static_cast < e_ontology_property > (ndx_item (ndx)), value, is_link);
         case itemprop_microformat :
             return true;
@@ -143,7 +143,7 @@ bool is_valid_property (nitpick& nits, const html_version& v, const itemtype_ind
 {   switch (ndx >> uint32_category_shift)
     {   case itemprop_bespoke :
             return true;
-        case itemprop_schema :
+        case itemprop_ontology :
             return is_valid_ontology_property (nits, v, static_cast < e_ontology_type> (ndx_item (itemtype)), static_cast < e_ontology_property > (ndx_item (ndx)), static_cast < e_ontology_type> (ndx_item (value)));
         case itemprop_microformat :
             return true;

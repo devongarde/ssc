@@ -48,6 +48,7 @@ public:
         {   VERIFY_NOT_NULL (parent_.lock (), __FILE__, __LINE__);
             return parent_.lock () -> type (); }
         return type_; }
+    vit_t types () const;
     void parent (const itemscope_ptr& parent) noexcept { parent_ = parent; }
     void parent2 (const itemscope_ptr& parent) noexcept { parent2_ = parent; }
     itemscope_wptr& parent () noexcept { return parent_; }

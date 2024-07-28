@@ -83,16 +83,17 @@ public:
     void swap (t_export < T >& e) noexcept
     {   target_.swap (e.target_);
         ::std::swap (export_, e.export_); }
-    void insert (const ::std::string& key, const T& data)
+    void insert (nitpick& nits, const ::std::string& key, const T& data)
     {   if (target_.find (key) == target_.cend ())
         {   us_t v;
             v.insert (data);
             tins_t tin = target_.insert (pus_t (key, v));
             if (! tin.second)
-            {   if (context.tell (es_splurge)) outstr.err ("t_export insert 1 failed\n");
+            {   nits.pick (nit_mf_export, es_splurge, ec_microformat, "t_export insert 1 failed");
                 return; } }
         us_t& ss = target_.at (key); // phew, single threaded!
-        if (! ss.insert (data).second) if (context.tell (es_splurge)) outstr.err ("t_export insert 2 failed\n"); }
+        if (! ss.insert (data).second)
+            nits.pick (nit_mf_export, es_splurge, ec_microformat, "t_export insert 2 failed"); }
     void put (::boost::property_tree::ptree& tree)
     // https://stackoverflow.com/questions/2114466/creating-json-arrays-in-boost-using-property-trees
     {   for (auto i : target_)

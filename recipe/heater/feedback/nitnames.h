@@ -19,7 +19,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #pragma once
-#include "main/enum.h"
 
 void nits_init ();
 e_nit lookup_code (const ::std::string& name);

@@ -1,11 +1,6 @@
-WARNING: I've deleted a number of binaries from the repo history, reducing the repo size from 2G to 120M. You may see consequences when you attempt to browse old versions, but there should be no impact on the code itself. Thanks to buhtz here for notification of the problem, and to rohannicholls for the solution (https://rowannicholls.github.io/git/advanced/shrink_repository.html).
-
-For recent versions of ssc, including the 0.2.x series, browse https://ssc.lu/. While MS and their friends use my code published on github to build AIs, but then wish to charge me to use those same AIs, my code here will not be updated. Quid pro quo, Microsoft. 
-
-
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.1.60
+version 0.2.2
 (c) 2020-2024 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notice
 https://ssc.lu/
@@ -14,7 +9,7 @@ https://github.com/devongarde/ssc
 
 
 ssc analyses static X/HTML snippets, files and sites:
-- HTML living standard, Jan 2005 to Jan 2024
+- HTML living standard, Jan 2005 to Apr 2024
 - HTML Tags/1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3-draft
 - CSS 1/2.0/2.1/2.2-draft, 2007-2023 snapshots, more
 - SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x-draft

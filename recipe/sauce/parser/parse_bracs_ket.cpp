@@ -89,7 +89,7 @@ void bracs_ket::nodoctype (nitpick& nits, html_version& v, ::std::string::const_
         nits.pick (nit_presume_html_tags, ed_tags, "", es_warning, ec_parser, "No <!DOCTYPE ... > found at the beginning of the content: am presuming HTML Tags"); }
     else
     {   v.reset (html_1);
-        nits.pick (nit_presume_html_1, ed_1, "", es_warning, ec_parser, "No <!DOCTYPE ... > found at the beginning: am presuming the most recent version of HTML not to require one, HTML 1.0"); } }
+        nits.pick (nit_presume_html_1, ed_1, "", es_warning, ec_parser, "No <!DOCTYPE ... > found at the beginning: am presuming HTML 1.0, the most recent version of HTML not to require it"); } }
 
 void bracs_ket::mixed_mess (nitpick& nits, ::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator i, const char* item, const char* inside)
 {   PRESUME (item != nullptr, __FILE__, __LINE__);

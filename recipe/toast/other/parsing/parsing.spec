@@ -14,6 +14,16 @@ PASS ../toast/other/parsing/elementerror.html
 14 double_gin_and_tonic double_gin_and_tonic unrecognised_value
 20 eof_in_element
 
+PASS ../toast/other/parsing/errata28.html
+2 missing_close
+3 inserted_missing_parent missing_close
+6 css_version
+8 inserted_missing_parent inserted_missing_closure missing_close
+13 inserted_missing_closure
+16 inserted_missing_closure
+21 inserted_missing_closure missing_close no_such_folder url_not_found
+24 inserted_missing_closure
+
 PASS ../toast/other/parsing/index.html
 2 naughty_lang
 

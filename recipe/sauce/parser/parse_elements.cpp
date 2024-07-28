@@ -148,7 +148,7 @@ element_node* elements_node::insert_closure (const html_version& v, element_node
             VERIFY_NOT_NULL (parent, __FILE__, __LINE__);
             previous = parent -> last_; } }
     ven_.push_back (element_node (ket.nits_, this, ket.line_, true, parent, id.get (), presumed, ::std::string (ket.start_, ket.end_)));
-    GSL_NOT_NULL (element_node*) current = & ven_.back ();
+    const GSL_NOT_NULL (element_node*) current = & ven_.back ();
     hook_up (current, previous, parent, matched, false);
     PRESUME (current -> box () == this, __FILE__, __LINE__);
     return current; }
@@ -170,7 +170,7 @@ element_node* elements_node::insert_family_tree (const html_version& v, element_
     VERIFY_NOT_NULL (parent, __FILE__, __LINE__);
     previous = parent -> last_;
     ven_.push_back (element_node (defnits, this, ket.line_, false, ancestor, def, presumed, def.name ()));
-    GSL_NOT_NULL (element_node*) current = & ven_.back ();
+    const GSL_NOT_NULL (element_node*) current = & ven_.back ();
     current -> attributes ().box (current);
     hook_up (current, previous, parent, false, true);
     PRESUME (current -> box () == this, __FILE__, __LINE__);
@@ -273,7 +273,7 @@ void elements_node::parse (const html_version& v, bracs_ket& elements)
                                     id.reset (e.nits_, ver, parent -> namespaces (), mc);
                                     if (id.unknown ())
                                     {   nitpick nuts;
-                                        elem tst (nuts, html_0, parent -> namespaces (), mc);
+                                        const elem tst (nuts, html_0, parent -> namespaces (), mc);
                                         bad_version = ! tst.unknown (); } 
                                     else if (ver.xhtml ())
                                     {   const ::std::string& naam (id.name ());

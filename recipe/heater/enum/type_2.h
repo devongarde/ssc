@@ -43,6 +43,12 @@ public:
         {   init ();
             if (true_) return ON::sz (); else return OFF::sz (); }
         return ::std::string (); }
+    ::std::string name () const { return get_string (); }
+    static ::std::string name (const base_type e)
+    {   if (e == 0) return OFF::sz ();
+        if (e == 1) return ON::sz ();
+        GRACEFUL_CRASH (__FILE__, __LINE__);
+        UNREACHABLE (return ::std::string ()); }
     void shadow (::std::stringstream& ss, const html_version& , element* )
     {   ss << '=' << get_string (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s);

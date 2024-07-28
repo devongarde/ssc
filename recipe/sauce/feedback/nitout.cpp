@@ -19,6 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
 #include "main/standard.h"
+#include "utility/common.h"
 #include "feedback/nitout.h"
 #include "main/context.h"
 #include "type/type.h"
@@ -747,17 +748,6 @@ void reset_macro ()
     {   if (*i == q) res += q;
         res += *i; }
     res += q;
-    return res; }
-
-::std::string enhtml (const ::std::string& s)
-{   ::std::string res;
-    for (::std::string::const_iterator i = s.begin (); i != s.end (); ++i)
-        switch (*i)
-        {   case '<' : res += "&lt;"; break;
-            case '>' : res += "&gt;"; break;
-            case '&' : res += "&amp;"; break;
-            case ' ' : res += "&nbsp;"; break;
-            default :  res += *i; break; }
     return res; }
 
 void macro_t::set (const e_nit_macro m, const ::std::string& s)

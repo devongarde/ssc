@@ -32,6 +32,16 @@ public:
     using type_base < base_type, TYPE > :: type_base;
     static e_animation_type animation_type () noexcept { return at_other; }
     ::std::string get_string () const;
+    ::std::string name () const { return get_string (); }
+    static ::std::string name (const base_type e)
+    {   switch (e)
+        {   case 0 : return SZ0::sz ();
+            case 1 : return SZ1::sz ();
+            case 2 : return SZ2::sz ();
+            case 3 : return SZ3::sz ();
+            default : break; }
+        GRACEFUL_CRASH (__FILE__, __LINE__);
+        UNREACHABLE (return ::std::string ()); }
     void shadow (::std::stringstream& ss, const html_version& , element* )
     {   ss << '=' << get_string (); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s);
@@ -233,6 +243,9 @@ template < > struct type_master < t_css_val_con > : four_value < t_css_val_con, 
 
 template < > struct type_master < t_css_word_break > : four_value < t_css_word_break, e_css_word_break, sz_break_all, sz_break_word, sz_keep_all, sz_normal >
 { using four_value < t_css_word_break, e_css_word_break, sz_break_all, sz_break_word, sz_keep_all, sz_normal > :: four_value; };
+
+template < > struct type_master < t_ddny > : four_value < t_ddny, e_ddny, sz_device_height, sz_device_width, sz_no, sz_yes >
+{ using four_value < t_ddny, e_ddny, sz_device_height, sz_device_width, sz_no, sz_yes > :: four_value; };
 
 template < > struct type_master < t_device > : four_value < t_device, e_device, sz_media, sz_fs, sz_rs232, sz_usb >
 { using four_value < t_device, e_device, sz_media, sz_fs, sz_rs232, sz_usb > :: four_value; };

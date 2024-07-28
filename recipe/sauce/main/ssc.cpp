@@ -58,6 +58,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "coop/kew.h"
 #include "coop/knickers.h"
 #include "main/balloon.h"
+#include "main/ssc.h"
+#include "gui/gui-app.h"
 
 const char* build_info = BUILD_INFO;
 const char* test_title = TEST_TITLE;
@@ -76,6 +78,8 @@ int cycle_start (nitpick& nits)
     directory::reinit ();
     paths_root::reinit ();
     nits.set_context (0, PROG " reinitialisation");
+    types_init (nits);
+    nitpick::reset_severities ();
     return VALID_RESULT; }
 
 void init (nitpick& nits)
@@ -88,7 +92,6 @@ void init (nitpick& nits)
     state_init ();
     nits_init ();
     cycle_start (nits);
-    types_init (nits);
     spell_init (nits);
     lingo::init (nits);
     attr::init (nits);
@@ -128,7 +131,7 @@ int cycle_finish ()
 {   ::std::ostringstream ss;
     global_css.accumulate (&overall);
     if (context.tell (es_warning))
-    {   if (context.classic () && ! context.stats_summary ())
+    {   if (context.classic () && ! context.stats (rcb_summary))
             ss << overall.class_and_id_report ();
         if (context.crosslinks ())
         {   nitpick nits;
@@ -140,10 +143,10 @@ int cycle_finish ()
             outstr.out ("\n"); } }
     if (! ss.str ().empty ())
         outstr.out (ss.str ());
-    if (context.stats_itemid ())
+    if (context.stats (rcb_itemid))
         if (! empty_itemid ())
             outstr.out (report_itemids ());
-    if (context.stats_summary ()) report_global_stats (true);
+    if (context.stats (rcb_summary)) report_global_stats (true);
     if (context.tell (es_debug)) outstr.out (fileindex_report ());
     if (overall.severity_exceeded ()) return ERROR_STATE;
     global_css.reset ();
@@ -152,12 +155,21 @@ int cycle_finish ()
 #ifndef NO_FRED
 void trundle ()
 {   if (context.fred () == 1)
-        while (fred.dqe ());
+        while (fred.dqe ())
+#ifdef WX
+        {   if (app != nullptr) app -> Yield (true); }
+#else // WX
+        ;
+#endif // WX
     else
     {   ::std::this_thread::yield ();
         while (fred.dqe () || q.activity ())
-            ::std::this_thread::yield (); } }
-#endif // NO_FRED
+        {
+#ifdef WX
+            if (app != nullptr) app -> Yield (true);
+#endif // WX
+            ::std::this_thread::yield (); } } }
+#endif // WX
 
 int examine (nitpick& nits)
 {   int res = VALID_RESULT;
@@ -262,7 +274,7 @@ int examine (nitpick& nits)
     macro -> dump_nits (shadow, ns_shadow, ns_shadow_head, ns_shadow_foot);
     return res; };
 
-int cycle (nitpick& nits, const int argc, char** argv = nullptr)
+int cycle (nitpick& nits, const int argc, char** argv)
 {   int res = NOTHING_TO_DO;
     time_balloon balloon;
     ::std::string args, msg;
@@ -284,6 +296,9 @@ int cycle (nitpick& nits, const int argc, char** argv = nullptr)
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif // _MSC_VER
+        else if (! context.cmd ().empty ())
+        {   vs = context.cmd ();
+            context.cmd ().clear (); }
         else
         {   constexpr ::std::size_t max_len = 65536;
             char ch [max_len] = { 0 };
@@ -298,15 +313,16 @@ int cycle (nitpick& nits, const int argc, char** argv = nullptr)
         macro -> set (nm_run_args, args);
         context.general_info (::boost::filesystem::current_path ().string () + "\n" + args + "\n" VERSION_STRING " [" __DATE__  " " __TIME__ "] [" + build_info + "]\n");
         nitpick nuts;
-        res = context.parameters (nuts, vs);
+        res = context.parameters (outstr, nuts, vs);
         if (! macro -> is_template_loaded ()) macro -> load_template (nuts, html_default);
         if ((context.todo () == do_simple) || context.yggdrisil ())
-        {   if (context.yggdrisil ()) ::std::cout << simple_title;
-            else ::std::cout << full_title;
+        {   if (context.yggdrisil ()) outstr.console (simple_title);
+            else outstr.console (full_title);
             macro -> dump_nits (nuts, ns_config, ns_config_head, ns_config_foot);
-            ::std::cout << context.domsg ();
+            outstr.console (context.domsg ());
             return VALID_RESULT; }
-        if (context.progress ()) ::std::cout << "\npreparing\n";
+        context.apply_vcs (nuts);
+        if (context.progress ()) outstr.console ("\npreparing\n");
         outstr.out (macro -> apply (ns_doc_head));
         enfooten = true;
         macro -> dump_nits (nits, ns_init, ns_init_head, ns_init_foot);
@@ -336,21 +352,21 @@ int cycle (nitpick& nits, const int argc, char** argv = nullptr)
     {   msg = "catastrophic cycle unknown exception";
         res = ERROR_STATE; }
     if (! enfooten)
-    {   if (! msg.empty ()) ::std::cerr << msg << "\n"; }
+    {   if (! msg.empty ()) outstr.err (msg, "\n"); }
     else try
     {   if (! msg.empty ()) macro -> set (nm_run_catastrophe, msg);
         outstr.out (macro -> apply (ns_doc_foot));
-        if (! msg.empty ()) outstr.err (msg + "\n");
+        if (! msg.empty ()) outstr.err (msg, "\n");
         if (context.progress ())
-            if (outstr.name ().empty ()) ::std::cout << "finished\n";
-            else ::std::cout << "results written to " << outstr.name () << "\n"; }
+            if (outstr.name ().empty ()) outstr.console ("finished\n");
+            else outstr.console ("results written to ", outstr.name (), "\n"); }
     catch (...)
     {   if (msg.empty ()) msg = "catastrophic cycle footers exception\n";
-        ::std::cerr << msg << "\n";
+        outstr.err (msg, "\n");
         res = ERROR_STATE; }
     return res; }
 
-int main (int argc, char** argv)
+int ssc_main (int argc, char** argv)
 {   int res = NOTHING_TO_DO;
     ::std::string msg;
     PRESUME (argc > 0, __FILE__, __LINE__);
@@ -367,13 +383,24 @@ int main (int argc, char** argv)
     catch (const ::std::system_error& e)
     {   msg = "catastrophic exit system error: ";
         msg += e.what ();
-        res = ERROR_STATE; }
+        res = CATASTROPHIC_STATE; }
     catch (const ::std::exception& e)
     {   msg = "catastrophic exit exception: ";
         msg += e.what ();
-        res = ERROR_STATE; }
+        res = CATASTROPHIC_STATE; }
     catch (...)
     {   msg = "catastrophic exit unknown exception";
-        res = ERROR_STATE; }
-    try { fred.done (); } catch (...) { }
+        res = CATASTROPHIC_STATE; }
+    try
+    {   fred.done (); }
+    catch (...)
+    {   res = CATASTROPHIC_STATE; }
+    try
+    {   const int c = ciao ();
+        if (res < c) res = c; }
+    catch (...)
+    {   res = CATASTROPHIC_STATE; }
     return res; };
+
+int main (int argc, char** argv)
+{   return ssc_main (argc, argv); }

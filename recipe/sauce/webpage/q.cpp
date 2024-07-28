@@ -41,8 +41,7 @@ bool d_q (q_entry& qe)
         ::boost::filesystem::path p (qe.dir_ -> get_disk_path ());
         if (! qe.page_.empty ()) p /= qe.page_;
         msg += p.string () + "\n";
-        lox l (lox_out);
-        ::std::cout << msg; }
+        outstr.console (msg); }
     try
     {   switch (qe.stage_)
         {   case st_scan :
@@ -80,7 +79,7 @@ bool d_q (q_entry& qe)
         case st_scan : ss << "scan "; break;
         case st_priority : ss << "prioritise "; break;
         case st_file : ss << "file "; break;
-        case st_folder : ss << "folder "; break;
+        case st_folder : ss << REPERTOIRE " "; break;
         default : ss << "?? "; break; }
     if (dir_.get () != nullptr) ss << dir_ -> get_site_path ();
     ss << page_;

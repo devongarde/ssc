@@ -90,3 +90,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define TLD_TEST            0x0000000000000008
 #define TLD_127001          0x0000000000000010
 #define TLD_UNOFFICIAL      0x0000000000000020
+
+// css_module
+#define MOD_UNSUPPORTED			0x0001
+#define MOD_LEVEL_1				0x0002
+#define MOD_LEVEL_2				0x0004
+#define MOD_LEVEL_3				0x0008
+#define MOD_LEVEL_4				0x0010
+#define MOD_LEVEL_5				0x0020
+#define MOD_LEVEL_6				0x0040
+#define MOD_ABANDONED			0x0080
+#define MOD_ON_OFF              0x0100			
+#define MOD_FUTURE 			    0x0200			
+
+#define MOD_LEVELS_12         ( MOD_LEVEL_1 | MOD_LEVEL_2 )
+#define MOD_LEVELS_123        ( MOD_LEVELS_12 | MOD_LEVEL_3 )
+#define MOD_LEVELS_34         ( MOD_LEVEL_3 | MOD_LEVEL_4 )
+#define MOD_LEVELS_345        ( MOD_LEVELS_34 | MOD_LEVEL_5 )
+#define MOD_LEVELS_3456       ( MOD_LEVELS_345 | MOD_LEVEL_6 )

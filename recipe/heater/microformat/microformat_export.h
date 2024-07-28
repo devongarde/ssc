@@ -44,5 +44,5 @@ public:
         ::std::swap (initiated_, m.initiated_); }
     bool empty () const noexcept { return (! initiated_); }
     bool write (nitpick& nits, const ::boost::filesystem::path& name);
-    void rel (const ::std::string& url, const ::std::string& hreflang, const ::std::string& media, const vstr_t& rels, const ::std::string& text, const ::std::string& title, const ::std::string& type);
+    void rel (nitpick& nits, const ::std::string& url, const ::std::string& hreflang, const ::std::string& media, const vstr_t& rels, const ::std::string& text, const ::std::string& title, const ::std::string& type);
     void item (const ::std::string& wo, const ::std::string& was); };

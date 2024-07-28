@@ -847,6 +847,13 @@ const nitname nitnames [] =
     { nit_tld, "tld" },
     { nit_no_set, "no_set" },
     { nit_bad_address, "bad_address" },
+    { nit_mf_export, "mf_export" },
+    { nit_config_attribute, "config_attribute" },
+    { nit_config_element, "config_element" },
+    { nit_config_lingo, "config_lingo" },
+    { nit_not_ssc, "not_ssc" },
+    { nit_cannot_replace, "cannot_replace" },
+    { nit_not_expected_content, "not_expected_content" },
 
     { nit_incompatible, "incompatible" },
 

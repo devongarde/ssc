@@ -76,7 +76,7 @@ bool check_constants (arguments& args, nitpick& nits, const int i)
 {   nitpick nets;
     if (! test_value < t_css_val_con > (nets, args.v_, args.t_.at (i).val_)) return false;
     nits.merge (nets);
-    if (args.v_.css_value () < 4)
+    if (args.v_.css_module (c_value_unit) < 4)
         nits.pick (nit_css_value, ed_css_value_4, "10.7 Numeric Constants", es_error, ec_css, quote (args.t_.at (i).val_), " requires CSS Values 4");
     return true; }
 
@@ -89,7 +89,7 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
     nits.merge (nuts);
     if ((cvf.flags () & CF_NO_PARAMS) == CF_NO_PARAMS)
     {   i = next_non_whitespace (args.t_, i, to);
-        if (context.css_ease ())
+        if (context.css_module (c_easing_function))
         {   e = cvf.get (); return true; }
         nits.pick (nit_css_ease, ed_css_ease, "", es_error, ec_css, quote (cvf.name ()), " requires CSS Easing Functions");
         return false; }
@@ -106,7 +106,7 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
                 case cvf_styleset :
                 case cvf_stylistic :
                 case cvf_swash :
-                    if (context.css_font () < 4)
+                    if (context.css_module (c_font) < 4)
                         nits.pick (nit_css_custom, es_error, ec_css, quote (cvf.name ()), " requires CSS Fonts 4");
                     else e = cvf.get ();
                     break;
@@ -116,25 +116,25 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
                 case cvf_lch :
                 case cvf_oklab :
                 case cvf_oklch :
-                    if (context.css_colour () < 4)
+                    if (context.css_module (c_colour) < 4)
                         nits.pick (nit_css_colour, es_error, ec_css, quote (cvf.name ()), " requires CSS Colour 4");
                     else e = cvf.get ();
                     break;
                 case cvf_colour_mix :
                 case cvf_device_cmyk :
-                    if (context.css_colour () < 5)
+                    if (context.css_module (c_colour) < 5)
                         nits.pick (nit_css_colour, es_error, ec_css, quote (cvf.name ()), " requires CSS Colour 5");
                     else e = cvf.get ();
                     break;
                 case cvf_format :
-                    if (context.css_font () < 3)
+                    if (context.css_module (c_font) < 3)
                         nits.pick (nit_css_colour, es_error, ec_css, quote (cvf.name ()), " requires CSS Font 3");
                     else e = cvf.get ();
                     break;
                 case cvf_hsl :
                 case cvf_hsla :
                 case cvf_rgba :
-                    if (context.css_colour () < 3)
+                    if (context.css_module (c_colour) < 3)
                         nits.pick (nit_css_colour, es_error, ec_css, quote (cvf.name ()), " requires CSS Colour 3");
                     else e = cvf.get ();
                     break;
@@ -143,17 +143,17 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
                     e = cvf.get ();
                     break;
                 case cvf_tech :
-                    if (context.css_font () < 4)
+                    if (context.css_module (c_font) < 4)
                         nits.pick (nit_css_version, es_error, ec_css, quote (cvf.name ()), " requires CSS Font 4");
                     else e = cvf.get ();
                     break;
                 case cvf_var :
-                    if (context.css_custom () < 3)
+                    if (context.css_module (c_custom_property) < 3)
                         nits.pick (nit_css_custom, es_error, ec_css, quote (cvf.name ()), " requires CSS Custom");
                     else e = cvf_var;
                     break;
                 default :
-                    switch (context.css_value ())
+                    switch (context.css_module (c_value_unit))
                     {   case 4 :
                             e = cvf.get ();
                             break;
@@ -168,7 +168,7 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
     return true; }
 
 bool test_cascade (const ::std::string& s, e_iiu& iiu)
-{   switch (context.css_cascade ())
+{   switch (context.css_module (c_cascade_inheritance))
     {   case 6 :
         case 5 :
             switch (s.at (0))
@@ -211,7 +211,7 @@ bool test_cascade (const ::std::string& s, e_iiu& iiu)
                 default: break; }
             break;
         default :
-            PRESUME (context.css_version () < css_3, __FILE__, __LINE__);
+            PRESUME ((context.css_version () < css_3) && (context.css_version () != css_bespoke), __FILE__, __LINE__);
             if (context.css_version () != css_1)
                 if (compare_no_case (s, "inherit"))
                 {   iiu = iiu_inherit;

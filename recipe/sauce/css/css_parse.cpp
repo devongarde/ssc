@@ -121,51 +121,51 @@ void breed (v_np& , vtt_t& t, const ::std::string::const_iterator , const ::std:
 
 void boast (vtt_t& t)
 {   if (context.tell (es_detail))
-    {   ::std::cout << "n: token parent/next/child text\n";
+    {   outstr.console ("n: token parent/next/child text\n");
         for (int i = 0; i < GSL_NARROW_CAST < int > (t.size ()); ++i)
-        {   ::std::cout << i << ": ";
+        {   outstr.console (" ", i, ": ");
             switch (t.at (i).t_)
-            {   case ct_root : ::std::cout << "root"; break;
-                case ct_whitespace : ::std::cout << "whitespace"; break;
-                case ct_comment : ::std::cout << "comment"; break;
-                case ct_string : ::std::cout << "string"; break;
-                case ct_identifier : ::std::cout << "identifier"; break;
-                case ct_keyword : ::std::cout << "keyword"; break;
-                case ct_number : ::std::cout << "number"; break;
-                case ct_ampersand : ::std::cout << "ampersand"; break;
-                case ct_at : ::std::cout << "at"; break;
-                case ct_comma : ::std::cout << "comma"; break;
-                case ct_bang : ::std::cout << "bang"; break;
-                case ct_dollar : ::std::cout << "dollar"; break;
-                case ct_semicolon : ::std::cout << "semicolon"; break;
-                case ct_slash : ::std::cout << "slash"; break;
-                case ct_coco : ::std::cout << "coco"; break;
-                case ct_colon : ::std::cout << "colon"; break;
-                case ct_hash : ::std::cout << "hash"; break;
-                case ct_hat : ::std::cout << "hat"; break;
-                case ct_dot : ::std::cout << "dot"; break;
-                case ct_dash : ::std::cout << "dash"; break;
-                case ct_splat : ::std::cout << "splat"; break;
-                case ct_eq : ::std::cout << "eq"; break;
-                case ct_gt : ::std::cout << "gt"; break;
-                case ct_gteq : ::std::cout << "gteq"; break;
-                case ct_gtgt : ::std::cout << "gtgt"; break;
-                case ct_lt : ::std::cout << "lt"; break;
-                case ct_lteq : ::std::cout << "lteq"; break;
-                case ct_bar : ::std::cout << "bar"; break;
-                case ct_barbar : ::std::cout << "barbar"; break;
-                case ct_plus : ::std::cout << "plus"; break;
-                case ct_squiggle : ::std::cout << "squiggle"; break;
-                case ct_curly_brac : ::std::cout << "curly_brac"; break;
-                case ct_curly_ket : ::std::cout << "curly_ket"; break;
-                case ct_square_brac : ::std::cout << "square_brac"; break;
-                case ct_square_ket : ::std::cout << "square_ket"; break;
-                case ct_round_brac : ::std::cout << "round_brac"; break;
-                case ct_round_ket : ::std::cout << "round_ket"; break;
-                case ct_eof : ::std::cout << "eof"; break;
-                case ct_error : ::std::cout << "error"; break;
-                default: ::std::cout << "unexpected " << t.at (i).t_; break; }
-            ::std::cout << " " << t.at (i).mum_ << "/" << t.at (i).next_ << "/" << t.at (i).child_ << " " << quote (t.at (i).val_) << "\n"; } } }
+            {   case ct_root : outstr.console ("root"); break;
+                case ct_whitespace : outstr.console ("whitespace"); break;
+                case ct_comment : outstr.console ("comment"); break;
+                case ct_string : outstr.console ("string"); break;
+                case ct_identifier : outstr.console ("identifier"); break;
+                case ct_keyword : outstr.console ("keyword"); break;
+                case ct_number : outstr.console ("number"); break;
+                case ct_ampersand : outstr.console ("ampersand"); break;
+                case ct_at : outstr.console ("at"); break;
+                case ct_comma : outstr.console ("comma"); break;
+                case ct_bang : outstr.console ("bang"); break;
+                case ct_dollar : outstr.console ("dollar"); break;
+                case ct_semicolon : outstr.console ("semicolon"); break;
+                case ct_slash : outstr.console ("slash"); break;
+                case ct_coco : outstr.console ("coco"); break;
+                case ct_colon : outstr.console ("colon"); break;
+                case ct_hash : outstr.console ("hash"); break;
+                case ct_hat : outstr.console ("hat"); break;
+                case ct_dot : outstr.console ("dot"); break;
+                case ct_dash : outstr.console ("dash"); break;
+                case ct_splat : outstr.console ("splat"); break;
+                case ct_eq : outstr.console ("eq"); break;
+                case ct_gt : outstr.console ("gt"); break;
+                case ct_gteq : outstr.console ("gteq"); break;
+                case ct_gtgt : outstr.console ("gtgt"); break;
+                case ct_lt : outstr.console ("lt"); break;
+                case ct_lteq : outstr.console ("lteq"); break;
+                case ct_bar : outstr.console ("bar"); break;
+                case ct_barbar : outstr.console ("barbar"); break;
+                case ct_plus : outstr.console ("plus"); break;
+                case ct_squiggle : outstr.console ("squiggle"); break;
+                case ct_curly_brac : outstr.console ("curly_brac"); break;
+                case ct_curly_ket : outstr.console ("curly_ket"); break;
+                case ct_square_brac : outstr.console ("square_brac"); break;
+                case ct_square_ket : outstr.console ("square_ket"); break;
+                case ct_round_brac : outstr.console ("round_brac"); break;
+                case ct_round_ket : outstr.console ("round_ket"); break;
+                case ct_eof : outstr.console ("eof"); break;
+                case ct_error : outstr.console ("error"); break;
+                default: outstr.console ("unexpected ", t.at (i).t_); break; }
+            outstr.console (" ", t.at (i).mum_, "/", t.at (i).next_, "/", t.at (i).child_, " ", quote (t.at (i).val_), "\n"); } } }
 
 bool css::parse (const ::std::string& content, const bool x, const bool mdm)
 {   if (invalid ()) return false;
@@ -261,7 +261,7 @@ bool css::parse (const ::std::string& content, const bool x, const bool mdm)
                            break;
                 case ',' : bonk (args_.t_, ct_comma, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
                 case ':' : if (! anticipate (i, e, "::")) bonk (args_.t_, ct_colon, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
-                           else if (args_.v_.css_selector () >= 3) bonk (args_.t_, ct_coco, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
+                           else if (args_.v_.css_module (c_selector) >= 3) bonk (args_.t_, ct_coco, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                            else args_.t_.at (args_.t_.size () - 1).nits_.pick (nit_css_version, ed_css_selectors_3, "2. Selectors", es_error, ec_css, ":: requires CSS Selector 3 or better");
                            break;
                 case ';' : bonk (args_.t_, ct_semicolon, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
@@ -273,7 +273,7 @@ bool css::parse (const ::std::string& content, const bool x, const bool mdm)
                                 bonk (args_.t_, ct_gteq, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                            else if (! anticipate (i, e, ">>"))
                                 bonk (args_.t_, ct_gt, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
-                           else if (context.html_ver ().css_cascade () >= 6)
+                           else if (context.html_ver ().css_module (c_cascade_inheritance) >= 6)
                                 bonk (args_.t_, ct_gtgt, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                            else args_.t_.at (args_.t_.size () - 1).nits_.pick (nit_css_version, ed_css_cascade_6, "2.6. Scoped Descendant Combinator", es_error, ec_css, ">> requires CSS Cascade 6");
                            break;
@@ -289,11 +289,11 @@ bool css::parse (const ::std::string& content, const bool x, const bool mdm)
                 case '~' : bonk (args_.t_, ct_squiggle, line_, v, hex, c, commented, sgml_cmt, xml_cmt); break;
                 case '|' : if (! anticipate (i, e, "||"))
                                bonk (args_.t_, ct_bar, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
-                           else if (context.html_ver ().css_selector () >= 4)
+                           else if (context.html_ver ().css_module (c_selector) >= 4)
                                bonk (args_.t_, ct_barbar, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                            else args_.t_.at (args_.t_.size () - 1).nits_.pick (nit_css_version, ed_css_selectors_4, "2. Selectors Overview", es_error, ec_css, "|| requires CSS Selector 4");
                            break;
-                case '&' : if ((context.html_ver ().css_cascade () >= 6) || ((context.html_ver ().css_view () >= 3)))
+                case '&' : if ((context.html_ver ().css_module (c_cascade_inheritance) >= 6) || ((context.html_ver ().css_module (c_view_transition) >= 3)))
                                bonk (args_.t_, ct_ampersand, line_, v, hex, c, commented, sgml_cmt, xml_cmt);
                            else args_.t_.at (args_.t_.size () - 1).nits_.pick (nit_css_version, ed_css_cascade_6, "2.5.3. Scoped Style Rules", es_error, ec_css, "& requires CSS Cascade 6 or CSS Nesting");
                            break;

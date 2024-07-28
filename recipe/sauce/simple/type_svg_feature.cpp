@@ -117,8 +117,11 @@ struct symbol_entry < html_version, e_svg_feature > svg_feature_symbol_table [] 
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, HTTP_W3 "/Graphics/SVG/feature/1.2/#Video", sf_video2 },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, HTTP_W3 "/Graphics/SVG/feature/1.2/#XlinkAttribute", sf_xlinkattribute2 } };
 
+::std::size_t svg_feature_count ()
+{   return sizeof (svg_feature_symbol_table) / sizeof (symbol_entry < html_version, e_svg_feature >); }
+
 void svg_feature_init (nitpick& nits)
-{   type_master < t_svg_feature > :: init (nits, svg_feature_symbol_table, sizeof (svg_feature_symbol_table) / sizeof (symbol_entry < html_version, e_svg_feature >)); }
+{   type_master < t_svg_feature > :: init (nits, svg_feature_symbol_table, svg_feature_count ()); }
 
 bool invalid_id_result (nitpick& nits, const html_version& , const ::std::string& s, const element* const e)
 {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);

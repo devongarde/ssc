@@ -2,7 +2,6 @@
 
 PASS ../toast/css/3-overflow/css-4.css
 0 html
-1 unrecognised_value
 
 PASS ../toast/css/3-overflow/css-5.css
 0 html

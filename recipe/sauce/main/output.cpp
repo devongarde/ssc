@@ -22,6 +22,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/output.h"
 #include "main/context.h"
 #include "parser/text.h"
+#include "feedback/nitpick.h"
+#include "feedback/nitout.h"
+#include "coop/lox.h"
+#include "gui/gui-app.h"
 
 output_streams_t outstr;
 
@@ -37,3 +41,29 @@ void output_streams_t::init (nitpick& nits, const ::std::string& s)
 ::std::string output_streams_t::ensane (const ::std::string& s) const
 {   if (context.cgi ()) return enwotsit (s);
     return s; }
+
+void output_streams_t::out (const ::std::string& s) const
+{   lox l (lox_out);
+    if (! invalid ()) *fos_ << s;
+#ifndef WX
+    else
+#else // WX
+    if (wx_) app -> append (ensane (s));
+    else if (invalid ())
+#endif // WX
+        ::std::cout << s; }
+
+void output_streams_t::console (const ::std::string& s) const
+{   lox l (lox_out);
+#ifdef WX
+    if (wx_) app -> append (ensane (s)); else
+#endif // WX
+    ::std::cout << s; }
+
+void output_streams_t::err (const ::std::string& s) const
+{   lox l (lox_out);
+    if (fos_) *fos_ << ensane (s);
+#ifdef WX
+    else if (wx_) app -> append (ensane (s));
+#endif // WX
+    else ::std::cout << ensane (s); }

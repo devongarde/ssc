@@ -1620,7 +1620,7 @@ wotsit_t wotsit_table [] =
     { { HTML_PLUS }, { HTML_UNDEF }, u8"perp" },
     { { HTML_JAN05 }, { HTML_UNDEF }, u8"pertenk" },
     { { HTML_JAN05 }, { HTML_UNDEF }, u8"pfr" },
-    { { HTML_4_0 }, { HTML_UNDEF }, u8"phi" },
+    { { HTML_PLUS }, { HTML_UNDEF }, u8"phi" },
     { { HTML_PLUS }, { HTML_PLUS }, u8"phis" },
     { { HTML_PLUS }, { HTML_UNDEF }, u8"phiv" },
     { { HTML_JAN05 }, { HTML_UNDEF }, u8"phmmat" },

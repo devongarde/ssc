@@ -966,6 +966,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_JUL17 }, { HTML_DEC17 }, "workertype", a_workertype },
     { { HTML_PLUS }, { HTML_UNDEF }, "wrap", a_wrap },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, "writing-mode", a_writing_mode, ns_default, AF_SVG2_PROPERTY },
+    { { HTML_APR24 }, { HTML_UNDEF }, "writingsuggestions", a_writingsuggestions },
     { { HTML_3_0, HV_NOT32, HE_ANIM }, { HTML_UNDEF }, "x", a_x },
     { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "x1", a_x1 },
     { { HTML_SVG10, 0, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "x2", a_x2 },
@@ -1031,26 +1032,28 @@ e_attribute attr::parse (nitpick& nits, const html_version& v, const namespaces_
         else return a.get (); }
     return a_unknown; }
 
-void add_attributes (const vstr_t& v)
+void add_attributes (nitpick& nits, const vstr_t& v)
 {   nitpick nuts;
     for (auto e : v)
     {   vstr_t args (split_by_charset (e, ","));
         ::std::size_t x = args.size ();
         if (x > 4)
         {   x = 4;
-            outstr.err ("ignoring extra arguments for '", args.at (0), "'\n"); }
+            nits.pick (nit_config_attribute, es_warning, ec_init, "ignoring extra arguments for '", args.at (0), "'\n"); }
         e_namespace ns = ns_default;
         flags_t flags = NOFLAGS, flags2 = NOFLAGS;
         switch (x)
         {   case 4 :
-                flags2 = lexical < flags_t > :: cast (args.at (3));
+                if (! args.at (3).empty ()) flags2 = lexical < flags_t > :: cast (args.at (3));
                 FALLTHROUGH;
             case 3 :
-                flags = lexical < flags_t > :: cast (args.at (2));
+                if (! args.at (2).empty ()) flags = lexical < flags_t > :: cast (args.at (2));
                 FALLTHROUGH;
             case 2 :
-                ns = examine_value < t_namespace > (nuts, context.html_ver (), args.at (1));
+                if (! args.at (1).empty ()) ns = examine_value < t_namespace > (nuts, context.html_ver (), args.at (1));
                 FALLTHROUGH;
             case 1 :
-                attr::extend (::boost::to_lower_copy (args.at (0)), a_custom, ns, context.html_ver (), html_0, flags, flags2); break;
+                if (args.at (0).empty ()) nits.pick (nit_config_attribute, es_error, ec_init, "no attribute name in '", e, "'\n");
+                else attr::extend (::boost::to_lower_copy (args.at (0)), a_custom, ns, context.html_ver (), html_0, flags, flags2);
+                break;
             default : break; } } }

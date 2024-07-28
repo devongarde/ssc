@@ -1,0 +1,128 @@
+<ul>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="about"/>
+      <param name="Local" value="about.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="configuration"/>
+      <param name="Local" value="config.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="corpus"/>
+      <param name="Local" value="corpus.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="css"/>
+      <param name="Local" value="css.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="file"/>
+      <param name="Local" value="file.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="general"/>
+      <param name="Local" value="general.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="HTML"/>
+      <param name="Local" value="html.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="introduction"/>
+      <param name="Local" value="index.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="lynx"/>
+      <param name="Local" value="lynx.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="mathml"/>
+      <param name="Local" value="mathml.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="microformats"/>
+      <param name="Local" value="mf.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="nits"/>
+      <param name="Local" value="nits.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="ontology"/>
+      <param name="Local" value="ontology.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="shadow"/>
+      <param name="Local" value="shadow.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="site"/>
+      <param name="Local" value="site.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="snippet"/>
+      <param name="Local" value="snippet.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="spell"/>
+      <param name="Local" value="spell.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="stats"/>
+      <param name="Local" value="stats.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="svg"/>
+      <param name="Local" value="svg.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="validation"/>
+      <param name="Local" value="validation.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="wizzard"/>
+      <param name="Local" value="wizzard.html"/>
+    </object>
+  </li>
+</ul>

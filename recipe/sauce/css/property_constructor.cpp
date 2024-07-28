@@ -67,7 +67,7 @@ property_v_ptr make_property_v_ptr (arguments& args, const int start, const int 
 {   PRESUME ((i >= 0) && (i < GSL_NARROW_CAST < int > (args.t_.size ())), __FILE__, __LINE__);
     ::std::string n (args.t_.at (i).val_);
     if ((n.length () >= 2) && (n.substr (0, 2) == "--"))
-    {   if (! args.v_.css_custom ())
+    {   if (! args.v_.css_module (c_custom_property))
         {   nits.pick (nit_css_custom, es_error, ec_css, "Custom properties, such as ", n, ", require CSS Custom");
             return make_property_v_ptr (args, start, to, nits, ec_unknown, value, t); }   
         if (n.length () == 2)

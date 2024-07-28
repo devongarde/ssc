@@ -86,7 +86,7 @@ typedef microformat < html_class, h_resume, c_microformat, ela_ok, ela_ok, affil
 typedef microformat < html_class, h_review, c_microformat, ela_ok, ela_ok, author_at, best_at, category_at, content_et, item_at, location_at, name_at, published_at,
                         rating_at, summary_at, syndication_at, url_at, worst_at > mf_review;
 
-// non-MF rels need stripping out
+// non-MF rels too
 typedef microformat < rel, r_about, c_generic, ela_ok, ela_ok, about_rt > mf_about;
 typedef microformat < rel, r_accessibility, c_draft, ela_ok, ela_ok, accessibility_rt > mf_accessibility;
 typedef microformat < rel, r_acquaintance, c_xfn, ela_no, ela_external, acquaintance_rt > mf_acquaintance;
@@ -738,8 +738,8 @@ typedef ::std::shared_ptr < mf_error > error_ptr;
     kin_ptr, licence_ptr, map_ptr, me_ptr, member_ptr, met_ptr, micropub_ptr, muse_ptr, neighbour_ptr, next_ptr, nofollow_ptr, \
     noopener_ptr, noreferrer_ptr, parent_ptr, payment_ptr, pingback_ptr, preconnect_ptr, prefetch_ptr, preload_ptr, \
     prerender_ptr, prev_ptr, preview_ptr, pronunciation_ptr, search_ptr, section_ptr, sibling_ptr, sidebar_ptr, spouse_ptr, start_ptr, stylesheet_ptr, \
-    subsection_ptr, supercedes_ptr, sweetheart_ptr, tag_ptr, toc_ptr, top_ptr, transformation_ptr, vcs_git_ptr, vcs_svn_ptr, webmention_ptr, \
-    banner_ptr, begin_ptr, biblioentry_ptr, citation_ptr, definition_ptr, disclaimer_ptr, \
+    subsection_ptr, supercedes_ptr, sweetheart_ptr, tag_ptr, toc_ptr, top_ptr, transformation_ptr, vcs_git_ptr, vcs_svn_ptr, \
+    webmention_ptr, banner_ptr, begin_ptr, biblioentry_ptr, citation_ptr, definition_ptr, disclaimer_ptr, \
     editor_ptr, end_ptr, navigate_ptr, origin_ptr, pointer_ptr, trademark_ptr, translation_ptr, urc_ptr, \
     about_ptr, archives_ptr, blocked_by_ptr, cite_as_ptr, collection_ptr, convertedfrom_ptr, \
     create_form_ptr, current_ptr, describedby_ptr, describes_ptr, duplicate_ptr, edit_ptr, edit_form_ptr, \

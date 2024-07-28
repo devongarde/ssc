@@ -27,4 +27,4 @@ void elements_init (nitpick& nits);
 attribute_bitset element_attributes (const e_element e);
 bool has_attribute (const e_element e, const e_attribute a);
 void element_add_attribute (const e_element e, const e_attribute a);
-void add_element_attributes (const vstr_t& v);
+void add_element_attributes (nitpick& nits, const vstr_t& v);

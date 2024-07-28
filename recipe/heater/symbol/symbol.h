@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 ::std::string namespace_name (const ident_t ns);
 ::std::string namespace_name (const e_ontology ns);
+::std::string namespace_name (const e_nit_macro ns);
 
 // VALUE is presumed to be an enum or an int
 template < class V, typename VALUE, typename CATEGORY = ident_t, CATEGORY INIT = 0, class LC = sz_true > class symbol : public enlc < LC >
@@ -79,9 +80,12 @@ public:
     static ::std::string value_list (const V& v)
     {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
         return table_ -> value_list (v); }
-    static ::std::size_t value_count (const V& v)
+    static ::std::size_t value_count ()
     {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
-        return table_ -> value_count (v); }
+        return table_ -> value_count (); }
+    static ::std::string base_name (const VALUE x)
+    {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
+        return table_ -> base_name (x); }
     static ::std::string name (const VALUE x, const bool ns_req = false)
     {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
         return table_ -> name (x, ns_req); }
@@ -129,7 +133,7 @@ public:
     operator VALUE () const noexcept { return get (); }
     bool unknown () const noexcept { return unknown_; }
     bool required () const { return first_.required (); }
-    ::std::string name (const bool ns_req = false, const bool colonise = true) const
+    ::std::string base_name () const
     {   if (unknown_) return "(unknown)";
         VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
         ::std::string res (table_ -> name (get ()));
@@ -137,10 +141,18 @@ public:
         {   res = "(";
             res += ::boost::lexical_cast < ::std::string > (value_);
             res += ")"; }
-        if (ns_req || (ns_ != ns_default))
-            if (colonise) res = namespace_name (ns_) + ":" + res;
-            else res = namespace_name (ns_) + res;
         return res; }
+    template < typename T, T I > ::std::string name (const bool  = false, const bool  = true) const
+    {   return base_name (); }
+    template < > ::std::string name < e_namespace, ns_default > (const bool ns_req, const bool colonise) const
+    {   ::std::string res (base_name ());
+        if (! unknown_)
+            if (ns_req || (ns_ != ns_default))
+                if (colonise) res = namespace_name (ns_) + ":" + res;
+                else res = namespace_name (ns_) + res;
+        return res; }
+    ::std::string name (const bool ns_req = false, const bool colonise = true) const
+    {   return name < CATEGORY, INIT > (ns_req, colonise); }
     static VALUE starts_with (const ::std::string& s, ::std::string::size_type* ends_at = nullptr)
     {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
         return table_ -> template starts_with < VALUE> (s, ends_at); }

@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "type/type.h"
 
-extern void type_name_init ();
+extern void type_name_init (nitpick& nits);
 
 void types_init (nitpick& nits)
 {   void charset_init (nitpick& nits);
@@ -41,7 +41,7 @@ void types_init (nitpick& nits)
     void sgml_init (nitpick& nits);
     void enum_init (nitpick& nits);
 
-    type_name_init ();
+    type_name_init (nits);
 
     charset_init (nits);
     class_init (nits);

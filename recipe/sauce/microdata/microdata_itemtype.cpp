@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 itemtype_index make_itemtype_index (const e_ontology_type p)
 {   PRESUME (p <= ont_illegal, __FILE__, __LINE__);
-    return static_cast < itemtype_index> (p) + (static_cast < itemtype_index> (itemtype_schema) << uint32_category_shift); }
+    return static_cast < itemtype_index> (p) + (static_cast < itemtype_index> (itemtype_ontology) << uint32_category_shift); }
 
 itemtype_index make_itemtype_index (const e_property p)
 {   PRESUME (p <= first_illegal, __FILE__, __LINE__);
@@ -53,7 +53,16 @@ itemtype_index find_itemtype_index (nitpick& nits, const html_version& v, const 
         {   case itemtype_microformat :
             case itemtype_rel :
                 return type_master < t_class > :: name (static_cast < e_class > (ndx_item (ndx)));
-            case itemtype_schema :
+            case itemtype_ontology :
                 return sch :: name (static_cast < e_ontology_type > (ndx_item (ndx)), true);
             default : break; }
     return "untyped"; }
+
+#ifdef DEBUG
+::std::string rpt_vit (const vit_t& v, const char sep)
+{   ::std::string res;
+    for (auto ndx : v)
+    {   if (! res.empty ()) res += sep;
+        res += itemtype_index_name (ndx); }
+    return res; }
+#endif // DEBUG

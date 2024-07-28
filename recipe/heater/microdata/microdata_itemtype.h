@@ -37,3 +37,6 @@ CONSTEXPR inline e_ontology_type type_itself (const itemtype_index ii) noexcept
 
 itemtype_index find_itemtype_index (nitpick& nits, const html_version& v, const ::std::string& name, const bool propped = true);
 ::std::string itemtype_index_name (const itemtype_index ndx);
+#ifdef DEBUG
+::std::string rpt_vit (const vit_t& v, const char sep = ',');
+#endif // DEBUG

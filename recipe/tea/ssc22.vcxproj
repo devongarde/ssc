@@ -10,6 +10,10 @@
       <Configuration>Debug</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|ARM64">
       <Configuration>Release</Configuration>
       <Platform>ARM64</Platform>
@@ -17,6 +21,10 @@
     <ProjectConfiguration Include="Release|x64">
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +141,7 @@
     <ClInclude Include="..\heater\main\abort.h" />
     <ClInclude Include="..\heater\main\options.h" />
     <ClInclude Include="..\heater\main\output.h" />
+    <ClInclude Include="..\heater\main\ssc.h" />
     <ClInclude Include="..\heater\main\standard.h" />
     <ClInclude Include="..\heater\main\version.h" />
     <ClInclude Include="..\heater\microdata\microdata_export.h" />
@@ -412,10 +421,18 @@
     <ClCompile Include="..\sauce\main\output.cpp" />
     <ClCompile Include="..\sauce\main\ssc.cpp" />
     <ClCompile Include="..\sauce\main\standard.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">main\standard.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">main\standard.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">main\standard.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">main\standard.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">main\standard.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">main\standard.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="..\sauce\main\version.cpp" />
     <ClCompile Include="..\sauce\microdata\microdata_export.cpp" />
@@ -507,7 +524,7 @@
     <ClCompile Include="..\sauce\webpage\root.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\port\macports\portfile" />
+    <None Include="..\port\macports\Portfile" />
     <None Include="..\port\openbsd\Makefile" />
     <None Include="..\port\openbsd\pkg\DESCR" />
     <None Include="..\port\openbsd\pkg\PLIST" />
@@ -516,6 +533,8 @@
     <None Include="..\toast\conf\html\index.html" />
     <None Include="..\toast\conf\httpd\httpd.conf" />
     <None Include="..\toast\conf\httpd\httpd.spec" />
+    <None Include="..\toast\conf\httpd\pre.bat" />
+    <None Include="..\toast\conf\httpd\pre.sh" />
     <None Include="..\toast\conf\other\macos-obsd.conf" />
     <None Include="..\toast\conf\other\win-wpt.conf" />
     <None Include="..\toast\conf\other\wpt.conf" />
@@ -3381,6 +3400,281 @@
     <None Include="..\toast\living\apr23\ww-7.html" />
     <None Include="..\toast\living\apr23\ww-8.html" />
     <None Include="..\toast\living\apr23\ww-9.html" />
+    <None Include="..\toast\living\apr24\404.html" />
+    <None Include="..\toast\living\apr24\a-1.html" />
+    <None Include="..\toast\living\apr24\a.html" />
+    <None Include="..\toast\living\apr24\abbr.html" />
+    <None Include="..\toast\living\apr24\accesskey.html" />
+    <None Include="..\toast\living\apr24\address.html" />
+    <None Include="..\toast\living\apr24\aks.html" />
+    <None Include="..\toast\living\apr24\article-1.html" />
+    <None Include="..\toast\living\apr24\article-2.html" />
+    <None Include="..\toast\living\apr24\article-3.html" />
+    <None Include="..\toast\living\apr24\aside-1.html" />
+    <None Include="..\toast\living\apr24\aside-2.html" />
+    <None Include="..\toast\living\apr24\aside-3.html" />
+    <None Include="..\toast\living\apr24\autofocus.html" />
+    <None Include="..\toast\living\apr24\b-1.html" />
+    <None Include="..\toast\living\apr24\b.html" />
+    <None Include="..\toast\living\apr24\base.html" />
+    <None Include="..\toast\living\apr24\bdi.html" />
+    <None Include="..\toast\living\apr24\bidi.css" />
+    <None Include="..\toast\living\apr24\blockquote.html" />
+    <None Include="..\toast\living\apr24\body-1.html" />
+    <None Include="..\toast\living\apr24\body-2.html" />
+    <None Include="..\toast\living\apr24\br.html" />
+    <None Include="..\toast\living\apr24\browsing-1.html" />
+    <None Include="..\toast\living\apr24\browsing-2.html" />
+    <None Include="..\toast\living\apr24\browsing-3.html" />
+    <None Include="..\toast\living\apr24\browsing-4.html" />
+    <None Include="..\toast\living\apr24\button.html" />
+    <None Include="..\toast\living\apr24\canvas1.html" />
+    <None Include="..\toast\living\apr24\canvas2.html" />
+    <None Include="..\toast\living\apr24\canvas3.html" />
+    <None Include="..\toast\living\apr24\canvas4.html" />
+    <None Include="..\toast\living\apr24\canvas5.html" />
+    <None Include="..\toast\living\apr24\caption.html" />
+    <None Include="..\toast\living\apr24\cdata.html" />
+    <None Include="..\toast\living\apr24\cite.html" />
+    <None Include="..\toast\living\apr24\cm.html" />
+    <None Include="..\toast\living\apr24\code.html" />
+    <None Include="..\toast\living\apr24\commands.html" />
+    <None Include="..\toast\living\apr24\conformance.html" />
+    <None Include="..\toast\living\apr24\custom-1.html" />
+    <None Include="..\toast\living\apr24\custom-2.html" />
+    <None Include="..\toast\living\apr24\custom-3.html" />
+    <None Include="..\toast\living\apr24\custom-4.html" />
+    <None Include="..\toast\living\apr24\data.html" />
+    <None Include="..\toast\living\apr24\datalist.html" />
+    <None Include="..\toast\living\apr24\datamodel.html" />
+    <None Include="..\toast\living\apr24\dd.html" />
+    <None Include="..\toast\living\apr24\del.html" />
+    <None Include="..\toast\living\apr24\details.css" />
+    <None Include="..\toast\living\apr24\details.html" />
+    <None Include="..\toast\living\apr24\dfn.html" />
+    <None Include="..\toast\living\apr24\dialogue.html" />
+    <None Include="..\toast\living\apr24\div.html" />
+    <None Include="..\toast\living\apr24\dl.html" />
+    <None Include="..\toast\living\apr24\dragondrops.html" />
+    <None Include="..\toast\living\apr24\dt.html" />
+    <None Include="..\toast\living\apr24\editing-1.html" />
+    <None Include="..\toast\living\apr24\editing-2.html" />
+    <None Include="..\toast\living\apr24\el.html" />
+    <None Include="..\toast\living\apr24\em.html" />
+    <None Include="..\toast\living\apr24\ep.html" />
+    <None Include="..\toast\living\apr24\et.html" />
+    <None Include="..\toast\living\apr24\extra.html" />
+    <None Include="..\toast\living\apr24\fad-a.html" />
+    <None Include="..\toast\living\apr24\fad-b.html" />
+    <None Include="..\toast\living\apr24\fieldset.css" />
+    <None Include="..\toast\living\apr24\fieldset.html" />
+    <None Include="..\toast\living\apr24\figcaption.html" />
+    <None Include="..\toast\living\apr24\figure-1.html" />
+    <None Include="..\toast\living\apr24\figure-2.html" />
+    <None Include="..\toast\living\apr24\footer-1.html" />
+    <None Include="..\toast\living\apr24\footer-2.html" />
+    <None Include="..\toast\living\apr24\footer-3.html" />
+    <None Include="..\toast\living\apr24\footer-4.html" />
+    <None Include="..\toast\living\apr24\form.css" />
+    <None Include="..\toast\living\apr24\form.html" />
+    <None Include="..\toast\living\apr24\formex.html" />
+    <None Include="..\toast\living\apr24\forms.html" />
+    <None Include="..\toast\living\apr24\h-1.html" />
+    <None Include="..\toast\living\apr24\h-10.html" />
+    <None Include="..\toast\living\apr24\h-11.html" />
+    <None Include="..\toast\living\apr24\h-2.html" />
+    <None Include="..\toast\living\apr24\h-3.html" />
+    <None Include="..\toast\living\apr24\h-4.html" />
+    <None Include="..\toast\living\apr24\h-5.html" />
+    <None Include="..\toast\living\apr24\h-6.html" />
+    <None Include="..\toast\living\apr24\h-7.html" />
+    <None Include="..\toast\living\apr24\h-8.html" />
+    <None Include="..\toast\living\apr24\h-9.html" />
+    <None Include="..\toast\living\apr24\head-1.html" />
+    <None Include="..\toast\living\apr24\head-2.html" />
+    <None Include="..\toast\living\apr24\header-1.html" />
+    <None Include="..\toast\living\apr24\header-2.html" />
+    <None Include="..\toast\living\apr24\header-3.html" />
+    <None Include="..\toast\living\apr24\hgroup-1.html" />
+    <None Include="..\toast\living\apr24\hgroup-2.html" />
+    <None Include="..\toast\living\apr24\hidden.html" />
+    <None Include="..\toast\living\apr24\history-1.html" />
+    <None Include="..\toast\living\apr24\history-2.html" />
+    <None Include="..\toast\living\apr24\history-4.html" />
+    <None Include="..\toast\living\apr24\hr.css" />
+    <None Include="..\toast\living\apr24\hr.html" />
+    <None Include="..\toast\living\apr24\hs-1.html" />
+    <None Include="..\toast\living\apr24\hs-10.html" />
+    <None Include="..\toast\living\apr24\hs-11.html" />
+    <None Include="..\toast\living\apr24\hs-12.html" />
+    <None Include="..\toast\living\apr24\hs-13.html" />
+    <None Include="..\toast\living\apr24\hs-2.html" />
+    <None Include="..\toast\living\apr24\hs-3.html" />
+    <None Include="..\toast\living\apr24\hs-4.html" />
+    <None Include="..\toast\living\apr24\hs-5.html" />
+    <None Include="..\toast\living\apr24\hs-6.html" />
+    <None Include="..\toast\living\apr24\hs-7.html" />
+    <None Include="..\toast\living\apr24\hs-8.html" />
+    <None Include="..\toast\living\apr24\hs-9.html" />
+    <None Include="..\toast\living\apr24\html.html" />
+    <None Include="..\toast\living\apr24\html4.css" />
+    <None Include="..\toast\living\apr24\i.html" />
+    <None Include="..\toast\living\apr24\idioms.html" />
+    <None Include="..\toast\living\apr24\iframe.html" />
+    <None Include="..\toast\living\apr24\im.html" />
+    <None Include="..\toast\living\apr24\imedia.html" />
+    <None Include="..\toast\living\apr24\img.html" />
+    <None Include="..\toast\living\apr24\index.html" />
+    <None Include="..\toast\living\apr24\inert.html" />
+    <None Include="..\toast\living\apr24\input.html" />
+    <None Include="..\toast\living\apr24\ins.html" />
+    <None Include="..\toast\living\apr24\intro-1.html" />
+    <None Include="..\toast\living\apr24\intro-2.html" />
+    <None Include="..\toast\living\apr24\intro-3.html" />
+    <None Include="..\toast\living\apr24\json.html" />
+    <None Include="..\toast\living\apr24\kbd.html" />
+    <None Include="..\toast\living\apr24\label.html" />
+    <None Include="..\toast\living\apr24\li.html" />
+    <None Include="..\toast\living\apr24\link.html" />
+    <None Include="..\toast\living\apr24\links-alternate.html" />
+    <None Include="..\toast\living\apr24\links-bookmark.html" />
+    <None Include="..\toast\living\apr24\links-help.html" />
+    <None Include="..\toast\living\apr24\links-icon.html" />
+    <None Include="..\toast\living\apr24\links-licence.html" />
+    <None Include="..\toast\living\apr24\links-modulepreload.html" />
+    <None Include="..\toast\living\apr24\links-noopener.html" />
+    <None Include="..\toast\living\apr24\links-noreferrer.html" />
+    <None Include="..\toast\living\apr24\links-opener.html" />
+    <None Include="..\toast\living\apr24\links-tag.html" />
+    <None Include="..\toast\living\apr24\links-tag2.html" />
+    <None Include="..\toast\living\apr24\lists.css" />
+    <None Include="..\toast\living\apr24\living.conf" />
+    <None Include="..\toast\living\apr24\living.spec" />
+    <None Include="..\toast\living\apr24\lwp.html" />
+    <None Include="..\toast\living\apr24\main-1.html" />
+    <None Include="..\toast\living\apr24\main-2.html" />
+    <None Include="..\toast\living\apr24\map.html" />
+    <None Include="..\toast\living\apr24\mark.html" />
+    <None Include="..\toast\living\apr24\marquee.css" />
+    <None Include="..\toast\living\apr24\math.html" />
+    <None Include="..\toast\living\apr24\me.html" />
+    <None Include="..\toast\living\apr24\menu.html" />
+    <None Include="..\toast\living\apr24\meta-1.html" />
+    <None Include="..\toast\living\apr24\meta-2.html" />
+    <None Include="..\toast\living\apr24\meter.css" />
+    <None Include="..\toast\living\apr24\meter.html" />
+    <None Include="..\toast\living\apr24\microdata-1.html" />
+    <None Include="..\toast\living\apr24\microdata-2.html" />
+    <None Include="..\toast\living\apr24\microsyntax.html" />
+    <None Include="..\toast\living\apr24\nav-1.html" />
+    <None Include="..\toast\living\apr24\nav-2.html" />
+    <None Include="..\toast\living\apr24\nav-3.html" />
+    <None Include="..\toast\living\apr24\nav-4.html" />
+    <None Include="..\toast\living\apr24\navapi.html" />
+    <None Include="..\toast\living\apr24\noscript-1.html" />
+    <None Include="..\toast\living\apr24\noscript-2.html" />
+    <None Include="..\toast\living\apr24\noscript-3.html" />
+    <None Include="..\toast\living\apr24\object.html" />
+    <None Include="..\toast\living\apr24\ol.html" />
+    <None Include="..\toast\living\apr24\optgroup.html" />
+    <None Include="..\toast\living\apr24\output.html" />
+    <None Include="..\toast\living\apr24\p.html" />
+    <None Include="..\toast\living\apr24\phrasing.css" />
+    <None Include="..\toast\living\apr24\popover.html" />
+    <None Include="..\toast\living\apr24\popovertarget.html" />
+    <None Include="..\toast\living\apr24\pre.html" />
+    <None Include="..\toast\living\apr24\progress.css" />
+    <None Include="..\toast\living\apr24\progress.html" />
+    <None Include="..\toast\living\apr24\q.html" />
+    <None Include="..\toast\living\apr24\replaced.css" />
+    <None Include="..\toast\living\apr24\rp.html" />
+    <None Include="..\toast\living\apr24\ruby.html" />
+    <None Include="..\toast\living\apr24\s.html" />
+    <None Include="..\toast\living\apr24\samp.html" />
+    <None Include="..\toast\living\apr24\script.html" />
+    <None Include="..\toast\living\apr24\scripting-1.html" />
+    <None Include="..\toast\living\apr24\scripting-2.html" />
+    <None Include="..\toast\living\apr24\scripting-3.html" />
+    <None Include="..\toast\living\apr24\scripting-4.html" />
+    <None Include="..\toast\living\apr24\scripting-5.html" />
+    <None Include="..\toast\living\apr24\scripting-6.html" />
+    <None Include="..\toast\living\apr24\scripting-7.html" />
+    <None Include="..\toast\living\apr24\scripting-8.html" />
+    <None Include="..\toast\living\apr24\scripting-9.html" />
+    <None Include="..\toast\living\apr24\search-1.html" />
+    <None Include="..\toast\living\apr24\search-2.html" />
+    <None Include="..\toast\living\apr24\section-1.html" />
+    <None Include="..\toast\living\apr24\section-2.html" />
+    <None Include="..\toast\living\apr24\section-3.html" />
+    <None Include="..\toast\living\apr24\sections.css" />
+    <None Include="..\toast\living\apr24\select.html" />
+    <None Include="..\toast\living\apr24\selectors.html" />
+    <None Include="..\toast\living\apr24\small.html" />
+    <None Include="..\toast\living\apr24\source.html" />
+    <None Include="..\toast\living\apr24\span.html" />
+    <None Include="..\toast\living\apr24\ssah-1.html" />
+    <None Include="..\toast\living\apr24\ssah-2.html" />
+    <None Include="..\toast\living\apr24\ssah-3.html" />
+    <None Include="..\toast\living\apr24\ssah-4.html" />
+    <None Include="..\toast\living\apr24\ssah-5.xhtml" />
+    <None Include="..\toast\living\apr24\ssah-6.html" />
+    <None Include="..\toast\living\apr24\strange-1.html" />
+    <None Include="..\toast\living\apr24\strange-2.html" />
+    <None Include="..\toast\living\apr24\strange-3.html" />
+    <None Include="..\toast\living\apr24\strange-4.html" />
+    <None Include="..\toast\living\apr24\strong.html" />
+    <None Include="..\toast\living\apr24\style.html" />
+    <None Include="..\toast\living\apr24\subsup.html" />
+    <None Include="..\toast\living\apr24\systemstate.html" />
+    <None Include="..\toast\living\apr24\table.html" />
+    <None Include="..\toast\living\apr24\tables.css" />
+    <None Include="..\toast\living\apr24\tc.html" />
+    <None Include="..\toast\living\apr24\td.html" />
+    <None Include="..\toast\living\apr24\te.html" />
+    <None Include="..\toast\living\apr24\template1.html" />
+    <None Include="..\toast\living\apr24\template2.html" />
+    <None Include="..\toast\living\apr24\textarea.html" />
+    <None Include="..\toast\living\apr24\th.html" />
+    <None Include="..\toast\living\apr24\thead.html" />
+    <None Include="..\toast\living\apr24\time.html" />
+    <None Include="..\toast\living\apr24\title-1.html" />
+    <None Include="..\toast\living\apr24\title-2.html" />
+    <None Include="..\toast\living\apr24\tls.html" />
+    <None Include="..\toast\living\apr24\track.html" />
+    <None Include="..\toast\living\apr24\u.html" />
+    <None Include="..\toast\living\apr24\ul.html" />
+    <None Include="..\toast\living\apr24\var.html" />
+    <None Include="..\toast\living\apr24\vcard.html" />
+    <None Include="..\toast\living\apr24\vevent.html" />
+    <None Include="..\toast\living\apr24\video.html" />
+    <None Include="..\toast\living\apr24\wbr.html" />
+    <None Include="..\toast\living\apr24\work.html" />
+    <None Include="..\toast\living\apr24\ws-1.html" />
+    <None Include="..\toast\living\apr24\ws-10.html" />
+    <None Include="..\toast\living\apr24\ws-11.html" />
+    <None Include="..\toast\living\apr24\ws-12.html" />
+    <None Include="..\toast\living\apr24\ws-13.html" />
+    <None Include="..\toast\living\apr24\ws-14.html" />
+    <None Include="..\toast\living\apr24\ws-15.html" />
+    <None Include="..\toast\living\apr24\ws-16.html" />
+    <None Include="..\toast\living\apr24\ws-2.html" />
+    <None Include="..\toast\living\apr24\ws-3.html" />
+    <None Include="..\toast\living\apr24\ws-4.html" />
+    <None Include="..\toast\living\apr24\ws-5.html" />
+    <None Include="..\toast\living\apr24\ws-6.html" />
+    <None Include="..\toast\living\apr24\ws-7.html" />
+    <None Include="..\toast\living\apr24\ws-8.html" />
+    <None Include="..\toast\living\apr24\ws-9.html" />
+    <None Include="..\toast\living\apr24\ww-1.html" />
+    <None Include="..\toast\living\apr24\ww-10.html" />
+    <None Include="..\toast\living\apr24\ww-2.html" />
+    <None Include="..\toast\living\apr24\ww-3.html" />
+    <None Include="..\toast\living\apr24\ww-4.html" />
+    <None Include="..\toast\living\apr24\ww-5.html" />
+    <None Include="..\toast\living\apr24\ww-6.html" />
+    <None Include="..\toast\living\apr24\ww-7.html" />
+    <None Include="..\toast\living\apr24\ww-8.html" />
+    <None Include="..\toast\living\apr24\ww-9.html" />
     <None Include="..\toast\living\jan08\a.html" />
     <None Include="..\toast\living\jan08\abbr.html" />
     <None Include="..\toast\living\jan08\address.html" />
@@ -8640,6 +8934,281 @@
     <None Include="..\toast\living\jul23\ww-7.html" />
     <None Include="..\toast\living\jul23\ww-8.html" />
     <None Include="..\toast\living\jul23\ww-9.html" />
+    <None Include="..\toast\living\jul24\404.html" />
+    <None Include="..\toast\living\jul24\a-1.html" />
+    <None Include="..\toast\living\jul24\a.html" />
+    <None Include="..\toast\living\jul24\abbr.html" />
+    <None Include="..\toast\living\jul24\accesskey.html" />
+    <None Include="..\toast\living\jul24\address.html" />
+    <None Include="..\toast\living\jul24\aks.html" />
+    <None Include="..\toast\living\jul24\article-1.html" />
+    <None Include="..\toast\living\jul24\article-2.html" />
+    <None Include="..\toast\living\jul24\article-3.html" />
+    <None Include="..\toast\living\jul24\aside-1.html" />
+    <None Include="..\toast\living\jul24\aside-2.html" />
+    <None Include="..\toast\living\jul24\aside-3.html" />
+    <None Include="..\toast\living\jul24\autofocus.html" />
+    <None Include="..\toast\living\jul24\b-1.html" />
+    <None Include="..\toast\living\jul24\b.html" />
+    <None Include="..\toast\living\jul24\base.html" />
+    <None Include="..\toast\living\jul24\bdi.html" />
+    <None Include="..\toast\living\jul24\bidi.css" />
+    <None Include="..\toast\living\jul24\blockquote.html" />
+    <None Include="..\toast\living\jul24\body-1.html" />
+    <None Include="..\toast\living\jul24\body-2.html" />
+    <None Include="..\toast\living\jul24\br.html" />
+    <None Include="..\toast\living\jul24\browsing-1.html" />
+    <None Include="..\toast\living\jul24\browsing-2.html" />
+    <None Include="..\toast\living\jul24\browsing-3.html" />
+    <None Include="..\toast\living\jul24\browsing-4.html" />
+    <None Include="..\toast\living\jul24\button.html" />
+    <None Include="..\toast\living\jul24\canvas1.html" />
+    <None Include="..\toast\living\jul24\canvas2.html" />
+    <None Include="..\toast\living\jul24\canvas3.html" />
+    <None Include="..\toast\living\jul24\canvas4.html" />
+    <None Include="..\toast\living\jul24\canvas5.html" />
+    <None Include="..\toast\living\jul24\caption.html" />
+    <None Include="..\toast\living\jul24\cdata.html" />
+    <None Include="..\toast\living\jul24\cite.html" />
+    <None Include="..\toast\living\jul24\cm.html" />
+    <None Include="..\toast\living\jul24\code.html" />
+    <None Include="..\toast\living\jul24\commands.html" />
+    <None Include="..\toast\living\jul24\conformance.html" />
+    <None Include="..\toast\living\jul24\custom-1.html" />
+    <None Include="..\toast\living\jul24\custom-2.html" />
+    <None Include="..\toast\living\jul24\custom-3.html" />
+    <None Include="..\toast\living\jul24\custom-4.html" />
+    <None Include="..\toast\living\jul24\data.html" />
+    <None Include="..\toast\living\jul24\datalist.html" />
+    <None Include="..\toast\living\jul24\datamodel.html" />
+    <None Include="..\toast\living\jul24\dd.html" />
+    <None Include="..\toast\living\jul24\del.html" />
+    <None Include="..\toast\living\jul24\details.css" />
+    <None Include="..\toast\living\jul24\details.html" />
+    <None Include="..\toast\living\jul24\dfn.html" />
+    <None Include="..\toast\living\jul24\dialogue.html" />
+    <None Include="..\toast\living\jul24\div.html" />
+    <None Include="..\toast\living\jul24\dl.html" />
+    <None Include="..\toast\living\jul24\dragondrops.html" />
+    <None Include="..\toast\living\jul24\dt.html" />
+    <None Include="..\toast\living\jul24\editing-1.html" />
+    <None Include="..\toast\living\jul24\editing-2.html" />
+    <None Include="..\toast\living\jul24\el.html" />
+    <None Include="..\toast\living\jul24\em.html" />
+    <None Include="..\toast\living\jul24\ep.html" />
+    <None Include="..\toast\living\jul24\et.html" />
+    <None Include="..\toast\living\jul24\extra.html" />
+    <None Include="..\toast\living\jul24\fad-a.html" />
+    <None Include="..\toast\living\jul24\fad-b.html" />
+    <None Include="..\toast\living\jul24\fieldset.css" />
+    <None Include="..\toast\living\jul24\fieldset.html" />
+    <None Include="..\toast\living\jul24\figcaption.html" />
+    <None Include="..\toast\living\jul24\figure-1.html" />
+    <None Include="..\toast\living\jul24\figure-2.html" />
+    <None Include="..\toast\living\jul24\footer-1.html" />
+    <None Include="..\toast\living\jul24\footer-2.html" />
+    <None Include="..\toast\living\jul24\footer-3.html" />
+    <None Include="..\toast\living\jul24\footer-4.html" />
+    <None Include="..\toast\living\jul24\form.css" />
+    <None Include="..\toast\living\jul24\form.html" />
+    <None Include="..\toast\living\jul24\formex.html" />
+    <None Include="..\toast\living\jul24\forms.html" />
+    <None Include="..\toast\living\jul24\h-1.html" />
+    <None Include="..\toast\living\jul24\h-10.html" />
+    <None Include="..\toast\living\jul24\h-11.html" />
+    <None Include="..\toast\living\jul24\h-2.html" />
+    <None Include="..\toast\living\jul24\h-3.html" />
+    <None Include="..\toast\living\jul24\h-4.html" />
+    <None Include="..\toast\living\jul24\h-5.html" />
+    <None Include="..\toast\living\jul24\h-6.html" />
+    <None Include="..\toast\living\jul24\h-7.html" />
+    <None Include="..\toast\living\jul24\h-8.html" />
+    <None Include="..\toast\living\jul24\h-9.html" />
+    <None Include="..\toast\living\jul24\head-1.html" />
+    <None Include="..\toast\living\jul24\head-2.html" />
+    <None Include="..\toast\living\jul24\header-1.html" />
+    <None Include="..\toast\living\jul24\header-2.html" />
+    <None Include="..\toast\living\jul24\header-3.html" />
+    <None Include="..\toast\living\jul24\hgroup-1.html" />
+    <None Include="..\toast\living\jul24\hgroup-2.html" />
+    <None Include="..\toast\living\jul24\hidden.html" />
+    <None Include="..\toast\living\jul24\history-1.html" />
+    <None Include="..\toast\living\jul24\history-2.html" />
+    <None Include="..\toast\living\jul24\history-4.html" />
+    <None Include="..\toast\living\jul24\hr.css" />
+    <None Include="..\toast\living\jul24\hr.html" />
+    <None Include="..\toast\living\jul24\hs-1.html" />
+    <None Include="..\toast\living\jul24\hs-10.html" />
+    <None Include="..\toast\living\jul24\hs-11.html" />
+    <None Include="..\toast\living\jul24\hs-12.html" />
+    <None Include="..\toast\living\jul24\hs-13.html" />
+    <None Include="..\toast\living\jul24\hs-2.html" />
+    <None Include="..\toast\living\jul24\hs-3.html" />
+    <None Include="..\toast\living\jul24\hs-4.html" />
+    <None Include="..\toast\living\jul24\hs-5.html" />
+    <None Include="..\toast\living\jul24\hs-6.html" />
+    <None Include="..\toast\living\jul24\hs-7.html" />
+    <None Include="..\toast\living\jul24\hs-8.html" />
+    <None Include="..\toast\living\jul24\hs-9.html" />
+    <None Include="..\toast\living\jul24\html.html" />
+    <None Include="..\toast\living\jul24\html4.css" />
+    <None Include="..\toast\living\jul24\i.html" />
+    <None Include="..\toast\living\jul24\idioms.html" />
+    <None Include="..\toast\living\jul24\iframe.html" />
+    <None Include="..\toast\living\jul24\im.html" />
+    <None Include="..\toast\living\jul24\imedia.html" />
+    <None Include="..\toast\living\jul24\img.html" />
+    <None Include="..\toast\living\jul24\index.html" />
+    <None Include="..\toast\living\jul24\inert.html" />
+    <None Include="..\toast\living\jul24\input.html" />
+    <None Include="..\toast\living\jul24\ins.html" />
+    <None Include="..\toast\living\jul24\intro-1.html" />
+    <None Include="..\toast\living\jul24\intro-2.html" />
+    <None Include="..\toast\living\jul24\intro-3.html" />
+    <None Include="..\toast\living\jul24\json.html" />
+    <None Include="..\toast\living\jul24\kbd.html" />
+    <None Include="..\toast\living\jul24\label.html" />
+    <None Include="..\toast\living\jul24\li.html" />
+    <None Include="..\toast\living\jul24\link.html" />
+    <None Include="..\toast\living\jul24\links-alternate.html" />
+    <None Include="..\toast\living\jul24\links-bookmark.html" />
+    <None Include="..\toast\living\jul24\links-help.html" />
+    <None Include="..\toast\living\jul24\links-icon.html" />
+    <None Include="..\toast\living\jul24\links-licence.html" />
+    <None Include="..\toast\living\jul24\links-modulepreload.html" />
+    <None Include="..\toast\living\jul24\links-noopener.html" />
+    <None Include="..\toast\living\jul24\links-noreferrer.html" />
+    <None Include="..\toast\living\jul24\links-opener.html" />
+    <None Include="..\toast\living\jul24\links-tag.html" />
+    <None Include="..\toast\living\jul24\links-tag2.html" />
+    <None Include="..\toast\living\jul24\lists.css" />
+    <None Include="..\toast\living\jul24\living.conf" />
+    <None Include="..\toast\living\jul24\living.spec" />
+    <None Include="..\toast\living\jul24\lwp.html" />
+    <None Include="..\toast\living\jul24\main-1.html" />
+    <None Include="..\toast\living\jul24\main-2.html" />
+    <None Include="..\toast\living\jul24\map.html" />
+    <None Include="..\toast\living\jul24\mark.html" />
+    <None Include="..\toast\living\jul24\marquee.css" />
+    <None Include="..\toast\living\jul24\math.html" />
+    <None Include="..\toast\living\jul24\me.html" />
+    <None Include="..\toast\living\jul24\menu.html" />
+    <None Include="..\toast\living\jul24\meta-1.html" />
+    <None Include="..\toast\living\jul24\meta-2.html" />
+    <None Include="..\toast\living\jul24\meter.css" />
+    <None Include="..\toast\living\jul24\meter.html" />
+    <None Include="..\toast\living\jul24\microdata-1.html" />
+    <None Include="..\toast\living\jul24\microdata-2.html" />
+    <None Include="..\toast\living\jul24\microsyntax.html" />
+    <None Include="..\toast\living\jul24\nav-1.html" />
+    <None Include="..\toast\living\jul24\nav-2.html" />
+    <None Include="..\toast\living\jul24\nav-3.html" />
+    <None Include="..\toast\living\jul24\nav-4.html" />
+    <None Include="..\toast\living\jul24\navapi.html" />
+    <None Include="..\toast\living\jul24\noscript-1.html" />
+    <None Include="..\toast\living\jul24\noscript-2.html" />
+    <None Include="..\toast\living\jul24\noscript-3.html" />
+    <None Include="..\toast\living\jul24\object.html" />
+    <None Include="..\toast\living\jul24\ol.html" />
+    <None Include="..\toast\living\jul24\optgroup.html" />
+    <None Include="..\toast\living\jul24\output.html" />
+    <None Include="..\toast\living\jul24\p.html" />
+    <None Include="..\toast\living\jul24\phrasing.css" />
+    <None Include="..\toast\living\jul24\popover.html" />
+    <None Include="..\toast\living\jul24\popovertarget.html" />
+    <None Include="..\toast\living\jul24\pre.html" />
+    <None Include="..\toast\living\jul24\progress.css" />
+    <None Include="..\toast\living\jul24\progress.html" />
+    <None Include="..\toast\living\jul24\q.html" />
+    <None Include="..\toast\living\jul24\replaced.css" />
+    <None Include="..\toast\living\jul24\rp.html" />
+    <None Include="..\toast\living\jul24\ruby.html" />
+    <None Include="..\toast\living\jul24\s.html" />
+    <None Include="..\toast\living\jul24\samp.html" />
+    <None Include="..\toast\living\jul24\script.html" />
+    <None Include="..\toast\living\jul24\scripting-1.html" />
+    <None Include="..\toast\living\jul24\scripting-2.html" />
+    <None Include="..\toast\living\jul24\scripting-3.html" />
+    <None Include="..\toast\living\jul24\scripting-4.html" />
+    <None Include="..\toast\living\jul24\scripting-5.html" />
+    <None Include="..\toast\living\jul24\scripting-6.html" />
+    <None Include="..\toast\living\jul24\scripting-7.html" />
+    <None Include="..\toast\living\jul24\scripting-8.html" />
+    <None Include="..\toast\living\jul24\scripting-9.html" />
+    <None Include="..\toast\living\jul24\search-1.html" />
+    <None Include="..\toast\living\jul24\search-2.html" />
+    <None Include="..\toast\living\jul24\section-1.html" />
+    <None Include="..\toast\living\jul24\section-2.html" />
+    <None Include="..\toast\living\jul24\section-3.html" />
+    <None Include="..\toast\living\jul24\sections.css" />
+    <None Include="..\toast\living\jul24\select.html" />
+    <None Include="..\toast\living\jul24\selectors.html" />
+    <None Include="..\toast\living\jul24\small.html" />
+    <None Include="..\toast\living\jul24\source.html" />
+    <None Include="..\toast\living\jul24\span.html" />
+    <None Include="..\toast\living\jul24\ssah-1.html" />
+    <None Include="..\toast\living\jul24\ssah-2.html" />
+    <None Include="..\toast\living\jul24\ssah-3.html" />
+    <None Include="..\toast\living\jul24\ssah-4.html" />
+    <None Include="..\toast\living\jul24\ssah-5.xhtml" />
+    <None Include="..\toast\living\jul24\ssah-6.html" />
+    <None Include="..\toast\living\jul24\strange-1.html" />
+    <None Include="..\toast\living\jul24\strange-2.html" />
+    <None Include="..\toast\living\jul24\strange-3.html" />
+    <None Include="..\toast\living\jul24\strange-4.html" />
+    <None Include="..\toast\living\jul24\strong.html" />
+    <None Include="..\toast\living\jul24\style.html" />
+    <None Include="..\toast\living\jul24\subsup.html" />
+    <None Include="..\toast\living\jul24\systemstate.html" />
+    <None Include="..\toast\living\jul24\table.html" />
+    <None Include="..\toast\living\jul24\tables.css" />
+    <None Include="..\toast\living\jul24\tc.html" />
+    <None Include="..\toast\living\jul24\td.html" />
+    <None Include="..\toast\living\jul24\te.html" />
+    <None Include="..\toast\living\jul24\template1.html" />
+    <None Include="..\toast\living\jul24\template2.html" />
+    <None Include="..\toast\living\jul24\textarea.html" />
+    <None Include="..\toast\living\jul24\th.html" />
+    <None Include="..\toast\living\jul24\thead.html" />
+    <None Include="..\toast\living\jul24\time.html" />
+    <None Include="..\toast\living\jul24\title-1.html" />
+    <None Include="..\toast\living\jul24\title-2.html" />
+    <None Include="..\toast\living\jul24\tls.html" />
+    <None Include="..\toast\living\jul24\track.html" />
+    <None Include="..\toast\living\jul24\u.html" />
+    <None Include="..\toast\living\jul24\ul.html" />
+    <None Include="..\toast\living\jul24\var.html" />
+    <None Include="..\toast\living\jul24\vcard.html" />
+    <None Include="..\toast\living\jul24\vevent.html" />
+    <None Include="..\toast\living\jul24\video.html" />
+    <None Include="..\toast\living\jul24\wbr.html" />
+    <None Include="..\toast\living\jul24\work.html" />
+    <None Include="..\toast\living\jul24\ws-1.html" />
+    <None Include="..\toast\living\jul24\ws-10.html" />
+    <None Include="..\toast\living\jul24\ws-11.html" />
+    <None Include="..\toast\living\jul24\ws-12.html" />
+    <None Include="..\toast\living\jul24\ws-13.html" />
+    <None Include="..\toast\living\jul24\ws-14.html" />
+    <None Include="..\toast\living\jul24\ws-15.html" />
+    <None Include="..\toast\living\jul24\ws-16.html" />
+    <None Include="..\toast\living\jul24\ws-2.html" />
+    <None Include="..\toast\living\jul24\ws-3.html" />
+    <None Include="..\toast\living\jul24\ws-4.html" />
+    <None Include="..\toast\living\jul24\ws-5.html" />
+    <None Include="..\toast\living\jul24\ws-6.html" />
+    <None Include="..\toast\living\jul24\ws-7.html" />
+    <None Include="..\toast\living\jul24\ws-8.html" />
+    <None Include="..\toast\living\jul24\ws-9.html" />
+    <None Include="..\toast\living\jul24\ww-1.html" />
+    <None Include="..\toast\living\jul24\ww-10.html" />
+    <None Include="..\toast\living\jul24\ww-2.html" />
+    <None Include="..\toast\living\jul24\ww-3.html" />
+    <None Include="..\toast\living\jul24\ww-4.html" />
+    <None Include="..\toast\living\jul24\ww-5.html" />
+    <None Include="..\toast\living\jul24\ww-6.html" />
+    <None Include="..\toast\living\jul24\ww-7.html" />
+    <None Include="..\toast\living\jul24\ww-8.html" />
+    <None Include="..\toast\living\jul24\ww-9.html" />
     <None Include="..\toast\living\oct21\404.html" />
     <None Include="..\toast\living\oct21\a-1.html" />
     <None Include="..\toast\living\oct21\a.html" />
@@ -9508,6 +10077,12 @@
     <None Include="..\toast\microdata\export\pre.bat" />
     <None Include="..\toast\microdata\export\pre.sh" />
     <None Include="..\toast\microdata\export\work.html.model" />
+    <None Include="..\toast\microdata\link\all.shtml" />
+    <None Include="..\toast\microdata\link\e34-5.shtml" />
+    <None Include="..\toast\microdata\link\index.shtml" />
+    <None Include="..\toast\microdata\link\link.conf" />
+    <None Include="..\toast\microdata\link\link.spec" />
+    <None Include="..\toast\microdata\link\netherlands.shtml" />
     <None Include="..\toast\microdata\microformats\adr.html" />
     <None Include="..\toast\microdata\microformats\geo.html" />
     <None Include="..\toast\microdata\microformats\h-adr.html" />
@@ -9864,6 +10439,7 @@
     <None Include="..\toast\other\parsing\comment.html" />
     <None Include="..\toast\other\parsing\doctype-missing.html" />
     <None Include="..\toast\other\parsing\elementerror.html" />
+    <None Include="..\toast\other\parsing\errata28.html" />
     <None Include="..\toast\other\parsing\index.html" />
     <None Include="..\toast\other\parsing\parsing-bad.html" />
     <None Include="..\toast\other\parsing\parsing.conf" />
@@ -9877,6 +10453,13 @@
     <None Include="..\toast\other\pattern\index.html" />
     <None Include="..\toast\other\pattern\pattern.conf" />
     <None Include="..\toast\other\pattern\pattern.spec" />
+    <None Include="..\toast\other\ruby\index.html" />
+    <None Include="..\toast\other\ruby\ruby-2.html" />
+    <None Include="..\toast\other\ruby\ruby-a.html" />
+    <None Include="..\toast\other\ruby\ruby-b.html" />
+    <None Include="..\toast\other\ruby\ruby.conf" />
+    <None Include="..\toast\other\ruby\ruby.css" />
+    <None Include="..\toast\other\ruby\ruby.spec" />
     <None Include="..\toast\other\safari\css-good.css" />
     <None Include="..\toast\other\safari\index.html" />
     <None Include="..\toast\other\safari\recordings.html" />
@@ -11067,6 +11650,7 @@
     <None Include="..\toast\type\metaname\metaname.spec" />
     <None Include="..\toast\type\metaname\og.html" />
     <None Include="..\toast\type\metaname\old.html" />
+    <None Include="..\toast\type\metaname\viewport.html" />
     <None Include="..\toast\type\mimetype\bad.html" />
     <None Include="..\toast\type\mimetype\dubious.html" />
     <None Include="..\toast\type\mimetype\good.html" />
@@ -11482,7 +12066,7 @@
     <None Include="..\toast\XHTML\5.0\x5-example.xhtml" />
     <None Include="..\toast\XHTML\5.0\xhtml5.conf" />
     <None Include="..\toast\XHTML\5.0\xhtml5.spec" />
-    <None Include="cmake_uninstall.cmake.in" />
+    <None Include="cpp.hint" />
     <None Include="fulltest.bat" />
     <None Include="fulltest.sh" />
     <None Include="specprep.bat" />
@@ -11589,7 +12173,6 @@
     <Image Include="..\toast\HTML\5.4\x.jpg" />
     <Image Include="..\toast\microformats\mf1\photo.jpg" />
     <Image Include="..\toast\microformats\mf2\photo.jpg" />
-    <Image Include="..\toast\microformats\rel\photo.jpg" />
     <Image Include="..\toast\other\blob\25-small.jpg" />
     <Image Include="..\toast\other\blob\7595.jpg" />
     <Image Include="..\toast\other\blob\A-small.jpg" />
@@ -11705,12 +12288,20 @@
     <None Include="..\toast\living\jul09\clock.manifest">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
     </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\toast\living\jan10\clock.manifest">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -11722,6 +12313,7 @@
     <ProjectGuid>{267ff320-a1f2-453b-b242-bd51eb2c54d6}</ProjectGuid>
     <RootNamespace>ssc22</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <VcpkgTriplet Condition="'$(Platform)'=='x64'">x64-windows</VcpkgTriplet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -11748,8 +12340,25 @@
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <PlatformToolset>v143</PlatformToolset>
+    <PreferredToolArchitecture>arm64</PreferredToolArchitecture>
+    <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <PreferredToolArchitecture>Win32</PreferredToolArchitecture>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PreferredToolArchitecture>Win32</PreferredToolArchitecture>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -11759,8 +12368,25 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -11778,22 +12404,33 @@
     <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
+    <EnableMicrosoftCodeAnalysis>true</EnableMicrosoftCodeAnalysis>
+    <EnableClangTidyCodeAnalysis>false</EnableClangTidyCodeAnalysis>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <ExecutablePath>$(VC_ExecutablePath_x86);$(CommonExecutablePath)</ExecutablePath>
+    <TargetName>$(ProjectName)-x86</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
+    <ExecutablePath>$(VC_ExecutablePath_x86);$(CommonExecutablePath)</ExecutablePath>
+    <TargetName>$(ProjectName)-x86</TargetName>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
-    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include;$(VC_LibraryPath_arm64);$(WindowsSDK_LibraryPath_arm64)</IncludePath>
-    <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
-    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include</IncludePath>
-    <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib;$(LibraryPath);$(VC_LibraryPath_arm64);$(WindowsSDK_LibraryPath_arm64)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg">
     <VcpkgEnableManifest>true</VcpkgEnableManifest>
-  </PropertyGroup>
-  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <VcpkgTriplet>x64-windows</VcpkgTriplet>
-  </PropertyGroup>
-  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <VcpkgTriplet>x64-windows</VcpkgTriplet>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -11823,6 +12460,12 @@
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>help.bat</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Prepare help archive</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -11840,8 +12483,11 @@
       <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <Optimization>MinSpace</Optimization>
+      <Optimization>MaxSpeed</Optimization>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -11855,7 +12501,7 @@
       <GenerateMapFile>true</GenerateMapFile>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe</Command>
+      <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
@@ -11913,6 +12559,70 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <Profile>true</Profile>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WINSPELL;BUILD_OS="win Win32";COMMAND_LINE;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <ControlFlowGuard>false</ControlFlowGuard>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateMapFile>true</GenerateMapFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe</Command>
+    </PostBuildEvent>
+    <PreBuildEvent />
+    <PreBuildEvent>
+      <Message>
+      </Message>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WINSPELL;BUILD_OS="win Win32";COMMAND_LINE;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <IntelJCCErratum>true</IntelJCCErratum>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>main\standard.h</PrecompiledHeaderFile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <Optimization>MinSpace</Optimization>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;libcurl.lib;libcrypto.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <Profile>true</Profile>
+      <GenerateMapFile>true</GenerateMapFile>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>

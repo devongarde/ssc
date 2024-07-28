@@ -71,7 +71,7 @@ class element
     void dddt (const char* ref1, const char* ref2, const char* el);
     void check_required_type ();
     void mf_put_vocab (const e_class v, const prop& p, const ::std::string& itemtype = ::std::string (EXPORT_ITEMTYPE), const ::std::string& itemprop = ::std::string (EXPORT_ITEMPROP));
-    void mf_put_rel (const e_class v, const prop& p, const vstr_t& rels);
+    void mf_put_rel (nitpick& nits, const e_class v, const prop& p, const vstr_t& rels);
     void verify ();
     void verify_children ();
     bool only_one_of ();

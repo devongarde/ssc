@@ -318,6 +318,9 @@ defined at w3.org.
                             2023
                             2023+
                             2023++
+                            2024
+                            2024+
+                            2024++
                         The years are CSS snapshots, whether the year
                         itself for stable modules, with + for wobbly
                         modules, and ++ for wibbly-wobbly modules, as
@@ -361,9 +364,11 @@ This are switches that don't really belong in any other section.
 -C dir                  useful files, in this directory.
 
 --general.defthrd N     If --general.thread is not given, then set the
--Y N                    number of threads to N.
+-Y N                    number of threads to N. The default is 1. If 0
+                        is specified, then select a number of threads
+                        not entirely inappropriate for the hardware.
 
---general.exclude xxx   Ignore files that end with xxx. May be
+--general.exclude xxx   Ignore all paths containing xxx. May be
                         repeated. Case independent under Windows only.
                         .DS_Store is always excluded under darwin.
 
@@ -398,9 +403,10 @@ This are switches that don't really belong in any other section.
 -T                      ssc-test. Not generally useful. Documented so
                         you can avoid using it!
 
---general.thread N      Use N threads when running. Defaults to a value
--y N                    appropriate for the hardware. Too high a value
-                        can cause problems. See also --general.defthrd.
+--general.thread N      Use N threads when running. Defaults to 1. If
+-y N                    0 is given, a value not entirely inappropriate
+                        for the hardware is used. Too high a value can
+                        cause problems. See also --general.defthrd.
 
 --general.vcs           Excludes, as per --general.exclude, files and
                         directories called:
@@ -460,6 +466,9 @@ of older sites.
 --html.rfc2070          Ignore the RFC 2070 (internationalisation)
                         extension when processing HTML 2.0.
 
+--html.ruby             Accept Ruby Markup Extension (draft, late April
+                        2024) for HTML from May 2024 onwards.
+
 --html.safari           Don't mention certain early Safari 'features'.
 
 --html.sloven           Ignore perfectly legal yet inefficient, indeed
@@ -514,7 +523,7 @@ of older sites.
                             ...         (halfly)
                             2021/1/1    WhatWG HTML 5 (Jan 2021)
                             ...         (quarterly)
-                            2024/1/1    WhatWG HTML 5 (Jan 2024)
+                            2024/4/1    WhatWG HTML 5 (Apr 2024)
 
                             XHTML 1.0   XHTML 1.0
                             XHTML 1.1   XHTML 1.1 core
@@ -583,7 +592,7 @@ broken links within the site.
                         time it's encountered (requires
                         --link.external).
 
---link.pretend FILE     Pretend links ending with xxx exist. May be
+--link.pretend FILE     Pretend links containing xxx exist. May be
                         repeated.
 
 --link.report DOMAIN    Report links to domain and its descendents. May
@@ -601,21 +610,15 @@ MathML switches
 These switches are useful when you have some MathML which is not
 contemporary to the corresponding HTML.
 
---math.core             Presume Math 4 core (May 2022 draft).
-
---math.draft D          Presume this draft of MathML 4. The following
-                        drafts supported:
-                                2020    December 2020 draft
-                                2022    August 2022 draft
-
 --math.version N        Presume version N of MathML (1, 2, 3 pr 4). The
                         following versions are supported:
-                                0   try to work it out from the (HTML)
-                                    version of the file being analysed
-                                1   MathML 1
-                                2   MathML 2
-                                3   MathML 3
-                                4   MathML 4 (see --math.draft)
+                                0       based on the HTML version
+                                1       MathML 1
+                                2       MathML 2
+                                3       MathML 3
+                                4.20    MathML 4 2020 draft
+                                4       MathML 4 2022 draft
+                                core    MathML 4 core (May 2022 draft)
 
 Microformat switches
 These switches are useful for checking andor outputting any microformat
@@ -774,6 +777,12 @@ ontologies (see --ontology.list).
                                 dcterms 1.0,1.1
                                 ddi 1.0
                                 doap 1.0
+                                dpv 0.1-2.0 (see below)
+                                dpv-gdpr 0.1-2.0 (see below)
+                                dpv-legal 0.5
+                                dpv-nace 0.1
+                                dpv-pd 0.4-2.0 (see below)
+                                dpv-tech 0.8-2.0 (see below)
                                 dqv 1.0
                                 describedby 1.0
                                 duv 1.0
@@ -828,7 +837,7 @@ ontologies (see --ontology.list).
                                 rif 1.0
                                 role 1.0
                                 rr 1.0
-                                schema.org 0.10-25.0 (see below)
+                                schema.org 0.10-27.01 (see below)
                                 sd 1.0
                                 sioc 1.0
                                 sioc_s 1.0
@@ -890,6 +899,29 @@ ontologies (see --ontology.list).
                         ontology naming convention are also accepted.
                         Since this is unofficial, both standard English
                         and American dialect spellings are processed.
+
+                        The data privacy family of ontologies are not
+                        fully implemented; dpv-owl and dpv-skos are
+                        ignored, and some plumbing classes are omitted
+                        as well. DPV, DPV GDPR, DPV legal, DPV PD and
+                        DPV tech versioning scheme:
+                            Use     For
+                            0.10    0.1
+                            0.20    0.2
+                            0.30    0.3
+                            0.40    0.4.0
+                            0.41    0.4.1
+                            0.42    0.4.2
+                            0.50    0.5
+                            0.60    0.6
+                            0.70    0.7
+                            0.80    0.8.0
+                            0.81    0.8.1
+                            0.82    0.8.2
+                            0.90    0.9
+                            1.0     1
+                            2.0     2
+                        DPV NACE only has version 0.1.
 
                         The Exif & ExifEx ontologies have the following
                         versions:
@@ -953,12 +985,49 @@ ontologies (see --ontology.list).
                                 1.90        1.9
                                 1.91        as version number
                                 ...
-                                26.0        as version number
+                                27.01       as version number
 
                         vCard versions correspond to RDFa specs,
                         published in 2001, 2006, 2010 & 2014. They do
                         NOT correspond to vCard data format
                         specifications.
+
+                        
+Server switches
+A simple web / web socket server is available to provide a GUI for
+ssc, and to support a simple service. If this is used for more than
+simple tasks, it should be put behind the usual array of good quality
+services, such as a firewall, a proxy, and so on. It is not designed
+to be robust. The following switches are available:
+
+--server.enable         Enable the server (default disabled)
+
+--server.accept F,T     Accept connections from clients in the address
+                        range F to T. If T is omitted, it is F. The
+                        default is 127.0.0.1. Non-local address ranges
+                        are rejected. May be repeated.
+
+--server.address A      Serve on this address (default 127.0.0.1). Use
+                        * for all addresses.
+
+--server.paramters f    The certificate parameters can be found in the
+                        file f.
+
+--server.passfile f     The certificate password can be found in the
+                        file f.
+
+--server.password xxx   The certificate password is xxx. This switch is
+                        only available in configuration files, and does
+                        not work on the command line.
+
+--server.port P         Serve on this port (default 80, until I think
+                        of a better one).
+
+--server.private f      The certificate private key can be found in the
+                        file f.
+
+--server.public f       The certificate public key can be found in the
+                        file f.
 
 
 Shadow switches
@@ -1287,7 +1356,11 @@ data types. Start with the --validation switch, and go on from there.
 
 --validation.attribute ATT
                         Add the custom attribute ATT. This attribute
-                        will be ignored, not validated.
+                        will be ignored, not validated. ATT may
+                        optionally be a series of comma separated
+                        values: name,namespace,flags,flags2
+                        The possible values of flags and flags2 can be
+                        understood by looking at the source.
 
 --validation.charset CH Accept CH as a charset. May be repeated.
 
@@ -1298,14 +1371,18 @@ data types. Start with the --validation switch, and go on from there.
 --validation.colour COL Accept COL as a colour. May be repeated.
 
 --validation.country CC Accept CC as a valid two-letter country code.
-                        May be  repeated.
+                        May be repeated.
 
 --validation.currency CUR
                         Accept CUR as a valid currency. May be
                         repeated.
 
 --validation.element EL Accept <EL> as a valid element. This element
-                        will be ignored, not validated. May be
+                        will be ignored, not validated. EL may
+                        optionally be a series of comma separated
+                        values: name,namespace,flags,flags2
+                        The possible values of flags and flags2 can be
+                        understood by looking at the source. May be
                         repeated.
 
 --validation.element-attribute EL,ATT
@@ -1528,6 +1605,9 @@ export=
 root=export
 version=7.2
 
+Example conf files can be found scatted across the test suite, in
+particular in recipe/toast/conf/other and recipe/toast/conf/sites.
+
 
 
 PREPARING and UPDATING a SITE
@@ -1549,42 +1629,7 @@ upload.sh is a macos bash script that can be found among the source
 code. Note that I have rather naughtily replaced OpenBSD's httpd
 document directory /var/www/htdocs with a link.
 
-Here is site.conf:
-
-[general]
-verbose=4
-class=
-output=site.out
-ssi=
-ignore=pre
-rpt=
-
-[html]
-version=2021/04/01
-
-[link]
-check=
-xlink=
-
-[microformat]
-verify=
-
-[site]
-domain=example.com
-extension=html
-extension=shtml
-index=index.shtml
-root=corrupt_source
-
-[stats]
-summary=
-
-[shadow]
-copy=dedu
-root=site
-file=site.ndx
-ignore=inc
-info=
+The conf file can be found at recipe/toast/conf/sites/live.conf.
 
 
 

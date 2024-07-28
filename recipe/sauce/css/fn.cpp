@@ -43,7 +43,7 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
         args.check_flags (nits, fn.flags (), fn.name ());
         fn_ = fn.get ();
         const flags_t cats (fn.first ().ext2 ());
-        if (args.v_.css_selector () >= 3)
+        if (args.v_.css_module (c_selector) >= 3)
         {   if ((cats & H2_CSS_COCO) == H2_CSS_COCO)
             {   if (! coco)
                     nits.pick (nit_pseud, ed_css_selectors_3, "2 Selectors", es_warning, ec_css, fn.name (), " is a pseudo element, use '::', not ':'"); }  
@@ -68,7 +68,7 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
         params_.push_back (param);
         switch (fn_)
         {   case efn_attr :
-                if (context.css_nes () < 3)
+                if (context.css_module (c_non_element_selector) < 3)
                     nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS Non-Element Selectors");
                 else
                 {   const ::std::string::size_type bar = param.find ('|');
@@ -90,18 +90,18 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
                 test_value < t_ltr_rtl > (nits, context.html_ver (), param);
                 return;
             case efn_highlight :
-                if (context.css_highlight () < 3)
+                if (context.css_module (c_custom_highlight) < 3)
                     nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS Custom Highlight");
                 else if (args.g_.has_str (gst_highlight, param) || ! args.g_.note_str (gst_highlight, param))
                     nits.pick (nit_highlight, es_error, ec_css, quote (param), ": previously defined");
                 return;
             case efn_host :
             case efn_host_context :
-                if (context.css_view () > 0)
+                if (context.css_module (c_view_transition) > 0)
                     vsl_.emplace_back (new selector (args, b, ket, true));
                 break;
             case efn_lang :
-                if (args.v_.css_selector () >= 4)
+                if (args.v_.css_module (c_selector) >= 4)
                     test_value < t_css_langs > (nits, context.html_ver (), param);
                 else test_value < t_lang > (nits, context.html_ver (), param);
                 return;
@@ -111,7 +111,7 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
             case efn_nth_last_col :
             case efn_nth_last_of_type :
             case efn_nth_of_type :
-                {   if (args.v_.css_selector () >= 4)
+                {   if (args.v_.css_module (c_selector) >= 4)
                     {   int prev = -1;
                         int of = ident_find (args.t_, "of", b, to, &prev);
                         if (of != -1)
@@ -121,7 +121,7 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
                     test_value < t_css_nth_oe > (nits, context.html_ver (), param); }
                 return;
             case efn_nth_fragment :
-                if (context.css_overflow () < 4)
+                if (context.css_module (c_overflow) < 4)
                     nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS Text Overflow 4");
                 test_value < t_positive > (nits, context.html_ver (), param);
                 break;
@@ -131,7 +131,7 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
                     return; }
                 break;
             case efn_part :
-                if (context.css_shadow () < 3)
+                if (context.css_module (c_shadow_part) < 3)
                     nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS Shadow Parts");
                 else
                 {   vstr_t parts = split_by_space (param);
@@ -142,7 +142,7 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
             case efn_view_transition_new :
             case efn_view_transition_old :
             case efn_view_transition_image_pair :
-                if (context.css_view () < 3)
+                if (context.css_module (c_view_transition) < 3)
                     nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS View Transitions");
                 else if (param != "*")
                     if (! args.has_str (gst_view, param))
@@ -180,7 +180,7 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
         if (params_.size () > 0)
             switch (fn_)
             {   case efn_not :
-                    if ((params_.size () != 1) && (args.v_.css_selector () < 4))
+                    if ((params_.size () != 1) && (args.v_.css_module (c_selector) < 4))
                         nits.pick (nit_not_not, ed_css_selectors_3, "6.6.7. The negation pseudo-class", es_error, ec_css, ":not with multiple arguments requires CSS Selector 4");
                     FALLTHROUGH;
                 case efn_current :

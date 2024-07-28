@@ -129,7 +129,7 @@ e_status set_css_font_stretch_value (nitpick& nits, const html_version& v, const
         nits.pick (nit_empty, es_error, ec_type, "font-stretch cannot be empty");
     else
     {   nitpick nuts;
-        if (context.css_font () >= 4)
+        if (context.css_module (c_font) >= 4)
             if (test_value < t_percent > (nuts, v, s))
             {   nits.merge (nuts);
                 return s_good; }
@@ -141,9 +141,9 @@ e_status set_css_font_variant_value (nitpick& nits, const html_version& v, const
 {   if (s.empty ())
         nits.pick (nit_empty, es_error, ec_type, "a font variant cannot be empty");
     else
-    {   if (context.css_font () >= 4)
+    {   if (context.css_module (c_font) >= 4)
         {   if (test_value < t_css_font_variant_4 > (nits, v, s)) return s_good; }
-        if (context.css_font () == 3)
+        if (context.css_module (c_font) == 3)
         {   if (test_value < t_font_variant_2 > (nits, v, s)) return s_good; }
         else if (test_value < t_svg_fontvariant > (nits, v, s)) return s_good; }
     return s_invalid; }
@@ -152,7 +152,7 @@ e_status set_css_font_weights_value (nitpick& nits, const html_version& v, const
 {   if (s.empty ())
         nits.pick (nit_empty, es_error, ec_type, "a font weight cannot be empty");
     else
-    {   if (context.css_font () >= 4)
+    {   if (context.css_module (c_font) >= 4)
         {   if (test_value < t_css_font_weight_4 > (nits, v, s)) return s_good; }
         else if (test_value < t_css_font_weight > (nits, v, s)) return s_good; }
     return s_invalid; }

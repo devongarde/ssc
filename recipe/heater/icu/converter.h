@@ -38,6 +38,4 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ::std::string normalise_utf8 (nitpick& nits, const ::std::string& s);
 #endif // _MSC_VER
 
-#else // NOICU
-inline ::std::string normalise_utf8 (nitpick& , const ::std::string& s) { return s; }
 #endif // NOICU
