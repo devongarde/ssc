@@ -177,7 +177,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define COMMON51    a_oncopy, a_oncut, a_onpaste, a_onwheel, COMMON50
 #define COMMON52    a_onauxclick, a_onloadend, COMMON51
 #define COMMON53    COMMON52
-#define LIVING_STANDARD    a_autocapitalise, a_enterkeyhint, a_exportparts, a_inputmode, a_onformdata, a_onsecuritypolicyviolation, \
+#define LIVING_STANDARD    a_autocapitalise, a_autocorrect, a_enterkeyhint, a_exportparts, a_inputmode, a_onformdata, a_onsecuritypolicyviolation, \
                     a_onslotchange, a_part, a_popover, a_slot, a_writingsuggestions, COMMON53
 #define X5          LIVING_STANDARD
 #define LIVING_STANDARD_PLUS a_index, LIVING_STANDARD

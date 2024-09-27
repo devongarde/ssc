@@ -55,7 +55,8 @@ public:
     itemscope_wptr& parent2 () noexcept { return parent2_; }
     bool has_parent () const noexcept { return (parent_.lock () != nullptr); }
     bool has_parent2 () const noexcept { return (parent2_.lock () != nullptr); }
-    vit_t sought_itemtypes (const html_version& v, const ::std::string& name) const;
+    bool example () const;
+    vit_t sought_itemtypes (nitpick& nits, const html_version& v, const ::std::string& name) const;
     ::std::string report (const ::std::size_t offset = 0) const;
     void set_exporter (microdata_export* exporter, const ::std::string& export_path)
     {   export_ = exporter; export_path_ = export_path; }

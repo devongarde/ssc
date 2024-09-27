@@ -43,6 +43,8 @@ is not normally output, to avoid clutter. However, it can be seed by using the
 
 <tr><td>nits.error&nbsp;n</td> <td>Redefine nit n as an error; may be repeated.</td></tr>
 
+<tr><td>nits.expand</td> <td>Expand text content of certain nits.</td></tr>
+
 <tr><td>nits.extra</td> <td>Report additional nits.</td></tr>
 
 <tr><td>nits.format&nbsp;F</td> <td>Specify the output format; F is a template

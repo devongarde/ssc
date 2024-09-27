@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>dpv 2 ontology test 2.1</title>
+</head>
+
+<body>
+
+<h1>dpv 2 ontology test 2.1</h1>
+
+<div id="Acme" itemtype="https://w3id.org/dpv#DataController" itemscope></div>
+
+<div id="AcmeMarketing" itemtype="https://w3id.org/dpv/ex#Process" itemscope>
+  <div itemprop="https://w3id.org/dpv#hasProcess" itemtype="https://w3id.org/dpv/ex#InternalAnalytics" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcess" itemtype="https://w3id.org/dpv/ex#SendingNewsletters" itemscope></div>
+</div>
+
+<div id="InternalAnalytics" itemtype="https://w3id.org/dpv/ex#Process" itemscope>
+  <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv/pd#Email" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Collect" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Store" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPurpose" itemtype="https://w3id.org/dpv#InternalResourceOptimisation" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasLegalBasis" itemtype="https://w3id.org/dpv#LegitimateInterestOfController" itemscope></div>
+</div>
+
+<div id="FooTech" itemtype="https://w3id.org/dpv#DataProcessor" itemscope></div>
+
+<div id="SendingNewsletters" itemtype="https://w3id.org/dpv/ex#Process" itemscope>
+  <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv/pd#Email" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Share" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPurpose" itemtype="https://w3id.org/dpv#Marketing" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataProcessor" itemtype="https://w3id.org/dpv/ex#FooTech" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasLegalBasis" itemtype="https://w3id.org/dpv#Consent" itemscope></div>
+</div>
+
+<!--#comment
+
+ex:Acme rdf:type dpv:DataController .
+ex:AcmeMarketing rdf:type dpv:Process ;
+    dpv:hasProcess ex:InternalAnalytics ;
+    dpv:hasProcess ex:SendingNewsletters .
+
+ex:InternalAnalytics rdf:type dpv:Process ;
+    dpv:hasPersonalData pd:Email ;
+    dpv:hasProcessing dpv:Collect, dpv:Store ;
+    dpv:hasPurpose dpv:InternalResourceOptimisation ;
+    dpv:hasLegalBasis dpv:LegitimateInterestOfController .
+
+ex:FooTech rdf:type dpv:DataProcessor .
+ex:SendingNewsletters rdf:type dpv:Process ;
+    dpv:hasPersonalData pd:Email ;
+    dpv:hasProcessing dpv:Share ;
+    dpv:hasPurpose dpv:Marketing ;
+    dpv:hasDataProcessor ex:FooTech ;
+    dpv:hasLegalBasis dpv:Consent .
+-->
+
+</body>
+</html>

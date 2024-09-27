@@ -1,7 +1,7 @@
 -Y 1 -f ../toast/RDFa/cc/rdfa.conf
 
 PASS ../toast/RDFa/cc/cc.html
-14 invalid_attribute_version wrong_version
+14 invalid_attribute_version wrong_version unrecognised_ontology
 22 invalid_attribute_version wrong_version
 56 unrecognised_namespace unrecognised_namespace unrecognised_value unrecognised_value unrecognised_value
 59 missing_close

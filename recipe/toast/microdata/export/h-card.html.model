@@ -13,8 +13,7 @@
         "2": {
             "type": "http:\/\/microformats.org\/profile\/h-card",
             "prop": {
-                "p-name": "https:\/\/blog.lizardwrangler.example.com\/",
-                "u-url": "https:\/\/blog.lizardwrangler.example.com\/"
+                "p-name": "https:\/\/blog.lizardwrangler.example.com\/"
             },
             "p-org": {
                 "3": {

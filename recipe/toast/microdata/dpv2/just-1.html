@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>dpv 2 justifications tests</title>
+</head>
+
+<body>
+
+<h1>dpv 2 justifications tests</h1>
+
+<div itemtype="https://w3id.org/dpv#RightNonFulfilmentNotice" itemscope>
+  <span itemprop="https://purl.org/dc/terms/dateSubmitted">2024-01-01</span>
+  <div itemprop="https://purl.org/dc/terms/publisher" itemtype="https://example.org/ex#SomeController" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasRight" itemtype="https://w3id.org/dpv/legal/eu/gdpr#A20" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasRecipient" itemtype="https://w3id.org/dpv#DataSubject" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasJustification" itemtype="https://w3id.org/dpv/justifications#IdentityVerificationFailure" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcess" itemtype="https://w3id.org/dpv#Process" itemscope>
+    <div itemprop="https://w3id.org/dpv#isImplementedByEntity" itemtype="https://w3id.org/dpv#DataSubject" itemscope></div>
+    <div itemprop="https://w3id.org/dpv#hasPurpose" itemtype="https://w3id.org/dpv#IdentityVerification" itemscope></div>
+    <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv/pd#OfficialID" itemscope></div>
+    <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Share" itemscope></div>
+    <div itemprop="https://w3id.org/dpv#hasRecipient" itemtype="https://w3id.org/dpv#SomeController" itemscope></div>
+    <div itemprop="https://w3id.org/dpv#hasObligation" itemtype="https://w3id.org/dpv#Obligation" itemscope>
+      <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv/pd#EmailAddress" itemscope></div>
+      <data itemprop="https://w3id.org/dpv#hasDuration" value="P30D"></data>
+      <div itemprop="https://w3id.org/dpv#hasConsequenceOfFailure" itemtype="https://w3id.org/dpv#RequestRejected" itemscope></div>
+    </div>
+  </div>
+</div>
+
+<!--#comment
+
+ex:PDH a dpv:RightNonFulfilmentNotice ;
+  dct:dateSubmitted "2024-01-01"^^xsd:date ;
+  dct:publisher ex:SomeController ;
+  dpv:hasRight eu-gdpr:A20 ;
+  dpv:hasRecipient dpv:DataSubject ;
+  dpv:hasJustification justifications:IdentityVerificationFailure ;
+  dpv:hasProcess [
+    a dpv:Process ;
+    dpv:isImplementedByEntity dpv:DataSubject ;
+    dpv:hasPurpose dpv:IdentityVerification ;
+    dpv:hasPersonalData pd:OfficialID ;
+    dpv:hasProcessing dpv:Share ;
+    dpv:hasRecipient dpv:SomeController ;
+    dpv:hasObligation [
+        a dpv:Obligation ;
+        dpv:hasDuration "P30D"^^xsd:duration ;
+        dpv:hasConsequenceOfFailure dpv:RequestRejected ;
+    ] .
+
+-->
+
+</body>
+</html>

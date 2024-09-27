@@ -36,7 +36,7 @@ PASS ../toast/microdata/schema-abc/aggregaterating-2.html
 PASS ../toast/microdata/schema-abc/alignmentobject.html
 17 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
 68 incompatible_mime
-69 invalid_attribute_version wrong_version svg_rdf bad_datetime
+69 invalid_attribute_version wrong_version svg_rdf
 
 PASS ../toast/microdata/schema-abc/amusementpark.html
 0 charset_mismatch charset_used charset_invalid
@@ -89,7 +89,6 @@ PASS ../toast/microdata/schema-abc/audiobook.html
 
 PASS ../toast/microdata/schema-abc/audioobject.html
 13 script
-20 bad_datetime
 
 PASS ../toast/microdata/schema-abc/bankaccount.html
 0 charset_mismatch charset_used charset_invalid
@@ -177,7 +176,6 @@ PASS ../toast/microdata/schema-abc/brokerageaccount.html
 15 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf not_ontology_property unrecognised_value bad_itemprop
 
 PASS ../toast/microdata/schema-abc/car.html
-23 missing_itemtype
 28 use_quote_code
 29 attribute_required invalid_attribute_version wrong_version attribute_required empty_link empty_link url_not_found naughty_alt
 
@@ -228,7 +226,7 @@ PASS ../toast/microdata/schema-abc/collection.html
 28 requires_itemscope
 29 bad_itemid
 32 bad_itemid
-36 missing_close ontology_url requires_itemscope missing_itemtype inserted_missing_closure
+36 missing_close ontology_url requires_itemscope inserted_missing_closure
 37 bad_itemid
 
 PASS ../toast/microdata/schema-abc/collegeoruniversity-1.html

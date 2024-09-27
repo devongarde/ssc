@@ -239,6 +239,7 @@ options::options (const context_t& c)
     INSERT_VSTR (NITS, CATASTROPHE, catastrophe);
     INSERT_VSTR (NITS, COMMENT, comment);
     INSERT_VSTR (NITS, DBG, debug);
+    INSERT_BOOL (NITS, EXPAND, expand);
     INSERT_BOOL (NITS, EXTRA, extra);
     INSERT_STRING (NITS, FORMAT, nit_format);
     INSERT_VSTR (NITS, INFO, inform);
@@ -1026,6 +1027,8 @@ void options::init (context_t& c)
         (NITS WHOOPS, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as an error; may be repeated.")
         (NITS ERROREXIT ",E", ::boost::program_options::value < ::std::string > () -> composing (), "Exit with an error if nits of this severity or worse are generated. Values: '"
             CATASTROPHE "', '" WHOOPS "' (default), '" WARNING "', '" INFO  "', or '" COMMENT  "'.")
+        (NITS EXPAND, ::boost::program_options::bool_switch (), "Expand content of some nits.")
+        (NITS DONT EXPAND, ::boost::program_options::bool_switch (), "Keep nit text curt.")
         (NITS EXTRA, ::boost::program_options::bool_switch (), "Report additional nits.")
         (NITS DONT EXTRA, ::boost::program_options::bool_switch (), "Do not report additional nits.")
         (NITS FORMAT, ::boost::program_options::value < ::std::string > (), "Output nits in this format: \"html\", \"text\" (default), or a filename (see docs for format).")
@@ -1426,26 +1429,40 @@ void options::parse (context_t& c, output_streams_t& o, nitpick& nits, const vst
         c.todo (do_simple);
         return; }
     if (var_ [ONTOLOGY LIST].as < bool > ())
-    {   ::std::string res;
+    {   ::std::string res, whoopsie;
         for (int i = s_none + 1; i < s_error; ++i)
         {   const e_ontology es = static_cast < e_ontology > (i);
             if (is_faux_schema (es)) continue;
-            res += ontology_names.get (es, ONTOLOGY_NAME);
+            const ::std::string& naam = ontology_names.get (es, ONTOLOGY_NAME);
+            res += naam;
             const ontology_version x (get_first_ontology_version (es));
             const ontology_version y (get_last_ontology_version (es));
             const int count = get_ontology_version_count (es);
             PRESUME (count >= 1, __FILE__, __LINE__);
             if (count == 1)
-            {   PRESUME (x == y, __FILE__, __LINE__);
+            {   if (x != y)
+                {   if (! whoopsie.empty ()) whoopsie += ", ";
+                    whoopsie += naam;
+                    whoopsie += " (";
+                    whoopsie += x.ver ();
+                    whoopsie += ", ";
+                    whoopsie += y.ver ();
+                    whoopsie += ")"; }
                 res += " ";
                 res += x_dot_y (x.mjr (), x.mnr ()); }
-            if (count > 1)
-            {   PRESUME (x != y, __FILE__, __LINE__);
+            else if (count > 1)
+            {   if (x == y)
+                {   if (! whoopsie.empty ()) whoopsie += ", ";
+                    whoopsie += naam;
+                    whoopsie += " (";
+                    whoopsie += x.ver ();
+                    whoopsie += ")"; }
                 res += " ";
                 res += x_dot_y (x.mjr (), x.mnr ());
                 if (count == 2) res += ","; else res += "-";
                 res += x_dot_y (y.mjr (), y.mnr ()); }
             res += "\n"; }
+        PRESUME (whoopsie.empty (), __FILE__, __LINE__);
         c.domsg (res);
         c.todo (do_simple);
         return; }
@@ -1883,6 +1900,7 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
 
         if (var_.count (NITS CACHE)) c.cache (var_ [NITS CACHE].as < ::std::string > ());
         yea_nay (c, &context_t::nids, nits, NITS NIDS, NITS DONT NIDS);
+// EXPAND
         yea_nay (c, &context_t::extra, nits, NITS EXTRA, NITS DONT EXTRA);
         if (var_.count (NITS FORMAT)) c.nit_format (var_ [NITS FORMAT].as < ::std::string > ());
         if (var_.count (NITS QUOTE))
@@ -2461,23 +2479,17 @@ void options::report_bool (::std::ostringstream& res, const char* yay, const cha
         if (! x.empty ()) res << "\n" START_OF_SUBSECTION " Environment:\n" << x << "\n";
         res << "\n" START_OF_SUBSECTION " Arguments:\n";
 
-        if (var_ [ASK].as < bool > ()) res << ASK "\n";
-        if (var_ [DONT ASK].as < bool > ()) res << DONT ASK "\n";
+        // these should NOT throw (the var_'s ARE bool), but they do
+        try { if (var_ [ASK].as < bool > ()) res << ASK "\n"; } catch (...) { }
+        try { if (var_ [DONT ASK].as < bool > ()) res << DONT ASK "\n"; } catch (...) { }
 
-        if (var_ [HELP].as < bool > ()) res << HELP "\n";
-        if (var_ [VERSION].as < bool > ()) res << VERSION "\n"; }
+        try { if (var_ [HELP].as < bool > ()) res << HELP "\n"; } catch (...) { }
+        try { if (var_ [VERSION].as < bool > ()) res << VERSION "\n"; } catch (...) { } }
 
     RB (res, CORPUS, ARTICLE, corpus);
     RB (res, CORPUS, BODY, corpus);
     RB (res, CORPUS, MAIN, corpus);
     RG (res, ::std::string, CORPUS, OUTPUT, corpus);
-//    if (var_ [CORPUS ARTICLE].as < bool > ()) res << CORPUS ARTICLE "\n";
-//    if (var_ [CORPUS DONT ARTICLE].as < bool > ()) res << CORPUS DONT ARTICLE "\n";
-//    if (var_ [CORPUS BODY].as < bool > ()) res << CORPUS BODY "\n";
-//    if (var_ [CORPUS DONT BODY].as < bool > ()) res << CORPUS DONT BODY "\n";
-//    if (var_ [CORPUS MAIN].as < bool > ()) res << CORPUS MAIN "\n";
-//    if (var_ [CORPUS DONT MAIN].as < bool > ()) res << CORPUS DONT MAIN "\n";
-//    if (var_.count (CORPUS OUTPUT)) res << CORPUS OUTPUT ": " << var_ [CORPUS OUTPUT].as < ::std::string > () << "\n";
 
     RG (res, int, CSS, ADJUST, css);
     RG (res, int, CSS, ADVLAY, css);
@@ -2560,94 +2572,6 @@ void options::report_bool (::std::ostringstream& res, const char* yay, const cha
     RG (res, int, CSS, VIEWPORT, css);
     RG (res, int, CSS, WRITING, css);
     RG (res, int, CSS, WC, css);
-/*                                                                                                                                                                       ~                                                                                                                                                                       ~                                                                                                                                                                       ~                                                                                                                                                                       ~                                                                                                                                                                       ~                                                                                                                                                                       ~                                                                                                                                                                       ~                                                                                                                                                                       ~                                                                                                                                                                                                                                                                                                                             40,0-1        All 
-    if (var_.count (CSS ADJUST)) res << CSS ADJUST ": " << var_ [CSS ADJUST].as < int > () << "\n";
-    if (var_.count (CSS ADVLAY)) res << CSS ADVLAY ": " << var_ [CSS ADVLAY].as < int > () << "\n";
-    if (var_.count (CSS ANCHOR)) res << CSS ANCHOR ": " << var_ [CSS ANCHOR].as < int > () << "\n";
-    if (var_.count (CSS ANCHOR_POS)) res << CSS ANCHOR_POS ": " << var_ [CSS ANCHOR_POS].as < int > () << "\n";
-    if (var_.count (CSS ANIMATION)) res << CSS ANIMATION ": " << var_ [CSS ANIMATION].as < int > () << "\n";
-    if (var_.count (CSS BACKGROUND)) res << CSS BACKGROUND ": " << var_ [CSS BACKGROUND].as < int > () << "\n";
-    if (var_.count (CSS BOX_ALIGN)) res << CSS BOX_ALIGN ": " << var_ [CSS BOX_ALIGN].as < int > () << "\n";
-    if (var_.count (CSS BOX_MODEL)) res << CSS BOX_MODEL ": " << var_ [CSS BOX_MODEL].as < int > () << "\n";
-    if (var_.count (CSS BOX_SIZING)) res << CSS BOX_SIZING ": " << var_ [CSS BOX_SIZING].as < int > () << "\n";
-    if (var_.count (CSS CASCADE)) res << CSS CASCADE ": " << var_ [CSS CASCADE].as < int > () << "\n";
-    if (var_.count (CSS COLOUR)) res << CSS COLOUR ": " << var_ [CSS COLOUR].as < int > () << "\n";
-    if (var_.count (CSS COMPOSITING)) res << CSS COMPOSITING ": " << var_ [CSS COMPOSITING].as < int > () << "\n";
-    if (var_.count (CSS COND_RULE)) res << CSS COND_RULE ": " << var_ [CSS COND_RULE].as < int > () << "\n";
-    if (var_.count (CSS CS)) res << CSS CS ": " << var_ [CSS CS].as < int > () << "\n";
-    if (var_.count (CSS CONTAIN)) res << CSS CONTAIN ": " << var_ [CSS CONTAIN].as < int > () << "\n";
-    if (var_.count (CSS CON_TENT)) res << CSS CON_TENT ": " << var_ [CSS CON_TENT].as < int > () << "\n";
-    if (var_.count (CSS CUSTOM)) res << CSS CUSTOM ": " << var_ [CSS CUSTOM].as < int > () << "\n";
-    if (var_.count (CSS DEVICE)) res << CSS DEVICE ": " << var_ [CSS DEVICE].as < int > () << "\n";
-    if (var_.count (CSS DISPLAY)) res << CSS DISPLAY ": " << var_ [CSS DISPLAY].as < int > () << "\n";
-    if (var_.count (CSS EASE)) res << CSS EASE ": " << var_ [CSS EASE].as < int > () << "\n";
-    if (var_.count (CSS EXCLUDE)) res << CSS EXCLUDE ": " << var_ [CSS EXCLUDE].as < int > () << "\n";
-    if (var_.count (CSS EXTENSION)) { res << CSS EXTENSION ": "; pvs (res, var_ [CSS EXTENSION].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (CSS FBL)) res << CSS FBL ": " << var_ [CSS FBL].as < int > () << "\n";
-    if (var_.count (CSS FILL)) res << CSS FILL ": " << var_ [CSS FILL].as < int > () << "\n";
-    if (var_.count (CSS FILTER)) res << CSS FILTER ": " << var_ [CSS FILTER].as < int > () << "\n";
-    if (var_.count (CSS FLOAT)) res << CSS FLOAT ": " << var_ [CSS FLOAT].as < int > () << "\n";
-    if (var_.count (CSS FONT)) res << CSS FONT ": " << var_ [CSS FONT].as < int > () << "\n";
-    if (var_.count (CSS FRAG)) res << CSS FRAG ": " << var_ [CSS FRAG].as < int > () << "\n";
-    if (var_.count (CSS GRID)) res << CSS GRID ": " << var_ [CSS GRID].as < int > () << "\n";
-    if (var_.count (CSS HIGHLIGHT)) res << CSS HIGHLIGHT ": " << var_ [CSS HIGHLIGHT].as < int > () << "\n";
-    if (var_.count (CSS HYPERLINK)) res << CSS HYPERLINK ": " << var_ [CSS HYPERLINK].as < int > () << "\n";
-    if (var_.count (CSS IMAGE)) res << CSS IMAGE ": " << var_ [CSS IMAGE].as < int > () << "\n";
-    if (var_.count (CSS INLINE)) res << CSS INLINE ": " << var_ [CSS INLINE].as < int > () << "\n";
-    if (var_.count (CSS LIST)) res << CSS LIST ": " << var_ [CSS LIST].as < int > () << "\n";
-    if (var_.count (CSS LINE_GRID)) res << CSS LINE_GRID ": " << var_ [CSS LINE_GRID].as < int > () << "\n";
-    if (var_.count (CSS LOGIC)) res << CSS LOGIC ": " << var_ [CSS LOGIC].as < int > () << "\n";
-    if (var_.count (CSS MARQUEE)) res << CSS MARQUEE ": " << var_ [CSS MARQUEE].as < int > () << "\n";
-    if (var_.count (CSS MASKING)) res << CSS MASKING ": " << var_ [CSS MASKING].as < int > () << "\n";
-    if (var_.count (CSS MEDIA)) res << CSS MEDIA ": " << var_ [CSS MEDIA].as < int > () << "\n";
-    if (var_ [CSS MOBILE].as < bool > ()) res << CSS MOBILE ": " << var_ [CSS MOBILE].as < bool > () << "\n";
-    if (var_ [CSS DONT MOBILE].as < bool > ()) res << CSS DONT MOBILE ": " << var_ [CSS DONT MOBILE].as < bool > () << "\n";
-    if (var_.count (CSS MOTION)) res << CSS MOTION ": " << var_ [CSS MOTION].as < int > () << "\n";
-    if (var_.count (CSS MULTI_COLUMN)) res << CSS MULTI_COLUMN ": " << var_ [CSS MULTI_COLUMN].as < int > () << "\n";
-    if (var_.count (CSS NAMESPACE)) res << CSS NAMESPACE ": " << var_ [CSS NAMESPACE].as < int > () << "\n";
-    if (var_.count (CSS NES)) res << CSS NES ": " << var_ [CSS NES].as < int > () << "\n";
-    if (var_.count (CSS NESTING)) res << CSS NESTING ": " << var_ [CSS NESTING].as < int > () << "\n";
-    if (var_.count (CSS OVERFLOH)) res << CSS OVERFLOH ": " << var_ [CSS OVERFLOH].as < int > () << "\n";
-    if (var_.count (CSS OVERSCROLL)) res << CSS OVERSCROLL ": " << var_ [CSS OVERSCROLL].as < int > () << "\n";
-    if (var_.count (CSS PAGE)) res << CSS PAGE ": " << var_ [CSS PAGE].as < int > () << "\n";
-    if (var_.count (CSS POSITION)) res << CSS POSITION ": " << var_ [CSS POSITION].as < int > () << "\n";
-    if (var_.count (CSS PRESENT)) res << CSS PRESENT ": " << var_ [CSS PRESENT].as < int > () << "\n";
-    if (var_ [CSS PRINT].as < bool > ()) res << CSS PRINT ": " << var_ [CSS PRINT].as < bool > () << "\n";
-    if (var_ [CSS DONT PRINT].as < bool > ()) res << CSS DONT PRINT ": " << var_ [CSS DONT PRINT].as < bool > () << "\n";
-    if (var_.count (CSS PSEUDO)) res << CSS PSEUDO ": " << var_ [CSS PSEUDO].as < int > () << "\n";
-    if (var_.count (CSS REGION)) res << CSS REGION ": " << var_ [CSS REGION].as < int > () << "\n";
-    if (var_.count (CSS RHYTHM)) res << CSS RHYTHM ": " << var_ [CSS RHYTHM].as < int > () << "\n";
-    if (var_.count (CSS ROUND)) res << CSS ROUND ": " << var_ [CSS ROUND].as < int > () << "\n";
-    if (var_.count (CSS RUBY)) res << CSS RUBY ": " << var_ [CSS RUBY].as < int > () << "\n";
-    if (var_.count (CSS SCOPE)) res << CSS SCOPE ": " << var_ [CSS SCOPE].as < int > () << "\n";
-    if (var_.count (CSS SCROLLBAR)) res << CSS SCROLLBAR ": " << var_ [CSS SCROLLBAR].as < int > () << "\n";
-    if (var_.count (CSS SDA)) res << CSS SDA ": " << var_ [CSS SDA].as < int > () << "\n";
-    if (var_.count (CSS SELECTOR)) res << CSS SELECTOR ": " << var_ [CSS SELECTOR].as < int > () << "\n";
-    if (var_.count (CSS SP)) res << CSS SP ": " << var_ [CSS SP].as < int > () << "\n";
-    if (var_.count (CSS SHAPE)) res << CSS SHAPE ": " << var_ [CSS SHAPE].as < int > () << "\n";
-    if (var_.count (CSS SPATIAL)) res << CSS SPATIAL ": " << var_ [CSS SPATIAL].as < int > () << "\n";
-    if (var_.count (CSS SPEECH)) res << CSS SPEECH ": " << var_ [CSS SPEECH].as < int > () << "\n";
-    if (var_.count (CSS SNAP)) res << CSS SNAP ": " << var_ [CSS SNAP].as < int > () << "\n";
-    if (var_.count (CSS SNAP_POINTS)) res << CSS SNAP_POINTS ": " << var_ [CSS SNAP_POINTS].as < int > () << "\n";
-    if (var_.count (CSS STYLE)) res << CSS STYLE ": " << var_ [CSS STYLE].as < int > () << "\n";
-    if (var_.count (CSS SYNTAX)) res << CSS SYNTAX ": " << var_ [CSS SYNTAX].as < int > () << "\n";
-    if (var_.count (CSS TABLE)) res << CSS TABLE ": " << var_ [CSS TABLE].as < int > () << "\n";
-    if (var_.count (CSS TEXT_ARG)) res << CSS TEXT_ARG ": " << var_ [CSS TEXT_ARG].as < int > () << "\n";
-    if (var_.count (CSS TEXT_DEC)) res << CSS TEXT_DEC ": " << var_ [CSS TEXT_DEC].as < int > () << "\n";
-    if (var_.count (CSS TRANSFORM)) res << CSS TRANSFORM ": " << var_ [CSS TRANSFORM].as < int > () << "\n";
-    if (var_.count (CSS TRANSITION)) res << CSS TRANSITION ": " << var_ [CSS TRANSITION].as < int > () << "\n";
-    if (var_ [CSS TV].as < bool > ()) res << CSS TV ": " << var_ [CSS TV].as < bool > () << "\n";
-    if (var_ [CSS DONT TV].as < bool > ()) res << CSS DONT TV ": " << var_ [CSS DONT TV].as < bool > () << "\n";
-    if (var_.count (CSS UI)) res << CSS UI ": " << var_ [CSS UI].as < int > () << "\n";
-    if (var_.count (CSS VAL)) res << CSS VAL ": " << var_ [CSS VAL].as < int > () << "\n";
-    if (var_ [CSS VERIFY].as < bool > ()) res << CSS VERIFY ": " << var_ [CSS VERIFY].as < bool > () << "\n";
-    if (var_ [CSS DONT VERIFY].as < bool > ()) res << CSS DONT VERIFY ": " << var_ [CSS DONT VERIFY].as < bool > () << "\n";
-    if (var_.count (CSS VERSION)) res << CSS VERSION ": " << var_ [CSS VERSION].as < ::std::string > () << "\n";
-    if (var_.count (CSS VIEW)) res << CSS VIEW ": " << var_ [CSS VIEW].as < int > () << "\n";
-    if (var_.count (CSS VIEWPORT)) res << CSS VIEWPORT ": " << var_ [CSS VIEWPORT].as < int > () << "\n";
-    if (var_.count (CSS WRITING)) res << CSS WRITING ": " << var_ [CSS WRITING].as < int > () << "\n";
-    if (var_.count (CSS WC)) res << CSS WC ": " << var_ [CSS WC].as < int > () << "\n";
-*/
 
     if (var_.count (ENVIRONMENT QUERY_STRING))
     {   RG (res, ::std::string, ENVIRONMENT, AUTH_TYPE, env);
@@ -2670,27 +2594,6 @@ void options::report_bool (::std::ostringstream& res, const char* yay, const cha
         if (! file)
         {  ::std::string qs (var_ [ENVIRONMENT QUERY_STRING].as < ::std::string > ());
             res << ENVIRONMENT QUERY_STRING ": " << qs << "\n            : " << query_to_switches (qs) << "\n"; } }
-/*
-    {   if (var_.count (ENVIRONMENT SERVER_SOFTWARE)) res << ENVIRONMENT SERVER_SOFTWARE ": " << var_ [ENVIRONMENT SERVER_SOFTWARE].as < ::std::string > () << "\n";
-        if (var_.count (ENVIRONMENT SERVER_NAME)) res << ENVIRONMENT SERVER_NAME ": " << var_ [ENVIRONMENT SERVER_NAME].as < ::std::string > () << "\n";
-        if (var_.count (ENVIRONMENT GATEWAY_INTERFACE)) res << ENVIRONMENT GATEWAY_INTERFACE ": " << var_ [ENVIRONMENT GATEWAY_INTERFACE].as < ::std::string > () << "\n";
-        if (var_.count (ENVIRONMENT SERVER_PROTOCOL)) res << ENVIRONMENT SERVER_PROTOCOL ": " << var_ [ENVIRONMENT SERVER_PROTOCOL].as < ::std::string > () << "\n";
-        if (var_.count (ENVIRONMENT SERVER_PORT)) res << ENVIRONMENT SERVER_PORT ": " << var_ [ENVIRONMENT SERVER_PORT].as < ::std::string > () << "\n";
-        if (var_.count (ENVIRONMENT REQUEST_METHOD)) res << ENVIRONMENT REQUEST_METHOD ": " << var_ [ENVIRONMENT REQUEST_METHOD].as < ::std::string > () << "\n";
-        if (var_.count (ENVIRONMENT HTTP_ACCEPT)) res << ENVIRONMENT HTTP_ACCEPT ": " << var_ [ENVIRONMENT HTTP_ACCEPT].as < ::std::string > () << "\n";
-        if (var_.count (ENVIRONMENT PATH_INFO)) res << ENVIRONMENT PATH_INFO ": " << var_ [ENVIRONMENT PATH_INFO].as < ::std::string > () << "\n";
-        if (var_.count (ENVIRONMENT PATH_TRANSLATED)) res << ENVIRONMENT PATH_TRANSLATED ": " << var_ [ENVIRONMENT PATH_TRANSLATED].as < ::std::string > () << "\n";
-        if (var_.count (ENVIRONMENT SCRIPT_NAME)) res << ENVIRONMENT SCRIPT_NAME ": " << var_ [ENVIRONMENT SCRIPT_NAME].as < ::std::string > () << "\n";
-        if (var_.count (ENVIRONMENT REMOTE_HOST)) res << ENVIRONMENT REMOTE_HOST ": " << var_ [ENVIRONMENT REMOTE_HOST].as < ::std::string > () << "\n";
-        if (var_.count (ENVIRONMENT REMOTE_ADDR)) res << ENVIRONMENT REMOTE_ADDR ": " << var_ [ENVIRONMENT REMOTE_ADDR].as < ::std::string > () << "\n";
-        if (var_.count (ENVIRONMENT REMOTE_USER)) res << ENVIRONMENT REMOTE_USER ": " << var_ [ENVIRONMENT REMOTE_USER].as < ::std::string > () << "\n";
-        if (var_.count (ENVIRONMENT AUTH_TYPE)) res << ENVIRONMENT AUTH_TYPE ": " << var_ [ENVIRONMENT AUTH_TYPE].as < ::std::string > () << "\n";
-        if (var_.count (ENVIRONMENT CONTENT_TYPE)) res << ENVIRONMENT CONTENT_TYPE ": " << var_ [ENVIRONMENT CONTENT_TYPE].as < ::std::string > () << "\n";
-        if (var_.count (ENVIRONMENT CONTENT_LENGTH)) res << ENVIRONMENT CONTENT_LENGTH ": " << var_ [ENVIRONMENT CONTENT_LENGTH].as < ::std::string > () << "\n";
-
-        ::std::string qs (var_ [ENVIRONMENT QUERY_STRING].as < ::std::string > ());
-        res << ENVIRONMENT QUERY_STRING ": " << qs << "\n            : " << query_to_switches (qs) << "\n"; }
-*/
 
     RB (res, GENERAL, CGI, general);
     RB (res, GENERAL, CLASS, general);
@@ -2721,56 +2624,6 @@ void options::report_bool (::std::ostringstream& res, const char* yay, const cha
     RB (res, GENERAL, VCS, general);
     RG (res, ::std::string, GENERAL, VERBOSE, general);
     RB (res, GENERAL, YGGDRISIL, general);
-/*
-    if (var_ [GENERAL CGI].as < bool > ()) res << GENERAL CGI "\n";
-    if (var_ [GENERAL DONT CGI].as < bool > ()) res << GENERAL DONT CGI "\n";
-    if (var_ [GENERAL CLASS].as < bool > ()) res << GENERAL CLASS "\n";
-    if (var_ [GENERAL DONT CLASS].as < bool > ()) res << GENERAL DONT CLASS "\n";
-    if (var_ [GENERAL CLASSIC].as < bool > ()) res << GENERAL CLASSIC "\n";
-    if (var_ [GENERAL DONT CLASSIC].as < bool > ()) res << GENERAL DONT CLASSIC "\n";
-    if (var_.count (GENERAL CUSTOM)) { res << GENERAL CUSTOM ": "; pvs (res, var_ [GENERAL CUSTOM].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (GENERAL DATAPATH))
-        if (var_ [GENERAL DATAPATH].as < ::std::string > () != def_path)
-            res << GENERAL DATAPATH ": " << var_ [GENERAL DATAPATH].as < ::std::string > () << "\n";
-    if (var_.count (GENERAL DEFTHRD)) res << GENERAL DEFTHRD ": " << var_ [GENERAL DEFTHRD].as < int > () << "\n";
-    if (var_.count (GENERAL WHOOPS)) res << GENERAL WHOOPS ": " << var_ [GENERAL WHOOPS].as < ::std::string > () << "\n";
-    if (var_.count (GENERAL ENVIRONMENT)) { res << GENERAL ENVIRONMENT ": "; pvs (res, var_ [GENERAL ENVIRONMENT].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (GENERAL EXCLUDE)) { res << GENERAL EXCLUDE ": "; pvs (res, var_ [GENERAL EXCLUDE].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (GENERAL FICHIER))
-        if (var_ [GENERAL FICHIER].as < ::std::string > () != def_persisted)
-            res << GENERAL FICHIER ": " << var_ [GENERAL FICHIER].as < ::std::string > () << "\n";
-    if (var_ [GENERAL INFO].as < bool > ()) res << GENERAL INFO "\n";
-    if (var_.count (GENERAL IGNORED)) { res << GENERAL IGNORED ": "; pvs (res, var_ [GENERAL IGNORED].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (GENERAL LANG)) res << GENERAL LANG ": " << var_ [GENERAL LANG].as < ::std::string > () << "\n";
-    if (var_.count (GENERAL MACROEND))
-        if (var_ [GENERAL MACROEND].as < ::std::string > () != def_macroend)
-             res << GENERAL MACROEND ": " << var_ [GENERAL MACROEND].as < ::std::string > () << "\n";
-    if (var_.count (GENERAL MACROSTART))
-        if (var_ [GENERAL MACROSTART].as < ::std::string > () != def_macrostart)
-            res << GENERAL MACROSTART ": " << var_ [GENERAL MACROSTART].as < ::std::string > () << "\n";
-    if (var_.count (GENERAL MAXFILESIZE)) res << GENERAL MAXFILESIZE ": " << var_ [GENERAL MAXFILESIZE].as < int > () << "\n";
-    if (var_ [GENERAL PROGRESS].as < bool > ()) res << GENERAL PROGRESS "\n";
-    if (var_ [GENERAL DONT PROGRESS].as < bool > ()) res << GENERAL DONT PROGRESS "\n";
-    if (var_ [GENERAL RDFA].as < bool > ()) res << GENERAL RDFA "\n";
-    if (var_ [GENERAL DONT RDFA].as < bool > ()) res << GENERAL DONT RDFA "\n";
-    if (var_ [GENERAL REL].as < bool > ()) res << GENERAL REL "\n";
-    if (var_ [GENERAL DONT REL].as < bool > ()) res << GENERAL DONT REL "\n";
-    if (var_ [GENERAL RPT].as < bool > ()) res << GENERAL RPT "\n";
-    if (var_ [GENERAL DONT RPT].as < bool > ()) res << GENERAL DONT RPT "\n";
-    if (var_ [GENERAL SLOVEN].as < bool > ()) res << GENERAL SLOVEN "\n";
-    if (var_ [GENERAL DONT SLOVEN].as < bool > ()) res << GENERAL DONT SLOVEN "\n";
-    if (var_ [GENERAL SPEC].as < bool > ()) res << GENERAL SPEC "\n";
-    if (var_ [GENERAL SSI].as < bool > ()) res << GENERAL SSI "\n";
-    if (var_ [GENERAL DONT SSI].as < bool > ()) res << GENERAL DONT SSI "\n";
-    if (var_ [GENERAL TEST].as < bool > ()) res << GENERAL TEST "\n";
-    if (var_ [GENERAL DONT TEST].as < bool > ()) res << GENERAL DONT TEST "\n";
-#ifndef NO_FRED
-    if (var_.count (GENERAL THREAD)) res << GENERAL THREAD ": " << var_ [GENERAL THREAD].as < int > () << "\n";
-#endif // NO_FRED
-    if (var_ [GENERAL VCS].as < bool > ()) res << GENERAL VCS "\n";
-    if (var_.count (GENERAL VERBOSE)) res << GENERAL VERBOSE ": " << var_ [GENERAL VERBOSE].as < ::std::string > () << "\n";
-    if (var_ [GENERAL YGGDRISIL].as < bool > ()) res << GENERAL YGGDRISIL "\n";
-*/
 
     RG (res, vstr_t, HTML, CUSTOM, html);
     RB (res, HTML, FORCE, html);
@@ -2790,50 +2643,10 @@ void options::report_bool (::std::ostringstream& res, const char* yay, const cha
     RB (res, HTML, TAGS, html);
     RII (res, HTML, TITLE, def_htmltitle, html);
     RG (res, ::std::string, HTML, VERSION, html);
-/*
-    if (var_.count (HTML CUSTOM)) { res << HTML CUSTOM ": "; pvs (res, var_ [HTML CUSTOM].as < vstr_t > ()); res << "\n"; }
-    if (var_ [HTML FORCE].as < bool > ()) res << HTML FORCE "\n";
-    if (var_ [HTML DONT FORCE].as < bool > ()) res << HTML DONT FORCE "\n";
-    if (var_ [HTML IE].as < bool > ()) res << HTML IE "\n";
-    if (var_ [HTML DONT IE].as < bool > ()) res << HTML DONT IE "\n";
-    if (var_.count (HTML IGNORED)) { res << HTML IGNORED ": "; pvs (res, var_ [HTML IGNORED].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (HTML LANG)) res << HTML LANG ": " << var_ [HTML LANG].as < ::std::string > () << "\n";
-    if (var_ [HTML REL].as < bool > ()) res << HTML REL "\n";
-    if (var_ [HTML DONT REL].as < bool > ()) res << HTML DONT REL "\n";
-    if (var_ [HTML RFC1867].as < bool > ()) res << HTML RFC1867 "\n";
-    if (var_ [HTML DONT RFC1867].as < bool > ()) res << HTML DONT RFC1867 "\n";
-    if (var_ [HTML RFC1942].as < bool > ()) res << HTML RFC1942 "\n";
-    if (var_ [HTML DONT RFC1942].as < bool > ()) res << HTML DONT RFC1942 "\n";
-    if (var_ [HTML RFC1980].as < bool > ()) res << HTML RFC1980 "\n";
-    if (var_ [HTML DONT RFC1980].as < bool > ()) res << HTML DONT RFC1980 "\n";
-    if (var_ [HTML RFC2070].as < bool > ()) res << HTML RFC2070 "\n";
-    if (var_ [HTML DONT RFC2070].as < bool > ()) res << HTML DONT RFC2070 "\n";
-    if (var_ [HTML RUBY].as < bool > ()) res << HTML RUBY "\n";
-    if (var_ [HTML DONT RUBY].as < bool > ()) res << HTML DONT RUBY "\n";
-    if (var_ [HTML SAFARI].as < bool > ()) res << HTML SAFARI "\n";
-    if (var_ [HTML DONT SAFARI].as < bool > ()) res << HTML DONT SAFARI "\n";
-    if (var_ [HTML SLOVEN].as < bool > ()) res << HTML SLOVEN "\n";
-    if (var_ [HTML DONT SLOVEN].as < bool > ()) res << HTML DONT SLOVEN "\n";
-    if (var_.count (HTML SNIPPET)) res << HTML SNIPPET ": " << var_ [HTML SNIPPET].as < ::std::string > () << "\n";
-    if (var_ [HTML SSI].as < bool > ()) res << HTML SSI "\n";
-    if (var_ [HTML DONT SSI].as < bool > ()) res << HTML DONT SSI "\n";
-    if (var_ [HTML TAGS].as < bool > ()) res << HTML TAGS "\n";
-    if (var_ [HTML DONT TAGS].as < bool > ()) res << HTML DONT TAGS "\n";
-    if (var_.count (HTML TITLE))
-        if (var_ [HTML TITLE].as < int > () != def_htmltitle)
-            res << HTML TITLE ": " << var_ [HTML TITLE].as < int > () << "\n";
-    if (var_.count (HTML VERSION)) res << HTML VERSION ": " << var_ [HTML VERSION].as < ::std::string > () << "\n";
-*/
 
     RG (res, vstr_t, JSONLD, EXTENSION, jsonld);
     RB (res, JSONLD, VERIFY, jsonld);
     RG (res, ::std::string, JSONLD, VERSION, jsonld);
-/*
-    if (var_.count (JSONLD EXTENSION)) { res << JSONLD EXTENSION ": "; pvs (res, var_ [JSONLD EXTENSION].as < vstr_t > ()); res << "\n"; }
-    if (var_ [JSONLD VERIFY].as < bool > ()) res << JSONLD VERIFY "\n";
-    if (var_ [JSONLD DONT VERIFY].as < bool > ()) res << JSONLD DONT VERIFY "\n";
-    if (var_.count (JSONLD VERSION)) res << JSONLD VERSION ": " << var_ [JSONLD VERSION].as < ::std::string > () << "\n";
-*/
 
     RB (res, LINKS, CHECK, lynx);
     RB (res, LINKS, EXAMPLE, lynx);
@@ -2846,64 +2659,19 @@ void options::report_bool (::std::ostringstream& res, const char* yay, const cha
     RG (res, vstr_t, LINKS, REPORT, lynx);
     RB (res, LINKS, REVOKE, lynx);
     RB (res, LINKS, XLINK, lynx);
-/*
-    if (var_ [LINKS CHECK].as < bool > ()) res << LINKS CHECK "\n";
-    if (var_ [LINKS DONT CHECK].as < bool > ()) res << LINKS DONT CHECK "\n";
-    if (var_ [LINKS EXAMPLE].as < bool > ()) res << LINKS EXAMPLE "\n";
-    if (var_ [LINKS DONT EXAMPLE].as < bool > ()) res << LINKS DONT EXAMPLE "\n";
-    if (var_ [LINKS EXTERNAL].as < bool > ()) res << LINKS EXTERNAL "\n";
-    if (var_ [LINKS DONT EXTERNAL].as < bool > ()) res << LINKS DONT EXTERNAL "\n";
-    if (var_ [LINKS FORWARD].as < bool > ()) res << LINKS FORWARD "\n";
-    if (var_ [LINKS DONT FORWARD].as < bool > ()) res << LINKS DONT FORWARD "\n";
-    if (var_.count (LINKS IGNORED)) { res << LINKS IGNORED ": "; pvs (res, var_ [LINKS IGNORED].as < vstr_t > ()); res << "\n"; }
-    if (var_ [LINKS LOCAL].as < bool > ()) res << LINKS LOCAL "\n";
-    if (var_ [LINKS DONT LOCAL].as < bool > ()) res << LINKS DONT LOCAL "\n";
-    if (var_ [LINKS ONCE].as < bool > ()) res << LINKS ONCE "\n";
-    if (var_ [LINKS DONT ONCE].as < bool > ()) res << LINKS DONT ONCE "\n";
-    if (var_.count (LINKS PRETEND)) { res << LINKS PRETEND ": "; pvs (res, var_ [LINKS PRETEND].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (LINKS REPORT)) { res << LINKS REPORT ": "; pvs (res, var_ [LINKS REPORT].as < vstr_t > ()); res << "\n"; }
-    if (var_ [LINKS REVOKE].as < bool > ()) res << LINKS REVOKE "\n";
-    if (var_ [LINKS DONT REVOKE].as < bool > ()) res << LINKS DONT REVOKE "\n";
-    if (var_ [LINKS XLINK].as < bool > ()) res << LINKS XLINK "\n";
-    if (var_ [LINKS DONT XLINK].as < bool > ()) res << LINKS DONT XLINK "\n";
-
-*/
 
     RB (res, MATH, CORE, math);
     RG (res, int, MATH, DRAFT, math);
     RG (res, int, MATH, VERSION, math);
-/*
-    if (var_ [MATH CORE].as < bool > ()) res << MATH CORE ": " << var_ [MATH CORE].as < bool > () << "\n";
-    if (var_ [MATH DONT CORE].as < bool > ()) res << MATH DONT CORE ": " << var_ [MATH DONT CORE].as < bool > () << "\n";
-    if (var_.count (MATH DRAFT)) res << MATH DRAFT ": " << var_ [MATH DRAFT].as < int > () << "\n";
-    if (var_.count (MATH VERSION)) res << MATH VERSION ": " << var_ [MATH VERSION].as < int > () << "\n";
-
-*/
 
     RB (res, MF, EXPORT, mf);
     RB (res, MF, VERIFY, mf);
     RG (res, int, MF, VERSION, mf);
-/*
-    if (var_ [MF EXPORT].as < bool > ()) res << MF EXPORT "\n";
-    if (var_ [MF DONT EXPORT].as < bool > ()) res << MF DONT EXPORT "\n";
-    if (var_ [MF VERIFY].as < bool > ()) res << MF VERIFY "\n";
-    if (var_ [MF DONT VERIFY].as < bool > ()) res << MF DONT VERIFY "\n";
-    if (var_.count (MF VERSION)) res << MF VERSION ": " << var_ [MF VERSION].as < int > () << "\n";
-*/
 
     RB (res, MICRODATA, EXPORT, microdata);
     RB (res, MICRODATA, VERIFY, microdata);
     RG (res, ::std::string, MICRODATA, ROOT, microdata);
     RG (res, vstr_t, MICRODATA, VIRTUAL, microdata);
-/*
-    if (var_ [MICRODATA EXPORT].as < bool > ()) res << MICRODATA EXPORT "\n";
-    if (var_ [MICRODATA DONT EXPORT].as < bool > ()) res << MICRODATA DONT EXPORT "\n";
-    if (var_ [MICRODATA VERIFY].as < bool > ()) res << MICRODATA VERIFY "\n";
-    if (var_ [MICRODATA DONT VERIFY].as < bool > ()) res << MICRODATA DONT VERIFY "\n";
-    if (var_.count (MICRODATA ROOT)) res << MICRODATA ROOT ": " << var_ [MICRODATA ROOT].as < ::std::string > () << "\n";
-    if (var_.count (MICRODATA VIRTUAL)) { res << MICRODATA VIRTUAL ": "; pvs (res, var_ [MICRODATA VIRTUAL].as < vstr_t > ()); res << "\n"; }
-
-*/
 
     RG (res, vstr_t, NITS, ABHORRENT, nitty);
     RG (res, ::std::string, NITS, CACHE, nitty);
@@ -2912,6 +2680,7 @@ void options::report_bool (::std::ostringstream& res, const char* yay, const cha
     RG (res, vstr_t, NITS, DBG, nitty);
     RG (res, vstr_t, NITS, WHOOPS, nitty);
     RG (res, ::std::string, NITS, ERROREXIT, nitty);
+    RB (res, NITS, EXPAND, nitty);
     RB (res, NITS, EXTRA, nitty);
     RG (res, ::std::string, NITS, FORMAT, nitty);
     RG (res, vstr_t, NITS, INFO, nitty);
@@ -2924,46 +2693,11 @@ void options::report_bool (::std::ostringstream& res, const char* yay, const cha
     RG (res, vstr_t, NITS, WARNING, nitty);
     RB (res, NITS, WATCH, nitty);
     RG (res, ::std::string, NITS, XXX, nitty);
-/*
-    if (var_.count (NITS ABHORRENT)) { res << NITS ABHORRENT ": "; pvs (res, var_ [NITS ABHORRENT].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (NITS CACHE)) res << NITS CACHE ": " << var_ [NITS CACHE].as < ::std::string > () << "\n";
-    if (var_.count (NITS CATASTROPHE)) { res << NITS CATASTROPHE ": "; pvs (res, var_ [NITS CATASTROPHE].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (NITS COMMENT)) { res << NITS COMMENT ": "; pvs (res, var_ [NITS COMMENT].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (NITS DBG)) { res << NITS DBG ": "; pvs (res, var_ [NITS DBG].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (NITS WHOOPS)) { res << NITS WHOOPS ": "; pvs (res, var_ [NITS WHOOPS].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (NITS ERROREXIT)) res << NITS ERROREXIT ": " << var_ [NITS ERROREXIT].as < ::std::string > () << "\n";
-    if (var_ [NITS EXTRA].as < bool > ()) res << NITS EXTRA "\n";
-    if (var_ [NITS DONT EXTRA].as < bool > ()) res << NITS DONT EXTRA "\n";
-    if (var_.count (NITS FORMAT)) res << NITS FORMAT ": " << var_ [NITS FORMAT].as < ::std::string > () << "\n";
-    if (var_.count (NITS INFO)) { res << NITS INFO ": "; pvs (res, var_ [NITS INFO].as < vstr_t > ()); res << "\n"; }
-    if (var_ [NITS NIDS].as < bool > ()) res << NITS NIDS "\n";
-    if (var_ [NITS DONT NIDS].as < bool > ()) res << NITS DONT NIDS "\n";
-    if (var_.count (NITS OVERRIDE)) res << NITS OVERRIDE ": " << var_ [NITS OVERRIDE].as < ::std::string > () << "\n";
-    if (var_.count (NITS SILENCE)) { res << NITS SILENCE ": "; pvs (res, var_ [NITS SILENCE].as < vstr_t > ()); res << "\n"; }
-    if (var_ [NITS SPEC].as < bool > ()) res << NITS SPEC "\n";
-    if (var_ [NITS DONT SPEC].as < bool > ()) res << NITS DONT SPEC "\n";
-    if (var_ [NITS UNIQUE].as < bool > ()) res << NITS UNIQUE "\n";
-    if (var_ [NITS DONT UNIQUE].as < bool > ()) res << NITS DONT UNIQUE "\n";
-    if (var_.count (NITS VERBOSE)) res << NITS VERBOSE ": " << var_ [NITS VERBOSE].as < ::std::string > () << "\n";
-    if (var_.count (NITS WARNING)) { res << NITS WARNING ": "; pvs (res, var_ [NITS WARNING].as < vstr_t > ()); res << "\n"; }
-    if (var_ [NITS WATCH].as < bool > ()) res << NITS WATCH "\n";
-    if (var_ [NITS DONT WATCH].as < bool > ()) res << NITS DONT WATCH "\n";
-    if (var_.count (NITS XXX)) res << NITS XXX ": " << var_ [NITS XXX].as < ::std::string > () << "\n";
-*/
 
     RB (res, ONTOLOGY, EXPORT, ontology);
     RB (res, ONTOLOGY, VERIFY, ontology);
     RG (res, ::std::string, ONTOLOGY, ROOT, ontology);
     RG (res, vstr_t, ONTOLOGY, VIRTUAL, ontology);
-/*
-    if (var_ [ONTOLOGY EXPORT].as < bool > ()) res << ONTOLOGY EXPORT "\n";
-    if (var_ [ONTOLOGY DONT EXPORT].as < bool > ()) res << ONTOLOGY DONT EXPORT "\n";
-    if (var_ [ONTOLOGY VERIFY].as < bool > ()) res << ONTOLOGY VERIFY "\n";
-    if (var_ [ONTOLOGY DONT VERIFY].as < bool > ()) res << ONTOLOGY DONT VERIFY "\n";
-    if (var_.count (ONTOLOGY ROOT)) res << ONTOLOGY ROOT ": " << var_ [ONTOLOGY ROOT].as < ::std::string > () << "\n";
-    if (var_.count (ONTOLOGY VIRTUAL)) { res << ONTOLOGY VIRTUAL ": "; pvs (res, var_ [ONTOLOGY VIRTUAL].as < vstr_t > ()); res << "\n"; }
-
-*/
 
     for (int i = s_none + 1; i < s_error; ++i)
     {   const e_ontology es = static_cast < e_ontology > (i);
@@ -2974,7 +2708,6 @@ void options::report_bool (::std::ostringstream& res, const char* yay, const cha
         arg += naam;
         if (var_.count (arg))
             res << report_value (ONTOLOGY, ontology, naam.c_str (), var_ [arg].as < ::std::string > ()); }
-//            res << arg << ": " << var_ [arg].as < ::std::string > () << "\n"; }
 
 #ifdef BEASTIES
     RG (res, ::std::string, SERVER, ACCEPT, server);
@@ -2987,19 +2720,6 @@ void options::report_bool (::std::ostringstream& res, const char* yay, const cha
     RP (res, SERVER, PRIVATE, server);
     RP (res, SERVER, PUBLIC, server);
     RG (res, ::std::string, SERVER, ROOT, server);
-/*
-    if (var_.count (SERVER ACCEPT)) res << SERVER ACCEPT ": " << var_ [SERVER ACCEPT].as < ::std::string > () << "\n";
-    if (var_.count (SERVER ADDRESS)) res << SERVER ADDRESS ": " << var_ [SERVER ADDRESS].as < ::std::string > () << "\n";
-    if (var_ [SERVER ENABLE].as < bool > ()) res << SERVER ENABLE "\n";
-    if (var_ [SERVER DONT ENABLE].as < bool > ()) res << SERVER DONT ENABLE "\n";
-    if (var_.count (SERVER PARAMETERS)) res << SERVER PARAMETERS ": provided\n";
-    if (var_.count (SERVER PASSFILE)) res << SERVER PASSFILE ": provided\n";
-    if (var_.count (SERVER PASSWORD)) res << SERVER PASSWORD ": provided\n";
-    if (var_.count (SERVER PORT)) res << SERVER PORT ": " << var_ [SERVER PORT].as < ::std::string > () << "\n";
-    if (var_.count (SERVER PRIVATE)) res << SERVER PRIVATE ": provided\n";
-    if (var_.count (SERVER PUBLIC)) res << SERVER PUBLIC ": provided\n";
-    if (var_.count (SERVER ROOT)) res << SERVER ROOT ": " << var_ [SERVER ROOT].as < ::std::string > () << "\n";
-*/
 #endif // BEASTIES
 
     RB (res, SHADOW, CHANGED, shadow);
@@ -3015,41 +2735,12 @@ void options::report_bool (::std::ostringstream& res, const char* yay, const cha
     RB (res, SHADOW, SSI, shadow);
     RB (res, SHADOW, UPDATE, shadow);
     RG (res, vstr_t, SHADOW, VIRTUAL, shadow);
-/*
-    if (var_ [SHADOW CHANGED].as < bool > ()) res << SHADOW CHANGED "\n";
-    if (var_ [SHADOW DONT CHANGED].as < bool > ()) res << SHADOW DONT CHANGED "\n";
-    if (var_ [SHADOW COMMENT].as < bool > ()) res << SHADOW COMMENT "\n";
-    if (var_ [SHADOW DONT COMMENT].as < bool > ()) res << SHADOW DONT COMMENT "\n";
-    if (var_.count (SHADOW COPY)) res << SHADOW COPY ": " << var_ [SHADOW COPY].as < ::std::string > () << "\n";
-    if (var_ [SHADOW ENABLE].as < bool > ()) res << SHADOW ENABLE "\n";
-    if (var_ [SHADOW DONT ENABLE].as < bool > ()) res << SHADOW DONT ENABLE "\n";
-    if (var_.count (SHADOW FICHIER)) res << SHADOW FICHIER ": " << var_ [SHADOW FICHIER].as < ::std::string > () << "\n";
-    if (var_.count (SHADOW IGNORED)) { res << SHADOW IGNORED ": "; pvs (res, var_ [SHADOW IGNORED].as < vstr_t > ()); res << "\n"; }
-    if (var_ [SHADOW INFO].as < bool > ()) res << SHADOW INFO "\n";
-    if (var_ [SHADOW DONT INFO].as < bool > ()) res << SHADOW DONT INFO "\n";
-    if (var_.count (SHADOW MSG)) res << SHADOW MSG ": " << var_ [SHADOW MSG].as < ::std::string > () << "\n";
-    if (var_.count (SHADOW ROOT)) res << SHADOW ROOT ": " << var_ [SHADOW ROOT].as < ::std::string > () << "\n";
-    if (var_ [SHADOW SPACING].as < bool > ()) res << SHADOW SPACING "\n";
-    if (var_ [SHADOW DONT SPACING].as < bool > ()) res << SHADOW DONT SPACING "\n";
-    if (var_ [SHADOW SSI].as < bool > ()) res << SHADOW SSI "\n";
-    if (var_ [SHADOW DONT SSI].as < bool > ()) res << SHADOW DONT SSI "\n";
-    if (var_ [SHADOW UPDATE].as < bool > ()) res << SHADOW UPDATE "\n";
-    if (var_ [SHADOW DONT UPDATE].as < bool > ()) res << SHADOW DONT UPDATE "\n";
-    if (var_.count (SHADOW VIRTUAL)) { res << SHADOW VIRTUAL ": "; pvs (res, var_ [SHADOW VIRTUAL].as < vstr_t > ()); res << "\n"; }
-*/
 
     RG (res, ::std::string, WEBSITE, EXTENSION, site);
     RG (res, ::std::string, WEBSITE, INDEX, site);
     RG (res, vstr_t, WEBSITE, SITE, site);
     RG (res, ::std::string, WEBSITE, ROOT, site);
     RG (res, vstr_t, WEBSITE, VIRTUAL, site);
-/*
-    if (var_.count (WEBSITE EXTENSION)) { res << WEBSITE EXTENSION ": "; pvs (res, var_ [WEBSITE EXTENSION].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (WEBSITE INDEX)) res << WEBSITE INDEX ": " << var_ [WEBSITE INDEX].as < ::std::string > () << "\n";
-    if (var_.count (WEBSITE SITE)) { res << WEBSITE SITE ": "; pvs (res, var_ [WEBSITE SITE].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (WEBSITE ROOT)) res << WEBSITE ROOT ": " << var_ [WEBSITE ROOT].as < ::std::string > () << "\n";
-    if (var_.count (WEBSITE VIRTUAL)) { res << WEBSITE VIRTUAL ": "; pvs (res, var_ [WEBSITE VIRTUAL].as < vstr_t > ()); res << "\n"; }
-*/
 
 #ifndef NOSPELL
     RG (res, vstr_t, SPELL, ACCEPT, spell);
@@ -3059,18 +2750,6 @@ void options::report_bool (::std::ostringstream& res, const char* yay, const cha
     RB (res, SPELL, ICU, spell);
     RG (res, vstr_t, SPELL, LIST, spell);
     RG (res, ::std::string, SPELL, PATH, spell);
-/*
-    if (var_.count (SPELL ACCEPT)) { res << SPELL ACCEPT ": "; pvs (res, var_ [SPELL ACCEPT].as < vstr_t > ()); res << "\n"; }
-    if (var_ [SPELL CASED].as < bool > ()) res << SPELL CASED "\n";
-    if (var_ [SPELL DONT CASED].as < bool > ()) res << SPELL DONT CASED "\n";
-    if (var_ [SPELL CHECK].as < bool > ()) res << SPELL CHECK "\n";
-    if (var_ [SPELL DONT CHECK].as < bool > ()) res << SPELL DONT CHECK "\n";
-    if (var_.count (SPELL DICT)) { res << SPELL DICT ": "; pvs (res, var_ [SPELL DICT].as < vstr_t > ()); res << "\n"; }
-    if (var_ [SPELL ICU].as < bool > ()) res << SPELL ICU "\n";
-    if (var_ [SPELL DONT ICU].as < bool > ()) res << SPELL DONT ICU "\n";
-    if (var_.count (SPELL LIST)) { res << SPELL LIST ": "; pvs (res, var_ [SPELL LIST].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (SPELL PATH)) res << SPELL PATH ": " << var_ [SPELL PATH].as < ::std::string > () << "\n";
-*/
 #endif // NOSPELL
 
     RB (res, STATS, ABBR, stats);
@@ -3117,99 +2796,8 @@ void options::report_bool (::std::ostringstream& res, const char* yay, const cha
     RB (res, STATS, SWASH, stats);
     RB (res, STATS, VERSION, stats);
     RB (res, STATS, VIEW, stats);
-/*
-    if (var_ [STATS ABBR].as < bool > ()) res << STATS ABBR "\n";
-    if (var_ [STATS DONT ABBR].as < bool > ()) res << STATS DONT ABBR "\n";
-    if (var_ [STATS ALL].as < bool > ()) res << STATS ALL "\n";
-    if (var_ [STATS DONT ALL].as < bool > ()) res << STATS DONT ALL "\n";
-    if (var_ [STATS ANNOTATION].as < bool > ()) res << STATS ANNOTATION "\n";
-    if (var_ [STATS DONT ANNOTATION].as < bool > ()) res << STATS DONT ANNOTATION "\n";
-    if (var_ [STATS ATTRIB].as < bool > ()) res << STATS ATTRIB "\n";
-    if (var_ [STATS DONT ATTRIB].as < bool > ()) res << STATS DONT ATTRIB "\n";
-    if (var_ [STATS CAT].as < bool > ()) res << STATS CAT "\n";
-    if (var_ [STATS DONT CAT].as < bool > ()) res << STATS DONT CAT "\n";
-    if (var_ [STATS CHARVAR].as < bool > ()) res << STATS CHARVAR "\n";
-    if (var_ [STATS DONT CHARVAR].as < bool > ()) res << STATS DONT CHARVAR "\n";
-    if (var_ [STATS CLASS].as < bool > ()) res << STATS CLASS "\n";
-    if (var_ [STATS DONT CLASS].as < bool > ()) res << STATS DONT CLASS "\n";
-    if (var_ [STATS CONNAME].as < bool > ()) res << STATS CONNAME "\n";
-    if (var_ [STATS DONT CONNAME].as < bool > ()) res << STATS DONT CONNAME "\n";
-    if (var_ [STATS COUSTYLE].as < bool > ()) res << STATS COUSTYLE "\n";
-    if (var_ [STATS DONT COUSTYLE].as < bool > ()) res << STATS DONT COUSTYLE "\n";
-    if (var_ [STATS CSSPROP].as < bool > ()) res << STATS CSSPROP "\n";
-    if (var_ [STATS DONT CSSPROP].as < bool > ()) res << STATS DONT CSSPROP "\n";
-    if (var_ [STATS CUSTMED].as < bool > ()) res << STATS CUSTMED "\n";
-    if (var_ [STATS DONT CUSTMED].as < bool > ()) res << STATS DONT CUSTMED "\n";
-    if (var_ [STATS CUSTPROP].as < bool > ()) res << STATS CUSTPROP "\n";
-    if (var_ [STATS DONT CUSTPROP].as < bool > ()) res << STATS DONT CUSTPROP "\n";
-    if (var_ [STATS DFN].as < bool > ()) res << STATS DFN "\n";
-    if (var_ [STATS DONT DFN].as < bool > ()) res << STATS DONT DFN "\n";
-    if (var_ [STATS DTDD].as < bool > ()) res << STATS DTDD "\n";
-    if (var_ [STATS DONT DTDD].as < bool > ()) res << STATS DONT DTDD "\n";
-    if (var_ [STATS ELEMENT].as < bool > ()) res << STATS ELEMENT "\n";
-    if (var_ [STATS DONT ELEMENT].as < bool > ()) res << STATS DONT ELEMENT "\n";
-    if (var_ [STATS WHOOPS].as < bool > ()) res << STATS WHOOPS "\n";
-    if (var_ [STATS DONT WHOOPS].as < bool > ()) res << STATS DONT WHOOPS "\n";
-    if (var_.count (STATS EXPORT)) res << STATS EXPORT ": " << var_ [STATS EXPORT].as < ::std::string > () << "\n";
-    if (var_ [STATS FICHIER].as < bool > ()) res << STATS FICHIER "\n";
-    if (var_ [STATS DONT FICHIER].as < bool > ()) res << STATS DONT FICHIER "\n";
-    if (var_ [STATS FONT].as < bool > ()) res << STATS FONT "\n";
-    if (var_ [STATS DONT FONT].as < bool > ()) res << STATS DONT FONT "\n";
-    if (var_ [STATS FONT_FAMILY].as < bool > ()) res << STATS FONT_FAMILY "\n";
-    if (var_ [STATS DONT FONT_FAMILY].as < bool > ()) res << STATS DONT FONT_FAMILY "\n";
-    if (var_ [STATS HIGHLIGHT].as < bool > ()) res << STATS HIGHLIGHT "\n";
-    if (var_ [STATS DONT HIGHLIGHT].as < bool > ()) res << STATS DONT HIGHLIGHT "\n";
-    if (var_ [STATS HISTFORM].as < bool > ()) res << STATS HISTFORM "\n";
-    if (var_ [STATS DONT HISTFORM].as < bool > ()) res << STATS DONT HISTFORM "\n";
-    if (var_ [STATS ID].as < bool > ()) res << STATS ID "\n";
-    if (var_ [STATS DONT ID].as < bool > ()) res << STATS DONT ID "\n";
-    if (var_ [STATS ITEMID].as < bool > ()) res << STATS ITEMID "\n";
-    if (var_ [STATS DONT ITEMID].as < bool > ()) res << STATS DONT ITEMID "\n";
-    if (var_ [STATS KEYFRAME].as < bool > ()) res << STATS KEYFRAME "\n";
-    if (var_ [STATS DONT KEYFRAME].as < bool > ()) res << STATS DONT KEYFRAME "\n";
-    if (var_ [STATS LAYER].as < bool > ()) res << STATS LAYER "\n";
-    if (var_ [STATS DONT LAYER].as < bool > ()) res << STATS DONT LAYER "\n";
-    if (var_ [STATS META].as < bool > ()) res << STATS META "\n";
-    if (var_ [STATS DONT META].as < bool > ()) res << STATS DONT META "\n";
-    if (var_ [STATS ONT].as < bool > ()) res << STATS ONT "\n";
-    if (var_ [STATS DONT ONT].as < bool > ()) res << STATS DONT ONT "\n";
-    if (var_ [STATS ORNAMENT].as < bool > ()) res << STATS ORNAMENT "\n";
-    if (var_ [STATS DONT ORNAMENT].as < bool > ()) res << STATS DONT ORNAMENT "\n";
-    if (var_ [STATS PAGE].as < bool > ()) res << STATS PAGE "\n";
-    if (var_ [STATS DONT PAGE].as < bool > ()) res << STATS DONT PAGE "\n";
-    if (var_ [STATS PAGE_NAME].as < bool > ()) res << STATS PAGE_NAME "\n";
-    if (var_ [STATS DONT PAGE_NAME].as < bool > ()) res << STATS DONT PAGE_NAME "\n";
-    if (var_ [STATS PALETTE].as < bool > ()) res << STATS PALETTE "\n";
-    if (var_ [STATS DONT PALETTE].as < bool > ()) res << STATS DONT PALETTE "\n";
-    if (var_ [STATS PROPER].as < bool > ()) res << STATS PROPER "\n";
-    if (var_ [STATS DONT PROPER].as < bool > ()) res << STATS DONT PROPER "\n";
-    if (var_ [STATS REFERENCE].as < bool > ()) res << STATS REFERENCE "\n";
-    if (var_ [STATS DONT REFERENCE].as < bool > ()) res << STATS DONT REFERENCE "\n";
-    if (var_ [STATS REGION].as < bool > ()) res << STATS REGION "\n";
-    if (var_ [STATS DONT REGION].as < bool > ()) res << STATS DONT REGION "\n";
-    if (var_ [STATS SCROLL_ANIM].as < bool > ()) res << STATS SCROLL_ANIM "\n";
-    if (var_ [STATS DONT SCROLL_ANIM].as < bool > ()) res << STATS DONT SCROLL_ANIM "\n";
-    if (var_ [STATS SELECTED].as < bool > ()) res << STATS SELECTED "\n";
-    if (var_ [STATS STATEMENT].as < bool > ()) res << STATS STATEMENT "\n";
-    if (var_ [STATS DONT STATEMENT].as < bool > ()) res << STATS DONT STATEMENT "\n";
-    if (var_ [STATS STYLESET].as < bool > ()) res << STATS STYLESET "\n";
-    if (var_ [STATS DONT STYLESET].as < bool > ()) res << STATS DONT STYLESET "\n";
-    if (var_ [STATS STYLISTIC].as < bool > ()) res << STATS STYLISTIC "\n";
-    if (var_ [STATS DONT STYLISTIC].as < bool > ()) res << STATS DONT STYLISTIC "\n";
-    if (var_ [STATS SUMMARY].as < bool > ()) res << STATS SUMMARY "\n";
-    if (var_ [STATS DONT SUMMARY].as < bool > ()) res << STATS DONT SUMMARY "\n";
-    if (var_ [STATS SWASH].as < bool > ()) res << STATS SWASH "\n";
-    if (var_ [STATS DONT SWASH].as < bool > ()) res << STATS DONT SWASH "\n";
-    if (var_ [STATS VERSION].as < bool > ()) res << STATS VERSION "\n";
-    if (var_ [STATS DONT VERSION].as < bool > ()) res << STATS DONT VERSION "\n";
-    if (var_ [STATS VIEW].as < bool > ()) res << STATS VIEW "\n";
-    if (var_ [STATS DONT VIEW].as < bool > ()) res << STATS DONT VIEW "\n";
-    if (var_.count (SVG VERSION)) res << SVG VERSION ": " << var_ [SVG VERSION].as < ::std::string > () << "\n";
-
-*/
 
     RG (res, ::std::string, SVG, VERSION, svg);
-//    if (var_.count (SVG VERSION)) res << SVG VERSION ": " << var_ [SVG VERSION].as < ::std::string > () << "\n";
 
     RG (res, vstr_t, VALIDATION, ATTRIB, validate);
     RG (res, vstr_t, VALIDATION, CHARSET, validate);
@@ -3232,33 +2820,8 @@ void options::report_bool (::std::ostringstream& res, const char* yay, const cha
     RG (res, vstr_t, VALIDATION, MIMETYPE, validate);
     RG (res, vstr_t, VALIDATION, REL, validate);
     RG (res, vstr_t, VALIDATION, SGML, validate);
-/*
-    if (var_.count (VALIDATION ATTRIB)) { res << VALIDATION ATTRIB ": "; pvs (res, var_ [VALIDATION ATTRIB].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (VALIDATION CHARSET)) { res << VALIDATION CHARSET ": "; pvs (res, var_ [VALIDATION CHARSET].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (VALIDATION CLASS)) { res << VALIDATION CLASS ": "; pvs (res, var_ [VALIDATION CLASS].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (VALIDATION COLOR)) { res << VALIDATION COLOUR ": "; pvs (res, var_ [VALIDATION COLOR].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (VALIDATION COLOUR)) { res << VALIDATION COLOUR ": "; pvs (res, var_ [VALIDATION COLOUR].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (VALIDATION COUNTRY)) { res << VALIDATION COUNTRY ": "; pvs (res, var_ [VALIDATION COUNTRY].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (VALIDATION CURRENCY)) { res << VALIDATION CURRENCY ": "; pvs (res, var_ [VALIDATION CURRENCY].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (VALIDATION DINGBATARG)) { res << VALIDATION DINGBATARG ": "; pvs (res, var_ [VALIDATION DINGBATARG].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (VALIDATION ELEMENT)) { res << VALIDATION ELEMENT ": "; pvs (res, var_ [VALIDATION ELEMENT].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (VALIDATION ELEMATTR)) { res << VALIDATION ELEMATTR ": "; pvs (res, var_ [VALIDATION ELEMATTR].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (VALIDATION EXTENSION)) { res << VALIDATION EXTENSION ": "; pvs (res, var_ [VALIDATION EXTENSION].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (VALIDATION FF)) { res << VALIDATION FF ": "; pvs (res, var_ [VALIDATION FF].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (VALIDATION FV)) { res << VALIDATION FV ": "; pvs (res, var_ [VALIDATION FV].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (VALIDATION HTTPEQUIV)) { res << VALIDATION HTTPEQUIV ": "; pvs (res, var_ [VALIDATION HTTPEQUIV].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (VALIDATION LANG)) { res << VALIDATION LANG ": "; pvs (res, var_ [VALIDATION LANG].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (VALIDATION MINOR)) res << VALIDATION MINOR ": " << var_ [VALIDATION MINOR].as < int > () << "\n";
-    if (var_.count (VALIDATION METANAME)) { res << VALIDATION METANAME ": "; pvs (res, var_ [VALIDATION MIMETYPE].as < vstr_t > ()); res << "\n"; }
-    if (var_ [VALIDATION MICRODATAARG].as < bool > ()) res << VALIDATION MICRODATAARG "\n";
-    if (var_ [VALIDATION DONT MICRODATAARG].as < bool > ()) res << VALIDATION DONT MICRODATAARG "\n";
-    if (var_.count (VALIDATION MIMETYPE)) { res << VALIDATION MIMETYPE ": "; pvs (res, var_ [VALIDATION METANAME].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (VALIDATION REL)) { res << VALIDATION REL ": "; pvs (res, var_ [VALIDATION REL].as < vstr_t > ()); res << "\n"; }
-    if (var_.count (VALIDATION SGML)) { res << VALIDATION SGML ": "; pvs (res, var_ [VALIDATION SGML].as < vstr_t > ()); res << "\n"; }
-*/
 
 #define RPT_VAR(XX) RG (res, vstr_t, VALIDATION, #XX, validate)
-// #define RPT_VAR(XX) if (var_.count (VALIDATION #XX)) { res << VALIDATION #XX ": "; pvs (res, var_ [VALIDATION #XX].as < vstr_t > ()); res << "\n"; }
     RPT_VAR (accrual_method);
     RPT_VAR (accrual_periodicity);
     RPT_VAR (accrual_policy);

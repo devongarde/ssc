@@ -163,10 +163,10 @@ PASS ../toast/living/jan17/dl.html
 73 inserted_missing_closure
 76 inserted_missing_closure missing_close
 78 inserted_missing_closure
-84 inserted_missing_closure missing_itemtype
+84 inserted_missing_closure
 87 inserted_missing_closure
 89 inserted_missing_closure
-91 inserted_missing_closure missing_itemtype
+91 inserted_missing_closure
 94 inserted_missing_closure missing_close
 96 inserted_missing_closure
 

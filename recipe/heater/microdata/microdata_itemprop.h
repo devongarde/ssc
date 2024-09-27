@@ -41,8 +41,8 @@ CONSTEXPR inline e_ontology_property prop_itself (const itemprop_index ii) noexc
     return static_cast < e_ontology_property> (GSL_NARROW_CAST < uint32_t > (ii) & uint32_item_mask); }
 
 ::std::string bespoke_itemprop_name (const itemprop_index ii);
-itemprop_index find_itemprop_index (nitpick& nits, const html_version& v, const ::std::string& name, bool bespoke_permitted);
-itemprop_indices find_itemprop_indices (nitpick& nits, const html_version& v, const ::std::string& name, bool bespoke_permitted);
+itemprop_index find_itemprop_index (nitpick& nits, const html_version& v, const ::std::string& name, bool bespoke_permitted, const bool example);
+itemprop_indices find_itemprop_indices (nitpick& nits, const html_version& v, const ::std::string& name, const bool bespoke_permitted, const bool example);
 ::std::string itemprop_index_name (const itemprop_index ndx);
 bool is_valid_property (nitpick& nits, const html_version& v, const itemtype_index itemtype, const itemprop_index ndx, const ::std::string& value, const bool is_link);
 bool is_valid_property (nitpick& nits, const html_version& v, const itemtype_index itemtype, const itemprop_index ndx, const itemtype_index value);

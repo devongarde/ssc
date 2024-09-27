@@ -3,6 +3,14 @@ static site checker
 https://ssc.lu/
 (c) 2020-2024 Dylan Harris
 
+0.2.3
+- Living Standard October 2024
+- schema.org version 28
+- DPV ontologies to v2.0
+- macos sequoia
+- various bug fixes
+- underlying work
+
 0.2.2
 - schema.org version 27.0.2
 - most DPV ontologies to v0.7

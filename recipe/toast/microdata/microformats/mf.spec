@@ -52,8 +52,8 @@ PASS ../toast/microdata/microformats/hresume.html
 13 bad_property bad_property
 26 deprecated_ontology
 30 deprecated_ontology
-35 deprecated_ontology bad_property
-39 deprecated_ontology bad_property
+35 deprecated_ontology
+39 deprecated_ontology
 
 PASS ../toast/microdata/microformats/hreview-aggregate.html
 10 deprecated_ontology

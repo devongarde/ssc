@@ -400,14 +400,15 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
                 if (a_.known (a_clip)) examine_clip ();
                 if (a_.known (a_content)) examine_content ();
                 if (a_.known (a_href)) examine_href ();
+                itemscope_ptr precurse (itemscope_);
                 if (a_.known (a_itemscope)) examine_itemscope (itemscope_, true);
                 if (a_.known (a_itemtype)) examine_itemtype (itemscope_);
 
                 if (a_.known (a_itemprop))
-                {   examine_itemprop (itemscope_);
-                    if (itemscope_.get () != nullptr)
+                {   examine_itemprop (precurse, itemscope_);
+                    if (precurse.get () != nullptr)
                         if ((tag == elem_a) || (tag == elem_area) || (tag == elem_link))
-                            vit_ = sought_itemtypes (); }
+                            vit_ = sought_itemtypes (nits ()); }
 
                 if (context.links ())
                     if (a_.has_url ())

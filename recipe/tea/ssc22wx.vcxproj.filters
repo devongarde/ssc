@@ -1428,6 +1428,12 @@
     <Filter Include="Toast\Other\ruby">
       <UniqueIdentifier>{623900e1-9433-47ef-b3cd-0991f492446b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\Microdata\dpv1">
+      <UniqueIdentifier>{8c734461-8305-4ff2-ba3c-02680bbda81d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Microdata\dpv2">
+      <UniqueIdentifier>{b8697455-fd2f-4cfe-96f7-a472c96f9065}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -36971,6 +36977,150 @@
     </None>
     <None Include="..\toast\type\metaname\viewport.html">
       <Filter>Toast\Type\metaname</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0010.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0011.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0012.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0013.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0014.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0015.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0016.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0017.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0018.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0019.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0020.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0021.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0022.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0023.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0024.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0025.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0026.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0027.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0028.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0029.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\index.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\dpv1.conf">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\dpv1.spec">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0001.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0002.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0003.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0004.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0005.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0006.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0007.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0008.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv1\E0009.html">
+      <Filter>Toast\Microdata\dpv1</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv2\index.html">
+      <Filter>Toast\Microdata\dpv2</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv2\just-1.html">
+      <Filter>Toast\Microdata\dpv2</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv2\just-2.html">
+      <Filter>Toast\Microdata\dpv2</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv2\tech-2.html">
+      <Filter>Toast\Microdata\dpv2</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv2\tech-3.html">
+      <Filter>Toast\Microdata\dpv2</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv2\tech-4.html">
+      <Filter>Toast\Microdata\dpv2</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv2\tech-5.html">
+      <Filter>Toast\Microdata\dpv2</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv2\tech-6.html">
+      <Filter>Toast\Microdata\dpv2</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv2\2-0.html">
+      <Filter>Toast\Microdata\dpv2</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv2\2-1.html">
+      <Filter>Toast\Microdata\dpv2</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv2\2-2.html">
+      <Filter>Toast\Microdata\dpv2</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv2\dpv2.conf">
+      <Filter>Toast\Microdata\dpv2</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv2\dpv2.spec">
+      <Filter>Toast\Microdata\dpv2</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv2\eu-gdpr-2.html">
+      <Filter>Toast\Microdata\dpv2</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv2\eu-gdpr-9.html">
+      <Filter>Toast\Microdata\dpv2</Filter>
+    </None>
+    <None Include="..\toast\microdata\dpv2\eu-gdpr-10.html">
+      <Filter>Toast\Microdata\dpv2</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -457,8 +457,8 @@ template < > struct type_master < t_ontology > : tidy_string < t_ontology >
                         nits.pick (nit_unrecognised_ontology, es_warning, ec_type, quote (s), " is incomplete");
                     else
                     {   st_ = sch :: parse (nits, v, vocab_, mdr_);
-                        if (st_ != ont_illegal) return;
-                        nits.pick (nit_unrecognised_ontology, es_warning, ec_type, quote (s), " is unrecognised by " PROG); } } } }
+                        if ((st_ != ont_illegal) && ((mdr_ == s_none) || (sch::root (st_) == s_none) || (sch::root (st_) == mdr_))) return;                        
+                        else nits.pick (nit_unrecognised_ontology, es_warning, ec_type, quote (s), " is unrecognised by " PROG); } } } }
             catch (...) { }
         tidy_string < t_ontology > :: status (s_invalid); }
     e_ontology_type ontology_type () const noexcept { return st_; }

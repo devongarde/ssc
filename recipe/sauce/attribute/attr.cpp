@@ -125,7 +125,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_JUL09 }, { HTML_JUN10 }, "autobuffer", a_autobuffer },
     { { HTML_5_3 }, { HTML_UNDEF }, "autocapitalize", a_autocapitalise },
     { { HTML_JAN05 }, { HTML_UNDEF }, "autocomplete", a_autocomplete },
-    { { HTML_JAN05, 0, HE_SAFARI }, { HTML_UNDEF }, "autocorrect", a_autocorrect },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "autocorrect", a_autocorrect },
     { { HTML_JAN05 }, { HTML_UNDEF }, "autofocus", a_autofocus },
     { { HTML_JAN05, 0, HE_EXPERIMENTAL }, { HTML_UNDEF }, "autopictureinpicture", a_autopictureinpicture },
     { { HTML_JAN05 }, { HTML_UNDEF }, "autoplay", a_autoplay },

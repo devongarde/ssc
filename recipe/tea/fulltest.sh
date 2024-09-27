@@ -173,6 +173,7 @@
 ./ssc -f ../toast/living/jan24/living.conf
 ./ssc -f ../toast/living/apr24/living.conf
 ./ssc -f ../toast/living/jul24/living.conf
+./ssc -f ../toast/living/oct24/living.conf
 ./ssc -f ../toast/math/1/math.conf
 ./ssc -f ../toast/math/2/math.conf
 ./ssc -f ../toast/math/3/math.conf
@@ -181,6 +182,8 @@
 ./ssc -f ../toast/microdata/12/schema.conf
 ./ssc -f ../toast/microdata/addendum/add.conf
 ./ssc -f ../toast/microdata/basic/basic.conf
+./ssc -f ../toast/microdata/dpv1/dpv1.conf
+./ssc -f ../toast/microdata/dpv2/dpv2.conf
 ./ssc -f ../toast/microdata/export/export.conf
 ./ssc -f ../toast/microdata/link/link.conf
 ./ssc -f ../toast/microdata/microformats/mf.conf

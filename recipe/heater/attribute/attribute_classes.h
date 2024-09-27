@@ -117,7 +117,7 @@ typedef typed_attribute < t_audio_level, a_audio_level > attr_audio_level;
 typedef typed_attribute < t_html_boolean, a_autobuffer > attr_autobuffer;
 typedef typed_attribute < t_autocapitalise, a_autocapitalise > attr_autocapitalise;
 typedef typed_attribute < t_autocompletevaried, a_autocomplete > attr_autocomplete;
-typedef typed_attribute < t_html_boolean, a_autocorrect > attr_autocorrect;
+typedef typed_attribute < t_onoff, a_autocorrect > attr_autocorrect;
 typedef typed_attribute < t_html_boolean, a_autofocus > attr_autofocus;
 typedef typed_attribute < t_html_boolean, a_autopictureinpicture > attr_autopictureinpicture;
 typedef typed_attribute < t_existential, a_autoplay > attr_autoplay;

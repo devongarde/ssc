@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>data privacy vocab 2 eu GDPR tests</title>
+</head>
+
+<body>
+
+<h1>data privacy vocab 2 eu GDPR tests</h1>
+
+<div itemtype="https://w3id.org/dpv#Process" itemscope>
+  <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv/pd#EmailAddress" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasLegalBasis" itemtype="https://w3id.org/dpv/legal/eu/gdpr#A6-1-b" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv#Process" itemscope>
+  <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv/pd#BloodType" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasLegalBasis" itemtype="https://w3id.org/dpv/legal/eu/gdpr#A9-2-a" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv#Process" itemscope>
+  <div itemprop="https://w3id.org/dpv#hasLegalBasis" itemtype="https://w3id.org/dpv/pd#ExpressedConsent" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasLegalBasis" itemtype="https://w3id.org/dpv/legal/eu/gdpr#A6-1-a" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv#Process" itemscope>
+  <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv/pd#BloodType" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasLegalBasis" itemtype="https://w3id.org/dpv/pd#ExpressedConsent" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasApplicableLaw" itemtype="https://w3id.org/dpv/legal/eu#GDPR" itemscope></div>
+</div>
+
+<!--#comment
+
+ex:PDH1 a dpv:Process ;
+  dpv:hasPersonalData pd:EmailAddress ;
+  dpv:hasLegalBasis eu-gdpr:A6-1-b . # contract performance
+
+ex:PDH2 a dpv:Process ;
+  dpv:hasPersonalData pd:BloodType ; # special category
+  dpv:hasLegalBasis eu-gdpr:A9-2-a . # explicit consent
+
+ex:PDH1 a dpv:Process ;
+  dpv:hasLegalBasis dpv:ExpressedConsent ; # general legal basis
+  dpv:hasLegalBasis eu-gdpr:A6-1-a . # GDPR specific consent
+
+# This is okay to do, but is not legally complete.
+# Suggested to (also) use eu-gdpr:A9-2-a as the legal basis to indicate
+# that the explicitly expressed consent is asserted to be as per GDPR.
+ex:PDH2 a dpv:Process ;
+  dpv:hasPersonalData pd:BloodType ; # special category
+  dpv:hasLegalBasis dpv:ExplicitlyExpressedConsent ;
+  dpv:hasApplicableLaw eu:GDPR . # which consent as per to GDPR?
+
+-->
+
+</body>
+</html>

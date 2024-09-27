@@ -5,7 +5,6 @@ PASS ../toast/microdata/schema-mno/map.html
 
 PASS ../toast/microdata/schema-mno/mediaobject.html
 13 script
-20 bad_datetime
 
 PASS ../toast/microdata/schema-mno/medicalguideline.html
 31 bad_itemid
@@ -50,8 +49,8 @@ PASS ../toast/microdata/schema-mno/monetaryamount-2.html
 PASS ../toast/microdata/schema-mno/mortgageloan.html
 0 charset_mismatch charset_used charset_invalid
 20 sunk sunk
-24 missing_itemtype invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf not_ontology_property
-35 missing_itemtype invalid_attribute_version wrong_version svg_rdf not_ontology_property
+24 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf not_ontology_property
+35 invalid_attribute_version wrong_version svg_rdf not_ontology_property
 
 PASS ../toast/microdata/schema-mno/movie.html
 53 use_double_quote_code
@@ -173,7 +172,7 @@ PASS ../toast/microdata/schema-mno/offer-1.html
 162 unrecognised_value
 167 unrecognised_value
 170 unrecognised_value invalid_attribute_version wrong_version svg_rdf
-183 requires_itemscope missing_itemtype
+183 requires_itemscope
 214 url_id_unfound
 249 inserted_missing_closure
 273 use_quote_code
@@ -220,7 +219,7 @@ PASS ../toast/microdata/schema-mno/organisation.html
 39 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
 40 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
 64 forgotten_name use_double_quote_code missing_open
-81 missing_itemtype
+81 no_itemscope
 94 invalid_attribute_version wrong_version svg_rdf timezone
 
 PASS ../toast/microdata/schema-mno/organisationrole.html

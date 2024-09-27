@@ -4,13 +4,13 @@ PASS ../toast/coop/corrupt/index.html
 24 unrecognised_value unknown_rel link_rel_off
 
 PASS ../toast/coop/corrupt/plumbing/results.shtml
-136 no_such_folder url_not_found
-151 url_not_found
-152 url_not_found
-153 url_not_found
+139 no_such_folder url_not_found
+154 url_not_found
+155 url_not_found
+156 url_not_found
 
 PASS ../toast/coop/corrupt/search.shtml
-142 no_such_folder url_not_found
+145 no_such_folder url_not_found
 
 PASS ../toast/coop/corrupt/plumbing/songshade.css
 0 html
@@ -25,4 +25,4 @@ PASS ../toast/coop/corrupt/plumbing/songshade.css
 104 css_bespoke
 
 PASS ../toast/coop/corrupt/w/weak.shtml
-171 character_code
+178 character_code

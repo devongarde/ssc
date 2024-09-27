@@ -20,6 +20,29 @@
 
 <div class="column-unit">
 
+<h3>0.2.3</h3>
+
+<ul>
+<li>
+Living Standard October 2024
+</li>
+<li>
+schema.org version 28
+</li>
+<li>
+DPV ontologies to v2.0
+</li>
+<li>
+macos sequoia
+</li>
+<li>
+various bug fixes
+</li>
+<li>
+underlying work
+</li>
+</ul>
+
 <h3>0.2.2</h3>
 
 <ul>
@@ -27,7 +50,7 @@
 schema.org version 27.0.2
 </li>
 <li>
-- most DPV ontologies to v0.7
+most DPV ontologies to v0.7
 </li>
 <li>
 CSS Viewport Module Level 1, January 2024 draft

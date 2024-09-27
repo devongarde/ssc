@@ -668,6 +668,8 @@ gen, etc..
                         Values are: 'catastrophe', 'error' (the
                         default), 'warning', 'info', or 'comment'.
 
+--nits.expand           Expand text content of certain nits.
+
 --nits.extra            Report additional nits.
 
 --nits.format F         Specify the output format; F is a template
@@ -777,12 +779,7 @@ ontologies (see --ontology.list).
                                 dcterms 1.0,1.1
                                 ddi 1.0
                                 doap 1.0
-                                dpv 0.1-2.0 (see below)
-                                dpv-gdpr 0.1-2.0 (see below)
-                                dpv-legal 0.5
-                                dpv-nace 0.1
-                                dpv-pd 0.4-2.0 (see below)
-                                dpv-tech 0.8-2.0 (see below)
+                                dpv* 0.1-2.0 (see below)
                                 dqv 1.0
                                 describedby 1.0
                                 duv 1.0
@@ -837,7 +834,7 @@ ontologies (see --ontology.list).
                                 rif 1.0
                                 role 1.0
                                 rr 1.0
-                                schema.org 0.10-27.01 (see below)
+                                schema.org 0.10-28 (see below)
                                 sd 1.0
                                 sioc 1.0
                                 sioc_s 1.0
@@ -900,11 +897,8 @@ ontologies (see --ontology.list).
                         Since this is unofficial, both standard English
                         and American dialect spellings are processed.
 
-                        The data privacy family of ontologies are not
-                        fully implemented; dpv-owl and dpv-skos are
-                        ignored, and some plumbing classes are omitted
-                        as well. DPV, DPV GDPR, DPV legal, DPV PD and
-                        DPV tech versioning scheme:
+                        The data privacy family of ontologies follow
+                        this versioning scheme:
                             Use     For
                             0.10    0.1
                             0.20    0.2
@@ -921,7 +915,29 @@ ontologies (see --ontology.list).
                             0.90    0.9
                             1.0     1
                             2.0     2
-                        DPV NACE only has version 0.1.
+                        The data privacy ontology versions:
+                            ai              2
+                            dpv             0.1-2
+                            eu-aiact        2
+                            eu-dga          2
+                            eu-gdpr         2
+                            eu-nis2         2
+                            eu-rights       2
+                            gdpr            0.1-1
+                            justifications  2
+                            legal           0.5-1
+                            legal-de        2
+                            legal-eu        2
+                            legal-gb        2
+                            legal-ie        2
+                            legal-in        2
+                            legal-us        2
+                            loc             2
+                            nace            0.1-1
+                            pd              0.4-2
+                            rights-eu       0.8-2
+                            risk            0.8-2
+                            tech            0.8-2
 
                         The Exif & ExifEx ontologies have the following
                         versions:
@@ -985,7 +1001,7 @@ ontologies (see --ontology.list).
                                 1.90        1.9
                                 1.91        as version number
                                 ...
-                                27.01       as version number
+                                28          as version number
 
                         vCard versions correspond to RDFa specs,
                         published in 2001, 2006, 2010 & 2014. They do

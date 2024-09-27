@@ -157,7 +157,6 @@ bool process_term_object (nitpick& nits, const html_version& v, json_scope& scop
     vov_t vov;
     for (auto on : scope.ontologies ())
     {   const ontology_version sv (corresponding_ontology_version (on, v));
-//    {   const ontology_version sv = get_default_ontology_version (on);
         vov.push_back (sv);
         vt_t vt = sought_types (sv, p);
         for (auto st : vt)
@@ -226,10 +225,10 @@ e_ontology process_context_string_int (nitpick& nits, const html_version& v, jso
 e_ontology_type process_ontology_name_type_string_int (nitpick& nits, const html_version& v, json_scope& scope, const ::std::string& s, const e_ontology o = s_none)
 {   const e_ontology_type st = sch::parse (nits, v, s, o);
     if (st != ont_illegal)
-        if (scope.type_.find (st) != scope.type_.cend ())
+        if (find_ssch (scope.type_, st))
             nits.pick (nit_jsonld_type, es_error, ec_json, sch::name (st), " previously declared");
         else
-        {   scope.type_.emplace (st);
+        {   insert_ssch (scope.type_, st);
             return st; }
     return ont_illegal; }
 
@@ -348,7 +347,7 @@ void insert_context_object_string (nitpick& nits, const html_version& v, json_sc
             if (b == et)
             {   nits.pick (nit_jsonld_context, es_warning, ec_json, sch::name (et), " was previously defined"); break; }
         if (context.tell (es_debug)) nits.pick (nit_jsonld_context, es_debug, ec_json, sch::name (et), " recognised as ", key);
-        scope.type_.insert (et); } }
+        insert_ssch (scope.type_, et); } }
 
 void process_context_object_string (nitpick& nits, const html_version& v, json_scope& scope, const ::std::string& key, const ::boost::json::key_value_pair& kvp)
 {   PRESUME (kvp.value ().kind () == ::boost::json::kind::string, __FILE__, __LINE__);

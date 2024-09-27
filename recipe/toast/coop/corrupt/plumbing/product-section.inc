@@ -11,7 +11,9 @@
   <link itemprop="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 </div>
 
-<div itemprop="editor" itemscope itemtype="https://schema.org/Person" id="editor">
+<div id="editor">
   <meta itemprop="name" content="<!--#echo encoding="none" var="webmeister" -->">
   <link itemprop="sameAs url" href="<!--#echo encoding="none" var="artsego" -->">
 </div>
+
+<div itemprop="editor" itemscope itemtype="https://schema.org/Person" itemref="editor"></div>

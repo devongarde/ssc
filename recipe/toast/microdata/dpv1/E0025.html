@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>dpv 1 ontology test 25</title>
+</head>
+
+<body>
+
+<h1>dpv 1 ontology test 25</h1>
+
+<div itemtype="https://w3id.org/dpv/ex#UserConsent" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#Consent" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataSubject" itemtype="https://w3id.org/dpv/ex#AcmeConsentNotice" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasNotice" itemtype="https://w3id.org/dpv/ex#User12345" itemscope></div>
+  <span itemprop="https://w3id.org/dpv#hasNotice">https://example.com/AcmeConsentNotice</span>
+  <span itemprop="https://w3id.org/dpv#hasNotice">Notice-v3.456</span>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#PDH" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#PersonalDataHandling" itemscope></div>
+&hellip;
+  <div itemprop="https://w3id.org/dpv#hasLegalBasis" itemtype="https://w3id.org/dpv#Consent" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasNotice" itemtype="https://w3id.org/dpv/ex#User12345" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#UserConsent" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#PersonalDataHandling" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasNotice" itemtype="https://w3id.org/dpv/ex#User12345" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPersonalDataHandling" itemtype="https://w3id.org/dpv/ex#PDH" itemscope></div>
+</div>
+
+<!--#comment
+
+Notice how this example breaks DPV's own spec; hasNotice is defined as a reference to a notice, not a URL or a string.
+
+# Approach 1: specify notice for an instance of consent
+ex:UserConsent rdf:type dpv:Consent ;
+    dpv:hasDataSubject ex:User12345 ;
+    # notice can be references in different forms, e.g. URL, string
+    dpv:hasNotice ex:AcmeConsentNotice ; # RDF
+    dpv:hasNotice "https://example.com/AcmeConsentNotice" ; # URL
+    dpv:hasNotice "Notice-v3.456" . # identifier
+
+# Approach 2: specify notice for a group of activities
+ex:PDH rdf:type dpv:PersonalDataHandling ;
+    dpv:hasPurpose ... ;
+    dpv:hasProcessing ... ;
+    dpv:hasPersonalData ... ;
+    dpv:hasLegalBasis dpv:Consent ;
+    dpv:hasNotice ex:AcmeConsentNotice .
+ex:UserConsent rdf:type dpv:Consent ;
+    dpv:hasDataSubject ex:User12345 ;
+    # notice is part of PDH, not declared for each consent instance
+    dpv:hasPersonalDataHandling ex:PDH .
+-->
+
+</body>
+</html>

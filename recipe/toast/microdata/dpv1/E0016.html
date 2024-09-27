@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>dpv 1 ontology test 16</title>
+</head>
+
+<body>
+
+<h1>dpv 1 ontology test 16</h1>
+
+<div itemtype="https://w3id.org/dpv/ex#RSAEncryption" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#TechnicalMeasure" itemscope></div>
+  <div itemprop="http://www.w3.org/2004/02/skos/core#broader" itemtype="https://w3id.org/dpv#Encryption" itemscope></div>
+  <span itemprop="http://www.w3.org/2004/02/skos/core#scopeNote">Key size: 2048, Custom Implementation</span> <!--#comment Custom Implementation == don't trust it! -->
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#RBACCredential" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#TechnicalMeasure" itemscope></div>
+  <div itemprop="http://www.w3.org/2004/02/skos/core#broader" itemtype="https://w3id.org/dpv#AccessControlMethod" itemscope></div>
+</div>
+
+<!--#comment
+
+ex:RSAEncryption rdf:type dpv:TechnicalMeasure ;
+    skos:broader dpv:Encryption ;
+    skos:scopeNote "Key size: 2048, Custom Implementation"@en .
+
+ex:RBACCredential rdf:type dpv:TechnicalMeasure ;
+    skos:broader dpv:AccessControlMethod .
+
+-->
+
+</body>
+</html>

@@ -3160,6 +3160,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-custom-elements", nm_context_custom_elements },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-dc", nm_context_dc },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-example", nm_context_example },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-expand", nm_context_expand },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-export-root", nm_context_export_root },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-exports", nm_context_exports },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-extensions", nm_context_extensions },

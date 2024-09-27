@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>data privacy vocab 2 tech tests</title>
+</head>
+
+<body>
+
+<h1>data privacy vocab 2 tech tests</h1>
+
+<div itemtype="https://w3id.org/dpv#Technology" itemscope>
+  <div itemprop="https://w3id.org/dpv/tech#hasUser" itemtype="https://w3id.org/dpv#Customer" itemscope></div>
+  <div itemprop="https://w3id.org/dpv/tech#hasOperator" itemtype="https://example.org/ex#Org1" itemscope></div>
+  <div itemprop="https://w3id.org/dpv/tech#hasDeployer" itemtype="https://example.org/ex#Org2" itemscope></div>
+  <div itemprop="https://w3id.org/dpv/tech#hasMaintainer" itemtype="https://example.org/ex#Org3" itemscope></div>
+  <div itemprop="https://w3id.org/dpv/tech#hasProducer" itemtype="https://example.org/ex#Org4" itemscope></div>
+  <div itemprop="https://w3id.org/dpv/tech#hasSupplier" itemtype="https://example.org/ex#Org5" itemscope></div>
+  <div itemprop="https://w3id.org/dpv/tech#hasManufacturer" itemtype="https://example.org/ex#Org6" itemscope></div>
+  <div itemprop="https://w3id.org/dpv/tech#hasDesigner" itemtype="https://example.org/ex#Org7" itemscope></div>
+  <span itemprop="http://www.w3.org/2004/02/skos/core#prefLabel" lang="en">Fancy Customer Chat Software</span>
+</div>
+
+<!--#comment
+
+ex:FancyCustomerChat a dpv:Technology ;
+  tech:hasUser dpv:Customer ;
+  tech:hasOperator ex:Org1 ;     # company that operates / runs the technology
+  tech:hasDeployer ex:Org2 ;     # company deploys tech on Org1 servers
+  tech:hasMaintainer ex:Org3 ;   # contracted company to maintain technology
+  tech:hasProducer ex:Org4 ;     # company that provides tech as a product
+  tech:hasSupplier ex:Org5 ;     # company that supplies tech e.g. app store
+  tech:hasManufacturer ex:Org6 ; # company that develops the tech
+  tech:hasDesigner ex:Org7 ;     # company that designs or architechts tech
+  skos:prefLabel "Fancy Customer Chat Software"@en .
+-->
+
+</body>
+</html>

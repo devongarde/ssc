@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>dpv 1 ontology test 15</title>
+</head>
+
+<body>
+
+<h1>dpv 1 ontology test 15</h1>
+
+<div itemtype="https://w3id.org/dpv/ex#PatientStudy" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#PersonalDataHandling" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv/ex#BloodSamples" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv/ex#PatientIdentifier" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#BloodSamples" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#SpecialCategoryPersonalData" itemscope></div>
+  <div itemprop="http://www.w3.org/2004/02/skos/core#broader" itemtype="https://w3id.org/dpv/dpv-pd#MedicalHealth" itemscope></div>
+  <div itemprop="http://www.w3.org/2004/02/skos/core#narrower" itemtype="https://w3id.org/dpv/dpv-pd#BloodType" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#PatientIdentifier" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#SensitivePersonalData" itemscope></div>
+  <div itemprop="http://www.w3.org/2004/02/skos/core#broader" itemtype="https://w3id.org/dpv/dpv-pd#Identifying" itemscope></div>
+</div>
+
+<!--#comment
+
+ex:PatientStudy rdf:type dpv:PersonalDataHandling ;
+    dpv:hasPersonalData ex:BloodSamples, ex:PatientIdentifier .
+
+ex:BloodSamples rdf:type dpv:SpecialCategoryPersonalData ;
+    skos:broader dpv-pd:MedicalHealth ;
+    skos:narrower dpv-pd:BloodType .
+
+ex:PatientIdentifier rdf:type dpv:SensitivePersonalData ;
+skos:broader dpv-pd:Identifying .
+
+-->
+
+</body>
+</html>

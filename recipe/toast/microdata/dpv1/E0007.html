@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>dpv 1 ontology test 7</title>
+</head>
+
+<body>
+
+<h1>dpv 1 ontology test 7</h1>
+
+<div itemtype="https://w3id.org/dpv/ex#Acme" itemscope>
+  <div itemprop="https://w3id.org/dpv#isSubTypeOf" itemtype="https://w3id.org/dpv#PersonalDataHandling" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataController" itemtype="https://w3id.org/dpv/ex#Acme" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPersonalDataCategory" itemtype="https://w3id.org/dpv/dpv-pd#EmailAddress" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Collect" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Use" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPurpose" itemtype="https://w3id.org/dpv#ServiceProvision" itemscope></div>
+</div>
+
+<!--#comment
+
+ex:Acme rdf:type dpv:DataController .
+ex:AcmeMarketing rdf:type dpv:PersonalDataHandling ;
+    dpv:hasDataController ex:Acme .
+    dpv:hasPersonalDataCategory dpv:EmailAddress ;
+    dpv:hasProcessing dpv:Collect, dpv:Use ;
+    dpv:hasPurpose dpv:ServiceProvision ;
+
+-->
+
+</body>
+</html>

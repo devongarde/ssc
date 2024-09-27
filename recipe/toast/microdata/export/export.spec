@@ -9,16 +9,14 @@ PASS ../toast/microdata/export/index.html
 
 PASS ../toast/microdata/export/itemref.html
 0 write_wrote
-15 missing_itemtype
 27 missing_close
 32 url_id_unfound
 35 inserted_missing_closure
 
 PASS ../toast/microdata/export/md-ref.html
 0 write_wrote
-14 not_ontology_property not_ontology_property
-18 missing_itemtype
-24 missing_itemtype
+18 no_itemscope
+24 no_itemscope
 
 PASS ../toast/microdata/export/vcard.html
 0 write_wrote

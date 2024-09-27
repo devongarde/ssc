@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>dpv 1 ontology test 13</title>
+</head>
+
+<body>
+
+<h1>dpv 1 ontology test 13</h1>
+
+<div itemtype="https://w3id.org/dpv/ex#SpamFilter" itemscope>
+  <div itemprop="isSubTypeOf" itemtype="https://w3id.org/dpv#Processing" itemscope></div>
+  <div itemprop="http://www.w3.org/2004/02/skos/core#broader" itemtype="https://w3id.org/dpv#Analyse" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasHumanInvolvement" itemtype="https://w3id.org/dpv#HumanInput" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasHumanInvolvement" itemtype="https://w3id.org/dpv#HumanOversight" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasAlgorithmicLogic" itemtype="https://w3id.org/dpv/ex#SpamDetection" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#SpamDetection" itemscope>
+  <div itemprop="isSubTypeOf" itemtype="https://w3id.org/dpv#AlgorithmicLogic" itemscope></div>
+  <div itemprop="http://www.w3.org/2004/02/skos/core#broader" itemtype="https://w3id.org/dpv#InnovativeUseOfNewTechnologies" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessingContext" itemtype="https://w3id.org/dpv#AutomatedDecisionMaking" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessingContext" itemtype="https://w3id.org/dpv#SystemicMonitoring" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessingContext" itemtype="https://w3id.org/dpv#EvaluationScoring" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv/dpv-pd#Communication" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataSource" itemtype="https://w3id.org/dpv/ex#EmailSender" itemscope></div>
+</div>
+
+<!--#comment
+
+ex:SpamFilter rdf:type dpv:Processing ;
+    skos:broader dpv:Analyse ;
+    dpv:hasProcessingAutomation dpv:FullyAutomatedProcessing ;
+    dpv:hasHumanInvolvement dpv:HumanInput, dpv:HumanOversight ;
+    dpv:hasAlgorithmicLogic ex:SpamDetection .
+
+ex:SpamDetection rdf:type dpv:AlgorithmicLogic ;
+    skos:broader dpv:InnovativeUseOfNewTechnologies ;
+    dpv:hasProcessingContext dpv:AutomatedDecisionMaking, 
+                       dpv:SystemicMonitoring, 
+                       dpv:EvaluationScoring  ;
+    dpv:hasPersonalData dpv-pd:Communication ;
+    dpv:hasDataSource ex:EmailSender .
+
+-->
+
+</body>
+</html>

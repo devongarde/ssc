@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>dpv 1 ontology test 12</title>
+</head>
+
+<body>
+
+<h1>dpv 1 ontology test 12</h1>
+
+<div itemtype="https://w3id.org/dpv/ex#S01" itemscope>
+  <div itemprop="https://w3id.org/dpv#hasDataSource" itemtype="https://w3id.org/dpv#DataSubject" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Collect" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#S02" itemscope>
+  <div itemprop="https://w3id.org/dpv#hasDataSource" itemtype="https://w3id.org/dpv#DataSubject" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Derive" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Observe" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#S03" itemscope>
+  <div itemprop="https://w3id.org/dpv#hasDataSource" itemtype="https://w3id.org/dpv#DataController" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Infer" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#S04" itemscope>
+  <div itemprop="https://w3id.org/dpv#hasDataSource" itemtype="https://w3id.org/dpv/ex#Acme" itemscope>
+    <div itemtype="https://w3id.org/dpv#ThirdProcessor" itemscope></div>
+  </div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#S05" itemscope>
+  <div itemprop="https://w3id.org/dpv#hasDataSource" itemtype="https://w3id.org/dpv#DataPublishedByDataSubject" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Collect" itemscope></div>
+</div>
+
+<!--#comment
+
+ex:S01 dpv:hasDataSource dpv:DataSubject .
+ex:S01 dpv:hasProcessing dpv:Collect .
+
+ex:S02 dpv:hasDataSource dpv:DataSubject .
+ex:S02 dpv:hasProcessing dpv:Derive, dpv:Observe .
+
+ex:S03 dpv:hasDataSource dpv:DataController .
+ex:S03 dpv:hasProcessing dpv:Infer .
+
+ex:S04 dpv:hasDataSource ex:Acme .
+ex:Acme a dpv:ThirdProcessor .
+
+ex:S05 dpv:hasDataSource dpv:DataPublishedByDataSubject .
+ex:S05 dpv:hasProcessing dpv:Collect .
+
+-->
+
+</body>
+</html>

@@ -854,6 +854,7 @@ const nitname nitnames [] =
     { nit_not_ssc, "not_ssc" },
     { nit_cannot_replace, "cannot_replace" },
     { nit_not_expected_content, "not_expected_content" },
+    { nit_circular_hierarchy, "circular hierarchy" },
 
     { nit_incompatible, "incompatible" },
 

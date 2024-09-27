@@ -48,9 +48,9 @@ PASS ../toast/microdata/schema-pqrs/person.html
 95 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
 96 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
 189 forgotten_name use_double_quote_code missing_open
-206 missing_itemtype
-208 requires_itemscope missing_itemtype
-212 missing_itemtype
+206 no_itemscope
+208 requires_itemscope
+212 no_itemscope
 227 attribute_required naughty_alt
 231 use_quote_code
 233 use_double_quote_code
@@ -58,8 +58,8 @@ PASS ../toast/microdata/schema-pqrs/person.html
 243 missing_close
 245 use_quote_code
 247 inserted_missing_closure
-267 missing_itemtype
-269 requires_itemscope missing_itemtype
+267 no_itemscope
+269 requires_itemscope
 271 not_ontology_property unrecognised_value bad_itemprop
 
 PASS ../toast/microdata/schema-pqrs/pharmacy.html
@@ -210,7 +210,7 @@ PASS ../toast/microdata/schema-pqrs/product.html
 74 no_such_folder url_not_found
 78 no_such_folder url_not_found
 79 use_quote_code
-93 requires_itemscope missing_itemtype
+93 requires_itemscope
 
 PASS ../toast/microdata/schema-pqrs/propertyvalue.html
 13 url_not_found naughty_alt
@@ -294,8 +294,8 @@ PASS ../toast/microdata/schema-pqrs/recipe.html
 PASS ../toast/microdata/schema-pqrs/repaymentspecification.html
 0 charset_mismatch charset_used charset_invalid
 20 sunk sunk
-24 missing_itemtype invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf not_ontology_property
-35 missing_itemtype invalid_attribute_version wrong_version svg_rdf not_ontology_property
+24 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf not_ontology_property
+35 invalid_attribute_version wrong_version svg_rdf not_ontology_property
 
 PASS ../toast/microdata/schema-pqrs/restaurant.html
 42 invalid_attribute_version wrong_version svg_rdf
@@ -352,7 +352,6 @@ PASS ../toast/microdata/schema-pqrs/softwareapplication.html
 163 link_rel_off
 164 url_not_found
 165 no_such_folder url_not_found
-178 missing_itemtype
 184 unrecognised_value
 192 no_such_folder url_not_found
 198 unrecognised_value unrecognised_value

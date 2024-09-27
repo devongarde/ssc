@@ -257,7 +257,7 @@ html_version bracs_ket::parse (const ::std::string& content)
                 break;
             default :
                 break; }
-         if (context.tell (es_all) && (linelog.length () > 60))
+        if (context.tell (es_all) && (linelog.length () > 60))
         {   nits.pick (nit_all, es_all, ec_parser, "\\\\ ", linelog);
             linelog.clear (); }
         ++ll;

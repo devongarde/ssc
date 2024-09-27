@@ -22,5 +22,5 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "ontology/ontology_type.h"
 
 void hierarchy_init (nitpick& nits);
-ssch_t generalise (const e_ontology_type s);
+ssch_t generalise (nitpick& nits, const html_version& v, const e_ontology_type s);
 bool is_specific_type_of (const e_ontology_type general, const e_ontology_type specific);

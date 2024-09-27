@@ -280,15 +280,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_APR24  HTML_2024, HTML_APR
 #define HTML_MAY24  HTML_2024, HTML_MAY
 #define HTML_JUL24  HTML_2024, HTML_JUL
+#define HTML_AUG24  HTML_2024, HTML_AUG
+#define HTML_SEP24  HTML_2024, HTML_SEP
+#define HTML_OCT24  HTML_2024, HTML_OCT
 #define HTML_DEC99  HTML_2099, (HTML_DEC + HTML_31ST)
 
 #define HTML_5_EARLIEST_YEAR    HTML_2005
 #define HTML_5_EARLIEST_MONTH   1
 
 #define HTML_LATEST_YEAR        HTML_2024
-#define HTML_LATEST_MONTH       7
+#define HTML_LATEST_MONTH       10
 
-#define HTML_CURRENT            HTML_JUL24
+#define HTML_CURRENT            HTML_OCT24
 
 #define HTML_UNDEF      0, 0
 
@@ -361,7 +364,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_DDI        HTML_RDF10_CON
 #define HTML_DQV        HTML_RDF10_CON
 #define HTML_DESC_BY    HTML_RDF10
-#define HTML_DPV_2      HTML_JUL24
+#define HTML_DPV_2      HTML_AUG24
 #define HTML_DPV_1      HTML_DEC22
 #define HTML_DPV_09     HTML_NOV22
 #define HTML_DPV_082    HTML_OCT22
@@ -522,6 +525,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_SCHEMA_27    HTML_2024, ( HTML_MAY + HTML_20TH )
 #define HTML_SCHEMA_27_01 HTML_2024, ( HTML_JUN + HTML_24TH )
 #define HTML_SCHEMA_27_02 HTML_2024, ( HTML_JUL + HTML_2ND )
+#define HTML_SCHEMA_28    HTML_2024, ( HTML_SEP + HTML_17TH )
+#define HTML_SCHEMA_29    HTML_2024, ( HTML_OCT + HTML_1ST )
 #define HTML_SCHEMA       HTML_SCHEMA_0
 #define HTML_SD         HTML_RDF10_CON
 #define HTML_SIOC       HTML_RDF10

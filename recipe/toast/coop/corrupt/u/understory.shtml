@@ -5,12 +5,14 @@
 <!--#include virtual="/plumbing/header.inc" -->
 <!--#include virtual="/plumbing/product-section.inc" --><!--#include virtual="/plumbing/html-top.inc" -->
 
-<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" id="poet">
+<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" itemref="poet"></div><div id="poet">
   <meta itemprop="name" content="<!--#echo encoding="none" var="poet" -->">
   <meta itemprop="sameAs url" content="/authors/index.shtml#mengham">
 </div>
 
-<div itemscope itemtype="https://schema.org/Book" itemref="editor poet">
+<div itemscope itemtype="https://schema.org/Book">
+    <div itemprop="editor" itemscope itemtype="https://schema.org/Person" itemref="editor"></div>
+    <div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" itemref="poet"></div>
   <meta itemprop="bookFormat" content="Paperback">
   <meta itemprop="bookEdition" content="first">
   <meta itemprop="genre" content="poetry">

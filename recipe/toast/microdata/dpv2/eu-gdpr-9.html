@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>data privacy vocab 2 eu GDPR tests</title>
+</head>
+
+<body>
+
+<h1>data privacy vocab 2 eu GDPR tests</h1>
+
+<div itemtype="https://w3id.org/dpv#Organisation" itemscope>
+  <div itemprop="https://w3id.org/dpv#hasLocation" itemtype="https://w3id.org/dpv/loc#US" itemscope></div>
+  <div itemprop="https://w3id.org/dpv/legal/eu/gdpr#hasMainEstablishment" itemtype="https://example.org/ex#X-IE" itemscope></div>
+  <div itemprop="https://w3id.org/dpv/legal/eu/gdpr#hasEstablishment" itemtype="https://example.org/ex#X-NL" itemscope></div>
+  <div itemprop="https://w3id.org/dpv/legal/eu/gdpr#hasEstablishment" itemtype="https://example.org/ex#X-LU" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv#Organisation" itemscope> <!--#comment better with itemref -->
+  <div itemprop="https://w3id.org/dpv#isSubsidiaryOf" itemtype="https://example.org/ex#CompanyX" itemscope></div>
+  <div itemprop="https://w3id.org/dpv/legal/eu/gdpr#isMainEstablishmentFor" itemtype="https://example.org/ex#CompanyX" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasLocation" itemtype="https://w3id.org/dpv/loc#IE" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv#Orgnanisation" itemscope> <!--#comment typo intentionally copied :-) -->
+  <div itemprop="https://w3id.org/dpv#hasLocation" itemtype="https://w3id.org/dpv/loc#IE" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/legal/eu/gdpr#DataBreachReport" itemscope>
+  <div itemprop="https://w3id.org/dpv#hasDataController" itemtype="https://example.org/ex#CompanyX" itemscope></div>
+  <div itemprop="https://w3id.org/dpv/legal/eu/gdpr#hasLeadSA" itemtype="https://w3id.org/dpv/legal/ie#DPA-IE" itemscope></div>
+  <div itemprop="https://w3id.org/dpv/legal/eu/gdpr#hasLocalSA" itemtype="https://w3id.org/dpv/legal/ie#DPA-IE" itemscope></div>
+  <div itemprop="https://w3id.org/dpv/legal/eu/gdpr#hasConcernedSA" itemtype="https://w3id.org/dpv/legal/de#DPA-DE" itemscope></div>
+</div>
+
+<!--#comment
+
+ex:CompanyX a dpv:Organisation ;
+  dpv:hasLocation loc:US ;
+  eu-gdpr:hasMainEstablishment ex:X-IE ;
+  eu-gdpr:hasEstablishment ex:X-NL, ex:X-LU .
+
+ex:X-IE a dpv:Organisation, dpv:Subsidiary, eu-gdpr:Establishment ;
+  dpv:isSubsidiaryOf ex:CompanyX ;
+  eu-gdpr:isMainEstablishmentFor ex:CompanyX ;
+  dpv:hasLocation loc:IE .
+
+ex:X-NL a dpv:Organisation, dpv:Subsidiary, eu-gdpr:Establishment ;
+  dpv:isSubsidiaryOf ex:CompanyX ;
+  dpv:hasLocation loc:NL .
+
+ex:X-LU a dpv:Organisation, dpv:Subsidiary, eu-gdpr:Establishment ;
+  dpv:isSubsidiaryOf ex:CompanyX ;
+  dpv:hasLocation loc:LU .
+
+ex:CompanyY a dpv:Orgnanisation, eu-gdpr:SingleEstablishment ;
+  dpv:hasLocation loc:IE .
+
+ex:DBR1 a eu-gdpr:DataBreachReport ;
+  dpv:hasDataController ex:CompanyX ;
+  eu-gdpr:hasLeadSA legal-ie:DPA-IE ;
+  eu-gdpr:hasLocalSA legal-ie:DPA-IE ;
+  eu-gdpr:hasConcernedSA legal-de:DPA-DE .
+
+-->
+
+</body>
+</html>

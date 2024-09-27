@@ -102,7 +102,7 @@ PASS ../toast/microdata/schema-defg/event.html
 247 no_such_folder url_not_found
 249 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 260 unrecognised_value
-263 requires_itemscope missing_itemtype
+263 requires_itemscope
 265 unrecognised_value invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime bad_datetime
 266 unrecognised_value
 271 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
@@ -114,7 +114,7 @@ PASS ../toast/microdata/schema-defg/event.html
 283 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
 284 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime bad_datetime bad_datetime
 285 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf
-297 requires_itemscope bad_property
+297 requires_itemscope
 305 use_quote_code
 309 use_quote_code
 310 use_quote_code

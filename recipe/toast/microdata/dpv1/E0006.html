@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>dpv 1 ontology test 6</title>
+</head>
+
+<body>
+
+<h1>dpv 1 ontology test 6</h1>
+
+<div itemtype="https://w3id.org/dpv/ex#TVServiceOptimisaion" itemscope> <!--#comment sic -->
+  <div itemprop="http://www.w3.org/2004/02/skos/core#broader" itemtype="https://w3id.org/dpv#OptimisationForConsumer" itemscope></div>
+  <span itemtype="https://www.w3.org/2000/01/rdf-schema#Label" itemscope>
+	Optimise Service for Users&rsquo; Infrastructure
+  </span>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#TVSignalOptimisation" itemscope>
+  <div itemprop="http://www.w3.org/2004/02/skos/core#broader" itemtype="https://w3id.org/dpv#OptimisationForConsumer" itemscope></div>
+  <span itemtype="https://www.w3.org/2000/01/rdf-schema#Label" itemscope>
+	Optimise Signal for Consumer TV Set
+  </span>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#TVServiceOptimisationA" itemscope>
+  <div itemprop="http://www.w3.org/2004/02/skos/core#broader" itemtype="https://w3id.org/dpv/ex#TVServiceOptimisationB" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#TVServiceOptimisationA" itemscope>
+  <div itemprop="http://www.w3.org/2004/02/skos/core#exactMatch" itemtype="https://w3id.org/dpv/ex#TVServiceOptimisationB" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#TVServiceOptimisationA" itemscope>
+  <div itemprop="http://www.w3.org/2004/02/skos/core#closematch" itemtype="https://w3id.org/dpv/ex#TVServiceOptimisationB" itemscope></div>
+</div>
+
+<!--#comment
+# AliceCo’s optimisation related to better services for users’ infrastructure
+exA:TVServiceOptimisaion skos:broader dpv:OptimisationForConsumer ;
+    rdfs:label “Optimise Service for Users’ Infrastructure” .
+
+# BobCo’s optimisation related to more efficient signals for users’ TV sets
+exB:TVSignalOptimisation skos:broader dpv:OptimisationForConsumer ;
+    rdfs:label “Optimise Signal for Consumer TV Set” .
+
+# analysing respective graphs, a common ancestor is found as:
+# dpv:OptimisationForConsumer ; Using this as context to compare:
+# (either manually, or based on data used, etc.)
+
+# 1: BobCo's optimisations are found to be broader than AliceCo's
+exA:TVServiceOptimisation skos:broader exB:TVServiceOptimisation .
+
+# 2: BobCo's optimisations are found to be the same as AliceCo's
+exA:TVServiceOptimisation skos:exactMatch exB:TVServiceOptimisation .
+
+# 3: BobCo's optimisations are found to be similar to AliceCo's
+exA:TVServiceOptimisation skos:closeMatch exB:TVServiceOptimisation .
+
+-->
+
+</body>
+</html>

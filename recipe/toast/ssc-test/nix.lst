@@ -179,6 +179,7 @@
 ../toast/living/jan24/living.spec
 ../toast/living/apr24/living.spec
 ../toast/living/jul24/living.spec
+../toast/living/oct24/living.spec
 ../toast/math/1/math.spec
 ../toast/math/2/math.spec
 ../toast/math/3/math.spec
@@ -188,6 +189,8 @@
 ../toast/microdata/12/schema.spec
 ../toast/microdata/addendum/add.spec
 ../toast/microdata/basic/basic.spec
+../toast/microdata/dpv1/dpv1.spec
+../toast/microdata/dpv2/dpv2.spec
 ../toast/microdata/export/export.spec
 ../toast/microdata/link/link.spec
 ../toast/microdata/microformats/mf.spec

@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>dpv 1 ontology test 3</title>
+</head>
+
+<body>
+
+<h1>dpv 1 ontology test 3</h1>
+
+<div itemtype="https://w3id.org/dpv#Purpose" itemscope>
+  <div itemtype="https://w3id.org/dpv/ex#MarketingOfNewProducts" itemscope>
+    <div itemprop="http://www.w3.org/2004/02/skos/core#broader" itemtype="https://w3id.org/dpv#Marketing" itemscope></div>
+	<span itemtype="https://www.w3.org/2000/01/rdf-schema#Label" itemscope lang="en">
+		Marketing of New Products
+	</span>
+  </div>
+</div>
+
+<div itemtype="https://w3id.org/dpv#Purpose" itemscope>
+  <div itemtype="https://w3id.org/dpv/ex#NewslettersOffers" itemscope>
+    <div itemprop="http://www.w3.org/2004/02/skos/core#broader" itemtype="https://w3id.org/dpv/ex#MarketingOfNewProducts" itemscope></div>
+	<span itemtype="https://www.w3.org/2000/01/rdf-schema#Label" itemscope lang="en">
+		Newsletters about Offers
+	</span>
+  </div>
+</div>
+
+<div itemtype="https://w3id.org/dpv#Purpose" itemscope>
+  <div itemtype="https://w3id.org/dpv/ex#EmailsSeasonalOffers" itemscope>
+    <div itemprop="http://www.w3.org/2004/02/skos/core#broader" itemtype="https://w3id.org/dpv/ex#MarketingOfNewProducts" itemscope></div>
+	<span itemtype="https://www.w3.org/2000/01/rdf-schema#Label" itemscope lang="en">
+		Spam about Seasonal Offers
+	</span>
+  </div>
+</div>
+
+<div itemtype="https://w3id.org/dpv#Purpose" itemscope>
+  <div itemtype="https://w3id.org/dpv/ex#MarketingSeasonalOffer2021" itemscope>
+    <div itemprop="http://www.w3.org/2004/02/skos/core#broader" itemtype="https://w3id.org/dpv#Marketing" itemscope></div>
+	<span itemtype="https://www.w3.org/2000/01/rdf-schema#Label" itemscope lang="en">
+		Spamming with Seasonal Offers
+	</span>
+  </div>
+</div>
+
+<!--#comment
+
+# Case1: Where further categories are required to 'group' related purposes
+# creating a new subclass or category of Marketing for use-case
+ex:MarketingOfNewProducts a dpv:Purpose ;
+    skos:broader dpv:Marketing ;
+    rdfs:label “Marketing of New Products” .
+
+# more specific purposes under group ‘Marketing of New Products’
+ex:NewslettersOffers a dpv:Purpose ;
+    skos:broader ex:MarketingOfNewProducts ;
+    rdfs:label “Newsletters about Offers” .
+ex:EmailsSeasonalOffers a dpv:Purpose ;
+    skos:broader ex:MarketingOfNewProducts ;
+    rdfs:label “Emails about Seasonal Offers” .
+
+# Case2: A single final and definite purpose within EmailSeasonalOffers
+ex:MarketingSeasonalOffer2021 a dpv:Purpose ;
+    skos:broader dpv:Marketing ;
+    rdfs:label "Sending Email Newsletters with Seasonal Offers" .
+
+-->
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>dpv 1 ontology test 28</title>
+</head>
+
+<body>
+
+<h1>dpv 1 ontology test 28</h1>
+
+<div itemtype="https://w3id.org/dpv/ex#PDH1" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#PersonalDataHandling" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv#Email" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv#AccountIdentifier" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPurpose" itemtype="https://w3id.org/dpv#CommunicationForCustomerCare" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPersonalDataHandling" itemtype="https://w3id.org/dpv/ex#PDH2" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPersonalDataHandling" itemtype="https://w3id.org/dpv/ex#PDH3" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#PDH2" itemscope>
+  <div itemprop="https://w3id.org/dpv#hasContext" itemtype="https://w3id.org/dpv#Optional" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv#Email" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPurpose" itemtype="https://w3id.org/dpv#CommunicationForCustomerCare" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#PDH3" itemscope>
+  <div itemprop="https://w3id.org/dpv#hasContext" itemtype="https://w3id.org/dpv#Required" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv#AccountIdentifier" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPurpose" itemtype="https://w3id.org/dpv#CommunicationForCustomerCare" itemscope></div>
+</div>
+
+<!--#comment
+
+:PDH1 a dpv:PersonalDataHandling ;
+  # optionally also declare data and purpose for PDH1
+  dpv:hasPersonalData dpv:Email, dpv:AccountIdentifier ;
+  dpv:hasPurpose dpv:CommunicationForCustomerCare ;
+  dpv:hasPersonalDataHandling :PDH2, :PDH3 .
+
+:PDH2 a dpv:PersonalDataHandling ;
+  dpv:hasContext dpv:Optional ;
+  dpv:hasPersonalData :Email ;
+  dpv:hasPurpose dpv:CommunicationForCustomerCare .
+
+:PDH3 a dpv:PersonalDataHandling ;
+  dpv:hasContext dpv:Required ;
+  dpv:hasPersonalData dpv:AccountIdentifier ;
+  dpv:hasPurpose dpv:CommunicationForCustomerCare .
+
+-->
+
+</body>
+</html>

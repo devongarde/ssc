@@ -68,13 +68,14 @@ itemprop_indices make_itemprop_indices (const e_property p)
     if (i != unknown_ids -> cend ()) return i -> second;
     return ::std::string (); }
 
-itemprop_index find_itemprop_index (nitpick& nits, const html_version& v, const ::std::string& name, bool bespoke_permitted)
+itemprop_index find_itemprop_index (nitpick& nits, const html_version& v, const ::std::string& name, const bool bespoke_permitted, const bool example)
 {   nitpick knots;
     const e_ontology_property mp = identify_ontology_property (name);
     if (mp != op_illegal) return make_itemprop_index (mp);
     knots.pick (nit_not_ontology_property, es_error, ec_schema, quote (name), " is not a recognised property (1)");
     const prop p (knots, v, name);
     if (! p.unknown () && ! p.invalid ()) return make_itemprop_index (p.get ());
+    if (example) return null_itemprop;
     if (! bespoke_permitted)
     {   nits.merge (knots);
         check_identifier_spelling (nits, v, name);
@@ -90,7 +91,7 @@ itemprop_index find_itemprop_index (nitpick& nits, const html_version& v, const 
     nits.pick (nit_new_itemprop, es_comment, ec_microdata, "new untyped itemprop ", quote (name), " noted");
     return bespoke_itemprop; }
 
-itemprop_indices find_itemprop_indices (nitpick& nits, const html_version& v, const ::std::string& name, bool bespoke_permitted)
+itemprop_indices find_itemprop_indices (nitpick& nits, const html_version& v, const ::std::string& name, const bool bespoke_permitted, const bool example)
 {   nitpick knots;
     itemprop_indices res;
     vsp_t vsp = identify_ontology_properties (name);
@@ -98,6 +99,7 @@ itemprop_indices find_itemprop_indices (nitpick& nits, const html_version& v, co
     knots.pick (nit_not_ontology_property, es_error, ec_schema, quote (name), " is not a recognised property (2)");
     const prop p (knots, v, name);
     if (! p.unknown () && ! p.invalid ()) return make_itemprop_indices (p.get ());
+    if (example) return res;
     if (! bespoke_permitted)
     {   nits.merge (knots);
         check_identifier_spelling (nits, v, name);

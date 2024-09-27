@@ -41,7 +41,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 CONSTEXPR e_severity default_output = es_warning;
 CONSTEXPR bool def_article = false, def_body = true, def_case = false, def_cgi = false, def_classic = false, def_clear = false,
-    def_crosslinks = true, def_example = true, def_external = false, def_ext_css = false, def_extra = false,
+    def_crosslinks = true, def_expand = false, def_example = true, def_external = false, def_ext_css = false, def_extra = false,
     def_force_version = false, def_forwarded = true, def_icu = true, def_ie = false, def_info = false, def_iterate = false,
     def_jsonld = false, def_local = true, def_load_css = true, def_links = true, def_main = false, def_md_export = false,
     def_mf_export = false, def_mf_verify = true, def_microdata = true, def_nids = false, def_nits = false,
@@ -70,7 +70,7 @@ class corpus;
 class context_t
 {   friend class options;
     bool            article_ = def_article, body_ = def_body, case_ = def_case, cgi_ = def_cgi, classic_ = def_classic,
-                    clear_ = def_clear, crosslinks_ = def_crosslinks, example_ = def_example, external_ = def_external,
+                    clear_ = def_clear, crosslinks_ = def_crosslinks, example_ = def_example, expand_ = def_expand, external_ = def_external,
                     ext_css_ = def_ext_css, extra_ = def_extra, force_version_ = def_force_version, forwarded_ = def_forwarded,
                     icu_ = def_icu, ie_ = def_ie, info_ = def_info, iterate_ = def_iterate, jsonld_ = def_jsonld,
                     local_ = def_local, load_css_ = def_load_css, links_ = def_links, main_ = def_main,
@@ -164,6 +164,7 @@ public:
     context_t& example (const bool b) { example_ = b; mac (nm_context_example, b); return *this; }
     context_t& exclude (nitpick& nits, const vstr_t& s);
     context_t& exclude (nitpick& nits, const ::std::string& s);
+    context_t& expand (const bool b) { expand_ = b; mac (nm_context_expand, b); return *this; }
     context_t& export_root (const ::std::string& s) { export_root_ = s; mac (nm_context_export_root, s); return *this; }
     context_t& exports (const vstr_t& s) { exports_ = s; mac (nm_context_exports, s); return *this; }
     context_t& extensions (const vstr_t& s) { extensions_ = s; mac (nm_context_extensions, s); return *this; }
@@ -420,6 +421,7 @@ public:
     bool example () const noexcept { return example_; }
     const vstr_t exclude () const { return exclude_; }
     bool excluded (nitpick& nits, const ::boost::filesystem::path& p) const;
+    bool expand () const noexcept { return expand_; }
     bool export_defined () const noexcept { return ! export_root_.empty (); }
     const ::std::string export_root () const { return export_root_; }
     const vstr_t exports () const { return exports_; }
@@ -479,6 +481,8 @@ public:
     bool ontology () const noexcept { return ontology_; }
     ontology_version ontology_ver (const e_ontology es = s_schema) const
     {   return get_default_ontology_version (es); }
+    ontology_version ontology_ver (const html_version& v, const e_ontology es = s_schema) const
+    {   return corresponding_ontology_version (es, v); }
     ::std::string ont_ver (const e_ontology o) const
     {   PRESUME (o < s_error, __FILE__, __LINE__);
         if (vont_.size () > 0) return vont_.at (o);

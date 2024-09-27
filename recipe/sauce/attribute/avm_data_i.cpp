@@ -166,7 +166,7 @@ hav_t havt_input [] =
     { { HTML_4_0 }, { HTML_UNDEF }, elem_input, a_alt },
     { { HTML_5_3, HV_W3 }, { HTML_5_3 }, elem_input, a_autocapitalise },
     { { HTML_JAN09 }, { HTML_UNDEF }, elem_input, a_autocomplete },
-    { { HTML_JAN09, 0, HE_SAFARI }, { HTML_UNDEF }, elem_input, a_autocorrect },
+    { { HTML_JAN09, 0, HE_SAFARI }, { HTML_AUG24 }, elem_input, a_autocorrect },
     { { HTML_JAN09 }, { HTML_DEC19 }, elem_input, a_autofocus },
     { { HTML_5_3 }, { HTML_5_3 }, elem_input, a_capture },
     { { HTML_PLUS }, { HTML_UNDEF }, elem_input, a_checked },

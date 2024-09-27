@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>dpv 1 ontology test 4</title>
+</head>
+
+<body>
+
+<h1>dpv 1 ontology test 4</h1>
+
+<div itemtype="https://w3id.org/dpv/ex#MarketingOfNewProducts" itemscope>
+  <div itemprop="isSubTypeOf" itemtype="https://w3id.org/dpv#Marketing" itemscope></div>
+  <span itemtype="https://www.w3.org/2000/01/rdf-schema#Label" itemscope>
+	Marketing of New Products
+  </span>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#NewslettersOffers" itemscope>
+  <div itemprop="isSubTypeOf" itemtype="https://w3id.org/dpv/ex#MarketingOfNewProducts" itemscope></div>
+  <span itemtype="https://www.w3.org/2000/01/rdf-schema#Label" itemscope>
+	Newsletters about Offers
+  </span>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#EmailsSeasonalOffers" itemscope>
+  <div itemprop="isSubTypeOf" itemtype="https://w3id.org/dpv/ex#MarketingOfNewProducts" itemscope></div>
+  <span itemtype="https://www.w3.org/2000/01/rdf-schema#Label" itemscope>
+	Emails about Seasonal Offers
+  </span>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#MarketingSeasonalOffer" itemscope>
+  <div itemprop="isSubTypeOf" itemtype="https://w3id.org/dpv#Marketing" itemscope></div>
+  <span itemtype="https://www.w3.org/2000/01/rdf-schema#Label" itemscope>
+	Sending Email Newsletters with Seasonal Offers
+  </span>
+</div>
+
+<!--#comment
+
+# Case1: Where further categories are required to 'group' related purposes
+# creating a new subclass or category of Marketing for use-case
+ex:MarketingOfNewProducts rdfs:subClassOf dpv:Marketing ;
+    rdfs:label “Marketing of New Products” .
+
+# more specific categories of group ‘Marketing of New Products’
+ex:NewslettersOffers rdfs:subClassOf ex:MarketingOfNewProducts ;
+    rdfs:label “Newsletters about Offers” .
+ex:EmailsSeasonalOffers rdfs:subClassOf ex:MarketingOfNewProducts ;
+    rdfs:label “Emails about Seasonal Offers” .
+
+# Case2: A single final and definite purpose within EmailSeasonalOffers
+ex:MarketingSeasonalOffer rdf:type dpv:Marketing ;
+    rdfs:label "Sending Email Newsletters with Seasonal Offers" .
+
+-->
+
+</body>
+</html>

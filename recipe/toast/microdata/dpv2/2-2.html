@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>dpv 2 ontology test 2.0 process</title>
+</head>
+
+<body>
+
+<h1>dpv 2 ontology test 2.0 process</h1>
+
+<div id="StreamingService" itemtype="https://w3id.org/dpv/ex#Service" itemscope>
+  <div itemprop="https://w3id.org/dpv#hasProcess" itemtype="https://w3id.org/dpv/ex#SS1" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcess" itemtype="https://w3id.org/dpv/ex#SS2" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasLegalBasis" itemtype="https://w3id.org/dpv#Contract" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasServiceProvider" itemtype="https://w3id.org/dpv/ex#CompanyA" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataController" itemtype="https://w3id.org/dpv/ex#CompanyA" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasServiceConsumer" itemtype="https://w3id.org/dpv/ex#Custard" itemscope></div>
+</div>
+
+<div id="SS1" itemtype="https://w3id.org/dpv/ex#Process" itemscope>
+  <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv/pd#EmailAddress" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Collect" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Store" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Use" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPurpose" itemtype="https://w3id.org/dpv#ServiceProvision" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPurpose" itemtype="https://w3id.org/dpv#ServiceRegistration" itemscope></div>
+</div>
+
+<div id="SS2" itemtype="https://w3id.org/dpv/ex#Process" itemscope>
+  <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv/pd#EmailAddress" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Use" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPurpose" itemtype="https://w3id.org/dpv#FraudPreventionDetection" itemscope></div>
+</div>
+
+<!--#comment
+
+ex:StreamingService a dpv:Service ;
+    dpv:hasProcess ex:SS1, ex:SS2 ;
+    dpv:hasLegalBasis dpv:Contract ; # covering service
+    dpv:hasServiceProvider ex:CompanyA ; 
+    dpv:hasDataController ex:CompanyA ;
+    dpv:hasServiceConsumer ex:Consumers .
+
+ex:SS1 a dpv:Process ;
+    dpv:hasPersonalData pd:EmailAddress ;
+    dpv:hasProcessing dpv:Collect, dpv:Store, dpv:Use ;
+    dpv:hasPurpose dpv:ServiceProvision, dpv:ServiceRegistration .
+
+ex:SS2 a dpv:Process ;
+    dpv:hasPersonalData pd:EmailAddress ;
+    dpv:hasProcessing dpv:Use ;
+    dpv:hasPurpose dpv:FraudPreventionDetection .
+
+-->
+
+</body>
+</html>

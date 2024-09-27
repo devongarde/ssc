@@ -171,6 +171,7 @@ ssc.exe -T --nits.spec -o ../out/oct23living.tst -f ../toast/living/oct23/living
 ssc.exe -T --nits.spec -o ../out/jan24living.tst -f ../toast/living/jan24/living.conf
 ssc.exe -T --nits.spec -o ../out/apr24living.tst -f ../toast/living/apr24/living.conf
 ssc.exe -T --nits.spec -o ../out/jul24living.tst -f ../toast/living/jul24/living.conf
+ssc.exe -T --nits.spec -o ../out/oct24living.tst -f ../toast/living/oct24/living.conf
 ssc.exe -T --nits.spec -o ../out/1math.tst -f ../toast/math/1/math.conf
 ssc.exe -T --nits.spec -o ../out/2math.tst -f ../toast/math/2/math.conf
 ssc.exe -T --nits.spec -o ../out/3math.tst -f ../toast/math/3/math.conf
@@ -180,6 +181,7 @@ ssc.exe -T --nits.spec -o ../out/12schema.tst -f ../toast/microdata/12/schema.co
 ssc.exe -T --nits.spec -o ../out/addendumadd.tst -f ../toast/microdata/addendum/add.conf
 ssc.exe -T --nits.spec -o ../out/basicbasic.tst -f ../toast/microdata/basic/basic.conf
 ssc.exe -T --nits.spec -o ../out/exportexport.tst -f ../toast/microdata/export/export.conf
+ssc.exe -T --nits.spec -o ../out/dpv1.tst -f ../toast/microdata/dpv1/dpv1.conf
 ssc.exe -T --nits.spec -o ../out/microlink.tst -f ../toast/microdata/link/link.conf
 ssc.exe -T --nits.spec -o ../out/microdatamf.tst -f ../toast/microdata/microformats/mf.conf
 ssc.exe -T --nits.spec -o ../out/schema-abcabc.tst -f ../toast/microdata/schema-abc/abc.conf

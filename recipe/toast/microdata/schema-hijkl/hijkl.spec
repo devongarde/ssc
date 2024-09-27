@@ -108,7 +108,7 @@ PASS ../toast/microdata/schema-hijkl/investmentordeposit.html
 12 invalid_attribute_version wrong_version svg_rdf
 
 PASS ../toast/microdata/schema-hijkl/itemlist.html
-28 requires_itemscope missing_itemtype
+28 requires_itemscope
 57 use_quote_code
 66 use_quote_code
 78 use_quote_code
@@ -123,10 +123,10 @@ PASS ../toast/microdata/schema-hijkl/legislation.html
 19 invalid_attribute_version wrong_version svg_rdf
 20 inserted_missing_closure
 21 inserted_missing_parent
-33 requires_itemscope missing_itemtype url_not_found
+33 requires_itemscope url_not_found
 39 url_not_found
 40 url_not_found
-46 requires_itemscope missing_itemtype url_not_found
+46 requires_itemscope url_not_found
 52 url_not_found
 58 url_not_found
 59 url_not_found

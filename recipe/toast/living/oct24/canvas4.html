@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<title>Color space image data demo</title>
+
+<canvas></canvas>
+
+<script>
+const canvas = document.querySelector('canvas');
+const context = canvas.getContext('2d', {colorSpace:'display-p3'});
+
+// Draw a red rectangle. Note that the hex color notation
+// specifies sRGB colors.
+context.fillStyle = "#FF0000";
+context.fillRect(0, 0, 64, 64);
+
+// Get the image data.
+const pixels = context.getImageData(0, 0, 1, 1);
+
+// This will print 'display-p3', reflecting the default behavior
+// of returning image data in the canvas's color space.
+console.log(pixels.colorSpace);
+
+// This will print the values 234, 51, and 35, reflecting the
+// red fill color, converted to 'display-p3'.
+console.log(pixels.data[0]);
+console.log(pixels.data[1]);
+console.log(pixels.data[2]);
+</script>

@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>dpv 1 ontology test 18</title>
+</head>
+
+<body>
+
+<h1>dpv 1 ontology test 18</h1>
+
+<div itemtype="https://w3id.org/dpv/ex#Service" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#PersonalDataHandling" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasNotice" itemtype="https://w3id.org/dpv/ex#AcmePrivacyPolicy" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#AcmePrivayPolicy" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#PrivacyNotice" itemscope></div>
+  <span itemprop="http://purl.org/dc/terms/title" lang="en">Acme&rsquo;s Privacy Policy</span>
+  <span itemprop="http://xmlns.com/foaf/0.1/page">https://example.com/</span>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#AcmePrivayPolicy" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#PrivacyNotice" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPersonalDataHandling" itemtype="https://w3id.org/dpv/ex#Service" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPurpose" itemtype="https://w3id.org/dpv#ServiceProvision" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv/dpv-pd#Email" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Collect" itemscope></div>
+  <span itemprop="https://w3id.org/dpv#hasLocation">https://example.com/</span>
+</div>
+
+<!--#comment
+
+# Associating a Notice with DPV metadata
+ex:Service rdf:type dpv:PersonalDataHandling ;
+    dpv:hasNotice ex:AcmePrivacyPolicy .
+
+ex:AcmePrivayPolicy rdf:type dpv:PrivacyNotice ;
+    dct:title "Acme's Privacy Policy"@en ;
+    foaf:page "https://example.com/"^^xsd:anyURI .
+
+# Describing a Notice using DPV metadata
+ex:AcmePrivacyPolicy rdf:type dpv:PrivacyNotice ;
+    # Approach 1: delegate contents to a PDH instance
+    dpv:hasPersonalDataHandling ex:Service ;
+    # Approach 2: declare specifics directly
+    dpv:hasPurpose dpv:ServiceProvision ;
+    dpv:hasPersonalData dpv-pd:Email ;
+    dpv:hasProcessing dpv:Collect ;
+    # Specifying location of notice
+    # In this case, as a website, or could be a domain
+    dpv:hasLocation "https://example.com"^^xsd:anyURI .
+
+-->
+
+</body>
+</html>

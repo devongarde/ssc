@@ -1,7 +1,6 @@
 -Y 1 -f ../toast/stats/summary/stats.conf
 
 PASS ../toast/stats/summary/itemref.html
-15 missing_itemtype
 27 missing_close
 32 url_id_unfound
 35 inserted_missing_closure
@@ -13,9 +12,8 @@ PASS ../toast/stats/summary/keyword-2.html
 2 naughty_lang
 
 PASS ../toast/stats/summary/md-ref.html
-14 not_ontology_property not_ontology_property
-18 missing_itemtype
-24 missing_itemtype
+18 no_itemscope
+24 no_itemscope
 
 GRAND
 Abbreviation:
@@ -25,7 +23,7 @@ Abbreviation:
 Category:
     Attribute: twice
     Element: twice
-    Schema: 5 times
+    Microdata: twice
     URx: once
 
 Definition:
@@ -36,9 +34,8 @@ Definition:
     Tiddles: once, "Tiddles, no siamese, likes to miaow."
 
 Nits Reported:
-    Errors: 4 times
+    Errors: twice
     Warnings: 5 times
-    Info: once
 
 File Info:
     3783 bytes read in 5 files, with an average of roughly 757 bytes per file
@@ -65,22 +62,17 @@ Header:
 
 Ontology:
     http://schema.org/BlogPosting: twice
-      commentCount: once
-      name: once
       publisher: once
     http://schema.org/Organization: thrice
       founder: twice
       name: twice
       url: twice
     http://schema.org/Person: twice
-      description: twice
-      name: twice
-      url: twice
   3 itemtypes used 7 times
 
 Reference:
     HTML 5.0: twice
-    WhatWG HTML 5, Jul 20: thrice
+    WhatWG HTML 5, Jul 20: twice
     HTML 5, Jul 23: twice
 
 Name/Value Pair:

@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>data privacy vocab 2 tech tests</title>
+</head>
+
+<body>
+
+<h1>data privacy vocab 2 tech tests</h1>
+
+<div itemtype="https://w3id.org/dpv#Technology" itemscope>
+  <span itemprop="http://www.w3.org/2004/02/skos/core#prefLabel" lang="de">Meine Databank</span>
+  <div itemprop="https://w3id.org/dpv/tech#hasDocumentation" itemtype="https://example.org/ex#DatabaseDocs" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv#Instructions" itemscope>
+  <span itemprop="http://www.w3.org/2004/02/skos/core#prefLabel" lang="de">Documente f&uuml;r meine Databank</span>
+  <div itemprop="https://purl.org/dc/terms/subject" itemtype="https://example.org/ex#MyDatabase" itemscope></div>
+</div>
+
+<!--#comment
+
+ex:MyDatabase a dpv:Technology ;
+  skos:prefLabel "My Database"@en ;
+  tech:hasDocumentation ex:DatabaseDocs .
+
+ex:DatabaseDocs a tech:Instructions ;
+  skos:prefLabel "Documentation for My Database"@en ;
+  dct:subject ex:MyDatabase .
+
+-->
+
+</body>
+</html>

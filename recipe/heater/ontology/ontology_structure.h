@@ -23,3 +23,4 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 void microdata_init (nitpick& nits);
 bool is_ontology_property (const e_ontology_type s, const e_ontology_property p);
+bool is_ontology_property (const html_version& v, const e_ontology_type s, const e_ontology_property p);

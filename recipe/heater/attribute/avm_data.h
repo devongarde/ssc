@@ -946,6 +946,7 @@ struct hav_t
     ADDITIONAL_ARIA_ATTRIBUTES(ELEM), \
     { { HTML_5_0, HV_W3, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_accept_charset }, \
     { { HTML_JAN18, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_autocapitalise }, \
+    { { HTML_SEP24, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_autocorrect }, \
     { { HTML_JAN20, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_autofocus }, \
     { { HTML_JAN07, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_contenteditable }, \
     { { HTML_JAN06, HV_NOT50 | HV_NOT52 | HV_NOT53, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_contextmenu }, \

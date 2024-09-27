@@ -4,7 +4,6 @@ PASS ../toast/living/oct21/404.html
 12 bespoke_obsolete
 47 css_version
 50 link_rel_off
-59 missing_itemtype
 64 unrecognised_value
 71 unrecognised_value unrecognised_value
 74 unrecognised_value
@@ -321,10 +320,10 @@ PASS ../toast/living/oct21/dl.html
 73 inserted_missing_closure
 76 inserted_missing_closure missing_close
 78 inserted_missing_closure
-84 inserted_missing_closure missing_itemtype
+84 inserted_missing_closure
 87 inserted_missing_closure
 89 inserted_missing_closure
-91 inserted_missing_closure missing_itemtype
+91 inserted_missing_closure
 94 inserted_missing_closure missing_close
 96 inserted_missing_closure
 
@@ -1311,7 +1310,6 @@ PASS ../toast/living/oct21/meter.html
 PASS ../toast/living/oct21/microdata-1.html
 30 url_not_found
 39 url_not_found
-58 missing_itemtype
 73 dialect
 77 url_not_found naughty_alt
 82 url_not_found naughty_alt

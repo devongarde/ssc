@@ -31,8 +31,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 2
-#define VERSION_STRING "0.2.2"
+#define VERSION_RELEASE 3
+#define VERSION_STRING "0.2.3"
 #define EDITION_STANDARD "standard"
 
 #define NBSP "&nbsp;"
@@ -554,6 +554,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define TEL HEX "+*()-.#*_!~'[]/ "
 #define REAL SIGNEDDECIMAL "Ee"
 #define LINE_SEPARATORS "\n\r\f\v"
+#define ELLIPSES "..."
 
 #define DEFAULT_DOMAIN "example.org"
 #define CSS_TYPE "text/css"
@@ -576,6 +577,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define ADOBE_COM           "ns.adobe.com"
 #define CC                  "creativecommons.org"
 #define DBPEDIA             "dbpedia.org"
+#define EXAMPLE_ORG         DEFAULT_DOMAIN
 #define MICROFORMATS_ORG    "microformats.org"
 #define SCHEMA_ORG          "schema.org"
 #define N_WHATWG_ORG        "n.whatwg.org"

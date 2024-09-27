@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>data privacy vocab 2 tech tests</title>
+</head>
+
+<body>
+
+<h1>data privacy vocab 2 tech tests</h1>
+
+<div itemtype="https://w3id.org/dpv#Technology" itemscope>
+  <div itemprop="https://w3id.org/dpv/tech#hasIntendedUse" itemtype="https://w3id.org/dpv#Collect" itemscope></div>
+  <div itemprop="https://w3id.org/dpv/tech#hasIntendedUse" itemtype="https://w3id.org/dpv#Store" itemscope></div>
+  <span itemprop="http://www.w3.org/2000/01/rdf-schema#comment" lang="en">Technology intended to collect and store data</span>
+</div>
+
+<div itemtype="https://w3id.org/dpv#Technology" itemscope>
+  <div itemprop="https://w3id.org/dpv/tech#hasIntendedUse" itemtype="https://w3id.org/dpv#IntendedUse" itemscope>
+      <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv/pd#EmailAddress" itemscope></div>
+      <div itemprop="https://w3id.org/dpv#hasPurpose" itemtype="https://w3id.org/dpv#Marketing" itemscope></div>
+      <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Collect" itemscope></div>
+      <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Store" itemscope></div>
+      <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Use" itemscope></div>
+      <div itemprop="https://w3id.org/dpv#hasUser" itemtype="https://w3id.org/dpv#Employee" itemscope></div> <!--#comment error in original, hasUser is dpv-tech -->
+      <span itemprop="http://www.w3.org/2000/01/rdf-schema#comment" lang="en">Technology intended to send makreting emails by employee</span>
+  </div>
+</div>
+
+<div itemtype="https://w3id.org/dpv#Technology" itemscope>
+  <div itemprop="https://w3id.org/dpv#isImplementedUsingTechnology" itemtype="https://example.org/ex#ChewingGum" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#isImplementedUsingTechnology" itemtype="https://example.org/ex#String" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPurpose" itemtype="https://w3id.org/dpv#AccountManagement" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv#Technology" itemscope>
+  <div itemprop="https://w3id.org/dpv#isImplementedUsingTechnology" itemtype="https://example.org/ex#ChewingGum" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#isImplementedUsingTechnology" itemtype="https://example.org/ex#String" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPurpose" itemtype="https://w3id.org/dpv#IdentityAuthentication" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv#Technology" itemscope>
+  <div itemprop="https://w3id.org/dpv#isImplementedUsingTechnology" itemtype="https://example.org/ex#ChewingGum" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#isImplementedUsingTechnology" itemtype="https://example.org/ex#String" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPurpose" itemtype="https://w3id.org/dpv#AccountManagement" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPurpose" itemtype="https://w3id.org/dpv#IdentityAuthentication" itemscope></div>
+</div>
+
+<!--#comment
+
+ex:1 a dpv:Technology ;
+  tech:hasIntendedUse dpv:Collect, dpv:Store ;
+  rdfs:comment "Technology intended to collect and store data"@en .
+
+ex:2 a dpv:Technology ;
+  tech:hasIntendedUse [
+    a tech:IntendedUse ;
+    dpv:hasPersonalData pd:EmailAddress ;
+    dpv:hasPurpose dpv:Marketing ;
+    dpv:hasProcessing dpv:Collect, dpv:Store, dpv:Use ;
+    dpv:hasUser dpv:Employee ;
+    rdfs:comment "Technology intended to send makreting emails by employee"@en ;
+  ] .
+
+ex:TechPlan1 a tech:IntendedUse ;
+  dpv:isImplementedUsingTechnology ex:MyDatabase, ex:MyCloudServer ;
+  dpv:hasPurpose dpv:AccountManagement .
+
+ex:TechPlan2 a tech:IntendedUse ;
+  dpv:isImplementedUsingTechnology ex:MyDatabase ;
+  dpv:hasPurpose dpv:IdentityAuthentication .
+
+ex:OperationLog a dpv:Process ;
+  dpv:isImplementedUsingTechnology ex:MyDatabase, ex:MyCloudServer ;
+  dpv:hasPurpose dpv:AccountManagement ;  # okay as per intended use
+  dpv:hasPurpose dpv:IdentityAuthentication . # ambigious use --
+          # database has intended use, cloud server doesn't
+-->
+
+</body>
+</html>

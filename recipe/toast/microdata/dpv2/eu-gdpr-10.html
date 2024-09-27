@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>data privacy vocab 2 eu GDPR tests</title>
+</head>
+
+<body>
+
+<h1>data privacy vocab 2 eu GDPR tests</h1>
+
+<div itemtype="https://w3id.org/dpv#Process" itemscope>
+  <div itemprop="https://w3id.org/dpv#hasApplicableLaw" itemtype="https://w3id.org/dpv/legal/eu#GDPR" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasLawfulness" itemtype="https://w3id.org/dpv/legal/eu/gdpr#GDPRCompliant" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv#Process" itemscope>
+  <div itemprop="https://w3id.org/dpv#hasApplicableLaw" itemtype="https://w3id.org/dpv/legal/eu#GDPR" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasLawfulness" itemtype="https://w3id.org/dpv/legal/eu/gdpr#GDPRComplianceUnknown" itemscope></div>
+</div>
+
+<!--#comment
+
+ex:PDH1 a dpv:Process ;
+  dpv:hasApplicableLaw legal-eu:GDPR ;
+  dpv:hasLawfulness eu-gdpr:GDPRCompliant .
+
+ex:PDH2 a dpv:Process ;
+  dpv:hasApplicableLaw legal-eu:GDPR ;
+  dpv:hasLawfulness eu-gdpr:GDPRComplianceUnknown .
+
+-->
+
+</body>
+</html>

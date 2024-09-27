@@ -171,6 +171,7 @@ ssc.exe -f ../toast/living/oct23/living.conf
 ssc.exe -f ../toast/living/jan24/living.conf
 ssc.exe -f ../toast/living/apr24/living.conf
 ssc.exe -f ../toast/living/jul24/living.conf
+ssc.exe -f ../toast/living/oct24/living.conf
 ssc.exe -f ../toast/math/1/math.conf
 ssc.exe -f ../toast/math/2/math.conf
 ssc.exe -f ../toast/math/3/math.conf
@@ -179,6 +180,8 @@ ssc.exe -f ../toast/math/4-22/math.conf
 ssc.exe -f ../toast/microdata/12/schema.conf
 ssc.exe -f ../toast/microdata/addendum/add.conf
 ssc.exe -f ../toast/microdata/basic/basic.conf
+ssc.exe -f ../toast/microdata/dpv1/dpv1.conf
+ssc.exe -f ../toast/microdata/dpv2/dpv2.conf
 ssc.exe -f ../toast/microdata/export/export.conf
 ssc.exe -f ../toast/microdata/link/link.conf
 ssc.exe -f ../toast/microdata/microformats/mf.conf

@@ -1,13 +1,12 @@
 -Y 1 -f ../toast/microdata/basic/basic.conf
 
 PASS ../toast/microdata/basic/961020.html
-20 missing_itemtype
+20 no_itemscope
 
 PASS ../toast/microdata/basic/examples.html
 9 double_gin_and_tonic
 38 url_not_found
 47 url_not_found naughty_alt
-67 missing_itemtype
 82 dialect
 86 attribute_required url_not_found naughty_alt
 92 attribute_required url_not_found naughty_alt
@@ -55,7 +54,6 @@ PASS ../toast/microdata/basic/itemprop.html
 20 attempted_escape no_such_folder url_not_found
 34 url_not_found
 45 url_not_found naughty_alt
-78 missing_itemtype
 97 newline_in_string newline_in_string dialect
 101 attribute_required url_not_found naughty_alt
 112 attribute_required url_not_found naughty_alt
@@ -70,7 +68,6 @@ PASS ../toast/microdata/basic/itemprop.html
 162 not_ontology_property
 
 PASS ../toast/microdata/basic/itemref.html
-15 missing_itemtype
 27 missing_close
 32 url_id_unfound
 35 inserted_missing_closure
@@ -85,8 +82,6 @@ PASS ../toast/microdata/basic/itemtype.html
 15 use_quote_code
 20 use_quote_code
 26 use_quote_code
-33 missing_close
-49 inserted_missing_closure
 
 PASS ../toast/microdata/basic/md-bad.html
 11 unrecognised_ontology unrecognised_ontology requires_itemscope
@@ -99,12 +94,8 @@ PASS ../toast/microdata/basic/md-bad.html
 32 use_quote_code
 
 PASS ../toast/microdata/basic/md-lynx.html
-11 missing_itemtype
-16 missing_itemtype
-
-PASS ../toast/microdata/basic/md-ref.html
-14 not_ontology_property
-18 missing_itemtype
+11 no_itemscope
+16 no_itemscope
 
 LYNX
 0 422 422

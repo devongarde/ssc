@@ -320,8 +320,8 @@ bool parse_rfc3986 (nitpick& nits, const html_version& v, const e_protocol prot,
     {   ::std::string pp (path);
         path.clear ();
         bool slashed = false;
-        if ((pp == "...") || (pp == "....") || (pp.find ("/.../") != ::std::string::npos) || (pp.find ("/..../") != ::std::string::npos))
-        {   nits.pick (nit_url_not_found, es_error, ec_url, "url", quote (s), " contains invalid path (\"...\")"); return false; }
+        if ((pp == ELLIPSES) || (pp == "....") || (pp.find ("/" ELLIPSES "/") != ::std::string::npos) || (pp.find ("/..../") != ::std::string::npos))
+        {   nits.pick (nit_url_not_found, es_error, ec_url, "url", quote (s), " contains invalid path (\"" ELLIPSES "\")"); return false; }
         for (auto ch : pp)  // replaces repeated slashes with singletons
         {   if (ch != SLASH) slashed = false;
             else if (slashed) continue;

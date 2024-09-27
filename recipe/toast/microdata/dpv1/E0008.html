@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>dpv 1 ontology test 8</title>
+</head>
+
+<body>
+
+<h1>dpv 1 ontology test 8</h1>
+
+<div itemtype="https://w3id.org/dpv/ex#Acme" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#DataController" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#AcmeMarketing" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#PersonalDataHandling" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPersonalDataHandling" itemtype="https://w3id.org/dpv/ex#InternalAnalytics" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPersonalDataHandling" itemtype="https://w3id.org/dpv/ex#SendingNewsletters" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#InternalAnalytics" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#PersonalDataHandling" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv#Email" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Collect" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Store" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPurpose" itemtype="https://w3id.org/dpv#InternalResourceOptimisation" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasLegalBasis" itemtype="https://w3id.org/dpv#LegitimateInterestOfController" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#FooTech" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#DataProcessor" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv#Email" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Share" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPurpose" itemtype="https://w3id.org/dpv#Marketing" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataProcessor" itemtype="https://w3id.org/dpv/ex#FooTech" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasLegalBasis" itemtype="https://w3id.org/dpv#Consent" itemscope></div>
+</div>
+
+<!--#comment
+
+ex:Acme rdf:type dpv:DataController .
+ex:AcmeMarketing rdf:type dpv:PersonalDataHandling ;
+    dpv:hasPersonalDataHandling ex:InternalAnalytics ;
+    dpv:hasPersonalDataHandling ex:SendingNewsletters .
+
+ex:InternalAnalytics rdf:type dpv:PersonalDataHandling ;
+    dpv:hasPersonalData dpv:Email ;
+    dpv:hasProcessing dpv:Collect, dpv:Store ;
+    dpv:hasPurpose dpv:InternalResourceOptimisation ;
+    dpv:hasLegalBasis dpv:LegitimateInterestOfController .
+
+ex:FooTech rdf:type dpv:DataProcessor .
+ex:SendingNewsletters rdf:type dpv:PersonalDataHandling ;
+    dpv:hasPersonalData dpv:Email ;
+    dpv:hasProcessing dpv:Share ;
+    dpv:hasPurpose dpv:Marketing ;
+    dpv:hasDataProcessor ex:FooTech ;
+    dpv:hasLegalBasis dpv:Consent .
+
+-->
+
+</body>
+</html>

@@ -516,8 +516,8 @@ bool ends_with_letters (const html_version& v, const ::std::string& s, const ::s
     ::std::string::const_iterator mb, me;
     if ((e - b) <= maxish) { me = e; mb = b; }
     else
-    {   if ((b + halfish) >= from) mb = b; else { mb = from - halfish; pre = "..."; }
-        if ((e - halfish) <= to) me = e; else { me = to + halfish; post = "..."; } }
+    {   if ((b + halfish) >= from) mb = b; else { mb = from - halfish; pre =ELLIPSES; }
+        if ((e - halfish) <= to) me = e; else { me = to + halfish; post = ELLIPSES; } }
     if (from == to) return pre + delined (mb, me) + post;
     return pre + delined (mb, from) + " " BEFORE_MOTE " " + delined (from, to) + " " AFTER_MOTE " " + delined (to, me) + post; }
 

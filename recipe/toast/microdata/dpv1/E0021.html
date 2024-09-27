@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>dpv 1 ontology test 21</title>
+</head>
+
+<body>
+
+<h1>dpv 1 ontology test 21</h1>
+
+<div itemtype="https://w3id.org/dpv/ex#TransferPolicy" itemscope>
+  <div itemtype="https://w3id.org/dpv#ControllerProcessorAgreement" itemscope></div>
+  <div itemtype="https://w3id.org/dpv#DataTransferSafeguard" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasTechnicalMeasure" itemtype="https://w3id.org/dpv#Encryption" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataExporter" itemtype="https://w3id.org/dpv/ex#Acme" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataImporter" itemtype="https://w3id.org/dpv/ex#Beta" itemscope></div>
+</div>
+
+<!--#comment
+
+ex:TransferPolicy a dpv:ControllerProcessorAgreement, 
+                    dpv:DataTransferSafeguard ;
+    dpv:hasTechnicalMeasured dpv:Encryption ;
+    dpv:hasOrganisationalMeasure dpv-gdpr:SCCsByCommission ;
+    dpv:hasDataExporter ex:Acme ;
+    dpv:hasDataImporter ex:Beta .
+
+-->
+
+</body>
+</html>

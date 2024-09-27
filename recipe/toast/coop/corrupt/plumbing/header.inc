@@ -52,14 +52,17 @@
 <link rel="stylesheet" href="/plumbing/songshade.css" type="text/css">
 </head>
 
-<body>
+<body itemscope itemtype="https://schema.org/WebPage">
 
-<div itemprop="author copyrightHolder" itemscope itemtype="https://schema.org/Person" id="dh">
+<div id="dh">
   <meta itemprop="name" content="<!--#echo encoding="none" var="swebmeister" -->">
   <link itemprop="sameAs url" href="<!--#echo encoding="none" var="artsego" -->">
 </div>
 
-<div itemprop="publisher" itemscope itemtype="https://schema.org/Organization" id="self">
+<div itemprop="author copyrightHolder" itemscope itemtype="https://schema.org/Person" itemref="dh">
+</div>
+
+<div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
   <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
     <meta itemprop="addressCountry" content="<!--#echo encoding="none" var="uhostland" -->">
     <meta itemprop="addressLocality" content="<!--#echo encoding="none" var="utown" -->">
@@ -72,7 +75,7 @@
   <link itemprop="sameAs" href="<!--#echo encoding="none" var="address" -->">
 </div>
 
-<div class="site h-entry" itemscope itemtype="https://schema.org/WebPage" itemref="dh self">
+<div class="site h-entry">
 <meta itemprop="dateModified" content="<!--#echo encoding="none" var="LAST_MODIFIED" -->">
 <meta itemprop="description" content="<!--#echo encoding="none" var="description" -->">
 <meta itemprop="headline" content="<!--#echo encoding="none" var="title" -->">

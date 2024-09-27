@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>dpv 2 justifications tests</title>
+</head>
+
+<body>
+
+<h1>dpv 2 justifications tests</h1>
+
+<div itemtype="https://w3id.org/dpv#Process" itemscope>
+  <div itemprop="https://w3id.org/dpv#hasJustification" itemtype="https://w3id.org/dpv#Justification" itemscope>
+    <div itemprop="https://www.w3.org/2004/02/skos/core#broader" itemtype="https://w3id.org/dpv/justifications#ComplexityOfProcess" itemscope></div>
+    <div itemprop="https://www.w3.org/2004/02/skos/core#broader" itemtype="https://w3id.org/dpv/justifications#NonFulfilmentJustification" itemscope></div>
+    <span itemprop="http://www.w3.org/2004/02/skos/core#prefLabel" lang="en">Process could not be fulfilled due to complexity</span>
+  </div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/risk#DataBreachReport" itemscope>
+  <div itemprop="https://w3id.org/dpv#hasStatus" itemtype="https://w3id.org/dpv/legal/eu/gdpr#BreachNotificationNotNeeded" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasJustification" itemtype="https://w3id.org/dpv/justifications#RightsFreedomsImpactUnlikely" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv#RightExerciseRecord" itemscope>
+  <div itemprop="https://w3id.org/dpv#hasStatus" itemtype="https://w3id.org/dpv#RequestRequiresAction" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasJustification" itemtype="https://w3id.org/dpv/justifications#IdentityVerificationFailure" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcess" itemtype="https://w3id.org/dpv#Process" itemscope>
+    <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Share" itemscope></div>
+    <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv#IdentifyingPersonalData" itemscope></div>
+    <div itemprop="https://w3id.org/dpv#isImplementedByEntity" itemtype="https://w3id.org/dpv#DataSubject" itemscope></div>
+  </div>
+</div>
+
+<div itemtype="https://w3id.org/dpv#RightNonFulfilmentNotice" itemscope>
+  <div itemprop="https://w3id.org/dpv#hasStatus" itemtype="https://w3id.org/dpv#RequestActionDelayed" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasJustification" itemtype="https://w3id.org/dpv/justifications#HighVolumeOfProcesses" itemscope></div>
+  <data itemprop="https://w3id.org/dpv#hasDuration" value="P6M"></data>
+</div>
+
+<div itemtype="https://w3id.org/dpv#RightExerciseActivity" itemscope>
+  <div itemprop="https://w3id.org/dpv#hasStatus" itemtype="https://w3id.org/dpv#RequestInitiated" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasJustification" itemtype="https://w3id.org/dpv/justifications#ContestAccuracy" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcess" itemtype="https://w3id.org/dpv#Process" itemscope>
+    <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv#PersonalData" itemscope>
+      <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv/pd#EmailAddress" itemscope></div>
+      <data itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#value" value="email:x@example.com"></data>
+      <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Delete" itemscope></div>
+    </div>
+    <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv#PersonalData" itemscope>
+      <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv/pd#EmailAddress" itemscope></div>
+      <data itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#value" value="email:y@example.com"></data>
+      <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Store" itemscope></div>
+    </div>
+  </div>
+</div>
+
+<!--#comment
+
+ex:PDH a dpv:Process ;
+  dpv:hasJustification [
+    a dpv:Justification ;
+    skos:broader justifications:ComplexityOfProcess ;
+    skos:broader justifications:NonFulfilmentJustification ;
+    skos:prefLabel "Process could not be fulfilled due to complexity"@en ;
+  ] .
+
+ex:PDH a risk:DataBreachReport ;
+  dpv:hasStatus eu-gdpr:BreachNotificationNotNeeded ;
+  dpv:hasJustification justifications:RightsFreedomsImpactUnlikely .
+
+ex:PDH a dpv:RightExerciseRecord ;
+  dpv:hasStatus dpv:RequestRequiresAction ;
+  dpv:hasJustification justifications:IdentityVerificationFailure ;
+  dpv:hasProcess [
+    a dpv:Process ;
+    dpv:hasProcessing dpv:Share ;
+    dpv:hasPersonalData dpv:IdentifyingPersonalData ;
+    dpv:isImplementedByEntity dpv:DataSubject ;
+    ] .
+
+ex:PDH a dpv:RightNonFulfilmentNotice ;
+  dpv:hasStatus dpv:RequestActionDelayed ;
+  dpv:hasJustification justifications:HighVolumeOfProcesses ;
+  dpv:hasDuration "P6M" .  # ISO 8601 6 Months
+
+ex:PDH a dpv:RightExerciseActivity, eu-gdpr:A16 ;
+  dpv:hasStatus dpv:RequestInitiated ;
+  dpv:hasJustification justifications:ContestAccuracy ;
+  dpv:hasProcess [
+    a dpv:Process ;
+    dpv:hasPersonalData [ a pd:EmailAddress ; rdf:value "x@x.com" ;]
+    dpv:hasProcessing dpv:Delete ;
+  ];
+  dpv:hasProcess [
+    a dpv:Process ;
+    dpv:hasPersonalData [ a pd:EmailAddress ; rdf:value "y@y.com" ;]
+    dpv:hasProcessing dpv:Store ;
+  ] .
+
+-->
+
+</body>
+</html>

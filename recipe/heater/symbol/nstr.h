@@ -242,6 +242,8 @@ public:
 #define ONTOLOGY_CRAPSPEC         0x0000000000000004
 #define ONTOLOGY_CRAPNS           0x0000000000000010
 #define ONTOLOGY_PRISM            0x0000000000000020
+#define ONTOLOGY_EXAMPLE          0x0000000000000040
+#define ONTOLOGY_DPV_1_ONLY       0x0000000000000080
 
 typedef n_string_table < e_namespace, ns_error, NAMESPACE_COUNT, 2 > namespace_names_t;
 typedef n_string_table < e_protocol, pr_error, PROTOCOL_COUNT, 1 > protocol_names_t;

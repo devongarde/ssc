@@ -102,7 +102,8 @@ html_version selection_version [] =
 	html_oct23,
 	html_jan24,
 	html_apr24,
-	html_jul24 };
+	html_jul24,
+    html_oct24 };
 static constexpr int selection_count = sizeof (selection_version) / sizeof (html_version);
 
 // https://stackoverflow.com/questions/3191664/list-of-all-locales-and-their-short-codes#3191729

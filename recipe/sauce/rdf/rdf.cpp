@@ -31,32 +31,112 @@ typedef enum { pm_scope, pm_string } prop_member;
 
 bool is_valid_property (nitpick& nits, const html_version& v, const e_ontology_type t, const e_ontology_property p, const ::std::string& value, const bool is_link)
 {   switch (sch::root (t))
-    {   case s_as :
+    {   case s_adms :
+        case s_article :
+        case s_as :
+        case s_bfo :
+        case s_bibo :
+        case s_biro :
+        case s_book :
         case s_cc :
+        case s_cito :
+        case s_content :
+        case s_crs2 :
+        case s_csvw :
         case s_ctag :
+        case s_daq :
         case s_dc :
         case s_dcam :
-        case s_dct :
+        case s_dcat :
         case s_dcmi :
+        case s_dct :
         case s_ddi :
+        case s_doap :
+        case s_dpv :
+        case s_dpv_eu_dga :
+        case s_dpv_eu_gdpr :
+        case s_dpv_loc :
+        case s_dpv_risk :
+        case s_dpv_tech :
+        case s_dqv :
+        case s_duv :
+        case s_event :
+        case s_example :
+        case s_exif :
+        case s_exifex :
+        case s_fabio :
         case s_foaf :
+        case s_frbr :
         case s_gr :
+        case s_grddl :
+        case s_gs1 :
+        case s_ical :
+        case s_jsonld :
+        case s_ldp :
+        case s_locn :
+        case s_ma :
+        case s_music :
+        case s_oa :
+        case s_odrl :
+        case s_og :
+        case s_org :
+        case s_owl :
         case s_pam :
-        case s_pamp :
-        case s_pcmm :
         case s_pcm :
+        case s_pcmm :
         case s_pcv :
+        case s_pdf :
+        case s_photoshop :
         case s_pim :
         case s_pmi :
         case s_prism :
         case s_prism_ad :
         case s_prl :
         case s_prm :
+        case s_profile :
+        case s_prov :
         case s_prs :
         case s_psv :
+        case s_ptr :
         case s_pur :
+        case s_qb :
+        case s_rdf :
+        case s_rdfg :
+        case s_rev :
+        case s_rr :
         case s_schema :
+        case s_sd :
+        case s_sioc :
+        case s_skos :
+        case s_skosxl :
+        case s_sosa :
+        case s_ssn :
+        case s_stdim :
+        case s_stevt :
+        case s_stfnt :
+        case s_stjob :
+        case s_stref :
+        case s_stver :
+        case s_tiff :
+        case s_time :
+        case s_v :
+        case s_vann :
         case s_vcard :
+        case s_video :
+        case s_void :
+        case s_wdr :
+        case s_wdrs :
+        case s_whatwg :
+        case s_xhv :
+        case s_xmp :
+        case s_xmpbj :
+        case s_xmpdm :
+        case s_xmpg :
+        case s_xmpgimg :
+        case s_xmpidq :
+        case s_xmpmm :
+        case s_xmprights :
+        case s_xmptpg :
             return is_valid_ontology_property (nits, v, t, p, value, is_link);
         case s_microformats :
         case s_rdfa :
@@ -68,31 +148,112 @@ bool is_valid_property (nitpick& nits, const html_version& v, const e_ontology_t
 
 bool is_valid_property (nitpick& nits, const html_version& v, const e_ontology_type t, const e_ontology_property p, const e_ontology_type value)
 {   switch (sch::root (t))
-    {   case s_as :
+    {   case s_adms :
+        case s_article :
+        case s_as :
+        case s_bfo :
+        case s_bibo :
+        case s_biro :
+        case s_book :
         case s_cc :
+        case s_cito :
+        case s_content :
+        case s_crs2 :
+        case s_csvw :
         case s_ctag :
+        case s_daq :
         case s_dc :
         case s_dcam :
-        case s_dct :
+        case s_dcat :
         case s_dcmi :
+        case s_dct :
+        case s_ddi :
+        case s_doap :
+        case s_dpv :
+        case s_dpv_eu_dga :
+        case s_dpv_eu_gdpr :
+        case s_dpv_loc :
+        case s_dpv_risk :
+        case s_dpv_tech :
+        case s_dqv :
+        case s_duv :
+        case s_event :
+        case s_example :
+        case s_exif :
+        case s_exifex :
+        case s_fabio :
         case s_foaf :
+        case s_frbr :
         case s_gr :
+        case s_grddl :
+        case s_gs1 :
+        case s_ical :
+        case s_jsonld :
+        case s_ldp :
+        case s_locn :
+        case s_ma :
+        case s_music :
+        case s_oa :
+        case s_odrl :
+        case s_og :
+        case s_org :
+        case s_owl :
         case s_pam :
-        case s_pamp :
-        case s_pcmm :
         case s_pcm :
+        case s_pcmm :
         case s_pcv :
+        case s_pdf :
+        case s_photoshop :
         case s_pim :
         case s_pmi :
         case s_prism :
         case s_prism_ad :
         case s_prl :
         case s_prm :
+        case s_profile :
+        case s_prov :
         case s_prs :
         case s_psv :
+        case s_ptr :
         case s_pur :
+        case s_qb :
+        case s_rdf :
+        case s_rdfg :
+        case s_rev :
+        case s_rr :
         case s_schema :
+        case s_sd :
+        case s_sioc :
+        case s_skos :
+        case s_skosxl :
+        case s_sosa :
+        case s_ssn :
+        case s_stdim :
+        case s_stevt :
+        case s_stfnt :
+        case s_stjob :
+        case s_stref :
+        case s_stver :
+        case s_tiff :
+        case s_time :
+        case s_v :
+        case s_vann :
         case s_vcard :
+        case s_video :
+        case s_void :
+        case s_wdr :
+        case s_wdrs :
+        case s_whatwg :
+        case s_xhv :
+        case s_xmp :
+        case s_xmpbj :
+        case s_xmpdm :
+        case s_xmpg :
+        case s_xmpgimg :
+        case s_xmpidq :
+        case s_xmpmm :
+        case s_xmprights :
+        case s_xmptpg :
             return is_valid_ontology_property (nits, v, t, p, value);
         case s_microformats :
         case s_rdfa :
@@ -262,7 +423,7 @@ vty_t rdf_t::sought_types (const html_version& v, const ::std::string& name) con
     vit_t res;
     prop_indices pi = find_prop_indices (nits, v, vocabs (), name, type ().empty ());
     for (auto prop : pi)
-        for (auto i : sought_ontology_types (static_cast < e_ontology_property > (ndx_item (prop))))
+        for (auto i : sought_ontology_types (v, static_cast < e_ontology_property > (ndx_item (prop))))
             res.push_back (i);
     return res; }
 

@@ -63,7 +63,6 @@ Header:
 ===
 
 PASS ../toast/stats/detail/itemref.html
-15 missing_itemtype
 27 missing_close
 32 url_id_unfound
 35 inserted_missing_closure
@@ -127,13 +126,9 @@ ItemId:
 
 Ontology:
     http://schema.org/BlogPosting: twice
-      commentCount: once
-      name: once
       publisher: once
     http://schema.org/Organization: once
   Property counts:
-    commentCount: once
-    name: once
     publisher: once
   2 itemtypes used thrice
 ===
@@ -248,9 +243,8 @@ Name/Value Pair:
 ===
 
 PASS ../toast/stats/detail/md-ref.html
-14 not_ontology_property not_ontology_property
-18 missing_itemtype
-24 missing_itemtype
+18 no_itemscope
+24 no_itemscope
 
 STATS
 Element:
@@ -304,14 +298,10 @@ Ontology:
       name: twice
       url: twice
     http://schema.org/Person: twice
-      description: twice
-      name: twice
-      url: twice
   Property counts:
-    description: twice
     founder: twice
-    name: 4 times
-    url: 4 times
+    name: twice
+    url: twice
   2 itemtypes used 4 times
 ===
 
@@ -326,7 +316,7 @@ Abbreviation:
 Category:
     Attribute: thrice
     Element: twice
-    Schema: 5 times
+    Microdata: twice
     Type: thrice
     URx: once
 
@@ -406,9 +396,8 @@ Element:
   20 elements used 295 times
 
 Nits Reported:
-    Errors: 4 times
+    Errors: twice
     Warnings: 9 times
-    Info: once
 
 File Info:
     4025 bytes read in 6 files, with an average of roughly 671 bytes per file
@@ -460,29 +449,22 @@ Header:
 
 Ontology:
     http://schema.org/BlogPosting: twice
-      commentCount: once
-      name: once
       publisher: once
     http://schema.org/Organization: thrice
       founder: twice
       name: twice
       url: twice
     http://schema.org/Person: twice
-      description: twice
-      name: twice
-      url: twice
   Property counts:
-    commentCount: once
-    description: twice
     founder: twice
-    name: 5 times
+    name: twice
     publisher: once
-    url: 4 times
+    url: twice
   3 itemtypes used 7 times
 
 Reference:
     HTML 5.0: thrice
-    WhatWG HTML 5, Jul 20: thrice
+    WhatWG HTML 5, Jul 20: twice
     HTML 5, Jul 23: twice
 
 Name/Value Pair:

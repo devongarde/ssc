@@ -37,7 +37,7 @@ template < > struct type_master < t_url > : type_base < url, t_url >
     void set_value (nitpick& nits, const html_version& , const ::std::string& s)
     {   ::std::string ss (trim_the_lot_off (s));
         if (ss.empty ())
-        {   nits.pick (nit_empty_link, es_warning, ec_link, "empty link");
+        {   nits.pick (nit_empty_link, es_warning, ec_link, "empty link (1)");
             type_base < url, t_url > :: status (s_empty); }
         else
         {   value_.reset (nits, ss);
@@ -115,7 +115,7 @@ template < > struct type_master < t_urls > : type_base < url, t_urls >
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string ss (trim_the_lot_off (s));
         if (ss.empty ())
-        {   nits.pick (nit_empty_link, es_warning, ec_link, "empty link");
+        {   nits.pick (nit_empty_link, es_warning, ec_link, "empty link (2)");
             type_base < url, t_urls > :: status (s_empty);
             return; }
         value_ = split_urls_by_space (nits, v, ss);

@@ -39,6 +39,7 @@ struct property_gen
 
 #define SP_VALUE_TYPENAME   0x00000001
 
+
 property_gen gentab [] =
 {   { { 0, 0 }, { 0, 0 }, s_none, op_context, t_unknown },
 
@@ -1166,142 +1167,332 @@ property_gen gentab [] =
     { { s_doap, 1, 0 }, { 0, 0 }, s_doap, doap_wiki, t_url },
 
     // data privacy
-    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_consentnotice, t_url },
-    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_consentnotice, t_text },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_consentnotice_p, t_url },
     { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_duration_p, t_ontology, dpv_storageduration },
-    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_expiry, t_text },
-    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_expirycondition, t_text },
-    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_expirytime, t_datetime },
-    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_hasaddress, t_ontology, rdfs_resource },
+    { { s_dpv, 0, 40 }, { s_dpv, 1, 0 }, s_dpv, dpv_domain, t_ontology, dpv_concept },
+    { { s_dpv, 0, 40 }, { s_dpv, 1, 0 }, s_dpv, dpv_domain, t_url },
+    { { s_dpv, 0, 40 }, { s_dpv, 1, 0 }, s_dpv, dpv_domain, t_text },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_expiry, t_ontology, anything },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_expiry, t_generic },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_expirycondition, t_ontology, anything },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_expirycondition, t_generic },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_expirytime, t_ontology, anything },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_expirytime, t_generic },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasactiveentity, t_ontology, dpv_entity },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_hasaddress, t_ontology, anything },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_hasaddress, t_generic },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasaddress, t_ontology, anything },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasaddress, t_generic },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_hasalgorithmiclogic, t_ontology, anything },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_hasalgorithmiclogic, t_generic },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasapplicability, t_ontology, dpv_applicability },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasassessment, t_ontology, dpv_assessment },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasautomationlevel, t_ontology, dpv_automationlevel },
+    { { s_dpv, 0, 30 }, { s_dpv, 0, 30 }, s_dpv, dpv_hasconsequence, t_ontology, anything },
+    { { s_dpv, 0, 30 }, { s_dpv, 0, 30 }, s_dpv, dpv_hasconsequence, t_generic },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 20 }, s_dpv, dpv_hasconsequences, t_ontology, anything },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 20 }, s_dpv, dpv_hasconsequences, t_generic },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_hascontact, t_ontology, anything },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_hascontact, t_generic },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_hasduration, t_ontology, anything },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_hasduration, t_duration },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_hasduration, t_generic },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_hashumaninvolvement, t_ontology, anything },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_hashumaninvolvement, t_generic },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_hasidentifier, t_ontology, anything },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_hasidentifier, t_generic },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_haslocation, t_ontology, anything },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_haslocation, t_generic },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_hasname, t_ontology, anything },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_hasname, t_generic },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 30 }, s_dpv, dpv_haspersonaldatacategory, t_ontology, dpv_personaldatacategory },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_hasprovisionby, t_ontology, anything },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_hasprovisionby, t_generic },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasresidualrisk, t_ontology, dpv_residualrisk },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_hasstorage, t_ontology, anything },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_hasstorage, t_generic },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_haswithdrawalby, t_ontology, anything },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_haswithdrawalby, t_generic },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_innovativeuseofnewsolutions, t_ontology, xsd_boolean },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_innovativeuseofnewsolutions, t_xsdbool },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_isafter, t_ontology, dpv_rightexerciseactivity },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_isautomateddecisionmaking, t_ontology, xsd_boolean },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_isautomateddecisionmaking, t_xsdbool },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_isbefore, t_ontology, dpv_rightexerciseactivity },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_isevaluationscoring, t_ontology, xsd_boolean },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_isevaluationscoring, t_xsdbool },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 30 }, s_dpv, dpv_isexplicit, t_ontology, anything },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 30 }, s_dpv, dpv_isexplicit, t_generic },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_isimplementedusingtechnology, t_ontology, dpv_concept },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_islargescale, t_ontology, xsd_boolean },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_islargescale, t_xsdbool },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_ismatchingcombining, t_ontology, xsd_boolean },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_ismatchingcombining, t_xsdbool },
+    { { s_dpv, 0, 40 }, { s_dpv, 1, 0 }, s_dpv, dpv_issubtypeof, t_ontology, dpv_concept },
+    { { s_dpv, 0, 40 }, { s_dpv, 1, 0 }, s_dpv, dpv_issubtypeof, t_text },
+    { { s_dpv, 0, 40 }, { s_dpv, 1, 0 }, s_dpv, dpv_issubtypeof, t_url },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_issystematicmonitoring, t_ontology, xsd_boolean },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_issystematicmonitoring, t_xsdbool },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_location_p, t_ontology, dpv_storagelocation },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 30 }, s_dpv, dpv_measureimplementedby, t_ontology, anything },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 30 }, s_dpv, dpv_measureimplementedby, t_url },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_provisionby, t_ontology, anything },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_provisionby, t_generic },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_provisionbyjustification, t_generic },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_provisionmethod, t_ontology, anything },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_provisionmethod, t_generic },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_provisiontime, t_ontology, time_instant },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_provisiontime, t_datetime },
+    { { s_dpv, 0, 40 }, { s_dpv, 1, 0 }, s_dpv, dpv_range, t_ontology, dpv_concept },
+    { { s_dpv, 0, 40 }, { s_dpv, 1, 0 }, s_dpv, dpv_range, t_text },
+    { { s_dpv, 0, 40 }, { s_dpv, 1, 0 }, s_dpv, dpv_range, t_url },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_storage, t_ontology, dpv_storagerestriction },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_withdrawalby, t_ontology, anything },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_withdrawalby, t_generic },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_withdrawalbyjustification, t_ontology, anything },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_withdrawalbyjustification, t_generic },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_withdrawalmethod, t_ontology, anything },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_withdrawalmethod, t_generic },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_withdrawaltime, t_ontology, time_instant },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_withdrawaltime, t_datetime },
+
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasconformancestatus, t_ontology, dpv_conformancestatus },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasconsentcontrol, t_ontology, dpv_consentcontrol },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasentitycontrol, t_ontology, dpv_entitycontrol },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasentityinvolvement, t_ontology, dpv_entityinvolvement },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasexpectation, t_ontology, dpv_expectationstatus },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasimpactassessment, t_ontology, dpv_impactassessment },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasimportance, t_ontology, dpv_importance },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasinformedstatus, t_ontology, dpv_entityinformedstatus },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasintention, t_ontology, dpv_intention },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasinvolvement, t_ontology, dpv_involvementstatus },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_haslegalmeasure, t_ontology, dpv_legalmeasure },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasnecessity, t_ontology, dpv_necessity },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasnoninvolvedentity, t_ontology, dpv_entitynoninvolvement },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasnonpersonaldataprocess, t_ontology, dpv_nonpersonaldataprocess },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasnotificationstatus, t_ontology, dpv_notificationstatus },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasorganisationalunit, t_ontology, dpv_organisationalunit },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_haspassiveentity, t_ontology, dpv_entitypassiveinvolvement },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_haspersonaldataprocess, t_ontology, dpv_personaldataprocess },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasphysicalmeasure, t_ontology, dpv_physicalmeasure },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasprocess, t_ontology, dpv_process },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasprocessingcondition, t_ontology, dpv_processingcondition },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasrecordofactivity, t_ontology, dpv_recordsofactivities },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasrequeststatus, t_ontology, dpv_requeststatus },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasriskassessment, t_ontology, dpv_riskassessment },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hassensitivitylevel, t_ontology, dpv_sensitivitylevel },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasservice, t_ontology, dpv_service },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasserviceconsumer, t_ontology, dpv_serviceconsumer },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hasserviceprovider, t_ontology, dpv_serviceprovider },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_hassubsidiary, t_ontology, dpv_organisation },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_isapplicablefor, t_ontology, dpv_scope },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_isdeterminedbyentity, t_ontology, dpv_entity },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_isnotapplicablefor, t_ontology, dpv_scope },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_isorganistionalunitof, t_ontology, dpv_entity },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_issubsidiaryof, t_ontology, dpv_organisation },
+    { { s_dpv, 2, 0 }, { 0, 0 }, s_dpv, dpv_supportscompliancewith, t_ontology, dpv_concept },
+
     { { s_dpv, 0, 70 }, { 0, 0 }, s_dpv, dpv_hasactivitystatus, t_ontology, dpv_activitystatus },
     { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_hasaddress, t_ontology, dpv_concept },
-    { { s_dpv, 0, 20 }, { 0, 0 }, s_dpv, dpv_hasalgorithmiclogic, t_ontology, rdfs_resource },
+    { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_hasalgorithmiclogic, t_ontology, dpv_algorithmiclogic },
     { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_hasapplicablelaw, t_ontology, dpv_law },
+    { { s_dpv, 0, 80 }, { 0, 0 }, s_dpv, dpv_hasauditstatus, t_ontology, dpv_auditstatus },
     { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_hasauthority, t_ontology, dpv_authority },
     { { s_dpv, 0, 70 }, { 0, 0 }, s_dpv, dpv_hascompliancestatus, t_ontology, dpv_compliancestatus },
-    { { s_dpv, 0, 20 }, { 0, 0 }, s_dpv, dpv_hasconsentnotice, t_ontology, rdfs_resource },
-    { { s_dpv, 0, 20 }, { 0, 0 }, s_dpv, dpv_hasconsentnotice, t_url },
-    { { s_dpv, 0, 20 }, { 0, 0 }, s_dpv, dpv_hasconsentnotice, t_text },
-    { { s_dpv, 0, 30 }, { s_dpv, 0, 30 }, s_dpv, dpv_hasconsequence, t_ontology, rdfs_resource },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 90 }, s_dpv, dpv_hasconsentnotice, t_ontology, anything },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 90 }, s_dpv, dpv_hasconsentnotice, t_generic },
+    { { s_dpv, 0, 80 }, { 0, 0 }, s_dpv, dpv_hasconsentstatus, t_ontology, dpv_consentstatus },
     { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_hasconsequence, t_ontology, dpv_consequence },
-    { { s_dpv, 0, 20 }, { s_dpv, 0, 20 }, s_dpv, dpv_hasconsequences, t_ontology, rdfs_resource },
-    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_hascontact, t_ontology, rdfs_resource },
+    { { s_dpv, 1, 0 }, { 0, 0 }, s_dpv, dpv_hasconsequenceon, t_ontology, dpv_concept },
     { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_hascontact, t_ontology, dpv_concept },
     { { s_dpv, 0, 10 }, { 0, 0 }, s_dpv, dpv_hascontext, t_ontology, dpv_context },
     { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_hascountry, t_ontology, dpv_country },
     { { s_dpv, 0, 80 }, { 0, 0 }, s_dpv, dpv_hasdata, t_ontology, dpv_data },
-    { { s_dpv, 0, 10 }, { s_dpv, 0, 30 }, s_dpv, dpv_hasdatacontroller, t_ontology, dpv_datacontroller },
-    { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_hasdatacontroller, t_ontology, dpv_datacontroller },
+    { { s_dpv, 0, 10 }, { s_dpv, 0, 70 }, s_dpv, dpv_hasdatacontroller, t_ontology, dpv_datacontroller },
+    { { s_dpv, 0, 80 }, { s_dpv, 0, 81 }, s_dpv, dpv_hasdatacontroller, t_ontology, dpv_legalentity },
+    { { s_dpv, 0, 82 }, { 0, 0 }, s_dpv, dpv_hasdatacontroller, t_ontology, dpv_datacontroller },
     { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_hasdataexporter, t_ontology, dpv_dataexporter },
     { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_hasdataimporter, t_ontology, dpv_dataimporter },
     { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_hasdataprocessor, t_ontology, dpv_dataprocessor },
     { { s_dpv, 0, 50 }, { 0, 0 }, s_dpv, dpv_hasdataprotectionofficer, t_ontology, dpv_dataprotectionofficer },
-    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_hasdatasource, t_ontology, dpv_datasource },
-    { { s_dpv, 0, 41 }, { 0, 0 }, s_dpv, dpv_hasdatasource, t_ontology, dpv_datasource },
+    { { s_dpv, 0, 20 }, { 0, 0 }, s_dpv, dpv_hasdatasource, t_ontology, dpv_datasource },
     { { s_dpv, 0, 10 }, { 0, 0 }, s_dpv, dpv_hasdatasubject, t_ontology, dpv_datasubject },
-    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_hasduration, t_ontology, rdfs_resource },
+    { { s_dpv, 0, 80 }, { 0, 0 }, s_dpv, dpv_hasdatasubjectscale, t_ontology, dpv_datasubjectscale },
+    { { s_dpv, 0, 80 }, { 0, 0 }, s_dpv, dpv_hasdatavolume, t_ontology, dpv_datavolume },
     { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_hasduration, t_ontology, dpv_duration },
     { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_hasentity, t_ontology, dpv_entity },
-    { { s_dpv, 0, 20 }, { 0, 0 }, s_dpv, dpv_hasexpiry, t_text },
-    { { s_dpv, 0, 20 }, { 0, 0 }, s_dpv, dpv_hasexpirycondition, t_ontology, rdfs_resource },
-    { { s_dpv, 0, 20 }, { 0, 0 }, s_dpv, dpv_hasexpirycondition, t_url },
-    { { s_dpv, 0, 20 }, { 0, 0 }, s_dpv, dpv_hasexpirycondition, t_text },
-    { { s_dpv, 0, 20 }, { 0, 0 }, s_dpv, dpv_hasexpirytime, t_ontology, time_instant },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 90 }, s_dpv, dpv_hasexpiry, t_ontology, anything },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 90 }, s_dpv, dpv_hasexpiry, t_generic },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 90 }, s_dpv, dpv_hasexpirycondition, t_ontology, anything },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 90 }, s_dpv, dpv_hasexpirycondition, t_generic },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 90 }, s_dpv, dpv_hasexpirytime, t_ontology, anything },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 90 }, s_dpv, dpv_hasexpirytime, t_generic },
     { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_hasfrequency, t_ontology, dpv_frequency },
-    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_hashumaninvolvement, t_ontology, rdfs_resource },  
-    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_hashumaninvolvement, t_text },  
+    { { s_dpv, 0, 80 }, { 0, 0 }, s_dpv, dpv_hasgeographiccoverage, t_ontology, dpv_geographiccoverage },
     { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_hashumaninvolvement, t_ontology, dpv_humaninvolvement },  
-    { { s_dpv, 0, 20 }, {  s_dpv, 0, 30 }, s_dpv, dpv_hasidentifier, t_ontology, rdfs_resource },
     { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_hasidentifier, t_ontology, dpv_concept },
     { { s_dpv, 0, 50 }, { 0, 0 }, s_dpv, dpv_hasimpact, t_ontology, dpv_impact },
     { { s_dpv, 0, 50 }, { 0, 0 }, s_dpv, dpv_hasimpacton, t_ontology, dpv_concept },
+    { { s_dpv, 0, 80 }, { 0, 0 }, s_dpv, dpv_hasindicationmethod, t_ontology, anything },
+    { { s_dpv, 0, 80 }, { 0, 0 }, s_dpv, dpv_hasindicationmethod, t_generic },
     { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_hasjointdatacontrollers, t_ontology, dpv_jointdatacontrollers },
     { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_hasjurisdiction, t_ontology, dpv_location },
+    { { s_dpv, 0, 80 }, { 0, 0 }, s_dpv, dpv_hasjustification, t_ontology, dpv_justification },
+    { { s_dpv, 0, 90 }, { 0, 0 }, s_dpv, dpv_haslawfulness, t_ontology, dpv_lawfulness },
     { { s_dpv, 0, 10 }, { 0, 0 }, s_dpv, dpv_haslegalbasis, t_ontology, dpv_legalbasis },
-    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_haslocation, t_ontology, rdfs_resource },
-    { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_haslocation, t_ontology, dpv_location },
-    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_hasname, t_ontology, rdfs_resource },
-    { { s_dpv, 0, 80 }, { 0, 0 }, s_dpv, dpv_hasnotice, t_ontology, dpv_notice },
+    { { s_dpv, 0, 80 }, { 0 , 0 }, s_dpv, dpv_haslikelihood, t_ontology, dpv_likelihood },
+    { { s_dpv, 0, 20 }, { 0, 0 }, s_dpv, dpv_haslocation, t_ontology, dpv_location },
     { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_hasname, t_ontology, dpv_concept },
+    { { s_dpv, 0, 80 }, { 0, 0 }, s_dpv, dpv_hasnotice, t_ontology, dpv_notice },
+    { { s_dpv, 0, 90 }, { 0, 0 }, s_dpv, dpv_hasobligation, t_ontology, dpv_obligation },
     { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_hasorganisationalmeasure, t_ontology, dpv_organisationalmeasure },
+    { { s_dpv, 0, 80 }, { 0, 0 }, s_dpv, dpv_hasoutcome, t_ontology, dpv_concept },
+    { { s_dpv, 0, 90 }, { 0, 0 }, s_dpv, dpv_haspermission, t_ontology, dpv_permission },
     { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_haspersonaldata, t_ontology, dpv_personaldata },
-    { { s_dpv, 0, 10 }, { s_dpv, 0, 30 }, s_dpv, dpv_haspersonaldatacategory, t_ontology, dpv_personaldatacategory },
-    { { s_dpv, 0, 10 }, { 0, 0 }, s_dpv, dpv_haspersonaldatahandling, t_ontology, dpv_personaldatahandling },
+    { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_haspersonaldatahandling, t_ontology, dpv_personaldatahandling },
     { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_haspolicy, t_ontology, dpv_policy },
     { { s_dpv, 0, 10 }, { 0, 0 }, s_dpv, dpv_hasprocessing, t_ontology, dpv_processing },
-    { { s_dpv, 0, 20 }, { 0, 0 }, s_dpv, dpv_hasprovisionby, t_ontology, dpv_legalentity },
-    { { s_dpv, 0, 20 }, { 0, 0 }, s_dpv, dpv_hasprovisionbyjustification, t_text },
-    { { s_dpv, 0, 20 }, { 0, 0 }, s_dpv, dpv_hasprovisionmethod, t_text },
-    { { s_dpv, 0, 20 }, { 0, 0 }, s_dpv, dpv_hasprovisiontime, t_ontology, time_instant },
+    { { s_dpv, 0, 10 }, { s_dpv, 1, 0 }, s_dpv, dpv_hasprocessingautomation, t_ontology, dpv_automationofprocessing },
+    { { s_dpv, 0, 90 }, { 0, 0 }, s_dpv, dpv_hasprohibition, t_ontology, dpv_prohibition },
+    { { s_dpv, 0, 40 }, { s_dpv, 0, 90 }, s_dpv, dpv_hasprovisionby, t_ontology, dpv_legalentity },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 90 }, s_dpv, dpv_hasprovisionbyjustification, t_ontology, anything },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 90 }, s_dpv, dpv_hasprovisionbyjustification, t_generic },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 90 }, s_dpv, dpv_hasprovisionmethod, t_ontology, anything },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 90 }, s_dpv, dpv_hasprovisionmethod, t_generic },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 90 }, s_dpv, dpv_hasprovisiontime, t_ontology, xsd_datetime },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 90 }, s_dpv, dpv_hasprovisiontime, t_ontology, anything },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 90 }, s_dpv, dpv_hasprovisiontime, t_datetime },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 90 }, s_dpv, dpv_hasprovisiontime, t_generic },
     { { s_dpv, 0, 10 }, { 0, 0 }, s_dpv, dpv_haspurpose, t_ontology, dpv_purpose },
     { { s_dpv, 0, 10 }, { 0, 0 }, s_dpv, dpv_hasrecipient, t_ontology, dpv_recipient },
     { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_hasrecipientdatacontroller, t_ontology, dpv_datacontroller },
     { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_hasrecipientthirdparty, t_ontology, dpv_thirdparty },
-    { { s_dpv, 0, 80 }, { 0, 0 }, s_dpv, dpv_hasrelationwithdatasubject, t_ontology, dpv_datasubject },
+    { { s_dpv, 0, 80 }, { s_dpv, 1, 0 }, s_dpv, dpv_hasrelationwithdatasubject, t_ontology, dpv_concept },
     { { s_dpv, 0, 20 }, { 0, 0 }, s_dpv, dpv_hasrepresentative, t_ontology, dpv_representative },
+    { { s_dpv, 0, 80 }, { s_dpv, 1, 0 }, s_dpv, dpv_hasresidualrisk, t_ontology, dpv_risk },
     { { s_dpv, 0, 50 }, { 0, 0 }, s_dpv, dpv_hasresponsibleentity, t_ontology, dpv_entity },
     { { s_dpv, 0, 20 }, { 0, 0 }, s_dpv, dpv_hasright, t_ontology, dpv_right },
     { { s_dpv, 0, 20 }, { 0, 0 }, s_dpv, dpv_hasrisk, t_ontology, dpv_risk },
+    { { s_dpv, 0, 80 }, { 0, 0 }, s_dpv, dpv_hasrisklevel, t_ontology, dpv_risklevel },
+    { { s_dpv, 0, 90 }, { 0, 0 }, s_dpv, dpv_hasrule, t_ontology, dpv_rule },
+    { { s_dpv, 0, 80 }, { 0, 0 }, s_dpv, dpv_hasscale, t_ontology, dpv_scale },
+    { { s_dpv, 0, 80 }, { 0, 0 }, s_dpv, dpv_hasscope, t_ontology, dpv_scope },
     { { s_dpv, 0, 10 }, { 0, 0 }, s_dpv, dpv_hassector, t_ontology, dpv_sector },
+    { { s_dpv, 0, 80 }, { 0, 0 }, s_dpv, dpv_hasseverity, t_ontology, dpv_severity },
     { { s_dpv, 0, 70 }, { 0, 0 }, s_dpv, dpv_hasstatus, t_ontology, dpv_status },
-    { { s_dpv, 0, 20 }, { s_dpv, 0, 30 }, s_dpv, dpv_hasstorage, t_ontology, rdfs_resource },
-    { { s_dpv, 0, 41 }, { 0, 0 }, s_dpv, dpv_hasstorage, t_ontology, dpv_storagecondition },
-    { { s_dpv, 0, 10 }, { 0, 0 }, s_dpv, dpv_hastechnicalorganisationalmeasure, t_ontology, dpv_technicalorganisationalmeasure },
+    { { s_dpv, 0, 40 }, { s_dpv, 0, 70 }, s_dpv, dpv_hasstorage, t_ontology, dpv_storagecondition },
+    { { s_dpv, 0, 80 }, { 0, 0 }, s_dpv, dpv_hasstoragecondition, t_ontology, dpv_storagecondition },
     { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_hastechnicalmeasure, t_ontology, dpv_technicalmeasure },
+    { { s_dpv, 0, 10 }, { 0, 0 }, s_dpv, dpv_hastechnicalorganisationalmeasure, t_ontology, dpv_technicalorganisationalmeasure },
     { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_hasthirdcountry, t_ontology, dpv_thirdcountry },
-    { { s_dpv, 0, 20 }, { 0, 0 }, s_dpv, dpv_haswithdrawalby, t_ontology, dpv_legalentity },
-    { { s_dpv, 0, 20 }, { 0, 0 }, s_dpv, dpv_haswithdrawalbyjustification, t_text },
-    { { s_dpv, 0, 20 }, { 0, 0 }, s_dpv, dpv_haswithdrawalmethod, t_text },
-    { { s_dpv, 0, 20 }, { 0, 0 }, s_dpv, dpv_haswithdrawaltime, t_ontology, time_instant },
-    { { s_dpv, 0, 10 }, { 0, 0 }, s_dpv, dpv_innovativeuseofnewsolutions, t_ontology, xsd_boolean },
-    { { s_dpv, 0, 10 }, { 0, 0 }, s_dpv, dpv_innovativeuseofnewsolutions, t_xsdbool },
-    { { s_dpv, 0, 50 }, { 0, 0 }, s_dpv, dpv_isafter, t_ontology, dpv_concept },
+    { { s_dpv, 0, 40 }, { s_dpv, 0, 90 }, s_dpv, dpv_haswithdrawalby, t_ontology, dpv_legalentity },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 90 }, s_dpv, dpv_haswithdrawalbyjustification, t_ontology, anything },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 90 }, s_dpv, dpv_haswithdrawalbyjustification, t_generic },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 90 }, s_dpv, dpv_haswithdrawalmethod, t_ontology, anything },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 90 }, s_dpv, dpv_haswithdrawalmethod, t_generic },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 90 }, s_dpv, dpv_haswithdrawaltime, t_ontology, xsd_datetime },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 90 }, s_dpv, dpv_haswithdrawaltime, t_ontology, anything },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 90 }, s_dpv, dpv_haswithdrawaltime, t_datetime },
+    { { s_dpv, 0, 20 }, { s_dpv, 0, 90 }, s_dpv, dpv_haswithdrawaltime, t_generic },
+    { { s_dpv, 0, 50 }, { s_dpv, 1, 0 }, s_dpv, dpv_isafter, t_ontology, dpv_concept },
     { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_isauthorityfor, t_ontology, dpv_concept },
-    { { s_dpv, 0, 10 }, { 0, 0 }, s_dpv, dpv_isautomateddecisionmaking, t_ontology, xsd_boolean },
-    { { s_dpv, 0, 10 }, { 0, 0 }, s_dpv, dpv_isautomateddecisionmaking, t_xsdbool },
-    { { s_dpv, 0, 50 }, { 0, 0 }, s_dpv, dpv_isbefore, t_ontology, dpv_concept },
-    { { s_dpv, 0, 10 }, { 0, 0 }, s_dpv, dpv_isevaluationorscoring, t_ontology, xsd_boolean },
-    { { s_dpv, 0, 10 }, { 0, 0 }, s_dpv, dpv_isevaluationorscoring, t_xsdbool },
-    { { s_dpv, 0, 10 }, { 0, 0 }, s_dpv, dpv_isexplicit, t_ontology, xsd_boolean },
-    { { s_dpv, 0, 10 }, { 0, 0 }, s_dpv, dpv_isexplicit, t_xsdbool },
+    { { s_dpv, 0, 50 }, { s_dpv, 1, 0 }, s_dpv, dpv_isbefore, t_ontology, dpv_concept },
+    { { s_dpv, 0, 90 }, { s_dpv, 0, 90 }, s_dpv, dpv_isexercisedat, t_ontology, dpv_rightexerciseservice },
+    { { s_dpv, 1, 0 }, { 0, 0 }, s_dpv, dpv_isexercisedat, t_ontology, dpv_rightexercisenotice },
+    { { s_dpv, 0, 40 }, { s_dpv, 0, 90 }, s_dpv, dpv_isexplicit, t_ontology, xsd_boolean },
+    { { s_dpv, 0, 40 }, { s_dpv, 0, 90 }, s_dpv, dpv_isexplicit, t_xsdbool },
     { { s_dpv, 0, 41 }, { 0, 0 }, s_dpv, dpv_isimplementedbyentity, t_ontology, dpv_entity },
-    { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_isimplementedusingtechnology, t_ontology, dpv_technology },
-    { { s_dpv, 0, 50 }, { 0, 0 }, s_dpv, dpv_isinstanceof, t_url },
-    { { s_dpv, 0, 10 }, { 0, 0 }, s_dpv, dpv_islargescale, t_ontology, xsd_boolean },
-    { { s_dpv, 0, 10 }, { 0, 0 }, s_dpv, dpv_islargescale, t_xsdbool },
-    { { s_dpv, 0, 10 }, { 0, 0 }, s_dpv, dpv_ismatchingcombining, t_ontology, xsd_boolean },
-    { { s_dpv, 0, 10 }, { 0, 0 }, s_dpv, dpv_ismatchingcombining, t_xsdbool },
-    { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_ismitigatedbymeasure, t_ontology, dpv_riskmitigationmeasure },
-    { { s_dpv, 0, 40 }, { 0, 0 }, s_dpv, dpv_ispolicyfor, t_ontology, dpv_concept },
-    { { s_dpv, 0, 50 }, { 0, 0 }, s_dpv, dpv_issubtypeof, t_url },
-    { { s_dpv, 0, 10 }, { 0, 0 }, s_dpv, dpv_issystematicmonitoring, t_ontology, xsd_boolean },
-    { { s_dpv, 0, 10 }, { 0, 0 }, s_dpv, dpv_issystematicmonitoring, t_xsdbool },
-    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_location_p, t_ontology, xsd_string },
-    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_location_p, t_text },
-    { { s_dpv, 0, 10 }, { 0, 0 }, s_dpv, dpv_measureimplementedby, t_ontology, rdfs_resource },
-    { { s_dpv, 0, 10 }, { 0, 0 }, s_dpv, dpv_measureimplementedby, t_url },
+    { { s_dpv, 0, 40 }, { s_dpv, 1, 0 }, s_dpv, dpv_isimplementedusingtechnology, t_ontology, dpv_technology },
+    { { s_dpv, 0, 80 }, { 0, 0 }, s_dpv, dpv_isindicatedattime, t_ontology, xsd_datetime },
+    { { s_dpv, 0, 80 }, { 0, 0 }, s_dpv, dpv_isindicatedattime, t_ontology, time_temporalposition },
+    { { s_dpv, 0, 80 }, { 0, 0 }, s_dpv, dpv_isindicatedattime, t_ontology, anything },
+    { { s_dpv, 0, 80 }, { 0, 0 }, s_dpv, dpv_isindicatedattime, t_datetime },
+    { { s_dpv, 0, 80 }, { 0, 0 }, s_dpv, dpv_isindicatedattime, t_generic },
+    { { s_dpv, 0, 80 }, { 0, 0 }, s_dpv, dpv_isindicatedby, t_ontology, dpv_entity },
+    { { s_dpv, 0, 40 }, { s_dpv, 1, 0 }, s_dpv, dpv_isinstanceof, t_ontology, anything },
+    { { s_dpv, 0, 40 }, { s_dpv, 1, 0 }, s_dpv, dpv_isinstanceof, t_url },
+    { { s_dpv, 0, 40 }, { s_dpv, 1, 0 }, s_dpv, dpv_isinstanceof, t_text },
+    { { s_dpv, 0, 40 }, { s_dpv, 1, 0 }, s_dpv, dpv_ismitigatedbymeasure, t_ontology, dpv_riskmitigationmeasure },
+    { { s_dpv, 0, 40 }, { s_dpv, 1, 0 }, s_dpv, dpv_ispolicyfor, t_ontology, dpv_concept },
+    { { s_dpv, 1, 0 }, { s_dpv, 1, 0 }, s_dpv, dpv_isrepresentativefor, t_ontology, dpv_entity },
+    { { s_dpv, 0, 80 }, { s_dpv, 1, 0 }, s_dpv, dpv_isresidualriskof, t_ontology, dpv_risk },
+    { { s_dpv, 0, 40 }, { s_dpv, 1, 0 }, s_dpv, dpv_issubtypeof, t_ontology, anything },
+    { { s_dpv, 0, 40 }, { s_dpv, 1, 0 }, s_dpv, dpv_issubtypeof, t_url },
+    { { s_dpv, 0, 40 }, { s_dpv, 1, 0 }, s_dpv, dpv_issubtypeof, t_text },
     { { s_dpv, 0, 20 }, { 0, 0 }, s_dpv, dpv_mitigatesrisk, t_ontology, dpv_risk },
-    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_provisionby, t_ontology, dpv_legalentity },
-    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_provisionbyjustification, t_text },
-    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_provisionmethod, t_text },
-    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_provisiontime, t_ontology, time_instant },
-    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_provisiontime, t_datetime },
-    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_storage, t_ontology, dpv_storagerestriction },
-    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_withdrawalby, t_ontology, dpv_datasubject },
-    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_withdrawalby, t_text },
-    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_withdrawalbyjustification, t_text },
-    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_withdrawalmethod, t_text },
-    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_withdrawaltime, t_ontology, time_instant },
-    { { s_dpv, 0, 10 }, { s_dpv, 0, 10 }, s_dpv, dpv_withdrawaltime, t_datetime },
 
-    // DPV Tech
-    { { s_dpv_tech, 0, 80 }, { 0, 0 }, s_dpv_tech, dpvt_hascommunicationmechanism, t_ontology, dpvt_communicationmechanism },
-    { { s_dpv_tech, 0, 80 }, { 0, 0 }, s_dpv_tech, dpvt_hasdeveloper, t_ontology, dpvt_technologydeveloper },
-    { { s_dpv_tech, 0, 80 }, { 0, 0 }, s_dpv_tech, dpvt_hasprovider, t_ontology, dpvt_technologyprovider },
-    { { s_dpv_tech, 0, 80 }, { 0, 0 }, s_dpv_tech, dpvt_hasprovisionmethod, t_ontology, dpvt_technologyprovisionmethod },
-    { { s_dpv_tech, 0, 80 }, { 0, 0 }, s_dpv_tech, dpvt_hassubject, t_ontology, dpvt_technologysubject },
-    { { s_dpv_tech, 0, 80 }, { 0, 0 }, s_dpv_tech, dpvt_hastrl, t_ontology, dpvt_technologyreadinesslevel },
-    { { s_dpv_tech, 0, 80 }, { 0, 0 }, s_dpv_tech, dpvt_hasuser, t_ontology, dpvt_technologyuser },
+    // dpv EU dga
+    { { s_dpv_eu_dga, 2, 0 }, { 0, 0 }, s_dpv_eu_dga, dpv_eu_dga_hasdao, t_ontology, dpv_eu_dga_dataaltruismorganisation },
+    { { s_dpv_eu_dga, 2, 0 }, { 0, 0 }, s_dpv_eu_dga, dpv_eu_dga_hasdataholder, t_ontology, dpv_eu_dga_dataholder },
+    { { s_dpv_eu_dga, 2, 0 }, { 0, 0 }, s_dpv_eu_dga, dpv_eu_dga_hasdatareuseassistant, t_ontology, dpv_eu_dga_datareuseassistant },
+    { { s_dpv_eu_dga, 2, 0 }, { 0, 0 }, s_dpv_eu_dga, dpv_eu_dga_hasdatauser, t_ontology, dpv_eu_dga_datauser },
+    { { s_dpv_eu_dga, 2, 0 }, { 0, 0 }, s_dpv_eu_dga, dpv_eu_dga_hasdisp, t_ontology, dpv_eu_dga_disp },  
+
+    // dpv EU gdpr
+    { { s_dpv_eu_gdpr, 2, 0 }, { 0, 0 }, s_dpv_eu_gdpr, dpv_eu_gdpr_hasconcernedsa, t_ontology, dpv_dataprotectionauthority },
+    { { s_dpv_eu_gdpr, 2, 0 }, { 0, 0 }, s_dpv_eu_gdpr, dpv_eu_gdpr_hasestablishment, t_ontology, dpv_legalentity },
+    { { s_dpv_eu_gdpr, 2, 0 }, { 0, 0 }, s_dpv_eu_gdpr, dpv_eu_gdpr_hasleadsa, t_ontology, dpv_dataprotectionauthority },
+    { { s_dpv_eu_gdpr, 2, 0 }, { 0, 0 }, s_dpv_eu_gdpr, dpv_eu_gdpr_haslocalsa, t_ontology, dpv_dataprotectionauthority },
+    { { s_dpv_eu_gdpr, 2, 0 }, { 0, 0 }, s_dpv_eu_gdpr, dpv_eu_gdpr_hasmainestablishment, t_ontology, dpv_legalentity },
+    { { s_dpv_eu_gdpr, 2, 0 }, { 0, 0 }, s_dpv_eu_gdpr, dpv_eu_gdpr_ismainestablishmentfor, t_ontology, dpv_legalentity },
+
+    // dpv location
+    { { s_dpv_loc, 2, 0 }, { 0, 0 }, s_dpv_loc, dpv_loc_iso_alpha2, t_ontology, xsd_string },
+    { { s_dpv_loc, 2, 0 }, { 0, 0 }, s_dpv_loc, dpv_loc_iso_alpha2, t_text },
+    { { s_dpv_loc, 2, 0 }, { 0, 0 }, s_dpv_loc, dpv_loc_iso_alpha3, t_ontology, xsd_string },
+    { { s_dpv_loc, 2, 0 }, { 0, 0 }, s_dpv_loc, dpv_loc_iso_alpha3, t_text },
+    { { s_dpv_loc, 2, 0 }, { 0, 0 }, s_dpv_loc, dpv_loc_iso_numeric, t_ontology, xsd_string },
+    { { s_dpv_loc, 2, 0 }, { 0, 0 }, s_dpv_loc, dpv_loc_iso_numeric, t_positive },
+    { { s_dpv_loc, 2, 0 }, { 0, 0 }, s_dpv_loc, dpv_loc_un_m49, t_ontology, xsd_string },
+    { { s_dpv_loc, 2, 0 }, { 0, 0 }, s_dpv_loc, dpv_loc_un_m49, t_text },
+
+    // dpv risk
+    { { s_dpv_risk, 2, 0 }, { 0, 0 }, s_dpv_risk, dpv_risk_causedbythreat, t_ontology, dpv_risk_threat },
+    { { s_dpv_risk, 2, 0 }, { 0, 0 }, s_dpv_risk, dpv_risk_causedbyvulnerability, t_ontology, dpv_risk_vulnerability },
+    { { s_dpv_risk, 2, 0 }, { 0, 0 }, s_dpv_risk, dpv_risk_exploitsvulnerability, t_ontology, dpv_risk_vulnerability },
+    { { s_dpv_risk, 2, 0 }, { 0, 0 }, s_dpv_risk, dpv_risk_hascontrol, t_ontology, dpv_risk_riskcontrol },
+    { { s_dpv_risk, 2, 0 }, { 0, 0 }, s_dpv_risk, dpv_risk_hasincident, t_ontology, dpv_risk_incident },
+    { { s_dpv_risk, 2, 0 }, { 0, 0 }, s_dpv_risk, dpv_risk_hasrisksource, t_ontology, dpv_risk },
+    { { s_dpv_risk, 2, 0 }, { 0, 0 }, s_dpv_risk, dpv_risk_hasthreatsource, t_ontology, dpv_risk_threat },
+    { { s_dpv_risk, 2, 0 }, { 0, 0 }, s_dpv_risk, dpv_risk_hasvulnerability, t_ontology, dpv_risk_vulnerability },
+    { { s_dpv_risk, 2, 0 }, { 0, 0 }, s_dpv_risk, dpv_risk_isexploitedby, t_ontology, dpv_risk_threat },
+    { { s_dpv_risk, 2, 0 }, { 0, 0 }, s_dpv_risk, dpv_risk_isvulnerabilityof, t_ontology, dpv_concept },
+    { { s_dpv_risk, 2, 0 }, { 0, 0 }, s_dpv_risk, dpv_risk_referstorisk, t_ontology, dpv_risk },
+
+    // dpv tech
+    { { s_dpv_tech, 2, 0 }, { 0, 0 }, s_dpv_tech, dpv_tech_hasactor, t_ontology, dpv_tech_actor },
+    { { s_dpv_tech, 2, 0 }, { 0, 0 }, s_dpv_tech, dpv_tech_hasauditor, t_ontology, dpv_tech_auditor },
+    { { s_dpv_tech, 2, 0 }, { 0, 0 }, s_dpv_tech, dpv_tech_hascapability, t_ontology, dpv_tech_capability },
+    { { s_dpv_tech, 0, 80 }, { 0, 0 }, s_dpv_tech, dpv_tech_hascommunicationmechanism, t_ontology, dpv_tech_communicationmechanism },
+    { { s_dpv_tech, 2, 0 }, { 0, 0 }, s_dpv_tech, dpv_tech_hascustomer, t_ontology, dpv_tech_customer },
+    { { s_dpv_tech, 2, 0 }, { 0, 0 }, s_dpv_tech, dpv_tech_hasdeployer, t_ontology, dpv_tech_deployer },
+    { { s_dpv_tech, 2, 0 }, { 0, 0 }, s_dpv_tech, dpv_tech_hasdeploymentlocation, t_ontology, dpv_tech_deploymentlocation },
+    { { s_dpv_tech, 2, 0 }, { 0, 0 }, s_dpv_tech, dpv_tech_hasdesigner, t_ontology, dpv_tech_designer },
+    { { s_dpv_tech, 2, 0 }, { 0, 0 }, s_dpv_tech, dpv_tech_hasdeveloper, t_ontology, dpv_tech_developer },
+    { { s_dpv_tech, 0, 80 }, { s_dpv_tech, 1, 0 }, s_dpv_tech, dpv_tech_hasdeveloper, t_ontology, dpv_tech_technologydeveloper },
+    { { s_dpv_tech, 2, 0 }, { 0, 0 }, s_dpv_tech, dpv_tech_hasdocumentation, t_ontology, dpv_tech_documentation },
+    { { s_dpv_tech, 2, 0 }, { 0, 0 }, s_dpv_tech, dpv_tech_hasevaluator, t_ontology, dpv_tech_evaluator },
+    { { s_dpv_tech, 2, 0 }, { 0, 0 }, s_dpv_tech, dpv_tech_hasfunction, t_ontology, dpv_tech_function },
+    { { s_dpv_tech, 2, 0 }, { 0, 0 }, s_dpv_tech, dpv_tech_hasinstaller, t_ontology, dpv_tech_installer },
+    { { s_dpv_tech, 2, 0 }, { 0, 0 }, s_dpv_tech, dpv_tech_hasintendeduse, t_ontology, dpv_tech_intendeduse },
+    { { s_dpv_tech, 2, 0 }, { 0, 0 }, s_dpv_tech, dpv_tech_hasmaintainer, t_ontology, dpv_tech_maintainer },
+    { { s_dpv_tech, 2, 0 }, { 0, 0 }, s_dpv_tech, dpv_tech_hasmanufacturer, t_ontology, dpv_tech_manufacturer },
+    { { s_dpv_tech, 2, 0 }, { 0, 0 }, s_dpv_tech, dpv_tech_hasmarketavailabilitystatus, t_ontology, dpv_tech_marketavailabilitystatus },
+    { { s_dpv_tech, 2, 0 }, { 0, 0 }, s_dpv_tech, dpv_tech_hasowner, t_ontology, dpv_tech_owner },
+    { { s_dpv_tech, 2, 0 }, { 0, 0 }, s_dpv_tech, dpv_tech_haspartner, t_ontology, dpv_tech_partner },
+    { { s_dpv_tech, 2, 0 }, { 0, 0 }, s_dpv_tech, dpv_tech_hasproducer, t_ontology, dpv_tech_producer },
+    { { s_dpv_tech, 0, 80 }, { 0, 0 }, s_dpv_tech, dpv_tech_hasprovider, t_ontology, dpv_tech_technologyprovider },
+    { { s_dpv_tech, 2, 0 }, { 0, 0 }, s_dpv_tech, dpv_tech_hasprovisionmethod, t_ontology, dpv_tech_provisionmethod },
+    { { s_dpv_tech, 0, 80 }, { s_dpv_tech, 1, 0 }, s_dpv_tech, dpv_tech_hasprovisionmethod, t_ontology, dpv_tech_technologyprovisionmethod },
+    { { s_dpv_tech, 2, 0 }, { 0, 0 }, s_dpv_tech, dpv_tech_hasprovisionstatus, t_ontology, dpv_tech_provisionstatus },
+    { { s_dpv_tech, 2, 0 }, { 0, 0 }, s_dpv_tech, dpv_tech_haspurchaser, t_ontology, dpv_tech_purchaser },
+    { { s_dpv_tech, 2, 0 }, { 0, 0 }, s_dpv_tech, dpv_tech_hassubject, t_ontology, dpv_tech_subject },
+    { { s_dpv_tech, 0, 80 }, { s_dpv_tech, 1, 0 }, s_dpv_tech, dpv_tech_hassubject, t_ontology, dpv_tech_technologysubject },
+    { { s_dpv_tech, 2, 0 }, { 0, 0 }, s_dpv_tech, dpv_tech_hassupplier, t_ontology, dpv_tech_supplier },
+    { { s_dpv_tech, 2, 0 }, { 0, 0 }, s_dpv_tech, dpv_tech_hassystemintegrator, t_ontology, dpv_tech_systemintegrator },
+    { { s_dpv_tech, 0, 80 }, { 0, 0 }, s_dpv_tech, dpv_tech_hastrl, t_ontology, dpv_tech_technologyreadinesslevel },
+    { { s_dpv_tech, 2, 0 }, { 0, 0 }, s_dpv_tech, dpv_tech_hasuser, t_ontology, dpv_tech_user },
+    { { s_dpv_tech, 0, 80 }, { s_dpv, 1, 0 }, s_dpv_tech, dpv_tech_hasuser, t_ontology, dpv_tech_technologyuser },
 
     // data quality
     { { s_dqv, 1, 0 }, { 0, 0 }, s_dqv, dqv_computedon, t_ontology, rdfs_resource },
@@ -1335,6 +1526,10 @@ property_gen gentab [] =
     { { s_earl, 1, 0 }, { 0, 0 }, s_earl, earl_result, t_ontology, earl_testresult },
     { { s_earl, 1, 0 }, { 0, 0 }, s_earl, earl_subject, t_ontology, earl_testsubject },
     { { s_earl, 1, 0 }, { 0, 0 }, s_earl, earl_test, t_ontology, earl_testcriterion },
+
+    // example
+    { { s_example, 1, 0 }, { 0, 0 }, s_example, example_property, t_ontology, anything },
+    { { s_example, 1, 0 }, { 0, 0 }, s_example, example_property, t_generic },
 
     // event
     { { s_event, 1, 0 }, { 0, 0 }, s_event, ep_agent, t_ontology, foaf_agent },
@@ -3159,6 +3354,18 @@ property_gen gentab [] =
     { { s_microformats, 2, 0 }, { 0, 0 }, s_microformats, mp2_u_video, t_url },
     { { s_microformats, 2, 0 }, { 0, 0 }, s_microformats, mp2_u_watch_of, t_url },
 
+    // open graph music
+    { { s_music, HTML_2012, 0 }, { 0, 0 }, s_music, og_music_album, t_text },
+    { { s_music, HTML_2012, 0 }, { 0, 0 }, s_music, og_music_album_disc, t_1_more },
+    { { s_music, HTML_2012, 0 }, { 0, 0 }, s_music, og_music_album_track, t_1_more },
+    { { s_music, HTML_2012, 0 }, { 0, 0 }, s_music, og_music_creator, t_text },
+    { { s_music, HTML_2012, 0 }, { 0, 0 }, s_music, og_music_duration, t_1_more },
+    { { s_music, HTML_2012, 0 }, { 0, 0 }, s_music, og_music_musician, t_text },
+    { { s_music, HTML_2012, 0 }, { 0, 0 }, s_music, og_music_release_date, t_datetime },
+    { { s_music, HTML_2012, 0 }, { 0, 0 }, s_music, og_music_song, t_text },
+    { { s_music, HTML_2012, 0 }, { 0, 0 }, s_music, og_music_song_disc, t_1_more },
+    { { s_music, HTML_2012, 0 }, { 0, 0 }, s_music, og_music_song_track, t_1_more },
+
     // web annotation
     { { s_oa, 1, 0 }, { 0, 0 }, s_oa, oa_annotationservice, t_url },
     { { s_oa, 1, 0 }, { 0, 0 }, s_oa, oa_bodyvalue, t_ontology, xsd_string },
@@ -3201,18 +3408,6 @@ property_gen gentab [] =
     { { s_oa, 1, 0 }, { 0, 0 }, s_oa, oa_suffix, t_text },
     { { s_oa, 1, 0 }, { 0, 0 }, s_oa, oa_textdirection, t_ontology, oa_direction },
     { { s_oa, 1, 0 }, { 0, 0 }, s_oa, oa_via, t_url },
-
-    // open graph music
-    { { s_music, HTML_2012, 0 }, { 0, 0 }, s_music, og_music_album, t_text },
-    { { s_music, HTML_2012, 0 }, { 0, 0 }, s_music, og_music_album_disc, t_1_more },
-    { { s_music, HTML_2012, 0 }, { 0, 0 }, s_music, og_music_album_track, t_1_more },
-    { { s_music, HTML_2012, 0 }, { 0, 0 }, s_music, og_music_creator, t_text },
-    { { s_music, HTML_2012, 0 }, { 0, 0 }, s_music, og_music_duration, t_1_more },
-    { { s_music, HTML_2012, 0 }, { 0, 0 }, s_music, og_music_musician, t_text },
-    { { s_music, HTML_2012, 0 }, { 0, 0 }, s_music, og_music_release_date, t_datetime },
-    { { s_music, HTML_2012, 0 }, { 0, 0 }, s_music, og_music_song, t_text },
-    { { s_music, HTML_2012, 0 }, { 0, 0 }, s_music, og_music_song_disc, t_1_more },
-    { { s_music, HTML_2012, 0 }, { 0, 0 }, s_music, og_music_song_track, t_1_more },
 
     // open graph
     { { s_og, HTML_OG_2012, 0 }, { 0, 0 }, s_og, og_audio, t_url },
@@ -4108,6 +4303,8 @@ property_gen gentab [] =
     { { 1, 4 }, { 0, 0 }, s_schema, sp_acceptedoffer, t_ontology, sch_offer },
     { { 3, 0 }, { 0, 0 }, s_schema, sp_acceptedpaymentmethod, t_ontology, sch_loanorcredit },
     { { 0, 99 }, { 0, 0 }, s_schema, sp_acceptedpaymentmethod, t_ontology, sch_paymentmethod },
+    { { 29, 0 }, { 0, 0 }, s_schema, sp_acceptedpaymentmethod, t_ontology, sch_text },
+    { { 29, 0 }, { 0, 0 }, s_schema, sp_acceptedpaymentmethod, t_text },
     { { 2, 0 }, { 0, 0 }, s_schema, sp_acceptsreservations, t_ontology, sch_url },
     { { 0, 10 }, { 0, 0 }, s_schema, sp_acceptsreservations, t_ontology, sch_text },
     { { 2, 0 }, { 0, 0 }, s_schema, sp_acceptsreservations, t_ontology, sch_boolean },
@@ -4171,6 +4368,7 @@ property_gen gentab [] =
     { { 0, 95 }, { 0, 0 }, s_schema, sp_activityfrequency, t_ontology, sch_text },
     { { 0, 95 }, { 0, 0 }, s_schema, sp_activityfrequency, t_text },
     { { 0, 91 }, { 0, 0 }, s_schema, sp_actor, t_ontology, sch_person },
+    { { 29, 0 }, { 0, 0 }, s_schema, sp_actor, t_ontology, sch_performinggroup },
     { { 0, 10 }, { 1, 90 }, s_schema, sp_actors, t_ontology, sch_person },
     { { 0, 99 }, { 0, 0 }, s_schema, sp_addon, t_ontology, sch_offer },
     { { 0, 30 }, { 0, 0 }, s_schema, sp_additionalname, t_ontology, sch_text },
@@ -4983,7 +5181,9 @@ property_gen gentab [] =
     { { 0, 99 }, { 0, 0 }, s_schema, sp_duns, t_ontology, sch_text },
     { { 0, 99 }, { 0, 0 }, s_schema, sp_duns, t_text },
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, s_schema, sp_duplicatetherapy, t_ontology, sch_medicaltherapy },
+    { { 29, 0 }, { 0, 0 }, s_schema, sp_duration, t_ontology, sch_text },
     { { 0, 10 }, { 0, 0 }, s_schema, sp_duration, t_duration },
+    { { 29, 0 }, { 0, 0 }, s_schema, sp_duration, t_text },
     { { 0, 99 }, { 0, 0 }, s_schema, sp_durationofwarranty, t_ontology, sch_quantitativevalue },
     { { 3, 3 }, { 0, 0 }, s_schema, sp_duringmedia, t_ontology, sch_mediaobject },
     { { 3, 4 }, { 0, 0 }, s_schema, sp_duringmedia, t_ontology, sch_url },
@@ -5215,6 +5415,7 @@ property_gen gentab [] =
     { { 1, 2 }, { 0, 0 }, s_schema, sp_foodevent, t_ontology, sch_foodevent },
     { { 0, 95 }, { 0, 0 }, s_schema, sp_foodwarning, t_ontology, sch_text },
     { { 0, 95 }, { 0, 0 }, s_schema, sp_foodwarning, t_text },
+    { { 28, 0 }, { 0, 0 }, s_schema, sp_founder, t_ontology, sch_organisation },
     { { 0, 91 }, { 0, 0 }, s_schema, sp_founder, t_ontology, sch_person },
     { { 0, 10 }, { 1, 90 }, s_schema, sp_founders, t_ontology, sch_person },
     { { 0, 10 }, { 0, 0 }, s_schema, sp_foundingdate, t_ontology, sch_date },
@@ -5354,6 +5555,7 @@ property_gen gentab [] =
     { { 1, 93 }, { 0, 0 }, s_schema, sp_hasmap, t_ontology, sch_url },
     { { 1, 93 }, { 0, 0 }, s_schema, sp_hasmap, t_url },
     { { 12, 0 }, { 0, 0 }, s_schema, sp_hasmeasurement, t_ontology, sch_quantitativevalue },
+    { { 28, 0 }, { 0, 0 }, s_schema, sp_hasmemberprogramme, t_ontology, sch_memberprogramme },
     { { 3, 2 }, { 0, 0 }, s_schema, sp_hasmenu, t_ontology, sch_menu },
     { { 3, 2 }, { 0, 0 }, s_schema, sp_hasmenu, t_url },
     { { 3, 2 }, { 0, 0 }, s_schema, sp_hasmenu, t_text },
@@ -5372,6 +5574,12 @@ property_gen gentab [] =
     { { 13, 0 }, { 0, 0 }, s_schema, sp_hasrepresentation, t_ontology, sch_propertyvalue },
     { { 13, 0 }, { 0, 0 }, s_schema, sp_hasrepresentation, t_ontology, sch_url },
     { { 13, 0 }, { 0, 0 }, s_schema, sp_hasrepresentation, t_url },
+    { { 28, 0 }, { 0, 0 }, s_schema, sp_hastierbenefit, t_ontology, sch_tierbenefitenumeration },
+    { { 28, 0 }, { 0, 0 }, s_schema, sp_hastierrequirement, t_ontology, sch_creditcard },
+    { { 28, 0 }, { 0, 0 }, s_schema, sp_hastierrequirement, t_ontology, sch_monetaryamount },
+    { { 28, 0 }, { 0, 0 }, s_schema, sp_hastierrequirement, t_ontology, sch_unitpricespecification },
+    { { 28, 0 }, { 0, 0 }, s_schema, sp_hastierrequirement, t_text },
+    { { 28, 0 }, { 0, 0 }, s_schema, sp_hastiers, t_ontology, sch_memberprogrammetier },
     { { 9, 0 }, { 0, 0 }, s_schema, sp_hasvariant, t_ontology, sch_product },
     { { 0, 10 }, { 0, 0 }, s_schema, sp_headline, t_ontology, sch_text },
     { { 0, 10 }, { 0, 0 }, s_schema, sp_headline, t_text },
@@ -5573,6 +5781,7 @@ property_gen gentab [] =
     { { 1, 90 }, { 0, 0 }, s_schema, sp_issuenumber, t_ontology, sch_text },
     { { 1, 90 }, { 0, 0 }, s_schema, sp_issuenumber, t_text },
     { { 1, 4 }, { 0, 0 }, s_schema, sp_issuedthrough, t_ontology, sch_service },
+    { { 28, 0 }, { 0, 0 }, s_schema, sp_istierof, t_ontology, sch_memberprogramme },
     { { 8, 0 }, { 0, 0 }, s_schema, sp_isunlabelledfallback, t_bool },
     { { 9, 0 }, { 0, 0 }, s_schema, sp_isvariantof, t_ontology, sch_productgroup },
     { { 0, 99 }, { 0, 0 }, s_schema, sp_isvariantof, t_ontology, sch_productmodel },
@@ -5817,6 +6026,7 @@ property_gen gentab [] =
     { { 3, 5 }, { 0, 0 }, s_schema, sp_meetsemissionstandard, t_url },
     { { 0, 91 }, { 0, 0 }, s_schema, sp_member, t_ontology, sch_organisation },
     { { 0, 91 }, { 0, 0 }, s_schema, sp_member, t_ontology, sch_person },
+    { { 28, 0 }, { 0, 0 }, s_schema, sp_memberof, t_ontology, sch_memberprogrammetier },
     { { 0, 10 }, { 0, 0 }, s_schema, sp_memberof, t_ontology, sch_organisation },
     { { 2, 0 }, { 0, 0 }, s_schema, sp_memberof, t_ontology, sch_programmemembership },
     { { 0, 10 }, { 1, 90 }, s_schema, sp_members, t_ontology, sch_organisation },
@@ -6039,6 +6249,7 @@ property_gen gentab [] =
     { { 2, 0 }, { 0, 0 }, s_schema, sp_orderitemstatus, t_ontology, sch_orderstatus },
     { { 1, 4 }, { 0, 0 }, s_schema, sp_ordernumber, t_ontology, sch_text },
     { { 1, 4 }, { 0, 0 }, s_schema, sp_ordernumber, t_text },
+    { { 29, 0 }, { 0, 0 }, s_schema, sp_orderquantity, t_ontology, sch_quantitativevalue },
     { { 2, 0 }, { 0, 0 }, s_schema, sp_orderquantity, t_ontology, sch_number },
     { { 2, 0 }, { 0, 0 }, s_schema, sp_orderquantity, t_fixedpoint },
     { { 1, 4 }, { 0, 0 }, s_schema, sp_orderstatus, t_ontology, sch_orderstatus },
@@ -6132,6 +6343,8 @@ property_gen gentab [] =
     { { 3, 8 }, { 0, 0 }, s_schema, sp_paymentduedate, t_ontology, sch_date },
     { { 3, 8 }, { 0, 0 }, s_schema, sp_paymentduedate, t_just_date },
     { { 1, 4 }, { 0, 0 }, s_schema, sp_paymentmethod, t_ontology, sch_paymentmethod },
+    { { 29, 0 }, { 0, 0 }, s_schema, sp_paymentmethod, t_ontology, sch_text },
+    { { 29, 0 }, { 0, 0 }, s_schema, sp_paymentmethod, t_text },
     { { 1, 4 }, { 0, 0 }, s_schema, sp_paymentmethodid, t_ontology, sch_text },
     { { 1, 4 }, { 0, 0 }, s_schema, sp_paymentmethodid, t_text },
     { { 1, 93 }, { 0, 0 }, s_schema, sp_paymentstatus, t_ontology, sch_paymentstatustype },
@@ -6292,9 +6505,15 @@ property_gen gentab [] =
     { { 1, 3 }, { 0, 0 }, s_schema, sp_productsupported, t_text },
     { { 1, 0 }, { 0, 0 }, s_schema, sp_proficiencylevel, t_ontology, sch_text },
     { { 1, 0 }, { 0, 0 }, s_schema, sp_proficiencylevel, t_text },
+    { { 28, 0 }, { 0, 0 }, s_schema, sp_programme, t_ontology, sch_memberprogramme },
     { { 1, 10 }, { 0, 0 }, s_schema, sp_programmemembershipused, t_ontology, sch_programmemembership },
     { { 1, 20 }, { 0, 0 }, s_schema, sp_programmename, t_ontology, sch_text },
     { { 1, 20 }, { 0, 0 }, s_schema, sp_programmename, t_text },
+    { { 3, 0 }, { 0, 0 }, s_schema, sp_programminglanguage, t_ontology, sch_computerlanguage },
+    { { 1, 0 }, { 0, 0 }, s_schema, sp_programminglanguage, t_ontology, sch_text },
+    { { 1, 0 }, { 0, 0 }, s_schema, sp_programminglanguage, t_text },
+    { { 1, 0 }, { 0, 0 }, s_schema, sp_programmingmodel, t_ontology, sch_text },
+    { { 1, 0 }, { 0, 0 }, s_schema, sp_programmingmodel, t_text },
     { { 3, 9 }, { 0, 0 }, s_schema, sp_programprequisites, t_ontology, sch_alignmentobject },
     { { 3, 9 }, { 0, 0 }, s_schema, sp_programprequisites, t_ontology, sch_course },
     { { 3, 9 }, { 0, 0 }, s_schema, sp_programprequisites, t_ontology, sch_educationoccupationcredential },
@@ -6303,11 +6522,6 @@ property_gen gentab [] =
     { { 7, 0 }, { 0, 0 }, s_schema, sp_programtype, t_ontology, sch_definedterm },
     { { 7, 0 }, { 0, 0 }, s_schema, sp_programtype, t_ontology, sch_text },
     { { 7, 0 }, { 0, 0 }, s_schema, sp_programtype, t_text },
-    { { 3, 0 }, { 0, 0 }, s_schema, sp_programminglanguage, t_ontology, sch_computerlanguage },
-    { { 1, 0 }, { 0, 0 }, s_schema, sp_programminglanguage, t_ontology, sch_text },
-    { { 1, 0 }, { 0, 0 }, s_schema, sp_programminglanguage, t_text },
-    { { 1, 0 }, { 0, 0 }, s_schema, sp_programmingmodel, t_ontology, sch_text },
-    { { 1, 0 }, { 0, 0 }, s_schema, sp_programmingmodel, t_text },
     { { 2, 0 }, { 0, 0 }, s_schema, sp_propertyid, t_ontology, sch_text },
     { { 2, 0 }, { 0, 0 }, s_schema, sp_propertyid, t_text },
     { { 2, 0 }, { 0, 0 }, s_schema, sp_propertyid, t_ontology, sch_url },
@@ -7010,6 +7224,7 @@ property_gen gentab [] =
     { { 0, 99 }, { 0, 0 }, s_schema, sp_valuereference, t_ontology, sch_structuredvalue },
     { { 2, 0 }, { 0, 0 }, s_schema, sp_valuerequired, t_ontology, sch_boolean },
     { { 2, 0 }, { 0, 0 }, s_schema, sp_valuerequired, t_bool },
+    { { 28, 0 }, { 0, 0 }, s_schema, sp_validformembertier, t_ontology, sch_memberprogrammetier },
     { { 3, 5 }, { 0, 0 }, s_schema, sp_variablemeasured, t_ontology, sch_propertyvalue },
     { { 3, 5 }, { 0, 0 }, s_schema, sp_variablemeasured, t_ontology, sch_text },
     { { 3, 5 }, { 0, 0 }, s_schema, sp_variablemeasured, t_text },
@@ -8130,7 +8345,8 @@ void ontology_property_init (nitpick& nits)
             nits.pick (nit_missing_property, es_catastrophic, ec_init, ontology_names.get (property_root (sp), ONTOLOGY_NAME), ":", ontology_property_name (sp), " (", i, ") missing from property table."); } }
 
 e_ontology_property identify_ontology_property (const ::std::string& name, const e_ontology root)
-{   ::std::string n (::boost::to_lower_copy (name));
+{   if ((ontology_names.flags (root) & ONTOLOGY_EXAMPLE) == ONTOLOGY_EXAMPLE) return example_property;
+    ::std::string n (::boost::to_lower_copy (name));
     e_ontology_property p = get_ontology_property (n, root);
     if ((p == op_illegal) && (root == s_none))
     {   ::std::string::size_type ends_at = 0;
@@ -8153,11 +8369,13 @@ vsp_t identify_ontology_properties (const ::std::string& name, const e_ontology 
     return res; }
 
 bool check_ontology_property_version (const ontology_version& from, const ontology_version& to, const e_ontology_property prop, bool& found)
-{   for (mpp_t::const_iterator i = mpp.find (prop); (i != mpp.cend ()) && (i -> first == prop); ++i)
+{   bool f = false, t = false;
+    for (mpp_t::const_iterator i = mpp.find (prop); (i != mpp.cend ()) && (i -> first == prop); ++i)
     {   found = true;
         VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
-        if (does_apply < ontology_version > (from, i -> second -> from_, i -> second -> to_) &&
-            does_apply < ontology_version > (to, i -> second -> from_, i -> second -> to_)) return true; }
+        if (! f) f = does_apply < ontology_version > (from, i -> second -> from_, i -> second -> to_);
+        if (! t) t = does_apply < ontology_version > (to, i -> second -> from_, i -> second -> to_);
+        if (f && t) return true; }
     return false; }
 
 bool test_enumerated_type (nitpick& nits, const html_version& v, const bool ex, const ::std::string& value)
@@ -8191,10 +8409,11 @@ bool is_valid_ontology_property_int (nitpick& nits, const html_version& v, const
 {   nitpick knots;
     ::std::string expected, unfound;
     bool many = false, valid_type = false;
-    ::std::string name (quote (ontology_property_name (prop)) + " (" + ontology_names.get (static_cast < e_ontology > (get_property_root (prop)), ONTOLOGY_CURIE) + ")");
-    ssch_t ssch (generalise (schema));
+    const ::std::string& propname (ontology_property_name (prop));
+    ::std::string name (quote (propname) + " (" + ontology_names.get (static_cast < e_ontology > (get_property_root (prop)), ONTOLOGY_CURIE) + propname + ")");
+    ssch_t ssch (generalise (nits, v, schema));
     for (const e_ontology_type gen : ssch)
-    {   if (is_ontology_property (gen, prop))
+    {   if (is_ontology_property (v, gen, prop))
             for (mpp_t::const_iterator i = mpp.find (prop); (i != mpp.cend ()) && (i -> first == prop); ++i)
             {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
                 if (i -> second -> field_type_ == t_ontology)
@@ -8263,24 +8482,40 @@ bool is_valid_ontology_property_int (nitpick& nits, const html_version& v, const
     return false; }
 
 bool is_valid_ontology_property (nitpick& nits, const html_version& v, const e_ontology_type schema, const e_ontology_property prop, const ::std::string& value, const bool is_link)
-{   if (! is_valid_ontology_property_int (nits, v, schema, prop, value, is_link)) return false;
-    return true; }
+{   return is_valid_ontology_property_int (nits, v, schema, prop, value, is_link); }
 
-bool is_valid_ontology_property_int (nitpick& nits, const html_version& , const e_ontology_type schema, const e_ontology_property prop, const e_ontology_type value)
-{   bool version = false;
-    ssch_t ssch (generalise (schema));
-    const ontology_version sv (context.ontology_ver (sch::root (schema)));
+bool is_valid_ontology_property_int (nitpick& nits, const html_version& v, const e_ontology_type schema, const e_ontology_property prop, const e_ontology_type value)
+{   bool version = false, notprop = true;
+    if ((schema == example_type) || (prop == example_property) || (value == example_type) || sch::vague (schema) || sch::vague (value)) return true;
+    ssch_t ssch (generalise (nits, v, schema));
+    const ontology_version sv (context.ontology_ver (v, sch::root (schema)));
+    if (sv.root () == s_error)
+    {   nits.pick (nit_wrong_version, es_error, ec_schema, quote (ontology_property_name (prop)), " is incompatible with ", v.report ());
+        return false; }
+    ::std::string ts;
+    const bool verby = context.expand ();
     for (const e_ontology_type gen : ssch)
-        if (is_ontology_property (gen, prop))
+    {   if (verby)
+        {   if (ts.empty ()) ts = " (";
+            else ts += ", ";
+            ts += sch::name (gen); }   
+        if (is_ontology_property (v, gen, prop))
+        {   notprop = false;
             for (mpp_t::const_iterator i = mpp.find (prop); (i != mpp.cend ()) && (i -> first == prop); ++i)
             {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
                 if (i -> second -> field_type_ == t_ontology)
-                    if ((i -> second -> field_ontology_ == value) || (i -> second -> field_ontology_ == ont_context) || is_specific_type_of (i -> second -> field_ontology_, value))
-                        if (does_apply < ontology_version > (sv, i -> second -> from_, i -> second -> to_))
-                            return true;
-                        else version = true; }
-    if (version) nits.pick (nit_bad_property, es_error, ec_schema, "In ", sv.report (), ", ", quote (ontology_property_name (prop)), " cannot have those sub-values, or is not a property of a type in scope, or both");
-    else nits.pick (nit_bad_property, es_error, ec_schema, quote (ontology_property_name (prop)), " cannot have those sub-values, or is not a property of a type in scope, or both");
+                    if (    (i -> second -> field_ontology_ == value) || (i -> second -> field_ontology_ == ont_context) ||
+                            is_specific_type_of (i -> second -> field_ontology_, value) || sch::vague (i -> second -> field_ontology_))
+                        if (does_apply < ontology_version > (sv, i -> second -> from_, i -> second -> to_)) return true;
+                        version = true; } } }
+    ::std::string pn (ontology_property_name (prop));
+    if (verby)
+    {   pn = ontology_names.get (get_property_root (prop), ONTOLOGY_CURIE) + pn;
+        ts += ")"; }
+    pn = quote (pn);
+    if (notprop) nits.pick (nit_bad_property, es_error, ec_schema, pn, " cannot have those value/s (", sch::name (value), ", ...) with the type/s", ts, " in scope");
+    else if (version) nits.pick (nit_bad_property, es_error, ec_schema, "In ", sv.report (), ", ", pn, " cannot have those value/s (", sch::name (value), ", ...)");
+    else nits.pick (nit_bad_property, es_error, ec_schema, pn, " cannot have those value/s (", sch::name (value), ", ...)");
     return false; }
 
 bool is_valid_ontology_property (nitpick& nits, const html_version& v, const e_ontology_type schema, const e_ontology_property prop, const e_ontology_type value)

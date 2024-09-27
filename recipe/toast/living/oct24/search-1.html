@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+ <head> <title>search 1</title> </head>
+ <body>
+
+<header>
+  <h1><a href="/">My fancy blog</a></h1>
+  ...
+  <search>
+    <form action="search.php">
+      <label for="query">Find an article</label>
+      <input id="query" name="q" type="search">
+      <button type="submit">Go!</button>
+    </form>
+  </search>
+</header>
+
+     <search>
+       <label>
+         Find and filter your query
+         <input type="search" id="query">
+       </label>
+       <label>
+         <input type="checkbox" id="exact-only">
+         Exact matches only
+</label>
+       <section>
+         <h3>Results found:</h3>
+         <ul id="results">
+           <li>
+             <p><a href="services/consulting">Consulting services</a></p>
+             <p>
+               Find out how can we help you improve your business with our integrated consultants, Bob
+and Bob.
+</p> </li>
+...
+</ul> <!--
+           when a query returns or filters out all results
+           render the no results message here
+         -->
+         <output id="no-results"></output>
+       </section>
+</search>
+
+ </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+
+<title> navigation api </title>
+
+</head>
+<body>
+
+<button onclick="navigation.reload()">Reload</button>
+
+<input type="url" id="navigationURL">
+<button onclick="navigation.navigate(navigationURL.value)">Navigate</button>
+
+<button id="backButton" onclick="navigation.back()">Back</button>
+<button id="forwardButton" onclick="navigation.forward()">Forward</button>
+
+<select id="traversalDestinations"></select>
+<button id="goButton" onclick="navigation.traverseTo(traversalDestinations.value)">Traverse To</button>
+
+<script>
+backButton.disabled = !navigation.canGoBack;
+forwardButton.disabled = !navigation.canGoForward;
+
+for (const entry of navigation.entries()) {
+  traversalDestinations.append(new Option(entry.url, entry.key));
+}
+</script>
+
+</body>
+</html>

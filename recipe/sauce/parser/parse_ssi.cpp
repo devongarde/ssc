@@ -468,6 +468,7 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
                     break;
         case '-' :  if ((e - i <= 5) || (::std::string (i, i+3) != "-->")) return;
                     if (::std::iswspace (*(i-1))) return;
+                    if ((*i < 32) && ::std::iscntrl (*i)) return;
                     msg = "space missing before attempted end of SSI"; severity = es_warning;
                     break;
         default :   if (((*i >= 'A') && (*i <= 'Z')) || ((*i >= 'a') && (*i <= 'z')) || ((*i >= '0') && (*i <= '9')) || (*i == '=') || ::std::iswspace (*i)) return;
@@ -483,6 +484,12 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
     if (GSL_NARROW_CAST <::std::size_t> (e - i) > max_separation) e = i + max_separation;
     nits.set_context (line, unify_whitespace (::std::string (b, e)));
     nits.pick (nit_ssi_syntax, severity, ec_ssi, msg); }
+
+void splurt (nitpick& nits, const char* wot, const ::std::string::const_iterator i)
+{   const char ch (*i);
+    if (ch < ' ') return;
+//    if (ch >= ' ') nits.pick (nit_ssi, es_all, ec_parser, wot, ch); }
+    ::std::cout << wot << ch << ::std::endl; }
 
 ::std::string parse_ssi (nitpick& nits, const html_version& v, page& p, ssi_compedium& c, const ::std::string& input, ::std::time_t& updated, bool shush)
 {   VERIFY_NOT_NULL (p.get_directory (), __FILE__, __LINE__);
@@ -518,26 +525,32 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
         if (! ::std::iswspace (*i) && ! ::std::iswcntrl (*i)) nlc = 0;
         switch (status)
         {   case es_dull :
+                if (context.tell (es_all)) splurt (nits, "dull ", i);
                 if (*i == '<') { status = es_open; start = i; }
                 else if (c.if_ && ord) to += *i;
                 break;
             case es_open :
+                if (context.tell (es_all)) splurt (nits, "open ", i);
                 if (*i == '!') status = es_bang;
                 else { if (c.if_) { to += "<"; if (ord) to += *i; } status = es_dull; }
                 break;
             case es_bang :
+                if (context.tell (es_all)) splurt (nits, "bang ", i);
                 if (*i == '-') status = es_om_1;
                 else { if (c.if_) { to += "<!"; if (ord) to += *i; } status = es_dull; }
                 break;
             case es_om_1 :
+                if (context.tell (es_all)) splurt (nits, "om1 ", i);
                 if (*i == '-') status = es_om_2;
                 else { if (c.if_) { to += "<!-"; if (ord) to += *i; } status = es_dull; }
                 break;
             case es_om_2 :
+                if (context.tell (es_all)) splurt (nits, "om2 ", i);
                 if (*i == '#') { status = es_ssi; var = i; }
                 else status = es_note;
                 break;
             case es_ssi :
+                if (context.tell (es_all)) splurt (nits, "ssi ", i);
                 if (::std::iswcntrl (*i) || ::std::iswspace (*i))
                 {   cmd = trim_the_lot_off (::std::string (var+1, i));
                     status = es_space;
@@ -545,37 +558,58 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
                 test_for_oops (nits, line, b, i, e, warned);
                 break;
             case es_args :
+                if (context.tell (es_all)) splurt (nits, "args ", i);
                 switch (*i)
-                {   case ' ' :  status = es_space; break;
+                {   case ' ' :
+                        status = es_space;
+                        break;
                     case '<' :
+                    case '>' :
+                        test_for_oops (nits, line, b, i, e, warned);
+                        break;
                     case '-' :
-                    case '>' : test_for_oops (nits, line, b, i, e, warned); break;
-                    default : break; }
+                        test_for_oops (nits, line, b, i, e, warned);
+                        status = es_am_1;
+                        break;
+                    default :
+                        if (::std::iswspace (*i))
+                            status = es_space;
+                        else if ((*i < ' ') && ::std::iscntrl (*i))
+                            status = es_space;
+                        break; }
                 break;
             case es_space :
+                if (context.tell (es_all)) splurt (nits, "space ", i);
                 if (*i == '-') status = es_am_1;
                 else status = es_args;
                 break;
             case es_am_1 :
+                if (context.tell (es_all)) splurt (nits, "am1 ", i);
                 if (*i == '-') status = es_am_2;
                 else status = es_args;
                 break;
-            case es_am_2 : if (*i == '>')
+            case es_am_2 :
+                if (context.tell (es_all)) splurt (nits, "am2 ", i);
+                if (*i == '>')
                 {   ::std::string a (unify_whitespace (trim_the_lot_off (::std::string (args, i-3))));
                     ::std::string ln (::boost::lexical_cast < ::std::string > (line));
                     ln += ": <!--#";
                     ln += cmd + " " + a + " -->";
                     to += process_ssi (ln, nits, v, p, c, cmd, a, linechange, inif, updated);
                     revised = true; status = es_dull; }
+                else if (*i != '-') status = es_args;
                 break;
             case es_note :
+                if (context.tell (es_all)) splurt (nits, "note ", i);
                 if (*i == '-') status = es_cm_1;
                 break;
             case es_cm_1 :
+                if (context.tell (es_all)) splurt (nits, "cm1 ", i);
                 if (*i == '-') status = es_cm_2;
                 else status = es_note;
                 break;
             case es_cm_2 :
+                if (context.tell (es_all)) splurt (nits, "cm2 ", i);
                 if (*i == '>')
                 {   status = es_dull;
                     warned = false; }

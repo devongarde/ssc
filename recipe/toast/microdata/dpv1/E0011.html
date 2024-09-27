@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>dpv 1 ontology test 11</title>
+</head>
+
+<body>
+
+<h1>dpv 1 ontology test 11</h1>
+
+<div itemtype="https://w3id.org/dpv/ex#ServerInfo" itemscope>
+  <div itemprop="https://w3id.org/dpv#isSubTypeOf" itemtype="https://w3id.org/dpv#PersonalDataHandling" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataProcessor" itemtype="https://w3id.org/dpv/ex#Acme" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Store" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasStorageCondition" itemtype="https://w3id.org/dpv/ex#DataStoragePolicy" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#DataStoragePolicy" itemscope>
+  <div itemprop="https://w3id.org/dpv#isSubTypeOf" itemtype="https://w3id.org/dpv#StorageCondition" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasLocation" itemtype="https://w3id.org/dpv/ex#IE" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDuration" itemtype="https://w3id.org/dpv#Duration" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDuration" itemtype="https://www.w3.org/2006/time#Duration" itemscope>
+    <div itemprop="https://www.w3.org/2006/time#numericDuration" itemtype="https://www.w3.org/2001/XMLSchema#decimal" itemscope>1</div>
+    <div itemprop="https://www.w3.org/2006/time#unitType" itemtype="https://www.w3.org/2006/time#unitYear" itemscope></div>
+  </div>
+</div>
+
+<!--#comment
+
+ex:ServerInfo a dpv:PersonalDataHandling ;
+    dpv:hasDataProcessor ex:Acme ;
+    dpv:hasProcessing dpv:Store ;
+    dpv:hasStorageCondition ex:DataStoragePolicy .
+
+ex:DataStoragePolicy a dpv:StorageCondition ;
+    dpv:hasLocation ex:IE ;
+    dpv:hasDuration [
+        rdf:type time:Duration, dpv:Duration ;
+        time:numericDuration "1"^^xsd:decimal ;
+        time:unitType time:unitYear ;
+    ] .
+
+-->
+
+</body>
+</html>

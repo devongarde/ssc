@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>dpv 1 ontology test 26</title>
+</head>
+
+<body>
+
+<h1>dpv 1 ontology test 26</h1>
+
+<div itemtype="https://w3id.org/dpv/ex#PDH" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#PersonalDataHandling" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasLegalBasis" itemtype="https://w3id.org/dpv#ExplicitlyExpressedConsent" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#UserConsent" itemscope>
+  <div itemtype="https://w3id.org/dpv#ExpressedConsent" itemscope></div>
+</div>
+
+<!--#comment
+
+# Approach 1: specifying a specific consent type is required as legal basis
+ex:PDH a dpv:PersonalDataHandling ;
+    dpv:hasLegalBasis dpv:ExplicitlyExpressedConsent .
+
+# Approach 2: creating instances of consent
+ex:UserConsent a dpv:ExpressedConsent .
+
+-->
+
+</body>
+</html>

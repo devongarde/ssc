@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>dpv 1 ontology test 14</title>
+</head>
+
+<body>
+
+<h1>dpv 1 ontology test 14</h1>
+
+<div itemtype="https://w3id.org/dpv/ex#PersonaliseWebsiteForVisitors" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#PersonalDataHandling" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPurpose" itemtype="https://w3id.org/dpv#Personalisation" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv/dpv-pd#BrowserFingerprint" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv/dpv-pd#IPAddress" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Collect" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Use" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPersonalDataHandling" itemtype="https://w3id.org/dpv/ex#DeriveVisitorCountry" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPersonalDataHandling" itemtype="https://w3id.org/dpv/ex#InferVisitorLanguage" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#DeriveVisitorCountry" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#PersonalDataHandling" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Derive" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv/ex#VisitorCountry" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#VisitorCountry" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#PersonalDataHandling" itemscope></div>
+  <div itemprop="http://www.w3.org/2004/02/skos/core#broader" itemtype="https://w3id.org/dpv/dpv-pd#Country" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#InferVisitorLanguage" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#PersonalDataHandling" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Infer" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv/ex#VisitorLanguage" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#VisitorLanguage" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#PersonalDataHandling" itemscope></div>
+  <div itemprop="http://www.w3.org/2004/02/skos/core#broader" itemtype="https://w3id.org/dpv/dpv-pd#Language" itemscope></div>
+</div>
+
+<!--#comment
+
+ex:PersonaliseWebsiteForVisitors rdf:type dpv:PersonalDataHandling ;
+    dpv:hasPurpose dpv:Personalisation ;
+    dpv:hasPersonalData dpv-pd:BrowserFingerprint,
+                      dpv-pd:IPAddress ;
+    dpv:hasProcessing dpv:Collect, dpv:Use ;
+    dpv:hasPersonalDataHandling ex:DeriveVisitorCountry ;
+    dpv:hasPersonalDataHandling ex:InferVisitorLanguage .
+
+ex:DeriveVisitorCountry rdf:type dpv:PersonalDataHandling ;
+    dpv:hasProcessing dpv:Derive ;
+    dpv:hasPersonalData ex:VisitorCountry .
+
+ex:VisitorCountry rdf:type dpv:DerivedPersonalData ;
+    skos:broader dpv-pd:Country .
+
+ex:InferVisitorLanguage rdf:type dpv:PersonalDataHandling ;
+    dpv:hasProcessing dpv:Infer ;
+    dpv:hasPersonalData ex:VisitorLanguage .
+
+ex:VisitorLanguage rdf:type dpv:InferredPersonalData ;
+    skos:broader dpv-pd:Language .
+
+-->
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>dpv 1 ontology test 17</title>
+</head>
+
+<body>
+
+<h1>dpv 1 ontology test 17</h1>
+
+<div itemtype="https://w3id.org/dpv/ex#StaffCredentialsTraining" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#OrganisationalMeasure" itemscope></div>
+  <div itemprop="http://www.w3.org/2004/02/skos/core#broader" itemtype="https://w3id.org/dpv#StaffTraining" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#RBACCredential" itemscope>
+  <div itemprop="http://www.w3.org/2004/02/skos/core#broader" itemtype="https://w3id.org/dpv/ex#StaffCredentialTraining" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#SecurityPolicy" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#OrganisationalMeasure" itemscope></div>
+  <div itemprop="http://www.w3.org/2004/02/skos/core#broader" itemtype="https://w3id.org/dpv#Policy" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasOrganisationalMeasure" itemtype="https://w3id.org/dpv/ex#StaffTraining" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasTechnicalMeasure" itemtype="https://w3id.org/dpv/ex#AccessControlMethod" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#StaffCredentialsTraining" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#OrganisationalMeasure" itemscope></div>
+  <div itemprop="http://www.w3.org/2004/02/skos/core#broader" itemtype="https://w3id.org/dpv#StaffTraining" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasTechnicalMeasure" itemtype="https://w3id.org/dpv/ex#RBACCredential" itemscope></div>
+</div>
+
+<!--#comment
+
+# 1: directly associating staff training with credentials used
+ex:StaffCredentialsTraining rdf:type dpv:OrganistionalMeasure ;
+    skos:broader dpv:StaffTraining .
+
+ex:RBACCredential dpv:hasOrganisationalMeasure ex:StaffCredentialTraining .
+
+# 2: security policy containing staff training and access control
+ex:SecurityPolicy rdf:type dpv:OrganisationalMeasure ;
+    skos:broader dpv:Policy ;
+    dpv:hasOrganisationalMeasure dpv:StaffTraining ;
+    dpv:hasTechnicalMeasure dpv:AccessControlMethod .
+
+# 3: indicating staff training contains access control methods
+ex:StaffCredentialsTraining rdf:type dpv:OrganistionalMeasure ;
+    skos:broader dpv:StaffTraining ;
+    dpv:hasTechnicalMeasure ex:RBACCredential .
+
+-->
+
+</body>
+</html>

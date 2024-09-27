@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>dpv 1 ontology test 19</title>
+</head>
+
+<body>
+
+<h1>dpv 1 ontology test 19</h1>
+
+<div itemtype="https://w3id.org/dpv/ex#63ded36f-4acd-4f3c-991e-6cb636698523" itemscope>
+  <div itemtype="https://w3id.org/dpv#ConsentRecord" itemscope></div>
+  <span itemprop="http://purl.org/dc/terms/hasVersion">27560-WD5</span>
+  <span itemprop="https://w3id.org/dpv#hasIdentifier">63ded36f-4acd-4f3c-991e-6cb636698523</span>
+  <span itemprop="https://w3id.org/dpv#hasDataSubject">96121fde-199f-4848-8942-4436e270513a</span>
+  <span itemprop="https://w3id.org/dpv#hasNotice">https://example.com/notice/WD5</span>
+  <div itemprop="https://w3id.org/dpv#hasPersonalDataHandling" itemtype="https://w3id.org/dpv#PersonalDataHandling" itemscope>
+    <span itemprop="http://purl.org/dc/terms/title" lang="en">Send Newsletters with Seasonal Offers</span>
+    <div itemprop="https://w3id.org/dpv#hasPurpose" itemtype="https://w3id.org/dpv#Marketing" itemscope></div>
+    <div itemprop="https://w3id.org/dpv#hasLegalBasis" itemtype="https://w3id.org/dpv#Consent" itemscope></div>
+    <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv/dpv-pd#Email" itemscope></div>
+    <div itemprop="https://w3id.org/dpv#hasDataController" itemtype="https://w3id.org/dpv/ex#Acme" itemscope></div>
+    <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Collect" itemscope></div>
+    <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv#Store" itemscope></div>
+    <div itemprop="https://w3id.org/dpv#hasStorageCondition" itemtype="https://w3id.org/dpv#StorageCondition" itemscope>
+      <div itemprop="https://w3id.org/dpv#hasLocation" itemtype="https://w3id.org/dpv/dpv-legal#IE" itemscope></div>
+      <span itemprop="https://w3id.org/dpv#hasDuration">63115200</span>
+    </div>
+    <div itemprop="https://w3id.org/dpv#hasJurisdiction" itemtype="https://w3id.org/dpv/dpv-legal#EU" itemscope></div>
+    <div itemprop="https://w3id.org/dpv#hasRecipient" itemtype="https://w3id.org/dpv/ex#Beta" itemscope></div>
+    <div itemprop="https://w3id.org/dpv#hasRecipient" itemtype="https://w3id.org/dpv/ex#Epsilon" itemscope></div>
+  </div>
+  <div itemprop="https://w3id.org/dpv#hasConsentStatus" itemtype="https://w3id.org/dpv#ConsentGiven" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasConsentStatus" itemtype="https://w3id.org/dpv#ConsentGiven" itemscope></div>
+  <div itemprop="http://www.w3.org/ns/dcat#hasPart">
+    <div itemtype="https://w3id.org/dpv#ConsentRecord" itemscope></div>
+    <div itemtype="https://w3id.org/dpv#ConsentGiven" itemscope></div>
+    <div itemtype="https://w3id.org/dpv#ExplicitlyExpressedConsent" itemscope></div>
+    <span itemprop="https://w3id.org/dpv#isIndicatedAtTime">2021-05-28T12:24:00</span>
+    <span itemprop="https://w3id.org/dpv#hasDuration">63115200</span>
+    <span itemprop="https://w3id.org/dpv#hasEntity">96121fde-199f-4848-8942-4436e270513a</span>
+  </div>
+</div>
+
+<!--#comment
+:63ded36f-4acd-4f3c-991e-6cb636698523 a dpv:ConsentRecord ;
+    dct:hasVersion "27560-WD5" ;
+    dpv:hasIdentifier "63ded36f-4acd-4f3c-991e-6cb636698523" ;
+    dpv:hasDataSubject "96121fde-199f-4848-8942-4436e270513a" ;
+    dpv:hasNotice <https://example.com/notice/WD5> ;
+    dpv:hasPersonalDataHandling [
+      a dpv:PersonalDataHandling ;
+      dct:title "Send Newsletters with Seasonal Offers"@en ;
+      dpv:hasPurpose dpv:Marketing ;
+      dpv:hasLegalBasis dpv:Consent ;
+      dpv:hasPersonalData dpv-pd:Email ;
+      dpv:hasDataController ex:Acme ;
+      dpv:hasProcessing dpv:Collect, dpv:Store ;
+      dpv:hasStorageCondition [ 
+          dpv:hasLocation dpv-legal:IE ;
+          dpv:hasDuration 63115200 ;
+          ] ;
+      dpv:hasJurisdiction dpv-legal:EU ;
+      dpv:hasRecipient ex:Beta, ex:Epsilon ;
+    ] ;
+    dpv:hasConsentStatus dpv:ConsentGiven ;
+    dct:hasPart [
+        a dpv:ConsentGiven, dpv:ExplicitlyExpressedConsent ;
+        dpv:isIndicatedAtTime "2021-05-28T12:24:00"^^xsd:dateTime ;
+        dpv:hasDuration 63115200 ;
+        dpv:hasEntity "96121fde-199f-4848-8942-4436e270513a"
+    ] .
+ 
+-->
+
+</body>
+</html>

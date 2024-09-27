@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>NAV</title>
+</head>
+
+<body>
+
+<nav>
+<h1>Navigation</h1>
+<p>You are on my home page. To the north lies <a href="/blog">my
+blog</a>, from whence the sounds of battle can be heard. To the east
+you can see a large mountain, upon which many <a
+href="/school">school papers</a> are littered. Far up thus mountain
+you can spy a little figure who appears to be me, desperately
+scribbling a <a href="/school/thesis">thesis</a>.</p>
+<p>To the west are several exits. One fun-looking exit is labeled <a
+href="https://games.example.com/">"games"</a>. Another more
+boring-looking exit is labeled <a
+href="https://isp.example.net/">ISP™</a>.</p>
+<p>To the south lies a dark and dank <a href="/about">contacts
+page</a>. Cobwebs cover its disused entrance, and at one point you
+see a rat run quickly out of the page.</p>
+</nav>
+
+<p><input type=button value="Compose" onclick="compose()"></p>
+<nav>
+<h1>Folders</h1>
+<ul>
+<li> <a href="/inbox" onclick="return openFolder(this.href)">Inbox</a> <span class=count></span>
+<li> <a href="/sent" onclick="return openFolder(this.href)">Sent</a>
+<li> <a href="/drafts" onclick="return openFolder(this.href)">Drafts</a>
+<li> <a href="/trash" onclick="return openFolder(this.href)">Trash</a>
+<li> <a href="/customers" onclick="return openFolder(this.href)">Customers</a>
+</ul>
+</nav>
+
+</body>
+</html>

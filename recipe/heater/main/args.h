@@ -146,6 +146,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define ERROREXIT   "errorexit"
 #define EXAMPLE     "example"
 #define EXCLUDE     "exclude"
+#define EXPAND      "expand"
 #define EXPORT      "export"
 #define EXTENSION   "extension"
 #define EXTERNAL    "external"

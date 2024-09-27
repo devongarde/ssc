@@ -98,7 +98,7 @@ class element
     bool report_script_comment ();
     void walk_itemprop (itemscope_ptr itemscope);
     vit_t supplied_itemtypes ();
-    vit_t sought_itemtypes ();
+    vit_t sought_itemtypes (nitpick& nits);
     void span_check ();
     void pre_examine_element ();
     void post_examine_element ();
@@ -140,7 +140,7 @@ class element
     void examine_href ();
     void examine_headers ();
     itemscope_ptr examine_itemscope (itemscope_ptr& itemscope, const bool pagify);
-    void examine_itemprop (itemscope_ptr& itemscope);
+    void examine_itemprop (itemscope_ptr& itemscope, itemscope_ptr& valuescope);
     void examine_itemref (const itemscope_ptr& itemscope);
     void examine_itemtype (const itemscope_ptr& itemscope);
     void examine_keysplines ();

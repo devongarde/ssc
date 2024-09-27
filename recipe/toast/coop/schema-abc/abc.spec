@@ -36,7 +36,7 @@ PASS ../toast/coop/schema-abc/a/aggregaterating-2.html
 PASS ../toast/coop/schema-abc/a/alignmentobject.html
 17 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
 68 incompatible_mime
-69 invalid_attribute_version wrong_version svg_rdf bad_datetime
+69 invalid_attribute_version wrong_version svg_rdf
 
 PASS ../toast/coop/schema-abc/a/amusementpark.html
 0 charset_mismatch charset_used charset_invalid
@@ -88,7 +88,6 @@ PASS ../toast/coop/schema-abc/a/audiobook.html
 
 PASS ../toast/coop/schema-abc/a/audioobject.html
 13 script
-20 bad_datetime
 
 PASS ../toast/coop/schema-abc/b/bankaccount.html
 0 charset_mismatch charset_used charset_invalid
@@ -168,7 +167,6 @@ PASS ../toast/coop/schema-abc/b/brokerageaccount.html
 15 invalid_attribute_version wrong_version svg_rdf invalid_attribute_version wrong_version svg_rdf not_ontology_property unrecognised_value bad_itemprop
 
 PASS ../toast/coop/schema-abc/c/car.html
-23 missing_itemtype
 28 use_quote_code
 29 attribute_required invalid_attribute_version wrong_version attribute_required empty_link empty_link url_not_found naughty_alt
 
@@ -210,7 +208,7 @@ PASS ../toast/coop/schema-abc/c/collection.html
 21 requires_itemscope
 23 requires_itemscope
 28 requires_itemscope
-36 missing_close ontology_url requires_itemscope missing_itemtype inserted_missing_closure
+36 missing_close ontology_url requires_itemscope inserted_missing_closure
 
 PASS ../toast/coop/schema-abc/c/collegeoruniversity-1.html
 14 bad_property

@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>dpv 1 ontology test 22</title>
+</head>
+
+<body>
+
+<h1>dpv 1 ontology test 22</h1>
+
+<div itemtype="https://w3id.org/dpv/ex#PDH1" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#PersonalDataHandling" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataController" itemtype="https://w3id.org/dpv/ex#Acme" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataSubject" itemtype="https://w3id.org/dpv/ex#ServiceConsumers" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasLegalBasis" itemtype="https://w3id.org/dpv/ex#ConsentUserN00145667" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#ConsentUserN00145667" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#Consent" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataSubject" itemtype="https://w3id.org/dpv/ex#UserN00145667" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#PDH1" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#PersonalDataHandling" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataController" itemtype="https://w3id.org/dpv/ex#Acme" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataSubject" itemtype="https://w3id.org/dpv/ex#ServiceConsumers" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasLegalBasis" itemtype="https://w3id.org/dpv#Consent" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#PDH1" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#PersonalDataHandling" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataController" itemtype="https://w3id.org/dpv/ex#Acme" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataSubject" itemtype="https://w3id.org/dpv/ex#ServiceConsumers" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasLegalBasis" itemtype="https://w3id.org/dpv/ex#UserConsent" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#UserConsent" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#LegalBasis" itemscope></div>
+  <div itemprop="http://www.w3.org/2004/02/skos/core#broader" itemtype="https://w3id.org/dpv/dpv-pd#Consent" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataSubject" itemtype="https://w3id.org/dpv/ex#ServiceConsumers" itemscope></div>
+</div>
+
+
+<!--#comment
+
+# 1: instance of legal basis
+# interpretation: consent of user #00145667 is the legal basis
+ex:PDH1 rdf:type dpv:PersonalDataHandling ;
+    dpv:hasDataController ex:Acme ;
+    dpv:hasDataSubject ex:ServiceConsumers ;
+    dpv:hasLegalBasis ex:ConsentUserN00145667 .
+ex:ConsentUserN00145667 rdf:type dpv:Consent ;
+    dpv:hasDataSubject ex:UserN00145667 .
+
+# 2: category of legal basis
+# interpretation: consent is the legal basis
+ex:PDH1 rdf:type dpv:PersonalDataHandling ;
+    dpv:hasDataController ex:Acme ;
+    dpv:hasDataSubject ex:ServiceConsumers ;
+    dpv:hasLegalBasis dpv:Consent .
+
+# 3: category of legal basis with contextual information
+# interpretation: consent of service consumers is the legal basis
+ex:PDH1 rdf:type dpv:PersonalDataHandling ;
+    dpv:hasDataController ex:Acme ;
+    dpv:hasDataSubject ex:ServiceConsumers ;
+    dpv:hasLegalBasis ex:UserConsent .
+ex:UserConsent rdf:type dpv:LegalBasis ;
+    skos:broader dpv:Consent ;
+    dpv:hasDataSubject ex:ServiceConsumers .
+
+-->
+
+</body>
+</html>

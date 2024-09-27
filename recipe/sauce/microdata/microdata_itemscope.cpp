@@ -65,16 +65,19 @@ void microdata_itemscope::note_itemtype (nitpick& nits, const html_version& v, c
                 nits.pick (nit_bad_namespace, es_warning, ec_namespace, quote (ontology_names.get (sc, ONTOLOGY_CURIE)), " is incorrect, despite its occasional use. Browse 'namespaces' at 'https://www.w3.org/submissions/2020/SUBM-prism-20200910/prism-basic.html' for gen.");
             else if ((ontology_names.flags (sc) & ONTOLOGY_CRAPNS) == ONTOLOGY_CRAPNS)
                 nits.pick (nit_bad_namespace, es_warning, ec_microdata, quote (ontology_names.get (sc, ONTOLOGY_CURIE)), " is incorrect, despite its occasional use.");
-            const sch s (nits, v, ontology_names.after_start (ONTOLOGY_CURIE, name.substr (ends_at), v.xhtml ()));
-            p.mark (s.get ());
-            const flags_t flags = sch :: flags (s.get ());
+            e_ontology_type o = example_type;
+            if ((ontology_names.flags (sc) & ONTOLOGY_EXAMPLE) != ONTOLOGY_EXAMPLE)
+            {   const sch s (nits, v, ontology_names.after_start (ONTOLOGY_CURIE, name.substr (ends_at), v.xhtml ()));
+                o = s.get (); }
+            p.mark (o);
+            const flags_t flags = sch :: flags (o);
             if (has_itemid && ((flags & SF_NO_ITEMID) == SF_NO_ITEMID))
                 nits.pick (nit_deprecated_ontology, ed_jan21, "5.3 Sample microdata vocabularies", es_info, ec_microdata, quote (name), " cannot have ITEMID");
             if ((flags & SF_DEPRECATED) == SF_DEPRECATED)
                 nits.pick (nit_deprecated_ontology, es_info, ec_microdata, quote (name), " is deprecated");
             if (context.md_export ())
             {   VERIFY_NOT_NULL (export_, __FILE__, __LINE__);
-                export_ -> add (export_path_, make_itemtype_index (s.get ())); } } } }
+                export_ -> add (export_path_, make_itemtype_index (o)); } } } }
 
 bool microdata_itemscope::note_itemid (nitpick& , const html_version& , const ::std::string& name)
 {   if (context.md_export () && ! name.empty ())
@@ -83,13 +86,13 @@ bool microdata_itemscope::note_itemid (nitpick& , const html_version& , const ::
     return true; }
 
 itemprop_indices microdata_itemscope::prepare_itemprop_indices (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value)
-{   itemprop_indices ii = find_itemprop_indices (nits, v, name, type ().empty ());
+{   itemprop_indices ii = find_itemprop_indices (nits, v, name, type ().empty (), example ());
     if (ii.empty ())
     {   e_ontology mr = s_none;
         ::std::string::size_type ends_at = 0;
         mr = ontology_names.starts_with (ONTOLOGY_CURIE, v.xhtml (), value, &ends_at);
         if (mr == s_error) return ii;
-        ii = find_itemprop_indices (nits, v, name.substr (ends_at), type ().empty ()); }
+        ii = find_itemprop_indices (nits, v, name.substr (ends_at), type ().empty (), example ()); }
     return ii; }
 
 bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value, const bool is_link, page& p)
@@ -115,12 +118,14 @@ bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, c
 {   itemprop_indices ii = prepare_itemprop_indices (nits, v, name, value);
     if (scope.get () != nullptr)
     {   microdata_export* ex = exporter ();
-        if (ex == nullptr)
-            nits.pick (nit_export_none, es_catastrophic, ec_microdata, "exporter failure");
-        else for (auto prop : ii)
+//        if (ex == nullptr)
+//            nits.pick (nit_export_none, es_catastrophic, ec_microdata, "exporter failure");
+//        else for (auto prop : ii)
+        if (ex != nullptr) for (auto prop : ii)
             scope -> set_exporter (ex, ex -> append_path (export_path_, prop, true)); }
     nitpick knots, nuts;
-    for (auto parent : type ())
+    const vit_t& vit = type ();
+    for (auto parent : vit)
         for (auto prop : ii)
             if (are_categories_compatible (knots, v, parent, prop))
             {   VERIFY_NOT_NULL (scope, __FILE__, __LINE__);
@@ -165,25 +170,38 @@ bool microdata_itemscope::write (nitpick& nits, const ::boost::filesystem::path&
 {   VERIFY_NOT_NULL (export_, __FILE__, __LINE__);
     return export_ -> write (nits, name); }
 
-vit_t microdata_itemscope::sought_itemtypes (const html_version& v, const ::std::string& name) const
-{   nitpick nits, nuts;
+vit_t microdata_itemscope::sought_itemtypes (nitpick& nits, const html_version& v, const ::std::string& name) const
+{   nitpick nuts;
     vit_t res, ts (types ());
-    const itemprop_indices vii = find_itemprop_indices (nuts, v, name, type ().empty ());
+    const itemprop_indices vii = find_itemprop_indices (nuts, v, name, type ().empty (), example ());
     for (auto ii : vii)
         if (ii != illegal_itemprop)
             if (prop_category (ii) == itemprop_ontology)
                 for (auto t : ts)
                 {   const e_ontology_type ty (type_itself (t));
                     const e_ontology_property pr (prop_itself (ii));
-                    ssch_t ss = generalise (ty);
+                    ssch_t ss = generalise (nits, v, ty);
                     for (auto kss : ss)
                         if (kss != anything)
-                                if (is_ontology_property (kss, pr))
-                                {   const vit_t sot = sought_ontology_types (pr);
-                                    for (auto i : sot)
-                                        if (! has_simple_ontology_type (sch :: flags (type_itself (i))))
-                                            res.push_back (i); } }
+                            if (is_ontology_property (v, kss, pr))
+                            {   const vit_t sot = sought_ontology_types (v, pr);
+                                for (auto i : sot)
+                                    if (! has_simple_ontology_type (sch :: flags (type_itself (i))))
+                                        res.push_back (i); } }
     return res; }
+
+bool microdata_itemscope::example () const
+{   for (auto t : type_)
+        if ((type_category (t) == itemtype_ontology) && (type_itself (t) == example_type)) return true;
+    if (! parent_.expired ())
+    {   itemscope_ptr ptr (parent_.lock ());
+        VERIFY_NOT_NULL (ptr, __FILE__, __LINE__);
+        if (ptr -> example ()) return true; }
+    if (! parent2_.expired ())
+    {   itemscope_ptr ptr (parent2_.lock ());
+        VERIFY_NOT_NULL (ptr, __FILE__, __LINE__);
+        if (ptr -> example ()) return true; }
+    return false; }
 
 bool are_categories_compatible (const e_itemprop_category ipc, const e_itemtype_category itc)
 {   if (itc == itemtype_none) return (ipc == itemprop_bespoke);

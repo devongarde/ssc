@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>dpv 1 ontology test 20</title>
+</head>
+
+<body>
+
+<h1>dpv 1 ontology test 20</h1>
+
+<div itemtype="https://w3id.org/dpv/ex#Acme" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#DataController" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#BetaInc" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#DataController" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#AcmeBetaContract" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#ControllerProcessorAgreement" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataController" itemtype="https://w3id.org/dpv/ex#Acme" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataProcessor" itemtype="https://w3id.org/dpv/ex#Beta" itemscope></div> <!-- ssc won't catch this error -->
+  <div itemprop="https://w3id.org/dpv#hasPersonalDataHandling" itemtype="https://w3id.org/dpv/ex#AcmeProvision" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPersonalDataHandling" itemtype="https://w3id.org/dpv/ex#BetaProvision" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#AcmeProvision" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#PersonalDataHandling" itemscope></div>
+  <span itemprop="http://www.w3.org/2004/02/skos/core#note" lang="en">Acme transfers call logs to Beta</span>
+  <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv/ex#CallLogs" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv/ex#TransferCallLogs" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataController" itemtype="https://w3id.org/dpv/ex#Acme" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataProcessor" itemtype="https://w3id.org/dpv/ex#BetaInc" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#BetaProvision" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#PersonalDataHandling" itemscope></div>
+  <span itemprop="http://www.w3.org/2004/02/skos/core#note" lang="en">Beta analyses and transfers call statistics to Acme</span>
+  <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv/ex#CallStatistics" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv/ex#AnalyseCalls" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasProcessing" itemtype="https://w3id.org/dpv/ex#TransferStatistics" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataProcessor" itemtype="https://w3id.org/dpv/ex#BetaInc" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasRecipientDataController" itemtype="https://w3id.org/dpv/ex#Acme" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#isImplementedByEntity" itemtype="https://w3id.org/dpv/ex#BetaInc" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#CallLogs" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#PersonalDataHandling" itemscope></div>
+  <div itemprop="http://www.w3.org/2004/02/skos/core#broader" itemtype="https://w3id.org/dpv/dpv-pd#CallLog" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataSource" itemtype="https://w3id.org/dpv/ex#Acme" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#CallStatistics" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#DerivedData" itemscope></div>
+  <div itemprop="http://www.w3.org/2004/02/skos/core#broader" itemtype="https://w3id.org/dpv/dpv-pd#CallLog" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataSource" itemtype="https://w3id.org/dpv/ex#BetaInc" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#TransferCallLogs" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#Processing" itemscope></div>
+  <div itemprop="http://www.w3.org/2004/02/skos/core#broader" itemtype="https://w3id.org/dpv#Transfer" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv/ex#CallLogs" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#isImplementedByEntity" itemtype="https://w3id.org/dpv/ex#Acme" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasRecipient" itemtype="https://w3id.org/dpv/ex#BetaInc" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataExporter" itemtype="https://w3id.org/dpv/ex#Acme" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataImporter" itemtype="https://w3id.org/dpv/ex#BetaInc" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#AnalyseCalls" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#Processing" itemscope></div>
+  <div itemprop="http://www.w3.org/2004/02/skos/core#broader" itemtype="https://w3id.org/dpv#Analyse" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#isImplementedByEntity" itemtype="https://w3id.org/dpv/ex#BetaInc" itemscope></div>
+</div>
+
+<div itemtype="https://w3id.org/dpv/ex#TransferStatistics" itemscope>
+  <div itemprop="https://www.w3.org/1999/02/22-rdf-syntax-ns#type" itemtype="https://w3id.org/dpv#Processing" itemscope></div>
+  <div itemprop="http://www.w3.org/2004/02/skos/core#broader" itemtype="https://w3id.org/dpv#Transfer" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasPersonalData" itemtype="https://w3id.org/dpv/ex#CallStatistics" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataExporter" itemtype="https://w3id.org/dpv/ex#BetaInc" itemscope></div>
+  <div itemprop="https://w3id.org/dpv#hasDataImporter" itemtype="https://w3id.org/dpv/ex#Acme" itemscope></div>
+</div>
+
+<!--#comment
+
+ex:Acme rdf:type dpv:DataController .
+ex:BetaInc rdf:type dpv:DataProcessor .
+
+ex:AcmeBetaContract rdf:type dpv:ControllerProcessorAgreement ;
+    dpv:hasDataController ex:Acme ;
+    dpv:hasDataProcessor ex:Beta ;
+    # part1: acme sends data to beta
+    dpv:hasPersonalDataHandling ex:AcmeProvision ;
+    # part2: beta sends data to acme
+    dpv:hasPersonalDataHandling ex:BetaProvision .
+
+ex:AcmeProvision rdf:type dpv:PersonalDataHandling ;
+    skos:note "Acme transfers call logs to Beta"@en ;
+    dpv:hasPersonalData ex:CallLogs ;
+    dpv:hasProcessing ex:TransferCallLogs ;
+    dpv:hasDataController ex:Acme ;
+    dpv:hasDataProcessor ex:BetaInc .
+
+ex:BetaProvision rdf:type dpv:PersonalDataHandling ;
+    skos:note "Beta analyses and transfers call statistics to Acme"@en ;
+    dpv:hasPersonalData ex:CallStatistics ;
+    dpv:hasProcessing ex:AnalyseCalls, dpv:TransferStatistics ;
+    dpv:hasDataProcessor ex:BetaInc ;
+    dpv:hasRecipientDataController ex:Acme ;
+    # alternative way to explicitly indicate who is implementing this
+    dpv:isImplementedByEntity ex:BetaInc .
+
+ex:CallLogs rdf:type dpv:PersonalData ;
+    skos:broader dpv-pd:CallLog ;
+    # denoting source of data as part of agreement
+    dpv:hasDataSource ex:Acme .
+ex:CallStatistics rdf:type dpv:DerivedData ;
+    skos:broader ex:CallLogs ;
+    dpv:hasDataSource ex:BetaInc .
+
+ex:TransferCallLogs rdf:type dpv:Processing ;
+    skos:broader dpv:Transfer ;
+    dpv:hasPersonalData ex:CallLogs ;
+    # alternative 1 - based on implementation and recipient
+    dpv:isImplementedByEntity ex:Acme ;
+    dpv:hasRecipient ex:BetaInc ; 
+    # alternative 2 - based on data exporter/importer roles
+    dpv:hasDataExporter ex:Acme ;
+    dpv:hasDataImporter ex:BetaInc .
+
+ex:AnalyseCalls rdf:type dpv:Processing ;
+    skos:broader dpv:Analyse ;
+    # no recipients, data is analysed by BetaInc
+    dpv:isImplementedByEntity ex:BetaInc .
+
+ex:TransferStatistics rdf:type dpv:Processing ;
+    skos:broader dpv:Transfer ;
+    dpv:hasPersonalData ex:CallStatistics ;
+    # using alternative 2 from above
+    dpv:hasDataExporter ex:BetaInc ;
+    dpv:hasDataImporter ex:Acme .
+
+-->
+
+</body>
+</html>

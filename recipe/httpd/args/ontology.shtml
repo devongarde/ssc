@@ -101,12 +101,7 @@ To specific a specific version of an ontology, use X.Y, for example:<br>
 <tr><td>ontology.dcterms</td> <td>1.0,1.1</td></tr>
 <tr><td>ontology.ddi</td> <td>1.0</td></tr>
 <tr><td>ontology.doap</td> <td>1.0</td></tr>
-<tr><td>ontology.dpv</td> <td>0.1-2.0 (see below)</td></tr>
-<tr><td>ontology.dpv-gdpr</td> <td>0.1-2.0 (see below)</td></tr>
-<tr><td>ontology.dpv-legal</td> <td>0.5-2.0 (see below)</td></tr>
-<tr><td>ontology.dpv-nace</td> <td>0.1</td></tr>
-<tr><td>ontology.dpv-pd</td> <td>0.4-2.0 (see below)</td></tr>
-<tr><td>ontology.dpv-tech</td> <td>0.8-2.0 (see below)</td></tr>
+<tr><td>ontology.dpv*</td> <td>0.1-2.0 (see below)</td></tr>
 <tr><td>ontology.dqv</td> <td>1.0</td></tr>
 <tr><td>ontology.describedby</td> <td>1.0</td></tr>
 <tr><td>ontology.duv</td> <td>1.0</td></tr>
@@ -161,7 +156,7 @@ To specific a specific version of an ontology, use X.Y, for example:<br>
 <tr><td>ontology.rif</td> <td>1.0</td></tr>
 <tr><td>ontology.role</td> <td>1.0</td></tr>
 <tr><td>ontology.rr</td> <td>1.0</td></tr>
-<tr><td>ontology.schema.org 0.10-27.1</td> <td>(see below)</td></tr>
+<tr><td>ontology.schema.org 0.10-28</td> <td>(see below)</td></tr>
 <tr><td>ontology.sd</td> <td>1.0</td></tr>
 <tr><td>ontology.sioc</td> <td>1.0</td></tr>
 <tr><td>ontology.sioc_s</td> <td>1.0</td></tr>
@@ -237,14 +232,10 @@ BFO (Basic Format Ontology) versions should be
                         Since this is unofficial, both standard English
                         and American dialect spellings are processed.</p>
 
-<h3>DPV, DPV-GDRP</h3>
+<h3>DPV&hellip;</h3>
 
 <p>
-                        The data privacy family of ontologies are not
-                        fully implemented; dpv-owl and dpv-skos are
-                        ignored, and some plumbing classes are omitted
-                        as well. DPV, DPV GDPR, DPV legal, DPV PD and
-                        DPV tech versioning scheme:
+                        The data privacy family of ontologies follow this versioning scheme:
 </p>
                         <table>
                         <tr><td>Use</td> <td>For</td></tr>
@@ -265,8 +256,32 @@ BFO (Basic Format Ontology) versions should be
                             <tr><td>2.0</td> <td>2</td></tr>
                         </table>
 <p>
-                        DPV NACE only has version 0.1.
+The data privacy ontology versions:
 </p>
+<table>
+                            <tr><td>ai</td> <td>2</td></tr>
+                            <tr><td>dpv</td> <td>0.1-2</td></tr>
+                            <tr><td>eu-aiact</td> <td>2</td></tr>
+                            <tr><td>eu-dga</td> <td>2</td></tr>
+                            <tr><td>eu-gdpr</td> <td>2</td></tr>
+                            <tr><td>eu-nis2</td> <td>2</td></tr>
+                            <tr><td>eu-rights</td> <td>2</td></tr>
+                            <tr><td>gdpr</td> <td>0.1-1</td></tr>
+                            <tr><td>justifications</td> <td>2</td></tr>
+                            <tr><td>legal</td> <td>0.5-1</td></tr>
+                            <tr><td>legal-de</td> <td>2</td></tr>
+                            <tr><td>legal-eu</td> <td>2</td></tr>
+                            <tr><td>legal-gb</td> <td>2</td></tr>
+                            <tr><td>legal-ie</td> <td>2</td></tr>
+                            <tr><td>legal-in</td> <td>2</td></tr>
+                            <tr><td>legal-us</td> <td>2</td></tr>
+                            <tr><td>loc</td> <td>2</td></tr>
+                            <tr><td>nace</td> <td>0.1-1</td></tr>
+                            <tr><td>pd</td> <td>0.4-2</td></tr>
+                            <tr><td>rights-eu</td> <td>0.8-2</td></tr>
+                            <tr><td>risk</td> <td>0.8-2</td></tr>
+                            <tr><td>tech</td> <td>0.8-2</td></tr>
+</table>
 
 <h3>Exif, ExifEx</h3>
 
@@ -345,7 +360,7 @@ Most versions of schema (schema.org) should be
                         <tr><td>1.90</td> <td>1.9</td></tr>
                         <tr><td>1.91</td> <td>as version number</td></tr>
                         <tr><td>&hellip;</td> <td>&hellip;</td></tr>
-                        <tr><td>27.1</td> <td>as version number</td></tr>
+                        <tr><td>28</td> <td>as version number</td></tr>
                         </table>
 
 <h3>vCard</h3>

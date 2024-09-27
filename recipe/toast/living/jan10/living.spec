@@ -546,7 +546,6 @@ PASS ../toast/living/jan10/meter.html
 
 PASS ../toast/living/jan10/microdata.html
 20 url_not_found
-34 missing_itemtype
 49 dialect
 53 attribute_required url_not_found
 54 inserted_missing_closure missing_close

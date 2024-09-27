@@ -89,26 +89,27 @@ itemscope_ptr element::examine_itemscope (itemscope_ptr& itemscope, const bool p
         itemscope -> note_itemid (node_.nits (), node_.version (), a_.get_string (a_itemid));
     return itemscope; }
 
-void element::examine_itemprop (itemscope_ptr& itemscope)
+void element::examine_itemprop (itemscope_ptr& itemscope, itemscope_ptr& valuescope)
 {    if (! ancestral_elements_.test (elem_template))
         if (itemscope.get () == nullptr)
         {   if (node_.version ().mjr () >= 10)
                 if (ancestral_attributes_.test (a_id)) // an ancestral id suggests an itemref
-                    pick (nit_no_itemscope, ed_jul20, "5.2.2 Items", es_comment, ec_microdata, "if the ancestral ID is not referenced by an ITEMREF elsewhere, then ITEMPROP requires ITEMSCOPE on the current or an ancestral element");
-                else pick (nit_no_itemscope, ed_jul20, "5.2.2 Items", es_warning, ec_microdata, "ITEMPROP requires ITEMSCOPE on the current or an ancestral element"); }
+                    pick (nit_no_itemscope, ed_jul20, "5.2.2 Items", es_comment, ec_microdata, "if the ancestral ID is not referenced by an ITEMREF elsewhere, then ITEMPROP requires ITEMSCOPE an ancestral element");
+                else pick (nit_no_itemscope, ed_jul20, "5.2.2 Items", es_warning, ec_microdata, "ITEMPROP requires ITEMSCOPE on an ancestral element"); }
         else
         {   ::std::string value (get_microdata_value ());
             const bool is_link = (tag () == elem_a) || (tag () == elem_link) || (tag () == elem_area);
-            const bool mummy_expected = (a_.known (a_itemscope) || a_.known (a_itemtype));
-            const bool check_mummy = mummy_expected && itemscope -> has_parent2 ();
             for (auto name : a_.get_x < attr_itemprop > ())
-                if (! mummy_expected) itemscope -> note_itemprop (node_.nits (), node_.version (), name, value, is_link, *page_);
-                else if (check_mummy) itemscope -> parent2 ().lock () -> note_itemprop (node_.nits (), node_.version (), name, value, itemscope, *page_);
-                else if (ancestral_attributes_.test (a_id))
-                    if (ancestral_attributes_.test (a_itemscope)) pick (nit_missing_itemtype, ed_jul20, "5.2.2 Items", es_info, ec_schema, "if the ancestral ID is not referenced by an ITEMREF elsewhere, then, although valid with an ITEMSCOPE, ", quote (name), " may require an ancestral ITEMTYPE");
-                    else pick (nit_missing_itemtype, ed_jul20, "5.2.2 Items", es_info, ec_schema, "if the ancestral ID is not referenced by an ITEMREF elsewhere, then, although valid with an ITEMSCOPE, ", quote (name), " may require an ancestral ITEMTYPE or ITEMSCOPE");
-                else if (ancestral_attributes_.test (a_itemscope)) pick (nit_missing_itemtype, ed_jul20, "5.2.2 Items", es_warning, ec_schema, "although valid with an ITEMSCOPE, ", quote (name), " may require an ancestral ITEMTYPE");
-                    else pick (nit_missing_itemtype, ed_jul20, "5.2.2 Items", es_warning, ec_schema, "although valid with an ITEMSCOPE, ", quote (name), " may require an ancestral ITEMTYPE or ITEMSCOPE"); } }
+            {   if (a_.known (a_itemscope))
+                {   if (itemscope -> note_itemprop (nits (), node_.version (), name, value, valuescope, *page_)) return; }
+                else if (itemscope -> note_itemprop (nits (), node_.version (), name, value, is_link, *page_)) return;
+                if (ancestral_attributes_.test (a_id))
+                    if (ancestral_attributes_.test (a_itemscope)) pick (nit_missing_itemtype, ed_jul20, "5.2.2 Items", es_comment, ec_schema, "if the ancestral ID is not referenced by an ITEMREF elsewhere, then ", quote (name), " may require an appropriate ancestral ITEMTYPE");
+                    else pick (nit_missing_itemtype, ed_jul20, "5.2.2 Items", es_info, ec_schema, "if an ancestral ID is not referenced by an ITEMREF, then ", quote (name), " requires an ancestral ITEMSCOPE, preferably with an ITEMTYPE");
+                else if (itemscope -> example ()) pick (nit_debug, es_comment, ec_schema, "with an ancestral example ITEMTYPE, am presuming the unrecognised ITEMPROP ", quote (name), " is valid");
+                else if (ancestral_attributes_.test (a_itemscope)) pick (nit_missing_itemtype, ed_jul20, "5.2.2 Items", es_comment, ec_schema, quote (name), " may require an appropriate ancestral ITEMTYPE");
+                else if (ancestral_attributes_.test (a_itemtype)) pick (nit_requires_itemscope, ed_jul20, "5.2.2 Items", es_warning, ec_schema, quote (name), " requires an appropriate ancestral ITEMSCOPE");
+                else pick (nit_requires_itemscope, ed_jul20, "5.2.2 Items", es_warning, ec_schema, quote (name), " requires an ancestral ITEMSCOPE, preferably with an ITEMTYPE"); } } }
 
 void element::examine_itemref (const itemscope_ptr& itemscope)
 {   if (icarus_) pick (nit_icarus, es_warning, ec_attribute, "Oh Momus, oh Icarus, why do you torment me so (with ITEMREF recursion)?");
@@ -135,10 +136,11 @@ vit_t element::own_itemtype () const
     return itemscope_ -> type (); }
 
 void element::walk_itemprop (itemscope_ptr itemscope)
-{   {   reverter < itemscope_ptr > r (itemscope_);
+{   itemscope_ptr precurse (itemscope_);
+    {   reverter < itemscope_ptr > r (itemscope_);
         if (a_.known (a_itemscope)) examine_itemscope (itemscope, false);
         if (a_.known (a_itemtype)) examine_itemtype (itemscope);
-        if (a_.known (a_itemprop)) examine_itemprop (itemscope);
+        if (a_.known (a_itemprop)) examine_itemprop (precurse, itemscope);
         if (a_.known (a_itemref)) examine_itemref (itemscope); }
     for (element* p = child_; p != nullptr; p = p -> sibling_)
         p -> walk_itemprop (itemscope); }
@@ -146,11 +148,11 @@ void element::walk_itemprop (itemscope_ptr itemscope)
 vit_t element::supplied_itemtypes ()
 {   return own_itemtype (); }
 
-vit_t element::sought_itemtypes ()
+vit_t element::sought_itemtypes (nitpick& nits)
 {   vit_t res;
     VERIFY_NOT_NULL (itemscope_, __FILE__, __LINE__);
     if (a_.known (a_itemprop))
         for (auto name : a_.get_x < attr_itemprop > ())
-            for (auto i : itemscope_ -> sought_itemtypes (node_.version (), name))
+            for (auto i : itemscope_ -> sought_itemtypes (nits, node_.version (), name))
                 res.push_back (i);
     return res; }

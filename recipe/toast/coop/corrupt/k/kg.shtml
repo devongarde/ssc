@@ -6,12 +6,12 @@
 <!--#include virtual="/plumbing/header.inc" -->
 <!--#include virtual="/plumbing/product-section.inc" --><!--#include virtual="/plumbing/html-top.inc" -->
 
-<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" id="poet1">
+<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" itemref="poet1"></div><div id="poet1">
   <meta itemprop="name" content="<!--#echo encoding="none" var="poet1" -->">
   <meta itemprop="sameAs url" content="/authors/index.shtml#karacosta">
 </div>
 
-<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" id="poetA">
+<div itemprop="author copyrightholder" itemscope itemtype="https://schema.org/Person" itemref="poetA"></div><div id="poetA">
   <meta itemprop="name" content="<!--#echo encoding="none" var="poetA" -->">
   <meta itemprop="sameAs url" content="/authors/index.shtml#serrano">
 </div>
