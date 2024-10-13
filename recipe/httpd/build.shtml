@@ -23,12 +23,11 @@
 <p>
 <a href="/index.shtml"><!--#echo encoding="none" var="short" --></a> can be built on various
 <a href="https://en.wikipedia.org/wiki/Unix">unii</a> with <a href="https://cmake.org/">CMake</a> and
-<a href="https://gcc.gnu.org/">gcc</a> or <a href="https://clang.llvm.org/">clang</a>
+<a href="https://clang.llvm.org/">clang</a> or <a href="https://gcc.gnu.org/">gcc</a>
 for <a href="https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4661.html">C++ 17</a>
 or better, or <a href="https://visualstudio.microsoft.com/">Visual Studios 2017 / 2019 / 2022</a>
 under <a href="https://en.wikipedia.org/wiki/Microsoft_Windows">Windows</a>. I have
-built &amp; tested a 64&ndash;bit version in various OSs on intel/amd &amp; arm64
-(m2) architecture.
+built &amp; tested it under various OSs on some amd64 &amp; arm64 architectures.
 </p>
 
 <p>
@@ -41,18 +40,14 @@ features are available.
 <h3>Common dependencies</h3>
 
 <p>
-The Visual Studio solutions use <a href="https://vcpkg.io/">vcpkg</a>, so dependencies should be
-automagically installed.
-</p>
-
-<p>
-Otherwise,
 <a href="/index.shtml"><!--#echo encoding="none" var="short" --></a>
 needs <a href="https://boost.org/">boost version 1.75 or better</a>,
-a recent copy of <a href="https://icu-project.org/">the ICU libraries</a>,
+a recent copy of <a href="https://icu-project.org/">the ICU libraries</a> (or define NOICU),
 <a href="https://github.com/Microsoft/GSL">Microsoft&rsquo;s GSL library</a> (or #define NO_GSL), and a
 <a href="https://curl.se/">recent version of libcurl</a> (note that
 <a href="https://curl.se/libcurl/c/threadsafe.html">libcurl requires an underlying thread&ndash;safe SSL library</a>).
+If you want to experiment with the still&ndash;in&ndash;development GUI version, you'll also
+need a recent version of <a href="https://wxwidgets.org/">wxWidgets</a>.
 Usually, an Operating System&rsquo;s package manager has appropriate versions ready to install.
 </p>
 
@@ -66,15 +61,19 @@ BOOST: if you&rsquo;re not using your operating system&rsquo;s packaged flavour
 of <a href="https://boost.org/">boost</a>, then set BOOST to your boost source root directory;
 </li>
 <li>
+CURL: if you&rsquo;re not using your operating system&rsquo;s packaged flavour
+of <a href="https://curl.se/">curl</a>, then set CURL to your curl source root directory;
+</li>
+<li>
+GSL: set it to your <a href="https://github.com/microsoft/GSL">GSL</a> root directory.
+</li>
+<li>
 ICU_ROOT: if you&rsquo;re not using your operating system&rsquo;s packaged <a href="https://icu-project.org/">ICU</a>,
 set ICU_ROOT to your ICU source root directory;
 </li>
 <li>
-GSL: set it to your GSL root directory.
-</li>
-<li>
 WX_ROOT: if you&rsquo;re building the gui front end to ssc, you&rsquo;ll need to
-install wxWidgets and set WX_ROOT to its installation directory.
+install <a href="https://wxwidgets.org/">wxWidgets</a> and set WX_ROOT to its installation directory.
 </li>
 </ul>
 
@@ -124,7 +123,7 @@ You will need <a href="https://cmake.org/">CMake</a> 3.19 or better. On <a href=
 <a href="https://refspecs.linuxfoundation.org/LSB_3.0.0/LSB-PDA/LSB-PDA/lsbrelease.html">lsb-release</a>.
 These can be found in most distributions&rsquo; standard
 packages. For macos, I used <a href="https://www.macports.org/">macports</a>,
-but <a href="https://brew.sh/">brew</a> is good too. From the
+but <a href="https://brew.sh/">brew</a> should be good too. From the
 home directory, compile a normal build thus:
 </p>
 
@@ -163,29 +162,11 @@ given that means things are already in the required state.
 </p>
 
 <p>
-The following have, at some point, been successfully built as x64 amd:
+<a href="/index.shtml"><!--#echo encoding="none" var="short" --></a> has been successfully built in
+<a href="https://openbsd.org/">OpenBSD</a>, <a href="https://freebsd.org/">FreeBSD</a>, <a href="https://linux.org/">Linux</a>,
+&amp; <a href="https://en.wikipedia.org/wiki/MacOS">MacOS</a> on AMD64, and in recent versions of
+<a href="https://linux.org/">Linux</a> &amp; <a href="https://en.wikipedia.org/wiki/MacOS">MacOS</a> under ARM64. 
 </p>
-
-<table>
-<tr><td><a href="https://freebsd.org/">FreeBSD</a></td> <td><a href="https://freebsd.org/">FreeBSD 13.2 / 13.1 / 12.4 / 12.3</a></td></tr>
-<tr><td><a href="https://linux.org/">Linux</a></td> <td><a href="https://almalinux.org/">Alma Linux 9</a>, <a href="https://aosc.io/">AOSC</a>,
-<a href="https://www.centos.org/">Centos</a><a href="https://docs.centos.org/en-US/8-docs/"> 8 </a>/<a href="https://www.centos.org/stream9/"> 9</a>,
-<a href="https://get.opensuse.org/tumbleweed/">SuSE Tumbleweed</a>, <a href="https://ubuntu.com/">Ubuntu</a>
-<a href="https://releases.ubuntu.com/20.04/">20.04 </a>/<a href="https://www.releases.ubuntu.com/22.04/"> 22.04</a></td></tr>
-<tr><td><a href="https://en.wikipedia.org/wiki/MacOS">MacOS</a></td> <td><a href="https://en.wikipedia.org/wiki/MacOS">MacOS Sonoma,
-Ventura, Monterey, Big Sur, Catalina and Mojave</a>;
-older versions of ssc have been built under <a href="https://en.wikipedia.org/wiki/MacOS">High Sierra, Sierra, El Capitan, Yosemite</a></td></tr>
-<tr><td><a href="https://openbsd.org/">OpenBSD</a></td> <td><a href="https://openbsd.org/">7.4 / 7.3 / 7.2 / 7.1 / 7.0 / 6.9 / 6.8</a></td></tr>
-</table>
-
-<p>
-The following have been successfully built as arm64:
-</p>
-
-<table>
-<tr><td><a href="https://linux.org/">Linux</a></td> <td><a href="https://www.centos.org/stream9/">Centos 9</a></td></tr>
-<tr><td><a href="https://en.wikipedia.org/wiki/MacOS">MacOS</a></td> <td><a href="https://en.wikipedia.org/wiki/MacOS">Sonoma, Ventura</a></td></tr>
-</table>
 
 <p>
 The current version of <a href="/index.shtml"><!--#echo encoding="none" var="short" --></a> requires the current version of an operating
@@ -227,7 +208,8 @@ for your build account in login.conf.
 <p>
 Certain versions of macos clang produce buggy code, whether or not
 optimisations are applied. Use an alternative compiler if you want
-a stable executable.
+a stable executable. I accept that&rsquo;s probably due to a bug in
+ssc, but I&rsquo;ve not found it.
 </p>
 
 <h2>Testing</h2>

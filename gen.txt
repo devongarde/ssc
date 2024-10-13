@@ -52,6 +52,17 @@ These options are only available on the command line:
 
 --ontology.list         List known schema versions, then exit.
 
+-q                      Use a simple shell. The shell accepts the
+                        following commands:
+                            c   configure: enter a series of command
+                                line switches, one per line, then a
+                                full stop on a line by itself
+                            C   clear the current configuration
+                            h   a summary of available commands
+                            p   print the current configuration
+                            q   quit
+                            r   run using the current configuration
+
 -V                      Show version details, then exit.
 
 --validation            List extendable attribute types, then exit.

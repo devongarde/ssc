@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-File Info
+Copyright (c) 2020-2024 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -20,6 +20,37 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 
+/*  version build info chars
+
+a
+b   
+c   CURLY
+d   DEBUG
+e
+f   FUDDY
+g
+h
+i
+j   JSNIC
+k
+l
+m
+n   NPS_GEN
+o
+p
+q
+r
+s   SPELT
+t
+u
+v
+w
+x   WXS
+y
+z
+
+*/
+
 #define SSC_LU "ssc.lu"
 #define DYLANHARRIS_ORG "dylanharris.org"
 
@@ -31,8 +62,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 3
-#define VERSION_STRING "0.2.3"
+#define VERSION_RELEASE 4
+#define VERSION_STRING "0.2.4"
 #define EDITION_STANDARD "standard"
 
 #define NBSP "&nbsp;"
@@ -50,18 +81,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define DEFAULT_LINE_LENGTH 72
 #define DESCRIPTION_LENGTH 60
 
-#if defined (WX) && defined (BEASTIES)
-#error cannot combine WX and BEASTIES
-#elif defined (WX)
+#if defined (WX)
 #define EDITION "/g"
 #define EDITION_LONG "gui"
-#elif defined (BEASTIES)
-#define EDITION "/s"
-#define EDITION_LONG "server"
-#else
+#else // WX
 #define EDITION
 #define EDITION_LONG EDITION_STANDARD
-#endif
+#endif // WX
 
 #if defined (DEBUG) || defined (_DEBUG) || defined (SSC_ASSERTS)
 #  ifndef DEBUG
@@ -246,10 +272,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include <atomic>
 #endif // NO_FRED
 
-#if ! defined (NO_FRED) && ! defined (FUDDYDUDDY) && ! defined (VS2017) && ! defined (VS2019)
-#define BEASTCHAR "w"
-#else
-#define BEASTCHAR
+#if defined (NO_FRED) || defined (FUDDYDUDDY) || defined (VS2017) || defined (VS2019)
+#define NOSERV
 #endif // ...
 
 #ifndef NOICU
@@ -292,6 +316,10 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #if BOOST_MINOR > 78
 #define BOOST_FILESYSTEM_VERSION 4
 #endif // BOOST_MINOR
+
+#if BOOST_MINOR > 85
+#define NO_JSON_ERR
+#endif
 
 #if BOOST_FILESYSTEM_VERSION == 4
 #define BOOST_COPY_OPTION ::boost::filesystem::copy_options
@@ -387,27 +415,6 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #pragma warning (pop)
 #endif // _MSC_VER
 #endif // NO_JSONIC
-
-#ifdef BEASTIES
-#ifdef _MSC_VER
-#pragma warning (push, 3)
-#pragma warning (disable : 4459) // declaration of context hides global declaration
-#endif // _MSC_VER
-#include <boost/beast/core.hpp>
-#include <boost/beast/http.hpp>
-#include <boost/beast/ssl.hpp>
-#include <boost/beast/websocket.hpp>
-#include <boost/beast/version.hpp>
-#include <boost/asio/bind_executor.hpp>
-#include <boost/asio/dispatch.hpp>
-#include <boost/asio/signal_set.hpp>
-#include <boost/asio/strand.hpp>
-#include <boost/make_unique.hpp>
-#include <boost/optional.hpp>
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif // _MSC_VER
-#endif // BEASTIES
 
 #ifdef WX
 #define WXS "x"
@@ -700,7 +707,7 @@ CONSTEXPR uint32_t uint32_category_mask =   0xF0000000;
 // Enable this to see full messages that would otherwise be generated when using -T switch, roughly speaking
 // #define EXPAND_TEST "t"
 
-#define BUILD_INFO   DBG_STATUS FUDDY CURLY JSNIC NPS_GEN SPELT BEASTCHAR WXS ":" BUILD_OS ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER
+#define BUILD_INFO   DBG_STATUS FUDDY CURLY JSNIC NPS_GEN SPELT WXS ":" BUILD_OS ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER
 #define BASE_TITLE   FULLNAME " v" VERSION_STRING EDITION " (" WEBADDR ")\n"
 #define SIMPLE_TITLE BASE_TITLE COPYRIGHT_TEXT "\n"
 #define FULL_TITLE   BASE_TITLE COPYRIGHT "\n" "[" __DATE__ " " __TIME__  "] [" BUILD_INFO "]" "\n"
@@ -713,7 +720,6 @@ extern const char* test_title;
 extern const char* simple_title;
 extern const char* full_title;
 
-// I can't remember where these are! These macros do seem to confuse VC++, which is not useful.
 
 #define DEFAULT_COPY(XXX, DDD) \
     XXX (const XXX & xxx) = DDD; \

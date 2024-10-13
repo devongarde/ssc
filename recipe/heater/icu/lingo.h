@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-File Info
+Copyright (c) 2020-2024 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -20,8 +20,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 
-#ifndef NOICU
 #include "main/context.h"
+
+#ifdef NOICU
+class lingo
+{
+public:
+    DEFAULT_CONSTRUCTORS (lingo);
+    explicit lingo (nitpick& , const ::std::string& ) { }
+    static void init (nitpick& ) { }
+    static void identify_dialects (nitpick& ) { }
+    static ::std::string standard_dialect (const ::std::string& ) { }
+};
+#else // NOICU
 #include "icu/wrapper.h"
 #include "icu/charset.h"
 
@@ -34,7 +45,7 @@ class lingo
     static bool borked_;
     static vstr_t dicts_;
 public:
-    lingo () = default;
+    DEFAULT_CONSTRUCTORS (lingo);
     explicit lingo (nitpick& nits, const ::std::string& lang);
     static void init (nitpick& nits);
     static void identify_dialects (nitpick& nits);

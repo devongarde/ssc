@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-File Info
+Copyright (c) 2020-2024 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -8248,6 +8248,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { 0, 10 }, { 0, 0 }, sch_emergencyservice, sch_hospital },
     { { 0, 10 }, { 0, 0 }, sch_emergencyservice, sch_policestation },
     { { 10, 0 }, { 0, 0 }, sch_energyefficiencyenumeration, sch_energystarcertified },
+    { { 29, 0 }, { 0, 0 }, sch_energyefficiencyenumeration, sch_energystarenergyefficiencyenumeration },
     { { 10, 0 }, { 0, 0 }, sch_energyefficiencyenumeration, sch_euenergyefficiencyenumeration },
     { { 0, 10 }, { 0, 0 }, sch_entertainmentbusiness, sch_adultentertainment },
     { { 0, 10 }, { 0, 0 }, sch_entertainmentbusiness, sch_amusementpark },
@@ -8677,6 +8678,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { 12, 0 }, { 0, 0 }, sch_mediamanipulationratingenumeration, sch_stagedcontent },
     { { 12, 0 }, { 0, 0 }, sch_mediamanipulationratingenumeration, sch_transformedcontent },
     { { 7, 3 }, { 0, 0 }, sch_mediaobject, sch_3dmodel },
+    { { 29, 0 }, { 0, 0 }, sch_mediaobject, sch_ampstory },
     { { 0, 10 }, { 0, 0 }, sch_mediaobject, sch_audioobject },
     { { 1, 0 }, { 0, 0 }, sch_mediaobject, sch_datadownload },
     { { 0, 10 }, { 0, 0 }, sch_mediaobject, sch_imageobject },
@@ -8971,6 +8973,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { 0, 10 }, { 0, 0 }, sch_organisation, sch_performinggroup },
     { { 21, 0 }, { 0, 0 }, sch_organisation, sch_politicalparty },
     { { 3, 5 }, { 0, 0 }, sch_organisation, sch_project },
+    { { 29, 0 }, { 0, 0 }, sch_organisation, sch_researchorganisation },
     { { 14, 0 }, { 0, 0 }, sch_organisation, sch_searchrescueorganisation },
     { { 0, 10 }, { 1, 10 }, sch_organisation, sch_sportsteam },
     { { 1, 11 }, { 0, 0 }, sch_organisation, sch_sportsorganisation },
@@ -9075,8 +9078,9 @@ microdata_hierachy ontology_hierarchy [] =
     { { 11, 0 }, { 0, 0 }, sch_pricetypeenumeration, sch_listprice },
     { { 11, 0 }, { 0, 0 }, sch_pricetypeenumeration, sch_msrp },
     { { 11, 0 }, { 0, 0 }, sch_pricetypeenumeration, sch_minimumadvertisedprice },
-    { { 11, 0 }, { 0, 0 }, sch_pricetypeenumeration, sch_srp },
     { { 11, 0 }, { 0, 0 }, sch_pricetypeenumeration, sch_saleprice },
+    { { 11, 0 }, { 0, 0 }, sch_pricetypeenumeration, sch_srp },
+    { { 29, 0 }, { 0, 0 }, sch_pricetypeenumeration, sch_strikethroughprice },
     { { 3, 0 }, { 0, 0 }, sch_pricespecification, sch_compoundpricespecification },
     { { 0, 99 }, { 0, 0 }, sch_pricespecification, sch_deliverychargespecification },
     { { 0, 99 }, { 0, 0 }, sch_pricespecification, sch_paymentchargespecification },

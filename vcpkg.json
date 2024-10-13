@@ -1,9 +1,0 @@
-{
-  "dependencies": [
-    "boost",
-    "curl",
-    "icu",
-    "ms-gsl",
-    "wxwidgets"
-  ]
-}

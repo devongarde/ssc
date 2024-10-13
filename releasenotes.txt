@@ -3,6 +3,14 @@ static site checker
 https://ssc.lu/
 (c) 2020-2024 Dylan Harris
 
+0.2.4
+- OpenBSD 7.6
+- remove Windows build dependency on vcpkg
+- added nooopener-allow-popups
+- offer a simple shell
+- various bug fixes
+- underlying work
+
 0.2.3
 - Living Standard October 2024
 - schema.org version 28

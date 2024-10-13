@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-File Info
+Copyright (c) 2020-2024 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -44,7 +44,7 @@ void output_streams_t::init (nitpick& nits, const ::std::string& s)
 
 void output_streams_t::out (const ::std::string& s) const
 {   lox l (lox_out);
-    if (! invalid ()) *fos_ << s;
+    if (! invalid () && ! context.serve ()) *fos_ << s;
 #ifndef WX
     else
 #else // WX
@@ -62,8 +62,8 @@ void output_streams_t::console (const ::std::string& s) const
 
 void output_streams_t::err (const ::std::string& s) const
 {   lox l (lox_out);
-    if (fos_) *fos_ << ensane (s);
+    if (! invalid () && ! context.serve ()) *fos_ << s;
 #ifdef WX
     else if (wx_) app -> append (ensane (s));
 #endif // WX
-    else ::std::cout << ensane (s); }
+    else ::std::cout << s; }

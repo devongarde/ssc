@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-File Info
+Copyright (c) 2020-2024 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -22,9 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "feedback/nitpick.h"
 #include "feedback/nitout.h"
 #include "main/output.h"
-#ifdef BEASTIES
-#include "main/server.h"
-#endif // BEASTIES
 #include "stats/stats.h"
 #include "parser/html_version.h"
 #include "ontology/ontology_version.h"
@@ -99,9 +96,6 @@ class context_t
     e_svg_processing_mode svg_mode_ = spm_none;
     e_quote_style   quote_style_ = qs_none;
     e_do            do_ = do_booboo;
-#ifdef BEASTIES
-    server_t        server_;
-#endif // BEASTIES
     aset_t          rpt_;
     template < typename T > void mac (const e_nit_macro ns, const T n)
     {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
@@ -282,56 +276,7 @@ public:
     context_t& ruby (const bool b) { ruby_ = b; mac (nm_context_ruby, b); return *this; }
     context_t& safari (const bool b) { safari_ = b; mac (nm_context_safari, b); return *this; }
     context_t& secret (const ::std::string& s) { secret_ = s; return *this; }
-#ifdef BEASTIES
-    context_t& serve (const bool b)
-    {   serve_ = b;
-        mac (nm_context_server, b);
-        return *this; }
-    context_t& server_accept (nitpick& nits, const ::std::string& from, const ::std::string& to = ::std::string ())
-    {   server_.accept (nits, from, to);
-        mac (nm_context_server_address_from, from);
-        mac (nm_context_server_address_to, to);
-        return *this; }
-    context_t& server_address (nitpick& nits, const ::std::string& s)
-    {   server_.address (nits, s);
-        mac (nm_context_server_address, s);
-        return *this; }
-    context_t& server_port (nitpick& nits, const int n)
-    {   server_.port (nits, n);
-        mac (nm_context_server_port, n);
-        return *this; }
-    context_t& server_root (nitpick& nits, const ::std::string& s)
-    {   server_.root (nits, s);
-        mac (nm_context_server_root, s);
-        return *this; }
-    // certs and passwords are not recorded
-    context_t& server_parameters (nitpick& nits, const ::std::string& s)
-    {   server_.parameters_cert (nits, s);
-        return *this; }
-    context_t& server_passfile (nitpick& nits, const ::std::string& s)
-    {   server_.passfile (nits, s);
-        return *this; }
-    context_t& server_password (nitpick& nits, const ::std::string& s)
-    {   server_.password (nits, s);
-        return *this; }
-    context_t& server_private (nitpick& nits, const ::std::string& s)
-    {   server_.private_cert (nits, s);
-        return *this; }
-    context_t& server_public (nitpick& nits, const ::std::string& s)
-    {   server_.public_cert (nits, s);
-        return *this; }
-#else // BEASTIES
-    context_t& serve (const bool ) { serve_ = false; mac (nm_context_server, false); return *this; }
-    context_t& server_accept (nitpick& , const ::std::string& , const ::std::string& ) { return *this; }
-    context_t& server_address (nitpick& , const ::std::string& ) { return *this; }
-    context_t& server_port (nitpick& , const int ) { return *this; }
-    context_t& server_root (nitpick& , const ::std::string& ) { return *this; }
-    context_t& server_parameters (nitpick& , const ::std::string& ) { return *this; }
-    context_t& server_passfile (nitpick& , const ::std::string& ) { return *this; }
-    context_t& server_password (nitpick& , const ::std::string& ) { return *this; }
-    context_t& server_private (nitpick& , const ::std::string& ) { return *this; }
-    context_t& server_public (nitpick& , const ::std::string& ) { return *this; }
-#endif // BEASTIES
+    context_t& serve (const bool b);
     context_t& set_profile (const flags_t f) { version_.set_profile (f); return *this; }
     context_t& shadow_comment (const bool b) { shadow_comment_ = b; if (b) shadow_enable (true); mac (nm_context_shadow_comment, b); return *this; }
     context_t& shadow_changed (const bool b) { shadow_changed_ = b; if (b) shadow_enable (true); mac (nm_context_shadow_changed, b); return *this; }
@@ -498,6 +443,7 @@ public:
     bool rdfa () const noexcept;
     e_rdf_version rdf_version () const noexcept { return version_.rdf_version (); }
     bool rel () const noexcept { return rel_; }
+    bool repetitive () const noexcept { return serve_ || iterate_; }
     const vstr_t report () const { return report_; }
     e_severity report_error () const noexcept { return report_error_; }
     bool revoke () const noexcept { return revoke_; }
@@ -511,23 +457,7 @@ public:
     const ::boost::filesystem::path& rootp () const { return proot_; }
     bool safari () const noexcept { return safari_; }
     const ::std::string& secret () const { return secret_; }
-#ifdef BEASTIES
     bool serve () const noexcept { return serve_; }
-    ::std::string server_address () const { return server_.address (); }
-    unsigned short server_port () const { return server_.port (); }
-    ::std::string server_root () const { return server_.root_.string (); }
-    ::std::string server_parameters () const { return server_.parameters_; }
-    ::std::string server_passfile () const { return server_.passfile_.string (); }
-    ::std::string server_public () const { return server_.public_; }
-#else // BEASTIES
-    bool serve () const noexcept { return false; }
-    ::std::string address () const { return ::std::string (); }
-    unsigned short server_port () const { return 0; }
-    ::std::string server_root () const { return ::std::string (); }
-    ::std::string server_parameters () const { return ::std::string (); }
-    ::std::string server_passfile () const { return ::std::string (); }
-    ::std::string server_public () const { return ::std::string (); }
-#endif // BEASTIES
     bool shadow_any () const noexcept { return shadow_pages (); }
     bool shadow_comment () const noexcept { return shadow_comment_; }
     bool shadow_changed () const noexcept { return shadow_changed_; }

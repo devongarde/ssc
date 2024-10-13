@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-File Info
+Copyright (c) 2020-2024 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "utility/common.h"
 
+#ifndef NOICU
 class charset_detector_match
 {   const UCharsetMatch* match_;
     UErrorCode err_ = U_ZERO_ERROR;
@@ -109,3 +110,4 @@ public:
     bool valid () const noexcept
     {   if (! context.icu ()) return false;
         return error () <= U_ZERO_ERROR; } };
+#endif // NOICU

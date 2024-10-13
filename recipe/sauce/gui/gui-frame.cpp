@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-File Info
+Copyright (c) 2020-2024 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -84,9 +84,6 @@ BEGIN_EVENT_TABLE (frame_t, wxFrame)
     EVT_MENU (wxID_SAVE, frame_t::OnFileSave)
     EVT_MENU (wxID_SAVEAS, frame_t::OnFileSaveAs)
     EVT_MENU (wxID_SELECTALL, frame_t::OnSelectAll)
-#ifdef BEASTIES
-    EVT_MENU (menu_server, frame_t::OnServer)
-#endif // BEASTIES
     EVT_MENU (menu_shadow, frame_t::OnShadow)
     EVT_MENU (menu_site, frame_t::OnSite)
     EVT_MENU (menu_snippet, frame_t::OnSnippet)
@@ -388,14 +385,6 @@ void frame_t :: OnRoot (wxCommandEvent& )
 
 void frame_t :: OnSelectAll (wxCommandEvent& e)
 {   if (output_ != nullptr) output_ -> OnSelectAll (e); }
-
-#ifdef BEASTIES
-void frame_t :: OnServer (wxCommandEvent& e)
-{   // server_t dlg (this);
-    
-    // dlg.ShowModal ();
-}
-#endif // BEASTIES
 
 void frame_t :: OnShadow (wxCommandEvent& )
 {   shadow_t shad (this);

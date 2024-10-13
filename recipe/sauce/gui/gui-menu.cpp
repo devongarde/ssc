@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-File Info
+Copyright (c) 2020-2024 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -137,9 +137,6 @@ void bar_t :: init ()
     config_ -> Append (menu_nits, "&nits...", "configure the nits themselves");
     config_ -> Append (menu_ontology, "&ontology...", "configure ontological nitpicking");
     config_ -> Append (menu_stats, "&reports...", "select and configure reports");
-#ifdef BEASTIES
-    config_ -> Append (menu_server, "&server...", "configure server mode");
-#endif // BEASTIES
     config_ -> Append (menu_shadow, "sha&dow...", "configure shadow output");
     config_ -> Append (menu_site, "si&te...", "configure website nitpicking");
 #ifndef NOSPELL

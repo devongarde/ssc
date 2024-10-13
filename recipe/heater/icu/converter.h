@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-File Info
+Copyright (c) 2020-2024 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -20,10 +20,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 #include "utility/common.h"
-
-#ifndef NOICU
 #include "feedback/nitpick.h"
 #include "parser/html_version.h"
+
+#ifdef NOICU
+inline ::std::string normalise_utf8 (nitpick& , const ::std::string& s) { return s; }
+#else // NOICU
 
 ::std::string get_standard_converter_name (nitpick& nits, const ::std::string& name);
 ::std::string convert_to_utf8 (nitpick& nits, const ::std::string& name, const void_ptr& vp, const uintmax_t& sz);

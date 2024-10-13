@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-File Info
+Copyright (c) 2020-2024 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -271,18 +271,6 @@ options::options (const context_t& c)
         if (corresponding_ontology_version (es, c.html_ver ()) != c.ontology_ver (es))
             insert < ::std::string > (arg, c.ont_ver (es)); }
 
-#ifdef BEASTIES
-    INSERT_STRING (SERVER, ACCEPT, accept);
-    INSERT_STRING (SERVER, ADDRESS, server_address);
-    INSERT_BOOL (SERVER, ENABLE, serve);
-    INSERT_INT (SERVER, PORT, server_port);
-    INSERT_STRING (SERVER, ROOT, server_root);
-    INSERT_STRING (SERVER, PARAMETERS, server_parameters);
-    INSERT_STRING (SERVER, PASSFILE, server_passfile);
-    INSERT_STRING (SERVER, PUBLIC, server_public);
-    // passwords and private keys not written; use a passfile
-#endif // BEASTIES
-
     INSERT_BOOL (SHADOW, CHANGED, shadow_changed);
     INSERT_BOOL (SHADOW, COMMENT, shadow_comment);
     INSERT_ENUM (t_copy, SHADOW, COPY, copy);
@@ -540,13 +528,13 @@ void options::help (const ::boost::program_options::options_description& aid) co
     res +=  waste_of_space.str ();
     res +=  "\n\n"
             "Configuration file section names precede each switch dot above (e.g.\n"
-            GENERAL ", " LINKS "," WEBSITE "\n"
+            GENERAL_ ", " LINK_ "," WEBSITE_ "\n"
             ", etc.). Option names follow them. For example:\n\n"
-            "[" GENERAL "]\n"
+            "[" GENERAL_ "]\n"
             VERBOSE "=2\n\n"
-            "[" LINKS "]\n"
+            "[" LINK_ "]\n"
             CHECK "=1\n\n"
-            "[" WEBSITE "]\n"
+            "[" WEBSITE_ "]\n"
             EXTENSION "=html\n"
             INDEX "=index.shtml\n"
             SITE "=" DEFAULT_DOMAIN "\n\n"
@@ -646,7 +634,7 @@ void options::init (context_t& c)
         n GENERAL THREAD N GENERAL DEFTHRD              
         o output         O rpt ext once
         p                P NIT OVERRIDE
-        q
+        q shell          Q sockets (beasties)
         r no revoke chks R HTML revision
         s domain name    S stats
         t template       T test mode
@@ -676,6 +664,7 @@ void options::init (context_t& c)
         (HELP ",h", ::boost::program_options::bool_switch (), "Output this information and exit.")
         (HTML SNIPPET ",H", ::boost::program_options::value < ::std::string > (), "Only nitpick the given snippet of HTML.")
         (ONTOLOGY LIST, ::boost::program_options::bool_switch (), "List known ontology schema for microdata andor RDFa, then exit.")
+        (SHELL ",q", ::boost::program_options::bool_switch (), "Use simple shell (h for help, q to quit).")
         (SWITCHES ",A", ::boost::program_options::bool_switch (), "Report switches seen, and exit.")
         (VALIDATION, ::boost::program_options::bool_switch (), "List attribute types that can be given additional 'valid' values, then exit.")
         (VERSION ",V", ::boost::program_options::bool_switch (), "Display version and copyright gen, then exit.")
@@ -763,20 +752,6 @@ void options::init (context_t& c)
         (NITS SPEC, ::boost::program_options::bool_switch (), "Output nits in test spec format (requires -T).")
         (NITS DONT SPEC, ::boost::program_options::bool_switch (), "Do not output nits in test spec format.")
         (NITS XXX, ::boost::program_options::value < ::std::string > (), "Output nits on cache usage from page names containing argument (empty for no report); may be combined with " NITS CACHE ".")
-
-#ifndef BEASTIES
-        (SERVER ACCEPT, ::boost::program_options::value < ::std::string > (), "Accept connections from this address range; format: 'addr/mask', default '127.0.0.1/32', non-local addresses rejected (use a proxy)")
-        (SERVER ADDRESS, ::boost::program_options::value < ::std::string > (), "Server serves on this ip address (default '*', e.g. all available on machine).")
-        (SERVER ENABLE, ::boost::program_options::bool_switch (), "Enable web server and sockets")
-        (SERVER DONT ENABLE, ::boost::program_options::bool_switch (), "Disable web server and sockets .")
-        (SERVER PARAMETERS, ::boost::program_options::value < ::std::string > (), "File containing SSL certificate parameters.")
-        (SERVER PASSFILE, ::boost::program_options::value < ::std::string > (), "File containing SSL certificate password, if any.")
-        (SERVER PASSWORD, ::boost::program_options::value < ::std::string > (), "SSL certificate password (not accepted on the command line).")
-        (SERVER PORT, ::boost::program_options::value < ::std::string > () -> composing (), "Server serves on these ports (default 80,443); may be repeated.")
-        (SERVER PRIVATE, ::boost::program_options::value < ::std::string > (), "File containing SSL private key.")
-        (SERVER PUBLIC, ::boost::program_options::value < ::std::string > (), "File containing SSL public key.")
-        (SERVER ROOT, ::boost::program_options::value < ::std::string > (), "Server serves pages from this " REPERTOIRE " (default '.').")
-#endif // BEASTIES
 
 #ifdef NOSPELL
         (SPELL ACCEPT, ::boost::program_options::value < vstr_t > () -> composing (), "Ignore this word in spell checks; may be repeated.")
@@ -1048,19 +1023,6 @@ void options::init (context_t& c)
         (NITS WATCH, ::boost::program_options::bool_switch (), "Output debug nits (for automation).")
         (NITS DONT WATCH, ::boost::program_options::bool_switch (), "Do not output debug nits.")
 
-#ifdef BEASTIES
-        (SERVER ACCEPT, ::boost::program_options::value < ::std::string > (), "Accept connections from this address range; format: 'addr/mask', default '127.0.0.1/32', non-local addresses rejected (use a proxy)")
-        (SERVER ADDRESS, ::boost::program_options::value < ::std::string > (), "Server serves on this ip address (default '*', e.g. all available on machine).")
-        (SERVER ENABLE, ::boost::program_options::bool_switch (), "Enable web server and sockets")
-        (SERVER DONT ENABLE, ::boost::program_options::bool_switch (), "Disable web server and sockets .")
-        (SERVER PARAMETERS, ::boost::program_options::value < ::std::string > (), "File containing SSL certificate parameters.")
-        (SERVER PASSFILE, ::boost::program_options::value < ::std::string > (), "File containing SSL certificate password, if any.")
-        (SERVER PORT, ::boost::program_options::value < ::std::string > () -> composing (), "Server serves on these ports (default 80,443); may be repeated.")
-        (SERVER PRIVATE, ::boost::program_options::value < ::std::string > (), "File containing SSL private key.")
-        (SERVER PUBLIC, ::boost::program_options::value < ::std::string > (), "File containing SSL public key.")
-        (SERVER ROOT, ::boost::program_options::value < ::std::string > (), "Server serves pages from this " REPERTOIRE " (default '.').")
-#endif // BEASTIES
-
         (SHADOW CHANGED, ::boost::program_options::bool_switch (),
 #ifndef NOLYNX
                             "link/"
@@ -1206,12 +1168,6 @@ void options::init (context_t& c)
         (VALIDATION MICRODATAARG, ::boost::program_options::bool_switch (), "Validate HTML5 microdata.")
         (VALIDATION DONT MICRODATAARG, ::boost::program_options::bool_switch (), "Do not validate HTML5 microdata.")
         	;
-
-#ifdef BEASTIES
-    risky_.add_options ()
-        (SERVER PASSWORD, ::boost::program_options::value < ::std::string > (), "SSL certificate password (not accepted on the command line).")
-            ;
-#endif // BEASTIES
 
     for (int i = s_none + 1; i < s_error; ++i)
     {   const e_ontology es = static_cast < e_ontology > (i);
@@ -1467,6 +1423,9 @@ void options::parse (context_t& c, output_streams_t& o, nitpick& nits, const vst
         c.todo (do_simple);
         return; }
 
+    if (var_ [SHELL].as < bool > ())
+        context.serve (true);
+    
     if (! c.cgi () && var_.count (ENVIRONMENT QUERY_STRING))
     {   nits.set_context (0, "Environment");
         c.environment (env_query_string, var_ [ENVIRONMENT QUERY_STRING].as < ::std::string > ());
@@ -1512,7 +1471,7 @@ void options::parse (context_t& c, output_streams_t& o, nitpick& nits, const vst
     nits.set_context (0, "Configuration");
 
     if (c.cgi ()) c.todo (do_cgi);
-    else if (! var_.count (WEBSITE ROOT))
+    else if (! context.serve () && ! var_.count (WEBSITE ROOT))
     {   c.domsg ("\n" TYPE_HELP "\n");
         c.todo (do_simple);
         return; }
@@ -1527,8 +1486,8 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
             .icu (true).info (false).jsonld (false).links (false).load_css (true).main (false).md_export (false).mf_verify (false)
             .microdata (false).nids (true).nits (false).nits_nits_nits (true).not_root (false).once (false).ontology (true).presume_tags (false)
             .progress (false).rdfa (false).rel (false).revoke (false).rfc_1867 (true).rfc_1942 (true).rfc_1980 (true).rfc_2070 (true).rpt_opens (false)
-            .shadow_changed (false).shadow_comment (false).shadow_enable (false).shadow_space (false).shadow_ssi (false).spell (false).ssi (false)
-            .stats (rcb_page, false).stats (rcb_summary, false).unknown_class (false).update (false);
+            .serve (false).shadow_changed (false).shadow_comment (false).shadow_enable (false).shadow_space (false).shadow_ssi (false).spell (false)
+            .ssi (false).stats (rcb_page, false).stats (rcb_summary, false).unknown_class (false).update (false);
 
 #ifndef NO_FRED
     if (var_.count (GENERAL THREAD)) c.fred (var_ [GENERAL THREAD].as < int > ());
@@ -1935,29 +1894,6 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
         yea_nay (c, &context_t::ontology, nits, ONTOLOGY VERIFY, ONTOLOGY DONT VERIFY);
         if (var_.count (ONTOLOGY ROOT)) c.export_root (nix_path_to_local (var_ [ONTOLOGY ROOT].as < ::std::string > ()));
         if (var_.count (ONTOLOGY VIRTUAL)) c.exports (var_ [ONTOLOGY VIRTUAL].as < vstr_t > ());
-
-#ifdef BEASTIES
-        yea_nay (c, &context_t::serve, nits, SERVER ENABLE, SERVER DONT ENABLE);
-        if (var_.count (SERVER ACCEPT))
-        {   ::std::string s = var_ [SERVER ACCEPT].as < ::std::string > ();
-            if (s.empty ()) nits.pick (nit_bad_address, es_error, ec_init, SERVER ACCEPT " requires an ip address");
-            else
-            {   ::std::string::size_type pos = s.find_first_of (',');
-                if (pos == ::std::string::npos) c.server_accept (nits, s);
-                else if ((pos == 0) || (pos == s.length () - 1))
-                    nits.pick (nit_bad_address, es_error, ec_init, "invalid address range; excepting addr,addr");
-                else
-                {   c.accept (s);
-                    c.server_accept (nits, s.substr (0, pos), s.substr (pos+1)); } } }
-        if (var_.count (SERVER ADDRESS)) c.server_address (nits, var_ [SERVER ADDRESS].as < ::std::string > ());
-        if (var_.count (SERVER PORT)) c.server_port (nits, var_ [SERVER PORT].as < int > ());
-        if (var_.count (SERVER ROOT)) c.server_root (nits, var_ [SERVER ROOT].as < ::std::string > ());
-        if (var_.count (SERVER PARAMETERS)) c.server_parameters (nits, var_ [SERVER PARAMETERS].as < ::std::string > ());
-        if (var_.count (SERVER PASSFILE)) c.server_passfile (nits, var_ [SERVER PASSFILE].as < ::std::string > ());
-        if (var_.count (SERVER PASSWORD)) c.server_password (nits, var_ [SERVER PASSWORD].as < ::std::string > ());
-        if (var_.count (SERVER PRIVATE)) c.server_private (nits, var_ [SERVER PRIVATE].as < ::std::string > ());
-        if (var_.count (SERVER PUBLIC)) c.server_public (nits, var_ [SERVER PUBLIC].as < ::std::string > ());
-#endif // BEASTIES
 
         yea_nay (c, &context_t::shadow_changed, nits, SHADOW CHANGED, SHADOW DONT CHANGED);
         yea_nay (c, &context_t::shadow_comment, nits, SHADOW COMMENT, SHADOW DONT COMMENT);
@@ -2392,10 +2328,10 @@ void options::report_bool (::std::ostringstream& res, const char* yay, const cha
 #endif // EXPAND_TEST
 
     int corpus = 0, css = 0, env = 0, general = 0, html = 0, jsonld = 0, lynx = 0, math = 0, mf = 0, microdata = 0, nitty = 0,
-        ontology = 0, shadow = 0, site = 0, spell = 0, ssc = 0, stats = 0, svg = 0, validate = 0;
-#ifdef BEASTIES
-    int server = 0;
-#endif // BEASTIES
+        ontology = 0, shadow = 0, site = 0, ssc = 0, stats = 0, svg = 0, validate = 0;
+#ifndef NOSPELL
+    int spell = 0;
+#endif // NOSPELL
 
     if (file)
         res << report_value (PROG, ssc, VERSION, VERSION_STRING)
@@ -2421,7 +2357,9 @@ void options::report_bool (::std::ostringstream& res, const char* yay, const cha
 #else // WX
             << report_value (PROG, ssc, OPTGUI, "no")
 #endif // WX
+#ifndef NOICU
             << report_value (PROG, ssc, OPTICU, U_ICU_VERSION)
+#endif // NOICU
 #ifdef JSNIC
             << report_value (PROG, ssc, OPTJSON, "yes")
 #else // JSNIC
@@ -2434,15 +2372,6 @@ void options::report_bool (::std::ostringstream& res, const char* yay, const cha
 #endif // NPS_GEN
             << report_value (PROG, ssc, OPTPROC, "x" PROCSIZE)
             << report_value (PROG, ssc, OPTOS, BUILD_OS)
-#ifdef BEASTIES
-#ifdef BEASTCHAR
-            << report_value (PROG, ssc, OPTSERVER, "wide")
-#else // BEASTCHAR
-            << report_value (PROG, ssc, OPTSERVER, "narrow")
-#endif // BEASTCHAR
-#else // BEASTIES
-            << report_value (PROG, ssc, OPTSERVER, "no")
-#endif // BEASTIES
 #ifdef SPELT
             << report_value (PROG, ssc, OPTSPELL, "yes")
 #else // SPELT
@@ -2522,7 +2451,8 @@ void options::report_bool (::std::ostringstream& res, const char* yay, const cha
     RG (res, int, CSS, GRID, css);
     RG (res, int, CSS, HIGHLIGHT, css);
     RG (res, int, CSS, HYPERLINK, css);
-    RG (res, int, CSS, IMAGE, css);                                                                                                                                         RG (res, int, CSS, INLINE, css);
+    RG (res, int, CSS, IMAGE, css);
+    RG (res, int, CSS, INLINE, css);
     RG (res, int, CSS, LIST, css);
     RG (res, int, CSS, LINE_GRID, css);
     RG (res, int, CSS, LOGIC, css);
@@ -2555,7 +2485,8 @@ void options::report_bool (::std::ostringstream& res, const char* yay, const cha
     RG (res, int, CSS, SPATIAL, css);
     RG (res, int, CSS, SPEECH, css);
     RG (res, int, CSS, SNAP, css);
-    RG (res, int, CSS, SNAP_POINTS, css);                                                                                                                                   RG (res, int, CSS, STYLE, css);
+    RG (res, int, CSS, SNAP_POINTS, css);
+    RG (res, int, CSS, STYLE, css);
     RG (res, int, CSS, SYNTAX, css);
     RG (res, int, CSS, TABLE, css);
     RG (res, int, CSS, TEXT_ARG, css);
@@ -2708,19 +2639,6 @@ void options::report_bool (::std::ostringstream& res, const char* yay, const cha
         arg += naam;
         if (var_.count (arg))
             res << report_value (ONTOLOGY, ontology, naam.c_str (), var_ [arg].as < ::std::string > ()); }
-
-#ifdef BEASTIES
-    RG (res, ::std::string, SERVER, ACCEPT, server);
-    RG (res, ::std::string, SERVER, ADDRESS, server);
-    RB (res, SERVER, ENABLE, server);
-    RP (res, SERVER, PARAMETERS, server);
-    RP (res, SERVER, PASSFILE, server);
-    RP (res, SERVER, PASSWORD, server);
-    RG (res, ::std::string, SERVER, PORT, server);
-    RP (res, SERVER, PRIVATE, server);
-    RP (res, SERVER, PUBLIC, server);
-    RG (res, ::std::string, SERVER, ROOT, server);
-#endif // BEASTIES
 
     RB (res, SHADOW, CHANGED, shadow);
     RB (res, SHADOW, COMMENT, shadow);

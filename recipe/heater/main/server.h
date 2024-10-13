@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-File Info
+Copyright (c) 2020-2024 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -20,32 +20,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 
-#ifdef BEASTIES
-#define DEFAULT_PORT 80
-typedef ::std::vector < ::boost::asio::ip::address > vadr_t;
-
 class server_t
 {   friend class context_t;
-     unsigned short port_ = DEFAULT_PORT;
-    ::boost::filesystem::path root_, passfile_;
-    ::boost::asio::ip::address address_;
-    vadr_t from_, to_;
-    ::std::string parameters_, private_, public_, password_;
-
-    bool address (nitpick& nits, const ::std::string& s);
-    bool accept (nitpick& nits, const ::std::string& from, const ::std::string& to = ::std::string ());
-    void passfile (nitpick& nits, const ::boost::filesystem::path& s);
-    void parameters_cert (nitpick& nits, const ::std::string& s);
-    void password (nitpick& nits, const ::std::string& s);
-    void private_cert (nitpick& nits, const ::std::string& s);
-    void public_cert (nitpick& nits, const ::std::string& s);
-    void port (nitpick& nits, const int n) noexcept;
-    void root (nitpick& nits, const ::boost::filesystem::path& s);
+    ::std::string cmd_, o_;
+    bool conf_ = false;
+    int print ();
+    int run ();
+    int help ();
 public:
     DEFAULT_CONSTRUCTORS (server_t);
-    ::std::string address () const { return address_.to_string (); }
-    unsigned short port () const noexcept { return port_; }
-    const ::boost::filesystem::path& root () const noexcept { return root_; }
-};
+    static void init (nitpick& nits);
+    static void reinit ();
+    static void teardown ();
+    int process_and_progress ();
+    void clear () { o_.clear (); }
+    const vstr_t cmd () const; };
 
-#endif // BEASTIES
+extern server_t server;

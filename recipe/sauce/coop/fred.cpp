@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-File Info
+Copyright (c) 2020-2024 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -163,7 +163,7 @@ void fred_t::onexit ()
 bool fred_t::relaxed () const noexcept
 {   return  (! inited ()) ||
             (   started () && 
-                context.iterate () &&
+                (context.repetitive ()) &&
                 ! abandoned ()); }
 
 #endif // NO_FRED

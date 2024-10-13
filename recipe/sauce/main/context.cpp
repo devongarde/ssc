@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-File Info
+Copyright (c) 2020-2024 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -334,3 +334,8 @@ void context_t::apply_vcs (nitpick& nits)
 bool context_t::write (nitpick& nits, const ::boost::filesystem::path& fn) const
 {   options opt (*this);
     return opt.write (nits, fn); }
+
+context_t& context_t::serve (const bool b)
+{   serve_ = b;
+    mac (nm_context_server, b);
+    return *this; }

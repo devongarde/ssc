@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-File Info
+Copyright (c) 2020-2024 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -142,17 +142,13 @@ public:
             res += ::boost::lexical_cast < ::std::string > (value_);
             res += ")"; }
         return res; }
-    template < typename T, T I > ::std::string name (const bool  = false, const bool  = true) const
-    {   return base_name (); }
-    template < > ::std::string name < e_namespace, ns_default > (const bool ns_req, const bool colonise) const
+    ::std::string name (const bool ns_req = false, const bool colonise = true) const
     {   ::std::string res (base_name ());
         if (! unknown_)
-            if (ns_req || (ns_ != ns_default))
+            if (ns_req || (ns_ != INIT))
                 if (colonise) res = namespace_name (ns_) + ":" + res;
                 else res = namespace_name (ns_) + res;
         return res; }
-    ::std::string name (const bool ns_req = false, const bool colonise = true) const
-    {   return name < CATEGORY, INIT > (ns_req, colonise); }
     static VALUE starts_with (const ::std::string& s, ::std::string::size_type* ends_at = nullptr)
     {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
         return table_ -> template starts_with < VALUE> (s, ends_at); }
@@ -167,4 +163,4 @@ public:
         return table_ -> report (); } };
 
 template < class V, typename VALUE, typename CATEGORY, CATEGORY INIT, class LC >
-    typename symbol < V, VALUE, CATEGORY, INIT, LC > :: table_ptr  symbol < V, VALUE, CATEGORY, INIT, LC > :: table_;
+    typename symbol < V, VALUE, CATEGORY, INIT, LC > :: table_ptr symbol < V, VALUE, CATEGORY, INIT, LC > :: table_;

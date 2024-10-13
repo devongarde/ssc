@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-File Info
+Copyright (c) 2020-2024 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -60,6 +60,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/balloon.h"
 #include "main/ssc.h"
 #include "gui/gui-app.h"
+#include "main/server.h"
 
 const char* build_info = BUILD_INFO;
 const char* test_title = TEST_TITLE;
@@ -80,6 +81,7 @@ int cycle_start (nitpick& nits)
     nits.set_context (0, PROG " reinitialisation");
     types_init (nits);
     nitpick::reset_severities ();
+    server_t::reinit ();
     return VALID_RESULT; }
 
 void init (nitpick& nits)
@@ -117,6 +119,7 @@ void init (nitpick& nits)
     url::init (nits);
     wotsit_init (nits);
     curl_init ();
+    server_t::init (nits);
 #ifdef DEBUG
     avm_elem_crosscheck ();
 #endif
@@ -124,6 +127,7 @@ void init (nitpick& nits)
 
 int ciao ()
 {   spell_free ();
+    server_t::teardown ();
     curl_done ();
     return VALID_RESULT; }
 
@@ -276,12 +280,13 @@ int examine (nitpick& nits)
 
 int cycle (nitpick& nits, const int argc, char** argv)
 {   int res = NOTHING_TO_DO;
+    context.todo (do_booboo);
     time_balloon balloon;
     ::std::string args, msg;
     bool enfooten = false;
     vstr_t vs;
     try
-    {   if (context.iterate ()) cycle_start (nits);
+    {   if (context.iterate () || context.serve ()) cycle_start (nits);
         context.started (balloon.inflate_time ());
         context.build (__DATE__ " " __TIME__);
         if (argc > 0)
@@ -299,6 +304,19 @@ int cycle (nitpick& nits, const int argc, char** argv)
         else if (! context.cmd ().empty ())
         {   vs = context.cmd ();
             context.cmd ().clear (); }
+        else if (context.serve ())
+        {   res = server.process_and_progress ();
+            switch (res)
+            {   case STOP_NOW :
+                case ERROR_STATE :
+                    return res;
+                case NOTHING_TO_DO :
+                    ::std::this_thread::yield ();
+                    return res;
+                default :
+                    vs = server.cmd ();
+                    server.clear ();
+                    break; } }
         else
         {   constexpr ::std::size_t max_len = 65536;
             char ch [max_len] = { 0 };
@@ -378,7 +396,7 @@ int ssc_main (int argc, char** argv)
         {   res = cycle (nits, argc, argv);
             if (res == STOP_NOW) { res = VALID_RESULT; break; }
             argc = 0; }
-        while (context.iterate ());
+        while (context.iterate () || context.serve ());
         fred.done (); }
     catch (const ::std::system_error& e)
     {   msg = "catastrophic exit system error: ";

@@ -1,6 +1,6 @@
 ﻿/*
 ssc (static site checker)
-File Info
+Copyright (c) 2020-2024 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -4259,13 +4259,14 @@ struct symbol_entry < html_version, e_recipe_time > recipe_time_symbol_table [] 
     { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "startTofinish", ert_starttofinish } };
 
 struct symbol_entry < html_version, e_referrer > referrer_symbol_table [] =
-{   { { HTML_UNDEF }, { HTML_UNDEF }, "no-referrer", rf_no },
+{   { { HTML_UNDEF }, { HTML_UNDEF }, "origin-when-cross-origin", rf_cross },
     { { HTML_UNDEF }, { HTML_UNDEF }, "no-referrer-when-downgrade", rf_downgrade },
-    { { HTML_UNDEF }, { HTML_UNDEF }, "same-origin", rf_same },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "no-referrer", rf_no },
+    { { HTML_OCT24 }, { HTML_UNDEF }, "nooopener-allow-popups", rf_nooopener_allow_popups },
     { { HTML_UNDEF }, { HTML_UNDEF }, "origin", rf_origin },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "same-origin", rf_same },
     { { HTML_UNDEF }, { HTML_UNDEF }, "strict-origin", rf_strict },
     { { HTML_UNDEF }, { HTML_UNDEF }, "strict-origin-when-cross-origin", rf_strictcross },
-    { { HTML_UNDEF }, { HTML_UNDEF }, "origin-when-cross-origin", rf_cross },
     { { HTML_UNDEF }, { HTML_UNDEF }, "unsafe-url", rf_unsafe } };
 
 struct symbol_entry < html_version, e_rendering_in_tents > rendering_in_tents_symbol_table [] =

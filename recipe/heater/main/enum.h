@@ -1,6 +1,6 @@
 ﻿/*                                                                 ,
 ssc (static site checker)
-File Info
+Copyright (c) 2020-2024 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -4294,7 +4294,7 @@ typedef enum
     sch_ear, sch_eataction, sch_ebook, sch_editedorcroppedcontent, sch_educationaudience, sch_educationoccupationcredential, sch_educationoccupationprogramme, sch_educationorganisation,
     sch_educationevent, sch_effectivenesshealthaspect, sch_electrician, sch_electronicsshop, sch_elementaryschool, sch_emailmessage, sch_embassy, sch_emergency, sch_emergencyservice, sch_employeerole,
     sch_employeraggregaterating, sch_employerreview, sch_employmentagency, sch_endocrine, sch_endorseaction, sch_endorsementrating, sch_energy, sch_energyconsumptiondetails,
-    sch_energyefficiencyenumeration, sch_energystarcertified, sch_enginespecification, sch_enrollingbyinvitation, sch_entertainmentbusiness, sch_entrypoint, sch_enumeration, sch_traditionalchinese,
+    sch_energyefficiencyenumeration, sch_energystarcertified, sch_energystarenergyefficiencyenumeration, sch_enginespecification, sch_enrollingbyinvitation, sch_entertainmentbusiness, sch_entrypoint, sch_enumeration, sch_traditionalchinese,
     sch_episode, sch_eprelease, sch_euenergyefficiencycategorya, sch_euenergyefficiencycategorya1plus, sch_euenergyefficiencycategorya2plus, sch_euenergyefficiencycategorya3plus,
     sch_euenergyefficiencycategoryb, sch_euenergyefficiencycategoryc, sch_euenergyefficiencycategoryd, sch_euenergyefficiencycategorye, sch_euenergyefficiencycategoryf, sch_euenergyefficiencycategoryg,
     sch_euenergyefficiencyenumeration, sch_event, sch_eventattendancemodeenumeration, sch_eventcancelled, sch_eventmovedonline, sch_eventpostponed, sch_eventrescheduled, sch_eventreservation,
@@ -4386,7 +4386,7 @@ typedef enum
     sch_rating, sch_reactaction, sch_readaction, sch_readpermission, sch_realestateagent, sch_realestatelisting, sch_rearwheeldriveconfiguration, sch_receiveaction, sch_recipe, sch_recommendation,
     sch_recommendeddoseschedule, sch_recruiting, sch_recyclingcentre, sch_reducedrelevanceforchildrenconsideration, sch_refundtypeenumeration, sch_refurbishedcondition, sch_registeraction, sch_registry,
     sch_reimbursementcap, sch_rejectaction, sch_relatedtopicshealthaspect, sch_remixalbum, sch_renal, sch_rentaction, sch_rentalcarreservation, sch_rentalvehicleusage, sch_repaymentspecification,
-    sch_replaceaction, sch_replyaction, sch_report, sch_reportagenewsarticle, sch_reporteddoseschedule, sch_researchproject, sch_reservation, sch_reservationcancelled, sch_reservationconfirmed,
+    sch_replaceaction, sch_replyaction, sch_report, sch_reportagenewsarticle, sch_reporteddoseschedule, sch_researchproject, sch_researchorganisation, sch_reservation, sch_reservationcancelled, sch_reservationconfirmed,
     sch_reservationhold, sch_reservationpackage, sch_reservationpending, sch_reservationstatustype, sch_reserveaction, sch_reserved, sch_reservoir, sch_residence, sch_resort, sch_respiratorytherapy,
     sch_restaurant, sch_restockingfees, sch_restricteddiet, sch_resultsavailable, sch_resultsnotavailable, sch_resumeaction, sch_retail, sch_returnaction, sch_returnatkiosk, sch_returnbymail,
     sch_returnfeescustomerresponsibility, sch_returnfeesenumeration, sch_returninstore, sch_returnlabelcustomerresponsibility, sch_returnlabeldownloadandprint, sch_returnlabelinbox,
@@ -4394,16 +4394,17 @@ typedef enum
     sch_risksorcomplicationshealthaspect, sch_riverbodyofwater, sch_role, sch_roofingcontractor, sch_room, sch_rsvpaction, sch_rsvpresponsemaybe, sch_rsvpresponseno, sch_rsvpresponsetype,
     sch_rsvpresponseyes, sch_rvpark,
 
-    sch_safetyhealthaspect, sch_saleevent, sch_saleprice, sch_satireorparodycontent, sch_satiricalarticle, sch_saturday, sch_schedule, sch_scheduleaction, sch_scholarlyarticle, sch_school, sch_schooldistrict,
-    sch_screeningevent, sch_screeninghealthaspect, sch_sculpture, sch_seabodyofwater, sch_searchaction, sch_searchrescueorganisation, sch_searchresultspage, sch_season, sch_seat, sch_seatingmap, sch_seedoctorhealthaspect, sch_seektoaction,
-    sch_selfcarehealthaspect, sch_selfstorage, sch_sellaction, sch_sendaction, sch_series, sch_service, sch_servicechannel, sch_sexualcontentconsideration, sch_shareaction, sch_sheetmusic, sch_shippingdeliverytime, sch_shippingratesettings, sch_shoeshop,
-    sch_shoppingcentre, sch_shortstory, sch_sideeffectshealthaspect, sch_singleblindedtrial, sch_singlecentretrial, sch_singlefamilyresidence, sch_singleplayer, sch_singlerelease, sch_sitenavigationelement,
-    sch_sizegroupenumeration, sch_sizespecification, sch_sizesystemenumeration, sch_sizesystemimperial, sch_sizesystemmetric, sch_skin, sch_skiresort, sch_socialevent, sch_socialmediaposting, sch_softwareapplication,
-    sch_softwaresourcecode, sch_soldout, sch_solvemathaction, sch_someproducts, sch_soundtrackalbum, sch_speakablespecification, sch_specialannouncement, sch_speciality, sch_speechpathology, sch_spokenwordalbum,
-    sch_sportsshop, sch_sportsactivitylocation, sch_sportsclub, sch_srp, sch_sportsevent, sch_sportsorganisation, sch_sportsteam, sch_spreadsheetdigitaldocument, sch_stadiumorarena, sch_stagedcontent,
-    sch_stageshealthaspect, sch_state, sch_statement, sch_statisticalpopulation, sch_statisticalvariable, sch_statusenumeration, sch_steeringpositionvalue, sch_store, sch_storecreditrefund, sch_strengthtraining, sch_structuredvalue, sch_studioalbum,
-    sch_stupidtype, sch_subscribeaction, sch_subscription, sch_substance, sch_metrostation, sch_suite, sch_sunday, sch_superficialanatomy, sch_surgical, sch_surgicalprocedure, sch_suspendaction, sch_suspended,
-    sch_syllabus, sch_symptomshealthaspect, sch_synagogue,
+    sch_safetyhealthaspect, sch_saleevent, sch_saleprice, sch_satireorparodycontent, sch_satiricalarticle, sch_saturday, sch_schedule, sch_scheduleaction, sch_scholarlyarticle, sch_school,
+    sch_schooldistrict, sch_screeningevent, sch_screeninghealthaspect, sch_sculpture, sch_seabodyofwater, sch_searchaction, sch_searchrescueorganisation, sch_searchresultspage, sch_season, sch_seat,
+    sch_seatingmap, sch_seedoctorhealthaspect, sch_seektoaction, sch_selfcarehealthaspect, sch_selfstorage, sch_sellaction, sch_sendaction, sch_series, sch_service, sch_servicechannel,
+    sch_sexualcontentconsideration, sch_shareaction, sch_sheetmusic, sch_shippingdeliverytime, sch_shippingratesettings, sch_shoeshop, sch_shoppingcentre, sch_shortstory, sch_sideeffectshealthaspect,
+    sch_singleblindedtrial, sch_singlecentretrial, sch_singlefamilyresidence, sch_singleplayer, sch_singlerelease, sch_sitenavigationelement, sch_sizegroupenumeration, sch_sizespecification,
+    sch_sizesystemenumeration, sch_sizesystemimperial, sch_sizesystemmetric, sch_skin, sch_skiresort, sch_socialevent, sch_socialmediaposting, sch_softwareapplication, sch_softwaresourcecode, sch_soldout,
+    sch_solvemathaction, sch_someproducts, sch_soundtrackalbum, sch_speakablespecification, sch_specialannouncement, sch_speciality, sch_speechpathology, sch_spokenwordalbum, sch_sportsshop,
+    sch_sportsactivitylocation, sch_sportsclub, sch_srp, sch_sportsevent, sch_sportsorganisation, sch_sportsteam, sch_spreadsheetdigitaldocument, sch_stadiumorarena, sch_stagedcontent,
+    sch_stageshealthaspect, sch_state, sch_statement, sch_statisticalpopulation, sch_statisticalvariable, sch_statusenumeration, sch_steeringpositionvalue, sch_store, sch_storecreditrefund,
+    sch_strengthtraining, sch_strikethroughprice, sch_structuredvalue, sch_studioalbum, sch_stupidtype, sch_subscribeaction, sch_subscription, sch_substance, sch_metrostation, sch_suite, sch_sunday,
+    sch_superficialanatomy, sch_surgical, sch_surgicalprocedure, sch_suspendaction, sch_suspended, sch_syllabus, sch_symptomshealthaspect, sch_synagogue,
 
     sch_tobacconicotineconsideration, sch_table, sch_takeaction, sch_tattooparlour, sch_taxi, sch_taxireservation, sch_taxiservice, sch_taxistand, sch_taxivehicleusage, sch_taxon, sch_techarticle,
     sch_televisionchannel, sch_televisionstation, sch_tenniscomplex, sch_terminated, sch_text, sch_textdigitaldocument, sch_textobject, sch_theatreevent, sch_theatregroup, sch_therapeutic,
@@ -5651,7 +5652,7 @@ typedef enum
     sp_qualifications, sp_quarantineguidelines, sp_query, sp_quest, sp_question,
 
     sp_rangeincludes, sp_ratingcount, sp_ratingexplanation, sp_ratingvalue, sp_readby, sp_readonlyvalue, sp_realestateagent, sp_recipe, sp_recipecategory, sp_recipecuisine, sp_recipeingredient, sp_recipeinstructions, sp_recipeyield,
-    sp_recipient, sp_recognisedby, sp_recognisingauthority, sp_recommendationstrength, sp_recommendedintake, sp_recordedas, sp_recordedat, sp_recordedin, sp_recordingof, sp_recordlabel, sp_recourseloan, sp_referencequantity,
+    sp_recipient, sp_recognisedby, sp_recognizedby, sp_recognisingauthority, sp_recommendationstrength, sp_recommendedintake, sp_recordedas, sp_recordedat, sp_recordedin, sp_recordingof, sp_recordlabel, sp_recourseloan, sp_referencequantity,
     sp_referencesorder, sp_refundtype, sp_regiondrained, sp_regionsallowed, sp_relatedanatomy, sp_relatedcondition, sp_relateddrug, sp_relatedlink, sp_relatedstructure, sp_relatedtherapy, sp_relatedto, sp_releasedate, sp_releasedevent,
     sp_releasenotes, sp_releaseof, sp_relevantoccupation, sp_relevantspeciality, sp_remainingattendeecapacity, sp_renegotiableloan, sp_repeatcount, sp_repeatfrequency, sp_repetitions, sp_replacee, sp_replacer, sp_replytourl,
     sp_reportnumber, sp_representativeofpage, sp_requiredcollateral, sp_requiredgender, sp_requiredmaxage, sp_requiredminage, sp_requiredquantity, sp_requirements, sp_requiressubscription, sp_reservationfor, sp_reservationid, sp_reservationstatus,
@@ -6234,7 +6235,7 @@ typedef enum
     rcb_max } e_report;
 
 typedef enum { rr_rect, rr_round } e_rect_round;
-typedef enum { rf_no, rf_downgrade, rf_same, rf_origin, rf_strict, rf_strictcross, rf_cross, rf_unsafe } e_referrer;
+typedef enum { rf_cross, rf_downgrade, rf_no, rf_nooopener_allow_popups, rf_origin, rf_same, rf_strict, rf_strictcross, rf_unsafe } e_referrer;
 
 typedef enum {
     r_context,

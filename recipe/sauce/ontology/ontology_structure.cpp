@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-File Info
+Copyright (c) 2020-2024 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -4601,6 +4601,7 @@ microdata_structure ontology_structure [] =
     { { 3, 5 }, { 0, 0 }, sch_educationoccupationcredential, sp_credentialcategory },
     { { 3, 5 }, { 0, 0 }, sch_educationoccupationcredential, sp_educationallevel },
     { { 3, 5 }, { 0, 0 }, sch_educationoccupationcredential, sp_recognisedby },
+    { { 29, 0 }, { 0, 0 }, sch_educationoccupationcredential, sp_recognizedby },
     { { 3, 5 }, { 0, 0 }, sch_educationoccupationcredential, sp_validfor },
     { { 3, 5 }, { 0, 0 }, sch_educationoccupationcredential, sp_validin },
 
@@ -5420,6 +5421,8 @@ microdata_structure ontology_structure [] =
     { { 3, 9 }, { 0, 0 }, sch_observation, sp_marginoferror },
     { { 3, 9 }, { 0, 0 }, sch_observation, sp_measuredproperty },
     { { 3, 9 }, { 0, 0 }, sch_observation, sp_measuredvalue },
+    { { 29, 0 }, { 0, 0 }, sch_observation, sp_measurementmethod },
+    { { 29, 0 }, { 0, 0 }, sch_observation, sp_measurementtechnique },
     { { 3, 9 }, { 0, 0 }, sch_observation, sp_observationdate },
     { { 17, 0 }, { 0, 0 }, sch_observation, sp_observationperiod },
     { { 3, 9 }, { 0, 0 }, sch_observation, sp_observednode },
@@ -5622,6 +5625,7 @@ microdata_structure ontology_structure [] =
     { { 0, 10 }, { 1, 90 }, sch_organisation, sp_reviews },
     { { 0, 99 }, { 0, 0 }, sch_organisation, sp_seeks },
     { { 2, 0 }, { 0, 0 }, sch_organisation, gr_seeks },
+    { { 29, 0 }, { 0, 0 }, sch_organisation, sp_skills },
     { { 3, 5 }, { 0, 0 }, sch_organisation, sp_slogan },
     { { 3, 0 }, { 0, 0 }, sch_organisation, sp_sponsor },
     { { 1, 3 }, { 0, 0 }, sch_organisation, sp_suborganisation },
@@ -5754,6 +5758,7 @@ microdata_structure ontology_structure [] =
     { { 2, 0 }, { 0, 0 }, sch_person, gr_seeks },
     { { 0, 91 }, { 0, 0 }, sch_person, sp_sibling },
     { { 0, 10 }, { 1, 90 }, sch_person, sp_siblings },
+    { { 29, 0 }, { 0, 0 }, sch_person, sp_skills },
     { { 3, 0 }, { 0, 0 }, sch_person, sp_sponsor },
     { { 0, 10 }, { 0, 0 }, sch_person, sp_spouse },
     { { 0, 99 }, { 0, 0 }, sch_person, sp_taxid },
@@ -6607,6 +6612,7 @@ microdata_structure ontology_structure [] =
     { { 3, 5 }, { 0, 0 }, sch_visualartwork, sp_inker },
     { { 3, 5 }, { 0, 0 }, sch_visualartwork, sp_letterer },
     { { 3, 5 }, { 0, 0 }, sch_visualartwork, sp_penciler },
+    { { 29, 0 }, { 0, 0 }, sch_visualartwork, sp_weight },
     { { 2, 0 }, { 0, 0 }, sch_visualartwork, sp_width },
 
     { { 1, 2 }, { 0, 0 }, sch_voteaction, sp_candidate },

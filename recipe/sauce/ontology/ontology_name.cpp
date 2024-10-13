@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-File Info
+Copyright (c) 2020-2024 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -3519,7 +3519,7 @@ property_name namtab [] =
     { "collectionSize", s_schema, sp_collectionsize },
     { "color", s_schema, sp_colour },
     { "colorist", s_schema, sp_colourist },
-    { "colorswatch", s_schema, sp_colourswatch },
+    { "colorSwatch", s_schema, sp_colourswatch },
     { "comment", s_schema, sp_comment },
     { "commentCount", s_schema, sp_commentcount },
     { "commentText", s_schema, sp_commenttext },
@@ -4376,6 +4376,7 @@ property_name namtab [] =
     { "recipeYield", s_schema, sp_recipeyield },
     { "recipient", s_schema, sp_recipient },
     { "recognisedBy", s_schema, sp_recognisedby },
+    { "recognizedBy", s_schema, sp_recognizedby },
     { "recognisingAuthority", s_schema, sp_recognisingauthority },
     { "recommendationStrength", s_schema, sp_recommendationstrength },
     { "recommendedIntake", s_schema, sp_recommendedintake },

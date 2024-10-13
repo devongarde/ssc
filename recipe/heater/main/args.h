@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-File Info
+Copyright (c) 2020-2024 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -275,6 +275,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SELECTOR    "selector"
 #define SGML        "sgml"
 #define SHAPE       "shape"
+#define SHELL       "shell"
 #define SNAP        "snap"
 #define SNAP_POINTS "snap-points"
 #define SILENCE     "silence"

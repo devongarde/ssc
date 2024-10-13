@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-File Info
+Copyright (c) 2020-2024 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -4385,6 +4385,7 @@ property_gen gentab [] =
     { { 2, 0 }, { 0, 0 }, s_schema, sp_address, t_text },
     { { 0, 10 }, { 0, 0 }, s_schema, sp_addresscountry, t_ontology, sch_country },
     { { 2, 2 }, { 0, 0 }, s_schema, sp_addresscountry, t_ontology, sch_text },
+    { { 29, 0 }, { 0, 0 }, s_schema, sp_addresscountry, t_country },
     { { 2, 2 }, { 0, 0 }, s_schema, sp_addresscountry, t_text },
     { { 0, 10 }, { 0, 0 }, s_schema, sp_addresslocality, t_ontology, sch_text },
     { { 0, 10 }, { 0, 0 }, s_schema, sp_addresslocality, t_text },
@@ -4454,7 +4455,9 @@ property_gen gentab [] =
     { { 0, 95 }, { 0, 0 }, s_schema, sp_applicationcategory, t_ontology, sch_url },
     { { 0, 95 }, { 0, 0 }, s_schema, sp_applicationcategory, t_url },
     { { 6, 0 }, { 0, 0 }, s_schema, sp_applicationdeadline, t_ontology, sch_date },
+    { { 29, 0 }, { 0, 0 }, s_schema, sp_applicationdeadline, t_ontology, sch_text },
     { { 6, 0 }, { 0, 0 }, s_schema, sp_applicationdeadline, t_just_date },
+    { { 29, 0 }, { 0, 0 }, s_schema, sp_applicationdeadline, t_text },
     { { 6, 0 }, { 0, 0 }, s_schema, sp_applicationstartdate, t_ontology, sch_date },
     { { 6, 0 }, { 0, 0 }, s_schema, sp_applicationstartdate, t_just_date },
     { { 0, 95 }, { 0, 0 }, s_schema, sp_applicationsubcategory, t_ontology, sch_text },
@@ -6602,6 +6605,7 @@ property_gen gentab [] =
     { { 1, 2 }, { 0, 0 }, s_schema, sp_recipient, t_ontology, sch_organisation },
     { { 1, 2 }, { 0, 0 }, s_schema, sp_recipient, t_ontology, sch_person },
     { { 3, 5 }, { 0, 0 }, s_schema, sp_recognisedby, t_ontology, sch_organisation },
+    { { 29, 0 }, { 0, 0 }, s_schema, sp_recognizedby, t_ontology, sch_organisation },
     { { 0, 95 }, { 0, 0 }, s_schema, sp_recognisingauthority, t_ontology, sch_organisation },
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, s_schema, sp_recommendationstrength, t_ontology, sch_text },
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, s_schema, sp_recommendationstrength, t_text },
@@ -7226,6 +7230,8 @@ property_gen gentab [] =
     { { 2, 0 }, { 0, 0 }, s_schema, sp_valuerequired, t_bool },
     { { 28, 0 }, { 0, 0 }, s_schema, sp_validformembertier, t_ontology, sch_memberprogrammetier },
     { { 3, 5 }, { 0, 0 }, s_schema, sp_variablemeasured, t_ontology, sch_propertyvalue },
+    { { 29, 0 }, { 0, 0 }, s_schema, sp_variablemeasured, t_ontology, sch_property },
+    { { 29, 0 }, { 0, 0 }, s_schema, sp_variablemeasured, t_ontology, sch_statisticalvariable },
     { { 3, 5 }, { 0, 0 }, s_schema, sp_variablemeasured, t_ontology, sch_text },
     { { 3, 5 }, { 0, 0 }, s_schema, sp_variablemeasured, t_text },
     { { 3, 5, SV_DEPRECATED }, { 0, 0 }, s_schema, sp_variablesmeasured, t_ontology, sch_propertyvalue },

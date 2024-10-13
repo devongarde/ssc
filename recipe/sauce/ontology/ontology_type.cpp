@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-File Info
+Copyright (c) 2020-2024 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -6972,6 +6972,7 @@ struct symbol_entry < ontology_version, e_ontology_type, e_ontology, s_schema > 
     { { 10, 0 }, { 0, 0 }, "EnergyConsumptionDetails", sch_energyconsumptiondetails },
     { { 10, 0 }, { 0, 0 }, "EnergyEfficiencyEnumeration", sch_energyefficiencyenumeration, s_schema, SF_ENUMERATION },
     { { 10, 0 }, { 0, 0 }, "EnergyStarCertified", sch_energystarcertified },
+    { { 29, 0 }, { 0, 0 }, "EnergyStarEnergyEfficiencyEnumeration", sch_energystarenergyefficiencyenumeration, s_schema, SF_ENUMERATION },
     { { 2, 0 }, { 0, 0 }, "EngineSpecification", sch_enginespecification },
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, "EnrollingByInvitation", sch_enrollingbyinvitation },
     { { 0, 10 }, { 0, 0 }, "EntertainmentBusiness", sch_entertainmentbusiness },
@@ -7662,6 +7663,7 @@ struct symbol_entry < ontology_version, e_ontology_type, e_ontology, s_schema > 
     { { 2, 1 }, { 0, 0 }, "Report", sch_report },
     { { 3, 5 }, { 0, 0 }, "ReportageNewsArticle", sch_reportagenewsarticle },
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, "ReportedDoseSchedule", sch_reporteddoseschedule },
+    { { 29, 0 }, { 0, 0 }, "ResearchOrganization", sch_researchorganisation },
     { { 3, 5 }, { 0, 0 }, "ResearchProject", sch_researchproject },
     { { 1, 10 }, { 0, 0 }, "Reservation", sch_reservation },
     { { 1, 92 }, { 0, 0 }, "ReservationCancelled", sch_reservationcancelled },
@@ -7795,6 +7797,7 @@ struct symbol_entry < ontology_version, e_ontology_type, e_ontology, s_schema > 
     { { 2, 1 }, { 0, 0 }, "SteeringPositionValue", sch_steeringpositionvalue, s_schema, SF_ENUMERATION },
     { { 0, 10 }, { 0, 0 }, "Store", sch_store },
     { { 3, 8 }, { 0, 0 }, "StoreCreditRefund", sch_storecreditrefund },
+    { { 29, 0 }, { 0, 0 }, "StrikethroughPrice", sch_strikethroughprice },
     { { 0, 95, SV_NOT_3034 }, { 0, 0 }, "StrengthTraining", sch_strengthtraining },
     { { 0, 10 }, { 0, 0 }, "StructuredValue", sch_structuredvalue },
     { { 1, 92 }, { 0, 0 }, "StudioAlbum", sch_studioalbum },

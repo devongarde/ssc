@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-File Info
+Copyright (c) 2020-2024 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -114,11 +114,11 @@ void whizz_t :: CreateControls ()
 {	if (muggle_) return;
 	SetSizeHints (wxDefaultSize, wxDefaultSize);
 
-	if (pagemaker < whizz_intro > :: create (intro_, *this, "Welcome to the " FULLNAME ", a website nitpicker. It can\nnitpick a website at source, or an HTML snippet. It reports any\nuntidinesses or horriditudes it finds."))
-		if (pagemaker < whizz_choice > :: create (choice_, *this, "If you want to nitpick a snippet of HTML, select Snippet of HTML.\nIf you want to nitpick a website at source, select Website Directory."))
+	if (pagemaker < whizz_intro > :: create (intro_, *this, "Welcome to the " FULLNAME ", a website nitpicker. It can\nnitpick a website at source, or a snippet of HTML. It reports any\nuntidinesses or horriditudes it finds."))
+		if (pagemaker < whizz_choice > :: create (choice_, *this, "Kindly state whether you wish " PROG " to nitpick a snippet of HTML or a website at source."))
 			if (pagemaker < whizz_snippet > :: create (snippet_, *this, "Enter an HTML snippet:"))
 				if (pagemaker < whizz_root > :: create (root_, *this, "Where is the website root directory?"))
-					pagemaker < whizz_end > :: create (end_, *this, "Click on Finish to nitpick...");
+					pagemaker < whizz_end > :: create (end_, *this, "When ready, click on Finish to nitpick...");
 
 	if (invalid ()) return;
 

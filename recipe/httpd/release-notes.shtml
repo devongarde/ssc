@@ -20,6 +20,26 @@
 
 <div class="column-unit">
 
+<h3>0.2.4</h3>
+
+<ul>
+<li>
+remove Windows build dependency on vcpkg
+</li>
+<li>
+added nooopener-allow-popups
+</li>
+<li>
+offer a simple shell
+</li>
+<li>
+various bug fixes
+</li>
+<li>
+underlying work
+</li>
+</ul>
+
 <h3>0.2.3</h3>
 
 <ul>

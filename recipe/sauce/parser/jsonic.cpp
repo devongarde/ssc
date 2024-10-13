@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-File Info
+Copyright (c) 2020-2024 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -62,7 +62,11 @@ bool jsonic::parse (nitpick& nits, const ::std::string& s, const e_charcode enco
 {   if ((encoding != cc_utf8) && (encoding != cc_ansi))
         nits.pick (nit_jsonld_encoding, es_error, ec_json, "JSON-LD parsing requires ASCII, ANSI or UTF-8.");
     else try {
+#ifdef NO_JSON_ERR
+        ::boost::system::error_code jec;
+#else // NO_JSON_ERR
         ::boost::json::error_code jec;
+#endif // NO_JSON_ERR
         ::boost::json::parse_options po;
         po.allow_comments = true;
         po.allow_trailing_commas = true;

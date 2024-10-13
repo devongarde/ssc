@@ -1,6 +1,6 @@
 ﻿/*                                                                 ,
 ssc (static site checker)
-File Info
+Copyright (c) 2020-2024 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -97,9 +97,6 @@ public:
     void OnPrintSetup (wxCommandEvent& e);
     void OnRoot (wxCommandEvent& e);
     void OnSelectAll (wxCommandEvent& e);
-#ifdef BEASTIES
-    void OnServer (wxCommandEvent& e);
-#endif // BEASTIES
     void OnShadow (wxCommandEvent& e);
     void OnSite (wxCommandEvent& e);
     void OnSize (wxSizeEvent& e);

@@ -2129,6 +2129,9 @@
     <ClInclude Include="..\heater\main\ssc.h">
       <Filter>Heater\main</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\main\server.h">
+      <Filter>Heater\main</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -2874,6 +2877,9 @@
     </ClCompile>
     <ClCompile Include="..\sauce\simple\type_svg_feature.cpp">
       <Filter>Sauce\enum</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\main\server.cpp">
+      <Filter>Sauce\main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
