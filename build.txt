@@ -8,10 +8,11 @@ Introduction
 ============
 SSC can be built on various unii with CMake and clang or gcc for C++ 17
 or better, or Visual Studios 2017 / 2019 / 2022 under Windows. I have
-built & tested it in various OSs on some amd64 & arm64 architectures.
+built & tested it in various OSs on some amd64 & arm64 architectures,
+including various flavours of Linux, MacOS, OpenBSD, and Windows.
 
-Although ssc builds with older compilers on some older systems, not all
-features are available.
+Although ssc builds with some older compilers on some older systems,
+not all features are available.
 
 
 Libraries
@@ -86,20 +87,21 @@ Windows
 -------
 To build from Visual Studio, navigate to recipe/tea, open the
 appropriate .sln file, then build. Only Visual Studios 2017, 2019 and
-2022 have been built & tested, for amd64 (x64) and arm64 (M2), under
-Windows 10 & 11.
+2022 have been built & tested for amd64 (x64), and only 2022 has been
+tested for arm64 under Windows 10 & 11. Older versions for amd64 and
+i386 were tested on older versions of Windows.
 
 On low memory machines, disable the /MP switch.
 
-The Visual Studio solutions use vcpkg, which resolves dependencies.
-For all versions, except recent editions of Visual Studio 2022, you may
-need to first download and install vcpkg yourself, from
-https://vcpkg.io/.
+Some versions of the Visual Studio solutions use vcpkg, which sometimes
+resolves dependencies. For all such versions, except recent editions of
+Visual Studio 2022, you may need to first download and install vcpkg
+yourself, from https://vcpkg.io/.
 
 
 Unii & mock Unii
 ----------------
-You will need CMake 3.19 or better. On Linux, you will also need
+You will need CMake 3.24 or better. On Linux, you will also need
 lsb-release. These can be found in most distributions' standard
 packages. For macos, I used macports, but I expect brew is good too.
 From the home ssc directory, compile a normal build thus:
@@ -201,6 +203,13 @@ Curl
 curl is used for link checking and, where necessary, obtaining remote
 resources. Most package managers support it.
 
+ICU4C
+-----
+ICU4C is used to process unicode.
+
+Most package managers support it. Alternatively, build your own version
+using the source found at icu.unicode.org.
+
 wxWidgets
 ---------
 This is only required if you make a GUI build, which is not recommended
@@ -211,6 +220,6 @@ under many supported (by wxWidgets) systems.
 Editions
 ========
 
-Currently, there are new, work-in-progress, server and gui editions in
-the Visual Studio solution. These do not work and should not be used.
-Stick to the standard edition.
+Currently, there is a new, work-in-progress, gui edition in the Visual
+Studio solution. It does not work and should not be used. Stick to the
+standard edition.

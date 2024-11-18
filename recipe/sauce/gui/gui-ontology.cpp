@@ -30,30 +30,31 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define ONT_WIDTH   500
 #define ONT_HEIGHT  460
 
-BEGIN_EVENT_TABLE (ontology_t, dialogue_t)
+BEGIN_EVENT_TABLE (ontology_t, d1_t)
   EVT_BUTTON (wxID_HELP, ontology_t::OnHelpClick)
   EVT_CHECKBOX (check_export, ontology_t::OnExport)
   EVT_CHECKBOX (check_verify, ontology_t::OnVerify)
-  EVT_CHOICE (choice_version, ontology_t::OnVersion)
+  EVT_CHECKBOX (check_mf_export, ontology_t::OnMFExport)
+  EVT_CHECKBOX (check_mf_verify, ontology_t::OnMFVerify)
+  EVT_CHOICE (choice_ontology_version, ontology_t::OnVersion)
   EVT_DATAVIEW_SELECTION_CHANGED (list_ontology, ontology_t::OnOntology)
 END_EVENT_TABLE ()
 
-IMPLEMENT_CLASS (ontology_t, dialogue_t)
+IMPLEMENT_CLASS (ontology_t, d1_t)
 
 #define VERSION_COLUMN	2
 
 ontology_t :: ontology_t (wxWindow *mummy, wxWindowID id, const wxString& caption)
-	: dialogue_t (wxPoint (ONT_X, ONT_Y), wxSize (ONT_WIDTH, ONT_HEIGHT))
+	: d1_t (wxPoint (ONT_X, ONT_Y), wxSize (ONT_WIDTH, ONT_HEIGHT))
 {	Create (mummy, id, caption); } 
 
 bool ontology_t :: Create (wxWindow *mummy, wxWindowID id, const wxString& caption)
-{	if (! dialogue_t :: Create (mummy, id, caption, wxPoint (ONT_X, ONT_Y), wxSize (ONT_WIDTH, ONT_HEIGHT), ONT_STYLE)) return false;
+{	if (! d1_t :: Create (mummy, id, caption, wxPoint (ONT_X, ONT_Y), wxSize (ONT_WIDTH, ONT_HEIGHT), ONT_STYLE)) return false;
 	CreateControls ();
 	return true; }
 
-void ontology_t :: CreateControls ()
-{	if (dialogue_t :: invalid ()) return;
-
+void ontology_t :: create_controls (wxWindow *parent)
+{	const bool d (parent == this);
 	if (vsv_.empty ())
 		vsv_ = vsv;
 	if (vov_.empty ())
@@ -78,34 +79,16 @@ void ontology_t :: CreateControls ()
 			if (o < s_faux)
 				versions_.at (o).push_back (i -> ver ()); } }
 
-	check_verify_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (this, check_verify, "Verify known ontologies", wxDefaultPosition, wxDefaultSize, 0));
+	check_verify_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, check_verify, "Verify known ontologies", wxDefaultPosition, wxDefaultSize, 0));
 	if (check_verify_ != nullptr)
 		box_ -> Add (check_verify_, 0, wxALIGN_CENTER_HORIZONTAL | wxALL, 5);
 
-	line1_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
-	if (line1_ != nullptr)
-		box_ -> Add (line1_, 0, wxEXPAND | wxALL, 5);
-
-	box_export_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxHORIZONTAL));
-	if (box_export_ != nullptr)
-	{	check_export_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (this, check_export, "Export ontology data to", wxDefaultPosition, wxDefaultSize, 0));
-		if (check_export_ != nullptr)
-		{	box_export_ -> Add (check_export_, 0, wxALL, 5);
-			pick_export_ = GSL_OWNER (wxDirPickerCtrl) (new wxDirPickerCtrl (this, wxID_ANY, wxEmptyString, "Select a " REPERTOIRE, wxDefaultPosition, wxDefaultSize, wxDIRP_DEFAULT_STYLE));
-			if (pick_export_ != nullptr)
-				box_export_ -> Add (pick_export_, 0, wxALL, 5);
-				box_ -> Add (box_export_, 1, wxALIGN_CENTER_HORIZONTAL, 5); } }
-
-	line2_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
-	if (line2_ != nullptr)
-		box_ -> Add (line2_, 0, wxEXPAND | wxALL, 5);
-
-	data_ontology_ = GSL_OWNER (wxDataViewListCtrl) (new wxDataViewListCtrl (this, list_ontology, wxDefaultPosition, wxDefaultSize, wxDV_SINGLE));
+	data_ontology_ = GSL_OWNER (wxDataViewListCtrl) (new wxDataViewListCtrl (parent, list_ontology, wxDefaultPosition, wxDefaultSize, wxDV_SINGLE));
 	if (data_ontology_ != nullptr)
-	{	data_ontology_ -> SetMinSize (wxSize (-1, 250));
+	{	data_ontology_ -> SetMinSize (wxSize (-1, 175));
 		column_ontology_ = data_ontology_ -> AppendTextColumn ("Name", wxDATAVIEW_CELL_INERT, 60, static_cast < wxAlignment > (wxALIGN_LEFT), wxDATAVIEW_COL_RESIZABLE);
 		if (column_ontology_ != nullptr)
-		{	column_description_ = data_ontology_ -> AppendTextColumn ("Description", wxDATAVIEW_CELL_INERT, 250, static_cast < wxAlignment > (wxALIGN_LEFT), wxDATAVIEW_COL_RESIZABLE);
+		{	column_description_ = data_ontology_ -> AppendTextColumn ("Description", wxDATAVIEW_CELL_INERT, d ? 250 : 130, static_cast < wxAlignment > (wxALIGN_LEFT), wxDATAVIEW_COL_RESIZABLE);
 			if (column_description_ != nullptr)
 			{	column_range_ = data_ontology_ -> AppendTextColumn ("Version", wxDATAVIEW_CELL_INERT, 60, static_cast < wxAlignment > (wxALIGN_CENTRE_HORIZONTAL), wxDATAVIEW_COL_RESIZABLE);
 				if (column_range_ != nullptr)
@@ -114,22 +97,76 @@ void ontology_t :: CreateControls ()
 
 	box_version_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxHORIZONTAL));
 	if (box_version_ != nullptr)
-	{	static_version_	= GSL_OWNER (wxStaticText) (new wxStaticText (this, wxID_ANY, "Presume version:", wxDefaultPosition, wxDefaultSize, 0));
+	{	static_version_	= GSL_OWNER (wxStaticText) (new wxStaticText (parent, wxID_ANY, "Presume version:", wxDefaultPosition, wxDefaultSize, 0));
 		if (static_version_ != nullptr)
 		{	static_version_ -> Wrap (-1);
 			box_version_ -> Add (static_version_, 0, wxALIGN_CENTER_VERTICAL, 5);
 			wxString ont [] = { "-" };
-			choice_version_ = GSL_OWNER (wxChoice) (new wxChoice (this, choice_version, wxDefaultPosition, wxSize (100, -1), 1, ont, 0));
+			choice_version_ = GSL_OWNER (wxChoice) (new wxChoice (parent, choice_ontology_version, wxDefaultPosition, wxSize (100, -1), 1, ont, 0));
 			if (choice_version_ != nullptr)
 			{	choice_version_ -> SetSelection (0);
 				box_version_ -> Add (choice_version_, 0, wxALL, 5);
-				box_ -> Add (box_version_, 1, wxALIGN_CENTER_HORIZONTAL, 5); } } }
+				box_ -> Add (box_version_, 0, wxALIGN_CENTER_HORIZONTAL, 5); } } }
 
-	line3_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
+	line3_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
 	if (line3_ != nullptr)
 		box_ -> Add (line3_, 0, wxEXPAND | wxALL, 5);
 
-	dialogue_t :: CreateButtons (1);
+	box_export_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxHORIZONTAL));
+	if (box_export_ != nullptr)
+	{	check_export_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, check_export, "Export to", wxDefaultPosition, wxDefaultSize, 0));
+		if (check_export_ != nullptr)
+		{	box_export_ -> Add (check_export_, 0, wxALL | wxALIGN_CENTRE_VERTICAL, 5);
+			pick_export_ = GSL_OWNER (wxDirPickerCtrl) (new wxDirPickerCtrl (parent, wxID_ANY, wxEmptyString, "Select a " REPERTOIRE, wxDefaultPosition, wxDefaultSize, wxDIRP_DEFAULT_STYLE));
+			if (pick_export_ != nullptr)
+				box_export_ -> Add (pick_export_, 0, wxALL | wxALIGN_CENTRE_VERTICAL, 5);
+				check_pretty_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, check_verify, "Pretty export", wxDefaultPosition, wxDefaultSize, 0));
+					if (check_pretty_ != nullptr)
+					{	box_ -> Add (box_export_, 0, wxALIGN_CENTER_HORIZONTAL, 5);
+						box_ -> Add (check_pretty_, 0, wxALIGN_CENTER_HORIZONTAL | wxALL, 5); } } }
+
+	line2_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
+	if (line2_ != nullptr)
+		box_ -> Add (line2_, 0, wxEXPAND | wxALL, 5);
+
+	mf_text_ = GSL_OWNER (wxStaticText) (new wxStaticText (parent, wxID_ANY, "Microformats", wxDefaultPosition, wxDefaultSize, 0));
+	if (mf_text_ != nullptr)
+	{	mf_text_ -> Wrap (-1);
+		box_ -> Add (mf_text_, 0, wxALIGN_CENTER_HORIZONTAL, 5);
+		box_mf_export_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxHORIZONTAL));
+		if (box_mf_export_ != nullptr)
+		{	mf_export_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, check_mf_export, "Export to", wxDefaultPosition, wxDefaultSize, 0));
+			if (mf_export_ != nullptr)
+			{	box_mf_export_ -> Add (mf_export_, 0, wxALL | wxALIGN_CENTRE_VERTICAL, 5);
+				pick_mf_export_ = GSL_OWNER (wxDirPickerCtrl) (new wxDirPickerCtrl (parent, wxID_ANY, wxEmptyString, "Select a " REPERTOIRE, wxDefaultPosition, wxDefaultSize, wxDIRP_DEFAULT_STYLE));
+				if (pick_mf_export_ != nullptr)
+					box_mf_export_ -> Add (pick_mf_export_, 0, wxALL | wxALIGN_CENTRE_VERTICAL, 5);
+					box_ -> Add (box_mf_export_, 0, wxALIGN_CENTER_HORIZONTAL, 5); } } }
+
+	mf_grid_ = GSL_OWNER (wxGridSizer) (new wxGridSizer (0, 4, 0, 0));
+	if (mf_grid_ != nullptr)
+	{	mf_verify_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, check_mf_verify, "&Verify", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT));
+		if (mf_verify_ != nullptr)
+		{	mf_grid_ -> Add (mf_verify_, 0, wxALIGN_RIGHT | wxALL, 5);
+			mf_v1_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, "Version &1", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT));
+			if (mf_v1_ != nullptr)
+			{	mf_grid_ -> Add (mf_v1_, 0, wxALIGN_RIGHT | wxALL, 5);
+				mf_v2_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, "Version &2", wxDefaultPosition, wxDefaultSize, 0));
+				if (mf_v2_ != nullptr)
+				{	mf_grid_ -> Add (mf_v2_, 0, wxALL, 5);
+					mf_pretty_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, "Pretty export", wxDefaultPosition, wxDefaultSize, 0));
+					if (mf_pretty_ != nullptr)
+					{	mf_grid_ -> Add (mf_pretty_, 0, wxALL, 5);
+						box_ -> Add (mf_grid_, 0, wxEXPAND | wxALL, 5); } } } } }
+
+	base_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
+    if (base_ != nullptr)
+		box_ -> Add (base_, 0, wxEXPAND | wxALL, 5); }
+
+void ontology_t :: CreateControls ()
+{	if (d1_t :: invalid ()) return;
+    create_controls (this);
+	d1_t :: CreateButtons (1);
 	SetSizer (box_);
 	Layout ();
 	Centre (wxBOTH); }
@@ -138,20 +175,38 @@ void ontology_t :: general_enable (const bool e)
 {	check_export_ -> Enable (e);
 	choice_version_ -> Enable (e);
 	data_ontology_ -> Enable (e);
-	pick_export_ -> Enable (e);
 	static_version_ -> Enable (e);
-	if (e)
-	{	pick_export_ -> Enable (check_export_ -> IsChecked ());
-		choice_version_ -> Enable (ontological_);
-		static_version_ -> Enable (ontological_); } }
+	const bool ex = e && check_export_ -> IsChecked ();
+	pick_export_ -> Enable (ex);
+	check_pretty_ -> Enable (ex); }
+
+void ontology_t :: mf_enable (const bool b)
+{	if (invalid ()) return;
+	mf_export_ -> Enable (b);
+	mf_v1_ -> Enable (b);
+	mf_v2_ -> Enable (b);
+	const bool ex = b && check_export_ -> IsChecked ();
+	mf_pretty_ -> Enable (ex);
+	pick_mf_export_ -> Enable (ex); }
 
 void ontology_t :: OnExport (wxCommandEvent& )
 {	if (invalid ()) return;
 	const bool e = check_export_ -> IsChecked ();
+	check_pretty_ -> Enable (e);
 	pick_export_ -> Enable (e); }
 
 void ontology_t :: OnHelpClick (wxCommandEvent& )
 {	if (app != nullptr) app -> help ("ontology"); }
+
+void ontology_t :: OnMFExport (wxCommandEvent& )
+{	if (invalid ()) return;
+	const bool e = mf_export_ -> IsChecked ();
+	mf_pretty_ -> Enable (e);
+	pick_mf_export_ -> Enable (e); }
+
+void ontology_t :: OnMFVerify (wxCommandEvent& )
+{	if (invalid ()) return;
+	mf_enable (mf_verify_ -> IsChecked ()); }
 
 void ontology_t :: OnOntology (wxDataViewEvent& )
 {   if (invalid ()) return;
@@ -199,17 +254,31 @@ void ontology_t :: OnVersion (wxCommandEvent& )
 bool ontology_t :: TransferDataToWindow ()
 {	if (invalid ()) return false;
 	check_export_ -> SetValue (export_);	
+	check_pretty_ -> SetValue (pretty_);
 	check_verify_ -> SetValue (verify_);
+	if (path_.empty ()) path_ = get_current_folder ();
 	pick_export_ -> SetPath (path_.c_str ());	
 	restock_ontology ();
 	general_enable (verify_);	
+	mf_export_ -> SetValue (exp_);	
+	mf_pretty_ -> SetValue (prt_);	
+	mf_verify_ -> SetValue (vfy_);	
+	mf_v1_ -> SetValue (mf1_);	
+	mf_v2_ -> SetValue (mf2_);	
+	mf_enable (mf_verify_ -> IsChecked ());
 	return true; }
 
 bool ontology_t :: TransferDataFromWindow ()
 {	if (invalid ()) return false;	
 	export_ = check_export_ -> GetValue ();	
+	pretty_ = check_pretty_ -> GetValue ();
 	verify_ = check_verify_ -> GetValue ();
 	path_ = ::boost::filesystem::path (pick_export_ -> GetPath ().c_str ());	
+	exp_ = mf_export_ -> GetValue ();	
+	vfy_ = mf_verify_ -> GetValue ();	
+	prt_ = mf_pretty_ -> GetValue ();	
+	mf1_ = mf_v1_ -> GetValue ();	
+	mf2_ = mf_v2_ -> GetValue ();	
 	return true; }
 
 void ontology_t :: restock_ontology ()
@@ -241,5 +310,51 @@ void ontology_t :: restock_ontology ()
 			vov_.at (i) = GSL_NARROW_CAST < int > (versions_.at (i).size () - 1); }
 		data_ontology_ -> AppendItem (item); }
 	stocked_ = true; }
+
+int ontology_t :: mf_version () const
+{	int res = 0;
+	if (mf1_) res += 1;
+	if (mf2_) res += 2;
+	return res; }
+
+void ontology_t :: mf_version (const int n)
+{	switch (n)
+	{	case 1 : mf1_ = true; mf2_ = false; break;	
+		case 2 : mf1_ = false; mf2_ = true; break;	
+		case 3 : mf1_ = true; mf2_ = true; break;	
+		default : mf1_ = mf2_ = false; break; } }
+
+bool ontology_t :: create_panel (wxWindow *mummy, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
+{	PRESUME (invalid_panel (), __FILE__, __LINE__);
+	create_box (mummy, pos, size);
+	if (! create_panel_itself (mummy, id, pos, size, style)) return false;
+	create_controls (panel_);
+	if (invalid_panel ()) return false;
+	panel_ -> SetSizer (box_);
+	panel_ -> Layout ();
+	box_ -> Fit (panel_);
+	return true; }
+
+void ontology_t :: load_from_context (const context_t& c)
+{	verify (c.ontology ());
+    md_pretty (c.md_pretty ());
+    exp (c.md_export ());
+    path (c.export_root ());
+	mf_version (c.mf_version ());
+    mf_exp (c.mf_export ());
+    mf_pretty (c.mf_pretty ());
+    mf_verify (c.mf_verify ());
+    lvsv (vsv); }
+
+void ontology_t :: save_to_context (context_t& c) const
+{   c.export_root (path ().string ());
+    c.md_pretty (md_pretty ());
+    c.md_export (exp ());
+    c.ontology (verify ());
+	c.mf_version (GSL_NARROW_CAST < const unsigned char > (mf_version () & 0x0F));
+    c.mf_export (mf_exp ());
+    c.mf_pretty (mf_pretty ());
+    c.mf_verify (mf_verify ());
+    vsv = lvsv (); }
 
 #endif // WX

@@ -73,6 +73,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define EP_SET_XLINKCAT(XXX)  ((flags_t) (XXX) << EP_XLINK_TYPE_SHIFT)
 #define EP_GET_XLINKCAT(XXX)  (((XXX) & EP_XLINK_TYPE_MASK) >> EP_XLINK_TYPE_SHIFT)
 
+#define EP_WX               0x0001000000000000
+#define EP_WXONLY           0x0002000000000000
+
 // categories
 
 #define EF_DOCUMENT         0x0000000000000001
@@ -175,12 +178,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 class elem : public symbol < html_version, e_element >
 {   static element_bitset ignored_;
     bool under_parse (nitpick& nits, const html_version& v, const ::std::string& el, const ident_t n);
-    bool parse (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& x);
+    bool parse (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& x, const bool closure);
 public:
     DEFAULT_CONSTRUCTORS (elem);
     elem (const html_version& v, const ::std::string& x) : symbol < html_version, e_element > (v, x) { }
     explicit elem (const e_element e) : symbol < html_version, e_element > (e) { }
-    elem (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& x);
+    elem (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& x, const bool closure);
     static void init (nitpick& nits);
     static void ignore (const e_element e) { ignored_.set (e); }
     static bool ignored (const e_element e) { return ignored_.test (e); }
@@ -201,8 +204,8 @@ public:
     {   elem tmp (e); swap (tmp); }
     void reset (const html_version& v, const ::std::string& s)
     {   elem tmp (v, s); swap (tmp); }
-    void reset (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& x)
-    {   elem tmp (nits, v, namespaces, x);
+    void reset (nitpick& nits, const html_version& v, const namespaces_ptr& namespaces, const ::std::string& x, const bool closure)
+    {   elem tmp (nits, v, namespaces, x, closure);
         swap (tmp); }
     void reset (const e_element e)
     {   elem tmp (e);

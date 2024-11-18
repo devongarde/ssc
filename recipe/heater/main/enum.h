@@ -74,7 +74,7 @@ typedef enum
 {   a_unknown, a_custom,
         a_abbr, a_about, a_above, a_accent, a_accent_height, a_accentunder, a_accept, a_accept_charset, a_accesskey, a_accumulate, a_action, a_actiontype,
         a_activate, a_active, a_additive, a_align, a_alignment_baseline, a_alignmentscope, a_alink, a_allow, a_allow_zoom_and_pan, a_allowfullscreen,
-        a_allowpaymentrequest, a_allowusermedia, a_alphabetic, a_alt, a_altimg, a_altimg_height, a_altimg_width, a_altimg_valign, a_alttext,
+        a_allowpaymentrequest, a_allowusermedia, a_alpha, a_alphabetic, a_alt, a_altimg, a_altimg_height, a_altimg_width, a_altimg_valign, a_alttext,
         a_amplitude, a_animate, a_arabic_form, a_archive, a_arg, a_aria_activedescendant, a_aria_atomic, a_aria_autocomplete, a_aria_busy, a_aria_checked,
         a_aria_colcount, a_aria_colindex, a_aria_colspan, a_aria_controls, a_aria_current, a_aria_describedby, a_aria_details, a_aria_disabled,
         a_aria_dropeffect, a_aria_errormessage, a_aria_expanded, a_aria_flowto, a_aria_grabbed, a_aria_haspopup, a_aria_hidden, a_aria_invalid, a_aria_label,
@@ -88,10 +88,10 @@ typedef enum
     a_cache, a_calcmode, a_cancelable, a_cap_height, a_capture, a_cd, a_cdgroup, a_cell, a_cellpadding, a_cellspacing, a_challenge, a_char, a_charalign,
         a_charoff, a_charset, a_charspacing, a_checked, a_cite, a_class, a_classid, a_clear, a_clip, a_clip_path, a_clip_rule, a_clippathunits,
         a_clip_to_self, a_close, a_closure, a_code, a_codebase, a_codetype, a_coldef, a_colour, a_colour_interpolation, a_colour_interpolation_filters,
-        a_colour_profile, a_colour_rendering, a_cols, a_colspan, a_colspec, a_columnalign, a_columnlines, a_columnspacing, a_columnspan, a_columnwidth,
-        a_command, a_compact, a_comp_op, a_compositing, a_condition, a_connect, a_content, a_contenteditable, a_contentlength, a_contentscripttype,
-        a_contentstyletype, a_contextmenu, a_continue, a_controls, a_controlslist, a_coords, a_crossorigin, a_crossout, a_csp, a_currenttime, a_cursor,
-        a_cx, a_cy,
+        a_colour_profile, a_colour_rendering, a_colourspace, a_cols, a_colspan, a_colspec, a_columnalign, a_columnlines, a_columnspacing, a_columnspan,
+        a_columnwidth, a_command, a_compact, a_comp_op, a_compositing, a_condition, a_connect, a_content, a_contenteditable, a_contentlength,
+        a_contentscripttype, a_contentstyletype, a_contextmenu, a_continue, a_controls, a_controlslist, a_coords, a_crossorigin, a_crossout, a_csp,
+        a_currenttime, a_cursor, a_cx, a_cy,
     a_d, a_data, a_datafld, a_dataformatas, a_datasrc, a_datatype, a_datawild, a_datetime,
         a_decimalpoint, a_declare, a_decoding, a_default, a_defaultaction, a_defer, a_definitionurl, a_denomalign, a_depth, a_descent, a_dh,
         a_diffuseconstant, a_dingbat, a_dir, a_direction, a_dirname, a_disabled, a_disablepictureinpicture, a_disableremoteplayback, a_display,
@@ -211,42 +211,57 @@ typedef enum { fch_auto, fch_none } e_auto_none;
 typedef enum { ant_auto, ant_none, ant_thin } e_auto_none_thin;
 typedef enum { eas_auto, eas_smooth } e_auto_smooth;
 typedef enum { as_auto, as_stable } e_auto_stable;
-typedef enum {  button_add = 1, button_add_2, button_add_3, button_all,
+typedef enum {  button_all,
                 button_clear, button_config,
-                button_erase, button_erase_2, button_erase_3,
+                button_css_add, button_css_erase, button_css_rename,
+                button_dict_add, button_dict_erase, button_dict_rename,
+                button_general_add, button_general_erase, button_general_rename,
+                button_hun_add, button_hun_erase, button_hun_rename,
                 button_load,
-                button_rename, button_rename_2, button_rename_3,
                 button_save, button_selected,
+                button_shadow_add, button_shadow_erase, button_shadow_rename,
+                button_site_add, button_site_erase, button_site_rename,
+                button_validation_add, button_validation_erase, button_validation_rename,
+                button_word_add, button_word_erase, button_word_rename,
+                check_corpus_output,
                 check_export, check_external,
-                check_file_size, check_fred,
+                check_file_persist, check_file_size, check_fred,
                 check_internal,
-                check_site, check_spell,
+                check_mf_export, check_mf_verify,
+                check_site, check_spell, check_stats_export,
                 check_verify,
-                choice_version,
-                file_name, file_name_2, file_name_3,
-                list_ext, list_ext_2, list_ext_3,
+                check_wx,
+                choice_css_version, choice_html_version, choice_ontology_version, choice_validation_version,
+                dir_root,
+                file_css_name, file_dict_name, file_general_name, file_hun_name, file_shadow_name, file_site_name, file_validation_name, file_word_name,
+                list_css_ext, list_dict_ext, list_general_ext, list_hun_ext, list_shadow_ext, list_site_ext, list_validation_ext, list_word_ext,
                 list_level,
-                list_module,
+                list_css_module,
                 list_ontology,
-                menu_conf_open, menu_conf_save, menu_conf_save_as, menu_corpus, menu_css,
-                menu_file,
+                menu_conf_open, menu_conf_save, menu_conf_save_as, menu_css,
                 menu_general,
                 menu_help, menu_html,
-                menu_lynx,
-                menu_math, menu_mf,
                 menu_next, menu_nits,
                 menu_ontology,
                 menu_print_setup, menu_prior, menu_properties,
                 menu_root,
-                menu_server, menu_shadow, menu_site, menu_snippet, menu_spell, menu_spin, menu_stats, menu_svg,
+                menu_server, menu_shadow, menu_site, menu_snippet, menu_spell, menu_spin, menu_stats,
                 menu_validation,
-                menu_wizzard, // ball park incident
-                radio_choice, radio_level,
+                panel_configuration, panel_corpus, panel_css,
+                panel_general,
+                panel_html,
+                panel_links,
+                panel_math, panel_microformats,
+                panel_nits,
+                panel_ontology,
+                panel_shadow, panel_site, panel_spell, panel_statistics, panel_svg,
+                panel_validation,
+                radio_choice, radio_css_level, radio_nits_level, radio_root, radio_snippet,
                 snippet_dialogue,
                 spin_file_size,
                 spin_fred,
-                text_ext, text_ext_2, text_ext_3,
-                text_output } e_bar_gum;
+                text_css_ext, text_dict_ext, text_general_ext, text_hun_ext, text_shadow_ext, text_site_ext, text_word_ext, text_validation_ext,
+                text_output, text_snippet, text_summary } e_bar_gum;
 typedef enum { bcn_baseline, bcn_contain, bcn_none } e_baseline_contain_none;
 typedef enum { bsb_baseline, bsb_bottom, bsb_centre, bsb_top, bsb_sub, bsb_super, bsb_inherit } e_baselineshift;
 typedef enum { bcs_bounding_box, bcs_clone, bcs_slice } e_bcs;
@@ -382,6 +397,7 @@ typedef enum { cs_cmyk, cs_rgb, cs_lab } e_colour_space;
 typedef enum { ci_auto, ci_srgb, ci_linearrgb, ci_inherit } e_colour_interpolation;
 typedef enum { cr_auto, cr_optimisespeed, cr_optimisequality, cr_inherit } e_colour_rendering;
 typedef enum { ecs_dark, ecs_light } e_colour_scheme;
+typedef enum { ecs_displayp3, ecs_limitedsrgb } e_colourspace;
 typedef enum { co_command, co_checkbox, co_radio } e_command;
 typedef enum { es_original, es_query, es_fragment, es_scheme, es_authority, es_user, es_password, es_server, es_port, es_path, es_file, es_extension } e_component;
 typedef enum {  cop_clear, cop_src, cop_dst, cop_src_over, cop_dst_over, cop_src_in, cop_dst_in, cop_src_out, cop_dst_out, cop_src_atop, cop_dst_atop, cop_xor, cop_plus,
@@ -1125,7 +1141,7 @@ typedef enum {  dt_collection, dt_dataset, dt_event, dt_image, dt_interactiveres
                 dt_software, dt_sound, dt_stillimage, dt_text } e_dcmitype;
 typedef enum { ddny_device_height, ddny_device_width, ddny_no, ddny_yes } e_ddny;
 typedef enum { dec_left, dec_center, dec_right, dec_justify, dec_decimal } e_decalign;
-typedef enum { ed_auto, ed_sync, ed_async } e_decoding;
+typedef enum { ede_auto, ede_sync, ede_async } e_decoding;
 typedef enum { df_cancel, df_perform } e_defaultaction;
 typedef enum { dt_none, dt_a, dt_an, dt_the, dt_auto } e_determiner;
 typedef enum { dv_media, dv_fs, dv_rs232, dv_usb } e_device;
@@ -1144,11 +1160,12 @@ typedef enum { do_booboo, do_cgi, do_examine, do_simple } e_do;
 typedef enum {  ed_mishmash, ed_dict, ed_tags, ed_1, ed_plus, ed_2, ed_3, ed_32, ed_4, ed_41, ed_x1, ed_x11, ed_x2,
                 ed_50, ed_51, ed_52, ed_53,
                 ed_jan05, ed_jan06, ed_jan07, ed_jan08, ed_jan10, ed_jul10, ed_jan12, ed_jan13, ed_jan14, ed_jul17, ed_may20, ed_jul20, ed_jan21,
-                ed_apr21, ed_jul21, ed_apr22, ed_oct22, ed_apr23, ed_jul23,
+                ed_apr21, ed_jul21, ed_apr22, ed_oct22, ed_apr23, ed_jul23, ed_nov24,
                 ed_svg_1_0, ed_svg_1_1, ed_svg_1_2_tiny, ed_svg_1_2_full, ed_svg_2_0, ed_svg_2_anim,
                 ed_math_1, ed_math_2, ed_math_3, ed_math_4_20, ed_math_4_22,
+                ed_wx,
                 ed_iso_8859_1, ed_csp,
-                ed_rfc_1867, ed_rfc_1980, ed_rfc_3986, ed_rfc_3966, ed_rfc_6265, ed_rfc_7231, ed_rfc_7234, ed_rfc_8288,
+                ed_rfc_1867, ed_rfc_1980, ed_rfc_2616, ed_rfc_3986, ed_rfc_3966, ed_rfc_6265, ed_rfc_7231, ed_rfc_7234, ed_rfc_8288,
                 ed_w3, ed_mql, ed_ariaAug2020, ed_ariaApr2021, ed_mozilla, ed_ecma,
                 ed_microdata, ed_microformats, ed_mimetype, ed_prism_1, ed_rdfa, ed_rdfa_c, ed_apache, ed_so_11, ed_css_transform,
                 ed_css_1, ed_css_20, ed_css_21, ed_css_22,
@@ -1370,6 +1387,8 @@ typedef enum { eg_p3, eg_rec2020, eg_srgb  } e_gamut;
 typedef enum { g_female, g_male } e_gender;
 typedef enum { gu_userspaceonuse, gu_objectboundingbox } e_gradientunits;
 typedef enum { gn_grid, gn_normal } e_grid_normal;
+typedef enum { gp_html, gp_css, gp_gen, gp_bits, gp_nits, gp_data, gp_shadow, gp_spell, gp_stats, gp_validation } e_gui_panel;
+typedef enum { gr_config, gr_summary, gr_switches } e_gui_report;
 typedef enum
 {   gst_annotation, gst_character_variant, gst_content_name, gst_counter_style, gst_font_family, gst_highlight, gst_historical_form, gst_keyframe,
     gst_layer, gst_ornament, gst_page_name, gst_palette, gst_region, gst_scroll_anim, gst_styleset, gst_stylistic, gst_swash, gst_view, gst_max } e_gsstr;
@@ -2382,6 +2401,8 @@ typedef enum {
 
     mime_bork } e_mimetype;
 
+typedef enum { mel_jan, mel_feb, mel_mar, mel_apr, mel_may, mel_jun, mel_jul, mel_aug, mel_sep, mel_oct, mel_nov, mel_dec } e_month_english_long;
+typedef enum { mes_jan, mes_feb, mes_mar, mes_apr, mes_may, mes_jun, mes_jul, mes_aug, mes_sep, mes_oct, mes_nov, mes_dec } e_month_english_short;
 typedef enum { mo_dilate, mo_erode } e_morphology_operator;
 typedef enum { mo_display, mo_inline } e_mode;
 typedef enum { mk_a, mk_asharp, mk_b, mk_c, mk_csharp, mk_d, mk_dsharp, mk_e, mk_f, mk_fsharp, mk_g, mk_gsharp } e_musickey;
@@ -2541,12 +2562,15 @@ typedef enum
     nit_experimental, nit_cache, nit_arxiv, nit_coden, nit_prism, nit_mask, nit_mask_border, nit_profile, nit_container,
     nit_abandoned, nit_when_else, nit_part, nit_highlight, nit_sda, nit_vtn, nit_naughty_offset, nit_nesting, nit_content,
     nit_excluded, nit_ftp_protocol, nit_tld, nit_no_set, nit_bad_address, nit_mf_export, nit_config_attribute, nit_config_element,
-    nit_config_lingo, nit_not_ssc, nit_cannot_replace, nit_not_expected_content, nit_circular_hierarchy,
+    nit_config_lingo, nit_not_ssc, nit_cannot_replace, nit_not_expected_content, nit_circular_hierarchy, nit_colourspace,
+    nit_wx, nit_missing_ancestor, nit_ssi_stack, nit_ssi_no_cmd,
 
     nit_incompatible,
 
     // eon
     nit_off } e_nit;
+
+typedef enum { nf_html, nf_spec, nf_test, nf_text, nf_bespoke } e_nit_format;
 
 typedef enum
 {   nm_none,
@@ -2554,41 +2578,51 @@ typedef enum
         nm_compile_time, nm_config,
         nm_context_article, nm_context_body, nm_context_build, nm_context_case, nm_context_cgi, nm_context_classic, nm_context_clear,
         nm_context_config, nm_context_copy, nm_context_corpus, nm_context_crosslinks, nm_context_css, nm_context_css_background,
-        nm_context_css_adjust, nm_context_advanced_layout, nm_context_css_anchor, nm_context_css_anchor_pos, nm_context_css_box_align, nm_context_css_box_model, nm_context_css_box_sizing,
-        nm_context_css_animation, nm_context_css_cascade, nm_context_css_colour, nm_context_css_compositing, nm_context_css_cond_rule,
-        nm_context_css_contain, nm_context_css_content, nm_context_css_cs, nm_context_css_custom, nm_context_css_device, nm_context_css_display, nm_context_css_ease,
-        nm_context_css_exclude, nm_context_css_extension, nm_context_css_fbl, nm_context_css_fill, nm_context_css_filter, nm_context_css_float, nm_context_css_font,
-        nm_context_css_fragmentation, nm_context_css_grid, nm_context_css_highlight, nm_context_css_hyperlink, nm_context_css_image, nm_context_css_inline, nm_context_css_line_grid,
-        nm_context_css_list, nm_context_css_logic, nm_context_css_marquee, nm_context_css_masking, nm_context_css_media, nm_context_css_motion, nm_context_css_multi_column,
-        nm_context_css_namespace, nm_context_css_nes, nm_context_css_nesting, nm_context_css_overflow, nm_context_css_overscroll, nm_context_css_page, nm_context_css_position,
-        nm_context_css_present, nm_context_css_pseudo, nm_context_css_region, nm_context_css_rhythm, nm_context_css_round, nm_context_css_ruby, nm_context_css_scope,
-        nm_context_css_scrollbar, nm_context_css_sda, nm_context_css_selector, nm_context_css_shadow, nm_context_css_shape, nm_context_css_snap, nm_context_css_snap_point,
-        nm_context_css_speech, nm_context_css_spatial, nm_context_css_style, nm_context_css_syntax, nm_context_css_table, nm_context_css_transform,
-        nm_context_css_transition, nm_context_css_text, nm_context_css_text_decoration, nm_context_css_ui, nm_context_css_value, nm_context_css_version,
-        nm_context_css_view, nm_css_context_viewport, nm_context_css_will_change, nm_context_css_writing_mode, nm_context_custom_elements, nm_context_dc,
-        nm_context_example, nm_context_expand, nm_context_export_root, nm_context_exports, nm_context_extensions, nm_context_ext_css, nm_context_extra,
-        nm_context_force_version, nm_context_foaf, nm_context_forward, nm_context_fred, nm_context_icu, nm_context_ie, nm_context_ignore, nm_context_index,
-        nm_context_info, nm_context_iterate, nm_context_jsonld, nm_context_jsonld_extension, nm_context_jsonld_version, nm_context_lang, nm_context_links,
-        nm_context_local, nm_context_math, nm_context_main, nm_context_max_file_size, nm_context_md_export,
-        nm_context_mf_export, nm_context_mf_verify, nm_context_mf_version, nm_context_microdata, nm_context_msg, nm_context_no_ex_check,
-        nm_context_once, nm_context_output, nm_context_persisted, nm_context_rdfa, nm_context_rdf_version, nm_context_rel, nm_context_report,
-        nm_context_rfc_1867, nm_context_rfc_1942, nm_context_rfc_1980, nm_context_rfc_2070, nm_context_root, nm_context_ruby, nm_context_safari,
-        nm_context_server, nm_context_server_address_from, nm_context_server_address_to, nm_context_server_address, nm_context_server_port,
-        nm_context_server_root,
-        nm_context_schema, nm_context_ontology_version, nm_context_shadow_comment, nm_context_shadow_changed, nm_context_shadow_enable,
-        nm_context_shadow_ignore, nm_context_shadow_persist, nm_context_shadow_root, nm_context_shadow_ssi, nm_context_shadow_space,
-        nm_context_shadows, nm_context_site, nm_context_sloven, nm_context_spec, nm_context_spell, nm_context_spell_path, nm_context_spellings,
-        nm_context_ssi, nm_context_stats_export, nm_context_stats_page, nm_context_stats_summary, nm_context_stats_abbr, nm_context_stats_annotation,
+        nm_context_css_adjust, nm_context_advanced_layout, nm_context_css_anchor, nm_context_css_anchor_pos, nm_context_css_box_align,
+        nm_context_css_box_model, nm_context_css_box_sizing, nm_context_css_animation, nm_context_css_cascade, nm_context_css_colour,
+        nm_context_css_compositing, nm_context_css_cond_rule, nm_context_css_contain, nm_context_css_content, nm_context_css_cs,
+        nm_context_css_custom, nm_context_css_device, nm_context_css_display, nm_context_css_ease, nm_context_css_exclude,
+        nm_context_css_extension, nm_context_css_fbl, nm_context_css_fill, nm_context_css_filter, nm_context_css_float,
+        nm_context_css_font, nm_context_css_fragmentation, nm_context_css_grid, nm_context_css_highlight, nm_context_css_hyperlink,
+        nm_context_css_image, nm_context_css_inline, nm_context_css_line_grid, nm_context_css_list, nm_context_css_logic,
+        nm_context_css_marquee, nm_context_css_masking, nm_context_css_media, nm_context_css_motion, nm_context_css_multi_column,
+        nm_context_css_namespace, nm_context_css_nes, nm_context_css_nesting, nm_context_css_overflow, nm_context_css_overscroll,
+        nm_context_css_page, nm_context_css_position, nm_context_css_present, nm_context_css_pseudo, nm_context_css_region,
+        nm_context_css_rhythm, nm_context_css_round, nm_context_css_ruby, nm_context_css_scope, nm_context_css_scrollbar,
+        nm_context_css_sda, nm_context_css_selector, nm_context_css_shadow, nm_context_css_shape, nm_context_css_snap,
+        nm_context_css_snap_point, nm_context_css_speech, nm_context_css_spatial, nm_context_css_style, nm_context_css_syntax,
+        nm_context_css_table, nm_context_css_transform, nm_context_css_transition, nm_context_css_text,
+        nm_context_css_text_decoration, nm_context_css_ui, nm_context_css_value, nm_context_css_version, nm_context_css_view,
+        nm_css_context_viewport, nm_context_css_will_change, nm_context_css_writing_mode, nm_context_custom_elements, nm_context_dc,
+        nm_context_example, nm_context_excl_def_excl, nm_context_expand, nm_context_export_root, nm_context_exports,
+        nm_context_extensions, nm_context_ext_css, nm_context_extra, nm_context_force_version, nm_context_foaf, nm_context_forward,
+        nm_context_fred, nm_context_help, nm_context_icu, nm_context_ie, nm_context_ignore, nm_context_index, nm_context_pretty,
+        nm_context_info, nm_context_iterate, nm_context_jsonld, nm_context_jsonld_extension, nm_context_jsonld_version,
+        nm_context_lang, nm_context_links, nm_context_local, nm_context_math, nm_context_main, nm_context_max_file_size,
+        nm_context_md_export, nm_context_md_pretty, nm_context_mf_export, nm_context_mf_pretty, nm_context_mf_verify,
+        nm_context_mf_version, nm_context_microdata, nm_context_msg, nm_context_no_ex_check, nm_context_once, nm_context_output,
+        nm_context_persisted, nm_context_rdfa, nm_context_rdf_version, nm_context_rel, nm_context_report, nm_context_rfc_1867,
+        nm_context_rfc_1942, nm_context_rfc_1980, nm_context_rfc_2070, nm_context_root, nm_context_ruby, nm_context_safari,
+        nm_context_server, nm_context_server_address_from, nm_context_server_address_to, nm_context_server_address,
+        nm_context_server_port, nm_context_server_root, nm_context_schema, nm_context_ontology_version, nm_context_shadow_comment,
+        nm_context_shadow_changed, nm_context_shadow_enable, nm_context_shadow_ignore, nm_context_shadow_persist,
+        nm_context_shadow_root, nm_context_shadow_ssi, nm_context_shadow_space, nm_context_shadows, nm_context_site,
+        nm_context_sloven, nm_context_spec, nm_context_spell, nm_context_spell_path, nm_context_spellings, nm_context_ssi,
+        nm_context_ssi_cmd, nm_context_ssi_date, nm_context_ssi_doc_args, nm_context_ssi_exec, nm_context_ssi_lastmod,
+        nm_context_ssi_query_string, nm_context_ssi_timefmt, nm_context_ssi_user_name,
+        nm_context_stats_export, nm_context_stats_page, nm_context_stats_summary, nm_context_stats_abbr, nm_context_stats_annotation,
         nm_context_stats_attribute, nm_context_stats_category, nm_context_stats_character_variant, nm_context_stats_class,
         nm_context_stats_content_name, nm_context_stats_counter_style, nm_context_stats_css_property, nm_context_stats_custom_media,
-        nm_context_stats_custom_property, nm_context_stats_dfn, nm_context_stats_dtdd, nm_context_stats_element, nm_context_stats_error,
-        nm_context_stats_file, nm_context_stats_font, nm_context_stats_font_family, nm_context_stats_highlight, nm_context_stats_historical_form,
-        nm_context_stats_id, nm_context_stats_itemid, nm_context_stats_keyframe, nm_context_stats_layer, nm_context_stats_meta,
-        nm_context_stats_ontology, nm_context_stats_ornament, nm_context_stats_page_name, nm_context_stats_palette, nm_context_stats_reference,
-        nm_context_stats_region, nm_context_stats_property, nm_context_stats_scroll_anim, nm_context_stats_statement, nm_context_stats_styleset,
-        nm_context_stats_stylistic, nm_context_stats_swash, nm_context_stats_version, nm_context_stats_view,nm_context_svg_version, nm_context_tags,
-        nm_context_test, nm_context_title, nm_context_unknown_class, nm_context_vcs, nm_context_version, nm_context_virtuals, nm_context_xsd, nm_copy_addr,
-        nm_copy_html, nm_copy_text,
+        nm_context_stats_custom_property, nm_context_stats_dfn, nm_context_stats_dtdd, nm_context_stats_element,
+        nm_context_stats_error, nm_context_stats_file, nm_context_stats_font, nm_context_stats_font_family,
+        nm_context_stats_highlight, nm_context_stats_historical_form, nm_context_stats_id, nm_context_stats_itemid,
+        nm_context_stats_keyframe, nm_context_stats_layer, nm_context_stats_meta, nm_context_stats_ontology,
+        nm_context_stats_ornament, nm_context_stats_page_name, nm_context_stats_palette, nm_context_stats_reference,
+        nm_context_stats_region, nm_context_stats_property, nm_context_stats_scroll_anim, nm_context_stats_statement,
+        nm_context_stats_styleset, nm_context_stats_stylistic, nm_context_stats_swash, nm_context_stats_version,
+        nm_context_stats_view,nm_context_svg_version, nm_context_tags, nm_context_test, nm_context_title,
+        nm_context_unknown_class, nm_context_vcs, nm_context_version, nm_context_virtuals, nm_context_wx, nm_context_xsd,
+        nm_copy_addr, nm_copy_html, nm_copy_text,
     nm_general_info, nm_general_output, nm_general_path, nm_grand_title,
     nm_html_snippet,
     nm_id_count, nm_id_decl_count, nm_id_decl_int, nm_id_int, nm_id_name, nm_id_title,
@@ -4306,10 +4340,10 @@ typedef enum
     sch_fmradiochannel, sch_followaction, sch_foodestablishment, sch_foodestablishmentreservation, sch_foodevent, sch_foodservice, sch_fourwheeldriveconfiguration, sch_freereturn, sch_friday,
     sch_frontwheeldriveconfiguration, sch_fullrefund, sch_fullgameavailability, sch_fundingagency, sch_fundingscheme, sch_fungus, sch_furnitureshop,
 
-    sch_game, sch_gameavailabilityenumeration, sch_gameplaymode, sch_gameserver, sch_gameserverstatus, sch_gardencentre, sch_petrolstation, sch_gastroenterologic, sch_gatedresidencecommunity, sch_gendertype, sch_generalcontractor,
-    sch_gene, sch_genericwebplatform, sch_genetic, sch_genitourinary, sch_geocircle, sch_geocoordinates, sch_geoshape, sch_geospatialgeometry, sch_geriatric, sch_gettingaccesshealthaspect, sch_giveaction, sch_glutenfreediet,
-    sch_golfcourse, sch_governmentbenefitstype, sch_governmentbuilding, sch_governmentoffice, sch_governmentorganisation, sch_governmentpermit, sch_governmentservice, sch_grant, sch_graphicnovel,
-    sch_grocers, sch_groupboardingpolicy, sch_guide, sch_gynaecologic,
+    sch_game, sch_gameavailabilityenumeration, sch_gameplaymode, sch_gameserver, sch_gameserverstatus, sch_gardencentre, sch_petrolstation, sch_gastroenterologic, sch_gatedresidencecommunity,
+    sch_gendertype, sch_generalcontractor, sch_gene, sch_genericwebplatform, sch_genetic, sch_genitourinary, sch_geocircle, sch_geocoordinates, sch_geoshape, sch_geospatialgeometry, sch_geriatric,
+    sch_gettingaccesshealthaspect, sch_giveaction, sch_glutenfreediet, sch_golfcourse, sch_governmentbenefitstype, sch_governmentbuilding, sch_governmentoffice, sch_governmentorganisation,
+    sch_governmentpermit, sch_governmentservice, sch_grant, sch_graphicnovel, sch_grocers, sch_groupboardingpolicy, sch_guide, sch_gynaecologic,
 
     sch_hackathon, sch_haematologic, sch_hairsalon, sch_halaldiet, sch_hardcover, sch_hardwareshop, sch_head, sch_healthandbeautybusiness, sch_healthaspectenumeration, sch_healthcare,
     sch_healthcareconsideration, sch_healthclub, sch_healthtopiccontent, sch_hearingimpairedsupported, sch_highschool, sch_hindudiet, sch_hindutemple, sch_hobbyshop, sch_homeandconstructionbusiness,
@@ -4320,9 +4354,10 @@ typedef enum
     sch_infectiousagentclass, sch_infectiousdisease, sch_inforce, sch_informaction, sch_ingredientshealthaspect, sch_insertaction, sch_installaction, sch_installment, sch_instock,
     sch_instoreonly, sch_instoreprepay, sch_insuranceagency, sch_intangible, sch_integer, sch_interactaction, sch_interactioncounter, sch_internationaltrial, sch_internetcafe,
     sch_investmentfund, sch_investmentordeposit, sch_inviteaction, sch_invoice, sch_invoiceprice, sch_iosplatform, sch_iptcdigitalsourceenumeration, sch_iptcalgorithmicmediadigitalsource,
-    sch_iptcalgorithmicallyenhanceddigitalsource, sch_iptccompositecapturedigitalsource, sch_iptccompositesyntheticdigitalsource, sch_iptccompositewithtrainedalgorithmicmediadigitalsource,
-    sch_iptcdatadrivenmediadigitalsource, sch_iptcdigitalartdigitalsource, sch_iptcdigitalcapturedigitalsource, sch_iptcminorhumaneditsdigitalsource, sch_iptcnegativefilmdigitalsource,
-    sch_iptcpositivefilmdigitalsource, sch_iptcprintdigitalsource, sch_iptctrainedalgorithmicmediadigitalsource, sch_iptcvirtualrecordingdigitalsource, sch_itemavailability, sch_itemlist,
+    sch_iptcalgorithmicallyenhanceddigitalsource, sch_iptccompositecapturedigitalsource, sch_iptccompositedigitalsource, sch_iptccompositesyntheticdigitalsource,
+    sch_iptccompositewithtrainedalgorithmicmediadigitalsource, sch_iptcdatadrivenmediadigitalsource, sch_iptcdigitalartdigitalsource, sch_iptcdigitalcapturedigitalsource,
+    sch_iptcminorhumaneditsdigitalsource, sch_iptcmultiframecomputationalcapturedigitalsource, sch_iptcnegativefilmdigitalsource, sch_iptcpositivefilmdigitalsource,
+    sch_iptcprintdigitalsource, sch_iptcscreencapturedigitalsource,sch_iptctrainedalgorithmicmediadigitalsource, sch_iptcvirtualrecordingdigitalsource, sch_itemavailability, sch_itemlist,
     sch_itemlistorderascending, sch_itemlistorderdescending, sch_itemlistordertype, sch_itemlistunordered, sch_itempage,
 
     sch_jewellers, sch_jobposting, sch_joinaction, sch_joint,
@@ -5530,7 +5565,7 @@ typedef enum
     sp_about, sp_abridged, sp_abstract, sp_accelerationtime, sp_acceptedanswer, sp_acceptedoffer, sp_acceptedpaymentmethod, sp_acceptsreservations, sp_accessibilityapi, sp_accessibilitycontrol,
     sp_accessibilityfeature, sp_accessibilityhazard, sp_accessibilitysummary, sp_accesscode, sp_accessmode, sp_accessmodesufficient, sp_accommodationcategory, sp_accommodationfloorplan, sp_accountableperson,
     sp_accountid, sp_accountminimuminflow, sp_accountoverdraftlimit, sp_acquiredfrom, sp_acquirelicensepage, sp_acrisscode, sp_action, sp_actionablefeedbackpolicy, sp_actionaccessibilityrequirement, sp_actionapplication,
-    sp_actionoption, sp_actionplatform, sp_actionstatus, sp_activeingredient, sp_activityduration, sp_activityfrequency, sp_actor, sp_actors, sp_additionalname, sp_additionalnumberofguests, sp_additionalproperty, sp_additionaltype,
+    sp_actionoption, sp_actionplatform, sp_actionprocess, sp_actionstatus, sp_activeingredient, sp_activityduration, sp_activityfrequency, sp_actor, sp_actors, sp_additionalname, sp_additionalnumberofguests, sp_additionalproperty, sp_additionaltype,
     sp_additionalvariable, sp_addon, sp_address, sp_addresscountry, sp_addresslocality, sp_addressregion, sp_administrationroute, sp_advancebookingrequirement, sp_adverseoutcome, sp_affectedby, sp_affiliation, sp_aftermedia,
     sp_agent, sp_agentinteractionstatistic, sp_aggregaterating, sp_aircraft, sp_album, sp_albums, sp_albumproductiontype, sp_albumrelease, sp_albumreleasetype, sp_alcoholwarning, sp_algorithm, sp_alignmenttype, sp_alternativename, sp_alternativeheadline,
     sp_alternativeof, sp_alumni, sp_alumniof, sp_amenityfeature, sp_amount, sp_amountofthisgood, sp_announcementlocation, sp_annualpercentagerate, sp_answercount, sp_answerexplanation, sp_antagonist, sp_appearance, sp_applicablecountry, sp_applicablelocation,
@@ -6373,12 +6408,13 @@ typedef enum {  // mostly from SVG 1.1 17.1.4 Processing of IRI references
 typedef enum { sp_block, sp_horz, sp_vert } e_spacer;
 typedef enum { spa_auto, spa_exact } e_spacing;
 typedef enum { sm_reflect, sm_repeat, sm_pad } e_spreadmethod;
-typedef enum { ssi_comment, ssi_config, ssi_echo, ssi_elif, ssi_else, ssi_endif, ssi_exec, ssi_flastmod, ssi_fsize, ssi_if, ssi_include, ssi_printenv, ssi_set } e_ssi;
+typedef enum { ssi_cmd, ssi_comment, ssi_config, ssi_echo, ssi_elif, ssi_else, ssi_endif, ssi_exec, ssi_flastmod, ssi_fsize, ssi_if, ssi_include, ssi_printenv, ssi_set } e_ssi;
 typedef enum { ssi_comparison_and, ssi_comparison_eq, ssi_comparison_ge, ssi_comparison_gt, ssi_comparison_le, ssi_comparison_lt, ssi_comparison_ne, ssi_comparison_or } e_ssi_comparison;
-typedef enum { ssi_config_echomsg, ssi_config_errmsg, ssi_config_sizefmt, ssi_config_timefmt } e_ssi_config;
+typedef enum { ssi_config_echomsg, ssi_config_errmsg, ssi_config_sizefmt, ssi_config_ssc_date, ssi_config_ssc_lastmod, ssi_config_timefmt } e_ssi_config;
 typedef enum { ssi_echo_decoding, ssi_echo_encoding, ssi_echo_var } e_ssi_echo;
 typedef enum { ssi_encoding_base64, ssi_encoding_none, ssi_encoding_entity, ssi_encoding_url, ssi_encoding_urlencoded } e_ssi_encoding;
-typedef enum { ssi_DATE_GMT, ssi_DATE_LOCAL, ssi_DOCUMENT_ARGS, ssi_DOCUMENT_NAME, ssi_DOCUMENT_PATH_INFO, ssi_DOCUMENT_URI, ssi_LAST_MODIFIED, ssi_QUERY_STRING_UNESCAPED, ssi_USER_NAME, ssi_error } e_ssi_env;
+typedef enum {  ssi_DATE_GMT, ssi_DATE_LOCAL, ssi_DOCUMENT_ARGS, ssi_DOCUMENT_NAME, ssi_DOCUMENT_PATH_INFO, ssi_DOCUMENT_URI, ssi_LAST_MODIFIED, ssi_QUERY_STRING_UNESCAPED,
+                ssi_SSC_LAST_MODIFIED_ANSI, ssi_SSC_LAST_MODIFIED_ISO8601, ssi_SSC_LAST_MODIFIED_RFC822, ssi_SSC_LAST_MODIFIED_RFC850, ssi_USER_NAME, ssi_error } e_ssi_env;
 typedef enum { ssi_f_file, ssi_f_virtual } e_ssi_f;
 typedef enum { ssi_include_file, ssi_include_onerror, ssi_include_virtual } e_ssi_include;
 typedef enum { ssi_set_decoding, ssi_set_encoding, ssi_set_value, ssi_set_var } e_ssi_set;
@@ -6625,11 +6661,11 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 #define SSC_TYPES_C \
         t_colour_ni, t_colour_profile, t_colour_profile_name, t_colour_profile_name_or_uri, t_colour_rendering, t_colour_scheme, t_colour_schemes, \
-        t_colour_schemes_n, t_colour_schemes_o, t_colour_space, t_colour_trans, t_colour_trans_i,  t_colour_v, t_colourfn, t_command, t_compact, t_comp_op, \
-        t_composite_operator, t_compositing, t_conlit, t_conic_1, t_conic_2, t_connect, t_contain, t_contain_cover, t_contain_cover_sd, t_content_encoding, \
-        t_content_encodings, t_content_type, t_context_menu, t_contents, t_controlslist, t_cookie, t_cookieid, t_cookies, t_coordinatesystem, t_coords, \
-        t_copy, t_corp, t_cors, t_country, t_cntype, t_create_parent, t_crossout, t_crs_tonecurvename, t_crs_whitebalance, t_cs, t_csp, t_csp_ancestor, \
-        t_csp_directive, t_csp_keyword, t_csp_sauce, t_csp_source
+        t_colour_schemes_n, t_colour_schemes_o, t_colour_space, t_colour_trans, t_colour_trans_i, t_colour_v, t_colourfn, t_colourspace, t_command, \
+        t_compact, t_comp_op, t_composite_operator, t_compositing, t_conlit, t_conic_1, t_conic_2, t_connect, t_contain, t_contain_cover, t_contain_cover_sd, \
+        t_content_encoding,  t_content_encodings, t_content_type, t_context_menu, t_contents, t_controlslist, t_cookie, t_cookieid, t_cookies, \
+        t_coordinatesystem, t_coords,  t_copy, t_corp, t_cors, t_country, t_cntype, t_create_parent, t_crossout, t_crs_tonecurvename, t_crs_whitebalance, \
+        t_cs, t_csp, t_csp_ancestor,  t_csp_directive, t_csp_keyword, t_csp_sauce, t_csp_source
 #define SSC_TYPES_C_MAX t_csp_source
 
 #define SSC_TYPES_CSS_A \
@@ -6783,7 +6819,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_CSS_U_Z_MAX t_css_wsts
 
 #define SSC_TYPES_D_E \
-    t_d, t_dashes, t_data, t_dataformatas, t_datetime, t_datetime_absolute, t_datetime_local, t_datetime_4, t_datetime_5, t_day, t_ddny, \
+    t_d, t_dashes, t_data, t_dataformatas, t_datetime, t_datetime_absolute, t_datetime_http, t_datetime_local, t_datetime_4, t_datetime_5, t_day, t_ddny, \
         t_decalign, t_decibel, t_decoding, t_defaultaction, t_depth, t_determiner, t_device, t_device_or_height, t_device_or_width, t_dg, t_digits, \
         t_dingbat, t_dir, t_direction, t_display, t_display_align, t_display_none_parent, t_dnu, t_dominantbaseline, t_dosh, t_drop_raise, t_dsc, \
         t_dss, t_dsss, t_dur, t_dur_repeat, t_duration, t_duration_a, t_duration_media, t_dynamic_range, \
@@ -6843,7 +6879,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
         t_media_prefers, t_media_prefers_2, t_media_scripting, t_meetslice, t_menuitem, t_menutype, t_metaname, t_method, \
         t_methodological, t_mf_availability, t_mf_category, t_mf_class, t_mf_identifier, t_mf_itemtype, t_mf_listing_action, t_mf_listing_actions, \
         t_mf_method, t_mf_reviewtype, t_mf_status, t_mime, t_mimelist, t_mimemodule, t_mimeq, t_mimeqs, t_mimestar, t_minute, t_mode, t_month, \
-        t_monthday, t_morphology_operator, t_mql, t_mqls, t_musickey, t_myersbriggs
+        t_month_english_short, t_month_english_long, t_monthday, t_morphology_operator, t_mql, t_mqls, t_musickey, t_myersbriggs
 #define SSC_TYPES_M_2_MAX t_myersbriggs
 
 #define SSC_TYPES_N_O \
@@ -6856,7 +6892,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 #define SSC_TYPES_P_1 \
     t_p1_10, t_page_orientation, t_paint, t_paintkeyword, t_paint_order, t_pam_ccv, t_pam_status, t_panose1, t_part, t_pcmm_status, t_percent, t_percentish, \
-        t_percent_flexible, t_percent_n, t_percents_nf, t_percents_flexible, t_percents_n, t_percent_or_not, t_phase, t_phase_x, t_pics, \
+        t_percent_flexible, t_percent_int, t_percent_n, t_percents_nf, t_percents_flexible, t_percents_n, t_percent_or_not, t_phase, t_phase_x, t_pics, \
         t_plus_1_7, t_plusstyle, t_pointer_events, t_points, t_popover, t_popovertargetaction, t_position, t_position_lcrtcb, t_position_lcr_len, \
         t_position_lcrtcb_len, t_position_tcb_len, t_position_lr_len, t_position_lrtb_len, t_position_tb_len, t_positions, t_positive, t_positive_1_2, \
         t_positive_i, t_positive_n, t_pragma, t_prefix, t_preload, t_preload5, t_preserveaspectratio, t_preserveaspectratio10, t_preserveaspectratio12
@@ -6918,8 +6954,9 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
         t_viewport, t_viewport_comma, t_viewport_height, t_viewport_initial_scale, t_viewport_interactive_widget, t_viewport_maximum_scale, \
         t_viewport_minimum_scale, t_viewport_scale, t_viewport_semi, t_viewport_setting, t_viewport_target_densitydpi, t_viewport_user_scalable, t_viewport_width, \
         t_viewportscreen, t_visibility, t_visibility10, t_visibility11, t_vkind, t_vocab, t_vrel, t_vtt, t_vtype, t_vunit, t_vunits, \
-    t_wanted, t_wallclock, t_week, t_whitespace, t_width, t_workertype, t_wrap, t_wrap3, t_writingmode, t_wxhs
- #define SSC_TYPES_V_W_MAX t_wxhs
+    t_wanted, t_wallclock, t_week, t_weekday_english_short, t_weekday_english_long, t_whitespace, t_width, t_workertype, t_wrap, t_wrap3, t_writingmode, t_wxhs, \
+        t_wximgalign
+ #define SSC_TYPES_V_W_MAX t_wximgalign
 
 #define SSC_TYPES_X_Z \
    t_x_content_type_options, t_x_dot_y, t_x_ua_compatible, t_xlinkactuate, t_xlinkactuate_onrequest, t_xlinkactuate_onload, t_xlinkshow, t_xlinkshow_a, \
@@ -6970,12 +7007,15 @@ typedef enum {  vr_acquaintance, vr_agent, vr_child, vr_colleague, vr_contact, v
                 vr_emergency, vr_friend, vr_kin, vr_me, vr_met, vr_muse, vr_neighbor, vr_parent, vr_sibling, vr_spouse, vr_sweetheart } e_vrel;
 typedef enum { vt_mobile, vt_fax, vt_pager, vt_sms, vt_textphone, vt_video, vt_voice } e_vtt;
 typedef enum { vt_home, vt_work } e_vtype;
+typedef enum { wel_sun, wel_mon, wel_tue, wel_wed, wel_thu, wel_fri, wel_sat } e_weekday_english_long;
+typedef enum { wes_sun, wes_mon, wes_tue, wes_wed, wes_thu, wes_fri, wes_sat } e_weekday_english_short;
 typedef enum { ws_normal, ws_pre, ws_nowrap, ws_pre_wrap, ws_break_spaces, ws_pre_line } e_whitespace;
 typedef enum { wm_undefined, wm_addr, wm_link, wm_root } e_wm_status;
 typedef enum { wt_classic, wt_module } e_workertype;
 typedef enum { w_soft, w_hard } e_wrap;
 typedef enum { w_horiz, w_vert } e_wrap3;
 typedef enum { wm_lrtb, wm_rltb, wm_tbrl, wm_lr, wm_rl, wm_tb, wm_htb, wm_sideways_lr, wm_sideways_rl, wm_vrl, wm_vlr, wm_inherit } e_writingmode;
+typedef enum { wxia_abscentre, wxiabottom, wxia_centre, wxia_texttop } e_wximgalign;
 typedef enum { xls_new, xls_replace } e_xlinkshow_a;
 
 typedef enum {  

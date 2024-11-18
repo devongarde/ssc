@@ -692,12 +692,14 @@ bool is_attribute_required (const html_version& v, const e_element tag, const e_
             if (may_apply (v, i -> second -> first_, i -> second -> last_)) return i -> second -> first_.required ();
     return false; }
 
-bool is_attribute_rejected (const html_version& v, const e_element tag, const e_attribute a)
+bool is_attribute_rejected (const html_version& v, const e_element tag, const e_attribute a, flags_t& flags)
 {   if (v.known () && (! is_custom_attribute (a)) && (! is_custom_element (tag)))
         for (   avm_t::const_iterator i = avm.at (tag).find (a);
                 (i != avm.at (tag).cend ()) && (i -> second -> a_ == a);
                 ++i)
-            if (may_apply (v, i -> second -> first_, i -> second -> last_)) return i -> second -> first_.reject ();
+            if (may_apply (v, i -> second -> first_, i -> second -> last_))
+            {   flags = i -> second -> flags_;
+                return i -> second -> first_.reject (); }
     return false; }
 
 #ifdef DEBUG

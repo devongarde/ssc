@@ -26,8 +26,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define HTML_CAPTION "HTML"
 
-class html_t : public dialogue_t
-{   wxCheckBox* sloven_ = nullptr;
+class html_t : public d1_t < wx_html >
+{   wxBoxSizer* box_lingo_ = nullptr;
+    wxBoxSizer* box_math_ = nullptr;
+    wxBoxSizer* box_svg_ = nullptr;
+    wxBoxSizer* box_title_ = nullptr;
+    wxBoxSizer* box_version_ = nullptr;
+    wxCheckBox* sloven_ = nullptr;
     wxCheckBox* ssi_ = nullptr;
     wxCheckBox* safari_ = nullptr;
     wxCheckBox* ie_ = nullptr;
@@ -35,22 +40,35 @@ class html_t : public dialogue_t
     wxCheckBox* rfc1942_ = nullptr;
     wxCheckBox* rfc1980_ = nullptr;
     wxCheckBox* rfc2070_ = nullptr;
+    wxCheckBox* wx_ = nullptr;
 	wxChoice* version_ = nullptr;
+	wxChoice* math_choice_ = nullptr;
+	wxChoice* svg_choice_ = nullptr;
 	wxComboBox* lingo_ = nullptr;
-	wxGridSizer* version_grid_ = nullptr;
-    wxGridSizer* lingo_grid_ = nullptr;
-    wxGridSizer* title_grid_ = nullptr;
     wxGridSizer* czech_grid_ = nullptr;
     wxRadioBox* doctype_ = nullptr;
 	wxSpinCtrl* title_ = nullptr;
+    wxStaticLine* base_ = nullptr;
+    wxStaticLine* title_line_ = nullptr;
+    wxStaticLine* option_line_ = nullptr;
+    wxStaticLine* def_line_ = nullptr;
+    wxStaticLine* lingo_line_ = nullptr;
+    wxStaticLine* version_line_ = nullptr;
     wxStaticText* lingo_text_ = nullptr;
+    wxStaticText* math_text_ = nullptr;
+    wxStaticText* svg_text_ = nullptr;
     wxStaticText* title_text_ = nullptr;
     wxStaticText* version_text_ = nullptr;
-	bool b1867_ = false, b1942_ = false, b1980_ = false, b2070_ = false, bie_ = false, bsafari_ = false, bsloven_ = false, bssi_ = false;
+    e_math_version math_ = math_none;
+    e_svg_version svg_ = sv_none;
+    bool b1867_ = false, b1942_ = false, b1980_ = false, b2070_ = false, bie_ = false, bsafari_ = false, bsloven_ = false,
+        bssi_ = false, bwx_ = false;
 	unsigned int max_ = MAX_IDEAL_TITLE_LENGTH;
 	unsigned short dt_ = 0;
 	unsigned short hv_ = 0;
     ::std::string lang_ = "en";
+    void enable ();
+    void enable_wx (const bool b);
     DECLARE_CLASS (html_t)
     DECLARE_EVENT_TABLE ()
 public:
@@ -62,9 +80,15 @@ public:
     bool Create (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = HTML_CAPTION);
     void CreateControls ();
     void OnHelpClick (wxCommandEvent& event);
+    void OnVersion (wxCommandEvent& event);
+    void OnWX (wxCommandEvent& event);
     bool TransferDataToWindow ();
     bool TransferDataFromWindow ();
-
+    bool invalid_panel () const { return invalid () || (panel_ == nullptr); }
+    void create_controls (wxWindow *parent);
+    bool create_panel (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL | wxNO_BORDER);
+    void load_from_context (const context_t& c);
+    void save_to_context (context_t& c) const;
 	html_version ver () const;
 	void ver (const html_version& v);
 	unsigned int title () const { return max_; }
@@ -88,6 +112,12 @@ public:
     bool ssi () const noexcept { return bssi_; }
     void ssi (const bool b) noexcept { bssi_ = b; }
     bool safari () const noexcept { return bsafari_; }
-    void safari (const bool b) noexcept { bsafari_ = b; } };
+    void safari (const bool b) noexcept { bsafari_ = b; }
+    bool wx () const noexcept { return bwx_; }
+    void wx (const bool b) noexcept { bwx_ = b; }
+    void math_version (const e_math_version m) { math_ = m; }
+    e_math_version math_version () const { return math_; }
+    void svg_version (const e_svg_version sv) { svg_ = sv; }
+    e_svg_version svg_version () const { return svg_; } };
 
 #endif // WX

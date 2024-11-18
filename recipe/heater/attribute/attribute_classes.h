@@ -47,6 +47,7 @@ typedef typed_attribute < t_html_boolean, a_allowfullscreen > attr_allowfullscre
 typedef typed_attribute < t_html_boolean, a_allowpaymentrequest > attr_allowpaymentrequest;
 typedef typed_attribute < t_html_boolean, a_allowusermedia > attr_allowusermedia;
 typedef typed_attribute < t_bool, a_allow_zoom_and_pan > attr_allowzoompan;
+typedef typed_attribute < t_bool, a_alpha > attr_alpha;
 typedef typed_attribute < t_real, a_alphabetic > attr_alphabetic;
 typedef typed_attribute < t_text, a_alt > attr_alt;
 typedef typed_attribute < t_url, a_altimg > attr_altimg;
@@ -157,8 +158,8 @@ typedef typed_attribute < t_capture, a_capture > attr_capture;
 typedef typed_attribute < t_url, a_cdgroup > attr_cdgroup;
 typedef typed_attribute < t_text, a_cd > attr_cd;
 typedef typed_attribute < t_generic, a_cell > attr_cell;
-typedef typed_attribute < t_generic, a_cellpadding > attr_cellpadding;
-typedef typed_attribute < t_generic, a_cellspacing > attr_cellspacing;
+typedef typed_attribute < t_percent_int, a_cellpadding > attr_cellpadding;
+typedef typed_attribute < t_percent_int, a_cellspacing > attr_cellspacing;
 typedef typed_attribute < t_generic, a_challenge > attr_challenge;
 typedef typed_attribute < t_char, a_char > attr_char;
 typedef typed_attribute < t_lcralign, a_charalign > attr_charalign;
@@ -187,6 +188,7 @@ typedef typed_attribute < t_colour_interpolation, a_colour_interpolation > attr_
 typedef typed_attribute < t_colour_interpolation, a_colour_interpolation_filters > attr_colour_interpolation_filters;
 typedef typed_attribute < t_colour_profile, a_colour_profile > attr_colour_profile;
 typedef typed_attribute < t_colour_rendering, a_colour_rendering > attr_colour_rendering;
+typedef typed_attribute < t_generic, a_colourspace > attr_colourspace;
 typedef typed_attribute < t_rowscols, a_cols > attr_cols;
 typedef typed_attribute < t_unsigned, a_colspan > attr_colspan;
 typedef typed_attribute < t_generic, a_colspec > attr_colspec;
@@ -1006,6 +1008,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_allowpaymentrequest, \
     attr_allowusermedia, \
     attr_allowzoompan, \
+    attr_alpha, \
     attr_alphabetic, \
     attr_alt, \
     attr_altimg, \
@@ -1142,6 +1145,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_colour_interpolation_filters, \
     attr_colour_profile, \
     attr_colour_rendering, \
+    attr_colourspace, \
     attr_cols, \
     attr_colspan, \
     attr_colspec, \

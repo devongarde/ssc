@@ -1,15 +1,15 @@
-<!--#include virtual="/plumbing/html.inc" -->
-<!--#include virtual="/plumbing/var.inc" -->
+<!--#include virtual="../plumbing/html.inc" -->
+<!--#include virtual="../plumbing/var.inc" --><!--#include virtual="../plumbing/varargs.inc" -->
 <!--#set var="title" value="HTML arguments" -->
 <title>
 <!--#echo encoding="none" var="title" -->
 </title>
-<!--#include virtual="/plumbing/header.inc" -->
-<!--#include virtual="/plumbing/blog-section.inc" -->
-<!--#include virtual="/plumbing/html-top-start.inc" -->
-<!--#include virtual="/plumbing/argle.inc" -->
-<!--#include virtual="/plumbing/html-top-end.inc" -->
-<!--#include virtual="/plumbing/blog-schema.inc" -->
+<!--#include virtual="../plumbing/header.inc" -->
+<!--#include virtual="../plumbing/blog-section.inc" -->
+<!--#include virtual="../plumbing/html-top-start.inc" -->
+<!--#include virtual="../plumbing/argle.inc" -->
+<!--#include virtual="../plumbing/html-top-end.inc" -->
+<!--#include virtual="../plumbing/blog-schema.inc" -->
 <data class="u-url u-uid" value="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->">
 </data>
 
@@ -33,7 +33,7 @@ when no <kbd>&lt;!DOCTYPE&hellip;&gt;</kbd> (or xml header) is specified, andor 
 define which version of HTML 5 to consider. It accepts the following values:
 </p>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-var-sm.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="../image/ssc-msgdb-var-sm.jpg" title="made with studio artist 5.5">
 
 <table>
 <tr><td>tags</td> <td>HTML tags (1991, informal)</td></tr>
@@ -131,18 +131,29 @@ The remaining switches allow you to precisely control analysis.
 
 <tr><td>html.safari</td> <td>Don&rsquo;t mention certain early Safari &lsquo;features&rsquo;.</td></tr>
 
-<tr><td>html.tags</td> <td>When an HTML file is loaded that contains no
+<tr>
+<td>html.tags</td>
+<td>When an HTML file is loaded that contains no
                         <kbd>&lt;!DOCTYPE&hellip;&gt;</kbd>, <!--#echo encoding="none" var="short" --> normally presumes HTML 1. This
                         switch tells it to presume the file conforms
                         to an earlier HTML Tags specification (the one
-                        at CERN). This is overridden by <kbd>html.version</kbd>.</td></tr>
+                        at CERN). This is overridden by <kbd>html.version</kbd>.</td>
+</tr>
+
+<tr>
+<td>html.timefmt X</td>
+<td>Set the SSI timefmt to X.</td>
+</tr>
 
 <tr><td>html.title n<br>-z n</td> <td>If <kbd>&lt;TITLE&gt;</kbd> text is longer than n characters,
                 say so. This applies to text enclosed by a
                         <kbd>&lt;TITLE&gt;</kbd> element under <kbd>&lt;HEAD&gt;</kbd>, not the value of
                         TITLE attributes.</td></tr>
+
+<tr><td>html.wx</td> <td>The site is intended for use with wxWidgets&rsquo; HTML engine.</td></tr>
+
 </table>
 
-<!--#include virtual="/plumbing/under.inc" -->
-<!--#include virtual="/plumbing/args.inc" -->
-<!--#include virtual="/plumbing/html-end.inc" -->
+<!--#include virtual="../plumbing/under.inc" -->
+<!--#include virtual="../plumbing/args.inc" -->
+<!--#include virtual="../plumbing/html-end.inc" -->

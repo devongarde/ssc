@@ -131,7 +131,6 @@ PASS ../toast/HTML/4.01/html4-deprecated.html
 PASS ../toast/HTML/4.01/html4-example.html
 0 charset_mismatch charset_used
 10 bespoke_obsolete
-15 bad_datetime
 22 dinosaur
 25 dinosaur
 62 function unrecognised_value function unrecognised_value function unrecognised_value isnt unrecognised_value function unrecognised_value function unrecognised_value function unrecognised_value isnt unrecognised_value

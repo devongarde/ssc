@@ -39,16 +39,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 CONSTEXPR e_severity default_output = es_warning;
 CONSTEXPR bool def_article = false, def_body = true, def_case = false, def_cgi = false, def_classic = false, def_clear = false,
     def_crosslinks = true, def_expand = false, def_example = true, def_external = false, def_ext_css = false, def_extra = false,
-    def_force_version = false, def_forwarded = true, def_icu = true, def_ie = false, def_info = false, def_iterate = false,
-    def_jsonld = false, def_local = true, def_load_css = true, def_links = true, def_main = false, def_md_export = false,
-    def_mf_export = false, def_mf_verify = true, def_microdata = true, def_nids = false, def_nits = false,
-    def_nits_nits_nits = false, def_not_root = false, def_once = true, def_presume_tags = false, def_progress = false,
-    def_rdfa = false, def_rel = false, def_revoke = false, def_rfc_1867 = true, def_rfc_1942 = true, def_rfc_1980 = true,
-    def_rfc_2070 = true, def_rpt_opens = false, def_ruby = false, def_ontology = true, def_safari = false, def_serve = false,
-    def_shadow_changed = false, def_shadow_comment = true, def_shadow_enable = false, def_shadow_space = true,
+    def_force_version = false, def_forwarded = true, def_gui = false, def_icu = true, def_ie = false, def_info = false,
+    def_iterate = false,  def_jsonld = false, def_local = true, def_load_css = true, def_links = true, def_main = false,
+    def_excl = true, def_md_export = false, def_md_pretty = true, def_mf_export = false, def_mf_pretty = true,
+    def_mf_verify = true, def_microdata = true, def_nids = false,
+    def_nits = false, def_nits_nits_nits = false, def_not_root = false, def_once = true, def_presume_tags = false, def_pretty = true,
+    def_progress = false, def_rdfa = false, def_rel = false, def_revoke = false, def_rfc_1867 = true, def_rfc_1942 = true,
+    def_rfc_1980 = true, def_rfc_2070 = true, def_rpt_opens = false, def_ruby = false, def_ontology = true, def_safari = false,
+    def_serve = false, def_shadow_changed = false, def_shadow_comment = true, def_shadow_enable = false, def_shadow_space = true,
     def_shadow_ssi = true, def_sloven = false, def_spec = false, def_spell = true, def_spell_deduced = false, def_ssi = true,
     def_test = false, def_unknown_class = true, def_update = false, def_valid = false, def_vcs = false, def_versioned = false,
-    def_yggdrisil = false;
+    def_wx = false, def_yggdrisil = false;
 CONSTEXPR const char* const def_macrostart = "{{";
 CONSTEXPR const char* const def_macroend = "}}";
 CONSTEXPR const char* const def_path = DEFAULT_DATAPATH;
@@ -67,26 +68,34 @@ class corpus;
 class context_t
 {   friend class options;
     bool            article_ = def_article, body_ = def_body, case_ = def_case, cgi_ = def_cgi, classic_ = def_classic,
-                    clear_ = def_clear, crosslinks_ = def_crosslinks, example_ = def_example, expand_ = def_expand, external_ = def_external,
-                    ext_css_ = def_ext_css, extra_ = def_extra, force_version_ = def_force_version, forwarded_ = def_forwarded,
-                    icu_ = def_icu, ie_ = def_ie, info_ = def_info, iterate_ = def_iterate, jsonld_ = def_jsonld,
-                    local_ = def_local, load_css_ = def_load_css, links_ = def_links, main_ = def_main,
-                    md_export_ = def_md_export, mf_export_ = def_mf_export, mf_verify_ = def_mf_verify,
-                    microdata_ = def_microdata, nids_ = def_nids, nits_ = def_nits, nits_nits_nits_ = def_nits_nits_nits,
-                    not_root_ = def_not_root, once_ = def_once, presume_tags_ = def_presume_tags, progress_ = def_progress,
-                    rdfa_ = def_rdfa, rel_ = def_rel, revoke_ = def_revoke, rfc_1867_ = def_rfc_1867, rfc_1942_ = def_rfc_1942,
+                    clear_ = def_clear, crosslinks_ = def_crosslinks, example_ = def_example, excl_ = def_excl,
+                    expand_ = def_expand, external_ = def_external, ext_css_ = def_ext_css, extra_ = def_extra,
+                    force_version_ = def_force_version, forwarded_ = def_forwarded, gui_ = def_gui, icu_ = def_icu, ie_ = def_ie,
+                    info_ = def_info, iterate_ = def_iterate, jsonld_ = def_jsonld, local_ = def_local, load_css_ = def_load_css,
+                    links_ = def_links, main_ = def_main, md_export_ = def_md_export, md_pretty_ = def_md_pretty,
+                    mf_export_ = def_mf_export, mf_pretty_ = def_mf_pretty,
+                    mf_verify_ = def_mf_verify, microdata_ = def_microdata, nids_ = def_nids, nits_ = def_nits,
+                    nits_nits_nits_ = def_nits_nits_nits, not_root_ = def_not_root, once_ = def_once,
+                    presume_tags_ = def_presume_tags, pretty_ = def_pretty, progress_ = def_progress, rdfa_ = def_rdfa,
+                    rel_ = def_rel, revoke_ = def_revoke, rfc_1867_ = def_rfc_1867, rfc_1942_ = def_rfc_1942,
                     rfc_1980_ = def_rfc_1980, rfc_2070_ = def_rfc_2070, rpt_opens_ = def_rpt_opens, ruby_ = def_ruby,
-                    ontology_ = def_ontology, safari_ = def_safari, serve_ = def_serve,                                                                                                                                                 shadow_changed_ = def_shadow_changed, shadow_comment_ = def_shadow_comment, shadow_enable_ = def_shadow_enable, shadow_space_ = def_shadow_space, shadow_ssi_ = def_shadow_ssi, sloven_ = def_sloven,                                                                                                                                           spec_ = def_spec, spell_ = def_spell, spell_deduced_ = def_spell_deduced, ssi_ = def_ssi, test_ = def_test, unknown_class_ = def_unknown_class, update_ = def_update,   valid_ = def_valid, vcs_ = def_vcs, versioned_ = def_versioned, yggdrisil_ = def_yggdrisil;
+                    ontology_ = def_ontology, safari_ = def_safari, serve_ = def_serve, shadow_changed_ = def_shadow_changed,
+                    shadow_comment_ = def_shadow_comment, shadow_enable_ = def_shadow_enable, shadow_space_ = def_shadow_space,
+                    shadow_ssi_ = def_shadow_ssi, sloven_ = def_sloven, spec_ = def_spec, spell_ = def_spell,
+                    spell_deduced_ = def_spell_deduced, ssi_ = def_ssi, test_ = def_test, unknown_class_ = def_unknown_class,
+                    update_ = def_update, valid_ = def_valid, vcs_ = def_vcs, versioned_ = def_versioned, wx_ = def_wx,
+                    yggdrisil_ = def_yggdrisil;
     ::std::size_t   fred_ = def_fred, title_ = def_htmltitle;
     e_copy          copy_ = c_none;
     unsigned char   mf_version_ = def_mf;
     html_version    version_;
     long            max_file_size_ = def_max_file_size;
     e_severity      report_error_ = es_error, verbose_ = default_output;
-    ::std::string   accept_, build_, cache_, domsg_, export_root_, general_info_, index_, lang_,
-                    macro_end_ = def_macroend, macro_start_ = def_macrostart, msg_,
-                    nit_format_, nit_override_, out_, path_ = def_path, persisted_, root_, secret_, shadow_, shadow_persist_,
-                    snippet_, started_, stats_, svg_, x_;
+    ::std::string   accept_, build_, cache_, domsg_, export_root_, general_info_, help_, index_, lang_,
+                    macro_end_ = def_macroend, macro_start_ = def_macrostart, msg_, nit_format_, nit_override_,
+                    out_, path_ = def_path, persisted_, root_, secret_, shadow_, shadow_persist_, snippet_,
+                    ssi_cmd_, ssi_doc_args_, ssi_exec_, ssi_query_string_, ssi_timefmt_,
+                    ssi_user_name_, started_, stats_, svg_, x_;
     ::boost::filesystem::path config_, corpus_, proot_, spell_path_;
     vstr_t          abhorrent_, attrib_, catastrophe_, cmd_, comment_, css_ext_ = { CSS_EXT }, custom_elements_, debug_,
                     dict_, dlang_, elem_, elem_attrib_, environment_, error_, exclude_, exports_, extensions_ = { HTML_EXT },
@@ -97,6 +106,8 @@ class context_t
     e_quote_style   quote_style_ = qs_none;
     e_do            do_ = do_booboo;
     aset_t          rpt_;
+    ::std::time_t   ssi_date_ = 0, ssi_lastmod_ = 0;
+    void init ();
     template < typename T > void mac (const e_nit_macro ns, const T n)
     {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
         macro -> set (ns, ::boost::lexical_cast < ::std::string > (n)); }
@@ -117,11 +128,14 @@ class context_t
             ss += quote (sss); }
         VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
         macro -> set (ns, ss); }
+    ::std::string summarise () const;
 public:
-    context_t ();
+    context_t () { init (); }
     context_t (nitpick& nits, const ::boost::filesystem::path& fn);
     DEFAULT_COPY_CONSTRUCTORS (context_t);
     ~context_t () = default;
+    void reset () noexcept;
+    void swap (context_t& c) noexcept;
     context_t& abhorrent (const ::std::string& s) { abhorrent_.push_back (s); return *this; }
     context_t& accept (const ::std::string& s) { accept_ = s; return *this; }
     context_t& article (const bool b) { article_ = b; mac (nm_context_article, b); return *this; }
@@ -156,6 +170,7 @@ public:
     context_t& environment (const e_environment e, const ::std::string& s);
     context_t& error (const ::std::string& s) { error_.push_back (s); return *this; }
     context_t& example (const bool b) { example_ = b; mac (nm_context_example, b); return *this; }
+    context_t& excl_def_excl (const bool b) { excl_ = b; mac (nm_context_excl_def_excl, b); return *this; }
     context_t& exclude (nitpick& nits, const vstr_t& s);
     context_t& exclude (nitpick& nits, const ::std::string& s);
     context_t& expand (const bool b) { expand_ = b; mac (nm_context_expand, b); return *this; }
@@ -176,6 +191,8 @@ public:
         mac (nm_context_forward, b);
         return *this; }
     context_t& fred (const ::std::size_t i);
+    void gui (const bool b) { gui_ = b; }
+    context_t& help (const ::std::string& s) { help_ = s; mac (nm_context_help, s); return *this; }
     context_t& html_ver (const html_version& v)
     {   versioned (true); version_ = v; mac (nm_context_version, version_.name ()); return *this; }
     context_t& icu (const bool b) { icu_ = b; mac (nm_context_icu, b); return *this; }
@@ -207,7 +224,9 @@ public:
     context_t& math_version (const e_math_version v) noexcept { version_.math_version (v); return *this; }
     context_t& max_file_size (const long l) { max_file_size_ = l; mac < long > (nm_context_max_file_size, l);return *this; }
     context_t& md_export (const bool b) { md_export_ = b; mac (nm_context_md_export, b); return *this; }
+    context_t& md_pretty (const bool b) { md_pretty_ = b; mac (nm_context_md_pretty, b); return *this; }
     context_t& mf_export (const bool b) { mf_export_ = b; mac (nm_context_mf_export, b); return *this; }
+    context_t& mf_pretty (const bool b) { mf_pretty_ = b; mac (nm_context_mf_pretty, b); return *this; }
     context_t& mf_verify (const bool b) { mf_verify_ = b; mac (nm_context_mf_verify, b); return *this; }
     context_t& mf_version (const unsigned char n)
     {   mf_version_ = n;
@@ -256,6 +275,7 @@ public:
     context_t& presume_tags (const bool b) { presume_tags_ = b; mac (nm_context_tags, b); return *this; }
     context_t& pretend (nitpick& nits, const vstr_t& s);
     context_t& pretend (nitpick& nits, const ::std::string& s);
+    context_t& pretty (const bool b) { pretty_ = b; mac (nm_context_pretty, b); return *this; }
     context_t& progress (const bool b) noexcept { progress_ = b; return *this; }
     context_t& quote_style (const e_quote_style qs) noexcept { quote_style_ = qs; return *this; }
     context_t& rdfa (const bool b) { rdfa_ = b; mac (nm_context_rdfa, b); return *this; }
@@ -290,19 +310,21 @@ public:
     context_t& silent (const ::std::string& s) { silent_.push_back (s); return *this; }
     context_t& site (const vstr_t& s) { site_ = s; mac (nm_context_site, s); return *this; }
     context_t& sloven (const bool b) { sloven_ = b; mac (nm_context_sloven, b); return *this; }
-    context_t& snippet (const ::std::string& s)
-    {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
-        snippet_ = s;
-        macro -> set (nm_context_root, "");
-        macro -> set (nm_html_snippet, s);
-        quote_style (qs_html);
-        return *this; }
+    context_t& snippet (const ::std::string& s);
     context_t& spec (const bool b) { spec_ = b; return *this; }
     context_t& spell_deduced (const bool b) { spell_deduced_ = b; return *this; }
     context_t& spell_list (const ::std::string& s) { spell_list_.push_back (s); return *this; }
     context_t& spellings (const vstr_t& s) { spellings_ = s; mac (nm_context_spellings, s); return *this; }
     context_t& spell_path (const ::boost::filesystem::path& f) { spell_path_ = f; mac (nm_context_spell_path, f); return *this; }
     context_t& ssi (const bool b) { ssi_ = b; mac (nm_context_ssi, b); return *this; }
+    context_t& ssi_cmd (const ::std::string& s) { ssi_cmd_ = s; mac (nm_context_ssi_cmd, s); return *this; }
+    context_t& ssi_date (const ::std::time_t t) { ssi_date_ = t; mac (nm_context_ssi_date, t); return *this; }
+    context_t& ssi_doc_args (const ::std::string& b) { ssi_doc_args_ = b; mac (nm_context_ssi_doc_args, b); return *this; }
+    context_t& ssi_exec (const ::std::string& b) { ssi_exec_ = b; mac (nm_context_ssi_exec, b); return *this; }
+    context_t& ssi_lastmod (const ::std::time_t t) { ssi_lastmod_ = t; mac (nm_context_ssi_lastmod, t); return *this; }
+    context_t& ssi_query_string (const ::std::string& b) { ssi_query_string_ = b; mac (nm_context_ssi_query_string, b); return *this; }
+    context_t& ssi_timefmt (const ::std::string& s) { ssi_timefmt_ = s; mac (nm_context_ssi_timefmt, s); return *this; }
+    context_t& ssi_user_name (const ::std::string& b) { ssi_user_name_ = b; mac (nm_context_ssi_user_name, b); return *this; }
     context_t& stats (const ::std::string& s) { stats_ = s; mac (nm_context_stats_export, s); return *this; }
     context_t& stats (const e_report r, const bool b);
     context_t& stats_all (const bool b);
@@ -322,6 +344,7 @@ public:
     context_t& versioned (const bool b) noexcept { versioned_ = b; return *this; }
     context_t& virtuals (const vstr_t& s) { virtuals_ = s; mac (nm_context_virtuals, s); return *this; }
     context_t& warning (const ::std::string& s) { warning_.push_back (s); return *this; }
+    context_t& wx (const bool b) { wx_ = b; mac (nm_context_wx, b); return *this; }
     context_t& x (const ::std::string& s) { x_ = s; return *this; }
     context_t& yggdrisil (const bool b) { yggdrisil_ = b; return *this; }
     context_t& mobile_profile (const bool b) { if (b) version_.set_profile (H3_NOT_MOBILE); else version_.reset_profile (H3_NOT_MOBILE); return *this; }
@@ -345,6 +368,7 @@ public:
     bool clear () const noexcept { return clear_; }
     const vstr_t& cmd () const { return cmd_; }
     vstr_t cmd () { return cmd_; }
+    void cmd (const vstr_t& v) { cmd_ = v; }
     const vstr_t& comment () const { return comment_; }
     ::boost::filesystem::path config () const { return config_; }
     e_copy copy () const noexcept { return copy_; }
@@ -364,6 +388,7 @@ public:
     const ::std::string environment (const e_environment e) const { return environment_.at (e); }
     const vstr_t& error () const { return error_; }
     bool example () const noexcept { return example_; }
+    bool excl_def_excl () const noexcept { return excl_; }
     const vstr_t exclude () const { return exclude_; }
     bool excluded (nitpick& nits, const ::boost::filesystem::path& p) const;
     bool expand () const noexcept { return expand_; }
@@ -379,9 +404,11 @@ public:
     ::std::size_t fred () const noexcept{ return fred_; }
     const ::std::string& general_info () const { return general_info_; }
     context_t& general_info (const ::std::string& s) { general_info_ = s; mac (nm_general_info, s); return *this; }
+    bool gui () const noexcept { return gui_; }
     bool has_math () const noexcept { return version_.has_math (); }
     bool has_rdfa () const noexcept { return rdfa () || (version_.is_svg_12 ()) || (version_ == xhtml_2); }
     bool has_svg () const noexcept { return version_.has_svg (); }
+    const ::std::string help () const { return help_; }
     html_version html_ver () const noexcept { return version_; }
     html_version& html_ver () noexcept { return version_; }
     html_version html_ver (const int major, const int minor) noexcept;
@@ -406,7 +433,9 @@ public:
     e_math_version math_version () const noexcept { return version_.math_version (); }
     unsigned long max_file_size () const noexcept { return GSL_NARROW_CAST < unsigned long > (max_file_size_); }
     bool md_export () const noexcept { return md_export_; }
+    bool md_pretty () const noexcept { return md_pretty_; }
     bool mf_export () const noexcept { return mf_export_; }
+    bool mf_pretty () const noexcept { return mf_pretty_; }
     bool mf_verify () const noexcept { return mf_verify_; }
     int mf_version () const noexcept { return mf_version_; }
     bool mf_version1 () const noexcept { return (mf_version_ & 1) != 0; }
@@ -435,9 +464,10 @@ public:
     const ::std::string& out_name () const { return out_; }
     const ::std::string& path () const { return path_; }
     const ::std::string persisted () const { return persisted_; }
-    const vstr_t& pretend () const { return pretend_; }
     bool presume_tags () const noexcept { return presume_tags_; }
+    const vstr_t& pretend () const { return pretend_; }
     bool pretended (const ::std::string& s) const;
+    bool pretty () const noexcept { return pretty_; }
     bool progress () const noexcept { return progress_; }
     e_quote_style quote_style () const noexcept { return quote_style_; }
     bool rdfa () const noexcept;
@@ -482,6 +512,14 @@ public:
     const ::std::string& snippet () const { return snippet_; }
     bool spec () const noexcept { return spec_; }
     bool ssi () const noexcept { return ssi_; }
+    const ::std::string& ssi_cmd () const { return ssi_cmd_; }
+    ::std::time_t ssi_date () const { return ssi_date_; }
+    const ::std::string& ssi_doc_args () const { return ssi_doc_args_; }
+    const ::std::string& ssi_exec() const { return ssi_exec_; }
+    ::std::time_t ssi_lastmod () const { return ssi_lastmod_; }
+    const ::std::string& ssi_query_string () const { return ssi_query_string_; }
+    const ::std::string& ssi_timefmt () const { return ssi_timefmt_; }
+    const ::std::string& ssi_user_name () const { return ssi_user_name_; }
     const ::std::string& started () const { return started_; }
     context_t& started (const ::std::string& s) { started_ = s; mac (nm_time_start, s); return *this; }
     const ::std::string& stats () const { return stats_; }
@@ -502,6 +540,7 @@ public:
     void apply_vcs (nitpick& nits);
     bool versioned () const noexcept { return versioned_; }
     const vstr_t& warning () const { return warning_; }
+    bool wx () const noexcept { return wx_; }
     const ::std::string& x () const { return x_; }
     bool yggdrisil () const { return yggdrisil_; }
     bool tell (const e_severity n) const noexcept
@@ -514,6 +553,7 @@ public:
     bool print_profile () const { return version_.print_profile (); }
     bool tv_profile () const { return version_.tv_profile (); }
     ::std::string make_absolute_url (const ::std::string& link, bool can_use_index = true) const;
+    ::std::string report (const e_gui_report gr) const;
     bool write (nitpick& nits, const ::boost::filesystem::path& fn) const; };
 
 extern context_t context;

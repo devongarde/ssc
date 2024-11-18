@@ -23,15 +23,86 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #ifdef WX
 #include "gui/gui-dialogue.h"
 
-bool dialogue_t :: Create (wxWindow *mummy, wxWindowID id, const wxString& caption, const wxPoint& pos, const wxSize& size, const long style)
-{	preCreate (mummy, pos);
-	if (size_ == wxDefaultSize) size_ = size;
-	if (! wxDialog :: Create (mummy, id, caption, point_, size_, style)) return false;
+bool d2_t :: Create (wxWindow *mummy, wxWindowID id, const wxString& caption, const wxPoint& pos, const wxSize& size, const long style)
+{	if (! preCreate (mummy, id, caption, pos, size, style)) return false;
 	CreateBox ();
 	return true; }
 
-bool whizzo_t :: Create (wxWindow *mummy, wxWindowID id, const wxString& caption, const wxPoint& pos, const long style)
-{	preCreate (mummy, pos);
-	return wxWizard :: Create (mummy, id, caption, wxBitmapBundle (), point_, style); }
+void d2_t :: CreateBox ()
+{	box_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxVERTICAL));
+    if (box_ != nullptr)
+    {   grid_ = GSL_OWNER (wxGridSizer) (new wxGridSizer (0, 5, 0, 0));
+        if (grid_ != nullptr)
+            cancel_ = GSL_OWNER (wxButton) (new wxButton (this, wxID_CANCEL)); } }
+
+void d2_t :: CreateButtons (const int bs)
+{	if (interrogate < wxDialog > :: invalid ()) return;
+    about_ = GSL_OWNER (wxButton) (new wxButton (this, wxID_ABOUT));
+    if (about_ != nullptr)
+    {   help_ = GSL_OWNER (wxButton) (new wxButton (this, wxID_HELP));
+        if (help_ != nullptr)
+        {   ok_ = GSL_OWNER (wxButton) (new wxButton (this, wxID_OK));
+#ifndef DARWIN
+            grid_ -> Add (about_, 0, wxALL, 5);
+            grid_ -> Add (help_, 0, wxALL, 5);
+            grid_ -> Add (0, 0, 1, wxEXPAND, 5);
+            grid_ -> Add (ok_, 0, wxALL | wxDEFAULT, 5);
+            grid_ -> Add (cancel_, 0, wxALL, 5);
+#else // DARWIN
+            grid_ -> Add (help_, 0, wxALL, 5);
+            grid_ -> Add (about_, 0, wxALL, 5);
+            grid_ -> Add (0, 0, 1, wxEXPAND, 5);
+            grid_ -> Add (cancel_, 0, wxALL, 5);
+            grid_ -> Add (ok_, 0, wxALL, 5);
+#endif // DARWIN
+            ok_ -> SetDefault ();
+            box_ -> Add (grid_, bs, wxEXPAND, 1); } } }
+
+bool d3_t :: Create (wxWindow *mummy, wxWindowID id, const wxString& caption, const wxPoint& pos, const wxSize& size, const long style)
+{	if (! preCreate (mummy, id, caption, pos, size, style)) return false;
+	CreateBox ();
+	return true; }
+
+void d3_t :: CreateBox ()
+{	box_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxVERTICAL));
+    if (box_ != nullptr)
+    {   grid_ = GSL_OWNER (wxGridSizer) (new wxGridSizer (0, 4, 0, 0));
+        if (grid_ != nullptr)
+        {   grid_ls_ = GSL_OWNER (wxGridSizer) (new wxGridSizer (0, 4, 0, 0));
+            if (grid_ls_ != nullptr)
+                cancel_ = GSL_OWNER (wxButton) (new wxButton (this, wxID_CANCEL)); } } }
+
+void d3_t :: CreateButtons (const int bs)
+{	if (interrogate < wxDialog > :: invalid_panel ()) return;
+	divider_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
+    if (divider_ != nullptr)
+	{   save_ = GSL_OWNER (wxButton) (new wxButton (this, wxID_SAVE));
+        if (save_ != nullptr)
+	    {   save_as_ = GSL_OWNER (wxButton) (new wxButton (this, wxID_SAVEAS));
+            if (save_as_ != nullptr)
+            {   load_ = GSL_OWNER (wxButton) (new wxButton (this, wxID_OPEN));
+                if (load_ != nullptr)
+                {   help_ = GSL_OWNER (wxButton) (new wxButton (this, wxID_HELP));
+                    if (help_ != nullptr)
+                    {   ok_ = GSL_OWNER (wxButton) (new wxButton (this, wxID_OK));
+                        box_ -> Add (divider_, 0, wxEXPAND | wxALL, 5);
+                        grid_ls_ -> Add (load_, 0, wxALL, 5);
+                        grid_ls_ -> Add (0, 0, 1, wxEXPAND, 5);
+                        grid_ls_ -> Add (save_, 0, wxALL, 5);
+                        grid_ls_ -> Add (save_as_, 0, wxALL, 5);
+    #ifndef DARWIN
+                        grid_ -> Add (help_, 0, wxALL, 5);
+                        grid_ -> Add (0, 0, 1, wxEXPAND, 5);
+                        grid_ -> Add (ok_, 0, wxALL | wxDEFAULT, 5);
+                        grid_ -> Add (cancel_, 0, wxALL, 5);
+    #else // DARWIN
+                        grid_ -> Add (help_, 0, wxALL, 5);
+                        grid_ -> Add (0, 0, 1, wxEXPAND, 5);
+                        grid_ -> Add (cancel_, 0, wxALL, 5);
+                        grid_ -> Add (ok_, 0, wxALL, 5);
+    #endif // DARWIN
+                        ok_ -> SetDefault ();
+                        box_ -> Add (grid_ls_, bs, wxEXPAND, 1);
+                        box_ -> Add (grid_, bs, wxEXPAND, 1); } } } } } }
 
 #endif // WX

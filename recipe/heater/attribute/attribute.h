@@ -71,9 +71,7 @@ struct attribute_base
     virtual void accumulate (stats_t* , const e_element ) const { }
     virtual ::std::string report () const { return ::std::string (); } };
 
-
 #ifdef _MSC_VER
-#pragma warning (push, 3)
 #pragma warning (disable : 26435) // For VS2019, the linter wants override on a member function which already has override (I've since taken them out to avoid confusion)
 #endif // _MSC_VER
 

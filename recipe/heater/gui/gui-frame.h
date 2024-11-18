@@ -33,9 +33,10 @@ class frame_t : public wxFrame
     wxFindReplaceData* find_data_ = nullptr;
     ::boost::filesystem::path config_, root_;
     ::std::string snippet_;
-    bool new_config_ = false, new_snippet_ = false, new_site_ = false, rational_ = true;
+    bool new_config_ = false, new_snippet_ = false, new_site_ = false, rational_ = true, shush_ = true;
     context_t context_;
     bool process_config (const nitpick& nits, const ::boost::filesystem::path& fn);
+    void on (const e_gui_panel gp);
     DECLARE_EVENT_TABLE ()
 public:
     frame_t () = default;
@@ -50,7 +51,7 @@ public:
     context_t& context () { return context_; }
     const context_t& context () const { return context_; }
     void load ();
-    void save () const;
+    void save ();
     void save_as ();
     void status (const ::std::string& s);
     ::boost::filesystem::path config ()
@@ -63,20 +64,20 @@ public:
     {   if (! new_snippet_) return ::std::string ();
         new_snippet_ = false;
         return snippet_; }
+    bool shush () const noexcept { return shush_; }
+    void shush (const bool sh) noexcept { shush_ = sh; }
     bool new_config () const { return new_config_; }
-    bool new_site () const { return new_site_; }
-    bool new_snippet () const { return new_snippet_; }
+    bool new_site () const noexcept { return new_site_; }
+    bool new_snippet () const noexcept { return new_snippet_; }
     void Find (wxFindDialogEvent& e);
     void Next (wxFindDialogEvent& e);
     void OnAbout (wxCommandEvent& e);
     void OnConfigOpen (wxCommandEvent& e);
     void OnConfigSave (wxCommandEvent& e);
     void OnConfigSaveAs (wxCommandEvent& e);
-    void OnCorpus (wxCommandEvent& e);
     void OnCopy (wxCommandEvent& e);
     void OnCSS (wxCommandEvent& e);
     void OnExit (wxCommandEvent& e);
-    void OnFile (wxCommandEvent& e);
     void OnFileSave (wxCommandEvent& e);
     void OnFileSaveAs (wxCommandEvent& e);
     void OnFind (wxCommandEvent& e);
@@ -85,9 +86,6 @@ public:
     void OnHelp (wxCommandEvent& e);
     void OnHTML (wxCommandEvent& e);
     void OnLoad (wxCommandEvent& e);
-    void OnLynx (wxCommandEvent& e);
-    void OnMath (wxCommandEvent& e);
-    void OnMF (wxCommandEvent& e);
     void OnNext (wxCommandEvent& e);
     void OnNits (wxCommandEvent& e);
     void OnOntology (wxCommandEvent& e);
@@ -106,11 +104,11 @@ public:
 #endif // NOSPELL
     void OnSpin (wxCommandEvent& e);
     void OnStats (wxCommandEvent& e);
-    void OnSVG (wxCommandEvent& e);
     void OnUpdateCopy (wxUpdateUIEvent& e);
     void OnUpdateSelectAll (wxUpdateUIEvent& e);
+#ifdef DEBUG
     void OnValidation (wxCommandEvent& e);
-    void OnWizzard (wxCommandEvent& e); // see my baby jive
+#endif // DEBUG
     bool rational () const noexcept { return rational_; } };
 
 typedef frame_t* frame_pt;

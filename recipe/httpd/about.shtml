@@ -1,14 +1,14 @@
-<!--#include virtual="/plumbing/html.inc" -->
-<!--#include virtual="/plumbing/var.inc" -->
+<!--#include virtual="plumbing/html.inc" -->
+<!--#include virtual="plumbing/var.inc" -->
 <!--#set var="title" value="about ssc" -->
 <title>
 <!--#echo encoding="none" var="title" -->
 </title>
-<!--#include virtual="/plumbing/header.inc" -->
-<!--#include virtual="/plumbing/blog-section.inc" -->
-<!--#include virtual="/plumbing/html-top-start.inc" -->
-<!--#include virtual="/plumbing/html-top-end.inc" -->
-<!--#include virtual="/plumbing/blog-schema.inc" -->
+<!--#include virtual="plumbing/header.inc" -->
+<!--#include virtual="plumbing/blog-section.inc" -->
+<!--#include virtual="plumbing/html-top-start.inc" -->
+<!--#include virtual="plumbing/html-top-end.inc" -->
+<!--#include virtual="plumbing/blog-schema.inc" -->
 <data class="u-url u-uid" value="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->">
 </data>
 
@@ -16,14 +16,14 @@
 <!--#echo encoding="none" var="title" -->
 </h1>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-m3-cp10.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="image/ssc-msgdb-m3-cp10.jpg" title="made with studio artist 5.5">
 
 <h2>gen</h2>
 
 <p>
 <!--#echo encoding="none" var="uname" -->
 version <!--#echo encoding="none" var="version" --><br>
-<a href="/legal.shtml"><!--#echo encoding="none" var="copyright" --></a><br>
+<a href="legal.shtml"><!--#echo encoding="none" var="copyright" --></a><br>
 <!--#echo encoding="none" var="slashaddress" -->,
 <!--#echo encoding="none" var="github" -->
 </p>
@@ -105,10 +105,10 @@ It can output:
 HTML with resolved server side includes
 </li>
 <li>
-JSONs of ontological content
+JSONs of machine readable content
 </li>
 <li>
-website statistical information
+website statistics
 </li>
 <li>
 deduplicated websites
@@ -135,7 +135,7 @@ analyse website based in directory
 </p>
 
 <p>
-<a href="/usage.shtml">more here</a>
+<a href="usage.shtml">more here</a>
 </p>
 
 <h2>
@@ -156,7 +156,7 @@ gleeful.
 in case of bugs
 </h2>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-m6-wm2.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="image/ssc-msgdb-m6-wm2.jpg" title="made with studio artist 5.5">
 
 <p>
 This is an alpha version of <!--#echo encoding="none" var="short" -->. It is incomplete. What is complete
@@ -260,26 +260,26 @@ See Also
 </h2>
 
 <table><tr>
-<td><a href="/build.shtml">build.txt</a></td> <td>notes on building <!--#echo encoding="none" var="short" --></td>
+<td><a href="build.shtml">build.txt</a></td> <td>notes on building <!--#echo encoding="none" var="short" --></td>
 </tr><tr>
-<td><a href="/args/index.shtml">gen.txt</a></td> <td>a model man page</td>
+<td><a href="args/index.shtml">gen.txt</a></td> <td>a model man page</td>
 </tr><tr>
-<td><a href="/usage.shtml">usage.txt</a></td> <td>how to use <!--#echo encoding="none" var="short" --></td>
+<td><a href="usage.shtml">usage.txt</a></td> <td>how to use <!--#echo encoding="none" var="short" --></td>
 </tr><tr>
-<td><a href="/release-notes.shtml">releasenotes.txt</a></td> <td>fishless chips</td>
+<td><a href="release-notes.shtml">releasenotes.txt</a></td> <td>fishless chips</td>
 </tr><tr>
-<td><a href="/legal.shtml">LICENCE.txt</a></td> <td><!--#echo encoding="none" var="short" --> licence information</td>
+<td><a href="legal.shtml">LICENCE.txt</a></td> <td><!--#echo encoding="none" var="short" --> licence information</td>
 </tr><tr>
-<td><a href="/legal.shtml">LICENSE.txt</a></td> <td>formal GPL 3 licence</td>
+<td><a href="legal.shtml">LICENSE.txt</a></td> <td>formal GPL 3 licence</td>
 </tr><tr>
-<td><a href="/legal.shtml">more licences</a></td> <td>licences for borrowed external content</td>
+<td><a href="legal.shtml">more licences</a></td> <td>licences for borrowed external content</td>
 </tr></table>
 
 <h2>
 Background
 </h2>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-m3-g20.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="image/ssc-msgdb-m3-g20.jpg" title="made with studio artist 5.5">
 
 <p>
 I have a website, <a href="<!--#echo encoding="none" var="aesite" -->"><!--#echo encoding="none" var="aename" -->,
@@ -327,5 +327,5 @@ GNU General Public License for more details</a>.
 <!--#echo encoding="none" var="date" -->
 </p>
 
-<!--#include virtual="/plumbing/under.inc" -->
-<!--#include virtual="/plumbing/html-end.inc" -->
+<!--#include virtual="plumbing/under.inc" -->
+<!--#include virtual="plumbing/html-end.inc" -->

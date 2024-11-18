@@ -30,16 +30,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "spell/spell.h"
 #endif // NOSPELL
 #include "gui/gui-app.h"
-#include "gui/gui-corpus.h"
 #include "gui/gui-css.h"
-#include "gui/gui-file.h"
 #include "gui/gui-frame.h"
 #include "gui/gui-general.h"
 #include "gui/gui-html.h"
 #include "gui/gui-icon.h"
-#include "gui/gui-lynx.h"
-#include "gui/gui-math.h"
-#include "gui/gui-mf.h"
 #include "gui/gui-nits.h"
 #include "gui/gui-ontology.h"
 #include "gui/gui-shadow.h"
@@ -47,9 +42,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "gui/gui-snippet.h"
 #include "gui/gui-spell.h"
 #include "gui/gui-stats.h"
-#include "gui/gui-svg.h"
 #include "gui/gui-validation.h"
-#include "gui/gui-whizz.h"
 
 BEGIN_EVENT_TABLE (frame_t, wxFrame)
     EVT_FIND (wxID_ANY, frame_t::Find)
@@ -59,20 +52,15 @@ BEGIN_EVENT_TABLE (frame_t, wxFrame)
     EVT_MENU (menu_conf_open, frame_t::OnConfigOpen)
     EVT_MENU (menu_conf_save, frame_t::OnConfigSave)
     EVT_MENU (menu_conf_save_as, frame_t::OnConfigSaveAs)
-    EVT_MENU (menu_corpus, frame_t::OnCorpus)
     EVT_MENU (menu_css, frame_t::OnCSS)
     EVT_UPDATE_UI (wxID_COPY, frame_t::OnUpdateCopy)
     EVT_MENU (menu_spin, frame_t::OnSpin)
     EVT_MENU (wxID_EXIT, frame_t::OnExit)
-    EVT_MENU (menu_file, frame_t::OnFile)
     EVT_MENU (wxID_FIND, frame_t::OnFind)
     EVT_FIND_CLOSE(wxID_ANY, frame_t::OnFindClose)
     EVT_MENU (menu_general, frame_t::OnGeneral)
     EVT_MENU (menu_help, frame_t::OnHelp)
     EVT_MENU (menu_html, frame_t::OnHTML)
-    EVT_MENU (menu_lynx, frame_t::OnLynx)
-    EVT_MENU (menu_math, frame_t::OnMath)
-    EVT_MENU (menu_mf, frame_t::OnMF)
     EVT_MENU (menu_next, frame_t::OnNext)
     EVT_MENU (menu_nits, frame_t::OnNits)
     EVT_MENU (wxID_PREVIEW, frame_t::OnPreview)
@@ -91,11 +79,11 @@ BEGIN_EVENT_TABLE (frame_t, wxFrame)
     EVT_MENU (menu_spell, frame_t::OnSpell)
 #endif // NOSPELL
     EVT_MENU (menu_stats, frame_t::OnStats)
-    EVT_MENU (menu_svg, frame_t::OnSVG)
     EVT_SIZE (frame_t::OnSize)
     EVT_UPDATE_UI (wxID_SELECTALL, frame_t::OnUpdateSelectAll)
+#ifdef DEBUG
     EVT_MENU (menu_validation, frame_t::OnValidation)
-    EVT_MENU (menu_wizzard, frame_t::OnWizzard)
+#endif // DEBUG
 END_EVENT_TABLE ()
 
 frame_t::frame_t (const wxPoint& pt, const wxSize& sz, const context_t& c)
@@ -113,7 +101,7 @@ frame_t::~frame_t ()
 {   delete print_; }
 
 void frame_t :: append (const ::std::string& text)
-{   if (output_ != nullptr) output_ -> append (text); }
+{   if ((! shush_) && (output_ != nullptr)) output_ -> append (text); }
 
 void frame_t :: clear ()
 {   if (output_ != nullptr) output_ -> clear (); }
@@ -131,28 +119,13 @@ bool frame_t::process_config (const nitpick& nits, const ::boost::filesystem::pa
     return false; }
 
 void frame_t :: load ()
-{   wxFileDialog dialogue (this, "Load Configuration",
-        wxEmptyString, "config.conf", "Configuration files (*.conf)|*.conf", wxFD_OPEN | wxFD_FILE_MUST_EXIST);
-    if (dialogue.ShowModal () == wxID_OK)
-    {   nitpick nits ("configuration load");
-        const ::boost::filesystem::path fn (::std::string (dialogue.GetPath ().c_str ()));
-        context_t c (nits, fn);
-        if (process_config (nits, fn)) context_ = c; } }
+{   app_t::load_conf (this, context_, config_); }
 
-void frame_t :: save () const
-{   nitpick nits ("configuration save");
-    if (! config_.empty ())
-        if (! context_.write (nits, config_))
-            wxMessageBox (wxString (nits.review ())); }
+void frame_t :: save ()
+{   app_t::save_conf (this, context_, config_); }
 
 void frame_t :: save_as ()
-{   wxFileDialog dialogue (this, "Save Configuration",
-        wxEmptyString, "config.conf", "Configuration files (*.conf)|*.conf", wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
-    if (dialogue.ShowModal () == wxID_OK)
-    {   nitpick nits ("configuration save");
-        const ::boost::filesystem::path fn (::std::string (dialogue.GetPath ().c_str ()));
-        context_.write (nits, fn);
-        process_config (nits, fn); } }
+{   app_t::save_conf_as (this, context_, config_); }
 
 void frame_t :: Find (wxFindDialogEvent& e)
 {   if ((find_ != nullptr) && (find_data_!= nullptr))
@@ -182,25 +155,8 @@ void frame_t :: OnConfigSaveAs (wxCommandEvent& )
 void frame_t :: OnCopy (wxCommandEvent& e)
 {   if (output_ != nullptr) output_ -> OnCopy (e); }
 
-void frame_t :: OnCorpus (wxCommandEvent& )
-{   corpus_t c (this);
-    c.folder (context_.corpus ());
-    c.article (context_.article ());
-    c.body (context_.body ());
-    c.main (context_.main ());
-    if (c.ShowModal () == wxID_OK)
-    {   context_.corpus (c.folder ());
-        context_.article (c.article ());
-        context_.body (c.body ());
-        context_.main (c.main ()); } }
-
 void frame_t :: OnCSS (wxCommandEvent& )
-{   css_t c (this);
-    c.ext (context_.css_extension ());
-    c.version (context_.html_ver ());
-    if (c.ShowModal () == wxID_OK)
-    {   context_.css_extension (c.ext ());
-        context_.html_ver (c.version ()); } }
+{   on (gp_css); }
 
 void frame_t :: OnExit (wxCommandEvent& )
 {   if (find_ != nullptr)
@@ -209,14 +165,6 @@ void frame_t :: OnExit (wxCommandEvent& )
     delete find_data_;
     find_data_ = nullptr;
     Close (true); }
-
-void frame_t :: OnFile (wxCommandEvent& )
-{   file_t f (this);
-    f.config (context_.path ().c_str ());
-    f.persist (context_.persisted ());
-    if (f.ShowModal () == wxID_OK)
-    {   context_.path (f.config ().string ());
-        context_.persisted (f.persist ().string ()); } }
 
 void frame_t :: OnFileSave (wxCommandEvent& )
 {   if (output_ != nullptr) output_ -> FileSave (this); }
@@ -239,128 +187,32 @@ void frame_t :: OnFindClose (wxFindDialogEvent& )
     {   find_ -> Destroy ();
         find_ = nullptr; } }
 
-void frame_t :: OnGeneral (wxCommandEvent& )
-{   general_t g (this);
-    g.css (context_.unknown_class ());
-    g.other (context_.classic ());
-    g.rdfa (context_.rdfa ());
-    g.vcs (context_.vcs ());
-#ifndef NO_FRED
-    g.fred (GSL_NARROW_CAST < unsigned short > (context_.fred ()));
-#endif // NO_FRED
-    g.max_file_size (GSL_NARROW_CAST < unsigned int > (context_.max_file_size ()));
+void frame_t :: on (const e_gui_panel gp)
+{   standard_t g (this, context_, gp);
     if (g.ShowModal () == wxID_OK)
-    {   context_.unknown_class (g.css ());
-        context_.classic (g.other ());
-        context_.rdfa (g.rdfa ());
-        context_.vcs (g.vcs ());
-#ifndef NO_FRED
-        context_.fred (g.fred ());
-#endif // NO_FRED
-        context_.max_file_size (g.max_file_size ()); } }
+    {   g.save_to_context (context_); } }
+
+void frame_t :: OnGeneral (wxCommandEvent& )
+{   on (gp_gen); }
 
 void frame_t :: OnHelp (wxCommandEvent& e)
 {   if (output_ != nullptr) output_ -> OnHelp (e); }
 
 void frame_t :: OnHTML (wxCommandEvent& )
-{   html_t h (this);
-    h.ie (context_.ie ());
-    h.rfc1867 (context_.rfc_1867 ());
-    h.rfc1942 (context_.rfc_1942 ());
-    h.rfc1980 (context_.rfc_1980 ());
-    h.rfc2070 (context_.rfc_2070 ());
-    h.safari (context_.safari ());
-    h.sloven (context_.sloven ());
-    h.ssi (context_.ssi ());
-    h.title (GSL_NARROW_CAST < unsigned int > (context_.title ()));
-    h.ver (context_.html_ver ());
-    if (context_.force_version ()) h.doctype (2);
-    else if (context_.presume_tags ()) h.doctype (0);
-    else h.doctype (1);
-    h.lingo (context_.lang ());
-    if (h.ShowModal () == wxID_OK)
-    {   context_.ie (h.ie ());
-        context_.rfc_1867 (h.rfc1867 ());
-        context_.rfc_1942 (h.rfc1942 ());
-        context_.rfc_1980 (h.rfc1980 ());
-        context_.rfc_2070 (h.rfc2070 ());
-        context_.safari (h.safari ());
-        context_.sloven (h.sloven ());
-        context_.ssi (h.ssi ());
-        context_.title (h.title ());
-        context_.html_ver (h.ver ());
-        context_.lang (h.lingo ());
-        switch (h.doctype ())
-        {   case 0 : context_.force_version (false); context_.presume_tags (true); break;
-            case 2 : context_.force_version (true); context_.presume_tags (false); break;
-            default : context_.force_version (false); context_.presume_tags (false); break; } } }
+{   on (gp_html); }
 
 void frame_t :: OnLoad (wxCommandEvent& )
 {   load (); }
-
-void frame_t :: OnLynx (wxCommandEvent& )
-{   lynx_t lynx (this);
-    lynx.example (context_.example ());
-    lynx.external (context_.external ());
-    lynx.forwarded (context_.forwarded ());
-    lynx.id (context_.crosslinks ());
-    lynx.inter (context_.links ());
-    lynx.local (context_.local ());
-    lynx.once (context_.once ());
-    lynx.revoke (context_.revoke ());
-    if (lynx.ShowModal () == wxID_OK)
-    {   context_.example (lynx.example ());
-        context_.external (lynx.external ());
-        context_.forwarded (lynx.forwarded ());
-        context_.crosslinks (lynx.id ());
-        context_.links (lynx.inter ());
-        context_.local (lynx.local ());
-        context_.once (lynx.once ());
-        context_.revoke (lynx.revoke ()); } }
-
-void frame_t :: OnMath (wxCommandEvent& )
-{   math_t math (this);
-    math.version (context_.math_version ());
-    if (math.ShowModal () == wxID_OK)
-        context_.math_version (math.version ()); }
-
-void frame_t :: OnMF (wxCommandEvent& )
-{   mf_t mf (this);
-    mf.version (context_.mf_version ());
-    mf.exp (context_.mf_export ());
-    mf.verify (context_.mf_verify ());
-    if (mf.ShowModal () == wxID_OK)
-    {   context_.mf_version (GSL_NARROW_CAST < const unsigned char > (mf.version () & 0x0F));
-        context_.mf_export (mf.exp ());
-        context_.mf_verify (mf.verify ()); } }
 
 void frame_t :: OnNext (wxCommandEvent& e)
 {   if (find_data_ == nullptr) OnFind (e);
     else if (output_ != nullptr) output_ -> Next (); }
 
 void frame_t :: OnNits (wxCommandEvent& )
-{   nits_t n (this);
-    n.id (context_.nids ());
-    n.repeat (context_.nits_nits_nits ());
-    n.severity (nitpick::mns ());
-    n.verbosity (context_.verbose ());
-    if (n.ShowModal () == wxID_OK)
-    {   context_.nids (n.id ());
-        context_.nits_nits_nits (n.repeat ());
-        context_.verbose (n.verbosity ());
-        nitpick::mns (n.severity ()); } }
+{   on (gp_nits); }
 
 void frame_t :: OnOntology (wxCommandEvent& )
-{   ontology_t o (this);
-    o.verify (context_.ontology ());
-    o.exp (context_.md_export ());
-    o.path (context_.export_root ());
-    o.lvsv (vsv);
-    if (o.ShowModal () == wxID_OK)
-    {   context_.export_root (o.path ().string ());
-        context_.md_export (o.exp ());
-        context_.ontology (o.verify ());
-        vsv = o.lvsv (); } }
+{   on (gp_data); }
 
 void frame_t :: OnPreview (wxCommandEvent& )
 {   if ((output_ != nullptr) && (print_ != nullptr))
@@ -387,62 +239,17 @@ void frame_t :: OnSelectAll (wxCommandEvent& e)
 {   if (output_ != nullptr) output_ -> OnSelectAll (e); }
 
 void frame_t :: OnShadow (wxCommandEvent& )
-{   shadow_t shad (this);
-    shad.cache (context_.shadow_persist ());
-    shad.change (context_.shadow_changed ());
-    shad.comment (context_.msg ());
-    shad.keep (context_.shadow_comment ());
-    shad.ignore (context_.shadow_ignore ());
-    shad.shadow (context_.shadow_root ());
-    shad.site (context_.shadow_enable ());
-    shad.ssi (context_.shadow_ssi ());
-    shad.strategy (context_.copy ());
-    shad.time (context_.info ());
-    shad.whitespace (context_.shadow_space ());
-    if (shad.ShowModal () == wxID_OK)
-    {   context_.shadow_changed (shad.change ());
-        context_.copy (shad.strategy ());
-        context_.info (shad.time ());
-        context_.msg (shad.comment ());
-        context_.shadow_comment (shad.keep ());
-        context_.shadow_enable (shad.site ());
-        context_.shadow_ignore (shad.ignore ());
-        context_.shadow_persist (shad.cache ().string ());
-        context_.shadow_root (shad.shadow ().string ());
-        context_.shadow_space (shad.whitespace ());
-        context_.shadow_ssi (shad.ssi ()); } }
+{   on (gp_shadow); }
 
 void frame_t :: OnSite (wxCommandEvent& )
-{   site_t dlg (this);
-    dlg.site (context_.site ());
-    dlg.def (context_.rootp ());
-    if (dlg.ShowModal () == wxID_OK)
-    {   context_.site (dlg.site ());
-        context_.root (dlg.def ().string ()); } }
+{   on (gp_gen); }
 
 void frame_t :: OnSize (wxSizeEvent &event)
 {   event.Skip(); }
 
 #ifndef NOSPELL
 void frame_t :: OnSpell (wxCommandEvent& )
-{   spell_t dlg (this);
-    dlg.cased (context_.cased ());
-    dlg.check (context_.spell ());
-    dlg.dict (get_spell_list ());
-#ifndef NOICU
-    dlg.icu (context_.icu ());
-#endif // NOICU
-    dlg.word (context_.spellings ());
-    if (dlg.ShowModal ())
-    {   context_.cased (dlg.cased ());
-#ifndef NOICU
-        context_.icu (dlg.icu ());
-#endif // NOICU
-        context_.spell (dlg.check ());
-        context_.spellings (dlg.word ());
-        spell_reset ();
-        nitpick nits;
-        add_spell_list (nits, dlg.dict ()); } }
+{   on (gp_spell); }
 #endif // NOSPELL
 
 void frame_t :: OnSnippet (wxCommandEvent& )
@@ -453,22 +260,7 @@ void frame_t :: OnSnippet (wxCommandEvent& )
         new_snippet_ = ! snippet_.empty (); } }
 
 void frame_t :: OnStats (wxCommandEvent& )
-{   report_t stats (this);
-    for (int i = 0; i < rcb_max; ++i)
-    {   const e_report r = GSL_NARROW_CAST < e_report > (i);
-        stats.report (r, context_.stats_report (r)); }
-    stats.dump (context_.stats ());
-    if (stats.ShowModal () == wxID_OK)
-    {   for (int i = 0; i < rcb_max; ++i)
-        {   const e_report r = GSL_NARROW_CAST < e_report > (i);
-            context_.stats_report (r, stats.report (r)); }
-        context_.stats (stats.dump ().string ()); } }
-
-void frame_t :: OnSVG (wxCommandEvent& )
-{   svg_t svg (this);
-    svg.version (context_.svg_version ());
-    if (svg.ShowModal () == wxID_OK)
-        context_.svg_version (svg.version ()); }
+{   on (gp_stats); }
 
 void frame_t :: OnUpdateCopy (wxUpdateUIEvent& e)
 {   if (output_ != nullptr) output_ -> OnUpdateCopy (e); }
@@ -476,17 +268,10 @@ void frame_t :: OnUpdateCopy (wxUpdateUIEvent& e)
 void frame_t :: OnUpdateSelectAll (wxUpdateUIEvent& e)
 {   if (output_ != nullptr) output_ -> OnUpdateSelectAll (e); }
 
+#ifdef DEBUG
 void frame_t :: OnValidation (wxCommandEvent& )
-{   valid_t dlg (this);
-    
-    dlg.ShowModal ();
-}
-
-void frame_t :: OnWizzard (wxCommandEvent& ) // angel fingers
-{   whizz_t w (this);
-
-    w.run ();
-}
+{   on (gp_validation); }
+#endif // DEBUG
 
 void frame_t :: OnSpin (wxCommandEvent& )
 {   rational_ = bar_.config () -> IsChecked (menu_spin); }

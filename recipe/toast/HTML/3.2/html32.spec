@@ -1,7 +1,6 @@
 -Y 1 -f ../toast/HTML/3.2/html32.conf
 
 PASS ../toast/HTML/3.2/html32.html
-7 bad_datetime
 11 unrecognised_value unknown_rel
 27 inserted_missing_closure
 29 correct_spelling attribute_unrecognised unrecognised_attribute plus_1_7

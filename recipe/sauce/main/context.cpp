@@ -32,24 +32,36 @@ context_t context;
 ustr_t context_t::validation_;
 ssc_set < ::std::string > excludable_filenames;
 
-context_t::context_t ()
-    :   path_ (DEFAULT_DATAPATH)
-{   environment_.resize (env_max); }
+void context_t::swap (context_t& c) noexcept
+{   context_t t (*this);
+    try
+    {   *this = c;
+        c = t; } 
+    catch (...)
+    {   *this = t; } }
+
+void context_t::reset () noexcept
+{   context_t c;
+    *this = c; } 
+
+void context_t::init ()
+{   environment_.resize (env_max);
+    ::boost::filesystem::path p (get_current_folder ());
+    p /= DEFAULT_DATAPATH;
+    path_ = p.string (); }
 
 context_t::context_t (nitpick& nits, const ::boost::filesystem::path& fn)
-    :   path_ (DEFAULT_DATAPATH)
-{   environment_.resize (env_max);
-    options o (nits, fn);
-
+{   init ();
+    options o (*this, nits, fn);
     if (nits.worst () <= es_error) valid_ = false;
     else
     {   output_streams_t ost;
 #ifdef DARWIN
-        excludable_filenames.insert (".DS_Store");
+        if (context.excl_def_excl ()) excludable_filenames.insert (".DS_Store");
 #endif // DARWIN
         o.contextualise (*this, ost, nits);
         if (! test () && tell (es_debug))
-        {   ::std::string s (o.report ());
+        {   ::std::string s (o.report (gr_config));
             mac (nm_context_output, s); }
         valid_ = ! root ().empty (); } }
 
@@ -58,13 +70,12 @@ int context_t::parameters (output_streams_t& ost, nitpick& nits, const vstr_t& v
     if (todo () == do_booboo) return ERROR_STATE;
     if ((todo () != do_examine) && (todo () != do_cgi)) return STOP_OK;
 #ifdef DARWIN
-    excludable_filenames.insert (".DS_Store");
+    if (context.excl_def_excl ()) excludable_filenames.insert (".DS_Store");
 #endif // DARWIN
     o.contextualise (*this, ost, nits);
     if (! test () && tell (es_debug))
-    {   ::std::string s (o.report ());
+    {   ::std::string s (o.report (gr_config));
         mac (nm_context_output, s); }
-
     valid_ = cgi () || (! root ().empty ());
     return valid_ ? VALID_RESULT : ERROR_STATE; }
 
@@ -335,7 +346,57 @@ bool context_t::write (nitpick& nits, const ::boost::filesystem::path& fn) const
 {   options opt (*this);
     return opt.write (nits, fn); }
 
+::std::string context_t::summarise () const
+{   ::std::string res (version_.nice_name ());
+    if (css_version () != css_none)
+    {   res += "; CSS "; res += version_.long_css_version_name (); }
+    if (math_version () != math_none)
+    {   res += "; MathML "; res += version_.math_version_name (); }
+    if (svg_version () != sv_none)
+    {   res += "; SVG "; res += version_.svg_version_name (); }
+
+    if (! corpus ().empty ())
+    {   res += "; corpus from";
+        if (article ()) res += " <ARTICLE>";
+        if (body ()) res += " <BODY>";
+        if (main ()) res += " <MAIN>"; }
+
+    if (microformats ())
+    {   res += ";";
+        if (mf_export ())
+        {   if (mf_verify ()) res += " verify & ";
+            if (mf_pretty ()) res += "pretty ";
+            res += "export"; }
+        res += " microformats";
+        switch (mf_version ())
+        {   case 1 :
+                res += " v1";
+                break;
+            case 2 :
+                res += " v2";
+                break;
+            case 3 :
+                res += " v1 & v2";
+                break;
+            default :
+                break; } }
+
+    return res; }
+
+::std::string context_t::report (const e_gui_report gr) const
+{   if (gr == gr_summary) return summarise ();
+    options opt (*this);
+    return opt.report (gr); }
+
 context_t& context_t::serve (const bool b)
 {   serve_ = b;
     mac (nm_context_server, b);
+    return *this; }
+
+context_t& context_t::snippet (const ::std::string& s)
+{   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+    snippet_ = s;
+    macro -> set (nm_context_root, "");
+    macro -> set (nm_html_snippet, s);
+    if (! context.gui ()) quote_style (qs_html);
     return *this; }

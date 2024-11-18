@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.2.4
+version 0.2.5
 (c) 2020-2024 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notice
 https://ssc.lu/
@@ -145,4 +145,4 @@ GNU General Public License for more details.
 
 dylan harris
 mail@ssc.lu
-August 2024
+November 2024

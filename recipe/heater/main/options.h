@@ -31,23 +31,27 @@ class options
     void init (context_t& c);
 	void parse (context_t& c, output_streams_t& o, nitpick& nits, const vstr_t& vs);
     bool parse (nitpick& nits, const ::boost::filesystem::path& file);
+    bool parse (context_t& c, nitpick& nits, const ::boost::filesystem::path& file);
+    bool is_be (const char* yo);
     void yea_nay (context_t& c, context_t& (context_t::*fn) (const bool ), nitpick& nits, const char* yea, const char* nay);
     void yea_nay (context_t& c, const e_report r, nitpick& nits, const char* yea, const char* nay);
     void yea_nay (context_t& c, const e_css_module m, nitpick& nits, const char* yea, const char* nay);
     bool get_css_level (int& n, nitpick& nits, const char* opt, const char* name, const int maxlevel, const bool accept_1 = false);
     void process_css_level (context_t& c, const e_css_module m, int& n, nitpick& nits, const char* opt, const char* name, const int maxlevel, const bool accept_1 = false);
-    template < class T > void report_variable (::std::ostringstream& res, const char* wot, const char* section, int& count, const char* variable) const;
-    void report_bool (::std::ostringstream& res, const char* yay, const char* nay, const char* section, int& count, const char* ja, const char* nein) const;
+    template < class T > void report_variable (const e_gui_report gr, ::std::ostringstream& res, const char* wot, const char* section, int& count, const char* variable) const;
+    void report_bool (const e_gui_report gr, ::std::ostringstream& res, const char* yay, const char* nay, const char* section, int& count, const char* ja, const char* nein) const;
 public:
 	options (context_t& c, output_streams_t& o, nitpick& nits, const vstr_t& vs)
     {   parse (c, o, nits, vs); }
     options (nitpick& nits, const ::boost::filesystem::path& fn)
     {   parse (nits, fn); }
+    options (context_t& c, nitpick& nits, const ::boost::filesystem::path& fn)
+    {   parse (c, nits, fn); }
     explicit options (const context_t& c);
     void contextualise (context_t& c, output_streams_t& o, nitpick& nits);
     template < class T > void insert (const ::std::string& k, const T& t);
     bool write (nitpick& nits, const ::boost::filesystem::path& fn) const;
-    ::std::string report (const bool file = false) const; };
+    ::std::string report (const e_gui_report gr, const bool file = false) const; };
 
 // https://stackoverflow.com/questions/56056265/insert-into-boostprogram-optionsvariables-map-by-index-operator#56056772
 template < class T > inline void options::insert (const ::std::string& k, const T& t)

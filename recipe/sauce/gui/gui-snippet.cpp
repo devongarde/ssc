@@ -30,30 +30,30 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SNIPPET_WIDTH   500
 #define SNIPPET_HEIGHT  400
 
-BEGIN_EVENT_TABLE (snippet_t, dialogue_t)
+BEGIN_EVENT_TABLE (snippet_t, d1_t)
   EVT_BUTTON (wxID_HELP, snippet_t::OnHelpClick)
 END_EVENT_TABLE ()
 
-IMPLEMENT_CLASS (snippet_t, dialogue_t)
+IMPLEMENT_CLASS (snippet_t, d1_t)
 
 snippet_t :: snippet_t (const ::std::string& s)
-	: dialogue_t (wxPoint (SNIPPET_X, SNIPPET_Y), wxSize (SNIPPET_WIDTH, SNIPPET_HEIGHT)), snippet_ (s)
+	: d1_t (wxPoint (SNIPPET_X, SNIPPET_Y), wxSize (SNIPPET_WIDTH, SNIPPET_HEIGHT)), snippet_ (s)
 { }
 
 snippet_t :: snippet_t (wxWindow *mummy, wxWindowID id, const wxString& caption)
-	: dialogue_t (wxPoint (SNIPPET_X, SNIPPET_Y), wxSize (SNIPPET_WIDTH, SNIPPET_HEIGHT))
+	: d1_t (wxPoint (SNIPPET_X, SNIPPET_Y), wxSize (SNIPPET_WIDTH, SNIPPET_HEIGHT))
 {	Create (mummy, id, caption); } 
 
 bool snippet_t :: Create (wxWindow *mummy, wxWindowID id, const wxString& caption)
-{	if (! dialogue_t :: Create (mummy, id, caption, wxPoint (SNIPPET_X, SNIPPET_Y), wxSize (SNIPPET_WIDTH, SNIPPET_HEIGHT), SNIPPET_STYLE)) return false;
+{	if (! d1_t :: Create (mummy, id, caption, wxPoint (SNIPPET_X, SNIPPET_Y), wxSize (SNIPPET_WIDTH, SNIPPET_HEIGHT), SNIPPET_STYLE)) return false;
 	CreateControls ();
 	return true; }
 
 void snippet_t :: CreateControls ()
-{	if (dialogue_t :: invalid ()) return;
+{	if (d1_t :: invalid ()) return;
  	stc_ = GSL_OWNER (wxStyledTextCtrl) (new wxStyledTextCtrl (this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL | wxVSCROLL | wxWANTS_CHARS, wxEmptyString));
 	if (stc_ != nullptr) box_ -> Add (stc_, 7, wxEXPAND | wxALL, 5);
-	dialogue_t :: CreateButtons ();
+	d1_t :: CreateButtons ();
 	SetSizer (box_);
 	Layout ();
 	Centre (wxBOTH); }

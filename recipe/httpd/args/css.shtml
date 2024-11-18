@@ -1,15 +1,15 @@
-<!--#include virtual="/plumbing/html.inc" -->
-<!--#include virtual="/plumbing/var.inc" -->
+<!--#include virtual="../plumbing/html.inc" -->
+<!--#include virtual="../plumbing/var.inc" --><!--#include virtual="../plumbing/varargs.inc" -->
 <!--#set var="title" value="CSS arguments" -->
 <title>
 <!--#echo encoding="none" var="title" -->
 </title>
-<!--#include virtual="/plumbing/header.inc" -->
-<!--#include virtual="/plumbing/blog-section.inc" -->
-<!--#include virtual="/plumbing/html-top-start.inc" -->
-<!--#include virtual="/plumbing/argle.inc" -->
-<!--#include virtual="/plumbing/html-top-end.inc" -->
-<!--#include virtual="/plumbing/blog-schema.inc" -->
+<!--#include virtual="../plumbing/header.inc" -->
+<!--#include virtual="../plumbing/blog-section.inc" -->
+<!--#include virtual="../plumbing/html-top-start.inc" -->
+<!--#include virtual="../plumbing/argle.inc" -->
+<!--#include virtual="../plumbing/html-top-end.inc" -->
+<!--#include virtual="../plumbing/blog-schema.inc" -->
 <data class="u-url u-uid" value="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->">
 </data>
 
@@ -32,7 +32,7 @@ Otherwise, you probably only need <kbd>css.version</kbd>.
 <kbd>css.version</kbd> accepts the following values:
 </p>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-zpf-k13.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="../image/ssc-msgdb-zpf-k13.jpg" title="made with studio artist 5.5">
 
 <table>
 <tr><td>1</td> <td>CSS 1.0</td></tr>
@@ -314,6 +314,6 @@ defined at <a href="https://www.w3.org/Style/CSS/specs.en.html">w3.org</a>.
                         or 4.</td></tr>
 </table>
 
-<!--#include virtual="/plumbing/under.inc" -->
-<!--#include virtual="/plumbing/args.inc" -->
-<!--#include virtual="/plumbing/html-end.inc" -->
+<!--#include virtual="../plumbing/under.inc" -->
+<!--#include virtual="../plumbing/args.inc" -->
+<!--#include virtual="../plumbing/html-end.inc" -->

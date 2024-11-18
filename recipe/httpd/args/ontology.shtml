@@ -1,15 +1,15 @@
-<!--#include virtual="/plumbing/html.inc" -->
-<!--#include virtual="/plumbing/var.inc" -->
+<!--#include virtual="../plumbing/html.inc" -->
+<!--#include virtual="../plumbing/var.inc" --><!--#include virtual="../plumbing/varargs.inc" -->
 <!--#set var="title" value="ontology arguments" -->
 <title>
 <!--#echo encoding="none" var="title" -->
 </title>
-<!--#include virtual="/plumbing/header.inc" -->
-<!--#include virtual="/plumbing/blog-section.inc" -->
-<!--#include virtual="/plumbing/html-top-start.inc" -->
-<!--#include virtual="/plumbing/argle.inc" -->
-<!--#include virtual="/plumbing/html-top-end.inc" -->
-<!--#include virtual="/plumbing/blog-schema.inc" -->
+<!--#include virtual="../plumbing/header.inc" -->
+<!--#include virtual="../plumbing/blog-section.inc" -->
+<!--#include virtual="../plumbing/html-top-start.inc" -->
+<!--#include virtual="../plumbing/argle.inc" -->
+<!--#include virtual="../plumbing/html-top-end.inc" -->
+<!--#include virtual="../plumbing/blog-schema.inc" -->
 <data class="u-url u-uid" value="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->">
 </data>
 
@@ -23,13 +23,16 @@ may find these switches useful. Note that ssc only knows about certain
 ontologies (see --ontology.list).
 </p>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-zpf-k11.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="../image/ssc-msgdb-zpf-k11.jpg" title="made with studio artist 5.5">
 
 <table>
 <tr><td>ontology.export</td> <td>Export ontologies encountered. This data is
                         exported in JSON format (not JSON&ndash;LD).</td></tr>
 
 <tr><td>ontology.list</td> <td>List all ontologies checked by <!--#echo encoding="none" var="short" -->, and exit.</td></tr>
+
+<tr><td>ontology.pretty</td> <td>The exported JSON file will be prettified. See the
+<a href="https://www.boost.org/">boost JSON library documentation</a> for details.</td></tr>
 
 <tr><td>ontology.root&nbsp;d</td> <td>When exporting ontologies with
                         <kbd>ontology.export</kbd>, write files into the
@@ -156,7 +159,7 @@ To specific a specific version of an ontology, use X.Y, for example:<br>
 <tr><td>ontology.rif</td> <td>1.0</td></tr>
 <tr><td>ontology.role</td> <td>1.0</td></tr>
 <tr><td>ontology.rr</td> <td>1.0</td></tr>
-<tr><td>ontology.schema.org 0.10-28</td> <td>(see below)</td></tr>
+<tr><td>ontology.schema.org</td> <td>0.10-28 (see below)</td></tr>
 <tr><td>ontology.sd</td> <td>1.0</td></tr>
 <tr><td>ontology.sioc</td> <td>1.0</td></tr>
 <tr><td>ontology.sioc_s</td> <td>1.0</td></tr>
@@ -198,7 +201,7 @@ To specific a specific version of an ontology, use X.Y, for example:<br>
 
 <h2>Notes on specific ontologies</h2>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-zpf-k9.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="../image/ssc-msgdb-zpf-k9.jpg" title="made with studio artist 5.5">
 
 <h3>Adobe</h3>
 
@@ -372,6 +375,6 @@ vCard versions correspond to RDFa specs,
                         specifications.
 </p>
 
-<!--#include virtual="/plumbing/under.inc" -->
-<!--#include virtual="/plumbing/args.inc" -->
-<!--#include virtual="/plumbing/html-end.inc" -->
+<!--#include virtual="../plumbing/under.inc" -->
+<!--#include virtual="../plumbing/args.inc" -->
+<!--#include virtual="../plumbing/html-end.inc" -->

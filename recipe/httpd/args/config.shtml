@@ -1,15 +1,15 @@
-<!--#include virtual="/plumbing/html.inc" -->
-<!--#include virtual="/plumbing/var.inc" -->
+<!--#include virtual="../plumbing/html.inc" -->
+<!--#include virtual="../plumbing/var.inc" --><!--#include virtual="../plumbing/varargs.inc" -->
 <!--#set var="title" value="configuration files" -->
 <title>
 <!--#echo encoding="none" var="title" -->
 </title>
-<!--#include virtual="/plumbing/header.inc" -->
-<!--#include virtual="/plumbing/blog-section.inc" -->
-<!--#include virtual="/plumbing/html-top-start.inc" -->
-<!--#include virtual="/plumbing/argle.inc" -->
-<!--#include virtual="/plumbing/html-top-end.inc" -->
-<!--#include virtual="/plumbing/blog-schema.inc" -->
+<!--#include virtual="../plumbing/header.inc" -->
+<!--#include virtual="../plumbing/blog-section.inc" -->
+<!--#include virtual="../plumbing/html-top-start.inc" -->
+<!--#include virtual="../plumbing/argle.inc" -->
+<!--#include virtual="../plumbing/html-top-end.inc" -->
+<!--#include virtual="../plumbing/blog-schema.inc" -->
 <data class="u-url u-uid" value="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->">
 </data>
 
@@ -19,7 +19,7 @@
 
 <h2>the basics</h2>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-t1-b3.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="../image/ssc-msgdb-t1-b3.jpg" title="made with studio artist 5.5">
 
 <p>
 To check a static web site using a configuration file:
@@ -30,20 +30,20 @@ To check a static web site using a configuration file:
 A configuration file is in INI file format, which is basically a sequence of entries looking like:
 </p>
 
-<pre><code>
-[section]
-setting=value
-setting=value
+<code>
+[section]<br>
+setting=value<br>
+setting=value<br>
 setting=
-</code></pre>
+</code>
 
 <p>
-The section names and entries are the same as <a href="/args/index.shtml">the long switch names</a>.
+The section names and entries are the same as <a href="index.shtml">the long switch names</a>.
 The part before the dot is the section name, and after the dot is the setting name.
 </p>
 
 <p>
-Boolean settings require the &lsquo;=&rsquo;, but no value, after the setting name.
+Boolean settings require the &lsquo;=&rsquo; with no value after the setting name.
 </p>
 
 <h2>examples</h2>
@@ -52,18 +52,18 @@ Boolean settings require the &lsquo;=&rsquo;, but no value, after the setting na
 A simple configuration:
 </h3>
 
-<pre><code>
-[general]
-verbose=5
-output=simple.out
-class=
-
-[site]
-domain=example.edu
-extension=html
-index=index.html
+<code>
+[general]<br>
+verbose=5<br>
+output=simple.out<br>
+class=<br>
+<br>
+[site]<br>
+domain=example.edu<br>
+extension=html<br>
+index=index.html<br>
 root=~/www/gtdocs
-</code></pre>
+</code>
 
 <p>
 The website for example.edu can be found in ~/www/htdocs. Standard
@@ -84,23 +84,23 @@ Here&rsquo;s an example of a site using virtual directories, accompanied by some
 external links and crosslinked ids.
 </p>
 
-<pre><code>
-[general]
-verbose=5
-output=<!--#echo encoding="none" var="short" -->.out
+<code>
+[general]<br>
+verbose=5<br>
+output=<!--#echo encoding="none" var="short" -->.out<br>
 
-[site]
-domain=example.edu
-extension=html
-index=index.html
-root=~/www/htdocs
-virtual=/net=tests/virtual
-
-[link]
-check=
-external=
+[site]<br>
+domain=example.edu<br>
+extension=html<br>
+index=index.html<br>
+root=~/www/htdocs<br>
+virtual=/net=tests/virtual<br>
+<br>
+[link]<br>
+check=<br>
+external=<br>
 xlink=
-</code></pre>
+</code>
 
 <p>
 The configuration file specifies a virtual directory. When a link
@@ -111,28 +111,28 @@ root).
 
 <h3>Microformats</h3>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-t1-b3.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="../image/ssc-msgdb-t1-b3.jpg" title="made with studio artist 5.5">
 
 <p>
 <a href="https://microformats.org/">Microformats</a> contain machine&ndash;readable site information held in class attributes,
 the kind of thing that cheers up search engines. For more gen, <a href="https://microformats.org/">browse their site, microformats.org</a>.
 </p>
 
-<pre><code>
-[general]
-verbose=5
-output=<!--#echo encoding="none" var="short" -->.out
-class=
-
-[site]
-domain=example.edu
-extension=html
-index=index.html
-root=~/www/htdocs
-
-[microformat]
+<code>
+[general]<br>
+verbose=5<br>
+output=<!--#echo encoding="none" var="short" -->.out<br>
+class=<br>
+<br>
+[site]<br>
+domain=example.edu<br>
+extension=html<br>
+index=index.html<br>
+root=~/www/htdocs<br>
+<br>
+[microformat]<br>
 verify=
-</code></pre>
+</code>
 
 <p>
 The only new thing here is to turn on microformats analysis (class
@@ -146,7 +146,7 @@ A configuration file to check a site against HTML 5.2 and SVG 1.1 might
 contain:
 </p>
 
-<pre><code>
+<code>
 [general]<br>
 output=site.out<br>
 class=<br>
@@ -165,7 +165,7 @@ version=5.2<br>
 <br>
 [svg]<br>
 version=1.1
-</code></pre>
+</code>
 
 <h3>living standard</h3>
 
@@ -174,7 +174,7 @@ A configuration file to check against a particular WhatWG living
 standard, gathering statistics:
 </p>
 
-<pre><code>
+<code>
 [general]<br>
 output=jan21.out<br>
 <br>
@@ -196,20 +196,20 @@ root=site<br>
 [stats]<br>
 summary=<br>
 meta=
-</code></pre>
+</code>
 
 <h3>
 shadow output
 </h3>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-t1-b3.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="../image/ssc-msgdb-t1-b3.jpg" title="made with studio artist 5.5">
 
 <p>
 A configuration file to shadow copy and deduplicate a site might
 contain:
 </p>
 
-<pre><code>
+<code>
 [general]<br>
 output=dedu.out<br>
 class=<br>
@@ -224,7 +224,7 @@ root=site<br>
 copy=5<br>
 root=shadow<br>
 file=dedu.ndx
-</code></pre>
+</code>
 
 <h3>ontology</h3>
 
@@ -233,7 +233,7 @@ A configuration file to export ontologies content from schema.org
 version 7.2 might contain:
 </p>
 
-<pre><code>
+<code>
 [general]<br>
 output=export.out<br>
 class=<br>
@@ -251,7 +251,7 @@ check=<br>
 export=<br>
 root=export<br>
 schema.org=7.2
-</code></pre>
+</code>
 
 <p>
 Actually, <!--#echo encoding="none" var="short" --> will report on any microdata it finds, no matter what.
@@ -268,24 +268,26 @@ used in its own right, unless you put it under a &lt;TEMPLATE&gt; element.
 To gather some site stats:
 </p>
 
-<pre><code>
-[general]
-ssi=
-verbose=5
-output=<!--#echo encoding="none" var="short" -->.out
-class=
-
-[site]
-domain=example.edu
-extension=html
-extension=shtml
-index=index.html
-root=~/www/htdocs
-
-[stats]
-selected=
+<code>
+[general]<br>
+verbose=5<br>
+output=<!--#echo encoding="none" var="short" -->.out<br>
+class=<br>
+<br>
+[site]<br>
+domain=example.edu<br>
+extension=html<br>
+extension=shtml<br>
+index=index.html<br>
+root=~/www/htdocs<br>
+<br>
+[ssi]<br>
+verify=<br>
+<br>
+[stats]<br>
+selected=<br>
 summary=
-</code></pre>
+</code>
 
 <p>
 This turns on summary statistics, which produces a grand total at the end of
@@ -300,39 +302,39 @@ and files with the SHTML extension will be treated as web pages.
 
 <h3>mathML</h3>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-t1-b3.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="../image/ssc-msgdb-t1-b3.jpg" title="made with studio artist 5.5">
 
 <p>
 This configuration file could be used to test MathML 2.
 </p>
 
-<pre><code>
-[general]
-verbose=5
-output=m2.out
-class=
-
-[link]
-check=
-
-[site]
-domain=example.edu
-extension=html
-index=index.html
-root=~/www/htdocs
-
-[math]
-version=2
-
-[validation]
-citype=function
-citype=list
-citype=logical
-citype=matrix
-citype=set
-citype=var-x
+<code>
+[general]<br>
+verbose=5<br>
+output=m2.out<br>
+class=<br>
+<br>
+[link]<br>
+check=<br>
+<br>
+[site]<br>
+domain=example.edu<br>
+extension=html<br>
+index=index.html<br>
+root=~/www/htdocs<br>
+<br>
+[math]<br>
+version=2<br>
+<br>
+[validation]<br>
+citype=function<br>
+citype=list<br>
+citype=logical<br>
+citype=matrix<br>
+citype=set<br>
+citype=var-x<br>
 citype=vector
-</code></pre>
+</code>
 
 <p>
 What&rsquo;s interesting here is the validation section. The MathML
@@ -371,12 +373,12 @@ Presume a directory containing the following:
 Then I run a script like this:
 </p>
 
-<pre><code>
-ssc -f site.conf
-upload.sh site /var/www/site-upload server user 0
-ssh user@server &ldquo;cd /var/www ; mv site x ; mv site-upload site ;
+<code>
+ssc -f site.conf<br>
+upload.sh site /var/www/site-upload server user 0<br>
+ssh user@server &ldquo;cd /var/www ; mv site x ; mv site-upload site ;<br>
 mv x site-upload ; ln -sf site htdocs&rdquo;
-</code></pre>
+</code>
 
 <p>
 upload.sh is a macos bash script that can be found among the source
@@ -385,80 +387,82 @@ document directory /var/www/htdocs with a link.
 </p>
 
 <p>
-Here is site.conf:
+Here is a recent site.conf:
 </p>
 
-<pre><code>
-[general]
-verbose=info
-output=~/www/live.out
-ignore=pre
-rpt=
-progress=
-class=
-classic=
-no-rel=
-ssi=
-
-[css]
-verify=
-extension=css
-version=2023++
-
-[html]
-version=2023/10/01
-title=80
-rfc1942=
-rfc2070=
-ie=
-safari=
-
-[link]
-no-external=
-xlink=
-pretend=cgi-bin
-local=
-
-[nits]
-silence=use_double_quote_code
-silence=use_quote_code
-silence=missing_itemtype
-
-[shadow]
-copy=dedu
-root=~/www/live
-file=~/www/live.ndx
-ignore=inc
-info=
-msg=arts &amp; ego (c) 1978-2024 dylan harris
-
-[site]
-domain=dylanharris.org
-extension=shtml
-extension=html
-extension=htm
-extension=asp
-index=index.shtml
-root=|/Sites
-
-[spell]
-no-check=
-
-[stats]
-summary=
-
-[validation]
-lang=ma
-fontname=Marain
-fontname=droid-sans-mono
-fontname=ArialMT
-fontname=Arial-BoldMT
-fontname=Times-Italic
-fontname=Times-Roman
-fontname=TimesNewRomanPSMT
-fontname=TrebuchetMS
+<code>
+[general]<br>
+verbose=info<br>
+output=~/www/live.out<br>
+ignore=pre<br>
+rpt=<br>
+progress=<br>
+class=<br>
+classic=<br>
+no-rel=<br>
+<br>
+[css]<br>
+verify=<br>
+extension=css<br>
+version=2023++<br>
+<br>
+[html]<br>
+version=2023/10/01<br>
+title=80<br>
+rfc1942=<br>
+rfc2070=<br>
+ie=<br>
+safari=<br>
+<br>
+[link]<br>
+no-external=<br>
+xlink=<br>
+pretend=cgi-bin<br>
+local=<br>
+<br>
+[nits]<br>
+silence=use_double_quote_code<br>
+silence=use_quote_code<br>
+silence=missing_itemtype<br>
+<br>
+[shadow]<br>
+copy=dedu<br>
+root=~/www/live<br>
+file=~/www/live.ndx<br>
+ignore=inc<br>
+info=<br>
+msg=arts &amp; ego &copy; 1978-2024 dylan harris<br>
+<br>
+[site]<br>
+domain=dylanharris.org<br>
+extension=shtml<br>
+extension=html<br>
+extension=htm<br>
+extension=asp<br>
+index=index.shtml<br>
+root=~/Sites<br>
+<br>
+[spell]<br>
+no-check=<br>
+<br>
+[ssi]<br>
+verify=<br>
+<br>
+[stats]<br>
+summary=<br>
+<br>
+[validation]<br>
+lang=ma<br>
+fontname=Marain<br>
+fontname=droid-sans-mono<br>
+fontname=ArialMT<br>
+fontname=Arial-BoldMT<br>
+fontname=Times-Italic<br>
+fontname=Times-Roman<br>
+fontname=TimesNewRomanPSMT<br>
+fontname=TrebuchetMS<br>
 fontname=TrebuchetMS-Italic
-</code></pre>
+</code>
 
 <p>
 My site has been built by hand over the decades, and is full of errors.
@@ -469,45 +473,45 @@ a gadzillion errors in <a href="https://dylanharris.org/">arts &amp; ego</a>. I 
 
 <h3>OpenBSD website</h3>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-t1-b3.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="../image/ssc-msgdb-t1-b3.jpg" title="made with studio artist 5.5">
 
 <p>
 Perhaps you&rsquo;ve grabbed <a href="https://github.com/openbsd/www.git">a copy of the OpenBSD website from github</a>:
 </p>
 
-<pre><code>
-[general]
-verbose=info
-output=~/obsd.out
-git=
-progress=
-sloven=
-
-[css]
-version=2023++
-device=3
-
-[html]
-version=2023/10/01
-title=80
-force=
-
-[link]
-check=
-no-xlink=
-
-[nits]
-comment=ftp_protocol
-
-[site]
-domain=openbsd.org
-root=~/github/www
-index=index.html
-
-[stats]
+<code>
+[general]<br>
+verbose=info<br>
+output=~/obsd.out<br>
+git=<br>
+progress=<br>
+sloven=<br>
+<br>
+[css]<br>
+version=2023++<br>
+device=3<br>
+<br>
+[html]<br>
+version=2023/10/01<br>
+title=80<br>
+force=<br>
+<br>
+[link]<br>
+check=<br>
+no-xlink=<br>
+<br>
+[nits]<br>
+comment=ftp_protocol<br>
+<br>
+[site]<br>
+domain=openbsd.org<br>
+root=~/github/www<br>
+index=index.html<br>
+<br>
+[stats]<br>
 summary=
-</code></pre>
+</code>
 
-<!--#include virtual="/plumbing/under.inc" -->
-<!--#include virtual="/plumbing/args.inc" -->
-<!--#include virtual="/plumbing/html-end.inc" -->
+<!--#include virtual="../plumbing/under.inc" -->
+<!--#include virtual="../plumbing/args.inc" -->
+<!--#include virtual="../plumbing/html-end.inc" -->

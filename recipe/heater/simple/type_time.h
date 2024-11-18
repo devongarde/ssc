@@ -21,12 +21,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "base/type_master.h"
 
+bool acquire_global_datetime (const ::std::string& s, int& year, int& month, int& day, int& hour, int& minute, int& second);
 bool verify_time_4 (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_time_5 (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_absolute (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_duration (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_svg_duration (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_day (nitpick& nits, const html_version& v, const ::std::string& s);
+bool verify_http_time (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_month (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_monthday (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_local_datetime (nitpick& nits, const html_version& v, const ::std::string& s);
@@ -36,6 +38,7 @@ bool verify_year (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_yearmonth (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_plain_date (nitpick& nits, const html_version& v, const ::std::string& s);
 bool verify_coarse_time (nitpick& nits, const html_version& v, const ::std::string& s);
+time_t string_to_time (nitpick& nits, const ::std::string& s);
 
 template < > struct type_master < t_datetime_4 > : tidy_string < t_datetime_4 >
 {   using tidy_string < t_datetime_4 > :: tidy_string;
@@ -54,6 +57,15 @@ template < > struct type_master < t_datetime_5 > : public tidy_string < t_dateti
         if (! tidy_string < t_datetime_5 > :: good ()) return;
         if (! verify_time_5 (nits, v, tidy_string < t_datetime_5 > :: get_string ()))
             tidy_string < t_datetime_5 > :: status (s_invalid); } };
+
+template < > struct type_master < t_datetime_http > : public tidy_string < t_datetime_http >
+{   using tidy_string < t_datetime_http > :: tidy_string;
+    static e_animation_type animation_type () noexcept { return at_time; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_datetime_http > :: set_value (nits, v, s);
+        if (! tidy_string < t_datetime_http > :: good ()) return;
+        if (! verify_http_time (nits, v, tidy_string < t_datetime_http > :: get_string ()))
+            tidy_string < t_datetime_http > :: status (s_invalid); } };
 
 template < > struct type_master < t_datetime_absolute > : public tidy_string < t_datetime_absolute >
 {   using tidy_string < t_datetime_absolute > :: tidy_string;

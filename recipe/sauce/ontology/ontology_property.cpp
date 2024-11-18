@@ -4355,6 +4355,7 @@ property_gen gentab [] =
     { { 2, 2 }, { 0, 0 }, s_schema, sp_actionplatform, t_text },
     { { 2, 2 }, { 0, 0 }, s_schema, sp_actionplatform, t_ontology, sch_url },
     { { 2, 2 }, { 0, 0 }, s_schema, sp_actionplatform, t_url },
+    { { 29, 0 }, { 0, 0 }, s_schema, sp_actionprocess, t_ontology, sch_howto },
     { { 1, 20 }, { 0, 0 }, s_schema, sp_actionstatus, t_ontology, sch_actionstatustype },
     { { 3, 5 }, { 0, 0 }, s_schema, sp_actionablefeedbackpolicy, t_ontology, sch_creativework },
     { { 3, 5 }, { 0, 0 }, s_schema, sp_actionablefeedbackpolicy, t_ontology, sch_url },

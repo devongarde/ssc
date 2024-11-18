@@ -10802,6 +10802,7 @@
     <None Include="..\toast\other\ssi\ssi-config.html" />
     <None Include="..\toast\other\ssi\ssi-if.html" />
     <None Include="..\toast\other\ssi\ssi-include.html" />
+    <None Include="..\toast\other\ssi\ssi-lastmod.html" />
     <None Include="..\toast\other\ssi\ssi-printenv.html" />
     <None Include="..\toast\other\ssi\ssi-vars.html" />
     <None Include="..\toast\other\ssi\ssi.conf" />
@@ -11197,6 +11198,7 @@
     <None Include="..\toast\shadow\ssi\ssi.html.model" />
     <None Include="..\toast\shadow\ssi\ssi.inc" />
     <None Include="..\toast\shadow\ssi\ssi.spec" />
+    <None Include="..\toast\shadow\ssi\var.html" />
     <None Include="..\toast\shadow\update\changed.html" />
     <None Include="..\toast\shadow\update\changed.html.model" />
     <None Include="..\toast\shadow\update\index.html" />
@@ -11940,6 +11942,7 @@
     <None Include="..\toast\SVG\2.1\viewport.xhtml" />
     <None Include="..\toast\SVG\2.1\white-space.html" />
     <None Include="..\toast\SVG\2.1\will-change.html" />
+    <None Include="..\toast\tmp\ssi\var.html.model" />
     <None Include="..\toast\type\colour\bad.html" />
     <None Include="..\toast\type\colour\colour.conf" />
     <None Include="..\toast\type\colour\colour.spec" />
@@ -11961,6 +11964,7 @@
     <None Include="..\toast\type\httpequiv\httpequiv.conf" />
     <None Include="..\toast\type\httpequiv\httpequiv.spec" />
     <None Include="..\toast\type\httpequiv\index.html" />
+    <None Include="..\toast\type\httpequiv\lastmodified.html" />
     <None Include="..\toast\type\httpequiv\link.html" />
     <None Include="..\toast\type\httpequiv\origin.html" />
     <None Include="..\toast\type\httpequiv\referrer.html" />
@@ -12720,7 +12724,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL)\include;$(ICU_ROOT)\include;$(CURL)\include</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc14x_x64_dll;$(ICU_ROOT)\icu\lib64;$(CURL)\lib\debug</LibraryPath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc14x_x64_dll;$(ICU_ROOT)\lib64;$(CURL)\lib\debug</LibraryPath>
     <EnableMicrosoftCodeAnalysis>true</EnableMicrosoftCodeAnalysis>
     <EnableClangTidyCodeAnalysis>false</EnableClangTidyCodeAnalysis>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
@@ -12729,7 +12733,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL)\include;$(ICU_ROOT)\include;$(CURL)\include</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc14x_x64_dll;$(ICU_ROOT)\icu\lib64;$(CURL)\lib\release</LibraryPath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc14x_x64_dll;$(ICU_ROOT)\lib64;$(CURL)\lib\release</LibraryPath>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -12750,12 +12754,12 @@
     <TargetName>$(ProjectName)-x86</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
-    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath)$(BOOST);$(GSL)\include;$(ICU_ROOT)\include</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc14x_x64_dll;$(ICU_ROOT)\bin64</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath)$(BOOST);$(GSL)\include;$(ICU_ROOT)\include;$(BOOST);$(CURL)\include</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(ICU_ROOT)\libARM64;$(CURL)\lib\debug</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
-    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath)$(BOOST);$(GSL)\include;$(ICU_ROOT)\include</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc14x_x64_dll;$(ICU_ROOT)\bin64</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(GSL)\include;$(ICU_ROOT)\include;$(BOOST);$(CURL)\include</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(ICU_ROOT)\libARM64;$(CURL)\lib\release</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg">
     <VcpkgEnableManifest>true</VcpkgEnableManifest>
@@ -12787,7 +12791,8 @@
       <StackReserveSize>67108864</StackReserveSize>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe</Command>
+      <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe ;
+7z u $(ProjectDir)..\..\ssc-wn-amd64-dbg.7z $(TargetPath)</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>help.bat</Command>
@@ -12830,7 +12835,8 @@
       <GenerateMapFile>true</GenerateMapFile>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>
+      <Command>copy $(TargetPath) $(ProjectDir)..\.. ;
+7z u $(ProjectDir)..\..\ssc-win-amd64.7z $(TargetPath)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
@@ -12856,9 +12862,11 @@
       <SubSystem>Console</SubSystem>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
+      <AdditionalDependencies>libcurl-d_imp.lib;icudt.lib;icuind.lib;icuiod.lib;icutud.lib;icuucd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe</Command>
+      <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe
+7z u $(ProjectDir)..\..\ssc-win-arm64-dbg.7z $(TargetPath)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
@@ -12880,7 +12888,7 @@
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcurl_imp.lib;icudt.lib;icuin.lib;icuio.lib;icutu.lib;icuuc.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <SubSystem>Console</SubSystem>
       <HeapReserveSize>33554432</HeapReserveSize>
@@ -12890,7 +12898,8 @@
       <Profile>true</Profile>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>
+      <Command>copy $(TargetPath) $(ProjectDir)..\..
+7z u $(ProjectDir)..\..\ssc-amd64.7z $(TargetPath)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

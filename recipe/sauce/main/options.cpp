@@ -118,6 +118,8 @@ options::options (const context_t& c)
         else insert < bool > (STATS DONT VAR, false);
 #define INSERT_STRING(SECT,VAR,FN) \
     if (def.FN () != c.FN ()) insert < ::std::string > (SECT VAR, c.FN ());
+#define INSERT_TIME(SECT,VAR,FN) \
+    if (def.FN () != c.FN ()) insert < ::std::time_t > (SECT VAR, c.FN ());
 #define INSERT_VALID(VAR,TY,EN) \
     {   const ::std::size_t xtra = type_master < TY > :: extra_values (); \
         if (xtra > 0) \
@@ -172,7 +174,9 @@ options::options (const context_t& c)
     INSERT_BOOL (GENERAL, CLASS, unknown_class);
     INSERT_BOOL (GENERAL, CLASSIC, classic);
     INSERT_STRING (GENERAL, DATAPATH, path);
+    INSERT_BOOL (GENERAL, EDE, excl_def_excl);
     INSERT_VSTR (GENERAL, EXCLUDE, exclude);
+    INSERT_STRING (GENERAL, HELPSITE, help);
     INSERT_STRING (GENERAL, MACROEND, macro_end);
     INSERT_STRING (GENERAL, MACROSTART, macro_start);
     INSERT_INT (GENERAL, MAXFILESIZE, max_file_size);
@@ -205,10 +209,12 @@ options::options (const context_t& c)
     INSERT_BOOL (HTML, TAGS, presume_tags);
     INSERT (::std::size_t, HTML, TITLE, title);
     if (def.html_ver () != c.html_ver ()) insert < ::std::string > (HTML VERSION, c.html_ver ().name ());
+    INSERT_BOOL (HTML, WXARG, wx);
 
-    INSERT_BOOL (JSONLD, VERIFY, jsonld);
     if (c.jsonld_extension () != def.jsonld_extension ())
         INSERT_VSTR (JSONLD, EXTENSION, jsonld_extension);
+    INSERT_BOOL (JSONLD, PRETTY, pretty);
+    INSERT_BOOL (JSONLD, VERIFY, jsonld);
     INSERT_ENUM (t_js_version, JSONLD, VERSION, jsonld_version);
 
     INSERT_BOOL (LINKS, CHECK, links);
@@ -226,10 +232,12 @@ options::options (const context_t& c)
     INSERT_ENUM (t_math_version, MATH, VERSION, math_version);
 
     INSERT_BOOL (MF, EXPORT, mf_export);
+    INSERT_BOOL (MF, PRETTY, mf_pretty);
     INSERT_BOOL (MF, VERIFY, mf_verify);
     INSERT_INT (MF, VERSION, mf_version);
 
     INSERT_BOOL (MICRODATA, EXPORT, md_export);
+    INSERT_BOOL (MICRODATA, PRETTY, md_pretty);
     INSERT_BOOL (MICRODATA, VERIFY, ontology);
     INSERT_STRING (MICRODATA, VERIFY, export_root);
     INSERT_VSTR (MICRODATA, VERIFY, exports);
@@ -244,7 +252,7 @@ options::options (const context_t& c)
     INSERT_STRING (NITS, FORMAT, nit_format);
     INSERT_VSTR (NITS, INFO, inform);
     INSERT_BOOL (NITS, NIDS, nids);
-//    INSERT_STRING (NITS, FORMAT, nit_format);
+    INSERT_STRING (NITS, FORMAT, nit_format);
     INSERT_ENUM (t_quote_style, NITS, QUOTE, quote_style);
     INSERT_INVERTED_BOOL (NITS, ROOT, not_root);
     INSERT_BOOL (NITS, SPEC, spec);
@@ -303,6 +311,16 @@ options::options (const context_t& c)
     INSERT_VSTR (SPELL, DLANG, dlang);
 #endif // HUNSPELL
 #endif // NOSPELL
+
+    INSERT_BOOL (SSI, SSI, ssi);
+    INSERT_STRING (SSI, CMD, ssi_cmd);
+    INSERT_TIME (SSI, DATETIME, ssi_date);
+    INSERT_STRING (SSI, DOCARGS, ssi_doc_args);
+    INSERT_STRING (SSI, EXEC, ssi_exec);
+    INSERT_TIME (SSI, LASTMOD, ssi_lastmod);
+    INSERT_STRING (SSI, QUERYSTRING, ssi_query_string);
+    INSERT_STRING (SSI, TIMEFMT, ssi_timefmt);
+    INSERT_STRING (SSI, USERNAME, ssi_user_name);
 
     INSERT_STATS (ABBR, rcb_abbreviation);
     INSERT_STATS (ANNOTATION, rcb_annotation);
@@ -469,6 +487,7 @@ options::options (const context_t& c)
     INSERT_VALID2 (shape_rendering, t_shape_rendering, e_shape_rendering);
     INSERT_VALID2 (ssi, t_ssi, e_ssi);
     INSERT_VALID2 (ssi_comparison, t_ssi_comparison, e_ssi_comparison);
+    INSERT_VALID2 (ssi_config, t_ssi_config, e_ssi_config);
     INSERT_VALID2 (ssi_encoding, t_ssi_encoding, e_ssi_encoding);
     INSERT_VALID2 (ssi_env, t_ssi_env, e_ssi_env);
     INSERT_VALID2 (svg_align, t_svg_align, e_svg_align);
@@ -592,82 +611,58 @@ void options::process_css_level (context_t& c, const e_css_module m, int& n, nit
 {   if (get_css_level (n, nits, opt, name, maxlevel, accept_1))
         c.css_module (m, n); }
 
+bool options::is_be (const char* yo)
+{   try
+    {   if (var_ [yo].as <bool> ()) return true; }
+    catch (...)
+    { }
+    return false; }
+
 void options::yea_nay (context_t& c, context_t& (context_t::*fn) (const bool ), nitpick& nits, const char* yea, const char* nay)
 {   VERIFY_NOT_NULL (fn, __FILE__, __LINE__);
-    const bool on = var_ [yea].as <bool> ();
-    const bool off = var_ [nay].as <bool> ();
-    if (off)
-    {   if (on) nits.pick (nit_yea_nay, es_info, ec_init, "when both ", nay, " and ", yea, " are used, ", nay, " applies");
-        (c.*fn) (false); }
-    else if (on) (c.*fn) (true); }
+    try
+    {   const bool on = var_ [yea].as <bool> ();
+        const bool off = var_ [nay].as <bool> ();
+        if (off)
+        {   if (on) nits.pick (nit_yea_nay, es_info, ec_init, "when both ", nay, " and ", yea, " are used, ", nay, " applies");
+            (c.*fn) (false); }
+        else if (on) (c.*fn) (true); }
+    catch (...) { } }
 
 void options::yea_nay (context_t& c, const e_report r, nitpick& nits, const char* yea, const char* nay)
-{   const bool on = var_ [yea].as <bool> ();
-    const bool off = var_ [nay].as <bool> ();
-    if (off)
-    {   if (on) nits.pick (nit_yea_nay, es_info, ec_init, "when both ", nay, " and ", yea, " are used, ", nay, " applies");
-        c.stats (r, false); }
-    else if (on) c.stats (r, true); }
+{   try
+    {   const bool on = var_ [yea].as <bool> ();
+        const bool off = var_ [nay].as <bool> ();
+        if (off)
+        {   if (on) nits.pick (nit_yea_nay, es_info, ec_init, "when both ", nay, " and ", yea, " are used, ", nay, " applies");
+            c.stats (r, false); }
+        else if (on) c.stats (r, true); }
+    catch (...) { } }
 
 void options::yea_nay (context_t& c, const e_css_module m, nitpick& nits, const char* yea, const char* nay)
-{   const bool on = var_ [yea].as <bool> ();
-    const bool off = var_ [nay].as <bool> ();
-    if (off)
-    {   if (on) nits.pick (nit_yea_nay, es_info, ec_init, "when both ", nay, " and ", yea, " are used, ", nay, " applies");
-        c.css_module (m, false); }
-    else if (on) c.css_module (m, true); }
+{   try
+    {   const bool on = var_ [yea].as <bool> ();
+        const bool off = var_ [nay].as <bool> ();
+        if (off)
+        {   if (on) nits.pick (nit_yea_nay, es_info, ec_init, "when both ", nay, " and ", yea, " are used, ", nay, " applies");
+            c.css_module (m, false); }
+        else if (on) c.css_module (m, true); }
+    catch (...) { } }
 
 void options::init (context_t& c)
-{   /*  a ask & answer   A reports params & exit
-        b
-        c persist file   C prog dir
-        d dump corpus    D dump progress
-        e external check E severity error exit
-        f config         F load config file from .ssc/config
-        g website root   G Check spelling
-        h help           H html snippet
-        i index file     I server side includes
-        j GENERAL SPEC   J GENERAL INFO
-        k
-        l link check     L virtual directory
-        m microdata      M microformat
-        n GENERAL THREAD N GENERAL DEFTHRD              
-        o output         O rpt ext once
-        p                P NIT OVERRIDE
-        q shell          Q sockets (beasties)
-        r no revoke chks R HTML revision
-        s domain name    S stats
-        t template       T test mode
-        u update         U unique
-        v verbose        V version
-        w                W cgi
-        x extensions     X check crosslinked ids
-        y GENERAL THREAD Y GENERAL DEFTHRD              
-        z title max      Z spec
-        0 dont ask
-        1
-        2
-        3 report http 30*
-        4
-        5 HTML 5 mnr
-        6
-        7
-        8
-        9
-*/
-    if (cmd_.options ().size () > 0) return;
+{   if (cmd_.options ().size () > 0) return;
     pos_.add (WEBSITE ROOT, 1);
     basic_.add_options ()
-        (ASK ",a", ::boost::program_options::bool_switch (), "Ask for parameters")
-        (CONFIG ",f", ::boost::program_options::value < ::std::string > (), "Load configuration from this file.")
-        (DEFCONF ",F", ::boost::program_options::bool_switch (), "Load configuration from " CONFIGURATION ".")
-        (HELP ",h", ::boost::program_options::bool_switch (), "Output this information and exit.")
-        (HTML SNIPPET ",H", ::boost::program_options::value < ::std::string > (), "Only nitpick the given snippet of HTML.")
+        (ASK "," ASK_SW_, ::boost::program_options::bool_switch (), "Ask for parameters")
+        (CONFIG "," FILE_SW_, ::boost::program_options::value < ::std::string > (), "Load configuration from this file.")
+        (DEFCONF "," DEFCONF_SW_, ::boost::program_options::bool_switch (), "Load configuration from " CONFIGURATION ".")
+        (HELP "," HELP_SW_, ::boost::program_options::bool_switch (), "Output this information and exit.")
+        (HTML SNIPPET "," SNIPPET_SW_, ::boost::program_options::value < ::std::string > (), "Only nitpick the given snippet of HTML.")
         (ONTOLOGY LIST, ::boost::program_options::bool_switch (), "List known ontology schema for microdata andor RDFa, then exit.")
-        (SHELL ",q", ::boost::program_options::bool_switch (), "Use simple shell (h for help, q to quit).")
-        (SWITCHES ",A", ::boost::program_options::bool_switch (), "Report switches seen, and exit.")
+        (SHELL "," SHELL_SW_, ::boost::program_options::bool_switch (), "Use simple shell (h for help, q to quit).")
+        (SWITCHES "," SWITCH_SW_, ::boost::program_options::bool_switch (), "Report switches seen, and exit.")
         (VALIDATION, ::boost::program_options::bool_switch (), "List attribute types that can be given additional 'valid' values, then exit.")
-        (VERSION ",V", ::boost::program_options::bool_switch (), "Display version and copyright gen, then exit.")
+        (VERSION "," VERSION_SW_, ::boost::program_options::bool_switch (), "Display version and copyright gen, then exit.")
         ;
     cgi_.add_options ()
         (ENVIRONMENT SERVER_SOFTWARE, ::boost::program_options::value < ::std::string > (), "CGI environment variable " SERVER_SOFTWARE ".")
@@ -710,14 +705,13 @@ void options::init (context_t& c)
         (ENV_ARGS, ::boost::program_options::value < ::std::string > (), "alternative command line parameters.")
         ;
     hidden_.add_options ()
-        (DONT ASK ",0", ::boost::program_options::bool_switch (), "Stop asking for parameters")
+        (DONT ASK "," DONTASK_SW_, ::boost::program_options::bool_switch (), "Stop asking for parameters")
 
         (GENERAL CUSTOM, ::boost::program_options::value < vstr_t > () -> composing (), "Define a custom element for checking the 'is' attribute; may be repeated.")
 #ifdef NO_FRED
-        (GENERAL DEFTHRD ",Y", ::boost::program_options::value < int > (), "If no setting specifies the thread count, set it to this.")
+        (GENERAL DEFTHRD "," DFTHRD_SW_, ::boost::program_options::value < int > (), "If no setting specifies the thread count, set it to this.")
 #endif // NO_FRED
-        (GENERAL WHOOPS, ::boost::program_options::value < ::std::string > () -> composing (), "Exit with an error if nits of this severity or worse are generated. Values: '"
-            CATASTROPHE "', '" WHOOPS "' (default), '" WARNING "', '" INFO  "', or '" COMMENT  "'.")
+        (GENERAL HELPSITE, ::boost::program_options::value < ::std::string > () -> default_value (WEBADDR "help/"), "web address of " PROG " help content.")
         (GENERAL IGNORED, ::boost::program_options::value < vstr_t > () -> composing (), "Ignore attributes and content of specified element; may be repeated.")
         (GENERAL LANG, ::boost::program_options::value < ::std::string > () -> composing (), "Default language (such as 'en_GB', 'lb_LU', etc.).")
         (GENERAL MACROSTART, ::boost::program_options::value < ::std::string > () -> default_value (def_macrostart), "Start of template macro (by default, the '{{' in '{{macro}}').")
@@ -731,11 +725,16 @@ void options::init (context_t& c)
         (GENERAL SSI, ::boost::program_options::bool_switch (), "Process (simple) Server Side Includes.")
         (GENERAL DONT SSI, ::boost::program_options::bool_switch (), "Do not process Server Side Includes.")
 #ifdef NO_FRED
-        (GENERAL THREAD ",y", ::boost::program_options::value < int > (), "Number of threads (default appropriate for the hardware).")
+        (GENERAL THREAD "," THREAD_SW_, ::boost::program_options::value < int > (), "Number of threads (default appropriate for the hardware).")
 #endif // NO_FRED
         (GENERAL VERBOSE, ::boost::program_options::value < ::std::string > (), "Output these nits and worse. Values: '"
             CATASTROPHE "', '" WHOOPS "', '" WARNING "' (default), '" INFO  "', '" COMMENT  "', or 0 for silence.")
+        (GENERAL WHOOPS, ::boost::program_options::value < ::std::string > () -> composing (), "Exit with an error if nits of this severity or worse are generated. Values: '"
+            CATASTROPHE "', '" WHOOPS "' (default), '" WARNING "', '" INFO  "', or '" COMMENT  "'.")
         (GENERAL YGGDRISIL, ::boost::program_options::bool_switch (), "Sniff yggdrisil.")
+
+        (HTML SSI, ::boost::program_options::bool_switch (), "Process (simple) Server Side Includes.")
+        (HTML DONT SSI, ::boost::program_options::bool_switch (), "Do not process Server Side Includes.")
 
         (MATH CORE, ::boost::program_options::bool_switch (), "MathML Core (May 2022 draft).")
         (MATH DONT CORE, ::boost::program_options::bool_switch (), "Avoid MathML Core.")
@@ -743,7 +742,7 @@ void options::init (context_t& c)
 
         (MICRODATA EXPORT, ::boost::program_options::bool_switch (), "Export microdata (only verified data if --" ONTOLOGY VERIFY " is set).")
         (MICRODATA DONT EXPORT, ::boost::program_options::bool_switch (), "Do not export microdata data.")
-        (MICRODATA VERIFY ",m", ::boost::program_options::bool_switch (), "Check microdata (" PROG " only understands certain microdata schemas).")
+        (MICRODATA VERIFY, ::boost::program_options::bool_switch (), "Check microdata (" PROG " only understands certain microdata schemas).")
         (MICRODATA DONT VERIFY, ::boost::program_options::bool_switch (), "Do not check microdata.")
         (MICRODATA ROOT, ::boost::program_options::value < ::std::string > (), "Microdata export root directory (requires --" ONTOLOGY EXPORT ").")
         (MICRODATA VIRTUAL, ::boost::program_options::value < vstr_t > () -> composing (), "Export virtual directory, syntax virtual=directory. Must correspond to --" WEBSITE VIRTUAL ".")
@@ -757,7 +756,7 @@ void options::init (context_t& c)
         (SPELL ACCEPT, ::boost::program_options::value < vstr_t > () -> composing (), "Ignore this word in spell checks; may be repeated.")
         (SPELL CASED, ::boost::program_options::bool_switch (), "Nitpick wrongly cased but correctly spelt words.")
         (SPELL DONT CASED, ::boost::program_options::bool_switch (), "Ignore case when checking spelling.")
-        (SPELL CHECK ",G", ::boost::program_options::bool_switch (), "Check spelling (see also --" HTML LANG ").")
+        (SPELL CHECK "," SPELL_SW_, ::boost::program_options::bool_switch (), "Check spelling (see also --" HTML LANG ").")
         (SPELL DONT CHECK, ::boost::program_options::bool_switch (), "Do not check spelling.")
         (SPELL DICT, ::boost::program_options::value < vstr_t > () -> composing (), "LANG,DICT: associate (hunspell) dictionary with language, e.g. 'en-US,en_US-large'; may be repeated (ignored in Windows).")
         (SPELL ICU, ::boost::program_options::bool_switch (), "Use the International Components for Unicode (ICU) text libraries (high quality but slow).")
@@ -769,7 +768,7 @@ void options::init (context_t& c)
         (SPELL DDICT, ::boost::program_options::value < vstr_t > () -> composing (), "hunspell dictionary; must have corresponding DLANG (ignored in Windows).")
         (SPELL DLANG, ::boost::program_options::value < vstr_t > () -> composing (), "language for corresponding DDICT dictionary (ignored in Windows).")
 
-        // these are output by the config file writer. They're intended for debugging and maintenance.
+        // these are output by the config file writer. They're intended for debugging and maintenance. They're noted here to avoid unnecessary error messages.
         (SSC BUILD, ::boost::program_options::value < ::std::string > () -> default_value (BUILD_INFO), "SSC configuration used to write config file.")
         (SSC VERSION, ::boost::program_options::value < ::std::string > (), "config file written by this version of SSC.")
         (SSC OPTBOOST, ::boost::program_options::value < ::std::string > (), "boost version used by config file writer.")
@@ -792,26 +791,28 @@ void options::init (context_t& c)
         (GENERAL DONT CLASS, ::boost::program_options::bool_switch (), "Do not report unrecognised classes.")
         (GENERAL CLASSIC, ::boost::program_options::bool_switch (), "Report all classes used, not just those in .CSS files (requires --" GENERAL CLASS ").")
         (GENERAL DONT CLASSIC, ::boost::program_options::bool_switch (), "Do not report all classes used.")
-        (GENERAL CGI ",W", ::boost::program_options::bool_switch (), "Process HTML snippets (for OpenBSD's httpd <FORM METHOD=GET ...>; disables most features).")
+        (GENERAL CGI "," CGI_SW_, ::boost::program_options::bool_switch (), "Process HTML snippets (for OpenBSD's httpd <FORM METHOD=GET ...>; disables most features).")
         (GENERAL DONT CGI, ::boost::program_options::bool_switch (), "Process a local static website.")
-        (GENERAL DATAPATH ",C", ::boost::program_options::value < ::std::string > () -> default_value (def_path), "Root directory for most " PROG " files.")
+        (GENERAL DATAPATH "," DTPTH_SW_, ::boost::program_options::value < ::std::string > () -> default_value (def_path), "Root directory for most " PROG " files.")
 #ifndef NO_FRED
-        (GENERAL DEFTHRD ",Y", ::boost::program_options::value < int > (), "If no setting specifies the thread count, set it to this.")
+        (GENERAL DEFTHRD "," DFTHRD_SW_, ::boost::program_options::value < int > (), "If no setting specifies the thread count, set it to this.")
 #endif // NO_FRED
+        (GENERAL EDE, ::boost::program_options::bool_switch (), "Ignore certain platform specific files.")
+        (GENERAL DONT EDE, ::boost::program_options::bool_switch (), "Do not ignore certain platform specific files.")
         (GENERAL EXCLUDE, ::boost::program_options::value < vstr_t > () -> composing (), "Ignore files that end with this string; may be repeated.")
-        (GENERAL FICHIER ",c", ::boost::program_options::value < ::std::string > () -> default_value (def_persisted), "File for persistent data (note --" GENERAL DATAPATH ").")
-        (GENERAL INFO ",J", ::boost::program_options::bool_switch (), "Report " PROG " launch context at startup.")
+        (GENERAL FICHIER "," PERSIST_SW_, ::boost::program_options::value < ::std::string > () -> default_value (def_persisted), "File for persistent data (note --" GENERAL DATAPATH ").")
+        (GENERAL INFO "," INFO_SW_, ::boost::program_options::bool_switch (), "Report " PROG " launch context at startup.")
         (GENERAL MAXFILESIZE, ::boost::program_options::value < int > (), "Maximum file size to read, in megabytes (zero for no limit).")
-        (GENERAL OUTPUT ",o", ::boost::program_options::value < ::std::string > (), "Output file (default to the console).")
-        (GENERAL PROGRESS ",D", ::boost::program_options::bool_switch (), "Report progress")
+        (GENERAL OUTPUT "," OUTPUT_SW_, ::boost::program_options::value < ::std::string > (), "Output file (default to the console).")
+        (GENERAL PROGRESS "," PRGRSS_SW_, ::boost::program_options::bool_switch (), "Report progress")
         (GENERAL DONT PROGRESS, ::boost::program_options::bool_switch (), "Don't be quite so noisy.")
         (GENERAL RDFA, ::boost::program_options::bool_switch (), "Check RDFa attributes.")
         (GENERAL DONT RDFA, ::boost::program_options::bool_switch (), "Do not check RDFa attributes.")
-        (GENERAL SPEC ",j", ::boost::program_options::bool_switch (), "Reset default values of most switches to false.")
-        (GENERAL TEST ",T", ::boost::program_options::bool_switch (), "Output in format useful for automated tests.")
+        (GENERAL SPEC "," SPEC_SW_, ::boost::program_options::bool_switch (), "Reset default values of most switches to false.")
+        (GENERAL TEST "," TEST_SW_, ::boost::program_options::bool_switch (), "Output in format useful for automated tests.")
         (GENERAL DONT TEST, ::boost::program_options::bool_switch (), "Output in format specified by other switches.")
 #ifndef NO_FRED
-        (GENERAL THREAD ",y", ::boost::program_options::value < int > () -> default_value  (def_fred), "Number of threads (default 1, zero for whatever is appropriate for the hardware).")
+        (GENERAL THREAD "," THREAD_SW_, ::boost::program_options::value < int > () -> default_value  (def_fred), "Number of threads (default 1, zero for whatever is appropriate for the hardware).")
 #endif // NO_FRED
         (GENERAL VCS, ::boost::program_options::bool_switch (), "Exclude file and directory names associated with certain version control systems.")
         (GENERAL DONT VCS, ::boost::program_options::bool_switch (), "Do not exclude file and directory names associated with certain version control systems.")
@@ -822,7 +823,7 @@ void options::init (context_t& c)
         (CORPUS DONT BODY, ::boost::program_options::bool_switch (), "Avoid the content of <BODY> when gather page corpus.")
         (CORPUS MAIN, ::boost::program_options::bool_switch (), "Prefer the content of <MAIN> when gather page corpus.")
         (CORPUS DONT MAIN, ::boost::program_options::bool_switch (), "Avoid the content of <MAIN> when gather page corpus.")
-        (CORPUS OUTPUT ",d", ::boost::program_options::value < ::std::string > (), "Dump corpus of site content to specified file.")
+        (CORPUS OUTPUT "," DUMP_SW_, ::boost::program_options::value < ::std::string > (), "Dump corpus of site content to specified file.")
 
         (CSS ADJUST, ::boost::program_options::value < int > (), "CSS Colour Adjust level (0 or 3).")
         (CSS ADVLAY, ::boost::program_options::value < int > (), "CSS Advanced Layout level (0 or 3).")
@@ -912,7 +913,7 @@ void options::init (context_t& c)
             "a specific version (1, 2.0, 2.1, 2.2); "
             "all modules of a given level (3, 4, 5, 6); "
             "solid snapshot modules by year (07, 10, 15, 17, 18, 20, 21, 22, 23, 24); "
-            "solid and wobbly snapshot modules by year (15+, 17+, 18+, 20+, 21+, 22+, 23+, 24+); "
+            "solid and+ snapshot modules by year (15+, 17+, 18+, 20+, 21+, 22+, 23+, 24+); "
             "all snapshot modules by year (15++, 17++, 18++, 20++, 21++, 22++, 23++, 24++): "
             "default appropriate for HTML version.")
         (CSS VIEW, ::boost::program_options::value < int > (), "CSS View Transitions level (0 or 3).")
@@ -943,64 +944,61 @@ void options::init (context_t& c)
         (HTML DONT SAFARI, ::boost::program_options::bool_switch (), "Mention certain naughtitudes accepted by versions of Safari.")
         (HTML SLOVEN, ::boost::program_options::bool_switch (), "Do not nitpick slovenly HTML such as missing closures, slovenly typography, etc..")
         (HTML DONT SLOVEN, ::boost::program_options::bool_switch (), "Nitpick slovenly HTML such as missing closures, slovenly typography, etc..")
-        (HTML SSI ",I", ::boost::program_options::bool_switch (), "Process (simple) Server Side Includes.")
-        (HTML DONT SSI, ::boost::program_options::bool_switch (), "Do not process Server Side Includes.")
         (HTML TAGS, ::boost::program_options::bool_switch (), "Presume HTML with no DOCTYPE is HTML Tags (CERN version).")
         (HTML DONT TAGS, ::boost::program_options::bool_switch (), "Presume HTML with no DOCTYPE is HTML 1.0.")
-        (HTML TITLE ",z", ::boost::program_options::value < int > () -> default_value (def_htmltitle), "Maximum advisable length of <TITLE> text.")
-        (HTML VERSION ",R", ::boost::program_options::value < ::std::string > (),
+        (HTML TITLE "," TITLE_SW_, ::boost::program_options::value < int > () -> default_value (def_htmltitle), "Maximum advisable length of <TITLE> text.")
+        (HTML VERSION "," HTMLVER_SW_, ::boost::program_options::value < ::std::string > (),
             "Set the specific version of HTML with DOCTYPE (default '2022/7/1'). "
             "For a W3 standard, give its version (e.g. '5.2'). "
             "For a WhatWG living standard, give its date (e.g. '2015/7/1'). "
             "For XHTML, use XHTML plus version, e.g. 'XHTML 1.0'. "
             "For HTML+, use '+'. For HTML tags, use 'tags'.")
+        (HTML WXARG, ::boost::program_options::bool_switch (), "Warn about HTML tags and attributes unsupported by wxWidgets' HTML engine.")
+        (HTML DONT WXARG, ::boost::program_options::bool_switch (), "Do not warn about HTML tags and attributes unsupported by wxWidgets' HTML engine.")
  
         (JSONLD EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "Extension for JSON-LD files (default jld); may be repeated.")
+        (JSONLD PRETTY, ::boost::program_options::bool_switch (), "Output pretty JSON.")
+        (JSONLD DONT PRETTY, ::boost::program_options::bool_switch (), "Output ugly JSON.")
         (JSONLD VERIFY, ::boost::program_options::bool_switch (), "Experimental: Verify JSON-LD (incomplete).")
         (JSONLD DONT VERIFY, ::boost::program_options::bool_switch (), "Do not verify JSON-LD.")
         (JSONLD VERSION, ::boost::program_options::value < ::std::string > (), "Presume this version of JSON-LD (1.0 or 1.1, default 1.0).")
 
-        (LINKS CHECK ",l", ::boost::program_options::bool_switch (), "Check internal links.")
+        (LINKS CHECK "," CHECK_SW_, ::boost::program_options::bool_switch (), "Check internal links.")
         (LINKS DONT CHECK, ::boost::program_options::bool_switch (), "Ignore internal links.")
         (LINKS EXAMPLE, ::boost::program_options::bool_switch (), "Issue warning if link to faux domain, such as example.com, found.")
         (LINKS DONT EXAMPLE, ::boost::program_options::bool_switch (), "Say nothing if link to faux domain, such as example.com, found.")
-        (LINKS EXTERNAL ",e", ::boost::program_options::bool_switch (), "Check external links (sets --" LINKS CHECK ").")
+        (LINKS EXTERNAL "," EXTERN_SW_, ::boost::program_options::bool_switch (), "Check external links (sets --" LINKS CHECK ").")
         (LINKS DONT EXTERNAL, ::boost::program_options::bool_switch (), "Ignore external links.")
-        (LINKS FORWARD ",3", ::boost::program_options::bool_switch (), "Report http forwarding errors, e.g. 301 and 308 (sets --" LINKS EXTERNAL ").")
+        (LINKS FORWARD "," FORWARD_SW_, ::boost::program_options::bool_switch (), "Report http forwarding errors, e.g. 301 and 308 (sets --" LINKS EXTERNAL ").")
         (LINKS DONT FORWARD, ::boost::program_options::bool_switch (), "Ignore http forwarding errors, e.g. 301 and 308.")
         (LINKS IGNORED, ::boost::program_options::value < vstr_t > () -> composing (), "When checking external links, ignore this domain; may be repeated.")
         (LINKS LOCAL, ::boost::program_options::bool_switch (), "Issue warning if link to local domain, such as ???.internal or ???.lan, found.")
         (LINKS DONT LOCAL, ::boost::program_options::bool_switch (), "Don't mention links to local domains.")
         (LINKS PRETEND, ::boost::program_options::value < vstr_t > () -> composing (), "Pretend files that end with this string exist; may be repeated.")
-        (LINKS ONCE ",O", ::boost::program_options::bool_switch (), "Report each broken external link once (sets --" LINKS EXTERNAL ").")
+        (LINKS ONCE "," ONCE_SW_, ::boost::program_options::bool_switch (), "Report each broken external link once (sets --" LINKS EXTERNAL ").")
         (LINKS DONT ONCE, ::boost::program_options::bool_switch (), "Report broken links whenever they are found.")
         (LINKS REPORT, ::boost::program_options::value < vstr_t > () -> composing (), "Report links to this domain and its descendants; may be repeated.")
-        (LINKS REVOKE ",r", ::boost::program_options::bool_switch (), "Do not check whether https certificates have been revoked (sets --" LINKS EXTERNAL ").")
+        (LINKS REVOKE "," REVOKE_SW_, ::boost::program_options::bool_switch (), "Do not check whether https certificates have been revoked (sets --" LINKS EXTERNAL ").")
         (LINKS DONT REVOKE, ::boost::program_options::bool_switch (), "Check whether https certificates have been revoked (sets --" LINKS EXTERNAL ").")
-        (LINKS XLINK ",X", ::boost::program_options::bool_switch (), "Check crosslink IDs.")
+        (LINKS XLINK "," XLINK_SW_, ::boost::program_options::bool_switch (), "Check crosslink IDs.")
         (LINKS DONT XLINK, ::boost::program_options::bool_switch (), "Do not check crosslink IDs.")
 
         (MATH VERSION, ::boost::program_options::value < ::std::string > (), "preferred version of MathML; one of 0/1/2/3/4.20/4/core (default: determined by HTML version).")
 
-        (ONTOLOGY EXPORT, ::boost::program_options::bool_switch (), "Export ontology data (only verified data if --" ONTOLOGY VERIFY " is set).")
-        (ONTOLOGY DONT EXPORT, ::boost::program_options::bool_switch (), "Do not export ontology data.")
-        (ONTOLOGY VERIFY ",m", ::boost::program_options::bool_switch (), "Check ontology (" PROG " only understands certain ontologies).")
-        (ONTOLOGY DONT VERIFY, ::boost::program_options::bool_switch (), "Do not check ontology data.")
-        (ONTOLOGY ROOT, ::boost::program_options::value < ::std::string > (), "Ontology export root directory (requires --" ONTOLOGY EXPORT ").")
-        (ONTOLOGY VIRTUAL, ::boost::program_options::value < vstr_t > () -> composing (), "Export virtual directory content, syntax virtual=directory. Must correspond to --" WEBSITE VIRTUAL ".")
-
-        (MF VERIFY ",M", ::boost::program_options::bool_switch (), "Check microformats in class and rel attributes (see https://" MICROFORMATS_ORG "/).")
+        (MF EXPORT, ::boost::program_options::bool_switch (), "Export microformat data (requires --" MF VERIFY ") in JSON format.")
+        (MF DONT EXPORT, ::boost::program_options::bool_switch (), "Do not export microformat data.")
+        (MF PRETTY, ::boost::program_options::bool_switch (), "Output pretty JSON.")
+        (MF DONT PRETTY, ::boost::program_options::bool_switch (), "Output ugly JSON.")
+        (MF VERIFY "," MFVER_SW_, ::boost::program_options::bool_switch (), "Check microformats in class and rel attributes (see https://" MICROFORMATS_ORG "/).")
         (MF DONT VERIFY, ::boost::program_options::bool_switch (), "Do not check microformats in class and rel attributes.")
         (MF VERSION, ::boost::program_options::value < int > (), "Check this version of microformats (1, 2, or 3 for both).")
-        (MF EXPORT, ::boost::program_options::bool_switch (), "Export microformat data (requires --" MF VERIFY ").")
-        (MF DONT EXPORT, ::boost::program_options::bool_switch (), "Do not export microformat data.")
 
         (NITS ABHORRENT, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as an abhorrence; may be repeated.")
         (NITS CATASTROPHE, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as a catastrophe; may be repeated.")
         (NITS COMMENT, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as a comment; may be repeated.")
         (NITS DBG, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as a debug message; may be repeated.")
         (NITS WHOOPS, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as an error; may be repeated.")
-        (NITS ERROREXIT ",E", ::boost::program_options::value < ::std::string > () -> composing (), "Exit with an error if nits of this severity or worse are generated. Values: '"
+        (NITS ERROREXIT "," ERREXT_SW_, ::boost::program_options::value < ::std::string > () -> composing (), "Exit with an error if nits of this severity or worse are generated. Values: '"
             CATASTROPHE "', '" WHOOPS "' (default), '" WARNING "', '" INFO  "', or '" COMMENT  "'.")
         (NITS EXPAND, ::boost::program_options::bool_switch (), "Expand content of some nits.")
         (NITS DONT EXPAND, ::boost::program_options::bool_switch (), "Keep nit text curt.")
@@ -1010,18 +1008,27 @@ void options::init (context_t& c)
         (NITS INFO, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine nit as info; may be repeated.")
         (NITS NIDS, ::boost::program_options::bool_switch (), "Output nit identifiers (used to recategorise nits).")
         (NITS DONT NIDS, ::boost::program_options::bool_switch (), "Do not output nit identifiers.")
-        (NITS OVERRIDE ",P", ::boost::program_options::value < ::std::string > (), "Output nits in this format (overrides " NITS FORMAT "; for automation).")
+        (NITS OVERRIDE "," OVRRD_SW_, ::boost::program_options::value < ::std::string > (), "Output nits in this format (overrides " NITS FORMAT "; for automation).")
         (NITS QUOTE, ::boost::program_options::value < ::std::string > (), "Quote nits in this format: \"c\", \"csv\", \"double\", \"html\", \"none\" (default), or \"single\".")
         (NITS ROOT, ::boost::program_options::bool_switch (), "By default, seek nit output template files in --" WEBSITE ROOT ".")
         (NITS DONT ROOT, ::boost::program_options::bool_switch (), "Do not seek nit output template files in --" WEBSITE ROOT ", unless explicitly specified.")
         (NITS SILENCE, ::boost::program_options::value < vstr_t > () -> composing (), "Silence nit; may be repeated.")
-        (NITS UNIQUE ",U", ::boost::program_options::bool_switch (), "Do not report repeated nits, even if they give more information.")
+        (NITS UNIQUE "," UNIQUE_SW_, ::boost::program_options::bool_switch (), "Do not report repeated nits, even if they give more information.")
         (NITS DONT UNIQUE, ::boost::program_options::bool_switch (), "Report repeated nits.")
-        (NITS VERBOSE, ::boost::program_options::value < ::std::string > (), "Output these nits and worse. Values: '"
+        (NITS VERBOSE "," VERBOSE_SW_, ::boost::program_options::value < ::std::string > (), "Output these nits and worse. Values: '"
             CATASTROPHE "', '" WHOOPS "', '" WARNING "' (default), '" INFO  "', '" COMMENT  "', or 0 for silence.")
         (NITS WARNING, ::boost::program_options::value < vstr_t > () -> composing (), "Redefine specified nit as a warning; may be repeated.")
         (NITS WATCH, ::boost::program_options::bool_switch (), "Output debug nits (for automation).")
         (NITS DONT WATCH, ::boost::program_options::bool_switch (), "Do not output debug nits.")
+
+        (ONTOLOGY EXPORT, ::boost::program_options::bool_switch (), "Export ontology data (only verified data if --" ONTOLOGY VERIFY " is set) in JSON format.")
+        (ONTOLOGY DONT EXPORT, ::boost::program_options::bool_switch (), "Do not export ontology data.")
+        (ONTOLOGY PRETTY, ::boost::program_options::bool_switch (), "Output pretty JSON.")
+        (ONTOLOGY DONT PRETTY, ::boost::program_options::bool_switch (), "Output ugly JSON.")
+        (ONTOLOGY VERIFY "," MDATA_SW_, ::boost::program_options::bool_switch (), "Check ontology (" PROG " only understands certain ontologies).")
+        (ONTOLOGY DONT VERIFY, ::boost::program_options::bool_switch (), "Do not check ontology data.")
+        (ONTOLOGY ROOT, ::boost::program_options::value < ::std::string > (), "Ontology export root directory (requires --" ONTOLOGY EXPORT ").")
+        (ONTOLOGY VIRTUAL, ::boost::program_options::value < vstr_t > () -> composing (), "Export virtual directory content, syntax virtual=directory. Must correspond to --" WEBSITE VIRTUAL ".")
 
         (SHADOW CHANGED, ::boost::program_options::bool_switch (),
 #ifndef NOLYNX
@@ -1050,23 +1057,23 @@ void options::init (context_t& c)
         (SHADOW ROOT, ::boost::program_options::value < ::std::string > (), "Shadow output root directory.")
         (SHADOW SPACING, ::boost::program_options::bool_switch (), "Merge whitespace on shadow pages. Without this option, nit line-numbers may not match shadow pages.")
         (SHADOW DONT SPACING, ::boost::program_options::bool_switch (), "Do not merge whitespace on shadow pages.")
-        (SHADOW SSI, ::boost::program_options::bool_switch (), "Resolve SSIs on shadow pages when --" HTML SSI " is set.")
+        (SHADOW SSI, ::boost::program_options::bool_switch (), "Resolve SSIs on shadow pages. Requires --" SSI VERIFY ".")
         (SHADOW DONT SSI, ::boost::program_options::bool_switch (), "Do not resolve SSIs on shadow pages.")
         (SHADOW UPDATE, ::boost::program_options::bool_switch (), "Only examine changed pages, or pages with changed dependencies (requires --" SHADOW FICHIER ")")
         (SHADOW DONT UPDATE, ::boost::program_options::bool_switch (), "Examine all pages.")
         (SHADOW VIRTUAL, ::boost::program_options::value < vstr_t > () -> composing (), "Shadow virtual directory, syntax virtual=shadow; must correspond to --" WEBSITE VIRTUAL "; may be repeated.")
 
-        (WEBSITE EXTENSION ",x", ::boost::program_options::value < vstr_t > () -> composing (), "Check files with this extension (default html); may be repeated.")
-        (WEBSITE INDEX ",i", ::boost::program_options::value < ::std::string > (), "Index file in directories (default: none).")
-        (WEBSITE ROOT ",g", ::boost::program_options::value < ::std::string > (), "Website root directory (default: current directory).")
-        (WEBSITE SITE ",s", ::boost::program_options::value < vstr_t > () -> composing (), "Domain name(s) for local site (default none); may be repeated.")
-        (WEBSITE VIRTUAL ",L", ::boost::program_options::value < vstr_t > () -> composing (), "Define virtual directory, arg syntax virtual=physical; may be repeated.")
+        (WEBSITE EXTENSION "," EXT_SW_, ::boost::program_options::value < vstr_t > () -> composing (), "Check files with this extension (default html); may be repeated.")
+        (WEBSITE INDEX "," INDEX_SW_, ::boost::program_options::value < ::std::string > (), "Index file in directories (default: none).")
+        (WEBSITE ROOT "," ROOT_SW_, ::boost::program_options::value < ::std::string > (), "Website root directory (default: current directory).")
+        (WEBSITE SITE "," SITE_SW_, ::boost::program_options::value < vstr_t > () -> composing (), "Domain name(s) for local site (default none); may be repeated.")
+        (WEBSITE VIRTUAL "," VIRTUAL_SW_, ::boost::program_options::value < vstr_t > () -> composing (), "Define virtual directory, arg syntax virtual=physical; may be repeated.")
 
 #ifndef NOSPELL
         (SPELL ACCEPT, ::boost::program_options::value < vstr_t > () -> composing (), "Ignore this word in spell checks; may be repeated.")
         (SPELL CASED, ::boost::program_options::bool_switch (), "Nitpick wrongly cased but correctly spelt words.")
         (SPELL DONT CASED, ::boost::program_options::bool_switch (), "Ignore case when checking spelling.")
-        (SPELL CHECK ",G", ::boost::program_options::bool_switch (), "Check spelling (see also --" HTML LANG ").")
+        (SPELL CHECK "," SPELL_SW_, ::boost::program_options::bool_switch (), "Check spelling (see also --" HTML LANG ").")
         (SPELL DONT CHECK, ::boost::program_options::bool_switch (), "Do not check spelling.")
         (SPELL DICT, ::boost::program_options::value < vstr_t > () -> composing (), "LANG,DICT: associate (hunspell) dictionary with language, e.g. 'en-US,en_US-large'; may be repeated (ignored in Windows).")
         (SPELL ICU, ::boost::program_options::bool_switch (), "Use the International Components for Unicode (ICU) text libraries (high quality but slow).")
@@ -1074,6 +1081,17 @@ void options::init (context_t& c)
         (SPELL LIST, ::boost::program_options::value < vstr_t > () -> composing (), "FILE,LANG: FILE contains additional valid spellings in LANG; may be repeated.")
         (SPELL PATH, ::boost::program_options::value < ::std::string > (), "Path to (hunspell) dictionaries (ignored in Windows).")
 #endif // NOSPELL
+
+        (SSI VERIFY "," SSI_SW_, ::boost::program_options::bool_switch (), "Verify (simple) Server Side Includes. See also --" SHADOW SSI ".")
+        (SSI DONT VERIFY, ::boost::program_options::bool_switch (), "Do not verify Server Side Includes.")
+        (SSI CMD, ::boost::program_options::value < ::std::string > () -> composing (), "Return this string when encountering an SSI CMD element.")
+        (SSI DATETIME, ::boost::program_options::value < ::std::string > () -> composing (), "The SSI date environment variables should return this value.")
+        (SSI DOCARGS, ::boost::program_options::value < ::std::string > () -> composing (), "Set the SSI DOCUMENT_ARGS variable to this value.")
+        (SSI EXEC, ::boost::program_options::value < ::std::string > () -> composing (), "Return this string when encountering an SSI EXEC element.")
+        (SSI LASTMOD, ::boost::program_options::value < ::std::string > () -> composing (), "The SSI last modification time environment variable should return this value.")
+        (SSI QUERYSTRING, ::boost::program_options::value < ::std::string > () -> composing (), "Set the SSI QUERY_STRING_UNESCAPED variable to this value.")
+        (SSI TIMEFMT, ::boost::program_options::value < ::std::string > () -> composing (), "Set Server Side Includes initial timefmt.")
+        (SSI USERNAME, ::boost::program_options::value < ::std::string > () -> composing (), "Set the SSI USER_NAME variable to this value.")
 
         (STATS ABBR, ::boost::program_options::bool_switch (), "Output abbr report.")
         (STATS DONT ABBR, ::boost::program_options::bool_switch (), "Do not output abbr report.")
@@ -1153,7 +1171,7 @@ void options::init (context_t& c)
         (STATS DONT STYLESET, ::boost::program_options::bool_switch (), "Do not output styleset report.")
         (STATS STYLISTIC, ::boost::program_options::bool_switch (), "Output stylistic report.")
         (STATS DONT STYLISTIC, ::boost::program_options::bool_switch (), "Do not output stylistic report.")
-        (STATS SUMMARY ",S", ::boost::program_options::bool_switch (), "Report overall statistics.")
+        (STATS SUMMARY "," SUMMARY_SW_, ::boost::program_options::bool_switch (), "Report overall statistics.")
         (STATS DONT SUMMARY, ::boost::program_options::bool_switch (), "Do not report overall statistics.")
         (STATS SWASH, ::boost::program_options::bool_switch (), "Output swash report.")
         (STATS DONT SWASH, ::boost::program_options::bool_switch (), "Do not output swash report.")
@@ -1164,7 +1182,7 @@ void options::init (context_t& c)
 
         (SVG VERSION, ::boost::program_options::value < ::std::string > (), "Presumed this version of SVG if version attribute missing (requires HTML 4 or greater).")
 
-        (VALIDATION MINOR ",m", ::boost::program_options::value < int > (), "Validate HTML 5 with this w3 minor version (e.g. 2 for HTML 5.2).")
+        (VALIDATION MINOR "," MINOR_SW_, ::boost::program_options::value < int > (), "Validate HTML 5 with this w3 minor version (e.g. 2 for HTML 5.2).")
         (VALIDATION MICRODATAARG, ::boost::program_options::bool_switch (), "Validate HTML5 microdata.")
         (VALIDATION DONT MICRODATAARG, ::boost::program_options::bool_switch (), "Do not validate HTML5 microdata.")
         	;
@@ -1239,26 +1257,31 @@ bool options::parse (nitpick& nits, const ::boost::filesystem::path& file)
     ::boost::program_options::notify (var_);
     return true; }
 
+bool options::parse (context_t& c, nitpick& nits, const ::boost::filesystem::path& file)
+{   init (c);
+    return parse (nits, file); }
+
 void options::parse (context_t& c, output_streams_t& o, nitpick& nits, const vstr_t& vs)
 {   ::std::string loaded;
     init (c);
-    try
-    {   ::boost::program_options::store (::boost::program_options::parse_environment (environ_, ::boost::function1 < ::std::string, ::std::string> (env_mapper)), env_var_);
-        if (env_var_.count (ENV_ARGS))
-        {   ::std::string e (env_var_ [ENV_ARGS].as < ::std::string > ());
-            vstr_t env_args (split_by_space (e));
-            if (! env_args.empty ())
-            {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
-                macro -> set (nm_run_environment, e);
-                ::boost::program_options::store (::boost::program_options::command_line_parser (env_args).options (cmd_).positional (pos_).run (), var_); } } }
-    catch (const ::boost::program_options::error& err)
-    {   nits.pick (nit_configuration, es_error, ec_init, "Environment error: ", err.what ());
-        nits.pick (nit_help, es_info, ec_init, TYPE_HELP);
-        return; }
-    catch (...)
-    {   nits.pick (nit_configuration, es_error, ec_init, "Environment error");
-        nits.pick (nit_help, es_info, ec_init, TYPE_HELP);
-        return; }
+    if (! context.gui () && ! context.serve ())
+        try
+        {   ::boost::program_options::store (::boost::program_options::parse_environment (environ_, ::boost::function1 < ::std::string, ::std::string> (env_mapper)), env_var_);
+            if (env_var_.count (ENV_ARGS))
+            {   ::std::string e (env_var_ [ENV_ARGS].as < ::std::string > ());
+                vstr_t env_args (split_by_space (e));
+                if (! env_args.empty ())
+                {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+                    macro -> set (nm_run_environment, e);
+                    ::boost::program_options::store (::boost::program_options::command_line_parser (env_args).options (cmd_).positional (pos_).run (), var_); } } }
+        catch (const ::boost::program_options::error& err)
+        {   nits.pick (nit_configuration, es_error, ec_init, "Environment error: ", err.what ());
+            nits.pick (nit_help, es_info, ec_init, TYPE_HELP);
+            return; }
+        catch (...)
+        {   nits.pick (nit_configuration, es_error, ec_init, "Environment error");
+            nits.pick (nit_help, es_info, ec_init, TYPE_HELP);
+            return; }
 
     ::boost::program_options::notify (env_var_);
 
@@ -1325,6 +1348,8 @@ void options::parse (context_t& c, output_streams_t& o, nitpick& nits, const vst
     {   nits.pick (nit_configuration, es_error, ec_init, "Command line parameter error.");
         nits.pick (nit_help, es_info, ec_init, TYPE_HELP);
         return; }
+
+//    ::std::size_t hs = var_.count (HTML SNIPPET);
     yea_nay (c, &context_t::iterate, nits, ASK, DONT ASK);
 
     if (var_.count (CONFIG) || var_ [DEFCONF].as <bool > () || env_var_.count (ENV_CONFIG))
@@ -1375,7 +1400,7 @@ void options::parse (context_t& c, output_streams_t& o, nitpick& nits, const vst
         return; }
     if (var_ [SWITCHES].as < bool > ())
     {   c.yggdrisil (true);
-        c.domsg (report ());
+        c.domsg (report (gr_config));
         c.todo (do_simple);
         return; }
     if (var_ [VALIDATION].as < bool > ())
@@ -1471,7 +1496,7 @@ void options::parse (context_t& c, output_streams_t& o, nitpick& nits, const vst
     nits.set_context (0, "Configuration");
 
     if (c.cgi ()) c.todo (do_cgi);
-    else if (! context.serve () && ! var_.count (WEBSITE ROOT))
+    else if ((! context.serve ()) && (! var_.count (WEBSITE ROOT)) && (! var_.count (HTML SNIPPET)))
     {   c.domsg ("\n" TYPE_HELP "\n");
         c.todo (do_simple);
         return; }
@@ -1481,7 +1506,7 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
 {   yea_nay (c, &context_t::test, nits, GENERAL TEST, GENERAL DONT TEST);
     yea_nay (c, &context_t::spec, nits, NITS SPEC, NITS DONT SPEC);
 
-    if (c.test () || var_ [GENERAL SPEC].as <bool> ())
+    if (c.test () || is_be (GENERAL SPEC))
         c.article (false).body (false).cased (false).classic (false).crosslinks (false).example (false).external (false).ext_css (false).forwarded (false)
             .icu (true).info (false).jsonld (false).links (false).load_css (true).main (false).md_export (false).mf_verify (false)
             .microdata (false).nids (true).nits (false).nits_nits_nits (true).not_root (false).once (false).ontology (true).presume_tags (false)
@@ -1513,10 +1538,10 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
                 nits.pick (nit_configuration, es_debug, ec_init, ::std::string ("Writing to ") + var_ [GENERAL OUTPUT].as < ::std::string > ());
 #endif // EXPAND_TEST
         }
-        if ((! var_ [GENERAL DONT PROGRESS].as <bool > ()) && var_ [GENERAL PROGRESS].as <bool > ())
-            if (c.test ()) o.console (test_title);
-            else if (c.tell (es_info)) o.console (full_title);
-            else o.console (simple_title); }
+        if ((! is_be (GENERAL DONT PROGRESS)) && is_be (GENERAL PROGRESS))
+            if (c.test ()) o.console (TEST_TITLE);
+            else if (c.tell (es_info)) o.console (FULL_TITLE);
+            else o.console (SIMPLE_TITLE); }
 
     if (! c.cgi ())
     {   ::std::string datapath (nix_path_to_local (var_ [GENERAL DATAPATH].as < ::std::string > ()));
@@ -1530,7 +1555,7 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
     if (var_.count (MF VERSION))
     {   int n = var_ [MF VERSION].as < int > ();
         if ((n < 1) || (n > 3))
-        {   nits.pick (nit_mf_version, es_warning, ec_init, "invalid microformats version ", quote (n), "; presuming version 2");
+        {   nits.pick (nit_mf_version, es_warning, ec_init, "invalid microformats version; presuming version 2");
             n = 2; }
         c.mf_version (GSL_NARROW_CAST < unsigned char > (n)); }
 
@@ -1659,6 +1684,7 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
     if (! c.cgi ())
     {   yea_nay (c, &context_t::unknown_class, nits, GENERAL CLASS, GENERAL DONT CLASS);
         yea_nay (c, &context_t::classic, nits, GENERAL CLASSIC, GENERAL DONT CLASSIC);
+        yea_nay (c, &context_t::excl_def_excl, nits, GENERAL EDE, GENERAL DONT EDE);
         yea_nay (c, &context_t::progress, nits, GENERAL PROGRESS, GENERAL DONT PROGRESS);
         yea_nay (c, &context_t::rdfa, nits, GENERAL RDFA, GENERAL DONT RDFA);
         yea_nay (c, &context_t::rel, nits, GENERAL REL, GENERAL DONT REL);
@@ -1681,13 +1707,15 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
         {   const e_severity sev = decode_severity (nits, var_ [GENERAL WHOOPS].as < ::std::string > ());
             if (sev != es_undefined) c.report_error (sev); }
         if (var_.count (GENERAL EXCLUDE)) c.exclude (nits, var_ [GENERAL EXCLUDE].as < vstr_t > ());
-        yea_nay (c, &context_t::vcs, nits, GENERAL VCS, GENERAL DONT VCS);
+        if (var_.count (GENERAL HELPSITE)) c.help (var_ [GENERAL HELPSITE].as < ::std::string > ());
         if (var_.count (GENERAL IGNORED)) c.ignore (nits, var_ [GENERAL IGNORED].as < vstr_t > ());
         if (var_.count (GENERAL LANG)) c.lang (var_ [GENERAL LANG].as < ::std::string > ());
         if (var_.count (GENERAL MACROEND)) c.macro_end (var_ [GENERAL MACROEND].as < ::std::string > ());
         if (var_.count (GENERAL MACROSTART)) c.macro_start (var_ [GENERAL MACROSTART].as < ::std::string > ());
+        yea_nay (c, &context_t::ssi, nits, GENERAL SSI, GENERAL DONT SSI);
+        yea_nay (c, &context_t::vcs, nits, GENERAL VCS, GENERAL DONT VCS);
 
-        if (var_ [GENERAL YGGDRISIL].as <bool> ()) c.yggdrisil (true);
+        if (is_be (GENERAL YGGDRISIL)) c.yggdrisil (true);
 
         if (var_.count (CORPUS OUTPUT)) c.corpus (nix_path_to_local (var_ [CORPUS OUTPUT].as < ::std::string > ()));
         yea_nay (c, &context_t::article, nits, CORPUS ARTICLE, CORPUS DONT ARTICLE);
@@ -1801,7 +1829,9 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
         yea_nay (c, &context_t::sloven, nits, HTML SLOVEN, HTML DONT SLOVEN);
         yea_nay (c, &context_t::ssi, nits, HTML SSI, HTML DONT SSI);
         if (var_.count (HTML TITLE)) c.title (static_cast < unsigned char > (var_ [HTML TITLE].as < int > ()));
+        yea_nay (c, &context_t::wx, nits, HTML WXARG, HTML DONT WXARG);
 
+        yea_nay (c, &context_t::pretty, nits, JSONLD PRETTY, JSONLD DONT PRETTY);
         yea_nay (c, &context_t::jsonld, nits, JSONLD VERIFY, JSONLD DONT VERIFY);
         if (var_.count (JSONLD EXTENSION)) c.jsonld_extension (var_ [JSONLD EXTENSION].as < vstr_t > ());
         else { vstr_t ex; ex.push_back (JSONLD_EXT); c.jsonld_extension (ex); }
@@ -1840,7 +1870,7 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
             {   nits.pick (nit_config_version, es_warning, ec_init, "ignoring invalid MathML version");
                 c.math_version (math_none); } }
 
-        if (var_ [MATH CORE].as < bool > () && ! var_ [MATH DONT CORE].as < bool > ()) c.math_version (math_core);
+        if (is_be (MATH CORE) && ! is_be (MATH DONT CORE)) c.math_version (math_core);
 
         if (var_.count (MATH DRAFT))
         {   const int nn = var_ [MATH DRAFT].as < int > ();
@@ -1851,6 +1881,7 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
                 default : nits.pick (nit_config_version, es_warning, ec_init, "ignoring invalid MathML 4 draft"); break; } }
 
         yea_nay (c, &context_t::mf_export, nits, MF EXPORT, MF DONT EXPORT);
+        yea_nay (c, &context_t::mf_pretty, nits, MF PRETTY, MF DONT PRETTY);
 
         yea_nay (c, &context_t::md_export, nits, MICRODATA EXPORT, MICRODATA DONT EXPORT);
         yea_nay (c, &context_t::ontology, nits, MICRODATA VERIFY, MICRODATA DONT VERIFY);
@@ -1891,6 +1922,7 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
             if (sev != es_undefined) c.report_error (sev); }
 
         yea_nay (c, &context_t::md_export, nits, ONTOLOGY EXPORT, ONTOLOGY DONT EXPORT);
+        yea_nay (c, &context_t::md_pretty, nits, ONTOLOGY PRETTY, ONTOLOGY DONT PRETTY);
         yea_nay (c, &context_t::ontology, nits, ONTOLOGY VERIFY, ONTOLOGY DONT VERIFY);
         if (var_.count (ONTOLOGY ROOT)) c.export_root (nix_path_to_local (var_ [ONTOLOGY ROOT].as < ::std::string > ()));
         if (var_.count (ONTOLOGY VIRTUAL)) c.exports (var_ [ONTOLOGY VIRTUAL].as < vstr_t > ());
@@ -2020,11 +2052,21 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
             lingo::identify_dialects (nits); }
 #endif // NOSPELL
 
-        if (var_ [STATS SELECTED].as <bool> ())
+        yea_nay (c, &context_t::ssi, nits, SSI VERIFY, SSI DONT VERIFY);
+        if (var_.count (SSI CMD)) c.ssi_cmd (var_ [SSI CMD].as < ::std::string > ());
+        if (var_.count (SSI DATETIME)) c.ssi_date (string_to_time (nits, var_ [SSI DATETIME].as < ::std::string > ()));
+        if (var_.count (SSI DOCARGS)) c.ssi_doc_args (var_ [SSI DOCARGS].as < ::std::string > ());
+        if (var_.count (SSI EXEC)) c.ssi_exec (var_ [SSI EXEC].as < ::std::string > ());
+        if (var_.count (SSI LASTMOD)) c.ssi_lastmod (string_to_time (nits, var_ [SSI LASTMOD].as < ::std::string > ()));
+        if (var_.count (SSI QUERYSTRING)) c.ssi_query_string (var_ [SSI QUERYSTRING].as < ::std::string > ());
+        if (var_.count (SSI TIMEFMT)) c.ssi_timefmt (var_ [SSI TIMEFMT].as < ::std::string > ());
+        if (var_.count (SSI USERNAME)) c.ssi_user_name (var_ [SSI USERNAME].as < ::std::string > ());
+
+        if (is_be (STATS SELECTED))
             c.stats (rcb_error, true).stats (rcb_file, true).stats (rcb_summary, true);
 
-        if (var_ [STATS DONT ALL].as <bool> ()) c.stats_all (false);
-        else if (var_ [STATS ALL].as <bool> ()) c.stats_all (true);
+        if (is_be (STATS DONT ALL)) c.stats_all (false);
+        else if (is_be (STATS ALL)) c.stats_all (true);
         yea_nay (c, rcb_abbreviation, nits, STATS ABBR, STATS DONT ABBR);
         yea_nay (c, rcb_annotation, nits, STATS ANNOTATION, STATS DONT ANNOTATION);
         yea_nay (c, rcb_attribute, nits, STATS ATTRIB, STATS DONT ATTRIB);
@@ -2207,6 +2249,7 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
         TEST_VAR (shape_rendering);
         TEST_VAR (ssi);
         TEST_VAR (ssi_comparison);
+        TEST_VAR (ssi_config);
         TEST_VAR (ssi_encoding);
         TEST_VAR (ssi_env);
         TEST_VAR (svg_align);
@@ -2261,10 +2304,8 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
         res += i + " ";
     return res; }
 
-::std::string gubbins (const char* section, int& count, const char* variable)
-{   VERIFY_NOT_NULL (section, __FILE__, __LINE__);
-    VERIFY_NOT_NULL (variable, __FILE__, __LINE__);
-    ::std::string res;
+::std::string gubbins_config ( const char* section, int& count, const char* variable)
+{   ::std::string res;
     if (count++ == 0)
     {   ::std::string sect (section);
         const ::std::string::size_type pos = sect.length ();
@@ -2274,108 +2315,126 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
         res += sect;
         res += "]\n"; }
     res += variable;
-    res += '=';
+    res += "=";
     return res; }
 
-::std::string report_value (const char* section, int& count, const char* variable, const ::std::string& val)
-{   return gubbins (section, count, variable) + val + "\n"; }
+::std::string gubbins_switch (const char* section, int& , const char* variable)
+{   ::std::string res ("--");
+    res += section;
+    res += ".";
+    res += variable;
+    res += " ";
+    return res; }
 
-::std::string report_value (const char* section, int& count, const char* variable)
-{   return gubbins (section, count, variable) + "\n"; }
+::std::string gubbins (const e_gui_report gr, const char* section, int& count, const char* variable)
+{   VERIFY_NOT_NULL (section, __FILE__, __LINE__);
+    VERIFY_NOT_NULL (variable, __FILE__, __LINE__);
+    switch (gr)
+    {   case gr_config : return gubbins_config (section, count, variable);
+        case gr_summary : return ::std::string ();
+        case gr_switches : return gubbins_switch (section, count, variable);
+        default : GRACEFUL_CRASH (__FILE__, __LINE__); } }
 
-template < class T > void options::report_variable (::std::ostringstream& res, const char* wot, const char* section, int& count, const char* variable) const
+::std::string report_value (const e_gui_report gr, const char* section, int& count, const char* variable, const ::std::string& val)
+{   if (gr == gr_switches) return gubbins (gr, section, count, variable) + enquote (val) + " ";
+    return gubbins (gr, section, count, variable) + val + "\n"; }
+
+::std::string report_value (const e_gui_report gr, const char* section, int& count, const char* variable)
+{   if (gr == gr_switches) return gubbins (gr, section, count, variable) + " ";
+    return gubbins (gr, section, count, variable) + "\n"; }
+
+template < class T > void options::report_variable (const e_gui_report gr, ::std::ostringstream& res, const char* wot, const char* section, int& count, const char* variable) const
 {   if (var_.count (wot)) try
-    {   res << report_value (section, count, variable, var_ [wot].as < ::std::string > ()); }
+    {   res << report_value (gr, section, count, variable, var_ [wot].as < ::std::string > ()); }
     catch (...)
     {   outstr.err (section, wot, " is incompatible with ::std::string\n"); } }
 
-template < > void options::report_variable < vstr_t > (::std::ostringstream& res, const char* wot, const char* section, int& count, const char* variable) const
+template < > void options::report_variable < vstr_t > (const e_gui_report gr, ::std::ostringstream& res, const char* wot, const char* section, int& count, const char* variable) const
 {   if (var_.count (wot)) try
-    {   res << report_value (section, count, variable, pvs (var_ [wot].as < vstr_t > ())); }
+    {   res << report_value (gr, section, count, variable, pvs (var_ [wot].as < vstr_t > ())); }
     catch (...)
     {   outstr.err (section, wot, " is no vstr_t\n"); } }
 
-template < > void options::report_variable < bool > (::std::ostringstream& res, const char* wot, const char* section, int& count, const char* variable) const
+template < > void options::report_variable < bool > (const e_gui_report gr, ::std::ostringstream& res, const char* wot, const char* section, int& count, const char* variable) const
 {   if (var_.count (wot)) try
     {   if (var_ [wot].as < bool > ())
-            res << report_value (section, count, variable); }
+            res << report_value (gr, section, count, variable); }
     catch (...)
     {   outstr.err (section, wot, " is no bool\n"); } }
 
-void options::report_bool (::std::ostringstream& res, const char* yay, const char* nay, const char* section, int& count, const char* ja, const char* nein) const
-{   
-    report_variable < bool > (res, yay, section, count, ja);   
-    report_variable < bool > (res, nay, section, count, nein); }
+void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, const char* yay, const char* nay, const char* section, int& count, const char* ja, const char* nein) const
+{   report_variable < bool > (gr, res, yay, section, count, ja);   
+    report_variable < bool > (gr, res, nay, section, count, nein); }
 
-#define RB(RES,SECT,VAR,COUNT) report_bool (RES, SECT VAR, SECT DONT VAR, SECT, COUNT, VAR, DONT VAR)
-#define RG(RES,TYPE,SECT,VAR,COUNT) report_variable < TYPE > (RES, SECT VAR, SECT, COUNT, VAR)
-#define RI(RES,SECT,VAR,DEF,COUNT) \
+#define RB(GR,RES,SECT,VAR,COUNT) report_bool (GR, RES, SECT VAR, SECT DONT VAR, SECT, COUNT, VAR, DONT VAR)
+#define RG(GR,RES,TYPE,SECT,VAR,COUNT) report_variable < TYPE > (GR, RES, SECT VAR, SECT, COUNT, VAR)
+#define RI(GR,RES,SECT,VAR,DEF,COUNT) \
     if (var_.count (SECT VAR)) \
         if (var_ [SECT VAR].as < ::std::string > () != DEF) \
-            RG (res, ::std::string, SECT, VAR, COUNT);
-#define RII(RES,SECT,VAR,DEF,COUNT) \
+            RG (GR, res, ::std::string, SECT, VAR, COUNT);
+#define RII(GR,RES,SECT,VAR,DEF,COUNT) \
     if (var_.count (SECT VAR)) \
         if (var_ [SECT VAR].as < int > () != DEF) \
-            RG (res, int, SECT, VAR, COUNT);
-#define RP(RES,SECT,VAR,COUNT) \
+            RG (GR, res, int, SECT, VAR, COUNT);
+#define RP(GR,RES,SECT,VAR,COUNT) \
     if (var_.count (SECT VAR)) \
-        RG (res, ::std::string, SECT, "*****", COUNT);
+        RG (GR, res, ::std::string, SECT, "*****", COUNT);
 
-::std::string options::report (const bool file) const
+::std::string options::report (const e_gui_report gr, const bool file) const
 {   ::std::ostringstream res;
 #ifndef EXPAND_TEST
     if (context.test ()) return res.str ();
 #endif // EXPAND_TEST
 
     int corpus = 0, css = 0, env = 0, general = 0, html = 0, jsonld = 0, lynx = 0, math = 0, mf = 0, microdata = 0, nitty = 0,
-        ontology = 0, shadow = 0, site = 0, ssc = 0, stats = 0, svg = 0, validate = 0;
+        ontology = 0, shadow = 0, site = 0, ssc = 0, ssi = 0, stats = 0, svg = 0, validate = 0;
 #ifndef NOSPELL
     int spell = 0;
 #endif // NOSPELL
 
     if (file)
-        res << report_value (PROG, ssc, VERSION, VERSION_STRING)
-            << report_value (PROG, ssc, OPTBOOST, BOOST_LIB_VERSION)
-            << report_value (PROG, ssc, OPTCOMP, COMPNAME)
+        res << report_value (gr, PROG, ssc, VERSION, VERSION_STRING)
+            << report_value (gr, PROG, ssc, OPTBOOST, BOOST_LIB_VERSION)
+            << report_value (gr, PROG, ssc, OPTCOMP, COMPNAME)
 #ifdef CURLY
-            << report_value (PROG, ssc, OPTCURL, "yes")
+            << report_value (gr, PROG, ssc, OPTCURL, "yes")
 #else // CURLY
-            << report_value (PROG, ssc, OPTCURL, "no")
+            << report_value (gr, PROG, ssc, OPTCURL, "no")
 #endif // CURLY
 #ifdef DEBUG
-            << report_value (PROG, ssc, OPTDEBUG, "yes")
+            << report_value (gr, PROG, ssc, OPTDEBUG, "yes")
 #else // DEBUG
-            << report_value (PROG, ssc, OPTDEBUG, "no")
+            << report_value (gr, PROG, ssc, OPTDEBUG, "no")
 #endif // DEBUG
 #ifdef FUDDY
-            << report_value (PROG, ssc, OPTFUDDY, "yes")
+            << report_value (gr, PROG, ssc, OPTFUDDY, "yes")
 #else // FUDDY
-            << report_value (PROG, ssc, OPTFUDDY, "no")
+            << report_value (gr, PROG, ssc, OPTFUDDY, "no")
 #endif // FUDDY
 #ifdef WX
-            << report_value (PROG, ssc, OPTGUI, "yes")
+            << report_value (gr, PROG, ssc, OPTGUI, "yes")
 #else // WX
-            << report_value (PROG, ssc, OPTGUI, "no")
+            << report_value (gr, PROG, ssc, OPTGUI, "no")
 #endif // WX
 #ifndef NOICU
-            << report_value (PROG, ssc, OPTICU, U_ICU_VERSION)
+            << report_value (gr, PROG, ssc, OPTICU, U_ICU_VERSION)
 #endif // NOICU
 #ifdef JSNIC
-            << report_value (PROG, ssc, OPTJSON, "yes")
+            << report_value (gr, PROG, ssc, OPTJSON, "yes")
 #else // JSNIC
-            << report_value (PROG, ssc, OPTJSON, "no")
+            << report_value (gr, PROG, ssc, OPTJSON, "no")
 #endif // JSNIC
 #ifdef NPS_GEN
-            << report_value (PROG, ssc, OPTNPS, "yes")
+            << report_value (gr, PROG, ssc, OPTNPS, "yes")
 #else // NPS_GEN
-            << report_value (PROG, ssc, OPTNPS, "no")
+            << report_value (gr, PROG, ssc, OPTNPS, "no")
 #endif // NPS_GEN
-            << report_value (PROG, ssc, OPTPROC, "x" PROCSIZE)
-            << report_value (PROG, ssc, OPTOS, BUILD_OS)
+            << report_value (gr, PROG, ssc, OPTPROC, "x" PROCSIZE)
+            << report_value (gr, PROG, ssc, OPTOS, BUILD_OS)
 #ifdef SPELT
-            << report_value (PROG, ssc, OPTSPELL, "yes")
+            << report_value (gr, PROG, ssc, OPTSPELL, "yes")
 #else // SPELT
-            << report_value (PROG, ssc, OPTSPELL, "no")
+            << report_value (gr, PROG, ssc, OPTSPELL, "no")
 #endif // SPELT
             ;
     else
@@ -2415,220 +2474,225 @@ void options::report_bool (::std::ostringstream& res, const char* yay, const cha
         try { if (var_ [HELP].as < bool > ()) res << HELP "\n"; } catch (...) { }
         try { if (var_ [VERSION].as < bool > ()) res << VERSION "\n"; } catch (...) { } }
 
-    RB (res, CORPUS, ARTICLE, corpus);
-    RB (res, CORPUS, BODY, corpus);
-    RB (res, CORPUS, MAIN, corpus);
-    RG (res, ::std::string, CORPUS, OUTPUT, corpus);
+    RB (gr, res, CORPUS, ARTICLE, corpus);
+    RB (gr, res, CORPUS, BODY, corpus);
+    RB (gr, res, CORPUS, MAIN, corpus);
+    RG (gr, res, ::std::string, CORPUS, OUTPUT, corpus);
 
-    RG (res, int, CSS, ADJUST, css);
-    RG (res, int, CSS, ADVLAY, css);
-    RG (res, int, CSS, ANCHOR, css);
-    RG (res, int, CSS, ANCHOR_POS, css);
-    RG (res, int, CSS, ANIMATION, css);
-    RG (res, int, CSS, BACKGROUND, css);
-    RG (res, int, CSS, BOX_ALIGN, css);
-    RG (res, int, CSS, BOX_MODEL, css);
-    RG (res, int, CSS, BOX_SIZING, css);
-    RG (res, int, CSS, CASCADE, css);
-    RG (res, int, CSS, COLOUR, css);
-    RG (res, int, CSS, COMPOSITING, css);
-    RG (res, int, CSS, COND_RULE, css);
-    RG (res, int, CSS, CS, css);
-    RG (res, int, CSS, CONTAIN, css);
-    RG (res, int, CSS, CON_TENT, css);
-    RG (res, int, CSS, CUSTOM, css);
-    RG (res, int, CSS, DEVICE, css);
-    RG (res, int, CSS, DISPLAY, css);
-    RG (res, int, CSS, EASE, css);
-    RG (res, int, CSS, EXCLUDE, css);
-    RG (res, vstr_t, CSS, EXTENSION, css);
-    RG (res, int, CSS, FBL, css);
-    RG (res, int, CSS, FILL, css);
-    RG (res, int, CSS, FILTER, css);
-    RG (res, int, CSS, FLOAT, css);
-    RG (res, int, CSS, FONT, css);
-    RG (res, int, CSS, FRAG, css);
-    RG (res, int, CSS, GRID, css);
-    RG (res, int, CSS, HIGHLIGHT, css);
-    RG (res, int, CSS, HYPERLINK, css);
-    RG (res, int, CSS, IMAGE, css);
-    RG (res, int, CSS, INLINE, css);
-    RG (res, int, CSS, LIST, css);
-    RG (res, int, CSS, LINE_GRID, css);
-    RG (res, int, CSS, LOGIC, css);
-    RG (res, int, CSS, MARQUEE, css);
-    RG (res, int, CSS, MASKING, css);
-    RG (res, int, CSS, MEDIA, css);
-    RB (res, CSS, MOBILE, css);
-    RG (res, int, CSS, MOTION, css);
-    RG (res, int, CSS, MULTI_COLUMN, css);
-    RG (res, int, CSS, NAMESPACE, css);
-    RG (res, int, CSS, NES, css);
-    RG (res, int, CSS, NESTING, css);
-    RG (res, int, CSS, OVERFLOH, css);
-    RG (res, int, CSS, OVERSCROLL, css);
-    RG (res, int, CSS, PAGE, css);
-    RG (res, int, CSS, POSITION, css);
-    RG (res, int, CSS, PRESENT, css);      
-    RB (res, CSS, PRINT, css);
-    RG (res, int, CSS, PSEUDO, css);
-    RG (res, int, CSS, REGION, css);
-    RG (res, int, CSS, RHYTHM, css);
-    RG (res, int, CSS, ROUND, css);
-    RG (res, int, CSS, RUBY, css);
-    RG (res, int, CSS, SCOPE, css);
-    RG (res, int, CSS, SCROLLBAR, css);
-    RG (res, int, CSS, SDA, css);
-    RG (res, int, CSS, SELECTOR, css);
-    RG (res, int, CSS, SP, css);
-    RG (res, int, CSS, SHAPE, css);
-    RG (res, int, CSS, SPATIAL, css);
-    RG (res, int, CSS, SPEECH, css);
-    RG (res, int, CSS, SNAP, css);
-    RG (res, int, CSS, SNAP_POINTS, css);
-    RG (res, int, CSS, STYLE, css);
-    RG (res, int, CSS, SYNTAX, css);
-    RG (res, int, CSS, TABLE, css);
-    RG (res, int, CSS, TEXT_ARG, css);
-    RG (res, int, CSS, TEXT_DEC, css);
-    RG (res, int, CSS, TRANSFORM, css);
-    RG (res, int, CSS, TRANSITION, css);
-    RB (res, CSS, TV, css);
-    RG (res, int, CSS, UI, css);
-    RG (res, int, CSS, VAL, css);
-    RB (res, CSS, VERIFY, css);
-//    RG (res, int, CSS, VERSION, css);
-    RG (res, ::std::string, CSS, VERSION, css);
-    RG (res, int, CSS, VIEW, css);
-    RG (res, int, CSS, VIEWPORT, css);
-    RG (res, int, CSS, WRITING, css);
-    RG (res, int, CSS, WC, css);
+    RG (gr, res, int, CSS, ADJUST, css);
+    RG (gr, res, int, CSS, ADVLAY, css);
+    RG (gr, res, int, CSS, ANCHOR, css);
+    RG (gr, res, int, CSS, ANCHOR_POS, css);
+    RG (gr, res, int, CSS, ANIMATION, css);
+    RG (gr, res, int, CSS, BACKGROUND, css);
+    RG (gr, res, int, CSS, BOX_ALIGN, css);
+    RG (gr, res, int, CSS, BOX_MODEL, css);
+    RG (gr, res, int, CSS, BOX_SIZING, css);
+    RG (gr, res, int, CSS, CASCADE, css);
+    RG (gr, res, int, CSS, COLOUR, css);
+    RG (gr, res, int, CSS, COMPOSITING, css);
+    RG (gr, res, int, CSS, COND_RULE, css);
+    RG (gr, res, int, CSS, CS, css);
+    RG (gr, res, int, CSS, CONTAIN, css);
+    RG (gr, res, int, CSS, CON_TENT, css);
+    RG (gr, res, int, CSS, CUSTOM, css);
+    RG (gr, res, int, CSS, DEVICE, css);
+    RG (gr, res, int, CSS, DISPLAY, css);
+    RG (gr, res, int, CSS, EASE, css);
+    RG (gr, res, int, CSS, EXCLUDE, css);
+    RG (gr, res, vstr_t, CSS, EXTENSION, css);
+    RG (gr, res, int, CSS, FBL, css);
+    RG (gr, res, int, CSS, FILL, css);
+    RG (gr, res, int, CSS, FILTER, css);
+    RG (gr, res, int, CSS, FLOAT, css);
+    RG (gr, res, int, CSS, FONT, css);
+    RG (gr, res, int, CSS, FRAG, css);
+    RG (gr, res, int, CSS, GRID, css);
+    RG (gr, res, int, CSS, HIGHLIGHT, css);
+    RG (gr, res, int, CSS, HYPERLINK, css);
+    RG (gr, res, int, CSS, IMAGE, css);
+    RG (gr, res, int, CSS, INLINE, css);
+    RG (gr, res, int, CSS, LIST, css);
+    RG (gr, res, int, CSS, LINE_GRID, css);
+    RG (gr, res, int, CSS, LOGIC, css);
+    RG (gr, res, int, CSS, MARQUEE, css);
+    RG (gr, res, int, CSS, MASKING, css);
+    RG (gr, res, int, CSS, MEDIA, css);
+    RB (gr, res, CSS, MOBILE, css);
+    RG (gr, res, int, CSS, MOTION, css);
+    RG (gr, res, int, CSS, MULTI_COLUMN, css);
+    RG (gr, res, int, CSS, NAMESPACE, css);
+    RG (gr, res, int, CSS, NES, css);
+    RG (gr, res, int, CSS, NESTING, css);
+    RG (gr, res, int, CSS, OVERFLOH, css);
+    RG (gr, res, int, CSS, OVERSCROLL, css);
+    RG (gr, res, int, CSS, PAGE, css);
+    RG (gr, res, int, CSS, POSITION, css);
+    RG (gr, res, int, CSS, PRESENT, css);      
+    RB (gr, res, CSS, PRINT, css);
+    RG (gr, res, int, CSS, PSEUDO, css);
+    RG (gr, res, int, CSS, REGION, css);
+    RG (gr, res, int, CSS, RHYTHM, css);
+    RG (gr, res, int, CSS, ROUND, css);
+    RG (gr, res, int, CSS, RUBY, css);
+    RG (gr, res, int, CSS, SCOPE, css);
+    RG (gr, res, int, CSS, SCROLLBAR, css);
+    RG (gr, res, int, CSS, SDA, css);
+    RG (gr, res, int, CSS, SELECTOR, css);
+    RG (gr, res, int, CSS, SP, css);
+    RG (gr, res, int, CSS, SHAPE, css);
+    RG (gr, res, int, CSS, SPATIAL, css);
+    RG (gr, res, int, CSS, SPEECH, css);
+    RG (gr, res, int, CSS, SNAP, css);
+    RG (gr, res, int, CSS, SNAP_POINTS, css);
+    RG (gr, res, int, CSS, STYLE, css);
+    RG (gr, res, int, CSS, SYNTAX, css);
+    RG (gr, res, int, CSS, TABLE, css);
+    RG (gr, res, int, CSS, TEXT_ARG, css);
+    RG (gr, res, int, CSS, TEXT_DEC, css);
+    RG (gr, res, int, CSS, TRANSFORM, css);
+    RG (gr, res, int, CSS, TRANSITION, css);
+    RB (gr, res, CSS, TV, css);
+    RG (gr, res, int, CSS, UI, css);
+    RG (gr, res, int, CSS, VAL, css);
+    RB (gr, res, CSS, VERIFY, css);
+//    RG (gr, res, int, CSS, VERSION, css);
+    RG (gr, res, ::std::string, CSS, VERSION, css);
+    RG (gr, res, int, CSS, VIEW, css);
+    RG (gr, res, int, CSS, VIEWPORT, css);
+    RG (gr, res, int, CSS, WRITING, css);
+    RG (gr, res, int, CSS, WC, css);
 
     if (var_.count (ENVIRONMENT QUERY_STRING))
-    {   RG (res, ::std::string, ENVIRONMENT, AUTH_TYPE, env);
-        RG (res, ::std::string, ENVIRONMENT, CONTENT_TYPE, env);
-        RG (res, ::std::string, ENVIRONMENT, CONTENT_LENGTH, env);
-        RG (res, ::std::string, ENVIRONMENT, GATEWAY_INTERFACE, env);
-        RG (res, ::std::string, ENVIRONMENT, HTTP_ACCEPT, env);
-        RG (res, ::std::string, ENVIRONMENT, PATH_INFO, env);
-        RG (res, ::std::string, ENVIRONMENT, PATH_TRANSLATED, env);
-        if (file) RG (res, ::std::string, ENVIRONMENT, QUERY_STRING, env);
-        RG (res, ::std::string, ENVIRONMENT, REMOTE_ADDR, env);
-        RG (res, ::std::string, ENVIRONMENT, REMOTE_HOST, env);
-        RG (res, ::std::string, ENVIRONMENT, REMOTE_USER, env);
-        RG (res, ::std::string, ENVIRONMENT, REQUEST_METHOD, env);
-        RG (res, ::std::string, ENVIRONMENT, SCRIPT_NAME, env);
-        RG (res, ::std::string, ENVIRONMENT, SERVER_NAME, env);
-        RG (res, ::std::string, ENVIRONMENT, SERVER_PORT, env);
-        RG (res, ::std::string, ENVIRONMENT, SERVER_PROTOCOL, env);
-        RG (res, ::std::string, ENVIRONMENT, SERVER_SOFTWARE, env);
+    {   RG (gr, res, ::std::string, ENVIRONMENT, AUTH_TYPE, env);
+        RG (gr, res, ::std::string, ENVIRONMENT, CONTENT_TYPE, env);
+        RG (gr, res, ::std::string, ENVIRONMENT, CONTENT_LENGTH, env);
+        RG (gr, res, ::std::string, ENVIRONMENT, GATEWAY_INTERFACE, env);
+        RG (gr, res, ::std::string, ENVIRONMENT, HTTP_ACCEPT, env);
+        RG (gr, res, ::std::string, ENVIRONMENT, PATH_INFO, env);
+        RG (gr, res, ::std::string, ENVIRONMENT, PATH_TRANSLATED, env);
+        if (file) RG (gr, res, ::std::string, ENVIRONMENT, QUERY_STRING, env);
+        RG (gr, res, ::std::string, ENVIRONMENT, REMOTE_ADDR, env);
+        RG (gr, res, ::std::string, ENVIRONMENT, REMOTE_HOST, env);
+        RG (gr, res, ::std::string, ENVIRONMENT, REMOTE_USER, env);
+        RG (gr, res, ::std::string, ENVIRONMENT, REQUEST_METHOD, env);
+        RG (gr, res, ::std::string, ENVIRONMENT, SCRIPT_NAME, env);
+        RG (gr, res, ::std::string, ENVIRONMENT, SERVER_NAME, env);
+        RG (gr, res, ::std::string, ENVIRONMENT, SERVER_PORT, env);
+        RG (gr, res, ::std::string, ENVIRONMENT, SERVER_PROTOCOL, env);
+        RG (gr, res, ::std::string, ENVIRONMENT, SERVER_SOFTWARE, env);
         if (! file)
         {  ::std::string qs (var_ [ENVIRONMENT QUERY_STRING].as < ::std::string > ());
             res << ENVIRONMENT QUERY_STRING ": " << qs << "\n            : " << query_to_switches (qs) << "\n"; } }
 
-    RB (res, GENERAL, CGI, general);
-    RB (res, GENERAL, CLASS, general);
-    RB (res, GENERAL, CLASSIC, general);
-    RG (res, vstr_t, GENERAL, CUSTOM, general);
-    RI (res, GENERAL, DATAPATH, def_path, general);
-    RG (res, int, GENERAL, DEFTHRD, general);
-    RG (res, ::std::string, GENERAL, WHOOPS, general);
-    RG (res, vstr_t, GENERAL, ENVIRONMENT, general);
-    RI (res, GENERAL, FICHIER, def_persisted, general);
-    RB (res, GENERAL, INFO, general);
-    RG (res, vstr_t, GENERAL, IGNORED, general);
-    RG (res, ::std::string, GENERAL, LANG, general);
-    RI (res, GENERAL, MACROEND, def_macroend, general);
-    RI (res, GENERAL, MACROSTART, def_macrostart, general);
-    RG (res, int, GENERAL, MAXFILESIZE, general);
-    RB (res, GENERAL, PROGRESS, general);
-    RB (res, GENERAL, RDFA, general);
-    RB (res, GENERAL, REL, general);
-    RB (res, GENERAL, RPT, general);
-    RB (res, GENERAL, SLOVEN, general);
-    RB (res, GENERAL, SPEC, general);
-    RB (res, GENERAL, SSI, general);
-    RB (res, GENERAL, TEST, general);
+    RB (gr, res, GENERAL, CGI, general);
+    RB (gr, res, GENERAL, CLASS, general);
+    RB (gr, res, GENERAL, CLASSIC, general);
+    RG (gr, res, vstr_t, GENERAL, CUSTOM, general);
+    RI (gr, res, GENERAL, DATAPATH, def_path, general);
+    RG (gr, res, int, GENERAL, DEFTHRD, general);
+    RG (gr, res, ::std::string, GENERAL, WHOOPS, general);
+    RG (gr, res, vstr_t, GENERAL, ENVIRONMENT, general);
+    RI (gr, res, GENERAL, FICHIER, def_persisted, general);
+    RB (gr, res, GENERAL, INFO, general);
+    RG (gr, res, ::std::string, GENERAL, HELPSITE, general);
+    RG (gr, res, vstr_t, GENERAL, IGNORED, general);
+    RG (gr, res, ::std::string, GENERAL, LANG, general);
+    RI (gr, res, GENERAL, MACROEND, def_macroend, general);
+    RI (gr, res, GENERAL, MACROSTART, def_macrostart, general);
+    RG (gr, res, int, GENERAL, MAXFILESIZE, general);
+    RB (gr, res, GENERAL, PROGRESS, general);
+    RB (gr, res, GENERAL, RDFA, general);
+    RB (gr, res, GENERAL, REL, general);
+    RB (gr, res, GENERAL, RPT, general);
+    RB (gr, res, GENERAL, SLOVEN, general);
+    RB (gr, res, GENERAL, SPEC, general);
+    RB (gr, res, GENERAL, SSI, general);
+    RB (gr, res, GENERAL, TEST, general);
 #ifndef NO_FRED
-    RG (res, int, GENERAL, THREAD, general);
+    RG (gr, res, int, GENERAL, THREAD, general);
 #endif // NO_FRED
-    RB (res, GENERAL, VCS, general);
-    RG (res, ::std::string, GENERAL, VERBOSE, general);
-    RB (res, GENERAL, YGGDRISIL, general);
+    RB (gr, res, GENERAL, VCS, general);
+    RG (gr, res, ::std::string, GENERAL, VERBOSE, general);
+    RB (gr, res, GENERAL, YGGDRISIL, general);
 
-    RG (res, vstr_t, HTML, CUSTOM, html);
-    RB (res, HTML, FORCE, html);
-    RB (res, HTML, IE, html);
-    RG (res, vstr_t, HTML, IGNORED, html);
-    RG (res, ::std::string, HTML, LANG, html);
-    RB (res, HTML, REL, html);
-    RB (res, HTML, RFC1867, html);
-    RB (res, HTML, RFC1942, html);
-    RB (res, HTML, RFC1980, html);
-    RB (res, HTML, RFC2070, html);
-    RB (res, HTML, RUBY, html);
-    RB (res, HTML, SAFARI, html);
-    RB (res, HTML, SLOVEN, html);
-    RG (res, ::std::string, HTML, SNIPPET, html);
-    RB (res, HTML, SSI, html);
-    RB (res, HTML, TAGS, html);
-    RII (res, HTML, TITLE, def_htmltitle, html);
-    RG (res, ::std::string, HTML, VERSION, html);
+    RG (gr, res, vstr_t, HTML, CUSTOM, html);
+    RB (gr, res, HTML, FORCE, html);
+    RB (gr, res, HTML, IE, html);
+    RG (gr, res, vstr_t, HTML, IGNORED, html);
+    RG (gr, res, ::std::string, HTML, LANG, html);
+    RB (gr, res, HTML, REL, html);
+    RB (gr, res, HTML, RFC1867, html);
+    RB (gr, res, HTML, RFC1942, html);
+    RB (gr, res, HTML, RFC1980, html);
+    RB (gr, res, HTML, RFC2070, html);
+    RB (gr, res, HTML, RUBY, html);
+    RB (gr, res, HTML, SAFARI, html);
+    RB (gr, res, HTML, SLOVEN, html);
+    RG (gr, res, ::std::string, HTML, SNIPPET, html);
+    RB (gr, res, HTML, SSI, html);
+    RB (gr, res, HTML, TAGS, html);
+    RII (gr, res, HTML, TITLE, def_htmltitle, html);
+    RG (gr, res, ::std::string, HTML, VERSION, html);
+    RB (gr, res, HTML, WXARG, html);
 
-    RG (res, vstr_t, JSONLD, EXTENSION, jsonld);
-    RB (res, JSONLD, VERIFY, jsonld);
-    RG (res, ::std::string, JSONLD, VERSION, jsonld);
+    RG (gr, res, vstr_t, JSONLD, EXTENSION, jsonld);
+    RB (gr, res, JSONLD, PRETTY, jsonld);
+    RB (gr, res, JSONLD, VERIFY, jsonld);
+    RG (gr, res, ::std::string, JSONLD, VERSION, jsonld);
 
-    RB (res, LINKS, CHECK, lynx);
-    RB (res, LINKS, EXAMPLE, lynx);
-    RB (res, LINKS, EXTERNAL, lynx);
-    RB (res, LINKS, FORWARD, lynx);
-    RG (res, vstr_t, LINKS, IGNORED, lynx);
-    RB (res, LINKS, LOCAL, lynx);
-    RB (res, LINKS, ONCE, lynx);
-    RG (res, vstr_t, LINKS, PRETEND, lynx);
-    RG (res, vstr_t, LINKS, REPORT, lynx);
-    RB (res, LINKS, REVOKE, lynx);
-    RB (res, LINKS, XLINK, lynx);
+    RB (gr, res, LINKS, CHECK, lynx);
+    RB (gr, res, LINKS, EXAMPLE, lynx);
+    RB (gr, res, LINKS, EXTERNAL, lynx);
+    RB (gr, res, LINKS, FORWARD, lynx);
+    RG (gr, res, vstr_t, LINKS, IGNORED, lynx);
+    RB (gr, res, LINKS, LOCAL, lynx);
+    RB (gr, res, LINKS, ONCE, lynx);
+    RG (gr, res, vstr_t, LINKS, PRETEND, lynx);
+    RG (gr, res, vstr_t, LINKS, REPORT, lynx);
+    RB (gr, res, LINKS, REVOKE, lynx);
+    RB (gr, res, LINKS, XLINK, lynx);
 
-    RB (res, MATH, CORE, math);
-    RG (res, int, MATH, DRAFT, math);
-    RG (res, int, MATH, VERSION, math);
+    RB (gr, res, MATH, CORE, math);
+    RG (gr, res, int, MATH, DRAFT, math);
+    RG (gr, res, int, MATH, VERSION, math);
 
-    RB (res, MF, EXPORT, mf);
-    RB (res, MF, VERIFY, mf);
-    RG (res, int, MF, VERSION, mf);
+    RB (gr, res, MF, EXPORT, mf);
+    RB (gr, res, MF, PRETTY, mf);
+    RB (gr, res, MF, VERIFY, mf);
+    RG (gr, res, int, MF, VERSION, mf);
 
-    RB (res, MICRODATA, EXPORT, microdata);
-    RB (res, MICRODATA, VERIFY, microdata);
-    RG (res, ::std::string, MICRODATA, ROOT, microdata);
-    RG (res, vstr_t, MICRODATA, VIRTUAL, microdata);
+    RB (gr, res, MICRODATA, EXPORT, microdata);
+    RB (gr, res, MICRODATA, VERIFY, microdata);
+    RG (gr, res, ::std::string, MICRODATA, ROOT, microdata);
+    RG (gr, res, vstr_t, MICRODATA, VIRTUAL, microdata);
 
-    RG (res, vstr_t, NITS, ABHORRENT, nitty);
-    RG (res, ::std::string, NITS, CACHE, nitty);
-    RG (res, vstr_t, NITS, CATASTROPHE, nitty);
-    RG (res, vstr_t, NITS, COMMENT, nitty);
-    RG (res, vstr_t, NITS, DBG, nitty);
-    RG (res, vstr_t, NITS, WHOOPS, nitty);
-    RG (res, ::std::string, NITS, ERROREXIT, nitty);
-    RB (res, NITS, EXPAND, nitty);
-    RB (res, NITS, EXTRA, nitty);
-    RG (res, ::std::string, NITS, FORMAT, nitty);
-    RG (res, vstr_t, NITS, INFO, nitty);
-    RB (res, NITS, NIDS, nitty);
-    RG (res, ::std::string, NITS, OVERRIDE, nitty);
-    RG (res, vstr_t, NITS, SILENCE, nitty);
-    RB (res, NITS, SPEC, nitty);
-    RB (res, NITS, UNIQUE, nitty);
-    RG (res, ::std::string, NITS, VERBOSE, nitty);
-    RG (res, vstr_t, NITS, WARNING, nitty);
-    RB (res, NITS, WATCH, nitty);
-    RG (res, ::std::string, NITS, XXX, nitty);
+    RG (gr, res, vstr_t, NITS, ABHORRENT, nitty);
+    RG (gr, res, ::std::string, NITS, CACHE, nitty);
+    RG (gr, res, vstr_t, NITS, CATASTROPHE, nitty);
+    RG (gr, res, vstr_t, NITS, COMMENT, nitty);
+    RG (gr, res, vstr_t, NITS, DBG, nitty);
+    RG (gr, res, vstr_t, NITS, WHOOPS, nitty);
+    RG (gr, res, ::std::string, NITS, ERROREXIT, nitty);
+    RB (gr, res, NITS, EXPAND, nitty);
+    RB (gr, res, NITS, EXTRA, nitty);
+    RG (gr, res, ::std::string, NITS, FORMAT, nitty);
+    RG (gr, res, vstr_t, NITS, INFO, nitty);
+    RB (gr, res, NITS, NIDS, nitty);
+    RG (gr, res, ::std::string, NITS, OVERRIDE, nitty);
+    RG (gr, res, vstr_t, NITS, SILENCE, nitty);
+    RB (gr, res, NITS, SPEC, nitty);
+    RB (gr, res, NITS, UNIQUE, nitty);
+    RG (gr, res, ::std::string, NITS, VERBOSE, nitty);
+    RG (gr, res, vstr_t, NITS, WARNING, nitty);
+    RB (gr, res, NITS, WATCH, nitty);
+    RG (gr, res, ::std::string, NITS, XXX, nitty);
 
-    RB (res, ONTOLOGY, EXPORT, ontology);
-    RB (res, ONTOLOGY, VERIFY, ontology);
-    RG (res, ::std::string, ONTOLOGY, ROOT, ontology);
-    RG (res, vstr_t, ONTOLOGY, VIRTUAL, ontology);
+    RB (gr, res, ONTOLOGY, EXPORT, ontology);
+    RB (gr, res, ONTOLOGY, PRETTY, ontology);
+    RB (gr, res, ONTOLOGY, VERIFY, ontology);
+    RG (gr, res, ::std::string, ONTOLOGY, ROOT, ontology);
+    RG (gr, res, vstr_t, ONTOLOGY, VIRTUAL, ontology);
 
     for (int i = s_none + 1; i < s_error; ++i)
     {   const e_ontology es = static_cast < e_ontology > (i);
@@ -2638,245 +2702,256 @@ void options::report_bool (::std::ostringstream& res, const char* yay, const cha
         ::std::string arg (ONTOLOGY);
         arg += naam;
         if (var_.count (arg))
-            res << report_value (ONTOLOGY, ontology, naam.c_str (), var_ [arg].as < ::std::string > ()); }
+            res << report_value (gr, ONTOLOGY, ontology, naam.c_str (), var_ [arg].as < ::std::string > ()); }
 
-    RB (res, SHADOW, CHANGED, shadow);
-    RB (res, SHADOW, COMMENT, shadow);
-    RG (res, ::std::string, SHADOW, COPY, shadow);
-    RB (res, SHADOW, ENABLE, shadow);
-    RG (res, ::std::string, SHADOW, FICHIER, shadow);
-    RG (res, vstr_t, SHADOW, IGNORED, shadow);
-    RB (res, SHADOW, INFO, shadow);
-    RG (res, ::std::string, SHADOW, MSG, shadow);
-    RG (res, ::std::string, SHADOW, ROOT, shadow);
-    RB (res, SHADOW, SPACING, shadow);
-    RB (res, SHADOW, SSI, shadow);
-    RB (res, SHADOW, UPDATE, shadow);
-    RG (res, vstr_t, SHADOW, VIRTUAL, shadow);
+    RB (gr, res, SHADOW, CHANGED, shadow);
+    RB (gr, res, SHADOW, COMMENT, shadow);
+    RG (gr, res, ::std::string, SHADOW, COPY, shadow);
+    RB (gr, res, SHADOW, ENABLE, shadow);
+    RG (gr, res, ::std::string, SHADOW, FICHIER, shadow);
+    RG (gr, res, vstr_t, SHADOW, IGNORED, shadow);
+    RB (gr, res, SHADOW, INFO, shadow);
+    RG (gr, res, ::std::string, SHADOW, MSG, shadow);
+    RG (gr, res, ::std::string, SHADOW, ROOT, shadow);
+    RB (gr, res, SHADOW, SPACING, shadow);
+    RB (gr, res, SHADOW, SSI, shadow);
+    RB (gr, res, SHADOW, UPDATE, shadow);
+    RG (gr, res, vstr_t, SHADOW, VIRTUAL, shadow);
 
-    RG (res, ::std::string, WEBSITE, EXTENSION, site);
-    RG (res, ::std::string, WEBSITE, INDEX, site);
-    RG (res, vstr_t, WEBSITE, SITE, site);
-    RG (res, ::std::string, WEBSITE, ROOT, site);
-    RG (res, vstr_t, WEBSITE, VIRTUAL, site);
+    RG (gr, res, ::std::string, WEBSITE, EXTENSION, site);
+    RG (gr, res, ::std::string, WEBSITE, INDEX, site);
+    RG (gr, res, vstr_t, WEBSITE, SITE, site);
+    RG (gr, res, ::std::string, WEBSITE, ROOT, site);
+    RG (gr, res, vstr_t, WEBSITE, VIRTUAL, site);
 
 #ifndef NOSPELL
-    RG (res, vstr_t, SPELL, ACCEPT, spell);
-    RB (res, SPELL, CASED, spell);
-    RB (res, SPELL, CHECK, spell);
-    RG (res, vstr_t, SPELL, DICT, spell);
-    RB (res, SPELL, ICU, spell);
-    RG (res, vstr_t, SPELL, LIST, spell);
-    RG (res, ::std::string, SPELL, PATH, spell);
+    RG (gr, res, vstr_t, SPELL, ACCEPT, spell);
+    RB (gr, res, SPELL, CASED, spell);
+    RB (gr, res, SPELL, CHECK, spell);
+    RG (gr, res, vstr_t, SPELL, DICT, spell);
+    RB (gr, res, SPELL, ICU, spell);
+    RG (gr, res, vstr_t, SPELL, LIST, spell);
+    RG (gr, res, ::std::string, SPELL, PATH, spell);
 #endif // NOSPELL
 
-    RB (res, STATS, ABBR, stats);
-    RB (res, STATS, ALL, stats);
-    RB (res, STATS, ANNOTATION, stats);
-    RB (res, STATS, ATTRIB, stats);
-    RB (res, STATS, CAT, stats);
-    RB (res, STATS, CHARVAR, stats);
-    RB (res, STATS, CLASS, stats);
-    RB (res, STATS, CONNAME, stats);
-    RB (res, STATS, COUSTYLE, stats);
-    RB (res, STATS, CSSPROP, stats);
-    RB (res, STATS, CUSTMED, stats);
-    RB (res, STATS, CUSTPROP, stats);
-    RB (res, STATS, DFN, stats);
-    RB (res, STATS, DTDD, stats);
-    RB (res, STATS, ELEMENT, stats);
-    RB (res, STATS, WHOOPS, stats);
-    RG (res, ::std::string, STATS, EXPORT, stats);
-    RB (res, STATS, FICHIER, stats);
-    RB (res, STATS, FONT, stats);
-    RB (res, STATS, FONT_FAMILY, stats);
-    RB (res, STATS, HIGHLIGHT, stats);
-    RB (res, STATS, HISTFORM, stats);
-    RB (res, STATS, ID, stats);
-    RB (res, STATS, ITEMID, stats);
-    RB (res, STATS, KEYFRAME, stats);
-    RB (res, STATS, LAYER, stats);
-    RB (res, STATS, META, stats);
-    RB (res, STATS, ONT, stats);
-    RB (res, STATS, ORNAMENT, stats);
-    RB (res, STATS, PAGE, stats);
-    RB (res, STATS, PAGE_NAME, stats);
-    RB (res, STATS, PALETTE, stats);
-    RB (res, STATS, PROPER, stats);
-    RB (res, STATS, REFERENCE, stats);
-    RB (res, STATS, REGION, stats);
-    RB (res, STATS, SCROLL_ANIM, stats);
-    RB (res, STATS, SELECTED, stats);
-    RB (res, STATS, STATEMENT, stats);
-    RB (res, STATS, STYLESET, stats);
-    RB (res, STATS, STYLISTIC, stats);
-    RB (res, STATS, SUMMARY, stats);
-    RB (res, STATS, SWASH, stats);
-    RB (res, STATS, VERSION, stats);
-    RB (res, STATS, VIEW, stats);
+    RB (gr, res, SSI, VERIFY, ssi);
+    RG (gr, res, ::std::string, SSI, CMD, ssi);
+    RG (gr, res, ::std::string, SSI, DATETIME, ssi);
+    RG (gr, res, ::std::string, SSI, DOCARGS, ssi);
+    RG (gr, res, ::std::string, SSI, EXEC, ssi);
+    RG (gr, res, ::std::string, SSI, LASTMOD, ssi);
+    RG (gr, res, ::std::string, SSI, QUERYSTRING, ssi);
+    RG (gr, res, ::std::string, SSI, TIMEFMT, ssi);
+    RG (gr, res, ::std::string, SSI, USERNAME, ssi);
 
-    RG (res, ::std::string, SVG, VERSION, svg);
+    RB (gr, res, STATS, ABBR, stats);
+    RB (gr, res, STATS, ALL, stats);
+    RB (gr, res, STATS, ANNOTATION, stats);
+    RB (gr, res, STATS, ATTRIB, stats);
+    RB (gr, res, STATS, CAT, stats);
+    RB (gr, res, STATS, CHARVAR, stats);
+    RB (gr, res, STATS, CLASS, stats);
+    RB (gr, res, STATS, CONNAME, stats);
+    RB (gr, res, STATS, COUSTYLE, stats);
+    RB (gr, res, STATS, CSSPROP, stats);
+    RB (gr, res, STATS, CUSTMED, stats);
+    RB (gr, res, STATS, CUSTPROP, stats);
+    RB (gr, res, STATS, DFN, stats);
+    RB (gr, res, STATS, DTDD, stats);
+    RB (gr, res, STATS, ELEMENT, stats);
+    RB (gr, res, STATS, WHOOPS, stats);
+    RG (gr, res, ::std::string, STATS, EXPORT, stats);
+    RB (gr, res, STATS, FICHIER, stats);
+    RB (gr, res, STATS, FONT, stats);
+    RB (gr, res, STATS, FONT_FAMILY, stats);
+    RB (gr, res, STATS, HIGHLIGHT, stats);
+    RB (gr, res, STATS, HISTFORM, stats);
+    RB (gr, res, STATS, ID, stats);
+    RB (gr, res, STATS, ITEMID, stats);
+    RB (gr, res, STATS, KEYFRAME, stats);
+    RB (gr, res, STATS, LAYER, stats);
+    RB (gr, res, STATS, META, stats);
+    RB (gr, res, STATS, ONT, stats);
+    RB (gr, res, STATS, ORNAMENT, stats);
+    RB (gr, res, STATS, PAGE, stats);
+    RB (gr, res, STATS, PAGE_NAME, stats);
+    RB (gr, res, STATS, PALETTE, stats);
+    RB (gr, res, STATS, PROPER, stats);
+    RB (gr, res, STATS, REFERENCE, stats);
+    RB (gr, res, STATS, REGION, stats);
+    RB (gr, res, STATS, SCROLL_ANIM, stats);
+    RB (gr, res, STATS, SELECTED, stats);
+    RB (gr, res, STATS, STATEMENT, stats);
+    RB (gr, res, STATS, STYLESET, stats);
+    RB (gr, res, STATS, STYLISTIC, stats);
+    RB (gr, res, STATS, SUMMARY, stats);
+    RB (gr, res, STATS, SWASH, stats);
+    RB (gr, res, STATS, VERSION, stats);
+    RB (gr, res, STATS, VIEW, stats);
 
-    RG (res, vstr_t, VALIDATION, ATTRIB, validate);
-    RG (res, vstr_t, VALIDATION, CHARSET, validate);
-    RG (res, vstr_t, VALIDATION, CLASS, validate);
-    RG (res, vstr_t, VALIDATION, COLOR, validate);
-    RG (res, vstr_t, VALIDATION, COLOUR, validate);
-    RG (res, vstr_t, VALIDATION, COUNTRY, validate);
-    RG (res, vstr_t, VALIDATION, CURRENCY, validate);
-    RG (res, vstr_t, VALIDATION, DINGBATARG, validate);
-    RG (res, vstr_t, VALIDATION, ELEMENT, validate);
-    RG (res, vstr_t, VALIDATION, ELEMATTR, validate);
-    RG (res, vstr_t, VALIDATION, EXTENSION, validate);
-    RG (res, vstr_t, VALIDATION, FF, validate);
-    RG (res, vstr_t, VALIDATION, FV, validate);
-    RG (res, vstr_t, VALIDATION, HTTPEQUIV, validate);
-    RG (res, vstr_t, VALIDATION, LANG, validate);
-    RG (res, int, VALIDATION, MINOR, validate);
-    RG (res, vstr_t, VALIDATION, METANAME, validate);
-    RB (res, VALIDATION, MICRODATAARG, validate);
-    RG (res, vstr_t, VALIDATION, MIMETYPE, validate);
-    RG (res, vstr_t, VALIDATION, REL, validate);
-    RG (res, vstr_t, VALIDATION, SGML, validate);
+    RG (gr, res, ::std::string, SVG, VERSION, svg);
 
-#define RPT_VAR(XX) RG (res, vstr_t, VALIDATION, #XX, validate)
-    RPT_VAR (accrual_method);
-    RPT_VAR (accrual_periodicity);
-    RPT_VAR (accrual_policy);
-    RPT_VAR (action);
-    RPT_VAR (align3);
-    RPT_VAR (alignplus);
-    RPT_VAR (as);
-    RPT_VAR (as_units);
-    RPT_VAR (autocapitalise);
-    RPT_VAR (autocomplete);
-    RPT_VAR (baselineshift);
-    RPT_VAR (citype);
-    RPT_VAR (cntype);
-    RPT_VAR (composite_operator);
-    RPT_VAR (crs_whitebalance);
-    RPT_VAR (dcmitype);
-    RPT_VAR (decalign);
-    RPT_VAR (dingbat);
-    RPT_VAR (dir);
-    RPT_VAR (display_align);
-    RPT_VAR (dominantbaseline);
-    RPT_VAR (enterkeyhint);
-    RPT_VAR (evt_action);
-    RPT_VAR (figalign);
-    RPT_VAR (fontname);
-    RPT_VAR (halign);
-    RPT_VAR (icc);
-    RPT_VAR (inputmode);
-    RPT_VAR (inputplus);
-    RPT_VAR (inputtype);
-    RPT_VAR (inputtype3);
-    RPT_VAR (inputtype32);
-    RPT_VAR (inputtype4);
-    RPT_VAR (inputtype5);
-    RPT_VAR (kind);
-    RPT_VAR (linebreak);
-    RPT_VAR (listtype);
-    RPT_VAR (mah);
-    RPT_VAR (mathalign);
-    RPT_VAR (mathvariant);
-    RPT_VAR (matrixtype);
-    RPT_VAR (media);
-    RPT_VAR (mediafeature);
-    RPT_VAR (mediakeyword);
-    RPT_VAR (method);
-    RPT_VAR (mf_identifier);
-    RPT_VAR (mf_itemtype);
-    RPT_VAR (mf_listing_action);
-    RPT_VAR (mf_method);
-    RPT_VAR (mf_reviewtype);
-    RPT_VAR (musickey);
-    RPT_VAR (namedspace);
-    RPT_VAR (namespace);
-    RPT_VAR (mathnotation);
-    RPT_VAR (ogtype);
-    RPT_VAR (paintkeyword);
-    RPT_VAR (pam_ccv);
-    RPT_VAR (pcmm_status);
-    RPT_VAR (plusstyle);
-    RPT_VAR (pointer_events);
-    RPT_VAR (pri_img_colour);
-    RPT_VAR (pri_img_technique);
-    RPT_VAR (pri_img_viewpoint);
-    RPT_VAR (print);
-    RPT_VAR (prism_ad_pos);
-    RPT_VAR (prism_ad_type);
-    RPT_VAR (prism_ag_type);
-    RPT_VAR (prism_audience_sector);
-    RPT_VAR (prism_ccv);
-    RPT_VAR (prism_class);
-    RPT_VAR (prism_contenttype);
-    RPT_VAR (prism_cvp);
-    RPT_VAR (prism_genre);
-    RPT_VAR (prism_icv);
-    RPT_VAR (prism_pasv);
-    RPT_VAR (prism_pcv);
-    RPT_VAR (prism_pfv);
-    RPT_VAR (prism_ptv);
-    RPT_VAR (prism_rcv);
-    RPT_VAR (prism_role);
-    RPT_VAR (prs_action);
-    RPT_VAR (quote_style);
-    RPT_VAR (recipe_content);
-    RPT_VAR (recipe_course);
-    RPT_VAR (recipe_cuisine);
-    RPT_VAR (recipe_dietary);
-    RPT_VAR (recipe_dish);
-    RPT_VAR (recipe_exclusion);
-    RPT_VAR (recipe_kit);
-    RPT_VAR (recipe_meal);
-    RPT_VAR (recipe_method);
-    RPT_VAR (recipe_source);
-    RPT_VAR (recipe_special);
-    RPT_VAR (recipe_time);
-    RPT_VAR (referrer);
-    RPT_VAR (rendering_in_tents);
-    RPT_VAR (rules);
-    RPT_VAR (sandbox);
-    RPT_VAR (schema);
-    RPT_VAR (shape7);
-    RPT_VAR (shape_rendering);
-    RPT_VAR (ssi);
-    RPT_VAR (ssi_comparison);
-    RPT_VAR (ssi_encoding);
-    RPT_VAR (ssi_env);
-    RPT_VAR (svg_align);
-    RPT_VAR (svg_display);
-    RPT_VAR (svg_feature);
-    RPT_VAR (svg_fontstretch);
-    RPT_VAR (svg_fontstretch_ff);
-    RPT_VAR (svg_fontstyle);
-    RPT_VAR (svg_fontweight);
-    RPT_VAR (svg_fontweight_ff);
-    RPT_VAR (svg_mode);
-    RPT_VAR (svg_overflow);
-    RPT_VAR (svg_version);
-    RPT_VAR (svg_version_grand);
-    RPT_VAR (tableframe);
-    RPT_VAR (text_decoration);
-    RPT_VAR (text_rendering);
-    RPT_VAR (tld);
-    RPT_VAR (transform_anim);
-    RPT_VAR (transform_fn);
-    RPT_VAR (turbulence_type);
-    RPT_VAR (unicode_bidi);
-    RPT_VAR (vector_effect_2);
-    RPT_VAR (xmlns);
-    RPT_VAR (xmpdm_audio_channel);
-    RPT_VAR (xmpdm_audio_sample);
-    RPT_VAR (xmpdm_camera_angle);
-    RPT_VAR (xmpdm_camera_move);
-    RPT_VAR (xmpdm_pulldown);
-    RPT_VAR (xmpdm_shotsize);
-    RPT_VAR (xmpdm_stretchmode);
-    RPT_VAR (xmpdm_time_format);
-    RPT_VAR (xmpdm_time_signature);
-    RPT_VAR (xmpdm_video_pixeldepth);
+    RG (gr, res, vstr_t, VALIDATION, ATTRIB, validate);
+    RG (gr, res, vstr_t, VALIDATION, CHARSET, validate);
+    RG (gr, res, vstr_t, VALIDATION, CLASS, validate);
+    RG (gr, res, vstr_t, VALIDATION, COLOR, validate);
+    RG (gr, res, vstr_t, VALIDATION, COLOUR, validate);
+    RG (gr, res, vstr_t, VALIDATION, COUNTRY, validate);
+    RG (gr, res, vstr_t, VALIDATION, CURRENCY, validate);
+    RG (gr, res, vstr_t, VALIDATION, DINGBATARG, validate);
+    RG (gr, res, vstr_t, VALIDATION, ELEMENT, validate);
+    RG (gr, res, vstr_t, VALIDATION, ELEMATTR, validate);
+    RG (gr, res, vstr_t, VALIDATION, EXTENSION, validate);
+    RG (gr, res, vstr_t, VALIDATION, FF, validate);
+    RG (gr, res, vstr_t, VALIDATION, FV, validate);
+    RG (gr, res, vstr_t, VALIDATION, HTTPEQUIV, validate);
+    RG (gr, res, vstr_t, VALIDATION, LANG, validate);
+    RG (gr, res, int, VALIDATION, MINOR, validate);
+    RG (gr, res, vstr_t, VALIDATION, METANAME, validate);
+    RB (gr, res, VALIDATION, MICRODATAARG, validate);
+    RG (gr, res, vstr_t, VALIDATION, MIMETYPE, validate);
+    RG (gr, res, vstr_t, VALIDATION, REL, validate);
+    RG (gr, res, vstr_t, VALIDATION, SGML, validate);
+
+#define RPT_VAR(GR,XX) RG (GR, res, vstr_t, VALIDATION, #XX, validate)
+    RPT_VAR (gr, accrual_method);
+    RPT_VAR (gr, accrual_periodicity);
+    RPT_VAR (gr, accrual_policy);
+    RPT_VAR (gr, action);
+    RPT_VAR (gr, align3);
+    RPT_VAR (gr, alignplus);
+    RPT_VAR (gr, as);
+    RPT_VAR (gr, as_units);
+    RPT_VAR (gr, autocapitalise);
+    RPT_VAR (gr, autocomplete);
+    RPT_VAR (gr, baselineshift);
+    RPT_VAR (gr, citype);
+    RPT_VAR (gr, cntype);
+    RPT_VAR (gr, composite_operator);
+    RPT_VAR (gr, crs_whitebalance);
+    RPT_VAR (gr, dcmitype);
+    RPT_VAR (gr, decalign);
+    RPT_VAR (gr, dingbat);
+    RPT_VAR (gr, dir);
+    RPT_VAR (gr, display_align);
+    RPT_VAR (gr, dominantbaseline);
+    RPT_VAR (gr, enterkeyhint);
+    RPT_VAR (gr, evt_action);
+    RPT_VAR (gr, figalign);
+    RPT_VAR (gr, fontname);
+    RPT_VAR (gr, halign);
+    RPT_VAR (gr, icc);
+    RPT_VAR (gr, inputmode);
+    RPT_VAR (gr, inputplus);
+    RPT_VAR (gr, inputtype);
+    RPT_VAR (gr, inputtype3);
+    RPT_VAR (gr, inputtype32);
+    RPT_VAR (gr, inputtype4);
+    RPT_VAR (gr, inputtype5);
+    RPT_VAR (gr, kind);
+    RPT_VAR (gr, linebreak);
+    RPT_VAR (gr, listtype);
+    RPT_VAR (gr, mah);
+    RPT_VAR (gr, mathalign);
+    RPT_VAR (gr, mathvariant);
+    RPT_VAR (gr, matrixtype);
+    RPT_VAR (gr, media);
+    RPT_VAR (gr, mediafeature);
+    RPT_VAR (gr, mediakeyword);
+    RPT_VAR (gr, method);
+    RPT_VAR (gr, mf_identifier);
+    RPT_VAR (gr, mf_itemtype);
+    RPT_VAR (gr, mf_listing_action);
+    RPT_VAR (gr, mf_method);
+    RPT_VAR (gr, mf_reviewtype);
+    RPT_VAR (gr, musickey);
+    RPT_VAR (gr, namedspace);
+    RPT_VAR (gr, namespace);
+    RPT_VAR (gr, mathnotation);
+    RPT_VAR (gr, ogtype);
+    RPT_VAR (gr, paintkeyword);
+    RPT_VAR (gr, pam_ccv);
+    RPT_VAR (gr, pcmm_status);
+    RPT_VAR (gr, plusstyle);
+    RPT_VAR (gr, pointer_events);
+    RPT_VAR (gr, pri_img_colour);
+    RPT_VAR (gr, pri_img_technique);
+    RPT_VAR (gr, pri_img_viewpoint);
+    RPT_VAR (gr, print);
+    RPT_VAR (gr, prism_ad_pos);
+    RPT_VAR (gr, prism_ad_type);
+    RPT_VAR (gr, prism_ag_type);
+    RPT_VAR (gr, prism_audience_sector);
+    RPT_VAR (gr, prism_ccv);
+    RPT_VAR (gr, prism_class);
+    RPT_VAR (gr, prism_contenttype);
+    RPT_VAR (gr, prism_cvp);
+    RPT_VAR (gr, prism_genre);
+    RPT_VAR (gr, prism_icv);
+    RPT_VAR (gr, prism_pasv);
+    RPT_VAR (gr, prism_pcv);
+    RPT_VAR (gr, prism_pfv);
+    RPT_VAR (gr, prism_ptv);
+    RPT_VAR (gr, prism_rcv);
+    RPT_VAR (gr, prism_role);
+    RPT_VAR (gr, prs_action);
+    RPT_VAR (gr, quote_style);
+    RPT_VAR (gr, recipe_content);
+    RPT_VAR (gr, recipe_course);
+    RPT_VAR (gr, recipe_cuisine);
+    RPT_VAR (gr, recipe_dietary);
+    RPT_VAR (gr, recipe_dish);
+    RPT_VAR (gr, recipe_exclusion);
+    RPT_VAR (gr, recipe_kit);
+    RPT_VAR (gr, recipe_meal);
+    RPT_VAR (gr, recipe_method);
+    RPT_VAR (gr, recipe_source);
+    RPT_VAR (gr, recipe_special);
+    RPT_VAR (gr, recipe_time);
+    RPT_VAR (gr, referrer);
+    RPT_VAR (gr, rendering_in_tents);
+    RPT_VAR (gr, rules);
+    RPT_VAR (gr, sandbox);
+    RPT_VAR (gr, schema);
+    RPT_VAR (gr, shape7);
+    RPT_VAR (gr, shape_rendering);
+    RPT_VAR (gr, ssi);
+    RPT_VAR (gr, ssi_comparison);
+    RPT_VAR (gr, ssi_config);
+    RPT_VAR (gr, ssi_encoding);
+    RPT_VAR (gr, ssi_env);
+    RPT_VAR (gr, svg_align);
+    RPT_VAR (gr, svg_display);
+    RPT_VAR (gr, svg_feature);
+    RPT_VAR (gr, svg_fontstretch);
+    RPT_VAR (gr, svg_fontstretch_ff);
+    RPT_VAR (gr, svg_fontstyle);
+    RPT_VAR (gr, svg_fontweight);
+    RPT_VAR (gr, svg_fontweight_ff);
+    RPT_VAR (gr, svg_mode);
+    RPT_VAR (gr, svg_overflow);
+    RPT_VAR (gr, svg_version);
+    RPT_VAR (gr, svg_version_grand);
+    RPT_VAR (gr, tableframe);
+    RPT_VAR (gr, text_decoration);
+    RPT_VAR (gr, text_rendering);
+    RPT_VAR (gr, tld);
+    RPT_VAR (gr, transform_anim);
+    RPT_VAR (gr, transform_fn);
+    RPT_VAR (gr, turbulence_type);
+    RPT_VAR (gr, unicode_bidi);
+    RPT_VAR (gr, vector_effect_2);
+    RPT_VAR (gr, xmlns);
+    RPT_VAR (gr, xmpdm_audio_channel);
+    RPT_VAR (gr, xmpdm_audio_sample);
+    RPT_VAR (gr, xmpdm_camera_angle);
+    RPT_VAR (gr, xmpdm_camera_move);
+    RPT_VAR (gr, xmpdm_pulldown);
+    RPT_VAR (gr, xmpdm_shotsize);
+    RPT_VAR (gr, xmpdm_stretchmode);
+    RPT_VAR (gr, xmpdm_time_format);
+    RPT_VAR (gr, xmpdm_time_signature);
+    RPT_VAR (gr, xmpdm_video_pixeldepth);
 
 #undef RPT_VAR
 #undef RB
@@ -2887,5 +2962,5 @@ void options::report_bool (::std::ostringstream& res, const char* yay, const cha
     return res.str (); }
 
 bool options::write (nitpick& nits, const ::boost::filesystem::path& fn) const
-{   const ::std::string s (report (true));
+{   const ::std::string s (report (gr_config, true));
     return write_text_file (nits, fn, s); }

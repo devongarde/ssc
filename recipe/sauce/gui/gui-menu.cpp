@@ -83,7 +83,7 @@ void bar_t :: init ()
     file_ -> Append (menu_root, ROOT_TEXT "\tctrl+I", ROOT_DESC);
     file_ -> Append (menu_snippet, SNIPPET_TEXT "\tctrl+N", SNIPPET_DESC);
 #endif // DARWIN
-    file_ -> Append (menu_wizzard, WHIZZ_TEXT, WHIZZ_DESC);
+//    file_ -> Append (menu_wizzard, WHIZZ_TEXT, WHIZZ_DESC);
     file_ -> AppendSeparator ();
     file_ -> Append (wxID_SAVE, SAVE_TEXT, SAVE_DESC);
     file_ -> Append (wxID_SAVEAS, SAVE_AS_TEXT, SAVE_AS_DESC);
@@ -126,24 +126,20 @@ void bar_t :: init ()
 
     config_ = GSL_OWNER (wxMenu) (new wxMenu);
     if (config_ == nullptr) return;
-    config_ -> Append (menu_corpus, "cor&pus...", "configure corpus for use by a local search engine");
+    config_ -> Append (menu_html, "&HTML...", "configure HTML and other markup");
     config_ -> Append (menu_css, "&CSS...", "configure CSS nitpicking");
-    config_ -> Append (menu_file, "&file...", "configure file processing");
     config_ -> Append (menu_general, "&general...", "configure the stuff that doesn't go in another dialogue");
-    config_ -> Append (menu_html, "&HTML...", "configure HTML nitpicking");
-    config_ -> Append (menu_lynx, "lin&k...", "configure link verification");
-    config_ -> Append (menu_math, "&mathML...", "configure MathML nitpicking");
-    config_ -> Append (menu_mf, "m&icroformat...", "configure microformat nitpicking");
     config_ -> Append (menu_nits, "&nits...", "configure the nits themselves");
-    config_ -> Append (menu_ontology, "&ontology...", "configure ontological nitpicking");
-    config_ -> Append (menu_stats, "&reports...", "select and configure reports");
+    config_ -> Append (menu_ontology, "&data...", "configure ontology and microformats");
     config_ -> Append (menu_shadow, "sha&dow...", "configure shadow output");
     config_ -> Append (menu_site, "si&te...", "configure website nitpicking");
 #ifndef NOSPELL
     config_ -> Append (menu_spell, "spe&ll...", "configure spelling verification");
 #endif // NOSPELL
-    config_ -> Append (menu_svg, "S&VG...", "configure SVG nitpicking");
+    config_ -> Append (menu_stats, "&reports...", "select and configure reports");
+#ifdef DEBUG
     config_ -> Append (menu_validation, "v&alidation...", "configure type validation");
+#endif // DEBUG
     config_ -> AppendSeparator ();
     config_ -> Append (menu_conf_open, CONFIG_OPEN, CONFIG_OPEN_DESC);
     config_ -> Append (menu_conf_save, CONFIG_SAVE, CONFIG_SAVE_DESC);

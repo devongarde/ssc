@@ -772,6 +772,12 @@ template < > struct type_master < t_mf_reviewtype > : enum_n < t_mf_reviewtype, 
 template < > struct type_master < t_mime > : enum_n < t_mime, e_mimetype >
 { using enum_n < t_mime, e_mimetype > :: enum_n; };
 
+template < > struct type_master < t_month_english_long > : enum_n < t_month_english_long, e_month_english_long >
+{ using enum_n < t_month_english_long, e_month_english_long > :: enum_n; };
+
+template < > struct type_master < t_month_english_short > : enum_n < t_month_english_short, e_month_english_short >
+{ using enum_n < t_month_english_short, e_month_english_short > :: enum_n; };
+
 template < > struct type_master < t_musickey > : enum_n < t_musickey, e_musickey >
 { using enum_n < t_musickey, e_musickey > :: enum_n; };
 
@@ -958,6 +964,9 @@ template < > struct type_master < t_ssi > : enum_n < t_ssi, e_ssi >
 template < > struct type_master < t_ssi_comparison > : enum_n < t_ssi_comparison, e_ssi_comparison >
 { using enum_n < t_ssi_comparison, e_ssi_comparison > :: enum_n; };
 
+template < > struct type_master < t_ssi_config > : enum_n < t_ssi_config, e_ssi_config >
+{ using enum_n < t_ssi_config, e_ssi_config > :: enum_n; };
+
 template < > struct type_master < t_ssi_encoding > : enum_n < t_ssi_encoding, e_ssi_encoding >
 { using enum_n < t_ssi_encoding, e_ssi_encoding > :: enum_n; };
 
@@ -1077,6 +1086,12 @@ template < > struct type_master < t_vrel > : enum_n < t_vrel, e_vrel >
 
 template < > struct type_master < t_vtt > : enum_n < t_vtt, e_vtt >
 { using enum_n < t_vtt, e_vtt > :: enum_n; };
+
+template < > struct type_master < t_weekday_english_long > : enum_n < t_weekday_english_long, e_weekday_english_long >
+{ using enum_n < t_weekday_english_long, e_weekday_english_long > :: enum_n; };
+
+template < > struct type_master < t_weekday_english_short > : enum_n < t_weekday_english_short, e_weekday_english_short >
+{ using enum_n < t_weekday_english_short, e_weekday_english_short > :: enum_n; };
 
 template < > struct type_master < t_whitespace > : enum_n < t_whitespace, e_whitespace >
 { using enum_n < t_whitespace, e_whitespace > :: enum_n; };

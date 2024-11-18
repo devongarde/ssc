@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+<title>SSI LAST_MODIFIED test page</title>
+
+</head>
+
+<body>
+
+<h1>SSI LAST_MODIFIED Test Page</h1>
+
+<p>
+<!--#echo encoding="none" var="LAST_MODIFIED" -->
+<!--#config ssc-lastmod="1997-05-23 00:00:00" -->
+<!--#echo encoding="none" var="LAST_MODIFIED" -->
+<!--#config ssc-lastmod="1997-05-23 05:25:45" -->
+<!--#flastmod virtual="index.html" -->
+<!--#config ssc-lastmod="1997-04-01" -->
+<!--#config timefmt="%D %T %Z" --> 
+<!--#flastmod file="index.html" -->
+</p>
+
+</body>
+</html>

@@ -34,10 +34,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 CONSTEXPR ::std::size_t max_separation = 30;
 
+#define ANSI_FORMAT "%a, %b %d %T %Y"
+#define DEF_TIMEFMT "%R, %B %d, %Y"
+#define RFC822_FORMAT "%a, %d %b %Y %T GMT"
+#define RFC850_FORMAT "%A, %d-%b-%Y %T GMT"
+#define ISO8601_FORMAT "%Y-%m-%dT%T"
+#define LAST_MOD_MASK "%d %d %d %d %d %d"
+
 ssi_compedium::ssi_compedium ()
-    :   echomsg_ ("[Value Undefined]"), errmsg_ ("[Oops, something broke.]"), timefmt_ ("%Y %b %d %R"),
-        sizefmt_abbrev_ (true)
-    { }
+    :   echomsg_ ("[Value Undefined]"), errmsg_ ("[Oops, something broke.]"), sizefmt_abbrev_ (true)
+    {   date_ = context.ssi_date ();
+        lastmod_ = context.ssi_lastmod ();
+        if (context.ssi_timefmt ().empty ()) timefmt_ = DEF_TIMEFMT;
+        else timefmt_ = context.ssi_timefmt (); }
 
 void ssi_compedium::swap (ssi_compedium& ssi) noexcept
 {   var_.swap (ssi.var_);
@@ -46,6 +55,8 @@ void ssi_compedium::swap (ssi_compedium& ssi) noexcept
     ::std::swap (errmsg_, ssi.errmsg_);
     ::std::swap (timefmt_, ssi.timefmt_);
     ::std::swap (filename_, ssi.filename_);
+    ::std::swap (date_, ssi.date_);
+    ::std::swap (lastmod_, ssi.lastmod_);
     ::std::swap (sizefmt_abbrev_, ssi.sizefmt_abbrev_);
     ::std::swap (if_, ssi.if_);
     ::std::swap (iffed_, ssi.iffed_); }
@@ -84,6 +95,33 @@ bool encoding (::std::string& ln, nitpick& nits, const html_version& v, e_ssi_en
         nits.pick (nit_unsupported_code, es_error, ec_ssi, "apologies, but " PROG " only supports the " QNONE " and 'url' encodings"); }
     return false; }
 
+::std::string timefmt (const ::std::string fmt, const struct tm* const t)
+{   constexpr ::std::size_t maxlen = DEFAULT_LINE_LENGTH;
+    char sz [maxlen] = { 0 };
+    const ::std::size_t len = ::std::strftime (sz, maxlen-1, fmt.c_str (), t);
+    if (len >= maxlen-1) return "** timefmt too long **";
+    sz [maxlen-1] = 0;
+    return ::std::string (sz); }
+
+::std::string gmtimefmt (const ::std::string fmt, const time_t lwt)
+{   const struct tm tt = *::std::gmtime (&lwt);
+    return timefmt (fmt, &tt); }
+
+::std::string localtimefmt (const ::std::string fmt, const time_t lwt)
+{   const struct tm tt = *::std::localtime (&lwt);
+    return timefmt (fmt, &tt); }
+
+::std::string lmtime (const page& p, const ::std::string fmt, const ::std::string& fn)
+{   ::boost::filesystem::path x (p.get_directory () -> get_disk_path ());
+    x /= fn;
+    return gmtimefmt (fmt, get_last_write_time (x)); }
+
+::std::string timestr (const ssi_compedium& c, const struct tm* const t)
+{   ::std::string fmt;
+    if (c.timefmt_.empty ()) fmt = DEF_TIMEFMT;
+    else fmt = c.timefmt_;
+    return timefmt (fmt, t); }
+
 ::std::string get_variable_value (::std::string& ln, nitpick& nits, const html_version& v, const page& p, const ssi_compedium& c, const ::std::string& var, bool required = false, bool noenv = false)
 {   ::std::string arg (uq (var));
     ustr_t::const_iterator i = c.var_.find (arg);
@@ -91,33 +129,27 @@ bool encoding (::std::string& ln, nitpick& nits, const html_version& v, e_ssi_en
         arg = i -> second;
     else
     {   e_ssi_env env = ssi_error;
-        time_t t = 0;
         if (value < e_ssi_env, t_ssi_env > (ln, nits, v, env, arg, required))
             if (noenv)
             {   set_ssi_context (ln, nits, es_error);
                 nits.pick (nit_no_set, es_error, ec_ssi, "apologies, but " PROG " cannot set environment variables"); }
             else switch (env)
             {   case ssi_DATE_GMT :
-                    {   ::std::ostringstream ss;
-#ifndef NO_BOOST_DATE_FACET
-                        const GSL_OWNER (::boost::gregorian::date_input_facet) facet (new ::boost::gregorian::date_input_facet ("%D %T %Z"));
-                        ss.imbue (::std::locale (::std::locale (), facet));
-                        ss << ::boost::posix_time::second_clock::universal_time ();
-#else // NO_BOOST_DATE_FACET
-                        ss << ::boost::gregorian::to_iso_extended_string (::boost::gregorian::day_clock::universal_day ());
-#endif // NO_BOOST_DATE_FACET
-                        arg = ss.str (); }
+                    if (c.date_ > 0) arg = gmtimefmt (c.timefmt_, c.date_);
+                    else
+                    {   time_t tt = 0;
+                        ::std::time (&tt);
+                        arg = timestr (c, ::std::gmtime (&tt)); }
                     break;
                 case ssi_DATE_LOCAL :
-                    {   ::std::ostringstream ss;
-#ifndef NO_BOOST_DATE_FACET
-                        const GSL_OWNER (::boost::gregorian::date_input_facet) facet (new ::boost::gregorian::date_input_facet ("%D %T %Z"));
-                        ss.imbue (::std::locale (::std::locale (), facet));
-                        ss << ::boost::posix_time::second_clock::local_time ();
-#else // NO_BOOST_DATE_FACET
-                        ss << ::boost::gregorian::to_iso_extended_string (::boost::gregorian::day_clock::local_day ());
-#endif // NO_BOOST_DATE_FACET
-                        arg = ss.str (); }
+                    if (c.date_ > 0) arg = localtimefmt (c.timefmt_, c.date_);
+                    else
+                    {   time_t tt = 0;
+                        ::std::time (&tt);
+                        arg = timestr (c, ::std::localtime (&tt)); }
+                    break;
+                case ssi_DOCUMENT_ARGS :
+                    arg = context.ssi_doc_args ();
                     break;
                 case ssi_DOCUMENT_NAME :
                     arg = c.filename_;
@@ -134,18 +166,26 @@ bool encoding (::std::string& ln, nitpick& nits, const html_version& v, e_ssi_en
                         arg += c.filename_; }
                     break;
                 case ssi_LAST_MODIFIED :
-                    {   ::boost::filesystem::path x (p.get_directory () -> get_disk_path ());
-                        x /= c.filename_;
-                        t = get_last_write_time (x);
-                        ::std::ostringstream ss;
-#ifndef NO_BOOST_DATE_FACET
-                        const GSL_OWNER (::boost::gregorian::date_input_facet) facet (new ::boost::gregorian::date_input_facet ("%D %T %Z"));
-                        ss.imbue (::std::locale (::std::locale (), facet));
-                        ss << ::boost::posix_time::from_time_t (t);
-#else // NO_BOOST_DATE_FACET
-                        ss << ::boost::posix_time::to_iso_extended_string (::boost::posix_time::from_time_t (t));
-#endif // NO_BOOST_DATE_FACET
-                        arg = ss.str (); }
+                    if (c.lastmod_ > 0) arg = gmtimefmt (c.timefmt_, c.lastmod_);
+                    else arg = lmtime (p, c.timefmt_, c.filename_);
+                    break;
+                case ssi_SSC_LAST_MODIFIED_ANSI :
+                    arg = lmtime (p, ANSI_FORMAT, c.filename_);
+                    break;
+                case ssi_SSC_LAST_MODIFIED_ISO8601 :
+                    arg = lmtime (p, ISO8601_FORMAT, c.filename_);
+                    break;
+                case ssi_SSC_LAST_MODIFIED_RFC822 :
+                    arg = lmtime (p, RFC822_FORMAT, c.filename_);
+                    break;
+                case ssi_SSC_LAST_MODIFIED_RFC850 :
+                    arg = lmtime (p, RFC850_FORMAT, c.filename_);
+                    break;
+                case ssi_QUERY_STRING_UNESCAPED :
+                    arg = context.ssi_query_string ();
+                    break;
+                case ssi_USER_NAME :
+                    arg = context.ssi_user_name ();
                     break;
                 case ssi_error :
                     GRACEFUL_CRASH (__FILE__, __LINE__);
@@ -193,11 +233,16 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
                         if (value < e_ssi_sizefmt, t_ssi_sizefmt > (ln, nits, v, f, arg, true))
                             c.sizefmt_abbrev_ = (f == ssi_size_abbrev); }
                     break;
+                case ssi_config_ssc_date :
+                    c.date_ = string_to_time (nits, arg);
+                    break;
+                case ssi_config_ssc_lastmod :
+                    c.lastmod_ = string_to_time (nits, arg);
+                    break;
                 case ssi_config_timefmt :
-                    {   if ((arg.length () > 48) || (arg.find ('%') == ::std::string::npos))
-                        {   set_ssi_context (ln, nits, es_warning);
-                            nits.pick (nit_invalid_config, es_warning, ec_ssi, "that timefmt value is dubious"); }
-                        else c.timefmt_ = arg; } } }
+                    if(arg.empty ()) c.timefmt_ = DEF_TIMEFMT;
+                    else c.timefmt_ = arg;
+                    break; } }
     return ::std::string (); }
 
 ::std::string echo_command (::std::string& ln, nitpick& nits, const html_version& v, page& p, ssi_compedium& c, const vstr_t& args, ::std::time_t& updated)
@@ -248,15 +293,7 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
         nits.pick (nit_ssi_include_error, es_error, ec_ssi, PROG " cannot determine that information");
         return c.errmsg_; }
 
-    ::std::ostringstream ss;
-#ifndef NO_BOOST_DATE_FACET
-    const GSL_OWNER (::boost::gregorian::date_input_facet) facet (new ::boost::gregorian::date_input_facet ("%D %T %Z"));
-    ss.imbue (::std::locale (::std::locale (), facet));
-    ss << ::boost::posix_time::from_time_t (lwt);
-#else // NO_BOOST_DATE_FACET
-    ss << ::boost::posix_time::to_iso_extended_string (::boost::posix_time::from_time_t (lwt));
-#endif // NO_BOOST_DATE_FACET
-    return ss.str (); }
+    return gmtimefmt (c.timefmt_, lwt); }
 
 ::std::string fsize_command (::std::string& ln, nitpick& nits, const html_version& v, const page& p, const ssi_compedium& c, const vstr_t& args)
 {   ::std::string file, vrt, arg;
@@ -427,28 +464,30 @@ bool if_args (::std::string& ln, nitpick& nits, const html_version& v, const pag
     {   type_master < t_ssi > todo;
         todo.set_value (nits, v, cmd);
         if (todo.good ())
-        if (! c.if_) switch (todo.get ())
-        {   case ssi_else :     return else_command (nits, c, inif);
-            case ssi_elif :     return elif_command (ln, nits, v, p, c, args, inif);
-            case ssi_endif :    return endif_command (nits, c, inif);
-            case ssi_if :       return if_command (ln, nits, v, p, c, args, inif);
-            default : break; }
-        else switch (todo.get ())
-        {   case ssi_comment :  return ::std::string ();
-            case ssi_config :   return config_command (ln, nits, v, c, args);
-            case ssi_echo :     return echo_command (ln, nits, v, p, c, args, updated);
-            case ssi_else :     return else_command (nits, c, inif);
-            case ssi_elif :     return elif_command (ln, nits, v, p, c, args, inif);
-            case ssi_endif :    return endif_command (nits, c, inif);
-            case ssi_exec :     set_ssi_context (ln, nits, es_warning);
-                                nits.pick (nit_no_exec, es_warning, ec_ssi, "apologies, but ", PROG, " cannot process <!--#EXEC-->");
-                                return ::std::string ();
-            case ssi_fsize :    return fsize_command (ln, nits, v, p, c, args);
-            case ssi_flastmod : return flastmod_command (ln, nits, v, p, c, args);
-            case ssi_include :  linechange = true; return include_command (ln, nits, v, p, c, args, updated);
-            case ssi_if :       linechange = true; return if_command (ln, nits, v, p, c, args, inif);
-            case ssi_printenv : linechange = true; return printenv_command (nits, c, args);
-            case ssi_set :      return set_command (ln, nits, v, p, c, args); } }
+            if (! c.if_) switch (todo.get ())
+            {   case ssi_else :     return else_command (nits, c, inif);
+                case ssi_elif :     return elif_command (ln, nits, v, p, c, args, inif);
+                case ssi_endif :    return endif_command (nits, c, inif);
+                case ssi_if :       return if_command (ln, nits, v, p, c, args, inif);
+                default : break; }
+            else switch (todo.get ())
+            {   case ssi_cmd :      nits.pick (nit_ssi_no_cmd, es_comment, ec_ssi, "apologies, but ", PROG, " cannot process <!--#CMD -->");
+                                    return context.ssi_cmd ();
+                case ssi_comment :  return ::std::string ();
+                case ssi_config :   return config_command (ln, nits, v, c, args);
+                case ssi_echo :     return echo_command (ln, nits, v, p, c, args, updated);
+                case ssi_else :     return else_command (nits, c, inif);
+                case ssi_elif :     return elif_command (ln, nits, v, p, c, args, inif);
+                case ssi_endif :    return endif_command (nits, c, inif);
+                case ssi_exec :     set_ssi_context (ln, nits, es_warning);
+                                    nits.pick (nit_no_exec, es_comment, ec_ssi, "apologies, but ", PROG, " cannot process <!--#EXEC -->");
+                                    return context.ssi_exec ();
+                case ssi_fsize :    return fsize_command (ln, nits, v, p, c, args);
+                case ssi_flastmod : return flastmod_command (ln, nits, v, p, c, args);
+                case ssi_include :  linechange = true; return include_command (ln, nits, v, p, c, args, updated);
+                case ssi_if :       linechange = true; return if_command (ln, nits, v, p, c, args, inif);
+                case ssi_printenv : linechange = true; return printenv_command (nits, c, args);
+                case ssi_set :      return set_command (ln, nits, v, p, c, args); } }
     return ::std::string (); }
 
 ::std::string hereabouts (const ::std::string::const_iterator b, ::std::string::const_iterator e)

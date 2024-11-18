@@ -30,7 +30,6 @@ PASS ../toast/HTML/2.0/html2-badl1.html
 17 unknown_element
 
 PASS ../toast/HTML/2.0/html2-example.html
-8 bad_datetime
 9 use_metaname
 10 use_metaname
 11 double_gin_and_tonic use_metaname

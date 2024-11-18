@@ -3283,6 +3283,7 @@ property_name namtab [] =
     { "actionApplication", s_schema, sp_actionapplication },
     { "actionOption", s_schema, sp_actionoption },
     { "actionPlatform", s_schema, sp_actionplatform },
+    { "actionProcess", s_schema, sp_actionprocess },
     { "actionStatus", s_schema, sp_actionstatus },
     { "actionableFeedbackPolicy", s_schema, sp_actionablefeedbackpolicy },
     { "activeIngredient", s_schema, sp_activeingredient },

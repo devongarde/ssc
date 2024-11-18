@@ -254,7 +254,7 @@ void html_version::init (const unsigned short mjr)
     if (strict ()) res << "/Strict";
     if (frameset ()) res << "/Frameset";
     if (transitional ()) res << "/Transitional";
-    if (has_svg ()) res << "/SVG-" << type_master < t_svg_version > :: name (svg_version ());
+    if (has_svg ()) res << "/SVG-" << svg_version_name ();
     if (has_math ()) res << "/MathML-" << math_version_name ();
     if (has_xlink ()) res << "/xLink";
     if (has_rdfa ()) res << "/RDFa";
@@ -840,30 +840,30 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
     else if (compare_css (H2_CSS_5, H3_CSS_5, H4_CSS_5, e2, e3, e4)) res = big_small_start (b, "5", "level 5");
     else if (compare_css (H2_CSS_4, H3_CSS_4, H4_CSS_4, e2, e3, e4)) res = big_small_start (b, "4", "level 4");
     else if (compare_css (H2_CSS_3, H3_CSS_3, H4_CSS_3, e2, e3, e4)) res = big_small_start (b, "3", "level 3");
-    else if (compare_css (H2_CSS_2024_2, H3_CSS_2024_2, H4_CSS_2024_2, e2, e3, e4)) res = big_small_start (b, "24++", "2024 wibbly wobbly snapshot");
-    else if (compare_css (H2_CSS_2024_1, H3_CSS_2024_1, H4_CSS_2024_1, e2, e3, e4)) res = big_small_start (b, "24+", "2024 wobbly snapshot");
-    else if (compare_css (H2_CSS_2024, H3_CSS_2024, H4_CSS_2024, e2, e3, e4)) res = big_small_start (b, "24", "2024 base snapshot");
-    else if (compare_css (H2_CSS_2023_2, H3_CSS_2023_2, H4_CSS_2023_2, e2, e3, e4)) res = big_small_start (b, "23++", "2023 wibbly wobbly snapshot");
-    else if (compare_css (H2_CSS_2023_1, H3_CSS_2023_1, H4_CSS_2023_1, e2, e3, e4)) res = big_small_start (b, "23+", "2023 wobbly snapshot");
-    else if (compare_css (H2_CSS_2023, H3_CSS_2023, H4_CSS_2023, e2, e3, e4)) res = big_small_start (b, "23", "2023 base snapshot");
-    else if (compare_css (H2_CSS_2022_2, H3_CSS_2022_2, H4_CSS_2022_2, e2, e3, e4)) res = big_small_start (b, "22++", "2022 wibbly wobbly snapshot");
-    else if (compare_css (H2_CSS_2022_1, H3_CSS_2022_1, H4_CSS_2022_1, e2, e3, e4)) res = big_small_start (b, "22+", "2022 wobbly snapshot");
-    else if (compare_css (H2_CSS_2022, H3_CSS_2022, H4_CSS_2022, e2, e3, e4)) res = big_small_start (b, "22", "2022 base snapshot");
-    else if (compare_css (H2_CSS_2021_2, H3_CSS_2021_2, H4_CSS_2021_2, e2, e3, e4)) res = big_small_start (b, "21++", "2021 wibbly wobbly snapshot");
-    else if (compare_css (H2_CSS_2021_1, H3_CSS_2021_1, H4_CSS_2021_1, e2, e3, e4)) res = big_small_start (b, "21+", "2021 wobbly snapshot");
-    else if (compare_css (H2_CSS_2021, H3_CSS_2021, H4_CSS_2021, e2, e3, e4)) res = big_small_start (b, "21", "2021 base snapshot");
-    else if (compare_css (H2_CSS_2020_2, H3_CSS_2020_2, H4_CSS_2020_2, e2, e3, e4)) res = big_small_start (b, "20++", "2020 wibbly wobbly snapshot");
-    else if (compare_css (H2_CSS_2020_1, H3_CSS_2020_1, H4_CSS_2020_1, e2, e3, e4)) res = big_small_start (b, "20+", "2020 wobbly snapshot");
-    else if (compare_css (H2_CSS_2020, H3_CSS_2020, H4_CSS_2020, e2, e3, e4)) res = big_small_start (b, "20", "2020 base snapshot");
-    else if (compare_css (H2_CSS_2018_2, H3_CSS_2018_2, H4_CSS_2018_2, e2, e3, e4)) res = big_small_start (b, "18++", "2018 wibbly wobbly snapshot");
-    else if (compare_css (H2_CSS_2018_1, H3_CSS_2018_1, H4_CSS_2018_1, e2, e3, e4)) res = big_small_start (b, "18+", "2018 wobbly snapshot");
-    else if (compare_css (H2_CSS_2018, H3_CSS_2018, H4_CSS_2018, e2, e3, e4)) res = big_small_start (b, "18", "2018 base snapshot");
-    else if (compare_css (H2_CSS_2017_2, H3_CSS_2017_2, H4_CSS_2017_2, e2, e3, e4)) res = big_small_start (b, "17++", "2017 wibbly wobbly snapshot");
-    else if (compare_css (H2_CSS_2017_1, H3_CSS_2017_1, H4_CSS_2017_1, e2, e3, e4)) res = big_small_start (b, "17+", "2017 wobbly snapshot");
-    else if (compare_css (H2_CSS_2017, H3_CSS_2017, H4_CSS_2017, e2, e3, e4)) res = big_small_start (b, "17", "2017 base snapshot");
-    else if (compare_css (H2_CSS_2015_2, H3_CSS_2015_2, H4_CSS_2015_2, e2, e3, e4)) res = big_small_start (b, "15++", "2015 wibbly wobbly snapshot");
-    else if (compare_css (H2_CSS_2015_1, H3_CSS_2015_1, H4_CSS_2015_1, e2, e3, e4)) res = big_small_start (b, "15+", "2015 wobbly snapshot");
-    else if (compare_css (H2_CSS_2015, H3_CSS_2015, H4_CSS_2015, e2, e3, e4)) res = big_small_start (b, "15", "2015 base snapshot");
+    else if (compare_css (H2_CSS_2024_2, H3_CSS_2024_2, H4_CSS_2024_2, e2, e3, e4)) res = big_small_start (b, "24++", "2024++ snapshot");
+    else if (compare_css (H2_CSS_2024_1, H3_CSS_2024_1, H4_CSS_2024_1, e2, e3, e4)) res = big_small_start (b, "24+", "2024+ snapshot");
+    else if (compare_css (H2_CSS_2024, H3_CSS_2024, H4_CSS_2024, e2, e3, e4)) res = big_small_start (b, "24", "2024 snapshot");
+    else if (compare_css (H2_CSS_2023_2, H3_CSS_2023_2, H4_CSS_2023_2, e2, e3, e4)) res = big_small_start (b, "23++", "2023++ snapshot");
+    else if (compare_css (H2_CSS_2023_1, H3_CSS_2023_1, H4_CSS_2023_1, e2, e3, e4)) res = big_small_start (b, "23+", "2023+ snapshot");
+    else if (compare_css (H2_CSS_2023, H3_CSS_2023, H4_CSS_2023, e2, e3, e4)) res = big_small_start (b, "23", "2023 snapshot");
+    else if (compare_css (H2_CSS_2022_2, H3_CSS_2022_2, H4_CSS_2022_2, e2, e3, e4)) res = big_small_start (b, "22++", "2022++ snapshot");
+    else if (compare_css (H2_CSS_2022_1, H3_CSS_2022_1, H4_CSS_2022_1, e2, e3, e4)) res = big_small_start (b, "22+", "2022+ snapshot");
+    else if (compare_css (H2_CSS_2022, H3_CSS_2022, H4_CSS_2022, e2, e3, e4)) res = big_small_start (b, "22", "2022 snapshot");
+    else if (compare_css (H2_CSS_2021_2, H3_CSS_2021_2, H4_CSS_2021_2, e2, e3, e4)) res = big_small_start (b, "21++", "2021++ snapshot");
+    else if (compare_css (H2_CSS_2021_1, H3_CSS_2021_1, H4_CSS_2021_1, e2, e3, e4)) res = big_small_start (b, "21+", "2021+ snapshot");
+    else if (compare_css (H2_CSS_2021, H3_CSS_2021, H4_CSS_2021, e2, e3, e4)) res = big_small_start (b, "21", "2021 snapshot");
+    else if (compare_css (H2_CSS_2020_2, H3_CSS_2020_2, H4_CSS_2020_2, e2, e3, e4)) res = big_small_start (b, "20++", "2020++ snapshot");
+    else if (compare_css (H2_CSS_2020_1, H3_CSS_2020_1, H4_CSS_2020_1, e2, e3, e4)) res = big_small_start (b, "20+", "2020+ snapshot");
+    else if (compare_css (H2_CSS_2020, H3_CSS_2020, H4_CSS_2020, e2, e3, e4)) res = big_small_start (b, "20", "2020 snapshot");
+    else if (compare_css (H2_CSS_2018_2, H3_CSS_2018_2, H4_CSS_2018_2, e2, e3, e4)) res = big_small_start (b, "18++", "2018++ snapshot");
+    else if (compare_css (H2_CSS_2018_1, H3_CSS_2018_1, H4_CSS_2018_1, e2, e3, e4)) res = big_small_start (b, "18+", "2018+ snapshot");
+    else if (compare_css (H2_CSS_2018, H3_CSS_2018, H4_CSS_2018, e2, e3, e4)) res = big_small_start (b, "18", "2018 snapshot");
+    else if (compare_css (H2_CSS_2017_2, H3_CSS_2017_2, H4_CSS_2017_2, e2, e3, e4)) res = big_small_start (b, "17++", "2017++ snapshot");
+    else if (compare_css (H2_CSS_2017_1, H3_CSS_2017_1, H4_CSS_2017_1, e2, e3, e4)) res = big_small_start (b, "17+", "2017+ snapshot");
+    else if (compare_css (H2_CSS_2017, H3_CSS_2017, H4_CSS_2017, e2, e3, e4)) res = big_small_start (b, "17", "2017 snapshot");
+    else if (compare_css (H2_CSS_2015_2, H3_CSS_2015_2, H4_CSS_2015_2, e2, e3, e4)) res = big_small_start (b, "15++", "2015++ snapshot");
+    else if (compare_css (H2_CSS_2015_1, H3_CSS_2015_1, H4_CSS_2015_1, e2, e3, e4)) res = big_small_start (b, "15+", "2015+ snapshot");
+    else if (compare_css (H2_CSS_2015, H3_CSS_2015, H4_CSS_2015, e2, e3, e4)) res = big_small_start (b, "15", "2015 snapshot");
     else if (compare_css (H2_CSS_2010, H3_CSS_2010, H4_CSS_2010, e2, e3, e4)) res = big_small_start (b, "10", "2010 snapshot");
     else if (compare_css (H2_CSS_2007, H3_CSS_2007, H4_CSS_2007, e2, e3, e4)) res = big_small_start (b, "07", "2007 snapshot");
     else if (compare_css (H2_CSS_2_2, 0, 0, e2, e3, e4)) res = "2.2";
@@ -1117,6 +1117,9 @@ void html_version::svg_version (const e_svg_version v) noexcept
         case sv_2_0 : set_ext (HE_SVG_20); break;
         case sv_2_1 : set_ext (HE_SVG_21); break;
         default : break; } }
+
+::std::string html_version::svg_version_name () const
+{   return type_master < t_svg_version > :: name (svg_version ()); }
 
 bool html_version::math_4_core () const noexcept
 {   return (any_ext2 (H2_MATH_C)); }

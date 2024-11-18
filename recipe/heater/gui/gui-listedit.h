@@ -21,9 +21,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 
 #ifdef WX
-#define ADD_TEXT    "+"
-#define REMOVE_TEXT "-"
-#define RENAME_TEXT "- +"
+#define ADD_TEXT    "&add"
+#define REMOVE_TEXT "&del"
+#define RENAME_TEXT "&ren"
 
 struct listedit_manager
 {   wxBoxSizer* box_ext_ = nullptr;
@@ -42,9 +42,10 @@ struct listedit_manager
     bool has_file_ = false, has_text_ = true;
     void fex ();
     ::std::string tiswot () const;
-    listedit_manager (  const wxWindowID add_id = button_add, const wxWindowID erase_id = button_erase, const wxWindowID file_id = file_name,
-                        const wxWindowID list_id = list_ext, const wxWindowID rename_id = button_rename, const wxWindowID text_id = text_ext)
-        : add_id_ (add_id), erase_id_ (erase_id), file_id_ (file_id), list_id_ (list_id), rename_id_ (rename_id), text_id_ (text_id)
+    listedit_manager () = default;
+    listedit_manager (  const wxWindowID add_id, const wxWindowID erase_id, const wxWindowID rename_id,
+                        const wxWindowID file_id, const wxWindowID list_id, const wxWindowID text_id)
+        : add_id_ (add_id), erase_id_ (erase_id), rename_id_ (rename_id), file_id_ (file_id), list_id_ (list_id), text_id_ (text_id)
     { }
     listedit_manager (const listedit_manager& l) = default;
     listedit_manager (listedit_manager&& l) = default;
@@ -58,7 +59,7 @@ struct listedit_manager
     void OnText (wxCommandEvent& event);
     void OnTap (wxCommandEvent& event);
     void OnImpatience (wxCommandEvent& event);
-    bool construct (dialogue_t& mummy, const char* desc, const char* def = nullptr, bool file = false, bool comma = false, bool line = false);
+    bool construct (wxWindow* parent, wxBoxSizer* box, const char* desc, const char* def = nullptr, bool file = false, bool comma = false, bool line = false);
     void enable (const bool e);
     void preload (const vstr_t& vs);
     vstr_t acquire () const;

@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 /*  version build info chars
 
 a
-b   
+b
 c   CURLY
 d   DEBUG
 e
@@ -33,7 +33,7 @@ h
 i
 j   JSNIC
 k
-l
+l   
 m
 n   NPS_GEN
 o
@@ -62,8 +62,8 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 4
-#define VERSION_STRING "0.2.4"
+#define VERSION_RELEASE 5
+#define VERSION_STRING "0.2.5"
 #define EDITION_STANDARD "standard"
 
 #define NBSP "&nbsp;"
@@ -266,6 +266,7 @@ z
 #include <codecvt>
 #endif // VS2017
 #include <locale>
+#include <stack>
 #ifndef NO_FRED
 #include <shared_mutex>
 #include <thread>
@@ -309,15 +310,11 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define FS_THROWS
 #endif // 1.73
 
-#if BOOST_MINOR < 77
-#define NO_BOOST_DATE_FACET
-#endif
-
 #if BOOST_MINOR > 78
 #define BOOST_FILESYSTEM_VERSION 4
 #endif // BOOST_MINOR
 
-#if BOOST_MINOR > 85
+#if BOOST_MINOR > 84
 #define NO_JSON_ERR
 #endif
 
@@ -426,6 +423,8 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #include <wx/wx.h>
 #include <wx/dataview.h>
 #include <wx/dirctrl.h>
+#include <wx/filedlg.h>
+#include <wx/textctrl.h>
 #include <wx/fdrepdlg.h>
 #include <wx/filepicker.h>
 #include <wx/fs_zip.h>
@@ -439,6 +438,9 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #include <wx/stc/stc.h>
 #include <wx/dlimpexp.h>
 #include <wx/wizard.h>
+#include <wx/panel.h>
+#include <wx/choice.h>
+#include <wx/choicebk.h>
 #else // WX
 #define WXS
 #endif // WX
@@ -542,9 +544,13 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define SQOPEN '['
 #define CUCLOSE '}'
 #define CUOPEN '{'
+#define SIGNPLUS '+'
+#define SIGNMINUS '-'
 #define DENARY "0123456789"
 #define DDD DENARY "-."
 #define SIGNEDDECIMAL DDD "+"
+#define PLUSMINUS "+-"
+#define SIGNEDINTEGER DENARY PLUSMINUS
 #define EXPONENTIAL SIGNEDDECIMAL "Ee"
 #define POSITIVE DENARY "+."
 #define OCTAL "01234567"
@@ -578,6 +584,9 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define WEB_ENGLISH "en-US"
 
 #define EVIL "nonce" // Why the f*ck the powers that be decided to embed a word for paedophile in the standards, I have no clue, but I do not like it.
+
+#define DEF_CONF_EXT "conf"
+#define DEF_CONF_FILE PROG "." DEF_CONF_EXT
 
 #define MAX_IDEAL_TITLE_LENGTH 32
 
@@ -707,19 +716,15 @@ CONSTEXPR uint32_t uint32_category_mask =   0xF0000000;
 // Enable this to see full messages that would otherwise be generated when using -T switch, roughly speaking
 // #define EXPAND_TEST "t"
 
-#define BUILD_INFO   DBG_STATUS FUDDY CURLY JSNIC NPS_GEN SPELT WXS ":" BUILD_OS ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER
+#define BUILD_INFO   CURLY DBG_STATUS FUDDY JSNIC NPS_GEN SPELT WXS ":" BUILD_OS ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER
 #define BASE_TITLE   FULLNAME " v" VERSION_STRING EDITION " (" WEBADDR ")\n"
 #define SIMPLE_TITLE BASE_TITLE COPYRIGHT_TEXT "\n"
-#define FULL_TITLE   BASE_TITLE COPYRIGHT "\n" "[" __DATE__ " " __TIME__  "] [" BUILD_INFO "]" "\n"
+#define FULL_TITLE_1 BASE_TITLE COPYRIGHT "\n"
+#define FULL_TITLE_2 "[" __DATE__ " " __TIME__  "] [" BUILD_INFO "]" "\n"
+#define FULL_TITLE   FULL_TITLE_1 FULL_TITLE_2
 #define TEST_TITLE   FULLNAME " v" VERSION_STRING EDITION "\n" "(" __DATE__ " " __TIME__ ")\n" WEBADDR "\n" COPYRIGHT "\n\n"
 
 #define TYPE_HELP "Type '" PROG " -h' for help."
-
-extern const char* build_info;
-extern const char* test_title;
-extern const char* simple_title;
-extern const char* full_title;
-
 
 #define DEFAULT_COPY(XXX, DDD) \
     XXX (const XXX & xxx) = DDD; \

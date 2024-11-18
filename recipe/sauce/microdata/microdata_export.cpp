@@ -70,37 +70,38 @@ bool microdata_export::write (nitpick& nits, const ::boost::filesystem::path& fi
     if (empty ())
     {   try
         {   if (file_exists (json))
-            {   if (delete_file (json)) nits.pick (nit_export_none, es_info, ec_microformat, "No microdata; deleted existing ", json);
-                else nits.pick (nit_export_none, es_catastrophic, ec_microformat, "No microdata, but cannot delete existing, probably incorrect, ", json); }
-            else nits.pick (nit_export_none, es_info, ec_microformat, "Not exporting " , file, ", it would be empty"); }
-        catch (...) { }
+            {   if (delete_file (json)) nits.pick (nit_export_none, es_info, ec_microdata, "No microdata; deleted existing ", json);
+                else nits.pick (nit_export_none, es_catastrophic, ec_microdata, "No microdata, but cannot delete existing, probably incorrect, ", json); }
+            else nits.pick (nit_export_none, es_info, ec_microdata, "Not exporting " , file, ", it would be empty"); }
+        catch (...)
+        {   nits.pick (nit_export_none, es_error, ec_microdata, "Cannot delete ", json); }
         return true; }
     ::boost::filesystem::path tmp (json);
     tmp += ".tmp";
     try
     {   BOOST_OFSTREAM_CNSTR (f, tmp);
         if (f.bad ())
-        {   nits.pick (nit_cannot_create_file, es_catastrophic, ec_microformat, "Cannot open temporary file ", tmp);
+        {   nits.pick (nit_cannot_create_file, es_catastrophic, ec_microdata, "Cannot open temporary file ", tmp);
             return false; }
         bool happy = true;
         try
-        {   ::boost::property_tree::write_json (f, tree_); }
+        {   ::boost::property_tree::write_json (f, tree_, context.md_pretty ()); }
         catch (...)
-        {   nits.pick (nit_cannot_write, es_catastrophic, ec_microformat, "Cannot write to temporary file ", tmp);
+        {   nits.pick (nit_cannot_write, es_catastrophic, ec_microdata, "Cannot write to temporary file ", tmp);
             happy = false; }
         f.close ();
         if (happy)
         {   if (file_exists (json))
                 if (! delete_file (json))
-                {   nits.pick (nit_cannot_delete, es_catastrophic, ec_microformat, "Cannot delete existing file ", json);
+                {   nits.pick (nit_cannot_delete, es_catastrophic, ec_microdata, "Cannot delete existing file ", json);
                     return false; }
             rename_file (tmp, json);
-            nits.pick (nit_write_wrote, es_info, ec_microformat, "Written microdata to ", json);
+            nits.pick (nit_write_wrote, es_info, ec_microdata, "Written microdata to ", json);
             return true; } }
     catch (...) { }
-    if (file_exists (tmp))
-        if (! delete_file (tmp))
-            nits.pick (nit_cannot_update, es_catastrophic, ec_microformat, "Cannot update ", json);
+        if (file_exists (tmp))
+            if (! delete_file (tmp))
+                nits.pick (nit_cannot_update, es_catastrophic, ec_microdata, "Cannot update ", json);
     return false; }
 
 ::std::string microdata_export::rpt (const ::boost::property_tree::ptree& tree, const int dent) const

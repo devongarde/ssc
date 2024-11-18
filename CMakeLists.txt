@@ -1,6 +1,6 @@
-cmake_minimum_required (VERSION 3.19)
+cmake_minimum_required (VERSION 3.24)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.2.4 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
+project (ssc VERSION 0.2.5 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
 
 set (CMAKE_CXX_STANDARD 17)
 
@@ -116,7 +116,7 @@ elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     set (DOCU "${DD}/../share/doc/ssc")
     set (INC ${INC} "/usr/include/" "/usr/local/include/" "/usr/include/x86_64-linux-gnu/")
     set (LD ${LIBS} "/usr/lib64/")
-    set (Boost_USE_STATIC_LIBS OFF)
+    set (Boost_USE_STATIC_LIBS ON)
     if (${LSB_RELEASE_ID_SHORT} MATCHES "Ubuntu")
         set (LD ${LIBS} "/usr/lib64/" "/usr/lib/x86_64-linux-gnu/")
     elseif (${LSB_RELEASE_ID_SHORT} MATCHES "CentOSStream")
@@ -129,7 +129,8 @@ elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     set (DOCU "${DD}/local/share/doc/ssc")
     set (INC ${INC} "/usr/local/include/" "/opt/local/include")
     set (LD ${LIBS} "/usr/local/lib" "/opt/local/lib")
-    set (Boost_USE_STATIC_LIBS OFF)
+#   set (Boost_USE_STATIC_LIBS OFF) (Macos no longer finds dynamic libraries sitting in its path, and I just can't be arsed to deal with stupid this morning)
+    set (Boost_USE_STATIC_LIBS ON)
     target_compile_definitions (ssc-test PRIVATE UNIX)
     if (${CMAKE_SYSTEM} MATCHES "Darwin-24")
         set (BUILD_OS "Sequoia")
@@ -186,14 +187,14 @@ message (${BUILD_OS})
 set (${PROJ_NAME}_PATH_INSTALL ${D} CACHE PATH "This directory contains an installation path")
 set (CMAKE_DEBUG_POSTFIX "d")
 
-set (Boost_USE_STATIC_LIBS OFF)
+set (Boost_USE_STATIC_LIBS ON)
 set (Boost_USE_MULTI_THREADED ON)
 if (${CMAKE_BUILD_TYPE} MATCHES "Debug")
     set (ICU_DEBUG ON)
     set (Boost_USE_DEBUG_LIBS ON)
     set (Boost_USE_DEBUG_RUNTIME ON)
 else ()
-    set (ICU_DEBUG ON)
+    set (ICU_DEBUG OFF)
     set (Boost_USE_DEBUG_LIBS OFF)
     set (Boost_USE_DEBUG_RUNTIME OFF)
 endif ()
@@ -209,8 +210,12 @@ find_package (Iconv REQUIRED)
 
 if (NOT DEFINED ${NO_CURL})
     # https://cmake.org/cmake/help/latest/module/FindCURL.html
-    set (CURL_USE_STATIC_LIBS OFF)
+    set (CURL_USE_STATIC_LIBS ON)
     find_package (CURL REQUIRED FILE HTTP HTTPS SSL)
+endif ()
+
+if (DEFINED ${WX})
+  find_package (wxWidgets REQUIRED)
 endif ()
 
 # better to list the build files in one place (here) rather than litter all the source directories with a gadzillion untidy wee files
@@ -237,6 +242,10 @@ target_sources (ssc PRIVATE
             ${H}/enum/type_class.h ${H}/enum/type_colour.h ${H}/enum/type_country.h ${H}/enum/type_enum.h ${H}/enum/type_enum_vec.h ${H}/enum/type_lang.h
             ${H}/enum/type_mime.h ${H}/enum/type_rel.h ${H}/enum/type_xmlns.h
         ${H}/feedback/nit.h ${H}/feedback/nitnames.h ${H}/feedback/nitout.h ${H}/feedback/nitpick.h
+        ${H}/gui/gui-app.h ${H}/gui/gui-css.h ${H}/gui/gui-dialogue.h ${H}/gui/gui-frame.h ${H}/gui/gui-general.h ${H}/gui/gui-html.h ${H}/gui/gui-icon.h
+            ${H}/gui/gui-listedit.h ${H}/gui/gui-menu.h ${H}/gui/gui-nits.h ${H}/gui/gui-ontology.h ${H}/gui/gui-output.h ${H}/gui/gui-screen.h
+            ${H}/gui/gui-shadow.h ${H}/gui/gui-site.h ${H}/gui/gui-snippet.h ${H}/gui/gui-spell.h ${H}/gui/gui-spex.h ${H}/gui/gui-stats.h
+            ${H}/gui/gui-validation.h ${H}/gui/gui-welcome.h
         ${H}/icu/charset.h ${H}/icu/converter.h ${H}/icu/lingo.h ${H}/icu/wrapper.h
         ${H}/main/abort.h ${H}/main/args.h ${H}/main/balloon.h ${H}/main/context.h ${H}/main/enum.h ${H}/main/include.h ${H}/main/options.h
             ${H}/main/output.h ${H}/main/server.h ${H}/main/standard.h ${H}/main/version.h
@@ -305,6 +314,10 @@ target_sources (ssc PRIVATE
             ${S}/enum/type_enum.cpp ${S}/enum/type_mime.cpp ${S}/enum/type_lang.cpp ${S}/enum/type_property.cpp ${S}/enum/type_rel.cpp
             ${S}/enum/type_xmlns.cpp
         ${S}/feedback/nit.cpp ${S}/feedback/nitnames.cpp ${S}/feedback/nitout.cpp ${S}/feedback/nitpick.cpp
+        ${S}/gui/gui-app.cpp ${S}/gui/gui-css.cpp ${S}/gui/gui-dialogue.cpp ${S}/gui/gui-frame.cpp ${S}/gui/gui-general.cpp ${S}/gui/gui-html.cpp
+            ${S}/gui/gui-icon.cpp ${S}/gui/gui-listedit.cpp ${S}/gui/gui-menu.cpp ${S}/gui/gui-nits.cpp ${S}/gui/gui-ontology.cpp ${S}/gui/gui-output.cpp
+            ${S}/gui/gui-shadow.cpp ${S}/gui/gui-site.cpp ${S}/gui/gui-snippet.cpp ${S}/gui/gui-spell.cpp ${S}/gui/gui-spex.cpp ${S}/gui/gui-stats.cpp
+            ${S}/gui/gui-validation.cpp ${S}/gui/gui-welcome.cpp
         ${S}/icu/charset.cpp ${S}/icu/converter.cpp ${S}/icu/lingo.cpp ${S}/icu/wrapper.cpp
         ${S}/main/abort.cpp ${S}/main/context.cpp ${S}/main/options.cpp ${S}/main/output.cpp ${S}/main/ssc.cpp ${S}/main/server.cpp ${S}/main/standard.cpp
             ${S}/main/version.cpp
@@ -312,18 +325,17 @@ target_sources (ssc PRIVATE
             ${S}/microdata/microdata_itemtype.cpp
         ${S}/microformat/family.cpp ${S}/microformat/field.cpp ${S}/microformat/microformat_constructor.cpp ${S}/microformat/microformat_export.cpp
             ${S}/microformat/microformats.cpp ${S}/microformat/property_value.cpp ${S}/microformat/sibling.cpp
-        ${S}/ontology/jsonld.cpp ${S}/ontology/ontology_hierarchy.cpp ${S}/ontology/ontology_name.cpp ${S}/ontology/ontology_property.cpp ${S}/ontology/ontology_structure.cpp
-            ${S}/ontology/ontology_type.cpp ${S}/ontology/ontology_version.cpp
+        ${S}/ontology/jsonld.cpp ${S}/ontology/ontology_hierarchy.cpp ${S}/ontology/ontology_name.cpp ${S}/ontology/ontology_property.cpp
+            ${S}/ontology/ontology_structure.cpp ${S}/ontology/ontology_type.cpp ${S}/ontology/ontology_version.cpp
         ${S}/parser/html_version.cpp ${S}/parser/jsonic.cpp ${S}/parser/parse_attribute.cpp ${S}/parser/parse_attributes.cpp ${S}/parser/parse_brac_ket.cpp
             ${S}/parser/parse_bracs_ket.cpp ${S}/parser/parse_element.cpp ${S}/parser/parse_elements.cpp ${S}/parser/parse_ssi.cpp ${S}/parser/pattern.cpp
             ${S}/parser/text.cpp ${S}/parser/text-data.cpp ${S}/parser/xhtml_xml.cpp
         ${S}/rdf/rdf.cpp ${S}/rdf/rdfa_prop.cpp ${S}/rdf/rdfa_type.cpp
-        ${S}/simple/type_autocomplete.cpp ${S}/simple/type_basic.cpp ${S}/simple/type_css.cpp
-            ${S}/simple/type_currency.cpp ${S}/simple/type_d.cpp ${S}/simple/type_httpequiv.cpp ${S}/simple/type_id.cpp ${S}/simple/type_jsonic.cpp
-            ${S}/simple/type_intent.cpp ${S}/simple/type_layout.cpp ${S}/base/type_master.cpp ${S}/simple/type_measure.cpp ${S}/simple/type_media.cpp
-            ${S}/simple/type_metaname.cpp ${S}/simple/type_misc.cpp ${S}/simple/type_numeric.cpp ${S}/simple/type_paint.cpp
-            ${S}/simple/type_rdf.cpp ${S}/simple/type_reals.cpp  ${S}/simple/type_sgml.cpp ${S}/simple/type_svg_feature.cpp
-            ${S}/simple/type_time.cpp ${S}/simple/type_transform.cpp ${S}/compound/type_varied.cpp
+        ${S}/simple/type_autocomplete.cpp ${S}/simple/type_basic.cpp ${S}/simple/type_css.cpp ${S}/simple/type_currency.cpp ${S}/simple/type_d.cpp
+            ${S}/simple/type_httpequiv.cpp ${S}/simple/type_id.cpp ${S}/simple/type_jsonic.cpp ${S}/simple/type_intent.cpp ${S}/simple/type_layout.cpp
+            ${S}/base/type_master.cpp ${S}/simple/type_measure.cpp ${S}/simple/type_media.cpp ${S}/simple/type_metaname.cpp ${S}/simple/type_misc.cpp
+            ${S}/simple/type_numeric.cpp ${S}/simple/type_paint.cpp ${S}/simple/type_rdf.cpp ${S}/simple/type_reals.cpp  ${S}/simple/type_sgml.cpp
+            ${S}/simple/type_svg_feature.cpp ${S}/simple/type_time.cpp ${S}/simple/type_transform.cpp ${S}/compound/type_varied.cpp
         ${S}/spell/spell.cpp ${S}/spell/nixspell.cpp ${S}/spell/winspell.cpp
         ${S}/stats/stats.cpp ${S}/stats/stats_impl.cpp
         ${S}/symbol/nstr.cpp ${S}/symbol/symbol.cpp
@@ -382,6 +394,10 @@ target_link_libraries (ssc PRIVATE ${ICU_LIBRARIES})
 
 if (NOT DEFINED ${NO_CURL})
   target_link_libraries (ssc PRIVATE ${CURL_LIBRARIES})
+endif ()
+
+if (DEFINED ${WX})
+  target_link_libraries(ssc ${wxWidgets_LIBRARIES})
 endif ()
 
 if (${NS} MATCHES "1")

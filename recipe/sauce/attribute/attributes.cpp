@@ -35,12 +35,18 @@ e_element attributes :: tag () const noexcept
 
 bool attributes :: parse (nitpick& nits, const html_version& v, const attributes_node& an)
 {   bool res = false;
+    flags_t flags = 0;
     for (auto a : an.get_attributes ())
         if (a.has_key ())
         {   if (has_attribute (tag (), a.id ()))
-            {   if (is_attribute_rejected (v, tag (), a.id ()))
+            {   if (is_attribute_rejected (v, tag (), a.id (), flags))
                 {   nits.pick (nit_attribute_barred, es_error, ec_attribute, ::boost::to_upper_copy (a.get_key ()), " is not permitted here (", v.report (), ")");
                     continue; }
+                if (context.wx ())
+                {   if ((flags & EP_WX) == 0)
+                        nits.pick (nit_wx, es_warning, ec_element, "the wxWidgets HTML engine does not process ", ::boost::to_upper_copy (a.get_key ()), " here"); }
+                else if ((flags & EP_WXONLY) == EP_WXONLY)
+                    nits.pick (nit_wx, ed_wx, "Supported HTML Tags", es_error, ec_element, ::boost::to_upper_copy (a.get_key ()), " here requires wxWidgets' HTML engine");
                 aar_.at (a.id ()) = make_attribute_v_ptr (nits, v, &box_, a);
                 if (aar_.at (a.id ()).get () != nullptr)
                 {   res = true;

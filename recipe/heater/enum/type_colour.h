@@ -21,6 +21,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "enum/type_enum.h"
 
+// WX must be HTML4 compliant
+
 template < > struct type_master < t_colour > : tidy_string < t_colour >
 {   using tidy_string < t_colour > :: tidy_string;
     static e_animation_type animation_type () noexcept { return at_colour; }

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>command line switches</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="alternate" hreflang="x-default" href="https://ssc.lu/index.shtml">
+<meta name="author" content="Dylan Harris">
+<meta name="contact" content="mail@ssc.lu">
+<meta name="copyright" content="(c) 2024 Dylan Harris">
+<meta name="description" content="static site checker welcome help page">
+<meta name="keywords" content="spell,spelling,help,ssc,HTML,XHTML,MathML,SVG,CSS,RDFa,Dylan Harris">
+<meta name="rights-standard" content=";cc by-nc-sa">
+<meta name="theme-color" content="#000000">
+
+<link rel="author" href="https://dylanharris.org/index.shtml">
+<link rel="home" href="index.html">
+<link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+
+</head>
+
+<body itemscope itemtype="https://schema.org/WebPage">
+
+<div>
+  <meta itemprop="alternateName" content="dylan harris">
+  <link itemprop="author" href="https://dylanharris.org/">
+  <link itemprop="copyrightHolder" href="https://dylanharris.org/">
+  <meta itemprop="description" content="the static site checker nitpicks websites">
+  <meta itemprop="inLanguage" content="en-GB">
+  <link itemprop="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+  <meta itemprop="name headline" content="static site checker">
+  <h1>
+  static site checker
+  </h1>
+</div>
+
+<p>
+SSC has a number of switches, including:
+</p>
+
+<table>
+<tr><td>-h</td> <td>Output simple help</td></tr>
+<tr><td>-V</td> <td>Output SSC&rsquo;s version</td></tr>
+<tr><td>-f&nbsp;f</td> <td>Load configuration from file f</td></tr>
+<tr><td>-F</td> <td>Load configuration from ~/.ssc/config</td></tr>
+
+<tr><td>-o&nbsp;f</td> <td>Output a report to file f</td></tr>
+
+<tr><td>-v&nbsp;x</td> <td>Report level x issues, where x is
+<table>
+<tr><td>0</td> <td>None</td></tr>
+<tr><td>1</td> <td>Catastrophes</td></tr>
+<tr><td>2</td> <td>Abhorrences</td></tr>
+<tr><td>3</td> <td>Errors</td></tr>
+<tr><td>4</td> <td>Warnings</td></tr>
+<tr><td>5</td> <td>Info</td></tr>
+<tr><td>6</td> <td>Comments</td></tr>
+<tr><td>7</td> <td>Debug</td></tr>
+<tr><td>8&hellip;</td> <td>more and more debug</td></tr>
+</table></td></tr>
+
+<tr><td>-I</td> <td>Process Server Side Includes</td></tr>
+<tr><td>-g&nbsp;d</td> <td>set the root directory to d (defaults to current directory)</td></tr>
+<tr><td>-x&nbsp;x</td> <td>treat files with extension x as HTML/XHTML</td></tr>
+<tr><td>-i&nbsp;f</td> <td>file f is default (default index.html)</td></tr>
+<tr><td>-s&nbsp;x</td> <td>x is the local site&rsquo;s domain name</td></tr>
+<tr><td>-L&nbsp;vd</td>  <td>Define a virtual directory (vd is formatted
+            &lsquo;virtual=physical&rsquo;)</td></tr>
+
+<tr><td>-e</td> <td>Check external links (each link is checked once per run,
+            not once per encounter)</td></tr>
+<tr><td>-l</td> <td>Check internal links</td></tr>
+<tr><td>-O</td> <td>Report each broken link once, not each time it&rsquo;s found</td></tr>
+<tr><td>-r</td> <td>Do not check for https certificate revocation</td></tr>
+<tr><td>-X</td> <td>Check crosslinked IDs</td></tr>
+
+<tr><td>-Y&nbsp;1</td> <td>Disable multithreading</td></tr>
+
+<tr><td>-M</td> <td>Check microformats use of class attribute</td></tr>
+<tr><td>-m</td> <td>Check ontologies use of WhatWG microdata attributes</td></tr>
+
+<tr><td>-S</td> <td>Report site statistics</td></tr>
+
+<tr><td>-A</td> <td>Report switches noticed by SSC, and exit.</td></tr>
+</table>
+
+<p>
+If you find yourself having switch problems, add -A to your command
+line to see what switches SSC has noticed. -A kyboshes other
+processing.
+</p>
+
+<p>
+For a full list of command line switches,
+browse <a href="https://ssc.lu/">the SSC website at https://ssc.lu/</a>.
+</p>
+
+</body>
+</html>

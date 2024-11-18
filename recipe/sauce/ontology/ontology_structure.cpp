@@ -3916,6 +3916,7 @@ microdata_structure ontology_structure [] =
     { { 7, 0 }, { 0, 0 }, sch_accommodation, sp_tourbookingpage },
     { { 6, 0 }, { 0, 0 }, sch_accommodation, sp_yearbuilt },
 
+    { { 29, 0 }, { 0, 0 }, sch_action, sp_actionprocess },
     { { 1, 20 }, { 0, 0 }, sch_action, sp_actionstatus },
     { { 1, 2 }, { 0, 0 }, sch_action, sp_agent },
     { { 1, 2 }, { 0, 0 }, sch_action, sp_endtime },

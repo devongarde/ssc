@@ -102,13 +102,14 @@ hav_t havt_fn [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_font [] =
-{   { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_font, a_colour },
+{   { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_font, a_bgcolour, EP_WX | EP_WXONLY },
+    { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_font, a_colour, EP_WX },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font, a_externalresourcesrequired },
-    { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_font, a_face },
+    { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_font, a_face, EP_WX },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font, a_horiz_adv_x },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_font, a_horiz_origin_x },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_font, a_horiz_origin_y },
-    { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_font, a_size },
+    { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_font, a_size, EP_WX },
     { { HTML_JUL07, HV_NOTPROD }, { HTML_JUN08 }, elem_font, a_style },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_font, a_vert_adv_y },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_font, a_vert_origin_x },

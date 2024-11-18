@@ -26,18 +26,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define VALID_CAPTION "Validation"
 
-class valid_t : public dialogue_t
+class valid_t : public d1_t < wx_valid >
 {   wxBoxSizer* box_for_ = nullptr;
     wxCheckBox* check_microdata_ = nullptr;
     wxChoice* choice_for_ = nullptr;
     wxStaticLine* line_microdata_ = nullptr;
     wxStaticLine* line_base_ = nullptr;
     wxStaticText* stat_for_ = nullptr;
-    listedit_manager val_;
+    listedit_manager val_ = listedit_manager (button_validation_add, button_validation_erase, button_validation_rename, file_validation_name, list_validation_ext, text_validation_ext);
     vstr_t vcategories_;
     vvstr_t vvals_;
-    void OnChoice (wxCommandEvent& event);
-    void OnHelpClick (wxCommandEvent& event);
     void populate ();
     DECLARE_CLASS (valid_t)
     DECLARE_EVENT_TABLE ()
@@ -49,7 +47,14 @@ public:
     void Init () const noexcept { }
     bool Create (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = VALID_CAPTION);
     void CreateControls ();
+    void OnChoice (wxCommandEvent& event);
+    void OnHelpClick (wxCommandEvent& event);
     bool TransferDataToWindow ();
-    bool TransferDataFromWindow (); };
+    bool TransferDataFromWindow ();
+    bool invalid_panel () const { return d1_t :: invalid_panel () || (panel_ == nullptr) || (choice_for_ == nullptr) || (check_microdata_ == nullptr); }
+    void create_controls (wxWindow *parent);
+    bool create_panel (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL | wxNO_BORDER);
+    void load_from_context (const context_t& c);
+    void save_to_context (context_t& c) const; };
 
 #endif // WX

@@ -74,13 +74,13 @@ hav_t havt_hkern [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_hr [] =
-{   { { HTML_2_0, HV_DEPRECATED4 | HV_RFC_2070 | HV_NOT30 }, { XHTML_2_0 }, elem_hr, a_align },
+{   { { HTML_2_0, HV_DEPRECATED4 | HV_RFC_2070 | HV_NOT30 }, { XHTML_2_0 }, elem_hr, a_align, EP_WX },
     { { HTML_3_0 }, { HTML_3_0 }, elem_hr, a_clear },
     { { HTML_2_0, 0, HE_BESPOKE }, { XHTML_2_0 }, elem_hr, a_colour },
     { { HTML_3_0 }, { HTML_3_0 }, elem_hr, a_md },
-    { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_hr, a_noshade },
-    { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_hr, a_size },
-    { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_hr, a_width },
+    { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_hr, a_noshade, EP_WX },
+    { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_hr, a_size, EP_WX },
+    { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_hr, a_width, EP_WX },
     { { HTML_3_0 }, { HTML_3_0 }, elem_hr, a_src },
     HTMLPLUS_ATTRIBUTES (elem_hr),
     HTML3_CLID_ATTRIBUTES (elem_hr),

@@ -503,7 +503,7 @@ template < > ::std::string validate_he_content < t_lang > (nitpick& nits, const 
 ::std::string validate_httpequiv_content (nitpick& nits, const html_version& v, const e_httpequiv he, const ::std::string& content, page& p)
 {   p.mark_meta (he);
     switch (he)
-    {  case he_alt_svc : break;
+    {   case he_alt_svc : break;
         case he_cache_control : return validate_he_content < t_cache > (nits, v, content, p);
         case he_content_encoding : return validate_he_content < t_content_encoding > (nits, v, content, p);
         case he_content_disposition : break;
@@ -525,7 +525,7 @@ template < > ::std::string validate_he_content < t_lang > (nitpick& nits, const 
         case he_corp : return validate_he_content < t_corp > (nits, v, content, p);
         case he_date :
         case he_expires :
-        case he_last_modified : return validate_he_content < t_datetime > (nits, v, content, p);
+        case he_last_modified : return validate_he_content < t_datetime_http > (nits, v, content, p);
         case he_default_style :  return validate_he_content < t_compact > (nits, v, content, p);
         case he_etag :
         case he_www_authenticate : return validate_he_content < t_existential > (nits, v, content, p);

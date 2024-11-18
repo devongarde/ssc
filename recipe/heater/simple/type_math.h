@@ -62,6 +62,11 @@ template < > struct type_master < t_vunit > : tidy_string < t_vunit > // verify 
         if (! tidy_string < t_vunit > :: empty ())
             if (tidy_string < t_vunit > :: good ())
             {   const ::std::string& ss = tidy_string < t_vunit > :: get_string ();
+                if (context.wx ())
+                {   if (is_plain_old_integer (ss)) return;
+                    nits.pick (nit_wx, ed_wx, "Supported HTML Tags", es_warning, ec_element, "the wxWidgets HTML engine only accepts signed integers here");
+                    tidy_string < t_vunit > :: status (s_invalid);
+                    return; }
                 const ::std::string::size_type pos = ss.find_first_not_of (SIGNEDDECIMAL " ");
                 if (pos == ::std::string::npos) return;
                 ::std::string units (ss.substr (pos));

@@ -27,6 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 [[noreturn]] void graceless_crash (const char* const fn, const ::std::size_t line) noexcept;
 
 #define VERIFY_NOT_NULL(PTR,FILE,LINE) { if (nullptr == PTR) throw_bad_dereference (#PTR, FILE, LINE); }
+#define VERIFY_NULL(PTR,FILE,LINE) { if (nullptr != PTR) throw_bad_dereference (#PTR, FILE, LINE); }
 #define PRESUME(WOT,FILE,LINE) { if (! (WOT)) throw_bad_presumption (#WOT, FILE, LINE); }
 #define UGLY_PRESUME(WOT,FILE,LINE) { if (! (WOT)) ugly_presumption (#WOT, FILE, LINE); }
 #define GRACEFUL_CRASH(FILE,LINE) { graceful_crash (FILE, LINE); }

@@ -1,17 +1,1 @@
-{
-  "itemref": {
-    "4": {
-      "type": "http:\/\/schema.org\/BlogPosting",
-      "5": {
-        "id": "#mozOrg",
-        "type": "http:\/\/schema.org\/Organization"
-      },
-      "6": {
-        "type": "http:\/\/schema.org\/BlogPosting",
-        "prop": {
-          "publisher": "#mozOrg"
-        }
-      }
-    }
-  }
-}
+{"itemref":{"4":{"type":"http:\/\/schema.org\/BlogPosting","5":{"id":"#mozOrg","type":"http:\/\/schema.org\/Organization"},"6":{"type":"http:\/\/schema.org\/BlogPosting","prop":{"publisher":"#mozOrg"}}}}}

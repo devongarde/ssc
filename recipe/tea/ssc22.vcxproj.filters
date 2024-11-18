@@ -38598,6 +38598,18 @@
     <None Include="..\toast\living\oct24\autocorrect.html">
       <Filter>Toast\Living\oct24</Filter>
     </None>
+    <None Include="..\toast\type\httpequiv\lastmodified.html">
+      <Filter>Toast\Type\httpequiv</Filter>
+    </None>
+    <None Include="..\toast\other\ssi\ssi-lastmod.html">
+      <Filter>Toast\Other\SSI</Filter>
+    </None>
+    <None Include="..\toast\shadow\ssi\var.html">
+      <Filter>Toast\Shadow\ssi</Filter>
+    </None>
+    <None Include="..\toast\tmp\ssi\var.html.model">
+      <Filter>Toast\Shadow\ssi</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">

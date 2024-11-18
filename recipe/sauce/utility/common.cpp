@@ -108,66 +108,74 @@ bool test_file (nitpick& nits, const ::boost::filesystem::path& name, uintmax_t&
 
 void_ptr read_binary_file (nitpick& nits, const ::boost::filesystem::path& name, uintmax_t& sz, const bool zero_ok)
 {   using namespace boost::filesystem;
-    FILE* fp = nullptr;
-    sz = 0;
-    try
-    {   path p (name);
-        uintmax_t mz = 0;
-        if (test_file (nits, p, mz))
-            if (mz == 0)
-                if (zero_ok) nits.pick (nit_empty, es_comment, ec_io, name.string (), " is empty");
-                else nits.pick (nit_empty, es_error, ec_io, name.string (), " is empty");
-            else
-            {   void_ptr vp (alloc_void_ptr (GSL_NARROW_CAST < ::std::size_t > (mz)));
-                if (vp.get () == nullptr) nits.pick (nit_out_of_memory, es_catastrophic, ec_io, "out of memory reading ", name.string ());
+    if (name.empty ())
+    {   outstr.err ("No filename to read\n");
+        nits.pick (nit_cannot_open, es_catastrophic, ec_io, "No filename to read"); } 
+    else
+    {   FILE* fp = nullptr;
+        sz = 0;
+        try
+        {   path p (name);
+            uintmax_t mz = 0;
+            if (test_file (nits, p, mz))
+                if (mz == 0)
+                    if (zero_ok) nits.pick (nit_empty, es_comment, ec_io, name.string (), " is empty");
+                    else nits.pick (nit_empty, es_error, ec_io, name.string (), " is empty");
                 else
-                {   fp = fopen (name.string ().c_str (), "rb");
-                    if (fp == nullptr) nits.pick (nit_cannot_open, es_catastrophic, ec_io, "cannot open ", quote (name.string ()), " [1]");
+                {   void_ptr vp (alloc_void_ptr (GSL_NARROW_CAST < ::std::size_t > (mz)));
+                    if (vp.get () == nullptr) nits.pick (nit_out_of_memory, es_catastrophic, ec_io, "out of memory reading ", name.string ());
                     else
-                    {   const ::std::size_t rd = fread (vp.get (), 1, GSL_NARROW_CAST < ::std::size_t > (mz), fp);
-                        fclose (fp); // if this fails there's sod all we can do about it, so ... :-)
-                        fp = nullptr;
-                        if (rd == mz) { sz = mz; return vp; }
-                        if (rd == 0) nits.pick (nit_cannot_read, es_catastrophic, ec_io, "cannot read any of ", name.string ());
-                        else nits.pick (nit_cannot_read, es_catastrophic, ec_io, "cannot read all of ", name.string ()); } } } }
-    catch (const ::std::exception& e)
-    {   nits.pick (nit_cannot_open, es_catastrophic, ec_io, "exception when reading ", name.string (), ": ", e.what ());
-        return void_ptr (); }
-    catch (...)
-    {   nits.pick (nit_cannot_open, es_catastrophic, ec_io, "unknown exception when reading ", name.string ());
-        return void_ptr (); }
-    if (fp != nullptr) fclose (fp);
+                    {   fp = fopen (name.string ().c_str (), "rb");
+                        if (fp == nullptr) nits.pick (nit_cannot_open, es_catastrophic, ec_io, "cannot open ", quote (name.string ()), " [1]");
+                        else
+                        {   const ::std::size_t rd = fread (vp.get (), 1, GSL_NARROW_CAST < ::std::size_t > (mz), fp);
+                            fclose (fp); // if this fails there's sod all we can do about it, so ... :-)
+                            fp = nullptr;
+                            if (rd == mz) { sz = mz; return vp; }
+                            if (rd == 0) nits.pick (nit_cannot_read, es_catastrophic, ec_io, "cannot read any of ", name.string ());
+                            else nits.pick (nit_cannot_read, es_catastrophic, ec_io, "cannot read all of ", name.string ()); } } } }
+        catch (const ::std::exception& e)
+        {   nits.pick (nit_cannot_open, es_catastrophic, ec_io, "exception when reading ", name.string (), ": ", e.what ());
+            return void_ptr (); }
+        catch (...)
+        {   nits.pick (nit_cannot_open, es_catastrophic, ec_io, "unknown exception when reading ", name.string ());
+            return void_ptr (); }
+        if (fp != nullptr) fclose (fp); }
     return void_ptr (); }
 
 bool write_text_file (nitpick& nits, const ::boost::filesystem::path& n, const ::std::string& content)
 {   using namespace boost::filesystem;
-    path p (n);
-    p += ".tmp";
-    try
-    {   BOOST_OFSTREAM_CNSTR (f, p);
-        if (f.bad ())
-        {   outstr.err ("Cannot open temporary file ", p.string (), "\n");
-            nits.pick (nit_cannot_open, es_catastrophic, ec_io, "Cannot open temporary file ", p.string ()); 
-            return false; }
+    if (n.empty ())
+    {   outstr.err ("No filename to write\n");
+        nits.pick (nit_cannot_open, es_catastrophic, ec_io, "No filename to write"); }
+    else
+    {   path p (n);
+        p += ".tmp";
         try
-        {   f << content; }
-        catch (...)
-        {   outstr.err ("Cannot write to temporary file ", p.string (), "\n");
-            nits.pick (nit_cannot_write, es_catastrophic, ec_io, "Cannot write to temporary file ", p.string ());
-            return false; }
-        f.close ();
-        if (file_exists (n))
-            if (! delete_file (n))
-            {   outstr.err ("Cannot delete existing file ", p.string (), "\n");
-                nits.pick (nit_cannot_delete, es_catastrophic, ec_io, "Cannot delete existing file ", p.string ());
+        {   BOOST_OFSTREAM_CNSTR (f, p);
+            if (f.bad ())
+            {   outstr.err ("Cannot open temporary file ", p.string (), "\n");
+                nits.pick (nit_cannot_open, es_catastrophic, ec_io, "Cannot open temporary file ", p.string ()); 
                 return false; }
-        rename_file (p, n);
-        return true; }
-    catch (...) { }
-    if (file_exists (p)) delete_file (p);
-    if (context.tell (es_error))
-    {   outstr.err ("Cannot update ", p.string (), "\n");
-        nits.pick (nit_cannot_update, es_catastrophic, ec_io, "Cannot update ", p.string ()); }
+            try
+            {   f << content; }
+            catch (...)
+            {   outstr.err ("Cannot write to temporary file ", p.string (), "\n");
+                nits.pick (nit_cannot_write, es_catastrophic, ec_io, "Cannot write to temporary file ", p.string ());
+                return false; }
+            f.close ();
+            if (file_exists (n))
+                if (! delete_file (n))
+                {   outstr.err ("Cannot delete existing file ", p.string (), "\n");
+                    nits.pick (nit_cannot_delete, es_catastrophic, ec_io, "Cannot delete existing file ", p.string ());
+                    return false; }
+            rename_file (p, n);
+            return true; }
+        catch (...) { }
+        if (file_exists (p)) delete_file (p);
+        if (context.tell (es_error))
+        {   outstr.err ("Cannot update ", p.string (), "\n");
+            nits.pick (nit_cannot_update, es_catastrophic, ec_io, "Cannot update ", p.string ()); } }
     return false; }
 
 bool write_text_file (nitpick& nits, const ::std::string& name, const ::std::string& content)
@@ -382,36 +390,6 @@ void write_header (::boost::property_tree::ptree& json, const char* k)
     if (! context.test ()) write_field < ::std::string > (json, VER, VERSION_STRING);
     write_field < ::std::string > (json, CONTEXT, k); }
 
-bool replace_file (nitpick& nits, const ::boost::property_tree::ptree& json, const ::boost::filesystem::path& filename)
-{   ::boost::filesystem::path tmp (filename), old (filename);
-    tmp += ".tmp";
-    old += ".old";
-    if (! file_exists (filename))
-    {   try
-        {   ::boost::property_tree::write_json (filename.string (), json); }
-        catch (...)
-        {   delete_file (filename);
-            outstr.err ("Cannot write ", filename.string (), "\n");
-            nits.pick (nit_cannot_write, es_catastrophic, ec_io, "Cannot write ", filename.string ());
-            return false; } }
-    else
-    {   try
-        {   ::boost::property_tree::write_json (tmp.string (), json);
-            rename_file (filename, old); }
-        catch (...)
-        {   delete_file (tmp);
-            outstr.err ("Cannot write ", tmp.string (), "\n");
-            nits.pick (nit_cannot_write, es_catastrophic, ec_io, "Cannot write ", tmp.string ());
-            return false; }
-        if (! rename_file (tmp, filename))
-        {   rename_file (old, filename);
-            delete_file (tmp);
-            outstr.err ("Cannot replace ", filename.string (), " with ", tmp.string (), "\n");
-            nits.pick (nit_cannot_replace, es_catastrophic, ec_io, "Cannot replace ", filename.string (), " with ", tmp.string (), "\n");
-            return false; }
-       delete_file (old); }
-    return true; }
-
 ::std::string fyi ()
 {   return "    "; }
 
@@ -572,3 +550,35 @@ int hex_value (const ::std::string_view str) {
             case ' ' : res += "&nbsp;"; break;
             default :  res += *i; break; }
     return res; }
+
+::std::string get_current_folder ()
+{   ::boost::filesystem::path cwd;
+    try
+    {   cwd = ::boost::filesystem::current_path (); }
+	catch (...)
+#ifdef WIN32
+	{	cwd = "C:\\"; }
+#else // WIN32
+	{	cwd = "~"; }
+#endif // WIN32
+    return cwd.string (); }
+
+bool is_plain_old_integer (const ::std::string& ss)
+{   if (ss.find_first_not_of (SIGNEDINTEGER " ") != ::std::string::npos) return false;
+    if ((ss.length () > 1) && (ss.substr (1).find_first_of (PLUSMINUS) == ::std::string::npos)) return false;
+    if ((ss.length () == 1) && (ss.at (0) != SIGNPLUS) && (ss.at (0) != SIGNMINUS)) return false;
+    return true; }
+
+bool is_plain_old_decimal (const ::std::string& ss)
+{   if (ss.find_first_not_of (SIGNEDDECIMAL " ") != ::std::string::npos) return false;
+    if ((ss.length () > 1) && (ss.substr (1).find_first_of (PLUSMINUS) == ::std::string::npos)) return false;
+    if (ss.length () == 1)
+        switch (ss.at (0))
+        {   case SIGNPLUS :
+            case SIGNMINUS :
+            case DOT :
+                return false;
+            default :
+                break; }
+    return true; }
+

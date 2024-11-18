@@ -32,12 +32,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define VALID_WIDTH   400
 #define VALID_HEIGHT  250
 
-BEGIN_EVENT_TABLE (valid_t, dialogue_t)
-  EVT_CHOICE (choice_version, valid_t::OnChoice)
+BEGIN_EVENT_TABLE (valid_t, d1_t)
+  EVT_CHOICE (choice_validation_version, valid_t::OnChoice)
   EVT_BUTTON (wxID_HELP, valid_t::OnHelpClick)
 END_EVENT_TABLE ()
 
-IMPLEMENT_CLASS (valid_t, dialogue_t)
+IMPLEMENT_CLASS (valid_t, d1_t)
 
 //#define BASE_VALID ATTRIB, CHARSET, CLASS, COLOUR, COUNTRY, CURRENCY, ELEMENT, ELEMATTR, EXTENSION, FF, FV, HTTPEQUIV, LANG, METANAME, MIMETYPE, REL, SGML
 #define BASE_VALID "Attribute", "Charset", "Class", "Colour", "Country Code", "Currency Code", "Element", "Element+Attribute", "Extension", "Font Feature", "Font Variation", "HttpEquiv Macro", \
@@ -47,28 +47,26 @@ IMPLEMENT_CLASS (valid_t, dialogue_t)
 ::std::vector < wxString > vld;	// the code presumes this won't be fiddled with whilst a dialogue is open
 
 valid_t :: valid_t (wxWindow *mummy, wxWindowID id, const wxString& caption)
-	: dialogue_t (wxPoint (VALID_X, VALID_Y), wxSize (VALID_WIDTH, VALID_HEIGHT))
+	: d1_t (wxPoint (VALID_X, VALID_Y), wxSize (VALID_WIDTH, VALID_HEIGHT))
 {	Create (mummy, id, caption); } 
 
 bool valid_t :: Create (wxWindow *mummy, wxWindowID id, const wxString& caption)
-{	if (! dialogue_t :: Create (mummy, id, caption, wxPoint (VALID_X, VALID_Y), wxSize (VALID_WIDTH, VALID_HEIGHT), VALID_STYLE)) return false;
+{	if (! d1_t :: Create (mummy, id, caption, wxPoint (VALID_X, VALID_Y), wxSize (VALID_WIDTH, VALID_HEIGHT), VALID_STYLE)) return false;
 	CreateControls ();
 	return true; }
 
-void valid_t :: CreateControls ()
-{	if (dialogue_t :: invalid ()) return;
-
-	check_microdata_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (this, check_spell, "HTML5 microdata", wxDefaultPosition, wxDefaultSize, 0));
+void valid_t :: create_controls (wxWindow *parent)
+{	check_microdata_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, check_spell, "HTML5 microdata", wxDefaultPosition, wxDefaultSize, 0));
 	if (check_microdata_ != nullptr)
 	{	box_ -> Add (check_microdata_, 0, wxALIGN_CENTER_HORIZONTAL, 5);
-		line_microdata_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
+		line_microdata_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
 			if (line_microdata_ != nullptr)
 				box_ -> Add (line_microdata_, 0, wxEXPAND | wxALL, 5); }
 
 	box_for_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxHORIZONTAL));
 
 	if (box_for_ != nullptr)
-	{	stat_for_ = GSL_OWNER (wxStaticText) (new wxStaticText (this, wxID_ANY, "Additional valid values for:", wxDefaultPosition, wxDefaultSize, 0));
+	{	stat_for_ = GSL_OWNER (wxStaticText) (new wxStaticText (parent, wxID_ANY, "Additional valid values for:", wxDefaultPosition, wxDefaultSize, 0));
 		if (stat_for_ != nullptr)
 		{	box_for_ -> Add (stat_for_, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
 			if (vld.empty ())
@@ -81,19 +79,22 @@ void valid_t :: CreateControls ()
 							 vld.push_back (s.substr (pos+1)); } }
 				PRESUME ((vld.size () == context.validation ().size () + BASE_COUNT), __FILE__, __LINE__);
 				::std::sort (vld.begin (), vld.end ()); }
-			choice_for_ = GSL_OWNER (wxChoice) (new wxChoice (this, wxID_ANY, wxDefaultPosition, wxDefaultSize, GSL_NARROW_CAST < int > (vld.size ()), vld.data (), 0));
+			choice_for_ = GSL_OWNER (wxChoice) (new wxChoice (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, GSL_NARROW_CAST < int > (vld.size ()), vld.data (), 0));
 			if (choice_for_ != nullptr)
 			{	choice_for_ -> SetSelection (0);
 				box_for_ -> Add (choice_for_, 0, wxALL, 5);
 				box_ -> Add (box_for_, 0, wxALIGN_CENTER_HORIZONTAL, 5); } } }
 
-	val_.construct (*this, "values");
+	val_.construct (parent, box_, "values");
 
-	line_base_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
+	line_base_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
 		if (line_base_ != nullptr)
-			box_ -> Add (line_base_, 0, wxEXPAND | wxALL, 5);
+			box_ -> Add (line_base_, 0, wxEXPAND | wxALL, 5); }
 
-	dialogue_t :: CreateButtons (1);
+void valid_t :: CreateControls ()
+{	if (d1_t :: invalid ()) return;
+    create_controls (this);
+	d1_t :: CreateButtons (1);
 	SetSizer (box_);
 	Layout ();
 	Centre (wxBOTH); }
@@ -136,5 +137,22 @@ bool valid_t :: TransferDataFromWindow ()
 {	if (invalid ()) return false;	
 
 	return true; }
+
+bool valid_t :: create_panel (wxWindow *mummy, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
+{	PRESUME (invalid_panel (), __FILE__, __LINE__);
+	create_box (mummy, pos, size);
+	if (! create_panel_itself (mummy, id, pos, size, style)) return false;
+	create_controls (panel_);
+	if (invalid_panel ()) return false;
+	panel_ -> SetSizer (box_);
+	panel_ -> Layout ();
+	box_ -> Fit (panel_);
+	return true; }
+
+void valid_t :: load_from_context (const context_t& )
+{	/* to do */	}
+
+void valid_t :: save_to_context (context_t& ) const
+{	/* to do */	}
 
 #endif // WX

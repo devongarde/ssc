@@ -22,13 +22,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #ifdef WX
 #include "gui/gui-frame.h"
+#include "gui/gui-welcome.h"
+
+#define DEF_CONF_WILD "Configuration files (*." DEF_CONF_EXT ")|*." DEF_CONF_EXT
 
 class app_t : public wxApp
 {   frame_pt frame_ = nullptr; 
+    welcome_t* welcome_ = nullptr;
     int res_ = 0;
-    bool argled_ = false;
     wxHtmlHelpController* help_ = nullptr;
-    ::std::string help_path_;
+    ::boost::filesystem::path help_path_;
+    vstr_t cmd_;
+    bool Welcome (context_t& context);
 protected:
     DECLARE_EVENT_TABLE ();   
 public:
@@ -42,6 +47,16 @@ public:
     void OnIdle (wxIdleEvent& event);
     const frame_pt& frame () const { return frame_; }
     frame_pt& frame () { return frame_; }
+    static void nits_msgbox (wxWindow* mummy, const ::std::string& title, nitpick& nits, const e_severity worst =
+#ifdef NDEBUG
+        es_info
+ #else //  NDEBUG
+        es_debug
+#endif //  NDEBUG      
+                    );
+    static bool load_conf (wxWindow* mummy, context_t& c, ::boost::filesystem::path& fn);
+    static bool save_conf (wxWindow* mummy, context_t& c, const ::boost::filesystem::path& fn);
+    static bool save_conf_as (wxWindow* mummy, context_t& c, ::boost::filesystem::path& fn);
     virtual bool OnInit ();
     virtual int OnExit (); };
 

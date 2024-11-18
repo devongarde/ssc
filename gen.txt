@@ -48,8 +48,6 @@ These options are only available on the command line:
 
 -h                      Show a summary of switches, then exit.
 
--H snippet              Only nitpick this snippet of HTML.
-
 --ontology.list         List known schema versions, then exit.
 
 -q                      Use a simple shell. The shell accepts the
@@ -379,6 +377,9 @@ This are switches that don't really belong in any other section.
                         is specified, then select a number of threads
                         not entirely inappropriate for the hardware.
 
+--general.ede           Exclude certain platform specific files, such
+                        as .DS_Store under MacOS.
+
 --general.exclude xxx   Ignore all paths containing xxx. May be
                         repeated. Case independent under Windows only.
                         .DS_Store is always excluded under darwin.
@@ -487,18 +488,14 @@ of older sites.
                         too lazy to bother to get round to closing
                         elements.
 
---html.ssi              Process Server Side Includes (SSIs). Note ssc
--I                      cannot process SSIs directives with formulae.
-                        Processing SSIs may cause incorrect line
-                        numbers to be mentioned when an issue is
-                        reported.
-
 --html.tags             When an HTML file is loaded that contains no
                         DOCTYPE, ssc normally presumes HTML 1. This
                         switch tells it to presume the file conforms
                         to an earlier HTML Tags specification (the one
                         at CERN). This is overridden by --html.version.
 
+--html.timefmt X        Set the SSI timefmt to X.
+ 
 --html.title n          If <TITLE> text is longer than n characters,
 -z n                    say so. This applies to text enclosed by a
                         <TITLE> element under <HEAD>, not the value of
@@ -562,6 +559,9 @@ of older sites.
                         found online. A copy of the copies referenced
                         during ssc's development can be found at
                         https://ssc.lu/.
+
+--html.wx               The site is intended for use with wxWidgets'
+                        HTML engine.
 
 Link switches
 If you want to check links on the site, you'll find these switches
@@ -639,6 +639,9 @@ data found.
                         format. This option will write files in the
                         same directory as the source, with the
                         extension .json.
+
+--microformat.pretty    Prettify the export file (see boost json for
+                        details).
 
 --microformat.verify    Verify Microformats data in class and rel
 -M                      attributes (see https://microformats.org/).
@@ -733,13 +736,16 @@ ontologies (see --ontology.list).
 --ontology.export       Export ontologies encountered. This data is
                         exported in JSON format (not JSON-LD).
 
+--ontology.pretty       Prettify the export file (see boost json for
+                        details).
+
 --ontology.root DIR     When exporting ontologies with
                         --ontology.export, write files into the
                         directory DIR. ssc will create the directory
                         tree structure as appropriate.
 
 --ontology.verify       Check ontology found in WhatWG living standard
-                        microdata attributes (itemprop, itemtype,
+-m                      microdata attributes (itemprop, itemtype,
                         etc.).
 
 --ontology.virtual v=d  When exporting ontologies using
@@ -1200,6 +1206,67 @@ may vary.
                         If none is specified, ssc will seek hunspell.
                         Under Windows, ssc uses the system spell-
                         checker, if there is one.
+
+
+SSI switches
+--ssi.verify            Process Server Side Includes (SSIs). See the
+                        Apache mod_include documents for general
+                        guidance.
+                        The following additional variables may be
+                        accessed (in the current locale):
+                            ssc_last_modified_iso8601
+                                output last modified date in ISO 8601
+                                format (as used by schema.org)
+                            ssc_last_modified_rfc822
+                                output last modified date in RFC 822
+                                format (as used by http)
+                            ssc_last_modified_rfc850
+                                output last modified date in RFC 850
+                                format (as used by archaic systems)
+                            ssc_last_modified_ansi
+                                output last modified date in ANSI C
+                                format (as used by archaic systems)
+                        The following additional <!--#config ...>
+                        attributes can be set:
+                            ssc_lastmod
+                                set the GMT date to be returned by
+                                LAST_MODIFIED in "YYYY/MM/DD hh:mm:ss"
+                                format (intended for testing). Set to
+                                the empty string to disable.
+                            ssc_date
+                                set the GMT date used by DATE_LOCAL and
+                                DATE_GMT in "YYYY/MM/DD hh:mm:ss"
+                                format (intended for testing). Set to
+                                the empty string to disable.
+                        SSC ignores the #cmd and #exec elements, and
+                        returns the empty string for the variables
+                        DOCUMENT_ARGS, QUERY_STRING_UNESCAPED and
+                        USER_NAME. It cannot process directives
+                        containing formulae.
+                        Processing SSIs may cause changed line
+                        numbers to be mentioned when an issue is
+                        reported.
+
+-ssi.cmd x              If an SSI CMD element is encountered, return
+                        this text. Note that SSC never processes such
+                        commands.
+
+-ssi.exec x             If an SSI EXEC element is encountered, return
+                        this text. Note that SSC never executes such
+                        commands.
+
+-ssi.docargs x          If the SSI document-args variable is requested,
+                        return this string (default: blank).
+
+-ssi.querystring x      If the SSI document_args variable is requested,
+                        return this string (default: blank).
+
+-ssi.username x         If the SSI query_string_unescaped variable is
+                        requested, return this string (default: blank).
+
+-ssi.username x         If the SSI user_name variable is requested,
+                        return this string (default: blank).
+
 
 Stats switches
 SSC can output lots of statistical information about the site being

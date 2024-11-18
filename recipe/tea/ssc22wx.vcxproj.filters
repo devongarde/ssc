@@ -1434,6 +1434,9 @@
     <Filter Include="Toast\Microdata\dpv2">
       <UniqueIdentifier>{b8697455-fd2f-4cfe-96f7-a472c96f9065}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\HTML\wx">
+      <UniqueIdentifier>{b5079b24-aa70-4dd8-9218-3dcf6d8a0476}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -2153,22 +2156,10 @@
     <ClInclude Include="..\heater\gui\gui-snippet.h">
       <Filter>Heater\gui</Filter>
     </ClInclude>
-    <ClInclude Include="..\heater\gui\gui-math.h">
-      <Filter>Heater\gui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\gui\gui-svg.h">
-      <Filter>Heater\gui</Filter>
-    </ClInclude>
     <ClInclude Include="..\heater\gui\gui-dialogue.h">
       <Filter>Heater\gui</Filter>
     </ClInclude>
-    <ClInclude Include="..\heater\gui\gui-corpus.h">
-      <Filter>Heater\gui</Filter>
-    </ClInclude>
     <ClInclude Include="..\heater\gui\gui-html.h">
-      <Filter>Heater\gui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\gui\gui-mf.h">
       <Filter>Heater\gui</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\gui\gui-stats.h">
@@ -2181,9 +2172,6 @@
       <Filter>Heater\gui</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\gui\gui-general.h">
-      <Filter>Heater\gui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\heater\gui\gui-lynx.h">
       <Filter>Heater\gui</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\gui\gui-ontology.h">
@@ -2201,13 +2189,13 @@
     <ClInclude Include="..\heater\gui\gui-validation.h">
       <Filter>Heater\gui</Filter>
     </ClInclude>
-    <ClInclude Include="..\heater\gui\gui-file.h">
-      <Filter>Heater\gui</Filter>
-    </ClInclude>
     <ClInclude Include="..\heater\gui\gui-listedit.h">
       <Filter>Heater\gui</Filter>
     </ClInclude>
-    <ClInclude Include="..\heater\gui\gui-whizz.h">
+    <ClInclude Include="..\heater\gui\gui-welcome.h">
+      <Filter>Heater\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\gui\gui-spex.h">
       <Filter>Heater\gui</Filter>
     </ClInclude>
   </ItemGroup>
@@ -2947,12 +2935,6 @@
     <ClCompile Include="..\sauce\gui\gui-app.cpp">
       <Filter>Sauce\gui</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\gui\gui-corpus.cpp">
-      <Filter>Sauce\gui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\gui\gui-dialogue.cpp">
-      <Filter>Sauce\gui</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\gui\gui-frame.cpp">
       <Filter>Sauce\gui</Filter>
     </ClCompile>
@@ -2960,9 +2942,6 @@
       <Filter>Sauce\gui</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\gui\gui-icon.cpp">
-      <Filter>Sauce\gui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\gui\gui-math.cpp">
       <Filter>Sauce\gui</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\gui\gui-menu.cpp">
@@ -2977,12 +2956,6 @@
     <ClCompile Include="..\sauce\gui\gui-snippet.cpp">
       <Filter>Sauce\gui</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\gui\gui-svg.cpp">
-      <Filter>Sauce\gui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\gui\gui-mf.cpp">
-      <Filter>Sauce\gui</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\gui\gui-stats.cpp">
       <Filter>Sauce\gui</Filter>
     </ClCompile>
@@ -2993,9 +2966,6 @@
       <Filter>Sauce\gui</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\gui\gui-general.cpp">
-      <Filter>Sauce\gui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\gui\gui-lynx.cpp">
       <Filter>Sauce\gui</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\gui\gui-ontology.cpp">
@@ -3013,13 +2983,7 @@
     <ClCompile Include="..\sauce\gui\gui-validation.cpp">
       <Filter>Sauce\gui</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\gui\gui-file.cpp">
-      <Filter>Sauce\gui</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\gui\gui-listedit.cpp">
-      <Filter>Sauce\gui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\gui\gui-whizz.cpp">
       <Filter>Sauce\gui</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\simple\type_sgml.cpp">
@@ -3036,6 +3000,15 @@
     </ClCompile>
     <ClCompile Include="..\sauce\simple\type_svg_feature.cpp">
       <Filter>Sauce\enum</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\gui\gui-welcome.cpp">
+      <Filter>Sauce\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\gui\gui-dialogue.cpp">
+      <Filter>Sauce\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\gui\gui-spex.cpp">
+      <Filter>Sauce\gui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -37121,6 +37094,18 @@
     </None>
     <None Include="..\toast\microdata\dpv2\eu-gdpr-10.html">
       <Filter>Toast\Microdata\dpv2</Filter>
+    </None>
+    <None Include="..\toast\HTML\wx\index.html">
+      <Filter>Toast\HTML\wx</Filter>
+    </None>
+    <None Include="..\toast\HTML\wx\wx.conf">
+      <Filter>Toast\HTML\wx</Filter>
+    </None>
+    <None Include="..\toast\HTML\wx\wx.spec">
+      <Filter>Toast\HTML\wx</Filter>
+    </None>
+    <None Include="..\toast\type\httpequiv\lastmodified.html">
+      <Filter>Toast\Type\httpequiv</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

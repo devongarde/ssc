@@ -122,19 +122,14 @@
     <ClInclude Include="..\heater\feedback\nitout.h" />
     <ClInclude Include="..\heater\feedback\nitpick.h" />
     <ClInclude Include="..\heater\gui\gui-app.h" />
-    <ClInclude Include="..\heater\gui\gui-corpus.h" />
     <ClInclude Include="..\heater\gui\gui-css.h" />
     <ClInclude Include="..\heater\gui\gui-dialogue.h" />
-    <ClInclude Include="..\heater\gui\gui-file.h" />
     <ClInclude Include="..\heater\gui\gui-frame.h" />
     <ClInclude Include="..\heater\gui\gui-general.h" />
     <ClInclude Include="..\heater\gui\gui-html.h" />
     <ClInclude Include="..\heater\gui\gui-icon.h" />
     <ClInclude Include="..\heater\gui\gui-listedit.h" />
-    <ClInclude Include="..\heater\gui\gui-lynx.h" />
-    <ClInclude Include="..\heater\gui\gui-math.h" />
     <ClInclude Include="..\heater\gui\gui-menu.h" />
-    <ClInclude Include="..\heater\gui\gui-mf.h" />
     <ClInclude Include="..\heater\gui\gui-nits.h" />
     <ClInclude Include="..\heater\gui\gui-ontology.h" />
     <ClInclude Include="..\heater\gui\gui-screen.h" />
@@ -143,10 +138,10 @@
     <ClInclude Include="..\heater\gui\gui-site.h" />
     <ClInclude Include="..\heater\gui\gui-snippet.h" />
     <ClInclude Include="..\heater\gui\gui-spell.h" />
+    <ClInclude Include="..\heater\gui\gui-spex.h" />
     <ClInclude Include="..\heater\gui\gui-stats.h" />
-    <ClInclude Include="..\heater\gui\gui-svg.h" />
     <ClInclude Include="..\heater\gui\gui-validation.h" />
-    <ClInclude Include="..\heater\gui\gui-whizz.h" />
+    <ClInclude Include="..\heater\gui\gui-welcome.h" />
     <ClInclude Include="..\heater\icu\charset.h" />
     <ClInclude Include="..\heater\icu\converter.h" />
     <ClInclude Include="..\heater\icu\lingo.h" />
@@ -431,19 +426,14 @@
     <ClCompile Include="..\sauce\feedback\nitout.cpp" />
     <ClCompile Include="..\sauce\feedback\nitpick.cpp" />
     <ClCompile Include="..\sauce\gui\gui-app.cpp" />
-    <ClCompile Include="..\sauce\gui\gui-corpus.cpp" />
     <ClCompile Include="..\sauce\gui\gui-css.cpp" />
     <ClCompile Include="..\sauce\gui\gui-dialogue.cpp" />
-    <ClCompile Include="..\sauce\gui\gui-file.cpp" />
     <ClCompile Include="..\sauce\gui\gui-frame.cpp" />
     <ClCompile Include="..\sauce\gui\gui-general.cpp" />
     <ClCompile Include="..\sauce\gui\gui-html.cpp" />
     <ClCompile Include="..\sauce\gui\gui-icon.cpp" />
     <ClCompile Include="..\sauce\gui\gui-listedit.cpp" />
-    <ClCompile Include="..\sauce\gui\gui-lynx.cpp" />
-    <ClCompile Include="..\sauce\gui\gui-math.cpp" />
     <ClCompile Include="..\sauce\gui\gui-menu.cpp" />
-    <ClCompile Include="..\sauce\gui\gui-mf.cpp" />
     <ClCompile Include="..\sauce\gui\gui-nits.cpp" />
     <ClCompile Include="..\sauce\gui\gui-ontology.cpp" />
     <ClCompile Include="..\sauce\gui\gui-output.cpp" />
@@ -452,10 +442,10 @@
     <ClCompile Include="..\sauce\gui\gui-site.cpp" />
     <ClCompile Include="..\sauce\gui\gui-snippet.cpp" />
     <ClCompile Include="..\sauce\gui\gui-spell.cpp" />
+    <ClCompile Include="..\sauce\gui\gui-spex.cpp" />
     <ClCompile Include="..\sauce\gui\gui-stats.cpp" />
-    <ClCompile Include="..\sauce\gui\gui-svg.cpp" />
     <ClCompile Include="..\sauce\gui\gui-validation.cpp" />
-    <ClCompile Include="..\sauce\gui\gui-whizz.cpp" />
+    <ClCompile Include="..\sauce\gui\gui-welcome.cpp" />
     <ClCompile Include="..\sauce\icu\charset.cpp" />
     <ClCompile Include="..\sauce\icu\converter.cpp" />
     <ClCompile Include="..\sauce\icu\lingo.cpp" />
@@ -2391,6 +2381,9 @@
     <None Include="..\toast\HTML\tags\tags-oddities.html" />
     <None Include="..\toast\HTML\tags\tags.conf" />
     <None Include="..\toast\HTML\tags\tags.spec" />
+    <None Include="..\toast\HTML\wx\index.html" />
+    <None Include="..\toast\HTML\wx\wx.conf" />
+    <None Include="..\toast\HTML\wx\wx.spec" />
     <None Include="..\toast\json-ld\1.0\5-4-1.jld" />
     <None Include="..\toast\json-ld\1.0\5-4-2.jld" />
     <None Include="..\toast\json-ld\1.0\5-4-3.jld" />
@@ -11451,6 +11444,7 @@
     <None Include="..\toast\type\httpequiv\httpequiv.conf" />
     <None Include="..\toast\type\httpequiv\httpequiv.spec" />
     <None Include="..\toast\type\httpequiv\index.html" />
+    <None Include="..\toast\type\httpequiv\lastmodified.html" />
     <None Include="..\toast\type\httpequiv\link.html" />
     <None Include="..\toast\type\httpequiv\origin.html" />
     <None Include="..\toast\type\httpequiv\referrer.html" />
@@ -12184,7 +12178,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL)\include;$(ICU_ROOT)\include;$(WX_ROOT)\include\msvc;$(WX_ROOT)\include;$(CURL)\include</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc14x_x64_dll;$(ICU_ROOT)\icu\lib64;$(CURL)\lib\debug</LibraryPath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\\vc14x_x64_dll;$(ICU_ROOT)\lib64;$(CURL)\lib\debug</LibraryPath>
     <EnableMicrosoftCodeAnalysis>true</EnableMicrosoftCodeAnalysis>
     <EnableClangTidyCodeAnalysis>false</EnableClangTidyCodeAnalysis>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
@@ -12197,7 +12191,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL)\include;$(ICU_ROOT)\include;$(WX_ROOT)\include\msvc;$(WX_ROOT)\include;$(CURL)\include</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc14x_x64_dll;$(ICU_ROOT)\icu\lib64;$(CURL)\lib\release</LibraryPath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\\vc14x_x64_dll;$(ICU_ROOT)\lib64;$(CURL)\lib\release</LibraryPath>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)wx\</OutDir>
     <IntDir>$(Platform)\$(Configuration)wx\</IntDir>
@@ -12205,12 +12199,16 @@
     <PreBuildEventUseInBuild />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
-    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL)\include;$(ICU_ROOT);$(WX_ROOT)\include\msvc;$(WX_ROOT)\include</IncludePath>
-    <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath)$(BOOST);$(GSL)\include;$(ICU_ROOT)\include;$(BOOST);$(CURL)\include;$(WX_ROOT)\include\msvc;$(WX_ROOT)\include</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc_arm64_dll;$(ICU_ROOT)\libARM64;$(CURL)\lib\debug</LibraryPath>
+    <IntDir>$(Platform)\$(Configuration)wx\</IntDir>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)wx\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
-    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL)\include;$(ICU_ROOT);$(WX_ROOT)\include\msvc;$(WX_ROOT)\include</IncludePath>
-    <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib;$(LibraryPath);$(VC_LibraryPath_arm64);$(WindowsSDK_LibraryPath_arm64)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath)$(BOOST);$(GSL)\include;$(ICU_ROOT)\include;$(BOOST);$(CURL)\include;$(WX_ROOT)\include\msvc;$(WX_ROOT)\include</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc_arm64_dll;$(ICU_ROOT)\libARM64;$(CURL)\lib\release</LibraryPath>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)wx\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)wx\</IntDir>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg">
     <VcpkgEnableManifest>true</VcpkgEnableManifest>
@@ -12242,7 +12240,8 @@
       <StackReserveSize>67108864</StackReserveSize>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc-wx.exe</Command>
+      <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc-wx.exe ;
+7z u $(ProjectDir)..\..\ssc-win-amd64-dbg.7z $(TargetPath)</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
@@ -12259,12 +12258,13 @@
       <Outputs>help.htb</Outputs>
     </CustomBuildStep>
     <CustomBuildStep>
-      <Inputs>$(ProjectDir)..\help\index.html;$(ProjectDir)..\help\about.html;$(ProjectDir)..\help\content.hhc;$(ProjectDir)..\help\corpus.html;$(ProjectDir)..\help\html.html;$(ProjectDir)..\help\mathml.html;$(ProjectDir)..\help\microformats.html;$(ProjectDir)..\help\snippet.html;$(ProjectDir)..\help\ssc.css;$(ProjectDir)..\help\ssc.hhp;$(ProjectDir)..\help\stats.html;$(ProjectDir)..\help\svg.html</Inputs>
+      <Inputs>$(ProjectDir)..\httpd\help\*;%(Inputs)</Inputs>
     </CustomBuildStep>
     <CustomBuildStep>
       <RootFolder>
       </RootFolder>
       <Message>Preparing help content</Message>
+      <TreatOutputAsContent>true</TreatOutputAsContent>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -12302,7 +12302,8 @@
       <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>
+      <Command>copy $(TargetPath) $(ProjectDir)..\.. ;
+7z u $(ProjectDir)..\..\ssc-win-amd64.7z $(TargetPath)</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
@@ -12322,21 +12323,22 @@
       <Outputs>help.htb</Outputs>
     </CustomBuildStep>
     <CustomBuildStep>
-      <Inputs>$(ProjectDir)..\help\index.html;$(ProjectDir)..\help\about.html;$(ProjectDir)..\help\content.hhc;$(ProjectDir)..\help\corpus.html;$(ProjectDir)..\help\html.html;$(ProjectDir)..\help\mathml.html;$(ProjectDir)..\help\microformats.html;$(ProjectDir)..\help\snippet.html;$(ProjectDir)..\help\ssc.css;$(ProjectDir)..\help\ssc.hhp;$(ProjectDir)..\help\stats.html;$(ProjectDir)..\help\svg.html</Inputs>
+      <Inputs>$(ProjectDir)..\httpd\help\*;%(Inputs)</Inputs>
     </CustomBuildStep>
     <CustomBuildStep>
       <RootFolder>
       </RootFolder>
+      <TreatOutputAsContent>true</TreatOutputAsContent>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <ClCompile>
-      <PreprocessorDefinitions>_DEBUG;COMMAND_LINE;CONSOLE;WINSPELL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;COMMAND_LINE;_CONSOLE;WINSPELL;WX;WXUSINGDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <ControlFlowGuard>false</ControlFlowGuard>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
@@ -12352,14 +12354,19 @@
       <SubSystem>Console</SubSystem>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;icudt.lib;icuind.lib;icuiod.lib;icutud.lib;icuucd.lib;libcurl-d_imp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe</Command>
+      <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe
+7z u $(ProjectDir)..\..\ssc-win-arm64-dbg.7z $(TargetPath)</Command>
     </PostBuildEvent>
+    <CustomBuildStep>
+      <Message />
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <ClCompile>
-      <PreprocessorDefinitions>NDEBUG;CONSOLE;COMMAND_LINE;WINSPELL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;COMMAND_LINE;WINSPELL;_CONSOLE;WX;WXUSINGDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
@@ -12376,7 +12383,7 @@
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;libcurl_imp.lib;icudt.lib;icuin.lib;icuio.lib;icutu.lib;icuuc.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <SubSystem>Console</SubSystem>
       <HeapReserveSize>33554432</HeapReserveSize>
@@ -12386,7 +12393,8 @@
       <Profile>true</Profile>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(TargetPath) $(ProjectDir)..\..</Command>
+      <Command>copy $(TargetPath) $(ProjectDir)..\..
+7z u $(ProjectDir)..\..\ssc-win-arm64.7z $(TargetPath)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

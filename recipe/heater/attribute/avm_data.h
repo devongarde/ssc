@@ -25,7 +25,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 struct hav_t
 {   html_version first_, last_;
     e_element tag_;
-    e_attribute a_; };
+    e_attribute a_;
+    flags_t flags_ = 0; };
 
 #define HTMLPLUS_ATTRIBUTES(ELEM) \
     { { HTML_PLUS }, { HTML_PLUS }, ELEM, a_id }, \

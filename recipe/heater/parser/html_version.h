@@ -907,6 +907,7 @@ public:
     e_rdf_version rdf_version () const noexcept;
     void rdf_version (const e_rdf_version v) noexcept;
     e_svg_version svg_version () const noexcept;
+    ::std::string svg_version_name () const;
     void svg_version (const e_svg_version v) noexcept;
     bool requires_extension () const noexcept;
     bool is_plain_html () const noexcept;
@@ -1299,6 +1300,7 @@ const html_version html_apr24 (HTML_APR24, css_2024, HV_WHATWG, HE_MICRODATA | H
 const html_version html_may24 (HTML_MAY24, css_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY);
 const html_version html_jul24 (HTML_JUL24, css_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY);
 const html_version html_oct24 (HTML_OCT24, css_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY);
+const html_version html_nov24 (HTML_NOV24, css_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY);
 const html_version html_5_0 (HTML_5_0, css_2010, HV_W3, HE_SVG_11, H2_MATH_2);
 const html_version html_5_1 (HTML_5_1, css_2015, HV_W3, HE_SVG_11, H2_MATH_2);
 const html_version html_5_2 (HTML_5_2, css_2017, HV_W3, HE_SVG_11, H2_MATH_3);

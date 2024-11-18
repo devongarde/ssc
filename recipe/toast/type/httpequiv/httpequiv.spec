@@ -33,6 +33,11 @@ PASS ../toast/type/httpequiv/index.html
 5 unrecognised_value
 6 isnt
 
+PASS ../toast/type/httpequiv/lastmodified.html
+2 naughty_lang
+6 bad_datetime
+7 bad_datetime
+
 PASS ../toast/type/httpequiv/link.html
 2 naughty_lang
 5 empty

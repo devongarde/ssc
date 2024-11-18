@@ -34,7 +34,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define SPELL_CAPTION "Spelling"
 
-class spell_t : public dialogue_t
+class spell_t : public d1_t < wx_spell >
 {   wxBoxSizer* box_check_ = nullptr;
 #ifdef HUNDO
     wxBoxSizer* box_hun_ = nullptr;
@@ -55,6 +55,7 @@ class spell_t : public dialogue_t
     wxFilePickerCtrl* file_hun_ = nullptr;
     wxListBox* list_hun_ = nullptr;
 #endif // HUNDO
+    wxStaticLine* base_ = nullptr;
     wxStaticLine* line_check_ = nullptr;
 #ifdef HUNDO
     wxStaticLine* line_hun_ = nullptr;
@@ -64,11 +65,11 @@ class spell_t : public dialogue_t
     wxStaticText* stat_hun_ = nullptr;
 #endif // HUNDO
     wxTextCtrl* text_lingo_ = nullptr;
-    listedit_manager dict_;
+    listedit_manager dict_ = listedit_manager (button_dict_add, button_dict_erase, button_dict_rename, file_dict_name, list_dict_ext, text_dict_ext);
 #ifdef HUNDO
-    listedit_manager hun_ = listedit_manager (button_add_2, button_erase_2, file_name_2, list_ext_2, button_rename_2, text_ext_2);
+    listedit_manager hun_ = listedit_manager (button_hun_add, button_hun_erase, button_hun_rename, file_hun_name, list_hun_ext, text_hun_ext);
 #endif // HUNDO
-    listedit_manager word_ = listedit_manager (button_add_3, button_erase_3, file_name_3, list_ext_3, button_rename_3, text_ext_3);
+    listedit_manager word_ = listedit_manager (button_word_add, button_word_erase, button_word_rename, file_word_name, list_word_ext, text_word_ext);
     bool case_ = false, check_ = false;
 #ifndef NOICU
     bool icu_ = false;
@@ -77,6 +78,22 @@ class spell_t : public dialogue_t
 #ifdef HUNDO
     vstr_t huns_;
 #endif // HUNDO
+    DECLARE_CLASS (spell_t)
+    DECLARE_EVENT_TABLE ()
+public:
+    spell_t () { }
+    spell_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = SPELL_CAPTION);
+    ~spell_t () { }
+    bool invalid () const noexcept
+    {   return  dict_.invalid () ||
+#ifdef HUNDO
+                hun_.invalid () ||
+#endif // HUNDO
+                word_.invalid () ||
+                (check_icu_ == nullptr); }
+    void Init () const noexcept { }
+    bool Create (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = SPELL_CAPTION);
+    void CreateControls ();
     void OnCheck (wxCommandEvent& event);
     void OnDictAdd (wxCommandEvent& event);
     void OnDictErase (wxCommandEvent& event);
@@ -85,6 +102,7 @@ class spell_t : public dialogue_t
     void OnDictTap (wxCommandEvent& event);
     void OnDictImpatience (wxCommandEvent& event);
     void OnDictFileName (wxFileDirPickerEvent& event);
+    void OnHelpClick (wxCommandEvent& event);
 #ifdef HUNDO
     void OnHunAdd (wxCommandEvent& event);
     void OnHunErase (wxCommandEvent& event);
@@ -100,24 +118,16 @@ class spell_t : public dialogue_t
     void OnWordExtension (wxCommandEvent& event);
     void OnWordTap (wxCommandEvent& event);
     void OnWordImpatience (wxCommandEvent& event);
-    DECLARE_CLASS (spell_t)
-    DECLARE_EVENT_TABLE ()
-public:
-    spell_t () { }
-    spell_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = SPELL_CAPTION);
-    ~spell_t () { }
-    bool invalid () const noexcept
-    {   return  dialogue_t::invalid () ||
-                dict_.invalid () ||
+    bool invalid_panel () const { return d1_t :: invalid_panel () || (panel_ == nullptr) || dict_.invalid () ||
 #ifdef HUNDO
-                hun_.invalid () ||
+                                            hun_.invalid () ||
 #endif // HUNDO
-                word_.invalid () ||
-                (check_icu_ == nullptr); }
-    void Init () const noexcept { }
-    bool Create (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = SPELL_CAPTION);
-    void CreateControls ();
-    void OnHelpClick (wxCommandEvent& event);
+                                            word_.invalid () || (check_icu_ == nullptr); }
+    void create_controls (wxWindow *parent);
+    bool create_panel (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL | wxNO_BORDER);
+    void load_from_context (const context_t& c);
+    void save_to_context (context_t& c) const;
+
     bool cased () const noexcept { return case_; }
     void cased (const bool b) noexcept { case_ = b; }
     bool check () const noexcept { return check_; }

@@ -855,6 +855,11 @@ const nitname nitnames [] =
     { nit_cannot_replace, "cannot_replace" },
     { nit_not_expected_content, "not_expected_content" },
     { nit_circular_hierarchy, "circular hierarchy" },
+    { nit_colourspace, "colourspace" },
+    { nit_wx, "wx" },
+    { nit_missing_ancestor, "missing_ancestor" },
+    { nit_ssi_stack, "ssi_stack" },
+    { nit_ssi_no_cmd, "ssi_no_cmd" },
 
     { nit_incompatible, "incompatible" },
 

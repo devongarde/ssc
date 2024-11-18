@@ -1,14 +1,14 @@
-<!--#include virtual="/plumbing/html.inc" -->
-<!--#include virtual="/plumbing/var.inc" -->
+<!--#include virtual="plumbing/html.inc" -->
+<!--#include virtual="plumbing/var.inc" -->
 <!--#set var="title" value="why static site checker" -->
 <title>
 <!--#echo encoding="none" var="title" -->
 </title>
-<!--#include virtual="/plumbing/header.inc" -->
-<!--#include virtual="/plumbing/blog-section.inc" -->
-<!--#include virtual="/plumbing/html-top-start.inc" -->
-<!--#include virtual="/plumbing/html-top-end.inc" -->
-<!--#include virtual="/plumbing/blog-schema.inc" -->
+<!--#include virtual="plumbing/header.inc" -->
+<!--#include virtual="plumbing/blog-section.inc" -->
+<!--#include virtual="plumbing/html-top-start.inc" -->
+<!--#include virtual="plumbing/html-top-end.inc" -->
+<!--#include virtual="plumbing/blog-schema.inc" -->
 <data class="u-url u-uid" value="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->">
 </data>
 
@@ -24,19 +24,19 @@ Things may have improved. Anyway, my google foo is poo.
 
 <p>
 My <a href="https://dylanharris.org/">identity website</a> has more than 100,000 pages. I&rsquo;m too impatient
-to push each through a validator one by one; I want to validate my site as a whole.
+to push each through an editor&rsquo;s validator one by one; I want to validate my site as a whole.
 Furthermore, single page validators can&rsquo;t catch inter&ndash;page errors, such as
 broken internal links, let alone hidden links
 (an otherwise valid link to a HIDDEN element).
 </p>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-rough-t2.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="image/ssc-msgdb-rough-t2.jpg" title="made with studio artist 5.5">
 
 <p>
 Many people avoid such problems by using frameworks.
 I find frameworks awful. IMAO, they produce dull, boring, trite design.
 The visual arts world has had centuries to develop excellent form for a rectangular space.
-Most 21<sup>st</sup> frameworks are so crude they haven&rsquo;t even absorbed 14<sup>th</sup> century visual arts&rsquo; ideas,
+Most 21<sup>st</sup> frameworks are so crude they haven&rsquo;t even absorbed 14<sup>th</sup> century visual arts&rsquo; developments,
 when painters broke out of rectangular form in a rectangular frame.
 So much is possible, so much hasn&rsquo;t happened.
 I want to break this dull, stultifying, archaic, mutton.
@@ -111,5 +111,5 @@ breaking the security and integrity of all sites that use them.
 </li>
 </ul>
 
-<!--#include virtual="/plumbing/under.inc" -->
-<!--#include virtual="/plumbing/html-end.inc" -->
+<!--#include virtual="plumbing/under.inc" -->
+<!--#include virtual="plumbing/html-end.inc" -->

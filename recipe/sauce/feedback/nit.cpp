@@ -166,7 +166,8 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_rdfa_c : return "RDFa Context";
         case ed_iso_8859_1 : return "ISO 8859-1";
         case ed_rfc_1867 : return "RFC 1867";
-        case ed_rfc_1980 : return "RGC 1980";
+        case ed_rfc_1980 : return "RFC 1980";
+        case ed_rfc_2616 : return "RFC 2616";
         case ed_rfc_3986 : return "RFC 3986";
         case ed_rfc_3966 : return "RFC 3966";
         case ed_rfc_6265 : return "RFC 6265";
@@ -200,6 +201,8 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_oct22 : return "HTML 5, Oct 22";
         case ed_apr23 : return "HTML 5, Apr 23";
         case ed_jul23 : return "HTML 5, Jul 23";
+        case ed_nov24 : return "HTML 5, Nov 24";
+        case ed_wx : return "wxWidgets HTML";
         case ed_ecma : return "ECMAScript, 22.2.1 Patterns";
         case ed_mozilla : return "mozilla.org May 20";
         case ed_microdata : return "WhatWG Microdata";
@@ -288,6 +291,8 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_oct22 : return "HTML 5, WhatWG, October 2022";
         case ed_apr23 : return "HTML 5, WhatWG, April 2023";
         case ed_jul23 : return "HTML 5, WhatWG, July 2023";
+        case ed_nov24 : return "HTML 5, WhatWG, November 2024";
+        case ed_wx : return "wxWidgets HTML, list of stable HTML tags, November 2024";
         case ed_prism_1 : return "Publishing Requirements for Industry Standard Metadata, Version 1.0";
         case ed_rdfa : return "RDFa Core 1.1 Third Edition";
         case ed_rdfa_c : return "RDFa Core Initial Context, May 2020";
@@ -302,6 +307,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_mimetype : return "IANA Media Types, February 2019";
         case ed_rfc_1867 : return "RFC 1867, Form-based File Upload in HTML";
         case ed_rfc_1980 : return "RFC 1980, Client-Side Image Maps";
+        case ed_rfc_2616 : return "RFC 2616, Hypertext Transfer Protocol -- HTTP/1.1";
         case ed_rfc_3986 : return "RFC 3986, Uniform Resource Identifier (URI): Generic Syntax";
         case ed_rfc_3966 : return "RFC 3966, The tel URI for Telephone Numbers";
         case ed_rfc_6265 : return "RFC 6265, HTTP State Management Mechanism";

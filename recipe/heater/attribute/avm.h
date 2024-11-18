@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 void avm_init (nitpick& nits);
 bool is_attribute_required (const html_version& v, const e_element tag, const e_attribute a);
-bool is_attribute_rejected (const html_version& v, const e_element tag, const e_attribute a);
+bool is_attribute_rejected (const html_version& v, const e_element tag, const e_attribute a, flags_t& flags);
 bool is_invalid_attribute_version (const html_version& v, const e_element tag, const e_attribute a);
 bool is_deprecated_attribute_version (const html_version& v, const e_element tag, const e_attribute a);
 bool not_production_attribute (const html_version& v, const e_element tag, const e_attribute a);

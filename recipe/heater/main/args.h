@@ -20,7 +20,95 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 
-#define ARGLEN_MAX  4096
+   /*   a ask & answer   A reports params & exit
+        b
+        c persist file   C prog dir
+        d dump corpus    D dump progress
+        e external check E severity error exit
+        f config         F load config file from .ssc/config
+        g website root   G Check spelling
+        h help           H html snippet
+        i index file     I server side includes
+        j GENERAL SPEC   J GENERAL INFO
+        k
+        l link check     L virtual directory
+        m microdata      M microformat
+        n              
+        o output         O rpt ext once
+        p                P NIT OVERRIDE
+        q shell          Q
+        r no revoke chks R HTML revision
+        s domain name    S stats
+        t                T test mode
+        u                U unique
+        v verbose        V version
+        w                W cgi
+        x extensions     X check crosslinked ids
+        y GENERAL THREAD Y GENERAL DEFTHRD              
+        z title max      Z
+        0 dont ask
+        1
+        2
+        3 report http 30*
+        4
+        5
+        6
+        7
+        8
+        9 */
+
+#define DONTASK_SW_ "0"
+#define FORWARD_SW_ "3"
+#define MINOR_SW_   "5"
+#define ASK_SW_     "a"
+#define SWITCH_SW_  "A"
+#define PERSIST_SW_ "c"
+#define DTPTH_SW_   "C"
+#define DUMP_SW_    "d"
+#define PRGRSS_SW_  "D"
+#define EXTERN_SW_  "e"
+#define ERREXT_SW_  "E"
+#define FILE_SW_    "f"
+#define DEFCONF_SW_ "F"
+#define ROOT_SW_    "g"
+#define SPELL_SW_   "G"
+#define HELP_SW_    "h"
+#define SNIPPET_SW_ "H"
+#define INDEX_SW_   "i"
+#define SSI_SW_     "I"
+#define SPEC_SW_    "j"
+#define INFO_SW_    "J"
+#define CHECK_SW_   "l"
+#define VIRTUAL_SW_ "L"
+#define MDATA_SW_   "m"
+#define MFVER_SW_   "M"
+#define OUTPUT_SW_  "o"
+#define ONCE_SW_    "O"
+#define OVRRD_SW_   "P"
+#define SHELL_SW_   "q"
+#define REVOKE_SW_  "r"
+#define HTMLVER_SW_ "R"
+#define SITE_SW_    "s"
+#define SUMMARY_SW_ "S"
+#define TEST_SW_    "T"
+#define UNIQUE_SW_  "U"
+#define VERBOSE_SW_ "v"
+#define VERSION_SW_ "V"
+#define CGI_SW_     "W"
+#define EXT_SW_     "x"
+#define XLINK_SW_   "X"
+#define THREAD_SW_  "y"
+#define DFTHRD_SW_  "Y"
+#define TITLE_SW_   "z"
+
+#define SMPLSWTCH   "-"
+#define FNCYSWTCH   "--"
+
+#define DFTHRD_SW   SMPLSWTCH DFTHRD_SW_
+#define FILE_SW     SMPLSWTCH FILE_SW_
+#define PRGRSS_SW   SMPLSWTCH PRGRSS_SW_
+#define SNIPPET_SW  SMPLSWTCH SNIPPET_SW_
+#define VERBOSE_SW  SMPLSWTCH VERBOSE_SW_
 
 #define CORPUS_     "corpus"
 #define CSS_        "css"
@@ -39,6 +127,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SP          "shadow"
 #define SHADOW_     SP
 #define SPELL_      "spell"
+#define SSI_        "ssi"
 #define STATS_      "stats"
 #define SVG_        "svg"
 #define VALIDATION_ "validation"
@@ -63,6 +152,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SHADOW      SHADOW_ JOIN
 #define SPELL       SPELL_ JOIN
 #define SSC         PROG JOIN
+#define SSI         SSI_ JOIN
 #define STATS       STATS_ JOIN
 #define SVG         SVG_ JOIN
 #define VALIDATION  VALIDATION_ JOIN
@@ -100,6 +190,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define CHECK       "check"
 #define CLASS       "class"
 #define CLASSIC     "classic"
+#define CMD         "cmd"
 #define CODES       "codes"
 #define COLOUR      "colour"
 #define COLOR       "color"
@@ -124,24 +215,27 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define DATAPATH    "datapath"
 #define DATETIME    "datetime"
 #define DBG         "debug"
+#define DDICT       "ddict"
 #define DEFCONF     "defconf"
 #define DEFTHRD     "defthrd"
 #define DETAIL      "detail"
 #define DEVICE      "device"
 #define DFN         "definition"
 #define DICT        "dict"
-#define DDICT       "ddict"
 #define DLANG       "dlang"
 #define DINGBATARG  "dingbat"
 #define DISPLAY     "display"
+#define DOCARGS     "docargs"
 #define DONT        "no-"
 #define DRAFT       "draft"
 #define DTDD        "name-value"
+#define EDE         "ede"
 #define EASE        "ease"
 #define ELEMENT     "element"
 #define ELEMATTR    ELEMENT "-" ATTRIB
 #define ENABLE      "enable"
 #define ENDPOINT    "endpoint"
+#define EXEC        "exec"
 #define WHOOPS      "error"
 #define ERROREXIT   "errorexit"
 #define EXAMPLE     "example"
@@ -168,6 +262,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define GRID        "grid"
 #define HEADER      "header"
 #define HELP        "help"
+#define HELPSITE    "helpsite"
 #define HIGHLIGHT   "highlight"
 #define HISTFORM    "historical-form"
 #define HTTPEQUIV   "httpequiv"
@@ -186,6 +281,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define ITEMID      "itemid"
 #define KEYFRAME    "keyframe"
 #define LANG        "lang"
+#define LASTMOD     "lastmod"
 #define LAYER       "layer"
 #define LINE_GRID   "line-grid"
 #define LIST        "list"
@@ -240,14 +336,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define PASSWORD    "password"
 #define PORT        "port"
 #define POSITION    "position"
-#define PRETEND     "pretend"
 #define PRESENT     "present"
+#define PRETEND     "pretend"
+#define PRETTY      "pretty"
 #define PRINT       "print"
 #define PRIVATE     "private"
 #define PROGRESS    "progress"
 #define PROPER      "property"
 #define PSEUDO      "pseudo"
 #define PUBLIC      "public"
+#define QUERYSTRING "querystring"
 #define QUOTE       "quote"
 #define RDFA        "rdfa"
 #define REFERENCE   "reference"
@@ -287,7 +385,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SPEC        "spec"
 #define SPEECH      "speech"
 #define SPLURGE     "splurge"
-#define SSI         "ssi"
 #define STATEMENT   "statement"
 #define STRUCTURE   "struct"
 #define STRUCTURE2  "structure"
@@ -308,13 +405,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define TEXT_DEC    "text-dec"
 #define TITLE       "title"
 #define THREAD      "thread"
+#define TIMEFMT     "timefmt"
 #define TRANSFORM   "transform"
 #define TRANSITION  "transition"
 #define TV          "tv"
+#define UI          "ui"
 #define UNIQUE      "unique"
 #define UPDATE      "update"
-#define UI          "ui"
 #define USER        "user"
+#define USERNAME    "username"
 #define VAL         "value"
 #define VARIABLE    "variable"
 #define VCS         "vcs"
@@ -329,6 +428,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define WATCH       "watch"
 #define WC          "wc"
 #define WRITING     "writing"
+#define WXARG       "wx"
 #define XXX         "xxx"
 #define YGGDRISIL   "yggdrisil"
 
@@ -365,3 +465,5 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define AUTH_TYPE           "AUTH_TYPE"
 #define CONTENT_TYPE        "CONTENT_TYPE"
 #define CONTENT_LENGTH      "CONTENT_LENGTH"
+
+#define ARGLEN_MAX  4096

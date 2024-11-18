@@ -95,7 +95,8 @@ template < > struct type_master < t_align > : varied < t_align >
                 case elem_array :
                     return;
                 case elem_br :
-                    validate_type < type_master < t_lcrnalign > > (nits, v); return;
+                    if (context.wx ()) validate_type < type_master < t_lcralign > > (nits, v);
+                    else validate_type < type_master < t_lcrnalign > > (nits, v); return;
                 case elem_caption :
                     switch (v.mjr ())
                     {   case 0 :
@@ -124,7 +125,8 @@ template < > struct type_master < t_align > : varied < t_align >
                     if (v == html_plus) { validate_type < type_master < t_valign_tmb > > (nits, v); return; }
                     return;
                 case elem_img :
-                    if (v >= html_3_0) validate_type < type_master < t_align3 > > (nits, v);
+                    if (context.wx ()) validate_type < type_master < t_wximgalign > > (nits, v); 
+                    else if (v >= html_3_0) validate_type < type_master < t_align3 > > (nits, v);
                     else if ((v == html_plus) || (v == html_2)) validate_type < type_master < t_valign_tmb > > (nits, v);
                     else validate_type < type_master < t_lcralign > > (nits, v);
                     return;
@@ -144,17 +146,17 @@ template < > struct type_master < t_align > : varied < t_align >
                     if ((v == html_plus) || (v == html_2)) validate_type < type_master < t_aligndec > > (nits, v);
                     return;
                 case elem_table :
-                    if (v == html_3_0) { validate_type < type_master < t_figalign > > (nits, v); return; }
+                    if (context.wx ()) { validate_type < type_master < t_align2070 > > (nits, v); return; }
+                    else if (v == html_3_0) { validate_type < type_master < t_figalign > > (nits, v); return; }
                     else if (v == html_3_2) { validate_type < type_master < t_lcralign > > (nits, v); return; }
                     else if (v == html_4_1) { validate_type < type_master < t_halign > > (nits, v); return; }
                     break;
                 case elem_td :
                 case elem_th :
                 case elem_tr :
-                    if ((v == html_3_2) || (v == html_plus))
-                    {   validate_type < type_master < t_lcralign > > (nits, v); return; }
-                    else if (v == html_3_0)
-                    {   validate_type < type_master < t_decalign > > (nits, v); return; }
+                    if (context.wx ()) { validate_type < type_master < t_align2070 > > (nits, v); return; }
+                    if ((v == html_3_2) || (v == html_plus)) { validate_type < type_master < t_lcralign > > (nits, v); return; }
+                    else if (v == html_3_0) { validate_type < type_master < t_decalign > > (nits, v); return; }
                     break;
                 default : break; }
             if ((v == html_2) && context.rfc_2070 ()) validate_type < type_master < t_align2070 > > (nits, v);
@@ -819,7 +821,8 @@ template < > struct type_master < t_valign > : varied < t_valign >
 {   using varied < t_valign > :: varied;
     void verify_attribute (nitpick& nits, const html_version& v, const elem& , element* , const ::std::string& )
     {   if (good () || empty ())
-            if (v == html_3_0) validate_type < type_master < t_valign3 > > (nits, v);
+            if (context.wx ()) validate_type < type_master < t_tcbalign > > (nits, v);
+            else if (v == html_3_0) validate_type < type_master < t_valign3 > > (nits, v);
             else validate_type < type_master < t_valign_tmb > > (nits, v); } };
 
 template < > struct type_master < t_value > : varied < t_value >
@@ -913,7 +916,8 @@ template < > struct type_master < t_height > : varied < t_height >
                     {   validate_type < type_master < t_measure_a > > (nits, v); break; }
                     FALLTHROUGH;
                 default :
-                    validate_type < type_master < t_measure > > (nits, v); } } };
+                    if (context.wx ()) validate_type < type_master < t_unsigned > > (nits, v);
+                    else validate_type < type_master < t_measure > > (nits, v); } } };
 
 template < > struct type_master < t_lspace > : varied < t_lspace >
 {   using varied < t_lspace > :: varied;
@@ -963,7 +967,8 @@ template < > struct type_master < t_width > : varied < t_width >
                     {   validate_type < type_master < t_measure_a > > (nits, v); break; }
                     FALLTHROUGH;
                 default :
-                    validate_type < type_master < t_measure > > (nits, v); } } };
+                    if (context.wx ()) validate_type < type_master < t_percent_int > > (nits, v);
+                    else validate_type < type_master < t_measure > > (nits, v); } } };
 
 template < > struct type_master < t_xlinkactuate_onload > : type_string < t_xlinkactuate_onload, sz_onload >
 { using type_string < t_xlinkactuate_onload, sz_onload > :: type_string; };

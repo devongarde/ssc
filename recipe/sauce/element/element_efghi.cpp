@@ -378,13 +378,13 @@ void element::examine_img ()
         if ((node_.version () < html_jan08) && a_.known (a_ismap))
             if (! ancestor_a)
             {   complained = true;
-                pick (nit_naughty_alt, ed_jan07, "3.14.1. The img element", es_warning, ec_element, "ISMAP cannot be used on <IMG> unless it has an <A> ancestor"); }
+                pick (nit_missing_ancestor, ed_jan07, "3.14.1. The img element", es_warning, ec_element, "ISMAP cannot be used on <IMG> unless it has an <A> ancestor"); }
             else for (element* p = parent_; p != nullptr; p = p -> parent_)
             {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
                 if (p -> tag () == elem_a)
                     if (! p -> a_.known (a_href))
                     {   complained = true;
-                        pick (nit_naughty_alt, ed_jan21, "4.8.3 The img element", es_warning, ec_attribute, "when ISMAP is used on <IMG>, its ancestral <A> must have an HREF");
+                        pick (nit_attribute_required, ed_jan21, "4.8.3 The img element", es_warning, ec_attribute, "when ISMAP is used on <IMG>, its ancestral <A> must have an HREF");
                         break; } }
         if (node_.version () >= html_jan17)
         {   if (a_.valid (a_srcset))
@@ -430,7 +430,7 @@ void element::examine_img ()
                                         if (c != this)
                                         {   alone = false; break; }
                             break; } }
-                    if (alt_required)
+                    if (alt_required && ! context.wx ())
                         if (alone)
                             if (! alt_known) pick (nit_attribute_required, ed_50, "4.7.1 The img element", es_error, ec_attribute, "ALT is required when <IMG> is a solo child of <A>");
                             else pick (nit_naughty_alt, ed_50, "4.7.1 The img element", es_error, ec_attribute, "ALT cannot be empty when <IMG> is a solo child of <A>");
@@ -439,9 +439,9 @@ void element::examine_img ()
                             else pick (nit_naughty_alt, ed_50, "4.7.1 The img element", es_warning, ec_attribute, "ALT is better with content when <IMG> is a child of <A>");
                     complained = true; } // even if not
                 else if (! complained && ! has_title && ! figured)
-                    if (! alt_known)
+                    if (! alt_known && ! context.wx ())
                     {   complained = true; pick (nit_naughty_alt, ed_50, "4.7.1 The img element", es_error, ec_element, "here, ALT is required on <IMG>"); } }
-        if (! complained)
+        if (! complained && ! context.wx ())
             if (node_.version () < html_feb21)
                 if ((! ancestor_figure) || (node_.version () == html_5_0))
                     if (! alt_known)

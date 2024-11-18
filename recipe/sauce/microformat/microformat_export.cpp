@@ -48,7 +48,8 @@ bool microformat_export::write (nitpick& nits, const ::boost::filesystem::path& 
             {   if (delete_file (json)) nits.pick (nit_export_none, es_info, ec_microformat, "No microformats; deleted existing ", json);
                 else nits.pick (nit_export_none, es_catastrophic, ec_microformat, "No microformats, but cannot deleted existing, probably incorrect, ", json); }
             else nits.pick (nit_export_none, es_comment, ec_microformat, "No microformats found in " , file); }
-        catch (...) { }
+        catch (...)
+        {   nits.pick (nit_export_none, es_error, ec_microformat, "Cannot delete ", json); }
         return true; }
     rel_.put (tree_);
     url_.put (tree_);
@@ -61,7 +62,7 @@ bool microformat_export::write (nitpick& nits, const ::boost::filesystem::path& 
             return false; }
         bool happy = true;
         try
-        {   ::boost::property_tree::write_json (f, tree_); }
+        {   ::boost::property_tree::write_json (f, tree_, context.mf_pretty ()); }
         catch (...)
         {   nits.pick (nit_cannot_write, es_catastrophic, ec_microformat, "Cannot write microformats data to temporary file ", tmp);
             happy = false; }
@@ -75,7 +76,7 @@ bool microformat_export::write (nitpick& nits, const ::boost::filesystem::path& 
             nits.pick (nit_write_wrote, es_info, ec_microformat, "Written microformats ", json);
             return true; } }
     catch (...) { }
-    if (file_exists (tmp))
-        if (! delete_file (tmp))
-            nits.pick (nit_cannot_update, es_catastrophic, ec_microformat, "Cannot update ", json);
+        if (file_exists (tmp))
+            if (! delete_file (tmp))
+                nits.pick (nit_cannot_update, es_catastrophic, ec_microformat, "Cannot update ", json);
     return false; }

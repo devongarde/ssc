@@ -224,7 +224,6 @@ the export setting (not shown).
 Statistics
 ----------
 [general]
-ssi=
 verbose=5
 output=ssc.out
 class=
@@ -235,6 +234,9 @@ extension=html
 extension=shtml
 index=index.html
 root=~/www/htdocs
+
+[ssi]
+verify=
 
 [stats]
 summary=
@@ -302,7 +304,6 @@ progress=
 class=
 classic=
 no-rel=
-ssi=
 
 [css]
 verify=
@@ -347,6 +348,9 @@ root=|/Sites
 
 [spell]
 no-check=
+
+[ssi]
+verify=
 
 [stats]
 summary=

@@ -105,10 +105,10 @@ hav_t havt_blockcode [] =
 hav_t havt_body [] =
 {   { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_body, a_alink },
     { { HTML_3_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_body, a_background },
-    { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_body, a_bgcolour },
+    { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_body, a_bgcolour, EP_WX },
     { { HTML_3_2, HV_DEPRECATED4, HE_CHROME }, { XHTML_2_0 }, elem_body, a_bottommargin },
     { { HTML_3_2, HV_DEPRECATED4, HE_CHROME }, { XHTML_2_0 }, elem_body, a_leftmargin },
-    { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_body, a_link },
+    { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_body, a_link, EP_WX },
     { { HTML_JUL09 }, { HTML_UNDEF }, elem_body, a_onafterprint },
     { { HTML_JUL09 }, { HTML_UNDEF }, elem_body, a_onbeforeprint },
     { { HTML_JAN13 }, { HTML_JUN13 }, elem_body, a_onfullscreenchange },
@@ -132,7 +132,7 @@ hav_t havt_body [] =
     { { HTML_JAN16 }, { HTML_UNDEF }, elem_body, a_onunhandledrejection },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_body, a_onunload },
     { { HTML_3_2, HV_DEPRECATED4, HE_CHROME }, { HTML_3_2 }, elem_body, a_rightmargin },
-    { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_body, a_text },
+    { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_body, a_text, EP_WX },
     { { HTML_3_2, HV_DEPRECATED4, HE_CHROME }, { HTML_3_2 }, elem_body, a_topmargin },
     { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_body, a_vlink },
     HTML23_CLID_ATTRIBUTES (elem_body),
@@ -150,9 +150,10 @@ hav_t havt_bq [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_br [] =
-{   { { HTML_4_0 }, { HTML_UNDEF }, elem_br, a_id },
+{   { { HTML_2_0, HV_RFC_2070 }, { HTML_3_2 }, elem_br, a_align, EP_WX },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_br, a_class },
     { { HTML_2_0, HV_RFC_1942 | HV_DEPRECATED4 }, { XHTML_2_0 }, elem_br, a_clear },
+    { { HTML_4_0 }, { HTML_UNDEF }, elem_br, a_id },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_br, a_title },
     { { HTML_4_0, HV_NOTPROD }, { HTML_UNDEF }, elem_br, a_style },
     HTMLPLUS_ATTRIBUTES (elem_br),

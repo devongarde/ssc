@@ -62,10 +62,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "gui/gui-app.h"
 #include "main/server.h"
 
-const char* build_info = BUILD_INFO;
-const char* test_title = TEST_TITLE;
-const char* simple_title = SIMPLE_TITLE;
-const char* full_title = FULL_TITLE;
+#if defined (DEBUG) && defined (_MSC_VER)
+// #define WINMEMCHECK
+#endif // DEBUG...
 
 int cycle_start (nitpick& nits)
 {   reset_crosslinks ();
@@ -177,7 +176,7 @@ void trundle ()
 
 int examine (nitpick& nits)
 {   int res = VALID_RESULT;
-    if (context.cgi ())
+    if (context.cgi () || ! context.snippet ().empty ())
     {   page web (context.snippet ());
         try
         {   if (! web.invalid ()) web.examine ();
@@ -290,6 +289,7 @@ int cycle (nitpick& nits, const int argc, char** argv)
         context.started (balloon.inflate_time ());
         context.build (__DATE__ " " __TIME__);
         if (argc > 0)
+        {   VERIFY_NOT_NULL (argv, __FILE__, __LINE__);
 #ifdef _MSC_VER
 #pragma warning (push, 3)
 #pragma warning (disable : 26481)
@@ -297,12 +297,14 @@ int cycle (nitpick& nits, const int argc, char** argv)
             for (int i = 1; i < argc; ++i)
             {   args += " ";
                 args += argv [i];
-                vs.push_back (argv [i]); }
+                vs.push_back (argv [i]); } }
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif // _MSC_VER
         else if (! context.cmd ().empty ())
         {   vs = context.cmd ();
+            args = enquote (vs, "\" ");
+            context.gui (true);
             context.cmd ().clear (); }
         else if (context.serve ())
         {   res = server.process_and_progress ();
@@ -315,6 +317,7 @@ int cycle (nitpick& nits, const int argc, char** argv)
                     return res;
                 default :
                     vs = server.cmd ();
+                    args = enquote (vs, "\" ");
                     server.clear ();
                     break; } }
         else
@@ -327,21 +330,21 @@ int cycle (nitpick& nits, const int argc, char** argv)
             if (args.empty ()) return STOP_NOW;
             vs = uq2 (args, UQ_TRIM | UQ_SQ | UQ_DQ | UQ_BS | UQ_REPEATQ | UQ_UNIFY, " "); }
         VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
-        macro -> set (nm_context_build, build_info);
+        macro -> set (nm_context_build, BUILD_INFO);
         macro -> set (nm_run_args, args);
-        context.general_info (::boost::filesystem::current_path ().string () + "\n" + args + "\n" VERSION_STRING " [" __DATE__  " " __TIME__ "] [" + build_info + "]\n");
+        context.general_info (::boost::filesystem::current_path ().string () + "\n" + args + "\n" VERSION_STRING " [" __DATE__  " " __TIME__ "] [" + BUILD_INFO + "]\n");
         nitpick nuts;
         res = context.parameters (outstr, nuts, vs);
         if (! macro -> is_template_loaded ()) macro -> load_template (nuts, html_default);
         if ((context.todo () == do_simple) || context.yggdrisil ())
-        {   if (context.yggdrisil ()) outstr.console (simple_title);
-            else outstr.console (full_title);
+        {   if (context.yggdrisil ()) outstr.console (SIMPLE_TITLE);
+            else outstr.console (FULL_TITLE);
             macro -> dump_nits (nuts, ns_config, ns_config_head, ns_config_foot);
             outstr.console (context.domsg ());
             return VALID_RESULT; }
         context.apply_vcs (nuts);
         if (context.progress ()) outstr.console ("\npreparing\n");
-        outstr.out (macro -> apply (ns_doc_head));
+        if (! context.gui ()) outstr.out (macro -> apply (ns_doc_head));
         enfooten = true;
         macro -> dump_nits (nits, ns_init, ns_init_head, ns_init_foot);
         if (context.invalid () || (context.todo () == do_booboo) || (res == ERROR_STATE) || (nuts.worst () <= es_error))
@@ -386,6 +389,12 @@ int cycle (nitpick& nits, const int argc, char** argv)
 
 int ssc_main (int argc, char** argv)
 {   int res = NOTHING_TO_DO;
+#ifdef WINMEMCHECK
+    _CrtMemState sOld;
+    _CrtMemState sNew;
+    _CrtMemState sDiff;
+    _CrtMemCheckpoint (&sOld);
+#endif // WINMEMCHECK
     ::std::string msg;
     PRESUME (argc > 0, __FILE__, __LINE__);
     VERIFY_NOT_NULL (argv, __FILE__, __LINE__);
@@ -418,6 +427,16 @@ int ssc_main (int argc, char** argv)
         if (res < c) res = c; }
     catch (...)
     {   res = CATASTROPHIC_STATE; }
+#ifdef WINMEMCHECK
+    _CrtMemCheckpoint (&sNew); //take a snapshot 
+    if (_CrtMemDifference (&sDiff, &sOld, &sNew)) // if there is a difference
+    {   OutputDebugString (L"*** _CrtMemDumpStatistics ***");
+        _CrtMemDumpStatistics (&sDiff);
+        OutputDebugString (L"*** _CrtMemDumpAllObjectsSince ***");
+        _CrtMemDumpAllObjectsSince (&sOld);
+        OutputDebugString (L"*** _CrtDumpMemoryLeaks ***");
+        _CrtDumpMemoryLeaks (); }
+#endif // WINMEMCHECK
     return res; };
 
 int main (int argc, char** argv)

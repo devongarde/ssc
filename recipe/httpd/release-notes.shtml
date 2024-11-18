@@ -1,14 +1,14 @@
-<!--#include virtual="/plumbing/html.inc" -->
-<!--#include virtual="/plumbing/var.inc" -->
+<!--#include virtual="plumbing/html.inc" -->
+<!--#include virtual="plumbing/var.inc" -->
 <!--#set var="title" value="releases" -->
 <title>
 <!--#echo encoding="none" var="title" -->
 </title>
-<!--#include virtual="/plumbing/header.inc" -->
-<!--#include virtual="/plumbing/blog-section.inc" -->
-<!--#include virtual="/plumbing/html-top-start.inc" -->
-<!--#include virtual="/plumbing/html-top-end.inc" -->
-<!--#include virtual="/plumbing/blog-schema.inc" -->
+<!--#include virtual="plumbing/header.inc" -->
+<!--#include virtual="plumbing/blog-section.inc" -->
+<!--#include virtual="plumbing/html-top-start.inc" -->
+<!--#include virtual="plumbing/html-top-end.inc" -->
+<!--#include virtual="plumbing/blog-schema.inc" -->
 <data class="u-url u-uid" value="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->">
 </data>
 
@@ -19,6 +19,29 @@
 <div class="column">
 
 <div class="column-unit">
+
+<h3>0.2.5</h3>
+
+<ul>
+<li>
+Living Standard ALPHA and COLORSPACE attributes
+</li>
+<li>
+schema.org actionProcess
+</li>
+<li>
+added --html.wx, --mf.pretty and --ontology.pretty
+</li>
+<li>
+expanded Server Side Include processing
+</li>
+<li>
+various bug fixes
+</li>
+<li>
+underlying work
+</li>
+</ul>
 
 <h3>0.2.4</h3>
 
@@ -37,6 +60,12 @@ various bug fixes
 </li>
 <li>
 underlying work
+</li>
+<li>
+<A href="src/ssc-0.2.4.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2024-09-27">24 9 27</time>
 </li>
 </ul>
 
@@ -61,6 +90,12 @@ various bug fixes
 <li>
 underlying work
 </li>
+<li>
+<A href="src/ssc-0.2.3.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2024-07-24">24 7 24</time>
+</li>
 </ul>
 
 <h3>0.2.2</h3>
@@ -82,10 +117,10 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.2.2.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-0.2.2.tgz" type="application/gzip">download source</a>
 </li>
 <li>
-released <time itemprop="datePublished" class="dt-published" datetime="2024-07-30">24 7 30</time>
+released <time itemprop="datePublished" class="dt-published" datetime="2024-07-01">1 7 30</time>
 </li>
 </ul>
 
@@ -108,7 +143,7 @@ schema.org version 27.01
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.2.1.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-0.2.1.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2024-06-27">24 6 27</time>
@@ -137,7 +172,7 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.2.0.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-0.2.0.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2024-06-08">24 6 8</time>
@@ -157,7 +192,7 @@ various CMake improvements
 underlying work
 </li>
 <li>
-<A href="/src/ssc-0.1.60.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-0.1.60.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2024-02-29">24 2 29</time>
@@ -180,7 +215,7 @@ various CMake improvements
 underlying work
 </li>
 <li>
-<A href="/src/ssc-0.1.59.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-0.1.59.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2024-02-21">24 2 21</time>
@@ -200,7 +235,7 @@ various CMake improvements
 underlying work
 </li>
 <li>
-<A href="/src/ssc-0.1.58.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-0.1.58.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2024-02-19">24 2 19</time>
@@ -214,7 +249,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2024-02-1
 add CMake uninstall target
 </li>
 <li>
-<A href="/src/ssc-v0.1.57.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.57.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2024-02-15">24 2 15</time>
@@ -234,7 +269,7 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.56.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.56.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2024-02-14">24 2 14</time>
@@ -254,7 +289,7 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.55.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.55.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2024-02-14">24 2 14</time>
@@ -277,7 +312,7 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.54.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.54.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2024-02-12">24 2 12</time>
@@ -300,7 +335,7 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.53.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.53.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2024-02-09">24 2 9</time>
@@ -323,7 +358,7 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.52.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.52.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2024-01-24">24 1 24</time>
@@ -346,7 +381,7 @@ updated CSS 2023 Snapshot to December 2023 specification
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.51.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.51.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2024-01-22">24 1 22</time>
@@ -387,7 +422,7 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.50.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.50.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2024-01-15">24 1 15</time>
@@ -410,7 +445,7 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.49.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.49.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-12-02">23 12 2</time>
@@ -433,7 +468,7 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.48.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.48.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-11-19">23 11 19</time>
@@ -453,7 +488,7 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.47.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.47.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-11-13">23 11 13</time>
@@ -494,7 +529,7 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.46.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.46.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-11-13">23 11 13</time>
@@ -520,7 +555,7 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.45.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.45.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-11-08">23 11 8</time>
@@ -555,7 +590,7 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.44.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.44.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-11-05">23 11 5</time>
@@ -590,7 +625,7 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.43.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.43.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-10-24">23 10 24</time>
@@ -634,7 +669,7 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.42.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.42.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-10-21">23 10 21</time>
@@ -672,7 +707,7 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.41.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.41.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-10-18">23 10 18</time>
@@ -707,7 +742,7 @@ CSS Scrollbar Style 3
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.40.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.40.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-10-14">23 10 14</time>
@@ -739,7 +774,7 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.39.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.39.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-10-10">23 10 10</time>
@@ -771,7 +806,7 @@ drop VS 2017
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.38.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.38.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-10-08">23 10 8</time>
@@ -800,7 +835,7 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.37.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.37.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-10-07">23 10 7</time>
@@ -826,7 +861,7 @@ CSS Images 3
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.36.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.36.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-10-01">23 10 1</time>
@@ -849,7 +884,7 @@ CSS Text Decoration 4
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.35.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.35.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-09-22">23 9 22</time>
@@ -878,7 +913,7 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.34.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.34.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-09-16">23 9 16</time>
@@ -904,7 +939,7 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.33.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.33.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-09-02">23 9 2</time>
@@ -930,7 +965,7 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.32.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.32.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-08-25">23 8 25</time>
@@ -959,7 +994,7 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.31.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.31.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-08-05">23 8 5</time>
@@ -1003,7 +1038,7 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.30.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.30.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-07-15">23 7 15</time>
@@ -1023,7 +1058,7 @@ CSS Flexible Box Layout 3
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.29.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.29.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-07-09">23 7 9</time>
@@ -1046,7 +1081,7 @@ CSS Font 5 (December 2021 draft)
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.28.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.28.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-07-08">23 7 8</time>
@@ -1075,7 +1110,7 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.27.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.27.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-07-01">23 7 1</time>
@@ -1105,7 +1140,7 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.26.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.26.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-06-28">23 6 28</time>
@@ -1129,7 +1164,7 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.25.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.25.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-06-21">23 6 21</time>
@@ -1146,7 +1181,7 @@ improved build time
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.24.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.24.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-06-17">23 6 17</time>
@@ -1172,7 +1207,7 @@ various bug fixes
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.23.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.23.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-06-13">23 6 13</time>
@@ -1195,7 +1230,7 @@ CSS Values 3
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.22.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.22.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-06-01">23 6 1</time>
@@ -1215,7 +1250,7 @@ ARM64 builds for macos and windows
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.21.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.21.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-05-09">23 5 24</time>
@@ -1230,7 +1265,7 @@ OpenBSD 7.3
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.20.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.20.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-05-09">23 5 9</time>
@@ -1271,7 +1306,7 @@ Abhorrent nits for markup that disgusts
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.19.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.19.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-04-08">23 4 8</time>
@@ -1294,7 +1329,7 @@ CSS 4 Media
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.18.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.18.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-04-01">23 4 1</time>
@@ -1320,7 +1355,7 @@ CSS 3 Media
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.17.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.17.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-03-25">23 3 25</time>
@@ -1340,7 +1375,7 @@ CSS 3 accessibility
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.16.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.16.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-03-19">23 3 19</time>
@@ -1360,7 +1395,7 @@ CSS 3 Selectors
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.15.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.15.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-03-18">23 3 18</time>
@@ -1374,7 +1409,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2023-03-1
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.14.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.14.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-03-05">23 3 5</time>
@@ -1400,7 +1435,7 @@ CSS 2.2 (February 2022 draft) verification
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.13.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.13.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-02-16">23 2 16</time>
@@ -1432,7 +1467,7 @@ OpenBSD 7.2
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.12.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.12.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2023-01-01">23 1 1</time>
@@ -1452,7 +1487,7 @@ tighten poetry ontology
 various bug fixes
 </li>
 <li>
-<A href="/src/ssc-v0.1.11.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.11.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2022-10-19">22 10 19</time>
@@ -1466,7 +1501,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2022-10-1
 schema.org 15.0 (beta)
 </li>
 <li>
-<A href="/src/ssc-v0.1.10.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.10.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2022-10-13">22 10 13</time>
@@ -1486,7 +1521,7 @@ poetry ontology 1.1
 various reliability improvements
 </li>
 <li>
-<A href="/src/ssc-v0.1.9.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.9.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2022-10-03">22 10 3</time>
@@ -1503,7 +1538,7 @@ unknown class names are retained when shadowing
 various reliability improvements
 </li>
 <li>
-<A href="/src/ssc-v0.1.8.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.8.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2022-09-30">22 9 30</time>
@@ -1520,7 +1555,7 @@ improve memory footprint
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.7.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.7.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2022-09-15">22 9 15</time>
@@ -1540,7 +1575,7 @@ backport to Yosemite
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.6.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.6.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2022-09-07">22 9 7</time>
@@ -1560,7 +1595,7 @@ backport to older versions of macos
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.5.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.5.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2022-09-03">22 9 3</time>
@@ -1574,7 +1609,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2022-09-0
 bug fix release
 </li>
 <li>
-<A href="/src/ssc-v0.1.4.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.4.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2022-08-30">22 8 30</time>
@@ -1600,7 +1635,7 @@ more linux flavours tested
 builds under freebsd 12.3 &amp; 13.1
 </li>
 <li>
-<A href="/src/ssc-v0.1.3.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.3.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2022-08-28">22 8 28</time>
@@ -1620,7 +1655,7 @@ Linux builds require lsb_release
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.2.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.2.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2022-08-23">22 8 23</time>
@@ -1637,7 +1672,7 @@ avoid clang clanger
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.1.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.1.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2022-08-21">22 8 21</time>
@@ -1654,7 +1689,7 @@ the very first &alpha; release!
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v0.1.0.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v0.1.0.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2022-08-19">22 8 19</time>
@@ -1671,7 +1706,7 @@ further performance improvements
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v134-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v134-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2022-08-17">22 8 17</time>
@@ -1688,7 +1723,7 @@ further performance improvements
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v133-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v133-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2022-08-15">22 8 15</time>
@@ -1705,7 +1740,7 @@ further performance improvements
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v132-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v132-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2022-08-13">22 8 13</time>
@@ -1722,7 +1757,7 @@ living standard for July 2022
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v131-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v131-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2022-07-31">22 7 31</time>
@@ -1751,7 +1786,7 @@ fix schema hierarchy property type checks
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v130-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v130-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2022-07-30">22 7 30</time>
@@ -1768,7 +1803,7 @@ improve diagnostics of invalid HTTP-EQUIV entries
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v129-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v129-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2022-06-20">22 6 20</time>
@@ -1791,7 +1826,7 @@ fixed some ontology verification bugs
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v128-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v128-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2022-06-16">22 6 16</time>
@@ -1808,7 +1843,7 @@ all versions of the <a href="https://www.gs1.org/voc/">gs1 ontology</a> now reco
 various refinements &amp; bug fixes
 </li>
 <li>
-<A href="/src/ssc-v127-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v127-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2022-04-16">22 4 16</time>
@@ -1825,7 +1860,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2022-04-1
 various refinements &amp; bug fixes
 </li>
 <li>
-<A href="/src/ssc-v126-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v126-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2022-04-09">22 4 9</time>
@@ -1854,7 +1889,7 @@ removed webmention code
 various refinements &amp; bug fixes
 </li>
 <li>
-<A href="/src/ssc-v125-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v125-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2022-04-05">22 4 5</time>
@@ -1880,7 +1915,7 @@ documented certain previously hidden switches
 various refinements &amp; bug fixes
 </li>
 <li>
-<A href="/src/ssc-v124-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v124-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2022-02-13">22 2 13</time>
@@ -1903,7 +1938,7 @@ documented certain previously hidden switches
 various refinements &amp; bug fixes
 </li>
 <li>
-<A href="/src/ssc-v123-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v123-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2022-02-06">22 2 6</time>
@@ -1926,7 +1961,7 @@ A number of features are enabled by default
 underlying work / various refinements
 </li>
 <li>
-<A href="/src/ssc-v122-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v122-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2022-01-16">22 1 16</time>
@@ -1946,7 +1981,7 @@ Drop 32 bit builds &amp; macos before catalina
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v121-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v121-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2022-01-05">22 1 5</time>
@@ -1966,7 +2001,7 @@ added --ontology.list to list known ontology schema
 added --ontology.ONT x.y to set the default version of ontology ONT
 </li>
 <li>
-<A href="/src/ssc-v120-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v120-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2022-01-02">22 1 2</time>
@@ -1983,7 +2018,7 @@ macos Monterey
 underlying work / various refinements
 </li>
 <li>
-<A href="/src/ssc-v119-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v119-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-12-21">21 12 21</time>
@@ -2000,7 +2035,7 @@ Visual Studio 2022 solution
 underlying work / various refinements
 </li>
 <li>
-<A href="/src/ssc-v118-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v118-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-11-22">21 11 22</time>
@@ -2014,7 +2049,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-11-2
 underlying work / various refinements
 </li>
 <li>
-<A href="/src/ssc-v117-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v117-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-11-10">21 11 10</time>
@@ -2034,7 +2069,7 @@ change default HTML to living standard Oct 2021
 underlying work / various refinements
 </li>
 <li>
-<A href="/src/ssc-v116-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v116-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-10-24">21 10 24</time>
@@ -2063,7 +2098,7 @@ unii builds now require CMake 3.12 or better
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v115-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v115-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-10-17">21 10 17</time>
@@ -2077,7 +2112,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-10-1
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v114-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v114-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-10-06">21 10 6</time>
@@ -2097,7 +2132,7 @@ restore progress report via -D switch
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v113-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v113-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-09-30">21 9 30</time>
@@ -2114,7 +2149,7 @@ control output format
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v112-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v112-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-09-21">21 9 21</time>
@@ -2137,7 +2172,7 @@ added --shadow.enable
 drop Visual Studio 2015
 </li>
 <li>
-<A href="/src/ssc-v111-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v111-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-08-21">21 8 21</time>
@@ -2151,7 +2186,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-08-2
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v110-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v110-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-08-02">21 8 2</time>
@@ -2165,7 +2200,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-08-0
 update flag, so SSC only looks at files that have changed recently
 </li>
 <li>
-<A href="/src/ssc-v109-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v109-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-06-29">21 6 29</time>
@@ -2185,7 +2220,7 @@ added example website update script
 specify which page content goes in the corpus
 </li>
 <li>
-<A href="/src/ssc-v108-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v108-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-06-15">21 6 15</time>
@@ -2235,7 +2270,7 @@ April 2021 Animations draft
 </ul>
 </li>
 <li>
-<A href="/src/ssc-v107-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v107-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-06-05">21 6 05</time>
@@ -2249,7 +2284,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-06-0
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v106-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v106-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-05-31">21 6 31</time>
@@ -2266,7 +2301,7 @@ improved diagnostics on abort
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v105-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v105-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-05-24">21 6 24</time>
@@ -2280,7 +2315,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-05-2
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v104-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v104-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-05-18">21 6 18</time>
@@ -2294,7 +2329,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-05-1
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v103-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v103-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-05-18">21 5 11</time>
@@ -2308,7 +2343,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-05-1
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v102-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v102-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-05-03">21 5 3</time>
@@ -2340,7 +2375,7 @@ recognise the non&ndash;standard character codes <kbd>&amp;bang;</kbd> <kbd>&amp
 improvements to corpus data extraction
 </li>
 <li>
-<A href="/src/ssc-v101-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v101-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-04-21">21 4 21</time>
@@ -2372,7 +2407,7 @@ specify custom elements and custom attributes (see recipe/toast/type/custom/* fo
 dump site corpus with -d switch
 </li>
 <li>
-<A href="/src/ssc-v100-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v100-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-04-16">21 4 16</time>
@@ -2389,7 +2424,7 @@ checks microformats in microdata
 export living standard &amp; microformats microdata
 </li>
 <li>
-<A href="/src/ssc-v99-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v99-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-04-11">21 4 11</time>
@@ -2406,7 +2441,7 @@ living standard microdata ITEMTYPEs processed
 stats now only counts reported errors
 </li>
 <li>
-<A href="/src/ssc-v98-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v98-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-04-07">21 4 7</time>
@@ -2429,7 +2464,7 @@ various microdata, including vcard, vevent, purl.org and n.whatwg.org, are not c
 no spellchecker
 </li>
 <li>
-<A href="/src/ssc-v97-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v97-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-03-31">21 3 31</time>
@@ -2443,7 +2478,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-03-3
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v96-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v96-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-03-26">21 3 26</time>
@@ -2457,7 +2492,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-03-2
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v95-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v95-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-03-25">21 3 25</time>
@@ -2474,7 +2509,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-03-2
 improved diagnosis output
 </li>
 <li>
-<A href="/src/ssc-v94-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v94-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-03-20">21 3 20</time>
@@ -2488,7 +2523,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-03-2
 processes schema.org 12.0 microdata
 </li>
 <li>
-<A href="/src/ssc-v93-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v93-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-03-12">21 3 12</time>
@@ -2505,7 +2540,7 @@ recognise open graph meta names
 expand mime type checking
 </li>
 <li>
-<A href="/src/ssc-v92-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v92-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-03-16">21 3 16</time>
@@ -2519,7 +2554,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-03-1
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v91-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v91-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-03-12">21 3 12</time>
@@ -2533,7 +2568,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-03-1
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v90-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v90-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-03-12">21 3 12</time>
@@ -2550,7 +2585,7 @@ more media type / file extension checks
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v89-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v89-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-03-05">21 3 5</time>
@@ -2567,7 +2602,7 @@ added media type checks
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v88-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v88-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-03-02">21 3 2</time>
@@ -2581,7 +2616,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-03-0
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v87-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v87-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-02-25">21 2 25</time>
@@ -2595,7 +2630,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-02-2
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v86-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v86-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-02-15">21 2 15</time>
@@ -2609,7 +2644,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-02-1
 additional stats options, reporting &lt;DT&gt;&lt;DD&gt;, &lt;ABBR&gt;>, &amp; &lt;DFN&gt; content
 </li>
 <li>
-<A href="/src/ssc-v85-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v85-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-02-12">21 2 12</time>
@@ -2623,7 +2658,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-02-1
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v84-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v84-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-02-01">21 2 01</time>
@@ -2637,7 +2672,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-02-0
 verifies various new living standard referenced http-equiv pragmas
 </li>
 <li>
-<A href="/src/ssc-v83-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v83-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-02-01">21 2 01</time>
@@ -2651,7 +2686,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-02-0
 --schema.version now accepts + for HTML+
 </li>
 <li>
-<A href="/src/ssc-v82-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v82-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-01-29">21 1 29</time>
@@ -2668,7 +2703,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-01-2
 --schema.minor removed
 </li>
 <li>
-<A href="/src/ssc-v81-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v81-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-01-24">21 1 24</time>
@@ -2688,7 +2723,7 @@ adds --stats.meta to generate stats on &lt;META&gt; usage in &lt;HEAD&gt;
 checks content-security-policy values
 </li>
 <li>
-<A href="/src/ssc-v80-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v80-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-01-18">21 1 18</time>
@@ -2702,7 +2737,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-01-1
 A new -z switch to specify the maximum preferred length of title text;
 </li>
 <li>
-<A href="/src/ssc-v79-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v79-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-01-15">21 1 15</time>
@@ -2716,7 +2751,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-01-1
 underlying work
 </li>
 <li>
-<A href="/src/ssc-v78-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v78-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2021-01-03">21 1 3</time>
@@ -2730,7 +2765,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2021-01-0
 checks that the HTML page and the charset declared on it (if any) have something in common
 </li>
 <li>
-<A href="/src/ssc-v77-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v77-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-12-20">20 12 20</time>
@@ -2744,7 +2779,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2020-12-2
 added --shadow.ignore to ignore files with specified extension
 </li>
 <li>
-<A href="/src/ssc-v76-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v76-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-12-13">20 12 13</time>
@@ -2766,7 +2801,7 @@ default dedu cache now based on config file name
 <li>
 underlying work
 </li><li>
-<A href="/src/ssc-v75-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v75-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-12-10">20 12 10</time>
@@ -2783,7 +2818,7 @@ can process <a href="https://schema.org">schema.org</a> 11.0 microdata;
 includes some microdata refinements.
 </li>
 <li>
-<A href="/src/ssc-v74-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v74-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-12-06">20 12 6</time>
@@ -2800,7 +2835,7 @@ Export &lsquo;repaired&rsquo; HTML files, including processing of Server Side In
 Deduplicate non&ndash;HTML files. When used with export, it copies one version of the file and modifies links appropriately.
 </li>
 <li>
-<A href="/src/ssc-v73-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v73-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-12-05">20 12 5</time>
@@ -2811,7 +2846,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2020-12-0
 
 <ul>
 <li>
-<A href="/src/ssc-v71-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v71-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-11-25">20 11 25</time>
@@ -2822,7 +2857,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2020-11-2
 
 <ul>
 <li>
-<A href="/src/ssc-v70-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v70-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-11-22">20 11 22</time>
@@ -2833,7 +2868,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2020-11-2
 
 <ul>
 <li>
-<A href="/src/ssc-v60-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v60-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-10-29">20 10 29</time>
@@ -2844,7 +2879,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2020-10-2
 
 <ul>
 <li>
-<A href="/src/ssc-v55-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v55-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-10-20">20 10 20</time>
@@ -2855,7 +2890,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2020-10-2
 
 <ul>
 <li>
-<A href="/src/ssc-v2-sauce.tgz" type="application/gzip">download source</a>
+<A href="src/ssc-v2-sauce.tgz" type="application/gzip">download source</a>
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2020-04-20">20 4 20</time>
@@ -2865,5 +2900,5 @@ released <time itemprop="datePublished" class="dt-published" datetime="2020-04-2
 </div>
 </div>
 
-<!--#include virtual="/plumbing/under.inc" -->
-<!--#include virtual="/plumbing/html-end.inc" -->
+<!--#include virtual="plumbing/under.inc" -->
+<!--#include virtual="plumbing/html-end.inc" -->

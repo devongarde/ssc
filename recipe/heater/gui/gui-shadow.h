@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define SHADOW_CAPTION "Shadow"
 
-class shadow_t : public dialogue_t
+class shadow_t : public d1_t < wx_shadow >
 {   wxBoxSizer* box_cache_ = nullptr;
     wxBoxSizer* box_comment_ = nullptr;
     wxBoxSizer* box_strat_ = nullptr;
@@ -51,7 +51,7 @@ class shadow_t : public dialogue_t
     wxStaticText* stat_site_ = nullptr;
     wxStaticText* stat_strat_ = nullptr;
     wxTextCtrl* text_comment_ = nullptr;
-    listedit_manager ignore_;
+    listedit_manager ignore_ = listedit_manager (button_shadow_add, button_shadow_erase, button_shadow_rename, file_shadow_name, list_shadow_ext, text_shadow_ext);
     int strat_count_ = 0;
     bool change_ = false, keep_ = false, site_ = false, ssi_ = false, time_ = false, whitespace_ = false; 
     ::boost::filesystem::path cache_, shadow_;
@@ -59,13 +59,6 @@ class shadow_t : public dialogue_t
     vstr_t ext_;
     ::std::string comment_; 
     void enable (); 
-    void OnIgnoreAdd (wxCommandEvent& event);
-    void OnIgnoreErase (wxCommandEvent& event);
-    void OnIgnoreRename (wxCommandEvent& event);
-    void OnIgnoreExtension (wxCommandEvent& event);
-    void OnIgnoreTap (wxCommandEvent& event);
-    void OnIgnoreImpatience (wxCommandEvent& event);
-    void OnShadow (wxCommandEvent& event);
     DECLARE_CLASS (shadow_t)
     DECLARE_EVENT_TABLE ()
 public:
@@ -77,6 +70,18 @@ public:
     bool Create (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = SHADOW_CAPTION);
     void CreateControls ();
     void OnHelpClick (wxCommandEvent& event);
+    void OnIgnoreAdd (wxCommandEvent& event);
+    void OnIgnoreErase (wxCommandEvent& event);
+    void OnIgnoreRename (wxCommandEvent& event);
+    void OnIgnoreExtension (wxCommandEvent& event);
+    void OnIgnoreTap (wxCommandEvent& event);
+    void OnIgnoreImpatience (wxCommandEvent& event);
+    void OnShadow (wxCommandEvent& event);
+    bool invalid_panel () const { return d1_t :: invalid_panel () || invalid () || (panel_ == nullptr); }
+    void create_controls (wxWindow *parent);
+    bool create_panel (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL | wxNO_BORDER);
+    void load_from_context (const context_t& c);
+    void save_to_context (context_t& c) const;
 
     ::boost::filesystem::path cache () const { return cache_; }
     void cache (const ::boost::filesystem::path& p) { cache_ = p; }

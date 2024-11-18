@@ -270,10 +270,10 @@ void elements_node::parse (const html_version& v, bracs_ket& elements)
             case bk_doctype :   id.reset (elem_faux_doctype); break;
             case bk_node :      {   ::std::string mc (::std::string (e.start_, e.eofe_));
                                     if (e.eofe_ < e.end_) attributes_node::process_attributes (e.nits_, ver, parent, e.eofe_, e.end_, e.line_);
-                                    id.reset (e.nits_, ver, parent -> namespaces (), mc);
+                                    id.reset (e.nits_, ver, parent -> namespaces (), mc, e.closure_);
                                     if (id.unknown ())
                                     {   nitpick nuts;
-                                        const elem tst (nuts, html_0, parent -> namespaces (), mc);
+                                        const elem tst (nuts, html_0, parent -> namespaces (), mc, e.closure_);
                                         bad_version = ! tst.unknown (); } 
                                     else if (ver.xhtml ())
                                     {   const ::std::string& naam (id.name ());

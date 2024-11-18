@@ -118,13 +118,13 @@ bool grab_leap_second (const ::std::string::const_iterator e, ::std::string::con
 bool grab_microsecond (const ::std::string::const_iterator e, ::std::string::const_iterator& i, int& ms) noexcept
 {   return grab_digits < int > (e, i, 3, 0, true, ms); }
 
-bool grab_chars (const ::std::string::const_iterator e, const ::std::string::const_iterator& c, const ::std::string& what, const int max) noexcept
+bool grab_chars (const ::std::string::const_iterator e, ::std::string::const_iterator& c, const ::std::string& what, const int max) noexcept
 {   int count = 0;
     ::std::string::const_iterator i = c;
     while ((i != e) && (what.find (*i) != ::std::string::npos))
     {   if (++count > max) return false;
         ++i; }
-    i = c; return true; }
+    c = i; return true; }
 
 bool verify_simply_year (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& year) noexcept
 {   ::std::string::const_iterator i = c;
@@ -149,6 +149,29 @@ bool verify_day (const ::std::string::const_iterator e, ::std::string::const_ite
 {   ::std::string::const_iterator i = c;
     if (! grab_day (e, i, 0, 0, day)) return false;
     c = i; return true; }
+
+template < e_type E > bool verify_enum (const ::std::string::const_iterator e, ::std::string::const_iterator& c, const int mx, int& v) noexcept
+{   ::std::string::const_iterator i = c;
+    try
+    {   if (! grab_chars (e, i, ALPHABET, mx)) return false;
+        nitpick nits;
+        if (! test_value < E > (nits, html_default, ::std::string (c, i))) return false;
+        v = static_cast < int > (examine_value < E > (nits, html_default, ::std::string (c, i))); }
+    catch (...)
+    {   return false; }
+    c = i; return true; }
+
+bool verify_english_weekday_short (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& day) noexcept
+{   return verify_enum < t_weekday_english_short > (e, c, 3, day); }
+
+bool verify_english_weekday_long (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& day) noexcept
+{   return verify_enum < t_weekday_english_long > (e, c, 9, day); }
+
+bool verify_english_month_short (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& month) noexcept
+{   return verify_enum < t_month_english_short > (e, c, 3, month); }
+
+bool verify_english_month_long (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& month) noexcept
+{   return verify_enum < t_month_english_long > (e, c, 9, month); }
 
 bool verify_year (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& year, int& month, int& day) noexcept
 {   ::std::string::const_iterator i = c;
@@ -193,6 +216,20 @@ bool verify_coarse_time (const ::std::string::const_iterator e, ::std::string::c
     if (! grab_hour (e, i, h)) return false;
     if (! grab_char (e, i, ':')) return false;
     if (! grab_minute (e, i, m)) return false;
+    second = s;
+    hour = h;
+    minute = m;
+    c = i;
+    return true; }
+
+bool verify_hms (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& hour, int& minute, int& second) noexcept
+{   ::std::string::const_iterator i = c;
+    int h = 0, m = 0, s = 0;
+    if (! grab_hour (e, i, h)) return false;
+    if (! grab_char (e, i, ':')) return false;
+    if (! grab_minute (e, i, m)) return false;
+    if (! grab_char (e, i, ':')) return false;
+    if (! grab_second (e, i, s)) return false;
     second = s;
     hour = h;
     minute = m;
@@ -257,6 +294,15 @@ bool verify_global_datetime (const ::std::string::const_iterator e, ::std::strin
     if (! verify_time (e, i, hour, minute, second, micro)) return false;
     if (! verify_timezone (e, i, hour_offset, minute_offset)) return false;
     c = i; return true; }
+
+bool acquire_global_datetime (const ::std::string& s, int& year, int& month, int& day, int& hour, int& minute, int& second)
+{   ::std::string::const_iterator i = s.cbegin ();
+    const ::std::string::const_iterator e = s.cend ();
+    if (! verify_year (e, i, year, month, day)) return false;
+    if (e == i) return true;
+    if (! grab_char (e, i, ' ')) return false;
+    if (! verify_hms (e, i, hour, minute, second)) return false;
+    return (i == e); }
 
 bool verify_duration (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& day, int& hour, int& minute, int& second, int& micro) noexcept
 {   if (c == e) return false;
@@ -426,12 +472,111 @@ bool verify_vague (const ::std::string::const_iterator e, ::std::string::const_i
     duration = s64;
     return true; }
 
+bool verify_ansi (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& weekday, int& year, int& month, int& week, int& day, int& hour, int& minute, int& second)
+{   ::std::string::const_iterator i = c;
+    int y = 0, m = 0, d = 0, h = 0, mn = 0, s = 0, w = 0, wd = 0;
+    if (! verify_english_weekday_short (e, i, wd)) return false;
+    if (! grab_char (e, i, ' ')) return false;
+    if (! verify_english_month_short (e, i, mn)) return false;
+    if (! grab_char (e, i, ' ')) return false;
+    if (! grab_digits < int > (e, i, 2, 31, false, d))
+    {   if (! grab_char (e, i, ' ')) return false;
+        if (! grab_digits < int > (e, i, 1, 9, false, d)) return false; }
+    if (! grab_char (e, i, ' ')) return false;
+    if (! verify_hms (e, i, h, m, s)) return false;
+    if (! grab_char (e, i, ' ')) return false;
+    if (! grab_year (e, i, y)) return false;
+    c = i;
+    year = y;
+    month = m;
+    week = w;
+    weekday = wd;
+    day = d;
+    hour = h;
+    minute = mn;
+    second = s;
+    return true; }
+
+bool verify_rfc_850 (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& weekday, int& year, int& month, int& week, int& day, int& hour, int& minute, int& second)
+{   ::std::string::const_iterator i = c;
+    int y = 0, m = 0, d = 0, h = 0, mn = 0, s = 0, w = 0, wd = 0;
+    if (! verify_english_weekday_long (e, i, wd)) return false;
+    if (! grab_char (e, i, ',')) return false;
+    if (! grab_char (e, i, ' ')) return false;
+    if (! grab_digits < int > (e, i, 2, 31, false, d)) return false;
+    if (! grab_char (e, i, '-')) return false;
+    if (! verify_english_month_short (e, i, mn)) return false;
+    if (! grab_char (e, i, '-')) return false;
+    if (! grab_year (e, i, y)) return false;
+    if (! grab_char (e, i, ' ')) return false;
+    if (! verify_hms (e, i, h, m, s)) return false;
+    if (! grab_char (e, i, ' ')) return false;
+    if (! grab_char (e, i, 'G')) return false;
+    if (! grab_char (e, i, 'M')) return false;
+    if (! grab_char (e, i, 'T')) return false;
+    c = i;
+    year = y;
+    month = m;
+    week = w;
+    weekday = wd;
+    day = d;
+    hour = h;
+    minute = mn;
+    second = s;
+    return true; }
+
+bool verify_rfc_1123 (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& weekday, int& year, int& month, int& week, int& day, int& hour, int& minute, int& second)
+{   ::std::string::const_iterator i = c;
+    int y = 0, m = 0, d = 0, h = 0, mn = 0, s = 0, w = 0, wd = 0;
+    if (! verify_english_weekday_short (e, i, wd)) return false;
+    if (! grab_char (e, i, ',')) return false;
+    if (! grab_char (e, i, ' ')) return false;
+    if (! grab_digits < int > (e, i, 2, 31, false, d)) return false;
+    if (! grab_char (e, i, ' ')) return false;
+    if (! verify_english_month_short (e, i, mn)) return false;
+    if (! grab_char (e, i, ' ')) return false;
+    if (! grab_year (e, i, y)) return false;
+    if (! grab_char (e, i, ' ')) return false;
+    if (! verify_hms (e, i, h, m, s)) return false;
+    if (! grab_char (e, i, ' ')) return false;
+    if (! grab_char (e, i, 'G')) return false;
+    if (! grab_char (e, i, 'M')) return false;
+    if (! grab_char (e, i, 'T')) return false;
+    c = i;
+    year = y;
+    month = m;
+    week = w;
+    weekday = wd;
+    day = d;
+    hour = h;
+    minute = mn;
+    second = s;
+    return true; }
+
 bool verify_vague (const ::std::string& str)
 {   ::std::string::const_iterator i = str.cbegin ();
     ::std::string::const_iterator e = str.cend ();
     int y = 0, m = 0, d = 0, h = 0, mn = 0, s = 0, ms = 0, ho = 0, mo = 0, w = 0;
     int64_t s64 = 0;
     return verify_vague (e, i, y, m, w, d, h, mn, s, ms, ho, mo, s64); }
+
+bool verify_ansi (const ::std::string& str)
+{   ::std::string::const_iterator i = str.cbegin ();
+    ::std::string::const_iterator e = str.cend ();
+    int wd = 0, y = 0, m = 0, d = 0, h = 0, mn = 0, s = 0, w = 0;
+    return verify_ansi (e, i, wd, y, m, w, d, h, mn, s); }
+
+bool verify_rfc_850 (const ::std::string& str)
+{   ::std::string::const_iterator i = str.cbegin ();
+    ::std::string::const_iterator e = str.cend ();
+    int wd = 0, y = 0, m = 0, d = 0, h = 0, mn = 0, s = 0, w = 0;
+    return verify_rfc_850 (e, i, wd, y, m, w, d, h, mn, s); }
+
+bool verify_rfc_1123 (const ::std::string& str)
+{   ::std::string::const_iterator i = str.cbegin ();
+    ::std::string::const_iterator e = str.cend ();
+    int wd = 0, y = 0, m = 0, d = 0, h = 0, mn = 0, s = 0, w = 0;
+    return verify_rfc_1123 (e, i, wd, y, m, w, d, h, mn, s); }
 
 bool verify_local_datetime (const ::std::string& str)
 {   ::std::string::const_iterator i = str.cbegin ();
@@ -532,6 +677,13 @@ bool verify_time_5 (nitpick& nits, const html_version& , const ::std::string& s)
     nits.pick (nit_bad_datetime, ed_50, "2.4.5 Dates and times", es_error, ec_type, quote (s), " is an invalid datetime");
     return false; }
 
+bool verify_http_time (nitpick& nits, const html_version& , const ::std::string& s)
+{   if (verify_rfc_1123 (s)) return true;
+    if (verify_rfc_850 (s)) return true;
+    if (verify_ansi (s)) return true;
+    nits.pick (nit_bad_datetime, ed_rfc_2616, "3.3 Date/Time Formats", es_error, ec_type, quote (s), " is an invalid hyper datetime");
+    return false; }
+
 bool verify_absolute (nitpick& nits, const html_version& , const ::std::string& s)
 {   if (verify_absolute (s)) return true;
     nits.pick (nit_bad_datetime, ed_50, "2.4.5 Dates and times", es_error, ec_type, quote (s), " must be an absolute datetime");
@@ -596,6 +748,13 @@ bool verify_svg_duration (nitpick& nits, const html_version& , const ::std::stri
 {   if (verify_svg_duration (s)) return true;
     nits.pick (nit_bad_datetime, ed_svg_1_1, "19.2.8.1 Clock values", es_error, ec_type, quote (s), " is an invalid duration");
     return false; }
+
+time_t string_to_time (nitpick& nits, const ::std::string& s)
+{   if (s.empty ()) return 0;
+    struct tm t = { };
+    if (! acquire_global_datetime (s, t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec))
+        nits.pick (nit_bad_datetime, es_error, ec_type, quote (s), ": expecting 'YYYY-MM-DD hh:mm:ss' as valid integers");
+    return ::std::mktime (&t); }
 
 // ******************************** note to self: effing well sort this out. FFS.  ********************************
 bool test_animation_timing (nitpick& , const html_version& , const ::std::string& , const bool )

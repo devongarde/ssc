@@ -1,14 +1,14 @@
-<!--#include virtual="/plumbing/html.inc" -->
-<!--#include virtual="/plumbing/var.inc" -->
+<!--#include virtual="plumbing/html.inc" -->
+<!--#include virtual="plumbing/var.inc" -->
 <!--#set var="title" value="using static site checker" -->
 <title>
 <!--#echo encoding="none" var="title" -->
 </title>
-<!--#include virtual="/plumbing/header.inc" -->
-<!--#include virtual="/plumbing/blog-section.inc" -->
-<!--#include virtual="/plumbing/html-top-start.inc" -->
-<!--#include virtual="/plumbing/html-top-end.inc" -->
-<!--#include virtual="/plumbing/blog-schema.inc" -->
+<!--#include virtual="plumbing/header.inc" -->
+<!--#include virtual="plumbing/blog-section.inc" -->
+<!--#include virtual="plumbing/html-top-start.inc" -->
+<!--#include virtual="plumbing/html-top-end.inc" -->
+<!--#include virtual="plumbing/blog-schema.inc" -->
 <data class="u-url u-uid" value="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->">
 </data>
 
@@ -36,7 +36,7 @@ If it&rsquo;s installed correctly, it should respond with &copy; info.
 It is possible to set up configuration files, but, to start, we&rsquo;ll try
 a simple set of command line options. If the HTML files belonging to
 your website is located in the current directory, and the main index
-file is called <a href="/index.html">index.html</a>, then all you need type is:
+file is called <a href="index.html">index.html</a>, then all you need type is:
 </p>
 
 <code>
@@ -63,7 +63,7 @@ onhover=&ldquo;wink-embarrassingly&rdquo; whimper=frequently&gt;d wombats are a
 delicious&lt;/A&gt; thing.&lt;/P&gt;
 </code>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-se-w1.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="image/ssc-msgdb-se-w1.jpg" title="made with studio artist 5.5">
 
 <p>
 The word <!--#echo encoding="none" var="short" --> spots is &ldquo;Taostd&rdquo;. It knows there&rsquo;s a word to check when
@@ -138,11 +138,11 @@ processing.
 </p>
 
 <p>
-A full list of switches is given by the -h switch, &amp; <a href="/args/index.shtml">can be found here</a>.
+A full list of switches is given by the -h switch, &amp; <a href="args/index.shtml">can be found here</a>.
 </p>
 
 <p>
-Command line arguments can also be assembled <a href="/args/config.shtml">in configuration files: more gen here</a>.
+Command line arguments can also be assembled <a href="args/config.shtml">in configuration files: more gen here</a>.
 </p>
 
 <h3>Environment</h3>
@@ -164,7 +164,7 @@ circumstances, QUERY_STRING must contain a parameter called
 html.snippet, with an appropriate value.
 </p>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-sfx-src1.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="image/ssc-msgdb-sfx-src1.jpg" title="made with studio artist 5.5">
 
 <h2>Potential gotchas</h2>
 
@@ -180,7 +180,7 @@ particular version (such as HTML 3.2), then that applies.
 <p>
 The version indicated by the DOCTYPE can be very broad. For example,
 the HTML 5 doctype specifies HTML 5 alone, but not which flavour (W3 or
-living standard), nor which revision&mdash;there have been dramatic changes between the original in 2005 and that of today.
+living standard), nor which revision&mdash;there have been rather a lot of changes since the 2005 original and current version.
 </p>
 
 <p>
@@ -196,17 +196,16 @@ configuration file. If your HTML contains MathML/SVG/etc. snippets,
 then specify those versions too.
 </p>
 
-<h3>fruity compilers</h3>
+<h3>stressed systems</h3>
 
 <p>
-Unfortunately, some fruity system suppliers sometimes release buggy
+Unfortunately, some system suppliers sometimes release buggy
 compilers. These bugs can often be avoided by using an alternative
-compiler (try gcc), disabling multithreading at runtime (use <kbd>-Y 1</kbd>), or not
-upgrading your system until the fruity supplier releases a less unreliable
+compiler (for example, if using clang, try gcc, and vice versa),
+disabling multithreading at runtime (use <kbd>-Y 1</kbd>), or not
+upgrading your system until the supplier releases a less unreliable
 version of their noisy compiler.
 </p>
-
-
 
 <h3>More info</h3>
 
@@ -223,5 +222,5 @@ The <!--#echo encoding="none" var="short" --> source root includes some text fil
 <tr><td>LICENSE.txt</td> <td>The GNU General Licence Version 3</td></tr>
 </table>
 
-<!--#include virtual="/plumbing/under.inc" -->
-<!--#include virtual="/plumbing/html-end.inc" -->
+<!--#include virtual="plumbing/under.inc" -->
+<!--#include virtual="plumbing/html-end.inc" -->

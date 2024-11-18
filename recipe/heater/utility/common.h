@@ -110,7 +110,6 @@ template < class T > void write_field (::boost::property_tree::ptree& tree, cons
 
 bool read_header (nitpick& nits, const ::boost::property_tree::ptree& json, const ::std::string& expected, ::std::string& version, const ::std::string& filename);
 void write_header (::boost::property_tree::ptree& json, const char* context);
-bool replace_file (nitpick& nits, const ::boost::property_tree::ptree& json, const ::boost::filesystem::path& filename);
 
 inline ::std::string slash_dot (const ::std::string& slash)
 {   ::std::string dot (slash);
@@ -278,3 +277,7 @@ inline ::std::string::size_type find_no_case (const ::std::string& s, const ::st
     return ::boost::to_lower_copy (s).find (::boost::to_lower_copy (x)); }
 
 ::std::string enhtml (const ::std::string& s);
+::std::string get_current_folder ();
+
+bool is_plain_old_integer (const ::std::string& ss);
+bool is_plain_old_decimal (const ::std::string& ss);

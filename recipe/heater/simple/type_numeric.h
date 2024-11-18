@@ -241,6 +241,30 @@ template < > struct type_master < t_positive > : type_master < t_integer >
             {   nits.pick (nit_positive, es_error, ec_type, quote (s), " must be greater than zero");
                 type_master < t_integer > :: status (s_invalid); } } };
 
+template < > struct type_master < t_percent_int > : type_master < t_integer >
+{   bool percent_ = false;
+    using type_master < t_integer > :: type_master;
+    static e_animation_type animation_type () noexcept { return at_percentage; }
+    static bool is_numeric () { return true; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   ::std::string ss (trim_the_lot_off (s));
+        const ::std::string::size_type len (ss.length ());
+        if ((len > 1) && (ss.at (len - 1) == '%'))
+        {   percent_ = true;
+            type_master < t_integer > :: set_value (nits, v, ss.substr (0, len - 1));
+            if (type_master < t_integer > :: good ()) return; }
+        else
+        {   type_master < t_integer > :: set_value (nits, v, ss);
+            if (type_master < t_integer > :: good ()) return; }
+        nits.pick (nit_percent, es_error, ec_type, "expecting an integer followed by '%'");
+        type_master < t_integer > :: status (s_invalid); }
+    ::std::string get_string () const
+    {   const ::std::string res (::boost::lexical_cast < ::std::string > (value_));
+        if (percent_) return res + "%";
+        return res; }
+    void shadow (::std::stringstream& ss, const html_version& , element* )
+    {   ss << '=' << get_string (); } };
+
 template < > struct type_master < t_real > : type_base < double, t_real >
 {   double value_ = 0.0;
     using type_base < double, t_real > :: type_base;

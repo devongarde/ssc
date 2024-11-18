@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "attribute/avm_data.h"
 
 hav_t havt_p [] =
-{   { { HTML_PLUS, HV_DEPRECATED4 | HV_RFC_2070 }, { XHTML_2_0 }, elem_p, a_align },
+{   { { HTML_PLUS, HV_DEPRECATED4 | HV_RFC_2070 }, { XHTML_2_0 }, elem_p, a_align, EP_WX },
     { { HTML_3_0 }, { HTML_3_0 }, elem_p, a_clear },
     { { HTML_3_0 }, { HTML_3_0 }, elem_p, a_nowrap },
     HTMLPLUS_ATTRIBUTES (elem_p),

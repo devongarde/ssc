@@ -130,6 +130,7 @@
 ../toast/HTML/minimal/minimal.spec
 ../toast/HTML/Plus/plus.spec
 ../toast/HTML/tags/tags.spec
+../toast/HTML/wx/wx.spec
 ../toast/json-ld/1.0/jsonld.spec
 ../toast/json-ld/adms/jsonld.spec
 ../toast/json-ld/as/jsonld.spec

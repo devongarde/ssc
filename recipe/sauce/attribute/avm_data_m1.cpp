@@ -46,9 +46,9 @@ hav_t havt_main [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_map [] =
-{   { { HTML_2_0, REQUIRED }, { HTML_4_01 }, elem_map, a_name },
-    { { XHTML_1_0, HV_DEPRECATEDX1 }, { XHTML_2_0 }, elem_map, a_name },
-    { { HTML_JAN05, REQUIRED }, { HTML_UNDEF }, elem_map, a_name },
+{   { { HTML_2_0, REQUIRED }, { HTML_4_01 }, elem_map, a_name, EP_WX },
+    { { XHTML_1_0, HV_DEPRECATEDX1 }, { XHTML_2_0 }, elem_map, a_name, EP_WX },
+    { { HTML_JAN05, REQUIRED }, { HTML_UNDEF }, elem_map, a_name, EP_WX },
     STANDARD_HTML5_ATTRIBUTES (elem_map),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
@@ -193,10 +193,10 @@ hav_t havt_merror [] =
 
 hav_t havt_meta [] =
 {   { { HTML_JUL07 }, { HTML_UNDEF }, elem_meta, a_charset },
-    { { HTML_2_0, REQUIRED }, { XHTML_1_1 }, elem_meta, a_content },
-    { { XHTML_2_0 }, { HTML_UNDEF }, elem_meta, a_content },
+    { { HTML_2_0, REQUIRED }, { XHTML_1_1 }, elem_meta, a_content, EP_WX },
+    { { XHTML_2_0 }, { HTML_UNDEF }, elem_meta, a_content, EP_WX },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_meta, a_dir },
-    { { HTML_2_0 }, { HTML_UNDEF }, elem_meta, a_httpequiv },
+    { { HTML_2_0 }, { HTML_UNDEF }, elem_meta, a_httpequiv, EP_WX },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_meta, a_lang },
     { { HTML_JUL21 }, { HTML_UNDEF }, elem_meta, a_media },
     { { HTML_2_0 }, { HTML_UNDEF }, elem_meta, a_name },

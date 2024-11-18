@@ -27,6 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #ifndef NOSPELL
 #include "gui/gui-app.h"
 #include "gui/gui-spell.h"
+#include "spell/spell.h"
 
 #define SPELL_STYLE   DEF_STYLE
 #define SPELL_X       100
@@ -38,57 +39,55 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SPELL_HEIGHT  320
 #endif // HUNDO
 
-BEGIN_EVENT_TABLE (spell_t, dialogue_t)
+BEGIN_EVENT_TABLE (spell_t, d1_t)
   EVT_BUTTON (wxID_HELP, spell_t::OnHelpClick)
   EVT_CHECKBOX (check_spell, spell_t::OnCheck)
-  EVT_BUTTON (button_add, spell_t::OnDictAdd)
-  EVT_BUTTON (button_erase, spell_t::OnDictErase)
-  EVT_BUTTON (button_rename, spell_t::OnDictRename)
-  EVT_TEXT (text_ext, spell_t::OnDictTap)
-  EVT_LISTBOX (list_ext, spell_t::OnDictExtension)
-  EVT_LISTBOX_DCLICK (list_ext, spell_t::OnDictImpatience)
-  EVT_FILEPICKER_CHANGED (file_name, spell_t::OnDictFileName)
+  EVT_BUTTON (button_dict_add, spell_t::OnDictAdd)
+  EVT_BUTTON (button_dict_erase, spell_t::OnDictErase)
+  EVT_BUTTON (button_dict_rename, spell_t::OnDictRename)
+  EVT_TEXT (text_dict_ext, spell_t::OnDictTap)
+  EVT_LISTBOX (list_dict_ext, spell_t::OnDictExtension)
+  EVT_LISTBOX_DCLICK (list_dict_ext, spell_t::OnDictImpatience)
+  EVT_FILEPICKER_CHANGED (file_dict_name, spell_t::OnDictFileName)
 #ifdef HUNDO
-  EVT_BUTTON (button_add_2, spell_t::OnHunAdd)
-  EVT_BUTTON (button_erase_2, spell_t::OnHunErase)
-  EVT_FILEPICKER_CHANGED (file_name_2, spell_t::OnHunFileName)
-  EVT_BUTTON (button_rename_2, spell_t::OnHunRename)
-  EVT_TEXT (text_ext_2, spell_t::OnHunTap)
-  EVT_LISTBOX (list_ext_2, spell_t::OnHunExtension)
-  EVT_LISTBOX_DCLICK (list_ext_2, spell_t::OnHunImpatience)
+  EVT_BUTTON (button_hun_add, spell_t::OnHunAdd)
+  EVT_BUTTON (button_hun_erase, spell_t::OnHunErase)
+  EVT_FILEPICKER_CHANGED (file_hun_name, spell_t::OnHunFileName)
+  EVT_BUTTON (button_hun_rename, spell_t::OnHunRename)
+  EVT_TEXT (text_hun_ext, spell_t::OnHunTap)
+  EVT_LISTBOX (list_hun_ext, spell_t::OnHunExtension)
+  EVT_LISTBOX_DCLICK (list_hun_ext, spell_t::OnHunImpatience)
 #endif // HUNDO
-  EVT_BUTTON (button_add_3, spell_t::OnWordAdd)
-  EVT_BUTTON (button_erase_3, spell_t::OnWordErase)
-  EVT_BUTTON (button_rename_3, spell_t::OnWordRename)
-  EVT_TEXT (text_ext_3, spell_t::OnWordTap)
-  EVT_LISTBOX (list_ext_3, spell_t::OnWordExtension)
-  EVT_LISTBOX_DCLICK (list_ext_3, spell_t::OnWordImpatience)
+  EVT_BUTTON (button_word_add, spell_t::OnWordAdd)
+  EVT_BUTTON (button_word_erase, spell_t::OnWordErase)
+  EVT_BUTTON (button_word_rename, spell_t::OnWordRename)
+  EVT_TEXT (text_word_ext, spell_t::OnWordTap)
+  EVT_LISTBOX (list_word_ext, spell_t::OnWordExtension)
+  EVT_LISTBOX_DCLICK (list_word_ext, spell_t::OnWordImpatience)
 END_EVENT_TABLE ()
 
-IMPLEMENT_CLASS (spell_t, dialogue_t)
+IMPLEMENT_CLASS (spell_t, d1_t)
 
 spell_t :: spell_t (wxWindow *mummy, wxWindowID id, const wxString& caption)
-	: dialogue_t (wxPoint (SPELL_X, SPELL_Y), wxSize (SPELL_WIDTH, SPELL_HEIGHT))
+	: d1_t (wxPoint (SPELL_X, SPELL_Y), wxSize (SPELL_WIDTH, SPELL_HEIGHT))
 {	Create (mummy, id, caption); } 
 
 bool spell_t :: Create (wxWindow *mummy, wxWindowID id, const wxString& caption)
-{	if (! dialogue_t :: Create (mummy, id, caption, wxPoint (SPELL_X, SPELL_Y), wxSize (SPELL_WIDTH, SPELL_HEIGHT), SPELL_STYLE)) return false;
+{	if (! d1_t :: Create (mummy, id, caption, wxPoint (SPELL_X, SPELL_Y), wxSize (SPELL_WIDTH, SPELL_HEIGHT), SPELL_STYLE)) return false;
 	CreateControls ();
 	return true; }
 
-void spell_t :: CreateControls ()
-{	if (dialogue_t :: invalid ()) return;
-
-	box_check_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxHORIZONTAL));
+void spell_t :: create_controls (wxWindow *parent)
+{	box_check_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxHORIZONTAL));
 	if (box_check_ != nullptr)
-	{	check_spell_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (this, check_spell, "Check spelling", wxDefaultPosition, wxDefaultSize, 0));
+	{	check_spell_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, check_spell, "Check spelling", wxDefaultPosition, wxDefaultSize, 0));
 		if (check_spell_ != nullptr)
 		{	box_check_ -> Add (check_spell_, 0, wxALL, 5);
-			check_case_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (this, wxID_ANY, "Check casing", wxDefaultPosition, wxDefaultSize, 0));
+			check_case_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, "Check casing", wxDefaultPosition, wxDefaultSize, 0));
 			if (check_case_ != nullptr)
 			{	box_check_ -> Add (check_case_, 0, wxALL, 5);
 #ifndef NOICU
-				check_icu_= GSL_OWNER (wxCheckBox) (new wxCheckBox (this, wxID_ANY, "Use ICU", wxDefaultPosition, wxDefaultSize, 0));
+				check_icu_= GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, "Use ICU", wxDefaultPosition, wxDefaultSize, 0));
 				if (check_icu_ != nullptr)
 				{	box_check_ -> Add (check_icu_, 0, wxALL, 5);
 #endif // NOICU
@@ -97,13 +96,20 @@ void spell_t :: CreateControls ()
 				}
 #endif // NOICU
 
-	dict_.construct (*this, "Files of valid words:", "*.dict", true, false, true);
+	dict_.construct (parent, box_, "Files of valid words:", "*.dict", true, false, true);
 #ifdef HUNDO
-	hun_.construct (*this, "HUNSPELL dictionaries & languages:", "*.*", true, true, true);
+	hun_.construct (parent, box_, "HUNSPELL dictionaries & languages:", "*.*", true, true, true);
 #endif // HUNDO
-	word_.construct (*this, "Extra valid words:", "rumplestiltskin-on-toast", false, false, true);
+	word_.construct (parent, box_, "Extra valid words:", "rumplestiltskin-on-toast", false, false, true);
 
-	dialogue_t :: CreateButtons (1);
+	base_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
+    if (base_ != nullptr)
+	    box_ -> Add (base_, 0, wxEXPAND | wxALL, 5); }
+
+void spell_t :: CreateControls ()
+{	if (d1_t :: invalid ()) return;
+    create_controls (this);
+	d1_t :: CreateButtons (1);
 	SetSizer (box_);
 	Layout ();
 	Centre (wxBOTH);  }
@@ -237,6 +243,39 @@ bool spell_t :: TransferDataFromWindow ()
 #endif // HUNDO
 	words_ = word_.acquire ();
 	return true; }
+
+bool spell_t :: create_panel (wxWindow *mummy, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
+{	PRESUME (invalid_panel (), __FILE__, __LINE__);
+	create_box (mummy, pos, size);
+	if (! create_panel_itself (mummy, id, pos, size, style)) return false;
+	create_controls (panel_);
+	if (invalid_panel ()) return false;
+	panel_ -> SetSizer (box_);
+	panel_ -> Layout ();
+	box_ -> Fit (panel_);
+	return true; }
+
+void spell_t :: load_from_context (const context_t& c)
+{	
+    cased (c.cased ());
+    check (c.spell ());
+    dict (get_spell_list ());
+#ifndef NOICU
+    icu (c.icu ());
+#endif // NOICU
+    word (c.spellings ());
+}
+
+void spell_t :: save_to_context (context_t& c) const
+{   c.cased (cased ());
+#ifndef NOICU
+    c.icu (icu ());
+#endif // NOICU
+    c.spell (check ());
+    c.spellings (word ());
+    spell_reset ();
+    nitpick nits;
+    add_spell_list (nits, dict ()); }
 
 #endif // NOSPELL
 #endif // WX

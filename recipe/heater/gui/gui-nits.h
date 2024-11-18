@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define NIT_CAPTION "Nitpicking..."
 
-class nits_t : public dialogue_t
+class nits_t : public d1_t < wx_nits >
 {   wxBoxSizer* box_options_ = nullptr;
     wxBoxSizer* box_output_ = nullptr;
     wxBoxSizer* box_verbosity_ = nullptr;
@@ -51,7 +51,7 @@ public:
     nits_t () { }
     nits_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = NIT_CAPTION);
     ~nits_t () { }
-    bool invalid () const noexcept { return dialogue_t :: invalid () || box_verbosity_ == nullptr || file_output_ == nullptr || radio_level_ == nullptr || check_repeat_ == nullptr; }
+    bool invalid () const noexcept { return box_verbosity_ == nullptr || file_output_ == nullptr || radio_level_ == nullptr || check_repeat_ == nullptr; }
     void Init () const noexcept { }
     bool Create (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = NIT_CAPTION);
     void CreateControls ();
@@ -60,6 +60,12 @@ public:
     void OnRadioLevel (wxCommandEvent& event);
     bool TransferDataToWindow ();
     bool TransferDataFromWindow ();
+    bool invalid_panel () const { return d1_t :: invalid_panel () || (panel_ == nullptr) || box_verbosity_ == nullptr || file_output_ == nullptr || radio_level_ == nullptr || check_repeat_ == nullptr; }
+    void create_controls (wxWindow *parent);
+    bool create_panel (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL | wxNO_BORDER);
+    void load_from_context (const context_t& c);
+    void save_to_context (context_t& c) const;
+
     bool id () const noexcept { return id_; }
     void id (const bool b) noexcept { id_ = b; }
     ::boost::filesystem::path output () const { return output_; }

@@ -150,6 +150,9 @@ template < > struct type_master < t_closed_open > : two_value < t_closed_open, e
 template < > struct type_master < t_colour_scheme > : two_value < t_colour_scheme, e_colour_scheme, sz_dark, sz_light, false >
 { using two_value < t_colour_scheme, e_colour_scheme, sz_dark, sz_light, false > :: two_value; };
 
+template < > struct type_master < t_colourspace > : two_value < t_colourspace, e_colourspace, sz_display_p3, sz_limited_srgb, false >
+{ using two_value < t_colourspace, e_colourspace, sz_display_p3, sz_limited_srgb, false > :: two_value; };
+
 template < > struct type_master < t_compositing > : two_value < t_compositing, e_compositing, sz_normal, sz_knockout, false >
 { using two_value < t_compositing, e_compositing, sz_normal, sz_knockout, false > :: two_value; };
 

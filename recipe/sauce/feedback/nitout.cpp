@@ -833,8 +833,15 @@ bool macro_t::load_template_int (nitpick& nits, const html_version& v, const ::s
                 break; }
     return res; }
 
-bool macro_t::load_template (nitpick& nits, const html_version& v)
+bool macro_t::load_template (nitpick& nits, const html_version& v, const e_nit_format nf)
 {   PRESUME (fred.relaxed (), __FILE__, __LINE__);
+    switch (nf)
+    {   case nf_html : return load_template_int (nits, v, HTML_NIT);
+        case nf_spec : return load_template_int (nits, v, SPEC_NIT);
+        case nf_test : return load_template_int (nits, v, TEST_NIT);
+        case nf_text : return load_template_int (nits, v, TEXT_NIT);
+        case nf_bespoke : break;
+        default : GRACEFUL_CRASH (__FILE__, __LINE__); }
     const ::std::string& format = context.nit_format ();
     ::std::string config;
     bool res = false;
@@ -851,7 +858,7 @@ bool macro_t::load_template (nitpick& nits, const html_version& v)
             {   outstr.err (::std::string ("Cannot process ") + quote (format) + ", reverting to default output format.\n");
                 nits.pick (nit_template_file, es_catastrophic, ec_init, "Cannot process ", quote (format), ", reverting to default output format)"); } }
         if (! res)
-            if (! context.snippet ().empty ()) res = load_template_int (nits, v, HTML_NIT);
+            if ((! context.gui ()) && (! context.snippet ().empty ())) res = load_template_int (nits, v, HTML_NIT);
             else res = load_template_int (nits, v, TEXT_NIT); }
     PRESUME (res, __FILE__, __LINE__);
     return res; }
@@ -918,10 +925,15 @@ bool macro_t::load_template (nitpick& nits, const html_version& v)
 {   PRESUME (static_cast < ::std::size_t > (sct) < sections.size (), __FILE__, __LINE__);
     return apply_macros_int (apply (sct, values1, values2, values3), values4); }
 
-void macro_t::dump_nits (nitpick& nits, const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot)
-{   if (! nits.empty ())
+::std::string macro_t::report (nitpick& nits, const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot)
+{   ::std::string res;
+    if (! nits.empty ())
 #ifdef NDEBUG
         if (context.tell (nits.worst ()))
 #endif // NDEBUG
-            outstr.out (nits.review (entry, head, foot));
+            res = (nits.review (entry, head, foot));
+    return res; }
+
+void macro_t::dump_nits (nitpick& nits, const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot)
+{   outstr.out (report (nits, entry, head, foot));
     nits.reset (); }

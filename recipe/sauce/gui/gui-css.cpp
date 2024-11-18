@@ -33,45 +33,43 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define CSS_WIDTH   400
 #define CSS_HEIGHT  450
 
-BEGIN_EVENT_TABLE (css_t, dialogue_t)
+BEGIN_EVENT_TABLE (css_t, d1_t)
   EVT_BUTTON (wxID_HELP, css_t::OnHelpClick)
-  EVT_CHOICE (choice_version, css_t::OnVersion)
-  EVT_DATAVIEW_SELECTION_CHANGED (list_module, css_t::OnModule)
-  EVT_RADIOBOX (radio_level, css_t::OnLevel)
-  EVT_BUTTON (button_add, css_t::OnAdd)
-  EVT_BUTTON (button_erase, css_t::OnErase)
-  EVT_BUTTON (button_rename, css_t::OnRename)
-  EVT_TEXT (text_ext, css_t::OnTap)
-  EVT_LISTBOX (list_ext, css_t::OnExtension)
-  EVT_LISTBOX_DCLICK (list_ext, css_t::OnImpatience)
+  EVT_CHOICE (choice_css_version, css_t::OnVersion)
+  EVT_DATAVIEW_SELECTION_CHANGED (list_css_module, css_t::OnModule)
+  EVT_RADIOBOX (radio_css_level, css_t::OnLevel)
+  EVT_BUTTON (button_css_add, css_t::OnAdd)
+  EVT_BUTTON (button_css_erase, css_t::OnErase)
+  EVT_BUTTON (button_css_rename, css_t::OnRename)
+  EVT_TEXT (text_css_ext, css_t::OnText)
+  EVT_LISTBOX (list_css_ext, css_t::OnExtension)
+  EVT_LISTBOX_DCLICK (list_css_ext, css_t::OnImpatience)
 END_EVENT_TABLE ()
 
-IMPLEMENT_CLASS (css_t, dialogue_t)
+IMPLEMENT_CLASS (css_t, d1_t)
 
 #define CBSZ "off", "on", "1", "2", "3", "4", "5", "6"
 const char* cbsz [] = { CBSZ };
 typedef enum { rb_off, rb_on, rb_1, rb_2, rb_3, rb_4, rb_5, rb_6 } canable_butt;
 
 css_t :: css_t (wxWindow *mummy, wxWindowID id, const wxString& caption)
-	: dialogue_t (wxPoint (CSS_X, CSS_Y), wxSize (CSS_WIDTH, CSS_HEIGHT))
+	: d1_t (wxPoint (CSS_X, CSS_Y), wxSize (CSS_WIDTH, CSS_HEIGHT))
 {	Create (mummy, id, caption); } 
 
 bool css_t :: Create (wxWindow *mummy, wxWindowID id, const wxString& caption)
-{	if (! dialogue_t :: Create (mummy, id, caption, wxPoint (CSS_X, CSS_Y), wxSize (CSS_WIDTH, CSS_HEIGHT), CSS_STYLE)) return false;
+{	if (! d1_t :: Create (mummy, id, caption, wxPoint (CSS_X, CSS_Y), wxSize (CSS_WIDTH, CSS_HEIGHT), CSS_STYLE)) return false;
 	CreateControls ();
 	return true; }
 
-void css_t :: CreateControls ()
-{	if (dialogue_t :: invalid ()) return;
-
-	box_ver_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxHORIZONTAL));
+void css_t :: create_controls (wxWindow *parent)
+{	box_ver_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxHORIZONTAL));
 	if (box_ver_ != nullptr)
     {	box_ver_ -> Add (0, 0, 2, wxEXPAND, 5);
-        stat_ver_ = GSL_OWNER (wxStaticText) (new wxStaticText (this, wxID_ANY, "CSS &version: ", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT));
+        stat_ver_ = GSL_OWNER (wxStaticText) (new wxStaticText (parent, wxID_ANY, "CSS &version: ", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT));
 		if (stat_ver_ != nullptr)
 		{	stat_ver_ -> Wrap (-1);
             box_ver_ -> Add (stat_ver_, 1, wxALIGN_CENTRE_VERTICAL, 5);
-			version_ = GSL_OWNER (wxChoice) (new wxChoice (this, choice_version, wxDefaultPosition, wxSize (100, -1)));
+			version_ = GSL_OWNER (wxChoice) (new wxChoice (parent, choice_css_version, wxDefaultPosition, wxSize (100, -1)));
 			if (version_ != nullptr)
 			{	version_ -> Append ("none");
 				for (int n = 1; n <= css_version_max; ++n)
@@ -84,7 +82,7 @@ void css_t :: CreateControls ()
         box_ver_ -> Add (0, 0, 2, wxEXPAND, 5);
 		box_ -> Add (box_ver_, 0, wxALIGN_CENTRE, 5); }
 
-    module_ = GSL_OWNER (wxDataViewListCtrl) (new wxDataViewListCtrl (this, list_module, wxDefaultPosition, wxDefaultSize, wxVSCROLL));
+    module_ = GSL_OWNER (wxDataViewListCtrl) (new wxDataViewListCtrl (parent, list_css_module, wxDefaultPosition, wxDefaultSize, wxVSCROLL));
     if (module_ != nullptr)
 	{   module_ -> SetMinSize (wxSize (-1, 150));
         col_mod_ = module_ -> AppendTextColumn ("Module", wxDATAVIEW_CELL_INERT, 250, static_cast <wxAlignment> (wxALIGN_RIGHT), wxDATAVIEW_COL_RESIZABLE);
@@ -103,26 +101,29 @@ void css_t :: CreateControls ()
 
 	const wxString stray [] = { CBSZ };
 	constexpr int count = sizeof (stray) / sizeof (wxString);
-	caroline_ = GSL_OWNER (wxRadioBox) (new wxRadioBox (this, radio_level, "Module Level", wxDefaultPosition, wxDefaultSize, count, stray, 8, wxRA_SPECIFY_COLS));
+	caroline_ = GSL_OWNER (wxRadioBox) (new wxRadioBox (parent, radio_css_level, "Module Level", wxDefaultPosition, wxDefaultSize, count, stray, 8, wxRA_SPECIFY_COLS));
     if (caroline_ != nullptr)
 	{   caroline_ -> SetSelection (0);
 	    box_ -> Add (caroline_, 0, wxALIGN_CENTRE_HORIZONTAL, 5); }
 
-	sl1_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
+	sl1_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
     if (sl1_ != nullptr)
 	    box_ -> Add (sl1_, 0, wxEXPAND | wxALL, 5);
 
-	homme_.construct (*this, "File Extensions:", CSS_EXT);
+	homme_.construct (parent, box_, "File Extensions:", CSS_EXT);
 
-	sl2_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
+	sl2_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
     if (sl2_ != nullptr)
-	    box_ -> Add (sl2_, 0, wxEXPAND | wxALL, 5);
+		box_ -> Add (sl2_, 0, wxEXPAND | wxALL, 5); }
 
-	dialogue_t :: CreateButtons (1);
+void css_t :: CreateControls ()
+{	PRESUME (invalid (), __FILE__, __LINE__);
+	create_controls (this);
+	d1_t :: CreateButtons (1);
 	SetSizer (box_);
 	Layout ();
 	Centre (wxBOTH);
-    Disenable (); }
+	Disenable (); }
 
 bool canable (const e_css_module m, const canable_butt radio)
 {	const flags_t f (enum_n < t_css_module, e_css_module, e_nit_macro, nm_none > :: flags (m));
@@ -256,7 +257,8 @@ void css_t :: set_module (const e_css_module m)
 	const ::std::string exptxt = mvs (m, l);
 	wxVariant val;
 	module_ -> GetValue (val, m, 1);
-	if (exptxt != val.GetString ().c_str ())
+	const ::std::string silly (val.GetString ().c_str ());
+	if (! compare_no_case (exptxt, silly))
 	{	val = exptxt.c_str ();
 		module_ -> SetValue (val, m, 1); } }
 
@@ -332,11 +334,11 @@ void css_t :: OnErase (wxCommandEvent& e)
 void css_t :: OnRename (wxCommandEvent& e)
 {	homme_.OnRename (e); }
 
-void css_t :: OnTap (wxCommandEvent& e)
-{	homme_.OnTap (e); }
+void css_t :: OnText (wxCommandEvent& e)
+{	homme_.OnText (e); }
 
 void css_t :: OnExtension (wxCommandEvent& e)
-{	homme_.OnText (e); }
+{	homme_.OnTap (e); }
 
 void css_t :: OnImpatience (wxCommandEvent& e)
 {	homme_.OnImpatience (e); }
@@ -345,6 +347,7 @@ bool css_t :: TransferDataToWindow ()
 {	VERIFY_NOT_NULL (caroline_, __FILE__, __LINE__);
 	if (invalid ()) return false;
 	v_ = trans_;
+	ver_ = v_.css_version ();
 	homme_.preload (css_ext_);
 	modulo_level ();
 	Disenable ();
@@ -356,5 +359,24 @@ bool css_t :: TransferDataFromWindow ()
 	trans_ = v_;
 	css_ext_ = homme_.acquire ();
 	return true; }
+
+bool css_t :: create_panel (wxWindow *mummy, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
+{	PRESUME (invalid_panel (), __FILE__, __LINE__);
+	create_box (mummy, pos, size);
+	if (! create_panel_itself (mummy, id, pos, size, style)) return false;
+	create_controls (panel_);
+	if (invalid_panel ()) return false;
+	panel_ -> SetSizer (box_);
+	panel_ -> Layout ();
+	box_ -> Fit (panel_);
+	return true; }
+
+void css_t :: load_from_context (const context_t& c)
+{	ext (c.css_extension ());
+    version (c.html_ver ()); }
+
+void css_t :: save_to_context (context_t& c) const
+{	c.css_extension (ext ());
+    c.html_ver (version ()); }
 
 #endif // WX

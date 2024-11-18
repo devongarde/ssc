@@ -189,6 +189,11 @@ void element::examine_input ()
         default : break; }
     const bool maxlen_known = a_.known (a_maxlength);
     const bool minlen_known = a_.known (a_minlength);
+    if (i5 != i5_colour)
+    {   if (a_.known (a_alpha))
+            pick (nit_colourspace, ed_nov24, "4.10.5 The input element", es_error, ec_attribute, "ALPHA requires <INPUT> TYPE 'color'");
+        if (a_.known (a_colourspace))
+            pick (nit_colourspace, ed_nov24, "4.10.5 The input element", es_error, ec_attribute, "COLORSPACE requires <INPUT> TYPE 'color'"); }
     if (maxlen_known || minlen_known)
     {   const ::std::size_t x = maxlen_known ? a_.get_int (a_maxlength) : 0;
         const ::std::size_t n = minlen_known ? a_.get_int (a_minlength) : 0;

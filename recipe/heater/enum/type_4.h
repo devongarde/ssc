@@ -340,9 +340,6 @@ template < > struct type_master < t_shape4 > : four_value < t_shape4, e_shape4, 
 template < > struct type_master < t_size3 > : four_value < t_size3, e_size3, sz_normal, sz_medium, sz_large, sz_huge >
 { using four_value < t_size3, e_size3, sz_normal, sz_medium, sz_large, sz_huge > :: four_value; };
 
-template < > struct type_master < t_ssi_config > : four_value < t_ssi_config, e_ssi_config, sz_echomsg, sz_errmsg, sz_sizefmt, sz_timefmt >
-{ using four_value < t_ssi_config, e_ssi_config, sz_echomsg, sz_errmsg, sz_sizefmt, sz_timefmt > :: four_value; };
-
 template < > struct type_master < t_ssi_set > : four_value < t_ssi_set, e_ssi_set, sz_decoding, sz_encoding, sz_value, sz_var >
 { using four_value < t_ssi_set, e_ssi_set, sz_decoding, sz_encoding, sz_value, sz_var > :: four_value; };
 
@@ -372,6 +369,9 @@ template < > struct type_master < t_visibility11 > : four_value < t_visibility11
 
 template < > struct type_master < t_vkind > : four_value < t_vkind, e_vkind, sz_individual, sz_organisation, sz_group, sz_location >
 { using four_value < t_vkind, e_vkind, sz_individual, sz_organisation, sz_group, sz_location > :: four_value; };
+
+template < > struct type_master < t_wximgalign > : four_value < t_wximgalign, e_wximgalign, sz_abscenter, sz_bottom, sz_centre, sz_texttop >
+{ using four_value < t_wximgalign, e_wximgalign, sz_abscenter, sz_bottom, sz_centre, sz_texttop > :: four_value; };
 
 template < > struct type_master < t_xmpdm_type > : four_value < t_xmpdm_type, e_xmpdm_type, sz_audio, sz_custom, sz_movie, sz_still >
 { using four_value < t_xmpdm_type, e_xmpdm_type, sz_audio, sz_custom, sz_movie, sz_still > :: four_value; };

@@ -1,5 +1,4 @@
-<!--#config timefmt="%Y-%m-%dT%H:%M:%S" -->
-
+<meta http-equiv="Last-Modified" content="<!--#echo encoding="none" var="ssc_last_modified_rfc822" -->">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Security-Policy" content="<!--#echo encoding="none" var="csp" -->">
 <meta http-equiv="X-Clacks-Overhead" content="GNU Iain Banks">
@@ -19,7 +18,7 @@
 <meta name="dcterms.datecopyrighted" content="<!--#echo encoding="none" var="year" -->">
 <meta name="dcterms.description" content="<!--#echo encoding="none" var="description" -->">
 <meta name="dcterms.license" content="<!--#echo encoding="none" var="licence" -->">
-<meta name="dcterms.modified" content="<!--#echo encoding="none" var="LAST_MODIFIED" -->">
+<meta name="dcterms.modified" content="<!--#echo encoding="none" var="ssc_last_modified_iso8601" -->">
 <meta name="dcterms.rightsholder" content="<!--#echo encoding="none" var="creator" -->">
 <meta name="dcterms.rights" content="<!--#echo encoding="none" var="scopyright" -->">
 <meta name="dcterms.title" content="<!--#echo encoding="none" var="title" -->">
@@ -31,8 +30,8 @@
 <meta name="og:locale" content="<!--#echo encoding="none" var="lang" -->">
 <meta name="og:title" content="<!--#echo encoding="none" var="title" -->">
 <meta name="og:site_name" content="<!--#echo encoding="none" var="swebsite" -->">
-<meta name="revised" content="<!--#echo encoding="none" var="LAST_MODIFIED" -->">
-<meta name="revision" content="<!--#echo encoding="none" var="LAST_MODIFIED" -->">
+<meta name="revised" content="<!--#echo encoding="none" var="ssc_last_modified_iso8601" -->">
+<meta name="revision" content="<!--#echo encoding="none" var="ssc_last_modified_iso8601" -->">
 <meta name="rights-standard" content=";<!--#echo encoding="none" var="cc" -->">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#000000"> <!--#comment see https://dylanharris.org/blog/2015/sn41.shtml -->
@@ -58,7 +57,7 @@
 
 <div class="site h-entry" itemscope itemtype="https://schema.org/WebPage">
 <div itemprop="author copyrightHolder" itemscope itemtype="https://schema.org/Person" itemref="dh"></div>
-<meta itemprop="dateModified" content="<!--#echo encoding="none" var="LAST_MODIFIED" -->">
+<meta itemprop="dateModified" content="<!--#echo encoding="none" var="ssc_last_modified_iso8601" -->">
 <meta itemprop="description" content="<!--#echo encoding="none" var="description" -->">
 <meta itemprop="headline name" content="<!--#echo encoding="none" var="title" -->">
 <meta itemprop="inLanguage" content="<!--#echo encoding="none" var="lang" -->">

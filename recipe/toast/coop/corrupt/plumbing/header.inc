@@ -35,9 +35,9 @@
 <meta name="og:image" content="<!--#echo encoding="none" var="icon" -->">
 <meta name="og:site_name" content="<!--#echo encoding="none" var="swebsite" -->">
 <meta name="og:url" content="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->" >
-<meta name="revision" content="<!--#echo encoding="none" var="LAST_MODIFIED" -->">
-<meta name="revised" content="<!--#echo encoding="none" var="LAST_MODIFIED" -->">
-<meta name="dcterms.modified" content="<!--#echo encoding="none" var="LAST_MODIFIED" -->">
+<meta name="revision" content="<!--#echo encoding="none" var="ssc_last_modified_iso8601" -->">
+<meta name="revised" content="<!--#echo encoding="none" var="ssc_last_modified_iso8601" -->">
+<meta name="dcterms.modified" content="<!--#echo encoding="none" var="ssc_last_modified_iso8601" -->">
 <meta name="rights-standard" content=";<!--#echo encoding="none" var="cc" -->">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#000000"> <!--#comment see dylanharris.org/blog/2015/sn41.shtml -->
@@ -76,7 +76,7 @@
 </div>
 
 <div class="site h-entry">
-<meta itemprop="dateModified" content="<!--#echo encoding="none" var="LAST_MODIFIED" -->">
+<meta itemprop="dateModified" content="<!--#echo encoding="none" var="ssc_last_modified_iso8601" -->">
 <meta itemprop="description" content="<!--#echo encoding="none" var="description" -->">
 <meta itemprop="headline" content="<!--#echo encoding="none" var="title" -->">
 <meta itemprop="inLanguage" content="en-GB">

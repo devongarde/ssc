@@ -149,7 +149,7 @@ hav_t havt_dispatchevent [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_div [] =
-{   { { HTML_3_0 }, { XHTML_2_0 }, elem_div, a_align },
+{   { { HTML_3_0 }, { XHTML_2_0 }, elem_div, a_align, EP_WX },
     { { HTML_3_0 }, { HTML_3_0 }, elem_div, a_clear },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_div, a_datafld },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_div, a_dataformatas },

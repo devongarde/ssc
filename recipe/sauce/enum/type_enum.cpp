@@ -2951,6 +2951,34 @@ struct symbol_entry < html_version, e_mf_reviewtype > mf_reviewtype_symbol_table
     { { HTML_4_0 }, { HTML_UNDEF }, "website", mfr_website },
     { { HTML_4_0 }, { HTML_UNDEF }, "url", mfr_url } };
 
+struct symbol_entry < html_version, e_month_english_short > month_english_short_symbol_table [] =
+{   { { HTML_TAGS }, { HTML_UNDEF }, "jan", mes_jan },
+    { { HTML_TAGS }, { HTML_UNDEF }, "feb", mes_feb },
+    { { HTML_TAGS }, { HTML_UNDEF }, "mar", mes_mar },
+    { { HTML_TAGS }, { HTML_UNDEF }, "apr", mes_apr },
+    { { HTML_TAGS }, { HTML_UNDEF }, "may", mes_may },
+    { { HTML_TAGS }, { HTML_UNDEF }, "jun", mes_jun },
+    { { HTML_TAGS }, { HTML_UNDEF }, "jul", mes_jul },
+    { { HTML_TAGS }, { HTML_UNDEF }, "aug", mes_aug },
+    { { HTML_TAGS }, { HTML_UNDEF }, "sep", mes_sep },
+    { { HTML_TAGS }, { HTML_UNDEF }, "oct", mes_oct },
+    { { HTML_TAGS }, { HTML_UNDEF }, "nov", mes_nov },
+    { { HTML_TAGS }, { HTML_UNDEF }, "dec", mes_dec } };
+
+struct symbol_entry < html_version, e_month_english_long > month_english_long_symbol_table [] =
+{   { { HTML_TAGS }, { HTML_UNDEF }, "january", mel_jan },
+    { { HTML_TAGS }, { HTML_UNDEF }, "february", mel_feb },
+    { { HTML_TAGS }, { HTML_UNDEF }, "march", mel_mar },
+    { { HTML_TAGS }, { HTML_UNDEF }, "april", mel_apr },
+    { { HTML_TAGS }, { HTML_UNDEF }, "may", mel_may },
+    { { HTML_TAGS }, { HTML_UNDEF }, "june", mel_jun },
+    { { HTML_TAGS }, { HTML_UNDEF }, "july", mel_jul },
+    { { HTML_TAGS }, { HTML_UNDEF }, "august", mel_aug },
+    { { HTML_TAGS }, { HTML_UNDEF }, "september", mel_sep },
+    { { HTML_TAGS }, { HTML_UNDEF }, "october", mel_oct },
+    { { HTML_TAGS }, { HTML_UNDEF }, "november", mel_nov },
+    { { HTML_TAGS }, { HTML_UNDEF }, "december", mel_dec } };
+
 struct symbol_entry < html_version, e_musickey > musickey_symbol_table [] =
 {   { { HTML_ADOBE }, { HTML_UNDEF }, "A", mk_a },
     { { HTML_ADOBE }, { HTML_UNDEF }, "A#", mk_asharp },
@@ -3160,6 +3188,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-custom-elements", nm_context_custom_elements },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-dc", nm_context_dc },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-example", nm_context_example },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-excl-def-excl", nm_context_excl_def_excl },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-expand", nm_context_expand },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-export-root", nm_context_export_root },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-exports", nm_context_exports },
@@ -3169,8 +3198,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-foaf", nm_context_foaf },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-force-version", nm_context_force_version },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-forward", nm_context_forward },
-    { { HTML_TAGS }, { HTML_UNDEF }, "context-thread", nm_context_fred },
-    { { HTML_TAGS }, { HTML_UNDEF }, "general-info", nm_general_info },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-help", nm_context_help },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-icu", nm_context_icu },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-ie", nm_context_ie },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-ignore", nm_context_ignore },
@@ -3196,6 +3224,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-once", nm_context_once },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-output", nm_context_output },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-persisted", nm_context_persisted },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-pretty", nm_context_pretty },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-rdfa", nm_context_rdfa },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-rdf-version", nm_context_rdf_version },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-rel", nm_context_rel },
@@ -3231,6 +3260,14 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-spell-path", nm_context_spell_path },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-spellings", nm_context_spellings },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-ssi", nm_context_ssi },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-ssi-cmd", nm_context_ssi_cmd },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-ssi-date", nm_context_ssi_date },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-ssi-doc_args", nm_context_ssi_doc_args },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-ssi-exec", nm_context_ssi_exec },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-ssi-lastmod", nm_context_ssi_lastmod },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-ssi-query-string", nm_context_ssi_query_string },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-ssi-timefmt", nm_context_ssi_timefmt },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-ssi-user-name", nm_context_ssi_user_name },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-stats-export", nm_context_stats_export },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-stats-page", nm_context_stats_page },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-stats-summary", nm_context_stats_summary },
@@ -3276,15 +3313,18 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-svg-version", nm_context_svg_version },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-tags", nm_context_tags },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-test", nm_context_test },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-thread", nm_context_fred },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-title", nm_context_title },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-unknown-class", nm_context_unknown_class },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-vcs", nm_context_vcs },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-version", nm_context_version },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-virtuals", nm_context_virtuals },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-wx", nm_context_wx },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-xsd", nm_context_xsd },
     { { HTML_TAGS }, { HTML_UNDEF }, "copyright-addr", nm_copy_addr },
     { { HTML_TAGS }, { HTML_UNDEF }, "copyright-html", nm_copy_html },
     { { HTML_TAGS }, { HTML_UNDEF }, "copyright-text", nm_copy_text },
+    { { HTML_TAGS }, { HTML_UNDEF }, "general-info", nm_general_info },
     { { HTML_TAGS }, { HTML_UNDEF }, "general-output", nm_general_output },
     { { HTML_TAGS }, { HTML_UNDEF }, "general-path", nm_general_path },
     { { HTML_TAGS }, { HTML_UNDEF }, "grand-title", nm_grand_title },
@@ -4356,7 +4396,8 @@ struct symbol_entry < html_version, e_shape_rendering > shape_rendering_symbol_t
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "inherit", smei_inherit } };
 
 struct symbol_entry < html_version, e_ssi > ssi_symbol_table [] =
-{   { { HTML_UNDEF }, { HTML_UNDEF }, "comment", ssi_comment },
+{   { { HTML_UNDEF }, { HTML_UNDEF }, "cmd", ssi_cmd },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "comment", ssi_comment },
     { { HTML_UNDEF }, { HTML_UNDEF }, "config", ssi_config },
     { { HTML_UNDEF }, { HTML_UNDEF }, "echo", ssi_echo },
     { { HTML_UNDEF }, { HTML_UNDEF }, "elif", ssi_elif },
@@ -4382,6 +4423,14 @@ struct symbol_entry < html_version, e_ssi_comparison > ssi_comparison_symbol_tab
     { { HTML_UNDEF }, { HTML_UNDEF }, "<>", ssi_comparison_ne },
     { { HTML_UNDEF }, { HTML_UNDEF }, "||", ssi_comparison_or } };
 
+struct symbol_entry < html_version, e_ssi_config > ssi_config_symbol_table [] =
+{   { { HTML_UNDEF }, { HTML_UNDEF }, "echomsg", ssi_config_echomsg },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "errmsg", ssi_config_errmsg },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "sizefmt", ssi_config_sizefmt },
+    { { HTML_UNDEF }, { HTML_UNDEF }, PROG "-date", ssi_config_ssc_date },
+    { { HTML_UNDEF }, { HTML_UNDEF }, PROG "-lastmod", ssi_config_ssc_lastmod },
+    { { HTML_UNDEF }, { HTML_UNDEF }, "timefmt", ssi_config_timefmt } };
+
 struct symbol_entry < html_version, e_ssi_encoding > ssi_encoding_symbol_table [] =
 {   { { HTML_UNDEF }, { HTML_UNDEF }, "base64", ssi_encoding_base64 },
     { { HTML_UNDEF }, { HTML_UNDEF }, "entity", ssi_encoding_entity },
@@ -4398,6 +4447,10 @@ struct symbol_entry < html_version, e_ssi_env > ssi_env_symbol_table [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, "document_uri", ssi_DOCUMENT_URI },
     { { HTML_UNDEF }, { HTML_UNDEF }, "last_modified", ssi_LAST_MODIFIED },
     { { HTML_UNDEF }, { HTML_UNDEF }, "query_string_unescaped", ssi_QUERY_STRING_UNESCAPED },
+    { { HTML_UNDEF }, { HTML_UNDEF }, PROG "_last_modified_ansi", ssi_SSC_LAST_MODIFIED_ANSI },
+    { { HTML_UNDEF }, { HTML_UNDEF }, PROG "_last_modified_iso8601", ssi_SSC_LAST_MODIFIED_ISO8601 },
+    { { HTML_UNDEF }, { HTML_UNDEF }, PROG "_last_modified_rfc822", ssi_SSC_LAST_MODIFIED_RFC822 },
+    { { HTML_UNDEF }, { HTML_UNDEF }, PROG "_last_modified_rfc850", ssi_SSC_LAST_MODIFIED_RFC850 },
     { { HTML_UNDEF }, { HTML_UNDEF }, "user_name", ssi_USER_NAME } };
 
 struct symbol_entry < html_version, e_step_position > step_position_symbol_table [] =
@@ -4612,13 +4665,13 @@ struct symbol_entry < html_version, e_report, e_nit_macro, nm_none > report_symb
     { { HTML_TAGS }, { HTML_UNDEF }, "A&nnotation", rcb_annotation, nm_context_stats_annotation },
     { { HTML_TAGS }, { HTML_UNDEF }, "A&ttribute", rcb_attribute, nm_context_stats_attribute },
     { { HTML_TAGS }, { HTML_UNDEF }, "C&ategory", rcb_category, nm_context_stats_category },
-    { { HTML_TAGS }, { HTML_UNDEF }, "C&haracter Variant", rcb_character_variant, nm_context_stats_character_variant },
+    { { HTML_TAGS }, { HTML_UNDEF }, "C&har Variant", rcb_character_variant, nm_context_stats_character_variant },
     { { HTML_TAGS }, { HTML_UNDEF }, "C&lass", rcb_class, nm_context_stats_class },
     { { HTML_TAGS }, { HTML_UNDEF }, "C&ontent Name", rcb_content_name, nm_context_stats_content_name },
     { { HTML_TAGS }, { HTML_UNDEF }, "C&ounter Style", rcb_counter_style, nm_context_stats_counter_style },
     { { HTML_TAGS }, { HTML_UNDEF }, "CSS &Property", rcb_css_property, nm_context_stats_css_property },
-    { { HTML_TAGS }, { HTML_UNDEF }, "C&ustom Media", rcb_custom_media, nm_context_stats_custom_media },
-    { { HTML_TAGS }, { HTML_UNDEF }, "Custom Property", rcb_custom_property, nm_context_stats_custom_property },
+    { { HTML_TAGS }, { HTML_UNDEF }, "C&ust. Media", rcb_custom_media, nm_context_stats_custom_media },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Custom Prop.", rcb_custom_property, nm_context_stats_custom_property },
     { { HTML_TAGS }, { HTML_UNDEF }, "Definition", rcb_definition, nm_context_stats_dfn },
     { { HTML_TAGS }, { HTML_UNDEF }, "&Element", rcb_element, nm_context_stats_element },
     { { HTML_TAGS }, { HTML_UNDEF }, "Err&or", rcb_error, nm_context_stats_error },
@@ -4641,7 +4694,7 @@ struct symbol_entry < html_version, e_report, e_nit_macro, nm_none > report_symb
     { { HTML_TAGS }, { HTML_UNDEF }, "Property", rcb_property, nm_context_stats_property },
     { { HTML_TAGS }, { HTML_UNDEF }, "Reference", rcb_reference, nm_context_stats_reference },
     { { HTML_TAGS }, { HTML_UNDEF }, "Region", rcb_region, nm_context_stats_region },
-    { { HTML_TAGS }, { HTML_UNDEF }, "Scroll Animation", rcb_scroll_animation, nm_context_stats_scroll_anim },
+    { { HTML_TAGS }, { HTML_UNDEF }, "Scroll Anim", rcb_scroll_animation, nm_context_stats_scroll_anim },
     { { HTML_TAGS }, { HTML_UNDEF }, "Statement", rcb_statement, nm_context_stats_statement },
     { { HTML_TAGS }, { HTML_UNDEF }, "Styleset", rcb_styleset, nm_context_stats_styleset },
     { { HTML_TAGS }, { HTML_UNDEF }, "Stylistic", rcb_stylistic, nm_context_stats_stylistic },
@@ -6239,6 +6292,24 @@ struct symbol_entry < html_version, e_vtt > vtt_symbol_table [] =
     { { HTML_VCARD }, { HTML_UNDEF }, "video", vt_video },
     { { HTML_VCARD }, { HTML_UNDEF }, "voice", vt_voice } };
 
+struct symbol_entry < html_version, e_weekday_english_short > weekday_english_short_symbol_table [] =
+{   { { HTML_TAGS }, { HTML_UNDEF }, "sun", wes_sun },
+    { { HTML_TAGS }, { HTML_UNDEF }, "mon", wes_mon },
+    { { HTML_TAGS }, { HTML_UNDEF }, "tue", wes_tue },
+    { { HTML_TAGS }, { HTML_UNDEF }, "wed", wes_wed },
+    { { HTML_TAGS }, { HTML_UNDEF }, "thu", wes_thu },
+    { { HTML_TAGS }, { HTML_UNDEF }, "fri", wes_fri },
+    { { HTML_TAGS }, { HTML_UNDEF }, "sat", wes_sat } };
+
+struct symbol_entry < html_version, e_weekday_english_long > weekday_english_long_symbol_table [] =
+{   { { HTML_TAGS }, { HTML_UNDEF }, "sunday", wel_sun },
+    { { HTML_TAGS }, { HTML_UNDEF }, "monday", wel_mon },
+    { { HTML_TAGS }, { HTML_UNDEF }, "tuesday", wel_tue },
+    { { HTML_TAGS }, { HTML_UNDEF }, "wednesday", wel_wed },
+    { { HTML_TAGS }, { HTML_UNDEF }, "thursday", wel_thu },
+    { { HTML_TAGS }, { HTML_UNDEF }, "friday", wel_fri },
+    { { HTML_TAGS }, { HTML_UNDEF }, "saturday", wel_sat } };
+
 struct symbol_entry < html_version, e_whitespace > whitespace_symbol_table [] =
 {   { { HTML_JAN19 }, { HTML_UNDEF }, "normal", ws_normal },
     { { HTML_JAN19 }, { HTML_UNDEF }, "pre", ws_pre },
@@ -6753,6 +6824,8 @@ void enum_init (nitpick& nits)
     INIT_ENUM (mf_listing_action);
     INIT_ENUM (mf_method);
     INIT_ENUM (mf_reviewtype);
+    INIT_ENUM (month_english_long);
+    INIT_ENUM (month_english_short);
     INIT_ENUM (musickey);
     INIT_ENUM (myersbriggs);
     INIT_ENUM (namedspace);
@@ -6813,6 +6886,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (smei);
     INIT_ENUM (ssi);
     INIT_ENUM (ssi_comparison);
+    INIT_ENUM (ssi_config);
     INIT_ENUM (ssi_encoding);
     INIT_ENUM (ssi_env);
     INIT_ENUM (step_position);
@@ -6853,6 +6927,8 @@ void enum_init (nitpick& nits)
     INIT_ENUM (vgender);
     INIT_ENUM (vrel);
     INIT_ENUM (vtt);
+    INIT_ENUM (weekday_english_long);
+    INIT_ENUM (weekday_english_short);
     INIT_ENUM (whitespace);
     INIT_ENUM (writingmode);
     INIT_ENUM (xmlns);
@@ -7081,6 +7157,8 @@ void enum_init (nitpick& nits)
         RETURN_SIZE (mf_listing_action);
         RETURN_SIZE (mf_method);
         RETURN_SIZE (mf_reviewtype);
+        RETURN_SIZE (month_english_long);
+        RETURN_SIZE (month_english_short);
         RETURN_SIZE (musickey);
         RETURN_SIZE (myersbriggs);
         RETURN_SIZE (namedspace);
@@ -7141,6 +7219,7 @@ void enum_init (nitpick& nits)
         RETURN_SIZE (smei);
         RETURN_SIZE (ssi);
         RETURN_SIZE (ssi_comparison);
+        RETURN_SIZE (ssi_config);
         RETURN_SIZE (ssi_encoding);
         RETURN_SIZE (ssi_env);
         RETURN_SIZE (step_position);
@@ -7181,6 +7260,8 @@ void enum_init (nitpick& nits)
         RETURN_SIZE (vgender);
         RETURN_SIZE (vrel);
         RETURN_SIZE (vtt);
+        RETURN_SIZE (weekday_english_long);
+        RETURN_SIZE (weekday_english_short);
         RETURN_SIZE (whitespace);
         RETURN_SIZE (writingmode);
         RETURN_SIZE (xmlns);
