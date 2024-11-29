@@ -20,7 +20,7 @@ PASS ../toast/microformats/mf2/mf2-bad.html
 48 unrecognised_value
 52 bad_money
 57 bad_datetime
-58 bad_datetime
+58 invalid_duration
 63 out_of_range
 64 out_of_range
 71 bad_rating
@@ -58,7 +58,7 @@ PASS ../toast/microformats/mf2/mf2-example.html
 69 hcard_infer hcard_infer
 77 no_such_folder url_not_found
 121 naughty_alt
-139 bad_datetime
+139 invalid_duration
 
 PASS ../toast/microformats/mf2/mf2-good.html
 2 naughty_lang

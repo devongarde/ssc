@@ -26,7 +26,7 @@ hav_t havt_element [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_elementdef [] =
-{   { { HTML_SVG12, 0, HE_SVG_12_FULL | REQUIRED }, { HTML_UNDEF }, elem_elementdef, a_name },
+{   { { HTML_SVG12, HV_REQUIRED, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_elementdef, a_name },
     SVG_HTML_ATTRIBUTES (elem_elementdef),
     SVG_PRESENTATION_ATTRIBUTES (elem_elementdef),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
@@ -57,10 +57,10 @@ hav_t havt_embed [] =
     { { HTML_JAN07 }, { HTML_UNDEF }, elem_embed, a_src },
     { { HTML_JAN07 }, { HTML_UNDEF }, elem_embed, a_type },
     { { HTML_JAN07 }, { HTML_UNDEF }, elem_embed, a_width },
-    { { HTML_JAN07, REJECT }, { HTML_UNDEF }, elem_embed, a_align },
-    { { HTML_JAN07, REJECT }, { HTML_UNDEF }, elem_embed, a_hspace },
-    { { HTML_JAN07, REJECT }, { HTML_UNDEF }, elem_embed, a_name },
-    { { HTML_JAN07, REJECT }, { HTML_UNDEF }, elem_embed, a_vspace },
+    { { HTML_JAN07, HV_REJECT }, { HTML_UNDEF }, elem_embed, a_align },
+    { { HTML_JAN07, HV_REJECT }, { HTML_UNDEF }, elem_embed, a_hspace },
+    { { HTML_JAN07, HV_REJECT }, { HTML_UNDEF }, elem_embed, a_name },
+    { { HTML_JAN07, HV_REJECT }, { HTML_UNDEF }, elem_embed, a_vspace },
     STANDARD_HTML5_ATTRIBUTES (elem_embed),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 

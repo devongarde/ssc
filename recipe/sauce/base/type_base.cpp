@@ -1513,6 +1513,7 @@ enum_name_t enum_name [] =
     { t_ssi_echo, "ssi echo" },
     { t_ssi_encoding, "ssi encoding" },
     { t_ssi_env, "ssi env" },
+    { t_ssi_exec, "ssi exec" },
     { t_ssi_f, "ssi f" },
     { t_ssi_include, "ssi include" },
     { t_ssi_set, "ssi set" },

@@ -102,7 +102,7 @@ hav_t havt_device [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_devicecolour [] =
-{   { { HTML_SVG12, 0, HE_SVG_12_FULL | REQUIRED }, { HTML_UNDEF }, elem_devicecolour, a_name },
+{   { { HTML_SVG12, HV_REQUIRED, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_devicecolour, a_name },
     SVG_HTML_ATTRIBUTES (elem_devicecolour),
     SVG_XLINK_ATTRIBUTES (elem_devicecolour),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };

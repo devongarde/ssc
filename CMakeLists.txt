@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.24)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.2.5 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
+project (ssc VERSION 0.2.6 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
 
 set (CMAKE_CXX_STANDARD 17)
 
@@ -242,10 +242,10 @@ target_sources (ssc PRIVATE
             ${H}/enum/type_class.h ${H}/enum/type_colour.h ${H}/enum/type_country.h ${H}/enum/type_enum.h ${H}/enum/type_enum_vec.h ${H}/enum/type_lang.h
             ${H}/enum/type_mime.h ${H}/enum/type_rel.h ${H}/enum/type_xmlns.h
         ${H}/feedback/nit.h ${H}/feedback/nitnames.h ${H}/feedback/nitout.h ${H}/feedback/nitpick.h
-        ${H}/gui/gui-app.h ${H}/gui/gui-css.h ${H}/gui/gui-dialogue.h ${H}/gui/gui-frame.h ${H}/gui/gui-general.h ${H}/gui/gui-html.h ${H}/gui/gui-icon.h
-            ${H}/gui/gui-listedit.h ${H}/gui/gui-menu.h ${H}/gui/gui-nits.h ${H}/gui/gui-ontology.h ${H}/gui/gui-output.h ${H}/gui/gui-screen.h
-            ${H}/gui/gui-shadow.h ${H}/gui/gui-site.h ${H}/gui/gui-snippet.h ${H}/gui/gui-spell.h ${H}/gui/gui-spex.h ${H}/gui/gui-stats.h
-            ${H}/gui/gui-validation.h ${H}/gui/gui-welcome.h
+        ${H}/gui/gui-app.h ${H}/gui/gui-css.h ${H}/gui/gui-ctrl.h ${H}/gui/gui-ctrls.h ${H}/gui/gui-dialogue.h ${H}/gui/gui-frame.h
+            ${H}/gui/gui-general.h ${H}/gui/gui-html.h ${H}/gui/gui-icon.h ${H}/gui/gui-listedit.h ${H}/gui/gui-menu.h ${H}/gui/gui-nits.h
+            ${H}/gui/gui-ontology.h ${H}/gui/gui-output.h ${H}/gui/gui-screen.h ${H}/gui/gui-shadow.h ${H}/gui/gui-site.h ${H}/gui/gui-snippet.h
+            ${H}/gui/gui-spell.h ${H}/gui/gui-spex.h ${H}/gui/gui-ssi.h ${H}/gui/gui-stats.h ${H}/gui/gui-validation.h ${H}/gui/gui-welcome.h
         ${H}/icu/charset.h ${H}/icu/converter.h ${H}/icu/lingo.h ${H}/icu/wrapper.h
         ${H}/main/abort.h ${H}/main/args.h ${H}/main/balloon.h ${H}/main/context.h ${H}/main/enum.h ${H}/main/include.h ${H}/main/options.h
             ${H}/main/output.h ${H}/main/server.h ${H}/main/standard.h ${H}/main/version.h
@@ -279,9 +279,9 @@ target_sources (ssc PRIVATE
         ${H}/webpage/corpus.h ${H}/webpage/crosslink.h ${H}/webpage/directory.h ${H}/webpage/external.h ${H}/webpage/fileindex.h ${H}/webpage/headers.h
             ${H}/webpage/id.h ${H}/webpage/page.h ${H}/webpage/q.h ${H}/webpage/root.h
         ${S}/attribute/attr.cpp ${S}/attribute/attr_state.cpp ${S}/attribute/attribute_constructor.cpp ${S}/attribute/attribute.cpp
-            ${S}/attribute/attributes.cpp ${S}/attribute/avm.cpp ${S}/attribute/avm_data_a.cpp
-            ${S}/attribute/avm_data_b.cpp ${S}/attribute/avm_data_c.cpp ${S}/attribute/avm_data_d.cpp ${S}/attribute/avm_data_e.cpp
-            ${S}/attribute/avm_data_f1.cpp ${S}/attribute/avm_data_f2.cpp ${S}/attribute/avm_data_g.cpp ${S}/attribute/avm_data_h.cpp
+            ${S}/attribute/attributes.cpp ${S}/attribute/avm.cpp ${S}/attribute/avm_data_a.cpp ${S}/attribute/avm_data_b.cpp ${S}/attribute/avm_data_c.cpp
+            ${S}/attribute/avm_data_d.cpp ${S}/attribute/avm_data_e.cpp ${S}/attribute/avm_data_f1.cpp ${S}/attribute/avm_data_f2.cpp
+            ${S}/attribute/avm_data_g.cpp ${S}/attribute/avm_data_h.cpp
             ${S}/attribute/avm_data_i.cpp ${S}/attribute/avm_data_k.cpp ${S}/attribute/avm_data_l.cpp ${S}/attribute/avm_data_m1.cpp
             ${S}/attribute/avm_data_m2.cpp ${S}/attribute/avm_data_n.cpp ${S}/attribute/avm_data_o.cpp ${S}/attribute/avm_data_p.cpp
             ${S}/attribute/avm_data_q.cpp ${S}/attribute/avm_data_r.cpp ${S}/attribute/avm_data_s.cpp ${S}/attribute/avm_data_t1.cpp
@@ -295,16 +295,19 @@ target_sources (ssc PRIVATE
             ${S}/css/descriptors.cpp ${S}/css/distilled.cpp ${S}/css/ffv.cpp ${S}/css/ffvs.cpp ${S}/css/fn.cpp ${S}/css/global.cpp ${S}/css/group.cpp
             ${S}/css/media.cpp ${S}/css/medium.cpp ${S}/css/property.cpp ${S}/css/properties.cpp ${S}/css/property_constructor.cpp ${S}/css/rule.cpp
             ${S}/css/rules.cpp ${S}/css/selector.cpp ${S}/css/selectors.cpp ${S}/css/statement.cpp ${S}/css/statements.cpp ${S}/css/typed_property.cpp
-            ${S}/css/value.cpp ${S}/css/value2.cpp ${S}/css/value_types_0_9.cpp ${S}/css/value_types_a.cpp ${S}/css/value_types_b.cpp
-            ${S}/css/value_types_c.cpp ${S}/css/value_types_css_a.cpp ${S}/css/value_types_css_b_1.cpp ${S}/css/value_types_css_b_2.cpp
-            ${S}/css/value_types_css_c_2.cpp ${S}/css/value_types_css_c_1.cpp ${S}/css/value_types_css_d_e.cpp ${S}/css/value_types_css_f_1.cpp
-            ${S}/css/value_types_css_f_2.cpp ${S}/css/value_types_css_g_i.cpp ${S}/css/value_types_css_j_l.cpp ${S}/css/value_types_css_m_n.cpp
-            ${S}/css/value_types_css_o_p.cpp ${S}/css/value_types_css_r.cpp ${S}/css/value_types_css_s.cpp ${S}/css/value_types_css_t_1.cpp
-            ${S}/css/value_types_css_t_2.cpp ${S}/css/value_types_css_u_z.cpp ${S}/css/value_types_d_e.cpp ${S}/css/value_types_f.cpp
-            ${S}/css/value_types_g_h.cpp ${S}/css/value_types_i.cpp ${S}/css/value_types_j_l.cpp ${S}/css/value_types_m_1.cpp ${S}/css/value_types_m_2.cpp
-            ${S}/css/value_types_n_o.cpp ${S}/css/value_types_p_1.cpp ${S}/css/value_types_p_2.cpp ${S}/css/value_types_q_r.cpp ${S}/css/value_types_s.cpp
-            ${S}/css/value_types_svg.cpp ${S}/css/value_types_t.cpp ${S}/css/value_types_u.cpp ${S}/css/value_types_v_w.cpp ${S}/css/value_types_x_z.cpp
-            ${S}/css/weight.cpp 
+            ${S}/css/value.cpp ${S}/css/value2.cpp ${S}/css/value_types_0_9.cpp ${S}/css/value_types_a_1.cpp ${S}/css/value_types_a_2.cpp ${S}/css/value_types_b.cpp
+            ${S}/css/value_types_c_1.cpp ${S}/css/value_types_c_2.cpp ${S}/css/value_types_css_a.cpp ${S}/css/value_types_css_b_1.cpp ${S}/css/value_types_css_b_2.cpp
+            ${S}/css/value_types_css_b_3.cpp ${S}/css/value_types_css_c_1.cpp ${S}/css/value_types_css_c_2.cpp ${S}/css/value_types_css_d_e.cpp
+            ${S}/css/value_types_css_f_1.cpp ${S}/css/value_types_css_f_2.cpp ${S}/css/value_types_css_g_h.cpp ${S}/css/value_types_css_i.cpp
+            ${S}/css/value_types_css_j_k.cpp ${S}/css/value_types_css_l.cpp ${S}/css/value_types_css_m_n.cpp ${S}/css/value_types_css_o.cpp
+            ${S}/css/value_types_css_p_q.cpp ${S}/css/value_types_css_r.cpp ${S}/css/value_types_css_s_1.cpp ${S}/css/value_types_css_s_2.cpp
+            ${S}/css/value_types_css_t_1.cpp ${S}/css/value_types_css_t_2.cpp ${S}/css/value_types_css_u_v.cpp ${S}/css/value_types_css_w_z.cpp
+            ${S}/css/value_types_d.cpp ${S}/css/value_types_e.cpp ${S}/css/value_types_f_1.cpp ${S}/css/value_types_f_2.cpp ${S}/css/value_types_g_h.cpp
+            ${S}/css/value_types_i.cpp ${S}/css/value_types_j_k.cpp ${S}/css/value_types_l.cpp ${S}/css/value_types_m_1.cpp ${S}/css/value_types_m_2.cpp
+            ${S}/css/value_types_m_3.cpp ${S}/css/value_types_n_o.cpp ${S}/css/value_types_p_1.cpp ${S}/css/value_types_p_2.cpp ${S}/css/value_types_q_r.cpp
+            ${S}/css/value_types_r.cpp ${S}/css/value_types_s_1.cpp ${S}/css/value_types_s_2.cpp ${S}/css/value_types_svg_1.cpp ${S}/css/value_types_svg_2.cpp
+            ${S}/css/value_types_t.cpp ${S}/css/value_types_u.cpp ${S}/css/value_types_v.cpp ${S}/css/value_types_v_w.cpp ${S}/css/value_types_x.cpp
+            ${S}/css/value_types_x_z.cpp ${S}/css/weight.cpp 
         ${S}/element/elem.cpp ${S}/element/element.cpp ${S}/element/element_abcd.cpp ${S}/element/element_aria.cpp ${S}/element/element_attributes.cpp
             ${S}/element/element_classes.cpp ${S}/element/element_efghi.cpp ${S}/element/element_examine.cpp ${S}/element/element_input.cpp
             ${S}/element/element_jkl.cpp ${S}/element/element_microdata.cpp ${S}/element/element_microformats.cpp ${S}/element/element_mno.cpp
@@ -314,10 +317,10 @@ target_sources (ssc PRIVATE
             ${S}/enum/type_enum.cpp ${S}/enum/type_mime.cpp ${S}/enum/type_lang.cpp ${S}/enum/type_property.cpp ${S}/enum/type_rel.cpp
             ${S}/enum/type_xmlns.cpp
         ${S}/feedback/nit.cpp ${S}/feedback/nitnames.cpp ${S}/feedback/nitout.cpp ${S}/feedback/nitpick.cpp
-        ${S}/gui/gui-app.cpp ${S}/gui/gui-css.cpp ${S}/gui/gui-dialogue.cpp ${S}/gui/gui-frame.cpp ${S}/gui/gui-general.cpp ${S}/gui/gui-html.cpp
-            ${S}/gui/gui-icon.cpp ${S}/gui/gui-listedit.cpp ${S}/gui/gui-menu.cpp ${S}/gui/gui-nits.cpp ${S}/gui/gui-ontology.cpp ${S}/gui/gui-output.cpp
-            ${S}/gui/gui-shadow.cpp ${S}/gui/gui-site.cpp ${S}/gui/gui-snippet.cpp ${S}/gui/gui-spell.cpp ${S}/gui/gui-spex.cpp ${S}/gui/gui-stats.cpp
-            ${S}/gui/gui-validation.cpp ${S}/gui/gui-welcome.cpp
+        ${S}/gui/gui-app.cpp ${S}/gui/gui-css.cpp ${S}/gui/gui-ctrl.cpp ${S}/gui/gui-ctrls.cpp ${S}/gui/gui-dialogue.cpp ${S}/gui/gui-frame.cpp
+            ${S}/gui/gui-general.cpp ${S}/gui/gui-html.cpp ${S}/gui/gui-icon.cpp ${S}/gui/gui-listedit.cpp ${S}/gui/gui-menu.cpp ${S}/gui/gui-nits.cpp
+            ${S}/gui/gui-ontology.cpp ${S}/gui/gui-output.cpp ${S}/gui/gui-shadow.cpp ${S}/gui/gui-site.cpp ${S}/gui/gui-snippet.cpp
+            ${S}/gui/gui-spell.cpp ${S}/gui/gui-spex.cpp ${S}/gui/gui-ssi.cpp ${S}/gui/gui-stats.cpp ${S}/gui/gui-validation.cpp ${S}/gui/gui-welcome.cpp
         ${S}/icu/charset.cpp ${S}/icu/converter.cpp ${S}/icu/lingo.cpp ${S}/icu/wrapper.cpp
         ${S}/main/abort.cpp ${S}/main/context.cpp ${S}/main/options.cpp ${S}/main/output.cpp ${S}/main/ssc.cpp ${S}/main/server.cpp ${S}/main/standard.cpp
             ${S}/main/version.cpp

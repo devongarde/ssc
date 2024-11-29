@@ -76,7 +76,7 @@ hav_t havt_ci [] =
 hav_t havt_circle [] =
 {   { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_circle, a_externalresourcesrequired },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_circle, a_pathlength },
-    { { HTML_SVG10, 0, HE_SVG | REQUIRED }, { HTML_UNDEF }, elem_circle, a_r },
+    { { HTML_SVG10, HV_REQUIRED, HE_SVG }, { HTML_UNDEF }, elem_circle, a_r },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_circle, a_transform },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_circle, a_will_change },
     SVG_CONDITIONAL_ATTRIBUTES (elem_circle),

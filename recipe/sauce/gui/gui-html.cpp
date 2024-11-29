@@ -303,9 +303,6 @@ void html_t :: create_controls (wxWindow *parent)
 				box_version_ -> Add (version_, 0, wxALIGN_CENTRE_VERTICAL, 5); } }
 		box_ -> Add (box_version_, 0, wxALIGN_CENTRE_HORIZONTAL, 5); }
 
-	wx_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, check_wx, wxT("wxWidgets browser compatibility"), wxDefaultPosition, wxDefaultSize, 0));
-	if (wx_ != nullptr) box_ -> Add (wx_, 0, wxALL | wxALIGN_CENTRE_HORIZONTAL, 5);
-
 	box_math_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxHORIZONTAL));
 	if (box_math_ != nullptr)
     {	math_text_ = GSL_OWNER (wxStaticText) (new wxStaticText (parent, wxID_ANY, "&MathML version: ", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT));
@@ -395,8 +392,8 @@ void html_t :: create_controls (wxWindow *parent)
 	if (czech_grid_ != nullptr)
 	{	sloven_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, wxT("warn of inefficient HTML"), wxDefaultPosition, wxDefaultSize, al));
 		if (sloven_ != nullptr) czech_grid_ -> Add (sloven_, 5, rg, 5);
-		ssi_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, wxT("&Server Side Includes"), wxDefaultPosition, wxDefaultSize, 0));
-		if (ssi_ != nullptr) czech_grid_ -> Add (ssi_, 5, wxALL, 5);
+		wx_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, check_wx, wxT("wxWidgets compatibility"), wxDefaultPosition, wxDefaultSize, 0));
+		if (wx_ != nullptr) czech_grid_ -> Add (wx_, 0, wxALL, 5);
 		ie_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, wxT("ignore IE oddities"), wxDefaultPosition, wxDefaultSize, al));
 		if (ie_ != nullptr) czech_grid_ -> Add (ie_, 5, rg, 5);
 		safari_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, wxT("ignore Sa&fari oddities"), wxDefaultPosition, wxDefaultSize, 0));
@@ -490,7 +487,6 @@ bool html_t :: TransferDataToWindow ()
 			case 2 : doctype_ -> SetSelection (dt_); break;
 			default : doctype_ -> SetSelection (1); break; }
 	if (title_ != nullptr) title_ -> SetValue (max_);
-	if (ssi_ != nullptr) ssi_ -> SetValue (bssi_);
 	if (sloven_ != nullptr) sloven_ -> SetValue (bsloven_);
 	if (ie_ != nullptr) ie_ -> SetValue (bie_);
 	if (safari_ != nullptr) safari_ -> SetValue (bsafari_);
@@ -518,7 +514,6 @@ bool html_t :: TransferDataFromWindow ()
 	{	dt_ = GSL_NARROW_CAST < unsigned short > (doctype_ -> GetSelection ());
 		if (dt_ > 2) dt_ = 1; }
 	if (title_ != nullptr) max_ = title_ -> GetValue ();
-	if (ssi_ != nullptr) bssi_ = ssi_ -> GetValue ();
 	if (sloven_ != nullptr) bsloven_ = sloven_ -> GetValue ();
 	if (ie_ != nullptr) bie_ = ie_ -> GetValue ();
 	if (safari_ != nullptr) bsafari_ = safari_ -> GetValue ();
@@ -567,7 +562,6 @@ void html_t :: load_from_context (const context_t& c)
     rfc2070 (c.rfc_2070 ());
     safari (c.safari ());
     sloven (c.sloven ());
-    ssi (c.ssi ());
     title (GSL_NARROW_CAST < unsigned int > (c.title ()));
     ver (c.html_ver ());
     if (c.force_version ()) doctype (2);
@@ -586,7 +580,6 @@ void html_t :: save_to_context (context_t& c) const
     c.rfc_2070 (rfc2070 ());
     c.safari (safari ());
     c.sloven (sloven ());
-    c.ssi (ssi ());
     c.title (title ());
     c.html_ver (ver ());
     c.lang (lingo ());

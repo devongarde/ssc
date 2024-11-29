@@ -243,7 +243,8 @@ sh_t sh [] =  // latest first
     { role_schema, html_role },
     { rr_schema, html_rr },
     { schema_29, html_schema_29 },
-    { schema_28, html_schema_28 },
+    { schema_28_1, html_schema_28_1 },
+    { schema_28_0, html_schema_28_0 },
     { schema_27_02, html_schema_27_02 },
     { schema_27_01, html_schema_27_01 },
     { schema_27, html_schema_27 },
@@ -511,8 +512,8 @@ vsv_t vsv = {
             schema_3_7, schema_3_8, schema_3_9,
         schema_4, schema_5, schema_6, schema_7_00, schema_7_01, schema_7_02, schema_7_03, schema_7_04, schema_8, schema_9,
         schema_10, schema_11, schema_11_01, schema_12, schema_13, schema_14, schema_15, schema_16, schema_17, schema_18, schema_19,
-        schema_20, schema_21, schema_22, schema_23, schema_24, schema_25, schema_26, schema_27, schema_27_01, schema_27_02, schema_28,
-        schema_29,
+        schema_20, schema_21, schema_22, schema_23, schema_24, schema_25, schema_26, schema_27, schema_27_01, schema_27_02,
+        schema_28_0, schema_28_1, schema_29,
     sd_schema,
     sioc_schema,
     sioc_services,
@@ -566,7 +567,7 @@ mss_t mss;
 
 bool set_default_ontology_version (const e_ontology es, unsigned short mjr, unsigned short mnr)
 {   PRESUME (es < s_error, __FILE__, __LINE__);
-    if (! is_valid_ontology_version (es, mjr, mnr, NOFLAGS)) return false;
+    if (! is_valid_ontology_version (es, mjr, mnr, NOFLAGS, NOFLAGS)) return false;
     va.at (es) = ontology_version (es, mjr, mnr);
     return true; }
 
@@ -585,7 +586,7 @@ ontology_version corresponding_ontology_version (const e_ontology es, const html
     return error_schema; }
 
 template < e_ontology V > struct ontology_detail
-{   static bool is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+{   static bool is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
     {   return (mjr == 1) && (mnr == 0); }
     static ::std::string ver (const unsigned short mjr, const unsigned short mnr)
     {   ::std::string res;
@@ -599,73 +600,73 @@ template < e_ontology V > struct ontology_detail
     static ontology_version from () noexcept { return ontology_version (V, 1, 0); }
     static int count () noexcept { return 1; }
     static bool faux () noexcept { return false; }
-    static bool is_this_deprecated (const unsigned short , const unsigned short , const flags_t ) noexcept
+    static bool is_this_deprecated (const unsigned short , const unsigned short , const flags_t , const flags_t ) noexcept
     {   return false; }
     static ontology_version to () noexcept { return ontology_version (V, 1, 0); } };
 
-template < > bool ontology_detail < s_adms > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_adms > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   if (mnr != 0) return false;
     return (mjr == 2) || (mjr == 1); }
 template < > ontology_version ontology_detail < s_adms > :: from () noexcept { return ontology_version (s_adms, 1, 0); }
 template < > int ontology_detail < s_adms > :: count () noexcept { return 2; }
 template < > ontology_version ontology_detail < s_adms > :: to () noexcept { return ontology_version (s_adms, 2, 0); }
 
-template < > bool ontology_detail < s_article > :: is_this_valid (const unsigned short mjr, const unsigned short , const flags_t ) noexcept
+template < > bool ontology_detail < s_article > :: is_this_valid (const unsigned short mjr, const unsigned short , const flags_t , const flags_t ) noexcept
 {   return (mjr >= HTML_2012) && (mjr <= HTML_LATEST_YEAR); }
 template < > ontology_version ontology_detail < s_article > :: from () noexcept { return ontology_version (s_article, HTML_2012, 0); }
 template < > int ontology_detail < s_article > :: count () noexcept { return 4; }
 template < > ontology_version ontology_detail < s_article > :: to () noexcept { return ontology_version (s_article, HTML_LATEST_YEAR, 0); }
 
-template < > bool ontology_detail < s_as > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_as > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   if (mnr != 0) return false;
     return (mjr == 2) || (mjr == 1); }
 template < > ontology_version ontology_detail < s_as > :: from () noexcept { return ontology_version (s_as, 1, 0); }
 template < > int ontology_detail < s_as > :: count () noexcept { return 2; }
 template < > ontology_version ontology_detail < s_as > :: to () noexcept { return ontology_version (s_as, 2, 0); }
 
-template < > bool ontology_detail < s_bfo > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_bfo > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   if (mjr != 2) return false;
     return (mnr == 0) || (mnr == 2); }
 template < > ontology_version ontology_detail < s_bfo > :: from () noexcept { return ontology_version (s_bfo, 2, 0); }
 template < > int ontology_detail < s_bfo > :: count () noexcept { return 4; }
 template < > ontology_version ontology_detail < s_bfo > :: to () noexcept { return ontology_version (s_bfo, 2, 2); }
 
-template < > bool ontology_detail < s_bibo > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_bibo > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   return (mjr == 1) && (mnr == 3); }
 template < > ontology_version ontology_detail < s_bibo > :: from () noexcept { return ontology_version (s_bibo, 1, 3); }
 template < > ontology_version ontology_detail < s_bibo > :: to () noexcept { return ontology_version (s_bibo, 1, 3); }
 
-template < > bool ontology_detail < s_biro > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_biro > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   return (mjr == 1) && (mnr == 1); }
 template < > ontology_version ontology_detail < s_biro > :: from () noexcept { return ontology_version (s_biro, 1, 1); }
 template < > ontology_version ontology_detail < s_biro > :: to () noexcept { return ontology_version (s_biro, 1, 1); }
 
-template < > bool ontology_detail < s_book > :: is_this_valid (const unsigned short mjr, const unsigned short , const flags_t ) noexcept
+template < > bool ontology_detail < s_book > :: is_this_valid (const unsigned short mjr, const unsigned short , const flags_t , const flags_t ) noexcept
 {   return (mjr >= HTML_2012) && (mjr <= HTML_LATEST_YEAR); }
 template < > ontology_version ontology_detail < s_book > :: from () noexcept { return ontology_version (s_book, HTML_2012, 0); }
 template < > int ontology_detail < s_book > :: count () noexcept { return 4; }
 template < > ontology_version ontology_detail < s_book > :: to () noexcept { return ontology_version (s_book, HTML_LATEST_YEAR, 0); }
 
-template < > bool ontology_detail < s_cito > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_cito > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   return (mjr == 2) && (mnr == 8); }
 template < > ontology_version ontology_detail < s_cito > :: from () noexcept { return ontology_version (s_cito, 2, 8); }
 template < > ontology_version ontology_detail < s_cito > :: to () noexcept { return ontology_version (s_cito, 2, 8); }
 
-template < > bool ontology_detail < s_dc > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_dc > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   if (mjr != 1) return false;
     return (mnr < 2); }
 template < > ontology_version ontology_detail < s_dc > :: from () noexcept { return ontology_version (s_dc, 1, 0); }
 template < > int ontology_detail < s_dc > :: count () noexcept { return 2; }
 template < > ontology_version ontology_detail < s_dc > :: to () noexcept { return ontology_version (s_dc, 1, 1); }
 
-template < > bool ontology_detail < s_dcat > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_dcat > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   if (mnr != 0) return false;
     return (mjr == 1) || (mjr == 2); }
 template < > ontology_version ontology_detail < s_dcat > :: from () noexcept { return ontology_version (s_dcat, 1, 0); }
 template < > int ontology_detail < s_dcat > :: count () noexcept { return 2; }
 template < > ontology_version ontology_detail < s_dcat > :: to () noexcept { return ontology_version (s_dcat, 2, 0); }
 
-template < > bool ontology_detail < s_dct > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_dct > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   if (mjr != 1) return false;
     return (mnr < 2); }
 template < > ontology_version ontology_detail < s_dct > :: from () noexcept { return ontology_version (s_dct, 1, 0); }
@@ -697,14 +698,14 @@ bool is_dpv_valid (const unsigned short mjr, const unsigned short mnr, const uns
     return false; }
 
 #define DETAIL_DPV(ONT,MM,N,MX) \
-    template < > bool ontology_detail < ONT > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept \
+    template < > bool ontology_detail < ONT > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept \
     {   return is_dpv_valid (mjr, mnr, MM, MX); } \
     template < > ontology_version ontology_detail < ONT > :: from () noexcept { return ontology_version (ONT, 0, MM); } \
     template < > int ontology_detail < ONT > :: count () noexcept { return N; } \
     template < > ontology_version ontology_detail < ONT > :: to () noexcept { return ontology_version (ONT, MX, 0); }
 
 #define DETAIL_DPV2(ONT) \
-    template < > bool ontology_detail < ONT > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept \
+    template < > bool ontology_detail < ONT > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept \
     {   return (mjr == 2) && (mnr == 0); } \
     template < > ontology_version ontology_detail < ONT > :: from () noexcept { return ontology_version (ONT, 2, 0); } \
     template < > ontology_version ontology_detail < ONT > :: to () noexcept { return ontology_version (ONT, 2, 0); }
@@ -726,7 +727,7 @@ DETAIL_DPV2 (s_dpv_legal_ie);
 DETAIL_DPV2 (s_dpv_legal_in);
 DETAIL_DPV2 (s_dpv_legal_us);
 
-template < > bool ontology_detail < s_dpv_nace > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_dpv_nace > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   return (mjr < 2) && is_dpv_valid (mjr, mnr); }
 template < > ontology_version ontology_detail < s_dpv_nace > :: from () noexcept { return ontology_version (s_dpv_nace, 0, 10); }
 template < > int ontology_detail < s_dpv_nace > :: count () noexcept { return 14; }
@@ -738,12 +739,12 @@ DETAIL_DPV (s_dpv_rights, 80, 5, 1)
 DETAIL_DPV (s_dpv_risk, 80, 6, 2)
 DETAIL_DPV (s_dpv_tech, 80, 6, 2)
 
-template < > bool ontology_detail < s_error > :: is_this_valid (const unsigned short , const unsigned short , const flags_t ) noexcept
+template < > bool ontology_detail < s_error > :: is_this_valid (const unsigned short , const unsigned short , const flags_t , const flags_t ) noexcept
 {   return false; }
 template < > bool ontology_detail < s_error > :: faux () noexcept
 {   return true; }
 
-template < > bool ontology_detail < s_exif > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_exif > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   switch (mjr)
     {   case 1 : return (mnr < 2);
         case 2 : break;
@@ -763,7 +764,7 @@ template < > ontology_version ontology_detail < s_exif > :: from () noexcept { r
 template < > int ontology_detail < s_exif > :: count () noexcept { return 10; }
 template < > ontology_version ontology_detail < s_exif > :: to () noexcept { return ontology_version (s_exif, 3, 0); }
 
-template < > bool ontology_detail < s_exifex > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_exifex > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {  switch (mjr)
     {   case 2 : break;
         case 3 : return (mnr == 0);
@@ -779,7 +780,7 @@ template < > ontology_version ontology_detail < s_exifex > :: from () noexcept {
 template < > int ontology_detail < s_exifex > :: count () noexcept { return 5; }
 template < > ontology_version ontology_detail < s_exifex > :: to () noexcept { return ontology_version (s_exifex, 3, 0); }
 
-template < > bool ontology_detail < s_fabio > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_fabio > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   return (mjr == 2) && (mnr == 1); }
 template < > ontology_version ontology_detail < s_fabio > :: from () noexcept { return ontology_version (s_fabio, 2, 8); }
 template < > ontology_version ontology_detail < s_fabio > :: to () noexcept { return ontology_version (s_fabio, 2, 8); }
@@ -787,83 +788,83 @@ template < > ontology_version ontology_detail < s_fabio > :: to () noexcept { re
 template < > bool ontology_detail < s_faux > :: faux () noexcept
 {   return true; }
 
-template < > bool ontology_detail < s_foaf > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_foaf > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   return (mjr == 0) && (mnr < 100); }
 template < > ontology_version ontology_detail < s_foaf > :: from () noexcept { return ontology_version (s_foaf, 0, 1); }
 template < > int ontology_detail < s_foaf > :: count () noexcept { return 98; }
 template < > ontology_version ontology_detail < s_foaf > :: to () noexcept { return ontology_version (s_foaf, 0, 99); }
 
-template < > bool ontology_detail < s_gs1 > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_gs1 > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   if (mjr != 1) return false;
     if (mnr == 51) return true;
     if (mnr > 5) return false;
     return true; }
 template < > ontology_version ontology_detail < s_gs1 > :: from () noexcept { return ontology_version (s_gs1, 1, 0); }
 template < > int ontology_detail < s_gs1 > :: count () noexcept { return 7; }
-template < > bool ontology_detail < s_gs1 > :: is_this_deprecated (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_gs1 > :: is_this_deprecated (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   return ((mjr == 1) && (mnr == 0)); }
 template < > ontology_version ontology_detail < s_gs1 > :: to () noexcept { return ontology_version (s_gs1, 1, 51); }
 
-template < > bool ontology_detail < s_jsonld > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_jsonld > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   if (mjr != 1) return false;
     return (mnr < 2); }
 template < > ontology_version ontology_detail < s_jsonld > :: from () noexcept { return ontology_version (s_jsonld, 1, 0); }
 template < > int ontology_detail < s_jsonld > :: count () noexcept { return 2; }
 template < > ontology_version ontology_detail < s_jsonld > :: to () noexcept { return ontology_version (s_jsonld, 1, 1); }
 
-template < > bool ontology_detail < s_microformats > :: is_this_valid (const unsigned short mjr, const unsigned short , const flags_t ) noexcept
+template < > bool ontology_detail < s_microformats > :: is_this_valid (const unsigned short mjr, const unsigned short , const flags_t , const flags_t ) noexcept
 {   return (mjr == 1) || (mjr == 2); }
 template < > ontology_version ontology_detail < s_microformats > :: from () noexcept { return ontology_version (s_microformats, 1, 0); }
 template < > int ontology_detail < s_microformats > :: count () noexcept { return 255; }
 template < > ontology_version ontology_detail < s_microformats > :: to () noexcept { return ontology_version (s_microformats, 2, 255); }
 
-template < > bool ontology_detail < s_music > :: is_this_valid (const unsigned short mjr, const unsigned short , const flags_t ) noexcept
+template < > bool ontology_detail < s_music > :: is_this_valid (const unsigned short mjr, const unsigned short , const flags_t , const flags_t ) noexcept
 {   return (mjr >= HTML_2012) && (mjr <= HTML_LATEST_YEAR); }
 template < > ontology_version ontology_detail < s_music > :: from () noexcept { return ontology_version (s_music, HTML_2012, 0); }
 template < > int ontology_detail < s_music > :: count () noexcept { return 4; }
 template < > ontology_version ontology_detail < s_music > :: to () noexcept { return ontology_version (s_music, HTML_LATEST_YEAR, 0); }
 
-template < > bool ontology_detail < s_none > :: is_this_valid (const unsigned short , const unsigned short , const flags_t ) noexcept
+template < > bool ontology_detail < s_none > :: is_this_valid (const unsigned short , const unsigned short , const flags_t , const flags_t ) noexcept
 {   return false; }
 template < > bool ontology_detail < s_none > :: faux () noexcept
 {   return true; }
 
-template < > bool ontology_detail < s_og > :: is_this_valid (const unsigned short mjr, const unsigned short , const flags_t ) noexcept
+template < > bool ontology_detail < s_og > :: is_this_valid (const unsigned short mjr, const unsigned short , const flags_t , const flags_t ) noexcept
 {   return (mjr >= HTML_2010) && (mjr <= HTML_LATEST_YEAR); }
 template < > ontology_version ontology_detail < s_og > :: from () noexcept { return ontology_version (s_og, HTML_2010, 0); }
 template < > int ontology_detail < s_og > :: count () noexcept { return 5; }
 template < > ontology_version ontology_detail < s_og > :: to () noexcept { return ontology_version (s_og, HTML_LATEST_YEAR, 0); }
 
-template < > bool ontology_detail < s_owl > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_owl > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   if (mnr != 0) return false;
     return (mjr == 1) || (mjr == 2); }
 template < > ontology_version ontology_detail < s_owl > :: from () noexcept { return ontology_version (s_owl, 1, 0); }
 template < > int ontology_detail < s_owl > :: count () noexcept { return 2; }
 template < > ontology_version ontology_detail < s_owl > :: to () noexcept { return ontology_version (s_owl, 2, 0); }
 
-template < > bool ontology_detail < s_pam > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_pam > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   return (mjr == 2) && (mnr == 0); }
 template < > ontology_version ontology_detail < s_pam > :: from () noexcept { return ontology_version (s_pam, 2, 0); }
 template < > ontology_version ontology_detail < s_pam > :: to () noexcept { return ontology_version (s_pam, 2, 0); }
 
-template < > bool ontology_detail < s_pamp > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_pamp > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   return (mjr == 3) && (mnr < 2); }
 template < > ontology_version ontology_detail < s_pamp > :: from () noexcept { return ontology_version (s_pamp, 3, 0); }
 template < > int ontology_detail < s_pamp > :: count () noexcept { return 2; }
 template < > ontology_version ontology_detail < s_pamp > :: to () noexcept { return ontology_version (s_pamp, 3, 1); }
 
-template < > bool ontology_detail < s_pcm > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_pcm > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   return (mjr == 3) && (mnr == 1); }
 template < > ontology_version ontology_detail < s_pcm > :: from () noexcept { return ontology_version (s_pcm, 3, 1); }
 template < > ontology_version ontology_detail < s_pcm > :: to () noexcept { return ontology_version (s_pcm, 3, 1); }
 
-template < > bool ontology_detail < s_pcmm > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_pcmm > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   return (mjr == 3) && (mnr < 2); }
 template < > ontology_version ontology_detail < s_pcmm > :: from () noexcept { return ontology_version (s_pcmm, 3, 0); }
 template < > int ontology_detail < s_pcmm > :: count () noexcept { return 2; }
 template < > ontology_version ontology_detail < s_pcmm > :: to () noexcept { return ontology_version (s_pcmm, 3, 1); }
 
-template < > bool ontology_detail < s_pim > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_pim > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   switch (mjr)
     {   case 1 : return mnr < 4;
         case 2 :
@@ -873,20 +874,20 @@ template < > ontology_version ontology_detail < s_pim > :: from () noexcept { re
 template < > int ontology_detail < s_pim > :: count () noexcept { return 5; }
 template < > ontology_version ontology_detail < s_pim > :: to () noexcept { return ontology_version (s_pim, 3, 1); }
 
-template < > bool ontology_detail < s_pmi > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_pmi > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   return (mjr == 3) && (mnr < 2); }
 template < > ontology_version ontology_detail < s_pmi > :: from () noexcept { return ontology_version (s_pmi, 3, 0); }
 template < > int ontology_detail < s_pmi > :: count () noexcept { return 2; }
 template < > ontology_version ontology_detail < s_pmi > :: to () noexcept { return ontology_version (s_pmi, 3, 1); }
 
-template < > bool ontology_detail < s_poetry > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_poetry > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   if (mjr != 1) return false;
     return (mnr == 0) || (mnr == 1); }
 template < > ontology_version ontology_detail < s_poetry > :: from () noexcept { return ontology_version (s_poetry, 1, 0); }
 template < > int ontology_detail < s_poetry > :: count () noexcept { return 2; }
 template < > ontology_version ontology_detail < s_poetry > :: to () noexcept { return ontology_version (s_poetry, 1, 1); }
 
-template < > bool ontology_detail < s_prism > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_prism > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   switch (mjr)
     {   case 1 : return mnr < 3;
         case 2 :
@@ -896,56 +897,56 @@ template < > ontology_version ontology_detail < s_prism > :: from () noexcept { 
 template < > int ontology_detail < s_prism > :: count () noexcept { return 8; }
 template < > ontology_version ontology_detail < s_prism > :: to () noexcept { return ontology_version (s_prism, 3, 1); }
 
-template < > bool ontology_detail < s_prism_ad > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_prism_ad > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   return (mjr == 3) && (mnr < 2); }
 template < > ontology_version ontology_detail < s_prism_ad > :: from () noexcept { return ontology_version (s_prism_ad, 3, 0); }
 template < > int ontology_detail < s_prism_ad > :: count () noexcept { return 2; }
 template < > ontology_version ontology_detail < s_prism_ad > :: to () noexcept { return ontology_version (s_prism_ad, 3, 1); }
 
-template < > bool ontology_detail < s_prl > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_prl > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   return ((mjr == 1) && (mnr < 4)) || ((mjr == 2) && (mnr < 2)); }
 template < > ontology_version ontology_detail < s_prl > :: from () noexcept { return ontology_version (s_prl, 1, 0); }
 template < > int ontology_detail < s_prl > :: count () noexcept { return 5; }
 template < > ontology_version ontology_detail < s_prl > :: to () noexcept { return ontology_version (s_prl, 2, 1); }
 
-template < > bool ontology_detail < s_prm > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_prm > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   return (mjr == 3) && (mnr < 2); }
 template < > ontology_version ontology_detail < s_prm > :: from () noexcept { return ontology_version (s_prm, 3, 0); }
 template < > int ontology_detail < s_prm > :: count () noexcept { return 2; }
 template < > ontology_version ontology_detail < s_prm > :: to () noexcept { return ontology_version (s_prm, 3, 1); }
 
-template < > bool ontology_detail < s_profile > :: is_this_valid (const unsigned short mjr, const unsigned short , const flags_t ) noexcept
+template < > bool ontology_detail < s_profile > :: is_this_valid (const unsigned short mjr, const unsigned short , const flags_t , const flags_t ) noexcept
 {   return (mjr >= HTML_2012) && (mjr <= HTML_LATEST_YEAR); }
-template < > ontology_version ontology_detail < s_profile > :: from () noexcept { return ontology_version (s_profile, HTML_2012, 0); }
+template < > ontology_version ontology_detail < s_profile > :: from () noexcept { return ontology_version (s_profile, HTML_2012, 0, 0); }
 template < > int ontology_detail < s_profile > :: count () noexcept { return 4; }
-template < > ontology_version ontology_detail < s_profile > :: to () noexcept { return ontology_version (s_profile, HTML_LATEST_YEAR, 0); }
+template < > ontology_version ontology_detail < s_profile > :: to () noexcept { return ontology_version (s_profile, HTML_LATEST_YEAR, 0, 0); }
 
-template < > bool ontology_detail < s_prs > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_prs > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   return (mjr == 3) && (mnr == 1); }
 template < > ontology_version ontology_detail < s_prs > :: from () noexcept { return ontology_version (s_prs, 3, 1); }
 template < > ontology_version ontology_detail < s_prs > :: to () noexcept { return ontology_version (s_prs, 3, 1); }
 
-template < > bool ontology_detail < s_pur > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_pur > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t) noexcept
 {   return ((mjr == 2) && (mnr == 1)) || ((mjr == 3) && (mnr < 2)); }
 template < > ontology_version ontology_detail < s_pur > :: from () noexcept { return ontology_version (s_pur, 2, 1); }
 template < > int ontology_detail < s_pur > :: count () noexcept { return 2; }
 template < > ontology_version ontology_detail < s_pur > :: to () noexcept { return ontology_version (s_pur, 3, 1); }
 
-template < > bool ontology_detail < s_rdf > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_rdf > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t) noexcept
 {   if (mjr != 1) return false;
     return (mnr < 4); }
 template < > ontology_version ontology_detail < s_rdf > :: from () noexcept { return ontology_version (s_rdf, 1, 0); }
 template < > int ontology_detail < s_rdf > :: count () noexcept { return 4; }
 template < > ontology_version ontology_detail < s_rdf > :: to () noexcept { return ontology_version (s_rdf, 1, 3); }
 
-template < > bool ontology_detail < s_rdfa > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_rdfa > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t) noexcept
 {   if (mjr != 1) return false;
     return (mnr < 4); }
 template < > ontology_version ontology_detail < s_rdfa > :: from () noexcept { return ontology_version (s_rdfa, 1, 0); }
 template < > int ontology_detail < s_rdfa > :: count () noexcept { return 4; }
 template < > ontology_version ontology_detail < s_rdfa > :: to () noexcept { return ontology_version (s_rdfa, 1, 3); }
 
-template < > bool ontology_detail < s_schema > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t flags) noexcept
+template < > bool ontology_detail < s_schema > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t oflags) noexcept
 {   if (mjr > MAX_SCHEMA_ORG_MAJOR) return false;
     switch (mjr)
     {   case 0 : return (mnr > 0);
@@ -955,13 +956,14 @@ template < > bool ontology_detail < s_schema > :: is_this_valid (const unsigned 
         case 7 : return (mnr < 5);
         case 11 : return (mnr < 2);
         case 27 : return (mnr < 3);
+        case 28 : return (mnr < 2);
         default : return (mnr == 0); }
     switch (mnr)
-    {   case 0 : return ((flags & SV_NOT_30) == 0);
-        case 1 : return ((flags & SV_NOT_31) == 0);
-        case 2 : return ((flags & SV_NOT_32) == 0);
-        case 3 : return ((flags & SV_NOT_33) == 0);
-        case 4 : return ((flags & SV_NOT_34) == 0);
+    {   case 0 : return ((oflags & SV_NOT_30) == 0);
+        case 1 : return ((oflags & SV_NOT_31) == 0);
+        case 2 : return ((oflags & SV_NOT_32) == 0);
+        case 3 : return ((oflags & SV_NOT_33) == 0);
+        case 4 : return ((oflags & SV_NOT_34) == 0);
         case 5 :
         case 6 :
         case 7 :
@@ -985,19 +987,19 @@ template < > ::std::string ontology_detail < s_schema > :: name (const ::std::st
     res += ver (mjr, mnr);
     return res; }
 
-template < > bool ontology_detail < s_tiff > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_tiff > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   return (mjr == 6) && (mnr == 0); }
 template < > ontology_version ontology_detail < s_tiff > :: from () noexcept { return ontology_version (s_tiff, 6, 0); }
 template < > ontology_version ontology_detail < s_tiff > :: to () noexcept { return ontology_version (s_tiff, 6, 0); }
 
-template < > bool ontology_detail < s_vann > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_vann > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   if (mjr != 1) return false;
     return (mnr < 2); }
 template < > ontology_version ontology_detail < s_vann > :: from () noexcept { return ontology_version (s_vann, 1, 0); }
 template < > int ontology_detail < s_vann > :: count () noexcept { return 2; }
 template < > ontology_version ontology_detail < s_vann > :: to () noexcept { return ontology_version (s_vann, 1, 1); }
 
-template < > bool ontology_detail < s_vcard > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t f) noexcept
+template < > bool ontology_detail < s_vcard > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t f) noexcept
 {   if (mnr != 0) return false;
     switch (mjr)
     {   case 1 :
@@ -1008,29 +1010,29 @@ template < > bool ontology_detail < s_vcard > :: is_this_valid (const unsigned s
     return false; }
 template < > ontology_version ontology_detail < s_vcard > :: from () noexcept { return vcard_2001; }
 template < > int ontology_detail < s_vcard > :: count () noexcept { return 4; }
-template < > bool ontology_detail < s_vcard > :: is_this_deprecated (const unsigned short mjr, const unsigned short , const flags_t flags) noexcept
-    {   if ((flags & SV_DEPRECATED) == SV_DEPRECATED) return true;
-        return ((mjr == 4) && ((flags & SV_VC_DEP4) == SV_VC_DEP4)); }
+template < > bool ontology_detail < s_vcard > :: is_this_deprecated (const unsigned short mjr, const unsigned short , const flags_t , const flags_t oflags) noexcept
+    {   if ((oflags & SV_DEPRECATED) == SV_DEPRECATED) return true;
+        return ((mjr == 4) && ((oflags & SV_VC_DEP4) == SV_VC_DEP4)); }
 template < > ontology_version ontology_detail < s_vcard > :: to () noexcept { return vcard_2014; }
 
-template < > bool ontology_detail < s_video > :: is_this_valid (const unsigned short mjr, const unsigned short , const flags_t ) noexcept
+template < > bool ontology_detail < s_video > :: is_this_valid (const unsigned short mjr, const unsigned short , const flags_t , const flags_t ) noexcept
 {   return (mjr >= HTML_2012) && (mjr <= HTML_LATEST_YEAR); }
-template < > ontology_version ontology_detail < s_video > :: from () noexcept { return ontology_version (s_video, HTML_2012, 0); }
+template < > ontology_version ontology_detail < s_video > :: from () noexcept { return ontology_version (s_video, HTML_2012, 0, 0); }
 template < > int ontology_detail < s_video > :: count () noexcept { return 4; }
-template < > ontology_version ontology_detail < s_video > :: to () noexcept { return ontology_version (s_video, HTML_LATEST_YEAR, 0); }
+template < > ontology_version ontology_detail < s_video > :: to () noexcept { return ontology_version (s_video, HTML_LATEST_YEAR, 0, 0); }
 
-template < > bool ontology_detail < s_website > :: is_this_valid (const unsigned short mjr, const unsigned short , const flags_t ) noexcept
+template < > bool ontology_detail < s_website > :: is_this_valid (const unsigned short mjr, const unsigned short , const flags_t , const flags_t ) noexcept
 {   return (mjr >= HTML_2012) && (mjr <= HTML_LATEST_YEAR); }
-template < > ontology_version ontology_detail < s_website > :: from () noexcept { return ontology_version (s_website, HTML_2012, 0); }
+template < > ontology_version ontology_detail < s_website > :: from () noexcept { return ontology_version (s_website, HTML_2012, 0, 0); }
 template < > int ontology_detail < s_website > :: count () noexcept { return 4; }
-template < > ontology_version ontology_detail < s_website > :: to () noexcept { return ontology_version (s_website, HTML_LATEST_YEAR, 0); }
+template < > ontology_version ontology_detail < s_website > :: to () noexcept { return ontology_version (s_website, HTML_LATEST_YEAR, 0, 0); }
 
-template < > bool ontology_detail < s_xsd > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t ) noexcept
+template < > bool ontology_detail < s_xsd > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   if (mjr != 1) return false;
     return (mnr < 2); }
-template < > ontology_version ontology_detail < s_xsd > :: from () noexcept { return ontology_version (s_xsd, 1, 0); }
+template < > ontology_version ontology_detail < s_xsd > :: from () noexcept { return ontology_version (s_xsd, 1, 0, 0); }
 template < > int ontology_detail < s_xsd > :: count () noexcept { return 2; }
-template < > ontology_version ontology_detail < s_xsd > :: to () noexcept { return ontology_version (s_xsd, 1, 1); }
+template < > ontology_version ontology_detail < s_xsd > :: to () noexcept { return ontology_version (s_xsd, 1, 1, 0); }
 
 template < e_ontology V, e_ontology... Vs > struct schemas : schemas < Vs... >
 {   static ontology_version get_corresponding (const e_ontology es, const html_version& v)
@@ -1059,12 +1061,12 @@ template < e_ontology V, e_ontology... Vs > struct schemas : schemas < Vs... >
     static bool faux (const e_ontology es) noexcept
     {   if (es == V) return ontology_detail < V > :: faux ();
         return schemas < Vs... > :: faux (es); }
-    static bool is_this_deprecated (const e_ontology es, const unsigned short mjr, const unsigned short mnr, const flags_t flags) noexcept
-    {   if (es == V) return ontology_detail < V > :: is_this_deprecated (mjr, mnr, flags);
-        return schemas < Vs... > :: is_this_deprecated (es, mjr, mnr, flags); }
-    static bool is_valid (const e_ontology es, const unsigned short mjr, const unsigned short mnr, const flags_t flags) noexcept
-    {   if (es == V) return ontology_detail < V > :: is_this_valid (mjr, mnr, flags);
-        return schemas < Vs... > :: is_valid (es, mjr, mnr, flags); } };
+    static bool is_this_deprecated (const e_ontology es, const unsigned short mjr, const unsigned short mnr, const flags_t flags, const flags_t oflags) noexcept
+    {   if (es == V) return ontology_detail < V > :: is_this_deprecated (mjr, mnr, flags, oflags);
+        return schemas < Vs... > :: is_this_deprecated (es, mjr, mnr, flags, oflags); }
+    static bool is_valid (const e_ontology es, const unsigned short mjr, const unsigned short mnr, const flags_t flags, const flags_t oflags) noexcept
+    {   if (es == V) return ontology_detail < V > :: is_this_valid (mjr, mnr, flags, oflags);
+        return schemas < Vs... > :: is_valid (es, mjr, mnr, flags, oflags); } };
 
 template < > struct schemas < s_error >
 {   static ontology_version get_corresponding (const e_ontology , const html_version& )
@@ -1090,9 +1092,9 @@ template < > struct schemas < s_error >
     {   return 0; }
     static bool faux (const e_ontology ) noexcept
     {   return true; }
-    static bool is_this_deprecated (const e_ontology , const unsigned short , const unsigned short , const flags_t ) noexcept
+    static bool is_this_deprecated (const e_ontology , const unsigned short , const unsigned short , const flags_t , const flags_t ) noexcept
     {   return false; }
-    static bool is_valid (const e_ontology , const unsigned short , const unsigned short , const flags_t ) noexcept
+    static bool is_valid (const e_ontology , const unsigned short , const unsigned short , const flags_t , const flags_t ) noexcept
     {   return false; } };
 
 ontology_version get_first_ontology_version (const e_ontology es) noexcept
@@ -1146,17 +1148,17 @@ bool overlap (const ontology_version& lhs_from, const ontology_version& lhs_to, 
     if ((lhs_from > rhs_to) && ! rhs_to.unknown ()) return false;
     return (lhs_to.unknown () || (lhs_to >= rhs_from)); }
 
-bool is_valid_ontology_version (const e_ontology root, const unsigned short j, const unsigned short n, const flags_t flags) noexcept
-{   return schemas < ONTOLOGIES > :: is_valid (root, j, n, flags); }
+bool is_valid_ontology_version (const e_ontology root, const unsigned short j, const unsigned short n, const flags_t flags, const flags_t oflags) noexcept
+{   return schemas < ONTOLOGIES > :: is_valid (root, j, n, flags, oflags); }
 
 bool is_valid_ontology_version (const ontology_version& sv) noexcept
-{   return schemas < ONTOLOGIES > :: is_valid (sv.root (), sv.mjr (), sv.mnr (), sv.flags ()); }
+{   return schemas < ONTOLOGIES > :: is_valid (sv.root (), sv.mjr (), sv.mnr (), sv.flags (), sv.oflags ()); }
 
-bool is_ontology_deprecated (const e_ontology root, const unsigned short mjr, const unsigned short mnr, const flags_t flags) noexcept
-{   return schemas < ONTOLOGIES > :: is_this_deprecated (root, mjr, mnr, flags); }
+bool is_ontology_deprecated (const e_ontology root, const unsigned short mjr, const unsigned short mnr, const flags_t flags, const flags_t oflags) noexcept
+{   return schemas < ONTOLOGIES > :: is_this_deprecated (root, mjr, mnr, flags, oflags); }
 
 bool does_ontology_apply (const ontology_version& v, const ontology_version& from, const ontology_version& to) MSVC_NOEXCEPT
-{   if (v.any_flags (SV_WILDCARD)) return true;
+{   if (v.any_oflags (SV_WILDCARD)) return true;
     if (v.root () != from.root ()) return true;
     switch (v.root ())
     {   case s_faux :

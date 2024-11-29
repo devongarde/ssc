@@ -415,6 +415,9 @@ template < > struct type_master < t_spacing > : two_value < t_spacing, e_spacing
 template < > struct type_master < t_ssi_sizefmt > : two_value < t_ssi_sizefmt, e_ssi_sizefmt, sz_abbrev, sz_bytes, false >
 { using two_value < t_ssi_sizefmt, e_ssi_sizefmt, sz_abbrev, sz_bytes, false > :: two_value; };
 
+template < > struct type_master < t_ssi_exec > : two_value < t_ssi_exec, e_ssi_exec, sz_cgi, sz_cmd, false >
+{ using two_value < t_ssi_exec, e_ssi_exec, sz_cgi, sz_cmd, false > :: two_value; };
+
 template < > struct type_master < t_ssi_f > : two_value < t_ssi_f, e_ssi_f, sz_file, sz_virtual, false >
 { using two_value < t_ssi_f, e_ssi_f, sz_file, sz_virtual, false > :: two_value; };
 

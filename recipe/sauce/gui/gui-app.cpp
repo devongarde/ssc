@@ -44,6 +44,47 @@ BEGIN_EVENT_TABLE (app_t, wxApp)
     EVT_IDLE (app_t::OnIdle)
 END_EVENT_TABLE ()
 
+::boost::filesystem::path check_local_help (context_t& c, ::boost::filesystem::path& fn)
+{   ::boost::filesystem::path datapath = c.path ();
+    datapath /= HELP_FN;
+    if (! ::boost::filesystem::exists (datapath))
+        return ::boost::filesystem::path ();
+    fn = datapath;
+    c.help (fn.string ());
+    return datapath; }
+
+#ifdef _MSC_VER
+void find_help (context_t& c, ::boost::filesystem::path& fn)
+{   PRESUME (fn.empty (), __FILE__, __LINE__);
+    ::boost::filesystem::path datapath = check_local_help (c, fn);
+    if (datapath.empty ())
+    {   const HRSRC src = ::FindResource (nullptr, MAKEINTRESOURCE (IDR_HELP), RT_RCDATA);
+        if (src != INVALID_HANDLE_VALUE)
+        {   const HGLOBAL load = ::LoadResource (nullptr, src);
+            if ((load != INVALID_HANDLE_VALUE) && (load != 0)) try
+            {   const LPVOID lock = ::LockResource (load);
+                if (lock != nullptr)
+                {   const DWORD size = ::SizeofResource (nullptr, src);
+                    if (size > 0)
+                    {   const HANDLE file = ::CreateFileA (datapath.string ().c_str (), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+                        if (file != INVALID_HANDLE_VALUE) try
+                        {   DWORD written = 0;
+                            if (::WriteFile (file, lock, size, &written, nullptr))
+                                if (written == size)
+                                {   fn = c.path ();
+                                    fn /= HELP_FN;
+                                    c.help (fn.string ()); }
+                            ::CloseHandle (file); }
+                        catch (...)
+                        {   ::CloseHandle (file); throw; } } }
+                ::FreeResource (load);
+            } catch (...)
+            {   ::FreeResource (load); throw; } } } }
+#else // _MSC_VER
+void find_help (context_t& c, ::boost::filesystem::path& fn)
+{   check_local_help (c, fn); }
+#endif // _MSC_VER
+
 bool app_t::OnInit ()
 {   nitpick nits;
     init (nits);
@@ -57,28 +98,7 @@ bool app_t::OnInit ()
     context_t c (context);
     c.html_ver (html_default);
     help_path_ = c.help ();
-#ifdef _MSC_VER
-    if (help_path_.empty ())
-    {   const HRSRC src = FindResource (nullptr, MAKEINTRESOURCE (IDR_HELP), RT_RCDATA);
-        if (src != INVALID_HANDLE_VALUE)
-        {   const HGLOBAL load = LoadResource (nullptr, src);
-            if ((load != INVALID_HANDLE_VALUE) && (load != 0))
-            {   const LPVOID lock = LockResource (load);
-                if (lock != nullptr)
-                {   const DWORD size = SizeofResource (nullptr, src);
-                    if (size > 0)
-                    {   ::boost::filesystem::path datapath = c.path ();
-                        datapath /= "help.htb";
-                        const HANDLE file = CreateFileA (datapath.string ().c_str (), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-                        if (file != INVALID_HANDLE_VALUE)
-                        {   DWORD written = 0;
-                            if (WriteFile (file, lock, size, &written, nullptr))
-                                if (written == size)
-                                {   help_path_ = datapath;
-                                    c.help (help_path_.string ()); } }
-                        CloseHandle (file); } }
-                FreeResource (load); } } }
-#endif // _MSC_VER
+    if (help_path_.empty ()) find_help (c, help_path_);
     help_ = GSL_OWNER (wxHtmlHelpController) (new wxHtmlHelpController ());
     if (help_ == nullptr) return false;
     help_ -> Initialize (help_path_.c_str ());

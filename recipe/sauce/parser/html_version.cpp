@@ -129,13 +129,15 @@ html_version::html_version (const boost::gregorian::date& d, const flags_t flags
 
 void html_version::swap (html_version& v) noexcept
 {   version::swap (v);
+    ::std::swap (css_, v.css_);
     ::std::swap (ext_, v.ext_);
     ::std::swap (ext2_, v.ext2_);
     ::std::swap (ext3_, v.ext3_);
     ::std::swap (ext4_, v.ext4_); }
 
 void html_version::init (const unsigned short mjr)
-{   switch (mjr)
+{   css_ = css_unknown;
+    switch (mjr)
     {   case 0 :
             reset (html_tags); break;
         case 1 :
@@ -280,6 +282,7 @@ bool html_version::note_parsed_version (nitpick& nits, const e_nit n, const html
     const uint64_t cm = (context.html_ver ().ext2 () & H2_FULL_CSS_MASK);
     const uint64_t cm3 = (context.html_ver ().ext3 () & H3_FULL_CSS_MASK);
     const uint64_t cm4 = (context.html_ver ().ext4 () & (H4_FULL_CSS_MASK | H4_CSS_VER_MASK));
+    css_ = css_unknown;
     if (is_not (got))
     {   if (got > *this)
         {   bool minor = false;
@@ -339,6 +342,7 @@ bool html_version::invalid_addendum (const html_version& v) const noexcept
 
 bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
 {   nits.set_context (0, trim_the_lot_off (content));
+    css_ = css_unknown;
     if (! compare_no_case (doctype, content.substr (0, doctype_len)))
     {   nits.pick (nit_html_unknown_sgml, es_error, ec_parser, content.substr (0, doctype_len), " is not understood by " PROG);
         return true; }
@@ -782,6 +786,50 @@ bool html_version::check_math_svg (nitpick& nits, const html_version& a, const :
         default : break; }
     return true; }
 
+bool html_version::has_this_css (const flags_t f2, const flags_t f3, const flags_t f4) const noexcept
+{   return  ((ext2 () & f2) == f2) &&
+            ((ext3 () & f3) == f3) &&
+            ((ext4 () & f4) == f4); }
+
+e_css_version html_version::css_version () const noexcept
+{   if (css_ < css_unknown) return css_;
+    if (has_this_css (H2_CSS_6_FULL, H3_CSS_6_FULL, H4_CSS_6_FULL)) css_ = css_6;
+    else if (has_this_css (H2_CSS_5_FULL, H3_CSS_5_FULL, H4_CSS_5_FULL)) css_ = css_5;
+    else if (has_this_css (H2_CSS_4_FULL, H3_CSS_4_FULL, H4_CSS_4_FULL)) css_ = css_4;
+    else if (has_this_css (H2_CSS_3_FULL, H3_CSS_3_FULL, H4_CSS_3_FULL)) css_ = css_3;
+    else if (has_this_css (H2_CSS_2024_2, H3_CSS_2024_2, H4_CSS_2024_2)) css_ = css_2024_2;
+    else if (has_this_css (H2_CSS_2024_1, H3_CSS_2024_1, H4_CSS_2024_1)) css_ = css_2024_1;
+    else if (has_this_css (H2_CSS_2024, H3_CSS_2024, H4_CSS_2024)) css_ = css_2024;
+    else if (has_this_css (H2_CSS_2023_2, H3_CSS_2023_2, H4_CSS_2023_2)) css_ = css_2023_2;
+    else if (has_this_css (H2_CSS_2023_1, H3_CSS_2023_1, H4_CSS_2023_1)) css_ = css_2023_1;
+    else if (has_this_css (H2_CSS_2023, H3_CSS_2023, H4_CSS_2023)) css_ = css_2023;
+    else if (has_this_css (H2_CSS_2022_2, H3_CSS_2022_2, H4_CSS_2022_2)) css_ = css_2022_2;
+    else if (has_this_css (H2_CSS_2022_1, H3_CSS_2022_1, H4_CSS_2022_1)) css_ = css_2022_1;
+    else if (has_this_css (H2_CSS_2022, H3_CSS_2022, H4_CSS_2022)) css_ = css_2022;
+    else if (has_this_css (H2_CSS_2021_2, H3_CSS_2021_2, H4_CSS_2021_2)) css_ = css_2021_2;
+    else if (has_this_css (H2_CSS_2021_1, H3_CSS_2021_1, H4_CSS_2021_1)) css_ = css_2021_1;
+    else if (has_this_css (H2_CSS_2021, H3_CSS_2021, H4_CSS_2021)) css_ = css_2021;
+    else if (has_this_css (H2_CSS_2020_2, H3_CSS_2020_2, H4_CSS_2020_2)) css_ = css_2020_2;
+    else if (has_this_css (H2_CSS_2020_1, H3_CSS_2020_1, H4_CSS_2020_1)) css_ = css_2020_1;
+    else if (has_this_css (H2_CSS_2020, H3_CSS_2020, H4_CSS_2020)) css_ = css_2020;
+    else if (has_this_css (H2_CSS_2018_2, H3_CSS_2018_2, H4_CSS_2018_2)) css_ = css_2018_2;
+    else if (has_this_css (H2_CSS_2018_1, H3_CSS_2018_1, H4_CSS_2018_1)) css_ = css_2018_1;
+    else if (has_this_css (H2_CSS_2018, H3_CSS_2018, H4_CSS_2018)) css_ = css_2018;
+    else if (has_this_css (H2_CSS_2017_2, H3_CSS_2017_2, H4_CSS_2017_2)) css_ = css_2017_2;
+    else if (has_this_css (H2_CSS_2017_1, H3_CSS_2017_1, H4_CSS_2017_1)) css_ = css_2017_1;
+    else if (has_this_css (H2_CSS_2017, H3_CSS_2017, H4_CSS_2017)) css_ = css_2017;
+    else if (has_this_css (H2_CSS_2015_2, H3_CSS_2015_2, H4_CSS_2015_2)) css_ = css_2015_2;
+    else if (has_this_css (H2_CSS_2015_1, H3_CSS_2015_1, H4_CSS_2015_1)) css_ = css_2015_1;
+    else if (has_this_css (H2_CSS_2015, H3_CSS_2015, H4_CSS_2015)) css_ = css_2015;
+    else if (has_this_css (H2_CSS_2010, H3_CSS_2010, H4_CSS_2010)) css_ = css_2010;
+    else if (has_this_css (H2_CSS_2007, H3_CSS_2007, H4_CSS_2007)) css_ = css_2007;
+    else if (all_ext2 (H2_CSS_2_2)) css_ = css_2_2;
+    else if (all_ext2 (H2_CSS_2_1)) css_ = css_2_1;
+    else if (all_ext2 (H2_CSS_2_0)) css_ = css_2_0;
+    else if (all_ext2 (H2_CSS_1)) css_ = css_1;
+    else css_ = css_none;
+    return css_; }
+/*
 e_css_version html_version::css_version () const noexcept
 {   const e_css_version res = static_cast < e_css_version > ((ext4_ & H4_CSS_VER_MASK) >> H4_CSS_VER_SHIFT);
     if (res != css_none) return res;
@@ -794,7 +842,7 @@ e_css_version html_version::css_version () const noexcept
     if (all_ext2 (H2_CSS_2_0)) return css_2_0;
     if (all_ext2 (H2_CSS_1)) return css_1;
     return css_none; }
-
+*/
 bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_t e4, flags_t& ext2, flags_t& ext3, flags_t& ext4) const
 {   if (! all_ext2 (e2)) return false;
     if ((e3 != 0) && ! all_ext3 (e3)) return false;
@@ -943,7 +991,8 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
     return res; }
 
 void html_version::css_version (const e_css_version v) noexcept
-{   reset_ext2 (H2_FULL_CSS_MASK);
+{   css_ = v;
+    reset_ext2 (H2_FULL_CSS_MASK);
     reset_ext3 (H3_FULL_CSS_MASK);
     reset_ext4 (H4_FULL_CSS_MASK | H4_CSS_VER_MASK);
     switch (v)
@@ -1243,6 +1292,46 @@ bool html_version::svg_limited (const e_svg_version v) const noexcept
         case sv_2_1 : return svg_limited_21 ();
         default : break; }
     return false; }
+
+bool html_version::valid_context (const html_version& v) const noexcept
+{   bool res = true;
+    if (has_svg ())
+    {   switch (v.svg_version ())
+        {   case sv_1_0 : if (any_ext (HE_SVG_10)) return true; res = false; break;  
+            case sv_1_1 : if (any_ext (HE_SVG_11)) return true; res = false; break;  
+            case sv_1_2_tiny : if (any_ext (HE_SVG_12_TINY)) return true; res = false; break;  
+            case sv_1_2_full : if (any_ext (HE_SVG_12_FULL)) return true; res = false; break;  
+            case sv_2_0 : if (any_ext (HE_SVG_20)) return true; res = false; break;  
+            case sv_2_1 : if (any_ext (HE_SVG_21)) return true; res = false; break; 
+            default : break; } }
+   if (has_math ())
+   {    switch (v.math_version ())
+        {   case math_1 : if (any_ext2 (H2_MATH_1)) return true; res = false; break;
+            case math_2 : if (any_ext2 (H2_MATH_2)) return true; res = false; break;  
+            case math_3 : if (any_ext2 (H2_MATH_3)) return true; res = false; break;  
+            case math_4_20 : if (any_ext2 (H2_MATH_4_20)) return true; res = false; break;  
+            case math_4_22 : if (any_ext2 (H2_MATH_4_22)) return true; res = false; break;  
+            case math_core : if (any_ext2 (H2_MATH_C)) return true; res = false; break; 
+            default : break; } }
+    if (has_css ())
+    {   if (has_css_crossover (v.css_version (), v, context.html_ver ())) return true;
+        if (has_css_crossover (css_version (), *this, v)) return true; }
+    if (has_rdf ())
+    {   switch (context.rdf_version ())
+        {   case rdf_a : if (any_ext (HE_RDFA)) return true; res = false; break;
+            case rdf_deprecated : if (any_ext (HE_RDF_DEP)) return true; res = false; break;  
+            case rdf_1_0 : 
+            case rdf_1_1 : if (any_ext (HE_RDF)) return true; res = false; break;  
+            default : break; } }
+    if (has_rdfa ())
+        if (context.has_rdfa ()) return true;
+        else res = false;
+    if (has_jsonld ())
+    {   switch (context.jsonld_version ())
+        {   case jsonld_1_0 : if (any_ext2 (H2_JSONLD_1_0)) return true; res = false; break;
+            case jsonld_1_1 : if (any_ext2 (H2_JSONLD_1_1)) return true; res = false; break;  
+            default : break; } }
+    return res; }
 
 template < e_css_module MOD > void html_version::set_level (const int ) { }
 
@@ -1984,7 +2073,16 @@ void html_version::check_status (nitpick& nits, const ::std::string& s) const
     if (experimental ())
         nits.pick (nit_experimental, es_warning, ec_css, s, " is experimental, so unlikely to be recognised");
     if (css_deprecated ())   
-        nits.pick (nit_deprecated, es_warning, ec_css, s, " has been deprecated and should not be used"); }
+        nits.pick (nit_deprecated, es_warning, ec_css, s, " has been deprecated and should not be used");
+    if (bizarritude ())
+    {   if (chrome () && ! context.chrome ()) nits.pick (nit_chrome, es_warning, ec_browser, s, " requires an appropriate version of a Chrome-based browser");
+        if (ie () && ! context.ie ()) nits.pick (nit_ie, es_warning, ec_browser, s, " requires an appropriate version of Internet Explorer");
+        if (mozilla () && ! context.mozilla ()) nits.pick (nit_chrome, es_warning, ec_browser, s, " requires an appropriate version of a Mozilla browser, such as Firefox");
+        if (netscape () && ! context.netscape ()) nits.pick (nit_netscape, es_warning, ec_browser, s, " requires an appropriate version of the Netscape browser");
+        if (opera () && ! context.opera ()) nits.pick (nit_chrome, es_warning, ec_browser, s, " requires an appropriate version of the Opera browser");
+        if (webcomponents ()) nits.pick (nit_bespoke_obsolete, es_info, ec_browser, s, " is bespoke WebComponents content");
+        if (bespoke ()) nits.pick (nit_bespoke_obsolete, es_comment, ec_browser, s, " is bespoke");
+        if (safari () && ! context.safari ()) nits.pick (nit_chrome, es_warning, ec_browser, s, " requires an appropriate version of the Safari browser"); } }
 
 bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e)
 {   const bool res = version.parse_doctype (nits, ::std::string (b, e));
@@ -1993,12 +2091,18 @@ bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::c
 
 bool does_html_apply (const html_version& v, const html_version& from, const html_version& to)
 {   if (! from.unknown () && (v < from)) return false;
-    if (context.microformats () && from.is_mf ()) return true;
     if (! to.unknown () && (v > to)) return false;
+    if (context.microformats () && from.is_mf ()) return true;
     if (from.requires_extension ())
         if (extension_conflict (v, from) != emi_good) return false;
-    if (from.ie () && context.ie ()) return true;
-    if (from.safari () && context.safari ()) return true;
+    if (! from.valid_context (v)) return false;
+    if (from.bizarritude ())
+    {   if (from.chrome () && ! context.chrome ()) return false;
+        if (from.ie () && ! context.ie ()) return false;
+        if (from.mozilla () && ! context.mozilla ()) return false;
+        if (from.netscape () && ! context.netscape ()) return false;
+        if (from.opera () && ! context.opera ()) return false;
+        if (from.safari () && ! context.safari ()) return false; }
     switch (v.mjr ())
     {   case 0 :    break;
         case 1 :    if (v.mnr () == 0) return ! from.not10 ();
@@ -2122,3 +2226,47 @@ bool is_css_identical (const html_version& lhs, const html_version& rhs)
 {   if ((lhs.ext2 () & H2_FULL_CSS_MASK) != (rhs.ext2 () & H2_FULL_CSS_MASK)) return false;
     if ((lhs.ext3 () & H3_MPT_CSS_MASK) != (rhs.ext3 () & H3_MPT_CSS_MASK)) return false;
     return (lhs.ext4 () & H4_FULL_CSS_MASK) == (rhs.ext4 () & H4_FULL_CSS_MASK); }
+
+bool has_css_crossover (const html_version& lhs, const html_version& rhs, const flags_t f2, const flags_t f3, const flags_t f4) noexcept
+{   const bool b2 = (((lhs.ext2 () & rhs.ext2 ()) & f2) != 0);
+    const bool b3 = (((lhs.ext3 () & rhs.ext3 ()) & f3) != 0);
+    const bool b4 = (((lhs.ext4 () & rhs.ext4 ()) & f4) != 0);
+    return  b2 || b3 || b4; }
+
+bool has_css_crossover (const e_css_version c, const html_version& lhs, const html_version& rhs) noexcept
+{   switch (c)
+    {   case css_1 :
+        case css_2_0 :
+        case css_2_1 :
+        case css_2_2 : return (lhs.css_version () >= c) && (rhs.css_version () >= c);
+        case css_3 : return has_css_crossover (lhs, rhs, H2_CSS_3_FULL, H3_CSS_3_FULL, H4_CSS_3_FULL);
+        case css_4 : return has_css_crossover (lhs, rhs, H2_CSS_4_FULL, H3_CSS_4_FULL, H4_CSS_4_FULL);
+        case css_5 : return has_css_crossover (lhs, rhs, H2_CSS_5_FULL, H3_CSS_5_FULL, H4_CSS_5_FULL);
+        case css_6 : return has_css_crossover (lhs, rhs, H2_CSS_6_FULL, H3_CSS_6_FULL, H4_CSS_6_FULL);
+        case css_2007 : return has_css_crossover (lhs, rhs, H2_CSS_2007, H3_CSS_2007, H4_CSS_2007);
+        case css_2010 : return has_css_crossover (lhs, rhs, H2_CSS_2010, H3_CSS_2010, H4_CSS_2010);
+        case css_2015 : return has_css_crossover (lhs, rhs, H2_CSS_2015, H3_CSS_2015, H4_CSS_2015);
+        case css_2015_1 : return has_css_crossover (lhs, rhs, H2_CSS_2015_1, H3_CSS_2015_1, H4_CSS_2015_1);
+        case css_2015_2 : return has_css_crossover (lhs, rhs, H2_CSS_2015_2, H3_CSS_2015_2, H4_CSS_2015_2);
+        case css_2017 : return has_css_crossover (lhs, rhs, H2_CSS_2017, H3_CSS_2017, H4_CSS_2017);
+        case css_2017_1 : return has_css_crossover (lhs, rhs, H2_CSS_2017_1, H3_CSS_2017_1, H4_CSS_2017_1);
+        case css_2017_2 : return has_css_crossover (lhs, rhs, H2_CSS_2017_2, H3_CSS_2017_2, H4_CSS_2017_2);
+        case css_2018 : return has_css_crossover (lhs, rhs, H2_CSS_2018, H3_CSS_2018, H4_CSS_2018);
+        case css_2018_1 : return has_css_crossover (lhs, rhs, H2_CSS_2018_1, H3_CSS_2018_1, H4_CSS_2018_1);
+        case css_2018_2 : return has_css_crossover (lhs, rhs, H2_CSS_2018_2, H3_CSS_2018_2, H4_CSS_2018_2);
+        case css_2020 : return has_css_crossover (lhs, rhs, H2_CSS_2020, H3_CSS_2020, H4_CSS_2020);
+        case css_2020_1 : return has_css_crossover (lhs, rhs, H2_CSS_2020_1, H3_CSS_2020_1, H4_CSS_2020_1);
+        case css_2020_2 : return has_css_crossover (lhs, rhs, H2_CSS_2020_2, H3_CSS_2020_2, H4_CSS_2020_2);
+        case css_2021 : return has_css_crossover (lhs, rhs, H2_CSS_2021, H3_CSS_2021, H4_CSS_2021);
+        case css_2021_1 : return has_css_crossover (lhs, rhs, H2_CSS_2021_1, H3_CSS_2021_1, H4_CSS_2021_1);
+        case css_2021_2 : return has_css_crossover (lhs, rhs, H2_CSS_2021_2, H3_CSS_2021_2, H4_CSS_2021_2);
+        case css_2022 : return has_css_crossover (lhs, rhs, H2_CSS_2022, H3_CSS_2022, H4_CSS_2022);
+        case css_2022_1 : return has_css_crossover (lhs, rhs, H2_CSS_2022_1, H3_CSS_2022_1, H4_CSS_2022_1);
+        case css_2022_2 : return has_css_crossover (lhs, rhs, H2_CSS_2022_2, H3_CSS_2022_2, H4_CSS_2022_2);
+        case css_2023 : return has_css_crossover (lhs, rhs, H2_CSS_2023, H3_CSS_2023, H4_CSS_2023);
+        case css_2023_1 : return has_css_crossover (lhs, rhs, H2_CSS_2023_1, H3_CSS_2023_1, H4_CSS_2023_1);
+        case css_2023_2 : return has_css_crossover (lhs, rhs, H2_CSS_2023_2, H3_CSS_2023_2, H4_CSS_2023_2);
+        case css_2024 : return has_css_crossover (lhs, rhs, H2_CSS_2024, H3_CSS_2024, H4_CSS_2024);
+        case css_2024_1 : return has_css_crossover (lhs, rhs, H2_CSS_2024_1, H3_CSS_2024_1, H4_CSS_2024_1);
+        case css_2024_2 : return has_css_crossover (lhs, rhs, H2_CSS_2024_2, H3_CSS_2024_2, H4_CSS_2024_2);
+        default : return false; } } 

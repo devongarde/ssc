@@ -106,7 +106,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define DFTHRD_SW   SMPLSWTCH DFTHRD_SW_
 #define FILE_SW     SMPLSWTCH FILE_SW_
+#define PERSIST_SW  SMPLSWTCH PERSIST_SW_
 #define PRGRSS_SW   SMPLSWTCH PRGRSS_SW_
+#define ROOT_SW     SMPLSWTCH ROOT_SW_
 #define SNIPPET_SW  SMPLSWTCH SNIPPET_SW_
 #define VERBOSE_SW  SMPLSWTCH VERBOSE_SW_
 
@@ -132,8 +134,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SVG_        "svg"
 #define VALIDATION_ "validation"
 #define WEBSITE_    "site"
-
-#define JOIN        "."
 
 #define CORPUS      CORPUS_ JOIN
 #define CSS         CSS_ JOIN
@@ -188,9 +188,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define CHARSET     "charset"
 #define CHANGED     "changed"
 #define CHECK       "check"
+#define CHROME      "chrome"
 #define CLASS       "class"
 #define CLASSIC     "classic"
-#define CMD         "cmd"
 #define CODES       "codes"
 #define COLOUR      "colour"
 #define COLOR       "color"
@@ -231,15 +231,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define DTDD        "name-value"
 #define EDE         "ede"
 #define EASE        "ease"
+#define ECHOMSG     "echomsg"
 #define ELEMENT     "element"
 #define ELEMATTR    ELEMENT "-" ATTRIB
 #define ENABLE      "enable"
 #define ENDPOINT    "endpoint"
-#define EXEC        "exec"
+#define ERRMSG      "errmsg"
 #define WHOOPS      "error"
 #define ERROREXIT   "errorexit"
 #define EXAMPLE     "example"
 #define EXCLUDE     "exclude"
+#define EXECRUN     "exec-run"
+#define EXECTEXT    "exec-text"
 #define EXPAND      "expand"
 #define EXPORT      "export"
 #define EXTENSION   "extension"
@@ -301,15 +304,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MOBILE      "mobile"
 #define MODE        "mode"
 #define MOTION      "motion"
+#define MOZILLA     "mozilla"
 #define MSG         "msg"
 #define MULTI_COLUMN "multi-column"
 #define NAMESPACE   "namespace"
 #define NES         "nes"
 #define NESTING     "nesting"
+#define NETSCAPE    "netscape"
 #define NIDS        "nids"
 #define ONCE        "once"
 #define ONT         "ontology"
 #define OUTPUT      "output"
+#define OPERA       "opera"
 #define OPTBOOST    "boost"
 #define OPTCOMP     "compiler"
 #define OPTCURL     "curly"
@@ -419,7 +425,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define VCS         "vcs"
 #define VERBOSE     "verbose"
 #define VERIFY      "verify"
-#define VER         "version"
 #define VERSION     "version"
 #define VIEW        "view"
 #define VIEWPORT    "viewport"
@@ -441,8 +446,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define TEMPLATE    "template"
 #define WRITE       "write"
 
-#define CFG                 "config"
-#define CONFIGURATION       DEFAULT_DATAPATH "/" CFG
+#define DEFAULT_CONFIG_FILE "config"
+#define CONFIGURATION       DEFAULT_DATAPATH "/" DEFAULT_CONFIG_FILE
 
 // environment
 #define ENV_CONFIG          PROG "_" CONFIG
@@ -465,5 +470,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define AUTH_TYPE           "AUTH_TYPE"
 #define CONTENT_TYPE        "CONTENT_TYPE"
 #define CONTENT_LENGTH      "CONTENT_LENGTH"
+
+#define DEFAULT_ECHOMSG     "[Value Undefined]"
+#define DEFAULT_ERRMSG      "[Oops, something broke.]"
 
 #define ARGLEN_MAX  4096

@@ -27,6 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/filesystem.h"
 #include "parser/text.h"
 #include "coop/fred.h"
+#include "element/elem.h"
 
 context_t context;
 ustr_t context_t::validation_;
@@ -400,3 +401,68 @@ context_t& context_t::snippet (const ::std::string& s)
     macro -> set (nm_html_snippet, s);
     if (! context.gui ()) quote_style (qs_html);
     return *this; }
+
+void context_t::check_ssi_naughtiness (nitpick& nits, const ::std::string& s)
+{   nitpick knots;
+    const ::std::string::size_type pos = s.find ("<!--#");
+    if (pos != ::std::string::npos)
+    {   type_master < t_ssi > ssi;
+        ssi.set_value (knots, html_default, s.substr (pos+5));
+        if (ssi.good ())
+        {   if (s.substr (pos+5).find ("-->") == ::std::string::npos)
+                nits.pick (nit_ssi_exec, es_warning, ec_ssi, "The substitute string ", quote (s), " contains an unclosed SSI element");
+            switch (ssi.get ())
+            {   case ssi_exec :
+                    nits.pick (nit_ssi_exec, es_warning, ec_ssi, "The substitute string ", quote (s), " contains <!--#exec ...>, which is extremely naughty and characteristic of malignant hackery");
+                    break;
+                case ssi_comment :
+                    break;
+                case ssi_config :
+                    nits.pick (nit_ssi_naughty, es_warning, ec_ssi, "The substitute string ", quote (s), " contains <!--#config ...>, which may harm web pages");
+                    break;
+                case ssi_echo :
+                    nits.pick (nit_ssi_naughty, es_warning, ec_ssi, "The substitute string ", quote (s), " contains <!--#echo ...>, which may imply malignant hackery");
+                    break;
+                case ssi_if :
+                case ssi_else :
+                case ssi_elif :
+                case ssi_endif :
+                    nits.pick (nit_ssi_if, es_warning, ec_ssi, "The substitute string ", quote (s), " contains an SSI conditional element, which is rather naughty");
+                    break;
+                case ssi_include :
+                    nits.pick (nit_ssi_naughty, es_warning, ec_ssi, "The substitute string ", quote (s), " contains <!--#include ...>, which is extremely naughty and characteristic of malignant hackery");
+                    break;
+                case ssi_set :
+                    nits.pick (nit_ssi_naughty, es_warning, ec_ssi, "The substitute string ", quote (s), " contains <!--#set ...>, which is rather naughty, and may change the value of a significant variable");
+                    break;
+                default :            
+                    nits.pick (nit_ssi_naughty, es_warning, ec_ssi, "The substitute string ", quote (s), " contains an SSI element, which is rather naughty");
+                    break; } } }
+    const ::std::string::size_type pos2 = s.find ("<");
+    if (pos2 != pos)
+        if (s.substr (pos2+1).find ('>') != ::std::string::npos)
+            switch (elem::find (html_default, s.substr (pos2+1)))
+            {   case elem_a :
+                    nits.pick (nit_ssi_naughty, es_warning, ec_ssi, "The substitute string ", quote (s), " contains an <A ...>, which is characteristic of malignant hackery");
+                    break;
+                case elem_error :
+                case elem_undefined :
+                    break;
+                case elem_iframe :
+                    nits.pick (nit_ssi_naughty, es_warning, ec_ssi, "The substitute string ", quote (s), " contains an <IFRAME ...>, which is characteristic of malignant hackery");
+                    break;
+                case elem_link :
+                    nits.pick (nit_ssi_naughty, es_warning, ec_ssi, "The substitute string ", quote (s), " contains a <LINK ...>, which is somewhat naughty");
+                    break;
+                case elem_meta :
+                    if (s.substr (pos2+1).find ("http-equiv") || s.substr (pos2+1).find ("HTTP-EQUIV"))
+                        if (s.substr (pos2+10).find ("refresh") || s.substr (pos2+10).find ("REFRESH"))
+                            nits.pick (nit_ssi_naughty, es_warning, ec_ssi, "The substitute string ", quote (s), " contains a <META ...> element and a REFRESH, which is characteristic of malignant hackery");
+                        else
+                            nits.pick (nit_ssi_naughty, es_warning, ec_ssi, "The substitute string ", quote (s), " contains a <META ...> element with an HTTP-EQUIV, which is very naughty");
+                    else
+                        nits.pick (nit_ssi_naughty, es_warning, ec_ssi, "The substitute string ", quote (s), " contains a <META ...>, which is rather naughty");
+                    break;
+                default :            
+                    nits.pick (nit_ssi_naughty, es_warning, ec_ssi, "The substitute string ", quote (s), " contains HTML element/s, which is rather naughty");
+                    break; } }

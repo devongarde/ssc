@@ -47,11 +47,11 @@ hav_t havt_pageset [] =
 
 hav_t havt_param [] =
 {   { { HTML_4_0 }, { XHTML_2_0 }, elem_param, a_id },
-    { { HTML_3_2, REQUIRED }, { HTML_UNDEF }, elem_param, a_name },
+    { { HTML_3_2, HV_REQUIRED }, { HTML_UNDEF }, elem_param, a_name },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_param, a_type },
     { { HTML_3_2 }, { XHTML_2_0 }, elem_param, a_value },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_param, a_value },
-    { { HTML_JAN05, REQUIRED }, { HTML_UNDEF }, elem_param, a_value },
+    { { HTML_JAN05, HV_REQUIRED }, { HTML_UNDEF }, elem_param, a_value },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_param, a_valuetype },
     HTML4_ATTRIBUTES_BASE (elem_param),
     EXTRA_HTML5_ATTRIBUTES (elem_param),
@@ -119,7 +119,7 @@ hav_t havt_plus [] =
 hav_t havt_polygon [] =
 {   { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_polygon, a_externalresourcesrequired },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_polygon, a_pathlength },
-    { { HTML_SVG10, 0, HE_SVG | REQUIRED }, { HTML_UNDEF }, elem_polygon, a_points },
+    { { HTML_SVG10, HV_REQUIRED, HE_SVG }, { HTML_UNDEF }, elem_polygon, a_points },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_polygon, a_transform },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_polygon, a_will_change },
     SVG_CONDITIONAL_ATTRIBUTES (elem_polygon),
@@ -133,7 +133,7 @@ hav_t havt_polygon [] =
 hav_t havt_polyline [] =
 {   { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_polyline, a_externalresourcesrequired },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_polyline, a_pathlength },
-    { { HTML_SVG10, 0, HE_SVG | REQUIRED }, { HTML_UNDEF }, elem_polyline, a_points },
+    { { HTML_SVG10, HV_REQUIRED, HE_SVG }, { HTML_UNDEF }, elem_polyline, a_points },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_polyline, a_transform },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_polyline, a_will_change },
     SVG_CONDITIONAL_ATTRIBUTES (elem_polyline),

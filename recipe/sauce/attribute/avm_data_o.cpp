@@ -65,7 +65,7 @@ hav_t havt_ol [] =
 
 hav_t havt_optgroup [] =
 {   { { HTML_4_0 }, { HTML_UNDEF }, elem_optgroup, a_disabled },
-    { { HTML_4_0, REQUIRED }, { HTML_UNDEF }, elem_optgroup, a_label },
+    { { HTML_4_0, HV_REQUIRED }, { HTML_UNDEF }, elem_optgroup, a_label },
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_optgroup),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
@@ -104,7 +104,7 @@ hav_t havt_overlay [] =
 {   { { HTML_3_0 }, { HTML_3_0 }, elem_overlay, a_height },
     { { HTML_3_0 }, { HTML_3_0 }, elem_overlay, a_imagemap },
     { { HTML_3_0 }, { HTML_3_0 }, elem_overlay, a_md },
-    { { HTML_3_0, REQUIRED }, { HTML_3_0 }, elem_overlay, a_src },
+    { { HTML_3_0, HV_REQUIRED }, { HTML_3_0 }, elem_overlay, a_src },
     { { HTML_3_0 }, { HTML_3_0 }, elem_overlay, a_units },
     { { HTML_3_0 }, { HTML_3_0 }, elem_overlay, a_width },
     { { HTML_3_0 }, { HTML_3_0 }, elem_overlay, a_x },

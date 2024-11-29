@@ -29,7 +29,7 @@ ustr_t langdict, dictlang;
 #endif // NOSPELL
 
 // for those who habitually spell korrectly
-bool check_identifier_spelling (nitpick& nits, const html_version& , const ::std::string& s)
+bool check_identifier_spelling (nitpick& nits, const html_version& , const ::std::string& s, const ::std::string& place)
 {   typedef enum { d_none, d_johnson, d_anaesthesia, d_oz, d_collins, d_wiki } e_dictionary;
     const char* const dictionary [] =
     {   nullptr,
@@ -91,21 +91,26 @@ bool check_identifier_spelling (nitpick& nits, const html_version& , const ::std
     ::std::string ss (::boost::algorithm::to_lower_copy (trim_the_lot_off (s)));
     mdst_t::const_iterator i = ms.find (ss);
     if (i != ms.cend ())
-    {   if (i -> second.dict_ != d_none)
+    {   ::std::string msg (quote (i -> second.spell_));
+        if (! place.empty ())
+        {   msg += ", which is ";
+            msg += place;
+            msg += ","; }
+         if (i -> second.dict_ != d_none)
             if (dictionary [i -> second.dict_] != nullptr)
             {   ::std::string ref (dictionary [i -> second.dict_]);
                 if (i -> second.ref_ != nullptr)
                 {   ref += ", page ";
                     ref += i -> second.ref_; }
                 if (i -> second.dialect_)
-                    nits.pick (nit_dialect, ed_dict, ref, es_info, ec_incorrectness, quote (i -> second.spell_), ", which is unrecognised, is US English: is standard English required?");
+                    nits.pick (nit_dialect, ed_dict, ref, es_info, ec_incorrectness, msg, " is spelled in American English: should it be spelt in standard English?");
                 else
-                    nits.pick (nit_correct_spelling, ed_dict, ref, es_info, ec_incorrectness, quote (i -> second.spell_), " is standard English, not US English");
+                    nits.pick (nit_correct_spelling, ed_dict, ref, es_info, ec_incorrectness, msg, " is spelt in standard English: should it be spelled in American English?");
                 return true; }
         if (i -> second.dialect_)
-            nits.pick (nit_dialect, es_info, ec_incorrectness, quote (i -> second.spell_), ", which is unrecognised, is US English: is standard English required?");
+            nits.pick (nit_dialect, es_info, ec_incorrectness, msg, " is spelled in American English: should it be spelt in standard English?");
         else
-            nits.pick (nit_correct_spelling, es_info, ec_incorrectness, quote (i -> second.spell_), " is standard English, not US English");
+            nits.pick (nit_correct_spelling, es_info, ec_incorrectness, msg, " is spelt in standard English: should it be spelled in American English?");
         return true; }
 #ifdef _MSC_VER
 #pragma warning (pop)

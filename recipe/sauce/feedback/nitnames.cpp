@@ -859,7 +859,15 @@ const nitname nitnames [] =
     { nit_wx, "wx" },
     { nit_missing_ancestor, "missing_ancestor" },
     { nit_ssi_stack, "ssi_stack" },
-    { nit_ssi_no_cmd, "ssi_no_cmd" },
+    { nit_ssi_exec, "ssi_exec" },
+    { nit_ssi_naughty, "ssi_naughty" },
+    { nit_chrome, "chrome" },
+    { nit_ie, "ie" },
+    { nit_mozilla, "mozilla" },
+    { nit_netscape, "netscape" },
+    { nit_opera, "opera" },
+    { nit_safari, "safari" },
+    { nit_invalid_duration, "invalid_duration" },
 
     { nit_incompatible, "incompatible" },
 

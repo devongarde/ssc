@@ -136,7 +136,7 @@ PASS ../toast/microdata/schema-pqrs/podcastepisode.html
 0 charset_mismatch charset_used charset_invalid
 11 unrecognised_value
 17 attribute_barred bad_datetime bad_datetime bad_datetime bad_datetime
-18 attribute_barred bad_datetime bad_datetime
+18 attribute_barred invalid_duration invalid_duration
 
 PASS ../toast/microdata/schema-pqrs/podcastseason.html
 11 unrecognised_value

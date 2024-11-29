@@ -29,7 +29,7 @@ typedef ssc_mm < ::std::string, vstr_t > mssfl_t;
 typedef ::std::unique_ptr < mssfl_t > mssfl_uptr;
 extern mssfl_uptr mssfl;
 
-bool check_identifier_spelling (nitpick& nits, const html_version& v, const ::std::string& s);
+bool check_identifier_spelling (nitpick& nits, const html_version& v, const ::std::string& s, const ::std::string& place = ::std::string ());
 
 #ifndef NOSPELL
 void add_spell_list (nitpick& nits, const ::std::string& lang, const ::boost::filesystem::path& fn);

@@ -304,21 +304,35 @@ bool acquire_global_datetime (const ::std::string& s, int& year, int& month, int
     if (! verify_hms (e, i, hour, minute, second)) return false;
     return (i == e); }
 
-bool verify_duration (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& day, int& hour, int& minute, int& second, int& micro) noexcept
+bool verify_duration (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& year, int& month, int& week, int& day, int& hour, int& minute, int& second, int& micro) noexcept
 {   if (c == e) return false;
     ::std::string::const_iterator i = c;
     if (! grab_char (e, i, 'P')) return false;
-    int d = 0, h = 0, m = 0, s = 0, ms = 0;
-    if (! grab_digits (e, i, 4, 0, true, d)) return false;
-    if (! grab_char (e, i, 'T')) return false;
-    if (! grab_digits (e, i, 4, 0, true, h)) return false;
-    if (! grab_char (e, i, 'H')) return false;
-    if (! grab_digits (e, i, 4, 0, true, m)) return false;
-    if (! grab_char (e, i, 'M')) return false;
-    if (! grab_digits (e, i, 4, 0, true, s)) return false;
-    if (grab_char (e, i, '.'))
-        if (! grab_digits (e, i, 4, 0, true, ms)) return false;
-    if (! grab_char (e, i, 'S')) return false;
+    int y = 0, mo = 0, w = 0, d = 0, h = 0, m = 0, s = 0, ms = 0, x = 0, n = 0;
+    bool dotty = false, tea = false;
+    if (grab_char (e, i, 'T')) { tea = true; n = 5; }
+    while (c < e)
+    {   if (dotty) return false;
+        if (! grab_digits (e, i, 4, 0, true, x)) break;
+        if (grab_char (e, i, '.') || grab_char (e, i, ','))
+        {   if (! grab_digits (e, i, 4, 0, true, ms)) return false;
+            dotty = true; }
+        if ((n == 0) && grab_char (e, i, 'Y')) { y = x; n = 1; continue; }
+        if ((n < 2) && grab_char (e, i, 'M')) { mo = x; n = 2; continue; }
+        if ((n < 3) && grab_char (e, i, 'W')) { w = x; n = 3; continue; }
+        if ((n < 4) && grab_char (e, i, 'D')) { d = x; n = 4; continue; }
+        if ((n < 5) && grab_char (e, i, 'T'))
+        {   n = 5;
+            if (tea) return false;
+            else tea = true; }
+        if ((n < 6) && grab_char (e, i, 'H')) { h = x; n = 6; continue; }
+        if ((n < 7) && grab_char (e, i, 'M')) { m = x; n = 7; continue; }
+        if ((n < 8) && grab_char (e, i, 'S')) { s = x; n = 8; break; }
+        return false; }
+    if (n == 0) return false;
+    year = y;
+    month = mo;
+    week = w;
     day = d;
     hour = h;
     minute = m;
@@ -444,7 +458,7 @@ bool verify_svg_duration (const ::std::string::const_iterator e, ::std::string::
 
 bool verify_vague (const ::std::string::const_iterator e, ::std::string::const_iterator& c, int& year, int& month, int& week, int& day, int& hour, int& minute, int& second, int& micro, int& hour_offset, int& minute_offset, int64_t& duration)
 {   ::std::string::const_iterator i = c;
-    int y = 0, m = 0, d = 0, h = 0, mn = 0, s = 0, ms = 0, ho = 0, mo = 0, w = 0;
+    int y = 0, m = 0, w = 0, d = 0, h = 0, mn = 0, s = 0, ms = 0, ho = 0, mo = 0;
     int64_t s64 = 0;
     if (! verify_global_datetime (e, i, y, m, d, h, mn, s, ms, ho, mo))
         if (! verify_floating_datetime (e, i, y, m, d, h, mn, s, ms))
@@ -454,7 +468,7 @@ bool verify_vague (const ::std::string::const_iterator e, ::std::string::const_i
                         if (! verify_yearless_date (e, i, m, d))
                             if (! verify_month (e, i, y, m))
                                 if (! verify_timezone (e, i, ho, mo))
-                                    if (! verify_duration (e, i, d, h, mn, s, ms))
+                                    if (! verify_duration (e, i, y, m, w, d, h, mn, s, ms))
                                         if (! verify_duration (e, i, s64, ms))
                                             if (! verify_simply_year (e, i, y))
                                                 return false;
@@ -599,9 +613,9 @@ bool verify_absolute (const ::std::string& str)
 bool verify_duration (const ::std::string& str)
 {   ::std::string::const_iterator i = str.cbegin ();
     ::std::string::const_iterator e = str.cend ();
-    int d = 0, h = 0, mn = 0, s = 0, ms = 0;
+    int y = 0, m = 0, w = 0, d = 0, h = 0, mn = 0, s = 0, ms = 0;
     int64_t i64 = 0;
-    if (! verify_duration (e, i, d, h, mn, s, ms))
+    if (! verify_duration (e, i, y, m, w, d, h, mn, s, ms))
         if (! verify_duration (e, i, i64, ms))
             return false;
     return true; }
@@ -690,8 +704,9 @@ bool verify_absolute (nitpick& nits, const html_version& , const ::std::string& 
     return false; }
 
 bool verify_duration (nitpick& nits, const html_version& , const ::std::string& s)
-{   if (verify_duration (s)) return true;
-    nits.pick (nit_bad_datetime, ed_50, "2.4.5.9 Durations", es_error, ec_type, quote (s), " is an invalid duration");
+{  
+    if (verify_duration (s)) return true;
+    nits.pick (nit_invalid_duration, ed_50, "2.4.5.9 Durations", es_error, ec_type, quote (s), " is an invalid duration");
     return false; }
 
 bool verify_day (nitpick& nits, const html_version& , const ::std::string& s)
@@ -746,7 +761,7 @@ bool verify_coarse_time (nitpick& nits, const html_version& , const ::std::strin
 
 bool verify_svg_duration (nitpick& nits, const html_version& , const ::std::string& s)
 {   if (verify_svg_duration (s)) return true;
-    nits.pick (nit_bad_datetime, ed_svg_1_1, "19.2.8.1 Clock values", es_error, ec_type, quote (s), " is an invalid duration");
+    nits.pick (nit_invalid_duration, ed_svg_1_1, "19.2.8.1 Clock values", es_error, ec_type, quote (s), " is an invalid duration");
     return false; }
 
 time_t string_to_time (nitpick& nits, const ::std::string& s)

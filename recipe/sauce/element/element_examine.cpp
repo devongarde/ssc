@@ -325,12 +325,12 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
                 node_.version ().check_math_svg (node_.nits (), node_.id ().first () , node_.id ().name ());
                 const html_version hv = elem :: first_version (tag);
                 if (hv.invalid_addendum (node_.version ())) pick (nit_invalid_addendum, es_error, ec_element, "<", elem :: name (tag), "> is part of an extension that is being ignored");
-                else if (hv.netscape ()) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), ">: avoid (ancient) Netscape bespoke elements");
-                else if (hv.mozilla ()) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), ">: avoid non-standard Firefox / Mozilla elements");
-                else if (hv.ie ()) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), ">: avoid (ancient) Internet Explorer bespoke elements");
-                else if (hv.chrome ()) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), ">: avoid non-standard Chrome bespoke elements");
-                else if (hv.safari ()) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), ">: avoid non-standard Safari bespoke elements");
-                else if (hv.opera ()) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), ">: avoid non-standard Opera bespoke elements");
+                else if (hv.netscape ()) pick (nit_netscape, es_warning, ec_browser, "<", elem :: name (tag), ">: avoid (ancient) Netscape bespoke elements");
+                else if (hv.mozilla ()) pick (nit_mozilla, es_warning, ec_browser, "<", elem :: name (tag), ">: avoid non-standard Firefox / Mozilla elements");
+                else if (hv.ie ()) pick (nit_ie, es_warning, ec_browser, "<", elem :: name (tag), ">: avoid (ancient) Internet Explorer bespoke elements");
+                else if (hv.chrome ()) pick (nit_chrome, es_warning, ec_browser, "<", elem :: name (tag), ">: avoid non-standard Chrome bespoke elements");
+                else if (hv.safari ()) pick (nit_safari, es_warning, ec_browser, "<", elem :: name (tag), ">: avoid non-standard Safari bespoke elements");
+                else if (hv.opera ()) pick (nit_opera, es_warning, ec_browser, "<", elem :: name (tag), ">: avoid non-standard Opera bespoke elements");
                 else if (hv.webcomponents ()) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), ">: avoid bespoke Web Components elements");
                 else if (hv.bespoke () ) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), ">: avoid using bespoke elements");
                 if ((node_.version ().w3 ()) && hv.whatwg ()) pick (nit_bespoke_element, es_warning, ec_element, "<", elem :: name (tag), "> is only defined by WhatWG");

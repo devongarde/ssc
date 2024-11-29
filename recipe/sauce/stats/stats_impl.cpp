@@ -332,6 +332,7 @@ const char* str_name [] =
     res += saybe (table, category_.at (ec_html), "HTML");
     res += saybe (table, category_.at (ec_aria), "Aria");
     res += saybe (table, category_.at (ec_attribute), "Attribute");
+    res += saybe (table, category_.at (ec_browser), "Browser");
     res += saybe (table, category_.at (ec_cache), "Cache");
     res += saybe (table, category_.at (ec_corpus), "Corpus");
     res += saybe (table, category_.at (ec_crc), "CRC");

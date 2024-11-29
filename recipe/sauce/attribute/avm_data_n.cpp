@@ -47,7 +47,7 @@ hav_t havt_nest [] =
 
 hav_t havt_nextid [] =
 {   { { HTML_TAGS }, { HTML_1_0 }, elem_nextid, a_n },
-    { { HTML_1_0, REQUIRED }, { HTML_3_0 }, elem_nextid, a_n },
+    { { HTML_1_0, HV_REQUIRED }, { HTML_3_0 }, elem_nextid, a_n },
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_nl [] =

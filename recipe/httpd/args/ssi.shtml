@@ -34,7 +34,7 @@ These switches tune Server Side Include processing.
                                 format (as used by schema.org)<br>
                             <kbd>ssc_last_modified_rfc822</kbd>:
                                 output last modified date in RFC 822
-                                format, as used by http headers, and is suitable for use by LAST_MODIFIED with  &lt;META&gt;&rsquo;s HTTP&ndash;EQUIV attribute.<br>
+                                format, as used by http headers, and is suitable for use by LAST_MODIFIED with &lt;META&gt;&rsquo;s HTTP&ndash;EQUIV attribute.<br>
                             <kbd>ssc_last_modified_rfc850</kbd>:
                                 output last modified date in RFC 850
                                 format (as used by archaic systems)<br>
@@ -56,19 +56,25 @@ These switches tune Server Side Include processing.
                         numbers to be mentioned when an issue is
                         reported.</td></tr>
 
-<tr><td>--ssi.cmd x</td> <td>If an SSI CMD element is encountered, return
-                        this text. Note that SSC never processes such
-                        commands.</td></tr>
-
-<tr><td>--ssi.exec x</td> <td>If an SSI EXEC element is encountered, return
-                        this text. Note that SSC never executes such
-                        commands.</td></tr>
+<tr><td>--ssi.exec-run</td> <td>If an SSI EXEC element is encountered, obey it.
+                        This is dangerous when processing a site you do
+                        not control. By default, this is set to false.</td></tr>
 
 <tr><td>--ssi.docargs x</td> <td>If the SSI document-args variable is requested,
                         return this string (default: blank).</td></tr>
 
+<tr><td>--ssi.echomsg x</td> <td>Set the default SSI echo message.</td></tr>
+
+<tr><td>--ssi.errmsg x</td> <td>Set the default SSI error message.</td></tr>
+
+<tr><td>--ssi.exec-text x</td> <td>If an SSI EXEC element is encountered when they
+                        are not processed, return this text.</td></tr>
+
 <tr><td>--ssi.querystring x</td> <td>If the SSI document_args variable is requested,
                         return this string (default: blank).</td></tr>
+
+<tr><td>--ssi.tmefmt x</td> <td>Set the initial value of SSI TIMEFMT to this
+                        string (default: blank).</td></tr>
 
 <tr><td>--ssi.username x</td> <td>If the SSI query_string_unescaped variable is
                         requested, return this string (default: blank).</td></tr>

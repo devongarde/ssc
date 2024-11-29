@@ -86,8 +86,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HV_DEPRECATED5X ( HV_DEPRECATEDX | HV_DEPRECATED5 )
 
 #define HV_DINOSAUR     0x0000001000000000
-#define REJECT          0x0000002000000000
-#define REQUIRED        0x0000004000000000
+#define HV_REJECT       0x0000002000000000
+#define HV_REQUIRED     0x0000004000000000
 
 #define HV_INT          0x0000008000000000
 #define HV_STRICT       0x0000010000000000
@@ -222,6 +222,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HE_CHROME       0x0000002000000000
 #define HE_OPERA        0x0000004000000000
 #define HE_SAFARI       0x0000008000000000
+
+#define HE_BROWSERS     ( HE_CHROME | HE_IE | HE_MOZILLA | HE_NETSCAPE | HE_OPERA | HE_SAFARI )
 
 #define HE_NOT_SVG_10   0x0000010000000000
 #define HE_NOT_SVG_11   0x0000020000000000
@@ -760,11 +762,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 class html_version : public version
 {   flags_t ext_ = NOFLAGS, ext2_ = NOFLAGS, ext3_ = NOFLAGS, ext4_ = NOFLAGS;
+    mutable e_css_version css_ = css_unknown;
     bool note_parsed_version (nitpick& nits, const e_nit n, const html_version& got, const ::std::string& gen);
     void init (const unsigned short mjr);
     bool test_extension () const noexcept;
     bool compare_css (const flags_t e2, const flags_t e3, const flags_t e4, flags_t& ext2, flags_t& ext3, flags_t& ext4) const;
     ::std::string css_version_text (const bool b) const;
+    bool has_this_css (const flags_t f2, const flags_t f3, const flags_t f4) const noexcept;
     template < e_css_module MOD > void set_level (const int l);
     template < e_css_module MOD > int get_level () const;
     template < e_css_module MOD, e_css_module... MS > friend struct process_module;
@@ -789,30 +793,30 @@ public:
     bool any_ext (const flags_t u) const noexcept { return ((ext_ & u) != 0); }
     bool no_ext (const flags_t u) const noexcept { return ((ext_ & u) == 0); }
     flags_t ext () const noexcept { return ext_; }
-    void set_ext2 (const flags_t u) noexcept { ext2_ |= u; }
+    void set_ext2 (const flags_t u) noexcept { ext2_ |= u; css_ = css_unknown; }
     void set_ext2 (const flags_t m, const flags_t u) noexcept { reset_ext2 (m); set_ext2 (u); }
     void set_ext2 (const flags_t m, const flags_t u, int r) noexcept { reset_ext2 (m); set_ext2 ((u << r) & m); }
-    void reset_ext2 (const flags_t u) noexcept { ext2_ &= ~u; }
+    void reset_ext2 (const flags_t u) noexcept { ext2_ &= ~u; css_ = css_unknown; }
     bool all_ext2 (const flags_t u) const noexcept
     {   return ((ext2_ & u) == u); }
     bool any_ext2 (const flags_t u) const noexcept { return ((ext2_ & u) != 0); }
     bool no_ext2 (const flags_t u) const noexcept { return ((ext2_ & u) == 0); }
     flags_t ext2 () const noexcept { return ext2_; }
     flags_t ext2 (const flags_t m, int r) const noexcept { return (ext2 () & m) >> r; }
-    void set_ext3 (const flags_t u) noexcept { ext3_ |= u; }
+    void set_ext3 (const flags_t u) noexcept { ext3_ |= u; css_ = css_unknown; }
     void set_ext3 (const flags_t m, const flags_t u) noexcept { reset_ext3 (m); set_ext3 (u); }
     void set_ext3 (const flags_t m, const flags_t u, int r) noexcept { reset_ext3 (m); set_ext3 ((u << r) & m); }
-    void reset_ext3 (const flags_t u) noexcept { ext3_ &= ~u; }
+    void reset_ext3 (const flags_t u) noexcept { ext3_ &= ~u; css_ = css_unknown; }
     bool all_ext3 (const flags_t u) const noexcept
     {   return ((ext3_ & u) == u); }
     bool any_ext3 (const flags_t u) const noexcept { return ((ext3_ & u) != 0); }
     bool no_ext3 (const flags_t u) const noexcept { return ((ext3_ & u) == 0); }
     flags_t ext3 () const noexcept { return ext3_; }
     flags_t ext3 (const flags_t m, int r) const noexcept { return (ext3 () & m) >> r; }
-    void set_ext4 (const flags_t u) noexcept { ext4_ |= u; }
+    void set_ext4 (const flags_t u) noexcept { ext4_ |= u; css_ = css_unknown; }
     void set_ext4 (const flags_t m, const flags_t u) noexcept { reset_ext4 (m); set_ext4 (u); }
     void set_ext4 (const flags_t m, const flags_t u, int r) noexcept { reset_ext4 (m); set_ext4 ((u << r) & m); }
-    void reset_ext4 (const flags_t u) noexcept { ext4_ &= ~u; }
+    void reset_ext4 (const flags_t u) noexcept { ext4_ &= ~u; css_ = css_unknown; }
     bool all_ext4 (const flags_t u) const noexcept
     {   return ((ext4_ & u) == u); }
     bool any_ext4 (const flags_t u) const noexcept { return ((ext4_ & u) != 0); }
@@ -842,6 +846,7 @@ public:
     bool is_2_or_more () const noexcept { return mjr () >= 2; }
     bool is_3_or_more () const  noexcept{ return mjr () >= 3; }
     bool is_4_or_more () const noexcept { return mjr () >= 4; }
+    bool bizarritude () const noexcept { return any_ext (HE_BROWSERS); } 
     bool abandoned () const noexcept { return any_flags (HV_ABANDONED); }
     bool bespoke () const noexcept { return all_ext (HE_BESPOKE); }
     bool chrome () const noexcept { return all_ext (HE_CHROME); }
@@ -854,6 +859,7 @@ public:
     bool has_math () const noexcept { return any_ext2 (MATH_MASK); }
     bool has_math_core () const noexcept { return any_ext2 (H2_MATH_C); }
     bool has_math_not_core () const noexcept { return any_ext2 (H2_MATHML) && ! has_math_core (); }
+    bool has_rdf () const noexcept { return any_ext (RDF_MASK); }
     bool has_rdfa () const noexcept { return any_ext (HE_RDFA); }
     bool has_svg () const noexcept { return any_ext (SVG_MASK); }
     bool has_xlink () const  noexcept { return any_ext (XLINK_MASK); }
@@ -933,10 +939,10 @@ public:
     bool not53 () const noexcept { return all_flags (HV_NOT53); }
     bool opera () const noexcept { return any_ext (HE_OPERA); }
     bool out_of_scope () const noexcept { return all_flags (HV_OUTOFSCOPE); }
-    bool reject () const noexcept { return all_flags (REJECT); }
+    bool reject () const noexcept { return all_flags (HV_REJECT); }
     bool ruby () const noexcept { return any_ext4 (H4_RUBY); }
     bool clacks () const noexcept { return any_ext2 (H2_CLACKS); }
-    bool required () const noexcept { return all_flags (REQUIRED); }
+    bool required () const noexcept { return all_flags (HV_REQUIRED); }
     bool rfc_1867 () const noexcept { return all_flags (HV_RFC_1867); }
     bool rfc_1942 () const noexcept { return all_flags (HV_RFC_1942); }
     bool rfc_1980 () const noexcept { return all_flags (HV_RFC_1980); }
@@ -999,6 +1005,7 @@ public:
     bool print_profile () const { return (ext3_ & H3_NOT_PRINT) == H3_NOT_PRINT; }
     bool tv_profile () const { return (ext3_ & H3_NOT_TV) == H3_NOT_TV; }
     bool css_deprecated () const { return (ext3_ & H3_CSS_DEPRECATED) == H3_CSS_DEPRECATED; }
+    bool valid_context (const html_version& v) const noexcept;
     ::std::string get_doctype () const;
     ::std::string name () const;
     ::std::string nice_name () const;
@@ -1205,7 +1212,8 @@ const html_version html_schema_26 (HTML_SCHEMA_26);
 const html_version html_schema_27 (HTML_SCHEMA_27);
 const html_version html_schema_27_01 (HTML_SCHEMA_27_01);
 const html_version html_schema_27_02 (HTML_SCHEMA_27_02);
-const html_version html_schema_28 (HTML_SCHEMA_28);
+const html_version html_schema_28_0 (HTML_SCHEMA_28_0);
+const html_version html_schema_28_1 (HTML_SCHEMA_28_1);
 const html_version html_schema_29 (HTML_SCHEMA_29);
 const html_version html_sd (HTML_SD);
 const html_version html_sioc (HTML_SIOC);
@@ -1321,6 +1329,7 @@ html_version get_min_version (const e_math_version e) noexcept;
 html_version get_min_version (const e_jsonld_version e) noexcept;
 bool overlap (const html_version& lhs_from, const html_version& lhs_to, const html_version& rhs_from, const html_version& rhs_to);
 bool is_css_identical (const html_version& lhs, const html_version& rhs);
+bool has_css_crossover (const e_css_version c, const html_version& lhs, const html_version& rhs) noexcept;
 
 template < > inline bool does_apply < html_version > (const html_version& v, const html_version& from, const html_version& to)
 {   return does_html_apply (v, from, to); }

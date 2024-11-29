@@ -2198,6 +2198,15 @@
     <ClInclude Include="..\heater\gui\gui-spex.h">
       <Filter>Heater\gui</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\gui\gui-ssi.h">
+      <Filter>Heater\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\gui\gui-ctrl.h">
+      <Filter>Heater\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\gui\gui-ctrls.h">
+      <Filter>Heater\gui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -2809,16 +2818,7 @@
     <ClCompile Include="..\sauce\css\value_types_0_9.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_a.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_b.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_c.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_d_e.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_css_a.cpp">
@@ -2839,9 +2839,6 @@
     <ClCompile Include="..\sauce\css\value_types_css_f_1.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_g_i.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_css_m_n.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
@@ -2851,16 +2848,7 @@
     <ClCompile Include="..\sauce\css\value_types_css_t_1.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_u_z.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_f.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_g_h.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_j_l.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_m_1.cpp">
@@ -2873,9 +2861,6 @@
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_q_r.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_svg.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_t.cpp">
@@ -2896,12 +2881,6 @@
     <ClCompile Include="..\sauce\css\value_types_css_f_2.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_o_p.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_s.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_css_t_2.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
@@ -2914,16 +2893,10 @@
     <ClCompile Include="..\sauce\css\value_types_p_2.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_s.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_u.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_x_z.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_j_l.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\coop\tls.cpp">
@@ -3009,6 +2982,102 @@
     </ClCompile>
     <ClCompile Include="..\sauce\gui\gui-spex.cpp">
       <Filter>Sauce\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\gui\gui-ssi.cpp">
+      <Filter>Sauce\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\gui\gui-ctrl.cpp">
+      <Filter>Sauce\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\gui\gui-ctrls.cpp">
+      <Filter>Sauce\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_a_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_a_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_c_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_c_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_b_3.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_g_h.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_i.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_j_k.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_o.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_p_q.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_s_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_s_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_u_v.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_w_z.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_d.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_e.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_f_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_f_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_j_k.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_l.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_m_3.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_r.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_s_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_s_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_svg_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_svg_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_v.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_x.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_l.cpp">
+      <Filter>Sauce\css_value</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

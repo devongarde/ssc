@@ -91,6 +91,12 @@
   </li>
   <li>
     <object type="text/sitemap">
+      <param name="Name" value="ssi"/>
+      <param name="Local" value="ssi.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
       <param name="Name" value="stats"/>
       <param name="Local" value="stats.html"/>
     </object>

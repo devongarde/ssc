@@ -2373,6 +2373,7 @@ PASS ../toast/living/oct24/hr.css
 16 css_version
 17 css_version
 18 css_version
+19 dialect
 
 PASS ../toast/living/oct24/lists.css
 4 css_version

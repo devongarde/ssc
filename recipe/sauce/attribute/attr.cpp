@@ -115,7 +115,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_4_01, HV_ARIA, HE_ANIM_2 }, { HTML_UNDEF }, "aria-valuemin", a_aria_valuemin },
     { { HTML_4_01, HV_ARIA, HE_ANIM_2 }, { HTML_UNDEF }, "aria-valuenow", a_aria_valuenow },
     { { HTML_4_01, HV_ARIA, HE_ANIM_2 }, { HTML_UNDEF }, "aria-valuetext", a_aria_valuetext },
-    { { HTML_JAN05, 0, HE_MOZILLA }, { HTML_UNDEF }, "as", a_as },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "as", a_as },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "ascent", a_ascent },
     { { HTML_JAN05 }, { HTML_UNDEF }, "async", a_async },
     { { HTML_PLUS }, { HTML_PLUS }, "at", a_at },
@@ -950,7 +950,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_SVG12, 0, HE_SVG_12_2 | HE_ANIM_12_2 }, { HTML_UNDEF }, "viewport-fill", a_viewport_fill },
     { { HTML_SVG12, 0, HE_SVG_12 | HE_ANIM_12 }, { HTML_UNDEF }, "viewport-fill-opacity", a_viewport_fill_opacity },
     { { HTML_SVG11, 0, HE_SVG_11 }, { HTML_UNDEF }, "viewTarget", a_viewtarget },
-    { { HTML_2_0, HV_NOTX1, HE_NETSCAPE | HE_SVG | HE_ANIM }, { HTML_UNDEF }, "visibility", a_visibility, ns_default, AF_SVG2_PROPERTY },
+    { { HTML_2_0, HV_NOTX1, HE_SVG | HE_ANIM }, { HTML_UNDEF }, "visibility", a_visibility, ns_default, AF_SVG2_PROPERTY },
     { { HTML_3_2 }, { HTML_UNDEF }, "vlink", a_vlink },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "v-mathematical", a_v_mathematical },
     { { HTML_RDF10, 0, HE_RDFA }, { HTML_UNDEF }, "vocab", a_vocab },
@@ -1016,7 +1016,9 @@ e_attribute attr::parse (nitpick& nits, const html_version& v, const namespaces_
     const symbol < html_version, e_attribute > a (v, lc, n);
     if (a.unknown ())
     {   nits.merge (nuts);
-        check_identifier_spelling (nits, v, lc); }
+        ::std::string place ("not valid in");
+        place += v.report ();
+        check_identifier_spelling (nits, v, lc, place); }
     else
     {   if ((v >= html_jan05) && ((a.flags () & AF_NOT_NAMESPACED) == 0)) nits.merge (nuts);
         a.first ().check_status (nits, lc);
@@ -1030,7 +1032,9 @@ e_attribute attr::parse (nitpick& nits, const html_version& v, const namespaces_
                 if (((v == xhtml_1_0) || (v == xhtml_1_1)) && (key.find_first_of (UPPERCASE) != ::std::string::npos))
                     nits.pick (nit_xhtml_attribute_lc, ed_x1, "4.2. Element and attribute names must be in lower case", es_warning, ec_element, "attribute names must be lower cased in ", v.report ());
         if (! does_apply < html_version > (v, a.first (), a.last ()))
-            nits.pick (nit_attribute_unrecognised_here, es_warning, ec_attribute, quote (key), " is not valid in ", v.report ());
+        {   const ::std::string k = quote (key);
+            a.first ().check_status (nits, k);
+            nits.pick (nit_attribute_unrecognised_here, es_warning, ec_attribute, k, " is not valid in ", v.report ()); }
         else return a.get (); }
     return a_unknown; }
 

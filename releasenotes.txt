@@ -3,6 +3,11 @@ static site checker
 https://ssc.lu/
 (c) 2020-2024 Dylan Harris
 
+0.2.6
+- schema.org version 28.1
+- various bug fixes
+- underlying work
+
 0.2.5
 - Living Standard ALPHA and COLORSPACE attributes
 - schema.org actionProcess

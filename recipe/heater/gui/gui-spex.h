@@ -32,6 +32,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "gui/gui-site.h"
 #include "gui/gui-snippet.h"
 #include "gui/gui-spell.h"
+#include "gui/gui-ssi.h"
 #include "gui/gui-stats.h"
 #ifdef DEBUG
 #include "gui/gui-validation.h"
@@ -55,6 +56,7 @@ class standard_t : public d3_t
 #ifndef NOSPELL
     spell_t spell_;
 #endif // NOSPELL
+    ssi_t ssi_;
     report_t stats_;
 #ifdef DEBUG
     valid_t valid_;
@@ -149,10 +151,14 @@ public:
     void OnSpellWordTap (wxCommandEvent& event) { spell_.OnWordTap (event); }
     void OnSpellWordImpatience (wxCommandEvent& event) { spell_.OnWordImpatience (event); }
 #endif // NOSPELL
+    void OnSSIExec (wxCommandEvent& event) { ssi_.OnExec (event); }
+    void OnSSILastMod (wxCommandEvent& event) { ssi_.OnLastMod (event); }
+    void OnSSINow (wxCommandEvent& event) { ssi_.OnNow (event); }
+    void OnSSIProcess (wxCommandEvent& event) { ssi_.OnProcess (event); }
 #ifdef DEBUG
     void OnValidChoice (wxCommandEvent& event) { valid_.OnChoice (event); }
 #endif // DEBUG
-    void OnStatsAll (wxCommandEvent& event) { stats_.OnAll(event); }
+    void OnStatsAll (wxCommandEvent& event) { stats_.OnAll (event); }
     void OnStatsClear (wxCommandEvent& event) { stats_.OnClear (event); }
     void OnStatsExport (wxCommandEvent& event) { stats_.OnExport (event); }
     void OnStatsSelected (wxCommandEvent& event) { stats_.OnSelected (event); } };

@@ -823,7 +823,7 @@ PASS ../toast/SVG/1.1/svg11.html
 1575 svg_version
 1580 fontname
 1593 svg_version
-1595 css_version not_here css_version not_here css_version not_here css_version not_here
+1595 fontname
 1603 fontname
 1607 inserted_missing_closure
 

@@ -16,13 +16,16 @@ PASS ../toast/SVG/1.2-full/fill.svg
 PASS ../toast/SVG/1.2-full/flow-text.svg
 1 xhtml_1_1
 4 svg_version
+5 attribute_required
 
 PASS ../toast/SVG/1.2-full/hint.svg
 1 xhtml_1_1
 2 svg_version
+4 attribute_required
 
 PASS ../toast/SVG/1.2-full/index.html
 2 naughty_lang
+4 attribute_required
 
 PASS ../toast/SVG/1.2-full/metadata.svg
 0 title_required
@@ -156,8 +159,12 @@ PASS ../toast/SVG/1.2-full/xa.svg
 6 bad_namespace attribute_unrecognised bad_namespace attribute_unrecognised unrecognised_attribute unrecognised_attribute
 8 bad_namespace attribute_unrecognised bad_namespace attribute_unrecognised unrecognised_attribute unrecognised_attribute
 14 bad_namespace attribute_unrecognised unrecognised_attribute
+15 attribute_required
 17 bad_namespace attribute_unrecognised unrecognised_attribute
+18 attribute_required
 25 bad_namespace attribute_unrecognised unrecognised_attribute
+30 attribute_required
 33 bad_namespace attribute_unrecognised unrecognised_attribute
+38 attribute_required
 27 lingo
 35 lingo

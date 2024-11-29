@@ -84,7 +84,7 @@ hav_t havt_times [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_title [] =
-{   { { HTML_SVG12, 0, HE_SVG_12_FULL | REQUIRED }, { HTML_UNDEF }, elem_title, a_systemlanguage },
+{   { { HTML_SVG12, HV_REQUIRED, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_title, a_systemlanguage },
     HTMLPLUS_ATTRIBUTES (elem_title),
     SVG_PRESENTATION_ATTRIBUTES (elem_title),
     SVG_HTML_ATTRIBUTES (elem_title),
@@ -107,16 +107,16 @@ hav_t havt_track [] =
 {   { { HTML_JAN11 }, { HTML_UNDEF }, elem_track, a_default },
     { { HTML_JUL10 }, { HTML_UNDEF }, elem_track, a_kind },
     { { HTML_JUL10 }, { HTML_UNDEF }, elem_track, a_label },
-    { { HTML_JUL10, REQUIRED }, { HTML_UNDEF }, elem_track, a_src },
+    { { HTML_JUL10, HV_REQUIRED }, { HTML_UNDEF }, elem_track, a_src },
     { { HTML_JUL10 }, { HTML_UNDEF }, elem_track, a_srclang },
     STANDARD_HTML5_ATTRIBUTES(elem_track),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_traitdef [] =
-{   { { HTML_SVG12, 0, HE_SVG_12_FULL | REQUIRED }, { HTML_UNDEF }, elem_traitdef, a_name },
-    { { HTML_SVG12, 0, HE_SVG_12_FULL | REQUIRED }, { HTML_UNDEF }, elem_traitdef, a_namespace },
-    { { HTML_SVG12, 0, HE_SVG_12_FULL | REQUIRED }, { HTML_UNDEF }, elem_traitdef, a_type },
-    { { HTML_SVG12, 0, HE_SVG_12_FULL | REQUIRED }, { HTML_UNDEF }, elem_traitdef, a_valuetype },
+{   { { HTML_SVG12, HV_REQUIRED, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_traitdef, a_name },
+    { { HTML_SVG12, HV_REQUIRED, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_traitdef, a_namespace },
+    { { HTML_SVG12, HV_REQUIRED, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_traitdef, a_type },
+    { { HTML_SVG12, HV_REQUIRED, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_traitdef, a_valuetype },
     SVG_BOX_ATTRIBUTES (elem_traitdef),
     SVG_HTML_ATTRIBUTES (elem_traitdef),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
@@ -133,7 +133,7 @@ hav_t havt_transition [] =
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_transition, a_endprogress},
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_transition, a_startprogress },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_transition, a_subtype },
-    { { HTML_SVG12, 0, HE_SVG_12_FULL | REQUIRED }, { HTML_UNDEF }, elem_transition, a_type },
+    { { HTML_SVG12, HV_REQUIRED, HE_SVG_12_FULL }, { HTML_UNDEF }, elem_transition, a_type },
     SVG_HTML_ATTRIBUTES (elem_transition),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 

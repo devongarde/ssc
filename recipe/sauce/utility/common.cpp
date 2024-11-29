@@ -362,13 +362,13 @@ bool one_of_domain (const ::std::string& s, const vstr_t& v)
 {   ::boost::filesystem::path model (temp_dir ());
     if (model.string ().empty ()) return ::boost::filesystem::path ();
     model /= ::boost::filesystem::unique_path ();
-    model += EXT;
+    model += JOIN DEF_TEMP_EXT;
     return absolute_name (model); }
 
 bool read_header (nitpick& nits, const ::boost::property_tree::ptree& json, const ::std::string& expected, ::std::string& version, const ::std::string& filename)
 {   ::std::string prog = read_field < ::std::string > (json, APP);
     if (context.test ()) version = VERSION_STRING;
-    else version = read_field < ::std::string > (json, VER);
+    else version = read_field < ::std::string > (json, VERSION);
     ::std::string con = read_field < ::std::string > (json, CONTEXT);
     if ((prog != PROG) || (version.substr (0, 3) != "0.0"))
     {   if (context.tell (es_error))
@@ -387,7 +387,7 @@ bool read_header (nitpick& nits, const ::boost::property_tree::ptree& json, cons
 
 void write_header (::boost::property_tree::ptree& json, const char* k)
 {   write_field < ::std::string > (json, APP, PROG);
-    if (! context.test ()) write_field < ::std::string > (json, VER, VERSION_STRING);
+    if (! context.test ()) write_field < ::std::string > (json, VERSION, VERSION_STRING);
     write_field < ::std::string > (json, CONTEXT, k); }
 
 ::std::string fyi ()

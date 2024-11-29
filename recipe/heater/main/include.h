@@ -62,8 +62,8 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 5
-#define VERSION_STRING "0.2.5"
+#define VERSION_RELEASE 6
+#define VERSION_STRING "0.2.6"
 #define EDITION_STANDARD "standard"
 
 #define NBSP "&nbsp;"
@@ -441,6 +441,9 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #include <wx/panel.h>
 #include <wx/choice.h>
 #include <wx/choicebk.h>
+#include <wx/datectrl.h>
+#include <wx/dateevt.h>
+#include <wx/timectrl.h>
 #else // WX
 #define WXS
 #endif // WX
@@ -452,6 +455,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 
 #ifdef _MSC_VER
 #include <windows.h>
+#include <process.h>
 #endif // _MSC_VER
 
 #include <boost/filesystem.hpp>
@@ -585,8 +589,15 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 
 #define EVIL "nonce" // Why the f*ck the powers that be decided to embed a word for paedophile in the standards, I have no clue, but I do not like it.
 
-#define DEF_CONF_EXT "conf"
-#define DEF_CONF_FILE PROG "." DEF_CONF_EXT
+#define JOIN                "."
+#define HIDDENISH           "."
+
+#define DEF_CONF_EXT        "conf"
+#define DEF_CONF_FILE       PROG JOIN DEF_CONF_EXT
+#define DEF_PERSIST_EXT     "ndx"
+#define DEF_PERSIST_FILE    PROG JOIN DEF_PERSIST_EXT
+#define DEF_TEMP_EXT        PROG
+#define DEFAULT_DATAPATH    HIDDENISH PROG
 
 #define MAX_IDEAL_TITLE_LENGTH 32
 
@@ -780,8 +791,6 @@ CONSTEXPR uint32_t uint32_category_mask =   0xF0000000;
 #define NO_COPY_CONSTRUCTORS(XXX) DEFAULT_NO_COPY_NO_MOVE (XXX)
 #define DELETE_CONSTRUCTORS(XXX) CONSTRUCT_DELETE (XXX)
 
-#define EXT                       "." PROG
-#define DEFAULT_DATAPATH          "." PROG
 #define HIDE_ME                   ".--" PROG "_HIDE_ME"
 
 #define REPORT_ABRREVIATION       "Abbreviation"

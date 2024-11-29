@@ -2380,6 +2380,7 @@ PASS ../toast/living/apr24/hr.css
 16 css_version
 17 css_version
 18 css_version
+19 dialect
 
 PASS ../toast/living/apr24/html4.css
 0 html

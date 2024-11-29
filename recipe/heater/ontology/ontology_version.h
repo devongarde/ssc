@@ -66,16 +66,17 @@ ontology_version get_first_ontology_version (const e_ontology es) noexcept;
 ontology_version get_last_ontology_version (const e_ontology es) noexcept;
 int get_ontology_version_count (const e_ontology es) noexcept;
 bool is_faux_schema (const e_ontology es) noexcept;
-bool is_valid_ontology_version (const e_ontology root, const unsigned short mjr, const unsigned short mnr, const flags_t flags) noexcept;
-bool is_ontology_deprecated (const e_ontology root, const unsigned short mjr, const unsigned short mnr, const flags_t flags) noexcept;
+bool is_valid_ontology_version (const e_ontology root, const unsigned short mjr, const unsigned short mnr, const flags_t flags, const flags_t oflags) noexcept;
+bool is_ontology_deprecated (const e_ontology root, const unsigned short mjr, const unsigned short mnr, const flags_t flags, const flags_t oflags) noexcept;
 
 struct ontology_version : public version
-{   DEFAULT_CONSTRUCTORS (ontology_version);
-    ontology_version (const unsigned short mjr, const unsigned short mnr, const flags_t sf = NOFLAGS) noexcept
-        :   version (mjr, mnr, (static_cast < flags_t > (s_schema) << SV_ROOT_SHIFT) | (sf & SV_FLAG_MASK))
+{   flags_t oflags_ = NOFLAGS;
+    DEFAULT_CONSTRUCTORS (ontology_version);
+    ontology_version (const unsigned short mjr, const unsigned short mnr, const flags_t sf = NOFLAGS, const flags_t osf = NOFLAGS) noexcept
+        :   version (mjr, mnr, sf), oflags_ ((static_cast < flags_t > (s_schema) << SV_ROOT_SHIFT) | (osf & SV_FLAG_MASK))
     { }
-    ontology_version (const e_ontology root, const unsigned short mjr, const unsigned short mnr, const flags_t sf = NOFLAGS) noexcept
-        :   version (mjr, mnr, (static_cast < flags_t > (root) << SV_ROOT_SHIFT) | (sf & SV_FLAG_MASK))
+    ontology_version (const e_ontology root, const unsigned short mjr, const unsigned short mnr, const flags_t sf = NOFLAGS, const flags_t osf = NOFLAGS) noexcept
+        :   version (mjr, mnr, sf), oflags_ ((static_cast < flags_t > (root) << SV_ROOT_SHIFT) | (osf & SV_FLAG_MASK))
     { }
     ontology_version (const html_version& v);
     static void init (nitpick& nits);
@@ -83,9 +84,15 @@ struct ontology_version : public version
     {   ontology_version v; swap (v); }
     void reset (const ontology_version& v) noexcept
     {   ontology_version vv (v); swap (vv); }
+    void set_oflags (const flags_t u) noexcept { oflags_ |= u; }
+    void reset_oflags (const flags_t u) noexcept { oflags_ &= ~u; }
+    bool all_oflags (const flags_t u) const noexcept { return ((oflags_ & u) == u); }
+    bool any_oflags (const flags_t u) const noexcept { return ((oflags_ & u) != 0); }
+    bool no_oflags (const flags_t u) const noexcept { return ((oflags_ & u) == 0); }
+    flags_t oflags () const noexcept { return oflags_; }
     bool deprecated () const noexcept
-    {   if ((flags () & SV_DEPRECATED) == SV_DEPRECATED) return true;
-        return is_ontology_deprecated (root (), mjr (), mnr (), flags ()); }
+    {   if ((oflags () & SV_DEPRECATED) == SV_DEPRECATED) return true;
+        return is_ontology_deprecated (root (), mjr (), mnr (), flags (), oflags ()); }
     bool is_not (const unsigned short mj, const unsigned short mn = USHRT_MAX) const noexcept
     {   if (unknown ()) return false;
         if (mj != mjr ()) return true;
@@ -94,15 +101,13 @@ struct ontology_version : public version
     {   return is_not (v.mjr (), v.mnr ()); }
     bool invalid () const noexcept
     {   if (root () == s_error) return true;
-        return ! is_valid_ontology_version (root (), mjr (), mnr (), flags ()); }
+        return ! is_valid_ontology_version (root (), mjr (), mnr (), flags (), oflags ()); }
     e_ontology root () const noexcept
-    {   return static_cast < e_ontology > (flags () >> SV_ROOT_SHIFT); }
+    {   return static_cast < e_ontology > (oflags_ >> SV_ROOT_SHIFT); }
     ::std::string name () const;
     static ::std::string name (const e_ontology es);
     ::std::string ver () const;
     ::std::string report () const; };
-
-
 
 
 const ontology_version default_ontology (s_none, 0, 0);
@@ -292,7 +297,7 @@ const ontology_version media_resources (s_ma, 1, 0);
 
 const ontology_version mf_1 (s_microformats, 1, 0);
 const ontology_version mf_2 (s_microformats, 2, 0);
-const ontology_version mf_all (s_microformats, 2, 0, SV_WILDCARD);
+const ontology_version mf_all (s_microformats, 2, 0, 0, SV_WILDCARD);
 
 const ontology_version music_2012 (s_music, HTML_2012, 0);
 const ontology_version music_2014 (s_music, HTML_2014, 0);
@@ -491,7 +496,8 @@ const ontology_version schema_26 (s_schema, 26, 0);
 const ontology_version schema_27 (s_schema, 27, 0);
 const ontology_version schema_27_01 (s_schema, 27, 1);
 const ontology_version schema_27_02 (s_schema, 27, 2);
-const ontology_version schema_28 (s_schema, 28, 0);
+const ontology_version schema_28_0 (s_schema, 28, 0);
+const ontology_version schema_28_1 (s_schema, 28, 1);
 const ontology_version schema_29 (s_schema, 29, 0);
 const ontology_version schema_default (s_schema, DEFAULT_SCHEMA_ORG_MAJOR, DEFAULT_SCHEMA_ORG_MINOR);
 

@@ -63,7 +63,7 @@ hav_t havt_fecomponenttransfer [] =
 
 hav_t havt_fecomposite [] =
 {   { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_fecomposite, a_in },
-    { { HTML_SVG10, 0, HE_SVG_10_11_2 | REQUIRED }, { HTML_UNDEF }, elem_fecomposite, a_in2 },
+    { { HTML_SVG10, HV_REQUIRED, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_fecomposite, a_in2 },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_fecomposite, a_k1 },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_fecomposite, a_k2 },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_fecomposite, a_k3 },
@@ -265,7 +265,7 @@ hav_t havt_fig [] =
     { { HTML_3_0 }, { HTML_3_0 }, elem_fig, a_md },
     { { HTML_3_0 }, { HTML_3_0 }, elem_fig, a_noflow },
     { { HTML_PLUS }, { HTML_PLUS }, elem_fig, a_src },
-    { { HTML_3_0, REQUIRED }, { HTML_3_0 }, elem_fig, a_src },
+    { { HTML_3_0, HV_REQUIRED }, { HTML_3_0 }, elem_fig, a_src },
     { { HTML_3_0 }, { HTML_3_0 }, elem_fig, a_units },
     { { HTML_3_0 }, { HTML_3_0 }, elem_fig, a_width },
     HTMLPLUS_ATTRIBUTES (elem_fig),

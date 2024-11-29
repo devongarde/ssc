@@ -36,6 +36,11 @@ Although <!--#echo encoding="none" var="short" --> builds with some older compil
 features are available.
 </p>
 
+<p>
+You can download the current source <a href="src/ssc-<!--#echo encoding="none" var="version" -->.tgz" type="application/gzip">here</a>,
+or from <a href="https://github.com/devongarde/ssc">github</a>.
+</p>
+
 <h2>Libraries</h2>
 
 <h3>Common dependencies</h3>

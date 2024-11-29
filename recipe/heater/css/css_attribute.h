@@ -37,6 +37,7 @@ public:
     void validate (arguments& ) const { }
     void accumulate (stats_t* s, const e_element e) const;
     void shadow (::std::stringstream& ss, arguments& args);
+    const attr& get () const { return a_; }
    ::std::string rpt () const; };
 
 typedef ::std::shared_ptr < css_attribute > pcs_t;

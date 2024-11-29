@@ -41,7 +41,7 @@ hav_t havt_bar [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_base [] =
-{   { { HTML_2_0, REQUIRED }, { HTML_4_01 }, elem_base, a_href },
+{   { { HTML_2_0, HV_REQUIRED }, { HTML_4_01 }, elem_base, a_href },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_base, a_href },
     { { HTML_3_0 }, { HTML_3_0 }, elem_base, a_id },
     { { HTML_JUL07 }, { HTML_UNDEF }, elem_base, a_target },
@@ -61,7 +61,7 @@ hav_t havt_bdi [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_bdo [] =
-{   { { HTML_2_0, HV_RFC_2070 | REQUIRED }, { HTML_2_0 }, elem_bdo, a_dir },
+{   { { HTML_2_0, HV_RFC_2070 | HV_REQUIRED }, { HTML_2_0 }, elem_bdo, a_dir },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_bdo, a_dir },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_bdo, a_lang },
     HTML2_CLID_ATTRIBUTES (elem_bdo),

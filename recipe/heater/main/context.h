@@ -37,23 +37,23 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define DMFS_BYTES (DEFAULT_MAX_FILE_SIZE * 1024 * 1024)
 
 CONSTEXPR e_severity default_output = es_warning;
-CONSTEXPR bool def_article = false, def_body = true, def_case = false, def_cgi = false, def_classic = false, def_clear = false,
-    def_crosslinks = true, def_expand = false, def_example = true, def_external = false, def_ext_css = false, def_extra = false,
+CONSTEXPR bool def_article = false, def_body = true, def_case = false, def_cgi = false, def_chrome = false, def_classic = false, def_clear = false,
+    def_crosslinks = true, def_expand = false, def_example = true, def_excl = true, def_external = false, def_ext_css = false, def_extra = false,
     def_force_version = false, def_forwarded = true, def_gui = false, def_icu = true, def_ie = false, def_info = false,
-    def_iterate = false,  def_jsonld = false, def_local = true, def_load_css = true, def_links = true, def_main = false,
-    def_excl = true, def_md_export = false, def_md_pretty = true, def_mf_export = false, def_mf_pretty = true,
-    def_mf_verify = true, def_microdata = true, def_nids = false,
-    def_nits = false, def_nits_nits_nits = false, def_not_root = false, def_once = true, def_presume_tags = false, def_pretty = true,
-    def_progress = false, def_rdfa = false, def_rel = false, def_revoke = false, def_rfc_1867 = true, def_rfc_1942 = true,
-    def_rfc_1980 = true, def_rfc_2070 = true, def_rpt_opens = false, def_ruby = false, def_ontology = true, def_safari = false,
-    def_serve = false, def_shadow_changed = false, def_shadow_comment = true, def_shadow_enable = false, def_shadow_space = true,
-    def_shadow_ssi = true, def_sloven = false, def_spec = false, def_spell = true, def_spell_deduced = false, def_ssi = true,
-    def_test = false, def_unknown_class = true, def_update = false, def_valid = false, def_vcs = false, def_versioned = false,
-    def_wx = false, def_yggdrisil = false;
+    def_iterate = false, def_jsonld = false, def_local = true, def_load_css = true, def_links = true, def_main = false,
+    def_md_export = false, def_md_pretty = true, def_mf_export = false, def_mf_pretty = true, def_mf_verify = true, def_microdata = true,
+    def_mozilla = false, def_netscape = false, def_nids = false, def_nits = false, def_nits_nits_nits = false, def_not_root = false,
+    def_opera = false, def_once = true, def_presume_tags = false, def_pretty = true, def_progress = false, def_rdfa = false, def_rel = false,
+    def_revoke = false, def_rfc_1867 = true, def_rfc_1942 = true, def_rfc_1980 = true, def_rfc_2070 = true, def_rpt_opens = false,
+    def_ruby = false, def_ontology = true, def_safari = false, def_serve = false, def_shadow_changed = false, def_shadow_comment = true,
+    def_shadow_enable = false, def_shadow_space = true, def_shadow_ssi = true, def_sloven = false, def_spec = false,
+    def_spell = true, def_spell_deduced = false, def_ssi = true, def_ssi_exec_run = false, def_test = false,
+    def_unknown_class = true, def_update = false, def_valid = false, def_vcs = false, def_versioned = false, def_wx = false,
+    def_yggdrisil = false;
 CONSTEXPR const char* const def_macrostart = "{{";
 CONSTEXPR const char* const def_macroend = "}}";
 CONSTEXPR const char* const def_path = DEFAULT_DATAPATH;
-CONSTEXPR const char* const def_persisted = PROG EXT;
+CONSTEXPR const char* const def_persisted = PROG DEF_PERSIST_EXT;
 CONSTEXPR ::std::size_t def_htmltitle = MAX_IDEAL_TITLE_LENGTH;
 CONSTEXPR ::std::size_t def_fred = 1;
 CONSTEXPR unsigned char def_mf = 3;
@@ -67,24 +67,23 @@ class corpus;
 
 class context_t
 {   friend class options;
-    bool            article_ = def_article, body_ = def_body, case_ = def_case, cgi_ = def_cgi, classic_ = def_classic,
+    bool            article_ = def_article, body_ = def_body, case_ = def_case, cgi_ = def_cgi, chrome_ = def_chrome, classic_ = def_classic,
                     clear_ = def_clear, crosslinks_ = def_crosslinks, example_ = def_example, excl_ = def_excl,
                     expand_ = def_expand, external_ = def_external, ext_css_ = def_ext_css, extra_ = def_extra,
                     force_version_ = def_force_version, forwarded_ = def_forwarded, gui_ = def_gui, icu_ = def_icu, ie_ = def_ie,
                     info_ = def_info, iterate_ = def_iterate, jsonld_ = def_jsonld, local_ = def_local, load_css_ = def_load_css,
                     links_ = def_links, main_ = def_main, md_export_ = def_md_export, md_pretty_ = def_md_pretty,
-                    mf_export_ = def_mf_export, mf_pretty_ = def_mf_pretty,
-                    mf_verify_ = def_mf_verify, microdata_ = def_microdata, nids_ = def_nids, nits_ = def_nits,
-                    nits_nits_nits_ = def_nits_nits_nits, not_root_ = def_not_root, once_ = def_once,
-                    presume_tags_ = def_presume_tags, pretty_ = def_pretty, progress_ = def_progress, rdfa_ = def_rdfa,
-                    rel_ = def_rel, revoke_ = def_revoke, rfc_1867_ = def_rfc_1867, rfc_1942_ = def_rfc_1942,
+                    mf_export_ = def_mf_export, mf_pretty_ = def_mf_pretty, mf_verify_ = def_mf_verify, microdata_ = def_microdata,
+                    mozilla_ = def_mozilla, netscape_ = def_netscape, nids_ = def_nids, nits_ = def_nits, nits_nits_nits_ = def_nits_nits_nits, not_root_ = def_not_root,
+                    once_ = def_once, ontology_ = def_ontology, opera_ = def_opera, presume_tags_ = def_presume_tags, pretty_ = def_pretty, progress_ = def_progress,
+                    rdfa_ = def_rdfa, rel_ = def_rel, revoke_ = def_revoke, rfc_1867_ = def_rfc_1867, rfc_1942_ = def_rfc_1942,
                     rfc_1980_ = def_rfc_1980, rfc_2070_ = def_rfc_2070, rpt_opens_ = def_rpt_opens, ruby_ = def_ruby,
-                    ontology_ = def_ontology, safari_ = def_safari, serve_ = def_serve, shadow_changed_ = def_shadow_changed,
+                    safari_ = def_safari, serve_ = def_serve, shadow_changed_ = def_shadow_changed,
                     shadow_comment_ = def_shadow_comment, shadow_enable_ = def_shadow_enable, shadow_space_ = def_shadow_space,
                     shadow_ssi_ = def_shadow_ssi, sloven_ = def_sloven, spec_ = def_spec, spell_ = def_spell,
-                    spell_deduced_ = def_spell_deduced, ssi_ = def_ssi, test_ = def_test, unknown_class_ = def_unknown_class,
-                    update_ = def_update, valid_ = def_valid, vcs_ = def_vcs, versioned_ = def_versioned, wx_ = def_wx,
-                    yggdrisil_ = def_yggdrisil;
+                    spell_deduced_ = def_spell_deduced, ssi_ = def_ssi, ssi_exec_run_ = def_ssi_exec_run,
+                    test_ = def_test, unknown_class_ = def_unknown_class, update_ = def_update, valid_ = def_valid,
+                    vcs_ = def_vcs, versioned_ = def_versioned, wx_ = def_wx, yggdrisil_ = def_yggdrisil;
     ::std::size_t   fred_ = def_fred, title_ = def_htmltitle;
     e_copy          copy_ = c_none;
     unsigned char   mf_version_ = def_mf;
@@ -94,7 +93,7 @@ class context_t
     ::std::string   accept_, build_, cache_, domsg_, export_root_, general_info_, help_, index_, lang_,
                     macro_end_ = def_macroend, macro_start_ = def_macrostart, msg_, nit_format_, nit_override_,
                     out_, path_ = def_path, persisted_, root_, secret_, shadow_, shadow_persist_, snippet_,
-                    ssi_cmd_, ssi_doc_args_, ssi_exec_, ssi_query_string_, ssi_timefmt_,
+                    ssi_doc_args_, ssi_echomsg_, ssi_errmsg_, ssi_exec_text_, ssi_query_string_, ssi_timefmt_,
                     ssi_user_name_, started_, stats_, svg_, x_;
     ::boost::filesystem::path config_, corpus_, proot_, spell_path_;
     vstr_t          abhorrent_, attrib_, catastrophe_, cmd_, comment_, css_ext_ = { CSS_EXT }, custom_elements_, debug_,
@@ -145,6 +144,7 @@ public:
     context_t& cased (const bool b) { case_ = b; mac (nm_context_case, b); return *this; }
     context_t& catastrophe (const ::std::string& s) { catastrophe_.push_back (s); return *this; }
     context_t& cgi (const bool b) { cgi_ = b; mac (nm_context_cgi, b); spell (false); return *this; }
+    context_t& chrome (const bool b) { chrome_ = b; mac (nm_context_chrome, b); return *this; }
     context_t& classic (const bool b) { classic_ = b; mac (nm_context_classic, b); return *this; }
     context_t& clear (const bool b) { clear_ = b; mac (nm_context_clear, b); return *this; }
     context_t& comment (const ::std::string& s) { comment_.push_back (s); return *this; }
@@ -239,7 +239,9 @@ public:
         mac (nm_context_microdata, b);
         if (b) links (b);
         return *this; }
+    context_t& mozilla (const bool b) { mozilla_ = b; mac (nm_context_mozilla, b); return *this; }
     context_t& msg (const ::std::string& s) { msg_ = s; return *this; }
+    context_t& netscape (const bool b) { netscape_ = b; mac (nm_context_netscape, b); return *this; }
     context_t& nids (const bool b) noexcept { nids_ = b; return *this; }
     context_t& nit_format (const ::std::string& nf)
     {   nit_format_ = nf;
@@ -266,6 +268,7 @@ public:
         vont_.at (o) = s;
         return *this; }
     context_t& out_name (const ::std::string& s) { out_ = s; return *this; }
+    context_t& opera (const bool b) { opera_ = b; mac (nm_context_opera, b); return *this; }
     context_t& path (const ::std::string& s)
     {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
         path_ = s;
@@ -317,14 +320,16 @@ public:
     context_t& spellings (const vstr_t& s) { spellings_ = s; mac (nm_context_spellings, s); return *this; }
     context_t& spell_path (const ::boost::filesystem::path& f) { spell_path_ = f; mac (nm_context_spell_path, f); return *this; }
     context_t& ssi (const bool b) { ssi_ = b; mac (nm_context_ssi, b); return *this; }
-    context_t& ssi_cmd (const ::std::string& s) { ssi_cmd_ = s; mac (nm_context_ssi_cmd, s); return *this; }
     context_t& ssi_date (const ::std::time_t t) { ssi_date_ = t; mac (nm_context_ssi_date, t); return *this; }
-    context_t& ssi_doc_args (const ::std::string& b) { ssi_doc_args_ = b; mac (nm_context_ssi_doc_args, b); return *this; }
-    context_t& ssi_exec (const ::std::string& b) { ssi_exec_ = b; mac (nm_context_ssi_exec, b); return *this; }
+    context_t& ssi_doc_args (nitpick& nits, const ::std::string& s) { check_ssi_naughtiness (nits, s); ssi_doc_args_ = s; mac (nm_context_ssi_doc_args, s); return *this; }
+    context_t& ssi_echomsg (nitpick& nits, const ::std::string& s) { check_ssi_naughtiness (nits, s); ssi_echomsg_ = s; mac (nm_context_ssi_echomsg, s); return *this; }
+    context_t& ssi_errmsg (nitpick& nits, const ::std::string& s) { check_ssi_naughtiness (nits, s); ssi_errmsg_ = s; mac (nm_context_ssi_errmsg, s); return *this; }
+    context_t& ssi_exec_run (const bool b) { ssi_exec_run_ = b; mac (nm_context_ssi_exec_run, b); return *this; }
+    context_t& ssi_exec_text (nitpick& nits, const ::std::string& s) { check_ssi_naughtiness (nits, s); ssi_exec_text_ = s; mac (nm_context_ssi_exec_text, s); return *this; }
     context_t& ssi_lastmod (const ::std::time_t t) { ssi_lastmod_ = t; mac (nm_context_ssi_lastmod, t); return *this; }
-    context_t& ssi_query_string (const ::std::string& b) { ssi_query_string_ = b; mac (nm_context_ssi_query_string, b); return *this; }
-    context_t& ssi_timefmt (const ::std::string& s) { ssi_timefmt_ = s; mac (nm_context_ssi_timefmt, s); return *this; }
-    context_t& ssi_user_name (const ::std::string& b) { ssi_user_name_ = b; mac (nm_context_ssi_user_name, b); return *this; }
+    context_t& ssi_query_string (nitpick& nits, const ::std::string& s) { check_ssi_naughtiness (nits, s); ssi_query_string_ = s; mac (nm_context_ssi_query_string, s); return *this; }
+    context_t& ssi_timefmt (nitpick& nits, const ::std::string& s) { check_ssi_naughtiness (nits, s); ssi_timefmt_ = s; mac (nm_context_ssi_timefmt, s); return *this; }
+    context_t& ssi_user_name (nitpick& nits, const ::std::string& s) { check_ssi_naughtiness (nits, s); ssi_user_name_ =s; mac (nm_context_ssi_user_name, s); return *this; }
     context_t& stats (const ::std::string& s) { stats_ = s; mac (nm_context_stats_export, s); return *this; }
     context_t& stats (const e_report r, const bool b);
     context_t& stats_all (const bool b);
@@ -364,6 +369,7 @@ public:
     bool cased () const noexcept { return case_; }
     const vstr_t& catastrophe () const { return catastrophe_; }
     bool cgi () const noexcept { return cgi_; }
+    bool chrome () const noexcept { return chrome_; }
     bool classic () const noexcept { return classic_; }
     bool clear () const noexcept { return clear_; }
     const vstr_t& cmd () const { return cmd_; }
@@ -442,7 +448,9 @@ public:
     bool mf_version2 () const noexcept { return (mf_version_ & 2) != 0; }
     bool microdata () const noexcept { return microdata_; }
     bool microformats () const noexcept { return mf_verify_ || mf_export_; }
+    bool mozilla () const noexcept { return mozilla_; }
     const ::std::string& msg () const { return msg_; }
+    bool netscape () const noexcept { return netscape_; }
     bool nids () const noexcept { return nids_; }
     const ::std::string& nit_format () const
     {   if (nit_override_.empty () && ! test ()) return nit_format_;
@@ -461,6 +469,7 @@ public:
     {   PRESUME (o < s_error, __FILE__, __LINE__);
         if (vont_.size () > 0) return vont_.at (o);
         return ::std::string (); }
+    bool opera () const noexcept { return opera_; }
     const ::std::string& out_name () const { return out_; }
     const ::std::string& path () const { return path_; }
     const ::std::string persisted () const { return persisted_; }
@@ -512,10 +521,12 @@ public:
     const ::std::string& snippet () const { return snippet_; }
     bool spec () const noexcept { return spec_; }
     bool ssi () const noexcept { return ssi_; }
-    const ::std::string& ssi_cmd () const { return ssi_cmd_; }
     ::std::time_t ssi_date () const { return ssi_date_; }
     const ::std::string& ssi_doc_args () const { return ssi_doc_args_; }
-    const ::std::string& ssi_exec() const { return ssi_exec_; }
+    const ::std::string& ssi_echomsg () const { return ssi_echomsg_; }
+    const ::std::string& ssi_errmsg () const { return ssi_errmsg_; }
+    bool ssi_exec_run () const { return ssi_exec_run_; }
+    const ::std::string& ssi_exec_text() const { return ssi_exec_text_; }
     ::std::time_t ssi_lastmod () const { return ssi_lastmod_; }
     const ::std::string& ssi_query_string () const { return ssi_query_string_; }
     const ::std::string& ssi_timefmt () const { return ssi_timefmt_; }
@@ -552,6 +563,7 @@ public:
     bool mobile_profile () const { return version_.mobile_profile (); }
     bool print_profile () const { return version_.print_profile (); }
     bool tv_profile () const { return version_.tv_profile (); }
+    static void check_ssi_naughtiness (nitpick& nits, const ::std::string& s);
     ::std::string make_absolute_url (const ::std::string& link, bool can_use_index = true) const;
     ::std::string report (const e_gui_report gr) const;
     bool write (nitpick& nits, const ::boost::filesystem::path& fn) const; };

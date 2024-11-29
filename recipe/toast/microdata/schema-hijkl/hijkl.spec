@@ -12,7 +12,7 @@ PASS ../toast/microdata/schema-hijkl/hotelroom.html
 19 attribute_required attempted_escape no_such_folder url_not_found naughty_alt
 
 PASS ../toast/microdata/schema-hijkl/howto.html
-17 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
+17 invalid_attribute_version wrong_version svg_rdf invalid_duration invalid_duration
 22 url_not_found
 27 url_not_found
 31 url_not_found
@@ -25,7 +25,7 @@ PASS ../toast/microdata/schema-hijkl/howto.html
 109 use_quote_code
 
 PASS ../toast/microdata/schema-hijkl/howtodirection.html
-17 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
+17 invalid_attribute_version wrong_version svg_rdf invalid_duration invalid_duration
 22 url_not_found
 27 url_not_found
 31 url_not_found
@@ -38,7 +38,7 @@ PASS ../toast/microdata/schema-hijkl/howtodirection.html
 109 use_quote_code
 
 PASS ../toast/microdata/schema-hijkl/howtosection.html
-17 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
+17 invalid_attribute_version wrong_version svg_rdf invalid_duration invalid_duration
 22 url_not_found
 27 url_not_found
 31 url_not_found
@@ -51,7 +51,7 @@ PASS ../toast/microdata/schema-hijkl/howtosection.html
 109 use_quote_code
 
 PASS ../toast/microdata/schema-hijkl/howtostep.html
-17 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
+17 invalid_attribute_version wrong_version svg_rdf invalid_duration invalid_duration
 22 url_not_found
 27 url_not_found
 31 url_not_found
@@ -64,7 +64,7 @@ PASS ../toast/microdata/schema-hijkl/howtostep.html
 109 use_quote_code
 
 PASS ../toast/microdata/schema-hijkl/howtotip.html
-17 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
+17 invalid_attribute_version wrong_version svg_rdf invalid_duration invalid_duration
 22 url_not_found
 27 url_not_found
 31 url_not_found

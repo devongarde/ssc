@@ -667,6 +667,7 @@ PASS ../toast/SVG/1.2/mpath01.svg
 PASS ../toast/SVG/1.2/navigation.html
 2 naughty_lang
 11 svg_version
+14 attribute_required
 
 PASS ../toast/SVG/1.2/navigation.svg
 1 xhtml_1_1
@@ -692,9 +693,9 @@ PASS ../toast/SVG/1.2/prefetch02.svg
 0 title_required
 1 xhtml_1_1
 6 svg_version
-14 bad_datetime
-17 bad_datetime
-20 bad_datetime
+14 invalid_duration
+17 invalid_duration
+20 invalid_duration
 
 PASS ../toast/SVG/1.2/progrend01.svg
 0 title_required

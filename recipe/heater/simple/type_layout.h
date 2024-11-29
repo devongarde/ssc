@@ -92,7 +92,7 @@ template < > struct type_master < t_wxhs > : type_base < ::std::string, t_wxhs >
     bool parse (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string ss (trim_the_lot_off (s));
         if (ss.empty ())
-        {   nits.pick (nit_sizes, es_error, ec_type, "a sizes attribute cannot be empty");
+        {   nits.pick (nit_sizes, es_error, ec_type, "this value cannot be empty");
             return false; }
         vstr_t xs (split_by_space (ss));
         value_.resize (xs.size ());
@@ -104,7 +104,7 @@ template < > struct type_master < t_wxhs > : type_base < ::std::string, t_wxhs >
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   if (parse (nits, v, s)) type_base < ::std::string, t_wxhs > :: status (s_good);
         else
-        {   nits.pick (nit_sizes, es_error, ec_type, "SIZES takes a space separated sequence of values, each of which are 'any' or two positive integers separated by an 'x'");
+        {   nits.pick (nit_sizes, es_error, ec_type, "expecting a space separated sequence of values, each of which are 'any' or two positive integers separated by an 'x'");
             type_base < ::std::string, t_wxhs > :: status (s_invalid); } }
     void reset () noexcept
     {   value_.clear ();

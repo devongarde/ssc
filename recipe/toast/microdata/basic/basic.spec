@@ -98,4 +98,4 @@ PASS ../toast/microdata/basic/md-lynx.html
 16 no_itemscope
 
 LYNX
-0 422 422
+0 422

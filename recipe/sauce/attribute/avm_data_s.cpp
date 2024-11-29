@@ -47,6 +47,7 @@ hav_t havt_script [] =
     { { HTML_JUL06 }, { HTML_UNDEF }, elem_script, a_defer },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_script, a_event },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, elem_script, a_externalresourcesrequired },
+    { { HTML_APR23 }, { HTML_UNDEF }, elem_script, a_fetchpriority },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_script, a_href },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_script, a_implements },
     { { HTML_JAN17, HV_NOT52 }, { HTML_UNDEF }, elem_script, a_integrity },
@@ -55,7 +56,7 @@ hav_t havt_script [] =
     { { HTML_JAN16 }, { HTML_JUN17 }, elem_script, a_numberonce },
     { { HTML_JUL18 }, { HTML_UNDEF }, elem_script, a_referrerpolicy },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_script, a_src },
-    { { HTML_4_0, REQUIRED }, { XHTML_2_0 }, elem_script, a_type },
+    { { HTML_4_0, HV_REQUIRED }, { XHTML_2_0 }, elem_script, a_type },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_script, a_type },
     SVG_PRESENTATION_ATTRIBUTES_2 (elem_script),
     SVG_XLINK_ATTRIBUTES (elem_script),
@@ -99,7 +100,7 @@ hav_t havt_select [] =
     { { HTML_3_0 }, { HTML_3_0 }, elem_select, a_md },
     { { HTML_2_0 }, { HTML_UNDEF }, elem_select, a_multiple },
     { { HTML_PLUS }, { HTML_PLUS }, elem_select, a_name },
-    { { HTML_2_0, REQUIRED }, { XHTML_2_0 }, elem_select, a_name },
+    { { HTML_2_0, HV_REQUIRED }, { XHTML_2_0 }, elem_select, a_name },
     { { HTML_JUL09 }, { HTML_UNDEF }, elem_select, a_name },
     { { HTML_JAN11 }, { HTML_UNDEF }, elem_select, a_required },
     { { HTML_2_0 }, { HTML_UNDEF }, elem_select, a_size },
@@ -194,7 +195,7 @@ hav_t havt_source [] =
 {   { { HTML_APR21 }, { HTML_UNDEF }, elem_source, a_height },
     { { HTML_JUL07 }, { HTML_UNDEF }, elem_source, a_media },
     { { HTML_JUL14, HV_NOT50 }, { HTML_UNDEF }, elem_source, a_sizes },
-    { { HTML_JUL07, REQUIRED }, { HTML_JUN14 }, elem_source, a_src },
+    { { HTML_JUL07, HV_REQUIRED }, { HTML_JUN14 }, elem_source, a_src },
     { { HTML_JUL14 }, { HTML_UNDEF }, elem_source, a_src },
     { { HTML_JUL14, HV_NOT50 }, { HTML_UNDEF }, elem_source, a_srcset },
     { { HTML_JUL07 }, { HTML_UNDEF }, elem_source, a_type },
@@ -213,7 +214,7 @@ hav_t havt_span [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_spot [] =
-{   { { HTML_3_0, REQUIRED }, { HTML_3_0 }, elem_spot, a_id },
+{   { { HTML_3_0, HV_REQUIRED }, { HTML_3_0 }, elem_spot, a_id },
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_sqrt [] =
@@ -221,7 +222,7 @@ hav_t havt_sqrt [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_stop [] =
-{   { { HTML_SVG10, 0, HE_SVG | REQUIRED }, { HTML_UNDEF }, elem_stop, a_offset },
+{   { { HTML_SVG10, HV_REQUIRED, HE_SVG }, { HTML_UNDEF }, elem_stop, a_offset },
     SVG_DOCUMENT_EVENT_ATTRIBUTES_EX (elem_stop, HE_SVG_2),
     SVG_HTML_ATTRIBUTES (elem_stop),
     SVG_PRESENTATION_ATTRIBUTES (elem_stop),
@@ -247,7 +248,7 @@ hav_t havt_style [] =
     { { HTML_JUL22 }, { HTML_UNDEF }, elem_style, a_disabled },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_style, a_media },
     { { HTML_JAN16 }, { HTML_DEC17 }, elem_style, a_numberonce },
-    { { HTML_3_0, REQUIRED }, { HTML_3_0 }, elem_style, a_notation },
+    { { HTML_3_0, HV_REQUIRED }, { HTML_3_0 }, elem_style, a_notation },
     { { HTML_4_0, 0, HE_CHROME }, { XHTML_2_0 }, elem_style, a_scoped },
     { { HTML_JUN06 }, { HTML_DEC15 }, elem_style, a_scoped },
     { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_style, a_title },

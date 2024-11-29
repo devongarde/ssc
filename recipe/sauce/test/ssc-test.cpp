@@ -64,6 +64,7 @@ typedef ::std::map < ::std::string, vstr_t > mvstr_t;
 
 unsigned verbose = 0;
 bool numbers = false, easy_in = false, only_check_exports = false;
+int exit_code = EXIT_SUCCESS;
 ::std::string expected_lynx, expected_shadow, expected_export_errors, examinations;
 ::boost::filesystem::path grand_stats_fn;
 
@@ -869,61 +870,77 @@ int main (int argc, char** argv)
     if (argv == nullptr) return 4; // WTF
     if (argc < 2) { print_version (); return 0; }
 
+    try
+    {
 #ifdef UNIX
-    // kludge for CMakeLists.txt move, itself a kludge to appease build packaging
-    ::boost::filesystem::path tea (::boost::filesystem::current_path ());
-    tea /= "recipe";
-    tea /= "tea";
-    if (::boost::filesystem::exists (tea))
-        if (::boost::filesystem::is_directory (tea))
-            chdir (tea.c_str ());
+        // kludge for CMakeLists.txt move, itself a kludge to appease build packaging
+        ::boost::filesystem::path tea (::boost::filesystem::current_path ());
+        tea /= "recipe";
+        tea /= "tea";
+        if (::boost::filesystem::exists (tea))
+            if (::boost::filesystem::is_directory (tea))
+                chdir (tea.c_str ());
 #endif // UNIX
 
-    for (int a = 1; a < argc; ++a)
-    {   if (argv [a] == nullptr) continue;
-        const size_t len = strlen (argv [a]);
-        if (len == 0) continue;
-        if (argv [a][0] == '-')
-        {   if (len == 2)
-                switch (argv [a][1])
-                {   case 'h' : print_help (); return 0;
-                    case 'V' : print_version (); return 0;
-                    case 'd' : rmtmp = false; continue;
-                    case 'e' : easy_in = true; continue;
-                    case 'i' : rst = true; continue;
-                    case 'n' : numbers = true; continue;
-                    case 't' : tmpdir = true; continue;
-                    case 'T' : trump = true; continue;
-                    case 'v' : ++verbose; continue;
-                    case 'x' : xn = true; continue;
-                    case 'f' : file = true; continue;
-                    default : break; }
-            ::std::cerr << "unknown switch " << argv [a] << "\n" << argv [0] << " -h for help\n\n";
-            return ERROR_EXIT; }
-        if (file)
-        {   if (! testfile (argv [a]) || ! load_file_list (argv [a], specs)) return ERROR_EXIT; file = false; }
-        else if (xn)
-        {   xeq = argv [a]; if (! testxeq (xeq)) return ERROR_EXIT; xn = false; }
-        else if (rst)
-        {   results = argv [a]; if (! testfile (results)) return ERROR_EXIT; rst = false; }
-        else if (tmpdir)
-        {   tmppath = argv [a];
-            if (! ::boost::filesystem::is_directory (tmppath))
-            {   ::std::cerr << tmppath << " doesn't exist or is not a directory\n";
+        for (int a = 1; a < argc; ++a)
+        {   if (argv [a] == nullptr) continue;
+            const size_t len = strlen (argv [a]);
+            if (len == 0) continue;
+            if (argv [a][0] == '-')
+            {   if (len == 2)
+                    switch (argv [a][1])
+                    {   case 'h' : print_help (); return 0;
+                        case 'V' : print_version (); return 0;
+                        case 'd' : rmtmp = false; continue;
+                        case 'e' : easy_in = true; continue;
+                        case 'i' : rst = true; continue;
+                        case 'n' : numbers = true; continue;
+                        case 't' : tmpdir = true; continue;
+                        case 'T' : trump = true; continue;
+                        case 'v' : ++verbose; continue;
+                        case 'x' : xn = true; continue;
+                        case 'f' : file = true; continue;
+                        default : break; }
+                ::std::cerr << "unknown switch " << argv [a] << "\n" << argv [0] << " -h for help\n\n";
                 return ERROR_EXIT; }
-            tmpdir = false; }
-        else specs.push_back (argv [a]); }
+            if (file)
+            {   if (! testfile (argv [a]) || ! load_file_list (argv [a], specs)) return ERROR_EXIT; file = false; }
+            else if (xn)
+            {   xeq = argv [a]; if (! testxeq (xeq)) return ERROR_EXIT; xn = false; }
+            else if (rst)
+            {   results = argv [a]; if (! testfile (results)) return ERROR_EXIT; rst = false; }
+            else if (tmpdir)
+            {   tmppath = argv [a];
+                if (! ::boost::filesystem::is_directory (tmppath))
+                {   ::std::cerr << tmppath << " doesn't exist or is not a directory\n";
+                    return ERROR_EXIT; }
+                tmpdir = false; }
+            else specs.push_back (argv [a]); }
 
-    int res = 0;
-    unsigned passed = 0, failed = 0;
+        int res = 0;
+        unsigned passed = 0, failed = 0;
 
-    for (auto s : specs)
-    {   int x = run_test (s, xeq, rmtmp, tmppath, results, passed, failed);
-        if (x > res) res = x; }
+        for (auto s : specs)
+        {   int x = run_test (s, xeq, rmtmp, tmppath, results, passed, failed);
+            if (x > res) res = x; }
 
-    if (passed + failed > 1)
-        ::std::cout << passed << " passed, " << failed << " failed: ";
+        if (passed + failed > 1)
+            ::std::cout << passed << " passed, " << failed << " failed: ";
 
-    if (trump || (res == 0)) ::std::cout << "pass\n";
-    else ::std::cout << "FAIL\n";
-    exit (0); }
+        if (trump || (res == 0)) ::std::cout << "pass\n";
+        else { exit_code = EXIT_FAILURE; ::std::cout << "FAIL\n"; } }
+
+    catch (::boost::filesystem::filesystem_error& e)
+    {   ::std::cerr << "catastrophic filesystem error " << e.what () << ::std::endl;
+        exit_code = 134; }
+    catch (const ::std::system_error& e)
+    {   ::std::cerr << "catastrophic system error: " << e.what () << ::std::endl;
+        exit_code = 134; }
+    catch (const ::std::exception& e)
+    {   ::std::cerr << "catastrophic exception: " << e.what () << ::std::endl;
+        exit_code = 134; }
+    catch (...)
+    {   ::std::cerr << "catastrophic exit";
+        exit_code = 132; }
+
+     exit (exit_code); }

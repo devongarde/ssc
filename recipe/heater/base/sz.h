@@ -114,6 +114,7 @@ struct sz_cc_sharealike { CONSTEXPR static char const* sz () { return "cc:ShareA
 struct sz_cc_sourcecode { CONSTEXPR static char const* sz () { return "cc:SourceCode"; } };
 struct sz_ccir601 { CONSTEXPR static char const* sz () { return "ccir-601"; } };
 struct sz_ccir709 { CONSTEXPR static char const* sz () { return "ccir-709"; } };
+struct sz_cgi { CONSTEXPR static char const* sz () { return "cgi"; } };
 struct sz_characters { CONSTEXPR static char const* sz () { return "characters"; } };
 struct sz_character_variant { CONSTEXPR static char const* sz () { return "character-variant"; } };
 struct sz_checkbox { CONSTEXPR static char const* sz () { return "checkbox"; } };
@@ -128,6 +129,7 @@ struct sz_closed { CONSTEXPR static char const* sz () { return "closed"; } };
 struct sz_closedopen { CONSTEXPR static char const* sz () { return "closed-open"; } };
 struct sz_closest_corner { CONSTEXPR static char const* sz () { return "closest-corner"; } };
 struct sz_closest_side { CONSTEXPR static char const* sz () { return "closest-side"; } };
+struct sz_cmd { CONSTEXPR static char const* sz () { return "cmd"; } };
 struct sz_cmyk { CONSTEXPR static char const* sz () { return "CMYK"; } };
 struct sz_coarse { CONSTEXPR static char const* sz () { return "coarse"; } };
 struct sz_code { CONSTEXPR static char const* sz () { return "code"; } };

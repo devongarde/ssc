@@ -120,8 +120,8 @@ void welcome_t :: OnConfigClick (wxCommandEvent& )
 {	if (invalid ()) return;
     standard_t w (this, c_, gp_html);
     if (w.ShowModal () == wxID_OK)
-	{	c_ = w.c (); 
-		text_summary_ -> SetValue (c_.report (gr_summary)); } }
+	{	c_ = w.c ();
+		text_summary_ -> SetValue (c_.report (gr_summary).c_str ()); } }
 
 void welcome_t :: OnAboutClick (wxCommandEvent& )
 {	if (app != nullptr) app -> help ("about"); }
@@ -155,12 +155,39 @@ bool welcome_t :: TransferDataFromWindow ()
 #endif // DEBUG
 	cmd_.push_back (DFTHRD_SW);
 	cmd_.push_back ("1");
-	if (rooted_)
-	{	cmd_.push_back (FILE_SW);
-		cmd_.push_back (root_.string ()); }
-	else
+	if (! rooted_)
 	{	cmd_.push_back (FNCYSWTCH HTML SNIPPET);
 		cmd_.push_back (snippet_); }
+
+	// directory called .ssc  ... default datapath?
+	//		if has config file, use that
+	//      otherwise, root
+	// other directory  ... root
+	// file . CONF ... config file
+	// file . PERSIST ... persist file; barf
+	// file . SSC ... temporary filename; barf
+	// otherwise root is just a single file
+
+	else if (compare_no_case (DEFAULT_DATAPATH, root_.filename ().string ()))
+	{	if (::boost::filesystem::exists (root_ / DEFAULT_CONFIG_FILE))
+		{	cmd_.push_back (FILE_SW);
+			cmd_.push_back (root_.string ()); }
+		else	
+		{	cmd_.push_back (ROOT_SW);
+			cmd_.push_back (root_.string ()); } }
+	else if (! root_.has_filename ())
+	{	cmd_.push_back (ROOT_SW);
+		cmd_.push_back (root_.string ()); }
+	else if (compare_no_case (DEF_CONF_EXT, root_.extension ().string ()))
+	{	cmd_.push_back (FILE_SW);
+		cmd_.push_back (root_.string ()); }
+	else if (compare_no_case (DEF_PERSIST_EXT, root_.extension ().string ()))
+	{	return false; }
+	else if (compare_no_case (DEF_TEMP_EXT, root_.extension ().string ()))
+	 	return false;
+	else 
+	{	cmd_.push_back (ROOT_SW);
+		cmd_.push_back (root_.string ()); }
 	return true; }
 
 void welcome_t :: set_default ()

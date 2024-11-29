@@ -33,7 +33,6 @@ class html_t : public d1_t < wx_html >
     wxBoxSizer* box_title_ = nullptr;
     wxBoxSizer* box_version_ = nullptr;
     wxCheckBox* sloven_ = nullptr;
-    wxCheckBox* ssi_ = nullptr;
     wxCheckBox* safari_ = nullptr;
     wxCheckBox* ie_ = nullptr;
     wxCheckBox* rfc1867_ = nullptr;
@@ -62,7 +61,7 @@ class html_t : public d1_t < wx_html >
     e_math_version math_ = math_none;
     e_svg_version svg_ = sv_none;
     bool b1867_ = false, b1942_ = false, b1980_ = false, b2070_ = false, bie_ = false, bsafari_ = false, bsloven_ = false,
-        bssi_ = false, bwx_ = false;
+        bwx_ = false;
 	unsigned int max_ = MAX_IDEAL_TITLE_LENGTH;
 	unsigned short dt_ = 0;
 	unsigned short hv_ = 0;
@@ -109,8 +108,6 @@ public:
     void lingo (const ::std::string& s) { if (! s.empty ()) lang_ = s; }
     bool sloven () const noexcept { return bsloven_; }
     void sloven (const bool b) noexcept { bsloven_ = b; }
-    bool ssi () const noexcept { return bssi_; }
-    void ssi (const bool b) noexcept { bssi_ = b; }
     bool safari () const noexcept { return bsafari_; }
     void safari (const bool b) noexcept { bsafari_ = b; }
     bool wx () const noexcept { return bwx_; }

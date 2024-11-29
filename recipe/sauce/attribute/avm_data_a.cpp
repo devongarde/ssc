@@ -252,7 +252,7 @@ hav_t havt_applet [] =
     { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_applet, a_alt },
     { { HTML_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_applet, a_archive },
     { { HTML_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_applet, a_class },
-    { { HTML_3_2, HV_DEPRECATED4 | REQUIRED }, { XHTML_2_0 }, elem_applet, a_code },
+    { { HTML_3_2, HV_DEPRECATED4 | HV_REQUIRED }, { XHTML_2_0 }, elem_applet, a_code },
     { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_applet, a_codebase },
     { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_applet, a_height },
     { { HTML_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_applet, a_id },
@@ -323,9 +323,9 @@ hav_t havt_arctanh [] =
 
 hav_t havt_area [] =
 {   { { HTML_2_0, HV_NOT30 | HV_RFC_1980 }, { HTML_DEC06 }, elem_area, a_alt },
-    { { HTML_JAN07, REQUIRED }, { HTML_JUN07 }, elem_area, a_alt },
+    { { HTML_JAN07, HV_REQUIRED }, { HTML_JUN07 }, elem_area, a_alt },
     { { HTML_JUL07 }, { HTML_UNDEF }, elem_area, a_alt },
-    { { HTML_2_0, HV_RFC_1980 | HV_NOT30 | REQUIRED }, { HTML_DEC06 }, elem_area, a_coords },
+    { { HTML_2_0, HV_RFC_1980 | HV_NOT30 | HV_REQUIRED }, { HTML_DEC06 }, elem_area, a_coords },
     { { HTML_JAN07 }, { HTML_UNDEF }, elem_area, a_coords, EP_WX },
     { { HTML_JAN12 }, { HTML_UNDEF }, elem_area, a_download },
     { { HTML_2_0, HV_NOT30 | HV_RFC_1980 }, { HTML_UNDEF }, elem_area, a_href, EP_WX },

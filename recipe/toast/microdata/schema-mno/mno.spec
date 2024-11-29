@@ -5,6 +5,7 @@ PASS ../toast/microdata/schema-mno/map.html
 
 PASS ../toast/microdata/schema-mno/mediaobject.html
 13 script
+20 invalid_duration
 
 PASS ../toast/microdata/schema-mno/medicalguideline.html
 31 bad_itemid

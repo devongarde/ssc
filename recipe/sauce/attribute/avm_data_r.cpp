@@ -38,8 +38,8 @@ hav_t havt_radialgradient [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_range [] =
-{   { { HTML_3_0, REQUIRED }, { HTML_3_0 }, elem_range, a_from },
-    { { HTML_3_0, REQUIRED }, { HTML_3_0 }, elem_range, a_until },
+{   { { HTML_3_0, HV_REQUIRED }, { HTML_3_0 }, elem_range, a_from },
+    { { HTML_3_0, HV_REQUIRED }, { HTML_3_0 }, elem_range, a_until },
     HTML_CID_ATTRIBUTES (elem_range, MAJOR_3_0, MINOR_3_0, MAJOR_3_0, MINOR_3_0),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 

@@ -20,6 +20,14 @@
 
 <div class="column-unit">
 
+<h3>0.2.6</h3>
+
+<ul>
+<li>
+underlying work
+</li>
+</ul>
+
 <h3>0.2.5</h3>
 
 <ul>
@@ -40,6 +48,12 @@ various bug fixes
 </li>
 <li>
 underlying work
+</li>
+<li>
+<A href="src/ssc-0.2.5.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2024-11-18">24 11 18</time>
 </li>
 </ul>
 

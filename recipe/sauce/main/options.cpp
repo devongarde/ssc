@@ -191,11 +191,15 @@ options::options (const context_t& c)
     INSERT_BOOL (GENERAL, VCS, vcs);
     INSERT_BOOL (GENERAL, YGGDRISIL, yggdrisil);
 
+    INSERT_BOOL (HTML, CHROME, chrome);
     INSERT_VSTR (HTML, CUSTOM, custom_elements);
     INSERT_BOOL (HTML, FORCE, force_version);
     INSERT_BOOL (HTML, IE, ie);
     INSERT_VSTR (HTML, IGNORED, ignore);
     INSERT_STRING (HTML, LANG, lang);
+    INSERT_BOOL (HTML, MOZILLA, mozilla);
+    INSERT_BOOL (HTML, OPERA, opera);
+    INSERT_BOOL (HTML, NETSCAPE, netscape);
     INSERT_BOOL (HTML, REL, rel);
     INSERT_BOOL (HTML, RFC1867, rfc_1867);
     INSERT_BOOL (HTML, RFC1942, rfc_1942);
@@ -313,10 +317,12 @@ options::options (const context_t& c)
 #endif // NOSPELL
 
     INSERT_BOOL (SSI, SSI, ssi);
-    INSERT_STRING (SSI, CMD, ssi_cmd);
     INSERT_TIME (SSI, DATETIME, ssi_date);
     INSERT_STRING (SSI, DOCARGS, ssi_doc_args);
-    INSERT_STRING (SSI, EXEC, ssi_exec);
+    INSERT_STRING (SSI, ECHOMSG, ssi_echomsg);
+    INSERT_STRING (SSI, ERRMSG, ssi_errmsg);
+    INSERT_BOOL (SSI, EXECRUN, ssi_exec_run);
+    INSERT_STRING (SSI, EXECTEXT, ssi_exec_text);
     INSERT_TIME (SSI, LASTMOD, ssi_lastmod);
     INSERT_STRING (SSI, QUERYSTRING, ssi_query_string);
     INSERT_STRING (SSI, TIMEFMT, ssi_timefmt);
@@ -921,6 +927,8 @@ void options::init (context_t& c)
         (CSS WC, ::boost::program_options::value < int > (), "CSS Will Change level (0 or 3).")
         (CSS WRITING, ::boost::program_options::value < int > (), "CSS Writing Mode level (0, 3 or 4).")
 
+        (HTML CHROME, ::boost::program_options::bool_switch (), "Ignore certain naughtitudes accepted by versions of Chrome.")
+        (HTML DONT CHROME, ::boost::program_options::bool_switch (), "Mention certain naughtitudes accepted by versions of Chrome.")
         (HTML CUSTOM, ::boost::program_options::value < vstr_t > () -> composing (), "Define a custom element for checking the 'is' attribute; may be repeated.")
         (HTML FORCE, ::boost::program_options::bool_switch (), "When <!DOCTYPE...> is missing, forcibly presume HTML version as per --html.version.")
         (HTML DONT FORCE, ::boost::program_options::bool_switch (), "When <!DOCTYPE...> is missing, correctly presume HTML 1 or HTML tags, as per --html.tags.")
@@ -928,6 +936,12 @@ void options::init (context_t& c)
         (HTML DONT IE, ::boost::program_options::bool_switch (), "Mention certain naughtitudes accepted by versions of Internet Explorer.")
         (HTML IGNORED, ::boost::program_options::value < vstr_t > () -> composing (), "Ignore attributes and content of specified element; may be repeated.")
         (HTML LANG, ::boost::program_options::value < ::std::string > () -> composing (), "Default language (such as 'en_GB', 'lb_LU', etc.).")
+        (HTML MOZILLA, ::boost::program_options::bool_switch (), "Ignore certain naughtitudes accepted by versions of Firefox.")
+        (HTML DONT MOZILLA, ::boost::program_options::bool_switch (), "Mention certain naughtitudes accepted by versions of Firefox.")
+        (HTML NETSCAPE, ::boost::program_options::bool_switch (), "Ignore certain naughtitudes accepted by versions of Netscape.")
+        (HTML DONT NETSCAPE, ::boost::program_options::bool_switch (), "Mention certain naughtitudes accepted by versions of Netscape.")
+        (HTML OPERA, ::boost::program_options::bool_switch (), "Ignore certain naughtitudes accepted by versions of Opera.")
+        (HTML DONT OPERA, ::boost::program_options::bool_switch (), "Mention certain naughtitudes accepted by versions of Opera.")
         (HTML REL, ::boost::program_options::bool_switch (), "Ignore recognised but non-standard <LINK> REL values.")
         (HTML DONT REL, ::boost::program_options::bool_switch (), "Nitpick recognised but non-standard <LINK> REL values.")
         (HTML RFC1867, ::boost::program_options::bool_switch (), "Consider RFC 1867 (INPUT=FILE) when processing HTML 2.0.")
@@ -1084,13 +1098,16 @@ void options::init (context_t& c)
 
         (SSI VERIFY "," SSI_SW_, ::boost::program_options::bool_switch (), "Verify (simple) Server Side Includes. See also --" SHADOW SSI ".")
         (SSI DONT VERIFY, ::boost::program_options::bool_switch (), "Do not verify Server Side Includes.")
-        (SSI CMD, ::boost::program_options::value < ::std::string > () -> composing (), "Return this string when encountering an SSI CMD element.")
         (SSI DATETIME, ::boost::program_options::value < ::std::string > () -> composing (), "The SSI date environment variables should return this value.")
         (SSI DOCARGS, ::boost::program_options::value < ::std::string > () -> composing (), "Set the SSI DOCUMENT_ARGS variable to this value.")
-        (SSI EXEC, ::boost::program_options::value < ::std::string > () -> composing (), "Return this string when encountering an SSI EXEC element.")
+        (SSI ECHOMSG, ::boost::program_options::value < ::std::string > () -> composing (), "Set the initial SSI default echo message (by default, " DEFAULT_ECHOMSG ").")
+        (SSI ERRMSG, ::boost::program_options::value < ::std::string > () -> composing (), "Set the initial SSI default error message (by default, " DEFAULT_ERRMSG ").")
+        (SSI EXECRUN, ::boost::program_options::value < ::std::string > () -> composing (), "Obey SSI <!--#exec ..> elements. Warning: this is dangerous when processing untrusted sources.")
+        (SSI DONT EXECRUN, ::boost::program_options::value < ::std::string > () -> composing (), "Ignore SSI <!--#exec ..> elements. This is the default behaviour.")
+        (SSI EXECTEXT, ::boost::program_options::value < ::std::string > () -> composing (), "When SSI <!--#exec ..> elements are being ignored, and one is found, return this string.")
         (SSI LASTMOD, ::boost::program_options::value < ::std::string > () -> composing (), "The SSI last modification time environment variable should return this value.")
         (SSI QUERYSTRING, ::boost::program_options::value < ::std::string > () -> composing (), "Set the SSI QUERY_STRING_UNESCAPED variable to this value.")
-        (SSI TIMEFMT, ::boost::program_options::value < ::std::string > () -> composing (), "Set Server Side Includes initial timefmt.")
+        (SSI TIMEFMT, ::boost::program_options::value < ::std::string > () -> composing (), "Set the SSI TIMEFMT variable to this value.")
         (SSI USERNAME, ::boost::program_options::value < ::std::string > () -> composing (), "Set the SSI USER_NAME variable to this value.")
 
         (STATS ABBR, ::boost::program_options::bool_switch (), "Output abbr report.")
@@ -1813,11 +1830,15 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
         process_css_level (c, c_will_change, n, nits, CSS WC, "Will Change", 3);
         process_css_level (c, c_writing_mode, n, nits, CSS WRITING, "Writing Mode", 4);
 
+        yea_nay (c, &context_t::chrome, nits, HTML CHROME, HTML DONT CHROME);
         if (var_.count (HTML CUSTOM)) c.custom_elements ( var_ [HTML CUSTOM].as < vstr_t > ());
         yea_nay (c, &context_t::force_version, nits, HTML FORCE, HTML DONT FORCE);
         yea_nay (c, &context_t::ie, nits, HTML IE, HTML DONT IE);
         if (var_.count (HTML IGNORED)) c.ignore (nits, var_ [HTML IGNORED].as < vstr_t > ());
         if (var_.count (HTML LANG)) c.lang (var_ [HTML LANG].as < ::std::string > ());
+        yea_nay (c, &context_t::mozilla, nits, HTML MOZILLA, HTML DONT MOZILLA);
+        yea_nay (c, &context_t::netscape, nits, HTML NETSCAPE, HTML DONT NETSCAPE);
+        yea_nay (c, &context_t::opera, nits, HTML OPERA, HTML DONT OPERA);
         yea_nay (c, &context_t::rel, nits, HTML REL, HTML DONT REL);
         yea_nay (c, &context_t::rfc_1867, nits, HTML RFC1867, HTML DONT RFC1867);
         yea_nay (c, &context_t::rfc_1942, nits, HTML RFC1942, HTML DONT RFC1942);
@@ -2053,14 +2074,16 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
 #endif // NOSPELL
 
         yea_nay (c, &context_t::ssi, nits, SSI VERIFY, SSI DONT VERIFY);
-        if (var_.count (SSI CMD)) c.ssi_cmd (var_ [SSI CMD].as < ::std::string > ());
         if (var_.count (SSI DATETIME)) c.ssi_date (string_to_time (nits, var_ [SSI DATETIME].as < ::std::string > ()));
-        if (var_.count (SSI DOCARGS)) c.ssi_doc_args (var_ [SSI DOCARGS].as < ::std::string > ());
-        if (var_.count (SSI EXEC)) c.ssi_exec (var_ [SSI EXEC].as < ::std::string > ());
+        if (var_.count (SSI DOCARGS)) c.ssi_doc_args (nits, var_ [SSI DOCARGS].as < ::std::string > ());
+        if (var_.count (SSI ECHOMSG)) c.ssi_echomsg (nits, var_ [SSI ECHOMSG].as < ::std::string > ());
+        if (var_.count (SSI ERRMSG)) c.ssi_errmsg (nits, var_ [SSI ERRMSG].as < ::std::string > ());
+        yea_nay (c, &context_t::ssi_exec_run, nits, SSI EXECRUN, SSI DONT EXECRUN);
+        if (var_.count (SSI EXECTEXT)) c.ssi_exec_text (nits, var_ [SSI EXECTEXT].as < ::std::string > ());
         if (var_.count (SSI LASTMOD)) c.ssi_lastmod (string_to_time (nits, var_ [SSI LASTMOD].as < ::std::string > ()));
-        if (var_.count (SSI QUERYSTRING)) c.ssi_query_string (var_ [SSI QUERYSTRING].as < ::std::string > ());
-        if (var_.count (SSI TIMEFMT)) c.ssi_timefmt (var_ [SSI TIMEFMT].as < ::std::string > ());
-        if (var_.count (SSI USERNAME)) c.ssi_user_name (var_ [SSI USERNAME].as < ::std::string > ());
+        if (var_.count (SSI QUERYSTRING)) c.ssi_query_string (nits, var_ [SSI QUERYSTRING].as < ::std::string > ());
+        if (var_.count (SSI TIMEFMT)) c.ssi_timefmt (nits, var_ [SSI TIMEFMT].as < ::std::string > ());
+        if (var_.count (SSI USERNAME)) c.ssi_user_name (nits, var_ [SSI USERNAME].as < ::std::string > ());
 
         if (is_be (STATS SELECTED))
             c.stats (rcb_error, true).stats (rcb_file, true).stats (rcb_summary, true);
@@ -2616,11 +2639,15 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, ::std::string, GENERAL, VERBOSE, general);
     RB (gr, res, GENERAL, YGGDRISIL, general);
 
+    RB (gr, res, HTML, CHROME, html);
     RG (gr, res, vstr_t, HTML, CUSTOM, html);
     RB (gr, res, HTML, FORCE, html);
     RB (gr, res, HTML, IE, html);
     RG (gr, res, vstr_t, HTML, IGNORED, html);
     RG (gr, res, ::std::string, HTML, LANG, html);
+    RB (gr, res, HTML, MOZILLA, html);
+    RB (gr, res, HTML, NETSCAPE, html);
+    RB (gr, res, HTML, OPERA, html);
     RB (gr, res, HTML, REL, html);
     RB (gr, res, HTML, RFC1867, html);
     RB (gr, res, HTML, RFC1942, html);
@@ -2735,10 +2762,12 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
 #endif // NOSPELL
 
     RB (gr, res, SSI, VERIFY, ssi);
-    RG (gr, res, ::std::string, SSI, CMD, ssi);
     RG (gr, res, ::std::string, SSI, DATETIME, ssi);
     RG (gr, res, ::std::string, SSI, DOCARGS, ssi);
-    RG (gr, res, ::std::string, SSI, EXEC, ssi);
+    RG (gr, res, ::std::string, SSI, ECHOMSG, ssi);
+    RG (gr, res, ::std::string, SSI, ERRMSG, ssi);
+    RB (gr, res, SSI, EXECRUN, ssi);
+    RG (gr, res, ::std::string, SSI, EXECTEXT, ssi);
     RG (gr, res, ::std::string, SSI, LASTMOD, ssi);
     RG (gr, res, ::std::string, SSI, QUERYSTRING, ssi);
     RG (gr, res, ::std::string, SSI, TIMEFMT, ssi);

@@ -500,7 +500,7 @@ void set_crc (const fileindex_t ndx, const crc_t& crc)
 {   ::boost::filesystem::path p;
     ::std::string s (context.shadow_persist ());
     if (! s.empty ()) p = s;
-    else p = context.config ().replace_extension ("ndx");
+    else p = context.config ().replace_extension (DEF_PERSIST_EXT);
     return p; }
 
 bool fileindex_load_internal (nitpick& nits, bool& ok)

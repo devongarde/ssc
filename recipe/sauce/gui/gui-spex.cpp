@@ -103,6 +103,11 @@ BEGIN_EVENT_TABLE (standard_t, wxDialog)
   EVT_LISTBOX (list_word_ext, standard_t::OnSpellWordExtension)
   EVT_LISTBOX_DCLICK (list_word_ext, standard_t::OnSpellWordImpatience)
 #endif // NOSPELL
+  EVT_CHECKBOX (check_ssi_exec, standard_t::OnSSIExec)
+  EVT_CHECKBOX (check_ssi_lastmod, standard_t::OnSSILastMod)
+  EVT_CHECKBOX (check_ssi_now, standard_t::OnSSINow)
+  EVT_CHECKBOX (check_ssi_process, standard_t::OnSSIProcess)
+  EVT_CHECKBOX (check_stats_export, standard_t::OnStatsExport)
   EVT_BUTTON (button_all, standard_t::OnStatsAll)
   EVT_BUTTON (button_clear, standard_t::OnStatsClear)
   EVT_CHECKBOX (check_stats_export, standard_t::OnStatsExport)
@@ -147,28 +152,30 @@ void standard_t :: CreateControls (const e_gui_panel gp)
 {	if (interrogate < wxDialog > :: invalid ()) return;
 	choice_ = GSL_OWNER (wxChoicebook) (new wxChoicebook (this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxCHB_DEFAULT));
 	if (choice_ != nullptr) // if this order changes, update e_gui_panel
-	{	if (html_.create_panel (choice_, panel_corpus, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
+	{	if (html_.create_panel (choice_, panel_html, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
 			choice_ -> AddPage (html_.panel (), "HTML, XHTML, MathML, SVG", false); 
-		if (css_.create_panel (choice_, panel_corpus, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
+		if (css_.create_panel (choice_, panel_css, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
 			choice_ -> AddPage (css_.panel (), "CSS", false); 
-		if (site_.create_panel (choice_, panel_corpus, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
+		if (site_.create_panel (choice_, panel_site, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
 			choice_ -> AddPage (site_.panel (), "root, link, search corpus", false); 
-		if (general_.create_panel (choice_, panel_corpus, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
+		if (general_.create_panel (choice_, panel_general, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
 			choice_ -> AddPage (general_.panel (), "bits / bobs", false); 
-		if (nits_.create_panel (choice_, panel_corpus, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
+		if (nits_.create_panel (choice_, panel_nits, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
 			choice_ -> AddPage (nits_.panel (), "errors, warnings, nitpicking", false); 
-		if (ontology_.create_panel (choice_, panel_corpus, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
+		if (ontology_.create_panel (choice_, panel_ontology, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
 			choice_ -> AddPage (ontology_.panel (), "machine readable content", false); 
-		if (shadow_.create_panel (choice_, panel_corpus, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
+		if (shadow_.create_panel (choice_, panel_shadow, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
 			choice_ -> AddPage (shadow_.panel (), "shadow, deduplicate, resolve", false); 
 #ifndef NOSPELL
-		if (spell_.create_panel (choice_, panel_corpus, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
+		if (spell_.create_panel (choice_, panel_spell, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
 			choice_ -> AddPage (spell_.panel (), "spelling", false); 
 #endif // NOSPELL
-		if (stats_.create_panel (choice_, panel_corpus, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
+		if (ssi_.create_panel (choice_, panel_ssi, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
+			choice_ -> AddPage (ssi_.panel (), "server side includes", false); 
+		if (stats_.create_panel (choice_, panel_statistics, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
 			choice_ -> AddPage (stats_.panel (), "statistics, reports", false); 
 #ifdef DEBUG
-		if (valid_.create_panel (choice_, panel_corpus, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
+		if (valid_.create_panel (choice_, panel_validation, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
 			choice_ -> AddPage (valid_.panel (), "validation (not implemented yet)", false);
 #endif // DEBUG
 		box_ -> Add (choice_, 12, wxEXPAND | wxALL, 5); }
@@ -212,6 +219,7 @@ bool standard_t :: TransferDataToWindow ()
 #ifndef NOSPELL
 	spell_.load_from_context (c_);
 #endif // NOSPELL
+	ssi_.load_from_context (c_);
 	stats_.load_from_context (c_);
 #ifdef DEBUG
 	valid_.load_from_context (c_);
@@ -226,6 +234,7 @@ bool standard_t :: TransferDataToWindow ()
 #ifndef NOSPELL
 			spell_.TransferDataToWindow () &&
 #endif // NOSPELL
+			ssi_.TransferDataToWindow () &&
 #ifdef DEBUG
 			valid_.TransferDataToWindow () &&
 #endif // DEBUG
@@ -248,6 +257,7 @@ bool standard_t :: TransferDataFromWindow ()
 #endif // DEBUG
 			! stats_.TransferDataFromWindow ())
 		return false;
+	nitpick nits;
 	css_.save_to_context (c_);
 	general_.save_to_context (c_);
 	html_.save_to_context (c_);
@@ -258,10 +268,13 @@ bool standard_t :: TransferDataFromWindow ()
 #ifndef NOSPELL
 	spell_.save_to_context (c_);
 #endif // NOSPELL
+	ssi_.save_to_context (nits, c_);
 	stats_.save_to_context (c_);
 #ifdef DEBUG
 	valid_.save_to_context (c_);
 #endif // DEBUG
+	if (! nits.empty ())
+	 	app_t::nits_msgbox (nullptr, "SSI values", nits, es_info);
 	return true; }
 
 ::std::string andl (const ::std::string z, const ::std::string& s)

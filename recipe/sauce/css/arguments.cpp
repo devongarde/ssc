@@ -79,7 +79,8 @@ bool arguments::prep_for_make (nitpick& nits, const int , int& b, const int to, 
     return true; }
 
 void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string& s) const
-{   if ((f & CF_DEPRECATED) == CF_DEPRECATED)
+{   v_.check_status (nits, s);
+    if ((f & CF_DEPRECATED) == CF_DEPRECATED)
         nits.pick (nit_deprecated, es_warning, ec_css, s, " is deprecated, so unlikely to be supported by many browsers");
     if ((f & CF_DEPRECATED_45) == CF_DEPRECATED_45)
         if (v_.css_module (c_media_query) > 3)
@@ -107,7 +108,8 @@ void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string
                 else nits.pick (nit_naughty_content, ed_css_21, "12.2 The 'content' p. 182 property", es_error, ec_css, s, " requires an element with :before andor :after"); }
 
 void arguments::check_flags (nitpick& nits, const flags_t f, const ::std::string& s, const bool xk, const bool xi, const bool xn, const bool xs, const bool fn, const int kc, const ::std::string& item, const ::std::string& val) const
-{   if (! fn)
+{   v_.check_status (nits, s);
+    if (! fn)
     {   if (xs && ((f & CF_NOT_STRING) == CF_NOT_STRING))
             nits.pick (nit_css_syntax, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_css, quote (val), ": should not be a string");
         if (((f & CF_EXPECT_FN) == CF_EXPECT_FN))

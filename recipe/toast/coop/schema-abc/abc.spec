@@ -34,9 +34,9 @@ PASS ../toast/coop/schema-abc/a/aggregaterating-2.html
 49 use_quote_code
 
 PASS ../toast/coop/schema-abc/a/alignmentobject.html
-17 invalid_attribute_version wrong_version svg_rdf bad_datetime bad_datetime
+17 invalid_attribute_version wrong_version svg_rdf invalid_duration invalid_duration
 68 incompatible_mime
-69 invalid_attribute_version wrong_version svg_rdf
+69 invalid_attribute_version wrong_version svg_rdf invalid_duration
 
 PASS ../toast/coop/schema-abc/a/amusementpark.html
 0 charset_mismatch charset_used charset_invalid
@@ -88,6 +88,7 @@ PASS ../toast/coop/schema-abc/a/audiobook.html
 
 PASS ../toast/coop/schema-abc/a/audioobject.html
 13 script
+20 invalid_duration
 
 PASS ../toast/coop/schema-abc/b/bankaccount.html
 0 charset_mismatch charset_used charset_invalid

@@ -59,3 +59,4 @@ bool operator <= (const version& lhs, const version& rhs) noexcept
 bool operator >= (const version& lhs, const version& rhs) noexcept
 {   if (lhs.unknown () || rhs.unknown ()) return false;
     return ! (lhs < rhs); }
+

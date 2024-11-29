@@ -111,7 +111,7 @@ PASS ../toast/HTML/5.1/html5-bad.html
 127 interactive interactive bad_form
 140 no_progress
 141 no_progress
-142 bad_datetime dur no_progress no_progress
+142 invalid_duration dur no_progress no_progress
 149 fieldset_legend
 163 details_summary
 177 bad_ancestor

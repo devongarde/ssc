@@ -37,6 +37,7 @@ struct wx_shadow { CONSTEXPR static char const* sz () { return "shadow"; } };
 struct wx_site { CONSTEXPR static char const* sz () { return "site"; } };
 struct wx_snippet { CONSTEXPR static char const* sz () { return "snippet"; } };
 struct wx_spell { CONSTEXPR static char const* sz () { return "spell"; } };
+struct wx_ssi { CONSTEXPR static char const* sz () { return "SSI"; } };
 struct wx_stats { CONSTEXPR static char const* sz () { return "stats"; } };
 struct wx_svg { CONSTEXPR static char const* sz () { return "SVG"; } };
 struct wx_valid { CONSTEXPR static char const* sz () { return "validation"; } };

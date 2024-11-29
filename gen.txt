@@ -851,7 +851,7 @@ ontologies (see --ontology.list).
                                 rif 1.0
                                 role 1.0
                                 rr 1.0
-                                schema.org 0.10-28 (see below)
+                                schema.org 0.10-28.1 (see below)
                                 sd 1.0
                                 sioc 1.0
                                 sioc_s 1.0
@@ -1018,7 +1018,11 @@ ontologies (see --ontology.list).
                                 1.90        1.9
                                 1.91        as version number
                                 ...
+                                27          as version number
+                                27.1        27.01
+                                27.2        27.02
                                 28          as version number
+                                28.1        as version number
 
                         vCard versions correspond to RDFa specs,
                         published in 2001, 2006, 2010 & 2014. They do
@@ -1247,24 +1251,30 @@ SSI switches
                         numbers to be mentioned when an issue is
                         reported.
 
--ssi.cmd x              If an SSI CMD element is encountered, return
-                        this text. Note that SSC never processes such
-                        commands.
+--ssi.echomsg x         Set the default SSI echo message.
 
--ssi.exec x             If an SSI EXEC element is encountered, return
-                        this text. Note that SSC never executes such
-                        commands.
+--ssi.errmsg x          Set the default SSI error message.
 
--ssi.docargs x          If the SSI document-args variable is requested,
+--ssi.exec-run          If an SSI EXEC element is encountered, obey it.
+                        This is dangerous when processing a site you do
+                        not control. By default, this is set to false.
+
+--ssi.exec-text x       If an SSI EXEC element is encountered when they
+                        are not processed, return this text.
+
+--ssi.docargs x         If the SSI document-args variable is requested,
                         return this string (default: blank).
 
--ssi.querystring x      If the SSI document_args variable is requested,
+--ssi.querystring x     If the SSI document_args variable is requested,
                         return this string (default: blank).
 
--ssi.username x         If the SSI query_string_unescaped variable is
+--ssi.tmefmt x          Set the initial value of SSI TIMEFMT to this
+                        string (default: blank).
+
+--ssi.username x        If the SSI query_string_unescaped variable is
                         requested, return this string (default: blank).
 
--ssi.username x         If the SSI user_name variable is requested,
+--ssi.username x        If the SSI user_name variable is requested,
                         return this string (default: blank).
 
 
