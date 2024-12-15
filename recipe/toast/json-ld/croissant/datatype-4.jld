@@ -1,0 +1,18 @@
+{
+  
+  "@id": "cities",
+  "@type": "cr:RecordSet",
+  "dataType": "sc:GeoCoordinates",
+  "field": [
+    {
+      "@id": "cities/lat",
+      "@type": "cr:Field",
+      "equivalentProperty": "sc:latitude"
+    },
+    {
+      "@id": "cities/long",
+      "@type": "cr:Field",
+      "equivalentProperty": "sc:longitude"
+    }
+  ]
+}

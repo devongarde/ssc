@@ -1,0 +1,9 @@
+{
+  
+  "@type": "cr:FileObject",
+  "@id": "metadata-dev",
+  "description": "Contains labels for the records in each line in the dev files.",
+  "contentUrl": "flores200_dataset/metadata_dev.tsv",
+  "containedIn": { "@id": "flores200_dataset.tar.gz" },
+  "encodingFormat": "text/tsv"
+}

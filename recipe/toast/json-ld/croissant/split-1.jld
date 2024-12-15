@@ -1,0 +1,33 @@
+{
+  
+  "@id": "splits",
+  "@type": "cr:RecordSet",
+  "dataType": "cr:Split",
+  "key": { "@id": "splits/name" },
+  "field": [
+    {
+      "@id": "splits/name",
+      "@type": "cr:Field",
+      "dataType": "sc:Text"
+    },
+    {
+      "@id": "splits/url",
+      "@type": "cr:Field",
+      "dataType": "cr:Split"
+    }
+  ],
+  "data": [
+    {
+      "splits/name": "train",
+      "splits/url": "cr:TrainingSplit"
+    },
+    {
+      "splits/name": "val",
+      "splits/url": "cr:ValidationSplit"
+    },
+    {
+      "splits/name": "test",
+      "splits/url": "cr:TestSplit"
+    }
+  ]
+}

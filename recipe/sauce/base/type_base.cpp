@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -205,6 +205,7 @@ enum_name_t enum_name [] =
     { t_closed_open, "closed open" },
     { t_closure, "closure" },
     { t_cntype, "cntype" },
+    { t_crdatatype, "crdatatype" },
     { t_coden, "coden" },
     { t_colour, "colour" },
     { t_colour_a, "colour a" },
@@ -255,6 +256,7 @@ enum_name_t enum_name [] =
     { t_country, "country" },
     { t_create_parent, "create parent" },
     { t_crossout, "crossout" },
+    { t_cr_fileproperty, "cr fileproperty" },
     { t_crs_tonecurvename, "crs tonecurvename" },
     { t_crs_whitebalance, "crs whitebalance" },
     { t_cs, "cs" },
@@ -1052,7 +1054,7 @@ enum_name_t enum_name [] =
     { t_indentalign, "indent align" },
     { t_indentalign2, "indent align 2" },
     { t_indentshift2, "indent shift 2" },
-    { t_index, "index" },
+    { t_index, INDEX },
     { t_infixlinebreakstyle, "infix line break style" },
     { t_initialvisibility, "initial visibility" },
     { t_inky, "inky" },
@@ -1100,6 +1102,7 @@ enum_name_t enum_name [] =
     { t_js_type, "JS type" },
     { t_js_value, "JS value" },
     { t_js_version, "JS version" },
+    { t_json, "json" },
     { t_jtoken, "j token" },
     { t_just_date, "just date" },
     { t_just_time, "just time" },
@@ -1713,6 +1716,7 @@ enum_name_t enum_name [] =
     { t_weekday_english_short, "weekday english short" },
     { t_whitespace, "whitespace" },
     { t_width, "width" },
+    { t_wildcard, "wildcard" },
     { t_workertype, "worker type" },
     { t_wrap, "wrap" },
     { t_wrap3, "wrap 3" },

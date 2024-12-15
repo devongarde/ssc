@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -277,7 +277,6 @@ inline ::std::string::size_type find_no_case (const ::std::string& s, const ::st
     return ::boost::to_lower_copy (s).find (::boost::to_lower_copy (x)); }
 
 ::std::string enhtml (const ::std::string& s);
-::std::string get_current_folder ();
 
 bool is_plain_old_integer (const ::std::string& ss);
 bool is_plain_old_decimal (const ::std::string& ss);

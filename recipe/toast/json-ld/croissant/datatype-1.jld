@@ -1,0 +1,6 @@
+{
+  
+  "@id": "images/color_sample",
+  "@type": "cr:Field",
+  "dataType": "sc:ImageObject"
+}

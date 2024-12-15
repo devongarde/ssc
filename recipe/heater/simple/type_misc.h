@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -406,3 +406,15 @@ template < > struct type_master < t_text_2n > : string_vector < t_text_2n, sz_sp
         {   if (string_vector < t_text_2n, sz_space_char > :: get ().size () % 2 == 0) return;
             nits.pick (nit_sizes, es_error, ec_type, "an even number of strings expected"); }
         string_vector < t_text_2n, sz_space_char > :: status (s_invalid); } };
+
+template < > struct type_master < t_wildcard > : public tidy_string < t_wildcard >
+{   using tidy_string < t_wildcard > :: tidy_string; 
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_wildcard > :: set_value (nits, v, s);
+        const ::std::string& wild = tidy_string < t_wildcard >::get_string ();
+        if (wild.empty ())
+            nits.pick (nit_empty, es_error, ec_type, "an empty string here is a little too miserable");
+        else if (tidy_string < t_wildcard > :: good ())
+            if (wild.find_first_not_of (WILDCHARS) == ::std::string::npos) return;
+        nits.pick (nit_tame, es_warning, ec_type, quote (s), " contains unexpected characters or is otherwise invalid");
+        tidy_string < t_wildcard > :: status (s_invalid); } };

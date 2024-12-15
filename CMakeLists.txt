@@ -1,6 +1,9 @@
 cmake_minimum_required (VERSION 3.24)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.2.6 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
+project (ssc VERSION 0.2.7 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
+
+# if using a non-thread safe version of SSL, add this compiler definition
+# CURL_SSL_NOT_THREADSAFE
 
 set (CMAKE_CXX_STANDARD 17)
 
@@ -25,8 +28,13 @@ set (BV "1.75")
 set (HV "1.7")
 set (CFT "Debug;Release")
 
-# if using a non-thread safe version of SSL, add this compiler definition
-# CURL_SSL_NOT_THREADSAFE
+if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+  message (FATAL_ERROR "Use a Visual Studio solution (https://visualstudio.microsoft.com/downloads/)")
+endif ()
+
+# https://stackoverflow.com/questions/11944060/how-to-detect-target-architecture-using-cmake
+EXECUTE_PROCESS (COMMAND uname -m COMMAND tr -d '\n' OUTPUT_VARIABLE ARCHITECTURE)
+message ("Architecture: ${ARCHITECTURE}")
 
 # Debug / Release (https://riptutorial.com/cmake/example/26702/setting-a-release-debug-configuration)
 set (CMAKE_CONFIGURATION_TYPES ${CFT} CACHE STRING "Configs" FORCE)
@@ -43,9 +51,7 @@ set (NOINDENTLIE ";-Wno-misleading-indentation")
 set (TEMPLATEDEPTH "")
 set (BREGEX "regex")
 
-if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-    message (FATAL_ERROR "Use the included Visual Studio solutions to build under Windows (https://visualstudio.microsoft.com/downloads/)")
-elseif (${CMAKE_SYSTEM_NAME} MATCHES "OpenBSD")
+if (${CMAKE_SYSTEM_NAME} MATCHES "OpenBSD")
     set (DOCU "${DD}/share/doc/ssc")
     set (D "${DD}/bin")
     set (INC ${INCS})
@@ -117,6 +123,7 @@ elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     set (INC ${INC} "/usr/include/" "/usr/local/include/" "/usr/include/x86_64-linux-gnu/")
     set (LD ${LIBS} "/usr/lib64/")
     set (Boost_USE_STATIC_LIBS ON)
+    message ("Boost static libraries")
     if (${LSB_RELEASE_ID_SHORT} MATCHES "Ubuntu")
         set (LD ${LIBS} "/usr/lib64/" "/usr/lib/x86_64-linux-gnu/")
     elseif (${LSB_RELEASE_ID_SHORT} MATCHES "CentOSStream")
@@ -129,12 +136,16 @@ elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     set (DOCU "${DD}/local/share/doc/ssc")
     set (INC ${INC} "/usr/local/include/" "/opt/local/include")
     set (LD ${LIBS} "/usr/local/lib" "/opt/local/lib")
-#   set (Boost_USE_STATIC_LIBS OFF) (Macos no longer finds dynamic libraries sitting in its path, and I just can't be arsed to deal with stupid this morning)
-    set (Boost_USE_STATIC_LIBS ON)
     target_compile_definitions (ssc-test PRIVATE UNIX)
     if (${CMAKE_SYSTEM} MATCHES "Darwin-24")
         set (BUILD_OS "Sequoia")
-        target_compile_definitions (ssc PRIVATE OS_VER="${BUILD_OS}" UNIX DARWIN HUNSPELL CLEAN_SHAREDPTR_ARRAY ORDERED)
+        # Sequoia can't find dylibs; I'm not wasting more time avoiding apple bugs
+        set (NOICU "1")
+        set (NO_GSL "1")
+        set (NS "1")
+        set (Boost_USE_STATIC_LIBS ON)
+        message ("Boost static libraries")
+        target_compile_definitions (ssc PRIVATE OS_VER="${BUILD_OS}" UNIX DARWIN CLEAN_SHAREDPTR_ARRAY ORDERED NOICU NO_GSL)
     elseif (${CMAKE_SYSTEM} MATCHES "Darwin-23")
         set (BUILD_OS "Sonoma")
         target_compile_definitions (ssc PRIVATE OS_VER="${BUILD_OS}" UNIX DARWIN HUNSPELL CLEAN_SHAREDPTR_ARRAY ORDERED)
@@ -165,13 +176,14 @@ elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         target_compile_definitions (ssc PRIVATE OS_VER="${BUILD_OS}" UNIX DARWIN)
     endif ()
     if (NOT ${CMAKE_BUILD_TYPE} MATCHES "Debug")
-        find_program(DSYMUTIL_PROGRAM dsymutil)
+        # can't remember where I found this
+        find_program (DSYMUTIL_PROGRAM dsymutil)
         if (DSYMUTIL_PROGRAM)
-        foreach(lang C CXX)
-            foreach(var LINK_EXECUTABLE CREATE_SHARED_LIBRARY)
-            set(CMAKE_${lang}_${var} "${CMAKE_${lang}_${var}}" "${DSYMUTIL_PROGRAM} <TARGET>")
+            foreach (lang C CXX)
+                foreach (var LINK_EXECUTABLE CREATE_SHARED_LIBRARY)
+                    set (CMAKE_${lang}_${var} "${CMAKE_${lang}_${var}}" "${DSYMUTIL_PROGRAM} <TARGET>")
+                endforeach()
             endforeach()
-        endforeach()
         endif()
     endif()
 else ()
@@ -187,14 +199,11 @@ message (${BUILD_OS})
 set (${PROJ_NAME}_PATH_INSTALL ${D} CACHE PATH "This directory contains an installation path")
 set (CMAKE_DEBUG_POSTFIX "d")
 
-set (Boost_USE_STATIC_LIBS ON)
 set (Boost_USE_MULTI_THREADED ON)
 if (${CMAKE_BUILD_TYPE} MATCHES "Debug")
-    set (ICU_DEBUG ON)
     set (Boost_USE_DEBUG_LIBS ON)
     set (Boost_USE_DEBUG_RUNTIME ON)
 else ()
-    set (ICU_DEBUG OFF)
     set (Boost_USE_DEBUG_LIBS OFF)
     set (Boost_USE_DEBUG_RUNTIME OFF)
 endif ()
@@ -205,12 +214,22 @@ else ()
     find_package (Boost ${BV} REQUIRED COMPONENTS system chrono date_time filesystem json locale program_options thread ${BREGEX})
 endif ()
 
-find_package (ICU 60.0 REQUIRED COMPONENTS dt in io tu uc)
+if (${NOICU} MATCHES "1") # CMake bug
+else ()
+    find_package (ICU 60.0 REQUIRED COMPONENTS dt in io tu uc)
+    if (${CMAKE_BUILD_TYPE} MATCHES "Debug")
+        set (ICU_DEBUG ON)
+    else ()
+        set (ICU_DEBUG OFF)
+    endif ()
+endif ()
+
 find_package (Iconv REQUIRED)
 
 if (NOT DEFINED ${NO_CURL})
     # https://cmake.org/cmake/help/latest/module/FindCURL.html
     set (CURL_USE_STATIC_LIBS ON)
+    message ("Curl static libraries")
     find_package (CURL REQUIRED FILE HTTP HTTPS SSL)
 endif ()
 
@@ -291,7 +310,7 @@ target_sources (ssc PRIVATE
         ${S}/coop/fred.cpp ${S}/coop/kew.cpp ${S}/coop/knickers.cpp ${S}/coop/lox.cpp ${S}/coop/tls.cpp
         ${S}/compound/type_csses.cpp ${S}/compound/type_varied.cpp
         ${S}/css/arguments.cpp ${S}/css/css.cpp ${S}/css/css_attribute.cpp ${S}/css/css_class.cpp ${S}/css/css_element.cpp ${S}/css/css_id.cpp
-            ${S}/css/css_parse.cpp ${S}/css/css_state.cpp ${S}/css/decoration.cpp ${S}/css/descriptor.cpp  ${S}/css/descriptor_constructor.cpp
+            ${S}/css/css_parse.cpp ${S}/css/css_state.cpp ${S}/css/decoration.cpp ${S}/css/descriptor.cpp ${S}/css/descriptor_constructor.cpp
             ${S}/css/descriptors.cpp ${S}/css/distilled.cpp ${S}/css/ffv.cpp ${S}/css/ffvs.cpp ${S}/css/fn.cpp ${S}/css/global.cpp ${S}/css/group.cpp
             ${S}/css/media.cpp ${S}/css/medium.cpp ${S}/css/property.cpp ${S}/css/properties.cpp ${S}/css/property_constructor.cpp ${S}/css/rule.cpp
             ${S}/css/rules.cpp ${S}/css/selector.cpp ${S}/css/selectors.cpp ${S}/css/statement.cpp ${S}/css/statements.cpp ${S}/css/typed_property.cpp
@@ -319,8 +338,8 @@ target_sources (ssc PRIVATE
         ${S}/feedback/nit.cpp ${S}/feedback/nitnames.cpp ${S}/feedback/nitout.cpp ${S}/feedback/nitpick.cpp
         ${S}/gui/gui-app.cpp ${S}/gui/gui-css.cpp ${S}/gui/gui-ctrl.cpp ${S}/gui/gui-ctrls.cpp ${S}/gui/gui-dialogue.cpp ${S}/gui/gui-frame.cpp
             ${S}/gui/gui-general.cpp ${S}/gui/gui-html.cpp ${S}/gui/gui-icon.cpp ${S}/gui/gui-listedit.cpp ${S}/gui/gui-menu.cpp ${S}/gui/gui-nits.cpp
-            ${S}/gui/gui-ontology.cpp ${S}/gui/gui-output.cpp ${S}/gui/gui-shadow.cpp ${S}/gui/gui-site.cpp ${S}/gui/gui-snippet.cpp
-            ${S}/gui/gui-spell.cpp ${S}/gui/gui-spex.cpp ${S}/gui/gui-ssi.cpp ${S}/gui/gui-stats.cpp ${S}/gui/gui-validation.cpp ${S}/gui/gui-welcome.cpp
+            ${S}/gui/gui-ontology.cpp ${S}/gui/gui-output.cpp ${S}/gui/gui-shadow.cpp ${S}/gui/gui-site.cpp ${S}/gui/gui-spell.cpp ${S}/gui/gui-snippet.cpp
+            ${S}/gui/gui-spex.cpp ${S}/gui/gui-ssi.cpp ${S}/gui/gui-stats.cpp ${S}/gui/gui-validation.cpp ${S}/gui/gui-welcome.cpp
         ${S}/icu/charset.cpp ${S}/icu/converter.cpp ${S}/icu/lingo.cpp ${S}/icu/wrapper.cpp
         ${S}/main/abort.cpp ${S}/main/context.cpp ${S}/main/options.cpp ${S}/main/output.cpp ${S}/main/ssc.cpp ${S}/main/server.cpp ${S}/main/standard.cpp
             ${S}/main/version.cpp
@@ -336,9 +355,9 @@ target_sources (ssc PRIVATE
         ${S}/rdf/rdf.cpp ${S}/rdf/rdfa_prop.cpp ${S}/rdf/rdfa_type.cpp
         ${S}/simple/type_autocomplete.cpp ${S}/simple/type_basic.cpp ${S}/simple/type_css.cpp ${S}/simple/type_currency.cpp ${S}/simple/type_d.cpp
             ${S}/simple/type_httpequiv.cpp ${S}/simple/type_id.cpp ${S}/simple/type_jsonic.cpp ${S}/simple/type_intent.cpp ${S}/simple/type_layout.cpp
-            ${S}/base/type_master.cpp ${S}/simple/type_measure.cpp ${S}/simple/type_media.cpp ${S}/simple/type_metaname.cpp ${S}/simple/type_misc.cpp
-            ${S}/simple/type_numeric.cpp ${S}/simple/type_paint.cpp ${S}/simple/type_rdf.cpp ${S}/simple/type_reals.cpp  ${S}/simple/type_sgml.cpp
-            ${S}/simple/type_svg_feature.cpp ${S}/simple/type_time.cpp ${S}/simple/type_transform.cpp ${S}/compound/type_varied.cpp
+            ${S}/base/type_master.cpp ${S}/simple/type_measure.cpp ${S}/simple/type_media.cpp ${S}/simple/type_metaname.cpp ${S}/simple/type_microdata.cpp
+            ${S}/simple/type_misc.cpp ${S}/simple/type_numeric.cpp ${S}/simple/type_paint.cpp ${S}/simple/type_rdf.cpp ${S}/simple/type_reals.cpp
+            ${S}/simple/type_sgml.cpp ${S}/simple/type_svg_feature.cpp ${S}/simple/type_time.cpp ${S}/simple/type_transform.cpp ${S}/compound/type_varied.cpp
         ${S}/spell/spell.cpp ${S}/spell/nixspell.cpp ${S}/spell/winspell.cpp
         ${S}/stats/stats.cpp ${S}/stats/stats_impl.cpp
         ${S}/symbol/nstr.cpp ${S}/symbol/symbol.cpp
@@ -354,6 +373,11 @@ target_precompile_headers (ssc PRIVATE ${H}/main/include.h)
 target_include_directories (ssc-test PRIVATE ${H} ${INC})
 target_include_directories (ssc PRIVATE ${H} ${INC})
 link_directories (${LD})
+
+if (DEFINED NO_GSL)
+  message ("No GSL")
+  target_compile_definitions (ssc PRIVATE NO_GSL)
+endif ()
 
 target_compile_definitions (ssc-test PRIVATE SSC_TEST)
 
@@ -393,10 +417,15 @@ target_link_libraries (ssc PRIVATE Boost::locale)
 target_link_libraries (ssc PRIVATE Boost::program_options)
 target_link_libraries (ssc PRIVATE Boost::thread)
 target_link_libraries (ssc PRIVATE pthread)
-target_link_libraries (ssc PRIVATE ${ICU_LIBRARIES})
 
 if (NOT DEFINED ${NO_CURL})
   target_link_libraries (ssc PRIVATE ${CURL_LIBRARIES})
+endif ()
+
+if (${NOICU} MATCHES "1") # CMake bug
+  message ("No ICU")
+else ()
+  target_link_libraries (ssc PRIVATE ${ICU_LIBRARIES})
 endif ()
 
 if (DEFINED ${WX})
@@ -404,6 +433,7 @@ if (DEFINED ${WX})
 endif ()
 
 if (${NS} MATCHES "1")
+  message ("No spelling")
 else () # if only NOT .. MATCHES ... could be bothered to work
         # come to think of it, if only NOT DEFINED could be bothered to work
   find_library (HUN NAMES "libhunspell-${HV}" "hunspell-${HV}" "libhunspell" "hunspell-${HV}" HINTS ${LB} PATH_SUFFIXES "/hunspell" DOC "hunspell-${HV}" REQUIRED)

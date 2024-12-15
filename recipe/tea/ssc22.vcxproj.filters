@@ -1437,6 +1437,9 @@
     <Filter Include="Toast\HTML\wx">
       <UniqueIdentifier>{02d36ed3-6c7f-48b1-9eba-5b2a4ac150d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\JSON-LD\croissant">
+      <UniqueIdentifier>{ac413f6b-2fd3-4c2b-90d5-fdb2e32b7bdc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -2934,6 +2937,9 @@
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_x.cpp">
       <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\simple\type_microdata.cpp">
+      <Filter>Sauce\simple</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -35949,9 +35955,6 @@
     <None Include="..\toast\living\jan24\progress.css">
       <Filter>Toast\Living\jan24</Filter>
     </None>
-    <None Include="cpp.hint">
-      <Filter>Tea</Filter>
-    </None>
     <None Include="..\toast\json-ld\certification\certification-1.html">
       <Filter>Toast\JSON-LD\certification</Filter>
     </None>
@@ -38672,6 +38675,138 @@
     </None>
     <None Include="..\toast\HTML\wx\wx.spec">
       <Filter>Toast\HTML\wx</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\format-1.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\index.html">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\jsonld.conf">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\jsonld.spec">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\format-2.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\format-3.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\pre-1a.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\pre-2.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\resource-2a.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\fileset-1a.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\fileset-2a.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\resource-1.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\recordset.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\transform.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\datatype-1.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\datatype-2.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\datatype-3.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\datatype-4.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\embedding.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\hierarchy-1.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\hierarchy-2.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\join-1.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\join-2.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\join-3.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\label-1.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\label-2.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\category-3.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\split-1.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\split-2.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\category-1.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\category-2.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\box.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\segment-2.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\segment-1.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\context.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\fileset-1b.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\fileset-2b.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\fileset-2c.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\fileset-2d.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\fileset-2e.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\pre-1b.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\resource-2b.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\json-ld\croissant\resource-2c.jld">
+      <Filter>Toast\JSON-LD\croissant</Filter>
+    </None>
+    <None Include="..\toast\other\live\2019.html">
+      <Filter>Toast\Other\live</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

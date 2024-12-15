@@ -534,6 +534,7 @@
     <ClCompile Include="..\sauce\simple\type_measure.cpp" />
     <ClCompile Include="..\sauce\simple\type_media.cpp" />
     <ClCompile Include="..\sauce\simple\type_metaname.cpp" />
+    <ClCompile Include="..\sauce\simple\type_microdata.cpp" />
     <ClCompile Include="..\sauce\simple\type_misc.cpp" />
     <ClCompile Include="..\sauce\simple\type_numeric.cpp" />
     <ClCompile Include="..\sauce\simple\type_paint.cpp" />
@@ -2608,6 +2609,41 @@
     <None Include="..\toast\json-ld\certification\index.html" />
     <None Include="..\toast\json-ld\certification\jsonld.conf" />
     <None Include="..\toast\json-ld\certification\jsonld.spec" />
+    <None Include="..\toast\json-ld\croissant\box.jld" />
+    <None Include="..\toast\json-ld\croissant\category-1.jld" />
+    <None Include="..\toast\json-ld\croissant\category-2.jld" />
+    <None Include="..\toast\json-ld\croissant\category-3.jld" />
+    <None Include="..\toast\json-ld\croissant\context.jld" />
+    <None Include="..\toast\json-ld\croissant\datatype-1.jld" />
+    <None Include="..\toast\json-ld\croissant\datatype-2.jld" />
+    <None Include="..\toast\json-ld\croissant\datatype-3.jld" />
+    <None Include="..\toast\json-ld\croissant\datatype-4.jld" />
+    <None Include="..\toast\json-ld\croissant\embedding.jld" />
+    <None Include="..\toast\json-ld\croissant\fileset-1.jld" />
+    <None Include="..\toast\json-ld\croissant\fileset-2.jld" />
+    <None Include="..\toast\json-ld\croissant\format-1.jld" />
+    <None Include="..\toast\json-ld\croissant\format-2.jld" />
+    <None Include="..\toast\json-ld\croissant\format-3.jld" />
+    <None Include="..\toast\json-ld\croissant\hierarchy-1.jld" />
+    <None Include="..\toast\json-ld\croissant\hierarchy-2.jld" />
+    <None Include="..\toast\json-ld\croissant\index.html" />
+    <None Include="..\toast\json-ld\croissant\join-1.jld" />
+    <None Include="..\toast\json-ld\croissant\join-2.jld" />
+    <None Include="..\toast\json-ld\croissant\join-3.jld" />
+    <None Include="..\toast\json-ld\croissant\jsonld.conf" />
+    <None Include="..\toast\json-ld\croissant\jsonld.spec" />
+    <None Include="..\toast\json-ld\croissant\label-1.jld" />
+    <None Include="..\toast\json-ld\croissant\label-2.jld" />
+    <None Include="..\toast\json-ld\croissant\pre-1.jld" />
+    <None Include="..\toast\json-ld\croissant\pre-2.jld" />
+    <None Include="..\toast\json-ld\croissant\recordset.jld" />
+    <None Include="..\toast\json-ld\croissant\resource-1.jld" />
+    <None Include="..\toast\json-ld\croissant\resource-2.jld" />
+    <None Include="..\toast\json-ld\croissant\segment-1.jld" />
+    <None Include="..\toast\json-ld\croissant\segment-2.jld" />
+    <None Include="..\toast\json-ld\croissant\split-1.jld" />
+    <None Include="..\toast\json-ld\croissant\split-2.jld" />
+    <None Include="..\toast\json-ld\croissant\transform.jld" />
     <None Include="..\toast\json-ld\csvw\action.123.json" />
     <None Include="..\toast\json-ld\csvw\countries.json" />
     <None Include="..\toast\json-ld\csvw\countries_embed-minimal.json" />
@@ -11901,7 +11937,6 @@
     <None Include="..\toast\XHTML\5.0\x5-example.xhtml" />
     <None Include="..\toast\XHTML\5.0\xhtml5.conf" />
     <None Include="..\toast\XHTML\5.0\xhtml5.spec" />
-    <None Include="cpp.hint" />
     <None Include="fulltest.bat" />
     <None Include="fulltest.sh" />
     <None Include="help.bat" />
@@ -12281,7 +12316,7 @@
       <Outputs>help.htb</Outputs>
     </CustomBuildStep>
     <CustomBuildStep>
-      <Inputs>$(ProjectDir)..\httpd\help\*;%(Inputs)</Inputs>
+      <Inputs>$(ProjectDir)..\httpd\help\*.html;$(ProjectDir)..\httpd\help\content.hhc;$(ProjectDir)..\httpd\help\index.hhk;$(ProjectDir)..\httpd\help\ssc.hhp;%(Inputs)</Inputs>
     </CustomBuildStep>
     <CustomBuildStep>
       <RootFolder>
@@ -12421,7 +12456,5 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-    <Import Project="packages\vcpkg.D.project.lib.vcpkg.1.0.0\build\native\vcpkg.D.project.lib.vcpkg.targets" Condition="Exists('packages\vcpkg.D.project.lib.vcpkg.1.0.0\build\native\vcpkg.D.project.lib.vcpkg.targets')" />
-  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets" />
 </Project>

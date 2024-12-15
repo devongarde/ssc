@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -33,7 +33,7 @@ context_t context;
 ustr_t context_t::validation_;
 ssc_set < ::std::string > excludable_filenames;
 
-void context_t::swap (context_t& c) noexcept
+void context_t::swap (context_t& c)
 {   context_t t (*this);
     try
     {   *this = c;
@@ -41,15 +41,20 @@ void context_t::swap (context_t& c) noexcept
     catch (...)
     {   *this = t; } }
 
-void context_t::reset () noexcept
+void context_t::reset ()
 {   context_t c;
     *this = c; } 
 
+void context_t::reset (context_t& c)
+{   context_t t (c);
+    swap (t); }
+
 void context_t::init ()
 {   environment_.resize (env_max);
-    ::boost::filesystem::path p (get_current_folder ());
-    p /= DEFAULT_DATAPATH;
-    path_ = p.string (); }
+    def_conf_path_ = get_working_directory ();
+    def_conf_path_ /= DEF_DATAPATH;
+    path_ = def_conf_path_.string ();
+    def_conf_file_ = def_conf_path_ / DEF_CONF_FILE; }
 
 context_t::context_t (nitpick& nits, const ::boost::filesystem::path& fn)
 {   init ();
@@ -466,3 +471,28 @@ void context_t::check_ssi_naughtiness (nitpick& nits, const ::std::string& s)
                 default :            
                     nits.pick (nit_ssi_naughty, es_warning, ec_ssi, "The substitute string ", quote (s), " contains HTML element/s, which is rather naughty");
                     break; } }
+
+void context_t::populate_jsonld_ont (const vstr_t& vs)
+{   jsonld_ont_ = vs;
+    for (auto s : vs)
+    {   const ::std::string::size_type pos = s.find (':');
+        if ((pos == 0) || (pos == s.length () - 1)) continue;
+        if (pos == ::std::string::npos)
+            if (compare_no_case ("standard", s))
+                for (int o = s_none + 1; o < s_error; ++o)
+                {   if ((ontology_names.flags (static_cast < e_ontology > (o)) & ONTOLOGY_PREFIX_CONTEXT) == ONTOLOGY_PREFIX_CONTEXT)
+                    {   jsonld_key_.push_back (ontology_names.get (static_cast < e_ontology > (o), ONTOLOGY_NAME));
+                        jsonld_val_.push_back (ontology_names.get (static_cast < e_ontology > (o), ONTOLOGY_CURIE)); } }
+            else if (compare_no_case ("all", s))
+            {   for (int o = s_none + 1; o < s_error; ++o)
+                {   jsonld_key_.push_back (ontology_names.get (static_cast < e_ontology > (o), ONTOLOGY_NAME));
+                    jsonld_val_.push_back (ontology_names.get (static_cast < e_ontology > (o), ONTOLOGY_CURIE)); } }
+            else
+            {   const e_ontology id = ontology_names.find (version_, ONTOLOGY_NAME, s, ! version_.xhtml ());
+                if (id != s_error)
+                {   jsonld_key_.push_back (s);
+                    jsonld_val_.push_back (ontology_names.get (id, ONTOLOGY_CURIE));
+                } }
+        else
+        {   jsonld_key_.push_back (s.substr (0, pos));
+            jsonld_val_.push_back (s.substr (pos + 1)); } } }

@@ -1,0 +1,11 @@
+{
+  
+  "@type": "cr:Field",
+  "@id": "images/annotation/mask",
+  "description": "The segmentation mask around annotated object[s].",
+  "dataType": [ "cr:SegmentationMask", "sc:ImageObject" ],
+  "source": {
+    "fileSet": { "@id": "instancesperson_keypoints_annotations" },
+    "extract": { "column": "image" }
+  }
+}

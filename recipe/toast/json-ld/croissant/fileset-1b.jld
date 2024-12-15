@@ -1,0 +1,8 @@
+{
+  
+  "@type": "cr:FileSet",
+  "@id": "image-files",
+  "containedIn": { "@id": "train2014.zip" },
+  "encodingFormat": "image/jpeg",
+  "includes": "*.jpg"
+}

@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -8102,6 +8102,8 @@ microdata_hierachy ontology_hierarchy [] =
     { { 0, 95 }, { 2, 1 }, sch_creativework, sch_exerciseplan },
     { { 3, 5 }, { 0, 0 }, sch_creativework, sch_exerciseplan },
     { { 13, 0 }, { 0, 0 }, sch_creativework, poetry_form },
+    { { s_croissant, 0, 2 }, { 0, 0 }, sch_creativework, cr_fileobject },
+    { { s_croissant, 0, 2 }, { s_croissant, 1, 2 }, sch_creativework, cr_fileset },
     { { 2, 0 }, { 0, 0 }, sch_creativework, sch_game },
     { { 6, 0 }, { 0, 0 }, sch_creativework, sch_guide },
     { { 3, 3 }, { 0, 0 }, sch_creativework, sch_howto },
@@ -8492,7 +8494,9 @@ microdata_hierachy ontology_hierarchy [] =
     { { 3, 5 }, { 0, 0 }, sch_intangible, sch_class },
     { { 3, 0 }, { 0, 0 }, sch_intangible, sch_computerlanguage },
     { { 16, 0 }, { 0, 0 }, sch_intangible, sch_constraintnode },
+    { { s_croissant, 0, 2 }, { s_croissant, 0, 2 }, sch_intangible, cr_dataextraction },
     { { 2, 2 }, { 0, 0 }, sch_intangible, sch_datafeeditem },
+    { { s_croissant, 0, 2 }, { 0, 0 }, sch_intangible, cr_datasource },
     { { 3, 5 }, { 0, 0 }, sch_intangible, sch_definedterm },
     { { 0, 99 }, { 0, 0 }, sch_intangible, sch_demand },
     { { 3, 0 }, { 0, 0 }, sch_intangible, sch_digitaldocumentpermission },
@@ -8500,6 +8504,8 @@ microdata_hierachy ontology_hierarchy [] =
     { { 1, 20 }, { 0, 0 }, sch_intangible, sch_entrypoint },
     { { 3, 9 }, { 0, 0 }, sch_intangible, sch_educationoccupationprogramme },
     { { 0, 10 }, { 0, 0 }, sch_intangible, sch_enumeration },
+    { { s_croissant, 0, 2 }, { 0, 0 }, sch_intangible, cr_field },
+    { { s_croissant, 1, 3 }, { 0, 0 }, sch_intangible, cr_fileset },
     { { 1, 20 }, { 3, 3 }, sch_intangible, sch_flight },
     { { 6, 0 }, { 0, 0 }, sch_intangible, sch_floorplan },
     { { 1, 92 }, { 0, 0 }, sch_intangible, sch_gameserver },
@@ -8535,6 +8541,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { 1, 92 }, { 0, 0 }, sch_intangible, sch_propertyvaluespecification },
     { { 0, 10 }, { 0, 0 }, sch_intangible, sch_quantity },
     { { 0, 10 }, { 0, 0 }, sch_intangible, sch_rating },
+    { { s_croissant, 0, 2 }, { 0, 0 }, sch_intangible, cr_recordset },
     { { 1, 10 }, { 0, 0 }, sch_intangible, sch_reservation },
     { { 1, 92 }, { 0, 0 }, sch_intangible, sch_role },
     { { 3, 6 }, { 0, 0 }, sch_intangible, sch_schedule },

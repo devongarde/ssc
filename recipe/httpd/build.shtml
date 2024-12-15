@@ -119,7 +119,7 @@ On low memory machines, disable the <a href="https://learn.microsoft.com/en-us/c
 </p>
 
 <p>
-Some versions of the Visual Studio solutions use <a href="https://vcpkg.io/">vcpkg</a>, which sometimes resolves dependencies.
+Some versions of the Visual Studio solutions used <a href="https://vcpkg.io/">vcpkg</a>, which sometimes resolves dependencies.
 For all such versions, except recent editions of Visual Studio 2022, you may
 need to first <a href="https://vcpkg.io/en/getting-started">download and install vcpkg</a> yourself.
 </p>
@@ -172,8 +172,7 @@ given that means things are already in the required state.
 <p>
 Versions of <a href="index.shtml"><!--#echo encoding="none" var="short" --></a> have been successfully built in
 <a href="https://openbsd.org/">OpenBSD</a>, <a href="https://freebsd.org/">FreeBSD</a>, <a href="https://linux.org/">Linux</a>,
-&amp; <a href="https://en.wikipedia.org/wiki/MacOS">MacOS</a> on AMD64, and in recent versions of
-<a href="https://linux.org/">Linux</a> &amp; <a href="https://en.wikipedia.org/wiki/MacOS">MacOS</a> under ARM64. 
+&amp; <a href="https://en.wikipedia.org/wiki/MacOS">MacOS</a> on AMD64 and ARM64 architextures. 
 </p>
 
 <p>
@@ -187,19 +186,10 @@ I&rsquo;ve sometimes found it necessary to use cmake&rsquo;s
 <kbd>-DCMAKE_CXX_COMPILER=&hellip;</kbd> switch.
 </p>
 
-<h3>Centos 9</h3>
+<h3>Linux</h3>
 
 <p>
-The appropriate <a href="https://cmake.org/">CMake</a> command
-for <a href="https://www.centos.org/stream9/">Centos Stream 9</a> is:
-</p>
-
-<code>
-cmake . -DFLAVOUR=CentosOSStream -DFLAVOUR_VER=9
-</code>
-
-<p>
-(note the standard English spelling of flavour.)
+I tend to build under <a href="https://releases.ubuntu.com/">ubuntu LTS</a>, but many other flavours work too.
 </p>
 
 <img alt="riff on name" class="mw50 inline_illustration_right" src="image/ssc-msgdb-new17-sp1.jpg" title="made with studio artist 5.5">

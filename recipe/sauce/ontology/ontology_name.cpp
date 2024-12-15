@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "ontology/ontology_name.h"
+#include "main/args.h"
 #include "utility/common.h"
 
 struct property_name
@@ -714,6 +715,44 @@ property_name namtab [] =
     { "url", s_csvw, csvw_url, },
     { "valueUrl", s_csvw, csvw_valueurl, },
     { "virtual", s_csvw, csvw_virtual, },
+
+    // croissant
+    { "applyTransform", s_croissant, cp_applytransform, },
+    { "citeAs", s_croissant, cp_citeas, },
+    { "column", s_croissant, cp_column, },
+    { "containedIn", s_croissant, cp_containedin, },
+    { "csvColumn", s_croissant, cp_csvcolumn, },
+    { "data", s_croissant, cp_data, },
+    { "dataExtraction", s_croissant, cp_dataextraction, },
+    { "dataType", s_croissant, cp_datatype, },
+    { "distribution", s_croissant, cp_distribution, },
+    { "equivalentProperty", s_croissant, cp_equivalentproperty, },
+    { "examples", s_croissant, cp_examples, },
+    { "excludes", s_croissant, cp_excludes, },
+    { "extract", s_croissant, cp_extract, },
+    { "field", s_croissant, cp_field, },
+    { "fileExtension", s_croissant, cp_fileextension, },
+    { "fileObject", s_croissant, cp_fileobject, },
+    { "fileProperty", s_croissant, cp_fileproperty, },
+    { "fileSet", s_croissant, cp_fileset, },
+    { "format", s_croissant, cp_format, },
+    { "includes", s_croissant, cp_includes, },
+    { "isEnumeration", s_croissant, cp_isenumeration },
+    { "isLiveDataset", s_croissant, cp_islivedataset, },
+    { "jsonPath", s_croissant, cp_jsonpath, },
+    { "key", s_croissant, cp_key, },
+    { "md5", s_croissant, cp_md5, },
+    { "parentField", s_croissant, cp_parentfield, },
+    { "path", s_croissant, cp_path, },
+    { "recordSet", s_croissant, cp_recordset, },
+    { "references", s_croissant, cp_references, },
+    { "regex", s_croissant, cp_regex, },
+    { "repeated", s_croissant, cp_repeated, },
+    { "replace", s_croissant, cp_replace, },
+    { "separator", s_croissant, cp_separator, },
+    { "source", s_croissant, cp_source, },
+    { "subField", s_croissant, cp_subfield, },
+    { "transform", s_croissant, cp_transform, },
 
     // data quality
     { "computedon", s_daq, daq_computedon, },
@@ -3183,6 +3222,28 @@ property_name namtab [] =
     { "sliceStructure", s_qb, qbp_slicestructure },
     { "structure", s_qb, qbp_structure },
 
+    // RAI
+    { "annotationsPerItem", s_rai, rai_annotationsperitem },
+    { "annotatorDemographics", s_rai, rai_annotatordemographics },
+    { "dataAnnotationAnalysis", s_rai, rai_dataannotationanalysis },
+    { "dataAnnotationPlatform", s_rai, rai_dataannotationplatform },
+    { "dataAnnotationProtocol", s_rai, rai_dataannotationprotocol },
+    { "dataBiases", s_rai, rai_databiases },
+    { "dataCollection", s_rai, rai_datacollection },
+    { "dataCollectionMissingData", s_rai, rai_datacollectionmissingdata },
+    { "dataCollectionRawData", s_rai, rai_datacollectionrawdata },
+    { "dataCollectionTimeframe", s_rai, rai_datacollectiontimeframe },
+    { "dataCollectionType", s_rai, rai_datacollectiontype },
+    { "dataImputationProtocol", s_rai, rai_dataimputationprotocol },
+    { "dataLimitations", s_rai, rai_datalimitations },
+    { "dataManipulationProtocol", s_rai, rai_datamanipulationprotocol },
+    { "dataPreprocessingProtocol", s_rai, rai_datapreprocessingprotocol },
+    { "dataReleaseMaintenancePlan", s_rai, rai_datareleasemaintenanceplan },
+    { "dataSocialImpact", s_rai, rai_datasocialimpact },
+    { "dataUseCases", s_rai, rai_datausecases },
+    { "machineAnnotationTools", s_rai, rai_machineannotationtools },
+    { "personalSensitiveInformation", s_rai, rai_personalsensitiveinformation },   
+
     // RDF
     { "description", s_rdf, rdf_description },
     { "direction", s_rdf, rdf_direction },
@@ -5343,7 +5404,7 @@ property_name namtab [] =
     { "help", s_xhv, xhv_help },
     { "icon", s_xhv, xhv_icon },
     { "img", s_xhv, xhv_img },
-    { "index", s_xhv, xhv_index },
+    { INDEX, s_xhv, xhv_index },
     { "itsRules", s_xhv, xhv_itsrules },
     { "last", s_xhv, xhv_last },
     { "license", s_xhv, xhv_license },

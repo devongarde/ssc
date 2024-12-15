@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -297,6 +297,9 @@ template < > struct type_master < t_country > : enum_n < t_country, e_country >
 
 template < > struct type_master < t_copy > : enum_n < t_copy, e_copy >
 { using enum_n < t_copy, e_copy > :: enum_n; };
+
+template < > struct type_master < t_cr_fileproperty > : enum_n < t_cr_fileproperty, e_cr_fileproperty >
+{ using enum_n < t_cr_fileproperty, e_cr_fileproperty > :: enum_n; };
 
 template < > struct type_master < t_crossout > : enum_n < t_crossout, e_crossout >
 { using enum_n < t_crossout, e_crossout > :: enum_n; };

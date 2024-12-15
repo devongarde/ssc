@@ -1,0 +1,18 @@
+{
+  
+  "@id": "supercategories",
+  "@type": "cr:RecordSet",
+  "dataType": "sc:Enumeration",
+  "key": { "@id": "supercategories/name" },
+  "field": [
+    {
+      "@id": "supercategories/name",
+      "@type": "cr:Field",
+      "dataType": "sc:Text"
+    }
+  ],
+  "data": [
+    { "supercategories/name": "animal" },
+    { "supercategories/name": "person" }
+  ]
+}

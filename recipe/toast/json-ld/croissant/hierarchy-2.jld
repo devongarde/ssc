@@ -1,0 +1,44 @@
+{
+  
+  "@type": "cr:RecordSet",
+  "@id": "movies_with_ratings",
+  "key": { "@id": "movies_with_ratings/movie_id" },
+  "field": [
+    {
+      "@type": "cr:Field",
+      "@id": "movies_with_ratings/movie_id",
+      "source": { "@id": "movies/movie_id" }
+    },
+    {
+      "@type": "cr:Field",
+      "@id": "movies_with_ratings/movie_title",
+      "source": { "@id": "movies/title" }
+    },
+    {
+      "@type": "cr:Field",
+      "@id": "movies_with_ratings/ratings",
+      "dataType": "cr:RecordSet",
+      "parentField": {
+        "source": { "@id": "ratings/movie_id" },
+        "references": { "@id": "movies_with_ratings/movie_id" }
+      },
+      "subField": [
+        {
+          "@type": "cr:Field",
+          "@id": "movies_with_ratings/ratings/user_id",
+          "source": { "@id": "ratings/user_id" }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "movies_with_ratings/ratings/rating",
+          "source": { "@id": "ratings/rating" }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "movies_with_ratings/ratings/timestamp",
+          "source": { "@id": "ratings/timestamp" }
+        }
+      ]
+    }
+  ]
+}

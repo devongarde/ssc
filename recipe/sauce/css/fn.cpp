@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -153,6 +153,9 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
             case efn_is :
             case efn_where :
                 break;
+//          case efn_open :
+//              check for WhatWG jan 25 or CSS selector 4
+//              return;
             case efn_root :
                 return;
             default : return; }

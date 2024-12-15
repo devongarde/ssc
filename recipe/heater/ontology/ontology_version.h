@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -138,6 +138,25 @@ const ontology_version cito_schema (s_cito, 2, 8);
 const ontology_version content_schema (s_content, 1, 0);
 
 const ontology_version common_tag (s_ctag, 1, 0);
+
+const ontology_version croissant_0_2 (s_croissant, 0, 2);
+const ontology_version croissant_0_3 (s_croissant, 0, 3);
+const ontology_version croissant_0_4 (s_croissant, 0, 4);
+const ontology_version croissant_0_6 (s_croissant, 0, 6);
+const ontology_version croissant_0_8 (s_croissant, 0, 8);
+const ontology_version croissant_1_0 (s_croissant, 1, 0);
+const ontology_version croissant_1_1 (s_croissant, 1, 1);
+const ontology_version croissant_1_2 (s_croissant, 1, 2);
+const ontology_version croissant_1_3 (s_croissant, 1, 3);
+const ontology_version croissant_1_4 (s_croissant, 1, 4);
+const ontology_version croissant_1_5 (s_croissant, 1, 5);
+const ontology_version croissant_1_6 (s_croissant, 1, 6);
+const ontology_version croissant_1_7 (s_croissant, 1, 7);
+const ontology_version croissant_1_8 (s_croissant, 1, 8);
+const ontology_version croissant_1_9 (s_croissant, 1, 9);
+const ontology_version croissant_1_10 (s_croissant, 1, 10);
+const ontology_version croissant_1_11 (s_croissant, 1, 11);
+const ontology_version croissant_1_12 (s_croissant, 1, 12);
 
 const ontology_version creative_commons (s_cc, 1, 0);
 
@@ -385,6 +404,17 @@ const ontology_version pur_2_1 (s_pur, 2, 1);
 
 const ontology_version data_cube (s_qb, 1, 0);
 
+const ontology_version rai_1_3 (s_rai, 1, 3);
+const ontology_version rai_1_4 (s_rai, 1, 4);
+const ontology_version rai_1_5 (s_rai, 1, 5);
+const ontology_version rai_1_6 (s_rai, 1, 6);
+const ontology_version rai_1_7 (s_rai, 1, 7);
+const ontology_version rai_1_8 (s_rai, 1, 8);
+const ontology_version rai_1_9 (s_rai, 1, 9);
+const ontology_version rai_1_10 (s_rai, 1, 10);
+const ontology_version rai_1_11 (s_rai, 1, 11);
+const ontology_version rai_1_12 (s_rai, 1, 12);
+
 const ontology_version rdf_1_0_schema (s_rdf, 1, 0);
 const ontology_version rdf_1_1_1_schema (s_rdf, 1, 1);
 const ontology_version rdf_1_1_2_schema (s_rdf, 1, 2);
@@ -560,6 +590,8 @@ const ontology_version website_2014 (s_website, HTML_2014, 0);
 const ontology_version website_2018 (s_website, HTML_2018, 0);
 
 const ontology_version whatwg_schema (s_whatwg, 1, 0);
+
+const ontology_version wikidata_schema (s_wikidata, 1, 0);
 
 const ontology_version xhv_schema (s_xhv, 1, 0);
 

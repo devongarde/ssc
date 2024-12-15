@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #ifdef WX
 #include "main/abort.h"
 #include "main/args.h"
+#include "utility/filesystem.h"
 #include "parser/text.h"
 #include "main/output.h"
 #include "feedback/nitpick.h"
@@ -32,6 +33,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "gui/gui-screen.h"
 #include "gui/gui-frame.h"
 #include "gui/gui-welcome.h"
+#include "type/type.h"
 #include "../../tea/resource.h"
 
 IMPLEMENT_APP (app_t)
@@ -44,20 +46,46 @@ BEGIN_EVENT_TABLE (app_t, wxApp)
     EVT_IDLE (app_t::OnIdle)
 END_EVENT_TABLE ()
 
-::boost::filesystem::path check_local_help (context_t& c, ::boost::filesystem::path& fn)
-{   ::boost::filesystem::path datapath = c.path ();
-    datapath /= HELP_FN;
-    if (! ::boost::filesystem::exists (datapath))
-        return ::boost::filesystem::path ();
-    fn = datapath;
+// basically, tfinniga's answer at https://stackoverflow.com/questions/1765014/convert-string-from-date-into-a-time-t
+time_t when_built (const context_t& c)
+{   ::std::string datestr = __DATE__, timestr = __TIME__, str_month;
+    int day = 0, year = 0, month = 0, hour = 0, min = 0, sec = 0;
+    tm t = {0};
+    ::std::istringstream iss_date (datestr);
+    iss_date >> str_month >> day >> year;
+    {   nitpick nits;
+        type_master < t_month_english_short > mes;
+        mes.set_value (nits, c.html_ver (), str_month);
+        if (mes.invalid ()) return 0;
+        month = mes.get () + 1; }
+    for (::std::string::size_type pos = timestr.find (':'); pos != ::std::string::npos; pos = timestr.find (':', pos))
+        GSL_AT (timestr, pos) = ' ';
+    ::std::istringstream iss_time (timestr);
+    iss_time >> hour >> min >> sec;
+    t.tm_mon = month-1;
+    t.tm_mday = day;
+    t.tm_year = year - 1900;
+    t.tm_hour = hour - 1;
+    t.tm_min = min;
+    t.tm_sec = sec;
+    return mktime (&t); }
+
+bool check_local_help (context_t& c, ::boost::filesystem::path& fn)
+{   if (fn.empty ())
+    {   fn = c.path ();
+        if (fn.empty ()) fn = temp_dir ();
+        fn /= HELP_FN; }
+    if (! is_normal_or_zap (fn)) return false;
+    if (get_last_write_time (fn) < when_built (c))
+    {   delete_file (fn);
+        return false; }
     c.help (fn.string ());
-    return datapath; }
+    return true; }
 
 #ifdef _MSC_VER
 void find_help (context_t& c, ::boost::filesystem::path& fn)
 {   PRESUME (fn.empty (), __FILE__, __LINE__);
-    ::boost::filesystem::path datapath = check_local_help (c, fn);
-    if (datapath.empty ())
+    if (! check_local_help (c, fn))
     {   const HRSRC src = ::FindResource (nullptr, MAKEINTRESOURCE (IDR_HELP), RT_RCDATA);
         if (src != INVALID_HANDLE_VALUE)
         {   const HGLOBAL load = ::LoadResource (nullptr, src);
@@ -66,14 +94,12 @@ void find_help (context_t& c, ::boost::filesystem::path& fn)
                 if (lock != nullptr)
                 {   const DWORD size = ::SizeofResource (nullptr, src);
                     if (size > 0)
-                    {   const HANDLE file = ::CreateFileA (datapath.string ().c_str (), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+                    {   const HANDLE file = ::CreateFileA (fn.string ().c_str (), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
                         if (file != INVALID_HANDLE_VALUE) try
                         {   DWORD written = 0;
                             if (::WriteFile (file, lock, size, &written, nullptr))
                                 if (written == size)
-                                {   fn = c.path ();
-                                    fn /= HELP_FN;
-                                    c.help (fn.string ()); }
+                                    c.help (fn.string ());
                             ::CloseHandle (file); }
                         catch (...)
                         {   ::CloseHandle (file); throw; } } }

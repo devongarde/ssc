@@ -1,0 +1,50 @@
+<!--#include virtual="../plumbing/html.inc" -->
+<!--#include virtual="../plumbing/var.inc" --><!--#include virtual="../plumbing/varargs.inc" -->
+<!--#set var="title" value="JSON-LD arguments" -->
+<title>
+<!--#echo encoding="none" var="title" -->
+</title>
+<!--#include virtual="../plumbing/header.inc" -->
+<!--#include virtual="../plumbing/blog-section.inc" -->
+<!--#include virtual="../plumbing/html-top-start.inc" -->
+<!--#include virtual="../plumbing/argle.inc" -->
+<!--#include virtual="../plumbing/html-top-end.inc" -->
+<!--#include virtual="../plumbing/blog-schema.inc" -->
+<data class="u-url u-uid" value="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->">
+</data>
+
+<img alt="riff on name" class="mw50 inline_illustration_left" src="../image/ssc-msgdb-vf-tr.jpg" title="made with studio artist 5.5">
+
+<h1 itemprop="name" class="p-name">
+<!--#echo encoding="none" var="title" -->
+</h1>
+
+<p>
+Please note this is an incomplete validation. It was written to
+enable testing of certain ontologies.
+</p>
+
+<table>
+<tr><td>jsonld.extension x</td> <td>Files with extension x are JSON-LD files. The default is &lsquo;jld&rsquo;. May
+                        be repeated.</td></tr>
+
+<tr><td>jsonld.ontology x:y</td> <td>Ontology symbol x refers to ontology y. For
+                        example, &lsquo;sc:https://schema.org/&rsquo; says sc
+                        represents schema.org in the JSON-LD files. Omitting
+                        &lsquo;:y&rsquo; works when using a standard shortening,
+                        such as the usual &lsquo;schema&rsquo; for schema.org.
+                        The switch also accepts &lsquo;all&rsquo;for all
+                        ontologies known to ssc, and &lsquo;standard&rsquo; for a
+                        common set of ontologies. May be repeated.</td></tr>
+
+<tr><td>jsonld.pretty</td> <td>When outputting JSON-LD, do so prettily.</td></tr>
+
+<tr><td>jsonld.verify</td> <td>Verify JSON-LD files.</td></tr>
+
+<tr><td>jsonld.version v</td> <td>Adhere to this version of JSON-LD (v can be
+                        &lsquo;1.0&rsquo; or &lsquo;1.1&rsquo;), default &lsquo;1.0&rsquo;.</td></tr>
+</table>
+
+<!--#include virtual="../plumbing/under.inc" -->
+<!--#include virtual="../plumbing/args.inc" -->
+<!--#include virtual="../plumbing/html-end.inc" -->

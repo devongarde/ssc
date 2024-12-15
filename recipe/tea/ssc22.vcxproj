@@ -502,6 +502,7 @@
     <ClCompile Include="..\sauce\simple\type_measure.cpp" />
     <ClCompile Include="..\sauce\simple\type_media.cpp" />
     <ClCompile Include="..\sauce\simple\type_metaname.cpp" />
+    <ClCompile Include="..\sauce\simple\type_microdata.cpp" />
     <ClCompile Include="..\sauce\simple\type_misc.cpp" />
     <ClCompile Include="..\sauce\simple\type_numeric.cpp" />
     <ClCompile Include="..\sauce\simple\type_paint.cpp" />
@@ -2575,6 +2576,49 @@
     <None Include="..\toast\json-ld\certification\index.html" />
     <None Include="..\toast\json-ld\certification\jsonld.conf" />
     <None Include="..\toast\json-ld\certification\jsonld.spec" />
+    <None Include="..\toast\json-ld\croissant\box.jld" />
+    <None Include="..\toast\json-ld\croissant\category-1.jld" />
+    <None Include="..\toast\json-ld\croissant\category-2.jld" />
+    <None Include="..\toast\json-ld\croissant\context.jld" />
+    <None Include="..\toast\json-ld\croissant\datatype-1.jld" />
+    <None Include="..\toast\json-ld\croissant\datatype-2.jld" />
+    <None Include="..\toast\json-ld\croissant\datatype-3.jld" />
+    <None Include="..\toast\json-ld\croissant\datatype-4.jld" />
+    <None Include="..\toast\json-ld\croissant\embedding.jld" />
+    <None Include="..\toast\json-ld\croissant\fileset-1a.jld" />
+    <None Include="..\toast\json-ld\croissant\fileset-1b.jld" />
+    <None Include="..\toast\json-ld\croissant\fileset-2a.jld" />
+    <None Include="..\toast\json-ld\croissant\fileset-2b.jld" />
+    <None Include="..\toast\json-ld\croissant\fileset-2c.jld" />
+    <None Include="..\toast\json-ld\croissant\fileset-2d.jld" />
+    <None Include="..\toast\json-ld\croissant\fileset-2e.jld" />
+    <None Include="..\toast\json-ld\croissant\format-1.jld" />
+    <None Include="..\toast\json-ld\croissant\format-2.jld" />
+    <None Include="..\toast\json-ld\croissant\format-3.jld" />
+    <None Include="..\toast\json-ld\croissant\hierarchy-1.jld" />
+    <None Include="..\toast\json-ld\croissant\hierarchy-2.jld" />
+    <None Include="..\toast\json-ld\croissant\index.html" />
+    <None Include="..\toast\json-ld\croissant\join-1.jld" />
+    <None Include="..\toast\json-ld\croissant\join-2.jld" />
+    <None Include="..\toast\json-ld\croissant\join-3.jld" />
+    <None Include="..\toast\json-ld\croissant\jsonld.conf" />
+    <None Include="..\toast\json-ld\croissant\jsonld.spec" />
+    <None Include="..\toast\json-ld\croissant\label-1.jld" />
+    <None Include="..\toast\json-ld\croissant\label-2.jld" />
+    <None Include="..\toast\json-ld\croissant\category-3.jld" />
+    <None Include="..\toast\json-ld\croissant\pre-1a.jld" />
+    <None Include="..\toast\json-ld\croissant\pre-1b.jld" />
+    <None Include="..\toast\json-ld\croissant\pre-2.jld" />
+    <None Include="..\toast\json-ld\croissant\recordset.jld" />
+    <None Include="..\toast\json-ld\croissant\resource-1.jld" />
+    <None Include="..\toast\json-ld\croissant\resource-2a.jld" />
+    <None Include="..\toast\json-ld\croissant\resource-2b.jld" />
+    <None Include="..\toast\json-ld\croissant\resource-2c.jld" />
+    <None Include="..\toast\json-ld\croissant\segment-1.jld" />
+    <None Include="..\toast\json-ld\croissant\segment-2.jld" />
+    <None Include="..\toast\json-ld\croissant\split-1.jld" />
+    <None Include="..\toast\json-ld\croissant\split-2.jld" />
+    <None Include="..\toast\json-ld\croissant\transform.jld" />
     <None Include="..\toast\json-ld\csvw\action.123.json" />
     <None Include="..\toast\json-ld\csvw\countries.json" />
     <None Include="..\toast\json-ld\csvw\countries_embed-minimal.json" />
@@ -10771,6 +10815,7 @@
     <None Include="..\toast\other\incorrectness\incorrectness.conf" />
     <None Include="..\toast\other\incorrectness\incorrectness.spec" />
     <None Include="..\toast\other\incorrectness\index.html" />
+    <None Include="..\toast\other\live\2019.html" />
     <None Include="..\toast\other\live\404.shtml" />
     <None Include="..\toast\other\live\feed-me.rss" />
     <None Include="..\toast\other\live\index.html" />
@@ -12418,7 +12463,6 @@
     <None Include="..\toast\XHTML\5.0\x5-example.xhtml" />
     <None Include="..\toast\XHTML\5.0\xhtml5.conf" />
     <None Include="..\toast\XHTML\5.0\xhtml5.spec" />
-    <None Include="cpp.hint" />
     <None Include="fulltest.bat" />
     <None Include="fulltest.sh" />
     <None Include="specprep.bat" />
@@ -12987,7 +13031,5 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-    <Import Project="packages\vcpkg.D.project.lib.vcpkg.1.0.0\build\native\vcpkg.D.project.lib.vcpkg.targets" Condition="Exists('packages\vcpkg.D.project.lib.vcpkg.1.0.0\build\native\vcpkg.D.project.lib.vcpkg.targets')" />
-  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets" />
 </Project>

@@ -1,7 +1,7 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.2.6
-(c) 2020-2024 dylan harris
+version 0.2.7
+(c) 2020-2025 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notice
 https://ssc.lu/
 https://github.com/devongarde/ssc
@@ -15,6 +15,7 @@ ssc analyses static X/HTML snippets, files and sites:
 - SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x-draft
 - MathML 1/2/3/4-draft
 - XHTML 1.0/1.1/2.0/5.x
+- a simple hint of JSON-LD
 - finds broken links
 - server side includes, mostly
 - many ontologies
@@ -145,4 +146,4 @@ GNU General Public License for more details.
 
 dylan harris
 mail@ssc.lu
-November 2024
+December 2024

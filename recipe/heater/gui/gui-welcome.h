@@ -1,6 +1,6 @@
 ﻿/*                                                                 ,
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -36,13 +36,13 @@ class welcome_t : public d2_t
     wxStaticLine* line_snippet_ = nullptr;
     wxStaticText* static_config_ = nullptr;
     wxStaticText* static_nitpickery_ = nullptr;
-    wxTextCtrl* text_snippet_;
-    wxTextCtrl* text_summary_;
+    wxTextCtrl* text_snippet_ = nullptr;
+    wxTextCtrl* text_summary_ = nullptr;
     context_t c_;
     ::boost::filesystem::path root_;
     ::std::string snippet_;
     vstr_t cmd_;
-    bool rooted_ = true;
+    bool rooted_ = true, write_continuity_ = false;
 
     void OnClickRoot (wxCommandEvent& event);
     void OnClickSnippet (wxCommandEvent& event);
@@ -72,5 +72,6 @@ public:
     void root (const ::boost::filesystem::path& r) { root_ = r; }
     const ::std::string& snippet () const { return snippet_; }
     void snippet (const ::std::string& s) { snippet_ = s; }
+    ::boost::filesystem::path get_continuity () const;
     const vstr_t& cmd () const { return cmd_; } };
 #endif // WX

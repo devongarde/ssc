@@ -1,0 +1,8 @@
+{
+  
+  "@type": "cr:FileObject",
+  "@id": "ratings-table",
+  "contentUrl": "ratings.csv",
+  "containedIn": { "@id": "ml-25m.zip" },
+  "encodingFormat": "text/csv"
+}

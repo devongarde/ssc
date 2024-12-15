@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -665,6 +665,59 @@ microdata_structure ontology_structure [] =
     { { s_csvw, 1, 0 }, { 0, 0 }, csv_transformation, csvw_targetformat },
     { { s_csvw, 1, 0 }, { 0, 0 }, csv_transformation, csvw_title },
     { { s_csvw, 1, 0 }, { 0, 0 }, csv_transformation, csvw_url },
+
+    // croissant
+    { { s_croissant, 0, 2 }, { 0, 2 }, cr_dataextraction, cp_csvcolumn },
+    { { s_croissant, 0, 2 }, { 0, 2 }, cr_dataextraction, cp_fileproperty },
+    { { s_croissant, 0, 2 }, { 0, 2 }, cr_dataextraction, cp_jsonpath },
+
+    { { s_croissant, 0, 2 }, { s_croissant, 0, 2 }, cr_datasource, cp_applytransform },
+    { { s_croissant, 0, 2 }, { s_croissant, 0, 2 }, cr_datasource, cp_dataextraction },
+    { { s_croissant, 0, 2 }, { s_croissant, 1, 2 }, cr_datasource, cp_distribution },
+    { { s_croissant, 0, 3 }, { 0, 0 }, cr_datasource, cp_extract },
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_datasource, cp_fileobject },
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_datasource, cp_fileset },
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_datasource, cp_format },
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_datasource, cp_recordset },
+    { { s_croissant, 0, 3 }, { 0, 0 }, cr_datasource, cp_transform },
+
+    { { s_croissant, 0, 3 }, { 0, 0 }, cr_extract, cp_column },
+    { { s_croissant, 0, 3 }, { 0, 0 }, cr_extract, cp_fileproperty },
+    { { s_croissant, 0, 3 }, { 0, 0 }, cr_extract, cp_jsonpath },
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_extract, cp_regex },
+
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_field, cp_datatype },
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_field, cp_equivalentproperty },
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_field, cp_isenumeration },
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_field, cp_parentfield },
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_field, cp_references },
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_field, cp_repeated },
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_field, cp_source },
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_field, cp_subfield },
+
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_fileobject, cp_containedin },
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_fileobject, sp_contentsize },
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_fileobject, sp_contenturl },
+    { { s_croissant, 0, 2 }, { s_croissant, 1, 2 }, cr_fileobject, cp_fileextension },
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_fileobject, cp_md5 },
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_fileobject, sp_sha256 },
+
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_fileset, cp_containedin },
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_fileset, cp_excludes },
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_fileset, cp_includes },
+
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_recordset, cp_data },
+    { { s_croissant, 1, 4 }, { 0, 0 }, cr_recordset, cp_datatype },
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_recordset, cp_examples },
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_recordset, cp_field },
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_recordset, cp_isenumeration },
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_recordset, cp_key },
+
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_reference, cp_field },
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_reference, cp_fileobject },
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_reference, cp_recordset },
+
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_transform, cp_regex },
 
     // data quality
     { { s_daq, 1, 0 }, { 0, 0 }, daq_category, daq_hasdimension },
@@ -4406,12 +4459,16 @@ microdata_structure ontology_structure [] =
     { { 2, 2 }, { 0, 0 }, sch_datafeeditem, sp_item },
 
     { { 1, 0 }, { 1, 93 }, sch_dataset, sp_catalogue },
+    { { s_croissant, 1, 4 }, { 0, 0 }, sch_dataset, cp_citeas },
+    { { s_croissant, 1, 5 }, { s_croissant, 1, 7 }, sch_dataset, dct_conformsto },
     { { 2, 0 }, { 3, 0 }, sch_dataset, sp_datasettimeinterval },
     { { 1, 0 }, { 0, 0 }, sch_dataset, sp_distribution },
     { { 2, 0 }, { 0, 0 }, sch_dataset, sp_includeddatacatalog },
-    { { 1, 0 }, { 3, 0 }, sch_dataset, sp_spatial },
+    { { s_croissant, 1, 3 }, { 0, 0 }, sch_dataset, cp_islivedataset },
     { { 3, 3 }, { 0, 0 }, sch_dataset, sp_issn },
     { { 3, 5 }, { 0, 0 }, sch_dataset, sp_measurementtechnique },
+    { { s_croissant, 1, 3 }, { 0, 0 }, sch_dataset, cp_recordset },
+    { { 1, 0 }, { 3, 0 }, sch_dataset, sp_spatial },
     { { 1, 0 }, { 1, 93 }, sch_dataset, sp_temporal },
     { { 3, 5 }, { 0, 0 }, sch_dataset, sp_variablemeasured },
     { { 3, 5 }, { 0, 0 }, sch_dataset, sp_variablesmeasured },
@@ -7208,13 +7265,15 @@ void microdata_init (nitpick& )
 } } }
 
 bool is_ontology_property (const e_ontology_type s, const e_ontology_property p)
-{   mmd_t::const_iterator i = micromap.find (mmd_key (s, p));
-    if (i == micromap.cend ()) return false;
-    VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
-    return does_apply < ontology_version > (context.ontology_ver (sch::root (s)), i -> second -> from_, i -> second -> to_); };
+{   for (mmd_t::const_iterator i = micromap.find (mmd_key (s, p)); i != micromap.cend (); ++i)
+    {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
+        if ((i -> second -> record_ != s) || (i -> second -> property_ != p)) break;
+        if (does_apply < ontology_version > (context.ontology_ver (sch::root (s)), i -> second -> from_, i -> second -> to_)) return true; }
+    return false; }
 
 bool is_ontology_property (const html_version& v, const e_ontology_type s, const e_ontology_property p)
-{   mmd_t::const_iterator i = micromap.find (mmd_key (s, p));
-    if (i == micromap.cend ()) return false;
-    VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
-    return does_apply < ontology_version > (context.ontology_ver (v, sch::root (s)), i -> second -> from_, i -> second -> to_); };
+{   for (mmd_t::const_iterator i = micromap.find (mmd_key (s, p)); i != micromap.cend (); ++i)
+    {   VERIFY_NOT_NULL (i -> second, __FILE__, __LINE__);
+        if ((i -> second -> record_ != s) || (i -> second -> property_ != p)) break;
+        if (does_apply < ontology_version > (context.ontology_ver (v, sch::root (s)), i -> second -> from_, i -> second -> to_)) return true; }
+    return false; }

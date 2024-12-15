@@ -1,0 +1,12 @@
+{
+  
+  "@type": "cr:Field",
+  "@id": "images/annotations/bbox",
+  "description": "The bounding box around annotated object[s].",
+  "dataType": "cr:BoundingBox",
+  "source": {
+    "fileSet": { "@id": "instancesperson_keypoints_annotations" },
+    "extract": { "column": "bbox" },
+    "format": "CENTER_XYWH"
+  }
+}

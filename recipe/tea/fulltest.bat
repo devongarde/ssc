@@ -126,10 +126,14 @@ ssc.exe -f ../toast/HTML/minimal/minimal.conf
 ssc.exe -f ../toast/HTML/Plus/plus.conf
 ssc.exe -f ../toast/HTML/tags/tags.conf
 ssc.exe -f ../toast/HTML/wx/wx.conf
+ssc.exe -f ../toast/json-ld/1.0/jsonld.conf
+ssc.exe -f ../toast/json-ld/adms/jsonld.conf
+ssc.exe -f ../toast/json-ld/as/jsonld.conf
+ssc.exe -f ../toast/json-ld/certification/jsonld.conf
+ssc.exe -f ../toast/json-ld/croissant/jsonld.conf
+ssc.exe -f ../toast/json-ld/schemaorg/jsonld.conf
 ssc.exe -f ../toast/link/external/link.conf
 ssc.exe -f ../toast/link/link/link.conf
-ssc.exe -f ../toast/json-ld/as/jsonld.conf
-ssc.exe -f ../toast/json-ld/schemaorg/jsonld.conf
 ssc.exe -f ../toast/living/jul07/living.conf
 ssc.exe -f ../toast/living/jan08/living.conf
 ssc.exe -f ../toast/living/jul08/living.conf

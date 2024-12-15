@@ -1,0 +1,8 @@
+{
+  
+  "@type": "cr:FileObject",
+  "@id": "movies-table",
+  "contentUrl": "movies.csv",
+  "containedIn": { "@id": "ml-25m.zip" },
+  "encodingFormat": "text/csv"
+}

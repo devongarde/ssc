@@ -1,0 +1,6 @@
+{
+  
+  "@id": "cities/url",
+  "@type": "cr:Field",
+  "dataType": [ "https://schema.org/URL", "https://www.wikidata.org/wiki/Q515" ]
+}

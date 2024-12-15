@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -323,6 +323,19 @@ struct symbol_entry < ontology_version, e_ontology_type, e_ontology, s_schema > 
     { { s_csvw, 1, 0 }, { 0, 0 }, "TableReference", csv_tablereference, s_csvw },
     { { s_csvw, 1, 0 }, { 0, 0 }, "Transformation", csv_transformation, s_csvw },
     { { s_csvw, 1, 0 }, { 0, 0 }, "uriTemplate", csv_uritemplate, s_csvw },
+
+    // croissant
+    { { s_croissant, 0, 2 }, { 0, 0 }, "BoundingBox", cr_boundingbox, s_croissant },
+    { { s_croissant, 0, 2 }, { 0, 2 }, "DataExtraction", cr_dataextraction, s_croissant },
+    { { s_croissant, 0, 2 }, { 0, 0 }, "DataSource", cr_datasource, s_croissant },
+    { { s_croissant, 0, 3 }, { 0, 0 }, "Extract", cr_extract, s_croissant },
+    { { s_croissant, 0, 2 }, { 0, 0 }, "Field", cr_field, s_croissant },
+    { { s_croissant, 0, 2 }, { 0, 0 }, "FileObject", cr_fileobject, s_croissant },
+    { { s_croissant, 0, 2 }, { 0, 0 }, "FileSet", cr_fileset, s_croissant },
+    { { s_croissant, 0, 2 }, { 0, 0 }, "RecordSet", cr_recordset, s_croissant },
+    { { s_croissant, 0, 2 }, { 0, 0 }, "Reference", cr_reference, s_croissant },
+    { { s_croissant, 1, 3 }, { 0, 0 }, "Split", cr_split, s_croissant },
+    { { s_croissant, 1, 3 }, { 0, 0 }, "Transform", cr_transform, s_croissant },
 
     // data quality
     { { s_daq, 1, 0 }, { 0, 0 }, "Metric", daq_metric, s_daq },
@@ -6344,7 +6357,7 @@ struct symbol_entry < ontology_version, e_ontology_type, e_ontology, s_schema > 
     { { s_odrl, 1, 0 }, { 0, 0 }, "give", odrl_give, s_odrl },
     { { s_odrl, 1, 0 }, { 0, 0 }, "grantUse", odrl_grantuse, s_odrl },
     { { s_odrl, 1, 0 }, { 0, 0 }, "include", odrl_include, s_odrl },
-    { { s_odrl, 1, 0 }, { 0, 0 }, "index", odrl_index, s_odrl },
+    { { s_odrl, 1, 0 }, { 0, 0 }, INDEX, odrl_index, s_odrl },
     { { s_odrl, 1, 0 }, { 0, 0 }, "inform", odrl_inform, s_odrl },
     { { s_odrl, 1, 0 }, { 0, 0 }, "install", odrl_install, s_odrl },
     { { s_odrl, 1, 0 }, { 0, 0 }, "lease", odrl_lease, s_odrl },

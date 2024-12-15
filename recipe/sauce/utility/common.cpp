@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -550,18 +550,6 @@ int hex_value (const ::std::string_view str) {
             case ' ' : res += "&nbsp;"; break;
             default :  res += *i; break; }
     return res; }
-
-::std::string get_current_folder ()
-{   ::boost::filesystem::path cwd;
-    try
-    {   cwd = ::boost::filesystem::current_path (); }
-	catch (...)
-#ifdef WIN32
-	{	cwd = "C:\\"; }
-#else // WIN32
-	{	cwd = "~"; }
-#endif // WIN32
-    return cwd.string (); }
 
 bool is_plain_old_integer (const ::std::string& ss)
 {   if (ss.find_first_not_of (SIGNEDINTEGER " ") != ::std::string::npos) return false;

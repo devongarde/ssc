@@ -1,0 +1,12 @@
+{
+  "@context": "https://mlcommons.org/croissant/",
+  "fileSet": {
+    "@id": "files"
+  },
+  "extract": {
+    "fileProperty": "filename"
+  },
+  "transform": {
+    "regex": "^(train|val|test)2014/.*\\.jpg$"
+  }
+}

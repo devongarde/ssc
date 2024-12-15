@@ -1,0 +1,15 @@
+{
+  "@id": "cities",
+  "@type": "cr:RecordSet",
+  "dataType": "sc:GeoCoordinates",
+  "field": [
+    {
+      "@id": "cities/latitude",
+      "@type": "cr:Field"
+    },
+    {
+      "@id": "cities/longitude",
+      "@type": "cr:Field"
+    }
+  ]
+}

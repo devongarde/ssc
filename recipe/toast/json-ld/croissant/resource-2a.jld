@@ -1,0 +1,8 @@
+{
+  
+  "@type": "cr:FileObject",
+  "@id": "ml-25m.zip",
+  "contentUrl": "https://files.grouplens.org/datasets/movielens/ml-25m.zip",
+  "encodingFormat": "application/zip",
+  "sha256": "6b51fb2759a8657d3bfcbfc42b592ada"
+}

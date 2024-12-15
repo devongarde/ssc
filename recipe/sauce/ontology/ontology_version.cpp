@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -64,11 +64,29 @@ sh_t sh [] =  // latest first
     { book_2014, html_jan14 },
     { book_2012, html_jan12 },
     { cito_schema, html_jan18 },
+    { common_tag, html_rdf_1_0_con },
     { content_schema, html_rdf_1_0 },
     { creative_commons, html_cc },
+    { croissant_1_12, html_croissant_1_12 },
+    { croissant_1_11, html_croissant_1_11 },
+    { croissant_1_10, html_croissant_1_10 },
+    { croissant_1_9, html_croissant_1_9 },
+    { croissant_1_8, html_croissant_1_8 },
+    { croissant_1_7, html_croissant_1_7 },
+    { croissant_1_6, html_croissant_1_6 },
+    { croissant_1_5, html_croissant_1_5 },
+    { croissant_1_4, html_croissant_1_4 },
+    { croissant_1_3, html_croissant_1_3 },
+    { croissant_1_2, html_croissant_1_2 },
+    { croissant_1_1, html_croissant_1_1 },
+    { croissant_1_0, html_croissant_1_0 },
+    { croissant_0_8, html_croissant_0_8 },
+    { croissant_0_6, html_croissant_0_6 },
+    { croissant_0_4, html_croissant_0_4 },
+    { croissant_0_3, html_croissant_0_3 },
+    { croissant_0_2, html_croissant_0_2 },
     { crs2_schema, html_xmp },
     { csvw_schema, html_jan16 },
-    { common_tag, html_rdf_1_0_con },
     { daq_schema, html_rdf_1_0_con },
     { dbd_schema, html_rdf_1_0_con },
     { dbo_schema, html_rdf_1_0_con },
@@ -228,6 +246,16 @@ sh_t sh [] =  // latest first
     { pur_3_0, html_prism_3_0 },
     { pur_2_1, html_prism_2_1 },
     { data_cube, html_rdf_1_0_con },
+    { rai_1_12, html_rai_1_12 },
+    { rai_1_11, html_rai_1_11 },
+    { rai_1_10, html_rai_1_10 },
+    { rai_1_9, html_rai_1_9 },
+    { rai_1_8, html_rai_1_8 },
+    { rai_1_7, html_rai_1_7 },
+    { rai_1_6, html_rai_1_6 },
+    { rai_1_5, html_rai_1_5 },
+    { rai_1_4, html_rai_1_4 },
+    { rai_1_3, html_rai_1_3 },
     { rdf_1_1_3_schema, html_rdf_1_1_3 },
     { rdf_1_1_2_schema, html_rdf_1_1_2 },
     { rdf_1_1_1_schema, html_rdf_1_1_1 },
@@ -368,6 +396,7 @@ sh_t sh [] =  // latest first
     { website_2014, html_jan14 },
     { website_2012, html_jan12 },
     { whatwg_schema, html_whatwg },
+    { wikidata_schema, html_wikidata },
     { xhv_schema, html_xhv },
     { xml_schema, html_xml },
     { xmp_schema, html_xmp },
@@ -403,6 +432,8 @@ vsv_t vsv = {
     cito_schema,
     common_tag,
     content_schema,
+    croissant_0_2, croissant_0_3, croissant_0_4, croissant_0_6, croissant_0_8, croissant_1_0, croissant_1_1, croissant_1_2, croissant_1_3, croissant_1_4,
+        croissant_1_5, croissant_1_6, croissant_1_7, croissant_1_8, croissant_1_9, croissant_1_10, croissant_1_11, croissant_1_12,
     creative_commons,
     crs2_schema,
     csvw_schema,
@@ -494,6 +525,7 @@ vsv_t vsv = {
     psv_1_0,
     ptr_schema,
     pur_2_1, pur_3_0,
+    rai_1_3, rai_1_4, rai_1_5, rai_1_6, rai_1_7, rai_1_8, rai_1_9, rai_1_10, rai_1_11, rai_1_12,
     rdf_1_0_schema, rdf_1_1_1_schema, rdf_1_1_2_schema, rdf_1_1_3_schema,
     rdfa_1_0_schema, rdfa_1_1_1_schema, rdfa_1_1_2_schema, rdfa_1_1_3_schema,
     rdfg_schema,
@@ -541,6 +573,7 @@ vsv_t vsv = {
     web_annotation,
     website_2012, website_2014, website_2018,
     whatwg_schema,
+    wikidata_schema,
     xhv_schema,
     xml_schema,
     xmp_bj,
@@ -651,6 +684,28 @@ template < > bool ontology_detail < s_cito > :: is_this_valid (const unsigned sh
 {   return (mjr == 2) && (mnr == 8); }
 template < > ontology_version ontology_detail < s_cito > :: from () noexcept { return ontology_version (s_cito, 2, 8); }
 template < > ontology_version ontology_detail < s_cito > :: to () noexcept { return ontology_version (s_cito, 2, 8); }
+
+template < > bool ontology_detail < s_croissant > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
+{   switch (mjr)
+    {   case 0 :
+            switch (mnr)
+            {   case 2 :
+                case 3 :
+                case 4 :
+                case 6 :
+                case 8 :
+                    return true;
+                default :
+                    break; }
+            break;
+        case 1 :
+            return mnr < 13;
+        default :
+            break; }
+    return false; }
+template < > ontology_version ontology_detail < s_croissant > :: from () noexcept { return ontology_version (s_croissant, 0, 2); }
+template < > int ontology_detail < s_croissant > :: count () noexcept { return 18; }
+template < > ontology_version ontology_detail < s_croissant > :: to () noexcept { return ontology_version (s_croissant, 1, 12); }
 
 template < > bool ontology_detail < s_dc > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   if (mjr != 1) return false;
@@ -931,6 +986,12 @@ template < > bool ontology_detail < s_pur > :: is_this_valid (const unsigned sho
 template < > ontology_version ontology_detail < s_pur > :: from () noexcept { return ontology_version (s_pur, 2, 1); }
 template < > int ontology_detail < s_pur > :: count () noexcept { return 2; }
 template < > ontology_version ontology_detail < s_pur > :: to () noexcept { return ontology_version (s_pur, 3, 1); }
+
+template < > bool ontology_detail < s_rai > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
+{   return (mjr == 1) && (mnr >= 3) && (mnr <= 12); }
+template < > ontology_version ontology_detail < s_rai > :: from () noexcept { return ontology_version (s_rai, 1, 3); }
+template < > int ontology_detail < s_rai > :: count () noexcept { return 10; }
+template < > ontology_version ontology_detail < s_rai > :: to () noexcept { return ontology_version (s_rai, 1, 12); }
 
 template < > bool ontology_detail < s_rdf > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t) noexcept
 {   if (mjr != 1) return false;

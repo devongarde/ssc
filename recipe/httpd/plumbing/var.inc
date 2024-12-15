@@ -5,14 +5,14 @@
 <!--#set var="aesite" value="https://dylanharris.org/" -->
 <!--#set var="cc" value="CC BY-NC-SA 4.0" -->
 <!--#set var="cclong" value="Creative Commons Attribution-Commercial-Share Alike 4.0 International Public Licence" -->
-<!--#set var="copyright" value="&copy;&nbsp;2020&ndash;2024&nbsp;Dylan&nbsp;Harris" -->
-<!--#set var="scopyright" value="(c) 2020-2024 dylan harris" -->
+<!--#set var="copyright" value="&copy;&nbsp;2020&ndash;2025&nbsp;Dylan&nbsp;Harris" -->
+<!--#set var="scopyright" value="(c) 2020-2025 dylan harris" -->
 <!--#set var="corruptsite" value="https://corruptpress.com" -->
 <!--#set var="country" value="LU" -->
 <!--#set var="creator" value="dylan harris" -->
 <!--#set var="css" value="plumbing/ignorance.css" -->
 <!--#set var="csp" value="default-src 'self' 'unsafe-inline' 'unsafe-eval'; form-action 'self' www.paypal.com; object-src 'none'; child-src 'none'; script-src 'none'; img-src 'self' https: creativecommons.org dylanharris.org *.facebook.com upload.wikimedia.org web.archive.org www.paypalobjects.com xkcd.com;" -->
-<!--#set var="date" value="November&nbsp;2024" -->
+<!--#set var="date" value="December&nbsp;2024" -->
 <!--#set var="description" value="the static site checker, https://ssc.lu/, is a static website nitpicker" -->
 <!--#set var="domain" value="ssc.lu" -->
 <!--#set var="email" value="mail@ssc.lu" -->
@@ -45,7 +45,7 @@
 <!--#set var="terms" value="terms.shtml" -->
 <!--#set var="test" value="ssc-test" -->
 <!--#set var="stel" value="+352&nbsp;000&nbsp;000&nbsp;000" -->
-<!--#set var="version" value="0.2.6" -->
+<!--#set var="version" value="0.2.7" -->
 <!--#set var="webmeister" value="dylan&nbsp;harris" -->
 <!--#set var="swebmeister" value="dylan harris" -->
 <!--#set var="webssc" value="https://ssc.lu/" -->
@@ -53,4 +53,4 @@
 <!--#set var="swebsite" value="static site checker" -->
 <!--#set var="xeq" value="ssc" -->
 <!--#set var="xeqtest" value="ssc-test" -->
-<!--#set var="year" value="2024" -->
+<!--#set var="year" value="2025" -->

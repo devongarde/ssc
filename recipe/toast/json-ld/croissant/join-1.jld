@@ -1,0 +1,17 @@
+{
+  
+  "@type": "cr:RecordSet",
+  "@id": "ratings",
+  "field": [
+    {
+      "@type": "cr:Field",
+      "@id": "ratings/movie_id",
+      "dataType": "sc:Integer",
+      "source": {
+        "fileObject": { "@id": "ratings-table" },
+        "extract": { "column": "movieId" }
+      },
+      "references": { "@id": "movies/movie_id" }
+    }
+  ]
+}

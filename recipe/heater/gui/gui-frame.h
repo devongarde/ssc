@@ -1,6 +1,6 @@
 ﻿/*                                                                 ,
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -36,7 +36,6 @@ class frame_t : public wxFrame
     bool new_config_ = false, new_snippet_ = false, new_site_ = false, rational_ = true, shush_ = true;
     context_t context_;
     bool process_config (const nitpick& nits, const ::boost::filesystem::path& fn);
-    void on (const e_gui_panel gp);
     DECLARE_EVENT_TABLE ()
 public:
     frame_t () = default;
@@ -72,43 +71,30 @@ public:
     void Find (wxFindDialogEvent& e);
     void Next (wxFindDialogEvent& e);
     void OnAbout (wxCommandEvent& e);
+    void OnConfigEdit (wxCommandEvent& e);
     void OnConfigOpen (wxCommandEvent& e);
     void OnConfigSave (wxCommandEvent& e);
     void OnConfigSaveAs (wxCommandEvent& e);
     void OnCopy (wxCommandEvent& e);
-    void OnCSS (wxCommandEvent& e);
     void OnExit (wxCommandEvent& e);
     void OnFileSave (wxCommandEvent& e);
     void OnFileSaveAs (wxCommandEvent& e);
     void OnFind (wxCommandEvent& e);
     void OnFindClose (wxFindDialogEvent& e);
-    void OnGeneral (wxCommandEvent& e);
     void OnHelp (wxCommandEvent& e);
-    void OnHTML (wxCommandEvent& e);
     void OnLoad (wxCommandEvent& e);
     void OnNext (wxCommandEvent& e);
-    void OnNits (wxCommandEvent& e);
-    void OnOntology (wxCommandEvent& e);
     void OnPreview (wxCommandEvent& e);
     void OnPrint (wxCommandEvent& e);
     void OnPrior (wxCommandEvent& e);
     void OnPrintSetup (wxCommandEvent& e);
-    void OnRoot (wxCommandEvent& e);
+    void OnNewRoot (wxCommandEvent& e);
+    void OnNewSnippet (wxCommandEvent& e);
     void OnSelectAll (wxCommandEvent& e);
-    void OnShadow (wxCommandEvent& e);
-    void OnSite (wxCommandEvent& e);
     void OnSize (wxSizeEvent& e);
-    void OnSnippet (wxCommandEvent& e);
-#ifndef NOSPELL
-    void OnSpell (wxCommandEvent& e);
-#endif // NOSPELL
     void OnSpin (wxCommandEvent& e);
-    void OnStats (wxCommandEvent& e);
     void OnUpdateCopy (wxUpdateUIEvent& e);
     void OnUpdateSelectAll (wxUpdateUIEvent& e);
-#ifdef DEBUG
-    void OnValidation (wxCommandEvent& e);
-#endif // DEBUG
     bool rational () const noexcept { return rational_; } };
 
 typedef frame_t* frame_pt;

@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -431,6 +431,8 @@ n_string_entry < e_ontology, 3 > ontology_name_entries [] =
     { { HTML_CITO }, { HTML_UNDEF }, s_cito, ONTOLOGY_CRAPSPEC, { "cito", HTTPS PURL_ORG "spar/cito/2018-02-12/", "citation typing ontology (purl)" } },
     { { HTML_CONTENT }, { HTML_UNDEF }, s_content, 0, { "content", HTTP PURL_ORG "/rss/1.0/modules/content/", "content (purl)" } },
     { { HTML_CONTENT }, { HTML_UNDEF }, s_content, 0, { "content", HTTPS PURL_ORG "/rss/1.0/modules/content/", "content (purl)" } },
+    { { HTML_CROISSANT_0_2 }, { HTML_UNDEF }, s_croissant, 0, { "cr", HTTP "mlcommons.org/croissant/", "croissant dataset ontology" } },
+    { { HTML_CROISSANT_0_2 }, { HTML_UNDEF }, s_croissant, 0, { "cr", HTTPS "mlcommons.org/croissant/", "croissant dataset ontology" } },
     { { HTML_ADOBE }, { HTML_UNDEF }, s_crs2, 0, { "crs", HTTP ADOBE_COM "/namespaces/camera-raw-settings/1.0/", "camera raw" } },
     { { HTML_ADOBE }, { HTML_UNDEF }, s_crs2, 0, { "crs", HTTPS ADOBE_COM "/namespaces/camera-raw-settings/1.0/", "camera raw" } },
     { { HTML_CSVW }, { HTML_UNDEF }, s_csvw, ONTOLOGY_PREFIX_CONTEXT, { "csvw", HTTP_W3 "/ns/csvw#", "CSV (metadata vocabulary for tabular data)" } },
@@ -696,6 +698,8 @@ n_string_entry < e_ontology, 3 > ontology_name_entries [] =
     { { HTML_RDF10 }, { HTML_UNDEF }, s_rdfg, 0, { "rdfg", HTTPS_W3 "/2004/03/trix/rdfg-1/", "resource description framework graph" } },
     { { HTML_RDF10 }, { HTML_UNDEF }, s_rdfs, ONTOLOGY_PREFIX_CONTEXT, { "rdfs", HTTP_W3 "/2000/01/rdf-schema#", "resource description framework Schema" } },
     { { HTML_RDF10 }, { HTML_UNDEF }, s_rdfs, 0, { "rdfs", HTTPS_W3 "/2000/01/rdf-schema#", "resource description framework Schema" } },
+    { { HTML_CROISSANT_1_3 }, { HTML_UNDEF }, s_rai, 0, { "rai", HTTP "mlcommons.org/croissant/RAI/", "croissant RAI ontology" } },
+    { { HTML_CROISSANT_1_3 }, { HTML_UNDEF }, s_rai, 0, { "rai", HTTPS "mlcommons.org/croissant/RAI/", "croissant RAI ontology" } },
     { { HTML_REVIEW }, { HTML_UNDEF }, s_rev, ONTOLOGY_PREFIX_CONTEXT, { "rev", HTTP PURL_ORG "/stuff/rev#", "reverend" } },
     { { HTML_REVIEW }, { HTML_UNDEF }, s_rev, 0, { "rev", HTTPS PURL_ORG "/stuff/rev#", "reverend" } },
     { { HTML_RIF }, { HTML_UNDEF }, s_rif, ONTOLOGY_PREFIX_CONTEXT, { "rif", HTTP_W3 "/2007/rif#", "rule interchange format" } },
@@ -776,6 +780,8 @@ n_string_entry < e_ontology, 3 > ontology_name_entries [] =
     { { HTML_WEBSITE }, { HTML_UNDEF }, s_website, 0, { "website", HTTPS OGP_ME "/ns/website#", "open graph qebsite" } },
     { { HTML_WHATWG }, { HTML_UNDEF }, s_whatwg, 0, { "wwg", HTTP N_WHATWG_ORG "/", "HTML living standard" } },
     { { HTML_WHATWG }, { HTML_UNDEF }, s_whatwg, 0, { "wwg", HTTPS N_WHATWG_ORG "/", "HTML living standard" } },
+    { { HTML_WIKIDATA }, { HTML_UNDEF }, s_wikidata, 0, { "wd", HTTP "wikidata.org/vocabulary/", "wikidata vocabulary" } },
+    { { HTML_WIKIDATA }, { HTML_UNDEF }, s_wikidata, 0, { "wd", HTTPS "wikidata.org/vocabulary/", "wikidata vocabulary" } },
     { { HTML_XHV }, { HTML_UNDEF }, s_xhv, ONTOLOGY_PREFIX_CONTEXT, { "xhv", HTTP_W3 "/1999/xhtml/vocab#", "RDFa core 1.1" } },
     { { HTML_XHV }, { HTML_UNDEF }, s_xhv, 0, { "xhv", HTTPS_W3 "/1999/xhtml/vocab#", "RDFa core 1.1" } },
     { { HTML_XML }, { HTML_UNDEF }, s_xml, ONTOLOGY_PREFIX_CONTEXT, { "xml", HTTP_W3 "/XML/1998/namespace", "XML 1.0 namespaces" } },

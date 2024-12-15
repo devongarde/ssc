@@ -1,6 +1,6 @@
 ﻿/*                                                                 ,
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -43,7 +43,7 @@ struct wx_svg { CONSTEXPR static char const* sz () { return "SVG"; } };
 struct wx_valid { CONSTEXPR static char const* sz () { return "validation"; } };
 
 #define DEF_CAPTION "missing caption"
-#define DEF_STYLE   wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX
+#define DEF_STYLE   wxDEFAULT_DIALOG_STYLE
 
 template < typename SUPER > struct interrogate : SUPER
 {   wxBoxSizer* box_ = nullptr;

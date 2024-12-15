@@ -1,0 +1,15 @@
+{
+  
+  "@type": "cr:RecordSet",
+  "@id": "ratings",
+  "name": "IMDB ratings",
+  "field": [
+    {
+      "@type": "cr:Field",
+      "@id": "ratings/movie_id",
+      "name": "Movie id",
+      "dataType": "sc:Integer",
+      "references": { "@id": "movies/movie_id" }
+    }
+  ]
+}

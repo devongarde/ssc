@@ -1,0 +1,30 @@
+{
+  
+  "@id": "categories",
+  "@type": "cr:RecordSet",
+  "dataType": "sc:Enumeration",
+  "key": { "@id": "categories/identifier" },
+  "field": [
+    {
+      "@id": "categories/identifier",
+      "@type": "cr:Field",
+      "dataType": "sc:Integer",
+      "source": { "@id": "instancesperson_annotations/categories/id" }
+    },
+    {
+      "@id": "categories/name",
+      "@type": "cr:Field",
+      "dataType": "sc:Text",
+      "source": { "@id": "instancesperson_annotations/categories/name" }
+    },
+    {
+      "@id": "categories/supercategory",
+      "@type": "cr:Field",
+      "dataType": "sc:Text",
+      "references": { "@id": "supercategories/name" },
+      "source": {
+        "@id": "instancesperson_annotations/categories/supercategory"
+      }
+    }
+  ]
+}

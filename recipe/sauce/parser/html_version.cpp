@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -1841,7 +1841,8 @@ template < > void html_version::set_level < c_scroll_driven_animation > (const i
 
 template < > int html_version::get_level < c_selector > () const
 {   if ((ext2 () & H2_CSS_SELECTOR_4) == H2_CSS_SELECTOR_4) return 4;   
-    if ((ext2 () & H2_CSS_SELECTOR_3) == H2_CSS_SELECTOR_3) return 3;   
+    if ((ext2 () & H2_CSS_SELECTOR_3) == H2_CSS_SELECTOR_3) return 3; 
+    if ((ext4 () & H4_LV_JAN25) == H4_LV_JAN25) if (context.html_ver () >= html_jan25) return 4;   
     return 0; }
 
 template < > void html_version::set_level < c_selector > (const int n)

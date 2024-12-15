@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "type/type.h"
 #include "url/url_protocol.h"
+#include "parser/jsonic.h"
 
 e_status set_js_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   if (s.empty ())
@@ -37,3 +38,11 @@ e_status set_js_value (nitpick& nits, const html_version& v, const ::std::string
             nits.pick (nit_json_bad_term, ed_jsonld_1_1, "9.1 Terms", es_error, ec_json, "a term should not be a standard URL scheme (https://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml)");
         else return s_good; }
     return s_invalid; }
+
+e_status parse_json (nitpick& nits, const html_version& , const ::std::string& s)
+{
+#ifndef NO_JSONIC
+    jsonic jc;
+    if (! jc.parse (nits, s, cc_utf8)) return s_invalid;
+#endif // NO_JSONIC
+    return s_good; }

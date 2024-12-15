@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #ifdef WX
 #include "gui/gui-app.h"
 #include "gui/gui-site.h"
+#include "utility/filesystem.h"
 
 #define DEFAULT_CORPUS_FN	"corpus.xml"
 
@@ -184,7 +185,7 @@ void site_t :: OnOutput (wxCommandEvent& )
 	PRESUME (file_ != nullptr, __FILE__, __LINE__);
 	const bool outed = output_ -> IsChecked ();
 	if (path_.empty () && outed)
-	{	path_ = get_current_folder ();
+	{	path_ = get_working_directory ();
 		path_ /= DEFAULT_CORPUS_FN;
 		wxFileName fn (path_.string ());
 		file_ -> SetFileName (fn); }
@@ -198,7 +199,7 @@ void site_t :: OnTap (wxCommandEvent& e)
 
 bool site_t :: TransferDataToWindow ()
 {	if (invalid ()) return false;
-	if (def_.empty ()) def_ = get_current_folder ();
+	if (def_.empty ()) def_ = get_working_directory ();
 	dir_default_ -> SetPath (def_.string ().c_str ());
 	domain_.preload (site_);
     check_example_ -> Set3StateValue (example_ ? wxCHK_CHECKED : wxCHK_UNCHECKED);

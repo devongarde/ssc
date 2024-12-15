@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #ifdef WX
 #include "gui/gui-app.h"
 #include "gui/gui-shadow.h"
+#include "utility/filesystem.h"
 
 #define DEFAULT_SHADOW_FN PROG ".shadow"
 
@@ -215,10 +216,10 @@ bool shadow_t :: TransferDataToWindow ()
 	else check_time_ -> Set3StateValue (wxCHK_UNCHECKED);
 	if (whitespace_) check_whitespace_ -> Set3StateValue (wxCHK_CHECKED);
 	else check_whitespace_ -> Set3StateValue (wxCHK_UNCHECKED);
-	if (shadow_.empty ()) shadow_ = get_current_folder ();
+	if (shadow_.empty ()) shadow_ = get_working_directory ();
 	dir_site_ -> SetPath (shadow_.string ().c_str ()); 
 	if (cache_.empty ())
-	{	cache_ = get_current_folder ();
+	{	cache_ = get_working_directory ();
 		cache_ /= DEFAULT_SHADOW_FN; }
 	wxFileName c (cache_.string ());
 	file_cache_ -> SetFileName (c);

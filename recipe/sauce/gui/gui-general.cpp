@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #ifdef WX
 #include "gui/gui-app.h"
 #include "gui/gui-general.h"
+#include "utility/filesystem.h"
 
 #define GEN_STYLE   DEF_STYLE
 #define GEN_X       100
@@ -188,7 +189,7 @@ void general_t :: OnPersist (wxCommandEvent& )
 	PRESUME (check_persist_ != nullptr, __FILE__, __LINE__);
 	const bool persisted = check_persist_ -> IsChecked ();
 	if (persist_.empty () && persisted)
-	{	persist_ = get_current_folder ();
+	{	persist_ = get_working_directory ();
 		persist_ /= DEFAULT_PERSIST_FN;
 		wxFileName fn (persist_.string ());
 		pick_persist_ -> SetFileName (fn); }
@@ -232,7 +233,7 @@ bool general_t :: TransferDataToWindow ()
 	{	check_fred_ -> Set3StateValue (wxCHK_CHECKED);
 		spin_fred_ -> Enable (true); }
 #endif // NO_FRED
-	if (config_.empty ()) config_ = get_current_folder ();
+	if (config_.empty ()) config_ = get_working_directory ();
 	dir_config_ -> SetPath (config_.c_str ());
 	enable_persist (! persist_.empty ());
 	return true; }

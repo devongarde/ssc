@@ -1,0 +1,29 @@
+{
+  
+  "@id": "genders",
+  "@type": "cr:RecordSet",
+  "dataType": [ "sc:Enumeration", "wd:Q48277" ],
+  "key": { "@id": "genders/name" },
+  "field": [
+    {
+      "@id": "genders/name",
+      "@type": "cr:Field",
+      "dataType": "sc:Text"
+    },
+    {
+      "@id": "genders/url",
+      "@type": "cr:Field",
+      "dataType": "sc:URL"
+    }
+  ],
+  "data": [
+    {
+      "genders/name": "female",
+      "genders/url": "wd:Q6581072"
+    },
+    {
+      "genders/name": "male",
+      "genders/url": "wd:Q6581097"
+    }
+  ]
+}

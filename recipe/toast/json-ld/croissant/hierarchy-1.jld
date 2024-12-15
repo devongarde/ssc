@@ -1,0 +1,27 @@
+{
+  
+  "@type": "cr:Field",
+  "@id": "gps_coordinates",
+  "description": "GPS coordinates where the image was taken.",
+  "dataType": "sc:GeoCoordinates",
+  "subField": [
+    {
+      "@type": "cr:Field",
+      "@id": "gps_coordinates/latitude",
+      "dataType": "sc:Float",
+      "source": {
+        "fileObject": { "@id": "metadata" },
+        "extract": { "column": "latitude" }
+      }
+    },
+    {
+      "@type": "cr:Field",
+      "@id": "gps_coordinates/longitude",
+      "dataType": "sc:Float",
+      "source": {
+        "fileObject": { "@id": "metadata" },
+        "extract": { "column": "longitude" }
+      }
+    }
+  ]
+}

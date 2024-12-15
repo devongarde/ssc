@@ -1,0 +1,12 @@
+{
+  
+  "@type": "cr:Field",
+  "@id": "images/annotation/mask",
+  "description": "The segmentation mask around annotated object[s].",
+  "dataType": [ "cr:SegmentationMask", "sc:GeoShape" ],
+  "source": {
+    "fileSet": { "@id": "instancesperson_keypoints_annotations" },
+    "extract": { "regex": "w+s(.*)" },
+    "format": "X Y"
+  }
+}

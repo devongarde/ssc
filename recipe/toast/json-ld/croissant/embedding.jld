@@ -1,0 +1,29 @@
+{
+  
+  "@type": "cr:RecordSet",
+  "@id": "gender_enum",
+  "description": "Maps gender ids (0, 1) to labeled values.",
+  "key": { "@id": "gender_enum/id" },
+  "field": [
+    {
+      "@id": "gender_enum/id",
+      "@type": "cr:Field",
+      "dataType": "sc:Integer"
+    },
+    {
+      "@id": "gender_enum/label",
+      "@type": "cr:Field",
+      "dataType": "sc:String"
+    }
+  ],
+  "data": [
+    {
+      "gender_enum/id": 0,
+      "gender_enum/label": "Male"
+    },
+    {
+      "gender_enum/id": 1,
+      "gender_enum/label": "Female"
+    }
+  ]
+}

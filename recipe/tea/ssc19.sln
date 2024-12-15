@@ -30,27 +30,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "httpd", "..\httpd\", "{877D
 		SlnRelativePath = "..\httpd\"
 	EndProjectSection
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "help", "..\help\", "{9B87C023-6ACC-4D2A-8BF1-0166960B05F5}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_51271"
-		Debug.AspNetCompiler.PhysicalPath = "..\help\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51271\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_51271"
-		Release.AspNetCompiler.PhysicalPath = "..\help\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51271\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "51271"
-		SlnRelativePath = "..\help\"
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,18 +71,6 @@ Global
 		{877D6E48-0591-4253-A36B-2E517EB3732E}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{877D6E48-0591-4253-A36B-2E517EB3732E}.Release|x64.ActiveCfg = Debug|Any CPU
 		{877D6E48-0591-4253-A36B-2E517EB3732E}.Release|x64.Build.0 = Debug|Any CPU
-		{9B87C023-6ACC-4D2A-8BF1-0166960B05F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9B87C023-6ACC-4D2A-8BF1-0166960B05F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9B87C023-6ACC-4D2A-8BF1-0166960B05F5}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{9B87C023-6ACC-4D2A-8BF1-0166960B05F5}.Debug|x64.Build.0 = Debug|Any CPU
-		{9B87C023-6ACC-4D2A-8BF1-0166960B05F5}.profile|Any CPU.ActiveCfg = Debug|Any CPU
-		{9B87C023-6ACC-4D2A-8BF1-0166960B05F5}.profile|Any CPU.Build.0 = Debug|Any CPU
-		{9B87C023-6ACC-4D2A-8BF1-0166960B05F5}.profile|x64.ActiveCfg = Debug|Any CPU
-		{9B87C023-6ACC-4D2A-8BF1-0166960B05F5}.profile|x64.Build.0 = Debug|Any CPU
-		{9B87C023-6ACC-4D2A-8BF1-0166960B05F5}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{9B87C023-6ACC-4D2A-8BF1-0166960B05F5}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{9B87C023-6ACC-4D2A-8BF1-0166960B05F5}.Release|x64.ActiveCfg = Debug|Any CPU
-		{9B87C023-6ACC-4D2A-8BF1-0166960B05F5}.Release|x64.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

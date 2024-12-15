@@ -1,0 +1,19 @@
+{
+  
+  "@id": "images",
+  "@type": "cr:RecordSet",
+  "field": [
+    {
+      "@id": "images/split",
+      "@type": "cr:Field",
+      "source": {
+        "fileSet": { "@id": "image-files" },
+        "extract": { "fileProperty": "fullpath" },
+        "transform": {
+          "regex": "^(train|val|test)2014.zip/.+2014/.*\\.jpg$"
+        }
+      },
+      "references": { "@id": "splits/name" }
+    }
+  ]
+}

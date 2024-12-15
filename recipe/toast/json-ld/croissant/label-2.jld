@@ -1,0 +1,42 @@
+{
+  
+  "@type": "cr:RecordSet",
+  "@id": "images",
+  "key": { "@id": "images/image_id" },
+  "field": [
+    {
+      "@type": "cr:Field",
+      "@id": "images/image_id"
+    },
+    {
+      "@type": "cr:Field",
+      "@id": "images/image_content",
+      "dataType": "sc:ImageObject"
+    },
+    {
+      "@type": "cr:Field",
+      "@id": "images/annotations",
+      "dataType": [ "cr:RecordSet", "cr:Label" ],
+      "parentField": {
+        "@type": "cr:Field",
+        "@id": "images/annotations/image_id",
+        "references": { "@id": "images/image_id" }
+      },
+      "subField": [
+        {
+          "@type": "cr:Field",
+          "@id": "images/annotations/id"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "images/annotations/category_id"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "images/annotations/bbox",
+          "dataType": "cr:BoundingBox"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+  },
+  "@type": "sc:Dataset",
+  "name": "simple-pass",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "description": "PASS is a large-scale image dataset that does not include any humans ...",
+  "citeAs": "@Article{asano21pass, author = \"Yuki M. Asano and Christian Rupprecht and ...",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "url": "https://www.robots.ox.ac.uk/~vgg/data/pass/",
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "images",
+      "key": { "@id": "hash" },
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "images/image_content",
+          "description": "The image content.",
+          "dataType": "sc:ImageObject",
+          "source": {
+            "fileSet": { "@id": "image-files" },
+            "extract": {
+              "fileProperty": "content"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "images/hash",
+          "description": "The hash of the image, as computed from YFCC-100M.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": { "@id": "image-files" },
+            "extract": {
+              "fileProperty": "filename"
+            },
+            "transform": {
+              "regex": "([^\\/]*)\\.jpg"
+            }
+          },
+          "references": { "@id": "metadata/hash" }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "images/date_taken",
+          "description": "The date the photo was taken.",
+          "dataType": "sc:Date",
+          "source": { "@id": "metadata/datetaken" }
+        }
+      ]
+    }
+  ]
+}

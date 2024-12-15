@@ -23,9 +23,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "simple/type_autocomplete.h"
 
 e_status set_js_value (nitpick& nits, const html_version& v, const ::std::string& s);
+e_status parse_json (nitpick& nits, const html_version& v, const ::std::string& s);
 
 template < > struct type_master < t_js_term > : tidy_string < t_js_term >
 {   using tidy_string < t_js_term > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_js_term > :: set_value (nits, v, s);
         tidy_string < t_js_term > :: status (set_js_value (nits, v, tidy_string < t_js_term > :: get_string ())); } };
+
+template < > struct type_master < t_json > : tidy_string < t_json >
+{   using tidy_string < t_json > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_json > :: set_value (nits, v, s);
+        tidy_string < t_json > :: status (parse_json (nits, v, tidy_string < t_json > :: get_string ())); } };

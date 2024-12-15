@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -21,6 +21,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "base/type_master.h"
 #include "microdata/microdata_itemid.h"
+
+e_status parse_ontology_type (nitpick& nits, const html_version& v, const ::std::string& x, const e_ontology root = s_schema);
 
 template < > struct type_master < t_itemid > : tidy_string < t_itemid >
 {   typedef true_type has_int_type;

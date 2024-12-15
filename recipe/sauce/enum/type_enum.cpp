@@ -1,6 +1,6 @@
 ﻿/*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -377,6 +377,13 @@ struct symbol_entry < html_version, e_copy > copy_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "all", c_copy },
     { { HTML_TAGS }, { HTML_UNDEF }, "dedu", c_deduplicate },
     { { HTML_TAGS }, { HTML_UNDEF }, "report", c_rpt } };
+
+struct symbol_entry < html_version, e_cr_fileproperty > cr_fileproperty_symbol_table [] =
+{   { { HTML_CROISSANT_0_2 }, { HTML_UNDEF }, "content", crfp_content },
+    { { HTML_CROISSANT_0_2 }, { HTML_UNDEF }, "fileName", crfp_filename },
+    { { HTML_CROISSANT_0_2 }, { HTML_UNDEF }, "fullPath", crfp_fullpath },
+    { { HTML_CROISSANT_0_3 }, { HTML_UNDEF }, "lines", crfp_lines },
+    { { HTML_CROISSANT_0_3 }, { HTML_UNDEF }, "lineNumbers", crfp_linenumbers } };
 
 struct symbol_entry < html_version, e_crossout > crossout_symbol_table [] =
 {   { { HTML_5_2 }, { HTML_UNDEF }, "none", co_none },
@@ -888,7 +895,7 @@ struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR | H2_CSS_1_ARG }, { HTML_UNDEF }, "nth-of-type", efn_nth_of_type },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR }, { HTML_UNDEF }, "only-child", efn_only_child },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR }, { HTML_UNDEF }, "only-of-type", efn_only_of_type },
-    { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "open", efn_open, ns_default, CF_NOT_LV_STD_JUL23 },
+    { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4, 0, H4_LV_JAN25 }, { HTML_UNDEF }, "open", efn_open, ns_default, CF_NOT_LV_STD_JUL23 | CF_OR_LV_JAN25 },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "optional", efn_optional },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "out-of-range", efn_out_of_range },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "paused", efn_paused },
@@ -2117,7 +2124,7 @@ struct symbol_entry < html_version, e_dingbat > dingbat_symbol_table [] =
     { { HTML_3_0 }, { HTML_3_0 }, "home", db_home },
     { { HTML_3_0 }, { HTML_3_0 }, "toc", db_toc },
     { { HTML_3_0 }, { HTML_3_0 }, "glossary", db_glossary },
-    { { HTML_3_0 }, { HTML_3_0 }, "index", db_index },
+    { { HTML_3_0 }, { HTML_3_0 }, INDEX, db_index },
     { { HTML_3_0 }, { HTML_3_0 }, "summary", db_summary },
     { { HTML_3_0 }, { HTML_3_0 }, "calculator", db_calculator },
     { { HTML_3_0 }, { HTML_3_0 }, "caution", db_caution },
@@ -3209,6 +3216,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-iterate", nm_context_iterate },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-jsonld", nm_context_jsonld },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-jsonld-extension", nm_context_jsonld_extension },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-jsonld-ontology", nm_context_jsonld_ontology },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-jsonld-version", nm_context_jsonld_version },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-lang", nm_context_lang },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-links", nm_context_links },
@@ -3699,7 +3707,7 @@ struct symbol_entry < html_version, e_prism_contenttype > prism_contenttype_symb
     { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "classifiedAdSection", ptt_classifiedadsection },
     { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "contentBlock", ptt_contentblock },
     { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "frontCover", ptt_frontcover },
-    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "index", ptt_index },
+    { { HTML_PRISM_3_0 }, { HTML_UNDEF }, INDEX, ptt_index },
     { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "introduction", ptt_introduction },
     { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "masthead", ptt_masthead },
     { { HTML_PRISM_3_0 }, { HTML_UNDEF }, "navigationalAid", ptt_navigationalaid },
@@ -3720,7 +3728,7 @@ struct symbol_entry < html_version, e_prism_cvp > prism_cvp_symbol_table [] =
     { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "graph", pcvp_graph },
     { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "homePage", pcvp_homepage },
     { { HTML_PRISM_1_2 }, { HTML_UNDEF }, "illustration", pcvp_illustration },
-    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "index", pcvp_index },
+    { { HTML_PRISM_1_0 }, { HTML_UNDEF }, INDEX, pcvp_index },
     { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "interactiveContent", pcvp_interactivecontent },
     { { HTML_PRISM_1_2 }, { HTML_UNDEF }, "issue", pcvp_issue },
     { { HTML_PRISM_1_0 }, { HTML_UNDEF }, "journal", pcvp_journal },
@@ -6682,6 +6690,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (cntype);
     INIT_ENUM (comp_op);
     INIT_ENUM (composite_operator);
+    INIT_ENUM (cr_fileproperty);
     INIT_ENUM (crossout);
     INIT_ENUM (crs_whitebalance);
     INIT_ENUM (css_aaalri);
@@ -7015,6 +7024,7 @@ void enum_init (nitpick& nits)
         RETURN_SIZE (cntype);
         RETURN_SIZE (comp_op);
         RETURN_SIZE (composite_operator);
+        RETURN_SIZE (cr_fileproperty);
         RETURN_SIZE (crossout);
         RETURN_SIZE (crs_whitebalance);
         RETURN_SIZE (css_aaalri);

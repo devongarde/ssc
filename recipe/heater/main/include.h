@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -62,15 +62,15 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 6
-#define VERSION_STRING "0.2.6"
+#define VERSION_RELEASE 7
+#define VERSION_STRING "0.2.7"
 #define EDITION_STANDARD "standard"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
 #define COPYRIGHT_FORENAME "Dylan"
 #define COPYRIGHT_SURNAME "Harris"
-#define COPYRIGHT_YEAR "2020-2024"
+#define COPYRIGHT_YEAR "2020-2025"
 #define COPYRIGHT_TEXT COPYRIGHT_SYMBOL " " COPYRIGHT_YEAR " " COPYRIGHT_FORENAME " " COPYRIGHT_SURNAME
 #define COPYRIGHT_HTML "&copy;" NBSP COPYRIGHT_YEAR NBSP COPYRIGHT_FORENAME NBSP COPYRIGHT_SURNAME
 #define COPYRIGHT_WEBADDR "https://" DYLANHARRIS_ORG "/"
@@ -273,6 +273,10 @@ z
 #include <atomic>
 #endif // NO_FRED
 
+#ifdef _MSC_VER
+#include <direct.h>
+#endif // _MSC_VER
+
 #if defined (NO_FRED) || defined (FUDDYDUDDY) || defined (VS2017) || defined (VS2019)
 #define NOSERV
 #endif // ...
@@ -386,6 +390,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #include <boost/property_tree/string_path.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/logic/tribool.hpp>
+#include <boost/scoped_ptr.hpp>
 
 #if BOOST_MINOR > 76
 #include <boost/system.hpp>
@@ -572,6 +577,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define REAL SIGNEDDECIMAL "Ee"
 #define LINE_SEPARATORS "\n\r\f\v"
 #define ELLIPSES "..."
+#define WILDCHARS DOMAINNAME " *?\\[]{},!^|"
 
 #define DEFAULT_DOMAIN "example.org"
 #define CSS_TYPE "text/css"
@@ -597,7 +603,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define DEF_PERSIST_EXT     "ndx"
 #define DEF_PERSIST_FILE    PROG JOIN DEF_PERSIST_EXT
 #define DEF_TEMP_EXT        PROG
-#define DEFAULT_DATAPATH    HIDDENISH PROG
+#define DEF_DATAPATH        HIDDENISH PROG
 
 #define MAX_IDEAL_TITLE_LENGTH 32
 

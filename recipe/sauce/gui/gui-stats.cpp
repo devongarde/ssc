@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type.h"
 #include "gui/gui-app.h"
 #include "gui/gui-stats.h"
+#include "utility/filesystem.h"
 
 #define DEFAULT_STATS_EXT ".txt"
 #define DEFAULT_STATS_FN  PROG DEFAULT_STATS_EXT
@@ -121,7 +122,7 @@ void report_t :: OnClear (wxCommandEvent& )
 
 void report_t :: set_dump ()
 {	if (dump_.empty ())
-	{	dump_ = get_current_folder ();
+	{	dump_ = get_working_directory ();
 		dump_ /= DEFAULT_STATS_FN;
 		wxFileName fn (dump_.string ());
 		export_ -> SetFileName (fn); } }

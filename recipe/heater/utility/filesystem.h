@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -34,40 +34,35 @@ vstr_t nix_path_to_local (const vstr_t& v);
 #ifdef FS_THROWS
 ::std::time_t get_last_write_time (const ::boost::filesystem::path& name);
 uintmax_t get_file_size (const ::boost::filesystem::path& name);
-bool is_folder (const ::boost::filesystem::path& name);
-bool is_normal_file (const ::boost::filesystem::path& name);
-bool file_exists (const ::boost::filesystem::path& name);
-::boost::filesystem::file_status file_data (const ::boost::filesystem::path& name);
 #ifndef NO_PERMS
 bool file_permissions (const ::boost::filesystem::path& name, ::boost::filesystem::perms prms);
 #endif // NO_PERMS
-::boost::filesystem::path absolute_name (const ::boost::filesystem::path& name);
-::boost::filesystem::path canonical_name (const ::boost::filesystem::path& name);
 bool make_directories (const ::boost::filesystem::path& name);
 bool make_directory (const ::boost::filesystem::path& name);
 bool delete_file (const ::boost::filesystem::path& name);
 bool rename_file (const ::boost::filesystem::path& from, const ::boost::filesystem::path& to);
 bool duplicate_file (const ::boost::filesystem::path& from, const ::boost::filesystem::path& to, const BOOST_COPY_OPTION opt);
-::boost::filesystem::path temp_dir ();
 #else // FS_THROWS
 ::std::time_t get_last_write_time (const ::boost::filesystem::path& name) noexcept;
 uintmax_t get_file_size (const ::boost::filesystem::path& name) noexcept;
-bool is_folder (const ::boost::filesystem::path& name);
-bool is_normal_file (const ::boost::filesystem::path& name);
-bool file_exists (const ::boost::filesystem::path& name);
-::boost::filesystem::file_status file_data (const ::boost::filesystem::path& name);
 #ifndef NO_PERMS
 bool file_permissions (const ::boost::filesystem::path& name, ::boost::filesystem::perms prms) noexcept;
 #endif // NO_PERMS
-::boost::filesystem::path absolute_name (const ::boost::filesystem::path& name);
-::boost::filesystem::path canonical_name (const ::boost::filesystem::path& name);
 bool make_directories (const ::boost::filesystem::path& name) noexcept;
 bool make_directory (const ::boost::filesystem::path& name) noexcept;
 bool delete_file (const ::boost::filesystem::path& name) noexcept;
 bool rename_file (const ::boost::filesystem::path& from, const ::boost::filesystem::path& to) noexcept;
 bool duplicate_file (const ::boost::filesystem::path& from, const ::boost::filesystem::path& to, const BOOST_COPY_OPTION opt) noexcept;
-::boost::filesystem::path temp_dir ();
 #endif // FS_THROWS
+
+bool is_folder (const ::boost::filesystem::path& name);
+bool is_normal_file (const ::boost::filesystem::path& name);
+bool file_exists (const ::boost::filesystem::path& name);
+::boost::filesystem::file_status file_data (const ::boost::filesystem::path& name);
+::boost::filesystem::path absolute_name (const ::boost::filesystem::path& name);
+::boost::filesystem::path canonical_name (const ::boost::filesystem::path& name);
+::boost::filesystem::path get_working_directory ();
+::boost::filesystem::path temp_dir ();
 
 #ifdef NOLYNX
 inline bool is_file_linked (const ::boost::filesystem::path& ) noexcept { return false; }
@@ -84,3 +79,6 @@ bool is_file_linked (const ::boost::filesystem::path& name);
 bool make_hard_link (const ::boost::filesystem::path& name, const ::boost::filesystem::path& link);
 bool make_link (const ::boost::filesystem::path& name, const ::boost::filesystem::path& link);
 #endif // NOLYNX
+
+bool is_normal_or_zap (const ::boost::filesystem::path& fn);
+

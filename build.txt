@@ -1,7 +1,7 @@
 BUILD NOTES
 static site checker
 https://ssc.lu/
-(c) 2020-2024 Dylan Harris
+(c) 2020-2025 Dylan Harris
 
 
 Introduction
@@ -93,10 +93,10 @@ i386 were tested on older versions of Windows.
 
 On low memory machines, disable the /MP switch.
 
-Some versions of the Visual Studio solutions use vcpkg, which sometimes
-resolves dependencies. For all such versions, except recent editions of
-Visual Studio 2022, you may need to first download and install vcpkg
-yourself, from https://vcpkg.io/.
+Some versions of the Visual Studio solutions used vcpkg, which
+sometimes resolves dependencies. For all such versions, except recent
+editions of Visual Studio 2022, you may need to first download and
+install vcpkg yourself, from https://vcpkg.io/.
 
 
 Unii & mock Unii
@@ -127,7 +127,7 @@ they can't find files they're supposed to delete, which is a bit silly
 given that means things are already in the required state.
 
 ssc has been successfully built in OpenBSD, FreeBSD, Linux & MacOS on
-AMD64, and in recent versions of Linux & MacOS under ARM64. 
+AMD64, and in recent versions of OpenBSD, Linux & MacOS under ARM64. 
 
 The current version of ssc requires the current version of an operating
 system. Older operating systems require older versions of ssc. Not all
@@ -136,11 +136,9 @@ features work on all systems.
 I've sometimes found it necessary to use cmake's
 -DCMAKE_CXX_COMPILER=... switch.
 
-Centos 9
---------
-The appropriate CMake command is:
-  cmake . -DFLAVOUR=CentosOSStream -DFLAVOUR_VER=9
-(note the standard English spelling of flavour.)
+Linux
+-----
+I tend to build under ubuntu LTS, but many other flavours work too.
 
 OpenBSD
 -------

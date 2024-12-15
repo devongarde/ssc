@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -52,7 +52,7 @@ CONSTEXPR bool def_article = false, def_body = true, def_case = false, def_cgi =
     def_yggdrisil = false;
 CONSTEXPR const char* const def_macrostart = "{{";
 CONSTEXPR const char* const def_macroend = "}}";
-CONSTEXPR const char* const def_path = DEFAULT_DATAPATH;
+CONSTEXPR const char* const def_path = DEF_DATAPATH;
 CONSTEXPR const char* const def_persisted = PROG DEF_PERSIST_EXT;
 CONSTEXPR ::std::size_t def_htmltitle = MAX_IDEAL_TITLE_LENGTH;
 CONSTEXPR ::std::size_t def_fred = 1;
@@ -94,12 +94,12 @@ class context_t
                     macro_end_ = def_macroend, macro_start_ = def_macrostart, msg_, nit_format_, nit_override_,
                     out_, path_ = def_path, persisted_, root_, secret_, shadow_, shadow_persist_, snippet_,
                     ssi_doc_args_, ssi_echomsg_, ssi_errmsg_, ssi_exec_text_, ssi_query_string_, ssi_timefmt_,
-                    ssi_user_name_, started_, stats_, svg_, x_;
-    ::boost::filesystem::path config_, corpus_, proot_, spell_path_;
+                    ssi_user_name_, started_, stats_, svg_, wx_snippet_, x_;
+    ::boost::filesystem::path config_, corpus_, proot_, spell_path_, def_conf_path_, def_conf_file_;
     vstr_t          abhorrent_, attrib_, catastrophe_, cmd_, comment_, css_ext_ = { CSS_EXT }, custom_elements_, debug_,
                     dict_, dlang_, elem_, elem_attrib_, environment_, error_, exclude_, exports_, extensions_ = { HTML_EXT },
-                    inform_, ignore_, jsonld_ext_, no_ex_check_ = { JSONLD_EXT }, pretend_, report_, shadow_ignore_, shadows_,
-                    silent_, site_, spell_list_, spellings_, warning_, virtuals_, vont_;
+                    inform_, ignore_, jsonld_ext_, jsonld_key_, jsonld_ont_, jsonld_val_, no_ex_check_ = { JSONLD_EXT },
+                    pretend_, report_, shadow_ignore_, shadows_, silent_, site_, spell_list_, spellings_, warning_, virtuals_, vont_;
     static ustr_t   validation_;
     e_svg_processing_mode svg_mode_ = spm_none;
     e_quote_style   quote_style_ = qs_none;
@@ -128,13 +128,15 @@ class context_t
         VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
         macro -> set (ns, ss); }
     ::std::string summarise () const;
+    void populate_jsonld_ont (const vstr_t& vs);
 public:
     context_t () { init (); }
     context_t (nitpick& nits, const ::boost::filesystem::path& fn);
     DEFAULT_COPY_CONSTRUCTORS (context_t);
     ~context_t () = default;
-    void reset () noexcept;
-    void swap (context_t& c) noexcept;
+    void reset ();
+    void reset (context_t& c);
+    void swap (context_t& c);
     context_t& abhorrent (const ::std::string& s) { abhorrent_.push_back (s); return *this; }
     context_t& accept (const ::std::string& s) { accept_ = s; return *this; }
     context_t& article (const bool b) { article_ = b; mac (nm_context_article, b); return *this; }
@@ -204,6 +206,7 @@ public:
     context_t& iterate (const bool b) { iterate_ = b; mac (nm_context_iterate, b); return *this; }
     context_t& jsonld (const bool b) { jsonld_ = b; mac (nm_context_jsonld, b); return *this; }
     context_t& jsonld_extension (const vstr_t& s) { jsonld_ext_ = s; mac (nm_context_jsonld_extension, s); return *this; }
+    context_t& jsonld_ontology (const vstr_t& vs) { populate_jsonld_ont (vs); mac (nm_context_jsonld_ontology, vs); return *this; }
     context_t& jsonld_version (const e_jsonld_version v)
     {   version_.jsonld_version (v);
         mac < int > (nm_context_jsonld_version, v);
@@ -350,6 +353,7 @@ public:
     context_t& virtuals (const vstr_t& s) { virtuals_ = s; mac (nm_context_virtuals, s); return *this; }
     context_t& warning (const ::std::string& s) { warning_.push_back (s); return *this; }
     context_t& wx (const bool b) { wx_ = b; mac (nm_context_wx, b); return *this; }
+    context_t& wx_snippet (const ::std::string& s) { wx_snippet_ = s; return *this; }
     context_t& x (const ::std::string& s) { x_ = s; return *this; }
     context_t& yggdrisil (const bool b) { yggdrisil_ = b; return *this; }
     context_t& mobile_profile (const bool b) { if (b) version_.set_profile (H3_NOT_MOBILE); else version_.reset_profile (H3_NOT_MOBILE); return *this; }
@@ -385,6 +389,8 @@ public:
     e_css_version css_version () const noexcept { return version_.css_version (); }
     const vstr_t custom_elements () const { return custom_elements_; }
     const vstr_t& debug () const { return debug_; }
+    const ::boost::filesystem::path& default_config_file () const { return def_conf_file_; }
+    const ::boost::filesystem::path& default_config_path () const { return def_conf_path_; }
     const vstr_t& dict () const { return dict_; }
     const vstr_t& dlang () const { return dlang_; }
     bool dodedu () const noexcept { return (copy_ >= c_deduplicate); }
@@ -428,6 +434,9 @@ public:
     bool invalid () const noexcept { return ! valid_; }
     bool jsonld () const noexcept { return jsonld_; }
     const vstr_t jsonld_extension () const { return jsonld_ext_; }
+    const vstr_t jsonld_key () { return jsonld_key_; }
+    const vstr_t jsonld_ontology () const { return jsonld_ont_; }
+    const vstr_t jsonld_value () { return jsonld_val_; }
     e_jsonld_version jsonld_version () const noexcept { return version_.jsonld_version (); }
     ::std::string lang () const { return lang_; }
     bool local () const noexcept { return local_; }
@@ -552,6 +561,7 @@ public:
     bool versioned () const noexcept { return versioned_; }
     const vstr_t& warning () const { return warning_; }
     bool wx () const noexcept { return wx_; }
+    const ::std::string& wx_snippet () const { return wx_snippet_; }
     const ::std::string& x () const { return x_; }
     bool yggdrisil () const { return yggdrisil_; }
     bool tell (const e_severity n) const noexcept

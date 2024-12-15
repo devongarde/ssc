@@ -1,0 +1,16 @@
+{
+  
+  "@type": "cr:RecordSet",
+  "@id": "images",
+  "field": [
+    {
+      "@type": "cr:Field",
+      "@id": "images/image"
+    },
+    {
+      "@type": "cr:Field",
+      "@id": "images/label",
+      "dataType": [ "sc:Text", "cr:Label" ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  
+  "@type": "cr:FileSet",
+  "@id": "files-devtest",
+  "description": "devtest files are inside the tar.",
+  "containedIn": { "@id": "flores200_dataset.tar.gz" },
+  "encodingFormat": "application/json",
+  "includes": "flores200_dataset/devtest/*.devtest"
+}

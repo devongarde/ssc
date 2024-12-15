@@ -1,6 +1,6 @@
 ﻿/*                                                                 ,
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -30,7 +30,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "gui/gui-ontology.h"
 #include "gui/gui-shadow.h"
 #include "gui/gui-site.h"
-#include "gui/gui-snippet.h"
 #include "gui/gui-spell.h"
 #include "gui/gui-ssi.h"
 #include "gui/gui-stats.h"

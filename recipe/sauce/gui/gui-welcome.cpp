@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -25,6 +25,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/args.h"
 #include "gui/gui-app.h"
 #include "gui/gui-welcome.h"
+#include "utility/filesystem.h"
+
+#define CONTINUITY	  "continuity" JOIN DEF_CONF_EXT
 
 #define VALID_STYLE   DEF_STYLE
 #define VALID_X       100
@@ -47,7 +50,7 @@ IMPLEMENT_CLASS (welcome_t, d2_t)
 welcome_t :: welcome_t (wxWindow *mummy, const context_t& c, wxWindowID id, const wxString& caption)
 	: d2_t (wxPoint (VALID_X, VALID_Y), wxSize (VALID_WIDTH, VALID_HEIGHT)), c_ (c)
 {	Create (mummy, id, caption);
-	root_ = get_current_folder (); } 
+	root_ = get_working_directory (); } 
 
 bool welcome_t :: Create (wxWindow *mummy, wxWindowID id, const wxString& caption)
 {	if (! d2_t :: Create (mummy, id, caption, wxPoint (VALID_X, VALID_Y), wxSize (VALID_WIDTH, VALID_HEIGHT), VALID_STYLE)) return false;
@@ -118,10 +121,13 @@ void welcome_t :: OnClickSnippet (wxCommandEvent& )
 
 void welcome_t :: OnConfigClick (wxCommandEvent& )
 {	if (invalid ()) return;
-    standard_t w (this, c_, gp_html);
-    if (w.ShowModal () == wxID_OK)
-	{	c_ = w.c ();
-		text_summary_ -> SetValue (c_.report (gr_summary).c_str ()); } }
+    const ::boost::scoped_ptr < standard_t > w (new standard_t (this, c_, gp_html));
+    if (w.get () != nullptr)
+		if (! w -> invalid ())
+			if (w -> ShowModal () == wxID_OK)
+			{	c_ = w -> c ();
+				text_summary_ -> SetValue (c_.report (gr_summary).c_str ());
+				write_continuity_ = true; } }
 
 void welcome_t :: OnAboutClick (wxCommandEvent& )
 {	if (app != nullptr) app -> help ("about"); }
@@ -139,16 +145,34 @@ void welcome_t :: OnOkClick (wxCommandEvent& )
 
 bool welcome_t :: TransferDataToWindow ()
 {	if (invalid ()) return false;
-	rooted_ = true;
-	text_snippet_ -> Enable (false);
+	const ::boost::filesystem::path fn (get_continuity ());
+	write_continuity_ = true;
+	if (is_normal_or_zap (fn))
+	{	nitpick nits;
+		context_t c (nits, fn);
+		if (nits.worst () <= es_error) delete_file (fn);
+		else
+		{	c_.swap (c);
+			snippet_ = c_.wx_snippet ();
+			root_ = c_.root ();
+			write_continuity_ = false; } }
+	if (root_.empty ()) root_ = get_working_directory ();
+	rooted_ = snippet_.empty ();	
+	text_snippet_ -> Enable (! rooted_);
 	dir_root_ -> SetPath (root_.c_str ());	
     text_snippet_ -> SetValue (snippet_.c_str ());
 	return true; }
 
 bool welcome_t :: TransferDataFromWindow ()
-{	if (invalid ()) return false;	
-	root_ = ::boost::filesystem::path (dir_root_ -> GetPath ().c_str ());	
-	snippet_ = text_snippet_ -> GetValue ().c_str ();
+{	if (invalid ()) return false;
+	const ::boost::filesystem::path r (dir_root_ -> GetPath ().c_str ());
+	if (root_ != r)
+	{	root_ = r;	
+		write_continuity_ = true; }
+	const ::std::string s (text_snippet_ -> GetValue ().c_str ());
+	if (s != snippet_)
+	{	snippet_ = text_snippet_ -> GetValue ().c_str ();
+		write_continuity_ = true; }
 #ifdef DEBUG
 	cmd_.push_back (VERBOSE_SW);
 	cmd_.push_back (INFO);
@@ -156,39 +180,21 @@ bool welcome_t :: TransferDataFromWindow ()
 	cmd_.push_back (DFTHRD_SW);
 	cmd_.push_back ("1");
 	if (! rooted_)
-	{	cmd_.push_back (FNCYSWTCH HTML SNIPPET);
+	{	c_.wx_snippet (snippet_);
+		cmd_.push_back (FNCYSWTCH HTML SNIPPET);
 		cmd_.push_back (snippet_); }
-
-	// directory called .ssc  ... default datapath?
-	//		if has config file, use that
-	//      otherwise, root
-	// other directory  ... root
-	// file . CONF ... config file
-	// file . PERSIST ... persist file; barf
-	// file . SSC ... temporary filename; barf
-	// otherwise root is just a single file
-
-	else if (compare_no_case (DEFAULT_DATAPATH, root_.filename ().string ()))
-	{	if (::boost::filesystem::exists (root_ / DEFAULT_CONFIG_FILE))
-		{	cmd_.push_back (FILE_SW);
-			cmd_.push_back (root_.string ()); }
-		else	
-		{	cmd_.push_back (ROOT_SW);
-			cmd_.push_back (root_.string ()); } }
-	else if (! root_.has_filename ())
-	{	cmd_.push_back (ROOT_SW);
-		cmd_.push_back (root_.string ()); }
-	else if (compare_no_case (DEF_CONF_EXT, root_.extension ().string ()))
-	{	cmd_.push_back (FILE_SW);
-		cmd_.push_back (root_.string ()); }
-	else if (compare_no_case (DEF_PERSIST_EXT, root_.extension ().string ()))
-	{	return false; }
-	else if (compare_no_case (DEF_TEMP_EXT, root_.extension ().string ()))
-	 	return false;
 	else 
-	{	cmd_.push_back (ROOT_SW);
+	{	c_.wx_snippet ("");
+		c_.root (root_.string ());
+		cmd_.push_back (ROOT_SW);
 		cmd_.push_back (root_.string ()); }
+	if (write_continuity_)
+	{	nitpick nits;
+		c_.write (nits, get_continuity ()); }
 	return true; }
+
+::boost::filesystem::path welcome_t :: get_continuity () const
+{	return c_.default_config_path () / "continuity" JOIN DEF_CONF_EXT; }
 
 void welcome_t :: set_default ()
 {	c_.html_ver (html_default); }

@@ -1,0 +1,9 @@
+{
+  
+  "@type": "cr:FileObject",
+  "@id": "train2014.zip",
+  "contentSize": "13510573713 B",
+  "contentUrl": "http://images.cocodataset.org/zips/train2014.zip",
+  "encodingFormat": "application/zip",
+  "sha256": "sha256"
+}

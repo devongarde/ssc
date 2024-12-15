@@ -5,6 +5,7 @@
 <a href="environment.shtml">env</a>&nbsp;<span class="separator"><!--#echo encoding="none" var="menusep" --></span>
 <a href="html.shtml">HTML</a>&nbsp;<span class="separator"><!--#echo encoding="none" var="menusep" --></span>
 <a href="link.shtml">link</a>&nbsp;<span class="separator"><!--#echo encoding="none" var="menusep" --></span>
+<a href="json-ld.shtml">JSON-LD</a>&nbsp;<span class="separator"><!--#echo encoding="none" var="menusep" --></span>
 <a href="math.shtml">MathML</a>&nbsp;<span class="separator"><!--#echo encoding="none" var="menusep" --></span>
 <a href="microformat.shtml">microformat</a>&nbsp;<span class="separator"><!--#echo encoding="none" var="menusep" --></span>
 <a href="general.shtml">misc.</a>&nbsp;<span class="separator"><!--#echo encoding="none" var="menusep" --></span>

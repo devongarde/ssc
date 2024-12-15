@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -401,7 +401,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, "indentshiftfirst", a_indentshiftfirst },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, "indentshiftlast", a_indentshiftlast },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, "indenttarget", a_indenttarget },
-    { { HTML_PLUS }, { HTML_UNDEF }, "index", a_index },
+    { { HTML_PLUS }, { HTML_UNDEF }, INDEX, a_index },
     { { HTML_JUL12 }, { HTML_UNDEF }, "inert", a_inert },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, "infixlinebreakstyle", a_infixlinebreakstyle },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, "initialVisibility", a_initialvisibility },

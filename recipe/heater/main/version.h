@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -58,6 +58,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_2022   22
 #define HTML_2023   23
 #define HTML_2024   24
+#define HTML_2025   25
 #define HTML_2099   99
 
 #define MAJOR_TAGS   0
@@ -272,25 +273,31 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_MAR23  HTML_2023, (HTML_MAR + HTML_31ST)
 #define HTML_APR23  HTML_2023, HTML_APR
 #define HTML_JUL23  HTML_2023, HTML_JUL
+#define HTML_AUG23  HTML_2023, HTML_AUG
 #define HTML_SEP23  HTML_2023, HTML_SEP
 #define HTML_OCT23  HTML_2023, HTML_OCT
 #define HTML_NOV23  HTML_2023, HTML_NOV
+#define HTML_DEC23  HTML_2023, HTML_DEC
 #define HTML_JAN24  HTML_2024, HTML_JAN
+#define HTML_FEB24  HTML_2024, HTML_FEB
 #define HTML_MAR24  HTML_2024, HTML_MAR
 #define HTML_APR24  HTML_2024, HTML_APR
 #define HTML_MAY24  HTML_2024, HTML_MAY
+#define HTML_JUN24  HTML_2024, HTML_JUN
 #define HTML_JUL24  HTML_2024, HTML_JUL
 #define HTML_AUG24  HTML_2024, HTML_AUG
 #define HTML_SEP24  HTML_2024, HTML_SEP
 #define HTML_OCT24  HTML_2024, HTML_OCT
 #define HTML_NOV24  HTML_2024, HTML_NOV
+#define HTML_DEC24  HTML_2024, HTML_DEC
+#define HTML_JAN25  HTML_2025, HTML_JAN
 #define HTML_DEC99  HTML_2099, (HTML_DEC + HTML_31ST)
 
 #define HTML_5_EARLIEST_YEAR    HTML_2005
 #define HTML_5_EARLIEST_MONTH   1
 
-#define HTML_LATEST_YEAR        HTML_2024
-#define HTML_LATEST_MONTH       11
+#define HTML_LATEST_YEAR        HTML_2025
+#define HTML_LATEST_MONTH       1
 
 #define HTML_CURRENT            HTML_OCT24
 
@@ -347,6 +354,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_CC         HTML_2008, HTML_MAR
 #define HTML_CITO       HTML_2018, HTML_FEB
 #define HTML_CONTENT    HTML_RDF10
+#define HTML_CROISSANT_0_2  HTML_AUG23
+#define HTML_CROISSANT_0_3  HTML_SEP23
+#define HTML_CROISSANT_0_4  HTML_NOV23
+#define HTML_CROISSANT_0_6  HTML_DEC23
+#define HTML_CROISSANT_0_8  HTML_JAN24
+#define HTML_CROISSANT_1_0  HTML_JAN24
+#define HTML_CROISSANT_1_1  HTML_FEB24
+#define HTML_CROISSANT_1_2  HTML_MAR24
+#define HTML_CROISSANT_1_3  HTML_APR24
+#define HTML_CROISSANT_1_4  HTML_MAY24
+#define HTML_CROISSANT_1_5  HTML_MAY24
+#define HTML_CROISSANT_1_6  HTML_JUN24
+#define HTML_CROISSANT_1_7  HTML_JUL24
+#define HTML_CROISSANT_1_8  HTML_AUG24
+#define HTML_CROISSANT_1_9  HTML_SEP24
+#define HTML_CROISSANT_1_10  HTML_OCT24
+#define HTML_CROISSANT_1_11  HTML_NOV24
+#define HTML_CROISSANT_1_12  HTML_DEC24
 #define HTML_CSVW       HTML_JAN16
 #define HTML_CTAG       HTML_RDF10_CON
 #define HTML_DAQ        HTML_RDF10_CON
@@ -553,6 +578,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_WDRS       HTML_RDF10_CON
 #define HTML_WEBSITE    HTML_OG_2012
 #define HTML_WHATWG     HTML_JAN09
+#define HTML_WIKIDATA   HTML_JAN06
 #define HTML_XHV        HTML_RDF10
 #define HTML_XML        HTML_RDF10
 #define HTML_XSD_10     HTML_RDF10

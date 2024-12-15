@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -41,6 +41,7 @@ bool is_valid_property (nitpick& nits, const html_version& v, const e_ontology_t
         case s_cc :
         case s_cito :
         case s_content :
+        case s_croissant :
         case s_crs2 :
         case s_csvw :
         case s_ctag :
@@ -100,6 +101,7 @@ bool is_valid_property (nitpick& nits, const html_version& v, const e_ontology_t
         case s_ptr :
         case s_pur :
         case s_qb :
+        case s_rai :
         case s_rdf :
         case s_rdfg :
         case s_rev :
@@ -127,6 +129,7 @@ bool is_valid_property (nitpick& nits, const html_version& v, const e_ontology_t
         case s_wdr :
         case s_wdrs :
         case s_whatwg :
+        case s_wikidata :
         case s_xhv :
         case s_xmp :
         case s_xmpbj :
@@ -158,6 +161,7 @@ bool is_valid_property (nitpick& nits, const html_version& v, const e_ontology_t
         case s_cc :
         case s_cito :
         case s_content :
+        case s_croissant :
         case s_crs2 :
         case s_csvw :
         case s_ctag :
@@ -217,6 +221,7 @@ bool is_valid_property (nitpick& nits, const html_version& v, const e_ontology_t
         case s_ptr :
         case s_pur :
         case s_qb :
+        case s_rai :
         case s_rdf :
         case s_rdfg :
         case s_rev :
@@ -244,6 +249,7 @@ bool is_valid_property (nitpick& nits, const html_version& v, const e_ontology_t
         case s_wdr :
         case s_wdrs :
         case s_whatwg :
+        case s_wikidata :
         case s_xhv :
         case s_xmp :
         case s_xmpbj :

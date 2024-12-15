@@ -1,0 +1,10 @@
+{
+  
+  "@type": "cr:FileObject",
+  "@id": "flores200_dataset.tar.gz",
+  "description": "Flores 200 is hosted on a webserver.",
+  "contentSize": "25585843 B",
+  "contentUrl": "https://tinyurl.com/flores200dataset",
+  "encodingFormat": "application/x-gzip",
+  "sha256": "c764ffdeee4894b3002337c5b1e70ecf6f514c00"
+}

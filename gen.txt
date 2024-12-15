@@ -531,7 +531,7 @@ of older sites.
                             ...         (halfly)
                             2021/1/1    WhatWG HTML 5 (Jan 2021)
                             ...         (quarterly)
-                            2024/4/1    WhatWG HTML 5 (Apr 2024)
+                            2025/1/1    WhatWG HTML 5 (Jan 2025)
 
                             XHTML 1.0   XHTML 1.0
                             XHTML 1.1   XHTML 1.1 core
@@ -562,6 +562,29 @@ of older sites.
 
 --html.wx               The site is intended for use with wxWidgets'
                         HTML engine.
+
+Json-LD switches
+Please note this is an incomplete validation. It was written to
+enable testing of certain ontologies.
+
+--jsonld.extension x    Files with extension x are JSON-LD files.
+                        The default is 'jld'. May be repeated
+
+--jsonld.ontology x:y   Ontology symbol X refers to ontology y. For
+                        example, sc:https://schema.org/ to use sc to
+                        represent schema in the JSON-LD files. Omitting
+                        ':y' works when using a standard shortening,
+                        such as the usual 'schema' for schema.org.
+                        The switch also accepts 'all' for all
+                        ontologies known to ssc, and 'standard' for a
+                        common set of ontologies. May be repeated.
+
+--jsonld.pretty         When outputting JSON-LD, do so prettily.
+
+--jsonld.verify         Verify JSON-LD files.
+
+--jsonld.version v      Adhere to this version of JSON-LD (v can be
+                        '1.0' or '1.1'), default '1.0'.
 
 Link switches
 If you want to check links on the site, you'll find these switches
@@ -781,6 +804,7 @@ ontologies (see --ontology.list).
                                 cc 1.0
                                 cito 2.8
                                 content 1.0
+                                cr 0.2-1.12 (see below)
                                 crs 1.0 (see below)
                                 csvw 1.0
                                 ctag 1.0
@@ -843,6 +867,7 @@ ontologies (see --ontology.list).
                                 ptr 1.0
                                 pur 2.1-3.0 (see below)
                                 qb 1.0
+                                rai 1.0.3-1.0.12 (see below)
                                 rdf 1.0-1.3
                                 rdfa 1.0-1.3
                                 rdfg 1.0
@@ -914,6 +939,28 @@ ontologies (see --ontology.list).
                         Since this is unofficial, both standard English
                         and American dialect spellings are processed.
 
+                        The croissant (cr and rai) ontologies follow
+                        this version scheme:
+                            For     Use
+                            0.0.2   0.2 (cr only)
+                            0.0.3   0.3 (cr only)
+                            0.0.4   0.4 (cr only)
+                            0.0.6   0.6 (cr only)
+                            0.8     0.8 (cr only)
+                            1.0     1.0 (cr only)
+                            1.0.1   1.1 (cr only)
+                            1.0.2   1.2 (cr only)
+                            1.0.3   1.3 (cr and rai)
+                            1.0.4   1.4 (cr and rai)
+                            1.0.5   1.5 (cr and rai)
+                            1.0.6   1.6 (cr and rai)
+                            1.0.7   1.7 (cr and rai)
+                            1.0.8   1.8 (cr and rai)
+                            1.0.9   1.9 (cr and rai)
+                            1.0.10  1.10 (cr and rai)
+                            1.0.11  1.11 (cr and rai)
+                            1.0.12  1.12 (cr and rai)
+
                         The data privacy family of ontologies follow
                         this versioning scheme:
                             Use     For
@@ -932,6 +979,7 @@ ontologies (see --ontology.list).
                             0.90    0.9
                             1.0     1
                             2.0     2
+
                         The data privacy ontology versions:
                             ai              2
                             dpv             0.1-2

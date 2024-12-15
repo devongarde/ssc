@@ -1,7 +1,15 @@
 RELEASE NOTES
 static site checker
 https://ssc.lu/
-(c) 2020-2024 Dylan Harris
+(c) 2020-2025 Dylan Harris
+
+0.2.7
+- living standard :open psuedo selector
+- improve sequoia arm build
+- croissant ontology, as much as is practical
+- expand and document json-ld
+- various bug fixes
+- underlying work
 
 0.2.6
 - schema.org version 28.1

@@ -1,0 +1,49 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+  },
+  "@type": "sc:Dataset",
+  "name": "simple-pass",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "description": "PASS is a large-scale image dataset that does not include any humans ...",
+  "citeAs": "@Article{asano21pass, author = \"Yuki M. Asano and Christian Rupprecht and ...",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "url": "https://www.robots.ox.ac.uk/~vgg/data/pass/",
+  {
+    "@context": {
+      "@language": "en",
+      "@vocab": "https://schema.org/"
+    },
+    "@type": "sc:Dataset",
+    "name": "simple-pass",
+    "conformsTo": "http://mlcommons.org/croissant/1.0",
+    "description": "PASS is a large-scale image dataset that does not include any humans ...",
+    "citeAs": "@Article{asano21pass, author = \"Yuki M. Asano and Christian Rupprecht and ...",
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "url": "https://www.robots.ox.ac.uk/~vgg/data/pass/",
+    "distribution": [
+      {
+        "@type": "cr:FileObject",
+        "@id": "metadata.csv",
+        "contentUrl": "https://zenodo.org/record/6615455/files/pass_metadata.csv",
+        "encodingFormat": "text/csv",
+        "sha256": "0b033707ea49365a5ffdd14615825511"
+      },
+      {
+        "@type": "cr:FileObject",
+        "@id": "pass9",
+        "contentUrl": "https://zenodo.org/record/6615455/files/PASS.9.tar",
+        "encodingFormat": "application/x-tar",
+        "sha256": "f4f87af4327fd1a66dd7944b9f59cbcc"
+      },
+      {
+        "@type": "cr:FileSet",
+        "@id": "image-files",
+        "containedIn": { "@id": "pass9" },
+        "encodingFormat": "image/jpeg",
+        "includes": "*.jpg"
+      }
+    ]
+  }
+}

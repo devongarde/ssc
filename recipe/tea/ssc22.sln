@@ -34,9 +34,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "httpd", "..\httpd\", "{D634
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ssc22-wx", "ssc22wx.vcxproj", "{CDFD1629-A939-463B-B181-58512930A8E4}"
-	ProjectSection(ProjectDependencies) = postProject
-		{19E11ED4-2652-40E1-9EBB-F69A244C7301} = {19E11ED4-2652-40E1-9EBB-F69A244C7301}
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

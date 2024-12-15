@@ -1,5 +1,6 @@
-../toast/output/html/output.spec
-../toast/output/out/output.spec
-../toast/output/test/output.spec
-../toast/output/text/output.spec
-../toast/output/xhtml/output.spec
+../toast/json-ld/1.0/jsonld.spec
+../toast/json-ld/adms/jsonld.spec
+../toast/json-ld/as/jsonld.spec
+../toast/json-ld/certification/jsonld.spec
+../toast/json-ld/croissant/jsonld.spec
+../toast/json-ld/schemaorg/jsonld.spec

@@ -1,6 +1,6 @@
 ﻿/*                                                                 ,
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -33,7 +33,6 @@ class app_t : public wxApp
     wxHtmlHelpController* help_ = nullptr;
     ::boost::filesystem::path help_path_;
     vstr_t cmd_;
-    bool Welcome (context_t& context);
 protected:
     DECLARE_EVENT_TABLE ();   
 public:
@@ -57,6 +56,7 @@ public:
     static bool load_conf (wxWindow* mummy, context_t& c, ::boost::filesystem::path& fn);
     static bool save_conf (wxWindow* mummy, context_t& c, const ::boost::filesystem::path& fn);
     static bool save_conf_as (wxWindow* mummy, context_t& c, ::boost::filesystem::path& fn);
+    bool Welcome (context_t& context);
     virtual bool OnInit ();
     virtual int OnExit (); };
 

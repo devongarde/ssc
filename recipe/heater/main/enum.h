@@ -1,6 +1,6 @@
 ﻿/*                                                                 ,
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -240,15 +240,12 @@ typedef enum {  button_all,
                 list_level,
                 list_css_module,
                 list_ontology,
-                menu_conf_open, menu_conf_save, menu_conf_save_as, menu_css,
-                menu_general,
-                menu_help, menu_html,
-                menu_next, menu_nits,
-                menu_ontology,
+                menu_conf_edit, menu_conf_open, menu_conf_save, menu_conf_save_as,
+                menu_help,
+                menu_next,
                 menu_print_setup, menu_prior, menu_properties,
                 menu_root,
-                menu_server, menu_shadow, menu_site, menu_snippet, menu_spell, menu_spin, menu_stats,
-                menu_validation,
+                menu_server, menu_spin, menu_snippet,
                 panel_configuration, panel_css,
                 panel_general,
                 panel_html,
@@ -471,6 +468,7 @@ typedef enum { cou_context,
 
 typedef enum { cp_create, cp_match_parent } e_create_parent;
 typedef enum { co_none, co_updiagonalstrike, co_downdiagonalstrike, co_verticalstrike, co_horizontalstrike } e_crossout;
+typedef enum { crfp_content, crfp_filename, crfp_fullpath, crfp_lines, crfp_linenumbers } e_cr_fileproperty;
 typedef enum { crs_custom, crs_linear, crs_mediumcontrast, crs_strongcontrast } e_crs_tonecurvename;
 typedef enum { cwb_asshot, cwb_auto, cwb_cloudy, cwb_custom, cwb_daylight, cwb_flash, cwb_flourescent, cwb_shade, cwb_tungsten } e_crs_whitebalance;
 typedef enum { cs_compress, cs_stretch } e_cs;
@@ -1501,6 +1499,7 @@ typedef enum { jsonld_none, jsonld_1_0, jsonld_1_1 } e_jsonld_version;
 typedef enum
 {   jt_unused,
     jt_list, jt_set,
+    jt_id, 
     jt_context,
     jt_type,
 
@@ -1508,7 +1507,7 @@ typedef enum
     jt_container,
     jt_direction,
     jt_graph,
-    jt_id, jt_import, jt_included, jt_index,
+    jt_import, jt_included, jt_index,
     jt_json,
     jt_language,
     jt_nest, jt_none,
@@ -2567,7 +2566,7 @@ typedef enum
     nit_excluded, nit_ftp_protocol, nit_tld, nit_no_set, nit_bad_address, nit_mf_export, nit_config_attribute, nit_config_element,
     nit_config_lingo, nit_not_ssc, nit_cannot_replace, nit_not_expected_content, nit_circular_hierarchy, nit_colourspace,
     nit_wx, nit_missing_ancestor, nit_ssi_stack, nit_ssi_exec, nit_ssi_naughty, nit_chrome, nit_ie, nit_mozilla, nit_netscape,
-    nit_opera, nit_safari, nit_invalid_duration,
+    nit_opera, nit_safari, nit_invalid_duration, nit_tame,
 
     nit_incompatible,
 
@@ -2601,7 +2600,7 @@ typedef enum
         nm_context_example, nm_context_excl_def_excl, nm_context_expand, nm_context_export_root, nm_context_exports,
         nm_context_extensions, nm_context_ext_css, nm_context_extra, nm_context_force_version, nm_context_foaf, nm_context_forward,
         nm_context_fred, nm_context_help, nm_context_icu, nm_context_ie, nm_context_ignore, nm_context_index, nm_context_pretty,
-        nm_context_info, nm_context_iterate, nm_context_jsonld, nm_context_jsonld_extension, nm_context_jsonld_version,
+        nm_context_info, nm_context_iterate, nm_context_jsonld, nm_context_jsonld_extension, nm_context_jsonld_ontology, nm_context_jsonld_version,
         nm_context_lang, nm_context_links, nm_context_local, nm_context_math, nm_context_main, nm_context_max_file_size,
         nm_context_md_export, nm_context_md_pretty, nm_context_mf_export, nm_context_mf_pretty, nm_context_mf_verify,
         nm_context_mf_version, nm_context_microdata, nm_context_mozilla, nm_context_msg, nm_context_netscape, nm_context_no_ex_check, nm_context_once, nm_context_output,
@@ -2704,7 +2703,7 @@ typedef enum { oo_off, oo_on } e_onoff;
     s_none, \
     s_adms, s_article, s_as, \
     s_bfo, s_bibo, s_biro, s_book, \
-    s_cc, s_cito, s_content, s_crs2, s_csvw, s_ctag, \
+    s_cc, s_cito, s_content, s_croissant, s_crs2, s_csvw, s_ctag, \
     s_daq, s_dbd, s_dbo, s_dbp, s_dbp_owl, s_dbr, s_dc, s_dcam, s_dcat, s_dcmi, s_dct, s_ddi, s_doap, \
         s_dpv, s_dpv_ai, \
         s_dpv_eu_aiact, s_dpv_eu_dga, s_dpv_eu_gdpr, s_dpv_eu_nis2, s_dpv_eu_rights, \
@@ -2723,12 +2722,12 @@ typedef enum { oo_off, oo_on } e_onoff;
     s_pam, s_pamp, s_pcm, s_pcmm, s_pcv, s_pdf, s_photoshop, s_pim, s_pmi, s_poetry, s_prism, s_prism_ad, s_prl, s_prm, s_profile, \
         s_prov, s_prs, s_psv, s_ptr, s_pur, \
     s_qb, \
-    s_rdf, s_rdfa, s_rdfg, s_rdfs, s_rev, s_rif, s_role, s_rr, \
+    s_rai, s_rdf, s_rdfa, s_rdfg, s_rdfs, s_rev, s_rif, s_role, s_rr, \
     s_schema, s_sd, s_sioc, s_sioc_s, s_sioc_t, s_skos, s_skosxl, s_stdim, s_stevt, s_stfnt, s_stjob, s_stref, s_stver, s_sosa, s_spl, \
         s_ssn, s_svd, s_svdu, s_svl, s_svpu, s_svpr, s_svr, \
     s_taxo, s_tiff, s_time, \
     s_v, s_vann, s_vcard, s_video, s_void, \
-    s_wdr, s_wdrs, s_website, s_whatwg, \
+    s_wdr, s_wdrs, s_website, s_whatwg, s_wikidata, \
     s_xhv, s_xml, s_xmp, s_xmpbj, s_xmpdm, s_xmpg, s_xmpgimg, s_xmpidq, s_xmpmm, s_xmprights, s_xmptpg, s_xsd, \
     s_faux, \
     s_error
@@ -2828,6 +2827,15 @@ typedef enum
     csv_schema,
     csv_table, csv_tablegroup, csv_tablereference, csv_transformation,
     csv_uritemplate,
+
+    // croissant
+    cr_boundingbox,
+    cr_dataextraction, cr_datasource,
+    cr_extract,
+    cr_field, cr_fileobject, cr_fileset,
+    cr_recordset, cr_reference,
+    cr_split,
+    cr_transform,
 
     // data quality
     daq_metric, daq_category, daq_dimension, daq_qualitygraph, daq_observation,
@@ -4756,6 +4764,21 @@ typedef enum
     csvw_url,
     csvw_valueurl, csvw_virtual,
 
+    // croissant
+    cp_applytransform,
+    cp_citeas, cp_column, cp_containedin, cp_csvcolumn,
+    cp_data, cp_dataextraction, cp_datatype, cp_distribution,
+    cp_equivalentproperty, cp_examples, cp_excludes, cp_extract,
+    cp_field, cp_fileextension, cp_fileobject, cp_fileproperty, cp_fileset, cp_format,
+    cp_includes, cp_isenumeration, cp_islivedataset,
+    cp_jsonpath,
+    cp_key,
+    cp_md5,
+    cp_parentfield, cp_path,
+    cp_recordset, cp_references, cp_regex, cp_repeated, cp_replace,
+    cp_separator, cp_source, cp_subfield,
+    cp_transform,
+
     // data quality
     daq_computedon,
     daq_expecteddatatype,
@@ -5540,6 +5563,14 @@ typedef enum
     qbp_observation, qbp_observationgroup, qbp_order,
     qbp_parentchildproperty,
     qbp_slice, qbp_slicekey, qbp_slicestructure, qbp_structure,
+
+    // croissant RAI
+    rai_annotationsperitem, rai_annotatordemographics,
+     rai_dataannotationanalysis, rai_dataannotationplatform, rai_dataannotationprotocol, rai_databiases, rai_datacollection, rai_datacollectionmissingdata,
+        rai_datacollectionrawdata, rai_datacollectiontimeframe, rai_datacollectiontype, rai_dataimputationprotocol, rai_datalimitations, rai_datamanipulationprotocol,
+        rai_datapreprocessingprotocol, rai_datareleasemaintenanceplan, rai_datasocialimpact, rai_datausecases,
+    rai_machineannotationtools,
+    rai_personalsensitiveinformation,
 
     // RDF
     rdf_description, rdf_direction, rdf_first, rdf_language, rdf_object, rdf_predicate, rdf_resource, rdf_rest, rdf_subject, rdf_type, rdf_value,
@@ -6675,8 +6706,8 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 #define SSC_TYPES_C_2 \
     t_content_encoding,  t_content_encodings, t_content_type, t_context_menu, t_contents, t_controlslist, t_cookie, t_cookieid, t_cookies, \
-        t_coordinatesystem, t_coords,  t_copy, t_corp, t_cors, t_country, t_cntype, t_create_parent, t_crossout, t_crs_tonecurvename, t_crs_whitebalance, \
-        t_cs, t_csp, t_csp_ancestor,  t_csp_directive, t_csp_keyword, t_csp_sauce, t_csp_source
+        t_coordinatesystem, t_coords, t_copy, t_corp, t_cors, t_country, t_cntype, t_crdatatype, t_create_parent, t_cr_fileproperty, t_crossout, \
+        t_crs_tonecurvename, t_crs_whitebalance, t_cs, t_csp, t_csp_ancestor, t_csp_directive, t_csp_keyword, t_csp_sauce, t_csp_source
 #define SSC_TYPES_C_2_MAX t_csp_source
 
 #define SSC_TYPES_CSS_A \
@@ -6887,7 +6918,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_J_K \
         t_intent, t_intent_app, t_intent_args, t_intent_conlit, t_intent_hint, t_intent_ref, t_interactive_widget, t_inverted_colours, t_ip_address, \
         t_is, t_isbn, t_issn, t_itemid, t_itemprop, t_itemtype, t_itemref, \
-    t_js_lang, t_js_lang_map, t_js_map, t_js_term, t_js_type, t_js_value, t_js_version, t_jtoken, t_just_date, t_just_time, \
+    t_js_lang, t_js_lang_map, t_js_map, t_js_term, t_js_type, t_js_value, t_js_version, t_json, t_jtoken, t_just_date, t_just_time, \
     t_k_m_n, t_key, t_keygentype, t_keyspline, t_keysplines, t_keytimes, t_keytype, t_kind
 #define SSC_TYPES_J_K_MAX t_kind
 
@@ -7003,8 +7034,8 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_V_W \
         t_viewport_semi, t_viewport_setting, t_viewport_target_densitydpi, t_viewport_user_scalable, t_viewport_width, \
         t_viewportscreen, t_visibility, t_visibility10, t_visibility11, t_vkind, t_vocab, t_vrel, t_vtt, t_vtype, t_vunit, t_vunits, \
-    t_wanted, t_wallclock, t_week, t_weekday_english_short, t_weekday_english_long, t_whitespace, t_width, t_workertype, t_wrap, t_wrap3, t_writingmode, t_wxhs, \
-        t_wximgalign
+    t_wanted, t_wallclock, t_week, t_weekday_english_short, t_weekday_english_long, t_whitespace, t_width, t_wildcard, t_workertype, t_wrap, t_wrap3, \
+        t_writingmode, t_wxhs, t_wximgalign
 #define SSC_TYPES_V_W_MAX t_wximgalign
 
 #define SSC_TYPES_X \

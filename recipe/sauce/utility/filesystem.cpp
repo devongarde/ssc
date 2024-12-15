@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "utility/common.h"
 #include "utility/filesystem.h"
+#include "main/args.h"
 
 #ifndef UNIX
 // see also local_path_to_nix declaration in fileindex.h
@@ -181,6 +182,30 @@ bool file_permissions (const ::boost::filesystem::path& name, ::boost::filesyste
         {   return name; } }
     return res; }
 
+::boost::filesystem::path get_working_directory ()
+{   ::boost::filesystem::path res;
+#ifdef FS_THROWS
+    {   try
+	    {	res = ::boost::filesystem::current_path (); }
+	    catch (...)
+#else // FS_THROWS
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::current_path (jec);
+        if (jec.failed ())
+#endif // FS_THROWS
+        {  } }
+    if (res.empty ())
+    {   try
+        {   char dn [ARGLEN_MAX];
+#ifdef WIN32
+            res = _getcwd (dn, ARGLEN_MAX-1);
+#else // WIN32
+            res = ::getcwd (dn, ARGLEN_MAX-1);
+#endif // WIN32
+        }
+        catch (...) { } }
+    return res; }
+
 bool make_directories (const ::boost::filesystem::path& name)
 #ifndef FS_THROWS
     noexcept
@@ -337,3 +362,10 @@ bool make_link (const ::boost::filesystem::path& name, const ::boost::filesystem
         {   return false; } }
     return true; }
 #endif // NOLYNX
+
+bool is_normal_or_zap (const ::boost::filesystem::path& fn)
+{   PRESUME (! fn.empty (), __FILE__, __LINE__);
+    if (! file_exists (fn)) return false;
+    if (is_normal_file (fn)) return true;
+    delete_file (fn);
+    return false; }

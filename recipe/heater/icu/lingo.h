@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -30,7 +30,7 @@ public:
     explicit lingo (nitpick& , const ::std::string& ) { }
     static void init (nitpick& ) { }
     static void identify_dialects (nitpick& ) { }
-    static ::std::string standard_dialect (const ::std::string& ) { }
+    static ::std::string standard_dialect (const ::std::string& ) { return STANDARD_ENGLISH; }
 };
 #else // NOICU
 #include "icu/wrapper.h"

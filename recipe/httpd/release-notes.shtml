@@ -20,11 +20,46 @@
 
 <div class="column-unit">
 
+<h3>0.2.7</h3>
+
+<ul>
+<li>
+living standard :open psuedo selector
+</li>
+<li>
+improve sequoia arm build
+</li>
+<li>
+croissant ontology, as much as is practical
+</li>
+<li>
+expand and document JSON-LD
+</li>
+<li>
+various bug fixes
+</li>
+<li>
+underlying work
+</li>
+</ul>
+
 <h3>0.2.6</h3>
 
 <ul>
 <li>
+schema.org version 28.1
+</li>
+<li>
+various bug fixes
+</li>
+<li>
 underlying work
+</li>
+<li>
+<A href="src/ssc-0.2.6.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2024-11-30">24 11 30</time>
 </li>
 </ul>
 

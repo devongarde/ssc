@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "feedback/nitpick.h"
 #include "ontology/ontology_version.h"
 
-#define LATEST_HTML_STR "Jul 2024"
+#define LATEST_HTML_STR "Oct 2024"
 #define LATEST_CSS_STR  "2024"
 
 #define HV_LEVEL1       0x0000000000000001
@@ -757,6 +757,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H4_CSS_2024_1     ( 0 )
 #define H4_CSS_2024_2     ( H4_CSS_TRANSITION_3 )
 
+#define H4_LV_JAN25         0x4000000000000000
 #define H4_RUBY             0x8000000000000000
 
 
@@ -1058,6 +1059,24 @@ const html_version html_adms_2_0 (HTML_ADMS_2_0);
 const html_version html_as_1_0 (HTML_AS_1_0);
 const html_version html_as_2_0 (HTML_AS_2_0);
 const html_version html_cc (HTML_CC);
+const html_version html_croissant_1_12 (HTML_CROISSANT_1_12);
+const html_version html_croissant_1_11 (HTML_CROISSANT_1_11);
+const html_version html_croissant_1_10 (HTML_CROISSANT_1_10);
+const html_version html_croissant_1_9 (HTML_CROISSANT_1_9);
+const html_version html_croissant_1_8 (HTML_CROISSANT_1_8);
+const html_version html_croissant_1_7 (HTML_CROISSANT_1_7);
+const html_version html_croissant_1_6 (HTML_CROISSANT_1_6);
+const html_version html_croissant_1_5 (HTML_CROISSANT_1_5);
+const html_version html_croissant_1_4 (HTML_CROISSANT_1_4);
+const html_version html_croissant_1_3 (HTML_CROISSANT_1_3);
+const html_version html_croissant_1_2 (HTML_CROISSANT_1_2);
+const html_version html_croissant_1_1 (HTML_CROISSANT_1_1);
+const html_version html_croissant_1_0 (HTML_CROISSANT_1_0);
+const html_version html_croissant_0_8 (HTML_CROISSANT_0_8);
+const html_version html_croissant_0_6 (HTML_CROISSANT_0_6);
+const html_version html_croissant_0_4 (HTML_CROISSANT_0_4);
+const html_version html_croissant_0_3 (HTML_CROISSANT_0_3);
+const html_version html_croissant_0_2 (HTML_CROISSANT_0_2);
 const html_version html_dc_1_0 (HTML_DC_1_0);
 const html_version html_dc_1_1 (HTML_DC_1_1);
 const html_version html_dcterms_1_0 (HTML_DCTERMS_1_0);
@@ -1110,6 +1129,16 @@ const html_version html_prism_2_0 (HTML_PRISM_2_0);
 const html_version html_prism_2_1 (HTML_PRISM_2_1);
 const html_version html_prism_3_0 (HTML_PRISM_3_0);
 const html_version html_prism_3_1 (HTML_PRISM_3_1);
+const html_version html_rai_1_12 (HTML_CROISSANT_1_12);
+const html_version html_rai_1_11 (HTML_CROISSANT_1_11);
+const html_version html_rai_1_10 (HTML_CROISSANT_1_10);
+const html_version html_rai_1_9 (HTML_CROISSANT_1_9);
+const html_version html_rai_1_8 (HTML_CROISSANT_1_8);
+const html_version html_rai_1_7 (HTML_CROISSANT_1_7);
+const html_version html_rai_1_6 (HTML_CROISSANT_1_6);
+const html_version html_rai_1_5 (HTML_CROISSANT_1_5);
+const html_version html_rai_1_4 (HTML_CROISSANT_1_4);
+const html_version html_rai_1_3 (HTML_CROISSANT_1_3);
 const html_version html_rdf (HTML_RDF10);
 const html_version html_rdf_1_0 (HTML_RDF10);
 const html_version html_rdf_1_0_con (HTML_RDF10_CON);
@@ -1239,6 +1268,7 @@ const html_version html_wdr (HTML_WDR);
 const html_version html_wdrs (HTML_WDRS);
 const html_version html_website (HTML_WEBSITE);
 const html_version html_whatwg (HTML_WHATWG);
+const html_version html_wikidata (HTML_WIKIDATA);
 const html_version html_xhv (HTML_XHV);
 const html_version html_xml (HTML_XML);
 const html_version html_xmp (HTML_ADOBE);
@@ -1308,7 +1338,8 @@ const html_version html_apr24 (HTML_APR24, css_2024, HV_WHATWG, HE_MICRODATA | H
 const html_version html_may24 (HTML_MAY24, css_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY);
 const html_version html_jul24 (HTML_JUL24, css_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY);
 const html_version html_oct24 (HTML_OCT24, css_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY);
-const html_version html_nov24 (HTML_NOV24, css_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY);
+//const html_version html_nov24 (HTML_NOV24, css_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY);
+const html_version html_jan25 (HTML_JAN25, css_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY);
 const html_version html_5_0 (HTML_5_0, css_2010, HV_W3, HE_SVG_11, H2_MATH_2);
 const html_version html_5_1 (HTML_5_1, css_2015, HV_W3, HE_SVG_11, H2_MATH_2);
 const html_version html_5_2 (HTML_5_2, css_2017, HV_W3, HE_SVG_11, H2_MATH_3);

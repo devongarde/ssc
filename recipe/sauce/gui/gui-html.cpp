@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -106,7 +106,8 @@ html_version selection_version [] =
 	html_jan24,
 	html_apr24,
 	html_jul24,
-    html_oct24 };
+    html_oct24,
+	html_jan25 };
 static constexpr int selection_count = sizeof (selection_version) / sizeof (html_version);
 
 // https://stackoverflow.com/questions/3191664/list-of-all-locales-and-their-short-codes#3191729

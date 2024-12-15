@@ -1,6 +1,6 @@
 /*
 ssc (static site checker)
-Copyright (c) 2020-2024 Dylan Harris
+Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
 
 This program is free software: you can redistribute it and/or modify
@@ -214,9 +214,12 @@ options::options (const context_t& c)
     INSERT (::std::size_t, HTML, TITLE, title);
     if (def.html_ver () != c.html_ver ()) insert < ::std::string > (HTML VERSION, c.html_ver ().name ());
     INSERT_BOOL (HTML, WXARG, wx);
+    INSERT_STRING (HTML, WX_SNIPPET, wx_snippet);
 
     if (c.jsonld_extension () != def.jsonld_extension ())
         INSERT_VSTR (JSONLD, EXTENSION, jsonld_extension);
+
+    INSERT_VSTR (JSONLD, ONTOLOGY_, jsonld_ontology);
     INSERT_BOOL (JSONLD, PRETTY, pretty);
     INSERT_BOOL (JSONLD, VERIFY, jsonld);
     INSERT_ENUM (t_js_version, JSONLD, VERSION, jsonld_version);
@@ -296,10 +299,12 @@ options::options (const context_t& c)
     INSERT_BOOL (SHADOW, SSI, shadow_ssi);
     INSERT_BOOL (SHADOW, UPDATE, update);
     INSERT_VSTR (SHADOW, VIRTUAL, shadows);
+    INSERT_STRING (SHADOW, INDEX, index);
 
     if (c.extensions () != def.extensions ())
         INSERT_VSTR (WEBSITE, EXTENSION, extensions);
-    INSERT_STRING (SHADOW, INDEX, index);
+    INSERT_STRING (WEBSITE, INDEX, index);
+    INSERT_STRING (WEBSITE, ROOT, root);
     INSERT_VSTR (WEBSITE, SITE, site);
     INSERT_VSTR (WEBSITE, VIRTUAL, virtuals);
 
@@ -658,10 +663,13 @@ void options::yea_nay (context_t& c, const e_css_module m, nitpick& nits, const 
 void options::init (context_t& c)
 {   if (cmd_.options ().size () > 0) return;
     pos_.add (WEBSITE ROOT, 1);
+    ::std::string defconf ("Load configuration from ");
+    defconf += context.default_config_file ().string ();
+    defconf += ".";
     basic_.add_options ()
         (ASK "," ASK_SW_, ::boost::program_options::bool_switch (), "Ask for parameters")
         (CONFIG "," FILE_SW_, ::boost::program_options::value < ::std::string > (), "Load configuration from this file.")
-        (DEFCONF "," DEFCONF_SW_, ::boost::program_options::bool_switch (), "Load configuration from " CONFIGURATION ".")
+        (DEFCONF "," DEFCONF_SW_, ::boost::program_options::bool_switch (), defconf.c_str ())
         (HELP "," HELP_SW_, ::boost::program_options::bool_switch (), "Output this information and exit.")
         (HTML SNIPPET "," SNIPPET_SW_, ::boost::program_options::value < ::std::string > (), "Only nitpick the given snippet of HTML.")
         (ONTOLOGY LIST, ::boost::program_options::bool_switch (), "List known ontology schema for microdata andor RDFa, then exit.")
@@ -741,6 +749,7 @@ void options::init (context_t& c)
 
         (HTML SSI, ::boost::program_options::bool_switch (), "Process (simple) Server Side Includes.")
         (HTML DONT SSI, ::boost::program_options::bool_switch (), "Do not process Server Side Includes.")
+        (HTML WX_SNIPPET, ::boost::program_options::value < ::std::string > (), "Snippet seen in wx intro dialogue.")
 
         (MATH CORE, ::boost::program_options::bool_switch (), "MathML Core (May 2022 draft).")
         (MATH DONT CORE, ::boost::program_options::bool_switch (), "Avoid MathML Core.")
@@ -971,6 +980,7 @@ void options::init (context_t& c)
         (HTML DONT WXARG, ::boost::program_options::bool_switch (), "Do not warn about HTML tags and attributes unsupported by wxWidgets' HTML engine.")
  
         (JSONLD EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "Extension for JSON-LD files (default jld); may be repeated.")
+        (JSONLD ONTOLOGY_, ::boost::program_options::value < vstr_t > () -> composing (), "Predefine JSON-LD ontology context, format \"shortname:URL\": may be repeated")
         (JSONLD PRETTY, ::boost::program_options::bool_switch (), "Output pretty JSON.")
         (JSONLD DONT PRETTY, ::boost::program_options::bool_switch (), "Output ugly JSON.")
         (JSONLD VERIFY, ::boost::program_options::bool_switch (), "Experimental: Verify JSON-LD (incomplete).")
@@ -1370,7 +1380,7 @@ void options::parse (context_t& c, output_streams_t& o, nitpick& nits, const vst
     yea_nay (c, &context_t::iterate, nits, ASK, DONT ASK);
 
     if (var_.count (CONFIG) || var_ [DEFCONF].as <bool > () || env_var_.count (ENV_CONFIG))
-    {   ::boost::filesystem::path file (CONFIGURATION);
+    {   ::boost::filesystem::path file (context.default_config_file ());
         if (var_.count (CONFIG)) file = var_ [CONFIG].as < ::std::string > ();
         else if ((! var_ [DEFCONF].as <bool > ()) && env_var_.count (ENV_CONFIG)) file = env_var_ [ENV_CONFIG].as < ::std::string > ();
         nits.set_context (0, file.string ());
@@ -1653,8 +1663,7 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
                     else if (compare_no_case (ver, "tags")) c.html_ver (html_tags);
                     else nits.pick (nit_config_version, es_error, ec_init, quote (ver), ": bad HTML version"); } } }
     if (! c.cgi ())
-        if (var_.count (WEBSITE ROOT) == 0) c.root (nix_path_to_local ("."));
-        else
+        if (var_.count (WEBSITE ROOT) != 0)
         {   const ::std::string arg = trim_the_lot_off (var_ [WEBSITE ROOT].as < ::std::string > ());
             if (arg.empty ()) nits.pick (nit_no_such_folder, es_error, ec_init, "that --" WEBSITE ROOT " is a little too spaced out for " PROG);
             else
@@ -1716,7 +1725,7 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
             c.max_file_size (4 * meg);
         else
         {   long max = static_cast < long > (var_ [GENERAL MAXFILESIZE].as < int > ());
-            if (max < 0 || (max > (LONG_MAX / meg))) max = DEFAULT_MAX_FILE_SIZE;
+            if (max < 0 || (max > (LONG_MAX / meg))) max = DMFS_BYTES;
             c.max_file_size (max * meg); }
 
         if (var_.count (GENERAL CUSTOM)) c.custom_elements ( var_ [GENERAL CUSTOM].as < vstr_t > ());
@@ -1851,10 +1860,12 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
         yea_nay (c, &context_t::ssi, nits, HTML SSI, HTML DONT SSI);
         if (var_.count (HTML TITLE)) c.title (static_cast < unsigned char > (var_ [HTML TITLE].as < int > ()));
         yea_nay (c, &context_t::wx, nits, HTML WXARG, HTML DONT WXARG);
+        if (var_.count (HTML WX_SNIPPET)) c.wx_snippet (var_ [HTML WX_SNIPPET].as < ::std::string > ());
 
         yea_nay (c, &context_t::pretty, nits, JSONLD PRETTY, JSONLD DONT PRETTY);
         yea_nay (c, &context_t::jsonld, nits, JSONLD VERIFY, JSONLD DONT VERIFY);
         if (var_.count (JSONLD EXTENSION)) c.jsonld_extension (var_ [JSONLD EXTENSION].as < vstr_t > ());
+        if (var_.count (JSONLD ONTOLOGY_)) c.jsonld_ontology (var_ [JSONLD ONTOLOGY_].as < vstr_t > ());
         else { vstr_t ex; ex.push_back (JSONLD_EXT); c.jsonld_extension (ex); }
 
         if (var_.count (JSONLD VERSION))
@@ -2662,8 +2673,10 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RII (gr, res, HTML, TITLE, def_htmltitle, html);
     RG (gr, res, ::std::string, HTML, VERSION, html);
     RB (gr, res, HTML, WXARG, html);
+    RG (gr, res, ::std::string, HTML, WX_SNIPPET, html);
 
     RG (gr, res, vstr_t, JSONLD, EXTENSION, jsonld);
+    RG (gr, res, vstr_t, JSONLD, ONTOLOGY_, jsonld);
     RB (gr, res, JSONLD, PRETTY, jsonld);
     RB (gr, res, JSONLD, VERIFY, jsonld);
     RG (gr, res, ::std::string, JSONLD, VERSION, jsonld);

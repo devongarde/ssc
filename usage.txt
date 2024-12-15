@@ -1,7 +1,7 @@
 USAGE NOTES
 static site checker
 https://ssc.lu/
-(c) 2020-2024 Dylan Harris
+(c) 2020-2025 Dylan Harris
 
 
 Running SSC
@@ -335,7 +335,7 @@ root=~/www/live
 file=~/www/live.ndx
 ignore=inc
 info=
-msg=arts & ego (c) 1978-2024 dylan harris
+msg=arts & ego (c) 1978-2025 dylan harris
 
 [site]
 domain=dylanharris.org

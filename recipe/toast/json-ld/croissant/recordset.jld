@@ -1,0 +1,59 @@
+{
+  
+  "@type": "cr:RecordSet",
+  "@id": "ratings",
+  "key": [
+    { "@id": "ratings/user_id" },
+    { "@id": "ratings/movie_id" }
+  ],
+  "field": [
+    {
+      "@type": "cr:Field",
+      "@id": "ratings/user_id",
+      "dataType": "sc:Integer",
+      "source": {
+        "fileObject": { "@id": "ratings-table" },
+        "extract": {
+          "column": "userId"
+        }
+      }
+    },
+    {
+      "@type": "cr:Field",
+      "@id": "ratings/movie_id",
+      "dataType": "sc:Integer",
+      "source": {
+        "fileObject": { "@id": "ratings-table" },
+        "extract": {
+          "column": "movieId"
+        }
+      },
+      "references": {
+        "@idfield": "movies/movie_id"
+      }
+    },
+    {
+      "@type": "cr:Field",
+      "@id": "ratings/rating",
+      "description": "The score of the rating on a five-star scale.",
+      "dataType": "sc:Float",
+      "source": {
+        "fileObject": { "@id": "ratings-table" },
+        "extract": {
+          "column": "rating"
+        }
+      }
+    },
+    {
+      "@type": "cr:Field",
+      "@id": "ratings/timestamp",
+      "dataType": "sc:Integer",
+      "source": {
+        "fileObject": { "@id": "ratings-table" },
+        "extract": {
+          "column": "timestamp"
+        }
+      }
+    }
+  ]
+}
