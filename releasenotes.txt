@@ -3,8 +3,16 @@ static site checker
 https://ssc.lu/
 (c) 2020-2025 Dylan Harris
 
+0.2.8
+- Living Standard January 2025
+- update CSS 2024 snapshots, adding 24+++
+- dcat ontology version 3.0
+- partial checking of older spdx ontologies
+- ptr ontology
+- underlying work
+
 0.2.7
-- living standard :open psuedo selector
+- living standard :open pseudo selector
 - improve sequoia arm build
 - croissant ontology, as much as is practical
 - expand and document json-ld

@@ -22,15 +22,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #ifdef WX
 
-struct wx_corpus { CONSTEXPR static char const* sz () { return "corpus"; } };
 struct wx_css { CONSTEXPR static char const* sz () { return "CSS"; } };
 struct wx_default { CONSTEXPR static char const* sz () { return "welcome"; } };
-struct wx_file { CONSTEXPR static char const* sz () { return "file"; } };
 struct wx_general { CONSTEXPR static char const* sz () { return "general"; } };
 struct wx_html { CONSTEXPR static char const* sz () { return "HTML"; } };
-struct wx_lynx { CONSTEXPR static char const* sz () { return "lynx"; } };
-struct wx_math { CONSTEXPR static char const* sz () { return "MathML"; } };
-struct wx_mf { CONSTEXPR static char const* sz () { return "microformats"; } };
 struct wx_nits { CONSTEXPR static char const* sz () { return "nits"; } };
 struct wx_ontology { CONSTEXPR static char const* sz () { return "ontology"; } };
 struct wx_shadow { CONSTEXPR static char const* sz () { return "shadow"; } };
@@ -39,7 +34,7 @@ struct wx_snippet { CONSTEXPR static char const* sz () { return "snippet"; } };
 struct wx_spell { CONSTEXPR static char const* sz () { return "spell"; } };
 struct wx_ssi { CONSTEXPR static char const* sz () { return "SSI"; } };
 struct wx_stats { CONSTEXPR static char const* sz () { return "stats"; } };
-struct wx_svg { CONSTEXPR static char const* sz () { return "SVG"; } };
+struct wx_summary { CONSTEXPR static char const* sz () { return "summary"; } };
 struct wx_valid { CONSTEXPR static char const* sz () { return "validation"; } };
 
 #define DEF_CAPTION "missing caption"

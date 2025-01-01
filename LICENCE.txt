@@ -88,6 +88,13 @@ https://whatwg.org/ for details.
 
 
 
+spdx
+====
+Uses the CREATIVE COMMONS ATTRIBUTION LICENSE 3.0 UNPORTED licence;
+see https://spdx.dev/wp-content/uploads/sites/31/2023/09/spdx-1.0.pdf .
+
+
+
 libcurl
 =======
 

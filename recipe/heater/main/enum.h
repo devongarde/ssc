@@ -182,6 +182,7 @@ typedef enum
     a_z, a_zindex, a_zoomandpan,
     a_illegal
  } e_attribute;
+const e_attribute first_attribute = a_abbr;
 const e_attribute last_attribute = a_illegal;
 
 typedef enum { an_auto, an_css, an_xml } e_attributetype;
@@ -222,6 +223,7 @@ typedef enum {  button_all,
                 button_shadow_add, button_shadow_erase, button_shadow_rename,
                 button_site_add, button_site_erase, button_site_rename,
                 button_validation_add, button_validation_erase, button_validation_rename,
+                button_virtual_add, button_virtual_erase, button_virtual_rename,
                 button_word_add, button_word_erase, button_word_rename,
                 check_corpus_output,
                 check_export, check_external,
@@ -235,8 +237,8 @@ typedef enum {  button_all,
                 check_wx,
                 choice_css_version, choice_html_version, choice_ontology_version, choice_validation_version,
                 dir_root,
-                file_css_name, file_dict_name, file_general_name, file_hun_name, file_shadow_name, file_site_name, file_validation_name, file_word_name,
-                list_css_ext, list_dict_ext, list_general_ext, list_hun_ext, list_shadow_ext, list_site_ext, list_validation_ext, list_word_ext,
+                file_css_name, file_dict_name, file_general_name, file_hun_name, file_shadow_name, file_site_name, file_validation_name, file_virtual_name, file_word_name,
+                list_css_ext, list_dict_ext, list_general_ext, list_hun_ext, list_shadow_ext, list_site_ext, list_validation, list_virtual, list_word_ext,
                 list_level,
                 list_css_module,
                 list_ontology,
@@ -259,7 +261,7 @@ typedef enum {  button_all,
                 snippet_dialogue,
                 spin_file_size,
                 spin_fred,
-                text_css_ext, text_dict_ext, text_general_ext, text_hun_ext, text_shadow_ext, text_site_ext, text_word_ext, text_validation_ext,
+                text_css_ext, text_dict_ext, text_general_ext, text_hun_ext, text_shadow_ext, text_site_ext, text_word_ext, text_validation, text_virtual,
                 text_output, text_snippet, text_summary } e_bar_gum;
 typedef enum { bcn_baseline, bcn_contain, bcn_none } e_baseline_contain_none;
 typedef enum { bsb_baseline, bsb_bottom, bsb_centre, bsb_top, bsb_sub, bsb_super, bsb_inherit } e_baselineshift;
@@ -1096,9 +1098,10 @@ typedef enum { cvc_e, cvc_infinity, cvc_nan, cvc_pi } e_css_val_con;
 typedef enum {  CSS_VAL_FN } e_css_val_fn;
 typedef enum {  css_none, css_bespoke, css_1, css_2_0, css_2_1, css_2_2, css_3, css_4, css_5, css_6, css_2007, css_2010,
                 css_2015, css_2015_1, css_2015_2, css_2017, css_2017_1, css_2017_2, css_2018, css_2018_1, css_2018_2, css_2020, css_2020_1, css_2020_2,
-                css_2021, css_2021_1, css_2021_2, css_2022, css_2022_1, css_2022_2, css_2023, css_2023_1, css_2023_2, css_2024, css_2024_1, css_2024_2,
+                css_2021, css_2021_1, css_2021_2, css_2022, css_2022_1, css_2022_2, css_2023, css_2023_1, css_2023_2, css_2024, css_2024_1, css_2024_2, css_2024_3,
+                css_2025, css_2025_1, css_2025_2, css_2025_3,
                 css_unknown } e_css_version;
-constexpr e_css_version css_version_max = css_2024_2;
+constexpr e_css_version css_version_max = css_2025_3;
 typedef enum { ecva_inherit, ecv_baseline, ecv_bottom, ecv_middle, ecv_sub, ecv_super, ecv_text_bottom, ecv_text_top, ecv_top } e_css_vertical_align;
 typedef enum { eccl_border_box, eccl_content_box, eccl_padding_box } e_css_visual_box;
 typedef enum { cva_child, cva_old, cva_young  } e_css_voice_age;
@@ -1277,6 +1280,7 @@ typedef enum {
 
     elem_error
 } e_element_tag;
+const e_element_tag first_element_tag = elem_a;
 const e_element_tag last_element_tag = elem_error;
 typedef unsigned int e_element;
 
@@ -1388,7 +1392,7 @@ typedef enum { eg_p3, eg_rec2020, eg_srgb  } e_gamut;
 typedef enum { g_female, g_male } e_gender;
 typedef enum { gu_userspaceonuse, gu_objectboundingbox } e_gradientunits;
 typedef enum { gn_grid, gn_normal } e_grid_normal;
-typedef enum { gp_html, gp_css, gp_gen, gp_bits, gp_nits, gp_data, gp_shadow, gp_spell, gp_stats, gp_validation } e_gui_panel;
+typedef enum { gp_summary, gp_html, gp_css, gp_gen, gp_bits, gp_nits, gp_data, gp_shadow, gp_spell, gp_stats, gp_validation } e_gui_panel;
 typedef enum { gr_config, gr_summary, gr_switches } e_gui_report;
 typedef enum
 {   gst_annotation, gst_character_variant, gst_content_name, gst_counter_style, gst_font_family, gst_highlight, gst_historical_form, gst_keyframe,
@@ -2424,7 +2428,7 @@ typedef enum
 typedef enum
 {   ns_default,
     ns_bibo,
-    ns_cc, ns_crs, ns_crs2,
+    ns_cc, ns_cnt, ns_crs, ns_crs2,
     ns_dbp, ns_dbp_owl, ns_dbr, ns_dc, ns_dcterms, ns_dt,
     ns_ebuttm, ns_ebutts, ns_err, ns_ex, ns_exsl,
     ns_fn, ns_fo, ns_foaf,
@@ -2432,9 +2436,9 @@ typedef enum
     ns_ims, ns_its, ns_ittm, ns_ittp, ns_itts, ns_ittx, ns_ittxi, ns_ittxt,
     ns_math,
     ns_odd, ns_oex, ns_owl, ns_owlxml,
-    ns_pam, ns_pamp, ns_pccm, ns_pcm, ns_pcv, ns_pdf, ns_photoshop, ns_pim, ns_pmi, ns_prism, ns_prism_ad, ns_prl, ns_prm, ns_prs,ns_psv, ns_pur,
+    ns_pam, ns_pamp, ns_pccm, ns_pcm, ns_pcv, ns_pdf, ns_photoshop, ns_pim, ns_pmi, ns_prism, ns_prism_ad, ns_prl, ns_prm, ns_prs,ns_psv, ns_ptr, ns_pur,
     ns_rdf, ns_rdfa, ns_rdfs, ns_rddl,
-    ns_saxon, ns_smil, ns_smpte, ns_stdim, ns_stevt, ns_stfnt, ns_stjob, ns_stref, ns_stver, ns_svg,
+    ns_saxon, ns_smil, ns_smpte, ns_spdx, ns_stdim, ns_stevt, ns_stfnt, ns_stjob, ns_stref, ns_stver, ns_svg,
     ns_tt, ns_ttf, ns_ttp, ns_tts,
     ns_v, ns_vcard,
     ns_xalan, ns_xf, ns_xhv, ns_xi, ns_xlink, ns_xhtml, ns_xmlevents, ns_xmlns, ns_xmp, ns_xmpbj, ns_xmpdm, ns_xmpg, ns_xmpgimg, ns_xmpidq, ns_xmpmm,
@@ -2703,7 +2707,7 @@ typedef enum { oo_off, oo_on } e_onoff;
     s_none, \
     s_adms, s_article, s_as, \
     s_bfo, s_bibo, s_biro, s_book, \
-    s_cc, s_cito, s_content, s_croissant, s_crs2, s_csvw, s_ctag, \
+    s_cc, s_cito, s_cnt, s_content, s_croissant, s_crs2, s_csvw, s_ctag, \
     s_daq, s_dbd, s_dbo, s_dbp, s_dbp_owl, s_dbr, s_dc, s_dcam, s_dcat, s_dcmi, s_dct, s_ddi, s_doap, \
         s_dpv, s_dpv_ai, \
         s_dpv_eu_aiact, s_dpv_eu_dga, s_dpv_eu_gdpr, s_dpv_eu_nis2, s_dpv_eu_rights, \
@@ -2723,8 +2727,8 @@ typedef enum { oo_off, oo_on } e_onoff;
         s_prov, s_prs, s_psv, s_ptr, s_pur, \
     s_qb, \
     s_rai, s_rdf, s_rdfa, s_rdfg, s_rdfs, s_rev, s_rif, s_role, s_rr, \
-    s_schema, s_sd, s_sioc, s_sioc_s, s_sioc_t, s_skos, s_skosxl, s_stdim, s_stevt, s_stfnt, s_stjob, s_stref, s_stver, s_sosa, s_spl, \
-        s_ssn, s_svd, s_svdu, s_svl, s_svpu, s_svpr, s_svr, \
+    s_schema, s_sd, s_sioc, s_sioc_s, s_sioc_t, s_skos, s_skosxl, s_spdx, s_stdim, s_stevt, s_stfnt, s_stjob, s_stref, s_stver, s_sosa, \
+        s_spl, s_ssn, s_svd, s_svdu, s_svl, s_svpu, s_svpr, s_svr, \
     s_taxo, s_tiff, s_time, \
     s_v, s_vann, s_vcard, s_video, s_void, \
     s_wdr, s_wdrs, s_website, s_whatwg, s_wikidata, \
@@ -2815,6 +2819,10 @@ typedef enum
     cito_distant_citation, cito_funder_self_citation, cito_journal_cartel_citation, cito_journal_self_citation,
     cito_self_citation,
 
+    // RDF content
+    cnt_content, cnt_contentasbase64, cnt_contentastext, cnt_contentasxml,
+    cnt_doctypedecl,
+
     // common tag
     ctag_author, ctag_auto, ctag_reader, ctag_tag,
 
@@ -2845,7 +2853,7 @@ typedef enum
 
     // data catalogue
     dca_catalogue, dca_cataloguerecord,
-    dca_dataservice, dca_dataset, dca_distribution,
+    dca_dataseries, dca_dataservice, dca_dataset, dca_distribution,
     dca_relationship, dca_resource, dca_role,
 
     // dcmi type vocabulary
@@ -4252,9 +4260,18 @@ typedef enum
     prov_softwareagent, prov_start,
     prov_usage,
 
-    // ptr_content
-    ptr_content, ptr_contentasbase64, ptr_contentastext, ptr_contentasxml,
-    ptr_doctypedecl,
+    // pointers
+    ptr_byteoffsetcompoundpointer, ptr_byteoffsetpointer, ptr_bytesnippetcompoundpointer,
+    ptr_charoffsetcompoundpointer, ptr_charoffsetpointer, ptr_charsnippetpointer, ptr_compoundpointer,
+    ptr_cssselectorpointer,
+    ptr_equivalentpointers, ptr_expressionpointer,
+    ptr_linecharpointer,
+    ptr_namespacemapping,
+    ptr_offsetpointer,
+    ptr_pointer, ptr_pointersgroup,
+    ptr_relatedpointers,
+    ptr_singlepointer, ptr_startendpointer,
+    ptr_xpathpointer, ptr_xpointerpointer,
 
     // data cube
     qb_attachable, qb_attributeproperty,
@@ -4521,6 +4538,42 @@ typedef enum
     sosa_sample, sosa_sampler, sosa_sampling,
     sosa_sensor,
 
+    // spandex
+    spdx_annotation, spdx_annotationtype, spdx_annotationtype_review, spdx_annotationtype_other, spdx_anylicenceinfo,
+    spdx_checksum, spdx_checksumalgorithm,
+        spdx_checksumalgorithm_adler32, spdx_checksumalgorithm_blake2b256, spdx_checksumalgorithm_blake2b384, spdx_checksumalgorithm_blake2b512,
+        spdx_checksumalgorithm_blake3, spdx_checksumalgorithm_md2, spdx_checksumalgorithm_md4, spdx_checksumalgorithm_md5, spdx_checksumalgorithm_md6,
+        spdx_checksumalgorithm_sha1, spdx_checksumalgorithm_sha224, spdx_checksumalgorithm_sha256, spdx_checksumalgorithm_sha3_256, spdx_checksumalgorithm_sha3_384,
+        spdx_checksumalgorithm_sha3_512, spdx_conjunctivelicenceset, spdx_creationinfo,
+    spdx_disjunctivelicenceset,
+    spdx_externaldocumentref, spdx_externalref, spdx_externalreftype, spdx_externalreftype_other, spdx_externalreftype_packagemanagers, spdx_externalreftype_security,
+        spdx_extractedlicensinginfo,
+    spdx_file, spdx_filetype, spdx_filetypeapplication, spdx_filetypearchive, spdx_filetypeaudio, spdx_filetypebinary, spdx_filetypedocumentation, spdx_filetypeimage,
+        spdx_filetypeother, spdx_filetypesource, spdx_filetypespdx, spdx_filetypetext, spdx_filetypevideo,
+    spdx_licence, spdx_licenceexception, spdx_listedlicence,
+    spdx_noassertion, spdx_none,
+    spdx_orlateroperator,
+    spdx_package, spdx_packageverificationcode, spdx_project,
+    spdx_relationship, spdx_relationshiptype, 
+        spdx_relationshiptype_amends, spdx_relationshiptype_ancestorof, spdx_relationshiptype_buildtoolof,
+        spdx_relationshiptype_containedby, spdx_relationshiptype_contains, spdx_relationshiptype_copyof,
+        spdx_relationshiptype_datafileof, spdx_relationshiptype_descendantof, spdx_relationshiptype_distributionartifact,
+        spdx_relationshiptype_documentationof, spdx_relationshiptype_dynamiclink, spdx_relationshiptype_expandedfromarchive,
+        spdx_relationshiptype_fileadded, spdx_relationshiptype_filedeleted, spdx_relationshiptype_filemodified, spdx_relationshiptype_generatedfrom,
+        spdx_relationshiptype_generates, spdx_relationshiptype_hasprerequisite, spdx_relationshiptype_metafileof,
+        spdx_relationshiptype_optionalcomponentof, spdx_relationshiptype_other, spdx_relationshiptype_packageof,
+        spdx_relationshiptype_patchapplied, spdx_relationshiptype_patchfor, spdx_relationshiptype_prerequisitefor,
+        spdx_relationshiptype_staticlink, spdx_relationshiptype_testcaseof, spdx_relationshiptype_variantof, 
+        spdx_relationshiptype_build_dependency_of, spdx_relationshiptype_dependency_manifest_of, spdx_relationshiptype_dependency_of,
+        spdx_relationshiptype_dependson, spdx_relationshiptype_describedby, spdx_relationshiptype_describes,
+        spdx_relationshiptype_dev_dependency_of, spdx_relationshiptype_dev_tool_of, spdx_relationshiptype_example_of,
+        spdx_relationshiptype_optional_dependency_of, spdx_relationshiptype_provided_dependency_of, spdx_relationshiptype_runtime_dependency_of,
+        spdx_relationshiptype_test_dependency_of, spdx_relationshiptype_test_of, spdx_relationshiptype_test_tool_of,
+        spdx_relationshiptype_requirement_description_for, spdx_relationshiptype_specification_for,
+        spdx_review,
+    spdx_simplelicenceinfo, spdx_simplelicensinginfo, spdx_snippet, spdx_spdxdocument, spdx_spdxelement, spdx_spdxitem,
+    spdx_wtfexceptionoperator,
+
     // ssn
     ssn_deployment,
     ssn_input,
@@ -4722,6 +4775,17 @@ typedef enum
     cp_speculates_on, cp_supports, cp_updates, cp_uses_conclusions_from, cp_uses_data_from,
     cp_uses_method_in,
 
+    // RDF content
+    cnt_bytes,
+    cnt_characterencoding, cnt_chars,
+    cnt_declaredencoding, cnt_doctypename, cnt_dtdecl,
+    cnt_internalsubset,
+    cnt_leadingmisc,
+    cnt_publicid,
+    cnt_rest,
+    cnt_standalone, cnt_systemid,
+    cnt_version,
+
     // content
     content_encoded, content_encoding, content_format, content_item, content_items, content_value,
 
@@ -4797,20 +4861,23 @@ typedef enum
     // data catalogue
     dcat_accessurl, dcat_accessservice,
     dcat_beginning, dcat_bbox, dcat_bytesize,
-    dcat_catalogue, dcat_centroid, dcat_compressformat, dcat_contactpoint,
+    dcat_catalogue, dcat_centroid, dcat_checksum, dcat_compressformat, dcat_contactpoint,
     dcat_dataset, dcat_distribution, dcat_downloadurl,
     dcat_end, dcat_enddate, dcat_endpointurl, dcat_endpointdescription,
-    dcat_format, dcat_frequency,
+    dcat_first, dcat_format, dcat_frequency,
     dcat_geometry,
-    dcat_hadrole, dcat_haspart, dcat_homepage,
+    dcat_hadrole, dcat_hascurrentversion, dcat_haspart, dcat_hasversion, dcat_homepage,
+    dcat_incatalogue, dcat_inseries, dcat_isdistributionof,  dcat_isversionof,
     dcat_keyword,
-    dcat_landingpage, dcat_listingdate,
+    dcat_landingpage, dcat_last, dcat_listingdate,
     dcat_mediatype,
-    dcat_packageformat, dcat_primarytopic,
+    dcat_next, dcat_nextversion,
+    dcat_packageformat, dcat_prev, dcat_previousversion, dcat_primarytopic,
     dcat_qualifiedrelation,
-    dcat_record, dcat_relation,
-    dcat_servesdataset, dcat_service, dcat_spatialresolutioninmeters, dcat_startdate,
+    dcat_record, dcat_relation, dcat_resource,
+    dcat_seriesmember, dcat_servesdataset, dcat_service, dcat_spatialresolutioninmeters, dcat_startdate,
     dcat_temporalresolution, dcat_theme, dcat_themetaxonomy,
+    dcat_version,
 
     // dublin core terms
     dct_abstract, dct_accessrights, dct_accrualmethod, dct_accrualperiodicity, dct_accrualpolicy, dct_alternative, dct_audience, dct_available,
@@ -5533,16 +5600,19 @@ typedef enum
     psv_uniqueid, psv_usagerights,
     psv_websiteinfo, psv_whereused,
 
-    // ptr
-    ptr_bytes,
-    ptr_characterencoding, ptr_chars,
-    ptr_declaredencoding, ptr_doctypename, ptr_dtdecl,
-    ptr_internalsubset,
-    ptr_leadingmisc,
-    ptr_publicid,
-    ptr_rest,
-    ptr_standalone, ptr_systemid,
-    ptr_version,
+    // RDF pointers
+    ptr_byteoffset,
+    ptr_charnumber, ptr_charoffset,
+    ptr_endpointer,
+    ptr_expression,
+    ptr_grouppointer,
+    ptr_linenumber,
+    ptr_namespace, ptr_namespacename,
+    ptr_offset,
+    ptr_prefix,
+    ptr_reference,
+    ptr_startpointer,
+    ptr_version,    
 
     // prism usage rights
     pur_adultcontentwarning, pur_agreement,
@@ -5822,6 +5892,30 @@ typedef enum
     sosa_phenomenontime,
     sosa_resulttime,
     sosa_usedprocedure,
+
+    // spandex
+    spdxp_algorithm, spdxp_annotation, spdxp_annotationtype, spdxp_annotator, spdxp_artifactof,
+    spdxp_builtdate, spdxp_byterange,
+    spdxp_category, spdxp_checksum, spdxp_checksumvalue, spdxp_comment, spdxp_copyrighttext, spdxp_created, spdxp_creationinfo, spdxp_creator,
+    spdxp_datalicence, spdxp_date, spdxp_describespackage, spdxp_description, spdxp_downloadlocation,
+    spdxp_example, spdxp_externaldocumentref, spdxp_externaldocumentid, spdxp_externalref, spdxp_extractedtext,
+    spdxp_filecontributor, spdxp_filedependency, spdxp_filename, spdxp_filesanalysed, spdxp_filetype,
+    spdxp_hasextractedlicensinginfo, spdxp_hasfile, spdxp_homepage,
+    spdxp_isosiapproved,
+    spdxp_locator, spdxp_licencecomments, spdxp_licenceconcluded, spdxp_licencedeclared, spdxp_licenceexception, spdxp_licenceexceptionid,
+        spdxp_licenceexceptiontext, spdxp_licenceid, spdxp_licenceinfofromfiles, spdxp_licenceinfoinfile, spdxp_licencelistversion, spdxp_licencetext,
+    spdxp_member,
+    spdxp_name, spdxp_noticetext,
+    spdxp_originator,
+    spdxp_packagefilename, spdxp_packageverificationcode, spdxp_packageverificationcodeexcludedfile, spdxp_packageverificationcodevalue,
+        spdxp_primarypackagepurpose,
+    spdxp_referencesfile, spdxp_relatedspdxelement, spdxp_relationship, spdxp_relationshiptype, spdxp_releasedate, spdxp_reviewdate, spdxp_reviewed,
+        spdxp_reviewer,
+    spdxp_seealso, spdxp_simplelicenceinfo, spdxp_snippetfromfile, spdxp_sourceinfo, spdxp_specversion, spdxp_spdxdocument, spdxp_standardlicenceheader,
+        spdxp_standardlicencetemplate, spdxp_summary, spdxp_supplier,
+    spdxp_type,
+    spdxp_uri,
+    spdxp_validuntildate, spdxp_versioninfo,
 
     // ssn
     ssn_deployedplatform, ssn_deployedsystem, ssn_detects,
@@ -7106,16 +7200,16 @@ typedef enum {
     x_default,
     x_xhtml_1, x_xhtml_1_superseded, x_xhtml_11, x_xhtml_2, x_html,
     x_basic, x_bibo,
-    x_cc, x_comments, x_crs, x_crs2,
+    x_cc, x_cnt, x_comments, x_crs, x_crs2,
     x_dbp, x_dbp_owl, x_dbr, x_dc, x_dc_terms, x_dt,
     x_ex, x_exsl,
     x_foaf,
     x_lxslt,
     x_mathml,
     x_owl,
-    x_pam, x_pamp, x_pccm, x_pcm, x_pcv, x_pdf, x_photoshop, x_pim, x_pmi, x_prism, x_prism_ad, x_prl, x_prm, x_prs, x_psv, x_pur,
+    x_pam, x_pamp, x_pccm, x_pcm, x_pcv, x_pdf, x_photoshop, x_pim, x_pmi, x_prism, x_prism_ad, x_prl, x_prm, x_prs, x_psv, x_ptr, x_pur,
     x_rddl, x_rdf, x_rdfa, x_rdfs, x_rel, x_rng, x_rss,
-    x_saxon, x_smil, x_soapenc11, x_soapenc12, x_stdim, x_stevt, x_stfnt, x_stjob, x_stref, x_stver, x_svg, x_syn,
+    x_saxon, x_smil, x_soapenc11, x_soapenc12, x_spdx, x_stdim, x_stevt, x_stfnt, x_stjob, x_stref, x_stver, x_svg, x_syn,
     x_v, x_vcard1, x_vcard,
     x_wsdl11, x_wsdl12,
     x_xf, x_xhv, x_xi, x_xlink, x_xml, x_xmlevents, x_xmlns, x_xmp, x_xmpbj, x_xmpdm, x_xmpg, x_xmpgimg, x_xmpidq, x_xmpmm, x_xmprights, x_xmptpg, x_xsd, x_xslfo, x_xslt, x_xsi

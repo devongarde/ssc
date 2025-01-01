@@ -575,7 +575,7 @@ public:
     bool tv_profile () const { return version_.tv_profile (); }
     static void check_ssi_naughtiness (nitpick& nits, const ::std::string& s);
     ::std::string make_absolute_url (const ::std::string& link, bool can_use_index = true) const;
-    ::std::string report (const e_gui_report gr) const;
+    ::std::string report (const e_gui_report gr, const bool wibble) const;
     bool write (nitpick& nits, const ::boost::filesystem::path& fn) const; };
 
 extern context_t context;

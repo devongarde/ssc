@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.24)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.2.7 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
+project (ssc VERSION 0.2.8 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
 
 # if using a non-thread safe version of SSL, add this compiler definition
 # CURL_SSL_NOT_THREADSAFE
@@ -61,7 +61,7 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "OpenBSD")
     if (${CMAKE_SYSTEM_VERSION} VERSION_GREATER_EQUAL "7.0")
         target_compile_definitions (ssc PRIVATE UNIX OS_VER="${BUILD_OS}" OBSD NO_PCF_STR HUNSPELL)
     elseif (${CMAKE_SYSTEM_VERSION} MATCHES "6.9")
-        set (BV "1.67")
+        set (BV "1.70")
         target_compile_definitions (ssc PRIVATE UNIX OS_VER="${BUILD_OS}" OBSD NO_PCF_STR NO_JSONIC HUNSPELL)
         set (NJ "1")
     elseif (${CMAKE_SYSTEM_VERSION} VERSION_LESS "6.9")
@@ -117,19 +117,20 @@ elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     endif ()
     set (NJ "1")  # hey, cmake, would you care to notice this bit, please.
     set (NS "1")
-    set (BV "1.67")
+    set (BV "1.70")
     set (D "${DD}/bin")
     set (DOCU "${DD}/../share/doc/ssc")
     set (INC ${INC} "/usr/include/" "/usr/local/include/" "/usr/include/x86_64-linux-gnu/")
     set (LD ${LIBS} "/usr/lib64/")
-    set (Boost_USE_STATIC_LIBS ON)
-    message ("Boost static libraries")
+    if (${LSB_RELEASE_ID_SHORT} MATCHES "Fedora")
+        set (Boost_USE_STATIC_LIBS OFF)
+        message ("Boost it'll find 'em if you're lucky libraries")
+    else ()
+        set (Boost_USE_STATIC_LIBS ON)
+        message ("Boost static libraries")
+    endif ()
     if (${LSB_RELEASE_ID_SHORT} MATCHES "Ubuntu")
         set (LD ${LIBS} "/usr/lib64/" "/usr/lib/x86_64-linux-gnu/")
-    elseif (${LSB_RELEASE_ID_SHORT} MATCHES "CentOSStream")
-        if (${LSB_RELEASE_VER_SHORT} MATCHES "8")
-            set (BV "1.66")
-        endif ()
     endif ()
 elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     set (D "${DD}/local/bin")
@@ -139,7 +140,8 @@ elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     target_compile_definitions (ssc-test PRIVATE UNIX)
     if (${CMAKE_SYSTEM} MATCHES "Darwin-24")
         set (BUILD_OS "Sequoia")
-        # Sequoia can't find dylibs; I'm not wasting more time avoiding apple bugs
+        # dunno whether this is a cmake or a macos bug, but builds using dynamic libraries no longer work,
+        # and I've no intention of wasting time trying to chase the bug down
         set (NOICU "1")
         set (NO_GSL "1")
         set (NS "1")
@@ -209,9 +211,9 @@ else ()
 endif ()
 
 if (${NJ} MATCHES "1")
-    find_package (Boost ${BV} REQUIRED COMPONENTS system chrono date_time filesystem locale program_options thread ${BREGEX})
+    find_package (Boost CONFIG ${BV} REQUIRED COMPONENTS system chrono date_time filesystem locale program_options thread ${BREGEX})
 else ()
-    find_package (Boost ${BV} REQUIRED COMPONENTS system chrono date_time filesystem json locale program_options thread ${BREGEX})
+    find_package (Boost CONFIG ${BV} REQUIRED COMPONENTS system chrono date_time filesystem json locale program_options thread ${BREGEX})
 endif ()
 
 if (${NOICU} MATCHES "1") # CMake bug
@@ -264,7 +266,8 @@ target_sources (ssc PRIVATE
         ${H}/gui/gui-app.h ${H}/gui/gui-css.h ${H}/gui/gui-ctrl.h ${H}/gui/gui-ctrls.h ${H}/gui/gui-dialogue.h ${H}/gui/gui-frame.h
             ${H}/gui/gui-general.h ${H}/gui/gui-html.h ${H}/gui/gui-icon.h ${H}/gui/gui-listedit.h ${H}/gui/gui-menu.h ${H}/gui/gui-nits.h
             ${H}/gui/gui-ontology.h ${H}/gui/gui-output.h ${H}/gui/gui-screen.h ${H}/gui/gui-shadow.h ${H}/gui/gui-site.h ${H}/gui/gui-snippet.h
-            ${H}/gui/gui-spell.h ${H}/gui/gui-spex.h ${H}/gui/gui-ssi.h ${H}/gui/gui-stats.h ${H}/gui/gui-validation.h ${H}/gui/gui-welcome.h
+            ${H}/gui/gui-spell.h ${H}/gui/gui-spex.h ${H}/gui/gui-ssi.h ${H}/gui/gui-stats.h ${H}/gui/gui-summarise.h ${H}/gui/gui-validation.h
+            ${H}/gui/gui-welcome.h
         ${H}/icu/charset.h ${H}/icu/converter.h ${H}/icu/lingo.h ${H}/icu/wrapper.h
         ${H}/main/abort.h ${H}/main/args.h ${H}/main/balloon.h ${H}/main/context.h ${H}/main/enum.h ${H}/main/include.h ${H}/main/options.h
             ${H}/main/output.h ${H}/main/server.h ${H}/main/standard.h ${H}/main/version.h
@@ -339,7 +342,7 @@ target_sources (ssc PRIVATE
         ${S}/gui/gui-app.cpp ${S}/gui/gui-css.cpp ${S}/gui/gui-ctrl.cpp ${S}/gui/gui-ctrls.cpp ${S}/gui/gui-dialogue.cpp ${S}/gui/gui-frame.cpp
             ${S}/gui/gui-general.cpp ${S}/gui/gui-html.cpp ${S}/gui/gui-icon.cpp ${S}/gui/gui-listedit.cpp ${S}/gui/gui-menu.cpp ${S}/gui/gui-nits.cpp
             ${S}/gui/gui-ontology.cpp ${S}/gui/gui-output.cpp ${S}/gui/gui-shadow.cpp ${S}/gui/gui-site.cpp ${S}/gui/gui-spell.cpp ${S}/gui/gui-snippet.cpp
-            ${S}/gui/gui-spex.cpp ${S}/gui/gui-ssi.cpp ${S}/gui/gui-stats.cpp ${S}/gui/gui-validation.cpp ${S}/gui/gui-welcome.cpp
+            ${S}/gui/gui-spex.cpp ${S}/gui/gui-ssi.cpp ${S}/gui/gui-stats.cpp ${S}/gui/gui-summarise.cpp ${S}/gui/gui-validation.cpp ${S}/gui/gui-welcome.cpp
         ${S}/icu/charset.cpp ${S}/icu/converter.cpp ${S}/icu/lingo.cpp ${S}/icu/wrapper.cpp
         ${S}/main/abort.cpp ${S}/main/context.cpp ${S}/main/options.cpp ${S}/main/output.cpp ${S}/main/ssc.cpp ${S}/main/server.cpp ${S}/main/standard.cpp
             ${S}/main/version.cpp

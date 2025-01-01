@@ -161,7 +161,7 @@ void fred_t::onexit ()
 {   return ::std::thread::hardware_concurrency () * 16; }
 
 bool fred_t::relaxed () const noexcept
-{   return  (! inited ()) ||
+{   return  (! inited ()) || (! activity ()) ||
             (   started () && 
                 (context.repetitive ()) &&
                 ! abandoned ()); }

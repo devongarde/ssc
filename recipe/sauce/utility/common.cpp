@@ -480,7 +480,10 @@ bool ends_with_letters (const html_version& v, const ::std::string& s, const ::s
             case '\b' :
             case '\r' : break;
             default :
-                if ((*i < 0) || ::std::isgraph (*i) || ! ::std::iscntrl (*i)) res += *i; }
+                if (*i < 127)
+                    if (*i >= ' ')
+                        if (::std::isgraph (*i) || ! ::std::iscntrl (*i))
+                            res += *i; }
     return res; }
 
 ::std::string near_here (::std::string::const_iterator b, ::std::string::const_iterator e, ::std::string::const_iterator from, ::std::string::const_iterator to)
@@ -570,3 +573,9 @@ bool is_plain_old_decimal (const ::std::string& ss)
                 break; }
     return true; }
 
+::std::string sweeten (const ::std::string& s)
+{   ::std::string res;
+    for (auto ch : s)
+        if ((ch >= ' ') && (ch < 127))
+            res += ch;
+    return res; }

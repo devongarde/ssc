@@ -81,7 +81,7 @@ void json_ld::note_token (nitpick& nits, const ::std::string& s, const ::boost::
         if (is_token_valid_here (nits, tk, jt.get ()))
         {   if (scope_.keyword_.empty ()) scope_.keyword_.resize (jt_error);
             PRESUME (scope_.keyword_.size () > jt.get (), __FILE__, __LINE__);
-            vv_t& vv = scope_.keyword_.at (jt.get ());
+            vjv_t& vv = scope_.keyword_.at (jt.get ());
             vv.push_back (val); }
     SRPT ("-note_token"); }
 
@@ -348,7 +348,7 @@ void json_ld::examine_json_ld (nitpick& nits, const ::boost::json::object& o, co
         else if (s.at (0) == '@') note_token (nits, k, e.value (), tk); }
     SRPT ("-examine_json_ld"); }
 
-void json_ld::process_group_token (nitpick& nits, const vv_t& vv)
+void json_ld::process_group_token (nitpick& nits, const vjv_t& vv)
 {   SRPT ("+process_group_token");
     for (auto val : vv)
     {   VERIFY_NOT_NULL (val, __FILE__, __LINE__);
@@ -465,7 +465,7 @@ void json_ld::process_context_object (nitpick& nits, const ::boost::json::value&
                     break; } }
     SRPT ("-process_context_object"); }
 
-void json_ld::process_context (nitpick& nits, const vv_t& vv)
+void json_ld::process_context (nitpick& nits, const vjv_t& vv)
 {   SRPT ("+process_context");
     if (vv.empty ()) nits.pick (nit_empty, es_comment, ec_json, "Empty @context found.");
     else for (auto val : vv)
@@ -481,7 +481,7 @@ void json_ld::process_context (nitpick& nits, const vv_t& vv)
                 break; }
     SRPT ("-process_context"); }
 
-void json_ld::process_id (nitpick& , const vv_t& vv)
+void json_ld::process_id (nitpick& , const vjv_t& vv)
 {   SRPT ("+process_id");
     for (auto val : vv)
         if (val.kind () == ::boost::json::kind::string)
@@ -489,14 +489,14 @@ void json_ld::process_id (nitpick& , const vv_t& vv)
             scope_.id_.insert (s); }
     SRPT ("-process_id"); }
 
-void json_ld::process_language (nitpick& nits, const vv_t& vv)
+void json_ld::process_language (nitpick& nits, const vjv_t& vv)
 {   SRPT ("+process_language");
     for (auto val : vv)
         if (val.kind () == ::boost::json::kind::string)
             test_value < t_lang > (nits, v_, val.as_string ().c_str ());
     SRPT ("-process_language"); }
 
-void json_ld::process_vocab (nitpick& nits, const vv_t& vv)
+void json_ld::process_vocab (nitpick& nits, const vjv_t& vv)
 {   SRPT ("+process_vocab");
     for (auto val : vv)
         if (val.kind () == ::boost::json::kind::string)
@@ -511,7 +511,7 @@ void json_ld::process_single_type (nitpick& nits, const ::boost::json::value& va
     else process_ontology_name_type_string (nits, s);
     SRPT ("-process_single_type"); }
 
-void json_ld::process_type (nitpick& nits, const vv_t& vv)
+void json_ld::process_type (nitpick& nits, const vjv_t& vv)
 {   bool booboo = false;
     SRPT ("+process_type");
     if (vv.empty ()) nits.pick (nit_jsonld_type, es_comment, ec_json, "Empty @type found.");

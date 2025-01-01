@@ -179,6 +179,7 @@
 ./ssc -f ../toast/living/apr24/living.conf
 ./ssc -f ../toast/living/jul24/living.conf
 ./ssc -f ../toast/living/oct24/living.conf
+./ssc -f ../toast/living/jan25/living.conf
 ./ssc -f ../toast/math/1/math.conf
 ./ssc -f ../toast/math/2/math.conf
 ./ssc -f ../toast/math/3/math.conf
@@ -220,6 +221,17 @@
 ./ssc -f ../toast/other/safari/safari.conf
 ./ssc -f ../toast/other/simple/simple.conf
 ./ssc -f ../toast/other/ssi/ssi.conf
+./ssc -f ../toast/RDF/1.0/rdf.spec
+./ssc -f ../toast/RDF/1.1/rdf.spec
+./ssc -f ../toast/RDF/pointer/rdf.spec
+./ssc -f ../toast/RDF/prism-1.0/rdf.spec
+./ssc -f ../toast/RDF/prism-1.1/rdf.spec
+./ssc -f ../toast/RDF/prism-1.2/rdf.spec
+./ssc -f ../toast/RDF/prism-1.3/rdf.spec
+./ssc -f ../toast/RDF/prism-2.0/rdf.spec
+./ssc -f ../toast/RDF/prism-2.1/rdf.spec
+./ssc -f ../toast/RDF/prism-3.0/rdf.spec
+./ssc -f ../toast/RDF/prism-3.1/rdf.spec
 ./ssc -f ../toast/RDFa/1.1.3/rdfa.conf
 ./ssc -f ../toast/RDFa/cc/rdfa.conf
 ./ssc -f ../toast/RDFa/dc/rdfa.conf

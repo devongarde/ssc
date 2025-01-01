@@ -330,13 +330,14 @@ defined at w3.org.
                             2024
                             2024+
                             2024++
+                            2024+++
                         The years are CSS snapshots, whether the year
                         itself for stable modules, with + for wobbly
-                        modules, and ++ for wibbly-wobbly modules, as
-                        per the corresponding W3 CSS snapshots (the
-                        terminology in those snapshots is inconsistent,
-                        hence our use of the scientific terms wobbly
-                        and wibbly-wobbly).
+                        modules, ++ for wibbly-wobbly modules, and +++
+                        for weally-wibbly-wobbly modules, as per the
+                        corresponding W3 CSS snapshots (the terminology
+                        in those snapshots is inconsistent, hence the
+                        use of alternative scientific terminology).
                         For levels 3, 4, 5 and 6, note that extensions
                         that are part of neither CSS 1 nor CSS 2.x
                         specifications are numbered three and upwards

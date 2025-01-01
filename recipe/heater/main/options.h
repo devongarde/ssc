@@ -51,7 +51,7 @@ public:
     void contextualise (context_t& c, output_streams_t& o, nitpick& nits);
     template < class T > void insert (const ::std::string& k, const T& t);
     bool write (nitpick& nits, const ::boost::filesystem::path& fn) const;
-    ::std::string report (const e_gui_report gr, const bool file = false) const; };
+    ::std::string report (const e_gui_report gr, const bool file = false, const bool wibble = true) const; };
 
 // https://stackoverflow.com/questions/56056265/insert-into-boostprogram-optionsvariables-map-by-index-operator#56056772
 template < class T > inline void options::insert (const ::std::string& k, const T& t)

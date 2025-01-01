@@ -28,8 +28,8 @@ inline void parse_json_ld (nitpick& , const html_version& , const ::std::string&
 
 // this is not, and not intended to be, a full json-ld interpreter. It exists, mostly, to enable schema testing.
 
-typedef ::std::vector < ::boost::json::value > vv_t;
-typedef ::std::vector < vv_t > vk_t;
+typedef ::std::vector < ::boost::json::value > vjv_t;
+typedef ::std::vector < vjv_t > vk_t;
 typedef ssc_map < ::std::string, e_ontology_property > mssp_t;
 typedef ssc_map < ::std::string, e_ontology > mso_t;
 typedef ::std::vector < ontology_version > vov_t;
@@ -107,18 +107,18 @@ class json_ld
     bool note_term (nitpick& nits, const ::std::string& s, const ::boost::json::value& val);
     bool examine_terms (nitpick& nits, const ::boost::json::object& o);
     void examine_json_ld (nitpick& nits, const ::boost::json::object& o, const e_jtoken tk = jt_error);
-    void process_group_token (nitpick& nits, const vv_t& vv);
+    void process_group_token (nitpick& nits, const vjv_t& vv);
     void insert_context_object_string (nitpick& nits, const ::std::string& key, const ::std::string& s);
     void process_context_object_string (nitpick& nits, const ::std::string& key, const ::boost::json::key_value_pair& kvp);
     void process_context_object_object (nitpick& nits, const ::std::string& key, const ::boost::json::key_value_pair& kvp);
     void process_context_string (nitpick& nits, const ::boost::json::value& val);
     void process_context_object (nitpick& nits, const ::boost::json::value& val);
-    void process_context (nitpick& nits, const vv_t& vv);
-    void process_id (nitpick& nits, const vv_t& vv);
-    void process_language (nitpick& nits, const vv_t& vv);
-    void process_vocab (nitpick& nits, const vv_t& vv);
+    void process_context (nitpick& nits, const vjv_t& vv);
+    void process_id (nitpick& nits, const vjv_t& vv);
+    void process_language (nitpick& nits, const vjv_t& vv);
+    void process_vocab (nitpick& nits, const vjv_t& vv);
     void process_single_type (nitpick& nits, const ::boost::json::value& val);
-    void process_type (nitpick& nits, const vv_t& vv);
+    void process_type (nitpick& nits, const vjv_t& vv);
     bool process_json_ld (nitpick& nits, const ::boost::json::object& o);
     void outer_process_json_ld (nitpick& nits,  const ::boost::json::object& o);
 public:

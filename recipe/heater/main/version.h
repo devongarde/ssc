@@ -178,6 +178,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_NOV08  HTML_2008, HTML_NOV
 #define HTML_DEC08  HTML_2008, (HTML_DEC + HTML_31ST)
 #define HTML_JAN09  HTML_2009, HTML_JAN
+#define HTML_MAR09  HTML_2009, HTML_MAR
 #define HTML_JUN09  HTML_2009, (HTML_JUN + HTML_30TH)
 #define HTML_JUL09  HTML_2009, HTML_JUL
 #define HTML_DEC09  HTML_2009, (HTML_DEC + HTML_31ST)
@@ -188,11 +189,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_JAN11  HTML_2011, HTML_JAN
 #define HTML_JUN11  HTML_2011, (HTML_JUN + HTML_30TH)
 #define HTML_JUL11  HTML_2011, HTML_JUL
+#define HTML_AUG11  HTML_2011, HTML_AUG
 #define HTML_SEP11  HTML_2011, HTML_SEP
 #define HTML_DEC11  HTML_2011, (HTML_DEC + HTML_31ST)
 #define HTML_JAN12  HTML_2012, HTML_JAN
 #define HTML_JUN12  HTML_2012, (HTML_JUN + HTML_30TH)
 #define HTML_JUL12  HTML_2012, HTML_JUL
+#define HTML_AUG12  HTML_2012, HTML_AUG
 #define HTML_NOV12  HTML_2012, HTML_NOV
 #define HTML_DEC12  HTML_2012, (HTML_DEC + HTML_31ST)
 #define HTML_JAN13  HTML_2013, HTML_JAN
@@ -201,6 +204,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_FEB13  HTML_2013, (HTML_FEB + HTML_28TH)
 #define HTML_JUL13  HTML_2013, HTML_JUL
 #define HTML_AUG13  HTML_2013, (HTML_AUG + HTML_8TH)
+#define HTML_OCT13  HTML_2013, HTML_OCT
 #define HTML_DEC13  HTML_2013, (HTML_DEC + HTML_31ST)
 #define HTML_JAN14  HTML_2014, HTML_JAN
 #define HTML_JUN14  HTML_2014, (HTML_JUN + HTML_30TH)
@@ -218,6 +222,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_APR16  HTML_2016, HTML_APR
 #define HTML_JUN16  HTML_2016, (HTML_JUN + HTML_30TH)
 #define HTML_JUL16  HTML_2016, HTML_JUL
+#define HTML_NOV16  HTML_2016, HTML_NOV
 #define HTML_DEC16  HTML_2016, (HTML_DEC + HTML_31ST)
 #define HTML_JAN17  HTML_2017, HTML_JAN
 #define HTML_JUN17  HTML_2017, (HTML_JUN + HTML_30TH)
@@ -242,6 +247,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_FEB20  HTML_2020, HTML_FEB
 #define HTML_MAR20  HTML_2020, HTML_MAR
 #define HTML_APR20  HTML_2020, HTML_APR
+#define HTML_MAY20  HTML_2020, HTML_MAY
 #define HTML_JUN20  HTML_2020, (HTML_JUN + HTML_30TH)
 #define HTML_JUL20  HTML_2020, HTML_JUL
 #define HTML_OCT20  HTML_2020, HTML_OCT
@@ -299,7 +305,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_LATEST_YEAR        HTML_2025
 #define HTML_LATEST_MONTH       1
 
-#define HTML_CURRENT            HTML_OCT24
+#define HTML_CURRENT            HTML_JAN25
 
 #define HTML_UNDEF      0, 0
 
@@ -382,6 +388,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_DBR        HTML_RDF10
 #define HTML_DC_1_0     XHTML_1_0
 #define HTML_DC_1_1     XHTML_1_1
+#define HTML_DCAT_3     HTML_SEP24
 #define HTML_DCTERMS_1_0 XHTML_1_0
 #define HTML_DCTERMS_1_1 XHTML_1_1
 #define HTML_DC         HTML_DC_1_0
@@ -461,7 +468,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_PRISM_2_1  HTML_JUN09
 #define HTML_PRISM_3_0  HTML_NOV12
 #define HTML_PRISM_3_1  HTML_JUN15
-#define HTML_PTR        HTML_RDF10_CON
+#define HTML_PTR        HTML_MAR09
+#define HTML_CNT        HTML_RDF10_CON
 #define HTML_QB         HTML_RDF10_CON
 #define HTML_RDFG       HTML_RDF10
 #define HTML_RDFS       HTML_RDF10
@@ -560,6 +568,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_SKOS       HTML_JUN08
 #define HTML_SKOSXL     HTML_JUN08
 #define HTML_SSN        HTML_RDF10_CON
+#define HTML_SPDX10     HTML_AUG11
+#define HTML_SPDX11     HTML_AUG12
+#define HTML_SPDX12     HTML_OCT13
+#define HTML_SPDX20     HTML_MAY15
+#define HTML_SPDX21     HTML_NOV16
+#define HTML_SPDX22     HTML_MAY20
+#define HTML_SPDX23     HTML_JAN22
+#define HTML_SPDX30     HTML_AUG24
 #define HTML_SOSA       HTML_RDF10_CON
 #define HTML_TAXO       HTML_RDF10
 #define HTML_TIME       HTML_RDF10_CON

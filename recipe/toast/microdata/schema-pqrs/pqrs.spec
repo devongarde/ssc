@@ -45,8 +45,8 @@ PASS ../toast/microdata/schema-pqrs/person.html
 79 no_such_folder url_not_found
 84 no_such_folder url_not_found
 86 no_such_folder url_not_found
-95 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
-96 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
+95 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
+96 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
 189 forgotten_name use_double_quote_code missing_open
 206 no_itemscope
 208 requires_itemscope
@@ -316,14 +316,14 @@ PASS ../toast/microdata/schema-pqrs/review.html
 101 use_quote_code
 
 PASS ../toast/microdata/schema-pqrs/role.html
-14 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
-16 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
+14 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
+16 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
 26 bad_property
 27 bad_property
 39 bad_property bad_property bad_property
 41 bad_property bad_property bad_property
-50 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
-51 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
+50 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
+51 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
 
 PASS ../toast/microdata/schema-pqrs/scholarlyarticle.html
 0 charset_mismatch charset_used charset_invalid
@@ -397,8 +397,8 @@ PASS ../toast/microdata/schema-pqrs/sportsevent.html
 18 use_quote_code
 
 PASS ../toast/microdata/schema-pqrs/sportsteam.html
-13 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
-14 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
+13 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
+14 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
 
 PASS ../toast/microdata/schema-pqrs/store.html
 31 use_quote_code

@@ -33,9 +33,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "gui/gui-spell.h"
 #include "gui/gui-ssi.h"
 #include "gui/gui-stats.h"
-#ifdef DEBUG
+#include "gui/gui-summarise.h"
 #include "gui/gui-validation.h"
-#endif // DEBUG
 
 #define SPEX_CAPTION "Standards"
 
@@ -57,9 +56,8 @@ class standard_t : public d3_t
 #endif // NOSPELL
     ssi_t ssi_;
     report_t stats_;
-#ifdef DEBUG
-    valid_t valid_;
-#endif // DEBUG
+    summarise_t summary_;
+    vv_t vv_;
     ::boost::filesystem::path conf_;
   
     void OnCancelClick (wxCommandEvent& event);
@@ -154,9 +152,7 @@ public:
     void OnSSILastMod (wxCommandEvent& event) { ssi_.OnLastMod (event); }
     void OnSSINow (wxCommandEvent& event) { ssi_.OnNow (event); }
     void OnSSIProcess (wxCommandEvent& event) { ssi_.OnProcess (event); }
-#ifdef DEBUG
-    void OnValidChoice (wxCommandEvent& event) { valid_.OnChoice (event); }
-#endif // DEBUG
+    void OnValidChoice (wxCommandEvent& event) { vv_.OnChoice (event); }
     void OnStatsAll (wxCommandEvent& event) { stats_.OnAll (event); }
     void OnStatsClear (wxCommandEvent& event) { stats_.OnClear (event); }
     void OnStatsExport (wxCommandEvent& event) { stats_.OnExport (event); }

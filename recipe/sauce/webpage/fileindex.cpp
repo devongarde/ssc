@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "main/context.h"
+#include "main/ssc.h"
 #include "utility/filesystem.h"
 #include "utility/quote.h"
 #include "webpage/fileindex.h"
@@ -507,7 +508,8 @@ bool fileindex_load_internal (nitpick& nits, bool& ok)
 {   PRESUME (fred.relaxed (), __FILE__, __LINE__);
     ::boost::filesystem::path p (persist_path ());
     if (! file_exists (p)) return true;
-    if (context.progress ()) outstr.console ("loading ", p.string (), " ...\n");
+    ssc_console ("loading ", p.string (), " ...\n");
+    ssc_getset ();
     BOOST_FSTREAM_CNSTRO (f, p, ::std::ios::in);
     if (f.fail ())
     {   nits.pick (nit_cannot_read, es_error, ec_crc, "cannot open ", quote (p.string ()), " [2]");
@@ -758,7 +760,8 @@ void fileindex_save_and_close (nitpick& nits)
                         if (! write_fileindex_record (nits, f, name, n, mndx)) break; } } }
 
 void dedu (nitpick& nits) // presumes run between scan and examine phases
-{   if (context.progress ()) outstr.console ("Deduplicating\n");  
+{   ssc_console ("Deduplicating\n");  
+    ssc_getset ();
     for (fileindex_t i = 0; i < vx.size (); ++i)
     {   index_t& x = vx.at (i);
         if ((x.flags_ & (FX_DIR | FX_BORKED | FX_SCANNED)) == 0)

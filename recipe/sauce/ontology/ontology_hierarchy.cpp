@@ -253,6 +253,11 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_cito, 2, 8 }, { 0, 0 }, cito_self_citation, cito_funder_self_citation },
     { { s_cito, 2, 8 }, { 0, 0 }, cito_self_citation, cito_journal_self_citation },
 
+    // RDF content
+    { { s_cnt, 1, 0 }, { 0, 0 }, cnt_content, cnt_contentasbase64 },
+    { { s_cnt, 1, 0 }, { 0, 0 }, cnt_content, cnt_contentastext },
+    { { s_cnt, 1, 0 }, { 0, 0 }, cnt_content, cnt_contentasxml },
+
     // common tag
     { { s_ctag, 1, 0 }, { 0, 0 }, ctag_tag, ctag_author },
     { { s_ctag, 1, 0 }, { 0, 0 }, ctag_tag, ctag_auto },
@@ -263,6 +268,8 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_adms, 1, 0 }, { s_adms, 1, 0 }, dca_dataset, adms_asset },
     { { s_dcat, 1, 0 }, { 0, 0 }, dca_dataset, dca_catalogue },
+    { { s_dcat, 3, 0 }, { 0, 0 }, dca_dataset, dca_dataseries },
+    { { s_dcat, 3, 0 }, { 0, 0 }, dca_dataset, dca_dataservice },
     { { s_dcat, 1, 0 }, { s_dcat, 1, 0 }, dcmi_dataset, dca_dataset },
     { { s_void, 1, 0 }, { 0, 0 }, dcmi_dataset, void_dataset },
     { { s_void, 1, 0 }, { 0, 0 }, dcmi_dataset, void_linkset },
@@ -271,6 +278,7 @@ microdata_hierachy ontology_hierarchy [] =
 
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dca_dataservice },
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dca_dataset },
+    { { s_dcat, 3, 0 }, { 0, 0 }, dca_resource, dca_dataseries },
 
     { { s_dcat, 2, 0 }, { 0, 0 }, dcmi_service, dca_dataservice },
 
@@ -7765,10 +7773,32 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_prov, 1, 0 }, { 0, 0 }, prov_instantaneousevent, prov_start },
     { { s_prov, 1, 0 }, { 0, 0 }, prov_instantaneousevent, prov_usage },
 
-    // ptr
-    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_content, ptr_contentasbase64 },
-    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_content, ptr_contentastext },
-    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_content, ptr_contentasxml },
+    // RDF Pointers
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_compoundpointer, ptr_startendpointer },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_compoundpointer, ptr_byteoffsetcompoundpointer },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_compoundpointer, ptr_bytesnippetcompoundpointer },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_compoundpointer, ptr_charoffsetcompoundpointer },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_compoundpointer, ptr_charsnippetpointer },
+
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_expressionpointer, ptr_xpathpointer },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_expressionpointer, ptr_cssselectorpointer },
+
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_offsetpointer, ptr_byteoffsetpointer },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_offsetpointer, ptr_charoffsetpointer },
+
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_pointer, ptr_compoundpointer },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_pointer, ptr_pointersgroup },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_pointer, ptr_singlepointer },
+
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_pointersgroup, ptr_equivalentpointers },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_pointersgroup, ptr_relatedpointers },
+
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_singlepointer, ptr_expressionpointer },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_singlepointer, ptr_offsetpointer },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_singlepointer, ptr_linecharpointer },
+
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_xpathpointer, ptr_namespacemapping },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_xpathpointer, ptr_xpointerpointer },
 
     // data cube
     { { s_qb, 1, 0 }, { 0, 0 }, anything, qb_componentset },
@@ -9536,6 +9566,71 @@ microdata_hierachy ontology_hierarchy [] =
     // sosa
     { { s_ssn, 1, 0 }, { 0, 0 }, sosa_featureofinterest, sosa_sample },
     { { s_ssn, 1, 0 }, { 0, 0 }, sosa_result, sosa_sample },
+
+    // spandex
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_annotationtype, spdx_annotationtype_other },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_annotationtype, spdx_annotationtype_review },
+
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_anylicenceinfo, spdx_orlateroperator },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_anylicenceinfo, spdx_conjunctivelicenceset },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_anylicenceinfo, spdx_disjunctivelicenceset },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_anylicenceinfo, spdx_simplelicensinginfo },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_anylicenceinfo, spdx_wtfexceptionoperator },
+
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_checksumalgorithm, spdx_checksumalgorithm_md5 },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_checksumalgorithm, spdx_checksumalgorithm_sha1 },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_checksumalgorithm, spdx_checksumalgorithm_sha256 },
+
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_filetype, spdx_filetypeapplication },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_filetype, spdx_filetypearchive },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_filetype, spdx_filetypeaudio },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_filetype, spdx_filetypebinary },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_filetype, spdx_filetypedocumentation },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_filetype, spdx_filetypeimage },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_filetype, spdx_filetypeother },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_filetype, spdx_filetypesource },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_filetype, spdx_filetypespdx },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_filetype, spdx_filetypetext },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_filetype, spdx_filetypevideo },
+
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_licence, spdx_listedlicence },
+
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_simplelicenceinfo, spdx_extractedlicensinginfo },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_simplelicenceinfo, spdx_licence },
+
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationshiptype, spdx_relationshiptype_amends },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationshiptype, spdx_relationshiptype_ancestorof },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationshiptype, spdx_relationshiptype_buildtoolof },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationshiptype, spdx_relationshiptype_copyof },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationshiptype, spdx_relationshiptype_datafileof },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationshiptype, spdx_relationshiptype_descendantof },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationshiptype, spdx_relationshiptype_distributionartifact },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationshiptype, spdx_relationshiptype_documentationof },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationshiptype, spdx_relationshiptype_dynamiclink },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationshiptype, spdx_relationshiptype_expandedfromarchive },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationshiptype, spdx_relationshiptype_fileadded },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationshiptype, spdx_relationshiptype_filedeleted },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationshiptype, spdx_relationshiptype_filemodified },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationshiptype, spdx_relationshiptype_generatedfrom },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationshiptype, spdx_relationshiptype_generates },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationshiptype, spdx_relationshiptype_hasprerequisite },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationshiptype, spdx_relationshiptype_metafileof },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationshiptype, spdx_relationshiptype_optionalcomponentof },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationshiptype, spdx_relationshiptype_other },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationshiptype, spdx_relationshiptype_packageof },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationshiptype, spdx_relationshiptype_patchapplied },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationshiptype, spdx_relationshiptype_patchfor },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationshiptype, spdx_relationshiptype_prerequisitefor },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationshiptype, spdx_relationshiptype_staticlink },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationshiptype, spdx_relationshiptype_testcaseof },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationshiptype, spdx_relationshiptype_variantof },
+
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_spdxelement, spdx_spdxdocument },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_spdxelement, spdx_spdxitem },
+
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_spdxitem, spdx_package },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_spdxitem, spdx_file },
+    { { s_spdx, 2, 1 }, { 0, 0 }, spdx_spdxitem, spdx_snippet },
 
     // ssn
     { { s_ssn, 1, 0 }, { 0, 0 }, ssn_property, sosa_actuatableproperty },

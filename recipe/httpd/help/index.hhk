@@ -97,6 +97,12 @@
   </li>
   <li>
     <object type="text/sitemap">
+      <param name="Name" value="summary"/>
+      <param name="Local" value="summary.html"/>
+    </object>
+  </li>
+  <li>
+    <object type="text/sitemap">
       <param name="Name" value="stats"/>
       <param name="Local" value="stats.html"/>
     </object>

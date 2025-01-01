@@ -44,7 +44,7 @@ struct listedit_manager
     ::std::string tiswot () const;
     listedit_manager () = default;
     listedit_manager (  const wxWindowID add_id, const wxWindowID erase_id, const wxWindowID rename_id,
-                        const wxWindowID file_id, const wxWindowID list_id, const wxWindowID text_id)
+                        const wxWindowID file_id, const wxWindowID list_id, const wxWindowID text_id) noexcept
         : add_id_ (add_id), erase_id_ (erase_id), rename_id_ (rename_id), file_id_ (file_id), list_id_ (list_id), text_id_ (text_id)
     { }
     listedit_manager (const listedit_manager& l) = default;
@@ -59,10 +59,12 @@ struct listedit_manager
     void OnText (wxCommandEvent& event);
     void OnTap (wxCommandEvent& event);
     void OnImpatience (wxCommandEvent& event);
+    vstr_t acquire () const;
     bool construct (wxWindow* parent, wxBoxSizer* box, const char* desc, const char* def = nullptr, bool file = false, bool comma = false, bool line = false);
     void enable (const bool e);
+    bool invalid () const noexcept; 
     void preload (const vstr_t& vs);
-    vstr_t acquire () const;
-    bool invalid () const noexcept; };
+    int sel () const
+    {	return list_ -> GetSelection (); } };
 
 #endif // WX

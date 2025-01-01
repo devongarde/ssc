@@ -101,6 +101,10 @@ install vcpkg yourself, from https://vcpkg.io/.
 
 Unii & mock Unii
 ----------------
+I wrote ssc using visual C++ and clang. It turns out that, regretfully,
+some of the choices I made left gcc ridiculously slow. I suggest, if
+you have the choice, that you avoid it.
+
 You will need CMake 3.24 or better. On Linux, you will also need
 lsb-release. These can be found in most distributions' standard
 packages. For macos, I used macports, but I expect brew is good too.
@@ -138,7 +142,7 @@ I've sometimes found it necessary to use cmake's
 
 Linux
 -----
-I tend to build under ubuntu LTS, but many other flavours work too.
+I tend to build under Ubuntu, but some other flavours work too.
 
 OpenBSD
 -------

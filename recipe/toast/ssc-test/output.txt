@@ -1,5 +1,5 @@
 ssc
-0.2.7
+0.2.8
 (c) 2020-2025 Dylan Harris, https://dylanharris.org/
 
 *** ../toast/ssc-test/lines.txt

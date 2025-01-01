@@ -56,7 +56,7 @@ void output_streams_t::out (const ::std::string& s) const
 void output_streams_t::console (const ::std::string& s) const
 {   lox l (lox_out);
 #ifdef WX
-    if (wx_) app -> append (ensane (s)); else
+    if (wx_) app -> console (ensane (s)); else
 #endif // WX
     ::std::cout << s; }
 

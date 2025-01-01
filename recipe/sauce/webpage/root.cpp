@@ -74,15 +74,15 @@ bool path_root::set_export (nitpick& nits, const ::boost::filesystem::path& ex)
         if (GSL_AT (root_, i) -> applicable (f)) return i;
     return 0; }
 
-::boost::filesystem::path paths_root::get_filename (const ::std::string& filename)
+::boost::filesystem::path paths_root::get_filename (const ::std::string& filename) const
 {   VERIFY_NOT_NULL (GSL_AT (root_, get_xxx (filename)), __FILE__, __LINE__);
     return GSL_AT (root_, get_xxx (filename)) -> get_disk_filename (local_path_to_nix (filename)); }
 
-::boost::filesystem::path paths_root::get_shadow (const ::std::string& filename)
+::boost::filesystem::path paths_root::get_shadow (const ::std::string& filename) const
 {   VERIFY_NOT_NULL (GSL_AT (root_, get_xxx (filename)), __FILE__, __LINE__);
     return GSL_AT (root_, get_xxx (filename)) -> get_shadow_filename (local_path_to_nix (filename)); }
 
-::boost::filesystem::path paths_root::get_export (const ::std::string& filename)
+::boost::filesystem::path paths_root::get_export (const ::std::string& filename) const
 {   VERIFY_NOT_NULL (GSL_AT (root_, get_xxx (filename)), __FILE__, __LINE__);
     return GSL_AT (root_, get_xxx (filename)) -> get_export_filename (local_path_to_nix (filename)); }
 

@@ -69,16 +69,17 @@ Otherwise, you probably only need <kbd>css.version</kbd>.
 <tr><td>2024</td> <td>2024 base snapshot</td></tr>
 <tr><td>2024+</td> <td>2024 wibbly snapshot</td></tr>
 <tr><td>2024++</td> <td>2024 wibbly&ndash;wobbly snapshot</td></tr>
+<tr><td>2024+++</td> <td>2024 weally&ndash;wibbly&ndash;wobbly snapshot</td></tr>
 </table>
 
 <p>
-                        The years are CSS snapshots, whether the year
-                        itself for stable modules, with + for wobbly
-                        modules, and ++ for wibbly&ndash;wobbly modules, as
-                        per the corresponding W3 CSS snapshots (the
-                        terminology in those snapshots is inconsistent,
-                        hence the use of the whovian scientific terms &lsquo;wobbly&rsquo;
-                        and &lsquo;wibbly&ndash;wobbly&rsquo;).
+The years are CSS snapshots, whether the year
+itself for stable modules, with + for wobbly
+modules, ++ for wibbly&ndash;wobbly modules, and +++
+for weally&ndash;wibbly&ndash;wobbly modules, as per the
+corresponding W3 CSS snapshots (the terminology
+in those snapshots is inconsistent, hence the
+use of alternative scientific terminology).
 </p>
 
 <p>

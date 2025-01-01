@@ -134,9 +134,7 @@ template < class N > struct panel_name < N >
 #ifndef NOSPELL
 						spell_t,
 #endif // NOSPELL
-#ifdef DEBUG
-						valid_t,
-#endif // DEBUG
+						summarise_t, vv_t,
 						report_t > :: naam (n); }
 
 standard_t :: standard_t (wxWindow *mummy, const context_t& c, const e_gui_panel gp, wxWindowID id, const wxString& caption)
@@ -152,7 +150,9 @@ void standard_t :: CreateControls (const e_gui_panel gp)
 {	if (interrogate < wxDialog > :: invalid ()) return;
 	choice_ = GSL_OWNER (wxChoicebook) (new wxChoicebook (this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxCHB_DEFAULT));
 	if (choice_ != nullptr) // if this order changes, update e_gui_panel
-	{	if (html_.create_panel (choice_, panel_html, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
+	{	if (summary_.create_panel (choice_, panel_statistics, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
+			choice_ -> AddPage (summary_.panel (), "summary", false); 
+		if (html_.create_panel (choice_, panel_html, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
 			choice_ -> AddPage (html_.panel (), "HTML, XHTML, MathML, SVG", false); 
 		if (css_.create_panel (choice_, panel_css, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
 			choice_ -> AddPage (css_.panel (), "CSS", false); 
@@ -174,10 +174,8 @@ void standard_t :: CreateControls (const e_gui_panel gp)
 			choice_ -> AddPage (ssi_.panel (), "server side includes", false); 
 		if (stats_.create_panel (choice_, panel_statistics, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
 			choice_ -> AddPage (stats_.panel (), "statistics, reports", false); 
-#ifdef DEBUG
-		if (valid_.create_panel (choice_, panel_validation, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
-			choice_ -> AddPage (valid_.panel (), "validation (not implemented yet)", false);
-#endif // DEBUG
+		if (vv_.create_panel (choice_, panel_validation, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
+			choice_ -> AddPage (vv_.panel (), "validation, virtual", false);
 		box_ -> Add (choice_, 12, wxEXPAND | wxALL, 5); }
 	d3_t :: CreateButtons (1);
 	SetSizer (box_);
@@ -221,9 +219,8 @@ bool standard_t :: TransferDataToWindow ()
 #endif // NOSPELL
 	ssi_.load_from_context (c_);
 	stats_.load_from_context (c_);
-#ifdef DEBUG
-	valid_.load_from_context (c_);
-#endif // DEBUG
+	summary_.load_from_context (c_);
+	vv_.load_from_context (c_);
 	return  css_.TransferDataToWindow () &&
 			general_.TransferDataToWindow () &&
 			html_.TransferDataToWindow () &&
@@ -234,11 +231,10 @@ bool standard_t :: TransferDataToWindow ()
 #ifndef NOSPELL
 			spell_.TransferDataToWindow () &&
 #endif // NOSPELL
-			ssi_.TransferDataToWindow () &&
-#ifdef DEBUG
-			valid_.TransferDataToWindow () &&
-#endif // DEBUG
-			stats_.TransferDataToWindow (); }
+			stats_.TransferDataToWindow () &&
+			summary_.TransferDataToWindow () &&
+			vv_.TransferDataToWindow () &&
+			ssi_.TransferDataToWindow (); }
 
 bool standard_t :: TransferDataFromWindow ()
 {	if (	invalid () ||
@@ -252,10 +248,10 @@ bool standard_t :: TransferDataFromWindow ()
 #ifndef NOSPELL
 			! spell_.TransferDataFromWindow () ||
 #endif // NOSPELL
-#ifdef DEBUG
-			! valid_.TransferDataFromWindow () ||
-#endif // DEBUG
-			! stats_.TransferDataFromWindow ())
+			! stats_.TransferDataFromWindow () ||
+			! summary_.TransferDataFromWindow () ||
+			! vv_.TransferDataFromWindow () ||
+			! ssi_.TransferDataFromWindow ())
 		return false;
 	nitpick nits;
 	css_.save_to_context (c_);
@@ -270,9 +266,8 @@ bool standard_t :: TransferDataFromWindow ()
 #endif // NOSPELL
 	ssi_.save_to_context (nits, c_);
 	stats_.save_to_context (c_);
-#ifdef DEBUG
-	valid_.save_to_context (c_);
-#endif // DEBUG
+	summary_.save_to_context (c_);
+	vv_.save_to_context (c_);
 	if (! nits.empty ())
 	 	app_t::nits_msgbox (nullptr, "SSI values", nits, es_info);
 	return true; }

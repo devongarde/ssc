@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:cnt="http://www.w3.org/2011/content#"
+ xmlns:ptr="http://www.w3.org/2009/pointers#"
+xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema# ">
+
+<ptr:RelatedPointers rdf:about="#relatedGroup">
+    <ptr:groupPointer rdf:resource="#relatedPointer1"/>
+    <ptr:groupPointer rdf:resource="#relatedPointer2"/>
+    ...
+  </ptr:RelatedPointers>
+
+  <ptr:EquivalentPointers rdf:about="#equivalentGroup">
+    <ptr:groupPointer rdf:resource="#equivalentPointer1"/>
+    <ptr:groupPointer rdf:resource="#equivalentPointer2"/>
+    <ptr:groupPointer rdf:resource="#equivalentPointer3"/>
+    ...
+  </ptr:EquivalentPointers>
+
+  <ptr:XPathPointer rdf:about="#xPathPointer">
+    <ptr:version>2.0</ptr:version>
+    <ptr:expression>/html/body/div[@id='header']/img[1]</ptr:expression>
+    <ptr:reference rdf:resource="http://example.org/doc1.html"/>
+    <ptr:namespace rdf:resource="#NamespaceMapping1"/>
+  </ptr:XPathPointer>
+
+  <ptr:XPointerPointer rdf:about="#xPointerPointer">
+    <ptr:expression>string-range(//P,"Thomas Pynchon")[3],"P",1,0)</ptr:expression>
+    <ptr:reference rdf:resource="http://example.org/doc1.html"/>
+  </ptr:XPointerPointer>
+
+  <ptr:CSSSelectorPointer rdf:about="#cssSelectorPointer">
+    <ptr:reference rdf:resource="http://example.org/doc1.html"/>
+    <ptr:expression>body > p#important</ptr:expression>
+    <ptr:version>2.1</ptr:version>
+  </ptr:CSSSelectorPointer>
+
+  <ptr:CharOffsetPointer rdf:about="#charOffsetPointer">
+    <ptr:reference rdf:resource="http://example.org/doc1.html"/>
+    <ptr:offset>335</ptr:offset>
+  </ptr:CharOffsetPointer>
+
+  <ptr:ByteOffsetPointer rdf:about="#byteOffsetPointer">
+    <ptr:reference rdf:resource="http://example.org/doc1.html"/>
+    <ptr:offset>52</ptr:offset>
+  </ptr:ByteOffsetPointer>
+
+  <ptr:LineCharPointer rdf:about="#lineCharPointer">
+    <ptr:reference rdf:resource="http://example.org/doc1.html"/>
+    <ptr:lineNumber>5</ptr:lineNumber>
+    <ptr:charNumber>18</ptr:charNumber>
+  </ptr:LineCharPointer>
+
+  <ptr:StartEndPointer rdf:about="#startEndPointer">
+    <ptr:startPointer rdf:resource="#lineCharPointer"/>
+    <ptr:endPointer rdf:resource="#charOffsetPointer"/>
+  </ptr:StartEndPointer>
+
+  <ptr:CharSnippetCompoundPointer rdf:about="#charSnippetCompoundPointer">
+    <ptr:startPointer rdf:resource="#charOffsetPointer"/>
+    <cnt:chars>&lt;p&gt;Some text.&lt;/p&gt;</cnt:chars>
+  </ptr:CharSnippetCompoundPointer>
+
+  <ptr:CharOffsetCompoundPointer rdf:about="#charOffsetCompoundPointer">
+    <ptr:startPointer rdf:resource="#XPathPointer"/>
+    <ptr:charOffset>55</ptr:charOffset>
+  </ptr:CharOffsetCompoundPointer>
+
+  <ptr:ByteSnippetCompoundPointer rdf:about="#byteSnippetCompoundPointer">
+    <ptr:startPointer rdf:resource="#byteOffsetPointer"/>
+    <cnt:bytes>R0lGODlhtQAxAOYAAKynpv3t4v3j1P/59ZuXlveYZ/vDovvMsfBbGWRiYf7+{...}</cnt:bytes>
+  </ptr:ByteSnippetCompoundPointer>
+
+  <ptr:ByteOffsetCompoundPointer rdf:about="#byteOffsetCompoundPointer">
+    <ptr:startPointer rdf:resource="#byteOffsetPointer"/>
+    <ptr:byteOffset>255</ptr:byteOffset>
+  </ptr:ByteOffsetCompoundPointer>
+
+</rdf:RDF>

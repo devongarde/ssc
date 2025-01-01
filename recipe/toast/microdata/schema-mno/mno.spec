@@ -217,16 +217,16 @@ PASS ../toast/microdata/schema-mno/orderitem.html
 
 PASS ../toast/microdata/schema-mno/organisation.html
 16 use_quote_code
-39 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
-40 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
+39 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
+40 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
 64 forgotten_name use_double_quote_code missing_open
 81 no_itemscope
 94 invalid_attribute_version wrong_version svg_rdf timezone
 
 PASS ../toast/microdata/schema-mno/organisationrole.html
-14 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
-16 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
+14 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
+16 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
 26 bad_property
 27 bad_property
-37 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
-38 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
+37 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
+38 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property

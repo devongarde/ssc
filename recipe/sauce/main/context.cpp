@@ -389,10 +389,10 @@ bool context_t::write (nitpick& nits, const ::boost::filesystem::path& fn) const
 
     return res; }
 
-::std::string context_t::report (const e_gui_report gr) const
+::std::string context_t::report (const e_gui_report gr, const bool wibble) const
 {   if (gr == gr_summary) return summarise ();
     options opt (*this);
-    return opt.report (gr); }
+    return opt.report (gr, false, wibble); }
 
 context_t& context_t::serve (const bool b)
 {   serve_ = b;

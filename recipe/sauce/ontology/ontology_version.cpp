@@ -64,6 +64,7 @@ sh_t sh [] =  // latest first
     { book_2014, html_jan14 },
     { book_2012, html_jan12 },
     { cito_schema, html_jan18 },
+    { cnt_schema, html_rdf_1_0_con },
     { common_tag, html_rdf_1_0_con },
     { content_schema, html_rdf_1_0 },
     { creative_commons, html_cc },
@@ -96,8 +97,11 @@ sh_t sh [] =  // latest first
     { dc_1_1, html_dc_1_1 },
     { dc_1_0, html_dc_1_0 },
     { dcam, html_rdf_1_0_con },
-    { data_catalogue_1, html_rdf_1_0 },
+    { dc_1_0, html_dc_1_0 },
+    { dc_1_0, html_dc_1_0 },
+    { data_catalogue_3, html_dcat_3 },
     { data_catalogue_2, html_rdf_1_0_con },
+    { data_catalogue_1, html_rdf_1_0 },
     { dcmi, html_rdf_1_0_con },
     { dublin_core_terms_1_1, html_dcterms_1_1 },
     { dublin_core_terms_1_0, html_dcterms_1_0 },
@@ -242,7 +246,7 @@ sh_t sh [] =  // latest first
     { profile_2012, html_jan12 },
     { provincial, html_rdf_1_0_con },
     { psv_1_0, html_prism_1_0 },
-    { ptr_schema, html_rdf_1_0_con },
+    { ptr_schema, html_ptr },
     { pur_3_0, html_prism_3_0 },
     { pur_2_1, html_prism_2_1 },
     { data_cube, html_rdf_1_0_con },
@@ -364,6 +368,13 @@ sh_t sh [] =  // latest first
     { ssn_schema, html_ssn },
     { sosa_schema, html_sosa },
     { spl_1_0, html_dec22 },
+    { spdx_2_3, html_spdx_2_3 },
+    { spdx_2_2, html_spdx_2_2 },
+    { spdx_2_1, html_spdx_2_1 },
+    { spdx_2_0, html_spdx_2_0 },
+    { spdx_1_2, html_spdx_1_2 },
+    { spdx_1_1, html_spdx_1_1 },
+    { spdx_1_0, html_spdx_1_0 },
     { svd_1_0, html_dec22 },
     { svdu_1_0, html_dec22 },
     { svl_1_0, html_dec22 },
@@ -430,6 +441,7 @@ vsv_t vsv = {
     biro_schema,
     book_2012, book_2014, book_2018,
     cito_schema,
+    cnt_schema,
     common_tag,
     content_schema,
     croissant_0_2, croissant_0_3, croissant_0_4, croissant_0_6, croissant_0_8, croissant_1_0, croissant_1_1, croissant_1_2, croissant_1_3, croissant_1_4,
@@ -438,7 +450,7 @@ vsv_t vsv = {
     crs2_schema,
     csvw_schema,
     daq_schema,
-    data_catalogue_1, data_catalogue_2,
+    data_catalogue_1, data_catalogue_2, data_catalogue_3,
     data_cube,
     data_quality,
     data_vocabulary,
@@ -553,8 +565,9 @@ vsv_t vsv = {
     skos_schema,
     skosxl_schema,
     sosa_schema,
-    ssn_schema,
+    spdx_1_0, spdx_1_1, spdx_1_2, spdx_2_0, spdx_2_1, spdx_2_2, spdx_2_3,
     spl_1_0,
+    ssn_schema,
     svd_1_0,
     svdu_1_0,
     svl_1_0,
@@ -716,10 +729,10 @@ template < > ontology_version ontology_detail < s_dc > :: to () noexcept { retur
 
 template < > bool ontology_detail < s_dcat > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   if (mnr != 0) return false;
-    return (mjr == 1) || (mjr == 2); }
+    return (mjr >= 1) && (mjr <= 3); }
 template < > ontology_version ontology_detail < s_dcat > :: from () noexcept { return ontology_version (s_dcat, 1, 0); }
-template < > int ontology_detail < s_dcat > :: count () noexcept { return 2; }
-template < > ontology_version ontology_detail < s_dcat > :: to () noexcept { return ontology_version (s_dcat, 2, 0); }
+template < > int ontology_detail < s_dcat > :: count () noexcept { return 3; }
+template < > ontology_version ontology_detail < s_dcat > :: to () noexcept { return ontology_version (s_dcat, 3, 0); }
 
 template < > bool ontology_detail < s_dct > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   if (mjr != 1) return false;
@@ -1047,6 +1060,16 @@ template < > ::std::string ontology_detail < s_schema > :: name (const ::std::st
     res += " v";
     res += ver (mjr, mnr);
     return res; }
+
+template < > bool ontology_detail < s_spdx > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
+{  switch (mjr)
+    {   case 1 : return ((mnr >= 0) && (mnr <= 2));
+        case 2 : return ((mnr >= 0) && (mnr <= 3));
+        default : break; }
+    return false; }
+template < > ontology_version ontology_detail < s_spdx > :: from () noexcept { return ontology_version (s_exifex, 1, 0); }
+template < > int ontology_detail < s_spdx > :: count () noexcept { return 7; }
+template < > ontology_version ontology_detail < s_spdx > :: to () noexcept { return ontology_version (s_exifex, 2, 3); }
 
 template < > bool ontology_detail < s_tiff > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   return (mjr == 6) && (mnr == 0); }

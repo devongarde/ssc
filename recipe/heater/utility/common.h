@@ -280,3 +280,5 @@ inline ::std::string::size_type find_no_case (const ::std::string& s, const ::st
 
 bool is_plain_old_integer (const ::std::string& ss);
 bool is_plain_old_decimal (const ::std::string& ss);
+
+::std::string sweeten (const ::std::string& s);

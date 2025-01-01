@@ -92,10 +92,32 @@ void frame_t :: append (const ::std::string& text)
 {   if ((! shush_) && (output_ != nullptr)) output_ -> append (text); }
 
 void frame_t :: clear ()
-{   if (output_ != nullptr) output_ -> clear (); }
+{   if (output_ != nullptr) output_ -> clear ();
+    clear_console (); }
 
-void frame_t :: status (const ::std::string& s)
-{    SetStatusText (s.c_str ()); }
+void frame_t :: console_check ()
+{   time_t t = 0;
+    ::std::time (&t);
+    if (t == console_time_)
+        console_changed_ = true;
+    else
+    {   console_time_ = t;
+        SetStatusText (console_.c_str ());
+        console_changed_ = false; } }
+
+void frame_t :: console (const ::std::string& text)
+{   const bool vide = console_.empty ();
+    console_ = sweeten (text);
+    if (! vide)
+        console_check ();
+    else
+    {   SetStatusText (console_.c_str ());
+        ::std::time (&console_time_);
+        console_changed_ = false; } }
+
+void frame_t :: clear_console ()
+{   console_.clear ();
+    console ("ready"); }
 
 bool frame_t::process_config (const nitpick& nits, const ::boost::filesystem::path& fn)
 {   if (! nits.empty ())
@@ -132,7 +154,7 @@ void frame_t :: OnAbout (wxCommandEvent& )
 {   if (app != nullptr) app -> help ("about"); }
 
 void frame_t :: OnConfigEdit (wxCommandEvent& )
-{   const ::boost::scoped_ptr < standard_t > g (new standard_t (this, context_, gp_html));
+{   const ::boost::scoped_ptr < standard_t > g (new standard_t (this, context_, gp_summary));
     if (g.get () != nullptr)
         if (! g -> invalid ())
             if (g -> ShowModal () == wxID_OK)

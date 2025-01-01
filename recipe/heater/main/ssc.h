@@ -30,3 +30,13 @@ void trundle ();
 int examine (nitpick& nits);
 int cycle (nitpick& nits, const int argc, char** argv = nullptr);
 int ssc_main (int argc, char** argv);
+#ifdef WX
+void ssc_getset ();
+#else // WX
+inline void ssc_getset () { }
+#endif // WX
+void ssc_console (const ::std::string& s);
+inline void ssc_console (const ::std::string& s1, const ::std::string& s2)
+{   ssc_console (s1 + s2); }
+inline void ssc_console (const ::std::string& s1, const ::std::string& s2, const ::std::string& s3)
+{   ssc_console (s1 + s2 + s3); }

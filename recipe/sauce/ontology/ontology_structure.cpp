@@ -542,6 +542,25 @@ microdata_structure ontology_structure [] =
     { { s_cito, 2, 8 }, { 0, 0 }, cito_citation, cp_uses_method_in },
     { { s_cito, 2, 8 }, { 0, 0 }, cito_citation, owl_versioninfo },
 
+    // RDF content
+    { { s_cnt, 1, 0 }, { 0, 0 }, cnt_content, cnt_characterencoding },
+
+    { { s_cnt, 1, 0 }, { 0, 0 }, cnt_contentasbase64, cnt_bytes },
+
+    { { s_cnt, 1, 0 }, { 0, 0 }, cnt_contentastext, cnt_chars },
+
+    { { s_cnt, 1, 0 }, { 0, 0 }, cnt_contentasxml, cnt_declaredencoding },
+    { { s_cnt, 1, 0 }, { 0, 0 }, cnt_contentasxml, cnt_dtdecl },
+    { { s_cnt, 1, 0 }, { 0, 0 }, cnt_contentasxml, cnt_leadingmisc },
+    { { s_cnt, 1, 0 }, { 0, 0 }, cnt_contentasxml, cnt_rest },
+    { { s_cnt, 1, 0 }, { 0, 0 }, cnt_contentasxml, cnt_standalone },
+    { { s_cnt, 1, 0 }, { 0, 0 }, cnt_contentasxml, cnt_version },
+
+    { { s_cnt, 1, 0 }, { 0, 0 }, cnt_doctypedecl, cnt_doctypename },
+    { { s_cnt, 1, 0 }, { 0, 0 }, cnt_doctypedecl, cnt_internalsubset },
+    { { s_cnt, 1, 0 }, { 0, 0 }, cnt_doctypedecl, cnt_publicid },
+    { { s_cnt, 1, 0 }, { 0, 0 }, cnt_doctypedecl, cnt_systemid },
+
     // common tag
     { { s_ctag, 1, 0 }, { 0, 0 }, ctag_tag, ctag_label },
     { { s_ctag, 1, 0 }, { 0, 0 }, ctag_tag, ctag_means },
@@ -736,12 +755,13 @@ microdata_structure ontology_structure [] =
     // data catalogue
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_catalogue, dcat_dataset },
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_catalogue, dcat_catalogue },
-    { { s_dcat, 1, 0 }, { 0, 0 }, dca_catalogue, dcat_record },
     { { s_dcat, 1, 0 }, { 0, 0 }, dca_catalogue, foaf_homepage },
-    { { s_dcat, 1, 0 }, { 0, 0 }, dca_catalogue, dcat_service },
+    { { s_dcat, 1, 0 }, { 0, 0 }, dca_catalogue, dcat_record },
+    { { s_dcat, 3, 0 }, { 0, 0 }, dca_catalogue, dcat_resource },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_catalogue, dcat_service },
     { { s_dcat, 1, 0 }, { 0, 0 }, dca_catalogue, dcat_themetaxonomy },
 
-    { { s_dcat, 1, 0 }, { 0, 0 }, dca_cataloguerecord, dct_conformsto },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_cataloguerecord, dct_conformsto },
     { { s_dcat, 1, 0 }, { 0, 0 }, dca_cataloguerecord, dct_description },
     { { s_dcat, 1, 0 }, { 0, 0 }, dca_cataloguerecord, dct_issued },
     { { s_dcat, 1, 0 }, { 0, 0 }, dca_cataloguerecord, dct_modified },
@@ -752,19 +772,22 @@ microdata_structure ontology_structure [] =
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_dataservice, dcat_endpointdescription },
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_dataservice, dcat_servesdataset },
 
+    { { s_dcat, 3, 0 }, { 0, 0 }, dca_dataseries, dcat_dataset },
+
     { { s_dcat, 1, 0 }, { 0, 0 }, dca_dataset, dct_accrualperiodicity },
     { { s_dcat, 1, 0 }, { 0, 0 }, dca_dataset, dcat_distribution },
     { { s_duv, 1, 0 }, { 0, 0 }, dca_dataset, duv_hasdistributor },
     { { s_duv, 1, 0 }, { 0, 0 }, dca_dataset, duv_hasfeedback },
+    { { s_dcat, 3, 0 }, { 0, 0 }, dca_dataset, dcat_inseries },
     { { s_dcat, 1, 0 }, { 0, 0 }, dca_dataset, dct_spatial },
-    { { s_dcat, 1, 0 }, { 0, 0 }, dca_dataset, dcat_spatialresolutioninmeters },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_dataset, dcat_spatialresolutioninmeters },
     { { s_dcat, 1, 0 }, { 0, 0 }, dca_dataset, dct_temporal },
-    { { s_dcat, 1, 0 }, { 0, 0 }, dca_dataset, dcat_temporalresolution },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_dataset, dcat_temporalresolution },
     { { s_dcat, 1, 0 }, { s_dcat, 1, 0 }, dca_dataset, dcat_theme },
-    { { s_dcat, 1, 0 }, { 0, 0 }, dca_dataset, pp_wasgeneratedby },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_dataset, pp_wasgeneratedby },
 
     { { s_dcat, 1, 0 }, { 0, 0 }, dca_distribution, dct_accessrights },
-    { { s_dcat, 1, 0 }, { 0, 0 }, dca_distribution, dcat_accessservice },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_distribution, dcat_accessservice },
     { { s_dcat, 1, 0 }, { 0, 0 }, dca_distribution, dcat_accessurl },
     { { s_dcat, 1, 0 }, { 0, 0 }, dca_distribution, dcat_bytesize },
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_distribution, dcat_compressformat },
@@ -774,7 +797,8 @@ microdata_structure ontology_structure [] =
     { { s_dcat, 1, 0 }, { 0, 0 }, dca_distribution, dct_format },
     { { s_duv, 1, 0 }, { 0, 0 }, dca_distribution, duv_hasdistributor },
     { { s_duv, 1, 0 }, { 0, 0 }, dca_distribution, duv_hasfeedback },
-    { { s_dcat, 1, 0 }, { 0, 0 }, dca_distribution, odrlp_haspolicy },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_distribution, odrlp_haspolicy },
+    { { s_dcat, 3, 0 }, { 0, 0 }, dca_distribution, dcat_isdistributionof },
     { { s_dcat, 1, 0 }, { 0, 0 }, dca_distribution, dct_issued },
     { { s_dcat, 1, 0 }, { 0, 0 }, dca_distribution, dct_licence },
     { { s_dcat, 1, 0 }, { 0, 0 }, dca_distribution, dcat_mediatype },
@@ -793,23 +817,42 @@ microdata_structure ontology_structure [] =
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dcat_contactpoint },
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_creator },
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_description },
+    { { s_dcat, 3, 0 }, { 0, 0 }, dca_resource, dcat_first },
+    { { s_dcat, 3, 0 }, { 0, 0 }, dca_resource, dct_haspart },
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, odrlp_haspolicy },
+    { { s_dcat, 3, 0 }, { 0, 0 }, dca_resource, dcat_hascurrentversion }, 
+    { { s_dcat, 3, 0 }, { 0, 0 }, dca_resource, dcat_hasversion },
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_identifier },
+    { { s_dcat, 3, 0 }, { 0, 0 }, dca_resource, dcat_incatalogue },
+    { { s_dcat, 3, 0 }, { 0, 0 }, dca_resource, dct_ispartof },
+    { { s_dcat, 3, 0 }, { 0, 0 }, dca_resource, foaf_isprimarytopicof },
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_isreferencedby },
+    { { s_dcat, 3, 0 }, { 0, 0 }, dca_resource, dct_isreplacedby },
+    { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_issued },
+    { { s_dcat, 3, 0 }, { 0, 0 }, dca_resource, dct_isversionof },
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dcat_keyword },
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dcat_landingpage },
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_language },
+    { { s_dcat, 3, 0 }, { 0, 0 }, dca_resource, dcat_last },
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_licence },
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_modified },
+    { { s_dcat, 3, 0 }, { 0, 0 }, dca_resource, dcat_next },
+    { { s_dcat, 3, 0 }, { 0, 0 }, dca_resource, dcat_nextversion },
+    { { s_dcat, 3, 0 }, { 0, 0 }, dca_resource, dcat_prev },
+    { { s_dcat, 3, 0 }, { 0, 0 }, dca_resource, dcat_previousversion },
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_publisher },
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, pp_qualifiedattribution },
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dcat_qualifiedrelation },
-    { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_issued },
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_relation },
+    { { s_dcat, 3, 0 }, { 0, 0 }, dca_resource, dct_references },
+    { { s_dcat, 3, 0 }, { 0, 0 }, dca_resource, dct_replaces },
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_rights },
+    { { s_dcat, 3, 0 }, { 0, 0 }, dca_resource, admsp_status },
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dcat_theme },
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_title },
     { { s_dcat, 2, 0 }, { 0, 0 }, dca_resource, dct_type },
+    { { s_dcat, 3, 0 }, { 0, 0 }, dca_resource, dcat_version },
+    { { s_dcat, 3, 0 }, { 0, 0 }, dca_resource, admsp_version_notes },
 
 // oa_processinglanguage
 // commented out because dublin core doesn't define classes
@@ -3762,24 +3805,30 @@ microdata_structure ontology_structure [] =
     { { s_prism, 1, 0 }, { 0, 0 }, prism_thing, psv_websiteinfo },
     { { s_prism, 1, 0 }, { 0, 0 }, prism_thing, psv_whereused },
 
-    // ptr
-    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_content, ptr_characterencoding },
+    // RDF pointers
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_byteoffsetcompoundpointer, ptr_byteoffset },
 
-    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_contentasbase64, ptr_bytes },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_charoffsetcompoundpointer, ptr_charoffset },
 
-    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_contentastext, ptr_chars },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_compoundpointer, ptr_endpointer },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_compoundpointer, ptr_startpointer },
 
-    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_contentasxml, ptr_declaredencoding },
-    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_contentasxml, ptr_dtdecl },
-    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_contentasxml, ptr_leadingmisc },
-    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_contentasxml, ptr_rest },
-    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_contentasxml, ptr_standalone },
-    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_contentasxml, ptr_version },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_expressionpointer, ptr_expression },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_expressionpointer, ptr_version },
 
-    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_doctypedecl, ptr_doctypename },
-    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_doctypedecl, ptr_internalsubset },
-    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_doctypedecl, ptr_publicid },
-    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_doctypedecl, ptr_systemid },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_linecharpointer, ptr_linenumber },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_linecharpointer, ptr_charnumber },
+
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_pointersgroup, ptr_grouppointer },
+
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_namespacemapping, ptr_namespacename },
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_namespacemapping, ptr_prefix },
+
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_offsetpointer, ptr_offset },
+
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_singlepointer, ptr_reference },
+
+    { { s_ptr, 1, 0 }, { 0, 0 }, ptr_xpathpointer, ptr_namespace },
 
     // data cube
     { { s_qb, 1, 0 }, { 0, 0 }, anything, qbp_observationgroup },
@@ -6904,6 +6953,153 @@ microdata_structure ontology_structure [] =
     { { s_ssn, 1, 0 }, { 0, 0 }, sosa_sensor, ssn_isimplementedby },
     { { s_sosa, 1, 0 }, { 0, 0 }, sosa_sensor, sosa_madeobservation },
     { { s_sosa, 1, 0 }, { 0, 0 }, sosa_sensor, sosa_observes },
+
+    // spandex
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_annotation, spdxp_annotationtype },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_annotation, spdxp_comment },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_annotation, spdxp_date },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_annotation, spdxp_annotator },
+
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_anylicenceinfo, spdxp_extractedtext },
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_anylicenceinfo, spdxp_licenceid },
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_anylicenceinfo, spdxp_licencetext },
+    { { s_spdx, 1, 0 }, { s_spdx, 1, 2 }, spdx_anylicenceinfo, rdfs_member },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_anylicenceinfo, spdxp_member },
+
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_checksum, spdxp_algorithm },
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_checksum, spdxp_checksumvalue },
+
+    { { s_spdx, 1, 0 }, { s_spdx, 1, 2 }, spdx_conjunctivelicenceset, rdfs_member },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_conjunctivelicenceset, spdxp_member },
+
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_creationinfo, rdfs_comment },  
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_creationinfo, spdxp_created },  
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_creationinfo, spdxp_creator },  
+    { { s_spdx, 1, 2 }, { 0, 0 }, spdx_creationinfo, spdxp_licencelistversion },  
+
+    { { s_spdx, 1, 0 }, { s_spdx, 1, 2 }, spdx_disjunctivelicenceset, rdfs_member },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_disjunctivelicenceset, spdxp_member },
+
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_externaldocumentref, spdxp_checksum },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_externaldocumentref, spdxp_externaldocumentid },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_externaldocumentref, spdxp_spdxdocument },
+
+    { { s_spdx, 2, 1 }, { 0, 0 }, spdx_externalref, spdxp_category },
+    { { s_spdx, 2, 1 }, { 0, 0 }, spdx_externalref, spdxp_comment },
+    { { s_spdx, 2, 1 }, { 0, 0 }, spdx_externalref, spdxp_type },
+    { { s_spdx, 2, 1 }, { 0, 0 }, spdx_externalref, spdxp_locator },
+
+    { { s_spdx, 1, 1 }, { s_spdx, 1, 2 }, spdx_extractedlicensinginfo, rdfs_comment },
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_extractedlicensinginfo, spdxp_extractedtext },
+    { { s_spdx, 1, 0 }, { s_spdx, 1, 2 }, spdx_extractedlicensinginfo, spdxp_licenceid },
+    { { s_spdx, 1, 1 }, { s_spdx, 1, 2 }, spdx_extractedlicensinginfo, spdxp_name },
+    { { s_spdx, 1, 1 }, { s_spdx, 1, 2 }, spdx_extractedlicensinginfo, rdfs_seealso },
+
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_file, spdxp_artifactof },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_file, spdxp_checksum },
+    { { s_spdx, 1, 1 }, { s_spdx, 1, 2 }, spdx_file, rdfs_comment },
+    { { s_spdx, 1, 0 }, { s_spdx, 1, 2 }, spdx_file, spdxp_copyrighttext },
+    { { s_spdx, 1, 2 }, { 0, 0 }, spdx_file, spdxp_filecontributor },
+    { { s_spdx, 1, 2 }, { s_spdx, 1, 2 }, spdx_file, spdxp_filedependency },
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_file, spdxp_filename },
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_file, spdxp_filetype },
+    { { s_spdx, 1, 0 }, { s_spdx, 1, 2 }, spdx_file, spdxp_licencecomments },
+    { { s_spdx, 1, 0 }, { s_spdx, 1, 2 }, spdx_file, spdxp_licenceconcluded },
+    { { s_spdx, 1, 0 }, { s_spdx, 1, 2 }, spdx_file, spdxp_licenceinfoinfile },
+    { { s_spdx, 1, 2 }, { 0, 0 }, spdx_file, spdxp_noticetext },
+
+    { { s_spdx, 1, 1 }, { s_spdx, 1, 2 }, spdx_licence, rdfs_comment },
+    { { s_spdx, 1, 1 }, { 0, 0 }, spdx_licence, spdxp_isosiapproved },
+    { { s_spdx, 1, 0 }, { s_spdx, 1, 2 }, spdx_licence, spdxp_licenceid },
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_licence, spdxp_licencetext },
+    { { s_spdx, 1, 1 }, { s_spdx, 1, 2 }, spdx_licence, spdxp_name },
+    { { s_spdx, 1, 1 }, { s_spdx, 1,  }, spdx_licence, rdfs_seealso },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_licence, spdxp_seealso },
+    { { s_spdx, 1, 1 }, { 0, 0 }, spdx_licence, spdxp_standardlicenceheader },
+    { { s_spdx, 1, 2 }, { 0, 0 }, spdx_licence, spdxp_standardlicencetemplate },
+
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_licenceexception, spdxp_example },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_licenceexception, spdxp_licenceexceptionid },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_licenceexception, spdxp_licenceexceptiontext },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_licenceexception, spdxp_name },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_licenceexception, spdxp_seealso },
+
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_orlateroperator, spdxp_simplelicenceinfo },
+
+    { { s_spdx, 2, 3 }, { 0, 0 }, spdx_package, spdxp_builtdate },
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_package, spdxp_checksum },
+    { { s_spdx, 1, 0 }, { s_spdx, 1, 2 }, spdx_package, spdxp_copyrighttext },
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_package, spdxp_description },
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_package, spdxp_downloadlocation },
+    { { s_spdx, 2, 1 }, { 0, 0 }, spdx_package, spdxp_externalref },
+    { { s_spdx, 2, 1 }, { 0, 0 }, spdx_package, spdxp_filesanalysed },
+    { { s_spdx, 1, 0 }, { s_spdx, 1, 2 }, spdx_package, spdxp_hasfile },
+    { { s_spdx, 1, 2 }, { 0, 0 }, spdx_package, spdxp_homepage },
+    { { s_spdx, 1, 0 }, { s_spdx, 1, 2 }, spdx_package, spdxp_licenceconcluded },
+    { { s_spdx, 1, 0 }, { s_spdx, 1, 2 }, spdx_package, spdxp_licencecomments },
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_package, spdxp_licencedeclared },
+    { { s_spdx, 1, 0 }, { s_spdx, 1, 2 }, spdx_package, spdxp_licenceinfofromfiles },
+    { { s_spdx, 1, 0 }, { s_spdx, 1, 2 }, spdx_package, spdxp_name },
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_package, spdxp_originator },
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_package, spdxp_packagefilename },
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_package, spdxp_packageverificationcode },
+    { { s_spdx, 2, 3 }, { 0, 0 }, spdx_package, spdxp_primarypackagepurpose },
+    { { s_spdx, 2, 3 }, { 0, 0 }, spdx_package, spdxp_releasedate },
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_package, spdxp_sourceinfo },
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_package, spdxp_summary },
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_package, spdxp_supplier },
+    { { s_spdx, 2, 3 }, { 0, 0 }, spdx_package, spdxp_validuntildate },
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_package, spdxp_versioninfo },
+
+    { { s_spdx, 2, 1 }, { 0, 0 }, spdx_project, spdxp_name },
+    { { s_spdx, 2, 1 }, { 0, 0 }, spdx_project, spdxp_homepage },
+    { { s_spdx, 2, 1 }, { 0, 0 }, spdx_project, spdxp_uri },
+
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_packageverificationcode, spdxp_packageverificationcodeexcludedfile },
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_packageverificationcode, spdxp_packageverificationcodevalue },
+
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationship, rdfs_comment },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationship, spdxp_relatedspdxelement },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_relationship, spdxp_relationshiptype },
+
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_review, rdfs_comment },
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_review, spdxp_reviewdate },
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_review, spdxp_reviewer },
+
+    { { s_spdx, 1, 0 }, { s_spdx, 1, 2 }, spdx_simplelicenceinfo, spdxp_extractedtext },
+    { { s_spdx, 1, 0 }, { s_spdx, 1, 2 }, spdx_simplelicenceinfo, spdxp_licenceid },
+    { { s_spdx, 1, 0 }, { s_spdx, 1, 2 }, spdx_simplelicenceinfo, spdxp_licencetext },
+
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_simplelicensinginfo, spdxp_comment },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_simplelicensinginfo, spdxp_example },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_simplelicensinginfo, spdxp_licenceid },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_simplelicensinginfo, spdxp_name },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_simplelicensinginfo, spdxp_seealso },
+
+    { { s_spdx, 2, 1 }, { 0, 0 }, spdx_snippet, spdxp_byterange },
+    { { s_spdx, 2, 1 }, { 0, 0 }, spdx_snippet, spdxp_externalref },
+
+    { { s_spdx, 1, 1 }, { s_spdx, 1, 2 }, spdx_spdxdocument, rdfs_comment },
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_spdxdocument, spdxp_creationinfo },
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_spdxdocument, spdxp_datalicence },
+    { { s_spdx, 1, 0 }, { s_spdx, 1, 2 }, spdx_spdxdocument, spdxp_describespackage },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_spdxdocument, spdxp_externaldocumentref },
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_spdxdocument, spdxp_hasextractedlicensinginfo },
+    { { s_spdx, 1, 0 }, { s_spdx, 1, 2 }, spdx_spdxdocument, spdxp_referencesfile },
+    { { s_spdx, 1, 0 }, { s_spdx, 1, 2 }, spdx_spdxdocument, spdxp_reviewed },
+    { { s_spdx, 1, 0 }, { 0, 0 }, spdx_spdxdocument, spdxp_specversion },  
+
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_spdxelement, spdxp_annotation },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_spdxelement, rdfs_comment },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_spdxelement, spdxp_name },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_spdxelement, spdxp_relationship },
+
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_spdxitem, spdxp_copyrighttext },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_spdxitem, spdxp_licencecomments },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_spdxitem, spdxp_licenceconcluded },
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_spdxitem, spdxp_licenceinfofromfiles },
+
+    { { s_spdx, 2, 0 }, { 0, 0 }, spdx_wtfexceptionoperator, spdxp_member },
 
     // ssn
     { { s_ssn, 1, 0 }, { 0, 0 }, ssn_deployment, ssn_deployedplatform },

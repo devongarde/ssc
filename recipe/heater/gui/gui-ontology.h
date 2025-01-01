@@ -30,9 +30,9 @@ class ontology_t : public d1_t < wx_ontology >
 {   wxBoxSizer* box_export_ = nullptr;
     wxBoxSizer* box_mf_export_ = nullptr;
     wxBoxSizer* box_version_ = nullptr;
-    wxCheckBox* check_verify_ = nullptr;
     wxCheckBox* check_export_ = nullptr;
     wxCheckBox* check_pretty_ = nullptr;
+    wxCheckBox* check_verify_ = nullptr;
     wxCheckBox* mf_export_ = nullptr;
     wxCheckBox* mf_pretty_ = nullptr;
     wxCheckBox* mf_verify_ = nullptr;

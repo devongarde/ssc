@@ -177,6 +177,7 @@ ssc.exe -T --nits.spec -o ../out/jan24living.tst -f ../toast/living/jan24/living
 ssc.exe -T --nits.spec -o ../out/apr24living.tst -f ../toast/living/apr24/living.conf
 ssc.exe -T --nits.spec -o ../out/jul24living.tst -f ../toast/living/jul24/living.conf
 ssc.exe -T --nits.spec -o ../out/oct24living.tst -f ../toast/living/oct24/living.conf
+ssc.exe -T --nits.spec -o ../out/jan25living.tst -f ../toast/living/jan25/living.conf
 ssc.exe -T --nits.spec -o ../out/1math.tst -f ../toast/math/1/math.conf
 ssc.exe -T --nits.spec -o ../out/2math.tst -f ../toast/math/2/math.conf
 ssc.exe -T --nits.spec -o ../out/3math.tst -f ../toast/math/3/math.conf
@@ -217,6 +218,17 @@ ssc.exe -T --nits.spec -o ../out/patternpattern.tst -f ../toast/other/pattern/pa
 ssc.exe -T --nits.spec -o ../out/safarisafari.tst -f ../toast/other/safari/safari.conf
 ssc.exe -T --nits.spec -o ../out/simplesimple.tst -f ../toast/other/simple/simple.conf
 ssc.exe -T --nits.spec -o ../out/ssissi.tst -f ../toast/other/ssi/ssi.conf
+ssc.exe -T --nits.spec -o ../out/rdf10.tst -f ../toast/RDF/1.0/rdf.conf
+ssc.exe -T --nits.spec -o ../out/rdf11.tst -f ../toast/RDF/1.1/rdf.conf
+ssc.exe -T --nits.spec -o ../out/rdfpointer.tst -f ../toast/RDF/pointer/rdf.conf
+ssc.exe -T --nits.spec -o ../out/rdfprism10.tst -f ../toast/RDF/prism-1.0/rdf.conf
+ssc.exe -T --nits.spec -o ../out/rdfprism11.tst -f ../toast/RDF/prism-1.1/rdf.conf
+ssc.exe -T --nits.spec -o ../out/rdfprism12.tst -f ../toast/RDF/prism-1.2/rdf.conf
+ssc.exe -T --nits.spec -o ../out/rdfprism13.tst -f ../toast/RDF/prism-1.3/rdf.conf
+ssc.exe -T --nits.spec -o ../out/rdfprism20.tst -f ../toast/RDF/prism-2.0/rdf.conf
+ssc.exe -T --nits.spec -o ../out/rdfprism21.tst -f ../toast/RDF/prism-2.1/rdf.conf
+ssc.exe -T --nits.spec -o ../out/rdfprism30.tst -f ../toast/RDF/prism-3.0/rdf.conf
+ssc.exe -T --nits.spec -o ../out/rdfprism31.tst -f ../toast/RDF/prism-3.1/rdf.conf
 ssc.exe -T --nits.spec -o ../out/RDFa113.tst -f ../toast/RDFa/1.1.3/rdfa.conf
 ssc.exe -T --nits.spec -o ../out/RDFacc.tst -f ../toast/RDFa/cc/rdfa.conf
 ssc.exe -T --nits.spec -o ../out/RDFadc.tst -f ../toast/RDFa/dc/rdfa.conf

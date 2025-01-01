@@ -57,10 +57,10 @@ public:
     bool add_export (nitpick& nits, const ::std::string& assignment);
     static paths_root& virtual_roots () noexcept;
     static void reinit ();
-    void clear () { root_.clear(); }
+    void clear () noexcept { root_.clear(); }
     const path_root_ptr& at (const ::std::size_t x) const { return root_.at (x); }
     path_root_ptr& at (const ::std::size_t x) { return root_.at (x); }
     ::std::size_t size () const noexcept { return root_.size (); }
-    ::boost::filesystem::path get_filename (const ::std::string& filename);
-    ::boost::filesystem::path get_export (const ::std::string& filename);
-    ::boost::filesystem::path get_shadow (const ::std::string& filename); };
+    ::boost::filesystem::path get_filename (const ::std::string& filename) const;
+    ::boost::filesystem::path get_export (const ::std::string& filename) const;
+    ::boost::filesystem::path get_shadow (const ::std::string& filename) const; };

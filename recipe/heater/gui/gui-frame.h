@@ -32,8 +32,9 @@ class frame_t : public wxFrame
     wxFindReplaceDialog* find_ = nullptr;
     wxFindReplaceData* find_data_ = nullptr;
     ::boost::filesystem::path config_, root_;
-    ::std::string snippet_;
-    bool new_config_ = false, new_snippet_ = false, new_site_ = false, rational_ = true, shush_ = true;
+    ::std::string snippet_, console_;
+    time_t console_time_ = 0;
+    bool console_changed_ = false, new_config_ = false, new_snippet_ = false, new_site_ = false, rational_ = true, shush_ = true;
     context_t context_;
     bool process_config (const nitpick& nits, const ::boost::filesystem::path& fn);
     DECLARE_EVENT_TABLE ()
@@ -46,13 +47,18 @@ public:
     frame_t& operator = (const frame_t& f) = default;
     frame_t& operator = (frame_t&& f) = default;
     void append (const ::std::string& text);
+    void console_check ();
+    void console (const ::std::string& text);
+    void clear_console ();
     void clear ();
+    void get_set () { console_time_ = 0; }
     context_t& context () { return context_; }
     const context_t& context () const { return context_; }
+    void cursor (const wxStockCursor sc) { SetCursor (wxCursor (sc)); }
+    void status (const ::std::string& s) { SetStatusText (s.c_str ()); }
     void load ();
     void save ();
     void save_as ();
-    void status (const ::std::string& s);
     ::boost::filesystem::path config ()
     {   new_config_ = false;
         return config_; }

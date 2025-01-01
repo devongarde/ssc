@@ -167,7 +167,7 @@ void app_t::OnIdle (wxIdleEvent& event)
     if (frame_ != nullptr)
         if (argc > 1)
         {   frame_ -> shush (false);
-            res_ = cycle (nits, argc, argv);
+            res_ = recycle (nits, argc, argv);
             if (res_ == STOP_NOW) res_ = VALID_RESULT;
             argc = 0; }
         else if (! cmd_.empty ())
@@ -177,7 +177,7 @@ void app_t::OnIdle (wxIdleEvent& event)
             outstr.enloggen (true);
 #endif // _MSC_VER
             frame_ -> shush (false);
-            res_ = cycle (nits, 0, nullptr);
+            res_ = recycle (nits, 0, nullptr);
             if (res_ == STOP_NOW) res_ = VALID_RESULT; }
         else if (frame_ -> new_site () || frame_ -> new_config ())
         {   ::std::string s (frame_ -> site ().string ());
@@ -195,7 +195,7 @@ void app_t::OnIdle (wxIdleEvent& event)
             outstr.enloggen (true);
 #endif // _MSC_VER
             frame_ -> shush (false);
-            res_ = cycle (nits, 0, nullptr); }
+            res_ = recycle (nits, 0, nullptr); }
         else if (frame_ -> new_snippet ())
         {   ::std::string s (frame_ -> snippet ());
             PRESUME (! s.empty (), __FILE__, __LINE__);
@@ -208,17 +208,30 @@ void app_t::OnIdle (wxIdleEvent& event)
             outstr.enloggen (true);
 #endif // _MSC_VER
             frame_ -> shush (false);
-            res_ = cycle (nits, argc, argv); }
+            res_ = recycle (nits, argc, argv); }
     event.Skip (); }
 
 void app_t::append (const ::std::string& text)
 {   if (frame_ != nullptr) frame_ -> append (text); }
 
-void app_t::help (const char* wot) const
-{   if (help_ != nullptr) help_ -> DisplaySection (wot); }
+void app_t::console (const ::std::string& text)
+{   if (frame_ != nullptr) frame_ -> console (text); }
+
+void app_t::console_check ()
+{   if (frame_ != nullptr) frame_ -> console_check (); }
 
 void app_t::display_contents () const
 {   if (help_ != nullptr)  help_ -> DisplayContents (); }
+
+void app_t::get_set ()
+{   if (frame_ != nullptr) frame_ -> get_set (); }
+
+void app_t::help (const char* wot) const
+{   if (help_ != nullptr) help_ -> DisplaySection (wot); }
+
+void app_t::yield ()
+{   console_check ();
+    Yield (); }
 
 int app_t::OnExit ()
 {   if (help_ != nullptr)
@@ -281,5 +294,16 @@ bool app_t::save_conf_as (wxWindow* mummy, context_t& c, ::boost::filesystem::pa
     if (! save_conf (mummy, c, f2)) return false;
     fn = f2;
     return true; }
+
+int app_t::recycle (nitpick& nits, const int c, char** v)
+{   VERIFY_NOT_NULL (frame_, __FILE__, __LINE__);
+    context.iterate (true);
+    frame_ -> cursor (wxCURSOR_WAIT);
+    frame_ -> console ("working...");
+    frame_ -> get_set ();
+    const int res = cycle (nits, c, v);
+    frame_ -> clear_console ();
+    frame_ -> cursor (wxCURSOR_ARROW);
+    return res; }
 
 #endif // WX

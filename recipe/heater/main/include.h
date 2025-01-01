@@ -62,8 +62,8 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 7
-#define VERSION_STRING "0.2.7"
+#define VERSION_RELEASE 8
+#define VERSION_STRING "0.2.8"
 #define EDITION_STANDARD "standard"
 
 #define NBSP "&nbsp;"
@@ -648,6 +648,7 @@ CONSTEXPR uid_t uid_max = UINT32_MAX;
 typedef ::std::vector < int > vint_t;
 typedef ::std::vector < double > vdbl_t;
 typedef ::std::vector < ::std::string > vstr_t;
+typedef ::std::vector < ::boost::filesystem::path > vbp_t;
 typedef ::std::vector < vstr_t > vvstr_t;
 typedef ssc_set < ::std::string > sstr_t;
 typedef ::std::vector < sstr_t > vsstr_t;
@@ -854,8 +855,14 @@ CONSTEXPR uint32_t uint32_category_mask =   0xF0000000;
 
 #ifdef DARWIN
 #define REPERTOIRE                "folder"
+#define RREPERTOIRE               "Folder"
+#define REPERTOIRES               "folders"
+#define RREPERTOIRES              "Folders"
 #else // DARWIN
 #define REPERTOIRE                "directory"
+#define RREPERTOIRE               "Directory"
+#define REPERTOIRES               "directories"
+#define RREPERTOIRES              "Directories"
 #endif // DARWIN
 
 #include "main/enum.h"

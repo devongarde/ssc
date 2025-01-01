@@ -33,13 +33,18 @@ class app_t : public wxApp
     wxHtmlHelpController* help_ = nullptr;
     ::boost::filesystem::path help_path_;
     vstr_t cmd_;
+    int recycle (nitpick& nits, const int argc, char** argv);
 protected:
     DECLARE_EVENT_TABLE ();   
 public:
     void append (const ::std::string& text);
-    void help (const char* wot) const;
+    void console (const ::std::string& text);
+    void console_check ();
+    void get_set ();
     void display_contents () const;
+    void help (const char* wot) const;
     bool invalid () const { return (frame_ == nullptr) || (help_ == nullptr); }
+    void yield ();
 #ifdef wxUSE_ON_FATAL_EXCEPTION
     void OnFatalException ();
 #endif // wxUSE_ON_FATAL_EXCEPTION

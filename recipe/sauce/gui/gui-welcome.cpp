@@ -90,7 +90,7 @@ void welcome_t :: CreateControls ()
 	{	static_config_ -> Wrap (-1);
 		text_summary_ = GSL_OWNER (wxTextCtrl) (new wxTextCtrl (this, text_summary, wxEmptyString, wxDefaultPosition, wxSize (360, 60), wxTE_MULTILINE | wxTE_READONLY | wxTE_WORDWRAP | wxTE_NO_VSCROLL));
 		if (text_summary_ != nullptr)
-		{	text_summary_ -> SetValue (c_.report (gr_summary));
+		{	text_summary_ -> SetValue (c_.report (gr_summary, false));
 			text_summary_ -> Enable (false);
 			button_configure_ = GSL_OWNER (wxButton) (new wxButton (this, button_config, "&Modify...", wxDefaultPosition, wxDefaultSize, 0));
 			if (button_configure_ != nullptr)
@@ -121,12 +121,12 @@ void welcome_t :: OnClickSnippet (wxCommandEvent& )
 
 void welcome_t :: OnConfigClick (wxCommandEvent& )
 {	if (invalid ()) return;
-    const ::boost::scoped_ptr < standard_t > w (new standard_t (this, c_, gp_html));
+    const ::boost::scoped_ptr < standard_t > w (new standard_t (this, c_, gp_summary));
     if (w.get () != nullptr)
 		if (! w -> invalid ())
 			if (w -> ShowModal () == wxID_OK)
 			{	c_ = w -> c ();
-				text_summary_ -> SetValue (c_.report (gr_summary).c_str ());
+				text_summary_ -> SetValue (c_.report (gr_summary, false).c_str ());
 				write_continuity_ = true; } }
 
 void welcome_t :: OnAboutClick (wxCommandEvent& )

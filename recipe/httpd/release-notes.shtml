@@ -20,11 +20,40 @@
 
 <div class="column-unit">
 
+<h3>0.2.8</h3>
+
+<ul>
+<li>
+living standard january 2025
+</li>
+<li>
+update CSS 2024 snapshots, adding 24+++
+</li>
+<li>
+dcat ontology version 3.0
+</li>
+<li>
+partial checking of older spdx ontologies
+</li>
+<li>
+ptr ontology
+</li>
+<li>
+underlying work
+</li>
+<li>
+<A href="src/ssc-0.2.8.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2025-01-10">24 1 10</time>
+</li>
+</ul>
+
 <h3>0.2.7</h3>
 
 <ul>
 <li>
-living standard :open psuedo selector
+living standard :open pseudo selector
 </li>
 <li>
 improve sequoia arm build
@@ -40,6 +69,12 @@ various bug fixes
 </li>
 <li>
 underlying work
+</li>
+<li>
+<A href="src/ssc-0.2.7.tgz" type="application/gzip">download source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2024-12-12">24 12 12</time>
 </li>
 </ul>
 
@@ -67,7 +102,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2024-11-3
 
 <ul>
 <li>
-Living Standard ALPHA and COLORSPACE attributes
+living standard ALPHA and COLORSPACE attributes
 </li>
 <li>
 schema.org actionProcess
@@ -122,7 +157,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2024-09-2
 
 <ul>
 <li>
-Living Standard October 2024
+living standard october 2024
 </li>
 <li>
 schema.org version 28

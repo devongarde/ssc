@@ -2338,14 +2338,14 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
         res += i + " ";
     return res; }
 
-::std::string gubbins_config ( const char* section, int& count, const char* variable)
+::std::string gubbins_config (const char* section, int& count, const char* variable)
 {   ::std::string res;
     if (count++ == 0)
     {   ::std::string sect (section);
         const ::std::string::size_type pos = sect.length ();
         PRESUME (pos > 0, __FILE__, __LINE__);
         if (sect.at (pos - 1) == '.') sect = sect.substr (0, pos-1);
-        res += "\n["; 
+        res += "["; 
         res += sect;
         res += "]\n"; }
     res += variable;
@@ -2355,7 +2355,10 @@ void pvs (::std::ostringstream& res, const vstr_t& data)
 ::std::string gubbins_switch (const char* section, int& , const char* variable)
 {   ::std::string res ("--");
     res += section;
-    res += ".";
+    const ::std::string sect (section);
+    if (! sect.empty ())
+    {   const ::std::string::size_type pos = sect.length ();
+        if (sect.at (pos - 1) != '.') res += "."; }
     res += variable;
     res += " ";
     return res; }
@@ -2405,16 +2408,17 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
 #define RI(GR,RES,SECT,VAR,DEF,COUNT) \
     if (var_.count (SECT VAR)) \
         if (var_ [SECT VAR].as < ::std::string > () != DEF) \
-            RG (GR, res, ::std::string, SECT, VAR, COUNT);
+            RG (GR, RES, ::std::string, SECT, VAR, COUNT);
 #define RII(GR,RES,SECT,VAR,DEF,COUNT) \
     if (var_.count (SECT VAR)) \
         if (var_ [SECT VAR].as < int > () != DEF) \
-            RG (GR, res, int, SECT, VAR, COUNT);
+            RG (GR, RES, int, SECT, VAR, COUNT);
 #define RP(GR,RES,SECT,VAR,COUNT) \
     if (var_.count (SECT VAR)) \
-        RG (GR, res, ::std::string, SECT, "*****", COUNT);
+        RG (GR, RES, ::std::string, SECT, "*****", COUNT);
+#define REOS(COUNT,RES) if (COUNT > 0) RES << "\n";
 
-::std::string options::report (const e_gui_report gr, const bool file) const
+::std::string options::report (const e_gui_report gr, const bool file, const bool wibble) const
 {   ::std::ostringstream res;
 #ifndef EXPAND_TEST
     if (context.test ()) return res.str ();
@@ -2471,7 +2475,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
             << report_value (gr, PROG, ssc, OPTSPELL, "no")
 #endif // SPELT
             ;
-    else
+    else if (wibble)
     {   ::std::ostringstream e;
         if (env_var_.count (ENV_CONFIG)) e << ENV_CONFIG ": " << env_var_ [ENV_CONFIG].as < ::std::string > () << "\n";
         if (env_var_.count (ENV_ARGS)) e << ENV_ARGS ": " << env_var_ [ENV_ARGS].as < ::std::string > () << "\n";
@@ -2501,7 +2505,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
         if (! x.empty ()) res << "\n" START_OF_SUBSECTION " Environment:\n" << x << "\n";
         res << "\n" START_OF_SUBSECTION " Arguments:\n";
 
-        // these should NOT throw (the var_'s ARE bool), but they do
+        // these should NOT throw (the var_s ARE bool), but they do
         try { if (var_ [ASK].as < bool > ()) res << ASK "\n"; } catch (...) { }
         try { if (var_ [DONT ASK].as < bool > ()) res << DONT ASK "\n"; } catch (...) { }
 
@@ -2512,6 +2516,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RB (gr, res, CORPUS, BODY, corpus);
     RB (gr, res, CORPUS, MAIN, corpus);
     RG (gr, res, ::std::string, CORPUS, OUTPUT, corpus);
+    REOS (corpus, res);
 
     RG (gr, res, int, CSS, ADJUST, css);
     RG (gr, res, int, CSS, ADVLAY, css);
@@ -2596,6 +2601,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, int, CSS, VIEWPORT, css);
     RG (gr, res, int, CSS, WRITING, css);
     RG (gr, res, int, CSS, WC, css);
+    REOS (css, res);
 
     if (var_.count (ENVIRONMENT QUERY_STRING))
     {   RG (gr, res, ::std::string, ENVIRONMENT, AUTH_TYPE, env);
@@ -2617,7 +2623,8 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
         RG (gr, res, ::std::string, ENVIRONMENT, SERVER_SOFTWARE, env);
         if (! file)
         {  ::std::string qs (var_ [ENVIRONMENT QUERY_STRING].as < ::std::string > ());
-            res << ENVIRONMENT QUERY_STRING ": " << qs << "\n            : " << query_to_switches (qs) << "\n"; } }
+            res << ENVIRONMENT QUERY_STRING ": " << qs << "\n            : " << query_to_switches (qs) << "\n"; }
+        REOS (env, res); }
 
     RB (gr, res, GENERAL, CGI, general);
     RB (gr, res, GENERAL, CLASS, general);
@@ -2649,6 +2656,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RB (gr, res, GENERAL, VCS, general);
     RG (gr, res, ::std::string, GENERAL, VERBOSE, general);
     RB (gr, res, GENERAL, YGGDRISIL, general);
+    REOS (general, res);
 
     RB (gr, res, HTML, CHROME, html);
     RG (gr, res, vstr_t, HTML, CUSTOM, html);
@@ -2674,12 +2682,14 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, ::std::string, HTML, VERSION, html);
     RB (gr, res, HTML, WXARG, html);
     RG (gr, res, ::std::string, HTML, WX_SNIPPET, html);
+    REOS (html, res);
 
     RG (gr, res, vstr_t, JSONLD, EXTENSION, jsonld);
     RG (gr, res, vstr_t, JSONLD, ONTOLOGY_, jsonld);
     RB (gr, res, JSONLD, PRETTY, jsonld);
     RB (gr, res, JSONLD, VERIFY, jsonld);
     RG (gr, res, ::std::string, JSONLD, VERSION, jsonld);
+    REOS (jsonld, res);
 
     RB (gr, res, LINKS, CHECK, lynx);
     RB (gr, res, LINKS, EXAMPLE, lynx);
@@ -2692,20 +2702,24 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, vstr_t, LINKS, REPORT, lynx);
     RB (gr, res, LINKS, REVOKE, lynx);
     RB (gr, res, LINKS, XLINK, lynx);
+    REOS (lynx, res);
 
     RB (gr, res, MATH, CORE, math);
     RG (gr, res, int, MATH, DRAFT, math);
     RG (gr, res, int, MATH, VERSION, math);
+    REOS (math, res);
 
     RB (gr, res, MF, EXPORT, mf);
     RB (gr, res, MF, PRETTY, mf);
     RB (gr, res, MF, VERIFY, mf);
     RG (gr, res, int, MF, VERSION, mf);
+    REOS (mf, res);
 
     RB (gr, res, MICRODATA, EXPORT, microdata);
     RB (gr, res, MICRODATA, VERIFY, microdata);
     RG (gr, res, ::std::string, MICRODATA, ROOT, microdata);
     RG (gr, res, vstr_t, MICRODATA, VIRTUAL, microdata);
+    REOS (microdata, res);
 
     RG (gr, res, vstr_t, NITS, ABHORRENT, nitty);
     RG (gr, res, ::std::string, NITS, CACHE, nitty);
@@ -2727,13 +2741,13 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, vstr_t, NITS, WARNING, nitty);
     RB (gr, res, NITS, WATCH, nitty);
     RG (gr, res, ::std::string, NITS, XXX, nitty);
+    REOS (nitty, res);
 
     RB (gr, res, ONTOLOGY, EXPORT, ontology);
     RB (gr, res, ONTOLOGY, PRETTY, ontology);
     RB (gr, res, ONTOLOGY, VERIFY, ontology);
     RG (gr, res, ::std::string, ONTOLOGY, ROOT, ontology);
     RG (gr, res, vstr_t, ONTOLOGY, VIRTUAL, ontology);
-
     for (int i = s_none + 1; i < s_error; ++i)
     {   const e_ontology es = static_cast < e_ontology > (i);
         if (is_faux_schema (es)) continue;
@@ -2743,6 +2757,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
         arg += naam;
         if (var_.count (arg))
             res << report_value (gr, ONTOLOGY, ontology, naam.c_str (), var_ [arg].as < ::std::string > ()); }
+    REOS (ontology, res);
 
     RB (gr, res, SHADOW, CHANGED, shadow);
     RB (gr, res, SHADOW, COMMENT, shadow);
@@ -2757,12 +2772,14 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RB (gr, res, SHADOW, SSI, shadow);
     RB (gr, res, SHADOW, UPDATE, shadow);
     RG (gr, res, vstr_t, SHADOW, VIRTUAL, shadow);
+    REOS (shadow, res);
 
     RG (gr, res, ::std::string, WEBSITE, EXTENSION, site);
     RG (gr, res, ::std::string, WEBSITE, INDEX, site);
     RG (gr, res, vstr_t, WEBSITE, SITE, site);
     RG (gr, res, ::std::string, WEBSITE, ROOT, site);
     RG (gr, res, vstr_t, WEBSITE, VIRTUAL, site);
+    REOS (site, res);
 
 #ifndef NOSPELL
     RG (gr, res, vstr_t, SPELL, ACCEPT, spell);
@@ -2772,6 +2789,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RB (gr, res, SPELL, ICU, spell);
     RG (gr, res, vstr_t, SPELL, LIST, spell);
     RG (gr, res, ::std::string, SPELL, PATH, spell);
+    REOS (spell, res);
 #endif // NOSPELL
 
     RB (gr, res, SSI, VERIFY, ssi);
@@ -2785,6 +2803,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, ::std::string, SSI, QUERYSTRING, ssi);
     RG (gr, res, ::std::string, SSI, TIMEFMT, ssi);
     RG (gr, res, ::std::string, SSI, USERNAME, ssi);
+    REOS (ssi, res);
 
     RB (gr, res, STATS, ABBR, stats);
     RB (gr, res, STATS, ALL, stats);
@@ -2830,8 +2849,10 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RB (gr, res, STATS, SWASH, stats);
     RB (gr, res, STATS, VERSION, stats);
     RB (gr, res, STATS, VIEW, stats);
+    REOS (stats, res);
 
     RG (gr, res, ::std::string, SVG, VERSION, svg);
+    REOS (svg, res);
 
     RG (gr, res, vstr_t, VALIDATION, ATTRIB, validate);
     RG (gr, res, vstr_t, VALIDATION, CHARSET, validate);
@@ -3000,6 +3021,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
 #undef RG
 #undef RI
 #undef RII
+#undef REOS
 
     return res.str (); }
 

@@ -172,7 +172,7 @@ void trundle ()
             if (app != nullptr) app -> Yield (true);
 #endif // WX
             ::std::this_thread::yield (); } } }
-#endif // WX
+#endif // NO_FRED
 
 int examine (nitpick& nits)
 {   int res = VALID_RESULT;
@@ -238,6 +238,9 @@ int examine (nitpick& nits)
 #else // NO_FRED
             if (res == VALID_RESULT)
             {
+#ifdef WX
+                if (app != nullptr) app -> console_check ();
+#endif // WX
 #endif // NO_FRED
                 PRESUME (vd.size () > 0, __FILE__, __LINE__);
                 ::std::size_t n = integrate_virtuals (virt, vd);
@@ -256,7 +259,7 @@ int examine (nitpick& nits)
             fred.await ();
 #else // NO_FRED
                         else examine (&nits, vd.at (n));
-                    trundle (); } }
+                    if (app != nullptr) app -> console_check (); } }
             nits.merge (nuts);
 #endif // NO_FRED
             close_corpus (gnats);
@@ -343,7 +346,8 @@ int cycle (nitpick& nits, const int argc, char** argv)
             outstr.console (context.domsg ());
             return VALID_RESULT; }
         context.apply_vcs (nuts);
-        if (context.progress ()) outstr.console ("\npreparing\n");
+        ssc_console ("\npreparing\n");
+        ssc_getset ();
         if (! context.gui ()) outstr.out (macro -> apply (ns_doc_head));
         enfooten = true;
         macro -> dump_nits (nits, ns_init, ns_init_head, ns_init_foot);
@@ -378,9 +382,8 @@ int cycle (nitpick& nits, const int argc, char** argv)
     {   if (! msg.empty ()) macro -> set (nm_run_catastrophe, msg);
         outstr.out (macro -> apply (ns_doc_foot));
         if (! msg.empty ()) outstr.err (msg, "\n");
-        if (context.progress ())
-            if (outstr.name ().empty ()) outstr.console ("finished\n");
-            else outstr.console ("results written to ", outstr.name (), "\n"); }
+        if (outstr.name ().empty ()) ssc_console ("finished\n");
+        else ssc_console ("results written to ", outstr.name (), "\n"); }
     catch (...)
     {   if (msg.empty ()) msg = "catastrophic cycle footers exception\n";
         outstr.err (msg, "\n");
@@ -438,6 +441,18 @@ int ssc_main (int argc, char** argv)
         _CrtDumpMemoryLeaks (); }
 #endif // WINMEMCHECK
     return res; };
+
+void ssc_console (const ::std::string& s)
+{
+#ifndef WX
+    if (context.progress ())
+#endif
+        outstr.console (s); }
+
+#ifdef WX
+void ssc_getset ()
+{   if (app != nullptr) app -> get_set (); }
+#endif // WX
 
 int main (int argc, char** argv)
 {   return ssc_main (argc, argv); }

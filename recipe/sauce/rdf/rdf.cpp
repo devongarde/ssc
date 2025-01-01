@@ -98,7 +98,7 @@ bool is_valid_property (nitpick& nits, const html_version& v, const e_ontology_t
         case s_prov :
         case s_prs :
         case s_psv :
-        case s_ptr :
+        case s_cnt :
         case s_pur :
         case s_qb :
         case s_rai :
@@ -112,6 +112,7 @@ bool is_valid_property (nitpick& nits, const html_version& v, const e_ontology_t
         case s_skos :
         case s_skosxl :
         case s_sosa :
+        case s_spdx :
         case s_ssn :
         case s_stdim :
         case s_stevt :
@@ -218,7 +219,7 @@ bool is_valid_property (nitpick& nits, const html_version& v, const e_ontology_t
         case s_prov :
         case s_prs :
         case s_psv :
-        case s_ptr :
+        case s_cnt :
         case s_pur :
         case s_qb :
         case s_rai :
@@ -232,6 +233,7 @@ bool is_valid_property (nitpick& nits, const html_version& v, const e_ontology_t
         case s_skos :
         case s_skosxl :
         case s_sosa :
+        case s_spdx :
         case s_ssn :
         case s_stdim :
         case s_stevt :

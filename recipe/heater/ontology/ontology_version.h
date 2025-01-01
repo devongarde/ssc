@@ -135,6 +135,8 @@ const ontology_version book_2018 (s_book, HTML_2018, 0);
 
 const ontology_version cito_schema (s_cito, 2, 8);
 
+const ontology_version cnt_schema (s_cnt, 1, 0);
+
 const ontology_version content_schema (s_content, 1, 0);
 
 const ontology_version common_tag (s_ctag, 1, 0);
@@ -174,6 +176,7 @@ const ontology_version dbr_schema (s_dbr, 1, 0);
 
 const ontology_version data_catalogue_1 (s_dcat, 1, 0);
 const ontology_version data_catalogue_2 (s_dcat, 2, 0);
+const ontology_version data_catalogue_3 (s_dcat, 3, 0);
 
 const ontology_version described_by (s_describedby, 1, 0);
 
@@ -545,6 +548,15 @@ const ontology_version ssn_schema (s_ssn, 1, 0);
 const ontology_version sosa_schema (s_sosa, 1, 0);
 
 const ontology_version spl_1_0 (s_spl, 1, 0);
+
+const ontology_version spdx_1_0 (s_spdx, 1, 0);
+const ontology_version spdx_1_1 (s_spdx, 1, 1);
+const ontology_version spdx_1_2 (s_spdx, 1, 2);
+const ontology_version spdx_2_0 (s_spdx, 2, 0);
+const ontology_version spdx_2_1 (s_spdx, 2, 1);
+const ontology_version spdx_2_2 (s_spdx, 2, 2);
+const ontology_version spdx_2_3 (s_spdx, 2, 3);
+
 const ontology_version svd_1_0 (s_svd, 1, 0);
 const ontology_version svdu_1_0 (s_svdu, 1, 0);
 const ontology_version svl_1_0 (s_svl, 1, 0);

@@ -127,6 +127,12 @@ need to first <a href="https://vcpkg.io/en/getting-started">download and install
 <h3>Unii &amp; mock Unii</h3>
 
 <p>
+I wrote ssc using visual C++ and clang. It turns out that, regretfully,
+some of the choices I made left gcc ridiculously slow. I suggest, if
+you have the choice, that you avoid it.
+</p>
+
+<p>
 You will need <a href="https://cmake.org/">CMake</a> 3.24 or better. On <a href="https://linux.org/">Linux</a>, you will also need
 <a href="https://refspecs.linuxfoundation.org/LSB_3.0.0/LSB-PDA/LSB-PDA/lsbrelease.html">lsb-release</a>.
 These can be found in most distributions&rsquo; standard

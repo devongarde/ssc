@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #ifndef NO_FRED
 #include "main/abort.h"
 #include "main/context.h"
+#include "main/ssc.h"
 #include "coop/lox.h"
 #include "coop/knickers.h"
 #include "webpage/q.h"
@@ -36,12 +37,14 @@ bool d_q (q_entry& qe)
     bool res = true;
     nitpick nits;
     knickers k (nits, qe.ticks_);
+#ifndef WX
     if (context.progress ())
+#endif // WX
     {   ::std::string msg (GSL_AT (stage_name, qe.stage_));
         ::boost::filesystem::path p (qe.dir_ -> get_disk_path ());
         if (! qe.page_.empty ()) p /= qe.page_;
         msg += p.string () + "\n";
-        outstr.console (msg); }
+        ssc_console (msg); }
     try
     {   switch (qe.stage_)
         {   case st_scan :
