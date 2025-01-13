@@ -374,6 +374,7 @@ PASS ../toast/HTML/5.0/html5-example.html
 1337 url_not_found
 1344 newline_in_string newline_in_string url_not_found
 1349 naughty_alt
+1352 sandbox
 1355 overallowed
 1357 url_not_found
 1360 mime

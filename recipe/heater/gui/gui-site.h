@@ -38,6 +38,7 @@ class site_t : public d1_t < wx_site >
     wxCheckBox* check_local_ = nullptr;
     wxCheckBox* check_once_ = nullptr;
     wxCheckBox* check_revoke_ = nullptr;
+    wxCheckBox* check_special_ = nullptr;
     wxCheckBox* main_ = nullptr;
     wxCheckBox* output_ = nullptr;
     wxDirPickerCtrl* dir_default_ = nullptr;
@@ -51,7 +52,7 @@ class site_t : public d1_t < wx_site >
     wxStaticText* wot_ = nullptr;  
     ::boost::filesystem::path path_;
     bool art_ = false, bod_ = false, mai_ = false;
-    bool example_ = false, external_ = false, forwarded_ = false, id_ = false, internal_ = false, local_ = false, once_ = false, revoke_ = false;
+    bool example_ = false, external_ = false, forwarded_ = false, id_ = false, internal_ = false, local_ = false, once_ = false, revoke_ = false, special_ = false;
     listedit_manager domain_ = listedit_manager (button_site_add, button_site_erase, button_site_rename, file_site_name, list_site_ext, text_site_ext);
     ::boost::filesystem::path def_;
     vstr_t site_;
@@ -104,6 +105,8 @@ public:
     void once (const bool b) noexcept { once_ = b; }
     bool revoke () const noexcept { return revoke_; }
     void revoke (const bool b) noexcept { revoke_ = b; }
+    bool special () const noexcept { return special_; }
+    void special (const bool b) noexcept { special_ = b; }
     ::boost::filesystem::path folder () const { return path_; }
     void folder (const ::boost::filesystem::path& p) { path_ = p; }
     bool article () const noexcept { return art_; }

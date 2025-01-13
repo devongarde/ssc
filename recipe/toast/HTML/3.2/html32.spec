@@ -5,18 +5,20 @@ PASS ../toast/HTML/3.2/html32.html
 27 inserted_missing_closure
 29 correct_spelling attribute_unrecognised unrecognised_attribute plus_1_7
 31 inserted_missing_closure
-33 inserted_missing_closure
-34 inserted_missing_closure missing_close
-35 inserted_missing_closure
-39 inserted_missing_closure missing_close
-40 inserted_missing_closure
-43 inserted_missing_closure
-44 inserted_missing_closure inserted_missing_closure missing_close
-45 inserted_missing_closure
+32 missing_close
+33 missing_close
+34 missing_close
+35 inserted_missing_closure inserted_missing_closure inserted_missing_closure
+38 missing_close
+39 missing_close
+40 inserted_missing_closure inserted_missing_closure
+43 inserted_missing_closure missing_close
+44 inserted_missing_closure missing_close
+45 inserted_missing_closure inserted_missing_closure
 47 deprecated_element
-57 wrong_parent inserted_missing_closure
-58 inserted_missing_closure wrong_parent inserted_missing_closure missing_close
-59 inserted_missing_closure
+57 missing_close missing_close missing_close wrong_parent
+58 missing_close
+59 inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure
 67 inserted_missing_closure
 68 inserted_missing_closure
 69 inserted_missing_closure missing_close

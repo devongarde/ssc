@@ -1,0 +1,132 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 4 unary vector</title>
+</head>
+
+<body>
+
+<h1>math 4 unary vector</h1>
+
+<math>
+
+<apply><divergence/><ci>a</ci></apply>
+
+<apply><divergence/>
+  <ci type="vector">E</ci>
+</apply>
+
+<apply><grad/><ci type="function">f</ci></apply>
+
+<apply><curl/><ci>a</ci></apply>
+
+<apply><laplacian/><ci type="vector">E</ci></apply>
+
+<mrow><mi>div</mi><mo>&#x2061;<!--ApplyFunction--></mo><mrow><mo>(</mo><mi>a</mi><mo>)</mo></mrow></mrow>
+
+<mrow><mi>div</mi><mo>&#x2061;<!--ApplyFunction--></mo><mrow><mo>(</mo><mi>E</mi><mo>)</mo></mrow></mrow>
+<mtext> or </mtext>
+<mrow><mo>∇</mo><mo>⋅</mo><mi>E</mi></mrow>
+
+<mrow>
+  <mi>grad</mi><mo>&#x2061;<!--ApplyFunction--></mo><mrow><mo>(</mo><mi>f</mi><mo>)</mo></mrow>
+</mrow>
+<mtext> or </mtext>
+<mrow>
+  <mo>∇</mo><mo>&#x2061;<!--ApplyFunction--></mo>
+  <mrow><mo>(</mo><mi>f</mi><mo>)</mo></mrow>
+</mrow>
+
+<mrow><mi>curl</mi><mo>&#x2061;<!--ApplyFunction--></mo><mrow><mo>(</mo><mi>a</mi><mo>)</mo></mrow></mrow>
+<mtext> or </mtext>
+<mrow><mo>∇</mo><mo>×</mo><mi>a</mi></mrow>
+
+<mrow>
+  <msup><mo>∇</mo><mn>2</mn></msup>
+  <mo>&#x2061;<!--ApplyFunction--></mo>
+  <mrow><mo>(</mo><mi>E</mi><mo>)</mo></mrow>
+</mrow>
+
+<apply><divergence/>
+  <bvar><ci>x</ci></bvar>
+  <bvar><ci>y</ci></bvar>
+  <bvar><ci>z</ci></bvar>
+  <vector>
+    <apply><plus/><ci>x</ci><ci>y</ci></apply>
+    <apply><plus/><ci>x</ci><ci>z</ci></apply>
+    <apply><plus/><ci>z</ci><ci>y</ci></apply>
+  </vector>
+</apply>
+
+<apply><grad/>
+  <bvar><ci>x</ci></bvar>
+  <bvar><ci>y</ci></bvar>
+  <bvar><ci>z</ci></bvar>
+  <apply><times/><ci>x</ci><ci>y</ci><ci>z</ci></apply>
+</apply>
+
+<apply><laplacian/>
+  <bvar><ci>x</ci></bvar>
+  <bvar><ci>y</ci></bvar>
+  <bvar><ci>z</ci></bvar>
+  <apply><ci>f</ci><ci>x</ci><ci>y</ci></apply>
+</apply>
+
+<mrow>
+  <mi>div</mi>
+  <mo>&#x2061;<!--ApplyFunction--></mo>
+  <mo>(</mo>
+  <mtable>
+    <mtr><mtd>
+      <mi>x</mi>
+      <mo>↦</mo>
+      <mrow><mi>x</mi><mo>+</mo><mi>y</mi></mrow>
+    </mtd></mtr>
+    <mtr><mtd>
+      <mi>y</mi>
+      <mo>↦</mo>
+      <mrow><mi>x</mi><mo>+</mo><mi>z</mi></mrow>
+    </mtd></mtr>
+    <mtr><mtd>
+      <mi>z</mi>
+      <mo>↦</mo>
+      <mrow><mi>z</mi><mo>+</mo><mi>y</mi></mrow>
+    </mtd></mtr>
+  </mtable>
+  <mo>)</mo>
+</mrow>
+
+<mrow>
+  <mi>grad</mi>
+  <mo>&#x2061;<!--ApplyFunction--></mo>
+  <mrow>
+    <mo>(</mo>
+    <mrow><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi><mo>)</mo></mrow>
+    <mo>↦</mo>
+    <mrow>
+      <mi>x</mi><mo>&#x2062;<!--InvisibleTimes--></mo><mi>y</mi><mo>&#x2062;<!--InvisibleTimes--></mo><mi>z</mi>
+    </mrow>
+    <mo>)</mo>
+  </mrow>
+</mrow>
+
+<mrow>
+  <msup><mo>∇</mo><mn>2</mn></msup>
+  <mo>&#x2061;<!--ApplyFunction--></mo>
+  <mrow>
+    <mo>(</mo>
+    <mrow><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi><mo>)</mo></mrow>
+    <mo>↦</mo>
+    <mrow>
+      <mi>f</mi>
+      <mo>&#x2061;<!--ApplyFunction--></mo>
+      <mrow><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>)</mo></mrow>
+    </mrow>
+    <mo>)</mo>
+  </mrow>
+</mrow>
+
+</math>
+
+</body>
+</html>

@@ -282,3 +282,15 @@ bool is_plain_old_integer (const ::std::string& ss);
 bool is_plain_old_decimal (const ::std::string& ss);
 
 ::std::string sweeten (const ::std::string& s);
+
+inline vbp_t vstr2vbp (const vstr_t& s)
+{   vbp_t res;
+    res.reserve (s.size ());
+    for (auto p : s) res.emplace_back (p);
+    return res; }
+
+inline vstr_t vbp2vstr (const vbp_t& s)
+{   vstr_t res;
+    res.reserve (s.size ());
+    for (auto p : s) res.emplace_back (p.string ());
+    return res; }

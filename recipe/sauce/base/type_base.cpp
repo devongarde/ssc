@@ -173,6 +173,7 @@ enum_name_t enum_name [] =
     { t_bool, "bool" },
     { t_bools, "bools" },
     { t_border, "border" },
+    { t_bns, "bns" },
     { t_brs, "brs" },
     { t_buffered_rendering, "buffered rendering" },
     { t_button, "button" },

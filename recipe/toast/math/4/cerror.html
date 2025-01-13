@@ -1,0 +1,44 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 4 cerror</title>
+</head>
+
+<body>
+
+<h1>math 4 cerror</h1>
+
+<math>
+
+<cerror>
+  <csymbol cd="aritherror">DivisionByZero</csymbol>
+  <apply><csymbol cd="arith1">divide</csymbol><ci>x</ci><cn>0</cn></apply>
+</cerror>
+
+<apply><csymbol cd="relation1">eq</csymbol>
+  <cerror>
+    <csymbol cd="aritherror">DivisionByZero</csymbol>
+    <apply><csymbol cd="arith1">divide</csymbol><ci>x</ci><cn>0</cn></apply>
+  </cerror>
+  <cn>0</cn>
+</apply>
+
+<cerror>
+  <csymbol cd="aritherror">DivisionByZero</csymbol>
+  <apply><csymbol cd="arith1">divide</csymbol><ci>x</ci><cn>0</cn></apply>
+</cerror>
+
+<merror>
+  <mtext>DivisionByZero:&#160;</mtext>
+  <mfrac><mi>x</mi><mn>0</mn></mfrac>
+</merror>
+
+<cerror>
+  <csymbol cd="error">Illegal bound variable</csymbol>
+  <cs> &lt;bvar&gt;&lt;plus/&gt;&lt;/bvar&gt; </cs>
+</cerror>
+
+</math>
+
+</body>
+</html>

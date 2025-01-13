@@ -1,0 +1,52 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 4 sums</title>
+</head>
+
+<body>
+
+<h1>math 4 sums</h1>
+
+<math>
+
+<apply><sum/>
+  <bvar><ci>i</ci></bvar>
+  <lowlimit><cn>0</cn></lowlimit>
+  <uplimit><cn>100</cn></uplimit>
+  <apply><power/><ci>x</ci><ci>i</ci></apply>
+</apply>
+
+<apply><csymbol cd="arith1">sum</csymbol>
+  <apply><csymbol cd="interval1">integer_interval</csymbol>
+    <cn>0</cn>
+    <cn>100</cn>
+  </apply>
+  <bind><csymbol cd="fns1">lambda</csymbol>
+    <bvar><ci>i</ci></bvar>
+    <apply><csymbol cd="arith1">power</csymbol><ci>x</ci><ci>i</ci></apply>
+  </bind>
+</apply>
+
+<apply><product/>
+  <bvar><ci>i</ci></bvar>
+  <lowlimit><cn>0</cn></lowlimit>
+  <uplimit><cn>100</cn></uplimit>
+  <apply><power/><ci>x</ci><ci>i</ci></apply>
+</apply>
+
+<apply><csymbol cd="arith1">product</csymbol>
+  <apply><csymbol cd="interval1">integer_interval</csymbol>
+    <cn>0</cn>
+    <cn>100</cn>
+  </apply>
+  <bind><csymbol cd="fns1">lambda</csymbol>
+    <bvar><ci>i</ci></bvar>
+    <apply><csymbol cd="arith1">power</csymbol><ci>x</ci><ci>i</ci></apply>
+  </bind>
+</apply>
+
+</math>
+
+</body>
+</html>

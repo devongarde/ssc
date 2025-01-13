@@ -113,6 +113,9 @@ public:
         table_ -> extend (key, symbol, value, ns, first, last, flags, flags2); }
     static void extend (const ::std::string& symbol, const ::std::size_t value, const CATEGORY ns = INIT, const V& first = html_0, const V& last = html_0, const flags_t flags = 0, const flags_t flags2 = 0)
     {   extend (enlc < LC > :: to (symbol), symbol, value, ns, first, last, flags, flags2); }
+    static void remove_any_extras (const ::std::size_t base_count)
+    {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
+        table_ -> remove_any_extras (base_count); }
     VALUE get () const noexcept { if (unknown_) return GSL_NARROW_CAST <VALUE> (0); return value_; }
     V first () const noexcept { return first_; }
     V last () const noexcept { return last_; }

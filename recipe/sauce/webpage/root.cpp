@@ -93,7 +93,7 @@ bool paths_root::prep_xxx (nitpick& nits, const ::std::string& assignment, ::std
     {   nits.pick (nit_bad_parameter, es_error, ec_init, quote (assignment), " is badly formed");
         return false; }
     virt = assignment.substr (0, sz);
-    p = nix_path_to_local (assignment.substr (sz + 1));
+    p = nix_path_to_local (canonical_name (absolute_name (assignment.substr (sz + 1))).string ());
     return true; }
 
 bool paths_root::add_virtual (nitpick& nits, const ::std::string& assignment)

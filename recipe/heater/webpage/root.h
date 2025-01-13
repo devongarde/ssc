@@ -60,6 +60,12 @@ public:
     void clear () noexcept { root_.clear(); }
     const path_root_ptr& at (const ::std::size_t x) const { return root_.at (x); }
     path_root_ptr& at (const ::std::size_t x) { return root_.at (x); }
+    void update (nitpick& nits, const ::std::size_t x, const ::boost::filesystem::path& disk, const ::std::string& site, const ::boost::filesystem::path& shadow, const ::boost::filesystem::path& ex)
+    {   if (x >= root_.size ()) root_.resize (x+1);
+        path_root_ptr p = path_root_ptr (new path_root (disk, site));
+        p -> shadow_root (nits, shadow);
+        p -> set_export (nits, ex);
+        at (x) = p; }
     ::std::size_t size () const noexcept { return root_.size (); }
     ::boost::filesystem::path get_filename (const ::std::string& filename) const;
     ::boost::filesystem::path get_export (const ::std::string& filename) const;

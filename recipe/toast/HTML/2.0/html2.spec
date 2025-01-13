@@ -54,12 +54,12 @@ PASS ../toast/HTML/2.0/html2-example.html
 88 missing_close missing_close
 89 missing_close missing_close
 90 inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure
-93 inserted_missing_closure
-94 inserted_missing_closure inserted_missing_closure missing_close
-95 inserted_missing_closure
-98 inserted_missing_closure
-99 inserted_missing_closure inserted_missing_closure missing_close
-100 inserted_missing_closure
+93 inserted_missing_closure missing_close
+94 inserted_missing_closure missing_close
+95 inserted_missing_closure inserted_missing_closure
+98 inserted_missing_closure missing_close
+99 inserted_missing_closure missing_close
+100 inserted_missing_closure inserted_missing_closure
 130 no_such_folder url_not_found url_not_found
 133 inserted_missing_closure
 136 inserted_missing_closure
@@ -75,13 +75,13 @@ PASS ../toast/HTML/2.0/html2-example.html
 171 inserted_missing_closure
 172 inserted_missing_closure
 173 inserted_missing_closure
-175 inserted_missing_closure
+175 inserted_missing_closure inserted_missing_closure inserted_missing_closure
 176 missing_close
 177 missing_close
 178 missing_close
 179 inserted_missing_closure inserted_missing_closure inserted_missing_closure
 182 inserted_missing_closure inserted_missing_closure
-186 inserted_missing_closure
+183 missing_open
 
 PASS ../toast/HTML/2.0/html2-sample.html
 12 missing_close

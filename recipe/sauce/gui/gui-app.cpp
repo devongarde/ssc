@@ -279,7 +279,7 @@ bool app_t::load_conf (wxWindow* mummy, context_t& ct, ::boost::filesystem::path
             return true; } }
     return false; }
 
-bool app_t::save_conf (wxWindow* mummy, context_t& c, const ::boost::filesystem::path& fn)
+bool app_t::save_conf (wxWindow* mummy, const context_t& c, const ::boost::filesystem::path& fn)
 {   nitpick nits ("configuration save");
     if (! c.write (nits, fn))
 	{   if (! nits.empty ()) app_t::nits_msgbox (mummy, "Saving...", nits);

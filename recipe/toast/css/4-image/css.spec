@@ -17,6 +17,7 @@ PASS ../toast/css/4-image/css-2.html
 2 naughty_lang
 24 missing_close path_spec
 25 inserted_missing_closure
+48 sandbox
 63 use_double_quote_code
 86 chocolate_teapot
 87 chocolate_teapot

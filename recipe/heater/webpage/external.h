@@ -28,6 +28,7 @@ bool fetch_http (nitpick& nits,const html_version& v, const url& u, const ::boos
 bool mention (nitpick& nits,const html_version& v, const url& source, const url& target, const url& server);
 bool is_example_domain (const url& u);
 bool is_local_domain (const url& u);
+bool is_special_domain (const url& u);
 
 class external
 {   typedef ssc_map < ::std::string, int > map_t;

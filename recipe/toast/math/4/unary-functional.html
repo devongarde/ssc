@@ -1,0 +1,88 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 4 unary functional</title>
+</head>
+
+<body>
+
+<h1>math 4 unary functional</h1>
+
+<math>
+
+<apply><inverse/><ci>f</ci></apply>
+
+<apply>
+  <apply><inverse/><ci type="matrix">A</ci></apply>
+  <ci>a</ci>
+</apply>
+
+<apply><eq/>
+  <apply><compose/>
+    <ci type="function">f</ci>
+    <apply><inverse/>
+      <ci type="function">f</ci>
+    </apply>
+  </apply>
+  <ident/>
+</apply>
+
+<apply><eq/>
+  <apply><domain/><ci>f</ci></apply>
+  <reals/>
+</apply>
+
+<apply><eq/>
+  <apply><codomain/><ci>f</ci></apply>
+  <rationals/>
+</apply>
+
+<apply><eq/>
+  <apply><image/><sin/></apply>
+  <interval><cn>-1</cn><cn> 1</cn></interval>
+</apply>
+
+<apply><ln/><ci>a</ci></apply>
+
+<msup><mi>f</mi><mrow><mo>(</mo><mn>-1</mn><mo>)</mo></mrow></msup>
+
+<mrow>
+  <msup><mi>A</mi><mrow><mo>(</mo><mn>-1</mn><mo>)</mo></mrow></msup>
+  <mo>&#x2061;<!--ApplyFunction--></mo>
+  <mrow><mo>(</mo><mi>a</mi><mo>)</mo></mrow>
+</mrow>
+
+<mrow>
+  <mrow>
+    <mi>f</mi>
+    <mo>∘</mo>
+    <msup><mi>f</mi><mrow><mo>(</mo><mn>-1</mn><mo>)</mo></mrow></msup>
+  </mrow>
+  <mo>=</mo>
+  <mi>id</mi>
+</mrow>
+
+<mrow>
+  <mrow><mi>domain</mi><mo>&#x2061;<!--ApplyFunction--></mo><mrow><mo>(</mo><mi>f</mi><mo>)</mo></mrow></mrow>
+  <mo>=</mo>
+  <mi mathvariant="double-struck">R</mi>
+</mrow>
+
+<mrow>
+  <mrow><mi>codomain</mi><mo>&#x2061;<!--ApplyFunction--></mo><mrow><mo>(</mo><mi>f</mi><mo>)</mo></mrow></mrow>
+  <mo>=</mo>
+  <mi mathvariant="double-struck">Q</mi>
+</mrow>
+
+<mrow>
+  <mrow><mi>image</mi><mo>&#x2061;<!--ApplyFunction--></mo><mrow><mo>(</mo><mi>sin</mi><mo>)</mo></mrow></mrow>
+  <mo>=</mo>
+  <mrow><mo>[</mo><mn>-1</mn><mo>,</mo><mn>1</mn><mo>]</mo></mrow>
+</mrow>
+
+<mrow><mi>ln</mi><mo>&#x2061;<!--ApplyFunction--></mo><mi>a</mi></mrow>
+
+</math>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 4 unary partial differential</title>
+</head>
+
+<body>
+
+<h1>math 4 unary partial differential</h1>
+
+<math>
+
+<apply><partialdiff/>
+  <list><cn>1</cn><cn>1</cn><cn>3</cn></list>
+  <ci type="function">f</ci>
+</apply>
+
+<apply><partialdiff/>
+  <list><cn>1</cn><cn>1</cn><cn>3</cn></list>
+  <lambda>
+    <bvar><ci>x</ci></bvar>
+    <bvar><ci>y</ci></bvar>
+    <bvar><ci>z</ci></bvar>
+    <apply><ci>f</ci><ci>x</ci><ci>y</ci><ci>z</ci></apply>
+  </lambda>
+</apply>
+
+<mrow>
+  <msub>
+    <mi>D</mi>
+    <mrow><mn>1</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>3</mn></mrow>
+  </msub>
+  <mi>f</mi>
+</mrow>
+
+<mfrac>
+  <mrow>
+    <msup><mo>∂</mo><mn>3</mn></msup>
+    <mrow>
+      <mi>f</mi>
+      <mo>&#x2061;<!--ApplyFunction--></mo>
+      <mrow><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi><mo>)</mo></mrow>
+    </mrow>
+  </mrow>
+  <mrow>
+    <mrow><mo>∂</mo><msup><mi>x</mi><mn>2</mn></msup></mrow>
+    <mrow><mo>∂</mo><mi>z</mi></mrow>
+  </mrow>
+</mfrac>
+
+<apply><partialdiff/>
+  <bvar><ci>x</ci></bvar>
+  <bvar><ci>y</ci></bvar>
+  <apply><ci type="function">f</ci><ci>x</ci><ci>y</ci></apply>
+</apply>
+
+<apply><partialdiff/>
+  <bvar><ci>x</ci><degree><ci>m</ci></degree></bvar>
+  <bvar><ci>y</ci><degree><ci>n</ci></degree></bvar>
+  <degree><ci>k</ci></degree>
+  <apply><ci type="function">f</ci>
+    <ci>x</ci>
+    <ci>y</ci>
+  </apply>
+</apply>
+
+<mfrac>
+  <mrow>
+    <msup><mo>∂</mo><mn>2</mn></msup>
+    <mrow>
+      <mi>f</mi>
+      <mo>&#x2061;<!--ApplyFunction--></mo>
+      <mrow><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>)</mo></mrow>
+    </mrow>
+  </mrow>
+  <mrow>
+    <mrow><mo>∂</mo><mi>x</mi></mrow>
+    <mrow><mo>∂</mo><mi>y</mi></mrow>
+  </mrow>
+</mfrac>
+
+<mfrac>
+  <mrow>
+    <msup><mo>∂</mo><mi>k</mi></msup>
+    <mrow>
+      <mi>f</mi>
+      <mo>&#x2061;<!--ApplyFunction--></mo>
+      <mrow><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>)</mo></mrow>
+    </mrow>
+  </mrow>
+  <mrow>
+    <mrow><mo>∂</mo><msup><mi>x</mi><mi>m</mi></msup>
+    </mrow>
+    <mrow><mo>∂</mo><msup><mi>y</mi><mi>n</mi></msup></mrow>
+  </mrow>
+</mfrac>
+
+</math>
+
+</body>
+</html>

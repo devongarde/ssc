@@ -88,15 +88,18 @@ void site_t :: create_controls (wxWindow *parent)
 	 					check_local_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, "Report local domains", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT));
 						if (check_local_ != nullptr)
 						{	grid_ -> Add (check_local_, 0, wxALIGN_RIGHT | wxALL, 5);
-	 						check_once_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, "Test an external link once", wxDefaultPosition, wxDefaultSize, 0));
-							if (check_once_ != nullptr)
-							{	grid_ -> Add (check_once_, 0, wxALL, 5);
-	 							check_id_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, "Check crosslinked IDs", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT));
-								if (check_id_ != nullptr)
-								{	grid_ -> Add (check_id_, 0, wxALIGN_RIGHT | wxALL, 5); 
-	 								check_revoke_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, "Test revocation", wxDefaultPosition, wxDefaultSize, 0));
-									if (check_revoke_ != nullptr)
-										grid_ -> Add (check_revoke_, 0, wxALL, 5); } } } } } } }
+	 						check_special_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, "Report special domains", wxDefaultPosition, wxDefaultSize, 0));
+							if (check_special_ != nullptr)
+							{	grid_ -> Add (check_special_, 0,wxALL, 5);
+	 							check_once_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, "Test an external link once", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT));
+								if (check_once_ != nullptr)
+								{	grid_ -> Add (check_once_, 0,  wxALIGN_RIGHT | wxALL, 5);
+	 								check_id_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, "Check crosslinked IDs", wxDefaultPosition, wxDefaultSize, 0));
+									if (check_id_ != nullptr)
+									{	grid_ -> Add (check_id_, 0,wxALL, 5); 
+	 									check_revoke_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, "Test revocation", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT));
+										if (check_revoke_ != nullptr)
+											grid_ -> Add (check_revoke_, 0,  wxALIGN_RIGHT | wxALL, 5); } } } } } } } }
 		box_ -> Add (grid_, 0, wxEXPAND, 5); }
 
     twixt_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
@@ -174,6 +177,7 @@ void site_t :: OnInternal (wxCommandEvent& )
 	check_example_ -> Enable (e);
 	check_id_ -> Enable (e);
 	check_local_ -> Enable (e);
+	check_special_ -> Enable (e);
 	check_external_ -> Enable (e);
 	const bool f = check_external_ -> IsChecked ();
 	check_forwarded_ -> Enable (f && e);
@@ -210,6 +214,7 @@ bool site_t :: TransferDataToWindow ()
     check_local_ -> Set3StateValue (local_ ? wxCHK_CHECKED : wxCHK_UNCHECKED);
     check_once_ -> Set3StateValue (once_ ? wxCHK_CHECKED : wxCHK_UNCHECKED);
     check_revoke_ -> Set3StateValue (revoke_ ? wxCHK_UNCHECKED : wxCHK_CHECKED); // note reversal
+    check_special_ -> Set3StateValue (special_ ? wxCHK_CHECKED : wxCHK_UNCHECKED);
 	if (art_) article_ -> Set3StateValue (wxCHK_CHECKED);
 	else article_ -> Set3StateValue (wxCHK_UNCHECKED);
 	if (bod_) body_ -> Set3StateValue (wxCHK_CHECKED);
@@ -234,6 +239,7 @@ bool site_t :: TransferDataFromWindow ()
     local_ = check_local_ -> IsChecked ();
     once_ = check_once_ -> IsChecked ();
     revoke_ = ! check_revoke_ -> IsChecked ();
+    special_ = check_special_ -> IsChecked ();
 	if (! output_ -> IsChecked ()) path_.clear ();
 	else
 	{	wxFileName fn (file_ -> GetFileName ());
@@ -265,6 +271,7 @@ void site_t :: load_from_context (const context_t& c)
     local (c.local ());
     once (c.once ());
     revoke (c.revoke ());
+	special (c.special ());
  	folder (c.corpus ());
     article (c.article ());
     body (c.body ());
@@ -281,6 +288,7 @@ void site_t :: save_to_context (context_t& c) const
     c.local (local ());
     c.once (once ());
     c.revoke (revoke ());
+    c.special (special ());
  	c.corpus (folder ());
     c.article (article ());
     c.body (body ());

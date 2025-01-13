@@ -46,10 +46,9 @@ CONSTEXPR bool def_article = false, def_body = true, def_case = false, def_cgi =
     def_opera = false, def_once = true, def_presume_tags = false, def_pretty = true, def_progress = false, def_rdfa = false, def_rel = false,
     def_revoke = false, def_rfc_1867 = true, def_rfc_1942 = true, def_rfc_1980 = true, def_rfc_2070 = true, def_rpt_opens = false,
     def_ruby = false, def_ontology = true, def_safari = false, def_serve = false, def_shadow_changed = false, def_shadow_comment = true,
-    def_shadow_enable = false, def_shadow_space = true, def_shadow_ssi = true, def_sloven = false, def_spec = false,
-    def_spell = true, def_spell_deduced = false, def_ssi = true, def_ssi_exec_run = false, def_test = false,
-    def_unknown_class = true, def_update = false, def_valid = false, def_vcs = false, def_versioned = false, def_wx = false,
-    def_yggdrisil = false;
+    def_shadow_enable = false, def_shadow_space = true, def_shadow_ssi = true, def_sloven = false, def_spec = false, def_special = true,
+    def_spell = true, def_spell_deduced = false, def_ssi = true, def_ssi_exec_run = false, def_test = false, def_unknown_class = true,
+    def_update = false, def_valid = false, def_vcs = false, def_versioned = false, def_wx = false, def_yggdrisil = false;
 CONSTEXPR const char* const def_macrostart = "{{";
 CONSTEXPR const char* const def_macroend = "}}";
 CONSTEXPR const char* const def_path = DEF_DATAPATH;
@@ -67,23 +66,23 @@ class corpus;
 
 class context_t
 {   friend class options;
-    bool            article_ = def_article, body_ = def_body, case_ = def_case, cgi_ = def_cgi, chrome_ = def_chrome, classic_ = def_classic,
-                    clear_ = def_clear, crosslinks_ = def_crosslinks, example_ = def_example, excl_ = def_excl,
-                    expand_ = def_expand, external_ = def_external, ext_css_ = def_ext_css, extra_ = def_extra,
+    bool            article_ = def_article, body_ = def_body, case_ = def_case, cgi_ = def_cgi, chrome_ = def_chrome,
+                    classic_ = def_classic, clear_ = def_clear, crosslinks_ = def_crosslinks, example_ = def_example,
+                    excl_ = def_excl, expand_ = def_expand, external_ = def_external, ext_css_ = def_ext_css, extra_ = def_extra,
                     force_version_ = def_force_version, forwarded_ = def_forwarded, gui_ = def_gui, icu_ = def_icu, ie_ = def_ie,
                     info_ = def_info, iterate_ = def_iterate, jsonld_ = def_jsonld, local_ = def_local, load_css_ = def_load_css,
                     links_ = def_links, main_ = def_main, md_export_ = def_md_export, md_pretty_ = def_md_pretty,
                     mf_export_ = def_mf_export, mf_pretty_ = def_mf_pretty, mf_verify_ = def_mf_verify, microdata_ = def_microdata,
-                    mozilla_ = def_mozilla, netscape_ = def_netscape, nids_ = def_nids, nits_ = def_nits, nits_nits_nits_ = def_nits_nits_nits, not_root_ = def_not_root,
-                    once_ = def_once, ontology_ = def_ontology, opera_ = def_opera, presume_tags_ = def_presume_tags, pretty_ = def_pretty, progress_ = def_progress,
-                    rdfa_ = def_rdfa, rel_ = def_rel, revoke_ = def_revoke, rfc_1867_ = def_rfc_1867, rfc_1942_ = def_rfc_1942,
-                    rfc_1980_ = def_rfc_1980, rfc_2070_ = def_rfc_2070, rpt_opens_ = def_rpt_opens, ruby_ = def_ruby,
-                    safari_ = def_safari, serve_ = def_serve, shadow_changed_ = def_shadow_changed,
+                    mozilla_ = def_mozilla, netscape_ = def_netscape, nids_ = def_nids, nits_ = def_nits, nits_nits_nits_ = def_nits_nits_nits,
+                    not_root_ = def_not_root,once_ = def_once, ontology_ = def_ontology, opera_ = def_opera, presume_tags_ = def_presume_tags,
+                    pretty_ = def_pretty, progress_ = def_progress, rdfa_ = def_rdfa, rel_ = def_rel, revoke_ = def_revoke,
+                    rfc_1867_ = def_rfc_1867, rfc_1942_ = def_rfc_1942, rfc_1980_ = def_rfc_1980, rfc_2070_ = def_rfc_2070,
+                    rpt_opens_ = def_rpt_opens, ruby_ = def_ruby, safari_ = def_safari, serve_ = def_serve, shadow_changed_ = def_shadow_changed,
                     shadow_comment_ = def_shadow_comment, shadow_enable_ = def_shadow_enable, shadow_space_ = def_shadow_space,
-                    shadow_ssi_ = def_shadow_ssi, sloven_ = def_sloven, spec_ = def_spec, spell_ = def_spell,
-                    spell_deduced_ = def_spell_deduced, ssi_ = def_ssi, ssi_exec_run_ = def_ssi_exec_run,
-                    test_ = def_test, unknown_class_ = def_unknown_class, update_ = def_update, valid_ = def_valid,
-                    vcs_ = def_vcs, versioned_ = def_versioned, wx_ = def_wx, yggdrisil_ = def_yggdrisil;
+                    shadow_ssi_ = def_shadow_ssi, sloven_ = def_sloven, spec_ = def_spec, special_ = def_special, spell_ = def_spell,
+                    spell_deduced_ = def_spell_deduced, ssi_ = def_ssi, ssi_exec_run_ = def_ssi_exec_run, test_ = def_test,
+                    unknown_class_ = def_unknown_class, update_ = def_update, valid_ = def_valid, vcs_ = def_vcs, versioned_ = def_versioned,
+                    wx_ = def_wx, yggdrisil_ = def_yggdrisil;
     ::std::size_t   fred_ = def_fred, title_ = def_htmltitle;
     e_copy          copy_ = c_none;
     unsigned char   mf_version_ = def_mf;
@@ -99,7 +98,9 @@ class context_t
     vstr_t          abhorrent_, attrib_, catastrophe_, cmd_, comment_, css_ext_ = { CSS_EXT }, custom_elements_, debug_,
                     dict_, dlang_, elem_, elem_attrib_, environment_, error_, exclude_, exports_, extensions_ = { HTML_EXT },
                     inform_, ignore_, jsonld_ext_, jsonld_key_, jsonld_ont_, jsonld_val_, no_ex_check_ = { JSONLD_EXT },
-                    pretend_, report_, shadow_ignore_, shadows_, silent_, site_, spell_list_, spellings_, warning_, virtuals_, vont_;
+                    pretend_, report_, shadow_ignore_, shadows_, silent_, site_, spell_list_, spellings_, warning_,
+                    virtuals_, vont_;
+    vvstr_t         vvext_;
     static ustr_t   validation_;
     e_svg_processing_mode svg_mode_ = spm_none;
     e_quote_style   quote_style_ = qs_none;
@@ -125,6 +126,13 @@ class context_t
         for (auto sss: s)
         {   if (! ss.empty ()) ss += ",";
             ss += quote (sss); }
+        VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+        macro -> set (ns, ss); }
+    void mac (const e_nit_macro ns, const vbp_t& s)
+    {   ::std::string ss;
+        for (auto sss: s)
+        {   if (! ss.empty ()) ss += ",";
+            ss += quote (sss.string ()); }
         VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
         macro -> set (ns, ss); }
     ::std::string summarise () const;
@@ -318,6 +326,7 @@ public:
     context_t& sloven (const bool b) { sloven_ = b; mac (nm_context_sloven, b); return *this; }
     context_t& snippet (const ::std::string& s);
     context_t& spec (const bool b) { spec_ = b; return *this; }
+    context_t& special (const bool b) { special_ = b; mac (nm_context_special, b); return *this; }
     context_t& spell_deduced (const bool b) { spell_deduced_ = b; return *this; }
     context_t& spell_list (const ::std::string& s) { spell_list_.push_back (s); return *this; }
     context_t& spellings (const vstr_t& s) { spellings_ = s; mac (nm_context_spellings, s); return *this; }
@@ -351,6 +360,7 @@ public:
     context_t& verbose (const e_severity i) noexcept { verbose_ = i; return *this; }
     context_t& versioned (const bool b) noexcept { versioned_ = b; return *this; }
     context_t& virtuals (const vstr_t& s) { virtuals_ = s; mac (nm_context_virtuals, s); return *this; }
+    context_t& vvext (const ::std::size_t n, const vstr_t& v) { if (vvext_.size () <= n) vvext_.resize (n+1); vvext_.at (n) = v; return *this; }
     context_t& warning (const ::std::string& s) { warning_.push_back (s); return *this; }
     context_t& wx (const bool b) { wx_ = b; mac (nm_context_wx, b); return *this; }
     context_t& wx_snippet (const ::std::string& s) { wx_snippet_ = s; return *this; }
@@ -529,6 +539,7 @@ public:
     const ::boost::filesystem::path& spell_path () const { return spell_path_; }
     const ::std::string& snippet () const { return snippet_; }
     bool spec () const noexcept { return spec_; }
+    bool special () const noexcept { return special_; }
     bool ssi () const noexcept { return ssi_; }
     ::std::time_t ssi_date () const { return ssi_date_; }
     const ::std::string& ssi_doc_args () const { return ssi_doc_args_; }
@@ -559,6 +570,7 @@ public:
     bool vcs () const noexcept { return vcs_; }
     void apply_vcs (nitpick& nits);
     bool versioned () const noexcept { return versioned_; }
+    const vstr_t vvext (const ::std::size_t n) const { if (vvext_.size () <= n) return vstr_t (); return (vvext_.at (n)); }
     const vstr_t& warning () const { return warning_; }
     bool wx () const noexcept { return wx_; }
     const ::std::string& wx_snippet () const { return wx_snippet_; }

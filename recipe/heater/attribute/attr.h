@@ -44,6 +44,9 @@ struct attr : symbol < html_version, e_attribute >
     static void init (nitpick& nits);
     static bool is_versioner (const e_attribute a) { return (symbol < html_version, e_attribute > :: flags (a) & AF_REVERSIONER) == AF_REVERSIONER; }
     static bool spellcheck (const e_attribute a) { return (symbol < html_version, e_attribute > :: flags (a) & AF_SPELT) == AF_SPELT; }
+    static void remove_any_extras ()
+    {   eleanor f (lox_eleanor);
+        symbol < html_version, e_attribute >::remove_any_extras (last_attribute); }
     CONSTEXPR static e_sought_category link_category_sought (const flags_t f) noexcept
     {   return static_cast < e_sought_category > (AP_GET_XLINKCAT (f)); }
     e_sought_category link_category_sought () const noexcept

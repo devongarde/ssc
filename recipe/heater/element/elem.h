@@ -187,6 +187,9 @@ public:
     static void init (nitpick& nits);
     static void ignore (const e_element e) { ignored_.set (e); }
     static bool ignored (const e_element e) { return ignored_.test (e); }
+    static void remove_any_extras ()
+    {   eleanor f (lox_eleanor);
+        symbol < html_version, e_element >::remove_any_extras (last_element_tag); }
     bool is_unclosed (const html_version& v) const noexcept;
     bool is_closed (const html_version& v) const noexcept;
     bool is_css () const noexcept

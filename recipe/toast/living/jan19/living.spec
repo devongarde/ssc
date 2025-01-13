@@ -523,6 +523,8 @@ PASS ../toast/living/jan19/iframe.html
 45 attribute_required no_such_folder url_not_found naughty_alt
 46 no_such_folder url_not_found
 46 url_id_unfound
+49 sandbox
+53 sandbox
 55 inserted_missing_closure
 
 PASS ../toast/living/jan19/im.html

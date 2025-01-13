@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/page.h"
 #include "attribute/attribute_classes.h"
 #include "simple/type_metaname.h"
+#include "webpage/external.h"
 
 void element::examine_main ()
 {   if (! context.corpus ().empty ()) if (context.main ()) page_ -> corpus (text ());
@@ -49,9 +50,8 @@ void element::examine_math ()
     switch (mv)
     {   case math_2 : break;
         case math_3 :
-        case math_4_20 :
         case math_core :
-        case math_4_22 :
+        case math_4 :
             if (a_.known (a_macros))
                 pick (nit_deprecated_attribute, ed_math_3, "2.2.2 Deprecated Attributes", es_warning, ec_attribute, "the attribute MACROS is deprecated in MathML 3");
             if (a_.known (a_mode))
@@ -355,7 +355,10 @@ void element::examine_mn ()
     ::std::string x (text ());
     const ::std::string::size_type pos = x.find_first_not_of (" .,IVXMLivxml" HEX);
     if (pos != ::std::string::npos)
-        pick (nit_impure_mn, ed_math_3, "3.2.4.4 Numbers that should not be written using <mn> alone", es_warning, ec_element, "Given '", x.at (pos), "', <MN> alone may be unsuitable here"); }
+        if (node_.version ().math_version () == math_3)
+            pick (nit_impure_mn, ed_math_3, "3.2.4.4 Numbers that should not be written using <mn> alone", es_warning, ec_element, "Given '", x.at (pos), "', <MN> alone may be unsuitable here");
+        else // given the text still appears in the spec, but such use of MN appears in the spec examples
+            pick (nit_impure_mn, ed_math_3, "3.2.4.4 Numbers that should not be written using <mn> alone", es_comment, ec_element, "Given '", x.at (pos), "', <MN> alone may be unsuitable here"); }
 
 void element::examine_mstyle ()
 {   if (node_.version ().math_version () < math_3) return;
@@ -368,14 +371,14 @@ void element::examine_mstyle ()
         pick (nit_deprecated_attribute, es_warning, ec_attribute, "the ...MATHSPACE attributes are deprecated in MathML 3"); }
 
 void element::examine_mtable ()
-{   if (node_.version ().math_version () != math_4_22) return;
+{   if (node_.version ().math_version () != math_4) return;
     if (! descendant_elements_.test (elem_mtr))
-        pick (nit_mtr_required, ed_math_4_22, "3 Presentation Markup", es_error, ec_attribute, "<MTABLE> requires <MTR> children"); }
+        pick (nit_mtr_required, ed_math_4, "3 Presentation Markup", es_error, ec_attribute, "<MTABLE> requires <MTR> children"); }
 
 void element::examine_mtr ()
-{   if (node_.version ().math_version () != math_4_22) return;
+{   if (node_.version ().math_version () != math_4) return;
     if (! descendant_elements_.test (elem_mtd))
-        pick (nit_mtd_required, ed_math_4_22, "3 Presentation Markup", es_error, ec_attribute, "<MTR> requires <MTD> children"); }
+        pick (nit_mtd_required, ed_math_4, "3 Presentation Markup", es_error, ec_attribute, "<MTR> requires <MTD> children"); }
 
 void element::examine_nav ()
 {   if (has_this_descendant (elem_main))
@@ -419,6 +422,22 @@ void element::examine_object ()
             if ((type_master < t_mime > :: flags (mt) & MIME_IMAGE) == MIME_IMAGE) piccy = true;
         if (has_data) check_vulnerability (nits (), node_.version (), mt, a_.get_urls (a_data), true);
         else check_mimetype_vulnerability (nits (), node_.version (), mt, true, true, ss); }
+    if (has_data)
+    {   const vurl_t& vu (a_.get_urls (a_data));
+        for (auto u : vu)
+            if (! u.is_local ())
+            {   if (is_special_domain (u))
+                    pick (nit_special_domain, es_info, ec_element, quote (u.get ()), " is a special domain, so may respond unexpectedly");
+                if (u.is_potentially_naughty ())
+                    pick (nit_reputation, es_warning, ec_element, "the security, integrity, presentation and reputation of your site is dependent on that of ", quote (u.get ())); } }
+    if (a_.known (a_classid))
+    {   const vurl_t& vu (a_.get_urls (a_classid));
+        for (auto u : vu)
+            if (! u.is_local ())
+            {   if (is_special_domain (u))
+                    pick (nit_special_domain, es_info, ec_element, quote (u.get ()), " is a special domain, so may respond unexpectedly");
+                if (u.is_potentially_naughty ())
+                    pick (nit_reputation, es_warning, ec_element, "the security, integrity, presentation and reputation of your site is dependent on that of ", quote (u.get ())); } }
     if (has_usemap && ! piccy)
     {   if (has_data)
         {   const vurl_t& vu (a_.get_urls (a_data));

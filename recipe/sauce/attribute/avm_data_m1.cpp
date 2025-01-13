@@ -26,14 +26,14 @@ hav_t havt_m [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_maction [] =
-{   { { HTML_MATH1 }, { HTML_UNDEF }, elem_maction, a_actiontype },
-    { { HTML_MATH1 }, { HTML_UNDEF }, elem_maction, a_selection },
+{   { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_maction, a_actiontype },
+    { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_maction, a_selection },
     MATH4_PRES_ATTRIBUTES (elem_maction),
     STANDARD_MATH_CORE_ATTRIBUTES (elem_maction),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_maligngroup [] =
-{   { { HTML_MATH1 }, { HTML_UNDEF }, elem_maligngroup, a_groupalign },
+{   { { HTML_MATH1, 0, 0, H2_MATH_1_2_3 }, { HTML_UNDEF }, elem_maligngroup, a_groupalign },
     MATH4_PRES_ATTRIBUTES (elem_maligngroup),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
@@ -102,25 +102,27 @@ hav_t havt_mask [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_math [] =
-{   { { HTML_MATH1 }, { HTML_UNDEF }, elem_math, a_altimg },
+{   { { HTML_MATH1, 0, 0, H2_MATH_1_2_3_4 }, { HTML_UNDEF }, elem_math, a_altimg },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_math, a_altimg_height },
+    { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_math, a_altimg_valign },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_math, a_altimg_width },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_math, a_alttext },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_math, a_baseline },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_math, a_cdgroup },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_math, a_definitionurl },
-    { { HTML_MATH2, 0, 0, H2_MATH_2 }, { HTML_MATH4_C }, elem_math, a_display },
+    { { HTML_MATH2, 0, 0, H2_MATH_2_3_4_C }, { HTML_UNDEF }, elem_math, a_display },
     { { HTML_MATH4_C, 0, 0 }, { HTML_UNDEF }, elem_math, a_display },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_math, a_height },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_math, a_macros },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_math, a_maxwidth },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_math, a_mode },
-    { { HTML_MATH1 }, { HTML_UNDEF }, elem_math, a_overflow },
+    { { HTML_MATH1, 0, 0, H2_MATH_1_2_3_4 }, { HTML_UNDEF }, elem_math, a_overflow },
     { { HTML_MATH1, HV_NOTPROD }, { HTML_UNDEF }, elem_math, a_style },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_math, a_type },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_math, a_width },
+    { { HTML_MATH4, 0, 0, H2_MATH_4 }, { HTML_UNDEF }, elem_math, a_xsischemaloc },
     MATH3_TOKEN_ATTRIBUTES (elem_math),
-    MATH3_LINEINDENT_ATTRIBUTES (elem_math),
+    MATH3_INDENTBREAK_ATTRIBUTES (elem_math),
     MATH4_PRES_ATTRIBUTES (elem_math),
     HTML3_CLID_ATTRIBUTES (elem_math),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_math),
@@ -238,7 +240,7 @@ hav_t havt_mfenced [] =
 hav_t havt_mfrac [] =
 {   { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mfrac, a_bevelled },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mfrac, a_denomalign },
-    { { HTML_MATH1 }, { HTML_UNDEF }, elem_mfrac, a_linethickness },
+    { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, elem_mfrac, a_linethickness },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mfrac, a_numalign },
     MATH4_PRES_ATTRIBUTES (elem_mfrac),
     STANDARD_MATH_CORE_ATTRIBUTES (elem_mfrac),
@@ -246,11 +248,14 @@ hav_t havt_mfrac [] =
 
 hav_t havt_mglyph [] =
 {   { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mglyph, a_alt },
-    { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mglyph, a_fontfamily },
+    { { HTML_MATH1, 0, 0, H2_MATH_1_2_3 }, { HTML_UNDEF }, elem_mglyph, a_fontfamily },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_mglyph, a_height },
-    { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mglyph, a_index },
+    { { HTML_MATH1, 0, 0, H2_MATH_1_2_3 }, { HTML_UNDEF }, elem_mglyph, a_index },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_mglyph, a_src },
+    { { HTML_MATH4, 0, 0, H2_MATH_4 }, { HTML_UNDEF }, elem_mglyph, a_valign },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_mglyph, a_width },
+    MATH4_PRES_ATTRIBUTES (elem_mglyph),
+    STANDARD_MATH_CORE_ATTRIBUTES (elem_mglyph),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_mh [] =
@@ -261,7 +266,8 @@ hav_t havt_mh [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_mi [] =
-{   MATH4_PRES_ATTRIBUTES (elem_mi),
+{   { { HTML_MATH4_C, 0, 0, ( H2_MATH_4_C ) }, { HTML_UNDEF }, elem_mi, a_mathvariant },
+    MATH4_PRES_ATTRIBUTES (elem_mi),
     STANDARD_MATH_CORE_ATTRIBUTES (elem_mi),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
@@ -307,13 +313,13 @@ hav_t havt_mmultiscripts [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_mn [] =
-{   MATH3_LINEINDENT_ATTRIBUTES (elem_mn),
+{   MATH3_INDENTBREAK_ATTRIBUTES (elem_mn),
     MATH4_PRES_ATTRIBUTES (elem_mn),
     STANDARD_MATH_CORE_ATTRIBUTES (elem_mn),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_mo [] =
-{   MATH3_LINEINDENT_ATTRIBUTES (elem_mo),
+{   MATH3_INDENTBREAK_ATTRIBUTES (elem_mo),
     MATH_OPINFO_ATTRIBUTES (elem_mo),
     MATH4_PRES_ATTRIBUTES (elem_mo),
     STANDARD_MATH_CORE_ATTRIBUTES (elem_mo),

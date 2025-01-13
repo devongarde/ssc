@@ -128,6 +128,12 @@ void listedit_manager :: OnTap (wxCommandEvent& e)
 	else erase_ -> Enable ();
 	OnText (e); }
 
+bool listedit_manager :: able_enable () const
+{	if (invalid ()) return false;
+	const ::std::string r (tiswot ());
+	if (r.empty ()) return false;
+	return (list_ -> FindString (r.c_str (), true) == wxNOT_FOUND); }
+
 void listedit_manager :: fex ()
 {	PRESUME ((! has_file_) || (filename_ != nullptr), __FILE__, __LINE__);
  	PRESUME ((! has_text_) || (text_ != nullptr), __FILE__, __LINE__);
@@ -170,13 +176,6 @@ void listedit_manager :: enable (const bool e)
 	if (has_file_) filename_ -> Enable (e);	
 	if (has_text_) text_ -> Enable (e);	
 	if (e) fex (); }
-
-void listedit_manager :: preload (const vstr_t& vs)
-{	VERIFY_NOT_NULL (list_, __FILE__, __LINE__);
- 	list_ -> Clear ();
-	for (auto s : vs)
-		list_ -> Append (s.c_str ());
-	fex (); }
 
 vstr_t listedit_manager :: acquire () const
 {	VERIFY_NOT_NULL (list_, __FILE__, __LINE__);

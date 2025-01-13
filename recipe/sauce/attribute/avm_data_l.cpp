@@ -172,7 +172,7 @@ hav_t havt_link [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_list [] =
-{   { { XHTML_1_0 }, { HTML_UNDEF }, elem_list, a_order },
+{   { { XHTML_1_0, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_list, a_order },
     MATH3_STANDARD_ATTRIBUTES (elem_list),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 

@@ -41,7 +41,14 @@ void element::examine_embed ()
         pick (nit_bad_embed, ed_jan21, "4.8.6 The embed element", es_info, ec_attribute, "when <EMBED> is a child of <AUDIO> or <VIDEO>, it represents nothing");
     if (ancestral_elements_.test (elem_object))
         pick (nit_bad_embed, ed_jan21, "4.8.6 The embed element", es_comment, ec_attribute, "when <EMBED> is a child of <OBJECT>, it is inactive unless <OBJECT> displays its fallback content");
-    if (src_known && type_known) check_extension_compatibility (nits (), node_.version (), a_.get_string (a_type), a_.get_urls (a_src), true); }
+    if (src_known)
+    {   const vurl_t vu (a_.get_urls (a_src));
+        if (! a_.known (a_sandbox))
+            for (auto u : vu)
+                if (! u.is_local ())
+                {   pick (nit_sandbox, ed_owasp, "HTML5 Cheat Sheet, sandboxed frames", es_warning, ec_element, "for security, use SANDBOX when SRC refers to an external site");
+                    break; }
+        if (type_known) check_extension_compatibility (nits (), node_.version (), a_.get_string (a_type), a_.get_urls (a_src), true); } }
 
 void element::examine_equation ()
 {   if (node_.version ().math () != math_2) return;
@@ -342,7 +349,14 @@ void element::examine_iframe ()
 {   if (node_.version ().mjr () < 5) return;
     const bool has_src = a_.known (a_src);
     no_anchor_daddy ();
-    if (has_src) check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_src), MIME_PAGE);
+    if (has_src)
+    {   const vurl_t vu (a_.get_urls (a_src));
+        if (! a_.known (a_sandbox))
+            for (auto u : vu)
+                if (! u.is_local ())
+                {   pick (nit_sandbox, ed_owasp, "HTML5 Cheat Sheet, sandboxed frames", es_warning, ec_element, "for security, use SANDBOX when SRC refers to an external site");
+                    break; }
+        check_extension_compatibility (nits (), node_.version (), vu, MIME_PAGE); }
     else
     {   if (a_.known (a_itemprop))
             pick (nit_bad_iframe, ed_jul20, "4.8.5 The iframe element", es_error, ec_attribute, "a valid SRC is required when ITEMPROP is used with <IFRAME>");

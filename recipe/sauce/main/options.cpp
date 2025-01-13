@@ -129,7 +129,7 @@ options::options (const context_t& c)
                 v.push_back (type_master < TY > :: name (static_cast < EN > (i))); \
             if (! v.empty ()) { const ::boost::any a = v; insert < ::boost::any > (VALIDATION VAR, a); } } }
 #define INSERT_VALID2(VAR,TY,EN) \
-    INSERT_VALID ( #VAR , TY, EN)
+    INSERT_VALID (#VAR, TY, EN)
 #define INSERT_VSTR(SECT,VAR,FN) \
     { const vstr_t& v = c.FN (); if (! v.empty ()) { const ::boost::any a = v; insert < ::boost::any > (SECT VAR, a); } }
 
@@ -234,6 +234,7 @@ options::options (const context_t& c)
     INSERT_VSTR (LINKS, PRETEND, pretend);
     INSERT_VSTR (LINKS, REPORT, report);
     INSERT_BOOL (LINKS, REVOKE, revoke);
+    INSERT_BOOL (LINKS, SPECIAL, special);
     INSERT_BOOL (LINKS, XLINK, crosslinks);
 
     INSERT_ENUM (t_math_version, MATH, VERSION, math_version);
@@ -751,9 +752,8 @@ void options::init (context_t& c)
         (HTML DONT SSI, ::boost::program_options::bool_switch (), "Do not process Server Side Includes.")
         (HTML WX_SNIPPET, ::boost::program_options::value < ::std::string > (), "Snippet seen in wx intro dialogue.")
 
-        (MATH CORE, ::boost::program_options::bool_switch (), "MathML Core (May 2022 draft).")
+        (MATH CORE, ::boost::program_options::bool_switch (), "MathML Core (November 2024 draft).")
         (MATH DONT CORE, ::boost::program_options::bool_switch (), "Avoid MathML Core.")
-        (MATH DRAFT, ::boost::program_options::value < int > (), "For MathML 4 only, which draft (2020 or 2022).")
 
         (MICRODATA EXPORT, ::boost::program_options::bool_switch (), "Export microdata (only verified data if --" ONTOLOGY VERIFY " is set).")
         (MICRODATA DONT EXPORT, ::boost::program_options::bool_switch (), "Do not export microdata data.")
@@ -1004,6 +1004,8 @@ void options::init (context_t& c)
         (LINKS REPORT, ::boost::program_options::value < vstr_t > () -> composing (), "Report links to this domain and its descendants; may be repeated.")
         (LINKS REVOKE "," REVOKE_SW_, ::boost::program_options::bool_switch (), "Do not check whether https certificates have been revoked (sets --" LINKS EXTERNAL ").")
         (LINKS DONT REVOKE, ::boost::program_options::bool_switch (), "Check whether https certificates have been revoked (sets --" LINKS EXTERNAL ").")
+        (LINKS SPECIAL, ::boost::program_options::bool_switch (), "Issue warning if link to a special domain, such as ???.onion, found.")
+        (LINKS DONT SPECIAL, ::boost::program_options::bool_switch (), "Don't mention links to special domains.")
         (LINKS XLINK "," XLINK_SW_, ::boost::program_options::bool_switch (), "Check crosslink IDs.")
         (LINKS DONT XLINK, ::boost::program_options::bool_switch (), "Do not check crosslink IDs.")
 
@@ -1887,13 +1889,13 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
         if (var_.count (LINKS PRETEND)) c.pretend (nits, var_ [LINKS PRETEND].as < vstr_t > ());
         if (var_.count (LINKS REPORT)) c.report (var_ [LINKS REPORT].as < vstr_t > ());
         yea_nay (c, &context_t::revoke, nits, LINKS REVOKE, LINKS DONT REVOKE);
+        yea_nay (c, &context_t::special, nits, LINKS SPECIAL, LINKS DONT SPECIAL);
         yea_nay (c, &context_t::crosslinks, nits, LINKS XLINK, LINKS DONT XLINK);
 
         if (var_.count (MATH VERSION))
         {   ::std::string s = var_ [MATH VERSION].as < ::std::string > ();
             if (compare_no_case ("core", s)) c.math_version (math_core);
-            else if ((s == "4") || (s == "4.22")) c.math_version (math_4_22);
-            else if (s == "4.20") c.math_version (math_4_20);
+            else if (s == "4") c.math_version (math_4);
             else if (s == "3") c.math_version (math_3);
             else if (s == "2") c.math_version (math_2);
             else if (s == "1") c.math_version (math_1);
@@ -1903,14 +1905,6 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
                 c.math_version (math_none); } }
 
         if (is_be (MATH CORE) && ! is_be (MATH DONT CORE)) c.math_version (math_core);
-
-        if (var_.count (MATH DRAFT))
-        {   const int nn = var_ [MATH DRAFT].as < int > ();
-            switch (nn)
-            {   case 0 : break;
-                case 2020: case 20 : if (c.math_version () > math_3) c.math_version (math_4_20); break;
-                case 2022: case 22 : if (c.math_version () > math_3) c.math_version (math_4_22); break;
-                default : nits.pick (nit_config_version, es_warning, ec_init, "ignoring invalid MathML 4 draft"); break; } }
 
         yea_nay (c, &context_t::mf_export, nits, MF EXPORT, MF DONT EXPORT);
         yea_nay (c, &context_t::mf_pretty, nits, MF PRETTY, MF DONT PRETTY);
@@ -2163,28 +2157,27 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
 
         if (var_.count (VALIDATION ATTRIB))
         {  const vstr_t& v = var_ [VALIDATION ATTRIB].as < vstr_t > (); add_attributes (nits, v); c.attrib (v); }
-        if (var_.count (VALIDATION CHARSET)) type_master < t_charset > :: extend (var_ [VALIDATION CHARSET].as < vstr_t > ());
-        if (var_.count (VALIDATION CLASS)) type_master < t_class > :: extend (var_ [VALIDATION CLASS].as < vstr_t > ());
-        if (var_.count (VALIDATION COLOR)) type_master < t_fixedcolour > :: extend (var_ [VALIDATION COLOR].as < vstr_t > ());
-        if (var_.count (VALIDATION COLOUR)) type_master < t_fixedcolour > :: extend (var_ [VALIDATION COLOUR].as < vstr_t > ());
-        if (var_.count (VALIDATION COUNTRY)) type_master < t_country > :: extend (var_ [VALIDATION COUNTRY].as < vstr_t > ());
-        if (var_.count (VALIDATION CURRENCY)) type_master < t_currency > :: extend (var_ [VALIDATION CURRENCY].as < vstr_t > ());
-        if (var_.count (VALIDATION DINGBATARG)) type_master < t_dingbat > :: extend (var_ [VALIDATION DINGBATARG].as < vstr_t > ());
+        if (var_.count (VALIDATION CHARSET)) vvextend < t_charset > (c, VALIDATION CHARSET);
+        if (var_.count (VALIDATION CLASS)) vvextend < t_class > (c, VALIDATION CLASS);
+        if (var_.count (VALIDATION COLOR) || var_.count (VALIDATION COLOUR)) vvextend < t_fixedcolour > (c, VALIDATION COLOR, VALIDATION COLOUR);
+        if (var_.count (VALIDATION COUNTRY))  vvextend < t_country > (c, VALIDATION COUNTRY);
+        if (var_.count (VALIDATION CURRENCY)) vvextend < t_currency > (c, VALIDATION CURRENCY);
+        if (var_.count (VALIDATION DINGBATARG)) vvextend < t_dingbat > (c, VALIDATION DINGBATARG);
         if (var_.count (VALIDATION ELEMENT))
-        {   const vstr_t& v = var_ [VALIDATION ELEMENT].as < vstr_t > (); add_elements (nits, v);  c.elem (v); }
+          { const vstr_t& v = var_ [VALIDATION ELEMENT].as < vstr_t > (); add_elements (nits, v); c.elem (v); }
         if (var_.count (VALIDATION ELEMATTR))
-        {   const vstr_t& v = var_ [VALIDATION ELEMATTR].as < vstr_t > (); add_element_attributes (nits, v);  c.elem_attrib (v); }
-        if (var_.count (VALIDATION EXTENSION)) type_master < t_format > :: extend (var_ [VALIDATION EXTENSION].as < vstr_t > ());
-        if (var_.count (VALIDATION FF)) type_master < t_css_font_feature > :: extend (var_ [VALIDATION FF].as < vstr_t > ());
-        if (var_.count (VALIDATION FV)) type_master < t_css_font_variation > :: extend (var_ [VALIDATION FV].as < vstr_t > ());
-        if (var_.count (VALIDATION HTTPEQUIV)) type_master < t_httpequiv > :: extend (var_ [VALIDATION HTTPEQUIV].as < vstr_t > ());
-        if (var_.count (VALIDATION LANG)) type_master < t_lang > :: extend (var_ [VALIDATION LANG].as < vstr_t > ());
-        if (var_.count (VALIDATION REL)) type_master < t_rel > :: extend (var_ [VALIDATION REL].as < vstr_t > ());
-        if (var_.count (VALIDATION METANAME)) type_master < t_metaname  > :: extend (var_ [VALIDATION METANAME].as < vstr_t > ());
-        if (var_.count (VALIDATION MIMETYPE)) type_master < t_mime > :: extend (var_ [VALIDATION MIMETYPE].as < vstr_t > ());
-        if (var_.count (VALIDATION SGML)) type_master < t_sgml > :: extend (var_ [VALIDATION SGML].as < vstr_t > (), static_cast < ::std::size_t > (doc_context));
+          { const vstr_t& v = var_ [VALIDATION ELEMATTR].as < vstr_t > (); add_element_attributes (nits, v); c.elem_attrib (v); }
+        if (var_.count (VALIDATION EXTENSION)) vvextend < t_format > (c, VALIDATION EXTENSION);
+        if (var_.count (VALIDATION FF)) vvextend < t_css_font_feature > (c, VALIDATION FF);
+        if (var_.count (VALIDATION FV)) vvextend < t_css_font_variation > (c, VALIDATION FV);
+        if (var_.count (VALIDATION HTTPEQUIV)) vvextend < t_httpequiv > (c, VALIDATION HTTPEQUIV);
+        if (var_.count (VALIDATION LANG)) vvextend < t_lang > (c, VALIDATION LANG);
+        if (var_.count (VALIDATION REL)) vvextend < t_rel > (c, VALIDATION REL);
+        if (var_.count (VALIDATION METANAME)) vvextend < t_metaname > (c, VALIDATION METANAME);
+        if (var_.count (VALIDATION MIMETYPE)) vvextend < t_mime > (c, VALIDATION MIMETYPE);
+        if (var_.count (VALIDATION SGML)) vvextend < t_sgml > (c, VALIDATION SGML);
 
-#define TEST_VAR(XX) if (var_.count (VALIDATION #XX)) type_master < t_##XX > :: extend (var_ [VALIDATION #XX].as < vstr_t > ())
+#define TEST_VAR(XX) if (var_.count (VALIDATION #XX)) vvextend < t_##XX > (c, VALIDATION #XX);
         TEST_VAR (accrual_method);
         TEST_VAR (accrual_periodicity);
         TEST_VAR (accrual_policy);
@@ -2328,6 +2321,20 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
     var_.clear ();
     env_var_.clear (); }
 
+template < e_type TT > void options::vvextend (context_t& c, const char* const arg)
+{   if (var_.count (arg))
+    {   const vstr_t& vv (var_ [arg].as < vstr_t > ());
+        type_master < TT > :: extend (vv);
+        c.vvext (TT, vv); } }
+
+template < e_type TT > void options::vvextend (context_t& c, const char* const a1, const char* const a2)
+{   vstr_t vs;
+    if (var_.count (a1)) vs = var_ [a1].as < vstr_t > ();
+    if (var_.count (a2)) for (auto v : var_ [a2].as < vstr_t > ()) vs.push_back (v);
+    type_master < TT > :: extend (vs);
+    c.vvext (TT, vs); }
+
+
 void pvs (::std::ostringstream& res, const vstr_t& data)
 {   for (auto i : data)
         res << i << " "; }
@@ -2388,7 +2395,10 @@ template < class T > void options::report_variable (const e_gui_report gr, ::std
 
 template < > void options::report_variable < vstr_t > (const e_gui_report gr, ::std::ostringstream& res, const char* wot, const char* section, int& count, const char* variable) const
 {   if (var_.count (wot)) try
-    {   res << report_value (gr, section, count, variable, pvs (var_ [wot].as < vstr_t > ())); }
+    {   vstr_t vs = var_ [wot].as < vstr_t > ();
+        for (auto s : vs)
+            res << report_value (gr, section, count, variable, s); }
+//    {   res << report_value (gr, section, count, variable, pvs (var_ [wot].as < vstr_t > ())); }
     catch (...)
     {   outstr.err (section, wot, " is no vstr_t\n"); } }
 
@@ -2701,11 +2711,11 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, vstr_t, LINKS, PRETEND, lynx);
     RG (gr, res, vstr_t, LINKS, REPORT, lynx);
     RB (gr, res, LINKS, REVOKE, lynx);
+    RB (gr, res, LINKS, SPECIAL, lynx);
     RB (gr, res, LINKS, XLINK, lynx);
     REOS (lynx, res);
 
     RB (gr, res, MATH, CORE, math);
-    RG (gr, res, int, MATH, DRAFT, math);
     RG (gr, res, int, MATH, VERSION, math);
     REOS (math, res);
 

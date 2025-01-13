@@ -71,9 +71,9 @@ BEGIN_EVENT_TABLE (standard_t, wxDialog)
   EVT_LISTBOX_DCLICK (list_shadow_ext, standard_t::OnShadowIgnoreImpatience)
   EVT_BUTTON (button_site_add, standard_t::OnSiteAdd)
   EVT_BUTTON (button_site_erase, standard_t::OnSiteErase)
-  EVT_LISTBOX (button_site_rename, standard_t::OnSiteExtension)
   EVT_CHECKBOX (check_external, standard_t::OnSiteExternal)
-  EVT_LISTBOX_DCLICK (button_site_rename, standard_t::OnSiteImpatience)
+  EVT_LISTBOX (list_site_ext, standard_t::OnSiteExtension)
+  EVT_LISTBOX_DCLICK (list_site_ext, standard_t::OnSiteImpatience)
   EVT_CHECKBOX (check_internal, standard_t::OnSiteInternal)
   EVT_CHECKBOX (check_corpus_output, standard_t::OnSiteOutput)
   EVT_BUTTON (button_site_rename, standard_t::OnSiteRename)
@@ -112,9 +112,22 @@ BEGIN_EVENT_TABLE (standard_t, wxDialog)
   EVT_BUTTON (button_clear, standard_t::OnStatsClear)
   EVT_CHECKBOX (check_stats_export, standard_t::OnStatsExport)
   EVT_BUTTON (button_selected, standard_t::OnStatsSelected)
-#ifdef DEBUG
-  EVT_CHOICE (choice_validation_version, standard_t::OnValidChoice)
-#endif // DEBUG
+  EVT_DIRPICKER_CHANGED (dir_ontology, standard_t::OnVVOntology)
+  EVT_DIRPICKER_CHANGED (dir_physical, standard_t::OnVVPhys)
+  EVT_DIRPICKER_CHANGED (dir_shadow, standard_t::OnVVShadow)
+  EVT_CHOICE (choice_validation_version, standard_t::OnVVValChoice)
+  EVT_BUTTON (button_validation_add, standard_t::OnVVValAdd)
+  EVT_BUTTON (button_validation_erase, standard_t::OnVVValErase)
+  EVT_BUTTON (button_validation_rename, standard_t::OnVVValRename)
+  EVT_TEXT (text_validation, standard_t::OnVVValText)
+  EVT_LISTBOX (list_validation, standard_t::OnVVValSelect)
+  EVT_LISTBOX_DCLICK (list_validation, standard_t::OnVVValImpatience)
+  EVT_BUTTON (button_virtual_add, standard_t::OnVVVirtAdd)
+  EVT_BUTTON (button_virtual_erase, standard_t::OnVVVirtErase)
+  EVT_BUTTON (button_virtual_rename, standard_t::OnVVVirtRename)
+  EVT_TEXT (text_virtual, standard_t::OnVVVirtText)
+  EVT_LISTBOX (list_virtual, standard_t::OnVVVirtSelect)
+  EVT_LISTBOX_DCLICK (list_virtual, standard_t::OnVVVirtImpatience)
 END_EVENT_TABLE ()
 
 IMPLEMENT_CLASS (standard_t, wxDialog)
@@ -282,9 +295,7 @@ e_gui_panel standard_t :: get_panel () const
 
 void standard_t :: set_panel (const e_gui_panel gp)
 {	if (invalid ()) return;
-#ifndef DEBUG
-	if (gp == gp_validation) choice_ -> SetSelection (gp_html); else
-#endif // DEBUG
+	if (gp == gp_validation) vv_.yer_actual (site_.folder (), shadow_.shadow (), ontology_.path ());
 #ifdef NOSPELL
 	if (gp == gp_spell) choice_ -> SetSelection (gp_html); else
 #endif // NOSPELL

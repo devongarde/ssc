@@ -830,12 +830,6 @@
     <Filter Include="Toast\Living\jul22">
       <UniqueIdentifier>{09ea154b-f45f-4204-a0d6-112e8e9f01e7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Toast\Math\4-20">
-      <UniqueIdentifier>{c3cee7fd-cbd5-4066-8b90-6dd41186da92}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Toast\Math\4-22">
-      <UniqueIdentifier>{936f87da-2497-48be-b037-ce21b626bd80}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Toast\Other\blob">
       <UniqueIdentifier>{9d6f7286-4993-4233-b59f-851f61599889}</UniqueIdentifier>
     </Filter>
@@ -1451,6 +1445,9 @@
     </Filter>
     <Filter Include="Toast\RDF\pointer">
       <UniqueIdentifier>{757584e6-e827-40d7-b6c9-6e0c09cfba8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Math\4">
+      <UniqueIdentifier>{936f87da-2497-48be-b037-ce21b626bd80}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -26721,102 +26718,6 @@
     <None Include="..\toast\living\jul22\ww-10.html">
       <Filter>Toast\Living\jul22</Filter>
     </None>
-    <None Include="..\toast\math\4-20\index.html">
-      <Filter>Toast\Math\4-20</Filter>
-    </None>
-    <None Include="..\toast\math\4-20\math.conf">
-      <Filter>Toast\Math\4-20</Filter>
-    </None>
-    <None Include="..\toast\math\4-20\math.spec">
-      <Filter>Toast\Math\4-20</Filter>
-    </None>
-    <None Include="..\toast\math\4-20\math1-example.html">
-      <Filter>Toast\Math\4-20</Filter>
-    </None>
-    <None Include="..\toast\math\4-20\math2-example.html">
-      <Filter>Toast\Math\4-20</Filter>
-    </None>
-    <None Include="..\toast\math\4-20\math3-example.html">
-      <Filter>Toast\Math\4-20</Filter>
-    </None>
-    <None Include="..\toast\math\4-20\math4-example.html">
-      <Filter>Toast\Math\4-20</Filter>
-    </None>
-    <None Include="..\toast\math\4-20\math5-example.html">
-      <Filter>Toast\Math\4-20</Filter>
-    </None>
-    <None Include="..\toast\math\4-20\math6-example.html">
-      <Filter>Toast\Math\4-20</Filter>
-    </None>
-    <None Include="..\toast\math\4-20\math7-example.html">
-      <Filter>Toast\Math\4-20</Filter>
-    </None>
-    <None Include="..\toast\math\4-20\math8-example.html">
-      <Filter>Toast\Math\4-20</Filter>
-    </None>
-    <None Include="..\toast\math\4-20\math9-example.html">
-      <Filter>Toast\Math\4-20</Filter>
-    </None>
-    <None Include="..\toast\math\4-20\math10-example.html">
-      <Filter>Toast\Math\4-20</Filter>
-    </None>
-    <None Include="..\toast\math\4-20\math11-example.html">
-      <Filter>Toast\Math\4-20</Filter>
-    </None>
-    <None Include="..\toast\math\4-20\math12-example.html">
-      <Filter>Toast\Math\4-20</Filter>
-    </None>
-    <None Include="..\toast\math\4-20\math13-example.html">
-      <Filter>Toast\Math\4-20</Filter>
-    </None>
-    <None Include="..\toast\math\4-20\math14-example.html">
-      <Filter>Toast\Math\4-20</Filter>
-    </None>
-    <None Include="..\toast\math\4-20\math15-example.html">
-      <Filter>Toast\Math\4-20</Filter>
-    </None>
-    <None Include="..\toast\math\4-20\math16-example.html">
-      <Filter>Toast\Math\4-20</Filter>
-    </None>
-    <None Include="..\toast\math\4-20\math17-example.html">
-      <Filter>Toast\Math\4-20</Filter>
-    </None>
-    <None Include="..\toast\math\4-20\math18-example.html">
-      <Filter>Toast\Math\4-20</Filter>
-    </None>
-    <None Include="..\toast\math\4-20\math19-example.html">
-      <Filter>Toast\Math\4-20</Filter>
-    </None>
-    <None Include="..\toast\math\4-22\index.html">
-      <Filter>Toast\Math\4-22</Filter>
-    </None>
-    <None Include="..\toast\math\4-22\math.conf">
-      <Filter>Toast\Math\4-22</Filter>
-    </None>
-    <None Include="..\toast\math\4-22\math.spec">
-      <Filter>Toast\Math\4-22</Filter>
-    </None>
-    <None Include="..\toast\math\4-22\math2-example.html">
-      <Filter>Toast\Math\4-22</Filter>
-    </None>
-    <None Include="..\toast\math\4-22\math3-example.html">
-      <Filter>Toast\Math\4-22</Filter>
-    </None>
-    <None Include="..\toast\math\4-22\math4-example.html">
-      <Filter>Toast\Math\4-22</Filter>
-    </None>
-    <None Include="..\toast\math\4-22\math5-example.html">
-      <Filter>Toast\Math\4-22</Filter>
-    </None>
-    <None Include="..\toast\math\4-22\math6-example.html">
-      <Filter>Toast\Math\4-22</Filter>
-    </None>
-    <None Include="..\toast\math\4-22\math7-example.html">
-      <Filter>Toast\Math\4-22</Filter>
-    </None>
-    <None Include="..\toast\math\4-22\math2-example.xhtml">
-      <Filter>Toast\Math\4-22</Filter>
-    </None>
     <None Include="..\toast\other\blob\harris-none.pdf">
       <Filter>Toast\Other\blob</Filter>
     </None>
@@ -39794,6 +39695,36 @@
     </None>
     <None Include="..\toast\RDF\pointer\rdf.spec">
       <Filter>Toast\RDF\pointer</Filter>
+    </None>
+    <None Include="..\toast\math\4\math3-example.html">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math4-example.html">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math5-example.html">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math6-example.html">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math7-example.html">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\index.html">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math.conf">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math.spec">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math2-example.html">
+      <Filter>Toast\Math\4</Filter>
+    </None>
+    <None Include="..\toast\math\4\math2-example.xhtml">
+      <Filter>Toast\Math\4</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

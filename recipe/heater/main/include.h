@@ -62,8 +62,8 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 8
-#define VERSION_STRING "0.2.8"
+#define VERSION_RELEASE 9
+#define VERSION_STRING "0.2.9"
 #define EDITION_STANDARD "standard"
 
 #define NBSP "&nbsp;"
@@ -93,13 +93,11 @@ z
 #  ifndef DEBUG
 #  define DEBUG
 #  endif // DEBUG
-#define DBG_ASSERT(x) assert (x)
-#else // debug
+#else // debug...
 #  ifndef NDEBUG
 #  define NDEBUG
 #  endif // NDEBUG
-#define DBG_ASSERT(x)
-#endif // debug
+#endif // debug...
 
 #ifdef SSC_TEST
 #define NOICU

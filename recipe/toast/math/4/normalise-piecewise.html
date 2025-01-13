@@ -1,0 +1,44 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 4 normalise piecewise</title>
+</head>
+
+<body>
+
+<h1>math 4 normalise piecewise</h1>
+
+<math>
+
+<piecewise>
+  <piece>
+    <cn>0</cn>
+    <apply><lt/><ci>x</ci><cn>0</cn></apply>
+  </piece>
+  <piece>
+    <cn>1</cn>
+    <apply><gt/><ci>x</ci><cn>1</cn></apply>
+  </piece>
+  <otherwise>
+    <ci>x</ci>
+  </otherwise>
+</piecewise>
+
+<apply><csymbol cd="piece1">piecewise</csymbol>
+  <apply><csymbol cd="piece1">piece</csymbol>
+    <cn>0</cn>
+    <apply><csymbol cd="relation1">lt</csymbol><ci>x</ci><cn>0</cn></apply>
+  </apply>
+  <apply><csymbol cd="piece1">piece</csymbol>
+    <cn>1</cn>
+    <apply><csymbol cd="relation1">gt</csymbol><ci>x</ci><cn>1</cn></apply>
+  </apply>
+  <apply><csymbol cd="piece1">otherwise</csymbol>
+    <ci>x</ci>
+  </apply>
+</apply>
+
+</math>
+
+</body>
+</html>

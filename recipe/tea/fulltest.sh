@@ -183,8 +183,8 @@
 ./ssc -f ../toast/math/1/math.conf
 ./ssc -f ../toast/math/2/math.conf
 ./ssc -f ../toast/math/3/math.conf
-./ssc -f ../toast/math/4-20/math.conf
-./ssc -f ../toast/math/4-22/math.conf
+./ssc -f ../toast/math/4/math.conf
+./ssc -f ../toast/math/4-core/math.conf
 ./ssc -f ../toast/microdata/12/schema.conf
 ./ssc -f ../toast/microdata/addendum/add.conf
 ./ssc -f ../toast/microdata/basic/basic.conf

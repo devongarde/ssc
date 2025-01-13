@@ -1,0 +1,64 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 4 logical</title>
+</head>
+
+<body>
+
+<h1>math 4 logical</h1>
+
+<math>
+
+<apply><and/><ci>a</ci><ci>b</ci></apply>
+
+<apply><and/>
+  <bvar><ci>i</ci></bvar>
+  <lowlimit><cn>0</cn></lowlimit>
+  <uplimit><ci>n</ci></uplimit>
+  <apply><gt/><apply><selector/><ci>a</ci><ci>i</ci></apply><cn>0</cn></apply>
+</apply>
+
+<apply><csymbol cd="logic1">and</csymbol><ci>a</ci><ci>b</ci></apply>
+
+<apply><csymbol cd="fns2">apply_to_list</csymbol>
+  <csymbol cd="logic1">and</csymbol>
+  <apply><csymbol cd="list1">map</csymbol>
+    <bind><csymbol cd="fns1">lambda</csymbol>
+      <bvar><ci>i</ci></bvar>
+      <apply><csymbol cd="relation1">gt</csymbol>
+        <apply><csymbol cd="linalg1">vector_selector</csymbol>
+          <ci>i</ci>
+          <ci>a</ci>
+        </apply>
+        <cn>0</cn>
+      </apply>
+    </bind>
+    <apply><csymbol cd="interval1">integer_interval</csymbol>
+      <cn type="integer">0</cn>
+      <ci>n</ci>
+    </apply>
+  </apply>
+</apply>
+
+<mrow><mi>a</mi><mo>∧</mo><mi>b</mi></mrow>
+
+<mrow>
+  <munderover>
+    <mo>⋀</mo>
+    <mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow>
+    <mi>n</mi>
+  </munderover>
+  <mrow>
+    <mo>(</mo>
+    <msub><mi>a</mi><mi>i</mi></msub>
+    <mo>&gt;</mo>
+    <mn>0</mn>
+    <mo>)</mo>
+  </mrow>
+</mrow>
+
+</math>
+
+</body>
+</html>

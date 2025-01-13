@@ -314,12 +314,11 @@ void html_t :: create_controls (wxWindow *parent)
 			stray.Add ("MathML 1");
 			stray.Add ("MathML 2");
 			stray.Add ("MathML 3");
-			stray.Add ("MathML 4 (2020 draft)");
-			stray.Add ("MathML 4 (2022 draft)");
+			stray.Add ("MathML 4");
 			stray.Add ("MathML 4 core");
 			math_choice_ = GSL_OWNER (wxChoice) (new wxChoice (parent, choice_html_version, wxDefaultPosition, wxDefaultSize, stray));
 			if (math_choice_ != nullptr)
-			{	math_choice_ -> SetSelection (6);
+			{	math_choice_ -> SetSelection (0);
 				box_math_ -> Add (math_text_, 0, wxALIGN_CENTRE_VERTICAL, 5);
 				box_math_ -> Add (math_choice_, 0, wxALIGN_CENTRE_VERTICAL, 5); } }
 		box_ -> Add (box_math_, 0, wxALIGN_CENTRE_HORIZONTAL, 5); }
@@ -336,10 +335,10 @@ void html_t :: create_controls (wxWindow *parent)
 			stray.Add ("SVG 1.2 Tiny");
 			stray.Add ("SVG 1.2 Full (May 2004 draft)");
 			stray.Add ("SVG 2.0");
-			stray.Add ("SVG 2.1 (April 2021 draft)");
+			stray.Add ("SVG 2.1 (November 2024 draft)");
 			svg_choice_ = GSL_OWNER (wxChoice) (new wxChoice (parent, choice_html_version, wxDefaultPosition, wxDefaultSize, stray));
 			if (svg_choice_ != nullptr)
-			{	svg_choice_ -> SetSelection (6);
+			{	svg_choice_ -> SetSelection (0);
 				box_svg_ -> Add (svg_text_, 0, wxALIGN_CENTRE_VERTICAL, 5);
 				box_svg_ -> Add (svg_choice_, 0, wxALIGN_CENTRE_VERTICAL, 5); } }
 		box_ -> Add (box_svg_, 0, wxALIGN_CENTRE_HORIZONTAL, 5); }

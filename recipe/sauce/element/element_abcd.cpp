@@ -78,6 +78,8 @@ void element::examine_anchor ()
                 pick (nit_chocolate_teapot, ed_50, "4.5.1 The a element", es_error, ec_element, "An <A> with no HREF can have no DOWNLOAD, HREFLANG, REL, REV, REFERRERPOLICY, PING, TARGET or TYPE attributes");
             if (a_.known (a_itemprop))
                 pick (nit_chocolate_teapot, ed_jul20, "4.5.1 The a element", es_error, ec_element, "An <A> with an ITEMPROP requires an HREF"); }
+        else if (a_.known (a_target) && ! rel_known)
+            pick (nit_tabnab, ed_owasp, "https://owasp.org/www-community/attacks/Reverse_Tabnabbing", es_warning, ec_element, "TARGET without REL=\"noopener,noreferrer\" is a security risk in pre-2024 browsers.");
         if (w3_minor_5 (node_.version ()) >= 4)
         {   const attribute_bitset as (descendant_attributes_);
             if (as.test (a_tabindex))
@@ -189,6 +191,8 @@ void element::examine_base ()
         else if (node_.version () >= html_jul07)
            pick (nit_base, ed_50, "4.2.3 The base element", es_error, ec_element, "<BASE> must have an HREF or a TARGET attribute");
         return; }
+    else if (a_.known (a_target) && node_.version ().is_5 () && ! a_.known (a_rel))
+        pick (nit_tabnab, ed_owasp, "https://owasp.org/www-community/attacks/Reverse_Tabnabbing", es_warning, ec_element, "TARGET without REL=\"noopener,noreferrer\" is a security risk in pre-2024 browsers.");
     check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_href), MIME_PAGE);
     url u (nits (), node_.version (), a_.get_string (a_href));
     if (u.empty ())

@@ -329,8 +329,8 @@ e_math_version attributes_node::get_math (const html_version& v) const
                 default : GRACEFUL_CRASH (__FILE__, __LINE__);
                           UNREACHABLE (return math_1); }
         default : break; }
-    if (v >= html_jul22) return math_4_22;
-    if (v >= html_apr21) return math_4_20;
+    if (v >= html_jan25) return math_4;
+    if (v >= html_apr21) return math_core;
     if (v >= html_5_0) return math_3;
     return math_2; }
 

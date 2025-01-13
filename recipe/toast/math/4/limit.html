@@ -1,0 +1,62 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 4 limit</title>
+</head>
+
+<body>
+
+<h1>math 4 limit</h1>
+
+<math>
+
+<apply><limit/>
+  <bvar><ci>x</ci></bvar>
+  <lowlimit><cn>0</cn></lowlimit>
+  <apply><sin/><ci>x</ci></apply>
+</apply>
+
+<apply><limit/>
+  <bvar><ci>x</ci></bvar>
+  <condition>
+    <apply><tendsto/><ci>x</ci><cn>0</cn></apply>
+  </condition>
+  <apply><sin/><ci>x</ci></apply>
+</apply>
+
+<apply><limit/>
+  <bvar><ci>x</ci></bvar>
+  <condition>
+    <apply><tendsto type="above"/><ci>x</ci><ci>a</ci></apply>
+  </condition>
+  <apply><sin/><ci>x</ci></apply>
+</apply>
+
+<mrow>
+  <munder>
+    <mi>lim</mi>
+    <mrow><mi>x</mi><mo>→</mo><mn>0</mn></mrow>
+  </munder>
+  <mrow><mi>sin</mi><mo>&#x2061;<!--ApplyFunction--></mo><mi>x</mi></mrow>
+</mrow>
+
+<mrow>
+  <munder>
+    <mi>lim</mi>
+    <mrow><mi>x</mi><mo>→</mo><mn>0</mn></mrow>
+  </munder>
+  <mrow><mi>sin</mi><mo>&#x2061;<!--ApplyFunction--></mo><mi>x</mi></mrow>
+</mrow>
+
+<mrow>
+  <munder>
+    <mi>lim</mi>
+    <mrow><mi>x</mi><mo>→</mo><msup><mi>a</mi><mo>+</mo></msup></mrow>
+  </munder>
+  <mrow><mi>sin</mi><mo>&#x2061;<!--ApplyFunction--></mo><mi>x</mi></mrow>
+</mrow>
+
+</math>
+
+</body>
+</html>

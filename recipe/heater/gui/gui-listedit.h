@@ -59,11 +59,26 @@ struct listedit_manager
     void OnText (wxCommandEvent& event);
     void OnTap (wxCommandEvent& event);
     void OnImpatience (wxCommandEvent& event);
+    bool able_enable () const;
     vstr_t acquire () const;
     bool construct (wxWindow* parent, wxBoxSizer* box, const char* desc, const char* def = nullptr, bool file = false, bool comma = false, bool line = false);
     void enable (const bool e);
     bool invalid () const noexcept; 
-    void preload (const vstr_t& vs);
+    ::std::size_t size () const
+    {   if (invalid ()) return 0;
+        return list_ -> GetCount (); }
+    template < class VT > void preload (const VT& vs)
+    {	VERIFY_NOT_NULL (list_, __FILE__, __LINE__);
+ 	    list_ -> Clear ();
+	    for (auto s : vs) list_ -> Append (s.c_str ());
+	    fex (); }
+    template < class VT > VT unload () const
+    {   VERIFY_NOT_NULL (list_, __FILE__, __LINE__);
+ 	    VT res;
+        const unsigned int m = list_ -> GetCount ();
+        for (unsigned int u = 0; u < m; ++u)
+            res.push_back (VT::value_type (list_ -> GetString (u).c_str ()));
+        return res; }
     int sel () const
     {	return list_ -> GetSelection (); } };
 

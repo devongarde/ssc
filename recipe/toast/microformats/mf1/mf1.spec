@@ -52,14 +52,14 @@ PASS ../toast/microformats/mf1/mf1-example.html
 185 character_code character_code 
 187 use_quote_code
 188 hcard_infer hcard_infer
-196 reputation
+196 reputation reputation
 203 no_such_folder url_not_found
 209 hcard_infer
 212 use_double_quote_code
 218 hcard_infer hcard_infer
 220 use_quote_code
-221 reputation
-241 newline_in_string newline_in_string character_code reputation reputation reputation
+221 reputation reputation
+241 newline_in_string newline_in_string character_code reputation reputation reputation reputation
 246 newline_in_string newline_in_string
 269 hcard_infer hcard_infer
 275 hcard_infer

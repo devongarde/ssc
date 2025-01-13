@@ -28,6 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/quote.h"
 #include "webpage/crosslink.h"
 #include "element/element.h"
+#include "webpage/external.h"
 
 vstr_t url::standard_image_extensions_, url::standard_text_extensions_;
 
@@ -78,6 +79,10 @@ bool url::sanity_test () const
 {   if (empty ()) return false;
     if (! has_protocol ()) return true; // presume internal link.
     return is_usable (); }
+
+bool url::is_potentially_naughty () const noexcept
+{   if (empty () || is_self () || ! has_protocol () || ! has_domain ()) return false;
+    return (! is_local_domain (*this) && ! is_example_domain (*this)); }
 
 bool url::standard_extension (const e_mime_category mime) const
 {   ::std::string ext (filename ());

@@ -27,30 +27,74 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/quote.h"
 #include "utility/lexical.h"
 
-// https://datatracker.ietf.org/doc/html/rfc2606
 const vstr_t rfc2606_no_no =
-{   "example",
+{   // https://datatracker.ietf.org/doc/html/rfc2606
+    "example",
     "example.com",
-    "example.edu", // technically not included, but seen in the wild
-    "example.gov", // to be consistent
-    "example.mil", // & to complete the set
     "example.net",
     "example.org",
     "invalid",
     "localhost",
     "test" };
 
-// https://tools.ietf.org/id/draft-chapin-rfc2606bis-00.html
-// plus ICANN recommendation of Jan 24
-const vstr_t rfc2606_local =
-{   "corp",
+const vstr_t local_domain =
+{   // https://tools.ietf.org/id/draft-chapin-rfc2606bis-00.html
+    "corp",
     "domain",
     "home",
+    "home.arpa", // https://en.wikipedia.org/wiki/Special-Use_Domain_Name
     "host",
-    "internal", // ICANN
+    "internal", // ICANN recommendation, Jan 24
     "lan",
     "local",
-    "localdomain" };
+    "localdomain",
+    // RFC6761
+    "10.in-addr.arpa",
+    "21.172.in-addr.arpa",
+    "26.172.in-addr.arpa",
+    "16.172.in-addr.arpa",
+    "22.172.in-addr.arpa",
+    "27.172.in-addr.arpa",
+    "17.172.in-addr.arpa",
+    "30.172.in-addr.arpa",
+    "28.172.in-addr.arpa",
+    "18.172.in-addr.arpa",
+    "23.172.in-addr.arpa",
+    "29.172.in-addr.arpa",
+    "19.172.in-addr.arpa",
+    "24.172.in-addr.arpa",
+    "31.172.in-addr.arpa",
+    "20.172.in-addr.arpa",
+    "25.172.in-addr.arpa",
+    "168.192.in-addr.arpa",
+    // extra
+    "127.in-addr.arpa" };
+
+ const vstr_t special_domain =
+{   // https://en.wikipedia.org/wiki/Special-Use_Domain_Name
+    "alt",
+    "6tisch.arpa",
+    "170.0.0.192.in-addr.arpa",
+    "171.0.0.192.in-addr.arpa",
+    "254.169.in-addr.arpa",
+    "8.e.f.ip6.arpa",
+    "9.e.f.ip6.arpa",
+    "a.e.f.ip6.arpa",
+    "b.e.f.ip6.arpa",
+    "onion",
+    // https://en.wikipedia.org/wiki/Top-level_domain#Reserved_domains
+    "an",
+    "cs",
+    "dd",
+    "yu",
+    "zr",
+    // https://en.wikipedia.org/wiki/Top-level_domain#Reserved_domains
+    "bit",
+    "bitnet",
+    "csnet",
+    "swift",
+    "uucp",
+    "oz" };
 
 #define EXAMPLE_START \
     "<!DOCTYPE HTML>" \
@@ -76,7 +120,10 @@ bool is_example_domain (const url& u)
 {   return (one_of_domain (u.domain (), rfc2606_no_no)); }
 
 bool is_local_domain (const url& u)
-{   return (one_of_domain (u.domain (), rfc2606_local)); }
+{   return (one_of_domain (u.domain (), local_domain)); }
+
+bool is_special_domain (const url& u)
+{   return (one_of_domain (u.domain (), special_domain)); }
 
 int test_hypertext (nitpick& nits, const html_version& , const url& u)
 {   if (! context.external ()) return 0;
@@ -89,7 +136,10 @@ int test_hypertext (nitpick& nits, const html_version& , const url& u)
         {   if (context.example ()) nits.pick (nit_example, es_warning, ec_link, "link to test domain ", quote (d), " (see RFC 2606)");
             return 200; }
         if (is_local_domain (u))
-        {   if (context.local ()) nits.pick (nit_local, es_info, ec_link, "link to local domain ", quote (d), " (see RFC 2606 bis)");
+        {   if (context.local ()) nits.pick (nit_local, es_info, ec_link, "link to local domain ", quote (d), " (see RFC 2606 bis and RFC 6761)");
+            return 200; }
+        if (is_special_domain (u))
+        {   if (context.special ()) nits.pick (nit_special_domain, es_warning, ec_link, "link to special domain ", quote (d), ", which may respond unexpectedly (see e.g. wikipedia on special-use domains and on reserved top-level domains)");
             return 200; }
         if (one_of_domain (d, context.report ()))
             nits.pick (nit_report, es_info, ec_link, "link to ", quote (d));

@@ -869,6 +869,10 @@ const nitname nitnames [] =
     { nit_safari, "safari" },
     { nit_invalid_duration, "invalid_duration" },
     { nit_tame, "tame" },
+    { nit_tabnab, "tabnab" },
+    { nit_sandbox, "sandbox" },
+    { nit_pii_cache, "pii_cache" },
+    { nit_special_domain, "special_domain" },
 
     { nit_incompatible, "incompatible" },
 

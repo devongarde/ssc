@@ -112,3 +112,9 @@ template < e_type T, flags_t H2, flags_t H3, flags_t H4 > struct css_req : publi
 
 template < e_type T, flags_t H2, flags_t H3, flags_t H4 > struct css_bar : public barred < T, NOFLAGS, NOFLAGS, H2, H3, H4 >
 {   using barred < T, NOFLAGS, NOFLAGS, H2, H3, H4 > :: barred; };
+
+template < bool EMPTY > struct is_that
+{    static bool beside_the_point (const ::std::string& ) noexcept { return false; } };
+
+template < > struct is_that < true >
+{    static bool beside_the_point (const ::std::string& t) noexcept { return t.empty (); } };

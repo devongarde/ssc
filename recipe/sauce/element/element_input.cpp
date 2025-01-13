@@ -117,6 +117,8 @@ void element::examine_input ()
                 else
                 {   type_master < t_email > e;
                     e.set_value (nits (), node_.version (), val); } }
+            if (! a_.known (a_spellcheck) || ! a_.known (a_autocomplete) || ! a_.known (a_autocorrect) || ! a_.known (a_autocapitalise))
+                pick (nit_pii_cache, ed_owasp, "Credential and Personally Identifiable Information (PII) Input hints", es_comment, ec_attribute, "avoid browser cache EMAIL privacy leaks with spellcheck=\"false\" autocomplete=\"off\" autocorrect=\"off\" autocapitalize=\"off\"");
             break;
         case i5_file :
             if (a_.known (a_accept))
@@ -163,11 +165,15 @@ void element::examine_input ()
             if (a_.known (a_value))
                 if (a_.get_string (a_value).find_first_of ("\x0A\x0D") != ::std::string::npos)
                     pick (nit_illegal_value, es_error, ec_attribute, "<INPUT> VALUE may not contain newline when <INPUT> TYPE is 'tel'");
+            if (! a_.known (a_spellcheck) || ! a_.known (a_autocomplete) || ! a_.known (a_autocorrect) || ! a_.known (a_autocapitalise))
+                pick (nit_pii_cache, ed_owasp, "Credential and Personally Identifiable Information (PII) Input hints", es_comment, ec_attribute, "avoid browser cache TEL privacy leaks with spellcheck=\"false\" autocomplete=\"off\" autocorrect=\"off\" autocapitalize=\"off\"");
             break;
         case i5_password :
             if (a_.known (a_value))
                 if (a_.get_string (a_value).find_first_of ("\x0A\x0D") != ::std::string::npos)
                     pick (nit_illegal_value, es_error, ec_attribute, "<INPUT> VALUE may not contain newline when <INPUT> TYPE is 'password'");
+            if (! a_.known (a_spellcheck) || ! a_.known (a_autocomplete) || ! a_.known (a_autocorrect) || ! a_.known (a_autocapitalise))
+                pick (nit_pii_cache, ed_owasp, "Credential and Personally Identifiable Information (PII) Input hints", es_comment, ec_attribute, "avoid browser cache privacy leaks with spellcheck=\"false\" autocomplete=\"off\" autocorrect=\"off\" autocapitalize=\"off\"");
             break;
         case i5_time :
             val_min_max < t_just_time > (true);

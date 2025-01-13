@@ -636,6 +636,9 @@ broken links within the site.
 --link.revoke           Do not check whether links' https certificates
 -r                      have been revoked (requires --link.external).
 
+--link.special          Report links to special domains, such as domains
+                        ending in .alt, .onion, .yu, and others.
+
 --link.xlink            Check crosslink IDs on the site being analysed.
 -X                      For example, if a link goes to /index.html#id,
                         then, when this switch is set, ssc will verify
@@ -1492,7 +1495,7 @@ analysed, you may find the --svg.version switch useful.
                                       conflict with 1.2/tiny always
                                       resolves in favour of 1.2/tiny)
                             2.0
-                            2.1 (April 2021 draft)
+                            2.1 (November 2024 draft)
                         If this switch is not used, and some SVG code
                         does not identify its version, the version is
                         derived from the version of the host X/HTML

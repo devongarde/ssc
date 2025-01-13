@@ -10,6 +10,8 @@ PASS ../toast/RDFa/imported/dokieli.html
 13 no_such_folder url_not_found
 16 rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_confusion rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_confusion rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine
 177 ontology_domain
+354 reputation
+471 reputation
 
 PASS ../toast/RDFa/imported/linkedresearch.html
 6 css_version

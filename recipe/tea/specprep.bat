@@ -181,8 +181,8 @@ ssc.exe -T --nits.spec -o ../out/jan25living.tst -f ../toast/living/jan25/living
 ssc.exe -T --nits.spec -o ../out/1math.tst -f ../toast/math/1/math.conf
 ssc.exe -T --nits.spec -o ../out/2math.tst -f ../toast/math/2/math.conf
 ssc.exe -T --nits.spec -o ../out/3math.tst -f ../toast/math/3/math.conf
-ssc.exe -T --nits.spec -o ../out/420math.tst -f ../toast/math/4-20/math.conf
-ssc.exe -T --nits.spec -o ../out/422math.tst -f ../toast/math/4-22/math.conf
+ssc.exe -T --nits.spec -o ../out/4math.tst -f ../toast/math/4/math.conf
+ssc.exe -T --nits.spec -o ../out/4cmath.tst -f ../toast/math/4-core/math.conf
 ssc.exe -T --nits.spec -o ../out/12schema.tst -f ../toast/microdata/12/schema.conf
 ssc.exe -T --nits.spec -o ../out/addendumadd.tst -f ../toast/microdata/addendum/add.conf
 ssc.exe -T --nits.spec -o ../out/basicbasic.tst -f ../toast/microdata/basic/basic.conf

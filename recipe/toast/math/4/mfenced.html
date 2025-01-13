@@ -1,0 +1,88 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 4 mfenced</title>
+</head>
+
+<body>
+
+<h1>math 4 mfenced</h1>
+
+<math>
+
+<mrow> <mo> ( </mo> <mi>x</mi> <mo> ) </mo> </mrow>
+
+<mfenced> <mi>x</mi> <mi>y</mi> </mfenced>
+
+<mrow>
+  <mo> ( </mo>
+  <mrow> <mi>x</mi> <mo>,</mo> <mi>y</mi> </mrow>
+  <mo> ) </mo>
+</mrow>
+
+<mfenced open="opening-fence"
+         close="closing-fence"
+         separators="sep#1 sep#2 ... sep#(n-1)" >
+  arg#1
+  ...
+  arg#n
+</mfenced>
+
+<mrow>
+  <mo fence="true"> opening-fence </mo>
+  <mrow>
+    arg#1
+    <mo separator="true"> sep#1 </mo>
+    ...
+    <mo separator="true"> sep#(n-1) </mo>
+    arg#n
+  </mrow>
+  <mo fence="true"> closing-fence </mo>
+</mrow>
+
+<mrow>
+  <mo fence="true"> opening-fence </mo>
+    arg#1
+  <mo fence="true"> closing-fence </mo>
+</mrow>
+
+<mfenced open="opening-fence"
+ close="closing-fence"
+ separators="anything" >
+</mfenced>
+
+<mrow>
+  <mo fence="true"> opening-fence </mo>
+  <mo fence="true"> closing-fence </mo>
+</mrow>
+
+<mrow>
+  <mi>x</mi> <mo>+</mo> <mi>y</mi> <mo>+</mo> <mi>z</mi>
+</mrow>
+
+<mfenced>
+  <mrow>
+    <mi> a </mi>
+    <mo> + </mo>
+    <mi> b </mi>
+  </mrow>
+</mfenced>
+
+<mfenced open="[">
+  <mn> 0 </mn>
+  <mn> 1 </mn>
+</mfenced>
+
+<mrow>
+  <mi> f </mi>
+  <mo> &#x2061;<!--ApplyFunction--> </mo>
+  <mfenced>
+    <mi> x </mi>
+    <mi> y </mi>
+  </mfenced>
+</mrow>
+
+</math>
+
+</body>
+</html>

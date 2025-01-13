@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/quote.h"
 #include "utility/lexical.h"
 #include "type/type.h"
+#include "css/flags.h"
 
 #define COLON_SLASH_SLASH "://"
 
@@ -285,34 +286,42 @@ bool parse_rfc3986 (nitpick& nits, const html_version& v, const e_protocol prot,
                             nits.pick (nit_tld, es_warning, ec_url, quote (host.substr (pos)), " is not a top level domain recognised by " PROG);
                             break;
                         case tld_example :
-                            nits.pick (nit_tld, es_warning, ec_url, quote (host.substr (pos)), " is an example top level domain which belongs in documentation, not in code");
+                            if (context.example ()) nits.pick (nit_example, es_warning, ec_url, quote (host.substr (pos)), " is an example top level domain which belongs in documentation, not in code");
                             break;
                         case tld_invalid :
-                            nits.pick (nit_tld, es_error, ec_url, quote (host.substr (pos)), " is deliberately wrong, and should never be encountered in code");
+                            if (context.example ()) nits.pick (nit_example, es_error, ec_url, quote (host.substr (pos)), " is deliberately wrong, and should never be encountered in code");
                             break;
                         case tld_test :
-                            nits.pick (nit_tld, es_info, ec_url, quote (host.substr (pos)), " is intended for domain testing only and should not be used on a live network");
+                            if (context.example ()) nits.pick (nit_example, es_info, ec_url, quote (host.substr (pos)), " is intended for domain testing only and should not be used on a live network");
                             break;
                         case tld_local :
-                            nits.pick (nit_tld, es_warning, ec_url, quote (host.substr (pos)), " is often used for local multicast DNS and its use here could cause problems");
+                            if (context.local ()) nits.pick (nit_local, es_warning, ec_url, quote (host.substr (pos)), " is often used for local multicast DNS and its use here could cause problems");
                             break;
                         case tld_vm :
-                            nits.pick (nit_tld, es_warning, ec_url, quote (host.substr (pos)), " is not an official top level domain and can cause problems if it leaks: the ICANN recommendation is '.internal'");
+                            if (context.special ()) nits.pick (nit_special_domain, es_warning, ec_url, quote (host.substr (pos)), " is not an official top level domain and can cause problems if it leaks: the ICANN recommendation is '.internal'");
                             break;
                         case tld_internet :
-                            nits.pick (nit_tld, es_info, ec_url, quote (host.substr (pos)), " is officially an unofficial top level domain (RFC6762), but, ironically, it can cause problems if it leaks to the internet: the ICANN recommendation is '.internal'");
+                            if (context.special ()) nits.pick (nit_special_domain, es_info, ec_url, quote (host.substr (pos)), " is officially an unofficial top level domain (RFC6762), but, ironically, it can cause problems if it leaks to the internet: the ICANN recommendation is '.internal'");
                             break;
                         case tld_home :
                         case tld_lan :
                         case tld_corp :
                         case tld_intranet :
                         case tld_private :
-                            nits.pick (nit_tld, es_info, ec_url, quote (host.substr (pos)), " is officially an unofficial top level domain (RFC6762), but it can cause problems if it leaks to the internet: the ICANN recommendation is '.internal'");
+                            if (context.local ()) nits.pick (nit_local, es_info, ec_url, quote (host.substr (pos)), " is officially an unofficial top level domain (RFC6762), but it can cause problems if it leaks to the internet: the ICANN recommendation is '.internal'");
                             break;
                         case tld_internal :
-                            nits.pick (nit_tld, es_comment, ec_url, quote (host.substr (pos)), " is proposed BY ICANN as a top level domain, but not yet commonly accepted");
+                            if (context.special ()) nits.pick (nit_special_domain, es_comment, ec_url, quote (host.substr (pos)), " is proposed BY ICANN as a top level domain, but not yet commonly accepted");
                             break;
                        default :
+                            {   const flags_t f = enum_n < t_tld, e_tld > :: flags (tld);
+                                if ((f & TLD_ARCHAIC) == TLD_ARCHAIC) if (context.special ()) nits.pick (nit_tld, es_info, ec_url, quote (host.substr (pos)), ": ah, yes, I remember that, indeed, when I was a baby brontosaurus, ..."); 
+                                if ((f & TLD_EXAMPLE) == TLD_EXAMPLE) if (context.example ()) nits.pick (nit_example, es_warning, ec_url, quote (host.substr (pos)), " is an example top level domain which should not be found in code"); 
+                                if ((f & TLD_LOCAL) == TLD_LOCAL) if (context.local ()) nits.pick (nit_local, es_info, ec_url, quote (host.substr (pos)), " is local, so should never escape to the big bad internet");
+                                if ((f & TLD_INVALID) == TLD_INVALID) if (context.example ()) nits.pick (nit_example, es_error, ec_url, quote (host.substr (pos)), " is deliberately invalid, and should never be found in code"); 
+                                if ((f & TLD_TEST) == TLD_TEST) if (context.example ()) nits.pick (nit_example, es_info, ec_url, quote (host.substr (pos)), " is intended for testing only and should not be used in production"); 
+                                if ((f & TLD_127001) == TLD_127001) if (context.local ()) nits.pick (nit_local, es_warning, ec_url, quote (host.substr (pos)), " is internal to the browser's computer"); 
+                                if ((f & TLD_UNOFFICIAL) == TLD_UNOFFICIAL) if (context.special ()) nits.pick (nit_special_domain, es_warning, ec_url, quote (host.substr (pos)), " is unofficial, so may not work as intended"); }
                             break; } }
                 domain = host; } } }
 

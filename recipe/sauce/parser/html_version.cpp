@@ -45,8 +45,8 @@ html_version::html_version (const ::boost::gregorian::date& d)
         if (mjr () <= HTML_2010) set_ext2 (H2_MATH_1);
         else if (mjr () <= HTML_2014) set_ext2 (H2_MATH_2);
         else if (mjr () <= HTML_2020) set_ext2 (H2_MATH_3);
-        else if (mjr () <= HTML_2022) set_ext2 (H2_MATH_4_20);
-        else set_ext2 (H2_MATH_C);
+        else if (mjr () <= HTML_2024) set_ext2 (H2_MATH_C);
+        else set_ext2 (H2_MATH_4);
     if (mjr () >= 4)
         if (*this >= html_apr21) set_ext (HE_SVG_21);
         else if (*this >= html_5_3) set_ext (HE_SVG_20);
@@ -103,8 +103,8 @@ html_version::html_version (const boost::gregorian::date& d, const flags_t flags
             if (mjr () <= HTML_2010) set_ext2 (H2_MATH_1);
             else if (mjr () <= HTML_2014) set_ext2 (H2_MATH_2);
             else if (mjr () <= HTML_2020) set_ext2 (H2_MATH_3);
-            else if (mjr () <= HTML_2022) set_ext2 (H2_MATH_4_20);
-            else set_ext2 (H2_MATH_C);
+            else if (mjr () <= HTML_2024) set_ext2 (H2_MATH_C);
+            else set_ext2 (H2_MATH_4);
     if (no_ext (SVG_MASK))
         if (mjr () >= 4)
             if (*this >= html_apr21) set_ext (HE_SVG_21);
@@ -410,7 +410,7 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                     {   svg_version (sv_2_0); found_html = true; }
                     break;
                 case doc_svg21 :
-                    if (note_parsed_version (nits, nit_svg, html_svg_2_1, "Living Standard (April 2021) with SVG 2 (April 2021 draft)"))
+                    if (note_parsed_version (nits, nit_svg, html_svg_2_1, "Living Standard (October 2024) with SVG 2 (November 2024 draft)"))
                     {   svg_version (sv_2_1); found_html = true; }
                     break;
                 case doc_compound_m :
@@ -600,8 +600,7 @@ bool html_version::deprecated (const html_version& current) const
         case math_3 :
             if (current.all_ext (H2_M3_DEPRECAT)) return true;
             break;
-        case math_4_20 :
-        case math_4_22 :
+        case math_4 :
             if (current.all_ext (H2_M4_DEPRECAT)) return true;
             break;
         default : break; }
@@ -1183,18 +1182,16 @@ bool html_version::math_4_core () const noexcept
 {   return (any_ext2 (H2_MATH_C)); }
 
 e_math_version html_version::math_version () const noexcept
-{   if (all_ext2 (H2_MATH_4_22)) return math_4_22;
+{   if (all_ext2 (H2_MATH_4)) return math_4;
     if (all_ext2 (H2_MATH_C)) return math_core;
-    if (all_ext2 (H2_MATH_4_20)) return math_4_20;
     if (all_ext2 (H2_MATH_3)) return math_3;
     if (all_ext2 (H2_MATH_2)) return math_2;
     if (all_ext2 (H2_MATH_1)) return math_1;
     return math_none; }
 
 ::std::string html_version::math_version_name () const
-{   if (all_ext2 (H2_MATH_4_22)) return "4(Aug22)";
+{   if (all_ext2 (H2_MATH_4)) return "4";
     if (all_ext2 (H2_MATH_C)) return "core";
-    if (all_ext2 (H2_MATH_4_20)) return "4(Dec20)";
     if (all_ext2 (H2_MATH_3)) return "3";
     if (all_ext2 (H2_MATH_2)) return "2";
     if (all_ext2 (H2_MATH_1)) return "1";
@@ -1211,9 +1208,8 @@ void html_version::math_version (const e_math_version v) noexcept
     {   case math_1 : set_ext2 (H2_MATH_1); break;
         case math_2 : set_ext2 (H2_MATH_2); break;
         case math_3 : set_ext2 (H2_MATH_3); break;
-        case math_4_20 : set_ext2 (H2_MATH_4_20); break;
+        case math_4 : set_ext2 (H2_MATH_4); break;
         case math_core : set_ext2 (H2_MATH_C); break;
-        case math_4_22 : set_ext2 (H2_MATH_4_22); break;
         default : break; } }
 
 void html_version::jsonld_version (const e_jsonld_version v) noexcept
@@ -1318,8 +1314,7 @@ bool html_version::valid_context (const html_version& v) const noexcept
         {   case math_1 : if (any_ext2 (H2_MATH_1)) return true; res = false; break;
             case math_2 : if (any_ext2 (H2_MATH_2)) return true; res = false; break;  
             case math_3 : if (any_ext2 (H2_MATH_3)) return true; res = false; break;  
-            case math_4_20 : if (any_ext2 (H2_MATH_4_20)) return true; res = false; break;  
-            case math_4_22 : if (any_ext2 (H2_MATH_4_22)) return true; res = false; break;  
+            case math_4 : if (any_ext2 (H2_MATH_4)) return true; res = false; break;  
             case math_core : if (any_ext2 (H2_MATH_C)) return true; res = false; break; 
             default : break; } }
     if (has_css ())
@@ -2209,9 +2204,8 @@ html_version get_min_version (const e_math_version e) noexcept
     {   case math_1 : return html_math_1;
         case math_2 : return xhtml_math_2;
         case math_3 : return html_math_3;
-        case math_4_20 : return html_math_4_20;
+        case math_4 : return html_math_4;
         case math_core : return html_math_core;
-        case math_4_22 : return html_math_4_22;
         default : return html_0; } }
 
 html_version get_min_version (const e_jsonld_version e) noexcept

@@ -59,7 +59,7 @@ public:
 #endif //  NDEBUG      
                     );
     static bool load_conf (wxWindow* mummy, context_t& c, ::boost::filesystem::path& fn);
-    static bool save_conf (wxWindow* mummy, context_t& c, const ::boost::filesystem::path& fn);
+    static bool save_conf (wxWindow* mummy, const context_t& c, const ::boost::filesystem::path& fn);
     static bool save_conf_as (wxWindow* mummy, context_t& c, ::boost::filesystem::path& fn);
     bool Welcome (context_t& context);
     virtual bool OnInit ();

@@ -16,7 +16,7 @@ PASS ../toast/css/4-box-sizing/css-4.html
 11 inserted_missing_closure
 12 inserted_missing_closure missing_close
 13 inserted_missing_closure
-18 missing_close
+18 missing_close sandbox
 29 id_exists
 30 id_exists
 34 inserted_missing_closure

@@ -1,0 +1,87 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 4 intent tables</title>
+</head>
+
+<body>
+
+<h1>math 4 intent tables</h1>
+
+<math>
+
+<mrow intent='$m'>
+  <mo>(</mo>
+  <mtable arg='m' intent=':matrix'>
+    <mtr>
+      <mtd><mn>1</mn></mtd>
+      <mtd><mn>0</mn></mtd>
+    </mtr>
+    <mtr>
+      <mtd><mn>0</mn></mtd>
+      <mtd><mn>1</mn></mtd>
+    </mtr>
+  </mtable>
+  <mo>)</mo>
+</mrow>
+
+<mtable intent=':equations'>
+  <mtr>
+    <mtd columnalign="right">
+      <mn>2</mn>
+      <mo>&#x2062;<!--InvisibleTimes--></mo>
+      <mi>x</mi>
+    </mtd>
+    <mtd columnalign="center">
+      <mo>=</mo>
+    </mtd>
+    <mtd columnalign="left">
+      <mn>1</mn>
+    </mtd>
+  </mtr>
+  <mtr>
+    <mtd columnalign="right">
+      <mi>y</mi>
+    </mtd>
+    <mtd columnalign="center">
+      <mo>></mo>
+    </mtd>
+    <mtd columnalign="left">
+      <mi>x</mi>
+      <mo>-</mo>
+      <mn>3</mn>
+    </mtd>
+  </mtr>
+</mtable>
+
+<mtable intent=':equations'>
+  <mtr>
+    <mtd columnalign="right">
+      <mi>a</mi>
+    </mtd>
+    <mtd columnalign="center">
+      <mo>=</mo>
+    </mtd>
+    <mtd columnalign="left">
+      <mi>b</mi>
+      <mo>+</mo>
+      <mi>c</mi>
+      <mo>-</mo>
+      <mi>d</mi>
+    </mtd>
+  </mtr>
+  <mtr intent=':continued-equation'>
+    <mtd columnalign="right"></mtd>
+    <mtd columnalign="center"></mtd>
+    <mtd columnalign="left">
+      <mo form="infix">+</mo>
+      <mi>e</mi>
+      <mo>-</mo>
+      <mi>f</mi>
+    </mtd>
+  </mtr>
+</mtable>
+</math>
+
+</body>
+</html>

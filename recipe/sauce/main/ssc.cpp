@@ -192,7 +192,7 @@ int examine (nitpick& nits)
     nitpick shadow, exp;
     open_corpus (nits, context.corpus ());
     paths_root& virt (paths_root::virtual_roots ());
-    virt.add_root (absolute_name ( canonical_name (nix_path_to_local (context.root ()))), "/");
+    virt.add_root (absolute_name (canonical_name (nix_path_to_local (context.root ()))), "/");
     if (! context.shadow_root ().empty ())
     {   VERIFY_NOT_NULL (virt.at (0), __FILE__, __LINE__);
         if (! virt.at (0) -> shadow_root (shadow, context.shadow_root ()))
@@ -204,13 +204,13 @@ int examine (nitpick& nits)
                 res = ERROR_STATE; }
     if (res != ERROR_STATE)
     {   for (auto v : context.virtuals ())
-            virt.add_virtual (shadow, canonical_name (absolute_name (nix_path_to_local (v))).string ());
+            virt.add_virtual (shadow, v);
         for (auto vv : context.shadows ())
-            if (! virt.add_shadow (shadow, canonical_name (absolute_name (nix_path_to_local (vv))).string ()))
+            if (! virt.add_shadow (shadow, vv))
             {   res = ERROR_STATE; break; } }
     if (res != ERROR_STATE)
         for (auto v : context.exports ())
-            if (! virt.add_export (exp, canonical_name (absolute_name (nix_path_to_local (v))).string ()))
+            if (! virt.add_export (exp, v))
             {   res = ERROR_STATE; break; }
     if (res != ERROR_STATE)
     {   const ::std::size_t vmax (virt.size ());

@@ -1,0 +1,60 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 4 share</title>
+</head>
+
+<body>
+
+<h1>math 4 share</h1>
+
+<math>
+
+<apply><ci>f</ci>
+  <apply id="t1"><ci>f</ci>
+    <apply id="t11"><ci>f</ci>
+      <ci>a</ci>
+      <ci>a</ci>
+    </apply>
+    <share src="#t11"/>
+
+  </apply>
+  <share src="#t1"/>
+
+</apply>
+
+<apply id="badid1"><csymbol cd="arith1">divide</csymbol>
+  <cn>1</cn>
+  <apply><csymbol cd="arith1">plus</csymbol>
+    <cn>1</cn>
+    <share src="#badid1"/>
+  </apply>
+</apply>
+
+<apply id="bar">                        
+  <csymbol cd="arith1">plus</csymbol>     
+  <cn>1</cn>                              
+  <share src="#baz"/>                    
+</apply>                               
+
+<apply id="baz">
+<csymbol cd="arith1">plus</csymbol>
+<cn>1</cn>
+<share src="#bar"/>
+</apply>
+
+<bind id="outer"><csymbol cd="fns1">lambda</csymbol>
+  <bvar><ci>x</ci></bvar>
+  <apply><ci>f</ci>
+    <bind id="inner"><csymbol cd="fns1">lambda</csymbol>
+      <bvar><ci>x</ci></bvar>
+      <share id="copy" src="#orig"/>
+    </bind>
+    <apply id="orig"><ci>g</ci><ci>x</ci></apply>
+  </apply>
+</bind>
+
+</math>
+
+</body>
+</html>

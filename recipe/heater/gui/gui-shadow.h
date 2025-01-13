@@ -82,7 +82,6 @@ public:
     bool create_panel (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL | wxNO_BORDER);
     void load_from_context (const context_t& c);
     void save_to_context (context_t& c) const;
-
     ::boost::filesystem::path cache () const { return cache_; }
     void cache (const ::boost::filesystem::path& p) { cache_ = p; }
     bool change () const noexcept { return change_; }

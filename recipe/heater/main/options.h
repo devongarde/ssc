@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "utility/common.h"
 #include "main/context.h"
+#include "type/type.h"
 
 class options
 {   static ::boost::program_options::options_description
@@ -40,6 +41,8 @@ class options
     void process_css_level (context_t& c, const e_css_module m, int& n, nitpick& nits, const char* opt, const char* name, const int maxlevel, const bool accept_1 = false);
     template < class T > void report_variable (const e_gui_report gr, ::std::ostringstream& res, const char* wot, const char* section, int& count, const char* variable) const;
     void report_bool (const e_gui_report gr, ::std::ostringstream& res, const char* yay, const char* nay, const char* section, int& count, const char* ja, const char* nein) const;
+    template < e_type TT > void vvextend (context_t& c, const char* const arg);
+    template < e_type TT > void vvextend (context_t& c, const char* const a1, const char* const a2);
 public:
 	options (context_t& c, output_streams_t& o, nitpick& nits, const vstr_t& vs)
     {   parse (c, o, nits, vs); }

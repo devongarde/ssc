@@ -85,6 +85,7 @@ struct rel : enum_n < t_rel, e_rel >
     CONSTEXPR static bool is_microformat_v2 (const e_rel value) noexcept
     {   return (value >= first_mf2_rel && value <= last_mf2_rel); }
     CONSTEXPR static bool is_rel () { return true; }
+    static void remove_any_extras () { enum_n < t_rel, e_rel >::remove_any_extras (); }
     bool is_microformat () const noexcept { return good () && is_microformat (enum_base < e_rel, t_rel > :: value_); }
     bool is_microformat_property () const noexcept { return is_microformat_property (enum_base < e_rel, t_rel > :: value_); }
     bool is_microformat_vocabulary () const noexcept { return is_microformat_vocabulary (enum_base < e_rel, t_rel > :: value_); }

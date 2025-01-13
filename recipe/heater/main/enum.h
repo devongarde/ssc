@@ -236,7 +236,7 @@ typedef enum {  button_all,
                 check_verify,
                 check_wx,
                 choice_css_version, choice_html_version, choice_ontology_version, choice_validation_version,
-                dir_root,
+                dir_physical, dir_ontology, dir_root, dir_shadow,
                 file_css_name, file_dict_name, file_general_name, file_hun_name, file_shadow_name, file_site_name, file_validation_name, file_virtual_name, file_word_name,
                 list_css_ext, list_dict_ext, list_general_ext, list_hun_ext, list_shadow_ext, list_site_ext, list_validation, list_virtual, list_word_ext,
                 list_level,
@@ -272,6 +272,7 @@ typedef enum { benrs_both, benrs_end, benrs_normal, benrs_start } e_benrs;
 typedef enum { bixy_block, bixy_inline, bixy_x, bixy_y } e_bixy;
 typedef enum { bk_asp, bk_cdata, bk_code, bk_comment, bk_doctype, bk_node, bk_num, bk_php, bk_ssi, bk_stylesheet, bk_text, bk_xml } bk_status;
 typedef enum { bi_block, bi_inline } e_block_inline;
+typedef enum { bns_big, bns_normal, bns_small } e_bns;
 typedef enum { b_true, b_false } e_bool;
 typedef enum { brs_bevel, brs_round, brs_stupid } e_brs;
 typedef enum { br_auto, br_dynamic, br_static, br_inherit } e_buffered_rendering;
@@ -1166,8 +1167,8 @@ typedef enum {  ed_mishmash, ed_dict, ed_tags, ed_1, ed_plus, ed_2, ed_3, ed_32,
                 ed_jan05, ed_jan06, ed_jan07, ed_jan08, ed_jan10, ed_jul10, ed_jan12, ed_jan13, ed_jan14, ed_jul17, ed_may20, ed_jul20, ed_jan21,
                 ed_apr21, ed_jul21, ed_apr22, ed_oct22, ed_apr23, ed_jul23, ed_nov24,
                 ed_svg_1_0, ed_svg_1_1, ed_svg_1_2_tiny, ed_svg_1_2_full, ed_svg_2_0, ed_svg_2_anim,
-                ed_math_1, ed_math_2, ed_math_3, ed_math_4_20, ed_math_4_22,
-                ed_wx,
+                ed_math_1, ed_math_2, ed_math_3, ed_math_4,
+                ed_wx, ed_owasp,
                 ed_iso_8859_1, ed_csp,
                 ed_rfc_1867, ed_rfc_1980, ed_rfc_2616, ed_rfc_3986, ed_rfc_3966, ed_rfc_6265, ed_rfc_7231, ed_rfc_7234, ed_rfc_8288,
                 ed_w3, ed_mql, ed_ariaAug2020, ed_ariaApr2021, ed_mozilla, ed_ecma,
@@ -1639,7 +1640,7 @@ typedef enum { mo_prefix, mo_infix, mo_functionmodel } e_mathoccurence;
 typedef enum { mo_numeric, mo_lexicographic } m_mathorder;
 typedef enum { ov_elide, ov_linebreak, ov_scale, ov_scroll, ov_truncate } e_mathoverflow;
 typedef enum { ms_global, ms_local } e_mathscope;
-typedef enum { math_none, math_1, math_2, math_3, math_4_20, math_4_22, math_core } e_math_version;
+typedef enum { math_none, math_1, math_2, math_3, math_4, math_core } e_math_version;
 constexpr e_math_version last_math = math_core;
 typedef enum { mf_infix, mf_prefix, mf_postfix } e_mathform;
 typedef enum { fmw_bold, fmw_normal } e_math_fontweight;
@@ -2570,7 +2571,7 @@ typedef enum
     nit_excluded, nit_ftp_protocol, nit_tld, nit_no_set, nit_bad_address, nit_mf_export, nit_config_attribute, nit_config_element,
     nit_config_lingo, nit_not_ssc, nit_cannot_replace, nit_not_expected_content, nit_circular_hierarchy, nit_colourspace,
     nit_wx, nit_missing_ancestor, nit_ssi_stack, nit_ssi_exec, nit_ssi_naughty, nit_chrome, nit_ie, nit_mozilla, nit_netscape,
-    nit_opera, nit_safari, nit_invalid_duration, nit_tame,
+    nit_opera, nit_safari, nit_invalid_duration, nit_tame, nit_tabnab, nit_sandbox, nit_pii_cache, nit_special_domain,
 
     nit_incompatible,
 
@@ -2614,7 +2615,7 @@ typedef enum
         nm_context_server_port, nm_context_server_root, nm_context_schema, nm_context_ontology_version, nm_context_shadow_comment,
         nm_context_shadow_changed, nm_context_shadow_enable, nm_context_shadow_ignore, nm_context_shadow_persist,
         nm_context_shadow_root, nm_context_shadow_ssi, nm_context_shadow_space, nm_context_shadows, nm_context_site,
-        nm_context_sloven, nm_context_spec, nm_context_spell, nm_context_spell_path, nm_context_spellings, nm_context_ssi,
+        nm_context_sloven, nm_context_spec, nm_context_special, nm_context_spell, nm_context_spell_path, nm_context_spellings, nm_context_ssi,
         nm_context_ssi_date, nm_context_ssi_doc_args, nm_context_ssi_echomsg, nm_context_ssi_errmsg, nm_context_ssi_exec_run,
         nm_context_ssi_exec_text, nm_context_ssi_lastmod, nm_context_ssi_query_string, nm_context_ssi_timefmt, nm_context_ssi_user_name,
         nm_context_stats_export, nm_context_stats_page, nm_context_stats_summary, nm_context_stats_abbr, nm_context_stats_annotation,
@@ -6133,7 +6134,7 @@ typedef enum { ph_bubble, ph_capture, ph_default, ph_target } e_phase_x;
 typedef enum { ps_b, ps_i, ps_p, ps_s, ps_sub, ps_sup, ps_tt, ps_u } e_plusstyle;
 typedef enum {  pe_auto, pe_boundingbox, pe_bounding_box, pe_visiblepainted, pe_visiblefill, pe_visiblestroke, pe_visible, pe_painted, pe_fill,
                 pe_stroke, pe_all, pe_none, pe_inherit } e_pointer_events;
-typedef enum { pop_auto, pop_manual } e_popover;
+typedef enum { pop_auto, pop_hint, pop_manual } e_popover;
 typedef enum { pta_hide, pta_show, pta_toggle } e_popovertargetaction;
 typedef enum { pr_auto, pr_metadata, pr_none } e_preload;
 typedef enum { pic_bw, pic_colour, pic_duotone, pic_quadtone, pic_sepia, pic_tritone } e_pri_img_colour;
@@ -6624,14 +6625,14 @@ typedef enum
         tld_aero, tld_aetna, tld_af, tld_afl, tld_africa, tld_ag, tld_agakhan, tld_agency, tld_ai, tld_aig, tld_aigo,
         tld_airbus, tld_airforce, tld_airtel, tld_akdn, tld_al, tld_alfaromeo, tld_alibaba, tld_alipay, tld_allfinanz, tld_allstate,
         tld_ally, tld_alsace, tld_alstom, tld_am, tld_amazon, tld_americanexpress, tld_amex, tld_amica, tld_amsterdam,
-        tld_analytics, tld_android, tld_anz, tld_ao, tld_aol, tld_apartments, tld_app, tld_apple, tld_aq, tld_aquarelle,
+        tld_analytics, tld_android, tld_anz, tld_ao, tld_aol,  tld_an, tld_apartments, tld_app, tld_apple, tld_aq, tld_aquarelle,
         tld_ar, tld_arab, tld_aramco, tld_archi, tld_army, tld_arpa, tld_art, tld_arte, tld_as, tld_asia, tld_associates,
         tld_at, tld_attorney, tld_au, tld_auction, tld_audi, tld_audible, tld_audio, tld_auspost, tld_author, tld_auto, tld_autos,
         tld_aw, tld_aws, tld_ax, tld_axa, tld_az, tld_azure,
     tld_ba, tld_baby, tld_baidu, tld_bananarepublic, tld_band, tld_bank, tld_bar, tld_barcelona, tld_barclaycard, tld_barclays,
         tld_barefoot, tld_bargains, tld_baseball, tld_basketball, tld_bauhaus, tld_bayern, tld_bazar, tld_bb, tld_bbc, tld_bbs,
         tld_bbt, tld_bbva, tld_bcg, tld_bcn, tld_bd, tld_be, tld_beauty, tld_beer, tld_bentley, tld_berlin, tld_best, tld_bestbuy, tld_bet,
-        tld_bf, tld_bg, tld_bh, tld_bharti, tld_bi, tld_bible, tld_bid, tld_bike, tld_bing, tld_bingo, tld_bio, tld_bit, tld_biz, tld_bj,
+        tld_bf, tld_bg, tld_bh, tld_bharti, tld_bi, tld_bible, tld_bid, tld_bike, tld_bing, tld_bingo, tld_bio, tld_bit, tld_bitnet, tld_biz, tld_bj,
         tld_black, tld_blackfriday, tld_blanco, tld_blockbuster, tld_blog, tld_bloomberg, tld_blue, tld_bm, tld_bms, tld_bmw, tld_bn, tld_bnl,
         tld_bnpparibas, tld_bo, tld_boehringer, tld_bom, tld_bond, tld_boo, tld_book, tld_booking, tld_boots, tld_bosch, tld_bostik,
         tld_boston, tld_bot, tld_boutique, tld_box, tld_bq, tld_br, tld_bradesco, tld_bridgestone, tld_broadway, tld_broker, tld_brother,
@@ -6646,8 +6647,8 @@ typedef enum
         tld_comcast, tld_commbank, tld_community, tld_company, tld_compare, tld_computer, tld_condos, tld_construction, tld_consulting,
         tld_contact, tld_contractors, tld_cooking, tld_cool, tld_coop, tld_corp, tld_corsica, tld_country, tld_coupon, tld_coupons, tld_courses,
         tld_cpa, tld_cr, tld_credit, tld_creditcard, tld_creditunion, tld_cricket, tld_crown, tld_crs, tld_cruise, tld_cruises, tld_crypto,
-        tld_csc, tld_cu, tld_cuisinella, tld_cv, tld_cw, tld_cx, tld_cy, tld_cyb, tld_cymru, tld_cyou, tld_cz,
-    tld_dabur, tld_dad, tld_dance, tld_data, tld_date, tld_dating, tld_datsun, tld_day, tld_de, tld_deal, tld_dealer, tld_deals, tld_degree,
+        tld_cs, tld_csc, tld_csnet, tld_cu, tld_cuisinella, tld_cv, tld_cw, tld_cx, tld_cy, tld_cyb, tld_cymru, tld_cyou, tld_cz,
+    tld_dabur, tld_dad, tld_dance, tld_data, tld_date, tld_dating, tld_datsun, tld_day, tld_dd, tld_de, tld_deal, tld_dealer, tld_deals, tld_degree,
         tld_delivery, tld_dell, tld_deloitte, tld_delta, tld_democrat, tld_dental, tld_dentist, tld_desi, tld_design, tld_dev, tld_dhl,
         tld_diamonds, tld_diet, tld_digital, tld_direct, tld_directory, tld_discount, tld_discover, tld_dish, tld_diy, tld_dj, tld_dk, tld_dm,
         tld_dnp, tld_do, tld_docs, tld_doctor, tld_dodge, tld_dog, tld_doha, tld_domains, tld_dot, tld_download, tld_drive, tld_dubai, tld_dunlop,
@@ -6695,14 +6696,14 @@ typedef enum
         tld_moe, tld_moi, tld_mom, tld_monash, tld_money, tld_monster, tld_mormon, tld_mortgage, tld_moscow, tld_moto, tld_motorcycles, tld_mov,
         tld_movie, tld_movistar, tld_mp, tld_mq, tld_mr, tld_ms, tld_msd, tld_mt, tld_mtn, tld_mtr, tld_mu, tld_museum, tld_music, tld_mutual,
         tld_mv, tld_mw, tld_mx, tld_my, tld_mz, tld_na,
-    tld_nadex, tld_nagoya, tld_name, tld_nationwide, tld_natura, tld_navy, tld_nba, tld_nc, tld_ne, tld_nec, tld_neo, tld_net, tld_netflix,
+    tld_nadex, tld_nagoya, tld_name, tld_nationwide, tld_natura, tld_nato, tld_navy, tld_nba, tld_nc, tld_ne, tld_nec, tld_neo, tld_net, tld_netflix,
         tld_network, tld_neustar, tld_new, tld_newholland, tld_news, tld_nexus, tld_nf, tld_nfl, tld_ng, tld_ngo, tld_nhk, tld_ni, tld_nico,
         tld_nike, tld_nikon, tld_ninja, tld_nissan, tld_nissay, tld_nl, tld_no, tld_nokia, tld_northwesternmutual, tld_norton, tld_now, tld_np,
         tld_nr, tld_nra, tld_nrw, tld_ntt, tld_nu, tld_null, tld_nyc, tld_nz,
     tld_o, tld_obi, tld_observer, tld_office, tld_okinawa, tld_om, tld_omega, tld_one, tld_ong, tld_onion, tld_onl, tld_online, tld_ooo,
-        tld_open, tld_oracle, tld_orange, tld_org, tld_organic, tld_origins, tld_osaka, tld_oss, tld_otsuka, tld_ovh, tld_oz, tld_pa, tld_page,
-    tld_panasonic, tld_paris, tld_parody, tld_partners, tld_parts, tld_party, tld_passagens, tld_pay, tld_pccw, tld_pe, tld_pet, tld_pf,
-        tld_pfizer, tld_pg, tld_ph, tld_pharmacy, tld_philips, tld_phone, tld_photo, tld_photography, tld_photos, tld_physio, tld_piaget,
+        tld_open, tld_oracle, tld_orange, tld_org, tld_organic, tld_origins, tld_osaka, tld_oss, tld_otsuka, tld_ovh, tld_oz,
+    tld_pa, tld_page, tld_panasonic, tld_paris, tld_parody, tld_partners, tld_parts, tld_party, tld_passagens, tld_pay, tld_pccw, tld_pe, tld_pet,
+        tld_pf, tld_pfizer, tld_pg, tld_ph, tld_pharmacy, tld_philips, tld_phone, tld_photo, tld_photography, tld_photos, tld_physio, tld_piaget,
         tld_pics, tld_pictet, tld_pictures, tld_pid, tld_pin, tld_ping, tld_pink, tld_pioneer, tld_pirate, tld_pizza, tld_pk, tld_pl, tld_place,
         tld_play, tld_playstation, tld_plumbing, tld_plus, tld_pm, tld_pn, tld_pohl, tld_poker, tld_politie, tld_porn, tld_post, tld_pr,
         tld_praxi, tld_press, tld_prime, tld_private, tld_pro, tld_prod, tld_productions, tld_prof, tld_progressive, tld_promo, tld_properties,
@@ -6722,25 +6723,23 @@ typedef enum
         tld_software, tld_sohu, tld_solar, tld_solutions, tld_song, tld_sony, tld_soy, tld_spa, tld_space, tld_spiegel, tld_sport, tld_spot,
         tld_spreadbetting, tld_sr, tld_srl, tld_ss, tld_st, tld_stada, tld_staples, tld_star, tld_starhub, tld_statebank, tld_statefarm,
         tld_statoil, tld_stc, tld_stcgroup, tld_stockholm, tld_storage, tld_store, tld_stream, tld_studio, tld_study, tld_style, tld_su,
-        tld_sucks, tld_supplies, tld_supply, tld_support, tld_surf, tld_surgery, tld_suzuki, tld_sv, tld_swatch, tld_swiftcover, tld_swiss,
-        tld_sx, tld_sy, tld_sydney, tld_symantec, tld_systems, tld_sz,
+        tld_sucks, tld_supplies, tld_supply, tld_support, tld_surf, tld_surgery, tld_suzuki, tld_sv, tld_swatch, tld_swift, tld_swiftcover,
+        tld_swiss, tld_sx, tld_sy, tld_sydney, tld_symantec, tld_systems, tld_sz,
     tld_taipei, tld_talk, tld_taobao, tld_target, tld_tatamotors, tld_tatar, tld_tattoo, tld_tax, tld_taxi, tld_tc, tld_td, tld_tdk, tld_te,
         tld_team, tld_tech, tld_technology, tld_tel, tld_telecity, tld_telefonica, tld_temasek, tld_tennis, tld_test, tld_teva, tld_tf, tld_tg,
         tld_th, tld_theater, tld_theatre, tld_ti, tld_tickets, tld_tienda, tld_tiffany, tld_tips, tld_tires, tld_tirol, tld_tj, tld_tjx, tld_tk,
         tld_tl, tld_tm, tld_tn, tld_to, tld_today, tld_tokyo, tld_tools, tld_top, tld_toray, tld_toshiba, tld_total, tld_tours, tld_town,
         tld_toyota, tld_toys, tld_tr, tld_trade, tld_trading, tld_training, tld_travel, tld_travelchannel, tld_travelers, tld_travelersinsurance,
         tld_trust, tld_tt, tld_tube, tld_tui, tld_tunes, tld_tushu, tld_tv, tld_tvs, tld_tw, tld_tz,
-    tld_ua, tld_ubs, tld_uconnect, tld_ug, tld_uk, tld_unicom, tld_university, tld_uno, tld_uol, tld_ups, tld_us, tld_uu, tld_uy, tld_uz,
+    tld_ua, tld_ubs, tld_uconnect, tld_ug, tld_uk, tld_unicom, tld_university, tld_uno, tld_uol, tld_ups, tld_us, tld_uu, tld_uucp, tld_uy, tld_uz,
     tld_va, tld_vacations, tld_vanguard, tld_vc, tld_ve, tld_vegas, tld_ventures, tld_verisign, tld_versicherung, tld_vet, tld_vg, tld_vi,
         tld_viajes, tld_video, tld_vig, tld_viking, tld_villas, tld_vin, tld_vip, tld_virgin, tld_visa, tld_vision, tld_vista, tld_vistaprint,
         tld_vivo, tld_vlaanderen, tld_vm, tld_vn, tld_vodka, tld_volkswagen, tld_volvo, tld_vote, tld_voting, tld_voto, tld_voyage, tld_vu, tld_vuelos,
     tld_wales, tld_walmart, tld_walter, tld_wang, tld_wanggou, tld_watch, tld_watches, tld_weather, tld_weatherchannel, tld_webcam, tld_weber,
         tld_website, tld_wed, tld_wedding, tld_weibo, tld_weir, tld_wf, tld_whoswho, tld_wien, tld_wiki, tld_williamhill, tld_win, tld_windows,
         tld_wine, tld_winners, tld_wme, tld_wolterskluwer, tld_woodside, tld_work, tld_works, tld_world, tld_wow, tld_ws, tld_wtc, tld_wtf,
-    tld_xbox, tld_xerox, tld_xfinity, tld_xihuan, tld_xin, tld_xxx, tld_xyz,
-    tld_yachts, tld_yahoo, tld_yamaxun, tld_yandex, tld_ye, tld_yodobashi, tld_yoga, tld_yokohama, tld_you, tld_youtube, tld_yt,
-    tld_za, tld_zappos, tld_zara, tld_zero, tld_zip, tld_zippo, tld_zm, tld_zone, tld_zuerich, tld_zw,
-    tld_xn__11b4c3d, tld_xn__1ck2e1b, tld_xn__1qqw23a, tld_xn__30rr7y, tld_xn__3bst00m, tld_xn__3ds443g, tld_xn__3oq18vl8pn36a,
+    tld_xbox, tld_xerox, tld_xfinity, tld_xihuan, tld_xin,
+        tld_xn__11b4c3d, tld_xn__1ck2e1b, tld_xn__1qqw23a, tld_xn__30rr7y, tld_xn__3bst00m, tld_xn__3ds443g, tld_xn__3oq18vl8pn36a,
         tld_xn__42c2d9a, tld_xn__45q11c, tld_xn__4gbrim, tld_xn__54b7fta0cc, tld_xn__55qw42g, tld_xn__55qx5d, tld_xn__5su34j936bgsg,
         tld_xn__5tzm5g, tld_xn__6frz82g, tld_xn__6qq986b3xl, tld_xn__80adxhks, tld_xn__80aqecdr1a, tld_xn__80asehdb, tld_xn__80aswg,
         tld_xn__8y0a063a, tld_xn__9dbq2a, tld_xn__b4w605ferd, tld_xn__bck1b9a5dre4c, tld_xn__c1avg, tld_xn__c2br7g, tld_xn__cck2b3b,
@@ -6750,7 +6749,9 @@ typedef enum
         tld_xn__mgbb9fbpob, tld_xn__mgbca7dzdo, tld_xn__mgbi4ecexp, tld_xn__mk1bu44c, tld_xn__mxtq1m, tld_xn__ngbc5azd, tld_xn__ngbe9e0a,
         tld_xn__ngbrx, tld_xn__nqv7f, tld_xn__p1acf, tld_xn__q9jyb4c, tld_xn__qcka1pmc, tld_xn__rhqv96g, tld_xn__ses554g, tld_xn__t60b56a,
         tld_xn__tckwe, tld_xn__vermgensberater_ctb, tld_xn__vermgensberatung_pwb, tld_xn__w4r85el8fhu5dnra, tld_xn__w4rs40l, tld_xn__xhq521b,
-        tld_xn__h2brj9c,
+        tld_xn__h2brj9c, tld_xxx, tld_xyz,
+    tld_yachts, tld_yahoo, tld_yamaxun, tld_yandex, tld_ye, tld_yodobashi, tld_yoga, tld_yokohama, tld_you, tld_youtube, tld_yt, tld_yu,
+    tld_za, tld_zappos, tld_zara, tld_zero, tld_zip, tld_zippo, tld_zm, tld_zone,  tld_zr, tld_zuerich, tld_zw,
     tld_error } e_tld;
 
 typedef enum { ta_translate, ta_scale, ta_rotate, ta_skewx, ta_skewy } e_transform_anim;
@@ -6786,7 +6787,8 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 #define SSC_TYPES_B \
     t_b64, t_background, t_bandwidth, t_base, t_baseline_contain_none, t_baselineshift, t_bb, t_bcs, t_beginvalue, t_beginvalues, t_beginvaluelist, \
-        t_behaviour, t_bens, t_benrs, t_bixy, t_bixys, t_blocking, t_block_inline, t_border, t_bool, t_bools, t_brs, t_buffered_rendering, t_button, \
+        t_behaviour, t_bens, t_benrs, t_bixy, t_bixys, t_blocking, t_block_inline, t_bns, t_border, t_bool, t_bools, t_brs, t_buffered_rendering, \
+        t_button, \
     t_cache, t_cachekey, t_calcfn, t_calcmode, t_captionalign, t_capture, t_cc_permits, t_cc_prohibits, t_cc_requires, t_celnrs, t_cens, t_centre_space, \
         t_channelselector, t_char, t_charset, t_charsets, t_charspacing, t_cio, t_cipr, t_circle_ellipse, t_citype, t_class, t_clear, t_clear30, t_clip, \
         t_clip_path_rule, t_closed_open, t_closure, t_coden, t_colour, t_colour_a, t_colour_ci, t_colour_cii, t_colour_i, t_colour_ii, t_colour_interpolation

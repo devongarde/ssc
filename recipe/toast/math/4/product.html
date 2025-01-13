@@ -1,0 +1,53 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 4 product</title>
+</head>
+
+<body>
+
+<h1>math 4 product</h1>
+
+<math>
+
+<apply><product/>
+  <bvar><ci>x</ci></bvar>
+  <lowlimit><ci>a</ci></lowlimit>
+  <uplimit><ci>b</ci></uplimit>
+  <apply><ci type="function">f</ci>
+    <ci>x</ci>
+  </apply>
+</apply>
+
+<apply><product/>
+  <bvar><ci>x</ci></bvar>
+  <condition>
+    <apply><in/>
+      <ci>x</ci>
+      <ci type="set">B</ci>
+    </apply>
+  </condition>
+  <apply><ci>f</ci><ci>x</ci></apply>
+</apply>
+
+<mrow>
+  <munderover>
+    <mo>∏</mo>
+    <mrow><mi>x</mi><mo>=</mo><mi>a</mi></mrow>
+    <mi>b</mi>
+  </munderover>
+  <mrow><mi>f</mi><mo>&#x2061;<!--ApplyFunction--></mo><mrow><mo>(</mo><mi>x</mi><mo>)</mo></mrow></mrow>
+</mrow>
+
+<mrow>
+  <munder>
+    <mo>∏</mo>
+    <mrow><mi>x</mi><mo>∈</mo><mi>B</mi></mrow>
+  </munder>
+  <mrow><mi>f</mi><mo>&#x2061;<!--ApplyFunction--></mo><mrow><mo>(</mo><mi>x</mi><mo>)</mo></mrow></mrow>
+</mrow>
+
+</math>
+
+</body>
+</html>

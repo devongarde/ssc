@@ -1,0 +1,79 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 4 qualifiers</title>
+</head>
+
+<body>
+
+<h1>math 4 qualifiers</h1>
+
+<math>
+
+<apply><int/>
+  <domainofapplication>
+    <ci type="set">C</ci>
+  </domainofapplication>
+  <ci type="function">f</ci>
+</apply>
+
+<apply><int/>
+  <bvar><ci>x</ci></bvar>
+  <interval><cn>0</cn><cn>1</cn></interval>
+  <apply><power/><ci>x</ci><cn>2</cn></apply>
+</apply>
+
+<apply><int/>
+  <bvar><ci>x</ci></bvar>
+  <lowlimit><cn>0</cn></lowlimit>
+  <uplimit><cn>1</cn></uplimit>
+  <apply><power/><ci>x</ci><cn>2</cn></apply>
+</apply>
+
+<apply><int/>
+  <bvar><ci>x</ci></bvar>
+  <condition>
+    <apply><and/>
+      <apply><leq/><cn>0</cn><ci>x</ci></apply>
+      <apply><leq/><ci>x</ci><cn>1</cn></apply>
+    </apply>
+  </condition>
+  <apply><power/><ci>x</ci><cn>2</cn></apply>
+</apply>
+
+<apply><int/>
+  <bvar><ci>x</ci></bvar>
+  <bvar><ci>y</ci></bvar>
+  <domainofapplication>
+    <set>
+      <bvar><ci>t</ci></bvar>
+      <bvar><ci>u</ci></bvar>
+      <condition>
+        <apply><and/>
+          <apply><leq/><cn>0</cn><ci>t</ci></apply>
+          <apply><leq/><ci>t</ci><cn>1</cn></apply>
+          <apply><leq/><cn>0</cn><ci>u</ci></apply>
+          <apply><leq/><ci>u</ci><cn>1</cn></apply>
+        </apply>
+      </condition>
+      <list><ci>t</ci><ci>u</ci></list>
+    </set>
+  </domainofapplication>
+  <apply><times/>
+    <apply><power/><ci>x</ci><cn>2</cn></apply>
+    <apply><power/><ci>y</ci><cn>3</cn></apply>
+  </apply>
+</apply>
+
+<apply><diff/>
+  <bvar>
+    <ci>x</ci>
+    <degree><cn>2</cn></degree>
+  </bvar>
+  <apply><power/><ci>x</ci><cn>4</cn></apply>
+</apply>
+
+</math>
+
+</body>
+</html>

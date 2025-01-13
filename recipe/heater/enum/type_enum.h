@@ -138,6 +138,9 @@ template < e_type E, typename ENUM, typename CATEGORY = ident_t, CATEGORY INIT =
         const ::std::size_t bc = enum_base_count (E);
         PRESUME (bc <= vc, __FILE__, __LINE__);
         return vc - bc; }
+    static void remove_any_extras ()
+    {   eleanor f (lox_eleanor);
+        symbol < html_version, ENUM, CATEGORY, INIT, LC >::remove_any_extras (enum_base_count (E)); }
     ::std::string get_string () const
     {   return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: name (enum_base < ENUM, E > :: value_); }
     void shadow (::std::stringstream& ss, const html_version& , element* )
@@ -217,713 +220,715 @@ template < e_type E, typename ENUM, typename CATEGORY, CATEGORY INIT, class LC >
             return; } }
     enum_base < ENUM, E > :: status (s_invalid); }
 
-template < > class type_master < t_abfmt > : public enum_n < t_abfmt, e_abfmt >
-{ using enum_n < t_abfmt, e_abfmt > :: enum_n; };
+#define ENUM_N(XXX) enum_n < t_##XXX, e_##XXX >
 
-template < > class type_master < t_accrual_method > : public enum_n < t_accrual_method, e_accrual_method >
-{ using enum_n < t_accrual_method, e_accrual_method > :: enum_n; };
+template < > class type_master < t_abfmt > : public ENUM_N (abfmt)
+{ using ENUM_N (abfmt) :: enum_n; };
 
-template < > class type_master < t_accrual_periodicity > : public enum_n < t_accrual_periodicity, e_accrual_periodicity >
-{ using enum_n < t_accrual_periodicity, e_accrual_periodicity > :: enum_n; };
+template < > class type_master < t_accrual_method > : public ENUM_N (accrual_method)
+{ using ENUM_N (accrual_method) :: enum_n; };
 
-template < > class type_master < t_accrual_policy > : public enum_n < t_accrual_policy, e_accrual_policy >
-{ using enum_n < t_accrual_policy, e_accrual_policy > :: enum_n; };
+template < > class type_master < t_accrual_periodicity > : public ENUM_N (accrual_periodicity)
+{ using ENUM_N (accrual_periodicity) :: enum_n; };
 
-template < > struct type_master < t_action > : enum_n < t_action, e_action >
-{ using enum_n < t_action, e_action > :: enum_n; };
+template < > class type_master < t_accrual_policy > : public ENUM_N (accrual_policy)
+{ using ENUM_N (accrual_policy) :: enum_n; };
 
-template < > struct type_master < t_align3 > : enum_n < t_align3, e_align3 >
-{ using enum_n < t_align3, e_align3 > :: enum_n; };
+template < > struct type_master < t_action > : ENUM_N (action)
+{ using ENUM_N (action) :: enum_n; };
 
-template < > struct type_master < t_alignment_baseline > : enum_n < t_alignment_baseline, e_alignment_baseline >
-{ using enum_n < t_alignment_baseline, e_alignment_baseline > :: enum_n; };
+template < > struct type_master < t_align3 > : ENUM_N (align3)
+{ using ENUM_N (align3) :: enum_n; };
 
-template < > struct type_master < t_alignplus > : enum_n < t_alignplus, e_alignplus >
-{ using enum_n < t_alignplus, e_alignplus > :: enum_n; };
+template < > struct type_master < t_alignment_baseline > : ENUM_N (alignment_baseline)
+{ using ENUM_N (alignment_baseline) :: enum_n; };
 
-template < > struct type_master < t_as > : enum_n < t_as, e_as >
-{ using enum_n < t_as, e_as > :: enum_n; };
+template < > struct type_master < t_alignplus > : ENUM_N (alignplus)
+{ using ENUM_N (alignplus) :: enum_n; };
 
-template < > struct type_master < t_as_units > : enum_n < t_as_units, e_as_units >
-{ using enum_n < t_as_units, e_as_units > :: enum_n; };
+template < > struct type_master < t_as > : ENUM_N (as)
+{ using ENUM_N (as) :: enum_n; };
 
-template < > struct type_master < t_attr_unit > : enum_n < t_attr_unit, e_attr_unit >
-{ using enum_n < t_attr_unit, e_attr_unit > :: enum_n; };
+template < > struct type_master < t_as_units > : ENUM_N (as_units)
+{ using ENUM_N (as_units) :: enum_n; };
 
-template < > struct type_master < t_autocapitalise > : enum_n < t_autocapitalise, e_autocapitalise >
-{ using enum_n < t_autocapitalise, e_autocapitalise > :: enum_n; };
+template < > struct type_master < t_attr_unit > : ENUM_N (attr_unit)
+{ using ENUM_N (attr_unit) :: enum_n; };
 
-template < > struct type_master < t_autocomplete > : enum_n < t_autocomplete, e_autocomplete >
-{ using enum_n < t_autocomplete, e_autocomplete > :: enum_n; };
+template < > struct type_master < t_autocapitalise > : ENUM_N (autocapitalise)
+{ using ENUM_N (autocapitalise) :: enum_n; };
 
-template < > struct type_master < t_baselineshift > : enum_n < t_baselineshift, e_baselineshift >
-{ using enum_n < t_baselineshift, e_baselineshift > :: enum_n; };
+template < > struct type_master < t_autocomplete > : ENUM_N (autocomplete)
+{ using ENUM_N (autocomplete) :: enum_n; };
 
-template < > struct type_master < t_cachekey > : enum_n < t_cachekey, e_cachekey >
-{ using enum_n < t_cachekey, e_cachekey > :: enum_n; };
+template < > struct type_master < t_baselineshift > : ENUM_N (baselineshift)
+{ using ENUM_N (baselineshift) :: enum_n; };
 
-template < > struct type_master < t_celnrs > : enum_n < t_celnrs, e_celnrs >
-{ using enum_n < t_celnrs, e_celnrs > :: enum_n; };
+template < > struct type_master < t_cachekey > : ENUM_N (cachekey)
+{ using ENUM_N (cachekey) :: enum_n; };
 
-template < > struct type_master < t_charset > : enum_n < t_charset, e_charset >
-{ using enum_n < t_charset, e_charset > :: enum_n; };
+template < > struct type_master < t_celnrs > : ENUM_N (celnrs)
+{ using ENUM_N (celnrs) :: enum_n; };
 
-template < > struct type_master < t_citype > : enum_n < t_citype, e_citype >
-{ using enum_n < t_citype, e_citype > :: enum_n; };
+template < > struct type_master < t_charset > : ENUM_N (charset)
+{ using ENUM_N (charset) :: enum_n; };
 
-template < > struct type_master < t_colour_interpolation > : enum_n < t_colour_interpolation, e_colour_interpolation >
-{ using enum_n < t_colour_interpolation, e_colour_interpolation > :: enum_n; };
+template < > struct type_master < t_citype > : ENUM_N (citype)
+{ using ENUM_N (citype) :: enum_n; };
 
-template < > struct type_master < t_colour_rendering > : enum_n < t_colour_rendering, e_colour_rendering >
-{ using enum_n < t_colour_rendering, e_colour_rendering > :: enum_n; };
+template < > struct type_master < t_colour_interpolation > : ENUM_N (colour_interpolation)
+{ using ENUM_N (colour_interpolation) :: enum_n; };
 
-template < > struct type_master < t_cookieid > : enum_n < t_cookieid, e_cookieid >
-{ using enum_n < t_cookieid, e_cookieid > :: enum_n; };
+template < > struct type_master < t_colour_rendering > : ENUM_N (colour_rendering)
+{ using ENUM_N (colour_rendering) :: enum_n; };
 
-template < > struct type_master < t_cntype > : enum_n < t_cntype, e_cntype >
-{ using enum_n < t_cntype, e_cntype > :: enum_n; };
+template < > struct type_master < t_cookieid > : ENUM_N (cookieid)
+{ using ENUM_N (cookieid) :: enum_n; };
 
-template < > struct type_master < t_comp_op > : enum_n < t_comp_op, e_comp_op >
-{ using enum_n < t_comp_op, e_comp_op > :: enum_n; };
+template < > struct type_master < t_cntype > : ENUM_N (cntype)
+{ using ENUM_N (cntype) :: enum_n; };
 
-template < > struct type_master < t_composite_operator > : enum_n < t_composite_operator, e_composite_operator >
-{ using enum_n < t_composite_operator, e_composite_operator > :: enum_n; };
+template < > struct type_master < t_comp_op > : ENUM_N (comp_op)
+{ using ENUM_N (comp_op) :: enum_n; };
 
-template < > struct type_master < t_conlit > : enum_n < t_conlit, e_conlit >
-{ using enum_n < t_conlit, e_conlit > :: enum_n; };
+template < > struct type_master < t_composite_operator > : ENUM_N (composite_operator)
+{ using ENUM_N (composite_operator) :: enum_n; };
 
-template < > struct type_master < t_country > : enum_n < t_country, e_country >
-{ using enum_n < t_country, e_country > :: enum_n; };
+template < > struct type_master < t_conlit > : ENUM_N (conlit)
+{ using ENUM_N (conlit) :: enum_n; };
 
-template < > struct type_master < t_copy > : enum_n < t_copy, e_copy >
-{ using enum_n < t_copy, e_copy > :: enum_n; };
+template < > struct type_master < t_country > : ENUM_N (country)
+{ using ENUM_N (country) :: enum_n; };
 
-template < > struct type_master < t_cr_fileproperty > : enum_n < t_cr_fileproperty, e_cr_fileproperty >
-{ using enum_n < t_cr_fileproperty, e_cr_fileproperty > :: enum_n; };
+template < > struct type_master < t_copy > : ENUM_N (copy)
+{ using ENUM_N (copy) :: enum_n; };
 
-template < > struct type_master < t_crossout > : enum_n < t_crossout, e_crossout >
-{ using enum_n < t_crossout, e_crossout > :: enum_n; };
+template < > struct type_master < t_cr_fileproperty > : ENUM_N (cr_fileproperty)
+{ using ENUM_N (cr_fileproperty) :: enum_n; };
 
-template < > struct type_master < t_csp_directive > : enum_n < t_csp_directive, e_csp_directive >
-{ using enum_n < t_csp_directive, e_csp_directive > :: enum_n; };
+template < > struct type_master < t_crossout > : ENUM_N (crossout)
+{ using ENUM_N (crossout) :: enum_n; };
 
-template < > struct type_master < t_csp_keyword > : enum_n < t_csp_keyword, e_csp_keyword >
-{ using enum_n < t_csp_keyword, e_csp_keyword > :: enum_n; };
+template < > struct type_master < t_csp_directive > : ENUM_N (csp_directive)
+{ using ENUM_N (csp_directive) :: enum_n; };
 
-template < > struct type_master < t_css_aaalri > : enum_n < t_css_aaalri, e_css_aaalri >
-{ using enum_n < t_css_aaalri, e_css_aaalri > :: enum_n; };
+template < > struct type_master < t_csp_keyword > : ENUM_N (csp_keyword)
+{ using ENUM_N (csp_keyword) :: enum_n; };
 
-template < > struct type_master < t_css_absolute_size > : enum_n < t_css_absolute_size, e_css_absolute_size >
-{ using enum_n < t_css_absolute_size, e_css_absolute_size > :: enum_n; };
+template < > struct type_master < t_css_aaalri > : ENUM_N (css_aaalri)
+{ using ENUM_N (css_aaalri) :: enum_n; };
 
-template < > struct type_master < t_css_align_content > : enum_n < t_css_align_content, e_css_align_content >
-{ using enum_n < t_css_align_content, e_css_align_content > :: enum_n; };
+template < > struct type_master < t_css_absolute_size > : ENUM_N (css_absolute_size)
+{ using ENUM_N (css_absolute_size) :: enum_n; };
 
-template < > struct type_master < t_css_align_items > : enum_n < t_css_align_items, e_css_align_items >
-{ using enum_n < t_css_align_items, e_css_align_items > :: enum_n; };
+template < > struct type_master < t_css_align_content > : ENUM_N (css_align_content)
+{ using ENUM_N (css_align_content) :: enum_n; };
 
-template < > struct type_master < t_css_all_2 > : enum_n < t_css_all_2, e_css_all_2 >
-{ using enum_n < t_css_all_2, e_css_all_2 > :: enum_n; };
+template < > struct type_master < t_css_align_items > : ENUM_N (css_align_items)
+{ using ENUM_N (css_align_items) :: enum_n; };
 
-template < > struct type_master < t_css_box_alignself_mess > : enum_n < t_css_box_alignself_mess, e_css_box_alignself_mess >
-{ using enum_n < t_css_box_alignself_mess, e_css_box_alignself_mess > :: enum_n; };
+template < > struct type_master < t_css_all_2 > : ENUM_N (css_all_2)
+{ using ENUM_N (css_all_2) :: enum_n; };
 
-template < > struct type_master < t_css_appearance > : enum_n < t_css_appearance, e_css_appearance >
-{ using enum_n < t_css_appearance, e_css_appearance > :: enum_n; };
+template < > struct type_master < t_css_box_alignself_mess > : ENUM_N (css_box_alignself_mess)
+{ using ENUM_N (css_box_alignself_mess) :: enum_n; };
 
-template < > struct type_master < t_css_azimuth_e > : enum_n < t_css_azimuth_e, e_css_azimuth_e >
-{ using enum_n < t_css_azimuth_e, e_css_azimuth_e > :: enum_n; };
+template < > struct type_master < t_css_appearance > : ENUM_N (css_appearance)
+{ using ENUM_N (css_appearance) :: enum_n; };
 
-template < > struct type_master < t_css_background_attachment > : enum_n < t_css_background_attachment, e_css_background_attachment >
-{ using enum_n < t_css_background_attachment, e_css_background_attachment > :: enum_n; };
+template < > struct type_master < t_css_azimuth_e > : ENUM_N (css_azimuth_e)
+{ using ENUM_N (css_azimuth_e) :: enum_n; };
 
-template < > struct type_master < t_css_background_repeat > : enum_n < t_css_background_repeat, e_css_background_repeat >
-{ using enum_n < t_css_background_repeat, e_css_background_repeat > :: enum_n; };
+template < > struct type_master < t_css_background_attachment > : ENUM_N (css_background_attachment)
+{ using ENUM_N (css_background_attachment) :: enum_n; };
 
-template < > struct type_master < t_css_blend_mode > : enum_n < t_css_blend_mode, e_css_blend_mode >
-{ using enum_n < t_css_blend_mode, e_css_blend_mode > :: enum_n; };
+template < > struct type_master < t_css_background_repeat > : ENUM_N (css_background_repeat)
+{ using ENUM_N (css_background_repeat) :: enum_n; };
 
-template < > struct type_master < t_css_border_style > : enum_n < t_css_border_style, e_css_border_style >
-{ using enum_n < t_css_border_style, e_css_border_style > :: enum_n; };
+template < > struct type_master < t_css_blend_mode > : ENUM_N (css_blend_mode)
+{ using ENUM_N (css_blend_mode) :: enum_n; };
 
-template < > struct type_master < t_css_border_width > : enum_n < t_css_border_width, e_css_border_width >
-{ using enum_n < t_css_border_width, e_css_border_width > :: enum_n; };
+template < > struct type_master < t_css_border_style > : ENUM_N (css_border_style)
+{ using ENUM_N (css_border_style) :: enum_n; };
 
-template < > struct type_master < t_css_box_snap > : enum_n < t_css_box_snap, e_css_box_snap >
-{ using enum_n < t_css_box_snap, e_css_box_snap > :: enum_n; };
+template < > struct type_master < t_css_border_width > : ENUM_N (css_border_width)
+{ using ENUM_N (css_border_width) :: enum_n; };
 
-template < > struct type_master < t_css_break > : enum_n < t_css_break, e_css_break >
-{ using enum_n < t_css_break, e_css_break > :: enum_n; };
+template < > struct type_master < t_css_box_snap > : ENUM_N (css_box_snap)
+{ using ENUM_N (css_box_snap) :: enum_n; };
 
-template < > struct type_master < t_css_break_inside > : enum_n < t_css_break_inside, e_css_break_inside >
-{ using enum_n < t_css_break_inside, e_css_break_inside > :: enum_n; };
+template < > struct type_master < t_css_break > : ENUM_N (css_break)
+{ using ENUM_N (css_break) :: enum_n; };
 
-template < > struct type_master < t_css_caret_shape > : enum_n < t_css_caret_shape, e_css_caret_shape >
-{ using enum_n < t_css_caret_shape, e_css_caret_shape > :: enum_n; };
+template < > struct type_master < t_css_break_inside > : ENUM_N (css_break_inside)
+{ using ENUM_N (css_break_inside) :: enum_n; };
 
-template < > struct type_master < t_css_clear > : enum_n < t_css_clear, e_css_clear >
-{ using enum_n < t_css_clear, e_css_clear > :: enum_n; };
+template < > struct type_master < t_css_caret_shape > : ENUM_N (css_caret_shape)
+{ using ENUM_N (css_caret_shape) :: enum_n; };
 
-template < > struct type_master < t_css_contain_e > : enum_n < t_css_contain_e, e_css_contain_e >
-{ using enum_n < t_css_contain_e, e_css_contain_e > :: enum_n; };
+template < > struct type_master < t_css_clear > : ENUM_N (css_clear)
+{ using ENUM_N (css_clear) :: enum_n; };
 
-template < > struct type_master < t_css_container_feature > : enum_n < t_css_container_feature, e_css_container_feature >
-{ using enum_n < t_css_container_feature, e_css_container_feature > :: enum_n; };
+template < > struct type_master < t_css_contain_e > : ENUM_N (css_contain_e)
+{ using ENUM_N (css_contain_e) :: enum_n; };
 
-template < > struct type_master < t_css_continue > : enum_n < t_css_continue, e_css_continue >
-{ using enum_n < t_css_continue, e_css_continue > :: enum_n; };
+template < > struct type_master < t_css_container_feature > : ENUM_N (css_container_feature)
+{ using ENUM_N (css_container_feature) :: enum_n; };
 
-template < > struct type_master < t_css_control_break > : enum_n < t_css_control_break, e_css_control_break >
-{ using enum_n < t_css_control_break, e_css_control_break > :: enum_n; };
+template < > struct type_master < t_css_continue > : ENUM_N (css_continue)
+{ using ENUM_N (css_continue) :: enum_n; };
 
-template < > struct type_master < t_css_cursor_e > : enum_n < t_css_cursor_e, e_css_cursor_e >
-{ using enum_n < t_css_cursor_e, e_css_cursor_e > :: enum_n; };
+template < > struct type_master < t_css_control_break > : ENUM_N (css_control_break)
+{ using ENUM_N (css_control_break) :: enum_n; };
 
-template < > struct type_master < t_css_colour > : enum_n < t_css_colour, e_css_colour >
-{ using enum_n < t_css_colour, e_css_colour > :: enum_n; };
+template < > struct type_master < t_css_cursor_e > : ENUM_N (css_cursor_e)
+{ using ENUM_N (css_cursor_e) :: enum_n; };
 
-template < > struct type_master < t_css_content_enum > : enum_n < t_css_content_enum, e_css_content_enum >
-{ using enum_n < t_css_content_enum, e_css_content_enum > :: enum_n; };
+template < > struct type_master < t_css_colour > : ENUM_N (css_colour)
+{ using ENUM_N (css_colour) :: enum_n; };
 
-template < > struct type_master < t_css_content_position > : enum_n < t_css_content_position, e_css_content_position >
-{ using enum_n < t_css_content_position, e_css_content_position > :: enum_n; };
+template < > struct type_master < t_css_content_enum > : ENUM_N (css_content_enum)
+{ using ENUM_N (css_content_enum) :: enum_n; };
 
-template < > struct type_master < t_css_coord_box > : enum_n < t_css_coord_box, e_css_coord_box >
-{ using enum_n < t_css_coord_box, e_css_coord_box > :: enum_n; };
+template < > struct type_master < t_css_content_position > : ENUM_N (css_content_position)
+{ using ENUM_N (css_content_position) :: enum_n; };
 
-template < > struct type_master < t_css_counter_style > : enum_n < t_css_counter_style, e_css_counter_style >
-{ using enum_n < t_css_counter_style, e_css_counter_style > :: enum_n; };
+template < > struct type_master < t_css_coord_box > : ENUM_N (css_coord_box)
+{ using ENUM_N (css_coord_box) :: enum_n; };
 
-template < > struct type_master < t_css_display > : enum_n < t_css_display, e_css_display >
-{ using enum_n < t_css_display, e_css_display > :: enum_n; };
+template < > struct type_master < t_css_counter_style > : ENUM_N (css_counter_style)
+{ using ENUM_N (css_counter_style) :: enum_n; };
 
-template < > struct type_master < t_css_display_inside > : enum_n < t_css_display_inside, e_css_display_inside >
-{ using enum_n < t_css_display_inside, e_css_display_inside > :: enum_n; };
+template < > struct type_master < t_css_display > : ENUM_N (css_display)
+{ using ENUM_N (css_display) :: enum_n; };
 
-template < > struct type_master < t_css_display_internal > : enum_n < t_css_display_internal, e_css_display_internal >
-{ using enum_n < t_css_display_internal, e_css_display_internal > :: enum_n; };
+template < > struct type_master < t_css_display_inside > : ENUM_N (css_display_inside)
+{ using ENUM_N (css_display_inside) :: enum_n; };
 
-template < > struct type_master < t_css_elevation_e > : enum_n < t_css_elevation_e, e_css_elevation_e >
-{ using enum_n < t_css_elevation_e, e_css_elevation_e > :: enum_n; };
+template < > struct type_master < t_css_display_internal > : ENUM_N (css_display_internal)
+{ using ENUM_N (css_display_internal) :: enum_n; };
 
-template < > struct type_master < t_css_float > : enum_n < t_css_float, e_css_float >
-{ using enum_n < t_css_float, e_css_float > :: enum_n; };
+template < > struct type_master < t_css_elevation_e > : ENUM_N (css_elevation_e)
+{ using ENUM_N (css_elevation_e) :: enum_n; };
 
-template < > struct type_master < t_css_fn > : enum_n < t_css_fn, e_css_fn >
-{ using enum_n < t_css_fn, e_css_fn > :: enum_n; };
+template < > struct type_master < t_css_float > : ENUM_N (css_float)
+{ using ENUM_N (css_float) :: enum_n; };
 
-template < > struct type_master < t_css_font_display > : enum_n < t_css_font_display, e_css_font_display >
-{ using enum_n < t_css_font_display, e_css_font_display > :: enum_n; };
+template < > struct type_master < t_css_fn > : ENUM_N (css_fn)
+{ using ENUM_N (css_fn) :: enum_n; };
 
-template < > struct type_master < t_css_font_feature > : enum_n < t_css_font_feature, e_css_font_feature >
-{ using enum_n < t_css_font_feature, e_css_font_feature > :: enum_n; };
+template < > struct type_master < t_css_font_display > : ENUM_N (css_font_display)
+{ using ENUM_N (css_font_display) :: enum_n; };
 
-template < > struct type_master < t_css_font_format > : enum_n < t_css_font_format, e_css_font_format >
-{ using enum_n < t_css_font_format, e_css_font_format > :: enum_n; };
+template < > struct type_master < t_css_font_feature > : ENUM_N (css_font_feature)
+{ using ENUM_N (css_font_feature) :: enum_n; };
 
-template < > struct type_master < t_css_font_size_adjust_e > : enum_n < t_css_font_size_adjust_e, e_css_font_size_adjust_e >
-{ using enum_n < t_css_font_size_adjust_e, e_css_font_size_adjust_e > :: enum_n; };
+template < > struct type_master < t_css_font_format > : ENUM_N (css_font_format)
+{ using ENUM_N (css_font_format) :: enum_n; };
 
-template < > struct type_master < t_css_font_tech > : enum_n < t_css_font_tech, e_css_font_tech >
-{ using enum_n < t_css_font_tech, e_css_font_tech > :: enum_n; };
+template < > struct type_master < t_css_font_size_adjust_e > : ENUM_N (css_font_size_adjust_e)
+{ using ENUM_N (css_font_size_adjust_e) :: enum_n; };
 
-template < > struct type_master < t_css_font_variation > : enum_n < t_css_font_variation, e_css_font_variation >
-{ using enum_n < t_css_font_variation, e_css_font_variation > :: enum_n; };
+template < > struct type_master < t_css_font_tech > : ENUM_N (css_font_tech)
+{ using ENUM_N (css_font_tech) :: enum_n; };
 
-template < > struct type_master < t_css_font_weight > : enum_n < t_css_font_weight, e_css_font_weight >
-{ using enum_n < t_css_font_weight, e_css_font_weight > :: enum_n; };
+template < > struct type_master < t_css_font_variation > : ENUM_N (css_font_variation)
+{ using ENUM_N (css_font_variation) :: enum_n; };
 
-template < > struct type_master < t_css_generic_family > : enum_n < t_css_generic_family, e_css_generic_family >
-{ using enum_n < t_css_generic_family, e_css_generic_family > :: enum_n; };
+template < > struct type_master < t_css_font_weight > : ENUM_N (css_font_weight)
+{ using ENUM_N (css_font_weight) :: enum_n; };
 
-template < > struct type_master < t_css_hll > : enum_n < t_css_hll, e_css_hll >
-{ using enum_n < t_css_hll, e_css_hll > :: enum_n; };
+template < > struct type_master < t_css_generic_family > : ENUM_N (css_generic_family)
+{ using ENUM_N (css_generic_family) :: enum_n; };
 
-template < > struct type_master < t_css_inline_bem_1 > : enum_n < t_css_inline_bem_1, e_css_inline_bem_1 >
-{ using enum_n < t_css_inline_bem_1, e_css_inline_bem_1 > :: enum_n; };
+template < > struct type_master < t_css_hll > : ENUM_N (css_hll)
+{ using ENUM_N (css_hll) :: enum_n; };
 
-template < > struct type_master < t_css_inline_bem_2 > : enum_n < t_css_inline_bem_2, e_css_inline_bem_2 >
-{ using enum_n < t_css_inline_bem_2, e_css_inline_bem_2 > :: enum_n; };
+template < > struct type_master < t_css_inline_bem_1 > : ENUM_N (css_inline_bem_1)
+{ using ENUM_N (css_inline_bem_1) :: enum_n; };
 
-template < > struct type_master < t_css_justify_content > : enum_n < t_css_justify_content, e_css_justify_content >
-{ using enum_n < t_css_justify_content, e_css_justify_content > :: enum_n; };
+template < > struct type_master < t_css_inline_bem_2 > : ENUM_N (css_inline_bem_2)
+{ using ENUM_N (css_inline_bem_2) :: enum_n; };
 
-template < > struct type_master < t_css_layout_box > : enum_n < t_css_layout_box, e_css_layout_box >
-{ using enum_n < t_css_layout_box, e_css_layout_box > :: enum_n; };
+template < > struct type_master < t_css_justify_content > : ENUM_N (css_justify_content)
+{ using ENUM_N (css_justify_content) :: enum_n; };
 
-template < > struct type_master < t_css_line_break > : enum_n < t_css_line_break, e_css_line_break >
-{ using enum_n < t_css_line_break, e_css_line_break > :: enum_n; };
+template < > struct type_master < t_css_layout_box > : ENUM_N (css_layout_box)
+{ using ENUM_N (css_layout_box) :: enum_n; };
 
-template < > struct type_master < t_css_list_style_position > : enum_n < t_css_list_style_position, e_css_list_style_position >
-{ using enum_n < t_css_list_style_position, e_css_list_style_position > :: enum_n; };
+template < > struct type_master < t_css_line_break > : ENUM_N (css_line_break)
+{ using ENUM_N (css_line_break) :: enum_n; };
 
-template < > struct type_master < t_css_list_style_type > : enum_n < t_css_list_style_type, e_css_list_style_type >
-{ using enum_n < t_css_list_style_type, e_css_list_style_type > :: enum_n; };
+template < > struct type_master < t_css_list_style_position > : ENUM_N (css_list_style_position)
+{ using ENUM_N (css_list_style_position) :: enum_n; };
+
+template < > struct type_master < t_css_list_style_type > : ENUM_N (css_list_style_type)
+{ using ENUM_N (css_list_style_type) :: enum_n; };
 
 template < > struct type_master < t_css_module > : enum_n < t_css_module, e_css_module, e_nit_macro, nm_none >
 { using enum_n < t_css_module, e_css_module, e_nit_macro, nm_none > :: enum_n; };
 
-template < > struct type_master < t_css_overflow > : enum_n < t_css_overflow, e_css_overflow >
-{ using enum_n < t_css_overflow, e_css_overflow > :: enum_n; };
+template < > struct type_master < t_css_overflow > : ENUM_N (css_overflow)
+{ using ENUM_N (css_overflow) :: enum_n; };
 
-template < > struct type_master < t_css_size_e > : enum_n < t_css_size_e, e_css_size_e >
-{ using enum_n < t_css_size_e, e_css_size_e > :: enum_n; };
+template < > struct type_master < t_css_size_e > : ENUM_N (css_size_e)
+{ using ENUM_N (css_size_e) :: enum_n; };
 
-template < > struct type_master < t_css_paint_box > : enum_n < t_css_paint_box, e_css_paint_box >
-{ using enum_n < t_css_paint_box, e_css_paint_box > :: enum_n; };
+template < > struct type_master < t_css_paint_box > : ENUM_N (css_paint_box)
+{ using ENUM_N (css_paint_box) :: enum_n; };
 
-template < > struct type_master < t_css_pause_3_e > : enum_n < t_css_pause_3_e, e_css_pause_3_e >
-{ using enum_n < t_css_pause_3_e, e_css_pause_3_e > :: enum_n; };
+template < > struct type_master < t_css_pause_3_e > : ENUM_N (css_pause_3_e)
+{ using ENUM_N (css_pause_3_e) :: enum_n; };
 
-template < > struct type_master < t_css_pitch_e > : enum_n < t_css_pitch_e, e_css_pitch_e >
-{ using enum_n < t_css_pitch_e, e_css_pitch_e > :: enum_n; };
+template < > struct type_master < t_css_pitch_e > : ENUM_N (css_pitch_e)
+{ using ENUM_N (css_pitch_e) :: enum_n; };
 
-template < > struct type_master < t_css_position > : enum_n < t_css_position, e_css_position >
-{ using enum_n < t_css_position, e_css_position > :: enum_n; };
+template < > struct type_master < t_css_position > : ENUM_N (css_position)
+{ using ENUM_N (css_position) :: enum_n; };
 
-template < > struct type_master < t_css_property > : enum_n < t_css_property, e_css_property >
-{ using enum_n < t_css_property, e_css_property > :: enum_n; };
+template < > struct type_master < t_css_property > : ENUM_N (css_property)
+{ using ENUM_N (css_property) :: enum_n; };
 
-template < > struct type_master < t_css_ray_size > : enum_n < t_css_ray_size, e_css_ray_size >
-{ using enum_n < t_css_ray_size, e_css_ray_size > :: enum_n; };
+template < > struct type_master < t_css_ray_size > : ENUM_N (css_ray_size)
+{ using ENUM_N (css_ray_size) :: enum_n; };
 
-template < > struct type_master < t_css_rect > : enum_n < t_css_rect, e_css_rect >
-{ using enum_n < t_css_rect, e_css_rect > :: enum_n; };
+template < > struct type_master < t_css_rect > : ENUM_N (css_rect)
+{ using ENUM_N (css_rect) :: enum_n; };
 
-template < > struct type_master < t_css_rgb_xyz > : enum_n < t_css_rgb_xyz, e_css_rgb_xyz >
-{ using enum_n < t_css_rgb_xyz, e_css_rgb_xyz > :: enum_n; };
+template < > struct type_master < t_css_rgb_xyz > : ENUM_N (css_rgb_xyz)
+{ using ENUM_N (css_rgb_xyz) :: enum_n; };
 
-template < > struct type_master < t_css_relative_size > : enum_n < t_css_relative_size, e_css_relative_size >
-{ using enum_n < t_css_relative_size, e_css_relative_size > :: enum_n; };
+template < > struct type_master < t_css_relative_size > : ENUM_N (css_relative_size)
+{ using ENUM_N (css_relative_size) :: enum_n; };
 
-template < > struct type_master < t_css_resize > : enum_n < t_css_resize, e_css_resize >
-{ using enum_n < t_css_resize, e_css_resize > :: enum_n; };
+template < > struct type_master < t_css_resize > : ENUM_N (css_resize)
+{ using ENUM_N (css_resize) :: enum_n; };
 
-template < > struct type_master < t_css_ss_type_e > : enum_n < t_css_ss_type_e, e_css_ss_type_e >
-{ using enum_n < t_css_ss_type_e, e_css_ss_type_e > :: enum_n; };
+template < > struct type_master < t_css_ss_type_e > : ENUM_N (css_ss_type_e)
+{ using ENUM_N (css_ss_type_e) :: enum_n; };
 
-template < > struct type_master < t_css_self_position > : enum_n < t_css_self_position, e_css_self_position >
-{ using enum_n < t_css_self_position, e_css_self_position > :: enum_n; };
+template < > struct type_master < t_css_self_position > : ENUM_N (css_self_position)
+{ using ENUM_N (css_self_position) :: enum_n; };
 
-template < > struct type_master < t_css_sizing > : enum_n < t_css_sizing, e_css_sizing >
-{ using enum_n < t_css_sizing, e_css_sizing > :: enum_n; };
+template < > struct type_master < t_css_sizing > : ENUM_N (css_sizing)
+{ using ENUM_N (css_sizing) :: enum_n; };
 
-template < > struct type_master < t_css_speak_as_e > : enum_n < t_css_speak_as_e, e_css_speak_as_e >
-{ using enum_n < t_css_speak_as_e, e_css_speak_as_e > :: enum_n; };
+template < > struct type_master < t_css_speak_as_e > : ENUM_N (css_speak_as_e)
+{ using ENUM_N (css_speak_as_e) :: enum_n; };
 
-template < > struct type_master < t_css_speech_rate_e > : enum_n < t_css_speech_rate_e, e_css_speech_rate_e >
-{ using enum_n < t_css_speech_rate_e, e_css_speech_rate_e > :: enum_n; };
+template < > struct type_master < t_css_speech_rate_e > : ENUM_N (css_speech_rate_e)
+{ using ENUM_N (css_speech_rate_e) :: enum_n; };
 
-template < > struct type_master < t_css_statement > : enum_n < t_css_statement, e_css_statement >
-{ using enum_n < t_css_statement, e_css_statement > :: enum_n; };
+template < > struct type_master < t_css_statement > : ENUM_N (css_statement)
+{ using ENUM_N (css_statement) :: enum_n; };
 
-template < > struct type_master < t_css_system_e > : enum_n < t_css_system_e, e_css_system_e >
-{ using enum_n < t_css_system_e, e_css_system_e > :: enum_n; };
+template < > struct type_master < t_css_system_e > : ENUM_N (css_system_e)
+{ using ENUM_N (css_system_e) :: enum_n; };
 
-template < > struct type_master < t_css_text_align > : enum_n < t_css_text_align, e_css_text_align >
-{ using enum_n < t_css_text_align, e_css_text_align > :: enum_n; };
+template < > struct type_master < t_css_text_align > : ENUM_N (css_text_align)
+{ using ENUM_N (css_text_align) :: enum_n; };
 
-template < > struct type_master < t_css_text_align_all > : enum_n < t_css_text_align_all, e_css_text_align_all >
-{ using enum_n < t_css_text_align_all, e_css_text_align_all > :: enum_n; };
+template < > struct type_master < t_css_text_align_all > : ENUM_N (css_text_align_all)
+{ using ENUM_N (css_text_align_all) :: enum_n; };
 
-template < > struct type_master < t_css_text_align_last > : enum_n < t_css_text_align_last, e_css_text_align_last >
-{ using enum_n < t_css_text_align_last, e_css_text_align_last > :: enum_n; };
+template < > struct type_master < t_css_text_align_last > : ENUM_N (css_text_align_last)
+{ using ENUM_N (css_text_align_last) :: enum_n; };
 
-template < > struct type_master < t_css_text_autospace > : enum_n < t_css_text_autospace, e_css_text_autospace >
-{ using enum_n < t_css_text_autospace, e_css_text_autospace > :: enum_n; };
+template < > struct type_master < t_css_text_autospace > : ENUM_N (css_text_autospace)
+{ using ENUM_N (css_text_autospace) :: enum_n; };
 
-template < > struct type_master < t_css_text_decoration > : enum_n < t_css_text_decoration, e_css_text_decoration >
-{ using enum_n < t_css_text_decoration, e_css_text_decoration > :: enum_n; };
+template < > struct type_master < t_css_text_decoration > : ENUM_N (css_text_decoration)
+{ using ENUM_N (css_text_decoration) :: enum_n; };
 
-template < > struct type_master < t_css_text_transform > : enum_n < t_css_text_transform, e_css_text_transform >
-{ using enum_n < t_css_text_transform, e_css_text_transform > :: enum_n; };
+template < > struct type_master < t_css_text_transform > : ENUM_N (css_text_transform)
+{ using ENUM_N (css_text_transform) :: enum_n; };
 
-template < > struct type_master < t_css_textdec_line_e > : enum_n < t_css_textdec_line_e, e_css_textdec_line_e >
-{ using enum_n < t_css_textdec_line_e, e_css_textdec_line_e > :: enum_n; };
+template < > struct type_master < t_css_textdec_line_e > : ENUM_N (css_textdec_line_e)
+{ using ENUM_N (css_textdec_line_e) :: enum_n; };
 
-template < > struct type_master < t_css_textdec_style > : enum_n < t_css_textdec_style, e_css_textdec_style >
-{ using enum_n < t_css_textdec_style, e_css_textdec_style > :: enum_n; };
+template < > struct type_master < t_css_textdec_style > : ENUM_N (css_textdec_style)
+{ using ENUM_N (css_textdec_style) :: enum_n; };
 
-template < > struct type_master < t_css_textemph_shape > : enum_n < t_css_textemph_shape, e_css_textemph_shape >
-{ using enum_n < t_css_textemph_shape, e_css_textemph_shape > :: enum_n; };
+template < > struct type_master < t_css_textemph_shape > : ENUM_N (css_textemph_shape)
+{ using ENUM_N (css_textemph_shape) :: enum_n; };
 
-template < > struct type_master < t_css_text_wrap > : enum_n < t_css_text_wrap, e_css_text_wrap >
-{ using enum_n < t_css_text_wrap, e_css_text_wrap > :: enum_n; };
+template < > struct type_master < t_css_text_wrap > : ENUM_N (css_text_wrap)
+{ using ENUM_N (css_text_wrap) :: enum_n; };
 
-template < > struct type_master < t_css_transform_box > : enum_n < t_css_transform_box, e_css_transform_box >
-{ using enum_n < t_css_transform_box, e_css_transform_box > :: enum_n; };
+template < > struct type_master < t_css_transform_box > : ENUM_N (css_transform_box)
+{ using ENUM_N (css_transform_box) :: enum_n; };
 
-template < > struct type_master < t_css_user_select > : enum_n < t_css_user_select, e_css_user_select >
-{ using enum_n < t_css_user_select, e_css_user_select > :: enum_n; };
+template < > struct type_master < t_css_user_select > : ENUM_N (css_user_select)
+{ using ENUM_N (css_user_select) :: enum_n; };
 
-template < > struct type_master < t_css_val_fn > : enum_n < t_css_val_fn, e_css_val_fn >
-{ using enum_n < t_css_val_fn, e_css_val_fn > :: enum_n; };
+template < > struct type_master < t_css_val_fn > : ENUM_N (css_val_fn)
+{ using ENUM_N (css_val_fn) :: enum_n; };
 
-template < > struct type_master < t_css_version > : enum_n < t_css_version, e_css_version >
-{ using enum_n < t_css_version, e_css_version > :: enum_n; };
+template < > struct type_master < t_css_version > : ENUM_N (css_version)
+{ using ENUM_N (css_version) :: enum_n; };
 
-template < > struct type_master < t_css_vertical_align > : enum_n < t_css_vertical_align, e_css_vertical_align >
-{ using enum_n < t_css_vertical_align, e_css_vertical_align > :: enum_n; };
+template < > struct type_master < t_css_vertical_align > : ENUM_N (css_vertical_align)
+{ using ENUM_N (css_vertical_align) :: enum_n; };
 
-template < > struct type_master < t_css_visual_box > : enum_n < t_css_visual_box, e_css_visual_box >
-{ using enum_n < t_css_visual_box, e_css_visual_box > :: enum_n; };
+template < > struct type_master < t_css_visual_box > : ENUM_N (css_visual_box)
+{ using ENUM_N (css_visual_box) :: enum_n; };
 
-template < > struct type_master < t_css_voice_balance_e > : enum_n < t_css_voice_balance_e, e_css_voice_balance_e >
-{ using enum_n < t_css_voice_balance_e, e_css_voice_balance_e > :: enum_n; };
+template < > struct type_master < t_css_voice_balance_e > : ENUM_N (css_voice_balance_e)
+{ using ENUM_N (css_voice_balance_e) :: enum_n; };
 
-template < > struct type_master < t_css_volume_e > : enum_n < t_css_volume_e, e_css_volume_e >
-{ using enum_n < t_css_volume_e, e_css_volume_e > :: enum_n; };
+template < > struct type_master < t_css_volume_e > : ENUM_N (css_volume_e)
+{ using ENUM_N (css_volume_e) :: enum_n; };
 
-template < > struct type_master < t_css_whitespace > : enum_n < t_css_whitespace, e_css_whitespace >
-{ using enum_n < t_css_whitespace, e_css_whitespace > :: enum_n; };
+template < > struct type_master < t_css_whitespace > : ENUM_N (css_whitespace)
+{ using ENUM_N (css_whitespace) :: enum_n; };
 
-template < > struct type_master < t_css_wide > : enum_n < t_css_wide, e_css_wide >
-{ using enum_n < t_css_wide, e_css_wide > :: enum_n; };
+template < > struct type_master < t_css_wide > : ENUM_N (css_wide)
+{ using ENUM_N (css_wide) :: enum_n; };
 
-template < > struct type_master < t_css_wrap_flow > : enum_n < t_css_wrap_flow, e_css_wrap_flow >
-{ using enum_n < t_css_wrap_flow, e_css_wrap_flow > :: enum_n; };
+template < > struct type_master < t_css_wrap_flow > : ENUM_N (css_wrap_flow)
+{ using ENUM_N (css_wrap_flow) :: enum_n; };
 
-template < > struct type_master < t_css_wsc > : enum_n < t_css_wsc, e_css_wsc >
-{ using enum_n < t_css_wsc, e_css_wsc > :: enum_n; };
+template < > struct type_master < t_css_wsc > : ENUM_N (css_wsc)
+{ using ENUM_N (css_wsc) :: enum_n; };
 
-template < > struct type_master < t_css_wst > : enum_n < t_css_wst, e_css_wst >
-{ using enum_n < t_css_wst, e_css_wst > :: enum_n; };
+template < > struct type_master < t_css_wst > : ENUM_N (css_wst)
+{ using ENUM_N (css_wst) :: enum_n; };
 
-template < > struct type_master < t_currency > : enum_n < t_currency, e_currency >
-{ using enum_n < t_currency, e_currency > :: enum_n; };
+template < > struct type_master < t_currency > : ENUM_N (currency)
+{ using ENUM_N (currency) :: enum_n; };
 
-template < > struct type_master < t_cursor > : enum_n < t_cursor, e_cursor >
-{ using enum_n < t_cursor, e_cursor > :: enum_n; };
+template < > struct type_master < t_cursor > : ENUM_N (cursor)
+{ using ENUM_N (cursor) :: enum_n; };
 
-template < > struct type_master < t_decalign > : enum_n < t_decalign, e_decalign >
-{ using enum_n < t_decalign, e_decalign > :: enum_n; };
+template < > struct type_master < t_decalign > : ENUM_N (decalign)
+{ using ENUM_N (decalign) :: enum_n; };
 
-template < > struct type_master < t_determiner > : enum_n < t_determiner, e_determiner >
-{ using enum_n < t_determiner, e_determiner > :: enum_n; };
+template < > struct type_master < t_determiner > : ENUM_N (determiner)
+{ using ENUM_N (determiner) :: enum_n; };
 
-template < > struct type_master < t_dingbat > : enum_n < t_dingbat, e_dingbat >
-{ using enum_n < t_dingbat, e_dingbat > :: enum_n; };
+template < > struct type_master < t_dingbat > : ENUM_N (dingbat)
+{ using ENUM_N (dingbat) :: enum_n; };
 
-template < > struct type_master < t_dir > : enum_n < t_dir, e_dir >
-{ using enum_n < t_dir, e_dir > :: enum_n; };
+template < > struct type_master < t_dir > : ENUM_N (dir)
+{ using ENUM_N (dir) :: enum_n; };
 
-template < > struct type_master < t_display_align > : enum_n < t_display_align, e_display_align >
-{ using enum_n < t_display_align, e_display_align > :: enum_n; };
+template < > struct type_master < t_display_align > : ENUM_N (display_align)
+{ using ENUM_N (display_align) :: enum_n; };
 
-template < > struct type_master < t_dominantbaseline > : enum_n < t_dominantbaseline, e_dominantbaseline >
-{ using enum_n < t_dominantbaseline, e_dominantbaseline > :: enum_n; };
+template < > struct type_master < t_dominantbaseline > : ENUM_N (dominantbaseline)
+{ using ENUM_N (dominantbaseline) :: enum_n; };
 
-template < > struct type_master < t_enterkeyhint > : enum_n < t_enterkeyhint, e_enterkeyhint >
-{ using enum_n < t_enterkeyhint, e_enterkeyhint > :: enum_n; };
+template < > struct type_master < t_enterkeyhint > : ENUM_N (enterkeyhint)
+{ using ENUM_N (enterkeyhint) :: enum_n; };
 
-template < > struct type_master < t_evt_action > : enum_n < t_evt_action, e_evt_action >
-{ using enum_n < t_evt_action, e_evt_action > :: enum_n; };
+template < > struct type_master < t_evt_action > : ENUM_N (evt_action)
+{ using ENUM_N (evt_action) :: enum_n; };
 
-template < > struct type_master < t_figalign > : enum_n < t_figalign, e_figalign >
-{ using enum_n < t_figalign, e_figalign > :: enum_n; };
+template < > struct type_master < t_figalign > : ENUM_N (figalign)
+{ using ENUM_N (figalign) :: enum_n; };
 
-template < > struct type_master < t_filter_in > : enum_n < t_filter_in, e_filter_in >
-{ using enum_n < t_filter_in, e_filter_in > :: enum_n; };
+template < > struct type_master < t_filter_in > : ENUM_N (filter_in)
+{ using ENUM_N (filter_in) :: enum_n; };
 
-template < > struct type_master < t_fixedcolour > : enum_n < t_fixedcolour, e_fixedcolour >
-{ using enum_n < t_fixedcolour, e_fixedcolour > :: enum_n; };
+template < > struct type_master < t_fixedcolour > : ENUM_N (fixedcolour)
+{ using ENUM_N (fixedcolour) :: enum_n; };
 
-template < > struct type_master < t_fontname > : enum_n < t_fontname, e_fontname >
-{ using enum_n < t_fontname, e_fontname > :: enum_n; };
+template < > struct type_master < t_fontname > : ENUM_N (fontname)
+{ using ENUM_N (fontname) :: enum_n; };
 
-template < > struct type_master < t_font_enum > : enum_n < t_font_enum, e_font_enum >
-{ using enum_n < t_font_enum, e_font_enum > :: enum_n; };
+template < > struct type_master < t_font_enum > : ENUM_N (font_enum)
+{ using ENUM_N (font_enum) :: enum_n; };
 
-template < > struct type_master < t_font_variant_2 > : enum_n < t_font_variant_2, e_font_variant_2 >
-{ using enum_n < t_font_variant_2, e_font_variant_2 > :: enum_n; };
+template < > struct type_master < t_font_variant_2 > : ENUM_N (font_variant_2)
+{ using ENUM_N (font_variant_2) :: enum_n; };
 
-template < > struct type_master < t_font_variant_caps > : enum_n < t_font_variant_caps, e_font_variant_caps >
-{ using enum_n < t_font_variant_caps, e_font_variant_caps > :: enum_n; };
+template < > struct type_master < t_font_variant_caps > : ENUM_N (font_variant_caps)
+{ using ENUM_N (font_variant_caps) :: enum_n; };
 
-template < > struct type_master < t_font_variant_east_asian > : enum_n < t_font_variant_east_asian, e_font_variant_east_asian >
-{ using enum_n < t_font_variant_east_asian, e_font_variant_east_asian > :: enum_n; };
+template < > struct type_master < t_font_variant_east_asian > : ENUM_N (font_variant_east_asian)
+{ using ENUM_N (font_variant_east_asian) :: enum_n; };
 
-template < > struct type_master < t_font_variant_ligature > : enum_n < t_font_variant_ligature, e_font_variant_ligature >
-{ using enum_n < t_font_variant_ligature, e_font_variant_ligature > :: enum_n; };
+template < > struct type_master < t_font_variant_ligature > : ENUM_N (font_variant_ligature)
+{ using ENUM_N (font_variant_ligature) :: enum_n; };
 
-template < > struct type_master < t_font_variant_numeric > : enum_n < t_font_variant_numeric, e_font_variant_numeric >
-{ using enum_n < t_font_variant_numeric, e_font_variant_numeric > :: enum_n; };
+template < > struct type_master < t_font_variant_numeric > : ENUM_N (font_variant_numeric)
+{ using ENUM_N (font_variant_numeric) :: enum_n; };
 
-template < > struct type_master < t_formaturi > : enum_n < t_formaturi, e_formaturi >
-{ using enum_n < t_formaturi, e_formaturi > :: enum_n; };
+template < > struct type_master < t_formaturi > : ENUM_N (formaturi)
+{ using ENUM_N (formaturi) :: enum_n; };
 
-template < > struct type_master < t_halign > : enum_n < t_halign, e_halign >
-{ using enum_n < t_halign, e_halign > :: enum_n; };
+template < > struct type_master < t_halign > : ENUM_N (halign)
+{ using ENUM_N (halign) :: enum_n; };
 
-template < > struct type_master < t_httpequiv > : enum_n < t_httpequiv, e_httpequiv >
-{ using enum_n < t_httpequiv, e_httpequiv > :: enum_n; };
+template < > struct type_master < t_httpequiv > : ENUM_N (httpequiv)
+{ using ENUM_N (httpequiv) :: enum_n; };
 
-template < > struct type_master < t_icalfreq > : enum_n < t_icalfreq, e_icalfreq >
-{ using enum_n < t_icalfreq, e_icalfreq > :: enum_n; };
+template < > struct type_master < t_icalfreq > : ENUM_N (icalfreq)
+{ using ENUM_N (icalfreq) :: enum_n; };
 
-template < > struct type_master < t_image_rendering > : enum_n < t_image_rendering, e_image_rendering >
-{ using enum_n < t_image_rendering, e_image_rendering > :: enum_n; };
+template < > struct type_master < t_image_rendering > : ENUM_N (image_rendering)
+{ using ENUM_N (image_rendering) :: enum_n; };
 
-template < > struct type_master < t_icc > : enum_n < t_icc, e_icc >
-{ using enum_n < t_icc, e_icc > :: enum_n; };
+template < > struct type_master < t_icc > : ENUM_N (icc)
+{ using ENUM_N (icc) :: enum_n; };
 
-template < > struct type_master < t_indentalign > : enum_n < t_indentalign, e_indentalign >
-{ using enum_n < t_indentalign, e_indentalign > :: enum_n; };
+template < > struct type_master < t_indentalign > : ENUM_N (indentalign)
+{ using ENUM_N (indentalign) :: enum_n; };
 
-template < > struct type_master < t_inky > : enum_n < t_inky, e_inky >
-{ using enum_n < t_inky, e_inky > :: enum_n; };
+template < > struct type_master < t_inky > : ENUM_N (inky)
+{ using ENUM_N (inky) :: enum_n; };
 
-template < > struct type_master < t_inputmode > : enum_n < t_inputmode, e_inputmode >
-{ using enum_n < t_inputmode, e_inputmode > :: enum_n; };
+template < > struct type_master < t_inputmode > : ENUM_N (inputmode)
+{ using ENUM_N (inputmode) :: enum_n; };
 
-template < > struct type_master < t_inputplus > : enum_n < t_inputplus, e_inputplus >
-{ using enum_n < t_inputplus, e_inputplus > :: enum_n; };
+template < > struct type_master < t_inputplus > : ENUM_N (inputplus)
+{ using ENUM_N (inputplus) :: enum_n; };
 
-template < > struct type_master < t_inputtype > : enum_n < t_inputtype, e_inputtype >
-{ using enum_n < t_inputtype, e_inputtype > :: enum_n; };
+template < > struct type_master < t_inputtype > : ENUM_N (inputtype)
+{ using ENUM_N (inputtype) :: enum_n; };
 
-template < > struct type_master < t_inputtype3 > : enum_n < t_inputtype3, e_inputtype3 >
-{ using enum_n < t_inputtype3, e_inputtype3 > :: enum_n; };
+template < > struct type_master < t_inputtype3 > : ENUM_N (inputtype3)
+{ using ENUM_N (inputtype3) :: enum_n; };
 
-template < > struct type_master < t_inputtype32 > : enum_n < t_inputtype32, e_inputtype32 >
-{ using enum_n < t_inputtype32, e_inputtype32 > :: enum_n; };
+template < > struct type_master < t_inputtype32 > : ENUM_N (inputtype32)
+{ using ENUM_N (inputtype32) :: enum_n; };
 
-template < > struct type_master < t_inputtype4 > : enum_n < t_inputtype4, e_inputtype4 >
-{ using enum_n < t_inputtype4, e_inputtype4 > :: enum_n; };
+template < > struct type_master < t_inputtype4 > : ENUM_N (inputtype4)
+{ using ENUM_N (inputtype4) :: enum_n; };
 
-template < > struct type_master < t_inputtype5 > : enum_n < t_inputtype5, e_inputtype5 >
-{ using enum_n < t_inputtype5, e_inputtype5 > :: enum_n; };
+template < > struct type_master < t_inputtype5 > : ENUM_N (inputtype5)
+{ using ENUM_N (inputtype5) :: enum_n; };
 
-template < > struct type_master < t_jtoken > : enum_n < t_jtoken, e_jtoken >
-{ using enum_n < t_jtoken, e_jtoken > :: enum_n; };
+template < > struct type_master < t_jtoken > : ENUM_N (jtoken)
+{ using ENUM_N (jtoken) :: enum_n; };
 
-template < > struct type_master < t_kind > : enum_n < t_kind, e_kind >
-{ using enum_n < t_kind, e_kind > :: enum_n; };
+template < > struct type_master < t_kind > : ENUM_N (kind)
+{ using ENUM_N (kind) :: enum_n; };
 
-template < > struct type_master < t_lang > : enum_n < t_lang, e_lang >
-{ using enum_n < t_lang, e_lang > :: enum_n; };
+template < > struct type_master < t_lang > : ENUM_N (lang)
+{ using ENUM_N (lang) :: enum_n; };
 
-template < > struct type_master < t_length_absolute > : enum_n < t_length, e_length_absolute >
-{ using enum_n < t_length, e_length_absolute > :: enum_n; };
+template < > struct type_master < t_length_absolute > : ENUM_N (length_absolute)
+{ using ENUM_N (length_absolute) :: enum_n; };
 
-template < > struct type_master < t_length_relative > : enum_n < t_length, e_length_relative >
-{ using enum_n < t_length, e_length_relative > :: enum_n; };
+template < > struct type_master < t_length_relative > : ENUM_N (length_relative)
+{ using ENUM_N (length_relative) :: enum_n; };
 
-template < > struct type_master < t_linebreak > : enum_n < t_linebreak, e_linebreak >
-{ using enum_n < t_linebreak, e_linebreak > :: enum_n; };
+template < > struct type_master < t_linebreak > : ENUM_N (linebreak)
+{ using ENUM_N (linebreak) :: enum_n; };
 
-template < > struct type_master < t_linkparam > : enum_n < t_linkparam, e_linkparam >
-{ using enum_n < t_linkparam, e_linkparam > :: enum_n; };
+template < > struct type_master < t_linkparam > : ENUM_N (linkparam)
+{ using ENUM_N (linkparam) :: enum_n; };
 
 template < > struct type_master < t_listtype > : enum_n < t_listtype, e_listtype, ident_t, ns_default, sz_false >
 { using enum_n < t_listtype, e_listtype, ident_t, ns_default, sz_false > :: enum_n; };
 
-template < > struct type_master < t_lrnialign > : enum_n < t_lrnialign, e_lrnialign >
-{ using enum_n < t_lrnialign, e_lrnialign > :: enum_n; };
+template < > struct type_master < t_lrnialign > : ENUM_N (lrnialign)
+{ using ENUM_N (lrnialign) :: enum_n; };
 
-template < > struct type_master < t_longdivstyle > : enum_n < t_longdivstyle, e_longdivstyle >
-{ using enum_n < t_longdivstyle, e_longdivstyle > :: enum_n; };
+template < > struct type_master < t_longdivstyle > : ENUM_N (longdivstyle)
+{ using ENUM_N (longdivstyle) :: enum_n; };
 
-template < > struct type_master < t_mah > : enum_n < t_mah, e_mah >
-{ using enum_n < t_mah, e_mah > :: enum_n; };
+template < > struct type_master < t_mah > : ENUM_N (mah)
+{ using ENUM_N (mah) :: enum_n; };
 
-template < > struct type_master < t_mathalign > : enum_n < t_mathalign, e_mathalign >
-{ using enum_n < t_mathalign, e_mathalign > :: enum_n; };
+template < > struct type_master < t_mathalign > : ENUM_N (mathalign)
+{ using ENUM_N (mathalign) :: enum_n; };
 
-template < > struct type_master < t_mathlocation > : enum_n < t_mathlocation, e_mathlocation >
-{ using enum_n < t_mathlocation, e_mathlocation > :: enum_n; };
+template < > struct type_master < t_mathlocation > : ENUM_N (mathlocation)
+{ using ENUM_N (mathlocation) :: enum_n; };
 
-template < > struct type_master < t_mathnotation > : enum_n < t_mathnotation, e_mathnotation >
-{ using enum_n < t_mathnotation, e_mathnotation > :: enum_n; };
+template < > struct type_master < t_mathnotation > : ENUM_N (mathnotation)
+{ using ENUM_N (mathnotation) :: enum_n; };
 
-template < > struct type_master < t_mathoverflow > : enum_n < t_mathoverflow, e_mathoverflow >
-{ using enum_n < t_mathoverflow, e_mathoverflow > :: enum_n; };
+template < > struct type_master < t_mathoverflow > : ENUM_N (mathoverflow)
+{ using ENUM_N (mathoverflow) :: enum_n; };
 
-template < > struct type_master < t_mathvariant > : enum_n < t_mathvariant, e_mathvariant >
-{ using enum_n < t_mathvariant, e_mathvariant > :: enum_n; };
+template < > struct type_master < t_mathvariant > : ENUM_N (mathvariant)
+{ using ENUM_N (mathvariant) :: enum_n; };
 
-template < > struct type_master < t_math_version > : enum_n < t_math_version, e_math_version >
-{ using enum_n < t_math_version, e_math_version > :: enum_n; };
+template < > struct type_master < t_math_version > : ENUM_N (math_version)
+{ using ENUM_N (math_version) :: enum_n; };
 
-template < > struct type_master < t_matrixtype > : enum_n < t_matrixtype, e_matrixtype >
-{ using enum_n < t_matrixtype, e_matrixtype > :: enum_n; };
+template < > struct type_master < t_matrixtype > : ENUM_N (matrixtype)
+{ using ENUM_N (matrixtype) :: enum_n; };
 
-template < > struct type_master < t_media > : enum_n < t_media, e_media >
-{ using enum_n < t_media, e_media > :: enum_n; };
+template < > struct type_master < t_media > : ENUM_N (media)
+{ using ENUM_N (media) :: enum_n; };
 
-template < > struct type_master < t_metaname > : enum_n < t_metaname, e_metaname >
-{ using enum_n < t_metaname, e_metaname > :: enum_n; };
+template < > struct type_master < t_metaname > : ENUM_N (metaname)
+{ using ENUM_N (metaname) :: enum_n; };
 
-template < > struct type_master < t_method > : enum_n < t_method, e_method >
-{ using enum_n < t_method, e_method > :: enum_n; };
+template < > struct type_master < t_method > : ENUM_N (method)
+{ using ENUM_N (method) :: enum_n; };
 
-template < > struct type_master < t_mf_identifier > : enum_n < t_mf_identifier, e_mf_identifier >
-{ using enum_n < t_mf_identifier, e_mf_identifier > :: enum_n; };
+template < > struct type_master < t_mf_identifier > : ENUM_N (mf_identifier)
+{ using ENUM_N (mf_identifier) :: enum_n; };
 
-template < > struct type_master < t_mf_itemtype > : enum_n < t_mf_itemtype, e_mf_itemtype >
-{ using enum_n < t_mf_itemtype, e_mf_itemtype > :: enum_n; };
+template < > struct type_master < t_mf_itemtype > : ENUM_N (mf_itemtype)
+{ using ENUM_N (mf_itemtype) :: enum_n; };
 
-template < > struct type_master < t_mf_listing_action > : enum_n < t_mf_listing_action, e_mf_listing_action >
-{ using enum_n < t_mf_listing_action, e_mf_listing_action > :: enum_n; };
+template < > struct type_master < t_mf_listing_action > : ENUM_N (mf_listing_action)
+{ using ENUM_N (mf_listing_action) :: enum_n; };
 
-template < > struct type_master < t_mf_method > : enum_n < t_mf_method, e_mf_method >
-{ using enum_n < t_mf_method, e_mf_method > :: enum_n; };
+template < > struct type_master < t_mf_method > : ENUM_N (mf_method)
+{ using ENUM_N (mf_method) :: enum_n; };
 
-template < > struct type_master < t_mf_reviewtype > : enum_n < t_mf_reviewtype, e_mf_reviewtype >
-{ using enum_n < t_mf_reviewtype, e_mf_reviewtype > :: enum_n; };
+template < > struct type_master < t_mf_reviewtype > : ENUM_N (mf_reviewtype)
+{ using ENUM_N (mf_reviewtype) :: enum_n; };
 
 template < > struct type_master < t_mime > : enum_n < t_mime, e_mimetype >
 { using enum_n < t_mime, e_mimetype > :: enum_n; };
 
-template < > struct type_master < t_month_english_long > : enum_n < t_month_english_long, e_month_english_long >
-{ using enum_n < t_month_english_long, e_month_english_long > :: enum_n; };
+template < > struct type_master < t_month_english_long > : ENUM_N (month_english_long)
+{ using ENUM_N (month_english_long) :: enum_n; };
 
-template < > struct type_master < t_month_english_short > : enum_n < t_month_english_short, e_month_english_short >
-{ using enum_n < t_month_english_short, e_month_english_short > :: enum_n; };
+template < > struct type_master < t_month_english_short > : ENUM_N (month_english_short)
+{ using ENUM_N (month_english_short) :: enum_n; };
 
-template < > struct type_master < t_musickey > : enum_n < t_musickey, e_musickey >
-{ using enum_n < t_musickey, e_musickey > :: enum_n; };
+template < > struct type_master < t_musickey > : ENUM_N (musickey)
+{ using ENUM_N (musickey) :: enum_n; };
 
-template < > struct type_master < t_myersbriggs > : enum_n < t_myersbriggs, e_myersbriggs >
-{ using enum_n < t_myersbriggs, e_myersbriggs > :: enum_n; };
+template < > struct type_master < t_myersbriggs > : ENUM_N (myersbriggs)
+{ using ENUM_N (myersbriggs) :: enum_n; };
 
-template < > struct type_master < t_namedspace > : enum_n < t_namedspace, e_namedspace >
-{ using enum_n < t_namedspace, e_namedspace > :: enum_n; };
+template < > struct type_master < t_namedspace > : ENUM_N (namedspace)
+{ using ENUM_N (namedspace) :: enum_n; };
 
-template < > struct type_master < t_namespace > : enum_n < t_namespace, e_namespace >
-{ using enum_n < t_namespace, e_namespace > :: enum_n; };
+template < > struct type_master < t_namespace > : ENUM_N (namespace)
+{ using ENUM_N (namespace) :: enum_n; };
 
-template < > struct type_master < t_nit_macro > : enum_n < t_nit_macro, e_nit_macro >
-{ using enum_n < t_nit_macro, e_nit_macro > :: enum_n; };
+template < > struct type_master < t_nit_macro > : ENUM_N (nit_macro)
+{ using ENUM_N (nit_macro) :: enum_n; };
 
-template < > struct type_master < t_nit_section > : enum_n < t_nit_section, e_nit_section >
-{ using enum_n < t_nit_section, e_nit_section > :: enum_n; };
+template < > struct type_master < t_nit_section > : ENUM_N (nit_section)
+{ using ENUM_N (nit_section) :: enum_n; };
 
-template < > struct type_master < t_ogtype > : enum_n < t_ogtype, e_ogtype >
-{ using enum_n < t_ogtype, e_ogtype > :: enum_n; };
+template < > struct type_master < t_ogtype > : ENUM_N (ogtype)
+{ using ENUM_N (ogtype) :: enum_n; };
 
-template < > struct type_master < t_page_orientation > : enum_n < t_page_orientation, e_page_orientation >
-{ using enum_n < t_page_orientation, e_page_orientation > :: enum_n; };
+template < > struct type_master < t_page_orientation > : ENUM_N (page_orientation)
+{ using ENUM_N (page_orientation) :: enum_n; };
 
-template < > struct type_master < t_paintkeyword > : enum_n < t_paintkeyword, e_paintkeyword >
-{ using enum_n < t_paintkeyword, e_paintkeyword > :: enum_n; };
+template < > struct type_master < t_paintkeyword > : ENUM_N (paintkeyword)
+{ using ENUM_N (paintkeyword) :: enum_n; };
 
-template < > struct type_master < t_pam_ccv > : enum_n < t_pam_ccv, e_pam_ccv >
-{ using enum_n < t_pam_ccv, e_pam_ccv > :: enum_n; };
+template < > struct type_master < t_pam_ccv > : ENUM_N (pam_ccv)
+{ using ENUM_N (pam_ccv) :: enum_n; };
 
-template < > struct type_master < t_pcmm_status > : enum_n < t_pcmm_status, e_pcmm_status >
-{ using enum_n < t_pcmm_status, e_pcmm_status > :: enum_n; };
+template < > struct type_master < t_pcmm_status > : ENUM_N (pcmm_status)
+{ using ENUM_N (pcmm_status) :: enum_n; };
 
-template < > struct type_master < t_pointer_events > : enum_n < t_pointer_events, e_pointer_events >
-{ using enum_n < t_pointer_events, e_pointer_events > :: enum_n; };
+template < > struct type_master < t_pointer_events > : ENUM_N (pointer_events)
+{ using ENUM_N (pointer_events) :: enum_n; };
 
-template < > struct type_master < t_pri_img_colour > : enum_n < t_pri_img_colour, e_pri_img_colour >
-{ using enum_n < t_pri_img_colour, e_pri_img_colour > :: enum_n; };
+template < > struct type_master < t_pri_img_colour > : ENUM_N (pri_img_colour)
+{ using ENUM_N (pri_img_colour) :: enum_n; };
 
-template < > struct type_master < t_pri_img_technique > : enum_n < t_pri_img_technique, e_pri_img_technique >
-{ using enum_n < t_pri_img_technique, e_pri_img_technique > :: enum_n; };
+template < > struct type_master < t_pri_img_technique > : ENUM_N (pri_img_technique)
+{ using ENUM_N (pri_img_technique) :: enum_n; };
 
-template < > struct type_master < t_pri_img_viewpoint > : enum_n < t_pri_img_viewpoint, e_pri_img_viewpoint >
-{ using enum_n < t_pri_img_viewpoint, e_pri_img_viewpoint > :: enum_n; };
+template < > struct type_master < t_pri_img_viewpoint > : ENUM_N (pri_img_viewpoint)
+{ using ENUM_N (pri_img_viewpoint) :: enum_n; };
 
-template < > struct type_master < t_print > : enum_n < t_print, e_print >
-{ using enum_n < t_print, e_print > :: enum_n; };
+template < > struct type_master < t_print > : ENUM_N (print)
+{ using ENUM_N (print) :: enum_n; };
 
-template < > struct type_master < t_prism_ad_pos > : enum_n < t_prism_ad_pos, e_prism_ad_pos >
-{ using enum_n < t_prism_ad_pos, e_prism_ad_pos > :: enum_n; };
+template < > struct type_master < t_prism_ad_pos > : ENUM_N (prism_ad_pos)
+{ using ENUM_N (prism_ad_pos) :: enum_n; };
 
-template < > struct type_master < t_prism_ad_type > : enum_n < t_prism_ad_type, e_prism_ad_type >
-{ using enum_n < t_prism_ad_type, e_prism_ad_type > :: enum_n; };
+template < > struct type_master < t_prism_ad_type > : ENUM_N (prism_ad_type)
+{ using ENUM_N (prism_ad_type) :: enum_n; };
 
-template < > struct type_master < t_prism_ag_type > : enum_n < t_prism_ag_type, e_prism_ag_type >
-{ using enum_n < t_prism_ag_type, e_prism_ag_type > :: enum_n; };
+template < > struct type_master < t_prism_ag_type > : ENUM_N (prism_ag_type)
+{ using ENUM_N (prism_ag_type) :: enum_n; };
 
-template < > struct type_master < t_prism_audience_sector > : enum_n < t_prism_audience_sector, e_prism_audience_sector >
-{ using enum_n < t_prism_audience_sector, e_prism_audience_sector > :: enum_n; };
+template < > struct type_master < t_prism_audience_sector > : ENUM_N (prism_audience_sector)
+{ using ENUM_N (prism_audience_sector) :: enum_n; };
 
-template < > struct type_master < t_prism_ccv > : enum_n < t_prism_ccv, e_prism_ccv >
-{ using enum_n < t_prism_ccv, e_prism_ccv > :: enum_n; };
+template < > struct type_master < t_prism_ccv > : ENUM_N (prism_ccv)
+{ using ENUM_N (prism_ccv) :: enum_n; };
 
-template < > struct type_master < t_prism_class > : enum_n < t_prism_class, e_prism_class >
-{ using enum_n < t_prism_class, e_prism_class > :: enum_n; };
+template < > struct type_master < t_prism_class > : ENUM_N (prism_class)
+{ using ENUM_N (prism_class) :: enum_n; };
 
-template < > struct type_master < t_prism_contenttype > : enum_n < t_prism_contenttype, e_prism_contenttype >
-{ using enum_n < t_prism_contenttype, e_prism_contenttype > :: enum_n; };
+template < > struct type_master < t_prism_contenttype > : ENUM_N (prism_contenttype)
+{ using ENUM_N (prism_contenttype) :: enum_n; };
 
-template < > struct type_master < t_prism_cvp > : enum_n < t_prism_cvp, e_prism_cvp >
-{ using enum_n < t_prism_cvp, e_prism_cvp > :: enum_n; };
+template < > struct type_master < t_prism_cvp > : ENUM_N (prism_cvp)
+{ using ENUM_N (prism_cvp) :: enum_n; };
 
-template < > struct type_master < t_prism_genre > : enum_n < t_prism_genre, e_prism_genre >
-{ using enum_n < t_prism_genre, e_prism_genre > :: enum_n; };
+template < > struct type_master < t_prism_genre > : ENUM_N (prism_genre)
+{ using ENUM_N (prism_genre) :: enum_n; };
 
-template < > struct type_master < t_prism_icv > : enum_n < t_prism_icv, e_prism_icv >
-{ using enum_n < t_prism_icv, e_prism_icv > :: enum_n; };
+template < > struct type_master < t_prism_icv > : ENUM_N (prism_icv)
+{ using ENUM_N (prism_icv) :: enum_n; };
 
-template < > struct type_master < t_prism_pasv > : enum_n < t_prism_pasv, e_prism_pasv >
-{ using enum_n < t_prism_pasv, e_prism_pasv > :: enum_n; };
+template < > struct type_master < t_prism_pasv > : ENUM_N (prism_pasv)
+{ using ENUM_N (prism_pasv) :: enum_n; };
 
-template < > struct type_master < t_prism_pcv > : enum_n < t_prism_pcv, e_prism_pcv >
-{ using enum_n < t_prism_pcv, e_prism_pcv > :: enum_n; };
+template < > struct type_master < t_prism_pcv > : ENUM_N (prism_pcv)
+{ using ENUM_N (prism_pcv) :: enum_n; };
 
-template < > struct type_master < t_prism_pfv > : enum_n < t_prism_pfv, e_prism_pfv >
-{ using enum_n < t_prism_pfv, e_prism_pfv > :: enum_n; };
+template < > struct type_master < t_prism_pfv > : ENUM_N (prism_pfv)
+{ using ENUM_N (prism_pfv) :: enum_n; };
 
-template < > struct type_master < t_prism_ptv > : enum_n < t_prism_ptv, e_prism_ptv >
-{ using enum_n < t_prism_ptv, e_prism_ptv > :: enum_n; };
+template < > struct type_master < t_prism_ptv > : ENUM_N (prism_ptv)
+{ using ENUM_N (prism_ptv) :: enum_n; };
 
-template < > struct type_master < t_prism_rcv > : enum_n < t_prism_rcv, e_prism_rcv >
-{ using enum_n < t_prism_rcv, e_prism_rcv > :: enum_n; };
+template < > struct type_master < t_prism_rcv > : ENUM_N (prism_rcv)
+{ using ENUM_N (prism_rcv) :: enum_n; };
 
-template < > struct type_master < t_prism_role > : enum_n < t_prism_role, e_prism_role >
-{ using enum_n < t_prism_role, e_prism_role > :: enum_n; };
+template < > struct type_master < t_prism_role > : ENUM_N (prism_role)
+{ using ENUM_N (prism_role) :: enum_n; };
 
-template < > struct type_master < t_prs_action > : enum_n < t_prs_action, e_prs_action >
-{ using enum_n < t_prs_action, e_prs_action > :: enum_n; };
+template < > struct type_master < t_prs_action > : ENUM_N (prs_action)
+{ using ENUM_N (prs_action) :: enum_n; };
 
-template < > struct type_master < t_quote_style > : enum_n < t_quote_style, e_quote_style >
-{ using enum_n < t_quote_style, e_quote_style > :: enum_n; };
+template < > struct type_master < t_quote_style > : ENUM_N (quote_style)
+{ using ENUM_N (quote_style) :: enum_n; };
 
-template < > struct type_master < t_recipe_content > : enum_n < t_recipe_content, e_recipe_content >
-{ using enum_n < t_recipe_content, e_recipe_content > :: enum_n; };
+template < > struct type_master < t_recipe_content > : ENUM_N (recipe_content)
+{ using ENUM_N (recipe_content) :: enum_n; };
 
-template < > struct type_master < t_recipe_course > : enum_n < t_recipe_course, e_recipe_course >
-{ using enum_n < t_recipe_course, e_recipe_course > :: enum_n; };
+template < > struct type_master < t_recipe_course > : ENUM_N (recipe_course)
+{ using ENUM_N (recipe_course) :: enum_n; };
 
-template < > struct type_master < t_recipe_cuisine > : enum_n < t_recipe_cuisine, e_recipe_cuisine >
-{ using enum_n < t_recipe_cuisine, e_recipe_cuisine > :: enum_n; };
+template < > struct type_master < t_recipe_cuisine > : ENUM_N (recipe_cuisine)
+{ using ENUM_N (recipe_cuisine) :: enum_n; };
 
-template < > struct type_master < t_recipe_dietary > : enum_n < t_recipe_dietary, e_recipe_dietary >
-{ using enum_n < t_recipe_dietary, e_recipe_dietary > :: enum_n; };
+template < > struct type_master < t_recipe_dietary > : ENUM_N (recipe_dietary)
+{ using ENUM_N (recipe_dietary) :: enum_n; };
 
-template < > struct type_master < t_recipe_dish > : enum_n < t_recipe_dish, e_recipe_dish >
-{ using enum_n < t_recipe_dish, e_recipe_dish > :: enum_n; };
+template < > struct type_master < t_recipe_dish > : ENUM_N (recipe_dish)
+{ using ENUM_N (recipe_dish) :: enum_n; };
 
-template < > struct type_master < t_recipe_exclusion > : enum_n < t_recipe_exclusion, e_recipe_exclusion >
-{ using enum_n < t_recipe_exclusion, e_recipe_exclusion > :: enum_n; };
+template < > struct type_master < t_recipe_exclusion > : ENUM_N (recipe_exclusion)
+{ using ENUM_N (recipe_exclusion) :: enum_n; };
 
-template < > struct type_master < t_recipe_kit > : enum_n < t_recipe_kit, e_recipe_kit >
-{ using enum_n < t_recipe_kit, e_recipe_kit > :: enum_n; };
+template < > struct type_master < t_recipe_kit > : ENUM_N (recipe_kit)
+{ using ENUM_N (recipe_kit) :: enum_n; };
 
-template < > struct type_master < t_recipe_meal > : enum_n < t_recipe_meal, e_recipe_meal >
-{ using enum_n < t_recipe_meal, e_recipe_meal > :: enum_n; };
+template < > struct type_master < t_recipe_meal > : ENUM_N (recipe_meal)
+{ using ENUM_N (recipe_meal) :: enum_n; };
 
-template < > struct type_master < t_recipe_method > : enum_n < t_recipe_method, e_recipe_method >
-{ using enum_n < t_recipe_method, e_recipe_method > :: enum_n; };
+template < > struct type_master < t_recipe_method > : ENUM_N (recipe_method)
+{ using ENUM_N (recipe_method) :: enum_n; };
 
-template < > struct type_master < t_recipe_source > : enum_n < t_recipe_source, e_recipe_source >
-{ using enum_n < t_recipe_source, e_recipe_source > :: enum_n; };
+template < > struct type_master < t_recipe_source > : ENUM_N (recipe_source)
+{ using ENUM_N (recipe_source) :: enum_n; };
 
-template < > struct type_master < t_recipe_special > : enum_n < t_recipe_special, e_recipe_special >
-{ using enum_n < t_recipe_special, e_recipe_special > :: enum_n; };
+template < > struct type_master < t_recipe_special > : ENUM_N (recipe_special)
+{ using ENUM_N (recipe_special) :: enum_n; };
 
-template < > struct type_master < t_recipe_time > : enum_n < t_recipe_time, e_recipe_time >
-{ using enum_n < t_recipe_time, e_recipe_time > :: enum_n; };
+template < > struct type_master < t_recipe_time > : ENUM_N (recipe_time)
+{ using ENUM_N (recipe_time) :: enum_n; };
 
-template < > struct type_master < t_referrer > : enum_n < t_referrer, e_referrer >
-{ using enum_n < t_referrer, e_referrer > :: enum_n; };
+template < > struct type_master < t_referrer > : ENUM_N (referrer)
+{ using ENUM_N (referrer) :: enum_n; };
 
-template < > struct type_master < t_rendering_in_tents > : enum_n < t_rendering_in_tents, e_rendering_in_tents >
-{ using enum_n < t_rendering_in_tents, e_rendering_in_tents > :: enum_n; };
+template < > struct type_master < t_rendering_in_tents > : ENUM_N (rendering_in_tents)
+{ using ENUM_N (rendering_in_tents) :: enum_n; };
 
 template < > struct type_master < t_report > : enum_n < t_report, e_report, e_nit_macro, nm_none >
 { using enum_n < t_report, e_report, e_nit_macro, nm_none > :: enum_n; };
@@ -931,209 +936,211 @@ template < > struct type_master < t_report > : enum_n < t_report, e_report, e_ni
 template < > struct type_master < t_role > : enum_n < t_role, e_aria_role >
 { using enum_n < t_role, e_aria_role > :: enum_n; };
 
-template < > struct type_master < t_rules > : enum_n < t_rules, e_rules >
-{ using enum_n < t_rules, e_rules > :: enum_n; };
+template < > struct type_master < t_rules > : ENUM_N (rules)
+{ using ENUM_N (rules) :: enum_n; };
 
-template < > struct type_master < t_sandbox > : enum_n < t_sandbox, e_sandbox >
-{ using enum_n < t_sandbox, e_sandbox > :: enum_n; };
+template < > struct type_master < t_sandbox > : ENUM_N (sandbox)
+{ using ENUM_N (sandbox) :: enum_n; };
 
-template < > struct type_master < t_scei > : enum_n < t_scei, e_scei >
-{ using enum_n < t_scei, e_scei > :: enum_n; };
+template < > struct type_master < t_scei > : ENUM_N (scei)
+{ using ENUM_N (scei) :: enum_n; };
 
-template < > struct type_master < t_severity > : enum_n < t_severity, e_severity >
-{ using enum_n < t_severity, e_severity > :: enum_n; };
+template < > struct type_master < t_severity > : ENUM_N (severity)
+{ using ENUM_N (severity) :: enum_n; };
 
-template < > struct type_master < t_shadow > : enum_n < t_shadow, e_shadow >
-{ using enum_n < t_shadow, e_shadow > :: enum_n; };
+template < > struct type_master < t_shadow > : ENUM_N (shadow)
+{ using ENUM_N (shadow) :: enum_n; };
 
-template < > struct type_master < t_shape7 > : enum_n < t_shape7, e_shape7 >
-{ using enum_n < t_shape7, e_shape7 > :: enum_n; };
+template < > struct type_master < t_shape7 > : ENUM_N (shape7)
+{ using ENUM_N (shape7) :: enum_n; };
 
-template < > struct type_master < t_sgml > : enum_n < t_sgml, e_sgml >
-{ using enum_n < t_sgml, e_sgml > :: enum_n; };
+template < > struct type_master < t_sgml > : ENUM_N (sgml)
+{ using ENUM_N (sgml) :: enum_n; };
 
-template < > struct type_master < t_shape_rendering > : enum_n < t_shape_rendering, e_shape_rendering >
-{ using enum_n < t_shape_rendering, e_shape_rendering > :: enum_n; };
+template < > struct type_master < t_shape_rendering > : ENUM_N (shape_rendering)
+{ using ENUM_N (shape_rendering) :: enum_n; };
 
-template < > struct type_master < t_smei > : enum_n < t_smei, e_smei >
-{ using enum_n < t_smei, e_smei > :: enum_n; };
+template < > struct type_master < t_smei > : ENUM_N (smei)
+{ using ENUM_N (smei) :: enum_n; };
 
-template < > struct type_master < t_step_position > : enum_n < t_step_position, e_step_position >
-{ using enum_n < t_step_position, e_step_position > :: enum_n; };
+template < > struct type_master < t_step_position > : ENUM_N (step_position)
+{ using ENUM_N (step_position) :: enum_n; };
 
-template < > struct type_master < t_ssi > : enum_n < t_ssi, e_ssi >
-{ using enum_n < t_ssi, e_ssi > :: enum_n; };
+template < > struct type_master < t_ssi > : ENUM_N (ssi)
+{ using ENUM_N (ssi) :: enum_n; };
 
-template < > struct type_master < t_ssi_comparison > : enum_n < t_ssi_comparison, e_ssi_comparison >
-{ using enum_n < t_ssi_comparison, e_ssi_comparison > :: enum_n; };
+template < > struct type_master < t_ssi_comparison > : ENUM_N (ssi_comparison)
+{ using ENUM_N (ssi_comparison) :: enum_n; };
 
-template < > struct type_master < t_ssi_config > : enum_n < t_ssi_config, e_ssi_config >
-{ using enum_n < t_ssi_config, e_ssi_config > :: enum_n; };
+template < > struct type_master < t_ssi_config > : ENUM_N (ssi_config)
+{ using ENUM_N (ssi_config) :: enum_n; };
 
-template < > struct type_master < t_ssi_encoding > : enum_n < t_ssi_encoding, e_ssi_encoding >
-{ using enum_n < t_ssi_encoding, e_ssi_encoding > :: enum_n; };
+template < > struct type_master < t_ssi_encoding > : ENUM_N (ssi_encoding)
+{ using ENUM_N (ssi_encoding) :: enum_n; };
 
-template < > struct type_master < t_ssi_env > : enum_n < t_ssi_env, e_ssi_env >
-{ using enum_n < t_ssi_env, e_ssi_env > :: enum_n; };
+template < > struct type_master < t_ssi_env > : ENUM_N (ssi_env)
+{ using ENUM_N (ssi_env) :: enum_n; };
 
-template < > struct type_master < t_stress > : enum_n < t_stress, e_stress >
-{ using enum_n < t_stress, e_stress > :: enum_n; };
+template < > struct type_master < t_stress > : ENUM_N (stress)
+{ using ENUM_N (stress) :: enum_n; };
 
-template < > struct type_master < t_supports > : enum_n < t_supports, e_supports >
-{ using enum_n < t_supports, e_supports > :: enum_n; };
+template < > struct type_master < t_supports > : ENUM_N (supports)
+{ using ENUM_N (supports) :: enum_n; };
 
-template < > struct type_master < t_svg_align > : enum_n < t_svg_align, e_svg_align >
-{ using enum_n < t_svg_align, e_svg_align > :: enum_n; };
+template < > struct type_master < t_svg_align > : ENUM_N (svg_align)
+{ using ENUM_N (svg_align) :: enum_n; };
 
-template < > struct type_master < t_svg_display > : enum_n < t_svg_display, e_svg_display >
-{ using enum_n < t_svg_display, e_svg_display > :: enum_n; };
+template < > struct type_master < t_svg_display > : ENUM_N (svg_display)
+{ using ENUM_N (svg_display) :: enum_n; };
 
-template < > struct type_master < t_svg_feature > : enum_n < t_svg_feature, e_svg_feature >
-{ using enum_n < t_svg_feature, e_svg_feature > :: enum_n; };
+template < > struct type_master < t_svg_feature > : ENUM_N (svg_feature)
+{ using ENUM_N (svg_feature) :: enum_n; };
 
-template < > struct type_master < t_svg_fontstretch > : enum_n < t_svg_fontstretch, e_svg_fontstretch >
-{ using enum_n < t_svg_fontstretch, e_svg_fontstretch > :: enum_n; };
+template < > struct type_master < t_svg_fontstretch > : ENUM_N (svg_fontstretch)
+{ using ENUM_N (svg_fontstretch) :: enum_n; };
 
-template < > struct type_master < t_svg_fontstretch_ff > : enum_n < t_svg_fontstretch_ff, e_svg_fontstretch_ff >
-{ using enum_n < t_svg_fontstretch_ff, e_svg_fontstretch_ff > :: enum_n; };
+template < > struct type_master < t_svg_fontstretch_ff > : ENUM_N (svg_fontstretch_ff)
+{ using ENUM_N (svg_fontstretch_ff) :: enum_n; };
 
-template < > struct type_master < t_svg_fontstyle > : enum_n < t_svg_fontstyle, e_svg_fontstyle >
-{ using enum_n < t_svg_fontstyle, e_svg_fontstyle > :: enum_n; };
+template < > struct type_master < t_svg_fontstyle > : ENUM_N (svg_fontstyle)
+{ using ENUM_N (svg_fontstyle) :: enum_n; };
 
-template < > struct type_master < t_svg_fontweight > : enum_n < t_svg_fontweight, e_svg_fontweight >
-{ using enum_n < t_svg_fontweight, e_svg_fontweight > :: enum_n; };
+template < > struct type_master < t_svg_fontweight > : ENUM_N (svg_fontweight)
+{ using ENUM_N (svg_fontweight) :: enum_n; };
 
-template < > struct type_master < t_svg_fontweight_ff > : enum_n < t_svg_fontweight_ff, e_svg_fontweight_ff >
-{ using enum_n < t_svg_fontweight_ff, e_svg_fontweight_ff > :: enum_n; };
+template < > struct type_master < t_svg_fontweight_ff > : ENUM_N (svg_fontweight_ff)
+{ using ENUM_N (svg_fontweight_ff) :: enum_n; };
 
-template < > struct type_master < t_svg_mode > : enum_n < t_svg_mode, e_svg_mode >
-{ using enum_n < t_svg_mode, e_svg_mode > :: enum_n; };
+template < > struct type_master < t_svg_mode > : ENUM_N (svg_mode)
+{ using ENUM_N (svg_mode) :: enum_n; };
 
-template < > struct type_master < t_svg_overflow > : enum_n < t_svg_overflow, e_svg_overflow >
-{ using enum_n < t_svg_overflow, e_svg_overflow > :: enum_n; };
+template < > struct type_master < t_svg_overflow > : ENUM_N (svg_overflow)
+{ using ENUM_N (svg_overflow) :: enum_n; };
 
-template < > struct type_master < t_svg_rendering_intent > : enum_n < t_svg_rendering_intent, e_svg_rendering_intent >
-{ using enum_n < t_svg_rendering_intent, e_svg_rendering_intent > :: enum_n; };
+template < > struct type_master < t_svg_rendering_intent > : ENUM_N (svg_rendering_intent)
+{ using ENUM_N (svg_rendering_intent) :: enum_n; };
 
-template < > struct type_master < t_svg_type > : enum_n < t_svg_type, e_svg_type >
-{ using enum_n < t_svg_type, e_svg_type > :: enum_n; };
+template < > struct type_master < t_svg_type > : ENUM_N (svg_type)
+{ using ENUM_N (svg_type) :: enum_n; };
 
-template < > struct type_master < t_svg_version > : enum_n < t_svg_version, e_svg_version >
-{ using enum_n < t_svg_version, e_svg_version > :: enum_n; };
+template < > struct type_master < t_svg_version > : ENUM_N (svg_version)
+{ using ENUM_N (svg_version) :: enum_n; };
 
-template < > struct type_master < t_svg_version_grand > : enum_n < t_svg_version_grand, e_svg_version_grand >
-{ using enum_n < t_svg_version_grand, e_svg_version_grand > :: enum_n; };
+template < > struct type_master < t_svg_version_grand > : ENUM_N (svg_version_grand)
+{ using ENUM_N (svg_version_grand) :: enum_n; };
 
-template < > struct type_master < t_tableframe > : enum_n < t_tableframe, e_tableframe >
-{ using enum_n < t_tableframe, e_tableframe > :: enum_n; };
+template < > struct type_master < t_tableframe > : ENUM_N (tableframe)
+{ using ENUM_N (tableframe) :: enum_n; };
 
-template < > struct type_master < t_tblri > : enum_n < t_tblri, e_tblri >
-{ using enum_n < t_tblri, e_tblri > :: enum_n; };
+template < > struct type_master < t_tblri > : ENUM_N (tblri)
+{ using ENUM_N (tblri) :: enum_n; };
 
-template < > struct type_master < t_text_decoration > : enum_n < t_text_decoration, e_text_decoration >
-{ using enum_n < t_text_decoration, e_text_decoration > :: enum_n; };
+template < > struct type_master < t_text_decoration > : ENUM_N (text_decoration)
+{ using ENUM_N (text_decoration) :: enum_n; };
 
-template < > struct type_master < t_text_rendering > : enum_n < t_text_rendering, e_text_rendering >
-{ using enum_n < t_text_rendering, e_text_rendering > :: enum_n; };
+template < > struct type_master < t_text_rendering > : ENUM_N (text_rendering)
+{ using ENUM_N (text_rendering) :: enum_n; };
 
-template < > struct type_master < t_tld > : enum_n < t_tld, e_tld >
-{ using enum_n < t_tld, e_tld > :: enum_n; };
+template < > struct type_master < t_tld > : ENUM_N (tld)
+{ using ENUM_N (tld) :: enum_n; };
 
-template < > struct type_master < t_transform_anim > : enum_n < t_transform_anim, e_transform_anim >
-{ using enum_n < t_transform_anim, e_transform_anim > :: enum_n; };
+template < > struct type_master < t_transform_anim > : ENUM_N (transform_anim)
+{ using ENUM_N (transform_anim) :: enum_n; };
 
-template < > struct type_master < t_transformbehaviour > : enum_n < t_transformbehaviour, e_transformbehaviour >
-{ using enum_n < t_transformbehaviour, e_transformbehaviour > :: enum_n; };
+template < > struct type_master < t_transformbehaviour > : ENUM_N (transformbehaviour)
+{ using ENUM_N (transformbehaviour) :: enum_n; };
 
-template < > struct type_master < t_transform_fn > : enum_n < t_transform_fn, e_transform_fn >
-{ using enum_n < t_transform_fn, e_transform_fn > :: enum_n; };
+template < > struct type_master < t_transform_fn > : ENUM_N (transform_fn)
+{ using ENUM_N (transform_fn) :: enum_n; };
 
-template < > struct type_master < t_turbulence_type > : enum_n < t_turbulence_type, e_turbulence_type >
-{ using enum_n < t_turbulence_type, e_turbulence_type > :: enum_n; };
+template < > struct type_master < t_turbulence_type > : ENUM_N (turbulence_type)
+{ using ENUM_N (turbulence_type) :: enum_n; };
 
-template < > struct type_master < t_unit > : enum_n < t_unit, e_unit >
-{ using enum_n < t_unit, e_unit > :: enum_n; };
+template < > struct type_master < t_unit > : ENUM_N (unit)
+{ using ENUM_N (unit) :: enum_n; };
 
-template < > struct type_master < t_unit_abs_len > : enum_n < t_unit_abs_len, e_unit_abs_len >
-{ using enum_n < t_unit_abs_len, e_unit_abs_len > :: enum_n; };
+template < > struct type_master < t_unit_abs_len > : ENUM_N (unit_abs_len)
+{ using ENUM_N (unit_abs_len) :: enum_n; };
 
-template < > struct type_master < t_unit_angle > : enum_n < t_unit_angle, e_unit_angle >
-{ using enum_n < t_unit_angle, e_unit_angle > :: enum_n; };
+template < > struct type_master < t_unit_angle > : ENUM_N (unit_angle)
+{ using ENUM_N (unit_angle) :: enum_n; };
 
-template < > struct type_master < t_unit_freq > : enum_n < t_unit_freq, e_unit_freq >
-{ using enum_n < t_unit_freq, e_unit_freq > :: enum_n; };
+template < > struct type_master < t_unit_freq > : ENUM_N (unit_freq)
+{ using ENUM_N (unit_freq) :: enum_n; };
 
-template < > struct type_master < t_unit_rel_len > : enum_n < t_unit_rel_len, e_unit_rel_len >
-{ using enum_n < t_unit_rel_len, e_unit_rel_len > :: enum_n; };
+template < > struct type_master < t_unit_rel_len > : ENUM_N (unit_rel_len)
+{ using ENUM_N (unit_rel_len) :: enum_n; };
 
-template < > struct type_master < t_unit_res > : enum_n < t_unit_res, e_unit_res >
-{ using enum_n < t_unit_res, e_unit_res > :: enum_n; };
+template < > struct type_master < t_unit_res > : ENUM_N (unit_res)
+{ using ENUM_N (unit_res) :: enum_n; };
 
-template < > struct type_master < t_unit_time > : enum_n < t_unit_time, e_unit_time >
-{ using enum_n < t_unit_time, e_unit_time > :: enum_n; };
+template < > struct type_master < t_unit_time > : ENUM_N (unit_time)
+{ using ENUM_N (unit_time) :: enum_n; };
 
-template < > struct type_master < t_unicode_bidi > : enum_n < t_unicode_bidi, e_unicode_bidi >
-{ using enum_n < t_unicode_bidi, e_unicode_bidi > :: enum_n; };
+template < > struct type_master < t_unicode_bidi > : ENUM_N (unicode_bidi)
+{ using ENUM_N (unicode_bidi) :: enum_n; };
 
-template < > struct type_master < t_vector_effect_2 > : enum_n < t_vector_effect_2, e_vector_effect_2 >
-{ using enum_n < t_vector_effect_2, e_vector_effect_2 > :: enum_n; };
+template < > struct type_master < t_vector_effect_2 > : ENUM_N (vector_effect_2)
+{ using ENUM_N (vector_effect_2) :: enum_n; };
 
-template < > struct type_master < t_vertical_align_enum > : enum_n < t_vertical_align_enum, e_vertical_align_enum >
-{ using enum_n < t_vertical_align_enum, e_vertical_align_enum > :: enum_n; };
+template < > struct type_master < t_vertical_align_enum > : ENUM_N (vertical_align_enum)
+{ using ENUM_N (vertical_align_enum) :: enum_n; };
 
-template < > struct type_master < t_vgender > : enum_n < t_vgender, e_vgender >
-{ using enum_n < t_vgender, e_vgender > :: enum_n; };
+template < > struct type_master < t_vgender > : ENUM_N (vgender)
+{ using ENUM_N (vgender) :: enum_n; };
 
-template < > struct type_master < t_vrel > : enum_n < t_vrel, e_vrel >
-{ using enum_n < t_vrel, e_vrel > :: enum_n; };
+template < > struct type_master < t_vrel > : ENUM_N (vrel)
+{ using ENUM_N (vrel) :: enum_n; };
 
-template < > struct type_master < t_vtt > : enum_n < t_vtt, e_vtt >
-{ using enum_n < t_vtt, e_vtt > :: enum_n; };
+template < > struct type_master < t_vtt > : ENUM_N (vtt)
+{ using ENUM_N (vtt) :: enum_n; };
 
-template < > struct type_master < t_weekday_english_long > : enum_n < t_weekday_english_long, e_weekday_english_long >
-{ using enum_n < t_weekday_english_long, e_weekday_english_long > :: enum_n; };
+template < > struct type_master < t_weekday_english_long > : ENUM_N (weekday_english_long)
+{ using ENUM_N (weekday_english_long) :: enum_n; };
 
-template < > struct type_master < t_weekday_english_short > : enum_n < t_weekday_english_short, e_weekday_english_short >
-{ using enum_n < t_weekday_english_short, e_weekday_english_short > :: enum_n; };
+template < > struct type_master < t_weekday_english_short > : ENUM_N (weekday_english_short)
+{ using ENUM_N (weekday_english_short) :: enum_n; };
 
-template < > struct type_master < t_whitespace > : enum_n < t_whitespace, e_whitespace >
-{ using enum_n < t_whitespace, e_whitespace > :: enum_n; };
+template < > struct type_master < t_whitespace > : ENUM_N (whitespace)
+{ using ENUM_N (whitespace) :: enum_n; };
 
-template < > struct type_master < t_writingmode > : enum_n < t_writingmode, e_writingmode >
-{ using enum_n < t_writingmode, e_writingmode > :: enum_n; };
+template < > struct type_master < t_writingmode > : ENUM_N (writingmode)
+{ using ENUM_N (writingmode) :: enum_n; };
 
-template < > struct type_master < t_xmlns > : enum_n < t_xmlns, e_xmlns >
-{ using enum_n < t_xmlns, e_xmlns > :: enum_n; };
+template < > struct type_master < t_xmlns > : ENUM_N (xmlns)
+{ using ENUM_N (xmlns) :: enum_n; };
 
-template < > struct type_master < t_xmpdm_audio_channel > : enum_n < t_xmpdm_audio_channel, e_xmpdm_audio_channel >
-{ using enum_n < t_xmpdm_audio_channel, e_xmpdm_audio_channel > :: enum_n; };
+template < > struct type_master < t_xmpdm_audio_channel > : ENUM_N (xmpdm_audio_channel)
+{ using ENUM_N (xmpdm_audio_channel) :: enum_n; };
 
-template < > struct type_master < t_xmpdm_audio_sample > : enum_n < t_xmpdm_audio_sample, e_xmpdm_audio_sample >
-{ using enum_n < t_xmpdm_audio_sample, e_xmpdm_audio_sample > :: enum_n; };
+template < > struct type_master < t_xmpdm_audio_sample > : ENUM_N (xmpdm_audio_sample)
+{ using ENUM_N (xmpdm_audio_sample) :: enum_n; };
 
-template < > struct type_master < t_xmpdm_camera_angle > : enum_n < t_xmpdm_camera_angle, e_xmpdm_camera_angle >
-{ using enum_n < t_xmpdm_camera_angle, e_xmpdm_camera_angle > :: enum_n; };
+template < > struct type_master < t_xmpdm_camera_angle > : ENUM_N (xmpdm_camera_angle)
+{ using ENUM_N (xmpdm_camera_angle) :: enum_n; };
 
-template < > struct type_master < t_xmpdm_camera_move > : enum_n < t_xmpdm_camera_move, e_xmpdm_camera_move >
-{ using enum_n < t_xmpdm_camera_move, e_xmpdm_camera_move > :: enum_n; };
+template < > struct type_master < t_xmpdm_camera_move > : ENUM_N (xmpdm_camera_move)
+{ using ENUM_N (xmpdm_camera_move) :: enum_n; };
 
-template < > struct type_master < t_xmpdm_pulldown > : enum_n < t_xmpdm_pulldown, e_xmpdm_pulldown >
-{ using enum_n < t_xmpdm_pulldown, e_xmpdm_pulldown > :: enum_n; };
+template < > struct type_master < t_xmpdm_pulldown > : ENUM_N (xmpdm_pulldown)
+{ using ENUM_N (xmpdm_pulldown) :: enum_n; };
 
-template < > struct type_master < t_xmpdm_shotsize > : enum_n < t_xmpdm_shotsize, e_xmpdm_shotsize >
-{ using enum_n < t_xmpdm_shotsize, e_xmpdm_shotsize > :: enum_n; };
+template < > struct type_master < t_xmpdm_shotsize > : ENUM_N (xmpdm_shotsize)
+{ using ENUM_N (xmpdm_shotsize) :: enum_n; };
 
-template < > struct type_master < t_xmpdm_stretchmode > : enum_n < t_xmpdm_stretchmode, e_xmpdm_stretchmode >
-{ using enum_n < t_xmpdm_stretchmode, e_xmpdm_stretchmode > :: enum_n; };
+template < > struct type_master < t_xmpdm_stretchmode > : ENUM_N (xmpdm_stretchmode)
+{ using ENUM_N (xmpdm_stretchmode) :: enum_n; };
 
-template < > struct type_master < t_xmpdm_time_format > : enum_n < t_xmpdm_time_format, e_xmpdm_time_format >
-{ using enum_n < t_xmpdm_time_format, e_xmpdm_time_format > :: enum_n; };
+template < > struct type_master < t_xmpdm_time_format > : ENUM_N (xmpdm_time_format)
+{ using ENUM_N (xmpdm_time_format) :: enum_n; };
 
-template < > struct type_master < t_xmpdm_time_signature > : enum_n < t_xmpdm_time_signature, e_xmpdm_time_signature >
-{ using enum_n < t_xmpdm_time_signature, e_xmpdm_time_signature > :: enum_n; };
+template < > struct type_master < t_xmpdm_time_signature > : ENUM_N (xmpdm_time_signature)
+{ using ENUM_N (xmpdm_time_signature) :: enum_n; };
 
-template < > struct type_master < t_xmpdm_video_pixeldepth > : enum_n < t_xmpdm_video_pixeldepth, e_xmpdm_video_pixeldepth >
-{ using enum_n < t_xmpdm_video_pixeldepth, e_xmpdm_video_pixeldepth > :: enum_n; };
+template < > struct type_master < t_xmpdm_video_pixeldepth > : ENUM_N (xmpdm_video_pixeldepth)
+{ using ENUM_N (xmpdm_video_pixeldepth) :: enum_n; };
 
-template < > struct type_master < t_crs_whitebalance > : enum_n < t_crs_whitebalance, e_crs_whitebalance >
-{ using enum_n < t_crs_whitebalance, e_crs_whitebalance > :: enum_n; };
+template < > struct type_master < t_crs_whitebalance > : ENUM_N (crs_whitebalance)
+{ using ENUM_N (crs_whitebalance) :: enum_n; };
+
+#undef ENUM_N

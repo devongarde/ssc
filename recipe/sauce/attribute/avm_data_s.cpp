@@ -120,8 +120,8 @@ hav_t havt_selector [] =
 
 hav_t havt_semantics [] =
 {   { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_semantics, a_cd },
-    { { HTML_MATH3, 0, 0, H2_MATH_3_4_20 }, { HTML_UNDEF }, elem_semantics, a_definitionurl },
-    { { HTML_MATH3, 0, 0, H2_MATH_3_4_20 }, { HTML_UNDEF }, elem_semantics, a_encoding },
+    { { HTML_MATH3, 0, 0, H2_MATH_3 }, { HTML_UNDEF }, elem_semantics, a_definitionurl },
+    { { HTML_MATH3, 0, 0, H2_MATH_3 }, { HTML_UNDEF }, elem_semantics, a_encoding },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_semantics, a_name },
     MATH3_DEFS_ATTRIBUTES (elem_semantics),
     STANDARD_MATH_CORE_ATTRIBUTES (elem_semantics),
@@ -139,7 +139,7 @@ hav_t havt_set [] =
 {   { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, elem_set, a_externalresourcesrequired },
     { { HTML_SVG20, 0, HE_SVG_2 }, { HTML_UNDEF }, elem_set, a_href },
     { { HTML_SVG10, 0, HE_SVG }, { HTML_UNDEF }, elem_set, a_to },
-    { { HTML_MATH2, 0, 0, H2_MATH_2 }, { HTML_UNDEF }, elem_set, a_type },
+    { { HTML_MATH2, 0, 0, H2_MATH_2_3_4 }, { HTML_UNDEF }, elem_set, a_type },
     MATH3_STANDARD_ATTRIBUTES (elem_set),
     SVG_ANIMATION_ATTRIBUTE_ATTRIBUTES (elem_set),
     SVG_ANIMATION_EVENT_ATTRIBUTES (elem_set),

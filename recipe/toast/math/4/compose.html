@@ -1,0 +1,52 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 4 compose</title>
+</head>
+
+<body>
+
+<h1>math 4 compose</h1>
+
+<math>
+
+<apply><compose/><ci>f</ci><ci>g</ci><ci>h</ci></apply>
+
+<apply><eq/>
+  <apply>
+    <apply><compose/><ci>f</ci><ci>g</ci></apply>
+    <ci>x</ci>
+  </apply>
+  <apply><ci>f</ci><apply><ci>g</ci><ci>x</ci></apply></apply>
+</apply>
+
+<mrow>
+  <mi>f</mi><mo>∘</mo><mi>g</mi><mo>∘</mo><mi>h</mi>
+</mrow>
+
+<mrow>
+  <mrow>
+    <mrow><mo>(</mo><mi>f</mi><mo>∘</mo><mi>g</mi><mo>)</mo></mrow>
+    <mo>&#x2061;<!--ApplyFunction--></mo>
+    <mrow><mo>(</mo><mi>x</mi><mo>)</mo></mrow>
+  </mrow>
+  <mo>=</mo>
+  <mrow>
+    <mi>f</mi>
+    <mo>&#x2061;<!--ApplyFunction--></mo>
+    <mrow>
+     <mo>(</mo>
+      <mrow>
+        <mi>g</mi>
+        <mo>&#x2061;<!--ApplyFunction--></mo>
+        <mrow><mo>(</mo><mi>x</mi><mo>)</mo></mrow>
+      </mrow>
+      <mo>)</mo>
+    </mrow>
+  </mrow>
+</mrow>
+
+</math>
+
+</body>
+</html>

@@ -22,6 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "simple/type_math.h"
 #include "compound/type_compound.h"
 
+template < > struct type_master < t_mathsize > : type_either_or < t_mathsize, t_bns, t_vunit >
+{ using type_either_or < t_mathsize, t_bns, t_vunit > :: type_either_or; };
+
 template < > struct type_master < t_mathvertauto > : type_or_string < t_mathvertauto, t_vunit, sz_auto >
 { using type_or_string < t_mathvertauto, t_vunit, sz_auto > :: type_or_string; };
 

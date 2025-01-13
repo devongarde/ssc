@@ -1,0 +1,72 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 4 min/max</title>
+</head>
+
+<body>
+
+<h1>math 4 min/max</h1>
+
+<math>
+
+<apply><min/><ci>a</ci><ci>b</ci></apply>
+
+<apply><max/><cn>2</cn><cn>3</cn><cn>5</cn></apply>
+
+<apply><min/>
+  <bvar><ci>x</ci></bvar>
+  <condition>
+    <apply><notin/><ci>x</ci><ci type="set">B</ci></apply>
+  </condition>
+  <apply><power/><ci>x</ci><cn>2</cn></apply>
+</apply>
+
+<apply><max/>
+  <bvar><ci>y</ci></bvar>
+  <condition>
+    <apply><in/>
+      <ci>y</ci>
+      <interval><cn>0</cn><cn>1</cn></interval>
+    </apply>
+  </condition>
+  <apply><power/><ci>y</ci><cn>3</cn></apply>
+</apply>
+
+<mrow>
+  <mi>min</mi>
+  <mrow><mo>{</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>}</mo></mrow>
+</mrow>
+
+<mrow>
+  <mi>max</mi>
+  <mrow>
+    <mo>{</mo><mn>2</mn><mo>,</mo><mn>3</mn><mo>,</mo><mn>5</mn><mo>}</mo>
+  </mrow>
+</mrow>
+
+<mrow>
+  <mi>min</mi>
+  <mrow><mo>{</mo><msup><mi>x</mi><mn>2</mn></msup><mo>|</mo>
+    <mrow><mi>x</mi><mo>∉</mo><mi>B</mi></mrow>
+    <mo>}</mo>
+  </mrow>
+</mrow>
+
+<mrow>
+  <mi>max</mi>
+  <mrow>
+    <mo>{</mo><mi>y</mi><mo>|</mo>
+    <mrow>
+      <msup><mi>y</mi><mn>3</mn></msup>
+      <mo>∈</mo>
+      <mrow><mo>[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>]</mo></mrow>
+    </mrow>
+    <mo>}</mo>
+  </mrow>
+</mrow>
+
+</math>
+
+</body>
+</html>

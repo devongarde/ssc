@@ -3,6 +3,15 @@ static site checker
 https://ssc.lu/
 (c) 2020-2025 Dylan Harris
 
+0.2.9
+- MathML 4 and 4 core now apply the November 2024 draft
+- SVG 2.1 now applies the November 2024 draft
+- added popover=hint
+- added some security warnings (mostly from OWASP)
+- add --link.special to report use of special domains
+- various bug fixes
+- underlying work
+
 0.2.8
 - Living Standard January 2025
 - update CSS 2024 snapshots, adding 24+++

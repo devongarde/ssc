@@ -170,7 +170,7 @@ context_t& context_t::math_version (const int v)
     {   case 1 : version_.math_version (math_1); break;
         case 2 : version_.math_version (math_2); break;
         case 3 : version_.math_version (math_3); break;
-        case 4 : version_.math_version (math_4_22); break;
+        case 4 : version_.math_version (math_4); break;
         default : version_.math_version (math_none); }
     mac < int > (nm_context_math, version_.math_version ());
     return *this; }

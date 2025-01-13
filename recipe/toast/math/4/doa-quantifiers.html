@@ -1,0 +1,71 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 4 doa n-ary</title>
+</head>
+
+<body>
+
+<h1>math 4 doa n-ary</h1>
+
+<math>
+
+<apply><exists/>
+  <bvar><ci>x</ci></bvar>
+  <domainofapplication><ci>D</ci></domainofapplication>
+  <ci>expression-in-x</ci>
+</apply>
+
+<bind><csymbol cd="quant1">exists</csymbol>
+  <bvar><ci>x</ci></bvar>
+  <apply><csymbol cd="logic1">and</csymbol>
+    <apply><csymbol cd="set1">in</csymbol><ci>x</ci><ci>D</ci></apply>
+    <ci>expression-in-x</ci>
+  </apply>
+</bind>
+
+<bind><forall/>
+  <bvar><ci>p</ci></bvar>
+  <bvar><ci>q</ci></bvar>
+  <condition>
+    <apply><and/>
+      <apply><in/><ci>p</ci><rationals/></apply>
+      <apply><in/><ci>q</ci><rationals/></apply>
+      <apply><lt/><ci>p</ci><ci>q</ci></apply>
+    </apply>
+  </condition>
+  <apply><lt/>
+    <ci>p</ci>
+    <apply><power/><ci>q</ci><cn>2</cn></apply>
+  </apply>
+</bind>
+
+<bind><csymbol cd="quant1">forall</csymbol>
+  <bvar><ci>p</ci></bvar>
+  <bvar><ci>q</ci></bvar>
+  <apply><csymbol cd="logic1">implies</csymbol>
+    <apply><csymbol cd="logic1">and</csymbol>
+      <apply><csymbol cd="set1">in</csymbol>
+        <ci>p</ci>
+        <csymbol cd="setname1">Q</csymbol>
+      </apply>
+      <apply><csymbol cd="set1">in</csymbol>
+        <ci>q</ci>
+        <csymbol cd="setname1">Q</csymbol>
+      </apply>
+      <apply><csymbol cd="relation1">lt</csymbol><ci>p</ci><ci>q</ci></apply>
+    </apply>
+    <apply><csymbol cd="relation1">lt</csymbol>
+      <ci>p</ci>
+      <apply><csymbol cd="arith1">power</csymbol>
+        <ci>q</ci>
+        <cn>2</cn>
+      </apply>
+    </apply>
+  </apply>
+</bind>
+
+</math>
+
+</body>
+</html>

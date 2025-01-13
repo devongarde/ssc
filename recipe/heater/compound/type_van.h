@@ -247,20 +247,6 @@ template < > struct type_master < t_mathaligns > : type_at_least_one < t_mathali
 template < > struct type_master < t_mathnotations > : type_at_least_one < t_mathnotations, sz_space_char, t_mathnotation >
 { using type_at_least_one < t_mathnotations, sz_space_char, t_mathnotation > :: type_at_least_one; };
 
-template < > struct type_master < t_mathsize > : tidy_string < t_mathsize >
-{   using tidy_string < t_mathsize > :: tidy_string;
-    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   tidy_string < t_mathsize > :: set_value (nits, v, s);
-        if (tidy_string < t_mathsize > :: empty ())
-            nits.pick (nit_empty, ed_math_2, "3.2.2 Mathematics style attributes common to token elements", es_error, ec_type, "small, normal, big, or a measurement expected");
-        else if (tidy_string < t_mathsize > :: good ())
-        {   ::std::string ss (tidy_string < t_mathsize > :: get_string ());
-            if (compare_complain (nits, v, ss, "small")) return;
-            if (compare_complain (nits, v, ss, "normal")) return;
-            if (compare_complain (nits, v, ss, "big")) return;
-            if (test_value < t_vunit > (nits, v, ss)) return; }
-        tidy_string < t_mathsize > :: status (s_invalid); } };
-
 template < > struct type_master < t_mathspace > : type_either_or < t_mathspace, t_namedspace, t_hunit >
 { using type_either_or < t_mathspace, t_namedspace, t_hunit > :: type_either_or; };
 
@@ -306,9 +292,8 @@ template < > struct type_master < t_pseudonamedspace > : tidy_string < t_pseudon
                     {   nits.merge (nuts); return; }
                     break;
                 case math_3 :
-                case math_4_20 :
+                case math_4 :
                 case math_core :
-                case math_4_22 :
                     {   const ::std::string::size_type len = ss.length ();
                         if (len >= 5)
                             if ((ss.substr (len - 5) == "width") || (ss.substr (len - 5) == "depth"))

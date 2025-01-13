@@ -1,0 +1,52 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 4 bind/bvar</title>
+</head>
+
+<body>
+
+<h1>math 4 bind/bvar</h1>
+
+<math>
+
+<bind><csymbol cd="quant1">forall</csymbol>
+  <bvar><ci id="var-x">x</ci></bvar>
+  <apply><csymbol cd="relation1">lt</csymbol>
+    <ci xref="var-x">x</ci>
+    <cn>1</cn>
+  </apply>
+</bind>
+
+<bind><csymbol cd="quant1">forall</csymbol>
+  <bvar><ci>x</ci></bvar>
+  <apply><csymbol cd="relation1">eq</csymbol>
+    <apply><csymbol cd="arith1">plus</csymbol><ci>x</ci><ci>y</ci></apply>
+    <apply><csymbol cd="arith1">plus</csymbol><ci>y</ci><ci>x</ci></apply>
+  </apply>
+</bind>
+
+<bind><ci>b</ci>
+  <bvar><ci>x1</ci></bvar>
+  <bvar><ci>...</ci></bvar>
+  <bvar><ci>xn</ci></bvar>
+  <ci>s</ci>
+</bind>
+
+<mrow>
+  <mi>B</mi>
+  <mrow>
+    <mi>x1</mi>
+    <mo separator="true">,</mo>
+    <mi>...</mi>
+    <mo separator="true">,</mo>
+    <mi>xn</mi>
+  </mrow>
+  <mo separator="true">.</mo>
+  <mi>S</mi>
+</mrow>
+
+</math>
+
+</body>
+</html>

@@ -252,7 +252,7 @@ hav_t havt_intersect [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_interval [] =
-{   { { HTML_MATH1 }, { HTML_UNDEF }, elem_interval, a_closure },
+{   { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_interval, a_closure },
     MATH3_STANDARD_ATTRIBUTES (elem_interval),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 

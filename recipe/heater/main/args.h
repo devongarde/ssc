@@ -389,6 +389,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SPACING     "space"
 #define SPATIAL     "spatial"
 #define SPEC        "spec"
+#define SPECIAL     "special"
 #define SPEECH      "speech"
 #define SPLURGE     "splurge"
 #define STATEMENT   "statement"

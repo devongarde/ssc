@@ -1,0 +1,135 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 4 derivatives</title>
+</head>
+
+<body>
+
+<h1>math 4 derivatives</h1>
+
+<math>
+
+<apply><diff/>
+  <bvar><ci>x</ci></bvar>
+  <ci>expression-in-x</ci>
+</apply>
+
+<apply>
+  <apply><csymbol cd="calculus1">diff</csymbol>
+    <bind><csymbol cd="fns1">lambda</csymbol>
+      <bvar><ci>x</ci></bvar>
+      <ci>E</ci>
+    </bind>
+  </apply>
+  <ci>x</ci>
+</apply>
+
+<apply><diff/>
+  <bvar><ci>x</ci></bvar>
+  <apply><sin/><ci>x</ci></apply>
+</apply>
+
+<apply>
+  <apply><csymbol cd="calculus1">diff</csymbol>
+    <bind><csymbol cd="fns1">lambda</csymbol>
+      <bvar><ci>x</ci></bvar>
+      <apply><csymbol cd="transc1">sin</csymbol><ci>x</ci></apply>
+    </bind>
+  </apply>
+  <ci>x</ci>
+</apply>
+
+<apply><diff/>
+  <bvar><ci>x</ci><degree><ci>n</ci></degree></bvar>
+  <ci>expression-in-x</ci>
+</apply>
+
+<apply>
+  <apply><csymbol cd="calculus1">nthdiff</csymbol>
+    <ci>n</ci>
+    <bind><csymbol cd="fns1">lambda</csymbol>
+      <bvar><ci>x</ci></bvar>
+      <ci>expression-in-x</ci>
+    </bind>
+  </apply>
+  <ci>x</ci>
+</apply>
+
+<apply><diff/>
+  <bvar><degree><cn>2</cn></degree><ci>x</ci></bvar>
+  <apply><sin/><ci>x</ci></apply>
+</apply>
+
+<apply>
+  <apply><csymbol cd="calculus1">nthdiff</csymbol>
+    <cn>2</cn>
+    <bind><csymbol cd="fns1">lambda</csymbol>
+      <bvar><ci>x</ci></bvar>
+      <apply><csymbol cd="transc1">sin</csymbol><ci>x</ci></apply>
+    </bind>
+  </apply>
+  <ci>x</ci>
+</apply>
+
+<apply><partialdiff/>
+  <bvar><ci>x1</ci><degree><ci>n1</ci></degree></bvar>
+  <bvar><ci>xk</ci><degree><ci>nk</ci></degree></bvar>
+  <degree><ci>total-n1-nk</ci></degree>
+  <ci>expression-in-x1-xk</ci>
+</apply>
+
+<apply>
+  <apply><csymbol cd="calculus1">partialdiffdegree</csymbol>
+    <apply><csymbol cd="list1">list</csymbol>
+      <ci>n1</ci> <ci>nk</ci>
+    </apply>
+    <ci>total-n1-nk</ci>
+    <bind><csymbol cd="fns1">lambda</csymbol>
+      <bvar><ci>x1</ci></bvar>
+      <bvar><ci>xk</ci></bvar>
+      <ci>expression-in-x1-xk</ci>
+    </bind>
+  </apply>
+  <ci>x1</ci>
+  <ci>xk</ci>
+</apply>
+
+<apply><csymbol cd="arith1">plus</csymbol>
+  <ci>n1</ci> <ci>nk</ci>
+</apply>
+
+<apply><partialdiff/>
+  <bvar><ci>x</ci><degree><ci>n</ci></degree></bvar>
+  <bvar><ci>y</ci><degree><ci>m</ci></degree></bvar>
+  <apply><sin/>
+    <apply><times/><ci>x</ci><ci>y</ci></apply>
+  </apply>
+</apply>
+
+<apply>
+  <apply><csymbol cd="calculus1">partialdiffdegree</csymbol>
+    <apply><csymbol cd="list1">list</csymbol>
+      <ci>n</ci><ci>m</ci>
+    </apply>
+    <apply><csymbol cd="arith1">plus</csymbol>
+      <ci>n</ci><ci>m</ci>
+    </apply>
+    <bind><csymbol cd="fns1">lambda</csymbol>
+      <bvar><ci>x</ci></bvar>
+      <bvar><ci>y</ci></bvar>
+      <apply><csymbol cd="transc1">sin</csymbol>
+        <apply><csymbol cd="arith1">times</csymbol>
+          <ci>x</ci><ci>y</ci>
+        </apply>
+      </apply>
+    </bind>
+    <ci>x</ci>
+    <ci>y</ci>
+  </apply>
+</apply>
+
+</math>
+
+</body>
+</html>

@@ -67,6 +67,9 @@ class standard_t : public d3_t
     void OnSaveClick (wxCommandEvent& event);
     void OnSaveAsClick (wxCommandEvent& event);
 
+    bool is_shadowing () const;
+    bool is_data_collecting () const;
+
     DECLARE_CLASS (standard_t)
     DECLARE_EVENT_TABLE ()
 public:
@@ -152,10 +155,25 @@ public:
     void OnSSILastMod (wxCommandEvent& event) { ssi_.OnLastMod (event); }
     void OnSSINow (wxCommandEvent& event) { ssi_.OnNow (event); }
     void OnSSIProcess (wxCommandEvent& event) { ssi_.OnProcess (event); }
-    void OnValidChoice (wxCommandEvent& event) { vv_.OnChoice (event); }
     void OnStatsAll (wxCommandEvent& event) { stats_.OnAll (event); }
     void OnStatsClear (wxCommandEvent& event) { stats_.OnClear (event); }
     void OnStatsExport (wxCommandEvent& event) { stats_.OnExport (event); }
-    void OnStatsSelected (wxCommandEvent& event) { stats_.OnSelected (event); } };
+    void OnStatsSelected (wxCommandEvent& event) { stats_.OnSelected (event); }
+    void OnVVPhys (wxFileDirPickerEvent& event) { vv_.OnPhys (event); }
+    void OnVVOntology (wxFileDirPickerEvent& event) { vv_.OnOntology (event); }
+    void OnVVShadow (wxFileDirPickerEvent& event) { vv_.OnShadow (event); }
+    void OnVVValChoice (wxCommandEvent& event) { vv_.OnChoice (event); }
+    void OnVVValAdd (wxCommandEvent& event) { vv_.OnValAdd (event); }
+    void OnVVValErase (wxCommandEvent& event) { vv_.OnValErase (event); }
+    void OnVVValRename (wxCommandEvent& event) { vv_.OnValRename (event); }
+    void OnVVValText (wxCommandEvent& event) { vv_.OnValText (event); }
+    void OnVVValSelect (wxCommandEvent& event) { vv_.OnValSelect (event); }
+    void OnVVValImpatience (wxCommandEvent& event) { vv_.OnValImpatience (event); }
+    void OnVVVirtAdd (wxCommandEvent& event) { vv_.OnVirtAdd (event); }
+    void OnVVVirtErase (wxCommandEvent& event) { vv_.OnVirtErase (event); }
+    void OnVVVirtRename (wxCommandEvent& event) { vv_.OnVirtRename (event); }
+    void OnVVVirtText (wxCommandEvent& event) { vv_.OnVirtText (event); }
+    void OnVVVirtSelect (wxCommandEvent& event) { vv_.OnVirtSelect (event); }
+    void OnVVVirtImpatience (wxCommandEvent& event) { vv_.OnVirtImpatience (event); } };
 
 #endif // WX

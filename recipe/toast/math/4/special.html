@@ -1,0 +1,104 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 4 special</title>
+</head>
+
+<body>
+
+<h1>math 4 special</h1>
+
+<math>
+
+<bind><forall/>
+  <bvar><ci>x</ci></bvar>
+  <apply><eq/>
+    <apply><minus/><ci>x</ci><ci>x</ci></apply>
+    <cn>0</cn>
+  </apply>
+</bind>
+
+<mrow>
+  <mo>∀</mo>
+  <mi>x</mi>
+  <mo>.</mo>
+  <mrow>
+   <mo>(</mo>
+    <mrow>
+      <mrow><mi>x</mi><mo>−</mo><mi>x</mi></mrow>
+      <mo>=</mo>
+      <mn>0</mn>
+    </mrow>
+    <mo>)</mo>
+  </mrow>
+</mrow>
+
+<bind><exists/>
+  <bvar><ci>x</ci></bvar>
+  <apply><eq/>
+    <apply><ci>f</ci><ci>x</ci></apply>
+    <cn>0</cn>
+  </apply>
+</bind>
+
+<mrow>
+  <mo>∃</mo>
+  <mi>x</mi>
+  <mo>.</mo>
+  <mrow>
+   <mo>(</mo>
+    <mrow>
+      <mrow><mi>f</mi><mo>&#x2061;<!--ApplyFunction--></mo><mrow><mo>(</mo><mi>x</mi><mo>)</mo></mrow></mrow>
+      <mo>=</mo>
+      <mn>0</mn>
+    </mrow>
+    <mo>)</mo>
+  </mrow>
+</mrow>
+
+<apply><exists/>
+  <bvar><ci>x</ci></bvar>
+  <domainofapplication>
+    <integers/>
+  </domainofapplication>
+  <apply><eq/>
+    <apply><ci>f</ci><ci>x</ci></apply>
+    <cn>0</cn>
+  </apply>
+</apply>
+
+<bind><csymbol cd="quant1">exists</csymbol>
+  <bvar><ci>x</ci></bvar>
+  <apply><csymbol cd="logic1">and</csymbol>
+    <apply><csymbol cd="set1">in</csymbol>
+      <ci>x</ci>
+      <csymbol cd="setname1">Z</csymbol>
+    </apply>
+    <apply><csymbol cd="relation1">eq</csymbol>
+      <apply><ci>f</ci><ci>x</ci></apply>
+      <cn>0</cn>
+    </apply>
+  </apply>
+</bind>
+
+<mrow>
+  <mo>∃</mo>
+  <mi>x</mi>
+  <mo>.</mo>
+  <mrow>
+   <mo>(</mo>
+    <mrow><mi>x</mi><mo>∈</mo><mi mathvariant="double-struck">Z</mi></mrow>
+    <mo>∧</mo>
+    <mrow>
+      <mrow><mi>f</mi><mo>&#x2061;<!--ApplyFunction--></mo><mrow><mo>(</mo><mi>x</mi><mo>)</mo></mrow></mrow>
+      <mo>=</mo>
+      <mn>0</mn>
+    </mrow>
+    <mo>)</mo>
+  </mrow>
+</mrow>
+
+</math>
+
+</body>
+</html>

@@ -43,7 +43,11 @@ bool d_q (q_entry& qe)
     {   ::std::string msg (GSL_AT (stage_name, qe.stage_));
         ::boost::filesystem::path p (qe.dir_ -> get_disk_path ());
         if (! qe.page_.empty ()) p /= qe.page_;
-        msg += p.string () + "\n";
+        msg += p.string ();
+#ifdef WX
+        msg += ", ...";
+#endif // WX
+        msg += "\n";
         ssc_console (msg); }
     try
     {   switch (qe.stage_)

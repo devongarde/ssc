@@ -1,0 +1,70 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 4 intent base</title>
+</head>
+
+<body>
+
+<h1>math 4 intent base</h1>
+
+<math>
+
+<msup intent="power($base,$exp)">
+  <mi arg="base">x</mi>
+  <mi arg="exp">n</mi>
+</msup>
+
+<msup intent="$op($a)">
+  <mi arg="a">A</mi>
+  <mi arg="op" intent="transpose">T</mi>
+</msup>
+
+<msup intent="$op :postfix ($a)">
+  <mi arg="a">A</mi>
+  <mi arg="op" intent="transpose">T</mi>
+</msup>
+
+<msup intent="derivative($a)">
+  <mi arg="a">f</mi>
+  <mi>′</mi>
+</msup>
+
+<msup intent="x-prime">
+  <mi>x</mi>
+  <mo>′</mo>
+</msup>
+
+<msup intent="_($base,$script)">
+  <mi arg="base">x</mi>
+  <mo arg="script" intent="_new">′</mo>
+</msup>
+
+<msup intent="_($base,$script)">
+  <mi arg="base" intent="_хикс">x</mi>
+  <mo arg="script" intent="_прим">′</mo>
+</msup>
+
+<msup intent="_($base,$script)">
+  <mi arg="base">x</mi>
+  <mo arg="script">′</mo>
+</msup>
+
+<mover intent="conjugate($v)">
+  <mi arg="v">z</mi>
+  <mo>&#xaf;</mo>
+</mover>
+<mtext>&#x00A0;<!--nbsp-->is not&#x00A0;<!--nbsp--></mtext>
+<mover intent="mean($var)">
+  <mi arg="var">X</mi>
+  <mo>&#xaf;</mo>
+</mover>
+
+<msub intent="bell-number($index)">
+  <mi>B</mi>
+  <mn arg="index">2</mn>
+</msub>
+</math>
+
+</body>
+</html>

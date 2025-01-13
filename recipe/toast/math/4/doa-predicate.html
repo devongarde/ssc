@@ -1,0 +1,44 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 4 doa predicate</title>
+</head>
+
+<body>
+
+<h1>math 4 doa predicate</h1>
+
+<math>
+
+<apply><lt/>
+  <ci>a</ci><ci>b</ci><ci>c</ci><ci>d</ci>
+</apply>
+
+<apply><csymbol cd="fns2">predicate_on_list</csymbol>
+  <csymbol cd="reln1">lt</csymbol>
+  <apply><csymbol cd="list1">list</csymbol>
+    <ci>a</ci><ci>b</ci><ci>c</ci><ci>d</ci>
+  </apply>
+</apply>
+
+<apply><lt/>
+  <bvar><ci>x</ci></bvar>
+  <domainofapplication><ci>R</ci></domainofapplication>
+  <ci>expression-in-x</ci>
+</apply>
+
+<apply><csymbol cd="fns2">predicate_on_list</csymbol>
+  <csymbol cd="reln1">lt</csymbol>
+  <apply><csymbol cd="list1">map</csymbol>
+    <ci>R</ci>
+    <bind><csymbol cd="fns1">lambda</csymbol>
+      <bvar><ci>x</ci></bvar>
+      <ci>expression-in-x</ci>
+    </bind>
+  </apply>
+</apply>
+
+</math>
+
+</body>
+</html>

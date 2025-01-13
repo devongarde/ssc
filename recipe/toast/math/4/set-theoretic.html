@@ -1,0 +1,104 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 4 set theoretic</title>
+</head>
+
+<body>
+
+<h1>math 4 set theoretic</h1>
+
+<math>
+
+<set>
+  <ci>a</ci><ci>b</ci><ci>c</ci>
+</set>
+
+<list>
+  <ci>a</ci><ci>b</ci><ci>c</ci>
+</list>
+
+<mrow>
+  <mo>{</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo>}</mo>
+</mrow>
+
+<mrow>
+  <mo>(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo>)</mo>
+</mrow>
+
+<set>
+  <bvar><ci>x</ci></bvar>
+  <condition>
+    <apply><lt/><ci>x</ci><cn>5</cn></apply>
+  </condition>
+  <ci>x</ci>
+</set>
+
+<list order="numeric">
+  <bvar><ci>x</ci></bvar>
+  <condition>
+    <apply><lt/><ci>x</ci><cn>5</cn></apply>
+  </condition>
+</list>
+
+<set>
+  <bvar><ci type="set">S</ci></bvar>
+  <condition>
+    <apply><in/><ci>S</ci><ci type="list">T</ci></apply>
+  </condition>
+  <ci>S</ci>
+</set>
+
+<set>
+  <bvar><ci> x </ci></bvar>
+  <condition>
+    <apply><and/>
+      <apply><lt/><ci>x</ci><cn>5</cn></apply>
+      <apply><in/><ci>x</ci><naturalnumbers/></apply>
+    </apply>
+  </condition>
+  <ci>x</ci>
+</set>
+
+<mrow>
+  <mo>{</mo>
+  <mi>x</mi>
+  <mo>|</mo>
+  <mrow><mi>x</mi><mo>&lt;</mo><mn>5</mn></mrow>
+  <mo>}</mo>
+</mrow>
+
+<mrow>
+  <mo>(</mo>
+  <mi>x</mi>
+  <mo>|</mo>
+  <mrow><mi>x</mi><mo>&lt;</mo><mn>5</mn></mrow>
+  <mo>)</mo>
+</mrow>
+
+<mrow>
+  <mo>{</mo>
+  <mi>S</mi>
+  <mo>|</mo>
+  <mrow><mi>S</mi><mo>∈</mo><mi>T</mi></mrow>
+  <mo>}</mo>
+</mrow>
+
+<mrow>
+  <mo>{</mo>
+  <mi>x</mi>
+  <mo>|</mo>
+  <mrow>
+    <mrow><mo>(</mo><mi>x</mi><mo>&lt;</mo><mn>5</mn><mo>)</mo></mrow>
+    <mo>∧</mo>
+    <mrow>
+      <mi>x</mi><mo>∈</mo><mi mathvariant="double-struck">N</mi>
+    </mrow>
+  </mrow>
+  <mo>}</mo>
+</mrow>
+
+</math>
+
+</body>
+</html>

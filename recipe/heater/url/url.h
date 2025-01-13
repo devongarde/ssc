@@ -90,6 +90,7 @@ public:
     bool is_https () const noexcept { return is_protocol (pr_https); }
     bool is_local () const { return protocol_.defaulted () && ! empty (); }
     bool is_usable () const noexcept { return is_protocol (pr_http) || is_protocol (pr_https); }
+    bool is_potentially_naughty () const noexcept;
     bool is_simple_id () const { return is_local () && ! has_path () && ! has_file () && has_id (); }
     bool is_self () const
     {   if (has_file () || has_path () || has_domain () || has_protocol () || has_extension ()) return false;

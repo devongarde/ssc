@@ -552,6 +552,8 @@ PASS ../toast/living/jul17/iframe.html
 46 no_such_folder url_not_found
 46 url_id_unfound
 48 wrong_parent
+50 sandbox
+55 sandbox
 57 inserted_missing_closure
 
 PASS ../toast/living/jul17/im.html

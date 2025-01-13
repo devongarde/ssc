@@ -48,6 +48,15 @@ public:
     #endif // DEBUG
         symbol_.insert (typename symbol_t::value_type (symbol_key (key, ns), symbol_store < V, CATEGORY, INIT > (first, last, symbol, value, ns, flags, flags2)));
         reverse_.insert (typename reverse_t::value_type (value, symbol_store < V, CATEGORY, INIT > (first, last, symbol, value, ns, flags, flags2))); }
+    void remove_any_extras (const ::std::size_t base_count)
+    {   for (::std::size_t x = base_count+1; ; ++x)
+        {   const typename reverse_t::const_iterator r = reverse_.find (x);
+            if (r == reverse_.cend ()) return;
+            const symbol_key key (r -> second.sz_, x);
+            const typename symbol_t::const_iterator s = symbol_.find (key);
+            if (s != symbol_.cend ())
+            {   symbol_.erase (s);
+                reverse_.erase (r); } } }
     template < typename VALUE, class LC > void init (nitpick& nits, const symbol_entry < V, VALUE, CATEGORY, INIT > table [], const ::std::size_t size, const bool wildcards = false)
     {   VERIFY_NOT_NULL (table, __FILE__, __LINE__);
         symbol_.clear ();

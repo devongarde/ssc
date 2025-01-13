@@ -481,5 +481,5 @@ Name/Value Pair:
     sausage: once, "in Irish breakfast"
 
 Version:
-    HTML-5/20210101/SVG-2.0/MathML-4(Dec20)/CSS-2.1/WhatWG: 6 times
+    HTML-5/20210101/SVG-2.0/MathML-core/CSS-2.1/WhatWG: 6 times
 ===

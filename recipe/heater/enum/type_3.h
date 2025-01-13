@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "base/type_case.h"
 #include "spell/spell.h"
 
-template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE = false > class three_value : public type_base < base_type, TYPE >
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE = false, bool EMPTY = false > class three_value : public type_base < base_type, TYPE >, public is_that < EMPTY >
 {   base_type value_ = static_cast < base_type > (0);
     static ::std::string a_, b_, c_;
     static void init ();
@@ -59,8 +59,8 @@ public:
     ::std::size_t type () const noexcept
     {   return static_cast < ::std::size_t > (get ()); } };
 
-template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >
-    void three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE > :: init ()
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE, bool EMPTY >
+    void three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE, EMPTY > :: init ()
 {   if (a_.empty ())
     {   eleanor f (lox_eleanor);
         a_ = ::boost::to_lower_copy (::std::string (SZ0::sz ()));
@@ -70,11 +70,12 @@ template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, boo
         PRESUME (! b_.empty (), __FILE__, __LINE__);
         PRESUME (! c_.empty (), __FILE__, __LINE__); } }
 
-template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >
-    void three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE, bool EMPTY >
+    void three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE, EMPTY > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   ::std::string pret (trim_the_lot_off (s));
     ::std::string t (case_must_match < CASE >::lower (pret));
     type_base < base_type, TYPE > :: status (s_good);
+    if (is_that < EMPTY > :: beside_the_point (t)) return;
     init ();
     if (t == a_) value_ = static_cast <base_type> (0);
     else if (t == b_) value_ = static_cast <base_type> (1);
@@ -87,8 +88,8 @@ template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, boo
         return; }
     case_must_match < CASE > :: validate (nits, v, get_string (), pret); }
 
-template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >
-    ::std::string three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE > :: get_string () const
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE, bool EMPTY >
+    ::std::string three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE, EMPTY > :: get_string () const
 {   if (! type_base < base_type, TYPE > :: unknown ())
     {   init ();
         switch (static_cast <int> (value_))
@@ -98,12 +99,12 @@ template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, boo
             default : break; } }
     return ::std::string (); }
 
-template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >
-    ::std::string three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE > :: a_;
-template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >
-    ::std::string three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE > :: b_;
-template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE >
-    ::std::string three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE > :: c_;
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE, bool EMPTY >
+    ::std::string three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE, EMPTY > :: a_;
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE, bool EMPTY >
+    ::std::string three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE, EMPTY > :: b_;
+template < e_type TYPE, typename base_type, class SZ0, class SZ1, class SZ2, bool CASE, bool EMPTY >
+    ::std::string three_value < TYPE, base_type, SZ0, SZ1, SZ2, CASE, EMPTY > :: c_;
 
 template < > struct type_master < t_acm > : three_value < t_acm, e_acm, sz_arcs, sz_crop, sz_miter >
 { using three_value < t_acm, e_acm, sz_arcs, sz_crop, sz_miter > :: three_value; };
@@ -158,6 +159,9 @@ template < > struct type_master < t_bcs > : three_value < t_bcs, e_bcs, sz_bound
 
 template < > struct type_master < t_behaviour > : three_value < t_behaviour, e_behaviour, sz_alternate, sz_scroll, sz_slide >
 { using three_value < t_behaviour, e_behaviour, sz_alternate, sz_scroll, sz_slide > :: three_value; };
+
+template < > struct type_master < t_bns > : three_value < t_bns, e_bns, sz_big, sz_normal, sz_small >
+{ using three_value < t_bns, e_bns, sz_big, sz_normal, sz_small > :: three_value; };
 
 template < > struct type_master < t_brs > : three_value < t_brs, e_brs, sz_bevel, sz_round, sz_stupid >
 { using three_value < t_brs, e_brs, sz_bevel, sz_round, sz_stupid > :: three_value; };
@@ -380,6 +384,9 @@ template < > struct type_master < t_nuf > : three_value < t_nuf, e_nuf, sz_refur
 
 template < > struct type_master < t_onetwothree > : three_value < t_onetwothree, e_onetwothree, sz_one, sz_two, sz_three >
 { using three_value < t_onetwothree, e_onetwothree, sz_one, sz_two, sz_three > :: three_value; };
+
+template < > struct type_master < t_popover > : three_value < t_popover, e_popover, sz_auto, sz_hint, sz_manual, false, true >
+{ using three_value < t_popover, e_popover, sz_auto, sz_hint, sz_manual, false, true > :: three_value; };
 
 template < > struct type_master < t_popovertargetaction > : three_value < t_popovertargetaction, e_popovertargetaction, sz_hide, sz_show, sz_toggle >
 { using three_value < t_popovertargetaction, e_popovertargetaction, sz_hide, sz_show, sz_toggle > :: three_value; };

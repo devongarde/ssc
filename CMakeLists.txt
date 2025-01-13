@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.24)
 cmake_policy (SET CMP0074 NEW)
-project (ssc VERSION 0.2.8 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
+project (ssc VERSION 0.2.9 DESCRIPTION "static site checker" LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
 
 # if using a non-thread safe version of SSL, add this compiler definition
 # CURL_SSL_NOT_THREADSAFE

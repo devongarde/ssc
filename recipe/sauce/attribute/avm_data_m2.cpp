@@ -43,7 +43,7 @@ hav_t havt_mphantom [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_mprescripts [] =
-{   { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mprescripts, a_xmlns },
+{   { { HTML_MATH1, 0, 0, H2_MATH_1_2_3 }, { HTML_UNDEF }, elem_mprescripts, a_xmlns },
     STANDARD_MATH_CORE_ATTRIBUTES (elem_mprescripts),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
@@ -94,9 +94,9 @@ hav_t havt_msline [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_mspace [] =
-{   { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mspace, a_linebreak },
+{   { { HTML_MATH1, 0, 0, H2_MATH_1_2_3 }, { HTML_UNDEF }, elem_mspace, a_linebreak },
     MATH3_TOKEN_ATTRIBUTES (elem_mspace),
-    MATH3_LINEINDENT_ATTRIBUTES (elem_mspace),
+    MATH3_INDENT_ATTRIBUTES (elem_mspace),
     MATH_SIZEINFO_ATTRIBUTES (elem_mspace),
     MATH4_PRES_ATTRIBUTES (elem_mspace),
     STANDARD_MATH_CORE_ATTRIBUTES (elem_mspace),
@@ -122,7 +122,7 @@ hav_t havt_mstack [] =
 
 hav_t havt_mstyle [] =
 {   { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mstyle, a_accentunder },
-    { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mstyle, a_background },
+    { { HTML_MATH1, 0, 0, H2_MATH_1_2 }, { HTML_UNDEF }, elem_mstyle, a_background },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mstyle, a_bevelled },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_mstyle, a_charalign },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_mstyle, a_charspacing },
@@ -132,6 +132,7 @@ hav_t havt_mstyle [] =
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_mstyle, a_decimalpoint },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_mstyle, a_denomalign },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mstyle, a_depth },
+    { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, elem_mstyle, a_displaystyle },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mstyle, a_edge },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mstyle, a_height },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_mstyle, a_infixlinebreakstyle },
@@ -141,7 +142,7 @@ hav_t havt_mstyle [] =
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_mstyle, a_location },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_mstyle, a_longdivstyle },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mstyle, a_lquote },
-    { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mstyle, a_mediummathspace },
+    { { HTML_MATH1, 0, 0, H2_MATH_1_2 }, { HTML_UNDEF }, elem_mstyle, a_mediummathspace },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_mstyle, a_mslinethickness },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_mstyle, a_notation },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_mstyle, a_numalign },
@@ -150,7 +151,7 @@ hav_t havt_mstyle [] =
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_mstyle, a_rightoverhang },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mstyle, a_rowspan },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mstyle, a_rquote },
-    { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mstyle, a_scriptlevel },
+    { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, elem_mstyle, a_scriptlevel },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mstyle, a_scriptminsize },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mstyle, a_scriptsizemultiplier },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mstyle, a_selection },
@@ -159,14 +160,14 @@ hav_t havt_mstyle [] =
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_mstyle, a_stackalign },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mstyle, a_subscriptshift },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mstyle, a_superscriptshift },
-    { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mstyle, a_thickmathspace },
-    { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mstyle, a_thinmathspace },
+    { { HTML_MATH1, 0, 0, H2_MATH_1_2 }, { HTML_UNDEF }, elem_mstyle, a_thickmathspace },
+    { { HTML_MATH1, 0, 0, H2_MATH_1_2 }, { HTML_UNDEF }, elem_mstyle, a_thinmathspace },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_mstyle, a_valign },
-    { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mstyle, a_verythickmathspace },
-    { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mstyle, a_verythinmathspace },
-    { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mstyle, a_veryverythickmathspace },
-    { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mstyle, a_veryverythinmathspace },
-    MATH3_LINEINDENT_ATTRIBUTES (elem_mstyle),
+    { { HTML_MATH1, 0, 0, H2_MATH_1_2 }, { HTML_UNDEF }, elem_mstyle, a_verythickmathspace },
+    { { HTML_MATH1, 0, 0, H2_MATH_1_2 }, { HTML_UNDEF }, elem_mstyle, a_verythinmathspace },
+    { { HTML_MATH1, 0, 0, H2_MATH_1_2 }, { HTML_UNDEF }, elem_mstyle, a_veryverythickmathspace },
+    { { HTML_MATH1, 0, 0, H2_MATH_1_2 }, { HTML_UNDEF }, elem_mstyle, a_veryverythinmathspace },
+    MATH3_INDENTBREAK_ATTRIBUTES (elem_mstyle),
     STANDARD_MATH_CORE_ATTRIBUTES (elem_mstyle),
     MATH_OPINFO_ATTRIBUTES (elem_mstyle),
     MATH3_TABLE_ATTRIBUTES (elem_mstyle),
@@ -202,7 +203,7 @@ hav_t havt_mtable [] =
 hav_t havt_mtd [] =
 {   { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mtd, a_columnalign },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_mtd, a_columnspan },
-    { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mtd, a_groupalign },
+    { { HTML_MATH1, 0, 0, H2_MATH_1_2_3 }, { HTML_UNDEF }, elem_mtd, a_groupalign },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mtd, a_rowalign },
     { { HTML_MATH1 }, { HTML_UNDEF }, elem_mtd, a_rowspan },
     MATH4_PRES_ATTRIBUTES (elem_mtd),
@@ -216,7 +217,7 @@ hav_t havt_mtext [] =
 
 hav_t havt_mtr [] =
 {   { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mtr, a_columnalign },
-    { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mtr, a_groupalign },
+    { { HTML_MATH1, 0, 0, H2_MATH_1_2_3 }, { HTML_UNDEF }, elem_mtr, a_groupalign },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_mtr, a_rowalign },
     MATH4_PRES_ATTRIBUTES (elem_mtr),
     STANDARD_MATH_CORE_ATTRIBUTES (elem_mtr),

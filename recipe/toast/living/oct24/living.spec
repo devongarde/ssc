@@ -852,9 +852,12 @@ PASS ../toast/living/oct24/iframe.html
 35 url_not_found
 37 url_not_found
 39 url_not_found
+41 sandbox
 45 no_such_folder url_not_found naughty_alt
 46 no_such_folder url_not_found
 46 url_id_unfound
+50 sandbox
+54 sandbox
 56 use_quote_code
 59 inserted_missing_closure
 
@@ -1226,8 +1229,9 @@ PASS ../toast/living/oct24/links-modulepreload.html
 10 url_not_found
 
 PASS ../toast/living/oct24/links-noopener.html
-10 url_not_found
+10 url_not_found tabnab
 12 url_not_found
+14 tabnab
 
 PASS ../toast/living/oct24/links-noreferrer.html
 10 missing_close url_not_found rel_requires_href chocolate_teapot

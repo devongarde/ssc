@@ -1,0 +1,50 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 4 rewrite attributes</title>
+</head>
+
+<body>
+
+<h1>math 4 rewrite attributes</h1>
+
+<math>
+
+<ci type="T">n</ci>
+
+<semantics>
+  <ci>n</ci>
+  <annotation-xml cd="mathmltypes" name="type" encoding="MathML-Content">
+    <ci>T</ci>
+  </annotation-xml>
+</semantics>
+
+<csymbol type="T">symbolname</csymbol>
+
+<semantics>
+  <csymbol>symbolname</csymbol>
+  <annotation-xml cd="mathmltypes" name="type" encoding="MathML-Content">
+    <ci>T</ci>
+  </annotation-xml>
+</semantics>
+
+<ci class="foo" xmlns:other="http://example.com" other:att="bla">x</ci>
+
+ <semantics>
+   <ci>x</ci>
+   <annotation cd="mathmlattr"
+name="class" encoding="text/plain">foo</annotation>
+     <annotation-xml cd="mathmlattr" name="foreign" encoding="MathML-Content">
+       <apply><csymbol cd="mathmlattr">foreign_attribute</csymbol>
+         <cs>http://example.com</cs>
+         <cs>other</cs>
+         <cs>att</cs>
+         <cs>bla</cs>
+       </apply>
+     </annotation-xml>
+   </semantics>
+
+</math>
+
+</body>
+</html>

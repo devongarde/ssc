@@ -158,8 +158,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_math_1 : return "MathML 1.01";
         case ed_math_2 : return "MathML 2 2nd Ed.";
         case ed_math_3 : return "MathML 3 2nd Ed.";
-        case ed_math_4_20 : return "MathML 4, Jan 19";
-        case ed_math_4_22 : return "MathML 4, Aug 22";
+        case ed_math_4 : return "MathML 4, Nov 24";
         case ed_mimetype : return "IANA media types";
         case ed_prism_1 : return "PRISM spec 1.0";
         case ed_rdfa : return "RDFa";
@@ -203,6 +202,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_jul23 : return "HTML 5, Jul 23";
         case ed_nov24 : return "HTML 5, Nov 24";
         case ed_wx : return "wxWidgets HTML";
+        case ed_owasp : return "OWASP";
         case ed_ecma : return "ECMAScript, 22.2.1 Patterns";
         case ed_mozilla : return "mozilla.org May 20";
         case ed_microdata : return "WhatWG Microdata";
@@ -293,6 +293,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_jul23 : return "HTML 5, WhatWG, July 2023";
         case ed_nov24 : return "HTML 5, WhatWG, November 2024";
         case ed_wx : return "wxWidgets HTML, list of stable HTML tags, November 2024";
+        case ed_owasp : return "Open Web Application Security Project, January 2025"; 
         case ed_prism_1 : return "Publishing Requirements for Industry Standard Metadata, Version 1.0";
         case ed_rdfa : return "RDFa Core 1.1 Third Edition";
         case ed_rdfa_c : return "RDFa Core Initial Context, May 2020";
@@ -300,8 +301,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_math_1 : return "MathML 1.01";
         case ed_math_2 : return "MathML 2.0 Second Edition";
         case ed_math_3 : return "MathML 3.0 Second Edition";
-        case ed_math_4_20 : return "MathML 4.0, draft, January 2019";
-        case ed_math_4_22 : return "MathML 4.0, draft, August 2022";
+        case ed_math_4 : return "MathML 4.0, draft, November 2024";
         case ed_iso_8859_1 : return "ISO/IEC 8859-1:1998";
         case ed_ecma : return "ECMAScript 2022 Language Specification, 22.2.1 Patterns, March 2021";
         case ed_mimetype : return "IANA Media Types, February 2019";
@@ -319,7 +319,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_svg_1_2_tiny : return "Scalable Vector Graphics (SVG) Tiny 1.2 Specification";
         case ed_svg_1_2_full : return "Scalable Vector Graphics (SVG) Full 1.2, draft, May 2004";
         case ed_svg_2_0 : return "Scalable Vector Graphics (SVG) 2 W3C Candidate Recommendation";
-        case ed_svg_2_anim : return "SVG Animations Level 2, April 2021 draft";
+        case ed_svg_2_anim : return "SVG Animations Level 2, November 2024 draft";
         case ed_w3 : return "The World Wide Web Consortium";
         case ed_mql : return "Media Queries, W3C recommendation, June 2012";
         case ed_ariaAug2020 : return "WhatWG Aria requirements, draft, August 2020";

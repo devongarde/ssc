@@ -74,6 +74,9 @@ These switches are also available.
 <tr><td>link.report&nbsp;dom</td> <td>Report links to the dom domain and its descendants. May
                         be repeated.</td></tr>
 
+<tr><td>link.special</td> <td>Report links to special domains, such as domains
+                        ending in .alt, .onion, .yu, and others.</td></tr>
+
 <tr><td>link.revoke<br>-r</td> <td>Do not check whether links&rsquo; https certificates
                      have been revoked (requires <kbd>link.external</kbd>).</td></tr>
 </table>

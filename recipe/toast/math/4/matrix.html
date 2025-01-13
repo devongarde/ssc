@@ -1,0 +1,86 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>math 4 matrix</title>
+</head>
+
+<body>
+
+<h1>math 4 matrix</h1>
+
+<math>
+
+<vector>
+  <apply><plus/><ci>x</ci><ci>y</ci></apply>
+  <cn>3</cn>
+  <cn>7</cn>
+</vector>
+
+<mrow>
+  <mo>(</mo>
+  <mtable>
+    <mtr><mtd><mrow><mi>x</mi><mo>+</mo><mi>y</mi></mrow></mtd></mtr>
+    <mtr><mtd><mn>3</mn></mtd></mtr>
+    <mtr><mtd><mn>7</mn></mtd></mtr>
+  </mtable>
+  <mo>)</mo>
+</mrow>
+
+<mrow>
+  <mo>(</mo>
+  <mrow><mi>x</mi><mo>+</mo><mi>y</mi></mrow>
+  <mo>,</mo>
+  <mn>3</mn>
+  <mo>,</mo>
+  <mn>7</mn>
+  <mo>)</mo>
+</mrow>
+
+<matrix>
+  <bvar><ci type="integer">i</ci></bvar>
+  <bvar><ci type="integer">j</ci></bvar>
+  <condition>
+    <apply><and/>
+      <apply><in/>
+        <ci>i</ci>
+        <interval><ci>1</ci><ci>5</ci></interval>
+      </apply>
+      <apply><in/>
+        <ci>j</ci>
+        <interval><ci>5</ci><ci>9</ci></interval>
+      </apply>
+    </apply>
+  </condition>
+  <apply><power/><ci>i</ci><ci>j</ci></apply>
+</matrix>
+
+<mrow>
+  <mo>[</mo>
+  <msub><mi>m</mi><mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub>
+  <mo>|</mo>
+  <mrow>
+    <msub><mi>m</mi><mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub>
+    <mo>=</mo>
+    <msup><mi>i</mi><mi>j</mi></msup>
+  </mrow>
+  <mo>;</mo>
+  <mrow>
+    <mrow>
+      <mi>i</mi>
+      <mo>∈</mo>
+      <mrow><mo>[</mo><mi>1</mi><mo>,</mo><mi>5</mi><mo>]</mo></mrow>
+    </mrow>
+    <mo>∧</mo>
+    <mrow>
+      <mi>j</mi>
+      <mo>∈</mo>
+      <mrow><mo>[</mo><mi>5</mi><mo>,</mo><mi>9</mi><mo>]</mo></mrow>
+    </mrow>
+  </mrow>
+  <mo>]</mo>
+</mrow>
+
+</math>
+
+</body>
+</html>
