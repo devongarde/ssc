@@ -27,7 +27,7 @@ template < class V, typename CATEGORY, CATEGORY INIT > struct symbol_store
     ::std::size_t   v_ = 0;
     CATEGORY        ns_ = INIT;
     flags_t         flags_ = 0, flags2_ = 0;
-	DEFAULT_CONSTRUCTORS (symbol_store);
+    DEFAULT_CONSTRUCTORS (symbol_store);
     symbol_store (const V& first, const V& last, const ::std::string& str, const ::std::size_t v, const CATEGORY ns = INIT, const flags_t flags = NOFLAGS, const flags_t flags2 = NOFLAGS)
         : first_ (first), last_ (last), sz_ (str), v_ (v), ns_ (ns), flags_ (flags), flags2_ (flags2) { }
     symbol_store (const V& first, const V& last, const char* sz, const ::std::size_t v, const CATEGORY ns = INIT, const flags_t flags = NOFLAGS, const flags_t flags2 = NOFLAGS)

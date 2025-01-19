@@ -40,18 +40,16 @@ class html_t : public d1_t < wx_html >
     wxCheckBox* rfc1980_ = nullptr;
     wxCheckBox* rfc2070_ = nullptr;
     wxCheckBox* wx_ = nullptr;
-	wxChoice* version_ = nullptr;
-	wxChoice* math_choice_ = nullptr;
-	wxChoice* svg_choice_ = nullptr;
-	wxComboBox* lingo_ = nullptr;
+    wxChoice* version_ = nullptr;
+    wxChoice* math_choice_ = nullptr;
+    wxChoice* svg_choice_ = nullptr;
+    wxComboBox* lingo_ = nullptr;
     wxGridSizer* czech_grid_ = nullptr;
     wxRadioBox* doctype_ = nullptr;
-	wxSpinCtrl* title_ = nullptr;
+    wxSpinCtrl* title_ = nullptr;
     wxStaticLine* base_ = nullptr;
     wxStaticLine* title_line_ = nullptr;
     wxStaticLine* option_line_ = nullptr;
-    wxStaticLine* def_line_ = nullptr;
-    wxStaticLine* lingo_line_ = nullptr;
     wxStaticLine* version_line_ = nullptr;
     wxStaticText* lingo_text_ = nullptr;
     wxStaticText* math_text_ = nullptr;
@@ -62,9 +60,9 @@ class html_t : public d1_t < wx_html >
     e_svg_version svg_ = sv_none;
     bool b1867_ = false, b1942_ = false, b1980_ = false, b2070_ = false, bie_ = false, bsafari_ = false, bsloven_ = false,
         bwx_ = false;
-	unsigned int max_ = MAX_IDEAL_TITLE_LENGTH;
-	unsigned short dt_ = 0;
-	unsigned short hv_ = 0;
+    unsigned int max_ = MAX_IDEAL_TITLE_LENGTH;
+    unsigned short dt_ = 0;
+    unsigned short hv_ = 0;
     ::std::string lang_ = "en";
     void enable ();
     void enable_wx (const bool b);
@@ -88,12 +86,12 @@ public:
     bool create_panel (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL | wxNO_BORDER);
     void load_from_context (const context_t& c);
     void save_to_context (context_t& c) const;
-	html_version ver () const;
-	void ver (const html_version& v);
-	unsigned int title () const { return max_; }
-	void title (const unsigned int l) { max_ = l; }
-	unsigned short doctype () const { return dt_; }
-	void doctype (const unsigned short l) { dt_ = l; }
+    html_version ver () const;
+    void ver (const html_version& v);
+    unsigned int title () const { return max_; }
+    void title (const unsigned int l) { max_ = l; }
+    unsigned short doctype () const { return dt_; }
+    void doctype (const unsigned short l) { dt_ = l; }
     bool rfc1867 () const noexcept { return b1867_; }
     void rfc1867 (const bool b) noexcept { b1867_ = b; }
     bool rfc1942 () const noexcept { return b1942_; }
@@ -116,5 +114,4 @@ public:
     e_math_version math_version () const { return math_; }
     void svg_version (const e_svg_version sv) { svg_ = sv; }
     e_svg_version svg_version () const { return svg_; } };
-
 #endif // WX

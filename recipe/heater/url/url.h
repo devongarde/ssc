@@ -47,7 +47,7 @@ public:
         :   valid_ (true), current_ (current), v_ (v)
     {   set (nits, v, u, current); }
     ~url () = default;
-	bool operator == (const url& rhs) const;
+    bool operator == (const url& rhs) const;
     void reset (const url& u)
     {   url f (u);
         swap (f); }

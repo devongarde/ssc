@@ -36,7 +36,7 @@ public:
     DEFAULT_COPY_CONSTRUCTORS (nit);
     nit (const e_nit code, const e_doc doc, const ::std::string& ref, const e_severity severity, const e_category category, const ::std::string& msg);
     nit (const e_nit code, const e_severity severity, const e_category category, const ::std::string& msg);
-	~nit() = default;
+    ~nit() = default;
     void swap (nit& n) noexcept;
     void reset ();
     void reset (const nit& n);

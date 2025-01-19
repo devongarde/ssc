@@ -25,8 +25,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 bool d2_t :: Create (wxWindow *mummy, wxWindowID id, const wxString& caption, const wxPoint& pos, const wxSize& size, const long style)
 {	if (! preCreate (mummy, id, caption, pos, size, style)) return false;
-	CreateBox ();
-	return true; }
+    CreateBox ();
+    return true; }
 
 void d2_t :: CreateBox ()
 {	box_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxVERTICAL));
@@ -60,8 +60,8 @@ void d2_t :: CreateButtons (const int bs)
 
 bool d3_t :: Create (wxWindow *mummy, wxWindowID id, const wxString& caption, const wxPoint& pos, const wxSize& size, const long style)
 {	if (! preCreate (mummy, id, caption, pos, size, style)) return false;
-	CreateBox ();
-	return true; }
+    CreateBox ();
+    return true; }
 
 void d3_t :: CreateBox ()
 {	box_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxVERTICAL));
@@ -74,11 +74,11 @@ void d3_t :: CreateBox ()
 
 void d3_t :: CreateButtons (const int bs)
 {	if (interrogate < wxDialog > :: invalid_panel ()) return;
-	divider_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
+    divider_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
     if (divider_ != nullptr)
-	{   save_ = GSL_OWNER (wxButton) (new wxButton (this, wxID_SAVE));
+    {   save_ = GSL_OWNER (wxButton) (new wxButton (this, wxID_SAVE));
         if (save_ != nullptr)
-	    {   save_as_ = GSL_OWNER (wxButton) (new wxButton (this, wxID_SAVEAS));
+        {   save_as_ = GSL_OWNER (wxButton) (new wxButton (this, wxID_SAVEAS));
             if (save_as_ != nullptr)
             {   load_ = GSL_OWNER (wxButton) (new wxButton (this, wxID_OPEN));
                 if (load_ != nullptr)

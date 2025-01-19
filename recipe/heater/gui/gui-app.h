@@ -28,7 +28,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 class app_t : public wxApp
 {   frame_pt frame_ = nullptr; 
-    welcome_t* welcome_ = nullptr;
     int res_ = 0;
     wxHtmlHelpController* help_ = nullptr;
     ::boost::filesystem::path help_path_;
@@ -64,8 +63,6 @@ public:
     bool Welcome (context_t& context);
     virtual bool OnInit ();
     virtual int OnExit (); };
-
 DECLARE_APP (app_t)
 extern app_t* app;
-
 #endif // WX

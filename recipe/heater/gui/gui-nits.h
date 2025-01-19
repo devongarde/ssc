@@ -65,7 +65,6 @@ public:
     bool create_panel (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL | wxNO_BORDER);
     void load_from_context (const context_t& c);
     void save_to_context (context_t& c) const;
-
     bool id () const noexcept { return id_; }
     void id (const bool b) noexcept { id_ = b; }
     ::boost::filesystem::path output () const { return output_; }
@@ -76,5 +75,4 @@ public:
     void severity (const mns_t& s) { stable_ = s; }
     e_severity verbosity () const noexcept { return verbosity_; }
     void verbosity (const e_severity v) noexcept { verbosity_ = v; } };
-
 #endif // WX

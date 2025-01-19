@@ -41,7 +41,7 @@ public:
     attributes_node (element_node* box, const attributes_node& an)
         :   box_ (box)
     {   va_ = an.va_; }
-	void swap (attributes_node& an) noexcept
+    void swap (attributes_node& an) noexcept
     {   va_.swap (an.va_);
         ::std::swap (box_, an.box_); }
     void reset ()

@@ -32,7 +32,7 @@ template < typename TYPE, e_type E > struct enum_base : public type_base < TYPE,
     value_type value_ = GSL_NARROW_CAST < value_type > (0);
     ::std::string original_;
     DEFAULT_CONSTRUCTORS (enum_base);
-	explicit enum_base (const html_version& v, const ::std::string& s);
+    explicit enum_base (const html_version& v, const ::std::string& s);
     explicit enum_base (element* box) noexcept : type_base < TYPE, E > (box) { }
     static ::std::string values (const html_version& ) { return ::std::string (); }
     static ::std::size_t value_count () { return 0; }
@@ -119,7 +119,7 @@ template < e_type E, typename ENUM, typename CATEGORY = ident_t, CATEGORY INIT =
     {   for (auto ext : extension) extend (ext, e); }
     static bool exists (const ::std::string& x)
     {   return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: exists (x); }
-	static e_animation_type animation_type () noexcept { return at_other; }
+    static e_animation_type animation_type () noexcept { return at_other; }
     void swap (enum_n& t) noexcept
     {   type_base < ENUM, E >::swap (t);
         symbol < html_version, ENUM, CATEGORY, INIT, LC > :: swap (t); }

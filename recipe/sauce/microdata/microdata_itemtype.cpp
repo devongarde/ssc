@@ -26,12 +26,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 itemtype_index make_itemtype_index (const e_ontology_type p)
 {   PRESUME (p <= ont_illegal, __FILE__, __LINE__);
-    return static_cast < itemtype_index> (p) + (static_cast < itemtype_index> (itemtype_ontology) << uint32_category_shift); }
+    return static_cast < itemtype_index> (p) + (static_cast < itemtype_index> (itemtype_ontology) << itemprop_category_shift); }
 
 itemtype_index make_itemtype_index (const e_property p)
 {   PRESUME (p <= first_illegal, __FILE__, __LINE__);
-    if (is_mf_class (p)) return GSL_NARROW_CAST < itemtype_index> (p) + (static_cast < itemtype_index> (itemtype_microformat) << uint32_category_shift);
-    if (is_mf_rel (p)) return GSL_NARROW_CAST < itemtype_index> (p) + (static_cast < itemtype_index> (itemtype_rel) << uint32_category_shift);
+    if (is_mf_class (p)) return GSL_NARROW_CAST < itemtype_index> (p) + (static_cast < itemtype_index> (itemtype_microformat) << itemprop_category_shift);
+    if (is_mf_rel (p)) return GSL_NARROW_CAST < itemtype_index> (p) + (static_cast < itemtype_index> (itemtype_rel) << itemprop_category_shift);
     return 0; }
 
 itemtype_index find_itemtype_index (nitpick& nits, const html_version& v, const ::std::string& name, const bool propped)
@@ -49,7 +49,7 @@ itemtype_index find_itemtype_index (nitpick& nits, const html_version& v, const 
 
 ::std::string itemtype_index_name (const itemtype_index ndx)
 {   if (ndx != invalid_itemtype)
-        switch (ndx >> uint32_category_shift)
+        switch (ndx >> itemprop_category_shift)
         {   case itemtype_microformat :
             case itemtype_rel :
                 return type_master < t_class > :: name (static_cast < e_class > (ndx_item (ndx)));

@@ -38,8 +38,8 @@ public:
     explicit reverter (T& t) : p_ (t), t_ (t) { }
     ~reverter () { if (p_ != t_) p_ = t_; } };
 
-CONSTEXPR inline uint32_t ndx_category (const uint32_t x) noexcept { return (x & uint32_category_mask) >> uint32_category_shift; }
-CONSTEXPR inline uint32_t ndx_item (const uint32_t x) noexcept { return (x & uint32_item_mask); }
+CONSTEXPR inline uint32_t ndx_category (const uint32_t x) noexcept { return (x & itemprop_category_mask) >> itemprop_category_shift; }
+CONSTEXPR inline uint32_t ndx_item (const uint32_t x) noexcept { return (x & itemprop_item_mask); }
 
 ::std::string trim_the_lot_off (const ::std::string& s);
 bool remove_tail (::std::string& s, ::std::string& tail, const char ch);

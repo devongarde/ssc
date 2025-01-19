@@ -669,7 +669,7 @@ bool elem::parse (nitpick& nits, const html_version& v, const namespaces_ptr& na
                     if (e.is_math ())
                     {   under_parse (nits, v, el, ns_default); return true; }
                     break;
-		default : break; } }
+        default : break; } }
     nits.merge (knits);
     check_identifier_spelling (nits, v, el);
     return false; }

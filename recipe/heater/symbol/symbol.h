@@ -37,7 +37,7 @@ template < class V, typename VALUE, typename CATEGORY = ident_t, CATEGORY INIT =
     flags_t flags_ = NOFLAGS, flags2_ = NOFLAGS;
 public:
     typedef VALUE value_type;
-	DEFAULT_CONSTRUCTORS (symbol);
+    DEFAULT_CONSTRUCTORS (symbol);
     explicit symbol (const VALUE& value, const CATEGORY ns = INIT) : value_ (value), ns_ (ns), unknown_ (false)
     {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
         first_ = table_ -> first_version (value);

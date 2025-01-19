@@ -186,6 +186,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG_10_11_2 | HE_ANIM_10_11_2 }, { HTML_UNDEF }, "clipPathUnits", a_clippathunits },
     { { HTML_SVG12, 0, HE_SVG_12_FULL }, { HTML_UNDEF }, "clip-to-self", a_clip_to_self, ns_default, AF_PROPERTY },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "close", a_close },
+    { { HTML_FEB25 }, { HTML_UNDEF }, "closedby", a_closedby },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "closure", a_closure },
     { { HTML_3_2 }, { HTML_UNDEF }, "code", a_code },
     { { HTML_3_2 }, { HTML_UNDEF }, "codebase", a_codebase },

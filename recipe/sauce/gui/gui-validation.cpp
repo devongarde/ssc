@@ -62,85 +62,85 @@ IMPLEMENT_CLASS (vv_t, d1_t)
 
 // taking class out because of CSS, rel because of MF, plusstyle because, and Element::Attribute because it needs different treatment
 #define BASE_VALID "Attribute", "Charset", "Colour", "Country Code", "Currency Code", "Dingbat", "Element", "Extension", "Font Feature", "Font Variation", "HttpEquiv Macro", \
-	"Language Code", "Meta Name", "Mimetype", "SGML Schema"
+    "Language Code", "Meta Name", "Mimetype", "SGML Schema"
 #define BASE_COUNT 15
 
 ::std::vector < wxString > vld;	// the code presumes this won't be fiddled with whilst a dialogue is open
 
 vv_t :: vv_t (wxWindow *mummy, wxWindowID id, const wxString& caption)
-	: d1_t (wxPoint (VALID_X, VALID_Y), wxSize (VALID_WIDTH, VALID_HEIGHT))
+    : d1_t (wxPoint (VALID_X, VALID_Y), wxSize (VALID_WIDTH, VALID_HEIGHT))
 {	Create (mummy, id, caption); } 
 
 bool vv_t :: Create (wxWindow *mummy, wxWindowID id, const wxString& caption)
 {	if (! d1_t :: Create (mummy, id, caption, wxPoint (VALID_X, VALID_Y), wxSize (VALID_WIDTH, VALID_HEIGHT), VALID_STYLE)) return false;
-	CreateControls ();
-	return true; }
+    CreateControls ();
+    return true; }
 
 void vv_t :: create_virtual_dir_controls (wxWindow *parent, wxGridSizer* grid, wxStaticText*& stat, wxDirPickerCtrl*& dir, const char* const stattxt, const wxWindowID id)
 {	VERIFY_NOT_NULL (grid, __FILE__, __LINE__);
-	stat = GSL_OWNER (wxStaticText) (new wxStaticText (parent, wxID_ANY, stattxt, wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT));
-	if (stat != nullptr)
-	{	dir = GSL_OWNER (wxDirPickerCtrl) (new wxDirPickerCtrl (parent, id, wxEmptyString, RREPERTOIRE, wxDefaultPosition, wxDefaultSize, wxDIRP_DEFAULT_STYLE));
-		if (dir !=  nullptr)
-		{	grid -> Add (stat, 2, wxALL | wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL, 5);
-			grid -> Add (dir, 5, wxALL | wxEXPAND | wxALIGN_CENTER_VERTICAL, 5); } } }
+    stat = GSL_OWNER (wxStaticText) (new wxStaticText (parent, wxID_ANY, stattxt, wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT));
+    if (stat != nullptr)
+    {	dir = GSL_OWNER (wxDirPickerCtrl) (new wxDirPickerCtrl (parent, id, wxEmptyString, RREPERTOIRE, wxDefaultPosition, wxDefaultSize, wxDIRP_DEFAULT_STYLE));
+        if (dir !=  nullptr)
+        {	grid -> Add (stat, 2, wxALL | wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL, 5);
+            grid -> Add (dir, 5, wxALL | wxEXPAND | wxALIGN_CENTER_VERTICAL, 5); } } }
 
 void vv_t :: create_controls (wxWindow *parent)
 {	virt_.construct (parent, box_, "Virtual " RREPERTOIRES);
-	if (! virt_.invalid ())
-	{	grid_virt_ = GSL_OWNER (wxGridSizer) (new wxGridSizer (0, 2, 0, 0));	
-		if (grid_virt_ != nullptr)
-		{	create_virtual_dir_controls (parent, grid_virt_, stat_folder_, dir_folder_, "Physical " REPERTOIRE ":", dir_physical);
-			create_virtual_dir_controls (parent, grid_virt_, stat_shadow_, dir_shadow_, "Shadow output " REPERTOIRE ":", dir_shadow);
-			create_virtual_dir_controls (parent, grid_virt_, stat_ontology_, dir_ontology_, "Ontology output " REPERTOIRE ":", dir_ontology);
+    if (! virt_.invalid ())
+    {	grid_virt_ = GSL_OWNER (wxGridSizer) (new wxGridSizer (0, 2, 0, 0));	
+        if (grid_virt_ != nullptr)
+        {	create_virtual_dir_controls (parent, grid_virt_, stat_folder_, dir_folder_, "Physical " REPERTOIRE ":", dir_physical);
+            create_virtual_dir_controls (parent, grid_virt_, stat_shadow_, dir_shadow_, "Shadow output " REPERTOIRE ":", dir_shadow);
+            create_virtual_dir_controls (parent, grid_virt_, stat_ontology_, dir_ontology_, "Ontology output " REPERTOIRE ":", dir_ontology);
             stat_note_ = GSL_OWNER (wxStaticText) (new wxStaticText (parent, wxID_ANY, " ", wxDefaultPosition, wxDefaultSize, 0));
-		    if (stat_note_ != nullptr)
-		    {	box_ -> Add (grid_virt_, 0, wxEXPAND, 1);
+            if (stat_note_ != nullptr)
+            {	box_ -> Add (grid_virt_, 0, wxEXPAND, 1);
                 box_ -> Add (stat_note_, 0, wxEXPAND | wxALL, 5); } } }
 
-	line_valid_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
-	if (line_valid_ != nullptr)
-		box_ -> Add (line_valid_, 0, wxEXPAND | wxALL, 5);
+    line_valid_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
+    if (line_valid_ != nullptr)
+        box_ -> Add (line_valid_, 0, wxEXPAND | wxALL, 5);
 
-	box_for_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxHORIZONTAL));
-	if (box_for_ != nullptr)
-	{	stat_for_ = GSL_OWNER (wxStaticText) (new wxStaticText (parent, wxID_ANY, "Validation    ", wxDefaultPosition, wxDefaultSize, 0));
-		if (stat_for_ != nullptr)
-		{	box_for_ -> Add (stat_for_, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
-			if (vld.empty ())
-			{	vld.assign ( { BASE_VALID } );
-				for (auto o : context.validation ())
-				{	const ::std::string s (o.first);
-					if (! s.empty ())
-					{	const ::std::string::size_type pos = s.find ('.');
-						if ((pos != ::std::string::npos) && (pos < s.length () - 1))
-							 vld.push_back (s.substr (pos+1)); } }
-				PRESUME ((vld.size () == context.validation ().size () + BASE_COUNT), __FILE__, __LINE__);
-				::std::sort (vld.begin (), vld.end ()); }
-			choice_for_ = GSL_OWNER (wxChoice) (new wxChoice (parent, choice_validation_version, wxDefaultPosition, wxDefaultSize, GSL_NARROW_CAST < int > (vld.size ()), vld.data (), 0));
-			if (choice_for_ != nullptr)
-			{	choice_for_ -> SetSelection (0);
-				box_for_ -> Add (choice_for_, 0, wxALL, 5);
-				box_ -> Add (box_for_, 0, wxALIGN_CENTER_HORIZONTAL, 5); } } }
+    box_for_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxHORIZONTAL));
+    if (box_for_ != nullptr)
+    {	stat_for_ = GSL_OWNER (wxStaticText) (new wxStaticText (parent, wxID_ANY, "Validation    ", wxDefaultPosition, wxDefaultSize, 0));
+        if (stat_for_ != nullptr)
+        {	box_for_ -> Add (stat_for_, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
+            if (vld.empty ())
+            {	vld.assign ( { BASE_VALID } );
+                for (auto o : context.validation ())
+                {	const ::std::string s (o.first);
+                    if (! s.empty ())
+                    {	const ::std::string::size_type pos = s.find ('.');
+                        if ((pos != ::std::string::npos) && (pos < s.length () - 1))
+                             vld.push_back (s.substr (pos+1)); } }
+                PRESUME ((vld.size () == context.validation ().size () + BASE_COUNT), __FILE__, __LINE__);
+                ::std::sort (vld.begin (), vld.end ()); }
+            choice_for_ = GSL_OWNER (wxChoice) (new wxChoice (parent, choice_validation_version, wxDefaultPosition, wxDefaultSize, GSL_NARROW_CAST < int > (vld.size ()), vld.data (), 0));
+            if (choice_for_ != nullptr)
+            {	choice_for_ -> SetSelection (0);
+                box_for_ -> Add (choice_for_, 0, wxALL, 5);
+                box_ -> Add (box_for_, 0, wxALIGN_CENTER_HORIZONTAL, 5); } } }
 
-	val_.construct (parent, box_, "");
+    val_.construct (parent, box_, "");
 
-	line_base_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
-	if (line_base_ != nullptr)
-		box_ -> Add (line_base_, 0, wxEXPAND | wxALL, 5); }
+    line_base_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
+    if (line_base_ != nullptr)
+        box_ -> Add (line_base_, 0, wxEXPAND | wxALL, 5); }
 
 void vv_t :: CreateControls ()
 {	if (d1_t :: invalid ()) return;
     create_controls (this);
-	d1_t :: CreateButtons (1);
-	SetSizer (box_);
-	Layout ();
-	Centre (wxBOTH); }
+    d1_t :: CreateButtons (1);
+    SetSizer (box_);
+    Layout ();
+    Centre (wxBOTH); }
 
 void vv_t :: depopulate ()
 {   PRESUME (! invalid (), __FILE__, __LINE__);
     if (prior_ != wxNOT_FOUND)
-	{	const e_css_version sel = GSL_NARROW_CAST < e_css_version > (prior_);
+    {	const e_css_version sel = GSL_NARROW_CAST < e_css_version > (prior_);
         const ::std::size_t fm = vvfix_.size ();
         const ::std::size_t sz = val_.list_ -> GetCount ();
         PRESUME (sel < fm, __FILE__, __LINE__);
@@ -155,8 +155,8 @@ void vv_t :: depopulate ()
 void vv_t :: repopulate ()
 {   PRESUME (! invalid (), __FILE__, __LINE__);
     prior_ = choice_for_ -> GetSelection ();
-	if (prior_ != wxNOT_FOUND)
-	{	const e_css_version sel = GSL_NARROW_CAST < e_css_version > (prior_);
+    if (prior_ != wxNOT_FOUND)
+    {	const e_css_version sel = GSL_NARROW_CAST < e_css_version > (prior_);
         PRESUME (sel < vvfix_.size (), __FILE__, __LINE__);
         PRESUME (sel < vvextra_.size (), __FILE__, __LINE__);
         vstr_t vv (vvfix_.at (sel));
@@ -202,7 +202,7 @@ void vv_t :: OnVirtAdd (wxCommandEvent& e)
 void vv_t :: OnVirtErase (wxCommandEvent& e)
 {   // this, it must be said, is dismal
     if (! invalid ())
-    {   pvirt_ = virt_.list_ -> GetSelection ();
+    {   const ::std::size_t zap = virt_.list_ -> GetSelection ();
         const ::std::size_t mx = virts_.size () - 1;
         virt_.OnErase (e);
         if (mx == 0)
@@ -218,7 +218,7 @@ void vv_t :: OnVirtErase (wxCommandEvent& e)
             ss.reserve (mx);
             vs.reserve (mx);
             for (::std::size_t n = 0; n < virts_.size (); ++n)
-                if (n != pvirt_)
+                if (n != zap)
                 {   es.emplace_back (export_.at (n));
                     ps.emplace_back (phys_.at (n));
                     ss.emplace_back (shadow_.at (n));
@@ -233,7 +233,8 @@ void vv_t :: OnVirtRename (wxCommandEvent& e)
 { if (! invalid ()) { virt_.OnRename (e); en_virt (); } }
 
 void vv_t :: OnVirtSelect (wxCommandEvent& e)
-{ if (! invalid ()) { virt_.OnTap (e); en_virt (); } }
+{   if (! invalid ())
+    {   virt_.OnTap (e); en_virt (); } }
 
 void vv_t :: OnVirtImpatience (wxCommandEvent& e)
 { if (! invalid ()) { virt_.OnTap (e); en_virt (); } }
@@ -270,18 +271,19 @@ void vv_t :: bpsize (const ::std::size_t z)
         export_.resize (z + 1);
         shadow_.resize (z + 1); } }
 
-void vv_t :: part_de_virt (const ::std::size_t z)
+void vv_t :: part_de_virt (const int z)
 {   if (z != wxNOT_FOUND)
-    {   bpsize (z);
-        phys_.at (z) = ::boost::filesystem::path (dir_folder_ -> GetPath ().c_str ());
-        export_.at (z) = ::boost::filesystem::path (dir_ontology_ -> GetPath ().c_str ());
-        shadow_.at (z) = ::boost::filesystem::path (dir_shadow_ -> GetPath ().c_str ()); } }
+    {   const ::std::size_t sz = z;
+        bpsize (sz);
+        phys_.at (sz) = ::boost::filesystem::path (dir_folder_ -> GetPath ().c_str ());
+        export_.at (sz) = ::boost::filesystem::path (dir_ontology_ -> GetPath ().c_str ());
+        shadow_.at (sz) = ::boost::filesystem::path (dir_shadow_ -> GetPath ().c_str ()); } }
 
 void vv_t :: en_virt ()
 {	PRESUME (! invalid (), __FILE__, __LINE__);
     const bool txt = ! virt_.text_ -> GetValue ().empty ();
-	const int sel = virt_.sel ();
-	const bool sltd = (sel >= 0);
+    const int sel = virt_.sel ();
+    const bool sltd = (sel >= 0);
     if (pvirt_ != sel)
     {   part_de_virt (pvirt_);
         if (sel != wxNOT_FOUND)
@@ -292,12 +294,12 @@ void vv_t :: en_virt ()
         pvirt_ = sel; }
     virt_check ();
     const bool f = dir_folder_ -> GetDirName ().DirExists ();
-	dir_ontology_ -> Enable (sltd || txt);
-	dir_folder_ -> Enable (sltd || txt);
-	dir_shadow_ -> Enable (sltd || txt);
-	stat_ontology_ -> Enable (sltd || txt);
-	stat_folder_ -> Enable (sltd || txt);
-	stat_shadow_ -> Enable (sltd || txt);
+    dir_ontology_ -> Enable (sltd || txt);
+    dir_folder_ -> Enable (sltd || txt);
+    dir_shadow_ -> Enable (sltd || txt);
+    stat_ontology_ -> Enable (sltd || txt);
+    stat_folder_ -> Enable (sltd || txt);
+    stat_shadow_ -> Enable (sltd || txt);
     if (virt_.able_enable ()) virt_.add_ -> Enable (txt && f); }
 
 bool same_dirs (::std::string& note, const ::std::string& m, const ::std::string& n, const ::boost::filesystem::path& lhs, const ::boost::filesystem::path& rhs, const char* const ln, const char* const rn)
@@ -340,8 +342,8 @@ void vv_t :: virt_check ()
 void vv_t :: reval ()
 {	PRESUME (! invalid (), __FILE__, __LINE__);
     const int sel = choice_for_ -> GetSelection ();
-    PRESUME (sel < vvfix_.size (), __FILE__, __LINE__);
-    PRESUME (sel < vvextra_.size (), __FILE__, __LINE__);
+    PRESUME (sel < GSL_NARROW_CAST < int > (vvfix_.size ()), __FILE__, __LINE__);
+    PRESUME (sel < GSL_NARROW_CAST < int > (vvextra_.size ()), __FILE__, __LINE__);
     const int vv = val_.sel ();
     const ::std::string txt (val_.text_ -> GetValue ());
     if (sel < 0) val_.add_ -> Enable (false);
@@ -349,49 +351,40 @@ void vv_t :: reval ()
     {   val_.erase_ -> Enable (false);        
         val_.rename_ -> Enable (false); }       
     else
-    {   const bool bes = (vv >= vvfix_.at (sel).size ());
+    {   const bool bes = (vv >= GSL_NARROW_CAST < int > (vvfix_.at (sel).size ()));
         val_.erase_ -> Enable (bes);
         if (val_.rename_ -> IsEnabled ()) // already tested by listedit
             val_.rename_ -> Enable (bes && ! txt.empty ()); } }
 
 bool vv_t :: TransferDataToWindow ()
 {	if (invalid ()) return false;
-	virt_.preload (virts_);
-	en_virt ();
+    virt_.preload (virts_);
+    en_virt ();
     vstr_t vv (*vvfix_.cbegin ());
     for (auto x : *vvextra_.cbegin ()) if (! x.empty ()) vv.push_back (x);
     val_.preload (vv);
     if (prior_ == wxNOT_FOUND) prior_ = 0;
     choice_for_ -> Select (prior_); 
     repopulate ();
-	return true; }
+    return true; }
 
 bool vv_t :: TransferDataFromWindow ()
 {	if (invalid ()) return false;
     virts_ = virt_.unload < vstr_t > ();
     part_de_virt (pvirt_);	
     depopulate ();
-	return true; }
+    return true; }
 
 bool vv_t :: create_panel (wxWindow *mummy, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
 {	PRESUME (invalid_panel (), __FILE__, __LINE__);
-	create_box (mummy, pos, size);
-	if (! create_panel_itself (mummy, id, pos, size, style)) return false;
-	create_controls (panel_);
-	if (invalid_panel ()) return false;
-	panel_ -> SetSizer (box_);
-	panel_ -> Layout ();
-	box_ -> Fit (panel_);
-	return true; }
-
-void sucky_stuff (const char* msg, const ::std::string& s)
-{
-#if defined (_MSC_VER) && defined (DEBUG)
-    if (! context.tell (es_info)) return;
-    ::std::string sid (msg); sid += s; sid += "\n";
-    ::OutputDebugStringA (sid.c_str ()); 
-#endif // burble
-}
+    create_box (mummy, pos, size);
+    if (! create_panel_itself (mummy, id, pos, size, style)) return false;
+    create_controls (panel_);
+    if (invalid_panel ()) return false;
+    panel_ -> SetSizer (box_);
+    panel_ -> Layout ();
+    box_ -> Fit (panel_);
+    return true; }
 
 template < class Z, e_type T > void vv_t :: vvfox (::std::size_t& count, const context_t& c, const ::std::size_t from)
 {   vvfix_.push_back (vstr_t ());
@@ -402,8 +395,7 @@ template < class Z, e_type T > void vv_t :: vvfox (::std::size_t& count, const c
         if (! cc.empty ()) vvfix_.at (count).push_back (cc); }
     for (auto cc : c.vvext (T))
         if (! cc.empty ())
-        {   sucky_stuff ("Load (fox) ", cc);
-            vvextra_.at (count).push_back (cc); }
+            vvextra_.at (count).push_back (cc);
     ++count; }
 
 template < class Z, class T > void vv_t :: vvfox (::std::size_t& count, const ::std::size_t from, const ::std::size_t to, const vstr_t& feed)
@@ -414,8 +406,7 @@ template < class Z, class T > void vv_t :: vvfox (::std::size_t& count, const ::
     {   const ::std::string& cc = Z::name (GSL_NARROW_CAST < T > (x));
         if (! cc.empty ()) vvfix_.at (count).push_back (cc); }
     for (auto cc : feed)
-    {   sucky_stuff ("Load (vix) ", cc);
-        vvextra_.at (count).push_back (cc); }
+        vvextra_.at (count).push_back (cc);
     ++count; }
 
 void vv_t :: load_from_context (const context_t& c)
@@ -461,7 +452,7 @@ void vv_t :: load_from_context (const context_t& c)
         phys_ = ps;
         export_ = exs;
         shadow_ = shs; }
-	const paths_root& pr = paths_root :: virtual_roots ();
+    const paths_root& pr = paths_root :: virtual_roots ();
     for (::std::size_t i = 1; i < pr.size (); ++i)
     {   export_.emplace_back (pr.at (i) -> get_export ());   
         phys_.emplace_back (pr.at (i) -> get_disk_path ());
@@ -781,8 +772,7 @@ template < e_type T > void vv_t :: foxvv (::std::size_t& count, context_t& c, co
     for (::std::size_t x = let; x < vvextra_.at (count).size (); ++x)
     {   const ::std::string& s = vvextra_.at (count).at (x);
         if (! type_master < T >::exists (s))
-        {   sucky_stuff ("Save (fox) ", s);
-            type_master < T >::extend (s, x); } }
+            type_master < T >::extend (s, x); }
     c.vvext (T, vvextra_.at (count));
     ++count; }
 
@@ -791,16 +781,16 @@ template < class Z > vstr_t vv_t :: foxvv (::std::size_t& count, const ::std::si
     for (::std::size_t x = let; x < vvextra_.at (count).size (); ++x)
     {   const ::std::string& s = vvextra_.at (count).at (x);
         if (! Z::exists (s)) \
-        {   sucky_stuff ("Save (vix) ", s);
-            Z::extend (s, x); } }
+            Z::extend (s, x); }
     return vvextra_.at (count++); }
 
 void vv_t :: save_to_context (context_t& c) const
 {	PRESUME (virts_.size () == phys_.size (), __FILE__, __LINE__);
-	PRESUME (virts_.size () == export_.size (), __FILE__, __LINE__);
-	PRESUME (virts_.size () == shadow_.size (), __FILE__, __LINE__);
+    PRESUME (virts_.size () == export_.size (), __FILE__, __LINE__);
+    PRESUME (virts_.size () == shadow_.size (), __FILE__, __LINE__);
+
     if (virts_.size () > 0)
-	{   vstr_t exps, shads, vs;
+    {   vstr_t exps, shads, vs;
         exps.reserve (virts_.size ());
         shads.reserve (virts_.size ());
         vs.reserve (virts_.size ());
@@ -812,7 +802,7 @@ void vv_t :: save_to_context (context_t& c) const
             else exps.push_back (arse + canonical_name (absolute_name (export_.at (n))).string ());
             if (shadow_.at (n).empty ()) shads.push_back (::std::string ());
             else shads.push_back (arse + canonical_name (absolute_name (shadow_.at (n))).string ()); }
-	    c.virtuals (vs);
+        c.virtuals (vs);
         c.shadows (shads);
         c.exports (exps); }
     ::std::size_t count = 0;

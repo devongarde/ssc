@@ -752,9 +752,6 @@ void options::init (context_t& c)
         (HTML DONT SSI, ::boost::program_options::bool_switch (), "Do not process Server Side Includes.")
         (HTML WX_SNIPPET, ::boost::program_options::value < ::std::string > (), "Snippet seen in wx intro dialogue.")
 
-        (MATH CORE, ::boost::program_options::bool_switch (), "MathML Core (November 2024 draft).")
-        (MATH DONT CORE, ::boost::program_options::bool_switch (), "Avoid MathML Core.")
-
         (MICRODATA EXPORT, ::boost::program_options::bool_switch (), "Export microdata (only verified data if --" ONTOLOGY VERIFY " is set).")
         (MICRODATA DONT EXPORT, ::boost::program_options::bool_switch (), "Do not export microdata data.")
         (MICRODATA VERIFY, ::boost::program_options::bool_switch (), "Check microdata (" PROG " only understands certain microdata schemas).")
@@ -1904,8 +1901,6 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
             {   nits.pick (nit_config_version, es_warning, ec_init, "ignoring invalid MathML version");
                 c.math_version (math_none); } }
 
-        if (is_be (MATH CORE) && ! is_be (MATH DONT CORE)) c.math_version (math_core);
-
         yea_nay (c, &context_t::mf_export, nits, MF EXPORT, MF DONT EXPORT);
         yea_nay (c, &context_t::mf_pretty, nits, MF PRETTY, MF DONT PRETTY);
 
@@ -2478,7 +2473,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
             << report_value (gr, PROG, ssc, OPTNPS, "no")
 #endif // NPS_GEN
             << report_value (gr, PROG, ssc, OPTPROC, "x" PROCSIZE)
-            << report_value (gr, PROG, ssc, OPTOS, BUILD_OS)
+            << report_value (gr, PROG, ssc, OPTOS, TARGET_OS)
 #ifdef SPELT
             << report_value (gr, PROG, ssc, OPTSPELL, "yes")
 #else // SPELT
@@ -2715,7 +2710,6 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RB (gr, res, LINKS, XLINK, lynx);
     REOS (lynx, res);
 
-    RB (gr, res, MATH, CORE, math);
     RG (gr, res, int, MATH, VERSION, math);
     REOS (math, res);
 

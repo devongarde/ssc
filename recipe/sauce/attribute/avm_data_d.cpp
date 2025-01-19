@@ -119,6 +119,7 @@ hav_t havt_di [] =
 
 hav_t havt_dialogue [] =
 {   { { HTML_JUL12 }, { HTML_UNDEF }, elem_dialogue, a_open },
+    { { HTML_FEB25 }, { HTML_UNDEF }, elem_dialogue, a_closedby },
     STANDARD_HTML5_ATTRIBUTES (elem_dialogue),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 

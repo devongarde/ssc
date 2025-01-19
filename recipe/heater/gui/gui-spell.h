@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #ifdef HUNSPELL
 #define HUNDO
-#elsif defined (DEBUG) // HUNSPELL
+#elif defined (DEBUG) // HUNSPELL
 // #define HUNDO    // for dialogue testing under windows
 #endif // HUNSPELL
 
@@ -148,5 +148,4 @@ public:
     bool TransferDataToWindow ();
     bool TransferDataFromWindow (); };
 #endif // NOSPELL
-
 #endif // WX

@@ -134,7 +134,7 @@ bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, c
                     {   if (is_valid_property (nuts, v, parent, prop, child))
                         {   nits.merge (nuts);
                             itemprop_.emplace (prop, scope);
-                            p.mark (static_cast < e_ontology_type > (parent & uint32_item_mask), static_cast < e_ontology_property > (prop & uint32_item_mask));
+                            p.mark (static_cast < e_ontology_type > (parent & itemprop_item_mask), static_cast < e_ontology_property > (prop & itemprop_item_mask));
                             return true; }
                         knots.merge (nuts); nuts.reset (); } }
     nits.merge (knots);

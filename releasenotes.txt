@@ -3,6 +3,16 @@ static site checker
 https://ssc.lu/
 (c) 2020-2025 Dylan Harris
 
+0.2.10
+- the gui version is no longer entirely unusable, but will be subject
+  to significant change in the near term. It fails to fail
+  spectacularly when built under Windows x64/arm64 or macos
+  sequioa amd64/arm64. It has not been tested on other systems (yet).
+  Currently, the help files are extremely unhelpful.
+- introduced an unsigned windows installer for x64 only
+- added living standard <DIALOG> CLOSEDBY attribute
+- underlying work
+
 0.2.9
 - MathML 4 and 4 core now apply the November 2024 draft
 - SVG 2.1 now applies the November 2024 draft

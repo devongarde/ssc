@@ -55,5 +55,4 @@ public:
     void OnUpdateCopy (wxUpdateUIEvent& e);
     void OnUpdateSelectAll (wxUpdateUIEvent& e);
     void OnUpdate (wxCommandEvent& e); };
-
 #endif // WX

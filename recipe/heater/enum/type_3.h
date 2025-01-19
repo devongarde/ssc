@@ -175,6 +175,9 @@ template < > struct type_master < t_cc_permits > : three_value < t_cc_permits, e
 template < > struct type_master < t_cio > : three_value < t_cio, e_cio, sz_centre, sz_inset, sz_outset >
 { using three_value < t_cio, e_cio, sz_centre, sz_inset, sz_outset > :: three_value; };
 
+template < > struct type_master < t_closedby > : three_value < t_closedby, e_closedby, sz_any, sz_closerequest, sz_none, false, true >
+{ using three_value < t_closedby, e_closedby, sz_any, sz_closerequest, sz_none, false, true > :: three_value; };
+
 template < > struct type_master < t_command > : three_value < t_command, e_command, sz_command, sz_checkbox, sz_radio >
 { using three_value < t_command, e_command, sz_command, sz_checkbox, sz_radio > :: three_value; };
 

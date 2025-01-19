@@ -37,38 +37,43 @@ END_EVENT_TABLE ()
 IMPLEMENT_CLASS (snippet_t, d1_t)
 
 snippet_t :: snippet_t (const ::std::string& s)
-	: d1_t (wxPoint (SNIPPET_X, SNIPPET_Y), wxSize (SNIPPET_WIDTH, SNIPPET_HEIGHT)), snippet_ (s)
+    : d1_t (wxPoint (SNIPPET_X, SNIPPET_Y), wxSize (SNIPPET_WIDTH, SNIPPET_HEIGHT)), snippet_ (s)
 { }
 
 snippet_t :: snippet_t (wxWindow *mummy, wxWindowID id, const wxString& caption)
-	: d1_t (wxPoint (SNIPPET_X, SNIPPET_Y), wxSize (SNIPPET_WIDTH, SNIPPET_HEIGHT))
+    : d1_t (wxPoint (SNIPPET_X, SNIPPET_Y), wxSize (SNIPPET_WIDTH, SNIPPET_HEIGHT))
 {	Create (mummy, id, caption); } 
 
 bool snippet_t :: Create (wxWindow *mummy, wxWindowID id, const wxString& caption)
 {	if (! d1_t :: Create (mummy, id, caption, wxPoint (SNIPPET_X, SNIPPET_Y), wxSize (SNIPPET_WIDTH, SNIPPET_HEIGHT), SNIPPET_STYLE)) return false;
-	CreateControls ();
-	return true; }
+    CreateControls ();
+    return true; }
 
 void snippet_t :: CreateControls ()
 {	if (d1_t :: invalid ()) return;
- 	stc_ = GSL_OWNER (wxStyledTextCtrl) (new wxStyledTextCtrl (this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxHSCROLL | wxVSCROLL | wxWANTS_CHARS, wxEmptyString));
-	if (stc_ != nullptr) box_ -> Add (stc_, 7, wxEXPAND | wxALL, 5);
-	d1_t :: CreateButtons ();
-	SetSizer (box_);
-	Layout ();
-	Centre (wxBOTH); }
+    stc_ = GSL_OWNER (FANCY_TEXT_CTRL) (new FANCY_TEXT_CTRL (this, wxID_ANY, 
+#ifdef UGLITUDE
+                                            wxEmptyString, wxDefaultPosition, wxDefaultSize, wxHSCROLL | wxVSCROLL | wxWANTS_CHARS));
+#else // UGLITUDE
+                                            wxDefaultPosition, wxDefaultSize, wxHSCROLL | wxVSCROLL | wxWANTS_CHARS, wxEmptyString));
+#endif // UGLITUDE
+    if (stc_ != nullptr) box_ -> Add (stc_, 7, wxEXPAND | wxALL, 5);
+    d1_t :: CreateButtons ();
+    SetSizer (box_);
+    Layout ();
+    Centre (wxBOTH); }
 
 void snippet_t :: OnHelpClick (wxCommandEvent& )
 {	app -> help ("snippet"); }
 
 bool snippet_t :: TransferDataToWindow ()
 {	if (invalid ()) return false;
-	stc_ -> SetValue (snippet_.c_str ());
-	return true; }
+    stc_ -> SetValue (snippet_.c_str ());
+    return true; }
 
 bool snippet_t :: TransferDataFromWindow ()
 {	if (invalid ()) return false;
-	snippet_ = stc_ -> GetValue ().c_str (); 
-	return true; }
+    snippet_ = stc_ -> GetValue ().c_str (); 
+    return true; }
 
 #endif // WX

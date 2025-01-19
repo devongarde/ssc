@@ -42,9 +42,9 @@ class elements_node
     element_node* insert (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& idz);
 public:
     DEFAULT_CONSTRUCTORS (elements_node);
-	elements_node (nitpick& nits, const ::std::string& content)
+    elements_node (nitpick& nits, const ::std::string& content)
     {   invalid_ = ! parse (nits, content); }
-	void swap (elements_node& en) noexcept;
+    void swap (elements_node& en) noexcept;
     void reset () noexcept;
     void reset (const elements_node& en);
     bool parse (nitpick& nits, const ::std::string& content);

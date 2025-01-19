@@ -34,7 +34,6 @@ class welcome_t : public d2_t
     wxStaticLine* line_base_ = nullptr;
     wxStaticLine* line_root_ = nullptr;
     wxStaticLine* line_snippet_ = nullptr;
-    wxStaticText* static_config_ = nullptr;
     wxStaticText* static_nitpickery_ = nullptr;
     wxTextCtrl* text_snippet_ = nullptr;
     wxTextCtrl* text_summary_ = nullptr;
@@ -43,7 +42,6 @@ class welcome_t : public d2_t
     ::std::string snippet_;
     vstr_t cmd_;
     bool rooted_ = true, write_continuity_ = false;
-
     void OnClickRoot (wxCommandEvent& event);
     void OnClickSnippet (wxCommandEvent& event);
     void OnAboutClick (wxCommandEvent& event);
@@ -67,7 +65,7 @@ public:
     void set_default ();
     context_t& c () { return c_; }
     const context_t& c () const { return c_; }
-    const bool rooted () const { return rooted_; }
+    bool rooted () const { return rooted_; }
     const ::boost::filesystem::path& root () const { return root_; }
     void root (const ::boost::filesystem::path& r) { root_ = r; }
     const ::std::string& snippet () const { return snippet_; }

@@ -104,8 +104,6 @@ public:
     void time (const bool b) noexcept { time_ = b; }
     bool whitespace () const noexcept { return whitespace_; }
     void whitespace (const bool b) noexcept { whitespace_ = b; }
-
     bool TransferDataToWindow ();
     bool TransferDataFromWindow (); };
-
 #endif // WX

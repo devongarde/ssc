@@ -32,7 +32,6 @@ class vv_t : public d1_t < wx_valid >
     wxDirPickerCtrl* dir_folder_ = nullptr;
     wxDirPickerCtrl* dir_ontology_ = nullptr;
     wxDirPickerCtrl* dir_shadow_ = nullptr;
-    wxGridSizer* grid_base_ = nullptr;
     wxGridSizer* grid_virt_ = nullptr;
     wxStaticLine* line_base_ = nullptr;
     wxStaticLine* line_valid_ = nullptr;
@@ -52,7 +51,7 @@ class vv_t : public d1_t < wx_valid >
     void create_virtual_dir_controls (wxWindow *parent, wxGridSizer* grid, wxStaticText*& stat, wxDirPickerCtrl*& dir, const char* const stattxt, const wxWindowID id);
     void depopulate ();
     void en_virt ();
-    void part_de_virt (const ::std::size_t z);
+    void part_de_virt (const int z);
     void populate ();
     void repopulate ();
     void reval ();
@@ -97,5 +96,4 @@ public:
     void save_to_context (context_t& c) const;
     void yer_actual (const ::boost::filesystem::path& root, const ::boost::filesystem::path& shadow, const ::boost::filesystem::path& ontology)
     {   yer_root_ = root; yer_shadow_ = shadow; yer_export_ = ontology; } };
-
 #endif // WX

@@ -55,9 +55,9 @@ template < typename SUPER > struct interrogate : SUPER
     bool invalid () const noexcept { return invalid_panel () || (cancel_ == nullptr); }
     void pre_create (wxWindow *mummy, const wxPoint& pos, const wxSize& size)
     {	VERIFY_NULL (mummy_, __FILE__, __LINE__);
-	    mummy_ = mummy;
+        mummy_ = mummy;
         if (point_ == wxDefaultPosition) point_ = pos;
-	    if (size_ == wxDefaultSize) size_ = size;
+        if (size_ == wxDefaultSize) size_ = size;
         if (mummy != nullptr) mummy_ -> SetSizeHints (size_, size_); }
     bool preCreate (wxWindow *mummy, wxWindowID id, const wxString& caption, const wxPoint& pos, const wxSize& size, const long style)
     {	pre_create (mummy, pos, size);
@@ -74,8 +74,8 @@ template < class NAME > struct d1_t : interrogate < wxDialog >
     ~d1_t () = default;
     wxPanel* panel () { return panel_; }
     bool create_panel_itself (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, const long style = DEF_STYLE)
-	{   panel_ = GSL_OWNER (wxPanel) (new wxPanel (mummy, id, pos, size, style));
-	    return (panel_ != nullptr); }
+    {   panel_ = GSL_OWNER (wxPanel) (new wxPanel (mummy, id, pos, size, style));
+        return (panel_ != nullptr); }
     bool invalid_panel () const noexcept { return interrogate < wxDialog > :: invalid_panel (); }
     bool invalid () const noexcept { return invalid_panel () || (sbs_ == nullptr); }
     void create_box (wxWindow *mummy, const wxPoint& pos, const wxSize& size);
@@ -88,33 +88,33 @@ template < class NAME > struct d1_t : interrogate < wxDialog >
 
 template < class NAME > void d1_t < NAME > :: create_box (wxWindow *mummy, const wxPoint& pos, const wxSize& size)
 {   VERIFY_NOT_NULL (mummy, __FILE__, __LINE__);
-	pre_create (mummy, pos, size);
+    pre_create (mummy, pos, size);
     box_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxVERTICAL)); }
 
 template < class NAME > bool d1_t < NAME > :: Create (wxWindow *mummy, wxWindowID id, const wxString& caption, const wxPoint& pos, const wxSize& size, const long style)
 {	if (! preCreate (mummy, id, caption, pos, size, style)) return false;
-	CreateBox ();
-	return true; }
+    CreateBox ();
+    return true; }
 
 template < class NAME > void d1_t < NAME > :: CreateBox ()
 {	box_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxVERTICAL));
-	if (box_ != nullptr)
-	{	sbs_ = GSL_OWNER (wxStdDialogButtonSizer) (new wxStdDialogButtonSizer ());
-	    if (sbs_ != nullptr)
+    if (box_ != nullptr)
+    {	sbs_ = GSL_OWNER (wxStdDialogButtonSizer) (new wxStdDialogButtonSizer ());
+        if (sbs_ != nullptr)
             cancel_ = GSL_OWNER (wxButton) (new wxButton (this, wxID_CANCEL)); } }
 
 template < class NAME > void d1_t < NAME > :: CreateButtons (const int bs, wxBoxSizer* box)
 {	if (invalid ()) return;
-	sbs_ -> AddButton (cancel_);
-	help_ = GSL_OWNER (wxButton) (new wxButton (this, wxID_HELP));
-	if (help_ != nullptr)
+    sbs_ -> AddButton (cancel_);
+    help_ = GSL_OWNER (wxButton) (new wxButton (this, wxID_HELP));
+    if (help_ != nullptr)
     {   sbs_ -> AddButton (help_);
-	    ok_ = GSL_OWNER (wxButton) (new wxButton (this, wxID_OK));
-	    if (ok_ != nullptr)
+        ok_ = GSL_OWNER (wxButton) (new wxButton (this, wxID_OK));
+        if (ok_ != nullptr)
         {   sbs_ -> AddButton (ok_);
-	        sbs_ -> Realize ();
+            sbs_ -> Realize ();
             if (box == nullptr) box_ -> Add (sbs_, bs, wxEXPAND, 1);
-	        else box -> Add (sbs_, bs, wxEXPAND, 1); } } }
+            else box -> Add (sbs_, bs, wxEXPAND, 1); } } }
 
 struct d2_t : interrogate < wxDialog >
 {   wxButton* about_ = nullptr;
@@ -143,5 +143,4 @@ struct d3_t : interrogate < wxDialog >
         const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, const long style = DEF_STYLE);
     void CreateBox ();
     void CreateButtons (const int bs = 1); };
-
 #endif // WX

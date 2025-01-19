@@ -61,15 +61,15 @@ SSC has a number of switches, including:
 -o file     Output a report to file
 
 -v x	    Report level x issues, where x is
-	0 None
-	1 Catastrophes
-	2 Abhorrences
-	3 Errors
-	4 Warnings
-	5 Info
-	6 Comments
-	7 Debug
-	8... more and more debug
+    0 None
+    1 Catastrophes
+    2 Abhorrences
+    3 Errors
+    4 Warnings
+    5 Info
+    6 Comments
+    7 Debug
+    8... more and more debug
 
 -I	        Process Server Side Includes
 -g dir      set the root directory (defaults to current directory)

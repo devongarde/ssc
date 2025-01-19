@@ -42,7 +42,7 @@ q
 r
 s   SPELT
 t
-u
+u   UGLY_TEXT
 v
 w
 x   WXS
@@ -62,8 +62,8 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 9
-#define VERSION_STRING "0.2.9"
+#define VERSION_RELEASE 10
+#define VERSION_STRING "0.2.10"
 #define EDITION_STANDARD "standard"
 
 #define NBSP "&nbsp;"
@@ -81,6 +81,13 @@ z
 #define DEFAULT_LINE_LENGTH 72
 #define DESCRIPTION_LENGTH 60
 
+#ifdef _MSC_VER
+#define NOICU // the icu4c visual studio solution is broken
+#ifdef WINSPELL
+#undef WINSPELL
+#endif
+#endif
+
 #if defined (WX)
 #define EDITION "/g"
 #define EDITION_LONG "gui"
@@ -93,10 +100,6 @@ z
 #  ifndef DEBUG
 #  define DEBUG
 #  endif // DEBUG
-#else // debug...
-#  ifndef NDEBUG
-#  define NDEBUG
-#  endif // NDEBUG
 #endif // debug...
 
 #ifdef SSC_TEST
@@ -116,7 +119,7 @@ z
 
 #ifdef NOSPELL
 #if defined (WINSPELL) || defined (HUNSPELL)
-#error Define only one of NOICU, NOSPELL, WINSPELL, or HUNSPELL
+#error Define only one of NOSPELL, WINSPELL, or HUNSPELL
 #endif // ...SPELL
 #define SPELT
 #elif defined (WINSPELL) && defined (HUNSPELL)
@@ -144,13 +147,15 @@ z
 #define MSVC_NOEXCEPT
 #define PROCSIZE "64"
 #define STR_IT_BYTE
-#elif ! defined (_MSC_VER)
+#elif defined (__GNUC__)
 #define COMPILER "g"
 #define COMPNAME "gcc"
 #define MSVC_NOEXCEPT
 #define PROCSIZE "64"
 #define STR_IT_BYTE
-#else
+#elif ! defined (_MSC_VER)
+#error Only clang, gcc and msvc supported. If you get your compiler working, please submit an appropriate pull request
+#else //  __clang__
 #define COMPILER "m"
 #define COMPNAME "msvc"
 #define NOLYNX
@@ -401,7 +406,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 
 #ifdef _MSC_VER
 #pragma warning (disable : 4701) // CRC
-#endif
+#endif // _MSC_VER
 
 #include <boost/crc.hpp>
 
@@ -447,13 +452,22 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #include <wx/datectrl.h>
 #include <wx/dateevt.h>
 #include <wx/timectrl.h>
-#else // WX
-#define WXS
+
+// pure and utter bollox, this: I think it's a macports issue, actually, but...
+#if defined (DARWIN) && defined (arm64)
+#define FANCY_TEXT_CTRL wxTextCtrl
+#define UGLY_TEXT "u"
+#define UGLITUDE
+#else // FFS
+#define FANCY_TEXT_CTRL wxStyledTextCtrl
+#endif // FFS
+
 #endif // WX
 
 #ifndef NOCURL
 #include <curl/curl.h>
 #endif // NOCURL
+
 #endif // SSC_TEST
 
 #ifdef _MSC_VER
@@ -477,9 +491,9 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define GSL_SPAN(ARRAY, MAXLEN) ARRAY
 #define GSL_NARROW_CAST static_cast
 #define GSL_AT(ARRAY, ENTRY) ARRAY [ENTRY]
+#define GSL_OWNER(TYPE)
+#define GSL_OWNER_PT(TYPE) TYPE
 #define GSL_NOT_NULL(TYPE) TYPE
-#define GSL_OWNER(TYPE) TYPE
-#define GSL_OWNER_PT (TYPE) TYPE
 #endif // NO_GSL
 
 #ifndef NO_FALLTHROUGH
@@ -488,6 +502,12 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define FALLTHROUGH
 #endif // NO_FALLTHROUGH
 
+#if defined (_DEBUG) && defined (_MSC_VER)
+#define DEBUG_BREAK ::DebugBreak ()
+#else
+#define DEBUG_BREAK
+#endif // _DEBUG ...
+
 #ifdef __clang__
 #pragma clang diagnostic pop
 #endif
@@ -495,12 +515,6 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #ifdef _MSC_VER
 #pragma warning (pop)
 #endif
-
-#if defined (_DEBUG) && defined (_MSC_VER)
-#define DEBUG_BREAK ::DebugBreak ()
-#else
-#define DEBUG_BREAK
-#endif // _DEBUG ...
 
 #define END_OF_STATS "==="
 #define START_OF_SECTION "***"
@@ -671,17 +685,16 @@ inline void_ptr alloc_void_ptr (const ::std::size_t sz) { return void_ptr (mallo
 #pragma warning (pop)
 #endif // _MSC_VER
 
-CONSTEXPR uint32_t uint32_category_shift =  28;
-CONSTEXPR uint32_t uint32_item_mask =       0x0FFFFFFF;
-CONSTEXPR uint32_t uint32_category_mask =   0xF0000000;
+CONSTEXPR uint32_t itemprop_category_shift =  28;
+CONSTEXPR uint32_t itemprop_item_mask =       0x0FFFFFFF;
+CONSTEXPR uint32_t itemprop_category_mask =   0xF0000000;
 
 #endif // SCC_TEST
 
-// Some implementations crash on vector bool iterators
 #ifdef REALLY_BUGGY_VECTOR_BOOL
-    typedef ::std::vector < int > faux_vb_t;
+typedef ::std::vector < int > faux_vb_t;
 #else // REALLY_BUGGY_VECTOR_BOOL
-    typedef ::std::vector < bool > faux_vb_t;
+typedef ::std::vector < bool > faux_vb_t;
 #endif // REALLY_BUGGY_VECTOR_BOOL
 
 #define COMMENT_CHAR '/'
@@ -705,17 +718,27 @@ CONSTEXPR uint32_t uint32_category_mask =   0xF0000000;
 #define JSNIC "j"
 #endif // NO_JSONIC
 
+#ifndef TARGET_OS
 #ifdef _MSC_VER
-#ifndef BUILD_OS
-#define BUILD_OS "Windows x64"
-#endif // BUILD_OS
-#else
+#ifdef _WIN32
+#define TARGET_OS "wnd_x86"
+#elif defined (_WIN64)
+#define TARGET_OS "wnd_x64"
+#elif defined (_M_ARM64) || defined (_M_ARM64EC)
+#define TARGET_OS "wnd_a64"
+#elif defined (_M_ARM32)
+#define TARGET_OS "wnd_a32"
+#else // _WIN32
+#define TARGET_OS "wnd_???"
+#endif // _WIN32
+#else // _MSC_VER
 #ifndef OS_VER
-#define BUILD_OS "???"
+#define TARGET_OS "???"
 #else // OS_VER
-#define BUILD_OS OS_VER
+#define TARGET_OS OS_VER
 #endif // OS_VER
 #endif // _MSC_VER
+#endif // TARGET_OS
 
 #ifdef NOICU
 #define ICU_VER
@@ -729,10 +752,18 @@ CONSTEXPR uint32_t uint32_category_mask =   0xF0000000;
 #define DBG_STATUS
 #endif // DEBUG
 
+#ifndef UGLY_TEXT
+#define UGLY_TEXT
+#endif
+
+#ifndef WXS
+#define WXS
+#endif // WXS
+
 // Enable this to see full messages that would otherwise be generated when using -T switch, roughly speaking
 // #define EXPAND_TEST "t"
 
-#define BUILD_INFO   CURLY DBG_STATUS FUDDY JSNIC NPS_GEN SPELT WXS ":" BUILD_OS ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER
+#define BUILD_INFO   CURLY DBG_STATUS FUDDY JSNIC NPS_GEN SPELT UGLY_TEXT WXS ":" TARGET_OS ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER
 #define BASE_TITLE   FULLNAME " v" VERSION_STRING EDITION " (" WEBADDR ")\n"
 #define SIMPLE_TITLE BASE_TITLE COPYRIGHT_TEXT "\n"
 #define FULL_TITLE_1 BASE_TITLE COPYRIGHT "\n"

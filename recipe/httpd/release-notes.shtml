@@ -20,6 +20,34 @@
 
 <div class="column-unit">
 
+<h3>0.2.10</h3>
+
+<ul>
+<li>
+ssc-wx, the gui version, is no longer entirely unusable, but will be subject
+to significant change in the near term. It fails to fail
+spectacularly when built under Windows x64/arm64 or macos
+sequioa amd64/arm64. It has not been tested on other systems (yet).
+Currently, the help files are extremely unhelpful.
+</li>
+<li>
+introduced an unsigned windows installer for x64 only
+</li>
+<li>
+added living standard &lt;DIALOG&gt; CLOSEDBY attribute
+</li>
+<li>
+underlying work
+</li>
+<li>download
+<A href="src/Install Static Site Checker x64.msi" type="application/octet-stream">Windows x64 installer</a>,
+<A href="src/ssc-0.2.10.tgz" type="application/gzip">source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2025-01-19">25 1 19</time>
+</li>
+</ul>
+
 <h3>0.2.9</h3>
 
 <ul>
@@ -48,7 +76,7 @@ underlying work
 <A href="src/ssc-0.2.9.tgz" type="application/gzip">download source</a>
 </li>
 <li>
-released <time itemprop="datePublished" class="dt-published" datetime="2025-02-01">24 2 1</time>
+released <time itemprop="datePublished" class="dt-published" datetime="2025-01-14">25 1 14</time>
 </li>
 </ul>
 

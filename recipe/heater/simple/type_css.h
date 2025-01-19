@@ -59,7 +59,7 @@ template < > struct type_master < t_css_all > : public tidy_string < t_css_all >
 
 template < > struct type_master < t_css_anim_base > : public tidy_string < t_css_anim_base >
 {   using tidy_string < t_css_anim_base > :: tidy_string;
-	static e_animation_type animation_type () noexcept { return at_none; }
+    static e_animation_type animation_type () noexcept { return at_none; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_css_anim_base > :: set_value (nits, v, s);
         if (tidy_string < t_css_anim_base > :: empty ())
@@ -74,7 +74,7 @@ template < > struct type_master < t_css_anim_base > : public tidy_string < t_css
 
 template < > struct type_master < t_css_bespoke > : public tidy_string < t_css_bespoke >
 {   using tidy_string < t_css_bespoke > :: tidy_string;
-	static e_animation_type animation_type () noexcept { return at_other; }
+    static e_animation_type animation_type () noexcept { return at_other; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_css_bespoke > :: set_value (nits, v, s);
         tidy_string < t_css_bespoke > :: status (s_good); }
@@ -97,7 +97,7 @@ template < > struct type_master < t_css_content_name > : public tidy_string < t_
 
 template < > struct type_master < t_css_counter_style_name > : public tidy_string < t_css_counter_style_name >
 {   using tidy_string < t_css_counter_style_name > :: tidy_string;
-	static e_animation_type animation_type () noexcept { return at_none; }
+    static e_animation_type animation_type () noexcept { return at_none; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_css_counter_style_name > :: set_value (nits, v, s);
         if (tidy_string < t_css_counter_style_name > :: empty ())
@@ -161,7 +161,7 @@ template < > struct type_master < t_css_nth > : public tidy_string < t_css_nth >
 
 template < > struct type_master < t_css_palette > : public tidy_string < t_css_palette >
 {   using tidy_string < t_css_palette > :: tidy_string;
-	static e_animation_type animation_type () noexcept { return at_none; }
+    static e_animation_type animation_type () noexcept { return at_none; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_css_palette > :: set_value (nits, v, s);
         if (tidy_string < t_css_palette > :: empty ())
@@ -225,7 +225,7 @@ template < > struct type_master < t_fn > : public tidy_string < t_fn >
 
 template < > struct type_master < t_css_region_id > : public tidy_string < t_css_region_id >
 {   using tidy_string < t_css_region_id > :: tidy_string;
-	static e_animation_type animation_type () noexcept { return at_none; }
+    static e_animation_type animation_type () noexcept { return at_none; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_css_region_id > :: set_value (nits, v, s);
         if (! tidy_string < t_css_region_id > :: empty ()) return;

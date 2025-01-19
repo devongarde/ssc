@@ -328,7 +328,7 @@ element_init_t ei [] =
     { elem_devicecolour, { a_name, SVG_XLINK, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_dfn, { LIVING_STANDARD_PLUS, a_unknown } },
     { elem_di, { METADATA, XHTML2, a_unknown } },
-    { elem_dialogue, { a_open, METADATA, LIVING_STANDARD, a_unknown } },
+    { elem_dialogue, { a_open, a_closedby, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_diff, { MATH3DEFCOM, a_unknown } },
     { elem_dir, { a_align, a_clear, a_compact, a_dingbat, a_md, a_index, a_plain, a_wrap, COMMON4, a_unknown } },
     { elem_discard, { a_begin, SVG_XLINK, METADATA, LIVING_STANDARD, a_unknown } },

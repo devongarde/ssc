@@ -29,12 +29,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "url/url_sanitise.h"
 
 BEGIN_EVENT_TABLE (output_t, wxTextCtrl)
-    EVT_TEXT (text_output, OnUpdate)
-    EVT_MENU (wxID_COPY, OnCopy)
-    EVT_MENU (wxID_HELP, OnHelp)
-    EVT_MENU (wxID_SELECTALL, OnSelectAll)
-    EVT_UPDATE_UI (wxID_COPY, OnUpdateCopy)
-    EVT_UPDATE_UI (wxID_SELECTALL, OnUpdateSelectAll)
+    EVT_TEXT (text_output, output_t::OnUpdate)
+    EVT_MENU (wxID_COPY, output_t::OnCopy)
+    EVT_MENU (wxID_HELP, output_t::OnHelp)
+    EVT_MENU (wxID_SELECTALL, output_t::OnSelectAll)
+    EVT_UPDATE_UI (wxID_COPY, output_t::OnUpdateCopy)
+    EVT_UPDATE_UI (wxID_SELECTALL, output_t::OnUpdateSelectAll)
 END_EVENT_TABLE ()
 
 #define NO_IDEA_WHY_THIS_OFFSET_IS_NECESSARY    4
@@ -102,7 +102,7 @@ void output_t :: Find (const ::std::string& wot, const int fussitudes)
 void output_t :: Next ()
 {   ::std::string con (presearch ());
     if (con.empty ()) return;
-    if (GetInsertionPoint () >= con.length ()) SetInsertionPoint (0);
+    if (GSL_NARROW_CAST < ::std::size_t > (GetInsertionPoint ()) >= con.length ()) SetInsertionPoint (0);
     ::std::size_t f = found_;
     constexpr ::std::size_t cycle = 0;
     for (;;)
@@ -124,7 +124,7 @@ void output_t :: Next ()
 void output_t :: Prior ()
 {   ::std::string con (presearch ());
     if (con.empty ()) return;
-    if (GetInsertionPoint () >= con.length ()) SetInsertionPoint (0);
+    if (GSL_NARROW_CAST < ::std::size_t > (GetInsertionPoint ()) >= con.length ()) SetInsertionPoint (0);
     ::std::size_t f = found_;
     const ::std::size_t cycle = con.length () - 1;
     for (;;)

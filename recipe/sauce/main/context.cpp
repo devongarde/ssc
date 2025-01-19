@@ -320,6 +320,12 @@ context_t& context_t::stats_all (const bool b)
         stats (static_cast < e_report > (i), b);
     return *this; }
 
+bool context_t::stats_any () const
+{   for (auto b : rpt_)
+        if (b) return true;
+    return false; }
+
+
 context_t& context_t::stats (const e_report r, const bool b)
 {   rpt_.at (r) = b;
     mac (enum_n < t_report, e_report, e_nit_macro, nm_none > :: category (r), b);
@@ -358,35 +364,44 @@ bool context_t::write (nitpick& nits, const ::boost::filesystem::path& fn) const
     {   res += "; CSS "; res += version_.long_css_version_name (); }
     if (math_version () != math_none)
     {   res += "; MathML "; res += version_.math_version_name (); }
+    if (rdfa ()) res += "; RDFa";
     if (svg_version () != sv_none)
     {   res += "; SVG "; res += version_.svg_version_name (); }
-
+    switch (virtuals ().size ())
+    {   case 0 : break;
+        case 1 : res += "; virtual directory"; break;
+        default : res += "; virtual directories"; }
+    if (ssi ()) res += "; resolve Server Side Includes";
+    if (classic () || unknown_class ())
+    {   res += "; verify";
+        if (unknown_class ()) res += " all";
+        else res += " declared";
+        res += " CLASS values"; }
+    if (ontology ())
+    {   res += "; verify";
+        if (md_export ()) res += " and export";
+        res += " ontologies"; }
     if (! corpus ().empty ())
-    {   res += "; corpus from";
-        if (article ()) res += " <ARTICLE>";
-        if (body ()) res += " <BODY>";
-        if (main ()) res += " <MAIN>"; }
-
-    if (microformats ())
-    {   res += ";";
-        if (mf_export ())
-        {   if (mf_verify ()) res += " verify & ";
-            if (mf_pretty ()) res += "pretty ";
-            res += "export"; }
-        res += " microformats";
+        res += "; export corpus";
+    if (mf_verify () && (mf_version () > 0))
+    {   res += "; verify microformats ";
         switch (mf_version ())
         {   case 1 :
-                res += " v1";
+                res += "v1";
                 break;
             case 2 :
-                res += " v2";
+                res += "v2";
                 break;
             case 3 :
-                res += " v1 & v2";
+                res += "v1 & v2";
                 break;
             default :
-                break; } }
-
+                GRACEFUL_CRASH (__FILE__, __LINE__); } }
+    if (shadow_enable ()) res += "; shadowing";
+#ifndef NOSPELL
+    if (check ()) res += "; check spelling";
+#endif // NOSPELL
+    if (stats_any ()) res += "; produce statistics";
     return res; }
 
 ::std::string context_t::report (const e_gui_report gr, const bool wibble) const

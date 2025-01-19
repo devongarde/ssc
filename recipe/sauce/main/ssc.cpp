@@ -454,5 +454,7 @@ void ssc_getset ()
 {   if (app != nullptr) app -> get_set (); }
 #endif // WX
 
+#if defined (_MSC_VER) || ! defined (WX)
 int main (int argc, char** argv)
 {   return ssc_main (argc, argv); }
+#endif // _MSC_VER

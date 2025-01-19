@@ -27,8 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SITE_CAPTION "Site"
 
 class site_t : public d1_t < wx_site >
-{   wxBoxSizer* box_dir_ = nullptr;
-    wxCheckBox* article_ = nullptr;
+{   wxCheckBox* article_ = nullptr;
     wxCheckBox* body_ = nullptr;
     wxCheckBox* check_example_ = nullptr;
     wxCheckBox* check_external_ = nullptr;
@@ -44,7 +43,6 @@ class site_t : public d1_t < wx_site >
     wxDirPickerCtrl* dir_default_ = nullptr;
     wxStaticText* stat_default_ = nullptr; 
     wxFilePickerCtrl* file_ = nullptr;
-    wxGridSizer* corp_grid_ = nullptr;
     wxGridSizer* grid_ = nullptr; 
     wxStaticLine* base_ = nullptr;
     wxStaticLine* line_ = nullptr;
@@ -84,7 +82,6 @@ public:
     void save_to_context (context_t& c) const;
     bool TransferDataToWindow ();
     bool TransferDataFromWindow ();
-
     void def (const ::boost::filesystem::path& d) { def_ = d; }
     const ::boost::filesystem::path& def () const { return def_; }
     void site (const vstr_t& s) { site_ = s; }
@@ -115,5 +112,4 @@ public:
     void body (const bool b) noexcept { bod_ = b; }
     bool main () const noexcept { return mai_; }
     void main (const bool b) noexcept { mai_ = b; } };
-
 #endif // WX

@@ -26,7 +26,7 @@ class parameters
     void parse (const html_version& v, const ::std::string& url_args);
 public:
     DEFAULT_CONSTRUCTORS (parameters);
-	explicit parameters (const html_version& v, const ::std::string& url_args) { parse (v, url_args); }
+    explicit parameters (const html_version& v, const ::std::string& url_args) { parse (v, url_args); }
     bool operator == (const parameters& rhs) const;
     void swap (parameters& p) noexcept
     {   key_value_.swap (p.key_value_); }

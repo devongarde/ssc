@@ -1407,6 +1407,7 @@ struct symbol_entry < html_version, e_mimetype > mimetype_symbol_table [] =
     { { XHTML_2_0 }, { HTML_UNDEF }, "application/x-java-applet", mime_application_x_java_applet, ns_default, MIME_SCRIPT | MIME_APPLICATION },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/x-javascript", mime_application_x_javascript, ns_default, MIME_SCRIPT | MIME_APPLICATION },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/x-pki-message", mime_application_x_pki_message, ns_default, MIME_APPLICATION },
+    { { HTML_OCT17 }, { HTML_UNDEF }, "application/x-msi", mime_application_x_msi, ns_default, MIME_APPLICATION },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/x-shockwave-flash", mime_application_x_shockwave_flash, ns_default, MIME_APPLICATION | MIME_VULNERABLE | MIME_WITHDRAWN },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/x-webfont", mime_application_x_webfont, ns_default, MIME_APPLICATION },
     { { HTML_4_0 }, { HTML_UNDEF }, "application/x-www-form-urlencoded", mime_application_x_www_form_urlencoded, ns_default, MIME_APPLICATION },

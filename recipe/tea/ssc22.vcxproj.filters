@@ -40423,6 +40423,9 @@
     <Text Include="..\toast\conf\sites\wordlist.txt">
       <Filter>Toast\Conf\sites</Filter>
     </Text>
+    <Text Include="..\..\installation.txt">
+      <Filter>Info</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="..\toast\w3\12458\5031-root_dash.xml">

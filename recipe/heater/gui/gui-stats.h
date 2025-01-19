@@ -33,12 +33,11 @@ class report_t : public d1_t < wx_stats >
     wxButton* clear_ = nullptr; 
     wxButton* selected_ = nullptr; 
     wxCheckBox* check_export_ = nullptr; 
-	wxFilePickerCtrl* export_ = nullptr;
+    wxFilePickerCtrl* export_ = nullptr;
     wxGridSizer* button_grid_ = nullptr;
-	wxGridSizer* czech_grid_ = nullptr;
-	wxGridSizer* export_grid_ = nullptr;
+    wxGridSizer* czech_grid_ = nullptr;
+    wxGridSizer* export_grid_ = nullptr;
     wxStaticLine* base_ = nullptr;
-    wxStaticText* export_to_ = nullptr;
     aset_t rpt_;
     ::boost::filesystem::path dump_;
     void enable (const bool b);    
@@ -66,10 +65,8 @@ public:
     bool create_panel (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL | wxNO_BORDER);
     void load_from_context (const context_t& c);
     void save_to_context (context_t& c) const;
-
     bool report (const e_report r) const { return rpt_.at (r); }
     void report (const e_report r, const bool b) { rpt_.at (r) = b; }
     ::boost::filesystem::path dump () const { return dump_; }
     void dump (const ::boost::filesystem::path& p) { dump_ = p; } };
-
 #endif // WX

@@ -555,6 +555,7 @@ public:
     context_t& started (const ::std::string& s) { started_ = s; mac (nm_time_start, s); return *this; }
     const ::std::string& stats () const { return stats_; }
     bool stats (const e_report r) const { return rpt_.at (r); }
+    bool stats_any () const;
     bool stats_gst (const e_gsstr gst);
     bool stats_report (const e_report e) const { return rpt_.at (e); }
     const ::std::string& svg () const { return svg_; }

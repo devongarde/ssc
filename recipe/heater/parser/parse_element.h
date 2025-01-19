@@ -64,7 +64,7 @@ public:
     element_node (nitpick& nits, elements_node* box, const int line, const bool closure, element_node* parent, const e_element tag, const bool presumed, const ::std::string str = ::std::string ());
     element_node (nitpick& nits, elements_node* box, const int line, const bool closure, element_node* parent, const elem& el, const bool presumed, const ::std::string str = ::std::string ());
     explicit element_node (elements_node* box);
-	void swap (element_node& en) noexcept;
+    void swap (element_node& en) noexcept;
     void reset ();
     void reset (const element_node& en);
     void parse_attributes (const html_version& v, const ::std::string::const_iterator b, const ::std::string::const_iterator e);

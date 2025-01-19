@@ -28,7 +28,6 @@ class bar_t
     wxMenu* file_ = nullptr;
     wxMenu* help_ = nullptr;
     wxMenuBar* bar_ = nullptr; 
-    wxMenuItem* sub_advanced_ = nullptr; 
     void init ();
 public:
     bool invalid () const noexcept
@@ -41,5 +40,4 @@ public:
     wxMenu* config ()
     {   VERIFY_NOT_NULL (config_, __FILE__, __LINE__);
         return config_; } };
-
 #endif // WX

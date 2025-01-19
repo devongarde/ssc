@@ -65,5 +65,4 @@ struct label_text_t
     bool concoct (wxWindow *mummy, wxBoxSizer* pen, const ::std::string& label, const ::std::string& def = ::std::string ());
     void enable (const bool b) {label_.enable (b); text_.enable (b); }
     bool invalid () const noexcept { return text_.invalid () || box_.invalid () || label_.invalid (); } };
-
 #endif // WX

@@ -35,9 +35,291 @@
   </h1>
 </div>
 
-<p>
-bit empty
-</p>
+<pre>
+SSC will accept configuration files in INI file format. Here are some
+examples, mostly adapted from the tests:
+
+
+A simple configuration file
+---------------------------
+[general]
+verbose=5
+output=ssc.out
+class=
+
+[site]
+domain=example.edu
+extension=html
+index=index.html
+root=~/www/htdocs
+
+The website for example.edu can be found in ~/www.htdocs. Standard
+index files are called index.html, and html files always have the html
+extension.
+
+The configuration outputs errors, warnings and info messages to
+ssc.out. It analyses class identifiers, so will scan CSS files for
+class names.
+
+
+Links and virtual directories
+-----------------------------
+[general]
+verbose=5
+output=ssc.out
+
+[site]
+domain=example.edu
+extension=html
+index=index.html
+root=~/www/htdocs
+virtual=/net=tests/virtual
+
+[link]
+check=
+external=
+xlink=
+
+Beyond the previous example, SSC will also check links, including
+external links and crosslinked ids.
+
+The configuration file specifies a virtual directory. When a link
+refers to the local directory /net, SSC will seek the corresponding
+file(s) in tests/virtual (relative to the current directory, not the
+root).
+
+
+Microformats
+------------
+[general]
+verbose=5
+output=ssc.out
+class=
+
+[site]
+domain=example.edu
+extension=html
+index=index.html
+root=~/www/htdocs
+
+[microformat]
+verify=
+
+The only new thing here is to turn on microformats analysis (class
+analysis is required).
+
+
+Microdata
+---------
+[general]
+verbose=5
+output=ssc.out
+class=
+
+[site]
+domain=example.edu
+extension=html
+index=index.html
+root=~/www/htdocs
+
+Actually, SSC will report on any microdata it finds, no matter what.
+Note that, if you use itemref in your pages, ssc may give false
+warnings in the section referenced by the itemref. This is because ssc
+does not always know that the referenced data is not intended to be
+used in its own right, unless you put it under a TEMPLATE element.
+
+You can export the microdata encountered in JSON file format by using
+the export setting (not shown).
+
+
+Statistics
+----------
+[general]
+verbose=5
+output=ssc.out
+class=
+
+[site]
+domain=example.edu
+extension=html
+extension=shtml
+index=index.html
+root=~/www/htdocs
+
+[ssi]
+verify=
+
+[stats]
+summary=
+
+Turn on summary statistics, which produces a grand total at the end of
+a complete run (add ""page=" below summary for individual page stats).
+
+Note that server side includes have been turned on using general.ssi,
+and files with the SHTML extension will be treated as web pages.
+
+
+MathML 2
+--------
+This configuration file could be used to test MathML 2.
+
+[general]
+verbose=5
+output=m2.out
+class=
+
+[link]
+check=
+
+[site]
+domain=example.edu
+extension=html
+index=index.html
+root=~/www/htdocs
+
+[math]
+version=2
+
+[validation]
+citype=function
+citype=list
+citype=logical
+citype=matrix
+citype=set
+citype=var-x
+citype=vector
+
+What's interesting here is the validation section. The MathML
+documentation lists a specific set of values that can be used with the
+TYPE attribute on the CI element. The examples in the specification
+give this attribute many additional, and apparently illegal, values.
+(This apparent inconsistency is not uncommon amongst web
+specifications.) The way to avoid SSC complaining about these extra
+values is to give CI TYPE additional values in the configuration file,
+as noted.
+
+Indeed, many enumerated attribute values can be extended in this way.
+Use the --validation switch to get a complete list.
+
+
+arts & ego
+----------
+This is the configuration file I used to analyse my site.
+
+[general]
+verbose=info
+output=~/www/live.out
+ignore=pre
+rpt=
+progress=
+class=
+classic=
+no-rel=
+
+[css]
+verify=
+extension=css
+version=2023++
+
+[html]
+version=2023/10/01
+title=80
+rfc1942=
+rfc2070=
+ie=
+safari=
+
+[link]
+no-external=
+xlink=
+pretend=cgi-bin
+local=
+
+[nits]
+silence=use_double_quote_code
+silence=use_quote_code
+silence=missing_itemtype
+
+[shadow]
+copy=dedu
+root=~/www/live
+file=~/www/live.ndx
+ignore=inc
+info=
+msg=arts & ego (c) 1978-2025 dylan harris
+
+[site]
+domain=dylanharris.org
+extension=shtml
+extension=html
+extension=htm
+extension=asp
+index=index.shtml
+root=|/Sites
+
+[spell]
+no-check=
+
+[ssi]
+verify=
+
+[stats]
+summary=
+
+[validation]
+lang=ma
+fontname=Marain
+fontname=droid-sans-mono
+fontname=ArialMT
+fontname=Arial-BoldMT
+fontname=Times-Italic
+fontname=Times-Roman
+fontname=TimesNewRomanPSMT
+fontname=TrebuchetMS
+fontname=TrebuchetMS-Italic
+
+My site has been built by hand over the decades, and is full of errors.
+I wrote ssc because I was frustrated that I could find no tool to
+properly check it. Unfortunately, SSC is too successful: it finds
+a gadzillion errors in arts & ego. I am slowly making the repairs.
+
+
+OpenBSD website
+---------------
+Perhaps you've grabbed a copy of the OpenBSD website from github
+(https://github.com/openbsd/www.git):
+
+[general]
+verbose=info
+output=~/www.out
+git=
+progress=
+sloven=
+
+[css]
+version=2023++
+device=3
+
+[html]
+version=2023/10/01
+title=80
+force=
+
+[link]
+check=
+no-xlink=
+
+[nits]
+comment=ftp_protocol
+
+[site]
+domain=openbsd.org
+root=~/github/www
+index=index.html
+
+[stats]
+summary=
+</pre>
 
 </body>
 </html>

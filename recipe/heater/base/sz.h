@@ -54,6 +54,7 @@ struct sz_alternate_reverse { CONSTEXPR static char const* sz () { return "alter
 struct sz_always { CONSTEXPR static char const* sz () { return "always"; } };
 struct sz_anonymous { CONSTEXPR static char const* sz () { return "anonymous"; } };
 struct sz_annotation { CONSTEXPR static char const* sz () { return "annotation"; } };
+struct sz_any { CONSTEXPR static char const* sz () { return "any"; } };
 struct sz_anywhere { CONSTEXPR static char const* sz () { return "anywhere"; } };
 struct sz_appointment { CONSTEXPR static char const* sz () { return "appointment"; } };
 struct sz_app_urlencoded { CONSTEXPR static char const* sz () { return "application/x-www-form-urlencoded"; } };
@@ -127,6 +128,7 @@ struct sz_classic { CONSTEXPR static char const* sz () { return "classic"; } };
 struct sz_clip { CONSTEXPR static char const* sz () { return "clip"; } };
 struct sz_clone { CONSTEXPR static char const* sz () { return "clone"; } };
 struct sz_closed { CONSTEXPR static char const* sz () { return "closed"; } };
+struct sz_closerequest { CONSTEXPR static char const* sz () { return "closerequest"; } };
 struct sz_closedopen { CONSTEXPR static char const* sz () { return "closed-open"; } };
 struct sz_closest_corner { CONSTEXPR static char const* sz () { return "closest-corner"; } };
 struct sz_closest_side { CONSTEXPR static char const* sz () { return "closest-side"; } };

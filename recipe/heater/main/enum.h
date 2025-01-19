@@ -86,8 +86,8 @@ typedef enum
     a_background, a_background_fill, a_balance, a_bandwidth, a_base, a_basefrequency, a_baseline, a_baseline_shift, a_baseprofile, a_bbox, a_begin,
         a_behaviour, a_below, a_bevelled, a_bgcolour, a_bias, a_blocking, a_border, a_bottommargin, a_box, a_bubbles, a_buffered, a_buffered_rendering, a_by,
     a_cache, a_calcmode, a_cancelable, a_cap_height, a_capture, a_cd, a_cdgroup, a_cell, a_cellpadding, a_cellspacing, a_challenge, a_char, a_charalign,
-        a_charoff, a_charset, a_charspacing, a_checked, a_cite, a_class, a_classid, a_clear, a_clip, a_clip_path, a_clip_rule, a_clippathunits,
-        a_clip_to_self, a_close, a_closure, a_code, a_codebase, a_codetype, a_coldef, a_colour, a_colour_interpolation, a_colour_interpolation_filters,
+        a_charoff, a_charset, a_charspacing, a_checked, a_cite, a_class, a_classid, a_clear, a_clip, a_clip_path, a_clip_rule, a_clippathunits, a_clip_to_self,
+        a_close, a_closedby, a_closure, a_code, a_codebase, a_codetype, a_coldef, a_colour, a_colour_interpolation, a_colour_interpolation_filters,
         a_colour_profile, a_colour_rendering, a_colourspace, a_cols, a_colspan, a_colspec, a_columnalign, a_columnlines, a_columnspacing, a_columnspan,
         a_columnwidth, a_command, a_compact, a_comp_op, a_compositing, a_condition, a_connect, a_content, a_contenteditable, a_contentlength,
         a_contentscripttype, a_contentstyletype, a_contextmenu, a_continue, a_controls, a_controlslist, a_coords, a_crossorigin, a_crossout, a_csp,
@@ -392,6 +392,7 @@ typedef enum {
     c_error } e_class;
 
 typedef enum { cf_clear, cf_float } e_clear_float;
+typedef enum { cby_any, cby_closerequest, cby_none } e_closedby;
 typedef enum { co_closed, co_open } e_closed_open;
 typedef enum {  cn_enotation, cn_integer, cn_rational, cn_real, cn_complexpolar, cn_complexcartesian, cn_constant,
                 cn_double, cn_hexdouble } e_cntype;
@@ -2278,8 +2279,8 @@ typedef enum {
     mime_application_watcherinfo_xml, mime_application_webpush_options_json, mime_application_whoispp_query,
     mime_application_whoispp_response, mime_application_widget, mime_application_wita, mime_application_wordperfect5_1,
     mime_application_wsdl_xml, mime_application_wspolicy_xml, mime_application_x_ecmascript, mime_application_x_java_applet,
-    mime_application_x_javascript, mime_application_x_pki_message, mime_application_x_shockwave_flash, mime_application_x_webfont,
-    mime_application_x_www_form_urlencoded, mime_application_x_x509_ca_cert,
+    mime_application_x_javascript, mime_application_x_msi, mime_application_x_pki_message, mime_application_x_shockwave_flash,
+    mime_application_x_webfont, mime_application_x_www_form_urlencoded, mime_application_x_x509_ca_cert,
     mime_application_x_x509_ca_ra_cert, mime_application_x_x509_next_ca_cert, mime_application_x400_bp, mime_application_xacml_xml,
     mime_application_xcap_att_xml, mime_application_xcap_caps_xml, mime_application_xcap_diff_xml, mime_application_xcap_el_xml,
     mime_application_xcap_error_xml, mime_application_xcap_ns_xml, mime_application_xcon_conference_info_diff_xml,
@@ -6791,13 +6792,14 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
         t_button, \
     t_cache, t_cachekey, t_calcfn, t_calcmode, t_captionalign, t_capture, t_cc_permits, t_cc_prohibits, t_cc_requires, t_celnrs, t_cens, t_centre_space, \
         t_channelselector, t_char, t_charset, t_charsets, t_charspacing, t_cio, t_cipr, t_circle_ellipse, t_citype, t_class, t_clear, t_clear30, t_clip, \
-        t_clip_path_rule, t_closed_open, t_closure, t_coden, t_colour, t_colour_a, t_colour_ci, t_colour_cii, t_colour_i, t_colour_ii, t_colour_interpolation
-#define SSC_TYPES_B_MAX t_colour_interpolation
+        t_clip_path_rule, t_closedby, t_closed_open, t_closure, t_coden
+#define SSC_TYPES_B_MAX t_coden
 
 #define SSC_TYPES_C_1 \
-    t_colour_ni, t_colour_profile, t_colour_profile_name, t_colour_profile_name_or_uri, t_colour_rendering, t_colour_scheme, t_colour_schemes, \
-        t_colour_schemes_n, t_colour_schemes_o, t_colour_space, t_colour_trans, t_colour_trans_i, t_colour_v, t_colourfn, t_colourspace, t_command, \
-        t_compact, t_comp_op, t_composite_operator, t_compositing, t_conlit, t_conic_1, t_conic_2, t_connect, t_contain, t_contain_cover, t_contain_cover_sd
+    t_colour, t_colour_a, t_colour_ci, t_colour_cii, t_colour_i, t_colour_ii, t_colour_interpolation, t_colour_ni, t_colour_profile, t_colour_profile_name, \
+        t_colour_profile_name_or_uri, t_colour_rendering, t_colour_scheme, t_colour_schemes, t_colour_schemes_n, t_colour_schemes_o, t_colour_space, \
+        t_colour_trans, t_colour_trans_i, t_colour_v, t_colourfn, t_colourspace,  t_command, t_compact, t_comp_op, t_composite_operator, t_compositing, \
+        t_conlit, t_conic_1, t_conic_2, t_connect, t_contain, t_contain_cover, t_contain_cover_sd
 #define SSC_TYPES_C_1_MAX t_contain_cover_sd
 
 #define SSC_TYPES_C_2 \

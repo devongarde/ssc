@@ -39,13 +39,8 @@ class frame_t : public wxFrame
     bool process_config (const nitpick& nits, const ::boost::filesystem::path& fn);
     DECLARE_EVENT_TABLE ()
 public:
-    frame_t () = default;
     frame_t (const wxPoint& pt, const wxSize& sz, const context_t& c);
-    frame_t (const frame_t& f) = default;
-    frame_t (frame_t&& f) = default;
     ~frame_t ();
-    frame_t& operator = (const frame_t& f) = default;
-    frame_t& operator = (frame_t&& f) = default;
     void append (const ::std::string& text);
     void console_check ();
     void console (const ::std::string& text);
@@ -102,7 +97,5 @@ public:
     void OnUpdateCopy (wxUpdateUIEvent& e);
     void OnUpdateSelectAll (wxUpdateUIEvent& e);
     bool rational () const noexcept { return rational_; } };
-
 typedef frame_t* frame_pt;
-
 #endif // WX

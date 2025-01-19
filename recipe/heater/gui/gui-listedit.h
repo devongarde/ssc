@@ -45,7 +45,7 @@ struct listedit_manager
     listedit_manager () = default;
     listedit_manager (  const wxWindowID add_id, const wxWindowID erase_id, const wxWindowID rename_id,
                         const wxWindowID file_id, const wxWindowID list_id, const wxWindowID text_id) noexcept
-        : add_id_ (add_id), erase_id_ (erase_id), rename_id_ (rename_id), file_id_ (file_id), list_id_ (list_id), text_id_ (text_id)
+        : add_id_ (add_id), erase_id_ (erase_id), file_id_ (file_id), list_id_ (list_id), rename_id_ (rename_id), text_id_ (text_id)
     { }
     listedit_manager (const listedit_manager& l) = default;
     listedit_manager (listedit_manager&& l) = default;
@@ -69,17 +69,16 @@ struct listedit_manager
         return list_ -> GetCount (); }
     template < class VT > void preload (const VT& vs)
     {	VERIFY_NOT_NULL (list_, __FILE__, __LINE__);
- 	    list_ -> Clear ();
-	    for (auto s : vs) list_ -> Append (s.c_str ());
-	    fex (); }
+        list_ -> Clear ();
+        for (auto s : vs) list_ -> Append (s.c_str ());
+        fex (); }
     template < class VT > VT unload () const
     {   VERIFY_NOT_NULL (list_, __FILE__, __LINE__);
- 	    VT res;
+        VT res;
         const unsigned int m = list_ -> GetCount ();
         for (unsigned int u = 0; u < m; ++u)
-            res.push_back (VT::value_type (list_ -> GetString (u).c_str ()));
+            res.push_back (typename VT::value_type (list_ -> GetString (u).c_str ()));
         return res; }
     int sel () const
     {	return list_ -> GetSelection (); } };
-
 #endif // WX

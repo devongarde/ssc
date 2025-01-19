@@ -101,6 +101,9 @@ Submit
 <li>
 (<a href="help/index.html">GUI help files</a>)
 </li>
+<li>
+<A href="src/Install Static Site Checker x64.msi" type="application/octet-stream">Download Windows x64 setup</a> (currently unsigned)
+</li>
 </ul>
 
 <!--#include virtual="plumbing/under.inc" -->

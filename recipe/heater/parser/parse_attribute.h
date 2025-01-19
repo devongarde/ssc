@@ -40,12 +40,12 @@ public:
                     const ::std::string::const_iterator value_start, const ::std::string::const_iterator value_end, const bool xmlns);
     attribute_node (nitpick& nits, const html_version& v, attributes_node* box, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end, const bool xmlns);
     attribute_node (const attribute_node& an) = default;
-	attribute_node (attribute_node&& an) = default;
+    attribute_node (attribute_node&& an) = default;
     explicit attribute_node (attributes_node* box);
-	~attribute_node () = default;
+    ~attribute_node () = default;
     attribute_node& operator = (const attribute_node& an) { reset (an); return *this; }
-	attribute_node& operator = (attribute_node&& an) { reset (an); return *this; }
-	void swap (attribute_node& an) noexcept;
+    attribute_node& operator = (attribute_node&& an) { reset (an); return *this; }
+    void swap (attribute_node& an) noexcept;
     void reset ()
     {   attribute_node an (box_);
         swap (an); }

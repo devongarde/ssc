@@ -36,13 +36,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "gui/gui-summarise.h"
 #include "gui/gui-validation.h"
 
-#define SPEX_CAPTION "Standards"
+#define SPEX_CAPTION "Settings"
 
 ::std::string panel_naam (const int n);
 
 class standard_t : public d3_t
 {   wxChoicebook* choice_ = nullptr;
-
     context_t c_;
     css_t css_;
     general_t general_;
@@ -59,17 +58,14 @@ class standard_t : public d3_t
     summarise_t summary_;
     vv_t vv_;
     ::boost::filesystem::path conf_;
-  
     void OnCancelClick (wxCommandEvent& event);
     void OnHelpClick (wxCommandEvent& event);
     void OnLoadClick (wxCommandEvent& event);
     void OnOkClick (wxCommandEvent& event);
     void OnSaveClick (wxCommandEvent& event);
     void OnSaveAsClick (wxCommandEvent& event);
-
     bool is_shadowing () const;
     bool is_data_collecting () const;
-
     DECLARE_CLASS (standard_t)
     DECLARE_EVENT_TABLE ()
 public:
@@ -85,7 +81,6 @@ public:
     void set_panel (const e_gui_panel gp);
     void load_from_context (const context_t& c) { c_ = c; }
     void save_to_context (context_t& c) const { c = c_; }
-
     void OnCSSVersion (wxCommandEvent& event) { css_.OnVersion (event); }
     void OnCSSModule (wxDataViewEvent& event) { css_.OnModule (event); }
     void OnCSSLevel (wxCommandEvent& event) { css_.OnLevel (event); }
@@ -175,5 +170,4 @@ public:
     void OnVVVirtText (wxCommandEvent& event) { vv_.OnVirtText (event); }
     void OnVVVirtSelect (wxCommandEvent& event) { vv_.OnVirtSelect (event); }
     void OnVVVirtImpatience (wxCommandEvent& event) { vv_.OnVirtImpatience (event); } };
-
 #endif // WX

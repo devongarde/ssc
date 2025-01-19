@@ -1449,6 +1449,9 @@
     <Filter Include="Toast\Math\4">
       <UniqueIdentifier>{936f87da-2497-48be-b037-ce21b626bd80}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Tea\ref">
+      <UniqueIdentifier>{e818833c-34ca-44f6-90ca-86156dbeaf0e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -40180,6 +40183,42 @@
     </Image>
     <Image Include="icon1.ico">
       <Filter>Tea</Filter>
+    </Image>
+    <Image Include="ref\general.png">
+      <Filter>Tea\ref</Filter>
+    </Image>
+    <Image Include="ref\css.png">
+      <Filter>Tea\ref</Filter>
+    </Image>
+    <Image Include="ref\data.png">
+      <Filter>Tea\ref</Filter>
+    </Image>
+    <Image Include="ref\html.png">
+      <Filter>Tea\ref</Filter>
+    </Image>
+    <Image Include="ref\nits.png">
+      <Filter>Tea\ref</Filter>
+    </Image>
+    <Image Include="ref\root.png">
+      <Filter>Tea\ref</Filter>
+    </Image>
+    <Image Include="ref\shadow.png">
+      <Filter>Tea\ref</Filter>
+    </Image>
+    <Image Include="ref\ssi.png">
+      <Filter>Tea\ref</Filter>
+    </Image>
+    <Image Include="ref\stats.png">
+      <Filter>Tea\ref</Filter>
+    </Image>
+    <Image Include="ref\summary.png">
+      <Filter>Tea\ref</Filter>
+    </Image>
+    <Image Include="ref\valid.png">
+      <Filter>Tea\ref</Filter>
+    </Image>
+    <Image Include="ref\welcome.png">
+      <Filter>Tea\ref</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

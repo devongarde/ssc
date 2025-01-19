@@ -26,7 +26,7 @@ version <!--#echo encoding="none" var="version" --><br>
 <a href="legal.shtml"><!--#echo encoding="none" var="copyright" --></a><br>
 <!--#echo encoding="none" var="slashaddress" -->,
 <!--#echo encoding="none" var="github" -->,
-(<a href="src/ssc-0.2.7.tgz" type="application/gzip">download source</a>)
+(<a href="src/ssc-<!--#echo encoding="none" var="version" -->.tgz" type="application/gzip">download source</a>)
 </p>
 
 <h2>capabilities</h2>

@@ -39,7 +39,7 @@ void reset_itemprop ()
 
 itemprop_index make_itemprop_index (const e_ontology_property p)
 {   PRESUME (p <= op_illegal, __FILE__, __LINE__);
-    return static_cast < itemprop_index> (p) + (static_cast < itemprop_index > (itemprop_ontology) << uint32_category_shift); }
+    return static_cast < itemprop_index> (p) + (static_cast < itemprop_index > (itemprop_ontology) << itemprop_category_shift); }
 
 itemprop_indices make_itemprop_indices (const e_ontology_property p)
 {   PRESUME (p <= op_illegal, __FILE__, __LINE__);
@@ -54,7 +54,7 @@ itemprop_indices make_itemprop_indices (const vsp_t& vsp)
 
 itemprop_index make_itemprop_index (const e_property p)
 {   PRESUME (p <= first_illegal, __FILE__, __LINE__);
-    return GSL_NARROW_CAST < itemprop_index> (p) + (static_cast < itemprop_index > (itemprop_microformat) << uint32_category_shift); }
+    return GSL_NARROW_CAST < itemprop_index> (p) + (static_cast < itemprop_index > (itemprop_microformat) << itemprop_category_shift); }
 
 itemprop_indices make_itemprop_indices (const e_property p)
 {   PRESUME (p <= op_illegal, __FILE__, __LINE__);
@@ -118,7 +118,7 @@ itemprop_indices find_itemprop_indices (nitpick& nits, const html_version& v, co
 
 ::std::string itemprop_index_name (const itemprop_index ndx)
 {   if (ndx != illegal_itemprop)
-        switch (ndx >> uint32_category_shift)
+        switch (ndx >> itemprop_category_shift)
         {   case itemprop_bespoke :
                 return bespoke_itemprop_name (ndx);
             case itemprop_ontology :
@@ -129,7 +129,7 @@ itemprop_indices find_itemprop_indices (nitpick& nits, const html_version& v, co
     return "illegal"; }
 
 bool is_valid_property (nitpick& nits, const html_version& v, const itemtype_index itemtype, const itemprop_index ndx, const ::std::string& value, const bool is_link)
-{   switch (ndx >> uint32_category_shift)
+{   switch (ndx >> itemprop_category_shift)
     {   case itemprop_bespoke :
             return true;
         case itemprop_ontology :
@@ -142,7 +142,7 @@ bool is_valid_property (nitpick& nits, const html_version& v, const itemtype_ind
     UNREACHABLE (return false); }
 
 bool is_valid_property (nitpick& nits, const html_version& v, const itemtype_index itemtype, const itemprop_index ndx, const itemtype_index value)
-{   switch (ndx >> uint32_category_shift)
+{   switch (ndx >> itemprop_category_shift)
     {   case itemprop_bespoke :
             return true;
         case itemprop_ontology :

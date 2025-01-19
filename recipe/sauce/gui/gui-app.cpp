@@ -50,7 +50,11 @@ END_EVENT_TABLE ()
 time_t when_built (const context_t& c)
 {   ::std::string datestr = __DATE__, timestr = __TIME__, str_month;
     int day = 0, year = 0, month = 0, hour = 0, min = 0, sec = 0;
-    tm t = {0};
+#ifdef __clang__
+    tm t = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+#else // __clang__
+    tm t = { 0 };
+#endif // __clang__
     ::std::istringstream iss_date (datestr);
     iss_date >> str_month >> day >> year;
     {   nitpick nits;
@@ -136,7 +140,11 @@ bool app_t::OnInit ()
         pt.y = GSL_NARROW_CAST < int > (y);
         sz.x = GSL_NARROW_CAST < int > (w);
         sz.y = GSL_NARROW_CAST < int > (h); }
+#ifdef DARWIN
+    if ((argc <= 1) && (Welcome (c) != 1)) return false;
+#else // DARWIN
     if ((argc <= 1) && (Welcome (c) != IDOK)) return false;
+#endif // DARWIN
     frame_ = GSL_OWNER (frame_t) (new frame_t (pt, sz, c));
     if (frame_ == nullptr) return false;
 #ifdef _MSC_VER
@@ -247,22 +255,22 @@ int app_t::OnExit ()
 void app_t::nits_msgbox (wxWindow* mummy, const ::std::string& title, nitpick& nits, const e_severity worst)
 {   if ((! nits.empty ()) && (nits.worst () <= worst))
     {   long style = wxOK | wxCENTRE;
-		switch (nits.worst ())
-		{	case es_catastrophic :
-			case es_abhorrent :
-				style |= wxICON_ERROR;
-				break;
-			case es_error :
-			case es_warning :
-				style |= wxICON_WARNING;
-				break;
+        switch (nits.worst ())
+        {	case es_catastrophic :
+            case es_abhorrent :
+                style |= wxICON_ERROR;
+                break;
+            case es_error :
+            case es_warning :
+                style |= wxICON_WARNING;
+                break;
             default :
-				style |= wxICON_INFORMATION;
-				break; }		
-		macro_t mac;
-		mac.load_template (nits, html_default, nf_text);
-		wxMessageDialog msg (mummy, mac.report (nits).c_str (), title.c_str (), style);
-		msg.ShowModal (); } }
+                style |= wxICON_INFORMATION;
+                break; }		
+        macro_t mac;
+        mac.load_template (nits, html_default, nf_text);
+        wxMessageDialog msg (mummy, mac.report (nits).c_str (), title.c_str (), style);
+        msg.ShowModal (); } }
 
 bool app_t::load_conf (wxWindow* mummy, context_t& ct, ::boost::filesystem::path& fn)
 {   wxFileDialog dialogue (mummy, "Load Configuration",
@@ -282,7 +290,7 @@ bool app_t::load_conf (wxWindow* mummy, context_t& ct, ::boost::filesystem::path
 bool app_t::save_conf (wxWindow* mummy, const context_t& c, const ::boost::filesystem::path& fn)
 {   nitpick nits ("configuration save");
     if (! c.write (nits, fn))
-	{   if (! nits.empty ()) app_t::nits_msgbox (mummy, "Saving...", nits);
+    {   if (! nits.empty ()) app_t::nits_msgbox (mummy, "Saving...", nits);
         return false; }
     return true; }
 

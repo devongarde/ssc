@@ -26,8 +26,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SNIPPET_CAPTION "Snippet"
 
 class snippet_t : public d1_t < wx_snippet >
-{   wxStyledTextCtrl* stc_ = nullptr;
-    ::std::string snippet_;
+{   ::std::string snippet_;
+    FANCY_TEXT_CTRL* stc_ = nullptr;
     DECLARE_CLASS (snippet_t)
     DECLARE_EVENT_TABLE ()
 public:
@@ -44,5 +44,4 @@ public:
     {   snippet_ = s; }
     ::std::string snippet () const
     {   return snippet_; } };
-
 #endif // WX

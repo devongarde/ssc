@@ -31,7 +31,6 @@ class general_t : public d1_t < wx_general >
 {   wxBoxSizer* box_check_ = nullptr;
     wxBoxSizer* box_config_ = nullptr;
     wxBoxSizer* box_max_ = nullptr;
-    wxBoxSizer* box_output_ = nullptr;
     wxBoxSizer* box_persist_ = nullptr;
 #ifndef NO_FRED
     wxBoxSizer* box_fred_ = nullptr;
@@ -58,7 +57,6 @@ class general_t : public d1_t < wx_general >
     wxStaticLine* sl2_ = nullptr;
     wxStaticText* static_check_ = nullptr;
     wxStaticText* stat_config_ = nullptr;  
-    wxStaticText* stat_persist_ = nullptr; 
     ::boost::filesystem::path config_, out_, persist_; 
     listedit_manager exclude_ = listedit_manager (button_general_add, button_general_erase, button_general_rename, file_general_name, list_general_ext, text_general_ext);
     bool class_ = false, other_ = false, rdfa_ = false, vcs_ = true;
@@ -114,5 +112,4 @@ public:
     ::boost::filesystem::path persist () const { return persist_; }
     unsigned int max_file_size () const noexcept { return max_; }    
     void max_file_size (const unsigned int& m); };
-
 #endif // WX

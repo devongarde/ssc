@@ -108,6 +108,4 @@ public:
     void mf_verify (const bool b) noexcept { vfy_ = b; }
     int mf_version () const;
     void mf_version (const int n); };
-
-
 #endif // WX

@@ -297,13 +297,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTML_NOV24  HTML_2024, HTML_NOV
 #define HTML_DEC24  HTML_2024, HTML_DEC
 #define HTML_JAN25  HTML_2025, HTML_JAN
+#define HTML_FEB25  HTML_2025, HTML_FEB
 #define HTML_DEC99  HTML_2099, (HTML_DEC + HTML_31ST)
 
 #define HTML_5_EARLIEST_YEAR    HTML_2005
 #define HTML_5_EARLIEST_MONTH   1
 
 #define HTML_LATEST_YEAR        HTML_2025
-#define HTML_LATEST_MONTH       1
+#define HTML_LATEST_MONTH       2
 
 #define HTML_CURRENT            HTML_JAN25
 
@@ -613,7 +614,7 @@ public:
     version (const unsigned short mjr, const unsigned short mnr, const flags_t flags = NOFLAGS) noexcept
         :   mjr_ (mjr), mnr_ (mnr), flags_ (flags) { }
     DEFAULT_COPY_CONSTRUCTORS (version);
-	~version () = default;
+    ~version () = default;
     void swap (version& v) noexcept
     {   ::std::swap (mjr_, v.mjr_);
         ::std::swap (mnr_, v.mnr_);

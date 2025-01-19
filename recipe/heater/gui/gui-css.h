@@ -27,11 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define CSS_CAPTION "CSS"
 
 class css_t : public d1_t < wx_css >
-{   wxBoxSizer* box_pro_ = nullptr;   
-    wxBoxSizer* box_ver_ = nullptr;
-    wxCheckBox* mobile_profile_ = nullptr;
-    wxCheckBox* print_profile_ = nullptr;
-    wxCheckBox* tv_profile_ = nullptr;
+{   wxBoxSizer* box_ver_ = nullptr;
     wxChoice* version_ = nullptr;
     wxDataViewColumn* col_mod_ = nullptr;
     wxDataViewColumn* col_ver_ = nullptr;
@@ -41,7 +37,6 @@ class css_t : public d1_t < wx_css >
     wxStaticLine* sl2_ = nullptr;
     wxStaticText* stat_ver_ = nullptr; 
     listedit_manager homme_ = listedit_manager (button_css_add, button_css_erase, button_css_rename, file_css_name, list_css_ext, text_css_ext);
-    int mod_selected_ = css_none;
     e_css_version ver_ = css_none;
     html_version v_, trans_;
     vstr_t css_ext_;
@@ -79,5 +74,4 @@ public:
     html_version version () const { return trans_; }
     void ext (const vstr_t& vs) { css_ext_ = vs; }
     vstr_t ext () const { return css_ext_; } };
-
 #endif // WX

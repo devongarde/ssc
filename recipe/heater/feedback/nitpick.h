@@ -54,7 +54,7 @@ public:
         severity_.reset ();
         category_.reset ();
         doc_.reset (); }
-	explicit nitpick (const ::std::string& c) : mote_ (c) { }
+    explicit nitpick (const ::std::string& c) : mote_ (c) { }
     explicit nitpick (const int line, const ::std::string& c) : mote_ (c), line_ (line) { }
     explicit nitpick (const int line, const ::std::string& b, const ::std::string& m, const ::std::string& a)
         :   before_ (b), mote_ (m), after_ (a), line_ (line) { }

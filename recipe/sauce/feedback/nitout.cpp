@@ -928,9 +928,9 @@ bool macro_t::load_template (nitpick& nits, const html_version& v, const e_nit_f
 ::std::string macro_t::report (nitpick& nits, const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot)
 {   ::std::string res;
     if (! nits.empty ())
-#ifdef NDEBUG
+#ifndef DEBUG
         if (context.tell (nits.worst ()))
-#endif // NDEBUG
+#endif // DEBUG
             res = (nits.review (entry, head, foot));
     return res; }
 

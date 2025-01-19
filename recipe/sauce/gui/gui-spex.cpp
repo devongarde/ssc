@@ -36,7 +36,9 @@ BEGIN_EVENT_TABLE (standard_t, wxDialog)
   EVT_BUTTON (wxID_SAVE, standard_t::OnSaveClick)
   EVT_BUTTON (wxID_SAVEAS, standard_t::OnSaveAsClick)
   EVT_BUTTON (wxID_OPEN, standard_t::OnLoadClick)
+#ifndef NOSPELL
   EVT_BUTTON (button_dict_add, standard_t::OnSpellDictAdd)
+#endif // NOSPELL
   EVT_BUTTON (wxID_HELP, standard_t::OnHelpClick)
   EVT_CHOICE (choice_css_version, standard_t::OnCSSVersion)
   EVT_DATAVIEW_SELECTION_CHANGED (list_css_module, standard_t::OnCSSModule)
@@ -145,160 +147,160 @@ template < class N > struct panel_name < N >
 ::std::string panel_naam (const int n)
 {   return panel_name < css_t, general_t, html_t, nits_t, ontology_t, shadow_t, site_t,
 #ifndef NOSPELL
-						spell_t,
+                        spell_t,
 #endif // NOSPELL
-						summarise_t, vv_t,
-						report_t > :: naam (n); }
+                        summarise_t, vv_t,
+                        report_t > :: naam (n); }
 
 standard_t :: standard_t (wxWindow *mummy, const context_t& c, const e_gui_panel gp, wxWindowID id, const wxString& caption)
-	: d3_t (wxPoint (SPEX_X, SPEX_Y), wxSize (SPEX_WIDTH, SPEX_HEIGHT)), c_ (c)
+    : d3_t (wxPoint (SPEX_X, SPEX_Y), wxSize (SPEX_WIDTH, SPEX_HEIGHT)), c_ (c)
 {	Create (mummy, gp, id, caption); } 
 
 bool standard_t :: Create (wxWindow *mummy, const e_gui_panel gp, wxWindowID id, const wxString& caption)
 {	if (! d3_t :: Create (mummy, id, caption, wxPoint (SPEX_X, SPEX_Y), wxSize (SPEX_WIDTH, SPEX_HEIGHT), SPEX_STYLE)) return false;
-	CreateControls (gp);
-	return true; }
+    CreateControls (gp);
+    return true; }
 
 void standard_t :: CreateControls (const e_gui_panel gp)
 {	if (interrogate < wxDialog > :: invalid ()) return;
-	choice_ = GSL_OWNER (wxChoicebook) (new wxChoicebook (this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxCHB_DEFAULT));
-	if (choice_ != nullptr) // if this order changes, update e_gui_panel
-	{	if (summary_.create_panel (choice_, panel_statistics, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
-			choice_ -> AddPage (summary_.panel (), "summary", false); 
-		if (html_.create_panel (choice_, panel_html, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
-			choice_ -> AddPage (html_.panel (), "HTML, XHTML, MathML, SVG", false); 
-		if (css_.create_panel (choice_, panel_css, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
-			choice_ -> AddPage (css_.panel (), "CSS", false); 
-		if (site_.create_panel (choice_, panel_site, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
-			choice_ -> AddPage (site_.panel (), "root, link, search corpus", false); 
-		if (general_.create_panel (choice_, panel_general, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
-			choice_ -> AddPage (general_.panel (), "bits / bobs", false); 
-		if (nits_.create_panel (choice_, panel_nits, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
-			choice_ -> AddPage (nits_.panel (), "errors, warnings, nitpicking", false); 
-		if (ontology_.create_panel (choice_, panel_ontology, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
-			choice_ -> AddPage (ontology_.panel (), "machine readable content", false); 
-		if (shadow_.create_panel (choice_, panel_shadow, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
-			choice_ -> AddPage (shadow_.panel (), "shadow, deduplicate, resolve", false); 
+    choice_ = GSL_OWNER (wxChoicebook) (new wxChoicebook (this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxCHB_DEFAULT));
+    if (choice_ != nullptr) // if this order changes, update e_gui_panel
+    {	if (summary_.create_panel (choice_, panel_statistics, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
+            choice_ -> AddPage (summary_.panel (), "summary", false); 
+        if (html_.create_panel (choice_, panel_html, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
+            choice_ -> AddPage (html_.panel (), "HTML, XHTML, MathML, SVG", false); 
+        if (css_.create_panel (choice_, panel_css, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
+            choice_ -> AddPage (css_.panel (), "CSS", false); 
+        if (site_.create_panel (choice_, panel_site, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
+            choice_ -> AddPage (site_.panel (), "root, link, search corpus", false); 
+        if (general_.create_panel (choice_, panel_general, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
+            choice_ -> AddPage (general_.panel (), "bits / bobs", false); 
+        if (nits_.create_panel (choice_, panel_nits, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
+            choice_ -> AddPage (nits_.panel (), "errors, warnings, nitpicking", false); 
+        if (ontology_.create_panel (choice_, panel_ontology, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
+            choice_ -> AddPage (ontology_.panel (), "machine readable content", false); 
+        if (shadow_.create_panel (choice_, panel_shadow, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
+            choice_ -> AddPage (shadow_.panel (), "shadow, deduplicate, resolve", false); 
 #ifndef NOSPELL
-		if (spell_.create_panel (choice_, panel_spell, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
-			choice_ -> AddPage (spell_.panel (), "spelling", false); 
+        if (spell_.create_panel (choice_, panel_spell, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
+            choice_ -> AddPage (spell_.panel (), "spelling", false); 
 #endif // NOSPELL
-		if (ssi_.create_panel (choice_, panel_ssi, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
-			choice_ -> AddPage (ssi_.panel (), "server side includes", false); 
-		if (stats_.create_panel (choice_, panel_statistics, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
-			choice_ -> AddPage (stats_.panel (), "statistics, reports", false); 
-		if (vv_.create_panel (choice_, panel_validation, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
-			choice_ -> AddPage (vv_.panel (), "validation, virtual", false);
-		box_ -> Add (choice_, 12, wxEXPAND | wxALL, 5); }
-	d3_t :: CreateButtons (1);
-	SetSizer (box_);
-	Layout ();
-	Centre (wxBOTH);
-	set_panel (gp); }
+        if (ssi_.create_panel (choice_, panel_ssi, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
+            choice_ -> AddPage (ssi_.panel (), "server side includes", false); 
+        if (stats_.create_panel (choice_, panel_statistics, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
+            choice_ -> AddPage (stats_.panel (), "statistics, reports", false); 
+        if (vv_.create_panel (choice_, panel_validation, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
+            choice_ -> AddPage (vv_.panel (), "validation, virtual", false);
+        box_ -> Add (choice_, 12, wxEXPAND | wxALL, 5); }
+    d3_t :: CreateButtons (1);
+    SetSizer (box_);
+    Layout ();
+    Centre (wxBOTH);
+    set_panel (gp); }
 
 void standard_t :: OnCancelClick (wxCommandEvent& )
 {	EndModal (wxID_CANCEL); }
 
 void standard_t :: OnHelpClick (wxCommandEvent& )
 {	if (invalid ()) return;
-	if (app == nullptr) return;
-	app -> help (panel_naam (choice_ -> GetSelection ()).c_str ()); }
+    if (app == nullptr) return;
+    app -> help (panel_naam (choice_ -> GetSelection ()).c_str ()); }
 
 void standard_t :: OnLoadClick (wxCommandEvent& )
 {	app_t::load_conf (this, c_, conf_); }
 
 void standard_t :: OnOkClick (wxCommandEvent& )
 {	TransferDataFromWindow ();
-	EndModal (wxID_OK); }
+    EndModal (wxID_OK); }
 
 void standard_t :: OnSaveClick (wxCommandEvent& )
 {	if (conf_.empty ()) app_t::save_conf_as (this, c_, conf_);
-	else app_t::save_conf (this, c_, conf_); }
+    else app_t::save_conf (this, c_, conf_); }
 
 void standard_t :: OnSaveAsClick (wxCommandEvent& )
 {	app_t::save_conf_as (this, c_, conf_); }
 
 bool standard_t :: TransferDataToWindow ()
 {	if (invalid ()) return false;
-	css_.load_from_context (c_);
-	general_.load_from_context (c_);
-	html_.load_from_context (c_);
-	nits_.load_from_context (c_);
-	ontology_.load_from_context (c_);
-	shadow_.load_from_context (c_);
-	site_.load_from_context (c_);
+    css_.load_from_context (c_);
+    general_.load_from_context (c_);
+    html_.load_from_context (c_);
+    nits_.load_from_context (c_);
+    ontology_.load_from_context (c_);
+    shadow_.load_from_context (c_);
+    site_.load_from_context (c_);
 #ifndef NOSPELL
-	spell_.load_from_context (c_);
+    spell_.load_from_context (c_);
 #endif // NOSPELL
-	ssi_.load_from_context (c_);
-	stats_.load_from_context (c_);
-	summary_.load_from_context (c_);
-	vv_.load_from_context (c_);
-	return  css_.TransferDataToWindow () &&
-			general_.TransferDataToWindow () &&
-			html_.TransferDataToWindow () &&
-			nits_.TransferDataToWindow () &&
-			ontology_.TransferDataToWindow () &&
-			shadow_.TransferDataToWindow () &&
-			site_.TransferDataToWindow () &&
+    ssi_.load_from_context (c_);
+    stats_.load_from_context (c_);
+    summary_.load_from_context (c_);
+    vv_.load_from_context (c_);
+    return  css_.TransferDataToWindow () &&
+            general_.TransferDataToWindow () &&
+            html_.TransferDataToWindow () &&
+            nits_.TransferDataToWindow () &&
+            ontology_.TransferDataToWindow () &&
+            shadow_.TransferDataToWindow () &&
+            site_.TransferDataToWindow () &&
 #ifndef NOSPELL
-			spell_.TransferDataToWindow () &&
+            spell_.TransferDataToWindow () &&
 #endif // NOSPELL
-			stats_.TransferDataToWindow () &&
-			summary_.TransferDataToWindow () &&
-			vv_.TransferDataToWindow () &&
-			ssi_.TransferDataToWindow (); }
+            stats_.TransferDataToWindow () &&
+            summary_.TransferDataToWindow () &&
+            vv_.TransferDataToWindow () &&
+            ssi_.TransferDataToWindow (); }
 
 bool standard_t :: TransferDataFromWindow ()
 {	if (	invalid () ||
-			! css_.TransferDataFromWindow () ||
-			! general_.TransferDataFromWindow () ||
-			! html_.TransferDataFromWindow () ||
-			! nits_.TransferDataFromWindow () ||
-			! ontology_.TransferDataFromWindow () ||
-			! shadow_.TransferDataFromWindow () ||
-			! site_.TransferDataFromWindow () ||
+            ! css_.TransferDataFromWindow () ||
+            ! general_.TransferDataFromWindow () ||
+            ! html_.TransferDataFromWindow () ||
+            ! nits_.TransferDataFromWindow () ||
+            ! ontology_.TransferDataFromWindow () ||
+            ! shadow_.TransferDataFromWindow () ||
+            ! site_.TransferDataFromWindow () ||
 #ifndef NOSPELL
-			! spell_.TransferDataFromWindow () ||
+            ! spell_.TransferDataFromWindow () ||
 #endif // NOSPELL
-			! stats_.TransferDataFromWindow () ||
-			! summary_.TransferDataFromWindow () ||
-			! vv_.TransferDataFromWindow () ||
-			! ssi_.TransferDataFromWindow ())
-		return false;
-	nitpick nits;
-	css_.save_to_context (c_);
-	general_.save_to_context (c_);
-	html_.save_to_context (c_);
-	nits_.save_to_context (c_);
-	ontology_.save_to_context (c_);
-	shadow_.save_to_context (c_);
-	site_.save_to_context (c_);
+            ! stats_.TransferDataFromWindow () ||
+            ! summary_.TransferDataFromWindow () ||
+            ! vv_.TransferDataFromWindow () ||
+            ! ssi_.TransferDataFromWindow ())
+        return false;
+    nitpick nits;
+    css_.save_to_context (c_);
+    general_.save_to_context (c_);
+    html_.save_to_context (c_);
+    nits_.save_to_context (c_);
+    ontology_.save_to_context (c_);
+    shadow_.save_to_context (c_);
+    site_.save_to_context (c_);
 #ifndef NOSPELL
-	spell_.save_to_context (c_);
+    spell_.save_to_context (c_);
 #endif // NOSPELL
-	ssi_.save_to_context (nits, c_);
-	stats_.save_to_context (c_);
-	summary_.save_to_context (c_);
-	vv_.save_to_context (c_);
-	if (! nits.empty ())
-	 	app_t::nits_msgbox (nullptr, "SSI values", nits, es_info);
-	return true; }
+    ssi_.save_to_context (nits, c_);
+    stats_.save_to_context (c_);
+    summary_.save_to_context (c_);
+    vv_.save_to_context (c_);
+    if (! nits.empty ())
+        app_t::nits_msgbox (nullptr, "SSI values", nits, es_info);
+    return true; }
 
 ::std::string andl (const ::std::string z, const ::std::string& s)
 {	if (s.empty () || z.empty ()) return s;
-	return ::std::string (", ") + s; }
+    return ::std::string (", ") + s; }
 
 e_gui_panel standard_t :: get_panel () const
 {	if (invalid ()) return gp_html;
-	return static_cast < e_gui_panel > (choice_ -> GetSelection ()); }
+    return static_cast < e_gui_panel > (choice_ -> GetSelection ()); }
 
 void standard_t :: set_panel (const e_gui_panel gp)
 {	if (invalid ()) return;
-	if (gp == gp_validation) vv_.yer_actual (site_.folder (), shadow_.shadow (), ontology_.path ());
+    if (gp == gp_validation) vv_.yer_actual (site_.folder (), shadow_.shadow (), ontology_.path ());
 #ifdef NOSPELL
-	if (gp == gp_spell) choice_ -> SetSelection (gp_html); else
+    if (gp == gp_spell) choice_ -> SetSelection (gp_html); else
 #endif // NOSPELL
-	choice_ -> SetSelection (gp); }
+    choice_ -> SetSelection (gp); }
 
 #endif // WX

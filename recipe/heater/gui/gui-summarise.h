@@ -54,5 +54,4 @@ public:
     bool create_panel (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL | wxNO_BORDER);
     void load_from_context (const context_t& c);
     void save_to_context (context_t& ) const { }; };
-
 #endif // WX
