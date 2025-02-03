@@ -309,9 +309,9 @@ using the source found at <a href="https://icu.unicode.org">icu.unicode.org</a>.
 <h3>wxWidgets</h3>
 
 <p>
-This is only required if you make a GUI build, which is not recommended
-(yet). It can be found at <a href="https://wxwidgets.org">wxwidgets.org</a>. Note that I have not tested it
-under many supported (by wxWidgets) systems.
+This is only required if you make a GUI build. It can be found at
+<a href="https://wxwidgets.org">wxwidgets.org</a>. Note that it has not been tested for many of the systems
+supported by wxWidgets.
 </p>
 
 <h2>Editions</h2>

@@ -235,7 +235,7 @@ typedef enum {  button_all,
                 check_ssi_exec, check_ssi_lastmod, check_ssi_now, check_ssi_process,
                 check_verify,
                 check_wx,
-                choice_css_version, choice_html_version, choice_ontology_version, choice_validation_version,
+                choice_css_version, choice_html_version, choice_nit_format, choice_ontology_version, choice_validation_version,
                 dir_physical, dir_ontology, dir_root, dir_shadow,
                 file_css_name, file_dict_name, file_general_name, file_hun_name, file_shadow_name, file_site_name, file_validation_name, file_virtual_name, file_word_name,
                 list_css_ext, list_dict_ext, list_general_ext, list_hun_ext, list_shadow_ext, list_site_ext, list_validation, list_virtual, list_word_ext,
@@ -1393,8 +1393,18 @@ typedef enum { fred_maestro, fred_bloggs } e_fred;
 typedef enum { eg_p3, eg_rec2020, eg_srgb  } e_gamut;
 typedef enum { g_female, g_male } e_gender;
 typedef enum { gu_userspaceonuse, gu_objectboundingbox } e_gradientunits;
+typedef enum {  // MUST correspond to IDs in content.hhc
+    hp_legal, hp_about, hp_cmd, hp_conf, hp_configuration, hp_css, hp_file, hp_bobs, hp_HTML, hp_introduction, hp_nits,
+    hp_ontology, hp_shadow, hp_general, hp_snippet, hp_spell, hp_ssi, hp_stats, hp_summary, hp_validation, hp_welcome
+} e_gui_help_id;
 typedef enum { gn_grid, gn_normal } e_grid_normal;
-typedef enum { gp_summary, gp_html, gp_css, gp_gen, gp_bits, gp_nits, gp_data, gp_shadow, gp_spell, gp_stats, gp_validation } e_gui_panel;
+typedef enum { // MUST correspond to order in standard_t :: CreateControls
+    gp_summary, gp_html, gp_css, gp_gen, gp_bits, gp_nits, gp_data, gp_shadow,
+#ifndef NOSPELL
+        gp_spell,
+#endif // NOSPELL
+        gp_ssi, gp_stats, gp_validation
+} e_gui_panel;
 typedef enum { gr_config, gr_summary, gr_switches } e_gui_report;
 typedef enum
 {   gst_annotation, gst_character_variant, gst_content_name, gst_counter_style, gst_font_family, gst_highlight, gst_historical_form, gst_keyframe,
@@ -2579,7 +2589,7 @@ typedef enum
     // eon
     nit_off } e_nit;
 
-typedef enum { nf_html, nf_spec, nf_test, nf_text, nf_bespoke } e_nit_format;
+typedef enum { nf_html, nf_spec, nf_test, nf_text, nf_xhtml, nf_bespoke } e_nit_format;
 
 typedef enum
 {   nm_none,
@@ -2839,13 +2849,17 @@ typedef enum
     csv_uritemplate,
 
     // croissant
+    cr_all,
     cr_boundingbox,
-    cr_dataextraction, cr_datasource,
+    cr_contentextractionenumeration,
+    cr_dataextraction, cr_datasource, cr_datatype,
     cr_extract,
-    cr_field, cr_fileobject, cr_fileset,
+    cr_field, cr_filename, cr_fileobject, cr_filepropertyenumeration, cr_fileset, cr_format, cr_fullpath,
+    cr_label, cr_linenumbers, cr_lines,
     cr_recordset, cr_reference,
-    cr_split,
-    cr_transform,
+    cr_segmentationmask, cr_split,
+    cr_testsplit, cr_trainsplit, cr_transform,
+    cr_validationsplit,
 
     // data quality
     daq_metric, daq_category, daq_dimension, daq_qualitygraph, daq_observation,
@@ -4832,12 +4846,12 @@ typedef enum
 
     // croissant
     cp_applytransform,
-    cp_citeas, cp_column, cp_containedin, cp_csvcolumn,
-    cp_data, cp_dataextraction, cp_datatype, cp_distribution,
+    cp_citeas, cp_column, cp_containedin, cp_content, cp_csvcolumn,
+    cp_data, cp_dataextraction, cp_datatype, cp_delimiter, cp_distribution,
     cp_equivalentproperty, cp_examples, cp_excludes, cp_extract,
     cp_field, cp_fileextension, cp_fileobject, cp_fileproperty, cp_fileset, cp_format,
     cp_includes, cp_isenumeration, cp_islivedataset,
-    cp_jsonpath,
+    cp_jsonpath, cp_jsonquery,
     cp_key,
     cp_md5,
     cp_parentfield, cp_path,
@@ -5670,19 +5684,21 @@ typedef enum
 
     // schema.org
     sp_about, sp_abridged, sp_abstract, sp_accelerationtime, sp_acceptedanswer, sp_acceptedoffer, sp_acceptedpaymentmethod, sp_acceptsreservations, sp_accessibilityapi, sp_accessibilitycontrol,
-    sp_accessibilityfeature, sp_accessibilityhazard, sp_accessibilitysummary, sp_accesscode, sp_accessmode, sp_accessmodesufficient, sp_accommodationcategory, sp_accommodationfloorplan, sp_accountableperson,
-    sp_accountid, sp_accountminimuminflow, sp_accountoverdraftlimit, sp_acquiredfrom, sp_acquirelicensepage, sp_acrisscode, sp_action, sp_actionablefeedbackpolicy, sp_actionaccessibilityrequirement, sp_actionapplication,
-    sp_actionoption, sp_actionplatform, sp_actionprocess, sp_actionstatus, sp_activeingredient, sp_activityduration, sp_activityfrequency, sp_actor, sp_actors, sp_additionalname, sp_additionalnumberofguests, sp_additionalproperty, sp_additionaltype,
-    sp_additionalvariable, sp_addon, sp_address, sp_addresscountry, sp_addresslocality, sp_addressregion, sp_administrationroute, sp_advancebookingrequirement, sp_adverseoutcome, sp_affectedby, sp_affiliation, sp_aftermedia,
-    sp_agent, sp_agentinteractionstatistic, sp_aggregaterating, sp_aircraft, sp_album, sp_albums, sp_albumproductiontype, sp_albumrelease, sp_albumreleasetype, sp_alcoholwarning, sp_algorithm, sp_alignmenttype, sp_alternativename, sp_alternativeheadline,
-    sp_alternativeof, sp_alumni, sp_alumniof, sp_amenityfeature, sp_amount, sp_amountofthisgood, sp_announcementlocation, sp_annualpercentagerate, sp_answercount, sp_answerexplanation, sp_antagonist, sp_appearance, sp_applicablecountry, sp_applicablelocation,
-    sp_applicantcontact, sp_applicantlocationrequirements, sp_application, sp_applicationcategory, sp_applicationdeadline, sp_applicationstartdate, sp_applicationsubcategory, sp_applicationsuite, sp_appliestodeliverymethod,
-    sp_appliestopaymentmethod, sp_area, sp_archivedat, sp_archiveheld, sp_areaserved, sp_arrivalairport, sp_arrivalboatterminal, sp_arrivalbusstop, sp_arrivalgate, sp_arrivalplatform, sp_arrivalstation, sp_arrivalterminal,
-    sp_arrivaltime, sp_artedition, sp_arterialbranch, sp_artform, sp_articlebody, sp_articlesection, sp_artist, sp_artmedium, sp_artworksurface, sp_asin, sp_aspect, sp_assemblyversion, sp_assess, sp_assesses,
-    sp_associatedanatomy, sp_associatedarticle, sp_associatedclaimreview, sp_associateddisease, sp_associatedmedia, sp_associatedmediareview, sp_associatedpathophysiology, sp_associatedreview, sp_athlete,
-    sp_attendee, sp_attendees, sp_audience, sp_audiencetype, sp_audio, sp_auditdate, sp_authenticator, sp_author, sp_availability, sp_availabilityends, sp_availabilitystarts, sp_availableatorfrom, sp_availablechannel,
-    sp_availabledeliverymethod, sp_availablefrom, sp_availablein, sp_availablelanguage, sp_availablelocation, sp_availableondevice, sp_availableservice, sp_availablestrength, sp_availabletest, sp_availableuntil,
-    sp_award, sp_awards, sp_awayteam,
+    sp_accessibilityfeature, sp_accessibilityhazard, sp_accessibilitysummary, sp_accesscode, sp_accessmode, sp_accessmodesufficient, sp_accommodationcategory, sp_accommodationfloorplan,
+    sp_accountableperson, sp_accountid, sp_accountminimuminflow, sp_accountoverdraftlimit, sp_acquiredfrom, sp_acquirelicensepage, sp_acrisscode, sp_action, sp_actionablefeedbackpolicy,
+    sp_actionaccessibilityrequirement, sp_actionapplication, sp_actionoption, sp_actionplatform, sp_actionprocess, sp_actionstatus, sp_activeingredient, sp_activityduration, sp_activityfrequency,
+    sp_actor, sp_actors, sp_additionalname, sp_additionalnumberofguests, sp_additionalproperty, sp_additionaltype, sp_additionalvariable, sp_addon, sp_address, sp_addresscountry,
+    sp_addresslocality, sp_addressregion, sp_administrationroute, sp_advancebookingrequirement, sp_adverseoutcome, sp_affectedby, sp_affiliation, sp_aftermedia,sp_agent, sp_agentinteractionstatistic,
+    sp_aggregaterating, sp_aggregateelement, sp_aircraft, sp_album, sp_albums, sp_albumproductiontype, sp_albumrelease, sp_albumreleasetype, sp_alcoholwarning, sp_algorithm, sp_alignmenttype,
+    sp_alternativename, sp_alternativeheadline, sp_alternativeof, sp_alumni, sp_alumniof, sp_amenityfeature, sp_amount, sp_amountofthisgood, sp_announcementlocation, sp_annualpercentagerate,
+    sp_answercount, sp_answerexplanation, sp_antagonist, sp_appearance, sp_applicablecountry, sp_applicablelocation, sp_applicantcontact, sp_applicantlocationrequirements, sp_application,
+    sp_applicationcategory, sp_applicationdeadline, sp_applicationstartdate, sp_applicationsubcategory, sp_applicationsuite, sp_appliestodeliverymethod, sp_appliestopaymentmethod, sp_area,
+    sp_archivedat, sp_archiveheld, sp_areaserved, sp_arrivalairport, sp_arrivalboatterminal, sp_arrivalbusstop, sp_arrivalgate, sp_arrivalplatform, sp_arrivalstation, sp_arrivalterminal,
+    sp_arrivaltime, sp_artedition, sp_arterialbranch, sp_artform, sp_articlebody, sp_articlesection, sp_artist, sp_artmedium, sp_artworksurface, sp_asin, sp_aspect, sp_assemblyversion, sp_assess,
+    sp_assesses, sp_associatedanatomy, sp_associatedarticle, sp_associatedclaimreview, sp_associateddisease, sp_associatedmedia, sp_associatedmediareview, sp_associatedpathophysiology,
+    sp_associatedreview, sp_athlete, sp_attendee, sp_attendees, sp_audience, sp_audiencetype, sp_audio, sp_auditdate, sp_authenticator, sp_author, sp_availability, sp_availabilityends,
+    sp_availabilitystarts, sp_availableatorfrom, sp_availablechannel, sp_availabledeliverymethod, sp_availablefrom, sp_availablein, sp_availablelanguage, sp_availablelocation, sp_availableondevice,
+    sp_availableservice, sp_availablestrength, sp_availabletest, sp_availableuntil, sp_award, sp_awards, sp_awayteam,
 
     sp_bankaccounttype, sp_background, sp_backstory, sp_basesalary, sp_bccrecipient, sp_bed, sp_beforemedia, sp_beneficiarybank, sp_benefits, sp_benefitssummaryurl, sp_bestrating, sp_billingaddress, sp_billingduration, sp_billingincrement,
     sp_billingperiod, sp_billingstart, sp_biocheminteraction, sp_biochemsimilarity, sp_biologicalrole, sp_biomechanicalclass, sp_birthdate, sp_birthplace, sp_bitrate, sp_blogpost, sp_blogposts, sp_bloodsupply, sp_boardinggroup,
@@ -6804,7 +6820,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 
 #define SSC_TYPES_C_2 \
     t_content_encoding,  t_content_encodings, t_content_type, t_context_menu, t_contents, t_controlslist, t_cookie, t_cookieid, t_cookies, \
-        t_coordinatesystem, t_coords, t_copy, t_corp, t_cors, t_country, t_cntype, t_crdatatype, t_create_parent, t_cr_fileproperty, t_crossout, \
+        t_coordinatesystem, t_coords, t_copy, t_corp, t_cors, t_country, t_cntype, t_create_parent, t_cr_fileproperty, t_crossout, \
         t_crs_tonecurvename, t_crs_whitebalance, t_cs, t_csp, t_csp_ancestor, t_csp_directive, t_csp_keyword, t_csp_sauce, t_csp_source
 #define SSC_TYPES_C_2_MAX t_csp_source
 

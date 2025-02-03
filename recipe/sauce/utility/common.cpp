@@ -441,12 +441,9 @@ bool ends_with_letters (const html_version& v, const ::std::string& s, const ::s
     return res; }
 
 ::std::string test_template_path (nitpick& nits, ::boost::filesystem::path p)
-{   if (! ::boost::filesystem::exists (p))
-        p.replace_extension ("nit");
-    if (! ::boost::filesystem::exists (p))
-        p.replace_extension ("tpl");
-    if (! ::boost::filesystem::is_regular_file (p))
-        return "";
+{   if (! file_exists (p)) p.replace_extension ("nit");
+    if (! file_exists (p)) p.replace_extension ("tpl");
+    if (! is_normal_file (p)) return "";
     bool borked = false;
     return read_text_file (nits, p.string (), borked); }
 
@@ -454,14 +451,14 @@ bool ends_with_letters (const html_version& v, const ::std::string& s, const ::s
 {   PRESUME (! fn.empty (), __FILE__, __LINE__);
     ::boost::filesystem::path p (fn);
     const bool abs (p.is_absolute ());
-    if (! abs) p = ::boost::filesystem::absolute (p);
+    if (! abs) p = absolute_name (p);
     ::std::string res (test_template_path (nits, p));
     if (abs || ! res.empty ()) return res;
     if (! context.not_root ())
-    {   p = ::boost::filesystem::absolute (fn, context.rootp ());
+    {   p = absolute_name (fn, context.rootp ());
         res = test_template_path (nits, p);
         if (! res.empty ()) return res; }
-    p = ::boost::filesystem::absolute (fn, ::boost::filesystem::path (context.path ()));
+    p = absolute_name (fn, ::boost::filesystem::path (context.path ()));
     return test_template_path (nits, p); }
 
 ::std::string template_path (nitpick& nits, const ::std::string& def, const ::std::string& arg)

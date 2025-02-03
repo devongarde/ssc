@@ -260,7 +260,7 @@ options::options (const context_t& c)
     INSERT_STRING (NITS, FORMAT, nit_format);
     INSERT_VSTR (NITS, INFO, inform);
     INSERT_BOOL (NITS, NIDS, nids);
-    INSERT_STRING (NITS, FORMAT, nit_format);
+    INSERT_STRING (NITS, OVERRIDE, nit_override);
     INSERT_ENUM (t_quote_style, NITS, QUOTE, quote_style);
     INSERT_INVERTED_BOOL (NITS, ROOT, not_root);
     INSERT_BOOL (NITS, SPEC, spec);
@@ -1667,9 +1667,9 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
             if (arg.empty ()) nits.pick (nit_no_such_folder, es_error, ec_init, "that --" WEBSITE ROOT " is a little too spaced out for " PROG);
             else
             {   const ::std::string local = nix_path_to_local (arg);
-                if (! ::boost::filesystem::exists (local))
+                if (! file_exists (local))
                     nits.pick (nit_no_such_folder, es_error, ec_init, PROG " cannot access the directory ", quote (local));
-                else if (::boost::filesystem::is_directory (local))
+                else if (is_folder (local))
                     c.root (local);
                 else nits.pick (nit_not_directory, es_error, ec_init, "expecting a directory containing a static website, not ", quote (local)); } }
 
@@ -2017,8 +2017,8 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
 #ifdef HUNSPELL
             if (var_.count (SPELL PATH))
             {   ::boost::filesystem::path hunspell (var_ [SPELL PATH].as < ::std::string > ());
-                if (! ::boost::filesystem::exists (hunspell)) { nits.pick (nit_no_spell, es_error, ec_init, "Cannot find ", hunspell.string ()); c.spell (false); }
-                else if (! ::boost::filesystem::is_directory (hunspell)) { nits.pick (nit_no_spell, es_error, ec_init, hunspell.string (), " is not a directory"); c.spell (false); }
+                if (! file_exists (hunspell)) { nits.pick (nit_no_spell, es_error, ec_init, "Cannot find ", hunspell.string ()); c.spell (false); }
+                else if (! is_folder (hunspell)) { nits.pick (nit_no_spell, es_error, ec_init, hunspell.string (), " is not a directory"); c.spell (false); }
                 else c.spell_path (hunspell); }
             else
             {   bool found = false;
@@ -2045,8 +2045,8 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
                     "/usr/share/doc/hunspell-nl",
                     "/usr/share/doc/hunspell-lb" };
                 for (auto dd : check)
-                    if (::boost::filesystem::exists (dd))
-                        if (::boost::filesystem::is_directory (dd))
+                    if (file_exists (dd))
+                        if (is_folder (dd))
                         {   c.spell_path (dd);
                             found = true; }
                 if (found) c.spell_deduced (true);

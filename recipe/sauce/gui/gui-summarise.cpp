@@ -74,7 +74,7 @@ void summarise_t :: CreateControls ()
     Centre (wxBOTH); }
 
 void summarise_t :: OnHelpClick (wxCommandEvent& )
-{	if (app != nullptr) app -> help ("summary"); }
+{	if (app != nullptr) app -> help (hp_summary); }
 
 bool summarise_t :: create_panel (wxWindow *mummy, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
 {	PRESUME (invalid_panel (), __FILE__, __LINE__);

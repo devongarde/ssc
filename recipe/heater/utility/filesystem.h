@@ -60,7 +60,9 @@ bool is_normal_file (const ::boost::filesystem::path& name);
 bool file_exists (const ::boost::filesystem::path& name);
 ::boost::filesystem::file_status file_data (const ::boost::filesystem::path& name);
 ::boost::filesystem::path absolute_name (const ::boost::filesystem::path& name);
+::boost::filesystem::path absolute_name (const ::boost::filesystem::path& name, const ::boost::filesystem::path& p2);
 ::boost::filesystem::path canonical_name (const ::boost::filesystem::path& name);
+::boost::filesystem::path unique (const ::boost::filesystem::path& name = "%%%%-%%%%-%%%%-%%%%");
 ::boost::filesystem::path get_working_directory ();
 ::boost::filesystem::path temp_dir ();
 

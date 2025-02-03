@@ -36,7 +36,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "gui/gui-summarise.h"
 #include "gui/gui-validation.h"
 
-#define SPEX_CAPTION "Settings"
+#define SPEX_CAPTION "Configure"
 
 ::std::string panel_naam (const int n);
 
@@ -98,6 +98,7 @@ public:
     void OnHTMLVersion (wxCommandEvent& event) { html_.OnVersion (event); }
     void OnHTMLWX (wxCommandEvent& event) { html_.OnWX (event); }
     void OnNitsListLevel (wxCommandEvent& event) { nits_.OnListLevel (event); }
+    void OnNitsFormat (wxCommandEvent& event) { nits_.OnNitFormat (event); }
     void OnNitsRadioLevel (wxCommandEvent& event) { nits_.OnRadioLevel (event); }
     void OnOntologyExport (wxCommandEvent& e) { ontology_.OnExport (e); }
     void OnOntologyMFExport (wxCommandEvent& e) { ontology_.OnMFExport (e); }

@@ -263,6 +263,18 @@ microdata_hierachy ontology_hierarchy [] =
     { { s_ctag, 1, 0 }, { 0, 0 }, ctag_tag, ctag_auto },
     { { s_ctag, 1, 0 }, { 0, 0 }, ctag_tag, ctag_reader },
 
+    // croissant
+    { { s_croissant, 1, 100 }, { 0, 0 }, cr_contentextractionenumeration, cr_all },
+    { { s_croissant, 1, 100 }, { 0, 0 }, cr_contentextractionenumeration, cr_linenumbers },
+    { { s_croissant, 1, 100 }, { 0, 0 }, cr_contentextractionenumeration, cr_lines },
+
+    { { s_croissant, 1, 1 }, { 0, 0 }, cr_filepropertyenumeration, cr_filename },
+    { { s_croissant, 1, 1 }, { 0, 0 }, cr_filepropertyenumeration, cr_fullpath },
+
+    { { s_croissant, 1, 6 }, { 0, 0 }, cr_split, cr_testsplit },
+    { { s_croissant, 1, 6 }, { 0, 0 }, cr_split, cr_trainsplit },
+    { { s_croissant, 1, 6 }, { 0, 0 }, cr_split, cr_validationsplit },
+
     // data catalogue
     { { s_adms, 1, 0 }, { s_adms, 1, 0 }, dca_catalogue, adms_asset_repository },
 
@@ -8548,6 +8560,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { 1, 93 }, { 0, 0 }, sch_intangible, sch_invoice },
     { { 1, 92 }, { 0, 0 }, sch_intangible, sch_itemlist },
     { { 0, 60 }, { 0, 0 }, sch_intangible, sch_jobposting },
+    { { s_croissant, 1, 6 }, { 0, 0 }, sch_intangible, cr_label },
     { { 0, 10 }, { 0, 0 }, sch_intangible, sch_language },
     { { 1, 92 }, { 0, 0 }, sch_intangible, sch_listitem },
     { { 3, 5 }, { 0, 0 }, sch_intangible, sch_mediasubscription },
@@ -9335,6 +9348,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { 0, 99 }, { 0, 0 }, sch_structuredvalue, sch_quantitativevalue },
     { { 3, 5 }, { 0, 0 }, sch_structuredvalue, sch_quantitativevaluedistribution },
     { { 3, 5 }, { 0, 0 }, sch_structuredvalue, sch_repaymentspecification },
+    { { s_croissant, 1, 6 }, { 0, 0 }, sch_structuredvalue, cr_segmentationmask },
     { { 8, 0 }, { 0, 0 }, sch_structuredvalue, sch_shippingdeliverytime },
     { { 8, 0 }, { 0, 0 }, sch_structuredvalue, sch_shippingratesettings },
     { { 0, 99 }, { 0, 0 }, sch_structuredvalue, sch_typeandquantitynode },
@@ -9342,6 +9356,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { 3, 5 }, { 0, 0 }, sch_substance, sch_dietarysupplement },
     { { 3, 5 }, { 0, 0 }, sch_substance, sch_drug },
     { { 1, 0 }, { 0, 0 }, sch_techarticle, sch_apireference },
+    { { s_croissant, 1, 6 }, { 0, 0 }, sch_text, cr_boundingbox },
     { { 2, 0 }, { 0, 0 }, sch_text, sch_cssselectortype },
     { { 2, 0 }, { 0, 0 }, sch_text, sch_pronounceabletext },
     { { 0, 10 }, { 0, 0 }, sch_text, sch_url },

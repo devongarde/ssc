@@ -602,10 +602,9 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
     nits.set_context (line, unify_whitespace (::std::string (b, e)));
     nits.pick (nit_ssi_syntax, severity, ec_ssi, msg); }
 
-void splurt (nitpick& nits, const char* wot, const ::std::string::const_iterator i)
+void splurt (nitpick& , const char* wot, const ::std::string::const_iterator i)
 {   const char ch (*i);
     if (ch < ' ') return;
-//    if (ch >= ' ') nits.pick (nit_ssi, es_all, ec_parser, wot, ch); }
     ::std::cout << wot << ch << ::std::endl; }
 
 ::std::string parse_ssi (nitpick& nits, const html_version& v, page& p, ssi_compedium& c, const ::std::string& input, ::std::time_t& updated, bool shush)

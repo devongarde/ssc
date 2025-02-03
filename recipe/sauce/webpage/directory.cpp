@@ -184,9 +184,12 @@ bool directory::scan (nitpick* ticks, const ::std::string& site)
 {   PRESUME (! offsite_, __FILE__, __LINE__);
     VERIFY_NOT_NULL (ticks, __FILE__, __LINE__);
     const ::boost::filesystem::path disk (get_disk_path ());
-    for (const ::boost::filesystem::directory_entry& x : ::boost::filesystem::directory_iterator (disk))
-        if (! context.excluded (*ticks, x.path ()))
-            add_to_content (ticks, x, site);
+    try
+    {   for (const ::boost::filesystem::directory_entry& x : ::boost::filesystem::directory_iterator (disk))
+            if (! context.excluded (*ticks, x.path ()))
+                add_to_content (ticks, x, site); }
+    catch (...)
+    {   return false; }
     return true; }
 
 bool directory::add_to_content (nitpick* ticks, const ::boost::filesystem::directory_entry& i, const ::std::string& site)
@@ -201,7 +204,7 @@ bool directory::add_to_content (nitpick* ticks, const ::boost::filesystem::direc
     else p = site;
     ::std::string f (local_path_to_nix (qp.filename ().string ()));
     p = join_site_paths (p, f);
-    if (::boost::filesystem::is_regular_file (qp))
+    if (is_normal_file (qp))
     {   if (context.dodedu ()) get_crc (*ticks, ndx);
         if (is_css (f))
             return priority_.insert (value_t (f, nullptr)).second;
@@ -319,11 +322,13 @@ void directory::examine (nitpick* ticks, dir_ptr me_me_me) const
 #else // NO_DIROPTS
         ::boost::filesystem::directory_iterator i (get_shadow_path (), ::boost::filesystem::directory_options::skip_permission_denied);
 #endif // NO_DIROPTS
-        for (   i = ::boost::filesystem::begin (i);
-                i != ::boost::filesystem::end (i);
-                ++i)
-            if (shadowed.find (i -> path ().string ()) == shadowed.cend ())
-                delete_me.emplace (i -> path ().string ());
+        try
+        {   for (   i = ::boost::filesystem::begin (i);
+                    i != ::boost::filesystem::end (i);
+                    ++i)
+                if (shadowed.find (i -> path ().string ()) == shadowed.cend ())
+                    delete_me.emplace (i -> path ().string ()); }
+        catch (...) { }
         for (auto z : delete_me)
         {   if (context.tell (es_comment)) nits.pick (nit_shadow_delete, es_comment, ec_shadow, "removing ", z);
             delete_file (z); } } }

@@ -2,15 +2,14 @@
 
 <html lang="en">
 <head>
-<title>ssc HTML help</title>
+<title>ssc HTML panel</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="alternate" hreflang="x-default" href="https://ssc.lu/index.shtml">
 <meta name="author" content="Dylan Harris">
 <meta name="contact" content="mail@ssc.lu">
 <meta name="copyright" content="&copy; 2024,2025 Dylan Harris">
-<meta name="description" content="static site checker HTML help page">
-<meta name="keywords" content="help,ssc,HTML,XHTML,MathML,SVG,CSS,RDFa,Dylan Harris">
+<meta name="description" content="static site checker HTML panel">
 <meta name="rights-standard" content=";cc by-nc-sa">
 <meta name="theme-color" content="#000000">
 
@@ -31,12 +30,136 @@
   <link itemprop="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
   <meta itemprop="name headline" content="static site checker">
   <h1>
-  HTML
+  HTML panel
   </h1>
 </div>
 
+<h2>introduction</h2>
+
 <p>
-The HTML dialogue allows you to precisely control the versions of HTML analysed.
+This panel is part of the <a href="conf.html">Settings Dialogue</a>. It allows you to precisely control the versions of HTML analysed.
+</p>
+
+<h2>X/HTML version</h2>
+
+<p>
+Over the years, there have been many many versions of HTML defined. The first was
+HTML tags back in 1993, right up to the contemporary Living Standard,
+defined by <a href="https://www.whatwg.org">What WG</a>, updated
+by browser authors.
+</p>
+
+<p>
+By default, SSC verifies websites against a recent version of the Living Standard,
+but you can choose to verify against older versions of HTML etc..
+</p>
+
+<p>
+Note that many older HTML files define which version of the standard they follow.
+In such cases, SSC will ignore the default given here, and validate the file
+against the appropriate HTML version.
+</p>
+
+<h2>MathML</h2>
+
+<p>
+The Mathematics Markup Language is an extension to HTML supported, in various versions,
+by many browsers. Here, you can specify which version of MathML is found in any MathML
+content on the website. By default, SSC prefers a version corresponding to the version
+of HTML being processed.
+</p>
+
+<p>
+Note that MathML 4 has not yet been formally released. If you select MathML 4, SSC
+validates it against a recent draft of MathML 4.
+</p>
+
+<h2>SVG</h2>
+
+<p>
+SVG defines vector graphics, an extension to HTML supported, in various versions,
+by most browsers. Here, you can specify which version of SVG is found in any SVG
+content on the website. By default, SSC prefers a version corresponding to the version
+of HTML being processed.
+</p>
+
+<p>
+Note that SVG 2.1 has not been formally defined or released. If you select SVG 2.1, SSC
+validates it against a recent draft of SVG.
+</p>
+
+<h2>&lt;!DOCTYPE &hellip;&gt;</h2>
+
+<p>
+Except for the very earliest version of HTML, all HTML files must start with a &lt;!DOCTYPE &hellip;&gt; declaration.
+Of course, mistakes occur, and sometimes a &lt;!DOCTYPE &hellip;&gt; declaration is missing.
+</p>
+
+<p>
+Now, technically, only HTML Tags and HTML 1 did not require a &lt;!DOCTYPE &hellip;&gt;, thus logically
+any HTML page missing a &lt;!DOCTYPE &hellip;&gt; must be HTML Tags or HTML 1.
+In practical terms, though, this is a bit silly, given neither version escaped CERN,
+where HTML was originally defined.
+</p>
+
+<p>
+Thus this small set of radio buttons allows you to specify how SSC should treat HTML pages that
+do not have a &lt;!DOCTYPE &hellip;&gt;.
+</p>
+
+<h2>default language</h2>
+
+<p>
+All HTML pages should define the default natural language found on that page. However,
+it is not uncommon for authors to forget to specify it. Here, you can allow for such ommissions.
+</p>
+
+<p>
+If SSC does not know a page&rsquo;s default language, it cannot spell check the page.
+</p>
+
+<h2>max &lt;TITLE&gt;</h2>
+
+<p>
+A pages &lt;TITLE&gt;, as specified using the &lt;TITLE&gt; element, appears in a browser&rsquo;s tab.
+It is unusual for a tab to have sufficient space to display a long title.
+Here, you can tell SSC to issue a warning if a page &lt;TITLE&gt; is longer than the given number of characters.
+</p>
+
+<h2>warn of inefficient HTML</h2>
+
+<p>
+The Living Standard, which defines HTML, inherits some structures from earlier versions of HTML.
+The Living Standard states that they&rsquo;re perfectly legal, because they&rsquo;re inherited from earlier versions of HTML,
+but they&rsquo;re also inefficient. Select this checkbox to have SSC warn of such inefficiencies.
+</p>
+
+<h2>wxWidgets compatibility</h2>
+
+<p>
+wxWidgets is a framework to help programmers develop programs that can be built under many operating systems.
+It is used by SSC, mostly because it supports a wide range of operating systems, including OpenBSD.
+</p>
+
+<p>
+It includes a very small and very limited browser, for use on help pages
+and the like. Select this checkbox to have SSC warn when HTML is used that can&rsquo;t be processed
+by the wxWidgets browser.
+</p>
+
+<h2>ignore IE and Safari oddities</h2>
+
+<p>
+Over the years, both Internet Explorer and Apple&rsquo;s Safari browsers have misinterptered (sic) HTML in various ways.
+Select this checkbox to have SSC ignore such oddities, rather than warn should they be encountered.
+</p>
+
+<h2>RFC checkboxes</h2>
+
+<p>
+These four checkboxes refer to extensions to HTML 2, defined when my cat&rsquo;s great grandmother was a gleam in her father&rsquo;s tomcat eyes
+(clich&eacute; &copy; Her Majesty&rsquo;s Secret Service; not to be read by anyone but a British subject).
+Select them to have SSC accept the corresponding extensions when processing HTML 2.
 </p>
 
 </body>

@@ -32,7 +32,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define VALID_STYLE   DEF_STYLE
 #define VALID_X       100
 #define VALID_Y       100
-#define VALID_WIDTH   425
+#define VALID_WIDTH   450
 #define VALID_HEIGHT  515
 
 BEGIN_EVENT_TABLE (welcome_t, d2_t)
@@ -89,7 +89,7 @@ void welcome_t :: CreateControls ()
     if (text_summary_ != nullptr)
     {	text_summary_ -> SetValue (c_.report (gr_summary, false));
         text_summary_ -> Enable (false);
-        button_configure_ = GSL_OWNER (wxButton) (new wxButton (this, button_config, "&Modify...", wxDefaultPosition, wxDefaultSize, 0));
+        button_configure_ = GSL_OWNER (wxButton) (new wxButton (this, button_config, "&Configure...", wxDefaultPosition, wxDefaultSize, 0));
         if (button_configure_ != nullptr)
         {	box_ -> Add (text_summary_, 0, wxEXPAND | wxALL, 5);
             box_ -> Add (button_configure_, 0, wxALIGN_RIGHT | wxALL, 5); } }
@@ -126,13 +126,13 @@ void welcome_t :: OnConfigClick (wxCommandEvent& )
                 write_continuity_ = true; } }
 
 void welcome_t :: OnAboutClick (wxCommandEvent& )
-{	if (app != nullptr) app -> help ("about"); }
+{	if (app != nullptr) app -> help (hp_about); }
 
 void welcome_t :: OnCancelClick (wxCommandEvent& )
 {	EndModal (wxID_CANCEL); }
 
 void welcome_t :: OnHelpClick (wxCommandEvent& )
-{	if (app != nullptr) app -> help ("welcome"); }
+{	if (app != nullptr) app -> help (hp_welcome); }
 
 void welcome_t :: OnOkClick (wxCommandEvent& )
 {	TransferDataFromWindow ();

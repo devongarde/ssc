@@ -20,6 +20,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 
+#define NIT_HTML        "HTML"
+#define NIT_SPEC        "SPEC"
+#define NIT_TEST        "TEST"
+#define NIT_TEXT        "TEXT"
+#define NIT_XHTML       "XHTML"
+
 typedef ssc_map < e_nit_macro, ::std::string > mmac_t;
 
 class nitpick;
@@ -46,6 +52,8 @@ public:
     ::std::string apply (const e_nit_section& section, const mmac_t& values1, const mmac_t& values2, const mmac_t& values3, const mmac_t& values4); };
 
 void reset_macro ();
+e_nit_format is_standard_template (const ::std::string& s);
+::std::string get_standard_template (const e_nit_format nf);
 
 typedef ::std::unique_ptr < macro_t > macro_uptr;
 extern macro_uptr macro;

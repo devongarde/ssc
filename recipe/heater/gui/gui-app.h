@@ -41,7 +41,8 @@ public:
     void console_check ();
     void get_set ();
     void display_contents () const;
-    void help (const char* wot) const;
+//    void help (const char* wot) const;
+    void help (const e_gui_help_id hi) const;
     bool invalid () const { return (frame_ == nullptr) || (help_ == nullptr); }
     void yield ();
 #ifdef wxUSE_ON_FATAL_EXCEPTION

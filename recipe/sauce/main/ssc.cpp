@@ -335,7 +335,7 @@ int cycle (nitpick& nits, const int argc, char** argv)
         VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
         macro -> set (nm_context_build, BUILD_INFO);
         macro -> set (nm_run_args, args);
-        context.general_info (::boost::filesystem::current_path ().string () + "\n" + args + "\n" VERSION_STRING " [" __DATE__  " " __TIME__ "] [" + BUILD_INFO + "]\n");
+        context.general_info (context.cwd ().string () + "\n" + args + "\n" VERSION_STRING " [" __DATE__  " " __TIME__ "] [" + BUILD_INFO + "]\n");
         nitpick nuts;
         res = context.parameters (outstr, nuts, vs);
         if (! macro -> is_template_loaded ()) macro -> load_template (nuts, html_default);

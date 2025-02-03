@@ -95,6 +95,7 @@ class context_t
                     ssi_doc_args_, ssi_echomsg_, ssi_errmsg_, ssi_exec_text_, ssi_query_string_, ssi_timefmt_,
                     ssi_user_name_, started_, stats_, svg_, wx_snippet_, x_;
     ::boost::filesystem::path config_, corpus_, proot_, spell_path_, def_conf_path_, def_conf_file_;
+    static ::boost::filesystem::path cwd_;
     vstr_t          abhorrent_, attrib_, catastrophe_, cmd_, comment_, css_ext_ = { CSS_EXT }, custom_elements_, debug_,
                     dict_, dlang_, elem_, elem_attrib_, environment_, error_, exclude_, exports_, extensions_ = { HTML_EXT },
                     inform_, ignore_, jsonld_ext_, jsonld_key_, jsonld_ont_, jsonld_val_, no_ex_check_ = { JSONLD_EXT },
@@ -398,6 +399,7 @@ public:
     int css_module (const e_css_module m) const { return version_.css_module (m); }
     e_css_version css_version () const noexcept { return version_.css_version (); }
     const vstr_t custom_elements () const { return custom_elements_; }
+    const ::boost::filesystem::path cwd () const { return cwd_; }
     const vstr_t& debug () const { return debug_; }
     const ::boost::filesystem::path& default_config_file () const { return def_conf_file_; }
     const ::boost::filesystem::path& default_config_path () const { return def_conf_path_; }
@@ -476,6 +478,7 @@ public:
         return nit_override_; }
     bool nits () const noexcept { return nits_; }
     bool nits_nits_nits () const noexcept { return nits_nits_nits_; }
+    const ::std::string& nit_override () const { return nit_override_; }
     const vstr_t no_ex_check () const { return no_ex_check_; }
     bool not_root () const noexcept { return not_root_; }
     bool once () const noexcept { return once_; }

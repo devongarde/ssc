@@ -64,7 +64,7 @@ void snippet_t :: CreateControls ()
     Centre (wxBOTH); }
 
 void snippet_t :: OnHelpClick (wxCommandEvent& )
-{	app -> help ("snippet"); }
+{	app -> help (hp_snippet); }
 
 bool snippet_t :: TransferDataToWindow ()
 {	if (invalid ()) return false;

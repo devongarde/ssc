@@ -4,15 +4,14 @@
 
 <html lang="en">
 <head>
-<title>ssc svg version help</title>
+<title>ssc CSS panel</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="alternate" hreflang="x-default" href="https://ssc.lu/index.shtml">
 <meta name="author" content="Dylan Harris">
 <meta name="contact" content="mail@ssc.lu">
 <meta name="copyright" content="&copy; 2024,2025 Dylan Harris">
-<meta name="description" content="static site checker svg version help page">
-<meta name="keywords" content="CSS,help,ssc,HTML,XHTML,MathML,SVG,RDFa,Dylan Harris">
+<meta name="description" content="static site checker CSS panel">
 <meta name="rights-standard" content=";cc by-nc-sa">
 <meta name="theme-color" content="#000000">
 
@@ -33,27 +32,39 @@
   <link itemprop="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
   <meta itemprop="name headline" content="static site checker">
   <h1>
-  CSS
+  CSS panel
   </h1>
 </div>
 
 <p>
-Select the version of CSS to presume
+This panel is part of the <a href="conf.html">Settings Dialogue</a>. It controls CSS validation.
+</p>
+
+<h2>
+CSS version
+</h2>
+
+<p>
+Unlike HTML. CSS is not defined by one huge standard, rather it is defined by what feels
+like hundreds of little bitty ones, many with different versions, and most squabbling over important terminology.
+Here, you can choose which versions of CSS to acknowledge.
 </p>
 
 <p>
-The people responsible for defining CSS, W3, define what parts of CSS are stable,
-and what parts are in a state of flux. This simply reflects what the browsers of the time are capable
+Fortunately, W3, the kindly grandmother of the CSS troublesome brats, irregularly releases documents saying which versions
+of what parts of CSS are supported by the browsers; which parts of CSS are stable,
+and which are in a state of flux. This reflects what the browsers of the time are capable
 of processing correctly and consistently. Each snapshot is named for the year in which it
-was defined
+was defined.
 </p>
 
 <p>
 The CSS standards are regarded
 as extremely stable and correctly implemented, some are regarded as rather good (&lsquo;+&rsquo;),
-and some are seen to be well on their way (&lsquo;++&rsquo;), but most are seen as not yet sufficiently 
+some are seen to be well on their way (&lsquo;++&rsquo;), and a few more are seen as worth a glance (&lsquo;+++&rsquo;).
+Most, though, are not yet sufficiently 
 well implemented to be properly used. Unfortunately, the terminology used in the various
-snapshots is inconsistent, which is why ssc uses it own sarcastic terminology for the snapshots:
+snapshots is inconsistent, which is why ssc uses it own sarcastic terminology instead:
 </p>
 
 <ul>
@@ -72,11 +83,20 @@ features, but less likelyhood of being regarded as stable and correctly implemen
 <p>
 The actual module level is confusing, a confusion originating in the published standards. CSS was originally
 defined to have levels 1, various levels 2, and a couple of fresh at the time modules were added
-at level three. It was explicitly stated that anything at levels one and two were part of those standards
+at level 3. It was explicitly stated that anything at levels one and two were part of those standards
 and indepedent modules start at level three. This did not happen. Many new modules have been published
 by the same organisation, W3, at levels 1 and 2, despite clearly and obviously not being part of the 
 original, and still activately used, levels 1 and 2. The result is a thorough mess.
 All I can suggest is picking up a copy of the various specifications and working out for yourself what is meant.
+</p>
+
+<h2>
+File Extensions
+</h2>
+
+<p>
+Normally, CSS files have the extension .css. However, some sites are weird, and use something else.
+Here, you can take into account such bizarritudes.
 </p>
 
 </body>

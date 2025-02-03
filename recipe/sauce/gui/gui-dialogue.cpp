@@ -50,8 +50,8 @@ void d2_t :: CreateButtons (const int bs)
             grid_ -> Add (cancel_, 0, wxALL, 5);
 #else // DARWIN
             grid_ -> Add (help_, 0, wxALL, 5);
-            grid_ -> Add (about_, 0, wxALL, 5);
             grid_ -> Add (0, 0, 1, wxEXPAND, 5);
+            grid_ -> Add (about_, 0, wxALL, 5);
             grid_ -> Add (cancel_, 0, wxALL, 5);
             grid_ -> Add (ok_, 0, wxALL, 5);
 #endif // DARWIN

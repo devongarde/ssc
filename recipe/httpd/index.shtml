@@ -102,7 +102,10 @@ Submit
 (<a href="help/index.html">GUI help files</a>)
 </li>
 <li>
-<A href="src/Install Static Site Checker x64.msi" type="application/octet-stream">Download Windows x64 setup</a> (currently unsigned)
+<A href="src/Install Static Site Checker 0.2.11 ARM64.msi" type="application/octet-stream">Download Windows arm64 setup</a> (currently unsigned)
+</li>
+<li>
+<A href="src/Install Static Site Checker 0.2.11 x64.msi" type="application/octet-stream">Download Windows x64 setup</a> (currently unsigned)
 </li>
 </ul>
 

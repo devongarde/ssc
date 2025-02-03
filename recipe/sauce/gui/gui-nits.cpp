@@ -32,20 +32,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define NIT_Y       100
 #define NIT_WIT     400
 #ifdef DEBUG
-#define NIT_HIT     490
+#define NIT_HIT     510
 #else // DEBUG
-#define NIT_HIT     450
+#define NIT_HIT     470
 #endif // DEBUG
 
 BEGIN_EVENT_TABLE (nits_t, d1_t)
   EVT_BUTTON (wxID_HELP, nits_t::OnHelpClick)
+  EVT_CHOICE (choice_nit_format, nits_t::OnNitFormat)
   EVT_LISTBOX (list_level, nits_t::OnListLevel)
   EVT_RADIOBOX (radio_nits_level, nits_t::OnRadioLevel)
 END_EVENT_TABLE ()
 
 IMPLEMENT_CLASS (nits_t, d1_t)
 
-#define BASVRB "none", CATASTROPHE, ABHORRENT, WHOOPS, WARNING, INFORMATION, COMMENT, DBG
+#define BASVRB  "none", CATASTROPHE, ABHORRENT, WHOOPS, WARNING, INFORMATION, COMMENT, DBG
 #define BASLVL  "default", CATASTROPHE, ABHORRENT, WHOOPS, WARNING, INFORMATION, COMMENT, DBG
 #define DBGVL	VARIABLE, STRUCTURE2, DETAIL, SPLURGE, ALL
 #define LSTLVL	SILENCE
@@ -58,8 +59,12 @@ IMPLEMENT_CLASS (nits_t, d1_t)
 #define SELLVL	BASLVL, LSTLVL
 #endif // DEBUG
 
+// must be same order as e_nit_format
+#define SELFRM  NIT_HTML, NIT_SPEC, NIT_TEST, NIT_TEXT, NIT_XHTML, "bespoke"
+
 const wxString vrb [] = { SELVRB };
 const wxString lvl [] = { SELLVL };
+const wxString frm [] = { SELFRM };
 
 nits_t :: nits_t (wxWindow *mummy, wxWindowID id, const wxString& caption)
     : d1_t (wxPoint (NIT_X, NIT_Y), wxSize (NIT_WIT, NIT_HIT))
@@ -84,9 +89,22 @@ void nits_t :: create_controls (wxWindow *parent)
                 box_verbosity_ -> Add (choice_verbosity_, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5); } }
         box_ -> Add (box_verbosity_, 0, wxALIGN_CENTER_HORIZONTAL, 5); }
 
+    box_format_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxHORIZONTAL));
+    if (box_format_ != nullptr)
+    {	static_format_ = GSL_OWNER (wxStaticText) (new wxStaticText (parent, wxID_ANY, "Output format:", wxDefaultPosition, wxDefaultSize, 0));
+        if (static_format_ != nullptr)
+        {	static_format_ -> Wrap (-1);
+            box_format_ -> Add (static_format_, 0, wxALIGN_CENTER_VERTICAL, 5);
+            constexpr int count = sizeof (frm) / sizeof (wxString);
+            choice_format_ = GSL_OWNER (wxChoice) (new wxChoice (parent, choice_nit_format, wxDefaultPosition, wxDefaultSize, count, frm, 0));
+            if (choice_format_ != nullptr)
+            {	choice_format_ -> SetSelection (0);
+                box_format_ -> Add (choice_format_, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5); } }
+        box_ -> Add (box_format_, 0, wxALIGN_CENTER_HORIZONTAL, 5); }
+
     box_output_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxHORIZONTAL));
     if (box_output_ != nullptr)
-    {	static_output_ = GSL_OWNER (wxStaticText) (new wxStaticText (parent, wxID_ANY, "Output file format:", wxDefaultPosition, wxDefaultSize, 0));
+    {	static_output_ = GSL_OWNER (wxStaticText) (new wxStaticText (parent, wxID_ANY, "Output template:", wxDefaultPosition, wxDefaultSize, 0));
         if (static_output_ != nullptr)
         {	static_output_ -> Wrap (-1);
             box_output_ -> Add (static_output_, 0, wxALIGN_CENTER_VERTICAL, 5);
@@ -137,7 +155,7 @@ void nits_t :: CreateControls ()
     Centre (wxBOTH); }
 
 void nits_t :: OnHelpClick (wxCommandEvent& )
-{	if (app != nullptr) app -> help ("nits"); }
+{	if (app != nullptr) app -> help (hp_nits); }
 
 void nits_t :: OnListLevel (wxCommandEvent& )
 {	if (invalid ()) return;
@@ -150,6 +168,23 @@ void nits_t :: OnListLevel (wxCommandEvent& )
         const mns_t::const_iterator i = current_.find (nit);
         if (i == current_.cend ()) radio_level_ -> SetSelection (0);
         else radio_level_ -> SetSelection (i -> second); } }
+
+void nits_t :: enable_bespoke (const bool b)
+{   static_output_ -> Enable (b);
+    file_output_ -> Enable (b); }
+
+void nits_t :: format (const ::boost::filesystem::path& s)
+{   if (s.empty ()) nf_ = nf_text;
+    else nf_ = is_standard_template (s.string ());
+    output_ = s; }
+
+::boost::filesystem::path nits_t :: format () const
+{   if (nf_ != nf_bespoke) return get_standard_template (nf_);
+    return output_; }
+
+void nits_t :: OnNitFormat (wxCommandEvent& )
+{	if (invalid ()) return;
+    enable_bespoke (choice_format_ -> GetSelection () == nf_bespoke); }
 
 void nits_t :: OnRadioLevel (wxCommandEvent& )
 {	if (invalid ()) return;
@@ -169,7 +204,6 @@ bool nits_t :: TransferDataToWindow ()
 {	if (invalid ()) return false;
     check_id_ -> SetValue (id_);
     check_repeat_ -> SetValue (repeat_);
-    file_output_ -> SetFileName (wxFileName (output_.string ().c_str ()));
     choice_verbosity_ -> SetSelection (verbosity_);
     current_ = stable_;
     const int ll = list_level_ -> GetSelection ();
@@ -179,7 +213,10 @@ bool nits_t :: TransferDataToWindow ()
     const mns_t::const_iterator i = current_.find (nit);
     if (i == current_.cend ())
     {	if (s != es_undefined) radio_level_ -> SetSelection (0); }
-    else if (s != i -> second) radio_level_ -> SetSelection (i -> second);	
+    else if (s != i -> second) radio_level_ -> SetSelection (i -> second);
+    choice_format_ -> SetSelection (nf_);
+    if (nf_ == nf_bespoke) file_output_ -> SetFileName (wxFileName (output_.string ().c_str ()));
+    enable_bespoke (nf_ == nf_bespoke);
     return true; }
 
 bool nits_t :: TransferDataFromWindow ()
@@ -187,8 +224,10 @@ bool nits_t :: TransferDataFromWindow ()
     id_ = check_id_ -> GetValue ();
     repeat_ = check_repeat_ -> GetValue ();
     verbosity_ = static_cast < e_severity > (choice_verbosity_ -> GetSelection ());
-    output_ = file_output_ -> GetFileName ().GetFullPath ().c_str ().AsChar ();
     stable_ = current_;	
+    nf_ = static_cast < e_nit_format > (choice_format_ -> GetCurrentSelection ());
+    if (nf_ == nf_bespoke) output_ = get_standard_template (nf_);
+    else output_ = file_output_ -> GetFileName ().GetFullPath ().c_str ().AsChar ();
     return true; }
 
 bool nits_t :: create_panel (wxWindow *mummy, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
@@ -206,12 +245,14 @@ void nits_t :: load_from_context (const context_t& c)
 {	id (c.nids ());
     repeat (c.nits_nits_nits ());
     severity (nitpick::mns ());
-    verbosity (c.verbose ()); }
+    verbosity (c.verbose ());
+    format (c.nit_format ()); }
 
 void nits_t :: save_to_context (context_t& c) const
 {   c.nids (id ());
     c.nits_nits_nits (repeat ());
     c.verbose (verbosity ());
-    nitpick::mns (severity ()); }
+    nitpick::mns (severity ());
+    c.nit_format (format ().string ()); }
 
 #endif // WX

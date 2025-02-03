@@ -68,6 +68,7 @@ sh_t sh [] =  // latest first
     { common_tag, html_rdf_1_0_con },
     { content_schema, html_rdf_1_0 },
     { creative_commons, html_cc },
+    { croissant_1_100, html_croissant_1_100 },
     { croissant_1_12, html_croissant_1_12 },
     { croissant_1_11, html_croissant_1_11 },
     { croissant_1_10, html_croissant_1_10 },
@@ -250,6 +251,7 @@ sh_t sh [] =  // latest first
     { pur_3_0, html_prism_3_0 },
     { pur_2_1, html_prism_2_1 },
     { data_cube, html_rdf_1_0_con },
+    { rai_1_100, html_rai_1_100 },
     { rai_1_12, html_rai_1_12 },
     { rai_1_11, html_rai_1_11 },
     { rai_1_10, html_rai_1_10 },
@@ -445,7 +447,7 @@ vsv_t vsv = {
     common_tag,
     content_schema,
     croissant_0_2, croissant_0_3, croissant_0_4, croissant_0_6, croissant_0_8, croissant_1_0, croissant_1_1, croissant_1_2, croissant_1_3, croissant_1_4,
-        croissant_1_5, croissant_1_6, croissant_1_7, croissant_1_8, croissant_1_9, croissant_1_10, croissant_1_11, croissant_1_12,
+        croissant_1_5, croissant_1_6, croissant_1_7, croissant_1_8, croissant_1_9, croissant_1_10, croissant_1_11, croissant_1_12, croissant_1_100,
     creative_commons,
     crs2_schema,
     csvw_schema,
@@ -537,7 +539,7 @@ vsv_t vsv = {
     psv_1_0,
     ptr_schema,
     pur_2_1, pur_3_0,
-    rai_1_3, rai_1_4, rai_1_5, rai_1_6, rai_1_7, rai_1_8, rai_1_9, rai_1_10, rai_1_11, rai_1_12,
+    rai_1_3, rai_1_4, rai_1_5, rai_1_6, rai_1_7, rai_1_8, rai_1_9, rai_1_10, rai_1_11, rai_1_12, rai_1_100,
     rdf_1_0_schema, rdf_1_1_1_schema, rdf_1_1_2_schema, rdf_1_1_3_schema,
     rdfa_1_0_schema, rdfa_1_1_1_schema, rdfa_1_1_2_schema, rdfa_1_1_3_schema,
     rdfg_schema,
@@ -712,13 +714,13 @@ template < > bool ontology_detail < s_croissant > :: is_this_valid (const unsign
                     break; }
             break;
         case 1 :
-            return mnr < 13;
+            return (mnr < 13) || (mnr == 100);
         default :
             break; }
     return false; }
 template < > ontology_version ontology_detail < s_croissant > :: from () noexcept { return ontology_version (s_croissant, 0, 2); }
-template < > int ontology_detail < s_croissant > :: count () noexcept { return 18; }
-template < > ontology_version ontology_detail < s_croissant > :: to () noexcept { return ontology_version (s_croissant, 1, 12); }
+template < > int ontology_detail < s_croissant > :: count () noexcept { return 19; }
+template < > ontology_version ontology_detail < s_croissant > :: to () noexcept { return ontology_version (s_croissant, 1, 100); }
 
 template < > bool ontology_detail < s_dc > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   if (mjr != 1) return false;
@@ -1001,10 +1003,12 @@ template < > int ontology_detail < s_pur > :: count () noexcept { return 2; }
 template < > ontology_version ontology_detail < s_pur > :: to () noexcept { return ontology_version (s_pur, 3, 1); }
 
 template < > bool ontology_detail < s_rai > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
-{   return (mjr == 1) && (mnr >= 3) && (mnr <= 12); }
+{   if (mjr != 1) return false;
+    if ((mnr >= 3) && (mnr <= 12)) return true;
+    return (mnr == 100); }
 template < > ontology_version ontology_detail < s_rai > :: from () noexcept { return ontology_version (s_rai, 1, 3); }
 template < > int ontology_detail < s_rai > :: count () noexcept { return 10; }
-template < > ontology_version ontology_detail < s_rai > :: to () noexcept { return ontology_version (s_rai, 1, 12); }
+template < > ontology_version ontology_detail < s_rai > :: to () noexcept { return ontology_version (s_rai, 1, 100); }
 
 template < > bool ontology_detail < s_rdf > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t) noexcept
 {   if (mjr != 1) return false;

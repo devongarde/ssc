@@ -214,9 +214,9 @@ using the source found at icu.unicode.org.
 
 wxWidgets
 ---------
-This is only required if you make a GUI build, which is not recommended
-(yet). It can be found at wxwidgets.org. Note that I have not tested it
-under many supported (by wxWidgets) systems.
+This is only required if you make a GUI build. It can be found at
+wxwidgets.org. Note that it has not been tested for many of the systems
+supported by wxWidgets.
 
 
 Editions

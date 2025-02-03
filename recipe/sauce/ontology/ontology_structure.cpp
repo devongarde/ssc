@@ -561,11 +561,61 @@ microdata_structure ontology_structure [] =
     { { s_cnt, 1, 0 }, { 0, 0 }, cnt_doctypedecl, cnt_publicid },
     { { s_cnt, 1, 0 }, { 0, 0 }, cnt_doctypedecl, cnt_systemid },
 
-    // common tag
-    { { s_ctag, 1, 0 }, { 0, 0 }, ctag_tag, ctag_label },
-    { { s_ctag, 1, 0 }, { 0, 0 }, ctag_tag, ctag_means },
-    { { s_ctag, 1, 0 }, { 0, 0 }, ctag_tag, ctag_tagged },
-    { { s_ctag, 1, 0 }, { 0, 0 }, ctag_tag, ctag_taggingdate },
+    // croissant
+    { { s_croissant, 0, 2 }, { 0, 2 }, cr_dataextraction, cp_csvcolumn },
+    { { s_croissant, 0, 2 }, { 0, 2 }, cr_dataextraction, cp_fileproperty },
+    { { s_croissant, 0, 2 }, { 0, 2 }, cr_dataextraction, cp_jsonpath },
+
+    { { s_croissant, 0, 2 }, { s_croissant, 0, 2 }, cr_datasource, cp_applytransform },
+    { { s_croissant, 0, 2 }, { s_croissant, 0, 2 }, cr_datasource, cp_dataextraction },
+    { { s_croissant, 0, 2 }, { s_croissant, 1, 2 }, cr_datasource, cp_distribution },
+    { { s_croissant, 0, 3 }, { 0, 0 }, cr_datasource, cp_extract },
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_datasource, cp_fileobject },
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_datasource, cp_fileset },
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_datasource, cp_format },
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_datasource, cp_recordset },
+    { { s_croissant, 0, 3 }, { 0, 0 }, cr_datasource, cp_transform },
+
+    { { s_croissant, 0, 3 }, { 0, 0 }, cr_extract, cp_column },
+    { { s_croissant, 1, 100 }, { 0, 0 }, cr_extract, cp_content },
+    { { s_croissant, 0, 3 }, { 0, 0 }, cr_extract, cp_fileproperty },
+    { { s_croissant, 0, 3 }, { 0, 0 }, cr_extract, cp_jsonpath },
+
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_field, cp_datatype },
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_field, cp_equivalentproperty },
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_field, cp_isenumeration },
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_field, cp_parentfield },
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_field, cp_references },
+    { { s_croissant, 1, 6 }, { 0, 0 }, cr_field, cp_repeated },
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_field, cp_source },
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_field, cp_subfield },
+
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_fileobject, cp_containedin },
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_fileobject, sp_contentsize },
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_fileobject, sp_contenturl },
+    { { s_croissant, 0, 2 }, { s_croissant, 1, 2 }, cr_fileobject, cp_fileextension },
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_fileobject, cp_md5 },
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_fileobject, sp_sha256 },
+
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_fileset, cp_containedin },
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_fileset, cp_excludes },
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_fileset, cp_includes },
+
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_recordset, cp_data },
+    { { s_croissant, 1, 4 }, { 0, 0 }, cr_recordset, cp_datatype },
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_recordset, cp_examples },
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_recordset, cp_field },
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_recordset, cp_isenumeration },
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_recordset, cp_key },
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_recordset, cp_source },
+
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_reference, cp_field },
+    { { s_croissant, 0, 2 }, { 0, 0 }, cr_reference, cp_fileobject },
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_reference, cp_recordset },
+
+    { { s_croissant, 1, 1 }, { 0, 0 }, cr_transform, cp_delimiter },
+    { { s_croissant, 1, 1 }, { 0, 0 }, cr_transform, cp_jsonquery },
+    { { s_croissant, 1, 3 }, { 0, 0 }, cr_transform, cp_regex },
 
     // contrary sausages
     { { s_csvw, 1, 0 }, { 0, 0 }, csv_column, csvw_abouturl },
@@ -685,58 +735,11 @@ microdata_structure ontology_structure [] =
     { { s_csvw, 1, 0 }, { 0, 0 }, csv_transformation, csvw_title },
     { { s_csvw, 1, 0 }, { 0, 0 }, csv_transformation, csvw_url },
 
-    // croissant
-    { { s_croissant, 0, 2 }, { 0, 2 }, cr_dataextraction, cp_csvcolumn },
-    { { s_croissant, 0, 2 }, { 0, 2 }, cr_dataextraction, cp_fileproperty },
-    { { s_croissant, 0, 2 }, { 0, 2 }, cr_dataextraction, cp_jsonpath },
-
-    { { s_croissant, 0, 2 }, { s_croissant, 0, 2 }, cr_datasource, cp_applytransform },
-    { { s_croissant, 0, 2 }, { s_croissant, 0, 2 }, cr_datasource, cp_dataextraction },
-    { { s_croissant, 0, 2 }, { s_croissant, 1, 2 }, cr_datasource, cp_distribution },
-    { { s_croissant, 0, 3 }, { 0, 0 }, cr_datasource, cp_extract },
-    { { s_croissant, 1, 3 }, { 0, 0 }, cr_datasource, cp_fileobject },
-    { { s_croissant, 1, 3 }, { 0, 0 }, cr_datasource, cp_fileset },
-    { { s_croissant, 1, 3 }, { 0, 0 }, cr_datasource, cp_format },
-    { { s_croissant, 0, 2 }, { 0, 0 }, cr_datasource, cp_recordset },
-    { { s_croissant, 0, 3 }, { 0, 0 }, cr_datasource, cp_transform },
-
-    { { s_croissant, 0, 3 }, { 0, 0 }, cr_extract, cp_column },
-    { { s_croissant, 0, 3 }, { 0, 0 }, cr_extract, cp_fileproperty },
-    { { s_croissant, 0, 3 }, { 0, 0 }, cr_extract, cp_jsonpath },
-    { { s_croissant, 1, 3 }, { 0, 0 }, cr_extract, cp_regex },
-
-    { { s_croissant, 0, 2 }, { 0, 0 }, cr_field, cp_datatype },
-    { { s_croissant, 1, 3 }, { 0, 0 }, cr_field, cp_equivalentproperty },
-    { { s_croissant, 1, 3 }, { 0, 0 }, cr_field, cp_isenumeration },
-    { { s_croissant, 0, 2 }, { 0, 0 }, cr_field, cp_parentfield },
-    { { s_croissant, 0, 2 }, { 0, 0 }, cr_field, cp_references },
-    { { s_croissant, 1, 3 }, { 0, 0 }, cr_field, cp_repeated },
-    { { s_croissant, 0, 2 }, { 0, 0 }, cr_field, cp_source },
-    { { s_croissant, 0, 2 }, { 0, 0 }, cr_field, cp_subfield },
-
-    { { s_croissant, 0, 2 }, { 0, 0 }, cr_fileobject, cp_containedin },
-    { { s_croissant, 1, 3 }, { 0, 0 }, cr_fileobject, sp_contentsize },
-    { { s_croissant, 1, 3 }, { 0, 0 }, cr_fileobject, sp_contenturl },
-    { { s_croissant, 0, 2 }, { s_croissant, 1, 2 }, cr_fileobject, cp_fileextension },
-    { { s_croissant, 1, 3 }, { 0, 0 }, cr_fileobject, cp_md5 },
-    { { s_croissant, 1, 3 }, { 0, 0 }, cr_fileobject, sp_sha256 },
-
-    { { s_croissant, 0, 2 }, { 0, 0 }, cr_fileset, cp_containedin },
-    { { s_croissant, 0, 2 }, { 0, 0 }, cr_fileset, cp_excludes },
-    { { s_croissant, 0, 2 }, { 0, 0 }, cr_fileset, cp_includes },
-
-    { { s_croissant, 0, 2 }, { 0, 0 }, cr_recordset, cp_data },
-    { { s_croissant, 1, 4 }, { 0, 0 }, cr_recordset, cp_datatype },
-    { { s_croissant, 1, 3 }, { 0, 0 }, cr_recordset, cp_examples },
-    { { s_croissant, 0, 2 }, { 0, 0 }, cr_recordset, cp_field },
-    { { s_croissant, 1, 3 }, { 0, 0 }, cr_recordset, cp_isenumeration },
-    { { s_croissant, 0, 2 }, { 0, 0 }, cr_recordset, cp_key },
-
-    { { s_croissant, 0, 2 }, { 0, 0 }, cr_reference, cp_field },
-    { { s_croissant, 0, 2 }, { 0, 0 }, cr_reference, cp_fileobject },
-    { { s_croissant, 0, 2 }, { 0, 0 }, cr_reference, cp_recordset },
-
-    { { s_croissant, 1, 3 }, { 0, 0 }, cr_transform, cp_regex },
+    // common tag
+    { { s_ctag, 1, 0 }, { 0, 0 }, ctag_tag, ctag_label },
+    { { s_ctag, 1, 0 }, { 0, 0 }, ctag_tag, ctag_means },
+    { { s_ctag, 1, 0 }, { 0, 0 }, ctag_tag, ctag_tagged },
+    { { s_ctag, 1, 0 }, { 0, 0 }, ctag_tag, ctag_taggingdate },
 
     // data quality
     { { s_daq, 1, 0 }, { 0, 0 }, daq_category, daq_hasdimension },
@@ -5046,6 +5049,7 @@ microdata_structure ontology_structure [] =
     { { 1, 93 }, { 0, 0 }, sch_invoice, sp_scheduledpaymentdate },
     { { 1, 93 }, { 0, 0 }, sch_invoice, sp_totalpaymentdue },
 
+    { { 29, 0 }, { 0, 0 }, sch_itemlist, sp_aggregateelement },
     { { 0, 10 }, { 0, 0 }, sch_itemlist, sp_itemlistelement },
     { { 0, 30 }, { 0, 0 }, sch_itemlist, sp_itemlistorder },
     { { 1, 93 }, { 0, 0 }, sch_itemlist, sp_numberofitems },

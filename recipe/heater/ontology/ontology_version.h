@@ -51,9 +51,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MAX_SCHEMA_ORG_MINOR 3
 #define MIN_SCHEMA_ORG_MAJOR 0
 #define MIN_SCHEMA_ORG_MINOR 10
-#define DEFAULT_SCHEMA_ORG_MAJOR 29
-#define DEFAULT_SCHEMA_ORG_MINOR 0
-#define DEFAULT_SCHEMA_ORG_VERSION "28.0"
+#define DEFAULT_SCHEMA_ORG_MAJOR 28
+#define DEFAULT_SCHEMA_ORG_MINOR 1
+#define DEFAULT_SCHEMA_ORG_VERSION "28.1"
 
 class html_version;
 struct ontology_version;
@@ -159,6 +159,7 @@ const ontology_version croissant_1_9 (s_croissant, 1, 9);
 const ontology_version croissant_1_10 (s_croissant, 1, 10);
 const ontology_version croissant_1_11 (s_croissant, 1, 11);
 const ontology_version croissant_1_12 (s_croissant, 1, 12);
+const ontology_version croissant_1_100 (s_croissant, 1, 100);
 
 const ontology_version creative_commons (s_cc, 1, 0);
 
@@ -417,6 +418,7 @@ const ontology_version rai_1_9 (s_rai, 1, 9);
 const ontology_version rai_1_10 (s_rai, 1, 10);
 const ontology_version rai_1_11 (s_rai, 1, 11);
 const ontology_version rai_1_12 (s_rai, 1, 12);
+const ontology_version rai_1_100 (s_rai, 1, 100);
 
 const ontology_version rdf_1_0_schema (s_rdf, 1, 0);
 const ontology_version rdf_1_1_1_schema (s_rdf, 1, 1);

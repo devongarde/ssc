@@ -89,7 +89,7 @@ To specific a specific version of an ontology, use X.Y, for example:<br>
 <tr><td>ontology.cc</td> <td>1.0</td></tr>
 <tr><td>ontology.cito</td> <td>2.8</td></tr>
 <tr><td>ontology.content</td> <td>1.0</td></tr>
-<tr><td>ontology.cr</td> <td>0.2-1.0.12 (see below)</td></tr>
+<tr><td>ontology.cr</td> <td>0.2-1.1 (see below)</td></tr>
 <tr><td>ontology.crs</td> <td>1.0 (see below)</td></tr>
 <tr><td>ontology.csvw</td> <td>1.0</td></tr>
 <tr><td>ontology.ctag</td> <td>1.0</td></tr>
@@ -152,7 +152,7 @@ To specific a specific version of an ontology, use X.Y, for example:<br>
 <tr><td>ontology.ptr</td> <td>1.0</td></tr>
 <tr><td>ontology.pur</td> <td>2.1-3.0 (see below)</td></tr>
 <tr><td>ontology.qb</td> <td>1.0</td></tr>
-<tr><td>ontology.rai</td> <td>1.0.3-1.0.12 (see below)</td></tr>
+<tr><td>ontology.rai</td> <td>1.0.3-1.1 (see below)</td></tr>
 <tr><td>ontology.rdf</td> <td>1.0-1.3</td></tr>
 <tr><td>ontology.rdfa</td> <td>1.0-1.3</td></tr>
 <tr><td>ontology.rdfg</td> <td>1.0</td></tr>
@@ -262,6 +262,7 @@ BFO (Basic Format Ontology) versions should be
                             <tr><td>1.0.10</td> <td>1.10 (cr and rai)</td></tr>
                             <tr><td>1.0.11</td> <td>1.11 (cr and rai)</td></tr>
                             <tr><td>1.0.12</td> <td>1.12 (cr and rai)</td></tr>
+                            <tr><td>1.1</td> <td>1.100 (cr and rai)</td></tr>
                         </table>
 
 

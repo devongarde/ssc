@@ -315,6 +315,14 @@ defined at <a href="https://www.w3.org/Style/CSS/specs.en.html">w3.org</a>.
                         or 4.</td></tr>
 </table>
 
+<h2>file extensions</h2>
+
+<p>
+By convention, SSC only parses files with a <kbd>.CSS</kbd> extension as CSS files.
+If your site contains CSS files withe different extensions,
+you can specify those extensions here.
+</p>
+
 <!--#include virtual="../plumbing/under.inc" -->
 <!--#include virtual="../plumbing/args.inc" -->
 <!--#include virtual="../plumbing/html-end.inc" -->

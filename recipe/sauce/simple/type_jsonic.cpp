@@ -39,10 +39,9 @@ e_status set_js_value (nitpick& nits, const html_version& v, const ::std::string
         else return s_good; }
     return s_invalid; }
 
-e_status parse_json (nitpick& nits, const html_version& , const ::std::string& s)
-{
 #ifndef NO_JSONIC
-    jsonic jc;
+e_status parse_json (nitpick& nits, const html_version& , const ::std::string& s)
+{   jsonic jc;
     if (! jc.parse (nits, s, cc_utf8)) return s_invalid;
-#endif // NO_JSONIC
     return s_good; }
+#endif // NO_JSONIC

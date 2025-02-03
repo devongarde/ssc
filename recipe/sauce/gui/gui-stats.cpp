@@ -134,7 +134,7 @@ void report_t :: OnExport (wxCommandEvent& )
     enable (exed); }
 
 void report_t :: OnHelpClick (wxCommandEvent& )
-{	if (app != nullptr) app -> help ("stats"); }
+{	if (app != nullptr) app -> help (hp_stats); }
 
 void report_t :: OnSelected (wxCommandEvent& e)
 {	OnClear (e);

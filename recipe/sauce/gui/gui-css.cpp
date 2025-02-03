@@ -273,7 +273,7 @@ void css_t :: Disenable ()
                 set_module (static_cast < e_css_module > (i)); } } }
 
 void css_t :: OnHelpClick (wxCommandEvent& )
-{	if (app != nullptr) app -> help ("css"); }
+{	if (app != nullptr) app -> help (hp_css); }
 
 void css_t :: OnVersion (wxCommandEvent& )
 {	Disenable (); }

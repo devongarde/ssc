@@ -808,7 +808,7 @@ ontologies (see --ontology.list).
                                 cc 1.0
                                 cito 2.8
                                 content 1.0
-                                cr 0.2-1.12 (see below)
+                                cr 0.2-1.1 (see below)
                                 crs 1.0 (see below)
                                 csvw 1.0
                                 ctag 1.0
@@ -871,7 +871,7 @@ ontologies (see --ontology.list).
                                 ptr 1.0
                                 pur 2.1-3.0 (see below)
                                 qb 1.0
-                                rai 1.0.3-1.0.12 (see below)
+                                rai 1.0.3-1.1 (see below)
                                 rdf 1.0-1.3
                                 rdfa 1.0-1.3
                                 rdfg 1.0
@@ -964,6 +964,7 @@ ontologies (see --ontology.list).
                             1.0.10  1.10 (cr and rai)
                             1.0.11  1.11 (cr and rai)
                             1.0.12  1.12 (cr and rai)
+                            1.1     1.100 (cr and rai)
 
                         The data privacy family of ontologies follow
                         this versioning scheme:

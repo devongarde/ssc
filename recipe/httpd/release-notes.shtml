@@ -20,6 +20,35 @@
 
 <div class="column-unit">
 
+<h3>0.2.11</h3>
+
+<ul>
+<li>
+introduced an unsigned windows installer for arm64
+</li>
+<li>
+croissant ontology 1.1 beta
+</li>
+<li>
+schema.org aggregate element property
+</li>
+<li>
+various bug fixes
+</li>
+<li>
+underlying work
+</li>
+<li>download
+<A href="src/Install Static Site Checker 0.2.11 x64.msi" type="application/octet-stream">Windows x64 installer</a>,
+<A href="src/Install Static Site Checker 0.2.11 ARM64.msi" type="application/octet-stream">Windows ARM64 installer</a>,
+<A href="src/ssc-0.2.11.tgz" type="application/gzip">source</a>
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2025-01-31">25 1 31</time>
+</li>
+</ul>
+
+
 <h3>0.2.10</h3>
 
 <ul>
@@ -40,7 +69,7 @@ added living standard &lt;DIALOG&gt; CLOSEDBY attribute
 underlying work
 </li>
 <li>download
-<A href="src/Install Static Site Checker x64.msi" type="application/octet-stream">Windows x64 installer</a>,
+<A href="src/Install Static Site Checker 0.2.10 x64.msi" type="application/octet-stream">Windows x64 installer</a>,
 <A href="src/ssc-0.2.10.tgz" type="application/gzip">source</a>
 </li>
 <li>

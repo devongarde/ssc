@@ -30,7 +30,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SPEX_X       100
 #define SPEX_Y       100
 #define SPEX_WIDTH   400
-#define SPEX_HEIGHT  600
+#define SPEX_HEIGHT  615
 
 BEGIN_EVENT_TABLE (standard_t, wxDialog)
   EVT_BUTTON (wxID_SAVE, standard_t::OnSaveClick)
@@ -57,6 +57,7 @@ BEGIN_EVENT_TABLE (standard_t, wxDialog)
   EVT_CHOICE (choice_html_version, standard_t::OnHTMLVersion)
   EVT_CHECKBOX (check_wx, standard_t::OnHTMLWX)
   EVT_LISTBOX (list_level, standard_t::OnNitsListLevel)
+  EVT_CHOICE (choice_nit_format, standard_t::OnNitsFormat)
   EVT_RADIOBOX (radio_nits_level, standard_t::OnNitsRadioLevel)
   EVT_CHECKBOX (check_export, standard_t::OnOntologyExport)
   EVT_CHECKBOX (check_mf_export, standard_t::OnOntologyMFExport)
@@ -204,7 +205,23 @@ void standard_t :: OnCancelClick (wxCommandEvent& )
 void standard_t :: OnHelpClick (wxCommandEvent& )
 {	if (invalid ()) return;
     if (app == nullptr) return;
-    app -> help (panel_naam (choice_ -> GetSelection ()).c_str ()); }
+    const int sel = choice_ -> GetSelection ();
+    switch (sel) // decided requiring that two enums, the Create function, and content.hhc, all correspond, was too risky
+    {   case gp_summary : app -> help (hp_summary); break;
+        case gp_html : app -> help (hp_HTML); break;
+        case gp_css : app -> help (hp_css); break;
+        case gp_gen : app -> help (hp_general); break;
+        case gp_bits : app -> help (hp_bobs); break;
+        case gp_nits : app -> help (hp_nits); break;
+        case gp_data : app -> help (hp_ontology); break;
+        case gp_shadow : app -> help (hp_shadow); break;
+#ifndef NOSPELL
+        case gp_spell : app -> help (hp_spell); break;
+#endif // NOSPELL
+        case gp_ssi : app -> help (hp_ssi); break;
+        case gp_stats : app -> help (hp_stats); break;
+        case gp_validation : app -> help (hp_validation); break;
+        default : break; } }
 
 void standard_t :: OnLoadClick (wxCommandEvent& )
 {	app_t::load_conf (this, c_, conf_); }
@@ -298,9 +315,6 @@ e_gui_panel standard_t :: get_panel () const
 void standard_t :: set_panel (const e_gui_panel gp)
 {	if (invalid ()) return;
     if (gp == gp_validation) vv_.yer_actual (site_.folder (), shadow_.shadow (), ontology_.path ());
-#ifdef NOSPELL
-    if (gp == gp_spell) choice_ -> SetSelection (gp_html); else
-#endif // NOSPELL
     choice_ -> SetSelection (gp); }
 
 #endif // WX

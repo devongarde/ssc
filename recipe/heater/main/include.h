@@ -62,8 +62,8 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 10
-#define VERSION_STRING "0.2.10"
+#define VERSION_RELEASE 11
+#define VERSION_STRING "0.2.11"
 #define EDITION_STANDARD "standard"
 
 #define NBSP "&nbsp;"
@@ -80,13 +80,6 @@ z
 
 #define DEFAULT_LINE_LENGTH 72
 #define DESCRIPTION_LENGTH 60
-
-#ifdef _MSC_VER
-#define NOICU // the icu4c visual studio solution is broken
-#ifdef WINSPELL
-#undef WINSPELL
-#endif
-#endif
 
 #if defined (WX)
 #define EDITION "/g"
@@ -453,8 +446,8 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #include <wx/dateevt.h>
 #include <wx/timectrl.h>
 
-// pure and utter bollox, this: I think it's a macports issue, actually, but...
-#if defined (DARWIN) && defined (arm64)
+// FFS
+#if defined (DARWIN)
 #define FANCY_TEXT_CTRL wxTextCtrl
 #define UGLY_TEXT "u"
 #define UGLITUDE

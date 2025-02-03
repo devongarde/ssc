@@ -159,7 +159,7 @@ void spell_t :: OnDictImpatience (wxCommandEvent& e)
     dict_.OnImpatience (e); }
 
 void spell_t :: OnHelpClick (wxCommandEvent& )
-{	if (app != nullptr) app -> help ("spell"); }
+{	if (app != nullptr) app -> help (hp_spell); }
 
 #ifdef HUNDO
 void spell_t :: OnHunAdd (wxCommandEvent& e)

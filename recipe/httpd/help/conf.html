@@ -2,15 +2,14 @@
 
 <html lang="en">
 <head>
-<title>ssc confguration files</title>
+<title>ssc configuration files</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="alternate" hreflang="x-default" href="https://ssc.lu/index.shtml">
 <meta name="author" content="Dylan Harris">
 <meta name="contact" content="mail@ssc.lu">
 <meta name="copyright" content="&copy; 2024,2025 Dylan Harris">
-<meta name="description" content="static site checker welcome help page">
-<meta name="keywords" content="spell,spelling,help,ssc,HTML,XHTML,MathML,SVG,CSS,RDFa,Dylan Harris">
+<meta name="description" content="static site checker confguration files">
 <meta name="rights-standard" content=";cc by-nc-sa">
 <meta name="theme-color" content="#000000">
 
@@ -37,7 +36,7 @@
 
 <pre>
 SSC will accept configuration files in INI file format. Here are some
-examples, mostly adapted from the tests:
+examples. For more examples, download the source and browse the tests.
 
 
 A simple configuration file
@@ -153,7 +152,7 @@ verify=
 summary=
 
 Turn on summary statistics, which produces a grand total at the end of
-a complete run (add ""page=" below summary for individual page stats).
+a complete run (add &ldquo;page=&rdquo; below summary for individual page stats).
 
 Note that server side includes have been turned on using general.ssi,
 and files with the SHTML extension will be treated as web pages.
@@ -189,7 +188,7 @@ citype=set
 citype=var-x
 citype=vector
 
-What's interesting here is the validation section. The MathML
+What&rsquo;s interesting here is the validation section. The MathML
 documentation lists a specific set of values that can be used with the
 TYPE attribute on the CI element. The examples in the specification
 give this attribute many additional, and apparently illegal, values.
@@ -202,7 +201,7 @@ Indeed, many enumerated attribute values can be extended in this way.
 Use the --validation switch to get a complete list.
 
 
-arts & ego
+arts &amp; ego
 ----------
 This is the configuration file I used to analyse my site.
 
@@ -246,7 +245,7 @@ root=~/www/live
 file=~/www/live.ndx
 ignore=inc
 info=
-msg=arts & ego (c) 1978-2025 dylan harris
+msg=arts &amp; ego (c) 1978-2025 dylan harris
 
 [site]
 domain=dylanharris.org
@@ -281,12 +280,12 @@ fontname=TrebuchetMS-Italic
 My site has been built by hand over the decades, and is full of errors.
 I wrote ssc because I was frustrated that I could find no tool to
 properly check it. Unfortunately, SSC is too successful: it finds
-a gadzillion errors in arts & ego. I am slowly making the repairs.
+a gadzillion errors in arts &amp; ego. I am slowly making the repairs.
 
 
 OpenBSD website
 ---------------
-Perhaps you've grabbed a copy of the OpenBSD website from github
+Perhaps youve grabbed a copy of the OpenBSD website from github
 (https://github.com/openbsd/www.git):
 
 [general]

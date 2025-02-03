@@ -27,11 +27,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define NIT_CAPTION "Nitpicking..."
 
 class nits_t : public d1_t < wx_nits >
-{   wxBoxSizer* box_options_ = nullptr;
+{   wxBoxSizer* box_format_ = nullptr;
+    wxBoxSizer* box_options_ = nullptr;
     wxBoxSizer* box_output_ = nullptr;
     wxBoxSizer* box_verbosity_ = nullptr;
     wxCheckBox* check_id_ = nullptr;
     wxCheckBox* check_repeat_ = nullptr;
+    wxChoice* choice_format_ = nullptr;
     wxChoice* choice_verbosity_ = nullptr;
     wxFilePickerCtrl* file_output_ = nullptr;
     wxListBox* list_level_ = nullptr;
@@ -39,32 +41,38 @@ class nits_t : public d1_t < wx_nits >
     wxStaticLine* line1_ = nullptr;
     wxStaticLine* line2_ = nullptr;
     wxStaticLine* line3_ = nullptr;
+    wxStaticText* static_format_ = nullptr;   
     wxStaticText* static_output_ = nullptr;   
     wxStaticText* static_verbosity_ = nullptr;
     mns_t current_, stable_;
     bool id_ = false, repeat_ = false;
     ::boost::filesystem::path output_;
     e_severity verbosity_ = es_undefined;
+    e_nit_format nf_ = nf_html;
     DECLARE_CLASS (nits_t)
     DECLARE_EVENT_TABLE ()
 public:
     nits_t () { }
     nits_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = NIT_CAPTION);
     ~nits_t () { }
-    bool invalid () const noexcept { return box_verbosity_ == nullptr || file_output_ == nullptr || radio_level_ == nullptr || check_repeat_ == nullptr; }
+    bool invalid () const noexcept { return box_verbosity_ == nullptr || file_output_ == nullptr || radio_level_ == nullptr || check_repeat_ == nullptr || choice_format_ == nullptr; }
     void Init () const noexcept { }
     bool Create (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = NIT_CAPTION);
     void CreateControls ();
     void OnHelpClick (wxCommandEvent& event);
     void OnListLevel (wxCommandEvent& event);
+    void OnNitFormat (wxCommandEvent& event);
     void OnRadioLevel (wxCommandEvent& event);
     bool TransferDataToWindow ();
     bool TransferDataFromWindow ();
     bool invalid_panel () const { return d1_t :: invalid_panel () || (panel_ == nullptr) || box_verbosity_ == nullptr || file_output_ == nullptr || radio_level_ == nullptr || check_repeat_ == nullptr; }
     void create_controls (wxWindow *parent);
     bool create_panel (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL | wxNO_BORDER);
+    void enable_bespoke (const bool b);
     void load_from_context (const context_t& c);
     void save_to_context (context_t& c) const;
+    void format (const ::boost::filesystem::path& s);
+    ::boost::filesystem::path format () const;
     bool id () const noexcept { return id_; }
     void id (const bool b) noexcept { id_ = b; }
     ::boost::filesystem::path output () const { return output_; }

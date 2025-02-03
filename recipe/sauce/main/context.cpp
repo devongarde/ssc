@@ -31,6 +31,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 context_t context;
 ustr_t context_t::validation_;
+::boost::filesystem::path context_t::cwd_;
 ssc_set < ::std::string > excludable_filenames;
 
 void context_t::swap (context_t& c)
@@ -51,8 +52,8 @@ void context_t::reset (context_t& c)
 
 void context_t::init ()
 {   environment_.resize (env_max);
-    def_conf_path_ = get_working_directory ();
-    def_conf_path_ /= DEF_DATAPATH;
+    if (cwd_.empty ()) cwd_ = get_working_directory ();
+    def_conf_path_ = cwd_ / DEF_DATAPATH;
     path_ = def_conf_path_.string ();
     def_conf_file_ = def_conf_path_ / DEF_CONF_FILE; }
 
@@ -399,7 +400,7 @@ bool context_t::write (nitpick& nits, const ::boost::filesystem::path& fn) const
                 GRACEFUL_CRASH (__FILE__, __LINE__); } }
     if (shadow_enable ()) res += "; shadowing";
 #ifndef NOSPELL
-    if (check ()) res += "; check spelling";
+    if (spell ()) res += "; check spelling";
 #endif // NOSPELL
     if (stats_any ()) res += "; produce statistics";
     return res; }

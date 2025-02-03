@@ -149,7 +149,7 @@ void general_t :: create_controls (wxWindow *parent)
             {	box_persist_ -> Add (pick_persist_, 1, wxALL | wxEXPAND, 5);
                 if (! out_.empty ()) pick_persist_ -> SetFileName (wxFileName (persist_.c_str ()));
                 else try
-                {	pick_persist_ -> SetFileName (wxFileName ((::boost::filesystem::current_path () / "www.ssc").c_str ())); }
+                {	pick_persist_ -> SetFileName (wxFileName ((context.cwd () / "www.ssc").c_str ())); }
                 catch (...)
                 {	pick_persist_ -> SetFileName (wxFileName ("www.ssc")); } } }
         box_ -> Add (box_persist_, 0, wxALIGN_CENTER_HORIZONTAL, 5); }
@@ -167,7 +167,7 @@ void general_t :: CreateControls ()
     Centre (wxBOTH); }
 
 void general_t :: OnHelpClick (wxCommandEvent& )
-{	if (app != nullptr) app -> help ("general"); }
+{	if (app != nullptr) app -> help (hp_bobs); }
 
 #ifndef NO_FRED
 void general_t :: enable_fred (const bool b)

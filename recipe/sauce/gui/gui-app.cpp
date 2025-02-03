@@ -39,6 +39,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 IMPLEMENT_APP (app_t)
 
 #define HELP_FN "help.htb"
+#define MACOS_HELP "../Resources/" HELP_FN
 
 app_t* app = nullptr;
 
@@ -76,9 +77,13 @@ time_t when_built (const context_t& c)
 
 bool check_local_help (context_t& c, ::boost::filesystem::path& fn)
 {   if (fn.empty ())
+#ifdef DARWIN
+        fn = c.cwd () / MACOS_HELP;
+#else // DARWIN
     {   fn = c.path ();
         if (fn.empty ()) fn = temp_dir ();
         fn /= HELP_FN; }
+#endif // DARWIN
     if (! is_normal_or_zap (fn)) return false;
     if (get_last_write_time (fn) < when_built (c))
     {   delete_file (fn);
@@ -234,8 +239,11 @@ void app_t::display_contents () const
 void app_t::get_set ()
 {   if (frame_ != nullptr) frame_ -> get_set (); }
 
-void app_t::help (const char* wot) const
-{   if (help_ != nullptr) help_ -> DisplaySection (wot); }
+//void app_t::help (const char* wot) const
+//{   if (help_ != nullptr) help_ -> DisplaySection (wot); }
+
+void app_t::help (const e_gui_help_id hi) const
+{   if (help_ != nullptr) help_ -> DisplaySection (hi); }
 
 void app_t::yield ()
 {   console_check ();

@@ -3,6 +3,13 @@ static site checker
 https://ssc.lu/
 (c) 2020-2025 Dylan Harris
 
+0.2.11
+- introduced an unsigned windows installer for arm64
+- croissant ontology 1.1 beta
+- schema.org aggregate element property
+- various bug fixes
+- underlying work
+
 0.2.10
 - the gui version is no longer entirely unusable, but will be subject
   to significant change in the near term. It fails to fail

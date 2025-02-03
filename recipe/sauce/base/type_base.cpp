@@ -203,10 +203,10 @@ enum_name_t enum_name [] =
     { t_clear30, "clear 30" },
     { t_clip, "clip" },
     { t_clip_path_rule, "clip path rule" },
+    { t_closedby, "closed by" },
     { t_closed_open, "closed open" },
     { t_closure, "closure" },
     { t_cntype, "cntype" },
-    { t_crdatatype, "crdatatype" },
     { t_coden, "coden" },
     { t_colour, "colour" },
     { t_colour_a, "colour a" },
@@ -1777,12 +1777,9 @@ void type_name_init (nitpick& nits)
 {   vtn.resize (t_error);
     for (int i = 0; GSL_AT (enum_name, i).t_ != t_error; ++i)
         vtn.at (GSL_AT (enum_name, i).t_) = GSL_AT (enum_name, i).name_;
-#ifdef DEBUG
     for (int i = 0; i < t_error; ++i)
         if (vtn.at (i).empty ())
-            nits.pick (nit_type_error, es_error, ec_program, "Missing type name at ", ::boost::lexical_cast < ::std::string > (i));
-#endif // DEBUG
-}
+            nits.pick (nit_type_error, es_error, ec_program, "Missing type name at ", ::boost::lexical_cast < ::std::string > (i)); }
 
 ::std::string type_name (const e_type e)
 {   PRESUME (e <= t_error, __FILE__, __LINE__);

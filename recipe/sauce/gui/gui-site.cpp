@@ -150,7 +150,7 @@ void site_t :: CreateControls ()
     Centre (wxBOTH); }
 
 void site_t :: OnHelpClick (wxCommandEvent& )
-{	if (app != nullptr) app -> help ("site"); }
+{	if (app != nullptr) app -> help (hp_general); }
 
 void site_t :: OnAdd (wxCommandEvent& e)
 {	domain_.OnAdd (e); }

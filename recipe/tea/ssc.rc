@@ -1,3 +1,5 @@
+
+
 // Microsoft Visual C++ generated resource script.
 //
 #include "resource.h"
@@ -25,8 +27,8 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0.2.10.0
- PRODUCTVERSION 0.2.10
+ FILEVERSION 0.2.11.0
+ PRODUCTVERSION 0.2.11
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -43,12 +45,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "Dylan Harris"
             VALUE "FileDescription", "static site checker"
-            VALUE "FileVersion", "0.2.10.0"
+            VALUE "FileVersion", "0.2.11.0"
             VALUE "InternalName", "ssc.exe"
             VALUE "LegalCopyright", "Copyright (C) 2020-2025 Dylan Harris"
             VALUE "OriginalFilename", "ssc.exe"
             VALUE "ProductName", "static site checker"
-            VALUE "ProductVersion", "0.2.10.0"
+            VALUE "ProductVersion", "0.2.11.0"
         END
     END
     BLOCK "VarFileInfo"
@@ -63,7 +65,9 @@ END
 // RCDATA
 //
 
+#ifdef WX
 IDR_HELP               RCDATA                  "help.htb"
+#endif // WX
 
 #endif    // English (United Kingdom) resources
 /////////////////////////////////////////////////////////////////////////////

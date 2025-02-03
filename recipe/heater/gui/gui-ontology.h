@@ -50,7 +50,6 @@ class ontology_t : public d1_t < wx_ontology >
     wxStaticLine* base_ = nullptr;
     wxStaticLine* line2_ = nullptr;
     wxStaticLine* line3_ = nullptr;
-    wxStaticText* mf_text_ = nullptr;
     wxStaticText* static_version_ = nullptr;
     vstr_t vid_, vont_;
     vvstr_t versions_;
@@ -72,7 +71,7 @@ public:
     ontology_t () { }
     ontology_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = ONT_CAPTION);
     ~ontology_t () { }
-    bool invalid () const noexcept { return check_verify_ == nullptr || pick_export_ == nullptr || pick_mf_export_ == nullptr || column_version_ == nullptr || choice_version_ == nullptr || mf_pretty_ == nullptr; }
+    bool invalid () const noexcept { return check_verify_ == nullptr || pick_export_ == nullptr || pick_mf_export_ == nullptr || column_version_ == nullptr || choice_version_ == nullptr || mf_pretty_ == nullptr || mf_verify_ == nullptr; }
     void Init () const noexcept { }
     bool Create (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = ONT_CAPTION);
     void CreateControls ();

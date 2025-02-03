@@ -23,7 +23,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "simple/type_autocomplete.h"
 
 e_status set_js_value (nitpick& nits, const html_version& v, const ::std::string& s);
+#ifdef NO_JSONIC
+inline e_status parse_json (nitpick& , const html_version& , const ::std::string& ) { return s_good; }
+#else // NO_JSONIC
 e_status parse_json (nitpick& nits, const html_version& v, const ::std::string& s);
+#endif // NO_JSONIC
 
 template < > struct type_master < t_js_term > : tidy_string < t_js_term >
 {   using tidy_string < t_js_term > :: tidy_string;

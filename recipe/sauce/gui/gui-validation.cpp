@@ -172,7 +172,7 @@ void vv_t :: OnChoice (wxCommandEvent& )
 {   populate (); }
 
 void vv_t :: OnHelpClick (wxCommandEvent& )
-{	if (app != nullptr) app -> help ("validation"); }
+{	if (app != nullptr) app -> help (hp_validation); }
 
 void vv_t :: OnValAdd (wxCommandEvent& e)
 { if (! invalid ()) { val_.OnAdd (e); reval (); } }

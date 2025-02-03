@@ -309,11 +309,32 @@ struct symbol_entry < ontology_version, e_ontology_type, e_ontology, s_schema > 
     { { s_cnt, 1, 0 }, { 0, 0 }, "ContentAsXML", cnt_contentasxml, s_cnt },
     { { s_cnt, 1, 0 }, { 0, 0 }, "DoctypeDecl", cnt_doctypedecl, s_cnt },
 
-    // common tag
-    { { s_ctag, 1, 0 }, { 0, 0 }, "AuthorTag", ctag_author, s_ctag },
-    { { s_ctag, 1, 0 }, { 0, 0 }, "AutoTag", ctag_auto, s_ctag },
-    { { s_ctag, 1, 0 }, { 0, 0 }, "ReaderTag", ctag_reader, s_ctag },
-    { { s_ctag, 1, 0 }, { 0, 0 }, "Tag", ctag_tag, s_ctag },
+    // croissant
+    { { s_croissant, 1, 100 }, { 0, 0 }, "all", cr_all, s_croissant },
+    { { s_croissant, 0, 2 }, { 0, 0 }, "BoundingBox", cr_boundingbox, s_croissant },
+    { { s_croissant, 1, 100 }, { 0, 0 }, "ContentExtractionEnumeration", cr_contentextractionenumeration, s_croissant, SF_ENUMERATION },
+    { { s_croissant, 0, 2 }, { 0, 2 }, "DataExtraction", cr_dataextraction, s_croissant },
+    { { s_croissant, 0, 2 }, { 0, 0 }, "DataSource", cr_datasource, s_croissant },
+    { { s_croissant, 1, 100 }, { 0, 0 }, "DataType", cr_datatype, s_croissant },
+    { { s_croissant, 0, 3 }, { 0, 0 }, "Extract", cr_extract, s_croissant },
+    { { s_croissant, 0, 2 }, { 0, 0 }, "Field", cr_field, s_croissant },
+    { { s_croissant, 1, 1 }, { 0, 0 }, "fileName", cr_filename, s_croissant },
+    { { s_croissant, 0, 2 }, { 0, 0 }, "FileObject", cr_fileobject, s_croissant },
+    { { s_croissant, 1, 1 }, { 0, 0 }, "FilePropertyEnumeration", cr_filepropertyenumeration, s_croissant, SF_ENUMERATION },
+    { { s_croissant, 0, 2 }, { 0, 0 }, "FileSet", cr_fileset, s_croissant },
+    { { s_croissant, 1, 100 }, { 0, 0 }, "Format", cr_format, s_croissant },
+    { { s_croissant, 1, 1 }, { 0, 0 }, "fullPath", cr_fullpath, s_croissant },
+    { { s_croissant, 1, 6 }, { 0, 0 }, "Label", cr_label, s_croissant },
+    { { s_croissant, 1, 100 }, { 0, 0 }, "lineNumbers", cr_linenumbers, s_croissant },
+    { { s_croissant, 1, 100 }, { 0, 0 }, "lines", cr_lines, s_croissant },
+    { { s_croissant, 0, 2 }, { 0, 0 }, "RecordSet", cr_recordset, s_croissant },
+    { { s_croissant, 0, 2 }, { 0, 0 }, "Reference", cr_reference, s_croissant },
+    { { s_croissant, 1, 6 }, { 0, 0 }, "SegmentationMask", cr_segmentationmask, s_croissant },
+    { { s_croissant, 1, 6 }, { 0, 0 }, "Split", cr_split, s_croissant, SF_ENUMERATION },
+    { { s_croissant, 1, 6 }, { 0, 0 }, "TestSplit", cr_split, s_croissant },
+    { { s_croissant, 1, 6 }, { 0, 0 }, "TrainSplit", cr_trainsplit, s_croissant },
+    { { s_croissant, 1, 3 }, { 0, 0 }, "Transform", cr_transform, s_croissant },
+    { { s_croissant, 1, 6 }, { 0, 0 }, "ValidationSplit", cr_validationsplit, s_croissant },
 
     // contrary sausages
     { { s_csvw, 1, 0 }, { 0, 0 }, "Cell", csv_cell, s_csvw },
@@ -331,18 +352,11 @@ struct symbol_entry < ontology_version, e_ontology_type, e_ontology, s_schema > 
     { { s_csvw, 1, 0 }, { 0, 0 }, "Transformation", csv_transformation, s_csvw },
     { { s_csvw, 1, 0 }, { 0, 0 }, "uriTemplate", csv_uritemplate, s_csvw },
 
-    // croissant
-    { { s_croissant, 0, 2 }, { 0, 0 }, "BoundingBox", cr_boundingbox, s_croissant },
-    { { s_croissant, 0, 2 }, { 0, 2 }, "DataExtraction", cr_dataextraction, s_croissant },
-    { { s_croissant, 0, 2 }, { 0, 0 }, "DataSource", cr_datasource, s_croissant },
-    { { s_croissant, 0, 3 }, { 0, 0 }, "Extract", cr_extract, s_croissant },
-    { { s_croissant, 0, 2 }, { 0, 0 }, "Field", cr_field, s_croissant },
-    { { s_croissant, 0, 2 }, { 0, 0 }, "FileObject", cr_fileobject, s_croissant },
-    { { s_croissant, 0, 2 }, { 0, 0 }, "FileSet", cr_fileset, s_croissant },
-    { { s_croissant, 0, 2 }, { 0, 0 }, "RecordSet", cr_recordset, s_croissant },
-    { { s_croissant, 0, 2 }, { 0, 0 }, "Reference", cr_reference, s_croissant },
-    { { s_croissant, 1, 3 }, { 0, 0 }, "Split", cr_split, s_croissant },
-    { { s_croissant, 1, 3 }, { 0, 0 }, "Transform", cr_transform, s_croissant },
+    // common tag
+    { { s_ctag, 1, 0 }, { 0, 0 }, "AuthorTag", ctag_author, s_ctag },
+    { { s_ctag, 1, 0 }, { 0, 0 }, "AutoTag", ctag_auto, s_ctag },
+    { { s_ctag, 1, 0 }, { 0, 0 }, "ReaderTag", ctag_reader, s_ctag },
+    { { s_ctag, 1, 0 }, { 0, 0 }, "Tag", ctag_tag, s_ctag },
 
     // data quality
     { { s_daq, 1, 0 }, { 0, 0 }, "Metric", daq_metric, s_daq },

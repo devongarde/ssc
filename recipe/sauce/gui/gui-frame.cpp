@@ -151,7 +151,7 @@ void frame_t :: Next (wxFindDialogEvent& e)
         if (output_ != nullptr) output_ -> Find (wot, fussitudes); } }
 
 void frame_t :: OnAbout (wxCommandEvent& )
-{   if (app != nullptr) app -> help ("about"); }
+{   if (app != nullptr) app -> help (hp_about); }
 
 void frame_t :: OnConfigEdit (wxCommandEvent& )
 {   const ::boost::scoped_ptr < standard_t > g (new standard_t (this, context_, gp_summary));

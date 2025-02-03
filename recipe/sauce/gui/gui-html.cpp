@@ -421,7 +421,7 @@ void html_t :: CreateControls ()
     Centre (wxBOTH); }
 
 void html_t :: OnHelpClick (wxCommandEvent& )
-{	app -> help ("HTML"); }
+{	app -> help (hp_HTML); }
 
 void html_t :: enable ()
 {	bool h2 = false;

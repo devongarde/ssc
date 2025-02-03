@@ -75,7 +75,7 @@ void ssi_t :: CreateControls ()
     Centre (wxBOTH);  }
 
 void ssi_t :: OnHelpClick (wxCommandEvent& )
-{	if (app != nullptr) app -> help ("ssi"); }
+{	if (app != nullptr) app -> help (hp_ssi); }
 
 void ssi_t :: OnExec (wxCommandEvent& )
 {	if (invalid ()) return;

@@ -80,7 +80,7 @@ void ontology_t :: create_controls (wxWindow *parent)
             if (o < s_faux)
                 versions_.at (o).push_back (i -> ver ()); } }
 
-    check_verify_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, check_verify, "Verify known ontologies", wxDefaultPosition, wxDefaultSize, 0));
+    check_verify_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, check_verify, "Verify known &ontologies", wxDefaultPosition, wxDefaultSize, 0));
     if (check_verify_ != nullptr)
         box_ -> Add (check_verify_, 0, wxALIGN_CENTER_HORIZONTAL | wxALL, 5);
 
@@ -130,35 +130,32 @@ void ontology_t :: create_controls (wxWindow *parent)
     if (line2_ != nullptr)
         box_ -> Add (line2_, 0, wxEXPAND | wxALL, 5);
 
-    mf_text_ = GSL_OWNER (wxStaticText) (new wxStaticText (parent, wxID_ANY, "Microformats", wxDefaultPosition, wxDefaultSize, 0));
-    if (mf_text_ != nullptr)
-    {	mf_text_ -> Wrap (-1);
-        box_ -> Add (mf_text_, 0, wxALIGN_CENTER_HORIZONTAL, 5);
-        box_mf_export_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxHORIZONTAL));
-        if (box_mf_export_ != nullptr)
-        {	mf_export_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, check_mf_export, "Export to", wxDefaultPosition, wxDefaultSize, 0));
-            if (mf_export_ != nullptr)
-            {	box_mf_export_ -> Add (mf_export_, 0, wxALL | wxALIGN_CENTRE_VERTICAL, 5);
-                pick_mf_export_ = GSL_OWNER (wxDirPickerCtrl) (new wxDirPickerCtrl (parent, wxID_ANY, wxEmptyString, "Select a " REPERTOIRE, wxDefaultPosition, wxDefaultSize, wxDIRP_DEFAULT_STYLE));
-                if (pick_mf_export_ != nullptr)
-                    box_mf_export_ -> Add (pick_mf_export_, 0, wxALL | wxALIGN_CENTRE_VERTICAL, 5);
-                    box_ -> Add (box_mf_export_, 0, wxALIGN_CENTER_HORIZONTAL, 5); } } }
+    mf_verify_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, check_mf_verify, "Verify &microformats", wxDefaultPosition, wxDefaultSize, 0));
+    if (mf_verify_ != nullptr)
+        box_ -> Add (mf_verify_, 0, wxALIGN_CENTER_HORIZONTAL, 5);
 
     mf_grid_ = GSL_OWNER (wxGridSizer) (new wxGridSizer (0, 4, 0, 0));
     if (mf_grid_ != nullptr)
-    {	mf_verify_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, check_mf_verify, "&Verify", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT));
-        if (mf_verify_ != nullptr)
-        {	mf_grid_ -> Add (mf_verify_, 0, wxALIGN_RIGHT | wxALL, 5);
-            mf_v1_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, "Version &1", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT));
-            if (mf_v1_ != nullptr)
-            {	mf_grid_ -> Add (mf_v1_, 0, wxALIGN_RIGHT | wxALL, 5);
-                mf_v2_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, "Version &2", wxDefaultPosition, wxDefaultSize, 0));
-                if (mf_v2_ != nullptr)
-                {	mf_grid_ -> Add (mf_v2_, 0, wxALL, 5);
-                    mf_pretty_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, "Pretty export", wxDefaultPosition, wxDefaultSize, 0));
-                    if (mf_pretty_ != nullptr)
-                    {	mf_grid_ -> Add (mf_pretty_, 0, wxALL, 5);
-                        box_ -> Add (mf_grid_, 0, wxEXPAND | wxALL, 5); } } } } }
+    {	mf_v1_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, "Version &1", wxDefaultPosition, wxDefaultSize, 0));
+        if (mf_v1_ != nullptr)
+        {	mf_grid_ -> Add (mf_v1_, 0, wxALIGN_RIGHT | wxALL, 5);
+            mf_v2_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, "Version &2", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT));
+            if (mf_v2_ != nullptr)
+            {	mf_grid_ -> Add (mf_v2_, 0, wxALL, 5);
+                mf_pretty_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, "Pretty export", wxDefaultPosition, wxDefaultSize, 0));
+                if (mf_pretty_ != nullptr)
+                {	mf_grid_ -> Add (mf_pretty_, 0, wxALL, 5);
+                    box_ -> Add (mf_grid_, 0, wxEXPAND | wxALL, 5); } } } }
+
+    box_mf_export_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxHORIZONTAL));
+    if (box_mf_export_ != nullptr)
+    {	mf_export_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, check_mf_export, "Export to", wxDefaultPosition, wxDefaultSize, 0));
+        if (mf_export_ != nullptr)
+        {	box_mf_export_ -> Add (mf_export_, 0, wxALL | wxALIGN_CENTRE_VERTICAL, 5);
+            pick_mf_export_ = GSL_OWNER (wxDirPickerCtrl) (new wxDirPickerCtrl (parent, wxID_ANY, wxEmptyString, "Select a " REPERTOIRE, wxDefaultPosition, wxDefaultSize, wxDIRP_DEFAULT_STYLE));
+            if (pick_mf_export_ != nullptr)
+                box_mf_export_ -> Add (pick_mf_export_, 0, wxALL | wxALIGN_CENTRE_VERTICAL, 5);
+                box_ -> Add (box_mf_export_, 0, wxALIGN_CENTER_HORIZONTAL, 5); } }
 
     base_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
     if (base_ != nullptr)
@@ -197,7 +194,7 @@ void ontology_t :: OnExport (wxCommandEvent& )
     pick_export_ -> Enable (e); }
 
 void ontology_t :: OnHelpClick (wxCommandEvent& )
-{	if (app != nullptr) app -> help ("ontology"); }
+{	if (app != nullptr) app -> help (hp_ontology); }
 
 void ontology_t :: OnMFExport (wxCommandEvent& )
 {	if (invalid ()) return;

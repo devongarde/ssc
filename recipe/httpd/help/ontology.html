@@ -4,15 +4,14 @@
 
 <html lang="en">
 <head>
-<title>ssc svg version help</title>
+<title>ssc ontology panel</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="alternate" hreflang="x-default" href="https://ssc.lu/index.shtml">
 <meta name="author" content="Dylan Harris">
 <meta name="contact" content="mail@ssc.lu">
 <meta name="copyright" content="&copy; 2024,2025 Dylan Harris">
-<meta name="description" content="static site checker svg version help page">
-<meta name="keywords" content="ontology,help,ssc,HTML,XHTML,MathML,SVG,CSS,RDFa,Dylan Harris">
+<meta name="description" content="static site checker ontology panel">
 <meta name="rights-standard" content=";cc by-nc-sa">
 <meta name="theme-color" content="#000000">
 
@@ -33,12 +32,63 @@
   <link itemprop="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
   <meta itemprop="name headline" content="static site checker">
   <h1>
-  ontology
+  ontologies
   </h1>
 </div>
 
 <p>
-what versions of ontologies should be presumed
+This panel is part of the <a href="conf.html">Settings Dialogue</a>.
+It allows you to control validation of machine readable data.
+</p>
+
+<h2>ontologies</h2>
+
+<p>
+SSC can verify machine readable data specified using a number of standard ontologies,
+such as <a href="https://schema.org/">schema.org</a>.
+An ontology defines how to provide machine readable information online, so that
+software such as search engines can comprehend the data presented on the website.
+</p>
+
+<h2>verify known ontologies</h2>
+
+<p>
+If you wish SSC to verify ontological data on a website, select verify known ontologies.
+SSC can pick this information up using the Living Standard&rsquo;s &lt;ITEMTYPE&gt; and
+related elements, or in RDFa files.
+</p>
+
+<p>
+Below the checkbox is a list of ontologies can SSC can process. Many of these ontologies
+have a variety of versions. By default, SSC will checked ontological data against the most
+recent version of the ontologies that SSC can process, but you can select other versions here
+if you so wish.
+</p>
+
+<h2>Export To</h2>
+
+<p>
+If you ask SSC to verify ontologies, you can also request that it exports the machine
+readable data it finds when it processes the site. This exports files in JSON format,
+which can be made a little less ugly for easier reading by a person.
+</p>
+
+<p>
+You must select a directory where the exports will be written. SSC will write files
+corresponding to the files it reads, reflecting the directory structure of the original
+site.
+</p>
+
+<h2>microformats</h2>
+
+<p>
+SSC can also verify microformats (see <a href="https://microformats.org/">microformats.org</a> for gen).
+You can specify which version of microformats SSC should verify.
+</p>
+
+<p>
+If you specify a microformat export directory, SSC will export any microformat content it finds
+into JSON files, optionally prettified to make browsing easier.
 </p>
 
 </body>

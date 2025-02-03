@@ -4,14 +4,14 @@
 
 <html lang="en">
 <head>
-<title>ssc file panel</title>
+<title>ssc server side includes panel</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="alternate" hreflang="x-default" href="https://ssc.lu/index.shtml">
 <meta name="author" content="Dylan Harris">
 <meta name="contact" content="mail@ssc.lu">
 <meta name="copyright" content="&copy; 2024,2025 Dylan Harris">
-<meta name="description" content="static site checker file panel">
+<meta name="description" content="static site checker server side includes panel">
 <meta name="rights-standard" content=";cc by-nc-sa">
 <meta name="theme-color" content="#000000">
 
@@ -32,36 +32,47 @@
   <link itemprop="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
   <meta itemprop="name headline" content="static site checker">
   <h1>
-  file panel
+  server side includes
   </h1>
 </div>
 
+<h2>introduction</h2>
+
 <p>
-This panel is part of the <a href="conf.html">Settings Dialogue</a>.
-It allows you to control site shadowing, which is the creation of a cleaned&ndash;up copy of the site being analysed.
+This module consolidates <a href="https://en.wikipedia.org/wiki/Server_Side_Includes">Server Side Includes</a>, optionally generating
+a corresponding version of the site. Here is an example of a Server Side Include:
 </p>
 
 <p>
-This panel is part of the <a href="conf.html">Settings Dialogue</a>.
+&lt;!--#include virtual=&lsquo;x.inc&rsquo;&gt;
 </p>
 
 <p>
-Where shall ssc find its temporary files?
+SSC does not process complex conditions in &lt;!--#if ...&gt; expressions.
 </p>
 
-<p>
-The configuration directory is the location in which ssc by default searches for configuration files,
-those files used to configure which sites to nitpick, and how.
-</p>
+<h2>standard variable values</h2>
 
 <p>
-The output file applies to the current task, and says where the output file containing a list of issues found,
-is to be placed.
+Server Side Includes offer a number of variables. Here, you can preset default values for some of those
+variables.
 </p>
 
+<h2>exec</h2>
+
 <p>
-The persistence file is used between checks of the same site, for ssc to store information about that site, so next
-time it is checked, ssc knows which files are unchanged and need not be checked again.
+The &lt;!--#exec ...&gt; server side include is potentially unsafe when analysing websites which you do not trust.
+Here, you can specify a message that should be output when an &lt;!--#exec ...&gt; is encountered,
+instead of running the command.
+</p>
+
+<h2>times</h2>
+
+<p>
+You may specify a specific last modification instead of that of the page being processed,
+and a specific time to use instead of the current time.
+This is particularly useful when you are processing a copy of a website, rather
+than its original root.
 </p>
 
 </body>

@@ -172,7 +172,7 @@ void shadow_t :: enable ()
     ignore_.enable (checked); }
 
 void shadow_t :: OnHelpClick (wxCommandEvent& )
-{	if (app != nullptr) app -> help ("shadow"); }
+{	if (app != nullptr) app -> help (hp_shadow); }
 
 void shadow_t :: OnIgnoreAdd (wxCommandEvent& e)
 {	if (invalid ()) return;
