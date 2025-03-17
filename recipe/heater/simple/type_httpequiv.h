@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "enum/type_enum.h"
 #include "type/type_csp.h"
 
+void reset_httpequiv ();
 ::std::string validate_httpequiv_content (nitpick& nits, const html_version& v, const e_httpequiv he, const ::std::string& content, page& p);
 vstr_t split_sides_at_semi (nitpick& nits, const ::std::string& s, const ::std::size_t min_args = 2, const ::std::size_t max_args = 2);
 e_status set_cache_value (nitpick& nits, const html_version& v, const ::std::string& s);
@@ -29,6 +30,7 @@ e_status set_content_type_value (nitpick& nits, const html_version& v, const ::s
 e_status set_csp_value (nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_csp_sauce_value (nitpick& nits, const html_version& v, const ::std::string& s);
 bool linkarg_set_value (nitpick& nits, const html_version& v, const ::std::string& s);
+e_status set_permissions_policy (nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_linkarg_value (nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_linkitself_value (nitpick& nits, const html_version& v, const ::std::string& s);
 e_status set_location_value (nitpick& nits, const html_version& v, const ::std::string& s, ::std::string& val);
@@ -59,6 +61,12 @@ template < > struct type_master < t_csp > : tidy_string < t_csp >
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_csp > :: set_value (nits, v, s);
         tidy_string < t_csp > :: status (set_csp_value (nits, v, tidy_string < t_csp > :: get_string ())); } };
+
+template < > struct type_master < t_permpol > : tidy_string < t_permpol >
+{   using tidy_string < t_permpol > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_permpol > :: set_value (nits, v, s);
+        tidy_string < t_permpol > :: status (set_permissions_policy (nits, v, tidy_string < t_permpol > :: get_string ())); } };
 
 template < > struct type_master < t_linkarg > : public tidy_string < t_linkarg >
 {   using tidy_string < t_linkarg > :: tidy_string;

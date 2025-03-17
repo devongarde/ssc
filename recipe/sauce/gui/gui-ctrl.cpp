@@ -25,12 +25,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 bool check_t :: TransferDataToWindow ()
 {	if (invalid ()) return false;
-	check_ -> SetValue (set_);
+	ctrl_ -> SetValue (set_);
 	return true; }
 
 bool check_t :: TransferDataFromWindow ()
 {	if (invalid ()) return false;
-	set_ = check_ -> GetValue ();
+	set_ = ctrl_ -> GetValue ();
 	return true; }
 
 bool datetime_t :: TransferDataToWindow ()
@@ -55,14 +55,24 @@ bool datetime_t :: TransferDataFromWindow ()
 	time_ -> SetValue (dt0 + ts);
 	return true; }
 
+bool spin_t :: TransferDataToWindow ()
+{	if (invalid ()) return false;
+	ctrl_ -> SetValue (value_);
+	return true; }
+
+bool spin_t :: TransferDataFromWindow ()
+{	if (invalid ()) return false;
+	value_ = ctrl_ -> GetValue ();
+	return true; }
+
 bool text_t :: TransferDataToWindow ()
 {	if (invalid ()) return false;
-	text_ -> SetValue (wxString (value_.c_str ()));
+	ctrl_ -> SetValue (wxString (value_.c_str ()));
 	return true; }
 
 bool text_t :: TransferDataFromWindow ()
 {	if (invalid ()) return false;
-	value_ = text_ -> GetValue ();
+	value_ = ctrl_ -> GetValue ();
 	return true; }
 
 #endif // WX

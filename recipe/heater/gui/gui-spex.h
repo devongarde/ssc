@@ -26,6 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "gui/gui-frame.h"
 #include "gui/gui-general.h"
 #include "gui/gui-html.h"
+#include "gui/gui-link.h"
 #include "gui/gui-nits.h"
 #include "gui/gui-ontology.h"
 #include "gui/gui-shadow.h"
@@ -46,6 +47,7 @@ class standard_t : public d3_t
     css_t css_;
     general_t general_;
     html_t html_;
+    link_t lynx_;
     nits_t nits_;
     ontology_t ontology_;
     shadow_t shadow_;
@@ -95,8 +97,18 @@ public:
 #endif // NO_FRED
     void OnGenMax (wxCommandEvent& event) { general_.OnMax (event); }
     void OnGenPersist (wxCommandEvent& event) { general_.OnPersist (event); }
+    void OnHTMLOutput (wxCommandEvent& event) { html_.OnOutput (event); }
     void OnHTMLVersion (wxCommandEvent& event) { html_.OnVersion (event); }
     void OnHTMLWX (wxCommandEvent& event) { html_.OnWX (event); }
+    void OnLinkAdd (wxCommandEvent& event) { lynx_.OnAdd (event); }
+    void OnLinkErase (wxCommandEvent& event) { lynx_.OnErase (event); }
+    void OnLinkExtension (wxCommandEvent& event) { lynx_.OnExtension (event); }
+    void OnLinkExternal (wxCommandEvent& event) { lynx_.OnExternal (event); }
+    void OnLinkImpatience (wxCommandEvent& event) { lynx_.OnImpatience (event); }
+    void OnLinkInternal (wxCommandEvent& event) { lynx_.OnInternal (event); }
+    void OnLinkRename (wxCommandEvent& event) { lynx_.OnRename (event); }
+    void OnLinkTap (wxCommandEvent& event) { lynx_.OnTap (event); }
+    void OnLinkText (wxCommandEvent& event) { lynx_.OnText (event); }
     void OnNitsListLevel (wxCommandEvent& event) { nits_.OnListLevel (event); }
     void OnNitsFormat (wxCommandEvent& event) { nits_.OnNitFormat (event); }
     void OnNitsRadioLevel (wxCommandEvent& event) { nits_.OnRadioLevel (event); }
@@ -113,15 +125,15 @@ public:
     void OnShadowIgnoreTap (wxCommandEvent& event) { shadow_.OnIgnoreTap (event); }
     void OnShadowIgnoreImpatience (wxCommandEvent& event) { shadow_.OnIgnoreImpatience (event); }
     void OnShadowShadow (wxCommandEvent& event) { shadow_.OnShadow (event); }
+    void OnSiteAccount (wxCommandEvent& event) { site_.OnAccount (event); }
     void OnSiteAdd (wxCommandEvent& event) { site_.OnAdd (event); }
     void OnSiteErase (wxCommandEvent& event) { site_.OnErase (event); }
     void OnSiteExtension (wxCommandEvent& event) { site_.OnExtension (event); }
-    void OnSiteExternal (wxCommandEvent& event) { site_.OnExternal (event); }
     void OnSiteImpatience (wxCommandEvent& event) { site_.OnImpatience (event); }
-    void OnSiteInternal (wxCommandEvent& event) { site_.OnInternal (event); }
-    void OnSiteOutput (wxCommandEvent& event) { site_.OnOutput (event); }
     void OnSiteRename (wxCommandEvent& event) { site_.OnRename (event); }
     void OnSiteTap (wxCommandEvent& event) { site_.OnTap (event); }
+    void OnSiteText (wxCommandEvent& event) { site_.OnText (event); }
+    void OnSiteUsername (wxCommandEvent& event) { site_.OnUsername (event); }
 #ifndef NOSPELL
     void OnSpellCheck (wxCommandEvent& event) { spell_.OnCheck (event); }
     void OnSpellDictAdd (wxCommandEvent& event) { spell_.OnDictAdd (event); }

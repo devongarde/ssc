@@ -183,7 +183,7 @@ PASS ../toast/HTML/5.1/html5-example.html
 337 use_quote_code
 343 attempted_escape
 355 attempted_escape
-360 no_such_folder url_not_found
+360 no_such_folder url_not_found track_missing
 361 no_such_folder url_not_found
 378 url_not_found
 379 url_not_found
@@ -243,7 +243,7 @@ PASS ../toast/HTML/5.1/html5-example.html
 710 url_not_found
 717 inserted_missing_closure
 718 url_not_found
-725 url_not_found
+725 url_not_found track_missing
 732 use_quote_code
 743 use_quote_code
 751 use_quote_code use_double_quote_code
@@ -341,6 +341,7 @@ PASS ../toast/HTML/5.1/html5-example.html
 1360 mime
 1367 newline_in_string newline_in_string url_not_found
 1372 url_not_found
+1375 track_missing
 1376 url_not_found mime
 1377 url_not_found mime
 1378 url_not_found mime
@@ -354,7 +355,7 @@ PASS ../toast/HTML/5.1/html5-example.html
 1386 url_not_found
 1387 url_not_found
 1388 url_not_found mime
-1391 url_not_found
+1391 url_not_found track_missing
 1392 url_not_found
 1393 url_not_found
 1394 url_not_found

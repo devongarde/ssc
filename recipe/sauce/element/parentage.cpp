@@ -1530,6 +1530,7 @@ parentage parent_table [] =
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_th, elem_undefined, 0, EF_5_FLOW },
     { { HTML_2_0 }, { HTML_UNDEF }, elem_thead, elem_tr },
     { { HTML_JUL13 }, { HTML_UNDEF }, elem_thead, elem_undefined, 0, EF_5_SCRIPT },
+    { { HTML_FEB25 }, { HTML_UNDEF }, elem_think, elem_undefined, 0, EF_5_FLOW },
     { { HTML_JAN07 }, { HTML_UNDEF }, elem_time, elem_undefined, 0, EF_5_PHRASE },
     { { HTML_PLUS }, { HTML_PLUS }, elem_title, elem_undefined, 0, EF_EMPH },
     { { HTML_SVG11, 0, HE_SVG_11_2 }, { HTML_UNDEF }, elem_title, elem_undefined },

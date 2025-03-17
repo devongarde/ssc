@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html lang="en-GB">
+
+<head>
+<title>aria HTML</title>
+</head>
+
+<body>
+
+<h1>aria HTML</h1>
+
+<button aria-pressed=true>...</button>
+
+<a role=link aria-disabled=true>...</a>
+
+<button role="heading">search</button>
+
+<!-- Avoid doing this! -->
+<button role="button">...</button>
+
+<!-- Avoid doing this! -->
+<fieldset role="group">...</fieldset>
+<!-- or this! -->
+<main role="Main">...</main>
+
+<!-- Generally avoid doing this! -->
+<ul role="list">...</ul>
+
+<details>
+  <!-- Avoid doing this! -->
+  <summary role="button">more information</summary>
+  ...
+</details>
+
+<!-- Do not do this! -->
+<div role="select" ...>...</div>
+
+<!-- Avoid doing this! -->
+<article role="generic" ...>...</article>
+
+<!-- Do not do this! -->
+<input type="checkbox" checked aria-checked="false">
+
+<!-- Do not do this! -->
+<p>
+  ... <div role=link tabindex=0>...</div> ... 
+</p>
+
+<!-- The previous example's markup will render as follows -->
+<p>...</p>
+<div role=link tabindex=0>...</div> 
+... 
+<p></p>
+
+<!-- Instead of a div, use a span. Spans are allowed descendants of p elements! -->
+<p>
+  ... <span role=link tabindex=0>...</span> ...
+</p>
+
+<div role="main">...</div>
+
+<a href="home/" aria-current="page">home</a>
+
+<!-- DO NOT DO THE FOLLOWING -->
+<div role="MAIN">...</div>
+
+<div role="Main">...</div>
+
+<a href="home/" aria-current="Page">home</a>
+
+<!-- conformance checkers will report an error -->
+<button>
+  <div role="button">...</div>
+</button>
+
+<div role="button">
+  <button>...</button>
+</div>
+
+<div role="link">
+  <textarea>...</textarea>
+</div>
+
+<figure>
+<pre role="img" aria-label="ASCII Fish">
+ o           .'`/
+     '      /  (
+   O    .-'` ` `'-._      .')
+      _/ (o)        '.  .' /
+        '-._  _ .-'       '.)
+    jgs     `\__\
+</pre>
+<figcaption id="fish-caption">
+Joan G. Stark, "<cite>fish</cite>".
+October 1997. ASCII on electrons. 28×8.
+</figcaption>
+</figure>
+
+
+</body>
+</html>
+

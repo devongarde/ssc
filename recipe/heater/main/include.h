@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 a
 b
-c   CURLY
+c
 d   DEBUG
 e
 f   FUDDY
@@ -62,9 +62,8 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 11
-#define VERSION_STRING "0.2.11"
-#define EDITION_STANDARD "standard"
+#define VERSION_RELEASE 12
+#define VERSION_STRING "0.2.12"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -78,15 +77,15 @@ z
 #define COPYRIGHT COPYRIGHT_TEXT COPYRIGHT_BRADDR
 #define COPYRIGHT_HTML_FULL "&copy;" NBSP COPYRIGHT_YEAR NBSP COPYRIGHT_FORENAME NBSP COPYRIGHT_SURNAME COPYRIGHT_BRADDR
 
+#define SSC_PUBLIC_KEY ""
+
 #define DEFAULT_LINE_LENGTH 72
 #define DESCRIPTION_LENGTH 60
 
-#if defined (WX)
+#ifdef WX
 #define EDITION "/g"
-#define EDITION_LONG "gui"
 #else // WX
 #define EDITION
-#define EDITION_LONG EDITION_STANDARD
 #endif // WX
 
 #if defined (DEBUG) || defined (_DEBUG) || defined (SSC_ASSERTS)
@@ -166,7 +165,7 @@ z
 #define PROCSIZE "64"
 #endif // WIN32
 
-    // The MSVC linter is generally useful, but it has some serious problems.
+    // The MSVC linter is generally useful, but it has (had?) some serious problems.
     // General problem 1: the msvc linter provides no clean mechanism to suppress a spurious warning in place, except through the #...
     //      mechanism. Those #... have to be wrapped in #ifdefs to avoid confusing other compilers. In the worst case, this requires 7 #...
     //      statements to suppress one spurious warning. That is ridiculously clunky, and I'm most definitely NOT going there for specific
@@ -223,6 +222,9 @@ z
 
 #endif // __clang__
 
+// mostly for my sanity
+#define BOOST_LIB_DIAGNOSTIC
+
 #ifdef FUDDYDUDDY
 #define BOOVAR 2
 #define FUDDY "f"
@@ -239,35 +241,41 @@ z
 
 #ifdef UNIX
 #include <unistd.h>
+#include <pwd.h>
 #endif // UNIX
 
 #ifndef SSC_TEST
-#include <string>
-#include <sstream>
 #include <algorithm>
-#include <tuple>
-#include <memory>
-#include <cstddef>
-#include <utility>
-#include <type_traits>
-#include <stdexcept>
-#include <chrono>
-#include <ctime>
-#include <functional>
 #include <array>
+#ifndef NO_FRED
+#include <atomic>
+#endif // NO_FRED
 #include <bitset>
-#include <set>
-#include <array>
+#include <chrono>
 #ifndef VS2017  // https://social.msdn.microsoft.com/Forums/azure/en-US/999a5b68-a1d3-4a76-8f3b-65655257c301/vs2017-stdcodecvt-linker-error?forum=vcgeneral
 #include <codecvt>
 #endif // VS2017
+#include <cstddef>
+#include <cstdlib>
+#include <ctime>
+#include <functional>
+#include <iostream>
 #include <locale>
-#include <stack>
+#include <memory>
+#include <set>
 #ifndef NO_FRED
 #include <shared_mutex>
-#include <thread>
-#include <atomic>
 #endif // NO_FRED
+#include <sstream>
+#include <stack>
+#include <stdexcept>
+#include <string>
+#ifndef NO_FRED
+#include <thread>
+#endif // NO_FRED
+#include <tuple>
+#include <type_traits>
+#include <utility>
 
 #ifdef _MSC_VER
 #include <direct.h>
@@ -376,6 +384,8 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define ssc_mm ::std::unordered_multimap
 #endif // ORDERED
 
+#include <boost/asio.hpp>
+#include <boost/beast.hpp>
 #include <boost/chrono.hpp>
 #include <boost/date_time.hpp>
 #include <boost/format.hpp>
@@ -447,7 +457,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #include <wx/timectrl.h>
 
 // FFS
-#if defined (DARWIN)
+#ifdef DARWIN
 #define FANCY_TEXT_CTRL wxTextCtrl
 #define UGLY_TEXT "u"
 #define UGLITUDE
@@ -457,15 +467,13 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 
 #endif // WX
 
-#ifndef NOCURL
-#include <curl/curl.h>
-#endif // NOCURL
-
 #endif // SSC_TEST
 
 #ifdef _MSC_VER
+#define SECURITY_WIN32
 #include <windows.h>
 #include <process.h>
+#include <Security.h>
 #endif // _MSC_VER
 
 #include <boost/filesystem.hpp>
@@ -682,6 +690,10 @@ CONSTEXPR uint32_t itemprop_category_shift =  28;
 CONSTEXPR uint32_t itemprop_item_mask =       0x0FFFFFFF;
 CONSTEXPR uint32_t itemprop_category_mask =   0xF0000000;
 
+#ifdef WX
+typedef ::std::vector < wxString > vws_t;
+#endif // WX
+
 #endif // SCC_TEST
 
 #ifdef REALLY_BUGGY_VECTOR_BOOL
@@ -692,12 +704,6 @@ typedef ::std::vector < bool > faux_vb_t;
 
 #define COMMENT_CHAR '/'
 #define COMMENT_STRCHAR "/"
-
-#ifdef NOCURL
-#define CURLY
-#else // NOCURL
-#define CURLY "c"
-#endif // NOCURL
 
 #ifdef NO_PCF_STR
 #define NPS_GEN
@@ -756,13 +762,19 @@ typedef ::std::vector < bool > faux_vb_t;
 // Enable this to see full messages that would otherwise be generated when using -T switch, roughly speaking
 // #define EXPAND_TEST "t"
 
-#define BUILD_INFO   CURLY DBG_STATUS FUDDY JSNIC NPS_GEN SPELT UGLY_TEXT WXS ":" TARGET_OS ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER
+#define BUILD_INFO   DBG_STATUS FUDDY JSNIC NPS_GEN SPELT UGLY_TEXT WXS ":" TARGET_OS ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER
 #define BASE_TITLE   FULLNAME " v" VERSION_STRING EDITION " (" WEBADDR ")\n"
 #define SIMPLE_TITLE BASE_TITLE COPYRIGHT_TEXT "\n"
 #define FULL_TITLE_1 BASE_TITLE COPYRIGHT "\n"
 #define FULL_TITLE_2 "[" __DATE__ " " __TIME__  "] [" BUILD_INFO "]" "\n"
 #define FULL_TITLE   FULL_TITLE_1 FULL_TITLE_2
-#define TEST_TITLE   FULLNAME " v" VERSION_STRING EDITION "\n" "(" __DATE__ " " __TIME__ ")\n" WEBADDR "\n" COPYRIGHT "\n\n"
+#define TEST_TITLE   FULLNAME " v" VERSION_STRING EDITION "\n(" __DATE__ " " __TIME__ ")\n" WEBADDR "\n" COPYRIGHT "\n\n"
+
+#ifdef FIBBING_AGENT
+#define SSC_USER_AGENT   "Mozilla/5.0"
+#else // FIBBING_AGENT
+#define SSC_USER_AGENT PROG "/" VERSION_STRING " (" BUILD_INFO ") " BOOST_BEAST_VERSION_STRING
+#endif // FIBBING_AGENT
 
 #define TYPE_HELP "Type '" PROG " -h' for help."
 

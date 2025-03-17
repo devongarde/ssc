@@ -28,7 +28,6 @@ typedef ssc_bitset < e_element, last_element_tag > element_bitset;
 typedef ::std::vector < element_bitset > v_eb;
 
 extern const element_bitset empty_element_bitset;
-extern element_bitset autocapitalise_bitset;
 extern element_bitset faux_bitset;
 extern element_bitset form_bitset;
 extern element_bitset header_bitset;

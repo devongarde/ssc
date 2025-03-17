@@ -388,8 +388,6 @@ This are switches that don't really belong in any other section.
 --general.file XXX      File for persistent data. See also
                         --general.datapath. Default extension: .ndx.
 
---general.info          Report launch context when starting.
-
 --general.maxfilesize n Do not process HTML source files that exceed n
                         bytes in size (default: 4M). Specify 0 for
                         unlimited, although be warned that ssc is
@@ -420,6 +418,10 @@ This are switches that don't really belong in any other section.
 -y N                    0 is given, a value not entirely inappropriate
                         for the hardware is used. Too high a value can
                         cause problems. See also --general.defthrd.
+
+--general.username XXX  The name of the account being used to run SSC.
+                        If this is not specified, SSC gets the name
+                        the operating system.
 
 --general.vcs           Excludes, as per --general.exclude, files and
                         directories called:
@@ -633,6 +635,13 @@ broken links within the site.
 --link.report DOMAIN    Report links to domain and its descendents. May
                         be repeated.
 
+--link.required Z,Y,X,E,F,T,D A link to URL Z is required for lang Y
+                        (default: all) on X pages (can be a page name,
+                        ALL, FRONT, INDEX, default ALL), as a child of
+                        element E (default BODY), from X/HTML version
+                        F to X/HTML version T (default: all versions),
+                        called D. All values are optional except Z.
+
 --link.revoke           Do not check whether links' https certificates
 -r                      have been revoked (requires --link.external).
 
@@ -657,6 +666,7 @@ contemporary to the corresponding HTML.
                                 4.20    MathML 4 2020 draft
                                 4       MathML 4 2022 draft
                                 core    MathML 4 core (May 2022 draft)
+
 
 Microformat switches
 These switches are useful for checking andor outputting any microformat
@@ -713,20 +723,12 @@ gen, etc..
 
 --nits.extra            Report additional nits.
 
---nits.format F         Specify the output format; F is a template
-                        file (see OUTPUT TEMPLATE below).
-
 --nits.info n           Redefine nit n as information; may be repeated
                         (the value of n can be determined using
                         --nits.nids).
 
 --nits.nids             Output nit ids, which can be used to redefine
                         nits.
-
---nits.override F       Use this output format, not the one specified
-                        by --nits.format. F is a template file (see
-                        OUTPUT TEMPLATE below). This switch is intended
-                        to aid automation.
 
 --nits.quote X          Specify quote style when using nit.format. X
                         can be 'text' or 'html'.
@@ -754,6 +756,7 @@ gen, etc..
                         --nits.nids).
 
 --nits.watch            Output debug nits (intended for automation).
+
 
 Ontology switches
 If you are interested in checking andor hoovering ontology data, you
@@ -1081,6 +1084,31 @@ ontologies (see --ontology.list).
                         published in 2001, 2006, 2010 & 2014. They do
                         NOT correspond to vCard data format
                         specifications.
+
+
+Output switches
+This manages output layout.
+
+--output.absolute-path  Report the absolute local filesystem path of a
+                        file being analysed.
+
+--output.account XXX    Report the account used to run SSC as XXX.
+
+--output.description XXX  Output XXX, which should be a contextual
+                        description, to aid those reading the output.
+
+--output.format F       Specify the output format; F is a template
+                        file (see OUTPUT TEMPLATE below).
+
+--output.override F     Use this output format, not the one specified
+                        by --output.format. F is a template file (see
+                        OUTPUT TEMPLATE below). This switch is intended
+                        to aid automation.
+
+--output.relative-path  Report the relative web path path of a file
+                        being analysed.
+
+--output.username XXX   Report the user who is running SSC as XXX.
 
                         
 Server switches

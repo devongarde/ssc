@@ -22,49 +22,34 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #ifdef WX
 #include "gui/gui-dialogue.h"
+#include "gui/gui-data.h"
 #include "parser/html_version.h"
 
 #define HTML_CAPTION "HTML"
 
 class html_t : public d1_t < wx_html >
-{   wxBoxSizer* box_lingo_ = nullptr;
-    wxBoxSizer* box_math_ = nullptr;
-    wxBoxSizer* box_svg_ = nullptr;
-    wxBoxSizer* box_title_ = nullptr;
-    wxBoxSizer* box_version_ = nullptr;
-    wxCheckBox* sloven_ = nullptr;
-    wxCheckBox* safari_ = nullptr;
-    wxCheckBox* ie_ = nullptr;
-    wxCheckBox* rfc1867_ = nullptr;
-    wxCheckBox* rfc1942_ = nullptr;
-    wxCheckBox* rfc1980_ = nullptr;
-    wxCheckBox* rfc2070_ = nullptr;
-    wxCheckBox* wx_ = nullptr;
-    wxChoice* version_ = nullptr;
-    wxChoice* math_choice_ = nullptr;
-    wxChoice* svg_choice_ = nullptr;
-    wxComboBox* lingo_ = nullptr;
-    wxGridSizer* czech_grid_ = nullptr;
-    wxRadioBox* doctype_ = nullptr;
-    wxSpinCtrl* title_ = nullptr;
-    wxStaticLine* base_ = nullptr;
-    wxStaticLine* title_line_ = nullptr;
-    wxStaticLine* option_line_ = nullptr;
-    wxStaticLine* version_line_ = nullptr;
-    wxStaticText* lingo_text_ = nullptr;
-    wxStaticText* math_text_ = nullptr;
-    wxStaticText* svg_text_ = nullptr;
-    wxStaticText* title_text_ = nullptr;
-    wxStaticText* version_text_ = nullptr;
+{   check_t article_ctrl_, body_ctrl_, ie_ctrl_, output_ctrl_, main_ctrl_, rfc1867_ctrl_, rfc1942_ctrl_, rfc1980_ctrl_,
+            rfc2070_ctrl_, safari_ctrl_, sloven_ctrl_, wx_ctrl_;
+    check_file_t file_ctrl_;
+    grid_t czech_ctrl_, cheque_ctrl_;
+    html_version_t html_ctrl_;
+    label_spin_t width_ctrl_;
+    label_t wot_ctrl_;
+    line_t line_ctrl_, option_ctrl_, title_ctrl_, twixt_ctrl_;
+    lingo_t lingo_ctrl_;
+    math_version_t math_ctrl_;
+    radio_t stray_ctrl_;
+    svg_version_t svg_ctrl_;
+    bool b1867_ = false, b1942_ = false, b1980_ = false, b2070_ = false, bie_ = false, bsafari_ = false, bsloven_ = false,
+        bwx_ = false, art_ = false, bod_ = false, mai_ = false;
+    unsigned int max_ = MAX_IDEAL_TITLE_LENGTH;
     e_math_version math_ = math_none;
     e_svg_version svg_ = sv_none;
-    bool b1867_ = false, b1942_ = false, b1980_ = false, b2070_ = false, bie_ = false, bsafari_ = false, bsloven_ = false,
-        bwx_ = false;
-    unsigned int max_ = MAX_IDEAL_TITLE_LENGTH;
-    unsigned short dt_ = 0;
-    unsigned short hv_ = 0;
+    ::std::size_t dt_ = 0, hv_ = 0;
     ::std::string lang_ = "en";
+    ::boost::filesystem::path path_;
     void enable ();
+    void enable_corpus (const bool b);
     void enable_wx (const bool b);
     DECLARE_CLASS (html_t)
     DECLARE_EVENT_TABLE ()
@@ -72,11 +57,12 @@ public:
     html_t () = default;
     html_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = HTML_CAPTION);
     ~html_t () = default;
-    bool invalid () const noexcept { return (version_ == nullptr) || (lingo_ == nullptr); }
+    bool invalid () const noexcept { return main_ctrl_.invalid (); }
     void Init () const noexcept { }
     bool Create (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = HTML_CAPTION);
     void CreateControls ();
     void OnHelpClick (wxCommandEvent& event);
+    void OnOutput (wxCommandEvent& e);
     void OnVersion (wxCommandEvent& event);
     void OnWX (wxCommandEvent& event);
     bool TransferDataToWindow ();
@@ -90,8 +76,10 @@ public:
     void ver (const html_version& v);
     unsigned int title () const { return max_; }
     void title (const unsigned int l) { max_ = l; }
-    unsigned short doctype () const { return dt_; }
-    void doctype (const unsigned short l) { dt_ = l; }
+    ::std::size_t doctype () const { return dt_; }
+    void doctype (const ::std::size_t l) { dt_ = l; }
+    ::boost::filesystem::path folder () const { return path_; }
+    void folder (const ::boost::filesystem::path& p) { path_ = p; }
     bool rfc1867 () const noexcept { return b1867_; }
     void rfc1867 (const bool b) noexcept { b1867_ = b; }
     bool rfc1942 () const noexcept { return b1942_; }
@@ -113,5 +101,11 @@ public:
     void math_version (const e_math_version m) { math_ = m; }
     e_math_version math_version () const { return math_; }
     void svg_version (const e_svg_version sv) { svg_ = sv; }
-    e_svg_version svg_version () const { return svg_; } };
+    e_svg_version svg_version () const { return svg_; }
+    bool article () const noexcept { return art_; }
+    void article (const bool b) noexcept { art_ = b; }
+    bool body () const noexcept { return bod_; }
+    void body (const bool b) noexcept { bod_ = b; }
+    bool main () const noexcept { return mai_; }
+    void main (const bool b) noexcept { mai_ = b; } };
 #endif // WX

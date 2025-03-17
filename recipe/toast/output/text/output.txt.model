@@ -1,11 +1,10 @@
-Static Site Checker version 0.2.11
+Static Site Checker version 0.2.12
 (c) 2020-2025 Dylan Harris
-
+djns:wnd_x86:m64:1_87:76.1, testuser (testaccount), time
+desc pt. 1
+desc pt. 2
 
 *** /index.html
 
-2 <!DOCTYPE html>  ** <html> **  <head> <title>text outpu...
- -->  use LANG on <HTML> to specify a default language [naughty_lang]
-
----
-Duration: come on, be honest, you hardly noticed
+2 <!DOCTYPE html>  <html>  <head> <title>text outpu...
+ -->  use LANG on <HTML> to specify a default language (4.1.1 The html element, HTML 5.0) [naughty_lang]

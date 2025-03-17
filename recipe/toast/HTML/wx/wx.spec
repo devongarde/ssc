@@ -3,5 +3,5 @@
 PASS ../toast/HTML/wx/index.html
 3 wx wx
 15 wx
-19 wx unknown_element
-21 unknown_element
+19 wx invalid_element_version
+21 invalid_element_version

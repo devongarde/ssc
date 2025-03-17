@@ -1,3 +1,10 @@
+../toast/aria/1-0/aria.spec
+../toast/aria/1-1/aria.spec
+../toast/aria/1-2/aria.spec
+../toast/aria/1-3/aria.spec
+../toast/aria/dp/aria.spec
+../toast/aria/graphics/aria.spec
+../toast/aria/html/aria.spec
 ../toast/conf/html/conf.spec
 ../toast/conf/httpd/httpd.spec
 ../toast/conf/xhtml/conf.spec
@@ -207,7 +214,6 @@
 ../toast/microformats/mf2/mf2.spec
 ../toast/microformats/rel/rel.spec
 ../toast/other/abbr/abbr.spec
-../toast/other/aria/aria.spec
 ../toast/other/base/base.spec
 ../toast/other/characters/chars.spec
 ../toast/other/clacks/clacks.spec
@@ -222,6 +228,8 @@
 ../toast/other/nits/nits.spec
 ../toast/other/parsing/parsing.spec
 ../toast/other/pattern/pattern.spec
+../toast/other/permissions/permissions.spec
+../toast/other/required/required.spec
 ../toast/other/ruby/ruby.spec
 ../toast/other/safari/safari.spec
 ../toast/other/simple/simple.spec
@@ -356,6 +364,7 @@
 ../toast/XHTML/1.1/xhtml11.spec
 ../toast/XHTML/2.0/xhtml2.spec
 ../toast/XHTML/5.0/xhtml5.spec
+../toast/output/bespoke/output.spec
 ../toast/output/html/output.spec
 ../toast/output/out/output.spec
 ../toast/output/test/output.spec

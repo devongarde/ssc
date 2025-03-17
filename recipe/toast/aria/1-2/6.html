@@ -1,0 +1,288 @@
+<!DOCTYPE HTML>
+<html lang="en-GB">
+
+<head>
+<title>aria 1.2 6</title>
+</head>
+
+<body>
+
+<h1>aria 1.2 6</h1>
+
+<div role="grid" aria-colcount="16">
+  <div role="rowgroup">
+    <div role="row">
+      <span role="columnheader" aria-colindex="2">First Name</span>
+      <span role="columnheader" aria-colindex="3">Last Name</span>
+      <span role="columnheader" aria-colindex="4">Company</span>
+      <span role="columnheader" aria-colindex="9">Phone</span>
+    </div>
+  </div>
+  <div role="rowgroup">
+    <div role="row">
+      <span role="gridcell" aria-colindex="2">Fred</span>
+      <span role="gridcell" aria-colindex="3">Jackson</span>
+      <span role="gridcell" aria-colindex="4">Acme, Inc.</span>
+      <span role="gridcell" aria-colindex="9">555-1234</span>
+    </div>
+    <div role="row">
+      <span role="gridcell" aria-colindex="2">Sara</span>
+      <span role="gridcell" aria-colindex="3">James</span>
+      <span role="gridcell" aria-colindex="4">Acme, Inc.</span>
+      <span role="gridcell" aria-colindex="9">555-1235</span>
+    </div>
+   …
+  </div>
+</div>
+
+<div role="grid" aria-colcount="16">
+  <div role="rowgroup">
+    <div role="row" aria-colindex="2">
+      <span role="columnheader">First Name</span>
+      <span role="columnheader">Last Name</span>
+      <span role="columnheader">Company</span>
+      <span role="columnheader">Address</span>
+    </div>
+  </div>
+  <div role="rowgroup">
+    <div role="row" aria-colindex="2">
+      <span role="gridcell">Fred</span>
+      <span role="gridcell">Jackson</span>
+      <span role="gridcell">Acme, Inc.</span>
+      <span role="gridcell">123 Broad St.</span>
+    </div>
+    <div role="row" aria-colindex="2">
+      <span role="gridcell">Sara</span>
+      <span role="gridcell">James</span>
+      <span role="gridcell">Acme, Inc.</span>
+      <span role="gridcell">123 Broad St.</span>
+    </div>
+   …
+  </div>
+</div>
+
+<div role="grid" aria-colcount="16">
+  <div role="rowgroup">
+    <div role="row">
+      <span role="columnheader" aria-colindex="2">First Name</span>
+      <span role="columnheader" aria-colindex="3">Last Name</span>
+      <span role="columnheader" aria-colindex="4">Company</span>
+      <span role="columnheader" aria-colindex="5">Address</span>
+    </div>
+  </div>
+  <div role="rowgroup">
+    <div role="row">
+      <span role="gridcell" aria-colindex="2">Fred</span>
+      <span role="gridcell" aria-colindex="3">Jackson</span>
+      <span role="gridcell" aria-colindex="4" aria-rowspan="2">Acme, Inc.</span>
+      <span role="gridcell" aria-colindex="5" aria-rowspan="2">123 Broad St.</span>
+    </div>
+    <div role="row">
+      <span role="gridcell" aria-colindex="2">Sara</span>
+      <span role="gridcell" aria-colindex="3">James</span>
+    </div>
+   …
+  </div>
+</div>
+
+<div role="grid" aria-colcount="16">
+  <div role="rowgroup">
+    <div role="row">
+      <span role="columnheader" aria-colindex="2">First Name</span>
+      <span role="columnheader" aria-colindex="3">Last Name</span>
+      <span role="columnheader" aria-colindex="4">Company</span>
+      <span role="columnheader" aria-colindex="9">Phone</span>
+    </div>
+  </div>
+  <div role="rowgroup">
+    <div role="row">
+      <span role="gridcell" aria-colindex="2">Fred</span>
+      <span role="gridcell" aria-colindex="3">Jackson</span>
+      <span role="gridcell" aria-colindex="4">Acme, Inc.</span>
+      <span role="gridcell" aria-colindex="9">555-1234</span>
+    </div>
+    <div role="row">
+      <span role="gridcell" aria-colindex="2">Sara</span>
+      <span role="gridcell" aria-colindex="3">James</span>
+      <span role="gridcell" aria-colindex="4">Acme, Inc.</span>
+      <span role="gridcell" aria-colindex="9">555-1235</span>
+    </div>
+   …
+  </div>
+</div>
+
+<!-- Provision of an extended description -->
+<img src="pythagorean.jpg" alt="Pythagorean Theorem" aria-details="det">
+<details id="det">
+  <summary>Example</summary>
+  <p>
+    The Pythagorean Theorem is a relationship in Euclidean Geometry between the three sides of
+    a right triangle, where the square of the hypotenuse is the sum of the squares of the two
+    opposing sides.
+  </p>
+  <p>
+    The following drawing illustrates an application of the Pythagorean Theorem when used to
+    construct a skateboard ramp.
+  </p>
+  <object data="skatebd-ramp.svg"  type="image/svg+xml"></object>
+  <p>
+    In this example you will notice a skateboard with a base and vertical board whose width
+    is the width of the ramp. To compute how long the ramp must be, simply calculate the
+    base length, square it, sum it with the square of the height of the ramp, and take the
+    square root of the sum.
+  </p>
+</details>
+
+<!-- Provision of an extended description -->
+<img src="pythagorean.jpg" alt="Pythagorean Theorem" aria-details="det">
+<p>
+  See an <a href="http://foo.com/pt.html" id="det">Application of the Pythagorean Theorem</a>.
+</p>
+
+<!-- Initial valid state -->
+<label for="startTime"> Please enter a start time for the meeting: </label>
+<input id="startTime" type="text" aria-errormessage="msgID" value="" aria-invalid="false">
+<span id="msgID" aria-live="assertive"><span style="visibility:hidden">Invalid time: the time must be between 9:00 AM and 5:00 PM</span></span>
+
+<!-- User has input an invalid value -->
+<label for="startTime"> Please enter a start time for the meeting: </label>
+<input id="startTime" type="text" aria-errormessage="msgID" aria-invalid="true" value="11:30 PM" >
+<span id="msgID" aria-live="assertive"><span style="visibility:visible">Invalid time: the time must be between 9:00 AM and 5:00 PM</span></span>
+
+<span id="label">Birthday:</span>
+<div contenteditable role="searchbox" aria-labelledby="label" aria-placeholder="MM-DD-YYYY">03-14-1879</div>
+
+<span id="label">Birthday:</span>
+<div contenteditable role="searchbox" aria-labelledby="label" aria-placeholder="MM-DD-YYYY">MM-DD-YYYY</div>
+
+<h2 id="label_fruit"> Available Fruit </h2>
+<ul role="listbox" aria-labelledby="label_fruit">
+  <li role="option" aria-setsize="16" aria-posinset="5"> apples </li>
+  <li role="option" aria-setsize="16" aria-posinset="6"> bananas </li>
+  <li role="option" aria-setsize="16" aria-posinset="7"> cantaloupes </li>
+  <li role="option" aria-setsize="16" aria-posinset="8"> dates </li>
+</ul>
+
+<div role="region" aria-roledescription="slide" id="slide42" aria-labelledby="slide42heading">
+<h1 id="slide42heading">Quarterly Report</h1>
+<!-- remaining slide contents -->
+</div>
+
+<section aria-roledescription="slide" id="slide42" aria-labelledby="slide42heading">
+<h1 id="slide42heading">Quarterly Report</h1>
+<!-- remaining slide contents -->
+</section>
+
+<div role="grid" aria-rowcount="2000">
+  <div role="rowgroup">
+    <div role="row" aria-rowindex="1">
+      <span role="columnheader">First Name</span>
+      <span role="columnheader">Last Name</span>
+      <span role="columnheader">Company</span>
+      <span role="columnheader">Phone</span>
+    </div>
+  </div>
+  <div role="rowgroup">
+    <div role="row" aria-rowindex="100">
+      <span role="gridcell">Fred</span>
+      <span role="gridcell">Jackson</span>
+      <span role="gridcell">Acme, Inc.</span>
+      <span role="gridcell">555-1234</span>
+    </div>
+    <div role="row" aria-rowindex="101">
+      <span role="gridcell">Sara</span>
+      <span role="gridcell">James</span>
+      <span role="gridcell">Acme, Inc.</span>
+      <span role="gridcell">555-1235</span>
+    </div>
+    <div role="row" aria-rowindex="102">
+      <span role="gridcell">Taylor</span>
+      <span role="gridcell">Johnson</span>
+      <span role="gridcell">Acme, Inc.</span>
+      <span role="gridcell">555-1236</span>
+    </div>
+  </div>
+</div>
+
+<div role="grid" aria-rowcount="2000">
+  <div role="rowgroup">
+    <div role="row" aria-rowindex="1">
+      <span role="columnheader">First Name</span>
+      <span role="columnheader">Last Name</span>
+      <span role="columnheader">Company</span>
+      <span role="columnheader">Phone</span>
+    </div>
+  </div>
+  <div role="rowgroup">
+    <div role="row" aria-rowindex="100">
+      <span role="gridcell">Fred</span>
+      <span role="gridcell">Jackson</span>
+      <span role="gridcell">Acme, Inc.</span>
+      <span role="gridcell">555-1234</span>
+    </div>
+    <div role="row" aria-rowindex="101">
+      <span role="gridcell">Sara</span>
+      <span role="gridcell">James</span>
+      <span role="gridcell">Acme, Inc.</span>
+      <span role="gridcell">555-1235</span>
+    </div>
+    <div role="row" aria-rowindex="102">
+      <span role="gridcell">Taylor</span>
+      <span role="gridcell">Johnson</span>
+      <span role="gridcell">Acme, Inc.</span>
+      <span role="gridcell">555-1236</span>
+    </div>
+  </div>
+</div>
+
+<div role="grid" aria-rowcount="2000">
+  <div role="rowgroup">
+    <div role="row" aria-rowindex="1">
+      <span role="columnheader" aria-rowindex="1">First Name</span>
+      <span role="columnheader" aria-rowindex="1">Last Name</span>
+      <span role="columnheader" aria-rowindex="1">Company</span>
+      <span role="columnheader" aria-rowindex="1">Phone</span>
+    </div>
+  </div>
+  <div role="rowgroup">
+    <div role="row" aria-rowindex="100">
+      <span role="gridcell" aria-rowindex="100">Fred</span>
+      <span role="gridcell" aria-rowindex="100">Jackson</span>
+      <span role="gridcell" aria-rowindex="100">Acme, Inc.</span>
+      <span role="gridcell" aria-rowindex="100">555-1234</span>
+    </div>
+    <div role="row" aria-rowindex="101">
+      <span role="gridcell" aria-rowindex="101">Sara</span>
+      <span role="gridcell" aria-rowindex="101">James</span>
+      <span role="gridcell" aria-rowindex="101">Acme, Inc.</span>
+      <span role="gridcell" aria-rowindex="101">555-1235</span>
+    </div>
+    <div role="row" aria-rowindex="102">
+      <span role="gridcell" aria-rowindex="102">Taylor</span>
+      <span role="gridcell" aria-rowindex="102">Johnson</span>
+      <span role="gridcell" aria-rowindex="102">Acme, Inc.</span>
+      <span role="gridcell" aria-rowindex="102">555-1236</span>
+    </div>
+  </div>
+</div>
+
+<h2 id="label_fruit"> Available Fruit </h2>
+<ul role="listbox" aria-labelledby="label_fruit">
+  <li role="option" aria-setsize="16" aria-posinset="5"> apples </li>
+  <li role="option" aria-setsize="16" aria-posinset="6"> bananas </li>
+  <li role="option" aria-setsize="16" aria-posinset="7"> cantaloupes </li>
+  <li role="option" aria-setsize="16" aria-posinset="8"> dates </li>
+</ul>
+
+<h2 id="label_fruit"> Available Fruit </h2>
+<ul role="listbox" aria-labelledby="label_fruit">
+  <li role="option" aria-setsize="-1" aria-posinset="5"> apples </li>
+  <li role="option" aria-setsize="-1" aria-posinset="6"> bananas </li>
+  <li role="option" aria-setsize="-1" aria-posinset="7"> cantaloupes </li>
+  <li role="option" aria-setsize="-1" aria-posinset="8"> dates </li>
+</ul>
+
+
+</body>
+</html>
+

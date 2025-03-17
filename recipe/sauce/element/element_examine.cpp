@@ -93,6 +93,7 @@ void element::post_examine_element ()
         case elem_audio : examine_audio (); break;
         case elem_bind : examine_bind (); break;
         case elem_body : examine_body (); break;
+        case elem_br : examine_br (); break;
         case elem_button : examine_button (); break;
         case elem_bvar :
         case elem_maction :
@@ -105,6 +106,11 @@ void element::post_examine_element ()
         case elem_mstyle :
         case elem_mtd :
         case elem_semantics : check_math_children (1, true); break;
+        case elem_canvas :
+        case elem_cite :
+        case elem_rp :
+        case elem_rt :
+        case elem_var : test_for_ancestral_role (); break;
         case elem_card : examine_card (); break;
         case elem_caption : examine_caption (); break;
         case elem_circle :
@@ -140,6 +146,7 @@ void element::post_examine_element ()
         case elem_fediffuselighting : examine_felighting (); break;
         case elem_fespecularlighting : examine_felighting (); break;
         case elem_fieldset : examine_fieldset (); break;
+        case elem_figcaption : examine_figcaption (); break;
         case elem_figure : examine_figure (); break;
         case elem_filter : examine_filter (); break;
         case elem_fn : if (node_.version ().math () > math_1) check_math_children (1);
@@ -155,13 +162,18 @@ void element::post_examine_element ()
         case elem_h5:
         case elem_h6 : examine_h123456 (); break;
         case elem_hgroup : examine_hgroup () ; break;
+        case elem_head :
+        case elem_param :
+        case elem_slot :
+        case elem_template : test_no_role_no_aria (); break;
         case elem_header : examine_header (); break;
         case elem_img : examine_img (); break;
         case elem_input : examine_input (); break;
-        case elem_interval :if (node_.version ().math () <= math_1) break;
+        case elem_interval : if (node_.version ().math () <= math_1) break;
              FALLTHROUGH;
         case elem_piece :   check_math_children (2); break;
         case elem_label : examine_label (); break;
+        case elem_legend : test_no_role (); break;
         case elem_math : examine_math (); break;
         case elem_menu : examine_menu (); break;
         case elem_menubar : examine_menubar (); break;
@@ -191,8 +203,8 @@ void element::post_examine_element ()
         case elem_picture : examine_picture (); break;
         case elem_reln : examine_equation (); break;
         case elem_ruby : examine_ruby (); break;
-        case elem_source : examine_source (); break;
         case elem_script : examine_script (); break;
+        case elem_source : examine_source (); break;
         case elem_switch : examine_switch (); break;
         case elem_table : examine_table (); break;
         case elem_td : examine_td (); break;
@@ -257,10 +269,11 @@ void element::congeal_dynamism ()
                     pick (nit_missing_dynamic, es_catastrophic, ec_element, "missing dynamic congeal for ", node_.id ().name ());
                     break;  } }
 
-void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, const attribute_bitset& ancestral_attributes, const attribute_bitset& sibling_attributes, const flags_t parental_flags)
+void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, const attribute_bitset& ancestral_attributes, const attribute_bitset& sibling_attributes, const role_bitset& ancestral_roles, const flags_t parental_flags)
 {   if (examined_) return;
     flags_t flags (parental_flags);
     ancestral_attributes_ = ancestral_attributes;
+    ancestral_roles_ = ancestral_roles;
     sibling_attributes_ = sibling_attributes;
     itemscope_ = itemscope;
     lingo lang (l);
@@ -298,8 +311,9 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
             break;
         case elem_faux_text :
             PRESUME (node_.has_parent (), __FILE__, __LINE__);
-            if ((node_.version () >= html_2) || ! node_.has_previous ()) if ((elem :: flags (node_.parent ().tag ()) & EP_ONLYELEMENTS) == EP_ONLYELEMENTS)
-                pick (nit_only_elements, es_warning, ec_element, "<", elem :: name (node_.parent ().tag ()), "> can only contain elements, not text.");
+            if (node_.version () >= html_2)
+                if ((elem :: flags (node_.parent ().tag ()) & EP_ONLYELEMENTS) == EP_ONLYELEMENTS)
+                    pick (nit_only_elements, es_warning, ec_element, "<", elem :: name (node_.parent ().tag ()), "> can only contain elements, not text.");
             if ((flags & EP_NOSPELL) == 0)
                 if (! ancestral_elements_.test (elem_style) && ! ancestral_elements_.test (elem_script))
                 {   ::std::string t (text (true));
@@ -384,17 +398,22 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
                             if (a_.known (a_rel)) examine_rdfa_rel (a_.get_string (a_rel));
                             if (a_.known (a_rev)) examine_rdfa_rev (a_.get_string (a_rev)); }
 
-                if (node_.version () >= html_apr21)
+                if (node_.version () >= html_aria_1_0)
                 {   if (a_.known (a_aria_checked)) examine_aria_checked ();
-                    if (a_.known (a_aria_colspan)) examine_aria_colspan ();
                     if (a_.known (a_aria_disabled)) examine_aria_disabled ();
                     if (a_.known (a_aria_hidden)) examine_aria_hidden ();
-                    if (a_.known (a_aria_placeholder)) examine_aria_placeholder ();
                     if (a_.known (a_aria_readonly)) examine_aria_readonly ();
                     if (a_.known (a_aria_required)) examine_aria_required ();
-                    if (a_.known (a_aria_rowspan)) examine_aria_rowspan ();
                     if (a_.known (a_aria_valuemax)) examine_aria_valuemax ();
-                    if (a_.known (a_aria_valuemin)) examine_aria_valuemin (); }
+                    if (a_.known (a_aria_valuemin)) examine_aria_valuemin ();
+
+                    if (node_.version () >= html_aria_1_1)
+                    {   if (a_.known (a_aria_colspan)) examine_aria_colspan ();
+                        if (a_.known (a_aria_placeholder)) examine_aria_placeholder ();
+                        if (a_.known (a_aria_rowspan)) examine_aria_rowspan ();
+
+                        if (node_.version () >= html_aria_1_3)
+                            if (a_.known (a_aria_brailleroledescription)) examine_aria_brailleroledescription (); } }
 
                 if (a_.known (a_accesskey)) examine_accesskey ();
                 if (a_.known (a_clip)) examine_clip ();
@@ -420,6 +439,7 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
                 if (a_.known (a_ref)) examine_ref ();
                 if (a_.known (a_registrationmark)) examine_registrationmark ();
                 if (a_.known (a_style)) examine_style_attr ();
+                if (a_.known (a_tabindex)) examine_tabindex ();
                 if (a_.known (a_xlinkhref)) examine_xlinkhref ();
 
                 if (node_.line () >= 0) get_ids ().data (node_.line ());
@@ -438,14 +458,15 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
                 {   if (a_.known (a_rel)) examine_rel (a_.get_string (a_rel), lang);
                     if (a_.known (a_rev)) examine_rel (a_.get_string (a_rev), lang); }
 
-                } }
+                test_compatible_ancestral_role (); } }
 
     examine_children (flags, lang);
 
     if (post_examine)
     {   post_examine_element ();
         if (a_.known (a_itemref)) examine_itemref (itemscope_);
-        if (a_.known (a_popovertarget)) examine_popovertarget (); }
+        if (a_.known (a_popovertarget)) examine_popovertarget ();
+        if (a_.known (a_role)) examine_role (); }
     if (postprocess)
         if (mf_)
         {   if (mf_ -> allocated (h_entry))
@@ -460,23 +481,30 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
 void element::examine_children (const flags_t flags, const lingo& lang)
 {   if (has_child ())
     {   attribute_bitset ancestral_attributes, sibling_attributes;
+        role_bitset ancestral_roles;
         itemscope_ptr itemscope;
         if (tag () == elem_template)
-            ancestral_attributes = own_attributes_;
+        {   ancestral_attributes = own_attributes_;
+            ancestral_roles = role_bitset (); }
         else
         {   ancestral_attributes = ancestral_attributes_;
+            ancestral_roles = ancestral_roles_;
             itemscope = itemscope_; }
         VERIFY_NOT_NULL (child_, __FILE__, __LINE__);
         for (element* p = child_; p != nullptr; p = p -> sibling_)
         {   p -> reconstruct (access_);
-            p -> examine_self (lang, itemscope, ancestral_attributes, sibling_attributes, flags);
+            p -> examine_self (lang, itemscope, ancestral_attributes, sibling_attributes, ancestral_roles, flags);
             if (p -> node_.is_closure ())
                 closure_uid_ = p -> uid_;
             else
             {   sibling_attributes |= p -> own_attributes_;
                 if (tag () != elem_template)
                 {   descendant_attributes_ |= p -> descendant_attributes_;
-                    descendant_attributes_ |= p -> own_attributes_; } } }
+                    descendant_attributes_ |= p -> own_attributes_;
+                    descendant_roles_ |= p -> descendant_roles_;
+                    if (a_.known (a_role) && a_.good (a_role))
+                        for (auto r : a_.get_ints (a_role))
+                            descendant_roles_ |= static_cast < e_aria_role > (r); } } }
         for (element* p = child_; p != nullptr; p = p -> sibling_)
             p -> sibling_attributes_ = sibling_attributes; } }
 
@@ -484,7 +512,8 @@ void element::examine_children (const flags_t flags, const lingo& lang)
 {   ::std::string res;
     ancestral_elements_ = ancestral_elements;
     if (context.tell (es_structure))
-    {   res += ::std::string (static_cast < size_t > (depth) * 2, ' ');
+    {   try { res += ::boost::lexical_cast < ::std::string > (node_.line ()); } catch (...) { }
+        res += ::std::string (static_cast < size_t > (depth) * 2, ' ');
         if (node_.is_closure ()) res += "/";
         res += node_.id ().name ();
         if (context.tell (es_detail) && (node_.id () == elem_faux_text))
@@ -498,6 +527,10 @@ void element::examine_children (const flags_t flags, const lingo& lang)
         element* e = make_child ();
         do
         {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
+            if (context.tell (es_detail))
+            {   res += ::boost::lexical_cast < ::std::string > (e -> node_.line ());
+                if (e -> node_.id () == elem_faux_text) res += "!";
+                res += ","; }
             res += e -> make_children (depth + 1, ancestors);
             if (! e -> node_.is_closure ())
             {   siblings |= e -> node_.tag ();
@@ -581,12 +614,11 @@ void element::verify_document ()
     verify (); }
 
 ::std::string element::report ()
-{   ::std::ostringstream res;
-    res << nits ().review ();
+{   ::std::string res = nits ().review ();
     for (element* p = child_; p != nullptr; p = p -> sibling_)
-        res << p -> report ();
+        res += p -> report ();
     nits ().accumulate (page_ -> nits ());
-    return res.str (); }
+    return res; }
 
 element* element::next_element (element* previous)
 {   if (previous == nullptr) return nullptr;

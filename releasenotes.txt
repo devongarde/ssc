@@ -3,8 +3,22 @@ static site checker
 https://ssc.lu/
 (c) 2020-2025 Dylan Harris
 
+0.2.12
+- added ARIA 1.1, 1.2 & 1.3 (draft), and ARIA Digital Publishing.
+- Added OUTPUT configuration section (to control output details)
+- added --LINKS.REQUIRED for required links on pages, such as T&C, legal, etc..
+- added warnings for missing transcription and description <TRACK>s for media elements 
+- updated schema legislation and shipping types
+- added bribe schema (techanically referred to as FinancialIncentive)
+- added living standard COMMAND, COMMANDFOR and ONCOMMAND attributes
+- faux AI <THINK> element treated rather like <DIV>---with a warning
+- better checking of <IFRAME> ALLOW attribute
+- remove dependency on CURL
+- underlying work
+
 0.2.11
 - introduced an unsigned windows installer for arm64
+- introduced macos app for both intel and arm
 - croissant ontology 1.1 beta
 - schema.org aggregate element property
 - various bug fixes

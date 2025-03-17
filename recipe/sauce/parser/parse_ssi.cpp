@@ -605,7 +605,7 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
 void splurt (nitpick& , const char* wot, const ::std::string::const_iterator i)
 {   const char ch (*i);
     if (ch < ' ') return;
-    ::std::cout << wot << ch << ::std::endl; }
+    outstr.out (wot, ch, "\n"); }
 
 ::std::string parse_ssi (nitpick& nits, const html_version& v, page& p, ssi_compedium& c, const ::std::string& input, ::std::time_t& updated, bool shush)
 {   VERIFY_NOT_NULL (p.get_directory (), __FILE__, __LINE__);

@@ -18,7 +18,7 @@
 </h1>
 
 <p>
-Nits are the output of ssc, the static site NITpicker. You will need
+Nits are the detail of ssc, the static site NITpicker. You will need
 these switches if you want to hide certain nits, output lots of extra
 gen, etc..
 </p>
@@ -47,18 +47,10 @@ is not normally output, to avoid clutter. However, it can be seed by using the
 
 <tr><td>nits.extra</td> <td>Report additional nits.</td></tr>
 
-<tr><td>nits.format&nbsp;F</td> <td>Specify the output format; F is a template
-                        file (see <a href="template.shtml">output templates</a>).</td></tr>
-
 <tr><td>nits.info&nbsp;n</td> <td>Redefine nit n as information; may be repeated.</td></tr>
 
 <tr><td>nits.nids</td> <td>Output nit ids, which can be used to redefine
                         nits.</td></tr>
-
-<tr><td>nits.override&nbsp;F</td> <td>Use this output format, not the one specified
-                        by <kbd>nits.format</kbd>. F is a template file (see
-                        <a href="template.shtml">output templates</a>). This switch is intended
-                        to aid automation.</td></tr>
 
 <tr><td>nits.quote&nbsp;X</td> <td>Specify quote style when using nits.format. X
                         can be &lsquo;text&rsquo; or &lsquo;html&rsquo;.</td></tr>

@@ -243,6 +243,8 @@ void directory::examine_page (nitpick* ticks, const ::std::string& file) const
                 mac.emplace (nm_page_name, file);
                 mac.emplace (nm_page_disk_path, p.string ());
                 mac.emplace (nm_page_site_path, sp);
+                if (context.absolute_path ()) mac.emplace (nm_page_path, p.string ());
+                else mac.emplace (nm_page_path, sp);
                 try
                 {   bool borked;
                     ::std::string content (read_text_file (nits, p, borked));

@@ -55,10 +55,11 @@ void output_streams_t::out (const ::std::string& s) const
 
 void output_streams_t::console (const ::std::string& s) const
 {   lox l (lox_out);
+    if (! invalid () && ! context.serve ()) *fos_ << s;
 #ifdef WX
-    if (wx_) app -> console (ensane (s)); else
+    else if (wx_) app -> console (ensane (s));
 #endif // WX
-    ::std::cout << s; }
+    else ::std::cout << s; }
 
 void output_streams_t::err (const ::std::string& s) const
 {   lox l (lox_out);

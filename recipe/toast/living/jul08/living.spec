@@ -104,7 +104,7 @@ PASS ../toast/living/jul08/example-2.html
 4 url_not_found style_not_css
 5 url_not_found
 6 url_not_found
-12 unknown_element missing_close
+12 invalid_element_version missing_close
 13 url_not_found
 15 inserted_missing_closure
 
@@ -115,7 +115,7 @@ PASS ../toast/living/jul08/figure.html
 30 url_not_found
 35 inserted_missing_closure
 36 url_not_found
-40 url_not_found
+40 url_not_found track_missing
 45 inserted_missing_closure
 46 use_quote_code
 55 url_not_found
@@ -298,7 +298,7 @@ PASS ../toast/living/jul08/small.html
 0 charset_mismatch charset_used charset_invalid
 
 PASS ../toast/living/jul08/source.html
-6 inserted_missing_parent missing_close url_not_found
+6 inserted_missing_parent missing_close track_missing url_not_found
 7 url_not_found
 8 url_not_found
 9 url_not_found

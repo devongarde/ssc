@@ -194,6 +194,10 @@ const ontology_version disco_schema (s_ddi, 1, 0);
 
 const ontology_version doap_schema (s_doap, 1, 0);
 
+#define DPV_X_VERSION221(XXX) \
+const ontology_version dpv_##XXX##_2_0 (s_dpv_##XXX, 2, 0); \
+const ontology_version dpv_##XXX##_2_1 (s_dpv_##XXX, 2, 1);
+
 #define DPV_X_VERSION80(XXX) \
 const ontology_version dpv_##XXX##_0_8_0 (s_dpv_##XXX, 0, 80); \
 const ontology_version dpv_##XXX##_0_8_1 (s_dpv_##XXX, 0, 81); \
@@ -228,6 +232,7 @@ const ontology_version dpv_0_8_2 (s_dpv, 0, 82);
 const ontology_version dpv_0_9 (s_dpv, 0, 90);
 const ontology_version dpv_1_0 (s_dpv, 1, 0);
 const ontology_version dpv_2_0 (s_dpv, 2, 0);
+const ontology_version dpv_2_1 (s_dpv, 2, 1);
 const ontology_version dpv_eu_aiact_2_0 (s_dpv_eu_aiact, 2, 0);
 const ontology_version dpv_eu_dga_2_0 (s_dpv_eu_dga, 2, 0);
 const ontology_version dpv_eu_gdpr_2_0 (s_dpv_eu_gdpr, 2, 0);
@@ -237,8 +242,8 @@ const ontology_version dpv_gdpr_0_1 (s_dpv_gdpr, 0, 10);
 const ontology_version dpv_gdpr_0_2 (s_dpv_gdpr, 0, 20);
 const ontology_version dpv_gdpr_0_3 (s_dpv_gdpr, 0, 30);
 DPV_X_VERSION40 (gdpr);
-const ontology_version dpv_ai_2_0 (s_dpv_ai, 2, 0);
-const ontology_version dpv_just_2_0 (s_dpv_just, 2, 0);
+DPV_X_VERSION221 (ai);
+DPV_X_VERSION221 (just);
 DPV_X_VERSION50 (legal);
 const ontology_version dpv_legal_de_2_0 (s_dpv_legal_de, 2, 0);
 const ontology_version dpv_legal_eu_2_0 (s_dpv_legal_eu, 2, 0);
@@ -246,15 +251,15 @@ const ontology_version dpv_legal_gb_2_0 (s_dpv_legal_gb, 2, 0);
 const ontology_version dpv_legal_ie_2_0 (s_dpv_legal_ie, 2, 0);
 const ontology_version dpv_legal_in_2_0 (s_dpv_legal_in, 2, 0);
 const ontology_version dpv_legal_us_2_0 (s_dpv_legal_us, 2, 0);
-const ontology_version dpv_loc_2_0 (s_dpv_loc, 2, 0);  
+DPV_X_VERSION221 (loc);
 const ontology_version dpv_nace_schema (s_dpv_nace, 0, 10);
 DPV_X_VERSION40 (pd);
-const ontology_version dpv_pd_2_0 (s_dpv_pd, 2, 0);  
+DPV_X_VERSION221 (pd);
 DPV_X_VERSION80 (rights);
 DPV_X_VERSION80 (risk);
-const ontology_version dpv_risk_2_0 (s_dpv_risk, 2, 0);  
+DPV_X_VERSION221 (risk);
 DPV_X_VERSION80 (tech);
-const ontology_version dpv_tech_2_0 (s_dpv_tech, 2, 0);  
+DPV_X_VERSION221 (tech);
 
 const ontology_version duv_schema (s_duv, 1, 0);
 

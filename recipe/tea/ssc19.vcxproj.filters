@@ -509,7 +509,7 @@
     <ClInclude Include="..\heater\utility\cache.h">
       <Filter>Heater\utility</Filter>
     </ClInclude>
-    <ClInclude Include="..\heater\url\curl.h">
+    <ClInclude Include="..\heater\url\fetch.h">
       <Filter>Heater\url</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\coop\tls.h">
@@ -860,6 +860,12 @@
     <ClInclude Include="..\heater\main\server.h">
       <Filter>Heater\main</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\main\ssc.h">
+      <Filter>Heater\main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\webpage\required.h">
+      <Filter>Heater\webpage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1096,80 +1102,11 @@
     <ClCompile Include="..\sauce\parser\text-data.cpp">
       <Filter>Sauce\parser</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_a.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_i.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_d.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_m1.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_s.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\attribute\namespace.cpp">
       <Filter>Sauce\attribute</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\main\abort.cpp">
       <Filter>Sauce\main</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_b.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_c.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_e.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_f1.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_g.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_h.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_k.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_l.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_n.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_o.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_p.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_q.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_r.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_t1.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_u.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_v.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_w.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_x.cpp">
-      <Filter>Sauce\attribute</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\utility\filesystem.cpp">
       <Filter>Sauce\utility</Filter>
@@ -1179,9 +1116,6 @@
     </ClCompile>
     <ClCompile Include="..\sauce\element\element_rdfa.cpp">
       <Filter>Sauce\element</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_rdf.cpp">
-      <Filter>Sauce\attribute</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\rdf\rdf.cpp">
       <Filter>Sauce\rdf</Filter>
@@ -1197,15 +1131,6 @@
     </ClCompile>
     <ClCompile Include="..\sauce\parser\jsonic.cpp">
       <Filter>Sauce\parser</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_f2.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_m2.cpp">
-      <Filter>Sauce\attribute</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\attribute\avm_data_t2.cpp">
-      <Filter>Sauce\attribute</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\spell\winspell.cpp">
       <Filter>Sauce\spell</Filter>
@@ -1240,7 +1165,7 @@
     <ClCompile Include="..\sauce\utility\cache.cpp">
       <Filter>Sauce\utility</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\url\curl.cpp">
+    <ClCompile Include="..\sauce\url\fetch.cpp">
       <Filter>Sauce\url</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\css_attribute.cpp">
@@ -1492,7 +1417,88 @@
     <ClCompile Include="..\sauce\main\server.cpp">
       <Filter>Sauce\main</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_0_9.cpp">
+    <ClCompile Include="..\sauce\attribute\avm_data_a.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_b.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_c.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_d.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_e.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_f1.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_f2.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_g.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_h.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_i.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_k.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_l.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_m1.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_m2.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_n.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_o.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_p.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_q.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_r.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_rdf.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_s.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_t1.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_t2.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_u.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_v.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_w.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\attribute\avm_data_x.cpp">
+      <Filter>Sauce\attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_3_9.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_a_1.cpp">
@@ -1510,7 +1516,13 @@
     <ClCompile Include="..\sauce\css\value_types_c_2.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_a.cpp">
+    <ClCompile Include="..\sauce\css\value_types_c_3.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_a_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_a_2.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_css_b_1.cpp">
@@ -1522,19 +1534,31 @@
     <ClCompile Include="..\sauce\css\value_types_css_b_3.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_b_4.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_css_c_1.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_css_c_2.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_d_e.cpp">
+    <ClCompile Include="..\sauce\css\value_types_css_c_3.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_d.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_e.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_css_f_1.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_css_f_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_f_3.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_css_g_h.cpp">
@@ -1567,13 +1591,22 @@
     <ClCompile Include="..\sauce\css\value_types_css_s_2.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_s_3.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_css_t_1.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_css_t_2.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_u_v.cpp">
+    <ClCompile Include="..\sauce\css\value_types_css_t_3.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_u.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_v.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_css_w_z.cpp">
@@ -1594,13 +1627,19 @@
     <ClCompile Include="..\sauce\css\value_types_g_h.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_i.cpp">
+    <ClCompile Include="..\sauce\css\value_types_i_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_i_2.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_j_k.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_l.cpp">
+    <ClCompile Include="..\sauce\css\value_types_l_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_l_2.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_m_1.cpp">
@@ -1612,7 +1651,10 @@
     <ClCompile Include="..\sauce\css\value_types_m_3.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_n_o.cpp">
+    <ClCompile Include="..\sauce\css\value_types_n.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_o.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_p_1.cpp">
@@ -1639,7 +1681,10 @@
     <ClCompile Include="..\sauce\css\value_types_svg_2.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_t.cpp">
+    <ClCompile Include="..\sauce\css\value_types_t_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_t_2.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_u.cpp">
@@ -1656,6 +1701,12 @@
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_x_z.cpp">
       <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_0_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\webpage\required.cpp">
+      <Filter>Sauce\webpage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

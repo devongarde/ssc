@@ -1,25 +1,48 @@
-<?xml version="1.0" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<title>ssc report for ..\toast\output\xhtml</title>
-<link rel="stylesheet" href="/ssc.css" type="text/css" />
-</head>
-<body>
-<header>
-<h1 class="nit-title">ssc report for ..\toast\output\xhtml</h1>
-</header>
-<main>
-<h2 class="nit-section">/index.html</h2>
-<h3><span class="nit-line">2</span> <span class="nit-before">&lt;!DOCTYPE&nbsp;html&gt;&nbsp;</span> <span class="nit-mote">&lt;html&gt;</span> <span class="nit-after">&nbsp;&lt;head&gt;&nbsp;&lt;title&gt;XHTML&nbsp;outp...</span</h3>
-<p>
-<span class="nit-level">&nbsp;--&gt;&nbsp;</span> <span class="nit-explanation">use&nbsp;LANG&nbsp;on&nbsp;&lt;HTML&gt;&nbsp;to&nbsp;specify&nbsp;a&nbsp;default&nbsp;language</span> <span class="nit-id">[naughty_lang]</span><br/>
-</p>
-<br/><br/>
-</main>
-<footer>
-<a href="https://ssc.lu/" class="ssc-name">Static&nbsp;Site&nbsp;Checker</a> version 0.2.11<br/>
-<a href="https://dylanharris.org/" class="ssc-copyright">(c)&nbsp;2020-2025&nbsp;Dylan&nbsp;Harris</a>
-</footer>
-</body>
-</html>
+<!DOCTYPE HTML>
+<HTML lang=en>
+<HEAD>
+<TITLE>ssc report for ..\toast\output\xhtml</TITLE>
+<STYLE TYPE="text/css">
+A { color:#9999BB }
+H1,H2,H3,H4,H5,H6 { margin-bottom: 0; padding-bottom: 0; }
+H1 { color:#66BB66; font-size: 140%; }
+H2 { color:#66BB66; font-size: 120% }
+H3 { color:#99BB99; font-size: 100% }
+P { margin-top: 0; padding-top: 0; }
+FOOTER,HEADER,LI,MAIN,P,PRE { color:#999999 }
+.smaller { font-size: 80% }
+.nit-before,.nit-after { color: #CCCCCC }
+.nit-catastrophe { color: #FF0000 }
+.nit-doc { font-style: italic; }
+.nit-error { color: #FF6666 }
+.nit-explanation { color: #9999CC }
+.nit-info { color: #666666 }
+.nit-line { color: #666666 }
+.nit-mote { color: #CC3333 }
+.nit-ref { font-style: italic; }
+.nit-warning { color: #CC6666 }
+</STYLE>
+</HEAD>
+<BODY>
+<HEADER>
+<H1 class="nit-title">ssc Report for ..\toast\output\xhtml</H1>
+</HEADER>
+<MAIN>
+<H2 class="nit-section">/index.html</H2>
+<H3><SPAN class="nit-before">&lt;!DOCTYPE&nbsp;html&gt;&nbsp;</SPAN> <SPAN class="nit-mote">&lt;html&gt;</SPAN> <SPAN class="nit-after">&nbsp;&lt;head&gt;&nbsp;&lt;title&gt;XHTML&nbsp;outp...</SPAN></H3>
+<P>
+<SPAN class="nit-warning">warning</SPAN>: <SPAN class="nit-explanation">use&nbsp;LANG&nbsp;on&nbsp;&lt;HTML&gt;&nbsp;to&nbsp;specify&nbsp;a&nbsp;default&nbsp;language</SPAN><BR/><SPAN class="nit-ref">4.1.1&nbsp;The&nbsp;html&nbsp;element</SPAN> <SPAN class="nit-doc">(HTML&nbsp;5.0,&nbsp;W3,&nbsp;Oct&nbsp;2014)</SPAN><BR/>
+</P>
+<BR/><BR/>
+<A href="/index.html">Previous page</A>
+</MAIN>
+<HR/>
+<FOOTER class="smaller">
+<A href="https://ssc.lu/" class="ssc-name">Static&nbsp;Site&nbsp;Checker</A> version 0.2.12 (build)<BR/>
+<A href="https://dylanharris.org/" class="ssc-copyright">(c)&nbsp;2020-2025&nbsp;Dylan&nbsp;Harris</A><BR>
+djns:wnd_x86:m64:1_87:76.1, testuser (testaccount), time
+&ldquo;desc&nbsp;pt.&nbsp;1
+desc&nbsp;pt.&nbsp;2&rdquo;
+</FOOTER>
+</BODY>
+</HTML>

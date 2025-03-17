@@ -78,6 +78,10 @@ struct symbol_entry < html_version, e_sgml > doctype_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF },  HTTP_W3 "/TR/REC-html40/frameset.dtd", doc_html400_frameset },
     { { HTML_4_0 }, { HTML_UNDEF },  HTTPS_W3 "/TR/REC-html40/frameset.dtd", doc_html400_frameset },
 
+    { { HTML_4_0 }, { HTML_UNDEF }, "-//W3C//DTD HTML+ARIA 1.0//EN", doc_html_aria },
+    { { HTML_4_0 }, { HTML_UNDEF },  HTTP_W3 "WAI/ARIA/schemata/html4-aria-1.dtd", doc_html_aria },
+    { { HTML_4_0 }, { HTML_UNDEF },  HTTPS_W3 "WAI/ARIA/schemata/html4-aria-1.dtd", doc_html_aria },
+
     { { HTML_4_0 }, { HTML_UNDEF },  "-//W3C//ENTITIES Latin1//EN//HTML", doc_latin },
     { { HTML_4_0 }, { HTML_UNDEF },  "-//W3C//ENTITIES Special//EN//HTML", doc_special },
     { { HTML_4_0 }, { HTML_UNDEF },  "-//W3C//ENTITIES Symbols//EN//HTML", doc_symbols },

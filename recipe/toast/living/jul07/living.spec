@@ -55,7 +55,7 @@ PASS ../toast/living/jul07/example.html
 23 nahtch
 46 attribute_required
 65 url_not_found
-67 attribute_unrecognised unrecognised_attribute url_not_found
+67 attribute_unrecognised unrecognised_attribute url_not_found track_missing
 71 url_not_found
 
 PASS ../toast/living/jul07/example-2.html
@@ -63,7 +63,7 @@ PASS ../toast/living/jul07/example-2.html
 5 url_not_found style_not_css
 6 url_not_found
 12 url_not_found
-13 unknown_element missing_close
+13 invalid_element_version missing_close
 15 inserted_missing_closure
 
 PASS ../toast/living/jul07/header.html

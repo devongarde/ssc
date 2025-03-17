@@ -6,7 +6,7 @@
 <base href="/">
 <base href="/">
 </head>
-<body role=document>
+<body role="document">
 <h1>shadow bad HTML</h1>
 <form>
 <textarea>

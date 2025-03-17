@@ -24,6 +24,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 typedef ssc_bitset < e_attribute, last_attribute > attribute_bitset;
 extern const attribute_bitset empty_attribute_bitset;
+extern attribute_bitset aria_attribute_bitset;
+
+void as_init ();
 
 inline bool any (const attribute_bitset& lhs, const attribute_bitset& rhs)
 {   const attribute_bitset tst (lhs & rhs);

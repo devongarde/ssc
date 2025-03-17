@@ -64,7 +64,7 @@ PASS ../toast/css/4-text/css-8.html
 
 PASS ../toast/css/4-text/css-9.html
 2 naughty_lang
-20 unknown_element unknown_element
+20 invalid_element_version invalid_element_version
 
 PASS ../toast/css/4-text/index.html
 2 naughty_lang

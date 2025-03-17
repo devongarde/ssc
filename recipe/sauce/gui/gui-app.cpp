@@ -91,34 +91,34 @@ bool check_local_help (context_t& c, ::boost::filesystem::path& fn)
     c.help (fn.string ());
     return true; }
 
-#ifdef _MSC_VER
 void find_help (context_t& c, ::boost::filesystem::path& fn)
 {   PRESUME (fn.empty (), __FILE__, __LINE__);
-    if (! check_local_help (c, fn))
-    {   const HRSRC src = ::FindResource (nullptr, MAKEINTRESOURCE (IDR_HELP), RT_RCDATA);
-        if (src != INVALID_HANDLE_VALUE)
-        {   const HGLOBAL load = ::LoadResource (nullptr, src);
-            if ((load != INVALID_HANDLE_VALUE) && (load != 0)) try
-            {   const LPVOID lock = ::LockResource (load);
-                if (lock != nullptr)
-                {   const DWORD size = ::SizeofResource (nullptr, src);
-                    if (size > 0)
-                    {   const HANDLE file = ::CreateFileA (fn.string ().c_str (), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-                        if (file != INVALID_HANDLE_VALUE) try
-                        {   DWORD written = 0;
-                            if (::WriteFile (file, lock, size, &written, nullptr))
-                                if (written == size)
-                                    c.help (fn.string ());
-                            ::CloseHandle (file); }
-                        catch (...)
-                        {   ::CloseHandle (file); throw; } } }
-                ::FreeResource (load);
-            } catch (...)
-            {   ::FreeResource (load); throw; } } } }
-#else // _MSC_VER
-void find_help (context_t& c, ::boost::filesystem::path& fn)
-{   check_local_help (c, fn); }
+    check_local_help (c, fn);
+#ifdef _MSC_VER
+    const HRSRC src = ::FindResource (nullptr, MAKEINTRESOURCE (IDR_HELP), RT_RCDATA);
+    if (src != INVALID_HANDLE_VALUE)
+    {   const HGLOBAL load = ::LoadResource (nullptr, src);
+        if ((load != INVALID_HANDLE_VALUE) && (load != 0)) try
+        {   const LPVOID lock = ::LockResource (load);
+            if (lock != nullptr)
+            {   const DWORD size = ::SizeofResource (nullptr, src);
+                if (size > 0)
+                {   const HANDLE file = ::CreateFileA (fn.string ().c_str (), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+                    if (file != INVALID_HANDLE_VALUE) try
+                    {   DWORD written = 0;
+                        if (::WriteFile (file, lock, size, &written, nullptr))
+                            if (written == size)
+                                c.help (fn.string ());
+                        ::CloseHandle (file); }
+                    catch (...)
+                    {   try { ::CloseHandle (file); } catch (...) { }
+                        throw; } } }
+            ::FreeResource (load); }
+        catch (...)
+        {   try { ::FreeResource (load); } catch (...) { }
+            throw; } }
 #endif // _MSC_VER
+    }
 
 bool app_t::OnInit ()
 {   nitpick nits;
@@ -276,7 +276,7 @@ void app_t::nits_msgbox (wxWindow* mummy, const ::std::string& title, nitpick& n
                 style |= wxICON_INFORMATION;
                 break; }		
         macro_t mac;
-        mac.load_template (nits, html_default, nf_text);
+        mac.load_template (nits, html_default, eot_text);
         wxMessageDialog msg (mummy, mac.report (nits).c_str (), title.c_str (), style);
         msg.ShowModal (); } }
 

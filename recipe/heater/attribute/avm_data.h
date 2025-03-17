@@ -125,18 +125,24 @@ struct hav_t
     { { MAJOR_FROM, MINOR_FROM, FLAG, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_valuetext }
 
 #define ADDITIONAL_ARIA_ATTRIBUTES(ELEM) \
-    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_colcount }, \
-    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_colindex }, \
-    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_colspan }, \
-    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_current }, \
-    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_details }, \
-    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_errormessage }, \
-    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_modal }, \
-    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_placeholder }, \
-    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_roledescription }, \
-    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_rowcount }, \
-    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_rowindex }, \
-    { { HTML_APR21, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_rowspan }
+    { { HTML_ARIA_1_3, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_braillelabel }, \
+    { { HTML_ARIA_1_3, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_brailleroledescription }, \
+    { { HTML_ARIA_1_1, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_colcount }, \
+    { { HTML_ARIA_1_1, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_colindex }, \
+    { { HTML_ARIA_1_3, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_colindextext }, \
+    { { HTML_ARIA_1_1, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_colspan }, \
+    { { HTML_ARIA_1_1, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_current }, \
+    { { HTML_ARIA_1_3, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_description }, \
+    { { HTML_ARIA_1_1, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_details }, \
+    { { HTML_ARIA_1_1, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_errormessage }, \
+    { { HTML_ARIA_1_1, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_keyshortcuts }, \
+    { { HTML_ARIA_1_1, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_modal }, \
+    { { HTML_ARIA_1_1, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_placeholder }, \
+    { { HTML_ARIA_1_1, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_roledescription }, \
+    { { HTML_ARIA_1_1, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_rowcount }, \
+    { { HTML_ARIA_1_1, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_rowindex }, \
+    { { HTML_ARIA_1_3, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_rowindextext }, \
+    { { HTML_ARIA_1_1, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_aria_rowspan }
 
 #define MATH1_STANDARD_ATTRIBUTES_EX(ELEM, FLAGS, MAF) \
     { { HTML_MATH1, 0, FLAGS, ( H2_MATH_1 | MAF ) }, { HTML_UNDEF }, ELEM, a_class }, \
@@ -986,6 +992,7 @@ struct hav_t
     { { HTML_JUL09, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_oncanplaythrough }, \
     { { HTML_JAN05, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_onchange }, \
     { { HTML_JUL12, HV_NOT50, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_onclose }, \
+    { { HTML_MAR25, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_oncommand }, \
     { { HTML_JUL07, HV_NOT50, HE_NOT_SVG_1 | HV_NOT52 | HV_NOT53 }, { HTML_UNDEF }, ELEM, a_oncontextmenu }, \
     { { HTML_5_1, 0, HE_NOT_SVG_1 }, { HTML_5_1 }, ELEM, a_oncopy }, \
     { { HTML_JUL19, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_oncopy }, \

@@ -224,7 +224,7 @@ int pos_de (const ::std::string& s, const char* charset, vint_t& vf, vint_t& vt,
         vt.push_back (len); }
     return GSL_NARROW_CAST < int  > (vf.size ()); }
 
-vstr_t split_by_whitespace_and (const ::std::string& s, const char* charset)
+vstr_t split_by_whitespace_and (const ::std::string& s, const char* charset, const bool blank)
 {   ::std::string cs;
     if (charset != nullptr) cs.assign (charset);
     PRESUME (cs.find_first_of ("\"\\") == ::std::string::npos, __FILE__, __LINE__);
@@ -242,18 +242,27 @@ vstr_t split_by_whitespace_and (const ::std::string& s, const char* charset)
         if (*i == '"')
         {   if (! started) started = true;
             if (! quoted) { quoted = true; continue; }
-            if (quoted) { started = quoted = false; deadzone = true; v.push_back (current); current.clear (); continue; } }
+            if (quoted)
+            {   started = quoted = false;
+                deadzone = true;
+                v.push_back (current);
+                current.clear ();
+                continue; } }
         else if (whitespace || ((charset != nullptr) && (cs.find (*i) != ::std::string::npos)))
         {   deadzone = false;
             if (! started) continue;
-            if (! quoted) { started = quoted = false; if (! current.empty ()) v.push_back (current); current.clear (); continue; } }
+            if (! quoted)
+            {   started = quoted = false;
+                if (blank || ! current.empty ()) v.push_back (current);
+                current.clear ();
+                continue; } }
         if (deadzone) continue;
         if (! started) { started = true; quoted = false; }
         current += *i; }
-    if (! current.empty ()) v.push_back (current);
+    if (blank || ! current.empty ()) v.push_back (current);
     return v; }
 
-vstr_t separate_by_whitespace_and (const ::std::string& s, const char* charset)
+vstr_t separate_by_whitespace_and (const ::std::string& s, const char* charset, const bool blank)
 {   ::std::string cs;
     if (charset != nullptr) cs.assign (charset);
     PRESUME (cs.find_first_of ("\"\\") == ::std::string::npos, __FILE__, __LINE__);
@@ -271,23 +280,32 @@ vstr_t separate_by_whitespace_and (const ::std::string& s, const char* charset)
         if (*i == '"')
         {   if (! started) started = true;
             if (! quoted) { quoted = true; continue; }
-            if (quoted) { started = quoted = false; deadzone = true; v.push_back (current); current.clear (); continue; } }
+            if (quoted)
+            {   started = quoted = false; 
+                deadzone = true;
+                v.push_back (current);
+                current.clear ();
+                continue; } }
         else if (whitespace)
         {   deadzone = false;
             if (! started) continue;
-            if (! quoted) { started = quoted = false; if (! current.empty ()) v.push_back (current); current.clear (); continue; } }
+            if (! quoted)
+            {   started = quoted = false;
+                if (blank || ! current.empty ()) v.push_back (current);
+                current.clear ();
+                continue; } }
         else if ((charset != nullptr) && (cs.find (*i) != ::std::string::npos))
         {   deadzone = false;
             if (! quoted)
             {   started = quoted = false;
-                if (! current.empty ()) v.push_back (current);
+                if (blank || ! current.empty ()) v.push_back (current);
                 current.clear ();
                 v.push_back (::std::string (1, *i));
                 continue; } }
         if (deadzone) continue;
         if (! started) { started = true; quoted = false; }
         current += *i; }
-    if (! current.empty ()) v.push_back (current);
+    if (blank || ! current.empty ()) v.push_back (current);
     return v; }
 
 bool remove_tail (::std::string& s, ::std::string& tail, const char ch)
@@ -576,3 +594,29 @@ bool is_plain_old_decimal (const ::std::string& ss)
         if ((ch >= ' ') && (ch < 127))
             res += ch;
     return res; }
+
+::std::string get_account ()
+{   static ::std::string u;
+    if (! context.account ().empty ())
+        return context.account ();
+    if (! u.empty ()) return u;
+#ifdef _MSC_VER
+    char uname [ARGLEN_MAX] = { 0 };
+    DWORD umax = ARGLEN_MAX-1;
+#ifdef VS2022
+    if (    ::GetUserNameExA (NameUserPrincipal, uname, &umax) ||
+            ::GetUserNameExA (NameSamCompatible, uname, &umax) ||
+            ::GetUserNameA (uname, &umax))
+#else // VS2022
+    if (::GetUserNameA (uname, &umax))
+#endif // VS2022
+    {   GSL_AT (uname, umax) = 0; 
+        u = uname; }
+#else // _MSC_VER
+    // https://stackoverflow.com/questions/8953424/how-to-get-the-username-in-c-c-in-linux
+    uid_t uid = geteuid ();
+    struct passwd *pw = getpwuid (uid);
+    if (pw != nullptr)
+        u = pw -> pw_name;
+#endif // _MSC_VER
+    return u; }

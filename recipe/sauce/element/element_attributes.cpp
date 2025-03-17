@@ -369,8 +369,81 @@ void element::examine_style_attr ()
             VERIFY_NOT_NULL (page_, __FILE__, __LINE__);
             page_ -> css ().parse (content, node_.version (), node_.namespaces (), ancestral_elements_, true, node_.line (), tag ()); } }
 
+void element::examine_tabindex ()
+{   if (node_.version ().has_aria_html ())
+        if (ancestral_roles_.any (no_tabindex_role_bitset))
+            pick (nit_no_role_found, ed_aria_html, "5. Allowed descendants of ARIA roles ", es_warning, ec_element, "Do not use TABINDEX when an ancestral element uses any ROLE ", rpt_role_bitset (no_tabindex_role_bitset)); }
+
 void element::examine_xlinkhref ()
 {   if (node_.id ().is_math ())
         if (ancestral_elements_.test (elem_math))
             if (context.math_version () >= math_3)
                 pick (nit_math_href, ed_math_3, "2.1.6 Attributes Shared by all MathML Elements", es_warning, ec_attribute, "prefer HREF to XLINK:HREF in MathML 3"); }
+
+void element::test_for_ancestral_role ()
+{   if (node_.version () >= html_aria_html)
+        if (! ancestral_attributes_.test (a_role))
+            pick (nit_role_missing, ed_aria_html, "4. Document conformance requirements for use of ARIA attributes in HTML", es_warning, ec_element, "It is ... recommended that authors add a role attribute to a semantically neutral (ancestral) element such as a div or span ..."); }
+
+void element::test_for_ancestral_role (const role_bitset& permitted)
+{   if (node_.version () >= html_aria_html)
+        if (! ancestral_attributes_.test (a_role))
+            pick (nit_role_missing, ed_aria_html, "4. Document conformance requirements for use of ARIA attributes in HTML", es_warning, ec_element, "It is ... recommended that authors add a role attribute to a semantically neutral (ancestral) element such as a div or span ...");
+        else if (! permitted.test (role_any))
+            if (! ancestral_roles_.any (permitted))
+                if (permitted.count () == 1)
+                    pick (nit_role_missing, ed_aria_html, "4. Document conformance requirements for use of ARIA attributes in HTML", es_warning, ec_element, "The expected value for an ancestral ROLEs for <", name_, "> is ",  rpt_role_bitset (permitted));
+                else pick (nit_role_missing, ed_aria_html, "4. Document conformance requirements for use of ARIA attributes in HTML", es_warning, ec_element, "The permitted values of ancestral ROLEs for <", name_, "> are ",  rpt_role_bitset (permitted)); }
+
+void element::test_for_no_ancestral_role (const role_bitset& banned)
+{   if (node_.version () >= html_aria_html)
+        if (ancestral_roles_.any (banned))
+            pick (nit_no_role_found, ed_aria_html, "5. Allowed descendants of ARIA roles ", es_warning, ec_element, "Do not set <", name_, "> when an ancestral element uses any ROLE ", rpt_role_bitset (banned)); }
+
+void element::test_no_role ()
+{   if (node_.version () >= html_aria_html)
+        if (own_attributes_.test (a_role))
+            pick (nit_aria_found, ed_aria_html, "4. Document conformance requirements for use of ARIA attributes in HTML", es_error, ec_element, "<", name_, "> should not have a ROLE attribute");
+        else if (ancestral_attributes_.test (a_role))
+            pick (nit_no_role_found, ed_aria_html, "4. Document conformance requirements for use of ARIA attributes in HTML", es_comment, ec_element, "<", name_, "> should not have an ancestral ROLE attribute"); }
+
+void element::test_no_role_no_aria ()
+{   if (node_.version () >= html_aria_html)
+        if (own_attributes_.test (a_role) || own_attributes_.any (aria_attribute_bitset))
+            pick (nit_aria_found, ed_aria_html, "4. Document conformance requirements for use of ARIA attributes in HTML", es_error, ec_element, "<", name_, "> should have neither a ROLE nor an ARIA attribute");
+        else if (ancestral_attributes_.test (a_role) || ancestral_attributes_.any (aria_attribute_bitset))
+            pick (nit_no_role_found, ed_aria_html, "4. Document conformance requirements for use of ARIA attributes in HTML", es_comment, ec_element, "<", name_, "> should have neither ancestral ROLE nor any ancestral ARIA attributes"); }
+
+void element::test_compatible_ancestral_role ()
+{   if (ancestral_attributes_.test (a_role) && (node_.version ().has_aria_html ()))
+    {   const flags_t cat = node_.id ().categories ();
+        const bool flow = (cat & EF_5_FLOW) == EF_5_FLOW;
+        const bool phrase = (cat & EF_5_PHRASE) == EF_5_PHRASE;
+        const bool inter = (cat & EF_5_INTERACTIVE) == EF_5_INTERACTIVE;
+        bool ok = true;
+        if (flow || phrase)
+            for (::std::size_t n = 0; ok&& (n < last_role); ++n)
+                if (ancestral_roles_.test (n))
+                {   const flags_t rf = enum_n < t_role, e_aria_role > :: flags (static_cast < e_aria_role > (n));
+                    if (flow && ((rf & EF_5_FLOW) != EF_5_FLOW))
+                    {   pick (nit_role_incompatible, ed_aria_html, "5. Allowed descendants of ARIA roles ", es_error, ec_element, "The flow element <", name_, "> is incompatible with the ancestral role ", enum_n < t_role, e_aria_role > :: name (static_cast < e_aria_role > (n)));
+                        ok = false; break; }
+                    if (inter && ((rf & EF_5_INTERACTIVE) == EF_5_INTERACTIVE))
+                    {   pick (nit_role_incompatible, ed_aria_html, "5. Allowed descendants of ARIA roles ", es_error, ec_element, "The interactive element <", name_, "> is incompatible with the ancestral role ", enum_n < t_role, e_aria_role > :: name (static_cast < e_aria_role > (n)));
+                        ok = false; break; }
+                    if (phrase && ((rf & (EF_5_PHRASE | EF_5_INTERACTIVE)) != 0))
+                    {   pick (nit_role_incompatible, ed_aria_html, "5. Allowed descendants of ARIA roles ", es_error, ec_element, "The phrase element <", name_, "> is incompatible with the ancestral role ", enum_n < t_role, e_aria_role > :: name (static_cast < e_aria_role > (n)));
+                        ok = false; break; } } } }
+
+void element::examine_role ()
+{   if (node_.version ().has_aria_html ())
+        if (a_.known (a_role) && a_.good (a_role))
+            for (auto r : a_.get_ints (a_role))
+            {   e_aria_role ar = furq_at (static_cast < e_aria_role > (r), 0);
+                if (ar == role_any) continue;
+                bool ok = false;
+                for (::std::size_t sz = 0; (ar != role_any) && ! ok; )
+                    if (descendant_roles_.test (ar)) ok = true;
+                    else ar = furq_at (static_cast < e_aria_role > (r), ++sz);
+                if (! ok)
+                    pick (nit_role_incompatible, ed_aria_html, "5. Allowed descendants of ARIA roles ", es_error, ec_element, "Required descendent of ROLE ", enum_n < t_role, e_aria_role > :: name (ar), " missing"); } }

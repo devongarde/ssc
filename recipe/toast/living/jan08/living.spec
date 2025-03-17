@@ -63,7 +63,7 @@ PASS ../toast/living/jan08/example-2.html
 5 url_not_found style_not_css
 6 url_not_found
 12 url_not_found
-13 unknown_element missing_close
+13 invalid_element_version missing_close
 15 inserted_missing_closure
 
 PASS ../toast/living/jan08/header.html
@@ -162,7 +162,7 @@ PASS ../toast/living/jan08/small.html
 0 charset_mismatch charset_used charset_invalid
 
 PASS ../toast/living/jan08/source.html
-6 inserted_missing_parent missing_close url_not_found
+6 inserted_missing_parent missing_close track_missing url_not_found
 7 url_not_found
 8 url_not_found
 9 url_not_found

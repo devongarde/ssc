@@ -20,12 +20,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 
-#define NIT_HTML        "HTML"
-#define NIT_SPEC        "SPEC"
-#define NIT_TEST        "TEST"
-#define NIT_TEXT        "TEXT"
-#define NIT_XHTML       "XHTML"
-
 typedef ssc_map < e_nit_macro, ::std::string > mmac_t;
 
 class nitpick;
@@ -40,8 +34,9 @@ public:
     const mmac_t& macros () const noexcept { return mmac_; }
     void set (const e_nit_macro m, const ::std::string& s);
     void set (const e_nit_macro m, ::std::string&& s);
+    void set (const e_nit_macro m, const vstr_t& v);
     bool is_template_loaded ();
-    bool load_template (nitpick& nits, const html_version& v, const e_nit_format nf = nf_bespoke);
+    bool load_template (nitpick& nits, const html_version& v, const e_output_template ot = eot_bespoke);
     void dump_nits (nitpick& nits, const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot);
     ::std::string report (nitpick& nits, const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot);
     static ::std::string nit_content (const ::std::string& s);
@@ -52,8 +47,8 @@ public:
     ::std::string apply (const e_nit_section& section, const mmac_t& values1, const mmac_t& values2, const mmac_t& values3, const mmac_t& values4); };
 
 void reset_macro ();
-e_nit_format is_standard_template (const ::std::string& s);
-::std::string get_standard_template (const e_nit_format nf);
+e_output_template is_standard_template (const ::std::string& s);
+::std::string get_standard_template (const e_output_template nf);
 
 typedef ::std::unique_ptr < macro_t > macro_uptr;
 extern macro_uptr macro;

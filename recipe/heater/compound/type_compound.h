@@ -457,7 +457,7 @@ template < e_type T, e_type P, e_type Q, class SZ, int F = 0 > struct both_types
                     good = false;
             if (vs.size () > 2)
                 if (! compare_complain (nits, v, SZ :: sz (), vs.at (2))) good = false;
-            if (vs.size () < 3) { good = false; nits.pick (nit_too_many, es_error, ec_type, "three values expected"); }
+            if (vs.size () < 3) { good = false; nits.pick (nit_too_few, es_error, ec_type, "three values expected"); }
             else if (vs.size () > 3) nits.pick (nit_too_many, es_warning, ec_type, "ignoring values from ", quote (vs.at (3)));
             if (good) return; }
         uq4 < T, sz_space_char, F > :: status (s_invalid); }
@@ -540,9 +540,9 @@ template < e_type T, e_type U, class SZ, e_type P, int MN = 0, int MX = 1 > stru
             else
             {   bool res = false;
                 if (size_ < MN + 1)
-                    nits.pick (nit_empty, es_error, ec_type, "expecting at least ", MN, " of ", type_name (P));
+                    nits.pick (nit_too_few, es_error, ec_type, "expecting at least ", MN, " of ", type_name (P));
                 else if (size_ > MX + 1)
-                    nits.pick (nit_empty, es_error, ec_type, "expecting at most ", MX, " of ", type_name (P));
+                    nits.pick (nit_too_many, es_error, ec_type, "expecting at most ", MX, " of ", type_name (P));
                 else res = true;
                 if (! test_value < U > (nits, v, ss.at (0))) res = false;   
                 for (::std::size_t i = 1; i < ss.size (); ++i)

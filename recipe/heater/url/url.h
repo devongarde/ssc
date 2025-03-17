@@ -34,6 +34,7 @@ class url
     parameters params_;
     html_version v_;
     static vstr_t standard_image_extensions_, standard_text_extensions_;
+    mutable bool ref_ = false, rc_ = false;
     void parse (nitpick& nits, const html_version& v, const ::std::string& url, const e_protocol current);
     void clear () noexcept
     {   url e;
@@ -89,6 +90,7 @@ public:
     bool is_http () const noexcept { return is_protocol (pr_http); }
     bool is_https () const noexcept { return is_protocol (pr_https); }
     bool is_local () const { return protocol_.defaulted () && ! empty (); }
+    bool is_local_reference () const;
     bool is_usable () const noexcept { return is_protocol (pr_http) || is_protocol (pr_https); }
     bool is_potentially_naughty () const noexcept;
     bool is_simple_id () const { return is_local () && ! has_path () && ! has_file () && has_id (); }

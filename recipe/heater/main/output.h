@@ -43,7 +43,7 @@ public:
     void out (const ::std::string& s) const;
     void console (const ::std::string& s) const;
     void err (const ::std::string& s) const;
-    bool invalid () const { return fos_.get () == nullptr; }
+    bool invalid () const noexcept { return fos_.get () == nullptr; }
     template < typename... Ts > void out (const ::std::string& s, Ts... msg) const
     {   out (s + com < Ts... > :: bine (msg...)); }
     template < typename... Ts > void console (const ::std::string& s, Ts... msg) const

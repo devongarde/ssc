@@ -20,6 +20,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "feedback/nitnames.h"
+#ifndef SSC_TEST
+#include "main/output.h"
+#endif // SSC_TEST
 
 const char* szSimpleTitle = nullptr;
 const char* szFullTitle = nullptr;
@@ -155,7 +158,6 @@ const nitname nitnames [] =
     { nit_n_fn, "n_fn" },
     { nit_newline_in_string, "newline_in_string" },
     { nit_no_compound, "no_compound" },
-    { nit_no_curl, "no_curl" },
     { nit_ends_in_xmp, "ends_in_xmp" },
     { nit_no_fn, "no_fn" },
     { nit_no_form, "no_form" },
@@ -183,6 +185,7 @@ const nitname nitnames [] =
     { nit_rejected, "rejected" },
     { nit_rel_found, "rel_found" },
     { nit_relative_path, "relative_path" },
+    { nit_reserved, "reserved" },
     { nit_sex, "sex" },
     { nit_sibling, "sibling" },
     { nit_single_character, "single_character" },
@@ -219,7 +222,7 @@ const nitname nitnames [] =
     { nit_value_expected, "value_expected" },
     { nit_write_wrote, "write_wrote" },
     { nit_wrong_parent, "wrong_parent" },
-    { nit_wrong_secret, "wrong_secret" },
+    { nit_missing_code, "missing_code" },
     { nit_wrong_version, "wrong_version" },
     { nit_xhtml_recognised, "xhtml_recognised" },
     { nit_html_tags, "html_tags" },
@@ -873,6 +876,20 @@ const nitname nitnames [] =
     { nit_sandbox, "sandbox" },
     { nit_pii_cache, "pii_cache" },
     { nit_special_domain, "special_domain" },
+    { nit_ai, "AI" },
+    { nit_required, "required" },
+    { nit_track_missing, "track_missing" },
+    { nit_role_missing, "role_missing" },
+    { nit_role_found, "role_found" },
+    { nit_aria_found, "aria_found" },
+    { nit_bad_braille, "bad_braille" },
+    { nit_aria_braille, "aria_braille" },
+    { nit_keychar, "keychar" },
+    { nit_no_role_found, "no_role_found" },
+    { nit_role_incompatible, "role_incompatible" },
+    { nit_permissions_policy, "permissions_policy" },
+    { nit_too_few, "too_few" },
+    { nit_library_error, "library_error" },
 
     { nit_incompatible, "incompatible" },
 
@@ -893,12 +910,15 @@ void nits_init ()
     {   quick_nit.insert (::nitmap::value_type (GSL_AT (nitnames, i).sz_, GSL_AT (nitnames, i).nit_));
         quick_tim.insert (::timmap::value_type (GSL_AT (nitnames, i).nit_, GSL_AT (nitnames, i).sz_));
         bitten.at (GSL_AT (nitnames, i).nit_) = true; }
+#ifndef SSC_TEST
     if (i < static_cast <::std::size_t> (nit_off))
-    {   ::std::cerr << "WARNING: Only " << i << " of " << static_cast < ::std::size_t > (nit_off) << " feedback identifiers defined\nUndefined:";
+    {   outstr.err ("WARNING: Only ", i, " of ", static_cast < ::std::size_t > (nit_off), " feedback identifiers defined\nUndefined:");
         for (int x = 0; x < nit_off; ++x)
             if (! bitten.at (x))
-                ::std::cerr << " " << x;
-        ::std::cerr << "\n"; } }
+                outstr.err (" ", x);
+        outstr.err ("\n"); }
+#endif // SSC_TEST
+}
 
 e_nit lookup_code (const ::std::string& name)
 {   nitmap::const_iterator i = quick_nit.find (name);

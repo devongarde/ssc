@@ -57,12 +57,15 @@ void css::check_for_standard_classes (const html_version& v)
                 {   mac.emplace (nm_page_name, get_name (ndx_));
                     if (! dp_.empty ()) mac.emplace (nm_page_disk_path, dp_.string ());
                     else mac.emplace (nm_page_disk_path, get_disk_path (ndx_).string ());
-                    mac.emplace (nm_page_site_path, get_site_path (ndx_)); }
+                    mac.emplace (nm_page_site_path, get_site_path (ndx_));
+                    if (context.absolute_path ()) mac.emplace (nm_page_path, get_disk_path (ndx_).string ());
+                    else mac.emplace (nm_page_path, get_site_path (ndx_)); }
                 else if (! abs_.empty ())
                 {   const ::std::string::size_type pos = abs_.find_last_of ("/");
                     if ((pos == ::std::string::npos) || (pos == abs_.length () - 1))
                         mac.emplace (nm_page_name, abs_);
                     else mac.emplace (nm_page_name, abs_.substr (pos));
+                    mac.emplace (nm_page_path, abs_);
                     mac.emplace (nm_page_disk_path, abs_);
                     mac.emplace (nm_page_site_path, abs_); }
                 else if (! dp_.empty ())
@@ -72,10 +75,12 @@ void css::check_for_standard_classes (const html_version& v)
                         mac.emplace (nm_page_name, s);
                     else mac.emplace (nm_page_name, s.substr (pos));
                     mac.emplace (nm_page_disk_path, dp_.string ());
+                    mac.emplace (nm_page_path, dp_.string ());
                     mac.emplace (nm_page_site_path, "???.css"); }
                 else
                 {   mac.emplace (nm_page_name, "???.css");
                     mac.emplace (nm_page_disk_path, "???.css");
+                    mac.emplace (nm_page_path, "???.css");
                     mac.emplace (nm_page_site_path, "???.css"); } }
             for (auto n : ticks_)
                 res += n.review (mac, entry, head, foot, page_head, unfiltered);

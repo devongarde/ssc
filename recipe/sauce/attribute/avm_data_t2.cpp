@@ -69,6 +69,11 @@ hav_t havt_thead [] =
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_thead),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
+hav_t havt_think [] =
+{   HTML3_CLID_ATTRIBUTES (elem_think),
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_think),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
 hav_t havt_tilde [] =
 {   HTML3_CLID_ATTRIBUTES (elem_tilde),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };

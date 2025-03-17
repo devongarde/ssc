@@ -77,9 +77,11 @@ public:
     bool is_closure () const noexcept { return closure_; }
     bool is_closed () const noexcept { return closed_; }
     bool has_child () const noexcept { return child_ != nullptr; }
-    bool has_next () const noexcept { return next_ != nullptr; }
+    bool has_next () const noexcept;
+    bool has_visible_next () const noexcept;
     bool has_last () const noexcept { return last_ != nullptr; }
-    bool has_previous () const noexcept { return previous_ != nullptr; }
+    bool has_previous () const noexcept;
+    bool has_visible_previous () const noexcept;
     bool has_parent () const noexcept { return parent_ != nullptr; }
     bool presumed () const noexcept { return presumed_; }
 
@@ -90,10 +92,10 @@ public:
     {   PRESUME (has_last (), __FILE__, __LINE__);
         return *last_; }
     const element_node& next () const
-    {   PRESUME (has_next (), __FILE__, __LINE__);
+    {   VERIFY_NOT_NULL (next_, __FILE__, __LINE__);
         return *next_; }
     const element_node& previous () const
-    {   PRESUME (has_previous (), __FILE__, __LINE__);
+    {   VERIFY_NOT_NULL (previous_, __FILE__, __LINE__);
         return *previous_; }
     const element_node& parent () const
     {   PRESUME (has_parent (), __FILE__, __LINE__);
@@ -102,10 +104,10 @@ public:
     {   PRESUME (has_child (), __FILE__, __LINE__);
         return *child_; }
     element_node& next ()
-    {   PRESUME (has_next (), __FILE__, __LINE__);
+    {   VERIFY_NOT_NULL (next_, __FILE__, __LINE__);
         return *next_; }
     element_node& previous ()
-    {   PRESUME (has_previous (), __FILE__, __LINE__);
+    {   VERIFY_NOT_NULL (previous_, __FILE__, __LINE__);
         return *previous_; }
     element_node& parent ()
     {   PRESUME (has_parent (), __FILE__, __LINE__);

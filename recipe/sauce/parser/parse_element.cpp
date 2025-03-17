@@ -85,6 +85,26 @@ void element_node::swap (element_node& en) noexcept
     sanitised_.swap (en.sanitised_);
     nits_.swap (en.nits_); }
 
+bool element_node::has_next () const noexcept
+{   if (next_ == nullptr) return false;
+    if (is_standard_element (next_ -> elem_.get ()) && (! next_ -> is_closure ())) return true;
+    return next_ -> has_next (); }
+
+bool element_node::has_visible_next () const noexcept
+{   if (next_ == nullptr) return false;
+    if (is_visible_element (next_ -> elem_.get ())) return true;
+    return next_ -> has_visible_next (); }
+
+bool element_node::has_previous () const noexcept
+{   if (previous_ == nullptr) return false;
+    if (is_standard_element (previous_ -> elem_.get ())) return true;
+    return previous_ -> has_previous (); }
+
+bool element_node::has_visible_previous () const noexcept
+{   if (previous_ == nullptr) return false;
+    if (is_visible_element (previous_ -> elem_.get ())) return true;
+    return previous_ -> has_visible_previous (); }
+
 ::std::string element_node::text (const bool simplify)
 {   if (! checked_sanitised_)
     {   if (simplify) sanitised_ = unify_whitespace (inner_text (simplify));

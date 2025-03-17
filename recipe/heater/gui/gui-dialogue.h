@@ -26,6 +26,7 @@ struct wx_css { CONSTEXPR static char const* sz () { return "CSS"; } };
 struct wx_default { CONSTEXPR static char const* sz () { return "welcome"; } };
 struct wx_general { CONSTEXPR static char const* sz () { return "general"; } };
 struct wx_html { CONSTEXPR static char const* sz () { return "HTML"; } };
+struct wx_link { CONSTEXPR static char const* sz () { return "link"; } };
 struct wx_nits { CONSTEXPR static char const* sz () { return "nits"; } };
 struct wx_ontology { CONSTEXPR static char const* sz () { return "ontology"; } };
 struct wx_shadow { CONSTEXPR static char const* sz () { return "shadow"; } };

@@ -410,9 +410,9 @@ PASS ../toast/SVG/2.0/vectoreffects-2.svg
 
 PASS ../toast/SVG/2.0/video.html
 2 naughty_lang
-12 unrecognised_value url_not_found
-17 unrecognised_value
-23 unrecognised_value url_not_found saucy_source
+12 unrecognised_value url_not_found track_missing
+17 unrecognised_value track_missing
+23 unrecognised_value url_not_found saucy_source track_missing
 24 url_not_found saucy_source
 25 url_not_found saucy_source
 
@@ -444,7 +444,7 @@ PASS ../toast/SVG/2.0/xhtml.xhtml
 1 xhtml_5_0
 2 html_contradictory xhtml_superseded html_contradictory
 3 naughty_lang
-7 unrecognised_value
-13 unrecognised_value url_not_found saucy_source
+7 unrecognised_value track_missing
+13 unrecognised_value url_not_found saucy_source track_missing
 14 url_not_found saucy_source
 15 url_not_found saucy_source

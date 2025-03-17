@@ -31,6 +31,7 @@ public:
     typedef true_type has_int_type;
     using type_base < base_type, TYPE > :: type_base;
     static e_animation_type animation_type () noexcept { return at_other; }
+    static constexpr ::std::size_t value_count () noexcept { return 4; }
     ::std::string get_string () const;
     ::std::string name () const { return get_string (); }
     static ::std::string name (const base_type e)
@@ -133,8 +134,11 @@ template < > struct type_master < t_aria_autocomplete > : four_value < t_aria_au
 template < > struct type_master < t_aria_invalidity > : four_value < t_aria_invalidity, e_aria_invalidity, sz_false, sz_grammar, sz_spelling, sz_true >
 { using four_value < t_aria_invalidity, e_aria_invalidity, sz_false, sz_grammar, sz_spelling, sz_true > :: four_value; };
 
+template < > struct type_master < t_aria_relevant > : four_value < t_aria_relevant, e_aria_relevant, sz_additions, sz_all, sz_removal, sz_text >
+{ using four_value < t_aria_relevant, e_aria_relevant, sz_additions, sz_all, sz_removal, sz_text > :: four_value; };
+
 template < > struct type_master < t_aria_sort > : four_value < t_aria_sort, e_aria_sort, sz_ascending, sz_descending, sz_none, sz_other >
-{ using four_value < t_aria_sort, e_aria_sort, sz_ascending, sz_descending, sz_none, sz_other> :: four_value; };
+{ using four_value < t_aria_sort, e_aria_sort, sz_ascending, sz_descending, sz_none, sz_other > :: four_value; };
 
 template < > struct type_master < t_bens > : four_value < t_bens, e_bens, sz_both, sz_end, sz_none, sz_start >
 { using four_value < t_bens, e_bens, sz_both, sz_end, sz_none, sz_start > :: four_value; };
@@ -324,6 +328,9 @@ template < > struct type_master < t_prs_duty > : four_value < t_prs_duty, e_prs_
 
 template < > struct type_master < t_recipe_skill > : four_value < t_recipe_skill, e_recipe_skill, sz_children, sz_easy, sz_expert, sz_moderate >
 { using four_value < t_recipe_skill, e_recipe_skill, sz_children, sz_easy, sz_expert, sz_moderate > :: four_value; };
+
+template < > struct type_master < t_required_page > : four_value < t_required_page, e_required_page, sz_none, sz_all, sz_front, sz_index >
+{ using four_value < t_required_page, e_required_page, sz_none, sz_all, sz_front, sz_index > :: four_value; };
 
 template < > struct type_master < t_rsvp > : four_value < t_rsvp, e_rsvp, sz_yes, sz_no, sz_maybe, sz_interested >
 { using four_value < t_rsvp, e_rsvp, sz_yes, sz_no, sz_maybe, sz_interested > :: four_value; };

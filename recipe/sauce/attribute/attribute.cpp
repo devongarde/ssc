@@ -23,16 +23,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 bool verify_attribute_version (nitpick& nits, const html_version& v, const e_element tag, const e_attribute id, const ::std::string& name, bool& excluded, bool& deprecated)
 {   if (! v.check_math_svg (nits, attr :: first_version (id), name)) excluded = true;
-        if (is_invalid_attribute_version (v, tag, id))
-        {   nits.pick (nit_invalid_attribute_version, es_error, ec_attribute, quote (name), " is invalid in ", v.report ());
-            return false; }
-        if (! excluded)
-        {   excluded = attr :: first_version (id).invalid_addendum (v);
-            if (excluded) nits.pick (nit_excluded_attribute, es_warning, ec_attribute, "the attribute ", quote (name), " is invalid in pure ", v.report ()); }
-        deprecated = is_deprecated_attribute_version (v, tag, id);
-        if (deprecated) nits.pick (nit_deprecated_attribute, es_warning, ec_attribute, name, " is deprecated in ", v.report ());
-        else if (not_production_attribute (v, tag, id))
-            nits.pick (nit_prototype, ed_jan21, "1.11.1 Presentational markup", es_comment, ec_attribute, name, " is best not used in production in ", v.report ());
+    if (is_invalid_attribute_version (v, tag, id))
+    {   nits.pick (nit_invalid_attribute_version, es_error, ec_attribute, quote (name), " is invalid in ", v.report ());
+        return false; }
+    if (! excluded)
+    {   excluded = attr :: first_version (id).invalid_addendum (v);
+        if (excluded) nits.pick (nit_excluded_attribute, es_warning, ec_attribute, "the attribute ", quote (name), " is invalid in pure ", v.report ()); }
+    deprecated = is_deprecated_attribute_version (v, tag, id);
+    if (deprecated) nits.pick (nit_deprecated_attribute, es_warning, ec_attribute, name, " is deprecated in ", v.report ());
+    else if (not_production_attribute (v, tag, id))
+        nits.pick (nit_prototype, ed_jan21, "1.11.1 Presentational markup", es_comment, ec_attribute, name, " is best not used in production in ", v.report ());
     return true; }
 
 bool set_attribute_value (nitpick& nits, const html_version& v, const ::std::string& ss, const ::std::string& n)

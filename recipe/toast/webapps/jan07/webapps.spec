@@ -72,7 +72,7 @@ PASS ../toast/webapps/jan07/example-2.html
 5 url_not_found style_not_css
 6 url_not_found
 12 url_not_found
-13 unknown_element missing_close
+13 invalid_element_version missing_close
 23 inserted_missing_closure
 
 PASS ../toast/webapps/jan07/feed.html

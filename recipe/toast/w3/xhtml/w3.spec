@@ -12,20 +12,20 @@ PASS ../toast/w3/xhtml/xhtml-mathml2-fpi.html
 
 PASS ../toast/w3/xhtml/xhtml-mathml2.html
 1 presume_html_1 attribute_unrecognised_here attribute_unrecognised_here attribute_unrecognised unrecognised_attribute unrecognised_attribute unrecognised_attribute
-11 unknown_element attribute_unrecognised_here
-12 unknown_element
-13 unknown_element
-14 unknown_element
-15 unknown_element
-16 unknown_element unknown_element
-17 unknown_element unknown_element
-18 unknown_element unknown_element
-19 unknown_element
-20 unknown_element
-21 unknown_element unknown_element
-22 unknown_element
-23 unknown_element
-24 unknown_element
+11 invalid_element_version attribute_unrecognised_here
+12 invalid_element_version
+13 invalid_element_version
+14 invalid_element_version
+15 invalid_element_version
+16 invalid_element_version invalid_element_version
+17 invalid_element_version invalid_element_version
+18 invalid_element_version invalid_element_version
+19 invalid_element_version
+20 invalid_element_version
+21 invalid_element_version invalid_element_version
+22 invalid_element_version
+23 invalid_element_version
+24 invalid_element_version
 
 PASS ../toast/w3/xhtml/xhtml-print_1_0.html
 1 xhtml_1_0

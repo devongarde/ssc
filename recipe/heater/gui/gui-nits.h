@@ -48,7 +48,7 @@ class nits_t : public d1_t < wx_nits >
     bool id_ = false, repeat_ = false;
     ::boost::filesystem::path output_;
     e_severity verbosity_ = es_undefined;
-    e_nit_format nf_ = nf_html;
+    e_output_template nf_ = eot_html;
     DECLARE_CLASS (nits_t)
     DECLARE_EVENT_TABLE ()
 public:

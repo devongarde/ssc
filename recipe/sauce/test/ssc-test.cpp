@@ -337,7 +337,7 @@ bool examine_results_header (vstr_t& results, const ::boost::filesystem::path& t
     if (results.at (0) != PROG)
     {   if (verbose) ::std::cout << "not " PROG ": expected '" PROG "', got '" << results.at (0) << "' (" << tmp.string () << ")\n"; return false; }
     if (results.at (1) != VERSION_STRING)
-    {   if (verbose) ::std::cout << "this copy of " TESTPROG " can only test " PROG " version " VERSION_STRING " (" EDITION_STANDARD " edition), not version " << results.at (1) << " (" << tmp.string () << ")\n"; return false; }
+    {   if (verbose) ::std::cout << "this copy of " TESTPROG " can only test " PROG " version " VERSION_STRING ", not version " << results.at (1) << " (" << tmp.string () << ")\n"; return false; }
     return true; }
 
 bool examine_results_one_file (const ::std::string& fn, nitted& expect, nitted& got)

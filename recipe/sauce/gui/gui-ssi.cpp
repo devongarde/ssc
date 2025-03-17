@@ -51,12 +51,12 @@ bool ssi_t :: Create (wxWindow *mummy, wxWindowID id, const wxString& caption)
 void ssi_t :: create_controls (wxWindow *parent)
 {	process_.concoct (parent, box_, check_ssi_process, "Process Server Side Includes");
 
-    if (args_.concoct (parent, box_, "DOCUMENT_ARGS: "))
-        if (echomsg_.concoct (parent, box_, "echomsg: "))
-            if (errmsg_.concoct (parent, box_, "errmsg: "))
-                if (query_.concoct (parent, box_, "QUERY_STRING_UNESCAPED: "))
-                    if (timefmt_.concoct (parent, box_, "TIMEFMT: "))
-                        if (user_.concoct (parent, box_, "USER_NAME: "))
+    if (args_.concoct (parent, box_, wxID_ANY, "DOCUMENT_ARGS: "))
+        if (echomsg_.concoct (parent, box_, wxID_ANY, "echomsg: "))
+            if (errmsg_.concoct (parent, box_, wxID_ANY, "errmsg: "))
+                if (query_.concoct (parent, box_, wxID_ANY, "QUERY_STRING_UNESCAPED: "))
+                    if (timefmt_.concoct (parent, box_, wxID_ANY, "TIMEFMT: "))
+                        if (user_.concoct (parent, box_, wxID_ANY, "USER_NAME: "))
                             text_line_.concoct (parent, box_);
 
     if (exec_.concoct (parent, box_, check_ssi_exec, "Run <!--#exec ... -->", "Or say: "))

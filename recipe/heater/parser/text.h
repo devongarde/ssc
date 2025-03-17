@@ -28,6 +28,7 @@ void wotsit_init (nitpick& nits);
 void text_check (nitpick& nits, const html_version& v, const ::std::string& text);
 void examine_character_code (const html_version& v, const ::std::string& text, bool& known, bool& invalid);
 
+::std::string interpret_character_code (const html_version& v, const ::std::string& text, bool& known, bool& invalid, const bool simplify);
 ::std::string interpret_character_code (const html_version& v, const ::std::string& text, const bool simplify = false);
 ::std::string interpret_character_number (const ::std::string& text);
 ::std::string interpret_character_hex (const ::std::string& text);

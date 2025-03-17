@@ -74,6 +74,13 @@ These switches are also available.
 <tr><td>link.report&nbsp;dom</td> <td>Report links to the dom domain and its descendants. May
                         be repeated.</td></tr>
 
+<tr><td>link.required Z,Y,X,E,F,T,D</td> <td>A link to URL Z is required for lang Y
+                        (default: all) on X pages (can be a page name,
+                        ALL, FRONT, INDEX, default ALL), as a child of
+                        element E (default BODY), from X/HTML version
+                        F to X/HTML version T (default: all versions),
+                        called D. All values are optional except Z.</td></tr>
+
 <tr><td>link.special</td> <td>Report links to special domains, such as domains
                         ending in .alt, .onion, .yu, and others.</td></tr>
 

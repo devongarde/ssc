@@ -71,6 +71,7 @@ Switches are documented as follows:
 <tr><td><a href="general.shtml">misc</a></td> <td>other switches</td></tr>
 <tr><td><a href="nits.shtml">nits</a></td> <td>control nits</td></tr>
 <tr><td><a href="ontology.shtml">ontology</a></td> <td>check ontologies, and specify versions</td></tr>
+<tr><td><a href="output.shtml">output</a></td> <td>control output</td></tr>
 <tr><td><a href="rdfa.shtml">RDFa</a></td> <td>specify RDFa version</td></tr>
 <tr><td><a href="shadow.shtml">shadow</a></td> <td>output a &lsquo;tidied up&rsquo; copy of the site</td></tr>
 <tr><td><a href="cmd.shtml">shell</a></td> <td>command line only switches</td></tr>

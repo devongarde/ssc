@@ -252,8 +252,7 @@ PASS ../toast/living/jul14/example.html
 59 character_code
 64 inserted_missing_closure inserted_missing_closure
 64 missing_open
-66 inserted_missing_closure unrecognised_value
-68 input_bad_aria
+66 inserted_missing_closure
 70 inserted_missing_closure
 83 unrecognised_value no_such_folder url_not_found
 93 attribute_unrecognised unrecognised_attribute unrecognised_value
@@ -319,7 +318,7 @@ PASS ../toast/living/jul14/figure.html
 30 url_not_found
 35 inserted_missing_closure
 36 url_not_found
-40 url_not_found
+40 url_not_found track_missing
 45 inserted_missing_closure
 46 use_quote_code
 55 url_not_found
@@ -336,7 +335,7 @@ PASS ../toast/living/jul14/footer-2.html
 0 charset_mismatch charset_used charset_invalid
 2 naughty_lang
 4 inserted_missing_closure
-8 no_such_folder url_not_found
+8 no_such_folder url_not_found track_missing
 9 no_such_folder url_not_found
 26 url_not_found
 27 url_not_found
@@ -823,13 +822,11 @@ PASS ../toast/living/jul14/ls5.html
 PASS ../toast/living/jul14/ls6.html
 3 contradictory_namespace naughty_lang
 5 use_quote_code
-8 unrecognised_namespace unknown_element
-9 unknown_element
-9 unknown_element
+8 unrecognised_namespace invalid_element_version
+9 unknown_element unknown_element
 10 unknown_element
-11 unknown_element
-11 unknown_element
-12 unknown_element
+11 unknown_element unknown_element
+12 invalid_element_version
 
 PASS ../toast/living/jul14/ls7.html
 2 naughty_lang
@@ -887,10 +884,10 @@ PASS ../toast/living/jul14/me.html
 7 url_not_found
 57 css_syntax property
 57 css_syntax property
-65 url_not_found autoplay
-66 url_not_found autoplay
-88 url_not_found autoplay
-90 url_not_found
+65 url_not_found track_missing autoplay
+66 url_not_found track_missing autoplay
+88 url_not_found track_missing autoplay
+90 url_not_found track_missing
 
 PASS ../toast/living/jul14/menu.html
 8 unrecognised_value
@@ -931,6 +928,7 @@ PASS ../toast/living/jul14/noscript.html
 PASS ../toast/living/jul14/object.html
 15 url_not_found
 20 reputation
+24 track_missing
 
 PASS ../toast/living/jul14/ol.html
 10 inserted_missing_closure
@@ -1067,7 +1065,7 @@ PASS ../toast/living/jul14/small.html
 23 use_double_quote_code
 
 PASS ../toast/living/jul14/source.html
-6 inserted_missing_parent missing_close media_descendants
+6 inserted_missing_parent missing_close track_missing media_descendants
 6 url_not_found
 7 url_not_found
 8 url_not_found
@@ -1082,7 +1080,7 @@ PASS ../toast/living/jul14/source.html
 17 url_not_found mime
 18 url_not_found
 19 mime url_not_found
-33 autoplay
+33 track_missing autoplay
 34 url_not_found
 35 url_not_found
 39 inserted_missing_closure
@@ -1397,7 +1395,7 @@ PASS ../toast/living/jul14/tls.html
 
 PASS ../toast/living/jul14/track.html
 0 charset_mismatch charset_used charset_invalid
-6 url_not_found
+6 url_not_found track_missing
 7 url_not_found
 8 url_not_found
 9 url_not_found
@@ -1436,7 +1434,7 @@ PASS ../toast/living/jul14/var.html
 27 use_quote_code
 
 PASS ../toast/living/jul14/video.html
-30 url_not_found autoplay
+30 url_not_found track_missing autoplay
 31 url_not_found
 
 PASS ../toast/living/jul14/wbr.html

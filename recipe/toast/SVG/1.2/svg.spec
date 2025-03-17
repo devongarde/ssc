@@ -609,13 +609,13 @@ PASS ../toast/SVG/1.2/media01.svg
 0 title_required
 1 xhtml_1_1
 4 svg_version
-7 url_not_found
+7 url_not_found track_missing
 
 PASS ../toast/SVG/1.2/media02.svg
 0 title_required
 1 xhtml_1_1
 4 svg_version
-9 url_not_found
+9 url_not_found track_missing
 
 PASS ../toast/SVG/1.2/media03.svg
 0 title_required
@@ -628,15 +628,15 @@ PASS ../toast/SVG/1.2/media04.svg
 0 title_required
 1 xhtml_1_1
 4 svg_version
-14 url_not_found
-21 url_not_found
+14 url_not_found track_missing
+21 url_not_found track_missing
 
 PASS ../toast/SVG/1.2/media05.svg
 0 title_required
 1 xhtml_1_1 unknown_xml
 4 svg_version
-15 url_not_found
-21 url_not_found
+15 url_not_found track_missing
+21 url_not_found track_missing
 
 PASS ../toast/SVG/1.2/metadata.svg
 1 xhtml_1_1
@@ -827,10 +827,10 @@ PASS ../toast/SVG/1.2/svg12.html
 106 svg_version
 121 svg_version
 122 use_quote_code
-125 default_role default_role
-135 default_role use_quote_code
-137 default_role use_quote_code
-138 default_role
+125 bad_role bad_role
+135 bad_role use_quote_code
+137 bad_role use_quote_code
+138 bad_role
 139 use_quote_code
 
 PASS ../toast/SVG/1.2/svg12.xhtml
@@ -849,6 +849,7 @@ PASS ../toast/SVG/1.2/svg12.xhtml
 PASS ../toast/SVG/1.2/sync-attr-main.svg
 1 xhtml_1_1
 5 svg_version
+9 track_missing
 
 PASS ../toast/SVG/1.2/systemlanguage.svg
 0 charset_mismatch charset_used
@@ -901,22 +902,22 @@ PASS ../toast/SVG/1.2/video-timelinebegin-01.svg
 0 title_required
 1 xhtml_1_1
 4 svg_version
-6 url_not_found
+6 url_not_found track_missing
 
 PASS ../toast/SVG/1.2/video-timelinebegin-02.svg
 0 title_required
 1 xhtml_1_1
 4 svg_version
-6 url_not_found
+6 url_not_found track_missing
 
 PASS ../toast/SVG/1.2/video-timelinebegin-03.svg
 0 title_required
 1 xhtml_1_1
 4 svg_version
-6 url_not_found
+6 url_not_found track_missing
 
 PASS ../toast/SVG/1.2/video-timelinebegin-04.svg
 0 title_required
 1 xhtml_1_1
 4 svg_version
-6 url_not_found
+6 url_not_found track_missing

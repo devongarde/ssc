@@ -10,7 +10,7 @@ PASS ../toast/css/3-ruby/css-a.css
 
 PASS ../toast/css/3-ruby/css-2.html
 2 naughty_lang
-9 no_rp unknown_element unknown_element unknown_element missing_close missing_open inserted_missing_closure
+9 no_rp invalid_element_version invalid_element_version invalid_element_version missing_close missing_open inserted_missing_closure
 11 no_rp no_rp no_rp
 16 no_rp no_rp no_rp inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure unrecognised_value inserted_missing_closure missing_close inserted_missing_closure
 18 no_rp no_rp no_rp

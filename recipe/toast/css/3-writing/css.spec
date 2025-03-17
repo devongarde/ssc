@@ -18,7 +18,7 @@ PASS ../toast/css/3-writing/css-9.css
 
 PASS ../toast/css/3-writing/css-2.html
 2 naughty_lang
-16 unknown_element unknown_element
+16 invalid_element_version invalid_element_version
 
 PASS ../toast/css/3-writing/css-3.html
 2 naughty_lang

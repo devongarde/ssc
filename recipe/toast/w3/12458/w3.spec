@@ -25,7 +25,7 @@ PASS ../toast/w3/12458/2342-opensp_type_X.html
 
 PASS ../toast/w3/12458/4476-svg_nodoctype.svg
 0 title_required
-1 presume_html_1 unknown_element attribute_unrecognised_here
+1 presume_html_1 invalid_element_version attribute_unrecognised_here
 
 PASS ../toast/w3/12458/4848-html40-transitional_FPI-SI-mismatch.html
 0 charset_mismatch charset_used
@@ -47,22 +47,22 @@ PASS ../toast/w3/12458/5031-root_dash.xml
 15 unknown_element
 16 unknown_element unknown_element
 17 unknown_element
-18 unknown_element
+18 invalid_element_version
 19 unknown_element unknown_element
 20 unknown_element unknown_element
-21 unknown_element
+21 invalid_element_version
 22 unknown_element
 23 unknown_element unknown_element
 25 unknown_element
 26 unknown_element
-27 unknown_element
+27 invalid_element_version
 28 unknown_element
 29 unknown_element unknown_element
 30 unknown_element unknown_element
 31 unknown_element
 32 unknown_element unknown_element
 33 unknown_element unknown_element
-34 unknown_element
+34 invalid_element_version
 35 unknown_element
 36 unknown_element
 37 unknown_element

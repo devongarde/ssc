@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/common.h"
 #include "webpage/headers.h"
 #include "url/url.h"
-#include "url/curl.h"
+#include "url/fetch.h"
 #include "utility/quote.h"
 #include "utility/lexical.h"
 
@@ -33,9 +33,12 @@ const vstr_t rfc2606_no_no =
     "example.com",
     "example.net",
     "example.org",
-    "invalid",
-    "localhost",
     "test" };
+
+const vstr_t rfc2606_no_no_no =
+{   // https://datatracker.ietf.org/doc/html/rfc2606 misinterpreted
+    "example.mil", // not actually in rfc2606, but...
+    "invalid" };
 
 const vstr_t local_domain =
 {   // https://tools.ietf.org/id/draft-chapin-rfc2606bis-00.html
@@ -48,6 +51,7 @@ const vstr_t local_domain =
     "lan",
     "local",
     "localdomain",
+    "localhost", // https://datatracker.ietf.org/doc/html/rfc2606
     // RFC6761
     "10.in-addr.arpa",
     "21.172.in-addr.arpa",
@@ -119,7 +123,10 @@ const vstr_t local_domain =
 bool is_example_domain (const url& u)
 {   return (one_of_domain (u.domain (), rfc2606_no_no)); }
 
-bool is_local_domain (const url& u)
+bool is_naughty_domain (const url& u)
+{   return (one_of_domain (u.domain (), rfc2606_no_no_no)); }
+
+bool is_lan_domain (const url& u)
 {   return (one_of_domain (u.domain (), local_domain)); }
 
 bool is_special_domain (const url& u)
@@ -135,7 +142,10 @@ int test_hypertext (nitpick& nits, const html_version& , const url& u)
         if (is_example_domain (u))
         {   if (context.example ()) nits.pick (nit_example, es_warning, ec_link, "link to test domain ", quote (d), " (see RFC 2606)");
             return 200; }
-        if (is_local_domain (u))
+        if (is_naughty_domain (u))
+        {   if (context.example ()) nits.pick (nit_example, es_warning, ec_link, "link to dubious domain ", quote (d), " (see RFC 2606)");
+            return 404; }
+        if (is_lan_domain (u))
         {   if (context.local ()) nits.pick (nit_local, es_info, ec_link, "link to local domain ", quote (d), " (see RFC 2606 bis and RFC 6761)");
             return 200; }
         if (is_special_domain (u))
@@ -145,8 +155,8 @@ int test_hypertext (nitpick& nits, const html_version& , const url& u)
             nits.pick (nit_report, es_info, ec_link, "link to ", quote (d));
         if (one_of_domain (d, context.no_ex_check ()))
             return 200; }
-    int code = curl_test (nits, u, u.is_https () && ! context.revoke ());
-    if (code != 0)
+    int code = fetch_test (nits, u, u.is_https () && ! context.revoke ());
+    if (! code)
     {   if (context.tell (es_debug)) nits.pick (nit_debug, es_detail, ec_link, "got ", code);
         if (code < 0) code = 0; }
     return code; }
@@ -185,6 +195,6 @@ bool external::verify (nitpick& nits, const html_version& v, const url& u, int& 
 ::std::string external::load (nitpick& nits, const url& u)
 {   ::std::string res;
     if (u.empty ()) return res;
-    if (curl_fetch (nits, u, u.is_https () && ! context.revoke (), res) != 0)
+    if (fetch_page (nits, u, u.is_https () && ! context.revoke (), res) != 0)
         res.clear ();
     return res; }

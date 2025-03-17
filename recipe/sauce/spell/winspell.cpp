@@ -41,11 +41,11 @@ ISpellCheckerFactory* scf = nullptr;
 CONSTEXPR int sweetmax = 8192;
 bool com = false;
 
-void spell_reset ()
+void reset_spell ()
 {   mssfl = mssfl_uptr (new mssfl_t); }
 
 void spell_init (nitpick& nits)
-{   spell_reset ();
+{   reset_spell ();
     HRESULT hr = CoInitializeEx (nullptr, COINIT_MULTITHREADED);
     if (FAILED (hr)) nits.pick (nit_no_spell, es_warning, ec_spell, "Cannot initialise COM (error ", hr, ")");
     else

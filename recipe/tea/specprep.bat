@@ -215,6 +215,8 @@ ssc.exe -T --nits.spec -o ../out/incorrectnessincorrectness.tst -f ../toast/othe
 ssc.exe -T --nits.spec -o ../out/nitsnits.tst -f ../toast/other/nits/nits.conf
 ssc.exe -T --nits.spec -o ../out/parsingparsing.tst -f ../toast/other/parsing/parsing.conf
 ssc.exe -T --nits.spec -o ../out/patternpattern.tst -f ../toast/other/pattern/pattern.conf
+ssc.exe -T --nits.spec -o ../out/requiredrequired.tst -f ../toast/other/required/required.conf
+ssc.exe -T --nits.spec -o ../out/rubyruby.tst -f ../toast/other/ruby/ruby.conf
 ssc.exe -T --nits.spec -o ../out/safarisafari.tst -f ../toast/other/safari/safari.conf
 ssc.exe -T --nits.spec -o ../out/simplesimple.tst -f ../toast/other/simple/simple.conf
 ssc.exe -T --nits.spec -o ../out/ssissi.tst -f ../toast/other/ssi/ssi.conf

@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "ontology/ontology_structure.h"
 #include "ontology/ontology_property.h"
 #include "main/context.h"
+#include "main/output.h"
 
 // only used for microformats
 #define SS_REQUIRED         0x00000001
@@ -1373,6 +1374,19 @@ microdata_structure ontology_structure [] =
     { { s_dpv, 2, 0 }, { 0, 0 }, dpv_technology, dpv_tech_hassystemintegrator },
     { { s_dpv, 0, 80 }, { 0, 0 }, dpv_technology, dpv_tech_hastrl },
     { { s_dpv, 0, 80 }, { 0, 0 }, dpv_technology, dpv_tech_hasuser },
+
+    // dpv AI
+    { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_ai, dpv_ai_hasdata },
+    { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_ai, dpv_ai_hastestingdata },
+    { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_ai, dpv_ai_hastrainingdata },
+    { { s_dpv_ai, 2, 1 }, { 0, 0 }, dpv_ai_ai, dpv_ai_hasvalidationdata },
+
+//      adapt when dpv_tech_isimplementedusingtechnology is in place
+//    { { s_dpv_tech, 2, 1 }, { 0, 0 }, dpv_tech_isimplementedusingtechnology, dpv_ai_hasai }, 
+//    { { s_dpv_tech, 2, 1 }, { 0, 0 }, dpv_tech_isimplementedusingtechnology, dpv_ai_hasaisystem }, 
+//    { { s_dpv_tech, 2, 1 }, { 0, 0 }, dpv_tech_isimplementedusingtechnology, dpv_ai_hascapability }, 
+//    { { s_dpv_tech, 2, 1 }, { 0, 0 }, dpv_tech_isimplementedusingtechnology, dpv_ai_hasmodel }, 
+//    { { s_dpv_tech, 2, 1 }, { 0, 0 }, dpv_tech_isimplementedusingtechnology, dpv_ai_hastechnique }, 
 
     // dpv risk
     { { s_dpv_risk, 2, 0 }, { 0, 0 }, dpv_risk_incident, dpv_risk_referstorisk },
@@ -4178,6 +4192,21 @@ microdata_structure ontology_structure [] =
     { { 2, 0 }, { 0, 0 }, sch_brand, sp_review },
     { { 3, 5 }, { 0, 0 }, sch_brand, sp_slogan },
 
+    { { 29, 0 }, { 0, 0 }, sch_bribe, sp_areaserved },
+    { { 29, 0 }, { 0, 0 }, sch_bribe, sp_bribeamount },
+    { { 29, 0 }, { 0, 0 }, sch_bribe, sp_bribeitem },
+    { { 29, 0 }, { 0, 0 }, sch_bribe, sp_bribestatus },
+    { { 29, 0 }, { 0, 0 }, sch_bribe, sp_bribetype },
+    { { 29, 0 }, { 0, 0 }, sch_bribe, sp_eligiblewithsupplier },
+    { { 29, 0 }, { 0, 0 }, sch_bribe, sp_incomelimit },
+    { { 29, 0 }, { 0, 0 }, sch_bribe, sp_provider },
+    { { 29, 0 }, { 0, 0 }, sch_bribe, sp_publisher },
+    { { 29, 0 }, { 0, 0 }, sch_bribe, sp_purchasepricelimit },
+    { { 29, 0 }, { 0, 0 }, sch_bribe, sp_purchasetype },
+    { { 29, 0 }, { 0, 0 }, sch_bribe, sp_qualifiedexpense },
+    { { 29, 0 }, { 0, 0 }, sch_bribe, sp_validfrom },
+    { { 29, 0 }, { 0, 0 }, sch_bribe, sp_validto },
+
     { { 2, 0 }, { 0, 0 }, sch_broadcastchannel, sp_broadcastchannelid },
     { { 3, 5 }, { 0, 0 }, sch_broadcastchannel, sp_broadcastfrequency },
     { { 2, 0 }, { 0, 0 }, sch_broadcastchannel, sp_broadcastservicetier },
@@ -4551,10 +4580,10 @@ microdata_structure ontology_structure [] =
     { { 1, 4 }, { 0, 0 }, sch_deliveryevent, sp_availableuntil },
     { { 1, 4 }, { 0, 0 }, sch_deliveryevent, sp_hasdeliverymethod },
 
-    { { 8, 0 }, { 0, 0 }, sch_deliverytimesettings, sp_deliverytime },
-    { { 9, 0 }, { 0, 0 }, sch_deliverytimesettings, sp_isunlabelledfallback },
-    { { 8, 0 }, { 0, 0 }, sch_deliverytimesettings, sp_shippingdestination },
-    { { 8, 0 }, { 0, 0 }, sch_deliverytimesettings, sp_transittimelabel },
+    { { 8, 0 }, { 28, 1 }, sch_deliverytimesettings, sp_deliverytime },
+    { { 9, 0 }, { 28, 1 }, sch_deliverytimesettings, sp_isunlabelledfallback },
+    { { 8, 0 }, { 28, 1 }, sch_deliverytimesettings, sp_shippingdestination },
+    { { 8, 0 }, { 28, 1 }, sch_deliverytimesettings, sp_transittimelabel },
 
     { { 0, 99 }, { 0, 0 }, sch_demand, sp_acceptedpaymentmethod },
     { { 0, 99 }, { 0, 0 }, sch_demand, sp_advancebookingrequirement },
@@ -5095,7 +5124,7 @@ microdata_structure ontology_structure [] =
     { { 1, 2 }, { 0, 0 }, sch_joinaction, sp_event },
 
     { { 0, 95, 0, SV_NOT_3034 }, { 0, 0 }, sch_joint, sp_biomechanicalclass },
-    { { 0, 95, 0, SV_NOT_3034 }, { 0, 0 }, sch_joint, sp_funcionalclass },
+    { { 0, 95, 0, SV_NOT_3034 }, { 0, 0 }, sch_joint, sp_functionalclass },
     { { 0, 95, 0, SV_NOT_3034 }, { 0, 0 }, sch_joint, sp_structuralclass },
 
     { { 9, 0 }, { 0, 0 }, sch_learningresource, sp_assesses },
@@ -5620,13 +5649,14 @@ microdata_structure ontology_structure [] =
     { { 8, 0 }, { 0, 0 }, sch_offershippingdetails, sp_deliverytime },
     { { 15, 0 }, { 0, 0 }, sch_offershippingdetails, sp_depth },
     { { 8, 0 }, { 0, 0 }, sch_offershippingdetails, sp_doesnotship },
+    { { 29, 0 }, { 0, 0 }, sch_offershippingdetails, sp_hasshippingservice },
     { { 15, 0 }, { 0, 0 }, sch_offershippingdetails, sp_height },
     { { 7, 2 }, { 0, 0 }, sch_offershippingdetails, sp_shippingdestination },
-    { { 8, 0 }, { 0, 0 }, sch_offershippingdetails, sp_shippinglabel },
+    { { 8, 0 }, { 28, 1 }, sch_offershippingdetails, sp_shippinglabel },
     { { 15, 0 }, { 0, 0 }, sch_offershippingdetails, sp_shippingorigin },
     { { 8, 0 }, { 0, 0 }, sch_offershippingdetails, sp_shippingrate },
-    { { 8, 0 }, { 0, 0 }, sch_offershippingdetails, sp_shippingsettingslink },
-    { { 8, 0 }, { 0, 0 }, sch_offershippingdetails, sp_transittimelabel },
+    { { 8, 0 }, { 28, 1 }, sch_offershippingdetails, sp_shippingsettingslink },
+    { { 8, 0 }, { 28, 1 }, sch_offershippingdetails, sp_transittimelabel },
     { { 28, 0 }, { 0, 0 }, sch_offershippingdetails, sp_validformembertier },
     { { 15, 0 }, { 0, 0 }, sch_offershippingdetails, sp_weight },
     { { 15, 0 }, { 0, 0 }, sch_offershippingdetails, sp_width },
@@ -5704,6 +5734,7 @@ microdata_structure ontology_structure [] =
     { { 25, 0 }, { 0, 0 }, sch_organisation, sp_hascertification },
     { { 3, 9 }, { 0, 0 }, sch_organisation, sp_hascredential },
     { { 27, 0 }, { 0, 0 }, sch_organisation, sp_hasgs1digitallink },
+    { { 29, 0 }, { 0, 0 }, sch_organisation, sp_hasshippingservice },
     { { 6, 0 }, { 0, 0 }, sch_organisation, sp_hasmerchantreturnpolicy },
     { { 2, 2 }, { 0, 0 }, sch_organisation, sp_hasoffercatalogue },
     { { 0, 99 }, { 0, 0 }, sch_organisation, sp_haspos },
@@ -6353,6 +6384,23 @@ microdata_structure ontology_structure [] =
     { { 1, 3 }, { 0, 0 }, sch_servicechannel, sp_servicesmsnumber },
     { { 1, 3 }, { 0, 0 }, sch_servicechannel, sp_serviceurl },
 
+    { { 29, 0 }, { 0, 0 }, sch_serviceperiod, sp_cutofftime },
+    { { 29, 0 }, { 0, 0 }, sch_serviceperiod, sp_businessdays },
+    { { 29, 0 }, { 0, 0 }, sch_serviceperiod, sp_duration },
+
+    { { 29, 0 }, { 0, 0 }, sch_shippingconditions, sp_depth },
+    { { 29, 0 }, { 0, 0 }, sch_shippingconditions, sp_doesnotship },
+    { { 29, 0 }, { 0, 0 }, sch_shippingconditions, sp_height },
+    { { 29, 0 }, { 0, 0 }, sch_shippingconditions, sp_numitems },
+    { { 29, 0 }, { 0, 0 }, sch_shippingconditions, sp_ordervalue },
+    { { 29, 0 }, { 0, 0 }, sch_shippingconditions, sp_seasonaloverride },
+    { { 29, 0 }, { 0, 0 }, sch_shippingconditions, sp_shippingorigin },
+    { { 29, 0 }, { 0, 0 }, sch_shippingconditions, sp_shippingdestination },
+    { { 29, 0 }, { 0, 0 }, sch_shippingconditions, sp_shippingrate },
+    { { 29, 0 }, { 0, 0 }, sch_shippingconditions, sp_transittime },
+    { { 29, 0 }, { 0, 0 }, sch_shippingconditions, sp_weight },
+    { { 29, 0 }, { 0, 0 }, sch_shippingconditions, sp_width },
+
     { { 8, 0 }, { 0, 0 }, sch_shippingdeliverytime, sp_businessdays },
     { { 8, 0 }, { 0, 0 }, sch_shippingdeliverytime, sp_cutofftime },
     { { 8, 0 }, { 0, 0 }, sch_shippingdeliverytime, sp_handlingtime },
@@ -6361,9 +6409,16 @@ microdata_structure ontology_structure [] =
     { { 8, 0 }, { 0, 0 }, sch_shippingratesettings, sp_doesnotship },
     { { 8, 0 }, { 0, 0 }, sch_shippingratesettings, sp_freeshippingthreshold },
     { { 8, 0 }, { 0, 0 }, sch_shippingratesettings, sp_isunlabelledfallback },
+    { { 29, 0 }, { 0, 0 }, sch_shippingratesettings, sp_orderpercentage },
     { { 8, 0 }, { 0, 0 }, sch_shippingratesettings, sp_shippingdestination },
     { { 8, 0 }, { 0, 0 }, sch_shippingratesettings, sp_shippinglabel },
     { { 8, 0 }, { 0, 0 }, sch_shippingratesettings, sp_shippingrate },
+    { { 29, 0 }, { 0, 0 }, sch_shippingratesettings, sp_weightpercentage },
+
+    { { 29, 0 }, { 0, 0 }, sch_shippingservice, sp_fulfilmenttype },
+    { { 29, 0 }, { 0, 0 }, sch_shippingservice, sp_handlingtime },
+    { { 29, 0 }, { 0, 0 }, sch_shippingservice, sp_shippingconditions },
+    { { 29, 0 }, { 0, 0 }, sch_shippingservice, sp_validformembertier },
 
     { { 3, 1 }, { 0, 0 }, sch_singlefamilyresidence, sp_numberofrooms },
     { { 3, 1 }, { 0, 0 }, sch_singlefamilyresidence, sp_occupancy },
@@ -7448,7 +7503,7 @@ void microdata_init (nitpick& )
 #endif // _MSC_VER
     {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
         if (micromap.find (::std::pair < e_ontology_type, e_ontology_property > (p -> record_, p -> property_)) != micromap.end ())
-            ::std::cerr << "microdata_init reports " << sch::name (p -> record_) << " (" << p -> record_ << "), " << ontology_property_name (p -> property_) << " (" << p -> property_ << ") repeated\n";
+            outstr.err ("microdata_init reports ", sch::name (p -> record_), " (", p -> record_, "), ", ontology_property_name (p -> property_), " (", p -> property_, ") repeated\n");
         else
         {   mmd_key k (p -> record_, p -> property_);
             micromap.insert (mmd_t::value_type (k, p));
@@ -7456,11 +7511,11 @@ void microdata_init (nitpick& )
             bool found = false;
             if (! check_ontology_property_version (p -> from_, p -> to_, p -> property_, found))
                 if (found)
-                    ::std::cerr << "microdata_init reports " << sch::name (p -> record_) << " (" << p -> record_ << "), " <<
-                                                                ontology_property_name (p -> property_) << " (" << p -> property_ << ") is incompatible with version in property table\n";
+                    outstr.err ("microdata_init reports ", sch::name (p -> record_), " (", p -> record_, "), ",
+                                                                ontology_property_name (p -> property_), " (", p -> property_, ") is incompatible with version in property table\n");
                 else
-                    ::std::cerr << "microdata_init reports " << sch::name (p -> record_) << " (" << p -> record_ << "), " <<
-                                                                ontology_property_name (p -> property_) << " (" << p -> property_ << ") is not found in property table\n";
+                    outstr.err ("microdata_init reports ", sch::name (p -> record_), " (", p -> record_, "), ",
+                                                                ontology_property_name (p -> property_), " (", p -> property_, ") is not found in property table\n");
 #endif // _DEBUG
 } } }
 

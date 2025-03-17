@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html lang="en-GB">
+
+<head>
+<title>aria 1.0 5</title>
+</head>
+
+<body>
+
+<h1>aria 1.0 5</h1>
+
+<ul role="menubar">
+ 
+ <!-- Rule 2A: "File" label via aria-labelledby -->
+  <li role="menuitem" aria-haspopup="true" aria-labelledby="fileLabel"><span id="fileLabel">File</span>
+    <ul role="menu">
+
+      <!-- Rule 2C: "New" label via Namefrom:contents -->
+      <li role="menuitem">New</li>
+      <li role="menuitem">Open…</li>
+      …
+    </ul>
+  </li>
+  …
+</ul>
+
+<fieldset>
+  <legend>Meeting alarms</legend>
+
+  <!-- Rule 2A: "Beep" label given by native HTML label element -->
+  <input type="checkbox" id="beep"> <label for="beep">Beep</label> <br>
+  <input type="checkbox" id="mtgTitle"> <label for="mtgTitle">Display the meeting title</label> <br>
+
+  <!-- Rule 2B: Full label of checkbox includes value ("3") of embedded text input, "Flash the screen 3 times" -->
+  <input type="checkbox" id="flash">
+  <label for="flash">
+    Flash the screen
+
+    <!-- Rule 2A: label of text input given by aria-label, "Number of times to flash screen" -->
+    <input type="text" value="3" size="2" id="numTimes" aria-label="Number of times to flash screen">
+    times
+  </label>
+</fieldset>
+
+<input type="text" aria-label="Tag" role="combobox" aria-expanded="true"
+  aria-autocomplete="list" aria-owns="owned_listbox" aria-activedescendant="selected_option">
+<ul role="listbox" id="owned_listbox">
+  <li role="option">Zebra</li>
+  <li role="option" id="selected_option">Zoom</li>
+</ul>
+
+<div role="math" aria-label="6 divided by 4 equals 1.5">
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mfrac>
+      <mn>6</mn>
+      <mn>4</mn>
+    </mfrac>
+    <mo>=</mo>
+    <mn>1.5</mn>
+  </math>
+</div>
+
+<div role="math" aria-label="6 divided by 4 equals 1.5">
+  \frac{6}{4}=1.5
+</div>
+
+<!-- 1. [role="presentation"] negates the implicit 'heading' role semantics but does not affect the contents. -->
+<h1 role="presentation"> Sample Content </h1>
+
+<!-- 2. There is no implicit role for span, so only the contents are exposed. -->
+<span> Sample Content </span>
+
+<!-- 3. This role declaration is redundant. -->
+<span role="presentation"> Sample Content </span>
+
+<!-- 1. [role="presentation"] negates the implicit 'list' and 'listitem' role semantics but does not affect the contents. -->
+<ul role="presentation">
+  <li> Sample Content </li>
+  <li> More Sample Content </li>
+</ul>
+
+<!-- 2. There is no implicit role for span, so only the contents are exposed. -->
+<span>
+  <span> Sample Content </span>
+  <span> More Sample Content </span>
+</span>
+
+<!-- 1. [role="presentation"] negates the implicit 'heading' role semantics but does not affect the global hidden state. -->
+<h1 role="presentation" aria-hidden="true"> Sample Content </h1>
+
+<!-- 1. [role="presentation"] negates the both the implicit 'heading' and the non-global level. -->
+<h1 role="presentation" aria-level="2"> Sample Content </h1>
+
+<div role="img" aria-labelledby="caption">
+  <img src="example.png" role="presentation" alt="">
+  <p id="caption">A visible text caption labeling the image.</p>
+</div>
+
+<ul role="tree">
+  <li role="presentation">
+    <a role="treeitem" aria-expanded="true">An expanded tree node</a> 
+  </li> 
+  … 
+</ul>
+
+</body>
+</html>
+

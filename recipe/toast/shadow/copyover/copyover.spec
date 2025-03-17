@@ -42,12 +42,12 @@ PASS ../toast/shadow/copyover/html-bad.html
 109 no_dd
 112 inserted_missing_closure
 113 missing_open
-115 url_not_found
+115 url_not_found track_missing
 116 url_not_found
 117 url_not_found
 118 url_not_found
 119 url_not_found kind_media_srclang
-122 url_not_found
+122 url_not_found track_missing
 123 url_not_found
 124 url_not_found
 125 url_not_found

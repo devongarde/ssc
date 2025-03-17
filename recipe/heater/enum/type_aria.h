@@ -23,15 +23,39 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "base/type_case.h"
 #include "spell/spell.h"
 
+typedef ssc_bitset < e_aria_role, last_role > role_bitset;
+extern const role_bitset empty_role_bitset;
+extern role_bitset abstract_role_bitset;
+extern role_bitset application_role_bitset;
+extern role_bitset adii_role_bitset;
+extern role_bitset adiinp_role_bitset;
+extern role_bitset glnp_role_bitset;
+extern role_bitset gnp_role_bitset;
+extern role_bitset listitem_role_bitset;
+extern role_bitset no_form_role_bitset;
+extern role_bitset no_hf_role_bitset;
+extern role_bitset no_main_role_bitset;
+extern role_bitset no_meter_role_bitset;
+extern role_bitset no_progress_role_bitset;
+extern role_bitset no_tabindex_role_bitset;
+extern role_bitset no_table_role_bitset;
+extern role_bitset none_pres_role_bitset;
+
+void aria_init ();
 bool is_default_role (const html_version& v, const e_element elem, const e_aria_role role);
 bool is_permitted_role (const html_version& v, const e_element elem, const e_aria_role role);
+e_aria_role furq_at (const e_aria_role& parent, const ::std::size_t n);
+::std::string rpt_role_bitset (const role_bitset& rb);
 
 template < > inline void enum_n < t_role, e_aria_role > :: verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* , const ::std::string& )
 {   if (v >= html_5_0)
-        if (is_default_role (v, e, enum_base < e_aria_role, t_role > :: value_))
-            nits.pick (nit_default_role, es_error, ec_type, "do not specify the default role");
-        else if (! is_permitted_role (v, e.get (), enum_base < e_aria_role, t_role > :: value_))
-            nits.pick (nit_default_role, es_error, ec_type, quote (enum_base < e_aria_role, t_role > :: original ()), " is not permitted here"); }
+    {   const e_aria_role r = enum_base < e_aria_role, t_role > :: value_;
+        if (is_default_role (v, e, r))
+            nits.pick (nit_default_role, es_error, ec_aria, "do not specify the default role");
+        else if (abstract_role_bitset.test (r))
+            nits.pick (nit_bad_role, ed_aria_1_0, "5.2.1 Abstract Roles", es_error, ec_aria, "Content authors MUST NOT use abstract roles");
+        else if (! is_permitted_role (v, e.get (), r))
+            nits.pick (nit_bad_role, es_error, ec_aria, quote (enum_base < e_aria_role, t_role > :: original ()), " is not permitted here"); } }
 
 template < > inline void enum_n < t_role, e_aria_role > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   e_namespace examine_namespace (nitpick& nits, const html_version& v, ::std::string& s, ::std::string& ns);

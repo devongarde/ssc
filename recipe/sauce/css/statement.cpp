@@ -459,7 +459,7 @@ void statement::parse_import (arguments& args, nitpick& nits, const int from, co
     {   ::std::string content;
         ::std::time_t when = 0;
         bool borked = false;
-        if (! u.is_local ())
+        if (! u.is_local_reference ())
             nits.pick (nit_reputation, es_warning, ec_css, "the security, integrity, presentation and reputation of your site is dependent on that of ", quote (u.get ()));
         if (! cached_url (nits, context.html_ver (), args.g_.get_page ().get_directory (), u, content, when, borked))
             nits.pick (nit_cannot_access, es_error, ec_css, "cannot access ", quote (u.get ()), ", so cannot verify it.");

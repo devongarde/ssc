@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #include "main/standard.h"
 #include "main/context.h"
+#include "main/output.h"
 
 ::std::string file_line (const char* const fn, const ::std::size_t line)
 {   ::std::string msg (" in ");
@@ -34,7 +35,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 {   ::std::string msg ("null dereference of ");
     msg += var;
     msg += file_line (fn, line);
-    ::std::cerr << "\n" << msg << "\n";
+    outstr.err ("\n", msg, "\n");
     throw ::std::runtime_error (msg); }
 
 [[noreturn]] void throw_bad_presumption (const char* const x, const char* const fn, const ::std::size_t line)
@@ -43,7 +44,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     msg += quote (x);
     msg += ::std::string (" failed");
     msg += file_line (fn, line);
-    ::std::cerr << "\n" << msg << "\n";
+    outstr.err ("\n", msg, "\n");
     throw ::std::runtime_error (msg); }
 
 [[noreturn]] void ugly_presumption (const char* const x, const char* const fn, const ::std::size_t line) noexcept
@@ -53,22 +54,22 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
         msg += quote (x);
         msg += ::std::string (" failed");
         msg += file_line (fn, line);
-        ::std::cerr << "\n" << msg << "\n"; }
+        outstr.err ("\n", msg, "\n"); }
     catch (...)
-    {   ::std::printf ("\nugly presumption cannot state its origin\n"); }
+    {   outstr.err ("\nugly presumption cannot state its origin\n"); }
     ::std::terminate (); }
 
 [[noreturn]] void graceful_crash (const char* const fn, const ::std::size_t line)
 {   ::std::string msg ("inconsistent internal state");
     msg += file_line (fn, line);
-    ::std::cerr << "\n" << msg << "\n";
+    outstr.err ("\n", msg, "\n");
     throw ::std::runtime_error (msg); }
 
 [[noreturn]] void graceless_crash (const char* const fn, const ::std::size_t line) noexcept
 {   try
     {   ::std::string msg ("inconsistent internal state");
         msg += file_line (fn, line);
-        ::std::cerr << "\n" << msg << "\n"; }
+        outstr.err ("\n", msg, "\n"); }
     catch (...)
-    {   ::std::printf ("\ngraceless crash cannot state its origin\n"); }
+    {   outstr.err ("\ngraceless crash cannot state its origin\n"); }
     ::std::terminate (); }

@@ -17,7 +17,7 @@
 <link href="index.html" rel="appendix">
 <link href="index.html" rel="help">
  </head>
-<body role=application>
+<body role="application">
 <h1>shadow HTML good</h1>
 <a href="index.html" id=tiddles rel="next" title=index></a>
 <map name=tst>

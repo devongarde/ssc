@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/page.h"
 
 void element::examine_picture ()
-{   bool was_img = false, had_img = false, order_warn = false;
+{   test_no_role ();
+    bool was_img = false, had_img = false, order_warn = false;
     element* prev = nullptr;
     for (element* c = child_; c != nullptr; c = c -> sibling_)
     {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
@@ -68,7 +69,8 @@ void element::examine_piecewise ()
                 GRACEFUL_CRASH (__FILE__, __LINE__); } } }
 
 void element::examine_progress ()
-{   if (node_.version ().is_5 ())
+{   test_for_no_ancestral_role (no_progress_role_bitset);
+    if (node_.version ().is_5 ())
     {   check_ancestors (elem_progress, element_bitset (elem_progress));
         if (a_.known (a_value))
         {   const bool kn = a_.known (a_max);
@@ -89,6 +91,7 @@ void element::examine_reln ()
 
 void element::examine_ruby ()
 {   if (node_.version ().mjr () < 5) return;
+    test_for_ancestral_role ();
     bool had_ruby = false, had_non_ruby = false, had_rt = false, had_rp = false, rp_mode = false;
     const bool is_whatwg = node_.version ().whatwg ();
     for (element* c = child_; c != nullptr; c = c -> sibling_)

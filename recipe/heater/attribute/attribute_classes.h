@@ -42,7 +42,7 @@ typedef typed_attribute < t_align, a_align > attr_align;
 typedef typed_attribute < t_alignment_baseline, a_alignment_baseline > attr_alignment_baseline;
 typedef typed_attribute < t_bools, a_alignmentscope > attr_alignmentscope;
 typedef typed_attribute < t_colour, a_alink > attr_alink;
-typedef typed_attribute < t_featurepolicy, a_allow > attr_allow;
+typedef typed_attribute < t_allow_list, a_allow > attr_allow;
 typedef typed_attribute < t_html_boolean, a_allowfullscreen > attr_allowfullscreen;
 typedef typed_attribute < t_html_boolean, a_allowpaymentrequest > attr_allowpaymentrequest;
 typedef typed_attribute < t_html_boolean, a_allowusermedia > attr_allowusermedia;
@@ -63,49 +63,55 @@ typedef typed_attribute < t_text, a_arg > attr_arg;
 typedef typed_attribute < t_idref, a_aria_activedescendant > attr_ariaactivedescendant;
 typedef typed_attribute < t_bool, a_aria_atomic > attr_ariaatomic;
 typedef typed_attribute < t_aria_autocomplete, a_aria_autocomplete > attr_ariaautocomplete;
+typedef typed_attribute < t_braille_or_not, a_aria_braillelabel > attr_ariabraillelabel;
+typedef typed_attribute < t_braille_or_not, a_aria_brailleroledescription > attr_ariabrailleroledescription;
 typedef typed_attribute < t_bool, a_aria_busy > attr_ariabusy;
 typedef typed_attribute < t_tfmu, a_aria_checked > attr_ariachecked;
-typedef typed_attribute < t_unsigned, a_aria_colcount > attr_ariacolcount;
-typedef typed_attribute < t_unsigned, a_aria_colindex > attr_ariacolindex;
-typedef typed_attribute < t_unsigned, a_aria_colspan > attr_ariacolspan;
+typedef typed_attribute < t_integer, a_aria_colcount > attr_ariacolcount;
+typedef typed_attribute < t_unsigned_1_more, a_aria_colindex > attr_ariacolindex;
+typedef typed_attribute < t_text, a_aria_colindextext > attr_ariacolindextext;
+typedef typed_attribute < t_unsigned_1_more, a_aria_colspan > attr_ariacolspan;
 typedef typed_attribute < t_idrefs, a_aria_controls > attr_ariacontrols;
-typedef typed_attribute < t_generic, a_aria_current > attr_ariacurrent;
+typedef typed_attribute < t_aria_current, a_aria_current > attr_ariacurrent;
 typedef typed_attribute < t_idrefs, a_aria_describedby > attr_ariadescribedby;
-typedef typed_attribute < t_generic, a_aria_details > attr_ariadetails;
+typedef typed_attribute < t_text, a_aria_description > attr_ariadescription;
+typedef typed_attribute < t_idref, a_aria_details > attr_ariadetails;
 typedef typed_attribute < t_bool, a_aria_disabled > attr_ariadisabled;
 typedef typed_attribute < t_roles, a_aria_dropeffect > attr_ariadropeffect;
-typedef typed_attribute < t_generic, a_aria_errormessage > attr_ariaerrormessage;
+typedef typed_attribute < t_idref, a_aria_errormessage > attr_ariaerrormessage;
 typedef typed_attribute < t_tfu, a_aria_expanded > attr_ariaexpanded;
 typedef typed_attribute < t_idrefs, a_aria_flowto > attr_ariaflowto;
 typedef typed_attribute < t_tfu, a_aria_grabbed > attr_ariagrabbed;
-typedef typed_attribute < t_bool, a_aria_haspopup > attr_ariahaspopup;
-typedef typed_attribute < t_bool, a_aria_hidden > attr_ariahidden;
+typedef typed_attribute < t_aria_popup, a_aria_haspopup > attr_ariahaspopup;
+typedef typed_attribute < t_tfu, a_aria_hidden > attr_ariahidden;
 typedef typed_attribute < t_aria_invalidity, a_aria_invalid > attr_ariainvalid;
+typedef typed_attribute < t_keychar, a_aria_keyshortcuts > attr_ariakeyshortcuts;
 typedef typed_attribute < t_text, a_aria_label > attr_arialabel;
 typedef typed_attribute < t_idrefs, a_aria_labelledby > attr_arialabelledby;
-typedef typed_attribute < t_text, a_aria_level > attr_arialevel;
+typedef typed_attribute < t_unsigned_1_more, a_aria_level > attr_arialevel;
 typedef typed_attribute < t_aria_live, a_aria_live > attr_arialive;
-typedef typed_attribute < t_generic, a_aria_modal > attr_ariamodal;
+typedef typed_attribute < t_bool, a_aria_modal > attr_ariamodal;
 typedef typed_attribute < t_bool, a_aria_multiline > attr_ariamultiline;
 typedef typed_attribute < t_bool, a_aria_multiselectable > attr_ariamultiselectable;
-typedef typed_attribute < t_hv, a_aria_orientation > attr_ariaorientation;
+typedef typed_attribute < t_huv, a_aria_orientation > attr_ariaorientation;
 typedef typed_attribute < t_idrefs, a_aria_owns > attr_ariaowns;
-typedef typed_attribute < t_generic, a_aria_placeholder > attr_ariaplaceholder;
-typedef typed_attribute < t_text, a_aria_posinset > attr_ariaposinset;
+typedef typed_attribute < t_text, a_aria_placeholder > attr_ariaplaceholder;
+typedef typed_attribute < t_unsigned_1_more, a_aria_posinset > attr_ariaposinset;
 typedef typed_attribute < t_tfmu, a_aria_pressed > attr_ariapressed;
 typedef typed_attribute < t_bool, a_aria_readonly > attr_ariareadonly;
-typedef typed_attribute < t_roles, a_aria_relevant > attr_ariarelevant;
-typedef typed_attribute < t_generic, a_aria_roledescription > attr_ariaroledescription;
-typedef typed_attribute < t_unsigned, a_aria_rowcount > attr_ariarowcount;
-typedef typed_attribute < t_unsigned, a_aria_rowindex > attr_ariarowindex;
-typedef typed_attribute < t_unsigned, a_aria_rowspan > attr_ariarowspan;
+typedef typed_attribute < t_aria_relevants, a_aria_relevant > attr_ariarelevant;
 typedef typed_attribute < t_bool, a_aria_required > attr_ariarequired;
+typedef typed_attribute < t_text, a_aria_roledescription > attr_ariaroledescription;
+typedef typed_attribute < t_integer, a_aria_rowcount > attr_ariarowcount;
+typedef typed_attribute < t_unsigned_1_more, a_aria_rowindex > attr_ariarowindex;
+typedef typed_attribute < t_text, a_aria_rowindextext > attr_ariarowindextext;
+typedef typed_attribute < t_unsigned, a_aria_rowspan > attr_ariarowspan;
 typedef typed_attribute < t_tfu, a_aria_selected > attr_ariaselected;
-typedef typed_attribute < t_text, a_aria_setsize > attr_ariasetsize;
+typedef typed_attribute < t_integer, a_aria_setsize > attr_ariasetsize;
 typedef typed_attribute < t_aria_sort, a_aria_sort > attr_ariasort;
-typedef typed_attribute < t_integer, a_aria_valuemax > attr_ariavaluemax;
-typedef typed_attribute < t_integer, a_aria_valuemin > attr_ariavaluemin;
-typedef typed_attribute < t_integer, a_aria_valuenow > attr_ariavaluenow;
+typedef typed_attribute < t_real, a_aria_valuemax > attr_ariavaluemax;
+typedef typed_attribute < t_real, a_aria_valuemin > attr_ariavaluemin;
+typedef typed_attribute < t_real, a_aria_valuenow > attr_ariavaluenow;
 typedef typed_attribute < t_text, a_aria_valuetext > attr_ariavaluetext;
 typedef typed_attribute < t_as, a_as > attr_as;
 typedef typed_attribute < t_real, a_ascent > attr_ascent;
@@ -197,7 +203,8 @@ typedef typed_attribute < t_nsds, a_columnlines > attr_columnlines;
 typedef typed_attribute < t_mathspace, a_columnspacing > attr_columnspacing;
 typedef typed_attribute < t_unsigned, a_columnspan > attr_columnspan;
 typedef typed_attribute < t_mathspacefit, a_columnwidth > attr_columnwidth;
-typedef typed_attribute < t_idref, a_command > attr_command;
+typedef typed_attribute < t_generic, a_command > attr_command;
+typedef typed_attribute < t_idref, a_commandfor > attr_commandfor;
 typedef typed_attribute < t_compact, a_compact > attr_compact;
 typedef typed_attribute < t_compositing, a_compositing > attr_compositing;
 typedef typed_attribute < t_comp_op, a_comp_op > attr_comp_op;
@@ -560,6 +567,7 @@ typedef typed_attribute < t_script, a_oncanplaythrough > attr_oncanplaythrough;
 typedef typed_attribute < t_script, a_onchange > attr_onchange;
 typedef typed_attribute < t_script, a_onclick > attr_onclick;
 typedef typed_attribute < t_script, a_onclose > attr_onclose;
+typedef typed_attribute < t_script, a_oncommand > attr_oncommand;
 typedef typed_attribute < t_script, a_oncontextmenu > attr_oncontextmenu;
 typedef typed_attribute < t_script, a_oncopy > attr_oncopy;
 typedef typed_attribute < t_script, a_oncuechange > attr_oncuechange;
@@ -743,7 +751,7 @@ typedef typed_attribute < t_generic, a_reverse > attr_reverse;
 typedef typed_attribute < t_html_boolean, a_reversed > attr_reversed;
 typedef typed_attribute < t_measure, a_rightoverhang > attr_rightoverhang;
 typedef typed_attribute < t_unsigned, a_rightmargin > attr_rightmargin;
-typedef typed_attribute < t_role, a_role > attr_role;
+typedef typed_attribute < t_roles, a_role > attr_role;
 typedef typed_attribute < t_rotate, a_rotate > attr_rotate;
 typedef typed_attribute < t_generic, a_row > attr_row;
 typedef typed_attribute < t_mathaligns, a_rowalign > attr_rowalign;
@@ -1024,14 +1032,18 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_ariaactivedescendant, \
     attr_ariaatomic, \
     attr_ariaautocomplete, \
+    attr_ariabraillelabel, \
+    attr_ariabrailleroledescription, \
     attr_ariabusy, \
     attr_ariachecked, \
     attr_ariacolcount, \
     attr_ariacolindex, \
+    attr_ariacolindextext, \
     attr_ariacolspan, \
     attr_ariacontrols, \
     attr_ariacurrent, \
     attr_ariadescribedby, \
+    attr_ariadescription, \
     attr_ariadetails, \
     attr_ariadisabled, \
     attr_ariadropeffect, \
@@ -1042,6 +1054,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_ariahaspopup, \
     attr_ariahidden, \
     attr_ariainvalid, \
+    attr_ariakeyshortcuts, \
     attr_arialabel, \
     attr_arialabelledby, \
     attr_arialevel, \
@@ -1058,7 +1071,9 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_ariarelevant, \
     attr_ariarequired, \
     attr_ariarowcount, \
+    attr_ariaroledescription, \
     attr_ariarowindex, \
+    attr_ariarowindextext, \
     attr_ariarowspan, \
     attr_ariaselected, \
     attr_ariasetsize, \
@@ -1155,6 +1170,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_columnspan, \
     attr_columnwidth, \
     attr_command, \
+    attr_commandfor, \
     attr_compact, \
     attr_comp_op, \
     attr_compositing, \
@@ -1303,15 +1319,15 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_glyphname, \
     attr_glyph_orientation_horizontal, \
     attr_glyphref, \
+    attr_unknown
+
+const e_attribute last_1 = a_glyphref;
+
+#define ATTRIBUTES_2 \
     attr_gradienttransform, \
     attr_gradientunits, \
     attr_groupalign, \
     attr_gutter, \
-    attr_unknown
-
-const e_attribute last_1 = a_gutter;
-
-#define ATTRIBUTES_2 \
     attr_handler, \
     attr_hanging, \
     attr_headers, \
@@ -1522,6 +1538,7 @@ const e_attribute last_1 = a_gutter;
     attr_onchange, \
     attr_onclick, \
     attr_onclose, \
+    attr_oncommand, \
     attr_oncontextmenu, \
     attr_oncopy, \
     attr_oncuechange, \
@@ -1625,13 +1642,13 @@ const e_attribute last_1 = a_gutter;
     attr_overflow, \
     attr_overlay, \
     attr_overlay_host, \
-    attr_overlineposition, \
-    attr_overlinethickness, \
     attr_unknown
 
-const e_attribute last_2 = a_overline_thickness;
+const e_attribute last_2 = a_overlay_host;
 
 #define ATTRIBUTES_3 \
+    attr_overlineposition, \
+    attr_overlinethickness, \
     attr_page_orientation, \
     attr_pagex, \
     attr_pagey, \

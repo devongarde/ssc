@@ -230,8 +230,7 @@ PASS ../toast/living/jul24/conformance.html
 36 character_code
 38 character_code
 40 character_code
-44 inserted_missing_closure inserted_missing_closure unrecognised_value
-45 input_bad_aria
+44 inserted_missing_closure inserted_missing_closure bad_role
 47 inserted_missing_closure
 
 PASS ../toast/living/jul24/custom-1.html
@@ -429,7 +428,7 @@ PASS ../toast/living/jul24/figure-1.html
 23 url_not_found
 28 inserted_missing_closure
 29 url_not_found
-33 url_not_found
+33 url_not_found track_missing
 38 inserted_missing_closure
 42 url_not_found
 46 url_not_found
@@ -458,7 +457,7 @@ PASS ../toast/living/jul24/footer-1.html
 PASS ../toast/living/jul24/footer-2.html
 0 charset_mismatch charset_used charset_invalid
 4 inserted_missing_closure
-8 no_such_folder url_not_found
+8 no_such_folder url_not_found track_missing
 9 no_such_folder url_not_found
 26 url_not_found
 27 url_not_found
@@ -852,7 +851,7 @@ PASS ../toast/living/jul24/iframe.html
 35 url_not_found
 37 url_not_found
 39 url_not_found
-41 sandbox
+41 permissions_policy sandbox
 45 no_such_folder url_not_found naughty_alt
 46 no_such_folder url_not_found
 46 url_id_unfound
@@ -1143,8 +1142,7 @@ PASS ../toast/living/jul24/intro-2.html
 59 character_code
 61 character_code
 65 inserted_missing_closure inserted_missing_closure missing_open
-67 inserted_missing_closure unrecognised_value
-68 input_bad_aria
+67 inserted_missing_closure bad_role
 70 inserted_missing_closure
 
 PASS ../toast/living/jul24/json.html
@@ -1302,8 +1300,8 @@ PASS ../toast/living/jul24/mark.html
 
 PASS ../toast/living/jul24/me.html
 7 url_not_found
-19 url_not_found
-21 url_not_found autoplay
+19 url_not_found track_missing
+21 url_not_found track_missing autoplay
 
 PASS ../toast/living/jul24/menu.html
 7 interactive
@@ -1661,7 +1659,7 @@ PASS ../toast/living/jul24/small.html
 23 use_double_quote_code
 
 PASS ../toast/living/jul24/source.html
-6 inserted_missing_parent missing_close media_descendants
+6 inserted_missing_parent missing_close track_missing media_descendants
 6 url_not_found
 7 url_not_found
 8 url_not_found
@@ -1675,7 +1673,7 @@ PASS ../toast/living/jul24/source.html
 16 url_not_found mime
 17 url_not_found mime
 18 url_not_found
-32 autoplay
+32 track_missing autoplay
 33 url_not_found
 34 url_not_found
 38 inserted_missing_closure
@@ -1709,7 +1707,7 @@ PASS ../toast/living/jul24/ssah-1.html
 28 newline_in_string
 28 newline_in_string url_not_found
 33 data_type
-33 unknown_element missing_close
+33 invalid_element_version missing_close
 33 attribute_required
 33 inserted_missing_closure
 51 url_not_found
@@ -1794,12 +1792,7 @@ PASS ../toast/living/jul24/strange-3.html
 
 PASS ../toast/living/jul24/strange-4.html
 0 title_required
-1 presume_html_1
-1 chocolate_teapot
-1 wrong_parent inserted_missing_closure chocolate_teapot
-1 unknown_element
-1 unknown_element
-1 missing_open
+1 presume_html_1 chocolate_teapot wrong_parent inserted_missing_closure chocolate_teapot invalid_element_version invalid_element_version missing_open
 
 PASS ../toast/living/jul24/strong.html
 8 inserted_missing_parent missing_close
@@ -2135,7 +2128,7 @@ PASS ../toast/living/jul24/tls.html
 
 PASS ../toast/living/jul24/track.html
 0 charset_mismatch charset_used charset_invalid
-6 url_not_found
+6 url_not_found track_missing
 7 url_not_found
 8 url_not_found
 9 url_not_found
@@ -2163,7 +2156,7 @@ PASS ../toast/living/jul24/vevent.html
 24 use_quote_code
 
 PASS ../toast/living/jul24/video.html
-30 url_not_found autoplay
+30 url_not_found track_missing autoplay
 31 url_not_found
 
 PASS ../toast/living/jul24/wbr.html

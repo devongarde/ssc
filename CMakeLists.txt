@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.24)
 set (FULLNAME "Static-Site-Checker")
-set (VER 0.2.11)
+set (VER 0.2.12)
 project (ssc VERSION ${VER} DESCRIPTION ${FULLNAME} LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
 message (NOTICE "preparing " ${FULLNAME} " ${VER}" )
 
@@ -8,6 +8,7 @@ message (NOTICE "preparing " ${FULLNAME} " ${VER}" )
 # CURL_SSL_NOT_THREADSAFE
 
 set (CMAKE_CXX_STANDARD 17)
+set (CMAKE_INSTALL_MODE COPY)    # not that it works; despite the command COPY the sodding thing creates links rather than copying files
 
 # expects standard ssc directory structure ...
 set (R ${CMAKE_SOURCE_DIR}/recipe)
@@ -110,12 +111,12 @@ set (HEATERS
             ${H}/stats/stats6.h ${H}/stats/stats_impl.h
         ${H}/symbol/nstr.h ${H}/symbol/symbol.h ${H}/symbol/symbol_entry.h ${H}/symbol/symbol_key.h ${H}/symbol/symbol_store.h ${H}/symbol/symbol_table.h
         ${H}/type/type.h ${H}/type/type_csp.h
-        ${H}/url/curl.h ${H}/url/url.h ${H}/url/url_parameters.h ${H}/url/url_protocol.h ${H}/url/url_sanitise.h ${H}/url/url_scheme.h
+        ${H}/url/fetch.h ${H}/url/url.h ${H}/url/url_parameters.h ${H}/url/url_protocol.h ${H}/url/url_sanitise.h ${H}/url/url_scheme.h
             ${H}/url/url_schemes.h
         ${H}/utility/bigvector.h ${H}/utility/bitset.h ${H}/utility/byteorder.h ${H}/utility/cache.h ${H}/utility/common.h ${H}/utility/filesystem.h
             ${H}/utility/lexical.h ${H}/utility/quote.h ${H}/utility/tuple.h
         ${H}/webpage/corpus.h ${H}/webpage/crosslink.h ${H}/webpage/directory.h ${H}/webpage/external.h ${H}/webpage/fileindex.h ${H}/webpage/headers.h
-            ${H}/webpage/id.h ${H}/webpage/page.h ${H}/webpage/q.h ${H}/webpage/root.h
+            ${H}/webpage/id.h ${H}/webpage/page.h ${H}/webpage/q.h ${H}/webpage/required.h ${H}/webpage/root.h
     )
 set (SAUCE
         ${S}/attribute/attr.cpp ${S}/attribute/attr_state.cpp ${S}/attribute/attribute_constructor.cpp ${S}/attribute/attribute.cpp
@@ -135,18 +136,23 @@ set (SAUCE
             ${S}/css/descriptors.cpp ${S}/css/distilled.cpp ${S}/css/ffv.cpp ${S}/css/ffvs.cpp ${S}/css/fn.cpp ${S}/css/global.cpp ${S}/css/group.cpp
             ${S}/css/media.cpp ${S}/css/medium.cpp ${S}/css/property.cpp ${S}/css/properties.cpp ${S}/css/property_constructor.cpp ${S}/css/rule.cpp
             ${S}/css/rules.cpp ${S}/css/selector.cpp ${S}/css/selectors.cpp ${S}/css/statement.cpp ${S}/css/statements.cpp ${S}/css/typed_property.cpp
-            ${S}/css/value.cpp ${S}/css/value2.cpp ${S}/css/value_types_0_9.cpp ${S}/css/value_types_a_1.cpp ${S}/css/value_types_a_2.cpp ${S}/css/value_types_b.cpp
-            ${S}/css/value_types_c_1.cpp ${S}/css/value_types_c_2.cpp ${S}/css/value_types_css_a.cpp ${S}/css/value_types_css_b_1.cpp ${S}/css/value_types_css_b_2.cpp
-            ${S}/css/value_types_css_b_3.cpp ${S}/css/value_types_css_c_1.cpp ${S}/css/value_types_css_c_2.cpp ${S}/css/value_types_css_d_e.cpp
-            ${S}/css/value_types_css_f_1.cpp ${S}/css/value_types_css_f_2.cpp ${S}/css/value_types_css_g_h.cpp ${S}/css/value_types_css_i.cpp
+            ${S}/css/value.cpp ${S}/css/value2.cpp ${S}/css/value_types_0_2.cpp ${S}/css/value_types_3_9.cpp ${S}/css/value_types_a_1.cpp
+            ${S}/css/value_types_a_2.cpp ${S}/css/value_types_b.cpp ${S}/css/value_types_c_1.cpp ${S}/css/value_types_c_2.cpp ${S}/css/value_types_c_3.cpp
+            ${S}/css/value_types_css_a_1.cpp ${S}/css/value_types_css_a_2.cpp ${S}/css/value_types_css_b_1.cpp ${S}/css/value_types_css_b_2.cpp
+            ${S}/css/value_types_css_b_3.cpp ${S}/css/value_types_css_b_4.cpp ${S}/css/value_types_css_c_1.cpp ${S}/css/value_types_css_c_2.cpp
+            ${S}/css/value_types_css_c_3.cpp ${S}/css/value_types_css_d.cpp ${S}/css/value_types_css_e.cpp ${S}/css/value_types_css_f_1.cpp
+            ${S}/css/value_types_css_f_2.cpp ${S}/css/value_types_css_f_3.cpp ${S}/css/value_types_css_g_h.cpp ${S}/css/value_types_css_i.cpp
             ${S}/css/value_types_css_j_k.cpp ${S}/css/value_types_css_l.cpp ${S}/css/value_types_css_m_n.cpp ${S}/css/value_types_css_o.cpp
             ${S}/css/value_types_css_p_q.cpp ${S}/css/value_types_css_r.cpp ${S}/css/value_types_css_s_1.cpp ${S}/css/value_types_css_s_2.cpp
-            ${S}/css/value_types_css_t_1.cpp ${S}/css/value_types_css_t_2.cpp ${S}/css/value_types_css_u_v.cpp ${S}/css/value_types_css_w_z.cpp
-            ${S}/css/value_types_d.cpp ${S}/css/value_types_e.cpp ${S}/css/value_types_f_1.cpp ${S}/css/value_types_f_2.cpp ${S}/css/value_types_g_h.cpp
-            ${S}/css/value_types_i.cpp ${S}/css/value_types_j_k.cpp ${S}/css/value_types_l.cpp ${S}/css/value_types_m_1.cpp ${S}/css/value_types_m_2.cpp
-            ${S}/css/value_types_m_3.cpp ${S}/css/value_types_n_o.cpp ${S}/css/value_types_p_1.cpp ${S}/css/value_types_p_2.cpp ${S}/css/value_types_q_r.cpp
-            ${S}/css/value_types_r.cpp ${S}/css/value_types_s_1.cpp ${S}/css/value_types_s_2.cpp ${S}/css/value_types_svg_1.cpp ${S}/css/value_types_svg_2.cpp
-            ${S}/css/value_types_t.cpp ${S}/css/value_types_u.cpp ${S}/css/value_types_v.cpp ${S}/css/value_types_v_w.cpp ${S}/css/value_types_x.cpp
+            ${S}/css/value_types_css_s_3.cpp ${S}/css/value_types_css_t_1.cpp ${S}/css/value_types_css_t_2.cpp ${S}/css/value_types_css_t_3.cpp
+            ${S}/css/value_types_css_u.cpp ${S}/css/value_types_css_v.cpp ${S}/css/value_types_css_w_z.cpp ${S}/css/value_types_d.cpp
+            ${S}/css/value_types_e.cpp ${S}/css/value_types_f_1.cpp ${S}/css/value_types_f_2.cpp ${S}/css/value_types_g_h.cpp
+            ${S}/css/value_types_i_1.cpp ${S}/css/value_types_i_2.cpp ${S}/css/value_types_j_k.cpp ${S}/css/value_types_l_1.cpp ${S}/css/value_types_l_2.cpp
+            ${S}/css/value_types_m_1.cpp ${S}/css/value_types_m_2.cpp ${S}/css/value_types_m_3.cpp ${S}/css/value_types_n.cpp
+            ${S}/css/value_types_o.cpp ${S}/css/value_types_p_1.cpp ${S}/css/value_types_p_2.cpp ${S}/css/value_types_q_r.cpp
+            ${S}/css/value_types_r.cpp ${S}/css/value_types_s_1.cpp ${S}/css/value_types_s_2.cpp ${S}/css/value_types_svg_1.cpp
+            ${S}/css/value_types_svg_2.cpp ${S}/css/value_types_t_1.cpp ${S}/css/value_types_t_2.cpp ${S}/css/value_types_u.cpp
+            ${S}/css/value_types_v.cpp ${S}/css/value_types_v_w.cpp ${S}/css/value_types_x.cpp
             ${S}/css/value_types_x_z.cpp ${S}/css/weight.cpp 
         ${S}/element/elem.cpp ${S}/element/element.cpp ${S}/element/element_abcd.cpp ${S}/element/element_aria.cpp ${S}/element/element_attributes.cpp
             ${S}/element/element_classes.cpp ${S}/element/element_efghi.cpp ${S}/element/element_examine.cpp ${S}/element/element_input.cpp
@@ -179,22 +185,22 @@ set (SAUCE
         ${S}/stats/stats.cpp ${S}/stats/stats_impl.cpp
         ${S}/symbol/nstr.cpp ${S}/symbol/symbol.cpp
         ${S}/type/type.cpp ${S}/type/type_csp.cpp
-        ${S}/url/curl.cpp ${S}/url/url.cpp ${S}/url/url_parameters.cpp ${S}/url/url_protocol.cpp ${S}/url/url_sanitise.cpp ${S}/url/url_scheme.cpp
+        ${S}/url/fetch.cpp ${S}/url/url.cpp ${S}/url/url_parameters.cpp ${S}/url/url_protocol.cpp ${S}/url/url_sanitise.cpp ${S}/url/url_scheme.cpp
         ${S}/utility/byteorder.cpp ${S}/utility/cache.cpp ${S}/utility/common.cpp ${S}/utility/filesystem.cpp ${S}/utility/quote.cpp
         ${S}/webpage/corpus.cpp ${S}/webpage/crosslink.cpp ${S}/webpage/directory.cpp ${S}/webpage/external.cpp ${S}/webpage/fileindex.cpp
-            ${S}/webpage/headers.cpp ${S}/webpage/id.cpp ${S}/webpage/page.cpp ${S}/webpage/q.cpp ${S}/webpage/root.cpp
+            ${S}/webpage/headers.cpp ${S}/webpage/id.cpp ${S}/webpage/page.cpp ${S}/webpage/q.cpp ${S}/webpage/required.cpp ${S}/webpage/root.cpp
     )
 set (GOOEY
-        ${H}/gui/gui-app.h ${H}/gui/gui-css.h ${H}/gui/gui-ctrl.h ${H}/gui/gui-ctrls.h ${H}/gui/gui-dialogue.h ${H}/gui/gui-frame.h
-            ${H}/gui/gui-general.h ${H}/gui/gui-html.h ${H}/gui/gui-icon.h ${H}/gui/gui-listedit.h ${H}/gui/gui-menu.h ${H}/gui/gui-nits.h
-            ${H}/gui/gui-ontology.h ${H}/gui/gui-output.h ${H}/gui/gui-screen.h ${H}/gui/gui-shadow.h ${H}/gui/gui-site.h ${H}/gui/gui-snippet.h
-            ${H}/gui/gui-spell.h ${H}/gui/gui-spex.h ${H}/gui/gui-ssi.h ${H}/gui/gui-stats.h ${H}/gui/gui-summarise.h ${H}/gui/gui-validation.h
-            ${H}/gui/gui-welcome.h
-        ${S}/gui/gui-app.cpp ${S}/gui/gui-css.cpp ${S}/gui/gui-ctrl.cpp ${S}/gui/gui-ctrls.cpp ${S}/gui/gui-dialogue.cpp ${S}/gui/gui-frame.cpp
-            ${S}/gui/gui-general.cpp ${S}/gui/gui-html.cpp ${S}/gui/gui-icon.cpp ${S}/gui/gui-listedit.cpp ${S}/gui/gui-menu.cpp ${S}/gui/gui-nits.cpp
-            ${S}/gui/gui-ontology.cpp ${S}/gui/gui-output.cpp ${S}/gui/gui-screen.cpp ${S}/gui/gui-shadow.cpp ${S}/gui/gui-site.cpp ${S}/gui/gui-snippet.cpp
-            ${S}/gui/gui-spell.cpp ${S}/gui/gui-snippet.cpp ${S}/gui/gui-spex.cpp ${S}/gui/gui-ssi.cpp ${S}/gui/gui-stats.cpp ${S}/gui/gui-summarise.cpp
-            ${S}/gui/gui-validation.cpp ${S}/gui/gui-welcome.cpp
+        ${H}/gui/gui-app.h ${H}/gui/gui-css.h ${H}/gui/gui-ctrl.h ${H}/gui/gui-ctrls.h ${H}/gui/gui-dialogue.h ${H}/gui/gui-data.h ${H}/gui/gui-frame.h
+            ${H}/gui/gui-general.h ${H}/gui/gui-html.h ${H}/gui/gui-icon.h ${H}/gui/gui-link.h ${H}/gui/gui-listedit.h ${H}/gui/gui-menu.h
+            ${H}/gui/gui-nits.h ${H}/gui/gui-ontology.h ${H}/gui/gui-output.h ${H}/gui/gui-screen.h ${H}/gui/gui-shadow.h ${H}/gui/gui-site.h
+            ${H}/gui/gui-snippet.h ${H}/gui/gui-spell.h ${H}/gui/gui-spex.h ${H}/gui/gui-ssi.h ${H}/gui/gui-stats.h ${H}/gui/gui-summarise.h
+            ${H}/gui/gui-validation.h ${H}/gui/gui-welcome.h
+        ${S}/gui/gui-app.cpp ${S}/gui/gui-css.cpp ${S}/gui/gui-ctrl.cpp ${S}/gui/gui-ctrls.cpp ${S}/gui/gui-data.cpp ${S}/gui/gui-dialogue.cpp
+            ${S}/gui/gui-frame.cpp ${S}/gui/gui-general.cpp ${S}/gui/gui-html.cpp ${S}/gui/gui-icon.cpp ${S}/gui/gui-link.cpp ${S}/gui/gui-listedit.cpp
+            ${S}/gui/gui-menu.cpp ${S}/gui/gui-nits.cpp ${S}/gui/gui-ontology.cpp ${S}/gui/gui-output.cpp ${S}/gui/gui-screen.cpp ${S}/gui/gui-shadow.cpp
+            ${S}/gui/gui-site.cpp ${S}/gui/gui-snippet.cpp ${S}/gui/gui-spell.cpp ${S}/gui/gui-snippet.cpp ${S}/gui/gui-spex.cpp ${S}/gui/gui-ssi.cpp
+            ${S}/gui/gui-stats.cpp ${S}/gui/gui-summarise.cpp ${S}/gui/gui-validation.cpp ${S}/gui/gui-welcome.cpp
     )
 
 set (PREHEAD ${H}/main/include.h)
@@ -339,7 +345,6 @@ elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         set (TARGET_OS "Darwin?")
     endif ()
 
-#    if (NOT ${CMAKE_BUILD_TYPE} MATCHES "Debug")   # NOT MATCHES doesn't work
     if (${CMAKE_BUILD_TYPE} MATCHES "Release")
         # can't remember where I found this :-(
         find_program (DSYMUTIL_PROGRAM dsymutil)
@@ -369,17 +374,6 @@ if (${NJ} MATCHES "1")
   set (CDEF_ALL ${CDEF_ALL} NO_JSONIC)
 endif ()
 
-if (${NO_CURL} MATCHES "1")
-  set (CDEF_ALL ${CDEF_ALL} NOCURL)
-else ()
-    # https://cmake.org/cmake/help/latest/module/FindCURL.html
-    set (CURL_USE_STATIC_LIBS ON)
-    find_package (CURL REQUIRED FILE HTTP HTTPS SSL)
-    message (DEBUG "Curl " ${CURL_VERSION_STRING} ", "  ${CURL_INCLUDE_DIRS} ", " ${CURL_LIBRARIES})
-    set (LLPROD ${LLPROD} ${CURL_LIBRARIES})
-    set (INC ${INC} ${CURL_INCLUDE_DIRS})
-endif ()
-
 set (Boost_USE_MULTI_THREADED ON)
 
 if (${CMAKE_BUILD_TYPE} MATCHES "Debug")
@@ -390,7 +384,7 @@ else ()
     set (Boost_USE_DEBUG_RUNTIME OFF)
 endif ()
 
-set (BOOLIB chrono date_time filesystem locale program_options regex system thread)
+set (BOOLIB atomic container date_time filesystem chrono locale log program_options regex system thread)
 
 if (${NJ} MATCHES "1") # if only NOT MATCHES worked
 else ()
@@ -407,7 +401,7 @@ else ()
     set (LLPROD ${LLPROD} Boost::json)
 endif ()
 
-message (DEBUG "Boost " ${Boost_LIB_VERSION} ", " ${Boost_INCLUDE_DIR} ", " ${Boost_INCLUDE_DIRS} ", " ${Boost_LIBRARY_DIR_RELEASE} ", " ${Boost_LIBRARY_DIRS} ", " ${Boost_LIBRARIES})
+message (DEBUG "Boost " ${Boost_VERSION_MAJOR}-${Boost_VERSION_MINOR} ", " ${Boost_INCLUDE_DIR} ", " ${Boost_INCLUDE_DIRS} ", " ${Boost_LIBRARY_DIR_RELEASE} ", " ${Boost_LIBRARY_DIRS} ", " ${Boost_LIBRARIES})
 
 if (${NOICU} MATCHES "1")
   message (VERBOSE "No ICU")
@@ -518,7 +512,7 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     install (DIRECTORY "${CMAKE_BINARY_DIR}/${XAPP2}" DESTINATION "/Applications") # almost certainly needs localising
 
     add_custom_command (TARGET ${XAPP} PRE_LINK
-        COMMAND rm -f ${R}/help.zip ${R}/help.htb
+        COMMAND rm -rf ${R}/help.zip ${R}/help.htb
         COMMAND zip ${R}/help.zip ${HLP}/*
         COMMAND mv ${R}/help.zip ${R}/help.htb
         WORKING_DIRECTORY ${R}
@@ -527,17 +521,24 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
     message (DEBUG ${LLALL} ", " ${LLPROD} ", " ${LLWAX} ", " ${LLGOOEY})
 
+    # can't use FILE (...), it screws up symlinks
+
     add_custom_command (TARGET ${XAPP} POST_BUILD
-        COMMAND mkdir -p ${MCM} ${MCR}
-        COMMAND cp ${R}/help.htb ${I}/${MCI} ${CMAKE_CURRENT_SOURCE_DIR}/README.txt ${CMAKE_CURRENT_SOURCE_DIR}/gen.txt ${CMAKE_CURRENT_SOURCE_DIR}/LICENCE.txt ${CMAKE_CURRENT_SOURCE_DIR}/LICENSE.txt ${CMAKE_CURRENT_SOURCE_DIR}/usage.txt ${MCR}
-#        COMMAND cp -P ${wxWidgets_LIBRARY_DIRS}/libicu*.dylib ${wxWidgets_LIBRARY_DIRS}/libwx*.dylib ${wxWidgets_LIBRARY_DIRS}/libboost*mt*.dylib ${MCM}
-        COMMAND cp -P ${wxWidgets_LIBRARY_DIRS}/libicu*.dylib ${wxWidgets_LIBRARY_DIRS}/libwx*.dylib ${MCM}
+       COMMAND mkdir -p ${MCM} ${MCR}
+        COMMAND cp -Lr ${R}/help.htb ${I}/${MCI} ${CMAKE_CURRENT_SOURCE_DIR}/README.txt ${CMAKE_CURRENT_SOURCE_DIR}/gen.txt ${CMAKE_CURRENT_SOURCE_DIR}/LICENCE.txt ${CMAKE_CURRENT_SOURCE_DIR}/LICENSE.txt ${CMAKE_CURRENT_SOURCE_DIR}/usage.txt ${MCR}
+        COMMAND cp -Lr ${wxWidgets_LIBRARY_DIRS}/libicu*dylib ${wxWidgets_LIBRARY_DIRS}/libwx*.dylib ${CURL_LIBS} ${Iconv_LIBRARIES} ${HUN} ${MCM}
     )
 
     foreach (${BOOLIB})
-        add_custom_command (TARGET ${XAPP} POST_BUILD
-            COMMAND cp -P ${wxWidgets_LIBRARY_DIRS}/libboost_${BL}*mt*.dylib ${MCM}
-        )
+        if (${CMAKE_BUILD_TYPE} MATCHES "Debug")
+            add_custom_command (TARGET ${XAPP} POST_BUILD
+                COMMAND cp -Lr ${wxWidgets_LIBRARY_DIRS}/libboost_${BL}*mt-d*${Boost_VERSION_MAJOR}_${Boost_VERSION_MINOR}*.dylib ${MCM}
+            )
+        else ()
+            add_custom_command (TARGET ${XAPP} POST_BUILD
+                COMMAND cp -Lr ${wxWidgets_LIBRARY_DIRS}/libboost_${BL}*mt-[ax]*${Boost_VERSION_MAJOR}_${Boost_VERSION_MINOR}*.dylib ${MCM}
+            )
+        endif ()
     endforeach ()
 
     # vaguely based upon https://gist.github.com/SamuelMarks

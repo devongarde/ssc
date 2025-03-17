@@ -28,6 +28,7 @@ struct false_type { };
     {   if (tot < mx) \
             if (mx - tot <= inc) tot = mx; \
             else tot += inc; }
+#define PLAINSEP ","
 
 template < class T > class reverter
 {   T& p_;
@@ -55,18 +56,19 @@ bool one_of_domain (const ::std::string& s, const vstr_t& v);
 inline ::std::string tart (const ::std::string& s)
 {   return unify_whitespace (trim_the_lot_off (s)); }
 
+// use uq2 with non-trusted strings
 vstr_t split_by_charset (const ::std::string& s, const char* charset);
-vstr_t split_by_whitespace_and (const ::std::string& s, const char* charset = nullptr);
+vstr_t split_by_whitespace_and (const ::std::string& s, const char* charset = nullptr, const bool blank = false);
 inline vstr_t split_quoted_by_space (const ::std::string& s)
 {   return split_by_whitespace_and (s); }
-inline vstr_t split_by_comma_space (const ::std::string& s)
-{   return split_by_whitespace_and (s, ","); }
+inline vstr_t split_by_comma_space (const ::std::string& s, const bool blank = false)
+{   return split_by_whitespace_and (s, PLAINSEP, blank); }
 inline vstr_t split_by_space (const ::std::string& s)
 {   return split_by_charset (s, " "); }
 inline vstr_t split_by_newline (const ::std::string& s)
 {   return split_by_charset (s, "\n"); }
 vstr_t split_by_string (const ::std::string& s, const ::std::string& splitter);
-vstr_t separate_by_whitespace_and (const ::std::string& s, const char* charset);
+vstr_t separate_by_whitespace_and (const ::std::string& s, const char* charset, const bool blank = false);
 
 int pos_de (const ::std::string& s, const char* charset, vint_t& vf, vint_t& vt, const bool empties = false);
 
@@ -294,3 +296,5 @@ inline vstr_t vbp2vstr (const vbp_t& s)
     res.reserve (s.size ());
     for (auto p : s) res.emplace_back (p.string ());
     return res; }
+
+::std::string get_account ();

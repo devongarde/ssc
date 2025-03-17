@@ -45,6 +45,9 @@ template < > struct type_master < t_bandwidth > : type_or_string < t_bandwidth, 
 template < > struct type_master < t_bools > : type_at_least_one < t_bools, sz_space_char, t_bool >
 { using type_at_least_one < t_bools, sz_space_char, t_bool > :: type_at_least_one; };
 
+template < > struct type_master < t_braille_or_not > : type_either_or < t_braille_or_not, t_braille, t_no_braille >
+{ using type_either_or < t_braille_or_not, t_braille, t_no_braille > :: type_either_or; };
+
 template < > struct type_master < t_charspacing > : type_or_any_string < t_charspacing, t_measure, sz_loose, sz_medium, sz_tight >
 { using type_or_any_string < t_charspacing, t_measure, sz_loose, sz_medium, sz_tight > :: type_or_any_string; };
 
@@ -313,7 +316,7 @@ template < > struct type_master < t_inputaccept > : tidy_string < t_inputaccept 
         if (tidy_string < t_inputaccept > :: empty ())
             nits.pick (nit_unacceptable, es_error, ec_type, "ACCEPT cannot be empty");
         else if (tidy_string < t_inputaccept > :: good ())
-        {   vstr_t vac (split_by_charset (tidy_string < t_inputaccept > :: get_string (), ","));
+        {   vstr_t vac (split_by_charset (tidy_string < t_inputaccept > :: get_string (), PLAINSEP));
             if (vac.empty ())
                nits.pick (nit_unacceptable, es_error, ec_type, "ACCEPT cannot be empty");
             else
@@ -378,6 +381,10 @@ template < > struct type_master < t_real_1_2 > : type_one_or_both < t_real_1_2, 
 
 template < > struct type_master < t_roles > : string_vector < t_roles, sz_space_char >
 {   using string_vector < t_roles, sz_space_char > :: string_vector;
+    vint_t vr_;
+    void swap (type_master < t_roles >& t) noexcept
+    {   vr_.swap (t.vr_);
+        string_vector < t_roles, sz_space_char > :: swap (t); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   string_vector < t_roles, sz_space_char > :: set_value (nits, v, s);
         if (string_vector < t_roles, sz_space_char > :: empty ())
@@ -388,9 +395,25 @@ template < > struct type_master < t_roles > : string_vector < t_roles, sz_space_
             for (auto arg : string_vector < t_roles, sz_space_char > :: get ())
             {   type_master < t_role > ar (box ());
                 ar.set_value (nits, v, arg);
+                vr_.push_back (ar.get_int ());
                 if (! ar.good ()) allgood = false; }
             if (allgood) return; }
-        string_vector < t_roles, sz_space_char > :: status (s_invalid); } };
+        string_vector < t_roles, sz_space_char > :: status (s_invalid); }
+    void reset () noexcept
+    {   vr_.clear ();
+        string_vector < t_roles, sz_space_char > :: reset (); }
+    int at (const ::std::size_t n) const
+    {   PRESUME (n < vr_.size (), __FILE__, __LINE__);
+        return vr_.at (n); }
+    int& at (const ::std::size_t n)
+    {   PRESUME (n < vr_.size (), __FILE__, __LINE__);
+        return vr_.at (n); }
+    vint_t get_ints () const noexcept { return vr_; }
+    void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* p, const ::std::string& s)
+    {   for (auto r : vr_)
+        {   enum_n < t_role, e_aria_role > emr;
+            emr.set (static_cast < e_aria_role > (r));
+            emr.verify_attribute (nits, v, e, p, s); } } };
 
 template < > struct type_master < t_sandboxen > : string_vector < t_sandboxen, sz_space_char >
 {   using string_vector < t_sandboxen, sz_space_char > :: string_vector;
@@ -552,7 +575,7 @@ template < > struct type_master < t_srcset > : tidy_string < t_srcset >
         {   nits.pick (nit_bad_srcset, ed_jul20, "4.8.4.2.1 Srcset attributes", es_error, ec_type, "a SRCSET attribute cannot be empty");
             return false; }
         if (! tidy_string < t_srcset > :: good ()) return false;
-        vstr_t xs (split_by_charset (ss, ","));
+        vstr_t xs (split_by_charset (ss, PLAINSEP));
         value_.resize (xs.size ());
         bool res = true;
         const ::std::size_t max = xs.size ();

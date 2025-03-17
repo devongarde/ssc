@@ -1,0 +1,2 @@
+﻿[aria-checked="true"] { font-weight: bold; }
+[aria-checked="true"]::before { background-image: url(checked.gif); }

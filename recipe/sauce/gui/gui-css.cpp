@@ -62,59 +62,27 @@ bool css_t :: Create (wxWindow *mummy, wxWindowID id, const wxString& caption)
     return true; }
 
 void css_t :: create_controls (wxWindow *parent)
-{	box_ver_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxHORIZONTAL));
-    if (box_ver_ != nullptr)
-    {	box_ver_ -> Add (0, 0, 2, wxEXPAND, 5);
-        stat_ver_ = GSL_OWNER (wxStaticText) (new wxStaticText (parent, wxID_ANY, "CSS &version: ", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT));
-        if (stat_ver_ != nullptr)
-        {	stat_ver_ -> Wrap (-1);
-            box_ver_ -> Add (stat_ver_, 1, wxALIGN_CENTRE_VERTICAL, 5);
-            version_ = GSL_OWNER (wxChoice) (new wxChoice (parent, choice_css_version, wxDefaultPosition, wxSize (100, -1)));
-            if (version_ != nullptr)
-            {	version_ -> Append ("none");
-                for (int n = 1; n <= css_version_max; ++n)
-                {   ::std::string nm = type_master < t_css_version > :: base_name (static_cast < e_css_version > (n));
-                    if (nm == "2") nm = "2.1";
-                    else if ((nm.length () > 1) && (nm.at (1) >= '0') && (nm.at (1) <= '9')) nm = ::std::string ("20") + nm;
-                    version_ -> Append (nm); }
-                version_ -> SetSelection (ver_);
-                box_ver_ -> Add (version_, 2, wxALIGN_CENTRE_VERTICAL, 5); } }
-        box_ver_ -> Add (0, 0, 2, wxEXPAND, 5);
-        box_ -> Add (box_ver_, 0, wxALIGN_CENTRE, 5); }
-
-    module_ = GSL_OWNER (wxDataViewListCtrl) (new wxDataViewListCtrl (parent, list_css_module, wxDefaultPosition, wxDefaultSize, wxVSCROLL));
-    if (module_ != nullptr)
-    {   module_ -> SetMinSize (wxSize (-1, 150));
-        col_mod_ = module_ -> AppendTextColumn ("Module", wxDATAVIEW_CELL_INERT, 250, static_cast <wxAlignment> (wxALIGN_RIGHT), wxDATAVIEW_COL_RESIZABLE);
-        col_ver_ = module_ -> AppendTextColumn ("Level", wxDATAVIEW_CELL_INERT, -1, static_cast <wxAlignment> (wxALIGN_LEFT), wxDATAVIEW_COL_RESIZABLE);
-        for (int n = 0; n < c_bad; ++n)
-        {   wxVector < wxVariant > val;
-            ::std::string nim (type_master < t_css_module > :: name (static_cast < e_css_module > (n)));
-            if (nim.empty ()) nim = ::boost::lexical_cast < ::std::string > (n) + " (missing description)";
-            else
-            {	const ::std::string::size_type pos = nim.find (':');
-                if ((pos != ::std::string::npos) && (pos < (nim.length () - 1))) nim = nim.substr (pos+1); }
-            val.push_back (nim);
-            val.push_back (cbsz [0]);
-            module_ -> AppendItem (val, n); }
-        box_ -> Add (module_, 0, wxALL | wxEXPAND, 5); }
-
-    const wxString stray [] = { CBSZ };
-    constexpr int count = sizeof (stray) / sizeof (wxString);
-    caroline_ = GSL_OWNER (wxRadioBox) (new wxRadioBox (parent, radio_css_level, "Module Level", wxDefaultPosition, wxDefaultSize, count, stray, 8, wxRA_SPECIFY_COLS));
-    if (caroline_ != nullptr)
-    {   caroline_ -> SetSelection (0);
-        box_ -> Add (caroline_, 0, wxALIGN_CENTRE_HORIZONTAL, 5); }
-
-    sl1_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
-    if (sl1_ != nullptr)
-        box_ -> Add (sl1_, 0, wxEXPAND | wxALL, 5);
-
-    homme_.construct (parent, box_, "File Extensions:", CSS_EXT);
-
-    sl2_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
-    if (sl2_ != nullptr)
-        box_ -> Add (sl2_, 0, wxEXPAND | wxALL, 5); }
+{	if (drop_.concoct (parent, box_, choice_css_version, "CSS &version: "))
+    {   module_ = GSL_OWNER (wxDataViewListCtrl) (new wxDataViewListCtrl (parent, list_css_module, wxDefaultPosition, wxDefaultSize, wxVSCROLL));
+        if (module_ != nullptr)
+        {   module_ -> SetMinSize (wxSize (-1, 150));
+            col_mod_ = module_ -> AppendTextColumn ("Module", wxDATAVIEW_CELL_INERT, 250, static_cast <wxAlignment> (wxALIGN_RIGHT), wxDATAVIEW_COL_RESIZABLE);
+            col_ver_ = module_ -> AppendTextColumn ("Level", wxDATAVIEW_CELL_INERT, -1, static_cast <wxAlignment> (wxALIGN_LEFT), wxDATAVIEW_COL_RESIZABLE);
+            for (int n = 0; n < c_bad; ++n)
+            {   wxVector < wxVariant > val;
+                ::std::string nim (type_master < t_css_module > :: name (static_cast < e_css_module > (n)));
+                if (nim.empty ()) nim = ::boost::lexical_cast < ::std::string > (n) + " (missing description)";
+                else
+                {	const ::std::string::size_type pos = nim.find (':');
+                    if ((pos != ::std::string::npos) && (pos < (nim.length () - 1))) nim = nim.substr (pos+1); }
+                val.push_back (nim);
+                val.push_back (cbsz [0]);
+                module_ -> AppendItem (val, n); }
+            box_ -> Add (module_, 0, wxALL | wxEXPAND, 5);
+            if (    level_.concoct (parent, box_, radio_css_level, "Module Level", { CBSZ }) &&
+                    line1_.concoct (parent, box_) &&
+                    homme_.construct (parent, box_, "File Extensions:", CSS_EXT))
+                line2_.concoct (parent, box_); } } }
 
 void css_t :: CreateControls ()
 {	PRESUME (invalid (), __FILE__, __LINE__);
@@ -236,21 +204,21 @@ void css_t :: modulo_level ()
     switch (cv)
     {	case css_none :
             if (! v_.css_any_3_4_5_6 ())
-            {	version_ -> SetSelection (css_none);
+            {	drop_.select (css_none);
                 return; }
             break;
         case css_bespoke :
             break;
         default :
-            version_ -> SetSelection (cv);
+            drop_.select (cv);
             return; }
     for (int i = css_1; i <= css_version_max; ++i)
     {	html_version tmp;
         tmp.css_version (static_cast < e_css_version > (i));
         if (is_css_identical (v_, tmp))
-        {	version_ -> SetSelection (static_cast < e_css_version > (i));	
+        {	drop_.select (static_cast < e_css_version > (i));	
             return; } }
-    version_ -> SetSelection (css_bespoke); }
+    drop_.select (css_bespoke); }
 
 void css_t :: set_module (const e_css_module m)
 {	const int l = v_.css_module (m);
@@ -264,7 +232,7 @@ void css_t :: set_module (const e_css_module m)
 
 void css_t :: Disenable ()
 {   if (invalid ()) return;
-    const int l = version_ -> GetSelection ();
+    const int l = drop_.selected ();
     if (l != wxNOT_FOUND)
     {	const e_css_version sel = GSL_NARROW_CAST < e_css_version > (l);
         if (sel != css_bespoke)
@@ -281,22 +249,22 @@ void css_t :: OnVersion (wxCommandEvent& )
 void css_t :: OnModule (wxDataViewEvent& )
 {   if (invalid ()) return;
     const int l = module_ -> GetSelectedRow ();
-    if (l == wxNOT_FOUND) caroline_ -> Enable (false);
+    if (l == wxNOT_FOUND) level_.enable (false);
     else
     {	const e_css_module m = GSL_NARROW_CAST < e_css_module > (l);
         const int lev = v_.css_module (m);
         const flags_t f (enum_n < t_css_module, e_css_module, e_nit_macro, nm_none > :: flags (m));
         for (int i = 0; i <= rb_6; ++i)
-            caroline_ -> Enable (i, canable (m, static_cast < canable_butt > (i)));
+            level_.enable (i, canable (m, static_cast < canable_butt > (i)));
         if (can_mvsb (f))
-            caroline_ -> SetSelection (mvsb (lev, f)); } }			
+            level_.select (mvsb (lev, f)); } }			
 
 void css_t :: OnLevel (wxCommandEvent& )
 {	if (invalid ()) return;
     const int l = module_ -> GetSelectedRow ();
     if (l != wxNOT_FOUND)
     {	const e_css_module m = GSL_NARROW_CAST < e_css_module > (l);
-        const int lvl = caroline_ -> GetSelection ();
+        const int lvl = level_.selected ();
         switch (lvl)
         {	case rb_off :
                 v_.css_module (m, 0);
@@ -344,14 +312,13 @@ void css_t :: OnImpatience (wxCommandEvent& e)
 {	homme_.OnImpatience (e); }
 
 bool css_t :: TransferDataToWindow ()
-{	VERIFY_NOT_NULL (caroline_, __FILE__, __LINE__);
-    if (invalid ()) return false;
+{	if (invalid ()) return false;
     v_ = trans_;
     ver_ = v_.css_version ();
     homme_.preload (css_ext_);
     modulo_level ();
     Disenable ();
-    caroline_ -> Enable (false);
+    level_.enable (false);
     return true; }
 
 bool css_t :: TransferDataFromWindow ()

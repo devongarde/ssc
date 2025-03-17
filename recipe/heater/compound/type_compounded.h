@@ -28,6 +28,9 @@ template < > struct type_master < t_acn_2 > : type_range < t_acn_2, sz_space_cha
 template < > struct type_master < t_aesfs > : type_range < t_aesfs, sz_space_char, t_aesf, 1, 2 >
 { using type_range < t_aesfs, sz_space_char, t_aesf, 1, 2 > :: type_range; };
 
+template < > struct type_master < t_allow_list > : type_at_least_none < t_allow_list, sz_semicolon, t_permpol >
+{ using type_at_least_none < t_allow_list, sz_semicolon, t_permpol > :: type_at_least_none; };
+
 template < > struct type_master < t_angle_ar > : type_or_either_string < t_angle_ar, t_angle, sz_auto, sz_reverse >
 { using type_or_either_string < t_angle_ar, t_angle, sz_auto, sz_reverse > :: type_or_either_string; };
 
@@ -39,6 +42,9 @@ template < > struct type_master < t_angle_n > : type_or_string < t_angle_n, t_an
 
 template < > struct type_master < t_angle_p > : public type_either_or < t_angle_p, t_angle, t_percent >
 {   using type_either_or < t_angle_p, t_angle, t_percent > :: type_either_or; };
+
+template < > struct type_master < t_aria_relevants > : type_at_least_one < t_aria_relevants, sz_space_char, t_aria_relevant >
+{ using type_at_least_one < t_aria_relevants, sz_space_char, t_aria_relevant > :: type_at_least_one; };
 
 template < > struct type_master < t_bixys > : type_at_least_one < t_bixys, sz_space_char, t_bixy >
 { using type_at_least_one < t_bixys, sz_space_char, t_bixy > :: type_at_least_one; };

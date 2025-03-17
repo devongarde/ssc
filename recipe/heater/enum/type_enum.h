@@ -246,6 +246,12 @@ template < > struct type_master < t_alignment_baseline > : ENUM_N (alignment_bas
 template < > struct type_master < t_alignplus > : ENUM_N (alignplus)
 { using ENUM_N (alignplus) :: enum_n; };
 
+template < > struct type_master < t_aria_current > : ENUM_N (aria_current)
+{ using ENUM_N (aria_current) :: enum_n; };
+
+template < > struct type_master < t_aria_popup > : ENUM_N (aria_popup)
+{ using ENUM_N (aria_popup) :: enum_n; };
+
 template < > struct type_master < t_as > : ENUM_N (as)
 { using ENUM_N (as) :: enum_n; };
 
@@ -290,6 +296,9 @@ template < > struct type_master < t_cntype > : ENUM_N (cntype)
 
 template < > struct type_master < t_comp_op > : ENUM_N (comp_op)
 { using ENUM_N (comp_op) :: enum_n; };
+
+template < > struct type_master < t_command2 > : ENUM_N (command2)
+{ using ENUM_N (command2) :: enum_n; };
 
 template < > struct type_master < t_composite_operator > : ENUM_N (composite_operator)
 { using ENUM_N (composite_operator) :: enum_n; };
@@ -612,6 +621,9 @@ template < > struct type_master < t_dingbat > : ENUM_N (dingbat)
 template < > struct type_master < t_dir > : ENUM_N (dir)
 { using ENUM_N (dir) :: enum_n; };
 
+template < > struct type_master < t_directive > : ENUM_N (directive)
+{ using ENUM_N (directive) :: enum_n; };
+
 template < > struct type_master < t_display_align > : ENUM_N (display_align)
 { using ENUM_N (display_align) :: enum_n; };
 
@@ -701,6 +713,9 @@ template < > struct type_master < t_inputtype5 > : ENUM_N (inputtype5)
 
 template < > struct type_master < t_jtoken > : ENUM_N (jtoken)
 { using ENUM_N (jtoken) :: enum_n; };
+
+template < > struct type_master < t_keycode > : ENUM_N (keycode)
+{ using ENUM_N (keycode) :: enum_n; };
 
 template < > struct type_master < t_kind > : ENUM_N (kind)
 { using ENUM_N (kind) :: enum_n; };
@@ -806,6 +821,9 @@ template < > struct type_master < t_nit_section > : ENUM_N (nit_section)
 
 template < > struct type_master < t_ogtype > : ENUM_N (ogtype)
 { using ENUM_N (ogtype) :: enum_n; };
+
+template < > struct type_master < t_output_template > : ENUM_N (output_template)
+{ using ENUM_N (output_template) :: enum_n; };
 
 template < > struct type_master < t_page_orientation > : ENUM_N (page_orientation)
 { using ENUM_N (page_orientation) :: enum_n; };

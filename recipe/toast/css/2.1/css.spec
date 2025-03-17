@@ -450,10 +450,7 @@ PASS ../toast/css/2.1/css-16-6.css
 
 PASS ../toast/css/2.1/css-16-6.html
 6 missing_open
-9 unknown_element
-9 unknown_element
-9 unknown_element
-9 unknown_element
+9 unknown_element unknown_element unknown_element unknown_element
 
 PASS ../toast/css/2.1/css-17-1.css
 0 html

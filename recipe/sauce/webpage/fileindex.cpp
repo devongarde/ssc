@@ -395,14 +395,14 @@ void set_crc (const fileindex_t ndx, const crc_t& crc)
         res += " (";
         if (GSL_AT (vx, i).mummy_ == nullfileindex) res += "-";
         else res += ::boost::lexical_cast < ::std::string > (GSL_AT (vx, i).mummy_);
-        res += ",";
+        res += PLAINSEP;
         if (GSL_AT (vx, i).v_ < 0) res += "-";
         else res += ::boost::lexical_cast < ::std::string > (GSL_AT (vx, i).v_);
-        res += ",";
+        res += PLAINSEP;
         res += ::boost::lexical_cast < ::std::string > (GSL_AT (vx, i).size_);
-        res += ",";
+        res += PLAINSEP;
         res += ::boost::lexical_cast < ::std::string > (GSL_AT (vx, i).last_write_);
-        res += ",";
+        res += PLAINSEP;
         ::std::string flg;
         if ((GSL_AT (vx, i).flags_ & FX_SCANNED) == FX_SCANNED) flg += "S";
         if ((GSL_AT (vx, i).flags_ & FX_EXISTS) == FX_EXISTS) flg += "E";
@@ -414,21 +414,21 @@ void set_crc (const fileindex_t ndx, const crc_t& crc)
         if ((GSL_AT (vx, i).flags_ & FX_DELETED) == FX_DELETED) flg += "d";
         if ((GSL_AT (vx, i).flags_ & FX_LINKED) == FX_LINKED) flg += "L";
         if (flg.empty ()) res += "-"; else res += flg;
-        res += ",";
+        res += PLAINSEP;
         res += ::boost::lexical_cast < ::std::string > (GSL_AT (vx, i).crc_);
-        res += ",";
+        res += PLAINSEP;
         res += ::boost::lexical_cast < ::std::string > (GSL_AT (vx, i).dx_.size ());
         for (auto dx : GSL_AT (vx, i).dx_)
         {   res += " ";
             res += ::boost::lexical_cast < ::std::string > (dx); }
-        res += ",";
+        res += PLAINSEP;
         res += ::boost::lexical_cast < ::std::string > (GSL_AT (vx, i).lx_.size ());
         for (auto lx : GSL_AT (vx, i).lx_)
         {   res += " ";
             res += ::boost::lexical_cast < ::std::string > (lx); }
-        res += ",";
+        res += PLAINSEP;
         res += GSL_AT (vx, i).site_path ();
-        res += ",";
+        res += PLAINSEP;
         res += GSL_AT (vx, i).disk_path ().string ();
        res += ")\n"; }
     res += "\nSite:\n";
@@ -512,7 +512,7 @@ bool fileindex_load_internal (nitpick& nits, bool& ok)
     ssc_getset ();
     BOOST_FSTREAM_CNSTRO (f, p, ::std::ios::in);
     if (f.fail ())
-    {   nits.pick (nit_cannot_read, es_error, ec_crc, "cannot open ", quote (p.string ()), " [2]");
+    {   nits.pick (nit_cannot_read, es_error, ec_file, "cannot open ", quote (p.string ()), " [2]");
         ok = true; return false; }
     reset_fileindices ();
     enum { fl_prog, fl_version, fl_root, fl_virtual_count, fl_virtual, fl_count, fl_site, fl_disk, fl_data } status = fl_prog;
@@ -534,8 +534,8 @@ bool fileindex_load_internal (nitpick& nits, bool& ok)
         f.getline (buf, buflen - 1);
         if (f.eof ()) break;
         if (f.fail ())
-        {   nits.pick (nit_cannot_read, es_error, ec_crc, "error reading from ", p.string ());
-            nits.pick (nit_cannot_read, es_debug, ec_crc, "perhaps increase the value of max in fileindex_load_internal");
+        {   nits.pick (nit_cannot_read, es_error, ec_io, "error reading from ", p.string ());
+            nits.pick (nit_cannot_read, es_debug, ec_file, "perhaps increase the value of max in fileindex_load_internal");
             ok = false; return false; }
         if ((*buf == 0) || (*buf == '#')) continue;
 #ifdef _MSC_VER
@@ -549,35 +549,35 @@ bool fileindex_load_internal (nitpick& nits, bool& ok)
         switch (status)
         {   case fl_prog :
                 if (strcmp (FULLNAME, buf) != 0)
-                {   nits.pick (nit_wrong_version, es_error, ec_crc, p.string (), " was not written by " PROG);
+                {   nits.pick (nit_wrong_version, es_error, ec_file, p.string (), " was not written by " PROG);
                     ok = true; return false; }
                 status = fl_version; break;
             case fl_version :
                 {   vstr_t a (split_by_charset (buf, "."));
                     if (a.size () != 3)
-                    {   nits.pick (nit_cannot_read, es_error, ec_crc, p.string (), " appears corrupt");
+                    {   nits.pick (nit_cannot_read, es_error, ec_file, p.string (), " appears corrupt");
                         ok = false; return false; }
                     else
                     {   const int mjr = lexical < int > :: cast (a.at (0));
                         const int mnr = lexical < int > :: cast (a.at (1));
                         const int rel = lexical < int > :: cast (a.at (2));
                         if ((VERSION_MAJOR < mjr) || ((VERSION_MAJOR == mjr) && (VERSION_MINOR < mnr)) || ((VERSION_MAJOR == mjr) && (VERSION_MINOR == mnr) && (VERSION_RELEASE < rel)))
-                        {   nits.pick (nit_wrong_version, es_error, ec_crc, p.string (), " was written by a more recent version of " PROG);
+                        {   nits.pick (nit_wrong_version, es_error, ec_file, p.string (), " was written by a more recent version of " PROG);
                             ok = true; return false; }
                         if ((mjr < MJR_LYNX_N_DEPEND) || ((MJR_LYNX_N_DEPEND == mjr) && (mnr < MNR_LYNX_N_DEPEND)) || ((MJR_LYNX_N_DEPEND == mjr) && (MNR_LYNX_N_DEPEND == mnr) && (rel < REL_LYNX_N_DEPEND)))
-                        {   nits.pick (nit_wrong_version, es_error, ec_crc, p.string (), " was written by an incompatible version of " PROG);
+                        {   nits.pick (nit_wrong_version, es_error, ec_file, p.string (), " was written by an incompatible version of " PROG);
                             ok = true; return false; } } }
                 status = fl_root;
                 break;
             case fl_root :
                 if (! compare_no_case (context.root (), buf))
-                {   nits.pick (nit_root_change, es_error, ec_crc, "site root changed from ", quote (buf), " to ", quote (context.root ()));
+                {   nits.pick (nit_root_change, es_error, ec_file, "site root changed from ", quote (buf), " to ", quote (context.root ()));
                     ok = true; return false; }
                 status = fl_virtual_count; break;
             case fl_virtual_count :
                 {   virtual_count = lexical < unsigned > :: cast (buf, 0);
                     if (virtual_count != context.virtuals ().size ())
-                    {   nits.pick (nit_virtual_change, es_error, ec_crc, "number of virtuals changed from ", virtual_count, " to ", context.virtuals ().size ());
+                    {   nits.pick (nit_virtual_change, es_error, ec_file, "number of virtuals changed from ", virtual_count, " to ", context.virtuals ().size ());
                         ok = true; return false; } }
                 status = fl_virtual; break;
             case fl_virtual :
@@ -590,22 +590,22 @@ bool fileindex_load_internal (nitpick& nits, bool& ok)
 #pragma warning (pop)
 #endif // _MSC_VER
                 {   if (got < virtual_count)
-                    {   nits.pick (nit_virtual_change, es_error, ec_crc, "missing virtual roots; ", p.string (), " appears to be corrupt");
+                    {   nits.pick (nit_virtual_change, es_error, ec_file, "missing virtual roots; ", p.string (), " appears to be corrupt");
                         whoops = true; ok = true; return false; }
                     while (got < context.virtuals ().size ())
-                    {   nits.pick (nit_virtual_change, es_error, ec_crc, "virtual root ", quote (context.virtuals ().at (got)), " is new");
+                    {   nits.pick (nit_virtual_change, es_error, ec_file, "virtual root ", quote (context.virtuals ().at (got)), " is new");
                         ok = true; whoops = true; ++got; }
                     if (whoops)
-                    {   nits.pick (nit_abandon, es_info, ec_crc, p.string (), " is incompatible with " PROG " version " VERSION_STRING "; abandoning load");
+                    {   nits.pick (nit_abandon, es_info, ec_file, p.string (), " is incompatible with " PROG " version " VERSION_STRING "; abandoning load");
                         ok = true; return false; }
                     status = fl_count; }
                 else if (got < context.virtuals ().size ())
                 {   if (! compare_no_case (context.virtuals ().at (got), buf))
-                    {   nits.pick (nit_virtual_change, es_error, ec_crc, "virtual root changed from ", quote (buf), " to ", quote (context.virtuals ().at (got)));
+                    {   nits.pick (nit_virtual_change, es_error, ec_file, "virtual root changed from ", quote (buf), " to ", quote (context.virtuals ().at (got)));
                         ok = true; whoops = true; }
                     ++got; }
                 else
-                {   nits.pick (nit_virtual_change, es_error, ec_crc, "virtual root ", quote (buf), " no longer applied.");
+                {   nits.pick (nit_virtual_change, es_error, ec_file, "virtual root ", quote (buf), " no longer applied.");
                     ok = true; whoops = true; ++got; }
                 break;
             case fl_count :
@@ -625,7 +625,7 @@ bool fileindex_load_internal (nitpick& nits, bool& ok)
                 disk = buf;
                 status = fl_data; break;
             case fl_data :
-                {   vstr_t args (split_by_charset (buf, ","));
+                {   vstr_t args (split_by_charset (buf, PLAINSEP));
                     if (args.size () != PERSIST_ARG_COUNT) break;
                     const short v = lexical < short > :: cast (args.at (PERSIST_SPECIAL));
                     uintmax_t size = lexical < uintmax_t > :: cast (args.at (PERSIST_SIZE));
@@ -659,14 +659,14 @@ bool fileindex_load_internal (nitpick& nits, bool& ok)
                 status = fl_site;
                 break;
             default :
-                 nits.pick (nit_cannot_read, es_error, ec_crc, p.string (), " appears corrupt, or was not written by " PROG);
+                 nits.pick (nit_cannot_read, es_error, ec_file, p.string (), " appears corrupt, or was not written by " PROG);
                  ok = true; return false; } }
     if (status != fl_site)
-    {   nits.pick (nit_cannot_read, es_error, ec_crc, p.string (), " is corrupt or truncated; abandoning load");
+    {   nits.pick (nit_cannot_read, es_error, ec_io, p.string (), " is corrupt or truncated; abandoning load");
         ok = false; return false; }
     vx.shrink_to_fit ();
     if (count < vx.size ())
-    {   nits.pick (nit_cannot_read, es_catastrophic, ec_crc, p.string (), " is inconsistent; abandoning load");
+    {   nits.pick (nit_cannot_read, es_catastrophic, ec_file, p.string (), " is inconsistent; abandoning load");
         ok = false; return false; }
     count = vx.size ();
     return true; }
@@ -681,8 +681,8 @@ bool fileindex_load (nitpick& nits)
     if (! ok)
     {   ::boost::filesystem::path p (persist_path ());
         if (file_exists (p))
-            if (delete_file (p)) nits.pick (nit_deleted_bad_file, es_info, ec_crc, "deleted bad file ", p.string ());
-            else nits.pick (nit_cannot_delete, es_error, ec_crc, "cannot delete bad file ", p.string ()); }
+            if (delete_file (p)) nits.pick (nit_deleted_bad_file, es_info, ec_file, "deleted bad file ", p.string ());
+            else nits.pick (nit_cannot_delete, es_error, ec_file, "cannot delete bad file ", p.string ()); }
     return false; }
 
 bool write_fileindex_record (nitpick& nits, BOOST_FSTREAM& f, const ::boost::filesystem::path& name, const ::std::size_t n, const mndx_t& mndx)
@@ -693,23 +693,23 @@ bool write_fileindex_record (nitpick& nits, BOOST_FSTREAM& f, const ::boost::fil
     ln += ::boost::lexical_cast < ::std::string > (v.disk_path ().string ());
     ln += "\n";
     ln += ::boost::lexical_cast < ::std::string > (v.v_); // ensure this write order matches PERSIST_... #defines above
-    ln += ",";
+    ln += PLAINSEP;
     ln += ::boost::lexical_cast < ::std::string > (v.size_);
-    ln += ",";
+    ln += PLAINSEP;
     ln += ::boost::lexical_cast < ::std::string > (v.last_write_);
-    ln += ",";
+    ln += PLAINSEP;
     ln += ::boost::lexical_cast < ::std::string > (v.flags_);
-    ln += ",";
+    ln += PLAINSEP;
     if ((v.flags_ & FX_CRC) == FX_CRC) ln += ::boost::lexical_cast < ::std::string > (v.crc_);
     else ln += "0";
-    ln += ",";
+    ln += PLAINSEP;
     ln += ::boost::lexical_cast < ::std::string > (v.dx_.size ());
     for (auto dx : v.dx_)
     {   ln += " ";
         mndx_t::const_iterator i = mndx.find (dx);
         if (i == mndx.cend ()) ln += ::boost::lexical_cast < ::std::string > (nullfileindex);
         else ln += ::boost::lexical_cast < ::std::string > (i -> second); }
-    ln += ",";
+    ln += PLAINSEP;
     ln += ::boost::lexical_cast < ::std::string > (v.lx_.size ());
     for (auto lx : v.lx_)
     {   ln += " ";
@@ -719,7 +719,7 @@ bool write_fileindex_record (nitpick& nits, BOOST_FSTREAM& f, const ::boost::fil
     ln += "\n";
     f.write (ln.c_str (), ln.length ());
     if (f.fail ())
-    {   nits.pick (nit_cannot_write, es_error, ec_crc, "cannot write to ", name.string ());
+    {   nits.pick (nit_cannot_write, es_error, ec_io, "cannot write to ", name.string ());
         return false; }
     return true; }
 
@@ -732,7 +732,7 @@ void fileindex_save_and_close (nitpick& nits)
     if (context.tell (es_all)) outstr.out (fileindex_report ());
     ::boost::filesystem::path name (persist_path ());
     BOOST_FSTREAM_CNSTRO (f, name, ::std::ios::out | ::std::ios::trunc);
-    if (f.fail ()) nits.pick (nit_cannot_update, es_error, ec_crc, "cannot open ", quote (name.string ()), " [3]");
+    if (f.fail ()) nits.pick (nit_cannot_update, es_error, ec_file, "cannot open ", quote (name.string ()), " [3]");
     else
     {   mndx_t mndx; ::std::size_t x = 0;
         for (::std::size_t n = 0; n < vx.size (); ++n)
@@ -749,7 +749,7 @@ void fileindex_save_and_close (nitpick& nits)
         ln += "\n";
         f.write (ln.c_str (), ln.length ());
         if (f.fail ())
-            nits.pick (nit_cannot_write, es_error, ec_crc, "cannot write to ", name.string ());
+            nits.pick (nit_cannot_write, es_error, ec_io, "cannot write to ", name.string ());
         else
         {   for (::std::size_t v = 0; v < paths_root::virtual_roots ().size (); ++v)
             {   const ::std::size_t n = paths_root::virtual_roots ().at (v) -> fileindex ();
@@ -780,7 +780,7 @@ void dedu (nitpick& nits) // presumes run between scan and examine phases
                                 dup = true; } }
                     if (! dup) mcrc.emplace (crc, i); }
                 if (dup)
-                    nits.pick (nit_duplicate, es_info, ec_crc, x.disk_path (), " duplicates ", vx.at (x.dedu_).disk_path ()); } } }
+                    nits.pick (nit_duplicate, es_info, ec_file, x.disk_path (), " duplicates ", vx.at (x.dedu_).disk_path ()); } } }
 
 bool isdu (const fileindex_t ndx)
 {   lox l (lox_fileindex);

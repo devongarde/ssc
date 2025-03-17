@@ -233,7 +233,7 @@
     <ClInclude Include="..\heater\symbol\symbol_table.h" />
     <ClInclude Include="..\heater\type\type.h" />
     <ClInclude Include="..\heater\type\type_csp.h" />
-    <ClInclude Include="..\heater\url\curl.h" />
+    <ClInclude Include="..\heater\url\fetch.h" />
     <ClInclude Include="..\heater\url\url.h" />
     <ClInclude Include="..\heater\url\url_parameters.h" />
     <ClInclude Include="..\heater\url\url_protocol.h" />
@@ -258,6 +258,7 @@
     <ClInclude Include="..\heater\webpage\id.h" />
     <ClInclude Include="..\heater\webpage\page.h" />
     <ClInclude Include="..\heater\webpage\q.h" />
+    <ClInclude Include="..\heater\webpage\required.h" />
     <ClInclude Include="..\heater\webpage\root.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
@@ -570,10 +571,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_0_9.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_0_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_3_9.cpp" />
     <ClCompile Include="..\sauce\css\value_types_a_1.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
@@ -586,6 +585,17 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_a_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_a_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_b_4.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_c_3.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_d.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_e.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_f_3.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_s_3.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_t_3.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_u.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_v.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_w_z.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
@@ -646,15 +656,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_u_v.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_c_3.cpp" />
     <ClCompile Include="..\sauce\css\value_types_c_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_a.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
@@ -663,10 +666,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_css_c_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_d_e.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
@@ -706,18 +705,14 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_i.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_i_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_i_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_j_k.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_l.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_l_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_l_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_m_1.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
@@ -730,10 +725,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_n_o.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_n.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_o.cpp" />
     <ClCompile Include="..\sauce\css\value_types_p_1.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
@@ -766,10 +759,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_t.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_t_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_t_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_u.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
@@ -1256,7 +1247,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\sauce\url\curl.cpp">
+    <ClCompile Include="..\sauce\url\fetch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
@@ -1336,6 +1327,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\sauce\webpage\required.cpp" />
     <ClCompile Include="..\sauce\webpage\root.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
@@ -1346,6 +1338,45 @@
     <None Include="..\port\openbsd\Makefile" />
     <None Include="..\port\openbsd\pkg\DESCR" />
     <None Include="..\port\openbsd\pkg\PLIST" />
+    <None Include="..\toast\aria\1-0\2.css" />
+    <None Include="..\toast\aria\1-0\2.html" />
+    <None Include="..\toast\aria\1-0\5.html" />
+    <None Include="..\toast\aria\1-0\6.html" />
+    <None Include="..\toast\aria\1-0\aria.conf" />
+    <None Include="..\toast\aria\1-0\aria.spec" />
+    <None Include="..\toast\aria\1-0\index.html" />
+    <None Include="..\toast\aria\1-1\2.css" />
+    <None Include="..\toast\aria\1-1\2.html" />
+    <None Include="..\toast\aria\1-1\5.html" />
+    <None Include="..\toast\aria\1-1\6.css" />
+    <None Include="..\toast\aria\1-1\6.html" />
+    <None Include="..\toast\aria\1-1\aria.conf" />
+    <None Include="..\toast\aria\1-1\aria.spec" />
+    <None Include="..\toast\aria\1-1\index.html" />
+    <None Include="..\toast\aria\1-2\4.css" />
+    <None Include="..\toast\aria\1-2\4.html" />
+    <None Include="..\toast\aria\1-2\5.html" />
+    <None Include="..\toast\aria\1-2\6.html" />
+    <None Include="..\toast\aria\1-2\aria.conf" />
+    <None Include="..\toast\aria\1-2\aria.spec" />
+    <None Include="..\toast\aria\1-2\index.html" />
+    <None Include="..\toast\aria\1-3\aria.conf" />
+    <None Include="..\toast\aria\1-3\aria.spec" />
+    <None Include="..\toast\aria\1-3\errors.html" />
+    <None Include="..\toast\aria\1-3\index.html" />
+    <None Include="..\toast\aria\1-3\media.html" />
+    <None Include="..\toast\aria\1-3\properties.html" />
+    <None Include="..\toast\aria\1-3\role.html" />
+    <None Include="..\toast\aria\1-3\tree.html" />
+    <None Include="..\toast\aria\dp\aria.conf" />
+    <None Include="..\toast\aria\dp\aria.spec" />
+    <None Include="..\toast\aria\dp\index.html" />
+    <None Include="..\toast\aria\graphics\aria.conf" />
+    <None Include="..\toast\aria\graphics\aria.spec" />
+    <None Include="..\toast\aria\graphics\index.html" />
+    <None Include="..\toast\aria\html\aria.conf" />
+    <None Include="..\toast\aria\html\aria.spec" />
+    <None Include="..\toast\aria\html\index.html" />
     <None Include="..\toast\conf\html\conf.conf" />
     <None Include="..\toast\conf\html\conf.spec" />
     <None Include="..\toast\conf\html\index.html" />
@@ -11913,9 +11944,6 @@
     <None Include="..\toast\other\abbr\abbr.conf" />
     <None Include="..\toast\other\abbr\abbr.spec" />
     <None Include="..\toast\other\abbr\index.html" />
-    <None Include="..\toast\other\aria\aria.conf" />
-    <None Include="..\toast\other\aria\aria.spec" />
-    <None Include="..\toast\other\aria\index.html" />
     <None Include="..\toast\other\base\bad-base-2.html" />
     <None Include="..\toast\other\base\bad-base-3.html" />
     <None Include="..\toast\other\base\bad-base.html" />
@@ -12007,6 +12035,15 @@
     <None Include="..\toast\other\pattern\index.html" />
     <None Include="..\toast\other\pattern\pattern.conf" />
     <None Include="..\toast\other\pattern\pattern.spec" />
+    <None Include="..\toast\other\permissions\index.html" />
+    <None Include="..\toast\other\permissions\permissions.conf" />
+    <None Include="..\toast\other\permissions\permissions.spec" />
+    <None Include="..\toast\other\required\index.html" />
+    <None Include="..\toast\other\required\other.html" />
+    <None Include="..\toast\other\required\required.conf" />
+    <None Include="..\toast\other\required\required.spec" />
+    <None Include="..\toast\other\required\sub\index.html" />
+    <None Include="..\toast\other\required\sub\other.html" />
     <None Include="..\toast\other\ruby\index.html" />
     <None Include="..\toast\other\ruby\ruby-2.html" />
     <None Include="..\toast\other\ruby\ruby-a.html" />
@@ -12038,6 +12075,11 @@
     <None Include="..\toast\output\args\index.html" />
     <None Include="..\toast\output\args\output.out.model" />
     <None Include="..\toast\output\args\output.spec" />
+    <None Include="..\toast\output\bespoke\output.conf" />
+    <None Include="..\toast\output\bespoke\bespoke.nit" />
+    <None Include="..\toast\output\bespoke\output.spec" />
+    <None Include="..\toast\output\bespoke\bespoke.txt.model" />
+    <None Include="..\toast\output\bespoke\index.html" />
     <None Include="..\toast\output\html\html.nit" />
     <None Include="..\toast\output\html\index.html" />
     <None Include="..\toast\output\html\index.html.model" />
@@ -12058,7 +12100,6 @@
     <None Include="..\toast\output\text\output.conf" />
     <None Include="..\toast\output\text\output.spec" />
     <None Include="..\toast\output\text\output.txt.model" />
-    <None Include="..\toast\output\text\text.nit" />
     <None Include="..\toast\output\xhtml\index.html" />
     <None Include="..\toast\output\xhtml\index.xhtml.model" />
     <None Include="..\toast\output\xhtml\output.conf" />
@@ -13869,6 +13910,10 @@
   <ItemGroup>
     <ResourceCompile Include="ssc.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\toast\aria\1-3\fen1.mp3" />
+    <Media Include="..\toast\aria\1-3\to_let.mov" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>x64Proj</Keyword>
@@ -13953,8 +13998,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL)\include;$(ICU_ROOT)\include;$(CURL)\include</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc14x_x64_dll;$(ICU_ROOT)\lib64;$(CURL)\lib\debug</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL)\include;$(ICU_ROOT)\include</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc14x_x64_dll;$(ICU_ROOT)\lib64</LibraryPath>
     <EnableMicrosoftCodeAnalysis>true</EnableMicrosoftCodeAnalysis>
     <EnableClangTidyCodeAnalysis>false</EnableClangTidyCodeAnalysis>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
@@ -13962,8 +14007,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL)\include;$(ICU_ROOT)\include;$(CURL)\include</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc14x_x64_dll;$(ICU_ROOT)\lib64;$(CURL)\lib\release</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL)\include;$(ICU_ROOT)\include</IncludePath>
+    <LibraryPath>$(ICU_ROOT)\lib64;$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc14x_x64_dll;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -13984,12 +14029,12 @@
     <TargetName>$(ProjectName)-x86</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
-    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath)$(BOOST);$(GSL)\include;$(ICU_ROOT)\include;$(BOOST);$(CURL)\include</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(ICU_ROOT)\libARM64;$(CURL)\lib\debug</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath)$(BOOST);$(GSL)\include;$(ICU_ROOT)\include;$(BOOST)</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(ICU_ROOT)\libARM64</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
-    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(GSL)\include;$(ICU_ROOT)\include;$(BOOST);$(CURL)\include</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(ICU_ROOT)\libARM64;$(CURL)\lib\release</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(GSL)\include;$(ICU_ROOT)\include;$(BOOST)</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(ICU_ROOT)\libARM64</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg">
     <VcpkgEnableManifest>true</VcpkgEnableManifest>
@@ -14016,7 +14061,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;libcurl-d_imp.lib;icuind.lib;icuiod.lib;icutud.lib;icuucd.lib;icudt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icuind.lib;icuiod.lib;icutud.lib;icuucd.lib;icudt.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
@@ -14062,7 +14107,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;libcurl_imp.lib;icudt.lib;icuind.lib;icuiod.lib;icutud.lib;icuucd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icudt.lib;icuin.lib;icuio.lib;icutu.lib;icuuc.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
       <Profile>true</Profile>
@@ -14099,7 +14144,7 @@
       <SubSystem>Console</SubSystem>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
-      <AdditionalDependencies>libcurl-d_imp.lib;icudt.lib;icuind.lib;icuiod.lib;icutud.lib;icuucd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icudt.lib;icuind.lib;icuiod.lib;icutud.lib;icuucd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe</Command>
@@ -14126,7 +14171,7 @@
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libcurl_imp.lib;icudt.lib;icuind.lib;icuiod.lib;icutud.lib;icuucd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icudt.lib;icuin.lib;icuio.lib;icutu.lib;icuuc.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <SubSystem>Console</SubSystem>
       <HeapReserveSize>33554432</HeapReserveSize>
@@ -14161,7 +14206,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
     </Link>
     <PostBuildEvent>
@@ -14198,7 +14243,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;libcurl.lib;libcrypto.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;libcurl.lib;libcrypto.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <Profile>true</Profile>
       <GenerateMapFile>true</GenerateMapFile>
     </Link>

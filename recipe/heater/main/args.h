@@ -125,6 +125,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MICRODATA_  "microdata"
 #define NITS_       "nits"
 #define ONTOLOGY_   "ontology"
+#define OUTPUT_     "output"
 #define SERVER_     "server"
 #define SP          "shadow"
 #define SHADOW_     SP
@@ -148,6 +149,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MICRODATA   MICRODATA_ JOIN
 #define NITS        NITS_ JOIN
 #define ONTOLOGY    ONTOLOGY_ JOIN
+#define OUTPUT      OUTPUT_ JOIN
 #define SERVER      SERVER_ JOIN
 #define SHADOW      SHADOW_ JOIN
 #define SPELL       SPELL_ JOIN
@@ -160,7 +162,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define ABBR        "abbreviation"
 #define ABHORRENT   "abhorrent"
+#define APATH       "absolute-path"
 #define ACCEPT      "accept"
+#define ACCOUNT     "account"
 #define ADDRESS     "address"
 #define ADJUST      "adjust"
 #define ALL         "all"
@@ -195,6 +199,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define COLOUR      "colour"
 #define COLOR       "color"
 #define COMMENT     "comment"
+#define COMMS       "comms"
 #define COMPOSITING "compositing"
 #define COND_RULE   "cond-rule"
 #define CONFIG      "config"
@@ -218,6 +223,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define DDICT       "ddict"
 #define DEFCONF     "defconf"
 #define DEFTHRD     "defthrd"
+#define DESCRIPTION "description"
 #define DETAIL      "detail"
 #define DEVICE      "device"
 #define DFN         "definition"
@@ -314,11 +320,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define NIDS        "nids"
 #define ONCE        "once"
 #define ONT         "ontology"
-#define OUTPUT      "output"
 #define OPERA       "opera"
+#define OPERATOR    "operator"
 #define OPTBOOST    "boost"
 #define OPTCOMP     "compiler"
-#define OPTCURL     "curly"
 #define OPTDEBUG    "debug"
 #define OPTFUDDY    "fuddy"
 #define OPTGUI      "gui"
@@ -357,7 +362,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define REFERENCE   "reference"
 #define REGION      "region"
 #define REL         "rel"
+#define RPATH       "relative-path"
 #define REPORT      "report"
+#define REQUIRED    "required"
 #define REVOKE      "no-revoke"
 #define RFC1867     "rfc1867"
 #define RFC1942     "rfc1942"
@@ -380,11 +387,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SGML        "sgml"
 #define SHAPE       "shape"
 #define SHELL       "shell"
-#define SNAP        "snap"
-#define SNAP_POINTS "snap-points"
+#define SIGN        "sign"
 #define SILENCE     "silence"
 #define SITE        "domain"
 #define SLOVEN      "sloven"
+#define SNAP        "snap"
+#define SNAP_POINTS "snap-points"
 #define SOURCE      "source"
 #define SPACING     "space"
 #define SPATIAL     "spatial"
@@ -410,6 +418,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define TEST        "test"
 #define TEXT_ARG    "text"
 #define TEXT_DEC    "text-dec"
+#define TIME        "time"
 #define TITLE       "title"
 #define THREAD      "thread"
 #define TIMEFMT     "timefmt"
@@ -472,5 +481,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define DEFAULT_ECHOMSG     "[Value Undefined]"
 #define DEFAULT_ERRMSG      "[Oops, something broke.]"
+
+#define NIT_HTML        "HTML"
+#define NIT_SPEC        "SPEC"
+#define NIT_TEST        "TEST"
+#define NIT_TEXT        "TEXT"
+#define NIT_XHTML       "XHTML"
 
 #define ARGLEN_MAX  4096

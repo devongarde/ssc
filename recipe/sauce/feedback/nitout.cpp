@@ -145,7 +145,7 @@ vstr_t sections;
     "\n" \
     "[page-head]\n" \
     "\n" \
-    "PASS {{page-disk-path}}\n" \
+    "PASS {{page-path}}\n" \
     "\n" \
     "[page-foot]\n" \
     "\n" \
@@ -302,7 +302,7 @@ vstr_t sections;
     "[page-head]\n" \
     "\n" \
     "\n" \
-    START_OF_SECTION " {{page-disk-path}}\n" \
+    START_OF_SECTION " {{page-path}}\n" \
     "\n" \
     "[page-foot]\n" \
     "\n" \
@@ -390,7 +390,8 @@ vstr_t sections;
     "[doc-head]\n" \
     "{{prog-fullname}} version {{prog-version}}\n" \
     "{{copyright-text}}\n" \
-    "{{time-start}}\n" \
+    "{{output-build}}{{output-operator:, :}}{{output-account: (:)}}{{output-time:, :}}\n" \
+    "{{output-description}}" \
     "\n" \
     "[doc-foot]\n" \
     "\n" \
@@ -460,7 +461,7 @@ vstr_t sections;
     "[page-head]\n" \
     "\n" \
     "\n" \
-    START_OF_SECTION " {{page-disk-path}}\n" \
+    START_OF_SECTION " {{page-path}}\n" \
     "\n" \
     "[page-foot]\n" \
     "\n" \
@@ -587,7 +588,9 @@ vstr_t sections;
     "<HR>\n" \
     "<FOOTER class=\"smaller\">\n" \
     "<A href=\"{{prog-addr}}\" class=\"ssc-name\">{{prog-fullname}}</A> version {{prog-version}} ({{compile-time}})<BR>\n" \
-    "<A href=\"{{copyright-addr}}\" class=\"ssc-copyright\">{{copyright-text}}</A>\n" \
+    "<A href=\"{{copyright-addr}}\" class=\"ssc-copyright\">{{copyright-text}}</A><BR>\n" \
+    "{{output-build}}{{output-operator:, :}}{{output-account: (:)}}{{output-time:, :}}\n" \
+    "{{output-description:&ldquo;:&rdquo;}}\n" \
     "</FOOTER>\n" \
     "</BODY>\n" \
     "</HTML>\n" \
@@ -800,7 +803,9 @@ vstr_t sections;
     "<HR/>\n" \
     "<FOOTER class=\"smaller\">\n" \
     "<A href=\"{{prog-addr}}\" class=\"ssc-name\">{{prog-fullname}}</A> version {{prog-version}} ({{compile-time}})<BR/>\n" \
-    "<A href=\"{{copyright-addr}}\" class=\"ssc-copyright\">{{copyright-text}}</A>\n" \
+    "<A href=\"{{copyright-addr}}\" class=\"ssc-copyright\">{{copyright-text}}</A><BR>\n" \
+    "{{output-build}}{{output-operator:, :}}{{output-account: (:)}}{{output-time:, :}}\n" \
+    "{{output-description:&ldquo;:&rdquo;}}\n" \
     "</FOOTER>\n" \
     "</BODY>\n" \
     "</HTML>\n" \
@@ -972,6 +977,14 @@ void macro_t::set (const e_nit_macro m, ::std::string&& s)
 {   flox f (lox_flox);
     mmac_.emplace (m, s); }
 
+void macro_t::set (const e_nit_macro m, const vstr_t& v)
+{   ::std::string s;
+    for (auto ss : v)
+    {   if (! s.empty ()) s += "\n";
+        s += ss; }
+    flox f (lox_flox);
+    mmac_.emplace (m, s); }
+
 ::std::string macro_t::nit_content (const ::std::string& s)
 {   switch (context.quote_style ())
     {   case qs_c : return enc (s);
@@ -1047,40 +1060,37 @@ bool macro_t::load_template_int (nitpick& nits, const html_version& v, const ::s
                 break; }
     return res; }
 
-bool macro_t::load_template (nitpick& nits, const html_version& v, const e_nit_format nf)
+bool macro_t::load_template (nitpick& nits, const html_version& v, const e_output_template ot)
 {   PRESUME (fred.relaxed (), __FILE__, __LINE__);
-    switch (nf)
-    {   case nf_html : return load_template_int (nits, v, HTML_NIT);
-        case nf_spec : return load_template_int (nits, v, SPEC_NIT);
-        case nf_test : return load_template_int (nits, v, TEST_NIT);
-        case nf_text : return load_template_int (nits, v, TEXT_NIT);
-        case nf_xhtml : return load_template_int (nits, v, XHTML_NIT);
-        case nf_bespoke : break;
-        default : GRACEFUL_CRASH (__FILE__, __LINE__); }
-    const ::std::string& format = context.nit_format ();
-    if (! format.empty ())
-    {   if (compare_no_case (format, NIT_TEXT)) return load_template_int (nits, v, TEXT_NIT);
-        if (compare_no_case (format, NIT_HTML)) return load_template_int (nits, v, HTML_NIT);
-        if (compare_no_case (format, NIT_TEST)) return load_template_int (nits, v, TEST_NIT);
-        if (compare_no_case (format, NIT_SPEC)) return load_template_int (nits, v, SPEC_NIT);
-        if (compare_no_case (format, NIT_XHTML)) return load_template_int (nits, v, XHTML_NIT); }
-    ::std::string config;
     bool res = false;
+    const ::std::string& format = context.output_format ();
+    if (format.empty () && (ot == eot_bespoke))
 #ifndef EXPAND_TEST
-    if (context.test ())
-        if (context.spec ()) res = load_template_int (nits, v, SPEC_NIT);
-        else res = load_template_int (nits, v, TEST_NIT);
-    else
+        if (context.test ())
+            if (context.spec ()) res = load_template_int (nits, v, SPEC_NIT);
+            else res = load_template_int (nits, v, TEST_NIT);
+        else
 #endif // EXPAND_TEST
-    {   if (! format.empty ())
-        {   config = template_path (nits, "out.nit", format);
-            if (! config.empty ()) res = load_template_int (nits, v, config);
-            if (! res)
-            {   outstr.err (::std::string ("Cannot process ") + quote (format) + ", reverting to default output format.\n");
-                nits.pick (nit_template_file, es_catastrophic, ec_init, "Cannot process ", quote (format), ", reverting to default output format)"); } }
+        res = load_template_int (nits, v, TEXT_NIT);
+    else
+    {   nitpick nuts;
+        e_output_template o = ot;
+        if (o == eot_bespoke) o = examine_value < t_output_template > (nuts, v, format);
+        switch (o)
+        {   case eot_html : return load_template_int (nuts, v, HTML_NIT);
+            case eot_spec : return load_template_int (nuts, v, SPEC_NIT);
+            case eot_test : return load_template_int (nuts, v, TEST_NIT);
+            case eot_text : return load_template_int (nuts, v, TEXT_NIT);
+            case eot_xhtml : return load_template_int (nuts, v, XHTML_NIT);
+            default : break; }
+        ::std::string config;
+        config = template_path (nits, "out.nit", format);
+        if (! config.empty ()) res = load_template_int (nits, v, config);
         if (! res)
+        {   outstr.err (::std::string ("Cannot process ") + quote (format) + ", reverting to default output format.\n");
+            nits.pick (nit_template_file, es_catastrophic, ec_init, "Cannot process ", quote (format), ", reverting to default output format)");
             if ((! context.gui ()) && (! context.snippet ().empty ())) res = load_template_int (nits, v, HTML_NIT);
-            else res = load_template_int (nits, v, TEXT_NIT); }
+            else res = load_template_int (nits, v, TEXT_NIT); } }
     PRESUME (res, __FILE__, __LINE__);
     return res; }
 
@@ -1159,20 +1169,9 @@ void macro_t::dump_nits (nitpick& nits, const e_nit_section& entry, const e_nit_
 {   outstr.out (report (nits, entry, head, foot));
     nits.reset (); }
 
-e_nit_format is_standard_template (const ::std::string& s)
-{
-    if (compare_no_case (s, NIT_TEXT)) return nf_text;
-    if (compare_no_case (s, NIT_HTML)) return nf_html;
-    if (compare_no_case (s, NIT_TEST)) return nf_test;
-    if (compare_no_case (s, NIT_SPEC)) return nf_spec;
-    if (compare_no_case (s, NIT_XHTML)) return nf_xhtml;
-    return nf_bespoke; }
+e_output_template is_standard_template (const ::std::string& s)
+{   nitpick nuts;
+    return examine_value < t_output_template > (nuts, context.html_ver (), s); }
 
-::std::string get_standard_template (const e_nit_format nf)
-{   switch (nf)
-    {   case nf_html : return "HTML";
-        case nf_spec : return "SPEC";
-        case nf_test : return "TEST";
-        case nf_text : return "TEXT";
-        case nf_xhtml : return "XHTML";
-        default : return ""; } }
+::std::string get_standard_template (const e_output_template nf)
+{   return type_master < t_output_template > :: name (nf); }

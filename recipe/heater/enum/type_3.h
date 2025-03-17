@@ -32,6 +32,7 @@ public:
     using type_base < base_type, TYPE > :: type_base;
     static e_animation_type animation_type () noexcept
     {   return at_other; }
+    static constexpr ::std::size_t value_count () noexcept { return 3; }
     ::std::string get_string () const;
      ::std::string name () const { return get_string (); }
     static ::std::string name (const base_type e)
@@ -313,6 +314,9 @@ template < > struct type_master < t_font_variant_position > : three_value < t_fo
 template < > struct type_master < t_gamut > : three_value < t_gamut, e_gamut, sz_p3, sz_rec2020, sz_srgb >
 { using three_value < t_gamut, e_gamut, sz_p3, sz_rec2020, sz_srgb > :: three_value; };
 
+template < > struct type_master < t_huv > : three_value < t_huv, e_huv, sz_horizontal, sz_undefined, sz_vertical >
+{ using three_value < t_huv, e_huv, sz_horizontal, sz_undefined, sz_vertical > :: three_value; };
+
 template < > struct type_master < t_importance > : three_value < t_importance, e_importance, sz_auto, sz_high, sz_low >
 { using three_value < t_importance, e_importance, sz_auto, sz_high, sz_low > :: three_value; };
 
@@ -381,6 +385,9 @@ template < > struct type_master < t_mf_status > : three_value < t_mf_status, e_m
 
 template < > struct type_master < t_nsd > : three_value < t_nsd, e_nsd, sz_none, sz_spaced, sz_dashed >
 { using three_value < t_nsd, e_nsd, sz_none, sz_spaced, sz_dashed > :: three_value; };
+
+template < > struct type_master < t_nss > : three_value < t_nss, e_nss, sz_none, sz_self, sz_src >
+{ using three_value < t_nss, e_nss, sz_none, sz_self, sz_src > :: three_value; };
 
 template < > struct type_master < t_nuf > : three_value < t_nuf, e_nuf, sz_refurbished, sz_new, sz_used >
 { using three_value < t_nuf, e_nuf, sz_refurbished, sz_new, sz_used > :: three_value; };

@@ -54,8 +54,18 @@ BEGIN_EVENT_TABLE (standard_t, wxDialog)
 #endif // NO_FRED
   EVT_CHECKBOX (check_file_size, standard_t::OnGenMax)
   EVT_CHECKBOX (check_file_persist, standard_t::OnGenPersist)
+  EVT_CHECKBOX (check_corpus_output, standard_t::OnHTMLOutput)
   EVT_CHOICE (choice_html_version, standard_t::OnHTMLVersion)
   EVT_CHECKBOX (check_wx, standard_t::OnHTMLWX)
+  EVT_CHECKBOX (check_external, standard_t::OnLinkExternal)
+  EVT_CHECKBOX (check_internal, standard_t::OnLinkInternal)
+  EVT_BUTTON (button_req_add, standard_t::OnLinkAdd)
+  EVT_BUTTON (button_req_erase, standard_t::OnLinkErase)
+  EVT_LISTBOX (list_req_ext, standard_t::OnLinkExtension)
+  EVT_LISTBOX_DCLICK (list_req_ext, standard_t::OnLinkImpatience)
+  EVT_BUTTON (button_req_rename, standard_t::OnLinkRename)
+  EVT_TEXT (button_req_rename, standard_t::OnLinkTap)
+  EVT_TEXT (text_req_ext, standard_t::OnLinkText)
   EVT_LISTBOX (list_level, standard_t::OnNitsListLevel)
   EVT_CHOICE (choice_nit_format, standard_t::OnNitsFormat)
   EVT_RADIOBOX (radio_nits_level, standard_t::OnNitsRadioLevel)
@@ -72,15 +82,15 @@ BEGIN_EVENT_TABLE (standard_t, wxDialog)
   EVT_TEXT (text_shadow_ext, standard_t::OnShadowIgnoreTap)
   EVT_LISTBOX (list_shadow_ext, standard_t::OnShadowIgnoreExtension)
   EVT_LISTBOX_DCLICK (list_shadow_ext, standard_t::OnShadowIgnoreImpatience)
+  EVT_CHECKBOX (check_account, standard_t::OnSiteAccount)
   EVT_BUTTON (button_site_add, standard_t::OnSiteAdd)
   EVT_BUTTON (button_site_erase, standard_t::OnSiteErase)
-  EVT_CHECKBOX (check_external, standard_t::OnSiteExternal)
   EVT_LISTBOX (list_site_ext, standard_t::OnSiteExtension)
   EVT_LISTBOX_DCLICK (list_site_ext, standard_t::OnSiteImpatience)
-  EVT_CHECKBOX (check_internal, standard_t::OnSiteInternal)
-  EVT_CHECKBOX (check_corpus_output, standard_t::OnSiteOutput)
   EVT_BUTTON (button_site_rename, standard_t::OnSiteRename)
   EVT_TEXT (button_site_rename, standard_t::OnSiteTap)
+  EVT_TEXT (text_site_ext, standard_t::OnSiteText)
+  EVT_CHECKBOX (check_username, standard_t::OnSiteUsername)
 #ifndef NOSPELL
   EVT_CHECKBOX (check_spell, standard_t::OnSpellCheck)
   EVT_BUTTON (button_dict_add, standard_t::OnSpellDictAdd)
@@ -169,13 +179,15 @@ void standard_t :: CreateControls (const e_gui_panel gp)
     {	if (summary_.create_panel (choice_, panel_statistics, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
             choice_ -> AddPage (summary_.panel (), "summary", false); 
         if (html_.create_panel (choice_, panel_html, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
-            choice_ -> AddPage (html_.panel (), "HTML, XHTML, MathML, SVG", false); 
+            choice_ -> AddPage (html_.panel (), "HTML etc., corpus", false); 
         if (css_.create_panel (choice_, panel_css, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
             choice_ -> AddPage (css_.panel (), "CSS", false); 
         if (site_.create_panel (choice_, panel_site, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
-            choice_ -> AddPage (site_.panel (), "root, link, search corpus", false); 
+            choice_ -> AddPage (site_.panel (), "root, output", false); 
         if (general_.create_panel (choice_, panel_general, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
             choice_ -> AddPage (general_.panel (), "bits / bobs", false); 
+        if (lynx_.create_panel (choice_, panel_links, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
+            choice_ -> AddPage (lynx_.panel (), "links", false); 
         if (nits_.create_panel (choice_, panel_nits, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
             choice_ -> AddPage (nits_.panel (), "errors, warnings, nitpicking", false); 
         if (ontology_.create_panel (choice_, panel_ontology, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
@@ -209,6 +221,7 @@ void standard_t :: OnHelpClick (wxCommandEvent& )
     switch (sel) // decided requiring that two enums, the Create function, and content.hhc, all correspond, was too risky
     {   case gp_summary : app -> help (hp_summary); break;
         case gp_html : app -> help (hp_HTML); break;
+        case gp_lynx : app -> help (hp_lynx); break;
         case gp_css : app -> help (hp_css); break;
         case gp_gen : app -> help (hp_general); break;
         case gp_bits : app -> help (hp_bobs); break;
@@ -242,6 +255,7 @@ bool standard_t :: TransferDataToWindow ()
     css_.load_from_context (c_);
     general_.load_from_context (c_);
     html_.load_from_context (c_);
+    lynx_.load_from_context (c_);
     nits_.load_from_context (c_);
     ontology_.load_from_context (c_);
     shadow_.load_from_context (c_);
@@ -256,6 +270,7 @@ bool standard_t :: TransferDataToWindow ()
     return  css_.TransferDataToWindow () &&
             general_.TransferDataToWindow () &&
             html_.TransferDataToWindow () &&
+            lynx_.TransferDataToWindow () &&
             nits_.TransferDataToWindow () &&
             ontology_.TransferDataToWindow () &&
             shadow_.TransferDataToWindow () &&
@@ -273,6 +288,7 @@ bool standard_t :: TransferDataFromWindow ()
             ! css_.TransferDataFromWindow () ||
             ! general_.TransferDataFromWindow () ||
             ! html_.TransferDataFromWindow () ||
+            ! lynx_.TransferDataFromWindow () ||
             ! nits_.TransferDataFromWindow () ||
             ! ontology_.TransferDataFromWindow () ||
             ! shadow_.TransferDataFromWindow () ||
@@ -289,6 +305,7 @@ bool standard_t :: TransferDataFromWindow ()
     css_.save_to_context (c_);
     general_.save_to_context (c_);
     html_.save_to_context (c_);
+    lynx_.save_to_context (c_);
     nits_.save_to_context (c_);
     ontology_.save_to_context (c_);
     shadow_.save_to_context (c_);
@@ -314,7 +331,7 @@ e_gui_panel standard_t :: get_panel () const
 
 void standard_t :: set_panel (const e_gui_panel gp)
 {	if (invalid ()) return;
-    if (gp == gp_validation) vv_.yer_actual (site_.folder (), shadow_.shadow (), ontology_.path ());
+    if (gp == gp_validation) vv_.yer_actual (html_.folder (), shadow_.shadow (), ontology_.path ());
     choice_ -> SetSelection (gp); }
 
 #endif // WX

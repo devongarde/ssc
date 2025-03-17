@@ -26,22 +26,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/external.h"
 
 void element::examine_main ()
-{   if (! context.corpus ().empty ()) if (context.main ()) page_ -> corpus (text ());
+{   test_for_no_ancestral_role (no_main_role_bitset);
+    if (! context.corpus ().empty ()) if (context.main ()) page_ -> corpus (text ());
     if (! a_.known (a_hidden)) only_one_visible_of ();
     if ((node_.version ().is_5 ()))
         if (node_.version ().w3 ())
             check_ancestors (elem_main, empty_element_bitset | elem_article | elem_aside | elem_footer | elem_header | elem_nav);
         else if (node_.version () >= html_jul18)
         {   element_bitset tmp (ancestral_elements_);
-            tmp &= ~(non_standard_bitset | elem_html | elem_body | elem_div | elem_form);
+            tmp &= ~(non_standard_bitset | elem_html | elem_body | elem_div | elem_form | elem_think);
             if (tmp.any ())
                 pick (nit_bad_ancestor, ed_53, "4.4.14. The main element", es_error, ec_element, "<MAIN> can only have <HTML>, <BODY>, <DIV> and <FORM> parents."); } }
 
 void element::examine_map ()
 {   if (node_.version ().is_5 ())
+    {   test_no_role_no_aria ();
         if (a_.known (a_name) && a_.known (a_id))
             if (! compare_no_case (a_.get_string (a_name), a_.get_string (a_id)))
-                pick (nit_name_id, ed_50, "4.7.11 The map element", es_error, ec_attribute, "If NAME and ID are both specified, they must have the same value"); }
+                pick (nit_name_id, ed_50, "4.7.11 The map element", es_error, ec_attribute, "If NAME and ID are both specified, they must have the same value"); } }
 
 void element::examine_math ()
 {   if (node_.version ().mjr () < 4) return;
@@ -72,11 +74,12 @@ void element::examine_math ()
         if (! context.html_ver ().has_math ()) pick (nit_math, es_warning, ec_element, "MathML is not configured");
         else pick (nit_math_empty, ed_math_3, "3.1.3.2 Table of argument requirements", es_error, ec_element, "<MATH> should contain some math."); }
 
-void element::examine_media_element (e_element , const char* ref, const char* name, const uint64_t family)
+void element::examine_media_element (e_element e, const char* ref, const char* name, const uint64_t family)
 {   PRESUME (ref != nullptr, __FILE__, __LINE__);
     if (a_.known (a_controls)) no_anchor_daddy ();
     bool had_track = false, had_other = false, noted_src = false, noted_track = false, noted_source = false,
-        def_subcap = false, def_desc = false, def_chap = false;
+        def_subcap = false, def_desc = false, def_chap = false, had_cap = false, had_desc = false;
+    test_for_ancestral_role (application_role_bitset);
     const bool has_src = a_.known (a_src);
     if (has_src) check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_src), family);
     sstr_t track_check; ::std::string tmp;
@@ -103,6 +106,10 @@ void element::examine_media_element (e_element , const char* ref, const char* na
                         noted_track = true;
                         p -> pick (nit_source_track, ed_50, ref, es_error, ec_element, "<TRACK> descendants of ", name, " must follow <SOURCE> descendants and precede other descendants"); }
                     had_track = true;
+                    switch (p -> a_.get_int (a_kind))
+                    {   case k_captions : had_cap = true; break;
+                        case k_descriptions : had_desc = true; break;
+                        default : break; }
                     tmp = p -> a_.get_string (a_kind) + p -> a_.get_string (a_srclang) + p -> a_.get_string (a_label);
                     if (track_check.find (tmp) == track_check.cend ()) track_check.insert (tmp);
                     else p -> pick (nit_kind_media_srclang, ed_50, "4.7.9 The track element", es_error, ec_element, "the KIND, SRCLANG and LABEL values of <TRACK> cannot together be the same as those of another <TRAC> descendant of ", name);
@@ -122,6 +129,12 @@ void element::examine_media_element (e_element , const char* ref, const char* na
                 default :
                     had_other = true;
                     break; }
+    if (! had_track)
+        if (e == elem_audio) pick (nit_track_missing, ed_50, ref, es_warning, ec_element, name, " has no <TRACK>, thus no transcription, something required in many legal contexts.");
+        else pick (nit_track_missing, ed_50, ref, es_warning, ec_element, name, " has no <TRACK>, thus neither a description nor a transcription, things required in many legal contexts."); 
+    else
+    {   if (! had_cap) pick (nit_track_missing, ed_50, ref, es_warning, ec_element, name, " has no <TRACK> with KIND=CAPTION for those unable to hear the media.");
+        if ((e == elem_video) && (! had_desc)) pick (nit_track_missing, ed_50, ref, es_warning, ec_element, name, " has no <TRACK> with KIND=DESCRIPTION, for those unable to see the media."); }
     element_bitset bs (descendant_elements_);
     bs &= media_bitset;
     if (bs.any ())
@@ -210,7 +223,8 @@ void element::examine_meta ()
             if (nk || csk || hek)
                 pick (nit_itemprop_name_charset_equiv, ed_mozilla, "", es_error, ec_element, "ITEMPROP cannot be used where a <META> defines NAME, CHARSET, or HTTP-EQUIV"); }
     else
-    {   int c = 0;
+    {   test_no_role_no_aria ();
+        int c = 0;
         if (hek) ++c;
         if (csk) ++c;
         if (nk) ++c;
@@ -279,7 +293,8 @@ void element::examine_meta ()
         pick (nit_bad_media, ed_jul21, "4.2.5 The meta element", es_warning, ec_element, "MEDIA requires NAME=\"theme-color\""); }
 
 void element::examine_meter ()
-{   if (node_.version ().is_5 ())
+{   test_for_no_ancestral_role (no_meter_role_bitset);
+    if (node_.version ().is_5 ())
     {   check_ancestors (elem_meter, element_bitset (elem_meter));
         double min = 0.0, max = 1.0, low = 0.0, high = 0.0, optimum = 0.0, value = 0.0;
         const bool kx = a_.known (a_max);
@@ -391,7 +406,8 @@ void element::examine_nest ()
         pick (nit_registration_mark, ed_jan08, "3.19.4. The nest element", es_error, ec_attribute, "REGISTRATIONMARK cannot be used on <NEST>"); }
 
 void element::examine_noscript ()
-{   if (node_.version ().xhtml ())
+{   test_no_role_no_aria ();
+    if (node_.version ().xhtml ())
         pick (nit_bad_noscript, ed_50, "4.11.2 The noscript element", es_error, ec_element, "<NOSCRIPT> is illegal in XHTML");
     else
     {   if (node_.version ().mjr () < 5) return;
@@ -415,6 +431,7 @@ void element::examine_object ()
     const bool has_usemap = a_.known (a_usemap);
     bool piccy = false;
     nitpick nuts;
+    test_for_ancestral_role (adii_role_bitset);
     if (has_type)
     {   const ::std::string& ss (a_.get_string (a_type));
         const e_mimetype mt = examine_value < t_mime > (nuts, html_version (), ss);
@@ -425,7 +442,7 @@ void element::examine_object ()
     if (has_data)
     {   const vurl_t& vu (a_.get_urls (a_data));
         for (auto u : vu)
-            if (! u.is_local ())
+            if (! u.is_local_reference ())
             {   if (is_special_domain (u))
                     pick (nit_special_domain, es_info, ec_element, quote (u.get ()), " is a special domain, so may respond unexpectedly");
                 if (u.is_potentially_naughty ())
@@ -433,7 +450,7 @@ void element::examine_object ()
     if (a_.known (a_classid))
     {   const vurl_t& vu (a_.get_urls (a_classid));
         for (auto u : vu)
-            if (! u.is_local ())
+            if (! u.is_local_reference ())
             {   if (is_special_domain (u))
                     pick (nit_special_domain, es_info, ec_element, quote (u.get ()), " is a special domain, so may respond unexpectedly");
                 if (u.is_potentially_naughty ())

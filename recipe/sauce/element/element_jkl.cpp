@@ -40,7 +40,8 @@ bool element::naughty_label_descendents (const element* e, const uid_t uid, bool
 
 void element::examine_label ()
 {   if (node_.version ().is_5 ())
-    {   check_ancestors (elem_label, element_bitset (elem_label));
+    {   test_no_role ();
+        check_ancestors (elem_label, element_bitset (elem_label));
         no_anchor_daddy ();
         uid_t uid = 0;
         if (a_.good (a_for))
@@ -97,6 +98,7 @@ void element::examine_li ()
 void element::examine_link ()
 {   if (node_.version ().mjr () < 3) return;
     if ((! context.ie ()) && (node_.version ().mjr () < 4)) return;
+    test_no_role_no_aria ();
     const bool tis5 = node_.version ().is_5 ();
     const bool has_rel = a_.known (a_rel);
     const bool has_property = a_.known (a_property) && context.rdfa ();

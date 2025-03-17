@@ -29,7 +29,8 @@ void element::examine_tab ()
             pick (nit_chocolate_teapot, ed_3, "Horizontal Tabs (Page 38)", es_warning, ec_element, "TO and INDENT should not be combined in <TAB>"); }
 
 void element::examine_table ()
-{   if (! has_child () || (node_.version ().mjr () < 5)) return;
+{   test_for_no_ancestral_role (no_table_role_bitset);
+    if (! has_child () || (node_.version ().mjr () < 5)) return;
     typedef enum { to_start, to_caption, to_colgroup, to_head, to_foot_start, to_tr, to_foot_end } table_order;
     table_order tor = to_start;
     bool ooo = false, footed = false, doubled = false, mixed = false, body = false, tr = false;
@@ -123,7 +124,8 @@ void element::examine_time ()
             pick (nit_use_datetime, es_warning, ec_element, "<TIME>'s descendant text is not particularly timely; perhaps use a DATETIME attribute"); } }
 
 void element::examine_title ()
-{   if (! node_.version ().has_svg ()) only_one_of ();
+{   test_no_role_no_aria ();
+    if (! node_.version ().has_svg ()) only_one_of ();
     ::std::string ttl (text ());
     if (! ancestral_elements_.test (elem_head)) return;
     page_ -> title (ttl);
@@ -135,7 +137,8 @@ void element::examine_title ()
 
 void element::examine_track ()
 {   if (node_.version ().is_5 ())
-    {   const bool has_src = a_.known (a_src);
+    {   test_no_role_no_aria ();
+        const bool has_src = a_.known (a_src);
         const vurl_t& vu = a_.get_urls (a_src);
         const e_kind k = static_cast < e_kind > (a_.get_int (a_kind));
         if (a_.known (a_kind))
@@ -157,7 +160,7 @@ void element::examine_track ()
 
 void element::examine_video ()
 {   if (! node_.version ().is_5 () && ! node_.version ().is_svg_12 ())
-        pick (nit_unknown_element, es_error, ec_element, "<VIDEO> requires HTML 5 or SVG 1.2");
+        pick (nit_invalid_element_version, es_error, ec_element, "<VIDEO> requires HTML 5 or SVG 1.2");
     else
     {   examine_media_element (elem_video, "4.7.6 The video element", "<VIDEO>", MIME_VIDEO);
         if (a_.known (a_autoplay)) pick (nit_autoplay, es_abhorrent, ec_rudeness, "AUTOPLAY on <VIDEO> is unspeakably rude"); } }

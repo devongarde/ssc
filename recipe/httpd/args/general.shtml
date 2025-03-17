@@ -44,6 +44,9 @@ This are switches that don&rsquo;t really belong in any other section.
 <tr><td>general.defthrd&nbsp;n<br>-Y&nbsp;n</td> <td>If <kbd>general.thread</kbd> is not given, then set the
                     number of threads to n.</td></tr>
 
+<tr><td>general.description&nbsp;XXX</td> <td>Output XXX, which should be a contextual
+                        description, to aid those reading the output.</td></tr>
+
 <tr><td>general.error&nbsp;x<br>-E</td> <td>If nits of the specified category or worse are
                       generated, then, on exit, return an error code.
                         Values are: &lsquo;catastrophe&rsquo;, &lsquo;abhorrent&lsquo;, &lsquo;error&rsquo; (the
@@ -109,6 +112,10 @@ This are switches that don&rsquo;t really belong in any other section.
 <tr><td>general.thread&nbsp;N<br>-y&nbsp;N</td> <td>Use N threads when running. Defaults to a value
                     appropriate for the hardware. Too high a value
                         can cause problems. See also <kbd>general.defthrd</kbd>.</td></tr>
+
+<tr><td>general.username&nbsp;XXX</td> <td>The name of the account being used to run SSC.
+                        If this is not specified, SSC gets the name
+                        the operating system.</td></tr>
 
 <tr><td>general.vcs</td> <td>Excludes, as per <kbd>general.exclude</kbd>, files and
                         directories called:

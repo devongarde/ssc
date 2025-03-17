@@ -59,8 +59,8 @@ IMPLEMENT_CLASS (nits_t, d1_t)
 #define SELLVL	BASLVL, LSTLVL
 #endif // DEBUG
 
-// must be same order as e_nit_format
-#define SELFRM  NIT_HTML, NIT_SPEC, NIT_TEST, NIT_TEXT, NIT_XHTML, "bespoke"
+// must be same order as e_output_template
+#define SELFRM  "bespoke", NIT_HTML, NIT_SPEC, NIT_TEST, NIT_TEXT, NIT_XHTML
 
 const wxString vrb [] = { SELVRB };
 const wxString lvl [] = { SELLVL };
@@ -174,17 +174,17 @@ void nits_t :: enable_bespoke (const bool b)
     file_output_ -> Enable (b); }
 
 void nits_t :: format (const ::boost::filesystem::path& s)
-{   if (s.empty ()) nf_ = nf_text;
+{   if (s.empty ()) nf_ = eot_text;
     else nf_ = is_standard_template (s.string ());
     output_ = s; }
 
 ::boost::filesystem::path nits_t :: format () const
-{   if (nf_ != nf_bespoke) return get_standard_template (nf_);
+{   if (nf_ != eot_bespoke) return get_standard_template (nf_);
     return output_; }
 
 void nits_t :: OnNitFormat (wxCommandEvent& )
 {	if (invalid ()) return;
-    enable_bespoke (choice_format_ -> GetSelection () == nf_bespoke); }
+    enable_bespoke (choice_format_ -> GetSelection () == eot_bespoke); }
 
 void nits_t :: OnRadioLevel (wxCommandEvent& )
 {	if (invalid ()) return;
@@ -215,8 +215,8 @@ bool nits_t :: TransferDataToWindow ()
     {	if (s != es_undefined) radio_level_ -> SetSelection (0); }
     else if (s != i -> second) radio_level_ -> SetSelection (i -> second);
     choice_format_ -> SetSelection (nf_);
-    if (nf_ == nf_bespoke) file_output_ -> SetFileName (wxFileName (output_.string ().c_str ()));
-    enable_bespoke (nf_ == nf_bespoke);
+    if (nf_ == eot_bespoke) file_output_ -> SetFileName (wxFileName (output_.string ().c_str ()));
+    enable_bespoke (nf_ == eot_bespoke);
     return true; }
 
 bool nits_t :: TransferDataFromWindow ()
@@ -225,8 +225,8 @@ bool nits_t :: TransferDataFromWindow ()
     repeat_ = check_repeat_ -> GetValue ();
     verbosity_ = static_cast < e_severity > (choice_verbosity_ -> GetSelection ());
     stable_ = current_;	
-    nf_ = static_cast < e_nit_format > (choice_format_ -> GetCurrentSelection ());
-    if (nf_ == nf_bespoke) output_ = get_standard_template (nf_);
+    nf_ = static_cast < e_output_template > (choice_format_ -> GetCurrentSelection ());
+    if (nf_ == eot_bespoke) output_ = get_standard_template (nf_);
     else output_ = file_output_ -> GetFileName ().GetFullPath ().c_str ().AsChar ();
     return true; }
 
@@ -246,13 +246,13 @@ void nits_t :: load_from_context (const context_t& c)
     repeat (c.nits_nits_nits ());
     severity (nitpick::mns ());
     verbosity (c.verbose ());
-    format (c.nit_format ()); }
+    format (c.output_format ()); }
 
 void nits_t :: save_to_context (context_t& c) const
 {   c.nids (id ());
     c.nits_nits_nits (repeat ());
     c.verbose (verbosity ());
     nitpick::mns (severity ());
-    c.nit_format (format ().string ()); }
+    c.output_format (format ().string ()); }
 
 #endif // WX

@@ -2,23 +2,47 @@
 <HTML lang=en>
 <HEAD>
 <TITLE>ssc report for ..\toast\output\html</TITLE>
-<LINK rel="stylesheet" href="/ssc.css" type="text/css">
+<STYLE TYPE="text/css">
+A { color:#9999BB }
+H1,H2,H3,H4,H5,H6 { margin-bottom: 0; padding-bottom: 0; }
+H1 { color:#66BB66; font-size: 140%; }
+H2 { color:#66BB66; font-size: 120% }
+H3 { color:#99BB99; font-size: 100% }
+P { margin-top: 0; padding-top: 0; }
+FOOTER,HEADER,LI,MAIN,P,PRE { color:#999999 }
+.smaller { font-size: 80% }
+.nit-before,.nit-after { color: #CCCCCC }
+.nit-catastrophe { color: #FF0000 }
+.nit-doc { font-style: italic; }
+.nit-error { color: #FF6666 }
+.nit-explanation { color: #9999CC }
+.nit-info { color: #666666 }
+.nit-line { color: #666666 }
+.nit-mote { color: #CC3333 }
+.nit-ref { font-style: italic; }
+.nit-warning { color: #CC6666 }
+</STYLE>
 </HEAD>
 <BODY>
 <HEADER>
-<H1 class="nit-title">ssc report for ..\toast\output\html</H1>
+<H1 class="nit-title">ssc Report for ..\toast\output\html</H1>
 </HEADER>
 <MAIN>
 <H2 class="nit-section">/index.html</H2>
-<H3><SPAN class="nit-line">2</SPAN> <SPAN class="nit-before">&lt;!DOCTYPE&nbsp;html&gt;&nbsp;</SPAN> <SPAN class="nit-mote">&lt;html&gt;</SPAN> <SPAN class="nit-after">&nbsp;&lt;head&gt;&nbsp;&lt;title&gt;HTML&nbsp;outpu...</SPAN</H3>
+<H3><SPAN class="nit-before">&lt;!DOCTYPE&nbsp;html&gt;&nbsp;</SPAN> <SPAN class="nit-mote">&lt;html&gt;</SPAN> <SPAN class="nit-after">&nbsp;&lt;head&gt;&nbsp;&lt;title&gt;HTML&nbsp;outpu...</SPAN></H3>
 <P>
-<SPAN class="nit-level">&nbsp;--&gt;&nbsp;</SPAN> <SPAN class="nit-explanation">use&nbsp;LANG&nbsp;on&nbsp;&lt;HTML&gt;&nbsp;to&nbsp;specify&nbsp;a&nbsp;default&nbsp;language</SPAN> <SPAN class="nit-id">[naughty_lang]</SPAN><BR>
+<SPAN class="nit-warning">warning</SPAN>: <SPAN class="nit-explanation">use&nbsp;LANG&nbsp;on&nbsp;&lt;HTML&gt;&nbsp;to&nbsp;specify&nbsp;a&nbsp;default&nbsp;language</SPAN><BR><SPAN class="nit-ref">4.1.1&nbsp;The&nbsp;html&nbsp;element</SPAN> <SPAN class="nit-doc">(HTML&nbsp;5.0,&nbsp;W3,&nbsp;Oct&nbsp;2014)</SPAN><BR>
 </P>
 <BR><BR>
+<A href="/index.html">Previous page</A>
 </MAIN>
-<FOOTER>
-<A href="https://ssc.lu/" class="ssc-name">Static&nbsp;Site&nbsp;Checker</A> version 0.2.11<BR>
-<A href="https://dylanharris.org/" class="ssc-copyright">(c)&nbsp;2020-2025&nbsp;Dylan&nbsp;Harris</A>
+<HR>
+<FOOTER class="smaller">
+<A href="https://ssc.lu/" class="ssc-name">Static&nbsp;Site&nbsp;Checker</A> version 0.2.12 (build)<BR>
+<A href="https://dylanharris.org/" class="ssc-copyright">(c)&nbsp;2020-2025&nbsp;Dylan&nbsp;Harris</A><BR>
+djns:wnd_x86:m64:1_87:76.1, testuser (testaccount), time
+&ldquo;desc&nbsp;pt.&nbsp;1
+desc&nbsp;pt.&nbsp;2&rdquo;
 </FOOTER>
 </BODY>
 </HTML>

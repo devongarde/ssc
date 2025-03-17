@@ -23,20 +23,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #ifdef WX
 #include "gui/gui-dialogue.h"
 #include "gui/gui-listedit.h"
+#include "gui/gui-ctrls.h"
 
 #define CSS_CAPTION "CSS"
 
 class css_t : public d1_t < wx_css >
-{   wxBoxSizer* box_ver_ = nullptr;
-    wxChoice* version_ = nullptr;
-    wxDataViewColumn* col_mod_ = nullptr;
+{   wxDataViewColumn* col_mod_ = nullptr;
     wxDataViewColumn* col_ver_ = nullptr;
     wxDataViewListCtrl* module_ = nullptr;
-    wxRadioBox* caroline_ = nullptr;  
-    wxStaticLine* sl1_ = nullptr;
-    wxStaticLine* sl2_ = nullptr;
-    wxStaticText* stat_ver_ = nullptr; 
+//    wxStaticLine* sl1_ = nullptr;
+//    wxStaticLine* sl2_ = nullptr;
+    drop_box_t < css_version_t > drop_;
+    line_t line1_, line2_;
     listedit_manager homme_ = listedit_manager (button_css_add, button_css_erase, button_css_rename, file_css_name, list_css_ext, text_css_ext);
+    radio_t level_;
     e_css_version ver_ = css_none;
     html_version v_, trans_;
     vstr_t css_ext_;
@@ -53,7 +53,7 @@ public:
     void Init () const noexcept { }
     bool Create (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = CSS_CAPTION);
     void CreateControls ();
-    bool invalid () const noexcept { return (version_ == nullptr) || (caroline_ == nullptr) || (module_ == nullptr) || homme_.invalid (); }
+    bool invalid () const noexcept { return line2_.invalid (); }
     bool invalid_panel () const { return invalid () || (panel_ == nullptr); }
     void create_controls (wxWindow *parent);
     bool create_panel (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL | wxNO_BORDER);

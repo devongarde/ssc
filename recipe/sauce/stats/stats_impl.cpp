@@ -344,6 +344,7 @@ const char* str_name [] =
     res += saybe (table, category_.at (ec_incorrectness), "Incorrectness");
     res += saybe (table, category_.at (ec_init), "Init");
     res += saybe (table, category_.at (ec_io), "I/O");
+    res += saybe (table, category_.at (ec_ip), "TCP/IP");
     res += saybe (table, category_.at (ec_json), "JSON");
     res += saybe (table, category_.at (ec_link), "Link");
     res += saybe (table, category_.at (ec_microdata), "Microdata");

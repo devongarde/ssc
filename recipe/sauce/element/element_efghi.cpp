@@ -27,6 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 void element::examine_embed ()
 {   if (node_.version ().mjr () < 5) return;
+    test_for_ancestral_role (adiinp_role_bitset);
     no_anchor_daddy ();
     const bool src_known = a_.known (a_src);
     const bool type_known = a_.known (a_type);
@@ -45,7 +46,7 @@ void element::examine_embed ()
     {   const vurl_t vu (a_.get_urls (a_src));
         if (! a_.known (a_sandbox))
             for (auto u : vu)
-                if (! u.is_local ())
+                if (! u.is_local_reference ())
                 {   pick (nit_sandbox, ed_owasp, "HTML5 Cheat Sheet, sandboxed frames", es_warning, ec_element, "for security, use SANDBOX when SRC refers to an external site");
                     break; }
         if (type_known) check_extension_compatibility (nits (), node_.version (), a_.get_string (a_type), a_.get_urls (a_src), true); } }
@@ -193,7 +194,8 @@ void element::examine_fieldset ()
                     break; } } };
 
 void element::examine_figcaption ()
-{   if ((node_.version ().is_5 ()) && (w3_minor_5 (node_.version ()) == 0))
+{   test_for_ancestral_role (gnp_role_bitset);
+    if ((node_.version ().is_5 ()) && (w3_minor_5 (node_.version ()) == 0))
         if (node_.has_previous () && node_.has_next ())
             pick (nit_figcaption_middle, ed_50, "4.4.12 The figcaption element", es_error, ec_element, "<FIGCAPTION> must be the first or last child of <FIGURE>"); }
 
@@ -258,7 +260,8 @@ void element::examine_fontymacfontface ()
                     return; } } }
 
 void element::examine_footer ()
-{   if (node_.version ().is_5 ())
+{   test_for_no_ancestral_role (no_hf_role_bitset);
+    if (node_.version ().is_5 ())
     {   check_ancestors (elem_footer, empty_element_bitset | elem_address | elem_footer | elem_header | elem_dt);
         if ((node_.version () > html_jan13) && (node_.version () < html_jul18))
             check_descendants (elem_footer, empty_element_bitset | elem_main);
@@ -309,7 +312,8 @@ void element::examine_h123456 ()
         check_descendants (tag (), empty_element_bitset | elem_faux_asp | elem_faux_cdata | elem_faux_char | elem_faux_code | elem_faux_php | elem_faux_ssi | elem_faux_text, false); }
 
 void element::examine_header ()
-{   if (node_.version ().is_5 ())
+{   test_for_no_ancestral_role (no_hf_role_bitset);
+    if (node_.version ().is_5 ())
     {   check_ancestors (elem_header, empty_element_bitset | elem_address | elem_footer | elem_header | elem_dt);
         if ((node_.version () > html_jan13) && (node_.version () < html_jul18))
             check_descendants (elem_header, empty_element_bitset | elem_main);
@@ -331,6 +335,8 @@ void element::examine_html ()
         pick (nit_use_htmlplus, es_error, ec_element, "HTML+ uses the <HTMLPLUS> element, not <HTML>");
     else
     {   only_one_of ();
+        if (a_.known (a_lang)) page_ -> elang (static_cast < e_lang > (a_.get_int (a_lang)));
+        else if (a_.known (a_xmllang)) page_ -> elang (static_cast < e_lang > (a_.get_int (a_xmllang)));
         if (node_.version ().xhtml () && (node_.version () < xhtml_2))
         {   if (context.rdfa ())
                 if (! a_.known (a_version))
@@ -347,13 +353,14 @@ void element::examine_html ()
 
 void element::examine_iframe ()
 {   if (node_.version ().mjr () < 5) return;
+    test_for_ancestral_role (adiinp_role_bitset);
     const bool has_src = a_.known (a_src);
     no_anchor_daddy ();
     if (has_src)
     {   const vurl_t vu (a_.get_urls (a_src));
         if (! a_.known (a_sandbox))
             for (auto u : vu)
-                if (! u.is_local ())
+                if (! u.is_local_reference ())
                 {   pick (nit_sandbox, ed_owasp, "HTML5 Cheat Sheet, sandboxed frames", es_warning, ec_element, "for security, use SANDBOX when SRC refers to an external site");
                     break; }
         check_extension_compatibility (nits (), node_.version (), vu, MIME_PAGE); }
@@ -427,7 +434,7 @@ void element::examine_img ()
                                                 if ((! c -> text ().empty ()) && (! is_whitespace (c -> text ()))) figured = true;
                                                 break;
                                             default :
-                                                if (((c -> node_.id ().flags ()) & EF_5_FLOW) == EF_5_FLOW)
+                                                if (((c -> node_.id ().categories ()) & EF_5_FLOW) == EF_5_FLOW)
                                                     figured = alone = false;
                                                 break; }
                             break; } }

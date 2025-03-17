@@ -39,7 +39,7 @@ struct attribute_base
     virtual void reset ()
     {   deprecated_ = excluded_ = false; }
     virtual void parse (nitpick& , const html_version& , const attribute_node& ) { }
-    virtual bool verify_version (nitpick& , const html_version& , const e_element ) { return false; }
+    virtual bool verify_version (nitpick& , const html_version& , const e_element , const ::std::string& ) { return false; }
     virtual void set_value (nitpick& , const html_version& , const ::std::string& ) { }
     virtual void verify_attribute (nitpick& , const html_version& , const elem& , element* , const ::std::string& ) { }
     virtual bool verify_url (nitpick& , const html_version& , element& ) { return true; }
@@ -63,6 +63,7 @@ struct attribute_base
     virtual ::std::size_t type () const { return 0; }
     virtual vurl_t get_urls () const { return vurl_t (); }
     virtual int get_int () const { return 0; }
+    virtual vint_t get_ints () const { return vint_t (); }
     virtual ::std::size_t size () const { return 1; }
     element* box () noexcept { return nullptr; }
     element* box () const noexcept { return nullptr; }
@@ -92,7 +93,7 @@ template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public a
         typed_value < e_attribute, TYPE, IDENTITY > :: reset (); }
     void parse (nitpick& nits, const html_version& v, const attribute_node& node) override
     {   set_value (nits, v, node.get_string ()); }
-    bool verify_version (nitpick& nits, const html_version& v, const e_element tag) override
+    bool verify_version (nitpick& nits, const html_version& v, const e_element tag, const ::std::string& ) override
     {   if (typed_value < e_attribute, TYPE, IDENTITY > :: unknown ()) return true;
         return verify_attribute_version (nits, v, tag, IDENTITY, name (), excluded_, deprecated_); }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s) override
@@ -150,6 +151,10 @@ template < e_type TYPE, e_attribute IDENTITY > struct typed_attribute : public a
     {   typed_value < e_attribute, TYPE, IDENTITY > :: accumulate (st, e); }
     virtual ::std::string report () const override
     {   return typed_value < e_attribute, TYPE, IDENTITY > :: report (name ()); } };
+
+template < > inline bool typed_attribute < t_unknown, a_unknown > :: verify_version (nitpick& nits, const html_version& , const e_element , const ::std::string& n)
+{   nits.pick (nit_missing_code, es_catastrophic, ec_type, "missing typed attribute for ", n);
+    return false; }
 
 typedef ::std::shared_ptr < attribute_base > attribute_v_ptr;
 attribute_v_ptr make_attribute_v_ptr (nitpick& nits, const html_version& v, element* box, const attribute_node& node);

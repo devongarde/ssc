@@ -25,6 +25,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "symbol/nstr.h"
 #include "utility/common.h"
 
+#define DPV_X_SH_221(XXX) \
+    { dpv_##XXX##_2_1, html_dpv_2_1 }, \
+    { dpv_##XXX##_2_0, html_dpv_2_0 }
+
 #define DPV_X_SH_80(XXX) \
     { dpv_##XXX##_1_0, html_dpv_1 }, \
     { dpv_##XXX##_0_9, html_dpv_09 }, \
@@ -110,7 +114,8 @@ sh_t sh [] =  // latest first
     { doap_schema, html_rdf_1_0 },
     { data_quality, html_rdf_1_0_con },
     { described_by, html_rdf_1_0 },
-    { dpv_2_0, html_dpv_2 },
+    { dpv_2_1, html_dpv_2_1},
+    { dpv_2_0, html_dpv_2_0 },
     { dpv_1_0, html_dpv_1 },
     { dpv_0_9, html_dpv_09 },
     { dpv_0_8_2, html_dpv_082 },
@@ -125,32 +130,32 @@ sh_t sh [] =  // latest first
     { dpv_0_3, html_dpv_03 },
     { dpv_0_2, html_dpv_02 },
     { dpv_0_1, html_dpv_01 },
-    { dpv_ai_2_0, html_dpv_2 },
-    { dpv_eu_aiact_2_0, html_dpv_2 },
-    { dpv_eu_dga_2_0, html_dpv_2 },
-    { dpv_eu_gdpr_2_0, html_dpv_2 },
-    { dpv_eu_nis2_2_0, html_dpv_2 },
-    { dpv_eu_rights_2_0, html_dpv_2 },
+    DPV_X_SH_221 (ai),
+    { dpv_eu_aiact_2_0, html_dpv_2_0 },
+    { dpv_eu_dga_2_0, html_dpv_2_0 },
+    { dpv_eu_gdpr_2_0, html_dpv_2_0 },
+    { dpv_eu_nis2_2_0, html_dpv_2_0 },
+    { dpv_eu_rights_2_0, html_dpv_2_0 },
     DPV_X_SH_40 (gdpr),
     { dpv_gdpr_0_3, html_dpv_03 },
     { dpv_gdpr_0_2, html_dpv_02 },
     { dpv_gdpr_0_1, html_dpv_01 },
-    { dpv_just_2_0, html_dpv_2 },
+    DPV_X_SH_221 (just),
     DPV_X_SH_50 (legal),
-    { dpv_legal_de_2_0, html_dpv_2 },
-    { dpv_legal_eu_2_0, html_dpv_2 },
-    { dpv_legal_gb_2_0, html_dpv_2 },
-    { dpv_legal_ie_2_0, html_dpv_2 },
-    { dpv_legal_in_2_0, html_dpv_2 },
-    { dpv_legal_us_2_0, html_dpv_2 },
-    { dpv_loc_2_0, html_dpv_2 },
+    { dpv_legal_de_2_0, html_dpv_2_0 },
+    { dpv_legal_eu_2_0, html_dpv_2_0 },
+    { dpv_legal_gb_2_0, html_dpv_2_0 },
+    { dpv_legal_ie_2_0, html_dpv_2_0 },
+    { dpv_legal_in_2_0, html_dpv_2_0 },
+    { dpv_legal_us_2_0, html_dpv_2_0 },
+    DPV_X_SH_221 (loc),
     { dpv_nace_schema, html_dpv_01 },
-    { dpv_pd_2_0, html_dpv_2 },
+    DPV_X_SH_221 (pd),
     DPV_X_SH_40 (pd),
     DPV_X_SH_80 (rights),
-    { dpv_risk_2_0, html_dpv_2 },
+    { dpv_risk_2_0, html_dpv_2_0 },
     DPV_X_SH_80 (risk),
-    { dpv_tech_2_0, html_dpv_2 },
+    DPV_X_SH_221 (tech),
     DPV_X_SH_80 (tech),
     { duv_schema, html_rdf_1_0_con },
     { earl_schema, html_rdf_1_0_con },
@@ -743,9 +748,9 @@ template < > ontology_version ontology_detail < s_dct > :: from () noexcept { re
 template < > int ontology_detail < s_dct > :: count () noexcept { return 2; }
 template < > ontology_version ontology_detail < s_dct > :: to () noexcept { return ontology_version (s_dct, 1, 1); }
 
-bool is_dpv_valid (const unsigned short mjr, const unsigned short mnr, const unsigned short mm = 10, const unsigned mxmj = 2) noexcept
+bool is_dpv_valid (const unsigned short mjr, const unsigned short mnr, const unsigned short mm = 10, const unsigned mxmj = 2, const unsigned mxmn = 1) noexcept
 {   switch (mjr)
-    {   case 2 : return (mjr <= mxmj) && (mnr == 0);
+    {   case 2 : return (mjr <= mxmj) && (mnr <= mxmn);
         case 1 : return mnr == 0;
         case 0 :
             if (mnr < mm) return false; 
@@ -767,29 +772,30 @@ bool is_dpv_valid (const unsigned short mjr, const unsigned short mnr, const uns
         default : break; }
     return false; }
 
-#define DETAIL_DPV(ONT,MM,N,MX) \
+#define DETAIL_DPV(ONT,MM,N,MX,MN) \
     template < > bool ontology_detail < ONT > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept \
-    {   return is_dpv_valid (mjr, mnr, MM, MX); } \
+    {   return is_dpv_valid (mjr, mnr, MM, MX, MN); } \
     template < > ontology_version ontology_detail < ONT > :: from () noexcept { return ontology_version (ONT, 0, MM); } \
     template < > int ontology_detail < ONT > :: count () noexcept { return N; } \
     template < > ontology_version ontology_detail < ONT > :: to () noexcept { return ontology_version (ONT, MX, 0); }
 
 #define DETAIL_DPV2(ONT) \
     template < > bool ontology_detail < ONT > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept \
-    {   return (mjr == 2) && (mnr == 0); } \
+    {   return (mjr == 2) && (mnr < 2); } \
     template < > ontology_version ontology_detail < ONT > :: from () noexcept { return ontology_version (ONT, 2, 0); } \
-    template < > ontology_version ontology_detail < ONT > :: to () noexcept { return ontology_version (ONT, 2, 0); }
+    template < > int ontology_detail < ONT > :: count () noexcept { return 2; } \
+    template < > ontology_version ontology_detail < ONT > :: to () noexcept { return ontology_version (ONT, 2, 1); }
 
-DETAIL_DPV (s_dpv, 10, 15, 2)
+DETAIL_DPV (s_dpv, 10, 16, 2, 1)
 DETAIL_DPV2 (s_dpv_ai);
 DETAIL_DPV2 (s_dpv_eu_aiact);
 DETAIL_DPV2 (s_dpv_eu_dga);
 DETAIL_DPV2 (s_dpv_eu_gdpr);          
 DETAIL_DPV2 (s_dpv_eu_nis2);          
 DETAIL_DPV2 (s_dpv_eu_rights);          
-DETAIL_DPV (s_dpv_gdpr, 10, 14, 1)
+DETAIL_DPV (s_dpv_gdpr, 10, 15, 1, 1)
 DETAIL_DPV2 (s_dpv_just);
-DETAIL_DPV (s_dpv_legal, 50, 8, 1)
+DETAIL_DPV (s_dpv_legal, 50, 9, 1, 1)
 DETAIL_DPV2 (s_dpv_legal_de);
 DETAIL_DPV2 (s_dpv_legal_eu);
 DETAIL_DPV2 (s_dpv_legal_gb);
@@ -804,10 +810,10 @@ template < > int ontology_detail < s_dpv_nace > :: count () noexcept { return 14
 template < > ontology_version ontology_detail < s_dpv_nace > :: to () noexcept { return ontology_version (s_dpv_nace, 1, 0); }
 
 DETAIL_DPV2 (s_dpv_loc);          
-DETAIL_DPV (s_dpv_pd, 40, 12, 2)
-DETAIL_DPV (s_dpv_rights, 80, 5, 1)
-DETAIL_DPV (s_dpv_risk, 80, 6, 2)
-DETAIL_DPV (s_dpv_tech, 80, 6, 2)
+DETAIL_DPV (s_dpv_pd, 40, 12, 2, 1)
+DETAIL_DPV (s_dpv_rights, 80, 5, 1, 1)
+DETAIL_DPV (s_dpv_risk, 80, 6, 2, 1)
+DETAIL_DPV (s_dpv_tech, 80, 6, 2, 1)
 
 template < > bool ontology_detail < s_error > :: is_this_valid (const unsigned short , const unsigned short , const flags_t , const flags_t ) noexcept
 {   return false; }

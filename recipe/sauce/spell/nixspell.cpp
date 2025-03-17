@@ -127,11 +127,11 @@ hun::hun (nitpick& nits, const ::boost::filesystem::path& p, const lingo& lang)
 		return; }
 	nits.pick (nit_dictionary, es_comment, ec_spell, "Found dictionary for ", quote (lang.dialect ())); }
 
-void spell_reset ()
+void reset_spell ()
 {   mssfl = mssfl_uptr (new mssfl_t); }
 
 void spell_init (nitpick& )
-{   spell_reset (); }
+{   reset_spell (); }
 
 void spell_free ()
 {   for (mhun_t::iterator i = mh.begin (); i != mh.end (); ++i)

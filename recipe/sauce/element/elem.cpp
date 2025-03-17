@@ -582,6 +582,7 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_2_0, HV_RFC_1942 | HV_NOT3 }, { HTML_UNDEF }, "tfoot", elem_tfoot },
     { { HTML_PLUS, HV_RFC_1942 }, { HTML_UNDEF }, "th", elem_th, ns_default, EP_LAZY | EP_UNCLOSEDPLUS | EP_WX },
     { { HTML_2_0, HV_RFC_1942 | HV_NOT3 }, { HTML_UNDEF }, "thead", elem_thead },
+    { { HTML_JAN25 }, { HTML_UNDEF }, "think", elem_think, ns_default, EP_AI, EF_3_BODY | EF_32_BLOCK | EF_4_BLOCK | EF_X2_STRUCT | EF_5_FLOW | EF_5_PALPABLE },
     { { HTML_3_0 }, { HTML_3_0 }, "tilde", elem_tilde, ns_default, 0, EF_3_MATHVC },
     { { HTML_JAN07 }, { HTML_UNDEF }, "time", elem_time, ns_default, 0, EF_5_FLOW | EF_5_PHRASE | EF_5_PALPABLE },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "times", elem_times, ns_default, EP_CLOSED | EP_ARGS_2 | EP_ARGS_MORE, EF_M_CONTENT },
@@ -650,6 +651,9 @@ bool elem::parse (nitpick& nits, const html_version& v, const namespaces_ptr& na
     ns (examine_namespace (nits, v, namespaces, el, n));
     if (el.empty ()) return false;
     if (chwx && (! n.empty ())) nits.pick (nit_wx, ed_wx, "Supported HTML Tags", es_warning, ec_element, "the wxWidgets HTML engine does not process namespaces");
+    if ((flags () & EP_AI) == EP_AI)
+    {   nits.pick (nit_ai, es_warning, ec_element, "AI elements are not actually valid elements");
+        return true; }
     nitpick knits;
     if (under_parse (knits, v, el, ns ()))
     {   if (chwx)
@@ -723,7 +727,7 @@ bool elem::is_transparent (const html_version& v) const noexcept
 void add_elements (nitpick& nits, const vstr_t& v)
 {   nitpick nuts;
     for (auto e : v)
-    {   vstr_t args (split_by_charset (e, ","));
+    {   vstr_t args (split_by_charset (e, PLAINSEP));
         ::std::size_t x = args.size ();
         if (x > 4)
         {   x = 4;

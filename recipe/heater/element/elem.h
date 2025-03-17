@@ -75,6 +75,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define EP_WX               0x0001000000000000
 #define EP_WXONLY           0x0002000000000000
+#define EP_AI               0x0004000000000000
 
 // categories
 
@@ -240,9 +241,11 @@ inline bool operator > (const elem& lhs, const elem& rhs) noexcept { return lhs.
 inline bool operator >= (const elem& lhs, const elem& rhs) noexcept { return lhs.get () >= rhs.get (); }
 
 CONSTEXPR inline bool is_faux_element (const e_element e) noexcept { return (e >= elem_faux_document) && (e <= elem_faux_whitespace); }
+CONSTEXPR inline bool is_css_element (const e_element e) noexcept { return (e >= elem_css_all) && (e <= elem_css_scope_root); }
 CONSTEXPR inline bool is_custom_element (const e_element e) noexcept { return (e == elem_custom); }
 CONSTEXPR inline bool is_error_element (const e_element e) noexcept { return (e == elem_error); }
 CONSTEXPR inline bool is_undefined_element (const e_element e) noexcept { return (e == elem_undefined); }
 CONSTEXPR inline bool is_standard_element (const e_element e) noexcept { return (e >= elem_custom) && (e < elem_error); }
+CONSTEXPR inline bool is_visible_element (const e_element e) noexcept { return (! is_error_element (e)) && (! is_css_element (e)); }
 
 void add_elements (nitpick& nits, const vstr_t& v);

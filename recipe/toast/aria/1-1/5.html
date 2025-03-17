@@ -1,0 +1,99 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-GB">
+
+<head>
+<title>aria 1.1 5</title>
+</head>
+
+<body>
+
+<h1>aria 1.1 5</h1>
+
+<div aria-label="Tag" role="combobox" aria-expanded="true" aria-owns="owned_listbox" aria-haspopup="listbox">
+    <input type="text" aria-autocomplete="list" aria-controls="owned_listbox" aria-activedescendant="selected_option">
+</div>
+<ul role="listbox" id="owned_listbox">
+    <li role="option">Zebra</li>
+    <li role="option" id="selected_option">Zoom</li>
+</ul>
+
+<!-- Note: Use a JavaScript polyfill library to ensure
+     this renders in user agents that do not support MathML. -->
+<!-- The math element has an implicit role="math". -->
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mrow>
+    <mi>x</mi>
+    <mo>=</mo>
+    <mfrac>
+      <mrow>
+        <mo form="prefix">−</mo>
+        <mi>b</mi>
+        <mo>±</mo>
+        <msqrt>
+          <msup>
+            <mi>b</mi>
+            <mn>2</mn>
+          </msup>
+          <mo>−</mo>
+          <mn>4</mn>
+          <mo>&#x2062;<!-- &InvisibleTimes; --></mo>
+          <mi>a</mi>
+          <mo>&#x2062;<!-- &InvisibleTimes; --></mo>
+          <mi>c</mi>
+        </msqrt>
+      </mrow>
+      <mrow>
+        <mn>2</mn>
+        <mo>&#x2062;<!-- &InvisibleTimes; --></mo>
+        <mi>a</mi>
+      </mrow>
+    </mfrac>
+  </mrow>
+  <annotation encoding="TeX">
+    x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
+  </annotation>
+</math>
+
+<img role="math" src="..." alt="x=⟮−b±√⟮b²−4ac⟯⟯÷2a">
+
+<!-- 1. [role="presentation"] negates the implicit 'heading' role semantics but does not affect the contents. -->
+<h1 role="presentation"> Sample Content </h1>
+
+<!-- 2. There is no implicit role for span, so only the contents are exposed. -->
+<span> Sample Content </span>
+
+<!-- 3. Depending on styling and other factors, this role declaration is redundant in some implementations. -->
+<span role="presentation"> Sample Content </span>
+
+<!-- 1. [role="presentation"] negates the implicit 'list' and 'listitem' role semantics but does not affect the contents. -->
+<ul role="presentation">
+  <li> Sample Content </li>
+  <li> More Sample Content </li>
+</ul>
+
+<!-- 2. There is no implicit role for "foo", so only the contents are exposed. -->
+<foo>
+  <foo> Sample Content </foo>
+  <foo> More Sample Content </foo>
+</foo>
+
+<div role="img" aria-labelledby="caption">
+  <img src="example.png" role="presentation" alt="">
+  <p id="caption">A visible text caption labeling the image.</p>
+</div>
+
+<ul role="tree">
+  <li role="presentation">
+	<a role="treeitem" aria-expanded="true">An expanded tree node</a>
+  </li>
+  …
+</ul>
+
+<!-- 1. [role="presentation"] is ignored due to the global aria-haspopup property. -->
+<h1 role="presentation" aria-haspopup="true"> Sample Content </h1>
+<!-- 2. [role="presentation"] negates the both the implicit 'heading' and the non-global level. -->
+<h1 role="presentation" aria-level="2"> Sample Content </h1>
+
+</body>
+</html>
+

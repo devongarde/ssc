@@ -31,6 +31,7 @@ void element::examine_sarcasm ()
 
 void element::examine_script ()
 {   if (! node_.version ().is_5 ()) return;
+    test_no_role_no_aria ();
     check_ancestors (elem_script, element_bitset (elem_script));
     bool datablock = false, module = false, jsld = false;
     if (! a_.known (a_type) || a_.empty (a_type))
@@ -198,7 +199,8 @@ void element::examine_share ()
                         break; } } } } }
 
 void element::examine_source ()
-{   const bool has_src = a_.known (a_src);
+{   test_no_role_no_aria ();
+    const bool has_src = a_.known (a_src);
     const bool has_type = a_.known (a_type);
     if (has_src && has_type) check_extension_compatibility (nits (), node_.version (), a_.get_string (a_type), a_.get_urls (a_src), true);
     if (ancestral_elements_.test (elem_picture))
@@ -225,12 +227,14 @@ void element::examine_source ()
 
 void element::examine_style ()
 {   if (node_.version () > html_plus)
+    {   test_no_role_no_aria ();
         if (! a_.known (a_type) || (a_.get_string (a_type) == CSS_TYPE))
             if (context.load_css () && (node_.version ().css_version () >= css_1))
-                page_ -> css ().parse (interpret_string (node_.nits (), node_.version (), text ()), node_.version (), node_.namespaces (), (ancestral_elements_ | tag ()), false, node_.line ()); }
+                page_ -> css ().parse (interpret_string (node_.nits (), node_.version (), text ()), node_.version (), node_.namespaces (), (ancestral_elements_ | tag ()), false, node_.line ()); } }
 
 void element::examine_summary ()
-{   if ((node_.version () < html_5_1) || (node_.version () >= html_jul20)) return;
+{   test_no_role ();
+    if ((node_.version () < html_5_1) || (node_.version () >= html_jul20)) return;
     bool heading = false;
     if (has_child ())
         for (element* c = child_; c != nullptr; c = c -> sibling_)

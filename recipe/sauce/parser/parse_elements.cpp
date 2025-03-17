@@ -297,18 +297,18 @@ void elements_node::parse (const html_version& v, bracs_ket& elements)
         if (id.unknown ())
         {   ::std::string s (e.start_, e.eofe_);
             if (GSL_NARROW_CAST < size_t > (id.ns ()) < first_runtime_namespace)
-                if (bad_version) e.nits_.pick (nit_unknown_element, es_warning, ec_element, "<", ::std::string (s), "> is an invalid element in ", v.report ());
+                if (bad_version) e.nits_.pick (nit_invalid_element_version, es_warning, ec_element, "<", ::std::string (s), "> is an invalid element in ", v.report ());
                 else e.nits_.pick (nit_unknown_element, ed_jul23, "1.11.2: Cases that are likely to be typos", es_warning, ec_element, PROG " does not know the element <", ::std::string (s), ">, so cannot verify it");
-            else if (bad_version) e.nits_.pick (nit_unknown_element, es_comment, ec_element, "<", ::std::string (s), "> is invalid in ", v.report ());
+            else if (bad_version) e.nits_.pick (nit_invalid_element_version, es_comment, ec_element, "<", ::std::string (s), "> is invalid in ", v.report ());
                 else e.nits_.pick (nit_unknown_element, ed_jul23, "1.11.2: Cases that are likely to be typos", es_comment, ec_element, PROG " does not know <", ::std::string (s), ">, so cannot verify it");
-            if (v.xhtml () && (s == "base"))
-                e.nits_.pick (nit_unknown_element, es_comment, ec_element, "in XHTML, use <xml:base>, not <base>"); }
+            if (v.xhtml () && compare_no_case (s, "base"))
+                e.nits_.pick (nit_requires_xhtml, es_comment, ec_element, "in XHTML, use <xml:base>, not <base>"); }
 
         insert (ver, previous, parent, e, id); }
     report_missing_closures (v, parent, document);
     if (context.tell (es_splurge))
     {   VERIFY_NOT_NULL (document, __FILE__, __LINE__);
-        ::std::cerr << document -> rpt (0); } }
+        outstr.err (document -> rpt (0)); } }
 
 bool elements_node::parse (nitpick& nits, const ::std::string& content)
 {   bracs_ket elements;

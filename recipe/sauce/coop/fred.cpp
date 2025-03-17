@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/q.h"
 #include "coop/kew.h"
 #include "coop/knickers.h"
-#include "url/curl.h"
+#include "url/fetch.h"
  
 fred_t fred;
 

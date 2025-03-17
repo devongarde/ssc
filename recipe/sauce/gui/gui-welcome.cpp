@@ -33,7 +33,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define VALID_X       100
 #define VALID_Y       100
 #define VALID_WIDTH   450
-#define VALID_HEIGHT  515
+#define VALID_HEIGHT  575
 
 BEGIN_EVENT_TABLE (welcome_t, d2_t)
   EVT_BUTTON (wxID_ABOUT, welcome_t::OnAboutClick)
@@ -59,6 +59,17 @@ bool welcome_t :: Create (wxWindow *mummy, wxWindowID id, const wxString& captio
 
 void welcome_t :: CreateControls ()
 {	if (interrogate < wxDialog > :: invalid ()) return;
+
+    line_summary_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
+    if (line_summary_ != nullptr)
+    {   static_title_ = GSL_OWNER (wxStaticText) (new wxStaticText (this, wxID_ANY, 
+                FULLNAME " v" VERSION_STRING " (" WEBADDR "), " COPYRIGHT_TEXT "\n(" __DATE__ " " __TIME__ ", " BUILD_INFO ")",
+                wxDefaultPosition, wxDefaultSize, 0));
+        if (static_title_ != nullptr)
+        {	static_title_ -> Wrap (-1);
+            static_title_ -> Enable (false);
+            box_ -> Add (static_title_, 0, wxEXPAND | wxALL, 5);
+            box_ -> Add (line_summary_, 0, wxEXPAND | wxALL, 5); } }
 
     static_nitpickery_ = GSL_OWNER (wxStaticText) (new wxStaticText (this, wxID_ANY, "Click your nitpickery lick...", wxDefaultPosition, wxDefaultSize, 0));
     if (static_nitpickery_ != nullptr)

@@ -3,7 +3,7 @@
 PASS ../toast/link/external/index.html
 2 naughty_lang
 12 example
-15 report
+15 example 404
 16 404
 20 example
 21 example

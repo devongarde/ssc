@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "element/element.h"
 #include "webpage/page.h"
+#include "webpage/required.h"
 
 element::element (const ::std::string& name, element_node& en, element* parent, page* p)
     :   page_ (p), parent_ (parent), examined_ (false), uid_ (0), node_ (en), name_ (name), a_ (*this)
@@ -62,6 +63,8 @@ void element::swap (element& e)
     ::std::swap (ancestral_attributes_, e.ancestral_attributes_);
     ::std::swap (own_attributes_, e.own_attributes_);
     ::std::swap (descendant_attributes_, e.descendant_attributes_);
+    ::std::swap (ancestral_roles_, e.ancestral_roles_);
+    ::std::swap (descendant_roles_, e.descendant_roles_);
     ::std::swap (uid_, e.uid_);
     ::std::swap (closure_uid_, e.closure_uid_);
     ::std::swap (access_, e.access_);
@@ -103,14 +106,14 @@ element* element::make_child ()
     return child_; }
 
 element* element::make_next ()
- {  PRESUME (has_next (), __FILE__, __LINE__);
+ {  PRESUME (has_visible_next (), __FILE__, __LINE__);
     if (sibling_ == nullptr)
         sibling_ = new element (name_, node_.next (), parent_, page_);
     return sibling_; }
 
 bool element::make_sibling (element*& e)
 {   VERIFY_NOT_NULL (e, __FILE__, __LINE__);
-    if (! e -> has_next ()) return false;
+    if (! e -> has_visible_next ()) return false;
     e = e -> make_next ();
     return true; }
 
@@ -287,3 +290,7 @@ void element::accumulate (stats_t* st) const
         for (element* c = child_; c != nullptr; c = c -> sibling_)
         {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
             c -> accumulate (st); } }
+
+void element::check_required_page (const html_version& v, const vurl_t& u)
+{   const int n = check_required_pages (v, page_ -> required_page_type (), name_, u, ancestral_elements_, page_ -> elang ());
+    if (n >= 0) page_ -> mark_required_page (n); }

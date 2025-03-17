@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/options.h"
 #include "stats/stats.h"
 #include "element/elem.h"
+#include "utility/common.h"
 #include "utility/quote.h"
 #include "utility/filesystem.h"
 #include "parser/text.h"
@@ -33,6 +34,21 @@ context_t context;
 ustr_t context_t::validation_;
 ::boost::filesystem::path context_t::cwd_;
 ssc_set < ::std::string > excludable_filenames;
+
+context_t::context_t (nitpick& nits, const ::boost::filesystem::path& fn)
+{   init ();
+    options o (*this, nits, fn);
+    if (nits.worst () <= es_error) valid_ = false;
+    else
+    {   output_streams_t ost;
+#ifdef DARWIN
+        if (context.excl_def_excl ()) excludable_filenames.insert (".DS_Store");
+#endif // DARWIN
+        o.contextualise (*this, ost, nits);
+        if (! test () && tell (es_debug))
+        {   ::std::string s (o.report (gr_config));
+            mac (nm_context_output, s); }
+        valid_ = ! root ().empty (); } }
 
 void context_t::swap (context_t& c)
 {   context_t t (*this);
@@ -56,21 +72,6 @@ void context_t::init ()
     def_conf_path_ = cwd_ / DEF_DATAPATH;
     path_ = def_conf_path_.string ();
     def_conf_file_ = def_conf_path_ / DEF_CONF_FILE; }
-
-context_t::context_t (nitpick& nits, const ::boost::filesystem::path& fn)
-{   init ();
-    options o (*this, nits, fn);
-    if (nits.worst () <= es_error) valid_ = false;
-    else
-    {   output_streams_t ost;
-#ifdef DARWIN
-        if (context.excl_def_excl ()) excludable_filenames.insert (".DS_Store");
-#endif // DARWIN
-        o.contextualise (*this, ost, nits);
-        if (! test () && tell (es_debug))
-        {   ::std::string s (o.report (gr_config));
-            mac (nm_context_output, s); }
-        valid_ = ! root ().empty (); } }
 
 int context_t::parameters (output_streams_t& ost, nitpick& nits, const vstr_t& vs)
 {   options o (*this, ost, nits, vs);

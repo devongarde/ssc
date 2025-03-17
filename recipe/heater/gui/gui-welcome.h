@@ -34,7 +34,9 @@ class welcome_t : public d2_t
     wxStaticLine* line_base_ = nullptr;
     wxStaticLine* line_root_ = nullptr;
     wxStaticLine* line_snippet_ = nullptr;
+    wxStaticLine* line_summary_ = nullptr;
     wxStaticText* static_nitpickery_ = nullptr;
+    wxStaticText* static_title_ = nullptr;
     wxTextCtrl* text_snippet_ = nullptr;
     wxTextCtrl* text_summary_ = nullptr;
     context_t c_;

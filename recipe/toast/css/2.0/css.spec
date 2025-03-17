@@ -593,13 +593,8 @@ PASS ../toast/css/2.0/css-17-5-1.html
 30 inserted_missing_closure wrong_parent inserted_missing_closure missing_close
 30 missing_close
 31 inserted_missing_closure inserted_missing_closure inserted_missing_closure
-33 unknown_element missing_close
-33 unknown_element missing_close
-33 unknown_element missing_close
-33 unknown_element missing_close
-33 unknown_element missing_close
-34 unknown_element missing_close
-34 unknown_element missing_close
+33 invalid_element_version missing_close unknown_element missing_close unknown_element missing_close unknown_element missing_close unknown_element missing_close
+34 invalid_element_version missing_close unknown_element missing_close
 35 inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure
 39 inserted_missing_parent missing_close
 40 inserted_missing_closure wrong_parent inserted_missing_closure

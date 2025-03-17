@@ -26,6 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 void element::examine_abbr ()
 {   ::std::string t (term ());
     ::std::string ab (trim_the_lot_off (text ()));
+    test_for_ancestral_role ();
     if (t.empty () || ab.empty ()) return;
     page_ -> mark_abbr (ab, t);
     ustr_t::const_iterator i = page_ -> abbrs ().find (ab);
@@ -59,10 +60,13 @@ void element::examine_anchor ()
     const bool type_known = a_.known (a_type);
     const bool rel_known = a_.known (a_rel);
     const bool rev_known = a_.known (a_rev);
-    const bool five = node_.version ().is_5 ();
+    const html_version& nv = node_.version ();
+    const bool five = nv.is_5 ();
     if (href_known)
     {   no_anchor_daddy ();
-        if (type_known) check_extension_compatibility (nits (), node_.version (), a_.get_string (a_type), a_.get_urls (a_href), false); }
+        const vurl_t& us = a_.get_urls (a_href);
+        if (type_known) check_extension_compatibility (nits (), nv, a_.get_string (a_type), us, false);
+        check_required_page (nv, us); }
     else if (rel_known || rev_known)
         pick (nit_rel_requires_href, ed_1, "Anchors", es_error, ec_element, "REL and REV both require a valid HREF");
     else if (five) pick (nit_chocolate_teapot, es_warning, ec_element, "An <A> with no HREF, or an invalid HREF, is not useful");
@@ -80,7 +84,7 @@ void element::examine_anchor ()
                 pick (nit_chocolate_teapot, ed_jul20, "4.5.1 The a element", es_error, ec_element, "An <A> with an ITEMPROP requires an HREF"); }
         else if (a_.known (a_target) && ! rel_known)
             pick (nit_tabnab, ed_owasp, "https://owasp.org/www-community/attacks/Reverse_Tabnabbing", es_warning, ec_element, "TARGET without REL=\"noopener,noreferrer\" is a security risk in pre-2024 browsers.");
-        if (w3_minor_5 (node_.version ()) >= 4)
+        if (w3_minor_5 (nv) >= 4)
         {   const attribute_bitset as (descendant_attributes_);
             if (as.test (a_tabindex))
                 pick (nit_tabindex, ed_jul20, "4.5.1 The a element", es_error, ec_element, "An <A> cannot have a descendant with TABINDEX"); } } }
@@ -160,7 +164,7 @@ void element::examine_aside ()
 
 void element::examine_audio ()
 {   if (! node_.version ().is_5 () && ! node_.version ().is_svg_12 ())
-        pick (nit_unknown_element, es_error, ec_element, "<AUDIO> requires HTML 5 or SVG 1.2");
+        pick (nit_invalid_element_version, es_error, ec_element, "<AUDIO> requires HTML 5 or SVG 1.2");
     else
     {   examine_media_element (elem_audio, "4.7.7 The audio element", "<AUDIO>", MIME_AUDIO);
         if (a_.known (a_autoplay)) pick (nit_autoplay, es_warning, ec_rudeness, "AUTOPLAY on <AUDIO> is usually rude"); } }
@@ -224,6 +228,9 @@ void element::examine_bind ()
 void element::examine_body ()
 {   if (! context.corpus ().empty ()) if (context.body () || ! page_ -> corpus ()) page_ -> corpus (text ()); }
 
+void element::examine_br ()
+{   test_for_ancestral_role (none_pres_role_bitset); }
+
 void element::examine_button ()
 {   if (node_.version ().is_5 ())
     {   no_anchor_daddy ();
@@ -258,12 +265,14 @@ void element::examine_command ()
             pick (nit_bad_command, ed_jan12, "4.11.3 The command element", es_warning, ec_element, "A <COMMAND> element can either have the COMMAND attribute or other attributes"); } }
 
 void element::examine_col ()
-{   if (node_.version ().is_5 ())
+{   test_no_role_no_aria ();
+    if (node_.version ().is_5 ())
         if (a_.known (a_span))
             if (a_.get_int (a_span) > 1000) pick (nit_1000, ed_50, "4.9.4 The col element", es_error, ec_element, "SPAN cannot exceed 1000"); }
 
 void element::examine_colgroup ()
-{   if (node_.version ().is_5 ())
+{   test_no_role_no_aria ();
+    if (node_.version ().is_5 ())
         if (a_.known (a_span))
         {   element_bitset bs (descendant_elements_);
             bs &= ~ ( non_standard_bitset | elem_col | elem_template );
@@ -370,7 +379,8 @@ void element::dddt (const char* ref1, const char* ref2, const char* el)
         check_descendants (elem_dt, header_bitset | sectioning_bitset | elem_header | elem_footer); } }
 
 void element::examine_dd ()
-{   dddt ("3.11.6. The dd element", "4.4.11. The dd element", "DD"); }
+{   test_no_role ();
+    dddt ("3.11.6. The dd element", "4.4.11. The dd element", "DD"); }
 
 void element::examine_dfn ()
 {   ::std::string t (term ());
@@ -417,6 +427,7 @@ void element::examine_div ()
 void element::examine_dl ()
 {   bool dtdd = false, dt = false, div = false, dd = false;
     vstr_t terms; ::std::string s;
+    test_for_ancestral_role (glnp_role_bitset);
     if (has_child () && (node_.version ().is_5 ()))
         for (element* c = child_; c != nullptr; c = c -> sibling_)
         {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
@@ -456,4 +467,5 @@ void element::examine_dl ()
                         break; } } }
 
 void element::examine_dt ()
-{   dddt ("3.11.5. The dt element", "4.4.10. The dt element", "DT"); }
+{   test_for_ancestral_role (listitem_role_bitset);
+    dddt ("3.11.5. The dt element", "4.4.10. The dt element", "DT"); }

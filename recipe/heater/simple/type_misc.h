@@ -21,9 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "base/type_master.h"
 #include "parser/pattern.h"
-
-// types that need fleshing out
-// t_featurepolicy (ALLOW for <IFRAME>)
+#include "css/flags.h"
 
 // unspecified attributes that will not be detailed
 // WHILE and IF appear in the XHTML2 spec in the technical docs, not in the discussion
@@ -36,6 +34,7 @@ e_status set_cookie_value (nitpick& nits, const html_version& v, const ::std::st
 bool set_coords_value (nitpick& nits, const html_version& v, const ::std::string& s, vint_t& val);
 bool set_exportpart_value (nitpick& nits, const html_version& v, const vstr_t& s, element* box);
 bool set_imgsizes_value (nitpick& nits, const html_version& v, const ::std::string& s);
+bool set_keychar_value (nitpick& nits, const html_version& v, const ::std::string& s);
 
 template < > struct type_master < t_arxiv > : public tidy_string < t_arxiv >
 {   using tidy_string < t_arxiv > :: tidy_string;
@@ -71,6 +70,41 @@ template < > struct type_master < t_b64 > : public tidy_string < t_b64 >
         else if (tidy_string < t_b64 > :: get_string ().find_first_not_of (HEX) == ::std::string::npos) return;
         else nits.pick (nit_b64, es_error, ec_type, "invalid character in base 64 binary string");
         string_value < t_b64 > :: status (s_invalid); } };
+
+template < > struct type_master < t_braille > : string_value < t_braille >
+{   using string_value < t_braille > :: string_value;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   ::std::string val (trim_the_lot_off (s));
+        if (val.empty ()) nits.pick (nit_empty, es_error, ec_type, "A braille value may not be empty");
+        else
+        {   string_value < t_braille > :: set_value (nits, v, val);
+            bool good = true;
+#ifdef WIN32
+            for (auto c : val)
+                if ((c < 0x2800) || (c > 0x2FFF))
+                {   nits.pick (nit_bad_braille, es_error, ec_type, quote (val), " contains non-Braille characters");
+                    good = false;
+                    break; }
+#else // WIN32
+    // todo
+#endif // WIN32
+            if (good) return; }
+        string_value < t_braille > :: status (s_invalid); } };
+
+template < > struct type_master < t_command3 > : public tidy_string < t_command3 >
+{   using tidy_string < t_command3 > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
+    {   tidy_string < t_command3 > :: set_value (nits, v, ss);
+        if (tidy_string < t_command3 > :: empty ())
+            nits.pick (nit_empty, es_error, ec_type, "a COMMAND cannot be empty");
+        else
+        {   const ::std::string& s = tidy_string < t_command3 > :: get_string ();
+            if (v >= html_feb25) 
+            {   if ((s.length () > 2) && (s.substr (0, 2) == "--")) return;
+                if (test_value < t_command2 > (nits, v, s)) return; }
+            else if ((v < html_jan13) && test_value < t_command > (nits, v, s)) return;
+            else nits.pick (nit_invalid_attribute_version, es_error, ec_type, "COMMAND was invalid from January 2013 to February 2025"); }
+    string_value < t_command3 > :: status (s_invalid); } };
 
 template < > struct type_master < t_coden > : public tidy_string < t_coden >
 {   using tidy_string < t_coden > :: tidy_string;
@@ -255,6 +289,14 @@ template < > struct type_master < t_key > : string_vector < t_key, sz_space_char
             tested_ = true; }
         return predefined_; } };
 
+template < > struct type_master < t_keychar > : string_value < t_keychar >
+{   using string_value < t_keychar > :: string_value;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   ::std::string val (trim_the_lot_off (s));
+        if (set_keychar_value (nits, v, val))
+            string_value < t_keychar > :: set_value (nits, v, val);
+        else string_value < t_keychar > :: status (s_invalid); } };
+
 template < > struct type_master < t_mb > : public tidy_string < t_mb >
 {   using tidy_string < t_mb > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& ss)
@@ -288,6 +330,26 @@ template < > struct type_master < t_mb > : public tidy_string < t_mb >
                     if (! bad) return; }
                 nits.pick (nit_mb, es_error, ec_type, quote (s.substr (unit), " is neither KB, MB, nor GiB, TiB, nor another standard byte unit")); }
             tidy_string < t_mb > :: status (s_invalid); } } };
+
+template < > struct type_master < t_no_braille > : string_value < t_no_braille >
+{   using string_value < t_no_braille > :: string_value;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   ::std::string val (trim_the_lot_off (s));
+        if (val.empty ()) nits.pick (nit_empty, es_error, ec_type, "A non-braille value may not be empty");
+        else
+        {   string_value < t_no_braille > :: set_value (nits, v, val);
+            bool good = true;
+#ifdef WIN32
+            for (auto c : val)
+                if ((c >= 0x2800) && (c <= 0x2FFF))
+                {   nits.pick (nit_bad_braille, es_error, ec_type, quote (val), " contains Braille characters");
+                    good = false;
+                    break; }
+#else // WIN32
+    // todo
+#endif // WIN32
+            if (good) return; }
+        string_value < t_no_braille > :: status (s_invalid); } };
 
 template < > struct type_master < t_normal > : public type_string < t_normal, sz_normal >
 {   using type_string < t_normal, sz_normal > :: type_string; };

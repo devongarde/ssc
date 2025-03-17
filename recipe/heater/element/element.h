@@ -55,6 +55,7 @@ class element
     ::std::string name_;
     element_bitset ancestral_elements_, sibling_elements_, descendant_elements_;
     attribute_bitset ancestral_attributes_, own_attributes_, sibling_attributes_, descendant_attributes_;
+    role_bitset ancestral_roles_, descendant_roles_;
     velptr_t radio_kids_;
     itemscope_ptr itemscope_;
     vit_t vit_;
@@ -69,6 +70,7 @@ class element
     template < e_type T > void val_min_max (const bool cyclic = false);
     void activate_microformats () { if (! mf_) mf_.reset (new microformats ()); }
     void dddt (const char* ref1, const char* ref2, const char* el);
+    void check_required_page (const html_version& v, const vurl_t& u);
     void check_required_type ();
     void mf_put_vocab (const e_class v, const prop& p, const ::std::string& itemtype = ::std::string (EXPORT_ITEMTYPE), const ::std::string& itemprop = ::std::string (EXPORT_ITEMPROP));
     void mf_put_rel (nitpick& nits, const e_class v, const prop& p, const vstr_t& rels);
@@ -103,6 +105,12 @@ class element
     void pre_examine_element ();
     void post_examine_element ();
     void late_examine_element ();
+    void test_for_ancestral_role ();
+    void test_for_ancestral_role (const role_bitset& permitted);
+    void test_no_role ();
+    void test_no_role_no_aria ();
+    void test_for_no_ancestral_role (const role_bitset& banned);
+    void test_compatible_ancestral_role ();
     void examine_about ();
     void examine_datatype (flags_t& flags);
     void examine_inlist ();
@@ -118,6 +126,7 @@ class element
     void examine_media_element (e_element elem, const char* ref, const char* name, const uint64_t family);
     void examine_accesskey ();
     void examine_animation_attributes ();
+    void examine_aria_brailleroledescription ();
     void examine_aria_checked ();
     void examine_aria_colspan ();
     void examine_aria_disabled ();
@@ -125,11 +134,13 @@ class element
     void examine_aria_placeholder ();
     void examine_aria_readonly ();
     void examine_aria_required ();
+    void examine_aria_role ();
     void examine_aria_rowspan ();
     void examine_aria_valuemax ();
     void examine_aria_valuemin ();
     void examine_autofocus ();
     void examine_body ();
+    void examine_br ();
     bool examine_class (const lingo& lang);
     void examine_clip ();
     void examine_colour_profile ();
@@ -152,8 +163,10 @@ class element
     void examine_ref ();
     void examine_registrationmark ();
     bool examine_rel (const ::std::string& content, const lingo& lang);
+    void examine_role ();
     void examine_spellcheck (flags_t& flags);
     void examine_style_attr ();
+    void examine_tabindex ();
     void examine_xlinkhref ();
     void validate_input_id ();
     void examine_abbr ();
@@ -272,6 +285,8 @@ public:
     {   return node_.has_child (); }
     bool has_next () const noexcept
     {   return node_.has_next (); }
+    bool has_visible_next () const noexcept
+    {   return node_.has_visible_next (); }
     ::std::string content () const;
     element* make_child ();
     element* make_next ();
@@ -287,6 +302,7 @@ public:
     void examine_self ( const lingo& lang,
                         const itemscope_ptr& itemscope = itemscope_ptr (),
                         const attribute_bitset& ancestral_attributes = attribute_bitset (), const attribute_bitset& sibling_attributes = attribute_bitset (),
+                        const role_bitset& ancestral_roles = role_bitset (),
                         const flags_t parental_flags = 0);
     void examine_children (const flags_t flags, const lingo& lang);
     ::std::string make_children (const int depth, const element_bitset& gf = element_bitset ());
@@ -342,5 +358,4 @@ public:
     void accumulate (stats_t* st) const;
     ::std::string report (); };
 
-template < class PROPERTY > void element::note_reply ()
-{ }
+template < class PROPERTY > inline void element::note_reply () { }

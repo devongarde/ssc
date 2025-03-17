@@ -172,6 +172,8 @@ hav_t havt_button [] =
     { { HTML_JAN20, 0, HE_MOZILLA }, { HTML_UNDEF }, elem_button, a_autocomplete },
     { { HTML_JAN09 }, { HTML_DEC19 }, elem_button, a_autofocus },
     { { HTML_JAN05 }, { HTML_DEC05 }, elem_button, a_command },
+    { { HTML_MAR25 }, { HTML_UNDEF }, elem_button, a_command },
+    { { HTML_MAR25 }, { HTML_UNDEF }, elem_button, a_commandfor },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_button, a_datafld },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_button, a_dataformatas },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_button, a_datasrc },

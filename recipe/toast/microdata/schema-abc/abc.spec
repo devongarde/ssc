@@ -35,6 +35,7 @@ PASS ../toast/microdata/schema-abc/aggregaterating-2.html
 
 PASS ../toast/microdata/schema-abc/alignmentobject.html
 17 invalid_attribute_version wrong_version svg_rdf invalid_duration invalid_duration
+63 track_missing
 68 incompatible_mime
 69 invalid_attribute_version wrong_version svg_rdf invalid_duration
 

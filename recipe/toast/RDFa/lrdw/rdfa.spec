@@ -61,12 +61,16 @@ PASS ../toast/RDFa/lrdw/lrdw.html
 5132 rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine
 5138 invalid_attribute_version wrong_version
 5182 not_ontology_property bad_property
+5253 track_missing
+5296 track_missing
+5328 track_missing
 5363 contradictory_expansion
 5373 not_ontology_property bad_property
 5380 rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine rdfa_redefine invalid_attribute_version wrong_version svg_version
 5396 immeasurable
 5397 immeasurable
 5436 tabnab
+5443 track_missing
 5985 not_ontology_property bad_property
 6085 ontology_domain
 6087 ontology_domain

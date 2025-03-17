@@ -52,7 +52,7 @@ template < > struct type_master < t_colour > : tidy_string < t_colour >
                     nits.pick (nit_svg_version, ed_svg_1_1, "4.2 Basic data types", es_error, ec_type, quote (val), ": rgb (...) colour syntax requires CSS, or SVG 1.1 or better.");
                 else
                 {   const ::std::string x (val.substr (0, val.length () - 1).substr (4));
-                    vstr_t nums (split_by_charset (x, ","));
+                    vstr_t nums (split_by_charset (x, PLAINSEP));
                     if (nums.size () != 3)
                         nits.pick (nit_bad_rgb, ed_svg_1_1, "4.2 Basic data types", es_error, ec_type, quote (val), ": rgb (...) has three comma-separated parameters");
                     else

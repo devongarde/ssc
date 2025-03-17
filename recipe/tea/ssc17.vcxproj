@@ -216,7 +216,7 @@
     <ClInclude Include="..\heater\symbol\symbol_table.h" />
     <ClInclude Include="..\heater\type\type.h" />
     <ClInclude Include="..\heater\type\type_csp.h" />
-    <ClInclude Include="..\heater\url\curl.h" />
+    <ClInclude Include="..\heater\url\fetch.h" />
     <ClInclude Include="..\heater\url\url.h" />
     <ClInclude Include="..\heater\url\url_parameters.h" />
     <ClInclude Include="..\heater\url\url_protocol.h" />
@@ -241,6 +241,7 @@
     <ClInclude Include="..\heater\webpage\id.h" />
     <ClInclude Include="..\heater\webpage\page.h" />
     <ClInclude Include="..\heater\webpage\q.h" />
+    <ClInclude Include="..\heater\webpage\required.h" />
     <ClInclude Include="..\heater\webpage\root.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
@@ -322,19 +323,25 @@
     <ClCompile Include="..\sauce\css\typed_property.cpp" />
     <ClCompile Include="..\sauce\css\value.cpp" />
     <ClCompile Include="..\sauce\css\value2.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_0_9.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_0_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_3_9.cpp" />
     <ClCompile Include="..\sauce\css\value_types_a_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_a_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_b.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_css_a.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_a_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_a_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_b_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_b_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_b_3.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_b_4.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_c_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_c_2.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_css_d_e.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_c_3.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_d.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_e.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_f_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_f_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_f_3.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_g_h.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_i.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_j_k.cpp" />
@@ -345,24 +352,31 @@
     <ClCompile Include="..\sauce\css\value_types_css_r.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_s_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_s_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_s_3.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_t_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_t_2.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_css_u_v.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_t_3.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_u.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_v.cpp" />
     <ClCompile Include="..\sauce\css\value_types_css_w_z.cpp" />
     <ClCompile Include="..\sauce\css\value_types_c_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_c_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_c_3.cpp" />
     <ClCompile Include="..\sauce\css\value_types_d.cpp" />
     <ClCompile Include="..\sauce\css\value_types_e.cpp" />
     <ClCompile Include="..\sauce\css\value_types_f_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_f_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_g_h.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_i.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_i_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_i_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_j_k.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_l.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_l_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_l_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_m_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_m_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_m_3.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_n_o.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_n.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_o.cpp" />
     <ClCompile Include="..\sauce\css\value_types_p_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_p_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_q_r.cpp" />
@@ -371,7 +385,8 @@
     <ClCompile Include="..\sauce\css\value_types_svg_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_s_1.cpp" />
     <ClCompile Include="..\sauce\css\value_types_s_2.cpp" />
-    <ClCompile Include="..\sauce\css\value_types_t.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_t_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_t_2.cpp" />
     <ClCompile Include="..\sauce\css\value_types_u.cpp" />
     <ClCompile Include="..\sauce\css\value_types_v.cpp" />
     <ClCompile Include="..\sauce\css\value_types_v_w.cpp" />
@@ -494,7 +509,7 @@
     <ClCompile Include="..\sauce\symbol\symbol.cpp" />
     <ClCompile Include="..\sauce\type\type.cpp" />
     <ClCompile Include="..\sauce\type\type_csp.cpp" />
-    <ClCompile Include="..\sauce\url\curl.cpp" />
+    <ClCompile Include="..\sauce\url\fetch.cpp" />
     <ClCompile Include="..\sauce\url\url.cpp" />
     <ClCompile Include="..\sauce\url\url_parameters.cpp" />
     <ClCompile Include="..\sauce\url\url_protocol.cpp" />
@@ -514,6 +529,7 @@
     <ClCompile Include="..\sauce\webpage\id.cpp" />
     <ClCompile Include="..\sauce\webpage\page.cpp" />
     <ClCompile Include="..\sauce\webpage\q.cpp" />
+    <ClCompile Include="..\sauce\webpage\required.cpp" />
     <ClCompile Include="..\sauce\webpage\root.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -569,8 +585,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)..\third;$(CURL)\include</IncludePath>
-    <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64;$(CURL)\debug\lib</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)..\third</IncludePath>
+    <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
     <ExecutablePath>$(VC_ExecutablePath_x64);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(FxCopDir);$(PATH);</ExecutablePath>
     <ReferencePath>$(VC_ReferencesPath_x64);</ReferencePath>
     <LibraryWPath>$(WindowsSDK_MetadataPath);</LibraryWPath>
@@ -578,8 +594,8 @@
     <ExcludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(VC_ExecutablePath_x64);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(FxCopDir);$(MSBuild_ExecutablePath);$(VC_LibraryPath_x64);$(SystemRoot)</ExcludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)..\third;$(CURL)\include</IncludePath>
-    <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64;$(CURL)\lib</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(BOOST);$(GSL)\include;$(ICU_ROOT)\icu\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)..\third</IncludePath>
+    <LibraryPath>$(BOOST)\stage\lib;$(ICU_ROOT)\icu\lib64;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
     <ExecutablePath>$(VC_ExecutablePath_x64);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(FxCopDir);$(PATH);</ExecutablePath>
     <ReferencePath>$(VC_ReferencesPath_x64);</ReferencePath>
     <LibraryWPath>$(WindowsSDK_MetadataPath);</LibraryWPath>

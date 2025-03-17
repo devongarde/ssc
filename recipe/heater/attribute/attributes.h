@@ -87,8 +87,12 @@ public:
         return aar_.at (a) -> type (); }
     int get_int (const e_attribute a) const
     {   if (! has (a)) return 0;
-         VERIFY_NOT_NULL (aar_.at (a), __FILE__, __LINE__);
+        VERIFY_NOT_NULL (aar_.at (a), __FILE__, __LINE__);
        return aar_.at (a) -> get_int (); }
+    vint_t get_ints (const e_attribute a) const
+    {   if (! has (a)) return vint_t ();
+        VERIFY_NOT_NULL (aar_.at (a), __FILE__, __LINE__);
+        return aar_.at (a) -> get_ints (); }
     ::std::size_t size (const e_attribute a) const
     {   if (! has (a)) return 0;
         VERIFY_NOT_NULL (aar_.at (a), __FILE__, __LINE__);

@@ -127,6 +127,117 @@ html_version::html_version (const boost::gregorian::date& d, const flags_t flags
     {   if (no_ext3 (H3_CSS_MASK)) set_ext3 (H3_CSS_3);
         if (no_ext4 (H4_CSS_MASK)) set_ext4 (H4_CSS_3); } }
 
+html_version::html_version (nitpick& nits, const ::std::string& ss)
+{   if (! ss.empty ())
+    {   ::std::string s (trim_the_lot_off (ss));
+        bool xhtml = false;
+        if (s.length () >= 4)
+            if (compare_no_case (s.substr (0, 4), HTML_EXT)) s = trim_the_lot_off (s.substr (4));
+            else if (compare_no_case (s.substr (0, 5), XHTML_EXT)) { s = trim_the_lot_off (s.substr (5)); xhtml = true; }
+        const ::std::string::size_type pos = s.find ('.');
+        if (pos != ::std::string::npos)
+        {   int mj = 1, mn = USHRT_MAX;
+            if (pos == s.length () - 1) mj = lexical < int > :: cast (s.substr (0, pos));
+            else if (pos == 0) { mj = 0; mn = 1; }
+            else
+            {   mj = lexical < int > :: cast (s.substr (0, pos));
+                mn = lexical < int > :: cast (s.substr (pos+1)); }
+            if (xhtml)
+                switch (mj)
+                {   case 1 :
+                        if (mn == 0) { mj = 4; mn = 2; }
+                        else if (mn == 1) { mj = 4; mn = 3; }
+                        else
+                        {   mj = 4; mn = 3;
+                            nits.pick ( nit_config_version, es_warning, ec_init,
+                                        "unknown version of XHTML; presuming XHTML 1.1"); }
+                        break;
+                    case 2 :
+                        if (mn > 0)
+                            nits.pick ( nit_config_version, es_warning, ec_init,
+                                        "unknown version of XHTML; presuming XHTML 2.0");
+                        mj = 4; mn = 4;
+                        break;
+                    case 5 :
+                        if (mn > 3)
+                        {   mn = 2;
+                            nits.pick ( nit_config_version, es_warning, ec_init,
+                                        "unknown version of XHTML, presuming XHTML 5.2"); }
+                        break;
+                    default :
+                        mj = 5; mn = 2;
+                            nits.pick ( nit_config_version, es_warning, ec_init,
+                                        "unknown version of XHTML; presuming XHTML 5.2");
+                        break;  }
+            if ((mj > 255) || (mn > 255))
+                reset (html_default);
+            else switch (mj)
+            {   case 5 :
+                    switch (mn)
+                    {   case 0 : reset (html_5_0); break;
+                        case 1 : reset (html_5_1); break;
+                        case 2 : reset (html_5_2); break;
+                        case 3 : reset (html_5_3); break;
+                        case 4 : reset (html_jul20); break;
+                        default : reset (html_5_3); break; }
+                    break;
+                case 4 :
+                    switch (mn)
+                    {   case 0 : reset (html_4_0); break;
+                        case 1 : reset (html_4_1); break;
+                        case 2 : reset (xhtml_1_0); break;
+                        case 3 : reset (xhtml_1_1); break;
+                        default : reset (xhtml_2); break; }
+                    break;
+                case 3 :
+                    if (mn == 0) reset (html_3_0);
+                    else reset (html_3_2);
+                    break;
+                case 2 :
+                    switch (mn)
+                    {   case 0 : reset (html_2); break;
+                        case 1 : reset (html_2_level_1); break;
+                        default : reset (html_2_level_2); break; }
+                    break;
+                case 1 :
+                    reset (html_1);
+                    break;
+                default :
+                    reset (html_default);
+                    break; }
+            if (xhtml) set_flags (HV_XHTML); }
+        else if (s.find ('/') != ::std::string::npos)
+            if ((s.length () != 10) || (s.at (4) != '/') || (s.at (7) != '/') || (s.find_first_not_of (DENARY "/") != ::std::string::npos))
+                nits.pick (nit_config_date, es_warning, ec_init, "bad date ", quote (s), " ignored ('YYYY/MM/DD' expected)");
+            else
+            {   const ::boost::gregorian::date d (::boost::gregorian::from_string (s));
+                if (d.is_not_a_date ())
+                    nits.pick (nit_config_date, es_warning, ec_init, "invalid date ", quote (s), " ignored");
+                else
+                {   int y = d.year ();
+                    const int m = d.month ();
+                    if (y > 2000) y -= 2000;
+                    else if (y > 99) y = 99;
+                    if ((y < HTML_5_EARLIEST_YEAR) || ((y == HTML_5_EARLIEST_YEAR) && (m < HTML_5_EARLIEST_MONTH)))
+                    {   nits.pick (nit_config_date, es_warning, ec_init, quote (s) + " is too early, presuming ", HTML_5_EARLIEST_YEAR, "/", HTML_5_EARLIEST_MONTH, "/1");
+                        reset (html_version (html_jan05)); }
+                    else if ((y > HTML_LATEST_YEAR) || ((y == HTML_LATEST_YEAR) && (m > HTML_LATEST_MONTH)))
+                    {   nits.pick (nit_config_date, es_warning, ec_init, quote (s), " is too recent, presuming ", HTML_LATEST_YEAR, "/", HTML_LATEST_MONTH, "/1");
+                        reset (html_version (html_current)); }
+                    else reset (html_version (d));
+                    if (xhtml) set_flags (HV_XHTML); } }
+        else switch (lexical < int > :: cast (s))
+        {   case 1 : reset (html_version (html_1)); break;
+            case 2 : reset (html_version (html_2)); break;
+            case 3 : reset (html_version (html_3_2)); break;
+            case 4 : reset (html_version (html_4_1)); break;
+            case 5 : reset (html_version (html_default)); break;
+            default : 
+                if (s == "+") reset (html_version (html_plus));
+                else if (compare_no_case (s, "plus")) reset (html_version (html_plus));
+                else if (compare_no_case (s, "tags")) reset (html_version (html_tags));
+                else nits.pick (nit_config_version, es_error, ec_init, quote (s), ": bad HTML version"); } } }
+
 void html_version::swap (html_version& v) noexcept
 {   version::swap (v);
     ::std::swap (css_, v.css_);
@@ -396,6 +507,10 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                 case doc_math4 :
                     if (note_parsed_version (nits, nit_math, html_apr21, "Living Standard (April 2021) with MathML 4"))
                     {   set_ext2 (H2_MATH_4); found_html = true; }
+                    break;
+                case doc_html_aria :
+                    if (note_parsed_version (nits, nit_html_4_01, html_4_1, "HTML 4.01 + ARIA 1.0"))
+                    {   set_flags (HV_TRANSITIONAL); found_html = true; }
                     break;
                 case doc_svg10 :
                     if (note_parsed_version (nits, nit_svg, xhtml_svg_1_0, "HTML 4.00 with SVG 1.0"))

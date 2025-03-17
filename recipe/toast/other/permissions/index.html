@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>permissions test page</title>
+</head>
+
+<body>
+
+<h1>permissions Test Page</h1>
+
+<iframe src="https://example.com" allow="geolocation *">
+</iframe>
+
+<iframe
+  src="https://example.com"
+  allow="geolocation 'self' https://a.example.com https://b.example.com">
+</iframe>
+
+<iframe
+  src="https://example.com"
+  allow="geolocation 'self' https://a.example.com https://b.example.com; fullscreen 'none'">
+</iframe>
+
+<iframe src="https://example.com" allow="geolocation 'src'">
+  <iframe src="https://example.com" allow="geolocation">
+  </iframe>
+</iframe>
+
+<iframe src="https://trusted-ad-network.com" allow="geolocation">
+</iframe>
+
+<iframe src="https://rogue-origin-example.com" allow="geolocation">
+</iframe>
+
+</body>
+</html>

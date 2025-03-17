@@ -125,11 +125,13 @@
     <ClInclude Include="..\heater\gui\gui-css.h" />
     <ClInclude Include="..\heater\gui\gui-ctrl.h" />
     <ClInclude Include="..\heater\gui\gui-ctrls.h" />
+    <ClInclude Include="..\heater\gui\gui-data.h" />
     <ClInclude Include="..\heater\gui\gui-dialogue.h" />
     <ClInclude Include="..\heater\gui\gui-frame.h" />
     <ClInclude Include="..\heater\gui\gui-general.h" />
     <ClInclude Include="..\heater\gui\gui-html.h" />
     <ClInclude Include="..\heater\gui\gui-icon.h" />
+    <ClInclude Include="..\heater\gui\gui-link.h" />
     <ClInclude Include="..\heater\gui\gui-listedit.h" />
     <ClInclude Include="..\heater\gui\gui-menu.h" />
     <ClInclude Include="..\heater\gui\gui-nits.h" />
@@ -250,7 +252,7 @@
     <ClInclude Include="..\heater\symbol\symbol_table.h" />
     <ClInclude Include="..\heater\type\type.h" />
     <ClInclude Include="..\heater\type\type_csp.h" />
-    <ClInclude Include="..\heater\url\curl.h" />
+    <ClInclude Include="..\heater\url\fetch.h" />
     <ClInclude Include="..\heater\url\url.h" />
     <ClInclude Include="..\heater\url\url_parameters.h" />
     <ClInclude Include="..\heater\url\url_protocol.h" />
@@ -275,6 +277,7 @@
     <ClInclude Include="..\heater\webpage\id.h" />
     <ClInclude Include="..\heater\webpage\page.h" />
     <ClInclude Include="..\heater\webpage\q.h" />
+    <ClInclude Include="..\heater\webpage\required.h" />
     <ClInclude Include="..\heater\webpage\root.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
@@ -579,234 +582,77 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_0_9.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_a_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_a_2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_b.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_b_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_b_3.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_c_2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_f_2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_g_h.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_i.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_j_k.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_l.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_o.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_p_q.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_r.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_s_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_s_2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_t_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_t_2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_u_v.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_a.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_b_2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_c_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_d_e.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_f_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_m_n.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_w_z.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_c_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_c_2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_d.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_e.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_f_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_f_2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_g_h.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_i.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_j_k.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_l.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_m_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_m_2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_m_3.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_n_o.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_p_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_p_2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_q_r.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_r.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_svg_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_svg_2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_s_1.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_s_2.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_t.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_u.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_v.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_v_w.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_x.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_x_z.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\sauce\css\value.cpp" />
+    <ClCompile Include="..\sauce\css\value2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_0_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_3_9.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_a_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_a_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_b.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_a_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_a_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_b_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_b_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_b_3.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_b_4.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_c_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_c_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_c_3.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_d.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_e.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_f_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_f_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_f_3.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_g_h.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_i.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_j_k.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_l.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_m_n.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_o.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_p_q.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_r.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_s_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_s_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_s_3.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_t_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_t_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_t_3.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_u.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_v.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_css_w_z.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_c_3.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_c_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_c_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_d.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_e.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_f_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_f_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_g_h.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_i_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_i_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_j_k.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_l_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_l_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_m_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_m_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_m_3.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_n.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_o.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_p_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_p_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_q_r.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_r.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_svg_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_svg_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_s_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_s_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_t_1.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_t_2.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_u.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_v.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_v_w.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_x.cpp" />
+    <ClCompile Include="..\sauce\css\value_types_x_z.cpp" />
     <ClCompile Include="..\sauce\css\weight.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
@@ -963,6 +809,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\sauce\gui\gui-data.cpp" />
     <ClCompile Include="..\sauce\gui\gui-dialogue.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
@@ -983,6 +830,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\sauce\gui\gui-link.cpp" />
     <ClCompile Include="..\sauce\gui\gui-listedit.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
@@ -1367,10 +1215,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\sauce\url\curl.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="..\sauce\url\fetch.cpp" />
     <ClCompile Include="..\sauce\url\url.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
@@ -1447,6 +1292,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\sauce\webpage\required.cpp" />
     <ClCompile Include="..\sauce\webpage\root.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
@@ -1457,6 +1303,45 @@
     <None Include="..\port\openbsd\Makefile" />
     <None Include="..\port\openbsd\pkg\DESCR" />
     <None Include="..\port\openbsd\pkg\PLIST" />
+    <None Include="..\toast\aria\1-0\2.css" />
+    <None Include="..\toast\aria\1-0\2.html" />
+    <None Include="..\toast\aria\1-0\5.html" />
+    <None Include="..\toast\aria\1-0\6.html" />
+    <None Include="..\toast\aria\1-0\aria.conf" />
+    <None Include="..\toast\aria\1-0\aria.spec" />
+    <None Include="..\toast\aria\1-0\index.html" />
+    <None Include="..\toast\aria\1-1\2.css" />
+    <None Include="..\toast\aria\1-1\2.html" />
+    <None Include="..\toast\aria\1-1\5.html" />
+    <None Include="..\toast\aria\1-1\6.css" />
+    <None Include="..\toast\aria\1-1\6.html" />
+    <None Include="..\toast\aria\1-1\aria.conf" />
+    <None Include="..\toast\aria\1-1\aria.spec" />
+    <None Include="..\toast\aria\1-1\index.html" />
+    <None Include="..\toast\aria\1-2\4.css" />
+    <None Include="..\toast\aria\1-2\4.html" />
+    <None Include="..\toast\aria\1-2\5.html" />
+    <None Include="..\toast\aria\1-2\6.html" />
+    <None Include="..\toast\aria\1-2\aria.conf" />
+    <None Include="..\toast\aria\1-2\aria.spec" />
+    <None Include="..\toast\aria\1-2\index.html" />
+    <None Include="..\toast\aria\1-3\aria.conf" />
+    <None Include="..\toast\aria\1-3\aria.spec" />
+    <None Include="..\toast\aria\1-3\errors.html" />
+    <None Include="..\toast\aria\1-3\index.html" />
+    <None Include="..\toast\aria\1-3\media.html" />
+    <None Include="..\toast\aria\1-3\properties.html" />
+    <None Include="..\toast\aria\1-3\role.html" />
+    <None Include="..\toast\aria\1-3\tree.html" />
+    <None Include="..\toast\aria\dp\aria.conf" />
+    <None Include="..\toast\aria\dp\aria.spec" />
+    <None Include="..\toast\aria\dp\index.html" />
+    <None Include="..\toast\aria\graphics\aria.conf" />
+    <None Include="..\toast\aria\graphics\aria.spec" />
+    <None Include="..\toast\aria\graphics\index.html" />
+    <None Include="..\toast\aria\html\aria.conf" />
+    <None Include="..\toast\aria\html\aria.spec" />
+    <None Include="..\toast\aria\html\index.html" />
     <None Include="..\toast\conf\html\conf.conf" />
     <None Include="..\toast\conf\html\conf.spec" />
     <None Include="..\toast\conf\html\index.html" />
@@ -11912,9 +11797,6 @@
     <None Include="..\toast\other\abbr\abbr.conf" />
     <None Include="..\toast\other\abbr\abbr.spec" />
     <None Include="..\toast\other\abbr\index.html" />
-    <None Include="..\toast\other\aria\aria.conf" />
-    <None Include="..\toast\other\aria\aria.spec" />
-    <None Include="..\toast\other\aria\index.html" />
     <None Include="..\toast\other\base\bad-base-2.html" />
     <None Include="..\toast\other\base\bad-base-3.html" />
     <None Include="..\toast\other\base\bad-base.html" />
@@ -12005,6 +11887,9 @@
     <None Include="..\toast\other\pattern\index.html" />
     <None Include="..\toast\other\pattern\pattern.conf" />
     <None Include="..\toast\other\pattern\pattern.spec" />
+    <None Include="..\toast\other\permissions\index.html" />
+    <None Include="..\toast\other\permissions\permissions.conf" />
+    <None Include="..\toast\other\permissions\permissions.spec" />
     <None Include="..\toast\other\ruby\index.html" />
     <None Include="..\toast\other\ruby\ruby-2.html" />
     <None Include="..\toast\other\ruby\ruby-a.html" />
@@ -12035,6 +11920,11 @@
     <None Include="..\toast\output\args\index.html" />
     <None Include="..\toast\output\args\output.out.model" />
     <None Include="..\toast\output\args\output.spec" />
+    <None Include="..\toast\output\bespoke\bespoke.nit" />
+    <None Include="..\toast\output\bespoke\bespoke.txt.model" />
+    <None Include="..\toast\output\bespoke\index.html" />
+    <None Include="..\toast\output\bespoke\output.conf" />
+    <None Include="..\toast\output\bespoke\output.spec" />
     <None Include="..\toast\output\html\html.nit" />
     <None Include="..\toast\output\html\index.html" />
     <None Include="..\toast\output\html\index.html.model" />
@@ -13824,6 +13714,7 @@
     <Image Include="ref\summary.png" />
     <Image Include="ref\valid.png" />
     <Image Include="ref\welcome.png" />
+    <Image Include="ssc.ico" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\build.txt" />
@@ -13873,6 +13764,10 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">_UNICODE;UNICODE;WX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">_UNICODE;UNICODE;WX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\toast\aria\1-3\fen1.mp3" />
+    <Media Include="..\toast\aria\1-3\to_let.mov" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -13936,8 +13831,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL)\include;$(ICU_ROOT)\include;$(WX_ROOT)\include\msvc;$(WX_ROOT)\include;$(CURL)\include</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\\vc14x_x64_dll;$(ICU_ROOT)\lib64;$(CURL)\lib\debug</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL)\include;$(ICU_ROOT)\include;$(WX_ROOT)\include\msvc;$(WX_ROOT)\include</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc_x64_dll;$(ICU_ROOT)\lib64</LibraryPath>
     <EnableMicrosoftCodeAnalysis>true</EnableMicrosoftCodeAnalysis>
     <EnableClangTidyCodeAnalysis>false</EnableClangTidyCodeAnalysis>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
@@ -13949,8 +13844,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL)\include;$(ICU_ROOT)\include;$(WX_ROOT)\include\msvc;$(WX_ROOT)\include;$(CURL)\include</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\\vc14x_x64_dll;$(ICU_ROOT)\lib64;$(CURL)\lib\release</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL)\include;$(ICU_ROOT)\include;$(WX_ROOT)\include\msvc;$(WX_ROOT)\include</IncludePath>
+    <LibraryPath>$(ICU_ROOT)\lib64;$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc_x64_dll;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)wx\</OutDir>
     <IntDir>$(Platform)\$(Configuration)wx\</IntDir>
@@ -13958,14 +13853,14 @@
     <PreBuildEventUseInBuild />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
-    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath)$(BOOST);$(GSL)\include;$(ICU_ROOT)\include;$(BOOST);$(CURL)\include;$(WX_ROOT)\include\msvc;$(WX_ROOT)\include</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc_arm64_dll;$(ICU_ROOT)\libARM64;$(CURL)\lib\debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath)$(BOOST);$(GSL)\include;$(ICU_ROOT)\include;$(BOOST);$(WX_ROOT)\include\msvc;$(WX_ROOT)\include</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc_arm64_dll;$(ICU_ROOT)\libARM64;$(LibraryPath)</LibraryPath>
     <IntDir>$(Platform)\$(Configuration)wx\</IntDir>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)wx\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
-    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath)$(BOOST);$(GSL)\include;$(ICU_ROOT)\include;$(BOOST);$(CURL)\include;$(WX_ROOT)\include\msvc;$(WX_ROOT)\include</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc_arm64_dll;$(ICU_ROOT)\libARM64;$(CURL)\lib\release;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath)$(BOOST);$(GSL)\include;$(ICU_ROOT)\include;$(BOOST);$(WX_ROOT)\include\msvc;$(WX_ROOT)\include</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc_arm64_dll;$(ICU_ROOT)\libARM64;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)wx\</OutDir>
     <IntDir>$(Platform)\$(Configuration)wx\</IntDir>
   </PropertyGroup>
@@ -13977,7 +13872,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WINSPELL;BUILD_OS="win x64";COMMAND_LINE;WX;_DEBUG;_CONSOLE;wxMSVC_VERSION=14x;wxMSVC_VERSION_ABI_COMPAT;WXUSINGDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WINSPELL;BUILD_OS="win x64";COMMAND_LINE;WX;_DEBUG;_CONSOLE;WXUSINGDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -13994,7 +13889,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;libcurl-d_imp.lib;icuind.lib;icuiod.lib;icutud.lib;icuucd.lib;icudt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icuind.lib;icuiod.lib;icutud.lib;icuucd.lib;icudt.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
@@ -14035,7 +13930,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WINSPELL;BUILD_OS="win x64";COMMAND_LINE;WX;NDEBUG;_CONSOLE;wxMSVC_VERSION=14x;wxMSVC_VERSION_ABI_COMPAT;WXUSINGDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WINSPELL;BUILD_OS="win x64";COMMAND_LINE;WX;NDEBUG;_CONSOLE;WXUSINGDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
@@ -14057,7 +13952,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;libcurl_imp.lib;icudt.lib;icuind.lib;icuiod.lib;icutud.lib;icuucd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icudt.lib;icuin.lib;icuio.lib;icutu.lib;icuuc.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
       <Profile>true</Profile>
@@ -14117,10 +14012,10 @@
     </ClCompile>
     <Link>
       <GenerateMapFile>true</GenerateMapFile>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;icudt.lib;icuind.lib;icuiod.lib;icutud.lib;icuucd.lib;libcurl-d_imp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icudt.lib;icuind.lib;icuiod.lib;icutud.lib;icuucd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe</Command>
@@ -14150,9 +14045,9 @@
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;libcurl_imp.lib;icudt.lib;icuind.lib;icuiod.lib;icutud.lib;icuucd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icudt.lib;icuind.lib;icuiod.lib;icutud.lib;icuucd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
       <OptimizeReferences>true</OptimizeReferences>

@@ -32,6 +32,9 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "httpd", "..\httpd\", "{D634
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ssc22-wx", "ssc22wx.vcxproj", "{CDFD1629-A939-463B-B181-58512930A8E4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D634717B-6097-483E-BF95-E38BB88B23C1} = {D634717B-6097-483E-BF95-E38BB88B23C1}
+	EndProjectSection
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "install-x64", "..\install\install-x64.vdproj", "{DDEB8BE6-36F4-4B46-B786-B980F9B9DDB1}"
 EndProject

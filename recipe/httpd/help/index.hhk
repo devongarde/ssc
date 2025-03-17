@@ -119,4 +119,10 @@
       <param name="Local" value="welcome.html"/>
     </object>
   </li>
+  <li>
+    <object type="text/sitemap">
+      <param name="Name" value="lynx"/>
+      <param name="Local" value="links.html"/>
+    </object>
+  </li>
 </ul>

@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "type/type.h"
 #include "stats/stats.h"
 #include "element/element.h"
+#include "parser/text.h"
 #include "webpage/page.h"
 
 void mark_font (stats_t* s, const ::std::string& font)
@@ -202,4 +203,44 @@ bool set_imgsizes_value (nitpick& nits, const html_version& v, const ::std::stri
                         else if (pos != ssz.length () - 1)
                             if (! test_value < t_length > (nits, v, ssz.substr (++pos)))
                                 return false; } }
+    return good; }
+
+bool set_keychar_value (nitpick& nits, const html_version& v, const ::std::string& val)
+{   if (val.empty ())
+    {   nits.pick (nit_empty, ed_aria_1_1, "aria-keyshortcuts (property)", es_error, ec_type, "A keyboard code cannot be empty (for whitespace, use \"Space\")");
+        return false; }
+    if (val.size () == 1)
+    {   if (val.at (0) == '+')
+        {   nits.pick (nit_keychar, ed_aria_1_1, "aria-keyshortcuts (property)", es_error, ec_type, "For +, use \"Plus\")");
+            return false; }
+        return true; }
+    bool good = true;
+    const vstr_t codes = split_by_charset (val, " ");
+    for (auto cc : codes)
+    {   const vstr_t kcs = split_by_charset (cc, "+");
+        const ::std::size_t sz = kcs.size ();
+        PRESUME (sz > 0, __FILE__, __LINE__);
+        if (sz > 1)
+            for (::std::size_t n = 0; n < sz-1; ++n)
+            {   const e_keycode k = examine_value < t_keycode > (nits, v, GSL_AT (kcs, n));
+                if ((k == ky_context) || (k == ky_error))
+                {   nits.pick (nit_keychar, ed_keyboard, "3. Named key Attribute Values", es_error, ec_type, quote (GSL_AT (kcs, n)), " is an unknown modifier");
+                    good = false; }
+                else
+                {   const flags_t f = enum_n < t_keycode, e_keycode > :: flags (k);
+                    if ((f & KEY_MODIFIER) == 0)
+                    {   nits.pick (nit_keychar, ed_keyboard, "3. Named key Attribute Values", es_error, ec_type, quote (GSL_AT (kcs, n)), " is not a modifier (such as Shift)");
+                        good = false; } } }
+        if (GSL_AT (kcs, sz-1).size () > 1)
+        {   const ::std::string& ss = GSL_AT (kcs, sz-1);
+            const e_keycode k = examine_value < t_keycode > (nits, v, ss);
+            if ((k == ky_context) || (k == ky_error))
+            {   bool known = false, inval = false;
+                interpret_character_code (v, ss, known, inval, false);
+                if (! known)
+                {   nits.pick (nit_keychar, ed_keyboard, "3. Named key Attribute Values", es_error, ec_type, quote (GSL_AT (kcs, sz-1)), " is unrecognised");
+                    good = false; }
+                else if (inval)
+                {   nits.pick (nit_invalid_character_code, es_error, ec_type, quote (ss), " is invalid in ", v.report ());
+                    good = false; } } } }
     return good; }

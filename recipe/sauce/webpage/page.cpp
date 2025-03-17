@@ -31,6 +31,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "parser/text.h"
 #include "webpage/crosslink.h"
 #include "webpage/corpus.h"
+#include "webpage/required.h"
 #include "icu/charset.h"
 #include "ontology/jsonld.h"
 #include "spell/spell.h"
@@ -41,7 +42,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define DOCDOT DOCTYPE " ... >"
 
 void page::init (const ::std::string& name, ::std::string& content, const fileindex_t x)
-{   ids_.ndx (x);
+{   req_.resize (required_count ());
+    ids_.ndx (x);
     names_.ndx (x, false);
     const ::std::string& xx = context.x ();
     if (! xx.empty ()) xxx_ = find_no_case (name, xx) != ::std::string::npos;
@@ -67,7 +69,8 @@ page::page (nitpick& nits, const ::std::string& name, const ::std::time_t update
 
 page::page (const ::std::string& content, const bool outsider)
     :   css_ (*this)
-{   if (outsider) outsider_ = true;
+{   req_.resize (required_count ());
+    if (outsider) outsider_ = true;
     else snippet_ = true;
     ::std::string x (content);
     parse (x); }
@@ -101,7 +104,9 @@ void page::swap (page& p)
     ::std::swap (outsider_ , p.outsider_);
     ::std::swap (phrase_, p.phrase_);
     profiles_.swap (p.profiles_);
+    req_.swap (p.req_);
     ::std::swap (snippet_ , p.snippet_);
+    ::std::swap (rq_type_ , p.rq_type_);
     ssi_.swap (p.ssi_);
     stats_.swap (p.stats_);
     ::std::swap (style_css_, p.style_css_);
@@ -144,15 +149,21 @@ void page::examine ()
     {   if ((! snippet_ && ! outsider_) && context.md_export ())
             md_export_.init (get_export_root ());
         try
-        {   document_ = new element (name_, nodes_.top (), nullptr, this);
+        {   if (! snippet_ && ! outsider_)
+            {   VERIFY_NOT_NULL (directory_, __FILE__, __LINE__);
+                rq_type_ = get_required_page_type (name_, directory_ -> is_root (), req_, req_check_); }
+            document_ = new element (name_, nodes_.top (), nullptr, this);
             stats_.mark (version ());
             VERIFY_NOT_NULL (document_, __FILE__, __LINE__);
             PRESUME (document_ -> tag () == elem_faux_document, __FILE__, __LINE__);
             document_ -> reconstruct (&access_);
+            if (context.tell (es_splurge)) outstr.out (nodes_.top ().rpt ());
             ::std::string s = document_ -> make_children (0);
-            if (context.tell (es_structure) && ! s.empty ()) nits_.pick (nit_debug, es_detail, ec_page, s);
+//            if (context.tell (es_structure) && ! s.empty ()) nits_.pick (nit_debug, es_detail, ec_page, s);
+            if (context.tell (es_structure) && ! s.empty ()) outstr.out (s);
             document_ -> examine_self (lingo (nits_, context.lang ()));
             document_ -> verify_document ();
+            check_required_state (nits_, name_, req_, req_check_);
             if (! snippet_ && ! outsider_)
             {   if (has_corpus ())
                     extend_corpus (nits_, title_, get_site_path (), corpus_, author_, keywords_, description_);
@@ -234,7 +245,7 @@ bool page::verify_url (nitpick& nits, const ::std::string& s) const
 {   if (! check_links () || snippet_ || outsider_) return true;
     VERIFY_NOT_NULL (directory_, __FILE__, __LINE__);
     url u (nits, version (), s);
-    if (u.is_local () && ! check_links_) return true;
+    if (u.is_local_reference () && ! check_links_) return true;
     return directory_ -> verify_url (nits, version (), u); }
 
 void page::lynx ()

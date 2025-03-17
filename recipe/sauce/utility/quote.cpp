@@ -131,13 +131,14 @@ vstr_t unquote (const ::std::string& str, const ::std::size_t len, const ::std::
             return enquote (s, ' ', ::std::string (1, q));
     return s; }
 
-void pushpush (vstr_t& res, vint_t* lines, const ::std::string& s, const int line)
-{   if (! s.empty ())
+void pushpush (vstr_t& res, vint_t* lines, const ::std::string& s, const int line, const bool blank)
+{   if (blank || ! s.empty ())
     {   res.push_back (s);
         if (lines != nullptr) lines -> push_back (line); } }
 
 vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep, vint_t* lines, v_np* ticks)
-{   for (auto p : sep)
+{   const bool blank = ((flags & UQ_BLANK) == UQ_BLANK);
+    for (auto p : sep)
     {   PRESUME (! p.empty (), __FILE__, __LINE__);
         PRESUME (p.find ("\\") == ::std::string::npos, __FILE__, __LINE__);
         if ((flags & UQ_SQ) == UQ_SQ) PRESUME (p.find ("'") == ::std::string::npos, __FILE__, __LINE__);
@@ -418,11 +419,11 @@ vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep,
                             if (p.at (n) != ' ') matches = p.at (n) == *(i + n);
                             else matches = ::std::iswspace (*(i + n));   
                         if (matches)
-                        {   if ((flags & UQ_TRIM) != UQ_TRIM) pushpush (res, lines, o, line); 
-                            else pushpush (res, lines, trim_the_lot_off (o), line);
+                        {   if ((flags & UQ_TRIM) != UQ_TRIM) pushpush (res, lines, o, line, blank); 
+                            else pushpush (res, lines, trim_the_lot_off (o), line, blank);
                             if ((flags & UQ_SEP) == UQ_SEP)
                                 if (((flags & UQ_UNIFY) == 0) || (res.size () == 0) || (res.at (res.size () - 1) != p))
-                                    pushpush (res, lines, p, line);
+                                    pushpush (res, lines, p, line, blank);
                             o.clear ();
                             extend = had_content = false;
                             break; } }
@@ -480,8 +481,8 @@ vstr_t uq2 (const ::std::string& s, const unsigned int flags, const vstr_t& sep,
         default :
             break; }
     if ((! o.empty ()) || (state != uq_dull))
-        if ((flags & UQ_TRIM) == UQ_TRIM) pushpush (res, lines, trim_the_lot_off (o), line);
-        else pushpush (res, lines, o, line);
+        if ((flags & UQ_TRIM) == UQ_TRIM) pushpush (res, lines, trim_the_lot_off (o), line, blank);
+        else pushpush (res, lines, o, line, blank);
     if (! nits.empty ())
         ticks -> emplace_back (nits); 
     return res; }                

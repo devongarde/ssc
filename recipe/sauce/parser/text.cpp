@@ -87,7 +87,7 @@ void known_wotsit (nitpick& nits, const char* s, const char* c, const bool sugge
                 case '`' :
                     break;
                 default :
-                    ::std::cerr << "Character " << sym << " (&" << cod << ";) is suggested.\n";
+                    outstr.err ("Character ", sym, " (&", cod, ";) is suggested.\n");
                     break; }
 #endif // DEBUG
         auto sc = tb -> symbol_code_.find (s);

@@ -62,7 +62,10 @@ PASS ../toast/microformats/mf2/mf2-example.html
 
 PASS ../toast/microformats/mf2/mf2-good.html
 2 naughty_lang
+92 track_missing
 93 url_not_found
+128 track_missing
+131 track_missing
 129 url_not_found
 132 url_not_found
 209 url_not_found

@@ -25,7 +25,7 @@ void state_init ();
 
 // I got fed up working around borked bitset implementations. This is extremely
 // inefficient compared to a decent working implementation, but at least it
-// pretends to work. :-(
+// pretends to work across systems. :-(
 
 template < typename T, T SIZE > class ssc_bitset
 {   typedef faux_vb_t base_t;

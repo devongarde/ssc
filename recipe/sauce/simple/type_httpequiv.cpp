@@ -472,11 +472,16 @@ struct symbol_entry < html_version, e_httpequiv > httpequiv_symbol_table [] =
     { { HTML_2_0, HV_OUTOFSCOPE }, { HTML_UNDEF }, "X400-Trace", he_x400_trace },
     { { HTML_2_0, HV_OUTOFSCOPE }, { HTML_UNDEF }, "Xref", he_xref } };
 
+::std::atomic_bool he_perm_pol = false;
+
 ::std::size_t httpequiv_count ()
 {   return sizeof (httpequiv_symbol_table) / sizeof (symbol_entry < html_version, e_httpequiv >); }
 
 void httpequiv_init (nitpick& nits)
 {   type_master < t_httpequiv > :: init (nits, httpequiv_symbol_table, httpequiv_count ()); }
+
+void reset_httpequiv ()
+{   he_perm_pol = false; }
 
 template < e_type TYPE > ::std::string validate_he_content (nitpick& nits, const html_version& v, const ::std::string& content, page& )
 {   type_master < TYPE > t;
@@ -739,6 +744,44 @@ e_status set_csp_sauce_value (nitpick& nits, const html_version& v, const ::std:
         url u (nits, v, ss, pr_https);
         if (! u.invalid ()) return s_good; }
     return s_invalid; }
+
+e_status set_permissions_policy (nitpick& nits, const html_version& v, const ::std::string& sss)
+{   PRESUME (! sss.empty (), __FILE__, __LINE__);
+    e_status res = s_good;
+    if (! he_perm_pol)
+    {   nits.pick (nit_permissions_policy, es_warning, ec_type, "permission policies (allow lists) are experimental, unsupported in many browsers");
+        he_perm_pol = true; }
+    vstr_t ss (split_by_charset (sss, " "));
+    const ::std::string::size_type sl = ss.size ();
+    PRESUME (sl > 0, __FILE__, __LINE__);
+    if (! test_value (nits, v, t_directive, ss.at (0))) res = s_invalid;
+    if (sl == 1) return res;
+    const ::std::string& s1 = ss.at (1);
+    ::std::size_t start = 1;
+    if (s1 == "*")
+    {   if (v < html_nov22)
+        {   nits.pick (nit_wrong_version, es_error, ec_type, "* requires HTML 5 from October 2022 or later");
+            res = s_invalid; }
+        if (sl == 2) return res;
+        nits.pick (nit_too_many, es_error, ec_type, "nothing should follow *");
+        res = s_invalid; }
+    else while (start < sl)
+    {   const ::std::string& sn = ss.at (start);
+        const ::std::string::size_type snl = sn.size ();
+        PRESUME (snl > 0, __FILE__, __LINE__);
+        if (sn.at (0) != '\'') break;
+        if ((snl > 2) && (sn.at (snl-1) == '\''))
+        {   if (! test_value (nits, v, t_nss, sn.substr (1, snl-2))) res = s_invalid; }
+        else
+        {   nits.pick (nit_permissions_policy, es_error, ec_type, quote (sn), ": malformed origin");
+            res = s_invalid; }
+        ++start; }
+    for (::std::size_t n = start; n < sl; ++n)
+    {   url u (nits, v, ss.at (n));
+        if (! u.valid ()) res = s_invalid;
+        else if (! u.is_local_reference ())
+            nits.pick (nit_reputation, es_warning, ec_css, "the security, integrity, and reputation of your site is dependent on that of ", quote (u.get ())); } 
+    return res; }
 
 e_status set_linkarg_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   if (s.empty ())

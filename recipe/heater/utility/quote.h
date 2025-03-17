@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "utility/common.h"
 
-#define QUOTESEP "\","
+#define QUOTESEP "\"" PLAINSEP
 
 CONSTEXPR ::std::size_t def_quote_cut = 60;
 
@@ -73,6 +73,7 @@ inline ::std::string uq (const ::std::string& str, const ::std::string& qs = ::s
 #define UQ_C_CMT    0x00010000
 #define UQ_CPP_CMT  0x00020000
 #define UQ_UNIFY    0x00040000
+#define UQ_BLANK    0x00080000
 
 #define BS_NUMERIC  ( UQ_8 | UQ_10 | UQ_16 | UQ_36 )
 #define BS_MASK     ( UQ_BS | BS_NUMERIC )
@@ -86,7 +87,7 @@ inline vstr_t uq2 (const ::std::string& s, const unsigned int flags, const ::std
         v.push_back (::std::string (1, ch));
     return uq2 (s, flags, v, lines, ticks); }
 
-inline vstr_t uq2_sep (const ::std::string& s, const unsigned int flags = UQ_DQ | UQ_SQ | UQ_BS, const ::std::string& sep = ::std::string (QUOTESEP), vint_t* lines = nullptr, v_np* ticks = nullptr)
+inline vstr_t uq2_sep (const ::std::string& s, const unsigned int flags = UQ_DQ | UQ_SQ | UQ_BS, const ::std::string& sep = ::std::string (PLAINSEP), vint_t* lines = nullptr, v_np* ticks = nullptr)
 {   vstr_t v;
     v.push_back (sep);
     return uq2 (s, flags, v, lines, ticks); }
@@ -95,5 +96,4 @@ inline ::std::string uq3 (const ::std::string& s)
 {   vstr_t v = uq2 (s);
     if (v.size () > 0) return v.at (0);
     return ::std::string (); }
-
  

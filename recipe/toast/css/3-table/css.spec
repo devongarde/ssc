@@ -85,9 +85,9 @@ PASS ../toast/css/3-table/css-3.html
 2 naughty_lang
 9 unrecognised_value
 37 unknown_element
-38 unknown_element
+38 invalid_element_version
 40 attribute_barred
-41 unknown_element
+41 invalid_element_version
 47 unknown_element
 65 invalid_attribute_version wrong_version
 66 naughty_alt

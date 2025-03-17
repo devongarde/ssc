@@ -1,6 +1,6 @@
 COMMENT=        opinionated static (web)site nitpicker
 
-V=              0.2.11
+V=              0.2.12
 DISTNAME=       ssc-v$V
 PKGNAME=        ssc-$V
 
@@ -23,14 +23,13 @@ ONLY_FOR_ARCHS= amd64 \
 WANTLIB +=      boost_atomic-mt boost_chrono-mt boost_container-mt
 WANTLIB +=      boost_date_time-mt boost_filesystem-mt boost_json-mt
 WANTLIB +=      boost_locale-mt boost_program_options-mt boost_regex-mt
-WANTLIB +=      boost_system-mt boost_thread-mt c curl hunspell-1.7
+WANTLIB +=      boost_system-mt boost_thread-mt c hunspell-1.7
 WANTLIB +=      icudata icui18n icuio icutu icuuc m pthread
 WWANTLIB +=      ${COMPILER_LIBCXX}
 
 MODULES=        devel/cmake
 BUILD_DEPENDS=  devel/microsoft-gsl
 LIB_DEPENDS=    devel/boost \
-                net/curl \
                 textproc/hunspell \
                 textproc/icu4c \
                 x11/wxWidgets

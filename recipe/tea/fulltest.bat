@@ -216,6 +216,8 @@ ssc.exe -f ../toast/other/incorrectness/incorrectness.conf
 ssc.exe -f ../toast/other/nits/nits.conf
 ssc.exe -f ../toast/other/parsing/parsing.conf
 ssc.exe -f ../toast/other/pattern/pattern.conf
+ssc.exe -f ../toast/other/required/required.conf
+ssc.exe -f ../toast/other/ruby/ruby.conf
 ssc.exe -f ../toast/other/safari/safari.conf
 ssc.exe -f ../toast/other/simple/simple.conf
 ssc.exe -f ../toast/other/ssi/ssi.conf

@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/context.h"
 #include "webpage/directory.h"
 #include "attribute/attr.h"
+#include "attribute/attr_state.h"
 #include "attribute/avm.h"
 #include "element/elem.h"
 #include "element/element_classes.h"
@@ -34,6 +35,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "ontology/ontology_hierarchy.h"
 #include "microdata/microdata_itemid.h"
 #include "type/type.h"
+#include "enum/type_aria.h"
 #include "ontology/ontology_version.h"
 #include "ontology/ontology_structure.h"
 #include "ontology/ontology_property.h"
@@ -44,12 +46,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/corpus.h"
 #include "webpage/fileindex.h"
 #include "webpage/page.h"
+#include "webpage/required.h"
 #include "parser/text.h"
 #include "parser/parse_ssi.h"
-#include "url/curl.h"
+#include "url/fetch.h"
 #include "url/url.h"
 #include "url/url_sanitise.h"
-#include "webpage/fileindex.h"
 #include "icu/lingo.h"
 #include "utility/filesystem.h"
 #include "utility/cache.h"
@@ -59,21 +61,26 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "coop/knickers.h"
 #include "main/balloon.h"
 #include "main/ssc.h"
-#include "gui/gui-app.h"
 #include "main/server.h"
+#ifdef WX
+#include "gui/gui-data.h"
+#include "gui/gui-app.h"
+#endif // WX
 
 #if defined (DEBUG) && defined (_MSC_VER)
 // #define WINMEMCHECK
 #endif // DEBUG...
 
 int cycle_start (nitpick& nits)
-{   reset_crosslinks ();
+{   reset_httpequiv ();
+    reset_crosslinks ();
     reset_fileindices ();
     reset_itemid ();
     reset_itemprop ();
     reset_macro ();
     reset_rdfa_prop ();
-    spell_reset ();
+    reset_required ();
+    reset_spell ();
     overall.reset ();
     directory::reinit ();
     paths_root::reinit ();
@@ -96,6 +103,7 @@ void init (nitpick& nits)
     spell_init (nits);
     lingo::init (nits);
     attr::init (nits);
+    as_init ();
     avm_init (nits);
     code_map_init (nits);
     csp_directive_init (nits);
@@ -117,17 +125,21 @@ void init (nitpick& nits)
     microdata_init (nits);
     url::init (nits);
     wotsit_init (nits);
-    curl_init ();
+    fetch_init ();
     server_t::init (nits);
+    aria_init ();
 #ifdef DEBUG
     avm_elem_crosscheck ();
 #endif
+#ifdef WX
+    gui_init ();
+#endif // WX
     VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__); }
 
 int ciao ()
 {   spell_free ();
     server_t::teardown ();
-    curl_done ();
+    fetch_done ();
     return VALID_RESULT; }
 
 int cycle_finish ()
@@ -290,7 +302,6 @@ int cycle (nitpick& nits, const int argc, char** argv)
     try
     {   if (context.iterate () || context.serve ()) cycle_start (nits);
         context.started (balloon.inflate_time ());
-        context.build (__DATE__ " " __TIME__);
         if (argc > 0)
         {   VERIFY_NOT_NULL (argv, __FILE__, __LINE__);
 #ifdef _MSC_VER
@@ -326,7 +337,7 @@ int cycle (nitpick& nits, const int argc, char** argv)
         else
         {   constexpr ::std::size_t max_len = 65536;
             char ch [max_len] = { 0 };
-            ::std::cout << "\n" PROG " ";
+            outstr.out ("\n" PROG " ");
             ::std::cin.getline (&ch [0], max_len-1);
             ch [max_len-1] = 0;
             args = ::std::string (ch);
@@ -336,8 +347,16 @@ int cycle (nitpick& nits, const int argc, char** argv)
         macro -> set (nm_context_build, BUILD_INFO);
         macro -> set (nm_run_args, args);
         context.general_info (context.cwd ().string () + "\n" + args + "\n" VERSION_STRING " [" __DATE__  " " __TIME__ "] [" + BUILD_INFO + "]\n");
+        macro -> set (nm_output_build, BUILD_INFO);
         nitpick nuts;
         res = context.parameters (outstr, nuts, vs);
+        if (context.build ().empty ()) macro -> set (nm_output_build, __DATE__ " " __TIME__);
+        else macro -> set (nm_output_build, context.build ());
+        macro -> set (nm_output_account, get_account ());
+        macro -> set (nm_output_description, context.output_description ());
+        macro -> set (nm_output_operator, context.username ());
+        if (context.output_time ().empty ()) macro -> set (nm_output_time, context.started ());
+        else macro -> set (nm_output_time, context.output_time ());
         if (! macro -> is_template_loaded ()) macro -> load_template (nuts, html_default);
         if ((context.todo () == do_simple) || context.yggdrisil ())
         {   if (context.yggdrisil ()) outstr.console (SIMPLE_TITLE);

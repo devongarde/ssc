@@ -271,7 +271,7 @@ void spell_t :: save_to_context (context_t& c) const
 #endif // NOICU
     c.spell (check ());
     c.spellings (word ());
-    spell_reset ();
+    reset_spell ();
     nitpick nits;
     add_spell_list (nits, dict ()); }
 

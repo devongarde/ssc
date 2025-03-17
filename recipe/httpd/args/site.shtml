@@ -40,6 +40,12 @@ your website is www.example.com, then you should say so using the
                         when checking internal links. The default
                         default is index.html.</td></tr>
 
+<tr><td>site.page&nbsp;Z,Y,X,E,F,T,D</td> <td>A link to URL Z is required for lang Y (default: all)
+                        on X pages (can be a page name, ALL, FRONT,
+                        INDEX, default ALL), as a child of element E
+                        (default BODY), from X/HTML version F to X/HTML version T (default: all versions), called D.
+                        All values are optional except Z.</td></tr>
+
 <tr><td>site.root&nbsp;dir<br>-g&nbsp;dir</td> <td>This is the root of the website to analyse. ssc
                  will recursively scan the directory analysing
                         any HTML files it finds. The default is the

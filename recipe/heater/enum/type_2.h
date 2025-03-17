@@ -30,6 +30,7 @@ template < e_type TYPE, typename base_type, class OFF, class ON, bool EMPTY = fa
 public:
     typedef true_type has_int_type;
     two_value () = default;
+    static constexpr ::std::size_t value_count () noexcept { return 2; }
     explicit two_value (element* box) noexcept : type_base < base_type, TYPE > (box) { }
     static e_animation_type animation_type () noexcept { return at_other; }
     ::std::string get_string () const
@@ -257,9 +258,6 @@ template < > struct type_master < t_grid_normal > : two_value < t_grid_normal, e
 
 template < > struct type_master < t_hidden > : two_value < t_hidden, e_hidden, sz_hidden, sz_until_found, true >
 { using two_value < t_hidden, e_hidden, sz_hidden, sz_until_found, true > :: two_value; };
-
-template < > struct type_master < t_hv > : two_value < t_hv, e_hv, sz_horizontal, sz_vertical >
-{ using two_value < t_hv, e_hv, sz_horizontal, sz_vertical > :: two_value; };
 
 template < > struct type_master < t_initialvisibility > : two_value < t_initialvisibility, e_initialvisibility, sz_whenstarted, sz_always >
 { using two_value < t_initialvisibility, e_initialvisibility, sz_whenstarted, sz_always > :: two_value; };

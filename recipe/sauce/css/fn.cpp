@@ -209,7 +209,7 @@ void css_fn::accumulate (stats_t* ) const { }
     {   res += "(";
         bool extra = false;
         for (auto a : params_)
-        {   if (extra) res += ",";
+        {   if (extra) res += PLAINSEP;
             else extra = true;
             res += a; }
         res += ")"; }

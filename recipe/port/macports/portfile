@@ -4,7 +4,7 @@ PortSystem                  1.0
 PortGroup                   github 1.0
 PortGroup                   cmake 1.1
 
-github.setup                devongarde ssc 0.2.11 v
+github.setup                devongarde ssc 0.2.12 v
 github.tarball_from         releases
 
 revision                    0
@@ -32,8 +32,7 @@ checksums                   rmd160  5f3aad2f36a130a3890ee06e21e1a1eb6c7373a8 \
 
 depends_lib                 port:boost \
                             port:hunspell \
-                            port:icu \
-                            port:curl
+                            port:icu
 
 configure.cppflags-append   "-DNO_GSL -DALTDEST=/opt"
 

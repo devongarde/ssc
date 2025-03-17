@@ -1,6 +1,7 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by ssc19-test.rc
+// Used by ssc22-test.rc
+//
 
 // Next default values for new objects
 // 

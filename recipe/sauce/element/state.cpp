@@ -23,7 +23,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "element/elem.h"
 
 const element_bitset empty_element_bitset;
-element_bitset autocapitalise_bitset = empty_element_bitset;
 element_bitset faux_bitset = empty_element_bitset;
 element_bitset form_bitset = empty_element_bitset;
 element_bitset header_bitset = empty_element_bitset;
@@ -58,7 +57,7 @@ void state_init ()
     script_bitset = empty_element_bitset | elem_script | elem_noscript | elem_template;
     block_replaced_bitset = block_bitset | elem_img | elem_video | elem_script | elem_template;
     inline_bitset = form_bitset | label_bitset | listed_bitset | elem_audio | elem_a | elem_em | elem_strong | elem_i | elem_u;
-    css_block_bitset = block_bitset | sectioning_bitset | non_standard_bitset | listed_bitset | header_bitset | block_replaced_bitset | elem_p | elem_div | elem_ul | elem_ol | elem_hr | elem_form | elem_body;
+    css_block_bitset = block_bitset | sectioning_bitset | non_standard_bitset | listed_bitset | header_bitset | block_replaced_bitset | elem_p | elem_div | elem_think | elem_ul | elem_ol | elem_hr | elem_form | elem_body;
     css_nonblock_bitset = ~css_block_bitset;
     css_noninline_bitset = ~inline_bitset; }
 

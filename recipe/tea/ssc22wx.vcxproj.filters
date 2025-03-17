@@ -506,9 +506,6 @@
     <Filter Include="Toast\Living\apr21">
       <UniqueIdentifier>{147288fc-320c-41fd-8bc5-8de926c70539}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Toast\Other\aria">
-      <UniqueIdentifier>{4ea67d83-a94d-412c-bd40-0b919a4e2129}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Toast\Type\custom">
       <UniqueIdentifier>{046cba59-c78e-4f2a-a3a8-0ed0f0d98326}</UniqueIdentifier>
     </Filter>
@@ -1452,6 +1449,36 @@
     <Filter Include="Tea\ref">
       <UniqueIdentifier>{e818833c-34ca-44f6-90ca-86156dbeaf0e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\aria">
+      <UniqueIdentifier>{b9e977ae-afe8-475d-988c-105d8cd8b8b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\aria\1-3">
+      <UniqueIdentifier>{71297755-7f33-4990-b0ba-7bd4eeda9f6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\aria\graphics">
+      <UniqueIdentifier>{95a8fac3-dd12-45b0-96e5-be060e593532}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\aria\dp">
+      <UniqueIdentifier>{99e55121-7070-4afa-aa7b-358f71ce3161}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\aria\1-0">
+      <UniqueIdentifier>{591ab321-1f33-40d0-92c5-94cceefdd236}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\aria\1-1">
+      <UniqueIdentifier>{9648e81f-e7ff-4e3e-bfdc-d4f14fab7c05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\aria\1-2">
+      <UniqueIdentifier>{d99c9412-3d87-40cd-91b0-41d520f6a10b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\aria\html">
+      <UniqueIdentifier>{64ceacc2-6e8f-4e87-a906-dd072fb35e6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Output\bespoke">
+      <UniqueIdentifier>{7a0c443c-9630-4a64-8d59-ced8bd454939}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Other\permissions">
+      <UniqueIdentifier>{6f1ee293-1f8e-4137-83f7-6b5cc18dc25a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -1805,7 +1832,7 @@
     <ClInclude Include="..\heater\css\group.h">
       <Filter>Heater\css</Filter>
     </ClInclude>
-    <ClInclude Include="..\heater\url\curl.h">
+    <ClInclude Include="..\heater\url\fetch.h">
       <Filter>Heater\url</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\main\balloon.h">
@@ -2225,6 +2252,15 @@
     <ClInclude Include="..\heater\gui\gui-summarise.h">
       <Filter>Heater\gui</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\webpage\required.h">
+      <Filter>Heater\webpage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\gui\gui-data.h">
+      <Filter>Heater\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\gui\gui-link.h">
+      <Filter>Heater\gui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -2614,9 +2650,6 @@
     <ClCompile Include="..\sauce\css\group.cpp">
       <Filter>Sauce\css</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\url\curl.cpp">
-      <Filter>Sauce\url</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\css\global.cpp">
       <Filter>Sauce\css</Filter>
     </ClCompile>
@@ -2833,90 +2866,6 @@
     <ClCompile Include="..\sauce\simple\type_layout.cpp">
       <Filter>Sauce\simple</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_0_9.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_b.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_a.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_b_2.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_b_1.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_c_1.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_d_e.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_f_1.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_m_n.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_r.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_t_1.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_g_h.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_m_1.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_n_o.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_p_1.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_q_r.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_t.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_v_w.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value2.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_c_2.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_f_2.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_t_2.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_i.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_m_2.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_p_2.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_u.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_x_z.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
     <ClCompile Include="..\sauce\coop\tls.cpp">
       <Filter>Sauce\coop</Filter>
     </ClCompile>
@@ -3007,67 +2956,49 @@
     <ClCompile Include="..\sauce\gui\gui-ctrls.cpp">
       <Filter>Sauce\gui</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_a_1.cpp">
-      <Filter>Sauce\css_value</Filter>
+    <ClCompile Include="..\sauce\gui\gui-snippet.cpp">
+      <Filter>Sauce\gui</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_a_2.cpp">
-      <Filter>Sauce\css_value</Filter>
+    <ClCompile Include="..\sauce\simple\type_microdata.cpp">
+      <Filter>Sauce\simple</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_c_1.cpp">
-      <Filter>Sauce\css_value</Filter>
+    <ClCompile Include="..\sauce\gui\gui-summarise.cpp">
+      <Filter>Sauce\gui</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_c_2.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_b_3.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_g_h.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_i.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_j_k.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_o.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_p_q.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_s_1.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_s_2.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_u_v.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_css_w_z.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_d.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_e.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_f_1.cpp">
-      <Filter>Sauce\css_value</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_f_2.cpp">
-      <Filter>Sauce\css_value</Filter>
+    <ClCompile Include="..\sauce\webpage\required.cpp">
+      <Filter>Sauce\webpage</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_j_k.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\css\value_types_l.cpp">
+    <ClCompile Include="..\sauce\css\value_types_l_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_l_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_m_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_m_2.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_m_3.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_n.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_o.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_p_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_p_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_q_r.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_r.cpp">
@@ -3085,23 +3016,179 @@
     <ClCompile Include="..\sauce\css\value_types_svg_2.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_t_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_t_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_u.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_v.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_v_w.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_x.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_x_z.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_0_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_3_9.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_a_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_a_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_b.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_c_3.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_c_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_c_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_a_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_a_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_b_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_b_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_b_3.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_b_4.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_c_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_c_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_c_3.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_d.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_e.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_f_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_f_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_f_3.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_g_h.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_i.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_j_k.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_css_l.cpp">
       <Filter>Sauce\css_value</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\gui\gui-snippet.cpp">
+    <ClCompile Include="..\sauce\css\value_types_css_m_n.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_o.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_p_q.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_r.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_s_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_s_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_s_3.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_t_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_t_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_t_3.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_u.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_v.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_css_w_z.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_d.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_e.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_f_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_f_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_g_h.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_i_1.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\css\value_types_i_2.cpp">
+      <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\gui\gui-data.cpp">
       <Filter>Sauce\gui</Filter>
     </ClCompile>
-    <ClCompile Include="..\sauce\simple\type_microdata.cpp">
-      <Filter>Sauce\simple</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sauce\gui\gui-summarise.cpp">
+    <ClCompile Include="..\sauce\gui\gui-link.cpp">
       <Filter>Sauce\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\url\fetch.cpp">
+      <Filter>Sauce\url</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -18575,15 +18662,6 @@
     </None>
     <None Include="..\toast\living\apr21\nav-3.html">
       <Filter>Toast\Living\apr21</Filter>
-    </None>
-    <None Include="..\toast\other\aria\aria.conf">
-      <Filter>Toast\Other\aria</Filter>
-    </None>
-    <None Include="..\toast\other\aria\aria.spec">
-      <Filter>Toast\Other\aria</Filter>
-    </None>
-    <None Include="..\toast\other\aria\index.html">
-      <Filter>Toast\Other\aria</Filter>
     </None>
     <None Include="..\toast\living\apr21\figure-2.html">
       <Filter>Toast\Living\apr21</Filter>
@@ -39729,6 +39807,147 @@
     <None Include="..\toast\math\4\math2-example.xhtml">
       <Filter>Toast\Math\4</Filter>
     </None>
+    <None Include="..\toast\aria\graphics\aria.conf">
+      <Filter>Toast\aria\graphics</Filter>
+    </None>
+    <None Include="..\toast\aria\graphics\aria.spec">
+      <Filter>Toast\aria\graphics</Filter>
+    </None>
+    <None Include="..\toast\aria\graphics\index.html">
+      <Filter>Toast\aria\graphics</Filter>
+    </None>
+    <None Include="..\toast\aria\1-3\aria.conf">
+      <Filter>Toast\aria\1-3</Filter>
+    </None>
+    <None Include="..\toast\aria\1-3\aria.spec">
+      <Filter>Toast\aria\1-3</Filter>
+    </None>
+    <None Include="..\toast\aria\1-3\errors.html">
+      <Filter>Toast\aria\1-3</Filter>
+    </None>
+    <None Include="..\toast\aria\1-3\index.html">
+      <Filter>Toast\aria\1-3</Filter>
+    </None>
+    <None Include="..\toast\aria\1-3\media.html">
+      <Filter>Toast\aria\1-3</Filter>
+    </None>
+    <None Include="..\toast\aria\1-3\properties.html">
+      <Filter>Toast\aria\1-3</Filter>
+    </None>
+    <None Include="..\toast\aria\1-3\role.html">
+      <Filter>Toast\aria\1-3</Filter>
+    </None>
+    <None Include="..\toast\aria\1-3\tree.html">
+      <Filter>Toast\aria\1-3</Filter>
+    </None>
+    <None Include="..\toast\aria\dp\aria.conf">
+      <Filter>Toast\aria\dp</Filter>
+    </None>
+    <None Include="..\toast\aria\dp\aria.spec">
+      <Filter>Toast\aria\dp</Filter>
+    </None>
+    <None Include="..\toast\aria\dp\index.html">
+      <Filter>Toast\aria\dp</Filter>
+    </None>
+    <None Include="..\toast\aria\1-0\aria.conf">
+      <Filter>Toast\aria\1-0</Filter>
+    </None>
+    <None Include="..\toast\aria\1-0\aria.spec">
+      <Filter>Toast\aria\1-0</Filter>
+    </None>
+    <None Include="..\toast\aria\1-0\index.html">
+      <Filter>Toast\aria\1-0</Filter>
+    </None>
+    <None Include="..\toast\aria\1-1\aria.conf">
+      <Filter>Toast\aria\1-1</Filter>
+    </None>
+    <None Include="..\toast\aria\1-1\aria.spec">
+      <Filter>Toast\aria\1-1</Filter>
+    </None>
+    <None Include="..\toast\aria\1-1\index.html">
+      <Filter>Toast\aria\1-1</Filter>
+    </None>
+    <None Include="..\toast\aria\1-2\aria.conf">
+      <Filter>Toast\aria\1-2</Filter>
+    </None>
+    <None Include="..\toast\aria\1-2\aria.spec">
+      <Filter>Toast\aria\1-2</Filter>
+    </None>
+    <None Include="..\toast\aria\1-2\index.html">
+      <Filter>Toast\aria\1-2</Filter>
+    </None>
+    <None Include="..\toast\aria\1-0\2.html">
+      <Filter>Toast\aria\1-0</Filter>
+    </None>
+    <None Include="..\toast\aria\1-0\5.html">
+      <Filter>Toast\aria\1-0</Filter>
+    </None>
+    <None Include="..\toast\aria\1-0\6.html">
+      <Filter>Toast\aria\1-0</Filter>
+    </None>
+    <None Include="..\toast\aria\1-1\2.html">
+      <Filter>Toast\aria\1-1</Filter>
+    </None>
+    <None Include="..\toast\aria\1-0\2.css">
+      <Filter>Toast\aria\1-0</Filter>
+    </None>
+    <None Include="..\toast\aria\1-1\2.css">
+      <Filter>Toast\aria\1-1</Filter>
+    </None>
+    <None Include="..\toast\aria\1-1\5.html">
+      <Filter>Toast\aria\1-1</Filter>
+    </None>
+    <None Include="..\toast\aria\1-1\6.html">
+      <Filter>Toast\aria\1-1</Filter>
+    </None>
+    <None Include="..\toast\aria\1-1\6.css">
+      <Filter>Toast\aria\1-1</Filter>
+    </None>
+    <None Include="..\toast\aria\1-2\4.html">
+      <Filter>Toast\aria\1-2</Filter>
+    </None>
+    <None Include="..\toast\aria\1-2\4.css">
+      <Filter>Toast\aria\1-2</Filter>
+    </None>
+    <None Include="..\toast\aria\1-2\5.html">
+      <Filter>Toast\aria\1-2</Filter>
+    </None>
+    <None Include="..\toast\aria\1-2\6.html">
+      <Filter>Toast\aria\1-2</Filter>
+    </None>
+    <None Include="..\toast\aria\html\aria.conf">
+      <Filter>Toast\aria\html</Filter>
+    </None>
+    <None Include="..\toast\aria\html\aria.spec">
+      <Filter>Toast\aria\html</Filter>
+    </None>
+    <None Include="..\toast\aria\html\index.html">
+      <Filter>Toast\aria\html</Filter>
+    </None>
+    <None Include="..\toast\output\bespoke\bespoke.nit">
+      <Filter>Toast\Output\bespoke</Filter>
+    </None>
+    <None Include="..\toast\output\bespoke\bespoke.txt.model">
+      <Filter>Toast\Output\bespoke</Filter>
+    </None>
+    <None Include="..\toast\output\bespoke\index.html">
+      <Filter>Toast\Output\bespoke</Filter>
+    </None>
+    <None Include="..\toast\output\bespoke\output.conf">
+      <Filter>Toast\Output\bespoke</Filter>
+    </None>
+    <None Include="..\toast\output\bespoke\output.spec">
+      <Filter>Toast\Output\bespoke</Filter>
+    </None>
+    <None Include="..\toast\other\permissions\index.html">
+      <Filter>Toast\Other\permissions</Filter>
+    </None>
+    <None Include="..\toast\other\permissions\permissions.conf">
+      <Filter>Toast\Other\permissions</Filter>
+    </None>
+    <None Include="..\toast\other\permissions\permissions.spec">
+      <Filter>Toast\Other\permissions</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
@@ -40220,6 +40439,9 @@
     <Image Include="ref\welcome.png">
       <Filter>Tea\ref</Filter>
     </Image>
+    <Image Include="ssc.ico">
+      <Filter>Resources</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\toast\virtual\README.txt">
@@ -40310,5 +40532,13 @@
     <ResourceCompile Include="ssc.rc">
       <Filter>Resources</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\toast\aria\1-3\fen1.mp3">
+      <Filter>Toast\aria\1-3</Filter>
+    </Media>
+    <Media Include="..\toast\aria\1-3\to_let.mov">
+      <Filter>Toast\aria\1-3</Filter>
+    </Media>
   </ItemGroup>
 </Project>

@@ -101,7 +101,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
     res = "[";
     res += doc;
     if (! ref.empty ())
-    {   res += ",";
+    {   res += PLAINSEP;
         res += quote (ref); }
     res += "]";
     return res; }
@@ -204,11 +204,18 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_wx : return "wxWidgets HTML";
         case ed_owasp : return "OWASP";
         case ed_ecma : return "ECMAScript, 22.2.1 Patterns";
+        case ed_keyboard : return "KeyboardEvent key Values";
         case ed_mozilla : return "mozilla.org May 20";
         case ed_microdata : return "WhatWG Microdata";
         case ed_microformats : return MICROFORMATS_ORG " May 20";
-        case ed_ariaAug2020 : return "Aria Aug 20";
-        case ed_ariaApr2021 : return "Aria Apr 21";
+        case ed_aria_1_0 : return "Aria 1.0";
+        case ed_aria_1_1 : return "Aria 1.1";
+        case ed_aria_1_2 : return "Aria 1.2";
+        case ed_aria_1_3 : return "Aria 1.3 (draft)";
+        case ed_aria_dp_1_0 : return "Aria Digital Publishing 1.0";
+        case ed_aria_dp_1_1 : return "Aria Digital Publishing 1.1 (draft)";
+        case ed_aria_graphics : return "Aria Graphics";
+        case ed_aria_html : return "Aria in HTML";
         case ed_so_11 : return SCHEMA_ORG " 11.0";
         case ed_css_transform : return "CSS Transforms";
         case ed_mql : return "Media Queries";
@@ -304,6 +311,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_math_4 : return "MathML 4.0, draft, November 2024";
         case ed_iso_8859_1 : return "ISO/IEC 8859-1:1998";
         case ed_ecma : return "ECMAScript 2022 Language Specification, 22.2.1 Patterns, March 2021";
+        case ed_keyboard : return "UI Events KeyboardEvent key Values, W3, November 2024";
         case ed_mimetype : return "IANA Media Types, February 2019";
         case ed_rfc_1867 : return "RFC 1867, Form-based File Upload in HTML";
         case ed_rfc_1980 : return "RFC 1980, Client-Side Image Maps";
@@ -322,8 +330,14 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_svg_2_anim : return "SVG Animations Level 2, November 2024 draft";
         case ed_w3 : return "The World Wide Web Consortium";
         case ed_mql : return "Media Queries, W3C recommendation, June 2012";
-        case ed_ariaAug2020 : return "WhatWG Aria requirements, draft, August 2020";
-        case ed_ariaApr2021 : return "W3C ARIA in HTML, draft, April 2021";
+        case ed_aria_1_0 : return "Accessible Rich Internet Applications (WAI-ARIA) 1.0, March 2014";
+        case ed_aria_1_1 : return "Accessible Rich Internet Applications (WAI-ARIA) 1.1, December 2017";
+        case ed_aria_1_2 : return "Accessible Rich Internet Applications (WAI-ARIA) 1.2, June 2023";
+        case ed_aria_1_3 : return "Accessible Rich Internet Applications (WAI-ARIA) 1.3 draft, February 2025";
+        case ed_aria_dp_1_0 : return "Digital Publishing WAI-ARIA Module 1.0, December 2017";
+        case ed_aria_dp_1_1 : return "Digital Publishing WAI-ARIA Module 1.1 (draft), February 2025";
+        case ed_aria_graphics : return "WAI-ARIA Graphics Module, October 2018";
+        case ed_aria_html : return "ARIA in HTML, February 2025";
         case ed_apache : return "Apache 2.4 mod_include, 2020";
         case ed_css_transform : return "CSS Transforms Module Level 1, February 2019";
         case ed_so_11 : return SCHEMA_ORG " 11.0";

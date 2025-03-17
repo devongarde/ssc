@@ -30,7 +30,7 @@ PASS ../toast/css/3-text/css-7.html
 
 PASS ../toast/css/3-text/css-8.html
 2 naughty_lang
-20 unknown_element unknown_element
+20 invalid_element_version invalid_element_version
 
 PASS ../toast/css/3-text/index.html
 2 naughty_lang

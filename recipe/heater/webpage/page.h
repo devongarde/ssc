@@ -59,6 +59,9 @@ class page
     ustr_t abbrs_;
     ::std::time_t updated_ = 0;
     css_group css_;
+    faux_vb_t req_, req_check_;
+    e_lang elang_ = la_context;
+    e_required_page rq_type_ = rqp_none;
     friend class tag;
     void init (const ::std::string& name, ::std::string& content, const fileindex_t x);
 public:
@@ -82,6 +85,11 @@ public:
     const ids_t& get_names () const noexcept { return names_; }
     ids_t& get_glyphs () noexcept { return glyphs_; }
     const ids_t& get_glyphs () const noexcept { return glyphs_; }
+    e_lang elang () const noexcept { return elang_; }
+    void elang (const e_lang l) noexcept { elang_ = l; }
+    void mark_required_page (const int n)
+    {   PRESUME (n < static_cast < int > (req_.size ()), __FILE__, __LINE__);
+        GSL_AT (req_, n) = true; }
     bool verify_url (nitpick& nits, const ::std::string& s) const;
     const ::std::string name () const { return name_; }
     const ::std::string get_site_path () const;
@@ -110,6 +118,7 @@ public:
     const ::std::string& charset () const noexcept { return charset_; }
     void charset (nitpick& nits, const html_version& v, const ::std::string& cs);
     element* get_document () { return document_; }
+    e_required_page required_page_type () const noexcept { return rq_type_; }
     void mark (const e_element e)
     {   stats_.mark (e); }
     void visible (const e_element e)

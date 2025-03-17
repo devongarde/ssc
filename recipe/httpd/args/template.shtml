@@ -37,6 +37,16 @@ For examples, browse recipe/toast/output/*.nit <a href="../release-notes.shtml">
 </p>
 
 <p>
+Inside the double brace brackets, a macro identifier may optionally be followed by two additional pieces of text, separated by colons.
+If the content of the macro text is not empty, then, when it is output,
+it is preceded by the first of those texts, and followed by the second. For example:
+</p>
+
+<code>
+My dog &lbrace;&lbrace;dog-name:&ldquo;:&rdquo;&rbrace;&rbrace;
+</code>
+
+<p>
 If no file is specified, or if the file cannot be loaded, a default
 template is used.
 </p>

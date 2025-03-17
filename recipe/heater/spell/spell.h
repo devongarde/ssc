@@ -37,7 +37,7 @@ void add_spell_list (nitpick& nits, const vstr_t& spl);
 vstr_t get_spell_list ();
 void check_spelling (nitpick& nits, const html_version& v, const lingo& lang, const ::std::string& text);
 void spell_init (nitpick& nits);
-void spell_reset ();
+void reset_spell ();
 vstr_t load_dictionaries (nitpick& nits);
 void spell_free ();
 void add_dict (const ::std::string& lang, const ::std::string& dict);
@@ -50,7 +50,7 @@ inline void check_spelling (nitpick& , const html_version& , const lingo& , cons
 inline void spell_init (nitpick& nits)
 {   mssfl = mssfl_uptr (new mssfl_t);
     nits.pick (nit_no_spell, es_comment, ec_spell, "spell check unavailable"); }
-inline void spell_reset () { }
+inline void reset_spell () { }
 inline vstr_t load_dictionaries (nitpick& ) { return vstr_t (); }
 inline void spell_free () { }
 inline void add_dict (const lingo& , const ::std::string& ) { }

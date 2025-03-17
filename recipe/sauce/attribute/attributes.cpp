@@ -142,8 +142,9 @@ void attributes :: verify_attributes (nitpick& nits, const html_version& v, elem
                 nits.pick (nit_attribute_required, es_warning, ec_element, "<", ::boost::to_upper_copy (elem::name (box_.tag ())), "> requires a valid ", ::boost::to_upper_copy (attr::name (static_cast < e_attribute > (i))), " in ", v.report ()); }
         else
         {   const elem e (tag ());
-            if (aar_.at (i) -> good () || aar_.at (i) -> empty ()) aar_.at (i) -> verify_attribute (nits, v, pe -> node ().id (), pe, attr::name (static_cast < e_attribute > (i)));
-            if (aar_.at (i) -> verify_version (nits, v, e)) pe -> own_attributes ().set (aar_.at (i) -> id ());
+            const ::std::string& an = attr::name (static_cast < e_attribute > (i));
+            if (aar_.at (i) -> good () || aar_.at (i) -> empty ()) aar_.at (i) -> verify_attribute (nits, v, pe -> node ().id (), pe, an);
+            if (aar_.at (i) -> verify_version (nits, v, e, an)) pe -> own_attributes ().set (aar_.at (i) -> id ());
             else nits.pick (nit_wrong_version, es_error, ec_element, ::boost::to_upper_copy (attr::name (static_cast < e_attribute > (i))), " is invalid with <", ::boost::to_upper_copy (elem::name (e)), "> in ", v.report ());
             if (context.spell () && attr::spellcheck (static_cast < e_attribute > (i)))
                 check_spelling (nits, v, lang, aar_.at (i) -> get_string ()); } }

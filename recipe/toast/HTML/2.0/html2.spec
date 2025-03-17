@@ -24,10 +24,10 @@ PASS ../toast/HTML/2.0/html2-bad.html
 33 missing_open
 
 PASS ../toast/HTML/2.0/html2-badl1.html
-11 unknown_element
-12 unknown_element
-16 unknown_element
-17 unknown_element
+11 invalid_element_version
+12 invalid_element_version
+16 invalid_element_version
+17 invalid_element_version
 
 PASS ../toast/HTML/2.0/html2-example.html
 9 use_metaname

@@ -6,7 +6,7 @@ PASS ../toast/other/dc/index.html
 PASS ../toast/other/dc/mixed-1.xhtml
 0 title_required
 1 xhtml_5_0
-8 unrecognised_namespace unknown_element attribute_unrecognised
+8 unrecognised_namespace invalid_element_version attribute_unrecognised
 19 unknown_element
 20 unknown_element
 22 unknown_element

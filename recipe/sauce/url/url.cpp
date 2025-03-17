@@ -82,7 +82,7 @@ bool url::sanity_test () const
 
 bool url::is_potentially_naughty () const noexcept
 {   if (empty () || is_self () || ! has_protocol () || ! has_domain ()) return false;
-    return (! is_local_domain (*this) && ! is_example_domain (*this)); }
+    return (! is_lan_domain (*this) && ! is_example_domain (*this)); }
 
 bool url::standard_extension (const e_mime_category mime) const
 {   ::std::string ext (filename ());
@@ -101,11 +101,11 @@ bool url::standard_extension (const e_mime_category mime) const
 bool url::verify (nitpick& nits, const html_version& v, element& e)
 {   if (! context.links ()) return true;
     if (is_simple_id ()) return true; // verify_id will check the id is valid
-    if (is_local () && ! e.get_page ().check_links ()) return true;
+    if (is_local_reference () && ! e.get_page ().check_links ()) return true;
     const directory* d = e.get_page ().get_directory ();
     if (d != nullptr)
     {   if (! d -> verify_url (nits, v, *this)) return false;
-        if (is_local ())
+        if (is_local_reference ())
         {   nitpick nuts;
             ::boost::filesystem::path target (d -> get_disk_path (nuts, *this));
             e.get_page ().note_lynx (get_fileindex (target));
@@ -171,6 +171,22 @@ void url::shadow (::std::stringstream& ss, const html_version& v, element* e)
             if (nits.worst () > es_error) // e.g. no error
             {   u2.shadow (ss, v, e); return; } } }
     ss << original (); }
+
+bool url::is_local_reference () const
+{   if (rc_) return ref_;
+    rc_ = ref_ = true;
+    if (is_local ()) return true;
+    if (! has_domain ()) return true;
+    const vstr_t& site = context.site ();
+    const ::std::string& dom = domain ();
+    if (is_one_of (dom, site)) return true;
+    const ::std::string::size_type dl = dom.length ();
+    for (auto s : site)
+    {   const ::std::string::size_type sl = s.length ();
+        if ((dl > sl) && compare_no_case (s, dom.substr (dl-sl)))
+            return true; }
+    ref_ = false;
+    return false; }
 
 void world_wide_wombat_web (nitpick& nits, const html_version& v, const ::std::string& u)
 {   if (u.find ("//") == ::std::string::npos) check_identifier_spelling (nits, v, u);

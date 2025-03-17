@@ -26,16 +26,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define WIDEHIGH    a_height, a_width
 
-#define ARIA        a_aria_activedescendant, a_aria_atomic, a_aria_autocomplete, a_aria_busy, a_aria_checked, a_aria_colcount, a_aria_colindex, \
-                    a_aria_current, a_aria_colspan, a_aria_controls, a_aria_describedby, a_aria_details,  a_aria_disabled, a_aria_dropeffect, \
-                    a_aria_errormessage, a_aria_expanded, a_aria_flowto, a_aria_grabbed, a_aria_haspopup, a_aria_hidden, a_aria_invalid, \
-                    a_aria_label, a_aria_labelledby, a_aria_level, a_aria_live, a_aria_modal, a_aria_multiline, a_aria_multiselectable, \
-                    a_aria_orientation, a_aria_owns,  a_aria_placeholder, a_aria_posinset, a_aria_pressed, a_aria_readonly, a_aria_relevant, \
-                    a_aria_required, a_aria_roledescription, a_aria_rowcount, a_aria_rowindex, a_aria_rowspan, a_aria_selected, a_aria_setsize, \
-                    a_aria_sort, a_aria_valuemax, a_aria_valuemin, a_aria_valuenow, a_aria_valuetext
+#define ARIA        a_aria_activedescendant, a_aria_atomic, a_aria_autocomplete, a_aria_braillelabel, \
+                    a_aria_brailleroledescription, a_aria_busy, a_aria_checked, a_aria_colcount, a_aria_colindex, a_aria_colindextext, a_aria_colspan, a_aria_controls, \
+                    a_aria_current, a_aria_describedby, a_aria_description, a_aria_details, a_aria_disabled, a_aria_dropeffect, a_aria_errormessage, a_aria_expanded, \
+                    a_aria_flowto, a_aria_grabbed, a_aria_haspopup, a_aria_hidden, a_aria_invalid, a_aria_keyshortcuts, a_aria_label, a_aria_labelledby, a_aria_level, \
+                    a_aria_live, a_aria_modal, a_aria_multiline, a_aria_multiselectable, a_aria_orientation, a_aria_owns, a_aria_placeholder, a_aria_posinset, \
+                    a_aria_pressed, a_aria_readonly, a_aria_relevant, a_aria_required, a_aria_roledescription, a_aria_rowcount, a_aria_rowindex, a_aria_rowindextext, \
+                    a_aria_rowspan, a_aria_selected, a_aria_setsize, a_aria_sort, a_aria_valuemax, a_aria_valuemin, a_aria_valuenow, a_aria_valuetext
 
 #define ON          a_onabort, a_onautocomplete, a_onautocompleteerror, a_onbeforeunload, a_oncancel, a_oncanplay, a_oncanplaythrough, \
-                    a_onchange, a_onclose, a_oncontextmenu, a_oncuechange, a_ondrag, a_ondragend,  a_ondragenter, a_ondragexit, \
+                    a_onchange, a_onclose, a_oncommand, a_oncontextmenu, a_oncuechange, a_ondrag, a_ondragend,  a_ondragenter, a_ondragexit, \
                     a_ondragleave, a_ondragover, a_ondragstart, a_ondrop, a_dropzone, a_ondurationchange, a_onemptied, a_onended, \
                     a_onerror, a_onformchange, a_onforminput, a_onhashchange, a_oninput, a_oninvalid, a_is, a_onload, a_onloadeddata, \
                     a_onloadedmetadata, a_onloadstart, a_onmessage, a_onmouseenter, a_onmouseleave, a_onmousewheel, a_onpause, a_onplay, \
@@ -84,8 +84,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MATH4PRBASE a_arg, a_intent
 #define MATH4PRES   MATH4PRBASE, MATH3PRES
 
-#define MATH4CBASE  a_datawild, a_dir, a_mathbackground, a_mathcolour, a_mathsize, a_mathvariant, a_numberonce, a_onautocomplete, a_onautocompleteerror, \
-                    a_onauxclick, a_onblur, a_oncancel, a_oncanplay, a_oncanplaythrough, a_onchange, a_onclose, a_oncontextmenu, a_oncopy, a_oncuechange, a_oncut, a_ondrag, \
+#define MATH4CBASE  a_datawild, a_dir, a_mathbackground, a_mathcolour, a_mathsize, a_mathvariant, a_numberonce, a_onautocomplete, a_onautocompleteerror, a_onauxclick, a_onblur, \
+                    a_oncancel, a_oncanplay, a_oncanplaythrough, a_onchange, a_onclose, a_oncontextmenu, a_oncopy, a_oncuechange, a_oncut, a_ondrag, \
                     a_ondragend, a_ondragenter, a_ondragleave, a_ondragover, a_ondragstart, a_ondrop, a_ondurationchange, a_onemptied, a_onended, a_onerror, a_onfocus, a_onformdata, \
                     a_oninput, a_oninvalid, a_onload, a_onloadeddata, a_onloadedmetadata, a_onloadstart, a_onmouseenter, a_onmouseleave, a_onpaste, a_onpause, a_onplay, a_onplaying, \
                     a_onprogress, a_onratechange, a_onreset, a_onresize, a_onscroll, a_onsecuritypolicyviolation, a_onseeking, a_onselect, a_onslotchange, a_onsort, a_onsought, \
@@ -264,7 +264,7 @@ element_init_t ei [] =
     { elem_bq, { a_nowrap, a_clear, LANGCLASS3, a_unknown } },
     { elem_br, { a_clear, LIVING_STANDARD_PLUS, a_unknown } },
     { elem_bt, { a_class, a_unknown } },
-    { elem_button, {    a_action, a_autocomplete, a_command, a_disabled, a_enctype, a_form, a_formaction, a_formenctype, a_formmethod, a_formnovalidate, a_formtarget,
+    { elem_button, {    a_action, a_autocomplete, a_command, a_commandfor, a_disabled, a_enctype, a_form, a_formaction, a_formenctype, a_formmethod, a_formnovalidate, a_formtarget,
                         a_menu, a_method, a_name, a_novalidate, a_popovertarget, a_popovertargetaction, a_type, a_value, RESERVED4, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_bvar, { MATH3COMMON, a_unknown } },
     { elem_byline, { HTMLPLUS, a_unknown } },
@@ -484,7 +484,7 @@ element_init_t ei [] =
     { elem_implies, { MATH3DEFCOM, a_unknown } },
     { elem_in, { MATH3DEFCOM, a_unknown } },
     { elem_infinity, { MATH3DEFCOM, a_unknown } },
-    { elem_input, { a_accept, a_action, a_align, a_alt, a_autocorrect, a_autocomplete, a_capture, a_checked, a_command, a_dirname, a_disabled, a_enctype, a_error, a_form,
+    { elem_input, { a_accept, a_action, a_align, a_alt, a_autocomplete, a_capture, a_checked, a_command, a_dirname, a_disabled, a_enctype, a_error, a_form,
                     a_formaction, a_formenctype, a_formmethod, a_formnovalidate, a_formtarget, a_incremental, a_list, a_max, a_maxlength, a_md, a_method, a_min, a_minlength,
                     a_mozactionhint, a_multiple, a_name, a_novalidate, a_orient, a_pattern, a_placeholder, a_popovertarget, a_popovertargetaction, a_readonly, a_required,
                     a_results, a_size, a_step, a_type, a_value, a_webkitdirectory, WIDEHIGH, RESERVED4, METADATA, LIVING_STANDARD, a_unknown } },
@@ -791,6 +791,7 @@ element_init_t ei [] =
     { elem_tfoot, { a_bgcolour, a_rowgroup, ALIGNCHAR, RESERVED4, LIVING_STANDARD_PLUS, a_unknown } },
     { elem_th, { a_abbr, a_axis, a_bgcolour, a_colspan, a_dp, a_headers, a_nowrap, a_rowspan, a_scope, a_sorted, WIDEHIGH, ALIGNCHAR, LIVING_STANDARD_PLUS, a_unknown } },
     { elem_thead, { a_bgcolour, a_rowgroup, ALIGNCHAR, METADATA, LIVING_STANDARD, a_unknown } },
+    { elem_think, { RESERVED4, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_tilde, { LANGCLASS3, a_unknown } },
     { elem_time, { a_datetime, a_pubdate, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_times, { MATH3DEFCOM, a_unknown } },
@@ -892,7 +893,7 @@ bool has_attribute (const e_element e, const e_attribute a)
 void add_element_attributes (nitpick& nits, const vstr_t& v)
 {   nitpick nuts;
     for (auto e : v)
-    {   vstr_t args (split_by_charset (e, ","));
+    {   vstr_t args (split_by_charset (e, PLAINSEP));
         if (args.size () < 2) continue;
         const elem el (context.html_ver (), args.at (0));
         if (el.invalid ())
