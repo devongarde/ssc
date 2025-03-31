@@ -191,7 +191,7 @@ void standard_t :: CreateControls (const e_gui_panel gp)
         if (nits_.create_panel (choice_, panel_nits, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
             choice_ -> AddPage (nits_.panel (), "errors, warnings, nitpicking", false); 
         if (ontology_.create_panel (choice_, panel_ontology, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
-            choice_ -> AddPage (ontology_.panel (), "machine readable content", false); 
+            choice_ -> AddPage (ontology_.panel (), "ontologies", false); 
         if (shadow_.create_panel (choice_, panel_shadow, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL))
             choice_ -> AddPage (shadow_.panel (), "shadow, deduplicate, resolve", false); 
 #ifndef NOSPELL

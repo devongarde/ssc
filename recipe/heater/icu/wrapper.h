@@ -63,16 +63,14 @@ class charset_detector
     UErrorCode err_ = U_ZERO_ERROR;
     const UCharsetMatch** charset_match_ = nullptr;
     int32_t charset_match_count_ = 0;
+    int32_t confidence_ = 0;
 public:
     charset_detector ()
     {   if (context.icu ()) detector_ = ucsdet_open (&err_); }
     DEFAULT_COPY_CONSTRUCTORS (charset_detector);
     ~charset_detector ()
     {   if (detector_ != nullptr) ucsdet_close (detector_); }
-    void swap (charset_detector& cd) noexcept
-    {   UCharsetDetector* tmp = detector_;
-        detector_ = cd.detector_;
-        cd.detector_ = tmp; }
+    void swap (charset_detector& cd) noexcept;
     void reset () noexcept
     {   if (detector_ != nullptr) ucsdet_close (detector_);
         if (context.icu ()) detector_ = ucsdet_open (&err_); }
@@ -84,10 +82,8 @@ public:
     UErrorCode error () const noexcept { return err_; }
     bool valid () const noexcept { return error () <= U_ZERO_ERROR; }
     bool set_text (const char *in, int32_t len);
-    charset_detector_matches match_all () noexcept
-    {   UGLY_PRESUME (context.icu (), __FILE__, __LINE__);
-        charset_match_ = ucsdet_detectAll (detector_, &charset_match_count_, &err_);
-        return charset_detector_matches (charset_match_, charset_match_count_); }
+    charset_detector_matches match_all () noexcept;
+    int32_t confidence () const noexcept {  return confidence_; }
     int32_t match_count () const noexcept {  return charset_match_count_; } };
 
 class converter

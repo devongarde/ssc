@@ -827,9 +827,9 @@ PASS ../toast/SVG/1.2/svg12.html
 106 svg_version
 121 svg_version
 122 use_quote_code
-125 bad_role bad_role
-135 bad_role use_quote_code
-137 bad_role use_quote_code
+125 bad_role aria_found bad_role
+135 bad_role aria_found use_quote_code
+137 bad_role aria_found use_quote_code
 138 bad_role
 139 use_quote_code
 

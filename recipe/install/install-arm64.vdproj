@@ -81,18 +81,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_64AA285EA49141F98CA3712E3743B09E"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_64D6D8941D414A668746D4681AD248A5"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_6E8202C11E564799B40FDFCDF826131D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -100,12 +88,6 @@
         "Entry"
         {
         "MsmKey" = "8:_737B793BCCD745AF992BB4C7B9304481"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_742D83520F644C5EAEC5F2860963F0CF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -135,12 +117,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_93482C7D289344E5994C6063D907B0EE"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_A57DA2721F024C64B6C66A257D3771E7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -148,12 +124,6 @@
         "Entry"
         {
         "MsmKey" = "8:_ACAC046B75B34ACDA5D27086C4A9187A"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B2468175640F42468076897C2A210BAE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -171,12 +141,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_D2FC0D2DACD943418D83D27227F8FDB6"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_E532FE907B9F40908A417ED393C08226"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -184,12 +148,6 @@
         "Entry"
         {
         "MsmKey" = "8:_E5E2794418684D23965C818F4015DDF1"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F6E4F58E1CCE42E9BACCACD96463320E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -492,26 +450,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_64D6D8941D414A668746D4681AD248A5"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\lib\\icu\\icu\\binARM64\\icudt75.dll"
-            "TargetName" = "8:icudt75.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_87C1CB3E3DE745528287E5D9F8C8BAD6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6E8202C11E564799B40FDFCDF826131D"
             {
             "SourcePath" = "8:C:\\Windows\\System32\\vcruntime140_1.dll"
@@ -536,26 +474,6 @@
             {
             "SourcePath" = "8:..\\..\\gen.txt"
             "TargetName" = "8:gen.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_87C1CB3E3DE745528287E5D9F8C8BAD6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_742D83520F644C5EAEC5F2860963F0CF"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\lib\\icu\\icu\\binARM64\\icuin75.dll"
-            "TargetName" = "8:icuin75.dll"
             "Tag" = "8:"
             "Folder" = "8:_87C1CB3E3DE745528287E5D9F8C8BAD6"
             "Condition" = "8:"
@@ -652,50 +570,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_93482C7D289344E5994C6063D907B0EE"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\lib\\curl\\lib\\Release\\libcurl.dll"
-            "TargetName" = "8:libcurl.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_87C1CB3E3DE745528287E5D9F8C8BAD6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A57DA2721F024C64B6C66A257D3771E7"
             {
             "SourcePath" = "8:..\\..\\README.txt"
             "TargetName" = "8:README.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_87C1CB3E3DE745528287E5D9F8C8BAD6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B2468175640F42468076897C2A210BAE"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\lib\\icu\\icu\\binARM64\\icuuc75.dll"
-            "TargetName" = "8:icuuc75.dll"
             "Tag" = "8:"
             "Folder" = "8:_87C1CB3E3DE745528287E5D9F8C8BAD6"
             "Condition" = "8:"
@@ -752,26 +630,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D2FC0D2DACD943418D83D27227F8FDB6"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\lib\\icu\\icu\\binARM64\\icutu75.dll"
-            "TargetName" = "8:icutu75.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_87C1CB3E3DE745528287E5D9F8C8BAD6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E532FE907B9F40908A417ED393C08226"
             {
             "SourcePath" = "8:..\\..\\..\\..\\lib\\boost\\stage\\lib\\boost_filesystem-vc143-mt-a64-1_86.dll"
@@ -796,26 +654,6 @@
             {
             "SourcePath" = "8:C:\\Windows\\System32\\ucrtbased.dll"
             "TargetName" = "8:ucrtbased.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_87C1CB3E3DE745528287E5D9F8C8BAD6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F6E4F58E1CCE42E9BACCACD96463320E"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\lib\\icu\\icu\\binARM64\\icuio75.dll"
-            "TargetName" = "8:icuio75.dll"
             "Tag" = "8:"
             "Folder" = "8:_87C1CB3E3DE745528287E5D9F8C8BAD6"
             "Condition" = "8:"
@@ -940,7 +778,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Static Site Checker"
         "ProductCode" = "8:{6FCB849C-3AF4-4874-833E-81E0E5FACCE0}"
-        "PackageCode" = "8:{050BE8B1-5D15-4641-A010-EF5F6542DBA0}"
+        "PackageCode" = "8:{98E6A72E-0773-42B0-8228-A4486F9E1805}"
         "UpgradeCode" = "8:{885C7144-A679-4BEF-A6A4-2633181CE2AC}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1060,7 +898,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_639FBD506E834ED1B415EF0F102E4B56"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_120FDAC288784FB8AED44DDB5FD91FD6"
             {
             "Name" = "8:Static Site Checker"
             "Arguments" = "8:"
@@ -1068,7 +906,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_64AA285EA49141F98CA3712E3743B09E"
+            "Target" = "8:_ACAC046B75B34ACDA5D27086C4A9187A"
             "Folder" = "8:_1417EE92E44D42669C53076E96CD83DC"
             "WorkingFolder" = "8:_87C1CB3E3DE745528287E5D9F8C8BAD6"
             "Icon" = "8:"
@@ -1552,34 +1390,6 @@
             "OutputConfiguration" = "8:Release|ARM64"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{267FF320-A1F2-453B-B242-BD51EB2C54D6}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_64AA285EA49141F98CA3712E3743B09E"
-            {
-            "SourcePath" = "8:..\\tea\\ARM64\\Debugwx\\ssc22-wx.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_87C1CB3E3DE745528287E5D9F8C8BAD6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{CDFD1629-A939-463B-B181-58512930A8E4}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {

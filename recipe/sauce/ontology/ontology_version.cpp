@@ -73,6 +73,8 @@ sh_t sh [] =  // latest first
     { content_schema, html_rdf_1_0 },
     { creative_commons, html_cc },
     { croissant_1_100, html_croissant_1_100 },
+    { croissant_1_14, html_croissant_1_14 },
+    { croissant_1_13, html_croissant_1_13 },
     { croissant_1_12, html_croissant_1_12 },
     { croissant_1_11, html_croissant_1_11 },
     { croissant_1_10, html_croissant_1_10 },
@@ -131,30 +133,66 @@ sh_t sh [] =  // latest first
     { dpv_0_2, html_dpv_02 },
     { dpv_0_1, html_dpv_01 },
     DPV_X_SH_221 (ai),
-    { dpv_eu_aiact_2_0, html_dpv_2_0 },
-    { dpv_eu_dga_2_0, html_dpv_2_0 },
-    { dpv_eu_gdpr_2_0, html_dpv_2_0 },
-    { dpv_eu_nis2_2_0, html_dpv_2_0 },
-    { dpv_eu_rights_2_0, html_dpv_2_0 },
+    DPV_X_SH_221 (eu_aiact),
+    DPV_X_SH_221 (eu_dga),
+     { dpv_eu_ehds_2_1, html_dpv_2_1 },
+    DPV_X_SH_221 (eu_gdpr),
+    DPV_X_SH_221 (eu_nis2),
+    DPV_X_SH_221 (eu_rights),
     DPV_X_SH_40 (gdpr),
     { dpv_gdpr_0_3, html_dpv_03 },
     { dpv_gdpr_0_2, html_dpv_02 },
     { dpv_gdpr_0_1, html_dpv_01 },
     DPV_X_SH_221 (just),
     DPV_X_SH_50 (legal),
-    { dpv_legal_de_2_0, html_dpv_2_0 },
-    { dpv_legal_eu_2_0, html_dpv_2_0 },
-    { dpv_legal_gb_2_0, html_dpv_2_0 },
-    { dpv_legal_ie_2_0, html_dpv_2_0 },
-    { dpv_legal_in_2_0, html_dpv_2_0 },
-    { dpv_legal_us_2_0, html_dpv_2_0 },
+    { dpv_legal_at_2_1, html_dpv_2_1 },
+    { dpv_legal_be_2_1, html_dpv_2_1 },
+    { dpv_legal_bg_2_1, html_dpv_2_1 },
+    { dpv_legal_cy_2_1, html_dpv_2_1 },
+    { dpv_legal_cz_2_1, html_dpv_2_1 },
+    DPV_X_SH_221 (legal_de),
+    { dpv_legal_dk_2_1, html_dpv_2_1 },
+    { dpv_legal_ee_2_1, html_dpv_2_1 },
+    { dpv_legal_es_2_1, html_dpv_2_1 },
+    DPV_X_SH_221 (legal_eu),
+    { dpv_legal_fi_2_1, html_dpv_2_1 },
+    { dpv_legal_fr_2_1, html_dpv_2_1 },
+    DPV_X_SH_221 (legal_gb),
+    { dpv_legal_gr_2_1, html_dpv_2_1 },
+    { dpv_legal_hr_2_1, html_dpv_2_1 },
+    { dpv_legal_hu_2_1, html_dpv_2_1 },
+    DPV_X_SH_221 (legal_ie),
+    DPV_X_SH_221 (legal_in),
+    { dpv_legal_is_2_1, html_dpv_2_1 },
+    { dpv_legal_it_2_1, html_dpv_2_1 },
+    { dpv_legal_li_2_1, html_dpv_2_1 },
+    { dpv_legal_lt_2_1, html_dpv_2_1 },
+    { dpv_legal_lu_2_1, html_dpv_2_1 },
+    { dpv_legal_lv_2_1, html_dpv_2_1 },
+    { dpv_legal_mt_2_1, html_dpv_2_1 },
+    { dpv_legal_nl_2_1, html_dpv_2_1 },
+    { dpv_legal_no_2_1, html_dpv_2_1 },
+    { dpv_legal_pl_2_1, html_dpv_2_1 },
+    { dpv_legal_pt_2_1, html_dpv_2_1 },
+    { dpv_legal_ro_2_1, html_dpv_2_1 },
+    { dpv_legal_se_2_1, html_dpv_2_1 },
+    { dpv_legal_sl_2_1, html_dpv_2_1 },
+    { dpv_legal_sk_2_1, html_dpv_2_1 },
+    DPV_X_SH_221 (legal_us),
     DPV_X_SH_221 (loc),
     { dpv_nace_schema, html_dpv_01 },
+    { dpv_p7012_2_1, html_dpv_2_1 },
     DPV_X_SH_221 (pd),
     DPV_X_SH_40 (pd),
     DPV_X_SH_80 (rights),
     { dpv_risk_2_0, html_dpv_2_0 },
     DPV_X_SH_80 (risk),
+    { dpv_s_edu_2_1, html_dpv_2_1 },
+    { dpv_s_fin_2_1, html_dpv_2_1 },
+    { dpv_s_hth_2_1, html_dpv_2_1 },
+    { dpv_s_inf_2_1, html_dpv_2_1 },
+    { dpv_s_law_2_1, html_dpv_2_1 },
+    { dpv_s_ps_2_1, html_dpv_2_1 },
     DPV_X_SH_221 (tech),
     DPV_X_SH_80 (tech),
     { duv_schema, html_rdf_1_0_con },
@@ -257,6 +295,8 @@ sh_t sh [] =  // latest first
     { pur_2_1, html_prism_2_1 },
     { data_cube, html_rdf_1_0_con },
     { rai_1_100, html_rai_1_100 },
+    { rai_1_14, html_rai_1_14 },
+    { rai_1_13, html_rai_1_13 },
     { rai_1_12, html_rai_1_12 },
     { rai_1_11, html_rai_1_11 },
     { rai_1_10, html_rai_1_10 },
@@ -281,7 +321,7 @@ sh_t sh [] =  // latest first
     { rif_schema, html_rif },
     { role_schema, html_role },
     { rr_schema, html_rr },
-    { schema_29, html_schema_29 },
+    { schema_29_0, html_schema_29_0 },
     { schema_28_1, html_schema_28_1 },
     { schema_28_0, html_schema_28_0 },
     { schema_27_02, html_schema_27_02 },
@@ -430,6 +470,9 @@ sh_t sh [] =  // latest first
     { xsd_1_0, html_xsd_1_0 },
     { error_schema, html_0 } };
 
+#define DPV_X_VSV221(XXX) \
+    dpv_##XXX##_2_0, dpv_##XXX##_2_1
+
 #define DPV_X_VSV80(XXX) \
     dpv_##XXX##_0_8_0, dpv_##XXX##_0_8_1, dpv_##XXX##_0_8_2, dpv_##XXX##_0_9, dpv_##XXX##_1_0
 
@@ -438,6 +481,12 @@ sh_t sh [] =  // latest first
 
 #define DPV_X_VSV40(XXX) \
     dpv_##XXX##_0_4_0, dpv_##XXX##_0_4_1, dpv_##XXX##_0_4_2, DPV_X_VSV50 (XXX)
+
+#define DPV_X_80_PLUS(XXX) \
+    DPV_X_VSV80 (XXX), DPV_X_VSV221 (XXX)
+
+#define DPV_X_40_PLUS(XXX) \
+    DPV_X_VSV40 (XXX), DPV_X_VSV221 (XXX)
 
 vsv_t vsv = {
     adms_1_0, adms_2_0,
@@ -451,8 +500,10 @@ vsv_t vsv = {
     cnt_schema,
     common_tag,
     content_schema,
-    croissant_0_2, croissant_0_3, croissant_0_4, croissant_0_6, croissant_0_8, croissant_1_0, croissant_1_1, croissant_1_2, croissant_1_3, croissant_1_4,
-        croissant_1_5, croissant_1_6, croissant_1_7, croissant_1_8, croissant_1_9, croissant_1_10, croissant_1_11, croissant_1_12, croissant_1_100,
+    croissant_0_2, croissant_0_3, croissant_0_4, croissant_0_6, croissant_0_8,
+        croissant_1_0, croissant_1_1, croissant_1_2, croissant_1_3, croissant_1_4,  croissant_1_5, croissant_1_6, croissant_1_7, croissant_1_8,
+            croissant_1_9, croissant_1_10, croissant_1_11, croissant_1_12, croissant_1_13, croissant_1_14,
+        croissant_1_100,
     creative_commons,
     crs2_schema,
     csvw_schema,
@@ -473,29 +524,64 @@ vsv_t vsv = {
     disco_schema,
     doap_schema,
     dpv_0_1, dpv_0_2, dpv_0_3, dpv_0_4_0, dpv_0_4_1, dpv_0_4_2, dpv_0_5, dpv_0_6, dpv_0_7, dpv_0_8_0,
-        dpv_0_8_1, dpv_0_8_2, dpv_0_9, dpv_1_0, dpv_2_0,
-    dpv_ai_2_0,
-    dpv_eu_aiact_2_0,
-    dpv_eu_dga_2_0,
+        dpv_0_8_1, dpv_0_8_2, dpv_0_9, dpv_1_0, dpv_2_0, dpv_2_1,
+    DPV_X_VSV221 (ai),
+    DPV_X_VSV221 (eu_aiact),
+    DPV_X_VSV221 (eu_dga),
+    dpv_eu_ehds_2_1,
+    DPV_X_VSV221 (eu_gdpr),
+    DPV_X_VSV221 (eu_nis2),
+    DPV_X_VSV221 (eu_rights),
     DPV_X_VSV40 (gdpr), dpv_gdpr_0_3, dpv_gdpr_0_2, dpv_gdpr_0_1,
-    dpv_just_2_0,
+    DPV_X_VSV221 (just),
     DPV_X_VSV50 (legal),
-    dpv_legal_de_2_0,
-    dpv_legal_eu_2_0,
-    dpv_legal_gb_2_0,
-    dpv_legal_ie_2_0,
-    dpv_legal_in_2_0,
-    dpv_legal_us_2_0,
-    dpv_loc_2_0,
+    dpv_legal_at_2_1,
+    dpv_legal_be_2_1,
+    dpv_legal_bg_2_1,
+    dpv_legal_cy_2_1,
+    dpv_legal_cz_2_1,
+    DPV_X_VSV221 (legal_de),
+    dpv_legal_dk_2_1,
+    dpv_legal_ee_2_1,
+    dpv_legal_es_2_1,
+    DPV_X_VSV221 (legal_eu),
+    dpv_legal_fi_2_1,
+    dpv_legal_fr_2_1,
+    DPV_X_VSV221 (legal_gb),
+    dpv_legal_gr_2_1,
+    dpv_legal_hr_2_1,
+    dpv_legal_hu_2_1,
+    DPV_X_VSV221 (legal_ie),
+    DPV_X_VSV221 (legal_in),
+    dpv_legal_is_2_1,
+    dpv_legal_it_2_1,
+    dpv_legal_li_2_1,
+    dpv_legal_lt_2_1,
+    dpv_legal_lu_2_1,
+    dpv_legal_lv_2_1,
+    dpv_legal_mt_2_1,
+    dpv_legal_nl_2_1,
+    dpv_legal_no_2_1,
+    dpv_legal_pl_2_1,
+    dpv_legal_pt_2_1,
+    dpv_legal_ro_2_1,
+    dpv_legal_se_2_1,
+    dpv_legal_sl_2_1,
+    dpv_legal_sk_2_1,
+    DPV_X_VSV221 (legal_us),
+    DPV_X_VSV221 (loc),
     dpv_nace_schema,
-    dpv_eu_nis2_2_0,
-    dpv_pd_2_0,
-    DPV_X_VSV40 (pd),
+    dpv_p7012_2_1,
+    DPV_X_40_PLUS (pd),
     DPV_X_VSV80 (rights),
-    DPV_X_VSV80 (risk),
-    dpv_risk_2_0,
-    DPV_X_VSV80 (tech),
-    dpv_tech_2_0,
+    DPV_X_80_PLUS (risk),
+    dpv_s_edu_2_1,
+    dpv_s_fin_2_1,
+    dpv_s_hth_2_1,
+    dpv_s_inf_2_1,
+    dpv_s_law_2_1,
+    dpv_s_ps_2_1,
+    DPV_X_80_PLUS (tech),
     dublin_core_terms_1_0, dublin_core_terms_1_1,
     duv_schema,
     earl_schema,
@@ -544,7 +630,7 @@ vsv_t vsv = {
     psv_1_0,
     ptr_schema,
     pur_2_1, pur_3_0,
-    rai_1_3, rai_1_4, rai_1_5, rai_1_6, rai_1_7, rai_1_8, rai_1_9, rai_1_10, rai_1_11, rai_1_12, rai_1_100,
+    rai_1_3, rai_1_4, rai_1_5, rai_1_6, rai_1_7, rai_1_8, rai_1_9, rai_1_10, rai_1_11, rai_1_12, rai_1_13, rai_1_14, rai_1_100,
     rdf_1_0_schema, rdf_1_1_1_schema, rdf_1_1_2_schema, rdf_1_1_3_schema,
     rdfa_1_0_schema, rdfa_1_1_1_schema, rdfa_1_1_2_schema, rdfa_1_1_3_schema,
     rdfg_schema,
@@ -564,7 +650,7 @@ vsv_t vsv = {
         schema_4, schema_5, schema_6, schema_7_00, schema_7_01, schema_7_02, schema_7_03, schema_7_04, schema_8, schema_9,
         schema_10, schema_11, schema_11_01, schema_12, schema_13, schema_14, schema_15, schema_16, schema_17, schema_18, schema_19,
         schema_20, schema_21, schema_22, schema_23, schema_24, schema_25, schema_26, schema_27, schema_27_01, schema_27_02,
-        schema_28_0, schema_28_1, schema_29,
+        schema_28_0, schema_28_1, schema_29_0,
     sd_schema,
     sioc_schema,
     sioc_services,
@@ -748,16 +834,17 @@ template < > ontology_version ontology_detail < s_dct > :: from () noexcept { re
 template < > int ontology_detail < s_dct > :: count () noexcept { return 2; }
 template < > ontology_version ontology_detail < s_dct > :: to () noexcept { return ontology_version (s_dct, 1, 1); }
 
-bool is_dpv_valid (const unsigned short mjr, const unsigned short mnr, const unsigned short mm = 10, const unsigned mxmj = 2, const unsigned mxmn = 1) noexcept
+bool is_dpv_valid (const unsigned short mjr, const unsigned short mnr, const unsigned short mm = 10, const unsigned mxmj = 2, const unsigned mxmn = 1, const flags_t oflags = NOFLAGS) noexcept
 {   switch (mjr)
-    {   case 2 : return (mjr <= mxmj) && (mnr <= mxmn);
-        case 1 : return mnr == 0;
+    {   case 2 : if ((mxmj >= 2) && (mnr == 0)) return ((oflags & OV_DPV_NOT_4020) == 0);
+                 return (mjr <= mxmj) && (mnr <= mxmn);
+        case 1 : return ((mxmj >= 1) && (mnr == 0) && ((oflags & OV_DPV_NOT_4020) == 0));
         case 0 :
-            if (mnr < mm) return false; 
+            if (mnr < mm) break; 
             switch (mnr)
             {   case 10 :
                 case 20 :
-                case 30 :
+                case 30 : return true;
                 case 40 :
                 case 41 :
                 case 42 :
@@ -767,41 +854,78 @@ bool is_dpv_valid (const unsigned short mjr, const unsigned short mnr, const uns
                 case 80 :
                 case 81 :
                 case 82 :
-                case 90 : return true;
-                default : return false; }
+                case 90 : return ((oflags & OV_DPV_NOT_4020) == 0);
+                default : break; }
         default : break; }
     return false; }
 
 #define DETAIL_DPV(ONT,MM,N,MX,MN) \
-    template < > bool ontology_detail < ONT > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept \
-    {   return is_dpv_valid (mjr, mnr, MM, MX, MN); } \
+    template < > bool ontology_detail < ONT > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t oflags) noexcept \
+    {   return is_dpv_valid (mjr, mnr, MM, MX, MN, oflags); } \
     template < > ontology_version ontology_detail < ONT > :: from () noexcept { return ontology_version (ONT, 0, MM); } \
     template < > int ontology_detail < ONT > :: count () noexcept { return N; } \
     template < > ontology_version ontology_detail < ONT > :: to () noexcept { return ontology_version (ONT, MX, 0); }
 
 #define DETAIL_DPV2(ONT) \
-    template < > bool ontology_detail < ONT > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept \
-    {   return (mjr == 2) && (mnr < 2); } \
+    template < > bool ontology_detail < ONT > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t oflags) noexcept \
+    {   if ((mjr == 2) && (mnr == 0)) return ((oflags & OV_DPV_NOT_4020) == 0); \
+        return (mjr == 2) && (mnr < 2); } \
     template < > ontology_version ontology_detail < ONT > :: from () noexcept { return ontology_version (ONT, 2, 0); } \
     template < > int ontology_detail < ONT > :: count () noexcept { return 2; } \
+    template < > ontology_version ontology_detail < ONT > :: to () noexcept { return ontology_version (ONT, 2, 1); }
+
+#define DETAIL_DPV21(ONT) \
+    template < > bool ontology_detail < ONT > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept \
+    {   return (mjr == 2) && (mnr == 1); } \
+    template < > ontology_version ontology_detail < ONT > :: from () noexcept { return ontology_version (ONT, 2, 1); } \
+    template < > int ontology_detail < ONT > :: count () noexcept { return 1; } \
     template < > ontology_version ontology_detail < ONT > :: to () noexcept { return ontology_version (ONT, 2, 1); }
 
 DETAIL_DPV (s_dpv, 10, 16, 2, 1)
 DETAIL_DPV2 (s_dpv_ai);
 DETAIL_DPV2 (s_dpv_eu_aiact);
 DETAIL_DPV2 (s_dpv_eu_dga);
+DETAIL_DPV21 (s_dpv_eu_ehds);
 DETAIL_DPV2 (s_dpv_eu_gdpr);          
 DETAIL_DPV2 (s_dpv_eu_nis2);          
 DETAIL_DPV2 (s_dpv_eu_rights);          
 DETAIL_DPV (s_dpv_gdpr, 10, 15, 1, 1)
 DETAIL_DPV2 (s_dpv_just);
 DETAIL_DPV (s_dpv_legal, 50, 9, 1, 1)
+DETAIL_DPV21 (s_dpv_legal_at);
+DETAIL_DPV21 (s_dpv_legal_be);
+DETAIL_DPV21 (s_dpv_legal_bg);
+DETAIL_DPV21 (s_dpv_legal_cy);
+DETAIL_DPV21 (s_dpv_legal_cz);
 DETAIL_DPV2 (s_dpv_legal_de);
+DETAIL_DPV21 (s_dpv_legal_dk);
+DETAIL_DPV21 (s_dpv_legal_ee);
+DETAIL_DPV21 (s_dpv_legal_es);
 DETAIL_DPV2 (s_dpv_legal_eu);
+DETAIL_DPV21 (s_dpv_legal_fi);
+DETAIL_DPV21 (s_dpv_legal_fr);
 DETAIL_DPV2 (s_dpv_legal_gb);
-DETAIL_DPV2 (s_dpv_legal_ie);
+DETAIL_DPV21 (s_dpv_legal_gr);
+DETAIL_DPV21 (s_dpv_legal_hr);
+DETAIL_DPV21 (s_dpv_legal_hu);
+DETAIL_DPV21 (s_dpv_legal_ie);
 DETAIL_DPV2 (s_dpv_legal_in);
-DETAIL_DPV2 (s_dpv_legal_us);
+DETAIL_DPV21 (s_dpv_legal_is);
+DETAIL_DPV21 (s_dpv_legal_it);
+DETAIL_DPV21 (s_dpv_legal_li);
+DETAIL_DPV21 (s_dpv_legal_lt);
+DETAIL_DPV21 (s_dpv_legal_lu);
+DETAIL_DPV21 (s_dpv_legal_lv);
+DETAIL_DPV21 (s_dpv_legal_mt);
+DETAIL_DPV21 (s_dpv_legal_nl);
+DETAIL_DPV21 (s_dpv_legal_no);
+DETAIL_DPV21 (s_dpv_legal_pl);
+DETAIL_DPV21 (s_dpv_legal_pt);
+DETAIL_DPV21 (s_dpv_legal_ro);
+DETAIL_DPV21 (s_dpv_legal_se);
+DETAIL_DPV21 (s_dpv_legal_sl);
+DETAIL_DPV21 (s_dpv_legal_sk);
+DETAIL_DPV21 (s_dpv_legal_us);
 
 template < > bool ontology_detail < s_dpv_nace > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   return (mjr < 2) && is_dpv_valid (mjr, mnr); }
@@ -811,8 +935,15 @@ template < > ontology_version ontology_detail < s_dpv_nace > :: to () noexcept {
 
 DETAIL_DPV2 (s_dpv_loc);          
 DETAIL_DPV (s_dpv_pd, 40, 12, 2, 1)
+DETAIL_DPV21 (s_dpv_p7012);
 DETAIL_DPV (s_dpv_rights, 80, 5, 1, 1)
 DETAIL_DPV (s_dpv_risk, 80, 6, 2, 1)
+DETAIL_DPV21 (s_dpv_s_edu);
+DETAIL_DPV21 (s_dpv_s_fin);
+DETAIL_DPV21 (s_dpv_s_hth);
+DETAIL_DPV21 (s_dpv_s_inf);
+DETAIL_DPV21 (s_dpv_s_law);
+DETAIL_DPV21 (s_dpv_s_ps);
 DETAIL_DPV (s_dpv_tech, 80, 6, 2, 1)
 
 template < > bool ontology_detail < s_error > :: is_this_valid (const unsigned short , const unsigned short , const flags_t , const flags_t ) noexcept
@@ -1035,11 +1166,11 @@ template < > bool ontology_detail < s_schema > :: is_this_valid (const unsigned 
     switch (mjr)
     {   case 0 : return (mnr > 0);
         case 1 : return true;
-        case 2 : return (mnr < 3);
+        case 2 :
+        case 27 : return (mnr < 3);
         case 3 : break;
         case 7 : return (mnr < 5);
-        case 11 : return (mnr < 2);
-        case 27 : return (mnr < 3);
+        case 11 :
         case 28 : return (mnr < 2);
         default : return (mnr == 0); }
     switch (mnr)

@@ -63,12 +63,36 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     return ::std::string (); }
 
 ::std::string convert_to_utf8 (const unsigned int n)
-// https://stackoverflow.com/questions/23322438/how-to-convert-a-unicode-code-point-to-characters-in-c-using-icu
-{   ::icu::UnicodeString s (GSL_NARROW_CAST < UChar32 > (n));
-    ::std::string res;
-    s.toUTF8String (res);
-    return res; }
+{   const ::std::wstring u1 (1, GSL_NARROW_CAST < wchar_t > (n));
+    ::std::wstring_convert < ::std::codecvt_utf8 <wchar_t>, wchar_t > conv;
+    return conv.to_bytes (u1); }
 
+::std::string convert_to_utf8 (const ::std::wstring& s)
+{   ::std::wstring_convert < ::std::codecvt_utf8 <wchar_t>, wchar_t > conv;
+    return conv.to_bytes (s); }
+
+::std::wstring convert_from_utf8 (const ::std::string& s)
+{   ::std::wstring_convert < ::std::codecvt_utf8 <wchar_t>, wchar_t > conv;
+    return conv.from_bytes (s); }
+
+#ifdef _MSC_VER
+::std::string normalise_utf8 (nitpick& nits, const ::std::string& s)
+{   if (! context.icu ()) return s;
+    ::std::wstring res16, s16 = convert_from_utf8 (s);
+    const ::std::wstring::size_type mx = s16.length () * 4;  // because life's a bitch
+    wchar_t* pch = new wchar_t [mx];
+    try
+    {   const int len = ::NormalizeString (NormalizationC , s16.c_str (), GSL_NARROW_CAST < int > (s16.length ()), pch, GSL_NARROW_CAST < int > (mx));
+        if ((len == 0) || (len >= mx))
+        {   nits.pick (nit_icu_barf, es_comment, ec_icu, "Cannot normalised ", quote (s));
+            return s; }
+        pch [len] = 0;
+        res16 = pch; }
+    catch (...)
+    {   delete pch;
+        pch = nullptr; }
+    return convert_to_utf8 (res16); }
+#else // _MSC_VER
 ::std::string normalise_utf8 (nitpick& nits, const ::std::string& s)
 {   if (! context.icu ()) return s;
     static ::std::atomic_bool bad_normaliser (false);
@@ -89,25 +113,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     ::std::string res;
     out.toUTF8String (res);
     return res; }
+#endif // _MSC_VER
 
 #ifdef _MSC_VER
-::std::wstring convert_to_wstring (nitpick& nits, const ::icu::UnicodeString& us)
-{   PRESUME (context.icu (), __FILE__, __LINE__);
-    if (us.length () > 0)
-    {   int32_t len = 0;
-        UErrorCode err = U_ZERO_ERROR;
-        u_strToWCS (nullptr, 0, &len, us.getBuffer (), us.length (), &err);
-        if (U_SUCCESS (err))
-        {   ::std::wstring res (len, 0);
-            err = U_ZERO_ERROR;
-            u_strToWCS (res.data (), GSL_NARROW_CAST < int32_t > (res.size ()), nullptr, us.getBuffer (), us.length (), &err);
-            if (U_SUCCESS (err)) return res; }
-        nits.pick (nit_convert, es_catastrophic, ec_icu, "Cannot convert to wstring."); }
-    return ::std::wstring (); }
-
 #ifndef VS2017
 ::std::wstring convert_to_wstring (const ::std::string& s)
-{   ::std::wstring_convert <std::codecvt_utf8_utf16 < wchar_t > > converter;
+{   ::std::wstring_convert < ::std::codecvt_utf8_utf16 < wchar_t > > converter;
     return converter.from_bytes (s); }
 #endif // VS2017
 #endif // _MSC_VER

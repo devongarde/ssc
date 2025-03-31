@@ -53,7 +53,7 @@ template < > struct type_master < t_charspacing > : type_or_any_string < t_chars
 
 template < > struct type_master < t_clear30 > : tidy_string < t_clear30 >
 {   using tidy_string < t_clear30 > :: tidy_string;
-	static e_animation_type animation_type () noexcept { return at_colour; }
+    static e_animation_type animation_type () noexcept { return at_colour; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_clear30 > :: set_value (nits, v, s);
         ::std::string arg (tidy_string < t_clear30 > :: get_string ());
@@ -101,7 +101,7 @@ template < > struct type_master < t_colour_ii > : type_or_either_string < t_colo
 
 template < > struct type_master < t_context_menu > : tidy_string < t_context_menu >
 {   using tidy_string < t_context_menu > :: tidy_string;
-	static e_animation_type animation_type () noexcept { return at_other; }
+    static e_animation_type animation_type () noexcept { return at_other; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_context_menu > :: set_value (nits, v, s);
         if (tidy_string < t_context_menu > :: empty ())
@@ -122,7 +122,7 @@ template < > struct type_master < t_context_menu > : tidy_string < t_context_men
 
 template < > struct type_master < t_duration_media > : tidy_string < t_duration_media >
 {   using tidy_string < t_duration_media > :: tidy_string;
-	static e_animation_type animation_type () noexcept { return at_none; }
+    static e_animation_type animation_type () noexcept { return at_none; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_duration_media > :: set_value (nits, v, s);
         if (tidy_string < t_duration_media > :: good ())
@@ -134,7 +134,7 @@ template < > struct type_master < t_duration_media > : tidy_string < t_duration_
 
 template < > struct type_master < t_enable_background > : tidy_string < t_enable_background >
 {   using tidy_string < t_enable_background > :: tidy_string;
-	static e_animation_type animation_type () noexcept { return at_paint; }
+    static e_animation_type animation_type () noexcept { return at_paint; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_enable_background > :: set_value (nits, v, s);
         if (tidy_string < t_enable_background > :: empty ())
@@ -207,7 +207,7 @@ template < > struct type_master < t_length > : type_either_or < t_length, t_leng
 
 template < > struct type_master < t_linethickness > : tidy_string < t_linethickness >
 {   using tidy_string < t_linethickness > :: tidy_string;
-	static e_animation_type animation_type () noexcept { return at_paint; }
+    static e_animation_type animation_type () noexcept { return at_paint; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_linethickness > :: set_value (nits, v, s);
         if (v.math () >= math_2)
@@ -281,7 +281,7 @@ template < > struct type_master < t_ogdet > : type_or_null < t_ogdet, t_determin
 
 template < > struct type_master < t_pseudonamedspace > : tidy_string < t_pseudonamedspace >
 {   using tidy_string < t_pseudonamedspace > :: tidy_string;
-	static e_animation_type animation_type () noexcept { return at_none; }
+    static e_animation_type animation_type () noexcept { return at_none; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_pseudonamedspace > :: set_value (nits, v, s);
         if (tidy_string < t_pseudonamedspace > :: empty ())
@@ -345,13 +345,13 @@ template < > struct type_master < t_nsds > : type_at_least_one < t_nsds, sz_spac
 
 template < > struct type_master < t_ratio > : tidy_string < t_ratio >
 {   using tidy_string < t_ratio > :: tidy_string;
-	static e_animation_type animation_type () noexcept { return at_number; }
+    static e_animation_type animation_type () noexcept { return at_number; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_ratio > :: set_value (nits, v, s);
         ::std::string arg (tidy_string < t_ratio > :: get_string ());
         if (s.empty ()) nits.pick (nit_empty, es_error, ec_type, "ratio expected");
         else if (good ())
-        {   ::std::string::size_type pos = arg.find ('/');
+        {   const ::std::string::size_type pos = arg.find ('/');
             if ((pos == ::std::string::npos) || (pos == 0) || (pos >= arg.size () - 1))
                 nits.pick (nit_bad_aspect_ratio, es_error, ec_type, quote (arg), ": expecting width / height");
             else
@@ -408,7 +408,7 @@ template < > struct type_master < t_roles > : string_vector < t_roles, sz_space_
     int& at (const ::std::size_t n)
     {   PRESUME (n < vr_.size (), __FILE__, __LINE__);
         return vr_.at (n); }
-    vint_t get_ints () const noexcept { return vr_; }
+    vint_t get_ints () const { return vr_; }
     void verify_attribute (nitpick& nits, const html_version& v, const elem& e, element* p, const ::std::string& s)
     {   for (auto r : vr_)
         {   enum_n < t_role, e_aria_role > emr;
@@ -475,7 +475,7 @@ template < > struct type_master < t_ontology > : tidy_string < t_ontology >
 
 template < > struct type_master < t_shape3 > : tidy_string < t_shape3 >
 {   using tidy_string < t_shape3 > :: tidy_string;
-	static e_animation_type animation_type () noexcept { return at_paint; }
+    static e_animation_type animation_type () noexcept { return at_paint; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_shape3 > :: set_value (nits, v, s);
         const ::std::string& ss = tidy_string < t_shape3 > :: get_string ();
@@ -620,7 +620,7 @@ template < > struct type_master < t_srcset > : tidy_string < t_srcset >
 
 template < > struct type_master < t_css_text_align_4 > : tidy_string < t_css_text_align_4 >
 {   using tidy_string < t_css_text_align_4 > :: tidy_string;
-	static e_animation_type animation_type () noexcept { return at_none; }
+    static e_animation_type animation_type () noexcept { return at_none; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_css_text_align_4 > :: set_value (nits, v, s);
         if (tidy_string < t_css_text_align_4 > :: empty ()) nits.pick (nit_empty, es_error, ec_type, "missing whitespace value");
@@ -635,7 +635,7 @@ template < > struct type_master < t_css_text_align_4 > : tidy_string < t_css_tex
 
 template < > struct type_master < t_css_text_resizes > : tidy_string < t_css_text_resizes >
 {   using tidy_string < t_css_text_resizes > :: tidy_string;
-	static e_animation_type animation_type () noexcept { return at_none; }
+    static e_animation_type animation_type () noexcept { return at_none; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_css_text_resizes > :: set_value (nits, v, s);
         if (tidy_string < t_css_text_resizes > :: empty ()) nits.pick (nit_empty, es_error, ec_type, "missing value");
@@ -650,7 +650,7 @@ template < > struct type_master < t_css_text_resizes > : tidy_string < t_css_tex
 
 template < > struct type_master < t_css_vertal_2 > : tidy_string < t_css_vertal_2 >
 {   using tidy_string < t_css_vertal_2 > :: tidy_string;
-	static e_animation_type animation_type () noexcept { return at_none; }
+    static e_animation_type animation_type () noexcept { return at_none; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_css_vertal_2 > :: set_value (nits, v, s);
         if (tidy_string < t_css_vertal_2 > :: empty ())
@@ -670,7 +670,7 @@ template < > struct type_master < t_css_vertal_2 > : tidy_string < t_css_vertal_
 
 template < > struct type_master < t_css_whitespace_2 > : tidy_string < t_css_whitespace_2 >
 {   using tidy_string < t_css_whitespace_2 > :: tidy_string;
-	static e_animation_type animation_type () noexcept { return at_none; }
+    static e_animation_type animation_type () noexcept { return at_none; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_css_whitespace_2 > :: set_value (nits, v, s);
         if (tidy_string < t_css_whitespace_2 > :: empty ()) nits.pick (nit_empty, es_error, ec_type, "missing whitespace value");

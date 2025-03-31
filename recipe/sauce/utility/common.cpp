@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/common.h"
 #include "utility/filesystem.h"
 #include "utility/byteorder.h"
+#include "utility/lexical.h"
 #include "main/context.h"
 #include "main/args.h"
 #include "icu/converter.h"
@@ -80,7 +81,8 @@ bool test_file (nitpick& nits, const ::boost::filesystem::path& name, uintmax_t&
                         {   nitpick nuts;
                             ::std::string norm = normalise_utf8 (nuts, res);
                             if (norm != res)
-                            {   nits.pick (nit_normalise, es_warning, ec_icu, quote (p.string ()), " is not normalised UTF-8");
+                            {   nits.pick (nit_normalise, es_warning, ec_icu, quote (p.string ()), " does not appear to be normalised UTF-8");
+                                nits.pick (nit_normalise, es_debug, ec_icu, "differences: ", string_diff (res, norm, true));
                                 res = norm; } }
                         else
                         {   res.clear ();
@@ -603,13 +605,13 @@ bool is_plain_old_decimal (const ::std::string& ss)
 #ifdef _MSC_VER
     char uname [ARGLEN_MAX] = { 0 };
     DWORD umax = ARGLEN_MAX-1;
-#ifdef VS2022
+#ifdef GETUSERNAMEEX
     if (    ::GetUserNameExA (NameUserPrincipal, uname, &umax) ||
             ::GetUserNameExA (NameSamCompatible, uname, &umax) ||
             ::GetUserNameA (uname, &umax))
-#else // VS2022
+#else // GETUSERNAMEEX
     if (::GetUserNameA (uname, &umax))
-#endif // VS2022
+#endif // GETUSERNAMEEX
     {   GSL_AT (uname, umax) = 0; 
         u = uname; }
 #else // _MSC_VER
@@ -620,3 +622,60 @@ bool is_plain_old_decimal (const ::std::string& ss)
         u = pw -> pw_name;
 #endif // _MSC_VER
     return u; }
+
+::std::string diff_snippet (const ::std::string& s, const ::std::string::size_type from, const ::std::string::size_type to, const ::std::string::size_type len, const bool numeric)
+{   ::std::string res;
+    constexpr ::std::string::size_type sweet = 5;
+    if (from < sweet) res += s.substr (0, from);
+    else
+    {   res += "... ";
+        res += s.substr (from-sweet, sweet); }
+    res += " >>> ";
+    if (numeric)
+    {   bool next = false;
+        for (auto ch : s.substr (from, to-from))
+        {   if (next) res += ","; else next = true;
+            res += ::boost::lexical_cast < ::std::string > (static_cast < unsigned > (ch)); } }  
+    else res += s.substr (from, to-from);
+    res += " <<< ";
+    if (to + sweet >= len) res += s.substr (to);
+    else
+    {   res += s.substr (to, sweet);
+        res += " ..."; }
+    return res; }
+
+::std::string report_diff (
+                    const ::std::string& lhs, const ::std::string::size_type lfrom, const ::std::string::size_type lto, const ::std::string::size_type llen,
+                    const ::std::string& rhs, const ::std::string::size_type rfrom, const ::std::string::size_type rto, const ::std::string::size_type rlen,
+                    const bool knew, const bool numeric)
+{   ::std::string res;
+    if (! knew) res += ";";
+    res += diff_snippet (lhs, lfrom, lto, llen, numeric);
+    res += ",";
+    res += diff_snippet (rhs, rfrom, rto, rlen, numeric);
+    return res; }       
+
+::std::string string_diff (const ::std::string& lhs, const ::std::string& rhs, const bool numeric)
+{   ::std::string res;
+    const ::std::string::size_type llen (lhs.length ());
+    const ::std::string::size_type rlen (rhs.length ());
+    ::std::string::size_type ls = ::std::string::npos, rs = ::std::string::npos, ns = ::std::string::npos;
+    ::std::string::size_type l = 0, r = 0;
+    while ((l < llen) && (r < rlen))
+        if (lhs.at (l) != rhs.at (r))
+        {   if (ls == ::std::string::npos)
+            {   ns = ls = l++;
+                rs = r; }
+            else if (++l == llen)
+            {   if (++r == rlen) return res + report_diff (lhs, ls, llen, llen, rhs, rs, rlen, rlen, res.empty (), numeric);
+                l = ns++; } } 
+        else 
+        {   if (ls != ::std::string::npos)
+            {   res += report_diff (lhs, ls, l, llen, rhs, rs, r, rlen, res.empty (), numeric);
+                ls = rs = ns = ::std::string::npos; }
+            ++l; ++r; }
+    if (ls != ::std::string::npos)
+        return res + report_diff (lhs, ls, l, llen, rhs, rs, r, rlen, res.empty (), numeric);
+    if ((l < llen) || (r < rlen))
+        return res + report_diff (lhs, ls, llen, llen, rhs, rs, rlen, rlen, res.empty (), numeric);
+    return res; }

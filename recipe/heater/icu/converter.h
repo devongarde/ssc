@@ -31,13 +31,7 @@ inline ::std::string normalise_utf8 (nitpick& , const ::std::string& s) { return
 ::std::string convert_to_utf8 (nitpick& nits, const ::std::string& name, const void_ptr& vp, const uintmax_t& sz);
 ::std::string normalise_utf8 (nitpick& nits, const ::std::string& s);
 ::std::string convert_to_utf8 (const unsigned int n);
-
-#ifdef _MSC_VER
-::std::wstring convert_to_wstring (nitpick& nits, const ::icu::UnicodeString& us);
-#ifndef VS2017
-::std::wstring convert_to_wstring (const ::std::string& s);
-#endif // VS2017
+::std::string convert_to_utf8 (const ::std::wstring& s);
+::std::wstring convert_from_utf8 (const ::std::string& s);
 ::std::string normalise_utf8 (nitpick& nits, const ::std::string& s);
-#endif // _MSC_VER
-
 #endif // NOICU

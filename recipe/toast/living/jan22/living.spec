@@ -400,6 +400,7 @@ PASS ../toast/living/jan22/fieldset.html
 47 pattern
 
 PASS ../toast/living/jan22/figcaption.html
+0 normalise
 6 inserted_missing_parent missing_close too_many_figcaption
 15 inserted_missing_closure
 
@@ -1246,6 +1247,7 @@ PASS ../toast/living/jan22/main-1.html
 34 inserted_missing_closure
 
 PASS ../toast/living/jan22/main-2.html
+0 normalise
 2 missing_close
 3 inserted_missing_parent missing_close
 5 url_not_found

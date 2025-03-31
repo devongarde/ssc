@@ -328,11 +328,6 @@ PASS ../toast/SVG/2.0/text-3.svg
 0 title_required
 1 xhtml_5_0
 
-PASS ../toast/SVG/2.0/text-anchor.html
-0 normalise
-2 naughty_lang
-14 newline_in_string newline_in_string
-
 PASS ../toast/SVG/2.0/text-decoration.svg
 0 title_required
 1 xhtml_5_0

@@ -60,11 +60,12 @@ mab_t mab;
 int32_t from_utf8 (const ::std::string& s, UChar *sz, const int32_t len)
 {   PRESUME (context.icu (), __FILE__, __LINE__);
     VERIFY_NOT_NULL (sz, __FILE__, __LINE__);
+    PRESUME (len > 0, __FILE__, __LINE__);
     UErrorCode err = U_ZERO_ERROR;
     int32_t actual = 0;
     u_strFromUTF8 (sz, len, &actual, s.c_str (), GSL_NARROW_CAST < int32_t > (s.length ()), &err);
     if (U_SUCCESS (err))
-    {   sz [len-1] = 0;
+    {   sz [len-1] = 0;  // erm, VS, consider that assignment carefully before you whinge about it
         if (actual < len) return actual; }
     return 0; }
 

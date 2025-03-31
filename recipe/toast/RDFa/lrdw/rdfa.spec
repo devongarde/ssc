@@ -1,6 +1,7 @@
 -Y 1 -f ../toast/RDFa/lrdw/rdfa.conf
 
 PASS ../toast/RDFa/lrdw/lrdw.html
+0 normalise
 6 css_version
 7 reputation
 8 reputation

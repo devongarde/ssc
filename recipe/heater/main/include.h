@@ -62,8 +62,8 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 12
-#define VERSION_STRING "0.2.12"
+#define VERSION_RELEASE 13
+#define VERSION_STRING "0.2.13"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -82,54 +82,6 @@ z
 #define DEFAULT_LINE_LENGTH 72
 #define DESCRIPTION_LENGTH 60
 
-#ifdef WX
-#define EDITION "/g"
-#else // WX
-#define EDITION
-#endif // WX
-
-#if defined (DEBUG) || defined (_DEBUG) || defined (SSC_ASSERTS)
-#  ifndef DEBUG
-#  define DEBUG
-#  endif // DEBUG
-#endif // debug...
-
-#ifdef SSC_TEST
-#define NOICU
-#define NO_GSL
-#elif ! defined (NOSPELL) && ! defined (HUNSPELL) && ! defined (WINSPELL)
-#define NOSPELL
-#endif // SSC_TEST
-
-#ifdef NOICU
-#ifndef NOSPELL
-#define NOSPELL
-#endif // NOSPELL
-#else // NOICU
-#define BOOST_HAS_ICU
-#endif // NOICU
-
-#ifdef NOSPELL
-#if defined (WINSPELL) || defined (HUNSPELL)
-#error Define only one of NOSPELL, WINSPELL, or HUNSPELL
-#endif // ...SPELL
-#define SPELT
-#elif defined (WINSPELL) && defined (HUNSPELL)
-#error Define only one of WINSPELL or HUNSPELL
-#elif defined (WINSPELL) && ! defined (_MSC_VER)
-#error WINSPELL requires Windows & Visual Studio
-#else // NOSPELL
-#define SPELT "s"
-#endif // NOSPELL
-
-#ifdef NOCONSTEXPR
-#define CONSTEXPR const
-#else // NOCONSTEXPR
-#define CONSTEXPR constexpr
-#endif // NOCONSTEXPR
-
-#define LIMITED_META_COMPLEXITY
-
 #ifdef __clang__
 #pragma clang diagnostic push
 #pragma GCC diagnostic ignored "-Wall"
@@ -146,7 +98,7 @@ z
 #define PROCSIZE "64"
 #define STR_IT_BYTE
 #elif ! defined (_MSC_VER)
-#error Only clang, gcc and msvc supported. If you get your compiler working, please submit an appropriate pull request
+#error Only clang, gcc, and msvc are supported. Should you get an additional compiler working, please submit an appropriate pull request.
 #else //  __clang__
 #define COMPILER "m"
 #define COMPNAME "msvc"
@@ -164,6 +116,40 @@ z
 #define X64
 #define PROCSIZE "64"
 #endif // WIN32
+
+// https://docs.microsoft.com/en-us/cpp/preprocessor/predefined-macros?view=msvc-170
+#if _MSC_VER >= 1930
+#pragma warning (disable : 26812)
+#define _WIN32_WINNT 0x0A00 // 10
+#define WINICU
+#define GETUSERNAMEEX
+#ifndef VS2022
+#define VS2022
+#endif // VS2022
+#undef VS2019
+#undef VS2017
+#elif _MSC_VER >= 1920
+#define WINICU
+#define _WIN32_WINNT 0x0A00 // 10
+#ifndef VS2019
+#define VS2019
+#endif // VS2019
+#undef VS2022
+#undef VS2017
+#elif _MSC_VER >= 1910
+#define NOICU
+#define _WIN32_WINNT 0x0603 // 8.1
+#define SMALLINT
+#define NOMERGE
+#define SULKINGSTRINGVIEW
+#ifndef VS2017
+#define VS2017
+#endif // VS2017
+#undef VS2019
+#undef VS2022
+#else // _MSC_VER
+#error ssc only builds with VS 2017 / 2019 / 2022.
+#endif // _MSC_VER
 
     // The MSVC linter is generally useful, but it has (had?) some serious problems.
     // General problem 1: the msvc linter provides no clean mechanism to suppress a spurious warning in place, except through the #...
@@ -184,35 +170,6 @@ z
     //      the code doesn't own it.
 #pragma warning (disable : 6330 26409 26410 26415 26418 26434 26439 26455 26456 26461 26485)
 
-// https://docs.microsoft.com/en-us/cpp/preprocessor/predefined-macros?view=msvc-170
-#if _MSC_VER >= 1930
-#pragma warning (disable : 26812)
-#define _WIN32_WINNT 0x0A00 // 10
-#ifndef VS2022
-#define VS2022
-#undef VS2019
-#undef VS2017
-#endif // VS2022
-#elif _MSC_VER >= 1920
-#define _WIN32_WINNT 0x0A00 // 10
-#ifndef VS2019
-#define VS2019
-#undef VS2022
-#undef VS2017
-#endif // VS2019
-#elif _MSC_VER >= 1910
-#define _WIN32_WINNT 0x0603 // 8.1
-#define SMALLINT
-#define NOMERGE
-#ifndef VS2017
-#define VS2017
-#undef VS2019
-#undef VS2022
-#endif // VS2017
-#else // _MSC_VER
-#error ssc only builds with VS 2017 / 2019 / 2022.
-#endif // _MSC_VER
-
 #pragma warning (push, 3)
 #pragma warning (disable : ALL_CODE_ANALYSIS_WARNINGS)
 
@@ -221,6 +178,60 @@ z
 #define _CRT_SECURE_NO_WARNINGS
 
 #endif // __clang__
+
+#ifdef SSC_TEST
+#undef NOICU // get rid of value
+#define NOICU
+#define NO_GSL
+#elif ! defined (NOSPELL) && ! defined (HUNSPELL) && ! defined (WINSPELL)
+#undef NOSPELL
+#define NOSPELL
+#endif // SSC_TEST
+
+#if defined (DEBUG) || defined (_DEBUG) || defined (SSC_ASSERTS)
+#  ifndef DEBUG
+#  define DEBUG
+#  endif // DEBUG
+#endif // debug...
+
+#ifdef NOICU
+#undef NOICU // get rid of value
+#define NOICU
+#undef NOSPELL
+#define NOSPELL
+#else // NOICU
+#define BOOST_HAS_ICU
+#endif // NOICU
+
+#ifdef WX
+#define EDITION "/g"
+#else // WX
+#define EDITION
+#endif // WX
+
+#ifdef NOSPELL
+#ifdef WINSPELL
+#undef WINSPELL
+#endif // WINSPELL
+#ifdef HUNSPELL
+#undef HUNSPELL
+#endif // HUNSPELL
+#define SPELT
+#elif defined (WINSPELL) && defined (HUNSPELL)
+#error Define only one of WINSPELL or HUNSPELL
+#elif defined (WINSPELL) && ! defined (_MSC_VER)
+#error WINSPELL requires Windows & Visual Studio
+#else // NOSPELL
+#define SPELT "s"
+#endif // NOSPELL
+
+#ifdef NOCONSTEXPR
+#define CONSTEXPR const
+#else // NOCONSTEXPR
+#define CONSTEXPR constexpr
+#endif // NOCONSTEXPR
+
+#define LIMITED_META_COMPLEXITY
 
 // mostly for my sanity
 #define BOOST_LIB_DIAGNOSTIC
@@ -286,6 +297,9 @@ z
 #endif // ...
 
 #ifndef NOICU
+#ifdef WINICU
+#include <icu.h>
+#else WINICU
 #include <unicode/ucsdet.h>
 #include <unicode/ucnv.h>
 #include <unicode/unistr.h>
@@ -293,6 +307,7 @@ z
 #include <unicode/normalizer2.h>
 #include <unicode/brkiter.h>
 #include <unicode/ustring.h>
+#endif // WINICU
 #endif // NOICU
 
 #endif // SSC_TEST
@@ -742,6 +757,9 @@ typedef ::std::vector < bool > faux_vb_t;
 #ifdef NOICU
 #define ICU_VER
 #else // NOICU
+#ifndef U_ICU_VERSION
+#define U_ICU_VERSION "w"
+#endif U_ICU_VERSION
 #define ICU_VER ":" U_ICU_VERSION
 #endif // NOICU
 

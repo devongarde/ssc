@@ -21,55 +21,19 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_2096560EC26B4F3B9058F5EF062F77CA"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_242A87143A5142539BB6188CE1D18DAD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_3AE29523759E4C08AE167891CEA06CE4"
+        "MsmKey" = "8:_2FE3B75F093D490B8D89815B685DC08D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_3B360865B45FB198F7A7C2C5B2276B34"
-        "OwnerKey" = "8:_7BA8F39F09844F2B8AB683B9F250BA42"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_3B360865B45FB198F7A7C2C5B2276B34"
-        "OwnerKey" = "8:_85CED5AE0B5940D588D0D38C12555915"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_521A3C94AB9B486AAF8A76443529A236"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_574BD8993CE54A02B15EB65AF18F23C0"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_59DBE1FE04E7DB1CD0F8B25CF9A45796"
-        "OwnerKey" = "8:_7BA8F39F09844F2B8AB683B9F250BA42"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_59F9D9D2D5CC44CA84A25A8022ABDBAF"
+        "MsmKey" = "8:_3916F69807444821A741E48AD10A7474"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -81,44 +45,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_6BC99196FFA59F58D5CFFA4F13EB39FC"
-        "OwnerKey" = "8:_7BA8F39F09844F2B8AB683B9F250BA42"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_6BE84B815420416F864B02A61CB59E5E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_6D24EFE757C44CD39B65AE6A189F804B"
+        "MsmKey" = "8:_718ECB0CFEC24EACA987691833EE530B"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_6F4FCF602B145EE1635052C46C2A5AF9"
-        "OwnerKey" = "8:_7BA8F39F09844F2B8AB683B9F250BA42"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_6F4FCF602B145EE1635052C46C2A5AF9"
-        "OwnerKey" = "8:_85CED5AE0B5940D588D0D38C12555915"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_7087296D918499C4E4AA78D966AFA4F3"
-        "OwnerKey" = "8:_7BA8F39F09844F2B8AB683B9F250BA42"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_7087296D918499C4E4AA78D966AFA4F3"
-        "OwnerKey" = "8:_85CED5AE0B5940D588D0D38C12555915"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -129,7 +63,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_7BA8F39F09844F2B8AB683B9F250BA42"
+        "MsmKey" = "8:_7661BFB18AA84879AAC73FE2966DF605"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -141,127 +75,43 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_7D030A9BDF46434FC658221315494CAC"
-        "OwnerKey" = "8:_7BA8F39F09844F2B8AB683B9F250BA42"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_7D030A9BDF46434FC658221315494CAC"
-        "OwnerKey" = "8:_85CED5AE0B5940D588D0D38C12555915"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_85616254EB90C610C442ADDC9727650A"
-        "OwnerKey" = "8:_7BA8F39F09844F2B8AB683B9F250BA42"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_85616254EB90C610C442ADDC9727650A"
-        "OwnerKey" = "8:_85CED5AE0B5940D588D0D38C12555915"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_85CED5AE0B5940D588D0D38C12555915"
+        "MsmKey" = "8:_83EB103319C348B5B8B8618591205389"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_877BE8CC2715433B8E1E670CA2BBDA13"
+        "MsmKey" = "8:_A44F329666084724BFA4338C22450010"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_88596E599DBF4980920DF0CA8168A701"
+        "MsmKey" = "8:_A7205FE0060E43DAAD8271C48B36CDAA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_9B61556CA5E27A5A363CA0AB8F6C6111"
-        "OwnerKey" = "8:_7BA8F39F09844F2B8AB683B9F250BA42"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_A121808FD2FA49D0B4A76CB76A08AC62"
+        "MsmKey" = "8:_BC2DD7F750494FC194034E2D5D895532"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_A6B63962207044579F12747B38177EDB"
+        "MsmKey" = "8:_EB4EF5567D93419BB5B58D2A322636AE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_AD87B57A8AE5156DBE85A5EF20223242"
-        "OwnerKey" = "8:_7BA8F39F09844F2B8AB683B9F250BA42"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AD87B57A8AE5156DBE85A5EF20223242"
-        "OwnerKey" = "8:_85CED5AE0B5940D588D0D38C12555915"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_C9EB5134D08441CE8338A9A53F5E949C"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D16DE7F09E74AE2F3530D1B3DF830B17"
-        "OwnerKey" = "8:_7BA8F39F09844F2B8AB683B9F250BA42"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D16DE7F09E74AE2F3530D1B3DF830B17"
-        "OwnerKey" = "8:_85CED5AE0B5940D588D0D38C12555915"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_DE9949C425726DBE6039A5C4A7BD9BEE"
-        "OwnerKey" = "8:_7BA8F39F09844F2B8AB683B9F250BA42"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_DE9949C425726DBE6039A5C4A7BD9BEE"
-        "OwnerKey" = "8:_85CED5AE0B5940D588D0D38C12555915"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_ECA733631CFC617751C9ABAAC0052A3B"
-        "OwnerKey" = "8:_7BA8F39F09844F2B8AB683B9F250BA42"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F05FB3AC3AB444ACB42ADAA692527820"
+        "MsmKey" = "8:_F1AEB339615143A9873D2BBF23946CC6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_F69E8FB7CB1144189C345EB96B1D7EA2"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_FD58138389FC4F9A9D940B71EB3F4CA5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -372,26 +222,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2096560EC26B4F3B9058F5EF062F77CA"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\lib\\boost\\stage\\lib\\boost_chrono-vc143-mt-gd-x64-1_87.dll"
-            "TargetName" = "8:boost_chrono-vc143-mt-gd-x64-1_87.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_242A87143A5142539BB6188CE1D18DAD"
             {
             "SourcePath" = "8:..\\..\\LICENCE.txt"
@@ -412,10 +242,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3AE29523759E4C08AE167891CEA06CE4"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2FE3B75F093D490B8D89815B685DC08D"
             {
-            "SourcePath" = "8:..\\..\\..\\..\\lib\\icu\\icu\\bin64\\icuin76d.dll"
-            "TargetName" = "8:icuin76d.dll"
+            "SourcePath" = "8:..\\..\\..\\..\\lib\\boost\\stage\\lib\\boost_container-vc143-mt-x64-1_87.dll"
+            "TargetName" = "8:boost_container-vc143-mt-x64-1_87.dll"
             "Tag" = "8:"
             "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
             "Condition" = "8:"
@@ -432,90 +262,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3B360865B45FB198F7A7C2C5B2276B34"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3916F69807444821A741E48AD10A7474"
             {
-            "SourcePath" = "8:icuuc76d.dll"
-            "TargetName" = "8:icuuc76d.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_521A3C94AB9B486AAF8A76443529A236"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\lib\\boost\\stage\\lib\\boost_thread-vc143-mt-gd-x64-1_87.dll"
-            "TargetName" = "8:boost_thread-vc143-mt-gd-x64-1_87.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_574BD8993CE54A02B15EB65AF18F23C0"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\lib\\boost\\stage\\lib\\boost_atomic-vc143-mt-gd-x64-1_87.dll"
-            "TargetName" = "8:boost_atomic-vc143-mt-gd-x64-1_87.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_59DBE1FE04E7DB1CD0F8B25CF9A45796"
-            {
-            "SourcePath" = "8:wxbase32ud_vc14x_x64.dll"
-            "TargetName" = "8:wxbase32ud_vc14x_x64.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_59F9D9D2D5CC44CA84A25A8022ABDBAF"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\lib\\icu\\icu\\bin64\\icutu76d.dll"
-            "TargetName" = "8:icutu76d.dll"
+            "SourcePath" = "8:..\\..\\..\\..\\lib\\boost\\stage\\lib\\boost_chrono-vc143-mt-x64-1_87.dll"
+            "TargetName" = "8:boost_chrono-vc143-mt-x64-1_87.dll"
             "Tag" = "8:"
             "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
             "Condition" = "8:"
@@ -552,26 +302,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6BC99196FFA59F58D5CFFA4F13EB39FC"
-            {
-            "SourcePath" = "8:wxmsw32ud_core_vc14x_x64.dll"
-            "TargetName" = "8:wxmsw32ud_core_vc14x_x64.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6BE84B815420416F864B02A61CB59E5E"
             {
             "SourcePath" = "8:..\\..\\LICENSE.txt"
@@ -592,15 +322,15 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6D24EFE757C44CD39B65AE6A189F804B"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_736DB95018C24B74AFE2386E0C2CB7D2"
             {
-            "SourcePath" = "8:..\\..\\..\\..\\lib\\icu\\icu\\bin64\\icuio76d.dll"
-            "TargetName" = "8:icuio76d.dll"
+            "SourcePath" = "8:..\\..\\README.txt"
+            "TargetName" = "8:README.txt"
             "Tag" = "8:"
             "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
+            "Vital" = "11:FALSE"
             "ReadOnly" = "11:FALSE"
             "Hidden" = "11:FALSE"
             "System" = "11:FALSE"
@@ -612,55 +342,15 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6F4FCF602B145EE1635052C46C2A5AF9"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7661BFB18AA84879AAC73FE2966DF605"
             {
-            "SourcePath" = "8:VCRUNTIME140_1D.dll"
-            "TargetName" = "8:VCRUNTIME140_1D.dll"
+            "SourcePath" = "8:..\\..\\..\\..\\lib\\boost\\stage\\lib\\boost_filesystem-vc143-mt-x64-1_87.dll"
+            "TargetName" = "8:boost_filesystem-vc143-mt-x64-1_87.dll"
             "Tag" = "8:"
             "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7087296D918499C4E4AA78D966AFA4F3"
-            {
-            "SourcePath" = "8:VCRUNTIME140D.dll"
-            "TargetName" = "8:VCRUNTIME140D.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_736DB95018C24B74AFE2386E0C2CB7D2"
-            {
-            "SourcePath" = "8:..\\..\\README.txt"
-            "TargetName" = "8:README.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:FALSE"
             "ReadOnly" = "11:FALSE"
             "Hidden" = "11:FALSE"
             "System" = "11:FALSE"
@@ -692,50 +382,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7D030A9BDF46434FC658221315494CAC"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A44F329666084724BFA4338C22450010"
             {
-            "SourcePath" = "8:ucrtbased.dll"
-            "TargetName" = "8:ucrtbased.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_85616254EB90C610C442ADDC9727650A"
-            {
-            "SourcePath" = "8:icuin76d.dll"
-            "TargetName" = "8:icuin76d.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_877BE8CC2715433B8E1E670CA2BBDA13"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\lib\\boost\\stage\\lib\\boost_json-vc143-mt-gd-x64-1_87.dll"
-            "TargetName" = "8:boost_json-vc143-mt-gd-x64-1_87.dll"
+            "SourcePath" = "8:..\\..\\..\\..\\lib\\boost\\stage\\lib\\boost_json-vc143-mt-x64-1_87.dll"
+            "TargetName" = "8:boost_json-vc143-mt-x64-1_87.dll"
             "Tag" = "8:"
             "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
             "Condition" = "8:"
@@ -752,10 +402,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_88596E599DBF4980920DF0CA8168A701"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A7205FE0060E43DAAD8271C48B36CDAA"
             {
-            "SourcePath" = "8:..\\..\\..\\..\\lib\\icu\\icu\\bin64\\icudt76.dll"
-            "TargetName" = "8:icudt76.dll"
+            "SourcePath" = "8:..\\..\\..\\..\\lib\\boost\\stage\\lib\\boost_log-vc143-mt-x64-1_87.dll"
+            "TargetName" = "8:boost_log-vc143-mt-x64-1_87.dll"
             "Tag" = "8:"
             "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
             "Condition" = "8:"
@@ -772,30 +422,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9B61556CA5E27A5A363CA0AB8F6C6111"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BC2DD7F750494FC194034E2D5D895532"
             {
-            "SourcePath" = "8:wxmsw32ud_html_vc14x_x64.dll"
-            "TargetName" = "8:wxmsw32ud_html_vc14x_x64.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A121808FD2FA49D0B4A76CB76A08AC62"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\lib\\boost\\stage\\lib\\boost_filesystem-vc143-mt-gd-x64-1_87.dll"
-            "TargetName" = "8:boost_filesystem-vc143-mt-gd-x64-1_87.dll"
+            "SourcePath" = "8:..\\..\\..\\..\\lib\\boost\\stage\\lib\\boost_program_options-vc143-mt-x64-1_87.dll"
+            "TargetName" = "8:boost_program_options-vc143-mt-x64-1_87.dll"
             "Tag" = "8:"
             "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
             "Condition" = "8:"
@@ -812,10 +442,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A6B63962207044579F12747B38177EDB"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EB4EF5567D93419BB5B58D2A322636AE"
             {
-            "SourcePath" = "8:..\\..\\..\\..\\lib\\boost\\stage\\lib\\boost_program_options-vc143-mt-gd-x64-1_87.dll"
-            "TargetName" = "8:boost_program_options-vc143-mt-gd-x64-1_87.dll"
+            "SourcePath" = "8:..\\..\\..\\..\\lib\\boost\\stage\\lib\\boost_atomic-vc143-mt-x64-1_87.dll"
+            "TargetName" = "8:boost_atomic-vc143-mt-x64-1_87.dll"
             "Tag" = "8:"
             "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
             "Condition" = "8:"
@@ -832,110 +462,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AD87B57A8AE5156DBE85A5EF20223242"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F1AEB339615143A9873D2BBF23946CC6"
             {
-            "SourcePath" = "8:libcurl-d.dll"
-            "TargetName" = "8:libcurl-d.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C9EB5134D08441CE8338A9A53F5E949C"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\lib\\boost\\stage\\lib\\boost_container-vc143-mt-gd-x64-1_87.dll"
-            "TargetName" = "8:boost_container-vc143-mt-gd-x64-1_87.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D16DE7F09E74AE2F3530D1B3DF830B17"
-            {
-            "SourcePath" = "8:bcrypt.dll"
-            "TargetName" = "8:bcrypt.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DE9949C425726DBE6039A5C4A7BD9BEE"
-            {
-            "SourcePath" = "8:MSVCP140D.dll"
-            "TargetName" = "8:MSVCP140D.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_ECA733631CFC617751C9ABAAC0052A3B"
-            {
-            "SourcePath" = "8:wxmsw32ud_stc_vc14x_x64.dll"
-            "TargetName" = "8:wxmsw32ud_stc_vc14x_x64.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F05FB3AC3AB444ACB42ADAA692527820"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\lib\\boost\\stage\\lib\\boost_log-vc143-mt-gd-x64-1_87.dll"
-            "TargetName" = "8:boost_log-vc143-mt-gd-x64-1_87.dll"
+            "SourcePath" = "8:..\\..\\..\\..\\lib\\boost\\stage\\lib\\boost_thread-vc143-mt-x64-1_87.dll"
+            "TargetName" = "8:boost_thread-vc143-mt-x64-1_87.dll"
             "Tag" = "8:"
             "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
             "Condition" = "8:"
@@ -961,26 +491,6 @@
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:FALSE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FD58138389FC4F9A9D940B71EB3F4CA5"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\lib\\icu\\icu\\bin64\\icuuc76d.dll"
-            "TargetName" = "8:icuuc76d.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
             "ReadOnly" = "11:FALSE"
             "Hidden" = "11:FALSE"
             "System" = "11:FALSE"
@@ -1060,7 +570,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Static Site Checker"
         "ProductCode" = "8:{4F4BC2E7-DAE1-463A-A3A3-C25D59280C7A}"
-        "PackageCode" = "8:{72A4062F-0CC7-42DB-99BC-F4A62C56E96D}"
+        "PackageCode" = "8:{94E7A474-4680-4CFF-BBFA-F8D6A45F69B4}"
         "UpgradeCode" = "8:{ACAC31D3-265B-4006-97ED-BFF275C64542}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1180,20 +690,6 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_143E823750D543BD877DEA2842A07EDD"
-            {
-            "Name" = "8:Static Site Checker"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_7BA8F39F09844F2B8AB683B9F250BA42"
-            "Folder" = "8:_278EC601016A40FF905C1AC3D344040C"
-            "WorkingFolder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_2ACC571B21224E7BA533E08AEBB5DB23"
             {
             "Name" = "8:Release Notes"
@@ -1217,6 +713,20 @@
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
             "Target" = "8:_242A87143A5142539BB6188CE1D18DAD"
+            "Folder" = "8:_278EC601016A40FF905C1AC3D344040C"
+            "WorkingFolder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_6816DBF4649D4905ACF390008DC037A4"
+            {
+            "Name" = "8:Static Site Checker"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_83EB103319C348B5B8B8618591205389"
             "Folder" = "8:_278EC601016A40FF905C1AC3D344040C"
             "WorkingFolder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
             "Icon" = "8:"
@@ -1649,9 +1159,9 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_7BA8F39F09844F2B8AB683B9F250BA42"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_718ECB0CFEC24EACA987691833EE530B"
             {
-            "SourcePath" = "8:..\\tea\\x64\\Debugwx\\ssc22-wx.exe"
+            "SourcePath" = "8:..\\tea\\x64\\Release\\ssc22.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
@@ -1669,17 +1179,17 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:Debug|x64"
+            "OutputConfiguration" = "8:Release|x64"
             "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{CDFD1629-A939-463B-B181-58512930A8E4}"
+            "OutputProjectGuid" = "8:{267FF320-A1F2-453B-B242-BD51EB2C54D6}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {
                 }
             }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_85CED5AE0B5940D588D0D38C12555915"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_83EB103319C348B5B8B8618591205389"
             {
-            "SourcePath" = "8:..\\tea\\x64\\Debug\\ssc22.exe"
+            "SourcePath" = "8:..\\tea\\x64\\Releasewx\\ssc22-wx.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_687FBB4FB211477EAADE676B491AA0CF"
@@ -1697,9 +1207,9 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:Debug|x64"
+            "OutputConfiguration" = "8:Release|x64"
             "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{267FF320-A1F2-453B-B242-BD51EB2C54D6}"
+            "OutputProjectGuid" = "8:{CDFD1629-A939-463B-B181-58512930A8E4}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {

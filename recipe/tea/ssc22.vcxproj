@@ -4571,6 +4571,282 @@
     <None Include="..\toast\living\apr24\ww-7.html" />
     <None Include="..\toast\living\apr24\ww-8.html" />
     <None Include="..\toast\living\apr24\ww-9.html" />
+    <None Include="..\toast\living\apr25\404.html" />
+    <None Include="..\toast\living\apr25\a-1.html" />
+    <None Include="..\toast\living\apr25\a.html" />
+    <None Include="..\toast\living\apr25\abbr.html" />
+    <None Include="..\toast\living\apr25\accesskey.html" />
+    <None Include="..\toast\living\apr25\address.html" />
+    <None Include="..\toast\living\apr25\aks.html" />
+    <None Include="..\toast\living\apr25\article-1.html" />
+    <None Include="..\toast\living\apr25\article-2.html" />
+    <None Include="..\toast\living\apr25\article-3.html" />
+    <None Include="..\toast\living\apr25\aside-1.html" />
+    <None Include="..\toast\living\apr25\aside-2.html" />
+    <None Include="..\toast\living\apr25\aside-3.html" />
+    <None Include="..\toast\living\apr25\autocorrect.html" />
+    <None Include="..\toast\living\apr25\autofocus.html" />
+    <None Include="..\toast\living\apr25\b-1.html" />
+    <None Include="..\toast\living\apr25\b.html" />
+    <None Include="..\toast\living\apr25\base.html" />
+    <None Include="..\toast\living\apr25\bdi.html" />
+    <None Include="..\toast\living\apr25\bidi.css" />
+    <None Include="..\toast\living\apr25\blockquote.html" />
+    <None Include="..\toast\living\apr25\body-1.html" />
+    <None Include="..\toast\living\apr25\body-2.html" />
+    <None Include="..\toast\living\apr25\br.html" />
+    <None Include="..\toast\living\apr25\browsing-1.html" />
+    <None Include="..\toast\living\apr25\browsing-2.html" />
+    <None Include="..\toast\living\apr25\browsing-3.html" />
+    <None Include="..\toast\living\apr25\browsing-4.html" />
+    <None Include="..\toast\living\apr25\button.html" />
+    <None Include="..\toast\living\apr25\canvas1.html" />
+    <None Include="..\toast\living\apr25\canvas2.html" />
+    <None Include="..\toast\living\apr25\canvas3.html" />
+    <None Include="..\toast\living\apr25\canvas4.html" />
+    <None Include="..\toast\living\apr25\canvas5.html" />
+    <None Include="..\toast\living\apr25\caption.html" />
+    <None Include="..\toast\living\apr25\cdata.html" />
+    <None Include="..\toast\living\apr25\cite.html" />
+    <None Include="..\toast\living\apr25\cm.html" />
+    <None Include="..\toast\living\apr25\code.html" />
+    <None Include="..\toast\living\apr25\commands.html" />
+    <None Include="..\toast\living\apr25\conformance.html" />
+    <None Include="..\toast\living\apr25\custom-1.html" />
+    <None Include="..\toast\living\apr25\custom-2.html" />
+    <None Include="..\toast\living\apr25\custom-3.html" />
+    <None Include="..\toast\living\apr25\custom-4.html" />
+    <None Include="..\toast\living\apr25\data.html" />
+    <None Include="..\toast\living\apr25\datalist.html" />
+    <None Include="..\toast\living\apr25\datamodel.html" />
+    <None Include="..\toast\living\apr25\dd.html" />
+    <None Include="..\toast\living\apr25\del.html" />
+    <None Include="..\toast\living\apr25\details.css" />
+    <None Include="..\toast\living\apr25\details.html" />
+    <None Include="..\toast\living\apr25\dfn.html" />
+    <None Include="..\toast\living\apr25\dialogue.html" />
+    <None Include="..\toast\living\apr25\div.html" />
+    <None Include="..\toast\living\apr25\dl.html" />
+    <None Include="..\toast\living\apr25\dragondrops.html" />
+    <None Include="..\toast\living\apr25\dt.html" />
+    <None Include="..\toast\living\apr25\editing-1.html" />
+    <None Include="..\toast\living\apr25\editing-2.html" />
+    <None Include="..\toast\living\apr25\el.html" />
+    <None Include="..\toast\living\apr25\em.html" />
+    <None Include="..\toast\living\apr25\ep.html" />
+    <None Include="..\toast\living\apr25\et.html" />
+    <None Include="..\toast\living\apr25\extra.html" />
+    <None Include="..\toast\living\apr25\fad-a.html" />
+    <None Include="..\toast\living\apr25\fad-b.html" />
+    <None Include="..\toast\living\apr25\fieldset.css" />
+    <None Include="..\toast\living\apr25\fieldset.html" />
+    <None Include="..\toast\living\apr25\figcaption.html" />
+    <None Include="..\toast\living\apr25\figure-1.html" />
+    <None Include="..\toast\living\apr25\figure-2.html" />
+    <None Include="..\toast\living\apr25\footer-1.html" />
+    <None Include="..\toast\living\apr25\footer-2.html" />
+    <None Include="..\toast\living\apr25\footer-3.html" />
+    <None Include="..\toast\living\apr25\footer-4.html" />
+    <None Include="..\toast\living\apr25\form.css" />
+    <None Include="..\toast\living\apr25\form.html" />
+    <None Include="..\toast\living\apr25\formex.html" />
+    <None Include="..\toast\living\apr25\forms.html" />
+    <None Include="..\toast\living\apr25\h-1.html" />
+    <None Include="..\toast\living\apr25\h-10.html" />
+    <None Include="..\toast\living\apr25\h-11.html" />
+    <None Include="..\toast\living\apr25\h-2.html" />
+    <None Include="..\toast\living\apr25\h-3.html" />
+    <None Include="..\toast\living\apr25\h-4.html" />
+    <None Include="..\toast\living\apr25\h-5.html" />
+    <None Include="..\toast\living\apr25\h-6.html" />
+    <None Include="..\toast\living\apr25\h-7.html" />
+    <None Include="..\toast\living\apr25\h-8.html" />
+    <None Include="..\toast\living\apr25\h-9.html" />
+    <None Include="..\toast\living\apr25\head-1.html" />
+    <None Include="..\toast\living\apr25\head-2.html" />
+    <None Include="..\toast\living\apr25\header-1.html" />
+    <None Include="..\toast\living\apr25\header-2.html" />
+    <None Include="..\toast\living\apr25\header-3.html" />
+    <None Include="..\toast\living\apr25\hgroup-1.html" />
+    <None Include="..\toast\living\apr25\hgroup-2.html" />
+    <None Include="..\toast\living\apr25\hidden.html" />
+    <None Include="..\toast\living\apr25\history-1.html" />
+    <None Include="..\toast\living\apr25\history-2.html" />
+    <None Include="..\toast\living\apr25\history-4.html" />
+    <None Include="..\toast\living\apr25\hr.css" />
+    <None Include="..\toast\living\apr25\hr.html" />
+    <None Include="..\toast\living\apr25\hs-1.html" />
+    <None Include="..\toast\living\apr25\hs-10.html" />
+    <None Include="..\toast\living\apr25\hs-11.html" />
+    <None Include="..\toast\living\apr25\hs-12.html" />
+    <None Include="..\toast\living\apr25\hs-13.html" />
+    <None Include="..\toast\living\apr25\hs-2.html" />
+    <None Include="..\toast\living\apr25\hs-3.html" />
+    <None Include="..\toast\living\apr25\hs-4.html" />
+    <None Include="..\toast\living\apr25\hs-5.html" />
+    <None Include="..\toast\living\apr25\hs-6.html" />
+    <None Include="..\toast\living\apr25\hs-7.html" />
+    <None Include="..\toast\living\apr25\hs-8.html" />
+    <None Include="..\toast\living\apr25\hs-9.html" />
+    <None Include="..\toast\living\apr25\html.html" />
+    <None Include="..\toast\living\apr25\html4.css" />
+    <None Include="..\toast\living\apr25\i.html" />
+    <None Include="..\toast\living\apr25\idioms.html" />
+    <None Include="..\toast\living\apr25\iframe.html" />
+    <None Include="..\toast\living\apr25\im.html" />
+    <None Include="..\toast\living\apr25\imedia.html" />
+    <None Include="..\toast\living\apr25\img.html" />
+    <None Include="..\toast\living\apr25\index.html" />
+    <None Include="..\toast\living\apr25\inert.html" />
+    <None Include="..\toast\living\apr25\input.html" />
+    <None Include="..\toast\living\apr25\ins.html" />
+    <None Include="..\toast\living\apr25\intro-1.html" />
+    <None Include="..\toast\living\apr25\intro-2.html" />
+    <None Include="..\toast\living\apr25\intro-3.html" />
+    <None Include="..\toast\living\apr25\json.html" />
+    <None Include="..\toast\living\apr25\kbd.html" />
+    <None Include="..\toast\living\apr25\label.html" />
+    <None Include="..\toast\living\apr25\li.html" />
+    <None Include="..\toast\living\apr25\link.html" />
+    <None Include="..\toast\living\apr25\links-alternate.html" />
+    <None Include="..\toast\living\apr25\links-bookmark.html" />
+    <None Include="..\toast\living\apr25\links-help.html" />
+    <None Include="..\toast\living\apr25\links-icon.html" />
+    <None Include="..\toast\living\apr25\links-licence.html" />
+    <None Include="..\toast\living\apr25\links-modulepreload.html" />
+    <None Include="..\toast\living\apr25\links-noopener.html" />
+    <None Include="..\toast\living\apr25\links-noreferrer.html" />
+    <None Include="..\toast\living\apr25\links-opener.html" />
+    <None Include="..\toast\living\apr25\links-tag.html" />
+    <None Include="..\toast\living\apr25\links-tag2.html" />
+    <None Include="..\toast\living\apr25\lists.css" />
+    <None Include="..\toast\living\apr25\living.conf" />
+    <None Include="..\toast\living\apr25\living.spec" />
+    <None Include="..\toast\living\apr25\lwp.html" />
+    <None Include="..\toast\living\apr25\main-1.html" />
+    <None Include="..\toast\living\apr25\main-2.html" />
+    <None Include="..\toast\living\apr25\map.html" />
+    <None Include="..\toast\living\apr25\mark.html" />
+    <None Include="..\toast\living\apr25\marquee.css" />
+    <None Include="..\toast\living\apr25\math.html" />
+    <None Include="..\toast\living\apr25\me.html" />
+    <None Include="..\toast\living\apr25\menu.html" />
+    <None Include="..\toast\living\apr25\meta-1.html" />
+    <None Include="..\toast\living\apr25\meta-2.html" />
+    <None Include="..\toast\living\apr25\meter.css" />
+    <None Include="..\toast\living\apr25\meter.html" />
+    <None Include="..\toast\living\apr25\microdata-1.html" />
+    <None Include="..\toast\living\apr25\microdata-2.html" />
+    <None Include="..\toast\living\apr25\microsyntax.html" />
+    <None Include="..\toast\living\apr25\nav-1.html" />
+    <None Include="..\toast\living\apr25\nav-2.html" />
+    <None Include="..\toast\living\apr25\nav-3.html" />
+    <None Include="..\toast\living\apr25\nav-4.html" />
+    <None Include="..\toast\living\apr25\navapi.html" />
+    <None Include="..\toast\living\apr25\noscript-1.html" />
+    <None Include="..\toast\living\apr25\noscript-2.html" />
+    <None Include="..\toast\living\apr25\noscript-3.html" />
+    <None Include="..\toast\living\apr25\object.html" />
+    <None Include="..\toast\living\apr25\ol.html" />
+    <None Include="..\toast\living\apr25\optgroup.html" />
+    <None Include="..\toast\living\apr25\output.html" />
+    <None Include="..\toast\living\apr25\p.html" />
+    <None Include="..\toast\living\apr25\phrasing.css" />
+    <None Include="..\toast\living\apr25\popover.html" />
+    <None Include="..\toast\living\apr25\popovertarget.html" />
+    <None Include="..\toast\living\apr25\pre.html" />
+    <None Include="..\toast\living\apr25\progress.css" />
+    <None Include="..\toast\living\apr25\progress.html" />
+    <None Include="..\toast\living\apr25\q.html" />
+    <None Include="..\toast\living\apr25\replaced.css" />
+    <None Include="..\toast\living\apr25\rp.html" />
+    <None Include="..\toast\living\apr25\ruby.html" />
+    <None Include="..\toast\living\apr25\s.html" />
+    <None Include="..\toast\living\apr25\samp.html" />
+    <None Include="..\toast\living\apr25\script.html" />
+    <None Include="..\toast\living\apr25\scripting-1.html" />
+    <None Include="..\toast\living\apr25\scripting-2.html" />
+    <None Include="..\toast\living\apr25\scripting-3.html" />
+    <None Include="..\toast\living\apr25\scripting-4.html" />
+    <None Include="..\toast\living\apr25\scripting-5.html" />
+    <None Include="..\toast\living\apr25\scripting-6.html" />
+    <None Include="..\toast\living\apr25\scripting-7.html" />
+    <None Include="..\toast\living\apr25\scripting-8.html" />
+    <None Include="..\toast\living\apr25\scripting-9.html" />
+    <None Include="..\toast\living\apr25\search-1.html" />
+    <None Include="..\toast\living\apr25\search-2.html" />
+    <None Include="..\toast\living\apr25\section-1.html" />
+    <None Include="..\toast\living\apr25\section-2.html" />
+    <None Include="..\toast\living\apr25\section-3.html" />
+    <None Include="..\toast\living\apr25\sections.css" />
+    <None Include="..\toast\living\apr25\select.html" />
+    <None Include="..\toast\living\apr25\selectors.html" />
+    <None Include="..\toast\living\apr25\small.html" />
+    <None Include="..\toast\living\apr25\source.html" />
+    <None Include="..\toast\living\apr25\span.html" />
+    <None Include="..\toast\living\apr25\ssah-1.html" />
+    <None Include="..\toast\living\apr25\ssah-2.html" />
+    <None Include="..\toast\living\apr25\ssah-3.html" />
+    <None Include="..\toast\living\apr25\ssah-4.html" />
+    <None Include="..\toast\living\apr25\ssah-5.xhtml" />
+    <None Include="..\toast\living\apr25\ssah-6.html" />
+    <None Include="..\toast\living\apr25\strange-1.html" />
+    <None Include="..\toast\living\apr25\strange-2.html" />
+    <None Include="..\toast\living\apr25\strange-3.html" />
+    <None Include="..\toast\living\apr25\strange-4.html" />
+    <None Include="..\toast\living\apr25\strong.html" />
+    <None Include="..\toast\living\apr25\style.html" />
+    <None Include="..\toast\living\apr25\subsup.html" />
+    <None Include="..\toast\living\apr25\systemstate.html" />
+    <None Include="..\toast\living\apr25\table.html" />
+    <None Include="..\toast\living\apr25\tables.css" />
+    <None Include="..\toast\living\apr25\tc.html" />
+    <None Include="..\toast\living\apr25\td.html" />
+    <None Include="..\toast\living\apr25\te.html" />
+    <None Include="..\toast\living\apr25\template1.html" />
+    <None Include="..\toast\living\apr25\template2.html" />
+    <None Include="..\toast\living\apr25\textarea.html" />
+    <None Include="..\toast\living\apr25\th.html" />
+    <None Include="..\toast\living\apr25\thead.html" />
+    <None Include="..\toast\living\apr25\time.html" />
+    <None Include="..\toast\living\apr25\title-1.html" />
+    <None Include="..\toast\living\apr25\title-2.html" />
+    <None Include="..\toast\living\apr25\tls.html" />
+    <None Include="..\toast\living\apr25\track.html" />
+    <None Include="..\toast\living\apr25\u.html" />
+    <None Include="..\toast\living\apr25\ul.html" />
+    <None Include="..\toast\living\apr25\var.html" />
+    <None Include="..\toast\living\apr25\vcard.html" />
+    <None Include="..\toast\living\apr25\vevent.html" />
+    <None Include="..\toast\living\apr25\video.html" />
+    <None Include="..\toast\living\apr25\wbr.html" />
+    <None Include="..\toast\living\apr25\work.html" />
+    <None Include="..\toast\living\apr25\ws-1.html" />
+    <None Include="..\toast\living\apr25\ws-10.html" />
+    <None Include="..\toast\living\apr25\ws-11.html" />
+    <None Include="..\toast\living\apr25\ws-12.html" />
+    <None Include="..\toast\living\apr25\ws-13.html" />
+    <None Include="..\toast\living\apr25\ws-14.html" />
+    <None Include="..\toast\living\apr25\ws-15.html" />
+    <None Include="..\toast\living\apr25\ws-16.html" />
+    <None Include="..\toast\living\apr25\ws-2.html" />
+    <None Include="..\toast\living\apr25\ws-3.html" />
+    <None Include="..\toast\living\apr25\ws-4.html" />
+    <None Include="..\toast\living\apr25\ws-5.html" />
+    <None Include="..\toast\living\apr25\ws-6.html" />
+    <None Include="..\toast\living\apr25\ws-7.html" />
+    <None Include="..\toast\living\apr25\ws-8.html" />
+    <None Include="..\toast\living\apr25\ws-9.html" />
+    <None Include="..\toast\living\apr25\ww-1.html" />
+    <None Include="..\toast\living\apr25\ww-10.html" />
+    <None Include="..\toast\living\apr25\ww-2.html" />
+    <None Include="..\toast\living\apr25\ww-3.html" />
+    <None Include="..\toast\living\apr25\ww-4.html" />
+    <None Include="..\toast\living\apr25\ww-5.html" />
+    <None Include="..\toast\living\apr25\ww-6.html" />
+    <None Include="..\toast\living\apr25\ww-7.html" />
+    <None Include="..\toast\living\apr25\ww-8.html" />
+    <None Include="..\toast\living\apr25\ww-9.html" />
     <None Include="..\toast\living\jan08\a.html" />
     <None Include="..\toast\living\jan08\abbr.html" />
     <None Include="..\toast\living\jan08\address.html" />
@@ -13998,8 +14274,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL)\include;$(ICU_ROOT)\include</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc14x_x64_dll;$(ICU_ROOT)\lib64</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL)\include</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(BOOST)\stage\lib</LibraryPath>
     <EnableMicrosoftCodeAnalysis>true</EnableMicrosoftCodeAnalysis>
     <EnableClangTidyCodeAnalysis>false</EnableClangTidyCodeAnalysis>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
@@ -14007,8 +14283,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL)\include;$(ICU_ROOT)\include</IncludePath>
-    <LibraryPath>$(ICU_ROOT)\lib64;$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc14x_x64_dll;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL)\include</IncludePath>
+    <LibraryPath>$(BOOST)\stage\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -14029,12 +14305,12 @@
     <TargetName>$(ProjectName)-x86</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
-    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath)$(BOOST);$(GSL)\include;$(ICU_ROOT)\include;$(BOOST)</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(ICU_ROOT)\libARM64</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath)$(BOOST);$(GSL)\include;$(BOOST)</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
-    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(GSL)\include;$(ICU_ROOT)\include;$(BOOST)</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib;$(ICU_ROOT)\libARM64</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(GSL)\include;$(BOOST)</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_ARM64);$(WindowsSDK_LibraryPath_ARM64);$(BOOST)\stage\lib</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg">
     <VcpkgEnableManifest>true</VcpkgEnableManifest>
@@ -14061,7 +14337,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icuind.lib;icuiod.lib;icutud.lib;icuucd.lib;icudt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icu.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
@@ -14107,7 +14383,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icudt.lib;icuin.lib;icuio.lib;icutu.lib;icuuc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icu.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
       <Profile>true</Profile>
@@ -14144,7 +14420,7 @@
       <SubSystem>Console</SubSystem>
       <HeapReserveSize>33554432</HeapReserveSize>
       <StackReserveSize>67108864</StackReserveSize>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icudt.lib;icuind.lib;icuiod.lib;icutud.lib;icuucd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icu.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) $(ProjectDir)..\..\ssc.exe</Command>
@@ -14152,7 +14428,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <ClCompile>
-      <PreprocessorDefinitions>NDEBUG;CONSOLE;COMMAND_LINE;WINSPELL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;COMMAND_LINE;WINSPELL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
@@ -14171,7 +14447,7 @@
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icudt.lib;icuin.lib;icuio.lib;icutu.lib;icuuc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Secur32.lib;icu.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateMapFile>true</GenerateMapFile>
       <SubSystem>Console</SubSystem>
       <HeapReserveSize>33554432</HeapReserveSize>

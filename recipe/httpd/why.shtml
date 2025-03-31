@@ -36,7 +36,8 @@ broken internal links, let alone hidden links
 Many people avoid such problems by using frameworks.
 I find frameworks awful. IMAO, they produce dull, boring, trite design.
 The visual arts world has had centuries to develop excellent form for a rectangular space.
-Most 21<sup>st</sup> frameworks are so crude they haven&rsquo;t even absorbed 14<sup>th</sup> century visual arts&rsquo; developments,
+Most 21<sup>st</sup> frameworks are so crude they haven&rsquo;t
+even absorbed 14<sup>th</sup> century visual arts&rsquo; developments,
 when painters broke out of rectangular form in a rectangular frame.
 So much is possible, so much hasn&rsquo;t happened.
 I want to break this dull, stultifying, archaic, mutton.
@@ -95,7 +96,7 @@ That&rsquo;s why I swore off NextCloud.
 </li>
 <li>
 Frameworks use scripted languages, such as PHP.
-There were, in October 2021,
+There were, for example, recently,
 <A href="https://www.cvedetails.com/product/128/PHP-PHP.html?vendor_id=74">five known vulnerabilities in PHP</a>
 (far better than time was).
 Other frameworks use other scripted languages with other problems.

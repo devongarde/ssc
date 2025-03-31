@@ -7,7 +7,6 @@ PASS ../toast/microdata/dpv2/2-1.html
 PASS ../toast/microdata/dpv2/eu-gdpr-2.html
 4 long_title
 22 unrecognised_ontology
-23 bad_property
 28 unrecognised_ontology
 29 unrecognised_ontology unrecognised_ontology
 
@@ -38,6 +37,7 @@ PASS ../toast/microdata/dpv2/just-2.html
 26 bad_property
 35 bad_property
 36 bad_property
+47 bad_property
 
 PASS ../toast/microdata/dpv2/tech-2.html
 12 bad_property

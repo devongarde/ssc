@@ -44,9 +44,9 @@ static bool oh_dear (nitpick& nits, const url& u, const ::boost::beast::error_co
         case ::boost::beast::errc::no_space_on_device :
         case ::boost::beast::errc::no_stream_resources :
         case ::boost::beast::errc::not_enough_memory :
-#ifndef DARWIN
+#ifndef UNIX
         case ::boost::beast::errc::operation_would_block :
-#endif // MACOS
+#endif // UNIX
         case ::boost::beast::errc::resource_deadlock_would_occur :
         case ::boost::beast::errc::too_many_files_open_in_system :
         case ::boost::beast::errc::too_many_files_open :
@@ -188,11 +188,11 @@ static bool fetch (nitpick& nits, const url& u, const ::boost::beast::http::verb
         {   streamer.connect (lookup);
             try
             {   ::boost::beast::http::request <::boost::beast::http::string_body> request { vrb, u.get_filepath (), 11 };
-#ifdef VS2017
+#ifdef SULKINGSTRINGVIEW
                 request.set (::boost::beast::http::field::host, dom.data ());
-#else // VS2017
+#else // SULKINGSTRINGVIEW
                 request.set (::boost::beast::http::field::host, dom);
-#endif // VS2017
+#endif // SULKINGSTRINGVIEW
                 request.set (::boost::beast::http::field::user_agent, SSC_USER_AGENT);
                 ::boost::beast::http::write (streamer, request, ec);
                 if (ec) oh_dear (nits, u, ec);

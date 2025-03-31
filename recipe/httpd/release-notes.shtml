@@ -20,11 +20,41 @@
 
 <div class="column-unit">
 
+<h3>0.2.13</h3>
+
+<ul>
+<li>
+<a href="https://html.spec.whatwg.org/">Living Standard</a> April 2025
+</li>
+<li>
+<a href="https://schema.org/">schema.org</a> version 29.0
+</li>
+<li>
+<a href="https://w3c.github.io/dpv/">DPV</a> ontologies version 2.1
+</li>
+<li>
+replace ICU with native equivalent under Windows
+</li>
+<li>
+underlying work
+</li>
+<li>
+download
+<A href="src/ssc-0.2.13.tgz" type="application/gzip">source</a> (all unsigned).
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2025-04-01">25 4 1</time>
+</li>
+</ul>
+
 <h3>0.2.12</h3>
 
 <ul>
 <li>
 added ARIA 1.1, 1.2 &amp; 1.3 (draft), and ARIA Digital Publishing.
+</li>
+<li>
+added warnings for missing transcription and description &lt;TRACK&gt;s for media elements 
 </li>
 <li>
 Added OUTPUT configuration section (to control output details)
@@ -33,22 +63,19 @@ Added OUTPUT configuration section (to control output details)
 added --LINKS.REQUIRED for required links on pages, such as T&amp;C, legal, etc..
 </li>
 <li>
-added warnings for missing transcription and description &lt;TRACK&gt;s for media elements 
+added living standard COMMAND, COMMANDFOR and ONCOMMAND attributes
+</li>
+<li>
+better checking of &lt;IFRAME&gt; ALLOW attribute
+</li>
+<li>
+faux AI &lt;THINK&gt; element treated rather like &lt;DIV&gt;&mdash;with a warning
 </li>
 <li>
 updated schema legislation and shipping types
 </li>
 <li>
 added bribe schema (techanically referred to as FinancialIncentive)
-</li>
-<li>
-added living standard COMMAND, COMMANDFOR and ONCOMMAND attributes
-</li>
-<li>
-faux AI &lt;THINK&gt; element treated rather like &lt;DIV&gt;&mdash;with a warning
-</li>
-<li>
-better checking of &lt;IFRAME&gt; ALLOW attribute
 </li>
 <li>
 remove dependency on CURL
@@ -58,10 +85,14 @@ underlying work
 </li>
 <li>
 download
-<A href="src/ssc-0.2.12.tgz" type="application/gzip">source</a>
+<A href="bin/Install-SSC-v0.2.12-Win-x64.msi" type="application/octet-stream">Windows 10/11 x64 installer</a>,
+<A href="bin/Install-SSC-v0.2.12-Win-a64.msi" type="application/octet-stream">Windows 10/11 ARM64 installer</a>,
+<A href="bin/SSC-v0.2.12-Mac-Arm.zip" type="application/zip">Mac ARM app (zipped)</a>,
+<A href="bin/SSC-v0.2.12-Mac-Intel.zip" type="application/zip">Mac Intel app (zipped)</a>,
+<A href="src/ssc-0.2.12.tgz" type="application/gzip">source</a> (all unsigned).
 </li>
 <li>
-released <time itemprop="datePublished" class="dt-published" datetime="2025-03-01">25 3 1</time>
+released <time itemprop="datePublished" class="dt-published" datetime="2025-03-18">25 3 18</time>
 </li>
 </ul>
 
@@ -115,7 +146,7 @@ added living standard &lt;DIALOG&gt; CLOSEDBY attribute
 underlying work
 </li>
 <li>download
-<A href="src/Install Static Site Checker 0.2.10 x64.msi" type="application/octet-stream">Windows x64 installer</a>,
+<A href="bin/Install-SSC-v0.2.10-Win-x64.msi" type="application/octet-stream">Windows x64 installer</a>,
 <A href="src/ssc-0.2.10.tgz" type="application/gzip">source</a>
 </li>
 <li>

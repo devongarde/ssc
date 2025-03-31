@@ -298,3 +298,4 @@ inline vstr_t vbp2vstr (const vbp_t& s)
     return res; }
 
 ::std::string get_account ();
+::std::string string_diff (const ::std::string& lhs, const ::std::string& rhs, const bool numeric = false);

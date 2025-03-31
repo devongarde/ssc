@@ -43,6 +43,35 @@ It should not be used on untrusted content; its parsers are
 <a href="https://www.liveabout.com/robins-oddest-holy-exclamations-from-the-batman-tv-series-3896999">holier than Robin&rsquo;s cow</a>.
 </p>
 
+<h2>current downloads</h2>
+
+<ul>
+<li>
+<A href="bin/Install-SSC-<!--#echo encoding="none" var="version" -->-Win-x64.msi" type="application/zip">Windows 10/11 x64 installer</a>
+</li><li>
+<A href="bin/Install-SSC-<!--#echo encoding="none" var="version" -->-Win-a64.msi" type="application/zip">Windows 10/11 ARM64 installer</a>
+</li><li>
+<A href="bin/SSC-<!--#echo encoding="none" var="version" -->-Mac-Arm.zip" type="application/zip">Mac ARM app (zipped)</a>
+</li><li>
+<A href="bin/SSC-<!--#echo encoding="none" var="version" -->-Mac-Intel.zip" type="application/zip">Mac Intel app (zipped)</a>
+</li><li>
+<A href="src/ssc-<!--#echo encoding="none" var="version" -->.tgz" type="application/gzip">source</a>
+</li>
+</ul>
+
+<p>
+WARNING: these downloads are unsigned (an issue being addressed).
+If that worries you, the current source is also available on
+<a href="https://github.com/devongarde/ssc">github</a>, where you can grab it to build
+<!--#echo encoding="none" var="short" --> yourself.
+</p>
+
+<p>
+Older source versions can be downloaded
+<a href="release-notes.shtml" title="source &amp; release notes">from this page</a>.
+
+</p>
+
 <!--#comment not yet
 <h2>try it</h2>
 
@@ -93,7 +122,7 @@ Submit
 <a href="args/index.shtml">command line arguments</a>
 </li>
 <li>
-<a href="release-notes.shtml" title="source &amp; release notes">release notes &amp; source code</a>
+<a href="release-notes.shtml" title="source &amp; release notes">release notes, binaries &amp; source code</a>
 </li>
 <li>
 <a href="build.shtml">build notes</a>

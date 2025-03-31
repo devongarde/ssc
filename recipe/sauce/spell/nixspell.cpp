@@ -26,6 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/context.h"
 #include "parser/text.h"
 #include "icu/lingo.h"
+#include "utility/filesystem.h"
 ::boost::filesystem::path dicts;
 
 #define AFFINITY_EXTENSION ".aff"

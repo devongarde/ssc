@@ -36,7 +36,7 @@ struct fred_tls  // thread local storage, not sorted ssl
     ::std::atomic_bool eleanor_;
     vsstr_t vsesii_;
     fred_tls () : fred_ (fred_bloggs), lox_ (lox_none), empty_ (true), flox_ (false), dear_ (false), eleanor_ (false) { }
-    explicit fred_tls (const e_fred f) : fred_ (f), lox_ (lox_none), empty_ (true), flox_ (false), dear_ (false), eleanor_ (false) { }
+    explicit fred_tls (const e_fred f) noexcept : fred_ (f), lox_ (lox_none), empty_ (true), flox_ (false), dear_ (false), eleanor_ (false) { }
     NO_COPY_CONSTRUCTORS (fred_tls);
     ~fred_tls () = default; };
 

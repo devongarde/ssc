@@ -49,7 +49,7 @@ void wotsit_init (nitpick& nits)
     for (tb -> wotsit_count_ = 0; wotsit_table [tb -> wotsit_count_].wotsit_ != nullptr; ++(tb -> wotsit_count_))
     {   ::std::string w (normalise_utf8 (nits, wotsit_table [tb -> wotsit_count_].wotsit_));
         if (tb -> wotsit_.find (w) != tb -> wotsit_.end ())
-            nits.pick (nit_symbol_aleady_defined, es_error, ec_program, "Program error: wotsit_ ", w, " already defined");
+            nits.pick (nit_symbol_aleady_defined, es_error, ec_program, "Program error: wotsit_ \"", w, "\" already defined");
         else
         {   tb -> wotsit_.insert (vw_t::value_type (w, tb -> wotsit_count_));
             const ::std::size_t len = w.length ();

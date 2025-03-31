@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+ <head> <title> conformance </title> </head>
+ <body>
+
+<ul>
+ <li><a href="message.cgi?say=Hello">Say Hello</a>
+ <li><a href="message.cgi?say=Welcome">Say Welcome</a>
+ <li><a href="message.cgi?say=Kittens">Say Kittens</a>
+</ul>
+
+<img src="games.png" alt="Games" onload="gamesLogoHasLoaded(event)">
+
+<script>
+ var img = new Image();
+ img.src = 'games.png';
+ img.alt = 'Games';
+ img.onload = gamesLogoHasLoaded;
+ // img.addEventListener('load', gamesLogoHasLoaded, false); // would work also
+</script>
+
+<!-- Do not use this style, it has a race condition! -->
+ <img id="games" src="games.png" alt="Games">
+ <!-- the 'load' event might fire here while the parser is taking a
+ break, in which case you will not see it! -->
+ <script>
+ var img = document.getElementById('games');
+ img.onload = gamesLogoHasLoaded; // might never fire!
+ </script>
+
+<p><i>She dreamt.
+<p><i>She dreamt that she ate breakfast.
+<p><i>Then lunch.
+<p><i>And finally dinner.
+
+<a href="?bill&ted">Bill and Ted</a>
+
+<a href="?art&copy">Art and Copy</a>
+
+<a href="?bill&ted">Bill and Ted</a> <!-- &ted is ok, since it's not a named character reference -->
+<a href="?art&amp;copy">Art and Copy</a> <!-- the & has to be escaped, since &copy is a named character
+reference -->
+
+<hr role="cell">
+<input type=radio role=progressbar>
+
+<p>Welcome. <form><label>Name:</label> <input></form>
+
+<p>Welcome. </p><form><label>Name:</label> <input></form>
+
+
+ </body>
+</html>

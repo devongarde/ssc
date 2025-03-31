@@ -4,6 +4,7 @@ PASS ../toast/math/4-core/index.html
 2 naughty_lang
 
 PASS ../toast/math/4-core/core-1.html
+0 normalise
 2 naughty_lang
 4 long_title
 

@@ -15,9 +15,20 @@ PASS ../toast/stats/detail/itemref.html
 
 PASS ../toast/stats/detail/keyword-1.html
 2 naughty_lang
+19 role_missing
 
 PASS ../toast/stats/detail/keyword-2.html
 2 naughty_lang
+17 role_missing
+20 role_missing
+21 role_missing
+22 role_missing
+23 role_missing
+26 role_missing
+28 role_missing
+30 role_missing
+31 role_missing
+33 role_missing
 
 PASS ../toast/stats/detail/md-ref.html
 18 no_itemscope
@@ -25,5 +36,5 @@ PASS ../toast/stats/detail/md-ref.html
 
 GRAND
 Version:
-    HTML-5/20250101/SVG-2.1/MathML-core/CSS-1/WhatWG: 6 times
+    HTML-5/20250401/SVG-2.1/MathML-core/CSS-1/WhatWG: 6 times
 ===

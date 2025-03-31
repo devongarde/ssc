@@ -53,11 +53,34 @@ bool is_valid_property (nitpick& nits, const html_version& v, const e_ontology_t
         case s_dct :
         case s_ddi :
         case s_doap :
-        case s_dpv :
+        case s_dpv_ai :
+        case s_dpv_eu_aiact :
         case s_dpv_eu_dga :
+        case s_dpv_eu_ehds :
         case s_dpv_eu_gdpr :
+        case s_dpv_eu_nis2 :
+        case s_dpv_eu_rights :
+        case s_dpv_gdpr :
+        case s_dpv_just :
+        case s_dpv_legal :
+        case s_dpv_legal_de :
+        case s_dpv_legal_eu :
+        case s_dpv_legal_gb :
+        case s_dpv_legal_ie :
+        case s_dpv_legal_in :
+        case s_dpv_legal_us :
         case s_dpv_loc :
+        case s_dpv_nace :
+        case s_dpv_p7012 :
+        case s_dpv_pd :
+        case s_dpv_rights :
         case s_dpv_risk :
+        case s_dpv_s_edu :
+        case s_dpv_s_fin :
+        case s_dpv_s_hth :
+        case s_dpv_s_inf :
+        case s_dpv_s_law :
+        case s_dpv_s_ps :
         case s_dpv_tech :
         case s_dqv :
         case s_duv :
@@ -147,8 +170,7 @@ bool is_valid_property (nitpick& nits, const html_version& v, const e_ontology_t
             return true;
         default :
             break; }
-    GRACEFUL_CRASH (__FILE__, __LINE__);
-    UNREACHABLE (return false); }
+    return false; }
 
 bool is_valid_property (nitpick& nits, const html_version& v, const e_ontology_type t, const e_ontology_property p, const e_ontology_type value)
 {   switch (sch::root (t))
@@ -174,11 +196,34 @@ bool is_valid_property (nitpick& nits, const html_version& v, const e_ontology_t
         case s_dct :
         case s_ddi :
         case s_doap :
-        case s_dpv :
+        case s_dpv_ai :
+        case s_dpv_eu_aiact :
         case s_dpv_eu_dga :
+        case s_dpv_eu_ehds :
         case s_dpv_eu_gdpr :
+        case s_dpv_eu_nis2 :
+        case s_dpv_eu_rights :
+        case s_dpv_gdpr :
+        case s_dpv_just :
+        case s_dpv_legal :
+        case s_dpv_legal_de :
+        case s_dpv_legal_eu :
+        case s_dpv_legal_gb :
+        case s_dpv_legal_ie :
+        case s_dpv_legal_in :
+        case s_dpv_legal_us :
         case s_dpv_loc :
+        case s_dpv_nace :
+        case s_dpv_p7012 :
+        case s_dpv_pd :
+        case s_dpv_rights :
         case s_dpv_risk :
+        case s_dpv_s_edu :
+        case s_dpv_s_fin :
+        case s_dpv_s_hth :
+        case s_dpv_s_inf :
+        case s_dpv_s_law :
+        case s_dpv_s_ps :
         case s_dpv_tech :
         case s_dqv :
         case s_duv :
@@ -268,8 +313,7 @@ bool is_valid_property (nitpick& nits, const html_version& v, const e_ontology_t
             return true;
         default :
             break; }
-    GRACEFUL_CRASH (__FILE__, __LINE__);
-    UNREACHABLE (return false); }
+    return false; }
 
 template < typename ENUM > ENUM rdf_t::fit_vocab (const html_version& , const ::std::string& ) const
 {   GRACEFUL_CRASH (__FILE__, __LINE__); }

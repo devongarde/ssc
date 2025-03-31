@@ -4,7 +4,7 @@ PortSystem                  1.0
 PortGroup                   github 1.0
 PortGroup                   cmake 1.1
 
-github.setup                devongarde ssc 0.2.12 v
+github.setup                devongarde ssc 0.2.13 v
 github.tarball_from         releases
 
 revision                    0

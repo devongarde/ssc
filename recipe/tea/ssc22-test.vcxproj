@@ -101,8 +101,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL);$(ICU_ROOT)</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc14x_x64_dll</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL)</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(BOOST)\stage\lib</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
     <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
   </PropertyGroup>
@@ -123,8 +123,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL);$(ICU_ROOT)</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(BOOST)\stage\lib;$(WX_ROOT)\lib\vc14x_x64_dll</LibraryPath>
+    <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL)</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(BOOST)\stage\lib</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\test-$(Configuration)\</OutDir>
     <IntDir>$(Platform)\test-$(Configuration)\</IntDir>
   </PropertyGroup>

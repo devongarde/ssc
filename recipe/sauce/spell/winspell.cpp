@@ -99,7 +99,7 @@ void check_spelling (nitpick& nits, const html_version& v, const lingo& lang, co
     ISpellChecker* isp = nullptr;
     HRESULT hr = 0;
     if (i == mlf.cend ())
-    {   ::std::wstring wlang = convert_to_wstring (l);
+    {   ::std::wstring wlang = convert_from_utf8 (l);
         hr = scf -> CreateSpellChecker (wlang.c_str (), &isp);
         if (FAILED (hr))
         {   mlf.insert (mlf_t::value_type (l, nullptr));
@@ -142,7 +142,7 @@ void check_spelling (nitpick& nits, const html_version& v, const lingo& lang, co
     {   if (t.empty ()) continue;
         if (! islower (t.at (0), lang.locale ()) && ! isupper (t.at (0), lang.locale ())) continue;
         IEnumSpellingError* whoopsie = nullptr;
-        ::std::wstring w = convert_to_wstring (t);
+        ::std::wstring w = convert_from_utf8 (t);
         hr = isp -> ComprehensiveCheck (w.c_str (), &whoopsie);
         if (FAILED (hr)) continue;
         VERIFY_NOT_NULL (whoopsie, __FILE__, __LINE__);
@@ -163,7 +163,7 @@ void check_spelling (nitpick& nits, const html_version& v, const lingo& lang, co
                 ::std::string booboo = t.substr (pos, len);
                 vstr_t alt;
                 if (context.tell (es_info))
-                {   w = convert_to_wstring (booboo);
+                {   w = convert_from_utf8 (booboo);
                     hr = isp -> Suggest (w.c_str (), &suggested);
                     if (FAILED (hr)) suggested = nullptr;
                     else if (suggested != nullptr)

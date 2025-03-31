@@ -4,7 +4,7 @@ PASS ../toast/microdata/dpv1/E0001.html
 13 unrecognised_ontology
 
 PASS ../toast/microdata/dpv1/E0002.html
-12 unrecognised_ontology unrecognised_ontology
+12 unrecognised_ontology
 13 unrecognised_ontology
 
 PASS ../toast/microdata/dpv1/E0003.html

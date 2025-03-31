@@ -383,12 +383,16 @@ void element::examine_xlinkhref ()
 void element::test_for_ancestral_role ()
 {   if (node_.version () >= html_aria_html)
         if (! ancestral_attributes_.test (a_role))
-            pick (nit_role_missing, ed_aria_html, "4. Document conformance requirements for use of ARIA attributes in HTML", es_warning, ec_element, "It is ... recommended that authors add a role attribute to a semantically neutral (ancestral) element such as a div or span ..."); }
+            if ((tag () == elem_div) || (tag () == elem_span))
+                pick (nit_role_missing, ed_aria_html, "4. Document conformance requirements for use of ARIA attributes in HTML", es_warning, ec_element, "It is ... recommended that authors add a role attribute to a semantically neutral element such as a div or span ...");
+            else pick (nit_role_missing, ed_aria_html, "4. Document conformance requirements for use of ARIA attributes in HTML", es_warning, ec_element, "It is ... recommended that authors add a role attribute to a semantically neutral (ancestral) element such as a div or span ..."); }
 
 void element::test_for_ancestral_role (const role_bitset& permitted)
 {   if (node_.version () >= html_aria_html)
         if (! ancestral_attributes_.test (a_role))
-            pick (nit_role_missing, ed_aria_html, "4. Document conformance requirements for use of ARIA attributes in HTML", es_warning, ec_element, "It is ... recommended that authors add a role attribute to a semantically neutral (ancestral) element such as a div or span ...");
+            if ((tag () == elem_div) || (tag () == elem_span))
+                pick (nit_role_missing, ed_aria_html, "4. Document conformance requirements for use of ARIA attributes in HTML", es_warning, ec_element, "It is ... recommended that authors add a role attribute to a semantically neutral element such as a div or span ...");
+            else pick (nit_role_missing, ed_aria_html, "4. Document conformance requirements for use of ARIA attributes in HTML", es_warning, ec_element, "It is ... recommended that authors add a role attribute to a semantically neutral (ancestral) element such as a div or span ...");
         else if (! permitted.test (role_any))
             if (! ancestral_roles_.any (permitted))
                 if (permitted.count () == 1)

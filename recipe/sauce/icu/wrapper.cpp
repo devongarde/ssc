@@ -52,11 +52,25 @@ charset_detector_match charset_detector_matches::at (const int32_t i) const
 #pragma warning (pop)
 #endif // _MSC_VER
 
+void charset_detector::swap (charset_detector& cd) noexcept
+{   ::std::swap (detector_, cd.detector_);
+    ::std::swap (err_, cd.err_);
+    ::std::swap (charset_match_count_, cd.charset_match_count_);
+    ::std::swap (confidence_, cd.confidence_);
+    ::std::swap (charset_match_, cd.charset_match_); }
+
 bool charset_detector::set_text (const char *in, int32_t len)
 {   PRESUME (context.icu (), __FILE__, __LINE__);
     PRESUME (detector_ != nullptr, __FILE__, __LINE__);
     ucsdet_setText (detector_, in, len, &err_);
     return valid (); }
+
+charset_detector_matches charset_detector::match_all () noexcept
+{   UGLY_PRESUME (context.icu (), __FILE__, __LINE__);
+    charset_match_ = ucsdet_detectAll (detector_, &charset_match_count_, &err_);
+    if (err_ == U_ZERO_ERROR)
+        confidence_ = ucsdet_getConfidence (*charset_match_ , &err_);
+    return charset_detector_matches (charset_match_, charset_match_count_); }
 
 void_ptr converter::convert_to (const void_ptr& vp, const uintmax_t sz)
 {   PRESUME (context.icu (), __FILE__, __LINE__);

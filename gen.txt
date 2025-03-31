@@ -827,7 +827,7 @@ ontologies (see --ontology.list).
                                 dcterms 1.0,1.1
                                 ddi 1.0
                                 doap 1.0
-                                dpv* 0.1-2.0 (see below)
+                                dpv* 0.1-2.1 (see below)
                                 dqv 1.0
                                 describedby 1.0
                                 duv 1.0
@@ -883,7 +883,7 @@ ontologies (see --ontology.list).
                                 rif 1.0
                                 role 1.0
                                 rr 1.0
-                                schema.org 0.10-28.1 (see below)
+                                schema.org 0.10-29 (see below)
                                 sd 1.0
                                 sioc 1.0
                                 sioc_s 1.0
@@ -986,31 +986,40 @@ ontologies (see --ontology.list).
                             0.82    0.8.2
                             0.90    0.9
                             1.0     1
-                            2.0     2
+                            2.0     2.0
+                            2.1     2.1
 
                         The data privacy ontology versions:
-                            ai              2
-                            dpv             0.1-2
-                            eu-aiact        2
-                            eu-dga          2
-                            eu-gdpr         2
-                            eu-nis2         2
-                            eu-rights       2
+                            ai              2.0,2.1
+                            dpv             0.1-2.1
+                            eu-aiact        2.0,2.1
+                            eu-dga          2.0,2.1
+                            eu-ehds         2.1
+                            eu-gdpr         2.0,2.1
+                            eu-nis2         2.0,2.1
+                            eu-rights       2.0,2.1
                             gdpr            0.1-1
-                            justifications  2
+                            justifications  2.0,2.1
                             legal           0.5-1
-                            legal-de        2
-                            legal-eu        2
-                            legal-gb        2
-                            legal-ie        2
-                            legal-in        2
-                            legal-us        2
-                            loc             2
+                            legal-de        2.0,2.1
+                            legal-eu        2.0,2.1
+                            legal-gb        2.0,2.1
+                            legal-ie        2.0,2.1
+                            legal-in        2.0,2.1
+                            legal-us        2.0,2.1
+                            legal-*         2.1
+                            loc             2.0,2.1
                             nace            0.1-1
+                            p7012           2.1
                             pd              0.4-2
-                            rights-eu       0.8-2
-                            risk            0.8-2
-                            tech            0.8-2
+                            rights-eu       0.8-2.1
+                            risk            0.8-2.1
+                            dpv-sector-education 2.1
+                            dpv-sector-finance  2.1
+                            dpv-sector-health   2.1
+                            dpv-sector-infra    2.1
+                            dpv-sector-law  2.1
+                            tech            0.8-2.1
 
                         The Exif & ExifEx ontologies have the following
                         versions:
@@ -1079,6 +1088,7 @@ ontologies (see --ontology.list).
                                 27.2        27.02
                                 28          as version number
                                 28.1        as version number
+                                29          as version number
 
                         vCard versions correspond to RDFa specs,
                         published in 2001, 2006, 2010 & 2014. They do

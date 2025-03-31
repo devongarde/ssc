@@ -63,12 +63,12 @@ public:
     static bool modify_severity (const ::std::string& name, const e_severity s);
     static e_severity get_severity (const e_nit code)
     {   return user_severity (code, es_undefined); }
-    static void reset_severities () { mns_.clear (); }
+    static void reset_severities () noexcept { mns_.clear (); }
     void swap (nitpick& np) noexcept;
     void reset () noexcept;
     void reset (const nitpick& np);
     void merge (const nitpick& np);
-    static const mns_t& mns () { return mns_; }
+    static const mns_t& mns () noexcept { return mns_; }
     static void mns (const mns_t& m) { mns_ = m; }
     nitpick nick ();
 
