@@ -890,6 +890,9 @@ const nitname nitnames [] =
     { nit_permissions_policy, "permissions_policy" },
     { nit_too_few, "too_few" },
     { nit_library_error, "library_error" },
+    { nit_fediverse, "fediverse" },
+    { nit_vtt_cue, "vtt cue" },
+    { nit_webvtt, "webvtt" },
 
     { nit_incompatible, "incompatible" },
 

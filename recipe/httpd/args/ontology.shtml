@@ -161,7 +161,7 @@ To specific a specific version of an ontology, use X.Y, for example:<br>
 <tr><td>ontology.rif</td> <td>1.0</td></tr>
 <tr><td>ontology.role</td> <td>1.0</td></tr>
 <tr><td>ontology.rr</td> <td>1.0</td></tr>
-<tr><td>ontology.schema.org</td> <td>0.10-29 (see below)</td></tr>
+<tr><td>ontology.schema.org</td> <td>0.10-30 (see below)</td></tr>
 <tr><td>ontology.sd</td> <td>1.0</td></tr>
 <tr><td>ontology.sioc</td> <td>1.0</td></tr>
 <tr><td>ontology.sioc_s</td> <td>1.0</td></tr>
@@ -262,9 +262,13 @@ BFO (Basic Format Ontology) versions should be
                             <tr><td>1.0.10</td> <td>1.10 (cr and rai)</td></tr>
                             <tr><td>1.0.11</td> <td>1.11 (cr and rai)</td></tr>
                             <tr><td>1.0.12</td> <td>1.12 (cr and rai)</td></tr>
+                            <tr><td>1.0.13</td> <td>1.13 (cr and rai)</td></tr>
+                            <tr><td>1.0.14</td> <td>1.14 (cr and rai)</td></tr>
+                            <tr><td>1.0.15</td> <td>1.15 (cr and rai)</td></tr>
+                            <tr><td>1.0.16</td> <td>1.16 (cr and rai)</td></tr>
+                            <tr><td>1.0.17</td> <td>1.17 (cr and rai)</td></tr>
                             <tr><td>1.1</td> <td>1.100 (cr and rai)</td></tr>
                         </table>
-
 
 <h3>DPV&hellip;</h3>
 
@@ -324,6 +328,11 @@ The data privacy ontology versions:
                             <tr><td>dpv-sector-law</td> <td>2.1</td></tr>
                             <tr><td>tech</td> <td>0.8&ndash;2.1</td></tr>
 </table>
+
+<p>
+For data privacy ontologies versions 2.1.1, use 2.1: there were no changes
+to the ontologies themselves.
+</p>
 
 <h3>Exif, ExifEx</h3>
 
@@ -405,9 +414,8 @@ Most versions of schema (schema.org) should be
                         <tr><td>27</td> <td>as version number</td></tr>
                         <tr><td>27.1</td> <td>27.01</td></tr>
                         <tr><td>27.2</td> <td>27.02</td></tr>
-                        <tr><td>28</td> <td>as version number</td></tr>
-                        <tr><td>28.1</td> <td>as version number</td></tr>
-                        <tr><td>29</td> <td>as version number</td></tr>
+                        <tr><td>&hellip;</td> <td>&hellip;</td></tr>
+                        <tr><td>29.1</td> <td>as version number</td></tr>
                         </table>
 
 <h3>vCard</h3>

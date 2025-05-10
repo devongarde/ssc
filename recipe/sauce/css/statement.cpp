@@ -119,7 +119,7 @@ void statement::parse_container (arguments& args, nitpick& nits, const int from,
                     return; } } }
         int depth = 0;
         bool had_brax = false, more = true, notted = false, styled = false, curly = false, r1 = false, slash = false, ketable = false;
-        css_token op = ct_error;
+        e_token op = ct_error;
         e_css_container_feature feature = ccf_none;
         for (int j = i; more && (j > 0); j = next_non_whitespace (args.t_, j, to))
             switch (args.t_.at (j).t_)

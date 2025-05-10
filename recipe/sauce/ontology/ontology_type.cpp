@@ -13047,6 +13047,7 @@ struct symbol_entry < ontology_version, e_ontology_type, e_ontology, s_schema > 
     { { 3, 0 }, { 0, 0 }, "Conversation", sch_conversation },
     { { 1, 2 }, { 0, 0 }, "CookAction", sch_cookaction },
     { { 1, 92 }, { 0, 0 }, "Coop", sch_coop },
+    { { 29, 1 }, { 0, 0 }, "Cooperative", sch_cooperative },
     { { 0, 10 }, { 0, 0 }, "Corporation", sch_corporation },
     { { 3, 5 }, { 0, 0 }, "CorrectionComment", sch_correctioncomment },
     { { 0, 10 }, { 0, 0 }, "Country", sch_country },

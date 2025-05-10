@@ -367,6 +367,7 @@ const char* str_name [] =
     res += saybe (table, category_.at (ec_type), "Type");
     res += saybe (table, category_.at (ec_url), "URx");
     res += saybe (table, category_.at (ec_utility), "Utility");
+    res += saybe (table, category_.at (ec_vtt), "VTT");
     if (! res.empty ())
     {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
         res = macro -> apply (ns_stats_head, table) + res + macro -> apply (ns_stats_foot, table); }

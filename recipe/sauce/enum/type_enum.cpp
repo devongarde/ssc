@@ -868,8 +868,8 @@ struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "closed", efn_closed, ns_default, CF_NOT_LV_STD_JUL23 },
     { { HTML_CSS, 0, 0, H2_CSS_COCO, H3_CSS_SCOPE }, { HTML_UNDEF }, "content", efn_content },
     { { HTML_CSS, 0, 0, H2_CSS_EASE }, { HTML_UNDEF }, "cubic-bezier", efn_cubic_bezier },
-    { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_COCO }, { HTML_UNDEF }, "cue", efn_cue },
-    { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_COCO }, { HTML_UNDEF }, "cue-region", efn_cue_region },
+    { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_COCO, 0, H4_VTT }, { HTML_UNDEF }, "cue", efn_cue },
+    { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_COCO, 0, H4_VTT }, { HTML_UNDEF }, "cue-region", efn_cue_region },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 | H2_CSS_N_ARGS }, { HTML_UNDEF }, "current", efn_current },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "default", efn_default },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "defined", efn_defined },
@@ -888,7 +888,7 @@ struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "focus-visible", efn_focus_visible },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4, 0, H4_CSS_SAFE_2018 }, { HTML_UNDEF }, "focus-within", efn_focus_within },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "fullscreen", efn_fullscreen },
-    { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "future", efn_future },
+    { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4, 0, H4_VTT }, { HTML_UNDEF }, "future", efn_future },
     { { HTML_CSS, 0, 0, H2_CSS_COCO, H3_CSS_PSEUDO }, { HTML_UNDEF }, "grammar-error", efn_grammar_error },
     { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_N_ARGS }, { HTML_UNDEF }, "has", efn_has },
     { { HTML_CSS, 0, 0, H2_CSS_COCO | H2_CSS_1_ARG, H3_CSS_HIGHLIGHT }, { HTML_UNDEF }, "highlight", efn_highlight },
@@ -925,7 +925,7 @@ struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "out-of-range", efn_out_of_range },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "paused", efn_paused },
     { { HTML_CSS, 0, 0, H2_CSS_COCO | H2_CSS_1_ARG, H3_CSS_SHADOW }, { HTML_UNDEF }, "part", efn_part },
-    { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "past", efn_past },
+    { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4, 0, H4_VTT }, { HTML_UNDEF }, "past", efn_past },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "picture-in-picture", efn_picture_in_picture },
     { { HTML_CSS, 0, 0, H2_CSS_COCO, H3_CSS_PSEUDO }, { HTML_UNDEF }, "placeholder", efn_placeholder },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "placeholder-shown", efn_placeholder_shown },
@@ -6700,6 +6700,43 @@ struct symbol_entry < html_version, e_vtt > vtt_symbol_table [] =
     { { HTML_VCARD }, { HTML_UNDEF }, "video", vt_video },
     { { HTML_VCARD }, { HTML_UNDEF }, "voice", vt_voice } };
 
+struct symbol_entry < html_version, e_vtt_keyword > vtt_keyword_symbol_table [] =
+{   { { HTML_VTT }, { HTML_UNDEF }, "-->", vtk_cue },
+    { { HTML_VTT }, { HTML_UNDEF }, "align", vtk_align },
+    { { HTML_VTT }, { HTML_UNDEF }, "b", vtk_bold },
+    { { HTML_VTT }, { HTML_UNDEF }, "c", vtk_class },
+    { { HTML_VTT }, { HTML_UNDEF }, "center", vtk_centre },
+    { { HTML_VTT }, { HTML_UNDEF }, "end", vtk_end },
+    { { HTML_VTT }, { HTML_UNDEF }, "i", vtk_italics },
+    { { HTML_VTT }, { HTML_UNDEF }, "id", vtk_id },
+    { { HTML_VTT }, { HTML_UNDEF }, "lang", vtk_lang },
+    { { HTML_VTT }, { HTML_UNDEF }, "left", vtk_left },
+    { { HTML_VTT }, { HTML_UNDEF }, "line", vtk_line },
+    { { HTML_VTT }, { HTML_UNDEF }, "line-left", vtk_line_left },
+    { { HTML_VTT }, { HTML_UNDEF }, "line-right", vtk_line_right },
+    { { HTML_VTT }, { HTML_UNDEF }, "lines", vtk_lines },
+    { { HTML_VTT }, { HTML_UNDEF }, "lr", vtk_lr },
+    { { HTML_VTT }, { HTML_UNDEF }, "NOTE", vtk_note },
+    { { HTML_VTT }, { HTML_UNDEF }, "position", vtk_position },
+    { { HTML_VTT }, { HTML_UNDEF }, "region", vtk_region_lc },
+    { { HTML_VTT }, { HTML_UNDEF }, "REGION", vtk_region_uc },
+    { { HTML_VTT }, { HTML_UNDEF }, "regionanchor", vtk_regionanchor },
+    { { HTML_VTT }, { HTML_UNDEF }, "right", vtk_right },
+    { { HTML_VTT }, { HTML_UNDEF }, "rl", vtk_rl },
+    { { HTML_VTT }, { HTML_UNDEF }, "rt", vtk_rt },
+    { { HTML_VTT }, { HTML_UNDEF }, "ruby", vtk_ruby },
+    { { HTML_VTT }, { HTML_UNDEF }, "scroll", vtk_scroll },
+    { { HTML_VTT }, { HTML_UNDEF }, "size", vtk_size },
+    { { HTML_VTT }, { HTML_UNDEF }, "start", vtk_start },
+    { { HTML_VTT }, { HTML_UNDEF }, "STYLE", vtk_style },
+    { { HTML_VTT }, { HTML_UNDEF }, "u", vtk_underline },
+    { { HTML_VTT }, { HTML_UNDEF }, "up", vtk_up },
+    { { HTML_VTT }, { HTML_UNDEF }, "v", vtk_voice },
+    { { HTML_VTT }, { HTML_UNDEF }, "vertical", vtk_vertical },
+    { { HTML_VTT }, { HTML_UNDEF }, "viewportanchor", vtk_viewportanchor },
+    { { HTML_VTT }, { HTML_UNDEF }, "WEBVTT", vtk_webvtt },
+    { { HTML_VTT }, { HTML_UNDEF }, "width", vtk_width } };
+
 struct symbol_entry < html_version, e_weekday_english_short > weekday_english_short_symbol_table [] =
 {   { { HTML_TAGS }, { HTML_UNDEF }, "sun", wes_sun },
     { { HTML_TAGS }, { HTML_UNDEF }, "mon", wes_mon },
@@ -7350,6 +7387,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (vgender);
     INIT_ENUM (vrel);
     INIT_ENUM (vtt);
+    INIT_ENUM (vtt_keyword);
     INIT_ENUM (weekday_english_long);
     INIT_ENUM (weekday_english_short);
     INIT_ENUM (whitespace);
@@ -7687,6 +7725,7 @@ void enum_init (nitpick& nits)
         RETURN_SIZE (vgender);
         RETURN_SIZE (vrel);
         RETURN_SIZE (vtt);
+        RETURN_SIZE (vtt_keyword);
         RETURN_SIZE (weekday_english_long);
         RETURN_SIZE (weekday_english_short);
         RETURN_SIZE (whitespace);

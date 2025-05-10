@@ -54,7 +54,7 @@ and, except for Windows, a recent version of
 If you want to experiment with the still&ndash;in&ndash;development GUI version, #define WX, and you&rsquo;ll
 need a recent version of <a href="https://wxwidgets.org/">wxWidgets</a>. 
 <a href="index.shtml"><!--#echo encoding="none" var="short" --></a>
-no longers depends on CURL.
+no longer depends on CURL.
 Usually, an Operating System&rsquo;s package manager has appropriate versions ready to install.
 </p>
 
@@ -174,7 +174,7 @@ given that means things are already in the required state.
 <p>
 Versions of <a href="index.shtml"><!--#echo encoding="none" var="short" --></a> have been successfully built in
 <a href="https://openbsd.org/">OpenBSD</a>, <a href="https://freebsd.org/">FreeBSD</a>, <a href="https://linux.org/">Linux</a>,
-&amp; <a href="https://en.wikipedia.org/wiki/MacOS">MacOS</a> on AMD64 and ARM64 architextures. 
+&amp; <a href="https://en.wikipedia.org/wiki/MacOS">MacOS</a> on AMD64 and ARM64 architectures. 
 </p>
 
 <p>

@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.2.13
+version 0.2.14
 (c) 2020-2025 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notices
 https://ssc.lu/
@@ -75,7 +75,7 @@ and forwarding it to the developer:
 - any known workarounds, fixes or solutions;
 - a video of a dance interpretation of the issue.
 Email everything to mail@ssc.lu (if the collected files are more than
-small, please use a public fileserver and email the link). Do NOT send
+small, please use a public file server and email the link). Do NOT send
 anything confidential. Furthermore, unless you state otherwise, we
 reserve the right to publish some or all of the information sent in
 future versions of ssc, usually in the test suite. If you have a fix,

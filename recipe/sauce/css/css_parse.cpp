@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "css/group.h"
 #include "webpage/page.h"
 
-typedef ::std::vector < css_token > vct_t;
+typedef ::std::vector < e_token > vct_t;
 
 bool hexen (::std::string& s, ::std::string& hex)
 {   if (hex.empty ()) return false;
@@ -33,7 +33,7 @@ bool hexen (::std::string& s, ::std::string& hex)
     hex.clear ();
     return true; }
 
-void bonk (vtt_t& vt, css_token t, const int line, ::std::string& s, ::std::string& hex, const ::std::string& x, bool& commented, bool& sgml_cmt, bool& xml_cmt)
+void bonk (vtok_t& vt, e_token t, const int line, ::std::string& s, ::std::string& hex, const ::std::string& x, bool& commented, bool& sgml_cmt, bool& xml_cmt)
 {   hexen (s, hex);
     if (t == ct_root) commented = sgml_cmt = xml_cmt = false;
     bool shush = false;
@@ -74,7 +74,7 @@ bool anticipate (::std::string::const_iterator& from, ::std::string::const_itera
     from += len - 1;
     return true; }
 
-void breed (v_np& , vtt_t& t, const ::std::string::const_iterator , const ::std::string::const_iterator )
+void breed (v_np& , vtok_t& t, const ::std::string::const_iterator , const ::std::string::const_iterator )
 {   int mum = 0;
     PRESUME (t.size () > 0, __FILE__, __LINE__);
     const int last = GSL_NARROW_CAST < int > (t.size () - 1);
@@ -119,7 +119,7 @@ void breed (v_np& , vtt_t& t, const ::std::string::const_iterator , const ::std:
     if (brat.size () > 0)
         t.at (last).nits_.pick (nit_css_syntax, es_error, ec_css, "unclosed brackets at end of CSS"); }
 
-void boast (vtt_t& t)
+void boast (vtok_t& t)
 {   if (context.tell (es_detail))
     {   outstr.console ("n: token parent/next/child text\n");
         for (int i = 0; i < GSL_NARROW_CAST < int > (t.size ()); ++i)
@@ -391,7 +391,7 @@ bool css::parse (const ::std::string& content, const bool x, const bool mdm)
 
     return true; }
 
-::std::string tkn_rpt (const css_token t, const ::std::string& s)
+::std::string tkn_rpt (const e_token t, const ::std::string& s)
 {   switch (t)
     {   case ct_keyword :
         case ct_identifier :
@@ -434,7 +434,7 @@ bool css::parse (const ::std::string& content, const bool x, const bool mdm)
         case ct_root : return "";
         default : GRACEFUL_CRASH (__FILE__, __LINE__); } }
 
-::std::string assemble_string (vtt_t& vt, const int from, const int to, const bool inclusive)
+::std::string assemble_string (vtok_t& vt, const int from, const int to, const bool inclusive)
 {   PRESUME (from > 0, __FILE__, __LINE__);
     PRESUME (((to == -1) || (from <= to)), __FILE__, __LINE__);
     const int len = GSL_NARROW_CAST < int > (vt.size ());
@@ -446,7 +446,7 @@ bool css::parse (const ::std::string& content, const bool x, const bool mdm)
         res += tkn_rpt (vt.at (i));
     return res; }
 
-int tokens_find (const vtt_t& vt, const vctk_t& t, const int from, const int to, int* prev)
+int tokens_find (const vtok_t& vt, const vctk_t& t, const int from, const int to, int* prev)
 {   PRESUME ((from >= 0) && (from < GSL_NARROW_CAST < int > (vt.size ())), __FILE__, __LINE__);
     PRESUME ((from <= to) || (to < 0), __FILE__, __LINE__);
     PRESUME (t.size () > 0, __FILE__, __LINE__);
@@ -458,7 +458,7 @@ int tokens_find (const vtt_t& vt, const vctk_t& t, const int from, const int to,
         if (prev != nullptr) *prev = i; }
     return -1; }
 
-int token_find (const vtt_t& vt, const css_token t, const int from, const int to, int* prev)
+int token_find (const vtok_t& vt, const e_token t, const int from, const int to, int* prev)
 {   PRESUME ((from >= 0) && (from < GSL_NARROW_CAST < int > (vt.size ())), __FILE__, __LINE__);
     PRESUME ((from <= to) || (to < 0), __FILE__, __LINE__);
     if (prev != nullptr) *prev = -1;
@@ -468,7 +468,7 @@ int token_find (const vtt_t& vt, const css_token t, const int from, const int to
         if (prev != nullptr) *prev = i; }
     return -1; }
  
-int ident_find (const vtt_t& vt, const ::std::string& kw, const int from, const int to, int* prev)
+int ident_find (const vtok_t& vt, const ::std::string& kw, const int from, const int to, int* prev)
 {   PRESUME ((from >= 0) && (from < GSL_NARROW_CAST < int > (vt.size ())), __FILE__, __LINE__);
     PRESUME ((from <= to) || (to < 0), __FILE__, __LINE__);
     if (prev != nullptr) *prev = -1;
@@ -478,21 +478,21 @@ int ident_find (const vtt_t& vt, const ::std::string& kw, const int from, const 
         if (prev != nullptr) *prev = i; }
     return -1; }
  
-int next_token_at (const vtt_t& vt, const int from, const int to)
+int next_token_at (const vtok_t& vt, const int from, const int to)
 {   if ((from < 0) || ((to >= 0) && (from >= to)) || (vt.at (from).t_ == ct_eof))
         return -1;
     return vt.at (from).next_; }
 
-int first_non_whitespace (const vtt_t& vt, int from, const int to)
+int first_non_whitespace (const vtok_t& vt, int from, const int to)
 {   if ((from == 0) && (vt.at (0).t_ == ct_root)) from = vt.at (0).child_;
     while ((from > 0) && ((to < 0) || (from <= to)) && ((vt.at (from).t_ == ct_whitespace) || (vt.at (from).t_ == ct_comment)))
         from = next_token_at (vt, from, to);
     return from; }
 
-int next_non_whitespace (const vtt_t& vt, const int from, const int to)
+int next_non_whitespace (const vtok_t& vt, const int from, const int to)
 {   return first_non_whitespace (vt, next_token_at (vt, from, to), to); }
 
-::std::string assemble_unit (vtt_t& vt, int& i, const int to)
+::std::string assemble_unit (vtok_t& vt, int& i, const int to)
 {   ::std::string s;
     if ((i >= 0) && ((to < 0) || (i <= to)))
         if ((static_cast < ::std::size_t > (i) + 1 < vt.size ()) && (vt.at (i).t_ == ct_number))
@@ -508,7 +508,7 @@ int next_non_whitespace (const vtt_t& vt, const int from, const int to)
 #define TC_SQUIGGLE 0x0040
 #define TC_SQUARE   0x0080
 
-unsigned short token_category (const css_token t)
+unsigned short token_category (const e_token t)
 {   PRESUME (t <= ct_error, __FILE__, __LINE__);
     switch (t)
     {   case ct_root :
@@ -543,10 +543,10 @@ unsigned short token_category (const css_token t)
         default :
             return TC_PLUMBING; } }
 
-int close_bracket_for (const vtt_t& vt, const int from, const int to)
+int close_bracket_for (const vtok_t& vt, const int from, const int to)
 {   int i = from;
-    const css_token op = vt.at (i).t_;
-    css_token dop = ct_error;
+    const e_token op = vt.at (i).t_;
+    e_token dop = ct_error;
     switch (op)
     {   case ct_round_brac :
             dop = ct_round_ket; break;
@@ -576,7 +576,7 @@ int close_bracket_for (const vtt_t& vt, const int from, const int to)
                 break; }
     return -1; }
 
-int pos_de (const vtt_t& vt, const css_token sep, const int from, const int to, vint_t& vfr, vint_t& vto, const bool empties)
+int pos_de (const vtok_t& vt, const e_token sep, const int from, const int to, vint_t& vfr, vint_t& vto, const bool empties)
 {   PRESUME (from >= 0, __FILE__, __LINE__);
     PRESUME (to > 0, __FILE__, __LINE__);
     PRESUME (to > from, __FILE__, __LINE__);

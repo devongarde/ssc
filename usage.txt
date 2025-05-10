@@ -33,7 +33,7 @@ location of the problem. Consider, for example:
 
 <P>Taost<A href="https://example.com/superdoopersecretrecipe.html"
 title="what a wonderful page oh so wow" onclick="haltandcatchfire"
-onhover="winkembarrassingly" wimper=frequently>d wombats are a
+onhover="winkembarrassingly" whimper=frequently>d wombats are a
 delicious</A> thing.</P>
 
 The word ssc spots is "Taostd". It knows there's a word to check when
@@ -84,7 +84,7 @@ SSC has a number of switches, including:
 -l	        Check internal links
 -O	        Report each broken link once, not each time it's found
 -r	        Do not check for https certificate revocation
--X	        Check crosslinked IDs
+-X	        Check cross linked IDs
 
 -M	        Check microformats use of class attribute
 -m	        Check ontologies use of WhatWG microdata attributes
@@ -98,7 +98,7 @@ SSC has a number of switches, including:
 A full list of switches is given by the -h switch.
 
 If you find yourself having switch problems, add -A to your command
-line to see what switches ssc has noticed. -A kyboshes other
+line to see what switches ssc has noticed. -A kiboshes other
 processing.
 
 Unfortunately, some fruity system suppliers sometimes release a buggy
@@ -170,7 +170,7 @@ external=
 xlink=
 
 Beyond the previous example, SSC will also check links, including
-external links and crosslinked ids.
+external links and cross linked ids.
 
 The configuration file specifies a virtual directory. When a link
 refers to the local directory /net, SSC will seek the corresponding

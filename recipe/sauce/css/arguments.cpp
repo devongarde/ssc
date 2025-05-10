@@ -43,7 +43,7 @@ arguments::arguments (const html_version& v, const namespaces_ptr& namespaces, c
 {   ns_.reset (new namespaces_t ());
     ns_ -> up (namespaces.get ()); }
 
-bool arguments::prep_for_make (nitpick& nits, const int , int& b, const int to, int& var, int& bang, css_token& p, bool& xs, bool& xk, bool& xn, bool& xi, bool& fn, bool& clean, int& kc, ::std::string& val)
+bool arguments::prep_for_make (nitpick& nits, const int , int& b, const int to, int& var, int& bang, e_token& p, bool& xs, bool& xk, bool& xn, bool& xi, bool& fn, bool& clean, int& kc, ::std::string& val)
 {   int pre = to, rc = 0;
     var = b;
     bang = token_find (t_, ct_bang, b, to, &pre);

@@ -73,6 +73,9 @@ sh_t sh [] =  // latest first
     { content_schema, html_rdf_1_0 },
     { creative_commons, html_cc },
     { croissant_1_100, html_croissant_1_100 },
+    { croissant_1_17, html_croissant_1_17 },
+    { croissant_1_16, html_croissant_1_16 },
+    { croissant_1_15, html_croissant_1_15 },
     { croissant_1_14, html_croissant_1_14 },
     { croissant_1_13, html_croissant_1_13 },
     { croissant_1_12, html_croissant_1_12 },
@@ -295,6 +298,9 @@ sh_t sh [] =  // latest first
     { pur_2_1, html_prism_2_1 },
     { data_cube, html_rdf_1_0_con },
     { rai_1_100, html_rai_1_100 },
+    { rai_1_17, html_rai_1_17 },
+    { rai_1_16, html_rai_1_16 },
+    { rai_1_15, html_rai_1_15 },
     { rai_1_14, html_rai_1_14 },
     { rai_1_13, html_rai_1_13 },
     { rai_1_12, html_rai_1_12 },
@@ -321,6 +327,8 @@ sh_t sh [] =  // latest first
     { rif_schema, html_rif },
     { role_schema, html_role },
     { rr_schema, html_rr },
+    { schema_30_0, html_schema_30_0 },
+    { schema_29_1, html_schema_29_1 },
     { schema_29_0, html_schema_29_0 },
     { schema_28_1, html_schema_28_1 },
     { schema_28_0, html_schema_28_0 },
@@ -501,8 +509,8 @@ vsv_t vsv = {
     common_tag,
     content_schema,
     croissant_0_2, croissant_0_3, croissant_0_4, croissant_0_6, croissant_0_8,
-        croissant_1_0, croissant_1_1, croissant_1_2, croissant_1_3, croissant_1_4,  croissant_1_5, croissant_1_6, croissant_1_7, croissant_1_8,
-            croissant_1_9, croissant_1_10, croissant_1_11, croissant_1_12, croissant_1_13, croissant_1_14,
+        croissant_1_0, croissant_1_1, croissant_1_2, croissant_1_3, croissant_1_4,  croissant_1_5, croissant_1_6, croissant_1_7, croissant_1_8, croissant_1_9,
+            croissant_1_10, croissant_1_11, croissant_1_12, croissant_1_13, croissant_1_14, croissant_1_15, croissant_1_16, croissant_1_17,
         croissant_1_100,
     creative_commons,
     crs2_schema,
@@ -630,7 +638,7 @@ vsv_t vsv = {
     psv_1_0,
     ptr_schema,
     pur_2_1, pur_3_0,
-    rai_1_3, rai_1_4, rai_1_5, rai_1_6, rai_1_7, rai_1_8, rai_1_9, rai_1_10, rai_1_11, rai_1_12, rai_1_13, rai_1_14, rai_1_100,
+    rai_1_3, rai_1_4, rai_1_5, rai_1_6, rai_1_7, rai_1_8, rai_1_9, rai_1_10, rai_1_11, rai_1_12, rai_1_13, rai_1_14, rai_1_15, rai_1_16, rai_1_17, rai_1_100,
     rdf_1_0_schema, rdf_1_1_1_schema, rdf_1_1_2_schema, rdf_1_1_3_schema,
     rdfa_1_0_schema, rdfa_1_1_1_schema, rdfa_1_1_2_schema, rdfa_1_1_3_schema,
     rdfg_schema,
@@ -650,7 +658,7 @@ vsv_t vsv = {
         schema_4, schema_5, schema_6, schema_7_00, schema_7_01, schema_7_02, schema_7_03, schema_7_04, schema_8, schema_9,
         schema_10, schema_11, schema_11_01, schema_12, schema_13, schema_14, schema_15, schema_16, schema_17, schema_18, schema_19,
         schema_20, schema_21, schema_22, schema_23, schema_24, schema_25, schema_26, schema_27, schema_27_01, schema_27_02,
-        schema_28_0, schema_28_1, schema_29_0,
+        schema_28_0, schema_28_1, schema_29_0, schema_29_1, schema_30_0,
     sd_schema,
     sioc_schema,
     sioc_services,
@@ -805,12 +813,12 @@ template < > bool ontology_detail < s_croissant > :: is_this_valid (const unsign
                     break; }
             break;
         case 1 :
-            return (mnr < 13) || (mnr == 100);
+            return (mnr <= MAX_MINOR_CROISSANT_1) || (mnr == 100);
         default :
             break; }
     return false; }
 template < > ontology_version ontology_detail < s_croissant > :: from () noexcept { return ontology_version (s_croissant, 0, 2); }
-template < > int ontology_detail < s_croissant > :: count () noexcept { return 19; }
+template < > int ontology_detail < s_croissant > :: count () noexcept { return 24; }
 template < > ontology_version ontology_detail < s_croissant > :: to () noexcept { return ontology_version (s_croissant, 1, 100); }
 
 template < > bool ontology_detail < s_dc > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
@@ -1141,10 +1149,10 @@ template < > ontology_version ontology_detail < s_pur > :: to () noexcept { retu
 
 template < > bool ontology_detail < s_rai > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept
 {   if (mjr != 1) return false;
-    if ((mnr >= 3) && (mnr <= 12)) return true;
+    if ((mnr >= 3) && (mnr <= MAX_MINOR_CROISSANT_1)) return true;
     return (mnr == 100); }
 template < > ontology_version ontology_detail < s_rai > :: from () noexcept { return ontology_version (s_rai, 1, 3); }
-template < > int ontology_detail < s_rai > :: count () noexcept { return 10; }
+template < > int ontology_detail < s_rai > :: count () noexcept { return 17; }
 template < > ontology_version ontology_detail < s_rai > :: to () noexcept { return ontology_version (s_rai, 1, 100); }
 
 template < > bool ontology_detail < s_rdf > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t) noexcept
@@ -1171,7 +1179,8 @@ template < > bool ontology_detail < s_schema > :: is_this_valid (const unsigned 
         case 3 : break;
         case 7 : return (mnr < 5);
         case 11 :
-        case 28 : return (mnr < 2);
+        case 28 :
+        case 29 : return (mnr < 2);
         default : return (mnr == 0); }
     switch (mnr)
     {   case 0 : return ((oflags & SV_NOT_30) == 0);
@@ -1187,7 +1196,7 @@ template < > bool ontology_detail < s_schema > :: is_this_valid (const unsigned 
         default : break; }
     return false; }
 template < > ontology_version ontology_detail < s_schema > :: from () noexcept { return ontology_version (s_schema, MIN_SCHEMA_ORG_MAJOR, MIN_SCHEMA_ORG_MINOR); }
-template < > int ontology_detail < s_schema > :: count () noexcept { return 84; }
+template < > int ontology_detail < s_schema > :: count () noexcept { return 86; }
 template < > ontology_version ontology_detail < s_schema > :: to () noexcept { return ontology_version (s_schema, MAX_SCHEMA_ORG_MAJOR, MAX_SCHEMA_ORG_MINOR); }
 template < > ::std::string ontology_detail < s_schema > :: ver (const unsigned short mjr, const unsigned short mnr)
 {   switch (mjr)

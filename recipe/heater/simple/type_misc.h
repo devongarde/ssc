@@ -35,6 +35,7 @@ bool set_coords_value (nitpick& nits, const html_version& v, const ::std::string
 bool set_exportpart_value (nitpick& nits, const html_version& v, const vstr_t& s, element* box);
 bool set_imgsizes_value (nitpick& nits, const html_version& v, const ::std::string& s);
 bool set_keychar_value (nitpick& nits, const html_version& v, const ::std::string& s);
+e_status check_fediverse_account (nitpick& nits, const html_version& v, const ::std::string& s);
 
 template < > struct type_master < t_arxiv > : public tidy_string < t_arxiv >
 {   using tidy_string < t_arxiv > :: tidy_string;
@@ -146,6 +147,12 @@ template < > struct type_master < t_exportpart > : string_vector < t_exportpart,
     bool invalid_id (nitpick& nits, const html_version& v, ids_t& , element* box)
     {   if (! good () || (box == nullptr)) return false;
         return invalid_parts (nits, v, box, string_vector < t_exportpart, sz_space_char > :: get ()); } };
+
+template < > struct type_master < t_fediverse_id > : tidy_string < t_fediverse_id >
+{   using tidy_string < t_fediverse_id > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_fediverse_id > :: set_value (nits, v, s);
+        tidy_string < t_fediverse_id > :: status (check_fediverse_account (nits, v, tidy_string < t_fediverse_id > :: get_string ())); } };
 
 template < > struct type_master < t_filename > : public tidy_string < t_filename >
 {   using tidy_string < t_filename > :: tidy_string;

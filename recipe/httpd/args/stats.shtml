@@ -39,7 +39,7 @@ of output.
 <tr><td>stats.abbr</td> <td>Output abbreviation report, so you can verify
                         the same abbreviations have the same expansions
                         across the site. Abbreviations are defined by the
-                        <a href="https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-abbr-element">&lt;ABBR&gt;</a> element.</td></tr>
+                        <a href="https://html.spec.whatwg.org/multipage/text-level-semantics.html">&lt;ABBR&gt;</a> element.</td></tr>
 
 <tr><td>stats.all</td> <td>Output all statistics reports.</td></tr>
 

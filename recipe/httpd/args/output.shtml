@@ -24,7 +24,7 @@ These switches allow you to control the output of SSC.
 <table>
 
 <tr><td>output.absolute-path</td> <td>Report the absolute local filesystem path of a
-                        file being analysed.  Note the - in abolute-path
+                        file being analysed.  Note the - in absolute-path
                         is a minus, not a hyphen.</td></tr>
 
 <tr><td>output.account&nbsp;xxx</td> <td>the account used to run SSC is xxx.</td></tr>

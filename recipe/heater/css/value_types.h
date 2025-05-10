@@ -33,7 +33,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 template < e_css_val_fn T > int split_fn_params (t_params& params, arguments& args, const int start, const int to, nitpick& nits)
 {   int round = 0, p = start;
     bool spaced_out = false;
-    css_token last = ct_error, prev = ct_error;
+    e_token last = ct_error, prev = ct_error;
     for (int i = first_non_whitespace (args.t_, start, to); (i > 0) && ((to < 0) || (i <= to)); ++i)
     {   switch (args.t_.at (i).t_)
         {   case ct_keyword :

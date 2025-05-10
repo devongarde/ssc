@@ -39,16 +39,16 @@ These arguments are only available on the command line:
 
 <tr><td>ontology.list</td> <td>List known schema versions, then exit.</td></tr>
 
-<tr><td>-q</td> <td>Use a simple shell.The shell accepts the
+<tr><td>-q</td> <td>Use a simple shell. The shell accepts the
                         following commands:
 <table>
-<tr><td>c</td><td>configure: enter a series of command
+<tr><td>c</td> <td>configure: enter a series of command
 line switches, one per line, then a full stop on a line by itself</td></tr>
-<tr><td>C</td><td>clear the current configuration</td></tr>
-<tr><td>h</td><td>a summary of available commands</td></tr>
-<tr><td>p</td><td>rint the current configuration</td></tr>
-<tr><td>q</td><td>quit</td></tr>
-<tr><td>r</td><td>run using the current configuration</td></tr>
+<tr><td>C</td> <td>clear the current configuration</td></tr>
+<tr><td>h</td> <td>a summary of available commands</td></tr>
+<tr><td>p</td> <td>print the current configuration</td></tr>
+<tr><td>q</td> <td>quit</td></tr>
+<tr><td>r</td> <td>run using the current configuration</td></tr>
 </table>
 </td></tr>
 

@@ -64,13 +64,12 @@ define which version of HTML 5 to consider. It accepts the following values:
 <tr><td>...</td> <td>(halfly)</td></tr>
 <tr><td>2021/1/1</td> <td>WhatWG HTML 5 (Jan 2021)</td></tr>
 <tr><td>..</td> <td>(quarterly)</td></tr>
-<tr><td>2023/7/1</td> <td>WhatWG HTML 5 (Jul 2024)</td></tr>
+<tr><td>2025/4/1</td> <td>WhatWG HTML 5 (Apr 2025)</td></tr>
 
 <tr><td>XHTML 1.0</td> <td>XHTML 1.0</td></tr>
 <tr><td>XHTML 1.1</td> <td>XHTML 1.1 core</td></tr>
 <tr><td>XHTML 2.0</td> <td>(Dec 2010 draft)</td></tr>
-<tr><td>XHTML 5.x</td> <td>XHTML corresponding to
-                                        equivalent W3 HTML</td></tr>
+<tr><td>XHTML 5.x</td> <td>XHTML corresponding to equivalent W3 HTML</td></tr>
 </table>
 
 <p>

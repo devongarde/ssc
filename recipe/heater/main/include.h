@@ -62,8 +62,8 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 13
-#define VERSION_STRING "0.2.13"
+#define VERSION_RELEASE 14
+#define VERSION_STRING "0.2.14"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"

@@ -2165,6 +2165,7 @@ bool html_version::is_css_compatible (const flags_t& f, const flags_t& f3, const
     if (((f & ext2_concerned) == 0) && ((f3 & H3_FULL_CSS_MASK) == 0) && ((f4 & H4_FULL_CSS_MASK) == 0)) return true;
     if (((ext2_ & f) != 0) || ((ext3_ & f3) != 0) || ((ext4_ & f4) != 0)) return true;
     if (((ext4_ & f4) & H4_CSS_SAFE) != 0) return true;
+    if ((ext4_ & H4_VTT) && (f4 & H4_VTT)) return true;
     if (has_svg ())
     {   if (((f & H2_CSS_SVG_10) == H2_CSS_SVG_10) && ((ext_ & HE_SVG_10) == HE_SVG_10)) return true;
         if (((f & H2_CSS_SVG_11) == H2_CSS_SVG_11) && ((ext_ & HE_SVG_11) == HE_SVG_11)) return true;

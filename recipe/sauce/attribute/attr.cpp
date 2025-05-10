@@ -359,7 +359,7 @@ struct symbol_entry < html_version, e_attribute > attribute_symbol_table [] =
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "g1", a_g1 },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "g2", a_g2 },
     { { HTML_JAN05 }, { HTML_UNDEF }, "generator-unable-to-provide-required-alt", a_generator_unable },
-    { { HTML_SVG10, 0, HE_SVG_10_11_20 | HE_SVG_DEPR_20 }, { HTML_UNDEF }, "glyph-orientation-horizontal", a_glyph_orientation_horizontal, ns_default, AF_SVG2_PROPERTY },
+    { { HTML_SVG10, 0, HE_SVG_10_11_20 | HE_SVG_DEPR_20 }, { HTML_MAY25 }, "glyph-orientation-horizontal", a_glyph_orientation_horizontal, ns_default, AF_SVG2_PROPERTY },
     { { HTML_SVG10, 0, HE_SVG_10_11_20 | HE_SVG_DEPR_20 }, { HTML_UNDEF }, "glyph-orientation-vertical", a_glyph_orientation_vertical, ns_default, AF_SVG2_PROPERTY },
     { { HTML_SVG10, 0, HE_SVG_1 }, { HTML_UNDEF }, "glyph-name", a_glyphname },
     { { HTML_SVG10, 0, HE_SVG_10_11 }, { HTML_UNDEF }, "glyphRef", a_glyphref },

@@ -20,6 +20,37 @@
 
 <div class="column-unit">
 
+<h3>0.2.14</h3>
+
+<ul>
+<li>
+<a href="https://schema.org/">schema.org</a> 29.1
+</li>
+<li>
+<a href="https://openbsd.org/">OpenBSD</a> <a href="https://openbsd.org/77.html">7.7</a>
+</li>
+<li>
+META name <a href="https://blog.joinmastodon.org/2024/07/highlighting-journalism-on-mastodon/">fediverse:creator</a>
+</li>
+<li>
+various bug fixes
+</li>
+<li>
+underlying work
+</li>
+<li>
+download
+<A href="bin/Install-SSC-0.2.14-Win-x64.msi" type="application/octet-stream">Windows 10/11 x64 installer</a>,
+<A href="bin/Install-SSC-0.2.14-Win-a64.msi" type="application/octet-stream">Windows 10/11 ARM64 installer</a>,
+<A href="bin/SSC-0.2.14-Mac-Arm.zip" type="application/zip">Mac ARM app (zipped)</a>,
+<A href="bin/SSC-0.2.14-Mac-Intel.zip" type="application/zip">Mac Intel app (zipped)</a>,
+<A href="src/ssc-0.2.14.tgz" type="application/gzip">source</a> (all unsigned).
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2025-05-01">25 5 1</time>
+</li>
+</ul>
+
 <h3>0.2.13</h3>
 
 <ul>
@@ -27,10 +58,10 @@
 <a href="https://html.spec.whatwg.org/">Living Standard</a> April 2025
 </li>
 <li>
-<a href="https://schema.org/">schema.org</a> version 29.0
+<a href="https://schema.org/">schema.org</a> 29.0
 </li>
 <li>
-<a href="https://w3c.github.io/dpv/">DPV</a> ontologies version 2.1
+<a href="https://w3c.github.io/dpv/">DPV</a> ontologies 2.1
 </li>
 <li>
 replace ICU with native equivalent under Windows
@@ -40,6 +71,10 @@ underlying work
 </li>
 <li>
 download
+<A href="bin/Install-SSC-0.2.13-Win-x64.msi" type="application/octet-stream">Windows 10/11 x64 installer</a>,
+<A href="bin/Install-SSC-0.2.13-Win-a64.msi" type="application/octet-stream">Windows 10/11 ARM64 installer</a>,
+<A href="bin/SSC-0.2.13-Mac-Arm.zip" type="application/zip">Mac ARM app (zipped)</a>,
+<A href="bin/SSC-0.2.13-Mac-Intel.zip" type="application/zip">Mac Intel app (zipped)</a>,
 <A href="src/ssc-0.2.13.tgz" type="application/gzip">source</a> (all unsigned).
 </li>
 <li>
@@ -75,7 +110,7 @@ faux AI &lt;THINK&gt; element treated rather like &lt;DIV&gt;&mdash;with a warni
 updated schema legislation and shipping types
 </li>
 <li>
-added bribe schema (techanically referred to as FinancialIncentive)
+added bribe schema (technically referred to as FinancialIncentive)
 </li>
 <li>
 remove dependency on CURL
@@ -300,7 +335,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2024-11-1
 remove Windows build dependency on vcpkg
 </li>
 <li>
-added nooopener-allow-popups
+added noopener-allow-popups
 </li>
 <li>
 offer a simple shell

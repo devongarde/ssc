@@ -319,7 +319,7 @@ defined at <a href="https://www.w3.org/Style/CSS/specs.en.html">w3.org</a>.
 
 <p>
 By convention, SSC only parses files with a <kbd>.CSS</kbd> extension as CSS files.
-If your site contains CSS files withe different extensions,
+If your site contains CSS files with different extensions,
 you can specify those extensions here.
 </p>
 

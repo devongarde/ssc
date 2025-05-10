@@ -48,13 +48,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SV_FLAG_MASK    0xFFFFFFFF
 #define SV_ROOT_SHIFT   32
 
-#define MAX_SCHEMA_ORG_MAJOR 29
+#define MAX_SCHEMA_ORG_MAJOR 30
 #define MAX_SCHEMA_ORG_MINOR 3
 #define MIN_SCHEMA_ORG_MAJOR 0
 #define MIN_SCHEMA_ORG_MINOR 10
 #define DEFAULT_SCHEMA_ORG_MAJOR 29
-#define DEFAULT_SCHEMA_ORG_MINOR 0
-#define DEFAULT_SCHEMA_ORG_VERSION "29.0"
+#define DEFAULT_SCHEMA_ORG_MINOR 1
+#define DEFAULT_SCHEMA_ORG_VERSION "29.1"
 
 class html_version;
 struct ontology_version;
@@ -162,6 +162,9 @@ const ontology_version croissant_1_11 (s_croissant, 1, 11);
 const ontology_version croissant_1_12 (s_croissant, 1, 12);
 const ontology_version croissant_1_13 (s_croissant, 1, 13);
 const ontology_version croissant_1_14 (s_croissant, 1, 14);
+const ontology_version croissant_1_15 (s_croissant, 1, 15);
+const ontology_version croissant_1_16 (s_croissant, 1, 16);
+const ontology_version croissant_1_17 (s_croissant, 1, 17);
 const ontology_version croissant_1_100 (s_croissant, 1, 100);
 
 const ontology_version creative_commons (s_cc, 1, 0);
@@ -464,6 +467,9 @@ const ontology_version rai_1_11 (s_rai, 1, 11);
 const ontology_version rai_1_12 (s_rai, 1, 12);
 const ontology_version rai_1_13 (s_rai, 1, 13);
 const ontology_version rai_1_14 (s_rai, 1, 14);
+const ontology_version rai_1_15 (s_rai, 1, 15);
+const ontology_version rai_1_16 (s_rai, 1, 16);
+const ontology_version rai_1_17 (s_rai, 1, 17);
 const ontology_version rai_1_100 (s_rai, 1, 100);
 
 const ontology_version rdf_1_0_schema (s_rdf, 1, 0);
@@ -580,6 +586,8 @@ const ontology_version schema_27_02 (s_schema, 27, 2);
 const ontology_version schema_28_0 (s_schema, 28, 0);
 const ontology_version schema_28_1 (s_schema, 28, 1);
 const ontology_version schema_29_0 (s_schema, 29, 0);
+const ontology_version schema_29_1 (s_schema, 29, 1);
+const ontology_version schema_30_0 (s_schema, 30, 0);
 const ontology_version schema_default (s_schema, DEFAULT_SCHEMA_ORG_MAJOR, DEFAULT_SCHEMA_ORG_MINOR);
 
 const ontology_version sd_schema (s_sd, 1, 0);

@@ -62,7 +62,7 @@ void descriptor::parse (arguments& args, const e_css_statement cs, const int fro
             nits.pick (nit_descriptor, es_error, ec_css, "missing descriptor value");
         else
         {   val_.clear ();
-            css_token p = ct_error;
+            e_token p = ct_error;
             bool xs = false, xk = false, xn = false, xi = false, fn = false, clean = true;
             int kc = 0, var = b, bang = -1;
             if (! args.prep_for_make (nits, from, b, to, var, bang, p, xs, xk, xn, xi, fn, clean, kc, val_)) return;

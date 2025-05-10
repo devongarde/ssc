@@ -177,7 +177,7 @@ void property::parse (arguments& args, const int from, const int to)
         nits.pick (nit_property, es_error, ec_css, "missing property value");
     else
     {   val_.clear ();
-        css_token p = ct_error;
+        e_token p = ct_error;
         bool xs = false, xk = false, xn = false, xi = false, fn = false, clean = true;
         int kc = 0, var = b, bang = -1;
         if (! args.prep_for_make (nits, from, b, to, var, bang, p, xs, xk, xn, xi, fn, clean, kc, val_)) return;

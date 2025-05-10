@@ -33,7 +33,7 @@ enable testing of certain ontologies.
                         represents schema.org in the JSON-LD files. Omitting
                         &lsquo;:y&rsquo; works when using a standard shortening,
                         such as the usual &lsquo;schema&rsquo; for schema.org.
-                        The switch also accepts &lsquo;all&rsquo;for all
+                        The switch also accepts &lsquo;all&rsquo; for all
                         ontologies known to ssc, and &lsquo;standard&rsquo; for a
                         common set of ontologies. May be repeated.</td></tr>
 

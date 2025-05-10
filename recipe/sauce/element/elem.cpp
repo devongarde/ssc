@@ -199,7 +199,7 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_JAN07, HV_NOT50 | HV_NOT51 }, { HTML_UNDEF }, "dialog", elem_dialogue, ns_default, 0, EF_5_FLOW },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "diff", elem_diff, ns_default, EP_CLOSED | EP_ARGS_1 | EP_ARGS_MORE, EF_M_CONTENT },
     { { HTML_TAGS, HV_DEPRECATED30 | HV_DEPRECATED4 }, { HTML_4_01 }, "dir", elem_dir, ns_default, EP_ONLYELEMENTS, EF_3_LIST | EF_LL | EF_LIST | EF_32_BLOCK | EF_4_BLOCK },
-    { { HTML_SVG12, 0, HE_SVG_12_2 }, { HTML_UNDEF }, "discard", elem_discard, ns_default, EP_SET_XLINKCAT (se_animation), EF_SVG_ANIM },
+    { { HTML_SVG12, 0, HE_SVG_12_2 }, { HTML_APR25 }, "discard", elem_discard, ns_default, EP_SET_XLINKCAT (se_animation), EF_SVG_ANIM },
     { { XHTML_2_0 }, { XHTML_2_0 }, "dispatchevent", elem_dispatchevent, ns_default, EP_CLOSED },
     { { HTML_3_0 }, { HTML_UNDEF }, "div", elem_div, ns_default, EP_WX, EF_3_BODY | EF_32_BLOCK | EF_4_BLOCK | EF_X2_STRUCT | EF_5_FLOW | EF_5_PALPABLE },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "divergence", elem_divergence, ns_default, EP_CLOSED | EP_ARGS_1, EF_M_CONTENT },

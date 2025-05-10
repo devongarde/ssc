@@ -1113,6 +1113,9 @@ template < > struct type_master < t_vrel > : ENUM_N (vrel)
 template < > struct type_master < t_vtt > : ENUM_N (vtt)
 { using ENUM_N (vtt) :: enum_n; };
 
+template < > struct type_master < t_vtt_keyword > : enum_n < t_vtt_keyword, e_vtt_keyword, ident_t, ns_default, sz_false >
+{ using enum_n < t_vtt_keyword, e_vtt_keyword, ident_t, ns_default, sz_false > :: enum_n; };
+
 template < > struct type_master < t_weekday_english_long > : ENUM_N (weekday_english_long)
 { using ENUM_N (weekday_english_long) :: enum_n; };
 

@@ -244,3 +244,12 @@ bool set_keychar_value (nitpick& nits, const html_version& v, const ::std::strin
                 {   nits.pick (nit_invalid_character_code, es_error, ec_type, quote (ss), " is invalid in ", v.report ());
                     good = false; } } } }
     return good; }
+
+e_status check_fediverse_account (nitpick& nits, const html_version& , const ::std::string& s)
+{   if (s.empty ())
+    {   nits.pick (nit_empty, es_error, ec_attribute, "Fediverse account names cannot be empty");
+        return s_empty; }
+    if ((s.at (0) != '@') || (s.length () < 3) || (s.substr (1).find ('@') == ::std::string::npos) || (s.at (s.length () - 1) == '@'))
+    {   nits.pick (nit_fediverse, es_error, ec_attribute, "Fediverse account names are @ server name @ user account, such as @looking_glass@alice");
+        return s_invalid; }
+    return s_good; }

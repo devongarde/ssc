@@ -73,7 +73,7 @@ These switches tune Server Side Include processing.
 <tr><td>--ssi.querystring x</td> <td>If the SSI document_args variable is requested,
                         return this string (default: blank).</td></tr>
 
-<tr><td>--ssi.tmefmt x</td> <td>Set the initial value of SSI TIMEFMT to this
+<tr><td>--ssi.timefmt x</td> <td>Set the initial value of SSI TIMEFMT to this
                         string (default: blank).</td></tr>
 
 <tr><td>--ssi.username x</td> <td>If the SSI query_string_unescaped variable is

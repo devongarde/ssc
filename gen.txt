@@ -270,7 +270,7 @@ defined at w3.org.
 
 --css.style X           Use CSS Style level X, where X is 0 or 3.
 
---css.syntax X          Use CSS Syntex level X, where X is 0 or 3
+--css.syntax X          Use CSS Syntax level X, where X is 0 or 3
 
 --css.table X           Use CSS Tables level X, where X is 0 or 3 (this
                         is an experimental spec, likely to change).
@@ -534,7 +534,7 @@ of older sites.
                             ...         (halfly)
                             2021/1/1    WhatWG HTML 5 (Jan 2021)
                             ...         (quarterly)
-                            2025/1/1    WhatWG HTML 5 (Jan 2025)
+                            2025/4/1    WhatWG HTML 5 (Apr 2025)
 
                             XHTML 1.0   XHTML 1.0
                             XHTML 1.1   XHTML 1.1 core
@@ -632,7 +632,7 @@ broken links within the site.
 --link.pretend FILE     Pretend links containing xxx exist. May be
                         repeated.
 
---link.report DOMAIN    Report links to domain and its descendents. May
+--link.report DOMAIN    Report links to domain and its descendants. May
                         be repeated.
 
 --link.required Z,Y,X,E,F,T,D A link to URL Z is required for lang Y
@@ -648,7 +648,7 @@ broken links within the site.
 --link.special          Report links to special domains, such as domains
                         ending in .alt, .onion, .yu, and others.
 
---link.xlink            Check crosslink IDs on the site being analysed.
+--link.xlink            Check cross link IDs on the site being analysed.
 -X                      For example, if a link goes to /index.html#id,
                         then, when this switch is set, ssc will verify
                         that the id exists and that it is not hidden.
@@ -883,7 +883,7 @@ ontologies (see --ontology.list).
                                 rif 1.0
                                 role 1.0
                                 rr 1.0
-                                schema.org 0.10-29 (see below)
+                                schema.org 0.10-30 (see below)
                                 sd 1.0
                                 sioc 1.0
                                 sioc_s 1.0
@@ -967,6 +967,11 @@ ontologies (see --ontology.list).
                             1.0.10  1.10 (cr and rai)
                             1.0.11  1.11 (cr and rai)
                             1.0.12  1.12 (cr and rai)
+                            1.0.13  1.13 (cr and rai)
+                            1.0.14  1.14 (cr and rai)
+                            1.0.15  1.15 (cr and rai)
+                            1.0.16  1.16 (cr and rai)
+                            1.0.17  1.17 (cr and rai)
                             1.1     1.100 (cr and rai)
 
                         The data privacy family of ontologies follow
@@ -988,7 +993,6 @@ ontologies (see --ontology.list).
                             1.0     1
                             2.0     2.0
                             2.1     2.1
-
                         The data privacy ontology versions:
                             ai              2.0,2.1
                             dpv             0.1-2.1
@@ -1020,6 +1024,9 @@ ontologies (see --ontology.list).
                             dpv-sector-infra    2.1
                             dpv-sector-law  2.1
                             tech            0.8-2.1
+                        For data privacy ontologies versions 2.1.1, use
+                        2.1: there were no changes to the ontologies
+                        themselves.
 
                         The Exif & ExifEx ontologies have the following
                         versions:
@@ -1086,9 +1093,8 @@ ontologies (see --ontology.list).
                                 27          as version number
                                 27.1        27.01
                                 27.2        27.02
-                                28          as version number
-                                28.1        as version number
-                                29          as version number
+                                ...
+                                29.1        as version number
 
                         vCard versions correspond to RDFa specs,
                         published in 2001, 2006, 2010 & 2014. They do
@@ -1099,7 +1105,7 @@ ontologies (see --ontology.list).
 Output switches
 This manages output layout.
 
---output.absolute-path  Report the absolute local filesystem path of a
+--output.absolute-path  Report the absolute local file system path of a
                         file being analysed.
 
 --output.account XXX    Report the account used to run SSC as XXX.
@@ -1115,8 +1121,8 @@ This manages output layout.
                         OUTPUT TEMPLATE below). This switch is intended
                         to aid automation.
 
---output.relative-path  Report the relative web path path of a file
-                        being analysed.
+--output.relative-path  Report the relative web path of a file being
+                        analysed.
 
 --output.username XXX   Report the user who is running SSC as XXX.
 
@@ -1191,7 +1197,7 @@ resolved, bad content removed, and duplicated content consolidated.
                         ssc cannot convert between versions of HTML,
                         nor between HTML and XHTML.
                         Link options are only available on systems that
-                        support filesystem links.
+                        support file system links.
 
 --shadow.enable         Enable shadowing (set by other shadow options).
                         If shadowing is enabled, but shadow.root is not
@@ -1258,7 +1264,7 @@ your website is www.example.com, then you should say so using the
                         current directory.
 
 --site.virtual v=d      The virtual directory 'v' is located in actual
--L v=d                  directory 'd' on the local filesystem. For
+-L v=d                  directory 'd' on the local file system. For
                         example:
                             --site.virtual virtual=D:\actual
 
@@ -1428,7 +1434,7 @@ of output.
 --stats.export F        Export to file F.
 
 --stats.file            Output file report, which reports the number of
-                        pages processed, and summerises file sizes.
+                        pages processed, and summarises file sizes.
 
 --stats.font            Output font report, which lists all fonts used
                         across the site.
@@ -1520,7 +1526,7 @@ of output.
                         views encountered.
 
 SVG switch
-If you want to analyse some SVG that is not comporary to the HTML being
+If you want to analyse some SVG that is not contemporary to the HTML being
 analysed, you may find the --svg.version switch useful.
 
 --svg.version x         Presume any SVG code encountered is this
@@ -1712,7 +1718,7 @@ ssc -e -I -x html -x shtml -s example.com -v 5 -i index.shtml
 
 To check a static web side in the current directory, with a virtual
 directory, verifying microformats:
-ssc -L vitual=/home/site/virtual -M
+ssc -L virtual=/home/site/virtual -M
 
 To check a static web site using a configuration file:
 ssc -f config.file

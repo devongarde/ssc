@@ -661,6 +661,7 @@ struct symbol_entry < html_version, e_metaname > metaname_symbol_table [] =
    { { HTML_4_0 }, { HTML_UNDEF }, MN_FDSE_KEYWORDS, mn_fdse_keywords },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_FDSE_REFRESH, mn_fdse_refresh },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_FDSE_ROBOTS, mn_fdse_robots },
+   { { HTML_JUL24 }, { HTML_UNDEF }, "fediverse:creator", mn_fediverse_creator },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_FORMAT_DETECTION, mn_format_detection },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_FORMAT_PRINT, mn_format_print },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_FRAGMENT, mn_fragment },
@@ -1128,6 +1129,9 @@ void validate_metaname_content (nitpick& nits, const html_version& v, const bool
         case mn_og_video :
         case mn_og_video_url :
         case mn_og_video_secure_url :
+            break;
+        case mn_fediverse_creator :
+            test_value < t_fediverse_id > (nits, v, content);
             break;
         case mn_og_image_type :
             check_mimetype_family (nits, v, content, MIME_IMAGE);

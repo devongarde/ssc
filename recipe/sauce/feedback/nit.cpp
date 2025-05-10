@@ -256,7 +256,8 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_jsonld_1_0 : return "JSON-LD 1.0";
         case ed_jsonld_1_1 : return "JSON-LD 1.1";
         case ed_doctype : return "Doctype Declarations";
-        case ed_clacks : return "X-Clacks-Overhead"; }
+        case ed_clacks : return "X-Clacks-Overhead";
+        case ed_vtt : return "Video Text Tracks"; }
     return "Unknown reference"; }
 
 ::std::string doc_ref (const e_doc doc)
@@ -381,5 +382,6 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_jsonld_1_0 : return "JSON-LD 1.0, January 2014";
         case ed_jsonld_1_1 : return "JSON-LD 1.1, July 2020";
         case ed_doctype : return "Doctype Declarations, July 2016, https://www.w3.org/QA/2002/04/valid-dtd-list.html";
-        case ed_clacks : return "X-Clacks-Overhead / xclacksoverhead.org"; }
+        case ed_clacks : return "X-Clacks-Overhead / xclacksoverhead.org";
+        case ed_vtt : return "WebVTT: The Web Video Text Tracks Format, April 2019, https://www.w3.org/TR/webvtt1/"; }
     return "unknown reference"; }

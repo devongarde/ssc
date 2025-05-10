@@ -250,7 +250,7 @@ context_t& context_t::exclude (nitpick& nits, const vstr_t& s)
 
 context_t& context_t::pretend (nitpick& nits, const vstr_t& s)
 {   for (auto ss : s)
-        pretend (nits, ::boost::to_lower_copy (ss));
+        pretend (nits, ss);
     return *this; }
 
 bool context_t::matches (const ::std::string& s, const ::std::string& w, const char sep) const
