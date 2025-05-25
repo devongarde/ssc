@@ -81,6 +81,7 @@ Switches are documented as follows:
 <tr><td><a href="stats.shtml">stats</a></td> <td>output stats. on the site</td></tr>
 <tr><td><a href="svg.shtml">SVG</a></td> <td>SVG version</td></tr>
 <tr><td><a href="validation.shtml">validate</a></td> <td>additional valid values for attributes &amp; properties</td></tr>
+<tr><td><a href="vtt.shtml">VTT</a></td> <td>WebVTT validation and version</td></tr>
 </table>
 
 <p>

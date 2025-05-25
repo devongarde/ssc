@@ -102,7 +102,7 @@ template < > struct type_master < t_pseudo > : string_vector < t_pseudo, sz_spac
     {   string_vector < t_pseudo, sz_space_char > :: set_value (nits, v, s);
         bool good = true;
         if (string_vector < t_pseudo, sz_space_char > :: good ())
-            for (auto ss : string_vector < t_pseudo, sz_space_char > :: get ())
+            for (auto& ss : string_vector < t_pseudo, sz_space_char > :: get ())
             {   const ::std::string::size_type pos = ss.find_first_not_of (SIGNEDDECIMAL " ");
                 if (pos == ::std::string::npos) continue;
                 if (compare_complain (nits, v, "depth", ss)) continue;
@@ -137,3 +137,15 @@ template < > struct type_master < t_pseudo > : string_vector < t_pseudo, sz_spac
         if (good) return;
         nits.pick (nit_bad_vunit, es_error, ec_type, quote (s), ": expecting a measurement, andor maybe 'depth', 'height', 'lspace' or 'width'");
         string_vector < t_pseudo, sz_space_char > :: status (s_invalid); } };
+
+template < > struct type_master < t_simple_neg > : tidy_string < t_simple_neg >
+{   using tidy_string < t_simple_neg > :: tidy_string;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_simple_neg > :: set_value (nits, v, s);
+        if (! tidy_string < t_simple_neg > :: empty ())
+            if (tidy_string < t_simple_neg > :: good ())
+            {   const ::std::string& ss = tidy_string < t_simple_neg > :: get_string ();
+                if ((ss.length () >= 2) && (ss.at (0) == '-'))
+                    if (ss.substr (1).find_first_not_of (DENARY) == ::std::string::npos) return; }
+        tidy_string < t_simple_neg > :: status (s_invalid);
+        nits.pick (nit_bad_number, es_error, ec_type, "expecting '-' and a number"); } };

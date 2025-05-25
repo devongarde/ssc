@@ -34,9 +34,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "microdata/microdata_itemscope.h"
 #include "spell/spell.h"
 #include "spell/phrase.h"
+#include "webpage/vtt.h"
 
 class directory;
 class url;
+class vtt_t;
+typedef ::std::shared_ptr < vtt_t > ptr_vtt;
 
 class page
 {   ids_t ids_, names_, glyphs_;
@@ -47,7 +50,7 @@ class page
     microdata_export md_export_;
     microformat_export mf_export_;
     const directory* directory_ = nullptr;
-    bool has_title_ = false, style_css_ = true, check_links_ = true, snippet_ = false, outsider_ = false, dot_css_ = false, xxx_ = false;
+    bool has_title_ = false, style_css_ = true, check_links_ = true, snippet_ = false, outsider_ = false, dot_css_ = false, dot_vtt_ = false, xxx_ = false;
     stats_t stats_;
     ssi_compedium ssi_;
     nitpick nits_;
@@ -62,6 +65,7 @@ class page
     faux_vb_t req_, req_check_;
     e_lang elang_ = la_context;
     e_required_page rq_type_ = rqp_none;
+    ptr_vtt vtt_;
     friend class tag;
     void init (const ::std::string& name, ::std::string& content, const fileindex_t x);
 public:
@@ -109,9 +113,12 @@ public:
     void style_css (const bool b) noexcept { style_css_ = b; }
     bool style_css () const noexcept { return style_css_; }
     bool dot_css () const noexcept { return dot_css_; }
+    bool dot_vtt () const noexcept { return dot_vtt_; }
+    stats_t& stats () { return stats_; }
+    const stats_t& stats () const { return stats_; }
     css_group& css () { return css_; }
     const css_group& css () const { return css_; }
-    ::std::string css_review (mmac_t& mac) const;
+    ::std::string review (mmac_t& mac) const;
     bool charset_defined () const noexcept { return ! charset_.empty (); }
     const ::std::string& lang () const noexcept { return lang_; }
     void lang (nitpick& nits, const html_version& v, const ::std::string& l);

@@ -57,12 +57,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_4122DEB087AC4A39840B5393D5025CF6"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_534CD33729DF4B0C9C533E7F7D40CF7F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -778,7 +772,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Static Site Checker"
         "ProductCode" = "8:{6FCB849C-3AF4-4874-833E-81E0E5FACCE0}"
-        "PackageCode" = "8:{98E6A72E-0773-42B0-8228-A4486F9E1805}"
+        "PackageCode" = "8:{2012F05F-C57C-4497-855B-D54189BAB357}"
         "UpgradeCode" = "8:{885C7144-A679-4BEF-A6A4-2633181CE2AC}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -898,20 +892,6 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_120FDAC288784FB8AED44DDB5FD91FD6"
-            {
-            "Name" = "8:Static Site Checker"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_ACAC046B75B34ACDA5D27086C4A9187A"
-            "Folder" = "8:_1417EE92E44D42669C53076E96CD83DC"
-            "WorkingFolder" = "8:_87C1CB3E3DE745528287E5D9F8C8BAD6"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_694D44CBD5304E1A9CBDE0A7CA24A004"
             {
             "Name" = "8:GNU GPL 3"
@@ -963,6 +943,20 @@
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
             "Target" = "8:_2DA062EB0E8745CD869F96211E387541"
+            "Folder" = "8:_1417EE92E44D42669C53076E96CD83DC"
+            "WorkingFolder" = "8:_87C1CB3E3DE745528287E5D9F8C8BAD6"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_E046AB3EA15945BF842177DF28FECC4B"
+            {
+            "Name" = "8:Static Site Checker"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_ACAC046B75B34ACDA5D27086C4A9187A"
             "Folder" = "8:_1417EE92E44D42669C53076E96CD83DC"
             "WorkingFolder" = "8:_87C1CB3E3DE745528287E5D9F8C8BAD6"
             "Icon" = "8:"
@@ -1367,34 +1361,6 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_4122DEB087AC4A39840B5393D5025CF6"
-            {
-            "SourcePath" = "8:..\\tea\\ARM64\\Release\\ssc22.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_87C1CB3E3DE745528287E5D9F8C8BAD6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:Release|ARM64"
-            "OutputGroupCanonicalName" = "8:Built"
-            "OutputProjectGuid" = "8:{267FF320-A1F2-453B-B242-BD51EB2C54D6}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_ACAC046B75B34ACDA5D27086C4A9187A"
             {
             "SourcePath" = "8:..\\tea\\ARM64\\Releasewx\\ssc22-wx.exe"
@@ -1418,6 +1384,34 @@
             "OutputConfiguration" = "8:Release|ARM64"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{CDFD1629-A939-463B-B181-58512930A8E4}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_D47E6490AA4A4F86B7E8D66D2C45DD6B"
+            {
+            "SourcePath" = "8:..\\tea\\ARM64\\Release\\ssc22.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_87C1CB3E3DE745528287E5D9F8C8BAD6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:Release|ARM64"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{267FF320-A1F2-453B-B242-BD51EB2C54D6}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {

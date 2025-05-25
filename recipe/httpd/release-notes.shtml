@@ -20,6 +20,20 @@
 
 <div class="column-unit">
 
+<h3>0.2.15</h3>
+
+<ul>
+<li>
+initial nitpicking of <a href="https://www.w3.org/TR/webvtt1/">WebVTT</a> files
+</li>
+<li>
+<a href="https://schema.org/">schema.org</a> 29.2
+</li>
+<li>
+underlying work
+</li>
+</ul>
+
 <h3>0.2.14</h3>
 
 <ul>
@@ -47,7 +61,7 @@ download
 <A href="src/ssc-0.2.14.tgz" type="application/gzip">source</a> (all unsigned).
 </li>
 <li>
-released <time itemprop="datePublished" class="dt-published" datetime="2025-05-01">25 5 1</time>
+released <time itemprop="datePublished" class="dt-published" datetime="2025-05-10">25 5 10</time>
 </li>
 </ul>
 

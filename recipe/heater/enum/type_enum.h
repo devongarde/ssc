@@ -116,7 +116,7 @@ template < e_type E, typename ENUM, typename CATEGORY = ident_t, CATEGORY INIT =
     {   eleanor f (lox_eleanor);
         symbol < html_version, ENUM, CATEGORY, INIT, LC > :: extend (extension, e); }
     static void extend (const vstr_t& extension, const ::std::size_t e = 0)
-    {   for (auto ext : extension) extend (ext, e); }
+    {   for (auto& ext : extension) extend (ext, e); }
     static bool exists (const ::std::string& x)
     {   return symbol < html_version, ENUM, CATEGORY, INIT, LC > :: exists (x); }
     static e_animation_type animation_type () noexcept { return at_other; }
@@ -275,6 +275,9 @@ template < > struct type_master < t_cachekey > : ENUM_N (cachekey)
 
 template < > struct type_master < t_celnrs > : ENUM_N (celnrs)
 { using ENUM_N (celnrs) :: enum_n; };
+
+template < > struct type_master < t_celrs > : ENUM_N (celrs)
+{ using ENUM_N (celrs) :: enum_n; };
 
 template < > struct type_master < t_charset > : ENUM_N (charset)
 { using ENUM_N (charset) :: enum_n; };
@@ -1098,6 +1101,9 @@ template < > struct type_master < t_unit_time > : ENUM_N (unit_time)
 template < > struct type_master < t_unicode_bidi > : ENUM_N (unicode_bidi)
 { using ENUM_N (unicode_bidi) :: enum_n; };
 
+template < > struct type_master < t_vctelecomms > : ENUM_N (vctelecomms)
+{ using ENUM_N (vctelecomms) :: enum_n; };
+
 template < > struct type_master < t_vector_effect_2 > : ENUM_N (vector_effect_2)
 { using ENUM_N (vector_effect_2) :: enum_n; };
 
@@ -1110,11 +1116,8 @@ template < > struct type_master < t_vgender > : ENUM_N (vgender)
 template < > struct type_master < t_vrel > : ENUM_N (vrel)
 { using ENUM_N (vrel) :: enum_n; };
 
-template < > struct type_master < t_vtt > : ENUM_N (vtt)
-{ using ENUM_N (vtt) :: enum_n; };
-
-template < > struct type_master < t_vtt_keyword > : enum_n < t_vtt_keyword, e_vtt_keyword, ident_t, ns_default, sz_false >
-{ using enum_n < t_vtt_keyword, e_vtt_keyword, ident_t, ns_default, sz_false > :: enum_n; };
+template < > struct type_master < t_vtt_token > : enum_n < t_vtt_token, e_vtt_token, ident_t, ns_default, sz_false >
+{ using enum_n < t_vtt_token, e_vtt_token, ident_t, ns_default, sz_false > :: enum_n; };
 
 template < > struct type_master < t_weekday_english_long > : ENUM_N (weekday_english_long)
 { using ENUM_N (weekday_english_long) :: enum_n; };

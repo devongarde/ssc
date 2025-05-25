@@ -221,6 +221,7 @@ ssc.exe -f ../toast/other/ruby/ruby.conf
 ssc.exe -f ../toast/other/safari/safari.conf
 ssc.exe -f ../toast/other/simple/simple.conf
 ssc.exe -f ../toast/other/ssi/ssi.conf
+ssc.exe -f ../toast/other/vtt/vtt.conf
 ssc.exe -f ../toast/RDF/1.0/rdf.spec
 ssc.exe -f ../toast/RDF/1.1/rdf.spec
 ssc.exe -f ../toast/RDF/pointer/rdf.spec

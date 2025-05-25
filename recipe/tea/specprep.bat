@@ -220,6 +220,7 @@ ssc.exe -T --nits.spec -o ../out/rubyruby.tst -f ../toast/other/ruby/ruby.conf
 ssc.exe -T --nits.spec -o ../out/safarisafari.tst -f ../toast/other/safari/safari.conf
 ssc.exe -T --nits.spec -o ../out/simplesimple.tst -f ../toast/other/simple/simple.conf
 ssc.exe -T --nits.spec -o ../out/ssissi.tst -f ../toast/other/ssi/ssi.conf
+ssc.exe -T --nits.spec -o ../out/vttvtt.tst -f ../toast/other/vtt/vtt.conf
 ssc.exe -T --nits.spec -o ../out/rdf10.tst -f ../toast/RDF/1.0/rdf.conf
 ssc.exe -T --nits.spec -o ../out/rdf11.tst -f ../toast/RDF/1.1/rdf.conf
 ssc.exe -T --nits.spec -o ../out/rdfpointer.tst -f ../toast/RDF/pointer/rdf.conf

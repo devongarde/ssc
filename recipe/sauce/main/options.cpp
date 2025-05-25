@@ -546,6 +546,10 @@ options::options (const context_t& c)
     INSERT_VALID2 (xmpdm_time_signature, t_xmpdm_time_signature, e_xmpdm_time_signature);
     INSERT_VALID2 (xmpdm_video_pixeldepth, t_xmpdm_video_pixeldepth, e_xmpdm_video_pixeldepth);
 
+    if (c.vtt_extension () != def.vtt_extension ())
+        INSERT_VSTR (VTT, EXTENSION, vtt_extension);
+    INSERT_BOOL (VTT, VERIFY, load_vtt);
+
 #undef INSERT
 #undef INSERT_BOOL
 #undef INSERT_ENUM
@@ -1237,6 +1241,10 @@ void options::init (context_t& c)
         (VALIDATION MINOR ARGSEP MINOR_SW_, ::boost::program_options::value < int > (), "Validate HTML 5 with this w3 minor version (e.g. 2 for HTML 5.2).")
         (VALIDATION MICRODATAARG, ::boost::program_options::bool_switch (), "Validate HTML5 microdata.")
         (VALIDATION DONT MICRODATAARG, ::boost::program_options::bool_switch (), "Do not validate HTML5 microdata.")
+
+        (VTT EXTENSION, ::boost::program_options::value < vstr_t > () -> composing (), "Extension for WebVTT files (default vtt); may be repeated.")
+        (VTT VERIFY, ::boost::program_options::bool_switch (), "Verify WebVTT files.")
+        (VTT DONT VERIFY, ::boost::program_options::bool_switch (), "Do not verify WebVTT files.")
         	;
 
     for (int i = s_none + 1; i < s_error; ++i)
@@ -1345,7 +1353,7 @@ void options::parse (context_t& c, output_streams_t& o, nitpick& nits, const vst
         c.environment (env_query_string, qu);
         if (! c.environment (env_query_string).empty ()) try
         {   c.cgi (true).article (false).body (false).cased (false).classic (false).crosslinks (false).example (false).ext_css (false)
-                .external (false).forwarded (false).ie (false).icu (true).info (true).jsonld (false).links (false).load_css (false).main (false)
+                .external (false).forwarded (false).ie (false).icu (true).info (true).jsonld (false).links (false).load_css (false).load_vtt (false).main (false)
                 .md_export (false).mf_verify (true).microdata (true).not_root (false).once (true).ontology (true).presume_tags (false)
                 .progress (false) .rdfa (false).rel (true).revoke (false).rfc_1867 (true).rfc_1942 (true).rfc_1980 (true).rfc_2070 (true).rpt_opens (false)
                 .shadow_changed (false).shadow_comment (false).shadow_enable (false).shadow_space (false).shadow_ssi (false).spell (false).ssi (false)
@@ -1539,7 +1547,7 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
 
     if (c.test () || is_be (GENERAL SPEC))
         c.article (false).body (false).cased (false).classic (false).crosslinks (false).example (false).external (false).ext_css (false).forwarded (false)
-            .icu (true).info (false).jsonld (false).links (false).load_css (true).main (false).md_export (false).mf_verify (false)
+            .icu (true).info (false).jsonld (false).links (false).load_css (true).load_vtt (true).main (false).md_export (false).mf_verify (false)
             .microdata (false).nids (true).nits (false).nits_nits_nits (true).not_root (false).once (false).ontology (true).presume_tags (false)
             .progress (false).rdfa (false).rel (false).revoke (false).rfc_1867 (true).rfc_1942 (true).rfc_1980 (true).rfc_2070 (true).rpt_opens (false)
             .serve (false).shadow_changed (false).shadow_comment (false).shadow_enable (false).shadow_space (false).shadow_ssi (false).spell (false)
@@ -1797,8 +1805,8 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
         yea_nay (c, &context_t::pretty, nits, JSONLD PRETTY, JSONLD DONT PRETTY);
         yea_nay (c, &context_t::jsonld, nits, JSONLD VERIFY, JSONLD DONT VERIFY);
         if (var_.count (JSONLD EXTENSION)) c.jsonld_extension (var_ [JSONLD EXTENSION].as < vstr_t > ());
-        if (var_.count (JSONLD ONTOLOGY_)) c.jsonld_ontology (var_ [JSONLD ONTOLOGY_].as < vstr_t > ());
         else { vstr_t ex; ex.push_back (JSONLD_EXT); c.jsonld_extension (ex); }
+        if (var_.count (JSONLD ONTOLOGY_)) c.jsonld_ontology (var_ [JSONLD ONTOLOGY_].as < vstr_t > ());
 
         if (var_.count (JSONLD VERSION))
         {   ::std::string ver (var_ [JSONLD VERSION].as < ::std::string > ());
@@ -2114,6 +2122,10 @@ void options::contextualise (context_t& c, output_streams_t& o, nitpick& nits)
         if (var_.count (VALIDATION MIMETYPE)) vvextend < t_mime > (c, VALIDATION MIMETYPE);
         if (var_.count (VALIDATION SGML)) vvextend < t_sgml > (c, VALIDATION SGML);
 
+        if (var_.count (VTT EXTENSION)) c.vtt_extension (var_ [VTT EXTENSION].as < vstr_t > ());
+        else { vstr_t ex; ex.push_back (VTT_EXT); c.vtt_extension (ex); }
+        yea_nay (c, &context_t::load_vtt, nits, VTT VERIFY, VTT DONT VERIFY);
+
 #define TEST_VAR(XX) if (var_.count (VALIDATION #XX)) vvextend < t_##XX > (c, VALIDATION #XX);
         TEST_VAR (accrual_method);
         TEST_VAR (accrual_periodicity);
@@ -2369,7 +2381,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
 #endif // EXPAND_TEST
 
     int corpus = 0, css = 0, env = 0, general = 0, html = 0, jsonld = 0, lynx = 0, math = 0, mf = 0, microdata = 0,
-        nitty = 0, ontology = 0, output = 0, shadow = 0, site = 0, ssc = 0, ssi = 0, stats = 0, svg = 0, validate = 0;
+        nitty = 0, ontology = 0, output = 0, shadow = 0, site = 0, ssc = 0, ssi = 0, stats = 0, svg = 0, validate = 0, vtt = 0;
 #ifndef NOSPELL
     int spell = 0;
 #endif // NOSPELL
@@ -2965,6 +2977,9 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RPT_VAR (gr, xmpdm_time_format);
     RPT_VAR (gr, xmpdm_time_signature);
     RPT_VAR (gr, xmpdm_video_pixeldepth);
+
+    RG (gr, res, vstr_t, VTT, EXTENSION, vtt);
+    RB (gr, res, VTT, VERIFY, vtt);
 
 #undef RPT_VAR
 #undef RB

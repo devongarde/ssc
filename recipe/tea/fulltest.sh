@@ -223,6 +223,7 @@
 ./ssc -f ../toast/other/safari/safari.conf
 ./ssc -f ../toast/other/simple/simple.conf
 ./ssc -f ../toast/other/ssi/ssi.conf
+./ssc -f ../toast/other/vtt/vtt.conf
 ./ssc -f ../toast/RDF/1.0/rdf.spec
 ./ssc -f ../toast/RDF/1.1/rdf.spec
 ./ssc -f ../toast/RDF/pointer/rdf.spec

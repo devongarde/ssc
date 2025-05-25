@@ -1,0 +1,7 @@
+video::cue(:past) {
+    color: yellow;
+}
+
+video::cue(:future) {
+    color: cyan;
+}

@@ -53,6 +53,12 @@ void page::init (const ::std::string& name, ::std::string& content, const filein
         {   css_.parse_file (nits_, namespaces_ptr (), url (nits (), context.html_ver (), get_site_path ()), true, true, true);
             stats_.mark (context.html_ver ()); }
         stats_.mark_file (GSL_NARROW_CAST < unsigned > (content.size ())); }
+    else if (is_vtt (name))
+    {   dot_vtt_ = true;
+        if (context.load_vtt ())
+        {   vtt_ = ptr_vtt (new vtt_t (nits_, context.html_ver (), content, css ()));   
+            stats_.mark (context.html_ver ()); }
+        stats_.mark_file (GSL_NARROW_CAST < unsigned > (content.size ())); }
     else parse (content); }
 
 page::page (const ::std::string& name, const ::std::time_t updated, ::std::string& content, const fileindex_t x, const directory* d)
@@ -208,6 +214,7 @@ void page::itemscope (const itemscope_ptr itemscope)
         res << document_ -> report ();
     nits_.accumulate (&stats_);
     css ().accumulate (&stats_);
+    if (vtt_) vtt_ -> accumulate (&stats_);
     {   lox curly (lox_stats);
         stats_.accumulate (); }
     if (context.stats (rcb_page))
@@ -280,6 +287,7 @@ void page::shadow (nitpick& nits, const ::boost::filesystem::path& s)
             nits.pick (nit_cannot_create_file, es_catastrophic, ec_shadow, "cannot create ", s.string ());
         else
         {   PRESUME (! dot_css_, __FILE__, __LINE__);
+            PRESUME (! dot_vtt_, __FILE__, __LINE__);
             if (document_ != nullptr) document_ -> shadow (ss, version ());
             f << ss.str ();
             f.close ();
@@ -313,7 +321,10 @@ void page::base (const url& s)
 void page::append_jsonld (const ::std::string& j)
 {   jsonld_ += j + "\n"; }
 
-::std::string page::css_review (mmac_t& mac) const
+::std::string page::review (mmac_t& mac) const
 {   nitpick gnats;
     url u (gnats, context.html_ver (), get_site_path ());
-    return css ().review (mac, u.absolute ()); }
+    ::std::string res =  nits_.review (mac);
+    res += css ().review (mac, u.absolute ());
+    if (vtt_) res += vtt_ -> review (mac);
+    return res; }

@@ -305,6 +305,14 @@ struct symbol_entry < html_version, e_celnrs > celnrs_symbol_table [] =
     { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT_4 }, { HTML_UNDEF }, "right", cel_right },
     { { HTML_CSS, 0, 0, 0, H3_CSS_TEXT_4 }, { HTML_UNDEF }, "start", cel_start } };
 
+struct symbol_entry < html_version, e_celrs > celrs_symbol_table [] =
+{   { { HTML_VTT_15, 0, 0, 0, 0, H4_VTT }, { HTML_UNDEF }, "center", cls_centre },
+    { { HTML_VTT_14, 0, 0, 0, 0, H4_VTT }, { HTML_UNDEF }, "end", cls_end },
+    { { HTML_VTT_14, 0, 0, 0, 0, H4_VTT }, { HTML_UNDEF }, "left", cls_left },
+    { { HTML_VTT_14, 0, 0, 0, 0, H4_VTT }, { HTML_VTT_14, 0, 0, 0, 0, H4_VTT }, "middle", cls_middle },
+    { { HTML_VTT_14, 0, 0, 0, 0, H4_VTT }, { HTML_UNDEF }, "right", cls_right },
+    { { HTML_VTT_14, 0, 0, 0, 0, H4_VTT }, { HTML_UNDEF }, "start", cls_start } };
+
 struct symbol_entry < html_version, e_citype > citype_symbol_table [] =
 {   { { XHTML_1_0 }, { HTML_UNDEF }, "integer", ci_integer },
     { { XHTML_1_0 }, { HTML_UNDEF }, "rational", ci_rational },
@@ -868,8 +876,8 @@ struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "closed", efn_closed, ns_default, CF_NOT_LV_STD_JUL23 },
     { { HTML_CSS, 0, 0, H2_CSS_COCO, H3_CSS_SCOPE }, { HTML_UNDEF }, "content", efn_content },
     { { HTML_CSS, 0, 0, H2_CSS_EASE }, { HTML_UNDEF }, "cubic-bezier", efn_cubic_bezier },
-    { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_COCO, 0, H4_VTT }, { HTML_UNDEF }, "cue", efn_cue },
-    { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_COCO, 0, H4_VTT }, { HTML_UNDEF }, "cue-region", efn_cue_region },
+    { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_COCO | H2_CSS_1_ARG, H3_CSS_PSEUDO, H4_VTT | H4_CSS_ARG_OPTIONAL }, { HTML_UNDEF }, "cue", efn_cue },
+    { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_COCO | H2_CSS_1_ARG, H3_CSS_PSEUDO, H4_VTT | H4_CSS_ARG_OPTIONAL }, { HTML_UNDEF }, "cue-region", efn_cue_region },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 | H2_CSS_N_ARGS }, { HTML_UNDEF }, "current", efn_current },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "default", efn_default },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "defined", efn_defined },
@@ -892,7 +900,7 @@ struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_COCO, H3_CSS_PSEUDO }, { HTML_UNDEF }, "grammar-error", efn_grammar_error },
     { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_N_ARGS }, { HTML_UNDEF }, "has", efn_has },
     { { HTML_CSS, 0, 0, H2_CSS_COCO | H2_CSS_1_ARG, H3_CSS_HIGHLIGHT }, { HTML_UNDEF }, "highlight", efn_highlight },
-    { { HTML_CSS, 0, 0, H2_CSS_1_ARG, H3_CSS_SCOPE }, { HTML_UNDEF }, "host", efn_host },
+    { { HTML_CSS, 0, 0, H2_CSS_1_ARG, H3_CSS_SCOPE, H4_CSS_ARG_OPTIONAL }, { HTML_UNDEF }, "host", efn_host },
     { { HTML_CSS, 0, 0, H2_CSS_1_ARG, H3_CSS_SCOPE }, { HTML_UNDEF }, "host-context", efn_host_context },
     { { HTML_CSS, 0, 0, H2_CSS_1_2 | H2_CSS_SELECTOR, H3_NOT_TV }, { HTML_UNDEF }, "hover", efn_hover, },
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR }, { HTML_UNDEF }, "indeterminate", efn_indeterminate },
@@ -3705,6 +3713,8 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-vcs", nm_context_vcs },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-version", nm_context_version },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-virtuals", nm_context_virtuals },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-vtt", nm_context_vtt },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-vtt-extension", nm_context_vtt_extension },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-wx", nm_context_wx },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-xsd", nm_context_xsd },
     { { HTML_TAGS }, { HTML_UNDEF }, "copyright-addr", nm_copy_addr },
@@ -6643,6 +6653,17 @@ struct symbol_entry < html_version, e_unit_time > unit_time_symbol_table [] =
 {   { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "ms", eut_ms  },
     { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "s", eur_s } };
 
+struct symbol_entry < html_version, e_vctelecomms > vctelecomms_symbol_table [] =
+{   { { HTML_VCARD }, { HTML_UNDEF }, "cell", vt_mobile },
+    { { HTML_VCARD }, { HTML_UNDEF }, "mobile", vt_mobile },
+    { { HTML_VCARD }, { HTML_UNDEF }, "fax", vt_fax },
+    { { HTML_VCARD }, { HTML_UNDEF }, "pager", vt_pager },
+    { { HTML_VCARD }, { HTML_UNDEF }, "text", vt_sms },
+    { { HTML_VCARD }, { HTML_UNDEF }, "sms", vt_sms },
+    { { HTML_VCARD }, { HTML_UNDEF }, "textphone", vt_textphone },
+    { { HTML_VCARD }, { HTML_UNDEF }, "video", vt_video },
+    { { HTML_VCARD }, { HTML_UNDEF }, "voice", vt_voice } };
+
 struct symbol_entry < html_version, e_vector_effect_2 > vector_effect_2_symbol_table [] =
 {   { { HTML_SVG20 }, { HTML_UNDEF }, "fixed-position", v2_fixedposition },
     { { HTML_SVG20 }, { HTML_UNDEF }, "none", v2_none },
@@ -6689,53 +6710,59 @@ struct symbol_entry < html_version, e_vrel > vrel_symbol_table [] =
     { { HTML_VCARD }, { HTML_UNDEF }, "spouse", vr_spouse },
     { { HTML_VCARD }, { HTML_UNDEF }, "sweetheart", vr_sweetheart } };
 
-struct symbol_entry < html_version, e_vtt > vtt_symbol_table [] =
-{   { { HTML_VCARD }, { HTML_UNDEF }, "cell", vt_mobile },
-    { { HTML_VCARD }, { HTML_UNDEF }, "mobile", vt_mobile },
-    { { HTML_VCARD }, { HTML_UNDEF }, "fax", vt_fax },
-    { { HTML_VCARD }, { HTML_UNDEF }, "pager", vt_pager },
-    { { HTML_VCARD }, { HTML_UNDEF }, "text", vt_sms },
-    { { HTML_VCARD }, { HTML_UNDEF }, "sms", vt_sms },
-    { { HTML_VCARD }, { HTML_UNDEF }, "textphone", vt_textphone },
-    { { HTML_VCARD }, { HTML_UNDEF }, "video", vt_video },
-    { { HTML_VCARD }, { HTML_UNDEF }, "voice", vt_voice } };
-
-struct symbol_entry < html_version, e_vtt_keyword > vtt_keyword_symbol_table [] =
-{   { { HTML_VTT }, { HTML_UNDEF }, "-->", vtk_cue },
-    { { HTML_VTT }, { HTML_UNDEF }, "align", vtk_align },
-    { { HTML_VTT }, { HTML_UNDEF }, "b", vtk_bold },
-    { { HTML_VTT }, { HTML_UNDEF }, "c", vtk_class },
-    { { HTML_VTT }, { HTML_UNDEF }, "center", vtk_centre },
-    { { HTML_VTT }, { HTML_UNDEF }, "end", vtk_end },
-    { { HTML_VTT }, { HTML_UNDEF }, "i", vtk_italics },
-    { { HTML_VTT }, { HTML_UNDEF }, "id", vtk_id },
-    { { HTML_VTT }, { HTML_UNDEF }, "lang", vtk_lang },
-    { { HTML_VTT }, { HTML_UNDEF }, "left", vtk_left },
-    { { HTML_VTT }, { HTML_UNDEF }, "line", vtk_line },
-    { { HTML_VTT }, { HTML_UNDEF }, "line-left", vtk_line_left },
-    { { HTML_VTT }, { HTML_UNDEF }, "line-right", vtk_line_right },
-    { { HTML_VTT }, { HTML_UNDEF }, "lines", vtk_lines },
-    { { HTML_VTT }, { HTML_UNDEF }, "lr", vtk_lr },
-    { { HTML_VTT }, { HTML_UNDEF }, "NOTE", vtk_note },
-    { { HTML_VTT }, { HTML_UNDEF }, "position", vtk_position },
-    { { HTML_VTT }, { HTML_UNDEF }, "region", vtk_region_lc },
-    { { HTML_VTT }, { HTML_UNDEF }, "REGION", vtk_region_uc },
-    { { HTML_VTT }, { HTML_UNDEF }, "regionanchor", vtk_regionanchor },
-    { { HTML_VTT }, { HTML_UNDEF }, "right", vtk_right },
-    { { HTML_VTT }, { HTML_UNDEF }, "rl", vtk_rl },
-    { { HTML_VTT }, { HTML_UNDEF }, "rt", vtk_rt },
-    { { HTML_VTT }, { HTML_UNDEF }, "ruby", vtk_ruby },
-    { { HTML_VTT }, { HTML_UNDEF }, "scroll", vtk_scroll },
-    { { HTML_VTT }, { HTML_UNDEF }, "size", vtk_size },
-    { { HTML_VTT }, { HTML_UNDEF }, "start", vtk_start },
-    { { HTML_VTT }, { HTML_UNDEF }, "STYLE", vtk_style },
-    { { HTML_VTT }, { HTML_UNDEF }, "u", vtk_underline },
-    { { HTML_VTT }, { HTML_UNDEF }, "up", vtk_up },
-    { { HTML_VTT }, { HTML_UNDEF }, "v", vtk_voice },
-    { { HTML_VTT }, { HTML_UNDEF }, "vertical", vtk_vertical },
-    { { HTML_VTT }, { HTML_UNDEF }, "viewportanchor", vtk_viewportanchor },
-    { { HTML_VTT }, { HTML_UNDEF }, "WEBVTT", vtk_webvtt },
-    { { HTML_VTT }, { HTML_UNDEF }, "width", vtk_width } };
+struct symbol_entry < html_version, e_vtt_token > vtt_token_symbol_table [] =
+{   { { HTML_VTT_14 }, { HTML_UNDEF }, "-->", vtk_to },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "align", vtk_align },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "b", vtk_bold_span },
+    { { HTML_VTT_18 }, { HTML_UNDEF }, "bg_black", vtk_bg_black },
+    { { HTML_VTT_18 }, { HTML_UNDEF }, "bg_blue", vtk_bg_blue },
+    { { HTML_VTT_18 }, { HTML_UNDEF }, "bg_cyan", vtk_bg_cyan },
+    { { HTML_VTT_18 }, { HTML_UNDEF }, "bg_lime", vtk_bg_lime },
+    { { HTML_VTT_18 }, { HTML_UNDEF }, "bg_magenta", vtk_bg_magenta },
+    { { HTML_VTT_18 }, { HTML_UNDEF }, "bg_red", vtk_bg_red },
+    { { HTML_VTT_18 }, { HTML_UNDEF }, "bg_white", vtk_bg_white },
+    { { HTML_VTT_18 }, { HTML_UNDEF }, "bg_yellow", vtk_bg_yellow },
+    { { HTML_VTT_18 }, { HTML_UNDEF }, "black", vtk_black },
+    { { HTML_VTT_18 }, { HTML_UNDEF }, "blue", vtk_blue },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "c", vtk_class_span },
+    { { HTML_VTT_15 }, { HTML_UNDEF }, "center", vtk_centre },
+    { { HTML_VTT_18 }, { HTML_UNDEF }, "cyan", vtk_cyan },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "end", vtk_end },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "i", vtk_italics_span },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "id", vtk_identifier },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "lang", vtk_lang_span },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "left", vtk_left },
+    { { HTML_VTT_18 }, { HTML_UNDEF }, "lime", vtk_lime },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "line", vtk_line },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "line-left", vtk_line_left },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "line-right", vtk_line_right },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "lines", vtk_lines },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "lr", vtk_lr },
+    { { HTML_VTT_18 }, { HTML_UNDEF }, "magenta", vtk_magenta },
+    { { HTML_VTT_14 }, { HTML_VTT_14 }, "middle", vtk_middle },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "NOTE", vtk_note },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "position", vtk_position },
+    { { HTML_VTT_18 }, { HTML_UNDEF }, "red", vtk_red },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "region", vtk_region_lc },
+    { { HTML_VTT_16 }, { HTML_UNDEF }, "REGION", vtk_region_uc },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "regionanchor", vtk_region_anchor },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "right", vtk_right },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "rl", vtk_rl },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "rt", vtk_ruby_span },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "ruby", vtk_ruby_span },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "scroll", vtk_scroll },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "size", vtk_size },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "start", vtk_start },
+    { { HTML_VTT_15 }, { HTML_UNDEF }, "STYLE", vtk_style },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "u", vtk_underline_span },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "up", vtk_up },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "v", vtk_voice_span },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "vertical", vtk_vertical },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "viewportanchor", vtk_viewport_anchor },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "WEBVTT", vtk_webvtt },
+    { { HTML_VTT_18 }, { HTML_UNDEF }, "white", vtk_white },
+    { { HTML_VTT_14 }, { HTML_UNDEF }, "width", vtk_width },
+    { { HTML_VTT_18 }, { HTML_UNDEF }, "yellow", vtk_yellow } };
 
 struct symbol_entry < html_version, e_weekday_english_short > weekday_english_short_symbol_table [] =
 {   { { HTML_TAGS }, { HTML_UNDEF }, "sun", wes_sun },
@@ -7123,6 +7150,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (baselineshift);
     INIT_ENUM (cachekey);
     INIT_ENUM (celnrs);
+    INIT_ENUM (celrs);
     INIT_ENUM (citype);
     INIT_ENUM (colour_interpolation);
     INIT_ENUM (colour_rendering);
@@ -7382,12 +7410,12 @@ void enum_init (nitpick& nits)
     INIT_ENUM (unit_res);
     INIT_ENUM (unit_time);
     INIT_ENUM (unicode_bidi);
+    INIT_ENUM (vctelecomms);
     INIT_ENUM (vector_effect_2);
     INIT_ENUM (vertical_align_enum);
     INIT_ENUM (vgender);
     INIT_ENUM (vrel);
-    INIT_ENUM (vtt);
-    INIT_ENUM (vtt_keyword);
+    INIT_ENUM (vtt_token);
     INIT_ENUM (weekday_english_long);
     INIT_ENUM (weekday_english_short);
     INIT_ENUM (whitespace);
@@ -7720,12 +7748,12 @@ void enum_init (nitpick& nits)
         RETURN_SIZE (unit_res);
         RETURN_SIZE (unit_time);
         RETURN_SIZE (unicode_bidi);
+        RETURN_SIZE (vctelecomms);
         RETURN_SIZE (vector_effect_2);
         RETURN_SIZE (vertical_align_enum);
         RETURN_SIZE (vgender);
         RETURN_SIZE (vrel);
-        RETURN_SIZE (vtt);
-        RETURN_SIZE (vtt_keyword);
+        RETURN_SIZE (vtt_token);
         RETURN_SIZE (weekday_english_long);
         RETURN_SIZE (weekday_english_short);
         RETURN_SIZE (whitespace);

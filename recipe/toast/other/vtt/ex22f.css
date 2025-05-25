@@ -1,0 +1,7 @@
+video::cue(:lang(en)) {
+    color: yellow;
+}
+
+video::cue(:lang(en-GB)) {
+    color: cyan;
+}

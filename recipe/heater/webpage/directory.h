@@ -84,6 +84,7 @@ public:
 bool has_extension (const ::std::string& name, const vstr_t& extensions);
 bool is_css (const ::std::string& name);
 bool is_jsonld (const ::std::string& name);
+bool is_vtt (const ::std::string& name);
 bool is_webpage (const ::std::string& name);
 bool is_verifiable_file (const ::std::string& name);
 ::std::size_t integrate_virtuals (paths_root& virt, vd_t& dirs);

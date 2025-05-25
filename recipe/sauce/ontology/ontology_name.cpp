@@ -626,6 +626,7 @@ property_name namtab [] =
 
     // croissant
     { "applyTransform", s_croissant, cp_applytransform, },
+    { "arrayShape", s_croissant, cp_arrayshape, },
     { "citeAs", s_croissant, cp_citeas, },
     { "column", s_croissant, cp_column, },
     { "containedIn", s_croissant, cp_containedin, },
@@ -647,6 +648,7 @@ property_name namtab [] =
     { "fileSet", s_croissant, cp_fileset, },
     { "format", s_croissant, cp_format, },
     { "includes", s_croissant, cp_includes, },
+    { "isArray", s_croissant, cp_isarray, },
     { "isEnumeration", s_croissant, cp_isenumeration },
     { "isLiveDataset", s_croissant, cp_islivedataset, },
     { "jsonPath", s_croissant, cp_jsonpath, },
@@ -3444,7 +3446,7 @@ property_name namtab [] =
     { "accountMinimumInflow", s_schema, sp_accountminimuminflow },
     { "accountOverdraftLimit", s_schema, sp_accountoverdraftlimit },
     { "accountablePerson", s_schema, sp_accountableperson },
-    { "acquireLicensePage", s_schema, sp_acquirelicensepage },
+    { "acquireLicensePage", s_schema, sp_acquirelicencepage },
     { "acquiredFrom", s_schema, sp_acquiredfrom },
     { "acrissCode", s_schema, sp_acrisscode },
     { "action", s_schema, sp_action },
@@ -4530,6 +4532,7 @@ property_name namtab [] =
     { "programType", s_schema, sp_programtype },
     { "programmingLanguage", s_schema, sp_programminglanguage },
     { "programmingModel", s_schema, sp_programmingmodel },
+    { "pronouns", s_schema, sp_pronouns },
     { "propertyID", s_schema, sp_propertyid },
     { "propriatryName", s_schema, sp_propriatryname },
     { "proprietaryName", s_schema, sp_proprietaryname },

@@ -390,6 +390,8 @@ struct sz_lighter { CONSTEXPR static char const* sz () { return "lighter"; } };
 struct sz_limited_srgb { CONSTEXPR static char const* sz () { return "limited-srgb"; } };
 struct sz_linear { CONSTEXPR static char const* sz () { return "linear"; } };
 struct sz_line { CONSTEXPR static char const* sz () { return "line"; } };
+struct sz_line_left { CONSTEXPR static char const* sz () { return "line-left"; } };
+struct sz_line_right { CONSTEXPR static char const* sz () { return "line-right"; } };
 struct sz_list { CONSTEXPR static char const* sz () { return "list"; } };
 struct sz_list_item { CONSTEXPR static char const* sz () { return "list-item"; } };
 struct sz_literal_punctuation { CONSTEXPR static char const* sz () { return "literal-punctuation"; } };

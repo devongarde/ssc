@@ -385,9 +385,12 @@ void element::examine_img ()
     const bool ancestor_figure = ancestral_elements_.test (elem_figure);
     const bool has_title = a_.good (a_title) && (! a_.get_string (a_title).empty ());
     const bool has_src = a_.known (a_src);
+    const bool has_srcset = a_.known (a_srcset);
     check_required_type ();
     if (a_.known (a_usemap) && ! node_.version ().is_5 ()) no_anchor_daddy ();
     if (has_src) check_extension_compatibility (nits (), node_.version (), a_.get_urls (a_src), MIME_IMAGE);
+    else if (node_.version () < html_jun25) pick (nit_attribute_required, ed_32, "The IMG element", es_error, ec_attribute, "SRC is required on <IMG>");
+    else if (! has_srcset) pick (nit_attribute_required, ed_jun25, "The IMG element", es_error, ec_attribute, "<IMG> requires SRC or SRCSET, or both");
     if (node_.version ().is_4 ())
     {   if (! alt_known)
             pick (nit_attribute_required, ed_4, "13.2 Including an image", es_error, ec_attribute, "ALT is required on <IMG>");

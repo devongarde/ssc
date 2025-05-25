@@ -243,6 +243,7 @@
     <ClInclude Include="..\heater\webpage\q.h" />
     <ClInclude Include="..\heater\webpage\required.h" />
     <ClInclude Include="..\heater\webpage\root.h" />
+    <ClInclude Include="..\heater\webpage\vtt.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -531,6 +532,7 @@
     <ClCompile Include="..\sauce\webpage\q.cpp" />
     <ClCompile Include="..\sauce\webpage\required.cpp" />
     <ClCompile Include="..\sauce\webpage\root.cpp" />
+    <ClCompile Include="..\sauce\webpage\vtt.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="addtest.sh" />

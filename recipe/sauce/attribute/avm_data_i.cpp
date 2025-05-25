@@ -136,7 +136,7 @@ hav_t havt_img [] =
     { { HTML_JUL16, HV_NOT50 | HV_NOT51 }, { HTML_UNDEF }, elem_img, a_referrerpolicy },
     { { HTML_PLUS }, { HTML_PLUS }, elem_img, a_seethru },
     { { HTML_JUL14, HV_NOT50 }, { HTML_UNDEF }, elem_img, a_sizes },
-    { { HTML_1_0, HV_REQUIRED }, { HTML_UNDEF }, elem_img, a_src, EP_WX },
+    { { HTML_1_0 }, { HTML_UNDEF }, elem_img, a_src, EP_WX },
     { { HTML_JAN12, HV_NOT50 }, { HTML_UNDEF }, elem_img, a_srcset },
     { { HTML_3_0 }, { HTML_3_0 }, elem_img, a_units },
     { { HTML_2_0, HV_RFC_1980 | HV_NOT30 }, { HTML_UNDEF }, elem_img, a_usemap, EP_WX },

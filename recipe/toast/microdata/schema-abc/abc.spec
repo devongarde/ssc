@@ -179,7 +179,7 @@ PASS ../toast/microdata/schema-abc/brokerageaccount.html
 
 PASS ../toast/microdata/schema-abc/car.html
 28 use_quote_code
-29 attribute_required invalid_attribute_version wrong_version attribute_required empty_link empty_link url_not_found naughty_alt
+29 attribute_required invalid_attribute_version wrong_version empty_link empty_link url_not_found attribute_required naughty_alt
 
 PASS ../toast/microdata/schema-abc/cableorsatelliteservice.html
 4 long_title

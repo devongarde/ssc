@@ -50,7 +50,7 @@ void css::check_for_standard_classes (const html_version& v)
 
 ::std::string css::review (mmac_t& mac, const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot, const e_nit_section& page_head, const bool unfiltered) const
 {   ::std::string res;
-    if (page_.dot_css () || snippet ())
+    if (page_.dot_css () || page_.dot_vtt () || snippet ())
         if (! reviewed_)
         {   if (! ticks_.empty ())
             {   if (ndx_ != nullfileindex)

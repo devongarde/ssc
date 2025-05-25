@@ -1,0 +1,15 @@
+::cue(v[voice="Esme"]) {
+    color: cyan
+}
+
+::cue(v[voice="Mary"]) {
+    color: lime
+}
+
+::cue(i) {
+    font-style: italic
+}
+
+::cue(.loud) {
+    font-size: 2em
+}

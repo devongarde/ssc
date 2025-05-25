@@ -73,6 +73,7 @@ sh_t sh [] =  // latest first
     { content_schema, html_rdf_1_0 },
     { creative_commons, html_cc },
     { croissant_1_100, html_croissant_1_100 },
+    { croissant_1_18, html_croissant_1_18 },
     { croissant_1_17, html_croissant_1_17 },
     { croissant_1_16, html_croissant_1_16 },
     { croissant_1_15, html_croissant_1_15 },
@@ -328,6 +329,7 @@ sh_t sh [] =  // latest first
     { role_schema, html_role },
     { rr_schema, html_rr },
     { schema_30_0, html_schema_30_0 },
+    { schema_29_2, html_schema_29_2 },
     { schema_29_1, html_schema_29_1 },
     { schema_29_0, html_schema_29_0 },
     { schema_28_1, html_schema_28_1 },
@@ -510,7 +512,7 @@ vsv_t vsv = {
     content_schema,
     croissant_0_2, croissant_0_3, croissant_0_4, croissant_0_6, croissant_0_8,
         croissant_1_0, croissant_1_1, croissant_1_2, croissant_1_3, croissant_1_4,  croissant_1_5, croissant_1_6, croissant_1_7, croissant_1_8, croissant_1_9,
-            croissant_1_10, croissant_1_11, croissant_1_12, croissant_1_13, croissant_1_14, croissant_1_15, croissant_1_16, croissant_1_17,
+            croissant_1_10, croissant_1_11, croissant_1_12, croissant_1_13, croissant_1_14, croissant_1_15, croissant_1_16, croissant_1_17, croissant_1_18,
         croissant_1_100,
     creative_commons,
     crs2_schema,
@@ -658,7 +660,7 @@ vsv_t vsv = {
         schema_4, schema_5, schema_6, schema_7_00, schema_7_01, schema_7_02, schema_7_03, schema_7_04, schema_8, schema_9,
         schema_10, schema_11, schema_11_01, schema_12, schema_13, schema_14, schema_15, schema_16, schema_17, schema_18, schema_19,
         schema_20, schema_21, schema_22, schema_23, schema_24, schema_25, schema_26, schema_27, schema_27_01, schema_27_02,
-        schema_28_0, schema_28_1, schema_29_0, schema_29_1, schema_30_0,
+        schema_28_0, schema_28_1, schema_29_0, schema_29_1, schema_29_2, schema_30_0,
     sd_schema,
     sioc_schema,
     sioc_services,
@@ -1180,7 +1182,7 @@ template < > bool ontology_detail < s_schema > :: is_this_valid (const unsigned 
         case 7 : return (mnr < 5);
         case 11 :
         case 28 :
-        case 29 : return (mnr < 2);
+        case 29 : return (mnr < 3);
         default : return (mnr == 0); }
     switch (mnr)
     {   case 0 : return ((oflags & SV_NOT_30) == 0);
@@ -1196,7 +1198,7 @@ template < > bool ontology_detail < s_schema > :: is_this_valid (const unsigned 
         default : break; }
     return false; }
 template < > ontology_version ontology_detail < s_schema > :: from () noexcept { return ontology_version (s_schema, MIN_SCHEMA_ORG_MAJOR, MIN_SCHEMA_ORG_MINOR); }
-template < > int ontology_detail < s_schema > :: count () noexcept { return 86; }
+template < > int ontology_detail < s_schema > :: count () noexcept { return 87; }
 template < > ontology_version ontology_detail < s_schema > :: to () noexcept { return ontology_version (s_schema, MAX_SCHEMA_ORG_MAJOR, MAX_SCHEMA_ORG_MINOR); }
 template < > ::std::string ontology_detail < s_schema > :: ver (const unsigned short mjr, const unsigned short mnr)
 {   switch (mjr)

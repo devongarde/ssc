@@ -173,8 +173,14 @@ template < > struct type_master < t_button > : three_value < t_button, e_button,
 template < > struct type_master < t_cc_permits > : three_value < t_cc_permits, e_cc_permits, sz_cc_derivativeworks, sz_cc_distribution, sz_cc_reproduction >
 { using three_value < t_cc_permits, e_cc_permits, sz_cc_derivativeworks, sz_cc_distribution, sz_cc_reproduction > :: three_value; };
 
+template < > struct type_master < t_ces > : three_value < t_ces, e_ces, sz_centre, sz_end, sz_start >
+{ using three_value < t_ces, e_ces, sz_centre, sz_end, sz_start > :: three_value; };
+
 template < > struct type_master < t_cio > : three_value < t_cio, e_cio, sz_centre, sz_inset, sz_outset >
 { using three_value < t_cio, e_cio, sz_centre, sz_inset, sz_outset > :: three_value; };
+
+template < > struct type_master < t_clllr > : three_value < t_clllr, e_clllr, sz_centre, sz_line_left, sz_line_right >
+{ using three_value < t_clllr, e_clllr, sz_centre, sz_line_left, sz_line_right > :: three_value; };
 
 template < > struct type_master < t_closedby > : three_value < t_closedby, e_closedby, sz_any, sz_closerequest, sz_none, false, true >
 { using three_value < t_closedby, e_closedby, sz_any, sz_closerequest, sz_none, false, true > :: three_value; };
@@ -289,6 +295,9 @@ template < > struct type_master < t_edgemode > : three_value < t_edgemode, e_edg
 
 template < > struct type_master < t_edi > : three_value < t_edi, e_edi, sz_enable, sz_disable, sz_inherit >
 { using three_value < t_edi, e_edi, sz_enable, sz_disable, sz_inherit > :: three_value; };
+
+template < > struct type_master < t_ems > : three_value < t_ems, e_ems, sz_end, sz_middle, sz_start >
+{ using three_value < t_ems, e_ems, sz_end, sz_middle, sz_start > :: three_value; };
 
 template < > struct type_master < t_enctype > : three_value < t_enctype, e_enctype, sz_app_urlencoded, sz_multipart_form_data, sz_text_plain >
 { using three_value < t_enctype, e_enctype, sz_app_urlencoded, sz_multipart_form_data, sz_text_plain > :: three_value; };

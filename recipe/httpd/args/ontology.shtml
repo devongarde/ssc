@@ -161,7 +161,7 @@ To specific a specific version of an ontology, use X.Y, for example:<br>
 <tr><td>ontology.rif</td> <td>1.0</td></tr>
 <tr><td>ontology.role</td> <td>1.0</td></tr>
 <tr><td>ontology.rr</td> <td>1.0</td></tr>
-<tr><td>ontology.schema.org</td> <td>0.10-30 (see below)</td></tr>
+<tr><td>ontology.schema.org</td> <td>0.10-29.2 (see below)</td></tr>
 <tr><td>ontology.sd</td> <td>1.0</td></tr>
 <tr><td>ontology.sioc</td> <td>1.0</td></tr>
 <tr><td>ontology.sioc_s</td> <td>1.0</td></tr>
@@ -415,7 +415,7 @@ Most versions of schema (schema.org) should be
                         <tr><td>27.1</td> <td>27.01</td></tr>
                         <tr><td>27.2</td> <td>27.02</td></tr>
                         <tr><td>&hellip;</td> <td>&hellip;</td></tr>
-                        <tr><td>29.1</td> <td>as version number</td></tr>
+                        <tr><td>29.2</td> <td>as version number</td></tr>
                         </table>
 
 <h3>vCard</h3>

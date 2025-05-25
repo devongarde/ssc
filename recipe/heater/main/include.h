@@ -62,8 +62,8 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 14
-#define VERSION_STRING "0.2.14"
+#define VERSION_RELEASE 15
+#define VERSION_STRING "0.2.15"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -903,6 +903,7 @@ typedef ::std::vector < bool > faux_vb_t;
 #define CSS_EXT                   "css"
 #define HTML_EXT                  "html"
 #define JSONLD_EXT                "jld"
+#define VTT_EXT                   "vtt"
 #define XHTML_EXT                 "xhtml"
 
 #ifdef DARWIN

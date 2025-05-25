@@ -26,8 +26,7 @@ intended for people, like <a href="<!--#echo encoding="none" var="aesite" -->">i
 </p>
 
 <p>
-It
-doesn&rsquo;t just check static sites for broken links, dubious syntax, and
+It doesn&rsquo;t just check static sites for broken links, dubious syntax, and
 bad semantic data, it will actively complain about things that are
 perfectly legal but rather untidy&mdash;like <a href="<!--#echo encoding="none" var="aesite" -->">its author</a>.
 </p>
@@ -35,7 +34,11 @@ perfectly legal but rather untidy&mdash;like <a href="<!--#echo encoding="none" 
 <p>
 Except when serving CGI queries, it recursively scans your chosen directory
 seeking HTML &amp; related files to verify. It produces a list of errors,
-warnings, and other hints of imperfection. Scripts are ignored.
+warnings, and other hints of imperfection.
+</p>
+
+<p>
+SSC only nitpicks the static components of sites. Scripts are ignored.
 </p>
 
 <p>

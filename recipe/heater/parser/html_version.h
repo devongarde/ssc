@@ -694,6 +694,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H4_CSS_SNAP_POINTS  0x0000000000001000
 #define H4_CSS_VIEWPORT     0x0000000000002000
 
+#define H4_CSS_ARG_OPTIONAL 0x0000000000004000
+
 #define H4_CSS_3          ( H4_CSS_ADVLAY | H4_CSS_ANCHOR_POS | H4_CSS_COLOUR_3 | H4_CSS_MARQUEE | H4_CSS_OVERFLOW_3 | H4_CSS_SPATIAL | H4_CSS_SNAP_POINTS | \
                             H4_CSS_TRANSITION_3 | H4_CSS_VIEWPORT )
 #define H4_CSS_4          ( H4_CSS_COLOUR_4 | H4_CSS_OVERFLOW_4 | H4_CSS_TRANSITION_4 )
@@ -1103,7 +1105,12 @@ const html_version xhtml_svg_1_2_full (HTML_SVG12, css_2_1, HV_XHTML, HE_SVG_12_
 const html_version html_svg_2_0 (HTML_SVG20, css_2_1, 0, HE_SVG_20);
 const html_version html_svg_2_1 (HTML_SVG21, css_2_1, 0, HE_SVG_21);
 
-const html_version html_vtt (HTML_APR19, 0, 0, 0, 0, H4_VTT);
+const html_version html_vtt_14 (HTML_VTT_14, 0, 0, 0, 0, H4_VTT);
+const html_version html_vtt_15 (HTML_VTT_15, 0, 0, 0, 0, H4_VTT);
+const html_version html_vtt_16 (HTML_VTT_16, 0, 0, 0, 0, H4_VTT);
+const html_version html_vtt_17 (HTML_VTT_17, 0, 0, 0, 0, H4_VTT);
+const html_version html_vtt_18 (HTML_VTT_18, 0, 0, 0, 0, H4_VTT);
+const html_version html_vtt_19 (HTML_VTT_19, 0, 0, 0, 0, H4_VTT);
 
 const html_version html_adms_1_0 (HTML_ADMS_1_0);
 const html_version html_adms_2_0 (HTML_ADMS_2_0);
@@ -1111,6 +1118,7 @@ const html_version html_as_1_0 (HTML_AS_1_0);
 const html_version html_as_2_0 (HTML_AS_2_0);
 const html_version html_cc (HTML_CC);
 const html_version html_croissant_1_100 (HTML_CROISSANT_1_100);
+const html_version html_croissant_1_18 (HTML_CROISSANT_1_18);
 const html_version html_croissant_1_17 (HTML_CROISSANT_1_17);
 const html_version html_croissant_1_16 (HTML_CROISSANT_1_16);
 const html_version html_croissant_1_15 (HTML_CROISSANT_1_15);
@@ -1311,6 +1319,7 @@ const html_version html_schema_28_0 (HTML_SCHEMA_28_0);
 const html_version html_schema_28_1 (HTML_SCHEMA_28_1);
 const html_version html_schema_29_0 (HTML_SCHEMA_29_0);
 const html_version html_schema_29_1 (HTML_SCHEMA_29_1);
+const html_version html_schema_29_2 (HTML_SCHEMA_29_2);
 const html_version html_schema_30_0 (HTML_SCHEMA_30_0);
 const html_version html_sd (HTML_SD);
 const html_version html_sioc (HTML_SIOC);
@@ -1428,6 +1437,7 @@ const html_version html_feb25 (HTML_FEB25, css_2024, HV_WHATWG, HE_MICRODATA | H
 const html_version html_mar25 (HTML_MAR25, css_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_FULL);
 const html_version html_apr25 (HTML_APR25, css_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_FULL);
 const html_version html_may25 (HTML_MAY25, css_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_FULL);
+const html_version html_jun25 (HTML_JUN25, css_2024, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_FULL);
 const html_version html_5_0 (HTML_5_0, css_2010, HV_W3, HE_SVG_11, H2_MATH_2);
 const html_version html_5_1 (HTML_5_1, css_2015, HV_W3, HE_SVG_11, H2_MATH_2);
 const html_version html_5_2 (HTML_5_2, css_2017, HV_W3, HE_SVG_11, H2_MATH_3);

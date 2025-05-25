@@ -43,6 +43,7 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
         args.check_flags (nits, fn.flags (), fn.name ());
         fn_ = fn.get ();
         const flags_t cats (fn.first ().ext2 ());
+        const flags_t cat4 (fn.first ().ext4 ());
         if (args.v_.css_module (c_selector) >= 3)
         {   if ((cats & H2_CSS_COCO) == H2_CSS_COCO)
             {   if (! coco)
@@ -52,7 +53,7 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
                     nits.pick (nit_pseud, ed_css_selectors_3, "2 Selectors", es_error, ec_css, fn.name (), " is a pseudo class, use ':', not '::'"); } }
         b = next_non_whitespace (args.t_, b, to);
         if ((b == -1) || (args.t_.at (b).t_ != ct_round_brac))
-        {   if (((cats & H2_CSS_ARG_MASK) != 0) && (fn_ != efn_host))
+        {   if (((cats & H2_CSS_ARG_MASK) != 0) && ((cat4 & H4_CSS_ARG_OPTIONAL) == 0))
                 nits.pick (nit_pseud, es_error, ec_css, fn.name (), ": missing arguments");   
             return; }
         if ((cats & H2_CSS_ARG_MASK) == 0)
@@ -86,6 +87,13 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
             case efn_auto :
                 test_value < t_lang > (nits, context.html_ver (), param);
                 return;
+            case efn_cue :
+            case efn_cue_region :
+                if ((cat4 & H4_VTT) == 0)
+                    nits.pick (nit_vtt_css, es_error, ec_css, fn.name (), " with an argument requires WebVTT");
+                else
+                    vsl_.emplace_back (new selector (args, b, ket, true));
+                break;
             case efn_dir :
                 test_value < t_ltr_rtl > (nits, context.html_ver (), param);
                 return;

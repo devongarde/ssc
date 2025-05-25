@@ -109,7 +109,7 @@ void vv_t :: create_controls (wxWindow *parent)
         {	box_for_ -> Add (stat_for_, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
             if (vld.empty ())
             {	vld.assign ( { BASE_VALID } );
-                for (auto o : context.validation ())
+                for (auto& o : context.validation ())
                 {	const ::std::string s (o.first);
                     if (! s.empty ())
                     {	const ::std::string::size_type pos = s.find ('.');
@@ -160,7 +160,7 @@ void vv_t :: repopulate ()
         PRESUME (sel < vvfix_.size (), __FILE__, __LINE__);
         PRESUME (sel < vvextra_.size (), __FILE__, __LINE__);
         vstr_t vv (vvfix_.at (sel));
-        for (auto x : vvextra_.at (sel)) vv.push_back (x);
+        for (auto& x : vvextra_.at (sel)) vv.push_back (x);
         val_.preload (vv); } }
 
 void vv_t :: populate ()
@@ -361,7 +361,7 @@ bool vv_t :: TransferDataToWindow ()
     virt_.preload (virts_);
     en_virt ();
     vstr_t vv (*vvfix_.cbegin ());
-    for (auto x : *vvextra_.cbegin ()) if (! x.empty ()) vv.push_back (x);
+    for (auto& x : *vvextra_.cbegin ()) if (! x.empty ()) vv.push_back (x);
     val_.preload (vv);
     if (prior_ == wxNOT_FOUND) prior_ = 0;
     choice_for_ -> Select (prior_); 
@@ -393,7 +393,7 @@ template < class Z, e_type T > void vv_t :: vvfox (::std::size_t& count, const c
     for (::std::size_t x = from; x < type_master < T > :: value_count (); ++x)
     {   const ::std::string& cc = type_master < T > :: name (GSL_NARROW_CAST < Z > (x));
         if (! cc.empty ()) vvfix_.at (count).push_back (cc); }
-    for (auto cc : c.vvext (T))
+    for (auto& cc : c.vvext (T))
         if (! cc.empty ())
             vvextra_.at (count).push_back (cc);
     ++count; }
@@ -405,7 +405,7 @@ template < class Z, class T > void vv_t :: vvfox (::std::size_t& count, const ::
     for (::std::size_t x = from; x < to; ++x)
     {   const ::std::string& cc = Z::name (GSL_NARROW_CAST < T > (x));
         if (! cc.empty ()) vvfix_.at (count).push_back (cc); }
-    for (auto cc : feed)
+    for (auto& cc : feed)
         vvextra_.at (count).push_back (cc);
     ++count; }
 
@@ -432,7 +432,7 @@ void vv_t :: load_from_context (const context_t& c)
                         ss.insert (::std::pair (lhs, vs.size () - 1)); } } } }
         shs.resize (vs.size ());
         exs.resize (vs.size ());
-        for (auto s : c.exports ())
+        for (auto& s : c.exports ())
         {   const ::std::string::size_type pos = s.find_first_of ('=');
             if ((pos > 0) && (pos < s.length () - 1))
             {   const ::std::string lhs = s.substr (0, pos);
@@ -440,7 +440,7 @@ void vv_t :: load_from_context (const context_t& c)
                 msid_t::const_iterator i = ss.find (lhs);
                 if (i != ss.cend ())
                     exs.at (i -> second) = rhs; } }
-        for (auto s : c.shadows ())
+        for (auto& s : c.shadows ())
         {   const ::std::string::size_type pos = s.find_first_of ('=');
             if ((pos > 0) && (pos < s.length () - 1))
             {   const ::std::string lhs = s.substr (0, pos);
@@ -750,7 +750,7 @@ void vv_t :: load_from_context (const context_t& c)
     vvfox < e_vertical_align_enum, t_vertical_align_enum > (count, c);
     vvfox < e_vgender, t_vgender > (count, c);
     vvfox < e_vrel, t_vrel > (count, c);
-    vvfox < e_vtt, t_vtt > (count, c);
+    vvfox < e_vctelecomms, t_vctelecomms > (count, c);
     vvfox < e_weekday_english_long, t_weekday_english_long > (count, c);
     vvfox < e_weekday_english_short, t_weekday_english_short > (count, c);
     vvfox < e_whitespace, t_whitespace > (count, c);
@@ -840,6 +840,7 @@ void vv_t :: save_to_context (context_t& c) const
     foxvv < t_baselineshift > (count, c);
     foxvv < t_cachekey > (count, c);
     foxvv < t_celnrs > (count, c);
+    foxvv < t_celrs > (count, c);
     foxvv < t_citype > (count, c);
     foxvv < t_colour_interpolation > (count, c);
     foxvv < t_colour_rendering > (count, c);
@@ -1098,7 +1099,7 @@ void vv_t :: save_to_context (context_t& c) const
     foxvv < t_vertical_align_enum > (count, c);
     foxvv < t_vgender > (count, c);
     foxvv < t_vrel > (count, c);
-    foxvv < t_vtt > (count, c);
+    foxvv < t_vctelecomms > (count, c);
     foxvv < t_weekday_english_long > (count, c);
     foxvv < t_weekday_english_short > (count, c);
     foxvv < t_whitespace > (count, c);

@@ -72,7 +72,10 @@ void general_t :: create_controls (wxWindow *parent)
                 {	box_check_ -> Add (check_other_, 0, wxALIGN_CENTRE_VERTICAL, 5 );   
                     check_rdfa_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, "RDFa", wxDefaultPosition, wxDefaultSize, 0));
                     if (check_rdfa_ != nullptr)
-                        box_check_ -> Add (check_rdfa_, 0, wxALIGN_CENTRE_VERTICAL, 5 ); } } }
+                    {   box_check_ -> Add (check_rdfa_, 0, wxALIGN_CENTRE_VERTICAL, 5 );
+                        check_vtt_ = GSL_OWNER (wxCheckBox) (new wxCheckBox (parent, wxID_ANY, "VTT", wxDefaultPosition, wxDefaultSize, 0));
+                        if (check_vtt_ != nullptr)
+                            box_check_ -> Add (check_vtt_, 0, wxALIGN_CENTRE_VERTICAL, 5 ); } } } }
         box_ -> Add (box_check_, 0, wxALIGN_CENTRE_HORIZONTAL, 5); }
 
     line_5_ = GSL_OWNER (wxStaticLine) (new wxStaticLine (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL));
@@ -217,6 +220,8 @@ bool general_t :: TransferDataToWindow ()
     else check_rdfa_ -> Set3StateValue (wxCHK_UNCHECKED);
     if (vcs_) check_vcs_ -> Set3StateValue (wxCHK_CHECKED);
     else check_vcs_ -> Set3StateValue (wxCHK_UNCHECKED);
+    if (vtt_) check_vtt_ -> Set3StateValue (wxCHK_CHECKED);
+    else check_vtt_ -> Set3StateValue (wxCHK_UNCHECKED);
     spin_max_ -> SetValue (max_);
     if (max_ == 0)
     {	check_max_ -> Set3StateValue (wxCHK_UNCHECKED);
@@ -244,6 +249,7 @@ bool general_t :: TransferDataFromWindow ()
     other_ = check_other_ -> IsChecked ();
     rdfa_ = check_rdfa_ -> IsChecked ();
     vcs_ = check_vcs_ -> IsChecked ();
+    vtt_ = check_vtt_ -> IsChecked ();
     if (! check_max_ -> IsChecked ()) max_ = 0;
     else max_ = spin_max_ -> GetValue ();
 #ifndef NO_FRED
@@ -280,6 +286,7 @@ void general_t :: load_from_context (const context_t& c)
     other (c.classic ());
     rdfa (c.rdfa ());
     vcs (c.vcs ());
+    vtt (c.load_vtt ());
 #ifndef NO_FRED
     fred (GSL_NARROW_CAST < unsigned short > (c.fred ()));
 #endif // NO_FRED
@@ -292,6 +299,7 @@ void general_t :: save_to_context (context_t& c) const
     c.classic (other ());
     c.rdfa (rdfa ());
     c.vcs (vcs ());
+    c.load_vtt (vtt ());
 #ifndef NO_FRED
     c.fred (fred ());
 #endif // NO_FRED

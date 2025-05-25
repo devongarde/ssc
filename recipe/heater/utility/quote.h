@@ -96,4 +96,7 @@ inline ::std::string uq3 (const ::std::string& s)
 {   vstr_t v = uq2 (s);
     if (v.size () > 0) return v.at (0);
     return ::std::string (); }
+
+inline vstr_t uq5 (const ::std::string& s)
+{   return uq2 (s, UQ_TRIM, " \t"); }
  

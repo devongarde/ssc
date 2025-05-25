@@ -252,8 +252,10 @@ void css_element::parse (arguments& args, const int from, const int to, const bo
             case ct_squiggle :
                 parse (args, i, to);
                 return;
-            case ct_comma :
             case ct_round_ket :
+                if (i == to) return;
+                FALLTHROUGH;
+            case ct_comma :
             case ct_square_ket :
             case ct_semicolon :
                 if (context.css_module (c_nesting) >= 3) return;

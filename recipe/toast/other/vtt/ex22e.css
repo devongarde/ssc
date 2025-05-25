@@ -1,0 +1,11 @@
+video::cue([lang="en-US"]) {
+    color: yellow;
+}
+
+video::cue(lang[lang="en-GB"]) {
+    color: cyan;
+}
+
+video::cue(v[voice="Kathryn"] {
+  color: lime;
+}

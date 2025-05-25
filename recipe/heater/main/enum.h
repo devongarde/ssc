@@ -312,8 +312,10 @@ const e_category last_category = ec_vtt;
 typedef enum { ccp_derivativeworks, ccp_distribution, ccp_reproduction } e_cc_permits;
 typedef enum { ccr_attribution, ccr_notice, ccr_sharealike, ccr_sourcecode } e_cc_requires;
 typedef enum { cel_centre, cel_end, cel_left, cel_none, cel_right, cel_start } e_celnrs;
+typedef enum { cls_centre, cls_end, cls_left, cls_middle, cls_right, cls_start } e_celrs;
 typedef enum { cens_centre, cens_end, cens_none, cens_start } e_cens;
 typedef enum { cs_centre, cs_space_around, cs_space_between, cs_start } e_centre_space;
+typedef enum { ces_centre, ces_end, ces_start } e_ces;
 typedef enum { cc_ansi, cc_utf8, cc_utf16be, cc_utf16le, cc_gb, cc_fkd } e_charcode;
 typedef enum { ch_a, ch_b, ch_g, ch_r } e_channelselector;
 
@@ -414,6 +416,7 @@ typedef enum {
     c_error } e_class;
 
 typedef enum { cf_clear, cf_float } e_clear_float;
+typedef enum { cll_centre, cll_line_left, cll_line_right } e_clllr;
 typedef enum { cby_any, cby_closerequest, cby_none } e_closedby;
 typedef enum { co_closed, co_open } e_closed_open;
 typedef enum {  cn_enotation, cn_integer, cn_rational, cn_real, cn_complexpolar, cn_complexcartesian, cn_constant,
@@ -1199,7 +1202,7 @@ typedef enum { do_booboo, do_cgi, do_examine, do_simple } e_do;
 typedef enum {  ed_mishmash, ed_dict, ed_tags, ed_1, ed_plus, ed_2, ed_3, ed_32, ed_4, ed_41, ed_x1, ed_x11, ed_x2,
                 ed_50, ed_51, ed_52, ed_53,
                 ed_jan05, ed_jan06, ed_jan07, ed_jan08, ed_jan10, ed_jul10, ed_jan12, ed_jan13, ed_jan14, ed_jul17, ed_may20, ed_jul20, ed_jan21,
-                ed_apr21, ed_jul21, ed_apr22, ed_oct22, ed_apr23, ed_jul23, ed_nov24,
+                ed_apr21, ed_jul21, ed_apr22, ed_oct22, ed_apr23, ed_jul23, ed_nov24, ed_jun25,
                 ed_svg_1_0, ed_svg_1_1, ed_svg_1_2_tiny, ed_svg_1_2_full, ed_svg_2_0, ed_svg_2_anim,
                 ed_math_1, ed_math_2, ed_math_3, ed_math_4,
                 ed_aria_1_0, ed_aria_1_1, ed_aria_1_2, ed_aria_1_3, ed_aria_dp_1_0, ed_aria_dp_1_1, ed_aria_graphics, ed_aria_html,
@@ -1323,6 +1326,7 @@ const e_element_tag last_element_tag = elem_error;
 typedef unsigned int e_element;
 
 typedef enum { emi_good, emi_math, emi_not_this_math, emi_math_svg, emi_not_svg, emi_not_this_svg, emi_svg, emi_rdfa, emi_untested } e_emi;
+typedef enum { ems_end, ems_middle, ems_start } e_ems;
 typedef enum { ee_www, e_multi, ee_text } e_enctype;
 typedef enum { es_end, es_start } e_end_start;
 typedef enum { ens_end, ens_near, ens_start } e_ens;
@@ -2668,7 +2672,8 @@ typedef enum
     nit_opera, nit_safari, nit_invalid_duration, nit_tame, nit_tabnab, nit_sandbox, nit_pii_cache, nit_special_domain, nit_ai,
     nit_required, nit_track_missing, nit_role_missing, nit_role_found, nit_aria_found, nit_bad_braille, nit_aria_braille,
     nit_keychar, nit_no_role_found, nit_role_incompatible, nit_permissions_policy, nit_too_few, nit_library_error, nit_fediverse,
-    nit_vtt_cue, nit_webvtt,
+    nit_vtt_cue, nit_webvtt, nit_vtt_timestamp, nit_vtt_css, nit_vtt_bad_cue, nit_vtt_bad_id, nit_vtt_region, nit_vtt_class,
+    nit_vtt_annotation, nit_vtt_heirarchy, nit_vtt_region_id, nit_vtt_region_value,
 
     nit_incompatible,
 
@@ -2726,7 +2731,8 @@ typedef enum
         nm_context_stats_region, nm_context_stats_property, nm_context_stats_scroll_anim, nm_context_stats_statement,
         nm_context_stats_styleset, nm_context_stats_stylistic, nm_context_stats_swash, nm_context_stats_version,
         nm_context_stats_view,nm_context_svg_version, nm_context_tags, nm_context_test, nm_context_title,
-        nm_context_unknown_class, nm_context_vcs, nm_context_version, nm_context_virtuals, nm_context_wx, nm_context_xsd,
+        nm_context_unknown_class, nm_context_vcs, nm_context_version, nm_context_virtuals, nm_context_vtt, nm_context_vtt_extension,
+        nm_context_wx, nm_context_xsd,
         nm_copy_addr, nm_copy_html, nm_copy_text,
     nm_general_info, nm_general_output, nm_general_path, nm_grand_title,
     nm_html_snippet,
@@ -5304,12 +5310,12 @@ typedef enum
     csvw_valueurl, csvw_virtual,
 
     // croissant
-    cp_applytransform,
+    cp_applytransform, cp_arrayshape,
     cp_citeas, cp_column, cp_containedin, cp_content, cp_csvcolumn,
     cp_data, cp_dataextraction, cp_datatype, cp_delimiter, cp_distribution,
     cp_equivalentproperty, cp_examples, cp_excludes, cp_extract,
     cp_field, cp_fileextension, cp_fileobject, cp_fileproperty, cp_fileset, cp_format,
-    cp_includes, cp_isenumeration, cp_islivedataset,
+    cp_includes, cp_isarray, cp_isenumeration, cp_islivedataset,
     cp_jsonpath, cp_jsonquery,
     cp_key,
     cp_md5,
@@ -6160,7 +6166,7 @@ typedef enum
     // schema.org
     sp_about, sp_abridged, sp_abstract, sp_accelerationtime, sp_acceptedanswer, sp_acceptedoffer, sp_acceptedpaymentmethod, sp_acceptsreservations, sp_accessibilityapi, sp_accessibilitycontrol,
     sp_accessibilityfeature, sp_accessibilityhazard, sp_accessibilitysummary, sp_accesscode, sp_accessmode, sp_accessmodesufficient, sp_accommodationcategory, sp_accommodationfloorplan,
-    sp_accountableperson, sp_accountid, sp_accountminimuminflow, sp_accountoverdraftlimit, sp_acquiredfrom, sp_acquirelicensepage, sp_acrisscode, sp_action, sp_actionablefeedbackpolicy,
+    sp_accountableperson, sp_accountid, sp_accountminimuminflow, sp_accountoverdraftlimit, sp_acquiredfrom, sp_acquirelicencepage, sp_acrisscode, sp_action, sp_actionablefeedbackpolicy,
     sp_actionaccessibilityrequirement, sp_actionapplication, sp_actionoption, sp_actionplatform, sp_actionprocess, sp_actionstatus, sp_activeingredient, sp_activityduration, sp_activityfrequency,
     sp_actor, sp_actors, sp_additionalname, sp_additionalnumberofguests, sp_additionalproperty, sp_additionaltype, sp_additionalvariable, sp_addon, sp_address, sp_addresscountry,
     sp_addresslocality, sp_addressregion, sp_administrationroute, sp_advancebookingrequirement, sp_adverseoutcome, sp_affectedby, sp_affiliation, sp_aftermedia,sp_agent, sp_agentinteractionstatistic,
@@ -6276,17 +6282,18 @@ typedef enum
     sp_ordernumber, sp_orderpercentage, sp_orderquantity, sp_orderstatus, sp_ordervalue, sp_organiser, sp_origin, sp_originaddress, sp_originalmediacontentdescription, sp_originalmedialink, sp_originatesfrom, sp_outcome,
     sp_overdosage, sp_overview, sp_ownedfrom, sp_ownedto, sp_ownershipfundinginfo, sp_owns,
 
-    sp_pageend, sp_pagestart, sp_pagination, sp_parent, sp_parentitem, sp_parentorganisation, sp_parents, sp_parentservice, sp_parenttaxon, sp_participant, sp_partofepisode, sp_partofinvoice, sp_partoforder, sp_partofseason,
-    sp_partofseries, sp_partofsystem, sp_partoftrip, sp_partoftvseries, sp_partysize, sp_passengerprioritystatus, sp_passengersequencenumber, sp_pathophysiology, sp_pattern, sp_payload, sp_paymentaccepted, sp_paymentdue,
-    sp_paymentduedate, sp_paymentmethod, sp_paymentmethodid, sp_paymentstatus, sp_paymenturl, sp_penciler, sp_percentile10, sp_percentile25, sp_percentile75, sp_percentile90, sp_performer, sp_performers, sp_performerin,
-    sp_performtime, sp_permissions, sp_permissiontype, sp_permitaudience, sp_permittedusage, sp_petsallowed, sp_phase, sp_phonetictext, sp_photo, sp_photos, sp_physicalrequirement, sp_physiologicalbenefits, sp_pickuplocation,
-    sp_pickuptime, sp_playersonline, sp_playertype, sp_playmode, sp_polygon, sp_population, sp_populationtype, sp_potentialuse, sp_position, sp_positivenotes, sp_possiblecomplication, sp_possibletreatment,
-    sp_postalcode, sp_postalcodebegin, sp_postalcodeend, sp_postalcodeprefix, sp_postalcoderange, sp_postofficeboxnumber, sp_postop, sp_potentialaction, sp_practicesat, sp_predecessorof, sp_pregnancycategory, sp_pregnancywarning, sp_preop,
-    sp_preparation, sp_preptime, sp_prescribinginfo, sp_prescriptionstatus, sp_previousitem, sp_previousstartdate, sp_price, sp_pricecomponent, sp_pricecomponenttype, sp_pricecurrency, sp_pricerange, sp_pricespecification,
-    sp_pricetype, sp_pricevaliduntil, sp_primaryimageofpage, sp_primaryprevention, sp_printcolumn, sp_printedition, sp_printpage, sp_printsection, sp_procedure, sp_proceduretype, sp_processingtime, sp_processorrequirements,
-    sp_producer, sp_produces, sp_productgroupid, sp_productid, sp_productioncompany, sp_productiondate, sp_productreturndays, sp_productreturnlink, sp_productsupported, sp_proficiencylevel, sp_programme, sp_programmemembershipused,
-    sp_programmename, sp_programminglanguage, sp_programmingmodel, sp_programprequisites, sp_programtype, sp_propertyid, sp_propriatryname, sp_proprietaryname, sp_proteincontent, sp_provider, sp_providermobility,
-    sp_providesbroadcastservice, sp_providesservice, sp_publicaccess, sp_publication, sp_publicationtype, sp_publictransportclosuresinfo, sp_publishedby, sp_publishedon, sp_publisher, sp_publisherimprint, sp_publishingprinciples,
+    sp_pageend, sp_pagestart, sp_pagination, sp_parent, sp_parentitem, sp_parentorganisation, sp_parents, sp_parentservice, sp_parenttaxon, sp_participant, sp_partofepisode, sp_partofinvoice, sp_partoforder,
+    sp_partofseason, sp_partofseries, sp_partofsystem, sp_partoftrip, sp_partoftvseries, sp_partysize, sp_passengerprioritystatus, sp_passengersequencenumber, sp_pathophysiology, sp_pattern, sp_payload,
+    sp_paymentaccepted, sp_paymentdue, sp_paymentduedate, sp_paymentmethod, sp_paymentmethodid, sp_paymentstatus, sp_paymenturl, sp_penciler, sp_percentile10, sp_percentile25, sp_percentile75, sp_percentile90,
+    sp_performer, sp_performers, sp_performerin, sp_performtime, sp_permissions, sp_permissiontype, sp_permitaudience, sp_permittedusage, sp_petsallowed, sp_phase, sp_phonetictext, sp_photo, sp_photos,
+    sp_physicalrequirement, sp_physiologicalbenefits, sp_pickuplocation, sp_pickuptime, sp_playersonline, sp_playertype, sp_playmode, sp_polygon, sp_population, sp_populationtype, sp_potentialuse, sp_position,
+    sp_positivenotes, sp_possiblecomplication, sp_possibletreatment, sp_postalcode, sp_postalcodebegin, sp_postalcodeend, sp_postalcodeprefix, sp_postalcoderange, sp_postofficeboxnumber, sp_postop,
+    sp_potentialaction, sp_practicesat, sp_predecessorof, sp_pregnancycategory, sp_pregnancywarning, sp_preop, sp_preparation, sp_preptime, sp_prescribinginfo, sp_prescriptionstatus, sp_previousitem,
+    sp_previousstartdate, sp_price, sp_pricecomponent, sp_pricecomponenttype, sp_pricecurrency, sp_pricerange, sp_pricespecification, sp_pricetype, sp_pricevaliduntil, sp_primaryimageofpage, sp_primaryprevention,
+    sp_printcolumn, sp_printedition, sp_printpage, sp_printsection, sp_procedure, sp_proceduretype, sp_processingtime, sp_processorrequirements, sp_producer, sp_produces, sp_productgroupid, sp_productid,
+    sp_productioncompany, sp_productiondate, sp_productreturndays, sp_productreturnlink, sp_productsupported, sp_proficiencylevel, sp_programme, sp_programmemembershipused, sp_programmename, sp_programminglanguage,
+    sp_programmingmodel, sp_programprequisites, sp_programtype, sp_pronouns, sp_propertyid, sp_propriatryname, sp_proprietaryname, sp_proteincontent, sp_provider, sp_providermobility, sp_providesbroadcastservice,
+    sp_providesservice, sp_publicaccess, sp_publication, sp_publicationtype, sp_publictransportclosuresinfo, sp_publishedby, sp_publishedon, sp_publisher, sp_publisherimprint, sp_publishingprinciples,
     sp_purchasedate, sp_purchasepricelimit, sp_purchasetype, sp_purpose,
 
     sp_qualifications, sp_qualifiedexpense, sp_quarantineguidelines, sp_query, sp_quest, sp_question,
@@ -7306,13 +7313,13 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_B \
     t_b64, t_background, t_bandwidth, t_base, t_baseline_contain_none, t_baselineshift, t_bb, t_bcs, t_beginvalue, t_beginvalues, t_beginvaluelist, \
         t_behaviour, t_bens, t_benrs, t_bixy, t_bixys, t_blocking, t_block_inline, t_bns, t_bool, t_bools, t_border, t_braille, t_braille_or_not, \
-        t_brs, t_buffered_rendering, t_button
-#define SSC_TYPES_B_MAX t_button
+        t_brs, t_buffered_rendering, t_button, t_cache, t_cachekey, t_calcfn, t_calcmode, t_captionalign, t_capture
+#define SSC_TYPES_B_MAX t_capture
 
 #define SSC_TYPES_C_1 \
-    t_cache, t_cachekey, t_calcfn, t_calcmode, t_captionalign, t_capture, t_cc_permits, t_cc_prohibits, t_cc_requires, t_celnrs, t_cens, t_centre_space, \
-        t_channelselector, t_char, t_charset, t_charsets, t_charspacing, t_cio, t_cipr, t_circle_ellipse, t_citype, t_class, t_clear, t_clear30, t_clip, \
-        t_clip_path_rule, t_closedby, t_closed_open, t_closure, t_coden, t_colour, t_colour_a, t_colour_ci, t_colour_cii, t_colour_i, t_colour_ii
+    t_cc_permits, t_cc_prohibits, t_cc_requires, t_celnrs, t_celrs, t_cens, t_centre_space, t_ces, t_channelselector, t_char, t_charset, t_charsets, t_charspacing, \
+        t_cio, t_cipr, t_circle_ellipse, t_citype, t_class, t_clear, t_clear30, t_clip, t_clip_path_rule, t_clllr, t_closedby, t_closed_open, t_closure, \
+        t_coden, t_colour, t_colour_a, t_colour_ci, t_colour_cii, t_colour_i, t_colour_ii
 #define SSC_TYPES_C_1_MAX t_colour_ii
 
 #define SSC_TYPES_C_2 \
@@ -7523,7 +7530,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_D_MAX t_dynamic_range
 
 #define SSC_TYPES_E \
-    t_e_w, t_economy_exact, t_edgemode, t_edi, t_edit, t_editable, t_effect, t_email, t_emails, t_empty, t_enable_background, t_enctype, t_end, \
+    t_e_w, t_economy_exact, t_edgemode, t_edi, t_edit, t_editable, t_effect, t_email, t_emails, t_empty, t_ems, t_enable_background, t_enctype, t_end, \
         t_endvaluelist, t_ens, t_enterkeyhint, t_environment_blending, t_evt_action, t_exif_intind, t_existential, t_expected, t_exportpart, \
     t_fediverse_id, t_ffls, t_figalign, t_filename, t_filesize, t_fill, t_fill_v, t_fillanim, t_filled_open, t_fill_opacity, t_fill_rule, t_fill_ve
 #define SSC_TYPES_E_MAX t_fill_ve
@@ -7604,11 +7611,12 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
         t_nsd, t_nsds, t_nss, t_nuf, t_num, \
     t_occurence, t_og, t_ogdet, t_ogtype, t_oklabfn, t_oklchfn, t_onetwo, t_onetwothree, t_onoff, t_ontology, t_opacity, t_open, t_operator, \
         t_order, t_orientation, t_origin, t_output_template, t_overflow, t_overlay, t_over_under, \
-    t_p1_10, t_page_orientation, t_paint, t_paintkeyword, t_paint_order, t_pam_ccv, t_pam_status, t_panose1, t_part, t_pcmm_status, t_percent, t_percentish
-#define SSC_TYPES_O_MAX t_percentish
+    t_p1_10, t_page_orientation, t_paint, t_paintkeyword, t_paint_order, t_pam_ccv, t_pam_status, t_panose1, t_part, t_pcmm_status, t_percent, \
+        t_percentish, t_percent_flexible, t_percent_int 
+#define SSC_TYPES_O_MAX t_percent_int
 
 #define SSC_TYPES_P_1 \
-        t_percent_flexible, t_percent_int, t_percent_n, t_percents_nf, t_percents_flexible, t_percents_n, t_percent_or_not, t_permpol, t_phase, t_phase_x, t_pics, \
+        t_percent_n, t_percents_nf, t_percents_flexible, t_percents_n, t_percent_or_neg, t_percent_or_not, t_permpol, t_phase, t_phase_x, t_pics, \
         t_plus_1_7, t_plusstyle, t_pointer_events, t_points, t_popover, t_popovertargetaction, t_position, t_position_lcrtcb, t_position_lcr_len, \
         t_position_lcrtcb_len, t_position_tcb_len, t_position_lr_len, t_position_lrtb_len, t_position_tb_len, t_positions, t_positive, t_positive_1_2
 #define SSC_TYPES_P_1_MAX t_positive_1_2
@@ -7641,7 +7649,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_S_1 \
     t_safe_unsafe, t_sandbox, t_sandboxen, t_scale_down, t_scan, t_scei, t_scope, t_script, t_scrolling, t_second, t_semitone, t_setback_offset, t_settype, \
         t_severity, t_sex, t_sgml, t_sha1, t_sha256, t_shadow, t_shape, t_shape3, t_shape4, t_shape7, t_shape_none_uri, t_shape_fn, t_shape_fn_circle, \
-        t_shape_fn_ellipse, t_shape_fn_polygon, t_shape_uri, t_shape_rendering, t_shape_rcp, t_shadowinherit, t_short, t_side, t_size, t_size3
+        t_shape_fn_ellipse, t_shape_fn_polygon, t_shape_uri, t_shape_rendering, t_shape_rcp, t_shadowinherit, t_short, t_side, t_simple_neg, t_size, t_size3
 #define SSC_TYPES_S_1_MAX t_size3
 
 #define SSC_TYPES_S_2 \
@@ -7677,7 +7685,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_U \
         t_unsigned_byte, t_unsigned_short, t_unsigned_1_or_2, t_un_ex, t_unsigned_dosh, t_unsigned_n, t_unsigneds, t_uplr, t_urange, t_urational, t_urationals, \
         t_urifn, t_urifn_db, t_urifn_ni, t_urifn_str, t_urifn_xy, t_url, t_url_n, t_urls, t_urltemplate, t_user_modify, t_user_scalable, \
-    t_valign, t_valign3, t_valign_tmb, t_value, t_values, t_valuetype, t_valuetype2, t_vector_effect, t_vector_effect_12, t_vector_effect_2
+    t_valign, t_valign3, t_valign_tmb, t_value, t_values, t_valuetype, t_valuetype2, t_vctelecomms, t_vector_effect, t_vector_effect_12, t_vector_effect_2
 #define SSC_TYPES_U_MAX t_vector_effect_2
 
 #define SSC_TYPES_V \
@@ -7687,7 +7695,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_V_MAX t_viewport_width
 
 #define SSC_TYPES_V_W \
-        t_viewportscreen, t_visibility, t_visibility10, t_visibility11, t_vkind, t_vocab, t_vrel, t_vtt, t_vtt_keyword, t_vtype, t_vunit, t_vunits, \
+        t_viewportscreen, t_visibility, t_visibility10, t_visibility11, t_vkind, t_vocab, t_vrel, t_vtt_token, t_vtype, t_vunit, t_vunits, \
     t_wanted, t_wallclock, t_week, t_weekday_english_short, t_weekday_english_long, t_whitespace, t_width, t_wildcard, t_workertype, t_wrap, t_wrap3, \
         t_writingmode, t_wxhs, t_wximgalign
 #define SSC_TYPES_V_W_MAX t_wximgalign
@@ -7735,6 +7743,7 @@ typedef enum { um_read_only, um_read_write, um_read_write_plaintext_only, um_wri
 typedef enum { va32_top, va32_middle, va32_bottom } e_valign_tmb;
 typedef enum { va_top, va_middle, va_bottom, va_baseline } e_valign3;
 typedef enum { vt_data, vt_object, vt_ref } e_valuetype;
+typedef enum { vt_mobile, vt_fax, vt_pager, vt_sms, vt_textphone, vt_video, vt_voice } e_vctelecomms;
 typedef enum { v12_inherit, v12_none, v12_nonscalingstroke } e_vector_effect_12;
 typedef enum { v2_fixedposition, v2_none, v2_nonrotation, v2_nonscalingstroke, v2_nonscalingsize } e_vector_effect_2;
 typedef enum { eva_baseline, eva_sub, eva_super, eva_top, eva_text_top, eva_middle, eva_bottom, eva_text_bottom, eva_inherit } e_vertical_align_enum;
@@ -7745,11 +7754,31 @@ typedef enum { vg_female, vg_male, vg_none, vg_other, vg_unknown } e_vgender;
 typedef enum { vk_individual, vk_organisation, vk_group, vk_location } e_vkind;
 typedef enum {  vr_acquaintance, vr_agent, vr_child, vr_colleague, vr_contact, vr_coresident, vr_coworker, vr_crush, vr_date,
                 vr_emergency, vr_friend, vr_kin, vr_me, vr_met, vr_muse, vr_neighbor, vr_parent, vr_sibling, vr_spouse, vr_sweetheart } e_vrel;
-typedef enum { vt_mobile, vt_fax, vt_pager, vt_sms, vt_textphone, vt_video, vt_voice } e_vtt;
-typedef enum {  vtk_context, vtk_align, vtk_bold, vtk_centre, vtk_class, vtk_cue, vtk_end, vtk_id, vtk_italics, vtk_lang, vtk_left, vtk_line, vtk_line_left, vtk_line_right, vtk_lines, vtk_lr, vtk_note,
-                vtk_position, vtk_region_lc, vtk_region_uc, vtk_regionanchor, vtk_right, vtk_rl, vtk_rt, vtk_ruby, vtk_scroll, vtk_size, vtk_start, vtk_style, vtk_underline,
-                vtk_up, vtk_vertical, vtk_viewportanchor, vtk_voice, vtk_webvtt, vtk_width } e_vtt_keyword;
-typedef enum { vts_brace, vts_comment, vts_digit, vts_dull, vts_lettering, vts_numbering, vts_start, vts_style, vts_webvtt, vts_word } e_vtt_state;
+typedef enum { vtf_any, vtf_caption, vtf_chapter, vtf_metadata } e_vtt_filetype;
+typedef enum { vs_start, vs_prologue, vs_cue } e_vtt_state;
+typedef enum { vg_nowt, vg_css, vg_region, vg_cue } e_vtt_gathering;
+
+typedef enum {
+    vtk_none,
+    vtk_align,
+    vtk_bg_black, vtk_bg_blue, vtk_bg_cyan, vtk_bg_lime, vtk_bg_magenta, vtk_bg_red, vtk_bg_white, vtk_bg_yellow, vtk_black, vtk_blue, vtk_bold_span, 
+    vtk_caption, vtk_centre, vtk_chapter, vtk_class_name, vtk_class_span, vtk_comment, vtk_css, vtk_cue, vtk_cue_end, vtk_cue_name, vtk_cue_separator, vtk_cue_start, vtk_cue_value, vtk_cyan,
+    vtk_dash,
+    vtk_end,
+    vtk_identifier, vtk_italics_span,
+    vtk_lang_span, vtk_left, vtk_lime, vtk_line, vtk_lines, vtk_line_left, vtk_line_right, vtk_lr,
+    vtk_magenta, vtk_metadata, vtk_middle,
+    vtk_newline, vtk_note,
+    vtk_percentage, vtk_position,
+    vtk_red, vtk_region_lc, vtk_region_uc, vtk_region_anchor, vtk_right, vtk_rl, vtk_rt_span, vtk_ruby_span,
+    vtk_scroll, vtk_size, vtk_start, vtk_style, vtk_subtitle,
+    vtk_timestamp, vtk_to,
+    vtk_underline_span, vtk_up,
+    vtk_vertical, vtk_viewport_anchor, vtk_voice_span,
+    vtk_webvtt, vtk_white, vtk_width,
+    vtk_yellow
+} e_vtt_token;
+
 typedef enum { vt_home, vt_work } e_vtype;
 typedef enum { wel_sun, wel_mon, wel_tue, wel_wed, wel_thu, wel_fri, wel_sat } e_weekday_english_long;
 typedef enum { wes_sun, wes_mon, wes_tue, wes_wed, wes_thu, wes_fri, wes_sat } e_weekday_english_short;

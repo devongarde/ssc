@@ -165,6 +165,7 @@ const ontology_version croissant_1_14 (s_croissant, 1, 14);
 const ontology_version croissant_1_15 (s_croissant, 1, 15);
 const ontology_version croissant_1_16 (s_croissant, 1, 16);
 const ontology_version croissant_1_17 (s_croissant, 1, 17);
+const ontology_version croissant_1_18 (s_croissant, 1, 18);
 const ontology_version croissant_1_100 (s_croissant, 1, 100);
 
 const ontology_version creative_commons (s_cc, 1, 0);
@@ -587,6 +588,7 @@ const ontology_version schema_28_0 (s_schema, 28, 0);
 const ontology_version schema_28_1 (s_schema, 28, 1);
 const ontology_version schema_29_0 (s_schema, 29, 0);
 const ontology_version schema_29_1 (s_schema, 29, 1);
+const ontology_version schema_29_2 (s_schema, 29, 2);
 const ontology_version schema_30_0 (s_schema, 30, 0);
 const ontology_version schema_default (s_schema, DEFAULT_SCHEMA_ORG_MAJOR, DEFAULT_SCHEMA_ORG_MINOR);
 

@@ -1,0 +1,10 @@
+video::cue(c),
+video::cue(i),
+video::cue(b),
+video::cue(u),
+video::cue(ruby),
+video::cue(rt),
+video::cue(v),
+video::cue(lang) {
+    color: yellow;
+}

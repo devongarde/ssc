@@ -201,6 +201,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_apr23 : return "HTML 5, Apr 23";
         case ed_jul23 : return "HTML 5, Jul 23";
         case ed_nov24 : return "HTML 5, Nov 24";
+        case ed_jun25 : return "HTML 5, Jun 25";
         case ed_wx : return "wxWidgets HTML";
         case ed_owasp : return "OWASP";
         case ed_ecma : return "ECMAScript, 22.2.1 Patterns";
@@ -300,6 +301,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_apr23 : return "HTML 5, WhatWG, April 2023";
         case ed_jul23 : return "HTML 5, WhatWG, July 2023";
         case ed_nov24 : return "HTML 5, WhatWG, November 2024";
+        case ed_jun25 : return "HTML 5, WhatWG, June 2025";
         case ed_wx : return "wxWidgets HTML, list of stable HTML tags, November 2024";
         case ed_owasp : return "Open Web Application Security Project, January 2025"; 
         case ed_prism_1 : return "Publishing Requirements for Industry Standard Metadata, Version 1.0";

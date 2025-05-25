@@ -1479,6 +1479,9 @@
     <Filter Include="Toast\Living\apr25">
       <UniqueIdentifier>{1c18db5e-8262-4eb2-bf24-52214609c657}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\Other\vtt">
+      <UniqueIdentifier>{1271048f-41d3-494f-8217-6c737e12174c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -2178,6 +2181,9 @@
       <Filter>Heater\main</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\webpage\required.h">
+      <Filter>Heater\webpage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\webpage\vtt.h">
       <Filter>Heater\webpage</Filter>
     </ClInclude>
   </ItemGroup>
@@ -3027,6 +3033,9 @@
     </ClCompile>
     <ClCompile Include="..\sauce\css\value_types_t_2.cpp">
       <Filter>Sauce\css_value</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\webpage\vtt.cpp">
+      <Filter>Sauce\webpage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -40970,6 +40979,147 @@
     </None>
     <None Include="..\toast\living\apr25\abbr.html">
       <Filter>Toast\Living\apr25</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\index.html">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\vtt.conf">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\vtt.spec">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\1.1.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex1.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex2.html">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex3.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex4.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex5.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex6.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex7.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex8.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex9.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex10.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex11.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex12.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex6.css">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex16.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex17.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex18.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex19a.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex19b.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex20.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex21.html">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex21.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex22a.css">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex22a.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex22b.css">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex22b.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex22c.css">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex22c.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex22d.css">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex22d.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex22e.css">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex22e.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex22f.css">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex22f.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex22g.css">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex22g.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex22h.css">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex22h.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex22i.css">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex22i.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\ex22e.html">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\bad1.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\bad2.vtt">
+      <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\vtt\bad3.vtt">
+      <Filter>Toast\Other\vtt</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

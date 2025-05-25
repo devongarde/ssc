@@ -151,8 +151,6 @@ bool css_group::note_str (const e_gsstr g, const ::std::string& s)
 {   if (has_str (g, s)) return false;
     page_.mark_str (g, s);
     return true; }
-//    VERIFY_NOT_NULL (snippets_.get (), __FILE__, __LINE__);
-//    return snippets_ -> note_str (g, s); }
 
 sstr_t css_group::get_strs (const e_gsstr g) const
 {   sstr_t res;
@@ -172,9 +170,6 @@ bool css_group::has_custom_prop (const ::std::string& name) const
 void css_group::note_custom_prop (const ::std::string& name)
 {   VERIFY_NOT_NULL (snippets_.get (), __FILE__, __LINE__);
     page_.use_custom_prop (name); }
-//    page_.use_custom_prop (name);
-//    if (! has_custom_prop (name))
-//        snippets_ -> insert_custom_prop (name); }
 
 bool css_group::has_custom_media (const ::std::string& name) const
 {   VERIFY_NOT_NULL (snippets_.get (), __FILE__, __LINE__);
@@ -187,7 +182,6 @@ void css_group::note_custom_media (const ::std::string& name, const ::std::strin
 {   VERIFY_NOT_NULL (snippets_.get (), __FILE__, __LINE__);
     if (! has_custom_media (name))
         page_.mark_custom_media (name, def); }
- //       snippets_ -> note_custom_media (name, def); }
 
 bool css_group::has_id (const ::std::string& id) const
 {   VERIFY_NOT_NULL (snippets_.get (), __FILE__, __LINE__);

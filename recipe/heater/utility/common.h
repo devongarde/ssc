@@ -61,10 +61,14 @@ vstr_t split_by_charset (const ::std::string& s, const char* charset);
 vstr_t split_by_whitespace_and (const ::std::string& s, const char* charset = nullptr, const bool blank = false);
 inline vstr_t split_quoted_by_space (const ::std::string& s)
 {   return split_by_whitespace_and (s); }
+inline vstr_t split_by_comma (const ::std::string& s)
+{   return split_by_charset (s, ","); }
 inline vstr_t split_by_comma_space (const ::std::string& s, const bool blank = false)
 {   return split_by_whitespace_and (s, PLAINSEP, blank); }
 inline vstr_t split_by_space (const ::std::string& s)
 {   return split_by_charset (s, " "); }
+inline vstr_t split_by_spacetab (const ::std::string& s)
+{   return split_by_charset (s, " \t"); }
 inline vstr_t split_by_newline (const ::std::string& s)
 {   return split_by_charset (s, "\n"); }
 vstr_t split_by_string (const ::std::string& s, const ::std::string& splitter);
@@ -196,7 +200,7 @@ inline ::std::string x_dot_y_ish (const unsigned short mjr, const unsigned short
     return res; }
 
 inline void extend (vstr_t& v, const vstr_t& w)
-{   for (auto s : w) v.emplace_back (s); }
+{   for (auto& s : w) v.emplace_back (s); }
 
 #ifdef NOMERGE
 template < class T > inline void merge_stuff (T& o, const T& s)
@@ -294,7 +298,7 @@ inline vbp_t vstr2vbp (const vstr_t& s)
 inline vstr_t vbp2vstr (const vbp_t& s)
 {   vstr_t res;
     res.reserve (s.size ());
-    for (auto p : s) res.emplace_back (p.string ());
+    for (auto& p : s) res.emplace_back (p.string ());
     return res; }
 
 ::std::string get_account ();

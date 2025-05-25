@@ -190,6 +190,9 @@ template < > struct type_master < t_percents_flexible > : type_one_or_both < t_p
 template < > struct type_master < t_percents_n > : type_or_string < t_percents_n, t_percents_flexible, sz_none >
 { using type_or_string < t_percents_n, t_percents_flexible, sz_none > :: type_or_string; };
 
+template < > struct type_master < t_percent_or_neg > : type_either_or < t_percent_or_neg, t_percent, t_simple_neg >
+{ using type_either_or < t_percent_or_neg, t_percent, t_simple_neg > :: type_either_or; };
+
 template < > struct type_master < t_percents_nf > : type_or_either_string < t_percents_nf, t_percents_flexible, sz_from_font, sz_normal >
 { using type_or_either_string < t_percents_nf, t_percents_flexible, sz_from_font, sz_normal > :: type_or_either_string; };
 

@@ -260,6 +260,7 @@
     <ClInclude Include="..\heater\webpage\q.h" />
     <ClInclude Include="..\heater\webpage\required.h" />
     <ClInclude Include="..\heater\webpage\root.h" />
+    <ClInclude Include="..\heater\webpage\vtt.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -1332,6 +1333,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\sauce\webpage\vtt.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\port\macports\Portfile" />
@@ -12347,6 +12349,53 @@
     <None Include="..\toast\other\ssi\ssi.conf" />
     <None Include="..\toast\other\ssi\ssi.inc" />
     <None Include="..\toast\other\ssi\ssi.spec" />
+    <None Include="..\toast\other\vtt\1.1.vtt" />
+    <None Include="..\toast\other\vtt\bad1.vtt" />
+    <None Include="..\toast\other\vtt\bad2.vtt" />
+    <None Include="..\toast\other\vtt\bad3.vtt" />
+    <None Include="..\toast\other\vtt\ex1.vtt" />
+    <None Include="..\toast\other\vtt\ex10.vtt" />
+    <None Include="..\toast\other\vtt\ex11.vtt" />
+    <None Include="..\toast\other\vtt\ex12.vtt" />
+    <None Include="..\toast\other\vtt\ex16.vtt" />
+    <None Include="..\toast\other\vtt\ex17.vtt" />
+    <None Include="..\toast\other\vtt\ex18.vtt" />
+    <None Include="..\toast\other\vtt\ex19a.vtt" />
+    <None Include="..\toast\other\vtt\ex19b.vtt" />
+    <None Include="..\toast\other\vtt\ex2.html" />
+    <None Include="..\toast\other\vtt\ex20.vtt" />
+    <None Include="..\toast\other\vtt\ex21.html" />
+    <None Include="..\toast\other\vtt\ex21.vtt" />
+    <None Include="..\toast\other\vtt\ex22a.css" />
+    <None Include="..\toast\other\vtt\ex22a.vtt" />
+    <None Include="..\toast\other\vtt\ex22b.css" />
+    <None Include="..\toast\other\vtt\ex22b.vtt" />
+    <None Include="..\toast\other\vtt\ex22c.css" />
+    <None Include="..\toast\other\vtt\ex22c.vtt" />
+    <None Include="..\toast\other\vtt\ex22d.css" />
+    <None Include="..\toast\other\vtt\ex22d.vtt" />
+    <None Include="..\toast\other\vtt\ex22e.css" />
+    <None Include="..\toast\other\vtt\ex22e.html" />
+    <None Include="..\toast\other\vtt\ex22e.vtt" />
+    <None Include="..\toast\other\vtt\ex22f.css" />
+    <None Include="..\toast\other\vtt\ex22f.vtt" />
+    <None Include="..\toast\other\vtt\ex22g.css" />
+    <None Include="..\toast\other\vtt\ex22g.vtt" />
+    <None Include="..\toast\other\vtt\ex22h.css" />
+    <None Include="..\toast\other\vtt\ex22h.vtt" />
+    <None Include="..\toast\other\vtt\ex22i.css" />
+    <None Include="..\toast\other\vtt\ex22i.vtt" />
+    <None Include="..\toast\other\vtt\ex3.vtt" />
+    <None Include="..\toast\other\vtt\ex4.vtt" />
+    <None Include="..\toast\other\vtt\ex5.vtt" />
+    <None Include="..\toast\other\vtt\ex6.css" />
+    <None Include="..\toast\other\vtt\ex6.vtt" />
+    <None Include="..\toast\other\vtt\ex7.vtt" />
+    <None Include="..\toast\other\vtt\ex8.vtt" />
+    <None Include="..\toast\other\vtt\ex9.vtt" />
+    <None Include="..\toast\other\vtt\index.html" />
+    <None Include="..\toast\other\vtt\vtt.conf" />
+    <None Include="..\toast\other\vtt\vtt.spec" />
     <None Include="..\toast\output\args\output.conf" />
     <None Include="..\toast\output\args\index.html" />
     <None Include="..\toast\output\args\output.out.model" />
@@ -14280,12 +14329,14 @@
     <EnableClangTidyCodeAnalysis>false</EnableClangTidyCodeAnalysis>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(ProjectDir)..\heater;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(BOOST);$(GSL)\include</IncludePath>
     <LibraryPath>$(BOOST)\stage\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>

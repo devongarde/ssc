@@ -33,6 +33,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/q.h"
 #include "coop/kew.h"
 #include "coop/knickers.h"
+#include "webpage/vtt.h"
 
 external directory::external_;
 
@@ -263,10 +264,9 @@ void directory::examine_page (nitpick* ticks, const ::std::string& file) const
                                     web.mf_write (p);
                                     web.lynx ();
                                     if (context.shadow_pages ())
-                                        if (web.dot_css ()) shadow_file (nits, file);
+                                        if (web.dot_css () || web.dot_vtt ()) shadow_file (nits, file);
                                         else web.shadow (nits, get_shadow_path () / file);
-                                    ss << web.nits ().review (mac);
-                                    ss << web.css_review (mac);
+                                    ss << web.review (mac);
                                     ss << web.report (); }
                                 web.nits ().accumulate (nits);
                                 web.css ().accumulate (nits);
@@ -502,11 +502,14 @@ bool is_css (const ::std::string& name)
 bool is_jsonld (const ::std::string& name)
 {   return has_extension (name, context.jsonld_extension ()); }
 
+bool is_vtt (const ::std::string& name)
+{   return has_extension (name, context.vtt_extension ()); }
+
 bool is_webpage (const ::std::string& name)
 {   return has_extension (name, context.extensions ()); }
 
 bool is_verifiable_file (const ::std::string& name)
-{   return is_webpage (name) || is_css (name) || is_jsonld (name); }
+{   return is_webpage (name) || is_css (name) || is_jsonld (name) || is_vtt (name); }
 
 bool directory::shadow_folder (nitpick& nits) const
 {   PRESUME (context.shadow_any (), __FILE__, __LINE__);

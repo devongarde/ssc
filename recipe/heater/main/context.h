@@ -41,8 +41,8 @@ CONSTEXPR bool def_absolute_path = true, def_article = false, def_body = true, d
     def_classic = false, def_clear = false, def_comms = true, def_crosslinks = true, def_expand = false, def_example = true,
     def_excl = true, def_external = false, def_ext_css = false, def_extra = false, def_force_version = false, def_forwarded = true,
     def_gui = false, def_icu = true, def_ie = false, def_info = false, def_iterate = false, def_jsonld = false, def_local = true,
-    def_load_css = true, def_links = true, def_main = false, def_md_export = false, def_md_pretty = true, def_meta_all = true,
-    def_meta_sign = true, def_mf_export = false, def_mf_pretty = true, def_mf_verify = true, def_microdata = true,
+    def_links = true, def_load_css = true, def_load_vtt = true, def_main = false, def_md_export = false, def_md_pretty = true,
+    def_meta_all = true, def_meta_sign = true, def_mf_export = false, def_mf_pretty = true, def_mf_verify = true, def_microdata = true,
     def_mozilla = false, def_netscape = false, def_nids = false, def_nits = false, def_nits_nits_nits = false, def_not_root = false,
     def_opera = false, def_once = true, def_presume_tags = false, def_pretty = true, def_progress = false, def_rdfa = false, def_rel = false,
     def_revoke = false, def_rfc_1867 = true, def_rfc_1942 = true, def_rfc_1980 = true, def_rfc_2070 = true, def_rpt_opens = false,
@@ -69,7 +69,7 @@ class context_t
                     excl_ = def_excl, expand_ = def_expand, external_ = def_external, ext_css_ = def_ext_css, extra_ = def_extra,
                     force_version_ = def_force_version, forwarded_ = def_forwarded, gui_ = def_gui, icu_ = def_icu, ie_ = def_ie,
                     info_ = def_info, iterate_ = def_iterate, jsonld_ = def_jsonld, local_ = def_local, load_css_ = def_load_css,
-                    links_ = def_links, main_ = def_main, md_export_ = def_md_export, md_pretty_ = def_md_pretty,
+                    load_vtt_ = def_load_vtt,links_ = def_links, main_ = def_main, md_export_ = def_md_export, md_pretty_ = def_md_pretty,
                     output_sign_ = def_meta_sign, mf_export_ = def_mf_export, mf_pretty_ = def_mf_pretty, mf_verify_ = def_mf_verify,
                     microdata_ = def_microdata, mozilla_ = def_mozilla, netscape_ = def_netscape, nids_ = def_nids, nits_ = def_nits,
                     nits_nits_nits_ = def_nits_nits_nits, not_root_ = def_not_root, once_ = def_once, ontology_ = def_ontology,
@@ -97,8 +97,8 @@ class context_t
     vstr_t          abhorrent_, attrib_, catastrophe_, cmd_, comment_, css_ext_ = { CSS_EXT }, custom_elements_, debug_,
                     dict_, dlang_, elem_, elem_attrib_, environment_, error_, exclude_, exports_, extensions_ = { HTML_EXT },
                     inform_, ignore_, jsonld_ext_, jsonld_key_, jsonld_ont_, jsonld_val_, output_description_, no_ex_check_ = { JSONLD_EXT },
-                    pretend_, report_, shadow_ignore_, shadows_, silent_, site_, spell_list_, spellings_, warning_,
-                    virtuals_, vont_;
+                    pretend_, report_, shadow_ignore_, shadows_, silent_, site_, spell_list_, spellings_, vtt_ext_ = { VTT_EXT },
+                    warning_, virtuals_, vont_;
     vvstr_t         vvext_;
     static ustr_t   validation_;
     e_svg_processing_mode svg_mode_ = spm_none;
@@ -228,6 +228,7 @@ public:
         if (! b) { external (false); }
         return *this; }
     context_t& load_css (const bool b) { load_css_ = b; mac (nm_context_css, b); return *this; }
+    context_t& load_vtt (const bool b) { load_vtt_ = b; mac (nm_context_vtt, b); return *this; }
     context_t& local (const bool b) { local_ = b; mac (nm_context_local, b); return *this; }
     context_t& macro_end (const ::std::string& s) { macro_end_ = s; return *this; }
     context_t& macro_start (const ::std::string& s) { macro_start_ = s; return *this; }
@@ -366,6 +367,7 @@ public:
     context_t& verbose (const e_severity i) noexcept { verbose_ = i; return *this; }
     context_t& versioned (const bool b) noexcept { versioned_ = b; return *this; }
     context_t& virtuals (const vstr_t& s) { virtuals_ = s; mac (nm_context_virtuals, s); return *this; }
+    context_t& vtt_extension (const vstr_t& s) { vtt_ext_ = s; mac (nm_context_vtt_extension, s); return *this; }
     context_t& vvext (const ::std::size_t n, const vstr_t& v) { if (vvext_.size () <= n) vvext_.resize (n+1); vvext_.at (n) = v; return *this; }
     context_t& warning (const ::std::string& s) { warning_.push_back (s); return *this; }
     context_t& wx (const bool b) { wx_ = b; mac (nm_context_wx, b); return *this; }
@@ -462,6 +464,7 @@ public:
     bool local () const noexcept { return local_; }
     bool links () const noexcept { return links_; }
     bool load_css () const noexcept { return load_css_; }
+    bool load_vtt () const noexcept { return load_vtt_; }
     const ::std::string macro_end () const { return macro_end_; }
     const ::std::string macro_start () const { return macro_start_; }
     bool main () const noexcept { return main_; }
@@ -581,6 +584,7 @@ public:
     bool unknown_class () const noexcept { return unknown_class_; }
     e_severity verbose () const noexcept { return verbose_; }
     const vstr_t virtuals () const { return virtuals_; }
+    const vstr_t vtt_extension () const { return vtt_ext_; }
     bool update () const noexcept { return update_; }
     ::std::string username () const { return username_; }
     bool vcs () const noexcept { return vcs_; }

@@ -1,0 +1,7 @@
+WEBVTT
+
+STYLE
+::cue { color:lime }
+
+00:00:00.000 --> 00:00:25.000
+Red or green?

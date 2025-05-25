@@ -504,7 +504,7 @@ template < e_type T, e_type U, class SZ, e_type P, int F = 0 > struct type_many_
         if ((size_ > 0) && uq4 < T, SZ, F > :: good ())
         {   bool res = true;
             ::std::string peed;
-            for (auto sss : vs)
+            for (auto& sss : vs)
             {   nitpick nuts;
                 if (! peed.empty ())
                 {   nits.pick (nit_many_maybe, es_error, ec_type, quote (sss), " follows ", quote (peed), ", which should be the final value");
@@ -683,7 +683,7 @@ template < e_type T, e_type N, class SZ1, class SZ2 > struct type_number_unit_2 
         else
         {   const vstr_t sz = { SZ1::sz (), SZ2::sz () };
             bool found = false;
-            for (auto sss : sz)
+            for (auto& sss : sz)
             {   if (sss.length () >= ss.length ()) continue;
                 if (compare_complain (nits, v, ss.substr (ss.length () - sss.length ()), sss.c_str ()))
                 {   found = true;
@@ -705,7 +705,7 @@ template < e_type T, e_type N, class SZ1, class SZ2, class SZ3 > struct type_num
         else
         {   const vstr_t sz = { SZ1::sz (), SZ2::sz (), SZ3::sz () };
             bool found = false;
-            for (auto sss : sz)
+            for (auto& sss : sz)
             {   if (sss.length () >= ss.length ()) continue;
                 if (compare_complain (nits, v, ss.substr (ss.length () - sss.length ()), sss.c_str ()))
                 {   found = true;
@@ -727,7 +727,7 @@ template < e_type T, e_type N, class SZ1, class SZ2, class SZ3, class SZ4 > stru
         else
         {   const vstr_t sz = { SZ1::sz (), SZ2::sz (), SZ3::sz (), SZ4::sz () };
             bool found = false;
-            for (auto sss : sz)
+            for (auto& sss : sz)
             {   if (sss.length () >= ss.length ()) continue;
                 if (compare_complain (nits, v, ss.substr (ss.length () - sss.length ()), sss.c_str ()))
                 {   found = true;

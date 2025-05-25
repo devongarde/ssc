@@ -153,10 +153,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define R_AUTHORISATION_ENDPOINT "authorization-endpoint"
 #define R_CATEGORY "category"
 #define R_CHROME_WEBSTORE_ITEM "chrome-webstore-item"
-#define R_CODE_LICENCE "code-license" // misspelling obligatory
+#define R_CODE_LICENCE "code-license"
 #define R_CODE_REPOSITORY "code-repository"
 #define R_COMPONENT "component"
-#define R_CONTENT_LICENCE "content-license" // misspelling obligatory
+#define R_CONTENT_LICENCE "content-license"
 #define R_CONTENT_REPOSITORY "content-repository"
 #define R_CMIS "http://docs.oasis-open.org/ns/cmis/link/200908/acl"
 #define R_DCTERMS_IS_FORMAT_OF "dcterms.isformatof"
@@ -165,7 +165,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define R_DCTERMS_IS_REPLACED_BY "dcterms.isreplacedby"
 #define R_DCTERMS_IS_REQUIRED_BY "dcterms.isrequiredby"
 #define R_DCTERMS_IS_VERSION_OF "dcterms.isversionof"
-#define R_DCTERMS_LICENCE "dcterms.license" // misspelling obligatory
+#define R_DCTERMS_LICENCE "dcterms.license"
 #define R_DCTERMS_MEDIATOR "dcterms.mediator"
 #define R_DCTERMS_PUBLISHER "dcterms.publisher"
 #define R_DCTERMS_REFERENCES "dcterms.references"
@@ -187,7 +187,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define R_IMPORT "import"
 #define R_IN_REPLY_TO "in-reply-to"
 #define R_ISSUES "issues"
-#define R_JSLICENCE "jslicense" // misspelling obligatory
+#define R_JSLICENCE "jslicense"
 #define R_LIGHTBOX "lightbox"
 #define R_LIGHTVIDEO "lightvideo"
 #define R_MASKICON "mask-icon"

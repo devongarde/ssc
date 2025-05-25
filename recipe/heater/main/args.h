@@ -134,6 +134,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define STATS_      "stats"
 #define SVG_        "svg"
 #define VALIDATION_ "validation"
+#define VTT_        "vtt"
 #define WEBSITE_    "site"
 
 #define CORPUS      CORPUS_ JOIN
@@ -158,6 +159,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define STATS       STATS_ JOIN
 #define SVG         SVG_ JOIN
 #define VALIDATION  VALIDATION_ JOIN
+#define VTT         VTT_ JOIN
 #define WEBSITE     WEBSITE_ JOIN
 
 #define ABBR        "abbreviation"

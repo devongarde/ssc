@@ -42,6 +42,7 @@ class general_t : public d1_t < wx_general >
     wxCheckBox* check_persist_ = nullptr;   
     wxCheckBox* check_rdfa_ = nullptr;   
     wxCheckBox* check_vcs_ = nullptr;
+    wxCheckBox* check_vtt_ = nullptr;   
     wxDirPickerCtrl* dir_config_ = nullptr;
     wxFilePickerCtrl* pick_persist_ = nullptr;
     wxSpinCtrl* spin_max_ = nullptr;
@@ -59,7 +60,7 @@ class general_t : public d1_t < wx_general >
     wxStaticText* stat_config_ = nullptr;  
     ::boost::filesystem::path config_, out_, persist_; 
     listedit_manager exclude_ = listedit_manager (button_general_add, button_general_erase, button_general_rename, file_general_name, list_general_ext, text_general_ext);
-    bool class_ = false, other_ = false, rdfa_ = false, vcs_ = true;
+    bool class_ = false, other_ = false, rdfa_ = false, vcs_ = true, vtt_ = true;
 #ifndef NO_FRED
     unsigned int fred_ = 1;
 #endif // NO_FRED
@@ -102,6 +103,8 @@ public:
     void rdfa (const bool b) noexcept { rdfa_ = b; }
     bool vcs () const noexcept { return vcs_; }
     void vcs (const bool b) noexcept { vcs_ = b; }
+    bool vtt () const noexcept { return vtt_; }
+    void vtt (const bool b) noexcept { vtt_ = b; }
 #ifndef NO_FRED
     unsigned short fred () const noexcept { return GSL_NARROW_CAST < unsigned short > (fred_); }    
     void fred (const unsigned short& t);

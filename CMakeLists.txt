@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.24)
 set (FULLNAME "Static-Site-Checker")
-set (VER 0.2.14)
+set (VER 0.2.15)
 project (ssc VERSION ${VER} DESCRIPTION ${FULLNAME} LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
 message (NOTICE "preparing " ${FULLNAME} " ${VER}" )
 
@@ -117,7 +117,7 @@ set (HEATERS
         ${H}/utility/bigvector.h ${H}/utility/bitset.h ${H}/utility/byteorder.h ${H}/utility/cache.h ${H}/utility/common.h ${H}/utility/filesystem.h
             ${H}/utility/lexical.h ${H}/utility/quote.h ${H}/utility/tuple.h
         ${H}/webpage/corpus.h ${H}/webpage/crosslink.h ${H}/webpage/directory.h ${H}/webpage/external.h ${H}/webpage/fileindex.h ${H}/webpage/headers.h
-            ${H}/webpage/id.h ${H}/webpage/page.h ${H}/webpage/q.h ${H}/webpage/required.h ${H}/webpage/root.h
+            ${H}/webpage/id.h ${H}/webpage/page.h ${H}/webpage/q.h ${H}/webpage/required.h ${H}/webpage/root.h ${H}/webpage/vtt.h
     )
 set (SAUCE
         ${S}/attribute/attr.cpp ${S}/attribute/attr_state.cpp ${S}/attribute/attribute_constructor.cpp ${S}/attribute/attribute.cpp
@@ -190,6 +190,7 @@ set (SAUCE
         ${S}/utility/byteorder.cpp ${S}/utility/cache.cpp ${S}/utility/common.cpp ${S}/utility/filesystem.cpp ${S}/utility/quote.cpp
         ${S}/webpage/corpus.cpp ${S}/webpage/crosslink.cpp ${S}/webpage/directory.cpp ${S}/webpage/external.cpp ${S}/webpage/fileindex.cpp
             ${S}/webpage/headers.cpp ${S}/webpage/id.cpp ${S}/webpage/page.cpp ${S}/webpage/q.cpp ${S}/webpage/required.cpp ${S}/webpage/root.cpp
+            ${S}/webpage/vtt.cpp
     )
 set (GOOEY
         ${H}/gui/gui-app.h ${H}/gui/gui-css.h ${H}/gui/gui-ctrl.h ${H}/gui/gui-ctrls.h ${H}/gui/gui-dialogue.h ${H}/gui/gui-data.h ${H}/gui/gui-frame.h
@@ -465,7 +466,7 @@ if (${CMAKE_BUILD_TYPE} MATCHES "Debug")
 else ()
   message (VERBOSE "release build")
   set (CDEF_ALL ${CDEF_ALL} NDEBUG)
-  set (CLAUS "-g;-Os;-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-deprecated-declarations" ${IMPLICITFALL} ${NOINDENTLIE} ${TEMPLATEDEPTH})
+  set (CLAUS "-Os;-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-deprecated-declarations" ${IMPLICITFALL} ${NOINDENTLIE} ${TEMPLATEDEPTH})
   set (TESCL "-fvisibility=hidden;-fvisibility-inlines-hidden;-Wall;-Wextra;-Wno-dangling-else;-Wno-write-strings;-Wno-unused-result;-Wno-unused-parameter;-Wno-deprecated-declarations" ${IMPLICITFALL} ${NOINDENTLIE})
 endif ()
 

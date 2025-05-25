@@ -1,0 +1,7 @@
+WEBVTT
+
+02:00.000 --> 02:05.000
+<c.yellow.bg_blue>This is yellow text on a blue background</c>
+
+04:00.000 --> 04:05.000
+<c.yellow.bg_blue.magenta.bg_black>This is magenta text on a black background</c>

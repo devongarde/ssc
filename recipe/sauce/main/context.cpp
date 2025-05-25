@@ -373,6 +373,7 @@ bool context_t::write (nitpick& nits, const ::boost::filesystem::path& fn) const
     {   case 0 : break;
         case 1 : res += "; virtual directory"; break;
         default : res += "; virtual directories"; }
+    if (load_vtt ()) res += "; WebVTT";
     if (ssi ()) res += "; resolve Server Side Includes";
     if (classic () || unknown_class ())
     {   res += "; verify";

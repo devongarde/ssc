@@ -883,7 +883,7 @@ ontologies (see --ontology.list).
                                 rif 1.0
                                 role 1.0
                                 rr 1.0
-                                schema.org 0.10-30 (see below)
+                                schema.org 0.10-29.2 (see below)
                                 sd 1.0
                                 sioc 1.0
                                 sioc_s 1.0
@@ -1094,7 +1094,7 @@ ontologies (see --ontology.list).
                                 27.1        27.01
                                 27.2        27.02
                                 ...
-                                29.1        as version number
+                                29.2        as version number
 
                         vCard versions correspond to RDFa specs,
                         published in 2001, 2006, 2010 & 2014. They do
@@ -1636,6 +1636,16 @@ data types. Start with the --validation switch, and go on from there.
 --validation.XXX YYY    Accept YYY as a valid value for attribute type
                         XXX. For a list of possible values of XXX, use
                         the command line switch --validation.
+
+VTT switches
+These switches control validation of WebVTT files. Note the version of
+WebVTT against which files are checked will be derived from the version
+of HTML. WebVTT was first specified in November 2014.
+
+--vtt.extension ext     Presume files with extension '.ext' are WebVTT
+                        files (default: "vtt").
+--vtt.verify            Verify WebVTT files.
+
 
 
 
