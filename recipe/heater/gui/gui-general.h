@@ -73,10 +73,9 @@ class general_t : public d1_t < wx_general >
     DECLARE_CLASS (general_t)
     DECLARE_EVENT_TABLE ()
 public:
-    general_t () { }
-    general_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = GEN_CAPTION);
-    ~general_t () { }
-    bool invalid () const noexcept { return exclude_.invalid () || check_vcs_ == nullptr || spin_max_ == nullptr || dir_config_ == nullptr || pick_persist_ == nullptr; }
+    DEFAULT_NO_COPY_NO_MOVE_CONSTRUCTORS (general_t);
+    explicit general_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = GEN_CAPTION);
+    bool invalid () const noexcept { return exclude_.invalid () || check_vtt_ == nullptr || spin_max_ == nullptr || dir_config_ == nullptr || pick_persist_ == nullptr; }
     void Init () const noexcept { }
     bool Create (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = GEN_CAPTION);
     void CreateControls ();

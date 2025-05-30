@@ -63,9 +63,8 @@ class vv_t : public d1_t < wx_valid >
     DECLARE_CLASS (vv_t)
     DECLARE_EVENT_TABLE ()
 public:
-    vv_t () { }
-    vv_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = VALID_CAPTION);
-    ~vv_t () { }
+    DEFAULT_NO_COPY_NO_MOVE_CONSTRUCTORS (vv_t);
+    explicit vv_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = VALID_CAPTION);
     bool invalid () const noexcept { return virt_.invalid () || val_.invalid () || (choice_for_ == nullptr) || (dir_ontology_ == nullptr); }
     void Init () const noexcept { }
     bool Create (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = VALID_CAPTION);

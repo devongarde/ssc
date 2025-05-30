@@ -866,6 +866,7 @@ bool is_dpv_valid (const unsigned short mjr, const unsigned short mnr, const uns
                 case 82 :
                 case 90 : return ((oflags & OV_DPV_NOT_4020) == 0);
                 default : break; }
+            break;
         default : break; }
     return false; }
 

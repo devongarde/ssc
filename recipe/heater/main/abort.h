@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 [[noreturn]] void throw_bad_dereference (const char* const var, const char* const fn, const ::std::size_t line);
 [[noreturn]] void throw_bad_presumption (const char* const var, const char* const fn, const ::std::size_t line);
-[[noreturn]] void ugly_presumption (const char* const var, const char* const fn, const ::std::size_t line) noexcept;
+[[noreturn]] void ugly_presumption (const char* const var, const char* const fn, const ::std::size_t line);
 [[noreturn]] void graceful_crash (const char* const fn, const ::std::size_t line);
 [[noreturn]] void graceless_crash (const char* const fn, const ::std::size_t line) noexcept;
 

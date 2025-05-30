@@ -62,8 +62,8 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 15
-#define VERSION_STRING "0.2.15"
+#define VERSION_RELEASE 16
+#define VERSION_STRING "0.2.16"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -168,7 +168,8 @@ z
     // 26439: comes up on standard class functions; following the suggestion means they no longer fit the signature, so breaks stuff
     // 26410/5/8: correct, in that particular place. So what? Smart pointers are indeed pointers. By convention, an unwrapped pointer means
     //      the code doesn't own it.
-#pragma warning (disable : 6330 26409 26410 26415 26418 26434 26439 26455 26456 26461 26485)
+    // 26493: the warning against c-style casts would be useful if VS could tell the difference between a cast and a switch statement
+#pragma warning (disable : 6330 26409 26410 26415 26418 26434 26439 26455 26456 26461 26485 26493)
 
 #pragma warning (push, 3)
 #pragma warning (disable : ALL_CODE_ANALYSIS_WARNINGS)
@@ -242,6 +243,16 @@ z
 #else // FUDDYDUDDY
 #define FUDDY
 #endif // FUDDYDUDDY
+
+#ifdef LEAK_SEEK
+#ifndef VS2022
+#warning "LEAK_SEEK only tested with VC2022"
+#else // VS2022
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+#endif // VS2022
+#endif // LEAK_SEEK
 
 #include <fstream>
 #include <iostream>
@@ -816,15 +827,21 @@ typedef ::std::vector < bool > faux_vb_t;
     DEFAULT_COPY (XXX, delete) \
     DEFAULT_MOVE (XXX, delete)
 
-#define CONSTRUCT_DEFAULT(XXX) \
+#define DEFAULT_NO_COPY_MOVE(XXX) \
+    DEFAULT_COPY (XXX, delete) \
+    DEFAULT_MOVE (XXX, default)
+
+#define BASE_DEFAULT(XXX) \
     XXX () = default; \
-    DEFAULT_COPY_MOVE (XXX); \
-    ~XXX () = default
+    ~XXX () = default;
+
+#define CONSTRUCT_DEFAULT(XXX) \
+    BASE_DEFAULT (XXX); \
+    DEFAULT_COPY_MOVE (XXX);
 
 #define CONSTRUCT_NO_COPY(XXX) \
-    XXX () = default; \
-    DEFAULT_NO_COPY_NO_MOVE (XXX); \
-    ~XXX () = default
+    BASE_DEFAULT (XXX); \
+    DEFAULT_NO_COPY_MOVE (XXX);
 
 #define CONSTRUCT_DELETE(XXX) \
     XXX () = delete; \
@@ -833,9 +850,10 @@ typedef ::std::vector < bool > faux_vb_t;
 
 #define DEFAULT_CONSTRUCTORS(XXX) CONSTRUCT_DEFAULT (XXX)
 #define DEFAULT_COPY_CONSTRUCTORS(XXX) DEFAULT_COPY_MOVE (XXX)
-#define DEFAULT_NO_MOVE_CONSTRUCTORS(XXX) DEFAULT_COPY_NO_MOVE (XXX)
-#define DEFAULT_NO_COPY_NO_MOVE_CONSTRUCTORS(XXX) DEFAULT_NO_COPY_NO_MOVE (XXX)
+#define DEFAULT_NO_MOVE_CONSTRUCTORS(XXX) BASE_DEFAULT (XXX) DEFAULT_COPY_NO_MOVE (XXX)
+#define DEFAULT_NO_COPY_NO_MOVE_CONSTRUCTORS(XXX) BASE_DEFAULT (XXX) DEFAULT_NO_COPY_NO_MOVE (XXX)
 #define DEFAULT_NO_COPY_CONSTRUCTORS(XXX) CONSTRUCT_NO_COPY (XXX)
+#define DEFAULT_CONSTRUCTORS_NO_DESTRUCTORS(XXX) DEFAULT_NO_COPY_NO_MOVE (XXX)
 
 #define DEFAULT_CONSTRUCTORS_NO_EMPTY(XXX) \
     XXX () = delete; \

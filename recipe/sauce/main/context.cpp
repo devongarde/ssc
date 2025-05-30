@@ -28,11 +28,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/filesystem.h"
 #include "parser/text.h"
 #include "coop/fred.h"
-#include "element/elem.h"
 
 context_t context;
 ustr_t context_t::validation_;
 ::boost::filesystem::path context_t::cwd_;
+#ifdef LEAK_SEEK
+_CrtMemState context_t::ls_old_;
+#endif // LEAK_SEEK
+
 ssc_set < ::std::string > excludable_filenames;
 
 context_t::context_t (nitpick& nits, const ::boost::filesystem::path& fn)
@@ -62,7 +65,7 @@ void context_t::reset ()
 {   context_t c;
     *this = c; } 
 
-void context_t::reset (context_t& c)
+void context_t::reset (const context_t& c)
 {   context_t t (c);
     swap (t); }
 

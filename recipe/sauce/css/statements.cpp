@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 void statements::parse (arguments& args, const int start, const int finish)
 {   PRESUME (args.t_.at (0).t_ == ct_root, __FILE__, __LINE__);
     if ((context.css_module (c_nesting) > 0) && (start >= 0))
-    {   int i = first_non_whitespace (args.t_, start, finish);
+    {   const int i = first_non_whitespace (args.t_, start, finish);
         if (i > 0)
             if ((args.t_.at (i).t_ == ct_identifier) || (args.t_.at (i).t_ == ct_keyword))
             {   nitpick nuts;
@@ -50,9 +50,7 @@ void statements::parse (arguments& args, const int start, const int finish)
                     at = -1; }
                 else if (from > 0)
                 {   if (args.part ()) props_.parse (args, from, prev);
-                    else
-                    {   // args.t_.at (i).nits_.pick (nit_css_syntax, es_error, ec_css, "unexpected ", tkn_rpt (args.t_.at (i)), " (6)");
-                        rules_.emplace_back (args, from, prev); }
+                    else rules_.emplace_back (args, from, prev);
                     from = -1; }
                 break;
             case ct_curly_brac :

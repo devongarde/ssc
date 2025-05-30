@@ -178,7 +178,9 @@ bool report_t :: create_panel (wxWindow *mummy, wxWindowID id, const wxPoint& po
 
 void report_t :: enable (const bool b)
 {	if (invalid ()) return;	
-    for (auto i : report_) i -> Enable (b);
+    for (auto i : report_)
+    {   VERIFY_NOT_NULL (i, __FILE__, __LINE__);
+        i -> Enable (b); }
     export_ -> Enable (b); }
 
 void report_t :: load_from_context (const context_t& c)

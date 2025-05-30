@@ -62,9 +62,8 @@ class shadow_t : public d1_t < wx_shadow >
     DECLARE_CLASS (shadow_t)
     DECLARE_EVENT_TABLE ()
 public:
-    shadow_t () { }
-    shadow_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = SHADOW_CAPTION);
-    ~shadow_t () { }
+    DEFAULT_NO_COPY_NO_MOVE_CONSTRUCTORS (shadow_t);
+    explicit shadow_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = SHADOW_CAPTION);
     bool invalid () const noexcept { return ignore_.invalid () || (choice_strat_ == nullptr) || (dir_site_ == nullptr) || (check_ssi_ == nullptr) || (text_comment_ == nullptr) || (file_cache_ == nullptr); }
     void Init () const noexcept { }
     bool Create (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = SHADOW_CAPTION);

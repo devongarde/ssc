@@ -139,7 +139,7 @@ void element::examine_area ()
                 return; }
             if (! a_.good (a_coords)) return;
             vint_t c = a_.get_x < attr_coords > ();
-            switch (s7.get ())
+            switch (s7.get ()) // FFS, vs, this is a sodding switch, not a c-style cast.
             {   case s7_circ :
                     if (c.size () != 3) pick (nit_bad_coords, ed_rfc_1980, "2.1 Syntax", es_error, ec_attribute, "When SHAPE is circle, COORDS should contain three values");
                     break;

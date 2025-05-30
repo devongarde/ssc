@@ -82,7 +82,7 @@ public:
     UErrorCode error () const noexcept { return err_; }
     bool valid () const noexcept { return error () <= U_ZERO_ERROR; }
     bool set_text (const char *in, int32_t len);
-    charset_detector_matches match_all () noexcept;
+    charset_detector_matches match_all ();
     int32_t confidence () const noexcept {  return confidence_; }
     int32_t match_count () const noexcept {  return charset_match_count_; } };
 

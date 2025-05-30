@@ -52,7 +52,7 @@ template < e_type T, class SZ, int F, e_type A, e_type... B > struct type_all_fl
         return type_all_flagged_of < T, SZ, F, B... > :: is_url (); }
     static bool is_existential () noexcept
     {   return false; }
-    static bool is_numeric () noexcept
+    static bool is_numeric ()
     {   if ( type_master < A > :: is_numeric ()) return true;
         return type_all_flagged_of < T, SZ, F, B... > :: is_numeric (); }
     static e_animation_type animation_type () noexcept
@@ -120,7 +120,7 @@ template < e_type T, class SZ, int F, e_type A, e_type... B > struct type_all_fl
         return vu; }
     template < e_type X > static type_master < X > default_value ()
     {   GRACEFUL_CRASH (__FILE__, __LINE__); }
-    int get_int () const noexcept
+    int get_int () const
     {   return type_all_flagged_of < T, SZ, F, B... > :: get_int (); }
     ::std::size_t size () const noexcept
     {   return type_all_flagged_of < T, SZ, F, B... > :: size (); }

@@ -52,9 +52,8 @@ class nits_t : public d1_t < wx_nits >
     DECLARE_CLASS (nits_t)
     DECLARE_EVENT_TABLE ()
 public:
-    nits_t () { }
-    nits_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = NIT_CAPTION);
-    ~nits_t () { }
+    DEFAULT_NO_COPY_NO_MOVE_CONSTRUCTORS (nits_t);
+    explicit nits_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = NIT_CAPTION);
     bool invalid () const noexcept { return box_verbosity_ == nullptr || file_output_ == nullptr || radio_level_ == nullptr || check_repeat_ == nullptr || choice_format_ == nullptr; }
     void Init () const noexcept { }
     bool Create (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = NIT_CAPTION);

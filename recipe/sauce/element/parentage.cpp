@@ -941,7 +941,6 @@ parentage parent_table [] =
     { { HTML_JUL22, 0, 0, H2_MATH_4 }, { HTML_UNDEF }, elem_math, elem_undefined, 0, EF_M_MATH | EF_M_CONTENTEXPR  },
     { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_matrix, elem_undefined, 0, EF_M_DQ },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_matrix, elem_undefined, 0, EF_M_CONTENTEXPR },
-//    { { HTML_MATH3, 0, 0, H2_MATH_3_4 }, { HTML_UNDEF }, elem_matrixrow, elem_undefined, 0, EF_M_DQ },
     { { HTML_MATH4, 0, 0, H2_MATH_4 }, { HTML_UNDEF }, elem_matrixrow, elem_undefined, 0, EF_M_CONTENTEXPR },
     { { HTML_MATH3, 0, 0, H2_MATH_3 }, { HTML_UNDEF }, elem_matrixrow, elem_undefined, 0, EF_M_DQ },
     { { HTML_MATH1, 0, 0, H2_MATH_1_2 }, { HTML_UNDEF }, elem_matrixrow, elem_undefined, 0, EF_M_CONTENTEXPR },

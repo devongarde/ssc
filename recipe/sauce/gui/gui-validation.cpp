@@ -244,21 +244,21 @@ void vv_t :: OnVirtText (wxCommandEvent& e)
 
 void vv_t :: OnPhys (wxFileDirPickerEvent& )
 {   if (! invalid ())
-    {   const int sel = virt_.sel ();
+    {   const ::std::size_t sel = virt_.sel ();
         bpsize (sel + 1);
         phys_.at (sel) = ::boost::filesystem::path (dir_folder_ -> GetPath ().c_str ());
         en_virt (); } }
 
 void vv_t :: OnOntology (wxFileDirPickerEvent& )
 {   if (! invalid ())
-    {   const int sel = virt_.sel ();
+    {   const ::std::size_t sel = virt_.sel ();
         bpsize (sel + 1);
         export_.at (sel) = ::boost::filesystem::path (dir_folder_ -> GetPath ().c_str ());
         en_virt (); } }
 
 void vv_t :: OnShadow (wxFileDirPickerEvent& )
 {   if (! invalid ())
-    {   const int sel = virt_.sel ();
+    {   const ::std::size_t sel = virt_.sel ();
         bpsize (sel + 1);
         shadow_.at (sel) = ::boost::filesystem::path (dir_folder_ -> GetPath ().c_str ());
         en_virt (); } }
@@ -840,7 +840,6 @@ void vv_t :: save_to_context (context_t& c) const
     foxvv < t_baselineshift > (count, c);
     foxvv < t_cachekey > (count, c);
     foxvv < t_celnrs > (count, c);
-    foxvv < t_celrs > (count, c);
     foxvv < t_citype > (count, c);
     foxvv < t_colour_interpolation > (count, c);
     foxvv < t_colour_rendering > (count, c);

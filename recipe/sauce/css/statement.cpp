@@ -58,12 +58,10 @@ void statement::parse_colour_profile (arguments& args, nitpick& nits, const int 
                 if ((args.t_.at (i).t_ == ct_identifier) || (args.t_.at (i).t_ == ct_keyword))
                 {   ::std::string s (args.t_.at (i).val_);
                     if ((s.size () > 2) && (s.substr (0, 2) == "--"))
-//                        if (args.g_.custom_prop ().find (s) != args.g_.custom_prop ().cend ())
                         if (args.has_custom_prop (s))
                             nits.pick (nit_css_custom, es_warning, ec_css, "@color-profile identifier ", s, " previously encountered");
                         else
                         {   nits.pick (nit_css_custom, es_info, ec_css, "noting @color-profile ", s);
-//                            args.g_.custom_prop ().emplace (s, 1); } } }
                             args.note_custom_prop (s); } } }
         fiddlesticks < statement > f (&args.st_, this);
         prop_.parse (args, args.t_.at (to).child_); } }
@@ -91,13 +89,11 @@ void statement::parse_counter_style (arguments& args, nitpick& nits, const int f
                 nits.pick (nit_counter_style, ed_css_cascade_5, "7.3. Explicit Defaulting", es_error, ec_css, quote (args.t_.at (i).val_), ": no CSS wide keyword can be used with @counter-style");
             if ((cs.get () & CF_CS_PREDEFINED) == CF_CS_PREDEFINED)
                 nits.pick (nit_counter_style, ed_css_cs_3, "6. Simple Predefined Counter Styles", es_warning, ec_css, quote (args.t_.at (i).val_), " is a predefined @counter-style"); }
-//        else if (args.g_.counter_style ().find (name) != args.g_.counter_style ().cend ())
         else if (args.dst_ -> has_str (gst_counter_style, name))
             nits.pick (nit_counter_style, ed_css_cs_3, "3. Defining Custom Counter Styles: the @counter-style rule", es_warning, ec_css, quote (args.t_.at (i).val_), ": defined earlier");
         else    
         {   nits.pick (nit_counter_style, es_comment, ec_css, "noted ", quote (name));
             args.dst_ -> note_str (gst_counter_style, name); }
-//            args.g_.counter_style ().insert (name); }
         PRESUME (args.t_.at (to).child_ > 0, __FILE__, __LINE__);
         fiddlesticks < statement > f (&args.st_, this);
         dsc_.parse (args, css_counter_style, args.t_.at (to).child_); } }
@@ -240,7 +236,6 @@ void statement::parse_custom_media (arguments& args, nitpick& nits, const int fr
         if (i < 0) nits.pick (nit_css_syntax, es_error, ec_css, "missing @custom-media definition after ", quote (name));
         else
         {   ::std::string def (assemble_string (args.t_, i, to, true));
-//            args.custom_media ().insert (::std::pair (name, def)); } } }
             args.note_custom_media (name, def); } } }
 
 void statement::conditional (arguments& args, nitpick& , const int from, const int to)
@@ -302,7 +297,6 @@ void statement::parse_font_feature_values (arguments& args, nitpick& nits, const
             else 
             {   if (! enum_n < t_fontname, e_fontname > :: exists (name))
                     enum_n < t_fontname, e_fontname > :: extend (name, fn_bespoke);
-//                args.font_family ().insert (name); }
                 if (! args.has_str (gst_font_family, name)) args.dst_ -> note_str (gst_font_family, name); } 
             i = next_non_whitespace (args.t_, i, to);
             if (i < 0) nits.pick (nit_css_font_feature, es_error, ec_css, "missing @font-feature-values properties after ", quote (name)); }

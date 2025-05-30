@@ -1,10 +1,11 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.2.15
+version 0.2.16
 (c) 2020-2025 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notices
 https://ssc.lu/
 https://github.com/devongarde/ssc
+https://codeberg.org/devongarde/ssc
 
 
 
@@ -80,7 +81,8 @@ small, please use a public file server and email the link). Do NOT send
 anything confidential. Furthermore, unless you state otherwise, we
 reserve the right to publish some or all of the information sent in
 future versions of ssc, usually in the test suite. If you have a fix,
-you are invited to submit a pull request on github, at
+you are invited to submit a pull request on github at
+https://github.com/devongarde/ssc, or codeberg at
 https://github.com/devongarde/ssc . Thank you.
 
 
@@ -147,4 +149,5 @@ GNU General Public License for more details.
 
 dylan harris
 mail@ssc.lu
-May 2025
+mail@dylanharris.org
+June 2025

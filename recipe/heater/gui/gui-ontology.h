@@ -68,9 +68,8 @@ class ontology_t : public d1_t < wx_ontology >
     DECLARE_CLASS (ontology_t)
     DECLARE_EVENT_TABLE ()
 public:
-    ontology_t () { }
-    ontology_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = ONT_CAPTION);
-    ~ontology_t () { }
+    DEFAULT_NO_COPY_NO_MOVE_CONSTRUCTORS (ontology_t);
+    explicit ontology_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = ONT_CAPTION);
     bool invalid () const noexcept { return check_verify_ == nullptr || pick_export_ == nullptr || pick_mf_export_ == nullptr || column_version_ == nullptr || choice_version_ == nullptr || mf_pretty_ == nullptr || mf_verify_ == nullptr; }
     void Init () const noexcept { }
     bool Create (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = ONT_CAPTION);

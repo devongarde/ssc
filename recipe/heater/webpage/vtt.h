@@ -91,4 +91,4 @@ public:
     DELETE_CONSTRUCTORS (vtt_t);
     vtt_t (nitpick& nits, const html_version& v, const ::std::string& s, css_group& css);
     void accumulate (stats_t* s);
-    ::std::string review (mmac_t& mac) const; };
+    ::std::string review (const mmac_t& mac) const; };

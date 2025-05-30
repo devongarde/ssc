@@ -7492,6 +7492,7 @@ void enum_init (nitpick& nits)
         RETURN_SIZE (baselineshift);
         RETURN_SIZE (cachekey);
         RETURN_SIZE (celnrs);
+        RETURN_SIZE (celrs);
         RETURN_SIZE (citype);
         RETURN_SIZE (colour_interpolation);
         RETURN_SIZE (colour_rendering);

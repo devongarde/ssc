@@ -39,9 +39,8 @@ class summarise_t : public d1_t < wx_summary >
     DECLARE_CLASS (summarise_t)
     DECLARE_EVENT_TABLE ()
 public:
-    summarise_t () { }
-    summarise_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = VALID_CAPTION);
-    ~summarise_t () { }
+    DEFAULT_NO_COPY_NO_MOVE_CONSTRUCTORS (summarise_t);
+    explicit summarise_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = VALID_CAPTION);
     bool invalid () const noexcept { return text_switches_ == nullptr; }
     void Init () const noexcept { }
     bool Create (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = VALID_CAPTION);

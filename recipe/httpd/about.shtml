@@ -26,6 +26,7 @@ version <!--#echo encoding="none" var="version" --><br>
 <a href="legal.shtml"><!--#echo encoding="none" var="copyright" --></a><br>
 <!--#echo encoding="none" var="slashaddress" -->,
 <!--#echo encoding="none" var="github" -->,
+<!--#echo encoding="none" var="codeberg" -->,
 (<a href="src/ssc-<!--#echo encoding="none" var="version" -->.tgz" type="application/gzip">download source</a>)
 </p>
 
@@ -222,7 +223,8 @@ anything confidential. Furthermore, unless you state otherwise, we
 reserve the right to publish some or all of the information sent in
 future versions of ssc, usually in the test suite. If you have a fix,
 you are invited to submit a pull request on github, at
-<!--#echo encoding="none" var="github" -->. Thank you.
+<!--#echo encoding="none" var="github" -->, or codeberg, at
+<!--#echo encoding="none" var="codeberg" -->. Thank you.
 </p>
 
 <p>

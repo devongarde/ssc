@@ -27,7 +27,8 @@ class time_balloon
 public:
     time_balloon ()
     {   start_ = ::std::chrono::system_clock::now ();
-        start_time_ = ::std::chrono::system_clock::to_time_t (start_); }
+        start_time_ = ::std::chrono::system_clock::to_time_t (start_);
+        elapsed_seconds_ = elapsed_seconds_.min (); }
     NO_COPY_CONSTRUCTORS (time_balloon);
     ~time_balloon () = default;
 

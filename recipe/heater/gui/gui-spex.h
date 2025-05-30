@@ -71,6 +71,7 @@ class standard_t : public d3_t
     DECLARE_CLASS (standard_t)
     DECLARE_EVENT_TABLE ()
 public:
+    DEFAULT_NO_COPY_NO_MOVE_CONSTRUCTORS (standard_t);
     standard_t (wxWindow *mummy, const context_t& c, const e_gui_panel gp, wxWindowID id = wxID_ANY, const wxString& caption = SPEX_CAPTION);
     bool invalid () const { return choice_ == nullptr; }
     context_t& c () { return c_; }

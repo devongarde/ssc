@@ -3,7 +3,13 @@ static site checker
 https://ssc.lu/
 (c) 2020-2025 Dylan Harris
 
+0.2.16
+- fix crash in GUI
+- repository cloned to codeberg.org
+- underlying work
+
 0.2.15
+- this version has a GUI crash, prefer 0.2.16
 - schema.org 29.2
 - initial nitpicking of WebVTT files
 - underlying work

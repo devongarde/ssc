@@ -39,6 +39,8 @@ class frame_t : public wxFrame
     bool process_config (const nitpick& nits, const ::boost::filesystem::path& fn);
     DECLARE_EVENT_TABLE ()
 public:
+    frame_t () = default;
+    DEFAULT_NO_COPY_NO_MOVE (frame_t);
     frame_t (const wxPoint& pt, const wxSize& sz, const context_t& c);
     ~frame_t ();
     void append (const ::std::string& text);

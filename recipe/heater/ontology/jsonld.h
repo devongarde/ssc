@@ -87,7 +87,7 @@ struct scoped_scope
     {   try
         {   zombie_ = old_; }
         catch (...)
-        {   GRACEFUL_CRASH (__FILE__, __LINE__); } } }; 
+        {   GRACELESS_CRASH (__FILE__, __LINE__); } } };
 
 class json_ld
 {   json_scope scope_;

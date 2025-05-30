@@ -161,9 +161,6 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
             case efn_is :
             case efn_where :
                 break;
-//          case efn_open :
-//              check for WhatWG jan 25 or CSS selector 4
-//              return;
             case efn_root :
                 return;
             default : return; }

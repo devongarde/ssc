@@ -118,9 +118,6 @@ bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, c
 {   itemprop_indices ii = prepare_itemprop_indices (nits, v, name, value);
     if (scope.get () != nullptr)
     {   microdata_export* ex = exporter ();
-//        if (ex == nullptr)
-//            nits.pick (nit_export_none, es_catastrophic, ec_microdata, "exporter failure");
-//        else for (auto prop : ii)
         if (ex != nullptr) for (auto prop : ii)
             scope -> set_exporter (ex, ex -> append_path (export_path_, prop, true)); }
     nitpick knots, nuts;

@@ -99,7 +99,7 @@ bool call_fn (arguments& args, nitpick& nits, int& i, const int to, bool& res, e
     else
     {   i = next_non_whitespace (args.t_, i, to);
         if (i > 0)
-        {   switch (cvf.get ())
+        {   switch (cvf.get ()) // dear visual studio, I do understand the dislike of C style casts, but would you care to point out where one is on this line?
             {   case cvf_annotation :
                 case cvf_character_variant :
                 case cvf_ornaments :

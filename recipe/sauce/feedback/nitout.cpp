@@ -1156,7 +1156,7 @@ bool macro_t::load_template (nitpick& nits, const html_version& v, const e_outpu
 {   PRESUME (static_cast < ::std::size_t > (sct) < sections.size (), __FILE__, __LINE__);
     return apply_macros_int (apply (sct, values1, values2, values3), values4); }
 
-::std::string macro_t::report (nitpick& nits, const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot)
+::std::string macro_t::report (const nitpick& nits, const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot)
 {   ::std::string res;
     if (! nits.empty ())
 #ifndef DEBUG

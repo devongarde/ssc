@@ -38,7 +38,7 @@ public:
     bool is_template_loaded ();
     bool load_template (nitpick& nits, const html_version& v, const e_output_template ot = eot_bespoke);
     void dump_nits (nitpick& nits, const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot);
-    ::std::string report (nitpick& nits, const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot);
+    ::std::string report (const nitpick& nits, const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot);
     static ::std::string nit_content (const ::std::string& s);
     ::std::string apply (const e_nit_section& section);
     ::std::string apply (const e_nit_section& section, const mmac_t& values);

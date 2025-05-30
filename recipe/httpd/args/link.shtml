@@ -39,7 +39,7 @@ To check site links.
                         time it&rsquo;s encountered (requires
                         <kbd>link.external</kbd>).</td></tr>
 
-<tr><td>link.xlink<br>-X</td> <td>Check crosslink IDs on the site being analysed.
+<tr><td>link.xlink<br>-X</td> <td>Check cross-link IDs on the site being analysed.
                     For example, if a link goes to /index.html#id,
                         then, when this switch is set, ssc will verify
                         that the id exists and that it is not hidden.</td></tr>

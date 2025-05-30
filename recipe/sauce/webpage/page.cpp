@@ -165,7 +165,6 @@ void page::examine ()
             document_ -> reconstruct (&access_);
             if (context.tell (es_splurge)) outstr.out (nodes_.top ().rpt ());
             ::std::string s = document_ -> make_children (0);
-//            if (context.tell (es_structure) && ! s.empty ()) nits_.pick (nit_debug, es_detail, ec_page, s);
             if (context.tell (es_structure) && ! s.empty ()) outstr.out (s);
             document_ -> examine_self (lingo (nits_, context.lang ()));
             document_ -> verify_document ();

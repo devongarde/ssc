@@ -86,7 +86,7 @@ template < e_type T, bool EMPTY, e_type A, e_type... B > struct type_one_of : ty
         return type_one_of < T, EMPTY, B... > :: is_url (); }
     static bool is_existential () noexcept
     {   return false; }
-    static bool is_numeric () noexcept
+    static bool is_numeric ()
     {   if ( type_master < A > :: is_numeric ()) return true;
         return type_one_of < T, EMPTY, B... > :: is_numeric (); }
     static e_animation_type animation_type () noexcept

@@ -89,7 +89,7 @@ itemscope_ptr element::examine_itemscope (itemscope_ptr& itemscope, const bool p
         itemscope -> note_itemid (node_.nits (), node_.version (), a_.get_string (a_itemid));
     return itemscope; }
 
-void element::examine_itemprop (itemscope_ptr& itemscope, itemscope_ptr& valuescope)
+void element::examine_itemprop (const itemscope_ptr& itemscope, itemscope_ptr& valuescope)
 {    if (! ancestral_elements_.test (elem_template))
         if (itemscope.get () == nullptr)
         {   if (node_.version ().mjr () >= 10)

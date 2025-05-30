@@ -32,7 +32,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 template < e_css_val_fn T > int split_fn_params (t_params& params, arguments& args, const int start, const int to, nitpick& nits)
 {   int round = 0, p = start;
-    bool spaced_out = false;
     e_token last = ct_error, prev = ct_error;
     for (int i = first_non_whitespace (args.t_, start, to); (i > 0) && ((to < 0) || (i <= to)); ++i)
     {   switch (args.t_.at (i).t_)
@@ -47,7 +46,6 @@ template < e_css_val_fn T > int split_fn_params (t_params& params, arguments& ar
                     if (last != ct_whitespace)
                     {   add_param (args, params, p, i);
                         prev = last = ct_error; }
-                    else if (spaced_out) nits.pick (nit_multiple_spaces, es_warning, ec_css, "multiple spaces between parameters");
                     else nits.pick (nit_multiple_spaces, es_warning, ec_css, PROG " presumes multiple spaces between parameters do not represent omitted arguments with default values");
                 break;
             case ct_round_brac :

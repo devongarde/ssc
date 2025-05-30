@@ -125,7 +125,7 @@ e_required_page get_required_page_type (const ::std::string& page_name, const bo
     return res; }
 
 void check_required_state (nitpick& nits, const ::std::string& name, const faux_vb_t& req, const faux_vb_t& check)
-{   for (int i = 0; i < static_cast < int > (required_count ()); ++i)
+{   for (int i = 0; i < GSL_NARROW_CAST < int > (required_count ()); ++i)
         if (GSL_AT (check, i) && ! GSL_AT (req, i))
             if (GSL_AT (req_g, i).rq_ > rqp_none)
             {   ::std::string rqt;

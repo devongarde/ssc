@@ -80,9 +80,9 @@ void apply_wordlists (ISpellChecker* isp, const ::std::string& lang)
 
 ::std::string ole2string (LPOLESTR pwsz, UINT codepage = CP_UTF8)
 {   const int len = WideCharToMultiByte (codepage, 0, pwsz, -1, 0, 0, NULL, NULL);
-    char* p = new char [len];
-    if (p == nullptr) return ::std::string ();
     ::std::string res;
+    GSL_OWNER (char) p = new char [len];
+    if (p == nullptr) return ::std::string ();
     try
     {   WideCharToMultiByte (codepage, 0, pwsz, -1, p, len, NULL, NULL);
         res = ::std::string (p); }

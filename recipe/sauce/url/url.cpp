@@ -80,7 +80,7 @@ bool url::sanity_test () const
     if (! has_protocol ()) return true; // presume internal link.
     return is_usable (); }
 
-bool url::is_potentially_naughty () const noexcept
+bool url::is_potentially_naughty () const
 {   if (empty () || is_self () || ! has_protocol () || ! has_domain ()) return false;
     return (! is_lan_domain (*this) && ! is_example_domain (*this)); }
 

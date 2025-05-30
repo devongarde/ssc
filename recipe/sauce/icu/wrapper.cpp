@@ -65,7 +65,7 @@ bool charset_detector::set_text (const char *in, int32_t len)
     ucsdet_setText (detector_, in, len, &err_);
     return valid (); }
 
-charset_detector_matches charset_detector::match_all () noexcept
+charset_detector_matches charset_detector::match_all ()
 {   UGLY_PRESUME (context.icu (), __FILE__, __LINE__);
     charset_match_ = ucsdet_detectAll (detector_, &charset_match_count_, &err_);
     if (err_ == U_ZERO_ERROR)

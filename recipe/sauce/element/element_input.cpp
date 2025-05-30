@@ -289,9 +289,7 @@ void element::examine_input ()
     if (a_.known (a_role))
     {   vint_t rv = a_.get_ints (a_role);
         for (auto r : rv)
-        {   // const e_aria_role r = static_cast < e_aria_role > (a_.get_int (a_role));
-            // I considered using bitsets here, but decided they'd be a bugger (just in case, that's the British English) to maintain. Having said that, I'm not sure this approach is that much better.
-            switch (i5)
+        {   switch (i5)
             {   case i5_button :
                     switch (r)
                     {   case role_button :
@@ -366,8 +364,6 @@ void element::examine_input ()
                             break;
                         case role_img :
                         case role_image :
-    //                        if (node_.version ().whatwg ()) pick (nit_input_bad_aria, ed_ariaAug2020, "conformance requirements", es_error, ec_attribute, "do not set <INPUT> ROLE to 'img' when TYPE is image, it is the default");
-    //                        break;
                         case role_link :
                         case role_radio :
                             break;
@@ -489,8 +485,6 @@ void element::examine_input ()
                                 default :
                                     pick (nit_input_bad_aria, ed_aria_html, "conformance requirements", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE 'text'");
                                     break; }
-    //                        else if (r == role_combobox)
-    //                            pick (nit_input_bad_aria, ed_ariaAug2020, "conformance requirements", es_error, ec_attribute, "when <INPUT> TYPE is 'search' or 'text' do not set ROLE to 'combobox', it is the default");
                             else
                                 pick (nit_input_bad_aria, ed_aria_html, "conformance requirements", es_error, ec_attribute, "invalid <INPUT> ROLE for TYPE 'search'");
                             break;

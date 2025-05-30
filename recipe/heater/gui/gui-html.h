@@ -54,9 +54,8 @@ class html_t : public d1_t < wx_html >
     DECLARE_CLASS (html_t)
     DECLARE_EVENT_TABLE ()
 public:
-    html_t () = default;
-    html_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = HTML_CAPTION);
-    ~html_t () = default;
+    DEFAULT_NO_COPY_NO_MOVE_CONSTRUCTORS (html_t);
+    explicit html_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = HTML_CAPTION);
     bool invalid () const noexcept { return main_ctrl_.invalid (); }
     void Init () const noexcept { }
     bool Create (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = HTML_CAPTION);
@@ -90,7 +89,7 @@ public:
     void rfc2070 (const bool b) noexcept { b2070_ = b; }
     bool ie () const noexcept { return bie_; }
     void ie (const bool b) noexcept { bie_ = b; }
-    ::std::string lingo () const noexcept { return lang_; }
+    ::std::string lingo () const { return lang_; }
     void lingo (const ::std::string& s) { if (! s.empty ()) lang_ = s; }
     bool sloven () const noexcept { return bsloven_; }
     void sloven (const bool b) noexcept { bsloven_ = b; }

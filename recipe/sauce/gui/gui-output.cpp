@@ -39,7 +39,7 @@ END_EVENT_TABLE ()
 
 #define NO_IDEA_WHY_THIS_OFFSET_IS_NECESSARY    4
 
-bool not_in_word (const char ch)
+constexpr bool not_in_word (const char ch)
 {   return (((ch < '0') || (ch > '9')) &&
             ((ch < 'A') || (ch > 'Z')) &&
             ((ch < 'a') || (ch > 'z'))); }
@@ -106,7 +106,7 @@ void output_t :: Next ()
     ::std::size_t f = found_;
     constexpr ::std::size_t cycle = 0;
     for (;;)
-    {   ::std::size_t start;
+    {   ::std::size_t start = 0;
         if (f == con.length () - 1) start = cycle; 
         else start = f + 1;
         f = con.find (find_, start);
@@ -128,7 +128,7 @@ void output_t :: Prior ()
     ::std::size_t f = found_;
     const ::std::size_t cycle = con.length () - 1;
     for (;;)
-    {   ::std::size_t start;
+    {   ::std::size_t start = 0;
         if (f == 0) start = cycle; 
         else start = f - 1;
         f = con.rfind (find_, start);

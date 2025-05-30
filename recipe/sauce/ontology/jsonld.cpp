@@ -162,12 +162,10 @@ bool json_ld::process_term_object (nitpick& nits, const e_ontology_property p, c
                 default :
                     break; } }
     PRESUME (vov.size () == scope_.ontologies ().size (), __FILE__, __LINE__);
-    // scoped_scope ss (scope_);
     examine_json_ld (nits, obj);
     const bool name_type = process_json_ld (nits, obj); // hence this module needs rewriting
-//    for (auto sid : scope_.id_) ss.old_.id_.insert (sid);
     if (name_type)
-        for (auto ov : vov)
+        for (auto& ov : vov)
             for (auto st : scope_.type_)
             {   nitpick nets;
                 if (is_valid_ontology_property (nets, v_, st, p, scope_.name_, false))
@@ -220,10 +218,6 @@ e_ontology json_ld::process_context_string_int (nitpick& nits, const ::std::stri
             {   nits.pick (nit_jsonld_context, es_warning, ec_json, "Unfortunately, " PROG " does not recognise the schema ", quote (s), ", so cannot verify it.");
                 return s_none; } } }
     if (context.tell (es_debug)) nits.pick (nit_jsonld_context, es_debug, ec_json, ontology_names.get (sn, ONTOLOGY_DESCRIPTION), " recognised");
-//    for (auto mso : scope_.ontologies ())
-//        if (mso.second == sn)
-//        {   nits.pick (nit_jsonld_context, es_info, ec_json, quote (ontology_names.get (mso.second, ONTOLOGY_CURIE)), " previously noted");
-//            break; }
     if ((ontology_names.flags (sn) & ONTOLOGY_CRAPSPEC) == ONTOLOGY_CRAPSPEC)
         nits.pick (nit_crap_spec, es_warning, ec_json, quote (ontology_names.get (sn, ONTOLOGY_NAME)), " is poorly specified: use an alternative");
     SRPT ("-process_context_string_int");
@@ -275,8 +269,7 @@ bool json_ld::note_term (nitpick& nits, const ::std::string& s, const ::boost::j
                     if (e.kind () != ::boost::json::kind::object)
                         note_term (nits, s, e);
                     else
-                    {   // scoped_scope ss (scope_);
-                        const ::boost::json::object& o = e.as_object ();
+                    {   const ::boost::json::object& o = e.as_object ();
                         examine_json_ld (nits, o);
                         process_json_ld (nits, o); }
                 break;

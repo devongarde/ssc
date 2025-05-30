@@ -232,7 +232,7 @@ void vtt_t::open_cue_payload (const int x, const e_vtt_token tkn, const vstr_t& 
             if (i != class_.end ()) i -> second += 1;
             else class_.insert (msid_t::value_type (c, 1));
             nitpick nuts;
-            e_vtt_token col = examine_value < t_vtt_token > (nuts, v_, c);
+            const e_vtt_token col = examine_value < t_vtt_token > (nuts, v_, c);
             switch (col)
             {   case vtk_bg_black :
                 case vtk_bg_blue :
@@ -471,7 +471,7 @@ void vtt_t::accumulate (stats_t* s)
     for (auto& c : class_)
         s -> use_class (c.first, c.second); }
 
-::std::string vtt_t::review (mmac_t& mac) const
+::std::string vtt_t::review (const mmac_t& mac) const
 {   ::std::string res = nits_.review (mac);
     for (auto& l : lines_)
         if (! l.nits_.empty ())

@@ -31,8 +31,6 @@ class css_t : public d1_t < wx_css >
 {   wxDataViewColumn* col_mod_ = nullptr;
     wxDataViewColumn* col_ver_ = nullptr;
     wxDataViewListCtrl* module_ = nullptr;
-//    wxStaticLine* sl1_ = nullptr;
-//    wxStaticLine* sl2_ = nullptr;
     drop_box_t < css_version_t > drop_;
     line_t line1_, line2_;
     listedit_manager homme_ = listedit_manager (button_css_add, button_css_erase, button_css_rename, file_css_name, list_css_ext, text_css_ext);
@@ -47,9 +45,8 @@ class css_t : public d1_t < wx_css >
     DECLARE_CLASS (css_t)
     DECLARE_EVENT_TABLE ()
 public:
-    css_t () { }
-    css_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = CSS_CAPTION);
-    ~css_t () { }
+    DEFAULT_NO_COPY_NO_MOVE_CONSTRUCTORS (css_t);
+    explicit css_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = CSS_CAPTION);
     void Init () const noexcept { }
     bool Create (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = CSS_CAPTION);
     void CreateControls ();

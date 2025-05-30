@@ -155,10 +155,10 @@ void fred_t::onexit ()
 {   fred.done (); }
 
 ::std::size_t fred_t::suggested ()
-{   return ::std::thread::hardware_concurrency () * 2; }
+{   return static_cast <::std::size_t > (::std::thread::hardware_concurrency ()) * 2; }
 
 ::std::size_t fred_t::no_more_than ()
-{   return ::std::thread::hardware_concurrency () * 16; }
+{   return static_cast <::std::size_t> (::std::thread::hardware_concurrency ()) * 16; }
 
 bool fred_t::relaxed () const noexcept
 {   return  (! inited ()) || (! activity ()) ||

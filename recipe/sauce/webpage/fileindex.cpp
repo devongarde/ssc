@@ -371,7 +371,7 @@ crc_t calc_crc (nitpick& nits, const ::boost::filesystem::path& dp)
 crc_t get_crc (nitpick& nits, const fileindex_t ndx)
 {   //PRESUME (ndx < vx.size (), __FILE__, __LINE__);
 	if (! inner_get_any_flag (ndx, FX_CRC)) // only one thread looks at a file, once in scanning, once in examining; so this shouldn't need locking
-	{   crc_t crc = calc_crc (nits, GSL_AT (vx, ndx).disk_path ());
+	{   const crc_t crc = calc_crc (nits, GSL_AT (vx, ndx).disk_path ());
 		set_crc (ndx, crc);
 		return crc; }
 	lox l (lox_fileindex);

@@ -81,9 +81,8 @@ class spell_t : public d1_t < wx_spell >
     DECLARE_CLASS (spell_t)
     DECLARE_EVENT_TABLE ()
 public:
-    spell_t () { }
-    spell_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = SPELL_CAPTION);
-    ~spell_t () { }
+    DEFAULT_NO_COPY_NO_MOVE_CONSTRUCTORS (spell_t);
+    explicit spell_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = SPELL_CAPTION);
     bool invalid () const noexcept
     {   return  dict_.invalid () ||
 #ifdef HUNDO

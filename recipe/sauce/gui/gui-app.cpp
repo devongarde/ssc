@@ -122,6 +122,9 @@ void find_help (context_t& c, ::boost::filesystem::path& fn)
 
 bool app_t::OnInit ()
 {   nitpick nits;
+#ifdef LEAK_SEEK
+    _CrtMemCheckpoint (&context.ls_old_);
+#endif // LEAK_SEEK
     init (nits);
     SetAppName (FULLNAME);
     SetAppDisplayName (FULLNAME " v" VERSION_STRING " (" WEBADDR ")");
@@ -239,9 +242,6 @@ void app_t::display_contents () const
 void app_t::get_set ()
 {   if (frame_ != nullptr) frame_ -> get_set (); }
 
-//void app_t::help (const char* wot) const
-//{   if (help_ != nullptr) help_ -> DisplaySection (wot); }
-
 void app_t::help (const e_gui_help_id hi) const
 {   if (help_ != nullptr) help_ -> DisplaySection (hi); }
 
@@ -258,6 +258,18 @@ int app_t::OnExit ()
     fred.done ();
     const int c = ciao ();
     if (res_ < c) res_ = c;
+#ifdef LEAK_SEEK
+    _CrtMemState ls_new;
+    _CrtMemState ls_diff;
+    _CrtMemCheckpoint (&ls_new); //take a snapshot 
+    if (_CrtMemDifference (&ls_diff, &context.ls_old_, &ls_new)) // if there is a difference
+    {   OutputDebugString (L"*** _CrtMemDumpStatistics ***");
+        _CrtMemDumpStatistics (&ls_diff);
+        OutputDebugString (L"*** _CrtMemDumpAllObjectsSince ***");
+        _CrtMemDumpAllObjectsSince (&context.ls_old_);
+        OutputDebugString (L"*** _CrtDumpMemoryLeaks ***");
+        _CrtDumpMemoryLeaks (); }
+#endif // LEAK_SEEK
     return res_; }
 
 void app_t::nits_msgbox (wxWindow* mummy, const ::std::string& title, nitpick& nits, const e_severity worst)
@@ -302,7 +314,7 @@ bool app_t::save_conf (wxWindow* mummy, const context_t& c, const ::boost::files
         return false; }
     return true; }
 
-bool app_t::save_conf_as (wxWindow* mummy, context_t& c, ::boost::filesystem::path& fn)
+bool app_t::save_conf_as (wxWindow* mummy, const context_t& c, ::boost::filesystem::path& fn)
 {   wxFileDialog dialogue (mummy, "Save Configuration",
         fn.string().c_str (), "config.conf", "Configuration files (*.conf)|*.conf", wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
     if (dialogue.ShowModal () != wxID_OK) return false;

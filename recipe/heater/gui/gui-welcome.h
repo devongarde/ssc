@@ -54,9 +54,8 @@ class welcome_t : public d2_t
     DECLARE_CLASS (welcome_t)
     DECLARE_EVENT_TABLE ()
 public:
-    welcome_t () { }
+    DEFAULT_NO_COPY_NO_MOVE_CONSTRUCTORS (welcome_t);
     welcome_t (wxWindow *mummy, const context_t& c, wxWindowID id = wxID_ANY, const wxString& caption = WELCOME_CAPTION);
-    ~welcome_t () { }
     bool invalid () const noexcept
     {   return (line_root_ == nullptr) || (line_snippet_ == nullptr) || (button_configure_ == nullptr) || d2_t :: invalid (); }
     void Init () const noexcept { }

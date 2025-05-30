@@ -80,17 +80,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 {   if (! context.icu ()) return s;
     ::std::wstring res16, s16 = convert_from_utf8 (s);
     const ::std::wstring::size_type mx = s16.length () * 4;  // because life's a bitch
-    wchar_t* pch = new wchar_t [mx];
+    GSL_OWNER (wchar_t) pch = new wchar_t [mx];
     try
     {   const int len = ::NormalizeString (NormalizationC , s16.c_str (), GSL_NARROW_CAST < int > (s16.length ()), pch, GSL_NARROW_CAST < int > (mx));
         if ((len == 0) || (len >= mx))
-        {   nits.pick (nit_icu_barf, es_comment, ec_icu, "Cannot normalised ", quote (s));
-            return s; }
-        pch [len] = 0;
-        res16 = pch; }
+            nits.pick (nit_icu_barf, es_comment, ec_icu, "Cannot normalised ", quote (s));
+        else
+        {   pch [len] = 0;
+            res16 = pch; }
+        delete [] pch; }
     catch (...)
-    {   delete pch;
-        pch = nullptr; }
+    {   delete [] pch; }
     return convert_to_utf8 (res16); }
 #else // _MSC_VER
 ::std::string normalise_utf8 (nitpick& nits, const ::std::string& s)

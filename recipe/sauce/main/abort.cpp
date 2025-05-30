@@ -47,7 +47,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
     outstr.err ("\n", msg, "\n");
     throw ::std::runtime_error (msg); }
 
-[[noreturn]] void ugly_presumption (const char* const x, const char* const fn, const ::std::size_t line) noexcept
+[[noreturn]] void ugly_presumption (const char* const x, const char* const fn, const ::std::size_t line)
 {   try
     {   ::boost::filesystem::path p (fn);
         ::std::string msg ("presumption " );
@@ -71,5 +71,5 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
         msg += file_line (fn, line);
         outstr.err ("\n", msg, "\n"); }
     catch (...)
-    {   outstr.err ("\ngraceless crash cannot state its origin\n"); }
+    {   try { outstr.err ("\ngraceless crash cannot state its origin\n"); } catch (...) { } }
     ::std::terminate (); }

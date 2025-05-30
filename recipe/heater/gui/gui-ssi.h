@@ -35,9 +35,8 @@ class ssi_t : public d1_t < wx_ssi >
     DECLARE_CLASS (ssi_t)
     DECLARE_EVENT_TABLE ()
 public:
-    ssi_t () = default;
-    ssi_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = SSI_CAPTION);
-    ~ssi_t () = default;
+    DEFAULT_NO_COPY_NO_MOVE_CONSTRUCTORS (ssi_t);
+    explicit ssi_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = SSI_CAPTION);
     bool invalid () const noexcept
     {   return process_.invalid () || text_line_.invalid () || exec_line_.invalid (); }
     void Init () const noexcept { }

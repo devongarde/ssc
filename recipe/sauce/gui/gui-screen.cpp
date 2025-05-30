@@ -35,7 +35,7 @@ bool get_centre (unsigned& x, unsigned& y, const unsigned obj_width, const unsig
 bool centre_on_screen (unsigned& x, unsigned& y, const unsigned obj_width, const unsigned obj_height)
 {   const wxSize ss = wxGetDisplaySize ();
     if ((ss.x < 0) || (ss.y < 0)) return false;
-    return get_centre (x, y, obj_width, obj_height, static_cast < unsigned > (ss.x), static_cast < unsigned > (ss.y)); }
+    return get_centre (x, y, obj_width, obj_height, GSL_NARROW_CAST < unsigned > (ss.x), GSL_NARROW_CAST < unsigned > (ss.y)); }
 
 bool get_default_window_size (unsigned& x, unsigned& y)
 {   switch (wxSystemSettings::GetScreenType ())

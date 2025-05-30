@@ -43,7 +43,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
         u                U unique
         v verbose        V version
         w                W cgi
-        x extensions     X check crosslinked ids
+        x extensions     X check cross-linked ids
         y GENERAL THREAD Y GENERAL DEFTHRD              
         z title max      Z
         0 dont ask

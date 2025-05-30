@@ -216,14 +216,14 @@ struct radio_t : group_ctrl_t < wxRadioBox >
     {   if (! invalid ()) ctrl_ -> Enable (n, b); } };
 
 struct spin_t : base_ctrl_t < wxSpinCtrl >
-{   int value_;
+{   int value_ = 0;
     template < class BOX > bool concoct (wxWindow *mummy, BOX* pen, const int id = wxID_ANY, const ::std::string& def = ::std::string (), const int init = 0, const int mini = 0, const int maxi = 75)
     {	VERIFY_NOT_NULL (mummy, __FILE__, __LINE__);
         value_ = init;
         ctrl_ = GSL_OWNER (wxSpinCtrl) (new wxSpinCtrl (mummy, id, def.c_str (), wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, mini, maxi, init));
         return base_ctrl_t < wxSpinCtrl > :: concocted (pen, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5); }
-    void value (const int i) { value_ = i; }
-    int value () const { return value_; }
+    void value (const int i) noexcept { value_ = i; }
+    int value () const noexcept { return value_; }
     bool TransferDataToWindow ();
     bool TransferDataFromWindow (); };
 

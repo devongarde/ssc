@@ -30,7 +30,7 @@ class options
    ::boost::program_options::variables_map var_, env_var_;
     void help (const ::boost::program_options::options_description& aid) const;
     void init (context_t& c);
-    void parse (context_t& c, output_streams_t& o, nitpick& nits, const vstr_t& vs);
+    void parse (context_t& c, const output_streams_t& o, nitpick& nits, const vstr_t& vs);
     bool parse (nitpick& nits, const ::boost::filesystem::path& file);
     bool parse (context_t& c, nitpick& nits, const ::boost::filesystem::path& file);
     bool is_be (const char* yo);

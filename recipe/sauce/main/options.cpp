@@ -46,7 +46,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
         options::cmd_ (DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
         options::config_ (DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
         options::environ_ (DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
-        options::hidden_,
+        options::hidden_ (DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
         options::ontology_ ("Set default ontology version", DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
         options::primary_ ("General options", DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
         options::risky_ ("Additional configuration file options", DEFAULT_LINE_LENGTH, DESCRIPTION_LENGTH),
@@ -1027,8 +1027,8 @@ void options::init (context_t& c)
         (LINKS DONT REVOKE, ::boost::program_options::bool_switch (), "Check whether https certificates have been revoked (sets --" LINKS EXTERNAL ").")
         (LINKS SPECIAL, ::boost::program_options::bool_switch (), "Issue warning if link to a special domain, such as ???.onion, found.")
         (LINKS DONT SPECIAL, ::boost::program_options::bool_switch (), "Don't mention links to special domains.")
-        (LINKS XLINK ARGSEP XLINK_SW_, ::boost::program_options::bool_switch (), "Check crosslink IDs.")
-        (LINKS DONT XLINK, ::boost::program_options::bool_switch (), "Do not check crosslink IDs.")
+        (LINKS XLINK ARGSEP XLINK_SW_, ::boost::program_options::bool_switch (), "Check cross-link IDs.")
+        (LINKS DONT XLINK, ::boost::program_options::bool_switch (), "Do not check cross-link IDs.")
 
         (MATH VERSION, ::boost::program_options::value < ::std::string > (), "preferred version of MathML; one of 0/1/2/3/4.20/4/core (default: determined by HTML version).")
 
@@ -1321,7 +1321,7 @@ bool options::parse (context_t& c, nitpick& nits, const ::boost::filesystem::pat
 {   init (c);
     return parse (nits, file); }
 
-void options::parse (context_t& c, output_streams_t& o, nitpick& nits, const vstr_t& vs)
+void options::parse (context_t& c, const output_streams_t& o, nitpick& nits, const vstr_t& vs)
 {   ::std::string loaded;
     init (c);
     if (! context.gui () && ! context.serve ())
@@ -2343,7 +2343,6 @@ template < > void options::report_variable < vstr_t > (const e_gui_report gr, ::
     {   vstr_t vs = var_ [wot].as < vstr_t > ();
         for (auto s : vs)
             res << report_value (gr, section, count, variable, s); }
-//    {   res << report_value (gr, section, count, variable, pvs (var_ [wot].as < vstr_t > ())); }
     catch (...)
     {   outstr.err (section, wot, " is no vstr_t\n"); } }
 
@@ -2546,7 +2545,6 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, int, CSS, UI, css);
     RG (gr, res, int, CSS, VAL, css);
     RB (gr, res, CSS, VERIFY, css);
-//    RG (gr, res, int, CSS, VERSION, css);
     RG (gr, res, ::std::string, CSS, VERSION, css);
     RG (gr, res, int, CSS, VIEW, css);
     RG (gr, res, int, CSS, VIEWPORT, css);

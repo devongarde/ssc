@@ -55,8 +55,8 @@ void html_t :: create_controls (wxWindow *parent)
 {	//bool rational = true;
     //if (parent == this) rational = app -> frame () -> rational ();
 
-    const long rg = (wxALL | wxALIGN_RIGHT);
-    const long al = wxALIGN_RIGHT;
+    constexpr long rg = (wxALL | wxALIGN_RIGHT);
+    constexpr long al = wxALIGN_RIGHT;
 
     if (    html_ctrl_.concoct (parent, box_, choice_html_version, "&X/HTML version: ") &&
             math_ctrl_.concoct (parent, box_, choice_math_version, "&MathML version: ") &&
@@ -165,7 +165,7 @@ bool html_t :: TransferDataToWindow ()
 {	if (invalid ()) return false;	
     switch (dt_)
     {	case 0 :
-        case 2 : stray_ctrl_.select (static_cast < int > (dt_)); break;
+        case 2 : stray_ctrl_.select (GSL_NARROW_CAST < int > (dt_)); break;
         default : stray_ctrl_.select (1); break; }
     width_ctrl_.value (max_);
     sloven_ctrl_.select (bsloven_);

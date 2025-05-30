@@ -38,7 +38,7 @@ features are available.
 
 <p>
 You can download the current source <a href="src/ssc-<!--#echo encoding="none" var="version" -->.tgz" type="application/gzip">here</a>,
-or from <a href="https://github.com/devongarde/ssc">github</a>.
+<a href="https://github.com/devongarde/ssc">github</a>, or <a href="https://codeberg.org/devongarde/ssc">codeberg</a>.
 </p>
 
 <h2>Libraries</h2>

@@ -72,18 +72,18 @@ public:
     {   PRESUME (bs_.size () == SIZE, __FILE__, __LINE__);
         for (::std::size_t x = 0; x < SIZE; ++x)
             bs_.at (x) = ! bs_.at (x); }
-    static bool any (const ssc_bitset& lhs, const ssc_bitset& rhs) noexcept
+    static bool any (const ssc_bitset& lhs, const ssc_bitset& rhs)
     {   for (::std::size_t n = 0; n < SIZE; ++n)
             if (lhs.test (n) && rhs.test (n)) return true;
         return false; }
-    static bool all (const ssc_bitset& lhs, const ssc_bitset& rhs) noexcept
+    static bool all (const ssc_bitset& lhs, const ssc_bitset& rhs)
     {   for (::std::size_t n = 0; n < SIZE; ++n)
             if (rhs.test (n))
                 if (! lhs.test (n)) return false;
         return true; }
-    bool any (const ssc_bitset& rhs) noexcept
+    bool any (const ssc_bitset& rhs)
     {   return any (*this, rhs); }
-    bool all (const ssc_bitset& rhs) noexcept
+    bool all (const ssc_bitset& rhs)
     {   return all (*this, rhs); }
     bool any () const
     {   PRESUME (bs_.size () == SIZE, __FILE__, __LINE__);

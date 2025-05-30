@@ -25,7 +25,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 template < > struct type_master < t_langs > : type_at_least_one < t_langs, sz_comma, t_lang >
 { using type_at_least_one < t_langs, sz_comma, t_lang > :: type_at_least_one; };
 
-// t_lang_n
 template < > struct type_master < t_lang_n > : type_or_string < t_lang_n, t_lang, sz_normal >
 { using type_or_string < t_lang_n, t_lang, sz_normal > :: type_or_string; };
 

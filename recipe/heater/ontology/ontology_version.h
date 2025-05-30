@@ -498,7 +498,7 @@ const ontology_version rr_schema (s_rr, 1, 0);
 // schema versions before version 2.0 are not properly versioned IMHO.
 // I've used (www.)schema.org and archive.org to get a rough set up as below.
 // Versions before 0.91, dug up from archive.org are undocumented on schema.org
-// (May 2022), so I've assigned arbituary numbers which are liable to change
+// (May 2022), so I've assigned arbitrary numbers which are liable to change
 // should I find better documentation. Versions before June 2011 may exist
 // somewhere, but they're not under www.schema.org on archive.org.
 

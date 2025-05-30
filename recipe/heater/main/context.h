@@ -106,6 +106,11 @@ class context_t
     e_do            do_ = do_booboo;
     aset_t          rpt_;
     ::std::time_t   ssi_date_ = 0, ssi_lastmod_ = 0;
+#ifdef LEAK_SEEK
+public:
+    static _CrtMemState ls_old_;
+private:
+#endif // LEAK_SEEK
     void init ();
     template < typename T > void mac (const e_nit_macro ns, const T n)
     {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
@@ -142,7 +147,7 @@ public:
     DEFAULT_COPY_CONSTRUCTORS (context_t);
     ~context_t () = default;
     void reset ();
-    void reset (context_t& c);
+    void reset (const context_t& c);
     void swap (context_t& c);
     context_t& abhorrent (const ::std::string& s) { abhorrent_.push_back (s); return *this; }
     context_t& absolute_path (const bool b) { absolute_path_ = b; mac (nm_context_absolute_path, b); return *this; }

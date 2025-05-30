@@ -412,9 +412,9 @@ bool crosslinks (const vstr_t& line)
     {   for (size_t x = 1; x < line.size () && ! blooper; ++x)
             if (line.at (x) != expected.at (x))
             {   blooper = true;
-                if (verbose) ::std::cout << "crosslink " << x << " differs (expected " << expected.at (x) << ", got " << line.at (x) << ")\n"; }
+                if (verbose) ::std::cout << "cross-link " << x << " differs (expected " << expected.at (x) << ", got " << line.at (x) << ")\n"; }
         if (! blooper) return true; }
-    else if (verbose) ::std::cout << "crosslink counts differ (expected " << expected.size () - 1 << ", got " << line.size () - 1 << ")\n";
+    else if (verbose) ::std::cout << "cross-link counts differ (expected " << expected.size () - 1 << ", got " << line.size () - 1 << ")\n";
     return false; }
 
 bool shadowcheck (const vstr_t& line)

@@ -819,7 +819,7 @@ e_status set_refresh_value (nitpick& nits, const html_version& v, const ::std::s
         {   if (sides.size () < 2) return s_good;
             if (! compare_no_case (sides.at (0), "0"))
                 nits.pick (nit_refresh_zero, ed_w3, HTTPS_W3 "/TR/2016/NOTE-WCAG20-TECHS-20161007/F41", es_error, ec_type, "do not use refresh with any period but zero, to avoid causing some users significant problems");
-            const int ulen = 4;
+            constexpr int ulen = 4;
             ::std::string x (trim_the_lot_off (sides.at (1)));
             if (x.length () < 5 || ! compare_no_case (x.substr (0, ulen), "url="))
                 nits.pick (nit_url_empty, es_error, ec_type, "the refresh url must be preceded by 'url='");

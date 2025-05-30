@@ -31,8 +31,9 @@ class snippet_t : public d1_t < wx_snippet >
     DECLARE_CLASS (snippet_t)
     DECLARE_EVENT_TABLE ()
 public:
+    DEFAULT_NO_COPY_NO_MOVE_CONSTRUCTORS (snippet_t);    
     explicit snippet_t (const ::std::string& s);
-    snippet_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = SNIPPET_CAPTION);
+    explicit snippet_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = SNIPPET_CAPTION);
     bool invalid () const noexcept { return stc_ == nullptr; }
     void Init () noexcept { snippet_.clear (); }
     bool Create (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = SNIPPET_CAPTION);

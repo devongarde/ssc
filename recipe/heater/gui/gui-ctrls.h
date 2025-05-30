@@ -129,7 +129,7 @@ template < typename DROP > struct text_drop_t
 
 struct css_version_t : text_drop_t < choice_t >
 {   typedef e_css_version data_t;
-    static data_t def_sel () { return css_none; }
+    static data_t def_sel () noexcept { return css_none; }
     bool concoct (wxWindow *mummy, wxBoxSizer* pen, const int id, const ::std::string& label, const data_t sel = def_sel ());
     data_t selected () const { return GSL_NARROW_CAST < data_t > (text_drop_t < choice_t >::selected ()); }
     void select (const data_t sel) { text_drop_t < choice_t >::select (sel); } };
@@ -144,14 +144,14 @@ struct lingo_t : text_drop_t < combo_t >
 
 struct math_version_t : text_drop_t < choice_t >
 {   typedef e_math_version data_t;
-    static data_t def_sel () { return math_none; }
+    static data_t def_sel () noexcept { return math_none; }
     bool concoct (wxWindow *mummy, wxBoxSizer* pen, const int id, const ::std::string& label, const data_t sel = def_sel ());
     data_t selected () const { return GSL_NARROW_CAST < data_t > (text_drop_t < choice_t >::selected ()); }
     void select (const data_t sel) { text_drop_t < choice_t >::select (sel); } };
 
 struct svg_version_t : text_drop_t < choice_t >
 {   typedef e_svg_version data_t;
-    static data_t def_sel () { return sv_none; }
+    static data_t def_sel () noexcept { return sv_none; }
     bool concoct (wxWindow *mummy, wxBoxSizer* pen, const int id, const ::std::string& label, const data_t sel = def_sel ());
     data_t selected () const { return GSL_NARROW_CAST < data_t > (text_drop_t < choice_t >::selected ()); }
     void select (const data_t sel) { text_drop_t < choice_t >::select (sel); } };

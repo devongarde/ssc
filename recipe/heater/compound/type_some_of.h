@@ -75,7 +75,7 @@ template < e_type T, class SZ, int F, int MIN, int MAX, e_type... A > struct typ
         return string_vector < T, SZ, F > :: is_url (); }
     static bool is_existential () noexcept
     {   return false; }
-    static bool is_numeric () noexcept
+    static bool is_numeric ()
     {   if (type_one_of < T, MIN==0, A... > :: is_numeric ()) return true;
         return string_vector < T, SZ, F > :: is_numeric (); }
     static typename string_vector < T, SZ, F > :: value_type default_value ()

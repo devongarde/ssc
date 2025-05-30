@@ -46,7 +46,6 @@ void medium_t::mtkn_report ()
    
 void medium_t::note_value (const arguments& args, nitpick& nits, const ::std::string& s)
 {   PRESUME (! s.empty (), __FILE__, __LINE__);
-//    if (args.g_.custom_media ().find (s) != args.g_.custom_media ().cend ())
     if (args.has_custom_media (s))
         vm_.emplace_back (md_custom_media, s);
     else
@@ -1058,7 +1057,6 @@ void medium_t::parse (arguments& args , const int from, const int to)
     {   const ::std::string& val = args.t_.at (i).val_;
         switch (args.t_.at (i).t_)
         {   case ct_identifier :
-//                if ((args.v_.css_module (c_media_query) > 3) && (args.g_.custom_media ().find (val) != args.g_.custom_media ().cend ()))
                 if ((args.v_.css_module (c_media_query) > 3) && (args.has_custom_media (val)))
                 {   switch (expecting)
                     {   case me_id :

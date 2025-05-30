@@ -67,10 +67,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "gui/gui-app.h"
 #endif // WX
 
-#if defined (DEBUG) && defined (_MSC_VER)
-// #define WINMEMCHECK
-#endif // DEBUG...
-
 int cycle_start (nitpick& nits)
 {   reset_httpequiv ();
     reset_crosslinks ();
@@ -336,11 +332,18 @@ int cycle (nitpick& nits, const int argc, char** argv)
                     break; } }
         else
         {   constexpr ::std::size_t max_len = 65536;
-            char ch [max_len] = { 0 };
             outstr.out ("\n" PROG " ");
-            ::std::cin.getline (&ch [0], max_len-1);
-            ch [max_len-1] = 0;
-            args = ::std::string (ch);
+            char* psz = new char [max_len];
+            if (psz != nullptr) try
+            {   *psz = 0;
+                ::std::cin.getline (psz, max_len-1);
+                psz [max_len-1] = 0;
+                args = ::std::string (psz);
+                delete [] psz; }
+            catch (...)
+            {   delete [] psz;
+                throw; }
+            psz = nullptr;
             if (args.empty ()) return STOP_NOW;
             vs = uq2 (args, UQ_TRIM | UQ_SQ | UQ_DQ | UQ_BS | UQ_REPEATQ | UQ_UNIFY, " "); }
         VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
@@ -411,12 +414,9 @@ int cycle (nitpick& nits, const int argc, char** argv)
 
 int ssc_main (int argc, char** argv)
 {   int res = NOTHING_TO_DO;
-#ifdef WINMEMCHECK
-    _CrtMemState sOld;
-    _CrtMemState sNew;
-    _CrtMemState sDiff;
-    _CrtMemCheckpoint (&sOld);
-#endif // WINMEMCHECK
+#ifdef LEAK_SEEK
+    _CrtMemCheckpoint (&context.ls_old_);
+#endif // LEAK_SEEK
     ::std::string msg;
     PRESUME (argc > 0, __FILE__, __LINE__);
     VERIFY_NOT_NULL (argv, __FILE__, __LINE__);
@@ -449,16 +449,18 @@ int ssc_main (int argc, char** argv)
         if (res < c) res = c; }
     catch (...)
     {   res = CATASTROPHIC_STATE; }
-#ifdef WINMEMCHECK
-    _CrtMemCheckpoint (&sNew); //take a snapshot 
-    if (_CrtMemDifference (&sDiff, &sOld, &sNew)) // if there is a difference
+#ifdef LEAK_SEEK
+    _CrtMemState ls_new;
+    _CrtMemState ls_diff;
+    _CrtMemCheckpoint (&ls_new); //take a snapshot 
+    if (_CrtMemDifference (&ls_diff, &context.ls_old_, &ls_new)) // if there is a difference
     {   OutputDebugString (L"*** _CrtMemDumpStatistics ***");
-        _CrtMemDumpStatistics (&sDiff);
+        _CrtMemDumpStatistics (&ls_diff);
         OutputDebugString (L"*** _CrtMemDumpAllObjectsSince ***");
-        _CrtMemDumpAllObjectsSince (&sOld);
+        _CrtMemDumpAllObjectsSince (&context.ls_old_);
         OutputDebugString (L"*** _CrtDumpMemoryLeaks ***");
         _CrtDumpMemoryLeaks (); }
-#endif // WINMEMCHECK
+#endif // LEAK_SEEK
     return res; };
 
 void ssc_console (const ::std::string& s)

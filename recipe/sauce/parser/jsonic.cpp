@@ -48,11 +48,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
         case ::boost::json::kind::object :
             res += "OBJECT\n";
             for (::boost::json::object::const_iterator i = val.as_object ().cbegin (); i != val.as_object ().cend (); ++i)
-            {   const int dent = indent + 1;
+            {   const ::std::string::size_type dent = static_cast < ::std::string::size_type > (indent) + 1;
                 res += ::std::string (dent*2, ' ');
                 res += quote (i -> key_c_str ());
                 res += ": ";
-                res += rpt_base (i -> value (), dent); }
+                res += rpt_base (i -> value (), GSL_NARROW_CAST < int > (dent)); }
             break;
         default :
             return "*** UNDOCUMENTED TYPE ***\n"; }

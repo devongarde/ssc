@@ -425,7 +425,7 @@ template < > struct type_master < t_sandboxen > : string_vector < t_sandboxen, s
             {   type_master < t_sandbox > sb (box ());
                 sb.set_value (nits, v, arg);
                 if (! sb.good ()) allgood = false;
-                else switch (sb.get ())
+                else switch (sb.get ()) // dear visual studio, so where is that dreadful C style cast?!
                 {   case sand_scripts : script = true; break;
                     case sand_origin : origin = true; break;
                     case sand_navigation : topnav = true; break;

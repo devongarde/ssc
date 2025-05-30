@@ -41,9 +41,8 @@ class site_t : public d1_t < wx_site >
     DECLARE_CLASS (site_t)
     DECLARE_EVENT_TABLE ()
 public:
-    site_t () { }
-    site_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = SITE_CAPTION);
-    ~site_t () { }
+    DEFAULT_NO_COPY_NO_MOVE_CONSTRUCTORS (site_t);
+    explicit site_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = SITE_CAPTION);
     bool invalid () const noexcept { return base_.invalid (); }
     void Init () const noexcept { }
     bool Create (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = SITE_CAPTION);

@@ -49,9 +49,8 @@ template < typename SUPER > struct interrogate : SUPER
     wxPoint point_ = wxDefaultPosition;
     wxSize size_ = wxDefaultSize;
     wxWindow* mummy_ = nullptr;
-    interrogate () = default;
+    DEFAULT_NO_COPY_CONSTRUCTORS (interrogate);
     interrogate (const wxPoint& pos, const wxSize& size) : point_ (pos), size_ (size) { }
-    ~interrogate () = default;
     bool invalid_panel () const noexcept { return (box_ == nullptr); }
     bool invalid () const noexcept { return invalid_panel () || (cancel_ == nullptr); }
     void pre_create (wxWindow *mummy, const wxPoint& pos, const wxSize& size)
@@ -70,9 +69,8 @@ template < typename SUPER > struct interrogate : SUPER
 template < class NAME > struct d1_t : interrogate < wxDialog >
 {   wxStdDialogButtonSizer* sbs_ = nullptr;
     wxPanel* panel_ = nullptr;
-    d1_t () = default;
+    DEFAULT_NO_COPY_CONSTRUCTORS (d1_t);
     d1_t (const wxPoint& pos, const wxSize& size) : interrogate < wxDialog > (pos, size) { }
-    ~d1_t () = default;
     wxPanel* panel () { return panel_; }
     bool create_panel_itself (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, const long style = DEF_STYLE)
     {   panel_ = GSL_OWNER (wxPanel) (new wxPanel (mummy, id, pos, size, style));
@@ -136,9 +134,8 @@ struct d3_t : interrogate < wxDialog >
     wxGridSizer* grid_ = nullptr;
     wxGridSizer* grid_ls_ = nullptr;
     wxStaticLine* divider_ = nullptr;
-    d3_t () = default;
+    DEFAULT_NO_COPY_NO_MOVE_CONSTRUCTORS (d3_t);
     d3_t (const wxPoint& pos, const wxSize& size) : interrogate < wxDialog > (pos, size) { }
-    ~d3_t () = default;
     bool invalid () const noexcept { return interrogate < wxDialog > :: invalid () || (grid_ == nullptr) || (load_ == nullptr); }
     bool Create (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = DEF_CAPTION,
         const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, const long style = DEF_STYLE);

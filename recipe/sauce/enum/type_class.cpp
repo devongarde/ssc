@@ -309,9 +309,6 @@ struct symbol_entry < html_version, e_class > class_symbol_table [] =
 void class_init (nitpick& nits)
 {   type_master < t_class > :: init (nits, class_symbol_table, class_count ()); }
 
-//void class_init (nitpick& nits)
-//{   type_master < t_class > :: init (nits, class_symbol_table, sizeof (class_symbol_table) / sizeof (symbol_entry < html_version, e_class >)); }
-
 bool check_class_spelling (nitpick& nits, const html_version& , const ::std::string& original)
 {   ::std::string s (quote (original));
     if (original == "h-cv") nits.pick (nit_confusion, es_warning, ec_microformat, quote (s), ": it's " H_RESUME " (unaccented), not h-cv");

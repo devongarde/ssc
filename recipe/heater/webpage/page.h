@@ -69,7 +69,7 @@ class page
     friend class tag;
     void init (const ::std::string& name, ::std::string& content, const fileindex_t x);
 public:
-    DEFAULT_NO_COPY_NO_MOVE_CONSTRUCTORS (page);
+    DEFAULT_CONSTRUCTORS_NO_DESTRUCTORS (page);
     page (nitpick& nits, const ::std::string& name, const ::std::time_t updated, ::std::string& content, const directory* d = nullptr);
     page (const ::std::string& name, const ::std::time_t updated, ::std::string& content, const fileindex_t ndx, const directory* d = nullptr);
     explicit page (const ::std::string& content, const bool outsider = false);

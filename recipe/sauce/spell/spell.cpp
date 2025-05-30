@@ -165,7 +165,7 @@ void add_spell_list (nitpick& nits, const ::std::string& lang, const ::boost::fi
 
 void add_spell_list (nitpick& nits, const vstr_t& spl)
 {   for (auto sp : spl)
-    {   ::std::string::size_type pos = sp.find (',');
+    {   const ::std::string::size_type pos = sp.find (',');
         if (pos == ::std::string::npos)
             add_spell_list (nits, "*", sp);
         else if ((pos == 0) && (sp.length () > 1))

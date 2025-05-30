@@ -28,7 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 class report_t : public d1_t < wx_stats >
 {   typedef ::std::array < wxCheckBox*, rcb_max > ach_t;
-    ach_t report_;
+    ach_t report_ = { };
     wxButton* all_ = nullptr;
     wxButton* clear_ = nullptr; 
     wxButton* selected_ = nullptr; 
@@ -38,16 +38,15 @@ class report_t : public d1_t < wx_stats >
     wxGridSizer* czech_grid_ = nullptr;
     wxGridSizer* export_grid_ = nullptr;
     wxStaticLine* base_ = nullptr;
-    aset_t rpt_;
+    aset_t rpt_ = { };
     ::boost::filesystem::path dump_;
     void enable (const bool b);    
     void set_dump ();
     DECLARE_CLASS (report_t)
     DECLARE_EVENT_TABLE ()
 public:
-    report_t () { }
-    report_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = STATS_CAPTION);
-    ~report_t () { }
+    DEFAULT_NO_COPY_NO_MOVE_CONSTRUCTORS (report_t);
+    explicit report_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = STATS_CAPTION);
     bool invalid () const noexcept
     {   return (export_ == nullptr) || (clear_ == nullptr) || (czech_grid_ == nullptr); }
     void Init () const noexcept { }

@@ -855,8 +855,6 @@ n_string_entry < e_ontology, 3 > ontology_name_entries [] =
     { { HTML_ADOBE }, { HTML_UNDEF }, s_xmptpg, 0, { "xmptpg", HTTPS ADOBE_COM "/namespaces/xap/1.0/tpg/", "XMP tpg" } },
     { { HTML_XSD }, { HTML_UNDEF }, s_xsd, ONTOLOGY_PREFIX_CONTEXT, { "xsd", HTTP_W3 "/2001/XMLSchema#", "XML schema" } },
     { { HTML_XSD }, { HTML_UNDEF }, s_xsd, 0, { "xsd", HTTPS_W3 "/2001/XMLSchema#", "XML schema" } },
-//    { { HTML_FAUX }, { HTML_UNDEF }, s_faux, ONTOLOGY_PREFIX_CONTEXT, { "__FAUX__", "http://" SSC_LU "/faux#", "faux schema used for internal ssc processing" } },
-//    { { HTML_FAUX }, { HTML_UNDEF }, s_faux, 0, { "__FAUX__", "https://" SSC_LU "/faux#", "faux schema used for internal ssc processing" } },
     { { HTML_RDF10_CON }, { HTML_UNDEF }, s_error, 0, { nullptr, nullptr, nullptr } } };
 
 namespace_names_t namespace_names, empty_namespace_names;

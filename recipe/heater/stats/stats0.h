@@ -43,7 +43,7 @@ public:
         else i -> second += u; }
     void accumulate (stats0 < T >& o) const
     {   if (o.count_.size () == 0) o.count_ = count_;
-        else for (auto item : count_)
+        else for (auto& item : count_)
             if (item.second > 0)
                 o.mark (item.first, item.second); } };
 

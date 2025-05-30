@@ -57,9 +57,8 @@ class link_t : public d1_t < wx_link >
     DECLARE_CLASS (link_t)
     DECLARE_EVENT_TABLE ()
 public:
-    link_t () { }
-    link_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = LINK_CAPTION);
-    ~link_t () { }
+    DEFAULT_NO_COPY_NO_MOVE_CONSTRUCTORS (link_t);
+    explicit link_t (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = LINK_CAPTION);
     bool invalid () const noexcept { return (panel_ == nullptr) || (grid_check_ == nullptr) || (grid_desc_ == nullptr) || (grid_req_ == nullptr); }
     void Init () const noexcept { }
     bool Create (wxWindow *mummy, wxWindowID id = wxID_ANY, const wxString& caption = LINK_CAPTION);

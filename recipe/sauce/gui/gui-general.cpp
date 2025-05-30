@@ -55,8 +55,8 @@ bool general_t :: Create (wxWindow *mummy, wxWindowID id, const wxString& captio
     return true; }
 
 void general_t :: create_controls (wxWindow *parent)
-{	const bool rational = true;
-    if (parent == this) app -> frame () -> rational ();
+{	bool rational = true;
+    if (parent == this) rational = app -> frame () -> rational ();
 
     box_check_ = GSL_OWNER (wxBoxSizer) (new wxBoxSizer (wxHORIZONTAL));
     if (box_check_ != nullptr)
