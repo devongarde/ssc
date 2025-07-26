@@ -5,7 +5,6 @@
 <!--#set var="aesite" value="https://dylanharris.org/" -->
 <!--#set var="cc" value="CC BY-NC-SA 4.0" -->
 <!--#set var="cclong" value="Creative Commons Attribution-Commercial-Share Alike 4.0 International Public Licence" -->
-<!--#set var="codeberg" value="https://codeberg.org/devongarde/ssc" -->
 <!--#set var="copyright" value="&copy;&nbsp;2020&ndash;2025&nbsp;Dylan&nbsp;Harris" -->
 <!--#set var="scopyright" value="(c) 2020-2025 dylan harris" -->
 <!--#set var="corruptsite" value="https://corruptpress.com" -->
@@ -25,7 +24,7 @@
 <!--#set var="uhostland" value="The Grand Duchy of Luxembourg" -->
 <!--#set var="icon" value="image/favicon.ico" -->
 <!--#set var="jurisdiction" value="https://luxcommons.lu/" -->
-<!--#set var="latest-HTML" value="June 2025" -->
+<!--#set var="latest-HTML" value="Jul 2025" -->
 <!--#set var="latest-CSS" value="2025" -->
 <!--#set var="legal" value="legal.shtml" -->
 <!--#set var="licence" value="https://creativecommons.org/licenses/by-nc-sa/4.0/" -->
@@ -46,7 +45,7 @@
 <!--#set var="terms" value="terms.shtml" -->
 <!--#set var="test" value="ssc-test" -->
 <!--#set var="stel" value="+352&nbsp;000&nbsp;000&nbsp;000" -->
-<!--#set var="version" value="0.2.16" -->
+<!--#set var="version" value="0.2.17" -->
 <!--#set var="webmeister" value="dylan&nbsp;harris" -->
 <!--#set var="swebmeister" value="dylan harris" -->
 <!--#set var="webssc" value="https://ssc.lu/" -->

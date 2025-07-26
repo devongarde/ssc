@@ -121,6 +121,21 @@ circumstances, QUERY_STRING must contain a parameter called
 html.snippet, with an appropriate value.
 
 
+A note on signing
+-----------------
+I strongly recommend you review the signing/sign-pw test.
+
+To have SSC sign its output, first use a tool, such as openssl, to
+generate a pair of RSA 256 keys in PEM format. You then use the various
+appropriate --output switches to tell ssc to sign its output. 
+
+SSC can verify a signed file, just as the openssl command line utility
+can do.
+
+Note that I used the libressl command line utility called openssl, but
+I understand appropriate versions of openssl can be used too.
+
+
 
 Configuration Files
 ===================

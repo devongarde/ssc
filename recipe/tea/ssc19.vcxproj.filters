@@ -869,6 +869,15 @@
     <ClInclude Include="..\heater\webpage\vtt.h">
       <Filter>Heater\webpage</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\utility\fileio.h">
+      <Filter>Heater\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\utility\ssl.h">
+      <Filter>Heater\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\utility\list.h">
+      <Filter>Heater\utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -1713,6 +1722,12 @@
     </ClCompile>
     <ClCompile Include="..\sauce\webpage\vtt.cpp">
       <Filter>Sauce\webpage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\utility\fileio.cpp">
+      <Filter>Sauce\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\utility\list.cpp">
+      <Filter>Sauce\utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

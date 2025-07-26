@@ -45,7 +45,7 @@ class nitpick
     template < class T > ::std::string inner_review (const e_nit_section& entry, const T& t, const mmac_t& mac, mmac_t& outer, bool& quote, bool& dq, bool& infoed, bool& eol, bool& hasns, const bool unfiltered) const;
 public:
     nitpick () = default;
-    DEFAULT_COPY_MOVE (nitpick);
+    COPY_MOVE (nitpick);
     ~nitpick ()
     {   nits_.clear ();
         before_.clear ();
@@ -106,6 +106,7 @@ public:
     ::std::string review (const mmac_t& mac, const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot, const e_nit_section& page_head = ns_none, const bool unfiltered = false) const;
     ::std::string review (const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot, const e_nit_section& page_head = ns_none) const;
     ::std::string unfiltered (const e_nit_section& entry = ns_nit, const e_nit_section& head = ns_nits_head, const e_nit_section& foot = ns_nits_foot, const e_nit_section& page_head = ns_none) const;
+    ::std::string kwik ();
     e_severity worst () const noexcept;
     ::std::size_t size () const noexcept { return nits_.size (); }
     bool empty () const noexcept { return nits_.empty (); }

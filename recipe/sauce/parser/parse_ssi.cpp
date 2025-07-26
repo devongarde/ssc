@@ -42,14 +42,14 @@ CONSTEXPR ::std::size_t max_separation = 30;
 #define LAST_MOD_MASK "%d %d %d %d %d %d"
 
 ssi_compedium::ssi_compedium () : sizefmt_abbrev_ (true)
-    {   date_ = context.ssi_date ();
-        if (context.ssi_echomsg ().empty ()) echomsg_ = DEFAULT_ECHOMSG;
-        else echomsg_ = context.ssi_echomsg ();
-        if (context.ssi_errmsg ().empty ()) errmsg_ = DEFAULT_ERRMSG;
-        else errmsg_ = context.ssi_errmsg ();
-        errmsg_ = context.ssi_errmsg ();
-        lastmod_ = context.ssi_lastmod ();
-        timefmt_ = context.ssi_timefmt (); }
+{   date_ = context.ssi_date ();
+    if (context.ssi_echomsg ().empty ()) echomsg_ = DEFAULT_ECHOMSG;
+    else echomsg_ = context.ssi_echomsg ();
+    if (context.ssi_errmsg ().empty ()) errmsg_ = DEFAULT_ERRMSG;
+    else errmsg_ = context.ssi_errmsg ();
+    errmsg_ = context.ssi_errmsg ();
+    lastmod_ = context.ssi_lastmod ();
+    timefmt_ = context.ssi_timefmt (); }
 
 void ssi_compedium::swap (ssi_compedium& ssi) noexcept
 {   var_.swap (ssi.var_);
@@ -212,7 +212,9 @@ bool encoding (::std::string& ln, nitpick& nits, const html_version& v, e_ssi_en
                 case ssi_error :
                     GRACEFUL_CRASH (__FILE__, __LINE__);
                     UNBREAKABLE;
-                default : break; } }
+                default :
+                    arg = c.echomsg_;
+                    break; } }
     if (context.tell (es_debug)) nits.pick (nit_debug, es_debug, ec_ssi, "get_variable_value: ", quote (var), " == ", quote (arg));
     return arg; }
 
@@ -290,7 +292,7 @@ bool validate_virtual (::std::string& ln, nitpick& nits, const html_version& v, 
         nits.pick (nit_invalid_echo, es_error, ec_ssi, "it is difficult to display the value of a variable without naming it.");
         return ::std::string (); }
     arg = get_variable_value (ln, nits, v, p, c, var, true);
-    if (arg.empty ()) return c.echomsg_;
+    if (arg.empty ()) return arg;
     if (dec == ssi_encoding_url) arg = decode (arg);
     if (enc == ssi_encoding_url) arg = sanitise (arg);
     if (arg.find ("<!--#") == ::std::string::npos) return arg;
@@ -605,7 +607,7 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
 void splurt (nitpick& , const char* wot, const ::std::string::const_iterator i)
 {   const char ch (*i);
     if (ch < ' ') return;
-    outstr.out (wot, ch, "\n"); }
+    context.os () -> out (wot, ch, "\n"); }
 
 ::std::string parse_ssi (nitpick& nits, const html_version& v, page& p, ssi_compedium& c, const ::std::string& input, ::std::time_t& updated, bool shush)
 {   VERIFY_NOT_NULL (p.get_directory (), __FILE__, __LINE__);
@@ -751,5 +753,5 @@ void splurt (nitpick& , const char* wot, const ::std::string::const_iterator i)
     {   nits.set_context (0, c.filename_);
         nits.pick (nit_linechange, es_comment, ec_ssi, "SSI substitution may have caused some line numbers to change"); }
     if (! shush && revised && context.tell (es_splurge))
-    {   outstr.out ("\nSSI parsing changed content to:\n", to, "\n"); }
+    {   context.os () -> out ("\nSSI parsing changed content to:\n", to, "\n"); }
     return to; }

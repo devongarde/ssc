@@ -606,7 +606,7 @@ void json_ld::parse (nitpick& nits, const ::std::string& s, const e_charcode enc
         jsonic_.parse (nits, s, encoding);
         if (! jsonic_.val ().is_object ()) nits.pick (nit_json_error, es_error, ec_json, "cannot parse as JSON-LD");
         else
-        {   if (context.tell (es_all)) outstr.out (jsonic_.rpt (jsonic_.val ()));
+        {   if (context.tell (es_all)) context.os () -> out (jsonic_.rpt (jsonic_.val ()));
             const vstr_t& keys = context.jsonld_key ();
             if (! keys.empty ())
             {   const vstr_t& vals = context.jsonld_value ();

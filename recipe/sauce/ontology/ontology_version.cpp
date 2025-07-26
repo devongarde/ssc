@@ -72,7 +72,10 @@ sh_t sh [] =  // latest first
     { common_tag, html_rdf_1_0_con },
     { content_schema, html_rdf_1_0 },
     { creative_commons, html_cc },
+    { croissant_1_101, html_croissant_1_101 },
     { croissant_1_100, html_croissant_1_100 },
+    { croissant_1_20, html_croissant_1_20 },
+    { croissant_1_19, html_croissant_1_19 },
     { croissant_1_18, html_croissant_1_18 },
     { croissant_1_17, html_croissant_1_17 },
     { croissant_1_16, html_croissant_1_16 },
@@ -512,8 +515,9 @@ vsv_t vsv = {
     content_schema,
     croissant_0_2, croissant_0_3, croissant_0_4, croissant_0_6, croissant_0_8,
         croissant_1_0, croissant_1_1, croissant_1_2, croissant_1_3, croissant_1_4,  croissant_1_5, croissant_1_6, croissant_1_7, croissant_1_8, croissant_1_9,
-            croissant_1_10, croissant_1_11, croissant_1_12, croissant_1_13, croissant_1_14, croissant_1_15, croissant_1_16, croissant_1_17, croissant_1_18,
-        croissant_1_100,
+            croissant_1_10, croissant_1_11, croissant_1_12, croissant_1_13, croissant_1_14, croissant_1_15, croissant_1_16, croissant_1_17, croissant_1_18, croissant_1_19,
+            croissant_1_20, 
+        croissant_1_100, croissant_1_101,
     creative_commons,
     crs2_schema,
     csvw_schema,
@@ -820,7 +824,7 @@ template < > bool ontology_detail < s_croissant > :: is_this_valid (const unsign
             break; }
     return false; }
 template < > ontology_version ontology_detail < s_croissant > :: from () noexcept { return ontology_version (s_croissant, 0, 2); }
-template < > int ontology_detail < s_croissant > :: count () noexcept { return 24; }
+template < > int ontology_detail < s_croissant > :: count () noexcept { return 25; }
 template < > ontology_version ontology_detail < s_croissant > :: to () noexcept { return ontology_version (s_croissant, 1, 100); }
 
 template < > bool ontology_detail < s_dc > :: is_this_valid (const unsigned short mjr, const unsigned short mnr, const flags_t , const flags_t ) noexcept

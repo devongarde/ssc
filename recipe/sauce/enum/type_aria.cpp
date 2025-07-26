@@ -786,7 +786,7 @@ void aria_init ()
 {   ::std::string res;
     for (::std::size_t x = 0; x < rb.size (); ++x)
         if (rb.test (x))
-        {   if (! res.empty ()) res += ",";
+        {   if (! res.empty ()) res += ", ";
             res += enum_n < t_role, e_aria_role > :: name (static_cast < e_aria_role > (x)); }
     return res; }
 

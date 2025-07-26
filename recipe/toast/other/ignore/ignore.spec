@@ -2,3 +2,4 @@
 
 PASS ../toast/other/ignore/index.html
 2 naughty_lang
+104 use_double_quote_code

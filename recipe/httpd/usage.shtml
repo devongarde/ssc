@@ -166,6 +166,28 @@ html.snippet, with an appropriate value.
 
 <img alt="riff on name" class="mw50 inline_illustration_right" src="image/ssc-msgdb-sfx-src1.jpg" title="made with studio artist 5.5">
 
+<h3>A note on signing</h3>
+
+<p>
+I strongly recommend you review the signing/sign-pw test.
+</p>
+
+<p>
+To have <!--#echo encoding="none" var="short" --> sign its output, first use a tool, such as openssl, to
+generate a pair of RSA 256 keys in PEM format. You can use the various
+appropriate --output switches to tell ssc to sign its output. 
+</p>
+
+<p>
+<!--#echo encoding="none" var="short" --> can verify a signed file, just as the openssl command line utility
+can do.
+</p>
+
+<p>
+Note that I used the <a href="https://libressl.org/">libressl command line utility</a> called openssl, but
+I understand appropriate versions of openssl can be used too.
+</p>
+
 <h2>Potential gotchas</h2>
 
 <h3>Versions</h3>

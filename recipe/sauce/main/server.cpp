@@ -77,7 +77,7 @@ void server_t::reinit () { }
 void server_t::teardown () { }
 
 int server_t::help ()
-{   outstr.console ("c   configure: enter a series of " PROG " command line options,\n"
+{   context.os () -> console ("c   configure: enter a series of " PROG " command line options,\n"
                     "    then a full stop on a line by itself\n"
                     "C   clear the current configuration\n"
                     "h   this text\n"
@@ -87,7 +87,7 @@ int server_t::help ()
     return NOTHING_TO_DO; }
 
 int server_t::print ()
-{   outstr.console (o_ + "\n");
+{   context.os () -> console (o_ + "\n");
     return NOTHING_TO_DO; }
 
 int server_t::run ()
@@ -102,7 +102,7 @@ int server_t::process_and_progress ()
 {   ::std::string s;
     int res = NOTHING_TO_DO;
     try
-    {   if (! conf_) outstr.console ("\n" PROG " >> ");
+    {   if (! conf_) context.os () -> console ("\n" PROG " >> ");
         if (! ::std::getline (::std::cin, s)) return STOP_NOW; }
     catch (...)
     {   return STOP_NOW; }
@@ -119,5 +119,5 @@ int server_t::process_and_progress ()
             case 'p' : res = print (); break;
             case 'q' : res = STOP_NOW; break;
             case 'r' : res = run (); break;
-            default : outstr.console ("Unknown command; type h for help.\n"); }
+            default : context.os () -> console ("Unknown command; type h for help.\n"); }
     return res; }

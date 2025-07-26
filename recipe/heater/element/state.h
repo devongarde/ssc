@@ -28,22 +28,24 @@ typedef ssc_bitset < e_element, last_element_tag > element_bitset;
 typedef ::std::vector < element_bitset > v_eb;
 
 extern const element_bitset empty_element_bitset;
+extern element_bitset block_bitset;
+extern element_bitset block_replaced_bitset;
+extern element_bitset css_block_bitset;
+extern element_bitset css_nonblock_bitset;
+extern element_bitset css_noninline_bitset;
 extern element_bitset faux_bitset;
 extern element_bitset form_bitset;
 extern element_bitset header_bitset;
+extern element_bitset inline_bitset;
 extern element_bitset interactive_bitset;
 extern element_bitset label_bitset;
 extern element_bitset listed_bitset;
 extern element_bitset media_bitset;
 extern element_bitset non_standard_bitset;
+extern element_bitset role_element_bitset;
+extern element_bitset rowgroup_bitset;
 extern element_bitset sectioning_bitset;
-extern element_bitset block_bitset;
 extern element_bitset script_bitset;
-extern element_bitset block_replaced_bitset;
-extern element_bitset inline_bitset;
-extern element_bitset css_block_bitset;
-extern element_bitset css_nonblock_bitset;
-extern element_bitset css_noninline_bitset;
 
 inline bool any (const element_bitset& lhs, const element_bitset& rhs)
 {   const element_bitset tst (lhs & rhs);

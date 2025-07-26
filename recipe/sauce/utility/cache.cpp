@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/context.h"
 #include "utility/common.h"
 #include "utility/filesystem.h"
+#include "utility/fileio.h"
 #include "coop/lox.h"
 #include "webpage/directory.h"
 #include "url/url.h"
@@ -38,7 +39,7 @@ typedef ssc_map < ::std::string, cache_t > mc_t;
 typedef ::std::unique_ptr < mc_t > mc_ptr;
 mc_ptr mc;
 
-void init_cache ()
+void cache_init ()
 {   mc = mc_ptr ( new mc_t ); }
 
 bool current_cache (const ::std::string& name, ::std::string& content, bool& res, time_t& t, bool store, bool& borked)

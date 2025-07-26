@@ -184,6 +184,7 @@
 ../toast/living/oct24/living.spec
 ../toast/living/jan25/living.spec
 ../toast/living/apr25/living.spec
+../toast/living/jul25/living.spec
 ../toast/math/1/math.spec
 ../toast/math/2/math.spec
 ../toast/math/3/math.spec
@@ -272,6 +273,10 @@
 ../toast/shadow/softover/softover.spec
 ../toast/shadow/ssi/ssi.spec
 ../toast/shadow/update/update.spec
+../toast/signing/sign/sign.spec
+../toast/signing/verify/verify.spec
+../toast/signing/sign-pw/sign-pw.spec
+../toast/signing/verify-pw/verify-pw.spec
 ../toast/snippet/conf/snippet.spec
 ../toast/snippet/kiwi/snippet.spec
 ../toast/stats/CSS/stats.spec

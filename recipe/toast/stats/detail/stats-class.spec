@@ -15,7 +15,6 @@ PASS ../toast/stats/detail/itemref.html
 
 PASS ../toast/stats/detail/keyword-1.html
 2 naughty_lang
-19 role_missing
 
 PASS ../toast/stats/detail/keyword-2.html
 2 naughty_lang

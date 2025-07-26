@@ -15,7 +15,6 @@ PASS ../toast/stats/detail/itemref.html
 
 PASS ../toast/stats/detail/keyword-1.html
 2 naughty_lang
-19 role_missing
 
 PASS ../toast/stats/detail/keyword-2.html
 2 naughty_lang
@@ -39,5 +38,5 @@ Reference:
     HTML 5.0: thrice
     WhatWG HTML 5, Jul 20: twice
     HTML 5, Jul 23: twice
-    Aria in HTML: 11 times
+    Aria in HTML: 10 times
 ===

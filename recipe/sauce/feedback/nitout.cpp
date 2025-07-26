@@ -1036,7 +1036,7 @@ bool macro_t::load_template_int (nitpick& nits, const html_version& v, const ::s
                     {   ::std::string msg ("unrecognised section [");
                         msg += nom;
                         msg += "] ignored\n";
-                        outstr.err (msg);
+                        context.os () -> err (msg);
                         ns = ns_none; }
                     else res = true;
                     sq_begin = config.cend ();
@@ -1087,7 +1087,7 @@ bool macro_t::load_template (nitpick& nits, const html_version& v, const e_outpu
         config = template_path (nits, "out.nit", format);
         if (! config.empty ()) res = load_template_int (nits, v, config);
         if (! res)
-        {   outstr.err (::std::string ("Cannot process ") + quote (format) + ", reverting to default output format.\n");
+        {   context.os () -> err (::std::string ("Cannot process ") + quote (format) + ", reverting to default output format.\n");
             nits.pick (nit_template_file, es_catastrophic, ec_init, "Cannot process ", quote (format), ", reverting to default output format)");
             if ((! context.gui ()) && (! context.snippet ().empty ())) res = load_template_int (nits, v, HTML_NIT);
             else res = load_template_int (nits, v, TEXT_NIT); } }
@@ -1166,7 +1166,7 @@ bool macro_t::load_template (nitpick& nits, const html_version& v, const e_outpu
     return res; }
 
 void macro_t::dump_nits (nitpick& nits, const e_nit_section& entry, const e_nit_section& head, const e_nit_section& foot)
-{   outstr.out (report (nits, entry, head, foot));
+{   context.os () -> out (report (nits, entry, head, foot));
     nits.reset (); }
 
 e_output_template is_standard_template (const ::std::string& s)

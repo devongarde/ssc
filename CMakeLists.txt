@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.24)
 set (FULLNAME "Static-Site-Checker")
-set (VER 0.2.16)
+set (VER 0.2.17)
 project (ssc VERSION ${VER} DESCRIPTION ${FULLNAME} LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
 message (NOTICE "preparing " ${FULLNAME} " ${VER}" )
 
@@ -114,8 +114,8 @@ set (HEATERS
         ${H}/type/type.h ${H}/type/type_csp.h
         ${H}/url/fetch.h ${H}/url/url.h ${H}/url/url_parameters.h ${H}/url/url_protocol.h ${H}/url/url_sanitise.h ${H}/url/url_scheme.h
             ${H}/url/url_schemes.h
-        ${H}/utility/bigvector.h ${H}/utility/bitset.h ${H}/utility/byteorder.h ${H}/utility/cache.h ${H}/utility/common.h ${H}/utility/filesystem.h
-            ${H}/utility/lexical.h ${H}/utility/quote.h ${H}/utility/tuple.h
+        ${H}/utility/bigvector.h ${H}/utility/bitset.h ${H}/utility/byteorder.h ${H}/utility/cache.h ${H}/utility/common.h ${H}/utility/fileio.h
+            ${H}/utility/filesystem.h ${H}/utility/lexical.h ${H}/utility/quote.h ${H}/utility/ssl.h ${H}/utility/tuple.h
         ${H}/webpage/corpus.h ${H}/webpage/crosslink.h ${H}/webpage/directory.h ${H}/webpage/external.h ${H}/webpage/fileindex.h ${H}/webpage/headers.h
             ${H}/webpage/id.h ${H}/webpage/page.h ${H}/webpage/q.h ${H}/webpage/required.h ${H}/webpage/root.h ${H}/webpage/vtt.h
     )
@@ -187,7 +187,7 @@ set (SAUCE
         ${S}/symbol/nstr.cpp ${S}/symbol/symbol.cpp
         ${S}/type/type.cpp ${S}/type/type_csp.cpp
         ${S}/url/fetch.cpp ${S}/url/url.cpp ${S}/url/url_parameters.cpp ${S}/url/url_protocol.cpp ${S}/url/url_sanitise.cpp ${S}/url/url_scheme.cpp
-        ${S}/utility/byteorder.cpp ${S}/utility/cache.cpp ${S}/utility/common.cpp ${S}/utility/filesystem.cpp ${S}/utility/quote.cpp
+        ${S}/utility/byteorder.cpp ${S}/utility/cache.cpp ${S}/utility/common.cpp ${S}/utility/fileio.cpp ${S}/utility/filesystem.cpp ${S}/utility/quote.cpp
         ${S}/webpage/corpus.cpp ${S}/webpage/crosslink.cpp ${S}/webpage/directory.cpp ${S}/webpage/external.cpp ${S}/webpage/fileindex.cpp
             ${S}/webpage/headers.cpp ${S}/webpage/id.cpp ${S}/webpage/page.cpp ${S}/webpage/q.cpp ${S}/webpage/required.cpp ${S}/webpage/root.cpp
             ${S}/webpage/vtt.cpp

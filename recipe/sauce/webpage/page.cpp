@@ -163,9 +163,9 @@ void page::examine ()
             VERIFY_NOT_NULL (document_, __FILE__, __LINE__);
             PRESUME (document_ -> tag () == elem_faux_document, __FILE__, __LINE__);
             document_ -> reconstruct (&access_);
-            if (context.tell (es_splurge)) outstr.out (nodes_.top ().rpt ());
+            if (context.tell (es_splurge)) context.os () -> out (nodes_.top ().rpt ());
             ::std::string s = document_ -> make_children (0);
-            if (context.tell (es_structure) && ! s.empty ()) outstr.out (s);
+            if (context.tell (es_structure) && ! s.empty ()) context.os () -> out (s);
             document_ -> examine_self (lingo (nits_, context.lang ()));
             document_ -> verify_document ();
             check_required_state (nits_, name_, req_, req_check_);

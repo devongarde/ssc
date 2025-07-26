@@ -20,7 +20,32 @@
 
 <div class="column-unit">
 
-<h3>0.2.16</h3>
+<h3>0.2.17</h3>
+
+<ul>
+<li>
+<a href="https://html.spec.whatwg.org/">Living Standard</a> July 2025
+</li>
+<li>
+can sign and verify output (Windows x64, uses <a href="https://www.libressl.org/">libreSSL</a>)
+</li>
+<li>
+underlying work
+</li>
+<li>
+download
+<A href="bin/Install-SSC-0.2.17-Win-x64.msi" type="application/octet-stream">Windows 10/11 x64 installer</a>,
+<A href="bin/Install-SSC-0.2.17-Win-a64.msi" type="application/octet-stream">Windows 10/11 ARM64 installer</a>,
+<A href="bin/SSC-0.2.17-Mac-Arm.zip" type="application/zip">Mac ARM app (zipped)</a>,
+<A href="bin/SSC-0.2.17-Mac-Intel.zip" type="application/zip">Mac Intel app (zipped)</a>,
+<A href="src/ssc-0.2.17.tgz" type="application/gzip">source</a> (all unsigned).
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2025-06-16">25 6 16</time>
+</li>
+</ul>
+
+<h3 id="v0216">0.2.16</h3>
 
 <ul>
 <li>
@@ -28,6 +53,9 @@ fix crash in GUI
 </li>
 <li>
 repository cloned to <a href="https://codeberg.org/devongarde/ssc">codeberg.org</a> (signed)
+</li>
+<li>
+various bug fixes
 </li>
 <li>
 underlying work
@@ -38,7 +66,7 @@ download
 <A href="bin/Install-SSC-0.2.16-Win-a64.msi" type="application/octet-stream">Windows 10/11 ARM64 installer</a>,
 <A href="bin/SSC-0.2.16-Mac-Arm.zip" type="application/zip">Mac ARM app (zipped)</a>,
 <A href="bin/SSC-0.2.16-Mac-Intel.zip" type="application/zip">Mac Intel app (zipped)</a>,
-<A href="src/ssc-0.2.156.tgz" type="application/gzip">source</a> (all unsigned).
+<A href="src/ssc-0.2.16.tgz" type="application/gzip">source</a> (all unsigned).
 </li>
 <li>
 released <time itemprop="datePublished" class="dt-published" datetime="2025-05-29">25 5 29</time>
@@ -49,7 +77,7 @@ released <time itemprop="datePublished" class="dt-published" datetime="2025-05-2
 
 <ul>
 <li>
-this version has a GUI crash, prefer 0.2.16 (above)
+this version has a GUI crash, prefer <a href="#v0216">0.2.16</a> or later (above)
 </li>
 <li>
 initial nitpicking of <a href="https://www.w3.org/TR/webvtt1/">WebVTT</a> files

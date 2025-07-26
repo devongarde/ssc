@@ -1,0 +1,20 @@
+[ req ]
+#default_bits		= 2048
+#default_md		= sha256
+#default_keyfile 	= privkey.pem
+distinguished_name	= req_distinguished_name
+#attributes		    = req_attributes
+prompt                  = no
+
+[ req_distinguished_name ]
+countryName			    = GF
+stateOrProvinceName		= Duchy of Grand Fenwick
+localityName			= Fenwick
+0.organizationName		= Fenwick Dairy
+organizationalUnitName  = Daisy
+emailAddress			= info@dairy.gf
+
+#[ req_attributes ]
+#challengePassword		    = A challenge password
+#challengePassword_min		= 4
+#challengePassword_max		= 20

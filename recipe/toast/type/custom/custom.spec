@@ -7,6 +7,7 @@ PASS ../toast/type/custom/index.html
 
 PASS ../toast/type/custom/custom-1.html
 8 url_not_found unrecognised_value
+13 nuts
 
 PASS ../toast/type/custom/custom-2.html
 2 missing_close

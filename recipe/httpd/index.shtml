@@ -65,8 +65,7 @@ It should not be used on untrusted content; its parsers are
 <p>
 WARNING: these downloads are unsigned (an issue being addressed).
 If that worries you, the current source is also available on
-<a href="https://github.com/devongarde/ssc">github</a> and
-<a href="https://codeberg.org/devongarde/ssc">codeberg</a>, where you can grab it to build
+<a href="https://github.com/devongarde/ssc">github</a>, where you can grab it to build
 <!--#echo encoding="none" var="short" --> yourself.
 </p>
 

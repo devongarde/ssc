@@ -26,6 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/common.h"
 #include "utility/quote.h"
 #include "utility/filesystem.h"
+#include "utility/fileio.h"
 #include "parser/text.h"
 #include "coop/fred.h"
 
@@ -43,11 +44,12 @@ context_t::context_t (nitpick& nits, const ::boost::filesystem::path& fn)
     options o (*this, nits, fn);
     if (nits.worst () <= es_error) valid_ = false;
     else
-    {   output_streams_t ost;
+    {   outstream ost;
 #ifdef DARWIN
         if (context.excl_def_excl ()) excludable_filenames.insert (".DS_Store");
 #endif // DARWIN
-        o.contextualise (*this, ost, nits);
+        o.contextualise (*this, nits);
+        check_consistency (nits);
         if (! test () && tell (es_debug))
         {   ::std::string s (o.report (gr_config));
             mac (nm_context_output, s); }
@@ -70,20 +72,40 @@ void context_t::reset (const context_t& c)
     swap (t); }
 
 void context_t::init ()
-{   environment_.resize (env_max);
+{   os_ = os_ptr (new outstream ());
+    VERIFY_NOT_NULL (os_.get (), __FILE__, __LINE__);
+    environment_.resize (env_max);
     if (cwd_.empty ()) cwd_ = get_working_directory ();
     def_conf_path_ = cwd_ / DEF_DATAPATH;
     path_ = def_conf_path_.string ();
     def_conf_file_ = def_conf_path_ / DEF_CONF_FILE; }
 
-int context_t::parameters (output_streams_t& ost, nitpick& nits, const vstr_t& vs)
-{   options o (*this, ost, nits, vs);
+void context_t::done () noexcept
+try
+{   if (os_) 
+    {   nitpick nits ("signature status");
+        os_ -> done (nits); 
+        if (! nits.empty ())
+            if (nits.worst () <= report_error_)
+                ::std::cerr << nits.kwik ();
+            else if (nits.worst () <= verbose_)
+                ::std::cout << nits.kwik (); } }
+catch (const ::std::system_error& e)
+{   ::std::cerr << "system exception signing/verifying: " << e.what () << "\n"; }
+catch (const ::std::exception& e)
+{   ::std::cerr << "exception signing/verifying: " << e.what () << "\n"; }
+catch (...)
+{   ::std::cerr << "unknown exception signing/verifying.\n"; }
+
+int context_t::parameters (nitpick& nits, const vstr_t& vs)
+{   options o (*this, nits, vs);
     if (todo () == do_booboo) return ERROR_STATE;
     if ((todo () != do_examine) && (todo () != do_cgi)) return STOP_OK;
 #ifdef DARWIN
     if (context.excl_def_excl ()) excludable_filenames.insert (".DS_Store");
 #endif // DARWIN
-    o.contextualise (*this, ost, nits);
+    o.contextualise (*this, nits);
+    check_consistency (nits);
     if (! test () && tell (es_debug))
     {   ::std::string s (o.report (gr_config));
         mac (nm_context_output, s); }
@@ -517,3 +539,31 @@ void context_t::populate_jsonld_ont (const vstr_t& vs)
         else
         {   jsonld_key_.push_back (s.substr (0, pos));
             jsonld_val_.push_back (s.substr (pos + 1)); } } }
+
+context_t& context_t::custom_elements (nitpick& nits, const vstr_t& sss)
+{   vstr_t ss;
+    for (auto s : sss)
+        if (test_value < t_custom_element > (nits, html_ver (), s))
+            ss.push_back (s);
+    custom_elements_ = ss; 
+    mac (nm_context_custom_elements, ss); 
+    return *this; }
+
+void context_t::check_consistency (nitpick& nits)
+{   if (context.sign () || context.verify ())
+        if (signature_.empty ())
+        {   nits.pick (nit_signature_key, es_error, ec_init, "signing andor verifying require a signature file");
+            valid_ = false; }
+        else if (public_.empty ()) 
+        {   nits.pick (nit_signature_key, es_error, ec_init, "a signature needs a public key");
+            valid_ = false; }
+        else if (password_.empty ())
+        {   os_ -> consolidate (nits, public_, private_, ::std::string (), signature_);
+            return; }
+        else
+        {   bool borked = true;
+            const ::std::string pw = read_text_file (nits, password_, borked);
+            if (! borked)
+                os_ -> consolidate (nits, public_, private_, pw, signature_);
+            return; }
+    os_ -> depre (nits); }

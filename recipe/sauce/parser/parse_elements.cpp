@@ -308,7 +308,7 @@ void elements_node::parse (const html_version& v, bracs_ket& elements)
     report_missing_closures (v, parent, document);
     if (context.tell (es_splurge))
     {   VERIFY_NOT_NULL (document, __FILE__, __LINE__);
-        outstr.err (document -> rpt (0)); } }
+        context.os () -> err (document -> rpt (0)); } }
 
 bool elements_node::parse (nitpick& nits, const ::std::string& content)
 {   bracs_ket elements;

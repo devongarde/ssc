@@ -83,7 +83,8 @@ html_version::html_version (const ::boost::gregorian::date& d)
         case 22 : css_version (css_2022); break; 
         case 23 : css_version (css_2023); break; 
         case 24 : css_version (css_2024); break;
-        default : css_version (css_2024); break; } }
+        case 25 : css_version (css_2025); break;
+        default : css_version (css_2025); break; } }
 
 html_version::html_version (const boost::gregorian::date& d, const flags_t flags, const flags_t extensions, const flags_t e2, const flags_t e3, const flags_t e4)
         :   version (0, 0, flags | HV_WHATWG), ext_ (extensions), ext2_ (e2), ext3_ (e3), ext4_ (e4)

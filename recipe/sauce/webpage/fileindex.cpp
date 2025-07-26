@@ -675,7 +675,7 @@ bool fileindex_load (nitpick& nits)
 {   if (! context.shadow_enable ()) return true;
 	bool ok = false;
 	if (fileindex_load_internal (nits, ok))
-	{   if (context.tell (es_splurge)) outstr.out (fileindex_report ());
+	{   if (context.tell (es_splurge)) context.os () -> out (fileindex_report ());
 		return true; }
 	reset_fileindices (); 
 	if (! ok)
@@ -729,7 +729,7 @@ void fileindex_save_and_close (nitpick& nits)
 	site_x.clear ();
 	disk_x.clear ();
 	mcrc.clear ();
-	if (context.tell (es_all)) outstr.out (fileindex_report ());
+	if (context.tell (es_all)) context.os () -> out (fileindex_report ());
 	::boost::filesystem::path name (persist_path ());
 	BOOST_FSTREAM_CNSTRO (f, name, ::std::ios::out | ::std::ios::trunc);
 	if (f.fail ()) nits.pick (nit_cannot_update, es_error, ec_file, "cannot open ", quote (name.string ()), " [3]");

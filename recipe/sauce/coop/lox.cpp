@@ -40,7 +40,7 @@ lox::lox (const e_lox l, const bool not_really)
 #ifdef DEBUG
     const e_lox fl = fred.get_lox ();
     if (fl != lox_none)
-        outstr.err ("existing lock ", static_cast < int > (fl), " blocks new lock ", static_cast < int > (l), "\n");
+        context.os () -> err ("existing lock ", static_cast < int > (fl), " blocks new lock ", static_cast < int > (l), "\n");
 #endif // DEBUG
     PRESUME (fred.get_lox () == lox_none, __FILE__, __LINE__);
     PRESUME (! fred.get_flox (), __FILE__, __LINE__);
@@ -48,11 +48,11 @@ lox::lox (const e_lox l, const bool not_really)
     l_ = l;
     un_ = false;
 #ifdef RPT_LOX
-    outstr.console (::std::this_thread::get_id (), " trying to lock ", l_, "\n");
+    context.os () -> console (::std::this_thread::get_id (), " trying to lock ", l_, "\n");
 #endif // RPT_LOX
     vmx.at (l).lock ();
 #ifdef RPT_LOX
-    outstr.console (::std::this_thread::get_id (), " locked ", l_, "\n");
+    context.os () -> console (::std::this_thread::get_id (), " locked ", l_, "\n");
 #endif // RPT_LOX
     }
 
@@ -62,11 +62,11 @@ flox::flox (const e_lox l)
     PRESUME (! fred.get_flox (), __FILE__, __LINE__);
     fred.set_flox (true);
 #ifdef RPT_LOX
-    outstr.console (::std::this_thread::get_id (), " trying to lock flox\n");
+    context.os () -> console (::std::this_thread::get_id (), " trying to lock flox\n");
 #endif // RPT_LOX
     vmx.at (lox_flox).lock ();
 #ifdef RPT_LOX
-    outstr.console (::std::this_thread::get_id (), " locked flox\n");
+    context.os () -> console (::std::this_thread::get_id (), " locked flox\n");
 #endif // RPT_LOX
     }
 
@@ -76,11 +76,11 @@ dear::dear (const e_lox l)
     PRESUME (! fred.get_dear (), __FILE__, __LINE__);
     fred.set_dear (true);
 #ifdef RPT_LOX
-    outstr.console (::std::this_thread::get_id (), " trying to lock dear\n");
+    context.os () -> console (::std::this_thread::get_id (), " trying to lock dear\n");
 #endif // RPT_LOX
     vmx.at (lox_dear).lock ();
 #ifdef RPT_LOX
-    outstr.console (::std::this_thread::get_id (), " locked dear\n");
+    context.os () -> console (::std::this_thread::get_id (), " locked dear\n");
 #endif // RPT_LOX
     }
 
@@ -90,17 +90,17 @@ eleanor::eleanor (const e_lox l)
     PRESUME (! fred.get_eleanor (), __FILE__, __LINE__);
     fred.set_eleanor (true);
 #ifdef RPT_LOX
-    outstr.console (::std::this_thread::get_id (), " trying to lock eleanor\n");
+    context.os () -> console (::std::this_thread::get_id (), " trying to lock eleanor\n");
 #endif // RPT_LOX
     vmx.at (lox_eleanor).lock ();
 #ifdef RPT_LOX
-    outstr.console (::std::this_thread::get_id (), " locked eleanor\n");
+    context.os () -> console (::std::this_thread::get_id (), " locked eleanor\n");
 #endif // RPT_LOX
     }
 
 void whoopsie (const e_lox l, const char * sz, const ::std::exception& e) noexcept
 {   try
-    {   outstr.err ("unlocking mutex ", l, " raised ", sz, " ", e.what (), "; aborting\n"); }
+    {   context.os () -> err ("unlocking mutex ", l, " raised ", sz, " ", e.what (), "; aborting\n"); }
     catch (...)
     {   fprintf (stderr, "exception in mutex exception processing; aborting."); } }
 
@@ -111,7 +111,7 @@ lox::~lox ()
     try
     {   PRESUME (fred.get_lox () == l_, __FILE__, __LINE__);
 #ifdef RPT_LOX
-        outstr.console (::std::this_thread::get_id (), " unlocking ", l_, "\n");
+        context.os () -> console (::std::this_thread::get_id (), " unlocking ", l_, "\n");
 #endif // RPT_LOX
         l_ = lox_none;
         vmx.at (l).unlock (); // hey, mr. vc, have you spotted that try ... catch construction??
@@ -130,7 +130,7 @@ flox::~flox ()
     try
     {   PRESUME (fred.get_flox (), __FILE__, __LINE__);
 #ifdef RPT_LOX
-        outstr.console (::std::this_thread::get_id (), " unlocking flox\n");
+        context.os () -> console (::std::this_thread::get_id (), " unlocking flox\n");
 #endif // RPT_LOX
         vmx.at (lox_flox).unlock ();
         fred.set_flox (false);
@@ -148,7 +148,7 @@ dear::~dear ()
     try
     {   PRESUME (fred.get_dear (), __FILE__, __LINE__);
 #ifdef RPT_LOX
-        outstr.console (::std::this_thread::get_id (), " unlocking dear\n");
+        context.os () -> console (::std::this_thread::get_id (), " unlocking dear\n");
 #endif // RPT_LOX
         vmx.at (lox_dear).unlock ();
         fred.set_dear (false);
@@ -166,7 +166,7 @@ eleanor::~eleanor ()
     try
     {   PRESUME (fred.get_eleanor (), __FILE__, __LINE__);
 #ifdef RPT_LOX
-        outstr.console (::std::this_thread::get_id (), " unlocking eleanor\n"( << ::std::endl);
+        context.os () -> console (::std::this_thread::get_id (), " unlocking eleanor\n"( << ::std::endl);
 #endif // RPT_LOX
         vmx.at (lox_eleanor).unlock ();
         fred.set_eleanor (false);

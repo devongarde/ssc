@@ -62,7 +62,6 @@ PASS ../toast/living/apr25/a.html
 50 inserted_missing_closure inserted_missing_closure
 
 PASS ../toast/living/apr25/abbr.html
-11 role_missing
 19 role_missing
 17 id_exists
 26 role_missing
@@ -182,8 +181,8 @@ PASS ../toast/living/apr25/body-2.html
 PASS ../toast/living/apr25/blockquote.html
 0 charset_mismatch charset_used charset_invalid
 26 use_quote_code
-28 role_missing use_double_quote_code role_missing
-29 use_double_quote_code role_missing
+28 role_missing use_double_quote_code
+29 use_double_quote_code
 33 role_missing
 34 missing_close
 35 use_quote_code role_missing
@@ -381,9 +380,7 @@ PASS ../toast/living/apr25/details.html
 64 id_exists
 
 PASS ../toast/living/apr25/dfn.html
-6 role_missing
 9 use_quote_code role_missing
-12 role_missing
 15 use_quote_code role_missing
 
 PASS ../toast/living/apr25/div.html
@@ -528,10 +525,10 @@ PASS ../toast/living/apr25/figure-1.html
 23 url_not_found
 28 inserted_missing_closure
 29 url_not_found
-30 role_missing role_missing
+30 role_missing
 33 url_not_found role_missing track_missing
 38 inserted_missing_closure
-34 role_missing role_missing
+34 role_missing
 39 role_missing
 41 role_missing
 42 url_not_found
@@ -549,7 +546,7 @@ PASS ../toast/living/apr25/figure-1.html
 75 use_quote_code role_missing
 76 role_missing
 77 role_missing
-79 role_missing role_missing
+79 role_missing
 
 PASS ../toast/living/apr25/figure-2.html
 0 charset_mismatch charset_used charset_invalid
@@ -1296,27 +1293,11 @@ PASS ../toast/living/apr25/li.html
 9 inserted_missing_closure missing_close
 10 inserted_missing_closure
 13 role_missing
-15 role_missing
-16 lingo role_missing
-17 role_missing use_quote_code
-18 role_missing
-19 role_missing
-20 role_missing
-21 role_missing
-22 role_missing
-23 role_missing
-24 role_missing
+16 lingo
+17 use_quote_code
 28 role_missing
-30 role_missing
-31 lingo role_missing
-32 role_missing use_quote_code
-33 role_missing
-34 role_missing
-35 role_missing
-36 role_missing
-37 role_missing
-38 role_missing
-39 role_missing
+31 lingo
+32 use_quote_code
 
 PASS ../toast/living/apr25/link.html
 4 url_not_found style_not_css
@@ -1902,7 +1883,6 @@ PASS ../toast/living/apr25/ssah-1.html
 
 PASS ../toast/living/apr25/ssah-3.html
 0 charset_mismatch charset_used charset_invalid
-9 role_missing
 
 PASS ../toast/living/apr25/ssah-4.html
 0 charset_mismatch charset_used charset_invalid
@@ -2322,8 +2302,7 @@ PASS ../toast/living/apr25/var.html
 6 role_missing
 7 role_missing
 20 role_missing
-21 use_quote_code role_missing
-22 role_missing role_missing
+21 use_quote_code
 27 use_quote_code role_missing role_missing role_missing 
 
 PASS ../toast/living/apr25/vcard.html
@@ -2350,7 +2329,6 @@ PASS ../toast/living/apr25/wbr.html
 PASS ../toast/living/apr25/work.html
 7 relative_path url_not_found naughty_alt
 8 role_missing
-9 role_missing
 10 missing_close
 16 inserted_missing_closure
 
@@ -2528,6 +2506,7 @@ PASS ../toast/living/apr25/ww-9.html
 5 long_title
 
 PASS ../toast/living/apr25/bidi.css
+0 html
 3 css_version
 10 css_version css_version css_version
 16 css_version
@@ -2536,7 +2515,11 @@ PASS ../toast/living/apr25/bidi.css
 29 css_version
 30 css_version css_version
 
+PASS ../toast/living/apr25/details.css
+0 html
+
 PASS ../toast/living/apr25/fieldset.css
+0 html
 12 css_version
 19 css_version
 20 css_version
@@ -2546,6 +2529,7 @@ PASS ../toast/living/apr25/fieldset.css
 28 css_version
 
 PASS ../toast/living/apr25/form.css
+0 html
 9 css_version
 10 css_version
 15 css_version
@@ -2554,13 +2538,18 @@ PASS ../toast/living/apr25/form.css
 42 css_namespace
 
 PASS ../toast/living/apr25/hr.css
+0 html
 14 css_namespace
 16 css_version
 17 css_version
 18 css_version
 19 dialect
 
+PASS ../toast/living/apr25/html4.css
+0 html
+
 PASS ../toast/living/apr25/lists.css
+0 html
 4 css_version
 28 css_namespace
 31 css_version css_version
@@ -2572,10 +2561,15 @@ PASS ../toast/living/apr25/lists.css
 37 css_version css_version
 38 css_version css_version
 
+PASS ../toast/living/apr25/marquee.css
+0 html
+
 PASS ../toast/living/apr25/meter.css
+0 html
 3 css_version
 
 PASS ../toast/living/apr25/phrasing.css
+0 html
 13 css_version
 14 css_version
 21 css_version
@@ -2588,9 +2582,11 @@ PASS ../toast/living/apr25/phrasing.css
 41 css_version css_version
 
 PASS ../toast/living/apr25/progress.css
+0 html
 3 css_version
 
 PASS ../toast/living/apr25/replaced.css
+0 html
 6 css_namespace
 10 css_version
 13 css_namespace
@@ -2616,9 +2612,11 @@ PASS ../toast/living/apr25/replaced.css
 55 css_version css_version css_version
 
 PASS ../toast/living/apr25/sections.css
+0 html
 14 css_namespace
 
 PASS ../toast/living/apr25/tables.css
+0 html
 32 css_version css_version css_version
 33 css_version css_version css_version
 34 css_version css_version css_version

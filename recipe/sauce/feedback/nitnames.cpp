@@ -880,7 +880,6 @@ const nitname nitnames [] =
     { nit_required, "required" },
     { nit_track_missing, "track_missing" },
     { nit_role_missing, "role_missing" },
-    { nit_role_found, "role_found" },
     { nit_aria_found, "aria_found" },
     { nit_bad_braille, "bad_braille" },
     { nit_aria_braille, "aria_braille" },
@@ -903,6 +902,13 @@ const nitname nitnames [] =
     { nit_vtt_heirarchy, "vtt_heirarchy" },
     { nit_vtt_region_id, "vtt_region_id" },
     { nit_vtt_region_value, "vtt_region_value" },
+    { nit_signature_key, "signature_key" },
+    { nit_cannot_read_key, "cannot_read_key" },
+    { nit_custom_element, "custom_element" },
+    { nit_unnecessary_role, "unnecessary_role" },
+    { nit_ssl_sulking, "ssl_sulking" },
+    { nit_sign_status, "sign_status" },
+    { nit_verify_status, "verify_status" },
 
     { nit_incompatible, "incompatible" },
 
@@ -925,11 +931,11 @@ void nits_init ()
         bitten.at (GSL_AT (nitnames, i).nit_) = true; }
 #ifndef SSC_TEST
     if (i < static_cast <::std::size_t> (nit_off))
-    {   outstr.err ("WARNING: Only ", i, " of ", static_cast < ::std::size_t > (nit_off), " feedback identifiers defined\nUndefined:");
+    {   ::std::cerr << "WARNING: Only " << i << " of " << static_cast < ::std::size_t > (nit_off) <<" feedback identifiers defined\nUndefined:";
         for (int x = 0; x < nit_off; ++x)
             if (! bitten.at (x))
-                outstr.err (" ", x);
-        outstr.err ("\n"); }
+                ::std::cerr << " " << x;
+        ::std::cerr << "\n"; }
 #endif // SSC_TEST
 }
 

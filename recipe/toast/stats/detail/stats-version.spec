@@ -15,7 +15,6 @@ PASS ../toast/stats/detail/itemref.html
 
 PASS ../toast/stats/detail/keyword-1.html
 2 naughty_lang
-19 role_missing
 
 PASS ../toast/stats/detail/keyword-2.html
 2 naughty_lang
@@ -36,5 +35,5 @@ PASS ../toast/stats/detail/md-ref.html
 
 GRAND
 Version:
-    HTML-5/20250401/SVG-2.1/MathML-core/CSS-1/WhatWG: 6 times
+    HTML-5/20250701/SVG-2.1/MathML-core/CSS-1/WhatWG: 6 times
 ===

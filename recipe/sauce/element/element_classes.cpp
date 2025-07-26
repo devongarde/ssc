@@ -912,11 +912,11 @@ void add_element_attributes (nitpick& nits, const vstr_t& v)
 void avm_class_crosscheck (const e_element e, const e_attribute a)
 {   if (! vebs.at (e).test (a))
         if (overlap (elem::first_version (e), elem::final_version (e), elem::first_version (a), elem::final_version (a)))
-        {   outstr.err ("avm/elem dispute ");
+        {   context.os () -> err ("avm/elem dispute ");
             ::std::string n (elem::name (e));
-            if (n.empty ()) outstr.err ("unnamed element"); else outstr.err (n);
-            outstr.err (" ");
+            if (n.empty ()) context.os () -> err ("unnamed element"); else context.os () -> err (n);
+            context.os () -> err (" ");
             n = attr::name (a);
-            if (n.empty ()) outstr.err ("unnamed attribute"); else outstr.err (n);
-            outstr.err ("\n"); } }
+            if (n.empty ()) context.os () -> err ("unnamed attribute"); else context.os () -> err (n);
+            context.os () -> err ("\n"); } }
 #endif // DEBUG

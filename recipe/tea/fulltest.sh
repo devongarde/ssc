@@ -180,6 +180,8 @@
 ./ssc -f ../toast/living/jul24/living.conf
 ./ssc -f ../toast/living/oct24/living.conf
 ./ssc -f ../toast/living/jan25/living.conf
+./ssc -f ../toast/living/apr25/living.conf
+./ssc -f ../toast/living/jul25/living.conf
 ./ssc -f ../toast/math/1/math.conf
 ./ssc -f ../toast/math/2/math.conf
 ./ssc -f ../toast/math/3/math.conf

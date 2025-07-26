@@ -15,7 +15,6 @@ PASS ../toast/stats/detail/itemref.html
 
 PASS ../toast/stats/detail/keyword-1.html
 2 naughty_lang
-19 role_missing
 
 PASS ../toast/stats/detail/keyword-2.html
 2 naughty_lang
@@ -37,7 +36,7 @@ PASS ../toast/stats/detail/md-ref.html
 GRAND
 Category:
     Attribute: thrice
-    Element: 13 times
+    Element: 12 times
     Microdata: twice
     Type: thrice
     URx: once

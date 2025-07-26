@@ -4585,7 +4585,9 @@ microdata_structure ontology_structure [] =
 
     { { 1, 0 }, { 1, 93 }, sch_dataset, sp_catalogue },
     { { s_croissant, 1, 4 }, { 0, 0 }, sch_dataset, cp_citeas },
-    { { s_croissant, 1, 5 }, { s_croissant, 1, 7 }, sch_dataset, dct_conformsto },
+    { { s_croissant, 1, 5 }, { 0, 0 }, sch_dataset, dct_conformsto },
+//    { { s_croissant, 1, 5 }, { s_croissant, 1, 7 }, sch_dataset, dct_conformsto },
+//    { { s_croissant, 1, 101 }, { 0, 0 }, sch_dataset, dct_conformsto },
     { { 2, 0 }, { 3, 0 }, sch_dataset, sp_datasettimeinterval },
     { { 1, 0 }, { 0, 0 }, sch_dataset, sp_distribution },
     { { 2, 0 }, { 0, 0 }, sch_dataset, sp_includeddatacatalog },
@@ -7560,7 +7562,7 @@ void microdata_init (nitpick& )
 #endif // _MSC_VER
     {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
         if (micromap.find (::std::pair < e_ontology_type, e_ontology_property > (p -> record_, p -> property_)) != micromap.end ())
-            outstr.err ("microdata_init reports ", sch::name (p -> record_), " (", p -> record_, "), ", ontology_property_name (p -> property_), " (", p -> property_, ") repeated\n");
+            context.os () -> err ("microdata_init reports ", sch::name (p -> record_), " (", p -> record_, "), ", ontology_property_name (p -> property_), " (", p -> property_, ") repeated\n");
         else
         {   mmd_key k (p -> record_, p -> property_);
             micromap.insert (mmd_t::value_type (k, p));
@@ -7568,10 +7570,10 @@ void microdata_init (nitpick& )
             bool found = false;
             if (! check_ontology_property_version (p -> from_, p -> to_, p -> property_, found))
                 if (found)
-                    outstr.err ("microdata_init reports ", sch::name (p -> record_), " (", p -> record_, "), ",
+                    context.os () -> err ("microdata_init reports ", sch::name (p -> record_), " (", p -> record_, "), ",
                                                                 ontology_property_name (p -> property_), " (", p -> property_, ") is incompatible with version in property table\n");
                 else
-                    outstr.err ("microdata_init reports ", sch::name (p -> record_), " (", p -> record_, "), ",
+                    context.os () -> err ("microdata_init reports ", sch::name (p -> record_), " (", p -> record_, "), ",
                                                                 ontology_property_name (p -> property_), " (", p -> property_, ") is not found in property table\n");
 #endif // _DEBUG
 } } }

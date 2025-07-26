@@ -22,193 +22,194 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "utility/common.h"
 #include "utility/filesystem.h"
 #include "main/args.h"
+#include "feedback/nitpick.h"
 
 #ifndef UNIX
 // see also local_path_to_nix declaration in fileindex.h
 // presuming if not unix then windows
 ::std::string local_path_to_nix (const ::std::string& s)
 {   ::std::string res (s);
-	::boost::replace_all (res, "\\", "/");
-	if ((res.length () >= 2) && (res.at (1) == ':')) res = res.substr (2);
-	return res; }
+    ::boost::replace_all (res, "\\", "/");
+    if ((res.length () >= 2) && (res.at (1) == ':')) res = res.substr (2);
+    return res; }
 
 ::std::string nix_path_to_local (const ::std::string& s)
 {   if (s.empty ()) return s;
-	::std::string res (s);
-	::boost::replace_all (res, "/", "\\");
-	return res; }
+    ::std::string res (s);
+    ::boost::replace_all (res, "/", "\\");
+    return res; }
 
 vstr_t nix_path_to_local (const vstr_t& v)
 {   vstr_t res;
-	for (auto s : v)
-		res.emplace_back (nix_path_to_local (s));
-	return res; }
+    for (auto s : v)
+        res.emplace_back (nix_path_to_local (s));
+    return res; }
 #endif // UNIX
 
 ::std::time_t get_last_write_time (const ::boost::filesystem::path& name)
 #ifndef FS_THROWS
-	noexcept
+    noexcept
 #endif // FS_THROWS
 {   ::std::time_t res = 0;
 #ifdef FS_THROWS
-	{   try
-		{	res = ::boost::filesystem::last_write_time (name); }
-		catch (...)
+    {   try
+        {	res = ::boost::filesystem::last_write_time (name); }
+        catch (...)
 #else // FS_THROWS
-	{   ::boost::system::error_code jec;
-		res = ::boost::filesystem::last_write_time (name, jec);
-		if (jec.failed ())
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::last_write_time (name, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
-		{   res = 0; } }
-	return res; }
+        {   res = 0; } }
+    return res; }
 
 uintmax_t get_file_size (const ::boost::filesystem::path& name)
 #ifndef FS_THROWS
-	noexcept
+    noexcept
 #endif // FS_THROWS
 {   uintmax_t res = 0;
 #ifdef FS_THROWS
-	{   try
-		{	res = ::boost::filesystem::file_size (name); }
-		catch (...)
+    {   try
+        {	res = ::boost::filesystem::file_size (name); }
+        catch (...)
 #else // FS_THROWS
-	{   ::boost::system::error_code jec;
-		res = ::boost::filesystem::file_size (name, jec);
-		if (jec.failed ())
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::file_size (name, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
-		{   res = 0; } }
-	return res; }
+        {   res = 0; } }
+    return res; }
 
 bool is_folder (const ::boost::filesystem::path& name)
 {   bool res = false;
 #ifdef FS_THROWS
-	{   try
-		{	res = ::boost::filesystem::is_directory (name); }
-		catch (...)
+    {   try
+        {	res = ::boost::filesystem::is_directory (name); }
+        catch (...)
 #else // FS_THROWS
-	{   ::boost::system::error_code jec;
-		res = ::boost::filesystem::is_directory (name, jec);
-		if (jec.failed ())
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::is_directory (name, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
-		{   return false; } }
-	return res; }
+        {   return false; } }
+    return res; }
 
 bool is_normal_file (const ::boost::filesystem::path& name)
 {   bool res = false;
 #ifdef FS_THROWS
-	{   try
-		{	res = ::boost::filesystem::is_regular_file (name); }
-		catch (...)
+    {   try
+        {	res = ::boost::filesystem::is_regular_file (name); }
+        catch (...)
 #else // FS_THROWS
-	{   ::boost::system::error_code jec;
-		res = ::boost::filesystem::is_regular_file (name, jec);
-		if (jec.failed ())
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::is_regular_file (name, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
-		{   return false; } }
-	return res; }
+        {   return false; } }
+    return res; }
 
 bool file_exists (const ::boost::filesystem::path& name)
 {   bool res = false;
 #ifdef FS_THROWS
-	{   try
-		{	res = ::boost::filesystem::exists (name); }
-		catch (...)
+    {   try
+        {	res = ::boost::filesystem::exists (name); }
+        catch (...)
 #else // FS_THROWS
-	{   ::boost::system::error_code jec;
-		res = ::boost::filesystem::exists (name, jec);
-		if (jec.failed ())
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::exists (name, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
-		{   return false; } }
-	return res; }
+        {   return false; } }
+    return res; }
 
 ::boost::filesystem::file_status file_data (const ::boost::filesystem::path& name)
 {   ::boost::filesystem::file_status res;
 #ifdef FS_THROWS
-	{   try
-		{	res = ::boost::filesystem::status (name); }
-		catch (...)
+    {   try
+        {	res = ::boost::filesystem::status (name); }
+        catch (...)
 #else // FS_THROWS
-	{   ::boost::system::error_code jec;
-		res = ::boost::filesystem::status (name, jec);
-		if (jec.failed ())
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::status (name, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
-		{   return ::boost::filesystem::file_status (); } }
-	return res; }
+        {   return ::boost::filesystem::file_status (); } }
+    return res; }
 
 #ifndef NO_PERMS
 bool file_permissions (const ::boost::filesystem::path& name, ::boost::filesystem::perms p)
 #ifndef FS_THROWS
-	noexcept
+    noexcept
 #endif // FS_THROWS
 {
 #ifdef FS_THROWS
-	{   try
-		{	::boost::filesystem::permissions (name, p); }
-		catch (...)
+    {   try
+        {	::boost::filesystem::permissions (name, p); }
+        catch (...)
 #else // FS_THROWS
-	{   ::boost::system::error_code jec;
-		::boost::filesystem::permissions (name, p, jec);
-		if (jec.failed ())
+    {   ::boost::system::error_code jec;
+        ::boost::filesystem::permissions (name, p, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
-		{   return false; } }
-	return true; }
+        {   return false; } }
+    return true; }
 #endif // NO_PERMS
 
 ::boost::filesystem::path absolute_name (const ::boost::filesystem::path& name)
 {   ::boost::filesystem::path res;
 #ifdef FS_THROWS
-	{   try
-		{	res = ::boost::filesystem::absolute (name); }
-		catch (...)
+    {   try
+        {	res = ::boost::filesystem::absolute (name); }
+        catch (...)
 #else // FS_THROWS
-	{   ::boost::system::error_code jec;
-		res = ::boost::filesystem::absolute (name, jec);
-		if (jec.failed ())
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::absolute (name, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
-		{   return name; } }
-	return res; }
+        {   return name; } }
+    return res; }
 
 ::boost::filesystem::path absolute_name (const ::boost::filesystem::path& name, const ::boost::filesystem::path& p2)
 {   ::boost::filesystem::path res;
 #ifdef FS_THROWS
-	{   try
-		{	res = ::boost::filesystem::absolute (name, p2); }
-		catch (...)
+    {   try
+        {	res = ::boost::filesystem::absolute (name, p2); }
+        catch (...)
 #else // FS_THROWS
-	{   ::boost::system::error_code jec;
-		res = ::boost::filesystem::absolute (name, p2, jec);
-		if (jec.failed ())
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::absolute (name, p2, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
-		{   return name; } }
-	return res; }
+        {   return name; } }
+    return res; }
 
 ::boost::filesystem::path canonical_name (const ::boost::filesystem::path& name)
 {   ::boost::filesystem::path res;
 #ifdef FS_THROWS
-	{   try
-		{	res = ::boost::filesystem::canonical (name); }
-		catch (...)
+    {   try
+        {	res = ::boost::filesystem::canonical (name); }
+        catch (...)
 #else // FS_THROWS
-	{   ::boost::system::error_code jec;
-		res = ::boost::filesystem::canonical (name, jec);
-		if (jec.failed ())
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::canonical (name, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
-		{   return name; } }
-	return res; }
+        {   return name; } }
+    return res; }
 
 ::boost::filesystem::path unique (const ::boost::filesystem::path& name)
 {   ::boost::filesystem::path res;
 #ifdef FS_THROWS
-	{   try
-		{	res = ::boost::filesystem::unique_path (name); }
-		catch (...)
+    {   try
+        {	res = ::boost::filesystem::unique_path (name); }
+        catch (...)
 #else // FS_THROWS
-	{   ::boost::system::error_code jec;
-		res = ::boost::filesystem::unique_path (name, jec);
-		if (jec.failed ())
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::unique_path (name, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
-		{   return name; } }
-	return res; }
+        {   return name; } }
+    return res; }
 
 
 ::boost::filesystem::path get_working_directory ()
@@ -217,187 +218,214 @@ bool file_permissions (const ::boost::filesystem::path& name, ::boost::filesyste
 // [boost filesystem docs]
 {   ::boost::filesystem::path res;
 #ifdef FS_THROWS
-	{   try
-		{	res = ::boost::filesystem::current_path (); }
-		catch (...)
+    {   try
+        {	res = ::boost::filesystem::current_path (); }
+        catch (...)
 #else // FS_THROWS
-	{   ::boost::system::error_code jec;
-		res = ::boost::filesystem::current_path (jec);
-		if (jec.failed ())
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::current_path (jec);
+        if (jec.failed ())
 #endif // FS_THROWS
-		{  } }
-	if (res.empty ())
-	{   try
-		{   char dn [ARGLEN_MAX];
+        {  } }
+    if (res.empty ())
+    {   try
+        {   char dn [ARGLEN_MAX];
 #ifdef WIN32
-			res = _getcwd (dn, ARGLEN_MAX-1);
+            res = _getcwd (dn, ARGLEN_MAX-1);
 #else // WIN32
-			res = ::getcwd (dn, ARGLEN_MAX-1);
+            res = ::getcwd (dn, ARGLEN_MAX-1);
 #endif // WIN32
-		}
-		catch (...) { } }
-	return res; }
+        }
+        catch (...) { } }
+    return res; }
 
 bool make_directories (const ::boost::filesystem::path& name)
 #ifndef FS_THROWS
-	noexcept
+    noexcept
 #endif // FS_THROWS
 {
 #ifdef FS_THROWS
-	{   try
-		{	::boost::filesystem::create_directories (name); }
-		catch (...)
+    {   try
+        {	::boost::filesystem::create_directories (name); }
+        catch (...)
 #else // FS_THROWS
-	{   ::boost::system::error_code jec;
-		::boost::filesystem::create_directories (name, jec);
-		if (jec.failed ())
+    {   ::boost::system::error_code jec;
+        ::boost::filesystem::create_directories (name, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
-		{   return false; } }
-	return true; }
+        {   return false; } }
+    return true; }
 
 bool make_directory (const ::boost::filesystem::path& name)
 #ifndef FS_THROWS
-	noexcept
+    noexcept
 #endif // FS_THROWS
 {
 #ifdef FS_THROWS
-	{   try
-		{	::boost::filesystem::create_directory (name); }
-		catch (...)
+    {   try
+        {	::boost::filesystem::create_directory (name); }
+        catch (...)
 #else // FS_THROWS
-	{   ::boost::system::error_code jec;
-		::boost::filesystem::create_directory (name, jec);
-		if (jec.failed ())
+    {   ::boost::system::error_code jec;
+        ::boost::filesystem::create_directory (name, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
-		{   return false; } }
-	return true; }
+        {   return false; } }
+    return true; }
 
 bool delete_file (const ::boost::filesystem::path& name)
 #ifndef FS_THROWS
-	noexcept
+    noexcept
 #endif // FS_THROWS
 {   bool res = false;
 #ifdef FS_THROWS
-	{   try
-		{	res = ::boost::filesystem::remove (name); }
-		catch (...)
+    {   try
+        {	res = ::boost::filesystem::remove (name); }
+        catch (...)
 #else // FS_THROWS
-	{   ::boost::system::error_code jec;
-		res = ::boost::filesystem::remove (name, jec);
-		if (jec.failed ())
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::remove (name, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
-		{   return false; } }
-	return res; }
+        {   return false; } }
+    return res; }
 
 bool rename_file (const ::boost::filesystem::path& from, const ::boost::filesystem::path& to)
 #ifndef FS_THROWS
-	noexcept
+    noexcept
 #endif // FS_THROWS
 {
 #ifdef FS_THROWS
-	{   try
-		{	::boost::filesystem::rename (from, to); }
-		catch (...)
+    {   try
+        {	::boost::filesystem::rename (from, to); }
+        catch (...)
 #else // FS_THROWS
-	{   ::boost::system::error_code jec;
-		::boost::filesystem::rename (from, to, jec);
-		if (jec.failed ())
+    {   ::boost::system::error_code jec;
+        ::boost::filesystem::rename (from, to, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
-		{   return false; } }
-	return true; }
+        {   return false; } }
+    return true; }
 
 bool duplicate_file (const ::boost::filesystem::path& from, const ::boost::filesystem::path& to, const BOOST_COPY_OPTION opt)
 #ifndef FS_THROWS
-	noexcept
+    noexcept
 #endif // FS_THROWS
 {
 #ifdef FS_THROWS
-	{   try
-		{	::boost::filesystem::copy_file (from, to, opt); }
-		catch (...)
+    {   try
+        {	::boost::filesystem::copy_file (from, to, opt); }
+        catch (...)
 #else // FS_THROWS
-	{   ::boost::system::error_code jec;
-		::boost::filesystem::copy_file (from, to, opt, jec);
-		if (jec.failed ())
+    {   ::boost::system::error_code jec;
+        ::boost::filesystem::copy_file (from, to, opt, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
-		{   return false; } }
-	return true; }
+        {   return false; } }
+    return true; }
 
 ::boost::filesystem::path temp_dir ()
 {   ::boost::filesystem::path res;
 #ifdef FS_THROWS
-	{   try
-		{	res = ::boost::filesystem::temp_directory_path (); }
-		catch (...)
+    {   try
+        {	res = ::boost::filesystem::temp_directory_path (); }
+        catch (...)
 #else // FS_THROWS
-	{   ::boost::system::error_code jec;
-		res = ::boost::filesystem::temp_directory_path (jec);
-		if (jec.failed ())
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::temp_directory_path (jec);
+        if (jec.failed ())
 #endif // FS_THROWS
-		{   return ::boost::filesystem::path (); } }
-	return res; }
+        {   return ::boost::filesystem::path (); } }
+    return res; }
 
 #ifndef NOLYNX
 bool is_file_linked (const ::boost::filesystem::path& name)
 {   bool res = false;
 #ifdef FS_THROWS
-	{   try
-		{	res = ::boost::filesystem::is_symlink (name); }
-		catch (...)
+    {   try
+        {	res = ::boost::filesystem::is_symlink (name); }
+        catch (...)
 #else // FS_THROWS
-	{   ::boost::system::error_code jec;
-		res = ::boost::filesystem::is_symlink (name, jec);
-		if (jec.failed ())
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::is_symlink (name, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
-		{   return false; } }
-	return res; }
+        {   return false; } }
+    return res; }
 
 ::boost::filesystem::path resolve_link (const ::boost::filesystem::path& name)
 {   ::boost::filesystem::path res;
 #ifdef FS_THROWS
-	{   try
-		{	res = ::boost::filesystem::read_symlink (name); }
-		catch (...)
+    {   try
+        {	res = ::boost::filesystem::read_symlink (name); }
+        catch (...)
 #else // FS_THROWS
-	{   ::boost::system::error_code jec;
-		res = ::boost::filesystem::read_symlink (name, jec);
-		if (jec.failed ())
+    {   ::boost::system::error_code jec;
+        res = ::boost::filesystem::read_symlink (name, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
-		{   return name; } }
-	return res; }
+        {   return name; } }
+    return res; }
 
 bool make_hard_link (const ::boost::filesystem::path& name, const ::boost::filesystem::path& link)
 {
 #ifdef FS_THROWS
-	{   try
-		{	::boost::filesystem::create_hard_link (name, link); }
-		catch (...)
+    {   try
+        {	::boost::filesystem::create_hard_link (name, link); }
+        catch (...)
 #else // FS_THROWS
-	{   ::boost::system::error_code jec;
-		::boost::filesystem::create_hard_link (name, link, jec);
-		if (jec.failed ())
+    {   ::boost::system::error_code jec;
+        ::boost::filesystem::create_hard_link (name, link, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
-		{   return false; } }
-	return true; }
+        {   return false; } }
+    return true; }
 
 bool make_link (const ::boost::filesystem::path& name, const ::boost::filesystem::path& link)
 {
 #ifdef FS_THROWS
-	{   try
-		{	::boost::filesystem::create_symlink (name, link); }
-		catch (...)
+    {   try
+        {	::boost::filesystem::create_symlink (name, link); }
+        catch (...)
 #else // FS_THROWS
-	{   ::boost::system::error_code jec;
-		::boost::filesystem::create_symlink (name, link, jec);
-		if (jec.failed ())
+    {   ::boost::system::error_code jec;
+        ::boost::filesystem::create_symlink (name, link, jec);
+        if (jec.failed ())
 #endif // FS_THROWS
-		{   return false; } }
-	return true; }
+        {   return false; } }
+    return true; }
 #endif // NOLYNX
 
 bool is_normal_or_zap (const ::boost::filesystem::path& fn)
 {   PRESUME (! fn.empty (), __FILE__, __LINE__);
-	if (! file_exists (fn)) return false;
-	if (is_normal_file (fn)) return true;
-	delete_file (fn);
-	return false; }
+    if (! file_exists (fn)) return false;
+    if (is_normal_file (fn)) return true;
+    delete_file (fn);
+    return false; }
+
+bool fancy_FILE::open (nitpick& nits, const ::boost::filesystem::path& s, const char* flags)
+{   PRESUME (! fp_, __FILE__, __LINE__);
+    VERIFY_NOT_NULL (flags, __FILE__, __LINE__);
+    const ::boost::filesystem::path f (canonical_name (s));
+    const bool ex = file_exists (f);
+    if (*flags == 'r')
+        if (! ex)
+        {   nits.pick (nit_cannot_open, es_error, ec_init, f.string (), " exists not");
+            return false; }
+    if (ex)
+        if (! is_normal_file (f))
+        {   nits.pick (nit_cannot_open, es_error, ec_init, f.string (), " is not a normal file");
+            return false; }
+    fp_.reset (fopen (f.string ().c_str (), flags), ffsf_deleter ());
+    if (! fp_)
+     	nits.pick (nit_cannot_open, es_catastrophic, ec_init, "cannot open ", f.string (), " for ", flags, " (error ", errno, ")");
+    return ! invalid (); }
+
+void fancy_FILE::close () noexcept
+{	if (fp_)
+    {   try
+        {   fclose (fp_.get ()); }
+        catch (...)
+        { }
+        fp_ = nullptr; } }
+

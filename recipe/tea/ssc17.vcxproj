@@ -228,9 +228,12 @@
     <ClInclude Include="..\heater\utility\byteorder.h" />
     <ClInclude Include="..\heater\utility\cache.h" />
     <ClInclude Include="..\heater\utility\common.h" />
+    <ClInclude Include="..\heater\utility\fileio.h" />
     <ClInclude Include="..\heater\utility\filesystem.h" />
     <ClInclude Include="..\heater\utility\lexical.h" />
+    <ClInclude Include="..\heater\utility\list.h" />
     <ClInclude Include="..\heater\utility\quote.h" />
+    <ClInclude Include="..\heater\utility\ssl.h" />
     <ClInclude Include="..\heater\utility\tuple.h" />
     <ClInclude Include="..\heater\webpage\corpus.h" />
     <ClInclude Include="..\heater\webpage\crosslink.h" />
@@ -519,6 +522,7 @@
     <ClCompile Include="..\sauce\utility\byteorder.cpp" />
     <ClCompile Include="..\sauce\utility\cache.cpp" />
     <ClCompile Include="..\sauce\utility\common.cpp" />
+    <ClCompile Include="..\sauce\utility\fileio.cpp" />
     <ClCompile Include="..\sauce\utility\filesystem.cpp" />
     <ClCompile Include="..\sauce\utility\quote.cpp" />
     <ClCompile Include="..\sauce\webpage\corpus.cpp" />

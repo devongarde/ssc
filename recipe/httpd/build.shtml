@@ -38,7 +38,7 @@ features are available.
 
 <p>
 You can download the current source <a href="src/ssc-<!--#echo encoding="none" var="version" -->.tgz" type="application/gzip">here</a>,
-<a href="https://github.com/devongarde/ssc">github</a>, or <a href="https://codeberg.org/devongarde/ssc">codeberg</a>.
+or from <a href="https://github.com/devongarde/ssc">github</a>.
 </p>
 
 <h2>Libraries</h2>
@@ -87,6 +87,14 @@ Building <!--#echo encoding="none" var="short" --> with spelling checks under un
 requires <a href="https://hunspell.github.io/">a development installation of hunspell</a>,
 or equivalent. You should be able to install it using the appropriate package manager.
 Alternatively, #define NOSPELL.
+</p>
+
+
+<h3>libressl</h3>
+
+<p>
+If you want <!--#echo encoding="none" var="short" -->&rsquo;s output to be signed by <!--#echo encoding="none" var="short" -->, you&rsquo;ll need
+<a href="https://libressl.org/">this library</a>, or a compatible one.
 </p>
 
 <h3>winspell</h3>
@@ -293,6 +301,14 @@ The ICU4C C++ library is used to process unicode.
 <p>
 Most package managers support it. Alternatively, build your own version
 using the source found at <a href="https://icu.unicode.org">icu.unicode.org</a>.
+</p>
+
+
+<h3>LibreSSL</h3>
+
+<p>
+<a href="https://libressl.org/">LibreSSL</a> is only required if you wish to sign andor verify <!--#echo encoding="none" var="short" -->&rsquo;s output.
+Alternatives are available, although I&rsquo;ve not tested them.
 </p>
 
 <h3>wxWidgets</h3>

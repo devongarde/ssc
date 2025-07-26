@@ -129,12 +129,13 @@ void element::examine_media_element (e_element e, const char* ref, const char* n
                 default :
                     had_other = true;
                     break; }
-    if (! had_track)
-        if (e == elem_audio) pick (nit_track_missing, ed_50, ref, es_warning, ec_element, name, " has no <TRACK>, thus no transcription, something required in many legal contexts.");
-        else pick (nit_track_missing, ed_50, ref, es_warning, ec_element, name, " has no <TRACK>, thus neither a description nor a transcription, things required in many legal contexts."); 
-    else
-    {   if (! had_cap) pick (nit_track_missing, ed_50, ref, es_warning, ec_element, name, " has no <TRACK> with KIND=CAPTION for those unable to hear the media.");
-        if ((e == elem_video) && (! had_desc)) pick (nit_track_missing, ed_50, ref, es_warning, ec_element, name, " has no <TRACK> with KIND=DESCRIPTION, for those unable to see the media."); }
+    if (context.aria ())
+        if (! had_track)
+            if (e == elem_audio) pick (nit_track_missing, ed_50, ref, es_warning, ec_element, name, " has no <TRACK>, thus no transcription, something required in many legal contexts.");
+            else pick (nit_track_missing, ed_50, ref, es_warning, ec_element, name, " has no <TRACK>, thus neither a description nor a transcription, things required in many legal contexts."); 
+        else
+        {   if (! had_cap) pick (nit_track_missing, ed_50, ref, es_warning, ec_element, name, " has no <TRACK> with KIND=CAPTION for those unable to hear the media.");
+            if ((e == elem_video) && (! had_desc)) pick (nit_track_missing, ed_50, ref, es_warning, ec_element, name, " has no <TRACK> with KIND=DESCRIPTION, for those unable to see the media."); }
     element_bitset bs (descendant_elements_);
     bs &= media_bitset;
     if (bs.any ())

@@ -56,13 +56,13 @@ struct json_scope
     json_scope& operator = (json_scope&& js) = default;
     ~json_scope () = default;
 #ifdef DEBUG
-    void rpt (const ::std::string& n) const
+    ::std::string rpt (const ::std::string& n) const
     {   ::std::string r (n);
         r += ':';
         for (auto m : mso_)
         {   r += ' '; r += m.first; } 
         r += "\n";
-        outstr.out (r); }
+        return r; }
 #endif // DEBUG
     mso_t ontologies () const
     {   if (! mso_.empty ()) return mso_;
@@ -80,7 +80,7 @@ struct scoped_scope
 {   json_scope old_;
     json_scope& zombie_;
     scoped_scope () = delete;
-    DEFAULT_NO_COPY_NO_MOVE (scoped_scope);
+    NO_COPY_NO_MOVE (scoped_scope);
     explicit scoped_scope (json_scope& js) : old_ (js), zombie_ (js)
     { }
     ~scoped_scope ()

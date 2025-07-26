@@ -40,12 +40,12 @@ public:
     void extend (   const ::std::string& key, const ::std::string& symbol, const ::std::size_t value, const CATEGORY ns = INIT,
                     const V& first = html_0, const V& last = html_0, const flags_t flags = NOFLAGS, const flags_t flags2 = NOFLAGS)
     {
-    #ifdef DEBUG
-        if ((key.length () > 1) && (key.find (",") != ::std::string::npos))
-            outstr.err ("key '", key, "' contains a comma\n");
-        if ((symbol.length () > 1) && (symbol.find (",") != ::std::string::npos))
-            outstr.err ("symbol '", symbol, "' contains a comma\n");
-    #endif // DEBUG
+#ifdef DEBUG
+//        if ((key.length () > 1) && (key.find (",") != ::std::string::npos))
+//            context.os () -> err ("key '", key, "' contains a comma\n");
+//        if ((symbol.length () > 1) && (symbol.find (",") != ::std::string::npos))
+//            context.os () -> err ("symbol '", symbol, "' contains a comma\n");
+#endif // DEBUG
         symbol_.insert (typename symbol_t::value_type (symbol_key (key, ns), symbol_store < V, CATEGORY, INIT > (first, last, symbol, value, ns, flags, flags2)));
         reverse_.insert (typename reverse_t::value_type (value, symbol_store < V, CATEGORY, INIT > (first, last, symbol, value, ns, flags, flags2))); }
     void remove_any_extras (const ::std::size_t base_count)

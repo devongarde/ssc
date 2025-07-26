@@ -307,7 +307,7 @@ typedef enum { ca_bottom, cap_left, ca_right, ca_top } e_captionalign;
 typedef enum { cv_user, cv_environment } ev_capture;
 typedef enum {  ec_undefined, ec_aria, ec_attribute, ec_browser, ec_cache, ec_corpus, ec_crc, ec_css, ec_directory, ec_element, ec_file, ec_fred, ec_html, ec_icu, ec_incorrectness,
                 ec_init, ec_io, ec_ip, ec_json, ec_link, ec_microdata, ec_microformat, ec_mime, ec_mql, ec_namespace, ec_page, ec_parser, ec_program, ec_rdfa, ec_regex, ec_rudeness,
-                ec_schema, ec_shadow, ec_spell, ec_ssi, ec_tidyness, ec_type, ec_url, ec_utility, ec_vtt } e_category;
+                ec_schema, ec_shadow, ec_signing, ec_spell, ec_ssi, ec_tidyness, ec_type, ec_url, ec_utility, ec_vtt } e_category;
 const e_category last_category = ec_vtt;
 typedef enum { ccp_derivativeworks, ccp_distribution, ccp_reproduction } e_cc_permits;
 typedef enum { ccr_attribution, ccr_notice, ccr_sharealike, ccr_sourcecode } e_cc_requires;
@@ -1202,10 +1202,10 @@ typedef enum { do_booboo, do_cgi, do_examine, do_simple } e_do;
 typedef enum {  ed_mishmash, ed_dict, ed_tags, ed_1, ed_plus, ed_2, ed_3, ed_32, ed_4, ed_41, ed_x1, ed_x11, ed_x2,
                 ed_50, ed_51, ed_52, ed_53,
                 ed_jan05, ed_jan06, ed_jan07, ed_jan08, ed_jan10, ed_jul10, ed_jan12, ed_jan13, ed_jan14, ed_jul17, ed_may20, ed_jul20, ed_jan21,
-                ed_apr21, ed_jul21, ed_apr22, ed_oct22, ed_apr23, ed_jul23, ed_nov24, ed_jun25,
+                ed_apr21, ed_jul21, ed_apr22, ed_oct22, ed_apr23, ed_jul23, ed_nov24, ed_jun25, ed_jul25,
                 ed_svg_1_0, ed_svg_1_1, ed_svg_1_2_tiny, ed_svg_1_2_full, ed_svg_2_0, ed_svg_2_anim,
                 ed_math_1, ed_math_2, ed_math_3, ed_math_4,
-                ed_aria_1_0, ed_aria_1_1, ed_aria_1_2, ed_aria_1_3, ed_aria_dp_1_0, ed_aria_dp_1_1, ed_aria_graphics, ed_aria_html,
+                ed_aria_1_0, ed_aria_1_1, ed_aria_1_2, ed_aria_1_3, ed_aria_dp_1_0, ed_aria_dp_1_1, ed_aria_graphics, ed_aria_html, ed_aria_mdn,
                 ed_wx, ed_owasp,
                 ed_iso_8859_1, ed_csp,
                 ed_rfc_1867, ed_rfc_1980, ed_rfc_2616, ed_rfc_3986, ed_rfc_3966, ed_rfc_6265, ed_rfc_7231, ed_rfc_7234, ed_rfc_8288,
@@ -2670,10 +2670,11 @@ typedef enum
     nit_config_lingo, nit_not_ssc, nit_cannot_replace, nit_not_expected_content, nit_circular_hierarchy, nit_colourspace,
     nit_wx, nit_missing_ancestor, nit_ssi_stack, nit_ssi_exec, nit_ssi_naughty, nit_chrome, nit_ie, nit_mozilla, nit_netscape,
     nit_opera, nit_safari, nit_invalid_duration, nit_tame, nit_tabnab, nit_sandbox, nit_pii_cache, nit_special_domain, nit_ai,
-    nit_required, nit_track_missing, nit_role_missing, nit_role_found, nit_aria_found, nit_bad_braille, nit_aria_braille,
-    nit_keychar, nit_no_role_found, nit_role_incompatible, nit_permissions_policy, nit_too_few, nit_library_error, nit_fediverse,
+    nit_required, nit_track_missing, nit_role_missing, nit_aria_found, nit_bad_braille, nit_aria_braille, nit_keychar,
+    nit_no_role_found, nit_role_incompatible, nit_permissions_policy, nit_too_few, nit_library_error, nit_fediverse,
     nit_vtt_cue, nit_webvtt, nit_vtt_timestamp, nit_vtt_css, nit_vtt_bad_cue, nit_vtt_bad_id, nit_vtt_region, nit_vtt_class,
-    nit_vtt_annotation, nit_vtt_heirarchy, nit_vtt_region_id, nit_vtt_region_value,
+    nit_vtt_annotation, nit_vtt_heirarchy, nit_vtt_region_id, nit_vtt_region_value, nit_signature_key, nit_cannot_read_key,
+    nit_custom_element, nit_unnecessary_role, nit_ssl_sulking, nit_sign_status, nit_verify_status,
 
     nit_incompatible,
 
@@ -2710,29 +2711,28 @@ typedef enum
         nm_context_max_file_size, nm_context_md_export, nm_context_md_pretty, nm_context_mf_export, nm_context_mf_pretty,
         nm_context_mf_verify, nm_context_mf_version, nm_context_microdata, nm_context_mozilla, nm_context_msg, nm_context_netscape,
         nm_context_no_ex_check, nm_context_once, nm_context_output, nm_context_output_description, nm_context_output_operator,
-        nm_context_output_sign, nm_context_output_time, nm_context_opera, nm_context_persisted, nm_context_rdfa,
-        nm_context_rdf_version, nm_context_rel, nm_context_report, nm_context_rfc_1867,
-        nm_context_rfc_1942, nm_context_rfc_1980, nm_context_rfc_2070, nm_context_root, nm_context_ruby, nm_context_safari,
-        nm_context_server, nm_context_server_address_from, nm_context_server_address_to, nm_context_server_address,
+        nm_context_output_sign, nm_context_output_time, nm_context_opera, nm_context_password, nm_context_persisted, nm_context_private,
+        nm_context_public, nm_context_rdfa, nm_context_rdf_version, nm_context_rel, nm_context_report, nm_context_rfc_1867,
+        nm_context_rfc_1942, nm_context_rfc_1980, nm_context_rfc_2070, nm_context_role, nm_context_root, nm_context_ruby,
+        nm_context_safari, nm_context_server, nm_context_server_address_from, nm_context_server_address_to, nm_context_server_address,
         nm_context_server_port, nm_context_server_root, nm_context_schema, nm_context_ontology_version, nm_context_shadow_comment,
-        nm_context_shadow_changed, nm_context_shadow_enable, nm_context_shadow_ignore, nm_context_shadow_persist,
-        nm_context_shadow_root, nm_context_shadow_ssi, nm_context_shadow_space, nm_context_shadows, nm_context_site, nm_context_sloven,
-        nm_context_spec, nm_context_special, nm_context_spell, nm_context_spell_path, nm_context_spellings, nm_context_ssi,
-        nm_context_ssi_date, nm_context_ssi_doc_args, nm_context_ssi_echomsg, nm_context_ssi_errmsg, nm_context_ssi_exec_run,
+        nm_context_shadow_changed, nm_context_shadow_enable, nm_context_shadow_ignore, nm_context_shadow_persist, nm_context_shadow_root,
+        nm_context_shadow_ssi, nm_context_shadow_space, nm_context_shadows, nm_context_sign, nm_context_signature, nm_context_site,
+        nm_context_sloven, nm_context_spec, nm_context_special, nm_context_spell, nm_context_spell_path, nm_context_spellings,
+        nm_context_ssi, nm_context_ssi_date, nm_context_ssi_doc_args, nm_context_ssi_echomsg, nm_context_ssi_errmsg, nm_context_ssi_exec_run,
         nm_context_ssi_exec_text, nm_context_ssi_lastmod, nm_context_ssi_query_string, nm_context_ssi_timefmt, nm_context_ssi_user_name,
         nm_context_stats_export, nm_context_stats_page, nm_context_stats_summary, nm_context_stats_abbr, nm_context_stats_annotation,
         nm_context_stats_attribute, nm_context_stats_category, nm_context_stats_character_variant, nm_context_stats_class,
         nm_context_stats_content_name, nm_context_stats_counter_style, nm_context_stats_css_property, nm_context_stats_custom_media,
-        nm_context_stats_custom_property, nm_context_stats_dfn, nm_context_stats_dtdd, nm_context_stats_element,
-        nm_context_stats_error, nm_context_stats_file, nm_context_stats_font, nm_context_stats_font_family,
-        nm_context_stats_highlight, nm_context_stats_historical_form, nm_context_stats_id, nm_context_stats_itemid,
-        nm_context_stats_keyframe, nm_context_stats_layer, nm_context_stats_meta, nm_context_stats_ontology,
-        nm_context_stats_ornament, nm_context_stats_page_name, nm_context_stats_palette, nm_context_stats_reference,
-        nm_context_stats_region, nm_context_stats_property, nm_context_stats_scroll_anim, nm_context_stats_statement,
-        nm_context_stats_styleset, nm_context_stats_stylistic, nm_context_stats_swash, nm_context_stats_version,
-        nm_context_stats_view,nm_context_svg_version, nm_context_tags, nm_context_test, nm_context_title,
-        nm_context_unknown_class, nm_context_vcs, nm_context_version, nm_context_virtuals, nm_context_vtt, nm_context_vtt_extension,
-        nm_context_wx, nm_context_xsd,
+        nm_context_stats_custom_property, nm_context_stats_dfn, nm_context_stats_dtdd, nm_context_stats_element, nm_context_stats_error,
+        nm_context_stats_file, nm_context_stats_font, nm_context_stats_font_family, nm_context_stats_highlight,
+        nm_context_stats_historical_form, nm_context_stats_id, nm_context_stats_itemid, nm_context_stats_keyframe, nm_context_stats_layer,
+        nm_context_stats_meta, nm_context_stats_ontology, nm_context_stats_ornament, nm_context_stats_page_name, nm_context_stats_palette,
+        nm_context_stats_reference, nm_context_stats_region, nm_context_stats_property, nm_context_stats_scroll_anim,
+        nm_context_stats_statement, nm_context_stats_styleset, nm_context_stats_stylistic, nm_context_stats_swash, nm_context_stats_version,
+        nm_context_stats_view, nm_context_svg_version, nm_context_tags, nm_context_test, nm_context_title, nm_context_unknown_class,
+        nm_context_vcs, nm_context_verify, nm_context_version, nm_context_virtuals, nm_context_vtt, nm_context_vtt_extension, nm_context_wx,
+        nm_context_xsd,
         nm_copy_addr, nm_copy_html, nm_copy_text,
     nm_general_info, nm_general_output, nm_general_path, nm_grand_title,
     nm_html_snippet,
@@ -5321,7 +5321,7 @@ typedef enum
     cp_md5,
     cp_parentfield, cp_path,
     cp_recordset, cp_references, cp_regex, cp_repeated, cp_replace,
-    cp_separator, cp_source, cp_subfield,
+    cp_samplingrate, cp_separator, cp_source, cp_subfield,
     cp_transform,
 
     // data quality
@@ -7040,6 +7040,7 @@ typedef enum { sie_auto, sie_display, sie_outside_shape } e_css_shape_inside_e;
 typedef enum { rcp_circle, rcp_poly, rcp_rect } e_shape_rcp;
 typedef enum { sr_auto, sr_optimisespeed, sr_crispedges, sr_geometricprecision, sr_inherit } e_shape_rendering;
 typedef enum { sh_embed, sh_replace } e_show;
+typedef enum { sis_unknown, sis_none, sis_signing, sis_verifying, sis_borked } e_signing_status;
 typedef enum { siz_normal, siz_medium, siz_large, siz_huge } e_size3;
 typedef enum { esi_inline_size, esi_size } e_size_inlinesize;
 typedef enum { smei_start, smei_middle, smei_end, smei_inherit } e_smei;
@@ -7389,7 +7390,7 @@ typedef enum { tu_fractal_noise, tu_turbulence } e_turbulence_type;
 #define SSC_TYPES_CSS_C_3_MAX t_curie_safe
 
 #define SSC_TYPES_CSS_D \
-                t_curies, t_currency, t_current_colour_sz, t_cursor, t_cursor_f, t_cursor_i, \
+                t_curies, t_currency, t_current_colour_sz, t_cursor, t_cursor_f, t_cursor_i, t_custom_element, t_custom_element_old, t_custom_element_new, \
            t_css_djs, t_css_djs_n, t_css_djss, t_css_display, t_css_display_1, t_css_display_3, t_css_display_box, t_css_display_flow, \
                 t_css_display_inside, t_css_display_internal, t_css_display_legacy, t_css_display_listitem, t_css_display_outside, t_css_durations
 #define SSC_TYPES_CSS_D_MAX t_css_durations

@@ -24,8 +24,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/context.h"
 #include "icu/charset.h"
 #include "icu/wrapper.h"
-#include "main/context.h"
 #include "feedback/nitpick.h"
+#include "utility/fileio.h"
 
 ::std::string identify_probable_charset (const void_ptr& vp, const uintmax_t sz)
 {   VERIFY_NOT_NULL (vp, __FILE__, __LINE__);

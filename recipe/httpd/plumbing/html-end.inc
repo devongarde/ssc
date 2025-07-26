@@ -13,8 +13,7 @@
 <span class="separator" lang="en"><!--#echo encoding="none" var="menustart" -->&nbsp;offsite&nbsp;<!--#echo encoding="none" var="menumid" --></span>
 <a href="<!--#echo encoding="none" var="aesite" -->" title="webmeister&rsquo;s site"><!--#echo encoding="none" var="aename" --></a>&nbsp;<span class="separator"><!--#echo encoding="none" var="menusep" --></span>
 <a href="<!--#echo encoding="none" var="corruptsite" -->" title="corrupt press">corrupt&nbsp;press</a>&nbsp;<span class="separator"><!--#echo encoding="none" var="menusep" --></span>
-<a href="<!--#echo encoding="none" var="github" -->" title="pro site">github&nbsp;repository</a>&nbsp;<span class="separator"><!--#echo encoding="none" var="menusep" --></span>
-<a href="<!--#echo encoding="none" var="codeberg" -->" title="alt site">codeberg&nbsp;repository</a>&nbsp;<span class="separator"><!--#echo encoding="none" var="menuend" --></span>
+<a href="<!--#echo encoding="none" var="github" -->" title="pro site">github&nbsp;repository</a>&nbsp;<span class="separator"><!--#echo encoding="none" var="menuend" --></span>
 </span>
 
 <div class="rights">

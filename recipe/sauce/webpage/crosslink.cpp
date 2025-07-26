@@ -251,7 +251,7 @@ void reconcile_crosslinks (nitpick& nits)
     {   PRESUME (! fred.activity (), __FILE__, __LINE__);
 #ifdef DEBUG
         if (context.tell (es_all))
-            outstr.console (rpt_lynx ("reconcile"));
+            context.os () -> console (rpt_lynx ("reconcile"));
 #endif // DEBUG        
         for (auto ix : *xlynx)
             for (auto is : ix.second.seekers_)

@@ -47,6 +47,11 @@ hunspell
 Building SSC under unii, including macos, requires a development
 installation of hunspell (https://hunspell.github.io/).
 
+libressl
+--------
+If you want SSC's output to be signed by SSC, you'll need this library
+(https://libressl.org/) or a compatible one.
+
 winspell
 --------
 The Windows build, by default, uses the native Windows spellchecker,
@@ -207,16 +212,13 @@ ICU4C is used to process unicode.
 Most package managers support it. Alternatively, build your own version
 using the source found at icu.unicode.org.
 
+LibreSSL
+--------
+This is only required if you wish to sign andor verify SSC's output.
+Alternatives are available, although I've not tested them.
+
 wxWidgets
 ---------
 This is only required if you make a GUI build. It can be found at
 wxwidgets.org. Note that it has not been tested for many of the systems
 supported by wxWidgets.
-
-
-Editions
-========
-
-Currently, there is a new, work-in-progress, gui edition in the Visual
-Studio solution. It does not work and should not be used. Stick to the
-standard edition.

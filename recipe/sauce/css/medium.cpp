@@ -42,7 +42,7 @@ void medium_t::mtkn_report ()
             else if (! line.empty ()) line += " | ";
             line += item; }
         if (! line.empty ()) res += line + "\n";
-        outstr.out (res); } }
+        context.os () -> out (res); } }
    
 void medium_t::note_value (const arguments& args, nitpick& nits, const ::std::string& s)
 {   PRESUME (! s.empty (), __FILE__, __LINE__);

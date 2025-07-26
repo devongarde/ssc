@@ -1106,5 +1106,5 @@ Statement:
 
 Version:
     HTML-3.2/CSS-1: 10 times
-    HTML-5/20250401/SVG-2.1/MathML-core/CSS-1/WhatWG: 7 times
+    HTML-5/20250701/SVG-2.1/MathML-core/CSS-1/WhatWG: 7 times
 ===

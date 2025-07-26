@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #pragma once
 
-void init_cache ();
+void cache_init ();
 bool cached_file (nitpick& nits, const ::boost::filesystem::path& pt, ::std::string& content, bool& borked, bool store = true); 
 bool cached_url (nitpick& nits, const html_version& v, const directory* d, const url& u, ::std::string& content, ::std::time_t& when, bool& borked); 
 void report_cache (nitpick& nits, const ::std::string& intro = ::std::string ());

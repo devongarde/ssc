@@ -862,7 +862,7 @@ protocol_names_t protocol_names;
 ontology_names_t ontology_names;
 vsh_t rdfa_context;
 
-void init_nstrs (nitpick& nits)
+void nstr_init (nitpick& nits)
 {   namespace_names.init (nits, &namespace_name_entries [0]);
     protocol_names.init (nits, &protocol_name_entries [0]);
     ontology_names.init (nits, &ontology_name_entries [0]); 

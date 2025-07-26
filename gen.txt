@@ -446,6 +446,8 @@ only if you want to check a site that is not contemporary to the build
 of ssc. The remaining switches allow you to precisely control analysis
 of older sites.
 
+--html.aria             Report ARIA issues.
+
 --html.custom EL        Define a custom element <EL> for verifying the
                         IS attribute. May be repeated.
 
@@ -1103,7 +1105,7 @@ ontologies (see --ontology.list).
 
 
 Output switches
-This manages output layout.
+This manages output, including layout and signature.
 
 --output.absolute-path  Report the absolute local file system path of a
                         file being analysed.
@@ -1121,10 +1123,32 @@ This manages output layout.
                         OUTPUT TEMPLATE below). This switch is intended
                         to aid automation.
 
+--output.password F     If the private key is password protected, then
+                        file F contains the key's password. Requires
+                        --output.private.
+                        
+--output.private F      Sign SSC's output's using the signature in file
+                        F. Requires --output.public.
+                        
+--output.public F       File F contains the public key corresponding to
+                        that of --output.private. Either sign or verify
+                        SSC's output, according to --output.sign or
+                        --output.verify.
+                        
 --output.relative-path  Report the relative web path of a file being
                         analysed.
 
+--output.sign           Sign output produced by SSC. Requires
+                        --output.signature. Note that signing always
+                        causes verification.
+                        
+--output.signature F    Write the output signature to file F. Requires
+                        --output.private.
+                        
 --output.username XXX   Report the user who is running SSC as XXX.
+
+--output.verify         Verify output produced by SSC. Requires
+                        --output.public.
 
                         
 Server switches

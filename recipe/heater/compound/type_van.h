@@ -120,6 +120,19 @@ template < > struct type_master < t_context_menu > : tidy_string < t_context_men
         string_value < t_context_menu > :: status (s_invalid);
         return true; } };
 
+template < > struct type_master < t_custom_element > : tidy_string < t_custom_element >
+{   using tidy_string < t_custom_element > :: tidy_string;
+    static e_animation_type animation_type () noexcept { return at_none; }
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   tidy_string < t_custom_element > :: set_value (nits, v, s);
+        if (tidy_string < t_custom_element > :: empty ()) nits.pick (nit_empty, es_error, ec_type, "missing custom element value");
+        else if (tidy_string < t_custom_element > :: good ())
+        {   ::std::string ss (tidy_string < t_custom_element > :: get_string ());
+            if (v >= html_jul25)
+            {   if (test_value < t_custom_element_new > (nits, v, ss)) return; }
+            else if (test_value < t_custom_element_old > (nits, v, ss)) return; }
+        tidy_string < t_custom_element > :: status (s_invalid); } };
+
 template < > struct type_master < t_duration_media > : tidy_string < t_duration_media >
 {   using tidy_string < t_duration_media > :: tidy_string;
     static e_animation_type animation_type () noexcept { return at_none; }

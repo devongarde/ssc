@@ -112,6 +112,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SNIPPET_SW  SMPLSWTCH SNIPPET_SW_
 #define VERBOSE_SW  SMPLSWTCH VERBOSE_SW_
 
+#define BLACKLIST_  "blacklist"
+#define BLUELIST_   "bluelist"
 #define CORPUS_     "corpus"
 #define CSS_        "css"
 #define ENVIRONMENT_ "environment"
@@ -136,7 +138,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define VALIDATION_ "validation"
 #define VTT_        "vtt"
 #define WEBSITE_    "site"
+#define WHITELIST_  "whitelist"
 
+#define BLACKLIST   BLACKLIST_ JOIN
+#define BLUELIST    BLUELIST_ JOIN
 #define CORPUS      CORPUS_ JOIN
 #define CSS         CSS_ JOIN
 #define ENVIRONMENT ENVIRONMENT_ JOIN
@@ -161,6 +166,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define VALIDATION  VALIDATION_ JOIN
 #define VTT         VTT_ JOIN
 #define WEBSITE     WEBSITE_ JOIN
+#define WHITELIST   WHITELIST_ JOIN
 
 #define ABBR        "abbreviation"
 #define ABHORRENT   "abhorrent"
@@ -175,6 +181,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define ANCHOR_POS  "anchor-pos"
 #define ANIMATION   "animation"
 #define ANNOTATION  "annotation"
+#define ARIA        "aria"
 #define ARTICLE     "article"
 #define ASK         "ask"
 #define ATTRIB      "attribute"
@@ -382,7 +389,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SCROLL_ANIM "scroll-anim"
 #define SCROLLBAR   "scrollbar"
 #define SDA         "sda"
-#define SECRET      "secret"
 #define SENDER      "sender"
 #define SELECTED    "selected"
 #define SELECTOR    "selector"
@@ -390,6 +396,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SHAPE       "shape"
 #define SHELL       "shell"
 #define SIGN        "sign"
+#define SIGNATURE   "signature"
 #define SILENCE     "silence"
 #define SITE        "domain"
 #define SLOVEN      "sloven"

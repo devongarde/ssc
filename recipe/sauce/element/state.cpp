@@ -23,22 +23,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "element/elem.h"
 
 const element_bitset empty_element_bitset;
+element_bitset block_bitset = empty_element_bitset;
+element_bitset block_replaced_bitset = empty_element_bitset;
+element_bitset css_block_bitset = empty_element_bitset;
+element_bitset css_nonblock_bitset = empty_element_bitset;
+element_bitset css_noninline_bitset = empty_element_bitset;
 element_bitset faux_bitset = empty_element_bitset;
 element_bitset form_bitset = empty_element_bitset;
 element_bitset header_bitset = empty_element_bitset;
+element_bitset inline_bitset = empty_element_bitset;
 element_bitset interactive_bitset = empty_element_bitset;
 element_bitset label_bitset = empty_element_bitset;
 element_bitset listed_bitset = empty_element_bitset;
 element_bitset media_bitset = empty_element_bitset;
-element_bitset sectioning_bitset = empty_element_bitset;
 element_bitset non_standard_bitset = empty_element_bitset;
-element_bitset block_bitset = empty_element_bitset;
-element_bitset block_replaced_bitset = empty_element_bitset;
+element_bitset role_element_bitset = empty_element_bitset;
+element_bitset rowgroup_bitset = empty_element_bitset;
+element_bitset sectioning_bitset = empty_element_bitset;
 element_bitset script_bitset = empty_element_bitset;
-element_bitset inline_bitset = empty_element_bitset;
-element_bitset css_block_bitset = empty_element_bitset;
-element_bitset css_nonblock_bitset = empty_element_bitset;
-element_bitset css_noninline_bitset = empty_element_bitset;
 
 void state_init ()
 {   faux_bitset = empty_element_bitset | elem_faux_document | elem_faux_asp | elem_faux_cdata | elem_faux_char | elem_faux_code | elem_faux_comment |
@@ -59,7 +61,14 @@ void state_init ()
     inline_bitset = form_bitset | label_bitset | listed_bitset | elem_audio | elem_a | elem_em | elem_strong | elem_i | elem_u;
     css_block_bitset = block_bitset | sectioning_bitset | non_standard_bitset | listed_bitset | header_bitset | block_replaced_bitset | elem_p | elem_div | elem_think | elem_ul | elem_ol | elem_hr | elem_form | elem_body;
     css_nonblock_bitset = ~css_block_bitset;
-    css_noninline_bitset = ~inline_bitset; }
+    css_noninline_bitset = ~inline_bitset;
+    role_element_bitset =   empty_element_bitset | // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles 
+                            elem_article | elem_aside | elem_dfn | elem_figure | elem_footer | elem_form |
+                            elem_h1 | elem_h2 | elem_h2 | elem_h4 | elem_h5 | elem_h6 | elem_header | elem_hr |
+                            elem_img | elem_li | elem_main | elem_meter | elem_nav | elem_ol | elem_picture | elem_search | elem_section |
+                            elem_table | elem_tbody | elem_td | elem_tfoot | elem_thead | elem_tr | elem_ul;
+    rowgroup_bitset = empty_element_bitset | elem_tbody | elem_tfoot | elem_thead;
+}
 
 ::std::string nameset (const element_bitset& bs)
 {   ::std::string res;

@@ -30,7 +30,7 @@ class options
    ::boost::program_options::variables_map var_, env_var_;
     void help (const ::boost::program_options::options_description& aid) const;
     void init (context_t& c);
-    void parse (context_t& c, const output_streams_t& o, nitpick& nits, const vstr_t& vs);
+    void parse (context_t& c, nitpick& nits, const vstr_t& vs);
     bool parse (nitpick& nits, const ::boost::filesystem::path& file);
     bool parse (context_t& c, nitpick& nits, const ::boost::filesystem::path& file);
     bool is_be (const char* yo);
@@ -44,14 +44,14 @@ class options
     template < e_type TT > void vvextend (context_t& c, const char* const arg);
     template < e_type TT > void vvextend (context_t& c, const char* const a1, const char* const a2);
 public:
-    options (context_t& c, output_streams_t& o, nitpick& nits, const vstr_t& vs)
-    {   parse (c, o, nits, vs); }
+    options (context_t& c,  nitpick& nits, const vstr_t& vs)
+    {   parse (c, nits, vs); }
     options (nitpick& nits, const ::boost::filesystem::path& fn)
     {   parse (nits, fn); }
     options (context_t& c, nitpick& nits, const ::boost::filesystem::path& fn)
     {   parse (c, nits, fn); }
     explicit options (const context_t& c);
-    void contextualise (context_t& c, output_streams_t& o, nitpick& nits);
+    void contextualise (context_t& c, nitpick& nits);
     template < class T > void insert (const ::std::string& k, const T& t);
     bool write (nitpick& nits, const ::boost::filesystem::path& fn) const;
     ::std::string report (const e_gui_report gr, const bool file = false, const bool wibble = true) const; };

@@ -30,15 +30,15 @@ e
 f   FUDDY
 g
 h
-i
+i   ICU
 j   JSNIC
 k
-l   
+l   LEAK_SEEK  
 m
 n   NPS_GEN
 o
 p
-q
+q   SIGNING
 r
 s   SPELT
 t
@@ -62,8 +62,8 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 16
-#define VERSION_STRING "0.2.16"
+#define VERSION_RELEASE 17
+#define VERSION_STRING "0.2.17"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -81,6 +81,9 @@ z
 
 #define DEFAULT_LINE_LENGTH 72
 #define DESCRIPTION_LENGTH 60
+
+#define DEFAULT_MAX_FILE_SIZE 4
+#define DMFS_BYTES (DEFAULT_MAX_FILE_SIZE * 1024 * 1024)
 
 #ifdef __clang__
 #pragma clang diagnostic push
@@ -107,6 +110,10 @@ z
 #define MSVC_NOEXCEPT noexcept
 #define CLEAN_SHAREDPTR_ARRAY
 #include <codeanalysis\warnings.h>
+
+#ifdef _MSC_VER
+#define WINDOZE // WINDOZE? Will rename this once VS 2022 stops trying to enforce its inefficient source layout.
+#endif
 
 #ifdef WIN32
 #define X32
@@ -196,11 +203,13 @@ z
 #endif // debug...
 
 #ifdef NOICU
+#define ICU_CHAR
 #undef NOICU // get rid of value
 #define NOICU
 #undef NOSPELL
 #define NOSPELL
 #else // NOICU
+#define ICU_CHAR "i"
 #define BOOST_HAS_ICU
 #endif // NOICU
 
@@ -244,15 +253,33 @@ z
 #define FUDDY
 #endif // FUDDYDUDDY
 
+#if (defined (__unix__) || defined (unix) || defined (UNIX)) && ! defined (USG)
+#include <sys/param.h>
+#endif
+
 #ifdef LEAK_SEEK
+#define LEAKY "l"
 #ifndef VS2022
-#warning "LEAK_SEEK only tested with VC2022"
+#pragma message("LEAK_SEEK only tested with VC2022")
 #else // VS2022
 #define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
 #endif // VS2022
+#else // LEAK_SEEK
+#define LEAKY
 #endif // LEAK_SEEK
+
+#ifdef SIGNING
+#ifndef _MSC_VER
+#pragma message("SIGNING only tested under windoze")
+#elif ! defined (_WIN64)
+#pragma message("SIGNING only tested under x64")
+#endif // WIN32
+#define SIGNCHAR "q"
+#else // SIGNING
+#define SIGNCHAR
+#endif // SIGNING
 
 #include <fstream>
 #include <iostream>
@@ -506,6 +533,12 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #include <boost/lexical_cast.hpp>
 #include <boost/algorithm/string.hpp>
 
+#ifdef SIGNING
+#include <openssl/pem.h>
+#include <openssl/evp.h>
+#include <openssl/err.h>
+#endif // SIGNING
+
 #ifndef NO_GSL
 #include <gsl/gsl>
 #define GSL_SPAN(ARRAY, MAXLEN) ::gsl::span (ARRAY, MAXLEN)
@@ -693,6 +726,7 @@ typedef ssc_set < ::std::string > sstr_t;
 typedef ::std::vector < sstr_t > vsstr_t;
 typedef ssc_set < unsigned int > sui_t;
 typedef ::std::vector < sui_t > vsui_t;
+typedef ::std::vector < unsigned char > vuc_t;
 typedef ssc_map < ::std::string, ::std::string > ustr_t;
 typedef ssc_map < ::std::string, ::std::size_t > msid_t;
 typedef ::std::map < ::std::string, ::std::size_t > smsid_t;
@@ -700,6 +734,8 @@ typedef ssc_map < ::std::size_t, ::std::string > misd_t;
 typedef ustr_t::value_type ustrv_t;
 typedef ::std::basic_string < char32_t > string32;
 typedef ::std::basic_stringstream < char32_t > stringstream32;
+typedef ssc_map < ::std::string, sstr_t > strss_t;
+typedef ::std::unique_ptr < ::std::fstream > fstr_p;
 
 #ifdef _MSC_VER
 #pragma warning (push, 3)
@@ -791,7 +827,7 @@ typedef ::std::vector < bool > faux_vb_t;
 // Enable this to see full messages that would otherwise be generated when using -T switch, roughly speaking
 // #define EXPAND_TEST "t"
 
-#define BUILD_INFO   DBG_STATUS FUDDY JSNIC NPS_GEN SPELT UGLY_TEXT WXS ":" TARGET_OS ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER
+#define BUILD_INFO   DBG_STATUS FUDDY ICU_CHAR JSNIC LEAKY NPS_GEN SIGNCHAR SPELT UGLY_TEXT WXS ":" TARGET_OS ":" COMPILER PROCSIZE ":" BOOST_LIB_VERSION ICU_VER
 #define BASE_TITLE   FULLNAME " v" VERSION_STRING EDITION " (" WEBADDR ")\n"
 #define SIMPLE_TITLE BASE_TITLE COPYRIGHT_TEXT "\n"
 #define FULL_TITLE_1 BASE_TITLE COPYRIGHT "\n"
@@ -807,29 +843,29 @@ typedef ::std::vector < bool > faux_vb_t;
 
 #define TYPE_HELP "Type '" PROG " -h' for help."
 
-#define DEFAULT_COPY(XXX, DDD) \
+#define CONSTRUCT_COPY(XXX, DDD) \
     XXX (const XXX & xxx) = DDD; \
     XXX& operator = (const XXX & xxx) = DDD; \
 
-#define DEFAULT_MOVE(XXX, DDD) \
+#define CONSTRUCT_MOVE(XXX, DDD) \
     XXX (XXX && xxx) = DDD; \
     XXX& operator = (XXX && xxx) = DDD
 
-#define DEFAULT_COPY_MOVE(XXX) \
-    DEFAULT_COPY (XXX, default) \
-    DEFAULT_MOVE (XXX, default)
+#define COPY_MOVE(XXX) \
+    CONSTRUCT_COPY (XXX, default) \
+    CONSTRUCT_MOVE (XXX, default)
 
-#define DEFAULT_COPY_NO_MOVE(XXX) \
-    DEFAULT_COPY (XXX, default) \
-    DEFAULT_MOVE (XXX, delete)
+#define COPY_NO_MOVE(XXX) \
+    CONSTRUCT_COPY (XXX, default) \
+    CONSTRUCT_MOVE (XXX, delete)
 
-#define DEFAULT_NO_COPY_NO_MOVE(XXX) \
-    DEFAULT_COPY (XXX, delete) \
-    DEFAULT_MOVE (XXX, delete)
+#define NO_COPY_NO_MOVE(XXX) \
+    CONSTRUCT_COPY (XXX, delete) \
+    CONSTRUCT_MOVE (XXX, delete)
 
-#define DEFAULT_NO_COPY_MOVE(XXX) \
-    DEFAULT_COPY (XXX, delete) \
-    DEFAULT_MOVE (XXX, default)
+#define NO_COPY_MOVE(XXX) \
+    CONSTRUCT_COPY (XXX, delete) \
+    CONSTRUCT_MOVE (XXX, default)
 
 #define BASE_DEFAULT(XXX) \
     XXX () = default; \
@@ -837,36 +873,42 @@ typedef ::std::vector < bool > faux_vb_t;
 
 #define CONSTRUCT_DEFAULT(XXX) \
     BASE_DEFAULT (XXX); \
-    DEFAULT_COPY_MOVE (XXX);
+    COPY_MOVE (XXX);
 
 #define CONSTRUCT_NO_COPY(XXX) \
     BASE_DEFAULT (XXX); \
-    DEFAULT_NO_COPY_MOVE (XXX);
+    NO_COPY_MOVE (XXX);
 
 #define CONSTRUCT_DELETE(XXX) \
     XXX () = delete; \
-    DEFAULT_NO_COPY_NO_MOVE (XXX); \
+    NO_COPY_NO_MOVE (XXX); \
+    ~XXX () = default
+
+#define COPY_MOVE_NO_DEFCON(XXX) \
+    XXX () = delete; \
+    COPY_MOVE (XXX); \
     ~XXX () = default
 
 #define DEFAULT_CONSTRUCTORS(XXX) CONSTRUCT_DEFAULT (XXX)
-#define DEFAULT_COPY_CONSTRUCTORS(XXX) DEFAULT_COPY_MOVE (XXX)
-#define DEFAULT_NO_MOVE_CONSTRUCTORS(XXX) BASE_DEFAULT (XXX) DEFAULT_COPY_NO_MOVE (XXX)
-#define DEFAULT_NO_COPY_NO_MOVE_CONSTRUCTORS(XXX) BASE_DEFAULT (XXX) DEFAULT_NO_COPY_NO_MOVE (XXX)
+#define DEFAULT_COPY_CONSTRUCTORS(XXX) COPY_MOVE (XXX)
+#define DEFAULT_NO_MOVE_CONSTRUCTORS(XXX) BASE_DEFAULT (XXX) COPY_NO_MOVE (XXX)
+#define DEFAULT_NO_COPY_NO_MOVE_CONSTRUCTORS(XXX) BASE_DEFAULT (XXX) NO_COPY_NO_MOVE (XXX)
 #define DEFAULT_NO_COPY_CONSTRUCTORS(XXX) CONSTRUCT_NO_COPY (XXX)
-#define DEFAULT_CONSTRUCTORS_NO_DESTRUCTORS(XXX) DEFAULT_NO_COPY_NO_MOVE (XXX)
+#define DEFAULT_CONSTRUCTORS_NO_DESTRUCTORS(XXX) NO_COPY_NO_MOVE (XXX)
 
 #define DEFAULT_CONSTRUCTORS_NO_EMPTY(XXX) \
     XXX () = delete; \
-    DEFAULT_COPY_MOVE (XXX); \
+    COPY_MOVE (XXX); \
     ~XXX () = default
 
 #define DEFAULT_CONSTRUCTORS_VIRTUAL_DESTRUCTOR(XXX) \
     XXX () = default; \
-    DEFAULT_COPY_MOVE (XXX); \
+    COPY_MOVE (XXX); \
     virtual ~XXX () = default
 
-#define NO_COPY_CONSTRUCTORS(XXX) DEFAULT_NO_COPY_NO_MOVE (XXX)
+#define NO_COPY_CONSTRUCTORS(XXX) NO_COPY_NO_MOVE (XXX)
 #define DELETE_CONSTRUCTORS(XXX) CONSTRUCT_DELETE (XXX)
+#define NO_DEFCON(XXX) COPY_MOVE_NO_DEFCON (XXX)
 
 #define HIDE_ME                   ".--" PROG "_HIDE_ME"
 
@@ -935,6 +977,13 @@ typedef ::std::vector < bool > faux_vb_t;
 #define REPERTOIRES               "directories"
 #define RREPERTOIRES              "Directories"
 #endif // DARWIN
+
+#define STOP_NOW -1
+#define VALID_RESULT 0
+#define STOP_OK 1
+#define NOTHING_TO_DO 2
+#define ERROR_STATE 3
+#define CATASTROPHIC_STATE 4
 
 #include "main/enum.h"
 

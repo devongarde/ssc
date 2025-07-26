@@ -156,7 +156,7 @@ bool app_t::OnInit ()
     frame_ = GSL_OWNER (frame_t) (new frame_t (pt, sz, c));
     if (frame_ == nullptr) return false;
 #ifdef _MSC_VER
-    outstr.enloggen (true);
+    c.os () -> enloggen (true);
 #ifdef wxUSE_ON_FATAL_EXCEPTION
     wxHandleFatalExceptions (true);
 #endif // wxUSE_ON_FATAL_EXCEPTION
@@ -190,7 +190,7 @@ void app_t::OnIdle (wxIdleEvent& event)
         {   context.cmd (cmd_);
             cmd_.clear ();
 #ifdef _MSC_VER
-            outstr.enloggen (true);
+            context.os () -> enloggen (true);
 #endif // _MSC_VER
             frame_ -> shush (false);
             res_ = recycle (nits, 0, nullptr);
@@ -208,7 +208,7 @@ void app_t::OnIdle (wxIdleEvent& event)
             context.cmd (c);
             frame_ -> clear ();
 #ifdef _MSC_VER
-            outstr.enloggen (true);
+            context.os () -> enloggen (true);
 #endif // _MSC_VER
             frame_ -> shush (false);
             res_ = recycle (nits, 0, nullptr); }
@@ -221,7 +221,7 @@ void app_t::OnIdle (wxIdleEvent& event)
             context.cmd (c);
             frame_ -> clear ();
 #ifdef _MSC_VER
-            outstr.enloggen (true);
+            context.os () -> enloggen (true);
 #endif // _MSC_VER
             frame_ -> shush (false);
             res_ = recycle (nits, argc, argv); }

@@ -128,6 +128,18 @@ template < class T > ::std::string nitpick::inner_review (const e_nit_section& e
 {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
     return review (macro -> macros (), entry, head, foot, page_head, true); }
 
+::std::string nitpick::kwik ()
+{   ::std::string res;
+    ::std::set < nit > sn;
+    for (auto n : nits_)
+        if (sn.find (n) == sn.end ())
+            sn.insert (n);
+    for (auto n : sn)
+        if (context.tell (n.severity ()))
+            if (n.code () != nit_context)
+                res += n.msg () + "\n";
+    return res; }
+
 nitpick nitpick::nick ()
 {   nitpick tmp;
     swap (tmp);
@@ -170,7 +182,7 @@ void nitpick::reset_context (const int line, const ::std::string& c)
     if (context.nits ())
     {   ::std::ostringstream ss;
         ss << "set context to " << r << " (line " << line << ")\n";
-        outstr.out (ss.str ()); }
+        context.os () -> out (ss.str ()); }
     line_ = line;
     stuffed_ = false;
     before_.clear (); after_.clear ();

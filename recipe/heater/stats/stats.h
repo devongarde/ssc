@@ -93,6 +93,7 @@ public:
 
 extern stats_t overall;
 
-inline void report_global_stats (const bool grand)
-{   outstr.out ("\n\n");
-    outstr.out (overall.report (grand)); }
+inline ::std::string report_global_stats (const bool grand)
+{   ::std::string s ("\n\n");
+    s = overall.report (grand);
+    return s; }

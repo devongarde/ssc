@@ -75,13 +75,6 @@ vstr_t split_by_string (const ::std::string& s, const ::std::string& splitter);
 vstr_t separate_by_whitespace_and (const ::std::string& s, const char* charset, const bool blank = false);
 
 int pos_de (const ::std::string& s, const char* charset, vint_t& vf, vint_t& vt, const bool empties = false);
-
-::std::string read_text_file (nitpick& nits, const ::boost::filesystem::path& name, bool& borked);
-::std::string read_text_file (nitpick& nits, const ::std::string& name, bool& borked);
-void_ptr read_binary_file (nitpick& nits, const ::boost::filesystem::path& name, uintmax_t& sz, const bool zero_ok = false);
-bool write_text_file (nitpick& nits, const ::boost::filesystem::path& n, const ::std::string& content);
-bool write_text_file (nitpick& nits, const ::std::string& name, const ::std::string& content);
-::boost::filesystem::path get_tmp_filename ();
 bool contains (const vstr_t& con, const ::std::string& val);
 
 inline bool cnc_test (unsigned char a, unsigned char b) noexcept
@@ -224,7 +217,7 @@ template < class P > struct fiddlesticks
 {   P** p_ = nullptr;
     P* twas_ = nullptr;
     fiddlesticks () = delete;
-    DEFAULT_NO_COPY_NO_MOVE (fiddlesticks);
+    NO_COPY_NO_MOVE (fiddlesticks);
     explicit fiddlesticks (P** p, P* x) : p_ (p)
     {   VERIFY_NOT_NULL (p, __FILE__, __LINE__);
         twas_ = *p_;
@@ -235,7 +228,7 @@ template < > struct fiddlesticks < bool >
 {   bool twas_ = false;
     bool* b_ = nullptr;
     fiddlesticks () = delete;
-    DEFAULT_NO_COPY_NO_MOVE (fiddlesticks);
+    NO_COPY_NO_MOVE (fiddlesticks);
     explicit fiddlesticks (bool* b, const bool x)
     {   VERIFY_NOT_NULL (b, __FILE__, __LINE__);
         b_ = b;
@@ -303,3 +296,28 @@ inline vstr_t vbp2vstr (const vbp_t& s)
 
 ::std::string get_account ();
 ::std::string string_diff (const ::std::string& lhs, const ::std::string& rhs, const bool numeric = false);
+
+template < class XYZ, void (*FN) (XYZ*) > class fcn_dtor
+{   XYZ* xp_ = nullptr;
+    void shut_up ()
+    {   if (xp_ != nullptr) FN (xp_); }
+public:
+    fcn_dtor () = default;
+    explicit fcn_dtor (XYZ* x)
+    {   VERIFY_NOT_NULL (x, __FILE__, __LINE__);
+        xp_ = x; }
+    COPY_MOVE (fcn_dtor);
+    ~fcn_dtor () { shut_up (); }
+    void reset ()
+    {   shut_up (); 
+        xp_ = nullptr; }
+    void reset (XYZ* x)
+    {   shut_up ();
+        VERIFY_NOT_NULL (x, __FILE__, __LINE__);
+        xp_ = x; }
+    const XYZ* data () const { return xp_; }
+    XYZ* data () { return xp_; }
+    operator bool () const { return xp_ != nullptr; }
+    bool invalid () const
+    {   return xp_ == nullptr; } };
+

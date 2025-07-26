@@ -121,51 +121,51 @@ void breed (v_np& , vtok_t& t, const ::std::string::const_iterator , const ::std
 
 void boast (vtok_t& t)
 {   if (context.tell (es_detail))
-    {   outstr.console ("n: token parent/next/child text\n");
+    {   context.os () -> console ("n: token parent/next/child text\n");
         for (int i = 0; i < GSL_NARROW_CAST < int > (t.size ()); ++i)
-        {   outstr.console (" ", i, ": ");
+        {   context.os () -> console (" ", i, ": ");
             switch (t.at (i).t_)
-            {   case ct_root : outstr.console ("root"); break;
-                case ct_whitespace : outstr.console ("whitespace"); break;
-                case ct_comment : outstr.console ("comment"); break;
-                case ct_string : outstr.console ("string"); break;
-                case ct_identifier : outstr.console ("identifier"); break;
-                case ct_keyword : outstr.console ("keyword"); break;
-                case ct_number : outstr.console ("number"); break;
-                case ct_ampersand : outstr.console ("ampersand"); break;
-                case ct_at : outstr.console ("at"); break;
-                case ct_comma : outstr.console ("comma"); break;
-                case ct_bang : outstr.console ("bang"); break;
-                case ct_dollar : outstr.console ("dollar"); break;
-                case ct_semicolon : outstr.console ("semicolon"); break;
-                case ct_slash : outstr.console ("slash"); break;
-                case ct_coco : outstr.console ("coco"); break;
-                case ct_colon : outstr.console ("colon"); break;
-                case ct_hash : outstr.console ("hash"); break;
-                case ct_hat : outstr.console ("hat"); break;
-                case ct_dot : outstr.console ("dot"); break;
-                case ct_dash : outstr.console ("dash"); break;
-                case ct_splat : outstr.console ("splat"); break;
-                case ct_eq : outstr.console ("eq"); break;
-                case ct_gt : outstr.console ("gt"); break;
-                case ct_gteq : outstr.console ("gteq"); break;
-                case ct_gtgt : outstr.console ("gtgt"); break;
-                case ct_lt : outstr.console ("lt"); break;
-                case ct_lteq : outstr.console ("lteq"); break;
-                case ct_bar : outstr.console ("bar"); break;
-                case ct_barbar : outstr.console ("barbar"); break;
-                case ct_plus : outstr.console ("plus"); break;
-                case ct_squiggle : outstr.console ("squiggle"); break;
-                case ct_curly_brac : outstr.console ("curly_brac"); break;
-                case ct_curly_ket : outstr.console ("curly_ket"); break;
-                case ct_square_brac : outstr.console ("square_brac"); break;
-                case ct_square_ket : outstr.console ("square_ket"); break;
-                case ct_round_brac : outstr.console ("round_brac"); break;
-                case ct_round_ket : outstr.console ("round_ket"); break;
-                case ct_eof : outstr.console ("eof"); break;
-                case ct_error : outstr.console ("error"); break;
-                default: outstr.console ("unexpected ", t.at (i).t_); break; }
-            outstr.console (" ", t.at (i).mum_, "/", t.at (i).next_, "/", t.at (i).child_, " ", quote (t.at (i).val_), "\n"); } } }
+            {   case ct_root : context.os () -> console ("root"); break;
+                case ct_whitespace : context.os () -> console ("whitespace"); break;
+                case ct_comment : context.os () -> console ("comment"); break;
+                case ct_string : context.os () -> console ("string"); break;
+                case ct_identifier : context.os () -> console ("identifier"); break;
+                case ct_keyword : context.os () -> console ("keyword"); break;
+                case ct_number : context.os () -> console ("number"); break;
+                case ct_ampersand : context.os () -> console ("ampersand"); break;
+                case ct_at : context.os () -> console ("at"); break;
+                case ct_comma : context.os () -> console ("comma"); break;
+                case ct_bang : context.os () -> console ("bang"); break;
+                case ct_dollar : context.os () -> console ("dollar"); break;
+                case ct_semicolon : context.os () -> console ("semicolon"); break;
+                case ct_slash : context.os () -> console ("slash"); break;
+                case ct_coco : context.os () -> console ("coco"); break;
+                case ct_colon : context.os () -> console ("colon"); break;
+                case ct_hash : context.os () -> console ("hash"); break;
+                case ct_hat : context.os () -> console ("hat"); break;
+                case ct_dot : context.os () -> console ("dot"); break;
+                case ct_dash : context.os () -> console ("dash"); break;
+                case ct_splat : context.os () -> console ("splat"); break;
+                case ct_eq : context.os () -> console ("eq"); break;
+                case ct_gt : context.os () -> console ("gt"); break;
+                case ct_gteq : context.os () -> console ("gteq"); break;
+                case ct_gtgt : context.os () -> console ("gtgt"); break;
+                case ct_lt : context.os () -> console ("lt"); break;
+                case ct_lteq : context.os () -> console ("lteq"); break;
+                case ct_bar : context.os () -> console ("bar"); break;
+                case ct_barbar : context.os () -> console ("barbar"); break;
+                case ct_plus : context.os () -> console ("plus"); break;
+                case ct_squiggle : context.os () -> console ("squiggle"); break;
+                case ct_curly_brac : context.os () -> console ("curly_brac"); break;
+                case ct_curly_ket : context.os () -> console ("curly_ket"); break;
+                case ct_square_brac : context.os () -> console ("square_brac"); break;
+                case ct_square_ket : context.os () -> console ("square_ket"); break;
+                case ct_round_brac : context.os () -> console ("round_brac"); break;
+                case ct_round_ket : context.os () -> console ("round_ket"); break;
+                case ct_eof : context.os () -> console ("eof"); break;
+                case ct_error : context.os () -> console ("error"); break;
+                default: context.os () -> console ("unexpected ", t.at (i).t_); break; }
+            context.os () -> console (" ", t.at (i).mum_, "/", t.at (i).next_, "/", t.at (i).child_, " ", quote (t.at (i).val_), "\n"); } } }
 
 bool css::parse (const ::std::string& content, const bool x, const bool mdm)
 {   if (invalid ()) return false;

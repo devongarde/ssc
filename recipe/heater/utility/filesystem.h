@@ -21,6 +21,28 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #pragma once
 #include "utility/common.h"
 
+struct ffsf_deleter
+{   void operator () (FILE *p)
+    {   if (p != nullptr) fclose (p); } };
+
+typedef ::std::shared_ptr < FILE > ffsf;
+
+class fancy_FILE // use BOOST_IFSTREAM_CNSTRO etc.
+{   ffsf fp_;
+public:
+    fancy_FILE () = default;
+    explicit fancy_FILE (nitpick& nits, const ::boost::filesystem::path& s, const char* flags = "r")
+    {   open (nits, s, flags); }
+    COPY_MOVE (fancy_FILE);
+    ~fancy_FILE () { close (); }
+    bool open (nitpick& nits, const ::boost::filesystem::path& s, const char* flags = "r");
+    void close () noexcept;
+    FILE* fp () const
+    {   PRESUME (fp_, __FILE__, __LINE__);
+        return fp_.get (); }
+    bool invalid () const
+    {   return fp_ == nullptr; } };
+
 #ifdef UNIX
 inline ::std::string local_path_to_nix (const ::std::string& s) { return s; }
 inline ::std::string nix_path_to_local (const ::std::string& s) { return s; }
@@ -83,4 +105,3 @@ bool make_link (const ::boost::filesystem::path& name, const ::boost::filesystem
 #endif // NOLYNX
 
 bool is_normal_or_zap (const ::boost::filesystem::path& fn);
-

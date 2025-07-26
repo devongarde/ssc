@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "utility/common.h"
 #include "utility/filesystem.h"
+#include "utility/fileio.h"
 #include "main/context.h"
 #include "webpage/external.h"
 #include "webpage/page.h"
@@ -281,7 +282,7 @@ void directory::examine_page (nitpick* ticks, const ::std::string& file) const
                 {   if (context.tell (es_error)) mac.emplace (nm_page_error, ::std::string ("Unknown exception when parsing ") + sp); }
                 if (! ss.str ().empty ())
                 {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
-                    outstr.out (macro -> apply (ns_page_head, mac), ss.str (), macro -> apply (ns_page_foot, mac)); }
+                    context.os () -> out (macro -> apply (ns_page_head, mac), ss.str (), macro -> apply (ns_page_foot, mac)); }
                 k.accumulate_and_clear (); }
             set_flag (ndx, FX_SCANNED); } } }
 

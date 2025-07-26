@@ -381,15 +381,16 @@ void element::examine_xlinkhref ()
                 pick (nit_math_href, ed_math_3, "2.1.6 Attributes Shared by all MathML Elements", es_warning, ec_attribute, "prefer HREF to XLINK:HREF in MathML 3"); }
 
 void element::test_for_ancestral_role ()
-{   if (node_.version () >= html_aria_html)
+{   if ((node_.version () >= html_aria_html) && context.aria ())
         if (! ancestral_attributes_.test (a_role))
-            if ((tag () == elem_div) || (tag () == elem_span))
-                pick (nit_role_missing, ed_aria_html, "4. Document conformance requirements for use of ARIA attributes in HTML", es_warning, ec_element, "It is ... recommended that authors add a role attribute to a semantically neutral element such as a div or span ...");
-            else pick (nit_role_missing, ed_aria_html, "4. Document conformance requirements for use of ARIA attributes in HTML", es_warning, ec_element, "It is ... recommended that authors add a role attribute to a semantically neutral (ancestral) element such as a div or span ..."); }
+            if (! any (ancestral_elements_, role_element_bitset))
+                if ((tag () == elem_div) || (tag () == elem_span))
+                    pick (nit_role_missing, ed_aria_html, "4. Document conformance requirements for use of ARIA attributes in HTML", es_warning, ec_element, "It is ... recommended that authors add a role attribute to a semantically neutral element such as a div or span ...");
+                else pick (nit_role_missing, ed_aria_html, "4. Document conformance requirements for use of ARIA attributes in HTML", es_warning, ec_element, "It is ... recommended that authors add a role attribute to a semantically neutral (ancestral) element such as a div or span ..."); }
 
 void element::test_for_ancestral_role (const role_bitset& permitted)
-{   if (node_.version () >= html_aria_html)
-        if (! ancestral_attributes_.test (a_role))
+{   if ((node_.version () >= html_aria_html) && context.aria ())
+        if (! ancestral_attributes_.test (a_role) && ! any (ancestral_elements_, role_element_bitset))
             if ((tag () == elem_div) || (tag () == elem_span))
                 pick (nit_role_missing, ed_aria_html, "4. Document conformance requirements for use of ARIA attributes in HTML", es_warning, ec_element, "It is ... recommended that authors add a role attribute to a semantically neutral element such as a div or span ...");
             else pick (nit_role_missing, ed_aria_html, "4. Document conformance requirements for use of ARIA attributes in HTML", es_warning, ec_element, "It is ... recommended that authors add a role attribute to a semantically neutral (ancestral) element such as a div or span ...");
@@ -400,26 +401,26 @@ void element::test_for_ancestral_role (const role_bitset& permitted)
                 else pick (nit_role_missing, ed_aria_html, "4. Document conformance requirements for use of ARIA attributes in HTML", es_warning, ec_element, "The permitted values of ancestral ROLEs for <", name_, "> are ",  rpt_role_bitset (permitted)); }
 
 void element::test_for_no_ancestral_role (const role_bitset& banned)
-{   if (node_.version () >= html_aria_html)
+{   if ((node_.version () >= html_aria_html) && context.aria ())
         if (ancestral_roles_.any (banned))
             pick (nit_no_role_found, ed_aria_html, "5. Allowed descendants of ARIA roles ", es_warning, ec_element, "Do not set <", name_, "> when an ancestral element uses any ROLE ", rpt_role_bitset (banned)); }
 
 void element::test_no_role ()
-{   if (node_.version () >= html_aria_html)
+{   if ((node_.version () >= html_aria_html) && context.aria ())
         if (own_attributes_.test (a_role))
             pick (nit_aria_found, ed_aria_html, "4. Document conformance requirements for use of ARIA attributes in HTML", es_error, ec_element, "<", name_, "> should not have a ROLE attribute");
         else if (ancestral_attributes_.test (a_role))
             pick (nit_no_role_found, ed_aria_html, "4. Document conformance requirements for use of ARIA attributes in HTML", es_comment, ec_element, "<", name_, "> should not have an ancestral ROLE attribute"); }
 
 void element::test_no_role_no_aria ()
-{   if (node_.version () >= html_aria_html)
+{   if ((node_.version () >= html_aria_html) && context.aria ())
         if (own_attributes_.test (a_role) || own_attributes_.any (aria_attribute_bitset))
             pick (nit_aria_found, ed_aria_html, "4. Document conformance requirements for use of ARIA attributes in HTML", es_error, ec_element, "<", name_, "> should have neither a ROLE nor an ARIA attribute");
         else if (ancestral_attributes_.test (a_role) || ancestral_attributes_.any (aria_attribute_bitset))
             pick (nit_no_role_found, ed_aria_html, "4. Document conformance requirements for use of ARIA attributes in HTML", es_comment, ec_element, "<", name_, "> should have neither ancestral ROLE nor any ancestral ARIA attributes"); }
 
 void element::test_compatible_ancestral_role ()
-{   if (ancestral_attributes_.test (a_role) && (node_.version ().has_aria_html ()))
+{   if (ancestral_attributes_.test (a_role) && node_.version ().has_aria_html () && context.aria ())
     {   const flags_t cat = node_.id ().categories ();
         const bool flow = (cat & EF_5_FLOW) == EF_5_FLOW;
         const bool phrase = (cat & EF_5_PHRASE) == EF_5_PHRASE;
@@ -439,12 +440,106 @@ void element::test_compatible_ancestral_role ()
                     {   pick (nit_role_incompatible, ed_aria_html, "5. Allowed descendants of ARIA roles ", es_error, ec_element, "The phrase element <", name_, "> is incompatible with the ancestral role ", enum_n < t_role, e_aria_role > :: name (static_cast < e_aria_role > (n)));
                         ok = false; break; } } } }
 
+void element::check_element_role (const e_aria_role ar)
+{   if (context.aria ()) switch (ar)
+    {   case role_article :
+            if (ancestral_elements_.test (elem_article) || (tag () == elem_article))
+                pick (nit_unnecessary_role, ed_aria_mdn, "WAI-ARIA Roles", es_warning, ec_attribute, "The article role is not needed with <ARTICLE>");
+            break;
+        case role_banner :
+            if (ancestral_elements_.test (elem_header) || (tag () == elem_header))
+                pick (nit_unnecessary_role, ed_aria_mdn, "WAI-ARIA Roles", es_warning, ec_attribute, "The banner role is not needed with <HEADER>");
+            break;
+        case role_cell :
+            if (ancestral_elements_.test (elem_td) || (tag () == elem_td))
+                pick (nit_unnecessary_role, ed_aria_mdn, "WAI-ARIA Roles", es_warning, ec_attribute, "The cell role is not needed with <TD>");
+            break;
+        case role_complementary :
+            if (ancestral_elements_.test (elem_aside) || (tag () == elem_aside))
+                pick (nit_unnecessary_role, ed_aria_mdn, "WAI-ARIA Roles", es_warning, ec_attribute, "The complementary role is not needed with <ASIDE>");
+            break;
+        case role_contentinfo :
+            if (ancestral_elements_.test (elem_footer) || (tag () == elem_footer))
+                pick (nit_unnecessary_role, ed_aria_mdn, "WAI-ARIA Roles", es_warning, ec_attribute, "The contentinfo role is not needed with <FOOTER>");
+            break;
+        case role_definition :
+            if (ancestral_elements_.test (elem_dfn) || (tag () == elem_dfn))
+                pick (nit_unnecessary_role, ed_aria_mdn, "WAI-ARIA Roles", es_warning, ec_attribute, "The definition role is not needed with <DFN>");
+            break;
+        case role_figure :
+            if (ancestral_elements_.test (elem_figure) || (tag () == elem_figure))
+                pick (nit_unnecessary_role, ed_aria_mdn, "WAI-ARIA Roles", es_warning, ec_attribute, "The figure role is not needed with <FIGURE>");
+            break;
+        case role_form :
+            if (ancestral_elements_.test (elem_form) || (tag () == elem_form))
+                pick (nit_unnecessary_role, ed_aria_mdn, "WAI-ARIA Roles", es_warning, ec_attribute, "The form role is not needed with <FORM>");
+            break;
+        case role_heading :
+            if (ancestral_elements_.any (header_bitset) || header_bitset.test (tag ()))
+                pick (nit_unnecessary_role, ed_aria_mdn, "WAI-ARIA Roles", es_warning, ec_attribute, "The header role is not needed with a heading element");
+            break;
+        case role_img :
+            if (ancestral_elements_.test (elem_img) || (tag () == elem_img) || ancestral_elements_.test (elem_picture) || (tag () == elem_picture))
+                pick (nit_unnecessary_role, ed_aria_mdn, "WAI-ARIA Roles", es_warning, ec_attribute, "The img role is not needed with <IMG> or <PICTURE>");
+            break;
+        case role_list :
+            if (ancestral_elements_.test (elem_ol) || (tag () == elem_ol) || ancestral_elements_.test (elem_ul) || (tag () == elem_ul))
+                pick (nit_unnecessary_role, ed_aria_mdn, "WAI-ARIA Roles", es_warning, ec_attribute, "The list role is not needed with <OL> or <UL>");
+            break;
+        case role_listitem :
+            if (ancestral_elements_.test (elem_li) || (tag () == elem_li))
+                pick (nit_unnecessary_role, ed_aria_mdn, "WAI-ARIA Roles", es_warning, ec_attribute, "The listitem role is not needed with <LI>");
+            break;
+        case role_main :
+            if (ancestral_elements_.test (elem_main) || (tag () == elem_main))
+                pick (nit_unnecessary_role, ed_aria_mdn, "WAI-ARIA Roles", es_warning, ec_attribute, "The main role is not needed with <MAIN>");
+            break;
+        case role_meter :
+            if (ancestral_elements_.test (elem_meter) || (tag () == elem_meter))
+                pick (nit_unnecessary_role, ed_aria_mdn, "WAI-ARIA Roles", es_warning, ec_attribute, "The meter role is not needed with <METER>");
+            break;
+        case role_navigation :
+            if (ancestral_elements_.test (elem_nav) || (tag () == elem_nav))
+                pick (nit_unnecessary_role, ed_aria_mdn, "WAI-ARIA Roles", es_warning, ec_attribute, "The navigation role is not needed with <NAV>");
+            break;
+        case role_region :
+            if (ancestral_elements_.test (elem_section) || (tag () == elem_section))
+                pick (nit_unnecessary_role, ed_aria_mdn, "WAI-ARIA Roles", es_warning, ec_attribute, "The region role is not needed with <SECTION>");
+            break;
+        case role_row :
+            if (ancestral_elements_.test (elem_tr) || (tag () == elem_tr))
+                pick (nit_unnecessary_role, ed_aria_mdn, "WAI-ARIA Roles", es_warning, ec_attribute, "The row role is not needed with <TR>");
+            break;
+        case role_rowgroup :
+            if (ancestral_elements_.any (rowgroup_bitset) || rowgroup_bitset.test (tag ()))
+                pick (nit_unnecessary_role, ed_aria_mdn, "WAI-ARIA Roles", es_warning, ec_attribute, "The group role is not needed with a row group element");
+            break;
+        case role_search :
+            if (ancestral_elements_.test (elem_search) || (tag () == elem_search))
+                pick (nit_unnecessary_role, ed_aria_mdn, "WAI-ARIA Roles", es_warning, ec_attribute, "The search role is not needed with <SEARCH>");
+            break;
+        case role_separator :
+            if (ancestral_elements_.test (elem_hr) || (tag () == elem_hr))
+                pick (nit_unnecessary_role, ed_aria_mdn, "WAI-ARIA Roles", es_info, ec_attribute, "The row role might not be needed with <HR>");
+            break;
+        case role_table :
+            if (ancestral_elements_.test (elem_table) || (tag () == elem_table))
+                pick (nit_unnecessary_role, ed_aria_mdn, "WAI-ARIA Roles", es_info, ec_attribute, "The table role is not needed with <TABLE>");
+            break;
+        case role_term :
+            if (ancestral_elements_.test (elem_dfn) || (tag () == elem_dfn))
+                pick (nit_unnecessary_role, ed_aria_mdn, "WAI-ARIA Roles", es_info, ec_attribute, "The term role is not needed with <DFN>");
+            break;
+        default :
+            break; } }
+
 void element::examine_role ()
-{   if (node_.version ().has_aria_html ())
+{   if (node_.version ().has_aria_html () && context.aria ())
         if (a_.known (a_role) && a_.good (a_role))
             for (auto r : a_.get_ints (a_role))
             {   e_aria_role ar = furq_at (static_cast < e_aria_role > (r), 0);
                 if (ar == role_any) continue;
+                check_element_role (ar);
                 bool ok = false;
                 for (::std::size_t sz = 0; (ar != role_any) && ! ok; )
                     if (descendant_roles_.test (ar)) ok = true;

@@ -253,4 +253,4 @@ extern protocol_names_t protocol_names;
 extern ontology_names_t ontology_names;
 
 vsh_t rdfa_ontology_context ();
-void init_nstrs (nitpick& nits);
+void nstr_init (nitpick& nits);

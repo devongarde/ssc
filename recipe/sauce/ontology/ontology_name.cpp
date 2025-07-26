@@ -662,6 +662,7 @@ property_name namtab [] =
     { "regex", s_croissant, cp_regex, },
     { "repeated", s_croissant, cp_repeated, },
     { "replace", s_croissant, cp_replace, },
+    { "samplingRate", s_croissant, cp_samplingrate, },
     { "separator", s_croissant, cp_separator, },
     { "source", s_croissant, cp_source, },
     { "subField", s_croissant, cp_subfield, },

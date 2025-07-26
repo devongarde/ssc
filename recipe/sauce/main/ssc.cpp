@@ -92,7 +92,7 @@ void init (nitpick& nits)
     PRESUME (lexical < int > :: cast (v.at (0)) == VERSION_MAJOR, __FILE__, __LINE__);
     PRESUME (lexical < int > :: cast (v.at (1)) == VERSION_MINOR, __FILE__, __LINE__);
     PRESUME (lexical < int > :: cast (v.at (2)) == VERSION_RELEASE, __FILE__, __LINE__);
-    init_cache ();
+    cache_init ();
     state_init ();
     nits_init ();
     cycle_start (nits);
@@ -115,7 +115,7 @@ void init (nitpick& nits)
     ontology_name_init (nits);
     ontology_property_init (nits);
     ontology_version::init (nits);
-    init_nstrs (nits);
+    nstr_init (nits);
     svg_feature_init (nits);
     hierarchy_init (nits);
     microdata_init (nits);
@@ -151,14 +151,14 @@ int cycle_finish ()
             {   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
                 macro -> dump_nits (nits, ns_link, ns_link_head, ns_link_foot); }
             nits.accumulate (&overall);
-            outstr.out ("\n"); } }
+            context.os () -> out ("\n"); } }
     if (! ss.str ().empty ())
-        outstr.out (ss.str ());
+        context.os () -> out (ss.str ());
     if (context.stats (rcb_itemid))
         if (! empty_itemid ())
-            outstr.out (report_itemids ());
-    if (context.stats (rcb_summary)) report_global_stats (true);
-    if (context.tell (es_debug)) outstr.out (fileindex_report ());
+            context.os () -> out (report_itemids ());
+    if (context.stats (rcb_summary)) context.os () -> out (report_global_stats (true));
+    if (context.tell (es_debug)) context.os () -> out (fileindex_report ());
     if (overall.severity_exceeded ()) return ERROR_STATE;
     global_css.reset ();
     return VALID_RESULT; }
@@ -192,8 +192,8 @@ int examine (nitpick& nits)
             web.nits ().accumulate (&overall);
             s += web.report ();
             web.cleanup ();
-            if (context.test ()) outstr.out (START_OF_SECTION " " SNIPPET "\n");
-            outstr.out (s); }
+            if (context.test ()) context.os () -> out (START_OF_SECTION " " SNIPPET "\n");
+            context.os () -> out (s); }
         catch (...)
         {   web.cleanup (); throw; }
         return res; }
@@ -332,7 +332,7 @@ int cycle (nitpick& nits, const int argc, char** argv)
                     break; } }
         else
         {   constexpr ::std::size_t max_len = 65536;
-            outstr.out ("\n" PROG " ");
+            context.os () -> out ("\n" PROG " ");
             char* psz = new char [max_len];
             if (psz != nullptr) try
             {   *psz = 0;
@@ -352,7 +352,15 @@ int cycle (nitpick& nits, const int argc, char** argv)
         context.general_info (context.cwd ().string () + "\n" + args + "\n" VERSION_STRING " [" __DATE__  " " __TIME__ "] [" + BUILD_INFO + "]\n");
         macro -> set (nm_output_build, BUILD_INFO);
         nitpick nuts;
-        res = context.parameters (outstr, nuts, vs);
+        res = context.parameters (nuts, vs);
+        if (context.verify () && ! context.sign ())
+        {   ::std::cout << nuts.kwik ();
+            switch (nuts.worst ())
+            {   case es_undefined :
+                case es_catastrophic : return CATASTROPHIC_STATE;
+                case es_abhorrent :
+                case es_error : return ERROR_STATE;
+                default : return res; } }
         if (context.build ().empty ()) macro -> set (nm_output_build, __DATE__ " " __TIME__);
         else macro -> set (nm_output_build, context.build ());
         macro -> set (nm_output_account, get_account ());
@@ -362,15 +370,22 @@ int cycle (nitpick& nits, const int argc, char** argv)
         else macro -> set (nm_output_time, context.output_time ());
         if (! macro -> is_template_loaded ()) macro -> load_template (nuts, html_default);
         if ((context.todo () == do_simple) || context.yggdrisil ())
-        {   if (context.yggdrisil ()) outstr.console (SIMPLE_TITLE);
-            else outstr.console (FULL_TITLE);
+        {   if (context.yggdrisil ()) context.os () -> console (SIMPLE_TITLE);
+            else context.os () -> console (FULL_TITLE);
+            nuts.merge (nits);
             macro -> dump_nits (nuts, ns_config, ns_config_head, ns_config_foot);
-            outstr.console (context.domsg ());
-            return VALID_RESULT; }
+            context.os () -> console (context.domsg ());
+            context.os () -> aborting ();
+            switch (nuts.worst ())
+            {   case es_undefined :
+                case es_catastrophic : return CATASTROPHIC_STATE;
+                case es_abhorrent :
+                case es_error : return ERROR_STATE;
+                default : return res; } }
         context.apply_vcs (nuts);
         ssc_console ("\npreparing\n");
         ssc_getset ();
-        if (! context.gui ()) outstr.out (macro -> apply (ns_doc_head));
+        if (! context.gui ()) context.os () -> out (macro -> apply (ns_doc_head));
         enfooten = true;
         macro -> dump_nits (nits, ns_init, ns_init_head, ns_init_foot);
         if (context.invalid () || (context.todo () == do_booboo) || (res == ERROR_STATE) || (nuts.worst () <= es_error))
@@ -390,26 +405,27 @@ int cycle (nitpick& nits, const int argc, char** argv)
     catch (const ::std::system_error& e)
     {   msg = "catastrophic cycle system error: ";
         msg += e.what ();
-        res = ERROR_STATE; }
+        res = CATASTROPHIC_STATE; }
     catch (const ::std::exception& e)
     {   msg = "catastrophic cycle exception: ";
         msg += e.what ();
-        res = ERROR_STATE; }
+        res = CATASTROPHIC_STATE; }
     catch (...)
     {   msg = "catastrophic cycle unknown exception";
-        res = ERROR_STATE; }
+        res = CATASTROPHIC_STATE; }
     if (! enfooten)
-    {   if (! msg.empty ()) outstr.err (msg, "\n"); }
+    {   if (! msg.empty ()) context.os () -> err (msg, "\n"); }
     else try
     {   if (! msg.empty ()) macro -> set (nm_run_catastrophe, msg);
-        outstr.out (macro -> apply (ns_doc_foot));
-        if (! msg.empty ()) outstr.err (msg, "\n");
-        if (outstr.name ().empty ()) ssc_console ("finished\n");
-        else ssc_console ("results written to ", outstr.name (), "\n"); }
+        context.os () -> out (macro -> apply (ns_doc_foot));
+        if (! msg.empty ()) context.os () -> err (msg, "\n");
+        if (context.os () -> name ().empty ()) ssc_console ("finished\n");
+        else ssc_console ("results written to ", context.os () -> name (), "\n"); }
     catch (...)
     {   if (msg.empty ()) msg = "catastrophic cycle footers exception\n";
-        outstr.err (msg, "\n");
-        res = ERROR_STATE; }
+        context.os () -> err (msg, "\n");
+        res = CATASTROPHIC_STATE; }
+    if (res >= ERROR_STATE) context.os () -> aborting ();
     return res; }
 
 int ssc_main (int argc, char** argv)
@@ -427,8 +443,7 @@ int ssc_main (int argc, char** argv)
         {   res = cycle (nits, argc, argv);
             if (res == STOP_NOW) { res = VALID_RESULT; break; }
             argc = 0; }
-        while (context.iterate () || context.serve ());
-        fred.done (); }
+        while (context.iterate () || context.serve ()); }
     catch (const ::std::system_error& e)
     {   msg = "catastrophic exit system error: ";
         msg += e.what ();
@@ -461,6 +476,11 @@ int ssc_main (int argc, char** argv)
         OutputDebugString (L"*** _CrtDumpMemoryLeaks ***");
         _CrtDumpMemoryLeaks (); }
 #endif // LEAK_SEEK
+    if (! msg.empty ())
+        try
+        {   ::std::cerr << msg << ::std::endl; }
+        catch (...)
+        {   /* well and truly f***ed */ }
     return res; };
 
 void ssc_console (const ::std::string& s)
@@ -468,7 +488,7 @@ void ssc_console (const ::std::string& s)
 #ifndef WX
     if (context.progress ())
 #endif
-        outstr.console (s); }
+        context.os () -> console (s); }
 
 #ifdef WX
 void ssc_getset ()

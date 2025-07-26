@@ -27,21 +27,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "coop/lox.h"
 
 nit::nit () : code_ (nit_free), severity_ (es_illegal), category_ (ec_undefined), doc_ (ed_mishmash)
-{   if (context.nits ()) outstr.out ("adding empty nit\n"); }
+{   if (context.nits ()) context.os () -> out ("adding empty nit\n"); }
 
 nit::nit (const e_nit code, const e_doc doc, const ::std::string& ref, const e_severity severity, const e_category category, const ::std::string& msg)
     : code_ (code), severity_ (severity), category_ (category), doc_ (doc), ref_ (ref), msg_ (msg)
 {   if (context.nits ())
     {   ::std::ostringstream ss;
         ss << "adding ref nit " << severity << ", " << msg << "\n";
-        outstr.out (ss.str ()); } }
+        context.os () -> out (ss.str ()); } }
 
 nit::nit (const e_nit code, const e_severity severity, const e_category category, const ::std::string& msg)
     : code_ (code), severity_ (severity), category_ (category), doc_ (ed_mishmash), msg_ (msg)
 {   if (context.nits ())
     {   ::std::ostringstream ss;
         ss << "adding nit " << severity << ", " << msg << "\n";
-        outstr.out (ss.str ()); } }
+        context.os () -> out (ss.str ()); } }
 
 void nit::swap (nit& n) noexcept
 {   ::std::swap (code_, n.code_);
@@ -202,6 +202,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_jul23 : return "HTML 5, Jul 23";
         case ed_nov24 : return "HTML 5, Nov 24";
         case ed_jun25 : return "HTML 5, Jun 25";
+        case ed_jul25 : return "HTML 5, Jul 25";
         case ed_wx : return "wxWidgets HTML";
         case ed_owasp : return "OWASP";
         case ed_ecma : return "ECMAScript, 22.2.1 Patterns";
@@ -217,6 +218,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_aria_dp_1_1 : return "Aria Digital Publishing 1.1 (draft)";
         case ed_aria_graphics : return "Aria Graphics";
         case ed_aria_html : return "Aria in HTML";
+        case ed_aria_mdn : return "WAI-ARIA roles (MDN)";
         case ed_so_11 : return SCHEMA_ORG " 11.0";
         case ed_css_transform : return "CSS Transforms";
         case ed_mql : return "Media Queries";
@@ -302,6 +304,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_jul23 : return "HTML 5, WhatWG, July 2023";
         case ed_nov24 : return "HTML 5, WhatWG, November 2024";
         case ed_jun25 : return "HTML 5, WhatWG, June 2025";
+        case ed_jul25 : return "HTML 5, WhatWG, July 2025";
         case ed_wx : return "wxWidgets HTML, list of stable HTML tags, November 2024";
         case ed_owasp : return "Open Web Application Security Project, January 2025"; 
         case ed_prism_1 : return "Publishing Requirements for Industry Standard Metadata, Version 1.0";
@@ -341,6 +344,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_aria_dp_1_1 : return "Digital Publishing WAI-ARIA Module 1.1 (draft), February 2025";
         case ed_aria_graphics : return "WAI-ARIA Graphics Module, October 2018";
         case ed_aria_html : return "ARIA in HTML, February 2025";
+        case ed_aria_mdn : return "WAI-ARIA roles (developer.mozilla.org, June 2025)";
         case ed_apache : return "Apache 2.4 mod_include, 2020";
         case ed_css_transform : return "CSS Transforms Module Level 1, February 2019";
         case ed_so_11 : return SCHEMA_ORG " 11.0";

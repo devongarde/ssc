@@ -18,7 +18,7 @@
 </h1>
 
 <p>
-These switches allow you to control the output of SSC.
+These switches allow you to control the output of SSC, including layout and signing.
 </p>
 
 <table>
@@ -39,11 +39,33 @@ These switches allow you to control the output of SSC.
                         <a href="template.shtml">output templates</a>). This switch is intended
                         to aid automation.</td></tr>
 
-<tr><td>output.relative-path</td> <td>Report the relative web path path of a file
+<tr><td>output.password F</td> <td>If the private key is password protected, then
+                        file F contains the key&rsquo;s password. Requires
+                        <kbd>output.private</kbd>.</td></tr>
+                        
+<tr><td>output.private F</td> <td>Sign SSC&rsquo;s output&rsquo;s using the signature in file
+                        F. Requires <kbd>output.public</kbd>.</td></tr>
+                        
+<tr><td>output.public F</td> <td>File F contains the public key corresponding to
+                        that of <kbd>output.private</kbd>. Either sign or verify
+                        SSC&rsquo;s output, according to output.sign or
+                        output.verify.</td></tr>
+                        
+<tr><td>output.relative-path</td> <td>Report the relative web path of a file
                         being analysed.  Note the - in relative-path
                         is a minus, not a hyphen.</td></tr>
 
+<tr><td>output.sign</td> <td>Sign output produced by SSC. Requires
+                        <kbd>output.signature</kbd>. Note that signing always
+                        causes verification.</td></tr>
+                        
+<tr><td>output.signature F</td> <td>Write the output signature to file F.
+                        Requires <kbd>output.private</kbd>.</td></tr>
+                        
 <tr><td>output.username&nbsp;xxx</td> <td>SSC is being run by XXX.</td></tr>
+
+<tr><td>output.verify</td> <td>Verify output produced by SSC. Requires
+                        <kbd>output.public</kbd>.</td></tr>
 </table>
 
 <!--#include virtual="../plumbing/under.inc" -->

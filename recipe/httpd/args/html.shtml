@@ -110,6 +110,8 @@ The remaining switches allow you to precisely control analysis.
 </p>
 
 <table>
+<tr><td>html.aria</td> <td>Report ARIA issues.</td></tr>
+
 <tr><td>html.force</td> <td>If <kbd>&lt;!DOCTYPE&hellip;&gt;</kbd> is missing, force presumption
                         of <kbd>html.version</kbd> value, not HTML 1/tags</td></tr>
 

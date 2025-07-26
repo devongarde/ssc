@@ -360,6 +360,7 @@ const char* str_name [] =
     res += saybe (table, category_.at (ec_rudeness), "Rudeness");
     res += saybe (table, category_.at (ec_schema), "Schema");
     res += saybe (table, category_.at (ec_shadow), "Shadow");
+    res += saybe (table, category_.at (ec_signing), "Signing");
     res += saybe (table, category_.at (ec_spell), "Spelling");
     res += saybe (table, category_.at (ec_ssi), "SSI");
     res += saybe (table, category_.at (ec_fred), "Thread");

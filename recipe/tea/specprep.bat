@@ -178,6 +178,8 @@ ssc.exe -T --nits.spec -o ../out/apr24living.tst -f ../toast/living/apr24/living
 ssc.exe -T --nits.spec -o ../out/jul24living.tst -f ../toast/living/jul24/living.conf
 ssc.exe -T --nits.spec -o ../out/oct24living.tst -f ../toast/living/oct24/living.conf
 ssc.exe -T --nits.spec -o ../out/jan25living.tst -f ../toast/living/jan25/living.conf
+ssc.exe -T --nits.spec -o ../out/apr25living.tst -f ../toast/living/apr25/living.conf
+ssc.exe -T --nits.spec -o ../out/jul25living.tst -f ../toast/living/jul25/living.conf
 ssc.exe -T --nits.spec -o ../out/1math.tst -f ../toast/math/1/math.conf
 ssc.exe -T --nits.spec -o ../out/2math.tst -f ../toast/math/2/math.conf
 ssc.exe -T --nits.spec -o ../out/3math.tst -f ../toast/math/3/math.conf

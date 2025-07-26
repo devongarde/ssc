@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include <wx/fdrepdlg.h>
 #include "main/output.h"
 #include "utility/common.h"
+#include "utility/fileio.h"
 #include "gui/gui-app.h"
 #include "gui/gui-output.h"
 #include "url/url_sanitise.h"

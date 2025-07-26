@@ -163,6 +163,7 @@ class element
     void examine_ref ();
     void examine_registrationmark ();
     bool examine_rel (const ::std::string& content, const lingo& lang);
+    void check_element_role (const e_aria_role ar);
     void examine_role ();
     void examine_spellcheck (flags_t& flags);
     void examine_style_attr ();
@@ -271,7 +272,7 @@ class element
     ::std::string term () const;
 public:
     element () = delete;
-    DEFAULT_NO_COPY_NO_MOVE (element);
+    NO_COPY_NO_MOVE (element);
     element (const ::std::string& name, element_node& en, element* parent, page* p);
     ~element ();
     void swap (element& e);
