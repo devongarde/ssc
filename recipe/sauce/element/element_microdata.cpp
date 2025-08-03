@@ -65,6 +65,34 @@ void element::verify_microdata ()
         default :
             return node_.text (); } }
 
+bool element::amend_microdata_value (const html_version& v, const ::std::string& s)
+{   nitpick nits;
+    switch (tag ())
+    {   case elem_a :
+        case elem_area :
+        case elem_link :
+            return a_.set_value (nits, v, a_href, s);
+        case elem_audio :
+        case elem_embed :
+        case elem_iframe :
+        case elem_img :
+        case elem_source :
+        case elem_track :
+        case elem_video :
+            return a_.set_value (nits, v, a_src, s);
+        case elem_data :
+        case elem_meter :
+            return a_.set_value (nits, v, a_value, s);
+        case elem_meta :
+            return a_.set_value (nits, v, a_content, s);
+        case elem_object :
+            return a_.set_value (nits, v, a_data, s);
+        case elem_t :
+        case elem_time :
+            return a_.set_value (nits, v, a_datetime, s);
+        default :
+            return false; } }
+
 itemscope_ptr element::examine_itemscope (itemscope_ptr& itemscope, const bool pagify)
 {   VERIFY_NOT_NULL (page_ -> md_export (), __FILE__, __LINE__);
     itemscope_ptr new_scope (new microdata_itemscope ());
@@ -79,7 +107,7 @@ itemscope_ptr element::examine_itemscope (itemscope_ptr& itemscope, const bool p
         if (a_.known (a_itemprop))
             for (auto name : a_.get_x < attr_itemprop > ())
             {   se = true;
-                itemscope -> note_itemprop (node_.nits (), node_.version (), name, value, new_scope, *page_); }
+                itemscope -> note_itemprop (node_.nits (), node_.version (), name, value, new_scope, *this); }
         if (! se) new_scope -> set_exporter (page_ -> md_export (), page_ -> md_export () -> append_path (itemscope -> export_path (), null_itemprop, true)); }
     itemscope = new_scope;
     if (pagify)
@@ -101,8 +129,8 @@ void element::examine_itemprop (const itemscope_ptr& itemscope, itemscope_ptr& v
             const bool is_link = (tag () == elem_a) || (tag () == elem_link) || (tag () == elem_area);
             for (auto name : a_.get_x < attr_itemprop > ())
             {   if (a_.known (a_itemscope))
-                {   if (itemscope -> note_itemprop (nits (), node_.version (), name, value, valuescope, *page_)) return; }
-                else if (itemscope -> note_itemprop (nits (), node_.version (), name, value, is_link, *page_)) return;
+                {   if (itemscope -> note_itemprop (nits (), node_.version (), name, value, valuescope, *this)) return; }
+                else if (itemscope -> note_itemprop (nits (), node_.version (), name, value, is_link, *this)) return;
                 if (ancestral_attributes_.test (a_id))
                     if (ancestral_attributes_.test (a_itemscope)) pick (nit_missing_itemtype, ed_jul20, "5.2.2 Items", es_comment, ec_schema, "if the ancestral ID is not referenced by an ITEMREF elsewhere, then ", quote (name), " may require an appropriate ancestral ITEMTYPE");
                     else pick (nit_missing_itemtype, ed_jul20, "5.2.2 Items", es_info, ec_schema, "if an ancestral ID is not referenced by an ITEMREF, then ", quote (name), " requires an ancestral ITEMSCOPE, preferably with an ITEMTYPE");

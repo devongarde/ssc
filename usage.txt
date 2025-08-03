@@ -14,6 +14,8 @@ directory, and type:
 
 If it's installed correctly, it should respond with (c) info.
 
+There's also a GUI version, should you prefer something fancy(-ish).
+
 It is possible to set up configuration files, but, to start, we'll try
 a simple set of command line options. If the HTML files belonging to
 your website is located in the current directory, and the main index
@@ -22,7 +24,7 @@ file is called index.html, then all you need type is:
 ssc .
 
 and off it will go, reporting any issues it finds in all HTML files in
-the current directory and its descendants.
+the current directory and descendants.
 
 
 reports
@@ -98,7 +100,7 @@ SSC has a number of switches, including:
 A full list of switches is given by the -h switch.
 
 If you find yourself having switch problems, add -A to your command
-line to see what switches ssc has noticed. -A kiboshes other
+line to see what switches ssc has noticed. -A kyboshes other
 processing.
 
 Unfortunately, some fruity system suppliers sometimes release a buggy
@@ -125,15 +127,16 @@ A note on signing
 -----------------
 I strongly recommend you review the signing/sign-pw test.
 
-To have SSC sign its output, first use a tool, such as openssl, to
-generate a pair of RSA 256 keys in PEM format. You then use the various
-appropriate --output switches to tell ssc to sign its output. 
+To have SSC sign its output, first use a tool, such as libressl's
+openssl, to generate a pair of RSA 256 keys in PEM format. You can then
+use the various appropriate --output switches to tell ssc to sign its
+output. 
 
-SSC can verify a signed file, just as the openssl command line utility
-can do.
+SSC can verify a file it has signed.
 
-Note that I used the libressl command line utility called openssl, but
-I understand appropriate versions of openssl can be used too.
+Note that I used the libressl (https://libressl.org/) command line
+utility called openssl, but I understand appropriate versions of
+openssl itself (https://openssl.org/) can also be used.
 
 
 

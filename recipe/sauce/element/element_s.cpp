@@ -176,6 +176,16 @@ void element::examine_select ()
         else if (selectedness > 1)
             pick (nit_bad_select, ed_50, "4.10.7 The select element", es_warning, ec_attribute, "<SELECT> has no MULTIPLE yet multiple child <OPTION>s have been SELECTED"); } }
 
+void element::examine_selectedcontent ()
+{   if (node_.version ().is_5 ())
+    {   element* pbutt = get_ancestor (elem_button);
+        if (pbutt == nullptr)
+            pick (nit_bad_selectedcontent, ed_aug25, "4.10.17 The selectedcontent element", es_error, ec_element, "<SELECTEDCONTENT> should have a <BUTTON> ancestor");
+        else
+        {   element* psel = pbutt -> get_ancestor (elem_select);
+            if (psel == nullptr)
+                pick (nit_bad_selectedcontent, ed_aug25, "4.10.17 The selectedcontent element", es_error, ec_element, "the <BUTTON> ancestor of <SELECTEDCONTENT> should itself be a child of a <SELECT>"); } } }
+
 void element::examine_share ()
 {   if (! a_.known (a_href) && ! a_.known (a_src))
         pick (nit_requires_href, ed_math_3, "4.2.7.1 The share element", es_error, ec_attribute, "<SHARE> requires a SRC or an HREF");

@@ -70,8 +70,8 @@ PASS ../toast/stats/CSS-6/index.html
 
 GRAND
 Annotation:
-    circled
     black-boxed
     boxed
+    circled
   Used thrice
 ===

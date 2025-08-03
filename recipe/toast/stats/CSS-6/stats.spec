@@ -19,9 +19,9 @@ Class/Element:
   ol.toc styled once, used 0 times
 
 Content-Name:
-    page
-    heading
     chapter
+    heading
+    page
   Used thrice
 
 Element:
@@ -146,9 +146,9 @@ Font:
   3 Font used thrice
 
 Highlight:
+    bar
     foo
     sample
-    bar
   Used thrice
 
 Id:
@@ -186,10 +186,10 @@ Property:
   15 properties used 32 times
 
 Region:
-    my-flow
-    breaking-news
-    nav-link-flow
     article-flow
+    breaking-news
+    my-flow
+    nav-link-flow
   Used 4 times
 
 Scroll-Anim:
@@ -413,9 +413,9 @@ Element:
 
 GRAND
 Annotation:
-    circled
     black-boxed
     boxed
+    circled
   Used thrice
 
 Category:
@@ -423,20 +423,20 @@ Category:
 
 Character:
     alpha-2
-    silly
     beta-3
-    leo-alt-U
-    zeta
-    epsilon
     dumb
+    epsilon
     gamma
-    zeta-2
     leo-B
     leo-M
-    leo-alt-N
     leo-N
     leo-T
     leo-U
+    leo-alt-N
+    leo-alt-U
+    silly
+    zeta
+    zeta-2
   Used 15 times
 
 Class:
@@ -490,20 +490,20 @@ Class/Element:
   span.alt-U styled once, used 0 times
 
 Content-Name:
-    page
-    heading
     chapter
+    heading
+    page
   Used thrice
 
 Counter-Style:
-    triangle
-    decimal-paren
     box-corner
-    footnote
-    upper-alpha-legal
-    trinary
+    decimal-paren
     dice
+    footnote
     go
+    triangle
+    trinary
+    upper-alpha-legal
   Used 8 times
 
 Custom-Media:
@@ -571,29 +571,29 @@ Font:
   14 Font used 21 times
 
 Font-Family:
-    foo 
-    Mercury Serif 
-    Taisho Gothic 
-    Ignoble 
-    Otaru Kisa 
-    the70s 
-    fireplace 
-    Noble Script 
-    Bongo 
-    Mars Serif 
-    MM Greek 
     Athena Ruby 
+    Bongo 
+    Ignoble 
+    MM Greek 
+    Mars Serif 
+    Mercury Serif 
+    Noble Script 
+    Otaru Kisa 
+    Taisho Gothic 
+    fireplace 
+    foo 
+    the70s 
   Used 12 times
 
 Highlight:
-    sample
-    foo
     bar
+    foo
+    sample
   Used thrice
 
 Historical-Form:
-    shakespeare
     chaucer
+    shakespeare
   Used twice
 
 Id:
@@ -629,27 +629,27 @@ Keyframe:
   Used 4 times
 
 Layer:
-    plain
     base
+    plain
     support
   Used thrice
 
 Ornament:
-    robin
     doe
+    robin
   Used twice
 
 Page-Name:
-    landscapetable
     companyletterhead
+    landscapetable
     toc
   Used thrice
 
 Palette:
-    Cooler 
     Augusta 
-    ToxicGreen 
+    Cooler 
     Festival 
+    ToxicGreen 
   Used 4 times
 
 Property:
@@ -698,10 +698,10 @@ Reference:
     HTML 5.0: once
 
 Region:
-    my-flow
     article-flow
-    nav-link-flow
     breaking-news
+    my-flow
+    nav-link-flow
   Used 4 times
 
 Scroll-Anim:
@@ -731,29 +731,29 @@ Statement:
   20 statements used 90 times
 
 Styleset:
-    stacked-a
-    double-W
-    curly-quotes
-    sharp-terminals
-    stacked-g
-    geometric-m
     alt-g
     code
+    curly-quotes
+    double-W
     dumb
+    geometric-m
+    sharp-terminals
+    stacked-a
+    stacked-g
   Used 9 times
 
 Stylistic:
-    sixteen-bars
     brand-new
+    sixteen-bars
   Used twice
 
 Swash:
-    swishy
-    flowing
-    pretty
     cool
-    ornate
     double-loops
+    flowing
+    ornate
+    pretty
+    swishy
   Used 6 times
 
 Version:

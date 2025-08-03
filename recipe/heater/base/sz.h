@@ -67,6 +67,7 @@ struct sz_at { CONSTEXPR static char const* sz () { return "at"; } };
 struct sz_attr { CONSTEXPR static char const* sz () { return "attr"; } };
 struct sz_audio { CONSTEXPR static char const* sz () { return "audio"; } };
 struct sz_auto { CONSTEXPR static char const* sz () { return "auto"; } };
+struct sz_auto_add { CONSTEXPR static char const* sz () { return "auto-add"; } };
 struct sz_avoid { CONSTEXPR static char const* sz () { return "avoid"; } };
 struct sz_autoreverse { CONSTEXPR static char const* sz () { return "auto-reverse"; } };
 struct sz_b { CONSTEXPR static char const* sz () { return "B"; } };
@@ -150,6 +151,7 @@ struct sz_column_reverse { CONSTEXPR static char const* sz () { return "column-r
 struct sz_comma { CONSTEXPR static char const* sz () { return ","; } };
 struct sz_commaspace { CONSTEXPR static char const* sz () { return ", "; } };
 struct sz_command { CONSTEXPR static char const* sz () { return "command"; } };
+struct sz_compact { CONSTEXPR static char const* sz () { return "compact"; } };
 struct sz_compensate { CONSTEXPR static char const* sz () { return "compensate"; } };
 struct sz_compress { CONSTEXPR static char const* sz () { return "compress"; } };
 struct sz_conference { CONSTEXPR static char const* sz () { return "conference"; } };
@@ -423,6 +425,7 @@ struct sz_match_parent { CONSTEXPR static char const* sz () { return "match-pare
 struct sz_match_self { CONSTEXPR static char const* sz () { return "match-self"; } };
 struct sz_match_source { CONSTEXPR static char const* sz () { return "match-source"; } };
 struct sz_math { CONSTEXPR static char const* sz () { return "math"; } };
+struct sz_math_auto { CONSTEXPR static char const* sz () { return "math-auto"; } };
 struct sz_max_content { CONSTEXPR static char const* sz () { return "max-content"; } };
 struct sz_maximum_scale { CONSTEXPR static char const* sz () { return "maximum-scale"; } };
 struct sz_maybe { CONSTEXPR static char const* sz () { return "maybe"; } };

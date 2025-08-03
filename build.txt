@@ -37,20 +37,14 @@ You may need to set these environment variables:
   Windows);
 - WX_ROOT: if you're building the gui version of ssc, you'll need to
   install wxWidgets and set WX_ROOT to its installation directory.
-
-Note that the Windows solutions no longer require vcpkg; it proved too
-unreliable. However, if you wish to use it, go ahead: you may have
-better luck than me.
+- SSL: for signed output, install libreSSL, or an equivalent. Note that
+  libreSSL is built into OpenBSD and Windows 11.  You may also need to
+  #define SIGNED.
 
 hunspell
 --------
 Building SSC under unii, including macos, requires a development
 installation of hunspell (https://hunspell.github.io/).
-
-libressl
---------
-If you want SSC's output to be signed by SSC, you'll need this library
-(https://libressl.org/) or a compatible one.
 
 winspell
 --------
@@ -111,27 +105,35 @@ packages. For macos, I used macports, but I expect brew is good too.
 From the home ssc directory, compile a normal build thus:
 cmake .
 make
-ctest
 make install
 
 For a debug build:
 cmake -DCMAKE_BUILD_TYPE=Debug .
 make
-ctest
 make install
 
-If everything works correctly, then everything will be built, a series
-of tests run, with a final result at the very end saying no failures.
-Having said that, given SSC is alpha, don't be too surprised to see
-some warnings or some final test errors. Note in particular that
-complaints about being unable to find or copy files during testing are
-not of concern, these come from scripts that set up or tear down
-individual tests, and the standard commands used sometimes complain if
-they can't find files they're supposed to delete, which is a bit silly
-given that means things are already in the required state.
+If everything works correctly, then everything will be built with a
+final result at the very end saying no failures.
 
-ssc has been successfully built in OpenBSD, FreeBSD, Linux & MacOS on
-AMD64, and in recent versions of OpenBSD, Linux & MacOS under ARM64. 
+Having said that, given SSC is alpha, don't be too surprised to see
+some warnings. 
+
+You can run the test suite thus:
+ctest
+
+Note that complaints about being unable to find or copy files during
+testing are of no concern. These come from scripts that set up or tear
+down individual tests. The standard commands used sometimes
+complain if they can't find files they're supposed to delete, which is
+a bit silly given that means things are already in the desired state.
+
+Unfortunately, the spelling tests depend on the local system spell
+checker, and they're inconsistent across systems, so they're excluded
+from the unix tests.
+
+SSC has, at various times, been successfully built under OpenBSD,
+FreeBSD, (mostly Ubuntu) Linux, & MacOS, on AMD64 and ARM64
+architectures. 
 
 The current version of ssc requires the current version of an operating
 system. Older operating systems require older versions of ssc. Not all

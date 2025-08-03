@@ -284,7 +284,6 @@ PASS ../toast/living/jul19/fieldset.html
 49 inserted_missing_closure
 
 PASS ../toast/living/jul19/figcaption.html
-0 normalise
 6 inserted_missing_parent missing_close too_many_figcaption
 16 inserted_missing_closure
 
@@ -872,7 +871,6 @@ PASS ../toast/living/jul19/main1.html
 34 inserted_missing_closure
 
 PASS ../toast/living/jul19/main2.html
-0 normalise
 2 missing_close
 3 inserted_missing_parent missing_close
 5 url_not_found
@@ -1500,4 +1498,3 @@ PASS ../toast/living/jul19/wbr.html
 7 use_double_quote_code
 
 update
-0 normalise normalise

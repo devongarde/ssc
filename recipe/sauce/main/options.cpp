@@ -18,34 +18,6 @@ Licence along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
-/* content filtering, thoughts:
-
-WHITELIST  if any text not in this list is found, that's naughty
-BLACKLIST  if this text is found, that's naughty
-BLUELIST   if something naughty is found, substitute this text (think blue pencil); no bluelist entry, no substitution
-
-order of processing, deep to shallow
-1. whitelist
-2. blacklist
-e.g. if something is permitted by a whitelist then found on a blacklist, it is blacked
-
-For each section,
-MICROFORMAT=class property value
-ONTOLOGY=ontology type property value
-ATTRIBUTE=element attribute value
-ELEMENT=element value
-
-
-all args take regex (but substitution regex is for substitution)
-
-+, perhaps, a kind of cross-category generalism
-
-TEL=value
-EMAIL=value
-etc.
-
-*/
-
 #include "main/standard.h"
 #include "main/options.h"
 #include "type/type.h"
@@ -336,6 +308,9 @@ options::options (const context_t& c)
     INSERT_VSTR (SHADOW, IGNORED, shadow_ignore);
     INSERT_BOOL (SHADOW, INFO, info);
     INSERT_STRING (SHADOW, MSG, msg);
+    INSERT_VSTR (SHADOW, NAUGHTY, naughty);
+    INSERT_VSTR (SHADOW, NICE, nice);
+    INSERT_VSTR (SHADOW, NOTE, note);
     INSERT_STRING (SHADOW, ROOT, shadow_root);
     INSERT_BOOL (SHADOW, SPACING, shadow_space);
     INSERT_BOOL (SHADOW, SSI, shadow_ssi);
@@ -1125,6 +1100,9 @@ void options::init (context_t& c)
         (SHADOW INFO, ::boost::program_options::bool_switch (), "Insert the generation time in a comment at the top of shadowed pages (after --" SHADOW MSG ").")
         (SHADOW DONT INFO, ::boost::program_options::bool_switch (), "Do not insert the generation time in a comment at the top of shadowed pages.")
         (SHADOW MSG, ::boost::program_options::value < ::std::string > (), "Insert this text in a comment at the top of shadowed pages.")
+        (SHADOW NAUGHTY, ::boost::program_options::value < vstr_t > () -> composing (), "add to naughty list; may be repeated. See docs for details.")
+        (SHADOW NICE, ::boost::program_options::value < vstr_t > () -> composing (), "add to nice list; may be repeated. See docs for details.")
+        (SHADOW NOTE, ::boost::program_options::value < vstr_t > () -> composing (), "when something is naughty or not nice, use this instead; may be repeated. See docs for details.")
         (SHADOW ROOT, ::boost::program_options::value < ::std::string > (), "Shadow output root directory.")
         (SHADOW SPACING, ::boost::program_options::bool_switch (), "Merge whitespace on shadow pages. Without this option, nit line-numbers may not match shadow pages.")
         (SHADOW DONT SPACING, ::boost::program_options::bool_switch (), "Do not merge whitespace on shadow pages.")
@@ -1756,6 +1734,7 @@ void options::contextualise (context_t& c, nitpick& nits)
         process_css_level (c, c_line_grid, n, nits, CSS LINE_GRID, "Line Grid", 3);
         process_css_level (c, c_logical_property, n, nits, CSS LOGIC, "Logical Properties and Values", 3);
         process_css_level (c, c_marquee, n, nits, CSS MARQUEE, "Marquee", 3);
+        process_css_level (c, c_math_core, n, nits, CSS MATHCORE, "Math Core", 3);
         process_css_level (c, c_masking, n, nits, CSS MASKING, "Masking", 3);
         process_css_level (c, c_media_query, n, nits, CSS MEDIA, "Media", 5);
         yea_nay (c, &context_t::mobile_profile, nits, CSS MOBILE, CSS DONT MOBILE);
@@ -1941,6 +1920,9 @@ void options::contextualise (context_t& c, nitpick& nits)
         if (var_.count (SHADOW IGNORED)) c.shadow_ignore (var_ [SHADOW IGNORED].as < vstr_t > ());
         yea_nay (c, &context_t::info, nits, SHADOW INFO, SHADOW DONT INFO);
         if (var_.count (SHADOW MSG)) c.msg (var_ [SHADOW MSG].as < ::std::string > ());
+        if (var_.count (SHADOW NAUGHTY)) c.naughty (var_ [SHADOW NAUGHTY].as < vstr_t > ());
+        if (var_.count (SHADOW NICE)) c.nice (var_ [SHADOW NICE].as < vstr_t > ());
+        if (var_.count (SHADOW NOTE)) c.note (var_ [SHADOW NOTE].as < vstr_t > ());
         if (var_.count (SHADOW ROOT)) c.shadow_root (nix_path_to_local (var_ [SHADOW ROOT].as < ::std::string > ()));
         yea_nay (c, &context_t::shadow_space, nits, SHADOW SPACING, SHADOW DONT SPACING);
         yea_nay (c, &context_t::shadow_ssi, nits, SHADOW SSI, SHADOW DONT SSI);
@@ -2739,6 +2721,9 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, vstr_t, SHADOW, IGNORED, shadow);
     RB (gr, res, SHADOW, INFO, shadow);
     RG (gr, res, ::std::string, SHADOW, MSG, shadow);
+    RG (gr, res, vstr_t, SHADOW, NAUGHTY, shadow);
+    RG (gr, res, vstr_t, SHADOW, NICE, shadow);
+    RG (gr, res, vstr_t, SHADOW, NOTE, shadow);
     RG (gr, res, ::std::string, SHADOW, ROOT, shadow);
     RB (gr, res, SHADOW, SPACING, shadow);
     RB (gr, res, SHADOW, SSI, shadow);

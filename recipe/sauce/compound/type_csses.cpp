@@ -114,7 +114,7 @@ e_status set_css_col_value (nitpick& nits, const html_version& v, const ::std::s
 e_status set_css_display_1_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   if (s.empty ()) nits.pick (nit_key, es_error, ec_type, "display cannot be empty");
     nitpick nuts;
-    if (v.css_module (c_display) >= 3)
+    if ((v.css_module (c_display) >= 3) || (v.css_module (c_math_core) >= 3))
     {   if (test_value < t_css_display_3 > (nuts, v, s))
         {   nits.merge (nuts); return s_good; } }
     if (test_value < t_css_display > (nits, v, s)) return s_good;

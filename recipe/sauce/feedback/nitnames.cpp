@@ -909,6 +909,15 @@ const nitname nitnames [] =
     { nit_ssl_sulking, "ssl_sulking" },
     { nit_sign_status, "sign_status" },
     { nit_verify_status, "verify_status" },
+    { nit_bad_selectedcontent, "bad_selectedcontent" },
+    { nit_picker, "picker" },
+    { nit_security, "security" },
+    { nit_naughty_init, "naughty_init" },
+    { nit_naughty_element, "naughty_element" },
+    { nit_naughty_attribute, "naughty_attribute" },
+    { nit_naughty_microformat, "naughty_microformat" },
+    { nit_naughty_ontology, "naughty_ontology" },
+    { nit_naughty_type, "naughty_type" },
 
     { nit_incompatible, "incompatible" },
 

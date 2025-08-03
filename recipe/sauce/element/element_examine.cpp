@@ -198,12 +198,13 @@ void element::post_examine_element ()
         case elem_object : examine_object (); break;
         case elem_option : examine_option (); break;
         case elem_output : examine_output (); break;
-        case elem_select : examine_select (); break;
         case elem_piecewise : examine_piecewise (); break;
         case elem_picture : examine_picture (); break;
         case elem_reln : examine_equation (); break;
         case elem_ruby : examine_ruby (); break;
         case elem_script : examine_script (); break;
+        case elem_select : examine_select (); break;
+        case elem_selectedcontent : examine_selectedcontent (); break;
         case elem_source : examine_source (); break;
         case elem_switch : examine_switch (); break;
         case elem_table : examine_table (); break;
@@ -476,6 +477,12 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
                 note_reply < rsvp_at > ();
                 note_reply < bookmark_of_at > (); }
             mf_ -> verify (nits (), node_.version ()); }
+    if (context.lists ())
+    {   const ::std::string& s (node_.text ());
+        if (context.naughty_test (tag, s))
+            if (has_naughty_text (s))
+            {   nits ().pick (nit_naughty_element, es_info, ec_naughty, "ignorance is strength: concealing ", quote (s));
+                replace_naughty_text (s, context.naughty_sub (tag)); } }
     examined_ = true; }
 
 void element::examine_children (const flags_t flags, const lingo& lang)

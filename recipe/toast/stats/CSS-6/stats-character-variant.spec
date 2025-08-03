@@ -71,19 +71,19 @@ PASS ../toast/stats/CSS-6/index.html
 GRAND
 Character:
     alpha-2
-    silly
     beta-3
-    leo-alt-U
-    zeta
-    epsilon
     dumb
+    epsilon
     gamma
-    zeta-2
     leo-B
     leo-M
-    leo-alt-N
     leo-N
     leo-T
     leo-U
+    leo-alt-N
+    leo-alt-U
+    silly
+    zeta
+    zeta-2
   Used 15 times
 ===

@@ -5713,7 +5713,10 @@ microdata_structure ontology_structure [] =
     { { 28, 0 }, { 0, 0 }, sch_offershippingdetails, sp_validformembertier },
     { { 15, 0 }, { 0, 0 }, sch_offershippingdetails, sp_weight },
     { { 15, 0 }, { 0, 0 }, sch_offershippingdetails, sp_width },
-    { { 28, 0 }, { 0, 0 }, sch_organisation, sp_hasmemberprogramme },
+
+    { { 30, 0 }, { 0, 0 }, sch_onlinestore, sp_isstoreon },
+
+    { { 30, 0 }, { 0, 0 }, sch_onlinemarketplace, sp_hasstore },
 
     { { 0, 99 }, { 0, 0 }, sch_openinghoursspecification, sp_closes },
     { { 0, 99 }, { 0, 0 }, sch_openinghoursspecification, sp_dayofweek },
@@ -5789,6 +5792,7 @@ microdata_structure ontology_structure [] =
     { { 3, 9 }, { 0, 0 }, sch_organisation, sp_hascredential },
     { { 27, 0 }, { 0, 0 }, sch_organisation, sp_hasgs1digitallink },
     { { 29, 0 }, { 0, 0 }, sch_organisation, sp_hasshippingservice },
+    { { 28, 0 }, { 0, 0 }, sch_organisation, sp_hasmemberprogramme },
     { { 6, 0 }, { 0, 0 }, sch_organisation, sp_hasmerchantreturnpolicy },
     { { 2, 2 }, { 0, 0 }, sch_organisation, sp_hasoffercatalogue },
     { { 0, 99 }, { 0, 0 }, sch_organisation, sp_haspos },

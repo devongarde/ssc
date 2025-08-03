@@ -57,6 +57,7 @@ class element_node
     rdf_ptr find_rdfa_parent () const noexcept;
     ::std::string word (bool simplify) const;
     ::std::string word (nitpick& nits, const html_version& v) const;
+    bool inner_replace_naughty_text (const ::std::string& t, const ::std::string& s, const bool clear);
 public:
     DEFAULT_CONSTRUCTORS (element_node);
     element_node (nitpick& nits, elements_node* box, const int line, const bool closure, element_node* parent, element_node* child, element_node* next, element_node* previous, const e_element tag, const bool presumed);
@@ -71,7 +72,8 @@ public:
     ::std::size_t attribute_count () const noexcept { return va_.size (); }
     ::std::string text (const bool simplify = false);
     ::std::string raw () const { return raw_; }
-    void set_raw (const ::std::string& raw) { raw_ = raw; }
+    void set_raw (const ::std::string& raw)
+    {   raw_ = raw; } 
     int line () const noexcept { return line_; }
     bool invalid () const noexcept { return elem_.unknown (); }
     bool is_closure () const noexcept { return closure_; }
@@ -149,4 +151,6 @@ public:
 
     e_element tag () const noexcept;
     vstr_t words (nitpick& nits, const html_version& v) const;
+    bool has_naughty_text (const ::std::string& s) const;
+    bool replace_naughty_text (const ::std::string& t, const ::std::string& s, const bool checked = false);
     ::std::string rpt (const int level = 0); };

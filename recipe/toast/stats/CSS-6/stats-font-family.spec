@@ -70,17 +70,17 @@ PASS ../toast/stats/CSS-6/index.html
 
 GRAND
 Font-Family:
-    foo 
-    Mercury Serif 
-    Taisho Gothic 
-    Ignoble 
-    Otaru Kisa 
-    the70s 
-    fireplace 
-    Noble Script 
-    Bongo 
-    Mars Serif 
-    MM Greek 
     Athena Ruby 
+    Bongo 
+    Ignoble 
+    MM Greek 
+    Mars Serif 
+    Mercury Serif 
+    Noble Script 
+    Otaru Kisa 
+    Taisho Gothic 
+    fireplace 
+    foo 
+    the70s 
   Used 12 times
 ===

@@ -314,6 +314,7 @@ void element_node::prepare_namespaces ()
     {   namespaces_.reset (new namespaces_t);
         VERIFY_NOT_NULL (namespaces_.get (), __FILE__, __LINE__);
         namespaces_ -> up (find_namespace_parent ().get ()); } }
+
 namespaces_ptr element_node::namespaces () const noexcept
 {   if (namespaces_.get () != nullptr) return namespaces_;
     return find_namespace_parent (); }
@@ -323,6 +324,7 @@ void element_node::prepare_prefixes ()
     {   prefixes_.reset (new prefixes_t);
         VERIFY_NOT_NULL (prefixes_.get (), __FILE__, __LINE__);
         prefixes_ -> up (find_prefixes_parent ().get ()); } }
+
 prefixes_ptr element_node::prefixes () const noexcept
 {   if (prefixes_.get () != nullptr) return prefixes_;
     return find_prefixes_parent (); }
@@ -332,6 +334,7 @@ void element_node::prepare_rdf_schemas ()
     {   rdf_schemas_.reset (new prefixes_t);
         VERIFY_NOT_NULL (rdf_schemas_.get (), __FILE__, __LINE__);
         rdf_schemas_ -> up (find_rdf_schemas_parent ().get ()); } }
+
 prefixes_ptr element_node::rdf_schemas () const noexcept
 {   if (rdf_schemas_.get () != nullptr) return rdf_schemas_;
     return find_rdf_schemas_parent (); }
@@ -366,3 +369,42 @@ e_element element_node::tag () const noexcept
 
 vstr_t element_node::words (nitpick& nits, const html_version& v) const
 {   return split_by_space (inner_text (nits, v)); }
+
+bool element_node::has_naughty_text (const ::std::string& s) const
+{   if ((tag () == elem_faux_text) || (tag () == elem_faux_comment))
+        if (    ::boost::regex_search (text_, ::boost::regex (s)) ||
+                ::boost::regex_search (raw_, ::boost::regex (s)) ||
+                ::boost::regex_search (sanitised_, ::boost::regex (s)))
+            return true;
+    for (element_node* kids = child_; kids != nullptr; kids = kids -> next_)
+    {   VERIFY_NOT_NULL (kids, __FILE__, __LINE__);
+        if (kids -> has_naughty_text (s)) return true; }
+    return false; }
+
+bool element_node::inner_replace_naughty_text (const ::std::string& t, const ::std::string& s, const bool clear)
+{   bool res = clear;
+    for (element_node* kids = child_; kids != nullptr; kids = kids -> next_)
+    {   VERIFY_NOT_NULL (kids, __FILE__, __LINE__);
+        if (kids -> inner_replace_naughty_text (t, s, res)) res = true; }
+    if ((tag () == elem_faux_text) || (tag () == elem_faux_comment))
+        if (! res &&
+            (   ::boost::regex_search (text_, ::boost::regex (t)) ||
+                ::boost::regex_search (raw_, ::boost::regex (t)) ||
+                ::boost::regex_search (sanitised_, ::boost::regex (t))))
+        {   text_ = raw_ = s;
+            checked_sanitised_ = false;
+            res = true; }
+        else
+        {   raw_.clear (); text_.clear (); sanitised_.clear (); }
+    return res; }
+
+bool element_node::replace_naughty_text (const ::std::string& t, const ::std::string& s, const bool checked)
+{   if (! checked) if (inner_replace_naughty_text (t, s, false)) return true;
+    if ((tag () == elem_faux_text) || (tag () == elem_faux_comment))
+    {   text_ = raw_ = s;
+        checked_sanitised_ = false;
+        return true; }
+    for (element_node* kids = child_; kids != nullptr; kids = kids -> next_)
+    {   VERIFY_NOT_NULL (kids, __FILE__, __LINE__);
+        if (kids -> replace_naughty_text (t, s, true)) return true; }
+    return false; }

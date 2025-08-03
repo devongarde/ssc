@@ -136,7 +136,8 @@ Paste an HTML snippet, review the options, &amp; Submit.
 <option value="2024/07/01">HTML 5 Living Standard July 2024</option>
 <option value="2024/10/01">HTML 5 Living Standard October 2024</option>
 <option value="2025/01/01">HTML 5 Living Standard January 2025</option>
-<option value="2025/01/01" selected>HTML 5 Living Standard April 2025</option>
+<option value="2025/04/01">HTML 5 Living Standard April 2025</option>
+<option value="2025/07/01" selected>HTML 5 Living Standard July 2025</option>
 <option value="2005/07/01">WebApps January 2005</option>
 <option value="2005/01/01">WebApps July 2005</option>
 <option value="2006/07/01">WebApps January 2006</option>
@@ -159,8 +160,8 @@ Paste an HTML snippet, review the options, &amp; Submit.
 <option value=1>MathML 1</option>
 <option value=2>MathML 2</option>
 <option value=3 selected>MathML 3</option>
-<option value=4>MathML 4</option>
-<option value=4>MathML 4 core</option>
+<option value=4>core</option>
+<option value=4>MathML 4 (draft)</option>
 </select>
 
 <br><br>

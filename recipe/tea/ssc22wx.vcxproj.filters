@@ -1485,6 +1485,9 @@
     <Filter Include="Toast\Other\vtt">
       <UniqueIdentifier>{75228d61-6a53-4281-bfbf-a9325827d343}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\Other\lists">
+      <UniqueIdentifier>{eb2efdd3-60f2-4e9d-8fe4-6aca90800b31}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -2274,6 +2277,9 @@
       <Filter>Heater\utility</Filter>
     </ClInclude>
     <ClInclude Include="..\heater\utility\fileio.h">
+      <Filter>Heater\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\heater\utility\list.h">
       <Filter>Heater\utility</Filter>
     </ClInclude>
   </ItemGroup>
@@ -3209,6 +3215,9 @@
       <Filter>Sauce\webpage</Filter>
     </ClCompile>
     <ClCompile Include="..\sauce\utility\fileio.cpp">
+      <Filter>Sauce\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\utility\list.cpp">
       <Filter>Sauce\utility</Filter>
     </ClCompile>
   </ItemGroup>
@@ -40928,6 +40937,18 @@
     </None>
     <None Include="..\toast\other\vtt\1.1.vtt">
       <Filter>Toast\Other\vtt</Filter>
+    </None>
+    <None Include="..\toast\other\lists\lists.spec">
+      <Filter>Toast\Other\lists</Filter>
+    </None>
+    <None Include="..\toast\other\lists\index.html">
+      <Filter>Toast\Other\lists</Filter>
+    </None>
+    <None Include="..\toast\other\lists\lists.conf">
+      <Filter>Toast\Other\lists</Filter>
+    </None>
+    <None Include="..\toast\other\lists\lists.ndx">
+      <Filter>Toast\Other\lists</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

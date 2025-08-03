@@ -70,9 +70,9 @@ PASS ../toast/stats/CSS-6/index.html
 
 GRAND
 Content-Name:
-    page
-    heading
     chapter
+    heading
+    page
   Used thrice
 
 ===

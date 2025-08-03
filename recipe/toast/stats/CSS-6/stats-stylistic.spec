@@ -70,8 +70,8 @@ PASS ../toast/stats/CSS-6/index.html
 
 GRAND
 Stylistic:
-    sixteen-bars
     brand-new
+    sixteen-bars
   Used twice
 
 ===

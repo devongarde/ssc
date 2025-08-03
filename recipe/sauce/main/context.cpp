@@ -566,4 +566,5 @@ void context_t::check_consistency (nitpick& nits)
             if (! borked)
                 os_ -> consolidate (nits, public_, private_, pw, signature_);
             return; }
-    os_ -> depre (nits); }
+    os_ -> depre (nits);
+    tim_.init (version_, nits, naughty_, nice_, note_); }

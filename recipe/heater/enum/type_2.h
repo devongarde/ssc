@@ -148,6 +148,10 @@ template < > struct type_master < t_colour_scheme > : two_value < t_colour_schem
 template < > struct type_master < t_colourspace > : two_value < t_colourspace, e_colourspace, sz_display_p3, sz_limited_srgb >
 { using two_value < t_colourspace, e_colourspace, sz_display_p3, sz_limited_srgb > :: two_value; };
 
+template < > struct type_master < t_compact_normal > : two_value < t_compact_normal, e_compact_normal, sz_compact, sz_normal >
+{ using two_value < t_compact_normal, e_compact_normal, sz_compact, sz_normal > :: two_value; };
+
+
 template < > struct type_master < t_compositing > : two_value < t_compositing, e_compositing, sz_normal, sz_knockout >
 { using two_value < t_compositing, e_compositing, sz_normal, sz_knockout > :: two_value; };
 
@@ -156,6 +160,9 @@ template < > struct type_master < t_connect > : two_value < t_connect, e_connect
 
 template < > struct type_master < t_contain_cover > : two_value < t_contain_cover, e_contain_cover, sz_contain, sz_cover >
 { using two_value < t_contain_cover, e_contain_cover, sz_contain, sz_cover > :: two_value; };
+
+template < > struct type_master < t_css_content_fixed > : two_value < t_css_content_fixed, e_css_content_fixed, sz_content, sz_fixed >
+{ using two_value < t_css_content_fixed, e_css_content_fixed, sz_content, sz_fixed > :: two_value; };
 
 template < > struct type_master < t_coordinatesystem > : two_value < t_coordinatesystem, e_gradientunits, sz_userspaceonuse, sz_objectboundingbox >
 { using two_value < t_coordinatesystem, e_gradientunits, sz_userspaceonuse, sz_objectboundingbox > :: two_value; };

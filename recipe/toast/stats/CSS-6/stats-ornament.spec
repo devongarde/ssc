@@ -70,7 +70,7 @@ PASS ../toast/stats/CSS-6/index.html
 
 GRAND
 Ornament:
-    robin
     doe
+    robin
   Used twice
 ===

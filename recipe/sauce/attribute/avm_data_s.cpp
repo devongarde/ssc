@@ -114,6 +114,10 @@ hav_t havt_select [] =
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_select),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
+hav_t havt_selectedcontent [] =
+{   STANDARD_HTML5_ATTRIBUTES (elem_selectedcontent),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
 hav_t havt_selector [] =
 {   MATH3_DEFS_ATTRIBUTES (elem_selector),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };

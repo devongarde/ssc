@@ -215,6 +215,7 @@ ssc.exe -f ../toast/other/dump/dump.conf
 ssc.exe -f ../toast/other/ie/ie.conf
 ssc.exe -f ../toast/other/ignore/ignore.conf
 ssc.exe -f ../toast/other/incorrectness/incorrectness.conf
+ssc.exe -f ../toast/other/lists/lists.conf
 ssc.exe -f ../toast/other/nits/nits.conf
 ssc.exe -f ../toast/other/parsing/parsing.conf
 ssc.exe -f ../toast/other/pattern/pattern.conf
@@ -266,6 +267,10 @@ ssc.exe -f ../toast/shadow/soft/soft.conf
 ssc.exe -f ../toast/shadow/softover/softover.conf
 ssc.exe -f ../toast/shadow/ssi/ssi.conf
 ssc.exe -f ../toast/shadow/update/update.conf
+ssc.exe -f ../toast/signing/sign/sign.conf
+ssc.exe -f ../toast/signing/verify/verify.conf
+ssc.exe -f ../toast/signing/sign-pw/sign-pw.conf
+ssc.exe -f ../toast/signing/verify-pw/verify-pw.conf
 ssc.exe -f ../toast/snippet/conf/snippet.conf
 ssc.exe -f ../toast/snippet/kiwi/snippet.conf
 ssc.exe -f ../toast/spell/case/spell.conf

@@ -197,6 +197,8 @@ public:
     {   return ((categories () & EF_CSS) != 0); }
     bool is_math () const noexcept
     {   return ((categories () & (EF_MATH | EF_X_MATH)) != 0); }
+    bool is_rdf () const noexcept
+    {   return ((categories () & EF_RDF) != 0); }
     bool is_svg () const noexcept
     {   return ((categories () & EF_SVG_CATMASK) != 0); }
     bool is_transparent (const html_version& v) const noexcept;

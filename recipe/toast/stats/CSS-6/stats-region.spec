@@ -70,10 +70,10 @@ PASS ../toast/stats/CSS-6/index.html
 
 GRAND
 Region:
-    my-flow
     article-flow
-    nav-link-flow
     breaking-news
+    my-flow
+    nav-link-flow
   Used 4 times
 
 ===

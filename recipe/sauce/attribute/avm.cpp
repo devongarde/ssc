@@ -90,10 +90,10 @@ void avm_init (nitpick& )
             havt_render [], havt_root [], havt_rp [], havt_rt [], havt_rtc [], havt_ruby [], havt_rule [], havt_rdf_1 [], havt_rdf_2 [], havt_rdf_3 [], havt_rdf_4 [], havt_rdf_5 [], havt_rdf_6 [],
             havt_rdf_7 [], havt_rdf_8 [], havt_rdf_9 [], havt_rdf_about [], havt_rdf_abouteach [], havt_rdf_abouteachprefix [], havt_rdf_alt [], havt_rdf_bag [], havt_rdf_bagid [], havt_rdf_datatype [],
             havt_rdf_description [], havt_rdf_id [], havt_rdf_li [], havt_rdf_nodeid [], havt_rdf_parsetype [], havt_rdf_rdf [], havt_rdf_resource [], havt_rdf_seq [],
-        havt_s [], havt_samp [], havt_scalarproduct [], havt_script [], havt_search [], havt_sdev [], havt_sec [], havt_sech [], havt_section [], havt_select [], havt_selector [], havt_semantics [], havt_sep [],
-            havt_separator [], havt_set [], havt_setdiff [], havt_shadow [], havt_share [], havt_sidebar [], havt_sin [], havt_sinh [], havt_slot [], havt_small [], havt_solidcolour [], havt_source [],
-            havt_span [], havt_spot [], havt_sqrt [], havt_stop [], havt_stoppropagation [], havt_strike [], havt_strong [], havt_style [], havt_sub [], havt_subset [], havt_sum [], havt_summary [],
-            havt_sup [], havt_svg [], havt_switch [], havt_symbol [],
+        havt_s [], havt_samp [], havt_scalarproduct [], havt_script [], havt_search [], havt_sdev [], havt_sec [], havt_sech [], havt_section [], havt_select [], havt_selectedcontent [], havt_selector [],
+            havt_semantics [], havt_sep [], havt_separator [], havt_set [], havt_setdiff [], havt_shadow [], havt_share [], havt_sidebar [], havt_sin [], havt_sinh [], havt_slot [], havt_small [],
+            havt_solidcolour [], havt_source [], havt_span [], havt_spot [], havt_sqrt [], havt_stop [], havt_stoppropagation [], havt_strike [], havt_strong [], havt_style [], havt_sub [], havt_subset [],
+            havt_sum [], havt_summary [], havt_sup [], havt_svg [], havt_switch [], havt_symbol [],
         havt_t [], havt_tab [], havt_tabbox [], havt_table [], havt_tan [], havt_tanh [], havt_tbody [], havt_tbreak [], havt_td [], havt_template [], havt_tendsto [], havt_text [], havt_textarea [],
             havt_textpath [], havt_tfoot [], havt_th [], havt_thead [], havt_tilde [], havt_time [], havt_times [], havt_title [], havt_tr [], havt_track [], havt_traitdef [], havt_transformer [],
             havt_transition [], havt_transpose [], havt_tref [], havt_true [], havt_tspan [], havt_tt [],
@@ -554,6 +554,7 @@ void avm_init (nitpick& )
     AVM_INIT (sech);
     AVM_INIT (section);
     AVM_INIT (select);
+    AVM_INIT (selectedcontent);
     AVM_INIT (selector);
     AVM_INIT (semantics);
     AVM_INIT (sep);

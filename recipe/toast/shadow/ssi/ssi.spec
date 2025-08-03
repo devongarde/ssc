@@ -6,5 +6,9 @@ PASS ../toast/shadow/ssi/index.html
 PASS ../toast/shadow/ssi/ssi.html
 9 naughty_lang
 
+PASS ../toast/shadow/ssi/var.html
+0 unrecognised_value unrecognised_value
+2 naughty_lang
+
 shadow
 0 shadow

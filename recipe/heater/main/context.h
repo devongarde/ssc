@@ -89,9 +89,9 @@ class context_t
     static ::boost::filesystem::path cwd_;
     vstr_t          abhorrent_, attrib_, catastrophe_, cmd_, comment_, css_ext_ = { CSS_EXT }, custom_elements_, debug_,
                     dict_, dlang_, elem_, elem_attrib_, environment_, error_, exclude_, exports_, extensions_ = { HTML_EXT },
-                    inform_, ignore_, jsonld_ext_, jsonld_key_, jsonld_ont_, jsonld_val_, output_description_, no_ex_check_ = { JSONLD_EXT },
-                    pretend_, report_, shadow_ignore_, shadows_, silent_, site_, spell_list_, spellings_, vtt_ext_ = { VTT_EXT },
-                    warning_, virtuals_, vont_;
+                    inform_, ignore_, jsonld_ext_, jsonld_key_, jsonld_ont_, jsonld_val_, output_description_, naughty_, nice_,
+                    no_ex_check_ = { JSONLD_EXT }, note_, pretend_, report_, shadow_ignore_, shadows_, silent_, site_, spell_list_,
+                    spellings_, vtt_ext_ = { VTT_EXT }, warning_, virtuals_, vont_;
     vvstr_t         vvext_;
     static ustr_t   validation_;
     e_svg_processing_mode svg_mode_ = spm_none;
@@ -100,7 +100,7 @@ class context_t
     aset_t          rpt_;
     ::std::time_t   ssi_date_ = 0, ssi_lastmod_ = 0;
     os_ptr          os_;
-    wblist          black_, white_;
+    wblist          tim_;
 #ifdef LEAK_SEEK
 public:
     static _CrtMemState ls_old_;
@@ -267,7 +267,10 @@ public:
     context_t& mozilla (const bool b) { mozilla_ = b; mac (nm_context_mozilla, b); return *this; }
     context_t& msg (const ::std::string& s) { msg_ = s; return *this; }
     context_t& netscape (const bool b) { netscape_ = b; mac (nm_context_netscape, b); return *this; }
+    context_t& naughty (const vstr_t& s) { naughty_ = s; mac (nm_context_naughty, s); return *this; }
+    context_t& nice (const vstr_t& s) { nice_ = s; mac (nm_context_nice, s); return *this; }
     context_t& nids (const bool b) noexcept { nids_ = b; return *this; }
+    context_t& note (const vstr_t& s) { note_ = s; mac (nm_context_note, s); return *this; }
     context_t& output_format (const ::std::string& nf)
     {   output_format_ = nf;
         VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
@@ -499,7 +502,10 @@ public:
     bool mozilla () const noexcept { return mozilla_; }
     const ::std::string& msg () const { return msg_; }
     bool netscape () const noexcept { return netscape_; }
+    const vstr_t& naughty () const { return naughty_; }
+    const vstr_t& nice () const { return nice_; }
     bool nids () const noexcept { return nids_; }
+    const vstr_t& note () const { return note_; }
     const ::std::string& output_format () const
     {   if (output_override_.empty ()) return output_format_;
         return output_override_; }
@@ -621,6 +627,32 @@ public:
         return n <= verbose_; }
     ustr_t& validation () noexcept { return validation_; }
     const ustr_t& validation () const noexcept { return validation_; }
+    bool lists () const
+    {   return ! tim_.empty (); }
+    bool naughty_test (const ::std::string& s) const
+    {   return tim_.test (s); }
+    bool naughty_test (const e_element e, const ::std::string& s) const
+    {   return tim_.test (e, s); }
+    bool naughty_test (const e_element e, const e_attribute a, const ::std::string& s) const
+    {   return tim_.test (e, a, s); }
+    bool naughty_test (const e_ontology_property p, const ::std::string& s) const 
+    {   return tim_.test (p, s); }
+    bool naughty_test (const e_property c, const ::std::string& s) const 
+    {   return tim_.test (c, s); }
+    bool naughty_test (const e_type t, const ::std::string& s) const 
+    {   return tim_.test (t, s); }
+    ::std::string naughty_sub () const
+    {   return tim_.sub (); }
+    ::std::string naughty_sub (const e_element e) const
+    {   return tim_.sub (e); }
+    ::std::string naughty_sub ( const e_element e, const e_attribute a) const
+    {   return tim_.sub (e, a); }
+    ::std::string naughty_sub (const e_ontology_property p) const
+    {   return tim_.sub (p); }
+    ::std::string naughty_sub (const e_property c) const
+    {   return tim_.sub (c); }
+    ::std::string naughty_sub (const e_type t) const
+    {   return tim_.sub (t); }
     bool profile_checks () const { return version_.profile_checks (); }
     bool mobile_profile () const { return version_.mobile_profile (); }
     bool print_profile () const { return version_.print_profile (); }

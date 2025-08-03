@@ -572,8 +572,8 @@ bool if_args (::std::string& ln, nitpick& nits, const html_version& v, const pag
 
 ::std::string hereabouts (const ::std::string::const_iterator b, ::std::string::const_iterator e)
 {   if (GSL_NARROW_CAST <::std::size_t> (e - b) > max_separation)
-        return unify_whitespace (::std::string (b, b + max_separation - 1));
-    return unify_whitespace (::std::string (b, e)); }
+        return unify_nlspace (::std::string (b, b + max_separation - 1));
+    return unify_nlspace (::std::string (b, e)); }
 
 void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, const ::std::string::const_iterator i, ::std::string::const_iterator e, bool& warned)
 {   if (i >= e - 1) return;
@@ -601,7 +601,7 @@ void test_for_oops (nitpick& nits, int line, ::std::string::const_iterator b, co
         warned = true; }
     if (GSL_NARROW_CAST <::std::size_t> (i - b) > max_separation) b = i - max_separation;
     if (GSL_NARROW_CAST <::std::size_t> (e - i) > max_separation) e = i + max_separation;
-    nits.set_context (line, unify_whitespace (::std::string (b, e)));
+    nits.set_context (line, unify_nlspace (::std::string (b, e)));
     nits.pick (nit_ssi_syntax, severity, ec_ssi, msg); }
 
 void splurt (nitpick& , const char* wot, const ::std::string::const_iterator i)

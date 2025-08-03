@@ -15955,6 +15955,7 @@ microdata_hierachy ontology_hierarchy [] =
     { { 1, 92 }, { 0, 0 }, sch_orderstatus, sch_orderproblem },
     { { 1, 92 }, { 0, 0 }, sch_orderstatus, sch_orderprocessing },
     { { 1, 92 }, { 0, 0 }, sch_orderstatus, sch_orderreturned },
+    { { 30, 0 }, { 0, 0 }, sch_onlinestore, sch_onlinemarketplace },
     { { 1, 20 }, { 0, 0 }, sch_organisation, sch_airline },
     { { 3, 5 }, { 0, 0 }, sch_organisation, sch_consortium },
     { { 29, 1 }, { 0, 0 }, sch_organisation, sch_cooperative },

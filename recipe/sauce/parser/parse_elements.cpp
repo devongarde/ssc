@@ -237,7 +237,7 @@ element_node* elements_node::insert_closed (const html_version& v, element_node*
 element_node* elements_node::insert_open (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id)
 {   return insert_non_closure (v, previous, parent, ket, id, true); }
 
-element_node* elements_node::insert  (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id)
+element_node* elements_node::insert (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id)
 {   if (ket.closed_ || id.is_unclosed (v)) return insert_closed (v, previous, parent, ket, id);
     if (id.is_closed (v))
     {   if (v.xhtml ()) ket.nits_.pick (nit_xhtml_missing_slash, es_error, ec_element, "in ", v.report (), ", closed elements must use the <... /> syntax");

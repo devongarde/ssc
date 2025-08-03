@@ -49,7 +49,7 @@ CSS 1 / 2.0 / 2.1 / 2.2-draft, 2007-<!--#echo encoding="none" var="latest-CSS" -
 SVG 1.0 / 1.1 / 1.2 Tiny / 1.2 Full / 2.0 / 2.x-draft
 </li>
 <li>
-MathML 1 / 2 / 3 / 4-draft
+MathML 1 / 2 / 3 / core / 4-draft
 </li>
 <li>
 XHTML 1.0 / 1.1 / 2.0 / 5.x
@@ -211,7 +211,7 @@ any ndx file or other pre&ndash;existing file used during the run;
 any known workarounds, fixes or solutions;
 </li>
 <li>
-a video of a dance interpretation of the issue.
+a video of a dance interpretation of the issue (might just be optional, this).
 </li>
 </ul>
 
@@ -298,7 +298,7 @@ most cursory.
 </p>
 
 <p>
-Then came the cow flu*.
+Then came the cow flu<sup>*</sup>.
 </p>
 
 <p>
@@ -306,8 +306,8 @@ Hence <!--#echo encoding="none" var="short" --> is a covid project that grew out
 </p>
 
 <p>
-* corvid means crow, thus covid means cow**.<br>
-** by the laws of sympathetic spelling.
+<sup>*</sup> corvid means crow, thus covid means cow<sup>**</sup>.<br>
+<sup>**</sup> by the laws of sympathetic spelling.
 </p>
 
 

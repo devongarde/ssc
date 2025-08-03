@@ -70,8 +70,8 @@ PASS ../toast/stats/CSS-6/index.html
 
 GRAND
 Layer:
-    plain
     base
+    plain
     support
   Used thrice
 ===

@@ -1500,6 +1500,12 @@
     <Filter Include="Toast\Signing\verify-pw">
       <UniqueIdentifier>{6052dc65-b353-4747-8272-9da8a9ca42e8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Toast\CSS\3-fcs">
+      <UniqueIdentifier>{110164eb-22d2-40f9-83f1-8c4803d2b669}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Other\lists">
+      <UniqueIdentifier>{b5582ca5-42ea-4087-8a85-8314f87b32b9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\heater\attribute\attr.h">
@@ -38685,9 +38691,6 @@
     <None Include="..\toast\shadow\ssi\var.html">
       <Filter>Toast\Shadow\ssi</Filter>
     </None>
-    <None Include="..\toast\tmp\ssi\var.html.model">
-      <Filter>Toast\Shadow\ssi</Filter>
-    </None>
     <None Include="..\toast\HTML\wx\index.html">
       <Filter>Toast\HTML\wx</Filter>
     </None>
@@ -42065,6 +42068,51 @@
     </None>
     <None Include="..\toast\signing\verify-pw\x509v3.cnf">
       <Filter>Toast\Signing\verify-pw</Filter>
+    </None>
+    <None Include="..\toast\css\3-fcs\css.conf">
+      <Filter>Toast\CSS\3-fcs</Filter>
+    </None>
+    <None Include="..\toast\css\3-fcs\css.spec">
+      <Filter>Toast\CSS\3-fcs</Filter>
+    </None>
+    <None Include="..\toast\css\3-fcs\css-2.css">
+      <Filter>Toast\CSS\3-fcs</Filter>
+    </None>
+    <None Include="..\toast\css\3-fcs\index.html">
+      <Filter>Toast\CSS\3-fcs</Filter>
+    </None>
+    <None Include="..\toast\css\3-fcs\css-3.css">
+      <Filter>Toast\CSS\3-fcs</Filter>
+    </None>
+    <None Include="..\toast\css\3-fcs\css-4.css">
+      <Filter>Toast\CSS\3-fcs</Filter>
+    </None>
+    <None Include="..\toast\css\3-fcs\css-6.css">
+      <Filter>Toast\CSS\3-fcs</Filter>
+    </None>
+    <None Include="..\toast\css\3-fcs\css-a.css">
+      <Filter>Toast\CSS\3-fcs</Filter>
+    </None>
+    <None Include="..\toast\math\4-core\core-1.css">
+      <Filter>Toast\Math\4-core</Filter>
+    </None>
+    <None Include="..\toast\math\4-core\core-3.css">
+      <Filter>Toast\Math\4-core</Filter>
+    </None>
+    <None Include="..\toast\math\4-core\core-a.css">
+      <Filter>Toast\Math\4-core</Filter>
+    </None>
+    <None Include="..\toast\other\lists\index.html">
+      <Filter>Toast\Other\lists</Filter>
+    </None>
+    <None Include="..\toast\other\lists\lists.conf">
+      <Filter>Toast\Other\lists</Filter>
+    </None>
+    <None Include="..\toast\other\lists\lists.spec">
+      <Filter>Toast\Other\lists</Filter>
+    </None>
+    <None Include="..\toast\shadow\ssi\var.html.model">
+      <Filter>Toast\Shadow\ssi</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -26,3 +26,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ::std::string find_text_value (const element& e) { return e.find_text_value (); }
 ::std::string find_url_value (const element& e) { return e.find_url_value (); }
 ::std::string find_html_value (const element& e) { return e.find_html_value (); }
+bool amend_date_value (const html_version& v, element& e, const ::std::string& s) { return e.amend_date_value (v, s); }
+bool amend_text_value (const html_version& v, element& e, const ::std::string& s) { return e.amend_date_value (v, s); }
+bool amend_url_value (const html_version& v, element& e, const ::std::string& s) { return e.amend_date_value (v, s); }
+bool amend_html_value (const html_version& v, element& e, const ::std::string& s) { return e.amend_date_value (v, s); }
+
+bool naughty_fix (element& e, const ::std::string& old, const ::std::string& alt)
+{   if (! e.has_naughty_text (old)) return false;
+    return e.replace_naughty_text (old, alt); }

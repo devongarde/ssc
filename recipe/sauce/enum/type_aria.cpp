@@ -637,6 +637,7 @@ elem_role permitted_role [] =
     { { HTML_JAN05 }, { HTML_5_1 }, elem_select, role_menu },
     { { HTML_5_3 }, { HTML_MAR21 }, elem_select, role_menu },
     { { HTML_APR21 }, { HTML_UNDEF }, elem_select, role_menu, ARIA_NO_MULTIPLE_SIZE },
+    { { HTML_AUG25 }, { HTML_UNDEF }, elem_selectedcontent, role_any },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_small, role_any },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_span, role_any },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_strong, role_any },

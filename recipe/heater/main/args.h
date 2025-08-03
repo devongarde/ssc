@@ -112,8 +112,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define SNIPPET_SW  SMPLSWTCH SNIPPET_SW_
 #define VERBOSE_SW  SMPLSWTCH VERBOSE_SW_
 
-#define BLACKLIST_  "blacklist"
-#define BLUELIST_   "bluelist"
 #define CORPUS_     "corpus"
 #define CSS_        "css"
 #define ENVIRONMENT_ "environment"
@@ -138,7 +136,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define VALIDATION_ "validation"
 #define VTT_        "vtt"
 #define WEBSITE_    "site"
-#define WHITELIST_  "whitelist"
 
 #define BLACKLIST   BLACKLIST_ JOIN
 #define BLUELIST    BLUELIST_ JOIN
@@ -208,6 +205,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define COLOUR      "colour"
 #define COLOR       "color"
 #define COMMENT     "comment"
+#define COMMON      "common"
 #define COMMS       "comms"
 #define COMPOSITING "compositing"
 #define COND_RULE   "cond-rule"
@@ -307,6 +305,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define LOGIC       "logic"
 #define MAIN        "main"
 #define MARQUEE     "marquee"
+#define MATHCORE    "mathcore"
 #define MASKING     "masking"
 #define MAXFILESIZE "maxfilesize"
 #define MEDIA       "media"
@@ -326,7 +325,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define NES         "nes"
 #define NESTING     "nesting"
 #define NETSCAPE    "netscape"
+#define NAUGHTY     "naughty"
+#define NICE        "nice"
 #define NIDS        "nids"
+#define NOTE        "note"
 #define ONCE        "once"
 #define ONT         "ontology"
 #define OPERA       "opera"

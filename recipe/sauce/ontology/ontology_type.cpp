@@ -13663,6 +13663,7 @@ struct symbol_entry < ontology_version, e_ontology_type, e_ontology, s_schema > 
     { { 7, 0 }, { 0, 0 }, "OnlineEventAttendanceMode", sch_onlineeventattendancemode },
     { { 1, 92 }, { 0, 0 }, "OnlineFull", sch_onlinefull },
     { { 0, 10 }, { 0, 0 }, "OnlineOnly", sch_onlineonly },
+    { { 30, 0 }, { 0, 0 }, "OnlineMarketplace", sch_onlinemarketplace },
     { { 14, 0 }, { 0, 0 }, "OnlineStore", sch_onlinestore },
     { { 1, 3 }, { 0, 0 }, "OnsitePickup", sch_onsitepickup },
     { { 0, 99 }, { 0, 0 }, "OpeningHoursSpecification", sch_openinghoursspecification },

@@ -52,6 +52,9 @@ template < > struct type_master < t_css_local_url > : type_one_of < t_css_local_
 template < > struct type_master < t_urifn_db > : type_one_or_both < t_urifn_db, t_urifn, sz_space_char, t_decibel >
 { using type_one_or_both < t_urifn_db, t_urifn, sz_space_char, t_decibel > :: type_one_or_both; };
 
+template < > struct type_master < t_css_add_fn > : type_function_all < t_css_add_fn, sz_add, t_integer >
+{ using type_function_all < t_css_add_fn, sz_add, t_integer > :: type_function_all; };
+
 template < > struct type_master < t_css_align_items_a > : type_or_string < t_css_align_items_a, t_css_align_items, sz_auto >
 { using type_or_string < t_css_align_items_a, t_css_align_items, sz_auto > :: type_or_string; };
 
@@ -375,13 +378,16 @@ template < > struct type_master < t_css_djss > : type_at_least_one < t_css_djss,
 template < > struct type_master < t_css_djs_n > : type_or_string < t_css_djs_n, t_css_djss, sz_none >
 { using type_or_string < t_css_djs_n, t_css_djss, sz_none > :: type_or_string; };
 
+template < > struct type_master < t_math_str > : type_sz < t_math_str, sz_math >
+{ using type_sz < t_math_str, sz_math> :: type_sz; };
+
 template < > struct type_master < t_css_display_listitem > : both_types_then_string < t_css_display_listitem, t_css_display_outside, t_css_display_flow, sz_list_item >
 { using both_types_then_string < t_css_display_listitem, t_css_display_outside, t_css_display_flow, sz_list_item > :: both_types_then_string; };
 
-template < > struct type_master < t_css_display_3 > : type_some_of < t_css_display_3, sz_space_char, 1, 6,
-    t_css_display_outside, t_css_display_inside, t_css_display_listitem, t_css_display_internal, t_css_display_box, t_css_display_legacy >
-{ using type_some_of < t_css_display_3, sz_space_char, 1, 6,
-    t_css_display_outside, t_css_display_inside, t_css_display_listitem, t_css_display_internal, t_css_display_box, t_css_display_legacy > :: type_some_of; };
+template < > struct type_master < t_css_display_3 > : type_some_of < t_css_display_3, sz_space_char, 1, 7,
+    t_css_display_outside, t_css_display_inside, t_math_str, t_css_display_listitem, t_css_display_internal, t_css_display_box, t_css_display_legacy >
+{ using type_some_of < t_css_display_3, sz_space_char, 1, 7,
+    t_css_display_outside, t_css_display_inside, t_math_str, t_css_display_listitem, t_css_display_internal, t_css_display_box, t_css_display_legacy > :: type_some_of; };
 
 template < > struct type_master < t_css_durations > : type_at_least_one < t_css_durations, sz_comma, t_svg_duration >
 { using type_at_least_one < t_css_durations, sz_comma, t_svg_duration > :: type_at_least_one; };
@@ -694,6 +700,9 @@ template < > struct type_master < t_css_mask_border > : tidy_string < t_css_mask
 template < > struct type_master < t_css_masks > : type_some_of < t_css_masks, sz_comma, 1, 999, t_css_mask >
 { using type_some_of < t_css_masks, sz_comma, 1, 999, t_css_mask > :: type_some_of; };
 
+template < > struct type_master < t_css_math_depth > : either_type_or_string < t_css_math_depth, t_integer, t_css_add_fn, sz_auto_add >
+{ using either_type_or_string < t_css_math_depth, t_integer, t_css_add_fn, sz_auto_add > :: either_type_or_string; };
+
 template < > struct type_master < t_css_nth_oe > : public type_or_any_string < t_css_nth_oe, t_css_nth, sz_even, sz_odd, sz_n >
 { using type_or_any_string < t_css_nth_oe, t_css_nth, sz_even, sz_odd, sz_n > :: type_or_any_string; };
 
@@ -898,8 +907,8 @@ template < > struct type_master < t_css_text_spacing_nan > : type_or_any_string 
 template < > struct type_master < t_css_text_transform_3 > : type_range < t_css_text_transform_3, sz_space_char, t_css_text_transform, 1, 5 >
 { using type_range < t_css_text_transform_3, sz_space_char, t_css_text_transform, 1, 5 > :: type_range; };
 
-template < > struct type_master < t_css_text_transform_n > : type_or_string < t_css_text_transform_n, t_css_text_transform_3, sz_none >
-{ using type_or_string < t_css_text_transform_n, t_css_text_transform_3, sz_none > :: type_or_string; };
+template < > struct type_master < t_css_text_transform_n > : type_or_either_string < t_css_text_transform_n, t_css_text_transform_3, sz_math_auto, sz_none >
+{ using type_or_either_string < t_css_text_transform_n, t_css_text_transform_3, sz_math_auto, sz_none > :: type_or_either_string; };
 
 template < > struct type_master < t_css_text_indent > : type_or_either_string < t_css_text_indent, t_css_length, sz_hanging, sz_each_line >
 { using type_or_either_string < t_css_text_indent, t_css_length, sz_hanging, sz_each_line > :: type_or_either_string; };
@@ -1134,35 +1143,35 @@ template < > struct type_master < t_css_langs > : string_vector < t_css_langs, s
 
 template < > struct type_master < t_css_col > : tidy_string < t_css_col >
 {   using tidy_string < t_css_col > :: tidy_string;
-	static e_animation_type animation_type () noexcept { return at_colour; }
+    static e_animation_type animation_type () noexcept { return at_colour; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_css_col > :: set_value (nits, v, s);
         tidy_string < t_css_col > :: status (set_css_col_value (nits, v, tidy_string < t_css_col > :: get_string ())); } };
 
 template < > struct type_master < t_css_background_attachments > : tidy_string < t_css_background_attachments >
 {   using tidy_string < t_css_background_attachments > :: tidy_string;
-	static e_animation_type animation_type () noexcept { return at_paint; }
+    static e_animation_type animation_type () noexcept { return at_paint; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_css_background_attachments > :: set_value (nits, v, s);
         tidy_string < t_css_background_attachments > :: status (set_css_background_attachments_value (nits, v, tidy_string < t_css_background_attachments > :: get_string (), box ())); } };
 
 template < > struct type_master < t_css_background > : tidy_string < t_css_background >
 {   using tidy_string < t_css_background > :: tidy_string;
-	static e_animation_type animation_type () noexcept { return at_paint; }
+    static e_animation_type animation_type () noexcept { return at_paint; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_css_background > :: set_value (nits, v, s);
         tidy_string < t_css_background > :: status (set_css_background_value (nits, v, tidy_string < t_css_background > :: get_string (), box ())); } };
 
 template < > struct type_master < t_css_background_position_3 > : tidy_string < t_css_background_position_3 >
 {   using tidy_string < t_css_background_position_3 > :: tidy_string;
-	static e_animation_type animation_type () noexcept { return at_paint; }
+    static e_animation_type animation_type () noexcept { return at_paint; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_css_background_position_3 > :: set_value (nits, v, s);
         tidy_string < t_css_background_position_3 > :: status (set_css_background_position_3_value (nits, v, tidy_string < t_css_background_position_3 > :: get_string (), box ())); } };
 
 template < > struct type_master < t_css_background_repeat_3 > : tidy_string < t_css_background_repeat_3 >
 {   using tidy_string < t_css_background_repeat_3 > :: tidy_string;
-	static e_animation_type animation_type () noexcept { return at_paint; }
+    static e_animation_type animation_type () noexcept { return at_paint; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_css_background_repeat_3 > :: set_value (nits, v, s);
         tidy_string < t_css_background_repeat_3 > :: status (set_css_background_repeat_3_value (nits, v, tidy_string < t_css_background_repeat_3 > :: get_string (), box ())); } };
@@ -1205,7 +1214,7 @@ template < > struct type_master < t_css_speak > : tidy_string < t_css_speak >
 
 template < > struct type_master < t_css_src > : tidy_string < t_css_src >
 {   using tidy_string < t_css_src > :: tidy_string;
-	static e_animation_type animation_type () noexcept { return at_paint; }
+    static e_animation_type animation_type () noexcept { return at_paint; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_css_src > :: set_value (nits, v, s);
         tidy_string < t_css_src > :: status (set_css_src_value (nits, v, tidy_string < t_css_src > :: get_string ())); } };
@@ -1286,7 +1295,7 @@ template < > struct type_master < t_css_content_list > : type_one_of < t_css_con
 
 template < > struct type_master < t_css_content_3 > : tidy_string < t_css_content_3 >
 {   using tidy_string < t_css_content_3 > :: tidy_string;
-	static e_animation_type animation_type () noexcept { return at_other; }
+    static e_animation_type animation_type () noexcept { return at_other; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& sss)
     {   tidy_string < t_css_content_3 > :: set_value (nits, v, sss);
         tidy_string < t_css_content_3 > :: status (set_css_content_3_value (nits, v, tidy_string < t_css_content_3 > :: get_string ())); } };
@@ -1296,7 +1305,7 @@ template < > struct type_master < t_css_content_3nn > : type_or_either_string < 
 
 template < > struct type_master < t_css_content_x > : tidy_string < t_css_content_x >
 {   using tidy_string < t_css_content_x > :: tidy_string;
-	static e_animation_type animation_type () noexcept { return at_none; }
+    static e_animation_type animation_type () noexcept { return at_none; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_css_content_x > :: set_value (nits, v, s);
         tidy_string < t_css_content_x > :: status (set_css_content_x_value (nits, v, tidy_string < t_css_content_x > :: get_string ())); } };

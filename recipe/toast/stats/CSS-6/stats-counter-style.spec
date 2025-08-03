@@ -70,13 +70,13 @@ PASS ../toast/stats/CSS-6/index.html
 
 GRAND
 Counter-Style:
-    triangle
-    decimal-paren
     box-corner
-    footnote
-    upper-alpha-legal
-    trinary
+    decimal-paren
     dice
+    footnote
     go
+    triangle
+    trinary
+    upper-alpha-legal
   Used 8 times
 ===

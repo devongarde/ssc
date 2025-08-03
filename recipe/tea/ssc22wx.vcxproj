@@ -275,6 +275,7 @@
     <ClInclude Include="..\heater\utility\fileio.h" />
     <ClInclude Include="..\heater\utility\filesystem.h" />
     <ClInclude Include="..\heater\utility\lexical.h" />
+    <ClInclude Include="..\heater\utility\list.h" />
     <ClInclude Include="..\heater\utility\quote.h" />
     <ClInclude Include="..\heater\utility\ssl.h" />
     <ClInclude Include="..\heater\utility\tuple.h" />
@@ -1489,6 +1490,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\sauce\utility\list.cpp" />
     <ClCompile Include="..\sauce\utility\quote.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
@@ -12382,6 +12384,10 @@
     <None Include="..\toast\other\incorrectness\incorrectness.conf" />
     <None Include="..\toast\other\incorrectness\incorrectness.spec" />
     <None Include="..\toast\other\incorrectness\index.html" />
+    <None Include="..\toast\other\lists\index.html" />
+    <None Include="..\toast\other\lists\lists.conf" />
+    <None Include="..\toast\other\lists\lists.ndx" />
+    <None Include="..\toast\other\lists\lists.spec" />
     <None Include="..\toast\other\live\404.shtml" />
     <None Include="..\toast\other\live\feed-me.rss" />
     <None Include="..\toast\other\live\index.html" />
@@ -14486,7 +14492,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WINSPELL;BUILD_OS="win x64";COMMAND_LINE;WX;_DEBUG;_CONSOLE;WXUSINGDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WINSPELL;BUILD_OS="win x64";COMMAND_LINE;WX;_DEBUG;_CONSOLE;WXUSINGDLL;SIGNING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -14600,7 +14606,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WINSPELL;BUILD_OS="win x64";COMMAND_LINE;WX;NDEBUG;_CONSOLE;WXUSINGDLL;SIGNING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WINSPELL;BUILD_OS="win x64";COMMAND_LINE;WX;NDEBUG;_CONSOLE;WXUSINGDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>

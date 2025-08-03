@@ -50,6 +50,7 @@
 ../toast/css/3-display/css.spec
 ../toast/css/3-exclude/css.spec
 ../toast/css/3-fbl/css.spec
+../toast/css/3-fcs/css.spec
 ../toast/css/3-fill/css.spec
 ../toast/css/3-filter/css.spec
 ../toast/css/3-float/css.spec
@@ -226,6 +227,7 @@
 ../toast/other/ignore/ignore.spec
 ../toast/other/img/img.spec
 ../toast/other/incorrectness/incorrectness.spec
+../toast/other/lists/lists.spec
 ../toast/other/live/live.spec
 ../toast/other/nits/nits.spec
 ../toast/other/parsing/parsing.spec

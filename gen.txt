@@ -1244,6 +1244,15 @@ resolved, bad content removed, and duplicated content consolidated.
                         appear whether or not the original page has
                         changed.
 
+--shadow.naughty cmd    Add cmd to censorship redlist; cmd is
+                        discussed below.
+
+--shadow.nice cmd       Add cmd to censorship greenlist; cmd is
+                        discussed below.
+
+--shadow.note cmd       Add cmd to censorship bluelist; cmd is
+                        discussed below.
+
 --shadow.root dir       Where to write the shadow site.
 
 --shadow.space          Leave excess/repeated spaces and blank lines in
@@ -1671,6 +1680,54 @@ of HTML. WebVTT was first specified in November 2014.
 --vtt.verify            Verify WebVTT files.
 
 
+
+CENSORSHIP
+
+Certain pieces of data can be censored when shadowing, using the
+shadow.naughty, shadow.nice and shadow.note switches (respectively
+defining a red list, a green list, and a blue list).
+
+Each switch takes a command parameter, which is formatted as follows:
+
+ATTRIBUTE,element,attribute,value
+considers attribute of element with the given value
+
+ELEMENT,element,value
+considers the text contained within <ELEMENT> and </ELEMENT> of the
+given value
+
+MICROFORMAT,type,property,value
+considers a microformat type property of the given value
+
+ONTOLOGY,ontology,type,property,value
+considers a ontological type property of the given value
+
+COMMON,value
+consider that value anywhere
+
+You could, for example, define half a dozen values for an element in a
+green list. This would mean all values apart from those specified would
+be suppressed. (This is like a white list.)
+
+You could, for example, define half a dozen values for an element in a
+red list. This would mean any occurrence of any of those value would be
+suppressed. (This is like a black list.)
+
+When a value is suppressed, the blue list is consulted. If it contains
+a value for the element, that value is inserted in place of the
+suppressed value, otherwise nothing is substituted. This is why a
+green/red/blue list is not a white/black/??? list.
+
+For example
+--shadow.nice ELEMENT,title,Nice Title
+--shadow.nice ELEMENT,title,Title
+--shadow.note ELEMENT,title,[REDACTED]
+
+If a page's <TITLE></TITLE> contains any text apart from Title or Nice
+Title, it is replaced by [REDACTED].
+
+Wildcards can be used for naughty and nice, using Perl syntax as per
+the boost regex library (consult https://boost.org/).
 
 
 CONFIGURATION FILE FORMAT

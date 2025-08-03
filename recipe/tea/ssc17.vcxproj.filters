@@ -1723,6 +1723,9 @@
     <ClCompile Include="..\sauce\utility\fileio.cpp">
       <Filter>Sauce\utility</Filter>
     </ClCompile>
+    <ClCompile Include="..\sauce\utility\list.cpp">
+      <Filter>Sauce\utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="addtest.sh">

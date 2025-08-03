@@ -3,6 +3,16 @@ static site checker
 https://ssc.lu/
 (c) 2020-2025 Dylan Harris
 
+0.2.18
+- Added censorship to shadowing
+- macos build supports signing
+- MathML Core, June 25 recommended snapshot
+- CSS Form Control Styling, July 2025 draft
+- the SELECTEDCONTENT element
+- schema.org online marketplace
+- various bug fixes
+- underlying work
+
 0.2.17
 - Living Standard July 2025
 - can sign and verify output (Windows x64 only, uses libreSSL)

@@ -47,6 +47,8 @@ bool remove_tail (::std::string& s, ::std::string& tail, const char ch);
 bool remove_head (::std::string& s, ::std::string& head, const char ch);
 ::std::string remove_tail (::std::string& s, const char ch);
 ::std::string remove_head (::std::string& s, const char ch);
+bool isnl (const char ch);
+::std::string unify_nlspace (const ::std::string& s);
 ::std::string unify_whitespace (const ::std::string& s);
 bool separate_first (const ::std::string& s, ::std::string& head, ::std::string& tail, const char ch);
 bool separate_last (const ::std::string& s, ::std::string& head, ::std::string& tail, const char ch);

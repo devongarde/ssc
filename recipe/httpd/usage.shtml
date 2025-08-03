@@ -33,6 +33,10 @@ If it&rsquo;s installed correctly, it should respond with &copy; info.
 </p>
 
 <p>
+There&rsquo;s also a GUI version, should you prefer something fancy(&ndash;ish).
+</p>
+
+<p>
 It is possible to set up configuration files, but, to start, we&rsquo;ll try
 a simple set of command line options. If the HTML files belonging to
 your website is located in the current directory, and the main index
@@ -45,7 +49,7 @@ file is called <a href="index.html">index.html</a>, then all you need type is:
 
 <p>
 &hellip; and off it will go, reporting any issues it finds in all HTML files in
-the current directory and its descendants.
+the current directory and descendants.
 </p>
 
 <h3>Reports</h3>
@@ -173,19 +177,20 @@ I strongly recommend you review the signing/sign-pw test.
 </p>
 
 <p>
-To have <!--#echo encoding="none" var="short" --> sign its output, first use a tool, such as openssl, to
-generate a pair of RSA 256 keys in PEM format. You can use the various
+To have <!--#echo encoding="none" var="short" --> sign its output, first use a tool, such as
+<a href="https://libressl.org/">libressl</a>&rsquo;s openssl, to
+generate a pair of RSA 256 keys in PEM format. You can then use the various
 appropriate --output switches to tell ssc to sign its output. 
 </p>
 
 <p>
-<!--#echo encoding="none" var="short" --> can verify a signed file, just as the openssl command line utility
+<!--#echo encoding="none" var="short" --> can verify a file it has sined, just as the openssl command line utility
 can do.
 </p>
 
 <p>
 Note that I used the <a href="https://libressl.org/">libressl command line utility</a> called openssl, but
-I understand appropriate versions of openssl can be used too.
+I understand appropriate versions of <a href="https://openssl.org/">openssl</a> itself can also be used.
 </p>
 
 <h2>Potential gotchas</h2>

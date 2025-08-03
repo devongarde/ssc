@@ -253,6 +253,7 @@ class element
     void examine_script ();
     void examine_section ();
     void examine_select ();
+    void examine_selectedcontent ();
     void examine_share ();
     void examine_source ();
     void examine_style ();
@@ -312,6 +313,11 @@ public:
     ::std::string find_text_value () const;
     ::std::string find_url_value () const;
     ::std::string find_html_value () const;
+    bool amend_date_value (const html_version& v, const ::std::string& s);
+    bool amend_text_value (const html_version& v, const ::std::string& s);
+    bool amend_url_value (const html_version& v, const ::std::string& s);
+    bool amend_html_value (const html_version& , const ::std::string& )
+    {   return false; }
     ids_t& get_ids () noexcept;
     const ids_t& get_ids () const noexcept;
     ids_t& get_names () noexcept;
@@ -343,8 +349,12 @@ public:
     const attribute_bitset& own_attributes () const noexcept { return own_attributes_; }
     attribute_bitset& own_attributes () noexcept { return own_attributes_; }
     void shadow (::std::stringstream& ss, const html_version& v);
-    const page& get_page () const noexcept { return *page_; }
-    page& get_page () noexcept { return *page_; }
+    const page& get_page () const noexcept 
+    {   VERIFY_NOT_NULL (page_, __FILE__, __LINE__);
+        return *page_; }
+    page& get_page () noexcept
+    {   VERIFY_NOT_NULL (page_, __FILE__, __LINE__);
+        return *page_; }
     bool has_glyph (const ::std::string& s) const;
     void add_glyph (const ::std::string& s);
     e_sought_category link_category_sought () const noexcept { return node_.id ().link_category_sought (); }
@@ -357,6 +367,11 @@ public:
     const elem& id () const noexcept { return node_.id (); }
     namespaces_ptr namespaces () const noexcept { return node_.namespaces (); }
     void accumulate (stats_t* st) const;
+    bool has_naughty_text (const ::std::string& s) const
+    {   return node_.has_naughty_text (s); }
+    bool replace_naughty_text (const ::std::string& t, const ::std::string& s)
+    {   return node_.replace_naughty_text (t, s); }
+    bool amend_microdata_value (const html_version& v, const ::std::string& s);
     ::std::string report (); };
 
 template < class PROPERTY > inline void element::note_reply () { }

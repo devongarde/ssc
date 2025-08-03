@@ -244,6 +244,7 @@ enum_name_t enum_name [] =
     { t_command3, "command3" },
     { t_comp_op, "comp op" },
     { t_compact, "compact" },
+    { t_compact_normal, "compact normal" },
     { t_composite_operator, "composite operator" },
     { t_compositing, "compositing" },
     { t_conic_1, "conic 1" },
@@ -284,6 +285,7 @@ enum_name_t enum_name [] =
     { t_css_aaalri, "CSS aaal ri" },
     { t_css_aai, "CSS aai" },
     { t_css_absolute_size, "CSS absolute size" },
+    { t_css_add_fn, "CSS add fn" },
     { t_css_addsym, "CSS add sym" },
     { t_css_addsyms, "CSS add syms" },
     { t_css_align_content, "CSS align content" },
@@ -432,6 +434,7 @@ enum_name_t enum_name [] =
     { t_css_content_3nn, "CSS content 3nn" },
     { t_css_content_base, "CSS content base" },
     { t_css_content_enum, "CSS content enum" },
+    { t_css_content_fixed, "CSS content fixed" },
     { t_css_content_fn, "CSS content fn" },
     { t_css_content_list, "CSS content list" },
     { t_css_content_name, "CSS content name" },
@@ -638,6 +641,7 @@ enum_name_t enum_name [] =
     { t_css_mask_ref, "CSS mask ref" },
     { t_css_mask_refs, "CSS mask refs" },
     { t_css_masks, "CSS masks" },
+    { t_css_math_depth, "CSS math depth" },
     { t_css_module, "CSS module" },
     { t_css_nth, "CSS nth" },
     { t_css_nth_oe, "CSS nth odd/even" },
@@ -725,6 +729,7 @@ enum_name_t enum_name [] =
     { t_css_size_e, "CSS size e" },
     { t_css_size_es, "CSS size es" },
     { t_css_sizing, "CSS sizing" },
+    { t_css_slider_orientation, "CSS slider orientation" },
     { t_css_speak, "CSS speak" },
     { t_css_speak_2, "CSS speak 2" },
     { t_css_speak_3, "CSS speak 3" },
@@ -1226,6 +1231,7 @@ enum_name_t enum_name [] =
     { t_mathspaceauto, "math space auto" },
     { t_mathspacefit, "math space fit" },
     { t_mathspaceinfinity, "math space infinity" },
+    { t_math_str, "math str" },
     { t_mathvariant, "math variant" },
     { t_math_version, "math version" },
     { t_mathvertauto, "math vertauto" },
@@ -1800,11 +1806,13 @@ enum_name_t enum_name [] =
     { t_error, "error" } };
 
 vstr_t vtn;
+msid_t mty;
 
 void type_name_init (nitpick& nits)
 {   vtn.resize (t_error);
     for (int i = 0; GSL_AT (enum_name, i).t_ != t_error; ++i)
-        vtn.at (GSL_AT (enum_name, i).t_) = GSL_AT (enum_name, i).name_;
+    {   vtn.at (GSL_AT (enum_name, i).t_) = GSL_AT (enum_name, i).name_;
+        mty.insert (msid_t::value_type (GSL_AT (enum_name, i).name_, GSL_AT (enum_name, i).t_)); }
     for (int i = 0; i < t_error; ++i)
         if (vtn.at (i).empty ())
             nits.pick (nit_type_error, es_error, ec_program, "Missing type name at ", ::boost::lexical_cast < ::std::string > (i)); }
@@ -1813,6 +1821,11 @@ void type_name_init (nitpick& nits)
 {   PRESUME (e <= t_error, __FILE__, __LINE__);
     PRESUME (! vtn.at (e).empty (), __FILE__, __LINE__);
     return vtn.at (e); }
+
+e_type type_jag (const ::std::string& s)
+{   msid_t::const_iterator i = mty.find (s);
+    if (i == mty.cend ()) return t_unknown;
+    return static_cast < e_type > (i -> second); }
 
 ::std::string get_type_site_path (const element* const box)
 {   if (box == nullptr) return ::std::string ();

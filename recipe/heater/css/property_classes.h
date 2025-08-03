@@ -223,6 +223,7 @@ typedef typed_property < t_enable_background, ec_enable_background > prop_enable
 typedef typed_property < t_generic, ec_error > prop_error;
 
 typedef typed_property < t_css_counter_style_name, ec_fallback > prop_fallback;
+typedef typed_property < t_css_content_fixed, ec_field_sizing > prop_field_sizing;
 typedef typed_property < t_fill_v, ec_fill > prop_fill;
 typedef typed_property < t_bcs, ec_fill_break > prop_fill_break;
 typedef typed_property < t_css_col, ec_fill_colour > prop_fill_colour;
@@ -321,6 +322,7 @@ typedef typed_property < t_css_initial_letter_align_bb, ec_initial_letter_align 
 typedef typed_property < t_css_initial_letter_wrap, ec_initial_letter_wrap > prop_initial_letter_wrap;
 typedef typed_property < t_css_length_amm, ec_inline_size > prop_inline_size;
 typedef typed_property < t_normal_stretch, ec_inline_sizing > prop_inline_sizing;
+typedef typed_property < t_auto_none, ec_input_security > prop_input_security;
 typedef typed_property < t_css_lengths_a_l, ec_inset > prop_inset;
 typedef typed_property < t_css_length_a2, ec_inset_block > prop_inset_block;
 typedef typed_property < t_css_length_ai, ec_inset_block_end > prop_inset_block_end;
@@ -399,7 +401,10 @@ typedef typed_property < t_positions, ec_mask_position > prop_mask_position;
 typedef typed_property < t_css_background_repeats, ec_mask_repeat > prop_mask_repeat;
 typedef typed_property < t_css_background_sizes, ec_mask_size > prop_mask_size;
 typedef typed_property < t_css_mask_border_mode, ec_mask_type > prop_mask_type;
+typedef typed_property < t_generic, ec_math_depth > prop_math_depth;
 typedef typed_property < t_real, ec_mathline > prop_mathline;
+typedef typed_property < t_compact_normal, ec_math_shift > prop_math_shift;
+typedef typed_property < t_compact_normal, ec_math_style > prop_math_style;
 typedef typed_property < t_css_length_amm, ec_max_block_size > prop_max_block_size;
 typedef typed_property < t_css_length_amm, ec_max_height > prop_max_height;
 typedef typed_property < t_css_length_amm, ec_max_inline_size > prop_max_inline_size;
@@ -562,6 +567,7 @@ typedef typed_property < t_shape_rendering, ec_shape_rendering > prop_shape_rend
 typedef typed_property < t_shape_none_uri, ec_shape_subtract > prop_shape_subtract;
 typedef typed_property < t_css_size, ec_size > prop_size;
 typedef typed_property < t_percent, ec_size_adjust > prop_size_adjust;
+typedef typed_property < t_css_slider_orientation, ec_slider_orientation > prop_slider_orientation;
 typedef typed_property < t_real, ec_slope > prop_slope;
 typedef typed_property < t_colour_i, ec_solid_colour > prop_solid_colour;
 typedef typed_property < t_real_i, ec_solid_opacity > prop_solid_opacity;
@@ -1850,6 +1856,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_epub_writing_mode, \
     prop_error, \
     prop_fallback, \
+    prop_field_sizing, \
     prop_fill, \
     prop_fill_break, \
     prop_fill_colour, \
@@ -1946,6 +1953,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_initial_letter_wrap, \
     prop_inline_size, \
     prop_inline_sizing, \
+    prop_input_security, \
     prop_inset, \
     prop_inset_block, \
     prop_inset_block_end, \
@@ -2020,7 +2028,10 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_mask_repeat, \
     prop_mask_size, \
     prop_mask_type, \
+    prop_math_depth, \
     prop_mathline, \
+    prop_math_shift, \
+    prop_math_style, \
     prop_max_block_size, \
     prop_max_height, \
     prop_max_inline_size, \
@@ -2175,6 +2186,7 @@ typedef typed_property < t_css_bespoke, ec_xv_voice_volume > prop_xv_voice_volum
     prop_shape_subtract, \
     prop_size, \
     prop_size_adjust, \
+    prop_slider_orientation, \
     prop_slope, \
     prop_spatial_navigation_action, \
     prop_spatial_navigation_contain, \

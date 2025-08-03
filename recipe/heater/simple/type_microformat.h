@@ -81,7 +81,7 @@ template < > struct type_master < t_sex > : tidy_string < t_sex >
 template < > struct type_master < t_tel > : public tidy_string < t_tel >
 {   using tidy_string < t_tel > :: tidy_string;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
-    {   string_value < t_tel > :: set_value (nits, v, s);
+    {   tidy_string < t_tel > :: set_value (nits, v, s);
         ::std::string val = tidy_string < t_tel > :: get_string ();
         if (tidy_string < t_tel > :: good ())
         {   if (val.substr (0, 4) != "tel:")

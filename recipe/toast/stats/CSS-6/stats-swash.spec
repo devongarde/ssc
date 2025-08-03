@@ -70,11 +70,11 @@ PASS ../toast/stats/CSS-6/index.html
 
 GRAND
 Swash:
-    swishy
-    flowing
-    pretty
     cool
-    ornate
     double-loops
+    flowing
+    ornate
+    pretty
+    swishy
   Used 6 times
 ===

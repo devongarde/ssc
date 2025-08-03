@@ -62,8 +62,8 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 17
-#define VERSION_STRING "0.2.17"
+#define VERSION_RELEASE 18
+#define VERSION_STRING "0.2.18"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -271,11 +271,6 @@ z
 #endif // LEAK_SEEK
 
 #ifdef SIGNING
-#ifndef _MSC_VER
-#pragma message("SIGNING only tested under windoze")
-#elif ! defined (_WIN64)
-#pragma message("SIGNING only tested under x64")
-#endif // WIN32
 #define SIGNCHAR "q"
 #else // SIGNING
 #define SIGNCHAR
@@ -449,6 +444,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #include <boost/property_tree/string_path.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/logic/tribool.hpp>
+#include <boost/regex.hpp>
 #include <boost/scoped_ptr.hpp>
 
 #if BOOST_MINOR > 76
@@ -734,7 +730,7 @@ typedef ssc_map < ::std::size_t, ::std::string > misd_t;
 typedef ustr_t::value_type ustrv_t;
 typedef ::std::basic_string < char32_t > string32;
 typedef ::std::basic_stringstream < char32_t > stringstream32;
-typedef ssc_map < ::std::string, sstr_t > strss_t;
+typedef ssc_map < ::std::size_t, sstr_t > szreg_t;
 typedef ::std::unique_ptr < ::std::fstream > fstr_p;
 
 #ifdef _MSC_VER

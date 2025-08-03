@@ -32,6 +32,7 @@ bool check_ontology_property_version (const ontology_version& from, const ontolo
 ::std::string ontology_property_name (const e_ontology_property prop);
 bool is_valid_ontology_property (nitpick& nits, const html_version& v, const e_ontology_type schema, const e_ontology_property prop, const ::std::string& value, const bool is_link);
 bool is_valid_ontology_property (nitpick& nits, const html_version& v, const e_ontology_type schema, const e_ontology_property prop, const e_ontology_type value);
+bool is_valid_ontology_property (const html_version& v, const e_ontology_type schema, const e_ontology_property prop);
 vit_t sought_ontology_types (const e_ontology_property prop);
 vit_t sought_ontology_types (const ontology_version& sv, const e_ontology_property prop);
 vt_t sought_types (const ontology_version& sv, const e_ontology_property prop);

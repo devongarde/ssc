@@ -53,6 +53,8 @@ and, except for Windows, a recent version of
 <a href="https://icu-project.org/">the ICU libraries</a> (or #define NOICU).
 If you want to experiment with the still&ndash;in&ndash;development GUI version, #define WX, and you&rsquo;ll
 need a recent version of <a href="https://wxwidgets.org/">wxWidgets</a>. 
+For signed output, install <a href="https://libressl.org/">libreSSL</a>, or an equivalent.
+Note that <a href="https://libressl.org/">libreSSL</a> is built into <a href="https://openbsd.org/">OpenBSD</a> and Windows 11.
 <a href="index.shtml"><!--#echo encoding="none" var="short" --></a>
 no longer depends on CURL.
 Usually, an Operating System&rsquo;s package manager has appropriate versions ready to install.
@@ -78,6 +80,10 @@ set ICU_ROOT to your ICU source root directory (alternative, #define NOICU);
 WX_ROOT: if you&rsquo;re building the gui front end to ssc, you&rsquo;ll need to
 install <a href="https://wxwidgets.org/">wxWidgets</a> and set WX_ROOT to its installation directory.
 </li>
+<li>
+SSL: if you want output signed, point SSL to your installation of
+<a href="https://libressl.org/">libreSSL</a> (or an equivalent). You may also need to #define SIGNED.
+</li>
 </ul>
 
 <h3>hunspell</h3>
@@ -87,14 +93,6 @@ Building <!--#echo encoding="none" var="short" --> with spelling checks under un
 requires <a href="https://hunspell.github.io/">a development installation of hunspell</a>,
 or equivalent. You should be able to install it using the appropriate package manager.
 Alternatively, #define NOSPELL.
-</p>
-
-
-<h3>libressl</h3>
-
-<p>
-If you want <!--#echo encoding="none" var="short" -->&rsquo;s output to be signed by <!--#echo encoding="none" var="short" -->, you&rsquo;ll need
-<a href="https://libressl.org/">this library</a>, or a compatible one.
 </p>
 
 <h3>winspell</h3>
@@ -148,7 +146,6 @@ home directory, compile a normal build thus:
 <code>
 cmake .<br>
 make<br>
-ctest<br>
 make install
 </code>
 
@@ -159,30 +156,45 @@ For a debug build:
 <code>
 cmake -DCMAKE_BUILD_TYPE=Debug .<br>
 make<br>
-ctest<br>
 make install
 </code>
 
 <p>
-If everything works correctly, then everything will be built, a series
-of tests run, with a final result at the very end saying no failures.
-Having said that, given <!--#echo encoding="none" var="short" --> is alpha, don&rsquo;t be too surprised to see
-some warnings or some final test errors.
+If everything works correctly, then everything will be built with a
+final result at the very end saying no failures.
 </p>
-
 <p>
-In particular,
-complaints about being unable to find or copy files during testing are
-not of concern. These come from scripts that set up or tear down
-individual tests. The standard commands used sometimes complain if
-they can&rsquo;t find files they&rsquo;re supposed to delete, which is a bit silly
-given that means things are already in the required state.
+Having said that, given
+<a href="index.shtml"><!--#echo encoding="none" var="short" --></a> is alpha,
+don&rsquo;t be too surprised to see some warnings. 
 </p>
-
 <p>
-Versions of <a href="index.shtml"><!--#echo encoding="none" var="short" --></a> have been successfully built in
-<a href="https://openbsd.org/">OpenBSD</a>, <a href="https://freebsd.org/">FreeBSD</a>, <a href="https://linux.org/">Linux</a>,
-&amp; <a href="https://en.wikipedia.org/wiki/MacOS">MacOS</a> on AMD64 and ARM64 architectures. 
+You can run the test suite thus:
+</p>
+<code>
+ctest
+</code>
+<p>
+Note that complaints about being unable to find or copy files during
+testing are of no concern. These come from scripts that set up or tear
+down individual tests. The standard commands used sometimes
+complain that they can&rsquo;t find files they&rsquo;re supposed to delete, 
+which is a bit silly given that means things are already in the desired state.
+</p>
+<p>
+Unfortunately, the spelling tests depend on the local system spell
+checker, and they&rsquo;re inconsistent across systems, so they&rsquo;re excluded
+from the unix tests.
+</p>
+<p>
+<a href="index.shtml"><!--#echo encoding="none" var="short" --></a>
+has, at various times, been successfully built under versions of
+<a href="https://openbsd.org/">OpenBSD</a>,
+<a href="https://freebsd.org/">FreeBSD</a>,
+(mostly <a href="https://ubuntu.com/">Ubuntu</a>)
+<a href="https://linux.org/">Linux</a>,
+&amp; <a href="https://en.wikipedia.org/wiki/MacOS">MacOS</a>,
+on AMD64 and ARM64 architectures.
 </p>
 
 <p>

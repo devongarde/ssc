@@ -847,7 +847,6 @@ void print_help ()
     ::std::cout << "-h    print this text and exit\n";
     ::std::cout << "-i X  import " PROG " test results from this file\n";
     ::std::cout << "-n    only report error numbers, not error codes\n";
-//    ::std::cout << "-N f  nit template file for " PROG "\n";
     ::std::cout << "-t D  temporary file directory (default " <<::boost::filesystem::temp_directory_path ().string () << ")\n";
     ::std::cout << "-T    FAIL is PASS. Bad is good. Ignorance is strength.\n";
     ::std::cout << "-v    verbose output (repeat for greater verbosity)\n";

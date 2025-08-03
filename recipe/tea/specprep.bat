@@ -214,6 +214,7 @@ ssc.exe -T --nits.spec -o ../out/dumpdump.tst -f ../toast/other/dump/dump.conf
 ssc.exe -T --nits.spec -o ../out/ignoreignore.tst -f ../toast/other/ignore/ignore.conf
 ssc.exe -T --nits.spec -o ../out/ieie.tst -f ../toast/other/ie/ie.conf
 ssc.exe -T --nits.spec -o ../out/incorrectnessincorrectness.tst -f ../toast/other/incorrectness/incorrectness.conf
+ssc.exe -T --nits.spec -o ../out/listlists.tst -f ../toast/other/lists/lists.conf
 ssc.exe -T --nits.spec -o ../out/nitsnits.tst -f ../toast/other/nits/nits.conf
 ssc.exe -T --nits.spec -o ../out/parsingparsing.tst -f ../toast/other/parsing/parsing.conf
 ssc.exe -T --nits.spec -o ../out/patternpattern.tst -f ../toast/other/pattern/pattern.conf
@@ -264,6 +265,10 @@ ssc.exe -T --nits.spec -o ../out/pagespages.tst -f ../toast/shadow/pages/pages.c
 ssc.exe -T --nits.spec -o ../out/softsoft.tst -f ../toast/shadow/soft/soft.conf
 ssc.exe -T --nits.spec -o ../out/softoversoftover.tst -f ../toast/shadow/softover/softover.conf
 ssc.exe -T --nits.spec -o ../out/ssishssi.tst -f ../toast/shadow/ssi/ssi.conf
+ssc.exe -T --nits.spec -o ../out/signingsign.tst -f ../toast/signing/sign/sign.conf
+ssc.exe -T --nits.spec -o ../out/signinverify.tst -f ../toast/signing/verify/verify.conf
+ssc.exe -T --nits.spec -o ../out/signingsign-pw.tst -f ../toast/signing/sign-pw/sign-pw.conf
+ssc.exe -T --nits.spec -o ../out/signingverify-pw.tst -f ../toast/signing/verify-pw/verify-pw.conf
 ssc.exe -T --nits.spec -o ../out/case.tst -f ../toast/spell/case/spell.conf
 ssc.exe -T --nits.spec -o ../out/noicu.tst -f ../toast/spell/noicu/spell.conf
 ssc.exe -T --nits.spec -o ../out/spell.tst -f ../toast/spell/spell/spell.conf

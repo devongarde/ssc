@@ -524,6 +524,7 @@
     <ClCompile Include="..\sauce\utility\common.cpp" />
     <ClCompile Include="..\sauce\utility\fileio.cpp" />
     <ClCompile Include="..\sauce\utility\filesystem.cpp" />
+    <ClCompile Include="..\sauce\utility\list.cpp" />
     <ClCompile Include="..\sauce\utility\quote.cpp" />
     <ClCompile Include="..\sauce\webpage\corpus.cpp" />
     <ClCompile Include="..\sauce\webpage\crosslink.cpp" />

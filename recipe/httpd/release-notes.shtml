@@ -20,6 +20,46 @@
 
 <div class="column-unit">
 
+<h3>0.2.18</h3>
+
+<ul>
+<li>
+added censorship to shadowing
+</li>
+<li>
+macos build supports signing
+</li>
+<li>
+MathML Core, <a href="https://www.w3.org/TR/2025/CR-mathml-core-20250624/">June 25 recommended snapshot</a>
+</li>
+<li>
+<a href="https://drafts.csswg.org/css-forms/">CSS Form Control Styling</a>, July 2025 draft
+</li>
+<li>
+the SELECTEDCONTENT element
+</li>
+<li>
+schema.org online marketplace
+</li>
+<li>
+various bug fixes
+</li>
+<li>
+underlying work
+</li>
+<li>
+download
+<A href="bin/Install-SSC-0.2.18-Win-x64.msi" type="application/octet-stream">Windows 10/11 x64 installer</a>,
+<A href="bin/Install-SSC-0.2.18-Win-a64.msi" type="application/octet-stream">Windows 10/11 ARM64 installer</a>,
+<A href="bin/SSC-0.2.18-Mac-Arm.zip" type="application/zip">Mac ARM app (zipped)</a>,
+<A href="bin/SSC-0.2.18-Mac-Intel.zip" type="application/zip">Mac Intel app (zipped)</a>,
+<A href="src/ssc-0.2.18.tgz" type="application/gzip">source</a> (all unsigned).
+</li>
+<li>
+released <time itemprop="datePublished" class="dt-published" datetime="2025-08-03">25 8 3</time>
+</li>
+</ul>
+
 <h3>0.2.17</h3>
 
 <ul>
@@ -27,21 +67,20 @@
 <a href="https://html.spec.whatwg.org/">Living Standard</a> July 2025
 </li>
 <li>
-can sign and verify output (Windows x64, uses <a href="https://www.libressl.org/">libreSSL</a>)
+can sign and verify output (Windows x64, uses <a href="https://www.libressl.org/">libreSSL</a>, build your own)
 </li>
 <li>
 underlying work
 </li>
 <li>
 download
-<A href="bin/Install-SSC-0.2.17-Win-x64.msi" type="application/octet-stream">Windows 10/11 x64 installer</a>,
 <A href="bin/Install-SSC-0.2.17-Win-a64.msi" type="application/octet-stream">Windows 10/11 ARM64 installer</a>,
 <A href="bin/SSC-0.2.17-Mac-Arm.zip" type="application/zip">Mac ARM app (zipped)</a>,
 <A href="bin/SSC-0.2.17-Mac-Intel.zip" type="application/zip">Mac Intel app (zipped)</a>,
 <A href="src/ssc-0.2.17.tgz" type="application/gzip">source</a> (all unsigned).
 </li>
 <li>
-released <time itemprop="datePublished" class="dt-published" datetime="2025-06-16">25 6 16</time>
+released <time itemprop="datePublished" class="dt-published" datetime="2025-07-26">25 7 26</time>
 </li>
 </ul>
 
@@ -50,9 +89,6 @@ released <time itemprop="datePublished" class="dt-published" datetime="2025-06-1
 <ul>
 <li>
 fix crash in GUI
-</li>
-<li>
-repository cloned to <a href="https://codeberg.org/devongarde/ssc">codeberg.org</a> (signed)
 </li>
 <li>
 various bug fixes

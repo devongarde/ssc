@@ -217,6 +217,7 @@
 ./ssc -f ../toast/other/ie/ie.conf
 ./ssc -f ../toast/other/ignore/ignore.conf
 ./ssc -f ../toast/other/incorrectness/incorrectness.conf
+./ssc -f ../toast/other/lists/lists.conf
 ./ssc -f ../toast/other/nits/nits.conf
 ./ssc -f ../toast/other/parsing/parsing.conf
 ./ssc -f ../toast/other/pattern/pattern.conf
@@ -268,6 +269,10 @@
 ./ssc -f ../toast/shadow/softover/softover.conf
 ./ssc -f ../toast/shadow/ssi/ssi.conf
 ./ssc -f ../toast/shadow/update/update.conf
+./ssc -f ../toast/signing/sign/sign.conf
+./ssc -f ../toast/signing/verify/verify.conf
+./ssc -f ../toast/signing/sign-pw/sign-pw.conf
+./ssc -f ../toast/signing/verify-pw/verify-pw.conf
 ./ssc -f ../toast/snippet/conf/snippet.conf
 ./ssc -f ../toast/snippet/kiwi/snippet.conf
 ./ssc -f ../toast/spell/case/spell.conf

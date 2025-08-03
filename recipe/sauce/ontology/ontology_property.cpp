@@ -5901,6 +5901,7 @@ property_gen gentab [] =
     { { 13, 0 }, { 0, 0 }, s_schema, sp_hasrepresentation, t_ontology, sch_url },
     { { 13, 0 }, { 0, 0 }, s_schema, sp_hasrepresentation, t_url },
     { { 29, 0 }, { 0, 0 }, s_schema, sp_hasshippingservice, t_ontology, sch_shippingservice },
+    { { 30, 0 }, { 0, 0 }, s_schema, sp_hasstore, t_ontology, sch_onlinestore },
     { { 28, 0 }, { 0, 0 }, s_schema, sp_hastierbenefit, t_ontology, sch_tierbenefitenumeration },
     { { 28, 0 }, { 0, 0 }, s_schema, sp_hastierrequirement, t_ontology, sch_creditcard },
     { { 28, 0 }, { 0, 0 }, s_schema, sp_hastierrequirement, t_ontology, sch_monetaryamount },
@@ -6105,6 +6106,8 @@ property_gen gentab [] =
     { { 3, 5 }, { 0, 0 }, s_schema, sp_issn, t_issn },
     { { 1, 90 }, { 0, 0 }, s_schema, sp_issn, t_ontology, sch_text },
     { { 1, 90 }, { 0, 0 }, s_schema, sp_issn, t_text },
+    { { 3, 5 }, { 0, 0 }, s_schema, sp_issn, t_issn },
+    { { 30, 0 }, { 0, 0 }, s_schema, sp_isstoreon, t_ontology, sch_onlinemarketplace },
     { { 1, 4 }, { 0, 0 }, s_schema, sp_issuedby, t_ontology, sch_organisation },
     { { 1, 90 }, { 0, 0 }, s_schema, sp_issuenumber, t_ontology, sch_integer },
     { { 1, 90 }, { 0, 0 }, s_schema, sp_issuenumber, t_integer },
@@ -9019,6 +9022,18 @@ bool is_valid_ontology_property_int (nitpick& nits, const html_version& v, const
 
 bool is_valid_ontology_property (nitpick& nits, const html_version& v, const e_ontology_type schema, const e_ontology_property prop, const e_ontology_type value)
 {   return is_valid_ontology_property_int (nits, v, schema, prop, value); }
+
+bool is_valid_ontology_property (const html_version& v, const e_ontology_type schema, const e_ontology_property prop)
+{   nitpick nits;
+    if ((schema == example_type) || (prop == example_property) || sch::vague (schema)) return true;
+    ssch_t ssch (generalise (nits, v, schema));
+    const ontology_version sv (context.ontology_ver (v, sch::root (schema)));
+    if (sv.root () == s_error) return false;
+    ::std::string ts;
+    for (const e_ontology_type gen : ssch)
+        if (is_ontology_property (v, gen, prop))
+            return true;
+    return false; }
 
 vit_t sought_ontology_types (const ontology_version& sv, const e_ontology_property prop)
 {   vit_t res;

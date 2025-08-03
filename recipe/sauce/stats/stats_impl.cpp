@@ -314,7 +314,9 @@ const char* str_name [] =
     ::std::string res;
     if (! str_.at (gst).empty ())
     {   int n = 0;
-        for (auto i = str_.at (gst).cbegin (); i != str_.at (gst).cend (); ++i)
+        vstr_t ffs (str_.at (gst).cbegin (), str_.at (gst).cend ());
+        ::std::sort < vstr_t::iterator > (ffs.begin (), ffs.end ());
+        for (auto i = ffs.cbegin (); i != ffs.cend (); ++i)
         {   ++n;
             mmac_t stat;
             stat.emplace (nm_note_content, *i);
@@ -352,6 +354,7 @@ const char* str_name [] =
     res += saybe (table, category_.at (ec_mime), "Mimetype");
     res += saybe (table, category_.at (ec_mql), "Media Query");
     res += saybe (table, category_.at (ec_namespace), "Namespace");
+    res += saybe (table, category_.at (ec_naughty), "Naughty");
     res += saybe (table, category_.at (ec_page), "Page");
     res += saybe (table, category_.at (ec_parser), "Parser");
     res += saybe (table, category_.at (ec_program), "Program");

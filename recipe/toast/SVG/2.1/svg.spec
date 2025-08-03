@@ -19,6 +19,9 @@ PASS ../toast/SVG/2.1/animation-4.xhtml
 0 title_required
 1 xhtml_5_0
 2 xhtml_enum_lc
+9 invalid_element_version
+17 invalid_element_version
+25 invalid_element_version
 
 PASS ../toast/SVG/2.1/animation-5.xhtml
 0 title_required

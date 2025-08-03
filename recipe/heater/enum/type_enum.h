@@ -981,6 +981,9 @@ template < > struct type_master < t_sgml > : ENUM_N (sgml)
 template < > struct type_master < t_shape_rendering > : ENUM_N (shape_rendering)
 { using ENUM_N (shape_rendering) :: enum_n; };
 
+template < > struct type_master < t_css_slider_orientation > : ENUM_N (css_slider_orientation)
+{ using ENUM_N (css_slider_orientation) :: enum_n; };
+
 template < > struct type_master < t_smei > : ENUM_N (smei)
 { using ENUM_N (smei) :: enum_n; };
 

@@ -26,8 +26,8 @@ hav_t havt_m [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_maction [] =
-{   { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_maction, a_actiontype },
-    { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, elem_maction, a_selection },
+{   { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, elem_maction, a_actiontype },
+    { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, elem_maction, a_selection },
     MATH4_PRES_ATTRIBUTES (elem_maction),
     STANDARD_MATH_CORE_ATTRIBUTES (elem_maction),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };

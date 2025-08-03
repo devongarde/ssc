@@ -2594,6 +2594,14 @@
     <None Include="..\toast\css\3-fbl\css.conf" />
     <None Include="..\toast\css\3-fbl\css.spec" />
     <None Include="..\toast\css\3-fbl\index.html" />
+    <None Include="..\toast\css\3-fcs\css-2.css" />
+    <None Include="..\toast\css\3-fcs\css-3.css" />
+    <None Include="..\toast\css\3-fcs\css-4.css" />
+    <None Include="..\toast\css\3-fcs\css-6.css" />
+    <None Include="..\toast\css\3-fcs\css-a.css" />
+    <None Include="..\toast\css\3-fcs\css.conf" />
+    <None Include="..\toast\css\3-fcs\css.spec" />
+    <None Include="..\toast\css\3-fcs\index.html" />
     <None Include="..\toast\css\3-fill\css-3.css" />
     <None Include="..\toast\css\3-fill\css-4.css" />
     <None Include="..\toast\css\3-fill\css.conf" />
@@ -12286,10 +12294,13 @@
     <None Include="..\toast\math\3\math7-example.html" />
     <None Include="..\toast\math\3\math8-example.html" />
     <None Include="..\toast\math\3\math9-example.html" />
+    <None Include="..\toast\math\4-core\core-1.css" />
     <None Include="..\toast\math\4-core\core-1.html" />
     <None Include="..\toast\math\4-core\core-2.html" />
+    <None Include="..\toast\math\4-core\core-3.css" />
     <None Include="..\toast\math\4-core\core-3.html" />
     <None Include="..\toast\math\4-core\core-4.html" />
+    <None Include="..\toast\math\4-core\core-a.css" />
     <None Include="..\toast\math\4-core\index.html" />
     <None Include="..\toast\math\4-core\math.conf" />
     <None Include="..\toast\math\4-core\math.spec" />
@@ -12839,6 +12850,9 @@
     <None Include="..\toast\other\incorrectness\incorrectness.conf" />
     <None Include="..\toast\other\incorrectness\incorrectness.spec" />
     <None Include="..\toast\other\incorrectness\index.html" />
+    <None Include="..\toast\other\lists\index.html" />
+    <None Include="..\toast\other\lists\lists.conf" />
+    <None Include="..\toast\other\lists\lists.spec" />
     <None Include="..\toast\other\live\2019.html" />
     <None Include="..\toast\other\live\404.shtml" />
     <None Include="..\toast\other\live\feed-me.rss" />
@@ -13352,6 +13366,7 @@
     <None Include="..\toast\shadow\ssi\ssi.inc" />
     <None Include="..\toast\shadow\ssi\ssi.spec" />
     <None Include="..\toast\shadow\ssi\var.html" />
+    <None Include="..\toast\shadow\ssi\var.html.model" />
     <None Include="..\toast\shadow\update\changed.html" />
     <None Include="..\toast\shadow\update\changed.html.model" />
     <None Include="..\toast\shadow\update\index.html" />
@@ -14123,7 +14138,6 @@
     <None Include="..\toast\SVG\2.1\viewport.xhtml" />
     <None Include="..\toast\SVG\2.1\white-space.html" />
     <None Include="..\toast\SVG\2.1\will-change.html" />
-    <None Include="..\toast\tmp\ssi\var.html.model" />
     <None Include="..\toast\type\colour\bad.html" />
     <None Include="..\toast\type\colour\colour.conf" />
     <None Include="..\toast\type\colour\colour.spec" />

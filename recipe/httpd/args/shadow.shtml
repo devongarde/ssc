@@ -77,6 +77,15 @@ resolved, bad content removed, and duplicated content consolidated.
                         appear whether or not the original page has
                         changed.</td></tr>
 
+<tr><td>shadow.naughty&nbsp;value</td> <td>Add value to censorship red list; censorship is
+                        discussed below.</td></tr>
+
+<tr><td>shadow.nice&nbsp;value</td> <td>Add value to censorship green list; censorship is
+                        discussed below.</td></tr>
+
+<tr><td>shadow.note&nbsp;value</td> <td>Add value to censorship blue list; censorship is
+                        discussed below.</td></tr>
+
 <tr><td>shadow.root&nbsp;dir</td> <td>Where to write the shadow site.</td></tr>
 
 <tr><td>shadow.space</td> <td>Leave excess/repeated spaces and blank lines in
@@ -96,6 +105,82 @@ resolved, bad content removed, and duplicated content consolidated.
                         &lsquo;d&rsquo;. &lsquo;v&rsquo; must match a directory set up using
                         <kbd>site.virtual</kbd>.</td></tr>
 </table>
+
+<h2>
+CENSORSHIP
+</h2>
+
+<p>
+Certain pieces of data can be censored when shadowing, using the
+shadow.naughty, shadow.nice, and shadow.note switches (respectively
+defining a red list, a green list, and a blue list).
+</p>
+
+<p>
+Each switch takes a command parameter, which is formatted as follows:
+</p>
+
+<p>
+ATTRIBUTE,element,attribute,value<br>
+considers attribute of element with the given value
+</p>
+
+<p>
+ELEMENT,element,value<br>
+considers the text contained within &lt;ELEMENT&gt; and &lt;/ELEMENT&gt; of the
+given value
+</p>
+
+<p>
+MICROFORMAT,type,property,value<br>
+considers a microformat type property of the given value
+</p>
+
+<p>
+ONTOLOGY,ontology,type,property,value<br>
+considers a ontological type property of the given value
+</p>
+
+<p>
+COMMON,value<br>
+consider that value anywhere
+</p>
+
+<p>
+You could, for example, use --shadow.nice repeatedly to define half a dozen values for an element in a
+green list. This would mean all values apart from those specified would
+be suppressed (similar to a white list).
+</p>
+
+<p>
+You could, for example, use --shadow.naughty repeatedly to define half a dozen values for an element in a
+red list. This would mean any occurrence of any of those value would be
+suppressed (similar to a black list).
+</p>
+
+<p>
+When a value is suppressed, and you used --shadow.note to create an appropriate blue list entry, then that
+blue list entry is sought. If the blue list contains
+a value for the element, that value is inserted in place of the
+old value, otherwise the original is blanked.
+</p>
+
+<p>
+For example:<br>
+--shadow.nice ELEMENT,title,Nice Title<br>
+--shadow.nice ELEMENT,title,Title<br>
+--shadow.note ELEMENT,title,[REDACTED]
+</p>
+
+<p>
+If a page&rsquo;s &lt;TITLE&gt;&lt;/TITLE&gt; contains any text apart from Title or Nice
+Title, it is replaced by [REDACTED].
+</p>
+
+<p>
+Wildcards can be used for naughty and nice, using
+<a href="https://www.boost.org/doc/libs/latest/libs/regex/doc/html/boost_regex/syntax/perl_syntax.html">Perl syntax</a>.
+</p>
 
 <!--#include virtual="../plumbing/under.inc" -->
 <!--#include virtual="../plumbing/args.inc" -->

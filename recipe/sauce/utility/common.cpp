@@ -44,6 +44,15 @@ bool is_one_of (const ::std::string& s, const vstr_t& v)
 ::std::string trim_the_lot_off (const ::std::string& s)
 {   return ::boost::trim_copy (s); }
 
+bool isnl (const char ch)
+{   switch (ch)
+    {   case '\n' :
+        case '\r' :
+        case '\f' :
+            return true;
+        default :
+            return false; } }
+
 ::std::string unify_whitespace (const ::std::string& s)
 {   bool whitespace = false;
     ::std::string res;
@@ -52,6 +61,16 @@ bool is_one_of (const ::std::string& s, const vstr_t& v)
         {   whitespace = false; res += ::std::string (1, ch); }
         else if (! whitespace)
         {   whitespace = true; res += ::std::string (1, ' '); }
+    return res; }
+
+::std::string unify_nlspace (const ::std::string& s)
+{   bool nlspace = false;
+    ::std::string res;
+    for (auto ch : s)
+        if (! ::std::iswspace (ch) && ! isnl (ch))
+        {   nlspace = false; res += ::std::string (1, ch); }
+        else if (! nlspace)
+        {   nlspace = true; res += ::std::string (1, ' '); }
     return res; }
 
 vstr_t split_by_charset (const ::std::string& s, const char* charset)

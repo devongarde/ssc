@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 class microdata_itemscope;
 class page;
+class element;
 
 typedef ::std::shared_ptr < microdata_itemscope > itemscope_ptr;
 typedef ssc_variant < itemscope_ptr, ::std::string > itemprop_value;
@@ -40,8 +41,8 @@ class microdata_itemscope
 public:
     void swap (microdata_itemscope& mi);
     void note_itemtype (nitpick& nits, const html_version& v, const ::std::string& name, page& p, const bool has_itemid);
-    bool note_itemprop (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value, const bool is_link, page& p);
-    bool note_itemprop (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value, itemscope_ptr& scope, page& p);
+    bool note_itemprop (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value, const bool is_link, element& e);
+    bool note_itemprop (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value, itemscope_ptr& scope, element& e);
     bool note_itemid (nitpick& nits, const html_version& v, const ::std::string& name);
     vit_t type () const
     {   if (use_parent ())

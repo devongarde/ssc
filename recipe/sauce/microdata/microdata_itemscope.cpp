@@ -28,6 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/context.h"
 #include "utility/quote.h"
 #include "webpage/page.h"
+#include "element/element.h"
 
 typedef enum { ip_itemscope, ip_string } itemprop_member;
 
@@ -95,18 +96,29 @@ itemprop_indices microdata_itemscope::prepare_itemprop_indices (nitpick& nits, c
         ii = find_itemprop_indices (nits, v, name.substr (ends_at), type ().empty (), example ()); }
     return ii; }
 
-bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value, const bool is_link, page& p)
-{   itemprop_indices ii = prepare_itemprop_indices (nits, v, name, value);
+bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value, const bool is_link, element& e)
+{   page& p = e.get_page ();
+    ::std::string v2 (value);
+    itemprop_indices ii = prepare_itemprop_indices (nits, v, name, v2);
     nitpick knots, nuts;
     for (auto prop : ii)
         for (auto i : type ())
             if (are_categories_compatible (knots, v, prop, i))
-            {   if (is_valid_property (nuts, v, i, prop, value, is_link))
-                {   nits.merge (nuts);
-                    itemprop_.emplace (prop, itemprop_value (value));
+            {   if (is_valid_property (nuts, v, i, prop, v2, is_link))
+                {   if (prop_category (prop) == itemprop_ontology)
+                    {   const e_ontology_property pr = prop_itself (prop);
+                        if (context.naughty_test (pr, v2))
+                            if (e.has_naughty_text (v2))
+                            {   nuts.pick (nit_naughty_ontology, es_info, ec_naughty, "ignorance is strength: concealing ", quote (v2));
+                                const ::std::string alt = context.naughty_sub (pr);
+                                if (! e.amend_microdata_value (v, alt))
+                                    e.replace_naughty_text (v2, alt);
+                                v2 = alt; } }
+                    nits.merge (nuts);
+                    itemprop_.emplace (prop, itemprop_value (v2));
                     if (context.md_export ())
                     {   VERIFY_NOT_NULL (exporter (), __FILE__, __LINE__);
-                        exporter () -> add (export_path_, prop, value); }
+                        exporter () -> add (export_path_, prop, v2); }
                     p.mark (static_cast < e_ontology_type > (ndx_item (i)), static_cast < e_ontology_property > (ndx_item (prop)));
                     return true; }
                 knots.merge (nuts); nuts.reset (); }
@@ -114,8 +126,9 @@ bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, c
     world_wide_wombat_web (nits, v, name);
     return false; }
 
-bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value, itemscope_ptr& scope, page& p)
-{   itemprop_indices ii = prepare_itemprop_indices (nits, v, name, value);
+bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, const ::std::string& name, const ::std::string& value, itemscope_ptr& scope, element& e)
+{   page& p = e.get_page ();
+    itemprop_indices ii = prepare_itemprop_indices (nits, v, name, value);
     if (scope.get () != nullptr)
     {   microdata_export* ex = exporter ();
         if (ex != nullptr) for (auto prop : ii)
@@ -148,7 +161,7 @@ bool microdata_itemscope::note_itemprop (nitpick& nits, const html_version& v, c
 // I can't honest be arsed to work my way around ::boost::variants' restrictions, and in particular VS2015's (presuming) bizarre
 // whinging that code containing no consts has too many consts : so no reports for aging compilers.
             ;
-#else
+#else // BOOVAR
             switch (i -> second.index ())
             {   case ip_itemscope :
                     PRESUME (ssc_get < itemscope_ptr > (i -> second).get () != nullptr, __FILE__, __LINE__);

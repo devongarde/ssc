@@ -128,7 +128,7 @@ bool outstream::done (nitpick& nits) noexcept
                 throw; } } }
     catch (...)
     {   ok = false; }
-    try
+    if (ok) try
     {   if (fos_ -> is_open ()) fos_ -> close (); }
     catch (...)
     {   ok = false; }

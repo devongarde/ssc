@@ -29,7 +29,13 @@ template < e_type TYPE, e_property IDENTITY > struct typed_mf_value
     {   return TYPE; }
     static ::std::string name ()
     {   return prop :: name (IDENTITY); }
-    void set_mf_value (nitpick& nits, const html_version& v, const element& e)
-    {   base_t :: set_value (nits, v, find_value < TYPE > (e)); }
+    void set_mf_value (nitpick& nits, const html_version& v, element& e)
+    {   ::std::string s (find_value < TYPE > (e));
+        if (context.naughty_test (IDENTITY, s))
+        {   const ::std::string alt (context.naughty_sub (IDENTITY));
+            if (! amend_value < TYPE > (v, e, alt)) naughty_fix (e, s, alt);
+            nits.pick (nit_naughty_microformat, es_info, ec_naughty, "ignorance is strength: concealing ", quote (s));
+            s = alt; }
+        base_t :: set_value (nits, v, s); }
     ::std::string report () const
     {   return base_t :: report (name ()); } };

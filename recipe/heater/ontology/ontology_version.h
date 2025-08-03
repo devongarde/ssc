@@ -168,6 +168,7 @@ const ontology_version croissant_1_17 (s_croissant, 1, 17);
 const ontology_version croissant_1_18 (s_croissant, 1, 18);
 const ontology_version croissant_1_19 (s_croissant, 1, 19);
 const ontology_version croissant_1_20 (s_croissant, 1, 20);
+const ontology_version croissant_1_21 (s_croissant, 1, 21);
 const ontology_version croissant_1_100 (s_croissant, 1, 100);
 const ontology_version croissant_1_101 (s_croissant, 1, 101);
 

@@ -159,6 +159,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_math_2 : return "MathML 2 2nd Ed.";
         case ed_math_3 : return "MathML 3 2nd Ed.";
         case ed_math_4 : return "MathML 4, Nov 24";
+        case ed_math_core : return "Math Core, Jun 25";
         case ed_mimetype : return "IANA media types";
         case ed_prism_1 : return "PRISM spec 1.0";
         case ed_rdfa : return "RDFa";
@@ -203,6 +204,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_nov24 : return "HTML 5, Nov 24";
         case ed_jun25 : return "HTML 5, Jun 25";
         case ed_jul25 : return "HTML 5, Jul 25";
+        case ed_aug25 : return "HTML 5, Aug 25";
         case ed_wx : return "wxWidgets HTML";
         case ed_owasp : return "OWASP";
         case ed_ecma : return "ECMAScript, 22.2.1 Patterns";
@@ -305,6 +307,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_nov24 : return "HTML 5, WhatWG, November 2024";
         case ed_jun25 : return "HTML 5, WhatWG, June 2025";
         case ed_jul25 : return "HTML 5, WhatWG, July 2025";
+        case ed_aug25 : return "HTML 5, WhatWG, August 2025";
         case ed_wx : return "wxWidgets HTML, list of stable HTML tags, November 2024";
         case ed_owasp : return "Open Web Application Security Project, January 2025"; 
         case ed_prism_1 : return "Publishing Requirements for Industry Standard Metadata, Version 1.0";
@@ -315,6 +318,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_math_2 : return "MathML 2.0 Second Edition";
         case ed_math_3 : return "MathML 3.0 Second Edition";
         case ed_math_4 : return "MathML 4.0, draft, November 2024";
+        case ed_math_core : return "MathML Core, recommended snapshot, June 2025";
         case ed_iso_8859_1 : return "ISO/IEC 8859-1:1998";
         case ed_ecma : return "ECMAScript 2022 Language Specification, 22.2.1 Patterns, March 2021";
         case ed_keyboard : return "UI Events KeyboardEvent key Values, W3, November 2024";

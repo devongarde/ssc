@@ -92,6 +92,27 @@ void element::mf_put_rel (nitpick& nits, const e_class v, const prop& p, const v
         default : break; }
     return text (); }
 
+bool element::amend_date_value (const html_version& v, const ::std::string& s)
+{   nitpick nits;
+    if (a_.known (a_value) && a_.valid (a_value) && a_.valid (a_class))
+        return a_.set_value (nits, v, a_value, s);
+    switch (tag ())
+    {   case elem_t :
+        case elem_time :
+        case elem_ins :
+        case elem_del :
+            if (a_.known (a_datetime)) return a_.set_value (nits, v, a_datetime, s);
+            break;
+        case elem_abbr :
+            if (a_.known (a_title)) return a_.set_value (nits, v, a_title, s);
+            break;
+        case elem_data :
+        case elem_input :
+            if (a_.known (a_value)) return a_.set_value (nits, v, a_value, s);
+            break;
+        default : break; }
+    return false; }
+
 ::std::string element::find_text_value () const
 {   if (a_.known (a_value) && a_.valid (a_class))
         return a_.get_string (a_value);
@@ -110,6 +131,26 @@ void element::mf_put_rel (nitpick& nits, const e_class v, const prop& p, const v
             break;
         default : break; }
     return text (); }
+
+bool element::amend_text_value (const html_version& v, const ::std::string& s)
+{   nitpick nits;
+    if (a_.known (a_value) && a_.valid (a_class))
+        return a_.set_value (nits, v, a_value, s);
+    switch (tag ())
+    {   case elem_abbr :
+        case elem_link :
+            if (a_.known (a_title)) return a_.set_value (nits, v, a_title, s);
+            break;
+        case elem_data :
+        case elem_input :
+            if (a_.known (a_value)) return a_.set_value (nits, v, a_value, s);
+            break;
+        case elem_img :
+        case elem_area :
+            if (a_.known (a_alt)) return a_.set_value (nits, v, a_alt, s);
+            break;
+        default : break; }
+    return false; }
 
 ::std::string element::find_url_value () const
 {   switch (tag ())
@@ -144,6 +185,41 @@ void element::mf_put_rel (nitpick& nits, const e_class v, const prop& p, const v
             break;
         default : break; }
     return text (); }
+
+bool element::amend_url_value (const html_version& v, const ::std::string& s)
+{   nitpick nits;
+    switch (tag ())
+    {   case elem_a :
+        case elem_area :
+        case elem_link :
+            if (a_.known (a_href) && ! a_.invalid (a_href)) return a_.set_value (nits, v, a_href, s);
+            break;
+        case elem_audio :
+        case elem_source :
+        case elem_iframe :
+        case elem_img :
+            if (a_.known (a_src)) return a_.set_value (nits, v, a_src, s);
+            break;
+        case elem_video :
+            if (a_.known (a_src)) return a_.set_value (nits, v, a_src, s);
+            if (a_.known (a_poster)) return a_.set_value (nits, v, a_poster, s);
+            break;
+        case elem_object :
+            if (a_.known (a_data)) return a_.set_value (nits, v, a_data, s);
+            break;
+        default : break; }
+    if (a_.known (a_value) && a_.valid (a_class))
+        return a_.set_value (nits, v, a_value, s);
+    switch (tag ())
+    {   case elem_abbr :
+            if (a_.known (a_title)) return a_.set_value (nits, v, a_title, s);
+            break;
+        case elem_data :
+        case elem_input :
+            if (a_.known (a_value)) return a_.set_value (nits, v, a_value, s);
+            break;
+        default : break; }
+    return false; }
 
 ::std::string element::find_html_value () const
 {   return text (); }

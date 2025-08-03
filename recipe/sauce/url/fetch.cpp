@@ -120,7 +120,9 @@ static bool oh_dear (nitpick& nits, const url& u, const ::boost::beast::error_co
         case ::boost::beast::errc::owner_dead :
         case ::boost::beast::errc::read_only_file_system :
         case ::boost::beast::errc::too_many_symbolic_link_levels :
+#ifndef LINUX
         case ::boost::beast::errc::operation_not_supported :
+#endif // LINUX
             nits.pick (nit_http_error, es_comment, ec_ip, "unexpected error; abandoning network activity (", ec.message (), ")");
             context.comms (false);
             break;

@@ -1,23 +1,40 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>ssi shadow test page</title>
+<title>variable test page</title>
 </head>
+
 <body>
-<h1>ssi shadow test page</h1>
+
+<h1>variable test page</h1>
+
 <p>
-een,
-deux,
-drei,
-vier.
+This test, regretfully, presumes the author&rsquo;s context.
 </p>
+
 <p>
-ONE = een
-TWO = deux
-THREE = drei
-FIVE = tiddles
-FOUR = vier
-TIDDLES = mega plonker tells the time by looking at a warping plank plank plank plank plonk plank
+
+2025-08-02T08:01:23
+
+Sat, 02 Aug 2025 08:01:23 GMT
+Saturday, 02-Aug-2025 08:01:23 GMT
+Thu, 13 Mar 2025 07:32:16 GMT
+
+Sat, Aug 02 08:01:23 2025
+ 
+03/13/25, 07:32:16
+doc args doctors and argues
+computer, do something really silly
+fred.bloggs
+
+
+ 
+08:18, August 02, 2025
+10:18, August 02, 2025
+
+08:18, August 02, 2025
+10:18, August 02, 2025
 </p>
+
 </body>
 </html>

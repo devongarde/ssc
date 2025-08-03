@@ -70,15 +70,15 @@ PASS ../toast/stats/CSS-6/index.html
 
 GRAND
 Styleset:
-    stacked-a
-    double-W
-    curly-quotes
-    sharp-terminals
-    stacked-g
-    geometric-m
     alt-g
     code
+    curly-quotes
+    double-W
     dumb
+    geometric-m
+    sharp-terminals
+    stacked-a
+    stacked-g
   Used 9 times
 
 ===

@@ -246,6 +246,7 @@ parentage parent_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, elem_button, elem_isindex, DENY },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_button, elem_label, DENY },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_button, elem_select, DENY },
+    { { HTML_AUG25 }, { HTML_UNDEF }, elem_button, elem_selectedcontent, DENY },
     { { XHTML_1_0 }, { HTML_UNDEF }, elem_button, elem_textarea, DENY },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_button, elem_undefined, 0, EF_4_FLOW },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_button, elem_undefined, 0, EF_5_PHRASE },
@@ -1290,6 +1291,7 @@ parentage parent_table [] =
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_script, elem_undefined, 0, EF_SVG_DESC },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_section, elem_undefined, 0, EF_X2_FLOW },
     { { HTML_JAN05 }, { HTML_UNDEF }, elem_section, elem_undefined, 0, EF_5_FLOW },
+    { { HTML_AUG25 }, { HTML_UNDEF }, elem_select, elem_button },
     { { HTML_2_0 }, { HTML_2_0 }, elem_select, elem_input, DENY },
     { { HTML_1_0 }, { HTML_UNDEF }, elem_select, elem_option },
     { { HTML_2_0 }, { HTML_2_0 }, elem_select, elem_textarea, DENY },
@@ -2163,6 +2165,8 @@ e_element default_parent (const html_version& v, const elem& self) noexcept
             return elem_array;
         case elem_rule :
             return elem_datatemplate;
+        case elem_selectedcontent :
+            return elem_button;
         case elem_source :
             return elem_video;
         case elem_t :

@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.2.17
+version 0.2.18
 (c) 2020-2025 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notices
 https://ssc.lu/
@@ -13,7 +13,7 @@ ssc analyses static X/HTML snippets, files and sites:
 - HTML Tags/1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3-draft
 - CSS 1/2.0/2.1/2.2-draft, 2007-2024 snapshots, more
 - SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x-draft
-- MathML 1/2/3/4-core/4-draft
+- MathML 1/2/3/core/4-draft
 - XHTML 1.0/1.1/2.0/5.x
 - WebVTT
 - a simple hint of JSON-LD
@@ -74,7 +74,8 @@ and forwarding it to the developer:
 - configuration file/s used, if any;
 - any ndx file or other pre-existing file used during the run;
 - any known workarounds, fixes or solutions;
-- a video of a dance interpretation of the issue.
+- a video of a dance interpretation of the issue (might just be
+  optional, this).
 Email everything to mail@ssc.lu (if the collected files are more than
 small, please use a public file server and email the link). Do NOT send
 anything confidential. Furthermore, unless you state otherwise, we
@@ -148,4 +149,4 @@ GNU General Public License for more details.
 dylan harris
 mail@ssc.lu
 mail@dylanharris.org
-June 2025
+August 2025

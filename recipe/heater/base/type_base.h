@@ -32,7 +32,13 @@ class stats_t;
 typedef bool mono;
 
 ::std::string type_name (const e_type e);
+e_type type_jag (const ::std::string& s);
 ::std::string get_type_site_path (const element* const box);
+bool naughty_fix (element& e, const ::std::string& old, const ::std::string& alt);
+
+inline bool naughty_fix (element* e, const ::std::string& old, const ::std::string& alt)
+{   if (e == nullptr) return false;
+    return naughty_fix (*e, old, alt); }
 
 template < typename VALUE_TYPE, e_type E > class type_base
 {   ::std::string id_;
@@ -60,7 +66,8 @@ public:
     bool verify_url (nitpick& , const html_version& , element& ) noexcept { return true; }
     ::std::string get_string () const noexcept { return ::std::string (); }
     ::std::string original () const noexcept { return get_string (); }
-    void set_value (nitpick& , const html_version& , const ::std::string& ) { status_ = s_empty; }
+    void set_value (nitpick& , const html_version& , const ::std::string& )
+    {   status_ = s_empty; }
     ::std::string get_id () const { return id_; }
     void set_id (const ::std::string& s) { id_ = s; }
     ::std::string& id () noexcept { return id_; }

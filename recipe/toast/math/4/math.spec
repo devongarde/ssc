@@ -42,9 +42,6 @@ PASS ../toast/math/4/binary-set.html
 
 PASS ../toast/math/4/bind-bvar.html
 2 naughty_lang
-40 invalid_attribute_version wrong_version
-42 invalid_attribute_version wrong_version
-45 invalid_attribute_version wrong_version
 
 PASS ../toast/math/4/bindings.html
 2 naughty_lang
@@ -177,14 +174,6 @@ PASS ../toast/math/4/merror.html
 
 PASS ../toast/math/4/mfenced.html
 2 naughty_lang
-32 invalid_attribute_version wrong_version
-35 invalid_attribute_version wrong_version
-37 invalid_attribute_version wrong_version
-40 invalid_attribute_version wrong_version
-44 invalid_attribute_version wrong_version
-46 invalid_attribute_version wrong_version
-55 invalid_attribute_version wrong_version
-56 invalid_attribute_version wrong_version
 
 PASS ../toast/math/4/mfrac.html
 2 naughty_lang

@@ -49,7 +49,7 @@ void state_init ()
     form_bitset = empty_element_bitset | elem_button | elem_fieldset | elem_input | elem_object | elem_output | elem_select | elem_textarea | elem_img;
     header_bitset = empty_element_bitset | elem_h1 | elem_h2 | elem_h3 | elem_h4 | elem_h5 | elem_h6 | elem_hgroup;
     interactive_bitset = empty_element_bitset | elem_a | elem_audio | elem_button | elem_details | elem_embed | elem_iframe |
-            elem_img | elem_input | elem_label | elem_object | elem_select | elem_textarea | elem_video;
+            elem_img | elem_input | elem_label | elem_object | elem_select | elem_selectedcontent | elem_textarea | elem_video;
     label_bitset = empty_element_bitset | elem_button | elem_input | elem_meter | elem_output | elem_progress | elem_select | elem_textarea;
     listed_bitset = empty_element_bitset | elem_button | elem_fieldset | elem_input | elem_object | elem_output | elem_select | elem_textarea;
     media_bitset = empty_element_bitset | elem_audio | elem_video;

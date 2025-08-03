@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.24)
 set (FULLNAME "Static-Site-Checker")
-set (VER 0.2.17)
+set (VER 0.2.18)
 project (ssc VERSION ${VER} DESCRIPTION ${FULLNAME} LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
 message (NOTICE "preparing " ${FULLNAME} " ${VER}" )
 
@@ -115,7 +115,7 @@ set (HEATERS
         ${H}/url/fetch.h ${H}/url/url.h ${H}/url/url_parameters.h ${H}/url/url_protocol.h ${H}/url/url_sanitise.h ${H}/url/url_scheme.h
             ${H}/url/url_schemes.h
         ${H}/utility/bigvector.h ${H}/utility/bitset.h ${H}/utility/byteorder.h ${H}/utility/cache.h ${H}/utility/common.h ${H}/utility/fileio.h
-            ${H}/utility/filesystem.h ${H}/utility/lexical.h ${H}/utility/quote.h ${H}/utility/ssl.h ${H}/utility/tuple.h
+            ${H}/utility/filesystem.h ${H}/utility/lexical.h ${H}/utility/list.h ${H}/utility/quote.h ${H}/utility/ssl.h ${H}/utility/tuple.h
         ${H}/webpage/corpus.h ${H}/webpage/crosslink.h ${H}/webpage/directory.h ${H}/webpage/external.h ${H}/webpage/fileindex.h ${H}/webpage/headers.h
             ${H}/webpage/id.h ${H}/webpage/page.h ${H}/webpage/q.h ${H}/webpage/required.h ${H}/webpage/root.h ${H}/webpage/vtt.h
     )
@@ -187,7 +187,8 @@ set (SAUCE
         ${S}/symbol/nstr.cpp ${S}/symbol/symbol.cpp
         ${S}/type/type.cpp ${S}/type/type_csp.cpp
         ${S}/url/fetch.cpp ${S}/url/url.cpp ${S}/url/url_parameters.cpp ${S}/url/url_protocol.cpp ${S}/url/url_sanitise.cpp ${S}/url/url_scheme.cpp
-        ${S}/utility/byteorder.cpp ${S}/utility/cache.cpp ${S}/utility/common.cpp ${S}/utility/fileio.cpp ${S}/utility/filesystem.cpp ${S}/utility/quote.cpp
+        ${S}/utility/byteorder.cpp ${S}/utility/cache.cpp ${S}/utility/common.cpp ${S}/utility/fileio.cpp ${S}/utility/filesystem.cpp ${S}/utility/list.cpp
+            ${S}/utility/quote.cpp
         ${S}/webpage/corpus.cpp ${S}/webpage/crosslink.cpp ${S}/webpage/directory.cpp ${S}/webpage/external.cpp ${S}/webpage/fileindex.cpp
             ${S}/webpage/headers.cpp ${S}/webpage/id.cpp ${S}/webpage/page.cpp ${S}/webpage/q.cpp ${S}/webpage/required.cpp ${S}/webpage/root.cpp
             ${S}/webpage/vtt.cpp
@@ -284,7 +285,7 @@ elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
         execute_process (COMMAND ${LSB_RELEASE} -rs
         OUTPUT_VARIABLE LSB_RELEASE_VER_SHORT OUTPUT_STRIP_TRAILING_WHITESPACE)
     endif ()
-    set (CDEF_ALL ${CDEF_ALL} LINUX)
+    set (CDEF_ALL ${CDEF_ALL} LINUX UNIX)
     set (CDEF_PROD ${CDEF_PROD} OMG BOOST_BIND_GLOBAL_PLACEHOLDERS)
     if ("${LSB_RELEASE_ID_SHORT}" STREQUAL "")
         set (TARGET_OS "Linux")
@@ -329,6 +330,7 @@ elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         if (${ARCHITECTURE} MATCHES "x86_64")
             set (NJ "1")
         endif ()
+        set (SIGNING "1")
     elseif (${CMAKE_SYSTEM} MATCHES "Darwin-23")
         set (TARGET_OS "Sonoma")
         set (CDEF_PROD ${CDEF_PROD} HUNSPELL CLEAN_SHAREDPTR_ARRAY ORDERED)
@@ -451,6 +453,14 @@ endif ()
 if (DEFINED NO_GSL)
   message (VERBOSE "No GSL")
   set (CDEF_PROD ${CDEF_PROD} NO_GSL)
+endif ()
+
+if (DEFINED SIGNING)
+  find_package (libreSSL REQUIRED)
+  message (VERBOSE "libreSSL " ${LIBRESSL_VERSION})
+  set (INC ${INC} ${LIBRESSL_INCLUDE_DIR})
+  set (LLALL ${LLALL} ${LIBRESSL_CRYPTO_LIBRARY})
+  set (CDEF_ALL ${CDEF_ALL} SIGNING)
 endif ()
 
 if (${CMAKE_BUILD_TYPE} MATCHES "Debug")

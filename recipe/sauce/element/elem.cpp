@@ -531,6 +531,7 @@ struct symbol_entry < html_version, e_element > elem_symbol_table [] =
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "sech", elem_sech, ns_default, EP_CLOSED | EP_ARGS_1, EF_M_CONTENT },
     { { XHTML_2_0 }, { HTML_UNDEF }, "section", elem_section, ns_default, 0, EF_X2_STRUCT | EF_5_FLOW | EF_5_SECTION | EF_5_PALPABLE },
     { { HTML_PLUS, HV_NOT2L1 | HV_NOTX2 }, { HTML_UNDEF }, "select", elem_select, ns_default, 0, EF_MISC | EF_32_FORM | EF_4_FORM | EF_5_FLOW | EF_5_PHRASE | EF_5_INTERACTIVE | EF_5_PALPABLE | EF_5_FORM },
+    { { HTML_AUG25, 0, 0, H2_MATHML }, { HTML_UNDEF }, "selectedcontent", elem_selectedcontent, ns_default, 0, EF_5_PHRASE },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "selector", elem_selector, ns_default, EP_CLOSED | EP_ARGS_1 | EP_ARGS_MORE, EF_M_CONTENT },
     { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, "semantics", elem_semantics, ns_default, 0, EF_M_CONTENT | EF_M_CONTINPRES },
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, "sep", elem_sep, ns_default, EP_CLOSED, EF_M_CONTENT },

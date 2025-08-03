@@ -83,7 +83,9 @@ template < > struct type_master < t_actiontype > : varied < t_actiontype >
     void verify_attribute (nitpick& nits, const html_version& v, const elem& , element* , const ::std::string& )
     {   if (good () || empty ())
             if (v.math_version () == math_2)
-                validate_type < type_master < t_actiontype2 > > (nits, v); } };
+            {   validate_type < type_master < t_actiontype2 > > (nits, v); 
+                if (varied < t_actiontype > :: int_ == at_statusline)
+                    nits.pick (nit_security, ed_math_core, "E. Security Considerations", es_abhorrent, ec_rudeness, "Setting actiontype to statusline is attacker behaviour; do not do it."); } } };
 
 template < > struct type_master < t_align > : varied < t_align >
 {   using varied < t_align > :: varied;

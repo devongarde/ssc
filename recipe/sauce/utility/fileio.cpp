@@ -69,7 +69,7 @@ bool test_file (nitpick& nits, const ::boost::filesystem::path& name, uintmax_t&
                         else if (encoding == cc_utf8)
                         {   nitpick nuts;
                             ::std::string norm = normalise_utf8 (nuts, res);
-                            if (norm != res)
+                            if ((norm != res) && ! context.test ()) // dependent on host system, ignore in tests
                             {   nits.pick (nit_normalise, es_warning, ec_icu, quote (p.string ()), " does not appear to be normalised UTF-8");
                                 nits.pick (nit_normalise, es_debug, ec_icu, "differences: ", string_diff (res, norm, true));
                                 res = norm; } }

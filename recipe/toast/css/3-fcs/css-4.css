@@ -1,0 +1,25 @@
+﻿::file-selector-button { border: 3px solid green }
+
+::checkmark { background-image: url(...) }
+
+:indeterminate::checkmark { background-image: url(...) }
+
+input[type=number] {
+  appearance: base;
+  &::step-control {
+    display: contents;
+  }
+  &::step-up {
+    order: 1;
+    content: "+";
+  }
+  &::field-text {
+    order: 2;
+  }
+  &::step-down {
+    order: 3;
+    content: "-";
+  }
+}
+
+input[type=color], ::color-swatch { border-radius: 100%; }

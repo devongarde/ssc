@@ -70,9 +70,9 @@ PASS ../toast/stats/CSS-6/index.html
 
 GRAND
 Palette:
-    Cooler 
     Augusta 
-    ToxicGreen 
+    Cooler 
     Festival 
+    ToxicGreen 
   Used 4 times
 ===

@@ -70,8 +70,8 @@ PASS ../toast/stats/CSS-6/index.html
 
 GRAND
 Highlight:
-    sample
-    foo
     bar
+    foo
+    sample
   Used thrice
 ===

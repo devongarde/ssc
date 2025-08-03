@@ -1,0 +1,232 @@
+﻿input,
+textarea,
+button,
+::file-selector-button,
+select,
+meter,
+progress {
+    color: inherit;
+    font: inherit;
+    box-sizing: border-box;
+    background-color: transparent;
+}
+
+input:not([type=file], [type=range], [type=checkbox][switch]),
+textarea,
+button,
+::file-selector-button,
+::slider-track,
+select {
+  border: 1px solid currentColor;
+  background-color: transparent;
+}
+
+::slider-track {
+  height: 1em;
+}
+
+::slider-fill {
+  height: 100%;
+  background-color: currentColor;
+}
+
+:indeterminate::slider-fill {
+  inline-size: 0;
+}
+
+::slider-thumb {
+  border-radius: 0;
+  border: none;
+  background-color: currentColor;
+  appearance: none;
+  width: 1em;
+  height: 100%;
+}
+
+input:is([type=checkbox]:not([switch]), [type=radio]) {
+    width: 1em;
+    height: 1em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    content: '';
+}
+
+input[type=radio] {
+    border-radius: 100%;
+}
+
+input[type=checkbox]:not([switch]):checked::checkmark {
+    content: '\2713' / '';
+}
+
+input[type=radio]:checked::checkmark {
+    background-color: currentColor;
+    display: inline-block;
+    border-radius: inherit;
+    height: 100%;
+    width: 100%;
+}
+
+select {
+  /* Base appearance select always sizes based on its contents. */
+  field-sizing: content !important;
+}
+
+button,
+::file-selector-button,
+select,
+input:is([type="color"], [type="button"], [type="reset"], [type="submit"]) {
+  border: 1px solid currentColor;
+  background-color: transparent;
+  color: inherit;
+  /* Padding prevents the text from sticking to the borders.
+   * optically centered to account for half leading */
+  padding-block: 0.25em;
+  padding-inline: 0.5em;
+
+  /* <select>s and <button>s should have border-radius to be
+   * distinct from <input>s: https://github.com/w3c/csswg-drafts/issues/10857#issuecomment-2520875011*/
+  border-radius: 0.5em;
+
+  /* These min-size rules ensure accessibility by following WCAG rules:
+   * https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html
+   * The 1lh is there to make sure that options without text don't change
+   * the block size of the button. */
+  min-block-size: calc-size(auto, max(size, 24px, 1lh));
+  min-inline-size: calc-size(auto, max(size, 24px));
+
+  /* box-sizing comes from existing UA styles which happen to
+   * already be interoperable. */
+  box-sizing: border-box;
+
+  /* Push picker icon to the right of the box and have some space
+   * in between it and the text. */
+  display: inline-flex;
+  gap: 0.5em;
+
+  user-select: none;
+
+  text-transform: initial;
+  text-align: initial;
+  text-indent: initial;
+}
+:is(button, select, input:is([type="color"], [type="button"], [type="reset"], [type="submit"])):enabled:hover,
+:enabled::file-selector-button:hover {
+  background-color: color-mix(in lab, currentColor 10%, transparent);
+}
+:is(button, select, input:is([type="color"], [type="button"], [type="reset"], [type="submit"])):enabled:active,
+:enabled::file-selector-button:active {
+  background-color: color-mix(in lab, currentColor 20%, transparent);
+}
+:is(button, select, input:is([type="color"], [type="button"], [type="reset"], [type="submit"])):disabled,
+:disabled::file-selector-button {
+  color: color-mix(in srgb, currentColor 50%, transparent);
+}
+
+select > button:first-child {
+  /* Prevents button from setting font, color, or background-color */
+  all: unset;
+
+  /* Prevents duplicate box decorations */
+  display: contents;
+
+  /* Prevents button activation behavior so select can handle events */
+  interactivity: inert !important;
+}
+select option {
+  /* These min-size rules ensure accessibility by following WCAG rules:
+   * https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html
+   * Unset if the author provides a child button element.
+   * The 1lh is there to make sure that options without text don't change
+   * the block size of the option. */
+  min-inline-size: 24px;
+  min-block-size: max(24px, 1lh);
+
+  /* Centers text within the block (vertically). From OpenUI discussion:
+   * https://github.com/openui/open-ui/issues/1026#issuecomment-2103187647. */
+  align-content: center;
+
+  /* centering + gap between checkmark and option content */
+  /* also easily reversed, when checkmark should be inline-end */
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+
+  /* Makes options with long text widen picker instead
+   * of making options tall. */
+  white-space: nowrap;
+}
+select option:enabled:hover {
+  background-color: color-mix(in lab, currentColor 10%, transparent);
+}
+select option:enabled:active {
+  background-color: color-mix(in lab, currentColor 20%, transparent);
+}
+select option:disabled {
+  color: color-mix(in lab, currentColor 50%, transparent);
+}
+select option::checkmark {
+  content: '\2713' / '';
+}
+select option:not(:checked)::checkmark {
+  visibility: hidden;
+}
+
+select optgroup {
+  /* font-weight makes optgroups visually distinct from options. */
+  font-weight: bolder;
+}
+
+select optgroup option {
+  /* Undo font-weight:bolder rule from optgroups. */
+  font-weight: normal;
+}
+
+select legend,
+select option {
+  /* spacing ownership moves to children */
+  /* space inline from border edges */
+  /* this creates a full bleed hover highlight */
+  padding-inline: 0.5em;
+}
+
+select::picker-icon {
+  /* margin-inline-start pushes the icon to the right of the box */
+  margin-inline-start: auto;
+  display: block;
+  content: counter(-ua-disclosure-open, disclosure-open);
+}
+
+::picker(select) {
+  /* Same properties as popover and dialog */
+  color: CanvasText;
+  background-color: Canvas;
+  border: 1px solid;
+
+  /* box-sizing is set to match the button. */
+  box-sizing: border-box;
+
+  /* Remove [popover] padding which
+   * prevents options from extending to edges */
+  padding: 0;
+
+  /* Anchor positioning and scrollbars */
+  inset: auto;
+  margin: 0;
+  min-inline-size: anchor-size(self-inline);
+  min-block-size: 1lh;
+  /* Go to the edge of the viewport, and add scrollbars if needed. */
+  max-block-size: stretch;
+  overflow: auto;
+  /* Below and span-right, by default. */
+  position-area: block-end span-inline-end;
+  position-try-order: most-block-size;
+  position-try-fallbacks:
+    /* First try above and span-right. */
+    block-start span-inline-end,
+    /* Then below but span-left. */
+    block-end span-inline-start,
+    /* Then above and span-left. */
+    block-start span-inline-start;
+}

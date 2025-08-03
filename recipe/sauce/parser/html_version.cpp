@@ -1046,6 +1046,7 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
     res += single_feature (res, b, "Fll", "Fill and Stroke", ext3_, e3, H3_CSS_FILL);
     res += single_feature (res, b, "Fil", "Filter Effects", ext3_, e3, H3_CSS_FILTER);
     res += single_feature (res, b, "FBL", "Flexible Box Layout", ext2_, e2, H2_CSS_FBL);
+    res += single_feature (res, b, "FCS", "Form Control Styling", ext4_, e4, H4_CSS_FCS);
     res += single_feature (res, b, "Fon", "Fonts", ext2_, e2, H2_CSS_FONT_3, H2_CSS_FONT_4, H2_CSS_FONT_5);
     res += single_feature (res, b, "Fra", "Fragmentation", ext2_, e2, H2_CSS_FRAG_3, H2_CSS_FRAG_4);
     res += single_feature (res, b, "Grd", "Grid", ext3_, e3, H3_CSS_GRID_3, H3_CSS_GRID_4);
@@ -1056,7 +1057,8 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
     res += single_feature (res, b, "Lst", "Line Grid", ext3_, e3, H3_CSS_LIST);
     res += single_feature (res, b, "Log", "Logical Properties", ext3_, e3, H3_CSS_LOGIC);
     res += single_feature (res, b, "Mrq", "Marquee", ext4_, e4, H4_CSS_ADVLAY);
-    res += single_feature (res, b, "Msk", "Masking", ext3_, e3, H3_CSS_MASKING);
+    res += single_feature (res, b, "Mrq", "Marquee", ext4_, e4, H4_CSS_ADVLAY);
+    res += single_feature (res, b, "MCr", "Math Core", ext4_, e4, H4_CSS_MATH_CORE);
     res += single_feature (res, b, "Med", "Media Queries", ext2_, e2, H2_CSS_MEDIA_3, H2_CSS_MEDIA_4, H2_CSS_MEDIA_5);
     res += single_feature (res, b, "Mot", "Motion Path", ext3_, e3, H3_CSS_MOTION);
     res += single_feature (res, b, "Mlt", "Multi-Column", ext3_, e3, H3_CSS_MULTI_COL);
@@ -1325,7 +1327,11 @@ void html_version::math_version (const e_math_version v) noexcept
         case math_2 : set_ext2 (H2_MATH_2); break;
         case math_3 : set_ext2 (H2_MATH_3); break;
         case math_4 : set_ext2 (H2_MATH_4); break;
-        case math_core : set_ext2 (H2_MATH_C); break;
+        case math_core :
+            set_ext2 (H2_MATH_C);
+            if (*this >= html_math_core)
+                set_ext4 (H4_CSS_MATH_CORE);
+            break;
         default : break; } }
 
 void html_version::jsonld_version (const e_jsonld_version v) noexcept
@@ -1691,6 +1697,14 @@ template < > void html_version::set_level < c_page_float > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_FLOAT);
     else reset_ext3 (H3_CSS_FLOAT); }
 
+template < > int html_version::get_level < c_fcs > () const
+{   if (any_ext4 (H4_CSS_FCS)) return 3;
+    return 0; }
+
+template < > void html_version::set_level < c_fcs > (const int n)
+{   if (n == 3) set_ext4 (H4_CSS_FCS);
+    else reset_ext4 (H4_CSS_FCS); }
+
 template < > int html_version::get_level < c_font > () const
 {   if ((ext2 () & H2_CSS_FONT_5) == H2_CSS_FONT_5) return 5;   
     if ((ext2 () & H2_CSS_FONT_4) == H2_CSS_FONT_4) return 4;   
@@ -1790,6 +1804,14 @@ template < > int html_version::get_level < c_marquee > () const
 template < > void html_version::set_level < c_marquee > (const int n)
 {   if (n == 3) set_ext4 (H4_CSS_MARQUEE);
     else reset_ext4 (H4_CSS_MARQUEE); }
+
+template < > int html_version::get_level < c_math_core > () const
+{   if (any_ext4 (H4_CSS_MATH_CORE)) return 3;
+    return 0; }
+
+template < > void html_version::set_level < c_math_core > (const int n)
+{   if (n == 3) set_ext4 (H4_CSS_MATH_CORE);
+    else reset_ext4 (H4_CSS_MATH_CORE); }
 
 template < > int html_version::get_level < c_masking > () const
 {   if (any_ext3 (H3_CSS_MASKING)) return 3;

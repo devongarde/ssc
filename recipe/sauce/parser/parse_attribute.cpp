@@ -68,6 +68,13 @@ void attribute_node::parse (nitpick& nits, const html_version& v, const bool nor
 {   ::std::string ns;
     nitpick nuts;
     id_ = attr :: parse (nuts, v, namespaces (), key_, ns);
+    if (context.lists ())
+        if (box_ != nullptr)
+        {   element_node* ebox = box_ -> box ();
+            if (ebox != nullptr)
+                if (context.naughty_test (ebox -> tag (), id_, value_))
+                {   nits.pick (nit_naughty_attribute, es_info, ec_naughty, "ignorance is strength: concealing ", quote (value_));
+                    value_ = context.naughty_sub (ebox -> tag (), id_); } }
     switch (id_)
     {   case a_xmlns :
             if ((! normal) && has_key_ && has_value_)

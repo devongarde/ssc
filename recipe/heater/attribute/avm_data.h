@@ -163,14 +163,14 @@ struct hav_t
 #define MATH_OPINFO_ATTRIBUTES(ELEM) \
     { { HTML_MATH1, 0, 0, H2_MATHML }, { HTML_UNDEF }, ELEM, a_accent }, \
     { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_form }, \
-    { { HTML_MATH1, 0, 0, H2_MATH_1_2_3 }, { HTML_UNDEF }, ELEM, a_fence }, \
+    { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_fence }, \
     { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_largeop }, \
     { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_lspace }, \
     { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_maxsize }, \
     { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_minsize }, \
     { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_movablelimits }, \
     { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_rspace }, \
-    { { HTML_MATH1, 0, 0, H2_MATH_1_2_3 }, { HTML_UNDEF }, ELEM, a_separator }, \
+    { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_separator }, \
     { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_stretchy }, \
     { { HTML_MATH1, 0, 0, H2_MATH }, { HTML_UNDEF }, ELEM, a_symmetric }
 
@@ -1074,15 +1074,17 @@ struct hav_t
 
 // not just math core
 #define EXTRA_MATH_CORE_ATTRIBUTES(ELEM) \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_arg }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_autofocus }, \
     { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_class }, \
     { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_datawild }, \
     { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_dir }, \
     { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_displaystyle }, \
     { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_id }, \
+    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_intent }, \
     { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_mathbackground }, \
     { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_mathcolour }, \
     { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_mathsize }, \
-    { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_mathvariant }, \
     { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_numberonce }, \
     { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onautocomplete }, \
     { { HTML_MATH4_C, 0, 0, H2_MATH_C }, { HTML_UNDEF }, ELEM, a_onautocompleteerror }, \

@@ -113,6 +113,10 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
                     test_value < t_css_langs > (nits, context.html_ver (), param);
                 else test_value < t_lang > (nits, context.html_ver (), param);
                 return;
+            case efn_picker :
+                if (! elem::exists (param))
+                    nits.pick (nit_picker, es_error, ec_css, quote (param), ": element expected");
+                return;
             case efn_nth_child :
             case efn_nth_col :
             case efn_nth_last_child :
