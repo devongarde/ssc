@@ -1,4 +1,4 @@
--Y 1 -f ../toast/RDFa/1.1.3/rdfa.conf
+-Y 1 -7 original -f ../toast/RDFa/1.1.3/rdfa.conf
 
 PASS ../toast/RDFa/1.1.3/index.html
 2 naughty_lang

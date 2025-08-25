@@ -249,7 +249,7 @@ hav_t havt_strong [] =
 hav_t havt_style [] =
 {   { { HTML_APR22 }, { HTML_UNDEF }, elem_style, a_blocking },
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_style, a_disabled },
-    { { HTML_JUL22 }, { HTML_UNDEF }, elem_style, a_disabled },
+    { { HTML_JUL22 }, { HTML_JUL25 }, elem_style, a_disabled },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_style, a_media },
     { { HTML_JAN16 }, { HTML_DEC17 }, elem_style, a_numberonce },
     { { HTML_3_0, HV_REQUIRED }, { HTML_3_0 }, elem_style, a_notation },

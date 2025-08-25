@@ -34,6 +34,14 @@ void element::examine_table ()
     typedef enum { to_start, to_caption, to_colgroup, to_head, to_foot_start, to_tr, to_foot_end } table_order;
     table_order tor = to_start;
     bool ooo = false, footed = false, doubled = false, mixed = false, body = false, tr = false;
+    int width = 0, height = -1;
+    rowcount_t rowcount;
+    rowcount.fill (0);
+    count_col_row (width, height, rowcount);
+    if (width > max_colspan)
+        pick (nit_table_children, ed_aug25, "4.9 Tabular data", es_error, ec_element, "Blimey, <TABLE> has more than 1000 columns (", width, "), which is the maximum permitted");
+    if (height > max_rowspan)
+        pick (nit_table_children, ed_aug25, "4.9 Tabular data", es_error, ec_element, "Cripes, <TABLE> has more than 65534 rows (", height, "), which is the maximum permitted");
     for (element* p = child_; p != nullptr; p = p -> sibling_)
     {   if (! p -> node_.is_closure ())
         {   switch (p -> tag ())
@@ -108,8 +116,18 @@ void element::examine_th ()
         else pick (nit_bad_descendant, ed_50, "4.9.10 The th element ", es_error, ec_element, "<TH> cannot have <HEADER>, <FOOTER>, sectioning or header descendants");
     if (a_.known (a_sorted))
     {   bs = descendant_elements_;
-        bs &= interactive_bitset;
-        if (bs.any ()) pick (nit_bad_descendant, ed_jan14, "4.9.10 The th element ", es_error, ec_element, "<TH> with SORTED cannot have interactive element descendants"); }
+        const bool anal = context.analysis () >= anal_aug25;
+        if (anal) bs &= interactive_bitset_aug25;
+        else bs &= interactive_bitset;
+        if (bs.any ()) pick (nit_bad_descendant, ed_jan14, "4.9.10 The th element ", es_error, ec_element, "<TH> with SORTED cannot have interactive element descendants"); 
+        else if (anal && descendant_elements_.test (elem_img) && descendant_attributes_.test (a_usemap))
+            for (element* c = child_; c != nullptr; c = c -> sibling_)
+            {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
+                if (c -> tag () == elem_img)
+                    if (c -> a_.known (a_usemap))
+                    {   pick (nit_interactive, ed_jan14, "4.9.10 The th element ", es_error, ec_element,
+                            "<TH> with SORTED cannot have a descendant <IMG> with USEMAP");
+                        break; } } }
     span_check (); }
 
 void element::examine_time ()
@@ -121,7 +139,7 @@ void element::examine_time ()
         type_master < t_datetime_5 > dt;
         dt.set_value (node_.nits (), node_.version (), text ());
         if (! dt.good ())
-            pick (nit_use_datetime, es_warning, ec_element, "<TIME>'s descendant text is not particularly timely; perhaps use a DATETIME attribute"); } }
+            pick (nit_use_datetime, es_warning, ec_element, "<TIME>'s descendant text is not particularly timely; perhaps use a DATETIME attribute?"); } }
 
 void element::examine_title ()
 {   test_no_role_no_aria ();
@@ -157,6 +175,12 @@ void element::examine_track ()
         if (a_.known (a_label))
             if (a_.get_string (a_label).empty ())
                 pick (nit_empty, ed_50, "4.7.9 The track element", es_error, ec_element, "If LABEL is present, it cannot be empty"); } }
+
+void element::examine_ul ()
+{   if (context.analysis () == anal_original)
+        only_elements ();
+    else if (! has_only_immediate_descendents (script_bitset | elem_li, faux_bitset))
+        pick (nit_bad_descendant, ed_aug25, "4.4.6 The ul element", es_error, ec_element, "<UL> may only have <LI>, <TEMPLATE>, and <SCRIPT> children"); }
 
 void element::examine_video ()
 {   if (! node_.version ().is_5 () && ! node_.version ().is_svg_12 ())

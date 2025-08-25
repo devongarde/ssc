@@ -775,6 +775,7 @@ parentage parent_table [] =
     { { HTML_JUL09 }, { HTML_UNDEF }, elem_hgroup, elem_h4 },
     { { HTML_JUL09 }, { HTML_UNDEF }, elem_hgroup, elem_h5 },
     { { HTML_JUL09 }, { HTML_UNDEF }, elem_hgroup, elem_h6 },
+    { { HTML_AUG25 }, { HTML_UNDEF }, elem_hgroup, elem_p },
     { { HTML_JUL09 }, { HTML_UNDEF }, elem_hgroup, elem_script },
     { { HTML_JUL13 }, { HTML_UNDEF }, elem_hgroup, elem_template },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_hkern, elem_switch },
@@ -1741,7 +1742,7 @@ bool is_permitted_parent (const html_version& v, const elem& self, const elem& p
                 return ((i -> second.flags_ & DENY) == 0);
     return false; }
 
-e_element default_parent (const html_version& v, const elem& self) noexcept
+e_element default_parent (const html_version& v, const elem& self, const elem& current_parent) noexcept
 {   if (v.mjr () == 0) return elem_faux_document;
     switch (self.get ())
     {   case elem_html :
@@ -1989,6 +1990,10 @@ e_element default_parent (const html_version& v, const elem& self) noexcept
         case elem_use :
         case elem_xa :
             return elem_svg;
+        case elem_caption :
+            if (current_parent.is_math ())
+                return elem_root;
+            return elem_table;
         case elem_clippath :
         case elem_filter :
         case elem_lineargradient :
@@ -2105,9 +2110,9 @@ e_element default_parent (const html_version& v, const elem& self) noexcept
             return elem_table;
         case elem_legend :
             return elem_fieldset;
-        case elem_caption :
         case elem_of :
             return elem_root;
+        case elem_optgroup :
         case elem_option :
             return elem_select;
         case elem_input :
@@ -2128,6 +2133,11 @@ e_element default_parent (const html_version& v, const elem& self) noexcept
         case elem_script :
             if (v.is_5 ()) return elem_body;
             return elem_head;
+        case elem_ol :
+        case elem_menu :
+        case elem_ul :
+            if (context.analysis () == anal_original) break;
+            return elem_div;
         case elem_page :
             return elem_pageset;
         case elem_param :

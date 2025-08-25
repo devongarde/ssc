@@ -1,4 +1,4 @@
--Y 1 -f ../toast/stats/CSS-6/stats-custom-media.conf
+-Y 1 -7 original -f ../toast/stats/CSS-6/stats-custom-media.conf
 
 PASS ../toast/stats/CSS-6/content-3-2.css
 0 html

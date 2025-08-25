@@ -493,11 +493,12 @@ void vv_t :: load_from_context (const context_t& c)
     vvfox < e_cachekey, t_cachekey > (count, c);
     vvfox < e_celnrs, t_celnrs > (count, c);
     vvfox < e_citype, t_citype > (count, c);
+    vvfox < e_cntype, t_cntype > (count, c);
     vvfox < e_colour_interpolation, t_colour_interpolation > (count, c);
     vvfox < e_colour_rendering, t_colour_rendering > (count, c);
     vvfox < e_cookieid, t_cookieid > (count, c);
+    vvfox < e_command2, t_command2 > (count, c);
     vvfox < e_copy, t_copy > (count, c);
-    vvfox < e_cntype, t_cntype > (count, c);
     vvfox < e_comp_op, t_comp_op > (count, c);
     vvfox < e_composite_operator, t_composite_operator > (count, c);
     vvfox < e_cr_fileproperty, t_cr_fileproperty > (count, c);

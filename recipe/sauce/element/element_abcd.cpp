@@ -38,7 +38,10 @@ void element::examine_abbr ()
 void element::examine_address ()
 {   if (node_.version ().is_5 ())
     {   check_ancestors (elem_address, empty_element_bitset | elem_address);
-        check_descendants (elem_address, header_bitset | sectioning_bitset | elem_address | elem_header | elem_footer); } }
+        check_descendants (elem_address, header_bitset | sectioning_bitset | elem_address | elem_header | elem_footer);
+        if (context.analysis () != anal_original)
+            if (! ancestral_elements_.any (empty_element_bitset | elem_article | elem_body)) // pretty unlikely, but...
+                pick (nit_bad_address, ed_aug25, "4.3.10 The address element", es_warning, ec_element, "<ADDRESS> should have an <ARTICLE> or a <BODY> ancestor"); } }
 
 void element::examine_altglyphdef ()
 {   bool ref = false, item = false, bad = false;
@@ -53,7 +56,7 @@ void element::examine_altglyphdef ()
                     break;
                 default :
                     break; }
-    if (bad) pick (nit_altglyphdef, ed_svg_1_0, "10.14 Alternate glyphs", es_error, ec_element, "<ALTGLYPHDEF> can have only <GLYPHREF> or only <ALTGLYPHITEM> children"); }
+    if (bad) pick (nit_altglyphdef, ed_svg_1_0, "10.14 Alternate glyphs", es_error, ec_element, "<ALTGLYPHDEF> can only have <GLYPHREF> or <ALTGLYPHITEM> children"); }
 
 void element::examine_anchor ()
 {   const bool href_known = a_.known (a_href) || a_.known (a_xlinkhref);
@@ -67,11 +70,15 @@ void element::examine_anchor ()
         const vurl_t& us = a_.get_urls (a_href);
         if (type_known) check_extension_compatibility (nits (), nv, a_.get_string (a_type), us, false);
         check_required_page (nv, us); }
-    else if (rel_known || rev_known)
+    else
+    {   if (rel_known || rev_known)
         pick (nit_rel_requires_href, ed_1, "Anchors", es_error, ec_element, "REL and REV both require a valid HREF");
-    else if (five) pick (nit_chocolate_teapot, es_warning, ec_element, "An <A> with no HREF, or an invalid HREF, is not useful");
-    else if (! a_.known (a_name))
-        pick (nit_chocolate_teapot, ed_tags, "Anchors", es_warning, ec_element, "An <A> with neither a valid HREF nor a NAME is not useful");
+        else if (five)
+            pick (nit_chocolate_teapot, es_warning, ec_element, "An <A> with no HREF, or an invalid HREF, is not useful");
+        else if (! a_.known (a_name))
+            pick (nit_chocolate_teapot, ed_tags, "Anchors", es_warning, ec_element, "An <A> with neither a valid HREF nor a NAME is not useful");
+        if ((node_.version () >= html_aug25) && ancestral_elements_.test (elem_details))
+            pick (nit_details, ed_aug25, "4.11.3.2 Using the a element to define a command", es_info, ec_element, "To be a <DETAILS> command, an <A> requires a valid HREF"); }
     if (a_.known (a_urn))
         pick (nit_urn_undefined, ed_1, "Anchors", es_info, ec_element, PROG " cannot verify URN values");
     if (a_.known (a_methods))
@@ -236,9 +243,19 @@ void element::examine_button ()
     {   no_anchor_daddy ();
         if (has_child ())
         {   element_bitset bs (descendant_elements_);
-            bs &= interactive_bitset;
+            const bool anal = context.analysis () >= anal_aug25;
+            if (anal) bs &= interactive_bitset_aug25;
+            else bs &= interactive_bitset;
             if (bs.any ())
-                pick (nit_interactive, ed_50, "4.10.6 The Button element", es_warning, ec_element, "An <BUTTON> element cannot have interactive descendant elements");
+                pick (nit_interactive, ed_50, "4.10.6 The Button element", es_warning, ec_element, "A <BUTTON> element cannot have interactive descendant elements");
+            else if (anal && descendant_elements_.test (elem_img) && descendant_attributes_.test (a_usemap))
+                for (element* c = child_; c != nullptr; c = c -> sibling_)
+                {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
+                    if (c -> tag () == elem_img)
+                        if (c -> a_.known (a_usemap))
+                        {   pick (nit_interactive, ed_50, "4.10.6 The Button element", es_warning, ec_element,
+                                "A <BUTTON> element cannot have a descendant <IMG> with USEMAP");
+                            break; } }
             if (descendant_attributes_.test (a_tabindex))
                 pick (nit_interactive, ed_50, "4.10.6 The Button element", es_warning, ec_element, "An <BUTTON> element cannot have a descendant element with a TABINDEX"); }
         const e_button bu = static_cast < e_button > (a_.get_int (a_type));
@@ -248,7 +265,28 @@ void element::examine_button ()
                 pick (nit_bad_form, ed_50, "", es_error, ec_attribute, "FORM... attributes require <BUTTON> TYPE='submit'"); } }
 
 void element::examine_caption ()
-{   if (node_.version ().is_5 ()) check_descendants (elem_caption, element_bitset (elem_table)); }
+{   if (node_.version ().is_5 ())
+    {   check_descendants (elem_caption, element_bitset (elem_table));
+        if (context.analysis () >= anal_aug25)
+        {   element* mummy = parent_;
+            if ((mummy != nullptr) && (mummy -> tag () == elem_table))
+            {   element* gran = mummy -> parent_;
+                if ((gran != nullptr) && (gran -> tag () == elem_figure))
+                {   bool other = false, table = false;
+                    for (element* aunts = gran -> child_; (! other) && (aunts != nullptr); aunts = aunts -> sibling_)
+                        switch (aunts -> tag ())
+                        {   case elem_figcaption :
+                                continue;
+                            case elem_table :
+                                if (table) other = true;
+                                else table = true;
+                                break;
+                            default :
+                                if ((aunts -> tag () >= first_element_tag) && (aunts -> tag () < last_element_tag))
+                                    other = true;
+                                break; }
+                    if (! other)
+                        pick (nit_inadvisable_element, ed_aug25, "4.9.2 The caption element", es_warning, ec_element, "Here, <CAPTION> should be dropped in favour of <FIGCAPTION> under <FIGURE>"); } } } } }
 
 void element::examine_card ()
 {   if ((node_.version () < html_jan05) || (node_.version () >= html_jan07))
@@ -268,18 +306,34 @@ void element::examine_col ()
 {   test_no_role_no_aria ();
     if (node_.version ().is_5 ())
         if (a_.known (a_span))
-            if (a_.get_int (a_span) > 1000) pick (nit_1000, ed_50, "4.9.4 The col element", es_error, ec_element, "SPAN cannot exceed 1000"); }
+            if ((a_.get_int (a_span) <= 0) || (a_.get_int (a_span) > max_colspan))
+                pick (nit_1000, ed_50, "4.9.4 The col element", es_error, ec_element, "SPAN must exceed 0 but not 1000"); }
 
 void element::examine_colgroup ()
 {   test_no_role_no_aria ();
     if (node_.version ().is_5 ())
-        if (a_.known (a_span))
-        {   element_bitset bs (descendant_elements_);
+    {   element_bitset bs (descendant_elements_);
+        if (node_.version () < html_jul13)
+            bs &= ~ ( non_standard_bitset | elem_col );
+        else
             bs &= ~ ( non_standard_bitset | elem_col | elem_template );
+        const bool span = a_.known (a_span);
+        if (span)
+        {   if ((a_.get_int (a_span) <= 0) || (a_.get_int (a_span) > max_colspan))
+                pick (nit_1000, ed_50, "4.9.3 The colgroup element", es_error, ec_element, "SPAN must exceed 0 but not 1000");
+            if (node_.version () >= html_aug25)
+            {   element_bitset bsk (descendant_elements_);
+                bsk &= ~ non_standard_bitset;
+                if (! bsk.empty ())
+                    pick (nit_colgroup_children, ed_aug25, "4.9.3 The colgroup element", es_error, ec_element, "<COLGROUP> with SPAN cannot have descendants"); }
+            else if (bs.any ())
+                if (node_.version () < html_jul13)
+                    pick (nit_colgroup_children, ed_jan13, "4.9.3 The colgroup element", es_error, ec_element, "<COLGROUP> with SPAN can only have <COL> descendants");
+                else
+                    pick (nit_colgroup_children, ed_50, "4.9.3 The colgroup element", es_error, ec_element, "<COLGROUP> with SPAN can only have <COL> and <TEMPLATE> descendants"); }
+        else if (node_.version () >= html_aug25)
             if (bs.any ())
-                if (node_.version () < html_jul13) pick (nit_colgroup_children, ed_jan13, "4.9.3 The colgroup element", es_error, ec_element, "<COLGROUP> with SPAN can only have <COL> descendants");
-                else pick (nit_colgroup_children, ed_50, "4.9.3 The colgroup element", es_error, ec_element, "<COLGROUP> with SPAN can only have <COL> and <TEMPLATE> descendants");
-            if (a_.get_int (a_span) > 1000) pick (nit_1000, ed_50, "4.9.3 The colgroup element", es_error, ec_element, "SPAN cannot exceed 1000"); } }
+                pick (nit_colgroup_children, ed_50, "4.9.3 The colgroup element", es_error, ec_element, "<COLGROUP> with no SPAN can only have <COL> and <TEMPLATE> descendants"); } }
 
 void element::examine_colour_profile ()
 {   if (node_.version ().is_svg_1 ())

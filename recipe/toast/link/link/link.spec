@@ -1,4 +1,4 @@
--Y 1 -f ../toast/link/link/link.conf
+-Y 1 -7 original -f ../toast/link/link/link.conf
 
 PASS ../toast/link/link/index.html
 2 naughty_lang

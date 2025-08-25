@@ -1,4 +1,4 @@
--Y 1 -f ../toast/living/jul10/living.conf
+-Y 1 -7 original -f ../toast/living/jul10/living.conf
 
 PASS ../toast/living/jul10/a.html
 9 url_not_found
@@ -244,7 +244,6 @@ PASS ../toast/living/jul10/example.html
 122 inserted_missing_closure
 126 use_quote_code
 136 url_not_found
-142 unknown_protocol chocolate_teapot
 
 PASS ../toast/living/jul10/fieldset.html
 12 pattern
@@ -766,7 +765,7 @@ PASS ../toast/living/jul10/navigating-1.html
 0 title_required
 3 inserted_missing_parent
 3 inserted_missing_parent
-8 public_missing orphan inserted_missing_closure orphan inserted_missing_closure
+8 orphan inserted_missing_closure orphan inserted_missing_closure
 9 inserted_missing_parent missing_close only_once
 9 inserted_missing_parent missing_close only_once
 

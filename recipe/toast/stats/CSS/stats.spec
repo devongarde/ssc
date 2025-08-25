@@ -1,4 +1,4 @@
--Y 1 -f ../toast/stats/CSS/stats.conf
+-Y 1 -7 original -f ../toast/stats/CSS/stats.conf
 
 PASS ../toast/stats/CSS/basic.css
 0 html
@@ -1001,8 +1001,8 @@ Element:
   47 elements used 732 times
 
 Nits Reported:
-    Errors: 13 times
-    Warnings: 27 times
+    Errors: 4 times
+    Warnings: 36 times
     Info: once
 
 File Info:
@@ -1097,7 +1097,7 @@ Property:
 Reference:
     HTML 4.0: once
     HTML 5.0: 8 times
-    HTML 5, Jul 23: 27 times
+    HTML 5, Jul 23: thrice
 
 Statement:
     import: 8 times
@@ -1106,5 +1106,5 @@ Statement:
 
 Version:
     HTML-3.2/CSS-1: 10 times
-    HTML-5/20250701/SVG-2.1/MathML-core/CSS-1/WhatWG: 7 times
+    HTML-5/20250801/SVG-2.1/MathML-core/CSS-1/WhatWG: 7 times
 ===

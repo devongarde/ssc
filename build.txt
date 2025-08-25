@@ -14,6 +14,10 @@ including various flavours of Linux, MacOS, OpenBSD, and Windows.
 Although ssc builds with some older compilers on some older systems,
 not all features are available.
 
+Be warned: I wrote ssc to run fast, not build fast. I could probably
+make some changes to improve build speed, but, to be honest, I find it
+quite acceptable on my primary build machine (which runs msvc). I
+regret to say that the gcc build time can be rather poor.
 
 Libraries
 =========

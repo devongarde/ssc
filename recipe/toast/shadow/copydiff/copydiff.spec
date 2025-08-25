@@ -1,4 +1,4 @@
--Y 1 -f ../toast/shadow/copydiff/copydiff.conf
+-Y 1 -7 original -f ../toast/shadow/copydiff/copydiff.conf
 
 PASS ../toast/shadow/copydiff/original.html
 0 charset_mismatch charset_used charset_invalid

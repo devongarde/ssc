@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define WIDEHIGH    a_height, a_width
 
-#define ARIA        a_aria_activedescendant, a_aria_atomic, a_aria_autocomplete, a_aria_braillelabel, \
+#define ARIAS       a_aria_activedescendant, a_aria_atomic, a_aria_autocomplete, a_aria_braillelabel, \
                     a_aria_brailleroledescription, a_aria_busy, a_aria_checked, a_aria_colcount, a_aria_colindex, a_aria_colindextext, a_aria_colspan, a_aria_controls, \
                     a_aria_current, a_aria_describedby, a_aria_description, a_aria_details, a_aria_disabled, a_aria_dropeffect, a_aria_errormessage, a_aria_expanded, \
                     a_aria_flowto, a_aria_grabbed, a_aria_haspopup, a_aria_hidden, a_aria_invalid, a_aria_keyshortcuts, a_aria_label, a_aria_labelledby, a_aria_level, \
@@ -34,13 +34,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
                     a_aria_pressed, a_aria_readonly, a_aria_relevant, a_aria_required, a_aria_roledescription, a_aria_rowcount, a_aria_rowindex, a_aria_rowindextext, \
                     a_aria_rowspan, a_aria_selected, a_aria_setsize, a_aria_sort, a_aria_valuemax, a_aria_valuemin, a_aria_valuenow, a_aria_valuetext
 
-#define ON          a_onabort, a_onautocomplete, a_onautocompleteerror, a_onbeforeunload, a_oncancel, a_oncanplay, a_oncanplaythrough, \
-                    a_onchange, a_onclose, a_oncommand, a_oncontextmenu, a_oncuechange, a_ondrag, a_ondragend,  a_ondragenter, a_ondragexit, \
-                    a_ondragleave, a_ondragover, a_ondragstart, a_ondrop, a_dropzone, a_ondurationchange, a_onemptied, a_onended, \
-                    a_onerror, a_onformchange, a_onforminput, a_onhashchange, a_oninput, a_oninvalid, a_is, a_onload, a_onloadeddata, \
-                    a_onloadedmetadata, a_onloadstart, a_onmessage, a_onmouseenter, a_onmouseleave, a_onmousewheel, a_onpause, a_onplay, \
-                    a_onplaying, a_onprogress, a_onratechange, a_onreadystatechange, a_onreset, a_onresize, a_onscroll, a_onscrollend, \
-                    a_onsought, a_onseeking, a_onselect, a_onshow, a_onstalled, a_onstorage, a_onsubmit, a_onunload
+#define ONDO        a_onabort, a_onautocomplete, a_onautocompleteerror, a_onbeforeinput, a_onbeforematch, a_onbeforetoggle, a_onbeforeunload, \
+                    a_oncancel, a_oncanplay, a_oncanplaythrough, a_onchange, a_onclose, a_oncommand, a_oncontextlost, a_oncontextmenu, \
+                    a_oncontextrestored, a_oncuechange, a_ondrag, a_ondragend,  a_ondragenter, a_ondragexit, a_ondragleave, a_ondragover, \
+                    a_ondragstart, a_ondrop, a_dropzone, a_ondurationchange, a_onemptied, a_onended,  a_onerror, a_onformchange, a_onforminput, \
+                    a_onhashchange, a_oninput, a_oninvalid, a_is, a_onload, a_onloadeddata, a_onloadedmetadata, a_onloadstart, a_onmessage, \
+                    a_onmouseenter, a_onmouseleave, a_onmousewheel, a_onpause, a_onplay,  a_onplaying, a_onprogress, a_onratechange, \
+                    a_onreadystatechange, a_onreset, a_onresize, a_onscroll, a_onscrollend, a_onsought, a_onseeking, a_onselect, a_onshow, \
+                    a_onstalled, a_onstorage, a_onsubmit, a_onunload, a_onvisibilitychange, a_onwebkitanimationend, a_onwebkitanimationiteration, \
+                    a_onwebkitanimationstart, a_onwebkittransitionend
 
 #define ALIGNCHAR   a_align, a_char, a_charoff, a_valign
 #define BLUR        a_onfocus, a_onblur
@@ -160,7 +162,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HTMLPLUS    a_id, a_index, a_lang
 #define TSLPLUS     a_index, TSL
 
-#define COMMON4     TSL, XHTML, ARIA
+#define COMMON4     TSL, XHTML, ARIAS
 #define X2_CORE     a_layout, a_xmlid
 #define X2_HYPER    a_cite, a_href, a_hreflang, a_hrefmedia, a_hreftype, a_nextfocus, a_prevfocus, a_target, a_itstranslate
 #define X2_SOLO     a_class, a_dir, a_id, a_style, a_title, XHTML
@@ -172,13 +174,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define XHTML2      X2_COMMON, X2_SOLO
 #define COMMON5     a_accesskey, a_contenteditable, a_contextmenu, a_draggable, a_hidden, a_inert, a_irrelevant, a_item, a_itemid, a_itemprop, \
                     a_itemref, a_itemscope, a_itemtype, a_numberonce, a_ref, a_registrationmark, a_spellcheck, a_subject, \
-                    a_onsuspend, a_ontimeupdate, a_template, a_ontoggle, a_translate, a_onvolumechange, a_onwaiting, BLUR, X2, ON
+                    a_onsuspend, a_ontimeupdate, a_template, a_ontoggle, a_translate, a_onvolumechange, a_onwaiting, BLUR, X2, ONDO
 #define COMMON50    a_generator_unable, COMMON5
 #define COMMON51    a_oncopy, a_oncut, a_onpaste, a_onwheel, COMMON50
 #define COMMON52    a_onauxclick, a_onloadend, COMMON51
 #define COMMON53    COMMON52
-#define LIVING_STANDARD    a_autocapitalise, a_autocorrect, a_enterkeyhint, a_exportparts, a_inputmode, a_onformdata, a_onsecuritypolicyviolation, \
-                    a_onslotchange, a_part, a_popover, a_slot, a_writingsuggestions, COMMON53
+#define LIVING_STANDARD    a_anchor, a_autocapitalise, a_autocorrect, a_enterkeyhint, a_exportparts, a_inputmode, a_onformdata, a_onsecuritypolicyviolation, \
+                    a_onslotchange, a_part, a_popover, a_slot, a_virtualkeyboardpolicy, a_writingsuggestions, COMMON53
 #define X5          LIVING_STANDARD
 #define LIVING_STANDARD_PLUS a_index, LIVING_STANDARD
 
@@ -256,9 +258,9 @@ element_init_t ei [] =
     { elem_blink, { a_unknown } },
     { elem_blockquote, { a_active, a_align, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_blockcode, { METADATA, XHTML2, a_unknown } },
-    { elem_body, {  a_alink, a_background, a_bgcolour, a_bottommargin, a_leftmargin, a_link, a_onafterprint, a_onbeforeprint,
-                    a_onfullscreenchange, a_onfullscreenerror, a_onlanguagechange, a_onmessageerror, a_onoffline, a_ononline, a_onpagehide, a_onpageshow, a_onpopstate,
-                    a_onredo, a_onrejectionhandled, a_onundo, a_onunhandledrejection, a_rightmargin, a_text, a_topmargin, a_vlink,
+    { elem_body, {  a_alink, a_background, a_bgcolour, a_bottommargin, a_leftmargin, a_link, a_onafterprint, a_onbeforeprint, a_onbeforeunload, a_onfullscreenchange,
+                    a_onfullscreenerror, a_onlanguagechange, a_onmessageerror, a_onoffline, a_ononline, a_onpagehide, a_onpagereveal, a_onpageshow, a_onpageswap,
+                    a_onpopstate, a_onredo, a_onrejectionhandled, a_onundo, a_onunhandledrejection, a_rightmargin, a_text, a_topmargin, a_vlink,
                     METADATA, LIVING_STANDARD, a_unknown } },
     { elem_box, { a_size, LANGCLASS3, a_unknown } },
     { elem_bq, { a_nowrap, a_clear, LANGCLASS3, a_unknown } },
@@ -393,6 +395,7 @@ element_init_t ei [] =
     { elem_femerge, { SVG_FILTER, SVG_PRES, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_femergenode, { a_in, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_femorphology, {  a_in, a_operator, a_radius, SVG_FILTER, SVG_PRES, METADATA, LIVING_STANDARD, a_unknown } },
+    { elem_fencedframe, { a_allow, WIDEHIGH, LIVING_STANDARD, a_unknown } },
     { elem_feoffset, { a_in, SVG_DXDY, SVG_FILTER, SVG_PRES, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_fepointlight, { a_z, SVG_XY, SVG_PRES, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_fespecularlighting, { a_in, a_kernelunitlength, a_specularconstant, a_specularexponent, a_surfacescale, SVG_FILTER, SVG_PRES,
@@ -781,7 +784,8 @@ element_init_t ei [] =
     { elem_tbody, { a_bgcolour, a_rowgroup, ALIGNCHAR, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_tbreak, { SVG_COND, METADATA, LIVING_STANDARD, a_unknown } },
     { elem_td, { a_axes, a_axis, a_background, a_bgcolour, a_cell, a_colspan, a_dp, a_headers, a_nowrap, a_rowspan, a_scope, WIDEHIGH, ALIGNCHAR, LIVING_STANDARD_PLUS, a_unknown } },
-    { elem_template, { METADATA, LIVING_STANDARD, a_unknown } },
+    { elem_template, {  a_shadowrootmode, a_shadowrootdelegatesfocus, a_shadowrootclonable, a_shadowrootserialisable, a_shadowrootcustomelementregistry,        
+                        METADATA, LIVING_STANDARD, a_unknown } },
     { elem_text, {  a_editable, a_externalresourcesrequired, a_hyphens, a_inline_size, a_lengthadjust, a_line_break, a_line_height, a_overflow_wrap, a_rotate,
                     a_shape_image_threshold, a_shape_inside, a_shape_margin, a_shape_padding, a_shape_subtract, a_text_justify, a_textlength, a_word_break, a_word_wrap, a_will_change,
                     SVG_GR, SVG_DXDY, SVG_COND, SVG_PRES, SVG_XY, METADATA, LIVING_STANDARD, a_unknown } },

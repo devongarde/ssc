@@ -1,4 +1,4 @@
--Y 1 -f ../toast/json-ld/1.0/jsonld.conf
+-Y 1 -7 original -f ../toast/json-ld/1.0/jsonld.conf
 
 PASS ../toast/json-ld/1.0/5-4-3.jld
 0 jsonld_context jsonld_context

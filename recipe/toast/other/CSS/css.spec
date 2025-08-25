@@ -1,4 +1,4 @@
--Y 1 -f ../toast/other/CSS/css.conf
+-Y 1 -7 original -f ../toast/other/CSS/css.conf
 
 PASS ../toast/other/CSS/css-bad.html
 2 naughty_lang

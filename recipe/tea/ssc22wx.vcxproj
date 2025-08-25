@@ -201,6 +201,7 @@
     <ClInclude Include="..\heater\ontology\ontology_structure.h" />
     <ClInclude Include="..\heater\ontology\ontology_type.h" />
     <ClInclude Include="..\heater\ontology\ontology_version.h" />
+    <ClInclude Include="..\heater\parser\efficiency.h" />
     <ClInclude Include="..\heater\parser\html_version.h" />
     <ClInclude Include="..\heater\parser\jsonic.h" />
     <ClInclude Include="..\heater\parser\parse_abb.h" />
@@ -1203,6 +1204,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\sauce\parser\efficiency.cpp" />
     <ClCompile Include="..\sauce\parser\html_version.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='LeakSeek|ARM64'">Use</PrecompiledHeader>

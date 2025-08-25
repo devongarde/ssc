@@ -959,11 +959,17 @@ struct hav_t
 #define EXTRA_HTML5_ATTRIBUTES(ELEM) \
     ADDITIONAL_ARIA_ATTRIBUTES(ELEM), \
     { { HTML_5_0, HV_W3, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_accept_charset }, \
+    { { HTML_AUG25 }, { HTML_UNDEF }, ELEM, a_anchor }, \
     { { HTML_JAN18, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_autocapitalise }, \
     { { HTML_SEP24, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_autocorrect }, \
     { { HTML_JAN20, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_autofocus }, \
+    { { HTML_AUG25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_onbeforeinput }, \
+    { { HTML_AUG25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_onbeforematch }, \
+    { { HTML_AUG25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_onbeforetoggle }, \
     { { HTML_JAN07, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_contenteditable }, \
+    { { HTML_AUG25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_oncontextlost }, \
     { { HTML_JAN06, HV_NOT50 | HV_NOT52 | HV_NOT53, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_contextmenu }, \
+    { { HTML_AUG25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_oncontextrestored }, \
     { { HTML_JAN07, HV_NOT50, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_draggable }, \
     { { HTML_JAN11, HV_NOT50, HE_NOT_SVG }, { HTML_DEC16, HV_NOT52 | HV_NOT53 }, ELEM, a_dropzone }, \
     { { HTML_JUL18, HV_NOT53, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_enterkeyhint }, \
@@ -1055,8 +1061,13 @@ struct hav_t
     { { HTML_JUL09, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ontimeupdate }, \
     { { HTML_JAN14, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_ontoggle }, \
     { { HTML_JUL07, 0, HE_NOT_SVG_1 }, { HTML_JUN09 }, ELEM, a_onunload }, \
+    { { HTML_AUG25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_onvisibilitychange }, \
     { { HTML_JUL09, 0, HE_NOT_SVG_1 }, { HTML_JUN13 }, ELEM, a_onvolumechange }, \
     { { HTML_JUL09, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_onwaiting }, \
+    { { HTML_AUG25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_onwebkitanimationend }, \
+    { { HTML_AUG25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_onwebkitanimationiteration }, \
+    { { HTML_AUG25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_onwebkitanimationstart }, \
+    { { HTML_AUG25, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_onwebkittransitionend }, \
     { { HTML_JUL15, 0, HE_NOT_SVG_1 }, { HTML_UNDEF }, ELEM, a_onwheel }, \
     { { HTML_CSS_PART, 0, HE_NOT_SVG, 0, H3_CSS_SHADOW }, { HTML_UNDEF }, ELEM, a_part }, \
     { { HTML_APR23, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_popover }, \
@@ -1068,6 +1079,7 @@ struct hav_t
     { { HTML_JUL09, 0, HE_NOT_SVG }, { HTML_DEC09 }, ELEM, a_subject }, \
     { { HTML_JAN08, 0, HE_NOT_SVG }, { HTML_DEC08 }, ELEM, a_template }, \
     { { HTML_JUL12, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_translate }, \
+    { { HTML_AUG25 }, { HTML_UNDEF }, ELEM, a_virtualkeyboardpolicy }, \
     { { HTML_APR24, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_writingsuggestions }, \
     { { HTML_5_3, 0, HE_NOT_SVG }, { HTML_UNDEF }, ELEM, a_xmlns }, \
     { { HTML_SVG11, 0, HE_NOT_SVG_10 }, { HTML_UNDEF }, ELEM, a_xmlspace }

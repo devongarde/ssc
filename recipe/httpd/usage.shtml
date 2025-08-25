@@ -67,7 +67,7 @@ onhover=&ldquo;wink-embarrassingly&rdquo; whimper=frequently&gt;d wombats are a
 delicious&lt;/A&gt; thing.&lt;/P&gt;
 </code>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="image/ssc-msgdb-se-w1.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-se-w1.jpg" title="made with studio artist 5.5">
 
 <p>
 The word <!--#echo encoding="none" var="short" --> spots is &ldquo;Taostd&rdquo;. It knows there&rsquo;s a word to check when
@@ -168,7 +168,7 @@ circumstances, QUERY_STRING must contain a parameter called
 html.snippet, with an appropriate value.
 </p>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="image/ssc-msgdb-sfx-src1.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-sfx-src1.jpg" title="made with studio artist 5.5">
 
 <h3>A note on signing</h3>
 
@@ -184,7 +184,7 @@ appropriate --output switches to tell ssc to sign its output.
 </p>
 
 <p>
-<!--#echo encoding="none" var="short" --> can verify a file it has sined, just as the openssl command line utility
+<!--#echo encoding="none" var="short" --> can verify a file it has signed, just as the openssl command line utility
 can do.
 </p>
 

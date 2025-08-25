@@ -1,4 +1,4 @@
--Y 1 -f ../toast/microdata/basic/basic.conf
+-Y 1 -7 original -f ../toast/microdata/basic/basic.conf
 
 PASS ../toast/microdata/basic/961020.html
 20 no_itemscope

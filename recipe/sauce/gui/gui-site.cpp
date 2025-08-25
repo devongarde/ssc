@@ -111,7 +111,7 @@ bool site_t :: TransferDataToWindow ()
 {	if (invalid ()) return false;
     if (def_.empty ()) def_ = get_working_directory ();
     default_.value (def_);
-    domain_.preload (site_);
+    domain_.preload (stov (site_));
     account_.value (acc_);
     description_.value (desc_);
     username_.value (user_);
@@ -120,7 +120,7 @@ bool site_t :: TransferDataToWindow ()
 bool site_t :: TransferDataFromWindow ()
 {	if (invalid ()) return false;
     def_ = default_.value ();
-    site_ = domain_.acquire ();
+    site_ = vtos (domain_.acquire ());
     absolute_ = ! relative_.selected ();
     acc_ = account_.value ();
     desc_ = description_.value ();

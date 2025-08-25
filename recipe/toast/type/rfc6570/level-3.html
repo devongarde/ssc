@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>RFC 6570 level 3</title>
+</head>
+
+<body>
+
+<h1>RFC 6570 level 3</h1>
+
+<ol>
+<li>
+<a href="https://example.com/{var}.html?{x,y}">x,y</a>
+</li>
+<li>
+<a href="https://example.com/{var}.html?{x,hello,y}">x,hello,y</a>
+</li>
+<li>
+<a href="https://example.com/{var}.html?{+x,y}">x,y</a>
+</li>
+<li>
+<a href="https://example.com/{var}.html?{+x,hello,y}">x,hello,y</a>
+</li>
+<li>
+<a href="https://example.com/{var}.html?{#x,hello,y}">hash x,hello,y</a>
+</li>
+<li>
+<a href="https://example.com/{var}.html?{#path,x}/here">hash foo</a>
+</li>
+<li>
+<a href="https://example.com/{var}.html?X{.var}">var</a>
+</li>
+<li>
+<a href="https://example.com/{var}.html?X{.x,y}">x,y</a>
+</li>
+<li>
+<a href="https://example.com/{var}.html{/var}/here">slash</a>
+</li>
+<li>
+<a href="https://example.com/{var}.html{/var,x}/here">slash</a>
+</li>
+<li>
+<a href="https://example.com/{var}.html{;x,y}">semi</a>
+</li>
+<li>
+<a href="https://example.com/{var}.html{;x,y,empty}">semi</a>
+</li>
+<li>
+<a href="https://example.com/{var}.html{?x,y}">mark</a>
+</li>
+<li>
+<a href="https://example.com/{var}.html{?x,y,empty}">mark</a>
+</li>
+<li>
+<a href="https://example.com/{var}.html?fixed=yes{&x}">ampersand</a>
+</li>
+<li>
+<a href="https://example.com/{var}.html{&x,y,empty}">ampersand</a>
+</li>
+</ol>
+
+</body>
+</html>
+

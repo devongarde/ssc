@@ -166,6 +166,9 @@ template < > struct type_master < t_angular_colour_more > : type_either_or < t_a
 template < > struct type_master < t_lrtb > : type_either_or_both < t_lrtb, t_lralign, sz_space_char, t_tbalign >
 { using type_either_or_both < t_lrtb, t_lralign, sz_space_char, t_tbalign > :: type_either_or_both; };
 
+template < > struct type_master < t_maybe_filename > : type_or_null < t_maybe_filename, t_filename >
+{   using type_or_null < t_maybe_filename, t_filename > :: type_or_null; };
+
 template < > struct type_master < t_text_a > : type_or_string < t_text_a, t_text, sz_auto >
 { using type_or_string < t_text_a, t_text, sz_auto > :: type_or_string; };
 

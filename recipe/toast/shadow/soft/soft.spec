@@ -1,4 +1,4 @@
--Y 1 -f ../toast/shadow/soft/soft.conf
+-Y 1 -7 original -f ../toast/shadow/soft/soft.conf
 
 PASS ../toast/shadow/soft/index.html
 2 naughty_lang

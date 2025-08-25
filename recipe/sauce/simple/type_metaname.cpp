@@ -303,7 +303,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define MN_PRO_AUTH_FIELD "pro-auth-field"
 #define MN_PRO_AUTH_FRAGMENT "pro-auth-fragment"
 #define MN_RATING "rating"
-#define MN_REFERRER "referrer"
 #define MN_RESOLUTIONS "resolutions"
 #define MN_REVIEW_DATE "review_date"
 #define MN_REVISION "revision"
@@ -750,7 +749,7 @@ struct symbol_entry < html_version, e_metaname > metaname_symbol_table [] =
    { { HTML_4_0 }, { HTML_UNDEF }, MN_PRO_AUTH_FIELD, mn_pro_auth_field },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_PRO_AUTH_FRAGMENT, mn_pro_auth_fragment },
    { { HTML_2_0 }, { HTML_UNDEF }, MN_RATING, mn_rating },
-   { { HTML_JUL16 }, { HTML_UNDEF }, MN_REFERRER, mn_referrer },
+   { { HTML_JUL16 }, { HTML_UNDEF }, "referrer", mn_referrer },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_RESOLUTIONS, mn_resolutions },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_REVIEW_DATE, mn_review_date },
    { { HTML_4_0 }, { HTML_UNDEF }, MN_REVISION, mn_revision },

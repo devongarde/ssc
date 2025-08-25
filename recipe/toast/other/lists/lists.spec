@@ -1,4 +1,4 @@
--Y 1 -f ../toast/other/lists/lists.conf
+-Y 1 -7 original -f ../toast/other/lists/lists.conf
 
 PASS ../toast/other/lists/index.html
 2 naughty_lang

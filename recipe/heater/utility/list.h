@@ -33,8 +33,8 @@ NEVER=value
 class html_version;
 class nitpick;
 
-const unsigned int naughty_type_shift = 14;
-const unsigned int naughty_elem_shift = 8;
+CONSTEXPR unsigned int naughty_type_shift = 14;
+CONSTEXPR unsigned int naughty_elem_shift = 8;
 
 class wblist
 {   szreg_t naughty_, nice_;

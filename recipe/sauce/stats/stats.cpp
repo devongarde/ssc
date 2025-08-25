@@ -58,7 +58,7 @@ void stats_t::mark_abbr (const ::std::string& a, const ::std::string& b)
 
 void stats_t::mark_custom_media (const ::std::string& str, const ::std::string& def)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);
-    p_ -> mark_custom_media (str, def);; }
+    p_ -> mark_custom_media (str, def); }
 
 void stats_t::mark_dfn (const ::std::string& a, const ::std::string& b)
 {   VERIFY_NOT_NULL (p_, __FILE__, __LINE__);

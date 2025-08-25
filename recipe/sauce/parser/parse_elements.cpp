@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "parser/parse_elements.h"
 #include "main/context.h"
 #include "parser/text.h"
+#include "parser/efficiency.h"
 #include "element/parentage.h"
 
 void elements_node::swap (elements_node& en) noexcept
@@ -60,9 +61,7 @@ void elements_node::report_missing_closures (const html_version& v, element_node
     {   if (parent == ancestor) return;
         if (does_apply < html_version > (v, parent -> id ().first (), parent -> id ().last ()))
             if (does_apply < html_version > (v, ancestor -> id ().first (), ancestor -> id ().last ()))
-            {   const bool is_lazy = parent -> id ().is_lazy (v);
-                const ::std::string n (parent -> id ().name ());
-                parent -> nits_.pick (nit_missing_close, ed_jul23, "1.11.2: Errors that result in disproportionately poor performance", is_lazy ? es_warning : es_error, ec_element, "<", n, "> has no matching </", n, ">"); }
+                report_closure (parent -> nits_, nit_missing_close, v, *parent);
         parent = parent -> parent_; } }
 
 element_node* elements_node::find_permitted_parent (const html_version& v, const elem& id, element_node* parent)
@@ -79,7 +78,7 @@ element_node* elements_node::find_permitted_parent (const html_version& v, const
         parent = parent -> parent_; }
     return nullptr; }
 
-void elements_node::repair_invalid_parents (nitpick& nits, const html_version& v, const elem& id, element_node* parent, const element_node* ancestor, const brac_element_ket& ket, const bool closing)
+void elements_node::repair_invalid_parents (nitpick& nits, const html_version& v, const elem& id, element_node* parent, element_node* ancestor, const brac_element_ket& ket, const bool closing)
 {   VERIFY_NOT_NULL (parent, __FILE__, __LINE__);
     VERIFY_NOT_NULL (ancestor, __FILE__, __LINE__);
     if (does_apply < html_version > (v, id.first (), id.last ()))
@@ -87,7 +86,9 @@ void elements_node::repair_invalid_parents (nitpick& nits, const html_version& v
         {   if (does_apply < html_version > (v, parent -> id ().first (), parent -> id ().last ()))
             {   if (closing) is_permitted_parent (v, id, parent -> id ());
                 else is_permitted_parent (nits, v, id, parent -> id ());
-                nits.pick (nit_inserted_missing_closure, ed_jul23, "1.11.2: Errors that result in disproportionately poor performance", es_warning, ec_element, "</", elem :: name (parent -> tag ()), "> is missing");
+                if (context.analysis () != anal_original)
+                    parent -> knitted (nit_inserted_missing_closure);
+                else report_closure (nits, nit_inserted_missing_closure, v, *parent);
                 const elem def (parent -> tag ());
                 nitpick defnits (ket.line_, ket.nits_.get_context ());
                 ven_.push_back (element_node (defnits, this, ket.line_, true, parent, def, true, def.name ()));
@@ -140,9 +141,15 @@ element_node* elements_node::insert_closure (const html_version& v, element_node
     {   element_node* ancestor = find_corresponding_open (id, parent);
         matched = (ancestor != nullptr);
         if (! matched)
-            ket.nits_.pick (nit_missing_open, ed_jul23, "1.11.2: Cases where the author's intent is unclear", es_warning, ec_element, "no corresponding <", id.name (), "> found");
+        {   if (context.analysis () == anal_original)
+                ket.nits_.pick (nit_missing_open, es_warning, ec_element, "no corresponding <", id.name (), "> found");
+            else if ((! id.is_lazy (v)) || is_open_required (id, *parent))
+                ket.nits_.pick (nit_missing_open, es_error, ec_element, "no corresponding <", id.name (), "> found; it is required");
+            else if (context.efficient ())
+                ket.nits_.pick (nit_inefficient, ed_jul23, "1.11.2: Cases where the author's intent is unclear", es_info, ec_element,
+                    "no corresponding <", id.name (), "> found: it is optional, but its absence may waste browser resources"); }
         else
-        {   report_missing_closures (v, parent, ancestor);
+        {   if (context.analysis () == anal_original) report_missing_closures (v, parent, ancestor);
             repair_invalid_parents (ket.nits_, v, id, parent, ancestor, ket, true);
             parent = ancestor;
             VERIFY_NOT_NULL (parent, __FILE__, __LINE__);
@@ -155,15 +162,24 @@ element_node* elements_node::insert_closure (const html_version& v, element_node
 
 element_node* elements_node::insert_family_tree (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id, const bool presumed)
 {   PRESUME (id != elem_faux_document, __FILE__, __LINE__);
-    const elem def (default_parent (v, id));
+    VERIFY_NOT_NULL (parent, __FILE__, __LINE__);
+    elem def (default_parent (v, id, parent -> id ()));
     element_node* ancestor = find_permitted_parent (v, def, parent);
     if (ancestor == nullptr)
     {   ancestor = insert_family_tree (v, previous, parent, ket, def, true);
         PRESUME (ancestor != nullptr, __FILE__, __LINE__); }
     nitpick defnits (ket.line_, ket.nits_.get_context ());
     VERIFY_NOT_NULL (parent, __FILE__, __LINE__);
-    defnits.pick (nit_inserted_missing_parent, ed_jul23, "1.11.2: Cases where the author's intent is unclear", es_info, ec_element,
-        "<", parent -> id ().name (), "> cannot have <", id.name (), "> children; inserting intermediate <", def.name (), ">");
+    if ((! parent -> has_parent ()) || (context.analysis () == anal_original))
+        defnits.pick (nit_inserted_missing_parent, es_warning, ec_element,
+            "<", parent -> id ().name (), "> cannot have <", id.name (), "> children; inserting intermediate <", def.name (), ">");
+    else if ((! id.is_lazy (v)) || is_open_required (id, *parent))
+        defnits.pick (nit_inserted_missing_parent, es_error, ec_element,
+            "<", parent -> id ().name (), "> cannot have <", id.name (), "> children; inserting required intermediate <", def.name (), ">");
+    else if (context.efficient ())
+        defnits.pick (nit_inefficient, ed_jul23, "1.11.2: Cases where the author's intent is unclear", es_info, ec_element,
+            "<", parent -> id ().name (), "> cannot have <", id.name (), "> children; inserting intermediate <", def.name (),
+            "> (it is optional, but its absence may waste browser resource)");
     report_missing_closures (v, parent, ancestor);
     repair_invalid_parents (defnits, v, def, parent, ancestor, ket, false);
     parent = ancestor;
@@ -296,11 +312,20 @@ void elements_node::parse (const html_version& v, bracs_ket& elements)
                                 break; }
         if (id.unknown ())
         {   ::std::string s (e.start_, e.eofe_);
+            const bool custard = be_it_there (context.custom_elements (), s);
             if (GSL_NARROW_CAST < size_t > (id.ns ()) < first_runtime_namespace)
                 if (bad_version) e.nits_.pick (nit_invalid_element_version, es_warning, ec_element, "<", ::std::string (s), "> is an invalid element in ", v.report ());
-                else e.nits_.pick (nit_unknown_element, ed_jul23, "1.11.2: Cases that are likely to be typos", es_warning, ec_element, PROG " does not know the element <", ::std::string (s), ">, so cannot verify it");
+                else if (custard)
+                        e.nits_.pick (nit_unknown_element, ed_jul23, "1.11.2: Cases that are likely to be typos", es_comment, ec_element,
+                            "Ignoring custom element <", ::std::string (s), ">");
+                else e.nits_.pick (nit_unknown_element, ed_jul23, "1.11.2: Cases that are likely to be typos", es_warning, ec_element,
+                        PROG " does not know the element <", ::std::string (s), ">, so cannot verify it");
             else if (bad_version) e.nits_.pick (nit_invalid_element_version, es_comment, ec_element, "<", ::std::string (s), "> is invalid in ", v.report ());
-                else e.nits_.pick (nit_unknown_element, ed_jul23, "1.11.2: Cases that are likely to be typos", es_comment, ec_element, PROG " does not know <", ::std::string (s), ">, so cannot verify it");
+            else if (custard)
+                e.nits_.pick (nit_unknown_element, ed_jul23, "1.11.2: Cases that are likely to be typos", es_comment, ec_element,
+                      "Ignoring custom element <", ::std::string (s), ">");
+            else e.nits_.pick (nit_unknown_element, ed_jul23, "1.11.2: Cases that are likely to be typos", es_comment, ec_element,
+                PROG " does not know <", ::std::string (s), ">, so cannot verify it");
             if (v.xhtml () && compare_no_case (s, "base"))
                 e.nits_.pick (nit_requires_xhtml, es_comment, ec_element, "in XHTML, use <xml:base>, not <base>"); }
 
@@ -310,13 +335,24 @@ void elements_node::parse (const html_version& v, bracs_ket& elements)
     {   VERIFY_NOT_NULL (document, __FILE__, __LINE__);
         context.os () -> err (document -> rpt (0)); } }
 
-bool elements_node::parse (nitpick& nits, const ::std::string& content)
+void elements_node::knitting (element_node& current)
+{   PRESUME (context.analysis () != anal_original, __FILE__, __LINE__);
+    if (current.knitted () > nit_free)
+    {   report_closure (current.nits (), current.knitted (), version_, current);
+        current.knitted (nit_free); }
+    if (current.has_child ()) knitting (current.child ());
+    if (current.has_next ()) knitting (current.next ()); }
+
+bool elements_node::parse (nitpick& nits, const ::std::string& content, const html_version& v)
 {   bracs_ket elements;
-    version_ = elements.parse (nits, content);
+    version_ = elements.parse (nits, content, v);
     invalid_ = version_.unknown ();
-    if (invalid_) nits.merge (elements.form_);
-    else parse (version_, elements);
-    return ! invalid_; }
+    if (invalid_)
+    {   nits.merge (elements.form_);
+        return false; }
+    parse (version_, elements);
+    if (context.analysis () != anal_original) knitting (top ());
+    return true; }
 
 void elements_node::harvest_nits (nitpick& nits)
 {   for (::std::size_t i = 0; i < ven_.size (); ++i)
@@ -325,6 +361,11 @@ void elements_node::harvest_nits (nitpick& nits)
 bool elements_node::has_element (const e_element e) const
 {   for (::std::size_t i = 0; i < ven_.size (); ++i)
         if (ven_.at (i).id () == e) return true;
+    return false; }
+
+bool elements_node::has_vrai_element () const
+{   for (::std::size_t i = 0; i < ven_.size (); ++i)
+        if ((ven_.at (i).id () >= first_element_tag) && (ven_.at (i).id () < last_element_tag)) return true;
     return false; }
 
 element_node* elements_node::faux_node ()

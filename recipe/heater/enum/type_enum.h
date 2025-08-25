@@ -309,6 +309,9 @@ template < > struct type_master < t_composite_operator > : ENUM_N (composite_ope
 template < > struct type_master < t_conlit > : ENUM_N (conlit)
 { using ENUM_N (conlit) :: enum_n; };
 
+template < > struct type_master < t_container_condition > : ENUM_N (container_condition)
+{ using ENUM_N (container_condition) :: enum_n; };
+
 template < > struct type_master < t_country > : ENUM_N (country)
 { using ENUM_N (country) :: enum_n; };
 
@@ -792,8 +795,14 @@ template < > struct type_master < t_mf_listing_action > : ENUM_N (mf_listing_act
 template < > struct type_master < t_mf_method > : ENUM_N (mf_method)
 { using ENUM_N (mf_method) :: enum_n; };
 
+template < > struct type_master < t_mf_relationship > : ENUM_N (mf_relationship)
+{ using ENUM_N (mf_relationship) :: enum_n; };
+
 template < > struct type_master < t_mf_reviewtype > : ENUM_N (mf_reviewtype)
 { using ENUM_N (mf_reviewtype) :: enum_n; };
+
+template < > struct type_master < t_mf_tel > : ENUM_N (mf_tel)
+{ using ENUM_N (mf_tel) :: enum_n; };
 
 template < > struct type_master < t_mime > : enum_n < t_mime, e_mimetype >
 { using enum_n < t_mime, e_mimetype > :: enum_n; };
@@ -1103,6 +1112,9 @@ template < > struct type_master < t_unit_time > : ENUM_N (unit_time)
 
 template < > struct type_master < t_unicode_bidi > : ENUM_N (unicode_bidi)
 { using ENUM_N (unicode_bidi) :: enum_n; };
+
+template < > struct type_master < t_url_temp_exp > : ENUM_N (url_temp_exp)
+{ using ENUM_N (url_temp_exp) :: enum_n; };
 
 template < > struct type_master < t_vctelecomms > : ENUM_N (vctelecomms)
 { using ENUM_N (vctelecomms) :: enum_n; };

@@ -1,4 +1,4 @@
--Y 1 -f ../toast/other/dump/dump.conf
+-Y 1 -7 original -f ../toast/other/dump/dump.conf
 
 PASS ../toast/other/dump/index.html
 2 naughty_lang

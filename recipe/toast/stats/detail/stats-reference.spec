@@ -1,4 +1,4 @@
--Y 1 -f ../toast/stats/detail/stats-reference.conf
+-Y 1 -7 original -f ../toast/stats/detail/stats-reference.conf
 
 PASS ../toast/stats/detail/extra.html
 14 unrecognised_value
@@ -19,7 +19,6 @@ PASS ../toast/stats/detail/keyword-1.html
 PASS ../toast/stats/detail/keyword-2.html
 2 naughty_lang
 17 role_missing
-20 role_missing
 21 role_missing
 22 role_missing
 23 role_missing
@@ -37,6 +36,5 @@ GRAND
 Reference:
     HTML 5.0: thrice
     WhatWG HTML 5, Jul 20: twice
-    HTML 5, Jul 23: twice
-    Aria in HTML: 10 times
+    Aria in HTML: 9 times
 ===

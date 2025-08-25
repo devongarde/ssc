@@ -1,9 +1,10 @@
-<span class="separator" lang="en"><span class="mediumscreen"><!--#echo encoding="none" var="menustart" -->&nbsp;browse&nbsp;</span><!--#echo encoding="none" var="menustart" --></span>&nbsp;
+<nav>
+<span class="separator" lang="en" role=navigation><span class="mediumscreen"><!--#echo encoding="none" var="menustart" -->&nbsp;browse&nbsp;</span><!--#echo encoding="none" var="menustart" --></span>&nbsp;
 <a href="/about.shtml">about</a>&nbsp;<span class="separator"><!--#echo encoding="none" var="menusep" --></span>
 <a href="/args/index.shtml">args</a>&nbsp;<span class="separator"><!--#echo encoding="none" var="menusep" --></span>
 <a href="/build.shtml">build</a>&nbsp;<span class="separator"><!--#echo encoding="none" var="menusep" --></span>
 <a href="/args/config.shtml">config</a>&nbsp;<span class="separator"><!--#echo encoding="none" var="menusep" --></span>
-<a href="/index.shtml">home</a>&nbsp;<span class="separator"><!--#echo encoding="none" var="menusep" --></span>
+<a href="<!--#echo encoding="none" var="home" -->">home</a>&nbsp;<span class="separator"><!--#echo encoding="none" var="menusep" --></span>
 <a href="/release-notes.shtml" title="source &amp; release notes">notes</a>&nbsp;<span class="separator"><!--#echo encoding="none" var="menusep" --></span>
 <a href="/advanced.shtml">try</a>&nbsp;<span class="separator"><!--#echo encoding="none" var="menusep" --></span>
 <a href="/usage.shtml">usage</a>&nbsp;<span class="separator"><!--#echo encoding="none" var="menusep" --></span>
@@ -15,8 +16,9 @@
 <a href="<!--#echo encoding="none" var="corruptsite" -->" title="corrupt press">corrupt&nbsp;press</a>&nbsp;<span class="separator"><!--#echo encoding="none" var="menusep" --></span>
 <a href="<!--#echo encoding="none" var="github" -->" title="pro site">github&nbsp;repository</a>&nbsp;<span class="separator"><!--#echo encoding="none" var="menuend" --></span>
 </span>
+</nav>
 
-<div class="rights">
+<div class="rights" role=presentation>
 <a href="/legal.shtml" title="&copy; and licence info"><!--#echo encoding="none" var="copyright" --></a>
 </div></div></footer></div></div>
 

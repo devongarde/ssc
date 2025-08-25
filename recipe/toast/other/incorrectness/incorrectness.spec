@@ -1,4 +1,4 @@
--Y 1 -f ../toast/other/incorrectness/incorrectness.conf
+-Y 1 -7 original -f ../toast/other/incorrectness/incorrectness.conf
 
 PASS ../toast/other/incorrectness/index.html
 2 naughty_lang

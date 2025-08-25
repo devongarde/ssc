@@ -1,4 +1,4 @@
--Y 1 -f ../toast/css/3-cascade/css.conf
+-Y 1 -7 original -f ../toast/css/3-cascade/css.conf
 
 PASS ../toast/css/3-cascade/index.html
 2 naughty_lang

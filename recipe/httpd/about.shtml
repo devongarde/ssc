@@ -16,7 +16,7 @@
 <!--#echo encoding="none" var="title" -->
 </h1>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="image/ssc-msgdb-m3-cp10.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-m3-cp10.jpg" title="made with studio artist 5.5">
 
 <h2>gen</h2>
 
@@ -24,9 +24,9 @@
 <!--#echo encoding="none" var="uname" -->
 version <!--#echo encoding="none" var="version" --><br>
 <a href="legal.shtml"><!--#echo encoding="none" var="copyright" --></a><br>
-<!--#echo encoding="none" var="slashaddress" -->,
-<!--#echo encoding="none" var="github" -->,
-(<a href="src/ssc-<!--#echo encoding="none" var="version" -->.tgz" type="application/gzip">download source</a>)
+<!--#echo encoding="none" var="slashaddress" -->,<br>
+<!--#echo encoding="none" var="github" -->,<br>
+(<a href="/src/ssc-<!--#echo encoding="none" var="version" -->.tgz" type="application/gzip">download source</a>)
 </p>
 
 <h2>capabilities</h2>
@@ -77,10 +77,10 @@ with opinions on:
 
 <ul>
 <li>
-standard english where dialect is required
+standard english (ho ho) where dialect is required
 </li>
 <li>
-legal but slovenly HTML
+legal but inefficient HTML
 </li>
 <li>
 abhorrent rudeness such as AUTOPLAY on &lt;VIDEO&gt;
@@ -96,7 +96,7 @@ It does NOT:
 analyse or understand scripts
 </li>
 <li>
-analyse or understand XML or derivatives, except as noted above
+but for XHTML, analyse or understand XML or derivatives
 </li>
 </ul>
 
@@ -142,7 +142,7 @@ analyse website based in directory
 </p>
 
 <p>
-<a href="usage.shtml">more here</a>
+<a href="/usage.shtml">more here</a>
 </p>
 
 <h2>
@@ -163,12 +163,12 @@ gleeful.
 in case of bugs
 </h2>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="image/ssc-msgdb-m6-wm2.jpg" title="made with studio artist 5.5">
-
 <p>
 This is an alpha version of <!--#echo encoding="none" var="short" -->. It is incomplete. What is complete
 needs refining. The developer needs coffee.
 </p>
+
+<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-m6-wm2.jpg" title="made with studio artist 5.5">
 
 <p>
 It may contain unexpected features. If you encounter one, please help
@@ -267,26 +267,26 @@ See Also
 </h2>
 
 <table><tr>
-<td><a href="build.shtml">build.txt</a></td> <td>notes on building <!--#echo encoding="none" var="short" --></td>
+<td><a href="/build.shtml">build.txt</a></td> <td>notes on building <!--#echo encoding="none" var="short" --></td>
 </tr><tr>
-<td><a href="args/index.shtml">gen.txt</a></td> <td>a model man page</td>
+<td><a href="/args/index.shtml">gen.txt</a></td> <td>a model man page</td>
 </tr><tr>
-<td><a href="usage.shtml">usage.txt</a></td> <td>how to use <!--#echo encoding="none" var="short" --></td>
+<td><a href="/usage.shtml">usage.txt</a></td> <td>how to use <!--#echo encoding="none" var="short" --></td>
 </tr><tr>
-<td><a href="release-notes.shtml">releasenotes.txt</a></td> <td>fishless chips</td>
+<td><a href="/release-notes.shtml">releasenotes.txt</a></td> <td>fishless chips</td>
 </tr><tr>
-<td><a href="legal.shtml">LICENCE.txt</a></td> <td><!--#echo encoding="none" var="short" --> licence information</td>
+<td><a href="/legal.shtml">LICENCE.txt</a></td> <td><!--#echo encoding="none" var="short" --> licence information</td>
 </tr><tr>
-<td><a href="legal.shtml">LICENSE.txt</a></td> <td>formal GPL 3 licence</td>
+<td><a href="/legal.shtml">LICENSE.txt</a></td> <td>formal GPL 3 licence</td>
 </tr><tr>
-<td><a href="legal.shtml">more licences</a></td> <td>licences for borrowed external content</td>
+<td><a href="/legal.shtml">more licences</a></td> <td>licences for borrowed external content</td>
 </tr></table>
 
 <h2>
 Background
 </h2>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="image/ssc-msgdb-m3-g20.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-m3-g20.jpg" title="made with studio artist 5.5">
 
 <p>
 I have a website, <a href="<!--#echo encoding="none" var="aesite" -->"><!--#echo encoding="none" var="aename" -->,

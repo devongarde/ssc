@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.24)
 set (FULLNAME "Static-Site-Checker")
-set (VER 0.2.18)
+set (VER 0.2.19)
 project (ssc VERSION ${VER} DESCRIPTION ${FULLNAME} LANGUAGES CXX HOMEPAGE_URL "https://ssc.lu")
 message (NOTICE "preparing " ${FULLNAME} " ${VER}" )
 
@@ -96,11 +96,12 @@ set (HEATERS
             ${H}/microformat/microformat_export_rel.h ${H}/microformat/microformat_properties.h ${H}/microformat/microformats.h
             ${H}/microformat/microformats_ptr.h ${H}/microformat/prop.h ${H}/microformat/property.h ${H}/microformat/property_classes.h
             ${H}/microformat/property_value.h ${H}/microformat/sibling.h
-        ${H}/ontology/jsonld.h ${H}/ontology/ontology_hierarchy.h ${H}/ontology/ontology_name.h ${H}/ontology/ontology_property.h ${H}/ontology/ontology_structure.h
-            ${H}/ontology/ontology_type.h ${H}/ontology/ontology_version.h
-        ${H}/parser/html_version.h ${H}/parser/jsonic.h ${H}/parser/parse_abb.h ${H}/parser/parse_attribute.h ${H}/parser/parse_attributes.h
-            ${H}/parser/parse_brac_ket.h ${H}/parser/parse_bracs_ket.h ${H}/parser/parse_element.h ${H}/parser/parse_elements.h ${H}/parser/parse_ssi.h
-            ${H}/parser/pattern.h ${H}/parser/text.h ${H}/parser/text-data.h ${H}/parser/xhtml_xml.h
+        ${H}/ontology/jsonld.h ${H}/ontology/ontology_hierarchy.h ${H}/ontology/ontology_name.h ${H}/ontology/ontology_property.h
+            ${H}/ontology/ontology_structure.h ${H}/ontology/ontology_type.h ${H}/ontology/ontology_version.h
+        ${H}/parser/efficiency.h ${H}/parser/html_version.h ${H}/parser/jsonic.h ${H}/parser/parse_abb.h ${H}/parser/parse_attribute.h
+            ${H}/parser/parse_attributes.h ${H}/parser/parse_brac_ket.h ${H}/parser/parse_bracs_ket.h ${H}/parser/parse_element.h
+            ${H}/parser/parse_elements.h ${H}/parser/parse_ssi.h ${H}/parser/pattern.h ${H}/parser/text.h ${H}/parser/text-data.h
+            ${H}/parser/xhtml_xml.h
         ${H}/rdf/rdf.h ${H}/rdf/rdfa_prop.h ${H}/rdf/rdfa_type.h
         ${H}/simple/simple.h ${H}/simple/type_autocomplete.h ${H}/simple/type_css.h ${H}/simple/type_currency.h
             ${H}/simple/type_httpequiv.h ${H}/simple/type_jsonic.h ${H}/simple/type_media.h ${H}/simple/type_metaname.h ${H}/simple/type_rdf.h
@@ -173,9 +174,9 @@ set (SAUCE
             ${S}/microformat/microformats.cpp ${S}/microformat/property_value.cpp ${S}/microformat/sibling.cpp
         ${S}/ontology/jsonld.cpp ${S}/ontology/ontology_hierarchy.cpp ${S}/ontology/ontology_name.cpp ${S}/ontology/ontology_property.cpp
             ${S}/ontology/ontology_structure.cpp ${S}/ontology/ontology_type.cpp ${S}/ontology/ontology_version.cpp
-        ${S}/parser/html_version.cpp ${S}/parser/jsonic.cpp ${S}/parser/parse_attribute.cpp ${S}/parser/parse_attributes.cpp ${S}/parser/parse_brac_ket.cpp
-            ${S}/parser/parse_bracs_ket.cpp ${S}/parser/parse_element.cpp ${S}/parser/parse_elements.cpp ${S}/parser/parse_ssi.cpp ${S}/parser/pattern.cpp
-            ${S}/parser/text.cpp ${S}/parser/text-data.cpp ${S}/parser/xhtml_xml.cpp
+        ${S}/parser/efficiency.cpp ${S}/parser/html_version.cpp ${S}/parser/jsonic.cpp ${S}/parser/parse_attribute.cpp ${S}/parser/parse_attributes.cpp
+            ${S}/parser/parse_brac_ket.cpp ${S}/parser/parse_bracs_ket.cpp ${S}/parser/parse_element.cpp ${S}/parser/parse_elements.cpp
+            ${S}/parser/parse_ssi.cpp ${S}/parser/pattern.cpp ${S}/parser/text.cpp ${S}/parser/text-data.cpp ${S}/parser/xhtml_xml.cpp
         ${S}/rdf/rdf.cpp ${S}/rdf/rdfa_prop.cpp ${S}/rdf/rdfa_type.cpp
         ${S}/simple/type_autocomplete.cpp ${S}/simple/type_basic.cpp ${S}/simple/type_css.cpp ${S}/simple/type_currency.cpp ${S}/simple/type_d.cpp
             ${S}/simple/type_httpequiv.cpp ${S}/simple/type_id.cpp ${S}/simple/type_jsonic.cpp ${S}/simple/type_intent.cpp ${S}/simple/type_layout.cpp
@@ -307,12 +308,7 @@ elseif (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
         set (Boost_USE_STATIC_LIBS ON)
         message ("Boost static libraries")
     endif ()
-    if (${LSB_RELEASE_ID_SHORT} MATCHES "Ubuntu")
-        set (NOX "0")
-        set (LD ${LIBS} "/usr/lib64/" "/usr/lib/x86_64-linux-gnu/")
-    else ()
-        set (NOX "1")
-    endif ()
+    set (NOX "1")
 elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     set (D "${DD}/local/bin")
     set (DOCU "${DD}/local/share/doc/ssc")

@@ -52,7 +52,7 @@ e_status set_id_value (nitpick& nits, const html_version& v, const ::std::string
             case 5 :
                 if (find_if (s.cbegin (), s.cend (), ::std::iswspace) != s.cend ())
                 {   nits.pick (nit_bad_id, es_error, ec_type, quote (s), " may not contain a space");
-                    res = false;; }
+                    res = false; }
                 break;
             default : break; }
         if (res) return s_good; }

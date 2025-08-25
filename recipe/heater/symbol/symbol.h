@@ -35,6 +35,7 @@ template < class V, typename VALUE, typename CATEGORY = ident_t, CATEGORY INIT =
     CATEGORY ns_ = INIT;
     bool unknown_ = true;
     flags_t flags_ = NOFLAGS, flags2_ = NOFLAGS;
+    ::std::string orig_;
 public:
     typedef VALUE value_type;
     DEFAULT_CONSTRUCTORS (symbol);
@@ -44,7 +45,7 @@ public:
         last_ = table_ -> final_version (value);
         flags_ = table_ -> flags (value);
         flags2_ = table_ -> flags2 (value); }
-    explicit symbol (const V& v, const ::std::string& x, const CATEGORY ns = INIT) : ns_ (ns)
+    explicit symbol (const V& v, const ::std::string& x, const CATEGORY ns = INIT) : ns_ (ns), orig_ (x)
     {   unknown_ = ! find (v, x, value_, ns, &first_, &last_, &flags_, &flags2_); }
     void swap (symbol& s) noexcept
     {   ::std::swap (unknown_, s.unknown_);
@@ -53,7 +54,8 @@ public:
         ::std::swap (flags_, s.flags_);
         ::std::swap (flags2_, s.flags2_);
         first_.swap (s.first_);
-        last_.swap (s.last_); }
+        last_.swap (s.last_);
+        orig_.swap (s.orig_); }
     void reset () { symbol tmp; swap (tmp); }
     void reset (const VALUE& v) { symbol tmp (v); swap (tmp); }
     static void init (nitpick& nits, const symbol_entry < V, VALUE, CATEGORY, INIT > table [], const ::std::size_t size, const bool wildcards = false)
@@ -74,6 +76,7 @@ public:
         return table_ -> template parse < VALUE, LC > (v, x, res, ns, first, last, flags, flags2); }
     bool parse (nitpick& , const V& v, const ::std::string& x, const CATEGORY ns = INIT)
     {   VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
+        orig_ = x;
         unknown_ = ! table_ -> template parse < VALUE, LC > (v, x, value_, ns, &first_, &last_, &flags_, &flags2_);
         if (unknown_) return false;
         ns_ = ns; return true; }
@@ -137,7 +140,9 @@ public:
     bool unknown () const noexcept { return unknown_; }
     bool required () const { return first_.required (); }
     ::std::string base_name () const
-    {   if (unknown_) return "(unknown)";
+    {   if (unknown_)
+            if (orig_.empty ()) return UNKNOWN;
+            else return orig_;
         VERIFY_NOT_NULL (table_.get (), __FILE__, __LINE__);
         ::std::string res (table_ -> name (get ()));
         if (res.empty ())

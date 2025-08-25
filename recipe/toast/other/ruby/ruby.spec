@@ -1,4 +1,4 @@
--Y 1 -f ../toast/other/ruby/ruby.conf
+-Y 1 -7 original -f ../toast/other/ruby/ruby.conf
 
 PASS ../toast/other/ruby/index.html
 2 naughty_lang

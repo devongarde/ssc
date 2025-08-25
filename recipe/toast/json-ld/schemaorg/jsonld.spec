@@ -1,4 +1,4 @@
--Y 1 -f ../toast/json-ld/schemaorg/jsonld.conf
+-Y 1 -7 original -f ../toast/json-ld/schemaorg/jsonld.conf
 
 PASS ../toast/json-ld/schemaorg/action.html
 2 naughty_lang

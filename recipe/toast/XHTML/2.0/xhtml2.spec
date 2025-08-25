@@ -1,4 +1,4 @@
--Y 1 -f ../toast/XHTML/2.0/xhtml2.conf
+-Y 1 -7 original -f ../toast/XHTML/2.0/xhtml2.conf
 
 PASS ../toast/XHTML/2.0/index.xhtml
 1 xhtml_2_0

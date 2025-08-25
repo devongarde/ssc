@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 const element_bitset empty_element_bitset;
 element_bitset block_bitset = empty_element_bitset;
 element_bitset block_replaced_bitset = empty_element_bitset;
+element_bitset css_faux_bitset = empty_element_bitset;
 element_bitset css_block_bitset = empty_element_bitset;
 element_bitset css_nonblock_bitset = empty_element_bitset;
 element_bitset css_noninline_bitset = empty_element_bitset;
@@ -33,23 +34,28 @@ element_bitset form_bitset = empty_element_bitset;
 element_bitset header_bitset = empty_element_bitset;
 element_bitset inline_bitset = empty_element_bitset;
 element_bitset interactive_bitset = empty_element_bitset;
+element_bitset interactive_bitset_aug25 = empty_element_bitset;
 element_bitset label_bitset = empty_element_bitset;
 element_bitset listed_bitset = empty_element_bitset;
 element_bitset media_bitset = empty_element_bitset;
 element_bitset non_standard_bitset = empty_element_bitset;
+element_bitset pure_faux_bitset = empty_element_bitset;
 element_bitset role_element_bitset = empty_element_bitset;
 element_bitset rowgroup_bitset = empty_element_bitset;
 element_bitset sectioning_bitset = empty_element_bitset;
 element_bitset script_bitset = empty_element_bitset;
 
 void state_init ()
-{   faux_bitset = empty_element_bitset | elem_faux_document | elem_faux_asp | elem_faux_cdata | elem_faux_char | elem_faux_code | elem_faux_comment |
-            elem_faux_doctype | elem_faux_php | elem_faux_ssi | elem_faux_stylesheet | elem_faux_text | elem_faux_xml | elem_faux_whitespace |
-            elem_css_all | elem_css_cell | elem_css_child | elem_css_precede | elem_css_precede_immediate | elem_css_scope_descendent | elem_css_scope_root;
+{   pure_faux_bitset = empty_element_bitset | elem_faux_document | elem_faux_asp | elem_faux_cdata | elem_faux_char | elem_faux_code | elem_faux_comment |
+            elem_faux_doctype | elem_faux_php | elem_faux_ssi | elem_faux_stylesheet | elem_faux_text | elem_faux_xml | elem_faux_whitespace;
+    css_faux_bitset = empty_element_bitset | elem_css_all | elem_css_cell | elem_css_child | elem_css_precede | elem_css_precede_immediate |
+            elem_css_scope_descendent | elem_css_scope_root;
+    faux_bitset = pure_faux_bitset | css_faux_bitset;
     form_bitset = empty_element_bitset | elem_button | elem_fieldset | elem_input | elem_object | elem_output | elem_select | elem_textarea | elem_img;
     header_bitset = empty_element_bitset | elem_h1 | elem_h2 | elem_h3 | elem_h4 | elem_h5 | elem_h6 | elem_hgroup;
-    interactive_bitset = empty_element_bitset | elem_a | elem_audio | elem_button | elem_details | elem_embed | elem_iframe |
-            elem_img | elem_input | elem_label | elem_object | elem_select | elem_selectedcontent | elem_textarea | elem_video;
+    interactive_bitset_aug25 = empty_element_bitset | elem_a | elem_audio | elem_button | elem_details | elem_embed | elem_fencedframe | elem_iframe |
+            elem_input | elem_label | elem_object | elem_select | elem_selectedcontent | elem_textarea | elem_video;
+    interactive_bitset = interactive_bitset_aug25 | elem_img;
     label_bitset = empty_element_bitset | elem_button | elem_input | elem_meter | elem_output | elem_progress | elem_select | elem_textarea;
     listed_bitset = empty_element_bitset | elem_button | elem_fieldset | elem_input | elem_object | elem_output | elem_select | elem_textarea;
     media_bitset = empty_element_bitset | elem_audio | elem_video;

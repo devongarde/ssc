@@ -1,6 +1,6 @@
 Static Site Checker
 (an opinionated HTML nitpicker)
-version 0.2.18
+version 0.2.19
 (c) 2020-2025 dylan harris
 see LICENCE.txt and LICENSE.txt for copyright & licence notices
 https://ssc.lu/
@@ -9,7 +9,7 @@ https://github.com/devongarde/ssc
 
 
 ssc analyses static X/HTML snippets, files and sites:
-- HTML living standard, Jan 2005 to Jul 2025
+- HTML living standard, Jan 2005 to Aug 2025
 - HTML Tags/1.0/+/2.0/3.0/3.2/4.00/4.01/5.0/5.1/5.2/5.3-draft
 - CSS 1/2.0/2.1/2.2-draft, 2007-2024 snapshots, more
 - SVG 1.0/1.1/1.2 Tiny/1.2 Full/2.0/2.x-draft
@@ -23,12 +23,12 @@ ssc analyses static X/HTML snippets, files and sites:
 
 with opinions on:
 - standard english where dialect is required
-- legal but slovenly HTML
+- legal but inefficient HTML
 - abhorrent rudeness such as AUTOPLAY on <VIDEO>
 
 It does NOT:
 - analyse or understand scripts
-- analyse or understand XML or derivatives, except as noted above
+- but for XHTML, analyse or understand XML or derivatives
 
 It can output:
 - 'repaired' HTML (not XHTML)

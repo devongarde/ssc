@@ -627,6 +627,7 @@ property_name namtab [] =
     // croissant
     { "applyTransform", s_croissant, cp_applytransform, },
     { "arrayShape", s_croissant, cp_arrayshape, },
+    { "audio", s_croissant, cp_audio, },
     { "citeAs", s_croissant, cp_citeas, },
     { "column", s_croissant, cp_column, },
     { "containedIn", s_croissant, cp_containedin, },
@@ -2460,7 +2461,7 @@ property_name namtab [] =
     { "h", s_microformats, mp_h },
     { "hentry", s_microformats, mp_hentry },
     { "honourific-prefix", s_microformats, mp_honourific_prefix },
-    { "honourific-suffixr", s_microformats, mp_honourific_suffix },
+    { "honourific-suffix", s_microformats, mp_honourific_suffix },
     { "impp", s_microformats, mp_impp },
     { "include", s_microformats, mp_include },
     { "info", s_microformats, mp_info },

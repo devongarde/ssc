@@ -37,7 +37,7 @@ class css_t : public d1_t < wx_css >
     radio_t level_;
     e_css_version ver_ = css_none;
     html_version v_, trans_;
-    vstr_t css_ext_;
+    sstr_t css_ext_;
     void Disenable ();  
     void OnHelpClick (wxCommandEvent& event);
     void set_module (const e_css_module m);
@@ -69,6 +69,6 @@ public:
     void OnImpatience (wxCommandEvent& event);
     void version (const html_version& v) { trans_ = v; }
     html_version version () const { return trans_; }
-    void ext (const vstr_t& vs) { css_ext_ = vs; }
-    vstr_t ext () const { return css_ext_; } };
+    void ext (const sstr_t& vs) { css_ext_ = vs; }
+    sstr_t ext () const { return css_ext_; } };
 #endif // WX

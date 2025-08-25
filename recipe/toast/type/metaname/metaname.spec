@@ -1,4 +1,4 @@
--Y 1 -f ../toast/type/metaname/metaname.conf
+-Y 1 -7 original -f ../toast/type/metaname/metaname.conf
 
 PASS ../toast/type/metaname/index.html
 2 naughty_lang

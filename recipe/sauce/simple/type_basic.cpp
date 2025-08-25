@@ -32,15 +32,16 @@ e_status set_compact_value (nitpick& nits, const html_version& v, const ::std::s
             return s_invalid; } }
     return s_good; }
 
-e_status set_html_value (nitpick& nits, const html_version& , const ::std::string& s)
+e_status set_html_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   if (s.empty ())
     {   nits.pick (nit_empty, es_error, ec_type, "a SRCDOC value cannot be empty");
         return s_invalid; }
     e_status res = s_good;
     elements_node nodes;
-    if (nodes.parse (nits, s))
-        if (! nodes.has_element (elem_html))
-        {   nits.pick (nit_requires_html, ed_50, "4.7.2 The iframe element", es_error, ec_attribute, "the HTML snippet in a SRCDOC attribute must include an <HTML> element");
+    const bool r = (context.analysis () == anal_original) ? nodes.parse (nits, s) : nodes.parse (nits, s, v);
+    if (r)
+        if (! nodes.has_vrai_element ())
+        {   nits.pick (nit_requires_html, ed_50, "4.7.2 The iframe element", es_error, ec_attribute, "the HTML snippet in a SRCDOC attribute must include an HTML element");
             res = s_invalid; }
     nodes.harvest_nits (nits);
     return res; }

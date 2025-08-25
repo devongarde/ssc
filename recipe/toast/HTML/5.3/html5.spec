@@ -1,4 +1,4 @@
--Y 1 -f ../toast/HTML/5.3/html5.conf
+-Y 1 -7 original -f ../toast/HTML/5.3/html5.conf
 
 PASS ../toast/HTML/5.3/css-good.css
 0 html
@@ -93,7 +93,7 @@ PASS ../toast/HTML/5.3/html5-bad.html
 82 inserted_missing_closure missing_close
 83 inserted_missing_closure
 86 use_quote_code
-90 link_rel_off
+90 incompatible_mime rel_head
 92 url_not_found saucy_source track_missing autoplay
 93 url_not_found saucy_source
 94 url_not_found

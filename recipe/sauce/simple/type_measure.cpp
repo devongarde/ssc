@@ -37,7 +37,7 @@ bool set_measure_value (nitpick& nits, const html_version& v, const ::std::strin
             if (v.svg () || v.is_5 () || v.has_css ())
                 if (test_value < t_unit > (nits, v, units))
                     return true; } }   // dpi, dpcm?
-    nits.pick (nit_immeasurable, es_error, ec_type, quote (s), " should be a number optionally followed immediately by '%', '*', or a standard unit of measurement");
+    nits.pick (nit_immeasurable, es_error, ec_type, quote (ss), " should be a number optionally followed immediately by '%', '*', or a standard unit of measurement");
     return false; }
 
 bool set_css_measure_value (nitpick& nits, const html_version& v, const ::std::string& ss, const bool absolute)
@@ -54,12 +54,12 @@ bool set_css_measure_value (nitpick& nits, const html_version& v, const ::std::s
                 return false; } }
         else if (context.html_ver ().is_css_compatible (v.ext2 (), v.ext3 (), v.ext4 ())) return true;
         else
-        {   nits.pick (nit_missing_units, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_type, quote (s), ": units must be specified for lengths");
+        {   nits.pick (nit_missing_units, ed_css_1, "7.1 Forward-compatible parsing", es_error, ec_type, quote (ss), ": units must be specified for lengths");
             return false; }
         if (test_value < t_fixedpoint > (nits, v, s))
         {   if (units.empty ()) return true;
             if ((! absolute) && (units == "%")) return true;
             if (v.svg () || v.is_5 () || v.has_css ()) if (test_value < t_unit > (nits, v, units)) return true; } }
-    if (absolute) nits.pick (nit_immeasurable, es_error, ec_type, quote (s), ": a length is a number immediately followed a standard unit of measurement");
-    else nits.pick (nit_immeasurable, es_error, ec_type, quote (s), ": a length is a percentage or a number immediately followed a standard unit of measurement");
+    if (absolute) nits.pick (nit_immeasurable, es_error, ec_type, quote (ss), ": a length is a number immediately followed a standard unit of measurement");
+    else nits.pick (nit_immeasurable, es_error, ec_type, quote (ss), ": a length is a percentage or a number immediately followed a standard unit of measurement");
     return false; }

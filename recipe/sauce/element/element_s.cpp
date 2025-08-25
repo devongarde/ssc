@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "webpage/page.h"
 #include "attribute/attribute_classes.h"
 #include "parser/text.h"
+#include "parser/jsonic.h"
 
 void element::examine_sarcasm ()
 {   if (! nitpick::sarcasm ())
@@ -34,6 +35,9 @@ void element::examine_script ()
     test_no_role_no_aria ();
     check_ancestors (elem_script, element_bitset (elem_script));
     bool datablock = false, module = false, jsld = false;
+#ifndef NO_JSONIC
+    bool importmap = false;
+#endif // NO_JSONIC
     if (! a_.known (a_type) || a_.empty (a_type))
         pick (nit_script, ed_50, "4.11.1 The script element", es_comment, ec_element, "this should be treated as ECMAscript / Javascript");
     else
@@ -75,6 +79,11 @@ void element::examine_script ()
                 case mime_faux_module :
                     module = true;
                     break;
+#ifndef NO_JSONIC
+                case mime_faux_importmap :
+                    importmap = true;
+                    break;
+#endif // NO_JSONIC
                 case mime_application_ld_json :
                     jsld = context.jsonld ();
                     break;
@@ -91,10 +100,33 @@ void element::examine_script ()
             a_.good (a_defer) || a_.good (a_integrity) || a_.good (a_nomodule) || a_.known (a_numberonce) ||
             a_.good (a_referrerpolicy) || a_.good (a_src))
         pick (nit_bad_script, ed_52, "4.12.1 The script element", es_error, ec_element, "no attribute but TYPE should be used with data blocks");
+#ifndef NO_JSONIC
+    if (importmap)
+    {   const jsonic j (nits (), text (), cc_utf8);
+        const ::boost::json::value& v = j.val ();
+        bool imports = false, scopes = false, integrity = false;
+        bool good = (v.kind () == ::boost::json::kind::object);
+        if (good)
+            for (::boost::json::object::const_iterator i = v.as_object ().cbegin (); good && (i != v.as_object ().cend ()); ++i)
+            {   const char* k = i -> key_c_str ();
+                if (compare_no_case ("imports", k))
+                    if (imports) good = false;
+                    else imports = true;
+                else if (compare_no_case ("scopes", k))
+                    if (scopes) good = false;
+                    else scopes = true;
+                else if (compare_no_case ("integrity", k))
+                    if (integrity) good = false;
+                    else integrity = true;
+                else good = false; }
+        if (! good)
+            pick (nit_bad_script, ed_aug25, "48.1.5.2 Import maps", es_warning, ec_element,
+                "An importmap is a JSON object with three optional keys: IMPORTS, SCOPES, INTEGRITY"); }
+#endif // NO_JSONIC
     if (module)
     {   if (a_.known (a_charset) && (node_.version () <= html_5_3))
             pick (nit_bad_script, ed_52, "4.12.1 The script element", es_error, ec_element, "do not use CHARSET when TYPE='module' (which must be " UTF_8 ")");
-        if (a_.known (a_nomodule) && (node_.version () > html_5_3))
+        if (a_.known (a_nomodule) && (node_.version () > html_5_3) && (node_.version () < html_aug25))
             pick (nit_bad_script, ed_jul20, "4.12.1 The script element", es_error, ec_element, "NOMODULE is dubious when TYPE='module'");
         if (a_.known (a_defer))
             pick (nit_bad_script, ed_52, "4.12.1 The script element", es_error, ec_element, "DEFER has no effect when TYPE='module'"); }
@@ -217,11 +249,36 @@ void element::examine_source ()
     {   if (! a_.known (a_srcset))
             pick (nit_bad_srcset, ed_52, "4.7.4. The source element", es_error, ec_element, "SRCSET is required when <SOURCE> descends from <PICTURE>");
         if (a_.known (a_src))
-            pick (nit_saucy_source, ed_52, "4.7.4. The source element", es_warning, ec_element, "SRC has no meaning when <SOURCE> descends from <PICTURE>"); }
+            pick (nit_saucy_source, ed_52, "4.7.4. The source element", es_warning, ec_element, "SRC has no meaning when <SOURCE> descends from <PICTURE>");
+        if (context.analysis () >= anal_aug25)
+        {   bool type_media = false;
+            for (element* s = sibling_; (! type_media) && (s != nullptr); s = s -> sibling_)
+                if (! s -> node_.is_closure ())
+                    switch (s -> tag ())
+                    {   case elem_source : type_media = true; break;
+                        case elem_img : type_media = s -> own_attributes_.test (a_srcset);
+                        default : break; }
+            if (type_media)
+            {   if (! a_.known (a_type))
+                    pick (nit_saucy_source, ed_aug25, "4.8.2. The source element", es_error, ec_element,
+                        "<SOURCE> must have TYPE when followed by a sibling <SOURCE> or <IMG> with SRCSET");
+                if (! a_.known (a_media))
+                    pick (nit_saucy_source, ed_aug25, "4.8.2. The source element", es_error, ec_element,
+                        "<SOURCE> must have MEDIA when followed by a sibling <SOURCE> or <IMG> with SRCSET");
+                else
+                {   const ::std::string med (trim_the_lot_off (a_.get_string (a_media)));
+                    if (med.empty () || compare_no_case ("all", med))
+                        pick (nit_saucy_source, ed_aug25, "4.8.2. The source element", es_error, ec_element,
+                            "MEDIA on source must not be empty nor set to ALL when <SOURCE> is followed by a sibling <SOURCE> or <IMG> with SRCSET"); } } } }
     else
     {   if (! has_src)
             pick (nit_src_required, ed_52, "4.7.4. The source element", es_error, ec_element, "SRC attribute is required when <SOURCE> descends from a media element");
-        if (a_.known (a_srcset) || a_.known (a_sizes) || a_.known (a_media))
+        if (context.analysis () >= anal_aug25)
+        {   if (a_.known (a_srcset) || a_.known (a_sizes))
+                pick (nit_saucy_source, ed_aug25, "4.8.2. The source element", es_error, ec_element, "SRCSET and SIZES must not be present when <SOURCE> is not a child of <PICTURE>");
+            if (a_.known (a_media))
+                pick (nit_saucy_source, ed_52, "4.7.4. The source element", es_warning, ec_element, "MEDIA has no meaning when <SOURCE> is not a child of <PICTURE>"); }
+        else if (a_.known (a_srcset) || a_.known (a_sizes) || a_.known (a_media))
             pick (nit_saucy_source, ed_52, "4.7.4. The source element", es_warning, ec_element, "SRCSET, SIZES and MEDIA have no meaning when <SOURCE> is not a child of <PICTURE>");
         nitpick nuts;
         type_master < t_mime > mt;

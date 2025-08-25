@@ -34,16 +34,25 @@ void element::examine_main ()
             check_ancestors (elem_main, empty_element_bitset | elem_article | elem_aside | elem_footer | elem_header | elem_nav);
         else if (node_.version () >= html_jul18)
         {   element_bitset tmp (ancestral_elements_);
-            tmp &= ~(non_standard_bitset | elem_html | elem_body | elem_div | elem_form | elem_think);
-            if (tmp.any ())
-                pick (nit_bad_ancestor, ed_53, "4.4.14. The main element", es_error, ec_element, "<MAIN> can only have <HTML>, <BODY>, <DIV> and <FORM> parents."); } }
+            if (node_.version () < html_aug25)
+            {   tmp &= ~(non_standard_bitset | elem_html | elem_body | elem_div | elem_form | elem_think);
+                if (tmp.any ())
+                    pick (nit_bad_ancestor, ed_53, "4.4.14. The main element", es_error, ec_element, "<MAIN> can only have <HTML>, <BODY>, <DIV> and <FORM> parents."); }
+            else
+            {   tmp &= ~(non_standard_bitset | elem_html | elem_body | elem_div | elem_form | elem_custom);
+                if (tmp.any ())
+                    pick (nit_bad_ancestor, ed_53, "4.4.14. The main element", es_error, ec_element, "<MAIN> can only have <HTML>, <BODY>, <DIV>, <FORM> and custom element parents."); } } }
 
 void element::examine_map ()
 {   if (node_.version ().is_5 ())
     {   test_no_role_no_aria ();
-        if (a_.known (a_name) && a_.known (a_id))
-            if (! compare_no_case (a_.get_string (a_name), a_.get_string (a_id)))
-                pick (nit_name_id, ed_50, "4.7.11 The map element", es_error, ec_attribute, "If NAME and ID are both specified, they must have the same value"); } }
+        if (a_.known (a_name))
+        {   if (context.analysis () >= anal_aug25)
+                if (a_.get_string (a_name).find_first_of (WHITESPACE) != ::std::string::npos)
+                    pick (nit_name_id, ed_aug25, "4.8.12 The map element", es_error, ec_attribute, "A NAME value must not contain whitespace");
+            if (a_.known (a_id))
+                if (! compare_no_case (a_.get_string (a_name), a_.get_string (a_id)))
+                    pick (nit_name_id, ed_50, "4.7.11 The map element", es_error, ec_attribute, "If NAME and ID are both specified, they must have the same value"); } } }
 
 void element::examine_math ()
 {   if (node_.version ().mjr () < 4) return;
@@ -142,57 +151,54 @@ void element::examine_media_element (e_element e, const char* ref, const char* n
         pick (nit_media_descendants, ed_50, ref, es_error, ec_element, name, " can have neither <VIDEO> nor <AUDIO> descendants" ); }
 
 void element::examine_menu ()
-{   if (node_.version ().is_5 ())
-        if (a_.has (a_type))
-            if (node_.version () >= html_jul17)
-            {   const element_bitset bs (faux_bitset | script_bitset | elem_li);
-                for (element* p = child_; p != nullptr; p = p -> sibling_)
-                    if (! p -> node_.is_closure ())
-                        if (! bs.test (p -> node_.id ()))
-                        {   pick (nit_menu_child, ed_jul20, "3.18.4. The menu element", es_error, ec_element, "<MENU> may only have <LI> and script children");
-                            break; } }
-            else
-            {   bool has_li = false;
-                bool has_other = false;
-                bool has_muhrme = false;
-                const element_bitset muhrme = empty_element_bitset | elem_menuitem | elem_hr | elem_menu;
-                const e_menutype mt = static_cast < e_menutype > (a_.get_int (a_type));
-                if (node_.version () >= html_jan06)
-                    if (has_child ())
-                    {   for (element* p = child_; p != nullptr; p = p -> sibling_)
-                        {   if (! p -> node_.is_closure ()) continue;
-                            if (faux_bitset.test (p -> node_.id ())) continue;
-                            if (script_bitset.test (p -> node_.id ()) && (node_.version () >= html_jul13)) continue;
-                            if (p -> node_.id () == elem_li) has_li = true;
-                            else if (muhrme.test (p -> node_.id ())) has_muhrme = true;
-                            else has_other = true; }
-                        if (node_.version () < html_jan13)
-                        {   if (has_li && (has_other || has_muhrme))
-                                pick (nit_menu_child, ed_jan10, "4.11.3 The menu element", es_error, ec_element, "<MENU> can have <LI> children, or other children, but not both"); }
-                        else if (node_.version () < html_jan16)
-                        {   if (mt == mt_popup)
-                            {   if (has_li || has_other)
-                                    pick (nit_menu_child, ed_jan13, "4.11.3 The menu element", es_error, ec_element, "<MENU> with TYPE 'popup' can only have <MENUITEM>, <HR> and <MENU> children");
-                                if (! has_muhrme)
-                                    pick (nit_menu_child, ed_jan13, "4.11.3 The menu element", es_warning, ec_element, "a <MENU> with TYPE 'popup' has no <MENUITEM>, <HR> or <MENU> children"); }
-                            if ((mt == mt_toolbar) && ! has_li)
-                                pick (nit_menu_child, ed_jan13, "4.11.3 The menu element", es_warning, ec_element, "a <MENU> with TYPE 'toolbar' should have <LI> children"); } }
-                switch (mt)
-                {   case mt_context :
-                        if ((node_.version () < html_jul07) || ((node_.version () >= html_jan13) && (node_.version () < html_jan16)))
-                            pick (nit_menu_type, ed_jan07, "3.18.4. The menu element", es_error, ec_element, "In ", node_.version ().name (), ", <MENU> TYPE uses 'popup', not 'context'");
-                        break;
-                    case mt_popup :
-                        if (((node_.version () >= html_jul07) && (node_.version () < html_jan13)) || (node_.version () >= html_jan16))
-                            pick (nit_menu_type, ed_jul17, "4.11.3 The menu element", es_error, ec_element, "In ", node_.version ().name (), ", <MENU> TYPE uses 'context', not 'popup'");
-                        break;
-                    case mt_toolbar :
-                        if (ancestral_elements_.test (elem_menu))
-                            pick (nit_menu_child, ed_jan13, "4.11.3 The menu element", es_warning, ec_element, "a <MENU> with TYPE 'toolbar' cannot be the child of another <MENU>");
-                        break;
-                    default :
-                        pick (nit_menu_type, ed_jan07, "3.18.4. The menu element", es_warning, ec_element, "The value of TYPE will be ignored" );
-                        break; } } }
+{   if (context.analysis () == anal_original)
+        only_elements ();
+    if (node_.version ().is_5 ())
+        if (node_.version () >= html_jul17)
+        {   if (! has_only_immediate_descendents (script_bitset | elem_li, faux_bitset))
+                pick (nit_menu_child, ed_aug25, "4.4.7 The menu element", es_error, ec_element, "<MENU> may only have <LI>, <TEMPLATE>, and <SCRIPT> children"); }
+        else if (a_.has (a_type))
+        {   bool has_li = false;
+            bool has_other = false;
+            bool has_muhrme = false;
+            const element_bitset muhrme = empty_element_bitset | elem_menuitem | elem_hr | elem_menu;
+            const e_menutype mt = static_cast < e_menutype > (a_.get_int (a_type));
+            if (node_.version () >= html_jan06)
+                if (has_child ())
+                {   for (element* p = child_; p != nullptr; p = p -> sibling_)
+                    {   if (! p -> node_.is_closure ()) continue;
+                        if (faux_bitset.test (p -> node_.id ())) continue;
+                        if (script_bitset.test (p -> node_.id ()) && (node_.version () >= html_jul13)) continue;
+                        if (p -> node_.id () == elem_li) has_li = true;
+                        else if (muhrme.test (p -> node_.id ())) has_muhrme = true;
+                        else has_other = true; }
+                    if (node_.version () < html_jan13)
+                    {   if (has_li && (has_other || has_muhrme))
+                            pick (nit_menu_child, ed_jan10, "4.11.3 The menu element", es_error, ec_element, "<MENU> can have <LI> children, or other children, but not both"); }
+                    else if (node_.version () < html_jan16)
+                    {   if (mt == mt_popup)
+                        {   if (has_li || has_other)
+                                pick (nit_menu_child, ed_jan13, "4.11.3 The menu element", es_error, ec_element, "<MENU> with TYPE 'popup' can only have <MENUITEM>, <HR> and <MENU> children");
+                            if (! has_muhrme)
+                                pick (nit_menu_child, ed_jan13, "4.11.3 The menu element", es_warning, ec_element, "a <MENU> with TYPE 'popup' has no <MENUITEM>, <HR> or <MENU> children"); }
+                        if ((mt == mt_toolbar) && ! has_li)
+                            pick (nit_menu_child, ed_jan13, "4.11.3 The menu element", es_warning, ec_element, "a <MENU> with TYPE 'toolbar' should have <LI> children"); } }
+            switch (mt)
+            {   case mt_context :
+                    if ((node_.version () < html_jul07) || ((node_.version () >= html_jan13) && (node_.version () < html_jan16)))
+                        pick (nit_menu_type, ed_jan07, "3.18.4. The menu element", es_error, ec_element, "In ", node_.version ().name (), ", <MENU> TYPE uses 'popup', not 'context'");
+                    break;
+                case mt_popup :
+                    if (((node_.version () >= html_jul07) && (node_.version () < html_jan13)) || (node_.version () >= html_jan16))
+                        pick (nit_menu_type, ed_jul17, "4.11.3 The menu element", es_error, ec_element, "In ", node_.version ().name (), ", <MENU> TYPE uses 'context', not 'popup'");
+                    break;
+                case mt_toolbar :
+                    if (ancestral_elements_.test (elem_menu))
+                        pick (nit_menu_child, ed_jan13, "4.11.3 The menu element", es_warning, ec_element, "a <MENU> with TYPE 'toolbar' cannot be the child of another <MENU>");
+                    break;
+                default :
+                    pick (nit_menu_type, ed_jan07, "3.18.4. The menu element", es_warning, ec_element, "The value of TYPE will be ignored" );
+                    break; } } }
 
 void element::examine_menubar ()
 {   bool had_li = false, had_other = false;
@@ -471,7 +477,7 @@ void element::examine_object ()
         if (! piccy) pick (nit_bad_usemap, ed_jan07, "3.14.4. The object element", es_warning, ec_attribute, "USEMAP requires TYPE andor DATA to refer to an image"); }
     if (node_.version ().is_5 ())
     {   if ((! has_data) && (! has_type))
-            pick (nit_data_type, ed_50, "4.7.4 The object element", es_error, ec_element, "either DATA or TYPE must be present");
+            pick (nit_data_type, ed_50, "4.7.4 The object element", es_error, ec_element, "<OBJECT> requires at least a DATA or a TYPE attribute");
         if (a_.known (a_itemprop) && ! has_data)
             pick (nit_bad_object, ed_jul20, "4.8.7 The object element", es_error, ec_attribute, "DATA is required when <OBJECT> has ITEMPROP");
         if (has_usemap) no_anchor_daddy ();
@@ -495,8 +501,19 @@ void element::examine_object ()
                 default :
                     if ((node_.version ().mjr () < 5) || ((node_.id ().categories () & EF_5_FLOW) == EF_5_FLOW)) had_flow = true; } }
 
+void element::examine_ol ()
+{   if (context.analysis () == anal_original)
+        only_elements ();
+    else if (! has_only_immediate_descendents (script_bitset | elem_li, faux_bitset))
+        pick (nit_bad_descendant, ed_aug25, "4.4.5 The ol element", es_error, ec_element, "<OL> may only have <LI>, <TEMPLATE>, and <SCRIPT> children"); }
+
 void element::examine_option ()
 {   if (node_.version ().is_5 ())
+    {   if (node_.version () >= html_aug25)
+            if (ancestral_elements_.test (elem_details))
+                if (! ancestral_elements_.test (elem_select) || (a_.known (a_value) && a_.good (a_value) && a_.get_string (a_value).empty ()))
+                    pick (nit_details, ed_aug25, "4.11.3.5 Using the option element to define a command", es_info, ec_element,
+                        "To be a command for <DETAILS>, an <OPTION> must have an ancestral <SELECT> and, if it has a VALUE, that VALUE must be valid and not empty");
         if (has_child ())
         {   bool no_content = false, no_whitespace = false, had_text = false, had_whitespace = false, bad_whitespace = false, proto_whitespace = false;
             e_doc ed = ed_jan21;
@@ -533,7 +550,7 @@ void element::examine_option ()
                     pick (nit_bad_option, ed, "4.10.10 The option element", es_error, ec_element, "<OPTION> with both LABEL and VALUE cannot have content"); }
             else if (no_whitespace)
                 if (bad_whitespace)
-                    pick (nit_bad_option, ed, "4.10.10 The option element", es_error, ec_element, "here, <OPTION> cannot contain whitespace"); } }
+                    pick (nit_bad_option, ed, "4.10.10 The option element", es_error, ec_element, "here, <OPTION> cannot contain whitespace"); } } }
 
 void element::examine_output ()
 {   if (a_.good (a_for))

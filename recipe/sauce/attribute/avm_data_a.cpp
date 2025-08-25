@@ -381,7 +381,7 @@ hav_t havt_audio [] =
     { { HTML_JUL07 }, { HTML_UNDEF }, elem_audio, a_autoplay },
     { { HTML_JUL07 }, { HTML_UNDEF }, elem_audio, a_controls },
     { { HTML_JUL11 }, { HTML_UNDEF }, elem_audio, a_crossorigin },
-    { { HTML_JUL07, 0, HE_MOZILLA }, { HTML_UNDEF }, elem_audio, a_currenttime },
+    { { HTML_JUL07, 0, HE_MOZILLA }, { HTML_JUL25 }, elem_audio, a_currenttime },
     { { HTML_5_3, HV_W3 }, { HTML_5_3 }, elem_audio, a_disableremoteplayback },
     { { HTML_JUL07 }, { HTML_DEC08 }, elem_audio, a_end },
     { { HTML_SVG12, 0, HE_SVG_12 }, { HTML_UNDEF }, elem_audio, a_externalresourcesrequired },

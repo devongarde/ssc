@@ -1,4 +1,4 @@
--Y 1 -f ../toast/SVG/2.0/svg.conf
+-Y 1 -7 original -f ../toast/SVG/2.0/svg.conf
 
 PASS ../toast/SVG/2.0/animation-1.xhtml
 0 title_required
@@ -327,6 +327,10 @@ PASS ../toast/SVG/2.0/text-2.svg
 PASS ../toast/SVG/2.0/text-3.svg
 0 title_required
 1 xhtml_5_0
+
+PASS ../toast/SVG/2.0/text-anchor.html
+2 naughty_lang
+14 newline_in_string newline_in_string
 
 PASS ../toast/SVG/2.0/text-decoration.svg
 0 title_required

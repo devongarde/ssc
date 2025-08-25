@@ -800,6 +800,10 @@ template < > struct type_master < t_type > : varied < t_type >
                         if (compare_complain (nits, v, "module", varied < t_type > :: get_string ()))
                         {   varied < t_type > :: type_ = static_cast < ::std::size_t > (mime_faux_module);
                             break; }
+                    if (v >= html_aug25)
+                        if (compare_complain (nits, v, "importmap", varied < t_type > :: get_string ()))
+                        {   varied < t_type > :: type_ = static_cast < ::std::size_t > (mime_faux_module);
+                            break; }
                     validate_type < type_master < t_mime > > (nits, v); break;
                 case elem_set :
                     validate_type < type_master < t_settype > > (nits, v); break;

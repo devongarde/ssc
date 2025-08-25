@@ -38,7 +38,6 @@
 <meta name="web_author" content="<!--#echo encoding="none" var="name" -->">
 <link rel="author" href="<!--#echo encoding="none" var="home" -->">
 <link rel="canonical" href="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->" >
-<link rel="home" href="<!--#echo encoding="none" var="home" -->">
 <link rel="icon" href="<!--#echo encoding="none" var="icon" -->">
 <link rel="license" href="<!--#echo encoding="none" var="licence" -->">
 <link rel="stylesheet" href="<!--#echo encoding="none" var="css" -->" type="text/css">

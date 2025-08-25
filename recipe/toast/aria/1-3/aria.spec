@@ -1,13 +1,13 @@
--Y 1 -f ../toast/aria/1-3/aria.conf
+-Y 1 -7 original -f ../toast/aria/1-3/aria.conf
 
 PASS ../toast/aria/1-3/media.html
 12 role_missing track_missing
-16 role_missing
+16 role_conflict
 17 incompatible_mime
-20 role_missing track_missing
-24 role_missing track_missing
+20 role_conflict track_missing
+24 role_conflict track_missing
 26 incompatible_mime
-29 role_missing
+29 role_conflict
 31 incompatible_mime
 32 incompatible_mime
 
@@ -24,7 +24,7 @@ PASS ../toast/aria/1-3/properties.html
 93 aria_position
 94 aria_position
 131 url_not_found
-143 url_not_found role_missing
+143 url_not_found
 153 url_not_found
 155 id_exists
 161 use_double_quote_code
@@ -55,7 +55,6 @@ PASS ../toast/aria/1-3/role.html
 49 inserted_missing_closure
 50 missing_open
 73 use_quote_code naughty_grave naughty_grave naughty_grave naughty_grave double_angular_open naughty_grave
-74 role_missing
 75 use_double_quote_code
 77 use_double_quote_code
 87 inserted_missing_closure inserted_missing_closure inserted_missing_closure inserted_missing_closure bad_id

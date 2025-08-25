@@ -116,7 +116,7 @@ struct symbol_entry < html_version, e_httpequiv > httpequiv_symbol_table [] =
     { { HTML_2_0, HV_OUTOFSCOPE }, { HTML_UNDEF }, "Content-features", he_content_features },
     { { HTML_2_0, HV_OUTOFSCOPE }, { HTML_UNDEF }, "Content-ID", he_content_id },
     { { HTML_2_0, HV_OUTOFSCOPE }, { HTML_UNDEF }, "Content-Identifier", he_content_identifier },
-    { { HTML_2_0 }, { HTML_UNDEF }, "Content-Language", he_content_language },
+    { { HTML_2_0, HV_DINOSAUR }, { HTML_UNDEF }, "Content-Language", he_content_language },
     { { HTML_2_0, HV_OUTOFSCOPE }, { HTML_UNDEF }, "Content-Length", he_content_length },
     { { HTML_2_0 }, { HTML_UNDEF }, "Content-Location", he_content_location },
     { { HTML_2_0, HV_OUTOFSCOPE }, { HTML_UNDEF }, "Content-MD5", he_content_md5 },
@@ -147,7 +147,7 @@ struct symbol_entry < html_version, e_httpequiv > httpequiv_symbol_table [] =
     { { HTML_2_0 }, { HTML_UNDEF }, "Date", he_date },
     { { HTML_2_0, HV_OUTOFSCOPE }, { HTML_UNDEF }, "Date-Received", he_date_received },
     { { HTML_JUN07, HV_OUTOFSCOPE }, { HTML_UNDEF }, "DAV", he_dav },
-    { { HTML_4_01, HV_DINOSAUR }, { HTML_UNDEF }, "Default-Style", he_default_style },
+    { { HTML_4_01 }, { HTML_UNDEF }, "Default-Style", he_default_style },
     { { HTML_2_0, HV_OUTOFSCOPE }, { HTML_UNDEF }, "Deferred-Delivery", he_deferred_delivery },
     { { HTML_2_0, HV_OUTOFSCOPE }, { HTML_UNDEF }, "Delivered-To", he_delivered_to },
     { { HTML_2_0, HV_OUTOFSCOPE }, { HTML_UNDEF }, "Delivery-Date", he_delivery_date },
@@ -341,7 +341,7 @@ struct symbol_entry < html_version, e_httpequiv > httpequiv_symbol_table [] =
     { { HTML_2_0, HV_OUTOFSCOPE }, { HTML_UNDEF }, "Received-SPF", he_received_spf },
     { { HTML_MAR06, HV_OUTOFSCOPE }, { HTML_UNDEF }, "Redirect-Ref", he_redirect_ref },
     { { HTML_2_0, HV_OUTOFSCOPE }, { HTML_UNDEF }, "References", he_references },
-    { { HTML_2_0 }, { HTML_UNDEF }, "Referer", he_referrer },
+    { { HTML_2_0, HV_DINOSAUR }, { HTML_UNDEF }, "Referer", he_referrer },
     { { HTML_2_0, HV_OUTOFSCOPE }, { HTML_UNDEF }, "Referer-Root", he_referrer_root },
     { { HTML_JAN15 }, { HTML_UNDEF }, "Referrer-Policy", he_referrer_policy },
     { { HTML_2_0 }, { HTML_UNDEF }, "Refresh", he_refresh },
@@ -394,7 +394,7 @@ struct symbol_entry < html_version, e_httpequiv > httpequiv_symbol_table [] =
     { { HTML_2_0 }, { HTML_UNDEF }, "Server", he_server },
     { { HTML_APR21, HV_OUTOFSCOPE }, { HTML_UNDEF }, "Server-Timing", he_server_timing },
     { { HTML_JAN05, HV_OUTOFSCOPE }, { HTML_UNDEF }, "Service-Worker-Navigation-Preload", he_service_worker_navigation_preload },
-    { { HTML_2_0 }, { HTML_5_2 }, "Set-Cookie", he_set_cookie },
+    { { HTML_2_0, HV_DINOSAUR }, { HTML_5_2 }, "Set-Cookie", he_set_cookie },
     { { HTML_4_0, HV_DINOSAUR }, { HTML_UNDEF }, "Set-Cookie2", he_set_cookie2 },
     { { HTML_4_0, HV_DINOSAUR }, { HTML_UNDEF }, "SetProfile", he_setprofile },
     { { HTML_2_0, HV_OUTOFSCOPE }, { HTML_UNDEF }, "SIO-Label", he_sio_label },
@@ -458,7 +458,7 @@ struct symbol_entry < html_version, e_httpequiv > httpequiv_symbol_table [] =
     { { HTML_2_0, HV_OUTOFSCOPE }, { HTML_UNDEF }, "X-Riferimento-Message-ID", he_x_riferimento_message_id },
     { { HTML_2_0, HV_OUTOFSCOPE }, { HTML_UNDEF }, "X-TipoRicevuta", he_x_tiporicevuta },
     { { HTML_2_0, HV_OUTOFSCOPE }, { HTML_UNDEF }, "X-Trasporto", he_x_trasporto },
-    { { HTML_JAN05, 0, HE_BESPOKE }, { HTML_UNDEF }, "X-UA-Compatible", he_x_ua_compatible },
+    { { HTML_JAN05 }, { HTML_UNDEF }, "X-UA-Compatible", he_x_ua_compatible },
     { { HTML_2_0, HV_OUTOFSCOPE }, { HTML_UNDEF }, "X-VerificaSicurezza", he_x_verificasicurezza },
     { { HTML_JAN11, 0, HE_BESPOKE }, { HTML_FEB13 }, "X-Webkit-CSP", he_webkit_csp },
     { { HTML_JAN05, HV_OUTOFSCOPE }, { HTML_UNDEF }, "X-XSS-Protection", he_x_xss_protection },
@@ -512,7 +512,9 @@ template < > ::std::string validate_he_content < t_lang > (nitpick& nits, const 
         case he_cache_control : return validate_he_content < t_cache > (nits, v, content, p);
         case he_content_encoding : return validate_he_content < t_content_encoding > (nits, v, content, p);
         case he_content_disposition : break;
-        case he_content_language : return validate_he_content < t_lang > (nits, v, content, p);
+        case he_content_language :
+            if (v >= html_aug25) nits.pick (nit_content_language, ed_aug25, "4.2.5.3 Pragma directives", es_info, ec_type, "CONTENT-LANGUAGE is archaic; use the LANG attribute instead");
+            return validate_he_content < t_lang > (nits, v, content, p);
         case he_content_location :
         case he_referrer : return validate_he_content < t_url > (nits, v, content, p);
         case he_content_script_type : return validate_he_content < t_mime > (nits, v, content, p);
@@ -807,7 +809,7 @@ e_status set_location_value (nitpick& nits, const html_version& v, const ::std::
             nits.pick (nit_url_empty, es_error, ec_type, "the url is missing");
         else
         {   url u (nits, v, trim_the_lot_off (sides.at (2)));
-            if (! u.invalid ()) { val = u.original (); return s_good; } } }
+            if (! u.invalid ()) { val = u.temple (); return s_good; } } }
     return s_invalid; }
 
 e_status set_refresh_value (nitpick& nits, const html_version& v, const ::std::string& s, ::std::string& val)
@@ -826,5 +828,5 @@ e_status set_refresh_value (nitpick& nits, const html_version& v, const ::std::s
             else
             {   url u (nits, v, x.substr (ulen));
                 if (! u.invalid ())
-                {   val = u.original (); return s_good; } } } }
+                {   val = u.temple (); return s_good; } } } }
     return s_invalid; }

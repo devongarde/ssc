@@ -1,4 +1,4 @@
--Y 1 -f ../toast/other/clacks/clacks.conf
+-Y 1 -7 original -f ../toast/other/clacks/clacks.conf
 
 PASS ../toast/other/clacks/index.html
 2 naughty_lang

@@ -1,4 +1,4 @@
--Y 1 -f ../toast/json-ld/certification/jsonld.conf
+-Y 1 -7 original -f ../toast/json-ld/certification/jsonld.conf
 
 PASS ../toast/json-ld/certification/certification-1.html
 2 naughty_lang

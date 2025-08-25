@@ -1,7 +1,8 @@
--Y 1 -f ../toast/HTML/1.0/html1.conf
+-Y 1 -7 original -f ../toast/HTML/1.0/html1.conf
 
 PASS ../toast/HTML/1.0/index.html
 1 presume_html_1
+13 unrecognised_value unknown_rel
 
 PASS ../toast/HTML/1.0/html1-bad.html
 0 title_required

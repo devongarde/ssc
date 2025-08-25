@@ -27,11 +27,6 @@ hav_t havt_b [] =
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_b),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
-hav_t havt_bb [] =
-{   { { HTML_JUL08 }, { HTML_DEC09 }, elem_bb, a_type },
-    STANDARD_HTML5_ATTRIBUTES (elem_bb),
-    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
-
 hav_t havt_banner [] =
 {   HTML3_CLID_ATTRIBUTES (elem_banner),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
@@ -53,6 +48,11 @@ hav_t havt_basefont [] =
     { { HTML_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_basefont, a_face },
     { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_basefont, a_size },
     HTML4_STANDARD_TSL_ATTRIBUTES (elem_basefont, MAJOR_4_0, MINOR_4_0),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
+hav_t havt_bb [] =
+{   { { HTML_JUL08 }, { HTML_DEC09 }, elem_bb, a_type },
+    STANDARD_HTML5_ATTRIBUTES (elem_bb),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_bdi [] =
@@ -111,6 +111,7 @@ hav_t havt_body [] =
     { { HTML_3_2, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_body, a_link, EP_WX },
     { { HTML_JUL09 }, { HTML_UNDEF }, elem_body, a_onafterprint },
     { { HTML_JUL09 }, { HTML_UNDEF }, elem_body, a_onbeforeprint },
+    { { HTML_AUG25 }, { HTML_UNDEF }, elem_body, a_onbeforeunload },
     { { HTML_JAN13 }, { HTML_JUN13 }, elem_body, a_onfullscreenchange },
     { { HTML_JAN13 }, { HTML_JUN13 }, elem_body, a_onfullscreenerror },
     { { HTML_JUL09 }, { HTML_UNDEF }, elem_body, a_onhashchange },
@@ -118,12 +119,14 @@ hav_t havt_body [] =
     { { XHTML_2_0 }, { XHTML_2_0 }, elem_body, a_onload },
     { { HTML_4_0, 0, HE_SAFARI }, { XHTML_2_0 }, elem_body, a_onload },
     { { HTML_JAN05 }, { HTML_JUN13 }, elem_body, a_onmessage },
-    { { HTML_JAN05 }, { HTML_JUN13 }, elem_body, a_onmessage },
+    { { HTML_AUG25 }, { HTML_UNDEF }, elem_body, a_onmessage },
     { { HTML_JUL20 }, { HTML_UNDEF }, elem_body, a_onmessageerror },
     { { HTML_JUL09 }, { HTML_UNDEF }, elem_body, a_onoffline },
     { { HTML_JUL09 }, { HTML_UNDEF }, elem_body, a_ononline },
     { { HTML_JAN10 }, { HTML_UNDEF }, elem_body, a_onpagehide },
+    { { HTML_AUG25 }, { HTML_UNDEF }, elem_body, a_onpagereveal },
     { { HTML_JAN10 }, { HTML_UNDEF }, elem_body, a_onpageshow },
+    { { HTML_AUG25 }, { HTML_UNDEF }, elem_body, a_onpageswap },
     { { HTML_JUL09 }, { HTML_UNDEF }, elem_body, a_onpopstate },
     { { HTML_JUL09 }, { HTML_DEC11 }, elem_body, a_onredo },
     { { HTML_JAN16 }, { HTML_UNDEF }, elem_body, a_onrejectionhandled },
@@ -169,7 +172,7 @@ hav_t havt_bt [] =
 
 hav_t havt_button [] =
 {   { { HTML_JAN09 }, { HTML_JUN09 }, elem_button, a_action },
-    { { HTML_JAN20, 0, HE_MOZILLA }, { HTML_UNDEF }, elem_button, a_autocomplete },
+    { { HTML_JAN20, 0, HE_MOZILLA }, { HTML_JUL25 }, elem_button, a_autocomplete },
     { { HTML_JAN09 }, { HTML_DEC19 }, elem_button, a_autofocus },
     { { HTML_JAN05 }, { HTML_DEC05 }, elem_button, a_command },
     { { HTML_MAR25 }, { HTML_UNDEF }, elem_button, a_command },

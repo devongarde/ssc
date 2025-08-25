@@ -1,4 +1,4 @@
--Y 1 -f ../toast/aria/1-0/aria.conf
+-Y 1 -7 original -f ../toast/aria/1-0/aria.conf
 
 PASS ../toast/aria/1-0/2.css
 0 html

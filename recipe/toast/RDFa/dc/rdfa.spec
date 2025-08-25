@@ -1,4 +1,4 @@
--Y 1 -f ../toast/RDFa/dc/rdfa.conf
+-Y 1 -7 original -f ../toast/RDFa/dc/rdfa.conf
 
 PASS ../toast/RDFa/dc/example-3.html
 0 charset_mismatch charset_used charset_invalid

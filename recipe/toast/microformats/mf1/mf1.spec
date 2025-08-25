@@ -1,4 +1,4 @@
--Y 1 -f ../toast/microformats/mf1/mf1.conf
+-Y 1 -7 original -f ../toast/microformats/mf1/mf1.conf
 
 PASS ../toast/microformats/mf1/hcard-simple-bad.html
 2 naughty_lang

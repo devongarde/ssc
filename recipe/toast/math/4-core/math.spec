@@ -1,4 +1,4 @@
--Y 1 -f ../toast/math/4-core/math.conf
+-Y 1 -7 original -f ../toast/math/4-core/math.conf
 
 PASS ../toast/math/4-core/index.html
 2 naughty_lang
@@ -22,6 +22,7 @@ PASS ../toast/math/4-core/core-4.html
 2 naughty_lang
 
 PASS ../toast/math/4-core/core-1.css
+0 html
 4 missing_value
 6 missing_value
 7 fontname
@@ -29,6 +30,7 @@ PASS ../toast/math/4-core/core-1.css
 20 css_version
 
 PASS ../toast/math/4-core/core-3.css
+0 html
 5 pseud pseud
 8 pseud
 11 pseud
@@ -43,6 +45,7 @@ PASS ../toast/math/4-core/core-3.css
 102 css_version
 
 PASS ../toast/math/4-core/core-a.css
+0 html
 1 css_namespace
 5 unrecognised_value
 14 missing_value

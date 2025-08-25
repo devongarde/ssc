@@ -212,6 +212,8 @@ ssc.exe -f ../toast/other/clacks/clacks.conf
 ssc.exe -f ../toast/other/CSS/css.conf
 ssc.exe -f ../toast/other/dfn/dfn.conf
 ssc.exe -f ../toast/other/dump/dump.conf
+ssc.exe -f ../toast/other/efficient/efficient.conf
+ssc.exe -f ../toast/other/efficient/inefficient.conf
 ssc.exe -f ../toast/other/ie/ie.conf
 ssc.exe -f ../toast/other/ignore/ignore.conf
 ssc.exe -f ../toast/other/incorrectness/incorrectness.conf
@@ -328,6 +330,8 @@ ssc.exe -f ../toast/type/httpequiv/httpequiv.conf
 ssc.exe -f ../toast/type/lang/lang.conf
 ssc.exe -f ../toast/type/metaname/metaname.conf
 ssc.exe -f ../toast/type/mimetype/mimetype.conf
+ssc.exe -f ../toast/type/rel/rel.conf
+ssc.exe -f ../toast/type/rfc6570/rfc6570.conf
 ssc.exe -f ../toast/type/sgml/sgml.conf
 ssc.exe -f ../toast/type/url/url.conf
 ssc.exe -f ../toast/w3/3663/w3.conf

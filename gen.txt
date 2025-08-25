@@ -331,6 +331,7 @@ defined at w3.org.
                             2024+
                             2024++
                             2024+++
+                            html5
                         The years are CSS snapshots, whether the year
                         itself for stable modules, with + for wobbly
                         modules, ++ for wibbly-wobbly modules, and +++
@@ -346,6 +347,9 @@ defined at w3.org.
                         not part of CSS 1, specify 3. Similarly, for
                         those named level 2 that are not part of any
                         CSS 2 specification, etc..
+                        HTML5 extends 2024+++ with the CSS requirements
+                        of Math 4 Core and the August 2025 HTML Living
+                        Standard.
 
 --css.view  X           Use CSS View Transitions level X, where X is 0
                         or 3.
@@ -419,6 +423,10 @@ This are switches that don't really belong in any other section.
                         for the hardware is used. Too high a value can
                         cause problems. See also --general.defthrd.
 
+--general.url-var VAR:VAL See the URI template variable VAR to VAL. SCC
+                        only supports URI templates levels 1 to 3. For
+                        gen, browse RFC 6570.
+
 --general.username XXX  The name of the account being used to run SSC.
                         If this is not specified, SSC gets the name
                         the operating system.
@@ -450,6 +458,9 @@ of older sites.
 
 --html.custom EL        Define a custom element <EL> for verifying the
                         IS attribute. May be repeated.
+
+--html.efficient        Warn about perfectly legal HTML that can slow
+                        a browser down.
 
 --html.force            If <!DOCTYPE...> is missing, force presumption
                         of --html.version value, not HTML 1/tags
@@ -487,11 +498,6 @@ of older sites.
                         2024) for HTML from May 2024 onwards.
 
 --html.safari           Don't mention certain early Safari 'features'.
-
---html.sloven           Ignore perfectly legal yet inefficient, indeed
-                        thoroughly slovenly, HTML, such as being far
-                        too lazy to bother to get round to closing
-                        elements.
 
 --html.tags             When an HTML file is loaded that contains no
                         DOCTYPE, ssc normally presumes HTML 1. This

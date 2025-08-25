@@ -96,6 +96,7 @@ typedef microformat < rel, r_appendix, c_html4, ela_ok, ela_ok, appendix_rt > mf
 typedef microformat < rel, r_apple_touch_icon, c_safari, ela_external, ela_no, apple_touch_icon_rt > mf_apple_touch_icon;
 typedef microformat < rel, r_apple_touch_icon_precomposed, c_safari, ela_external, ela_no, apple_touch_icon_precomposed_rt > mf_apple_touch_icon_precomposed;
 typedef microformat < rel, r_apple_touch_startup_image, c_safari, ela_external, ela_no, apple_touch_startup_image_rt > mf_apple_touch_startup_image;
+typedef microformat < rel, r_archive, c_generic, ela_external, ela_hyperlink, archive_rt > mf_archive;     // https://sitemorse.com/rel-archived/
 typedef microformat < rel, r_archived, c_generic, ela_external, ela_hyperlink, archived_rt > mf_archived;     // https://sitemorse.com/rel-archived/
 typedef microformat < rel, r_archives, c_generic, ela_ok, ela_ok, archives_rt > mf_archives;
 typedef microformat < rel, r_attachment, c_generic, ela_hyperlink, ela_hyperlink, attachment_rt > mf_attachment;
@@ -133,7 +134,9 @@ typedef microformat < rel, r_code_repository, c_generic, ela_hyperlink, ela_hype
 typedef microformat < rel, r_colleague, c_xfn, ela_no, ela_external, colleague_rt > mf_colleague;
 typedef microformat < rel, r_collection, c_html4 | c_dropped, ela_ok, ela_ok, collection_rt > mf_collection;
 typedef microformat < rel, r_comment, c_generic, ela_ok, ela_ok, comment_rt > mf_comment;
+typedef microformat < rel, r_comments, c_generic, ela_ok, ela_ok, comments_rt > mf_comments;
 typedef microformat < rel, r_component, c_generic, ela_external, ela_no, component_rt > mf_component;
+typedef microformat < rel, r_compression_dictionary, c_generic, ela_external, ela_no, compression_dictionary_rt > mf_compression_dictionary;
 typedef microformat < rel, r_contact, c_xfn, ela_no, ela_external, contact_rt > mf_contact;
 typedef microformat < rel, r_content_licence, c_generic, ela_ok, ela_ok, content_licence_rt > mf_content_licence;
 typedef microformat < rel, r_content_repository, c_generic, ela_hyperlink, ela_hyperlink, content_repository_rt > mf_content_repository;
@@ -179,6 +182,7 @@ typedef microformat < rel, r_disclosure, c_generic, ela_no, ela_external, disclo
 typedef microformat < rel, r_discussion, c_draft | c_microformat, ela_hyperlink, ela_hyperlink, discussion_rt > mf_discussion;
 typedef microformat < rel, r_dnsprefetch, c_generic, ela_external, ela_no, dnsprefetch_rt > mf_dnsprefetch;
 typedef microformat < rel, r_docs_oasis_open_org_ns_cmis_link_200908_acl, c_generic, ela_external, ela_external, docs_oasis_open_org_ns_cmis_link_200908_acl_rt > mf_docs_oasis_open_org_ns_cmis_link_200908_acl;
+typedef microformat < rel, r_donation, c_generic, ela_ok, ela_ok, donation_rt > mf_donation;
 typedef microformat < rel, r_duplicate, c_generic, ela_ok, ela_ok, duplicate_rt > mf_duplicate;
 typedef microformat < rel, r_edit, c_generic, ela_hyperlink, ela_no, edit_rt > mf_edit;
 typedef microformat < rel, r_edit_form, c_generic, ela_ok, ela_ok, edit_form_rt > mf_edit_form;
@@ -242,6 +246,7 @@ typedef microformat < rel, r_longdesc, c_draft, ela_ok, ela_ok, longdesc_rt > mf
 typedef microformat < rel, r_lrdd, c_generic, ela_ok, ela_ok, lrdd_rt > mf_lrdd;
 typedef microformat < rel, r_m_pagescroll2id, c_generic, ela_ok, ela_ok, m_pagescroll2id_rt > mf_m_pagescroll2id;
 typedef microformat < rel, r_made, c_generic, ela_ok, ela_ok, made_rt > mf_made;
+typedef microformat < rel, r_main, c_generic, ela_ok, ela_ok, main_rt > mf_main;
 typedef microformat < rel, r_manifest, c_generic, ela_external, ela_no, manifest_rt > mf_manifest;
 typedef microformat < rel, r_map, c_draft, ela_ok, ela_ok, map_rt > mf_map;
 typedef microformat < rel, r_maskicon, c_safari, ela_external, ela_no, maskicon_rt > mf_maskicon;
@@ -352,6 +357,7 @@ typedef microformat < rel, r_user, c_generic, ela_ok, ela_ok, user_rt > mf_user;
 typedef microformat < rel, r_vcalendar_child, c_draft | c_hcal, ela_ok, ela_ok, vcalendar_child_rt > mf_vcalendar_child;
 typedef microformat < rel, r_vcalendar_parent, c_draft | c_hcal, ela_ok, ela_ok, vcalendar_parent_rt > mf_vcalendar_parent;
 typedef microformat < rel, r_vcalendar_sibling, c_draft | c_hcal, ela_ok, ela_ok, vcalendar_sibling_rt > mf_vcalendar_sibling;
+typedef microformat < rel, r_vcs_bzr, c_vcs, ela_ok, ela_ok, vcs_bzr_rt > mf_vcs_bzr;
 typedef microformat < rel, r_vcs_git, c_vcs, ela_ok, ela_ok, vcs_git_rt > mf_vcs_git;
 typedef microformat < rel, r_vcs_svn, c_vcs, ela_ok, ela_ok, vcs_svn_rt > mf_vcs_svn;
 typedef microformat < rel, r_version_history, c_generic, ela_ok, ela_ok, version_history_rt > mf_version_history;
@@ -379,6 +385,7 @@ typedef ::std::shared_ptr < mf_appendix > appendix_ptr;
 typedef ::std::shared_ptr < mf_apple_touch_icon > apple_touch_icon_ptr;
 typedef ::std::shared_ptr < mf_apple_touch_icon_precomposed > apple_touch_icon_precomposed_ptr;
 typedef ::std::shared_ptr < mf_apple_touch_startup_image > apple_touch_startup_image_ptr;
+typedef ::std::shared_ptr < mf_archive > archive_ptr;
 typedef ::std::shared_ptr < mf_archived > archived_ptr;
 typedef ::std::shared_ptr < mf_archives > archives_ptr;
 typedef ::std::shared_ptr < mf_atom_v1 > atom_v1_ptr;
@@ -422,7 +429,9 @@ typedef ::std::shared_ptr < mf_code_repository > code_repository_ptr;
 typedef ::std::shared_ptr < mf_colleague > colleague_ptr;
 typedef ::std::shared_ptr < mf_collection > collection_ptr;
 typedef ::std::shared_ptr < mf_comment > comment_ptr;
+typedef ::std::shared_ptr < mf_comments > comments_ptr;
 typedef ::std::shared_ptr < mf_component > component_ptr;
+typedef ::std::shared_ptr < mf_compression_dictionary > compression_dictionary_ptr;
 typedef ::std::shared_ptr < mf_contact > contact_ptr;
 typedef ::std::shared_ptr < mf_content_licence > content_licence_ptr;
 typedef ::std::shared_ptr < mf_content_repository > content_repository_ptr;
@@ -468,6 +477,7 @@ typedef ::std::shared_ptr < mf_disclosure > disclosure_ptr;
 typedef ::std::shared_ptr < mf_discussion > discussion_ptr;
 typedef ::std::shared_ptr < mf_dnsprefetch > dnsprefetch_ptr;
 typedef ::std::shared_ptr < mf_docs_oasis_open_org_ns_cmis_link_200908_acl > docs_oasis_open_org_ns_cmis_link_200908_acl_ptr;
+typedef ::std::shared_ptr < mf_donation > donation_ptr;
 typedef ::std::shared_ptr < mf_duplicate > duplicate_ptr;
 typedef ::std::shared_ptr < mf_edit > edit_ptr;
 typedef ::std::shared_ptr < mf_edit_form > edit_form_ptr;
@@ -537,6 +547,7 @@ typedef ::std::shared_ptr < mf_longdesc > longdesc_ptr;
 typedef ::std::shared_ptr < mf_lrdd > lrdd_ptr;
 typedef ::std::shared_ptr < mf_m_pagescroll2id > m_pagescroll2id_ptr;
 typedef ::std::shared_ptr < mf_made > made_ptr;
+typedef ::std::shared_ptr < mf_main > main_ptr;
 typedef ::std::shared_ptr < mf_manifest > manifest_ptr;
 typedef ::std::shared_ptr < mf_map > map_ptr;
 typedef ::std::shared_ptr < mf_maskicon > maskicon_ptr;
@@ -662,6 +673,7 @@ typedef ::std::shared_ptr < mf_user > user_ptr;
 typedef ::std::shared_ptr < mf_vcalendar_child > vcalendar_child_ptr;
 typedef ::std::shared_ptr < mf_vcalendar_parent > vcalendar_parent_ptr;
 typedef ::std::shared_ptr < mf_vcalendar_sibling > vcalendar_sibling_ptr;
+typedef ::std::shared_ptr < mf_vcs_bzr > vcs_bzr_ptr;
 typedef ::std::shared_ptr < mf_vcs_git > vcs_git_ptr;
 typedef ::std::shared_ptr < mf_vcs_svn > vcs_svn_ptr;
 typedef ::std::shared_ptr < mf_version_history > version_history_ptr;
@@ -688,7 +700,7 @@ typedef ::std::shared_ptr < mf_error > error_ptr;
     mf_kin, mf_licence, mf_map, mf_me, mf_member, mf_met, mf_micropub, mf_muse, mf_neighbour, mf_next, mf_nofollow, \
     mf_noopener, mf_noreferrer, mf_parent, mf_payment, mf_pingback, mf_preconnect, mf_prefetch, mf_preload, \
     mf_prerender, mf_prev, mf_preview, mf_pronunciation, mf_search, mf_section, mf_sibling, mf_sidebar, mf_spouse, mf_start, mf_stylesheet, \
-    mf_subsection, mf_supercedes, mf_sweetheart, mf_tag, mf_toc, mf_top, mf_transformation, mf_vcs_git, mf_vcs_svn, mf_webmention, \
+    mf_subsection, mf_supercedes, mf_sweetheart, mf_tag, mf_toc, mf_top, mf_transformation, mf_vcs_bzr, mf_vcs_git, mf_vcs_svn, mf_webmention, \
     mf_banner, mf_begin, mf_biblioentry, mf_citation, mf_definition, mf_disclaimer, \
     mf_editor, mf_end, mf_navigate, mf_origin, mf_pointer, mf_trademark, mf_translation, mf_urc, \
     mf_about, mf_archives, mf_blocked_by, mf_cite_as, mf_collection, mf_convertedfrom, \
@@ -703,7 +715,7 @@ typedef ::std::shared_ptr < mf_error > error_ptr;
     mf_terms_of_service, mf_timegate, mf_timemap, mf_type, mf_up, mf_version_history, mf_via, mf_working_copy, \
     mf_working_copy_of, \
     mf_amphtml, mf_apple_touch_icon, mf_apple_touch_icon_precomposed, mf_apple_touch_startup_image, mf_archived, \
-    mf_attachment, mf_authorisation_endpoint, mf_category, mf_code_repository, mf_component, mf_chrome_webstore_item, \
+    mf_attachment, mf_authorisation_endpoint, mf_category, mf_chrome_webstore_item, mf_code_repository, mf_component, mf_compression_dictionary, \
     mf_content_repository, mf_dcterms_conformsto, mf_dcterms_contributor, mf_dcterms_creator, mf_dcterms_description, \
     mf_dcterms_hasformat, mf_dcterms_haspart, mf_dcterms_hasversion, mf_dcterms_isformatof, mf_dcterms_ispartof, \
     mf_dcterms_isreferencedby, mf_dcterms_isreplacedby, mf_dcterms_isrequiredby, mf_dcterms_isversionof, mf_dcterms_licence, \
@@ -717,7 +729,7 @@ typedef ::std::shared_ptr < mf_error > error_ptr;
     mf_docs_oasis_open_org_ns_cmis_link_200908_acl, \
     mf_accessibility, mf_longdesc, mf_m_pagescroll2id, mf_source, mf_vcalendar_parent, mf_vcalendar_child, \
     mf_vcalendar_sibling, mf_w_api_org, \
-    mf_comment, mf_contribution, mf_endorsed, mf_fan, mf_relfeed, mf_footnote, mf_kinetic_stylesheet, mf_made, \
+    mf_comment, mf_comments, mf_contribution, mf_endorsed, mf_fan, mf_relfeed, mf_footnote, mf_kinetic_stylesheet, mf_made, \
     mf_microsummary, mf_permalink, mf_popover, mf_privacy, mf_publickey, mf_referral, mf_respond_proxy, \
     mf_respond_redirect, mf_resource, mf_sponsor, mf_tooltip, mf_trackback, mf_unendorsed, mf_user, \
     mf_ontology_dc, mf_stylesheetless, mf_logo, mf_pavatar, \
@@ -738,11 +750,11 @@ typedef ::std::shared_ptr < mf_error > error_ptr;
     kin_ptr, licence_ptr, map_ptr, me_ptr, member_ptr, met_ptr, micropub_ptr, muse_ptr, neighbour_ptr, next_ptr, nofollow_ptr, \
     noopener_ptr, noreferrer_ptr, parent_ptr, payment_ptr, pingback_ptr, preconnect_ptr, prefetch_ptr, preload_ptr, \
     prerender_ptr, prev_ptr, preview_ptr, pronunciation_ptr, search_ptr, section_ptr, sibling_ptr, sidebar_ptr, spouse_ptr, start_ptr, stylesheet_ptr, \
-    subsection_ptr, supercedes_ptr, sweetheart_ptr, tag_ptr, toc_ptr, top_ptr, transformation_ptr, vcs_git_ptr, vcs_svn_ptr, \
+    subsection_ptr, supercedes_ptr, sweetheart_ptr, tag_ptr, toc_ptr, top_ptr, transformation_ptr, vcs_bzr_ptr, vcs_git_ptr, vcs_svn_ptr, \
     webmention_ptr, banner_ptr, begin_ptr, biblioentry_ptr, citation_ptr, definition_ptr, disclaimer_ptr, \
     editor_ptr, end_ptr, navigate_ptr, origin_ptr, pointer_ptr, trademark_ptr, translation_ptr, urc_ptr, \
     about_ptr, archives_ptr, blocked_by_ptr, cite_as_ptr, collection_ptr, convertedfrom_ptr, \
-    create_form_ptr, current_ptr, describedby_ptr, describes_ptr, duplicate_ptr, edit_ptr, edit_form_ptr, \
+    create_form_ptr, current_ptr, describedby_ptr, describes_ptr, donation_ptr, duplicate_ptr, edit_ptr, edit_form_ptr, \
     edit_media_ptr, first_ptr, hosts_ptr, hub_ptr, intervalafter_ptr, intervalbefore_ptr, intervalcontains_ptr, \
     intervaldisjoint_ptr, intervalduring_ptr, intervalequals_ptr, intervalfinishedby_ptr, intervalfinishes_ptr, \
     intervalin_ptr, intervalmeets_ptr, intervalmetby_ptr, intervaloverlappedby_ptr, intervaloverlaps_ptr, \
@@ -752,8 +764,8 @@ typedef ::std::shared_ptr < mf_error > error_ptr;
     service_desc_ptr, service_doc_ptr, service_meta_ptr, status_ptr, successor_version_ptr, sunset_ptr, \
     terms_of_service_ptr, timegate_ptr, timemap_ptr, type_ptr, up_ptr, version_history_ptr, via_ptr, working_copy_ptr, \
     working_copy_of_ptr, \
-    amphtml_ptr, apple_touch_icon_ptr, apple_touch_icon_precomposed_ptr, apple_touch_startup_image_ptr, archived_ptr, \
-    attachment_ptr, authorisation_endpoint_ptr, category_ptr, code_repository_ptr, component_ptr, chrome_webstore_item_ptr, \
+    amphtml_ptr, apple_touch_icon_ptr, apple_touch_icon_precomposed_ptr, apple_touch_startup_image_ptr, archive_ptr, archived_ptr, \
+    attachment_ptr, authorisation_endpoint_ptr, category_ptr, chrome_webstore_item_ptr, code_repository_ptr, component_ptr, compression_dictionary_ptr, \
     content_repository_ptr, dcterms_conformsto_ptr, dcterms_contributor_ptr, dcterms_creator_ptr, dcterms_description_ptr, \
     dcterms_hasformat_ptr, dcterms_haspart_ptr, dcterms_hasversion_ptr, dcterms_isformatof_ptr, dcterms_ispartof_ptr, \
     dcterms_isreferencedby_ptr, dcterms_isreplacedby_ptr, dcterms_isrequiredby_ptr, dcterms_isversionof_ptr, dcterms_licence_ptr, \
@@ -767,8 +779,8 @@ typedef ::std::shared_ptr < mf_error > error_ptr;
     docs_oasis_open_org_ns_cmis_link_200908_acl_ptr, \
     accessibility_ptr, longdesc_ptr, m_pagescroll2id_ptr, source_ptr, vcalendar_parent_ptr, vcalendar_child_ptr, \
     vcalendar_sibling_ptr, w_api_org_ptr, \
-    comment_ptr, contribution_ptr, endorsed_ptr, fan_ptr, relfeed_ptr, footnote_ptr, kinetic_stylesheet_ptr, made_ptr, \
-    microsummary_ptr, permalink_ptr, popover_ptr, privacy_ptr, publickey_ptr, referral_ptr, respond_proxy_ptr, \
+    comment_ptr, comments_ptr, contribution_ptr, endorsed_ptr, fan_ptr, relfeed_ptr, footnote_ptr, kinetic_stylesheet_ptr, made_ptr, \
+    main_ptr, microsummary_ptr, permalink_ptr, popover_ptr, privacy_ptr, publickey_ptr, referral_ptr, respond_proxy_ptr, \
     respond_redirect_ptr, resource_ptr, sponsor_ptr, tooltip_ptr, trackback_ptr, unendorsed_ptr, user_ptr, \
     ontology_dc_ptr, stylesheetless_ptr, logo_ptr, pavatar_ptr, \
     cc_permits_ptr, cc_requires_ptr, cc_prohibits_ptr, cc_jurisdiction_ptr, cc_legalcode_ptr, cc_deprecatedon_ptr, \

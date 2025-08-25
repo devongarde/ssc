@@ -57,10 +57,10 @@ hav_t havt_embed [] =
     { { HTML_JAN07 }, { HTML_UNDEF }, elem_embed, a_src },
     { { HTML_JAN07 }, { HTML_UNDEF }, elem_embed, a_type },
     { { HTML_JAN07 }, { HTML_UNDEF }, elem_embed, a_width },
-    { { HTML_JAN07, HV_REJECT }, { HTML_UNDEF }, elem_embed, a_align },
-    { { HTML_JAN07, HV_REJECT }, { HTML_UNDEF }, elem_embed, a_hspace },
-    { { HTML_JAN07, HV_REJECT }, { HTML_UNDEF }, elem_embed, a_name },
-    { { HTML_JAN07, HV_REJECT }, { HTML_UNDEF }, elem_embed, a_vspace },
+    { { HTML_JAN07, HV_REJECT }, { HTML_JUL25 }, elem_embed, a_align },
+    { { HTML_JAN07, HV_REJECT }, { HTML_JUL25 }, elem_embed, a_hspace },
+    { { HTML_JAN07, HV_REJECT }, { HTML_JUL25 }, elem_embed, a_name },
+    { { HTML_JAN07, HV_REJECT }, { HTML_JUL25 }, elem_embed, a_vspace },
     STANDARD_HTML5_ATTRIBUTES (elem_embed),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 

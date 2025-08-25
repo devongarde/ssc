@@ -1,4 +1,4 @@
--Y 1 -f ../toast/w3/acefh/w3.conf
+-Y 1 -7 original -f ../toast/w3/acefh/w3.conf
 
 PASS ../toast/w3/acefh/ampersand-as-data.html
 1 xhtml_1_0

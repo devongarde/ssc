@@ -1,4 +1,4 @@
--Y 1 -f ../toast/living/apr25/living.conf
+-Y 1 -7 original -f ../toast/living/apr25/living.conf
 
 PASS ../toast/living/apr25/404.html
 12 bespoke_obsolete
@@ -11,34 +11,9 @@ PASS ../toast/living/apr25/404.html
 75 unrecognised_value
 75 missing_close unrecognised_value
 76 inserted_missing_closure
-81 role_missing
-83 role_missing
-84 role_missing
-88 role_missing
-89 role_missing
-90 role_missing
-93 role_missing
-95 role_missing
-96 role_missing
-100 role_missing
-101 role_missing
-102 role_missing
-105 role_missing
-107 role_missing
-108 role_missing
-109 role_missing
-112 role_missing
-114 role_missing
-117 role_missing
 119 unrecognised_value unrecognised_value unrecognised_value
-121 role_missing
 122 unrecognised_value unrecognised_value
 123 unrecognised_value
-
-PASS ../toast/living/apr25/a-1.html
-3 missing_close
-4 inserted_missing_parent missing_close
-5 inserted_missing_parent inserted_missing_closure missing_close role_missing
 
 PASS ../toast/living/apr25/a.html
 9 url_not_found
@@ -60,6 +35,11 @@ PASS ../toast/living/apr25/a.html
 48 wrong_parent inserted_missing_closure
 49 wrong_parent inserted_missing_closure missing_close
 50 inserted_missing_closure inserted_missing_closure
+
+PASS ../toast/living/apr25/a-1.html
+3 missing_close
+4 inserted_missing_parent missing_close
+5 inserted_missing_parent inserted_missing_closure missing_close
 
 PASS ../toast/living/apr25/abbr.html
 19 role_missing
@@ -165,7 +145,7 @@ PASS ../toast/living/apr25/autofocus.html
 PASS ../toast/living/apr25/b-1.html
 3 missing_close
 4 inserted_missing_parent missing_close
-5 inserted_missing_parent inserted_missing_closure missing_close url_not_found role_missing
+5 inserted_missing_parent inserted_missing_closure missing_close url_not_found
 
 PASS ../toast/living/apr25/b.html
 0 charset_mismatch charset_used charset_invalid
@@ -181,12 +161,11 @@ PASS ../toast/living/apr25/body-2.html
 PASS ../toast/living/apr25/blockquote.html
 0 charset_mismatch charset_used charset_invalid
 26 use_quote_code
-28 role_missing use_double_quote_code
+28 use_double_quote_code
 29 use_double_quote_code
 33 role_missing
 34 missing_close
-35 use_quote_code role_missing
-36 role_missing
+35 use_quote_code
 38 inserted_missing_closure
 47 use_quote_code
 53 use_quote_code
@@ -196,17 +175,10 @@ PASS ../toast/living/apr25/blockquote.html
 84 missing_close
 85 inserted_missing_closure inserted_missing_closure
 
-PASS ../toast/living/apr25/br.html
-6 role_missing
-7 role_missing
-10 role_missing
-12 role_missing
-
 PASS ../toast/living/apr25/browsing-1.html
 0 title_required
 3 inserted_missing_parent missing_close naughty_lang
 3 inserted_missing_parent missing_close
-6 role_missing
 
 PASS ../toast/living/apr25/browsing-2.html
 0 charset_mismatch charset_used charset_invalid
@@ -217,7 +189,7 @@ PASS ../toast/living/apr25/browsing-2.html
 PASS ../toast/living/apr25/browsing-3.html
 0 title_required
 3 inserted_missing_parent missing_close naughty_lang
-3 inserted_missing_parent missing_close role_missing
+3 inserted_missing_parent missing_close
 
 PASS ../toast/living/apr25/browsing-4.html
 0 charset_mismatch charset_used charset_invalid
@@ -345,7 +317,6 @@ PASS ../toast/living/apr25/datamodel.html
 9 no_such_folder url_not_found
 
 PASS ../toast/living/apr25/dd.html
-6 role_missing
 7 role_missing
 8 unrecognised_value
 9 unrecognised_value role_missing
@@ -361,13 +332,6 @@ PASS ../toast/living/apr25/details.html
 0 charset_mismatch charset_used charset_invalid
 6 unrecognised_value unrecognised_value
 7 use_double_quote_code
-10 role_missing
-11 role_missing
-12 role_missing
-13 role_missing
-14 role_missing
-15 role_missing
-16 role_missing
 23 lonely_ampersand
 25 inserted_missing_closure missing_close
 26 inserted_missing_closure
@@ -390,32 +354,26 @@ PASS ../toast/living/apr25/div.html
 
 PASS ../toast/living/apr25/dl.html
 0 charset_mismatch charset_used charset_invalid
-6 role_missing
 7 role_missing
 8 inserted_missing_closure
 9 inserted_missing_closure
 10 inserted_missing_closure role_missing
 11 inserted_missing_closure missing_close
 12 inserted_missing_closure
-14 role_missing
 15 role_missing
 16 role_missing
-22 role_missing
 24 role_missing
 28 role_missing
 32 role_missing
 33 role_missing
-41 role_missing
 42 role_missing
 44 role_missing
 46 role_missing
 48 role_missing
-52 role_missing
 53 role_missing
 56 role_missing
 58 role_missing
 59 use_quote_code
-62 role_missing
 64 role_missing
 65 inserted_missing_closure
 68 inserted_missing_closure missing_close
@@ -424,7 +382,6 @@ PASS ../toast/living/apr25/dl.html
 73 inserted_missing_closure
 76 inserted_missing_closure missing_close
 78 inserted_missing_closure
-81 role_missing
 82 role_missing
 84 inserted_missing_closure
 87 inserted_missing_closure
@@ -432,12 +389,6 @@ PASS ../toast/living/apr25/dl.html
 91 inserted_missing_closure
 94 inserted_missing_closure missing_close
 96 inserted_missing_closure
-
-PASS ../toast/living/apr25/dt.html
-8 role_missing
-9 role_missing
-11 role_missing
-13 role_missing
 
 PASS ../toast/living/apr25/dragondrops.html
 10 title_required
@@ -487,18 +438,18 @@ PASS ../toast/living/apr25/et.html
 
 PASS ../toast/living/apr25/extra.html
 5 blocking link_rel_off
-7 link_rel_off
+7 blocking
 8 unrecognised_value
 
 PASS ../toast/living/apr25/fad-a.html
 2 missing_close
 3 inserted_missing_parent missing_close
-5 inserted_missing_parent inserted_missing_closure missing_close role_missing
+5 inserted_missing_parent inserted_missing_closure missing_close
 
 PASS ../toast/living/apr25/fad-b.html
 2 missing_close
 3 inserted_missing_parent missing_close
-5 inserted_missing_parent inserted_missing_closure missing_close url_not_found role_missing
+5 inserted_missing_parent inserted_missing_closure missing_close url_not_found
 
 PASS ../toast/living/apr25/fieldset.html
 9 inserted_missing_closure
@@ -512,40 +463,27 @@ PASS ../toast/living/apr25/fieldset.html
 47 pattern
 
 PASS ../toast/living/apr25/figcaption.html
-6 inserted_missing_parent missing_close too_many_figcaption role_missing
-10 role_missing
+6 inserted_missing_parent missing_close too_many_figcaption
 15 inserted_missing_closure
 
 PASS ../toast/living/apr25/figure-1.html
-9 role_missing
 18 use_quote_code
 22 use_double_quote_code
 22 inserted_missing_closure
 23 url_not_found
 28 inserted_missing_closure
 29 url_not_found
-30 role_missing
-33 url_not_found role_missing track_missing
+33 url_not_found track_missing
 38 inserted_missing_closure
-34 role_missing
-39 role_missing
-41 role_missing
 42 url_not_found
-45 role_missing
 46 url_not_found
-49 role_missing
 50 url_not_found
 56 url_not_found
 58 url_not_found
 60 url_not_found
-61 role_missing
 65 url_not_found
-66 role_missing
 70 use_quote_code
-75 use_quote_code role_missing
-76 role_missing
-77 role_missing
-79 role_missing
+75 use_quote_code
 
 PASS ../toast/living/apr25/figure-2.html
 0 charset_mismatch charset_used charset_invalid
@@ -553,7 +491,6 @@ PASS ../toast/living/apr25/figure-2.html
 3 inserted_missing_parent missing_close
 4 inserted_missing_parent inserted_missing_closure missing_close
 6 url_not_found
-7 role_missing
 9 url_not_found
 9 url_not_found
 
@@ -565,7 +502,7 @@ PASS ../toast/living/apr25/footer-1.html
 PASS ../toast/living/apr25/footer-2.html
 0 charset_mismatch charset_used charset_invalid
 4 inserted_missing_closure
-8 no_such_folder url_not_found role_missing track_missing
+8 no_such_folder url_not_found track_missing
 9 no_such_folder url_not_found
 26 url_not_found
 27 url_not_found
@@ -706,9 +643,6 @@ PASS ../toast/living/apr25/head-2.html
 PASS ../toast/living/apr25/header-1.html
 0 charset_mismatch charset_used charset_invalid
 2 naughty_lang
-20 role_missing
-21 role_missing
-23 role_missing
 
 PASS ../toast/living/apr25/header-2.html
 2 naughty_lang
@@ -744,9 +678,6 @@ PASS ../toast/living/apr25/history-2.html
 
 PASS ../toast/living/apr25/hr.html
 17 use_quote_code
-31 role_missing
-32 role_missing
-34 role_missing
 47 use_quote_code
 49 use_quote_code
 58 use_quote_code
@@ -834,11 +765,11 @@ PASS ../toast/living/apr25/idioms.html
 51 inserted_missing_closure
 52 inserted_missing_closure
 54 inserted_missing_closure
-55 inserted_missing_closure role_missing
+55 inserted_missing_closure
 56 role_missing
 57 use_double_quote_code
 57 inserted_missing_closure
-59 use_double_quote_code inserted_missing_closure role_missing
+59 use_double_quote_code inserted_missing_closure
 60 role_missing
 61 use_double_quote_code
 61 inserted_missing_closure
@@ -846,7 +777,7 @@ PASS ../toast/living/apr25/idioms.html
 63 use_double_quote_code
 63 inserted_missing_closure
 65 use_double_quote_code
-65 inserted_missing_closure role_missing
+65 inserted_missing_closure
 66 role_missing
 67 use_double_quote_code inserted_missing_closure role_missing
 68 use_double_quote_code inserted_missing_closure role_missing
@@ -865,7 +796,7 @@ PASS ../toast/living/apr25/idioms.html
 81 inserted_missing_closure inserted_missing_closure role_missing
 82 use_double_quote_code
 82 inserted_missing_closure
-84 use_double_quote_code inserted_missing_closure role_missing
+84 use_double_quote_code inserted_missing_closure
 85 role_missing
 86 use_double_quote_code
 86 inserted_missing_closure
@@ -928,7 +859,6 @@ PASS ../toast/living/apr25/idioms.html
 155 inserted_missing_closure
 156 missing_close
 160 inserted_missing_closure
-163 role_missing
 167 wrong_parent inserted_missing_closure
 168 wrong_parent inserted_missing_closure
 169 inserted_missing_closure wrong_parent inserted_missing_closure
@@ -952,23 +882,22 @@ PASS ../toast/living/apr25/iframe.html
 16 no_such_folder url_not_found
 17 inserted_missing_closure
 19 no_such_folder url_not_found
-20 inserted_missing_parent missing_close inserted_missing_parent missing_close presume_html_1 role_missing
+20 inserted_missing_parent missing_close inserted_missing_parent missing_close presume_html_1
 23 no_such_folder url_not_found
-25 newline_in_string newline_in_string inserted_missing_parent missing_close inserted_missing_parent missing_close presume_html_1 mixed_mess missing_open role_missing
+25 newline_in_string newline_in_string inserted_missing_parent missing_close inserted_missing_parent missing_close presume_html_1 mixed_mess missing_open
 28 no_such_folder url_not_found
-30 newline_in_string newline_in_string inserted_missing_parent missing_close inserted_missing_parent missing_close presume_html_1 role_missing
-33 overallowed role_missing
-35 url_not_found role_missing
-37 url_not_found role_missing
+30 newline_in_string newline_in_string inserted_missing_parent missing_close inserted_missing_parent missing_close presume_html_1
+33 overallowed
+35 url_not_found
+37 url_not_found
 39 url_not_found
-41 permissions_policy role_missing sandbox
+41 permissions_policy sandbox
 45 no_such_folder url_not_found naughty_alt
 46 no_such_folder url_not_found
 46 url_id_unfound
-50 role_missing sandbox
-54 role_missing sandbox
+50 sandbox
+54 sandbox
 56 use_quote_code
-57 role_missing
 59 inserted_missing_closure
 
 PASS ../toast/living/apr25/im.html
@@ -1031,11 +960,8 @@ PASS ../toast/living/apr25/img.html
 111 no_such_folder url_not_found
 112 inserted_missing_closure
 115 url_not_found
-117 role_missing
 127 url_not_found
-129 role_missing
 139 url_not_found id_exists
-141 role_missing
 147 url_not_found
 153 url_not_found
 159 url_not_found
@@ -1098,7 +1024,6 @@ PASS ../toast/living/apr25/img.html
 275 no_such_folder url_not_found
 290 newline_in_string
 290 newline_in_string no_such_folder url_not_found
-291 role_missing
 301 no_such_folder url_not_found
 305 url_not_found
 307 url_not_found
@@ -1109,16 +1034,8 @@ PASS ../toast/living/apr25/img.html
 319 use_quote_code
 323 use_quote_code
 326 url_not_found
-327 role_missing
 330 url_not_found
-331 role_missing
-332 role_missing
-333 role_missing
-334 role_missing
-335 use_quote_code role_missing
-336 role_missing
-337 role_missing
-338 role_missing
+335 use_quote_code
 341 url_not_found
 341 url_not_found
 344 url_not_found
@@ -1131,15 +1048,12 @@ PASS ../toast/living/apr25/img.html
 350 url_not_found
 361 newline_in_string
 361 newline_in_string url_not_found
-362 role_missing
 368 newline_in_string
 368 newline_in_string url_not_found
 376 newline_in_string
 376 newline_in_string no_such_folder url_not_found
-377 role_missing
 384 newline_in_string
 384 newline_in_string no_such_folder url_not_found
-385 role_missing
 393 newline_in_string
 393 newline_in_string url_not_found
 395 unrecognised_value
@@ -1148,12 +1062,9 @@ PASS ../toast/living/apr25/img.html
 402 missing_close
 403 inserted_missing_closure
 406 url_not_found naughty_alt
-407 role_missing
 414 url_not_found naughty_alt
-415 role_missing
 428 newline_in_string
 428 newline_in_string url_not_found
-429 role_missing
 434 url_not_found
 441 wrong_parent inserted_missing_closure
 442 inserted_missing_closure inserted_missing_closure inserted_missing_closure missing_close
@@ -1291,10 +1202,8 @@ PASS ../toast/living/apr25/li.html
 8 inserted_missing_closure
 9 inserted_missing_closure missing_close
 10 inserted_missing_closure
-13 role_missing
 16 lingo
 17 use_quote_code
-28 role_missing
 31 lingo
 32 use_quote_code
 
@@ -1348,7 +1257,6 @@ PASS ../toast/living/apr25/links-licence.html
 5 no_such_folder url_not_found
 10 attempted_escape
 13 no_such_folder url_not_found naughty_alt
-14 role_missing
 20 attempted_escape
 
 PASS ../toast/living/apr25/links-modulepreload.html
@@ -1370,14 +1278,13 @@ PASS ../toast/living/apr25/links-noreferrer.html
 12 inserted_missing_closure inserted_missing_closure
 
 PASS ../toast/living/apr25/links-tag2.html
-15 role_missing
 19 unrecognised_value
 
 PASS ../toast/living/apr25/lwp.html
 0 title_required
 2 inserted_missing_parent missing_close naughty_lang
 2 inserted_missing_parent missing_close
-2 role_missing chocolate_teapot
+2 chocolate_teapot
 
 PASS ../toast/living/apr25/main-1.html
 3 inserted_missing_parent missing_close
@@ -1452,11 +1359,9 @@ PASS ../toast/living/apr25/meter.html
 7 url_not_found
 10 bad_meter
 11 bad_meter
-15 role_missing
 16 role_missing inserted_missing_closure
 17 inserted_missing_closure role_missing inserted_missing_closure missing_close
 18 inserted_missing_closure
-20 role_missing
 21 role_missing inserted_missing_closure
 22 inserted_missing_closure role_missing inserted_missing_closure missing_close
 23 inserted_missing_closure
@@ -1474,12 +1379,10 @@ PASS ../toast/living/apr25/microdata-1.html
 39 url_not_found
 73 dialect
 77 url_not_found naughty_alt
-78 role_missing
 82 url_not_found naughty_alt
-83 role_missing
 86 ontology_domain
 90 url_not_found
-94 ontology_domain role_missing
+94 ontology_domain
 95 role_missing
 96 inserted_missing_closure
 97 inserted_missing_closure role_missing
@@ -1489,7 +1392,7 @@ PASS ../toast/living/apr25/microdata-1.html
 101 inserted_missing_closure
 103 ontology_domain
 109 url_not_found
-111 ontology_domain ontology_domain role_missing
+111 ontology_domain ontology_domain
 113 role_missing
 114 inserted_missing_closure
 115 inserted_missing_closure role_missing
@@ -1499,7 +1402,7 @@ PASS ../toast/living/apr25/microdata-1.html
 119 inserted_missing_closure role_missing
 120 inserted_missing_closure missing_close
 121 inserted_missing_closure
-123 ontology_domain ontology_domain role_missing
+123 ontology_domain ontology_domain
 125 role_missing
 126 inserted_missing_closure
 127 inserted_missing_closure role_missing
@@ -1507,7 +1410,7 @@ PASS ../toast/living/apr25/microdata-1.html
 129 inserted_missing_closure role_missing
 130 inserted_missing_closure missing_close
 132 inserted_missing_closure
-134 ontology_domain role_missing
+134 ontology_domain
 135 role_missing
 136 inserted_missing_closure
 137 inserted_missing_closure role_missing
@@ -1518,9 +1421,7 @@ PASS ../toast/living/apr25/microdata-1.html
 
 PASS ../toast/living/apr25/microdata-2.html
 9 relative_path no_such_folder url_not_found
-10 role_missing
 13 relative_path no_such_folder url_not_found
-14 role_missing
 
 PASS ../toast/living/apr25/nav-1.html
 0 charset_mismatch charset_used charset_invalid
@@ -1580,8 +1481,7 @@ PASS ../toast/living/apr25/noscript-3.html
 13 inserted_missing_closure
 
 PASS ../toast/living/apr25/object.html
-7 url_not_found role_missing
-8 role_missing
+7 url_not_found
 
 PASS ../toast/living/apr25/ol.html
 10 inserted_missing_closure
@@ -1609,10 +1509,6 @@ PASS ../toast/living/apr25/optgroup.html
 25 inserted_missing_closure
 
 PASS ../toast/living/apr25/p.html
-19 role_missing
-20 role_missing
-21 role_missing
-22 role_missing
 48 inserted_missing_closure
 49 inserted_missing_closure missing_close
 50 inserted_missing_closure
@@ -1706,18 +1602,18 @@ PASS ../toast/living/apr25/script.html
 PASS ../toast/living/apr25/scripting-1.html
 3 missing_close
 4 inserted_missing_parent missing_close
-5 inserted_missing_parent inserted_missing_closure missing_close role_missing
+5 inserted_missing_parent inserted_missing_closure missing_close
 
 PASS ../toast/living/apr25/scripting-2.html
 3 missing_close
 4 inserted_missing_parent missing_close
-5 inserted_missing_parent inserted_missing_closure missing_close url_not_found role_missing
-6 url_not_found role_missing
+5 inserted_missing_parent inserted_missing_closure missing_close url_not_found
+6 url_not_found
 
 PASS ../toast/living/apr25/scripting-3.html
 3 missing_close
 4 inserted_missing_parent missing_close
-13 inserted_missing_parent inserted_missing_closure missing_close role_missing
+13 inserted_missing_parent inserted_missing_closure missing_close
 
 PASS ../toast/living/apr25/scripting-4.html
 3 missing_close
@@ -1727,23 +1623,23 @@ PASS ../toast/living/apr25/scripting-5.html
 0 title_required
 2 inserted_missing_parent missing_close naughty_lang
 2 inserted_missing_parent missing_close
-2 role_missing chocolate_teapot
+2 chocolate_teapot
 
 PASS ../toast/living/apr25/scripting-6.html
 0 title_required
 2 inserted_missing_parent missing_close naughty_lang
 2 inserted_missing_parent missing_close
-2 role_missing chocolate_teapot
+2 chocolate_teapot
 
 PASS ../toast/living/apr25/scripting-7.html
 0 title_required
 3 inserted_missing_parent missing_close naughty_lang
 3 inserted_missing_parent missing_close
-4 role_missing chocolate_teapot
+4 chocolate_teapot
 
 PASS ../toast/living/apr25/scripting-8.html
 0 title_required
-3 inserted_missing_parent missing_close naughty_lang inserted_missing_parent missing_close role_missing
+3 inserted_missing_parent missing_close naughty_lang inserted_missing_parent missing_close
 
 PASS ../toast/living/apr25/scripting-9.html
 24 id_exists
@@ -1790,7 +1686,6 @@ PASS ../toast/living/apr25/select.html
 
 PASS ../toast/living/apr25/small.html
 0 charset_mismatch charset_used charset_invalid
-6 role_missing
 7 role_missing
 8 inserted_missing_closure
 9 inserted_missing_closure role_missing
@@ -1845,7 +1740,6 @@ PASS ../toast/living/apr25/ssah-1.html
 20 url_not_found
 28 newline_in_string
 28 newline_in_string url_not_found
-29 role_missing
 33 role_missing data_type invalid_element_version missing_close attribute_required inserted_missing_closure
 51 url_not_found
 57 use_quote_code
@@ -1853,12 +1747,12 @@ PASS ../toast/living/apr25/ssah-1.html
 61 url_not_found
 62 url_not_found
 64 use_quote_code
-70 url_not_found role_missing
+70 url_not_found
 73 url_not_found
 74 inserted_missing_closure missing_close
 75 inserted_missing_closure
 79 use_quote_code
-84 url_not_found role_missing
+84 url_not_found
 87 url_not_found
 88 inserted_missing_closure missing_close
 89 inserted_missing_closure
@@ -1932,7 +1826,7 @@ PASS ../toast/living/apr25/strange-4.html
 1 presume_html_1 chocolate_teapot wrong_parent inserted_missing_closure chocolate_teapot invalid_element_version invalid_element_version missing_open
 
 PASS ../toast/living/apr25/strong.html
-8 inserted_missing_parent missing_close	role_missing
+8 inserted_missing_parent missing_close
 11 use_quote_code
 27 inserted_missing_closure
 
@@ -1986,7 +1880,6 @@ PASS ../toast/living/apr25/table.html
 72 inserted_missing_closure id_exists
 73 inserted_missing_closure missing_close
 74 inserted_missing_closure inserted_missing_closure inserted_missing_closure
-77 role_missing
 84 id_exists
 85 wrong_parent inserted_missing_closure
 86 wrong_parent inserted_missing_closure
@@ -1999,7 +1892,6 @@ PASS ../toast/living/apr25/table.html
 94 inserted_missing_closure id_exists
 95 inserted_missing_closure missing_close
 96 inserted_missing_closure inserted_missing_closure inserted_missing_closure
-99 role_missing
 108 id_exists
 109 wrong_parent inserted_missing_closure
 110 wrong_parent inserted_missing_closure
@@ -2276,7 +2168,6 @@ PASS ../toast/living/apr25/tls.html
 25 unrecognised_value
 28 use_double_quote_code
 29 use_double_quote_code
-30 role_missing role_missing
 
 PASS ../toast/living/apr25/track.html
 0 charset_mismatch charset_used charset_invalid
@@ -2299,19 +2190,12 @@ PASS ../toast/living/apr25/ul.html
 PASS ../toast/living/apr25/var.html
 6 role_missing
 7 role_missing
-20 role_missing
 21 use_quote_code
 27 use_quote_code role_missing role_missing role_missing 
 
 PASS ../toast/living/apr25/vcard.html
 13 url_not_found
-20 role_missing
-23 role_missing
-24 role_missing
 34 use_quote_code
-54 role_missing
-56 role_missing
-57 role_missing
 
 PASS ../toast/living/apr25/vevent.html
 24 use_quote_code
@@ -2326,7 +2210,6 @@ PASS ../toast/living/apr25/wbr.html
 
 PASS ../toast/living/apr25/work.html
 7 relative_path url_not_found naughty_alt
-8 role_missing
 10 missing_close
 16 inserted_missing_closure
 
@@ -2488,7 +2371,6 @@ PASS ../toast/living/apr25/ww-5.html
 2 missing_close
 3 inserted_missing_parent missing_close
 5 inserted_missing_parent inserted_missing_closure missing_close
-15 role_missing
 
 PASS ../toast/living/apr25/ww-6.html
 2 missing_close

@@ -207,8 +207,10 @@ struct symbol_entry < html_version, e_attr_unit > attr_unit_symbol_table [] =
 
 struct symbol_entry < html_version, e_autocapitalise > autocapitalise_symbol_table [] =
 {   { { HTML_5_3 }, { HTML_UNDEF }, "characters", ac4_characters },
-    { { HTML_JUL20 }, { HTML_UNDEF }, "default", ec4_default },
+    { { HTML_JUL20 }, { HTML_JUL25 }, "default", ec4_default },
     { { HTML_JUL20 }, { HTML_UNDEF }, "none", ac4_none },
+    { { HTML_AUG25 }, { HTML_UNDEF }, "off", ac4_off },
+    { { HTML_AUG25 }, { HTML_UNDEF }, "on", ac4_on },
     { { HTML_5_3 }, { HTML_UNDEF }, "sentences", ac4_sentences },
     { { HTML_5_3 }, { HTML_UNDEF }, "words", ac4_words } };
 
@@ -396,9 +398,17 @@ struct symbol_entry < html_version, e_cntype > cntype_symbol_table [] =
 struct symbol_entry < html_version, e_command2 > command2_symbol_table [] =
 {   { { HTML_MAR25 }, { HTML_UNDEF }, "close", co2_close },
     { { HTML_MAR25 }, { HTML_UNDEF }, "hide-popover", co2_hidepopover },
+    { { HTML_AUG25 }, { HTML_UNDEF }, "request-close", co2_request_close },
     { { HTML_MAR25 }, { HTML_UNDEF }, "show-modal", co2_showmodal },
     { { HTML_MAR25 }, { HTML_UNDEF }, "show-popover", co2_showpopover },
     { { HTML_MAR25 }, { HTML_UNDEF }, "toggle-popover", co2_togglepopover } };
+
+struct symbol_entry < html_version, e_container_condition > container_condition_symbol_table [] =
+{   { { HTML_TAGS }, { HTML_UNDEF }, "and", coco_and },
+    { { HTML_TAGS }, { HTML_UNDEF }, "none", coco_none },
+    { { HTML_TAGS }, { HTML_UNDEF }, "not", coco_not },
+    { { HTML_TAGS }, { HTML_UNDEF }, "or", coco_or },
+    { { HTML_TAGS }, { HTML_UNDEF }, "style", coco_style } };
 
 struct symbol_entry < html_version, e_copy > copy_symbol_table [] =
 {   { { HTML_TAGS }, { HTML_UNDEF }, "no", c_none },
@@ -857,7 +867,7 @@ struct symbol_entry < html_version, e_css_float > css_float_symbol_table [] =
     { { HTML_CSS, 0, 0, 0, H3_CSS_FLOAT }, { HTML_UNDEF }, "top", cf_top } };
 
 struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
-{   { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, "(unknown)", efn_none },
+{   { { HTML_CSS, 0, 0, H2_CSS }, { HTML_UNDEF }, UNKNOWN, efn_none },
     { { HTML_JAN24, HE_BESPOKE, 0, H2_CSS_SELECTOR_4 }, { HTML_UNDEF }, "-webkit-autofill", efn_webkit_autofill }, // living standard
     { { HTML_CSS, 0, 0, 0, H3_CSS_PRESENT }, { HTML_UNDEF }, "above-level", efn_above_level },
     { { HTML_CSS, 0, 0, H2_CSS_1_2 | H2_CSS_SELECTOR }, { HTML_UNDEF }, "active", efn_active },
@@ -906,6 +916,7 @@ struct symbol_entry < html_version, e_css_fn > css_fn_symbol_table [] =
     { { HTML_CSS, 0, 0, H2_CSS_SELECTOR_4, 0, H4_VTT }, { HTML_UNDEF }, "future", efn_future },
     { { HTML_CSS, 0, 0, H2_CSS_COCO, H3_CSS_PSEUDO }, { HTML_UNDEF }, "grammar-error", efn_grammar_error },
     { { HTML_CSS, 0, 0, H2_CSS_3 | H2_CSS_N_ARGS }, { HTML_UNDEF }, "has", efn_has },
+    { { HTML_AUG25, 0, 0, H2_CSS_1_ARG, 0, H4_CSS_ARG_OPTIONAL | H4_CSS_LIVING_STANDARD }, { HTML_UNDEF }, "heading", efn_heading },
     { { HTML_CSS, 0, 0, H2_CSS_COCO | H2_CSS_1_ARG, H3_CSS_HIGHLIGHT }, { HTML_UNDEF }, "highlight", efn_highlight },
     { { HTML_AUG25, 0, 0, 0, 0, H4_CSS_FCS }, { HTML_UNDEF }, "high-value", efn_high_value },
     { { HTML_CSS, 0, 0, H2_CSS_1_ARG, H3_CSS_SCOPE, H4_CSS_ARG_OPTIONAL }, { HTML_UNDEF }, "host", efn_host },
@@ -1496,6 +1507,7 @@ struct symbol_entry < html_version, e_css_module, e_nit_macro, nm_none > css_mod
     { { HTML_CSS }, { HTML_UNDEF }, "Layout API", c_layout, nm_none, MOD_UNSUPPORTED },
     { { HTML_CSS, 0, H3_CSS_LINE_GRID }, { HTML_UNDEF }, "Line Grid", c_line_grid, nm_context_css_line_grid, MOD_ON_OFF },
     { { HTML_CSS, 0, H3_CSS_LIST }, { HTML_UNDEF }, "Lists & Counters", c_list_counter, nm_context_css_list, MOD_LEVEL_3 },
+    { { HTML_AUG25, 0, 0, H4_CSS_LIVING_STANDARD }, { HTML_UNDEF }, "HTML5 Living Standard", c_living_standard, nm_none, MOD_ON_OFF },
     { { HTML_CSS, 0, H3_CSS_LOGIC }, { HTML_UNDEF }, "Logical Properties & Values", c_logical_property, nm_context_css_logic, MOD_LEVEL_1 },
     { { HTML_CSS, 0, 0, H4_CSS_MARQUEE }, { HTML_UNDEF }, "Marquee", c_marquee, nm_context_css_marquee, MOD_ON_OFF | MOD_ABANDONED },
     { { HTML_CSS, 0, 0, H4_CSS_MATH_CORE }, { HTML_UNDEF }, "Math Core", c_math_core, nm_none, MOD_LEVEL_3 },
@@ -2036,7 +2048,8 @@ struct symbol_entry < html_version, e_css_version > css_version_symbol_table [] 
     { { HTML_TAGS }, { HTML_UNDEF }, "25++", css_2025_2 },
     { { HTML_TAGS }, { HTML_UNDEF }, "2025++", css_2025_2 },
     { { HTML_TAGS }, { HTML_UNDEF }, "25+++", css_2025_3 },
-    { { HTML_TAGS }, { HTML_UNDEF }, "2025+++", css_2025_3 } };
+    { { HTML_TAGS }, { HTML_UNDEF }, "2025+++", css_2025_3 },
+    { { HTML_TAGS }, { HTML_UNDEF }, "html5", css_ls_aug25 } };
 
 struct symbol_entry < html_version, e_css_vertical_align > css_vertical_align_symbol_table [] =
 {   { { HTML_CSS }, { HTML_UNDEF }, "inherit", ecva_inherit },
@@ -2718,7 +2731,7 @@ struct symbol_entry < html_version, e_inputmode > inputmode_symbol_table [] =
     { { HTML_JAN18 }, { HTML_UNDEF }, "search", im_search },
     { { HTML_JAN13 }, { HTML_UNDEF }, "tel", im_tel },
     { { HTML_JAN18 }, { HTML_UNDEF }, "text", im_text },
-    { { HTML_JAN13 }, { HTML_UNDEF }, "verbatim", im_verbatim },
+    { { HTML_JAN13 }, { HTML_JUL25 }, "verbatim", im_verbatim },
     { { HTML_JAN13 }, { HTML_UNDEF }, "url", im_url } };
 
 struct symbol_entry < html_version, e_inputplus > inputplus_symbol_table [] =
@@ -3344,6 +3357,28 @@ struct symbol_entry < html_version, e_mf_method > mf_method_symbol_table [] =
     { { HTML_4_0 }, { HTML_UNDEF }, "counter", mfm_counter },
     { { HTML_4_0 }, { HTML_UNDEF }, "declinecounter", mfm_declinecounter } };
 
+struct symbol_entry < html_version, e_mf_relationship > mf_relationship_symbol_table [] =
+{   { { HTML_4_0 }, { HTML_UNDEF }, "acquaintance", mfr_acquaintance },
+    { { HTML_4_0 }, { HTML_UNDEF }, "agent", mfr_agent },
+    { { HTML_4_0 }, { HTML_UNDEF }, "child", mfr_child },
+    { { HTML_4_0 }, { HTML_UNDEF }, "colleague", mfr_colleague },
+    { { HTML_4_0 }, { HTML_UNDEF }, "contact", mfr_contact },
+    { { HTML_4_0 }, { HTML_UNDEF }, "crush", mfr_crush },
+    { { HTML_4_0 }, { HTML_UNDEF }, "date", mfr_date },
+    { { HTML_4_0 }, { HTML_UNDEF }, "emergancy", mfr_emergancy },
+    { { HTML_4_0 }, { HTML_UNDEF }, "friend", mfr_friend },
+    { { HTML_4_0 }, { HTML_UNDEF }, "kin", mfr_kin },
+    { { HTML_4_0 }, { HTML_UNDEF }, "me", mfr_me },
+    { { HTML_4_0 }, { HTML_UNDEF }, "met", mfr_met },
+    { { HTML_4_0 }, { HTML_UNDEF }, "muse", mfr_muse },
+    { { HTML_4_0 }, { HTML_UNDEF }, "neighbour", mfr_neighbour },
+    { { HTML_4_0 }, { HTML_UNDEF }, "parent", mfr_parent },
+    { { HTML_4_0 }, { HTML_UNDEF }, "resident", mfr_resident },
+    { { HTML_4_0 }, { HTML_UNDEF }, "sibling", mfr_sibling },
+    { { HTML_4_0 }, { HTML_UNDEF }, "spouse", mfr_spouse },
+    { { HTML_4_0 }, { HTML_UNDEF }, "sweetheart", mfr_sweetheart },
+    { { HTML_4_0 }, { HTML_UNDEF }, "worker", mfr_worker } };
+
 struct symbol_entry < html_version, e_mf_reviewtype > mf_reviewtype_symbol_table [] =
 {   { { HTML_4_0 }, { HTML_UNDEF }, "product", mfr_product },
     { { HTML_4_0 }, { HTML_UNDEF }, "business", mfr_business },
@@ -3352,6 +3387,17 @@ struct symbol_entry < html_version, e_mf_reviewtype > mf_reviewtype_symbol_table
     { { HTML_4_0 }, { HTML_UNDEF }, "place", mfr_place },
     { { HTML_4_0 }, { HTML_UNDEF }, "website", mfr_website },
     { { HTML_4_0 }, { HTML_UNDEF }, "url", mfr_url } };
+
+struct symbol_entry < html_version, e_mf_tel > mf_tel_symbol_table [] =
+{   { { HTML_4_0 }, { HTML_UNDEF }, "cell", mft_cell },
+    { { HTML_4_0 }, { HTML_UNDEF }, "fax", mft_fax },
+    { { HTML_4_0 }, { HTML_UNDEF }, "home", mft_home },
+    { { HTML_4_0 }, { HTML_UNDEF }, "pager", mft_pager },
+    { { HTML_4_0 }, { HTML_UNDEF }, "text", mft_text },
+    { { HTML_4_0 }, { HTML_UNDEF }, "textphone", mft_textphone },
+    { { HTML_4_0 }, { HTML_UNDEF }, "video", mft_video },
+    { { HTML_4_0 }, { HTML_UNDEF }, "voice", mft_voice },
+    { { HTML_4_0 }, { HTML_UNDEF }, "work", mft_work } };
 
 struct symbol_entry < html_version, e_month_english_short > month_english_short_symbol_table [] =
 {   { { HTML_TAGS }, { HTML_UNDEF }, "jan", mes_jan },
@@ -3503,6 +3549,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "config", nm_config },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-absolute-path", nm_context_absolute_path },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-account", nm_context_account },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-analysis", nm_context_analysis },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-article", nm_context_article },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-body", nm_context_body },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-build", nm_context_build },
@@ -3596,6 +3643,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-css-writing-mode", nm_context_css_writing_mode },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-custom-elements", nm_context_custom_elements },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-dc", nm_context_dc },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-efficient", nm_context_efficient },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-example", nm_context_example },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-excl-def-excl", nm_context_excl_def_excl },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-expand", nm_context_expand },
@@ -3653,6 +3701,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-rdf-version", nm_context_rdf_version },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-rel", nm_context_rel },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-report", nm_context_report },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-replace", nm_context_replace },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-rfc-1867", nm_context_rfc_1867 },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-rfc-1942", nm_context_rfc_1942 },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-rfc-1980", nm_context_rfc_1980 },
@@ -3746,6 +3795,7 @@ struct symbol_entry < html_version, e_nit_macro > nit_macro_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "context-thread", nm_context_fred },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-title", nm_context_title },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-unknown-class", nm_context_unknown_class },
+    { { HTML_TAGS }, { HTML_UNDEF }, "context-url-var", nm_context_url_var },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-vcs", nm_context_vcs },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-verify", nm_context_verify },
     { { HTML_TAGS }, { HTML_UNDEF }, "context-version", nm_context_version },
@@ -4770,7 +4820,8 @@ struct symbol_entry < html_version, e_rules > rules_symbol_table [] =
     { { HTML_2_0 }, { HTML_UNDEF }, "all", ru_all } };
 
 struct symbol_entry < html_version, e_sandbox > sandbox_symbol_table [] =
-{   { { HTML_JUL20, 0, HE_EXPERIMENTAL }, { HTML_UNDEF }, "allow-downloads-without-user-activation", sand_adwua },
+{   { { HTML_JUL20, 0, HE_EXPERIMENTAL }, { HTML_JUL25 }, "allow-downloads-without-user-activation", sand_adwua },
+    { { HTML_JUL20 }, { HTML_UNDEF }, "allow-downloads", sand_ad },
     { { HTML_JUL08, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-forms", sand_forms },
     { { HTML_JAN16, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-modals", sand_modals },
     { { HTML_JUL16, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-orientation-lock", sand_orientation },
@@ -4780,11 +4831,10 @@ struct symbol_entry < html_version, e_sandbox > sandbox_symbol_table [] =
     { { HTML_JUL16, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-presentation", sand_presentation },
     { { HTML_JUL08, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-same-origin", sand_origin },
     { { HTML_JUL08, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-scripts", sand_scripts },
-    { { HTML_JUL20, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-storage-access-by-user-activation", sand_asabua },
+    { { HTML_JUL20, 0, HV_CSP_1 }, { HTML_JUL25 }, "allow-storage-access-by-user-activation", sand_asabua },
     { { HTML_JAN11, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-top-navigation", sand_navigation },
     { { HTML_JUL17, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-top-navigation-by-user-activation", sand_atnbua },
-    { { HTML_APR22, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-top-navigation-to-custom-protocols", sand_atntcp },
-    { { HTML_JUL20 }, { HTML_UNDEF }, "allow-downloads", sand_ad } };
+    { { HTML_APR22, 0, HV_CSP_1 }, { HTML_UNDEF }, "allow-top-navigation-to-custom-protocols", sand_atntcp } };
 
 struct symbol_entry < html_version, e_scei > scei_symbol_table [] =
 {   { { HTML_SVG12, 0, HE_SVG_12_FULL  }, { HTML_UNDEF }, "after", scei_after },
@@ -6690,6 +6740,15 @@ struct symbol_entry < html_version, e_unit_time > unit_time_symbol_table [] =
 {   { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "ms", eut_ms  },
     { { HTML_4_0, 0, 0, H2_CSS_VALUE_3 }, { HTML_UNDEF }, "s", eur_s } };
 
+struct symbol_entry < html_version, e_url_temp_exp> url_temp_exp_symbol_table [] =
+{   { { HTML_VCARD }, { HTML_UNDEF }, "&", ute_continuation },
+    { { HTML_VCARD }, { HTML_UNDEF }, "?", ute_form },
+    { { HTML_VCARD }, { HTML_UNDEF }, "#", ute_fragment },
+    { { HTML_VCARD }, { HTML_UNDEF }, ".", ute_labelled },
+    { { HTML_VCARD }, { HTML_UNDEF }, ";", ute_parameter },
+    { { HTML_VCARD }, { HTML_UNDEF }, "+", ute_reserved },
+    { { HTML_VCARD }, { HTML_UNDEF }, "/", ute_segment } };
+
 struct symbol_entry < html_version, e_vctelecomms > vctelecomms_symbol_table [] =
 {   { { HTML_VCARD }, { HTML_UNDEF }, "cell", vt_mobile },
     { { HTML_VCARD }, { HTML_UNDEF }, "mobile", vt_mobile },
@@ -7193,8 +7252,10 @@ void enum_init (nitpick& nits)
     INIT_ENUM (colour_rendering);
     INIT_ENUM (cookieid);
     INIT_ENUM (command2);
+    INIT_ENUM (container_condition);
     INIT_ENUM (copy);
     INIT_ENUM (cntype);
+    INIT_ENUM (command2);
     INIT_ENUM (comp_op);
     INIT_ENUM (composite_operator);
     INIT_ENUM (cr_fileproperty);
@@ -7347,7 +7408,9 @@ void enum_init (nitpick& nits)
     INIT_ENUM (mf_itemtype);
     INIT_ENUM (mf_listing_action);
     INIT_ENUM (mf_method);
+    INIT_ENUM (mf_relationship);
     INIT_ENUM (mf_reviewtype);
+    INIT_ENUM (mf_tel);
     INIT_ENUM (month_english_long);
     INIT_ENUM (month_english_short);
     INIT_ENUM (musickey);
@@ -7447,6 +7510,7 @@ void enum_init (nitpick& nits)
     INIT_ENUM (unit_res);
     INIT_ENUM (unit_time);
     INIT_ENUM (unicode_bidi);
+    INIT_ENUM (url_temp_exp);
     INIT_ENUM (vctelecomms);
     INIT_ENUM (vector_effect_2);
     INIT_ENUM (vertical_align_enum);
@@ -7536,6 +7600,7 @@ void enum_init (nitpick& nits)
         RETURN_SIZE (cookieid);
         RETURN_SIZE (copy);
         RETURN_SIZE (cntype);
+        RETURN_SIZE (command2);
         RETURN_SIZE (comp_op);
         RETURN_SIZE (composite_operator);
         RETURN_SIZE (cr_fileproperty);
@@ -7786,6 +7851,7 @@ void enum_init (nitpick& nits)
         RETURN_SIZE (unit_res);
         RETURN_SIZE (unit_time);
         RETURN_SIZE (unicode_bidi);
+        RETURN_SIZE (url_temp_exp);
         RETURN_SIZE (vctelecomms);
         RETURN_SIZE (vector_effect_2);
         RETURN_SIZE (vertical_align_enum);

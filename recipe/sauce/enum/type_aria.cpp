@@ -399,6 +399,13 @@ elem_role permitted_role [] =
     { { HTML_ARIA_1_3 }, { HTML_UNDEF }, elem_embed, role_image },
     { { HTML_5_3 }, { HTML_UNDEF }, elem_embed, role_none },
     { { HTML_JAN07 }, { HTML_UNDEF }, elem_embed, role_presentation },
+    { { HTML_AUG25 }, { HTML_UNDEF }, elem_fencedframe, role_application },
+    { { HTML_AUG25 }, { HTML_UNDEF }, elem_fencedframe, role_document },
+    { { HTML_AUG25 }, { HTML_UNDEF }, elem_fencedframe, role_img },
+    { { HTML_AUG25 }, { HTML_UNDEF }, elem_fencedframe, role_image },
+    { { HTML_AUG25 }, { HTML_UNDEF }, elem_fencedframe, role_none },
+    { { HTML_AUG25 }, { HTML_JUN05 }, elem_fencedframe, role_presentation },
+    { { HTML_AUG25 }, { HTML_UNDEF }, elem_fencedframe, role_presentation },
     { { HTML_5_3 }, { HTML_UNDEF }, elem_fieldset, role_none },
     { { HTML_JAN09 }, { HTML_UNDEF }, elem_fieldset, role_presentation },
     { { HTML_JUL20 }, { HTML_UNDEF }, elem_fieldset, role_radiogroup },
@@ -737,15 +744,12 @@ typedef rolemap::value_type rmv;
 typedef rolemap::const_iterator rmi;
 rolemap default_roles, permitted_roles;
 
-// fuck this, won't compile in VCS when used
-//typedef ::std::multimap < role_key, ::std::size_t > reqmap_t;
-//typedef reqmap_t::value_type rqv;
-//reqmap_t reqmap;
-typedef ::std::vector < ::std::size_t > fucked_up_reqmap_t;
-fucked_up_reqmap_t furq;
+typedef ::std::vector < ::std::size_t > reqmap_t;
+reqmap_t furq;
 
 const role_bitset empty_role_bitset;
 role_bitset abstract_role_bitset = empty_role_bitset;
+role_bitset any_none_bitset = empty_role_bitset;
 role_bitset application_role_bitset = empty_role_bitset;
 role_bitset adii_role_bitset = empty_role_bitset;
 role_bitset adiinp_role_bitset = empty_role_bitset;
@@ -764,6 +768,7 @@ role_bitset none_pres_role_bitset = empty_role_bitset;
 void aria_init ()
 {   abstract_role_bitset = empty_role_bitset | role_comment | role_composite | role_input | role_landmark | role_range | role_roletype |
                             role_section | role_sectionhead | role_select | role_structure| role_widget | role_window;
+    any_none_bitset = empty_role_bitset | role_any | role_none;
     application_role_bitset = empty_role_bitset | role_application;
     adii_role_bitset = empty_role_bitset | role_application | role_document | role_img | role_image;
     adiinp_role_bitset = empty_role_bitset | role_application | role_document | role_img | role_image | role_none | role_presentation;

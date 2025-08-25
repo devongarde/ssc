@@ -1,15 +1,15 @@
-<!--#include virtual="../plumbing/html.inc" -->
-<!--#include virtual="../plumbing/var.inc" --><!--#include virtual="../plumbing/varargs.inc" -->
+<!--#include virtual="/plumbing/html.inc" -->
+<!--#include virtual="/plumbing/var.inc" -->
 <!--#set var="title" value="CSS arguments" -->
 <title>
 <!--#echo encoding="none" var="title" -->
 </title>
-<!--#include virtual="../plumbing/header.inc" -->
-<!--#include virtual="../plumbing/blog-section.inc" -->
-<!--#include virtual="../plumbing/html-top-start.inc" -->
-<!--#include virtual="../plumbing/argle.inc" -->
-<!--#include virtual="../plumbing/html-top-end.inc" -->
-<!--#include virtual="../plumbing/blog-schema.inc" -->
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/blog-section.inc" -->
+<!--#include virtual="/plumbing/html-top-start.inc" -->
+<!--#include virtual="/plumbing/argle.inc" -->
+<!--#include virtual="/plumbing/html-top-end.inc" -->
+<!--#include virtual="/plumbing/blog-schema.inc" -->
 <data class="u-url u-uid" value="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->">
 </data>
 
@@ -32,7 +32,7 @@ Otherwise, you probably only need <kbd>css.version</kbd>.
 <kbd>css.version</kbd> accepts the following values:
 </p>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="../image/ssc-msgdb-zpf-k13.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-zpf-k13.jpg" title="made with studio artist 5.5">
 
 <table>
 <tr><td>1</td> <td>CSS 1.0</td></tr>
@@ -70,6 +70,7 @@ Otherwise, you probably only need <kbd>css.version</kbd>.
 <tr><td>2024+</td> <td>2024 wibbly snapshot</td></tr>
 <tr><td>2024++</td> <td>2024 wibbly&ndash;wobbly snapshot</td></tr>
 <tr><td>2024+++</td> <td>2024 weally&ndash;wibbly&ndash;wobbly snapshot</td></tr>
+<tr><td>html5</td> <td>2024+++ with HTML5 (see below)</td></tr>
 </table>
 
 <p>
@@ -79,7 +80,7 @@ modules, ++ for wibbly&ndash;wobbly modules, and +++
 for weally&ndash;wibbly&ndash;wobbly modules, as per the
 corresponding W3 CSS snapshots (the terminology
 in those snapshots is inconsistent, hence the
-use of alternative scientific terminology).
+use of alternative who&ndash;ish language).
 </p>
 
 <p>
@@ -112,6 +113,12 @@ Hence, if you wish
                         not part of CSS 1, specify 3. Similarly, for
                         those named level 2 that are not part of any
                         CSS 2 specification, specify 4, etc..
+</p>
+
+<p>
+HTML5 extends 2024+++ with <a href="https://www.w3.org/TR/mathml-core/">the CSS requirements
+of Math 4 Core</a> and the <a href="https://html.spec.whatwg.org/multipage/rendering.html">August 2025 HTML Living
+Standard</a>.
 </p>
 
 <h2>other CSS arguments</h2>
@@ -184,6 +191,9 @@ defined at <a href="https://www.w3.org/Style/CSS/specs.en.html">w3.org</a>.
 
 <tr><td>css.fbl X</td> <td>Use CSS Flexible Box Layout level X, where X is
                         0 or 3.</td></tr>
+
+<tr><td>css.fcs X</td> <td>Use CSS Form Control Styling level X, where X is 0 or
+                        3.</td></tr>
 
 <tr><td>css.filter X</td> <td>Use CSS Filter Effects level X, where X is 0 or
                         3.</td></tr>
@@ -323,6 +333,6 @@ If your site contains CSS files with different extensions,
 you can specify those extensions here.
 </p>
 
-<!--#include virtual="../plumbing/under.inc" -->
-<!--#include virtual="../plumbing/args.inc" -->
-<!--#include virtual="../plumbing/html-end.inc" -->
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/args.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

@@ -315,7 +315,7 @@ bool css_t :: TransferDataToWindow ()
 {	if (invalid ()) return false;
     v_ = trans_;
     ver_ = v_.css_version ();
-    homme_.preload (css_ext_);
+    homme_.preload < sstr_t > (css_ext_);
     modulo_level ();
     Disenable ();
     level_.enable (false);
@@ -324,7 +324,7 @@ bool css_t :: TransferDataToWindow ()
 bool css_t :: TransferDataFromWindow ()
 {	if (invalid ()) return false;	
     trans_ = v_;
-    css_ext_ = homme_.acquire ();
+    homme_.acquire < sstr_t > (css_ext_);
     return true; }
 
 bool css_t :: create_panel (wxWindow *mummy, wxWindowID id, const wxPoint& pos, const wxSize& size, long style)

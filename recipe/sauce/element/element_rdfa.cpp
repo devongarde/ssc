@@ -38,6 +38,7 @@ void element::verify_rdfa ()
             return a_.get_string (a_href);
         case elem_audio :
         case elem_embed :
+        case elem_fencedframe :
         case elem_iframe :
         case elem_img :
         case elem_source :

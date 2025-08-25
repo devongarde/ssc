@@ -1,4 +1,4 @@
--Y 1 -f ../toast/shadow/comment/comment.conf
+-Y 1 -7 original -f ../toast/shadow/comment/comment.conf
 
 PASS ../toast/shadow/comment/index.html
 2 naughty_lang

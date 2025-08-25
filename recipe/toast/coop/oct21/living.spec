@@ -1,4 +1,4 @@
--f ../toast/coop/oct21/living.conf
+-7 original -f ../toast/coop/oct21/living.conf
 
 PASS ../toast/coop/oct21/404.html
 12 bespoke_obsolete

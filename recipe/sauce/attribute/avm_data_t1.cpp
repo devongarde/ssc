@@ -85,7 +85,7 @@ hav_t havt_tbody [] =
     { { HTML_2_0, 0, HE_IE | HV_RFC_1942 | HV_NOT3 }, { XHTML_2_0 }, elem_tbody, a_bgcolour },
     { { HTML_2_0, HV_RFC_1942 | HV_NOT3 }, { XHTML_2_0 }, elem_tbody, a_char },
     { { HTML_2_0, HV_RFC_1942 | HV_NOT3}, { XHTML_2_0 }, elem_tbody, a_charoff },
-    { { HTML_5_2, HV_W3 }, { HTML_UNDEF }, elem_tbody, a_rowgroup },
+    { { HTML_5_2, HV_W3 }, { HTML_JUL25 }, elem_tbody, a_rowgroup },
     { { HTML_2_0, HV_RFC_1942 | HV_NOT3 }, { XHTML_2_0 }, elem_tbody, a_valign },
     HTML2_CLID_ATTRIBUTES (elem_tbody),
     STANDARD_HTMLS_4_5_ATTRIBUTES (elem_tbody),
@@ -104,7 +104,7 @@ hav_t havt_td [] =
     { { HTML_3_2, 0, HE_BESPOKE }, { XHTML_2_0 }, elem_td, a_background },
     { { HTML_2_0, 0, HE_IE }, { HTML_2_0 }, elem_td, a_bgcolour, EP_WX },
     { { HTML_4_0, HV_DEPRECATED4, HE_IE }, { XHTML_2_0 }, elem_td, a_bgcolour, EP_WX },
-    { { HTML_5_2, HV_W3 }, { HTML_UNDEF }, elem_td, a_cell },
+    { { HTML_5_2, HV_W3 }, { HTML_JUL25 }, elem_td, a_cell },
     { { HTML_2_0, HV_RFC_1942 }, { HTML_2_0 }, elem_td, a_char },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_td, a_char },
     { { HTML_2_0, HV_RFC_1942 }, { HTML_2_0 }, elem_td, a_charoff },
@@ -124,7 +124,12 @@ hav_t havt_td [] =
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_template [] =
-{   STANDARD_HTML5_ATTRIBUTES (elem_template),
+{   { { HTML_AUG25 }, { HTML_UNDEF }, elem_template, a_shadowrootmode },
+    { { HTML_AUG25 }, { HTML_UNDEF }, elem_template, a_shadowrootdelegatesfocus },
+    { { HTML_AUG25 }, { HTML_UNDEF }, elem_template, a_shadowrootclonable },
+    { { HTML_AUG25 }, { HTML_UNDEF }, elem_template, a_shadowrootserialisable },
+    { { HTML_AUG25 }, { HTML_UNDEF }, elem_template, a_shadowrootcustomelementregistry },
+    STANDARD_HTML5_ATTRIBUTES (elem_template),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
 hav_t havt_tendsto [] =

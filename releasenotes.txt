@@ -3,6 +3,13 @@ static site checker
 https://ssc.lu/
 (c) 2020-2025 Dylan Harris
 
+0.2.19
+- Living Standard August 2025
+- updated REL attribute validation
+- partial implementation of URI templates (see RFC 6570)
+- various bug fixes
+- underlying work
+
 0.2.18
 - Added censorship to shadowing
 - macos build supports signing

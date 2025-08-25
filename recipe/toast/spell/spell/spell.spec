@@ -1,4 +1,4 @@
--Y 1 -f ../toast/spell/spell/spell.conf
+-Y 1 -7 original -f ../toast/spell/spell/spell.conf
 
 PASS ../toast/spell/spell/case.html
 12 case

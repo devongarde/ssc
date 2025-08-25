@@ -1,4 +1,4 @@
--Y 1 -f ../toast/other/live/live.conf
+-Y 1 -7 original -f ../toast/other/live/live.conf
 
 PASS ../toast/other/live/plumbing/songlight.css
 0 html
@@ -20,6 +20,7 @@ PASS ../toast/other/live/index.html
 
 PASS ../toast/other/live/index.shtml
 180 css_version
+134 dinosaur
 197 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property
 203 bad_property bad_property bad_property
 212 bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property bad_property

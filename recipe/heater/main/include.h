@@ -62,8 +62,8 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 18
-#define VERSION_STRING "0.2.18"
+#define VERSION_RELEASE 19
+#define VERSION_STRING "0.2.19"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -597,6 +597,8 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define PR_TEL "tel"
 #define PR_URN "urn"
 
+#define UNKNOWN "(unknown)"
+
 #define WEBMENTION "webmention"
 #define SEP "."
 
@@ -634,6 +636,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define HEX DENARY "abcdefABCDEF"
 #define UPPERCASE "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 #define LOWERCASE "abcdefghijklmnopqrstuvwxyz"
+#define WHITESPACE " \n\t\r\f"
 #define ALPHABET UPPERCASE LOWERCASE
 #define ALPHANUMERIC ALPHABET DENARY
 #define ALPHADDD ALPHABET DDD
@@ -641,6 +644,7 @@ BOOST_STATIC_ASSERT (BOOST_MAJOR == 1);
 #define IDS ALPHADDD "_:"
 #define HYPHENATED ALPHANUMERIC "-"
 #define DOMAINNAME ALPHANUMERIC ".-_"
+#define URL_TEMPLATE_VAR ALPHANUMERIC "_%."
 #define TEL HEX "+*()-.#*_!~'[]/ "
 #define REAL SIGNEDDECIMAL "Ee"
 #define LINE_SEPARATORS "\n\r\f\v"

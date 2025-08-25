@@ -214,6 +214,8 @@
 ./ssc -f ../toast/other/CSS/css.conf
 ./ssc -f ../toast/other/dfn/dfn.conf
 ./ssc -f ../toast/other/dump/dump.conf
+./ssc -f ../toast/other/efficient/efficient.conf
+./ssc -f ../toast/other/efficient/ibefficient.conf
 ./ssc -f ../toast/other/ie/ie.conf
 ./ssc -f ../toast/other/ignore/ignore.conf
 ./ssc -f ../toast/other/incorrectness/incorrectness.conf
@@ -330,6 +332,8 @@
 ./ssc -f ../toast/type/lang/lang.conf
 ./ssc -f ../toast/type/metaname/metaname.conf
 ./ssc -f ../toast/type/mimetype/mimetype.conf
+./ssc -f ../toast/type/rel/rel.conf
+./ssc -f ../toast/type/rfc6570/rfc6570.conf
 ./ssc -f ../toast/type/sgml/sgml.conf
 ./ssc -f ../toast/type/url/url.conf
 ./ssc -f ../toast/w3/3663/w3.conf

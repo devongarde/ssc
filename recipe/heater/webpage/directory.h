@@ -81,7 +81,7 @@ public:
     ::boost::filesystem::path get_export_path (nitpick& nits, const ::std::string& item) const;
     ::boost::filesystem::path get_shadow_path () const; };
 
-bool has_extension (const ::std::string& name, const vstr_t& extensions);
+bool has_extension (const ::std::string& name, const sstr_t& extensions);
 bool is_css (const ::std::string& name);
 bool is_jsonld (const ::std::string& name);
 bool is_vtt (const ::std::string& name);

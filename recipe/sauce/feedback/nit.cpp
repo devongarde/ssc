@@ -81,8 +81,7 @@ void nit::reset (const nit& n)
     return res.str (); }
 
 bool ignore_this_slovenly_stuff (const e_nit code) noexcept
-{   if (! context.sloven ()) return false;
-    switch (code)
+{   switch (code)
     {   case nit_dl_ancestor :
         case nit_inserted_missing_closure :
         case nit_inserted_missing_parent :
@@ -92,7 +91,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case nit_use_quote_code :
         case nit_use_double_quote_code :
         case nit_wrong_parent :
-            return true;
+            return (context.analysis () == anal_original) && context.sloven ();
         default :
             return false; } }
 
@@ -171,6 +170,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_rfc_3986 : return "RFC 3986";
         case ed_rfc_3966 : return "RFC 3966";
         case ed_rfc_6265 : return "RFC 6265";
+        case ed_rfc_6570 : return "RFC 6570";
         case ed_rfc_7231 : return "RFC 7231";
         case ed_rfc_7234 : return "RFC 7234";
         case ed_rfc_8288 : return "RFC 8288";
@@ -262,7 +262,8 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_jsonld_1_1 : return "JSON-LD 1.1";
         case ed_doctype : return "Doctype Declarations";
         case ed_clacks : return "X-Clacks-Overhead";
-        case ed_vtt : return "Video Text Tracks"; }
+        case ed_vtt : return "Video Text Tracks";
+        case ed_rel : return "official rel registry"; }
     return "Unknown reference"; }
 
 ::std::string doc_ref (const e_doc doc)
@@ -329,6 +330,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_rfc_3986 : return "RFC 3986, Uniform Resource Identifier (URI): Generic Syntax";
         case ed_rfc_3966 : return "RFC 3966, The tel URI for Telephone Numbers";
         case ed_rfc_6265 : return "RFC 6265, HTTP State Management Mechanism";
+        case ed_rfc_6570 : return "RFC 6570, URI Template";
         case ed_rfc_7231 : return "RFC 7231, HTTP/1.1 Semantics and Content";
         case ed_rfc_7234 : return "RFC 7234, Hypertext Transfer Protocol (HTTP/1.1): Caching"; // plus https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
         case ed_rfc_8288 : return "RFC 8288, Web Linking";
@@ -393,5 +395,6 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_jsonld_1_1 : return "JSON-LD 1.1, July 2020";
         case ed_doctype : return "Doctype Declarations, July 2016, https://www.w3.org/QA/2002/04/valid-dtd-list.html";
         case ed_clacks : return "X-Clacks-Overhead / xclacksoverhead.org";
-        case ed_vtt : return "WebVTT: The Web Video Text Tracks Format, April 2019, https://www.w3.org/TR/webvtt1/"; }
+        case ed_vtt : return "WebVTT: The Web Video Text Tracks Format, April 2019, https://www.w3.org/TR/webvtt1/";
+        case ed_rel : return "official rel registry: existing rel values, https://microformats.org/"; }
     return "unknown reference"; }

@@ -1,4 +1,4 @@
--Y 1 -f ../toast/css/2.1/css.conf
+-Y 1 -7 original -f ../toast/css/2.1/css.conf
 
 PASS ../toast/css/2.1/css-1.css
 0 html

@@ -1,4 +1,4 @@
--Y 1 -f ../toast/css/5-cr/css.conf
+-Y 1 -7 original -f ../toast/css/5-cr/css.conf
 
 PASS ../toast/css/5-cr/css-4.css
 0 html

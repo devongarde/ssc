@@ -195,7 +195,12 @@ void element::examine_fieldset ()
 
 void element::examine_figcaption ()
 {   test_for_ancestral_role (gnp_role_bitset);
-    if ((node_.version ().is_5 ()) && (w3_minor_5 (node_.version ()) == 0))
+    if (node_.version () >= html_aug25)
+    {   if (! ancestral_elements_.test (elem_figure))
+            pick (nit_bad_ancestor, ed_50, "4.4.12 The figcaption element", es_error, ec_element, "<FIGCAPTION> must be a child of <FIGURE>");
+        else if (node_.has_previous () && node_.has_next ())
+            pick (nit_figcaption_middle, ed_50, "4.4.12 The figcaption element", es_error, ec_element, "<FIGCAPTION> must be the first or last child of <FIGURE>"); }
+    else if ((node_.version ().is_5 ()) && (w3_minor_5 (node_.version ()) == 0))
         if (node_.has_previous () && node_.has_next ())
             pick (nit_figcaption_middle, ed_50, "4.4.12 The figcaption element", es_error, ec_element, "<FIGCAPTION> must be the first or last child of <FIGURE>"); }
 
@@ -209,7 +214,7 @@ void element::examine_figure ()
                 if (is_standard_element (tag) && ! c -> node_.is_closure ())
                 {   if (tag != elem_figcaption)
                     {   if (last_was_fig)
-                            pick (nit_figcaption_first_last, ed_50, "4.4.11 The figure element", es_error, ec_element, "<FIGCAPTION> must be the first or last child of <FIGURE>");
+                            pick (nit_figcaption_first_last, ed_50, "4.4.11 The figure element", es_error, ec_element, "<FIGCAPTION>, if used, must be the first or last child of <FIGURE>");
                         last_was_fig = false; }
                     else if (had_figcaption)
                         pick (nit_too_many_figcaption, ed_50, "4.4.11 The figure element", es_error, ec_element, "<FIGURE> can only have one child <FIGCAPTION>");
@@ -282,7 +287,7 @@ void element::examine_form ()
         {   check_ancestors (elem_form, element_bitset (elem_form));
             if ((node_.version () >= html_jan19) && a_.good (a_accept_charset))
             {   auto v = a_.get_x < attr_acceptcharset > ();
-                if (v.size () != 1) pick (nit_form_charset, ed_jul20, "4.10.3 The form element", es_error, ec_attribute, "ACCEPT-CHARSET, if present, must be set to 'utf-8' only");
+                if (v.size () != 1) pick (nit_form_charset, ed_jul20, "4.10.3 The form element", es_error, ec_attribute, "ACCEPT-CHARSET, if present, can only be set to 'utf-8'");
                 else
                 {   auto cs = v.at (0);
                     if (cs != cs_utf_8) pick (nit_form_charset, ed_jul20, "4.10.3 The form element", es_error, ec_attribute, "ACCEPT-CHARSET, if present, must be set to 'utf-8'"); } }
@@ -308,7 +313,30 @@ void element::examine_form ()
 void element::examine_h123456 ()
 {   if (node_.version ().mjr () < 5) return;
     check_ancestors (tag (), empty_element_bitset | elem_address | elem_dt);
-    if (node_.version () < html_jan08)
+    if (node_.version () >= html_aug25)
+    {   switch (tag ())
+        {   case elem_h2 :
+                if (previous_h_ == elem_none)
+                    pick (nit_h1_h6, ed_aug25, "4.3.11 Headings and outlines", es_info, ec_element, "<H2> should really be a descendent of <H1>, not <", elem::name (previous_h_), ">");
+                break;
+            case elem_h3 :
+                if ((previous_h_ == elem_none) || (previous_h_ == elem_h1))
+                    pick (nit_h1_h6, ed_aug25, "4.3.11 Headings and outlines", es_info, ec_element, "<H3> should really be a descendant of <H2>, not <", elem::name (previous_h_), ">");
+                break;
+            case elem_h4 :
+                if ((previous_h_ == elem_none) || (previous_h_ == elem_h1) || (previous_h_ == elem_h2))
+                    pick (nit_h1_h6, ed_aug25, "4.3.11 Headings and outlines", es_info, ec_element, "<H4> should really be a descendant of <H3>, not <", elem::name (previous_h_), ">");
+                break;
+            case elem_h5 :
+                if ((previous_h_ == elem_none) || ((previous_h_ >= elem_h1) && (previous_h_ <= elem_h3)))
+                    pick (nit_h1_h6, ed_aug25, "4.3.11 Headings and outlines", es_info, ec_element, "<H5> should really be a descendant of <H4>, not <", elem::name (previous_h_), ">");
+                break;
+            case elem_h6 :
+                if ((previous_h_ == elem_none) || ((previous_h_ >= elem_h1) && (previous_h_ <= elem_h4)))
+                    pick (nit_h1_h6, ed_aug25, "4.3.11 Headings and outlines", es_info, ec_element, "<H6> should really be a descendant of <H5>, not <", elem::name (previous_h_), ">");
+                break; }
+        previous_h_ = tag (); }
+    else if (node_.version () < html_jan08)
         check_descendants (tag (), empty_element_bitset | elem_faux_asp | elem_faux_cdata | elem_faux_char | elem_faux_code | elem_faux_php | elem_faux_ssi | elem_faux_text, false); }
 
 void element::examine_header ()
@@ -321,12 +349,17 @@ void element::examine_header ()
             check_descendants (elem_header, empty_element_bitset | elem_header | elem_footer); } }
 
 void element::examine_hgroup ()
-{   if (node_.version () < html_jul13)
-    {   if (has_invalid_child (empty_element_bitset | elem_h1 | elem_h2 | elem_h3 | elem_h4 | elem_h5 | elem_h6))
-            pick (nit_bad_descendant, ed_jan10, "4.4.7 The hgroup element", es_error, ec_element, "<HGROUP> can only have <H1> ... <H6> children"); }
+{   if (node_.version () >= html_aug25)
+    {   if (has_invalid_child (empty_element_bitset | elem_h1 | elem_h2 | elem_h3 | elem_h4 | elem_h5 | elem_h6 | elem_script | elem_template | elem_p))
+            pick (nit_bad_descendant, ed_aug25, "4.3.7 The hgroup element", es_error, ec_element, "<HGROUP> can only have <SCRIPT>, <TEMPLATE>, <P>, or <H1> ... <H6> children");
+        if (! only_one_child_among (empty_element_bitset | elem_h1 | elem_h2 | elem_h3 | elem_h4 | elem_h5 | elem_h6))
+            pick (nit_bad_descendant, ed_aug25, "4.3.7 The hgroup element", es_error, ec_element, "<HGROUP> must have one, and only one, <H1> ... <H6> child"); }
     else if (node_.version () >= html_jul18)
     {   if (has_invalid_child (empty_element_bitset | elem_h1 | elem_h2 | elem_h3 | elem_h4 | elem_h5 | elem_h6 | elem_script | elem_template))
             pick (nit_bad_descendant, ed_jul20, "4.3.7 The hgroup element", es_error, ec_element, "<HGROUP> can only have <SCRIPT>, <TEMPLATE>, or <H1> ... <H6> children"); }
+    else if (node_.version () < html_jul13)
+    {   if (has_invalid_child (empty_element_bitset | elem_h1 | elem_h2 | elem_h3 | elem_h4 | elem_h5 | elem_h6))
+            pick (nit_bad_descendant, ed_jan10, "4.4.7 The hgroup element", es_error, ec_element, "<HGROUP> can only have <H1> ... <H6> children"); }
     else if (has_invalid_child (empty_element_bitset | elem_h1 | elem_h2 | elem_h3 | elem_h4 | elem_h5 | elem_h6 | elem_template))
         pick (nit_bad_descendant, ed_jul17, "4.3.7 The hgroup element", es_error, ec_element, "<HGROUP> can only have <TEMPLATE>, or <H1> ... <H6> children"); }
 
@@ -351,6 +384,11 @@ void element::examine_html ()
                 if (a_.known (a_manifest))
                     pick (nit_avoid_manifest, ed_52, "4.1.1 The html element", es_warning, ec_attribute, "MANIFEST is deprecated & should be avoided because application caches are doomed"); } } }
 
+void element::examine_html2 ()
+{   if (node_.version ().mjr () < 5) return;
+    if (has_invalid_child (empty_element_bitset | elem_head | elem_body))
+        pick (nit_bad_descendant, ed_aug25, "4.1.1 The html element", es_error, ec_element, "<HTML> can only have <HEAD> and <BODY> children"); }
+
 void element::examine_iframe ()
 {   if (node_.version ().mjr () < 5) return;
     test_for_ancestral_role (adiinp_role_bitset);
@@ -366,9 +404,9 @@ void element::examine_iframe ()
         check_extension_compatibility (nits (), node_.version (), vu, MIME_PAGE); }
     else
     {   if (a_.known (a_itemprop))
-            pick (nit_bad_iframe, ed_jul20, "4.8.5 The iframe element", es_error, ec_attribute, "a valid SRC is required when ITEMPROP is used with <IFRAME>");
+            pick (nit_bad_iframe, ed_jul20, "4.8.5 The iframe element", es_error, ec_attribute, "a valid SRC is required when ITEMPROP is used with <FENCEDFRAME> or <IFRAME>");
         if (! a_.known (a_srcdoc))
-            pick (nit_chocolate_teapot, es_info, ec_attribute, "Not sure what use <IFRAME> is without a valid SRC or SRCDOC"); } }
+            pick (nit_chocolate_teapot, es_info, ec_attribute, "Not sure what use <FENCEDFRAME> or <IFRAME> is without a valid SRC or SRCDOC"); } }
 
 void element::examine_image ()
 {   if (a_.known (a_name))

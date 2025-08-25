@@ -459,6 +459,10 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
     {   nits.pick (nit_html_unknown_sgml, es_error, ec_parser, content.substr (0, doctype_len), " is not understood by " PROG);
         return true; }
     bool found_html = false;
+    bool found_jan05 = false;
+    bool found_math = false;
+    bool found_svg = false;
+    bool found_xhtml = false;
     bool found_public = false;
     bool found_system = false;
     bool found_unknown = false;
@@ -495,19 +499,19 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                     break;
                 case doc_math1 :
                     if (note_parsed_version (nits, nit_math, html_4_0, "HTML 4.0 with MathML 1"))
-                    {   set_ext2 (H2_MATH_1); found_html = true; }
+                    {   set_ext2 (H2_MATH_1); found_math = found_html = true; }
                     break;
                 case doc_math2 :
                     if (note_parsed_version (nits, nit_math, xhtml_1_0, "XHTML 1.0 with MathML 2"))
-                    {   set_ext2 (H2_MATH_2); found_html = true; }
+                    {   set_ext2 (H2_MATH_2); found_math = found_html = true; }
                     break;
                 case doc_math3 :
                     if (note_parsed_version (nits, nit_math, html_5_0, "HTML 5.0 with MathML 3"))
-                    {   set_ext2 (H2_MATH_3); found_html = true; }
+                    {   set_ext2 (H2_MATH_3); found_math = found_html = true; }
                     break;
                 case doc_math4 :
                     if (note_parsed_version (nits, nit_math, html_apr21, "Living Standard (April 2021) with MathML 4"))
-                    {   set_ext2 (H2_MATH_4); found_html = true; }
+                    {   set_ext2 (H2_MATH_4); found_math = found_html = true; }
                     break;
                 case doc_html_aria :
                     if (note_parsed_version (nits, nit_html_4_01, html_4_1, "HTML 4.01 + ARIA 1.0"))
@@ -515,35 +519,38 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                     break;
                 case doc_svg10 :
                     if (note_parsed_version (nits, nit_svg, xhtml_svg_1_0, "HTML 4.00 with SVG 1.0"))
-                    {   svg_version (sv_1_0); found_html = true; }
+                    {   svg_version (sv_1_0); found_svg = found_html = true; }
                     break;
                 case doc_svg11 :
                     if (note_parsed_version (nits, nit_svg, xhtml_svg_1_1, "XHTML 1.1 with SVG 1.1"))
-                    {   svg_version (sv_1_1); found_html = true; }
+                    {   svg_version (sv_1_1); found_svg = found_html = true; }
                     break;
                 case doc_svg20 :
                     if (note_parsed_version (nits, nit_svg, html_svg_2_0, "Living Standard (October 2018) with SVG 2.0"))
-                    {   svg_version (sv_2_0); found_html = true; }
+                    {   svg_version (sv_2_0); found_svg = found_html = true; }
                     break;
                 case doc_svg21 :
                     if (note_parsed_version (nits, nit_svg, html_svg_2_1, "Living Standard (October 2024) with SVG 2 (November 2024 draft)"))
-                    {   svg_version (sv_2_1); found_html = true; }
+                    {   svg_version (sv_2_1); found_svg = found_html = true; }
                     break;
                 case doc_compound_m :
                     if (note_parsed_version (nits, nit_math, html_version (XHTML_1_1, 0, 0, H2_MATH_2 | H2_CSS_2_1), "XHTML 1.1 with MathML 2"))
-                    {   set_ext2 (H2_MATH_2); math_version (math_2); found_html = true; }
+                    {   set_ext2 (H2_MATH_2); math_version (math_2); found_math = found_xhtml = found_html = true; }
                     break;
                 case doc_compound_1_0 :
                     if (note_parsed_version (nits, nit_math, html_version (XHTML_1_1, 0, HE_SVG_10, H2_MATH_2 | H2_CSS_2_1), "XHTML 1.1 with SVG 1.0 & MathML 2"))
-                    {   set_ext2 (H2_MATH_2); set_ext (HE_SVG_10); math_version (math_2); svg_version (sv_1_0); found_html = true; }
+                    {   set_ext2 (H2_MATH_2); set_ext (HE_SVG_10); math_version (math_2); svg_version (sv_1_0);
+                        found_math = found_svg = found_xhtml = found_html = true; }
                     break;
                 case doc_compound_1_1 :
                     if (note_parsed_version (nits, nit_math, html_version (XHTML_1_1, 0, HE_SVG_11, H2_MATH_2 | H2_CSS_2_1), "XHTML 1.1 with SVG 1.1 & MathML 2"))
-                    {   set_ext2 (H2_MATH_2); set_ext (HE_SVG_11); math_version (math_2); svg_version (sv_1_1); found_html = true; }
+                    {   set_ext2 (H2_MATH_2); set_ext (HE_SVG_11); math_version (math_2); svg_version (sv_1_1);
+                        found_math = found_svg = found_xhtml = found_html = true; }
                     break;
                 case doc_xhtml10_basic :
                     if (note_parsed_version (nits, nit_xhtml_1_0, xhtml_1_0, "XHTML 1.0 Basic")) set_flags (HV_BASIC);
                     if (::boost::algorithm::starts_with (s, "http")) set_flags (HV_XHTML_DTD);
+                    found_xhtml = true;
                     break;
                 case doc_xhtml10_strict_superseded :
                     nits.pick (nit_xhtml_superseded, ed_x1, "W3C Recommendation 26 January 2000, revised 1 August 2002", es_warning, ec_parser, "that strict XHTML 1.0 declaration was withdrawn before XHTML 1.0 was published");
@@ -551,6 +558,7 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                 case doc_xhtml10_strict :
                     if (note_parsed_version (nits, nit_xhtml_1_0, xhtml_1_0, "XHTML 1.0 Strict")) set_flags (HV_STRICT);
                     if (::boost::algorithm::starts_with (s, "http")) set_flags (HV_XHTML_DTD);
+                    found_xhtml = true;
                     break;
                 case doc_xhtml10_loose_superseded :
                     nits.pick (nit_xhtml_superseded, ed_x1, "W3C Recommendation 26 January 2000, revised 1 August 2002", es_warning, ec_parser, "that transitional XHTML 1.0 declaration was withdrawn before XHTML 1.0 was published");
@@ -558,6 +566,7 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                 case doc_xhtml10_loose :
                     if (note_parsed_version (nits, nit_xhtml_1_0, xhtml_1_0, "XHTML 1.0 Transitional")) set_flags (HV_TRANSITIONAL);
                     if (::boost::algorithm::starts_with (s, "http")) set_flags (HV_XHTML_DTD);
+                    found_xhtml = true;
                     break;
                 case doc_xhtml10_frameset_superseded :
                     nits.pick (nit_xhtml_superseded, ed_x1, "W3C Recommendation 26 January 2000, revised 1 August 2002", es_warning, ec_parser, "that XHTML 1.0 frameset declaration was withdrawn before XHTML 1.0 was published");
@@ -565,22 +574,27 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
                 case doc_xhtml10_frameset :
                     if (note_parsed_version (nits, nit_xhtml_1_0, xhtml_1_0, "XHTML 1.0 Frameset")) set_flags (HV_FRAMESET);
                     if (::boost::algorithm::starts_with (s, "http")) set_flags (HV_XHTML_DTD);
+                    found_xhtml = true;
                     break;
                 case doc_xhtml10_mobile :
                     if (note_parsed_version (nits, nit_xhtml_1_0, xhtml_1_0, "XHTML 1.0 Mobile")) set_flags (HV_BASIC);
                     if (::boost::algorithm::starts_with (s, "http")) set_flags (HV_XHTML_DTD);
+                    found_xhtml = true;
                     break;
                 case doc_xhtml11 :
                     note_parsed_version (nits, nit_xhtml_1_1, xhtml_1_1, "XHTML 1.1");
                     if (::boost::algorithm::starts_with (s, "http")) set_flags (HV_XHTML_DTD);
+                    found_xhtml = true;
                     break;
                 case doc_xhtml2 :
                     note_parsed_version (nits, nit_xhtml_2_0, xhtml_2, "XHTML 2.0");
                     if (::boost::algorithm::starts_with (s, "http")) set_flags (HV_XHTML_DTD);
+                    found_xhtml = true;
                     break;
                 case doc_jan05 :
                     nits.pick (nit_draft_html_5, ed_jan05, "", es_warning, ec_parser, PROG " cannot properly process pre-draft HTML 5");
                     note_parsed_version (nits, nit_draft_html_5, html_jan05, "Web Apps Jan 2005");
+                    found_jan05 = true;
                     break;
                 case doc_html5 :
                     note_parsed_version (nits, nit_html_5_0, html_5_0, "HTML 5");
@@ -698,6 +712,9 @@ bool html_version::parse_doctype (nitpick& nits, const::std::string& content)
             note_parsed_version (nits, wit, vvv, ver);
             if (found_public)
                 nits.pick (nit_public_unexpected, es_warning, ec_parser, "PUBLIC is unexpected"); }
+        else if (mjr () >= 5) 
+        {   if (found_public && ! (found_jan05 || found_math || found_svg || found_xhtml))
+                nits.pick (nit_public_unexpected, es_info, ec_parser, "PUBLIC is unexpected"); }
         else
         {   if (! found_public && ! found_system)
                 if ((mjr () > 1) || ((mjr () == 1) && (mnr ()== 1)))
@@ -991,6 +1008,7 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
     else if (compare_css (H2_CSS_5, H3_CSS_5, H4_CSS_5, e2, e3, e4)) res = big_small_start (b, "5", "level 5");
     else if (compare_css (H2_CSS_4, H3_CSS_4, H4_CSS_4, e2, e3, e4)) res = big_small_start (b, "4", "level 4");
     else if (compare_css (H2_CSS_3, H3_CSS_3, H4_CSS_3, e2, e3, e4)) res = big_small_start (b, "3", "level 3");
+    else if (compare_css (H2_CSS_LS_AUG25, H3_CSS_LS_AUG25, H4_CSS_LS_AUG25, e2, e3, e4)) res = big_small_start (b, "HTML5", "HTML5 CSS");
     else if (compare_css (H2_CSS_2024_3, H3_CSS_2024_3, H4_CSS_2024_3, e2, e3, e4)) res = big_small_start (b, "24+++", "2024+++ snapshot");
     else if (compare_css (H2_CSS_2024_2, H3_CSS_2024_2, H4_CSS_2024_2, e2, e3, e4)) res = big_small_start (b, "24++", "2024++ snapshot");
     else if (compare_css (H2_CSS_2024_1, H3_CSS_2024_1, H4_CSS_2024_1, e2, e3, e4)) res = big_small_start (b, "24+", "2024+ snapshot");
@@ -1051,6 +1069,7 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
     res += single_feature (res, b, "Fra", "Fragmentation", ext2_, e2, H2_CSS_FRAG_3, H2_CSS_FRAG_4);
     res += single_feature (res, b, "Grd", "Grid", ext3_, e3, H3_CSS_GRID_3, H3_CSS_GRID_4);
     res += single_feature (res, b, "HiL", "Custom Highlight", ext3_, e3, H3_CSS_HIGHLIGHT);
+    res += single_feature (res, b, "HTM", "HTML5 Living Standard", ext4_, e4, H4_CSS_LIVING_STANDARD);
     res += single_feature (res, b, "Img", "Images", ext3_, e3, H3_CSS_IMAGE_4, H3_CSS_IMAGE_3);
     res += single_feature (res, b, "Inl", "Inline Layout", ext3_, e3, H3_CSS_INLINE);
     res += single_feature (res, b, "LnG", "Lists and Counters", ext3_, e3, H3_CSS_LINE_GRID);
@@ -1076,6 +1095,7 @@ bool html_version::compare_css (const flags_t e2, const flags_t e3, const flags_
     res += single_feature (res, b, "Reg", "Regions", ext3_, e3, H3_CSS_REGION);
     res += single_feature (res, b, "Rhy", "Rhythmic Sizing", ext3_, e3, H3_CSS_RHYTHM);
     res += single_feature (res, b, "Rub", "Ruby Annotation", ext3_, e3, H3_CSS_RUBY);
+    res += single_feature (res, b, "Sco", "Scope", ext3_, e3, H3_CSS_SCOPE);
     res += single_feature (res, b, "Scr", "Scrollbar Style", ext3_, e3, H3_CSS_SCROLLBAR);
     res += single_feature (res, b, "Sel", "Selectors", ext2_, e2, H2_CSS_SELECTOR_3, H2_CSS_SELECTOR_4);
     res += single_feature (res, b, "Sha", "Shadow Parts", ext3_, e3, H3_CSS_SHADOW);
@@ -1249,6 +1269,10 @@ void html_version::css_version (const e_css_version v) noexcept
         case css_2025_3 :   set_ext2 (H2_CSS_2025 | H2_CSS_2025_1 | H2_CSS_2025_2 | H2_CSS_2025_3);
                             set_ext3 (H3_CSS_2025 | H3_CSS_2025_1 | H3_CSS_2025_2 | H3_CSS_2025_3);
                             set_ext4 (H4_CSS_2025 | H4_CSS_2025_1 | H4_CSS_2025_2 | H4_CSS_2025_3);
+                            break;
+        case css_ls_aug25 : set_ext2 (H2_CSS_LS_AUG25);
+                            set_ext3 (H3_CSS_LS_AUG25);
+                            set_ext4 (H4_CSS_LS_AUG25);
                             break;
         default :           break; }
     set_ext4 (H4_CSS_VER_MASK, v, H4_CSS_VER_SHIFT); }
@@ -1788,6 +1812,14 @@ template < > int html_version::get_level < c_list_counter > () const
 template < > void html_version::set_level < c_list_counter > (const int n)
 {   if (n == 3) set_ext3 (H3_CSS_LIST);
     else reset_ext3 (H3_CSS_LIST); }
+
+template < > int html_version::get_level < c_living_standard > () const
+{   if (any_ext4 (H4_CSS_LIVING_STANDARD)) return 3;
+    return 0; }
+
+template < > void html_version::set_level < c_living_standard > (const int n)
+{   if (n == 3) set_ext4 (H4_CSS_LIVING_STANDARD);
+    else reset_ext4 (H4_CSS_LIVING_STANDARD); }
 
 template < > int html_version::get_level < c_logical_property > () const
 {   if (any_ext3 (H3_CSS_LOGIC)) return 3;
@@ -2417,4 +2449,5 @@ bool has_css_crossover (const e_css_version c, const html_version& lhs, const ht
         case css_2025_1 : return has_css_crossover (lhs, rhs, H2_CSS_2025_1, H3_CSS_2025_1, H4_CSS_2025_1);
         case css_2025_2 : return has_css_crossover (lhs, rhs, H2_CSS_2025_2, H3_CSS_2025_2, H4_CSS_2025_2);
         case css_2025_3 : return has_css_crossover (lhs, rhs, H2_CSS_2025_3, H3_CSS_2025_3, H4_CSS_2025_3);
+        case css_ls_aug25 : return has_css_crossover (lhs, rhs, H2_CSS_LS_AUG25, H3_CSS_LS_AUG25, H4_CSS_LS_AUG25);
         default : return false; } } 

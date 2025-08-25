@@ -1,4 +1,4 @@
--Y 1 -f ../toast/type/sgml/sgml.conf
+-Y 1 -7 original -f ../toast/type/sgml/sgml.conf
 
 PASS ../toast/type/sgml/index.html
 2 naughty_lang

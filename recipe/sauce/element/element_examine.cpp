@@ -51,9 +51,10 @@ void element::pre_examine_element ()
         case elem_fecomponenttransfer : examine_fecomponenttransfer (); break;
         case elem_fecomposite : examine_fecomposite (); break;
         case elem_feconvolvematrix : examine_feconvolvematrix (); break;
+        case elem_fencedframe :
+        case elem_iframe : examine_iframe (); break;
         case elem_fn : examine_fn (); break;
         case elem_html : examine_html (); break;
-        case elem_iframe : examine_iframe (); break;
         case elem_li : examine_li (); break;
         case elem_link : examine_link (); break;
         case elem_main : examine_main (); break;
@@ -167,13 +168,14 @@ void element::post_examine_element ()
         case elem_slot :
         case elem_template : test_no_role_no_aria (); break;
         case elem_header : examine_header (); break;
+        case elem_html : examine_html2 (); break;
         case elem_img : examine_img (); break;
         case elem_input : examine_input (); break;
         case elem_interval : if (node_.version ().math () <= math_1) break;
              FALLTHROUGH;
         case elem_piece :   check_math_children (2); break;
         case elem_label : examine_label (); break;
-        case elem_legend : test_no_role (); break;
+        case elem_legend : examine_legend (); break;
         case elem_math : examine_math (); break;
         case elem_menu : examine_menu (); break;
         case elem_menubar : examine_menubar (); break;
@@ -196,6 +198,7 @@ void element::post_examine_element ()
         case elem_nav : examine_nav (); break;
         case elem_noscript : examine_noscript (); break;
         case elem_object : examine_object (); break;
+        case elem_ol : examine_ol (); break;
         case elem_option : examine_option (); break;
         case elem_output : examine_output (); break;
         case elem_piecewise : examine_piecewise (); break;
@@ -211,6 +214,7 @@ void element::post_examine_element ()
         case elem_td : examine_td (); break;
         case elem_th : examine_th (); break;
         case elem_time : examine_time (); break;
+        case elem_ul : examine_ul (); break;
         case elem_video : examine_video (); break;
         default : break; } }
 
@@ -270,13 +274,16 @@ void element::congeal_dynamism ()
                     pick (nit_missing_dynamic, es_catastrophic, ec_element, "missing dynamic congeal for ", node_.id ().name ());
                     break;  } }
 
-void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, const attribute_bitset& ancestral_attributes, const attribute_bitset& sibling_attributes, const role_bitset& ancestral_roles, const flags_t parental_flags)
+void element::examine_self (
+        const lingo& l, const itemscope_ptr& itemscope, const attribute_bitset& ancestral_attributes, const attribute_bitset& sibling_attributes,
+        const role_bitset& ancestral_roles, const flags_t parental_flags, const e_element previous_h)
 {   if (examined_) return;
     flags_t flags (parental_flags);
     ancestral_attributes_ = ancestral_attributes;
     ancestral_roles_ = ancestral_roles;
     sibling_attributes_ = sibling_attributes;
     itemscope_ = itemscope;
+    previous_h_ = previous_h;
     lingo lang (l);
     const e_element tag = node_.tag ();
     if (! node_.is_closure ())
@@ -298,6 +305,7 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
                         node_.nits ().merge (nuts); } }
             break;
         case elem_faux_cdata :
+            only_parents ();
             if ((flags & EP_NOSPELL) == 0)
                 if (! ancestral_elements_.test (elem_style) && ! ancestral_elements_.test (elem_script))
                     page_ -> phrasal (lang, text ());
@@ -306,15 +314,16 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
             page_ -> phrasal (nits (), node_.version ());
             break;
         case elem_faux_char :
+            only_parents ();
             if ((flags & EP_NOSPELL) == 0)
                 if (! ancestral_elements_.test (elem_style) && ! ancestral_elements_.test (elem_script))
                     page_ -> phrasal (lang, text (true));
             break;
+        case elem_faux_code :
+            only_parents ();
+            break;
         case elem_faux_text :
-            PRESUME (node_.has_parent (), __FILE__, __LINE__);
-            if (node_.version () >= html_2)
-                if ((elem :: flags (node_.parent ().tag ()) & EP_ONLYELEMENTS) == EP_ONLYELEMENTS)
-                    pick (nit_only_elements, es_warning, ec_element, "<", elem :: name (node_.parent ().tag ()), "> can only contain elements, not text.");
+            only_parents ();
             if ((flags & EP_NOSPELL) == 0)
                 if (! ancestral_elements_.test (elem_style) && ! ancestral_elements_.test (elem_script))
                 {   ::std::string t (text (true));
@@ -455,9 +464,9 @@ void element::examine_self (const lingo& l, const itemscope_ptr& itemscope, cons
                 if (a_.known (a_class)) postprocess = examine_class (lang);
                 if (a_.known (a_line_increment)) examine_line_increment ();
 
-                if (context.microformats ())
-                {   if (a_.known (a_rel)) examine_rel (a_.get_string (a_rel), lang);
-                    if (a_.known (a_rev)) examine_rel (a_.get_string (a_rev), lang); }
+                if (context.microformats () || (context.analysis () >= anal_aug25))
+                {   if (a_.known (a_rel)) examine_rel (a_.get_string (a_rel), lang, "REL");
+                    if (a_.known (a_rev)) examine_rel (a_.get_string (a_rev), lang, "REV"); }
 
                 test_compatible_ancestral_role (); } }
 
@@ -490,9 +499,11 @@ void element::examine_children (const flags_t flags, const lingo& lang)
     {   attribute_bitset ancestral_attributes, sibling_attributes;
         role_bitset ancestral_roles;
         itemscope_ptr itemscope;
+        e_element previous_h = previous_h_;
         if (tag () == elem_template)
         {   ancestral_attributes = own_attributes_;
-            ancestral_roles = role_bitset (); }
+            ancestral_roles = role_bitset ();
+            previous_h = elem_none; }
         else
         {   ancestral_attributes = ancestral_attributes_;
             ancestral_roles = ancestral_roles_;
@@ -500,7 +511,7 @@ void element::examine_children (const flags_t flags, const lingo& lang)
         VERIFY_NOT_NULL (child_, __FILE__, __LINE__);
         for (element* p = child_; p != nullptr; p = p -> sibling_)
         {   p -> reconstruct (access_);
-            p -> examine_self (lang, itemscope, ancestral_attributes, sibling_attributes, ancestral_roles, flags);
+            p -> examine_self (lang, itemscope, ancestral_attributes, sibling_attributes, ancestral_roles, flags, previous_h);
             if (p -> node_.is_closure ())
                 closure_uid_ = p -> uid_;
             else
@@ -509,6 +520,7 @@ void element::examine_children (const flags_t flags, const lingo& lang)
                 {   descendant_attributes_ |= p -> descendant_attributes_;
                     descendant_attributes_ |= p -> own_attributes_;
                     descendant_roles_ |= p -> descendant_roles_;
+                    previous_h = previous_h_ = p -> previous_h_;
                     if (a_.known (a_role) && a_.good (a_role))
                         for (auto r : a_.get_ints (a_role))
                             descendant_roles_ |= static_cast < e_aria_role > (r); } } }
@@ -685,3 +697,29 @@ bool element::family_uids (const e_element e, uid_t& from, uid_t& to) const
         default :
             return text (); }
     return ::std::string (); }
+
+void element::only_parents ()
+{    PRESUME (node_.has_parent (), __FILE__, __LINE__);
+    if (node_.version () >= html_2)
+        if ((elem :: flags (node_.parent ().tag ()) & EP_ONLYELEMENTS) == EP_ONLYELEMENTS)
+            pick (nit_only_elements, es_warning, ec_element, "<", elem :: name (node_.parent ().tag ()), "> can only contain elements, not characters."); }
+
+void element::only_elements ()
+{   if (node_.version () >= html_2)
+        if (has_child ())
+        {   const element_bitset horrid = empty_element_bitset | elem_faux_cdata | elem_faux_char | elem_faux_code | elem_faux_text;
+            for (element* c = child_; c != nullptr; c = c -> sibling_)
+                if (! c -> node_.is_closure ())
+                    if (horrid.test (c -> tag ()))
+                        c -> pick (nit_only_elements, es_warning, ec_element, "<", elem :: name (node_.tag ()), "> can only contain elements, not text."); } }
+
+bool element::has_only_immediate_descendents (const element_bitset& gf, const element_bitset& ignore) const
+{   if (has_child ())
+        for (element* p = child_; p != nullptr; p = p -> sibling_)
+            if (! p -> node_.is_closure ())
+                if (! gf.test (p -> tag ()))
+                    if (! ignore.test (p -> tag ()))
+                        return false;
+    return true; }
+
+

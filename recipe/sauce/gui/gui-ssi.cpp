@@ -165,7 +165,7 @@ void ssi_t :: save_to_context (nitpick& nits, context_t& c) const
     c.ssi_doc_args (nits, args_.text_.value_);
     c.ssi_echomsg (nits, echomsg_.text_.value_);
     c.ssi_errmsg (nits, errmsg_.text_.value_);
-    c.ssi_query_string (nits, query_.text_.value_);;
+    c.ssi_query_string (nits, query_.text_.value_);
     c.ssi_timefmt (nits, timefmt_.text_.value_);
     c.ssi_user_name (nits, user_.text_.value_); }
 

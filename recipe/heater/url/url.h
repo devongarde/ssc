@@ -33,7 +33,7 @@ class url
     protocol protocol_;
     parameters params_;
     html_version v_;
-    static vstr_t standard_image_extensions_, standard_text_extensions_;
+    static sstr_t standard_image_extensions_, standard_text_extensions_;
     mutable bool ref_ = false, rc_ = false;
     void parse (nitpick& nits, const html_version& v, const ::std::string& url, const e_protocol current);
     void clear () noexcept
@@ -41,6 +41,8 @@ class url
         swap (e); }
     void set (nitpick& nits, const html_version& v, const ::std::string& u, const e_protocol current)
     {   parse (nits, v, u, current); }
+    bool process_url_template (nitpick& nits, const html_version& v, ::std::string& s);
+    bool process_url_templates (nitpick& nits, const html_version& v, ::std::string& s);
 public:
     url () noexcept : valid_ (true), current_ (pr_https) { }
     DEFAULT_COPY_CONSTRUCTORS (url);
@@ -112,13 +114,14 @@ public:
     ::std::string fragment () const { return get_component (es_fragment); }
     ::std::string filename () const { return get_component (es_file); }
     ::std::string extension () const { return get_component (es_extension); }
+    ::std::string temple () const { return get_component (es_template); }
     ::std::string original () const { return protocol_.original (); }
     ::std::string get () const
     {   if (invalid ()) return ::std::string ();
         return protocol_.get (); }
     ::std::string absolute (const bool can_use_index = false, const bool force = false) const
     {   if (invalid ()) return ::std::string ();
-        if (! is_local ()) return protocol_.original ();
+        if (! is_local ()) return protocol_.get_component (es_template);
         return protocol_.absolute (can_use_index, force); }
     ::std::string webpage () const { return get_component (es_authority); }
     ::std::string path () const { return get_component (es_path); }

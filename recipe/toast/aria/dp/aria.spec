@@ -1,4 +1,4 @@
--Y 1 -f ../toast/aria/dp/aria.conf
+-Y 1 -7 original -f ../toast/aria/dp/aria.conf
 
 PASS ../toast/aria/dp/index.html
 0 charset_mismatch charset_used charset_invalid
@@ -7,10 +7,8 @@ PASS ../toast/aria/dp/index.html
 64 url_not_found
 88 only_elements
 115 use_quote_code
-125 role_missing
 129 id_exists
-139 role_missing
-141 only_elements role_missing
+141 only_elements role_conflict
 147 only_elements
 155 only_elements
 168 url_not_found
@@ -23,8 +21,7 @@ PASS ../toast/aria/dp/index.html
 204 only_elements
 207 bad_role
 213 bad_role
-253 role_missing
-254 role_missing
+254 role_conflict
 257 only_elements
 273 unrecognised_value
 274 url_not_found

@@ -1,4 +1,4 @@
--Y 1 -f ../toast/stats/detail/stats-class.conf
+-Y 1 -7 original -f ../toast/stats/detail/stats-class.conf
 
 PASS ../toast/stats/detail/extra.html
 14 unrecognised_value
@@ -19,7 +19,6 @@ PASS ../toast/stats/detail/keyword-1.html
 PASS ../toast/stats/detail/keyword-2.html
 2 naughty_lang
 17 role_missing
-20 role_missing
 21 role_missing
 22 role_missing
 23 role_missing

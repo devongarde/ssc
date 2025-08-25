@@ -42,7 +42,8 @@ void attributes_node::report_invalid (nitpick& nits, const html_version& v, cons
             nits.pick (nit_bad_wild, ed_jan21, "4.8.6 The embed element ", es_error, ec_attribute, quote(s), ": parameters may not contain upper case letters");
         else nits.pick (nit_wild_attribute, ed_jan21, "4.8.6 The embed element ", es_info, ec_attribute, quote (s), " noted");
     else if (known) nits.pick (nit_attribute_unrecognised_here, es_warning, ec_attribute, "attribute ", quote (s), " is unrecognised here (", v.report (), ")");
-        else nits.pick (nit_attribute_unrecognised, es_warning, ec_attribute, "attribute ", quote (s), " is unrecognised (", v.report (), ")"); }
+    else if ((box_ == nullptr) || context.custom_elements ().empty () || ((box_ -> tag () >= first_element_tag) && (box_ -> tag () < last_element_tag)))
+        nits.pick (nit_attribute_unrecognised, es_warning, ec_attribute, "attribute ", quote (s), " is unrecognised (", v.report (), ")"); }
 
 void attributes_node::push_back_and_report (nitpick& nits, const html_version& v, sstr_t& keyed, const ::std::string::const_iterator name_start, const ::std::string::const_iterator name_end,
                                             const ::std::string::const_iterator value_start, const ::std::string::const_iterator value_end, const elem& el, const bool normal)

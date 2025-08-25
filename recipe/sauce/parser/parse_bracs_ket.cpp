@@ -1,4 +1,4 @@
-/*
+﻿/*
 ssc (static site checker)
 Copyright (c) 2020-2025 Dylan Harris
 https://dylanharris.org/
@@ -115,10 +115,10 @@ void check_character (nitpick& nits, const html_version& v, const ::std::string:
 {   if (v >= html_4_0)
     {   switch (*i)
         {   case '\'' :
-                nits.pick (nit_use_quote_code, ed_4, "24 Character entity references in HTML 4.0", es_info, ec_parser, "consider using character codes for single quotes / apostrophes (e.g. '&lsquo;', '&rsquo;', etc.)");
+                nits.pick (nit_use_quote_code, ed_4, "24 Character entity references in HTML 4.0", es_info, ec_parser, "consider replacing single quotes and apostrophes with character codes (e.g. '&lsquo;', '&rsquo;', etc.)");
                 return;
             case '"' :
-                nits.pick (nit_use_double_quote_code, ed_4, "24 Character entity references in HTML 4.0", es_info, ec_parser, "consider using character codes for double quotes (e.g. '&ldquo;', '&rdquo;', etc.)");
+                nits.pick (nit_use_double_quote_code, ed_4, "24 Character entity references in HTML 4.0", es_info, ec_parser, "consider replacing double quotes with the <Q> element, or with character codes (e.g. '&ldquo;', '&rdquo;', etc.)");
                 return;
             case '`' :
                 if (v >= html_jul10)
@@ -150,8 +150,8 @@ void check_character (nitpick& nits, const html_version& v, const ::std::string:
             nits.pick (nit_encode, ed_jan21, "13.5 Named character references", es_comment, ec_parser, "consider using named character references for non-ASCII characters"); } }
 
 // this parser is horrid, and, worse, it works
-html_version bracs_ket::parse (const ::std::string& content)
-{   html_version res;
+html_version bracs_ket::parse (const ::std::string& content, const html_version& v0)
+{   html_version res (v0);
     e_statemachine status = s_start;
     ::std::string linelog;
     const ::std::string::const_iterator b = content.begin ();
@@ -369,7 +369,6 @@ html_version bracs_ket::parse (const ::std::string& content)
                 if (context.tell (es_all)) form_.pick (nit_all, es_all, ec_parser, "s_amper ", ch);
                 switch (ch)
                 {   case '#' :  status = s_hash; break;
-//                    case ' ' :  break;
                     case '<' :  mixed_mess (nits, b, e, i, elmt, ccnu);
                                 status = s_open; soe = twas = i; break;
                     case ';' :  nits.pick (nit_empty_character_code, es_info, ec_parser, "empty character code");
@@ -868,7 +867,11 @@ html_version bracs_ket::parse (const ::std::string& content)
                                     if (context.tell (es_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_text ", quoted_limited_string (::std::string (text, twas), 30));
                                     nits.reset (); }
                                 nits.set_context (line_, b, e, soe, i+1);
-                                if ((i > eofe) && (*(i-1) == '/')) ve_.emplace_back (nits, line_, collect, eofe, i-1, closure, true);
+                                if ((i > eofe) && (*(i-1) == '/') && (res >= xhtml_1_0))
+                                {   if ((context.analysis () != anal_original) && ! res.xhtml ())
+                                    {   nits.pick (nit_slash_gt, es_warning, ec_parser, "\"/>\" encountered on a non-XHTML page; some software may treat it as a closure");
+                                        ve_.emplace_back (nits, line_, collect, eofe, i, closure, false); }
+                                    else ve_.emplace_back (nits, line_, collect, eofe, i-1, closure, true); }
                                 else ve_.emplace_back (nits, line_, collect, eofe, i, closure, true);
                                 if (context.tell (es_all)) form_.pick (nit_all, es_all, ec_parser, "emplace bk_node ", quoted_limited_string (::std::string (collect, i), 30));
                                 nits.reset ();

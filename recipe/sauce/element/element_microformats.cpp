@@ -161,6 +161,7 @@ bool element::amend_text_value (const html_version& v, const ::std::string& s)
             break;
         case elem_audio :
         case elem_source :
+        case elem_fencedframe :
         case elem_iframe :
         case elem_img :
             if (a_.known (a_src)) return a_.get_string (a_src);
@@ -196,6 +197,7 @@ bool element::amend_url_value (const html_version& v, const ::std::string& s)
             break;
         case elem_audio :
         case elem_source :
+        case elem_fencedframe :
         case elem_iframe :
         case elem_img :
             if (a_.known (a_src)) return a_.set_value (nits, v, a_src, s);

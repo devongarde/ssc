@@ -1,15 +1,15 @@
-<!--#include virtual="../plumbing/html.inc" -->
-<!--#include virtual="../plumbing/var.inc" --><!--#include virtual="../plumbing/varargs.inc" -->
+<!--#include virtual="/plumbing/html.inc" -->
+<!--#include virtual="/plumbing/var.inc" -->
 <!--#set var="title" value="command line arguments" -->
 <title>
 <!--#echo encoding="none" var="title" -->
 </title>
-<!--#include virtual="../plumbing/header.inc" -->
-<!--#include virtual="../plumbing/blog-section.inc" -->
-<!--#include virtual="../plumbing/html-top-start.inc" -->
-<!--#include virtual="../plumbing/argle.inc" -->
-<!--#include virtual="../plumbing/html-top-end.inc" -->
-<!--#include virtual="../plumbing/blog-schema.inc" -->
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/blog-section.inc" -->
+<!--#include virtual="/plumbing/html-top-start.inc" -->
+<!--#include virtual="/plumbing/argle.inc" -->
+<!--#include virtual="/plumbing/html-top-end.inc" -->
+<!--#include virtual="/plumbing/blog-schema.inc" -->
 <data class="u-url u-uid" value="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->">
 </data>
 
@@ -38,7 +38,7 @@ you want it to do. Most switches are unnecessary except in particular circumstan
 <tr><td>-s&nbsp;our.internal</td> <td>the site is for the domain &lsquo;our.internal&rsquo;</td></tr>
 </table>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="../image/ssc-msgdb-new17-sp4.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-new17-sp4.jpg" title="made with studio artist 5.5">
 
 <h2>all arguments</h2>
 
@@ -77,7 +77,7 @@ Switches are documented as follows:
 <tr><td><a href="cmd.shtml">shell</a></td> <td>command line only switches</td></tr>
 <tr><td><a href="site.shtml">site</a></td> <td>information about the website being tested</td></tr>
 <tr><td><a href="spell.shtml">spell</a></td> <td>spell checking</td></tr>
-<tr><td><a href="ssi.shtml">stats</a></td> <td>server side includes</td></tr>
+<tr><td><a href="ssi.shtml">SSI</a></td> <td>server side includes</td></tr>
 <tr><td><a href="stats.shtml">stats</a></td> <td>output stats. on the site</td></tr>
 <tr><td><a href="svg.shtml">SVG</a></td> <td>SVG version</td></tr>
 <tr><td><a href="validation.shtml">validate</a></td> <td>additional valid values for attributes &amp; properties</td></tr>
@@ -104,7 +104,7 @@ with a value &gt; 0. This is controlled with the <kbd>general.error</kbd> switch
 <h2>examples</h2>
 
 <p>
-To verify the version of ssc:
+To verify the version of ssc:<br>
 <kbd>ssc&nbsp;-V</kbd>
 </p>
 
@@ -131,6 +131,6 @@ To check a static web site using a configuration file:<br>
 <kbd>ssc&nbsp;-f&nbsp;config.file</kbd>
 </p>
 
-<!--#include virtual="../plumbing/under.inc" -->
-<!--#include virtual="../plumbing/args.inc" -->
-<!--#include virtual="../plumbing/html-end.inc" -->
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/args.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

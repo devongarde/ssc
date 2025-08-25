@@ -65,6 +65,10 @@ template < > inline void enum_n < t_mime, e_mimetype > :: set_value (nitpick& ni
     {   enum_base < e_mimetype, t_mime > :: status (s_good);
         enum_base < e_mimetype, t_mime > :: value_ = mime_faux_module;
         return; }
+    if ((v >= html_aug25) && compare_complain (nits, v, "importmap", s))
+    {   enum_base < e_mimetype, t_mime > :: status (s_good);
+        enum_base < e_mimetype, t_mime > :: value_ = mime_faux_importmap;
+        return; }
     ::std::string::size_type pos = s.find ('/');
     if (pos == ::std::string::npos)
     {   nits.pick (nit_mime, es_error, ec_type, "bad mime type");

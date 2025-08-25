@@ -1,15 +1,15 @@
-<!--#include virtual="../plumbing/html.inc" -->
-<!--#include virtual="../plumbing/var.inc" --><!--#include virtual="../plumbing/varargs.inc" -->
+<!--#include virtual="/plumbing/html.inc" -->
+<!--#include virtual="/plumbing/var.inc" -->
 <!--#set var="title" value="nits arguments" -->
 <title>
 <!--#echo encoding="none" var="title" -->
 </title>
-<!--#include virtual="../plumbing/header.inc" -->
-<!--#include virtual="../plumbing/blog-section.inc" -->
-<!--#include virtual="../plumbing/html-top-start.inc" -->
-<!--#include virtual="../plumbing/argle.inc" -->
-<!--#include virtual="../plumbing/html-top-end.inc" -->
-<!--#include virtual="../plumbing/blog-schema.inc" -->
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/blog-section.inc" -->
+<!--#include virtual="/plumbing/html-top-start.inc" -->
+<!--#include virtual="/plumbing/argle.inc" -->
+<!--#include virtual="/plumbing/html-top-end.inc" -->
+<!--#include virtual="/plumbing/blog-schema.inc" -->
 <data class="u-url u-uid" value="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->">
 </data>
 
@@ -25,9 +25,11 @@ gen, etc..
 
 <p>
 Many of these switches require a value, n, to identify a particular nit. This value
-is not normally output, to avoid clutter. However, it can be seed by using the
+is not normally output, to avoid clutter. However, it can be seen by using the
 <kbd>nits.nids</kbd> switch.
 </p>
+
+<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-m6-wm2.jpg" title="made with studio artist 5.5">
 
 <table>
 <tr><td>nits.abhorrent&nbsp;n</td> <td>redefine nit n as an abhorrence; may be
@@ -68,6 +70,6 @@ is not normally output, to avoid clutter. However, it can be seed by using the
 <tr><td>nits.watch</td> <td>Output debug nits (intended for automation).</td></tr>
 </table>
 
-<!--#include virtual="../plumbing/under.inc" -->
-<!--#include virtual="../plumbing/args.inc" -->
-<!--#include virtual="../plumbing/html-end.inc" -->
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/args.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

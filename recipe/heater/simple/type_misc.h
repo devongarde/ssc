@@ -103,7 +103,8 @@ template < > struct type_master < t_command3 > : public tidy_string < t_command3
             if (v >= html_feb25) 
             {   if ((s.length () > 2) && (s.substr (0, 2) == "--")) return;
                 if (test_value < t_command2 > (nits, v, s)) return; }
-            else if ((v < html_jan13) && test_value < t_command > (nits, v, s)) return;
+            else if (v < html_jan13)
+            {   if (test_value < t_command > (nits, v, s)) return; }
             else nits.pick (nit_invalid_attribute_version, es_error, ec_type, "COMMAND was invalid from January 2013 to February 2025"); }
     string_value < t_command3 > :: status (s_invalid); } };
 
@@ -159,12 +160,15 @@ template < > struct type_master < t_filename > : public tidy_string < t_filename
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   tidy_string < t_filename > :: set_value (nits, v, s);
         if (tidy_string < t_filename > :: empty ())
-            nits.pick (nit_empty, es_error, ec_type, "a filename is expected");
-        if (tidy_string < t_filename > :: good ())
-        {   if (tidy_string < t_filename > :: get_string ().find_first_of (":\\#%&{}<>*? $!'\"@+,;=[]|") == ::std::string::npos) return;
+        {   if (context.analysis () == anal_original)
+                nits.pick (nit_empty, es_error, ec_type, "a filename is expected"); }
+        else if (tidy_string < t_filename > :: good ())
+        {   if (tidy_string < t_filename > :: get_string ().find_first_of (":\\#%&{}<>*? $!'\"@+,;=[]|") != ::std::string::npos)
                 // https://www.mtu.edu/umc/services/websites/writing/characters-avoid/
                 // https://superuser.com/questions/1362080/which-characters-are-invalid-for-an-ms-dos-filename
-            nits.pick (nit_incompatible, es_warning, ec_type, quote (s), " might be unsuitable for some systems"); } } };
+                nits.pick (nit_incompatible, es_warning, ec_type, quote (s), " might be unsuitable for some systems, so will probably be modified by a browser");
+            else if (tidy_string < t_filename > :: get_string ().find_first_of ("/") != ::std::string::npos)
+                nits.pick (nit_incompatible, es_info, ec_type, quote (s), " may behave inconsistently between systems, so might be modified by a browser"); } } };
 
 template < > struct type_master < t_font_family > : tidy_string < t_font_family >
 {   using tidy_string < t_font_family > :: tidy_string;
@@ -249,11 +253,11 @@ template < > struct type_master < t_is > : tidy_string < t_is >
         {   nits.pick (nit_nuts, es_error, ec_type, "IS expects the name of a custom element");
             tidy_string < t_is > :: status (s_invalid); }
         else if (tidy_string < t_is > :: good ())
-        {   vstr_t ce (context.custom_elements ());
+        {   sstr_t ce (context.custom_elements ());
             if (ce.empty ())
                 nits.pick ( nit_nuts, ed_apr21, "4.13.3 Core concepts", es_info, ec_type,
                             "no customised built-in elements are defined, so ", quote (ss), " cannot be verified (see the  --" GENERAL CUSTOM " switch, '" PROG " --" HELP " for gen')");
-            else if (! is_one_of (ss, ce))
+            else if (ce.find (ss) == ce.cend ())
             {   nits.pick ( nit_nuts, ed_apr21, "4.13.3 Core concepts", es_warning, ec_type,
                             quote (ss), " is not specified as a customised built-in element (see the --" GENERAL CUSTOM " switch, '" PROG " --" HELP " for gen')");
                 tidy_string < t_is > :: status (s_invalid); } } } };

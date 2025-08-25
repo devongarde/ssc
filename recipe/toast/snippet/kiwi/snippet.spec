@@ -1,4 +1,4 @@
--Y 1 -f ../toast/snippet/kiwi/snippet.conf
+-Y 1 -7 original -f ../toast/snippet/kiwi/snippet.conf
 
 PASS snippet
-1 unknown_protocol chocolate_teapot
+1 naughty_lang

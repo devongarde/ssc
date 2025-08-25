@@ -1,4 +1,4 @@
--Y 1 -f ../toast/output/args/output.conf
+-Y 1 -7 original -f ../toast/output/args/output.conf
 
 PASS ../toast/output/args/index.html
 2 naughty_lang

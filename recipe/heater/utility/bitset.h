@@ -76,14 +76,20 @@ public:
     {   for (::std::size_t n = 0; n < SIZE; ++n)
             if (lhs.test (n) && rhs.test (n)) return true;
         return false; }
+    static bool anything_else (const ssc_bitset& lhs, const ssc_bitset& rhs, const ssc_bitset& ignore)
+    {   for (::std::size_t n = 0; n < SIZE; ++n)
+            if (lhs.test (n) && ! rhs.test (n) && ! ignore.test (n)) return true;
+        return false; }
     static bool all (const ssc_bitset& lhs, const ssc_bitset& rhs)
     {   for (::std::size_t n = 0; n < SIZE; ++n)
             if (rhs.test (n))
                 if (! lhs.test (n)) return false;
         return true; }
-    bool any (const ssc_bitset& rhs)
+    bool any (const ssc_bitset& rhs) const
     {   return any (*this, rhs); }
-    bool all (const ssc_bitset& rhs)
+    bool anything_else (const ssc_bitset& rhs, const ssc_bitset& ignore) const
+    {   return anything_else (*this, rhs, ignore); }
+    bool all (const ssc_bitset& rhs) const
     {   return all (*this, rhs); }
     bool any () const
     {   PRESUME (bs_.size () == SIZE, __FILE__, __LINE__);
@@ -126,7 +132,7 @@ public:
         PRESUME (res.bs_.size () == SIZE, __FILE__, __LINE__);
         for (::std::size_t n = 0; n < SIZE; ++n)
             if (lhs.test (n) ^ rhs.test (n))
-                res.set (n);;
+                res.set (n);
         return res; }
     friend ssc_bitset AND (const ssc_bitset& lhs, const T rhs)
     {   return AND (lhs, ssc_bitset (rhs)); }

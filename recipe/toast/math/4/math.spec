@@ -1,4 +1,4 @@
--Y 1 -f ../toast/math/4/math.conf
+-Y 1 -7 original -f ../toast/math/4/math.conf
 PASS ../toast/math/4/alt-rep.html
 2 naughty_lang
 

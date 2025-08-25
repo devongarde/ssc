@@ -158,6 +158,17 @@ bool element::has_invalid_child (const element_bitset& gf)
                 if (! faux_bitset.test (c -> tag ()) && ! gf.test (c -> tag ())) return true; }
     return false; }
 
+bool element::only_one_child_among (const element_bitset& gf)
+{   bool found = false;   
+    if (has_child ())
+        for (element* c = child_; c != nullptr; c = c -> sibling_)
+        {   VERIFY_NOT_NULL (c, __FILE__, __LINE__);
+            if (! c -> node ().is_closure ())
+                if (gf.test (c -> tag ()))
+                    if (found) return false;
+                    else found = true; }
+    return found; }
+
 void element::check_required_type ()
 {   if (tag () != elem_img) return;
     if (a_.known (a_type)) return;
@@ -294,3 +305,59 @@ void element::accumulate (stats_t* st) const
 void element::check_required_page (const html_version& v, const vurl_t& u)
 {   const int n = check_required_pages (v, page_ -> required_page_type (), name_, u, ancestral_elements_, page_ -> elang ());
     if (n >= 0) page_ -> mark_required_page (n); }
+
+void element::count_col_row (int& col, int& row, rowcount_t& rowcount)
+{   int width = 0, from = 0;
+    VERIFY_NOT_NULL (child_, __FILE__, __LINE__);
+    for (element* p = child_; p != nullptr; p = p -> sibling_)
+        if (! p -> node_.is_closure ())
+            switch (p -> tag ())
+            {   case elem_tr :
+                    ++row;
+                    if (col < width) col = width;
+                    width = from = 0;
+                    break;
+                case elem_td :
+                case elem_th :
+                    if (p -> a_.known (a_colspan))
+                    {   const int s = a_.get_int (a_colspan);
+                        if ((s > 0) && (s <= max_colspan))
+                        {   from = width + 1;
+                            width += s; } }
+                    else
+                    {   ++width;
+                        from = width; }
+                    if (width < 1000)
+                    {   int height = 1;
+                        const bool rs = p -> a_.known (a_rowspan);
+                        if (rs) height = a_.get_int (a_rowspan);
+                        for (int r = from; r <= width; ++r)
+                        {   if (rs)
+                            {   if (rowcount.at (r) == -1)
+                                    p -> pick (nit_bad_rowspan, ed_aug25, "4.9.11 Attributes common to td and th elements", es_warning, ec_attribute,
+                                        "Please check column ", r, "; its row count may have been previously maximised (e.g. ROWSPAN set to 0).");
+                                else if (rowcount.at (r) > row)
+                                    p -> pick (nit_bad_rowspan, ed_aug25, "4.9.11 Attributes common to td and th elements", es_warning, ec_attribute,
+                                        "Please check column ", r, "; it appears a previous row has a ROWSPAN which overlaps this one, which would make this ROWSPAN invalid.");
+                                else if (rowcount.at (r) + height > max_rowspan)
+                                    p -> pick (nit_bad_rowspan, ed_aug25, "4.9.11 Attributes common to td and th elements", es_warning, ec_attribute,
+                                        "Please check column ", r, "; its row count may have exceeded the maximum (", max_rowspan, ")"); }
+                            if (height == 0) rowcount.at (r) = -1;
+                            else rowcount.at (r) = row + height - 1; } }
+                    break;
+                case elem_col :
+                case elem_colgroup :
+                    if (p -> a_.known (a_span))
+                    {   const int s = a_.get_int (a_span);
+                        if ((s > 0) && (s <= max_colspan))
+                            width += s; }
+                    else ++width;
+                    break;
+                case elem_thead :
+                case elem_tbody :
+                case elem_tfoot :
+                    p -> count_col_row (col, row, rowcount);
+                    break;
+                default :
+                break; }
+    if (col < width) col = width; }

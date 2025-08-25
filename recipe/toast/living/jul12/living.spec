@@ -1,4 +1,4 @@
--Y 1 -f ../toast/living/jul12/living.conf
+-Y 1 -7 original -f ../toast/living/jul12/living.conf
 
 PASS ../toast/living/jul12/a.html
 9 url_not_found

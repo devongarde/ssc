@@ -21,7 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "main/standard.h"
 #include "webpage/vtt.h"
 #include "parser/html_version.h"
-#include "main/enum.h"
 #include "main/context.h"
 #include "css/group.h"
 

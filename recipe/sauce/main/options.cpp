@@ -135,6 +135,8 @@ options::options (const context_t& c)
     INSERT_VALID (#VAR, TY, EN)
 #define INSERT_VSTR(SECT,VAR,FN) \
     { const vstr_t& v = c.FN (); if (! v.empty ()) { const ::boost::any a = v; insert < ::boost::any > (SECT VAR, a); } }
+#define INSERT_SSTR(SECT,VAR,FN) \
+    { const sstr_t& v = c.FN (); if (! v.empty ()) { const ::boost::any a = v; insert < ::boost::any > (SECT VAR, a); } }
 
     if (! c.environment (env_query_string).empty ())
     {   insert < ::std::string > (ENVIRONMENT QUERY_STRING, c.environment (env_query_string));
@@ -161,7 +163,7 @@ options::options (const context_t& c)
     INSERT_BOOL (CORPUS, MAIN, main);
 
     if (c.css_extension () != def.css_extension ())
-        INSERT_VSTR (CSS, EXTENSION, css_extension);
+        INSERT_SSTR (CSS, EXTENSION, css_extension);
     INSERT_BOOL (CSS, EXTERNAL, ext_css);
     INSERT_BOOL (CSS, VERIFY, load_css);
     INSERT_ENUM (t_css_version, CSS, VERSION, css_version);
@@ -193,13 +195,17 @@ options::options (const context_t& c)
 #ifndef NO_FRED
     INSERT (::std::size_t, GENERAL, THREAD, fred);
 #endif // NO_FRED
+    INSERT_VSTR (GENERAL, URL_VAR, urlvar);
     INSERT_BOOL (GENERAL, VCS, vcs);
     INSERT_ENUM (t_severity, GENERAL, VERBOSE, verbose);
     INSERT_BOOL (GENERAL, YGGDRISIL, yggdrisil);
 
+    if (def.analysis () != c.analysis ())
+        insert < ::std::string > (HTML ANALYSIS, ::boost::lexical_cast < ::std::string > (static_cast < int > (c.analysis ())));
     INSERT_BOOL (HTML, ARIA, aria);
     INSERT_BOOL (HTML, CHROME, chrome);
-    INSERT_VSTR (HTML, CUSTOM, custom_elements);
+    INSERT_SSTR (HTML, CUSTOM, custom_elements);
+    INSERT_BOOL (HTML, EFFICIENT, efficient);
     INSERT_BOOL (HTML, FORCE, force_version);
     INSERT_BOOL (HTML, IE, ie);
     INSERT_VSTR (HTML, IGNORED, ignore);
@@ -214,7 +220,7 @@ options::options (const context_t& c)
     INSERT_BOOL (HTML, RFC2070, rfc_2070);
     INSERT_BOOL (HTML, RUBY, ruby);
     INSERT_BOOL (HTML, SAFARI, safari);
-    INSERT_BOOL (HTML, SLOVEN, sloven);
+//    INSERT_BOOL (HTML, SLOVEN, sloven);
     // HTML SNIPPET
     INSERT_BOOL (HTML, TAGS, presume_tags);
     INSERT (::std::size_t, HTML, TITLE, title);
@@ -223,7 +229,7 @@ options::options (const context_t& c)
     INSERT_STRING (HTML, WX_SNIPPET, wx_snippet);
 
     if (c.jsonld_extension () != def.jsonld_extension ())
-        INSERT_VSTR (JSONLD, EXTENSION, jsonld_extension);
+        INSERT_SSTR (JSONLD, EXTENSION, jsonld_extension);
 
     INSERT_VSTR (JSONLD, ONTOLOGY_, jsonld_ontology);
     INSERT_BOOL (JSONLD, PRETTY, pretty);
@@ -234,7 +240,7 @@ options::options (const context_t& c)
     INSERT_BOOL (LINKS, EXAMPLE, example);
     INSERT_BOOL (LINKS, EXTERNAL, external);
     INSERT_BOOL (LINKS, FORWARD, forwarded);
-    INSERT_VSTR (LINKS, IGNORED, no_ex_check);
+    INSERT_SSTR (LINKS, IGNORED, no_ex_check);
     INSERT_BOOL (LINKS, LOCAL, local);
     INSERT_BOOL (LINKS, ONCE, once);
     INSERT_VSTR (LINKS, PRETEND, pretend);
@@ -311,6 +317,7 @@ options::options (const context_t& c)
     INSERT_VSTR (SHADOW, NAUGHTY, naughty);
     INSERT_VSTR (SHADOW, NICE, nice);
     INSERT_VSTR (SHADOW, NOTE, note);
+    INSERT_VSTR (SHADOW, REPLACE, replace);
     INSERT_STRING (SHADOW, ROOT, shadow_root);
     INSERT_BOOL (SHADOW, SPACING, shadow_space);
     INSERT_BOOL (SHADOW, SSI, shadow_ssi);
@@ -319,10 +326,10 @@ options::options (const context_t& c)
     INSERT_STRING (SHADOW, INDEX, index);
 
     if (c.extensions () != def.extensions ())
-        INSERT_VSTR (WEBSITE, EXTENSION, extensions);
+        INSERT_SSTR (WEBSITE, EXTENSION, extensions);
     INSERT_STRING (WEBSITE, INDEX, index);
     INSERT_STRING (WEBSITE, ROOT, root);
-    INSERT_VSTR (WEBSITE, SITE, site);
+    INSERT_SSTR (WEBSITE, SITE, site);
     INSERT_VSTR (WEBSITE, VIRTUAL, virtuals);
 
 #ifndef NOSPELL
@@ -430,6 +437,7 @@ options::options (const context_t& c)
     INSERT_VALID2 (baselineshift, t_baselineshift, e_baselineshift);
     INSERT_VALID2 (citype, t_citype, e_citype);
     INSERT_VALID2 (cntype, t_cntype, e_cntype);
+    INSERT_VALID2 (command2, t_command2, e_command2);
     INSERT_VALID2 (composite_operator, t_composite_operator, e_composite_operator);
     INSERT_VALID2 (crs_whitebalance, t_crs_whitebalance, e_crs_whitebalance);
     INSERT_VALID2 (decalign, t_decalign, e_decalign);
@@ -552,7 +560,7 @@ options::options (const context_t& c)
     INSERT_VALID2 (xmpdm_video_pixeldepth, t_xmpdm_video_pixeldepth, e_xmpdm_video_pixeldepth);
 
     if (c.vtt_extension () != def.vtt_extension ())
-        INSERT_VSTR (VTT, EXTENSION, vtt_extension);
+        INSERT_SSTR (VTT, EXTENSION, vtt_extension);
     INSERT_BOOL (VTT, VERIFY, load_vtt);
 
 #undef INSERT
@@ -650,15 +658,15 @@ bool options::is_be (const char* yo)
     { }
     return false; }
 
-void options::yea_nay (context_t& c, context_t& (context_t::*fn) (const bool ), nitpick& nits, const char* yea, const char* nay)
+void options::yea_nay (context_t& con, context_t& (context_t::*fn) (const bool ), nitpick& nits, const char* yea, const char* nay)
 {   VERIFY_NOT_NULL (fn, __FILE__, __LINE__);
     try
     {   const bool on = var_ [yea].as <bool> ();
         const bool off = var_ [nay].as <bool> ();
         if (off)
         {   if (on) nits.pick (nit_yea_nay, es_info, ec_init, "when both ", nay, " and ", yea, " are used, ", nay, " applies");
-            (c.*fn) (false); }
-        else if (on) (c.*fn) (true); }
+            (con.*fn) (false); }
+        else if (on) (con.*fn) (true); }
     catch (...) { } }
 
 void options::yea_nay (context_t& c, const e_report r, nitpick& nits, const char* yea, const char* nay)
@@ -755,6 +763,9 @@ void options::init (context_t& c)
         (GENERAL VERBOSE, ::boost::program_options::value < ::std::string > (), "Use --" NITS VERBOSE)
         (GENERAL YGGDRISIL, ::boost::program_options::bool_switch (), "Sniff yggdrisil.")
 
+        (HTML ANALYSIS ARGSEP ANAL_SW_, ::boost::program_options::value < ::std::string > (), "Style of nitpick analysis: one of default, original, or aug25 (intended for testing).")
+        (HTML SLOVEN, ::boost::program_options::bool_switch (), "Do not nitpick slovenly HTML such as missing closures, slovenly typography, etc..")
+        (HTML DONT SLOVEN, ::boost::program_options::bool_switch (), "Nitpick slovenly HTML such as missing closures, slovenly typography, etc..")
         (HTML WX_SNIPPET, ::boost::program_options::value < ::std::string > (), "Snippet seen in wx intro dialogue.")
 
         (NITS CACHE, ::boost::program_options::value < ::std::string > (), "Output nits on cache usage of filenames containing argument (no wildcards, except use \"*\" for all; empty for no report).")
@@ -832,6 +843,7 @@ void options::init (context_t& c)
 #ifndef NO_FRED
         (GENERAL THREAD ARGSEP THREAD_SW_, ::boost::program_options::value < int > () -> default_value  (def_fred), "Number of threads (default 1, zero for whatever is appropriate for the hardware).")
 #endif // NO_FRED
+        (GENERAL URL_VAR, ::boost::program_options::value < vstr_t > () -> composing (), "Set a URL template variable (see RFC 6570), format VAR=VAL; may be repeated.")
         (GENERAL VCS, ::boost::program_options::bool_switch (), "Exclude file and directory names associated with certain version control systems.")
         (GENERAL DONT VCS, ::boost::program_options::bool_switch (), "Do not exclude file and directory names associated with certain version control systems.")
 
@@ -932,18 +944,21 @@ void options::init (context_t& c)
             "all modules of a given level (3, 4, 5, 6); "
             "solid snapshot modules by year (07, 10, 15, 17, 18, 20, 21, 22, 23, 24); "
             "solid and+ snapshot modules by year (15+, 17+, 18+, 20+, 21+, 22+, 23+, 24+); "
-            "all snapshot modules by year (15++, 17++, 18++, 20++, 21++, 22++, 23++, 24++): "
+            "all snapshot modules by year (15++, 17++, 18++, 20++, 21++, 22++, 23++, 24++, 24+++); "
+            "HTML5 Living Standard requirements (HTML5): "
             "default appropriate for HTML version.")
         (CSS VIEW, ::boost::program_options::value < int > (), "CSS View Transitions level (0 or 3).")
         (CSS VIEWPORT, ::boost::program_options::value < int > (), "CSS Viewport level (0 or 3).")
         (CSS WC, ::boost::program_options::value < int > (), "CSS Will Change level (0 or 3).")
         (CSS WRITING, ::boost::program_options::value < int > (), "CSS Writing Mode level (0, 3 or 4).")
 
-        (HTML ARIA, ::boost::program_options::value < ::std::string > (), "Report ARIA issues.")
-        (HTML DONT ARIA, ::boost::program_options::value < ::std::string > (), "Ignore ARIA issues.")
+        (HTML ARIA, ::boost::program_options::bool_switch (), "Report ARIA issues.")
+        (HTML DONT ARIA, ::boost::program_options::bool_switch (), "Ignore ARIA issues.")
         (HTML CHROME, ::boost::program_options::bool_switch (), "Ignore certain naughtitudes accepted by versions of Chrome.")
         (HTML DONT CHROME, ::boost::program_options::bool_switch (), "Mention certain naughtitudes accepted by versions of Chrome.")
         (HTML CUSTOM, ::boost::program_options::value < vstr_t > () -> composing (), "Define a custom element for checking the 'is' attribute; may be repeated.")
+        (HTML EFFICIENT, ::boost::program_options::bool_switch (), "Warn about valid but inefficient HTML.")
+        (HTML DONT EFFICIENT, ::boost::program_options::bool_switch (), "Do not warn about inefficient HTML")
         (HTML FORCE, ::boost::program_options::bool_switch (), "When <!DOCTYPE...> is missing, forcibly presume HTML version as per --html.version.")
         (HTML DONT FORCE, ::boost::program_options::bool_switch (), "When <!DOCTYPE...> is missing, correctly presume HTML 1 or HTML tags, as per --html.tags.")
         (HTML IE, ::boost::program_options::bool_switch (), "Ignore certain naughtitudes accepted by versions of Internet Explorer.")
@@ -970,8 +985,6 @@ void options::init (context_t& c)
         (HTML DONT RUBY, ::boost::program_options::bool_switch (), "Do not accept Ruby Markup extensions.")
         (HTML SAFARI, ::boost::program_options::bool_switch (), "Ignore certain naughtitudes accepted by versions of Safari.")
         (HTML DONT SAFARI, ::boost::program_options::bool_switch (), "Mention certain naughtitudes accepted by versions of Safari.")
-        (HTML SLOVEN, ::boost::program_options::bool_switch (), "Do not nitpick slovenly HTML such as missing closures, slovenly typography, etc..")
-        (HTML DONT SLOVEN, ::boost::program_options::bool_switch (), "Nitpick slovenly HTML such as missing closures, slovenly typography, etc..")
         (HTML TAGS, ::boost::program_options::bool_switch (), "Presume HTML with no DOCTYPE is HTML Tags (CERN version).")
         (HTML DONT TAGS, ::boost::program_options::bool_switch (), "Presume HTML with no DOCTYPE is HTML 1.0.")
         (HTML TITLE ARGSEP TITLE_SW_, ::boost::program_options::value < int > () -> default_value (def_htmltitle), "Maximum advisable length of <TITLE> text.")
@@ -1103,6 +1116,7 @@ void options::init (context_t& c)
         (SHADOW NAUGHTY, ::boost::program_options::value < vstr_t > () -> composing (), "add to naughty list; may be repeated. See docs for details.")
         (SHADOW NICE, ::boost::program_options::value < vstr_t > () -> composing (), "add to nice list; may be repeated. See docs for details.")
         (SHADOW NOTE, ::boost::program_options::value < vstr_t > () -> composing (), "when something is naughty or not nice, use this instead; may be repeated. See docs for details.")
+        (SHADOW REPLACE, ::boost::program_options::value < vstr_t > () -> composing (), "when a specific value is encountered, replace it with another. See docs for details.")
         (SHADOW ROOT, ::boost::program_options::value < ::std::string > (), "Shadow output root directory.")
         (SHADOW SPACING, ::boost::program_options::bool_switch (), "Merge whitespace on shadow pages. Without this option, nit line-numbers may not match shadow pages.")
         (SHADOW DONT SPACING, ::boost::program_options::bool_switch (), "Do not merge whitespace on shadow pages.")
@@ -1137,8 +1151,8 @@ void options::init (context_t& c)
         (SSI DOCARGS, ::boost::program_options::value < ::std::string > () -> composing (), "Set the SSI DOCUMENT_ARGS variable to this value.")
         (SSI ECHOMSG, ::boost::program_options::value < ::std::string > () -> composing (), "Set the initial SSI default echo message (by default, " DEFAULT_ECHOMSG ").")
         (SSI ERRMSG, ::boost::program_options::value < ::std::string > () -> composing (), "Set the initial SSI default error message (by default, " DEFAULT_ERRMSG ").")
-        (SSI EXECRUN, ::boost::program_options::value < ::std::string > () -> composing (), "Obey SSI <!--#exec ..> elements. Warning: this is dangerous when processing untrusted sources.")
-        (SSI DONT EXECRUN, ::boost::program_options::value < ::std::string > () -> composing (), "Ignore SSI <!--#exec ..> elements. This is the default behaviour.")
+        (SSI EXECRUN, ::boost::program_options::bool_switch (), "Obey SSI <!--#exec ..> elements. Warning: this is dangerous when processing untrusted sources.")
+        (SSI DONT EXECRUN, ::boost::program_options::bool_switch (), "Ignore SSI <!--#exec ..> elements. This is the default behaviour.")
         (SSI EXECTEXT, ::boost::program_options::value < ::std::string > () -> composing (), "When SSI <!--#exec ..> elements are being ignored, and one is found, return this string.")
         (SSI LASTMOD, ::boost::program_options::value < ::std::string > () -> composing (), "The SSI last modification time environment variable should return this value.")
         (SSI QUERYSTRING, ::boost::program_options::value < ::std::string > () -> composing (), "Set the SSI QUERY_STRING_UNESCAPED variable to this value.")
@@ -1678,6 +1692,7 @@ void options::contextualise (context_t& c, nitpick& nits)
         if (var_.count (GENERAL HELPSITE)) c.help (var_ [GENERAL HELPSITE].as < ::std::string > ());
         if (var_.count (GENERAL MACROEND)) c.macro_end (var_ [GENERAL MACROEND].as < ::std::string > ());
         if (var_.count (GENERAL MACROSTART)) c.macro_start (var_ [GENERAL MACROSTART].as < ::std::string > ());
+        if (var_.count (GENERAL URL_VAR)) c.urlvar (var_ [GENERAL URL_VAR].as < vstr_t > ());
         yea_nay (c, &context_t::vcs, nits, GENERAL VCS, GENERAL DONT VCS);
 
         if (is_be (GENERAL YGGDRISIL)) c.yggdrisil (true);
@@ -1770,7 +1785,7 @@ void options::contextualise (context_t& c, nitpick& nits)
         process_css_level (c, c_text_decoration, n, nits, CSS TEXT_DEC, "Text Decoration", 4);
         process_css_level (c, c_table, n, nits, CSS TABLE, "Table", 3);
         process_css_level (c, c_transform, n, nits, CSS TRANSFORM, "Transform", 4, true);
-        process_css_level (c, c_transition, n, nits, CSS TRANSITION, "Transition", 3, true);
+        process_css_level (c, c_transition, n, nits, CSS TRANSITION, "Transition", 4, true);
         yea_nay (c, &context_t::tv_profile, nits, CSS TV, CSS DONT TV);
         process_css_level (c, c_basic_user_interface, n, nits, CSS UI, "UI", 4);
         process_css_level (c, c_value_unit, n, nits, CSS VAL, "Values and Units", 4);
@@ -1778,10 +1793,19 @@ void options::contextualise (context_t& c, nitpick& nits)
         process_css_level (c, c_viewport, n, nits, CSS VIEWPORT, "Viewport", 3);
         process_css_level (c, c_will_change, n, nits, CSS WC, "Will Change", 3);
         process_css_level (c, c_writing_mode, n, nits, CSS WRITING, "Writing Mode", 4);
-
+        if (var_.count (HTML ANALYSIS))
+        {   const ::std::string av = var_ [HTML ANALYSIS].as < ::std::string > ();
+            int e = 0;
+            if (! av.empty ())
+                if (av.size () == 1)
+                {   e = lexical < int > :: cast (av);
+                    if ((e < 0) || (e > max_analysis)) e = 0; }
+                else e = examine_value < t_analysis > (nits, html_default, av);
+            c.analysis (static_cast < e_analysis > (e)); }
         yea_nay (c, &context_t::aria, nits, HTML ARIA, HTML DONT ARIA);
         yea_nay (c, &context_t::chrome, nits, HTML CHROME, HTML DONT CHROME);
         if (var_.count (HTML CUSTOM)) c.custom_elements (nits, var_ [HTML CUSTOM].as < vstr_t > ());
+        yea_nay (c, &context_t::efficient, nits, HTML EFFICIENT, HTML DONT EFFICIENT);
         yea_nay (c, &context_t::force_version, nits, HTML FORCE, HTML DONT FORCE);
         yea_nay (c, &context_t::ie, nits, HTML IE, HTML DONT IE);
         if (var_.count (HTML IGNORED)) c.ignore (nits, var_ [HTML IGNORED].as < vstr_t > ());
@@ -1923,6 +1947,7 @@ void options::contextualise (context_t& c, nitpick& nits)
         if (var_.count (SHADOW NAUGHTY)) c.naughty (var_ [SHADOW NAUGHTY].as < vstr_t > ());
         if (var_.count (SHADOW NICE)) c.nice (var_ [SHADOW NICE].as < vstr_t > ());
         if (var_.count (SHADOW NOTE)) c.note (var_ [SHADOW NOTE].as < vstr_t > ());
+        if (var_.count (SHADOW REPLACE)) c.replace (var_ [SHADOW REPLACE].as < vstr_t > ());
         if (var_.count (SHADOW ROOT)) c.shadow_root (nix_path_to_local (var_ [SHADOW ROOT].as < ::std::string > ()));
         yea_nay (c, &context_t::shadow_space, nits, SHADOW SPACING, SHADOW DONT SPACING);
         yea_nay (c, &context_t::shadow_ssi, nits, SHADOW SSI, SHADOW DONT SSI);
@@ -2599,13 +2624,16 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
 #ifndef NO_FRED
     RG (gr, res, int, GENERAL, THREAD, general);
 #endif // NO_FRED
+    RG (gr, res, vstr_t, GENERAL, URL_VAR, general);
     RB (gr, res, GENERAL, VCS, general);
     RB (gr, res, GENERAL, YGGDRISIL, general);
     REOS (general, res);
 
+    RG (gr, res, ::std::string, HTML, ANALYSIS, html);
     RB (gr, res, HTML, ARIA, html);
     RB (gr, res, HTML, CHROME, html);
     RG (gr, res, vstr_t, HTML, CUSTOM, html);
+    RB (gr, res, HTML, EFFICIENT, html);
     RB (gr, res, HTML, FORCE, html);
     RB (gr, res, HTML, IE, html);
     RG (gr, res, vstr_t, HTML, IGNORED, html);
@@ -2724,6 +2752,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RG (gr, res, vstr_t, SHADOW, NAUGHTY, shadow);
     RG (gr, res, vstr_t, SHADOW, NICE, shadow);
     RG (gr, res, vstr_t, SHADOW, NOTE, shadow);
+    RG (gr, res, vstr_t, SHADOW, REPLACE, shadow);
     RG (gr, res, ::std::string, SHADOW, ROOT, shadow);
     RB (gr, res, SHADOW, SPACING, shadow);
     RB (gr, res, SHADOW, SSI, shadow);

@@ -26,6 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 typedef ssc_bitset < e_aria_role, last_role > role_bitset;
 extern const role_bitset empty_role_bitset;
 extern role_bitset abstract_role_bitset;
+extern role_bitset any_none_bitset;
 extern role_bitset application_role_bitset;
 extern role_bitset adii_role_bitset;
 extern role_bitset adiinp_role_bitset;
@@ -55,7 +56,7 @@ template < > inline void enum_n < t_role, e_aria_role > :: verify_attribute (nit
         else if (abstract_role_bitset.test (r))
             nits.pick (nit_bad_role, ed_aria_1_0, "5.2.1 Abstract Roles", es_error, ec_aria, "Content authors MUST NOT use abstract roles");
         else if (! is_permitted_role (v, e.get (), r))
-            nits.pick (nit_bad_role, es_error, ec_aria, quote (enum_base < e_aria_role, t_role > :: original ()), " is not permitted here"); } }
+            nits.pick (nit_bad_role, es_error, ec_aria, "role invalid here"); } }
 
 template < > inline void enum_n < t_role, e_aria_role > :: set_value (nitpick& nits, const html_version& v, const ::std::string& s)
 {   e_namespace examine_namespace (nitpick& nits, const html_version& v, ::std::string& s, ::std::string& ns);

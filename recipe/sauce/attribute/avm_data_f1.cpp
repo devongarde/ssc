@@ -195,6 +195,13 @@ hav_t havt_femorphology [] =
     SVG_PRESENTATION_ATTRIBUTES (elem_femorphology),
     { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
 
+hav_t havt_fencedframe [] =
+{   { { HTML_AUG25 }, { HTML_UNDEF }, elem_fencedframe, a_allow },
+    { { HTML_AUG25 }, { HTML_UNDEF }, elem_fencedframe, a_height },
+    { { HTML_AUG25 }, { HTML_UNDEF }, elem_fencedframe, a_width },
+    STANDARD_HTMLS_4_5_ATTRIBUTES (elem_fencedframe),
+    { { HTML_UNDEF }, { HTML_UNDEF }, elem_error, a_unknown } };
+
 hav_t havt_feoffset [] =
 {   { { HTML_SVG10, 0, HE_SVG_10_11_2 }, { HTML_UNDEF }, elem_feoffset, a_in },
     SVG_DXY_ATTRIBUTES (elem_feoffset),

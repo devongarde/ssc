@@ -56,6 +56,7 @@ typedef typed_attribute < t_generic, a_altimg_valign > attr_altimg_valign;
 typedef typed_attribute < t_measure, a_altimg_width > attr_altimg_width;
 typedef typed_attribute < t_text, a_alttext > attr_alttext;
 typedef typed_attribute < t_real, a_amplitude > attr_amplitude;
+typedef typed_attribute < t_idref, a_anchor > attr_anchor;
 typedef typed_attribute < t_generic, a_animate > attr_animate;
 typedef typed_attribute < t_arabic_form, a_arabic_form > attr_arabic_form;
 typedef typed_attribute < t_urls, a_archive > attr_archive;
@@ -124,7 +125,7 @@ typedef typed_attribute < t_audio_level, a_audio_level > attr_audio_level;
 typedef typed_attribute < t_html_boolean, a_autobuffer > attr_autobuffer;
 typedef typed_attribute < t_autocapitalise, a_autocapitalise > attr_autocapitalise;
 typedef typed_attribute < t_autocompletevaried, a_autocomplete > attr_autocomplete;
-typedef typed_attribute < t_onoff, a_autocorrect > attr_autocorrect;
+typedef typed_attribute < t_onoffempty, a_autocorrect > attr_autocorrect;
 typedef typed_attribute < t_html_boolean, a_autofocus > attr_autofocus;
 typedef typed_attribute < t_html_boolean, a_autopictureinpicture > attr_autopictureinpicture;
 typedef typed_attribute < t_existential, a_autoplay > attr_autoplay;
@@ -203,7 +204,7 @@ typedef typed_attribute < t_nsds, a_columnlines > attr_columnlines;
 typedef typed_attribute < t_mathspace, a_columnspacing > attr_columnspacing;
 typedef typed_attribute < t_unsigned, a_columnspan > attr_columnspan;
 typedef typed_attribute < t_mathspacefit, a_columnwidth > attr_columnwidth;
-typedef typed_attribute < t_generic, a_command > attr_command;
+typedef typed_attribute < t_command3, a_command > attr_command;
 typedef typed_attribute < t_idref, a_commandfor > attr_commandfor;
 typedef typed_attribute < t_compact, a_compact > attr_compact;
 typedef typed_attribute < t_compositing, a_compositing > attr_compositing;
@@ -211,7 +212,7 @@ typedef typed_attribute < t_comp_op, a_comp_op > attr_comp_op;
 typedef typed_attribute < t_text, a_condition > attr_condition;
 typedef typed_attribute < t_connect, a_connect > attr_connect;
 typedef typed_attribute < t_text, a_content > attr_content;
-typedef typed_attribute < t_truefalseempty, a_contenteditable > attr_contenteditable;
+typedef typed_attribute < t_ftpte, a_contenteditable > attr_contenteditable;
 typedef typed_attribute < t_unsigned, a_contentlength > attr_contentlength;
 typedef typed_attribute < t_mime, a_contentscripttype > attr_contentscripttype;
 typedef typed_attribute < t_mime, a_contentstyletype > attr_contentstyletype;
@@ -258,7 +259,7 @@ typedef typed_attribute < t_display_align, a_display_align > attr_display_align;
 typedef typed_attribute < t_bool, a_displaystyle > attr_displaystyle;
 typedef typed_attribute < t_not_0, a_divisor > attr_divisor;
 typedef typed_attribute < t_dominantbaseline, a_dominant_baseline > attr_dominantbaseline;
-typedef typed_attribute < t_filename, a_download > attr_download;
+typedef typed_attribute < t_maybe_filename, a_download > attr_download;
 typedef typed_attribute < t_char, a_dp > attr_dp;
 typedef typed_attribute < t_truefalseempty, a_draggable > attr_draggable;
 typedef typed_attribute < t_text, a_dropzone > attr_dropzone;
@@ -557,7 +558,10 @@ typedef typed_attribute < t_script, a_onafterprint > attr_onafterprint;
 typedef typed_attribute < t_script, a_onautocomplete > attr_onautocomplete;
 typedef typed_attribute < t_script, a_onautocompleteerror > attr_onautocompleteerror;
 typedef typed_attribute < t_script, a_onauxclick > attr_onauxclick;
+typedef typed_attribute < t_script, a_onbeforeinput > attr_onbeforeinput;
+typedef typed_attribute < t_script, a_onbeforematch > attr_onbeforematch;
 typedef typed_attribute < t_script, a_onbeforeprint > attr_onbeforeprint;
+typedef typed_attribute < t_script, a_onbeforetoggle > attr_onbeforetoggle;
 typedef typed_attribute < t_script, a_onbeforeunload > attr_onbeforeunload;
 typedef typed_attribute < t_script, a_onbegin > attr_onbegin;
 typedef typed_attribute < t_script, a_onblur > attr_onblur;
@@ -568,7 +572,9 @@ typedef typed_attribute < t_script, a_onchange > attr_onchange;
 typedef typed_attribute < t_script, a_onclick > attr_onclick;
 typedef typed_attribute < t_script, a_onclose > attr_onclose;
 typedef typed_attribute < t_script, a_oncommand > attr_oncommand;
+typedef typed_attribute < t_script, a_oncontextlost > attr_oncontextlost;
 typedef typed_attribute < t_script, a_oncontextmenu > attr_oncontextmenu;
+typedef typed_attribute < t_script, a_oncontextrestored > attr_oncontextrestored;
 typedef typed_attribute < t_script, a_oncopy > attr_oncopy;
 typedef typed_attribute < t_script, a_oncuechange > attr_oncuechange;
 typedef typed_attribute < t_script, a_oncut > attr_oncut;
@@ -621,7 +627,9 @@ typedef typed_attribute < t_script, a_onmousewheel > attr_onmousewheel;
 typedef typed_attribute < t_script, a_onoffline > attr_onoffline;
 typedef typed_attribute < t_script, a_ononline > attr_ononline;
 typedef typed_attribute < t_script, a_onpagehide > attr_onpagehide;
+typedef typed_attribute < t_script, a_onpagereveal > attr_onpagereveal;
 typedef typed_attribute < t_script, a_onpageshow > attr_onpageshow;
+typedef typed_attribute < t_script, a_onpageswap > attr_onpageswap;
 typedef typed_attribute < t_script, a_onpaste > attr_onpaste;
 typedef typed_attribute < t_script, a_onpause > attr_onpause;
 typedef typed_attribute < t_script, a_onplay > attr_onplay;
@@ -655,8 +663,13 @@ typedef typed_attribute < t_script, a_ontoggle > attr_ontoggle;
 typedef typed_attribute < t_script, a_onundo > attr_onundo;
 typedef typed_attribute < t_script, a_onunhandledrejection > attr_onunhandledrejection;
 typedef typed_attribute < t_script, a_onunload > attr_onunload;
+typedef typed_attribute < t_script, a_onvisibilitychange > attr_onvisibilitychange; 
 typedef typed_attribute < t_script, a_onvolumechange > attr_onvolumechange;
 typedef typed_attribute < t_script, a_onwaiting > attr_onwaiting;
+typedef typed_attribute < t_script, a_onwebkitanimationend > attr_onwebkitanimationend;
+typedef typed_attribute < t_script, a_onwebkitanimationiteration > attr_onwebkitanimationiteration;
+typedef typed_attribute < t_script, a_onwebkitanimationstart > attr_onwebkitanimationstart;
+typedef typed_attribute < t_script, a_onwebkittransitionend > attr_onwebkittransitionend;
 typedef typed_attribute < t_script, a_onwheel > attr_onwheel;
 typedef typed_attribute < t_script, a_onzoom > attr_onzoom;
 typedef typed_attribute < t_opacity, a_opacity > attr_opacity;
@@ -686,7 +699,7 @@ typedef typed_attribute < t_coordinatesystem, a_patterncontentunits > attr_patte
 typedef typed_attribute < t_transform, a_patterntransform > attr_patterntransform;
 typedef typed_attribute < t_coordinatesystem, a_patternunits > attr_patternunits;
 typedef typed_attribute < t_phase, a_phase > attr_phase;
-typedef typed_attribute < t_urls, a_ping > attr_ping;
+typedef typed_attribute < t_purls, a_ping > attr_ping;
 typedef typed_attribute < t_generic, a_placeholder > attr_placeholder;
 typedef typed_attribute < t_existential, a_plain > attr_plain;
 typedef typed_attribute < t_svg_playbackorder, a_playbackorder > attr_playbackorder;
@@ -767,7 +780,7 @@ typedef typed_attribute < t_measure, a_rx > attr_rx;
 typedef typed_attribute < t_measure, a_ry > attr_ry;
 typedef typed_attribute < t_sandboxen, a_sandbox > attr_sandbox;
 typedef typed_attribute < t_real, a_scale > attr_scale;
-typedef typed_attribute < t_generic, a_scheme > attr_scheme;
+typedef typed_attribute < t_text, a_scheme > attr_scheme;
 typedef typed_attribute < t_scope, a_scope > attr_scope;
 typedef typed_attribute < t_generic, a_scoped > attr_scoped;
 typedef typed_attribute < t_url, a_script > attr_script;
@@ -796,6 +809,11 @@ typedef typed_attribute < t_measure, a_shape_padding > attr_shape_padding;
 typedef typed_attribute < t_shape_rendering, a_shape_rendering > attr_shape_rendering;
 typedef typed_attribute < t_shape_none_uri, a_shape_subtract > attr_shape_subtract;
 typedef typed_attribute < t_shadowinherit, a_shadowinherit > attr_shadowinherit;
+typedef typed_attribute < t_closed_open, a_shadowrootmode > attr_shadowrootmode;
+typedef typed_attribute < t_html_boolean, a_shadowrootdelegatesfocus > attr_shadowrootdelegatesfocus;
+typedef typed_attribute < t_html_boolean, a_shadowrootclonable > attr_shadowrootclonable;
+typedef typed_attribute < t_html_boolean, a_shadowrootserialisable > attr_shadowrootserialisable;
+typedef typed_attribute < t_html_boolean, a_shadowrootcustomelementregistry > attr_shadowrootcustomelementregistry;
 typedef typed_attribute < t_integer, a_shift > attr_shift;
 typedef typed_attribute < t_side, a_side > attr_side;
 typedef typed_attribute < t_size, a_size > attr_size;
@@ -944,6 +962,7 @@ typedef typed_attribute < t_colour_ni, a_viewport_fill > attr_viewport_fill;
 typedef typed_attribute < t_real_i, a_viewport_fill_opacity > attr_viewport_fill_opacity;
 typedef typed_attribute < t_text, a_viewtarget > attr_viewtarget;
 typedef typed_attribute < t_visibility, a_visibility > attr_visibility;
+typedef typed_attribute < t_auto_manual, a_virtualkeyboardpolicy > attr_virtualkeyboardpolicy;
 typedef typed_attribute < t_colour, a_vlink > attr_vlink;
 typedef typed_attribute < t_real, a_v_mathematical > attr_vmathematical;
 typedef typed_attribute < t_vocab, a_vocab > attr_vocab;
@@ -1025,6 +1044,7 @@ typedef typed_attribute < t_zoompan, a_zoomandpan > attr_zoomandpan;
     attr_altimg_width, \
     attr_alttext, \
     attr_amplitude, \
+    attr_anchor, \
     attr_animate, \
     attr_arabic_form, \
     attr_archive, \
@@ -1528,7 +1548,10 @@ const e_attribute last_1 = a_glyphref;
     attr_onautocomplete, \
     attr_onautocompleteerror, \
     attr_onauxclick, \
+    attr_onbeforeinput, \
+    attr_onbeforematch, \
     attr_onbeforeprint, \
+    attr_onbeforetoggle, \
     attr_onbeforeunload, \
     attr_onbegin, \
     attr_onblur, \
@@ -1539,7 +1562,9 @@ const e_attribute last_1 = a_glyphref;
     attr_onclick, \
     attr_onclose, \
     attr_oncommand, \
+    attr_oncontextlost, \
     attr_oncontextmenu, \
+    attr_oncontextrestored, \
     attr_oncopy, \
     attr_oncuechange, \
     attr_oncut, \
@@ -1592,7 +1617,9 @@ const e_attribute last_1 = a_glyphref;
     attr_onoffline, \
     attr_ononline, \
     attr_onpagehide, \
+    attr_onpagereveal, \
     attr_onpageshow, \
+    attr_onpageswap, \
     attr_onpaste, \
     attr_onpause, \
     attr_onplay, \
@@ -1626,8 +1653,13 @@ const e_attribute last_1 = a_glyphref;
     attr_onundo, \
     attr_onunhandledrejection, \
     attr_onunload, \
+    attr_onvisibilitychange, \
     attr_onvolumechange, \
     attr_onwaiting, \
+    attr_onwebkitanimationend, \
+    attr_onwebkitanimationiteration, \
+    attr_onwebkitanimationstart, \
+    attr_onwebkittransitionend, \
     attr_onwheel, \
     attr_onzoom, \
     attr_opacity, \
@@ -1765,6 +1797,11 @@ const e_attribute last_2 = a_overlay_host;
     attr_setback_offset, \
     attr_several, \
     attr_shadowinherit, \
+    attr_shadowrootmode, \
+    attr_shadowrootdelegatesfocus, \
+    attr_shadowrootclonable, \
+    attr_shadowrootserialisable, \
+    attr_shadowrootcustomelementregistry, \
     attr_shape, \
     attr_shape_image_threshold, \
     attr_shape_inside, \
@@ -1919,6 +1956,7 @@ const e_attribute last_2 = a_overlay_host;
     attr_viewport_fill, \
     attr_viewport_fill_opacity, \
     attr_viewtarget, \
+    attr_virtualkeyboardpolicy, \
     attr_visibility, \
     attr_vlink, \
     attr_vmathematical, \

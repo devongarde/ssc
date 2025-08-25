@@ -119,6 +119,9 @@ template < > struct type_master < t_all_auto_none > : three_value < t_all_auto_n
 template < > struct type_master < t_alp > : three_value < t_alp, e_alp, sz_auto, sz_landscape, sz_portrait >
 { using three_value < t_alp, e_alp, sz_auto, sz_landscape, sz_portrait > :: three_value; };
 
+template < > struct type_master < t_analysis > : three_value < t_analysis, e_analysis, sz_default, sz_original, sz_aug25 >
+{ using three_value < t_analysis, e_analysis, sz_default, sz_original, sz_aug25 > :: three_value; };
+
 template < > struct type_master < t_anywhere_break_normal > : three_value < t_anywhere_break_normal, e_anywhere_break_normal, sz_anywhere, sz_break_word, sz_normal >
 { using three_value < t_anywhere_break_normal, e_anywhere_break_normal, sz_anywhere, sz_break_word, sz_normal > :: three_value; };
 
@@ -319,6 +322,9 @@ template < > struct type_master < t_fontnia > : three_value < t_fontnia, e_fontn
 
 template < > struct type_master < t_font_variant_position > : three_value < t_font_variant_position, e_font_variant_position, sz_normal, sz_sub, sz_super >
 { using three_value < t_font_variant_position, e_font_variant_position, sz_normal, sz_sub, sz_super > :: three_value; };
+
+template < > struct type_master < t_ftpte > : three_value < t_ftpte, e_ftpte, sz_false, sz_plaintext_only, sz_true, false, true >
+{ using three_value < t_ftpte, e_ftpte, sz_false, sz_plaintext_only, sz_true, false, true > :: three_value; };
 
 template < > struct type_master < t_gamut > : three_value < t_gamut, e_gamut, sz_p3, sz_rec2020, sz_srgb >
 { using three_value < t_gamut, e_gamut, sz_p3, sz_rec2020, sz_srgb > :: three_value; };

@@ -1,4 +1,4 @@
--Y 1 -f ../toast/microdata/microformats/mf.conf
+-Y 1 -7 original -f ../toast/microdata/microformats/mf.conf
 
 PASS ../toast/microdata/microformats/adr.html
 7 deprecated_ontology

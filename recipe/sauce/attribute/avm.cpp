@@ -62,7 +62,7 @@ void avm_init (nitpick& )
             havt_exists [], havt_exp [], havt_exponentiale [], havt_extensiondefs [],
         havt_factorial [], havt_factorof [], havt_false [], havt_feblend [], havt_fecolourmatrix [], havt_fecomponenttransfer [], havt_fecomposite [], havt_feconvolvematrix [], havt_fediffuselighting [],
             havt_fedisplacementmap [], havt_fedistantlight [], havt_fedropshadow [], havt_feflood [], havt_fefunca [], havt_fefuncb [], havt_fefuncg [], havt_fefuncr [], havt_fegaussianblur [], havt_feimage [],
-            havt_femerge [], havt_femergenode [], havt_femorphology [], havt_feoffset [], havt_fepointlight [], havt_fespecularlighting [], havt_fespotlight [], havt_fetile [], havt_feturbulence [],
+            havt_femerge [], havt_femergenode [], havt_femorphology [], havt_fencedframe [], havt_feoffset [], havt_fepointlight [], havt_fespecularlighting [], havt_fespotlight [], havt_fetile [], havt_feturbulence [],
             havt_fieldset [], havt_fig [], havt_figcaption [], havt_figure [], havt_filter [], havt_flowdiv [], havt_flowimage [], havt_flowline [], havt_flowpara [], havt_flowref [], havt_flowregion [],
             havt_flowregionbreak [], havt_flowregionexclude [], havt_flowroot [], havt_flowspan [], havt_flowtref [], havt_floor [], havt_fn [], havt_font [], havt_font_face [], havt_font_face_format [],
             havt_font_face_name [], havt_font_face_src [], havt_font_face_uri [], havt_footer [], havt_footnote [], havt_forall [], havt_foreignobject [], havt_form [], havt_frame [], havt_frameset [],
@@ -279,6 +279,7 @@ void avm_init (nitpick& )
     AVM_INIT (femerge);
     AVM_INIT (femergenode);
     AVM_INIT (femorphology);
+    AVM_INIT (fencedframe);
     AVM_INIT (feoffset);
     AVM_INIT (fepointlight);
     AVM_INIT (fespecularlighting);

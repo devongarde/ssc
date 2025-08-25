@@ -27,11 +27,21 @@ struct escape_t
     char ch_; }
 encoded [] =
 {   { "%20", SPACE },
+    { "%21", '!' },
+    { "%22", '"' },
     { "%23", HASH },
     { "%24", '$' },
     { "%25", PERCENT },
     { "%26", '&' },
-//    { "%2F", '/' },
+    { "%27", '\'' },
+    { "%28", '(' },
+    { "%29", ')' },
+    { "%2A", '*' },
+    { "%2B", '+' },
+    { "%2C", ',' },
+    { "%2D", '-' },
+    { "%2E", '.' },
+    { "%2F", '/' },
     { "%3A", COLON },
     { "%3B", ';' },
     { "%3C", '<' },
@@ -43,7 +53,8 @@ encoded [] =
     { "%5C", '\\'},
     { "%5D", ']' },
     { "%5E", '^' },
-    { "%60", '\''},
+    { "%5F", '_' },
+    { "%60", '`'},
     { "%7B", '{' },
     { "%7C", '|' },
     { "%7D", '}' },
@@ -79,17 +90,18 @@ void code_map_init (nitpick& nits)
             else res += s.at (x); }
     return res; }
 
-::std::string enescape (const ::std::string& s)
+::std::string enescape (const ::std::string& s, const bool reserved)
 {   const ::std::size_t len = s.length ();
-    if (len == 0) return s;
     ::std::string res;
-    const ::std::size_t pos = s.find (COLON);
-    if (pos == s.npos) return s;
-    res = s.substr (0, pos + 2);
-    for (::std::size_t x = pos + 2; x < len ; ++x)
-    {   auto i = encode_map.find (s.at (x));
-        if (i != encode_map.end ()) res += s.at (x);
-        else res += i -> second;  }
+    const ::std::string unreserved (ALPHANUMERIC "-._~=");  // RFC 6570
+    const ::std::string amreserved (":/?#[]@!$&'()*+,;");  // RFC 6570
+    for (::std::size_t x = 0; x < len ; ++x)
+    {   if (unreserved.find (s.at (x)) == ::std::string::npos)
+            if ((! reserved) || (amreserved.find (s.at (x)) == ::std::string::npos))
+            {   auto i = encode_map.find (s.at (x));
+                if (i != encode_map.end ())
+                {   res += i -> second; continue; } }
+        res += s.at (x); }
     return res; }
 
 ::std::string sanitise (const ::std::string& s)
@@ -121,8 +133,8 @@ void code_map_init (nitpick& nits)
         ++ds; }
     return res; }
 
-::std::string desanitise (const ::std::string& s)
-{   return enescape (s); }
+::std::string desanitise (const ::std::string& s, const bool reserved)
+{   return enescape (s, reserved); }
 
 int char2hex (const char ch)
 {   if (ch >= '0' && ch <= '9')

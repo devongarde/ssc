@@ -60,13 +60,25 @@ struct listedit_manager
     void OnTap (wxCommandEvent& event);
     void OnImpatience (wxCommandEvent& event);
     bool able_enable () const;
-    vstr_t acquire () const;
     bool construct (wxWindow* parent, wxBoxSizer* box, const char* desc, const char* def = nullptr, bool file = false, bool comma = false, bool line = false);
     void enable (const bool e);
     bool invalid () const noexcept; 
     ::std::size_t size () const
     {   if (invalid ()) return 0;
         return list_ -> GetCount (); }
+    vstr_t acquire () const;
+    template < class T > inline void acquire (T& s) const
+    {	VERIFY_NOT_NULL (list_, __FILE__, __LINE__);
+        s.clear ();
+        const unsigned int nx = list_ -> GetCount ();
+        for (unsigned int i = 0; i < nx; ++i)
+            s.emplace (::std::string (list_ -> GetString (i).c_str ())); }
+    template < > inline void acquire < vstr_t > (vstr_t& s) const
+    {	VERIFY_NOT_NULL (list_, __FILE__, __LINE__);
+        s.clear ();
+        const unsigned int nx = list_ -> GetCount ();
+        for (unsigned int i = 0; i < nx; ++i)
+            s.emplace_back (::std::string (list_ -> GetString (i).c_str ())); }
     template < class VT > void preload (const VT& vs)
     {	VERIFY_NOT_NULL (list_, __FILE__, __LINE__);
         list_ -> Clear ();

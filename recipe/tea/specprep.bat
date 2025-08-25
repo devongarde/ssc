@@ -211,6 +211,8 @@ ssc.exe -T --nits.spec -o ../out/clacksclacks.tst -f ../toast/other/clacks/clack
 ssc.exe -T --nits.spec -o ../out/CSScss.tst -f ../toast/other/CSS/css.conf
 ssc.exe -T --nits.spec -o ../out/dfndfn.tst -f ../toast/other/dfn/dfn.conf
 ssc.exe -T --nits.spec -o ../out/dumpdump.tst -f ../toast/other/dump/dump.conf
+ssc.exe -T --nits.spec -o ../out/efficientefficient.tst -f ../toast/other/efficient/efficient.conf
+ssc.exe -T --nits.spec -o ../out/efficientinefficient.tst -f ../toast/other/efficient/inefficient.conf
 ssc.exe -T --nits.spec -o ../out/ignoreignore.tst -f ../toast/other/ignore/ignore.conf
 ssc.exe -T --nits.spec -o ../out/ieie.tst -f ../toast/other/ie/ie.conf
 ssc.exe -T --nits.spec -o ../out/incorrectnessincorrectness.tst -f ../toast/other/incorrectness/incorrectness.conf
@@ -327,6 +329,8 @@ ssc.exe -T --nits.spec -o ../out/httpequivhttpequiv.tst -f ../toast/type/httpequ
 ssc.exe -T --nits.spec -o ../out/langlang.tst -f ../toast/type/lang/lang.conf
 ssc.exe -T --nits.spec -o ../out/metanamemetaname.tst -f ../toast/type/metaname/metaname.conf
 ssc.exe -T --nits.spec -o ../out/mimetypemimetype.tst -f ../toast/type/mimetype/mimetype.conf
+ssc.exe -T --nits.spec -o ../out/relrel.tst -f ../toast/type/rel/rel.conf
+ssc.exe -T --nits.spec -o ../out/rfc6570rfc6570.tst -f ../toast/type/rfc6570/rfc6570.conf
 ssc.exe -T --nits.spec -o ../out/sgmlsgml.tst -f ../toast/type/sgml/sgml.conf
 ssc.exe -T --nits.spec -o ../out/urlurl.tst -f ../toast/type/url/url.conf
 ssc.exe -T --nits.spec -o ../out/w3-3663.tst -f ../toast/w3/3663/w3.conf

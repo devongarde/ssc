@@ -51,15 +51,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
         2
         3 report http 30*
         4
-        5
+        5 HTML minor
         6
-        7
+        7 original analysis
         8
         9 */
 
 #define DONTASK_SW_ "0"
 #define FORWARD_SW_ "3"
 #define MINOR_SW_   "5"
+#define ANAL_SW_    "7"
 #define ASK_SW_     "a"
 #define SWITCH_SW_  "A"
 #define PERSIST_SW_ "c"
@@ -174,6 +175,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define ADJUST      "adjust"
 #define ALL         "all"
 #define ADVLAY      "adv-lay"
+#define ANALYSIS    "analysis"
 #define ANCHOR      "anchor"
 #define ANCHOR_POS  "anchor-pos"
 #define ANIMATION   "animation"
@@ -245,6 +247,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define EDE         "ede"
 #define EASE        "ease"
 #define ECHOMSG     "echomsg"
+#define EFFICIENT   "efficient"
 #define ELEMENT     "element"
 #define ELEMATTR    ELEMENT "-" ATTRIB
 #define ENABLE      "enable"
@@ -374,6 +377,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define REGION      "region"
 #define REL         "rel"
 #define RPATH       "relative-path"
+#define REPLACE     "replace"
 #define REPORT      "report"
 #define REQUIRED    "required"
 #define REVOKE      "no-revoke"
@@ -439,6 +443,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define UI          "ui"
 #define UNIQUE      "unique"
 #define UPDATE      "update"
+#define URL_VAR     "url-var"
 #define USER        "user"
 #define USERNAME    "username"
 #define VAL         "value"

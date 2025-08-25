@@ -1,4 +1,4 @@
--Y 1 -f ../toast/RDFa/cc/rdfa.conf
+-Y 1 -7 original -f ../toast/RDFa/cc/rdfa.conf
 
 PASS ../toast/RDFa/cc/cc.html
 14 invalid_attribute_version wrong_version unrecognised_ontology

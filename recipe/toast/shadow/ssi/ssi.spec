@@ -1,4 +1,4 @@
--Y 1 -f ../toast/shadow/ssi/ssi.conf
+-Y 1 -7 original -f ../toast/shadow/ssi/ssi.conf
 
 PASS ../toast/shadow/ssi/index.html
 2 naughty_lang

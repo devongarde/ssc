@@ -65,7 +65,7 @@ void types_init (nitpick& nits)
 {   ::std::string res;
     switch (status)
     {   case s_unset:
-            res += ": (unknown)";
+            res += ": " UNKNOWN;
             return res;
         case s_empty:
             res += ": (empty)";

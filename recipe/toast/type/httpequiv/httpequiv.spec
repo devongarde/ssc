@@ -1,4 +1,4 @@
--Y 1 -f ../toast/type/httpequiv/httpequiv.conf
+-Y 1 -7 original -f ../toast/type/httpequiv/httpequiv.conf
 
 PASS ../toast/type/httpequiv/accept.html
 2 naughty_lang
@@ -57,7 +57,8 @@ PASS ../toast/type/httpequiv/origin.html
 
 PASS ../toast/type/httpequiv/referrer.html
 2 naughty_lang
-5 empty_link
+5 dinosaur empty_link
+6 dinosaur
 
 PASS ../toast/type/httpequiv/rp.html
 2 naughty_lang

@@ -1,4 +1,4 @@
--Y 1 -f ../toast/HTML/wx/wx.conf
+-Y 1 -7 original -f ../toast/HTML/wx/wx.conf
 
 PASS ../toast/HTML/wx/index.html
 3 wx wx

@@ -32,15 +32,16 @@ bool lingo::borked_ = false;
 // for example http://www.lingoes.net/en/translator/langcode.htm , https://www.andiamo.co.uk/resources/iso-language-codes/
 struct ab_t
 {   const char* const a_;
-    const char* const b_; };
+    const char* const b_;
+    bool ansi_ = false; };
 
 ab_t ab [] =
 {   {   "ar", "ar-TN" },
     {   "bg", "bg-BG" },
-    {   "de", "de-DE" },
-    {   "en", STANDARD_ENGLISH },
+    {   "de", "de-DE", true },
+    {   "en", STANDARD_ENGLISH, true },
     {   "es", "es-ES" },
-    {   "fr", "fr-FR" },
+    {   "fr", "fr-FR", true },
     {   "hr", "hr-HR" },
     {   "it", "it-IT" },
     {   "ms", "ms-MY" },

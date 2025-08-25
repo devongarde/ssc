@@ -1,4 +1,4 @@
--Y 1 -f ../toast/microdata/schema-pqrs/pqrs.conf
+-Y 1 -7 original -f ../toast/microdata/schema-pqrs/pqrs.conf
 
 PASS ../toast/microdata/schema-pqrs/painting.html
 0 charset_mismatch charset_used charset_invalid
@@ -346,7 +346,7 @@ PASS ../toast/microdata/schema-pqrs/softwareapplication.html
 146 url_not_found
 155 css_version
 157 no_such_folder url_not_found
-159 url_not_found link_rel_off
+159 url_not_found
 160 unrecognised_value unknown_rel no_such_folder url_not_found link_rel_off
 162 no_such_folder url_not_found
 163 link_rel_off
@@ -365,7 +365,6 @@ PASS ../toast/microdata/schema-pqrs/softwareapplication.html
 226 no_such_folder url_not_found
 260 no_such_folder url_not_found
 261 unrecognised_value unrecognised_value no_such_folder url_not_found
-329 chocolate_teapot
 340 unrecognised_value
 346 unrecognised_value unrecognised_value unrecognised_value
 348 unrecognised_value

@@ -1,4 +1,4 @@
--f ../toast/coop/schema-abc/abc.conf
+-7 original -f ../toast/coop/schema-abc/abc.conf
 
 PASS ../toast/coop/schema-abc/a/administrativearea.html
 14 use_double_quote_code

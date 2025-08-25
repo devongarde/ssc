@@ -40,9 +40,9 @@ template < e_scheme SCHEME > inline bool url_scheme < SCHEME > :: parse (nitpick
 template < e_scheme SCHEME > inline bool url_scheme < SCHEME > :: is_valid (const vc_t& component, bool defaulted)
 {   return (defaulted || ! component.at (es_original).empty ()); }
 template < e_scheme SCHEME > inline ::std::string url_scheme < SCHEME > :: get (const vc_t& component, bool )
-{   return component.at (es_original); }
+{   return component.at (es_template); }
 template < e_scheme SCHEME > inline ::std::string url_scheme < SCHEME > :: absolute (const vc_t& component, bool , bool )
-{   return component.at (es_original); }
+{   return component.at (es_template); }
 
 template < > inline bool url_scheme < pt_rfc3986 > :: is_valid (const vc_t& component, bool defaulted)
 {   return (defaulted && ! component.at (es_original).empty ()) || ! component.at (es_server).empty (); }

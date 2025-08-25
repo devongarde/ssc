@@ -110,7 +110,7 @@ template < > struct type_master < t_urls > : type_base < url, t_urls >
     {   ::std::string s;
         for (auto& u : value_)
         {   if (! s.empty ()) s += ",";
-            s += u.original (); }
+            s += u.temple (); }
         return s; }
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
     {   ::std::string ss (trim_the_lot_off (s));
@@ -150,6 +150,16 @@ template < > struct type_master < t_urls > : type_base < url, t_urls >
     vurl_t get_urls () const
     {   return value_; } };
 
+template < > struct type_master < t_purls > : type_master < t_urls >
+{   using type_master < t_urls > :: type_master;
+    void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
+    {   type_master < t_urls > :: set_value (nits, v, s);
+        if (type_master < t_urls > :: good ())
+            for (auto u : type_master < t_urls > :: value_)
+                if (! u.invalid ())
+                    if (! u.is_http () || ! u.is_https ())
+                        nits.pick (nit_empty_link, ed_aug25, "4.6.6 Hyperlink auditing", es_warning, ec_link, "a PING url which is neither http: nor https:, such as ", quote (u.get ()), ", will be ignored"); } };
+
 template < > struct type_master < t_xmlurl > : type_master < t_url >
 {   using type_master < t_url > :: type_master;
     void set_value (nitpick& nits, const html_version& v, const ::std::string& s)
@@ -157,5 +167,3 @@ template < > struct type_master < t_xmlurl > : type_master < t_url >
         if (type_master < t_url > :: good () && ! v.xhtml ())
         {   nits.pick (nit_requires_xhtml, es_error, ec_type, quote (s), " is only valid in XHTML");
             type_base < url, t_url > :: status (s_invalid); } } };
-
-// TBD: t_urltemplate, re RFC 6570

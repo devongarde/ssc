@@ -45,6 +45,7 @@ class element_node
     namespaces_ptr namespaces_;
     prefixes_ptr prefixes_, rdf_schemas_;
     rdf_ptr rdf_, rdfa_;
+    e_nit knit_ = nit_free;
     ::std::string inner_text (const bool simplify = false) const;
     ::std::string inner_text (nitpick& nits, const html_version& v) const;
     void init ();
@@ -153,4 +154,6 @@ public:
     vstr_t words (nitpick& nits, const html_version& v) const;
     bool has_naughty_text (const ::std::string& s) const;
     bool replace_naughty_text (const ::std::string& t, const ::std::string& s, const bool checked = false);
+    e_nit knitted () const { return knit_; }
+    void knitted (const e_nit k) { knit_ = k; }
     ::std::string rpt (const int level = 0); };

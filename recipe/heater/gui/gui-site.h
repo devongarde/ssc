@@ -37,7 +37,7 @@ class site_t : public d1_t < wx_site >
     bool absolute_ = false;
     ::std::string acc_, desc_, user_;
     ::boost::filesystem::path def_;
-    vstr_t site_;
+    sstr_t site_;
     DECLARE_CLASS (site_t)
     DECLARE_EVENT_TABLE ()
 public:
@@ -66,7 +66,7 @@ public:
     bool TransferDataFromWindow ();
     void def (const ::boost::filesystem::path& d) { def_ = d; }
     const ::boost::filesystem::path& def () const { return def_; }
-    void site (const vstr_t& s) { site_ = s; }
-    const vstr_t& site () const { return site_; } };
+    void site (const sstr_t& s) { site_ = s; }
+    const sstr_t& site () const { return site_; } };
 
 #endif // WX

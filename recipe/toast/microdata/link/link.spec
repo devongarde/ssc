@@ -1,4 +1,4 @@
--Y 1 -f ../toast/microdata/link/link.conf
+-Y 1 -7 original -f ../toast/microdata/link/link.conf
 
 PASS ../toast/microdata/link/all.shtml
 2 naughty_lang

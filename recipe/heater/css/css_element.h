@@ -41,6 +41,7 @@ public:
     void parse (arguments& args, const int from, const int to, const bool knotted = false);
     bool bef_aft () const;
     const element_bitset get_elements () const { return element_bitset (e_.get ()); }
+    bool invalid_element () { return (e_.get () < first_css_tag) && (e_.get () == last_element_tag); }
     void validate (arguments& args);
     void accumulate (stats_t* s) const;
     void shadow (::std::stringstream& ss, arguments& args);

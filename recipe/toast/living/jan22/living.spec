@@ -1,4 +1,4 @@
--Y 1 -f ../toast/living/jan22/living.conf
+-Y 1 -7 original -f ../toast/living/jan22/living.conf
 
 PASS ../toast/living/jan22/404.html
 12 bespoke_obsolete
@@ -380,7 +380,7 @@ PASS ../toast/living/jan22/et.html
 PASS ../toast/living/jan22/extra.html
 5 attribute_unrecognised_here unrecognised_attribute link_rel_off
 6 attribute_unrecognised_here unrecognised_attribute
-7 attribute_unrecognised_here unrecognised_attribute link_rel_off
+7 attribute_unrecognised_here unrecognised_attribute
 8 attribute_unrecognised_here unrecognised_attribute
 9 attribute_unrecognised_here unrecognised_attribute
 14 invalid_attribute_version wrong_version

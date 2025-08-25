@@ -358,7 +358,7 @@ uint64_t directory::url_size (nitpick& nits, const url& u) const
                     if (when > *updated) *updated = when; }
                 return read_text_file (nits, p, borked); }
             else if (u.get_scheme () == pt_rfc3986)
-                if (u.has_domain () && is_one_of (u.domain (), context.site ()))
+                if (u.has_domain () && be_it_there (context.site (), u.domain ()))
                 {   ::boost::filesystem::path p (get_disk_path (nits, u));
                     if (updated != nullptr)
                     {   ::std::time_t when = get_last_write_time (p);
@@ -401,7 +401,7 @@ bool directory::verify_local (nitpick& nits, const html_version& , const url& u,
             maintain_fileindex (nits, p, u.absolute (), ndx, FX_TESTED | FX_EXISTS | FX_DIR);
             maintain_fileindex (nits, p2, sanitise (u.absolute () + "/" + context.index ()), ndx, FX_TESTED);
             return false; }
-    if (u.is_local () && context.pretended (u.original ()))
+    if (u.is_local () && context.pretended (u.temple ()))
     {   maintain_fileindex (nits, p, u.absolute (), ndx, FX_TESTED | FX_PRETEND);
         return true; }
     maintain_fileindex (nits, p, u.absolute (), ndx, FX_TESTED);
@@ -413,7 +413,7 @@ bool directory::verify_url (nitpick& nits, const html_version& v, const url& u, 
     if (u.empty ()) return false; // self?
     if (u.has_protocol ())
     {   if (u.get_scheme () != pt_rfc3986) return true;
-        if (u.has_domain () && ! is_one_of (u.domain (), context.site ()))
+        if (u.has_domain () && ! be_it_there (context.site (), u.domain ()))
             return verify_external (nits, v, u); }
     if (verify_local (nits, v, u, fancy)) return true;
     nits.pick (nit_url_not_found, es_error, ec_url, quote (u.original ()), " not found");
@@ -491,11 +491,11 @@ bool directory::integrate_virtual (const ::std::string& site, path_root_ptr& dis
             return n; }
     return 0; }
 
-bool has_extension (const ::std::string& name, const vstr_t& extensions)
+bool has_extension (const ::std::string& name, const sstr_t& extensions)
 {   ::std::string ext (::boost::filesystem::path (name).extension ().string ());
     if (ext.empty ()) return false;
-    if (ext.at (0) == '.') return is_one_of (ext.substr (1), extensions);
-    return is_one_of (ext, extensions); }
+    if (ext.at (0) == '.') return be_it_there (extensions, ext.substr (1));
+    return be_it_there (extensions, ext); }
 
 bool is_css (const ::std::string& name)
 {   return has_extension (name, context.css_extension ()); }

@@ -1,4 +1,4 @@
--Y 1 -f ../toast/RDF/Prism-1.2/rdf.conf
+-Y 1 -7 original -f ../toast/RDF/Prism-1.2/rdf.conf
 
 PASS ../toast/RDF/Prism-1.2/index.html
 2 naughty_lang

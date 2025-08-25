@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "feedback/nitpick.h"
 #include "ontology/ontology_version.h"
 
-#define LATEST_HTML_STR "Jan 2025"
+#define LATEST_HTML_STR "Aug 2025"
 #define LATEST_CSS_STR  "2024"
 
 #define HV_LEVEL1       0x0000000000000001
@@ -39,12 +39,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define HR_LINKHEAD     0x0000000000000200
 #define HR_LINKBODY     0x0000000000000400
 #define HR_LINK         ( HR_LINKHEAD | HR_LINKBODY )
+#define HR_ALL          ( HR_LINK | HR_A_AREA )
 #define HR_EXTERNAL     0x0000000000000800
-#define HR_FORM         0x0000000000001000
-#define HR_ALL          0x0000000000001F00
-#define HR_MF1          0x0000000000002000
-#define HR_MF2          0x0000000000004000
+#define HR_INTERNAL     0x0000000000001000
+#define HR_FORM         0x0000000000002000
+#define HR_MF1          0x0000000000004000
+#define HR_MF2          0x0000000000008000
 #define HR_MF           ( HR_MF1 | HR_MF2 )
+#define HR_POSH         0x0000000000010000
 
 #define HV_CSP_1        0x0000000000020000
 #define HV_CSP_2        0x0000000000040000
@@ -480,6 +482,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H2_CSS_2025_2     ( H2_CSS_2024_2 )
 #define H2_CSS_2025_3     ( H2_CSS_2024_3 )
 
+#define H2_CSS_LS_AUG25   ( H2_CSS_2024 | H2_CSS_2024_1 | H2_CSS_2024_2 | H2_CSS_2024_3 | H2_CSS_MEDIA | H2_CSS_UI )
+
 #define H3_CSS_HYPERLINK      0x0000000000000001
 #define H3_CSS_MULTI_COL      0x0000000000000002
 #define H3_CSS_DISPLAY        0x0000000000000004
@@ -666,6 +670,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H3_CSS_2025_2     ( H3_CSS_2024_2 )
 #define H3_CSS_2025_3     ( H3_CSS_2024_3 )
 
+#define H3_CSS_LS_AUG25   ( H3_CSS_2024 | H3_CSS_2024_1 | H3_CSS_2024_2 | H3_CSS_2024_3 | H3_CSS_CONTAIN | H3_CSS_RUBY | H3_CSS_SCOPE | H3_CSS_SHAPE | H3_CSS_TEXT | H3_CSS_TEXTDEC )
+
 #define H4_CSS_COLOUR_3     0x0000000000000001  
 #define H4_CSS_COLOUR_4     0x0000000000000002  
 #define H4_CSS_COLOUR_5     0x0000000000000004  
@@ -697,6 +703,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H4_CSS_ARG_OPTIONAL 0x0000000000004000
 #define H4_CSS_FCS          0x0000000000008000
 #define H4_CSS_MATH_CORE    0x0000000000010000
+#define H4_CSS_LIVING_STANDARD 0x0000000000020000
 
 #define H4_CSS_3          ( H4_CSS_ADVLAY | H4_CSS_ANCHOR_POS | H4_CSS_COLOUR_3 | H4_CSS_FCS | H4_CSS_MARQUEE | H4_CSS_MATH_CORE | \
                             H4_CSS_OVERFLOW_3 | H4_CSS_SPATIAL | H4_CSS_SNAP_POINTS | H4_CSS_TRANSITION_3 | H4_CSS_VIEWPORT )
@@ -771,6 +778,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define H4_CSS_2025_1     ( H4_CSS_2024_1 )
 #define H4_CSS_2025_2     ( H4_CSS_2024_2 )
 #define H4_CSS_2025_3     ( H4_CSS_2024_3 )
+
+#define H4_CSS_LS_AUG25    ( H4_CSS_2024 | H4_CSS_2024_1 | H4_CSS_2024_2 | H4_CSS_2024_3 | H4_CSS_FCS | H4_CSS_LIVING_STANDARD | H4_CSS_MATH_CORE | H4_CSS_OVERFLOW )
 
 #define H4_ARIA_DP_1_0      0x0010000000000000
 #define H4_ARIA_DP_1_1      0x0020000000000000
@@ -1020,6 +1029,7 @@ public:
     bool svg_old_html () const noexcept { return any_ext (HE_SVG_OLD_H); }
     bool is_a_area () const noexcept { return all_flags (HR_A_AREA); }
     bool is_external () const noexcept { return all_flags (HR_EXTERNAL); }
+    bool is_internal () const noexcept { return all_flags (HR_INTERNAL); }
     bool is_form () const noexcept { return all_flags (HR_FORM); }
     bool is_linkhead () const noexcept { return all_flags (HR_LINKHEAD); }
     bool is_linkbody () const noexcept { return all_flags (HR_LINKBODY); }
@@ -1029,6 +1039,7 @@ public:
     bool invalid_addendum (const html_version& v) const noexcept;
     bool deprecated (const html_version& current) const;
     bool not_production () const noexcept { return all_flags (HV_NOTPROD); }
+    bool posh () const noexcept { return all_flags (HR_POSH); }
     bool parse_doctype (nitpick& nits, const ::std::string& content);
     bool lazy () const noexcept;
     bool valid_charset (const ::std::string& charset) const;
@@ -1445,14 +1456,16 @@ const html_version html_apr25 (HTML_APR25, css_2025, HV_WHATWG, HE_MICRODATA | H
 const html_version html_may25 (HTML_MAY25, css_2025, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_FULL);
 const html_version html_jun25 (HTML_JUN25, css_2025, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_FULL | H4_CSS_MATH_CORE);
 const html_version html_jul25 (HTML_JUL25, css_2025, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_FULL | H4_CSS_MATH_CORE);
-const html_version html_aug25 (HTML_AUG25, css_2025, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_FULL | H4_CSS_MATH_CORE);
+const html_version html_aug25 (HTML_AUG25, css_ls_aug25, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_LS_AUG25, H3_CSS_LS_AUG25, H4_RUBY | H4_ARIA_FULL | H4_CSS_LS_AUG25);
+const html_version html_sep25 (HTML_SEP25, css_ls_aug25, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_LS_AUG25, H3_CSS_LS_AUG25, H4_RUBY | H4_ARIA_FULL | H4_CSS_LS_AUG25);
+const html_version html_oct25 (HTML_OCT25, css_ls_aug25, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_CSS_LS_AUG25, H3_CSS_LS_AUG25, H4_RUBY | H4_ARIA_FULL | H4_CSS_LS_AUG25);
 const html_version html_5_0 (HTML_5_0, css_2010, HV_W3, HE_SVG_11, H2_MATH_2);
 const html_version html_5_1 (HTML_5_1, css_2015, HV_W3, HE_SVG_11, H2_MATH_2);
 const html_version html_5_2 (HTML_5_2, css_2017, HV_W3, HE_SVG_11, H2_MATH_3);
 const html_version html_5_3 (HTML_5_3, css_2018, HV_W3, HE_SVG_11, H2_MATH_3);
-const html_version html_current (html_jul25);
+const html_version html_current (html_aug25);
 const html_version html_default (html_current);
-const html_version html_max (HTML_DEC99, css_6, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C, 0, H4_RUBY | H4_ARIA_FULL);
+const html_version html_max (HTML_DEC99, css_6, HV_WHATWG, HE_MICRODATA | HE_SVG_21, H2_MATH_C | H2_FULL_CSS_MASK, H3_FULL_CSS_MASK, H4_RUBY | H4_ARIA_FULL | H4_FULL_CSS_MASK);
 
 bool does_html_apply (const html_version& v, const html_version& from, const html_version& to);
 bool parse_doctype (nitpick& nits, html_version& version, const ::std::string::const_iterator b, const ::std::string::const_iterator e);

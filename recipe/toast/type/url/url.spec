@@ -1,4 +1,4 @@
--Y 1 -f ../toast/type/url/url.conf
+-Y 1 -7 original -f ../toast/type/url/url.conf
 
 PASS ../toast/type/url/index.html
 2 naughty_lang
@@ -8,7 +8,7 @@ PASS ../toast/type/url/bad.html
 12 url_id_unfound
 13 character_code
 15 unknown_protocol chocolate_teapot
-16 chocolate_teapot
+16 bad_char chocolate_teapot
 17 bad_char chocolate_teapot
 18 invalid_protocol chocolate_teapot
 19 invalid_ipv4 chocolate_teapot

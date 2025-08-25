@@ -54,6 +54,7 @@ bool separate_first (const ::std::string& s, ::std::string& head, ::std::string&
 bool separate_last (const ::std::string& s, ::std::string& head, ::std::string& tail, const char ch);
 bool separate (const ::std::string& s, ::std::string& head, ::std::string& tail, const char ch);
 bool one_of_domain (const ::std::string& s, const vstr_t& v);
+bool one_of_domain (const ::std::string& s, const sstr_t& v);
 
 inline ::std::string tart (const ::std::string& s)
 {   return unify_whitespace (trim_the_lot_off (s)); }
@@ -86,8 +87,15 @@ inline bool compare_no_case (const std::string& a, const std::string& b)
 {   if (a.length () != b.length ()) return false;
     return ::std::equal (b.begin (), b.end (), a.begin (), cnc_test); }
 
-bool is_one_of (const ::std::string& s, const vstr_t& v);
-::std::size_t which_one_of (const ::std::string& s, const vstr_t& v);
+inline bool be_it_there (const sstr_t& ss, const ::std::string& s)
+{   return ss.find (s) != ss.cend (); }
+
+inline sstr_t vtos (const vstr_t& vs)
+{   sstr_t ss; for (auto s : vs) ss.insert (s); return ss; }
+
+inline vstr_t stov (const sstr_t& vs)
+{   vstr_t ss; for (auto s : vs) ss.push_back (s); return ss; }
+
 bool is_whitespace (const ::std::string::const_iterator b, const ::std::string::const_iterator e) noexcept;
 inline bool is_whitespace (const ::std::string& s) noexcept { return is_whitespace (s.cbegin (), s.cend ()); }
 
@@ -315,7 +323,6 @@ public:
         xp_ = nullptr; }
     void reset (XYZ* x)
     {   shut_up ();
-        VERIFY_NOT_NULL (x, __FILE__, __LINE__);
         xp_ = x; }
     const XYZ* data () const { return xp_; }
     XYZ* data () { return xp_; }

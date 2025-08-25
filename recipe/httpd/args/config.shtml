@@ -1,15 +1,15 @@
-<!--#include virtual="../plumbing/html.inc" -->
-<!--#include virtual="../plumbing/var.inc" --><!--#include virtual="../plumbing/varargs.inc" -->
+<!--#include virtual="/plumbing/html.inc" -->
+<!--#include virtual="/plumbing/var.inc" -->
 <!--#set var="title" value="configuration files" -->
 <title>
 <!--#echo encoding="none" var="title" -->
 </title>
-<!--#include virtual="../plumbing/header.inc" -->
-<!--#include virtual="../plumbing/blog-section.inc" -->
-<!--#include virtual="../plumbing/html-top-start.inc" -->
-<!--#include virtual="../plumbing/argle.inc" -->
-<!--#include virtual="../plumbing/html-top-end.inc" -->
-<!--#include virtual="../plumbing/blog-schema.inc" -->
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/blog-section.inc" -->
+<!--#include virtual="/plumbing/html-top-start.inc" -->
+<!--#include virtual="/plumbing/argle.inc" -->
+<!--#include virtual="/plumbing/html-top-end.inc" -->
+<!--#include virtual="/plumbing/blog-schema.inc" -->
 <data class="u-url u-uid" value="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->">
 </data>
 
@@ -19,7 +19,7 @@
 
 <h2>the basics</h2>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="../image/ssc-msgdb-t1-b3.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-t1-b3.jpg" title="made with studio artist 5.5">
 
 <p>
 To check a static web site using a configuration file:
@@ -38,7 +38,7 @@ setting=
 </code>
 
 <p>
-The section names and entries are the same as <a href="index.shtml">the long switch names</a>.
+The section names and entries are the same as <a href="<!--#echo encoding="none" var="args" -->">the long switch names</a>.
 The part before the dot is the section name, and after the dot is the setting name.
 </p>
 
@@ -111,7 +111,7 @@ root).
 
 <h3>Microformats</h3>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="../image/ssc-msgdb-t1-b3.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-t1-b3.jpg" title="made with studio artist 5.5">
 
 <p>
 <a href="https://microformats.org/">Microformats</a> contain machine&ndash;readable site information held in class attributes,
@@ -202,7 +202,7 @@ meta=
 shadow output
 </h3>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="../image/ssc-msgdb-t1-b3.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-t1-b3.jpg" title="made with studio artist 5.5">
 
 <p>
 A configuration file to shadow copy and deduplicate a site might
@@ -302,7 +302,7 @@ and files with the SHTML extension will be treated as web pages.
 
 <h3>mathML</h3>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="../image/ssc-msgdb-t1-b3.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-t1-b3.jpg" title="made with studio artist 5.5">
 
 <p>
 This configuration file could be used to test MathML 2.
@@ -473,7 +473,7 @@ a gadzillion errors in <a href="https://dylanharris.org/">arts &amp; ego</a>. I 
 
 <h3>OpenBSD website</h3>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="../image/ssc-msgdb-t1-b3.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-t1-b3.jpg" title="made with studio artist 5.5">
 
 <p>
 Perhaps you&rsquo;ve grabbed <a href="https://github.com/openbsd/www.git">a copy of the OpenBSD website from github</a>:
@@ -512,6 +512,6 @@ index=index.html<br>
 summary=
 </code>
 
-<!--#include virtual="../plumbing/under.inc" -->
-<!--#include virtual="../plumbing/args.inc" -->
-<!--#include virtual="../plumbing/html-end.inc" -->
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/args.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

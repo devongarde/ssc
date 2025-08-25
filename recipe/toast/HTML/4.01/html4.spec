@@ -1,4 +1,4 @@
--Y 1 -f ../toast/HTML/4.01/html4.conf
+-Y 1 -7 original -f ../toast/HTML/4.01/html4.conf
 
 PASS ../toast/HTML/4.01/css-good.css
 4 whatwg_class whatwg_class
@@ -132,7 +132,6 @@ PASS ../toast/HTML/4.01/html4-example.html
 0 charset_mismatch charset_used
 10 bespoke_obsolete
 22 dinosaur
-25 dinosaur
 62 function unrecognised_value function unrecognised_value function unrecognised_value isnt unrecognised_value function unrecognised_value function unrecognised_value function unrecognised_value isnt unrecognised_value
 96 inserted_missing_closure inserted_missing_closure missing_close missing_close
 97 inserted_missing_closure inserted_missing_closure

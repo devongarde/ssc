@@ -34,6 +34,7 @@ hav_t havt_object [] =
     { { HTML_4_0 }, { XHTML_2_0 }, elem_object, a_datasrc },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_object, a_declare },
     { { HTML_JAN09, HV_NOT53 }, { HTML_5_2 }, elem_object, a_form },
+    { { HTML_AUG25 }, { HTML_UNDEF }, elem_object, a_form },
     { { HTML_4_0 }, { HTML_UNDEF }, elem_object, a_height },
     { { HTML_4_0, HV_DEPRECATED4 }, { XHTML_2_0 }, elem_object, a_hspace },
     { { HTML_4_0 }, { XHTML_2_0 }, elem_object, a_name },

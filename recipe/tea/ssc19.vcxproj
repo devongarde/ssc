@@ -160,6 +160,7 @@
     <ClInclude Include="..\heater\ontology\ontology_structure.h" />
     <ClInclude Include="..\heater\ontology\ontology_type.h" />
     <ClInclude Include="..\heater\ontology\ontology_version.h" />
+    <ClInclude Include="..\heater\parser\efficiency.h" />
     <ClInclude Include="..\heater\parser\html_version.h" />
     <ClInclude Include="..\heater\parser\jsonic.h" />
     <ClInclude Include="..\heater\parser\parse_abb.h" />
@@ -474,6 +475,7 @@
     <ClCompile Include="..\sauce\ontology\ontology_structure.cpp" />
     <ClCompile Include="..\sauce\ontology\ontology_type.cpp" />
     <ClCompile Include="..\sauce\ontology\ontology_version.cpp" />
+    <ClCompile Include="..\sauce\parser\efficiency.cpp" />
     <ClCompile Include="..\sauce\parser\html_version.cpp" />
     <ClCompile Include="..\sauce\parser\jsonic.cpp" />
     <ClCompile Include="..\sauce\parser\parse_attribute.cpp" />

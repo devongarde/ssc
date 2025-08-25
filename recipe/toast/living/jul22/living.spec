@@ -1,4 +1,4 @@
--Y 1 -f ../toast/living/jul22/living.conf
+-Y 1 -7 original -f ../toast/living/jul22/living.conf
 
 PASS ../toast/living/jul22/404.html
 12 bespoke_obsolete
@@ -374,7 +374,7 @@ PASS ../toast/living/jul22/et.html
 
 PASS ../toast/living/jul22/extra.html
 5 blocking link_rel_off
-7 link_rel_off
+7 blocking
 8 unrecognised_value
 
 PASS ../toast/living/jul22/fieldset.html

@@ -118,6 +118,9 @@ template < > struct type_master < t_auto_break > : two_value < t_auto_break, e_a
 template < > struct type_master < t_auto_contain > : two_value < t_auto_contain, e_auto_contain, sz_auto, sz_contain >
 { using two_value < t_auto_contain, e_auto_contain, sz_auto, sz_contain > :: two_value; };
 
+template < > struct type_master < t_auto_manual > : two_value < t_auto_manual, e_auto_manual, sz_auto, sz_manual >
+{ using two_value < t_auto_manual, e_auto_manual, sz_auto, sz_manual > :: two_value; };
+
 template < > struct type_master < t_auto_none > : two_value < t_auto_none, e_auto_none, sz_auto, sz_none >
 { using two_value < t_auto_none, e_auto_none, sz_auto, sz_none > :: two_value; };
 
@@ -367,6 +370,9 @@ template < > struct type_master < t_onetwo > : two_value < t_onetwo, e_onetwo, s
 
 template < > struct type_master < t_onoff > : two_value < t_onoff, e_onoff, sz_off, sz_on >
 { using two_value < t_onoff, e_onoff, sz_off, sz_on > :: two_value; };
+
+template < > struct type_master < t_onoffempty > : two_value < t_onoffempty, e_onoff, sz_off, sz_on, true >
+{ using two_value < t_onoffempty, e_onoff, sz_off, sz_on, true > :: two_value; };
 
 template < > struct type_master < t_orientation > : two_value < t_orientation, e_orientation, sz_h, sz_v >
 { using two_value < t_orientation, e_orientation, sz_h, sz_v > :: two_value; };

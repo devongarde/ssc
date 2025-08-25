@@ -1,4 +1,4 @@
--Y 1 -f ../toast/other/dc/dc.conf
+-Y 1 -7 original -f ../toast/other/dc/dc.conf
 
 PASS ../toast/other/dc/index.html
 2 naughty_lang

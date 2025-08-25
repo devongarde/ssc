@@ -30,22 +30,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #include "element/element.h"
 #include "webpage/external.h"
 
-vstr_t url::standard_image_extensions_, url::standard_text_extensions_;
+sstr_t url::standard_image_extensions_, url::standard_text_extensions_;
 
 bool url::operator == (const url& rhs) const
 {   return (current_ == rhs.current_) && (protocol_ == rhs.protocol_) && (params_ == rhs.params_); }
 
 void url::init (nitpick& )
-{   standard_text_extensions_.resize (4);
-    GSL_AT (standard_text_extensions_, 0) = HTML_EXT;
-    GSL_AT (standard_text_extensions_, 1) = "shtml";
-    GSL_AT (standard_text_extensions_, 2) = "htm";
-    GSL_AT (standard_text_extensions_, 2) = XHTML_EXT;
-    standard_image_extensions_.resize (4);
-    GSL_AT (standard_image_extensions_, 0) = "jpg";
-    GSL_AT (standard_image_extensions_, 1) = "jpeg";
-    GSL_AT (standard_image_extensions_, 2) = "gif";
-    GSL_AT (standard_image_extensions_, 3) = "png"; }
+{   standard_text_extensions_.insert (HTML_EXT);
+    standard_text_extensions_.insert ("shtml");
+    standard_text_extensions_.insert ("htm");
+    standard_text_extensions_.insert (XHTML_EXT);
+    standard_image_extensions_.insert ("jpg");
+    standard_image_extensions_.insert ("jpeg");
+    standard_image_extensions_.insert ("gif");
+    standard_image_extensions_.insert ("png"); }
 
 void url::swap (url& u) noexcept
 {   ::std::swap (valid_, u.valid_);
@@ -60,7 +58,12 @@ void url::parse (nitpick& nits, const html_version& v, const ::std::string& url,
     else
     {   protocol pr;
         pr.set_component (es_original, url);
-        valid_ = pr.parse (nits, v, decode (trim_the_lot_off (uq3 (url))), current);
+        ::std::string s (trim_the_lot_off (uq3 (url)));
+        if (context.analysis () >= anal_aug25)
+            if (! process_url_templates (nits, v, s))
+                valid_ = false;
+        pr.set_component (es_template, s);
+        if (! pr.parse (nits, v, decode (s), current)) valid_ = false;
         if (valid_)
             if (has_component (es_query))
             {   parameters pa (v, pr.get_component (es_query));
@@ -92,9 +95,9 @@ bool url::standard_extension (const e_mime_category mime) const
         {   ext = ext.substr (0, pos + 1);
             switch (mime)
             {   case mc_text :
-                    return is_one_of (ext, standard_text_extensions_);
+                    return standard_text_extensions_.find (ext) != standard_text_extensions_.cend ();
                 case mc_image :
-                    return is_one_of (ext, standard_image_extensions_);
+                    return standard_image_extensions_.find (ext) != standard_image_extensions_.cend ();
                 default: break; } } }
     return false; }
 
@@ -170,16 +173,16 @@ void url::shadow (::std::stringstream& ss, const html_version& v, element* e)
             u2.reset (nits, get_site_path (du (ndx)));
             if (nits.worst () > es_error) // e.g. no error
             {   u2.shadow (ss, v, e); return; } } }
-    ss << original (); }
+    ss << temple (); }
 
 bool url::is_local_reference () const
 {   if (rc_) return ref_;
     rc_ = ref_ = true;
     if (is_local ()) return true;
     if (! has_domain ()) return true;
-    const vstr_t& site = context.site ();
+    const sstr_t& site = context.site ();
     const ::std::string& dom = domain ();
-    if (is_one_of (dom, site)) return true;
+    if (site.find (dom) != site.cend ()) return true;
     const ::std::string::size_type dl = dom.length ();
     for (auto s : site)
     {   const ::std::string::size_type sl = s.length ();
@@ -187,6 +190,122 @@ bool url::is_local_reference () const
             return true; }
     ref_ = false;
     return false; }
+
+::std::string mong_var_val (nitpick& nits, const ::std::string& s, const bool sauce, const bool zeq)
+{   ::std::string::size_type mx = s.size ();
+    if (mx == 0) return ::std::string ();
+    ::std::string var (s);
+    bool splat = false;
+    if (s.at (mx - 1) == '*')
+        if (mx == 1)
+        {   nits.pick (nit_url_template, ed_rfc_6570, "1.2. Levels and Expression Types", es_error, ec_url, quote (var), " is malformed");
+            return ::std::string (); }
+        else
+        {   var = s.substr (0, --mx - 1);
+            splat = true; }
+    const ::std::string::size_type colon = var.find (':');
+    if (colon == ::std::string::npos) return context.url_var_value (nits, var, sauce, zeq);
+    if ((colon == 0) || (colon == var.size () - 1))
+    {   nits.pick (nit_url_template, ed_rfc_6570, "1.2. Levels and Expression Types", es_error, ec_url, quote (var), " is malformed");
+        return ::std::string (); }
+    const ::std::string zz = var.substr (0, colon);
+    const int n = lexical < int > :: cast (var.substr (colon+1));
+    if (n < 0)
+        nits.pick (nit_url_template, ed_rfc_6570, "1.2. Levels and Expression Types", es_error, ec_url, quote (var), " is malformed");
+    if (n <= 0)
+        return ::std::string ();
+    if (splat)
+        nits.pick (nit_unimplemented, ed_rfc_6570, "1.2. Levels and Expression Types", es_info, ec_url, quote (var), ": regretfully, " PROG " does not support explode (*)");
+    const ::std::string val (context.url_var_value (nits, zz, sauce, zeq));
+    if (val.size () <= static_cast < ::std::string::size_type > (n)) return val;
+    return val.substr (0, n); }
+
+::std::string limited_expand (nitpick& nits, const vstr_t& com, const ::std::string& front, const ::std::string& mid, const bool sauce = false, const bool zeq = false)
+{   ::std::string s (front);
+    s += desanitise (mong_var_val (nits, com.at (0), sauce, zeq), true);
+    for (::std::size_t i = 1; i < com.size (); ++i)
+    {   s += mid; s += desanitise (mong_var_val (nits, com.at (i), sauce, zeq), true); }
+    return s; }
+
+::std::string full_expand (nitpick& nits, const vstr_t& com, const ::std::string& front, const ::std::string& mid, const bool sauce = false, const bool zeq = false)
+{   ::std::string s (front);
+    s += desanitise (mong_var_val (nits, com.at (0), sauce, zeq));
+    for (::std::size_t i = 1; i < com.size (); ++i)
+    {   s += mid; s += desanitise (mong_var_val (nits, com.at (i), sauce, zeq)); }
+    return s; }
+
+bool url::process_url_template (nitpick& nits, const html_version& v, ::std::string& s)
+{   if (s.empty ())
+        nits.pick (nit_empty, ed_rfc_6570, "1.2. Levels and Expression Types", es_error, ec_url, "an empty RFC 6570 url template is naughty");
+    else
+    {   nitpick nuts;
+        vstr_t com;
+        const e_url_temp_exp ute = examine_value < t_url_temp_exp > (nuts, v, s.substr (0, 1));
+        if (ute == ute_unknown) com = split_by_comma (s);
+        else if (s.size () == 1) 
+        {   nits.pick (nit_url_template, ed_rfc_6570, "1.2. Levels and Expression Types", es_error, ec_url, quote (s), " is malformed");
+            return false; }
+        else com = split_by_comma (s.substr (1));
+        PRESUME (com.size () > 0, __FILE__, __LINE__);
+        switch (ute)
+        {   case ute_continuation :
+                s = full_expand (nits, com, "&", "&", true, true);
+                break;
+            case ute_form :
+                s = full_expand (nits, com, "?", "&", true, true);
+                break;
+            case ute_fragment :
+                s = limited_expand (nits, com, "#", ",");
+                break;
+            case ute_labelled :
+                s = full_expand (nits, com, ".", ".");
+                break;
+            case ute_parameter :
+                s = full_expand (nits, com, ";", ";", true);
+                break;
+            case ute_reserved :
+                s = limited_expand (nits, com, "", ",");
+                break;
+            case ute_segment :
+                s = full_expand (nits, com, "/", "/");
+                break;
+            case ute_unknown :
+                s = full_expand (nits, com, "", ",");
+                break;
+            default :
+                GRACEFUL_CRASH (__FILE__, __LINE__);
+                return false; } }
+    return true; }
+
+bool url::process_url_templates (nitpick& nits, const html_version& v, ::std::string& s)
+{   bool res = true, subbed = false;
+    const ::std::string nice_template (URL_TEMPLATE_VAR ",&?#;+/*:");
+    ::std::string::size_type bra = 0, ket = 0, twas = 0;
+    ::std::string s2;
+    for (;;)
+    {   bra = s.find_first_of ("{", twas);
+        if (bra == ::std::string::npos)
+        {   s2 += s.substr (twas); break; }
+        if (bra > twas)
+        {   s2 += s.substr (twas, bra - twas);
+            twas = bra; }
+        ket = s.find_first_of ("}", twas + 1);
+        if (ket == ::std::string::npos)
+        {   s2 += s.substr (twas); break; }
+        const ::std::string bitz (s.substr (bra+1, ket-bra-1));
+        if (bitz.find_first_not_of (nice_template) != ::std::string::npos)
+        {   nits.pick (nit_url_template, ed_rfc_6570, "1.2. Levels and Expression Types", es_error, ec_url, quote (bitz), " is malformed");
+            break; }
+        subbed = true;
+        twas = ket+1;
+        ::std::string sub (bitz);
+        if (! process_url_template (nits, v, sub)) res = false;
+        s2 += sub; }
+    if (subbed && (s != s2))
+    {   if (res && context.tell (es_info))
+            nits.pick (nit_url_template, ed_rfc_6570, "1.2. Levels and Expression Types", es_info, ec_url, "Replaced ", quote (s), " with ", quote (s2));
+        s = s2; }
+    return res; }
 
 void world_wide_wombat_web (nitpick& nits, const html_version& v, const ::std::string& u)
 {   if (u.find ("//") == ::std::string::npos) check_identifier_spelling (nits, v, u);

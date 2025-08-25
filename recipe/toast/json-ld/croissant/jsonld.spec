@@ -1,4 +1,4 @@
--Y 1 -f ../toast/json-ld/croissant/jsonld.conf
+-Y 1 -7 original -f ../toast/json-ld/croissant/jsonld.conf
 PASS ../toast/json-ld/croissant/context.jld
 0 json_error json_error
 

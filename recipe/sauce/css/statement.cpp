@@ -107,7 +107,8 @@ void statement::parse_container (arguments& args, nitpick& nits, const int from,
     else
     {   ::std::string name;
         if ((args.t_.at (i).t_ == ct_identifier) || (args.t_.at (i).t_ == ct_keyword))
-        {   if (! is_one_of (args.t_.at (i).val_, { "and", "none", "not", "or", "style" } ))
+        {   nitpick nuts;
+            if (! test_value < t_container_condition > (nuts, html_default, args.t_.at (i).val_))
             {   name = args.t_.at (i).val_;
                 i = next_non_whitespace (args.t_, i, to);
                 if (i < 0)
@@ -785,7 +786,7 @@ void statement::parse_viewport (arguments& args, nitpick& nits, const int from, 
             nits.pick (nit_css_scope, es_error, ec_css, "@viewport requires { ... }");
         else
         {   fiddlesticks < statement > f (&args.st_, this);
-            dsc_.parse (args, css_counter_style, args.t_.at (ket).child_);; } } }
+            dsc_.parse (args, css_counter_style, args.t_.at (ket).child_); } } }
 
 void statement::parse_when (arguments& args, nitpick& nits, const int from, const int to)
 {   if (args.v_.css_module (c_conditional_rule) < 5)

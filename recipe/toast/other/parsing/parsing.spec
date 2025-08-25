@@ -1,4 +1,4 @@
--Y 1 -f ../toast/other/parsing/parsing.conf
+-Y 1 -7 original -f ../toast/other/parsing/parsing.conf
 
 PASS ../toast/other/parsing/comment.html
 16 ssi
@@ -10,7 +10,7 @@ PASS ../toast/other/parsing/doctype-missing.html
 PASS ../toast/other/parsing/elementerror.html
 2 missing_close naughty_lang
 11 unrecognised_value
-13 mixed_mess mixed_mess role_missing
+13 mixed_mess mixed_mess
 14 double_gin_and_tonic double_gin_and_tonic unrecognised_value
 20 eof_in_element
 
@@ -19,7 +19,6 @@ PASS ../toast/other/parsing/errata28.html
 3 inserted_missing_parent missing_close
 6 css_version
 8 inserted_missing_parent inserted_missing_closure missing_close
-9 role_missing
 13 inserted_missing_closure
 16 inserted_missing_closure
 21 inserted_missing_closure missing_close no_such_folder url_not_found
@@ -38,7 +37,7 @@ PASS ../toast/other/parsing/parsing-bad.html
 30 eof_in_cdata
 
 PASS ../toast/other/parsing/person.html
-12 sarcasm role_missing
+12 sarcasm
 13 fe
 19 newline_in_string newline_in_string missing_double_quote missing_double_quote attribute_unrecognised attribute_unrecognised attribute_unrecognised attribute_repeated unrecognised_attribute unrecognised_attribute attribute_barred attribute_barred unrecognised_attribute invalid_attribute_version wrong_version bad_vocab missing_open missing_open
 
@@ -57,7 +56,7 @@ PASS ../toast/other/parsing/scripts.html
 PASS ../toast/other/parsing/stringerror.html
 2 missing_close naughty_lang
 9 missing_close
-13 mixed_mess mixed_mess role_missing
+13 mixed_mess mixed_mess
 14 double_gin_and_tonic double_gin_and_tonic unrecognised_value
 26 newline_in_string eof_in_element
 

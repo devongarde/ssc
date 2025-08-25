@@ -46,6 +46,7 @@ void element::verify_microdata ()
             return a_.get_string (a_href);
         case elem_audio :
         case elem_embed :
+        case elem_fencedframe :
         case elem_iframe :
         case elem_img :
         case elem_source :
@@ -74,6 +75,7 @@ bool element::amend_microdata_value (const html_version& v, const ::std::string&
             return a_.set_value (nits, v, a_href, s);
         case elem_audio :
         case elem_embed :
+        case elem_fencedframe :
         case elem_iframe :
         case elem_img :
         case elem_source :

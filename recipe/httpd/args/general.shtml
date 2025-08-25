@@ -1,15 +1,15 @@
-<!--#include virtual="../plumbing/html.inc" -->
-<!--#include virtual="../plumbing/var.inc" --><!--#include virtual="../plumbing/varargs.inc" -->
+<!--#include virtual="/plumbing/html.inc" -->
+<!--#include virtual="/plumbing/var.inc" -->
 <!--#set var="title" value="general command line arguments" -->
 <title>
 <!--#echo encoding="none" var="title" -->
 </title>
-<!--#include virtual="../plumbing/header.inc" -->
-<!--#include virtual="../plumbing/blog-section.inc" -->
-<!--#include virtual="../plumbing/html-top-start.inc" -->
-<!--#include virtual="../plumbing/argle.inc" -->
-<!--#include virtual="../plumbing/html-top-end.inc" -->
-<!--#include virtual="../plumbing/blog-schema.inc" -->
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/blog-section.inc" -->
+<!--#include virtual="/plumbing/html-top-start.inc" -->
+<!--#include virtual="/plumbing/argle.inc" -->
+<!--#include virtual="/plumbing/html-top-end.inc" -->
+<!--#include virtual="/plumbing/blog-schema.inc" -->
 <data class="u-url u-uid" value="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->">
 </data>
 
@@ -20,6 +20,9 @@
 <p>
 This are switches that don&rsquo;t really belong in any other section.
 </p>
+
+<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-misc-un.jpg" title="made with studio artist 5.5">
+
 
 <table>
 <tr><td></td> <td></td></tr>
@@ -113,6 +116,10 @@ This are switches that don&rsquo;t really belong in any other section.
                     appropriate for the hardware. Too high a value
                         can cause problems. See also <kbd>general.defthrd</kbd>.</td></tr>
 
+<tr><td>general.url-var&nbsp;VAR:VAL</td> <td>See the URI template variable VAR to VAL. SCC
+                        only supports URI templates levels 1 to 3. For
+                        gen, browse <a href="https://www.rfc-editor.org/rfc/rfc6570">RFC 6570</a>.</td></tr>
+
 <tr><td>general.username&nbsp;XXX</td> <td>The name of the account being used to run SSC.
                         If this is not specified, SSC gets the name
                         the operating system.</td></tr>
@@ -144,6 +151,6 @@ This are switches that don&rsquo;t really belong in any other section.
                         nits.</td></tr>
 </table>
 
-<!--#include virtual="../plumbing/under.inc" -->
-<!--#include virtual="../plumbing/args.inc" -->
-<!--#include virtual="../plumbing/html-end.inc" -->
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/args.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

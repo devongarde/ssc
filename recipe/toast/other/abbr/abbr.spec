@@ -1,4 +1,4 @@
--Y 1 -f ../toast/other/abbr/abbr.conf
+-Y 1 -7 original -f ../toast/other/abbr/abbr.conf
 
 PASS ../toast/other/abbr/index.html
 22 contradictory_expansion

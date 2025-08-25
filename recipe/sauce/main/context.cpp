@@ -80,7 +80,7 @@ void context_t::init ()
     path_ = def_conf_path_.string ();
     def_conf_file_ = def_conf_path_ / DEF_CONF_FILE; }
 
-void context_t::done () noexcept
+void context_t::done ()
 try
 {   if (os_) 
     {   nitpick nits ("signature status");
@@ -97,6 +97,102 @@ catch (const ::std::exception& e)
 catch (...)
 {   ::std::cerr << "unknown exception signing/verifying.\n"; }
 
+void context_t::mac (const e_nit_macro ns, const sstr_t& s)
+{   ::std::string ss;
+    for (auto sss: s)
+    {   if (! ss.empty ()) ss += ",";
+        ss += quote (sss); }
+    VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+    macro -> set (ns, ss); }
+
+void context_t::mac (const e_nit_macro ns, const vstr_t& s)
+{   ::std::string ss;
+    for (auto sss: s)
+    {   if (! ss.empty ()) ss += ",";
+        ss += quote (sss); }
+    VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+    macro -> set (ns, ss); }
+
+void context_t::mac (const e_nit_macro ns, const vbp_t& s)
+{   ::std::string ss;
+    for (auto sss: s)
+    {   if (! ss.empty ()) ss += ",";
+        ss += quote (sss.string ()); }
+    VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+    macro -> set (ns, ss); }
+
+context_t& context_t::copy (const int c)
+{   if ((c > c_none) && (c <= c_rpt)) copy_ = static_cast < e_copy > (c);
+    else copy_ = c_none;
+    mac < int > (nm_context_copy, c);
+    return *this; }
+
+context_t& context_t::external (const bool b)
+{   external_ = b;
+    if (b) links (b);
+    else { forwarded (false); once (false); revoke (false); microdata (false); }
+    return *this; }
+
+context_t& context_t::forwarded (const bool b)
+{   forwarded_ = b;
+    if (b) external (b);
+    mac (nm_context_forward, b);
+    return *this; }
+
+context_t& context_t::html_ver (const html_version& v)
+{   versioned (true);
+    version_ = v;
+    mac (nm_context_version, version_.name ());
+    return *this; }
+
+context_t& context_t::links (const bool b)
+{   links_ = b;
+    mac (nm_context_links, b);
+    if (! b) { external (false); }
+    return *this; }
+
+context_t& context_t::mf_version (const unsigned char n)
+{   mf_version_ = n;
+    mac < int > (nm_context_mf_version, n);
+    if (n <= 1) set_default_ontology_version (s_microformats, 1, 0);
+    else set_default_ontology_version (s_microformats, 2, 0);
+    return *this; }
+
+context_t& context_t::microdata (const bool b)
+{   microdata_ = b;
+    mac (nm_context_microdata, b);
+    if (b) links (b);
+    return *this; }
+
+context_t& context_t::once (const bool b)
+{   once_ = b;
+    mac (nm_context_once, b);
+    if (b) external (b);
+    return *this; }
+
+context_t& context_t::ontology (const bool b)
+{   ontology_ = b;
+    mac (nm_context_schema, b);
+    return *this; }
+
+context_t& context_t::ont_ver (const e_ontology o, const ::std::string& s)
+{   PRESUME (o < s_error, __FILE__, __LINE__);
+    if (vont_.size () == 0) vont_.resize (s_error);
+    vont_.at (o) = s;
+    return *this; }
+
+context_t& context_t::output_format (const ::std::string& nf)
+{   output_format_ = nf;
+    VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+    macro -> set (nm_output_format, nf);
+    return *this; }
+
+context_t& context_t::path (const ::std::string& s)
+{   VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
+    path_ = s;
+    macro -> set (nm_general_path, s);
+    return *this; }
+
 int context_t::parameters (nitpick& nits, const vstr_t& vs)
 {   options o (*this, nits, vs);
     if (todo () == do_booboo) return ERROR_STATE;
@@ -112,11 +208,17 @@ int context_t::parameters (nitpick& nits, const vstr_t& vs)
     valid_ = cgi () || (! root ().empty ());
     return valid_ ? VALID_RESULT : ERROR_STATE; }
 
+context_t& context_t::title (const ::std::size_t n)
+{   if (n <= 0) title_ = 0; 
+    else title_ = n; 
+    mac < ::std::size_t > (nm_context_title, title_); 
+    return *this; }
+
 ::std::string context_t::make_absolute_url (const ::std::string& link, bool can_use_index ) const
 {    ::std::string res, srv;
     if (site_.size () > 0)
     {   srv = HTTPS;
-        srv += site_.at (0);
+        srv += *site_.cbegin ();
         srv += SLASH; }
     if (link.empty ()) res = srv;
     else
@@ -496,6 +598,9 @@ void context_t::check_ssi_naughtiness (nitpick& nits, const ::std::string& s)
                 case elem_error :
                 case elem_undefined :
                     break;
+                case elem_fencedframe :
+                    nits.pick (nit_ssi_naughty, es_warning, ec_ssi, "The substitute string ", quote (s), " contains a <FENCEDFRAME ...>, which is characteristic of optimistic hackery");
+                    break;
                 case elem_iframe :
                     nits.pick (nit_ssi_naughty, es_warning, ec_ssi, "The substitute string ", quote (s), " contains an <IFRAME ...>, which is characteristic of malignant hackery");
                     break;
@@ -541,16 +646,17 @@ void context_t::populate_jsonld_ont (const vstr_t& vs)
             jsonld_val_.push_back (s.substr (pos + 1)); } } }
 
 context_t& context_t::custom_elements (nitpick& nits, const vstr_t& sss)
-{   vstr_t ss;
-    for (auto s : sss)
+{  for (auto s : sss)
         if (test_value < t_custom_element > (nits, html_ver (), s))
-            ss.push_back (s);
-    custom_elements_ = ss; 
-    mac (nm_context_custom_elements, ss); 
+            custom_elements_.insert (s);
+    mac (nm_context_custom_elements, custom_elements_); 
     return *this; }
 
 void context_t::check_consistency (nitpick& nits)
-{   if (context.sign () || context.verify ())
+{   if (anal_ == anal_default)
+        if (html_ver () >= html_aug25) anal_ = anal_aug25;
+        else anal_ = anal_original;
+    if (context.sign () || context.verify ())
         if (signature_.empty ())
         {   nits.pick (nit_signature_key, es_error, ec_init, "signing andor verifying require a signature file");
             valid_ = false; }
@@ -567,4 +673,44 @@ void context_t::check_consistency (nitpick& nits)
                 os_ -> consolidate (nits, public_, private_, pw, signature_);
             return; }
     os_ -> depre (nits);
-    tim_.init (version_, nits, naughty_, nice_, note_); }
+    tim_.init (version_, nits, naughty_, nice_, note_);
+    process_url_vars (nits); }
+
+void context_t::process_url_vars (nitpick& nits)
+{   for (auto s : url_var_)
+    {   const ::std::string::size_type pos = s.find (':');
+        if (pos == ::std::string::npos)
+            nits.pick (nit_syntax, es_error, ec_init, "url-var requires VAR:VAL, and ", quote (s), " has no ':'");
+        else if (pos == 0)
+            nits.pick (nit_syntax, es_error, ec_init, "url-var requires VAR:VAL, and ", quote (s), " has no variable");
+        else
+        {   const ::std::string var = trim_the_lot_off (::boost::to_lower_copy (s.substr (0, pos)));
+            if (uvar_.find (var) != uvar_.cend ())
+                nits.pick (nit_symbol_aleady_defined, es_error, ec_init, quote (s), " defined again; ignored");
+            else if (var.find_first_not_of (URL_TEMPLATE_VAR) != ::std::string::npos)
+                nits.pick (nit_template_variable, ed_rfc_6570, "2.3. Variables", es_error, ec_init, quote (var), " contains invalid characters");
+            else
+            {   const ::std::string val = s.substr (pos+1);
+                const ::std::string::size_type sz = val.size ();
+                PRESUME (! var.empty (), __FILE__, __LINE__);
+                if (context.tell (es_debug))
+                    nits.pick (nit_url_template, es_debug, ec_init, "setting URL template variable ", quote (var), " to ", quote (val));
+                if ((sz > 1) &&
+                    (   ((val.at (0) == '(') && (val.at (sz - 1) == ')')) || 
+                        ((val.at (0) == '[') && (val.at (sz - 1) == ']'))))
+                    nits.pick (nit_unimplemented, ed_rfc_6570, "1.2. Levels and Expression Types", es_warning, ec_init,
+                        quote (var), ": regretfully, " PROG " does not support lists or arrays in url templates");
+                else uvar_.emplace (var, val); } } } }
+
+::std::string context_t::url_var_value (nitpick& nits, const ::std::string& var, const bool sauce, const bool zeq)
+{   if (var.find_first_not_of (URL_TEMPLATE_VAR) != ::std::string::npos)
+    {   nits.pick (nit_template_variable, ed_rfc_6570, "2.3. Variables", es_error, ec_init, quote (var), " contains invalid characters");
+        return ::std::string (); }
+    const ustr_t::const_iterator i = uvar_.find (trim_the_lot_off (::boost::to_lower_copy (var)));
+    if (i != uvar_.cend ())
+        if (! sauce) return i -> second;
+        else return var + "=" + i -> second;
+    nits.pick (nit_url_template, es_warning, ec_url, quote (var), " is not defined");
+    if (! sauce) return ::std::string ();
+    else if (! zeq) return var;
+    return var + "="; }

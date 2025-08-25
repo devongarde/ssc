@@ -22,4 +22,5 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 void code_map_init (nitpick& nits);
 ::std::string sanitise (const ::std::string& s);
+::std::string desanitise (const ::std::string& s, const bool reserved = false);
 ::std::string decode (const ::std::string& url);

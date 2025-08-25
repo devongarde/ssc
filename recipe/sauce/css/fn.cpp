@@ -97,6 +97,10 @@ void css_fn::parse (arguments& args, const int from, const int to, const bool co
             case efn_dir :
                 test_value < t_ltr_rtl > (nits, context.html_ver (), param);
                 return;
+            case efn_heading :
+                if (args.v_ < html_aug25)
+                    nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires the HTML Living Standard, August 2025 or later");
+                return;
             case efn_highlight :
                 if (context.css_module (c_custom_highlight) < 3)
                     nits.pick (nit_css_version, es_error, ec_css, quote (fn.name ()), " requires CSS Custom Highlight");

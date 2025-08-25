@@ -1,4 +1,4 @@
--Y 1 -f ../toast/stats/single/stats.conf
+-Y 1 -7 original -f ../toast/stats/single/stats.conf
 
 PASS ../toast/stats/single/index.html
 17 unknown_element unknown_element

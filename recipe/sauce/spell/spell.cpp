@@ -200,11 +200,12 @@ void add_dict (const ::std::string& lang, const ::std::string& dict)
 
 void spell_tell (nitpick& nits, const lingo& lang, const ::std::string& word, const vstr_t& alt)
 {   PRESUME (context.spell (), __FILE__, __LINE__);
+    if (word.empty ()) return;
     for (auto a : alt)
         if (lang.no_case_compare (a, word))
         {   if (context.cased ()) nits.pick (nit_case, es_error, ec_spell, "should ", quote (word), " be ", quote (a), "?");
             return; }
-    nits.pick (nit_misspelt, es_error, ec_spell, quote (enwotsit (word)), " may be misspelt");
+    nits.pick (nit_misspelt, es_error, ec_spell, quote (enwotsit (word)), " may be misspelt, or perhaps a LANG attribute is missing?");
     if (context.tell (es_info)) switch (alt.size ())
     {   case 0 : break;
         case 1 :

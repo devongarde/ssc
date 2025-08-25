@@ -33,13 +33,14 @@ class elements_node
     void report_missing_closures (const html_version& v, element_node* parent, element_node* ancestor);
     element_node* insert_family_tree (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id, const bool presumed);
     element_node* find_permitted_parent (const html_version& v, const elem& id, element_node* parent);
-    void repair_invalid_parents (nitpick& nits, const html_version& v, const elem& id, element_node* parent, const element_node* ancestor, const brac_element_ket& ket, const bool closing);
+    void repair_invalid_parents (nitpick& nits, const html_version& v, const elem& id, element_node* parent, element_node* ancestor, const brac_element_ket& ket, const bool closing);
     void hook_up (element_node* current, element_node*& previous, element_node*& parent, const bool closure, const bool open);
     element_node* insert_closure (const html_version& v,  element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id, const bool presumed);
     element_node* insert_non_closure (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id, const bool open);
     element_node* insert_closed (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id);
     element_node* insert_open (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& id);
     element_node* insert (const html_version& v, element_node*& previous, element_node*& parent, brac_element_ket& ket, const elem& idz);
+    void knitting (element_node& current);
 public:
     DEFAULT_CONSTRUCTORS (elements_node);
     elements_node (nitpick& nits, const ::std::string& content)
@@ -47,10 +48,11 @@ public:
     void swap (elements_node& en) noexcept;
     void reset () noexcept;
     void reset (const elements_node& en);
-    bool parse (nitpick& nits, const ::std::string& content);
+    bool parse (nitpick& nits, const ::std::string& content, const html_version& v = html_0);
     void harvest_nits (nitpick& nits);
     element_node* faux_node ();
     bool has_element (const e_element e) const;
+    bool has_vrai_element () const;
     const element_node& top () const
     {   PRESUME (! invalid (), __FILE__, __LINE__);
         return ven_.at (0); }

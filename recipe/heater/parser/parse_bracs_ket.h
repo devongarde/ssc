@@ -35,8 +35,8 @@ public:
     {   ve_.swap (bk.ve_);
         form_.swap (bk.form_);
         ::std::swap (line_, bk.line_); }
-    html_version parse (const ::std::string& content);
-    html_version parse (const nitpick& nits, const ::std::string& content)
+    html_version parse (const ::std::string& content, const html_version& v = html_0);
+    html_version parse (const nitpick& nits, const ::std::string& content, const html_version& v = html_0)
     {   form_.reset (nits);
-        return parse (content); }
+        return parse (content, v); }
     ::std::string rpt () const; };

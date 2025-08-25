@@ -60,7 +60,7 @@ bool css_group::parse (const ::std::string& content, const html_version& v, cons
 {   return parse (snippets_, content, v, ns, state_version, true, ::std::string (), eb, line, e, dp) != css_ptr (); }
 
 bool css_group::parse_file (nitpick& nits, const namespaces_ptr& ns, const url& u, const bool state_versions, const bool local, const bool reparse, const bool xyzzy)
-{   const bool interest = xyzzy || cache_of_interest (u.original ());
+{   const bool interest = xyzzy || cache_of_interest (u.temple ());
     nits.set_context (0, u.original ());
     if (! context.load_css () || (context.css_version () == css_none))
     {   if (interest) nits.pick (nit_cache, es_info, ec_cache, "no css, no ", u.absolute ());

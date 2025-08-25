@@ -1,4 +1,4 @@
--Y 1 -f ../toast/stats/detail/stats.conf
+-Y 1 -7 original -f ../toast/stats/detail/stats.conf
 
 PASS ../toast/stats/detail/extra.html
 14 unrecognised_value
@@ -396,8 +396,8 @@ Element:
   20 elements used 295 times
 
 Nits Reported:
-    Errors: twice
-    Warnings: 9 times
+    Errors: once
+    Warnings: 10 times
 
 File Info:
     4025 bytes read in 6 files, with an average of roughly 671 bytes per file
@@ -465,7 +465,6 @@ Ontology:
 Reference:
     HTML 5.0: thrice
     WhatWG HTML 5, Jul 20: twice
-    HTML 5, Jul 23: twice
 
 Name/Value Pair:
     bread and cheese: once, "in Dutch hotel breakfast"

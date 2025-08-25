@@ -60,7 +60,8 @@ template < class T > ::std::string nitpick::inner_review (const e_nit_section& e
     hasns = false;
     ::std::string res, ns;
     for (auto n : t)
-        if (unfiltered || (context.tell (n.severity ()) && ! ignore_this_slovenly_stuff (n.code ())))
+        if (    unfiltered ||
+                (context.tell (n.severity ()) && ! ignore_this_slovenly_stuff (n.code ())))
         {   switch (n.code ())
             {   case nit_context:
                     infoed = true;

@@ -1,4 +1,4 @@
--Y 1 -f ../toast/shadow/dedu/dedu.conf
+-Y 1 -7 original -f ../toast/shadow/dedu/dedu.conf
 
 PASS ../toast/shadow/dedu/index.html
 2 naughty_lang

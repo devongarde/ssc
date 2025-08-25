@@ -1,4 +1,4 @@
--Y 1 -f ../toast/HTML/3.2/html32.conf
+-Y 1 -7 original -f ../toast/HTML/3.2/html32.conf
 
 PASS ../toast/HTML/3.2/html32.html
 11 unrecognised_value unknown_rel
@@ -46,7 +46,7 @@ PASS ../toast/HTML/3.2/html32-bad.html
 30 missing_open
 32 correct_spelling unrecognised_value
 36 only_elements
-39 bizarre_character_code invalid_character_code
+39 bizarre_character_code invalid_character_code only_elements
 41 only_elements
 43 unrecognised_value
 44 unrecognised_value

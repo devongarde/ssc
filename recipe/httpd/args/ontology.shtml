@@ -1,15 +1,15 @@
-<!--#include virtual="../plumbing/html.inc" -->
-<!--#include virtual="../plumbing/var.inc" --><!--#include virtual="../plumbing/varargs.inc" -->
+<!--#include virtual="/plumbing/html.inc" -->
+<!--#include virtual="/plumbing/var.inc" -->
 <!--#set var="title" value="ontology arguments" -->
 <title>
 <!--#echo encoding="none" var="title" -->
 </title>
-<!--#include virtual="../plumbing/header.inc" -->
-<!--#include virtual="../plumbing/blog-section.inc" -->
-<!--#include virtual="../plumbing/html-top-start.inc" -->
-<!--#include virtual="../plumbing/argle.inc" -->
-<!--#include virtual="../plumbing/html-top-end.inc" -->
-<!--#include virtual="../plumbing/blog-schema.inc" -->
+<!--#include virtual="/plumbing/header.inc" -->
+<!--#include virtual="/plumbing/blog-section.inc" -->
+<!--#include virtual="/plumbing/html-top-start.inc" -->
+<!--#include virtual="/plumbing/argle.inc" -->
+<!--#include virtual="/plumbing/html-top-end.inc" -->
+<!--#include virtual="/plumbing/blog-schema.inc" -->
 <data class="u-url u-uid" value="<!--#echo encoding="none" var="address" --><!--#echo encoding="none" var="DOCUMENT_URI" -->">
 </data>
 
@@ -23,7 +23,7 @@ may find these switches useful. Note that ssc only knows about certain
 ontologies (see --ontology.list).
 </p>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="../image/ssc-msgdb-zpf-k11.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-zpf-k11.jpg" title="made with studio artist 5.5">
 
 <table>
 <tr><td>ontology.export</td> <td>Export ontologies encountered. This data is
@@ -203,7 +203,7 @@ To specific a specific version of an ontology, use X.Y, for example:<br>
 
 <h2>Notes on specific ontologies</h2>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="../image/ssc-msgdb-zpf-k9.jpg" title="made with studio artist 5.5">
+<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-zpf-k9.jpg" title="made with studio artist 5.5">
 
 <h3>Adobe</h3>
 
@@ -267,6 +267,10 @@ BFO (Basic Format Ontology) versions should be
                             <tr><td>1.0.15</td> <td>1.15 (cr and rai)</td></tr>
                             <tr><td>1.0.16</td> <td>1.16 (cr and rai)</td></tr>
                             <tr><td>1.0.17</td> <td>1.17 (cr and rai)</td></tr>
+                            <tr><td>1.0.18</td> <td>1.18 (cr and rai)</td></tr>
+                            <tr><td>1.0.19</td> <td>1.19 (cr and rai)</td></tr>
+                            <tr><td>1.0.20</td> <td>1.20 (cr and rai)</td></tr>
+                            <tr><td>1.0.21</td> <td>1.21 (cr and rai)</td></tr>
                             <tr><td>1.1</td> <td>1.100 (cr and rai)</td></tr>
                         </table>
 
@@ -427,6 +431,6 @@ vCard versions correspond to RDFa specs,
                         specifications.
 </p>
 
-<!--#include virtual="../plumbing/under.inc" -->
-<!--#include virtual="../plumbing/args.inc" -->
-<!--#include virtual="../plumbing/html-end.inc" -->
+<!--#include virtual="/plumbing/under.inc" -->
+<!--#include virtual="/plumbing/args.inc" -->
+<!--#include virtual="/plumbing/html-end.inc" -->

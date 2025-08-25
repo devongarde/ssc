@@ -1,4 +1,4 @@
--Y 1 -f ../toast/shadow/deduover/deduover.conf
+-Y 1 -7 original -f ../toast/shadow/deduover/deduover.conf
 
 PASS ../toast/shadow/deduover/index.html
 2 naughty_lang

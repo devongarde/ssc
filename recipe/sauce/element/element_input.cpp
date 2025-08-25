@@ -60,6 +60,7 @@ e_inputtype5 element::get_input_type () const
 
 void element::examine_input ()
 {   if (node_.version ().mjr () < 5) return;
+    element* detail_daddy = get_ancestor (elem_details);
     element* form_daddy = get_ancestor (elem_form);
     CONSTEXPR unsigned it_text_search = (1 << static_cast < unsigned > (i5_search)) + (1 << static_cast < unsigned > (i5_text));
     CONSTEXPR unsigned it_url_tel = (1 << static_cast < unsigned > (i5_tel)) + (1 << static_cast < unsigned > (i5_url));
@@ -83,10 +84,13 @@ void element::examine_input ()
     const bool list_known = a_.known (a_list);
     const bool src_known = a_.known (a_src);
     const bool val_known = a_.known (a_value);
+    bool detailicious = false;
     switch (i5)
     {   case i5_button :
+            detailicious = true;
             break;
         case i5_checkbox :
+            detailicious = true;
             break;
         case i5_colour :
             test_no_role ();
@@ -135,9 +139,10 @@ void element::examine_input ()
             if (compare_no_case (a_.get_string (a_name), "_charset_") && a_.known (a_value))
                 pick (nit_illegal_value, ed_50, "4.10.5.1.1 Hidden state", es_error, ec_attribute, "when <INPUT> TYPE is 'hidden' and NAME is \"_charset_\", VALUE cannot be specified");
             if (a_.known (a_autofocus))
-                pick (nit_bad_type_attribute,  es_info, ec_attribute, "Perhaps it's me, but I do suspect AUTOFOCUS is questionable when <INPUT> TYPE set to 'hidden'");
+                pick (nit_bad_type_attribute, es_info, ec_attribute, "Perhaps it's me, but I suspect AUTOFOCUS is questionable when <INPUT> TYPE set to 'hidden'");
             break;
         case i5_image :
+            detailicious = true;
             if (! src_known)
                 pick (nit_src_required, ed_50, "4.10.5.1.16 Image Button State", es_error, ec_element, "<INPUT> TYPE 'image' requires SRC");
             if (! alt_known)
@@ -164,9 +169,11 @@ void element::examine_input ()
             val_min_max < t_real > ();
             break;
         case i5_radio :
+            detailicious = true;
             if (form_daddy != nullptr) form_daddy -> radio_kids_.push_back (this);
             break;
         case i5_reset :
+            detailicious = true;
             break;
         case i5_search :
         case i5_text :
@@ -175,6 +182,7 @@ void element::examine_input ()
                     pick (nit_illegal_value, es_error, ec_attribute, "<INPUT> VALUE may not contain newline when TYPE is 'text' or 'search'");
             break;
         case i5_submit :
+            detailicious = true;
             break;
         case i5_tel :
             if (a_.known (a_value))
@@ -205,6 +213,9 @@ void element::examine_input ()
         default : break; }
     const bool maxlen_known = a_.known (a_maxlength);
     const bool minlen_known = a_.known (a_minlength);
+    if ((detail_daddy != nullptr) && (node_.version () >= html_aug25))
+        if (! detailicious)
+            pick (nit_details, ed_aug25, "4.11.3.4 Using the input element to define a command", es_info, ec_attribute, "That <INPUT> TYPE is unsuitable with <DETAILS>");
     if (i5 != i5_colour)
     {   if (a_.known (a_alpha))
             pick (nit_colourspace, ed_nov24, "4.10.5 The input element", es_error, ec_attribute, "ALPHA requires <INPUT> TYPE 'color'");

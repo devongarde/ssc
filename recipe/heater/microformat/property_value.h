@@ -46,16 +46,10 @@ template < > inline ::std::string find_value < t_marked_up > (const element& e)
 template < > inline ::std::string find_value < t_rel > (const element& e)
 {   return find_url_value (e); }
 
-template < > inline ::std::string find_value < t_rel_a > (const element& e)
-{   return find_url_value (e); }
-
 template < > inline ::std::string find_value < t_rel_avoid > (const element& e)
 {   return find_url_value (e); }
 
 template < > inline ::std::string find_value < t_rel_illegal > (const element& e)
-{   return find_url_value (e); }
-
-template < > inline ::std::string find_value < t_rel_link > (const element& e)
 {   return find_url_value (e); }
 
 template < > inline ::std::string find_value < t_rel_obsolete > (const element& e)
@@ -82,16 +76,10 @@ template < > inline bool amend_value < t_marked_up > (const html_version& v, ele
 template < > inline bool amend_value < t_rel > (const html_version& v, element& e, const ::std::string& s)
 {   return amend_url_value (v, e, s); }
 
-template < > inline bool amend_value < t_rel_a > (const html_version& v, element& e, const ::std::string& s)
-{   return amend_url_value (v, e, s); }
-
 template < > inline bool amend_value < t_rel_avoid > (const html_version& v, element& e, const ::std::string& s)
 {   return amend_url_value (v, e, s); }
 
 template < > inline bool amend_value < t_rel_illegal > (const html_version& v, element& e, const ::std::string& s)
-{   return amend_url_value (v, e, s); }
-
-template < > inline bool amend_value < t_rel_link > (const html_version& v, element& e, const ::std::string& s)
 {   return amend_url_value (v, e, s); }
 
 template < > inline bool amend_value < t_rel_obsolete > (const html_version& v, element& e, const ::std::string& s)

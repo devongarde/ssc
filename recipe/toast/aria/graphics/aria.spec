@@ -1,4 +1,4 @@
--Y 1 -f ../toast/aria/graphics/aria.conf
+-Y 1 -7 original -f ../toast/aria/graphics/aria.conf
 
 PASS ../toast/aria/graphics/index.html
 0 charset_mismatch charset_used charset_invalid

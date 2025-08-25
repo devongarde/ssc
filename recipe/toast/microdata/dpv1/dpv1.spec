@@ -1,4 +1,4 @@
--Y 1 -f ../toast/microdata/dpv1/dpv1.conf
+-Y 1 -7 original -f ../toast/microdata/dpv1/dpv1.conf
 
 PASS ../toast/microdata/dpv1/E0001.html
 13 unrecognised_ontology

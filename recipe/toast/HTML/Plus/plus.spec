@@ -1,4 +1,4 @@
--Y 1 -f ../toast/HTML/Plus/plus.conf
+-Y 1 -7 original -f ../toast/HTML/Plus/plus.conf
 
 PASS ../toast/HTML/Plus/index.html
 15 inserted_missing_closure missing_close

@@ -205,7 +205,7 @@ hav_t havt_form [] =
     { { HTML_PLUS }, { HTML_2_0 }, elem_form, a_action },
     { { HTML_3_0, HV_REQUIRED }, { HTML_DEC08 }, elem_form, a_action },
     { { HTML_JAN09 }, { HTML_UNDEF }, elem_form, a_action },
-    { { HTML_JAN09, 0, HE_SAFARI }, { HTML_UNDEF }, elem_form, a_autocapitalise },
+    { { HTML_JAN09, 0, HE_SAFARI }, { HTML_AUG24 }, elem_form, a_autocapitalise },
     { { HTML_JUL09 }, { HTML_UNDEF }, elem_form, a_autocomplete },
     { { HTML_2_0 }, { HTML_UNDEF }, elem_form, a_enctype },
     { { HTML_PLUS }, { HTML_UNDEF }, elem_form, a_method },

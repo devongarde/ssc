@@ -193,6 +193,7 @@
 ../toast/living/jan25/living.spec
 ../toast/living/apr25/living.spec
 ../toast/living/jul25/living.spec
+../toast/living/oct25/living.spec
 ../toast/math/1/math.spec
 ../toast/math/2/math.spec
 ../toast/math/3/math.spec
@@ -223,6 +224,9 @@
 ../toast/other/CSS/css.spec
 ../toast/other/dfn/dfn.spec
 ../toast/other/dump/dump.spec
+../toast/other/efficient/efficient.spec
+../toast/other/efficient/inefficient.spec
+../toast/other/efficient/original.spec
 ../toast/other/ie/ie.spec
 ../toast/other/ignore/ignore.spec
 ../toast/other/img/img.spec
@@ -336,6 +340,8 @@
 ../toast/type/lang/lang.spec
 ../toast/type/metaname/metaname.spec
 ../toast/type/mimetype/mimetype.spec
+../toast/type/rel/rel.spec
+../toast/type/rfc6570/rfc6570.spec
 ../toast/type/sgml/sgml.spec
 ../toast/type/url/url.spec
 ../toast/w3/3663/w3.spec

@@ -64,8 +64,9 @@ void selector::accumulate (stats_t* s) const
 ::std::string selector::rpt () const
 {   ::std::string res;
     for (auto el : ve_)
-    {   if (! res.empty ()) res += " ";
-        res += el.rpt (); }
+        if (! el.invalid_element ())
+        {   if (! res.empty ()) res += " ";
+            res += el.rpt (); }
     return res; }  
 
 void selector::validate (arguments& args)

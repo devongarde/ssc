@@ -1,4 +1,4 @@
--Y 1 -f ../toast/other/required/required.conf
+-Y 1 -7 original -f ../toast/other/required/required.conf
 
 PASS ../toast/other/required/index.html
 0 required required required

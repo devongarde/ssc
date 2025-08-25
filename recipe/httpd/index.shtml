@@ -16,7 +16,7 @@
 <!--#echo encoding="none" var="title" -->
 </h1>
 
-<img alt=event class="mw50 inline_illustration_right" src="image/ssc-msgdb-wi-c1.jpg" title="riff on name">
+<img alt=event class="mw50 inline_illustration_right" src="/image/ssc-msgdb-wi-c1.jpg" title="riff on name">
 
 <h2>introduction</h2>
 
@@ -50,29 +50,30 @@ It should not be used on untrusted content; its parsers are
 
 <ul>
 <li>
-<A href="bin/Install-SSC-<!--#echo encoding="none" var="version" -->-Win-x64.msi" type="application/zip">Windows 10/11 x64 installer</a>
+<A href="/bin/Install-SSC-<!--#echo encoding="none" var="version" -->-Win-x64.msi" type="application/zip" download>Windows 10/11 x64 installer</a>
 </li><li>
-<A href="bin/Install-SSC-<!--#echo encoding="none" var="version" -->-Win-a64.msi" type="application/zip">Windows 10/11 ARM64 installer</a>
+<A href="/bin/Install-SSC-<!--#echo encoding="none" var="version" -->-Win-a64.msi" type="application/zip" download>Windows 10/11 ARM64 installer</a>
 </li><li>
-<A href="bin/SSC-<!--#echo encoding="none" var="version" -->-Mac-Arm.zip" type="application/zip">Mac ARM app (zipped)</a>
+<A href="/bin/SSC-<!--#echo encoding="none" var="version" -->-Mac-Arm.zip" type="application/zip" download>Mac ARM app (zipped)</a>
 </li><li>
-<A href="bin/SSC-<!--#echo encoding="none" var="version" -->-Mac-Intel.zip" type="application/zip">Mac Intel app (zipped)</a>
+<A href="/bin/SSC-<!--#echo encoding="none" var="version" -->-Mac-Intel.zip" type="application/zip" download>Mac Intel app (zipped)</a>
 </li><li>
-<A href="src/ssc-<!--#echo encoding="none" var="version" -->.tgz" type="application/gzip">source</a>
+<A href="/src/ssc-<!--#echo encoding="none" var="version" -->.tgz" type="application/gzip" download>source</a>
 </li>
 </ul>
 
 <p>
-WARNING: these downloads are unsigned (an issue being addressed).
-If that worries you, the current source is also available on
-<a href="https://github.com/devongarde/ssc">github</a>, where you can grab it to build
-<!--#echo encoding="none" var="short" --> yourself.
+These downloads are unsigned.
+If that worries you, and you can&rsquo;t or won&rsquo;t run them in a secure environment, then you can always build your own copy.
+The current source is
+<A href="/src/ssc-<!--#echo encoding="none" var="version" -->.tgz" type="application/gzip" download>available here</a> and on
+<a href="https://github.com/devongarde/ssc" rel="code-repository">github</a>.
+You&rsquo;ll need a C++ 17 compiler, some common libraries, and a good deal of patience: SSC is built to run quickly, not compile quickly.
 </p>
 
 <p>
-Older source versions can be downloaded
-<a href="release-notes.shtml" title="source &amp; release notes">from this page</a>.
-
+Older versions can be downloaded
+<a href="release-notes.shtml" title="source &amp; release notes" rel="code-repository">from this page</a>.
 </p>
 
 <!--#comment not yet
@@ -113,25 +114,25 @@ Submit
 <a href="<!--#echo encoding="none" var="about" -->">about <!--#echo encoding="none" var="short" --></a>
 </li>
 <li>
-<a href="why.shtml" title="site map">why <!--#echo encoding="none" var="short" --> was written</a>
+<a href="/why.shtml" title="site map">why <!--#echo encoding="none" var="short" --> was written</a>
 </li>
 <li>
-<a href="usage.shtml">usage guidelines</a>
+<a href="/usage.shtml">usage guidelines</a>
 </li>
 <li>
-<a href="args/config.shtml">configuration files</a>
+<a href="/args/config.shtml">configuration files</a>
 </li>
 <li>
-<a href="args/index.shtml">command line arguments</a>
+<a href="/args/index.shtml">command line arguments</a>
 </li>
 <li>
-<a href="release-notes.shtml" title="source &amp; release notes">release notes, binaries &amp; source code</a>
+<a href="/release-notes.shtml" title="source &amp; release notes">release notes, binaries &amp; source code</a>
 </li>
 <li>
-<a href="build.shtml">build notes</a>
+<a href="/build.shtml">build notes</a>
 </li>
 <li>
-(<a href="help/index.html">GUI help files</a>)
+(<a href="/help/index.html">GUI help files</a>)
 </li>
 </ul>
 

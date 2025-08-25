@@ -31,7 +31,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 bool is_authority_local (const ::std::string& authority)
 {   if (authority.empty ()) return true;
-    return is_one_of (authority, context.site ()); }
+    return be_it_there (context.site (), authority); }
 
 bool is_ipv4_local (const ::std::string& ipv4)
 {   if (ipv4.empty ()) return true;
@@ -138,9 +138,9 @@ bool equivalent_rfc3986 (const vc_t& lhs, const vc_t& rhs)
         res += AT; }
     if (! component.at (es_authority).empty ())
         res += component.at (es_authority);
-    else if (context.site ().empty ()) // FFS!
+    else if (context.site ().empty ())
         res += DEFAULT_DOMAIN;
-    else res += context.site ().at (0);
+    else res += *context.site ().cbegin ();
     if (! res.empty ())
         if (! component.at (es_path).empty () || (! component.at (es_file).empty ()) || can_use_index)
             if (res.at (res.size () - 1) != SLASH)
@@ -186,8 +186,8 @@ bool parse_rfc3986 (nitpick& nits, const html_version& v, const e_protocol prot,
     {   if (url.find ('.') == ::std::string::npos)
         {   if ((bang == 0) || (bang == url.size () - 1))
                 nits.pick (nit_bang_path, es_warning, ec_type, "if ", quote (url), " is a bang path, it's broken");
-            else nits.pick (nit_bang_path, es_comment, ec_type, PROG " cannot verify bang paths"); }
-        return false; }
+            else nits.pick (nit_bang_path, es_comment, ec_type, PROG " cannot verify bang paths");
+            return false; } }
 
     ::std::string fore, queries;
     if (! separate_first (url, fore, queries, QUESTION)) fore = url;

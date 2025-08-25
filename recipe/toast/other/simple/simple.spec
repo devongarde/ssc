@@ -1,4 +1,4 @@
--Y 1 -f ../toast/other/simple/simple.conf
+-Y 1 -7 original -f ../toast/other/simple/simple.conf
 
 PASS ../toast/other/simple/css-good.css
 0 html

@@ -130,6 +130,7 @@ struct symbol_entry < html_version, e_protocol > protocol_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, PR_MAILTO, pr_mailto },
     { { HTML_TAGS }, { HTML_UNDEF }, "maps", pr_maps },
     { { HTML_TAGS }, { HTML_UNDEF }, "market", pr_market },
+    { { HTML_AUG25 }, { HTML_UNDEF }, "matrix", pr_matrix },
     { { HTML_TAGS }, { HTML_UNDEF }, "message", pr_message },
     { { HTML_TAGS }, { HTML_UNDEF }, "mid", pr_mid },
     { { HTML_TAGS }, { HTML_UNDEF }, "mms", pr_mms },
@@ -207,6 +208,7 @@ struct symbol_entry < html_version, e_protocol > protocol_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "slack", pr_slack },
     { { HTML_TAGS }, { HTML_UNDEF }, "smb", pr_smb },
     { { HTML_TAGS }, { HTML_UNDEF }, "sms", pr_sms },
+    { { HTML_AUG25 }, { HTML_UNDEF }, "smsto", pr_smsto },
     { { HTML_TAGS }, { HTML_UNDEF }, "snews", pr_snews },
     { { HTML_TAGS }, { HTML_UNDEF }, "snmp", pr_snmp },
     { { HTML_TAGS }, { HTML_UNDEF }, "soap.beep", pr_soap_beep },
@@ -244,6 +246,7 @@ struct symbol_entry < html_version, e_protocol > protocol_symbol_table [] =
     { { HTML_TAGS }, { HTML_UNDEF }, "wais", pr_wais },
     { { HTML_TAGS }, { HTML_UNDEF }, "webcal", pr_webcal },
     { { HTML_TAGS }, { HTML_UNDEF }, "webplus", pr_webplus },
+    { { HTML_AUG25 }, { HTML_UNDEF }, "web+", pr_webstar, 0, SCHEME_WILDCARD },
     { { HTML_TAGS }, { HTML_UNDEF }, "ws", pr_ws },
     { { HTML_TAGS }, { HTML_UNDEF }, "wss", pr_wss },
     { { HTML_TAGS }, { HTML_UNDEF }, "wtai", pr_wtai },
@@ -371,6 +374,7 @@ protocol_server ps [] =
     { pr_mailto, pt_rfc3986_ignore },
     { pr_maps, pt_rfc3986_ignore },
     { pr_market, pt_rfc3986_ignore },
+    { pr_matrix, pt_rfc3986_ignore },
     { pr_message, pt_rfc3986_ignore },
     { pr_mid, pt_rfc3986_ignore },
     { pr_mms, pt_rfc3986_ignore },
@@ -448,6 +452,7 @@ protocol_server ps [] =
     { pr_slack, pt_rfc3986_ignore },
     { pr_smb, pt_rfc3986_ignore },
     { pr_sms, pt_rfc3986_ignore },
+    { pr_smsto, pt_rfc3986_ignore },
     { pr_snews, pt_rfc3986_ignore },
     { pr_snmp, pt_rfc3986_ignore },
     { pr_soap_beep, pt_rfc3986_ignore },
@@ -486,6 +491,7 @@ protocol_server ps [] =
     { pr_wais, pt_rfc3986_ignore },
     { pr_webcal, pt_rfc3986_ignore },
     { pr_webplus, pt_rfc3986_ignore },
+    { pr_webstar, pt_rfc3986_ignore },
     { pr_ws, pt_rfc3986_ignore },
     { pr_wss, pt_rfc3986_ignore },
     { pr_wtai, pt_rfc3986_ignore },
@@ -530,15 +536,16 @@ bool protocol::parse (nitpick& nits, const html_version& v, const ::std::string&
     ::std::string lc (::boost::algorithm::to_lower_copy (trim_the_lot_off (x)));
     if (lc.empty ()) set (v, current);
     else
-    {   const ::std::string& o = original ();
-        const ::std::string::size_type hamper = o.find (AMPERSAND);
-        if ((hamper != ::std::string::npos) && (hamper < o.size () - 1))
-        {   const ::std::string::size_type sc = o.find (SEMICOLON, hamper);
-            if (sc == ::std::string::npos)
-            {   ::std::string sub (o.substr (hamper));
-                if (sub.size () > 6) sub = sub.substr (0, 6) + ELLIPSES;
-                nits.pick (nit_character_code, ed_jul23, "1.11.2: Errors involving fragile syntax constructs", es_warning, ec_url,
-                    "if a semicolon isn't missing, consider encoding '&' as '&amp;' or '%26', depending on intent"); } }
+    {   const ::std::string& temple = get_component (es_template);
+        if (temple == original ())
+        {   const ::std::string::size_type hamper = temple.find (AMPERSAND);
+            if ((hamper != ::std::string::npos) && (hamper < temple.size () - 1))
+            {   const ::std::string::size_type sc = temple.find (SEMICOLON, hamper);
+                if (sc == ::std::string::npos)
+                {   ::std::string sub (temple.substr (hamper));
+                    if (sub.size () > 6) sub = sub.substr (0, 6) + ELLIPSES;
+                    nits.pick (nit_character_code, ed_jul23, "1.11.2: Errors involving fragile syntax constructs", es_warning, ec_url,
+                        "if a semicolon isn't missing, consider encoding '&' as '&amp;' or '%26', depending on intent"); } } }
         const ::std::string::size_type colon = lc.find (COLON);
         default_ = (colon == ::std::string::npos);
         if (default_)
@@ -551,8 +558,11 @@ bool protocol::parse (nitpick& nits, const html_version& v, const ::std::string&
         {   nits.pick (nit_invalid_protocol, ed_rfc_3986, "3.1. Scheme", es_error, ec_url, quote (lc) + ": invalid protocol andor missing address");
             return false; }
         else
-        {  e_protocol prot;
-            if (! symbol < html_version, e_protocol > :: parse (nits, v, lc.substr (0, colon), prot)) set (v, pr_other);
+        {   ::std::string bc = lc.substr (0, colon);
+            const ::std::string::size_type plus = bc.find (SIGNPLUS);
+            if (plus != ::std::string::npos) bc = bc.substr (0, plus+1);
+            e_protocol prot;
+            if (! symbol < html_version, e_protocol > :: parse (nits, v, bc, prot)) set (v, pr_other);
             else set (v, prot); }
         if (! url_schemes < SCHEMES > :: parse (nits, v, scheme (), symbol < html_version, e_protocol > :: get (), x, component_))
             return false; }

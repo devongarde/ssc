@@ -1,4 +1,4 @@
--Y 1 -f ../toast/other/vtt/vtt.conf
+-Y 1 -7 original -f ../toast/other/vtt/vtt.conf
 
 PASS ../toast/other/vtt/bad1.vtt
 0 webvtt webvtt
@@ -93,6 +93,5 @@ Class:
 
 Nits Reported:
     Abhorrences: twice
-    Errors: 34 times
-    Warnings: 23 times
-    Info: 6 times
+    Errors: 28 times
+    Warnings: 35 times

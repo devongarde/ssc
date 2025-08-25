@@ -1,4 +1,4 @@
--Y 1 -f ../toast/RDFa/gr/rdfa.conf
+-Y 1 -7 original -f ../toast/RDFa/gr/rdfa.conf
 
 PASS ../toast/RDFa/gr/example-1.html
 40 invalid_attribute_version wrong_version

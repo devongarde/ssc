@@ -1,4 +1,4 @@
--Y 1 -f ../toast/css/marquee/css.conf
+-Y 1 -7 original -f ../toast/css/marquee/css.conf
 
 PASS ../toast/css/marquee/css-2.css
 0 html

@@ -32,15 +32,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #define CONTEXT "context"
 #define V "version"
 
-::std::size_t which_one_of (const ::std::string& s, const vstr_t& v)
-{   for (::std::size_t x = 0; x < v.size (); ++x)
-        if (compare_no_case (s, v.at (x))) return x;
-    return ::std::string::npos; }
-
-bool is_one_of (const ::std::string& s, const vstr_t& v)
-{   return (which_one_of (s, v) != ::std::string::npos); }
-
-
 ::std::string trim_the_lot_off (const ::std::string& s)
 {   return ::boost::trim_copy (s); }
 
@@ -242,7 +233,7 @@ bool separate_first (const ::std::string& s, ::std::string& head, ::std::string&
 bool separate (const ::std::string& s, ::std::string& head, ::std::string& tail, const char ch)
 {   return separate_last (s, head, tail, ch); }
 
-bool one_of_domain (const ::std::string& s, const vstr_t& v)
+template < class T > bool one_of_dom (const ::std::string& s, const T& v)
 {   if (s.empty () || v.empty ()) return false;
     if (s.at (s.length () - 1) != '/')
     {   for (auto d : v)
@@ -254,6 +245,12 @@ bool one_of_domain (const ::std::string& s, const vstr_t& v)
             if (::boost::algorithm::iends_with (s, d))
                 return true;
     return false; }
+
+bool one_of_domain (const ::std::string& s, const sstr_t& v)
+{   return one_of_dom < sstr_t > (s, v); }
+
+bool one_of_domain (const ::std::string& s, const vstr_t& v)
+{   return one_of_dom < vstr_t > (s, v); }
 
 ::boost::filesystem::path get_tmp_filename ()
 {   ::boost::filesystem::path model (temp_dir ());

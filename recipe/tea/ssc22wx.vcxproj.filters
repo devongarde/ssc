@@ -2282,6 +2282,9 @@
     <ClInclude Include="..\heater\utility\list.h">
       <Filter>Heater\utility</Filter>
     </ClInclude>
+    <ClInclude Include="..\heater\parser\efficiency.h">
+      <Filter>Heater\parser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\sauce\attribute\attr.cpp">
@@ -3219,6 +3222,9 @@
     </ClCompile>
     <ClCompile Include="..\sauce\utility\list.cpp">
       <Filter>Sauce\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sauce\parser\efficiency.cpp">
+      <Filter>Sauce\parser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

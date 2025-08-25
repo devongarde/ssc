@@ -1,4 +1,4 @@
--Y 1 -f ../toast/webapps/jan05/webapps.conf
+-Y 1 -7 original -f ../toast/webapps/jan05/webapps.conf
 
 PASS ../toast/webapps/jan05/a.html
 1 draft_html_5
@@ -58,6 +58,7 @@ PASS ../toast/webapps/jan05/mbc.html
 1 draft_html_5
 27 url_not_found
 28 url_not_found
+33 unrecognised_value
 42 id_exists
 53 url_not_found
 54 url_not_found

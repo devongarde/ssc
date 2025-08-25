@@ -1,4 +1,4 @@
--Y 1 -f ../toast/aria/html/aria.conf
+-Y 1 -7 original -f ../toast/aria/html/aria.conf
 
 PASS ../toast/aria/html/index.html
 0 charset_mismatch charset_used charset_invalid
@@ -18,6 +18,5 @@ PASS ../toast/aria/html/index.html
 73 inserted_missing_closure
 74 missing_open
 92 use_quote_code naughty_grave naughty_grave naughty_grave naughty_grave naughty_grave
-93 role_missing
 94 use_double_quote_code 
 96 use_double_quote_code

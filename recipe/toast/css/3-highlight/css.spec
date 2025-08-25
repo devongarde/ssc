@@ -1,4 +1,4 @@
--Y 1 -f ../toast/css/3-highlight/css.conf
+-Y 1 -7 original -f ../toast/css/3-highlight/css.conf
 
 PASS ../toast/css/3-highlight/css-1.html
 2 naughty_lang

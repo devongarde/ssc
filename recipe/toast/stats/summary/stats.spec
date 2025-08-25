@@ -1,4 +1,4 @@
--Y 1 -f ../toast/stats/summary/stats.conf
+-Y 1 -7 original -f ../toast/stats/summary/stats.conf
 
 PASS ../toast/stats/summary/itemref.html
 27 missing_close
@@ -34,8 +34,8 @@ Definition:
     Tiddles: once, "Tiddles, no siamese, likes to miaow."
 
 Nits Reported:
-    Errors: twice
-    Warnings: 5 times
+    Errors: once
+    Warnings: 6 times
 
 File Info:
     3783 bytes read in 5 files, with an average of roughly 757 bytes per file
@@ -73,7 +73,6 @@ Ontology:
 Reference:
     HTML 5.0: twice
     WhatWG HTML 5, Jul 20: twice
-    HTML 5, Jul 23: twice
 
 Name/Value Pair:
     bread and cheese: once, "in Dutch hotel breakfast"

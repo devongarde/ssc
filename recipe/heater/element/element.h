@@ -42,7 +42,8 @@ typedef ::std::pair < element*, e_class > found_farm;
 #define EF_XL_DATATYPE      0x00000002
 
 class element
-{   page* page_ = nullptr; // NOT owned
+{   typedef ::std::array < int, 1000 > rowcount_t;
+    page* page_ = nullptr; // NOT owned
     element* parent_ = nullptr; // NOT owned
     element* sibling_ = nullptr; // owned by element
     element* child_ = nullptr; // owned by element
@@ -61,6 +62,7 @@ class element
     vit_t vit_;
     sstr_t results_;
     attributes a_;
+    e_element previous_h_ = elem_none;
     nitpick& nits () noexcept { return node_.nits (); }
     nitpick& nits () const noexcept { return node_.nits (); }
     found_farm find_farm (const e_property prop, element* starter = nullptr);
@@ -86,13 +88,16 @@ class element
     void check_descendants (const e_element self, const element_bitset& gf, const bool absent = true);
     void check_inclusion_criteria ();
     bool has_invalid_child (const element_bitset& gf);
+    bool only_one_child_among (const element_bitset& gf);
     void check_mscarries_pos ();
     bool check_math_children (const int expected, const bool or_more = false);
     void check_math_children (const int from, const int to);
     void do_shadow (::std::stringstream& ss, const html_version& v, bool& was_closure, bool& allspace, bool& was_nl);
     bool naughty_label_descendents (const element* e, const uid_t uid, bool& first);
     void no_anchor_daddy ();
-    template < typename ATTRIBUTE > element* ancestor_known (const e_attribute a) const;
+    void only_elements ();
+    void only_parents ();
+    bool has_only_immediate_descendents (const element_bitset& gf, const element_bitset& ignore) const;
     void verify_rdfa ();
     ::std::string get_microdata_value () const;
     void verify_microdata ();
@@ -102,6 +107,7 @@ class element
     vit_t supplied_itemtypes ();
     vit_t sought_itemtypes (nitpick& nits);
     void span_check ();
+    void count_col_row (int& col, int& row, rowcount_t& rowcount);
     void pre_examine_element ();
     void post_examine_element ();
     void late_examine_element ();
@@ -162,7 +168,7 @@ class element
     void examine_popovertarget ();
     void examine_ref ();
     void examine_registrationmark ();
-    bool examine_rel (const ::std::string& content, const lingo& lang);
+    void examine_rel (const ::std::string& content, const lingo& lang, const char* const an);
     void check_element_role (const e_aria_role ar);
     void examine_role ();
     void examine_spellcheck (flags_t& flags);
@@ -218,12 +224,14 @@ class element
     void examine_header ();
     void examine_hgroup ();
     void examine_html ();
+    void examine_html2 ();
     void examine_iframe ();
     void examine_image ();
     void examine_img ();
     void examine_input ();
     void examine_label ();
     void examine_lambda ();
+    void examine_legend ();
     void examine_li ();
     void examine_link ();
     void examine_main ();
@@ -242,6 +250,7 @@ class element
     void examine_nest ();
     void examine_noscript ();
     void examine_object ();
+    void examine_ol ();
     void examine_option ();
     void examine_output ();
     void examine_picture ();
@@ -268,6 +277,7 @@ class element
     void examine_time ();
     void examine_title ();
     void examine_track ();
+    void examine_ul ();
     void examine_video ();
     ::std::string text (const bool simplify = false) const { return node_.text (simplify); }
     ::std::string term () const;
@@ -305,7 +315,8 @@ public:
                         const itemscope_ptr& itemscope = itemscope_ptr (),
                         const attribute_bitset& ancestral_attributes = attribute_bitset (), const attribute_bitset& sibling_attributes = attribute_bitset (),
                         const role_bitset& ancestral_roles = role_bitset (),
-                        const flags_t parental_flags = 0);
+                        const flags_t parental_flags = 0,
+                        const e_element previous_h = elem_none);
     void examine_children (const flags_t flags, const lingo& lang);
     ::std::string make_children (const int depth, const element_bitset& gf = element_bitset ());
     void verify_document ();
@@ -349,10 +360,10 @@ public:
     const attribute_bitset& own_attributes () const noexcept { return own_attributes_; }
     attribute_bitset& own_attributes () noexcept { return own_attributes_; }
     void shadow (::std::stringstream& ss, const html_version& v);
-    const page& get_page () const noexcept 
+    const page& get_page () const 
     {   VERIFY_NOT_NULL (page_, __FILE__, __LINE__);
         return *page_; }
-    page& get_page () noexcept
+    page& get_page ()
     {   VERIFY_NOT_NULL (page_, __FILE__, __LINE__);
         return *page_; }
     bool has_glyph (const ::std::string& s) const;
@@ -375,3 +386,6 @@ public:
     ::std::string report (); };
 
 template < class PROPERTY > inline void element::note_reply () { }
+
+CONSTEXPR unsigned short max_colspan = 1000;
+CONSTEXPR unsigned short max_rowspan = 65534;

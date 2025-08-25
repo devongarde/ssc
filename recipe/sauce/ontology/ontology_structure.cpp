@@ -583,6 +583,7 @@ microdata_structure ontology_structure [] =
     { { s_croissant, 0, 3 }, { 0, 0 }, cr_extract, cp_jsonpath },
 
     { { s_croissant, 1, 18 }, { 0, 0 }, cr_field, cp_arrayshape },
+    { { s_croissant, 1, 17 }, { 0, 0 }, cr_field, cp_audio },
     { { s_croissant, 0, 2 }, { 0, 0 }, cr_field, cp_datatype },
     { { s_croissant, 1, 3 }, { 0, 0 }, cr_field, cp_equivalentproperty },
     { { s_croissant, 1, 18 }, { 0, 0 }, cr_field, cp_isarray },
@@ -2693,6 +2694,7 @@ microdata_structure ontology_structure [] =
     { { s_microformats, 1, 0 }, { 0, 0 }, mft_adr, mp_postal_code },
     { { s_microformats, 1, 0 }, { 0, 0 }, mft_adr, mp_region },
     { { s_microformats, 1, 0 }, { 0, 0 }, mft_adr, mp_street_address, SS_REPEATABLE },
+    { { s_microformats, 1, 0 }, { 0, 0 }, mft_adr, mp_type },
 
     { { s_microformats, 1, 0 }, { 0, 0 }, mft_geo, mp_latitude }, // looks like MF only, not living standard, but ...
     { { s_microformats, 1, 0 }, { 0, 0 }, mft_geo, mp_longitude }, // looks like MF only, not living standard, but ...

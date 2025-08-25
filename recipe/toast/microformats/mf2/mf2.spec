@@ -1,4 +1,4 @@
--Y 1 -f ../toast/microformats/mf2/mf2.conf
+-Y 1 -7 original -f ../toast/microformats/mf2/mf2.conf
 
 PASS ../toast/microformats/mf2/index.html
 2 naughty_lang

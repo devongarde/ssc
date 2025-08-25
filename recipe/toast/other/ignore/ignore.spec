@@ -1,4 +1,4 @@
--Y 1 -f ../toast/other/ignore/ignore.conf
+-Y 1 -7 original -f ../toast/other/ignore/ignore.conf
 
 PASS ../toast/other/ignore/index.html
 2 naughty_lang

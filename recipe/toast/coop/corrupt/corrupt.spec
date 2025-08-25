@@ -1,4 +1,4 @@
--f ../toast/coop/corrupt/corrupt.conf
+-7 original -f ../toast/coop/corrupt/corrupt.conf
 
 PASS ../toast/coop/corrupt/index.html
 24 unrecognised_value unknown_rel link_rel_off
