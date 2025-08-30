@@ -40,7 +40,8 @@ body
 kbd, code { font-family: monospace; }
 code { font-size: 110%; }
 
-:lang(de),:lang(en),:lang(fr),:lang(lb),:lang(nl) { font-style: normal; }
+:lang(en) { font-style: normal; }
+:lang(de),:lang(fr),:lang(lb),:lang(nl) { font-style: italic; }
 
 table { font-size:inherit; font-size: 100%; }
 select, input, textarea { font-size: 99%; font-family: Verdana, sans-serif; }
@@ -136,8 +137,21 @@ p.menu-under { font-style: normal; padding-bottom: 0.8em; text-align: center; }
 
 .centre,p.centre { text-align: center; }
 
-@media screen and (max-width: 1100px)
-{ .inline_illustration_left, img.inline_illustration_left { float: right; padding: 0.5em 0 0.5em 1em; } }
+.nit-before,.nit-after { color: #999999; }
+.nit-catastrophe { color: #FF0000 }
+.nit-comment { color: gray; }
+.nit-doc { font-style: italic; }
+.nit-link, .nit-link a { font-style: italic; }
+.nit-error { color: red; }
+.nit-explanation { color: #9999CC; }
+.nit-info { color: yellow; }
+.nit-line { color: #666666; }
+.nit-mote { color: #CC3333; }
+.nit-ref { font-style: italic; }
+.nit-warning { color: orange; }
+
+@media screen and (max-width: 1100px) {
+    .inline_illustration_left, img.inline_illustration_left { float: right; padding: 0.5em 0 0.5em 1em; } }
 @media screen and (max-width: 955px)
 { h1,h2,h3,h4,h5,h6 { font-size: 98%; }
   p,ol,ul,div { font-size: 99%; } }

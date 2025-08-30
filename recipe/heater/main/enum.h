@@ -1217,7 +1217,7 @@ typedef enum { do_booboo, do_cgi, do_examine, do_simple } e_do;
 typedef enum {  ed_mishmash, ed_dict, ed_tags, ed_1, ed_plus, ed_2, ed_3, ed_32, ed_4, ed_41, ed_x1, ed_x11, ed_x2,
                 ed_50, ed_51, ed_52, ed_53,
                 ed_jan05, ed_jan06, ed_jan07, ed_jan08, ed_jan10, ed_jul10, ed_jan12, ed_jan13, ed_jan14, ed_jul17, ed_may20, ed_jul20, ed_jan21,
-                ed_apr21, ed_jul21, ed_apr22, ed_oct22, ed_apr23, ed_jul23, ed_nov24, ed_jun25, ed_jul25, ed_aug25,
+                ed_apr21, ed_jul21, ed_apr22, ed_oct22, ed_jun23, ed_jul25, ed_aug25,
                 ed_svg_1_0, ed_svg_1_1, ed_svg_1_2_tiny, ed_svg_1_2_full, ed_svg_2_0, ed_svg_2_anim,
                 ed_math_1, ed_math_2, ed_math_3, ed_math_4, ed_math_core,
                 ed_aria_1_0, ed_aria_1_1, ed_aria_1_2, ed_aria_1_3, ed_aria_dp_1_0, ed_aria_dp_1_1, ed_aria_graphics, ed_aria_html, ed_aria_mdn,
@@ -1226,7 +1226,7 @@ typedef enum {  ed_mishmash, ed_dict, ed_tags, ed_1, ed_plus, ed_2, ed_3, ed_32,
                 ed_rfc_1867, ed_rfc_1980, ed_rfc_2616, ed_rfc_3986, ed_rfc_3966, ed_rfc_6265, ed_rfc_6570, ed_rfc_7231, ed_rfc_7234, ed_rfc_8288,
                 ed_w3, ed_mql,
                 ed_mozilla, ed_ecma, ed_keyboard,
-                ed_microdata, ed_microformats, ed_mimetype, ed_prism_1, ed_rdfa, ed_rdfa_c, ed_apache, ed_so_11, ed_css_transform,
+                ed_microdata, ed_microformats, ed_mimetype, ed_prism_1, ed_rdfa, ed_rdfa_c, ed_apache, ed_so_11,
                 ed_css_1, ed_css_20, ed_css_21, ed_css_22,
                 ed_css_animation_3,
                 ed_css_cascade_4, ed_css_cascade_5, ed_css_cascade_6, ed_css_colour_3, ed_css_colour_4, ed_css_colour_5, ed_css_content,
@@ -1237,7 +1237,7 @@ typedef enum {  ed_mishmash, ed_dict, ed_tags, ed_1, ed_plus, ed_2, ed_3, ed_32,
                 ed_css_media_3, ed_css_media_4,
                 ed_css_namespaces_3, ed_css_nesting,
                 ed_css_selectors_3, ed_css_selectors_4, ed_css_syntax,
-                ed_css_table, ed_css_transform_3,
+                ed_css_table, ed_css_transform,
                 ed_css_ui_3, ed_css_ui_4, ed_css_value_3, ed_css_value_4,
                 ed_json, ed_jsonld_1_0, ed_jsonld_1_1,
                 ed_doctype,
@@ -2707,10 +2707,12 @@ typedef enum
     // eon
     nit_off } e_nit;
 
+typedef enum { nlt_none, nlt_html, nlt_pdf, nlt_txt, nlt_zip } e_nit_link_type;
+
 typedef enum
 {   nm_none,
     nm_class_count, nm_class_decl_count, nm_class_decl_int, nm_class_int, nm_class_name, nm_class_title,
-        nm_compile_time, nm_config, nm_context_absolute_path, nm_context_account, nm_context_analysis, nm_context_article, nm_context_body,
+        nm_compile_time, nm_config, nm_context_absolute_path, nm_context_account, nm_context_analysis, nm_context_article, nm_context_back, nm_context_body,
         nm_context_build, nm_context_case, nm_context_cgi, nm_context_chrome, nm_context_classic, nm_context_clear, nm_context_comms,
         nm_context_config, nm_context_copy, nm_context_corpus, nm_context_crosslinks, nm_context_css, nm_context_css_background,
         nm_context_css_adjust, nm_context_advanced_layout, nm_context_css_anchor, nm_context_css_anchor_pos, nm_context_css_box_align,
@@ -2731,7 +2733,7 @@ typedef enum
         nm_css_context_viewport, nm_context_css_will_change, nm_context_css_writing_mode, nm_context_custom_elements, nm_context_dc,
         nm_context_efficient, nm_context_example, nm_context_excl_def_excl, nm_context_expand, nm_context_export_root, nm_context_exports,
         nm_context_extensions, nm_context_ext_css, nm_context_extra, nm_context_force_version, nm_context_foaf, nm_context_forward,
-        nm_context_fred, nm_context_help, nm_context_icu, nm_context_ie, nm_context_ignore, nm_context_index, nm_context_pretty,
+        nm_context_fred, nm_context_home, nm_context_help, nm_context_icu, nm_context_ie, nm_context_ignore, nm_context_index, nm_context_pretty,
         nm_context_info, nm_context_iterate, nm_context_jsonld, nm_context_jsonld_extension, nm_context_jsonld_ontology,
         nm_context_jsonld_version, nm_context_lang, nm_context_links, nm_context_local, nm_context_math, nm_context_main,
         nm_context_max_file_size, nm_context_md_export, nm_context_md_pretty, nm_context_mf_export, nm_context_mf_pretty,
@@ -2757,9 +2759,9 @@ typedef enum
         nm_context_stats_meta, nm_context_stats_ontology, nm_context_stats_ornament, nm_context_stats_page_name, nm_context_stats_palette,
         nm_context_stats_reference, nm_context_stats_region, nm_context_stats_property, nm_context_stats_scroll_anim,
         nm_context_stats_statement, nm_context_stats_styleset, nm_context_stats_stylistic, nm_context_stats_swash, nm_context_stats_version,
-        nm_context_stats_view, nm_context_svg_version, nm_context_tags, nm_context_test, nm_context_title, nm_context_unknown_class,
-        nm_context_vcs, nm_context_verify, nm_context_version, nm_context_url_var, nm_context_virtuals, nm_context_vtt,
-        nm_context_vtt_extension, nm_context_wx, nm_context_xsd,
+        nm_context_stats_view, nm_context_stylesheet, nm_context_svg_version, nm_context_tags, nm_context_test, nm_context_title,
+        nm_context_unknown_class, nm_context_vcs, nm_context_verify, nm_context_version, nm_context_url_var, nm_context_virtuals,
+        nm_context_vtt, nm_context_vtt_extension, nm_context_wx, nm_context_xsd,
         nm_copy_addr, nm_copy_html, nm_copy_text,
     nm_general_info, nm_general_output, nm_general_path, nm_grand_title,
     nm_html_snippet,
@@ -2768,8 +2770,8 @@ typedef enum
     nm_level_name, nm_level_symbol,
     nm_output_account, nm_output_build, nm_output_description, nm_output_operator, nm_output_time,
     nm_note_content, nm_note_title, nm_note_note,
-    nm_nit_after, nm_nit_before, nm_nit_code, nm_nit_doc, nm_nit_doc_long, nm_nit_explanation, nm_nit_id, nm_nit_line, nm_nit_mote, nm_nit_ns, nm_nit_ref,
-        mn_nits_lost,
+    nm_nit_after, nm_nit_before, nm_nit_code, nm_nit_doc, nm_nit_doc_link, nm_nit_doc_long, nm_nit_doc_pdf, nm_nit_doc_text, nm_nit_doc_zip,
+        nm_nit_explanation, nm_nit_id, nm_nit_line, nm_nit_mote, nm_nit_ns, nm_nit_ref, mn_nits_lost,
     nm_output_format,
     nm_page_error, nm_page_name, nm_page_disk_path, nm_page_site_path, nm_page_path, nm_prog_abbrev, nm_prog_build, nm_prog_fullname, nm_prog_version,
         nm_prog_webaddr,
@@ -6655,7 +6657,7 @@ typedef ::std::vector < e_ontology_property > vsp_t;
 
 typedef enum { op_arithmetic, op_atop, op_in, op_out, op_over, op_xor } e_operator;
 typedef enum { or_h, or_v } e_orientation;
-typedef enum { eot_bespoke, eot_html, eot_spec, eot_test, eot_text, eot_xhtml } e_output_template;
+typedef enum { eot_bespoke, eot_html, eot_spec, eot_stylesheet, eot_test, eot_text, eot_xhtml } e_output_template;
 typedef enum { eo_none, eo_top } e_overlay;
 typedef enum { ou_over, ou_under } e_over_under;
 typedef enum { po_270, po_180, po_90, po0, po90, po180, po270 } e_page_orientation;

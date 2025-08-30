@@ -135,7 +135,7 @@ element_node* elements_node::insert_closure (const html_version& v, element_node
 {   PRESUME (parent != nullptr, __FILE__, __LINE__);
     if (ket.eofe_ != ket.end_)
         if (! is_whitespace (ket.eofe_, ket.end_))
-            ket.nits_.pick (nit_attributes_on_closure, ed_jul23, "1.11.2: Errors that could interfere with new syntax in the future", es_error, ec_element, "closures have no attributes");
+            ket.nits_.pick (nit_attributes_on_closure, ed_jun23, "1.11.2: Errors that could interfere with new syntax in the future", es_error, ec_element, "closures have no attributes");
     bool matched = false;
     if (does_apply < html_version > (v, id.first (), id.last ()))
     {   element_node* ancestor = find_corresponding_open (id, parent);
@@ -146,7 +146,7 @@ element_node* elements_node::insert_closure (const html_version& v, element_node
             else if ((! id.is_lazy (v)) || is_open_required (id, *parent))
                 ket.nits_.pick (nit_missing_open, es_error, ec_element, "no corresponding <", id.name (), "> found; it is required");
             else if (context.efficient ())
-                ket.nits_.pick (nit_inefficient, ed_jul23, "1.11.2: Cases where the author's intent is unclear", es_info, ec_element,
+                ket.nits_.pick (nit_inefficient, ed_jun23, "1.11.2: Cases where the author's intent is unclear", es_info, ec_element,
                     "no corresponding <", id.name (), "> found: it is optional, but its absence may waste browser resources"); }
         else
         {   if (context.analysis () == anal_original) report_missing_closures (v, parent, ancestor);
@@ -177,7 +177,7 @@ element_node* elements_node::insert_family_tree (const html_version& v, element_
         defnits.pick (nit_inserted_missing_parent, es_error, ec_element,
             "<", parent -> id ().name (), "> cannot have <", id.name (), "> children; inserting required intermediate <", def.name (), ">");
     else if (context.efficient ())
-        defnits.pick (nit_inefficient, ed_jul23, "1.11.2: Cases where the author's intent is unclear", es_info, ec_element,
+        defnits.pick (nit_inefficient, ed_jun23, "1.11.2: Cases where the author's intent is unclear", es_info, ec_element,
             "<", parent -> id ().name (), "> cannot have <", id.name (), "> children; inserting intermediate <", def.name (),
             "> (it is optional, but its absence may waste browser resource)");
     report_missing_closures (v, parent, ancestor);
@@ -316,15 +316,15 @@ void elements_node::parse (const html_version& v, bracs_ket& elements)
             if (GSL_NARROW_CAST < size_t > (id.ns ()) < first_runtime_namespace)
                 if (bad_version) e.nits_.pick (nit_invalid_element_version, es_warning, ec_element, "<", ::std::string (s), "> is an invalid element in ", v.report ());
                 else if (custard)
-                        e.nits_.pick (nit_unknown_element, ed_jul23, "1.11.2: Cases that are likely to be typos", es_comment, ec_element,
+                        e.nits_.pick (nit_unknown_element, ed_jun23, "1.11.2: Cases that are likely to be typos", es_comment, ec_element,
                             "Ignoring custom element <", ::std::string (s), ">");
-                else e.nits_.pick (nit_unknown_element, ed_jul23, "1.11.2: Cases that are likely to be typos", es_warning, ec_element,
+                else e.nits_.pick (nit_unknown_element, ed_jun23, "1.11.2: Cases that are likely to be typos", es_warning, ec_element,
                         PROG " does not know the element <", ::std::string (s), ">, so cannot verify it");
             else if (bad_version) e.nits_.pick (nit_invalid_element_version, es_comment, ec_element, "<", ::std::string (s), "> is invalid in ", v.report ());
             else if (custard)
-                e.nits_.pick (nit_unknown_element, ed_jul23, "1.11.2: Cases that are likely to be typos", es_comment, ec_element,
+                e.nits_.pick (nit_unknown_element, ed_jun23, "1.11.2: Cases that are likely to be typos", es_comment, ec_element,
                       "Ignoring custom element <", ::std::string (s), ">");
-            else e.nits_.pick (nit_unknown_element, ed_jul23, "1.11.2: Cases that are likely to be typos", es_comment, ec_element,
+            else e.nits_.pick (nit_unknown_element, ed_jun23, "1.11.2: Cases that are likely to be typos", es_comment, ec_element,
                 PROG " does not know <", ::std::string (s), ">, so cannot verify it");
             if (v.xhtml () && compare_no_case (s, "base"))
                 e.nits_.pick (nit_requires_xhtml, es_comment, ec_element, "in XHTML, use <xml:base>, not <base>"); }

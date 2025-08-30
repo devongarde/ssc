@@ -366,6 +366,10 @@ context_t& context_t::pretend (nitpick& , const ::std::string& s)
 {   pretend_.push_back (s);
     return *this; }
 
+context_t& context_t::silence (nitpick& , const ::std::string& s)
+{   silence_.push_back (::boost::regex (s));
+    return *this; }
+
 context_t& context_t::exclude (nitpick& nits, const vstr_t& s)
 {   for (auto ss : s)
 #ifdef WIN32
@@ -379,6 +383,21 @@ context_t& context_t::pretend (nitpick& nits, const vstr_t& s)
 {   for (auto ss : s)
         pretend (nits, ss);
     return *this; }
+
+context_t& context_t::silence (nitpick& nits, const vstr_t& s)
+{   for (auto ss : s)
+#ifdef WIN32
+        silence (nits, ::boost::to_lower_copy (ss));
+#else // WIN32
+        silence (nits, ss);
+#endif // WIN32
+    return *this; }
+
+bool context_t::silenced (const ::std::string& site_path)
+{   for (auto s : silence_)
+        if (::boost::regex_search (site_path, s))
+            return true;
+    return false; }
 
 bool context_t::matches (const ::std::string& s, const ::std::string& w, const char sep) const
 {   const ::std::string::size_type slen = s.length ();

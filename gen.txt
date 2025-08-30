@@ -414,6 +414,10 @@ This are switches that don't really belong in any other section.
 --general.spec          Reset the values of most switches to false.
 -j
 
+--general.silence xxx   Process all files and paths which match the
+                        regular expression xxx, but don't report any
+                        nits encountered.
+
 --general.test          Output data in automated test format. Used by
 -T                      ssc-test. Not generally useful. Documented so
                         you can avoid using it!

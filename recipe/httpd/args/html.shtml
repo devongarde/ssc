@@ -29,11 +29,9 @@ you won&rsquo;t need to use these switches. The default is the most recent versi
 <p>
 However, beyond that,
 the only HTML switch you are likely to need is <kbd>html.version</kbd>, which applies
-when no <kbd>&lt;!DOCTYPE&hellip;&gt;</kbd> (or xml header) is specified, andor if you prefer to precisely
+when no <kbd>DOCTYPE</kbd> (or xml header) is specified, andor if you prefer to precisely
 define which version of HTML 5 to consider. It accepts the following values:
 </p>
-
-<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-var-sm.jpg" title="made with studio artist 5.5">
 
 <table>
 <tr><td>tags</td> <td>HTML tags (1991, informal)</td></tr>
@@ -64,7 +62,7 @@ define which version of HTML 5 to consider. It accepts the following values:
 <tr><td>...</td> <td>(halfly)</td></tr>
 <tr><td>2021/1/1</td> <td>WhatWG HTML 5 (Jan 2021)</td></tr>
 <tr><td>..</td> <td>(quarterly)</td></tr>
-<tr><td>2025/7/1</td> <td>WhatWG HTML 5 (Jul 2025)</td></tr>
+<tr><td>2025/8/1</td> <td>WhatWG HTML 5 (Aug 2025)</td></tr>
 
 <tr><td>XHTML 1.0</td> <td>XHTML 1.0</td></tr>
 <tr><td>XHTML 1.1</td> <td>XHTML 1.1 core</td></tr>
@@ -75,33 +73,28 @@ define which version of HTML 5 to consider. It accepts the following values:
 <p>
                         Although you can specify exact dates for
                         versions of the <a href="https://whatwg.org">WhatWG HTML 5 living standard</a>,
-                        currently only broad versions published quarterly in
+                        in general only broad versions published quarterly in
                         January, April, July and October are supported (halfly
                         before 2021).
 </p>
 
 <p>
-                        Certain versions of HTML offer variants, such
+                        Certain early versions of HTML offer variants, such
                         as loose and strict definitions. <!--#echo encoding="none" var="short" --> picks
-                        those up from the <kbd>&lt;!DOCTYPE&hellip;&gt;</kbd> in the HTML
+                        those up from the DOCTYPE in the HTML
                         file, if any, and then carefully ignores them.
+                        Validation of XHTML is even less strict.
 </p>
 
 <p>
-                        Validation of XHTML is even less strict.
-</p>
+                        Copies of the appropriate standards can be
+                        found online.
+</p> 
 
 <p>
                         Just to remind you, there are no guarantees of
                         accuracy (or inaccuracy).
 </p>
-
-<p>
-                        Copies of the appropriate standards can be
-                        found online. A copy of the copies referenced
-                        during ssc&rsquo;s development can be found at
-                        <a href="<!--#echo encoding="none" var="slashaddress" -->"><!--#echo encoding="none" var="address" --></a>.
-</p> 
 
 <h2>other html arguments</h2>
 
@@ -115,7 +108,7 @@ The remaining switches allow you to precisely control analysis.
 <tr><td>html.efficient</td> <td>Warn about perfectly legal HTML that can slow
                         a browser down.</td></tr>
 
-<tr><td>html.force</td> <td>If <kbd>&lt;!DOCTYPE&hellip;&gt;</kbd> is missing, force presumption
+<tr><td>html.force</td> <td>If DOCTYPE is missing, force presumption
                         of <kbd>html.version</kbd> value, not HTML 1/tags</td></tr>
 
 <tr><td>html.ie</td> <td>Don&rsquo;t mention certain Internet Explorer
@@ -138,7 +131,7 @@ The remaining switches allow you to precisely control analysis.
 <tr>
 <td>html.tags</td>
 <td>When an HTML file is loaded that contains no
-                        <kbd>&lt;!DOCTYPE&hellip;&gt;</kbd>, <!--#echo encoding="none" var="short" --> normally presumes HTML 1. This
+                        DOCTYPE, <!--#echo encoding="none" var="short" --> normally presumes HTML 1. This
                         switch tells it to presume the file conforms
                         to an earlier HTML Tags specification (the one
                         at CERN). This is overridden by <kbd>html.version</kbd>.</td>

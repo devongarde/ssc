@@ -62,8 +62,8 @@ z
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
-#define VERSION_RELEASE 19
-#define VERSION_STRING "0.2.19"
+#define VERSION_RELEASE 20
+#define VERSION_STRING "0.2.20"
 
 #define NBSP "&nbsp;"
 #define COPYRIGHT_SYMBOL "(c)"
@@ -736,6 +736,7 @@ typedef ::std::basic_string < char32_t > string32;
 typedef ::std::basic_stringstream < char32_t > stringstream32;
 typedef ssc_map < ::std::size_t, sstr_t > szreg_t;
 typedef ::std::unique_ptr < ::std::fstream > fstr_p;
+typedef ::std::vector < ::boost::regex > vreg_t;
 
 #ifdef _MSC_VER
 #pragma warning (push, 3)

@@ -17,8 +17,6 @@
 <!--#echo encoding="none" var="title" -->
 </h1>
 
-<img alt="riff on name" class="mw25 inline_illustration_right" src="/image/ssc-msgdb-t1-b4.jpg" title="made with studio artist 5.5">
-
 <p>
 SSC can output lots of statistical information about the site being
 analysed, although by default it outputs nothing.

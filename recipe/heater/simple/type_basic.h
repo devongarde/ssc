@@ -79,7 +79,7 @@ template < > struct type_master < t_custom_element_new > : tidy_string < t_custo
         const ::std::string ss (string_value < t_custom_element_new > :: get_string ());
         if (! ss.empty ())
             if ((ss.at (0) < 'a') || (ss.at (0) > 'z'))
-                nits.pick (nit_custom_element, ed_jun25, "4.13.3 Core concepts", es_error, ec_type, quote (ss), ": the first character of a custom element must be an ASCII lower-case letter");
+                nits.pick (nit_custom_element, ed_jul25, "4.13.3 Core concepts", es_error, ec_type, quote (ss), ": the first character of a custom element must be an ASCII lower-case letter");
             else if (ss.find_first_of (UPPERCASE) != ::std::string::npos)
                 nits.pick (nit_custom_element, ed_jul25, "4.13.3 Core concepts", es_error, ec_type, quote (ss), ": a custom element name must not contain an upper-case ASCII letter");
             else
@@ -99,7 +99,7 @@ template < > struct type_master < t_custom_element_new > : tidy_string < t_custo
 #endif // _MSC_VER
                     break; }
                 if (! whoops) return;
-                nits.pick (nit_custom_element, ed_jun25, "4.13.3 Core concepts", es_warning, ec_type, quote (ss), ": the custom element name may contain an illegal ASCII character"); }
+                nits.pick (nit_custom_element, ed_jul25, "4.13.3 Core concepts", es_warning, ec_type, quote (ss), ": the custom element name may contain an illegal ASCII character"); }
         string_value < t_custom_element_new > :: status (s_invalid); } };
 
 template < > struct type_master < t_digits > : type_string < t_digits, sz_digits >

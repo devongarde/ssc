@@ -21,8 +21,6 @@
 This are switches that don&rsquo;t really belong in any other section.
 </p>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-misc-un.jpg" title="made with studio artist 5.5">
-
 
 <table>
 <tr><td></td> <td></td></tr>
@@ -59,7 +57,7 @@ This are switches that don&rsquo;t really belong in any other section.
                         repeated. Case independent under Windows only.
                         <kbd>.DS_Store</kbd> is always excluded under darwin.</td></tr>
 
-<tr><td>general.file XXX</td> <td>File for persistent data. See also
+<tr><td>general.file&nbsp;XXX</td> <td>File for persistent data. See also
                         <kbd>general.datapath</kbd>. Default extension: .ndx.</td></tr>
 
 <tr><td>general.ignore EL</td> <td>ignore attributes and content of the element
@@ -95,12 +93,11 @@ This are switches that don&rsquo;t really belong in any other section.
 
 <tr><td>general.rpt</td> <td>Report CSS files that are opened.</td></tr>
 
-<tr><td>general.sloven</td> <td>Ignore perfectly legal yet inefficient, indeed
-                        thoroughly slovenly, HTML, such as being far
-                        too lazy to bother to get round to closing
-                        elements.</td></tr>
-
 <tr><td>general.spec<br>-j</td> <td>Reset the values of most switches to false.</td></tr>
+
+<tr><td>general.silence&nbsp;xxx</td> <td>Process all files and paths which match the
+                        regular expression xxx, but don&rsquo;t report any
+                        nits encountered.</td></tr>
 
 <tr><td>general.ssi<br>-I</td> <td>Process Server Side Includes (SSIs). Note ssc
                      cannot process SSIs directives with formulae.

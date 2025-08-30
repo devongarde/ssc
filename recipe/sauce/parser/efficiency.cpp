@@ -117,7 +117,7 @@ void report_closure (nitpick& nits, const e_nit nit, const html_version& v, cons
     else if (is_closure_required (current))
         nits.pick (nit, es_error, ec_element, "</", current.id ().name (), "> is missing and required in this case");
     else if (context.efficient ())
-        nits.pick (nit_inefficient, ed_jul23, "1.11.2: Errors that result in disproportionately poor performance", es_info, ec_element,
+        nits.pick (nit_inefficient, ed_jun23, "1.11.2: Errors that result in disproportionately poor performance", es_info, ec_element,
             "</", elem :: name (current.tag ()), "> is optional, but its absence may waste browser resources"); }
 
 bool is_open_required (const elem& id, const element_node& current)

@@ -54,6 +54,7 @@ CONSTEXPR long def_max_file_size = DMFS_BYTES;
 CONSTEXPR const char* const def_css_ext = CSS_EXT;
 CONSTEXPR const char* const def_html_ext = HTML_EXT;
 CONSTEXPR const char* const def_jsonld_ext = JSONLD_EXT;
+CONSTEXPR const char* const def_stylesheet = "stylesheet.css";
 
 class context_t
 {   friend class options;
@@ -85,12 +86,13 @@ class context_t
                     macro_start_ = def_macrostart, msg_, out_, out_copy_, output_format_, output_override_, output_time_, path_ = def_path, persisted_,
                     root_, shadow_, shadow_persist_, snippet_, ssi_doc_args_, ssi_echomsg_, ssi_errmsg_, ssi_exec_text_, ssi_query_string_,
                     ssi_timefmt_, ssi_user_name_, started_, stats_, svg_, username_, wx_snippet_, x_;
-    ::boost::filesystem::path config_, corpus_, def_conf_path_, def_conf_file_, password_, private_, public_, proot_, signature_, spell_path_;
+    ::boost::filesystem::path   back_, config_, corpus_, def_conf_path_, def_conf_file_, home_, password_, private_, public_, proot_, signature_,
+                                spell_path_, stylesheet_ = def_stylesheet;
     static ::boost::filesystem::path cwd_;
     sstr_t          css_ext_ = { CSS_EXT }, custom_elements_, extensions_ = { HTML_EXT }, jsonld_ext_, no_ex_check_ = { JSONLD_EXT }, site_, vtt_ext_ = { VTT_EXT };
     vstr_t          abhorrent_, attrib_, catastrophe_, cmd_, comment_, debug_, dict_, dlang_, elem_, elem_attrib_, environment_, error_, exclude_,
-                    exports_, inform_, ignore_, jsonld_key_, jsonld_ont_, jsonld_val_, output_description_, naughty_, nice_, note_,
-                    pretend_, replace_, report_, shadow_ignore_, shadows_, silent_, spell_list_, spellings_, warning_, url_var_, virtuals_, vont_;
+                    exports_, inform_, ignore_, jsonld_key_, jsonld_ont_, jsonld_val_, output_description_, naughty_, nice_, note_, pretend_, replace_, report_,
+                    shadow_ignore_, shadows_, silent_, spell_list_, spellings_, warning_, url_var_, virtuals_, vont_;
     ustr_t          uvar_;
     vvstr_t         vvext_;
     static ustr_t   validation_;
@@ -102,6 +104,7 @@ class context_t
     ::std::time_t   ssi_date_ = 0, ssi_lastmod_ = 0;
     os_ptr          os_;
     wblist          tim_;
+    vreg_t          silence_;
 #ifdef LEAK_SEEK
 public:
     static _CrtMemState ls_old_;
@@ -150,6 +153,7 @@ public:
     context_t& aria (const bool b) { aria_ = b; mac (nm_context_role, b); return *this; }
     context_t& article (const bool b) { article_ = b; mac (nm_context_article, b); return *this; }
     context_t& attrib (const vstr_t& s) { attrib_ = s; return *this; }
+    context_t& back (const ::boost::filesystem::path& s) { back_ = s; mac (nm_context_back, s); return *this; }
     context_t& body (const bool b) { body_ = b; mac (nm_context_body, b); return *this; }
     context_t& cache (const ::std::string& s) { cache_ = s; return *this; }
     context_t& cased (const bool b) { case_ = b; mac (nm_context_case, b); return *this; }
@@ -195,6 +199,7 @@ public:
     context_t& fred (const ::std::size_t i);
     void gui (const bool b) { gui_ = b; }
     context_t& help (const ::std::string& s) { help_ = s; mac (nm_context_help, s); return *this; }
+    context_t& home (const ::boost::filesystem::path& s) { home_ = s; mac (nm_context_home, s); return *this; }
     context_t& html_ver (const html_version& v);
     context_t& icu (const bool b) { icu_ = b; mac (nm_context_icu, b); return *this; }
     context_t& ie (const bool b) { ie_ = b; mac (nm_context_ie, b); return *this; }
@@ -286,6 +291,8 @@ public:
     context_t& shadows (const vstr_t& s) { shadows_ = s; mac (nm_context_shadows, s); shadow_enable (true); return *this; }
     context_t& sign (const bool b) { verify_ = sign_ = b; mac (nm_context_sign, b); return *this; }
     context_t& signature (const ::boost::filesystem::path& s) { signature_ = s; mac (nm_context_signature, s); return *this; }
+    context_t& silence (nitpick& nits, const vstr_t& s);
+    context_t& silence (nitpick& nits, const ::std::string& s);
     context_t& silent (const ::std::string& s) { silent_.push_back (s); return *this; }
     context_t& site (const vstr_t& s) { site_ = vtos (s); mac (nm_context_site, s); return *this; }
     context_t& site (const sstr_t& s) { site_ = s; mac (nm_context_site, s); return *this; }
@@ -312,6 +319,7 @@ public:
     context_t& stats (const e_report r, const bool b);
     context_t& stats_all (const bool b);
     context_t& stats_report (const e_report e, const bool b) { rpt_.at (e) = b; return *this; }
+    context_t& stylesheet (const ::boost::filesystem::path& s) { stylesheet_ = s; mac (nm_context_stylesheet, s); return *this; }
     context_t& svg (const ::std::string& s) { svg_ = s; return *this; }
     context_t& svg_mode (const e_svg_processing_mode m) noexcept { svg_mode_ = m; return *this; }
     context_t& svg_version (const int mjr, const int mnr);
@@ -349,6 +357,7 @@ public:
     bool aria () const noexcept { return aria_; }
     bool article () const noexcept { return article_; }
     const vstr_t& attrib () const { return attrib_; }
+    ::boost::filesystem::path back () const { return back_; }
     bool body () const noexcept { return body_; }
     const ::std::string build () const { return build_; }
     context_t& build (const ::std::string& s) { build_ = s; mac (nm_compile_time, s); return *this; }
@@ -407,6 +416,7 @@ public:
     bool has_rdfa () const noexcept { return rdfa () || (version_.is_svg_12 ()) || (version_ == xhtml_2); }
     bool has_svg () const noexcept { return version_.has_svg (); }
     const ::std::string help () const { return help_; }
+    ::boost::filesystem::path home () const { return home_; }
     html_version html_ver () const noexcept { return version_; }
     html_version& html_ver () noexcept { return version_; }
     html_version html_ver (const int major, const int minor) noexcept;
@@ -517,6 +527,8 @@ public:
     const vstr_t shadows () const { return shadows_; }
     bool sign () const noexcept { return sign_; }
     ::boost::filesystem::path signature () const { return signature_; }
+    const vreg_t silence () const { return silence_; }
+    bool silenced (const ::std::string& site_path);
     const vstr_t& silent () const { return silent_; }
     const sstr_t site () const { return site_; }
     bool sloven () const noexcept { return sloven_; }
@@ -547,6 +559,7 @@ public:
     bool stats_any () const;
     bool stats_gst (const e_gsstr gst);
     bool stats_report (const e_report e) const { return rpt_.at (e); }
+    const ::boost::filesystem::path& stylesheet () const { return stylesheet_; }
     const ::std::string& svg () const { return svg_; }
     e_svg_processing_mode svg_mode () const noexcept { return svg_mode_; }
     e_svg_version svg_version () const noexcept { return version_.svg_version (); }

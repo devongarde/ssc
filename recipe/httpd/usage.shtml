@@ -24,8 +24,8 @@ directory, and type:
 </p>
 
 <table>
-<tr><td>Windows</td> <td><kbd><!--#echo encoding="none" var="short" --></kbd></td></tr>
-<tr><td>Unix</td> <td><kbd>./<!--#echo encoding="none" var="short" --></kbd></td></tr>
+<tr><td>Windows:</td> <td><kbd><!--#echo encoding="none" var="short" --></kbd></td></tr>
+<tr><td>Unix:</td> <td><kbd>./<!--#echo encoding="none" var="short" --></kbd></td></tr>
 </table>
 
 <p>
@@ -38,8 +38,8 @@ There&rsquo;s also a GUI version, should you prefer something fancy(&ndash;ish).
 
 <p>
 It is possible to set up configuration files, but, to start, we&rsquo;ll try
-a simple set of command line options. If the HTML files belonging to
-your website is located in the current directory, and the main index
+a simple set of command line options. If the HTML files defining
+your website are located in the current directory, and the main index
 file is called <a href="index.html">index.html</a>, then all you need type is:
 </p>
 
@@ -52,6 +52,8 @@ file is called <a href="index.html">index.html</a>, then all you need type is:
 the current directory and descendants.
 </p>
 
+<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-se-w1.jpg" title="made with studio artist 5.5">
+
 <h3>Reports</h3>
 
 <p>
@@ -60,14 +62,16 @@ problem, with the approximate line number. This may be after the actual
 location of the problem. Consider, for example:
 </p>
 
-<code>
-&lt;P&gt;Taost&lt;A href=&ldquo;https://example.com/superdoopersecretrecipe.html&rdquo;
-title=&ldquo;what a wonderful page oh so wow&rdquo; onclick=&ldquo;halt-and-catch-fire&rdquo;
-onhover=&ldquo;wink-embarrassingly&rdquo; whimper=frequently&gt;d wombats are a
-delicious&lt;/A&gt; thing.&lt;/P&gt;
-</code>
+<br>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-se-w1.jpg" title="made with studio artist 5.5">
+<code>
+&lt;P&gt;Taost&lt;A href=&ldquo;https://example.com/superdoopersecretrecipe.html&rdquo;<br>
+title=&ldquo;what a wonderful page oh so wow&rdquo;<br>
+onclick=&ldquo;halt-and-catch-fire&rdquo;<br>
+onhover=&ldquo;wink-embarrassingly&rdquo;<br>
+whimper=frequently&gt;d wombats are a
+delicious&lt;/A&gt;<br>thing.&lt;/P&gt;
+</code>
 
 <p>
 The word <!--#echo encoding="none" var="short" --> spots is &ldquo;Taostd&rdquo;. It knows there&rsquo;s a word to check when
@@ -115,7 +119,7 @@ report of the misspelt word mentions the word it considers misspelt.
 <tr><td>-x&nbsp;x</td> <td>treat files with extension x as HTML/XHTML</td></tr>
 <tr><td>-i&nbsp;f</td> <td>file f is default (default index.html)</td></tr>
 <tr><td>-s&nbsp;x</td> <td>x is the local site&rsquo;s domain name</td></tr>
-<tr><td>-L&nbsp;vd</td>  <td>Define a virtual directory (vd is formatted
+<tr><td>-L&nbsp;v</td>  <td>Define a virtual directory (v is formatted
             &lsquo;virtual=physical&rsquo;)</td></tr>
 
 <tr><td>-e</td> <td>Check external links (each link is checked once per run,
@@ -137,7 +141,7 @@ report of the misspelt word mentions the word it considers misspelt.
 
 <p>
 If you find yourself having switch problems, add -A to your command
-line to see what switches <!--#echo encoding="none" var="short" --> has noticed. -A kyboshes other
+line to see which switches <!--#echo encoding="none" var="short" --> has noticed. -A kyboshes other
 processing.
 </p>
 
@@ -173,10 +177,6 @@ html.snippet, with an appropriate value.
 <h3>A note on signing</h3>
 
 <p>
-I strongly recommend you review the signing/sign-pw test.
-</p>
-
-<p>
 To have <!--#echo encoding="none" var="short" --> sign its output, first use a tool, such as
 <a href="https://libressl.org/">libressl</a>&rsquo;s openssl, to
 generate a pair of RSA 256 keys in PEM format. You can then use the various
@@ -189,8 +189,12 @@ can do.
 </p>
 
 <p>
+I strongly recommend you review the signing/sign-pw test before you activate signing.
+</p>
+
+<p>
 Note that I used the <a href="https://libressl.org/">libressl command line utility</a> called openssl, but
-I understand appropriate versions of <a href="https://openssl.org/">openssl</a> itself can also be used.
+I suspect appropriate versions of <a href="https://openssl.org/">openssl</a> itself can also be used.
 </p>
 
 <h2>Potential gotchas</h2>
@@ -207,13 +211,13 @@ particular version (such as HTML 3.2), then that applies.
 <p>
 The version indicated by the DOCTYPE can be very broad. For example,
 the HTML 5 doctype specifies HTML 5 alone, but not which flavour (W3 or
-living standard), nor which revision&mdash;there have been rather a lot of changes since the 2005 original and current version.
+living standard), nor which revision&mdash;there have been rather a lot of changes since the 2005 original.
 </p>
 
 <p>
 If you are verifying HTML, and it contains some CSS, MathML, SVG, or
-other content, then <!--#echo encoding="none" var="short" --> will attempt to guess the version of the latter
-from the former, unless you say otherwise.
+other content, then, unless told otherwise, <!--#echo encoding="none" var="short" -->
+will attempt to guess the version of the latter from the former.
 </p>
 
 <p>
@@ -221,17 +225,6 @@ All this is why that, if you want to be precise about document
 verification, specify versions, either with a switch or an entry in a
 configuration file. If your HTML contains MathML/SVG/etc. snippets,
 then specify those versions too.
-</p>
-
-<h3>stressed systems</h3>
-
-<p>
-Unfortunately, some system suppliers sometimes release buggy
-compilers. These bugs can often be avoided by using an alternative
-compiler (for example, if using clang, try gcc, and vice versa),
-disabling multithreading at runtime (use <kbd>-Y 1</kbd>), or not
-upgrading your system until the supplier releases a less unreliable
-version of their noisy compiler.
 </p>
 
 <h3>More info</h3>

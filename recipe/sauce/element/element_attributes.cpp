@@ -313,7 +313,7 @@ void element::examine_popovertarget ()
     {   const element* pel = get_ids ().get_element (id);
         if (pel != nullptr)
             if (! pel -> a_.known (a_popover))
-                pick (nit_bad_header_id, ed_apr23, "6.11.1 The popover target attributes", es_error, ec_attribute, "id ", quote (id), " must reference an element with a POPOVER attribute"); } }
+                pick (nit_bad_header_id, ed_jun23, "6.11.1 The popover target attributes", es_error, ec_attribute, "id ", quote (id), " must reference an element with a POPOVER attribute"); } }
 
 void element::examine_rel (const ::std::string& content, const lingo& lang, const char* const an)
 {   switch (node_.tag ())

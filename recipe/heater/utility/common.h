@@ -285,7 +285,7 @@ inline ::std::string::size_type find_no_case (const ::std::string& s, const ::st
 {   if (s.empty () || x.empty ()) return ::std::string::npos;
     return ::boost::to_lower_copy (s).find (::boost::to_lower_copy (x)); }
 
-::std::string enhtml (const ::std::string& s);
+::std::string enhtml (const ::std::string& s, const bool nbsp = true);
 
 bool is_plain_old_integer (const ::std::string& ss);
 bool is_plain_old_decimal (const ::std::string& ss);

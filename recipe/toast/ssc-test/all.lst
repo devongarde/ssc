@@ -242,6 +242,7 @@
 ../toast/other/ruby/ruby.spec
 ../toast/other/safari/safari.spec
 ../toast/other/simple/simple.spec
+../toast/other/silenced/silenced.spec
 ../toast/other/ssi/ssi.spec
 ../toast/other/vtt/vtt.spec
 ../toast/RDF/1.0/rdf.spec
@@ -383,6 +384,7 @@
 ../toast/output/bespoke/output.spec
 ../toast/output/html/output.spec
 ../toast/output/out/output.spec
+../toast/output/stylesheet/output.spec
 ../toast/output/test/output.spec
 ../toast/output/text/output.spec
 ../toast/output/xhtml/output.spec

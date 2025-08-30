@@ -343,11 +343,11 @@ void html_version::init (const unsigned short mjr)
             if (mnr () >= HTML_JUL) return "WebApps-2005/Jul";
             return "WebApps-2005/Jan";
         case 6 :
-            if (mnr () >= HTML_JUL) return "WebApps-2005/Jul";
-            return "WebApps-2005/Jan";
+            if (mnr () >= HTML_JUL) return "WebApps-2006/Jul";
+            return "WebApps-2006/Jan";
         case 7 :
             if (mnr () >= HTML_JUL) break;
-            return "WebApps-2005/Jan";
+            return "WebApps-2007/Jan";
         default : break; }
     res << "-20";
     if (mjr () < 10) res << "0";
@@ -355,9 +355,17 @@ void html_version::init (const unsigned short mjr)
     if (mjr () <= 20)
         if (mnr () >= HTML_JUL) res << "Jul";
         else res << "Jan";
+    else if (mnr () >= HTML_DEC) res << "Dec";
+    else if (mnr () >= HTML_NOV) res << "Nov";
     else if (mnr () >= HTML_OCT) res << "Oct";
+    else if (mnr () >= HTML_SEP) res << "Sep";
+    else if (mnr () >= HTML_AUG) res << "Aug";
     else if (mnr () >= HTML_JUL) res << "Jul";
+    else if (mnr () >= HTML_JUN) res << "Jun";
+    else if (mnr () >= HTML_MAY) res << "May";
     else if (mnr () >= HTML_APR) res << "Apr";
+    else if (mnr () >= HTML_MAR) res << "Mar";
+    else if (mnr () >= HTML_FEB) res << "Feb";
     else res << "Jan";
     return res.str (); }
 

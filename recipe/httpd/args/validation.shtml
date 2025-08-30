@@ -23,8 +23,6 @@ website. They allow you to define additional valid values of certain
 data types. Start with the --validation switch, and go on from there.
 </p>
 
-<img alt="riff on name" class="mw50 inline_illustration_left" src="/image/ssc-msgdb-vf-tr.jpg" title="made with studio artist 5.5">
-
 <table>
 <tr><td>validation</td> <td>Only available from the command line. Lists all
                         types that can be given additional valid

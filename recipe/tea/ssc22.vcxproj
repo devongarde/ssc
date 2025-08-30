@@ -1620,9 +1620,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\port\macports\Portfile" />
-    <None Include="..\port\openbsd\Makefile" />
-    <None Include="..\port\openbsd\pkg\DESCR" />
-    <None Include="..\port\openbsd\pkg\PLIST" />
+    <None Include="..\port\openbsd\httpd\7.7\chroot77.sh" />
+    <None Include="..\port\openbsd\httpd\7.7\dependencies.sh" />
+    <None Include="..\port\openbsd\portfiles\Makefile" />
+    <None Include="..\port\openbsd\portfiles\pkg\DESCR" />
+    <None Include="..\port\openbsd\portfiles\pkg\PLIST" />
     <None Include="..\toast\aria\1-0\2.css" />
     <None Include="..\toast\aria\1-0\2.html" />
     <None Include="..\toast\aria\1-0\5.html" />
@@ -13145,6 +13147,11 @@
     <None Include="..\toast\other\safari\recordings.html" />
     <None Include="..\toast\other\safari\safari.conf" />
     <None Include="..\toast\other\safari\safari.spec" />
+    <None Include="..\toast\other\silenced\index.html" />
+    <None Include="..\toast\other\silenced\silenced.conf" />
+    <None Include="..\toast\other\silenced\silenced.spec" />
+    <None Include="..\toast\other\silenced\sub\css-good.css" />
+    <None Include="..\toast\other\silenced\sub\index.html" />
     <None Include="..\toast\other\simple\css-good.css" />
     <None Include="..\toast\other\simple\index.html" />
     <None Include="..\toast\other\simple\simple.conf" />
@@ -13227,6 +13234,12 @@
     <None Include="..\toast\output\out\output.conf" />
     <None Include="..\toast\output\out\output.out.model" />
     <None Include="..\toast\output\out\output.spec" />
+    <None Include="..\toast\output\stylesheet\output.conf" />
+    <None Include="..\toast\output\stylesheet\output.spec" />
+    <None Include="..\toast\output\stylesheet\ssc.css" />
+    <None Include="..\toast\output\stylesheet\stylesheet.html" />
+    <None Include="..\toast\output\stylesheet\stylesheet.html.model" />
+    <None Include="..\toast\output\stylesheet\stylesheet.nit" />
     <None Include="..\toast\output\test\index.html" />
     <None Include="..\toast\output\test\output.conf" />
     <None Include="..\toast\output\test\output.spec" />

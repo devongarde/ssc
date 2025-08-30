@@ -583,7 +583,6 @@ vstr_t sections;
     "<MAIN>\n" \
     "\n" \
     "[doc-foot]\n" \
-    "<A href=\"/index.html\">Previous page</A>\n" \
     "</MAIN>\n" \
     "<HR>\n" \
     "<FOOTER class=\"smaller\">\n" \
@@ -798,7 +797,6 @@ vstr_t sections;
     "<MAIN>\n" \
     "\n" \
     "[doc-foot]\n" \
-    "<A href=\"/index.html\">Previous page</A>\n" \
     "</MAIN>\n" \
     "<HR/>\n" \
     "<FOOTER class=\"smaller\">\n" \
@@ -928,6 +926,207 @@ vstr_t sections;
     "</P>\n" \
     "\n"
 
+#define STYLESHEET_NIT \
+    "[class]\n" \
+    "<SPAN class=\"nit-name\">{{class-name}}:</SPAN> <SPAN class=\"nit-count\">style {{class-decl-count}},</SPAN> <SPAN class=\"nit-count\">class {{class-count}}</SPAN><BR>\n" \
+    "\n" \
+    "[class-head]\n" \
+    "<H2 class=\"nit-section\">{{class-title}}</H2>\n" \
+    "<P>\n" \
+    "\n" \
+    "[class-foot]\n" \
+    "</P>\n" \
+    "\n" \
+    "[du]\n" \
+    "<SPAN class=\"nit-name\">{{tally-name}}:</SPAN> <SPAN class=\"nit-count\">style {{tally-decl-count}},</SPAN> <SPAN class=\"nit-count\">class {{tally-use-count}}</SPAN><BR>\n" \
+    "\n" \
+    "[du-head]\n" \
+    "\n" \
+    "<H2 class=\"nit-section\">{{tally-title}}</H2>\n" \
+    "\n" \
+    "[du-foot]\n" \
+    "<SPAN class=\"nit-name\">{{tally-count}} {{tally-title}}:</SPAN> <SPAN class=\"nit-count\">{{tally-total}}, {{tally-use-total}}</SPAN>\n" \
+    "\n" \
+    "[id]\n" \
+    "<SPAN class=\"nit-name\">{{id-name||: }}</SPAN><SPAN class=\"nit-count\">{{id-decl-count|style |}}</SPAN> <SPAN class=\"nit-count\">{{id-count| id |}}</SPAN><BR>\n" \
+    "\n" \
+    "[id-head]\n" \
+    "<H2 class=\"nit-section\">{{id-title}}</H2>\n" \
+    "<P>\n" \
+    "\n" \
+    "[id-foot]\n" \
+    "</P>\n" \
+    "\n" \
+    "[tally]\n" \
+    "<SPAN class=\"nit-name\">{{tally-name}}</SPAN><SPAN class=\"nit-count\">{{tally-count|: |}}</SPAN><BR>\n" \
+    "\n" \
+    "[tally-head]\n" \
+    "{{tally-title:<H2 class=\"nit-section\">: CSS/HTML:</H2>\n}}" \
+    "<P>\n" \
+    "\n" \
+    "[tally-foot]\n" \
+    "<SPAN class=\"nit-name\">{{tally-count}} {{tally-title}}:</SPAN> <SPAN class=\"nit-count\">{{tally-total}}</SPAN>\n" \
+    "</P>\n" \
+    "\n" \
+    "[config]\n" \
+    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN><BR>\n" \
+    "\n" \
+    "[config-head]\n" \
+    "<H2 class=\"nit-section\">" CONFIGURE "</H2>\n" \
+    "<P>\n" \
+    "\n" \
+    "[config-foot]\n" \
+    "</P>\n" \
+    "\n" \
+    "[doc-head]\n" \
+    "<!DOCTYPE HTML>\n" \
+    "<HTML lang=en>\n" \
+    "<HEAD>\n" \
+    "<TITLE>snippet report{{context-root: for :}}</TITLE>\n" \
+    "{{context-stylesheet:<link rel=stylesheet href=: type=" CSS_TYPE ">\n}}" \
+    "</HEAD>\n" \
+    "<BODY>\n" \
+    "<HEADER>\n" \
+    "<H1 class=\"nit-title\">snippet report{{context-root: for :}}</H1>\n" \
+    "</HEADER>\n" \
+    "<MAIN class=\"nit-main\">\n" \
+    "\n" \
+    "[doc-foot]\n" \
+    "{{context-back:<A href=\":\">back</A>&nbsp;&nbsp;}}{{context-home:<A href=\":\">home</A>}}" \
+    "</MAIN>\n" \
+    "<BR><HR>\n" \
+    "<FOOTER class=\"smaller\">\n" \
+    "<A href=\"{{prog-addr}}\" class=\"ssc-name\">{{prog-fullname}}</A> version {{prog-version}} ({{compile-time}})<BR>\n" \
+    "<A href=\"{{copyright-addr}}\" class=\"ssc-copyright\">{{copyright-text}}</A><BR>\n" \
+    "</FOOTER>\n" \
+    "</BODY>\n" \
+    "</HTML>\n" \
+    "\n" \
+    "[export]\n" \
+    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN><BR>\n" \
+    "\n" \
+    "[export-head]\n" \
+    "<H2 class=\"nit-section\">" REPORT_EXPORT "</H2>\n" \
+    "<P>\n" \
+    "\n" \
+    "[export-foot]\n" \
+    "</P>\n" \
+    "\n" \
+    "[grand-head]\n" \
+    "<H3 class=\"nit-subsection\">{{grand-title}}{{page-title}}</H3>\n" \
+    "<P>\n" \
+    "\n" \
+    "[grand-foot]\n" \
+    "</P>\n" \
+    "\n" \
+    "[itemid]\n" \
+    "<SPAN class=\"nit-name\">{{itemid-name}}</SPAN> <SPAN class=\"nit-id\">({{itemid-page}}:{{itemid-line}})</SPAN><BR>\n" \
+    "\n" \
+    "[itemid-head]\n" \
+    "<H2 class=\"nit-section\">" REPORT_ITEMID "</H2>\n" \
+    "<P>\n" \
+    "\n" \
+    "[itemid-foot]\n" \
+    "</P>\n" \
+    "\n" \
+    "[init]\n" \
+    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]</SPAN><BR>\n" \
+    "\n" \
+    "[init-head]\n" \
+    "\n" \
+    "<H2 class=\"nit-section\">Initialisation</H2>\n" \
+    "\n" \
+    "[init-foot]\n" \
+    "</P>\n" \
+    "\n" \
+    "[link]\n" \
+    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]</SPAN><BR>\n" \
+    "\n" \
+    "[link-head]\n" \
+    "<H2 class=\"nit-section\">" REPORT_LINK " Errors</H2>\n" \
+    "<P>\n" \
+    "\n" \
+    "[link-foot]\n" \
+    "</P>\n" \
+    "\n" \
+    "[nit]\n" \
+    "<SPAN class=\"nit-{{level-name}}\">{{level-name}}</SPAN>: " \
+        "<SPAN class=\"nit-explanation\">{{nit-explanation}}</SPAN>" \
+        "{{nit-ref:<BR><SPAN class=\"nit-ref\">:</SPAN>}}" \
+        "{{nit-long:<SPAN class=\"nit-doc\">, :</SPAN>}}" \
+        "{{nit-link:<SPAN class=\"nit-link\"> (<A href=\":\">reference</A>)</SPAN>}}" \
+        "{{nit-pdf:<SPAN class=\"nit-link\" type=application/pdf download> (<A href=\":\">reference</A>)</SPAN>}}" \
+        "{{nit-text:<SPAN class=\"nit-link\" download> (<A href=\":\">reference</A>)</SPAN>}}" \
+        "{{nit-zip:<SPAN class=\"nit-link\" type=application/zip download> (<A href=\":\">reference</A>)</SPAN>}}<BR>\n" \
+    "\n" \
+    "[nits-head]\n" \
+    "<BR><P>{{nit-before:<SPAN class=\"nit-before\">:</SPAN> }}<SPAN class=\"nit-mote\">{{nit-mote}}</SPAN>{{nit-after: <SPAN class=\"nit-after\">:</SPAN>}}</P>\n" \
+    "<P>\n" \
+    "\n" \
+    "[nits-page]\n" \
+    "<P>\n" \
+    "\n" \
+    "[nits-foot]\n" \
+    "{{nits-lost:<BR><SPAN class=\"nit-error\">(:)</SPAN>}}" \
+    "</P>\n" \
+    "\n" \
+    "[note]\n" \
+    "<SPAN class=\"nit-name\">{{note-content}}</SPAN>\n" \
+    "\n" \
+    "[note-head]\n" \
+    "<H2 class=\"nit-section\">{{note-title}}</H2>\n" \
+    "\n" \
+    "[note-foot]\n" \
+    "<SPAN class=\"nit-name\">{{note-note||\n}}</SPAN>" \
+    "\n" \
+    "[page-head]\n" \
+    "<H2 class=\"nit-section\">{{page-site-path}}</H2>\n" \
+    "\n" \
+    "[page-foot]\n" \
+    "<BR><BR>\n" \
+    "\n" \
+    "[shadow]\n" \
+    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]</SPAN><BR>\n" \
+    "\n" \
+    "[shadow-head]\n" \
+    "<H2 class=\"nit-section\">" REPORT_SHADOW "</H2>\n" \
+    "<P>\n" \
+    "\n" \
+    "[shadow-foot]\n" \
+    "</P>\n" \
+    "\n" \
+    "[stat]\n" \
+    "<SPAN class=\"nit-name\">{{stat-name||:}}</SPAN><SPAN class=\"nit-count\">{{stat-count| |}}</SPAN><SPAN class=\"nit-detail\">{{stat-detail|, |}}</SPAN><BR>\n" \
+    "\n" \
+    "[stats-head]\n" \
+    "<H3 class=\"nit-section\">{{stats-title}}</H3>\n" \
+    "<P>\n" \
+    "\n" \
+    "[stats-foot]\n" \
+    "<SPAN class=\"nit-name\">Total:</SPAN> <SPAN class=\"nit-count\">{{stats-total||\n}}</SPAN>\n" \
+    "</P>\n" \
+    "\n" \
+    "[stat-sub]\n" \
+    "<SPAN class=\"nit-subname\">{{stat-subname||:}}</SPAN><SPAN class=\"nit-subcount\">{{stat-subcount| |}}<SPAN class=\"nit-subdetail\">{{stat-subdetail|, |}}</SPAN></SPAN><BR>\n" \
+    "\n" \
+    "[stats-subhead]\n" \
+    "<H4 class=\"nit-subsection\">{{stats-subtitle}}</H4>\n" \
+    "<P>\n" \
+    "\n" \
+    "[stats-subfoot]\n" \
+    "</P>\n" \
+    "\n" \
+    "[update]\n" \
+    "<SPAN class=\"nit-name\">{{nit-explanation}}</SPAN> <SPAN class=\"nit-id\">[{{nit-id}}]</SPAN><BR>\n" \
+    "\n" \
+    "[update-head]\n" \
+    "<H2 class=\"nit-section\">" REPORT_UPDATE "</H2>\n" \
+    "<P>\n" \
+    "\n" \
+    "[update-foot]\n" \
+    "</P>\n" \
+    "\n"
+
 
 void reset_macro ()
 {   macro = macro_uptr (new macro_t);
@@ -990,7 +1189,7 @@ void macro_t::set (const e_nit_macro m, const vstr_t& v)
     {   case qs_c : return enc (s);
         case qs_csv : return encsv (s);
         case qs_double : return endouble (s, '"');
-        case qs_html : if (context.test ()) return s; return enhtml (s);
+        case qs_html : if (context.test ()) return s; return enhtml (s, false);
         case qs_single : return endouble (s, '\'');
         default : return s; } }
 
@@ -1006,7 +1205,10 @@ void macro_t::init ()
     mmac_.emplace (nm_copy_text, COPYRIGHT_TEXT);
     mmac_.emplace (nm_prog_fullname, FULLNAME);
     mmac_.emplace (nm_prog_version, VERSION_STRING);
-    mmac_.emplace (nm_prog_webaddr, WEBADDR); }
+    mmac_.emplace (nm_prog_webaddr, WEBADDR);
+    mmac_.emplace (nm_prog_webaddr, WEBADDR);
+    mmac_.emplace (nm_context_back, "");
+    mmac_.emplace (nm_context_home, ""); }
 
 bool macro_t::load_template_int (nitpick& nits, const html_version& v, const ::std::string& config)
 {   sections.clear ();
@@ -1079,6 +1281,7 @@ bool macro_t::load_template (nitpick& nits, const html_version& v, const e_outpu
         switch (o)
         {   case eot_html : return load_template_int (nuts, v, HTML_NIT);
             case eot_spec : return load_template_int (nuts, v, SPEC_NIT);
+            case eot_stylesheet : return load_template_int (nuts, v, STYLESHEET_NIT);
             case eot_test : return load_template_int (nuts, v, TEST_NIT);
             case eot_text : return load_template_int (nuts, v, TEXT_NIT);
             case eot_xhtml : return load_template_int (nuts, v, XHTML_NIT);

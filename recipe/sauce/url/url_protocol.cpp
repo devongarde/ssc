@@ -544,7 +544,7 @@ bool protocol::parse (nitpick& nits, const html_version& v, const ::std::string&
                 if (sc == ::std::string::npos)
                 {   ::std::string sub (temple.substr (hamper));
                     if (sub.size () > 6) sub = sub.substr (0, 6) + ELLIPSES;
-                    nits.pick (nit_character_code, ed_jul23, "1.11.2: Errors involving fragile syntax constructs", es_warning, ec_url,
+                    nits.pick (nit_character_code, ed_jun23, "1.11.2: Errors involving fragile syntax constructs", es_warning, ec_url,
                         "if a semicolon isn't missing, consider encoding '&' as '&amp;' or '%26', depending on intent"); } } }
         const ::std::string::size_type colon = lc.find (COLON);
         default_ = (colon == ::std::string::npos);

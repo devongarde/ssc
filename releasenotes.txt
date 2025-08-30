@@ -3,6 +3,10 @@ static site checker
 https://ssc.lu/
 (c) 2020-2025 Dylan Harris
 
+0.2.20
+- better liaison between SSC and OpenBSD's httpd
+- underlying work
+
 0.2.19
 - Living Standard August 2025
 - updated REL attribute validation

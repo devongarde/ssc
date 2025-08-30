@@ -17,8 +17,6 @@
 <!--#echo encoding="none" var="title" -->
 </h1>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-zpf-trb30.jpg" title="made with studio artist 5.5">
-
 <p>
 These switches tune Server Side Include processing.
 </p>

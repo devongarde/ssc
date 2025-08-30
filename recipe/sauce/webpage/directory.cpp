@@ -238,8 +238,9 @@ void directory::examine_page (nitpick* ticks, const ::std::string& file) const
         const fileindex_t ndx (get_fileindex (ndx_, p));
         if (! get_any_flag (ndx, FX_SCANNED))
         {   ::std::string sp (get_site_path () + file);
+            const bool silenced = context.silenced (sp);
             if (avoid_update (file, true))
-            {   if (context.tell (es_comment)) nits.pick (nit_shadow_unnecessary, es_comment, ec_directory, quote (p.string ()), " is up-to-date"); }
+            {   if (context.tell (es_comment) && ! silenced) nits.pick (nit_shadow_unnecessary, es_comment, ec_directory, quote (p.string ()), " is up-to-date"); }
             else
             {   mmac_t mac;
                 mac.emplace (nm_page_name, file);
@@ -253,11 +254,12 @@ void directory::examine_page (nitpick* ticks, const ::std::string& file) const
                     if (! borked)
                     {   const bool jld = is_jsonld (p.string ());
                         if (jld) parse_json_ld (nits, context.html_ver (), content);
-                        ss << nits.review (mac);
+                        if (! silenced) ss << nits.review (mac);
                         if (! jld)
                         {   page web (file, last_write (ndx), content, ndx, this);
                             try
-                            {   if (web.invalid ()) ss << web.nits ().review (mac);
+                            {   if (web.invalid ())
+                                {   if (! silenced) ss << web.nits ().review (mac); }
                                 else
                                 {   web.examine ();
                                     web.verify_locale (p);
@@ -267,10 +269,12 @@ void directory::examine_page (nitpick* ticks, const ::std::string& file) const
                                     if (context.shadow_pages ())
                                         if (web.dot_css () || web.dot_vtt ()) shadow_file (nits, file);
                                         else web.shadow (nits, get_shadow_path () / file);
-                                    ss << web.review (mac);
-                                    ss << web.report (); }
-                                web.nits ().accumulate (nits);
-                                web.css ().accumulate (nits);
+                                    if (! silenced)
+                                    {   ss << web.review (mac);
+                                        ss << web.report (); } }
+                                if (! silenced)
+                                {   web.nits ().accumulate (nits);
+                                    web.css ().accumulate (nits); }
                                 web.cleanup (); }
                             catch (...)
                             {   web.cleanup (); throw; } } } }

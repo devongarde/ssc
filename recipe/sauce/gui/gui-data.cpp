@@ -47,6 +47,7 @@ html_version selection_version [] =
     html_jan05,
     html_jul05,
     html_jan06,
+    html_jul06,
     html_jan07,
     html_jul07,
     html_jan08,
@@ -95,7 +96,9 @@ html_version selection_version [] =
     html_jul24,
     html_oct24,
     html_jan25,
-    html_apr25 };
+    html_apr25,
+    html_jul25,
+    html_aug25 };
 
 // https://stackoverflow.com/questions/3191664/list-of-all-locales-and-their-short-codes#3191729
 const char* selection_lang [] = {

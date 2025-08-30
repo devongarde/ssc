@@ -63,7 +63,8 @@ bool css_t :: Create (wxWindow *mummy, wxWindowID id, const wxString& caption)
 
 void css_t :: create_controls (wxWindow *parent)
 {	if (drop_.concoct (parent, box_, choice_css_version, "CSS &version: "))
-    {   module_ = GSL_OWNER (wxDataViewListCtrl) (new wxDataViewListCtrl (parent, list_css_module, wxDefaultPosition, wxDefaultSize, wxVSCROLL));
+    {   drop_.box_.box_ -> SetMinSize (wxSize (-1, 50));
+        module_ = GSL_OWNER (wxDataViewListCtrl) (new wxDataViewListCtrl (parent, list_css_module, wxDefaultPosition, wxDefaultSize, wxVSCROLL));
         if (module_ != nullptr)
         {   module_ -> SetMinSize (wxSize (-1, 150));
             col_mod_ = module_ -> AppendTextColumn ("Module", wxDATAVIEW_CELL_INERT, 250, static_cast <wxAlignment> (wxALIGN_RIGHT), wxDATAVIEW_COL_RESIZABLE);

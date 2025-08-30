@@ -26,7 +26,7 @@ version <!--#echo encoding="none" var="version" --><br>
 <a href="legal.shtml"><!--#echo encoding="none" var="copyright" --></a><br>
 <!--#echo encoding="none" var="slashaddress" -->,<br>
 <!--#echo encoding="none" var="github" -->,<br>
-(<a href="/src/ssc-<!--#echo encoding="none" var="version" -->.tgz" type="application/gzip">download source</a>)
+(<a href="/src/ssc-<!--#echo encoding="none" var="version" -->.tgz" type="application/gzip">download latest source</a>)
 </p>
 
 <h2>capabilities</h2>
@@ -43,7 +43,7 @@ HTML living standard, Jan 2005 to <!--#echo encoding="none" var="latest-HTML" --
 HTML Tags / 1.0 / + / 2.0 / 3.0 / 3.2 / 4.00 / 4.01 / 5.0 / 5.1 / 5.2 / 5.3-draft
 </li>
 <li>
-CSS 1 / 2.0 / 2.1 / 2.2-draft, 2007-<!--#echo encoding="none" var="latest-CSS" --> snapshots, more
+CSS 1 / 2.0 / 2.1 / 2.2-draft, 2007-<!--#echo encoding="none" var="latest-CSS" --> snapshots, HTML5 necessities, more
 </li>
 <li>
 SVG 1.0 / 1.1 / 1.2 Tiny / 1.2 Full / 2.0 / 2.x-draft
@@ -68,6 +68,9 @@ server side includes, mostly
 </li>
 <li>
 verifies many ontologies
+</li>
+<li>
+verifies microformats
 </li>
 </ul>
 
@@ -96,7 +99,7 @@ It does NOT:
 analyse or understand scripts
 </li>
 <li>
-but for XHTML, analyse or understand XML or derivatives
+apart from XHTML, analyse or understand anything XML
 </li>
 </ul>
 
@@ -106,10 +109,7 @@ It can output:
 
 <ul>
 <li>
-&lsquo;repaired&rsquo; HTML (not XHTML)
-</li>
-<li>
-HTML with resolved server side includes
+&lsquo;repaired&rsquo; HTML with resolved server side includes
 </li>
 <li>
 JSONs of machine readable content
@@ -173,7 +173,7 @@ needs refining. The developer needs coffee.
 <p>
 It may contain unexpected features. If you encounter one, please help
 improve <!--#echo encoding="none" var="short" --> by collecting the following information (where relevant)
-and forwarding it to the developer:
+and forwarding it to <a href="mailto:<!--#echo encoding="none" var="email" -->">the developer</a>:
 </p>
 
 <ul>
@@ -216,13 +216,14 @@ a video of a dance interpretation of the issue (might just be optional, this).
 </ul>
 
 <p>
-Email everything to <!--#echo encoding="none" var="email" --> (if the collected files are more than
-small, please use a public fileserver and email the link). Do NOT send
+Please email everything to <a href="mailto:<!--#echo encoding="none" var="email" -->"><!--#echo encoding="none" var="email" --></a>
+(if the collected files are more than
+small, kindly use a public fileserver and email the link). Do NOT send
 anything confidential. Furthermore, unless you state otherwise, we
 reserve the right to publish some or all of the information sent in
-future versions of ssc, usually in the test suite. If you have a fix,
+future versions of ssc, probably in the test suite. If you have a fix,
 you are invited to submit a pull request on github, at
-<!--#echo encoding="none" var="github" -->. Thank you.
+<!--#echo encoding="none" var="github" -->. Thank you kindly.
 </p>
 
 <p>
@@ -245,7 +246,7 @@ recipe: a nod to <a href="https://www.goodreads.com/author/show/44037.Vernor_Vin
 tea: without tea, nothing works; then there&rsquo;s builders&rsquo; tea;
 </li>
 <li>
-sauce: makes the dull tasty; identifies linguistically weak pedants;
+sauce: makes the dull tasty; identifies punless pedants;
 </li>
 <li>
 toast: toasts code; i liked burnt toast;
@@ -255,7 +256,7 @@ heater: i&rsquo;m not stopping now;
 </li>
 <li>
 unii: my preferred plural of unix: to my ears, both unixes and unices
-        sound like they sing castrato.
+        sound like they sing castrato;
 </li>
 <li>
 andor: andor <span lang="fr">sans ancienne</span>; land of Gift (<span lang="de">aber nicht das Gift</span>)
@@ -289,11 +290,11 @@ Background
 <img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-m3-g20.jpg" title="made with studio artist 5.5">
 
 <p>
-I have a website, <a href="<!--#echo encoding="none" var="aesite" -->"><!--#echo encoding="none" var="aename" -->,
-at <!--#echo encoding="none" var="aesite" --></a>. It has
-approaching 60G of original content. It contains hand coded HTMLs 2
+I have a website, <a href="<!--#echo encoding="none" var="aesite" -->"><!--#echo encoding="none" var="aename" --></a>,
+at <a href="<!--#echo encoding="none" var="aesite" -->"><!--#echo encoding="none" var="aesite" --></a>. It has many
+gigabytes of original content. It contains hand coded HTMLs 2
 to 5. It is a complete mess. Despite a long search, I could not find
-any tools to properly identify its flaws. Anything I did find was at
+any tools to properly identify its myriad flaws. Anything I did find was at
 most cursory.
 </p>
 
@@ -314,8 +315,10 @@ Hence <!--#echo encoding="none" var="short" --> is a covid project that grew out
 <h2>Unabashed Opportunism</h2>
 
 <p>
-If you appreciate modernist poetry or abstract photography, click on
-<a href="<!--#echo encoding="none" var="aesite" -->">books at https://dylanharris.org/</a> for gen.
+If you might enjoy contemporary modernist poetry or abstract &amp; other photography, please visit
+<a href="<!--#echo encoding="none" var="aesite" -->">books at https://dylanharris.org/</a>.
+My <a href="https://dylanharris.org/goodies/goodies/books.shtml">poetry collections are published in the UK and Ireland</a>,
+and I irregularly exhibit my photography in Luxembourg, to help cover its costs. 
 </p>
 
 

@@ -28,11 +28,15 @@ These switches allow you to control the output of SSC, including layout and sign
                         is a minus, not a hyphen.</td></tr>
 
 <tr><td>output.account&nbsp;xxx</td> <td>the account used to run SSC is xxx.</td></tr>
+                        
+<tr><td>output.back F</td> <td>If the output template wants a back button, F is the href.</td></tr>
 
 <tr><td>output.description&nbsp;xxx</td> <td>xxx is a description of SSC&rsquo;s task (may be repeated)</td></tr>
 
 <tr><td>output.format&nbsp;F</td> <td>Specify the output format; F is a template
                         file (see <a href="template.shtml">output templates</a>).</td></tr>
+                        
+<tr><td>output.home F</td> <td>If the output template wants a back button, F is the href.</td></tr>
 
 <tr><td>output.override&nbsp;F</td> <td>Use this output format, not the one specified
                         by <kbd>nits.format</kbd>. F is a template file (see
@@ -61,6 +65,8 @@ These switches allow you to control the output of SSC, including layout and sign
                         
 <tr><td>output.signature F</td> <td>Write the output signature to file F.
                         Requires <kbd>output.private</kbd>.</td></tr>
+                        
+<tr><td>output.stylesheet F</td> <td>If the output template wants a stylesheet, use this one.</td></tr>
                         
 <tr><td>output.username&nbsp;xxx</td> <td>SSC is being run by XXX.</td></tr>
 

@@ -26,7 +26,7 @@ which tells <!--#echo encoding="none" var="short" --> to nitpick the static webs
 </p>
 
 <p>
-Naturally, <!--#echo encoding="none" var="short" --> has many switches to allow you to precisely control how and what
+<!--#echo encoding="none" var="short" --> has many switches to allow you to precisely control how and what
 you want it to do. Most switches are unnecessary except in particular circumstances. The essential switches are:
 </p>
 
@@ -43,8 +43,8 @@ you want it to do. Most switches are unnecessary except in particular circumstan
 <h2>all arguments</h2>
 
 <p>
-These options are available on the command line (with dashes) and in
-configuration files (without dashes). The short form single minus
+These options are available on the command line (with minuses) and in
+configuration files (without minuses). The short form single minus
 switches only work on the command line.
 </p>
 
@@ -78,7 +78,7 @@ Switches are documented as follows:
 <tr><td><a href="site.shtml">site</a></td> <td>information about the website being tested</td></tr>
 <tr><td><a href="spell.shtml">spell</a></td> <td>spell checking</td></tr>
 <tr><td><a href="ssi.shtml">SSI</a></td> <td>server side includes</td></tr>
-<tr><td><a href="stats.shtml">stats</a></td> <td>output stats. on the site</td></tr>
+<tr><td><a href="stats.shtml">stats</a></td> <td>output site statistics</td></tr>
 <tr><td><a href="svg.shtml">SVG</a></td> <td>SVG version</td></tr>
 <tr><td><a href="validation.shtml">validate</a></td> <td>additional valid values for attributes &amp; properties</td></tr>
 <tr><td><a href="vtt.shtml">VTT</a></td> <td>WebVTT validation and version</td></tr>
@@ -114,10 +114,10 @@ To check a static web side source directory:<br>
 </p>
 
 <p>
-To check a static HTML/XHTML website for example.com, that uses server
+To check a static HTML/XHTML website for <kbd>example.com</kbd>, which uses server
 side includes, in the current directory, with verification of external
-links, with rather verbose output:<br>
-<kbd>ssc&nbsp;-e&nbsp;-I&nbsp;-x&nbsp;html&nbsp;-x&nbsp;shtml -s&nbsp;example.com&nbsp;-v&nbsp;5&nbsp;-i&nbsp;index.shtml</kbd>
+links, and rather verbose output:<br>
+<kbd>ssc&nbsp;-e&nbsp;-I&nbsp;-x&nbsp;html&nbsp;-x&nbsp;shtml -s&nbsp;example.com&nbsp;-v&nbsp;6&nbsp;-i&nbsp;index.shtml</kbd>
 </p>
 
 <p>

@@ -1,0 +1,19 @@
+﻿
+A { color:#9999BB }
+H1,H2,H3,H4,H5,H6 { margin-bottom: 0; padding-bottom: 0; }
+H1 { color:#66BB66; font-size: 140%; }
+H2 { color:#66BB66; font-size: 120% }
+H3 { color:#99BB99; font-size: 100% }
+P { margin-top: 0; padding-top: 0; }
+FOOTER,HEADER,LI,MAIN,P,PRE { color:#999999 }
+.smaller { font-size: 80% }
+.nit-before,.nit-after { color: #CCCCCC }
+.nit-catastrophe { color: #FF0000 }
+.nit-doc { font-style: italic; }
+.nit-error { color: #FF6666 }
+.nit-explanation { color: #9999CC }
+.nit-info { color: #666666 }
+.nit-line { color: #666666 }
+.nit-mote { color: #CC3333 }
+.nit-ref { font-style: italic; }
+.nit-warning { color: #CC6666 }

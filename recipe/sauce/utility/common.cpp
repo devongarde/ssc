@@ -434,14 +434,14 @@ int hex_value (const ::std::string_view str) {
     stream >> res;
     return res; }
 
-::std::string enhtml (const ::std::string& s)
+::std::string enhtml (const ::std::string& s, const bool nbsp)
 {   ::std::string res;
     for (::std::string::const_iterator i = s.begin (); i != s.end (); ++i)
         switch (*i)
         {   case '<' : res += "&lt;"; break;
             case '>' : res += "&gt;"; break;
             case '&' : res += "&amp;"; break;
-            case ' ' : res += "&nbsp;"; break;
+            case ' ' : if (nbsp) res += "&nbsp;"; else res += *i; break;
             default :  res += *i; break; }
     return res; }
 

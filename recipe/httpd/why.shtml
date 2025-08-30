@@ -23,7 +23,7 @@ Things may have improved. Anyway, my google foo is poo.
 </p>
 
 <p>
-My <a href="https://dylanharris.org/">identity website</a> has more than 100,000 pages. I&rsquo;m too impatient
+My <a href="https://dylanharris.org/">identity website</a> has tens of thousands of pages. I&rsquo;m too impatient
 to push each through an editor&rsquo;s validator one by one; I want to validate my site as a whole.
 Furthermore, single page validators can&rsquo;t catch inter&ndash;page errors, such as
 broken internal links, let alone hidden links
@@ -45,8 +45,8 @@ I want to break this dull, stultifying, archaic, mutton.
 
 <p>
 Maybe I&rsquo;m making the wrong comparison, that the web isn&rsquo;t about image, it&rsquo;s about type.
-The Western visual arts never did really suss mixing writing and form
-(that&rsquo;s not really true, but, IMAO, such arts never escaped their context).
+IMHO, the Western visual arts never did really suss mixing writing and form
+(that&rsquo;s not really true, but, I suggest, such arts never escaped their context).
 However, the Eastern visual arts most certainly did, and frameworks haven&rsquo;t noticed them either.
 </p>
 
@@ -69,8 +69,7 @@ Let&rsquo;s just say <a href="https://www.w3.org/">W3</a> had broken links,
 and many other authors&rsquo; sites have other internal inconsistencies.
 That the people who define the web make mistakes using their own design in their own documents that
 espouse their design, helps explain why most stick to dull, formulaic, boring, frameworks.
-To be fair, my HTML is far worse than their mild technical naughtiness,
-which is why I had to write <!--#echo encoding="none" var="short" -->.
+To be fair, my HTML is far worse than their mild technical naughtiness.
 </p>
 
 <p>
@@ -86,13 +85,12 @@ Since I&rsquo;m here, I&rsquo;ll list other issues I have with frameworks:
 <li>
 They have to be regularly maintained. Every time an update comes out, that update has to be applied to a site,
 otherwise the site becomes vulnerable to the exploits published by the update.
-Time is lost playing patch catchup.
+Time is lost playing patch catchup. This is why I stick to static websites.
 </li>
 <li>
 Updates for frameworks sometimes fail;
 instead of fixing issues, they break sites.
 That&rsquo;s why <a href="https://dylanharris.org/past/aei/2010/index.html">I dropped Drupal</a>.
-That&rsquo;s why I swore off NextCloud.
 </li>
 <li>
 Frameworks use scripted languages, such as PHP.
@@ -102,7 +100,7 @@ There were, for example, recently,
 Other frameworks use other scripted languages with other problems.
 </li>
 <li>
-IMAO, frameworks&rsquo; and scripts&rsquo; worst flaw is many import code at runtime from
+IMHO, frameworks&rsquo; and scripts&rsquo; worst flaw is many import code at runtime from
 third&ndash;party repositories.
 Their integrity and security is dependent on that of the repository,
 over which a site owner (usually) has no control.

@@ -27,14 +27,15 @@ To check a static web site using a configuration file:
 </p>
 
 <p>
-A configuration file is in INI file format, which is basically a sequence of entries looking like:
+A configuration file is in INI file format:
 </p>
 
 <code>
 [section]<br>
 setting=value<br>
 setting=value<br>
-setting=
+setting=<br>
+no-setting=
 </code>
 
 <p>
@@ -43,7 +44,7 @@ The part before the dot is the section name, and after the dot is the setting na
 </p>
 
 <p>
-Boolean settings require the &lsquo;=&rsquo; with no value after the setting name.
+Boolean settings require the &lsquo;=&rsquo; with no value after the setting name. I don&rsquo;t like that either.
 </p>
 
 <h2>examples</h2>
@@ -62,7 +63,7 @@ class=<br>
 domain=example.edu<br>
 extension=html<br>
 index=index.html<br>
-root=~/www/gtdocs
+root=~/www/htdocs
 </code>
 
 <p>
@@ -109,35 +110,7 @@ file(s) in tests/virtual (relative to the current directory, not the
 root).
 </p>
 
-<h3>Microformats</h3>
-
 <img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-t1-b3.jpg" title="made with studio artist 5.5">
-
-<p>
-<a href="https://microformats.org/">Microformats</a> contain machine&ndash;readable site information held in class attributes,
-the kind of thing that cheers up search engines. For more gen, <a href="https://microformats.org/">browse their site, microformats.org</a>.
-</p>
-
-<code>
-[general]<br>
-verbose=5<br>
-output=<!--#echo encoding="none" var="short" -->.out<br>
-class=<br>
-<br>
-[site]<br>
-domain=example.edu<br>
-extension=html<br>
-index=index.html<br>
-root=~/www/htdocs<br>
-<br>
-[microformat]<br>
-verify=
-</code>
-
-<p>
-The only new thing here is to turn on microformats analysis (class
-analysis is required).
-</p>
 
 <h3>HTML &amp; SVG</h3>
 
@@ -202,8 +175,6 @@ meta=
 shadow output
 </h3>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-t1-b3.jpg" title="made with studio artist 5.5">
-
 <p>
 A configuration file to shadow copy and deduplicate a site might
 contain:
@@ -226,11 +197,40 @@ root=shadow<br>
 file=dedu.ndx
 </code>
 
-<h3>ontology</h3>
+<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-t1-b3.jpg" title="made with studio artist 5.5">
+
+<h3>Microformats</h3>
+<p>
+<a href="https://microformats.org/">Microformats</a> contain machine&ndash;readable site information held in class attributes,
+the kind of thing that cheers up search engines. For more gen, <a href="https://microformats.org/">browse microformats.org</a>.
+</p>
+
+<code>
+[general]<br>
+verbose=5<br>
+output=<!--#echo encoding="none" var="short" -->.out<br>
+class=<br>
+<br>
+[site]<br>
+domain=example.edu<br>
+extension=html<br>
+index=index.html<br>
+root=~/www/htdocs<br>
+<br>
+[microformat]<br>
+verify=
+</code>
 
 <p>
-A configuration file to export ontologies content from schema.org
-version 7.2 might contain:
+The only new thing here is to turn on microformats analysis (class
+analysis is required).
+</p>
+
+
+<h3>ontologies</h3>
+
+<p>
+A configuration file to export schema.org 7.2 content might contain:
 </p>
 
 <code>
@@ -260,7 +260,6 @@ warnings in the section referenced by the itemref. This is because <!--#echo enc
 does not always know that the referenced data is not intended to be
 used in its own right, unless you put it under a &lt;TEMPLATE&gt; element.
 </p>
-
 
 <h3>statistics</h3>
 

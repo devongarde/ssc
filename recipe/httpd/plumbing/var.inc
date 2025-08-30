@@ -26,15 +26,13 @@
 <!--#set var="icon" value="/image/favicon.ico" -->
 <!--#set var="jurisdiction" value="https://luxcommons.lu/" -->
 <!--#set var="latest-HTML" value="Aug 2025" -->
-<!--#set var="latest-CSS" value="2025" -->
+<!--#set var="latest-CSS" value="2024" -->
 <!--#set var="legal" value="/legal.shtml" -->
 <!--#set var="licence" value="https://creativecommons.org/licenses/by-nc-sa/4.0/" -->
-<!--#set var="menustart" value=":&nbsp;:" -->
 <!--#set var="menumid" value=":&nbsp;:" -->
 <!--#set var="menuarrow" value="&rarr;" -->
-<!--#set var="menusep" value="&cir;" -->
+<!--#set var="menusep" value="&CenterDot;" -->
 <!--#set var="menusection" value="&bull;" -->
-<!--#set var="menuend" value=":&nbsp;:" -->
 <!--#set var="name" value="static site checker" -->
 <!--#set var="uname" value="Static Site Checker" -->
 <!--#set var="owner" value="dylan harris" -->
@@ -46,7 +44,7 @@
 <!--#set var="terms" value="/terms.shtml" -->
 <!--#set var="test" value="ssc-test" -->
 <!--#set var="stel" value="+352&nbsp;000&nbsp;000&nbsp;000" -->
-<!--#set var="version" value="0.2.19" -->
+<!--#set var="version" value="0.2.20" -->
 <!--#set var="webmeister" value="dylan&nbsp;harris" -->
 <!--#set var="swebmeister" value="dylan harris" -->
 <!--#set var="webssc" value="https://ssc.lu/" -->

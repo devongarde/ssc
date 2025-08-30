@@ -1384,6 +1384,7 @@ const html_version html_xlink_1_1 (HTML_XLINK11, css_2010, 0, HE_SVG_11, H2_MATH
 const html_version html_jan05 (HTML_JAN05, css_2_1, HV_WHATWG, HE_MICRODATA);
 const html_version html_jul05 (HTML_JUL05, css_2_1, HV_WHATWG, HE_MICRODATA);
 const html_version html_jan06 (HTML_JAN06, css_2_1, HV_WHATWG, HE_MICRODATA);
+const html_version html_jul06 (HTML_JUL06, css_2_1, HV_WHATWG, HE_MICRODATA);
 const html_version html_jan07 (HTML_JAN07, css_2007, HV_WHATWG, HE_MICRODATA);
 const html_version html_jul07 (HTML_JUL07, css_2007, HV_WHATWG, HE_MICRODATA);
 const html_version html_jan08 (HTML_JAN08, css_2007, HV_WHATWG, HE_MICRODATA);

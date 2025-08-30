@@ -22,14 +22,14 @@
 
 <p>
 <!--#echo encoding="none" var="short" -->, <!--#echo encoding="none" var="name" -->,
-<a href="<!--#echo encoding="none" var="slashaddress" -->"><!--#echo encoding="none" var="slashaddress" --></a>
+<a href="<!--#echo encoding="none" var="slashaddress" -->"><!--#echo encoding="none" var="slashaddress" --></a>,
 copyright &copy; 2020&ndash;<!--#echo encoding="none" var="year" -->
 <a href="<!--#echo encoding="none" var="aesite" -->"><!--#echo encoding="none" var="owner" --></a>
 </p>
 
 <p>
-Any dispute shall be resolved by a court of the Grand Duchy of Luxembourg in accordance with
-the law of the Grand Duchy of Luxembourg.
+Any dispute shall be resolved by <a href="https://en.wikipedia.org/wiki/Luxembourg">a court of the Grand Duchy of Luxembourg in accordance with
+the law of the Grand Duchy of Luxembourg</a>.
 </p>
 
 <h2><a href="https://www.gnu.org/licenses/gpl-3.0.en.html">GPL</a></h2>

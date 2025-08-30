@@ -60,7 +60,7 @@ IMPLEMENT_CLASS (nits_t, d1_t)
 #endif // DEBUG
 
 // must be same order as e_output_template
-#define SELFRM  "bespoke", NIT_HTML, NIT_SPEC, NIT_TEST, NIT_TEXT, NIT_XHTML
+#define SELFRM  "bespoke", NIT_HTML, NIT_SPEC, NIT_STYLESHEET, NIT_TEST, NIT_TEXT, NIT_XHTML
 
 const wxString vrb [] = { SELVRB };
 const wxString lvl [] = { SELLVL };

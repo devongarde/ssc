@@ -218,9 +218,9 @@ void element::examine_input ()
             pick (nit_details, ed_aug25, "4.11.3.4 Using the input element to define a command", es_info, ec_attribute, "That <INPUT> TYPE is unsuitable with <DETAILS>");
     if (i5 != i5_colour)
     {   if (a_.known (a_alpha))
-            pick (nit_colourspace, ed_nov24, "4.10.5 The input element", es_error, ec_attribute, "ALPHA requires <INPUT> TYPE 'color'");
+            pick (nit_colourspace, ed_jul25, "4.10.5 The input element", es_error, ec_attribute, "ALPHA requires <INPUT> TYPE 'color'");
         if (a_.known (a_colourspace))
-            pick (nit_colourspace, ed_nov24, "4.10.5 The input element", es_error, ec_attribute, "COLORSPACE requires <INPUT> TYPE 'color'"); }
+            pick (nit_colourspace, ed_jul25, "4.10.5 The input element", es_error, ec_attribute, "COLORSPACE requires <INPUT> TYPE 'color'"); }
     if (maxlen_known || minlen_known)
     {   const ::std::size_t x = maxlen_known ? a_.get_int (a_maxlength) : 0;
         const ::std::size_t n = minlen_known ? a_.get_int (a_minlength) : 0;

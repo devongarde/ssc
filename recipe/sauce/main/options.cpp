@@ -135,6 +135,8 @@ options::options (const context_t& c)
     INSERT_VALID (#VAR, TY, EN)
 #define INSERT_VSTR(SECT,VAR,FN) \
     { const vstr_t& v = c.FN (); if (! v.empty ()) { const ::boost::any a = v; insert < ::boost::any > (SECT VAR, a); } }
+#define INSERT_VREG(SECT,VAR,FN) \
+    { const vreg_t& v = c.FN (); if (! v.empty ()) { const ::boost::any a = v; insert < ::boost::any > (SECT VAR, a); } }
 #define INSERT_SSTR(SECT,VAR,FN) \
     { const sstr_t& v = c.FN (); if (! v.empty ()) { const ::boost::any a = v; insert < ::boost::any > (SECT VAR, a); } }
 
@@ -191,6 +193,7 @@ options::options (const context_t& c)
     INSERT_BOOL (GENERAL, PROGRESS, progress);
     INSERT_BOOL (GENERAL, RDFA, rdfa);
     INSERT_BOOL (GENERAL, RPT, rpt_opens);
+    INSERT_VREG (GENERAL, SILENCE, silence);
     INSERT_BOOL (GENERAL, TEST, test);
 #ifndef NO_FRED
     INSERT (::std::size_t, GENERAL, THREAD, fred);
@@ -220,7 +223,6 @@ options::options (const context_t& c)
     INSERT_BOOL (HTML, RFC2070, rfc_2070);
     INSERT_BOOL (HTML, RUBY, ruby);
     INSERT_BOOL (HTML, SAFARI, safari);
-//    INSERT_BOOL (HTML, SLOVEN, sloven);
     // HTML SNIPPET
     INSERT_BOOL (HTML, TAGS, presume_tags);
     INSERT (::std::size_t, HTML, TITLE, title);
@@ -293,15 +295,18 @@ options::options (const context_t& c)
 
     INSERT_BOOL (OUTPUT, APATH, absolute_path);
     INSERT_STRING (OUTPUT, ACCOUNT, account);
+    INSERT_PATH (OUTPUT, BACK, back);
     INSERT_STRING (OUTPUT, BUILD, build);
     INSERT_VSTR (OUTPUT, DESCRIPTION, output_description);
     INSERT_STRING (OUTPUT, FORMAT, output_format);
+    INSERT_PATH (OUTPUT, HOME, home);
     INSERT_STRING (OUTPUT, OVERRIDE, output_override);
     INSERT_PATH (OUTPUT, PASSWORD, password);
     INSERT_PATH (OUTPUT, PRIVATE, pri);
     INSERT_PATH (OUTPUT, PUBLIC, pub);
     INSERT_BOOL (OUTPUT, SIGN, sign);
     INSERT_PATH (OUTPUT, SIGNATURE, signature);
+    INSERT_PATH (OUTPUT, STYLESHEET, stylesheet);
     INSERT_STRING (OUTPUT, TIME, output_time);
     INSERT_STRING (OUTPUT, USERNAME, username);
     INSERT_BOOL (OUTPUT, VERIFY, verify);
@@ -837,6 +842,7 @@ void options::init (context_t& c)
         (GENERAL DONT PROGRESS, ::boost::program_options::bool_switch (), "Don't be quite so noisy.")
         (GENERAL RDFA, ::boost::program_options::bool_switch (), "Check RDFa attributes.")
         (GENERAL DONT RDFA, ::boost::program_options::bool_switch (), "Do not check RDFa attributes.")
+        (GENERAL SILENCE, ::boost::program_options::value < vstr_t > () -> composing (), "Process files and directories which match this name, but do not report their nits.")
         (GENERAL SPEC ARGSEP SPEC_SW_, ::boost::program_options::bool_switch (), "Reset default values of most switches to false.")
         (GENERAL TEST ARGSEP TEST_SW_, ::boost::program_options::bool_switch (), "Output in format useful for automated tests.")
         (GENERAL DONT TEST, ::boost::program_options::bool_switch (), "Output in format specified by other switches.")
@@ -1075,8 +1081,10 @@ void options::init (context_t& c)
 
         (OUTPUT APATH, ::boost::program_options::bool_switch (), "Output local filesystem path of files scanned.")
         (OUTPUT ACCOUNT, ::boost::program_options::value < ::std::string > (), "the account name using " PROG " (by default, obtained from the OS)")
+        (OUTPUT BACK, ::boost::program_options::value < ::std::string > (), "Add this link as back when reporting on snippet result.")
         (OUTPUT DESCRIPTION, ::boost::program_options::value < vstr_t > () -> composing (), "Output this contextual description (may be repeated)")
-        (OUTPUT FORMAT, ::boost::program_options::value < ::std::string > (), "Produce output in this format: \"html\", \"text\" (default), \"xhtml\", or a filename (see docs for layout).")
+        (OUTPUT FORMAT, ::boost::program_options::value < ::std::string > (), "Produce output in this format: \"html\", \"stylesheet\", \"text\" (default), \"xhtml\", or a filename (see docs for layout).")
+        (OUTPUT HOME, ::boost::program_options::value < ::std::string > (), "Add this link as home when reporting on snippet result.")
         (OUTPUT OVERRIDE ARGSEP OVRRD_SW_, ::boost::program_options::value < ::std::string > (), "Output nits in this format (overrides --" OUTPUT FORMAT "; for automation).")
         (OUTPUT PASSWORD, ::boost::program_options::value < ::std::string > (), "the file containing the password for the private key, if any")
         (OUTPUT PRIVATE, ::boost::program_options::value < ::std::string > (), "the file containing the private key used for the signature")
@@ -1085,6 +1093,7 @@ void options::init (context_t& c)
         (OUTPUT SIGN, ::boost::program_options::bool_switch (), "Sign the output (requires --" OUTPUT SIGNATURE ", --" OUTPUT PRIVATE ", and --" OUTPUT PUBLIC ")")
         (OUTPUT DONT SIGN, ::boost::program_options::bool_switch (), "Do not sign the output")
         (OUTPUT SIGNATURE, ::boost::program_options::value < ::std::string > (), "output the signature to this file (requires --" OUTPUT PRIVATE ")")
+        (OUTPUT STYLESHEET, ::boost::program_options::value < ::std::string > (), "when reporting snippets using stylesheet format, use this stylesheet")
         (OUTPUT USERNAME, ::boost::program_options::value < ::std::string > (), "the operator of " PROG " (by default, obtained from the OS)")
         (OUTPUT VERIFY, ::boost::program_options::bool_switch (), "Verify signed output (requires --" OUTPUT PUBLIC " and --" OUTPUT SIGNATURE ")")
         (OUTPUT DONT VERIFY, ::boost::program_options::bool_switch (), "Do not verify signed output (verification cannot be blocked when signing)")
@@ -1571,9 +1580,8 @@ void options::contextualise (context_t& c, nitpick& nits)
     else c.fred (1);
 #endif // NO_FRED
 
-    if (! c.cgi ())
-    {   if (var_.count (OUTPUT FORMAT)) c.output_format (var_ [OUTPUT FORMAT].as < ::std::string > ());
-        if (var_.count (OUTPUT OVERRIDE)) c.output_override (var_ [OUTPUT OVERRIDE].as < ::std::string > ()); }
+    if (var_.count (OUTPUT FORMAT)) c.output_format (var_ [OUTPUT FORMAT].as < ::std::string > ());
+    if (var_.count (OUTPUT OVERRIDE)) c.output_override (var_ [OUTPUT OVERRIDE].as < ::std::string > ());
 
     if (var_.count (NITS VERBOSE)) c.verbose (decode_severity (nits, var_ [NITS VERBOSE].as < ::std::string > ()));
     else if (var_.count (GENERAL VERBOSE)) c.verbose (decode_severity (nits, var_ [GENERAL VERBOSE].as < ::std::string > ()));
@@ -1623,6 +1631,8 @@ void options::contextualise (context_t& c, nitpick& nits)
 
     if (var_.count (HTML VERSION) != 0)
         c.html_ver (html_version (nits, var_ [HTML VERSION].as < ::std::string > ()));
+
+    if (var_.count (OUTPUT STYLESHEET)) c.stylesheet (var_ [OUTPUT STYLESHEET].as < ::std::string > ());
 
     if (! c.cgi ())
         if (var_.count (WEBSITE ROOT) != 0)
@@ -1692,6 +1702,7 @@ void options::contextualise (context_t& c, nitpick& nits)
         if (var_.count (GENERAL HELPSITE)) c.help (var_ [GENERAL HELPSITE].as < ::std::string > ());
         if (var_.count (GENERAL MACROEND)) c.macro_end (var_ [GENERAL MACROEND].as < ::std::string > ());
         if (var_.count (GENERAL MACROSTART)) c.macro_start (var_ [GENERAL MACROSTART].as < ::std::string > ());
+        if (var_.count (GENERAL SILENCE)) c.silence (nits, var_ [GENERAL SILENCE].as < vstr_t > ());
         if (var_.count (GENERAL URL_VAR)) c.urlvar (var_ [GENERAL URL_VAR].as < vstr_t > ());
         yea_nay (c, &context_t::vcs, nits, GENERAL VCS, GENERAL DONT VCS);
 
@@ -1910,9 +1921,11 @@ void options::contextualise (context_t& c, nitpick& nits)
 
         yea_nay (c, &context_t::absolute_path, nits, OUTPUT APATH, OUTPUT RPATH);
         if (var_.count (OUTPUT ACCOUNT)) c.account (var_ [OUTPUT ACCOUNT].as < ::std::string > ());
+        if (var_.count (OUTPUT BACK)) c.back (var_ [OUTPUT BACK].as < ::std::string > ());
         if (var_.count (OUTPUT BUILD)) c.build (var_ [OUTPUT BUILD].as < ::std::string > ());
         if (var_.count (OUTPUT DESCRIPTION)) c.output_description (var_ [OUTPUT DESCRIPTION].as < vstr_t > ());
         if (var_.count (OUTPUT FORMAT)) c.output_format (var_ [OUTPUT FORMAT].as < ::std::string > ());
+        if (var_.count (OUTPUT HOME)) c.home (var_ [OUTPUT HOME].as < ::std::string > ());
         if (var_.count (OUTPUT PASSWORD)) c.password (absolute_name (var_ [OUTPUT PASSWORD].as < ::std::string > ()));
         if (var_.count (OUTPUT PRIVATE)) c.pri (absolute_name (var_ [OUTPUT PRIVATE].as < ::std::string > ()));
         if (var_.count (OUTPUT PUBLIC)) c.pub (absolute_name (var_ [OUTPUT PUBLIC].as < ::std::string > ()));
@@ -2610,6 +2623,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RI (gr, res, GENERAL, DATAPATH, def_path, general);
     RG (gr, res, int, GENERAL, DEFTHRD, general);
     RG (gr, res, vstr_t, GENERAL, ENVIRONMENT, general);
+    RG (gr, res, vstr_t, GENERAL, EXCLUDE, general);
     RI (gr, res, GENERAL, FICHIER, def_persisted, general);
     RB (gr, res, GENERAL, INFO, general);
     RG (gr, res, ::std::string, GENERAL, HELPSITE, general);
@@ -2619,6 +2633,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RB (gr, res, GENERAL, PROGRESS, general);
     RB (gr, res, GENERAL, RDFA, general);
     RB (gr, res, GENERAL, RPT, general);
+    RG (gr, res, vreg_t, GENERAL, SILENCE, general);
     RB (gr, res, GENERAL, SPEC, general);
     RB (gr, res, GENERAL, TEST, general);
 #ifndef NO_FRED
@@ -2726,9 +2741,11 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
 
     RBX (gr, res, OUTPUT, APATH, RPATH, output);
     RG (gr, res, ::std::string, OUTPUT, ACCOUNT, output);
+    RG (gr, res, ::std::string, OUTPUT, BACK, output);
     RG (gr, res, ::std::string, OUTPUT, BUILD, output);
     RG (gr, res, vstr_t, OUTPUT, DESCRIPTION, output);
     RG (gr, res, ::std::string, OUTPUT, FORMAT, output);
+    RG (gr, res, ::std::string, OUTPUT, HOME, output);
     RG (gr, res, ::std::string, OUTPUT, OVERRIDE, output);
     RG (gr, res, ::std::string, OUTPUT, PASSWORD, output);
     RG (gr, res, ::std::string, OUTPUT, PRIVATE, output);
@@ -2736,6 +2753,7 @@ void options::report_bool (const e_gui_report gr, ::std::ostringstream& res, con
     RB (gr, res, OUTPUT, RPATH, output);
     RB (gr, res, OUTPUT, SIGN, output);
     RG (gr, res, ::std::string, OUTPUT, SIGNATURE, output);
+    RG (gr, res, ::std::string, OUTPUT, STYLESHEET, output);
     RG (gr, res, ::std::string, OUTPUT, TIME, output);
     RG (gr, res, ::std::string, OUTPUT, USERNAME, output);
     RB (gr, res, OUTPUT, VERIFY, output);

@@ -839,9 +839,6 @@
     <Filter Include="Toast\Math\4-core">
       <UniqueIdentifier>{918d08b8-d873-4b82-b4e7-2daedfdb08ea}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Port\OpenBSD\pkg">
-      <UniqueIdentifier>{6e5527dc-a219-48d1-9346-4aad7081fff4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Toast\Link\virtual">
       <UniqueIdentifier>{1db4d210-e5c1-4a21-b287-b58360450d7f}</UniqueIdentifier>
     </Filter>
@@ -1517,6 +1514,27 @@
     </Filter>
     <Filter Include="Toast\Type\rel">
       <UniqueIdentifier>{6db1c435-d029-4bf9-8f50-087105ce22b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Port\OpenBSD\httpd">
+      <UniqueIdentifier>{415c0099-7de5-4419-ae90-e9e2c58296e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Port\OpenBSD\portfiles">
+      <UniqueIdentifier>{53fc81f4-dbb8-4ff3-ad4f-04508d97984c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Port\OpenBSD\portfiles\pkg">
+      <UniqueIdentifier>{5dd29b11-9d7c-46a7-af18-6aa69fcb156e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Port\OpenBSD\httpd\7.7">
+      <UniqueIdentifier>{62e86a16-a352-430f-9fa9-1816becfa773}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Output\stylesheet">
+      <UniqueIdentifier>{cbcebbab-188c-4546-ba43-2e11f7ca64a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Other\silenced">
+      <UniqueIdentifier>{a253490c-abd3-4dd4-bfb3-3f774ea8da1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Toast\Other\silenced\sub">
+      <UniqueIdentifier>{605a6b6f-61fd-4d6d-a7e9-960f45b029ca}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -26724,9 +26742,6 @@
     <None Include="..\toast\other\blob\harris-brexit.pdf">
       <Filter>Toast\Other\blob</Filter>
     </None>
-    <None Include="..\port\openbsd\Makefile">
-      <Filter>Port\OpenBSD</Filter>
-    </None>
     <None Include="..\toast\math\4-core\core-1.html">
       <Filter>Toast\Math\4-core</Filter>
     </None>
@@ -26738,12 +26753,6 @@
     </None>
     <None Include="..\toast\math\4-core\math.spec">
       <Filter>Toast\Math\4-core</Filter>
-    </None>
-    <None Include="..\port\openbsd\pkg\PLIST">
-      <Filter>Port\OpenBSD\pkg</Filter>
-    </None>
-    <None Include="..\port\openbsd\pkg\DESCR">
-      <Filter>Port\OpenBSD\pkg</Filter>
     </None>
     <None Include="..\toast\link\virtual\target.html">
       <Filter>Toast\Link\virtual</Filter>
@@ -42879,6 +42888,54 @@
     <None Include="..\toast\living\oct25\16.html">
       <Filter>Toast\Living\oct25</Filter>
     </None>
+    <None Include="..\port\openbsd\portfiles\Makefile">
+      <Filter>Port\OpenBSD\portfiles</Filter>
+    </None>
+    <None Include="..\port\openbsd\portfiles\pkg\DESCR">
+      <Filter>Port\OpenBSD\portfiles\pkg</Filter>
+    </None>
+    <None Include="..\port\openbsd\portfiles\pkg\PLIST">
+      <Filter>Port\OpenBSD\portfiles\pkg</Filter>
+    </None>
+    <None Include="..\port\openbsd\httpd\7.7\chroot77.sh">
+      <Filter>Port\OpenBSD\httpd\7.7</Filter>
+    </None>
+    <None Include="..\port\openbsd\httpd\7.7\dependencies.sh">
+      <Filter>Port\OpenBSD\httpd\7.7</Filter>
+    </None>
+    <None Include="..\toast\output\stylesheet\output.conf">
+      <Filter>Toast\Output\stylesheet</Filter>
+    </None>
+    <None Include="..\toast\output\stylesheet\output.spec">
+      <Filter>Toast\Output\stylesheet</Filter>
+    </None>
+    <None Include="..\toast\output\stylesheet\ssc.css">
+      <Filter>Toast\Output\stylesheet</Filter>
+    </None>
+    <None Include="..\toast\output\stylesheet\stylesheet.html">
+      <Filter>Toast\Output\stylesheet</Filter>
+    </None>
+    <None Include="..\toast\output\stylesheet\stylesheet.html.model">
+      <Filter>Toast\Output\stylesheet</Filter>
+    </None>
+    <None Include="..\toast\output\stylesheet\stylesheet.nit">
+      <Filter>Toast\Output\stylesheet</Filter>
+    </None>
+    <None Include="..\toast\other\silenced\sub\css-good.css">
+      <Filter>Toast\Other\silenced\sub</Filter>
+    </None>
+    <None Include="..\toast\other\silenced\sub\index.html">
+      <Filter>Toast\Other\silenced\sub</Filter>
+    </None>
+    <None Include="..\toast\other\silenced\index.html">
+      <Filter>Toast\Other\silenced</Filter>
+    </None>
+    <None Include="..\toast\other\silenced\silenced.conf">
+      <Filter>Toast\Other\silenced</Filter>
+    </None>
+    <None Include="..\toast\other\silenced\silenced.spec">
+      <Filter>Toast\Other\silenced</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\toast\type\url\x.jpg">
@@ -43378,9 +43435,6 @@
     <Text Include="..\toast\coop\corrupt\robots.txt">
       <Filter>Toast\coop\corrupt</Filter>
     </Text>
-    <Text Include="..\port\openbsd\README.txt">
-      <Filter>Port\OpenBSD</Filter>
-    </Text>
     <Text Include="..\toast\link\virtual\README.txt">
       <Filter>Toast\Link\virtual</Filter>
     </Text>
@@ -43404,6 +43458,9 @@
     </Text>
     <Text Include="..\toast\signing\verify-pw\password.txt">
       <Filter>Toast\Signing\verify-pw</Filter>
+    </Text>
+    <Text Include="..\port\openbsd\README.txt">
+      <Filter>Port\OpenBSD</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>

@@ -124,7 +124,7 @@ bool maybe_transform (nitpick& nits, const e_css_property id, const bool t4)
     const flags_t f (enum_n < t_css_property, e_css_property > :: flags (id));
     if ((f & CF_TRANSFORM) == CF_TRANSFORM) return true;
     if (! test_esii (sii_hush, HIDE_ME))
-        nits.pick (nit_css_value_fn, ed_css_transform_3, "9. The Transform Functions", es_error, ec_css, "not transform property");
+        nits.pick (nit_css_value_fn, ed_css_transform, "9. The Transform Functions", es_error, ec_css, "not transform property");
     return false; }
 
 int check_typed_feature (arguments& args, nitpick& nits, const int start, const int to, const e_css_statement cs, const char* const sz)

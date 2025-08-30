@@ -361,8 +361,8 @@ int cycle (nitpick& nits, const int argc, char** argv)
                 case es_abhorrent :
                 case es_error : return ERROR_STATE;
                 default : return res; } }
-        if (context.build ().empty ()) macro -> set (nm_output_build, __DATE__ " " __TIME__);
-        else macro -> set (nm_output_build, context.build ());
+        if (context.build ().empty ()) macro -> set (nm_compile_time, __DATE__ " " __TIME__);
+        else macro -> set (nm_compile_time, context.build ());
         macro -> set (nm_output_account, get_account ());
         macro -> set (nm_output_description, context.output_description ());
         macro -> set (nm_output_operator, context.username ());

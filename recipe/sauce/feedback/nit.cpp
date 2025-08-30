@@ -123,13 +123,24 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
     values.emplace (nm_level_symbol, level_symbol ());
     values.emplace (nm_nit_id, lookup_name (code_));
     if (! ref_.empty ())
-    {   values.emplace (nm_nit_ref, ref_);
+    {   ::std::string link;
+        values.emplace (nm_nit_ref, ref_);
         values.emplace (nm_nit_doc, doc_title (doc_));
-        values.emplace (nm_nit_doc_long, doc_ref (doc_)); }
+        values.emplace (nm_nit_doc_long, doc_ref (doc_));
+        switch (doc_link (doc_, link))
+        {   case nlt_html : values.emplace (nm_nit_doc_link, link); values.emplace (nm_nit_doc_pdf, ""); values.emplace (nm_nit_doc_text, ""); values.emplace (nm_nit_doc_zip, ""); break;   
+            case nlt_pdf : values.emplace (nm_nit_doc_pdf, link); values.emplace (nm_nit_doc_link, ""); values.emplace (nm_nit_doc_text, ""); values.emplace (nm_nit_doc_zip, ""); break; 
+            case nlt_txt : values.emplace (nm_nit_doc_text, link); values.emplace (nm_nit_doc_link, ""); values.emplace (nm_nit_doc_pdf, ""); values.emplace (nm_nit_doc_zip, ""); break; 
+            case nlt_zip : values.emplace (nm_nit_doc_zip, link); values.emplace (nm_nit_doc_link, ""); values.emplace (nm_nit_doc_pdf, ""); values.emplace (nm_nit_doc_text, ""); break; 
+            default : break; } }
     else
     {   values.emplace (nm_nit_ref, "");
         values.emplace (nm_nit_doc, "");
-        values.emplace (nm_nit_doc_long, ""); }
+        values.emplace (nm_nit_doc_long, "");
+        values.emplace (nm_nit_doc_link, "");
+        values.emplace (nm_nit_doc_pdf, "");
+        values.emplace (nm_nit_doc_text, "");
+        values.emplace (nm_nit_doc_zip, ""); }
     VERIFY_NOT_NULL (macro.get (), __FILE__, __LINE__);
     return macro -> apply (entry, mac, outer, values); }
 
@@ -199,10 +210,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_jul21 : return "HTML 5, Jul 21";
         case ed_apr22 : return "HTML 5, Apr 22";
         case ed_oct22 : return "HTML 5, Oct 22";
-        case ed_apr23 : return "HTML 5, Apr 23";
-        case ed_jul23 : return "HTML 5, Jul 23";
-        case ed_nov24 : return "HTML 5, Nov 24";
-        case ed_jun25 : return "HTML 5, Jun 25";
+        case ed_jun23 : return "HTML 5, Jun 23";
         case ed_jul25 : return "HTML 5, Jul 25";
         case ed_aug25 : return "HTML 5, Aug 25";
         case ed_wx : return "wxWidgets HTML";
@@ -222,7 +230,6 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_aria_html : return "Aria in HTML";
         case ed_aria_mdn : return "WAI-ARIA roles (MDN)";
         case ed_so_11 : return SCHEMA_ORG " 11.0";
-        case ed_css_transform : return "CSS Transforms";
         case ed_mql : return "Media Queries";
         case ed_css_1 : return "CSS Level 1";
         case ed_css_20 : return "CSS Level 2";
@@ -252,7 +259,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_css_selectors_4 : return "CSS Selectors 4";
         case ed_css_syntax : return "CSS Syntax Module";
         case ed_css_table : return "CSS Table Module Level 3";
-        case ed_css_transform_3 : return "CSS Transforms Module 1";
+        case ed_css_transform : return "CSS Transforms Module 1";
         case ed_css_ui_3 : return "CSS UI 3";
         case ed_css_ui_4 : return "CSS UI 4";
         case ed_css_value_3 : return "CSS Value 3";
@@ -303,10 +310,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_jul21 : return "HTML 5, WhatWG, July 2021";
         case ed_apr22 : return "HTML 5, WhatWG, April 2022";
         case ed_oct22 : return "HTML 5, WhatWG, October 2022";
-        case ed_apr23 : return "HTML 5, WhatWG, April 2023";
-        case ed_jul23 : return "HTML 5, WhatWG, July 2023";
-        case ed_nov24 : return "HTML 5, WhatWG, November 2024";
-        case ed_jun25 : return "HTML 5, WhatWG, June 2025";
+        case ed_jun23 : return "HTML 5, WhatWG, Juny 2023";
         case ed_jul25 : return "HTML 5, WhatWG, July 2025";
         case ed_aug25 : return "HTML 5, WhatWG, August 2025";
         case ed_wx : return "wxWidgets HTML, list of stable HTML tags, November 2024";
@@ -352,7 +356,6 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_aria_html : return "ARIA in HTML, February 2025";
         case ed_aria_mdn : return "WAI-ARIA roles (developer.mozilla.org, June 2025)";
         case ed_apache : return "Apache 2.4 mod_include, 2020";
-        case ed_css_transform : return "CSS Transforms Module Level 1, February 2019";
         case ed_so_11 : return SCHEMA_ORG " 11.0";
         case ed_mozilla : return "moz://a, May 2020";
         case ed_microdata : return "WhatWG HTML 5, WhatWG, July 2020";
@@ -385,7 +388,7 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_css_selectors_4 : return "CSS Selectors Level 4, November 2022 draft";
         case ed_css_syntax : return "CSS Syntax Module Level 3, December 2021 draft";
         case ed_css_table : return "CSS Table Module Level 3, July 2019 draft";
-        case ed_css_transform_3 : return "CSS Transforms Module 1, February 2019";
+        case ed_css_transform : return "CSS Transforms Module 1, February 2019";
         case ed_css_ui_3 : return "CSS Basic User Interface Level 3, June 2018";
         case ed_css_ui_4 : return "CSS Basic User Interface Level 4, March 2021 draft";
         case ed_css_value_3 : return "CSS Values and Units 3, December 2022";
@@ -398,3 +401,144 @@ bool ignore_this_slovenly_stuff (const e_nit code) noexcept
         case ed_vtt : return "WebVTT: The Web Video Text Tracks Format, April 2019, https://www.w3.org/TR/webvtt1/";
         case ed_rel : return "official rel registry: existing rel values, https://microformats.org/"; }
     return "unknown reference"; }
+
+e_nit_link_type doc_link (const e_doc doc, ::std::string& link)
+{   
+#define SPEX WEBADDR "spex/"
+#define HTMLSPEX SPEX "html/"
+#define ARIASPEX SPEX "aria/"
+#define CSSSPEX SPEX "css/"
+#define JSON SPEX "json/"
+#define LIVING SPEX "whatwg/"
+#define MATHSPEX SPEX "mathml/"
+#define ONTSPEX SPEX "ontology/"
+#define RFC SPEX "rfc/"
+#define RDFSPEX SPEX "rdf/"
+#define SVGSPEX SPEX "svg/"
+#define XHTMLSPEX SPEX "xhtml/"
+    link.clear ();
+    switch (doc)
+    {   case ed_1 : link = HTMLSPEX "html1/html10.txt"; return nlt_txt;
+        case ed_2 : link = HTMLSPEX "html2/rfc1866.txt"; return nlt_txt;
+        case ed_3 : link = HTMLSPEX "html3/html30.txt"; return nlt_txt;
+        case ed_32 : link = HTMLSPEX "html3/html32.pdf"; return nlt_pdf;
+        case ed_4 : link = HTMLSPEX "html4/html400.pdf"; return nlt_pdf;
+        case ed_41 : link = HTMLSPEX "html4/html401.pdf"; return nlt_pdf;
+        case ed_x1 : link = XHTMLSPEX "xhtml1.pdf"; return nlt_pdf;
+        case ed_x11 : link = XHTMLSPEX "xhtml11basic.pdf"; return nlt_pdf;
+        case ed_x2 : link = XHTMLSPEX "xhtml2.pdf"; return nlt_pdf;
+        case ed_50 : link = HTMLSPEX "html5/html5.0.pdf"; return nlt_pdf;
+        case ed_51 : link = HTMLSPEX "html5/html5.1.pdf"; return nlt_pdf;
+        case ed_52 : link = HTMLSPEX "html5/html5.2.pdf"; return nlt_pdf;
+        case ed_53 : link = HTMLSPEX "html5/html5.3.pdf"; return nlt_pdf;
+        case ed_jan05 : link = LIVING "webapps-whatwg-2005-01.pdf"; return nlt_pdf;
+        case ed_jan06 : link = LIVING "webapps-whatwg-2006-01.pdf"; return nlt_pdf;
+        case ed_jan07 : link = LIVING "webapps-whatwg-2007-01.pdf"; return nlt_pdf;
+        case ed_jan08 : link = LIVING "html-whatwg-2008-01.pdf"; return nlt_pdf;
+        case ed_jan10 : link = LIVING "html-whatwg-2010-01.pdf"; return nlt_pdf;
+        case ed_jul10 : link = LIVING "html-whatwg-2010-07.pdf"; return nlt_pdf;
+        case ed_jan12 : link = LIVING "html-whatwg-2012-01.pdf"; return nlt_pdf;
+        case ed_jan13 : link = LIVING "html-whatwg-2013-01.pdf"; return nlt_pdf;
+        case ed_jan14 : link = LIVING "html-whatwg-2014-01.pdf"; return nlt_pdf;
+        case ed_jul17 : link = LIVING "html-whatwg-2017-07.pdf"; return nlt_pdf;
+        case ed_may20 : link = LIVING "html-whatwg-2020-05.pdf"; return nlt_pdf;
+        case ed_jul20 : link = LIVING "html-whatwg-2020-07.pdf"; return nlt_pdf;
+        case ed_jan21 : link = LIVING "html-whatwg-2021-01.pdf"; return nlt_pdf;
+        case ed_apr21 : link = LIVING "html-whatwg-2021-04.pdf"; return nlt_pdf;
+        case ed_jul21 : link = LIVING "html-whatwg-2021-07.pdf"; return nlt_pdf;
+        case ed_apr22 : link = LIVING "html-whatwg-2022-04.pdf"; return nlt_pdf;
+        case ed_jun23 : link = LIVING "html-whatwg-2023-06.pdf"; return nlt_pdf;
+        case ed_jul25 : link = LIVING "html-whatwg-2025-07.pdf"; return nlt_pdf;
+        case ed_aug25 : link = LIVING "html-whatwg-2025-08.pdf"; return nlt_pdf;
+        case ed_apache : link = "https://httpd.apache.org/docs/current/mod/mod_include.html"; return nlt_html;
+        case ed_aria_1_0 : link = ARIASPEX "aria-1.0.pdf"; return nlt_pdf;
+        case ed_aria_1_1 : link = ARIASPEX "aria-1.1.pdf"; return nlt_pdf;
+        case ed_aria_1_2 : link = ARIASPEX "aria-1.2.pdf"; return nlt_pdf;
+        case ed_aria_1_3 : link = ARIASPEX "aria-1.3-jan24.pdf"; return nlt_pdf;
+        case ed_aria_dp_1_0 : link = ARIASPEX "aria-dp-1.0.pdf"; return nlt_pdf;
+        case ed_aria_dp_1_1 : link = ARIASPEX "aria-dp-1.1.pdf"; return nlt_pdf;
+        case ed_aria_graphics : link = ARIASPEX "aria-graph-1.0.pdf"; return nlt_pdf;
+        case ed_aria_html : link = ARIASPEX "aria-html-1.0.pdf"; return nlt_pdf;
+        case ed_aria_mdn : link = "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles"; return nlt_html;
+        case ed_clacks : link = "https://xclacksoverhead.org/"; return nlt_html;
+        case ed_csp : link = "csp/csp3.pdf"; return nlt_pdf;
+        case ed_css_1 : link = CSSSPEX "css-1-apr08.pdf"; return nlt_pdf;
+        case ed_css_20 : link = CSSSPEX "css-2.0-may98.pdf"; return nlt_pdf;
+        case ed_css_21 : link = CSSSPEX "css-2.1-apr16.pdf"; return nlt_pdf;
+        case ed_css_22 : link = CSSSPEX "css-2.2-feb22.pdf"; return nlt_pdf;
+        case ed_css_animation_3 : link = CSSSPEX "css-animations-1-mar23.pdf"; return nlt_pdf; 
+        case ed_css_cascade_4 : link = CSSSPEX "css-cascading-inheritance-4-jan22.pdf"; return nlt_pdf; 
+        case ed_css_cascade_5 : link = CSSSPEX "css-cascading-inheritance-5-jan22.pdf"; return nlt_pdf; 
+        case ed_css_cascade_6 : link = CSSSPEX "css-cascading-inheritance-6-mar23.pdf"; return nlt_pdf; 
+        case ed_cr_4 : link = CSSSPEX "css-conditional-rules-4-feb22"; return nlt_pdf;  
+        case ed_cr_5 : link = CSSSPEX "css-conditional-rules-5-dec21"; return nlt_pdf;  
+        case ed_css_colour_3 : link = CSSSPEX "css-colour-3-jan22.pdf"; return nlt_pdf;  
+        case ed_css_colour_4 : link = CSSSPEX "css-colour-4-nov22.pdf"; return nlt_pdf;  
+        case ed_css_colour_5 : link = CSSSPEX "css-colour-5-jun22.pdf"; return nlt_pdf;  
+        case ed_css_content : link = CSSSPEX "css-generated-content-3-dec20.pdf"; return nlt_pdf;
+        case ed_css_cs_3 : link = CSSSPEX "css-counter-styles-3-jul21.pdf"; return nlt_pdf;
+        case ed_css_custom : link = CSSSPEX "css-cpcv-1-jun22.pdf"; return nlt_pdf;
+        case ed_css_ease : link = CSSSPEX "css-easing-1-feb23.pdf"; return nlt_pdf;
+        case ed_css_filter_3 : link = CSSSPEX "css-filter-effects-1-dec18.pdf"; return nlt_pdf;
+        case ed_css_font_4 : link = CSSSPEX "css-fonts-4-dec21.pdf"; return nlt_pdf;
+        case ed_css_image_3 : link = CSSSPEX "css-images-3.pdf"; return nlt_pdf;
+        case ed_css_media_3 : link = CSSSPEX "css-media-queries-3-apr-22.pdf"; return nlt_pdf; 
+        case ed_css_media_4 : link = CSSSPEX "css-media-queries-4.pdf"; return nlt_pdf; 
+        case ed_css_namespaces_3 : link = CSSSPEX "css-namespaces-3.pdf"; return nlt_pdf; 
+        case ed_css_nesting : link = CSSSPEX "css-nesting-aug21.pdf"; return nlt_pdf; 
+        case ed_css_selectors_3 : link = CSSSPEX "css-selectors-3.pdf"; return nlt_pdf;
+        case ed_css_selectors_4 : link = CSSSPEX "css-selectors-4-nov22.pdf"; return nlt_pdf;
+        case ed_css_syntax : link = CSSSPEX "css-syntax-s-dec21.pdf"; return nlt_pdf;
+        case ed_css_table : link = CSSSPEX "css-tables-3-sep20.pdf"; return nlt_pdf;
+        case ed_css_transform : link = CSSSPEX "css-transforms-1.pdf"; return nlt_pdf;
+        case ed_css_ui_3 : link = CSSSPEX "css-basic-ui-3.pdf"; return nlt_pdf;
+        case ed_css_ui_4 : link = CSSSPEX "css-basic-ui-3.pdf"; return nlt_pdf;
+        case ed_css_value_3 : link = CSSSPEX "css-values-units-3-dec22.pdf"; return nlt_pdf;
+        case ed_css_value_4 : link = CSSSPEX "css-values-units-3-dec22.pdf"; return nlt_pdf;
+        case ed_dict : link = SPEX "dict/johnsons_dictionary_1755.pdf"; return nlt_pdf;
+        case ed_doctype : link = "https://www.w3.org/QA/2002/04/valid-dtd-list.html"; return nlt_html;
+        case ed_ecma : link = SPEX "ecma/ecmascript-draft-2021-03.pdf"; return nlt_pdf;
+        case ed_iso_8859_1 : link = SPEX "charset/charsets-jan21.pdf"; return nlt_pdf;
+        case ed_json : link = JSON "rfc4627.txt"; return nlt_txt;
+        case ed_jsonld_1_0 : link = JSON "JSON-LD-1.0.pdf"; return nlt_pdf;
+        case ed_jsonld_1_1 : link = JSON "JSON-LD-1.1.pdf"; return nlt_pdf;
+        case ed_keyboard : link = SPEX "uieke/uieke-nov24.pdf"; return nlt_pdf;
+        case ed_math_1 : link = MATHSPEX "mathml-1.pdf"; return nlt_pdf;
+        case ed_math_2 : link = MATHSPEX "mathml-2.pdf"; return nlt_pdf;
+        case ed_math_3 : link = MATHSPEX "mathml-3.pdf"; return nlt_pdf;
+        case ed_math_4 : link = MATHSPEX "mathml-4-nov24.pdf"; return nlt_pdf;
+        case ed_math_core :link = MATHSPEX "mathml-core.pdf"; return nlt_pdf;
+        case ed_microdata : link = LIVING "html-whatwg-2020-07.pdf"; return nlt_pdf;
+        case ed_microformats : link = "https://microformats.org/"; return nlt_html;
+        case ed_mimetype : link = "mime/media-types.txt"; return nlt_txt;
+        case ed_mozilla : link = "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta"; return nlt_html;
+        case ed_mql : link = "media/media-queries.pdf"; return nlt_pdf;
+        case ed_owasp : link = "https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html"; return nlt_html;
+        case ed_plus : link = "https://www.w3.org/MarkUp/HTMLPlus/htmlplus_1.html"; return nlt_html;
+        case ed_prism_1 : link = ONTSPEX "PRISM1.0.pdf"; return nlt_pdf;
+        case ed_rdfa : link = RDFSPEX "rdfa-core.1.1.3.pdf"; return nlt_pdf;
+        case ed_rdfa_c : link = RDFSPEX "RDFa Core Initial Context.pdf"; return nlt_pdf;
+        case ed_rel : link = "https://microformats.org/wiki/existing-rel-values"; return nlt_html;
+        case ed_rfc_1867 : link = RFC "rfc1867.html"; return nlt_html;
+        case ed_rfc_1980 : link = RFC "rfc1980.html"; return nlt_html;
+        case ed_rfc_2616 : link = RFC "rfc2616.pdf"; return nlt_pdf;
+        case ed_rfc_3966 : link = RFC "rfc3966.pdf"; return nlt_pdf;
+        case ed_rfc_3986 : link = RFC "rfc3986.txt"; return nlt_txt;
+        case ed_rfc_6265 : link = RFC "rfc6265.pdf"; return nlt_pdf;
+        case ed_rfc_6570 : link = RFC "rfc6570.txt"; return nlt_txt;
+        case ed_rfc_7231 : link = RFC "rfc7231.pdf"; return nlt_pdf;
+        case ed_rfc_7234 : link = RFC "rfc7234.pdf"; return nlt_pdf;
+        case ed_rfc_8288 : link = RFC "rfc8288.pdf"; return nlt_pdf;
+        case ed_so_11 : link = ONTSPEX "schemas-11.0.zip"; return nlt_zip;
+        case ed_svg_1_0 : link = SVGSPEX "svg.pdf"; return nlt_pdf;
+        case ed_svg_1_1 : link = SVGSPEX "svg11.pdf"; return nlt_pdf;
+        case ed_svg_1_2_tiny : link = SVGSPEX "svg12Tiny.pdf"; return nlt_pdf;
+        case ed_svg_1_2_full : link = SVGSPEX "svg12Full.pdf"; return nlt_pdf;
+        case ed_svg_2_0 : link = SVGSPEX "svg-2-03-2023.pdf"; return nlt_pdf;
+        case ed_svg_2_anim : link = SVGSPEX "svg-2-animations-04-2021.pdf"; return nlt_pdf;
+        case ed_tags : link = HTMLSPEX "html1/html1tags.pdf"; return nlt_pdf;
+        case ed_vtt : link = "vtt/webvtt-apr-2019.pdf"; return nlt_pdf;
+        case ed_w3 : link = "https://w3.org/"; return nlt_html;
+        case ed_wx : link = "https://docs.wxwidgets.org/stable/overview_html.html"; return nlt_html;
+        default: break; }
+    return nlt_none; }

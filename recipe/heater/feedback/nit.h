@@ -64,3 +64,4 @@ inline bool operator < (const nit& lhs, const nit& rhs)
 
 ::std::string doc_title (const e_doc doc);
 ::std::string doc_ref (const e_doc doc);
+e_nit_link_type doc_link (const e_doc doc, ::std::string& link);

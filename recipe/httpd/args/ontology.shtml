@@ -23,8 +23,6 @@ may find these switches useful. Note that ssc only knows about certain
 ontologies (see --ontology.list).
 </p>
 
-<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-zpf-k11.jpg" title="made with studio artist 5.5">
-
 <table>
 <tr><td>ontology.export</td> <td>Export ontologies encountered. This data is
                         exported in JSON format (not JSON&ndash;LD).</td></tr>
@@ -202,8 +200,6 @@ To specific a specific version of an ontology, use X.Y, for example:<br>
 </table>
 
 <h2>Notes on specific ontologies</h2>
-
-<img alt="riff on name" class="mw50 inline_illustration_right" src="/image/ssc-msgdb-zpf-k9.jpg" title="made with studio artist 5.5">
 
 <h3>Adobe</h3>
 
